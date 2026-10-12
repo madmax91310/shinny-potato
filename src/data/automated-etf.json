@@ -8652,21 +8652,21 @@
       "checkedAt": "2026-10-12"
     },
     "sectors": {
-      "asOf": "2026-10-08",
+      "asOf": "2026-10-09",
       "rows": [
         {
           "name": "Information Technology",
-          "weightPct": 68.91,
+          "weightPct": 68.52,
           "label": "Information Technology"
         },
         {
           "name": "Financials",
-          "weightPct": 26.69,
+          "weightPct": 27.24,
           "label": "Financials"
         },
         {
           "name": "Communication",
-          "weightPct": 4.16,
+          "weightPct": 4.24,
           "label": "Communication"
         },
         {
@@ -8676,37 +8676,39 @@
         },
         {
           "name": "Cash and/or Derivatives",
-          "weightPct": 0.14,
+          "weightPct": -0.1,
           "label": "Cash and/or Derivatives"
         }
       ],
-      "checkedAt": "2026-10-12"
+      "checkedAt": "2026-10-12",
+      "modifiedAt": "2026-10-12"
     },
     "countries": {
-      "asOf": "2026-10-08",
+      "asOf": "2026-10-09",
       "rows": [
         {
           "name": "United States",
-          "weightPct": 89.49
+          "weightPct": 89.71
         },
         {
           "name": "China",
-          "weightPct": 6.26
+          "weightPct": 6.33
         },
         {
           "name": "Germany",
-          "weightPct": 1.53
+          "weightPct": 1.51
         },
         {
           "name": "Other",
-          "weightPct": 2.58
+          "weightPct": 2.55
         },
         {
           "name": "Cash and/or Derivatives",
-          "weightPct": 0.14
+          "weightPct": -0.1
         }
       ],
-      "checkedAt": "2026-10-12"
+      "checkedAt": "2026-10-12",
+      "modifiedAt": "2026-10-12"
     },
     "holdings": {
       "asOf": "2026-10-09",
@@ -9256,11 +9258,11 @@
       "checkedAt": "2026-10-12"
     },
     "sectors": {
-      "asOf": "2026-10-08",
+      "asOf": "2026-10-09",
       "rows": [
         {
           "name": "Banking",
-          "weightPct": 31.32,
+          "weightPct": 31.34,
           "label": "Banking"
         },
         {
@@ -9270,12 +9272,12 @@
         },
         {
           "name": "Consumer Non-Cyclical",
-          "weightPct": 7.38,
+          "weightPct": 7.4,
           "label": "Consumer Non-Cyclical"
         },
         {
           "name": "Communications",
-          "weightPct": 6.87,
+          "weightPct": 6.86,
           "label": "Communication"
         },
         {
@@ -9309,14 +9311,14 @@
           "label": "Energy"
         },
         {
+          "name": "Reits",
+          "weightPct": 2.8,
+          "label": "Reits"
+        },
+        {
           "name": "Basic Industry",
           "weightPct": 2.8,
           "label": "Basic Industry"
-        },
-        {
-          "name": "Reits",
-          "weightPct": 2.79,
-          "label": "Reits"
         },
         {
           "name": "Real Estate",
@@ -9330,7 +9332,7 @@
         },
         {
           "name": "Brokerage/Asset Managers/Exchanges",
-          "weightPct": 0.93,
+          "weightPct": 0.92,
           "label": "Brokerage/Asset Managers/Exchanges"
         },
         {
@@ -9360,11 +9362,12 @@
         },
         {
           "name": "Cash and/or Derivatives",
-          "weightPct": 0.02,
+          "weightPct": -0.01,
           "label": "Cash and/or Derivatives"
         }
       ],
-      "checkedAt": "2026-10-12"
+      "checkedAt": "2026-10-12",
+      "modifiedAt": "2026-10-12"
     },
     "holdings": {
       "asOf": "2026-10-09",
@@ -26999,7 +27002,7 @@
       },
       "asOf": "2026-10-09",
       "sourceUrl": "https://www-api.coinshares.com/api/v2/Widgets?ApiKey=094DA478-140C-4E3E-B394-7A19BBE8326B&names=ISIN_GRAPH_GB00BLD4ZL17%40%25,ISIN_KEYSTATS_GB00BLD4ZL17",
-      "sha256": "28307d8ca308cc23ca9981bde214da8696925d0cdaaa893862e501aa1f9f6d90",
+      "sha256": "0276dd9795e0d930871f8c9595613d29eb69b962c4ff65085d9bc4169e5b6789",
       "method": "calendar-year exact ETP return from issuer normalized USD product series; fees and staking reflected; derived from rounded issuer levels",
       "checkedAt": "2026-10-12",
       "modifiedAt": "2026-10-12"
@@ -27038,7 +27041,7 @@
       },
       "asOf": "2026-10-09",
       "sourceUrl": "https://www-api.coinshares.com/api/v2/Widgets?ApiKey=094DA478-140C-4E3E-B394-7A19BBE8326B&names=ISIN_GRAPH_GB00BLD4ZM24%40%25,ISIN_KEYSTATS_GB00BLD4ZM24",
-      "sha256": "89da4162659d2de21c964531fc87b326b958b8ca85abe42bb401802753fabb98",
+      "sha256": "8f25e08aed4670007038ca36098605851264e3e4e39a5224845fcbc733c0ed50",
       "method": "calendar-year exact ETP return from issuer normalized USD product series; fees and staking reflected; derived from rounded issuer levels",
       "checkedAt": "2026-10-12",
       "modifiedAt": "2026-10-12"

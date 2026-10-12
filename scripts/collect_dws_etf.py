@@ -148,6 +148,18 @@ def parse_holdings(body, share, now, url):
         elif asset in ('Cash', 'Future', 'FX Forward'):
             # Keep the net cash/derivative allocation; never renormalise equities.
             sector = country = 'Cash and/or Derivatives'
+        elif asset == 'Mutual Fund':
+            # A fund share is a security, not an equity in its underlying sector.
+            # Preserve the published registration country and mark its sector
+            # unassigned; no look-through exposure or cash equivalence is inferred.
+            isin = p['header']['value']
+            if value < 0 or not re.fullmatch(r'[A-Z]{2}[A-Z0-9]{9}\d', isin):
+                reject('Unqualified DWS fund holding')
+            sector = 'Unassigned'
+            country = p['column_3']['value']
+            if country in (None, '', '--', 'Unknown'): country = 'Non classé'
+            holdings.append({'name': p['column_0']['value'], 'isin': isin,
+                             'assetClass': asset, 'weightPct': value})
         else:
             reject('Unqualified DWS asset class: ' + asset)
         total += value

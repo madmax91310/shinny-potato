@@ -1,0 +1,49 @@
+[
+  {
+    "code": "GB00BLD4ZL17",
+    "type": "STANDARD",
+    "sections": [
+      {
+        "type": "KEYSTAT",
+        "meta": [
+          {
+            "value": "2026-10-09",
+            "key": "rateDate"
+          },
+          {
+            "value": "0.15%",
+            "key": "managementFee"
+          }
+        ],
+        "lang": "en",
+        "updated": "2026-10-12T14:30:02.2338929Z",
+        "stale": "2026-10-12T14:30:03.2338929Z",
+        "source": "Coinshares TBA",
+        "sourceUri": "https://tba/",
+        "key": "GB00BLD4ZL17_OVERVIEW",
+        "from": "CACHED"
+      },
+      {
+        "type": "KEYSTAT",
+        "meta": [
+          {
+            "value": "GB00BLD4ZL17",
+            "key": "iSIN"
+          }
+        ],
+        "lang": "en",
+        "updated": "2026-10-12T14:30:02.2339285Z",
+        "stale": "2026-10-12T14:30:03.2339285Z",
+        "source": "Coinshares TBA",
+        "sourceUri": "https://tba/",
+        "key": "GB00BLD4ZL17_NAN",
+        "from": "CACHED"
+      }
+    ],
+    "updated": "2026-10-12T14:30:02.2340741Z",
+    "stale": "0001-01-01T00:00:00",
+    "key": "ISIN_KEYSTATS_GB00BLD4ZL17",
+    "cacheType": "REDIS",
+    "from": "CACHED"
+  }
+]

@@ -4,8 +4,13 @@ import { spawn } from 'node:child_process'
 import { mkdir, writeFile, readFile } from 'node:fs/promises'
 import { ASSET_ORDER } from '../src/data/market-history.js'
 import { INVESTMENT_ART } from '../src/pages/investment-calculator/emeraldArt.js'
+import { NEON_ASSET_ART } from '../src/pages/tweet-midi/stylizedArt.js'
 assert.deepEqual(Object.keys(INVESTMENT_ART).sort(), [...ASSET_ORDER].sort())
 for (const art of Object.values(INVESTMENT_ART)) for (const file of [art.background, art.mark, art.scene].filter(Boolean)) await readFile(`public/asset-art/${file}`)
+for (const [id, file] of Object.entries({ etf_robotics: 'robotics', etf_financials: 'finance', etf_infrastructure: 'infrastructure', etf_health: 'health', etf_clean_energy: 'renewables' })) {
+  assert.equal(INVESTMENT_ART[id].scene, `etf-night/${file}.webp`)
+  assert.equal(NEON_ASSET_ART[id].sceneFile, INVESTMENT_ART[id].scene)
+}
 assert.equal(INVESTMENT_ART.apple.background, 'emerald/apple.webp')
 assert.equal(INVESTMENT_ART.microsoft.mark, 'microsoft.svg')
 assert.equal(INVESTMENT_ART.tesla.mark, 'tesla.svg')
