@@ -2,10 +2,10 @@ import { loadArtImage, ANNIVERSARY_ART } from './anniversaryArt.js'
 import { ETF_HISTORY_IDENTITIES } from '../../data/etf-monthly-history.js'
 
 const paperGroups = {
-  world: ['world-midcap-equal-duel','world-consumption-duel','world-acwi-cto','world-quality','world-value','quality-momentum','world-momentum','world-minvol','monde','monde-toutes-tailles','world-avec-sans-usa','grandes-petites-monde','world-pea', 'world-meme-indice-pea'], america: ['sp500-equal-weight','nasdaq-sp500','usa','usa-pea','sp500-meme-indice-pea'], europe: ['europe','europe-pea'], emerging: ['emergents','emergents-avec-sans-chine','emergents-pea'], property: ['immobilier-infrastructures'],
-  gaming: ['jeux-video'], luxury: ['luxe'], robotics: ['ia-robotique'], health: ['sante','innovation-medicale'], renewables: ['renouvelables'],
+  world: ['world-listed-private-equity','world-midcap-equal-duel','world-consumption-duel','world-acwi-cto','world-quality','world-value','quality-momentum','world-momentum','world-minvol','monde','monde-toutes-tailles','world-avec-sans-usa','grandes-petites-monde','world-pea', 'world-meme-indice-pea'], america: ['sp500-equal-weight','nasdaq-sp500','usa','usa-pea','sp500-meme-indice-pea'], europe: ['europe','europe-pea'], emerging: ['emergents','emergents-avec-sans-chine','emergents-pea'], property: ['immobilier-infrastructures'],
+  gaming: ['jeux-video'], luxury: ['luxe'], robotics: ['ia-robotique'], health: ['sante','innovation-medicale'], renewables: ['energy-or-clean-energy','renouvelables'],
   dividends: ['dividendes'], japan: ['japon'], defense: ['defense'], quantum: ['quantique'],
-  space: ['spatial'], resources: ['ressources-naturelles'], finance: ['financieres', 'monetaire-obligations-courtes'],
+  space: ['spatial'], resources: ['gold-or-miners','ressources-naturelles'], finance: ['financieres', 'monetaire-obligations-courtes'],
   chip: ['tech-europe', 'semiconducteurs-tech'], blockchain: ['blockchain'], gold: ['etc-metaux'],
 }
 export const PAPER_THEME_ART = Object.freeze(Object.fromEntries(Object.entries(paperGroups).flatMap(([scene, ids]) => ids.map(id => [id, scene]))))

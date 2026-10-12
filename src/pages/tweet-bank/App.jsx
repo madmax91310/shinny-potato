@@ -158,6 +158,12 @@ function TweetCard({ tweet, draft, onDraftChange, lastPublished, onMarkToday, on
 
       <p className={`tb-validity${validity.ready ? ' ready' : ''}`} role="status">{validity.ready ? '✅' : '🕒'} {validity.label}</p>
       <TweetText ref={textareaRef} text={text} onChange={value => updateDraft({ text: value })} />
+      {tweet.image && <figure className="tb-tweet-image">
+        <a href={`${import.meta.env.BASE_URL}${tweet.image.src}`} target="_blank" rel="noreferrer" aria-label="Ouvrir l’image en taille réelle">
+          <img src={`${import.meta.env.BASE_URL}${tweet.image.src}`} alt={tweet.image.alt} loading="lazy" width={1024} height={1536} />
+        </a>
+        <figcaption><a href={`${import.meta.env.BASE_URL}${tweet.image.src}`} download={tweet.image.filename}>Télécharger l’image PNG</a></figcaption>
+      </figure>}
       {(!validity.ready || draft) && <div className="tb-review">
         <p>{reviewPolicy(tweet).kind === 'personal' ? 'Actualise ton bilan ou replace-le explicitement dans sa période d’origine.' : 'Vérifie les chiffres, la période, les hypothèses et les sources avant de réutiliser ce texte.'}</p>
         <label>Date de référence <input type="date" value={draft?.asOf ?? ''} max={bankToday()} onChange={event => updateDraft({ asOf: event.target.value })} /></label>
@@ -316,3 +322,4 @@ export default function App() {
     </div>
   )
 }
+

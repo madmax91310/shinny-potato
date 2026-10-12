@@ -3,14 +3,14 @@ import { amount, canPublish, dateLabel, calculatedRatios, activeValuation, fresh
 const finite = value => typeof value === 'number' && Number.isFinite(value)
 const fr = value => new Intl.NumberFormat('fr-FR', { minimumFractionDigits: 1, maximumFractionDigits: 1 }).format(value)
 const images = new Map()
-function loadArt(id, subtitle) {
+function loadArt(id, subtitle, artFile) {
   if (!subtitle) return Promise.resolve(null)
   if (!images.has(id)) {
     const promise = new Promise((resolve, reject) => {
       const image = new Image()
       image.onload = () => resolve(image)
       image.onerror = () => reject(new Error('Impossible de charger l’illustration de cette entreprise.'))
-      image.src = `${import.meta.env?.BASE_URL ?? '/'}asset-art/company-light/${id}.webp`
+      image.src = `${import.meta.env?.BASE_URL ?? '/'}asset-art/company-light/${artFile ?? `${id}.webp`}`
     }).catch(error => { images.delete(id); throw error })
     images.set(id, promise)
   }
@@ -65,7 +65,7 @@ function text(ctx, value, x, y, size, color, maxWidth, weight = 400, family = 'A
 }
 export async function renderCompanyImage(company, now = new Date()) {
   const model = companyImageModel(company, now)
-  const art = await loadArt(company.id, company.imageSubtitle)
+  const art = await loadArt(company.id, company.imageSubtitle, company.artFile)
   const canvas = document.createElement('canvas')
   canvas.width = 1200; canvas.height = 1200
   const ctx = canvas.getContext('2d')

@@ -263,13 +263,16 @@ def main():
         published = None
         collected_history = None
         from company_extended_publications import EXTENDED, EUROPE
-        extended = ident in EXTENDED or ident == 'amd'
+        from company_round2_publications import ROUND2
+        extended = ident in EXTENDED or ident == 'amd' or ident in ROUND2
         url = f"https://data.sec.gov/api/xbrl/companyfacts/CIK{profile['cik']}.json" if profile.get('cik') else profile['sourceUrl']
         sec_accounts = None
         sec_body = None
         try:
             if ident in EUROPE:
                 raise ValueError('IFRS issuer adapter required')
+            if ident in ROUND2:
+                raise NotImplementedError('Renewable official issuer adapter is the primary source')
             if args.publications_only:
                 raise ValueError('Issuer fallback requested')
             sec_body = fetch_json(url)
@@ -279,6 +282,8 @@ def main():
         try:
             if ident == 'amd':
                 from company_amd_publications import collect
+            elif ident in ROUND2:
+                from company_round2_publications import collect
             elif extended:
                 from company_extended_publications import collect
             else:
@@ -385,10 +390,14 @@ def main():
                 status['estimates'] = 'unavailable-for-euro-listing'
         quote_url = 'https://query2.finance.yahoo.com/v8/finance/chart/' + urllib.parse.quote(profile['symbol']) + '?range=2y&interval=1d&events=splits'
         try:
-            quote = parse_quote(fetch_json(quote_url), profile, now)
+            quote_body = fetch_json(quote_url)
+            quote = parse_quote(quote_body, profile, now)
             if old.get('quote', {}).get('asOf', '') > quote['asOf']:
                 raise ValueError('Price regressed')
             item['quote'] = {**quote, 'sourceUrl': quote_url}
+            if ident in ROUND2:
+                from company_round2_publications import normalise_eps_basis
+                normalise_eps_basis(item, profile, item['quote'], quote_body)
             status['quote'] = 'updated'
         except Exception as error:
             status['quote'] = type(error).__name__

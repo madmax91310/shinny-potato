@@ -8,7 +8,6 @@ export const INSTRUMENT_LISTINGS_BY_ISIN = Object.freeze({
   "IE00B4556L06": [{"ticker": "IPDM", "exchange": "London Stock Exchange", "mic": "XLON", "currency": "USD", "sourceUrl": "https://www.ishares.com/uk/individual/en/products/256574/ishares-physical-palladium-etc-fund?siteEntryPassthrough=true&switchLocale=y", "checkedAt": "2026-10-12", "evidenceId": "IE00B4556L06-XLON-IPDM-USD"}],
   "IE00B4LHWP62": [{"ticker": "IPLT", "exchange": "London Stock Exchange", "mic": "XLON", "currency": "USD", "sourceUrl": "https://www.ishares.com/uk/individual/en/products/258442/ishares-physical-platinum-etc-fund?siteEntryPassthrough=true&switchLocale=y", "checkedAt": "2026-10-12", "evidenceId": "IE00B4LHWP62-XLON-IPLT-USD"}],
   "IE0003R87OG3": [{"ticker": "AVWS", "exchange": "Xetra", "mic": "XETR", "currency": "EUR", "sourceUrl": "https://res.avantisinvestors.com/docs/avantis-global-small-cap-value-ucits-etf-fact-sheet.pdf", "checkedAt": "2026-10-12", "evidenceId": "IE0003R87OG3-XETR-AVWS-EUR"}],
-  ...QUALIFIED_LISTINGS,
   ...Object.fromEntries(PRESENTATION_ETF_ADDITIONS.map(r => [r.isin, [r.listing]])),
   "FR001400S9V0": [{"ticker": "MLUX", "exchange": "Euronext Paris", "mic": "XPAR", "currency": "EUR", "sourceUrl": "https://live.euronext.com/en/product/etfs/FR001400S9V0-XPAR", "checkedAt": "2026-10-11", "evidenceId": "FR001400S9V0-XPAR-MLUX-EUR"}],
   "IE00BGV5VN51": [{"ticker": "XAIX", "exchange": "Borsa Italiana", "mic": "ETFP", "currency": "EUR", "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BGV5VN51/pdpMetaTagsTealium", "checkedAt": "2026-10-11", "evidenceId": "IE00BGV5VN51-ETFP-XAIX-EUR"}],
@@ -2041,7 +2040,8 @@ export const INSTRUMENT_LISTINGS_BY_ISIN = Object.freeze({
       "checkedAt": "2026-09-30",
       "evidenceId": "LU1681048630-XSWX-GLUX-EUR"
     }
-  ]
+  ],
+  ...QUALIFIED_LISTINGS
 });
 
 // Les outils partagent ces objets : empêcher une modification locale du catalogue.

@@ -35,15 +35,16 @@ try {
     }
     const all=norm(labels.join(' '))
     if(/(?<!\p{L})(?:je|j[’']|mes|mon|moi|nous)(?!\p{L})/iu.test(all))throw Error(`${topic.id}: first-person image text`)
-    // Every computed fact is still rendered, including ETF identity and dated observations.
+    // Every main comparison fact is still rendered, including ETF identity and dated observations.
     for(const row of sheet.rows)for(const value of row.slice(1)){
      if(/vais-je|puis-je/i.test(value))continue
      if(!all.includes(norm(value)))throw Error(`${topic.id}: missing ${value}`)
     }
-    for(const note of sheet.notes)if(!all.includes(norm(note)))throw Error(`${topic.id}: missing note`)
+    if(all.includes('sources :') || all.includes('pas un conseil financier'))throw Error(`${topic.id}: publication footer`)
+    for(const note of sheet.notes)if(all.includes(norm(note)))throw Error(`${topic.id}: small-print note`)
     const bg=canvas.getContext('2d').getImageData(800,0,1,1).data
     if(bg[0]!==7||bg[1]!==27||bg[2]!==20)throw Error('Wrong background')
-    if(!all.includes('pas un conseil financier'))throw Error('Missing footer')
+
     if(['pea-cto','world-pea','before-etf','europe-indices'].includes(topic.id))await window.savePractical({id:topic.id,png:canvas.toDataURL('image/png')})
    }
   } finally {CanvasRenderingContext2D.prototype.fillText=original}
@@ -65,5 +66,5 @@ try {
  const before=await page.locator('canvas').evaluate(c=>c.toDataURL())
  await page.getByRole('spinbutton',{name:'Capital initial (€)'}).fill('20000')
  await page.waitForFunction(previous=>document.querySelector('canvas').toDataURL()!==previous,before)
- console.log('44 images factuelles : chiffres et notes conservés, aucun chevauchement ni rognage ; mobile, export PNG et scénario vérifiés.')
+ console.log('44 images factuelles : chiffres conservés, pied de page retiré, aucun chevauchement ni rognage ; mobile, export PNG et scénario vérifiés.')
 }finally{await browser?.close();server.kill('SIGTERM')}
