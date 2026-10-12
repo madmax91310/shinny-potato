@@ -1,3 +1,5 @@
+import { AUTOMATED_ETF } from '../src/data/automated-etf.js';
+import qualified from './qualified-exposure-sources.json' with { type:'json' };
 import { readFileSync, writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { DATA_CATALOG } from '../src/data/catalog.js';
@@ -26,8 +28,8 @@ export function classifyInstrumentGap(id,field,now=new Date().toISOString().slic
   if(id==='IE000QDFFK00' && field==='countries') return {status:'unqualified',reason:'Pays de l’indice exact raccordés via la fiche Amundi ; le portefeuille BNP publie seulement des régions. Une absence indique que le complément d’indice reste à valider.'};
   return {status:'unqualified',reason:'Champ absent des observations actives ; source ou connecteur à qualifier.'};
 }
-export function buildGapInventory({etf=read('src/data/automated-etf.json'),indices=read('src/data/automated-indices.json'),insurance=read('src/data/automated-insurance.json').records,now=new Date().toISOString().slice(0,10)}={}) {
-  const sources=['etf-pilot.json','amundi-etf.json','ssga-etf.json','additional-etf-sources.json'].flatMap(f=>read('scripts/'+f).instruments);
+export function buildGapInventory({etf=AUTOMATED_ETF,indices=read('src/data/automated-indices.json'),insurance=read('src/data/automated-insurance.json').records,now=new Date().toISOString().slice(0,10)}={}) {
+  const sources=['etf-pilot.json','amundi-etf.json','ssga-etf.json','additional-etf-sources.json'].flatMap(f=>read('scripts/'+f).instruments).concat(qualified.instruments);
   const configured=new Map(sources.filter(s=>s.enabled!==false).map(s=>[s.isin,s]));
   const names={ter:'Frais',aum:'Encours',performance:'Calendrier annuel',countries:'Pays',sectors:'Secteurs',holdings:'Positions pondérées'};
   const counts=Object.fromEntries(Object.keys(names).map(k=>[k,0]));const gaps=[];const rows=DATA_CATALOG.filter(r=>r.type==='instrument');

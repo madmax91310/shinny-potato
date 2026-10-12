@@ -1,4 +1,6 @@
 #!/usr/bin/env node
+import { QUALIFIED_EXPOSURE_SHEETS } from '../src/data/qualified-exposure-sheets.js';
+import { ETF_MONTHLY_HISTORIES } from '../src/data/etf-monthly-history.js';
 import { PRESENTATION_ETF_EXPANSION } from '../src/data/presentation-etf-expansion.js';
 import { PRESENTATION_ETF_ADDITIONS } from '../src/data/presentation-etf-additions.js';
 import { AUTOMATED_ETF } from '../src/data/automated-etf.js';
@@ -84,14 +86,14 @@ for (const [context, file, items] of collections) {
   const references = source.match(/name:\s*getInstrumentName\(|nom:\s*getInstrumentName\(/g) ?? [];
   // Les nouveaux thèmes construisent les libellés par une fonction commune ;
   // chaque résultat est comparé au registre par ISIN dans la boucle ci-dessous.
-  if (context !== 'tweet' && references.length + (source.includes('EXPOSURE_ADDITIONS.map(') ? EXPOSURE_ADDITIONS.length - 1 : 0) + (source.includes('PRESENTATION_ETF_ADDITIONS.map(') ? PRESENTATION_ETF_ADDITIONS.length - 1 : 0) + (source.includes('PRESENTATION_ETF_EXPANSION.map(') ? PRESENTATION_ETF_EXPANSION.length - 1 : 0) + (context === 'index' ? 3 : 0) !== items.length) {
+  if (context !== 'tweet' && references.length + (source.includes('EXPOSURE_ADDITIONS.map(') ? EXPOSURE_ADDITIONS.length - 1 : 0) + (source.includes('PRESENTATION_ETF_ADDITIONS.map(') ? PRESENTATION_ETF_ADDITIONS.length - 1 : 0) + (source.includes('PRESENTATION_ETF_EXPANSION.map(') ? PRESENTATION_ETF_EXPANSION.length - 1 : 0) + (source.includes('QUALIFIED_EXPOSURE_SHEETS.map(') ? QUALIFIED_EXPOSURE_SHEETS.length - 1 : 0) + (context === 'index' ? 3 : 0) !== items.length) {
     console.error(`${file} : ${references.length} références au catalogue pour ${items.length} produits.`);
     errors++;
   }
   if (context === 'sheet' || context === 'index') {
     const aumReferences = source.match(/aum:\s*getInstrumentAum\(/g) ?? [];
     const aumItems = items.filter(item => item.aum);
-    if (aumReferences.length + (source.includes('EXPOSURE_ADDITIONS.map(') ? EXPOSURE_ADDITIONS.length - 1 : 0) + (source.includes('PRESENTATION_ETF_ADDITIONS.map(') ? PRESENTATION_ETF_ADDITIONS.length - 1 : 0) + (source.includes('PRESENTATION_ETF_EXPANSION.map(') ? PRESENTATION_ETF_EXPANSION.length - 1 : 0) + (context === 'index' ? 2 : 0) !== aumItems.length) {
+    if (aumReferences.length + (source.includes('EXPOSURE_ADDITIONS.map(') ? EXPOSURE_ADDITIONS.length - 1 : 0) + (source.includes('PRESENTATION_ETF_ADDITIONS.map(') ? PRESENTATION_ETF_ADDITIONS.length - 1 : 0) + (source.includes('PRESENTATION_ETF_EXPANSION.map(') ? PRESENTATION_ETF_EXPANSION.length - 1 : 0) + (source.includes('QUALIFIED_EXPOSURE_SHEETS.map(') ? QUALIFIED_EXPOSURE_SHEETS.length - 1 : 0) + (context === 'index' ? 2 : 0) !== aumItems.length) {
       console.error(`${file} : ${aumReferences.length} références d'encours pour ${aumItems.length} valeurs.`);
       errors++;
     }
@@ -244,7 +246,7 @@ for (const isin of Object.keys(INSTRUMENTS_BY_ISIN)) {
   // Parts retirées des sélections éditoriales le 06/10/2026 ; leurs données
   // et collecteurs restent disponibles dans le catalogue partagé. PEMS est également
   // conservée après le retrait du doublon de part dans Émergents PEA (10/10/2026).
-  if (!seen.has(isin) && !['IE000XZSV718', 'IE00BD4TXV59', 'FR001400ZGO4'].includes(isin)) {
+  if (!seen.has(isin) && !Object.values(ETF_MONTHLY_HISTORIES).some(asset => asset.isin === isin) && !['IE000XZSV718', 'IE00BD4TXV59', 'FR001400ZGO4'].includes(isin)) {
     console.error(`Catalogue : ISIN inutilisé ${isin}`);
     errors++;
   }

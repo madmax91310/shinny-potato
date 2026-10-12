@@ -1,3 +1,5 @@
+import { QUALIFIED_EXPOSURE_SHEETS } from '../../../data/qualified-exposure-sheets.js'
+import { QUALIFIED_ETF_COMPARISONS } from '../../../data/qualified-etf-comparisons.js'
 // Explications éditoriales des périmètres déjà identifiés dans etf-themes.js
 // et les registres partagés. Les frais, compositions et éligibilités restent
 // lus dans leurs sources existantes. Une même part conserve le même texte.
@@ -6,6 +8,7 @@ const ACWI = 'Il couvre les grandes et moyennes entreprises des pays développé
 const EURO50 = 'Il suit 50 grandes entreprises de la zone euro. Son périmètre est plus restreint que celui du MSCI Europe ou du STOXX Europe 600 : le Royaume-Uni et la Suisse n’en font pas partie.'
 const TECH_EUROPE = 'Il cible les entreprises technologiques du STOXX Europe 600. Tu investis dans un secteur européen précis, plutôt que dans l’ensemble du marché européen.'
 export const ETF_EXPOSURE_COPY = {
+  ...Object.fromEntries(QUALIFIED_EXPOSURE_SHEETS.map(r=>[r.isin,r.whatIs])),
   IE00B6R52259: ACWI,
   IE00BP3QZ601: 'Il sélectionne des entreprises du MSCI World selon leur rentabilité, leur endettement et la stabilité de leurs bénéfices. Les poids des secteurs restent proches du World ; ce filtre ne garantit pas une meilleure performance.',
   IE00BP3QZB59: 'Il sélectionne des entreprises du MSCI World dont la valorisation paraît plus faible selon plusieurs critères financiers. Une action moins chère peut le rester longtemps et cette sélection peut sous-performer le marché.',
@@ -92,6 +95,7 @@ export function getEtfExposureCopy(etf) {
 }
 
 export const COMPARISON_HOOKS = {
+  ...Object.fromEntries(QUALIFIED_ETF_COMPARISONS.map(d=>[d.id,d.hook])),
   'world-acwi-cto': 'Les pays développés seuls, ou les marchés émergents dans le même ETF ?',
   'world-quality': 'Suivre le World ou sélectionner les entreprises selon leur solidité financière ?',
   'world-value': 'Suivre le World ou privilégier des entreprises aux valorisations plus faibles ?',

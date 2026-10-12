@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { QUALIFIED_LISTING_EVIDENCE } from '../src/data/qualified-exposure-sheets.js'
 import { readFileSync } from 'node:fs';
 import { pathToFileURL } from 'node:url';
 import { INSTRUMENTS_BY_ISIN } from '../src/data/instruments.js';
@@ -32,7 +33,7 @@ export function auditInstrumentListings() {
     }
     published[item.isin] = [...new Set([...(published[item.isin] ?? []), ...tickers])];
   }
-  return [...selectionErrors, ...validateListingEvidence({ published, listings: INSTRUMENT_LISTINGS_BY_ISIN, evidence: snapshot.evidence })];
+  return [...selectionErrors, ...validateListingEvidence({ published, listings: INSTRUMENT_LISTINGS_BY_ISIN, evidence: { ...snapshot.evidence, ...QUALIFIED_LISTING_EVIDENCE } })];
 }
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
 const errors = auditInstrumentListings();

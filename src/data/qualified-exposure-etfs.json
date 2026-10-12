@@ -1,0 +1,3960 @@
+{
+  "world-midcap-equal": {
+    "id": "world-midcap-equal",
+    "productId": 270057,
+    "isin": "IE00BP3QZD73",
+    "label": "Moyennes capitalisations mondiales équipondérées",
+    "scene": "world",
+    "category": "Stratégiques",
+    "currency": "USD",
+    "collectHoldings": true,
+    "requireFullHistory": false,
+    "distribution": "Accumulating",
+    "terPct": 0.3,
+    "index": "MSCI World Mid Cap Equal Weighted Net Index",
+    "aum": {
+      "amount": 442157463.07,
+      "currency": "USD",
+      "scope": "share-class",
+      "asOf": "2026-10-09"
+    },
+    "countries": {
+      "asOf": "2026-10-09",
+      "rows": [
+        {
+          "name": "United States",
+          "weightPct": 40.92
+        },
+        {
+          "name": "Japan",
+          "weightPct": 15.08
+        },
+        {
+          "name": "Canada",
+          "weightPct": 5.38
+        },
+        {
+          "name": "United Kingdom",
+          "weightPct": 4.63
+        },
+        {
+          "name": "Australia",
+          "weightPct": 3.76
+        },
+        {
+          "name": "France",
+          "weightPct": 3.49
+        },
+        {
+          "name": "Sweden",
+          "weightPct": 2.96
+        },
+        {
+          "name": "Germany",
+          "weightPct": 2.8
+        },
+        {
+          "name": "Hong Kong",
+          "weightPct": 2.59
+        },
+        {
+          "name": "Switzerland",
+          "weightPct": 2.39
+        },
+        {
+          "name": "Italy",
+          "weightPct": 2.31
+        },
+        {
+          "name": "Netherlands",
+          "weightPct": 1.96
+        },
+        {
+          "name": "Singapore",
+          "weightPct": 1.32
+        },
+        {
+          "name": "Israel",
+          "weightPct": 1.3
+        },
+        {
+          "name": "Spain",
+          "weightPct": 1.29
+        },
+        {
+          "name": "Denmark",
+          "weightPct": 1.22
+        },
+        {
+          "name": "Finland",
+          "weightPct": 1.2
+        },
+        {
+          "name": "Norway",
+          "weightPct": 1.19
+        },
+        {
+          "name": "Belgium",
+          "weightPct": 1.09
+        },
+        {
+          "name": "Other",
+          "weightPct": 2.4000000000000004
+        },
+        {
+          "name": "Cash and/or Derivatives",
+          "weightPct": 0.72
+        }
+      ]
+    },
+    "sectors": {
+      "asOf": "2026-10-09",
+      "rows": [
+        {
+          "name": "Industrials",
+          "weightPct": 20.66
+        },
+        {
+          "name": "Financials",
+          "weightPct": 15.85
+        },
+        {
+          "name": "Information Technology",
+          "weightPct": 10.32
+        },
+        {
+          "name": "Consumer Discretionary",
+          "weightPct": 9.41
+        },
+        {
+          "name": "Health Care",
+          "weightPct": 9.3
+        },
+        {
+          "name": "Materials",
+          "weightPct": 7.98
+        },
+        {
+          "name": "Consumer Staples",
+          "weightPct": 7.13
+        },
+        {
+          "name": "Utilities",
+          "weightPct": 6.42
+        },
+        {
+          "name": "Real Estate",
+          "weightPct": 5.2
+        },
+        {
+          "name": "Communication",
+          "weightPct": 4.09
+        },
+        {
+          "name": "Energy",
+          "weightPct": 2.92
+        },
+        {
+          "name": "Cash and/or Derivatives",
+          "weightPct": 0.72
+        }
+      ]
+    },
+    "performance": {
+      "currency": "USD",
+      "basis": "fund",
+      "method": "calendar-year NAV total return, income reinvested, fund fees included",
+      "years": {
+        "2016": 8.25,
+        "2017": 23.99,
+        "2018": -14.07,
+        "2019": 23.66,
+        "2020": 10.61,
+        "2021": 12.87,
+        "2022": -18.31,
+        "2023": 15.69,
+        "2024": 6.2,
+        "2025": 20.76
+      }
+    },
+    "holdings": {
+      "asOf": "2026-10-09",
+      "basis": "fund",
+      "rows": [
+        {
+          "name": "OKTA CLASS A",
+          "weightPct": 0.36544,
+          "isin": "US6792951054"
+        },
+        {
+          "name": "ATLASSIAN CORP CLASS A",
+          "weightPct": 0.3225,
+          "isin": "US0494681010"
+        },
+        {
+          "name": "HEWLETT PACKARD ENTERPRISE",
+          "weightPct": 0.3031,
+          "isin": "US42824C1099"
+        },
+        {
+          "name": "NATERA",
+          "weightPct": 0.27513,
+          "isin": "US6323071042"
+        },
+        {
+          "name": "EVERPURE INC CLASS A",
+          "weightPct": 0.2735,
+          "isin": "US74624M1027"
+        },
+        {
+          "name": "ILLUMINA INC",
+          "weightPct": 0.26636,
+          "isin": "US4523271090"
+        },
+        {
+          "name": "NETAPP INC",
+          "weightPct": 0.26495,
+          "isin": "US64110D1046"
+        },
+        {
+          "name": "VIVMARK RESIDENTIAL",
+          "weightPct": 0.25069,
+          "isin": "US29476L1070"
+        },
+        {
+          "name": "VEEVA SYSTEMS CLASS A",
+          "weightPct": 0.24626,
+          "isin": "US9224751084"
+        },
+        {
+          "name": "SHARKNINJA",
+          "weightPct": 0.2441,
+          "isin": "KYG8068L1086"
+        }
+      ]
+    },
+    "name": "iShares MSCI World Mid-Cap Equal Weight UCITS ETF",
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=270057&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "listing": {
+      "ticker": "IWSZ",
+      "exchange": "London Stock Exchange",
+      "excerpt": "London Stock Exchange | IWSZ | USD | 20141006 | IWSZ.L",
+      "mic": "XLON",
+      "currency": "USD",
+      "symbol": "IWSZ.L",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=270057&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "checkedAt": "2026-10-12",
+      "evidenceId": "IE00BP3QZD73-XLON-IWSZ-USD"
+    },
+    "listings": [
+      {
+        "ticker": "IWSZ",
+        "exchange": "London Stock Exchange",
+        "excerpt": "London Stock Exchange | IWSZ | USD | 20141006 | IWSZ.L",
+        "mic": "XLON",
+        "currency": "USD",
+        "symbol": "IWSZ.L",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=270057&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "checkedAt": "2026-10-12",
+        "evidenceId": "IE00BP3QZD73-XLON-IWSZ-USD"
+      },
+      {
+        "ticker": "IS3T",
+        "exchange": "Xetra",
+        "excerpt": "Deutsche Boerse Xetra | IS3T | EUR | 20141007 | IS3T.DE",
+        "mic": "XETR",
+        "currency": "EUR",
+        "symbol": "IS3T.DE",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=270057&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "checkedAt": "2026-10-12",
+        "evidenceId": "IE00BP3QZD73-XETR-IS3T-EUR"
+      },
+      {
+        "ticker": "IWSZ",
+        "exchange": "Borsa Italiana",
+        "excerpt": "Borsa Italiana | IWSZ | EUR | 20150216 | IWSZ.MI",
+        "mic": "ETFP",
+        "currency": "EUR",
+        "symbol": "IWSZ.MI",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=270057&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "checkedAt": "2026-10-12",
+        "evidenceId": "IE00BP3QZD73-ETFP-IWSZ-EUR"
+      }
+    ],
+    "characteristics": {
+      "terPct": 0.3,
+      "index": "MSCI World Mid Cap Equal Weighted Net Index",
+      "distribution": "Accumulating",
+      "domicile": "Ireland",
+      "replicationMethod": "Physical (Optimised)",
+      "inceptionDate": "20141003"
+    },
+    "checkedAt": "2026-10-12T11:35:47.104357+00:00",
+    "pageSha256": "ee4585bfc3b1a6a63233608b453410a5fe3b35fc263eda4cc1e498be5c2e9a77",
+    "automatedRecord": {
+      "currency": "USD",
+      "productId": 270057,
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=270057&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "provider": "iShares",
+      "aum": {
+        "amount": 442157463.07,
+        "currency": "USD",
+        "scope": "share-class",
+        "asOf": "2026-10-09",
+        "checkedAt": "2026-10-12",
+        "modifiedAt": "2026-10-12"
+      },
+      "sectors": {
+        "asOf": "2026-10-09",
+        "rows": [
+          {
+            "name": "Industrials",
+            "weightPct": 20.66,
+            "label": "Industrials"
+          },
+          {
+            "name": "Financials",
+            "weightPct": 15.85,
+            "label": "Financials"
+          },
+          {
+            "name": "Information Technology",
+            "weightPct": 10.32,
+            "label": "Information Technology"
+          },
+          {
+            "name": "Consumer Discretionary",
+            "weightPct": 9.41,
+            "label": "Consumer Discretionary"
+          },
+          {
+            "name": "Health Care",
+            "weightPct": 9.3,
+            "label": "Health Care"
+          },
+          {
+            "name": "Materials",
+            "weightPct": 7.98,
+            "label": "Materials"
+          },
+          {
+            "name": "Consumer Staples",
+            "weightPct": 7.13,
+            "label": "Consumer Staples"
+          },
+          {
+            "name": "Utilities",
+            "weightPct": 6.42,
+            "label": "Utilities"
+          },
+          {
+            "name": "Real Estate",
+            "weightPct": 5.2,
+            "label": "Immobilier"
+          },
+          {
+            "name": "Communication",
+            "weightPct": 4.09,
+            "label": "Communication"
+          },
+          {
+            "name": "Energy",
+            "weightPct": 2.92,
+            "label": "Energy"
+          },
+          {
+            "name": "Cash and/or Derivatives",
+            "weightPct": 0.72,
+            "label": "Cash and/or Derivatives"
+          }
+        ],
+        "checkedAt": "2026-10-12",
+        "modifiedAt": "2026-10-12"
+      },
+      "countries": {
+        "asOf": "2026-10-09",
+        "rows": [
+          {
+            "name": "United States",
+            "weightPct": 40.92
+          },
+          {
+            "name": "Japan",
+            "weightPct": 15.08
+          },
+          {
+            "name": "Canada",
+            "weightPct": 5.38
+          },
+          {
+            "name": "United Kingdom",
+            "weightPct": 4.63
+          },
+          {
+            "name": "Australia",
+            "weightPct": 3.76
+          },
+          {
+            "name": "France",
+            "weightPct": 3.49
+          },
+          {
+            "name": "Sweden",
+            "weightPct": 2.96
+          },
+          {
+            "name": "Germany",
+            "weightPct": 2.8
+          },
+          {
+            "name": "Hong Kong",
+            "weightPct": 2.59
+          },
+          {
+            "name": "Switzerland",
+            "weightPct": 2.39
+          },
+          {
+            "name": "Italy",
+            "weightPct": 2.31
+          },
+          {
+            "name": "Netherlands",
+            "weightPct": 1.96
+          },
+          {
+            "name": "Singapore",
+            "weightPct": 1.32
+          },
+          {
+            "name": "Israel",
+            "weightPct": 1.3
+          },
+          {
+            "name": "Spain",
+            "weightPct": 1.29
+          },
+          {
+            "name": "Denmark",
+            "weightPct": 1.22
+          },
+          {
+            "name": "Finland",
+            "weightPct": 1.2
+          },
+          {
+            "name": "Norway",
+            "weightPct": 1.19
+          },
+          {
+            "name": "Belgium",
+            "weightPct": 1.09
+          },
+          {
+            "name": "Other",
+            "weightPct": 2.4000000000000004
+          },
+          {
+            "name": "Cash and/or Derivatives",
+            "weightPct": 0.72
+          }
+        ],
+        "checkedAt": "2026-10-12",
+        "modifiedAt": "2026-10-12"
+      },
+      "holdings": {
+        "asOf": "2026-10-09",
+        "basis": "fund",
+        "rows": [
+          {
+            "name": "OKTA CLASS A",
+            "weightPct": 0.36544,
+            "isin": "US6792951054"
+          },
+          {
+            "name": "ATLASSIAN CORP CLASS A",
+            "weightPct": 0.3225,
+            "isin": "US0494681010"
+          },
+          {
+            "name": "HEWLETT PACKARD ENTERPRISE",
+            "weightPct": 0.3031,
+            "isin": "US42824C1099"
+          },
+          {
+            "name": "NATERA",
+            "weightPct": 0.27513,
+            "isin": "US6323071042"
+          },
+          {
+            "name": "EVERPURE INC CLASS A",
+            "weightPct": 0.2735,
+            "isin": "US74624M1027"
+          },
+          {
+            "name": "ILLUMINA INC",
+            "weightPct": 0.26636,
+            "isin": "US4523271090"
+          },
+          {
+            "name": "NETAPP INC",
+            "weightPct": 0.26495,
+            "isin": "US64110D1046"
+          },
+          {
+            "name": "VIVMARK RESIDENTIAL",
+            "weightPct": 0.25069,
+            "isin": "US29476L1070"
+          },
+          {
+            "name": "VEEVA SYSTEMS CLASS A",
+            "weightPct": 0.24626,
+            "isin": "US9224751084"
+          },
+          {
+            "name": "SHARKNINJA",
+            "weightPct": 0.2441,
+            "isin": "KYG8068L1086"
+          }
+        ],
+        "checkedAt": "2026-10-12",
+        "modifiedAt": "2026-10-12"
+      },
+      "characteristics": {
+        "terPct": 0.3,
+        "index": "MSCI World Mid Cap Equal Weighted Net Index",
+        "distribution": "Accumulating",
+        "domicile": "Ireland",
+        "replicationMethod": "Physical (Optimised)",
+        "inceptionDate": "20141003",
+        "checkedAt": "2026-10-12",
+        "modifiedAt": "2026-10-12"
+      },
+      "performance": {
+        "currency": "USD",
+        "basis": "fund",
+        "method": "calendar-year NAV total return, income reinvested, fund fees included",
+        "years": {
+          "2016": 8.25,
+          "2017": 23.99,
+          "2018": -14.07,
+          "2019": 23.66,
+          "2020": 10.61,
+          "2021": 12.87,
+          "2022": -18.31,
+          "2023": 15.69,
+          "2024": 6.2,
+          "2025": 20.76
+        },
+        "checkedAt": "2026-10-12",
+        "modifiedAt": "2026-10-12"
+      }
+    }
+  },
+  "water-ishares": {
+    "id": "water-ishares",
+    "productId": 251913,
+    "isin": "IE00B1TXK627",
+    "label": "Eau",
+    "scene": "water",
+    "category": "Thématiques émergentes",
+    "currency": "USD",
+    "collectHoldings": true,
+    "requireFullHistory": false,
+    "distribution": "Distributing",
+    "terPct": 0.65,
+    "index": "S&P Global Water Index (NET) (USD)",
+    "aum": {
+      "amount": 2133620400.16,
+      "currency": "USD",
+      "scope": "share-class",
+      "asOf": "2026-10-09"
+    },
+    "countries": {
+      "asOf": "2026-10-09",
+      "rows": [
+        {
+          "name": "United States",
+          "weightPct": 55.88
+        },
+        {
+          "name": "Brazil",
+          "weightPct": 13.21
+        },
+        {
+          "name": "United Kingdom",
+          "weightPct": 11.81
+        },
+        {
+          "name": "Switzerland",
+          "weightPct": 6.48
+        },
+        {
+          "name": "Japan",
+          "weightPct": 3.93
+        },
+        {
+          "name": "India",
+          "weightPct": 1.59
+        },
+        {
+          "name": "Malaysia",
+          "weightPct": 1.33
+        },
+        {
+          "name": "Netherlands",
+          "weightPct": 1.2
+        },
+        {
+          "name": "China",
+          "weightPct": 1.1
+        },
+        {
+          "name": "Other",
+          "weightPct": 2.7199999999999998
+        },
+        {
+          "name": "Cash and/or Derivatives",
+          "weightPct": 0.76
+        }
+      ]
+    },
+    "sectors": {
+      "asOf": "2026-10-09",
+      "rows": [
+        {
+          "name": "Utilities",
+          "weightPct": 48.47
+        },
+        {
+          "name": "Industrials",
+          "weightPct": 40.79
+        },
+        {
+          "name": "Materials",
+          "weightPct": 5.95
+        },
+        {
+          "name": "Energy",
+          "weightPct": 1.88
+        },
+        {
+          "name": "Information Technology",
+          "weightPct": 1.31
+        },
+        {
+          "name": "Consumer Discretionary",
+          "weightPct": 0.67
+        },
+        {
+          "name": "Real Estate",
+          "weightPct": 0.18
+        },
+        {
+          "name": "Cash and/or Derivatives",
+          "weightPct": 0.76
+        }
+      ]
+    },
+    "performance": {
+      "currency": "USD",
+      "basis": "fund",
+      "method": "calendar-year NAV total return, income reinvested, fund fees included",
+      "years": {
+        "2016": 6.53,
+        "2017": 26.7,
+        "2018": -10.07,
+        "2019": 33.3,
+        "2020": 15.6,
+        "2021": 31.06,
+        "2022": -21.78,
+        "2023": 14.12,
+        "2024": 4.53,
+        "2025": 17.62
+      }
+    },
+    "holdings": {
+      "asOf": "2026-10-09",
+      "basis": "fund",
+      "rows": [
+        {
+          "name": "COMPANHIA DE SANEAMENTO BASICO DE",
+          "weightPct": 9.54075,
+          "isin": "BRSBSPACNOR5"
+        },
+        {
+          "name": "AMERICAN WATER WORKS",
+          "weightPct": 7.84531,
+          "isin": "US0304201033"
+        },
+        {
+          "name": "XYLEM INC",
+          "weightPct": 6.95118,
+          "isin": "US98419M1009"
+        },
+        {
+          "name": "UNITED UTILITIES GROUP PLC",
+          "weightPct": 5.6943,
+          "isin": "GB00B39J2M42"
+        },
+        {
+          "name": "ESSENTIAL UTILITIES INC",
+          "weightPct": 5.66281,
+          "isin": "US29670G1022"
+        },
+        {
+          "name": "SEVERN TRENT PLC",
+          "weightPct": 5.11334,
+          "isin": "GB00B1FH8J72"
+        },
+        {
+          "name": "VERALTO CORP",
+          "weightPct": 4.77119,
+          "isin": "US92338C1036"
+        },
+        {
+          "name": "ECOLAB",
+          "weightPct": 4.12681,
+          "isin": "US2788651006"
+        },
+        {
+          "name": "GEBERIT AG",
+          "weightPct": 3.42338,
+          "isin": "CH0030170408"
+        },
+        {
+          "name": "WATTS WATER TECHNOLOGIES CLASS A",
+          "weightPct": 3.30789,
+          "isin": "US9427491025"
+        }
+      ]
+    },
+    "name": "iShares Global Water UCITS ETF",
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=251913&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "listing": {
+      "ticker": "DH2O",
+      "exchange": "London Stock Exchange",
+      "excerpt": "London Stock Exchange | DH2O | USD | 20070319 | DH2O.L",
+      "mic": "XLON",
+      "currency": "USD",
+      "symbol": "DH2O.L",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=251913&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "checkedAt": "2026-10-12",
+      "evidenceId": "IE00B1TXK627-XLON-DH2O-USD"
+    },
+    "listings": [
+      {
+        "ticker": "IQQQ",
+        "exchange": "Xetra",
+        "excerpt": "Deutsche Boerse Xetra | IQQQ | EUR | 20070926 | IQQQ.DE",
+        "mic": "XETR",
+        "currency": "EUR",
+        "symbol": "IQQQ.DE",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=251913&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "checkedAt": "2026-10-12",
+        "evidenceId": "IE00B1TXK627-XETR-IQQQ-EUR"
+      },
+      {
+        "ticker": "DH2O",
+        "exchange": "London Stock Exchange",
+        "excerpt": "London Stock Exchange | DH2O | USD | 20070319 | DH2O.L",
+        "mic": "XLON",
+        "currency": "USD",
+        "symbol": "DH2O.L",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=251913&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "checkedAt": "2026-10-12",
+        "evidenceId": "IE00B1TXK627-XLON-DH2O-USD"
+      },
+      {
+        "ticker": "IH2O",
+        "exchange": "Borsa Italiana",
+        "excerpt": "Borsa Italiana | IH2O | EUR | 20071130 | IH2O.MI",
+        "mic": "ETFP",
+        "currency": "EUR",
+        "symbol": "IH2O.MI",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=251913&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "checkedAt": "2026-10-12",
+        "evidenceId": "IE00B1TXK627-ETFP-IH2O-EUR"
+      },
+      {
+        "ticker": "IH2O",
+        "exchange": "SIX Swiss Exchange",
+        "excerpt": "SIX Swiss Exchange | IH2O | USD | 20071204 | IH2O.S",
+        "mic": "XSWX",
+        "currency": "USD",
+        "symbol": "IH2O.S",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=251913&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "checkedAt": "2026-10-12",
+        "evidenceId": "IE00B1TXK627-XSWX-IH2O-USD"
+      }
+    ],
+    "characteristics": {
+      "terPct": 0.65,
+      "index": "S&P Global Water Index (NET) (USD)",
+      "distribution": "Distributing",
+      "domicile": "Ireland",
+      "replicationMethod": "Physical (Replicated)",
+      "inceptionDate": "20070316"
+    },
+    "checkedAt": "2026-10-12T11:35:47.104357+00:00",
+    "pageSha256": "272db99268fe1e4c5348f2a4b022f86482b312b753bff0f9e2252a7091c82800",
+    "automatedRecord": {
+      "currency": "USD",
+      "productId": 251913,
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=251913&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "provider": "iShares",
+      "aum": {
+        "amount": 2133620400.16,
+        "currency": "USD",
+        "scope": "share-class",
+        "asOf": "2026-10-09",
+        "checkedAt": "2026-10-12",
+        "modifiedAt": "2026-10-12"
+      },
+      "sectors": {
+        "asOf": "2026-10-09",
+        "rows": [
+          {
+            "name": "Utilities",
+            "weightPct": 48.47,
+            "label": "Utilities"
+          },
+          {
+            "name": "Industrials",
+            "weightPct": 40.79,
+            "label": "Industrials"
+          },
+          {
+            "name": "Materials",
+            "weightPct": 5.95,
+            "label": "Materials"
+          },
+          {
+            "name": "Energy",
+            "weightPct": 1.88,
+            "label": "Energy"
+          },
+          {
+            "name": "Information Technology",
+            "weightPct": 1.31,
+            "label": "Information Technology"
+          },
+          {
+            "name": "Consumer Discretionary",
+            "weightPct": 0.67,
+            "label": "Consumer Discretionary"
+          },
+          {
+            "name": "Real Estate",
+            "weightPct": 0.18,
+            "label": "Immobilier"
+          },
+          {
+            "name": "Cash and/or Derivatives",
+            "weightPct": 0.76,
+            "label": "Cash and/or Derivatives"
+          }
+        ],
+        "checkedAt": "2026-10-12",
+        "modifiedAt": "2026-10-12"
+      },
+      "countries": {
+        "asOf": "2026-10-09",
+        "rows": [
+          {
+            "name": "United States",
+            "weightPct": 55.88
+          },
+          {
+            "name": "Brazil",
+            "weightPct": 13.21
+          },
+          {
+            "name": "United Kingdom",
+            "weightPct": 11.81
+          },
+          {
+            "name": "Switzerland",
+            "weightPct": 6.48
+          },
+          {
+            "name": "Japan",
+            "weightPct": 3.93
+          },
+          {
+            "name": "India",
+            "weightPct": 1.59
+          },
+          {
+            "name": "Malaysia",
+            "weightPct": 1.33
+          },
+          {
+            "name": "Netherlands",
+            "weightPct": 1.2
+          },
+          {
+            "name": "China",
+            "weightPct": 1.1
+          },
+          {
+            "name": "Other",
+            "weightPct": 2.7199999999999998
+          },
+          {
+            "name": "Cash and/or Derivatives",
+            "weightPct": 0.76
+          }
+        ],
+        "checkedAt": "2026-10-12",
+        "modifiedAt": "2026-10-12"
+      },
+      "holdings": {
+        "asOf": "2026-10-09",
+        "basis": "fund",
+        "rows": [
+          {
+            "name": "COMPANHIA DE SANEAMENTO BASICO DE",
+            "weightPct": 9.54075,
+            "isin": "BRSBSPACNOR5"
+          },
+          {
+            "name": "AMERICAN WATER WORKS",
+            "weightPct": 7.84531,
+            "isin": "US0304201033"
+          },
+          {
+            "name": "XYLEM INC",
+            "weightPct": 6.95118,
+            "isin": "US98419M1009"
+          },
+          {
+            "name": "UNITED UTILITIES GROUP PLC",
+            "weightPct": 5.6943,
+            "isin": "GB00B39J2M42"
+          },
+          {
+            "name": "ESSENTIAL UTILITIES INC",
+            "weightPct": 5.66281,
+            "isin": "US29670G1022"
+          },
+          {
+            "name": "SEVERN TRENT PLC",
+            "weightPct": 5.11334,
+            "isin": "GB00B1FH8J72"
+          },
+          {
+            "name": "VERALTO CORP",
+            "weightPct": 4.77119,
+            "isin": "US92338C1036"
+          },
+          {
+            "name": "ECOLAB",
+            "weightPct": 4.12681,
+            "isin": "US2788651006"
+          },
+          {
+            "name": "GEBERIT AG",
+            "weightPct": 3.42338,
+            "isin": "CH0030170408"
+          },
+          {
+            "name": "WATTS WATER TECHNOLOGIES CLASS A",
+            "weightPct": 3.30789,
+            "isin": "US9427491025"
+          }
+        ],
+        "checkedAt": "2026-10-12",
+        "modifiedAt": "2026-10-12"
+      },
+      "characteristics": {
+        "terPct": 0.65,
+        "index": "S&P Global Water Index (NET) (USD)",
+        "distribution": "Distributing",
+        "domicile": "Ireland",
+        "replicationMethod": "Physical (Replicated)",
+        "inceptionDate": "20070316",
+        "checkedAt": "2026-10-12",
+        "modifiedAt": "2026-10-12"
+      },
+      "performance": {
+        "currency": "USD",
+        "basis": "fund",
+        "method": "calendar-year NAV total return, income reinvested, fund fees included",
+        "years": {
+          "2016": 6.53,
+          "2017": 26.7,
+          "2018": -10.07,
+          "2019": 33.3,
+          "2020": 15.6,
+          "2021": 31.06,
+          "2022": -21.78,
+          "2023": 14.12,
+          "2024": 4.53,
+          "2025": 17.62
+        },
+        "checkedAt": "2026-10-12",
+        "modifiedAt": "2026-10-12"
+      }
+    }
+  },
+  "agribusiness-ishares": {
+    "id": "agribusiness-ishares",
+    "productId": 251707,
+    "isin": "IE00B6R52143",
+    "label": "Agriculture et agro-industrie",
+    "scene": "commodities",
+    "category": "Thématiques émergentes",
+    "currency": "USD",
+    "collectHoldings": true,
+    "requireFullHistory": false,
+    "distribution": "Accumulating",
+    "terPct": 0.55,
+    "index": "S&P Commodity Producers Agribusiness Index NTR",
+    "aum": {
+      "amount": 583112478.35,
+      "currency": "USD",
+      "scope": "share-class",
+      "asOf": "2026-10-09"
+    },
+    "countries": {
+      "asOf": "2026-10-09",
+      "rows": [
+        {
+          "name": "United States",
+          "weightPct": 52.92
+        },
+        {
+          "name": "Japan",
+          "weightPct": 8.64
+        },
+        {
+          "name": "Canada",
+          "weightPct": 6.0
+        },
+        {
+          "name": "Norway",
+          "weightPct": 6.0
+        },
+        {
+          "name": "China",
+          "weightPct": 5.35
+        },
+        {
+          "name": "Saudi Arabia",
+          "weightPct": 4.68
+        },
+        {
+          "name": "India",
+          "weightPct": 3.24
+        },
+        {
+          "name": "Hong Kong",
+          "weightPct": 2.43
+        },
+        {
+          "name": "Singapore",
+          "weightPct": 2.02
+        },
+        {
+          "name": "Brazil",
+          "weightPct": 1.61
+        },
+        {
+          "name": "United Kingdom",
+          "weightPct": 1.27
+        },
+        {
+          "name": "Thailand",
+          "weightPct": 1.26
+        },
+        {
+          "name": "Other",
+          "weightPct": 4.24
+        },
+        {
+          "name": "Cash and/or Derivatives",
+          "weightPct": 0.35
+        }
+      ]
+    },
+    "sectors": {
+      "asOf": "2026-10-09",
+      "rows": [
+        {
+          "name": "Consumer Staples",
+          "weightPct": 55.82
+        },
+        {
+          "name": "Materials",
+          "weightPct": 27.34
+        },
+        {
+          "name": "Industrials",
+          "weightPct": 16.01
+        },
+        {
+          "name": "Health Care",
+          "weightPct": 0.47
+        },
+        {
+          "name": "Cash and/or Derivatives",
+          "weightPct": 0.35
+        }
+      ]
+    },
+    "performance": {
+      "currency": "USD",
+      "basis": "fund",
+      "method": "calendar-year NAV total return, income reinvested, fund fees included",
+      "years": {
+        "2016": 11.18,
+        "2017": 19.67,
+        "2018": -12.17,
+        "2019": 17.62,
+        "2020": 10.32,
+        "2021": 23.2,
+        "2022": 2.53,
+        "2023": -9.16,
+        "2024": -4.99,
+        "2025": 15.55
+      }
+    },
+    "holdings": {
+      "asOf": "2026-10-09",
+      "basis": "fund",
+      "rows": [
+        {
+          "name": "ARCHER DANIELS MIDLAND",
+          "weightPct": 8.14894,
+          "isin": "US0394831020"
+        },
+        {
+          "name": "VYLOR",
+          "weightPct": 7.61992,
+          "isin": "US92892R1086"
+        },
+        {
+          "name": "DEERE",
+          "weightPct": 6.07093,
+          "isin": "US2441991054"
+        },
+        {
+          "name": "CF INDUSTRIES HOLDINGS INC",
+          "weightPct": 5.53895,
+          "isin": "US1252691001"
+        },
+        {
+          "name": "NUTRIEN LTD",
+          "weightPct": 5.52299,
+          "isin": "CA67077M1086"
+        },
+        {
+          "name": "BUNGE GLOBAL SA",
+          "weightPct": 5.31043,
+          "isin": "CH1300646267"
+        },
+        {
+          "name": "TYSON FOODS INC CLASS A",
+          "weightPct": 5.12814,
+          "isin": "US9024941034"
+        },
+        {
+          "name": "KUBOTA",
+          "weightPct": 4.44627,
+          "isin": "JP3266400005"
+        },
+        {
+          "name": "CNH INDUSTRIAL N.V.",
+          "weightPct": 2.73867,
+          "isin": "NL0010545661"
+        },
+        {
+          "name": "SAUDI ARABIAN MINING",
+          "weightPct": 2.65869,
+          "isin": "SA123GA0ITH7"
+        }
+      ]
+    },
+    "name": "iShares Agribusiness UCITS ETF USD (Acc)",
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=251707&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "listing": {
+      "ticker": "ISAG",
+      "exchange": "London Stock Exchange",
+      "excerpt": "London Stock Exchange | ISAG | USD | 20110919 | ISAG.L",
+      "mic": "XLON",
+      "currency": "USD",
+      "symbol": "ISAG.L",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=251707&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "checkedAt": "2026-10-12",
+      "evidenceId": "IE00B6R52143-XLON-ISAG-USD"
+    },
+    "listings": [
+      {
+        "ticker": "ISAE",
+        "exchange": "Euronext Amsterdam",
+        "excerpt": "Euronext Amsterdam | ISAE | EUR | 20211129 | ISAE.AS",
+        "mic": "XAMS",
+        "currency": "EUR",
+        "symbol": "ISAE.AS",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=251707&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "checkedAt": "2026-10-12",
+        "evidenceId": "IE00B6R52143-XAMS-ISAE-EUR"
+      },
+      {
+        "ticker": "ISAG",
+        "exchange": "London Stock Exchange",
+        "excerpt": "London Stock Exchange | ISAG | USD | 20110919 | ISAG.L",
+        "mic": "XLON",
+        "currency": "USD",
+        "symbol": "ISAG.L",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=251707&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "checkedAt": "2026-10-12",
+        "evidenceId": "IE00B6R52143-XLON-ISAG-USD"
+      },
+      {
+        "ticker": "ISAG",
+        "exchange": "Borsa Italiana",
+        "excerpt": "Borsa Italiana | ISAG | EUR | 20220524 | ISAG.MI",
+        "mic": "ETFP",
+        "currency": "EUR",
+        "symbol": "ISAG.MI",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=251707&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "checkedAt": "2026-10-12",
+        "evidenceId": "IE00B6R52143-ETFP-ISAG-EUR"
+      }
+    ],
+    "characteristics": {
+      "terPct": 0.55,
+      "index": "S&P Commodity Producers Agribusiness Index NTR",
+      "distribution": "Accumulating",
+      "domicile": "Ireland",
+      "replicationMethod": "Physical (Replicated)",
+      "inceptionDate": "20110916"
+    },
+    "checkedAt": "2026-10-12T11:35:47.104357+00:00",
+    "pageSha256": "c0a64c53f4823f59df429ee86f3f0d2b8cf591c49dff11759346c86936862de6",
+    "automatedRecord": {
+      "currency": "USD",
+      "productId": 251707,
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=251707&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "provider": "iShares",
+      "aum": {
+        "amount": 583112478.35,
+        "currency": "USD",
+        "scope": "share-class",
+        "asOf": "2026-10-09",
+        "checkedAt": "2026-10-12",
+        "modifiedAt": "2026-10-12"
+      },
+      "sectors": {
+        "asOf": "2026-10-09",
+        "rows": [
+          {
+            "name": "Consumer Staples",
+            "weightPct": 55.82,
+            "label": "Consumer Staples"
+          },
+          {
+            "name": "Materials",
+            "weightPct": 27.34,
+            "label": "Materials"
+          },
+          {
+            "name": "Industrials",
+            "weightPct": 16.01,
+            "label": "Industrials"
+          },
+          {
+            "name": "Health Care",
+            "weightPct": 0.47,
+            "label": "Health Care"
+          },
+          {
+            "name": "Cash and/or Derivatives",
+            "weightPct": 0.35,
+            "label": "Cash and/or Derivatives"
+          }
+        ],
+        "checkedAt": "2026-10-12",
+        "modifiedAt": "2026-10-12"
+      },
+      "countries": {
+        "asOf": "2026-10-09",
+        "rows": [
+          {
+            "name": "United States",
+            "weightPct": 52.92
+          },
+          {
+            "name": "Japan",
+            "weightPct": 8.64
+          },
+          {
+            "name": "Canada",
+            "weightPct": 6.0
+          },
+          {
+            "name": "Norway",
+            "weightPct": 6.0
+          },
+          {
+            "name": "China",
+            "weightPct": 5.35
+          },
+          {
+            "name": "Saudi Arabia",
+            "weightPct": 4.68
+          },
+          {
+            "name": "India",
+            "weightPct": 3.24
+          },
+          {
+            "name": "Hong Kong",
+            "weightPct": 2.43
+          },
+          {
+            "name": "Singapore",
+            "weightPct": 2.02
+          },
+          {
+            "name": "Brazil",
+            "weightPct": 1.61
+          },
+          {
+            "name": "United Kingdom",
+            "weightPct": 1.27
+          },
+          {
+            "name": "Thailand",
+            "weightPct": 1.26
+          },
+          {
+            "name": "Other",
+            "weightPct": 4.24
+          },
+          {
+            "name": "Cash and/or Derivatives",
+            "weightPct": 0.35
+          }
+        ],
+        "checkedAt": "2026-10-12",
+        "modifiedAt": "2026-10-12"
+      },
+      "holdings": {
+        "asOf": "2026-10-09",
+        "basis": "fund",
+        "rows": [
+          {
+            "name": "ARCHER DANIELS MIDLAND",
+            "weightPct": 8.14894,
+            "isin": "US0394831020"
+          },
+          {
+            "name": "VYLOR",
+            "weightPct": 7.61992,
+            "isin": "US92892R1086"
+          },
+          {
+            "name": "DEERE",
+            "weightPct": 6.07093,
+            "isin": "US2441991054"
+          },
+          {
+            "name": "CF INDUSTRIES HOLDINGS INC",
+            "weightPct": 5.53895,
+            "isin": "US1252691001"
+          },
+          {
+            "name": "NUTRIEN LTD",
+            "weightPct": 5.52299,
+            "isin": "CA67077M1086"
+          },
+          {
+            "name": "BUNGE GLOBAL SA",
+            "weightPct": 5.31043,
+            "isin": "CH1300646267"
+          },
+          {
+            "name": "TYSON FOODS INC CLASS A",
+            "weightPct": 5.12814,
+            "isin": "US9024941034"
+          },
+          {
+            "name": "KUBOTA",
+            "weightPct": 4.44627,
+            "isin": "JP3266400005"
+          },
+          {
+            "name": "CNH INDUSTRIAL N.V.",
+            "weightPct": 2.73867,
+            "isin": "NL0010545661"
+          },
+          {
+            "name": "SAUDI ARABIAN MINING",
+            "weightPct": 2.65869,
+            "isin": "SA123GA0ITH7"
+          }
+        ],
+        "checkedAt": "2026-10-12",
+        "modifiedAt": "2026-10-12"
+      },
+      "characteristics": {
+        "terPct": 0.55,
+        "index": "S&P Commodity Producers Agribusiness Index NTR",
+        "distribution": "Accumulating",
+        "domicile": "Ireland",
+        "replicationMethod": "Physical (Replicated)",
+        "inceptionDate": "20110916",
+        "checkedAt": "2026-10-12",
+        "modifiedAt": "2026-10-12"
+      },
+      "performance": {
+        "currency": "USD",
+        "basis": "fund",
+        "method": "calendar-year NAV total return, income reinvested, fund fees included",
+        "years": {
+          "2016": 11.18,
+          "2017": 19.67,
+          "2018": -12.17,
+          "2019": 17.62,
+          "2020": 10.32,
+          "2021": 23.2,
+          "2022": 2.53,
+          "2023": -9.16,
+          "2024": -4.99,
+          "2025": 15.55
+        },
+        "checkedAt": "2026-10-12",
+        "modifiedAt": "2026-10-12"
+      }
+    }
+  },
+  "timber-ishares": {
+    "id": "timber-ishares",
+    "productId": 251912,
+    "isin": "IE00B27YCF74",
+    "label": "Bois et exploitation forestière",
+    "scene": "commodities",
+    "category": "Thématiques émergentes",
+    "currency": "USD",
+    "collectHoldings": true,
+    "requireFullHistory": false,
+    "distribution": "Distributing",
+    "terPct": 0.65,
+    "index": "S&P Global Timber & Forestry Index (Net)",
+    "aum": {
+      "amount": 78209109.63,
+      "currency": "USD",
+      "scope": "share-class",
+      "asOf": "2026-10-09"
+    },
+    "countries": {
+      "asOf": "2026-10-09",
+      "rows": [
+        {
+          "name": "United States",
+          "weightPct": 20.47
+        },
+        {
+          "name": "Brazil",
+          "weightPct": 14.28
+        },
+        {
+          "name": "Japan",
+          "weightPct": 12.64
+        },
+        {
+          "name": "Sweden",
+          "weightPct": 12.38
+        },
+        {
+          "name": "China",
+          "weightPct": 10.08
+        },
+        {
+          "name": "Finland",
+          "weightPct": 8.39
+        },
+        {
+          "name": "Canada",
+          "weightPct": 4.75
+        },
+        {
+          "name": "United Kingdom",
+          "weightPct": 4.38
+        },
+        {
+          "name": "Thailand",
+          "weightPct": 4.12
+        },
+        {
+          "name": "Chile",
+          "weightPct": 2.52
+        },
+        {
+          "name": "Portugal",
+          "weightPct": 1.96
+        },
+        {
+          "name": "South Africa",
+          "weightPct": 1.83
+        },
+        {
+          "name": "Indonesia",
+          "weightPct": 1.75
+        },
+        {
+          "name": "Cash and/or Derivatives",
+          "weightPct": 0.43
+        }
+      ]
+    },
+    "sectors": {
+      "asOf": "2026-10-09",
+      "rows": [
+        {
+          "name": "Materials",
+          "weightPct": 83.52
+        },
+        {
+          "name": "Real Estate",
+          "weightPct": 12.01
+        },
+        {
+          "name": "Consumer Discretionary",
+          "weightPct": 4.04
+        },
+        {
+          "name": "Cash and/or Derivatives",
+          "weightPct": 0.43
+        }
+      ]
+    },
+    "performance": {
+      "currency": "USD",
+      "basis": "fund",
+      "method": "calendar-year NAV total return, income reinvested, fund fees included",
+      "years": {
+        "2016": 12.78,
+        "2017": 33.84,
+        "2018": -18.07,
+        "2019": 19.01,
+        "2020": 20.11,
+        "2021": 16.1,
+        "2022": -19.58,
+        "2023": 13.62,
+        "2024": -4.48,
+        "2025": -3.91
+      }
+    },
+    "holdings": {
+      "asOf": "2026-10-09",
+      "basis": "fund",
+      "rows": [
+        {
+          "name": "SUZANO SA",
+          "weightPct": 7.82036,
+          "isin": "BRSUZBACNOR0"
+        },
+        {
+          "name": "WEYERHAEUSER REIT",
+          "weightPct": 7.68847,
+          "isin": "US9621661043"
+        },
+        {
+          "name": "NINE DRAGONS PAPER HOLDINGS LTD",
+          "weightPct": 5.41302,
+          "isin": "BMG653181005"
+        },
+        {
+          "name": "SVENSKA CELLULOSA B",
+          "weightPct": 5.32931,
+          "isin": "SE0000112724"
+        },
+        {
+          "name": "HOLMEN CLASS B",
+          "weightPct": 4.78132,
+          "isin": "SE0011090018"
+        },
+        {
+          "name": "WEST FRASER TIMBER",
+          "weightPct": 4.75136,
+          "isin": "CA9528451052"
+        },
+        {
+          "name": "SHANDONG SUNPAPER LTD A",
+          "weightPct": 4.66885,
+          "isin": "CNE000001P52"
+        },
+        {
+          "name": "OJI HOLDINGS",
+          "weightPct": 4.46334,
+          "isin": "JP3174410005"
+        },
+        {
+          "name": "KLABIN UNITS SA",
+          "weightPct": 4.40974,
+          "isin": "BRKLBNCDAM18"
+        },
+        {
+          "name": "MONDI PLC",
+          "weightPct": 4.38481,
+          "isin": "GB00BMWC6P49"
+        }
+      ]
+    },
+    "name": "iShares Global Timber & Forestry UCITS ETF",
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=251912&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "listing": {
+      "ticker": "WOOD",
+      "exchange": "SIX Swiss Exchange",
+      "excerpt": "SIX Swiss Exchange | WOOD | USD | 20150402 | WOOD.S",
+      "mic": "XSWX",
+      "currency": "USD",
+      "symbol": "WOOD.S",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=251912&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "checkedAt": "2026-10-12",
+      "evidenceId": "IE00B27YCF74-XSWX-WOOD-USD"
+    },
+    "listings": [
+      {
+        "ticker": "WOOD",
+        "exchange": "SIX Swiss Exchange",
+        "excerpt": "SIX Swiss Exchange | WOOD | USD | 20150402 | WOOD.S",
+        "mic": "XSWX",
+        "currency": "USD",
+        "symbol": "WOOD.S",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=251912&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "checkedAt": "2026-10-12",
+        "evidenceId": "IE00B27YCF74-XSWX-WOOD-USD"
+      }
+    ],
+    "characteristics": {
+      "terPct": 0.65,
+      "index": "S&P Global Timber & Forestry Index (Net)",
+      "distribution": "Distributing",
+      "domicile": "Ireland",
+      "replicationMethod": "Physical (Replicated)",
+      "inceptionDate": "20071012"
+    },
+    "checkedAt": "2026-10-12T11:35:47.104357+00:00",
+    "pageSha256": "dff2b22576a69cf66bc09e9c25f4cec5d5574b37c46b97062b2ba4d5197126d2",
+    "automatedRecord": {
+      "currency": "USD",
+      "productId": 251912,
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=251912&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "provider": "iShares",
+      "aum": {
+        "amount": 78209109.63,
+        "currency": "USD",
+        "scope": "share-class",
+        "asOf": "2026-10-09",
+        "checkedAt": "2026-10-12",
+        "modifiedAt": "2026-10-12"
+      },
+      "sectors": {
+        "asOf": "2026-10-09",
+        "rows": [
+          {
+            "name": "Materials",
+            "weightPct": 83.52,
+            "label": "Materials"
+          },
+          {
+            "name": "Real Estate",
+            "weightPct": 12.01,
+            "label": "Immobilier"
+          },
+          {
+            "name": "Consumer Discretionary",
+            "weightPct": 4.04,
+            "label": "Consumer Discretionary"
+          },
+          {
+            "name": "Cash and/or Derivatives",
+            "weightPct": 0.43,
+            "label": "Cash and/or Derivatives"
+          }
+        ],
+        "checkedAt": "2026-10-12",
+        "modifiedAt": "2026-10-12"
+      },
+      "countries": {
+        "asOf": "2026-10-09",
+        "rows": [
+          {
+            "name": "United States",
+            "weightPct": 20.47
+          },
+          {
+            "name": "Brazil",
+            "weightPct": 14.28
+          },
+          {
+            "name": "Japan",
+            "weightPct": 12.64
+          },
+          {
+            "name": "Sweden",
+            "weightPct": 12.38
+          },
+          {
+            "name": "China",
+            "weightPct": 10.08
+          },
+          {
+            "name": "Finland",
+            "weightPct": 8.39
+          },
+          {
+            "name": "Canada",
+            "weightPct": 4.75
+          },
+          {
+            "name": "United Kingdom",
+            "weightPct": 4.38
+          },
+          {
+            "name": "Thailand",
+            "weightPct": 4.12
+          },
+          {
+            "name": "Chile",
+            "weightPct": 2.52
+          },
+          {
+            "name": "Portugal",
+            "weightPct": 1.96
+          },
+          {
+            "name": "South Africa",
+            "weightPct": 1.83
+          },
+          {
+            "name": "Indonesia",
+            "weightPct": 1.75
+          },
+          {
+            "name": "Cash and/or Derivatives",
+            "weightPct": 0.43
+          }
+        ],
+        "checkedAt": "2026-10-12",
+        "modifiedAt": "2026-10-12"
+      },
+      "holdings": {
+        "asOf": "2026-10-09",
+        "basis": "fund",
+        "rows": [
+          {
+            "name": "SUZANO SA",
+            "weightPct": 7.82036,
+            "isin": "BRSUZBACNOR0"
+          },
+          {
+            "name": "WEYERHAEUSER REIT",
+            "weightPct": 7.68847,
+            "isin": "US9621661043"
+          },
+          {
+            "name": "NINE DRAGONS PAPER HOLDINGS LTD",
+            "weightPct": 5.41302,
+            "isin": "BMG653181005"
+          },
+          {
+            "name": "SVENSKA CELLULOSA B",
+            "weightPct": 5.32931,
+            "isin": "SE0000112724"
+          },
+          {
+            "name": "HOLMEN CLASS B",
+            "weightPct": 4.78132,
+            "isin": "SE0011090018"
+          },
+          {
+            "name": "WEST FRASER TIMBER",
+            "weightPct": 4.75136,
+            "isin": "CA9528451052"
+          },
+          {
+            "name": "SHANDONG SUNPAPER LTD A",
+            "weightPct": 4.66885,
+            "isin": "CNE000001P52"
+          },
+          {
+            "name": "OJI HOLDINGS",
+            "weightPct": 4.46334,
+            "isin": "JP3174410005"
+          },
+          {
+            "name": "KLABIN UNITS SA",
+            "weightPct": 4.40974,
+            "isin": "BRKLBNCDAM18"
+          },
+          {
+            "name": "MONDI PLC",
+            "weightPct": 4.38481,
+            "isin": "GB00BMWC6P49"
+          }
+        ],
+        "checkedAt": "2026-10-12",
+        "modifiedAt": "2026-10-12"
+      },
+      "characteristics": {
+        "terPct": 0.65,
+        "index": "S&P Global Timber & Forestry Index (Net)",
+        "distribution": "Distributing",
+        "domicile": "Ireland",
+        "replicationMethod": "Physical (Replicated)",
+        "inceptionDate": "20071012",
+        "checkedAt": "2026-10-12",
+        "modifiedAt": "2026-10-12"
+      },
+      "performance": {
+        "currency": "USD",
+        "basis": "fund",
+        "method": "calendar-year NAV total return, income reinvested, fund fees included",
+        "years": {
+          "2016": 12.78,
+          "2017": 33.84,
+          "2018": -18.07,
+          "2019": 19.01,
+          "2020": 20.11,
+          "2021": 16.1,
+          "2022": -19.58,
+          "2023": 13.62,
+          "2024": -4.48,
+          "2025": -3.91
+        },
+        "checkedAt": "2026-10-12",
+        "modifiedAt": "2026-10-12"
+      }
+    }
+  },
+  "private-equity-ishares": {
+    "id": "private-equity-ishares",
+    "productId": 251918,
+    "isin": "IE00B1TXHL60",
+    "label": "Private equity coté",
+    "scene": "finance",
+    "category": "Stratégiques",
+    "currency": "USD",
+    "collectHoldings": true,
+    "requireFullHistory": false,
+    "distribution": "Distributing",
+    "terPct": 0.75,
+    "index": "S&P LISTED PRIVATE EQUITY INDEX (NET) (USD)",
+    "aum": {
+      "amount": 733006280.94,
+      "currency": "USD",
+      "scope": "share-class",
+      "asOf": "2026-10-09"
+    },
+    "countries": {
+      "asOf": "2026-10-09",
+      "rows": [
+        {
+          "name": "United States",
+          "weightPct": 45.83
+        },
+        {
+          "name": "Canada",
+          "weightPct": 16.52
+        },
+        {
+          "name": "United Kingdom",
+          "weightPct": 14.52
+        },
+        {
+          "name": "Sweden",
+          "weightPct": 5.82
+        },
+        {
+          "name": "Australia",
+          "weightPct": 4.5
+        },
+        {
+          "name": "Switzerland",
+          "weightPct": 3.79
+        },
+        {
+          "name": "Guernsey, Channel Islands",
+          "weightPct": 3.25
+        },
+        {
+          "name": "France",
+          "weightPct": 2.04
+        },
+        {
+          "name": "Jersey, Channel Islands",
+          "weightPct": 1.32
+        },
+        {
+          "name": "Other",
+          "weightPct": 1.9100000000000001
+        },
+        {
+          "name": "Cash and/or Derivatives",
+          "weightPct": 0.5
+        }
+      ]
+    },
+    "sectors": {
+      "asOf": "2026-10-09",
+      "rows": [
+        {
+          "name": "Financials",
+          "weightPct": 99.1
+        },
+        {
+          "name": "Cash and/or Derivatives",
+          "weightPct": 0.5
+        },
+        {
+          "name": "Other",
+          "weightPct": 0.4
+        }
+      ]
+    },
+    "performance": {
+      "currency": "USD",
+      "basis": "fund",
+      "method": "calendar-year NAV total return, income reinvested, fund fees included",
+      "years": {
+        "2016": 14.05,
+        "2017": 24.38,
+        "2018": -14.15,
+        "2019": 44.73,
+        "2020": 5.34,
+        "2021": 41.86,
+        "2022": -29.0,
+        "2023": 38.86,
+        "2024": 23.92,
+        "2025": 1.64
+      }
+    },
+    "holdings": {
+      "asOf": "2026-10-09",
+      "basis": "fund",
+      "rows": [
+        {
+          "name": "BROOKFIELD CLASS A",
+          "weightPct": 7.68272,
+          "isin": "CA11271J1075"
+        },
+        {
+          "name": "3I GROUP FUND PLC",
+          "weightPct": 7.02123,
+          "isin": "GB00B1YW4409"
+        },
+        {
+          "name": "BLACKSTONE",
+          "weightPct": 6.87164,
+          "isin": "US09260D1072"
+        },
+        {
+          "name": "APOLLO GLOBAL MANAGEMENT",
+          "weightPct": 6.82375,
+          "isin": "US03769M1062"
+        },
+        {
+          "name": "BROOKFIELD ASSET MANAGEMENT VOTING",
+          "weightPct": 6.65485,
+          "isin": "CA1130041058"
+        },
+        {
+          "name": "WASHINGTON H SOUL PATTINSON & COMP",
+          "weightPct": 4.46973,
+          "isin": "AU000000SOL3"
+        },
+        {
+          "name": "ARES CAPITAL CORP",
+          "weightPct": 4.06738,
+          "isin": "US04010L1035"
+        },
+        {
+          "name": "PARTNERS GROUP HOLDING AG",
+          "weightPct": 3.7913,
+          "isin": "CH0024608827"
+        },
+        {
+          "name": "EQT",
+          "weightPct": 3.77155,
+          "isin": "SE0012853455"
+        },
+        {
+          "name": "KKR AND CO INC",
+          "weightPct": 3.74921,
+          "isin": "US48251W1045"
+        }
+      ]
+    },
+    "name": "iShares Listed Private Equity UCITS ETF",
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=251918&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "listing": {
+      "ticker": "IDPE",
+      "exchange": "London Stock Exchange",
+      "excerpt": "London Stock Exchange | IDPE | USD | 20070319 | IDPE.L",
+      "mic": "XLON",
+      "currency": "USD",
+      "symbol": "IDPE.L",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=251918&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "checkedAt": "2026-10-12",
+      "evidenceId": "IE00B1TXHL60-XLON-IDPE-USD"
+    },
+    "listings": [
+      {
+        "ticker": "IPRV",
+        "exchange": "Euronext Amsterdam",
+        "excerpt": "Euronext Amsterdam | IPRV | EUR | 20070514 | IPRV.AS",
+        "mic": "XAMS",
+        "currency": "EUR",
+        "symbol": "IPRV.AS",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=251918&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "checkedAt": "2026-10-12",
+        "evidenceId": "IE00B1TXHL60-XAMS-IPRV-EUR"
+      },
+      {
+        "ticker": "IQQL",
+        "exchange": "Xetra",
+        "excerpt": "Deutsche Boerse Xetra | IQQL | EUR | 20070926 | IQQL.DE",
+        "mic": "XETR",
+        "currency": "EUR",
+        "symbol": "IQQL.DE",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=251918&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "checkedAt": "2026-10-12",
+        "evidenceId": "IE00B1TXHL60-XETR-IQQL-EUR"
+      },
+      {
+        "ticker": "IDPE",
+        "exchange": "London Stock Exchange",
+        "excerpt": "London Stock Exchange | IDPE | USD | 20070319 | IDPE.L",
+        "mic": "XLON",
+        "currency": "USD",
+        "symbol": "IDPE.L",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=251918&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "checkedAt": "2026-10-12",
+        "evidenceId": "IE00B1TXHL60-XLON-IDPE-USD"
+      },
+      {
+        "ticker": "IPRV",
+        "exchange": "SIX Swiss Exchange",
+        "excerpt": "SIX Swiss Exchange | IPRV | USD | 20071204 | IPRV.S",
+        "mic": "XSWX",
+        "currency": "USD",
+        "symbol": "IPRV.S",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=251918&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "checkedAt": "2026-10-12",
+        "evidenceId": "IE00B1TXHL60-XSWX-IPRV-USD"
+      }
+    ],
+    "characteristics": {
+      "terPct": 0.75,
+      "index": "S&P LISTED PRIVATE EQUITY INDEX (NET) (USD)",
+      "distribution": "Distributing",
+      "domicile": "Ireland",
+      "replicationMethod": "Physical (Replicated)",
+      "inceptionDate": "20070316"
+    },
+    "checkedAt": "2026-10-12T11:35:47.104357+00:00",
+    "pageSha256": "97bddb5ba1dc3c4891d221b9238fa816e86ee0fa543c655e3c32fdc664f1dbe2",
+    "automatedRecord": {
+      "currency": "USD",
+      "productId": 251918,
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=251918&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "provider": "iShares",
+      "aum": {
+        "amount": 733006280.94,
+        "currency": "USD",
+        "scope": "share-class",
+        "asOf": "2026-10-09",
+        "checkedAt": "2026-10-12",
+        "modifiedAt": "2026-10-12"
+      },
+      "sectors": {
+        "asOf": "2026-10-09",
+        "rows": [
+          {
+            "name": "Financials",
+            "weightPct": 99.1,
+            "label": "Financials"
+          },
+          {
+            "name": "Cash and/or Derivatives",
+            "weightPct": 0.5,
+            "label": "Cash and/or Derivatives"
+          },
+          {
+            "name": "Other",
+            "weightPct": 0.4,
+            "label": "Autres"
+          }
+        ],
+        "checkedAt": "2026-10-12",
+        "modifiedAt": "2026-10-12"
+      },
+      "countries": {
+        "asOf": "2026-10-09",
+        "rows": [
+          {
+            "name": "United States",
+            "weightPct": 45.83
+          },
+          {
+            "name": "Canada",
+            "weightPct": 16.52
+          },
+          {
+            "name": "United Kingdom",
+            "weightPct": 14.52
+          },
+          {
+            "name": "Sweden",
+            "weightPct": 5.82
+          },
+          {
+            "name": "Australia",
+            "weightPct": 4.5
+          },
+          {
+            "name": "Switzerland",
+            "weightPct": 3.79
+          },
+          {
+            "name": "Guernsey, Channel Islands",
+            "weightPct": 3.25
+          },
+          {
+            "name": "France",
+            "weightPct": 2.04
+          },
+          {
+            "name": "Jersey, Channel Islands",
+            "weightPct": 1.32
+          },
+          {
+            "name": "Other",
+            "weightPct": 1.9100000000000001
+          },
+          {
+            "name": "Cash and/or Derivatives",
+            "weightPct": 0.5
+          }
+        ],
+        "checkedAt": "2026-10-12",
+        "modifiedAt": "2026-10-12"
+      },
+      "holdings": {
+        "asOf": "2026-10-09",
+        "basis": "fund",
+        "rows": [
+          {
+            "name": "BROOKFIELD CLASS A",
+            "weightPct": 7.68272,
+            "isin": "CA11271J1075"
+          },
+          {
+            "name": "3I GROUP FUND PLC",
+            "weightPct": 7.02123,
+            "isin": "GB00B1YW4409"
+          },
+          {
+            "name": "BLACKSTONE",
+            "weightPct": 6.87164,
+            "isin": "US09260D1072"
+          },
+          {
+            "name": "APOLLO GLOBAL MANAGEMENT",
+            "weightPct": 6.82375,
+            "isin": "US03769M1062"
+          },
+          {
+            "name": "BROOKFIELD ASSET MANAGEMENT VOTING",
+            "weightPct": 6.65485,
+            "isin": "CA1130041058"
+          },
+          {
+            "name": "WASHINGTON H SOUL PATTINSON & COMP",
+            "weightPct": 4.46973,
+            "isin": "AU000000SOL3"
+          },
+          {
+            "name": "ARES CAPITAL CORP",
+            "weightPct": 4.06738,
+            "isin": "US04010L1035"
+          },
+          {
+            "name": "PARTNERS GROUP HOLDING AG",
+            "weightPct": 3.7913,
+            "isin": "CH0024608827"
+          },
+          {
+            "name": "EQT",
+            "weightPct": 3.77155,
+            "isin": "SE0012853455"
+          },
+          {
+            "name": "KKR AND CO INC",
+            "weightPct": 3.74921,
+            "isin": "US48251W1045"
+          }
+        ],
+        "checkedAt": "2026-10-12",
+        "modifiedAt": "2026-10-12"
+      },
+      "characteristics": {
+        "terPct": 0.75,
+        "index": "S&P LISTED PRIVATE EQUITY INDEX (NET) (USD)",
+        "distribution": "Distributing",
+        "domicile": "Ireland",
+        "replicationMethod": "Physical (Replicated)",
+        "inceptionDate": "20070316",
+        "checkedAt": "2026-10-12",
+        "modifiedAt": "2026-10-12"
+      },
+      "performance": {
+        "currency": "USD",
+        "basis": "fund",
+        "method": "calendar-year NAV total return, income reinvested, fund fees included",
+        "years": {
+          "2016": 14.05,
+          "2017": 24.38,
+          "2018": -14.15,
+          "2019": 44.73,
+          "2020": 5.34,
+          "2021": 41.86,
+          "2022": -29.0,
+          "2023": 38.86,
+          "2024": 23.92,
+          "2025": 1.64
+        },
+        "checkedAt": "2026-10-12",
+        "modifiedAt": "2026-10-12"
+      }
+    }
+  },
+  "world-industrials": {
+    "id": "world-industrials",
+    "productId": 326347,
+    "isin": "IE00BJ5JP659",
+    "label": "Industrie mondiale",
+    "scene": "infrastructure",
+    "category": "Sectoriels classiques",
+    "currency": "USD",
+    "collectHoldings": true,
+    "requireFullHistory": false,
+    "distribution": "Distributing",
+    "terPct": 0.18,
+    "index": "MSCI World Industrials Advanced Select 20 35 Capped Index",
+    "aum": {
+      "amount": 179573854.24,
+      "currency": "USD",
+      "scope": "share-class",
+      "asOf": "2026-10-09"
+    },
+    "countries": {
+      "asOf": "2026-10-09",
+      "rows": [
+        {
+          "name": "United States",
+          "weightPct": 53.65
+        },
+        {
+          "name": "Japan",
+          "weightPct": 14.67
+        },
+        {
+          "name": "Germany",
+          "weightPct": 6.34
+        },
+        {
+          "name": "France",
+          "weightPct": 4.38
+        },
+        {
+          "name": "Switzerland",
+          "weightPct": 3.84
+        },
+        {
+          "name": "Sweden",
+          "weightPct": 3.49
+        },
+        {
+          "name": "United Kingdom",
+          "weightPct": 3.32
+        },
+        {
+          "name": "Canada",
+          "weightPct": 2.86
+        },
+        {
+          "name": "Australia",
+          "weightPct": 1.77
+        },
+        {
+          "name": "Other",
+          "weightPct": 5.25
+        },
+        {
+          "name": "Cash and/or Derivatives",
+          "weightPct": 0.42
+        }
+      ]
+    },
+    "sectors": {
+      "asOf": "2026-10-09",
+      "rows": [
+        {
+          "name": "Industrials",
+          "weightPct": 99.58
+        },
+        {
+          "name": "Cash and/or Derivatives",
+          "weightPct": 0.42
+        }
+      ]
+    },
+    "performance": {
+      "currency": "USD",
+      "basis": "fund",
+      "method": "calendar-year NAV total return, income reinvested, fund fees included",
+      "years": {
+        "2023": 23.85,
+        "2024": 13.07,
+        "2025": 18.8
+      }
+    },
+    "holdings": {
+      "asOf": "2026-10-09",
+      "basis": "fund",
+      "rows": [
+        {
+          "name": "CATERPILLAR INC",
+          "weightPct": 3.86644,
+          "isin": "US1491231015"
+        },
+        {
+          "name": "GE AEROSPACE",
+          "weightPct": 3.60263,
+          "isin": "US3696043013"
+        },
+        {
+          "name": "GE VERNOVA",
+          "weightPct": 2.75403,
+          "isin": "US36828A1016"
+        },
+        {
+          "name": "SIEMENS N AG",
+          "weightPct": 2.56044,
+          "isin": "DE0007236101"
+        },
+        {
+          "name": "ABB LTD",
+          "weightPct": 1.96734,
+          "isin": "CH0012221716"
+        },
+        {
+          "name": "AUTOMATIC DATA PROCESSING INC",
+          "weightPct": 1.76728,
+          "isin": "US0530151036"
+        },
+        {
+          "name": "HITACHI",
+          "weightPct": 1.71704,
+          "isin": "JP3788600009"
+        },
+        {
+          "name": "UNION PACIFIC",
+          "weightPct": 1.69565,
+          "isin": "US9078181081"
+        },
+        {
+          "name": "SCHNEIDER ELECTRIC",
+          "weightPct": 1.69536,
+          "isin": "FR0000121972"
+        },
+        {
+          "name": "PARKER-HANNIFIN",
+          "weightPct": 1.68758,
+          "isin": "US7010941042"
+        }
+      ]
+    },
+    "name": "iShares MSCI World Industrials Sector Advanced UCITS ETF",
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=326347&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "listing": {
+      "ticker": "WINS",
+      "exchange": "Euronext Amsterdam",
+      "excerpt": "Euronext Amsterdam | WINS | USD | 20220411 | WINSE.AS",
+      "mic": "XAMS",
+      "currency": "USD",
+      "symbol": "WINSE.AS",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=326347&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "checkedAt": "2026-10-12",
+      "evidenceId": "IE00BJ5JP659-XAMS-WINS-USD"
+    },
+    "listings": [
+      {
+        "ticker": "WINS",
+        "exchange": "Euronext Amsterdam",
+        "excerpt": "Euronext Amsterdam | WINS | USD | 20220411 | WINSE.AS",
+        "mic": "XAMS",
+        "currency": "USD",
+        "symbol": "WINSE.AS",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=326347&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "checkedAt": "2026-10-12",
+        "evidenceId": "IE00BJ5JP659-XAMS-WINS-USD"
+      },
+      {
+        "ticker": "WINS",
+        "exchange": "SIX Swiss Exchange",
+        "excerpt": "SIX Swiss Exchange | WINS | USD | 20220608 | WINSE.S",
+        "mic": "XSWX",
+        "currency": "USD",
+        "symbol": "WINSE.S",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=326347&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "checkedAt": "2026-10-12",
+        "evidenceId": "IE00BJ5JP659-XSWX-WINS-USD"
+      }
+    ],
+    "characteristics": {
+      "terPct": 0.18,
+      "index": "MSCI World Industrials Advanced Select 20 35 Capped Index",
+      "distribution": "Distributing",
+      "domicile": "Ireland",
+      "replicationMethod": "Physical (Replicated)",
+      "inceptionDate": "20220407"
+    },
+    "checkedAt": "2026-10-12T11:35:47.104357+00:00",
+    "pageSha256": "442d668444594d5b33f617b10b3a48a23800687331597f6b90848383de355467",
+    "automatedRecord": {
+      "currency": "USD",
+      "productId": 326347,
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=326347&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "provider": "iShares",
+      "aum": {
+        "amount": 179573854.24,
+        "currency": "USD",
+        "scope": "share-class",
+        "asOf": "2026-10-09",
+        "checkedAt": "2026-10-12",
+        "modifiedAt": "2026-10-12"
+      },
+      "sectors": {
+        "asOf": "2026-10-09",
+        "rows": [
+          {
+            "name": "Industrials",
+            "weightPct": 99.58,
+            "label": "Industrials"
+          },
+          {
+            "name": "Cash and/or Derivatives",
+            "weightPct": 0.42,
+            "label": "Cash and/or Derivatives"
+          }
+        ],
+        "checkedAt": "2026-10-12",
+        "modifiedAt": "2026-10-12"
+      },
+      "countries": {
+        "asOf": "2026-10-09",
+        "rows": [
+          {
+            "name": "United States",
+            "weightPct": 53.65
+          },
+          {
+            "name": "Japan",
+            "weightPct": 14.67
+          },
+          {
+            "name": "Germany",
+            "weightPct": 6.34
+          },
+          {
+            "name": "France",
+            "weightPct": 4.38
+          },
+          {
+            "name": "Switzerland",
+            "weightPct": 3.84
+          },
+          {
+            "name": "Sweden",
+            "weightPct": 3.49
+          },
+          {
+            "name": "United Kingdom",
+            "weightPct": 3.32
+          },
+          {
+            "name": "Canada",
+            "weightPct": 2.86
+          },
+          {
+            "name": "Australia",
+            "weightPct": 1.77
+          },
+          {
+            "name": "Other",
+            "weightPct": 5.25
+          },
+          {
+            "name": "Cash and/or Derivatives",
+            "weightPct": 0.42
+          }
+        ],
+        "checkedAt": "2026-10-12",
+        "modifiedAt": "2026-10-12"
+      },
+      "holdings": {
+        "asOf": "2026-10-09",
+        "basis": "fund",
+        "rows": [
+          {
+            "name": "CATERPILLAR INC",
+            "weightPct": 3.86644,
+            "isin": "US1491231015"
+          },
+          {
+            "name": "GE AEROSPACE",
+            "weightPct": 3.60263,
+            "isin": "US3696043013"
+          },
+          {
+            "name": "GE VERNOVA",
+            "weightPct": 2.75403,
+            "isin": "US36828A1016"
+          },
+          {
+            "name": "SIEMENS N AG",
+            "weightPct": 2.56044,
+            "isin": "DE0007236101"
+          },
+          {
+            "name": "ABB LTD",
+            "weightPct": 1.96734,
+            "isin": "CH0012221716"
+          },
+          {
+            "name": "AUTOMATIC DATA PROCESSING INC",
+            "weightPct": 1.76728,
+            "isin": "US0530151036"
+          },
+          {
+            "name": "HITACHI",
+            "weightPct": 1.71704,
+            "isin": "JP3788600009"
+          },
+          {
+            "name": "UNION PACIFIC",
+            "weightPct": 1.69565,
+            "isin": "US9078181081"
+          },
+          {
+            "name": "SCHNEIDER ELECTRIC",
+            "weightPct": 1.69536,
+            "isin": "FR0000121972"
+          },
+          {
+            "name": "PARKER-HANNIFIN",
+            "weightPct": 1.68758,
+            "isin": "US7010941042"
+          }
+        ],
+        "checkedAt": "2026-10-12",
+        "modifiedAt": "2026-10-12"
+      },
+      "characteristics": {
+        "terPct": 0.18,
+        "index": "MSCI World Industrials Advanced Select 20 35 Capped Index",
+        "distribution": "Distributing",
+        "domicile": "Ireland",
+        "replicationMethod": "Physical (Replicated)",
+        "inceptionDate": "20220407",
+        "checkedAt": "2026-10-12",
+        "modifiedAt": "2026-10-12"
+      },
+      "performance": {
+        "currency": "USD",
+        "basis": "fund",
+        "method": "calendar-year NAV total return, income reinvested, fund fees included",
+        "years": {
+          "2023": 23.85,
+          "2024": 13.07,
+          "2025": 18.8
+        },
+        "checkedAt": "2026-10-12",
+        "modifiedAt": "2026-10-12"
+      }
+    }
+  },
+  "world-staples": {
+    "id": "world-staples",
+    "productId": 308902,
+    "isin": "IE00BJ5JP329",
+    "label": "Consommation de base mondiale",
+    "scene": "world",
+    "category": "Sectoriels classiques",
+    "currency": "USD",
+    "collectHoldings": true,
+    "requireFullHistory": false,
+    "distribution": "Distributing",
+    "terPct": 0.18,
+    "index": "MSCI World Consumer Staples Advanced Select 20 35 Capped Index",
+    "aum": {
+      "amount": 106946142.8,
+      "currency": "USD",
+      "scope": "share-class",
+      "asOf": "2026-10-09"
+    },
+    "countries": {
+      "asOf": "2026-10-09",
+      "rows": [
+        {
+          "name": "United States",
+          "weightPct": 54.49
+        },
+        {
+          "name": "United Kingdom",
+          "weightPct": 17.37
+        },
+        {
+          "name": "France",
+          "weightPct": 8.81
+        },
+        {
+          "name": "Switzerland",
+          "weightPct": 6.15
+        },
+        {
+          "name": "Japan",
+          "weightPct": 3.41
+        },
+        {
+          "name": "Canada",
+          "weightPct": 2.68
+        },
+        {
+          "name": "Germany",
+          "weightPct": 1.97
+        },
+        {
+          "name": "Norway",
+          "weightPct": 1.3
+        },
+        {
+          "name": "Other",
+          "weightPct": 3.299999999999999
+        },
+        {
+          "name": "Cash and/or Derivatives",
+          "weightPct": 0.51
+        }
+      ]
+    },
+    "sectors": {
+      "asOf": "2026-10-09",
+      "rows": [
+        {
+          "name": "Consumer Staples",
+          "weightPct": 99.49
+        },
+        {
+          "name": "Cash and/or Derivatives",
+          "weightPct": 0.51
+        }
+      ]
+    },
+    "performance": {
+      "currency": "USD",
+      "basis": "fund",
+      "method": "calendar-year NAV total return, income reinvested, fund fees included",
+      "years": {
+        "2020": 7.97,
+        "2021": 13.08,
+        "2022": -6.09,
+        "2023": 3.49,
+        "2024": 2.34,
+        "2025": 5.61
+      }
+    },
+    "holdings": {
+      "asOf": "2026-10-09",
+      "basis": "fund",
+      "rows": [
+        {
+          "name": "COSTCO WHOLESALE CORP",
+          "weightPct": 9.92398,
+          "isin": "US22160K1051"
+        },
+        {
+          "name": "COCA-COLA",
+          "weightPct": 8.82219,
+          "isin": "US1912161007"
+        },
+        {
+          "name": "UNILEVER PLC",
+          "weightPct": 5.61465,
+          "isin": "GB00BVZK7T90"
+        },
+        {
+          "name": "NESTLE SA",
+          "weightPct": 5.29662,
+          "isin": "CH0038863350"
+        },
+        {
+          "name": "WALMART",
+          "weightPct": 5.26562,
+          "isin": "US9311421039"
+        },
+        {
+          "name": "LOREAL SA",
+          "weightPct": 4.70481,
+          "isin": "FR0000120321"
+        },
+        {
+          "name": "PROCTER & GAMBLE",
+          "weightPct": 3.90051,
+          "isin": "US7427181091"
+        },
+        {
+          "name": "TARGET CORP",
+          "weightPct": 3.86676,
+          "isin": "US87612E1064"
+        },
+        {
+          "name": "COLGATE-PALMOLIVE",
+          "weightPct": 3.80675,
+          "isin": "US1941621039"
+        },
+        {
+          "name": "TESCO PLC",
+          "weightPct": 3.26618,
+          "isin": "GB00BLGZ9862"
+        }
+      ]
+    },
+    "name": "iShares MSCI World Consumer Staples Sector Advanced UCITS ETF",
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=308902&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "listing": {
+      "ticker": "WCSS",
+      "exchange": "Euronext Amsterdam",
+      "excerpt": "Euronext Amsterdam | WCSS | USD | 20191021 | WCSS.AS",
+      "mic": "XAMS",
+      "currency": "USD",
+      "symbol": "WCSS.AS",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=308902&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "checkedAt": "2026-10-12",
+      "evidenceId": "IE00BJ5JP329-XAMS-WCSS-USD"
+    },
+    "listings": [
+      {
+        "ticker": "WCSS",
+        "exchange": "Euronext Amsterdam",
+        "excerpt": "Euronext Amsterdam | WCSS | USD | 20191021 | WCSS.AS",
+        "mic": "XAMS",
+        "currency": "USD",
+        "symbol": "WCSS.AS",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=308902&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "checkedAt": "2026-10-12",
+        "evidenceId": "IE00BJ5JP329-XAMS-WCSS-USD"
+      }
+    ],
+    "characteristics": {
+      "terPct": 0.18,
+      "index": "MSCI World Consumer Staples Advanced Select 20 35 Capped Index",
+      "distribution": "Distributing",
+      "domicile": "Ireland",
+      "replicationMethod": "Physical (Replicated)",
+      "inceptionDate": "20191017"
+    },
+    "checkedAt": "2026-10-12T11:35:47.104357+00:00",
+    "pageSha256": "576c13b8282a8c0adce2bd0559f1243bde974bc51d782bd0c8cd3a4aa9f0dc78",
+    "automatedRecord": {
+      "currency": "USD",
+      "productId": 308902,
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=308902&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "provider": "iShares",
+      "aum": {
+        "amount": 106946142.8,
+        "currency": "USD",
+        "scope": "share-class",
+        "asOf": "2026-10-09",
+        "checkedAt": "2026-10-12",
+        "modifiedAt": "2026-10-12"
+      },
+      "sectors": {
+        "asOf": "2026-10-09",
+        "rows": [
+          {
+            "name": "Consumer Staples",
+            "weightPct": 99.49,
+            "label": "Consumer Staples"
+          },
+          {
+            "name": "Cash and/or Derivatives",
+            "weightPct": 0.51,
+            "label": "Cash and/or Derivatives"
+          }
+        ],
+        "checkedAt": "2026-10-12",
+        "modifiedAt": "2026-10-12"
+      },
+      "countries": {
+        "asOf": "2026-10-09",
+        "rows": [
+          {
+            "name": "United States",
+            "weightPct": 54.49
+          },
+          {
+            "name": "United Kingdom",
+            "weightPct": 17.37
+          },
+          {
+            "name": "France",
+            "weightPct": 8.81
+          },
+          {
+            "name": "Switzerland",
+            "weightPct": 6.15
+          },
+          {
+            "name": "Japan",
+            "weightPct": 3.41
+          },
+          {
+            "name": "Canada",
+            "weightPct": 2.68
+          },
+          {
+            "name": "Germany",
+            "weightPct": 1.97
+          },
+          {
+            "name": "Norway",
+            "weightPct": 1.3
+          },
+          {
+            "name": "Other",
+            "weightPct": 3.299999999999999
+          },
+          {
+            "name": "Cash and/or Derivatives",
+            "weightPct": 0.51
+          }
+        ],
+        "checkedAt": "2026-10-12",
+        "modifiedAt": "2026-10-12"
+      },
+      "holdings": {
+        "asOf": "2026-10-09",
+        "basis": "fund",
+        "rows": [
+          {
+            "name": "COSTCO WHOLESALE CORP",
+            "weightPct": 9.92398,
+            "isin": "US22160K1051"
+          },
+          {
+            "name": "COCA-COLA",
+            "weightPct": 8.82219,
+            "isin": "US1912161007"
+          },
+          {
+            "name": "UNILEVER PLC",
+            "weightPct": 5.61465,
+            "isin": "GB00BVZK7T90"
+          },
+          {
+            "name": "NESTLE SA",
+            "weightPct": 5.29662,
+            "isin": "CH0038863350"
+          },
+          {
+            "name": "WALMART",
+            "weightPct": 5.26562,
+            "isin": "US9311421039"
+          },
+          {
+            "name": "LOREAL SA",
+            "weightPct": 4.70481,
+            "isin": "FR0000120321"
+          },
+          {
+            "name": "PROCTER & GAMBLE",
+            "weightPct": 3.90051,
+            "isin": "US7427181091"
+          },
+          {
+            "name": "TARGET CORP",
+            "weightPct": 3.86676,
+            "isin": "US87612E1064"
+          },
+          {
+            "name": "COLGATE-PALMOLIVE",
+            "weightPct": 3.80675,
+            "isin": "US1941621039"
+          },
+          {
+            "name": "TESCO PLC",
+            "weightPct": 3.26618,
+            "isin": "GB00BLGZ9862"
+          }
+        ],
+        "checkedAt": "2026-10-12",
+        "modifiedAt": "2026-10-12"
+      },
+      "characteristics": {
+        "terPct": 0.18,
+        "index": "MSCI World Consumer Staples Advanced Select 20 35 Capped Index",
+        "distribution": "Distributing",
+        "domicile": "Ireland",
+        "replicationMethod": "Physical (Replicated)",
+        "inceptionDate": "20191017",
+        "checkedAt": "2026-10-12",
+        "modifiedAt": "2026-10-12"
+      },
+      "performance": {
+        "currency": "USD",
+        "basis": "fund",
+        "method": "calendar-year NAV total return, income reinvested, fund fees included",
+        "years": {
+          "2020": 7.97,
+          "2021": 13.08,
+          "2022": -6.09,
+          "2023": 3.49,
+          "2024": 2.34,
+          "2025": 5.61
+        },
+        "checkedAt": "2026-10-12",
+        "modifiedAt": "2026-10-12"
+      }
+    }
+  },
+  "world-discretionary": {
+    "id": "world-discretionary",
+    "productId": 308873,
+    "isin": "IE00BJ5JP212",
+    "label": "Consommation discrétionnaire mondiale",
+    "scene": "world",
+    "category": "Sectoriels classiques",
+    "currency": "USD",
+    "collectHoldings": true,
+    "requireFullHistory": false,
+    "distribution": "Distributing",
+    "terPct": 0.18,
+    "index": "MSCI World Consumer Discretionary Advanced Select 20 35 Capped Index",
+    "aum": {
+      "amount": 34887638.58,
+      "currency": "USD",
+      "scope": "share-class",
+      "asOf": "2026-10-09"
+    },
+    "countries": {
+      "asOf": "2026-10-09",
+      "rows": [
+        {
+          "name": "United States",
+          "weightPct": 71.88
+        },
+        {
+          "name": "Japan",
+          "weightPct": 12.63
+        },
+        {
+          "name": "France",
+          "weightPct": 2.69
+        },
+        {
+          "name": "United Kingdom",
+          "weightPct": 2.41
+        },
+        {
+          "name": "Australia",
+          "weightPct": 2.4
+        },
+        {
+          "name": "Spain",
+          "weightPct": 2.21
+        },
+        {
+          "name": "Germany",
+          "weightPct": 1.4
+        },
+        {
+          "name": "Italy",
+          "weightPct": 1.03
+        },
+        {
+          "name": "Other",
+          "weightPct": 2.91
+        },
+        {
+          "name": "Cash and/or Derivatives",
+          "weightPct": 0.42
+        }
+      ]
+    },
+    "sectors": {
+      "asOf": "2026-10-09",
+      "rows": [
+        {
+          "name": "Consumer Discretionary",
+          "weightPct": 99.58
+        },
+        {
+          "name": "Cash and/or Derivatives",
+          "weightPct": 0.42
+        }
+      ]
+    },
+    "performance": {
+      "currency": "USD",
+      "basis": "fund",
+      "method": "calendar-year NAV total return, income reinvested, fund fees included",
+      "years": {
+        "2020": 36.35,
+        "2021": 17.78,
+        "2022": -33.34,
+        "2023": 36.01,
+        "2024": 15.09,
+        "2025": 6.58
+      }
+    },
+    "holdings": {
+      "asOf": "2026-10-09",
+      "basis": "fund",
+      "rows": [
+        {
+          "name": "AMAZON.COM INC",
+          "weightPct": 32.03901,
+          "isin": "US0231351067"
+        },
+        {
+          "name": "TESLA INC",
+          "weightPct": 13.85398,
+          "isin": "US88160R1014"
+        },
+        {
+          "name": "HOME DEPOT",
+          "weightPct": 4.21799,
+          "isin": "US4370761029"
+        },
+        {
+          "name": "TOYOTA MOTOR",
+          "weightPct": 2.51277,
+          "isin": "JP3633400001"
+        },
+        {
+          "name": "SONY GROUP",
+          "weightPct": 2.23937,
+          "isin": "JP3435000009"
+        },
+        {
+          "name": "LOWES COMPANIES INC",
+          "weightPct": 2.06734,
+          "isin": "US5486611073"
+        },
+        {
+          "name": "BOOKING HOLDINGS",
+          "weightPct": 1.45607,
+          "isin": "US09857L1089"
+        },
+        {
+          "name": "STARBUCKS CORP",
+          "weightPct": 1.31408,
+          "isin": "US8552441094"
+        },
+        {
+          "name": "BRIDGESTONE",
+          "weightPct": 1.29829,
+          "isin": "JP3830800003"
+        },
+        {
+          "name": "MCDONALDS CORP",
+          "weightPct": 1.29269,
+          "isin": "US5801351017"
+        }
+      ]
+    },
+    "name": "iShares MSCI World Consumer Discretionary Sector Advanced UCITS ETF",
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=308873&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "listing": {
+      "ticker": "WCDS",
+      "exchange": "Euronext Amsterdam",
+      "excerpt": "Euronext Amsterdam | WCDS | USD | 20191021 | WCDS.AS",
+      "mic": "XAMS",
+      "currency": "USD",
+      "symbol": "WCDS.AS",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=308873&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "checkedAt": "2026-10-12",
+      "evidenceId": "IE00BJ5JP212-XAMS-WCDS-USD"
+    },
+    "listings": [
+      {
+        "ticker": "WCDS",
+        "exchange": "Euronext Amsterdam",
+        "excerpt": "Euronext Amsterdam | WCDS | USD | 20191021 | WCDS.AS",
+        "mic": "XAMS",
+        "currency": "USD",
+        "symbol": "WCDS.AS",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=308873&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "checkedAt": "2026-10-12",
+        "evidenceId": "IE00BJ5JP212-XAMS-WCDS-USD"
+      }
+    ],
+    "characteristics": {
+      "terPct": 0.18,
+      "index": "MSCI World Consumer Discretionary Advanced Select 20 35 Capped Index",
+      "distribution": "Distributing",
+      "domicile": "Ireland",
+      "replicationMethod": "Physical (Replicated)",
+      "inceptionDate": "20191016"
+    },
+    "checkedAt": "2026-10-12T11:35:47.104357+00:00",
+    "pageSha256": "223af1114559183d41a5f15306b1c211280699f3dd61eadd3bde95cb5851af6a",
+    "automatedRecord": {
+      "currency": "USD",
+      "productId": 308873,
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=308873&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "provider": "iShares",
+      "aum": {
+        "amount": 34887638.58,
+        "currency": "USD",
+        "scope": "share-class",
+        "asOf": "2026-10-09",
+        "checkedAt": "2026-10-12",
+        "modifiedAt": "2026-10-12"
+      },
+      "sectors": {
+        "asOf": "2026-10-09",
+        "rows": [
+          {
+            "name": "Consumer Discretionary",
+            "weightPct": 99.58,
+            "label": "Consumer Discretionary"
+          },
+          {
+            "name": "Cash and/or Derivatives",
+            "weightPct": 0.42,
+            "label": "Cash and/or Derivatives"
+          }
+        ],
+        "checkedAt": "2026-10-12",
+        "modifiedAt": "2026-10-12"
+      },
+      "countries": {
+        "asOf": "2026-10-09",
+        "rows": [
+          {
+            "name": "United States",
+            "weightPct": 71.88
+          },
+          {
+            "name": "Japan",
+            "weightPct": 12.63
+          },
+          {
+            "name": "France",
+            "weightPct": 2.69
+          },
+          {
+            "name": "United Kingdom",
+            "weightPct": 2.41
+          },
+          {
+            "name": "Australia",
+            "weightPct": 2.4
+          },
+          {
+            "name": "Spain",
+            "weightPct": 2.21
+          },
+          {
+            "name": "Germany",
+            "weightPct": 1.4
+          },
+          {
+            "name": "Italy",
+            "weightPct": 1.03
+          },
+          {
+            "name": "Other",
+            "weightPct": 2.91
+          },
+          {
+            "name": "Cash and/or Derivatives",
+            "weightPct": 0.42
+          }
+        ],
+        "checkedAt": "2026-10-12",
+        "modifiedAt": "2026-10-12"
+      },
+      "holdings": {
+        "asOf": "2026-10-09",
+        "basis": "fund",
+        "rows": [
+          {
+            "name": "AMAZON.COM INC",
+            "weightPct": 32.03901,
+            "isin": "US0231351067"
+          },
+          {
+            "name": "TESLA INC",
+            "weightPct": 13.85398,
+            "isin": "US88160R1014"
+          },
+          {
+            "name": "HOME DEPOT",
+            "weightPct": 4.21799,
+            "isin": "US4370761029"
+          },
+          {
+            "name": "TOYOTA MOTOR",
+            "weightPct": 2.51277,
+            "isin": "JP3633400001"
+          },
+          {
+            "name": "SONY GROUP",
+            "weightPct": 2.23937,
+            "isin": "JP3435000009"
+          },
+          {
+            "name": "LOWES COMPANIES INC",
+            "weightPct": 2.06734,
+            "isin": "US5486611073"
+          },
+          {
+            "name": "BOOKING HOLDINGS",
+            "weightPct": 1.45607,
+            "isin": "US09857L1089"
+          },
+          {
+            "name": "STARBUCKS CORP",
+            "weightPct": 1.31408,
+            "isin": "US8552441094"
+          },
+          {
+            "name": "BRIDGESTONE",
+            "weightPct": 1.29829,
+            "isin": "JP3830800003"
+          },
+          {
+            "name": "MCDONALDS CORP",
+            "weightPct": 1.29269,
+            "isin": "US5801351017"
+          }
+        ],
+        "checkedAt": "2026-10-12",
+        "modifiedAt": "2026-10-12"
+      },
+      "characteristics": {
+        "terPct": 0.18,
+        "index": "MSCI World Consumer Discretionary Advanced Select 20 35 Capped Index",
+        "distribution": "Distributing",
+        "domicile": "Ireland",
+        "replicationMethod": "Physical (Replicated)",
+        "inceptionDate": "20191016",
+        "checkedAt": "2026-10-12",
+        "modifiedAt": "2026-10-12"
+      },
+      "performance": {
+        "currency": "USD",
+        "basis": "fund",
+        "method": "calendar-year NAV total return, income reinvested, fund fees included",
+        "years": {
+          "2020": 36.35,
+          "2021": 17.78,
+          "2022": -33.34,
+          "2023": 36.01,
+          "2024": 15.09,
+          "2025": 6.58
+        },
+        "checkedAt": "2026-10-12",
+        "modifiedAt": "2026-10-12"
+      }
+    }
+  },
+  "world-energy": {
+    "id": "world-energy",
+    "productId": 308904,
+    "isin": "IE00BJ5JP105",
+    "label": "Énergie mondiale",
+    "scene": "energy",
+    "category": "Sectoriels classiques",
+    "currency": "USD",
+    "collectHoldings": true,
+    "requireFullHistory": false,
+    "distribution": "Distributing",
+    "terPct": 0.18,
+    "index": "MSCI World Energy Net index (USD)",
+    "aum": {
+      "amount": 1468809375.72,
+      "currency": "USD",
+      "scope": "share-class",
+      "asOf": "2026-10-09"
+    },
+    "countries": {
+      "asOf": "2026-10-09",
+      "rows": [
+        {
+          "name": "United States",
+          "weightPct": 63.27
+        },
+        {
+          "name": "Canada",
+          "weightPct": 13.58
+        },
+        {
+          "name": "United Kingdom",
+          "weightPct": 10.75
+        },
+        {
+          "name": "France",
+          "weightPct": 4.44
+        },
+        {
+          "name": "Australia",
+          "weightPct": 1.63
+        },
+        {
+          "name": "Italy",
+          "weightPct": 1.58
+        },
+        {
+          "name": "Japan",
+          "weightPct": 1.28
+        },
+        {
+          "name": "Norway",
+          "weightPct": 1.19
+        },
+        {
+          "name": "Other",
+          "weightPct": 1.9200000000000002
+        },
+        {
+          "name": "Cash and/or Derivatives",
+          "weightPct": 0.36
+        }
+      ]
+    },
+    "sectors": {
+      "asOf": "2026-10-09",
+      "rows": [
+        {
+          "name": "Energy",
+          "weightPct": 99.64
+        },
+        {
+          "name": "Cash and/or Derivatives",
+          "weightPct": 0.36
+        }
+      ]
+    },
+    "performance": {
+      "currency": "USD",
+      "basis": "fund",
+      "method": "calendar-year NAV total return, income reinvested, fund fees included",
+      "years": {
+        "2020": -30.88,
+        "2021": 40.6,
+        "2022": 46.49,
+        "2023": 2.83,
+        "2024": 2.98,
+        "2025": 13.7
+      }
+    },
+    "holdings": {
+      "asOf": "2026-10-09",
+      "basis": "fund",
+      "rows": [
+        {
+          "name": "EXXONMOBIL HOLDINGS CORP",
+          "weightPct": 18.25081,
+          "isin": "US30233Q1085"
+        },
+        {
+          "name": "CHEVRON",
+          "weightPct": 10.17942,
+          "isin": "US1667641005"
+        },
+        {
+          "name": "SHELL",
+          "weightPct": 7.57115,
+          "isin": "GB00BP6MXD84"
+        },
+        {
+          "name": "TOTALENERGIES",
+          "weightPct": 4.44487,
+          "isin": "FR0000120271"
+        },
+        {
+          "name": "CONOCOPHILLIPS",
+          "weightPct": 4.25866,
+          "isin": "US20825C1045"
+        },
+        {
+          "name": "MARATHON PETROLEUM",
+          "weightPct": 3.46272,
+          "isin": "US56585A1025"
+        },
+        {
+          "name": "VALERO ENERGY CORP",
+          "weightPct": 3.3573,
+          "isin": "US91913Y1001"
+        },
+        {
+          "name": "BP PLC",
+          "weightPct": 3.17401,
+          "isin": "GB0007980591"
+        },
+        {
+          "name": "PHILLIPS 66",
+          "weightPct": 2.9073,
+          "isin": "US7185461040"
+        },
+        {
+          "name": "CANADIAN NATURAL RESOURCES LTD",
+          "weightPct": 2.68363,
+          "isin": "CA1363851017"
+        }
+      ]
+    },
+    "name": "iShares MSCI World Energy Sector UCITS ETF",
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=308904&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "listing": {
+      "ticker": "WENS",
+      "exchange": "Euronext Amsterdam",
+      "excerpt": "Euronext Amsterdam | WENS | USD | 20191021 | WENS.AS",
+      "mic": "XAMS",
+      "currency": "USD",
+      "symbol": "WENS.AS",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=308904&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "checkedAt": "2026-10-12",
+      "evidenceId": "IE00BJ5JP105-XAMS-WENS-USD"
+    },
+    "listings": [
+      {
+        "ticker": "WENS",
+        "exchange": "Euronext Amsterdam",
+        "excerpt": "Euronext Amsterdam | WENS | USD | 20191021 | WENS.AS",
+        "mic": "XAMS",
+        "currency": "USD",
+        "symbol": "WENS.AS",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=308904&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "checkedAt": "2026-10-12",
+        "evidenceId": "IE00BJ5JP105-XAMS-WENS-USD"
+      }
+    ],
+    "characteristics": {
+      "terPct": 0.18,
+      "index": "MSCI World Energy Net index (USD)",
+      "distribution": "Distributing",
+      "domicile": "Ireland",
+      "replicationMethod": "Physical (Replicated)",
+      "inceptionDate": "20191017"
+    },
+    "checkedAt": "2026-10-12T11:35:47.104357+00:00",
+    "pageSha256": "8b302a1a960abb4f0355d313ee1f6b3f060bfb88c081cbe34e639a6e523498ec",
+    "automatedRecord": {
+      "currency": "USD",
+      "productId": 308904,
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=308904&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "provider": "iShares",
+      "aum": {
+        "amount": 1468809375.72,
+        "currency": "USD",
+        "scope": "share-class",
+        "asOf": "2026-10-09",
+        "checkedAt": "2026-10-12",
+        "modifiedAt": "2026-10-12"
+      },
+      "sectors": {
+        "asOf": "2026-10-09",
+        "rows": [
+          {
+            "name": "Energy",
+            "weightPct": 99.64,
+            "label": "Energy"
+          },
+          {
+            "name": "Cash and/or Derivatives",
+            "weightPct": 0.36,
+            "label": "Cash and/or Derivatives"
+          }
+        ],
+        "checkedAt": "2026-10-12",
+        "modifiedAt": "2026-10-12"
+      },
+      "countries": {
+        "asOf": "2026-10-09",
+        "rows": [
+          {
+            "name": "United States",
+            "weightPct": 63.27
+          },
+          {
+            "name": "Canada",
+            "weightPct": 13.58
+          },
+          {
+            "name": "United Kingdom",
+            "weightPct": 10.75
+          },
+          {
+            "name": "France",
+            "weightPct": 4.44
+          },
+          {
+            "name": "Australia",
+            "weightPct": 1.63
+          },
+          {
+            "name": "Italy",
+            "weightPct": 1.58
+          },
+          {
+            "name": "Japan",
+            "weightPct": 1.28
+          },
+          {
+            "name": "Norway",
+            "weightPct": 1.19
+          },
+          {
+            "name": "Other",
+            "weightPct": 1.9200000000000002
+          },
+          {
+            "name": "Cash and/or Derivatives",
+            "weightPct": 0.36
+          }
+        ],
+        "checkedAt": "2026-10-12",
+        "modifiedAt": "2026-10-12"
+      },
+      "holdings": {
+        "asOf": "2026-10-09",
+        "basis": "fund",
+        "rows": [
+          {
+            "name": "EXXONMOBIL HOLDINGS CORP",
+            "weightPct": 18.25081,
+            "isin": "US30233Q1085"
+          },
+          {
+            "name": "CHEVRON",
+            "weightPct": 10.17942,
+            "isin": "US1667641005"
+          },
+          {
+            "name": "SHELL",
+            "weightPct": 7.57115,
+            "isin": "GB00BP6MXD84"
+          },
+          {
+            "name": "TOTALENERGIES",
+            "weightPct": 4.44487,
+            "isin": "FR0000120271"
+          },
+          {
+            "name": "CONOCOPHILLIPS",
+            "weightPct": 4.25866,
+            "isin": "US20825C1045"
+          },
+          {
+            "name": "MARATHON PETROLEUM",
+            "weightPct": 3.46272,
+            "isin": "US56585A1025"
+          },
+          {
+            "name": "VALERO ENERGY CORP",
+            "weightPct": 3.3573,
+            "isin": "US91913Y1001"
+          },
+          {
+            "name": "BP PLC",
+            "weightPct": 3.17401,
+            "isin": "GB0007980591"
+          },
+          {
+            "name": "PHILLIPS 66",
+            "weightPct": 2.9073,
+            "isin": "US7185461040"
+          },
+          {
+            "name": "CANADIAN NATURAL RESOURCES LTD",
+            "weightPct": 2.68363,
+            "isin": "CA1363851017"
+          }
+        ],
+        "checkedAt": "2026-10-12",
+        "modifiedAt": "2026-10-12"
+      },
+      "characteristics": {
+        "terPct": 0.18,
+        "index": "MSCI World Energy Net index (USD)",
+        "distribution": "Distributing",
+        "domicile": "Ireland",
+        "replicationMethod": "Physical (Replicated)",
+        "inceptionDate": "20191017",
+        "checkedAt": "2026-10-12",
+        "modifiedAt": "2026-10-12"
+      },
+      "performance": {
+        "currency": "USD",
+        "basis": "fund",
+        "method": "calendar-year NAV total return, income reinvested, fund fees included",
+        "years": {
+          "2020": -30.88,
+          "2021": 40.6,
+          "2022": 46.49,
+          "2023": 2.83,
+          "2024": 2.98,
+          "2025": 13.7
+        },
+        "checkedAt": "2026-10-12",
+        "modifiedAt": "2026-10-12"
+      }
+    }
+  },
+  "world-communication": {
+    "id": "world-communication",
+    "productId": 326317,
+    "isin": "IE00BJ5JP436",
+    "label": "Communications mondiales",
+    "scene": "chip",
+    "category": "Sectoriels classiques",
+    "currency": "USD",
+    "collectHoldings": true,
+    "requireFullHistory": false,
+    "distribution": "Distributing",
+    "terPct": 0.18,
+    "index": "MSCI World Communication Services Advanced Select 20 35 Capped Index",
+    "aum": {
+      "amount": 135377975.49,
+      "currency": "USD",
+      "scope": "share-class",
+      "asOf": "2026-10-09"
+    },
+    "countries": {
+      "asOf": "2026-10-09",
+      "rows": [
+        {
+          "name": "United States",
+          "weightPct": 76.96
+        },
+        {
+          "name": "Japan",
+          "weightPct": 11.66
+        },
+        {
+          "name": "Sweden",
+          "weightPct": 3.2
+        },
+        {
+          "name": "France",
+          "weightPct": 1.92
+        },
+        {
+          "name": "Netherlands",
+          "weightPct": 1.47
+        },
+        {
+          "name": "United Kingdom",
+          "weightPct": 1.28
+        },
+        {
+          "name": "Other",
+          "weightPct": 3.179999999999999
+        },
+        {
+          "name": "Cash and/or Derivatives",
+          "weightPct": 0.33
+        }
+      ]
+    },
+    "sectors": {
+      "asOf": "2026-10-09",
+      "rows": [
+        {
+          "name": "Communication",
+          "weightPct": 99.67
+        },
+        {
+          "name": "Cash and/or Derivatives",
+          "weightPct": 0.33
+        }
+      ]
+    },
+    "performance": {
+      "currency": "USD",
+      "basis": "fund",
+      "method": "calendar-year NAV total return, income reinvested, fund fees included",
+      "years": {
+        "2023": 34.61,
+        "2024": 30.35,
+        "2025": 29.93
+      }
+    },
+    "holdings": {
+      "asOf": "2026-10-09",
+      "basis": "fund",
+      "rows": [
+        {
+          "name": "ALPHABET CLASS A",
+          "weightPct": 27.95587,
+          "isin": "US02079K3059"
+        },
+        {
+          "name": "META PLATFORMS CLASS A",
+          "weightPct": 18.02943,
+          "isin": "US30303M1027"
+        },
+        {
+          "name": "ALPHABET CLASS C",
+          "weightPct": 5.91311,
+          "isin": "US02079K1079"
+        },
+        {
+          "name": "NETFLIX",
+          "weightPct": 4.97198,
+          "isin": "US64110L1061"
+        },
+        {
+          "name": "VERIZON COMMUNICATIONS INC",
+          "weightPct": 4.31084,
+          "isin": "US92343V1044"
+        },
+        {
+          "name": "WALT DISNEY",
+          "weightPct": 3.37208,
+          "isin": "US2546871060"
+        },
+        {
+          "name": "SOFTBANK GROUP CORP",
+          "weightPct": 3.21649,
+          "isin": "JP3436100006"
+        },
+        {
+          "name": "SOFTBANK",
+          "weightPct": 2.8322,
+          "isin": "JP3732000009"
+        },
+        {
+          "name": "NINTENDO",
+          "weightPct": 2.73796,
+          "isin": "JP3756600007"
+        },
+        {
+          "name": "COMCAST CLASS A",
+          "weightPct": 2.44765,
+          "isin": "US20030N1019"
+        }
+      ]
+    },
+    "name": "iShares MSCI World Communication Services Sector Advanced UCITS ETF",
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=326317&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "listing": {
+      "ticker": "WCMS",
+      "exchange": "Euronext Amsterdam",
+      "excerpt": "Euronext Amsterdam | WCMS | USD | 20220411 | WCMS.AS",
+      "mic": "XAMS",
+      "currency": "USD",
+      "symbol": "WCMS.AS",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=326317&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "checkedAt": "2026-10-12",
+      "evidenceId": "IE00BJ5JP436-XAMS-WCMS-USD"
+    },
+    "listings": [
+      {
+        "ticker": "WCMS",
+        "exchange": "Euronext Amsterdam",
+        "excerpt": "Euronext Amsterdam | WCMS | USD | 20220411 | WCMS.AS",
+        "mic": "XAMS",
+        "currency": "USD",
+        "symbol": "WCMS.AS",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=326317&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "checkedAt": "2026-10-12",
+        "evidenceId": "IE00BJ5JP436-XAMS-WCMS-USD"
+      },
+      {
+        "ticker": "WCMS",
+        "exchange": "SIX Swiss Exchange",
+        "excerpt": "SIX Swiss Exchange | WCMS | USD | 20220608 | WCMS.S",
+        "mic": "XSWX",
+        "currency": "USD",
+        "symbol": "WCMS.S",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=326317&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "checkedAt": "2026-10-12",
+        "evidenceId": "IE00BJ5JP436-XSWX-WCMS-USD"
+      }
+    ],
+    "characteristics": {
+      "terPct": 0.18,
+      "index": "MSCI World Communication Services Advanced Select 20 35 Capped Index",
+      "distribution": "Distributing",
+      "domicile": "Ireland",
+      "replicationMethod": "Physical (Replicated)",
+      "inceptionDate": "20220407"
+    },
+    "checkedAt": "2026-10-12T11:35:47.104357+00:00",
+    "pageSha256": "a1696b17f6f262e4b87d3c8636a4da902275d94dc5e2e527f21ebf88070133ae",
+    "automatedRecord": {
+      "currency": "USD",
+      "productId": 326317,
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=326317&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "provider": "iShares",
+      "aum": {
+        "amount": 135377975.49,
+        "currency": "USD",
+        "scope": "share-class",
+        "asOf": "2026-10-09",
+        "checkedAt": "2026-10-12",
+        "modifiedAt": "2026-10-12"
+      },
+      "sectors": {
+        "asOf": "2026-10-09",
+        "rows": [
+          {
+            "name": "Communication",
+            "weightPct": 99.67,
+            "label": "Communication"
+          },
+          {
+            "name": "Cash and/or Derivatives",
+            "weightPct": 0.33,
+            "label": "Cash and/or Derivatives"
+          }
+        ],
+        "checkedAt": "2026-10-12",
+        "modifiedAt": "2026-10-12"
+      },
+      "countries": {
+        "asOf": "2026-10-09",
+        "rows": [
+          {
+            "name": "United States",
+            "weightPct": 76.96
+          },
+          {
+            "name": "Japan",
+            "weightPct": 11.66
+          },
+          {
+            "name": "Sweden",
+            "weightPct": 3.2
+          },
+          {
+            "name": "France",
+            "weightPct": 1.92
+          },
+          {
+            "name": "Netherlands",
+            "weightPct": 1.47
+          },
+          {
+            "name": "United Kingdom",
+            "weightPct": 1.28
+          },
+          {
+            "name": "Other",
+            "weightPct": 3.179999999999999
+          },
+          {
+            "name": "Cash and/or Derivatives",
+            "weightPct": 0.33
+          }
+        ],
+        "checkedAt": "2026-10-12",
+        "modifiedAt": "2026-10-12"
+      },
+      "holdings": {
+        "asOf": "2026-10-09",
+        "basis": "fund",
+        "rows": [
+          {
+            "name": "ALPHABET CLASS A",
+            "weightPct": 27.95587,
+            "isin": "US02079K3059"
+          },
+          {
+            "name": "META PLATFORMS CLASS A",
+            "weightPct": 18.02943,
+            "isin": "US30303M1027"
+          },
+          {
+            "name": "ALPHABET CLASS C",
+            "weightPct": 5.91311,
+            "isin": "US02079K1079"
+          },
+          {
+            "name": "NETFLIX",
+            "weightPct": 4.97198,
+            "isin": "US64110L1061"
+          },
+          {
+            "name": "VERIZON COMMUNICATIONS INC",
+            "weightPct": 4.31084,
+            "isin": "US92343V1044"
+          },
+          {
+            "name": "WALT DISNEY",
+            "weightPct": 3.37208,
+            "isin": "US2546871060"
+          },
+          {
+            "name": "SOFTBANK GROUP CORP",
+            "weightPct": 3.21649,
+            "isin": "JP3436100006"
+          },
+          {
+            "name": "SOFTBANK",
+            "weightPct": 2.8322,
+            "isin": "JP3732000009"
+          },
+          {
+            "name": "NINTENDO",
+            "weightPct": 2.73796,
+            "isin": "JP3756600007"
+          },
+          {
+            "name": "COMCAST CLASS A",
+            "weightPct": 2.44765,
+            "isin": "US20030N1019"
+          }
+        ],
+        "checkedAt": "2026-10-12",
+        "modifiedAt": "2026-10-12"
+      },
+      "characteristics": {
+        "terPct": 0.18,
+        "index": "MSCI World Communication Services Advanced Select 20 35 Capped Index",
+        "distribution": "Distributing",
+        "domicile": "Ireland",
+        "replicationMethod": "Physical (Replicated)",
+        "inceptionDate": "20220407",
+        "checkedAt": "2026-10-12",
+        "modifiedAt": "2026-10-12"
+      },
+      "performance": {
+        "currency": "USD",
+        "basis": "fund",
+        "method": "calendar-year NAV total return, income reinvested, fund fees included",
+        "years": {
+          "2023": 34.61,
+          "2024": 30.35,
+          "2025": 29.93
+        },
+        "checkedAt": "2026-10-12",
+        "modifiedAt": "2026-10-12"
+      }
+    }
+  }
+}
