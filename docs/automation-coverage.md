@@ -61,7 +61,7 @@ Les frais collectés peuvent être ceux du dernier exercice publié : leur date 
 |---|---:|
 | Frais annuels | 162 |
 | Encours daté | 162 |
-| Rendements calendaires de la part (au moins une année complète) | 149 |
+| Rendements calendaires de la part (au moins une année complète) | 153 |
 | Pays | 147 |
 | Secteurs ou sous-secteurs publiés | 147 |
 | Principales positions | 147 |
@@ -126,7 +126,7 @@ Les identités, domiciles, modes de réplication, couvertures de change, politiq
 | FR0013412038 | Amundi PEA MSCI Europe UCITS ETF (Acc) | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | FR0013416716 | Amundi Physical Gold ETC | Pays, Secteurs, Principales positions |
 | FR001400S9V0 | Amundi PEA Luxe Monde UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
-| FR001400U5Q4 | Amundi PEA Monde (MSCI World) UCITS ETF | Rendements calendaires |
+| FR001400U5Q4 | Amundi PEA Monde (MSCI World) UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | GB00B15KXQ89 | WisdomTree Copper | Pays, Secteurs, Principales positions |
 | GB00BJYDH287 | WisdomTree Physical Bitcoin | Pays, Secteurs, Principales positions |
 | GB00BLD4ZL17 | CoinShares Physical Bitcoin ETP | Pays, Secteurs, Principales positions |
@@ -134,9 +134,9 @@ Les identités, domiciles, modes de réplication, couvertures de change, politiq
 | IE0000N55FP4 | iShares MSCI Europe Small Cap UCITS ETF | Rendements calendaires |
 | IE0002XZSHO1 | iShares MSCI World Swap PEA UCITS ETF (Acc) | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE0002Y8CX98 | WisdomTree Europe Defence UCITS ETF | Rendements calendaires |
-| IE0007Y8Y157 | VanEck Quantum Computing UCITS ETF A | Rendements calendaires |
+| IE0007Y8Y157 | VanEck Quantum Computing UCITS ETF A | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE000C6ITGC8 | iShares Quantum Computing UCITS ETF | Rendements calendaires |
-| IE000DQLYVB9 | iShares S&P 500 Swap PEA UCITS ETF | Rendements calendaires |
+| IE000DQLYVB9 | iShares S&P 500 Swap PEA UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE000I8KRLL9 | iShares MSCI Global Semiconductors UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE000L6ZMMC4 | Xtrackers FTSE All-World UCITS ETF 1C | Rendements calendaires |
 | IE000M7V94E1 | VanEck Uranium and Nuclear Technologies UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
@@ -239,7 +239,7 @@ Les identités, domiciles, modes de réplication, couvertures de change, politiq
 | LU1931975079 | Amundi Core EUR Corporate Bond UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | LU2089238385 | Amundi Prime Japan UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | LU2196470426 | Xtrackers Nikkei 225 UCITS ETF 1C (Acc) | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
-| LU2970735911 | Amundi Core EUR High Yield Bond UCITS ETF | Rendements calendaires |
+| LU2970735911 | Amundi Core EUR High Yield Bond UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | LU3038520774 | Amundi STOXX Europe Defense UCITS ETF | Rendements calendaires |
 | NL0009690239 | VanEck Global Real Estate UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | NL0011683594 | VanEck Morningstar Developed Markets Dividend Leaders UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
