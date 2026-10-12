@@ -1,3 +1,5 @@
+import { ASSETS } from '../../data/market-history.js'
+import { historyOptionLabel } from '../../data/history-selection.js'
 import { resolveAnniversaryLevel } from '../../data/anniversary-levels.js';
 import { anniversaryResult, anniversaryClosing, anniversaryComparisonNote } from './anniversaryEditorial.js';
 import { DILEMMES, SITUATIONS } from "./data/dilemmes.js";
@@ -204,7 +206,7 @@ const ANNIVERSAIRE_SUBJECTS_FLAT = [
   { categorie: null, items: ANNIVERSAIRE_ELIGIBLE_ASSETS.map((a) => ({ id: a.id, label: `${a.icon} ${a.label}${a.anniversaryVariant ? ` — ${a.anniversaryVariant}` : ""}` })) },
 ];
 const PERFORMANCE_DEPUIS_SUBJECTS_FLAT = [
-  { categorie: null, items: MARKET_ASSETS.map((a) => ({ id: a.id, label: `${a.icon} ${a.label}` })) },
+  { categorie: null, items: MARKET_ASSETS.map((a) => ({ id: a.id, label: `${a.icon} ${historyOptionLabel(a.id, ASSETS[a.id])}` })) },
 ];
 
 export function getSubjectsForFormat(format) {

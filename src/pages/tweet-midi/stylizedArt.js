@@ -2,7 +2,7 @@ import { loadArtImage, ANNIVERSARY_ART } from './anniversaryArt.js'
 import { ETF_HISTORY_IDENTITIES } from '../../data/etf-monthly-history.js'
 
 const paperGroups = {
-  world: ['world-quality','world-value','quality-momentum','world-momentum','world-minvol','monde','monde-toutes-tailles','world-avec-sans-usa','grandes-petites-monde','world-pea', 'world-meme-indice-pea'], america: ['sp500-equal-weight','nasdaq-sp500','usa','usa-pea','sp500-meme-indice-pea'], europe: ['europe','europe-pea'], emerging: ['emergents','emergents-avec-sans-chine','emergents-pea'], property: ['immobilier-infrastructures'],
+  world: ['world-acwi-cto','world-quality','world-value','quality-momentum','world-momentum','world-minvol','monde','monde-toutes-tailles','world-avec-sans-usa','grandes-petites-monde','world-pea', 'world-meme-indice-pea'], america: ['sp500-equal-weight','nasdaq-sp500','usa','usa-pea','sp500-meme-indice-pea'], europe: ['europe','europe-pea'], emerging: ['emergents','emergents-avec-sans-chine','emergents-pea'], property: ['immobilier-infrastructures'],
   gaming: ['jeux-video'], luxury: ['luxe'], robotics: ['ia-robotique'], health: ['sante','innovation-medicale'], renewables: ['renouvelables'],
   dividends: ['dividendes'], japan: ['japon'], defense: ['defense'], quantum: ['quantique'],
   space: ['spatial'], resources: ['ressources-naturelles'], finance: ['financieres', 'monetaire-obligations-courtes'],

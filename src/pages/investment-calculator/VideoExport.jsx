@@ -1,3 +1,4 @@
+import { historyOptionLabel } from '../../data/history-selection.js'
 import { copyPublicationText, startPublicationDownload } from '../../design-system/publicationActions.js'
 import ChoicePicker from '../../design-system/ChoicePicker.jsx'
 import { useEffect, useMemo, useRef, useState } from 'react'
@@ -224,7 +225,7 @@ export default function VideoExport({ videoParams, filenameBase, comparativeInpu
               <ChoicePicker className="ic-control" value={asset1Id} onChange={(e) => changeAsset1(e.target.value)}>
                 {COMPARATIVE_ASSET_IDS.map((id) => (
                   <option key={id} value={id}>
-                    {ASSETS[id].icon} {ASSETS[id].label}
+                    {ASSETS[id].icon} {historyOptionLabel(id, ASSETS[id])}
                   </option>
                 ))}
               </ChoicePicker>
@@ -247,7 +248,7 @@ export default function VideoExport({ videoParams, filenameBase, comparativeInpu
               <ChoicePicker className="ic-control" value={asset2Id} onChange={(e) => changeAsset2(e.target.value)}>
                 {COMPARATIVE_ASSET_IDS.map((id) => (
                   <option key={id} value={id}>
-                    {ASSETS[id].icon} {ASSETS[id].label}
+                    {ASSETS[id].icon} {historyOptionLabel(id, ASSETS[id])}
                   </option>
                 ))}
               </ChoicePicker>
