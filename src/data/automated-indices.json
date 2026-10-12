@@ -17771,5 +17771,537 @@
         }
       }
     }
+  },
+  "msci-world-materials": {
+    "facts": {
+      "index": "MSCI World Materials",
+      "asOf": "2026-09-30",
+      "constituents": 88,
+      "countries": [
+        [
+          "🇺🇸 États-Unis",
+          39.43
+        ],
+        [
+          "🇨🇦 Canada",
+          15.94
+        ],
+        [
+          "🇦🇺 Australie",
+          12.14
+        ],
+        [
+          "🇬🇧 Royaume-Uni",
+          9.07
+        ],
+        [
+          "🇯🇵 Japon",
+          6.74
+        ],
+        [
+          "🌍 Autres",
+          16.69
+        ]
+      ],
+      "sectors": [
+        [
+          "🪨 Matériaux",
+          100.0
+        ]
+      ],
+      "holdings": [
+        [
+          "LINDE (NEW)",
+          7.58
+        ],
+        [
+          "BHP GROUP (AU)",
+          7.42
+        ],
+        [
+          "NEWMONT CORP",
+          4.21
+        ],
+        [
+          "AIR LIQUIDE",
+          4.17
+        ],
+        [
+          "FREEPORT MCMORAN B",
+          3.47
+        ],
+        [
+          "RIO TINTO PLC (GB)",
+          3.47
+        ],
+        [
+          "AGNICO EAGLE MINES",
+          3.21
+        ],
+        [
+          "SHERWIN-WILLIAMS CO",
+          2.54
+        ],
+        [
+          "ECOLAB",
+          2.4
+        ],
+        [
+          "GLENCORE",
+          2.39
+        ]
+      ],
+      "source": {
+        "url": "https://www.msci.com/documents/10199/255599/msci-world-materials-index-usd-net.pdf",
+        "checkedAt": "2026-10-12",
+        "label": "Composition officielle automatisée · MSCI World Materials",
+        "sha256": "e7c75510116c7d00169b3a50a4a788c0c81210d6768a4687622c8f7569c70aef"
+      },
+      "provenance": "Publication officielle extraite automatiquement ; compositions d’indice distinctes des portefeuilles ETF."
+    },
+    "factsHistory": {
+      "2026-09-30": {
+        "index": "MSCI World Materials",
+        "asOf": "2026-09-30",
+        "constituents": 88,
+        "countries": [
+          [
+            "🇺🇸 États-Unis",
+            39.43
+          ],
+          [
+            "🇨🇦 Canada",
+            15.94
+          ],
+          [
+            "🇦🇺 Australie",
+            12.14
+          ],
+          [
+            "🇬🇧 Royaume-Uni",
+            9.07
+          ],
+          [
+            "🇯🇵 Japon",
+            6.74
+          ],
+          [
+            "🌍 Autres",
+            16.69
+          ]
+        ],
+        "sectors": [
+          [
+            "🪨 Matériaux",
+            100.0
+          ]
+        ],
+        "holdings": [
+          [
+            "LINDE (NEW)",
+            7.58
+          ],
+          [
+            "BHP GROUP (AU)",
+            7.42
+          ],
+          [
+            "NEWMONT CORP",
+            4.21
+          ],
+          [
+            "AIR LIQUIDE",
+            4.17
+          ],
+          [
+            "FREEPORT MCMORAN B",
+            3.47
+          ],
+          [
+            "RIO TINTO PLC (GB)",
+            3.47
+          ],
+          [
+            "AGNICO EAGLE MINES",
+            3.21
+          ],
+          [
+            "SHERWIN-WILLIAMS CO",
+            2.54
+          ],
+          [
+            "ECOLAB",
+            2.4
+          ],
+          [
+            "GLENCORE",
+            2.39
+          ]
+        ],
+        "source": {
+          "url": "https://www.msci.com/documents/10199/255599/msci-world-materials-index-usd-net.pdf",
+          "checkedAt": "2026-10-12",
+          "label": "Composition officielle automatisée · MSCI World Materials",
+          "sha256": "e7c75510116c7d00169b3a50a4a788c0c81210d6768a4687622c8f7569c70aef"
+        },
+        "provenance": "Publication officielle extraite automatiquement ; compositions d’indice distinctes des portefeuilles ETF."
+      }
+    },
+    "returns": {
+      "asOf": "2026-09-30",
+      "currency": "USD",
+      "variant": "NET",
+      "values": [
+        [
+          2025,
+          25.79
+        ],
+        [
+          2024,
+          -5.5
+        ],
+        [
+          2023,
+          14.77
+        ],
+        [
+          2022,
+          -10.75
+        ],
+        [
+          2021,
+          16.32
+        ],
+        [
+          2020,
+          19.94
+        ]
+      ],
+      "periodStart": "2020-01-01",
+      "periodEnd": "2025-12-31",
+      "source": {
+        "url": "https://www.msci.com/documents/10199/255599/msci-world-materials-index-usd-net.pdf",
+        "checkedAt": "2026-10-12",
+        "sha256": "e7c75510116c7d00169b3a50a4a788c0c81210d6768a4687622c8f7569c70aef",
+        "label": "Rendements calendaires officiels automatisés · MSCI World Materials"
+      },
+      "performance": {
+        "kind": "indice",
+        "detail": "MSCI World Materials · rendement net USD, dividendes nets réinvestis, hors frais ETF",
+        "date": "2026-09-30"
+      }
+    },
+    "returnsHistory": {
+      "2026-09-30": {
+        "asOf": "2026-09-30",
+        "currency": "USD",
+        "variant": "NET",
+        "values": [
+          [
+            2025,
+            25.79
+          ],
+          [
+            2024,
+            -5.5
+          ],
+          [
+            2023,
+            14.77
+          ],
+          [
+            2022,
+            -10.75
+          ],
+          [
+            2021,
+            16.32
+          ],
+          [
+            2020,
+            19.94
+          ]
+        ],
+        "periodStart": "2020-01-01",
+        "periodEnd": "2025-12-31",
+        "source": {
+          "url": "https://www.msci.com/documents/10199/255599/msci-world-materials-index-usd-net.pdf",
+          "checkedAt": "2026-10-12",
+          "sha256": "e7c75510116c7d00169b3a50a4a788c0c81210d6768a4687622c8f7569c70aef",
+          "label": "Rendements calendaires officiels automatisés · MSCI World Materials"
+        },
+        "performance": {
+          "kind": "indice",
+          "detail": "MSCI World Materials · rendement net USD, dividendes nets réinvestis, hors frais ETF",
+          "date": "2026-09-30"
+        }
+      }
+    }
+  },
+  "msci-world-utilities": {
+    "facts": {
+      "index": "MSCI World Utilities",
+      "asOf": "2026-09-30",
+      "constituents": 74,
+      "countries": [
+        [
+          "🇺🇸 États-Unis",
+          58.28
+        ],
+        [
+          "Spain",
+          8.95
+        ],
+        [
+          "🇬🇧 Royaume-Uni",
+          7.22
+        ],
+        [
+          "Italy",
+          5.25
+        ],
+        [
+          "🇩🇪 Allemagne",
+          4.15
+        ],
+        [
+          "🌍 Autres",
+          16.14
+        ]
+      ],
+      "sectors": [
+        [
+          "💡 Services publics",
+          100.0
+        ]
+      ],
+      "holdings": [
+        [
+          "NEXTERA ENERGY",
+          7.6
+        ],
+        [
+          "IBERDROLA",
+          6.99
+        ],
+        [
+          "SOUTHERN COMPANY (THE)",
+          4.5
+        ],
+        [
+          "DUKE ENERGY CORP",
+          4.28
+        ],
+        [
+          "CONSTELLATION ENERGY",
+          3.82
+        ],
+        [
+          "ENEL",
+          3.65
+        ],
+        [
+          "NATIONAL GRID",
+          3.64
+        ],
+        [
+          "AMERICAN ELECTRIC POWER",
+          3.11
+        ],
+        [
+          "DOMINION ENERGY",
+          2.56
+        ],
+        [
+          "SEMPRA ENERGY",
+          2.45
+        ]
+      ],
+      "source": {
+        "url": "https://www.msci.com/documents/10199/255599/msci-world-utilities-index-usd-net.pdf",
+        "checkedAt": "2026-10-12",
+        "label": "Composition officielle automatisée · MSCI World Utilities",
+        "sha256": "423aec3f9a12b453a7cf81ab85a624d9ac35b51b2eead781afa2ca0bf82ca374"
+      },
+      "provenance": "Publication officielle extraite automatiquement ; compositions d’indice distinctes des portefeuilles ETF."
+    },
+    "factsHistory": {
+      "2026-09-30": {
+        "index": "MSCI World Utilities",
+        "asOf": "2026-09-30",
+        "constituents": 74,
+        "countries": [
+          [
+            "🇺🇸 États-Unis",
+            58.28
+          ],
+          [
+            "Spain",
+            8.95
+          ],
+          [
+            "🇬🇧 Royaume-Uni",
+            7.22
+          ],
+          [
+            "Italy",
+            5.25
+          ],
+          [
+            "🇩🇪 Allemagne",
+            4.15
+          ],
+          [
+            "🌍 Autres",
+            16.14
+          ]
+        ],
+        "sectors": [
+          [
+            "💡 Services publics",
+            100.0
+          ]
+        ],
+        "holdings": [
+          [
+            "NEXTERA ENERGY",
+            7.6
+          ],
+          [
+            "IBERDROLA",
+            6.99
+          ],
+          [
+            "SOUTHERN COMPANY (THE)",
+            4.5
+          ],
+          [
+            "DUKE ENERGY CORP",
+            4.28
+          ],
+          [
+            "CONSTELLATION ENERGY",
+            3.82
+          ],
+          [
+            "ENEL",
+            3.65
+          ],
+          [
+            "NATIONAL GRID",
+            3.64
+          ],
+          [
+            "AMERICAN ELECTRIC POWER",
+            3.11
+          ],
+          [
+            "DOMINION ENERGY",
+            2.56
+          ],
+          [
+            "SEMPRA ENERGY",
+            2.45
+          ]
+        ],
+        "source": {
+          "url": "https://www.msci.com/documents/10199/255599/msci-world-utilities-index-usd-net.pdf",
+          "checkedAt": "2026-10-12",
+          "label": "Composition officielle automatisée · MSCI World Utilities",
+          "sha256": "423aec3f9a12b453a7cf81ab85a624d9ac35b51b2eead781afa2ca0bf82ca374"
+        },
+        "provenance": "Publication officielle extraite automatiquement ; compositions d’indice distinctes des portefeuilles ETF."
+      }
+    },
+    "returns": {
+      "asOf": "2026-09-30",
+      "currency": "USD",
+      "variant": "NET",
+      "values": [
+        [
+          2025,
+          24.75
+        ],
+        [
+          2024,
+          12.96
+        ],
+        [
+          2023,
+          0.28
+        ],
+        [
+          2022,
+          -4.66
+        ],
+        [
+          2021,
+          9.84
+        ],
+        [
+          2020,
+          4.76
+        ]
+      ],
+      "periodStart": "2020-01-01",
+      "periodEnd": "2025-12-31",
+      "source": {
+        "url": "https://www.msci.com/documents/10199/255599/msci-world-utilities-index-usd-net.pdf",
+        "checkedAt": "2026-10-12",
+        "sha256": "423aec3f9a12b453a7cf81ab85a624d9ac35b51b2eead781afa2ca0bf82ca374",
+        "label": "Rendements calendaires officiels automatisés · MSCI World Utilities"
+      },
+      "performance": {
+        "kind": "indice",
+        "detail": "MSCI World Utilities · rendement net USD, dividendes nets réinvestis, hors frais ETF",
+        "date": "2026-09-30"
+      }
+    },
+    "returnsHistory": {
+      "2026-09-30": {
+        "asOf": "2026-09-30",
+        "currency": "USD",
+        "variant": "NET",
+        "values": [
+          [
+            2025,
+            24.75
+          ],
+          [
+            2024,
+            12.96
+          ],
+          [
+            2023,
+            0.28
+          ],
+          [
+            2022,
+            -4.66
+          ],
+          [
+            2021,
+            9.84
+          ],
+          [
+            2020,
+            4.76
+          ]
+        ],
+        "periodStart": "2020-01-01",
+        "periodEnd": "2025-12-31",
+        "source": {
+          "url": "https://www.msci.com/documents/10199/255599/msci-world-utilities-index-usd-net.pdf",
+          "checkedAt": "2026-10-12",
+          "sha256": "423aec3f9a12b453a7cf81ab85a624d9ac35b51b2eead781afa2ca0bf82ca374",
+          "label": "Rendements calendaires officiels automatisés · MSCI World Utilities"
+        },
+        "performance": {
+          "kind": "indice",
+          "detail": "MSCI World Utilities · rendement net USD, dividendes nets réinvestis, hors frais ETF",
+          "date": "2026-09-30"
+        }
+      }
+    }
   }
 }

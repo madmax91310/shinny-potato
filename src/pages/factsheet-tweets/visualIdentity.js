@@ -1,5 +1,7 @@
 // Reviewed exposure illustrations. Abstract glass blocks never encode weights.
 const identities = {
+  'msci-world-materials':['world','Pays développés · matériaux'],
+  'msci-world-utilities':['infrastructure','Pays développés · services publics'],
   'msci-world-industrials': ['infrastructure', 'Pays développés · secteur industriel'],
   'msci-world-consumer-staples': ['world', 'Pays développés · consommation de base'],
   'msci-em-imi': ['emerging', 'Marchés émergents · grandes, moyennes et petites capitalisations'],

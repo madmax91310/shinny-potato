@@ -4,6 +4,7 @@ import { loadArtImage } from '../tweet-midi/anniversaryArt.js'
 // Each exposure reuses its reviewed ETF illustration. These are exposure scenes,
 // never fund-provider logos; names distinguish geographic/factor variants.
 const references = {
+  'health-world':'sante-biotech','materials-world':'world-materials','utilities-world':'world-utilities-dws',
   'listed-private-equity': 'private-equity-ishares',
   gold: 'or', gaming: 'gaming_vaneck', medical: 'medical_innovation_ishares',
   world: 'support-msci_world_ishares', 'acwi-imi': 'acwi_imi_spdr', acwi: 'msci-acwi', 'acwi-pea': 'pea_global_amundi', allworld: 'ftse-all-world',

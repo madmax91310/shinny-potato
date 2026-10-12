@@ -117,3 +117,21 @@ class FourIssuerRecovery(unittest.TestCase):
 
 
 if __name__=='__main__':unittest.main()
+
+class DWSSignedSettlement(unittest.TestCase):
+    def test_negative_cash_is_preserved_without_renormalising_equities(self):
+        from collect_dws_etf import parse_holdings
+        import copy
+        body=json.loads((FIX/'dws-industrials.json').read_text())
+        rows=body['tables'][0]['values']
+        cash=next(r for r in rows if r['column_5']['value'] in ('Cash','Future','FX Forward'))
+        equity=next(r for r in rows if r['column_5']['value']=='Equities')
+        other=sum(r['column_1']['sortValue']for r in rows if r is not cash and r['column_5']['value']in('Cash','Future','FX Forward'))
+        old=cash['column_1']['sortValue'];cash['column_1']['sortValue']=-.1-other
+        equity['column_1']['sortValue']+=old+.1+other
+        r=parse_holdings(body,{'isin':'IE00BM67HV82'},dt.datetime(2026,10,12,tzinfo=dt.timezone.utc),'https://etf.dws.com/source')
+        for field in ('countries','sectors'):
+            self.assertAlmostEqual(next(x['weightPct'] for x in r[field]['rows'] if x['name']=='Cash and/or Derivatives'),-.1)
+            self.assertAlmostEqual(sum(x['weightPct'] for x in r[field]['rows']),100,places=2)
+        equity['column_1']['sortValue']=-1
+        with self.assertRaises(ValueError):parse_holdings(body,{'isin':'IE00BM67HV82'},dt.datetime(2026,10,12,tzinfo=dt.timezone.utc),'https://etf.dws.com/source')

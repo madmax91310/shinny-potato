@@ -72,6 +72,9 @@ export const CATEGORIES = {
 };
 
 export const ASSETS = [
+  {id:'utilities_world_dws',name:getInstrumentName('IE00BM67HQ30','portfolio'),isin:'IE00BM67HQ30',cat:'actions_larges',emoji:'💡',r:getInstrumentReturnValues('IE00BM67HQ30'),confidenceNote:'Rendements NAV USD de la part exacte ; services publics des pays développés.',desc:['Services publics mondiaux','Une poche sectorielle de sociétés cotées','Sensibilité aux taux et à la réglementation']},
+  {id:'health_world_ishares',name:getInstrumentName('IE00BJ5JNZ06','portfolio'),isin:'IE00BJ5JNZ06',cat:'actions_larges',emoji:'🩺',r:getInstrumentReturnValues('IE00BJ5JNZ06'),confidenceNote:'Rendements NAV de la part USD ; exposition mondiale avec filtres et plafonds Advanced.',desc:['Santé des pays développés, indice Advanced','Surpondération sectorielle à côté du World','Risque actions et concentration sectorielle']},
+  {id:'materials_world_dws',name:getInstrumentName('IE00BM67HS53','portfolio'),isin:'IE00BM67HS53',cat:'actions_larges',emoji:'🪨',r:getInstrumentReturnValues('IE00BM67HS53'),confidenceNote:'Rendements NAV USD de la part exacte ; distincts de la sélection iShares Advanced.',desc:['Sociétés mondiales du secteur matériaux','Chimie, matériaux et entreprises minières','Sensibilité au cycle, aux coûts et aux prix']},
   { id: 'private_equity_ishares', isin: 'IE00B1TXHL60', name: getInstrumentName('IE00B1TXHL60', 'portfolio'), cat: 'actions_larges', emoji: '🟢', r: getInstrumentReturnValues('IE00B1TXHL60'), distributing: true, confidenceNote: 'Rendements NAV de la part exacte en dollars, revenus réinvestis ; le résultat en euros dépend du change.', desc: ['Actions de sociétés cotées liées au capital-investissement', 'Exposition spécialisée, distincte d’une souscription à un fonds non coté', 'Risque actions, sensibilité au financement et aux valorisations des participations'] },
   // Parts de fiches désormais documentées sur 2020–2025, proposées en manuel.
   {

@@ -2,7 +2,7 @@ import { SHEETS } from '../src/data/index-factsheets.js'
 import { buildFactsheetTweet } from '../src/pages/factsheet-tweets/lib.js'
 import assert from 'node:assert/strict'
 
-if (SHEETS.length !== 32) throw new Error('Trente-deux sujets attendus')
+if (SHEETS.length !== 34) throw new Error('Trente-quatre sujets attendus')
 for (const sheet of SHEETS) {
   const text = buildFactsheetTweet(sheet)
   assert.equal((text.match(/🔖 Sauvegarde ce tweet/g) ?? []).length, 1)

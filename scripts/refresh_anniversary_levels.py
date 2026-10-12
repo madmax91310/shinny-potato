@@ -89,13 +89,13 @@ def collect_one(config, now, json_fetch=None, byte_fetch=download):
             'maxAgeDays':45 if parser=='ftse' else 7,
             **({key:config[key] for key in ('isin','ticker','mic','listingEvidenceId')} if config.get('consumerScope')=='catalog' else {})}
 
-def refresh(current, now, collect=collect_one):
+def refresh(current, now, collect=collect_one, selected=None):
     merged=current.copy();successes=[];errors=[]
     def one(config):
         try:return config['id'],collect(config,now),None
         except Exception as e:return config['id'],None,str(e)
     with ThreadPoolExecutor(max_workers=4) as pool:
-        for id_,record,error in pool.map(one,configurations()):
+        for id_,record,error in pool.map(one,configurations() if selected is None else selected):
             if error:errors.append({'id':'anniversary-'+id_,'error':error});continue
             old=merged.get(id_)
             if old and (record['asOf'] < old['asOf'] or any(record.get(k)!=old.get(k) for k in ['currency','parser','symbol','indexCode','variant','isin','ticker','mic','listingEvidenceId'])):
@@ -103,6 +103,7 @@ def refresh(current, now, collect=collect_one):
             merged[id_]=record;successes.append({'id':'anniversary-'+id_})
     # Gold retains its World Bank monthly average convention, never gold futures/spot.
     try:
+        if selected is not None:return merged,{'checkedAt':now.isoformat(),'successes':successes,'errors':errors}
         gold=json.loads((ROOT/'src/data/worldbank-gold-monthly.json').read_text());period,value=gold['points'][-1]
         if gold.get('unit') != 'USD per troy ounce' or gold.get('column') != 'Gold' or not gold.get('url', '').startswith('https://thedocs.worldbank.org/'): reject('Identité ou unité de la moyenne d’or modifiée')
         if (now.date()-dt.date.fromisoformat(period+'-01')).days>75:reject('Moyenne mensuelle de l’or trop ancienne')
@@ -116,9 +117,14 @@ def refresh(current, now, collect=collect_one):
     return merged,{'checkedAt':now.isoformat(),'successes':successes,'errors':errors}
 
 def main():
-    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--apply',action='store_true');p.add_argument('--output',required=True,type=pathlib.Path)
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--apply',action='store_true');p.add_argument('--output',required=True,type=pathlib.Path);p.add_argument('--only',nargs='+')
     args=p.parse_args();path=ROOT/'src/data/anniversary-levels.json';old=json.loads(path.read_text()) if path.exists() else {}
-    merged,report=refresh(old,dt.datetime.now(UTC));write_json_atomic(args.output,report)
+    selected=None
+    if args.only:
+        all_sources=configurations()
+        if set(args.only)-{c['id']for c in all_sources}:reject('Unknown anniversary source selection')
+        selected=[c for c in all_sources if c['id']in args.only]
+    merged,report=refresh(old,dt.datetime.now(UTC),selected=selected);write_json_atomic(args.output,report)
     if args.apply and merged!=old:write_json_atomic(path,merged)
     print(json.dumps(report,ensure_ascii=False));return 1 if report['errors'] else 0
 
