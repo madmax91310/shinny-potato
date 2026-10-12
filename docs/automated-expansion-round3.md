@@ -29,7 +29,7 @@ MSCI World Materials et MSCI World Utilities : documents MSCI, composition propr
 
 ## Entreprises
 
-Walmart, Netflix, Booking Holdings, Caterpillar et Deere : découverte renouvelable des publications depuis leurs archives officielles. Quatre trimestres publiés, historique consolidé GAAP, cours de dernière séance terminée et estimations publiques. Aucun Q4 calculé par soustraction.
+Walmart, Netflix, Booking Holdings et Deere : découverte renouvelable des publications depuis leurs archives officielles. Quatre trimestres publiés, historique consolidé GAAP, cours de dernière séance terminée et estimations publiques. Aucun Q4 calculé par soustraction.
 
 La collecte officielle est primaire ; la SEC n’est pas nécessaire pour les comptes. Les composants annuels optionnels sont aussi relus dans les documents de l’émetteur. Un champ non qualifié reste absent. Les colonnes de pourcentages Walmart ne deviennent pas des montants ; les revenus financiers de Caterpillar ne remplacent pas son chiffre d’affaires consolidé ; les montants Netflix en milliers sont convertis explicitement.
 
@@ -43,4 +43,4 @@ Une PR de validation dédiée collecte les nouvelles sources sur GitHub Actions,
 
 Les poids nets de liquidités/dérivés DWS restent signés, sans écrêtage ni renormalisation des actions. Les données ETF sont partitionnées uniquement à la compilation, avec une source JSON unique et une limite de taille par fichier.
 
-Waste Management reste hors publication et collecte de production : ses documents répondent HTTP 403 sur GitHub Actions. Le candidat pourra être requalifié par une collecte explicite, sans activer de chiffres locaux à sa place.
+Caterpillar et Waste Management restent hors publication et collecte de production : les pages et PDF Caterpillar expirent sur GitHub Actions, et les documents Waste Management répondent HTTP 403. Ces candidats pourront être requalifiés par une collecte explicite, sans activer de chiffres locaux à sa place.

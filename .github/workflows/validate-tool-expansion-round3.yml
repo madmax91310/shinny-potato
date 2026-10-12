@@ -31,7 +31,7 @@ jobs:
       - run: python scripts/refresh_index_sources.py --apply --require-complete --ids msci-world-materials msci-world-utilities --output "$RUNNER_TEMP/round3-indices.json"
       - run: node scripts/export-monthly-baseline.mjs > "$RUNNER_TEMP/round3-baseline.json"
       - run: python scripts/refresh_monthly_history.py --apply --baseline "$RUNNER_TEMP/round3-baseline.json" --only etfWorldMaterials etfWorldUtilities etfHealthcareInnovation etfCloudWisdomtree --output "$RUNNER_TEMP/round3-monthly.json"
-      - run: python scripts/refresh_company_analysis.py --apply --publications-only --only walmart netflix booking caterpillar deere --output "$RUNNER_TEMP/round3-companies.json"
+      - run: python scripts/refresh_company_analysis.py --apply --publications-only --only walmart netflix booking deere --output "$RUNNER_TEMP/round3-companies.json"
       - run: python scripts/refresh_anniversary_levels.py --apply --only etfWorldMaterials etfWorldUtilities etfHealthcareInnovation etfCloudWisdomtree --output "$RUNNER_TEMP/round3-latest-levels.json"
       - run: node scripts/test-company-analysis.mjs
       - run: node scripts/test-company-decision.mjs
