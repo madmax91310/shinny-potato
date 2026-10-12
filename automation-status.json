@@ -60,18 +60,30 @@
     },
     "collect-etf-pilot.yml": {
       "name": "ETF et compositions d’indices",
-      "runId": 38279060158,
+      "runId": 38290122314,
       "attempt": 1,
-      "completedAt": "2026-10-12T17:02:15Z",
-      "status": "success",
+      "completedAt": "2026-10-12T18:45:48Z",
+      "status": "failure",
       "lastSuccessAt": "2026-10-12T17:02:15Z",
-      "collectionStatus": "success",
+      "collectionStatus": "failure",
       "publicationStatus": "not-run",
       "lastCollectionSuccessAt": "2026-10-12T17:02:15Z",
       "lastPublicationSuccessAt": "2026-10-12T13:04:04Z",
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38279060158",
-      "failures": [],
-      "dataFailures": {}
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38290122314",
+      "failures": [
+        {
+          "job": "report-failures",
+          "step": "Run echo 'Une source ETF ou indice a échoué. Ses dernières données fiables sont conservées ; les autres collectes validées ont été publiées si les audits et le déploiement ont réussi.' >> \"$GITHUB_STEP_SUMMARY\""
+        }
+      ],
+      "dataFailures": {
+        "etf-additional-observation-IE000DQLYVB9": {
+          "name": "ETF IE000DQLYVB9",
+          "completedAt": "2026-10-12T18:45:48Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38290122314",
+          "cause": "HTTP Error 500: Internal Server Error"
+        }
+      }
     },
     "update-economic-data.yml": {
       "name": "Taux d’épargne, ménages, SCPI et fonds euros",
@@ -245,5 +257,5 @@
       "failures": []
     }
   },
-  "updatedAt": "2026-10-12T18:43:56Z"
+  "updatedAt": "2026-10-12T18:45:48Z"
 }
