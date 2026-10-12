@@ -60,16 +60,16 @@
     },
     "collect-etf-pilot.yml": {
       "name": "ETF et compositions d’indices",
-      "runId": 38238187348,
+      "runId": 38247213217,
       "attempt": 1,
-      "completedAt": "2026-10-12T11:03:22Z",
+      "completedAt": "2026-10-12T12:27:08Z",
       "status": "failure",
       "lastSuccessAt": "2026-10-12T07:50:21Z",
       "collectionStatus": "failure",
       "publicationStatus": "success",
       "lastCollectionSuccessAt": "2026-10-12T07:50:21Z",
-      "lastPublicationSuccessAt": "2026-10-12T11:03:12Z",
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38238187348",
+      "lastPublicationSuccessAt": "2026-10-12T12:27:00Z",
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38247213217",
       "failures": [
         {
           "job": "report-failures",
@@ -79,14 +79,14 @@
       "dataFailures": {
         "etf-observation-IE000RDRMSD1": {
           "name": "ETF IE000RDRMSD1",
-          "completedAt": "2026-10-12T11:03:22Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38238187348",
+          "completedAt": "2026-10-12T12:27:08Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38247213217",
           "cause": "Numeric value outside its valid range"
         },
         "etf-observation-IE00B3F81R35": {
           "name": "ETF IE00B3F81R35",
-          "completedAt": "2026-10-12T11:03:22Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38238187348",
+          "completedAt": "2026-10-12T12:27:08Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38247213217",
           "cause": "Numeric value outside its valid range"
         }
       }
@@ -233,5 +233,5 @@
       "failures": []
     }
   },
-  "updatedAt": "2026-10-12T12:09:31Z"
+  "updatedAt": "2026-10-12T12:27:08Z"
 }
