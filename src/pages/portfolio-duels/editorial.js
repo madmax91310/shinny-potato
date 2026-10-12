@@ -38,7 +38,7 @@ export function duelEditorial(duel) {
  const same=Math.abs(b.final-a.final)<.5
  const topic=topics[duel.id]
  const hookLabels = {
-  world: 'World',
+  world: 'World', gold: 'or physique',
   smallcap: 'petites entreprises des pays développés', 'us-small': 'petites entreprises américaines',
   minvol: 'World à faible volatilité', cash: 'monétaire en euros',
   shortbond: 'obligations d’État à très courte échéance', longbond: 'obligations d’État à longue échéance',

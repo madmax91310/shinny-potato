@@ -61,6 +61,7 @@ function exposureReading(portfolio) {
   }
   if (factorReadings[complement?.exposure]) parts.push(`Les ${complement.pct} % de ${complement.label} ${factorReadings[complement.exposure]}. Ce filtre peut retenir des entreprises déjà présentes dans la base.${complement.exposure === 'value' ? ' Une action peu chère peut le rester longtemps.' : complement.exposure === 'quality' ? ' Ces critères ne garantissent ni un bon prix d’achat ni de meilleures performances.' : ''}`)
   const complements = {
+    gold: 'exposent au prix de l’or physique via un ETC. Cet instrument ne verse pas de revenu et sa valeur peut baisser ; il ne constitue pas une protection garantie',
     exusa: 'renforcent les pays développés hors États-Unis ; ce choix réduit le poids américain sans ajouter les émergents',
     'us-small': 'ajoutent les petites entreprises américaines, plus sensibles aux conditions économiques et de financement',
     'em-bond': 'ajoutent des obligations émergentes émises en dollars, avec un risque de non-remboursement, des cours sensibles aux taux et une exposition aux variations des monnaies',

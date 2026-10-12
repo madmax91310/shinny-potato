@@ -1,0 +1,9 @@
+# Présentation ETF et Duel — extension du 12 octobre 2026
+
+Trois fiches PEA ajoutées : Europe (FR0013412038), émergents ESG Transition (FR0013412020), Inde (FR0011869320). Utilité : renforcer une zone déjà présente, ajouter des marchés absents du World, examiner une exposition nationale. Les noms, cotations, PEA, frais et encours viennent des registres communs. Les performances EUR des parts exactes sont déjà collectées par le connecteur Amundi quotidien. Aucun chiffre variable ni rendement n’est recopié. La politique capitalisation/distribution des fonds Europe et émergents reste explicite. Les fiches n’inscrivent pas ces parts au Générateur.
+
+Six duels supplémentaires : World seul contre World avec 20 % Europe, 20 % émergents IMI, 20 % Quality, 20 % Value, 10 % or physique ; World + 20 % Europe contre World + 20 % émergents. Les périodes sont calculées à partir des années complètes communes. Le moteur garde les rendements de chaque part, revenus réinvestis, et le change BCE pour les séries USD. L’or utilise l’ETC iShares Physical Gold IE00B4ND3602, identifié comme ETC sans revenu, et son historique automatisé existant. Les poids restent rééquilibrés annuellement selon le moteur actuel. Aucun squelette de texte ou d’image modifié.
+
+Couverture des 123 fiches : 115 historiques annuels, six séries sur périodes datées, deux parts récentes sans performances publiées exploitables (PEA Global lancé juillet 2026 ; Europe Small Cap lancé mars 2026). Aucun indice ou autre part utilisé pour remplir ces absences.
+
+Validation locale : catalogue et caractéristiques, cohérence des frais, couverture des performances, raccordement des nouveaux ISIN aux collecteurs, audit des 52 duels avec 500 générations, provenance des séries, compilation et budgets des bundles. Les tests navigateur locaux sont bloqués par l’absence de Chromium et l’échec de son téléchargement ; les exports ETF/Duel restent vérifiés par les tests navigateur de la CI avant fusion.
