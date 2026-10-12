@@ -34,6 +34,9 @@ on:
       - 'scripts/data_automation.py'
       - 'scripts/test_issuer_reliability.py'
       - 'scripts/collect_document_etf.py'
+      - 'scripts/collect_presentation_performance.py'
+      - 'scripts/test_presentation_performance.py'
+      - 'scripts/fixtures/presentation-performance/**'
       - 'scripts/download-vaneck-document.mjs'
       - 'scripts/*vaneck*.mjs'
       - 'scripts/refresh_additional_etf.py'
@@ -89,6 +92,9 @@ on:
       - 'scripts/test_source_documents.py'
       - 'scripts/test_document_etf.py'
       - 'scripts/collect_document_etf.py'
+      - 'scripts/collect_presentation_performance.py'
+      - 'scripts/test_presentation_performance.py'
+      - 'scripts/fixtures/presentation-performance/**'
       - 'scripts/refresh_additional_etf.py'
       - 'scripts/collect_public_issuer.py'
       - 'scripts/collect_tracked_exposure.py'
@@ -132,7 +138,7 @@ jobs:
       contents: write
     outputs:
       commit_sha: ${{ steps.commit.outputs.commit_sha }}
-      collection_failed: ${{ steps.ishares.outcome == 'failure' || steps.amundi.outcome == 'failure' || steps.ssga.outcome == 'failure' || steps.additional.outcome == 'failure' || steps.indices.outcome == 'failure' || steps.fx.outcome == 'failure' }}
+      collection_failed: ${{ steps.ishares.outcome == 'failure' || steps.amundi.outcome == 'failure' || steps.ssga.outcome == 'failure' || steps.additional.outcome == 'failure' || steps.presentation_performance.outcome == 'failure' || steps.indices.outcome == 'failure' || steps.fx.outcome == 'failure' }}
     steps:
       - uses: actions/checkout@v7.0.1
         with:
@@ -159,6 +165,7 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_document_etf.py'
       - run: python -m unittest discover -s scripts -p 'test_new_issuer_sources.py'
       - run: python -m unittest discover -s scripts -p 'test_presentation_etf.py'
+      - run: python -m unittest discover -s scripts -p 'test_presentation_performance.py'
       - run: node scripts/test-presentation-etf.mjs
       - run: python -m unittest discover -s scripts -p 'test_product_calendars.py'
       - run: python -m unittest discover -s scripts -p 'test_commodity_allocations.py'
@@ -186,6 +193,9 @@ jobs:
       - id: additional
         continue-on-error: true
         run: python scripts/refresh_additional_etf.py --baseline "$RUNNER_TEMP/baseline.json" --output "$RUNNER_TEMP/additional-observation.json" --apply
+      - id: presentation_performance
+        continue-on-error: true
+        run: python scripts/collect_presentation_performance.py --output "$RUNNER_TEMP/presentation-performance.json" --apply
       - id: fx
         continue-on-error: true
         run: python scripts/collect_annual_fx.py --apply
@@ -214,6 +224,7 @@ jobs:
             ${{ runner.temp }}/amundi-observation.json
             ${{ runner.temp }}/ssga-observation.json
             ${{ runner.temp }}/additional-observation.json
+            ${{ runner.temp }}/presentation-performance.json
             ${{ runner.temp }}/index-observation.json
           if-no-files-found: ignore
           retention-days: 35
