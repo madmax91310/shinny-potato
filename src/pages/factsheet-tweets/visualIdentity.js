@@ -1,5 +1,7 @@
 // Reviewed exposure illustrations. Abstract glass blocks never encode weights.
 const identities = {
+  'msci-world-industrials': ['infrastructure', 'Pays développés · secteur industriel'],
+  'msci-world-consumer-staples': ['world', 'Pays développés · consommation de base'],
   'msci-em-imi': ['emerging', 'Marchés émergents · grandes, moyennes et petites capitalisations'],
   'ftse-all-world-high-dividend-yield': ['world', 'Développés et émergents · dividendes élevés'],
   'sp-global-dividend-aristocrats': ['world', 'Dividendes mondiaux · sélection Quality Income'],

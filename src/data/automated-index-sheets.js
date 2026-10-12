@@ -6,6 +6,8 @@ import { getCurrentIndexFacts, buildAutomatedIndexSnapshot } from './index-facts
 // These sheets have no numerical archive fallback: every displayed observation
 // comes from the validated records maintained by the daily issuer workflow.
 export const AUTOMATED_SHEET_DEFINITIONS = [
+  { id: 'msci-world-industrials', title: 'MSCI World Industrials', takeaway: 'L’industrie regroupe plusieurs activités. Ajouter cette exposition renforce un secteur déjà présent dans le World.' },
+  { id: 'msci-world-consumer-staples', title: 'MSCI World Consumer Staples', takeaway: 'La consommation de base reste exposée aux coûts et aux volumes. Cet indice classique diffère des variantes filtrées et plafonnées de certains ETF.' },
   { id: 'msci-em-imi', title: 'MSCI Emerging Markets IMI',
     takeaway: 'IMI ajoute les petites capitalisations aux émergents classiques. Les plus grandes entreprises peuvent toutefois garder beaucoup de poids.' },
   { id: 'ftse-all-world-high-dividend-yield', title: 'FTSE All-World High Dividend Yield',

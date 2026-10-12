@@ -20,6 +20,14 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 # Explicit GICS industry-to-sector relationships for the two sector funds.
 # Unknown classifications remain unknown; do not infer a sector from a company name.
 INDUSTRY_SECTORS = {
+    **{name: 'Industrials' for name in ['Aerospace & Defense', 'Electrical Components & Equipment',
+       'Industrial Machinery & Supplies & Components', 'Construction Machinery & Heavy Transportation Equipment',
+       'Trading Companies & Distributors', 'Industrial Conglomerates', 'Heavy Electrical Equipment',
+       'Rail Transportation', 'Building Products', 'Construction & Engineering', 'Human Resource & Employment Services',
+       'Air Freight & Logistics', 'Research & Consulting Services', 'Environmental & Facilities Services',
+       'Agricultural & Farm Machinery', 'Passenger Ground Transportation', 'Diversified Support Services',
+       'Cargo Ground Transportation', 'Marine Transportation', 'Passenger Airlines', 'Data Processing & Outsourced Services',
+       'Highways & Railtracks', 'Airport Services', 'Security & Alarm Services', 'Commercial Printing']},
     **{name: 'Materials' for name in ['Diversified Metals & Mining', 'Gold', 'Specialty Chemicals',
        'Industrial Gases', 'Construction Materials', 'Steel', 'Copper',
        'Paper & Plastic Packaging Products & Materials', 'Diversified Chemicals',

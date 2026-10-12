@@ -932,5 +932,145 @@
         }
       }
     ]
+  },
+  "tudigo": {
+    "id": "tudigo",
+    "checkedAt": "2026-10-12",
+    "verification": "public-terms",
+    "sources": [
+      {
+        "url": "https://www.tudigo.com/frais-investissement",
+        "sha256": "3ee7afd05a03b58cdfba7e143fc97270023e6de30df344b58b3283b06adf6e5e"
+      },
+      {
+        "url": "https://www.tudigo.com/legal/cgu",
+        "sha256": "b7c30a6be8eb416ae7ed4ae1c25df53282cf66b0962de967f7b9b7342ec89d53"
+      }
+    ],
+    "offers": [
+      {
+        "id": "public-terms",
+        "name": "Tudigo — investissement en actions",
+        "scope": "Financement en actions ; le barème obligataire est une offre distincte.",
+        "fields": {
+          "access": {
+            "label": "Accès",
+            "value": "Souscription à une offre en actions, directement ou via une société intermédiaire selon l’opération ; conditions précisées dans sa fiche d’informations clés.",
+            "sourceUrl": "https://www.tudigo.com/legal/cgu",
+            "checkedAt": "2026-10-12"
+          },
+          "fees": {
+            "label": "Frais publiés",
+            "value": "Souscription : 5 % sous 5000 €, 4 % sous 10000 €, 2,5 % sous 25000 €, 1 % sous 50000 €, 0,1 % à partir de 50000 €. Gestion : 1 %/an, prélevée pour cinq ans. Provision de fonctionnement : 2 %. Performance : 20 % de la plus-value si le multiple dépasse 1,2, selon les conditions publiées.",
+            "sourceUrl": "https://www.tudigo.com/frais-investissement",
+            "checkedAt": "2026-10-12"
+          },
+          "duration": {
+            "label": "Durée",
+            "value": "La page des frais prévoit cinq ans pour le prélèvement initial de gestion ; cela ne garantit pas une sortie à cinq ans. La durée dépend de l’opération.",
+            "sourceUrl": "https://www.tudigo.com/frais-investissement",
+            "checkedAt": "2026-10-12"
+          },
+          "income": {
+            "label": "Revenus",
+            "value": "Gains éventuels lors de la revente des participations ; ils dépendent de la valeur de l’entreprise et des frais. Aucune performance réalisée commune aux projets.",
+            "sourceUrl": "https://www.tudigo.com/frais-investissement",
+            "checkedAt": "2026-10-12"
+          },
+          "exit": {
+            "label": "Sortie",
+            "value": "La sortie dépend de la revente des participations et des conditions de l’opération. Les titres présentent un risque d’illiquidité ; le remboursement du capital n’est pas garanti.",
+            "sourceUrl": "https://www.tudigo.com/legal/cgu",
+            "checkedAt": "2026-10-12"
+          }
+        },
+        "missing": [],
+        "highlights": [
+          [
+            "Exposition",
+            "Non coté"
+          ],
+          [
+            "Instrument",
+            "Actions"
+          ],
+          [
+            "Sortie",
+            "Non garantie"
+          ]
+        ],
+        "warnings": []
+      }
+    ]
+  },
+  "lendosphere": {
+    "id": "lendosphere",
+    "checkedAt": "2026-10-12",
+    "verification": "public-terms",
+    "sources": [
+      {
+        "url": "https://www.lendosphere.com/infos/questions-frequentes",
+        "sha256": "b37267748ce0c0b1afbdb6f84afa450cad7cfb5608a0adb5b918af56572f8fd4"
+      },
+      {
+        "url": "https://www.lendosphere.com/infos/comment-ca-marche",
+        "sha256": "c71b79190621a9fd5f1aa3e6166acee7fbb857b1243c4c12a5abfcb08b3bbbe7"
+      }
+    ],
+    "offers": [
+      {
+        "id": "public-terms",
+        "name": "Lendosphere — financement en dette",
+        "scope": "Financements en dette décrits dans la FAQ ; les offres en actions restent distinctes.",
+        "fields": {
+          "access": {
+            "label": "Accès",
+            "value": "Inscription en ligne puis souscription à une collecte. Le montant et les conditions sont définis sur la page de chaque projet.",
+            "sourceUrl": "https://www.lendosphere.com/infos/comment-ca-marche",
+            "checkedAt": "2026-10-12"
+          },
+          "fees": {
+            "label": "Frais publiés",
+            "value": "Pas de frais investisseur sur le financement décrit par la FAQ. Retrait de fonds crédités sans les investir : 1 % de la somme débitée.",
+            "sourceUrl": "https://www.lendosphere.com/infos/questions-frequentes",
+            "checkedAt": "2026-10-12"
+          },
+          "duration": {
+            "label": "Durée",
+            "value": "Durée et échéancier propres au projet, publiés dans ses documents ; aucune durée commune à toutes les collectes.",
+            "sourceUrl": "https://www.lendosphere.com/infos/comment-ca-marche",
+            "checkedAt": "2026-10-12"
+          },
+          "income": {
+            "label": "Revenus",
+            "value": "Intérêts selon le contrat ; remboursement amortissable ou capital à la dernière échéance pour un financement in fine. Une défaillance peut empêcher ces paiements.",
+            "sourceUrl": "https://www.lendosphere.com/infos/questions-frequentes",
+            "checkedAt": "2026-10-12"
+          },
+          "exit": {
+            "label": "Sortie",
+            "value": "Après le délai de réflexion de quatre jours, l’investissement est définitif. Le remboursement suit l’échéancier du projet ; une sortie anticipée n’est pas garantie.",
+            "sourceUrl": "https://www.lendosphere.com/infos/comment-ca-marche",
+            "checkedAt": "2026-10-12"
+          }
+        },
+        "missing": [],
+        "highlights": [
+          [
+            "Exposition",
+            "Énergie"
+          ],
+          [
+            "Durée",
+            "Selon le projet"
+          ],
+          [
+            "Financement",
+            "Dette"
+          ]
+        ],
+        "warnings": []
+      }
+    ]
   }
 }

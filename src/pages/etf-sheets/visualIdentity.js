@@ -22,7 +22,7 @@ const groups = {
   space: 'spatial',
   commodities: 'support-mp_large support-mp_large_icom',
   renewables: 'support-sect_energie_propre',
-  infrastructure: 'infrastructures',
+  infrastructure: 'world-industrials-xtrackers infrastructures',
   utilities: 'support-sect_utilities',
   resources: 'copper-miners-globalx basic-resources-pea mines-mondiales-vaneck',
   consumer: 'support-sect_conso_defensive',

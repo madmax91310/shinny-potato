@@ -345,7 +345,7 @@ def main():
             status['accounts'] = type(error).__name__
             failures.append(ident + ':accounts')
         try:
-            if extended and collected_history:
+            if collected_history:
                 history = validate_history(collected_history, now.date())
             elif sec_body is not None:
                 history = parse_history(sec_body, profile, now.date())

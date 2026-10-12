@@ -33,15 +33,17 @@ def identity(text, name):
         reject('Official index factsheet identity mismatch: ' + name)
 
 
-def msci_composition(text, config, now):
+def msci_composition(text, config, now, country_text=None):
     identity(text, config.get('documentName', config['name']))
     dates = re.findall(r'(?:^|\f)([A-Z]{3} \d{1,2}, \d{4})[ \t]+Index Factsheet', text, re.M)
     if not dates or len(set(dates)) != 1:
         reject('Missing or inconsistent MSCI snapshot date')
     stamp = document_date(dates[0], now)
-    if 'SECTOR WEIGHTS' not in text or 'TOP 10 CONSTITUENTS' not in text:
+    sector_scope = config.get('sectorScope')
+    heading = 'SUB-INDUSTRY WEIGHTS' if sector_scope else 'SECTOR WEIGHTS'
+    if heading not in text or 'TOP 10 CONSTITUENTS' not in text:
         reject('Missing MSCI composition table headings')
-    section = text.split('SECTOR WEIGHTS', 1)[1].split('\f', 1)[0]
+    section = (country_text or text).split('COUNTRY WEIGHTS' if sector_scope else heading, 1)[1].split('\f', 1)[0]
     # Legend labels are explicit text; never read values from the plotted pie labels.
     legend = '\n'.join(line for line in section.splitlines() if 'msci.com' not in line and re.search(r'[A-Za-z].*\d+(?:\.\d+)?%', line))
     legend = re.sub(r' {2,}', ' | ', legend)
@@ -51,6 +53,10 @@ def msci_composition(text, config, now):
         name = name.strip()
         row = {'name': name, 'weightPct': float(value)}
         (sectors if name in SECTOR_LABELS and name != 'Other' else countries).append(row)
+    if sector_scope:
+        if sector_scope['name'] not in SECTOR_LABELS or sector_scope['proof'] not in ' '.join(text.split()):
+            reject('Sector scope not explicitly proved by MSCI')
+        sectors = [{'name': sector_scope['name'], 'weightPct': 100.0}]
     validated_rows(sectors)
     if not countries and config.get('countryScope') and config['countryScope']['proof'] in text:
         countries = [{'name': config['countryScope']['name'], 'weightPct': 100.0}]
@@ -65,6 +71,9 @@ def msci_composition(text, config, now):
     holdings = []
     for line in block.splitlines():
         cells = re.split(r' {2,}', line.strip())
+        if sector_scope and len(cells) >= 4 and re.fullmatch(r'[A-Z]{2}', cells[-3]) and re.fullmatch(r'[\d,]+\.\d+', cells[-2]) and re.fullmatch(r'\d+\.\d+', cells[-1]):
+            holdings.append({'name': cells[-4], 'weightPct': float(cells[-1])})
+            continue
         if len(cells) >= 4 and re.fullmatch(r'[\d,]+\.\d+', cells[-3]) and re.fullmatch(r'\d+\.\d+', cells[-2]):
             name = cells[-5] if re.fullmatch(r'[A-Z]{2}', cells[-4]) else cells[-4]
             if name != 'Total':

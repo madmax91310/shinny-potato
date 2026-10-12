@@ -975,5 +975,22 @@
     "ticker": "WOOD",
     "mic": "XSWX",
     "listingEvidenceId": "IE00B27YCF74-XSWX-WOOD-USD"
+  },
+  "etfIndustrials": {
+    "value": 74.27999877929688,
+    "asOf": "2026-10-09",
+    "currency": "EUR",
+    "parser": "yahoo",
+    "symbol": "XDWI.DE",
+    "indexCode": null,
+    "variant": null,
+    "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/XDWI.DE?period1=1790467200&period2=1791763200&interval=1d&events=splits",
+    "sha256": "7f834e313d39962ad27d09ccda509f9bd4424028e6bef8cdbb4f3605c90be37b",
+    "method": "Dernière séance terminée ; cours brut",
+    "maxAgeDays": 7,
+    "isin": "IE00BM67HV82",
+    "ticker": "XDWI",
+    "mic": "XETR",
+    "listingEvidenceId": "IE00BM67HV82-XETR-XDWI-EUR"
   }
 }

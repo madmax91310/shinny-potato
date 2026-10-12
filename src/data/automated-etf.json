@@ -31216,5 +31216,391 @@
       "checkedAt": "2026-10-12",
       "modifiedAt": "2026-10-11"
     }
+  },
+  "IE00BM67HV82": {
+    "currency": "USD",
+    "productId": "IE00BM67HV82",
+    "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HV82/pdpMetaTagsTealium",
+    "provider": "DWS",
+    "aum": {
+      "amount": 1340275215.4,
+      "currency": "USD",
+      "scope": "fund",
+      "asOf": "2026-10-09",
+      "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HV82/historicaldata/download",
+      "sha256": "ad739417af9a62985699bd76b0d246d02c5b8965ceb1bf1a718e3dce19084f10",
+      "method": "DWS dated historical fund AUM, all share classes, workbook currency; not exact-share assets",
+      "checkedAt": "2026-10-12",
+      "modifiedAt": "2026-10-12"
+    },
+    "sectors": {
+      "asOf": "2026-10-07",
+      "basis": "fund",
+      "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HV82/holdings",
+      "sha256": "f0de3b16fb538cd5560fbeff2908cf461bf2f7482ab3532bc69f227799a3800e",
+      "method": "Full physical securities portfolio; registration country and industry; net cash/derivatives retained",
+      "rows": [
+        {
+          "name": "Industrials",
+          "weightPct": 99.381027,
+          "label": "Industrials"
+        },
+        {
+          "name": "Unassigned",
+          "weightPct": 0.428991,
+          "label": "Non classé"
+        },
+        {
+          "name": "Cash and/or Derivatives",
+          "weightPct": 0.18998,
+          "label": "Cash and/or Derivatives"
+        }
+      ],
+      "checkedAt": "2026-10-12",
+      "modifiedAt": "2026-10-12"
+    },
+    "countries": {
+      "asOf": "2026-10-07",
+      "basis": "fund",
+      "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HV82/holdings",
+      "sha256": "f0de3b16fb538cd5560fbeff2908cf461bf2f7482ab3532bc69f227799a3800e",
+      "method": "Full physical securities portfolio; registration country and industry; net cash/derivatives retained",
+      "rows": [
+        {
+          "name": "United States",
+          "weightPct": 56.075696
+        },
+        {
+          "name": "Japan",
+          "weightPct": 13.203905
+        },
+        {
+          "name": "France",
+          "weightPct": 6.306293
+        },
+        {
+          "name": "Germany",
+          "weightPct": 5.511296
+        },
+        {
+          "name": "United Kingdom",
+          "weightPct": 4.575426
+        },
+        {
+          "name": "Sweden",
+          "weightPct": 3.328289
+        },
+        {
+          "name": "Switzerland",
+          "weightPct": 2.574843
+        },
+        {
+          "name": "Canada",
+          "weightPct": 2.499372
+        },
+        {
+          "name": "Ireland",
+          "weightPct": 0.94781
+        },
+        {
+          "name": "Denmark",
+          "weightPct": 0.826324
+        },
+        {
+          "name": "Italy",
+          "weightPct": 0.611473
+        },
+        {
+          "name": "Australia",
+          "weightPct": 0.572464
+        },
+        {
+          "name": "Finland",
+          "weightPct": 0.479699
+        },
+        {
+          "name": "Hong Kong",
+          "weightPct": 0.443587
+        },
+        {
+          "name": "Netherlands",
+          "weightPct": 0.427663
+        },
+        {
+          "name": "Singapore",
+          "weightPct": 0.416862
+        },
+        {
+          "name": "Spain",
+          "weightPct": 0.412087
+        },
+        {
+          "name": "Israel",
+          "weightPct": 0.192424
+        },
+        {
+          "name": "China",
+          "weightPct": 0.191872
+        },
+        {
+          "name": "Cash and/or Derivatives",
+          "weightPct": 0.18998
+        },
+        {
+          "name": "Norway",
+          "weightPct": 0.131478
+        },
+        {
+          "name": "New Zealand",
+          "weightPct": 0.081155
+        }
+      ],
+      "checkedAt": "2026-10-12",
+      "modifiedAt": "2026-10-12"
+    },
+    "holdings": {
+      "asOf": "2026-10-07",
+      "basis": "fund",
+      "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HV82/holdings",
+      "sha256": "f0de3b16fb538cd5560fbeff2908cf461bf2f7482ab3532bc69f227799a3800e",
+      "rows": [
+        {
+          "name": "CATERPILLAR INC",
+          "isin": "US1491231015",
+          "weightPct": 3.83726456
+        },
+        {
+          "name": "GE AEROSPACE",
+          "isin": "US3696043013",
+          "weightPct": 3.2250688
+        },
+        {
+          "name": "GE VERNOVA",
+          "isin": "US36828A1016",
+          "weightPct": 2.74302427
+        },
+        {
+          "name": "RTX",
+          "isin": "US75513E1010",
+          "weightPct": 2.48366527
+        },
+        {
+          "name": "SIEMENS N AG",
+          "isin": "DE0007236101",
+          "weightPct": 2.24692211
+        },
+        {
+          "name": "EATON PLC",
+          "isin": "IE00B8KQN827",
+          "weightPct": 1.71357193
+        },
+        {
+          "name": "UNION PACIFIC",
+          "isin": "US9078181081",
+          "weightPct": 1.66920547
+        },
+        {
+          "name": "DEERE",
+          "isin": "US2441991054",
+          "weightPct": 1.6323797
+        },
+        {
+          "name": "HITACHI",
+          "isin": "JP3788600009",
+          "weightPct": 1.61654592
+        },
+        {
+          "name": "SCHNEIDER ELECTRIC",
+          "isin": "FR0000121972",
+          "weightPct": 1.60331072
+        }
+      ],
+      "checkedAt": "2026-10-12",
+      "modifiedAt": "2026-10-12"
+    },
+    "characteristics": {
+      "terPct": 0.25,
+      "index": "MSCI WORLD INDUSTRIALS TRN INDEX",
+      "distribution": "Capitalizing",
+      "checkedAt": "2026-10-12",
+      "modifiedAt": "2026-10-12"
+    },
+    "performance": {
+      "basis": "fund",
+      "currency": "USD",
+      "method": "calendar-year NAV total return, income reinvested, net of fund fees",
+      "years": {
+        "2017": 25.19,
+        "2018": -15.34,
+        "2019": 28.78,
+        "2020": 11.59,
+        "2021": 16.55,
+        "2022": -13.2,
+        "2023": 23.19,
+        "2024": 13.11,
+        "2025": 24.91
+      },
+      "checkedAt": "2026-10-12",
+      "modifiedAt": "2026-10-12"
+    }
+  },
+  "IE00BJ5JP329": {
+    "currency": "USD",
+    "productId": 308902,
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=308902&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "provider": "iShares",
+    "aum": {
+      "amount": 106946142.8,
+      "currency": "USD",
+      "scope": "share-class",
+      "asOf": "2026-10-09",
+      "checkedAt": "2026-10-12",
+      "modifiedAt": "2026-10-12"
+    },
+    "sectors": {
+      "asOf": "2026-10-09",
+      "rows": [
+        {
+          "name": "Consumer Staples",
+          "weightPct": 99.49,
+          "label": "Consumer Staples"
+        },
+        {
+          "name": "Cash and/or Derivatives",
+          "weightPct": 0.51,
+          "label": "Cash and/or Derivatives"
+        }
+      ],
+      "checkedAt": "2026-10-12",
+      "modifiedAt": "2026-10-12"
+    },
+    "countries": {
+      "asOf": "2026-10-09",
+      "rows": [
+        {
+          "name": "United States",
+          "weightPct": 54.49
+        },
+        {
+          "name": "United Kingdom",
+          "weightPct": 17.37
+        },
+        {
+          "name": "France",
+          "weightPct": 8.81
+        },
+        {
+          "name": "Switzerland",
+          "weightPct": 6.15
+        },
+        {
+          "name": "Japan",
+          "weightPct": 3.41
+        },
+        {
+          "name": "Canada",
+          "weightPct": 2.68
+        },
+        {
+          "name": "Germany",
+          "weightPct": 1.97
+        },
+        {
+          "name": "Norway",
+          "weightPct": 1.3
+        },
+        {
+          "name": "Other",
+          "weightPct": 3.299999999999999
+        },
+        {
+          "name": "Cash and/or Derivatives",
+          "weightPct": 0.51
+        }
+      ],
+      "checkedAt": "2026-10-12",
+      "modifiedAt": "2026-10-12"
+    },
+    "holdings": {
+      "asOf": "2026-10-09",
+      "basis": "fund",
+      "rows": [
+        {
+          "name": "COSTCO WHOLESALE CORP",
+          "weightPct": 9.92398,
+          "isin": "US22160K1051"
+        },
+        {
+          "name": "COCA-COLA",
+          "weightPct": 8.82219,
+          "isin": "US1912161007"
+        },
+        {
+          "name": "UNILEVER PLC",
+          "weightPct": 5.61465,
+          "isin": "GB00BVZK7T90"
+        },
+        {
+          "name": "NESTLE SA",
+          "weightPct": 5.29662,
+          "isin": "CH0038863350"
+        },
+        {
+          "name": "WALMART",
+          "weightPct": 5.26562,
+          "isin": "US9311421039"
+        },
+        {
+          "name": "LOREAL SA",
+          "weightPct": 4.70481,
+          "isin": "FR0000120321"
+        },
+        {
+          "name": "PROCTER & GAMBLE",
+          "weightPct": 3.90051,
+          "isin": "US7427181091"
+        },
+        {
+          "name": "TARGET CORP",
+          "weightPct": 3.86676,
+          "isin": "US87612E1064"
+        },
+        {
+          "name": "COLGATE-PALMOLIVE",
+          "weightPct": 3.80675,
+          "isin": "US1941621039"
+        },
+        {
+          "name": "TESCO PLC",
+          "weightPct": 3.26618,
+          "isin": "GB00BLGZ9862"
+        }
+      ],
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=308902&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "checkedAt": "2026-10-12",
+      "modifiedAt": "2026-10-12"
+    },
+    "characteristics": {
+      "terPct": 0.18,
+      "index": "MSCI World Consumer Staples Advanced Select 20 35 Capped Index",
+      "distribution": "Distributing",
+      "checkedAt": "2026-10-12",
+      "modifiedAt": "2026-10-12"
+    },
+    "performance": {
+      "currency": "USD",
+      "basis": "fund",
+      "method": "calendar-year NAV total return, income reinvested, fund fees included",
+      "years": {
+        "2020": 7.97,
+        "2021": 13.08,
+        "2022": -6.09,
+        "2023": 3.49,
+        "2024": 2.34,
+        "2025": 5.61
+      },
+      "checkedAt": "2026-10-12",
+      "modifiedAt": "2026-10-12"
+    }
   }
 }

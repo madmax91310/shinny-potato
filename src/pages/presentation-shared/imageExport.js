@@ -60,6 +60,7 @@ function wrap(ctx,text,width) {
 }
 function text(ctx,value,x,y,width,size=29,color=INK,weight=400,family=SANS){font(ctx,size,weight,family);ctx.fillStyle=color;const lines=wrap(ctx,value,width);lines.forEach((line,i)=>ctx.fillText(line,x,y+i*size*1.35));return y+lines.length*size*1.35}
 const brandAssets = {
+  tudigo: ['tudigo.svg'], lendosphere: ['lendosphere.svg'],
   fundora:['fundora.svg'], anaxago:['anaxago.svg'], mymarguerit:['mymarguerit.png'],
   bacchus:['bacchus.png'], 'france-valley':['france-valley.svg'], enerfip:['enerfip.svg'],
   hectarea:['hectarea.svg'], bricks:['bricks.svg'], matis:['matis.svg'],
@@ -110,6 +111,8 @@ export function presentationCardModel(record, kind) {
 }
 // One identity per product, including separate identities for contracts from one distributor.
 export const presentationBrands = {
+  tudigo: { color:'#cf7658', light:'#ffe1d4', dark:'#663126' },
+  lendosphere: { color:'#68ae82', light:'#d4ffe0', dark:'#2b5e40' },
   fundora: { color:'#9e83cb', light:'#ecdaff', dark:'#493066' },
   anaxago: { color:'#d4b26b', light:'#fff0c3', dark:'#66502b' },
   mymarguerit: { color:'#63aa76', light:'#d5ffdb', dark:'#295739' },
@@ -136,7 +139,9 @@ export const presentationBrands = {
 }
 export function presentationReliefModel(record,kind) {
   const model=presentationCardModel(record,kind)
-  if(kind==='actor') return { ...model, highlights: record.highlights.map(([label,value]) => row(label,value)),
+  if(kind==='actor') return { ...model, highlights: record.highlights.map(([label,value]) => row(label,
+    record.id==='tudigo' && label==='Exposition' && value==='Entreprises non cotées' ? 'Non coté' :
+    record.id==='lendosphere' && label==='Exposition' && value==='Transition énergétique' ? 'Énergie' : value)),
     qualifier: (record.selectedOffer?.availability?.status === 'closed' ? record.selectedOffer.name+' · Souscriptions clôturées le '+dateLabel(record.selectedOffer.availability.asOf) : record.selectedOffer?.warnings.length ? 'Durées officielles divergentes · Confirmer les conditions du titre' : (record.selectedOffer?.name ?? 'Fonctionnement général de l’acteur')+' · Conditions publiques')+' · Vérifié le '+dateLabel(record.checkedAt),
     brand: presentationBrands[record.id] }
   if(kind==='scpi') {

@@ -3,6 +3,7 @@ import RECORDS from './automated-etf-monthly.json' with { type: 'json' }
 // Exact shares shared by the investment, performance and anniversary tools.
 // Visual identities use exposure illustrations, never an invented issuer logo.
 export const ETF_HISTORY_IDENTITIES = {
+  etfIndustrials: { icon: '🏭', scene: 'industry', title: 'WORLD INDUSTRIALS', ticker: 'XDWI' },
   etf_timber_ishares: {icon:'🌳',scene:'world',title:'BOIS ET FORETS',ticker:'WOOD'},
   etf_water_ishares: {icon:'🌍',scene:'world',title:"GLOBAL WATER",ticker:"DH2O"},
   etf_agribusiness_ishares: {icon:'🌍',scene:'world',title:"AGRIBUSINESS USD (ACC)",ticker:"ISAG"},

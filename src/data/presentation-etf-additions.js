@@ -1,6 +1,33 @@
 // Parts exactes sélectionnées le 11/10/2026. Données variables dans automated-etf.json.
 // Fiches seules : aucune inscription implicite dans les outils de simulation.
 export const PRESENTATION_ETF_ADDITIONS = [
+{
+  "id": "world-industrials-xtrackers",
+  "isin": "IE00BM67HV82",
+  "name": "Xtrackers MSCI World Industrials UCITS ETF 1C",
+  "category": "Sectoriels classiques",
+  "ter": "0,25",
+  "source": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HV82/pdpMetaTagsTealium",
+  "benchmark": "MSCI World Industrials Index (Net Total Return)",
+  "incomePolicy": "accumulating",
+  "replicationMethod": "Physical (Full replication)",
+  "domicile": "Irlande",
+  "listing": {
+    "ticker": "XDWI",
+    "exchange": "Xetra",
+    "mic": "XETR",
+    "currency": "EUR",
+    "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HV82/pdpMetaTagsTealium",
+    "checkedAt": "2026-10-12",
+    "evidenceId": "IE00BM67HV82-XETR-XDWI-EUR"
+  },
+  "hook": "🏭 L’industrie mondiale, ce n’est pas seulement fabriquer des produits. Quelles entreprises retrouve-t-on dans cet ETF ? 👇",
+  "whatIs": "Tu suis les grandes et moyennes entreprises industrielles des pays développés à travers le MSCI World Industrials. Le fonds détient les actions et cette part réinvestit les revenus.",
+  "whyInteresting": "Tu examines séparément un secteur déjà présent dans le World : équipements électriques, transport, aéronautique et autres activités industrielles.",
+  "whatToKnow": "Ajouter cet ETF renforce ton exposition à l’industrie. Les commandes, les investissements et les cycles économiques peuvent faire varier les résultats des entreprises. La cotation en euros ne couvre pas les autres devises.",
+  "verdict": "Tu suis les entreprises industrielles des marchés développés.",
+  "question": "Tu renforcerais l’industrie avec une ligne dédiée ou tu garderais son poids dans le World ?"
+},
   {
     "id": "em-small-cap-ishares",
     "isin": "IE00B3F81G20",
