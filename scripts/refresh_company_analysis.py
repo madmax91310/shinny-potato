@@ -262,6 +262,9 @@ def main():
     report = {'checkedAt': now.isoformat(), 'alphaVantageConfigured': bool(key), 'companies': {}}
     failures = []
     for profile in profiles:
+        # Qualification trials use --only. Do not activate incomplete candidates in production.
+        if profile.get('candidateOnly') and not args.only:
+            continue
         if args.only and profile['id'] not in args.only:
             continue
         ident = profile['id']; old = data['companies'].get(ident, {})
