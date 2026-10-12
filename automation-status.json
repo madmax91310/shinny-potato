@@ -60,21 +60,17 @@
     },
     "collect-etf-pilot.yml": {
       "name": "ETF et compositions d’indices",
-      "runId": 38226035188,
+      "runId": 38229293813,
       "attempt": 1,
-      "completedAt": "2026-10-12T08:52:47Z",
+      "completedAt": "2026-10-12T09:40:12Z",
       "status": "failure",
       "lastSuccessAt": "2026-10-12T07:50:21Z",
       "collectionStatus": "failure",
-      "publicationStatus": "not-run",
+      "publicationStatus": "success",
       "lastCollectionSuccessAt": "2026-10-12T07:50:21Z",
-      "lastPublicationSuccessAt": "2026-10-12T07:50:18Z",
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38226035188",
+      "lastPublicationSuccessAt": "2026-10-12T09:40:02Z",
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38229293813",
       "failures": [
-        {
-          "job": "refresh",
-          "step": "Run node scripts/test-comparison-etf-details.mjs"
-        },
         {
           "job": "report-failures",
           "step": "Run echo 'Une source ETF ou indice a échoué. Ses dernières données fiables sont conservées ; les autres collectes validées ont été publiées si les audits et le déploiement ont réussi.' >> \"$GITHUB_STEP_SUMMARY\""
@@ -83,14 +79,14 @@
       "dataFailures": {
         "etf-observation-IE000RDRMSD1": {
           "name": "ETF IE000RDRMSD1",
-          "completedAt": "2026-10-12T08:52:47Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38226035188",
+          "completedAt": "2026-10-12T09:40:12Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38229293813",
           "cause": "Numeric value outside its valid range"
         },
         "etf-observation-IE00B3F81R35": {
           "name": "ETF IE00B3F81R35",
-          "completedAt": "2026-10-12T08:52:47Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38226035188",
+          "completedAt": "2026-10-12T09:40:12Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38229293813",
           "cause": "Numeric value outside its valid range"
         }
       }
@@ -237,5 +233,5 @@
       "failures": []
     }
   },
-  "updatedAt": "2026-10-12T09:07:39Z"
+  "updatedAt": "2026-10-12T09:40:12Z"
 }
