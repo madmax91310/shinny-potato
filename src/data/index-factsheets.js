@@ -213,10 +213,13 @@ const ARCHIVE_SHEETS = [
   },
 ]
 
+const automatedSheets = buildAutomatedIndexSheets();
 export const SHEETS = [...ARCHIVE_SHEETS.map(sheet => {
-  const current = refreshIndexSheet(sheet);
+  const automated = automatedSheets.find(row => row.id === sheet.id);
+  // Keep the approved editorial structure while requiring complete automated facts.
+  const current = automated ? { ...sheet, ...automated, takeaway: sheet.takeaway } : refreshIndexSheet(sheet);
   if (current.performance.kind !== 'indice' || !/dividendes.*réinvestis/.test(current.performance.detail)) {
     throw new Error(`La fiche exige un indice dividendes réinvestis : ${sheet.id}`);
   }
   return sheet.id === 'msci-india' ? { ...current, index: 'MSCI India' } : current;
-}), ...buildAutomatedIndexSheets()];
+}), ...automatedSheets.filter(sheet => !ARCHIVE_SHEETS.some(archive => archive.id === sheet.id))];

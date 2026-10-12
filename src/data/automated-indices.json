@@ -10998,7 +10998,7 @@
       "countries": [
         [
           "États-Unis",
-          100.0
+          100
         ]
       ],
       "sectors": [
@@ -12736,7 +12736,7 @@
       "countries": [
         [
           "États-Unis",
-          100.0
+          100
         ]
       ],
       "sectors": [
@@ -13760,7 +13760,7 @@
         ],
         [
           "Espagne",
-          6.0
+          6
         ],
         [
           "Italie",
@@ -15264,11 +15264,9 @@
       ],
       "source": {
         "url": "https://www.spglobal.com/spdji/en/util/redesign/index-data/get-performance-data-for-datawidget-redesign.dot?indexId=5475610&language_id=1",
-        "checkedAt": "2026-10-11",
-        "sha256": "a1e157334a4872c20554c17a49f0160513739786b4291954d2edf2f5d14edb4e",
-        "label": "Données publiques numériques S&P DJI",
-        "retrievedAt": "2026-10-11T06:27:56.020585+00:00",
-        "transport": "official-response-handoff"
+        "checkedAt": "2026-10-12",
+        "sha256": "8e1402f591b2b5fa8733899750bd558e310836600d1c3ec069125416044b69f1",
+        "label": "Données publiques numériques S&P DJI"
       },
       "provenance": "Données publiques utilisées par la page S&P DJI de l’indice exact. Dates d’effet, identités, classification, totaux des pays/secteurs et poids cumulé du top dix contrôlés. Rendements conservés séparément."
     },
@@ -15460,7 +15458,7 @@
       "countries": [
         [
           "Japon",
-          100.0
+          100
         ]
       ],
       "sectors": [
@@ -16748,7 +16746,7 @@
       "countries": [
         [
           "États-Unis",
-          100.0
+          100
         ]
       ],
       "sectors": [
@@ -17148,6 +17146,316 @@
           "kind": "indice",
           "detail": "S&P 500 Equal Weight · USD · dividendes réinvestis (SPXEWTR, ligne indice Invesco ; publication trimestrielle)",
           "date": "2026-06-30"
+        }
+      }
+    }
+  },
+  "sp-us-dividend-aristocrats": {
+    "facts": {
+      "index": "S&P High Yield Dividend Aristocrats",
+      "asOf": "2026-09-30",
+      "constituents": 155,
+      "sectorClassification": "GICS",
+      "topWeight": 20.4,
+      "countries": [
+        [
+          "🇺🇸 États-Unis",
+          100
+        ]
+      ],
+      "sectors": [
+        [
+          "🏭 Industrie",
+          18.5314
+        ],
+        [
+          "🛒 Consommation de base",
+          15.8853
+        ],
+        [
+          "💡 Services publics",
+          12.8729
+        ],
+        [
+          "🏦 Finance",
+          12.1851
+        ],
+        [
+          "💻 Technologie",
+          8.7483
+        ],
+        [
+          "🏥 Santé",
+          8.3564
+        ],
+        [
+          "🪨 Matériaux",
+          7.4082
+        ],
+        [
+          "🛍️ Consommation cyclique",
+          5.1283
+        ],
+        [
+          "🏠 Immobilier",
+          3.989
+        ],
+        [
+          "⚡ Énergie",
+          3.7248
+        ],
+        [
+          "📡 Communication",
+          3.1702
+        ]
+      ],
+      "holdings": [
+        [
+          "Verizon Communications Inc",
+          3.1702
+        ],
+        [
+          "Accenture plc A",
+          3.1408
+        ],
+        [
+          "Chevron Corp",
+          2.0816
+        ],
+        [
+          "Realty Income Corp",
+          2.0071
+        ],
+        [
+          "PepsiCo Inc",
+          1.8705
+        ],
+        [
+          "Target Corp",
+          1.8165
+        ],
+        [
+          "Medtronic plc",
+          1.7766
+        ],
+        [
+          "NIKE Inc B",
+          1.5345
+        ],
+        [
+          "Kenvue Inc.",
+          1.5192
+        ],
+        [
+          "Becton Dickinson & Co",
+          1.4855
+        ]
+      ],
+      "source": {
+        "url": "https://www.spglobal.com/spdji/en/util/redesign/index-data/get-performance-data-for-datawidget-redesign.dot?indexId=2325&language_id=1",
+        "checkedAt": "2026-10-12",
+        "sha256": "0362f01c03e8ab05f274a2d3170d41385e067da127570663bf108e696979b2aa",
+        "label": "Données publiques numériques S&P DJI"
+      },
+      "provenance": "Données publiques utilisées par la page S&P DJI de l’indice exact. Dates d’effet, identités, classification, totaux des pays/secteurs et poids cumulé du top dix contrôlés. Rendements conservés séparément."
+    },
+    "factsHistory": {
+      "2026-09-30": {
+        "index": "S&P High Yield Dividend Aristocrats",
+        "asOf": "2026-09-30",
+        "constituents": 155,
+        "sectorClassification": "GICS",
+        "topWeight": 20.4,
+        "countries": [
+          [
+            "🇺🇸 États-Unis",
+            100
+          ]
+        ],
+        "sectors": [
+          [
+            "🏭 Industrie",
+            18.5314
+          ],
+          [
+            "🛒 Consommation de base",
+            15.8853
+          ],
+          [
+            "💡 Services publics",
+            12.8729
+          ],
+          [
+            "🏦 Finance",
+            12.1851
+          ],
+          [
+            "💻 Technologie",
+            8.7483
+          ],
+          [
+            "🏥 Santé",
+            8.3564
+          ],
+          [
+            "🪨 Matériaux",
+            7.4082
+          ],
+          [
+            "🛍️ Consommation cyclique",
+            5.1283
+          ],
+          [
+            "🏠 Immobilier",
+            3.989
+          ],
+          [
+            "⚡ Énergie",
+            3.7248
+          ],
+          [
+            "📡 Communication",
+            3.1702
+          ]
+        ],
+        "holdings": [
+          [
+            "Verizon Communications Inc",
+            3.1702
+          ],
+          [
+            "Accenture plc A",
+            3.1408
+          ],
+          [
+            "Chevron Corp",
+            2.0816
+          ],
+          [
+            "Realty Income Corp",
+            2.0071
+          ],
+          [
+            "PepsiCo Inc",
+            1.8705
+          ],
+          [
+            "Target Corp",
+            1.8165
+          ],
+          [
+            "Medtronic plc",
+            1.7766
+          ],
+          [
+            "NIKE Inc B",
+            1.5345
+          ],
+          [
+            "Kenvue Inc.",
+            1.5192
+          ],
+          [
+            "Becton Dickinson & Co",
+            1.4855
+          ]
+        ],
+        "source": {
+          "url": "https://www.spglobal.com/spdji/en/util/redesign/index-data/get-performance-data-for-datawidget-redesign.dot?indexId=2325&language_id=1",
+          "checkedAt": "2026-10-12",
+          "sha256": "0362f01c03e8ab05f274a2d3170d41385e067da127570663bf108e696979b2aa",
+          "label": "Données publiques numériques S&P DJI"
+        },
+        "provenance": "Données publiques utilisées par la page S&P DJI de l’indice exact. Dates d’effet, identités, classification, totaux des pays/secteurs et poids cumulé du top dix contrôlés. Rendements conservés séparément."
+      }
+    },
+    "returns": {
+      "asOf": "2026-09-30",
+      "currency": "USD",
+      "variant": "NET",
+      "values": [
+        [
+          2025,
+          7.6
+        ],
+        [
+          2024,
+          7.9
+        ],
+        [
+          2023,
+          1.89
+        ],
+        [
+          2022,
+          -1.08
+        ],
+        [
+          2021,
+          24.74
+        ],
+        [
+          2020,
+          1.01
+        ]
+      ],
+      "periodStart": "2020-01-01",
+      "periodEnd": "2025-12-31",
+      "source": {
+        "url": "https://www.ssga.com/fr/en_gb/institutional/etfs/state-street-spdr-sp-us-dividend-aristocrats-ucits-etf-dist-spyd-gy",
+        "checkedAt": "2026-10-12",
+        "sha256": "7da599f36b4f6ca9b2db0c0324cd114a52d774b45242d0ebd3d15929c30d043b",
+        "label": "Rendements calendaires officiels automatisés · S&P High Yield Dividend Aristocrats"
+      },
+      "performance": {
+        "kind": "indice",
+        "detail": "S&P High Yield Dividend Aristocrats · USD · dividendes nets réinvestis",
+        "date": "2026-09-30"
+      }
+    },
+    "returnsHistory": {
+      "2026-09-30": {
+        "asOf": "2026-09-30",
+        "currency": "USD",
+        "variant": "NET",
+        "values": [
+          [
+            2025,
+            7.6
+          ],
+          [
+            2024,
+            7.9
+          ],
+          [
+            2023,
+            1.89
+          ],
+          [
+            2022,
+            -1.08
+          ],
+          [
+            2021,
+            24.74
+          ],
+          [
+            2020,
+            1.01
+          ]
+        ],
+        "periodStart": "2020-01-01",
+        "periodEnd": "2025-12-31",
+        "source": {
+          "url": "https://www.ssga.com/fr/en_gb/institutional/etfs/state-street-spdr-sp-us-dividend-aristocrats-ucits-etf-dist-spyd-gy",
+          "checkedAt": "2026-10-12",
+          "sha256": "7da599f36b4f6ca9b2db0c0324cd114a52d774b45242d0ebd3d15929c30d043b",
+          "label": "Rendements calendaires officiels automatisés · S&P High Yield Dividend Aristocrats"
+        },
+        "performance": {
+          "kind": "indice",
+          "detail": "S&P High Yield Dividend Aristocrats · USD · dividendes nets réinvestis",
+          "date": "2026-09-30"
         }
       }
     }

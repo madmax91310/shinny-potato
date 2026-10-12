@@ -128,6 +128,8 @@ def collect(config, now, fetch=download):
                     'Accept':'application/json', 'Accept-Language':'en-GB,en;q=0.9',
                     'Referer':config['compositionPageUrl']})
             except (urllib.error.URLError, TimeoutError) as error:
+                if config.get('allowPublicHandoff', True) is False:
+                    raise
                 from sp_public_feed import read_response
                 try:
                     return read_response(config, now)

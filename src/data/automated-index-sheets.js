@@ -14,6 +14,15 @@ export const AUTOMATED_SHEET_DEFINITIONS = [
     takeaway: 'La sélection associe dividendes et qualité financière. Ces critères ne protègent pas le capital et les dividendes peuvent diminuer.' },
   { id: 'msci-world-growth', title: 'MSCI World Growth',
     takeaway: 'Growth décrit un filtre de sélection, sans promettre une hausse des cours. Ce panier peut évoluer différemment du World classique.' },
+  { id: 'sp500-equal-weight', title: 'S&P 500 Equal Weight' },
+  { id: 'world-ex-usa', title: 'MSCI World ex USA' },
+  { id: 'msci-world-minimum-volatility-usd', title: 'World Minimum Volatility (USD)' },
+  { id: 'msci-world-sector-neutral-quality', title: 'World Sector Neutral Quality' },
+  { id: 'msci-world-enhanced-value', title: 'World Enhanced Value' },
+  { id: 'sp-euro-dividend-aristocrats', title: 'S&P Euro High Yield Dividend Aristocrats',
+    takeaway: 'La sélection reste limitée à la zone euro. La régularité passée des dividendes ne garantit ni les prochains versements ni la valeur des actions.' },
+  { id: 'sp-us-dividend-aristocrats', title: 'S&P High Yield Dividend Aristocrats',
+    takeaway: 'La sélection reste américaine. Une longue période de hausse des dividendes ne protège pas contre une baisse des cours ou une réduction des prochains versements.' },
 ]
 
 export function buildAutomatedIndexSheets(observations = records, now = new Date()) {

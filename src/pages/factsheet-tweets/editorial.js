@@ -4,6 +4,8 @@ export const INDEX_HOOKS = {
   'msci-em-imi': 'Les émergents ne se limitent pas aux grandes entreprises. Le MSCI Emerging Markets IMI inclut aussi les petites capitalisations 🌏',
   'ftse-all-world-high-dividend-yield': 'Un ETF mondial à dividendes élevés peut avoir une composition très différente d’un ETF All-World classique 💰',
   'sp-global-dividend-aristocrats': 'Derrière le mot « Aristocrats », il y a des règles de sélection. Un dividende élevé ne suffit pas à entrer dans cet indice 💰',
+  'sp-euro-dividend-aristocrats': 'Un ETF Euro Dividend Aristocrats reste dans la zone euro. Les entreprises britanniques et suisses en sont absentes 🇪🇺',
+  'sp-us-dividend-aristocrats': 'Certaines entreprises américaines augmentent leur dividende depuis au moins vingt ans. Cet indice en fait son critère de sélection 💰',
   'msci-world-growth': 'Un ETF World Growth ne reprend pas tout le World. Il sélectionne les entreprises selon leurs caractéristiques de croissance 🔎',
   'msci-usa': 'Il n’y a pas que le S&P 500 pour suivre les entreprises américaines. Le MSCI USA couvre aussi les grandes et moyennes capitalisations 🇺🇸',
   'msci-india': 'Un ETF Inde donne accès à plusieurs entreprises, mais ton argent reste investi sur un seul pays 🇮🇳',
@@ -137,6 +139,8 @@ export function indexObservation(sheet) {
     case 'msci-world-minimum-volatility-usd': return 'Je regarde surtout comment les actions se comportent ensemble. L’indice cherche à réduire les variations de l’ensemble, pas seulement celles de chaque action. Il peut tout de même baisser.'
     case 'msci-world-sector-neutral-quality': return 'Je retiens que « Quality » décrit une méthode de sélection : rentabilité, dette et stabilité des bénéfices. Cela ne promet ni de meilleures performances ni une protection contre les baisses.'
     case 'msci-world-enhanced-value': return 'Je garde en tête qu’une entreprise jugée peu chère peut le rester longtemps. Le filtre compare son prix à ses données financières, sans prédire quand le cours remontera.'
+    case 'sp-euro-dividend-aristocrats': return 'Je regarde les secteurs et les entreprises retenues : cette sélection à dividendes reste différente d’un investissement dans tout le marché européen.'
+    case 'sp-us-dividend-aristocrats': return 'Je regarde aussi les entreprises derrière cette régularité des dividendes. Le filtre change la composition du placement et laisse de côté une partie du marché américain.'
     case 'ftse-epra-nareit-developed-dividend-plus': return 'Je regarde la valeur des actions autant que les dividendes reçus. Ces sociétés possèdent de l’immobilier, mais leur cours reste sensible à leur financement et aux marchés.'
     case 'ftse-global-core-infrastructure': return 'Je regarde les activités derrière le nom « infrastructures ». Ces entreprises exploitent des équipements utiles, mais leurs actions peuvent baisser comme celles des autres sociétés cotées.'
     default: return concentration
