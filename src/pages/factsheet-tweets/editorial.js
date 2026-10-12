@@ -1,6 +1,8 @@
 // Revue du 10/10/2026 : un angle propre à chaque indice, sans vécu personnel inventé.
 // Les chiffres et les constats de concentration sont dérivés de la fiche reçue.
 export const INDEX_HOOKS = {
+  'msci-world-materials': 'Derrière un ETF matériaux, tu trouves des entreprises de chimie, de métaux ou de construction. Leurs actions évoluent aussi avec leurs coûts et leurs marges 🪨',
+  'msci-world-utilities': 'Électricité, gaz, eau : les services publics ont leur indice mondial. Ces entreprises restent pourtant exposées au risque actions 💡',
   'msci-world-industrials': 'L’industrie mondiale ne se limite pas aux usines. Les entreprises du transport et des équipements y occupent aussi une place 🏭',
   'msci-world-consumer-staples': 'Les produits du quotidien ont aussi leur indice mondial. Mais leurs fabricants ne pèsent pas tous autant dans ce panier 🛒',
   'msci-em-imi': 'Les émergents ne se limitent pas aux grandes entreprises. Le MSCI Emerging Markets IMI inclut aussi les petites capitalisations 🌏',
