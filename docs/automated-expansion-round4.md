@@ -15,6 +15,10 @@ Les simulations utilisent les cours ajustés des revenus et divisions, les anniv
 
 Le multifactoriel a changé d'indice pendant son histoire : les textes ne présentent pas tout son historique comme celui de la stratégie STOXX actuelle. L'iBonds conserve son risque de taux, de crédit et de perte en capital ; son échéance ne garantit aucun rendement. Les secteurs obligataires sont ceux publiés par l'émetteur, et les obligations du portefeuille gardent leur ISIN pour distinguer plusieurs emprunts du même émetteur.
 
+Le Duel ajoute World seul / World 80 % + multifactoriel 20 %, à partir des rendements NAV annuels de la part exacte et du change BCE existant. Aucun rendement n’est recopié dans le scénario. Le changement historique d’indice reste explicitement indiqué.
+
+Les preuves des quatre nouveaux historiques sont amorcées dans `monthly-automated-round4.json`. L’audit et le collecteur les fusionnent avec le fichier principal ; les preuves actualisées du fichier principal priment toujours sur cet amorçage.
+
 ## Mises à jour sans intervention
 
 Le workflow quotidien `update-qualified-exposures.yml` collecte les deux nouvelles fiches, leurs encours datés, caractéristiques, compositions, rendements NAV et cotations. Le workflow existant `update-market-monthly.yml` collecte les quatre séries les 2/4/8/16 du mois et reprend quotidiennement les échecs. Les derniers cours d'anniversaire sont actualisés quotidiennement. Les collecteurs rejettent les changements d'identité, de devise, les sources périmées et les historiques incomplets ; ils conservent les dernières données valides et leur date réelle.

@@ -85,6 +85,7 @@ const fundItems = choices.map(([id, role, label, exposure]) => {
 })
 // Revue du 02/10/2026 déjà consignée dans verified-returns.js ; aucune année inventée.
 const extraFunds = [
+  ['world_multifactor_ishares', 'IE00BZ0PKT83', 'World multifactoriel', 'multifactor', 'complement'],
   ['or_ishares', 'IE00B4ND3602', 'Or physique (ETC)', 'gold', 'complement'],
   ['em_ex_china', 'IE00BMG6Z448', 'Émergents hors Chine', 'em-ex-china', 'complement'],
   ['semiconducteurs_monde', 'IE000I8KRLL9', 'Semi-conducteurs mondiaux', 'semiconductors'],
@@ -94,7 +95,7 @@ const extraFunds = [
   const series = getInstrumentDuelSeries(isin)
   if (!series?.source) throw new Error(`Historique de part absent : ${isin}`)
   return { id, isin, label, exposure, name: getInstrumentName(isin), role, group: ROLES[role],
-    ...series, note: exposure === 'gold' ? 'Rendements de l’ETC adossé à de l’or physique, sans revenu distribué ; années complètes communes.' : 'Rendements de la part exacte, revenus réinvestis ; seules les années complètes disponibles sont comparées.' }
+    ...series, note: exposure === 'multifactor' ? 'Rendements NAV de la part exacte, revenus réinvestis. Le fonds a changé d’indice : cet historique ne décrit pas uniquement la stratégie STOXX actuelle.' : exposure === 'gold' ? 'Rendements de l’ETC adossé à de l’or physique, sans revenu distribué ; années complètes communes.' : 'Rendements de la part exacte, revenus réinvestis ; seules les années complètes disponibles sont comparées.' }
 })
 const stoxxIsin = 'FR0011550193'
 const stoxxEvidence = COMPARATOR_RETURN_EVIDENCE[stoxxIsin]
