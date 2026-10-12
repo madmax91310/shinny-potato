@@ -24,7 +24,7 @@ for (const [id, record] of Object.entries(records)) {
     assert.equal(record.field, 'adjclose');
     assert.equal(record.collectAnniversary, true);
     assert.equal(record.anniversaryPoints.length, record.points.length);
-    const suffix = { XPAR: '.PA', XAMS: '.AS', XETR: '.DE', XLON: '.L', ETFP: '.MI' }[record.mic];
+    const suffix = { XPAR: '.PA', XAMS: '.AS', XSWX: '.SW', XETR: '.DE', XLON: '.L', ETFP: '.MI' }[record.mic];
     assert.equal(record.symbol, record.ticker + suffix);
     assert(INSTRUMENT_LISTINGS_BY_ISIN[record.isin]?.some(listing =>
       listing.evidenceId === record.listingEvidenceId && listing.ticker === record.ticker &&
