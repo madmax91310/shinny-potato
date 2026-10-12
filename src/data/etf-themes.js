@@ -737,6 +737,9 @@ const reusedTheme = (id, nom, emoji, transition, products, cloture, question) =>
     nom: getInstrumentName(isin, 'tweet'), frais: formatEtfTer(isin), differenciateur })),
 })
 const COMPARISON_THEMES = [...existingThemes,
+ reusedTheme('world-acwi-cto','MSCI World ou MSCI ACWI · CTO','🌍','Les pays développés seuls, ou les marchés émergents dans le même ETF ?',
+  [['IE00B4L5Y983','MSCI World : grandes et moyennes entreprises des pays développés.'],['IE00B6R52259','MSCI ACWI : grandes et moyennes entreprises des pays développés et émergents.']],
+  'L’ACWI ajoute les marchés émergents au périmètre du World. Les deux indices laissent les petites capitalisations à part et partagent de nombreuses entreprises.', 'Tu préfères intégrer les émergents dans un seul ETF ou les ajouter séparément ?'),
  reusedTheme('world-quality','MSCI World ou World Quality','🌍','Suivre le marché mondial ou sélectionner les entreprises selon leur solidité financière ?',
   [['IE00B4L5Y983','MSCI World : grandes et moyennes entreprises des pays développés.'],['IE00BP3QZ601','MSCI World Sector Neutral Quality : rentabilité, endettement et stabilité des bénéfices.']],
   'Quality sélectionne des entreprises du World en conservant des poids sectoriels proches de cet indice. Cette sélection peut sous-performer le marché.', 'Tu préfères suivre le World ou privilégier la qualité financière ?'),

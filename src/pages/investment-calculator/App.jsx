@@ -1,3 +1,4 @@
+import { historyOptionLabel } from '../../data/history-selection.js'
 import { copyPublicationText } from '../../design-system/publicationActions.js'
 import ChoicePicker from '../../design-system/ChoicePicker.jsx'
 import WorkspaceActions from '../../design-system/WorkspaceActions'
@@ -340,7 +341,7 @@ function InvestmentWorkspace({ search }) {
             <div className="ic-field">
               <div className="ic-select-wrap">
                 <AssetPicker className="ic-control" label="Choisir un actif" value={state.assetId}
-                  items={ASSET_ORDER.map(id => ({ id, label: ASSETS[id].label, group: exposureGroup(ASSETS[id]) }))}
+                  items={ASSET_ORDER.map(id => ({ id, label: historyOptionLabel(id, ASSETS[id]), group: exposureGroup(ASSETS[id]) }))}
                   emptyOption={{ id: 'custom', label: 'Autre (saisie manuelle)' }}
                   onChange={(id) => {
                     set({

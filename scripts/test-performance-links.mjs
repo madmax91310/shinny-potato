@@ -58,3 +58,20 @@ for (const id of ['unknown', '__proto__', 'custom', 'FR001400U5Q4', null]) {
   assert.equal(getAnnualPerformanceHref(id), null)
 }
 console.log(`Simulation links verified: ${simulationIds.length} exact shared histories, continuous verified monthly data and identity-only URLs.`)
+
+// Both tools offer the same source identities and selector labels, without
+// changing publication labels or substituting an ETF for a benchmark.
+const { MARKET_ASSETS } = await import('../src/pages/tweet-midi/data/marketHistory.js')
+const { historyOptionLabel } = await import('../src/data/history-selection.js')
+const { getSubjectsForFormat } = await import('../src/pages/tweet-midi/lib.js')
+assert.deepEqual(MARKET_ASSETS.map(asset => asset.id), ASSET_ORDER)
+const choices = getSubjectsForFormat(FORMATS.PERFORMANCE_DEPUIS).flatMap(group => group.items)
+for (const id of ASSET_ORDER) {
+  assert.equal(choices.find(choice => choice.id === id).label,
+    `${ASSETS[id].icon} ${historyOptionLabel(id, ASSETS[id])}`)
+  if (ASSETS[id].isin) assert.match(historyOptionLabel(id, ASSETS[id]), /^ETF · /)
+}
+assert.match(historyOptionLabel('msciWorldMomentum', ASSETS.msciWorldMomentum), /^Indice · MSCI World Momentum/)
+assert.match(historyOptionLabel('nasdaq100', ASSETS.nasdaq100), /^Indice · /)
+assert.match(historyOptionLabel('soxx', ASSETS.soxx), /^ETF · /)
+console.log('Same 64 source identities and unambiguous index/ETF selection labels verified.')
