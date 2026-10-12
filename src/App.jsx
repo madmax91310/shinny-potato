@@ -6,6 +6,7 @@ import ComingSoon from './pages/ComingSoon'
 import { TOOLS } from './tools'
 
 // Each tool and its data are fetched only when its route is opened.
+const DcaProfiles = lazy(() => import('./pages/dca-profiles/App'))
 const PracticalSheets = lazy(() => import('./pages/practical-sheets/App'))
 const EditorialRadar = lazy(() => import('./pages/editorial-radar/App'))
 const WealthSimulator = lazy(() => import('./pages/wealth-simulator/App'))
@@ -29,6 +30,7 @@ const InvestorPortfolio = lazy(() => import('./pages/investor-portfolio/App'))
 // Individual publication routes reuse one lazy engine and its existing data.
 // The old /tweet-midi URL remains available for saved links.
 const TOOL_ELEMENTS = {
+  '/le-dca-de': <DcaProfiles />,
   '/fiches-pratiques': <PracticalSheets />,
   '/radar-editorial': <EditorialRadar />,
   '/simulateur-patrimoine': <WealthSimulator />,

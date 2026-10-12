@@ -1,0 +1,6 @@
+.dca-profiles-scope .dca-note { color: var(--workspace-muted, #94a3b8); font-size: .875rem; line-height: 1.6; margin: 12px 0; }
+.dca-profiles-scope .dca-buttons { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+.dca-profiles-scope .dca-label { display: block; font-weight: 600; margin-bottom: 12px; }
+.dca-profiles-scope textarea { width: 100%; min-height: 420px; resize: vertical; border: 1px solid var(--workspace-border, #334155); border-radius: 12px; padding: 18px; color: inherit; background: transparent; font: inherit; line-height: 1.8; box-sizing: border-box; }
+.dca-profiles-scope textarea:focus-visible { outline: 2px solid #65d5b0; outline-offset: 3px; }
+@media (max-width: 600px) { .dca-profiles-scope textarea { padding: 12px; min-height: 480px; } }
