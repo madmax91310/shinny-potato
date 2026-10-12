@@ -51,7 +51,7 @@ class PresentationSources(unittest.TestCase):
         self.assertNotIn('2023',r['performance']['years'])
 
     def test_jpm_rejects_changed_identity_currency_date_and_unfinished_calendar(self):
-        for replacement in [('IE0003UVYC20','IE00OTHER001'),('currency USD','currency EUR'),('31 August 2026','31 January 2026'),('2025','2026')]:
+        for replacement in [('IE0003UVYC20','IE00OTHER001'),('currency USD','currency EUR'),('31 August 2026','31 January 2026'),('2025','2026'),('1 Class:', '2 Class:')]:
             with self.assertRaises(ValueError):parse_jpm(replacement)
 
     def test_vaneck_benchmark_change_footnote_does_not_hide_annual_fund_row(self):

@@ -63,7 +63,9 @@ def jpm_document(body, share, now):
     text = pdf_text(body)
     normalized = ' '.join(text.split())
     right = pdf_text(body, (290, 310))
-    if share['isin'] not in text or share['documentName'] not in ' '.join(right.split()):
+    right_labels = ' '.join(right.split())
+    if (share['isin'] not in text or f'1 Class: {share["documentName"]}' not in right_labels
+            or '2 Benchmark: MSCI World Index (Total Return Net)' not in right_labels):
         reject('Wrong JPMorgan exact share')
     stamp = document_date(only(re.findall(r'^Factsheet \| (\d+ [A-Za-z]+ \d{4})', text, re.M), 'JPMorgan document date'), now)
     facts = pdf_text(body, (100, 190))
