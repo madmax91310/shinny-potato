@@ -1,0 +1,12 @@
+import records from './automated-etf.json' with {type:'json'};
+const definitions=[{id:'world-utilities-dws',isin:'IE00BM67HQ30',category:'Sectoriels classiques',scene:'utilities',hook:'Les services publics sont indispensables. Que détient un ETF consacré à ce secteur ? 👇',whatIs:'Tu suis les sociétés du secteur services publics des pays développés à travers le MSCI World Utilities. Cette part réinvestit les revenus.',whyInteresting:'Tu examines les entreprises de réseaux et de production ou distribution d’électricité, de gaz et d’eau.',whatToKnow:'Ces actions restent sensibles aux taux, aux investissements et à la réglementation. Le caractère essentiel des services ne garantit pas la stabilité du capital.',verdict:'Une exposition sectorielle aux services publics des pays développés.',question:'Tu renforcerais ce secteur à côté de ton World ?'}];
+export const ROUND3_FUND_SHEETS=definitions.map(d=>{
+ const r=records[d.isin],f=r?.characteristics;
+ if(!f?.listings?.length||!f.domicile||!r.performance?.years)throw new Error(`Identité automatisée complète exigée : ${d.isin}`);
+ const listing=f.listings.find(l=>l.mic==='XETR'&&l.currency==='EUR')??f.listings[0];
+ return {...d,name:r.name??'Xtrackers MSCI World Utilities UCITS ETF',source:r.sourceUrl,benchmark:f.index,incomePolicy:f.distribution==='Capitalizing'?'accumulating':'distributing',replicationMethod:f.replicationMethod,domicile:f.domicile,listing,checkedAt:f.checkedAt,presentationOnly:false};
+});
+export const ROUND3_INSTRUMENTS=Object.fromEntries(ROUND3_FUND_SHEETS.map(s=>[s.isin,{name:s.name}]));
+export const ROUND3_FACTS=Object.fromEntries(ROUND3_FUND_SHEETS.map(s=>[s.isin,{benchmark:s.benchmark,incomePolicy:s.incomePolicy,distribution:s.incomePolicy==='accumulating'?'Capitalisant':'Distribuant',domicile:s.domicile,replicationMethod:s.replicationMethod,location:`${s.domicile}, ${s.replicationMethod}`,positionsLabel:`Exposition suivie : ${s.benchmark}`,currencyHedge:null,instrumentType:'ETF',reviewedAt:s.checkedAt.split('-').reverse().join('/'),characteristicsSource:{url:s.source,checkedAt:s.checkedAt}}]));
+export const ROUND3_LISTINGS=Object.fromEntries([...ROUND3_FUND_SHEETS.map(s=>[s.isin,records[s.isin].characteristics.listings]), ['IE00BJGWQN72',records.IE00BJGWQN72.listings.rows.filter(l=>['XLON','XETR','ETFP'].includes(l.mic))]]);
+export const ROUND3_LISTING_EVIDENCE=Object.fromEntries(Object.entries(ROUND3_LISTINGS).flatMap(([isin,ls])=>ls.map(l=>[l.evidenceId,{isin,sourceUrl:l.sourceUrl,checkedAt:l.checkedAt,identityEvidence:isin,excerpt:l.excerpt}])));

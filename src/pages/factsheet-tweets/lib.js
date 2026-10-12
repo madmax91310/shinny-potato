@@ -5,6 +5,8 @@ const pct = (value, digits = 2) => `${value > 0 ? '+' : ''}${number(value, digit
 const weight = (value) => `${number(value, value % 1 === 0 ? 0 : 2)} %`
 
 const questions = {
+ 'msci-world-materials':'Tu renforcerais les entreprises du secteur matériaux à côté de ton World ?',
+ 'msci-world-utilities':'Tu choisirais une poche de services publics ou leur place dans le World ?',
   'msci-world-industrials': 'Tu renforcerais l’industrie dans ton portefeuille ou tu garderais son poids dans le World ?',
   'msci-world-consumer-staples': 'Tu choisirais une ligne sur la consommation de base ou sa place dans un ETF mondial ?',
   'msci-em-imi': 'Tu inclurais les petites entreprises dans ton exposition aux émergents ?',
@@ -41,6 +43,8 @@ export function buildFactsheetTweet(sheet) {
   const count = sheet.constituents ?? sheet.indexFacts?.targetConstituents
   const countText = Number.isFinite(count) ? `${count.toLocaleString('fr-FR')} ${sheet.constituents === null ? 'sociétés visées' : 'titres'}` : 'les titres de son univers'
   const scopes = {
+    'msci-world-materials':'Il suit les grandes et moyennes entreprises du secteur matériaux des pays développés.',
+    'msci-world-utilities':'Il suit les grandes et moyennes entreprises du secteur services publics des pays développés.',
     'msci-world-industrials': 'Il suit le secteur industriel des pays développés.',
     'msci-world-consumer-staples': 'Il suit le secteur de la consommation de base des pays développés.',
     'msci-em-imi': 'Il couvre les grandes, moyennes et petites entreprises des marchés émergents.',

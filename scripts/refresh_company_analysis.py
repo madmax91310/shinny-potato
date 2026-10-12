@@ -262,6 +262,8 @@ def main():
     report = {'checkedAt': now.isoformat(), 'alphaVantageConfigured': bool(key), 'companies': {}}
     failures = []
     for profile in profiles:
+        if profile.get('candidateOnly') and not args.only:
+            continue
         if args.only and profile['id'] not in args.only:
             continue
         ident = profile['id']; old = data['companies'].get(ident, {})
@@ -270,14 +272,15 @@ def main():
         collected_history = None
         from company_extended_publications import EXTENDED, EUROPE
         from company_round2_publications import ROUND2
-        extended = ident in EXTENDED or ident == 'amd' or ident in ROUND2
+        from company_round3_publications import ROUND3
+        extended = ident in EXTENDED or ident == 'amd' or ident in ROUND2 or ident in ROUND3
         url = f"https://data.sec.gov/api/xbrl/companyfacts/CIK{profile['cik']}.json" if profile.get('cik') else profile['sourceUrl']
         sec_accounts = None
         sec_body = None
         try:
             if ident in EUROPE:
                 raise ValueError('IFRS issuer adapter required')
-            if ident in ROUND2:
+            if ident in ROUND2 or ident in ROUND3:
                 raise NotImplementedError('Renewable official issuer adapter is the primary source')
             if args.publications_only:
                 raise ValueError('Issuer fallback requested')
@@ -288,6 +291,8 @@ def main():
         try:
             if ident == 'amd':
                 from company_amd_publications import collect
+            elif ident in ROUND3:
+                from company_round3_publications import collect
             elif ident in ROUND2:
                 from company_round2_publications import collect
             elif extended:
@@ -393,14 +398,14 @@ def main():
             cached_decision = old.get('decision', {})
             cached_date = dt.date.fromisoformat(cached_decision['observedAt']) if cached_decision.get('observedAt') else None
             latest_end = (item.get('quarter') or item.get('halfYear') or item['annual'])['end']
-            if (cached_decision.get('componentVersion') == DECISION_VERSION and cached_date and 0 <= (now.date()-cached_date).days <= 30
+            if (not args.publications_only and cached_decision.get('componentVersion') == DECISION_VERSION and cached_date and 0 <= (now.date()-cached_date).days <= 30
                 and cached_decision.get('accountsEndAtCollection') == latest_end
                 and cached_decision.get('annualEnd') == item['annual']['end']
                 and all(cached_decision['years'][-1][k] == item['annual'][k] for k in ('revenue','netIncome'))):
                 item['decision'] = validate_decision(cached_decision, item, now.date())
                 status['decision'] = 'cached-with-original-observation-date'
             else:
-                if sec_body is None and profile.get('cik') and ident not in EUROPE:
+                if not args.publications_only and sec_body is None and profile.get('cik') and ident not in EUROPE:
                     try:
                         sec_body = fetch_json(f"https://data.sec.gov/api/xbrl/companyfacts/CIK{profile['cik']}.json")
                     except Exception:
@@ -470,12 +475,16 @@ def main():
             if old.get('quote', {}).get('asOf', '') > quote['asOf']:
                 raise ValueError('Price regressed')
             item['quote'] = {**quote, 'sourceUrl': quote_url}
-            if ident in ROUND2:
+            if ident in ROUND3:
+                from company_round3_publications import normalise_eps_basis
+                normalise_eps_basis(item, profile, item['quote'], quote_body)
+            elif ident in ROUND2:
                 from company_round2_publications import normalise_eps_basis
                 normalise_eps_basis(item, profile, item['quote'], quote_body)
             status['quote'] = 'updated'
         except Exception as error:
             status['quote'] = type(error).__name__
+            status['quoteDetail'] = str(error)[:300]
             failures.append(ident + ':quote')
         if key and profile['currency'] == 'USD':
             # Never store URLs containing the optional provider key.

@@ -1,6 +1,10 @@
 // Chaque côté : une base ETF, un complément facultatif, une thématique facultative.
 const row = (id, pct) => ({ id, pct })
 export const DUELS = [
+ {id:'world-minvol-20',title:'World seul ou 20 % de Minimum Volatility ?',hook:'La même base mondiale, avec une poche de 20 % orientée volatilité : quel résultat ?',left:[row('msci_world_ishares',100)],right:[row('msci_world_ishares',80),row('world_minvol_ishares',20)],labels:['World seul','World + Minimum Volatility'],question:'Tu ajouterais une construction orientée volatilité ?'},
+ {id:'world-health-10',title:'World seul ou 10 % de santé mondiale ?',hook:'Renforcer la santé à côté de ton World : qu’aurait changé une poche de 10 % ?',left:[row('msci_world_ishares',100)],right:[row('msci_world_ishares',90),row('health_world_ishares',10)],labels:['World seul','World + santé'],question:'Tu surpondérerais la santé ?'},
+ {id:'world-semi-5',title:'World seul ou 5 % de semi-conducteurs ?',hook:'Consacrer 5 % aux semi-conducteurs : quel effet sur le portefeuille ?',left:[row('msci_world_ishares',100)],right:[row('msci_world_ishares',95),row('semiconducteurs_monde',5)],labels:['World seul','World + semi-conducteurs'],question:'Tu réserverais une petite poche aux semi-conducteurs ?'},
+
   {"id": "world-infrastructure", "title": "World seul ou 20 % d’infrastructures ?", "hook": "Tu conserves ton World, ou tu consacres 20 % de ton portefeuille aux infrastructures ?", "left": [{"id": "msci_world_ishares", "pct": 100}], "right": [{"id": "msci_world_ishares", "pct": 80}, {"id": "infrastructure_ishares", "pct": 20}], "labels": ["World seul", "World + infrastructures"], "question": "Quelle place donnerais-tu à cette exposition à côté de ton World ?"},
   {"id": "world-private-equity", "title": "World seul ou 10 % de private equity coté ?", "hook": "Tu conserves ton World, ou tu consacres 10 % au private equity coté ?", "left": [{"id": "msci_world_ishares", "pct": 100}], "right": [{"id": "msci_world_ishares", "pct": 90}, {"id": "private_equity_ishares", "pct": 10}], "labels": ["World seul", "World + private equity coté"], "question": "Quelle place donnerais-tu à cette exposition à côté de ton World ?"},
 

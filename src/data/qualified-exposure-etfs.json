@@ -7987,5 +7987,814 @@
         "checkedAt": "2026-10-12"
       }
     }
+  },
+  "world-materials": {
+    "id": "world-materials",
+    "productId": 326341,
+    "isin": "IE00BJ5JP766",
+    "label": "Matériaux mondiaux",
+    "scene": "commodities",
+    "category": "Sectoriels classiques",
+    "currency": "USD",
+    "collectHoldings": true,
+    "requireFullHistory": false,
+    "distribution": "Distributing",
+    "terPct": 0.18,
+    "index": "MSCI World Materials Advanced Select 20 35 Capped Index",
+    "aum": {
+      "amount": 58539095.77,
+      "currency": "USD",
+      "scope": "share-class",
+      "asOf": "2026-10-09"
+    },
+    "countries": {
+      "asOf": "2026-10-09",
+      "rows": [
+        {
+          "name": "United States",
+          "weightPct": 37.72
+        },
+        {
+          "name": "Canada",
+          "weightPct": 17.1
+        },
+        {
+          "name": "Australia",
+          "weightPct": 11.01
+        },
+        {
+          "name": "Japan",
+          "weightPct": 7.56
+        },
+        {
+          "name": "United Kingdom",
+          "weightPct": 6.96
+        },
+        {
+          "name": "Switzerland",
+          "weightPct": 5.5
+        },
+        {
+          "name": "France",
+          "weightPct": 3.04
+        },
+        {
+          "name": "Germany",
+          "weightPct": 2.52
+        },
+        {
+          "name": "Sweden",
+          "weightPct": 2.35
+        },
+        {
+          "name": "Finland",
+          "weightPct": 2.09
+        },
+        {
+          "name": "Netherlands",
+          "weightPct": 1.85
+        },
+        {
+          "name": "Other",
+          "weightPct": 1.9700000000000004
+        },
+        {
+          "name": "Cash and/or Derivatives",
+          "weightPct": 0.31
+        }
+      ]
+    },
+    "sectors": {
+      "asOf": "2026-10-09",
+      "rows": [
+        {
+          "name": "Materials",
+          "weightPct": 99.69
+        },
+        {
+          "name": "Cash and/or Derivatives",
+          "weightPct": 0.31
+        }
+      ]
+    },
+    "performance": {
+      "currency": "USD",
+      "basis": "fund",
+      "method": "calendar-year NAV total return, income reinvested, fund fees included",
+      "years": {
+        "2023": 11.17,
+        "2024": -4.5,
+        "2025": 23.9
+      }
+    },
+    "holdings": {
+      "asOf": "2026-10-09",
+      "basis": "fund",
+      "rows": [
+        {
+          "name": "LINDE PLC",
+          "weightPct": 7.31369,
+          "isin": "IE000S9YS762"
+        },
+        {
+          "name": "BHP GROUP LTD",
+          "weightPct": 7.28152,
+          "isin": "AU000000BHP4"
+        },
+        {
+          "name": "NEWMONT",
+          "weightPct": 3.92755,
+          "isin": "US6516391066"
+        },
+        {
+          "name": "WHEATON PRECIOUS METALS",
+          "weightPct": 3.89866,
+          "isin": "CA9628791027"
+        },
+        {
+          "name": "ECOLAB",
+          "weightPct": 3.85253,
+          "isin": "US2788651006"
+        },
+        {
+          "name": "AGNICO EAGLE MINES",
+          "weightPct": 3.2914,
+          "isin": "CA0084741085"
+        },
+        {
+          "name": "FREEPORT MCMORAN INC",
+          "weightPct": 2.98094,
+          "isin": "US35671D8570"
+        },
+        {
+          "name": "FRANCO NEVADA",
+          "weightPct": 2.94839,
+          "isin": "CA3518581051"
+        },
+        {
+          "name": "SHERWIN WILLIAMS",
+          "weightPct": 2.85847,
+          "isin": "US8243481061"
+        },
+        {
+          "name": "LAIR LIQUIDE SOCIETE ANONYME POUR",
+          "weightPct": 2.8029,
+          "isin": "FR0000120073"
+        }
+      ]
+    },
+    "name": "iShares MSCI World Materials Sector Advanced UCITS ETF",
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=326341&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "listing": {
+      "ticker": "WMTS",
+      "exchange": "Euronext Amsterdam",
+      "excerpt": "Euronext Amsterdam | WMTS | USD | 20220411 | WMTS.AS",
+      "mic": "XAMS",
+      "currency": "USD",
+      "symbol": "WMTS.AS",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=326341&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "checkedAt": "2026-10-12",
+      "evidenceId": "IE00BJ5JP766-XAMS-WMTS-USD"
+    },
+    "listings": [
+      {
+        "ticker": "WMTS",
+        "exchange": "Euronext Amsterdam",
+        "excerpt": "Euronext Amsterdam | WMTS | USD | 20220411 | WMTS.AS",
+        "mic": "XAMS",
+        "currency": "USD",
+        "symbol": "WMTS.AS",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=326341&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "checkedAt": "2026-10-12",
+        "evidenceId": "IE00BJ5JP766-XAMS-WMTS-USD"
+      },
+      {
+        "ticker": "WMTS",
+        "exchange": "Borsa Italiana",
+        "excerpt": "Borsa Italiana | WMTS | EUR | 20230330 | WMTS.MI",
+        "mic": "ETFP",
+        "currency": "EUR",
+        "symbol": "WMTS.MI",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=326341&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "checkedAt": "2026-10-12",
+        "evidenceId": "IE00BJ5JP766-ETFP-WMTS-EUR"
+      },
+      {
+        "ticker": "WMTS",
+        "exchange": "SIX Swiss Exchange",
+        "excerpt": "SIX Swiss Exchange | WMTS | USD | 20220608 | WMTS.S",
+        "mic": "XSWX",
+        "currency": "USD",
+        "symbol": "WMTS.S",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=326341&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "checkedAt": "2026-10-12",
+        "evidenceId": "IE00BJ5JP766-XSWX-WMTS-USD"
+      }
+    ],
+    "characteristics": {
+      "terPct": 0.18,
+      "index": "MSCI World Materials Advanced Select 20 35 Capped Index",
+      "distribution": "Distributing",
+      "domicile": "Ireland",
+      "replicationMethod": "Physical (Replicated)",
+      "inceptionDate": "20220407"
+    },
+    "checkedAt": "2026-10-12T16:14:22.014542+00:00",
+    "pageSha256": "3c7d184f2b962c3cd431b86c47ba9e6ee9adfd5c319c85cd33f27cc51ef32bdd",
+    "automatedRecord": {
+      "currency": "USD",
+      "productId": 326341,
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=326341&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "provider": "iShares",
+      "aum": {
+        "amount": 58539095.77,
+        "currency": "USD",
+        "scope": "share-class",
+        "asOf": "2026-10-09",
+        "checkedAt": "2026-10-12",
+        "modifiedAt": "2026-10-12"
+      },
+      "sectors": {
+        "asOf": "2026-10-09",
+        "rows": [
+          {
+            "name": "Materials",
+            "weightPct": 99.69,
+            "label": "Materials"
+          },
+          {
+            "name": "Cash and/or Derivatives",
+            "weightPct": 0.31,
+            "label": "Cash and/or Derivatives"
+          }
+        ],
+        "checkedAt": "2026-10-12",
+        "modifiedAt": "2026-10-12"
+      },
+      "countries": {
+        "asOf": "2026-10-09",
+        "rows": [
+          {
+            "name": "United States",
+            "weightPct": 37.72
+          },
+          {
+            "name": "Canada",
+            "weightPct": 17.1
+          },
+          {
+            "name": "Australia",
+            "weightPct": 11.01
+          },
+          {
+            "name": "Japan",
+            "weightPct": 7.56
+          },
+          {
+            "name": "United Kingdom",
+            "weightPct": 6.96
+          },
+          {
+            "name": "Switzerland",
+            "weightPct": 5.5
+          },
+          {
+            "name": "France",
+            "weightPct": 3.04
+          },
+          {
+            "name": "Germany",
+            "weightPct": 2.52
+          },
+          {
+            "name": "Sweden",
+            "weightPct": 2.35
+          },
+          {
+            "name": "Finland",
+            "weightPct": 2.09
+          },
+          {
+            "name": "Netherlands",
+            "weightPct": 1.85
+          },
+          {
+            "name": "Other",
+            "weightPct": 1.9700000000000004
+          },
+          {
+            "name": "Cash and/or Derivatives",
+            "weightPct": 0.31
+          }
+        ],
+        "checkedAt": "2026-10-12",
+        "modifiedAt": "2026-10-12"
+      },
+      "holdings": {
+        "asOf": "2026-10-09",
+        "basis": "fund",
+        "rows": [
+          {
+            "name": "LINDE PLC",
+            "weightPct": 7.31369,
+            "isin": "IE000S9YS762"
+          },
+          {
+            "name": "BHP GROUP LTD",
+            "weightPct": 7.28152,
+            "isin": "AU000000BHP4"
+          },
+          {
+            "name": "NEWMONT",
+            "weightPct": 3.92755,
+            "isin": "US6516391066"
+          },
+          {
+            "name": "WHEATON PRECIOUS METALS",
+            "weightPct": 3.89866,
+            "isin": "CA9628791027"
+          },
+          {
+            "name": "ECOLAB",
+            "weightPct": 3.85253,
+            "isin": "US2788651006"
+          },
+          {
+            "name": "AGNICO EAGLE MINES",
+            "weightPct": 3.2914,
+            "isin": "CA0084741085"
+          },
+          {
+            "name": "FREEPORT MCMORAN INC",
+            "weightPct": 2.98094,
+            "isin": "US35671D8570"
+          },
+          {
+            "name": "FRANCO NEVADA",
+            "weightPct": 2.94839,
+            "isin": "CA3518581051"
+          },
+          {
+            "name": "SHERWIN WILLIAMS",
+            "weightPct": 2.85847,
+            "isin": "US8243481061"
+          },
+          {
+            "name": "LAIR LIQUIDE SOCIETE ANONYME POUR",
+            "weightPct": 2.8029,
+            "isin": "FR0000120073"
+          }
+        ],
+        "checkedAt": "2026-10-12",
+        "modifiedAt": "2026-10-12"
+      },
+      "characteristics": {
+        "terPct": 0.18,
+        "index": "MSCI World Materials Advanced Select 20 35 Capped Index",
+        "distribution": "Distributing",
+        "domicile": "Ireland",
+        "replicationMethod": "Physical (Replicated)",
+        "inceptionDate": "20220407",
+        "checkedAt": "2026-10-12",
+        "modifiedAt": "2026-10-12"
+      },
+      "performance": {
+        "currency": "USD",
+        "basis": "fund",
+        "method": "calendar-year NAV total return, income reinvested, fund fees included",
+        "years": {
+          "2023": 11.17,
+          "2024": -4.5,
+          "2025": 23.9
+        },
+        "checkedAt": "2026-10-12",
+        "modifiedAt": "2026-10-12"
+      }
+    }
+  },
+  "history-healthcare-innovation": {
+    "id": "history-healthcare-innovation",
+    "productId": 284216,
+    "isin": "IE00BYZK4776",
+    "label": "Innovation médicale",
+    "scene": "health",
+    "category": "Thématiques émergentes",
+    "historyOnly": true,
+    "currency": "USD",
+    "collectHoldings": true,
+    "requireFullHistory": false,
+    "distribution": "Accumulating",
+    "terPct": 0.4,
+    "index": "STOXX GLOBAL BREAKTHROUGH HEALTHCARE (Net)",
+    "aum": {
+      "amount": 1489244891.6,
+      "currency": "USD",
+      "scope": "share-class",
+      "asOf": "2026-10-09"
+    },
+    "countries": {
+      "asOf": "2026-10-09",
+      "rows": [
+        {
+          "name": "United States",
+          "weightPct": 71.55
+        },
+        {
+          "name": "Switzerland",
+          "weightPct": 5.14
+        },
+        {
+          "name": "Japan",
+          "weightPct": 4.48
+        },
+        {
+          "name": "Korea (South)",
+          "weightPct": 3.58
+        },
+        {
+          "name": "Denmark",
+          "weightPct": 2.71
+        },
+        {
+          "name": "Belgium",
+          "weightPct": 2.16
+        },
+        {
+          "name": "Germany",
+          "weightPct": 1.79
+        },
+        {
+          "name": "United Kingdom",
+          "weightPct": 1.52
+        },
+        {
+          "name": "China",
+          "weightPct": 1.38
+        },
+        {
+          "name": "France",
+          "weightPct": 1.3
+        },
+        {
+          "name": "Other",
+          "weightPct": 3.9299999999999993
+        },
+        {
+          "name": "Cash and/or Derivatives",
+          "weightPct": 0.45
+        }
+      ]
+    },
+    "sectors": {
+      "asOf": "2026-10-09",
+      "rows": [
+        {
+          "name": "Health Care",
+          "weightPct": 97.73
+        },
+        {
+          "name": "Information Technology",
+          "weightPct": 1.18
+        },
+        {
+          "name": "Industrials",
+          "weightPct": 0.47
+        },
+        {
+          "name": "Real Estate",
+          "weightPct": 0.18
+        },
+        {
+          "name": "Cash and/or Derivatives",
+          "weightPct": 0.45
+        }
+      ]
+    },
+    "performance": {
+      "currency": "USD",
+      "basis": "fund",
+      "method": "calendar-year NAV total return, income reinvested, fund fees included",
+      "years": {
+        "2017": 35.03,
+        "2018": -2.29,
+        "2019": 12.69,
+        "2020": 52.12,
+        "2021": -6.04,
+        "2022": -23.63,
+        "2023": 2.07,
+        "2024": 1.43,
+        "2025": 18.54
+      }
+    },
+    "holdings": {
+      "asOf": "2026-10-09",
+      "basis": "fund",
+      "rows": [
+        {
+          "name": "MODERNA",
+          "weightPct": 5.77619,
+          "isin": "US60770K1079"
+        },
+        {
+          "name": "NATERA",
+          "weightPct": 2.20808,
+          "isin": "US6323071042"
+        },
+        {
+          "name": "ILLUMINA INC",
+          "weightPct": 2.12632,
+          "isin": "US4523271090"
+        },
+        {
+          "name": "GENMAB",
+          "weightPct": 1.80114,
+          "isin": "DK0010272202"
+        },
+        {
+          "name": "REVVITY",
+          "weightPct": 1.75827,
+          "isin": "US7140461093"
+        },
+        {
+          "name": "IQVIA HOLDINGS INC",
+          "weightPct": 1.70704,
+          "isin": "US46266C1053"
+        },
+        {
+          "name": "GUARDANT HEALTH",
+          "weightPct": 1.5753,
+          "isin": "US40131M1099"
+        },
+        {
+          "name": "AGILENT TECHNOLOGIES INC",
+          "weightPct": 1.54302,
+          "isin": "US00846U1016"
+        },
+        {
+          "name": "ABBVIE",
+          "weightPct": 1.50182,
+          "isin": "US00287Y1091"
+        },
+        {
+          "name": "ROIVANT SCIENCES LTD",
+          "weightPct": 1.49487,
+          "isin": "BMG762791017"
+        }
+      ]
+    },
+    "name": "iShares Healthcare Innovation UCITS ETF USD (Acc)",
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=284216&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "listing": {
+      "ticker": "HEAL",
+      "exchange": "London Stock Exchange",
+      "excerpt": "London Stock Exchange | HEAL | USD | 20160912 | HEAL.L",
+      "mic": "XLON",
+      "currency": "USD",
+      "symbol": "HEAL.L",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=284216&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "checkedAt": "2026-10-12",
+      "evidenceId": "IE00BYZK4776-XLON-HEAL-USD"
+    },
+    "listings": [
+      {
+        "ticker": "HEAL",
+        "exchange": "London Stock Exchange",
+        "excerpt": "London Stock Exchange | HEAL | USD | 20160912 | HEAL.L",
+        "mic": "XLON",
+        "currency": "USD",
+        "symbol": "HEAL.L",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=284216&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "checkedAt": "2026-10-12",
+        "evidenceId": "IE00BYZK4776-XLON-HEAL-USD"
+      },
+      {
+        "ticker": "HEAL",
+        "exchange": "Euronext Amsterdam",
+        "excerpt": "Euronext Amsterdam | HEAL | EUR | 20210903 | DRDR.AS",
+        "mic": "XAMS",
+        "currency": "EUR",
+        "symbol": "DRDR.AS",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=284216&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "checkedAt": "2026-10-12",
+        "evidenceId": "IE00BYZK4776-XAMS-HEAL-EUR"
+      },
+      {
+        "ticker": "HEAL",
+        "exchange": "Borsa Italiana",
+        "excerpt": "Borsa Italiana | HEAL | EUR | 20161103 | HEAL.MI",
+        "mic": "ETFP",
+        "currency": "EUR",
+        "symbol": "HEAL.MI",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=284216&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "checkedAt": "2026-10-12",
+        "evidenceId": "IE00BYZK4776-ETFP-HEAL-EUR"
+      },
+      {
+        "ticker": "HEAL",
+        "exchange": "SIX Swiss Exchange",
+        "excerpt": "SIX Swiss Exchange | HEAL | USD | 20160914 | HEAL.S",
+        "mic": "XSWX",
+        "currency": "USD",
+        "symbol": "HEAL.S",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=284216&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "checkedAt": "2026-10-12",
+        "evidenceId": "IE00BYZK4776-XSWX-HEAL-USD"
+      }
+    ],
+    "characteristics": {
+      "terPct": 0.4,
+      "index": "STOXX GLOBAL BREAKTHROUGH HEALTHCARE (Net)",
+      "distribution": "Accumulating",
+      "domicile": "Ireland",
+      "replicationMethod": "Physical (Optimised)",
+      "inceptionDate": "20160908"
+    },
+    "checkedAt": "2026-10-12T16:14:22.014542+00:00",
+    "pageSha256": "7d05b1dbb68a1cb1aab4d1977046592652cd60b715b5c6a7e88eba46fb87581f",
+    "automatedRecord": {
+      "currency": "USD",
+      "productId": 284216,
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=284216&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "provider": "iShares",
+      "aum": {
+        "amount": 1489244891.6,
+        "currency": "USD",
+        "scope": "share-class",
+        "asOf": "2026-10-09",
+        "checkedAt": "2026-10-12"
+      },
+      "sectors": {
+        "asOf": "2026-10-09",
+        "rows": [
+          {
+            "name": "Health Care",
+            "weightPct": 97.73,
+            "label": "Health Care"
+          },
+          {
+            "name": "Information Technology",
+            "weightPct": 1.18,
+            "label": "Information Technology"
+          },
+          {
+            "name": "Industrials",
+            "weightPct": 0.47,
+            "label": "Industrials"
+          },
+          {
+            "name": "Real Estate",
+            "weightPct": 0.18,
+            "label": "Immobilier"
+          },
+          {
+            "name": "Cash and/or Derivatives",
+            "weightPct": 0.45,
+            "label": "Cash and/or Derivatives"
+          }
+        ],
+        "checkedAt": "2026-10-12",
+        "modifiedAt": "2026-10-12"
+      },
+      "countries": {
+        "asOf": "2026-10-09",
+        "rows": [
+          {
+            "name": "United States",
+            "weightPct": 71.55
+          },
+          {
+            "name": "Switzerland",
+            "weightPct": 5.14
+          },
+          {
+            "name": "Japan",
+            "weightPct": 4.48
+          },
+          {
+            "name": "Korea (South)",
+            "weightPct": 3.58
+          },
+          {
+            "name": "Denmark",
+            "weightPct": 2.71
+          },
+          {
+            "name": "Belgium",
+            "weightPct": 2.16
+          },
+          {
+            "name": "Germany",
+            "weightPct": 1.79
+          },
+          {
+            "name": "United Kingdom",
+            "weightPct": 1.52
+          },
+          {
+            "name": "China",
+            "weightPct": 1.38
+          },
+          {
+            "name": "France",
+            "weightPct": 1.3
+          },
+          {
+            "name": "Other",
+            "weightPct": 3.9299999999999993
+          },
+          {
+            "name": "Cash and/or Derivatives",
+            "weightPct": 0.45
+          }
+        ],
+        "checkedAt": "2026-10-12",
+        "modifiedAt": "2026-10-12"
+      },
+      "holdings": {
+        "asOf": "2026-10-09",
+        "basis": "fund",
+        "rows": [
+          {
+            "name": "MODERNA",
+            "weightPct": 5.77619,
+            "isin": "US60770K1079"
+          },
+          {
+            "name": "NATERA",
+            "weightPct": 2.20808,
+            "isin": "US6323071042"
+          },
+          {
+            "name": "ILLUMINA INC",
+            "weightPct": 2.12632,
+            "isin": "US4523271090"
+          },
+          {
+            "name": "GENMAB",
+            "weightPct": 1.80114,
+            "isin": "DK0010272202"
+          },
+          {
+            "name": "REVVITY",
+            "weightPct": 1.75827,
+            "isin": "US7140461093"
+          },
+          {
+            "name": "IQVIA HOLDINGS INC",
+            "weightPct": 1.70704,
+            "isin": "US46266C1053"
+          },
+          {
+            "name": "GUARDANT HEALTH",
+            "weightPct": 1.5753,
+            "isin": "US40131M1099"
+          },
+          {
+            "name": "AGILENT TECHNOLOGIES INC",
+            "weightPct": 1.54302,
+            "isin": "US00846U1016"
+          },
+          {
+            "name": "ABBVIE",
+            "weightPct": 1.50182,
+            "isin": "US00287Y1091"
+          },
+          {
+            "name": "ROIVANT SCIENCES LTD",
+            "weightPct": 1.49487,
+            "isin": "BMG762791017"
+          }
+        ],
+        "checkedAt": "2026-10-12",
+        "modifiedAt": "2026-10-12"
+      },
+      "characteristics": {
+        "terPct": 0.4,
+        "index": "STOXX GLOBAL BREAKTHROUGH HEALTHCARE (Net)",
+        "distribution": "Accumulating",
+        "domicile": "Ireland",
+        "replicationMethod": "Physical (Optimised)",
+        "inceptionDate": "20160908",
+        "checkedAt": "2026-10-12",
+        "modifiedAt": "2026-10-12"
+      },
+      "performance": {
+        "currency": "USD",
+        "basis": "fund",
+        "method": "calendar-year NAV total return, income reinvested, fund fees included",
+        "years": {
+          "2017": 35.03,
+          "2018": -2.29,
+          "2019": 12.69,
+          "2020": 52.12,
+          "2021": -6.04,
+          "2022": -23.63,
+          "2023": 2.07,
+          "2024": 1.43,
+          "2025": 18.54
+        },
+        "checkedAt": "2026-10-12"
+      }
+    }
   }
 }

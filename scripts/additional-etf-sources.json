@@ -1196,7 +1196,8 @@
       "documentType": "wisdomtree-ucits",
       "documentName": "WisdomTree Cloud Computing UCITS ETF - USD Acc",
       "enabled": true,
-      "required": true
+      "required": true,
+      "collectListings": true
     },
     {
       "isin": "IE00BQQP9F84",
@@ -1253,6 +1254,25 @@
         "sectors",
         "holdings",
         "performance"
+      ]
+    },
+    {
+      "isin": "IE00BM67HQ30",
+      "name": "Xtrackers MSCI World Utilities UCITS ETF",
+      "currency": "USD",
+      "provider": "DWS",
+      "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HQ30/pdpMetaTagsTealium",
+      "parser": "dws",
+      "collectIdentity": true,
+      "required": true,
+      "enabled": true,
+      "requiredFields": [
+        "aum",
+        "countries",
+        "sectors",
+        "holdings",
+        "performance",
+        "characteristics"
       ]
     }
   ]

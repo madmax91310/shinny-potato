@@ -2,6 +2,12 @@
 // partagent un rôle ; un indice, un facteur ou un mécanisme différent a son propre texte.
 // Aucun rendement, frais ou statut fiscal n’est recopié ici.
 const entries = {};
+add('utilities_world_dws','theme','les services publics mondiaux','On renforce ici les entreprises de services publics des pays développés. Leurs réseaux sont essentiels, mais les taux, les dettes et la réglementation restent des risques pour leurs actions.');
+entries.utilities_world_dws.description='Des actions mondiales de sociétés de services publics.';
+add('health_world_ishares','theme','la santé mondiale','On renforce ici des entreprises du secteur santé des pays développés. La sélection Advanced conserve ses filtres et ses plafonds ; cette poche peut recouper le World.');
+entries.health_world_ishares.description = 'Des actions du secteur santé des pays développés, sélection Advanced.';
+add('materials_world_dws','theme','les matériaux mondiaux','On renforce ici les entreprises du secteur matériaux. Leur rentabilité dépend notamment des coûts et du cycle économique ; leurs actions ne suivent pas directement le prix des matières premières.');
+entries.materials_world_dws.description = 'Des actions mondiales du secteur matériaux.';
 add('private_equity_ishares', 'theme', 'le private equity coté', 'On renforce ici des sociétés cotées liées au capital-investissement. Leurs participations et leur financement peuvent peser sur leur cours ; cette poche reste en actions et ne remplace pas un fonds non coté.');
 entries.private_equity_ishares.description = 'Des actions de sociétés cotées liées au capital-investissement.';
 add('gaming_vaneck', 'theme', 'les jeux vidéo et l’eSport', 'On renforce les entreprises du jeu vidéo avec une poche de conviction. Le panier est concentré et sensible aux succès commerciaux ; il ne remplace pas une base mondiale.');

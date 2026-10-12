@@ -1,3 +1,4 @@
+import { ROUND3_INSTRUMENTS } from './round3-fund-sheets.js';
 import { QUALIFIED_INSTRUMENTS } from './qualified-exposure-sheets.js';
 import { PRESENTATION_ETF_ADDITIONS } from './presentation-etf-additions.js';
 import { EXPOSURE_ADDITIONS } from './exposure-additions.js';
@@ -9,6 +10,7 @@ import { EXPOSURE_ADDITIONS } from './exposure-additions.js';
 import { PEA_REVIEWS_BY_ISIN } from './instrument-pea.js';
 export const INSTRUMENTS_BY_ISIN = Object.freeze({
   ...QUALIFIED_INSTRUMENTS,
+  ...ROUND3_INSTRUMENTS,
   IE00B4556L06: Object.freeze({name: "iShares Physical Palladium ETC", pea: false}),
   IE0003R87OG3: Object.freeze({name: "Avantis Global Small Cap Value UCITS ETF USD Acc", pea: false}),
   IE00B4LHWP62: Object.freeze({name: "iShares Physical Platinum ETC", pea: false}),

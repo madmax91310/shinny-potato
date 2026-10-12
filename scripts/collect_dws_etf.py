@@ -20,6 +20,7 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 # Explicit GICS industry-to-sector relationships for the two sector funds.
 # Unknown classifications remain unknown; do not infer a sector from a company name.
 INDUSTRY_SECTORS = {
+    **{name:'Utilities' for name in ['Electric Utilities','Gas Utilities','Multi-Utilities','Water Utilities','Independent Power Producers & Energy Traders','Renewable Electricity']},
     **{name: 'Industrials' for name in ['Aerospace & Defense', 'Electrical Components & Equipment',
        'Industrial Machinery & Supplies & Components', 'Construction Machinery & Heavy Transportation Equipment',
        'Trading Companies & Distributors', 'Industrial Conglomerates', 'Heavy Electrical Equipment',
@@ -57,7 +58,7 @@ def parse_product(body, share, now):
     facts = {}
     for item in items(sections['keyFacts']):
         key = re.sub('<[^>]+>', '', item['key'])
-        if key in ['ISIN', 'Share class currency', 'Income treatment', 'Fund all-in fee (TER)', 'Investment methodology', 'Share class launch date']:
+        if key in ['ISIN', 'Share class currency', 'Income treatment', 'Fund all-in fee (TER)', 'Investment methodology', 'Share class launch date', 'Fund domicile', 'UCITS compliant']:
             if key in facts:
                 reject('Duplicate DWS characteristic')
             facts[key] = item['value']
@@ -79,6 +80,21 @@ def parse_product(body, share, now):
               'replication': facts.get('Investment methodology'),
               'unavailable': ['aum: no separately published valuation date/currency qualified',
                               'composition: physical securities portfolio not yet collected' if facts.get('Investment methodology') == 'Direct Replication (physically)' else 'composition: synthetic substitute basket excluded; tracked index exposure not qualified']}
+    if share.get('collectIdentity'):
+        if facts.get('UCITS compliant') is not True or not facts.get('Fund domicile') or not index:
+            reject('Incomplete DWS exact-share identity')
+        trading = [a for a in sections['keyFacts']['accordionItems'] if a['id']=='fundinformation-tradinginformation']
+        if len(trading)!=1:reject('Ambiguous DWS listing table')
+        mics={'XETRA':'XETR','London Stock Exchange':'XLON','Borsa Italiana':'ETFP','SIX Swiss Exchange':'XSWX'}
+        listings=[]
+        for r in trading[0]['table']['values']:
+            value=lambda k:r[k]['value']
+            exchange=value('StockExchange');currency=value('Currency');ric=value('ReutersRic')
+            if exchange not in mics or currency not in ('EUR','USD') or not ric or ric=='--':continue
+            ticker=value('BloombergTicker').split()[0];mic=mics[exchange]
+            listings.append({'ticker':ticker,'exchange':'Xetra' if mic=='XETR' else exchange,'mic':mic,'currency':currency,'symbol':ric,'sourceUrl':share['sourceUrl'],'checkedAt':now.date().isoformat(),'evidenceId':f'{share["isin"]}-{mic}-{ticker}-{currency}', 'excerpt':f'{share["isin"]} | {exchange} | {ticker} | {currency} | {ric}'})
+        if not listings:reject('No identified DWS listing')
+        result['characteristics']={'terPct':ter,'index':index,'distribution':facts['Income treatment'],'domicile':facts['Fund domicile'],'replicationMethod':facts['Investment methodology'],'inceptionDate':facts['Share class launch date'],'listings':listings}
     if not tables:
         result['unavailable'].append('performance: calendar-year table not published')
         return result

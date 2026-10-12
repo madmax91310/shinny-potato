@@ -41,12 +41,13 @@ jobs:
       - run: sudo apt-get update && sudo apt-get install -y poppler-utils
       - run: npm ci
       - run: python -m unittest discover -s scripts -p 'test_complete_index_sheets.py'
-      - name: Collect all five indices directly and require every displayed field
+      - name: Collect selected indices directly and require every displayed field
         run: >-
           python scripts/refresh_index_sources.py --require-complete --apply
           --output "${{ runner.temp }}/selected-index-observations.json"
           --ids sp500-equal-weight world-ex-usa msci-world-minimum-volatility-usd
           msci-world-sector-neutral-quality msci-world-enhanced-value
+          msci-world-materials msci-world-utilities
       - run: node scripts/test-automated-index-sheets.mjs
       - run: node scripts/test-automated-indices.mjs
       - run: npm run audit:index-facts
