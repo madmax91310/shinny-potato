@@ -1,6 +1,8 @@
+import { getInstrumentAnnualPerformance } from './instrument-returns.js';
 import { EXPOSURE_ADDITIONS } from './exposure-additions.js';
 // Sources individuelles : publications émetteurs, proxys et historiques mixtes distingués.
 export const PORTFOLIO_RETURN_EVIDENCE = {
+  'IE00B1TXHL60': (() => { const p = getInstrumentAnnualPerformance('IE00B1TXHL60'); return { sourceUrls: [p.source], checkedAt: p.checkedAt, asOf: p.periodEnd, periodStart: p.periodStart, periodEnd: p.periodEnd, currency: p.currency, scope: 'Part exacte IE00B1TXHL60', method: p.method, note: 'Calendrier officiel NAV réinvesti, actualisé quotidiennement ; sociétés cotées du private equity.' }; })(),
 ...{
   "FR0013411998": {
     "sourceUrls": [

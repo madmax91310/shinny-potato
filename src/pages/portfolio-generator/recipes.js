@@ -141,6 +141,14 @@ const newConstructions = {
  },
 };
 
+// 12/10/2026 : variantes explicites, sans levier, données de part communes aux duels.
+const focusedWorldRecipes = [
+  R('world-quality-simple', 'World avec un biais qualité', 'La sélection qualité surpondère des entreprises déjà présentes dans le World.', 'Ton World suffit-il, ou tu veux renforcer les critères de qualité ?', A(['msci_world_ishares',80],['world_quality_ishares',20])),
+  R('world-smallcap-simple', 'World et petites entreprises', 'Les petites capitalisations complètent les grandes et moyennes entreprises du World.', 'Tu réserverais une place aux petites entreprises absentes du World ?', A(['msci_world_ishares',80],['smallcap_monde',20])),
+  R('world-infrastructure-simple', 'World avec des infrastructures', 'Une poche sectorielle renforce les sociétés cotées liées aux infrastructures.', 'Tu ajouterais des infrastructures à ta base mondiale ?', A(['msci_world_ishares',80],['infrastructure_ishares',20])),
+  R('world-private-equity-simple', 'World avec du private equity coté', 'La poche spécialisée détient des actions de sociétés cotées du capital-investissement.', 'Tu réserverais 10 % au private equity coté ?', A(['msci_world_ishares',90],['private_equity_ishares',10])),
+];
+
 function protectSlots(assets, profileId) {
   return assets.map((slot, index) => {
     const options = slot.idOptions ?? [slot.id];
@@ -164,7 +172,7 @@ export function getRecipes(profileId, riskId) {
   });
   return [
     { ...base, id: 'historique', label: 'Construction historique', assets: protectSlots(assets, profileId) },
-    ...[...additions[profileId][riskId], ...(newConstructions[profileId]?.[riskId] ?? [])].map(r => ({ ...r, assets: protectSlots(r.assets, profileId) })),
+    ...[...additions[profileId][riskId], ...(profileId === 'generaliste' && ['dynamique','offensif'].includes(riskId) ? focusedWorldRecipes : []), ...(newConstructions[profileId]?.[riskId] ?? [])].map(r => ({ ...r, assets: protectSlots(r.assets, profileId) })),
   ];
 }
 

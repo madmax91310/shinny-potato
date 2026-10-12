@@ -14,6 +14,7 @@ export const ROLES = { base: 'Base', complement: 'Complément', theme: 'Thémati
 
 // Sélection éditoriale : les chiffres restent exclusivement dans les registres communs.
 const choices = [
+ ['private_equity_ishares', 'theme', 'Private equity coté', 'listed-private-equity'],
  ['gaming_vaneck', 'theme', 'Jeux vidéo et eSport', 'gaming'],
  ['medical_innovation_ishares', 'theme', 'Innovation médicale', 'medical'],
  ['acwi_imi_spdr', 'base', 'MSCI ACWI IMI', 'acwi-imi'],

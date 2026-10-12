@@ -1,13 +1,182 @@
-{"instruments":[
-{"id":"world-midcap-equal","productId":270057,"isin":"IE00BP3QZD73","label":"Moyennes capitalisations mondiales équipondérées","scene":"world","category":"Stratégiques"},
-{"id":"water-ishares","productId":251913,"isin":"IE00B1TXK627","label":"Eau","scene":"water","category":"Thématiques émergentes"},
-{"id":"agribusiness-ishares","productId":251707,"isin":"IE00B6R52143","label":"Agriculture et agro-industrie","scene":"commodities","category":"Thématiques émergentes"},
-{"id":"timber-ishares","productId":251912,"isin":"IE00B27YCF74","label":"Bois et exploitation forestière","scene":"commodities","category":"Thématiques émergentes"},
-{"id":"private-equity-ishares","productId":251918,"isin":"IE00B1TXHL60","label":"Private equity coté","scene":"finance","category":"Stratégiques"},
-{"id":"world-industrials","productId":326347,"isin":"IE00BJ5JP659","label":"Industrie mondiale","scene":"infrastructure","category":"Sectoriels classiques"},
-{"id":"world-staples","productId":308902,"isin":"IE00BJ5JP329","label":"Consommation de base mondiale","scene":"world","category":"Sectoriels classiques"},
-{"id":"world-discretionary","productId":308873,"isin":"IE00BJ5JP212","label":"Consommation discrétionnaire mondiale","scene":"world","category":"Sectoriels classiques"},
-{"id":"world-utilities","productId":340744,"isin":"IE000A89Y2G7","label":"Services publics mondiaux","scene":"infrastructure","category":"Sectoriels classiques"},
-{"id":"world-energy","productId":308904,"isin":"IE00BJ5JP105","label":"Énergie mondiale","scene":"energy","category":"Sectoriels classiques"},
-{"id":"world-communication","productId":326317,"isin":"IE00BJ5JP436","label":"Communications mondiales","scene":"chip","category":"Sectoriels classiques"}
-]}
+{
+  "instruments": [
+    {
+      "id": "world-midcap-equal",
+      "productId": 270057,
+      "isin": "IE00BP3QZD73",
+      "label": "Moyennes capitalisations mondiales équipondérées",
+      "scene": "world",
+      "category": "Stratégiques"
+    },
+    {
+      "id": "water-ishares",
+      "productId": 251913,
+      "isin": "IE00B1TXK627",
+      "label": "Eau",
+      "scene": "water",
+      "category": "Thématiques émergentes"
+    },
+    {
+      "id": "agribusiness-ishares",
+      "productId": 251707,
+      "isin": "IE00B6R52143",
+      "label": "Agriculture et agro-industrie",
+      "scene": "commodities",
+      "category": "Thématiques émergentes"
+    },
+    {
+      "id": "timber-ishares",
+      "productId": 251912,
+      "isin": "IE00B27YCF74",
+      "label": "Bois et exploitation forestière",
+      "scene": "commodities",
+      "category": "Thématiques émergentes"
+    },
+    {
+      "id": "private-equity-ishares",
+      "productId": 251918,
+      "isin": "IE00B1TXHL60",
+      "label": "Private equity coté",
+      "scene": "finance",
+      "category": "Stratégiques"
+    },
+    {
+      "id": "world-industrials",
+      "productId": 326347,
+      "isin": "IE00BJ5JP659",
+      "label": "Industrie mondiale",
+      "scene": "infrastructure",
+      "category": "Sectoriels classiques"
+    },
+    {
+      "id": "world-staples",
+      "productId": 308902,
+      "isin": "IE00BJ5JP329",
+      "label": "Consommation de base mondiale",
+      "scene": "world",
+      "category": "Sectoriels classiques"
+    },
+    {
+      "id": "world-discretionary",
+      "productId": 308873,
+      "isin": "IE00BJ5JP212",
+      "label": "Consommation discrétionnaire mondiale",
+      "scene": "world",
+      "category": "Sectoriels classiques"
+    },
+    {
+      "id": "world-utilities",
+      "productId": 340744,
+      "isin": "IE000A89Y2G7",
+      "label": "Services publics mondiaux",
+      "scene": "infrastructure",
+      "category": "Sectoriels classiques"
+    },
+    {
+      "id": "world-energy",
+      "productId": 308904,
+      "isin": "IE00BJ5JP105",
+      "label": "Énergie mondiale",
+      "scene": "energy",
+      "category": "Sectoriels classiques"
+    },
+    {
+      "id": "world-communication",
+      "productId": 326317,
+      "isin": "IE00BJ5JP436",
+      "label": "Communications mondiales",
+      "scene": "chip",
+      "category": "Sectoriels classiques"
+    },
+    {
+      "id": "history-etf_clean_energy",
+      "isin": "IE00B1XNHC34",
+      "productId": 251911,
+      "periodStart": "2015-01",
+      "scene": "renewables",
+      "label": "iShares Global Clean Energy Transition UCITS ETF",
+      "category": "Sectoriels classiques",
+      "historyOnly": true
+    },
+    {
+      "id": "history-etf_financials",
+      "isin": "IE00BJ5JP097",
+      "productId": 308836,
+      "periodStart": "2019-11",
+      "scene": "finance",
+      "label": "iShares MSCI World Financials Sector Advanced UCITS ETF",
+      "category": "Sectoriels classiques",
+      "historyOnly": true
+    },
+    {
+      "id": "history-etf_health",
+      "isin": "IE00BJ5JNZ06",
+      "productId": 308909,
+      "periodStart": "2019-11",
+      "scene": "health",
+      "label": "iShares MSCI World Health Care Sector Advanced UCITS ETF",
+      "category": "Sectoriels classiques",
+      "historyOnly": true
+    },
+    {
+      "id": "history-etf_infrastructure",
+      "isin": "IE00B1FZS467",
+      "productId": 251809,
+      "periodStart": "2015-01",
+      "scene": "infrastructure",
+      "label": "iShares Global Infrastructure UCITS ETF",
+      "category": "Sectoriels classiques",
+      "historyOnly": true
+    },
+    {
+      "id": "history-etf_momentum",
+      "isin": "IE00BP3QZ825",
+      "productId": 270051,
+      "periodStart": "2015-01",
+      "scene": "world",
+      "label": "iShares Edge MSCI World Momentum Factor UCITS ETF",
+      "category": "Sectoriels classiques",
+      "historyOnly": true
+    },
+    {
+      "id": "history-etf_quality",
+      "isin": "IE00BP3QZ601",
+      "productId": 270054,
+      "periodStart": "2015-01",
+      "scene": "world",
+      "label": "iShares Edge MSCI World Quality Factor UCITS ETF",
+      "category": "Sectoriels classiques",
+      "historyOnly": true
+    },
+    {
+      "id": "history-etf_robotics",
+      "isin": "IE00BYZK4552",
+      "productId": 284219,
+      "periodStart": "2016-10",
+      "scene": "robotics",
+      "label": "iShares Automation & Robotics UCITS ETF",
+      "category": "Sectoriels classiques",
+      "historyOnly": true
+    },
+    {
+      "id": "history-etf_smallcap",
+      "isin": "IE00BF4RFH31",
+      "productId": 296576,
+      "periodStart": "2018-04",
+      "scene": "world",
+      "label": "iShares MSCI World Small Cap UCITS ETF",
+      "category": "Sectoriels classiques",
+      "historyOnly": true
+    },
+    {
+      "id": "history-etf_value",
+      "isin": "IE00BP3QZB59",
+      "productId": 270048,
+      "periodStart": "2015-01",
+      "scene": "world",
+      "label": "iShares Edge MSCI World Value Factor UCITS ETF",
+      "category": "Sectoriels classiques",
+      "historyOnly": true
+    }
+  ]
+}

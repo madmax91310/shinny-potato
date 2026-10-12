@@ -7,7 +7,7 @@ const descriptions = {
  'timber-ishares': ['Un ETF consacré au bois détient quoi, exactement ? 👇', 'Tu détiens des actions d’entreprises liées au bois et à l’exploitation forestière, plutôt qu’une forêt achetée directement.', 'Tu explores une activité différente des mines et de l’énergie.', 'Ces entreprises restent exposées aux cycles économiques, aux prix et aux risques environnementaux.'],
  'private-equity-ishares': ['Un ETF private equity coté reste un investissement en Bourse 👇', 'Tu détiens des actions de sociétés cotées liées au private equity. Tu ne souscris pas directement à un fonds non coté.', 'Tu peux examiner les acteurs du capital-investissement à travers un ETF négociable en Bourse.', 'Le cours de ces sociétés peut fortement varier. Leur liquidité en Bourse ne supprime pas les risques de leurs participations.'],
 }
-export const QUALIFIED_EXPOSURE_SHEETS = config.instruments.filter(c => records[c.id]).map(c => {
+export const QUALIFIED_EXPOSURE_SHEETS = config.instruments.filter(c => records[c.id] && !c.historyOnly).map(c => {
  const r=records[c.id], f=r.characteristics
  const copy=descriptions[c.id] ?? [`Un ETF consacré à ${c.label.toLowerCase()} : que contient ce panier ? 👇`, `Tu suis le secteur à travers l’indice ${f.index}. Le périmètre exact et ses éventuels filtres figurent dans cet indice.`, 'Tu peux comparer cette exposition sectorielle à un indice mondial large.', 'Une sélection sectorielle conserve le risque actions et peut déjà recouper les entreprises de tes ETF mondiaux.']
  return {id:c.id,isin:r.isin,name:r.name,category:c.category,source:r.sourceUrl,scene:c.scene,listing:r.listing,benchmark:f.index,

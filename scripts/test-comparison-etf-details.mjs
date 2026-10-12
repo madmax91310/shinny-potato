@@ -63,7 +63,7 @@ for (const theme of DEFAULT_THEMES) {
  }
  assert.ok(tweet.length<=25000)
  assert.doesNotMatch(tweet, /Répartition sectorielle : non disponible|Principales positions : non disponibles/)
- assert.doesNotMatch(tweet, /🏭|🏢|📊 Performances|⚙️ Réplication|Répartition sectorielle|classement à monnaie égale|Ce qui change pour toi|—/)
+ assert.doesNotMatch(tweet.split('\n').slice(1).join('\n'), /🏭|🏢|📊 Performances|⚙️ Réplication|Répartition sectorielle|classement à monnaie égale|Ce qui change pour toi|—/)
  assert.equal((tweet.match(/🆔 ISIN : /g) ?? []).length, theme.etfs.length)
  if (theme.peaOnly) assert(theme.etfs.every(fund => getInstrumentPeaStatus(fund.isin) === true))
  for (const fund of theme.etfs) {

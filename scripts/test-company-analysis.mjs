@@ -240,3 +240,13 @@ for (const c of COMPANIES) {
  assert(!tweet.includes('Le recul sur'))
 }
 console.log('Human stories: period-bound Apple context, revised accounts, forward observation guards, reproducible PER and distinct business questions OK.')
+
+// Une division documentée peut remettre les quatre BPA sur la même base ;
+// la présence d’un événement de marché sans preuve émetteur reste insuffisante.
+const normalised = { ...computed, quote: { ...computed.quote, splits: ['2026-06-01'] },
+  quarters: computed.quarters.map(quarter => ({ ...quarter, epsShareBasisAsOf: computed.quote.asOf })),
+  trailing: { ...computed.trailing, dilutedEPS: 5, shareBasisAsOf: computed.quote.asOf,
+    splitAdjustments: [{ asOf: '2026-06-01', ratio: 5, issuerSourceUrl: 'https://issuer.example/split' }] } };
+assert.equal(calculatedRatios(normalised, now).peTTM, 40);
+normalised.trailing.splitAdjustments = [];
+assert.equal(calculatedRatios(normalised, now).peTTM, undefined);

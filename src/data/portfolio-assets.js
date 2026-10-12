@@ -72,6 +72,7 @@ export const CATEGORIES = {
 };
 
 export const ASSETS = [
+  { id: 'private_equity_ishares', isin: 'IE00B1TXHL60', name: getInstrumentName('IE00B1TXHL60', 'portfolio'), cat: 'actions_larges', emoji: '🟢', r: getInstrumentReturnValues('IE00B1TXHL60'), distributing: true, confidenceNote: 'Rendements NAV de la part exacte en dollars, revenus réinvestis ; le résultat en euros dépend du change.', desc: ['Actions de sociétés cotées liées au capital-investissement', 'Exposition spécialisée, distincte d’une souscription à un fonds non coté', 'Risque actions, sensibilité au financement et aux valorisations des participations'] },
   // Parts de fiches désormais documentées sur 2020–2025, proposées en manuel.
   {
     id: 'topix_pea_hedged', isin: 'FR0013411998', name: getInstrumentName('FR0013411998', 'portfolio'),

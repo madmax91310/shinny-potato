@@ -49,9 +49,12 @@ export function calculatedRatios(company, now = new Date()) {
   if (!canPublish(company, now) || !q || !finite(q.price) || q.price <= 0 || !Array.isArray(q.splits) || !fresh(q.asOf, 10, now)) return {}
   const splitAfter = end => (q.splits ?? []).some(date => date > end && date <= q.asOf)
   const result = {}
+  const splitDates = (q.splits ?? []).filter(date => date > (company.quarters?.at(-1)?.end ?? '') && date <= q.asOf)
+  const verifiedShareBasis = t?.shareBasisAsOf === q.asOf && company.quarters?.every(quarter => quarter.epsShareBasisAsOf === q.asOf)
+    && splitDates.every(date => t.splitAdjustments?.some(proof => proof.asOf === date && finite(proof.ratio) && proof.ratio > 0 && proof.issuerSourceUrl?.startsWith('https://')))
   if (t && fresh(t.observedAt, 45, now) && fresh(t.end, 200, now)
     && t.end >= (latestAccountsEnd(company)) && finite(t.dilutedEPS) && t.dilutedEPS > 0
-    && company.quarters?.length === 4 && !splitAfter(company.quarters[3].end)) {
+    && company.quarters?.length === 4 && (!splitAfter(company.quarters[3].end) || verifiedShareBasis)) {
     result.peTTM = q.price / t.dilutedEPS
   }
   if (!result.peTTM && company.accountingStandard === 'IFRS' && finite(a.dilutedEPS) && a.dilutedEPS > 0 && !splitAfter(a.end)) result.peAnnual = q.price / a.dilutedEPS
