@@ -34,7 +34,7 @@ def parse_platform(id_, documents, urls, today):
             'income': 'Intérêts selon le contrat ; remboursement amortissable ou capital à la dernière échéance pour un financement in fine. Une défaillance peut empêcher ces paiements.',
             'exit': 'Après le délai de réflexion de quatre jours, l’investissement est définitif. Le remboursement suit l’échéancier du projet ; une sortie anticipée n’est pas garantie.',
         }
-        highlights = [['Exposition', 'Transition énergétique'], ['Durée', 'Selon le projet'], ['Financement', 'Dette']]
+        highlights = [['Exposition', 'Énergie'], ['Durée', 'Selon le projet'], ['Financement', 'Dette']]
         indices = {'access': 1, 'fees': 0, 'duration': 1, 'income': 0, 'exit': 1}
         scope = 'Financements en dette décrits dans la FAQ ; les offres en actions restent distinctes.'
         name = 'Lendosphere — financement en dette'
@@ -59,7 +59,7 @@ def parse_platform(id_, documents, urls, today):
             'income': 'Gains éventuels lors de la revente des participations ; ils dépendent de la valeur de l’entreprise et des frais. Aucune performance réalisée commune aux projets.',
             'exit': 'La sortie dépend de la revente des participations et des conditions de l’opération. Les titres présentent un risque d’illiquidité ; le remboursement du capital n’est pas garanti.',
         }
-        highlights = [['Exposition', 'Entreprises non cotées'], ['Instrument', 'Actions'], ['Sortie', 'Non garantie']]
+        highlights = [['Exposition', 'Non coté'], ['Instrument', 'Actions'], ['Sortie', 'Non garantie']]
         indices = {'access': 1, 'fees': 0, 'duration': 0, 'income': 0, 'exit': 1}
         scope = 'Financement en actions ; le barème obligataire est une offre distincte.'
         name = 'Tudigo — investissement en actions'
