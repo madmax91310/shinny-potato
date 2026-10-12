@@ -4,6 +4,13 @@ const generalIds = new Set([2, 20, 28, 34, 39, 44])
 const personalIds = new Set([1, 3, 6, 7, 8, 9, 11, 14, 16, 18, 19, 22, 25, 29, 30, 33, 38, 40, 42, 43, 45, 46, 47])
 const marketIds = new Set([10, 15, 17, 21, 24, 27, 32, 37])
 export function reviewPolicy(tweet) {
+  // Revue du texte et des quatre produits auprès des émetteurs le 12/10/2026.
+  // https://www.ishares.com/uk/individual/en/products/258441/ishares-physical-gold-etc-fund
+  // https://www.invesco.com/uk/en/financial-products/etfs/invesco-physical-gold-etc.html
+  // https://www.vaneck.com/fr/fr/investissements/gold-miners-etf/
+  // https://www.ishares.com/uk/individual/en/products/251908/ishares-gold-producers-ucits-etf
+  // https://www.gold.org/goldhub/how-to-invest
+  if (tweet.id === 'guide:gold-ways') return { kind: 'reviewed', checkedAt: '2026-10-12', maxAge: 30 }
   if (generalIds.has(tweet.id)) return { kind: 'general', maxAge: null }
   if (reviewedPedagogyIds.has(tweet.id)) return { kind: 'reviewed', checkedAt: '2026-10-04', maxAge: 180 }
   if (personalIds.has(tweet.id)) return { kind: 'personal', maxAge: 0 }

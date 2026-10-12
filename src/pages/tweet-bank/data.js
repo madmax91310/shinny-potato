@@ -35,6 +35,65 @@ export const GOLD_CATEGORIES = ["Guide ETF", "Actu & humour"]
 export const COOLDOWN_DAYS = 45
 
 const ARCHIVED_TWEETS = [
+  // ISIN et frais vérifiés le 12/10/2026 sur les pages des émetteurs ; texte validé par l'auteur.
+  {
+    id: 'guide:gold-ways', month: 'Octobre', category: 'Guide ETF',
+    text: `Tu veux investir dans l’or, mais tu hésites entre une pièce et un produit en Bourse ? 🪙
+
+Voici 4 façons de s’y exposer, avec des différences à comprendre 👇
+
+💾 Sauvegarde ce post, ça pourrait te servir.
+
+🪙 1. Acheter de l’or physique
+
+Pièces d’investissement ou lingots : tu possèdes directement le métal.
+
+Tu peux le conserver chez toi ou confier sa garde à un professionnel.
+
+À regarder : la prime à l’achat, les conditions de revente et le coût du stockage. En coffre chez un prestataire, vérifie que l’or est bien alloué à ton nom.
+
+📈 2. Acheter un ETC adossé à de l’or physique
+
+Tu achètes un titre en Bourse qui vise à suivre le cours de l’or, moins les frais. Le métal qui l’adosse est conservé en coffre.
+
+Deux exemples :
+
+iShares Physical Gold ETC
+🆔 IE00B4ND3602 · 💸 0,12 %/an
+
+Invesco Physical Gold ETC
+🆔 IE00B579F325 · 💸 0,12 %/an
+
+💡 Ces produits sont des ETC, pas des ETF UCITS. Tu détiens un titre financier, pas un lingot directement à ton nom.
+
+⛏️ 3. Acheter un ETF de sociétés minières
+
+Tu investis dans un panier d’entreprises du secteur aurifère.
+
+VanEck Gold Miners UCITS ETF
+🆔 IE00BQQP9F84 · 💸 0,53 %/an
+→ Sociétés minières d’or et d’argent.
+
+iShares Gold Producers UCITS ETF USD (Acc)
+🆔 IE00B6R52036 · 💸 0,55 %/an
+→ Entreprises productrices d’or.
+
+Leurs résultats dépendent du cours des métaux, mais aussi des coûts de production et des difficultés rencontrées dans les mines.
+
+Leurs actions peuvent bouger beaucoup plus fortement que l’or.
+
+🏭 4. Acheter des actions minières en direct
+
+Tu sélectionnes toi-même les entreprises.
+
+Tu peux toucher des dividendes lorsqu’elles en versent, mais tu dépends davantage de la réussite de chaque société choisie.
+
+Une hausse de l’or ne garantit donc pas une hausse de ton action.
+
+⚠️ L’or physique ne verse aucun revenu et son prix peut baisser. Les minières ajoutent les risques propres aux entreprises.
+
+💬 Tu préférerais détenir le métal ou t’y exposer en Bourse ?`,
+  },
   {"id":50,"month":"Octobre","category":"Guide ETF","image":{"src":"tweet-bank/8-etf-dividendes.png","alt":"8 ETF à dividendes : 5 approches, ISIN et frais annuels","filename":"8-etf-dividendes.png"},"text":"Tu aimerais recevoir des dividendes avec des ETF… mais tu ne sais pas lesquels regarder ? 👀\n\nVoici 8 ETF pour explorer 5 approches différentes 👇\n\n💾 Sauvegarde ce post, ça pourrait te servir.\n\n💰 Privilégier les rendements élevés\n\nVanguard FTSE All-World High Dividend Yield UCITS ETF — Dist\n🆔 IE00B8GKDB10 · 💸 0,29 %\n\nVanEck Morningstar Developed Markets Dividend Leaders UCITS ETF\n🆔 NL0011683594 · 💸 0,38 %\n\nXtrackers STOXX Global Select Dividend 100 Swap UCITS ETF — 1D\n🆔 LU0292096186 · 💸 0,50 %\n\nLeurs critères diffèrent : VanEck filtre aussi sur la pérennité des dividendes. Xtrackers utilise une réplication synthétique.\n\n💎 Associer dividendes et qualité\n\niShares MSCI World Quality Dividend Advanced UCITS ETF — Dist\n🆔 IE00BYYHSQ67 · 💸 0,38 %\n\nFidelity Global Quality Income UCITS ETF — Income\n🆔 IE00BYXVGZ48 · 💸 0,40 %\n\nIls combinent une sélection d’entreprises versant des dividendes avec des critères de solidité financière.\n\n🌱 Miser sur le potentiel de croissance des dividendes\n\nWisdomTree Global Quality Dividend Growth UCITS ETF — USD Dist\n🆔 IE00BZ56RN96 · 💸 0,38 %\n\nSa sélection s’appuie notamment sur la rentabilité des entreprises et leurs perspectives de croissance. Une hausse future des dividendes reste incertaine.\n\n🏛️ Rechercher un historique de versement\n\nState Street SPDR S&P Global Dividend Aristocrats UCITS ETF — Dist\n🆔 IE00B9CQXS71 · 💸 0,45 %\n\nSon indice sélectionne des entreprises ayant maintenu ou augmenté leurs dividendes pendant au moins 10 années consécutives, avec des critères financiers supplémentaires.\n\n📅 Explorer les très hauts rendements et une distribution mensuelle\n\nGlobal X SuperDividend UCITS ETF — Dist\n🆔 IE00077FRP95 · 💸 0,45 %\n\nIl cible des actions aux rendements en dividendes parmi les plus élevés au monde. La part présentée distribue mensuellement, avec des montants variables.\n\nCes 8 parts distribuent leurs revenus. Ce sont des pistes à connaître, pas 8 ETF à acheter ensemble : certaines expositions se recoupent 🔎\n\nUn dividende élevé ne garantit pas une meilleure performance. Regarde aussi l’évolution du capital.\n\n💬 Tu en as certains dans ton portefeuille ?\n\n⚠️ Dividendes variables. Risque de perte en capital."},
   { id: 48, month: "Octobre", category: "Guide ETF", text: `7 ETF éligibles au PEA que j’aurais aimé connaître avant d’investir mes premiers euros 👇
 
