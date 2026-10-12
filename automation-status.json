@@ -65,16 +65,16 @@
     },
     "collect-etf-pilot.yml": {
       "name": "ETF et compositions d’indices",
-      "runId": 38250622360,
+      "runId": 38274235488,
       "attempt": 1,
-      "completedAt": "2026-10-12T13:04:13Z",
+      "completedAt": "2026-10-12T16:19:18Z",
       "status": "failure",
       "lastSuccessAt": "2026-10-12T07:50:21Z",
       "collectionStatus": "failure",
-      "publicationStatus": "success",
+      "publicationStatus": "not-run",
       "lastCollectionSuccessAt": "2026-10-12T07:50:21Z",
       "lastPublicationSuccessAt": "2026-10-12T13:04:04Z",
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38250622360",
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38274235488",
       "failures": [
         {
           "job": "report-failures",
@@ -82,29 +82,11 @@
         }
       ],
       "dataFailures": {
-        "etf-observation-IE000RDRMSD1": {
-          "name": "ETF IE000RDRMSD1",
-          "completedAt": "2026-10-12T13:04:13Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38250622360",
-          "cause": "Numeric value outside its valid range"
-        },
-        "etf-observation-IE00B3F81R35": {
-          "name": "ETF IE00B3F81R35",
-          "completedAt": "2026-10-12T13:04:13Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38250622360",
-          "cause": "Numeric value outside its valid range"
-        },
-        "etf-additional-observation-GB00BLD4ZL17": {
-          "name": "ETF GB00BLD4ZL17",
-          "completedAt": "2026-10-12T13:04:13Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38250622360",
-          "cause": "HTTP Error 500: Internal Server Error"
-        },
-        "etf-additional-observation-GB00BLD4ZM24": {
-          "name": "ETF GB00BLD4ZM24",
-          "completedAt": "2026-10-12T13:04:13Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38250622360",
-          "cause": "HTTP Error 500: Internal Server Error"
+        "etf-additional-observation-IE0003Z9E2Y3": {
+          "name": "ETF IE0003Z9E2Y3",
+          "completedAt": "2026-10-12T16:19:18Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38274235488",
+          "cause": "Global X replication changed"
         }
       }
     },
@@ -255,5 +237,5 @@
       "failures": []
     }
   },
-  "updatedAt": "2026-10-12T16:16:53Z"
+  "updatedAt": "2026-10-12T16:19:18Z"
 }
