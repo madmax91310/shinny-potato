@@ -169,3 +169,7 @@ annualisée du BPA reste exclue tant que son historique sur une base comparable,
 incluant les divisions d’actions, n’est pas certifié. Rien n’est interpolé ou
 complété manuellement. La couverture varie selon l’émetteur et la période publiée.
 Les nouveaux chiffres restent dans l’application ; texte et export sont conservés.
+
+## Bilans renouvelables depuis les publications officielles
+
+L’extension de bilan ajoute un bloc indépendant `solidity` pour les cinq adaptateurs GAAP initiaux. Le ROE annuel, la liquidité générale et la liquidité cash ne sont affichés que depuis les bilans comparatifs réconciliés et frais. ROIC, liquidité réduite et BPA annualisé restent désactivés. La comparaison des sources, les contrôles et les limites sont détaillés dans [company-balance-sources.md](company-balance-sources.md). Les résultats du runner sont conservés dans l’artefact `company-source-probe` du workflow de PR.

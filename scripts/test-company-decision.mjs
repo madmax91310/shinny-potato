@@ -54,3 +54,27 @@ assert.equal(decisionRatios(extra,now).netDebtFCF,undefined)
 extra.decision.observedAt='2026-08-01'
 assert.equal(decisionRatios(extra,now).shareRepurchases,undefined)
 console.log('Extra indicators: CAGR gaps/losses, operating margin, investments, debt/FCF, stock compensation and stale-input guards OK.')
+
+const balance = (asOf,equity) => ({asOf,equity,assets:100e6+equity,liabilities:100e6,currentAssets:50e6,currentLiabilities:25e6,liabilitiesAndEquity:100e6+equity,cash:10e6,sourceUrl:'https://issuer.test/balance'})
+const solidityCompany=structuredClone(c)
+solidityCompany.annual.previousEnd='2024-12-31'
+solidityCompany.annual.netIncome=12e6
+solidityCompany.solidity={componentVersion:1,observedAt:'2026-10-12',annualEnd:'2025-12-31',revenue:120,netIncome:12e6,accountsEndAtCollection:'2026-09-30',annualBalances:[balance('2024-12-31',60e6),balance('2025-12-31',80e6)],latestBalance:balance('2026-09-30',90e6)}
+solidityCompany.quarter={end:'2026-09-30'}
+r=decisionRatios(solidityCompany,now)
+assert(Math.abs(r.roe-12/70*100)<1e-10);assert.equal(r.currentRatio,2);assert.equal(r.cashRatio,0.4);assert.equal(r.roic,undefined)
+for(const mutate of [s=>s.observedAt='2026-08-01',s=>s.observedAt='2026-10-13',s=>s.netIncome=99,s=>s.accountsEndAtCollection='2026-06-30',s=>s.latestBalance.currentAssets=Infinity,s=>s.annualBalances[0].sourceUrl='https://other.test/balance',s=>s.annualBalances[0].asOf='2024-11-30',s=>s.latestBalance.equity=1]) {
+ const changed=structuredClone(solidityCompany);mutate(changed.solidity)
+ assert.equal(decisionRatios(changed,now).roe,undefined)
+}
+const missingCash=structuredClone(solidityCompany);delete missingCash.solidity.latestBalance.cash
+assert.equal(decisionRatios(missingCash,now).currentRatio,2);assert.equal(decisionRatios(missingCash,now).cashRatio,undefined)
+const zeroLiabilities=structuredClone(solidityCompany);zeroLiabilities.solidity.latestBalance.currentLiabilities=0
+assert.equal(decisionRatios(zeroLiabilities,now).currentRatio,undefined)
+const negativeEquity=structuredClone(solidityCompany);negativeEquity.solidity.annualBalances[0]=balance('2024-12-31',-10e6)
+assert.equal(decisionRatios(negativeEquity,now).roe,undefined)
+const lossROE=structuredClone(solidityCompany);lossROE.annual.netIncome=-12e6;lossROE.solidity.netIncome=-12e6
+assert(decisionRatios(lossROE,now).roe<0)
+const newAccounts=structuredClone(solidityCompany);newAccounts.quarter.end='2026-10-01'
+assert.equal(decisionRatios(newAccounts,now).roe,undefined)
+console.log('Issuer ROE/liquidity: reconciled comparative equity, losses, zero denominators, missing cash, stale/future dates, revisions and new publication guards OK.')

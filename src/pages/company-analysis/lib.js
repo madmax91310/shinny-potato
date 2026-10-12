@@ -90,6 +90,26 @@ export function activeDecision(company, now = new Date()) {
       || r.capitalExpenditure < 0 || Math.abs(r.freeCashFlow - (r.operatingCashFlow - r.capitalExpenditure)) > 1)))) return null
   return d
 }
+// Issuer balances are independent of cash-flow observations and SEC access.
+export function activeSolidity(company, now = new Date()) {
+  const s = company.solidity, a = company.annual
+  const valid = b => b && b.sourceUrl?.startsWith('https://')
+    && ['assets','liabilities','equity','currentAssets','currentLiabilities','liabilitiesAndEquity'].every(k => finite(b[k]))
+    && ['assets','liabilities','currentAssets','currentLiabilities'].every(k => b[k] >= 0)
+    && Math.abs(b.assets-b.liabilities-b.equity) <= 1e6 && Math.abs(b.assets-b.liabilitiesAndEquity) <= 1e6
+    && b.currentAssets <= b.assets && b.currentLiabilities <= b.liabilities
+    && ['cash','inventories'].every(k => b[k] === undefined || (finite(b[k]) && b[k] >= 0 && b[k] <= b.currentAssets))
+  if (!canPublish(company,now) || !s || s.componentVersion !== 1 || !fresh(s.observedAt,45,now)
+    || s.annualEnd !== a.end || s.revenue !== a.revenue || s.netIncome !== a.netIncome
+    || s.accountsEndAtCollection !== latestAccountsEnd(company)
+    || s.annualBalances?.length !== 2 || !s.annualBalances.every(valid) || !valid(s.latestBalance)
+    || s.latestBalance.asOf !== latestAccountsEnd(company) || !fresh(s.latestBalance.asOf,200,now)
+    || s.annualBalances[0].asOf !== a.previousEnd || s.annualBalances[1].asOf !== a.end
+    || s.annualBalances[0].sourceUrl !== s.annualBalances[1].sourceUrl
+    || (Date.parse(a.end)-Date.parse(a.previousEnd))/86400000 < 330
+    || (Date.parse(a.end)-Date.parse(a.previousEnd))/86400000 > 400) return null
+  return s
+}
 // Require consecutive annual observations and positive values throughout the window.
 export function annualizedGrowth(years, field, intervals, comparable = () => true) {
   const window = years.slice(-(intervals + 1))
@@ -105,6 +125,16 @@ export function decisionRatios(company, now = new Date()) {
   const d = activeDecision(company, now), a = company.annual, latest = d?.years.at(-1)
   const fcf = latest?.freeCashFlow ?? a.freeCashFlow
   const result = {}
+  const solidity = activeSolidity(company, now)
+  if (solidity) {
+    const [opening,closing] = solidity.annualBalances, b = solidity.latestBalance
+    if (opening.equity > 0 && closing.equity > 0) result.roe = a.netIncome / ((opening.equity+closing.equity)/2)*100
+    if (b.currentLiabilities > 0) {
+      result.currentRatio = b.currentAssets/b.currentLiabilities
+      if (finite(b.cash)) result.cashRatio = b.cash/b.currentLiabilities
+    }
+    result.solidityAsOf = b.asOf
+  }
   const history = activeHistory(company, now)
   result.longTerm = []
   for (const intervals of [...new Set([3, history.length - 1])].filter(n => n >= 3)) {
@@ -204,6 +234,9 @@ export function decisionIndicators(company, now = new Date()) {
   if (finite(r.netDebtFCF)) add('netDebtFCF','Dette nette / FCF annuel',`${fr(r.netDebtFCF)}×`,`Dette nette au ${dateLabel(r.netDebtFCFAsOf)} / FCF de l’exercice clos le ${dateLabel(company.annual.end)}. Ce rapport ne constitue pas un délai de remboursement.`)
   if (finite(r.shareRepurchases)) add('shareRepurchases','Rachats d’actions payés',amount(r.shareRepurchases,company.currency),'Décaissements de rachats d’actions ordinaires sur l’exercice ; distincts de la variation nette du nombre d’actions et de l’autorisation de rachat.')
   if (finite(r.shareBasedCompensation)) add('shareBasedCompensation','Rémunération en actions',amount(r.shareBasedCompensation,company.currency),`Charge de rémunération en actions publiée : ${fr(r.shareBasedCompensationRevenue)} % du chiffre d’affaires. Elle ne mesure pas directement la dilution.`)
+  if (finite(r.roe)) add('roe','ROE annuel',`${fr(r.roe)} %`,`Résultat net de l’exercice clos le ${dateLabel(company.annual.end)} / moyenne des capitaux propres publiés au ${dateLabel(company.annual.previousEnd)} et au ${dateLabel(company.annual.end)}. Deux capitaux propres positifs sont exigés. Les rachats d’actions peuvent relever ce ratio.`)
+  if (finite(r.currentRatio)) add('currentRatio','Liquidité générale',`${fr(r.currentRatio,2)}×`,`Actifs courants / passifs courants au ${dateLabel(r.solidityAsOf)}. Ce ratio ne garantit pas la disponibilité immédiate des actifs.`)
+  if (finite(r.cashRatio)) add('cashRatio','Liquidité immédiate (cash)',`${fr(r.cashRatio,2)}×`,`Trésorerie et équivalents / passifs courants au ${dateLabel(r.solidityAsOf)}. Les placements sont exclus ; une ligne cash et placements combinés ne convient pas.`)
   for (const row of r.longTerm ?? []) add(row.key,`${row.label} : croissance annualisée sur ${row.intervals} ans`,`${row.value > 0 ? '+' : ''}${fr(row.value)} %/an`,`Du ${dateLabel(row.start)} au ${dateLabel(row.end)}. Exercices consécutifs et valeurs positives, sans estimation.`)
   if (!d && !rows.length) return []
   return rows
