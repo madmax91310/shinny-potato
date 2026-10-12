@@ -22,6 +22,11 @@ class PerformanceTests(unittest.TestCase):
                 with self.assertRaises(ValueError): parse((FIXTURES/filename).read_text().replace(share['isin'],'WRONGSHARE00'), share, NOW)
                 with self.assertRaises(ValueError): parse((FIXTURES/filename).read_text(), share, NOW + dt.timedelta(days=300))
 
+    def test_vaneck_standalone_header_is_not_the_fund_row(self):
+        text = (FIXTURES/'qntm.txt').read_text().replace('Performance History (%)', 'Performance History (%)\nETF')
+        result = parse(text, SOURCES[3], NOW)
+        self.assertEqual(result['observations'][2]['value'], 17.47)
+
     def test_benchmark_is_never_used(self):
         text = (FIXTURES/'FR001400U5Q4.txt').read_text()
         text = text.replace('15,55%', '999,55%')

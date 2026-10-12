@@ -61,8 +61,10 @@ def parse(text, share, now):
         block = text.split('Performance History (%)', 1)[1].split('Past performance', 1)[0]
         stamp = document_date(re.search(r'Month End as of (\d{1,2} [A-Za-z]+ 20\d{2})', block)[1], now)
         if not re.search(r'1 MO\*\s+3 MO\*\s+YTD\*\s+1 YR\s+3 YR\s+5 YR\s+10 YR\s+INCEPTION', block): reject('VanEck columns changed')
-        cells = re.search(r'^\s*ETF\s+(.+)$', block, re.M)[1].split()
-        if len(cells) != 8: reject('VanEck ETF row changed')
+        numeric = r'(?:-?\d+(?:\.\d+)?|--)'
+        rows = re.findall(r'^[ \t]*ETF[ \t]+(' + numeric + r'(?:[ \t]+' + numeric + r'){7})[ \t]*$', block, re.M)
+        if len(rows) != 1: reject('VanEck ETF row changed')
+        cells = rows[0].split()
         # Multi-year and inception columns may be annualised; use only <=1 year.
         values = [(label, bounded_return(float(cells[i]))) for i, label in [(0,'1 mois'),(1,'3 mois'),(2,'Depuis janvier'),(3,'1 an')] if cells[i] != '--']
     if not values: reject('No published cumulative observations')
