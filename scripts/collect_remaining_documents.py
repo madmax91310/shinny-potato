@@ -4,7 +4,36 @@ import datetime as dt
 import re
 import urllib.error
 from issuer_documents import download, pdf_text, document_date, proof, validated_rows, bounded_return
-from data_automation import reject, number
+from data_automation import reject, number, ResponseFormatError
+
+
+def coinshares_widget_facts(share, now):
+    """Qualified fee fallback from the same official widgets used by the page."""
+    import json
+    from collect_coinshares_aum import widget_url
+    isin = share['isin']
+    url = widget_url(share, 'ISIN_KEYSTATS_' + isin)
+    payload = json.loads(download(url, max_bytes=6_000_000))
+    widgets = [w for w in payload if w.get('key') == 'ISIN_KEYSTATS_' + isin]
+    if len(widgets) != 1: reject('Missing or ambiguous CoinShares fee widget')
+    def fields(key):
+        sections = [s for s in widgets[0]['sections'] if s.get('key') == isin + key]
+        if len(sections) != 1: reject('Missing or ambiguous CoinShares fee section')
+        rows = sections[0]['meta']
+        if len({r['key'] for r in rows}) != len(rows): reject('Duplicate CoinShares fee field')
+        return {r['key']: r['value'] for r in rows}
+    identity, overview = fields('_NAN'), fields('_OVERVIEW')
+    if identity['iSIN'] != isin or share['currency'] != 'USD' or share.get('aumCurrency') != 'USD':
+        reject('Wrong CoinShares fee identity/currency')
+    stamp = document_date(overview['rateDate'], now, max_age=10)
+    fee = overview['managementFee']
+    if not re.fullmatch(r'(?:Reduced to )?\d+(?:\.\d+)?%', fee): reject('Invalid CoinShares fee format')
+    ter = number(float(fee.removeprefix('Reduced to ').rstrip('%')), positive=False)
+    if ter > 5: reject('Invalid CoinShares fee')
+    return {**share, 'sourceUrl': url, 'productId': isin,
+            'characteristics': {'terPct': ter, 'asOf': stamp, 'sourceUrl': url,
+                                'sha256': proof(json.dumps(payload, sort_keys=True).encode())},
+            'unavailable': ['exposures: single crypto asset, no equity countries/sectors']}
 
 
 def match(pattern,text):
@@ -85,10 +114,22 @@ def ubs_urls(now):
 
 def collect_one(share,now):
     if share['parser']=='coinshares-document':
-        body=download(share['sourceUrl']);result=coinshares(pdf_text(body),share,now,proof(body))
+        try:
+            body=download(share['sourceUrl'])
+        except (urllib.error.URLError, TimeoutError, ResponseFormatError) as error:
+            # Only transport failures select a replacement. Invalid PDF content,
+            # identity or dates fail closed instead of trying another observation.
+            result=coinshares_widget_facts(share,now)
+            result['sourceAttempts']=[{'url':share['sourceUrl'],'reason':str(error)},
+                                      {'url':result['sourceUrl'],'status':'validated'}]
+        else:
+            result=coinshares(pdf_text(body),share,now,proof(body))
         from collect_coinshares_aum import collect as collect_aum
-        result['aum']=collect_aum(share,now)
-        result['unavailable']=[item for item in result['unavailable'] if not item.startswith('aum:')]
+        try:
+            result['aum']=collect_aum(share,now)
+            result['unavailable']=[item for item in result['unavailable'] if not item.startswith('aum:')]
+        except (urllib.error.URLError, TimeoutError, ValueError, KeyError, TypeError) as error:
+            result.setdefault('collectionErrors', []).append({'field':'aum','url':share['aumPageUrl'],'reason':str(error)})
         from collect_product_calendars import collect_coinshares_calendar
         try:
             result['performance'] = collect_coinshares_calendar(share, now)

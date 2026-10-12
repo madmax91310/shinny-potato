@@ -4,6 +4,7 @@ from concurrent.futures import ThreadPoolExecutor
 import datetime as dt
 from html.parser import HTMLParser
 import json
+import math
 import os
 import pathlib
 import urllib.error
@@ -58,10 +59,13 @@ def allocation(container, now):
     labels, weights = points['type']['value'], points['fund']['value']
     if not isinstance(labels, list) or not labels or len(labels) != len(weights) or len(set(labels)) != len(labels):
         reject('Invalid allocation labels')
-    for weight in weights:
-        number(weight, positive=False)
-        if weight > 100:
-            reject('Invalid allocation weight')
+    for label, weight in zip(labels, weights):
+        # A net cash/derivative balance is signed, unlike a security exposure.
+        # Keep the exact published label and value; never clip or renormalise.
+        if (isinstance(weight, bool) or not isinstance(weight, (int, float))
+                or not math.isfinite(weight) or not -100 <= weight <= 100
+                or (weight < 0 and label != 'Cash and/or Derivatives')):
+            reject(f'Invalid allocation weight for {label}: {weight!r}')
     if not 99 <= sum(weights) <= 101:
         reject('Incomplete allocation')
     return {'asOf': source_date(points['asOf']['value'], now),

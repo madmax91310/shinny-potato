@@ -1,0 +1,366 @@
+{
+  "productId": 328618,
+  "currencyCode": "USD",
+  "componentsByNameMap": {
+    "keyFundFacts": {
+      "containersByNameMap": {
+        "default": {
+          "dataPointsByNameMap": {
+            "emeaMgt": {
+              "active": true,
+              "asOfDate": null,
+              "prefix": null,
+              "value": 0.5
+            },
+            "inceptionDate": {
+              "active": true,
+              "asOfDate": null,
+              "prefix": null,
+              "value": 20220927
+            },
+            "indexSeriesName": {
+              "active": true,
+              "asOfDate": null,
+              "prefix": null,
+              "value": "NYSE FactSet Global Blockchain Technologies Capped Index (USD)"
+            },
+            "isin": {
+              "active": true,
+              "asOfDate": null,
+              "prefix": null,
+              "value": "IE000RDRMSD1"
+            },
+            "seriesBaseCurrencyCode": {
+              "active": true,
+              "asOfDate": null,
+              "prefix": null,
+              "value": "USD"
+            },
+            "totalNetAssets": {
+              "active": true,
+              "asOfDate": 20261009,
+              "prefix": "USD ",
+              "value": 340132168.64
+            },
+            "useOfProfitsCode": {
+              "active": true,
+              "asOfDate": null,
+              "prefix": null,
+              "value": "Accumulating"
+            }
+          }
+        }
+      }
+    },
+    "exposureBreakdowns": {
+      "containersByNameMap": {
+        "geography": {
+          "subContainersByNameMap": {
+            "countries": {
+              "dataPointsByNameMap": {
+                "asOf": {
+                  "active": true,
+                  "asOfDate": null,
+                  "prefix": null,
+                  "value": 20261009
+                },
+                "type": {
+                  "active": true,
+                  "asOfDate": null,
+                  "prefix": null,
+                  "value": [
+                    "United States",
+                    "China",
+                    "Germany",
+                    "Other",
+                    "Cash and/or Derivatives"
+                  ]
+                },
+                "fund": {
+                  "active": true,
+                  "asOfDate": null,
+                  "prefix": null,
+                  "value": [
+                    89.71,
+                    6.33,
+                    1.51,
+                    2.55,
+                    -0.1
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "sector": {
+          "dataPointsByNameMap": {
+            "asOf": {
+              "active": true,
+              "asOfDate": null,
+              "prefix": null,
+              "value": 20261009
+            },
+            "type": {
+              "active": true,
+              "asOfDate": null,
+              "prefix": null,
+              "value": [
+                "Information Technology",
+                "Financials",
+                "Communication",
+                "Health Care",
+                "Cash and/or Derivatives"
+              ]
+            },
+            "fund": {
+              "active": true,
+              "asOfDate": null,
+              "prefix": null,
+              "value": [
+                68.52,
+                27.24,
+                4.24,
+                0.1,
+                -0.1
+              ]
+            }
+          }
+        }
+      }
+    },
+    "performance": {
+      "containersByNameMap": {
+        "returns": {
+          "subContainersByNameMap": {
+            "calendar": {
+              "dataPointsByNameMap": {
+                "asOfDate": {
+                  "active": false,
+                  "asOfDate": null,
+                  "prefix": null,
+                  "value": 20251231
+                },
+                "associatedProduct.returnTypes": {
+                  "active": false,
+                  "asOfDate": null,
+                  "prefix": null,
+                  "value": null
+                },
+                "benchmarksByRelTypeCode": {
+                  "active": false,
+                  "asOfDate": null,
+                  "prefix": null,
+                  "value": {
+                    "benchmarkAnnual": "PERF_BENCH"
+                  }
+                },
+                "dateList": {
+                  "active": false,
+                  "asOfDate": null,
+                  "prefix": null,
+                  "value": null
+                },
+                "esmaBenchmarksByPerformanceType": {
+                  "active": false,
+                  "asOfDate": null,
+                  "prefix": null,
+                  "value": null
+                },
+                "fiveYear": {
+                  "active": true,
+                  "asOfDate": 20211231,
+                  "prefix": null,
+                  "value": [
+                    null,
+                    null
+                  ]
+                },
+                "fourYear": {
+                  "active": true,
+                  "asOfDate": 20221231,
+                  "prefix": null,
+                  "value": [
+                    null,
+                    null
+                  ]
+                },
+                "hatchingComparator1BenchDate": {
+                  "active": false,
+                  "asOfDate": null,
+                  "prefix": null,
+                  "value": null
+                },
+                "hatchingComparator2BenchDate": {
+                  "active": false,
+                  "asOfDate": null,
+                  "prefix": null,
+                  "value": null
+                },
+                "hatchingConstraint1BenchDate": {
+                  "active": false,
+                  "asOfDate": null,
+                  "prefix": null,
+                  "value": null
+                },
+                "hatchingConstraint2BenchDate": {
+                  "active": false,
+                  "asOfDate": null,
+                  "prefix": null,
+                  "value": null
+                },
+                "hatchingDateMapByPerType": {
+                  "active": false,
+                  "asOfDate": null,
+                  "prefix": null,
+                  "value": {
+                    "annualNav": "hatchingShareClassDate",
+                    "esmaComparatorDiscrete": "hatchingComparator1BenchDate",
+                    "BENCHMARK_TARGET_SRC_YRY": "hatchingTarget1BenchDate",
+                    "BENCHMARK_TARGET_2_SRC_YRY": "hatchingTarget2BenchDate",
+                    "BENCHMARK_COMPARATOR_SRC_YRY": "hatchingComparator1BenchDate",
+                    "BENCHMARK_COMPARATOR_2_SRC_YRY": "hatchingComparator2BenchDate",
+                    "BENCHAMRK_CONSTRAINT_SRC_YRY": "hatchingConstraint1BenchDate",
+                    "BENCHMARK_CONSTRAINT_2_SRC_YRY": "hatchingConstraint2BenchDate",
+                    "benchmarkAnnual": "hatchingPerformBenchDate"
+                  }
+                },
+                "hatchingPerformBenchDate": {
+                  "active": false,
+                  "asOfDate": null,
+                  "prefix": null,
+                  "value": null
+                },
+                "hatchingShareClassDate": {
+                  "active": false,
+                  "asOfDate": null,
+                  "prefix": null,
+                  "value": null
+                },
+                "hatchingTarget1BenchDate": {
+                  "active": false,
+                  "asOfDate": null,
+                  "prefix": null,
+                  "value": null
+                },
+                "hatchingTarget2BenchDate": {
+                  "active": false,
+                  "asOfDate": null,
+                  "prefix": null,
+                  "value": null
+                },
+                "historicalBenchmarks": {
+                  "active": false,
+                  "asOfDate": null,
+                  "prefix": null,
+                  "value": []
+                },
+                "inceptionDate": {
+                  "active": false,
+                  "asOfDate": null,
+                  "prefix": null,
+                  "value": 20220927
+                },
+                "indexName": {
+                  "active": false,
+                  "asOfDate": null,
+                  "prefix": null,
+                  "value": "NYSE FactSet Global Blockchain Technologies Capped Index (USD)"
+                },
+                "ipse": {
+                  "active": false,
+                  "asOfDate": null,
+                  "prefix": null,
+                  "value": null
+                },
+                "lipperCatName": {
+                  "active": false,
+                  "asOfDate": null,
+                  "prefix": null,
+                  "value": null
+                },
+                "lipperIdxName": {
+                  "active": false,
+                  "asOfDate": null,
+                  "prefix": null,
+                  "value": null
+                },
+                "mstarCatName": {
+                  "active": false,
+                  "asOfDate": null,
+                  "prefix": null,
+                  "value": null
+                },
+                "oneYear": {
+                  "active": true,
+                  "asOfDate": 20251231,
+                  "prefix": null,
+                  "value": [
+                    "27.42981",
+                    "27.881879"
+                  ]
+                },
+                "productType": {
+                  "active": false,
+                  "asOfDate": null,
+                  "prefix": null,
+                  "value": "Thematic"
+                },
+                "returnTypes": {
+                  "active": false,
+                  "asOfDate": [
+                    20251231,
+                    20251231
+                  ],
+                  "prefix": null,
+                  "value": [
+                    "annualNav",
+                    "benchmarkAnnual"
+                  ]
+                },
+                "returnsByCurrency": {
+                  "active": false,
+                  "asOfDate": null,
+                  "prefix": null,
+                  "value": {
+                    "benchmarkAnnual": "USD",
+                    "annualNav": "USD"
+                  }
+                },
+                "secondaryBenchmarkName": {
+                  "active": false,
+                  "asOfDate": null,
+                  "prefix": null,
+                  "value": null
+                },
+                "threeYear": {
+                  "active": true,
+                  "asOfDate": 20231231,
+                  "prefix": null,
+                  "value": [
+                    "197.370161",
+                    "198.902477"
+                  ]
+                },
+                "ticker": {
+                  "active": false,
+                  "asOfDate": null,
+                  "prefix": null,
+                  "value": "BLKC"
+                },
+                "twoYear": {
+                  "active": true,
+                  "asOfDate": 20241231,
+                  "prefix": null,
+                  "value": [
+                    "17.66933",
+                    "18.215594"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
