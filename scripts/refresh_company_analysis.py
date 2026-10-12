@@ -415,7 +415,7 @@ def main():
                             supplemental = {r['end']: r for r in decision['years']}
                             for row in official['years']:
                                 extra = supplemental.get(row['end'], {})
-                                for field in ('interestExpense','operatingIncome','averageDilutedShares','sharesBasisSource','shareRepurchases','shareBasedCompensation','currentAssets','currentLiabilities','roeIncome','openingEquity','closingEquity'):
+                                for field in ('interestExpense','operatingIncome','averageDilutedShares','sharesBasisSource','shareRepurchases','shareBasedCompensation'):
                                     if field not in row and field in extra:
                                         row[field] = extra[field]
                                         row.setdefault('additionalSourceUrls', [])

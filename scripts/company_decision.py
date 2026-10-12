@@ -51,7 +51,6 @@ def sec_decision(body, profile, company, today):
         period = candidates[0]
         result = {k: reference[k] for k in ('end', 'revenue', 'netIncome')}
         result.update(start=period['start'], sourceUrl=source, tags={})
-        result.update(sec_balance_components(body, period, today))
         for field, rows in fields.items():
             found = aligned(rows, period)
             if found and (field in ('operatingCashFlow', 'operatingIncome') or found['val'] >= 0):
@@ -93,30 +92,6 @@ def sec_decision(body, profile, company, today):
     except ValueError:
         pass
     return block
-
-
-def sec_balance_components(body, period, today):
-    def instant(tag, end):
-        rows = [r for r in body['facts'].get('us-gaap', {}).get(tag, {}).get('units', {}).get('USD', [])
-                if not r.get('start') and r.get('end') == end and r.get('accn') == period.get('accn')
-                and r.get('filed') == period['filed'] and r.get('form') in ('10-K','10-K/A')]
-        values = {r['val'] for r in rows}
-        if len(values) != 1 or not period.get('accn'): return None
-        v = values.pop()
-        return v if isinstance(v,(int,float)) and not isinstance(v,bool) and math.isfinite(v) else None
-    result = {}
-    for key, tag in [('currentAssets','AssetsCurrent'),('currentLiabilities','LiabilitiesCurrent')]:
-        v = instant(tag, period['end'])
-        if v is not None and v >= 0: result[key] = v
-    # Explicit common-stockholders income avoids mixing minority interests or preferred dividends.
-    from refresh_company_analysis import fact_rows, aligned
-    incomes = fact_rows(body,['NetIncomeLossAvailableToCommonStockholdersBasic'],'USD','10-K',330,400,today)
-    income = aligned(incomes,period)
-    before = (dt.date.fromisoformat(period['start']) - dt.timedelta(days=1)).isoformat()
-    opening, closing = instant('StockholdersEquity',before), instant('StockholdersEquity',period['end'])
-    if income and income.get('accn') == period.get('accn') and income['filed'] == period['filed'] and opening is not None and closing is not None:
-        result.update(roeIncome=income['val'], openingEquity=opening, closingEquity=closing)
-    return result
 
 
 def publication_decision(profile, company, today):
@@ -245,6 +220,17 @@ def round2_publication_decision(profile, company, today):
             # releases publish quarterly cash flow only; those are omitted.
             candidates = []
             cash_sections = sections(raw)
+            if raw.startswith(b'%PDF'):
+                full = '\n'.join(cash_sections)
+                heading = re.search(r'^\s*(?:Condensed )?Consolidated Statements? of Cash Flows[^\n]*$', full, re.I|re.M)
+                if heading:
+                    block = full[heading.start():]
+                    limit = re.search(r'^\s*(?:Condensed )?Consolidated (?:Balance|Statements? of (?!Cash))', block[heading.end()-heading.start():], re.I|re.M)
+                    if limit: block = block[:heading.end()-heading.start()+limit.start()]
+                    # Never include later non-GAAP reconciliations or segment tables.
+                    close = re.search(r'^.*(?:cash.*\bend\b.*|of period).*?(?:\$\s*)?[\d,]+(?:\s+\$?\s*[\d,]+)+\s*$', block, re.I|re.M)
+                    if close: block = block[:close.end()]
+                    cash_sections = [block]
             if not raw.startswith(b'%PDF'):
                 from bs4 import BeautifulSoup
                 soup = BeautifulSoup(raw, 'html.parser')
@@ -262,19 +248,31 @@ def round2_publication_decision(profile, company, today):
                 header = re.split(r'(?im)^\s*(?:Cash flows from operating|OPERATING ACTIVITIES|Net income)', text, 1)[0]
                 if not re.search(r'(?:years?|twelve months|52 weeks|53 weeks) ended', header, re.I): continue
                 header_years = [int(y) for y in re.findall(r'\b20\d{2}\b', header)]
-                if len(header_years) != 2 or header_years != [int(a['end'][:4]), int(a['previousEnd'][:4])]: continue
+                expected = [int(a['end'][:4]), int(a['previousEnd'][:4])]
+                if header_years == expected: indices=(0,1)
+                elif header_years == expected*2: indices=(2,3)
+                elif len(header_years)==3 and header_years[:2]==expected: indices=(0,1)
+                else: continue
+                n=len(header_years)
                 if not re.search(r'in millions', header, re.I): continue
-                ocf = row(text, [r'Net cash provided by operating activities', r'Net cash provided by \(used in\) operating activities'])
-                capex = row(text, [r'Purchases of property and equipment', r'Capital expenditures', r'Purchases of property, plant and equipment'])
-                dividends = row(text, [r'Payments of dividends', r'Dividends paid', r'Cash dividends paid'])
-                if ocf and capex and len(ocf)==len(capex)==2:
-                    candidates.append((ocf,capex,dividends if dividends and len(dividends)==2 else None))
+                ocf = row(text, [r'Net cash provided by operating activities', r'Net cash provided by \(used in\) operating activities'], n)
+                capex = row(text, [r'Purchases of property and equipment', r'Capital expenditures', r'Capital spending', r'Purchases of property, plant and equipment'], n)
+                dividends = row(text, [r'Payments of dividends', r'Payments of dividends and dividend equivalents', r'Dividends paid', r'Cash dividends paid'], n)
+                if ocf and capex and len(ocf)==len(capex)==n:
+                    extras={}
+                    for field, labels in [('shareRepurchases',[r'Repurchases of common stock',r'Purchases of treasury stock',r'Share repurchases']),('shareBasedCompensation',[r'Share-based compensation(?: expense)?',r'Stock-based compensation(?: expense)?'])]:
+                        try: vals=row(text,labels,n)
+                        except ValueError: continue
+                        if vals and len(vals)==n:extras[field]=vals
+                    candidates.append((ocf,capex,dividends if dividends and len(dividends)==n else None,extras,indices))
             if len(candidates)==1:
-                ocf,capex,dividends=candidates[0]
-                for index,prefix in ((0,''),(1,'previous')):
+                ocf,capex,dividends,extras,indices=candidates[0]
+                for index,prefix in ((indices[0],''),(indices[1],'previous')):
                     for field,val in [('operatingCashFlow',ocf[index]*1e6),('capitalExpenditure',abs(capex[index])*1e6),('freeCashFlow',(ocf[index]-abs(capex[index]))*1e6)]:
                         a[prefix+field[0].upper()+field[1:] if prefix else field]=val
                     if dividends:a[prefix+'DividendsPaid' if prefix else 'dividendsPaid']=abs(dividends[index])*1e6
+                    for field,vals in extras.items():
+                        a[prefix+field[0].upper()+field[1:]if prefix else field]=abs(vals[index])*1e6
             documents[url]=a
         a=documents[url]
         previous=reference['end']==a['previousEnd']
@@ -284,7 +282,7 @@ def round2_publication_decision(profile, company, today):
         if any(reference[k]!=a[key(k)] for k in ('revenue','netIncome')):continue
         result={k:reference[k]for k in ('end','revenue','netIncome')}
         result.update(sourceUrl=url,tags={})
-        for k in ('operatingIncome','interestExpense','averageDilutedShares','operatingCashFlow','capitalExpenditure','freeCashFlow','dividendsPaid'):
+        for k in ('operatingIncome','interestExpense','averageDilutedShares','operatingCashFlow','capitalExpenditure','freeCashFlow','dividendsPaid','shareRepurchases','shareBasedCompensation'):
             if key(k)in a:result[k]=a[key(k)]
         if 'averageDilutedShares'in result:result['sharesBasisSource']=url
         if 'freeCashFlow'in result:result['freeCashFlowDefinition']=FCF_METHOD

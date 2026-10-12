@@ -134,19 +134,11 @@ fraîcheur et aux composantes disponibles lors des publications suivantes.
 
 ## Indicateurs complémentaires (12 octobre 2026)
 
-Les composantes version 2 ajoutent les rachats d’actions ordinaires effectivement
-payés, la charge de rémunération en actions, les actifs/passifs courants et, lorsque
-publié explicitement, le bénéfice attribuable aux actionnaires ordinaires avec les
-capitaux propres d’ouverture et de clôture. Les bilans doivent provenir du même
-numéro de dépôt et de la même date de publication que le compte annuel réconcilié.
-Les composantes du ROE ne mélangent pas intérêts minoritaires et résultat du groupe.
-
-L’interface calcule la marge opérationnelle et sa variation en points, les achats
-d’immobilisations rapportés au CA, la dette nette rapportée au FCF positif, les
-rachats payés, la rémunération en actions et son poids dans le CA, la liquidité
-générale annuelle et le ROE sur capitaux propres moyens positifs. La date de bilan
-et celle de l’exercice sont précisées pour dette nette/FCF ; ce multiple n’est pas
-une durée de remboursement. Une trésorerie nette ne produit pas de multiple de dette.
+L’interface ajoute la marge opérationnelle et son évolution en points, les achats
+d’immobilisations rapportés au CA et la dette nette rapportée au FCF positif.
+La date de bilan et celle de l’exercice sont précisées pour dette nette/FCF ; ce
+multiple n’est pas une durée de remboursement. Une trésorerie nette ne produit
+pas de multiple de dette.
 
 La croissance annualisée du CA, bénéfice net et FCF exige quatre observations
 annuelles consécutives pour trois ans, ou cinq pour quatre ans. Les dates exactes
@@ -155,16 +147,25 @@ ans n’est annoncée avec seulement cinq observations. Les valeurs doivent êtr
 positives sur toute la fenêtre ; le FCF garde la même définition sur cette fenêtre.
 Les pertes, années absentes et périmètres non comparables masquent le calcul.
 
-Couverture de la collecte réelle SEC, rapprochée avec les comptes officiels déjà
-vérifiés : marge opérationnelle 19/20, variation de marge 17/20, investissements/CA
-19/20, dette nette/FCF 5/20, rachats 15/20, rémunération en actions 16/20, liquidité
-16/20, ROE 2/20 (Alphabet et PepsiCo), croissance du CA sur trois ans 16/20,
-bénéfice net sur trois ans 15/20 et FCF sur trois ans 12/20. Ce sont des observations
-ponctuelles ; chaque renouvellement requalifie sa propre couverture.
+Les publications officielles fournissent également, lorsqu’une ligne et ses
+colonnes annuelles sont qualifiées, les rachats d’actions ordinaires effectivement
+payés et la charge de rémunération en actions. Les rachats ne sont pas assimilés
+à la variation nette du nombre d’actions ; la rémunération en actions ne mesure
+pas directement la dilution. Son poids dans le chiffre d’affaires est affiché.
+Les PDF sont bornés au tableau consolidé de flux ; les colonnes trimestrielles
+et annuelles sont distinguées et les pages de continuation conservées.
+Les réconciliations non-GAAP ne fournissent aucune composante.
 
-Le ROIC reste exclu : aucun ensemble homogène vérifié NOPAT/capitaux investis
-moyens ne permet de l’activer dans cette collecte. La croissance annualisée du
-BPA reste exclue tant que l’historique par action sur une base comparable, incluant
-les divisions d’actions, n’est pas certifié. Les bilans complémentaires IFRS ne sont
-pas activés faute d’adaptateur qualifié. Rien n’est interpolé ou complété manuellement.
-Les nouveaux chiffres restent dans l’application ; texte et export existants sont conservés.
+La SEC était accessible depuis l’environnement de développement mais bloquée
+sur les runners GitHub le 12 octobre. Aucun nouveau champ dépendant uniquement
+de la SEC n’est activé dans le jeu publié. Les nouvelles composantes sont retenues
+seulement après rapprochement réel avec les publications officielles, raccordées
+au workflow quotidien et soumises à la fraîcheur du bloc. La migration du cache
+force une nouvelle collecte des composantes avant de réutiliser les archives.
+
+ROE, ROIC et liquidité restent exclus de cette extension : les sources de bilan
+complémentaires ne sont pas encore qualifiées sur les runners. La croissance
+annualisée du BPA reste exclue tant que son historique sur une base comparable,
+incluant les divisions d’actions, n’est pas certifié. Rien n’est interpolé ou
+complété manuellement. La couverture varie selon l’émetteur et la période publiée.
+Les nouveaux chiffres restent dans l’application ; texte et export sont conservés.

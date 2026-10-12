@@ -137,8 +137,6 @@ export function decisionRatios(company, now = new Date()) {
       result[field+'Revenue'] = latest[field]/a.revenue*100
     }
   }
-  if (finite(latest?.currentAssets) && latest.currentAssets >= 0 && latest.currentLiabilities > 0) result.currentRatio = latest.currentAssets/latest.currentLiabilities
-  if (finite(latest?.roeIncome) && latest.openingEquity > 0 && latest.closingEquity > 0) result.roe = latest.roeIncome/((latest.openingEquity+latest.closingEquity)/2)*100
   if (finite(fcf)) {
     result.freeCashFlow = fcf
     result.fcfMargin = fcf / a.revenue * 100
@@ -206,8 +204,6 @@ export function decisionIndicators(company, now = new Date()) {
   if (finite(r.netDebtFCF)) add('netDebtFCF','Dette nette / FCF annuel',`${fr(r.netDebtFCF)}×`,`Dette nette au ${dateLabel(r.netDebtFCFAsOf)} / FCF de l’exercice clos le ${dateLabel(company.annual.end)}. Ce rapport ne constitue pas un délai de remboursement.`)
   if (finite(r.shareRepurchases)) add('shareRepurchases','Rachats d’actions payés',amount(r.shareRepurchases,company.currency),'Décaissements de rachats d’actions ordinaires sur l’exercice ; distincts de la variation nette du nombre d’actions et de l’autorisation de rachat.')
   if (finite(r.shareBasedCompensation)) add('shareBasedCompensation','Rémunération en actions',amount(r.shareBasedCompensation,company.currency),`Charge de rémunération en actions publiée : ${fr(r.shareBasedCompensationRevenue)} % du chiffre d’affaires. Elle ne mesure pas directement la dilution.`)
-  if (finite(r.currentRatio)) add('currentRatio','Liquidité générale annuelle',`${fr(r.currentRatio)}×`,`Actifs courants / passifs courants au ${dateLabel(company.annual.end)}. La qualité des actifs et le secteur influencent la lecture.`)
-  if (finite(r.roe)) add('roe','Rentabilité des capitaux propres (ROE)',`${fr(r.roe)} %`,'Bénéfice attribuable aux actionnaires ordinaires / moyenne des capitaux propres d’ouverture et de clôture du même dépôt annuel. Masqué si un des capitaux propres est nul ou négatif.')
   for (const row of r.longTerm ?? []) add(row.key,`${row.label} : croissance annualisée sur ${row.intervals} ans`,`${row.value > 0 ? '+' : ''}${fr(row.value)} %/an`,`Du ${dateLabel(row.start)} au ${dateLabel(row.end)}. Exercices consécutifs et valeurs positives, sans estimation.`)
   if (!d && !rows.length) return []
   return rows

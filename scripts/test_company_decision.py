@@ -13,22 +13,30 @@ TODAY = dt.date(2026, 10, 12)
 
 
 class DecisionTests(unittest.TestCase):
-    def test_optional_balance_requires_same_filing_and_common_income(self):
-        from company_decision import sec_balance_components
-        body=accounts()
-        period={'start':'2025-01-01','end':'2025-12-31','filed':'2026-02-01','accn':'same'}
-        facts=body['facts']['us-gaap']
-        for tag, values in [('AssetsCurrent',[('2025-12-31',50)]),('LiabilitiesCurrent',[('2025-12-31',25)]),
-                            ('StockholdersEquity',[('2024-12-31',100),('2025-12-31',120)])]:
-            facts[tag]={'units':{'USD':[dict(end=end,val=val,filed=period['filed'],accn='same',form='10-K')for end,val in values]}}
-        facts['NetIncomeLossAvailableToCommonStockholdersBasic']={'units':{'USD':[{**period,'val':20,'form':'10-K'}]}}
-        result=sec_balance_components(body,period,TODAY)
-        self.assertEqual(result['currentAssets'],50)
-        self.assertEqual(result['roeIncome'],20)
-        facts['StockholdersEquity']['units']['USD'][0]['accn']='different'
-        self.assertNotIn('roeIncome',sec_balance_components(body,period,TODAY))
-        facts['AssetsCurrent']['units']['USD'].append({**facts['AssetsCurrent']['units']['USD'][0],'val':60})
-        self.assertNotIn('currentAssets',sec_balance_components(body,period,TODAY))
+    def test_pdf_cash_statement_isolation_and_annual_columns(self):
+        from company_decision import round2_publication_decision
+        annual={'end':'2025-12-31','previousEnd':'2024-12-31','revenue':120e6,'previousRevenue':100e6,'netIncome':12e6,'previousNetIncome':10e6,'durationMonths':12,'operatingIncome':20e6,'previousOperatingIncome':18e6}
+        ref={'end':'2025-12-31','revenue':120e6,'netIncome':12e6,'sourceUrl':'https://issuer.test/report.pdf'}
+        text="""Summary 2026 2025
+Net income 99 98
+Condensed Consolidated Statements of Cash Flows
+(in millions)
+Three Months Ended Year Ended
+2025 2024 2025 2024
+Cash flows from operating activities:
+Net cash provided by operating activities 9 8 42 30
+Purchases of property and equipment (3) (2) (12) (10)
+Stock-based compensation 1 1 4 3
+Repurchases of common stock (2) (1) (6) (5)
+Cash, cash equivalents at end of period 10 9 10 9
+Consolidated Statements of Comprehensive Income
+Net cash provided by operating activities 999 999 999 999
+"""
+        with patch('company_publications.get',return_value=b'%PDF'),patch('company_publications.sections',return_value=[text]),patch('company_round2_publications.parse',return_value=[annual]):
+            d=round2_publication_decision({'id':'servicenow'},{'annual':ref,'history':{'years':[ref]}},TODAY)
+        self.assertEqual(d['years'][-1]['freeCashFlow'],30e6)
+        self.assertEqual(d['years'][-1]['shareBasedCompensation'],4e6)
+        self.assertEqual(d['years'][-1]['shareRepurchases'],6e6)
 
     def test_extra_cash_components_use_exact_annual_periods(self):
         body=accounts()

@@ -44,13 +44,13 @@ const extra=structuredClone(c)
 Object.assign(extra.decision.years[1],{shareRepurchases:6,shareBasedCompensation:3,currentAssets:50,currentLiabilities:25,roeIncome:12,openingEquity:60,closingEquity:80})
 Object.assign(extra,{balance:{asOf:'2026-09-30',observedAt:'2026-10-12',netDebt:60,definition:'same'}})
 r=decisionRatios(extra,now)
-assert.equal(r.capexRevenue,10);assert.equal(r.netDebtFCF,2);assert.equal(r.currentRatio,2)
-assert.equal(r.roe,12/70*100);assert.equal(r.shareBasedCompensationRevenue,2.5)
+assert.equal(r.capexRevenue,10);assert.equal(r.netDebtFCF,2)
+assert.equal(r.shareBasedCompensationRevenue,2.5)
 assert.equal(r.operatingMargin,20/120*100)
 extra.decision.years[1].currentLiabilities=0;extra.decision.years[1].openingEquity=-1
-assert.equal(decisionRatios(extra,now).currentRatio,undefined);assert.equal(decisionRatios(extra,now).roe,undefined)
+
 extra.balance.netDebt=-5
 assert.equal(decisionRatios(extra,now).netDebtFCF,undefined)
 extra.decision.observedAt='2026-08-01'
 assert.equal(decisionRatios(extra,now).shareRepurchases,undefined)
-console.log('Extra indicators: CAGR gaps/losses, operating margin, investments, debt/FCF, stock compensation, liquidity and average-equity guards OK.')
+console.log('Extra indicators: CAGR gaps/losses, operating margin, investments, debt/FCF, stock compensation and stale-input guards OK.')
