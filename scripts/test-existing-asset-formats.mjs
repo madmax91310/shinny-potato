@@ -36,7 +36,7 @@ for (const id of ['monetaire-obligations-courtes', 'world-meme-indice-pea', 'sp5
   const theme = DEFAULT_THEMES.find(item => item.id === id)
   assert(theme)
   const text = buildTweetText(theme)
-  assert(!/undefined|NaN|non renseignés|à confirmer|non disponible/i.test(text))
+  assert(!/\bundefined\b|\bNaN\b|non renseignés|à confirmer|non disponible/i.test(text))
   assert(theme.etfs.every(fund => text.includes(fund.isin)))
 }
 for (const id of ['msci-usa', 'msci-india']) {
