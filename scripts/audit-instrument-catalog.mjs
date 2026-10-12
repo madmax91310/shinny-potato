@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { PRESENTATION_ETF_ADDITIONS } from '../src/data/presentation-etf-additions.js';
 import { AUTOMATED_ETF } from '../src/data/automated-etf.js';
 // Vérifie que les outils consomment les registres communs par ISIN.
 import { EXPOSURE_ADDITIONS } from '../src/data/exposure-additions.js';
@@ -82,14 +83,14 @@ for (const [context, file, items] of collections) {
   const references = source.match(/name:\s*getInstrumentName\(|nom:\s*getInstrumentName\(/g) ?? [];
   // Les nouveaux thèmes construisent les libellés par une fonction commune ;
   // chaque résultat est comparé au registre par ISIN dans la boucle ci-dessous.
-  if (context !== 'tweet' && references.length + (source.includes('EXPOSURE_ADDITIONS.map(') ? EXPOSURE_ADDITIONS.length - 1 : 0) + (context === 'index' ? 3 : 0) !== items.length) {
+  if (context !== 'tweet' && references.length + (source.includes('EXPOSURE_ADDITIONS.map(') ? EXPOSURE_ADDITIONS.length - 1 : 0) + (source.includes('PRESENTATION_ETF_ADDITIONS.map(') ? PRESENTATION_ETF_ADDITIONS.length - 1 : 0) + (context === 'index' ? 3 : 0) !== items.length) {
     console.error(`${file} : ${references.length} références au catalogue pour ${items.length} produits.`);
     errors++;
   }
   if (context === 'sheet' || context === 'index') {
     const aumReferences = source.match(/aum:\s*getInstrumentAum\(/g) ?? [];
     const aumItems = items.filter(item => item.aum);
-    if (aumReferences.length + (source.includes('EXPOSURE_ADDITIONS.map(') ? EXPOSURE_ADDITIONS.length - 1 : 0) + (context === 'index' ? 2 : 0) !== aumItems.length) {
+    if (aumReferences.length + (source.includes('EXPOSURE_ADDITIONS.map(') ? EXPOSURE_ADDITIONS.length - 1 : 0) + (source.includes('PRESENTATION_ETF_ADDITIONS.map(') ? PRESENTATION_ETF_ADDITIONS.length - 1 : 0) + (context === 'index' ? 2 : 0) !== aumItems.length) {
       console.error(`${file} : ${aumReferences.length} références d'encours pour ${aumItems.length} valeurs.`);
       errors++;
     }

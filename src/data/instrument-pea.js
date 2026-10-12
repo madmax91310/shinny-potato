@@ -4,6 +4,7 @@ import { EXPOSURE_ADDITIONS } from './exposure-additions.js';
 // Ne jamais déduire l'éligibilité du domicile, de l'indice ou du nom commercial.
 const exposurePeaSources = {"IE00BLNMYC90": "https://www.zonebourse.com/cours/etf/XTRACKERS-S-P-500-EQUAL-W-122801274/composition/", "IE00B2NPKV68": "https://www.zonebourse.com/cours/etf/ISHARES-J-P-MORGAN-EM-BON-17138508/composition/", "IE00B1FZS913": "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/ishares-eur-govt-bond-15-30yr-IE00B1FZS913-IBGL-EUR-XAMS/seance", "IE0006WW1TQ4": "https://www.zonebourse.com/cours/etf/XTRACKERS-MSCI-WORLD-EX-U-169862014/"};
 export const PEA_REVIEWS_BY_ISIN = Object.freeze({
+  IE00BJGWQN72: { eligible: false, checkedAt: "2026-10-11", sourceUrl: "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BJGWQN72" },
   IE00BZ56SW52: { eligible: false, checkedAt: "2026-10-11", sourceUrl: "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BZ56SW52" },
   FR001400ZGO4: {eligible: true, checkedAt: '2026-10-09', sourceUrl: 'https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR001400ZGO4/FRA/FRA/RETAIL/ETF/20260831', note: 'Fiche Amundi : investissement permanent du panier au minimum à 75 % en titres éligibles PEA.'},
   FR0007056841: {eligible: false, checkedAt: '2026-10-06', sourceUrl: 'https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0007056841/FRA/FRA/RETAIL/ETF/20260831', note: 'Fiche Amundi : compte-titres et assurance-vie, sans PEA.'},

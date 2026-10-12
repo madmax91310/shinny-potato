@@ -43,7 +43,8 @@ def parse_document(body,share,now):
         years=[];values=[]
         for line in block.splitlines():
             cells=re.split(r' {2,}',line.strip())
-            header=re.search(r'(?:^| {2,})(20\d{2}(?:\s+20\d{2})*)\s*$',line.strip())
+            # An asterisk marks a documented benchmark change, not a partial year.
+            header=re.search(r'(?:^| {2,})(20\d{2}\*?(?:\s+20\d{2}\*?)*)\s*$',line.strip())
             if header: years=re.findall(r'20\d{2}',header[1])
             if 'VanEck ' in line and 'Benchmark' not in line:
                 # Numeric columns are separated from the ETF label by two or

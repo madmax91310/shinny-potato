@@ -1,3 +1,4 @@
+import { PRESENTATION_ETF_ADDITIONS } from './presentation-etf-additions.js';
 import { EXPOSURE_ADDITIONS } from './exposure-additions.js';
 // Revue des 48 fiches le 02/10/2026 : sources et limites dans scripts/source-snapshots/etf-review-2026-10-02.json.
 import { getPreferredInstrumentListing } from './instrument-listings.js';
@@ -59,6 +60,7 @@ export const CATEGORY_EMOJI = {
   };
 
 export const ETFS = [
+  ...PRESENTATION_ETF_ADDITIONS.map(r => ({ ...r, name: getInstrumentName(r.isin, 'sheet'), listing: getPreferredInstrumentListing(r.isin), isNew: true, presentationOnly: true, ter: formatEtfTer(r.isin, 'sheet'), positions: getInstrumentPositions(r.isin), aum: getInstrumentAum(r.isin, 'sheet'), distribution: getInstrumentDistribution(r.isin), pea: getInstrumentPea(r.isin), cto: true, location: getInstrumentLocation(r.isin), lastVerified: '11/10/2026' })),
   {
     id: "pea-luxe-monde",
     category: "Sectoriels classiques",

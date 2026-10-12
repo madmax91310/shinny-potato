@@ -1,8 +1,10 @@
+import { PRESENTATION_ETF_ADDITIONS } from './presentation-etf-additions.js';
 import { EXPOSURE_ADDITIONS } from './exposure-additions.js';
 // Cotations contrôlées le 30/09/2026 auprès des émetteurs et des places.
 // Sous-ensemble documenté, pas une liste exhaustive des marchés disponibles.
 // currency est la devise de négociation, jamais celle du fonds par déduction.
 export const INSTRUMENT_LISTINGS_BY_ISIN = Object.freeze({
+  ...Object.fromEntries(PRESENTATION_ETF_ADDITIONS.map(r => [r.isin, [r.listing]])),
   "FR001400S9V0": [{"ticker": "MLUX", "exchange": "Euronext Paris", "mic": "XPAR", "currency": "EUR", "sourceUrl": "https://live.euronext.com/en/product/etfs/FR001400S9V0-XPAR", "checkedAt": "2026-10-11", "evidenceId": "FR001400S9V0-XPAR-MLUX-EUR"}],
   "IE00BGV5VN51": [{"ticker": "XAIX", "exchange": "Borsa Italiana", "mic": "ETFP", "currency": "EUR", "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BGV5VN51/pdpMetaTagsTealium", "checkedAt": "2026-10-11", "evidenceId": "IE00BGV5VN51-ETFP-XAIX-EUR"}],
   "IE00BDFBTQ78": [{"ticker": "GDIG", "exchange": "Borsa Italiana", "mic": "ETFP", "currency": "EUR", "sourceUrl": "https://www.vaneck.com/fr/en/library/fact-sheets/gdig-fact-sheet.pdf", "checkedAt": "2026-10-11", "evidenceId": "IE00BDFBTQ78-ETFP-GDIG-EUR"}],
