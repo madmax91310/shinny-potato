@@ -34,14 +34,16 @@ L’indice Consumer Staples classique est distinct de la variante Advanced Selec
 
 ## Analyse entreprise
 
-Meta, Netflix, Broadcom, AMD, Mastercard, Coca-Cola, PepsiCo, McDonald’s, Adobe et
-Salesforce : comptes SEC Companyfacts, trois à cinq exercices consolidés, dernière
-séance Yahoo et estimations publiques Finviz. Les estimations restent séparées des
-résultats réalisés. Les sources sont actualisées par le workflow quotidien existant.
-Broadcom et Mastercard utilisent leurs balises comptables exactes ProfitLoss ;
-le revenu Mastercard utilise Revenues, sans mélanger le chiffre d’affaires net
-avec une autre définition. Aucun quatrième trimestre de BPA n’est reconstitué :
-un PER historique absent reste absent. Les contrôles de fraîcheur existants restent actifs.
+Meta : publications officielles trimestrielles et annuelles de l’émetteur,
+cours de la dernière séance Yahoo et estimations publiques Finviz. Le collecteur
+existant est étendu aux adresses de publication Meta. Les fichiers récupérés sont
+réutilisés en mémoire pendant une collecte afin que comptes et historique restent
+fondés sur les mêmes publications ; aucune capture complète n’est publiée.
+Le PER historique n’est calculé que sur quatre BPA trimestriels publiés.
+La SEC répond dans l’environnement de développement mais refuse l’accès depuis
+GitHub Actions. Les neuf autres entreprises proposées ne sont donc pas ajoutées :
+leur historique et leurs comptes doivent d’abord passer une collecte complète sur
+l’environnement d’exécution, via des sources de secours officielles.
 
 ## Présentations d’acteurs
 
@@ -63,17 +65,13 @@ Lendosphere téléchargé sur son site).
 
 ## Illustrations d’entreprises
 
-Fichiers : `public/asset-art/company-light/{meta,netflix,broadcom,amd,mastercard,cocacola,pepsico,mcdonalds,adobe,salesforce}.webp`.
+Fichiers : `public/asset-art/company-light/meta.webp`.
 Création avec l’outil intégré de génération d’images ; référence stylistique :
-`public/asset-art/company-light/costco.webp`. Images inspectées individuellement
+`public/asset-art/company-light/costco.webp`. Illustration Meta inspectée
 dans une planche de contrôle, puis encodées en WebP sans modification de composition.
 
 Prompt commun : illustration panoramique 2:1 de miniatures réalistes en studio,
 fond blanc/gris clair, socles en marbre blanc, lumière douce, matériaux réalistes,
 accents de marque limités, marge autour des objets, sans chiffres financiers,
 sans légende ni filigrane. La référence ne sert qu’au style : retirer toute
-identité Costco. Sujets respectifs : Meta/réseaux sociaux et serveurs ;
-Netflix/streaming ; Broadcom/puces, réseaux et logiciels ; AMD/processeurs et GPU ;
-Mastercard/réseau de paiement ; Coca-Cola/boissons et embouteillage ;
-PepsiCo/boissons et snacks ; McDonald’s/restaurant et franchises ;
-Adobe/logiciels créatifs ; Salesforce/cloud et relation client.
+identité Costco. Sujet publié : Meta, réseaux sociaux et serveurs, avec emblème de marque.

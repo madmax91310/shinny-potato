@@ -19,6 +19,7 @@ MONTHS = {m.lower():i for i,m in enumerate(calendar.month_name) if m}
 NUMBER = r'\(?-?\d[\d,]*(?:\.\d+)?\)?'
 
 
+@lru_cache(maxsize=64)
 def get(url, max_bytes=10_000_000):
     req = urllib.request.Request(url, headers={'User-Agent':UA})
     with urllib.request.urlopen(req, timeout=20) as response:
@@ -190,7 +191,7 @@ def candidates(ident, today, annual_only=False):
     end_months = (1,4,7,10) if ident=='nvidia' else (3,6,9,12)
     for year in range(today.year, today.year - (7 if annual_only else 2), -1):
         for month in end_months:
-            if annual_only and month != {'apple':9,'microsoft':6,'alphabet':12,'amazon':12,'nvidia':1}[ident]:
+            if annual_only and month != {'apple':9,'microsoft':6,'alphabet':12,'amazon':12,'nvidia':1,'meta':12}[ident]:
                 continue
             date = dt.date(year,month,calendar.monthrange(year,month)[1])
             if date <= today:
@@ -213,6 +214,10 @@ def candidates(ident, today, annual_only=False):
             word=['','First','Second','Third','Fourth'][q]
             slug=f'NVIDIA-Announces-Financial-Results-for-{word}-Quarter-'+(f'and-Fiscal-{fy}' if q==4 else f'Fiscal-{fy}')
             yield [f'https://nvidianews.nvidia.com/news/{slug.lower()}',f'https://investor.nvidia.com/news/press-release-details/{year}/{slug}/default.aspx']
+        elif ident=='meta':
+            q=month//3;pubyear=year+(q==4);word=['','First','Second','Third','Fourth'][q]
+            slug=f'Meta-Reports-{word}-Quarter-'+(f'and-Full-Year-{year}' if q==4 else str(year))+'-Results'
+            yield [f'https://investor.atmeta.com/investor-news/press-release-details/{pubyear}/{slug}/']
         elif ident=='amazon':
             q=month//3;pubyear=year+(q==4);word=['','First','Second','Third','Fourth'][q]
             yield [f'https://ir.aboutamazon.com/news-release/news-release-details/{pubyear}/Amazon-com-Announces-{word}-Quarter-Results/default.aspx']
@@ -265,6 +270,8 @@ def collect(profile, today, old=None):
                             'revenue':sum(p['revenue'] for p in quarters[:4]),
                             'sourceUrls':[p['sourceUrl'] for p in quarters[:4]],
                             'definition':'Somme de quatre trimestres GAAP publiés, sur la même base par action'}
+    if profile['id'] == 'meta':
+        result['historyYears'] = collect_history(profile, today)
     return result
 
 
@@ -298,4 +305,11 @@ def collect_history(profile, today):
                 continue
         if len(years) >= 5:
             break
-    return sorted(years.values(), key=lambda r: r['end'])[-5:]
+    ordered = sorted(years.values(), key=lambda r: r['end'])[-5:]
+    # Never bridge a missing fiscal year in the visible history.
+    contiguous = []
+    for record in reversed(ordered):
+        if contiguous and not 330 <= (dt.date.fromisoformat(contiguous[-1]['end']) - dt.date.fromisoformat(record['end'])).days <= 400:
+            break
+        contiguous.append(record)
+    return list(reversed(contiguous))
