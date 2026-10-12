@@ -120,3 +120,7 @@
 .tb-review { display: grid; gap: 12px; padding: 16px; border: 1px solid var(--border, #ccc); border-radius: 12px; margin-bottom: 16px; }
 .tb-review label { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
 .tb-review small { line-height: 1.5; }
+
+.tb-scope .tb-tweet-image { margin: 16px 0; }
+.tb-scope .tb-tweet-image img { display: block; width: 100%; max-width: 600px; height: auto; border-radius: 12px; }
+.tb-scope .tb-tweet-image figcaption { margin-top: 10px; }
