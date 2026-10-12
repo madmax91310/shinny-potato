@@ -69,7 +69,8 @@ assert.match(world, /Voici trois ETF à comparer/u);
 assert.doesNotMatch(world, /🏭|🏢|📊 Performances/u);
 assert.equal((world.match(/^🏦 PEA : ✅ \| CTO : ✅/gmu) ?? []).length, 2);
 const unknownStatus = buildEtfTweet({ nom: 'Test', etfs: [{ nom: 'Sans statut', isin: 'IE00BD4TXV59', frais: '0,20' }] });
-assert.doesNotMatch(unknownStatus, /🏦 PEA|🏦 CTO/u);
+assert.doesNotMatch(unknownStatus, /🏦 PEA/u);
+assert.match(unknownStatus, /🏦 CTO/u);
 
 
 // Extras génériques passés à toutes les générations : ignorés par les formats qui n'en ont pas

@@ -5,7 +5,7 @@ import { DEFAULT_THEMES } from '../src/data/etf-themes.js'
 import { comparisonLayout, getComparisonImageComposition } from '../src/pages/tweet-midi/comparatifEtfImage.js'
 import { getInstrumentPeaStatus } from '../src/data/instruments.js'
 import { getPreferredInstrumentListing } from '../src/data/instrument-listings.js'
-import { getComparisonPerformance } from '../src/pages/tweet-midi/comparisonPerformance.js'
+import { getComparisonPerformance, getComparisonYears } from '../src/pages/tweet-midi/comparisonPerformance.js'
 import { buildTweetText } from '../src/pages/etf-tweets/lib/tweetFormat.js'
 import { ETF_EXPOSURE_COPY, COMPARISON_HOOKS } from '../src/pages/etf-tweets/lib/exposureCopy.js'
 import { COMPARISON_ETF_DETAILS } from '../src/data/comparison-etf-details.js'
@@ -154,7 +154,7 @@ for (const theme of DEFAULT_THEMES) for (const fund of theme.etfs) for (const fi
 }
 assert.equal(getComparisonImageComposition('FR001400ZGO4', 'countries').isIndex, true)
 assert.match(buildTweetText(DEFAULT_THEMES.find(theme => theme.id === 'etc-metaux')), /Taux de swap annuel : 0,45 % en supplément/)
-console.log('Texte compact, six sélections PEA, compositions réservées aux images et historique propre de PEMS vérifiés.')
+console.log('Six sélections PEA, compositions partagées avec les images et historique propre de PEMS vérifiés.')
 
 for (const count of [1,2,3,4,5,6,7,10]) {
  const layout = comparisonLayout(count)
@@ -184,3 +184,32 @@ assert.equal(DEFAULT_THEMES.find(theme => theme.id === 'tech-europe').etfs.lengt
 console.log('Comparaisons d’exposition équilibrées, comparaison de produits et découvertes unitaires distinguées.')
 
 assert.ok(getComparisonImageComposition('IE0002XZSHO1', 'countries').rows.every(([label]) => !/^(other|others|autres)$/i.test(label)), 'Une catégorie résiduelle ne constitue pas un pays parmi les principaux pays')
+
+// Le squelette publié reprend les chiffres et la sélection de l'image, sans positions.
+for (const theme of DEFAULT_THEMES) {
+ const tweet = buildTweetText(theme)
+ for (const [index, fund] of theme.etfs.entries()) {
+  const start = tweet.indexOf(`🆔 ISIN : ${fund.isin}`)
+  const next = theme.etfs[index + 1]
+  const end = next ? tweet.indexOf(`🆔 ISIN : ${next.isin}`) : tweet.length
+  const block = tweet.slice(start, end)
+  const performance = getComparisonPerformance(fund.isin, getComparisonYears(theme.etfs.map(f => f.isin)))
+  if (performance) for (const row of performance.rows) assert(block.includes(`${row.year} : ${comparisonPct(row.pct)}`))
+  for (const [field, label] of [['countries', '🌍 Principaux pays'], ['sectors', '🧩 Principaux secteurs']]) {
+   const composition = getComparisonImageComposition(fund.isin, field)
+   if (composition.rows.length) {
+    assert(block.includes(label))
+    for (const [,value] of composition.rows) assert(block.includes(`${value.toLocaleString('fr-FR', { maximumFractionDigits: 2 })} %`))
+   }
+  }
+  if (block.includes('🌍 Principaux pays') && block.includes('🧩 Principaux secteurs')) assert(block.indexOf('🌍 Principaux pays') < block.indexOf('🧩 Principaux secteurs'))
+  assert.doesNotMatch(block, /non disponible|non renseigné|🏢/)
+ }
+}
+const momentumTweet = buildTweetText(DEFAULT_THEMES.find(t => t.id === 'world-momentum'))
+assert.match(momentumTweet, /📈 Performances annuelles en dollars/)
+assert.match(momentumTweet, /2025 : \+21,23 %/)
+assert.match(momentumTweet, /🇺🇸 États-Unis/)
+assert.equal((momentumTweet.match(/🌍 Principaux pays/g) ?? []).length, 2)
+assert.equal((momentumTweet.match(/🧩 Principaux secteurs/g) ?? []).length, 2)
+console.log('Squelette comparatif ETF : performances, pays puis secteurs cohérents avec les images.')
