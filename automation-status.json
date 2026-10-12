@@ -50,22 +50,17 @@
     },
     "update-company-analysis.yml": {
       "name": "Analyses d’entreprises",
-      "runId": 38266241618,
+      "runId": 38273602703,
       "attempt": 1,
-      "completedAt": "2026-10-12T15:16:31Z",
-      "status": "failure",
-      "lastSuccessAt": "2026-10-12T13:02:10Z",
+      "completedAt": "2026-10-12T16:16:53Z",
+      "status": "success",
+      "lastSuccessAt": "2026-10-12T16:16:53Z",
       "collectionStatus": "success",
-      "publicationStatus": "failure",
-      "lastCollectionSuccessAt": "2026-10-12T15:16:31Z",
+      "publicationStatus": "not-run",
+      "lastCollectionSuccessAt": "2026-10-12T16:16:53Z",
       "lastPublicationSuccessAt": "2026-10-10T07:18:24Z",
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38266241618",
-      "failures": [
-        {
-          "job": "deploy / build",
-          "step": "Run node scripts/test-investment-emerald.mjs"
-        }
-      ],
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38273602703",
+      "failures": [],
       "dataFailures": {}
     },
     "collect-etf-pilot.yml": {
@@ -260,5 +255,5 @@
       "failures": []
     }
   },
-  "updatedAt": "2026-10-12T16:00:12Z"
+  "updatedAt": "2026-10-12T16:16:53Z"
 }
