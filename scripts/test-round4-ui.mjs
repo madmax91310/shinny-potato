@@ -42,6 +42,17 @@ try {
     await page.screenshot({path:`test-artifacts/round4/${id}-sheet.png`})
     await page.getByRole('tab',{name:'Texte',exact:true}).click()
   }
+  const duelImage=await page.evaluate(async()=>{
+    const {DUELS}=await import('/shinny-potato/src/pages/portfolio-duels/data.js')
+    const {buildDuel}=await import('/shinny-potato/src/pages/portfolio-duels/lib.js')
+    const {renderDuelImage}=await import('/shinny-potato/src/pages/portfolio-duels/canvasImage.js')
+    const definition=DUELS.find(d=>d.id==='world-multifactor-20')
+    if(!definition)throw Error('Multifactor duel missing')
+    const canvas=await renderDuelImage(buildDuel(definition))
+    if(!canvas.width)throw Error('Empty duel export')
+    return canvas.toDataURL()
+  })
+  await writeFile('test-artifacts/round4/world-multifactor-duel.png',Buffer.from(duelImage.split(',')[1],'base64'))
   assert.deepEqual(errors,[])
   console.log('Round 4: four DCA simulations, performance exports and two issuer sheets exercised in Chromium.')
 }finally{await browser?.close();server.kill('SIGTERM')}
