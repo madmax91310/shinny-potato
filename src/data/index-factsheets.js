@@ -217,7 +217,8 @@ const automatedSheets = buildAutomatedIndexSheets();
 export const SHEETS = [...ARCHIVE_SHEETS.map(sheet => {
   const automated = automatedSheets.find(row => row.id === sheet.id);
   // Keep the approved editorial structure while requiring complete automated facts.
-  const current = automated ? { ...sheet, ...automated, takeaway: sheet.takeaway } : refreshIndexSheet(sheet);
+  const previous = refreshIndexSheet(sheet);
+  const current = automated ? { ...previous, ...automated, takeaway: previous.takeaway } : previous;
   if (current.performance.kind !== 'indice' || !/dividendes.*réinvestis/.test(current.performance.detail)) {
     throw new Error(`La fiche exige un indice dividendes réinvestis : ${sheet.id}`);
   }
