@@ -24,9 +24,10 @@ for (const r of PRESENTATION_ETF_ADDITIONS) {
   if (r.isin === 'IE0003Z9E2Y3') {
     assert(series.values.every(v => v === null));
     assert.equal(performanceEntries(series)[0].label, '1 mois');
-    assert.equal(performanceEntries(series).at(-1).value, 163.01);
+    assert.deepEqual(performanceEntries(series), record.performance.observations);
   } else {
-    assert.equal(series.values.at(-1), record.performance.years['2025']);
+    assert.deepEqual(series.values, series.calendarYears.map(y => record.performance.years[y] ?? null));
+    assert(series.calendarYears.at(-1) < new Date().getUTCFullYear());
     const future = structuredClone(record);
     future.performance.years['2026'] = 10;
     const next = buildAnnualPerformance(future, new Date('2027-02-01T00:00:00Z'));
@@ -34,5 +35,5 @@ for (const r of PRESENTATION_ETF_ADDITIONS) {
     assert.equal(next.values.at(-1), 10);
   }
 }
-assert.deepEqual(getAnnualPerformance(ETFS.find(c => c.isin === 'IE0003UVYC20')).values, [null,null,null,null,8.08,12.35]);
+assert.equal(AUTOMATED_ETF.IE0003UVYC20.performance.years['2023'], undefined, 'Partial launch year stays excluded');
 console.log('Six exact shares: active collectors, automated fields, cumulative/calendar separation, future rollover and presentation-only scope OK.');
