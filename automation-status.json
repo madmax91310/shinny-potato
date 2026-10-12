@@ -163,22 +163,17 @@
     },
     "update-editorial-radar.yml": {
       "name": "Radar éditorial quotidien",
-      "runId": 38282070302,
+      "runId": 38283306010,
       "attempt": 1,
-      "completedAt": "2026-10-12T17:07:45Z",
-      "status": "failure",
-      "lastSuccessAt": "2026-10-12T17:07:19Z",
+      "completedAt": "2026-10-12T17:18:42Z",
+      "status": "success",
+      "lastSuccessAt": "2026-10-12T17:18:42Z",
       "collectionStatus": "unknown",
       "publicationStatus": "not-run",
       "lastCollectionSuccessAt": null,
       "lastPublicationSuccessAt": null,
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38282070302",
-      "failures": [
-        {
-          "job": "update",
-          "step": "Publish comparable observations and new signals"
-        }
-      ],
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38283306010",
+      "failures": [],
       "dataFailures": {}
     },
     "update-presentation-actors.yml": {
@@ -220,5 +215,5 @@
       "failures": []
     }
   },
-  "updatedAt": "2026-10-12T17:18:15Z"
+  "updatedAt": "2026-10-12T17:18:42Z"
 }
