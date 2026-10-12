@@ -6,6 +6,11 @@ const ACWI = 'Il couvre les grandes et moyennes entreprises des pays développé
 const EURO50 = 'Il suit 50 grandes entreprises de la zone euro. Son périmètre est plus restreint que celui du MSCI Europe ou du STOXX Europe 600 : le Royaume-Uni et la Suisse n’en font pas partie.'
 const TECH_EUROPE = 'Il cible les entreprises technologiques du STOXX Europe 600. Tu investis dans un secteur européen précis, plutôt que dans l’ensemble du marché européen.'
 export const ETF_EXPOSURE_COPY = {
+  IE00BP3QZ601: 'Il sélectionne des entreprises du MSCI World selon leur rentabilité, leur endettement et la stabilité de leurs bénéfices. Les poids des secteurs restent proches du World ; ce filtre ne garantit pas une meilleure performance.',
+  IE00BP3QZB59: 'Il sélectionne des entreprises du MSCI World dont la valorisation paraît plus faible selon plusieurs critères financiers. Une action moins chère peut le rester longtemps et cette sélection peut sous-performer le marché.',
+  IE00B5BMR087: 'Il suit le S&P 500, composé de grandes entreprises américaines de plusieurs secteurs. Les entreprises les plus importantes en Bourse occupent les plus gros poids dans l’indice.',
+  IE00BLNMYC90: 'Il reprend les entreprises du S&P 500 avec des poids égaux lors des rééquilibrages trimestriels. Les géants occupent moins de place ; les poids évoluent ensuite avec les cours.',
+  IE00B53SZB19: 'Il suit les grandes entreprises non financières cotées au Nasdaq. La technologie occupe une place importante, mais l’indice comprend aussi d’autres secteurs et certaines entreprises hors des États-Unis.',
   IE00B4L5Y983: WORLD,
   IE00BP3QZ825: 'Il sélectionne des entreprises du MSCI World dont les cours ont récemment le mieux progressé, en tenant compte du risque. La composition évolue avec les tendances ; un retournement brutal peut lui être défavorable.',
   IE0002XZSHO1: WORLD,
@@ -86,6 +91,11 @@ export function getEtfExposureCopy(etf) {
 }
 
 export const COMPARISON_HOOKS = {
+  'world-quality': 'Suivre le World ou sélectionner les entreprises selon leur solidité financière ?',
+  'world-value': 'Suivre le World ou privilégier des entreprises aux valorisations plus faibles ?',
+  'quality-momentum': 'Solidité financière ou tendances récentes des cours : quel filtre choisir ?',
+  'sp500-equal-weight': 'Les mêmes entreprises, mais des poids différents : quel ETF S&P 500 choisir ?',
+  'nasdaq-sp500': 'S&P 500 ou Nasdaq-100 : quelles entreprises veux-tu privilégier ?',
   'world-momentum': 'Suivre le World ou privilégier les actions qui ont récemment le mieux progressé ?',
   'monetaire-obligations-courtes': 'Monétaire ou obligations courtes : que choisir pour une poche en euros ?',
   'world-meme-indice-pea': 'Plusieurs ETF World sont accessibles sur PEA. Sur quels critères les choisir ?',
