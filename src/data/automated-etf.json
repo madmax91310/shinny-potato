@@ -17124,7 +17124,46 @@
       "terPct": 0.25,
       "index": "MSCI WORLD MATERIALS TRN INDEX",
       "distribution": "Capitalizing",
-      "checkedAt": "2026-10-12"
+      "domicile": "Ireland",
+      "replicationMethod": "Direct Replication (physically)",
+      "inceptionDate": "16/03/2016 (launch date of merged sub-fund 22/11/2010)<PageFootnoteReference component-id='fundinformation-basicinformation' title=\"On 9 May 2016 db x-trackers MSCI World Materials Index UCITS ETF (a sub-fund of the Luxembourg domiciled db x-trackers SICAV) merged into db x-trackers MSCI World Materials Index UCITS ETF (DR) (a sub-fund of the Irish domiciled Concept Fund Solutions plc). Both ETFs had a comparable investment policy and risk profile. Performance reported prior to 9 May 2016 relates to the db x-trackers MSCI World Materials Index UCITS ETF (the now closed Luxembourg domiciled sub-fund).\"></PageFootnoteReference>",
+      "listings": [
+        {
+          "ticker": "XDWM",
+          "exchange": "Xetra",
+          "mic": "XETR",
+          "currency": "EUR",
+          "symbol": "XDWM.DE",
+          "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HS53/pdpMetaTagsTealium",
+          "checkedAt": "2026-10-12",
+          "evidenceId": "IE00BM67HS53-XETR-XDWM-EUR",
+          "excerpt": "IE00BM67HS53 | XETRA | XDWM | EUR | XDWM.DE"
+        },
+        {
+          "ticker": "XDWM",
+          "exchange": "London Stock Exchange",
+          "mic": "XLON",
+          "currency": "USD",
+          "symbol": "XDWM.L",
+          "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HS53/pdpMetaTagsTealium",
+          "checkedAt": "2026-10-12",
+          "evidenceId": "IE00BM67HS53-XLON-XDWM-USD",
+          "excerpt": "IE00BM67HS53 | London Stock Exchange | XDWM | USD | XDWM.L"
+        },
+        {
+          "ticker": "XDWM",
+          "exchange": "Borsa Italiana",
+          "mic": "ETFP",
+          "currency": "EUR",
+          "symbol": "XDWM.MI",
+          "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HS53/pdpMetaTagsTealium",
+          "checkedAt": "2026-10-12",
+          "evidenceId": "IE00BM67HS53-ETFP-XDWM-EUR",
+          "excerpt": "IE00BM67HS53 | Borsa Italiana | XDWM | EUR | XDWM.MI"
+        }
+      ],
+      "checkedAt": "2026-10-12",
+      "modifiedAt": "2026-10-12"
     },
     "performance": {
       "basis": "fund",
@@ -17150,197 +17189,195 @@
       "scope": "fund",
       "asOf": "2026-10-09",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HS53/historicaldata/download",
-      "sha256": "d4586d14d704ad407c7b6727caecc3e5e34b39e114263f18783a8a5b870587b4",
+      "sha256": "581b780e9629b230e503c0fc69a60c992f4ce7a4dd52d9bc2b63834b05abd2d3",
       "method": "DWS dated historical fund AUM, all share classes, workbook currency; not exact-share assets",
       "checkedAt": "2026-10-12",
       "modifiedAt": "2026-10-12"
     },
     "sectors": {
-      "asOf": "2026-10-02",
+      "asOf": "2026-10-07",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HS53/holdings",
-      "sha256": "18803d600905b3ed676f552c86ad6196d9b92da5db4b6ed23be08823cb770317",
+      "sha256": "a44766e2a7458994f0ae2d65fbe365aafa3df40bc8c3a10ce5b7b83f794b50dc",
       "method": "Full physical securities portfolio; registration country and industry; net cash/derivatives retained",
       "rows": [
         {
           "name": "Materials",
-          "weightPct": 99.720377,
+          "weightPct": 99.836083,
           "label": "Materials"
         },
         {
-          "name": "Agricultural Products & Services",
-          "weightPct": 0.279186,
-          "label": "Agricultural Products & Services"
+          "name": "Unassigned",
+          "weightPct": 0.291335,
+          "label": "Non classé"
         },
         {
           "name": "Cash and/or Derivatives",
-          "weightPct": 0.000419,
+          "weightPct": -0.127419,
           "label": "Cash and/or Derivatives"
-        },
-        {
-          "name": "Energy",
-          "weightPct": 1.7e-05,
-          "label": "Energy"
         }
       ],
-      "checkedAt": "2026-10-06"
+      "checkedAt": "2026-10-12",
+      "modifiedAt": "2026-10-12"
     },
     "countries": {
-      "asOf": "2026-10-02",
+      "asOf": "2026-10-07",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HS53/holdings",
-      "sha256": "18803d600905b3ed676f552c86ad6196d9b92da5db4b6ed23be08823cb770317",
+      "sha256": "a44766e2a7458994f0ae2d65fbe365aafa3df40bc8c3a10ce5b7b83f794b50dc",
       "method": "Full physical securities portfolio; registration country and industry; net cash/derivatives retained",
       "rows": [
         {
           "name": "United States",
-          "weightPct": 28.230697
+          "weightPct": 27.505018
         },
         {
           "name": "Australia",
-          "weightPct": 18.168748
+          "weightPct": 18.39204
         },
         {
           "name": "Canada",
-          "weightPct": 12.858593
-        },
-        {
-          "name": "Ireland",
-          "weightPct": 10.464842
-        },
-        {
-          "name": "Japan",
-          "weightPct": 6.914837
-        },
-        {
-          "name": "Switzerland",
-          "weightPct": 4.713928
-        },
-        {
-          "name": "France",
-          "weightPct": 4.180312
-        },
-        {
-          "name": "Germany",
-          "weightPct": 3.177054
+          "weightPct": 12.555253
         },
         {
           "name": "United Kingdom",
-          "weightPct": 2.628403
+          "weightPct": 10.452539
+        },
+        {
+          "name": "Japan",
+          "weightPct": 7.094572
+        },
+        {
+          "name": "Switzerland",
+          "weightPct": 5.36578
+        },
+        {
+          "name": "France",
+          "weightPct": 4.108641
+        },
+        {
+          "name": "Germany",
+          "weightPct": 3.160621
+        },
+        {
+          "name": "Ireland",
+          "weightPct": 2.953832
         },
         {
           "name": "Brazil",
-          "weightPct": 2.40871
+          "weightPct": 2.364428
         },
         {
           "name": "Chile",
-          "weightPct": 1.189627
+          "weightPct": 1.158784
         },
         {
           "name": "Luxembourg",
-          "weightPct": 0.964288
+          "weightPct": 0.927304
         },
         {
           "name": "Denmark",
-          "weightPct": 0.775205
+          "weightPct": 0.796226
         },
         {
           "name": "Sweden",
-          "weightPct": 0.762801
+          "weightPct": 0.768901
         },
         {
           "name": "Finland",
-          "weightPct": 0.735119
+          "weightPct": 0.712011
         },
         {
           "name": "Zambia",
-          "weightPct": 0.666842
+          "weightPct": 0.650575
         },
         {
           "name": "Norway",
-          "weightPct": 0.370114
+          "weightPct": 0.365852
         },
         {
           "name": "Netherlands",
-          "weightPct": 0.344277
+          "weightPct": 0.347907
         },
         {
           "name": "Belgium",
-          "weightPct": 0.213309
+          "weightPct": 0.217638
         },
         {
           "name": "Israel",
-          "weightPct": 0.125402
+          "weightPct": 0.125247
         },
         {
           "name": "Italy",
-          "weightPct": 0.106474
+          "weightPct": 0.104251
         },
         {
           "name": "Cash and/or Derivatives",
-          "weightPct": 0.000419
+          "weightPct": -0.127419
         }
       ],
-      "checkedAt": "2026-10-06"
+      "checkedAt": "2026-10-12",
+      "modifiedAt": "2026-10-12"
     },
     "holdings": {
-      "asOf": "2026-10-02",
+      "asOf": "2026-10-07",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HS53/holdings",
-      "sha256": "18803d600905b3ed676f552c86ad6196d9b92da5db4b6ed23be08823cb770317",
+      "sha256": "a44766e2a7458994f0ae2d65fbe365aafa3df40bc8c3a10ce5b7b83f794b50dc",
       "rows": [
         {
-          "name": "LINDE PLC",
+          "name": "Linde PLC",
           "isin": "IE000S9YS762",
-          "weightPct": 7.76587276
+          "weightPct": 7.83252233
         },
         {
           "name": "BHP GROUP LTD",
           "isin": "AU000000BHP4",
-          "weightPct": 7.58967038
+          "weightPct": 7.72945147
         },
         {
-          "name": "NEWMONT",
+          "name": "Newmont Corporation",
           "isin": "US6516391066",
-          "weightPct": 4.28100873
+          "weightPct": 4.20283809
         },
         {
           "name": "LAIR LIQUIDE SOCIETE ANONYME POUR",
           "isin": "FR0000120073",
-          "weightPct": 4.1803118
+          "weightPct": 4.10864084
         },
         {
           "name": "FREEPORT MCMORAN INC",
           "isin": "US35671D8570",
-          "weightPct": 3.62587583
+          "weightPct": 3.61416434
         },
         {
           "name": "RIO TINTO",
           "isin": "GB0007188757",
-          "weightPct": 3.44821496
+          "weightPct": 3.46450921
         },
         {
           "name": "AGNICO EAGLE MINES",
           "isin": "CA0084741085",
-          "weightPct": 3.27294265
+          "weightPct": 3.20572628
         },
         {
-          "name": "SHERWIN WILLIAMS",
+          "name": "Sherwin-Williams Co",
           "isin": "US8243481061",
-          "weightPct": 2.55207791
+          "weightPct": 2.51480271
         },
         {
           "name": "GLENCORE PLC",
           "isin": "JE00B4T3BW64",
-          "weightPct": 2.44533514
+          "weightPct": 2.47130964
         },
         {
           "name": "ECOLAB",
           "isin": "US2788651006",
-          "weightPct": 2.4272527
+          "weightPct": 2.46513559
         }
       ],
-      "checkedAt": "2026-10-06"
+      "checkedAt": "2026-10-12",
+      "modifiedAt": "2026-10-12"
     }
   },
   "IE00BTJRMP35": {
@@ -28590,17 +28627,17 @@
   "IE00BJGWQN72": {
     "currency": "USD",
     "productId": "IE00BJGWQN72",
-    "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BJGWQN72",
+    "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-cloud-computing-ucits-etf---usd-acc",
     "provider": "WisdomTree",
     "aum": {
-      "amount": 414984615.0,
+      "amount": 430123417.0,
       "currency": "USD",
       "scope": "fund",
-      "asOf": "2026-10-08",
+      "asOf": "2026-10-09",
       "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-cloud-computing-ucits-etf---usd-acc",
-      "sha256": "42dcbbe9064e1ef43415d9dcf9de7e893a9cfbf8e8af4992c18a498ce69d7015",
-      "checkedAt": "2026-10-11",
-      "modifiedAt": "2026-10-11"
+      "sha256": "8cdc415a6adc39df8246004f292cef26ad52c0451d70c2c532ab9c5930ced0a4",
+      "checkedAt": "2026-10-12",
+      "modifiedAt": "2026-10-12"
     },
     "sectors": {
       "rows": [
@@ -28628,9 +28665,9 @@
       "asOf": "2026-10-08",
       "basis": "fund",
       "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-cloud-computing-ucits-etf---usd-acc",
-      "sha256": "42dcbbe9064e1ef43415d9dcf9de7e893a9cfbf8e8af4992c18a498ce69d7015",
-      "checkedAt": "2026-10-11",
-      "modifiedAt": "2026-10-11"
+      "sha256": "8cdc415a6adc39df8246004f292cef26ad52c0451d70c2c532ab9c5930ced0a4",
+      "checkedAt": "2026-10-12",
+      "modifiedAt": "2026-10-12"
     },
     "countries": {
       "rows": [
@@ -28647,12 +28684,12 @@
           "weightPct": 1.62
         }
       ],
-      "asOf": "2026-10-08",
+      "asOf": "2026-10-09",
       "basis": "fund",
       "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-cloud-computing-ucits-etf---usd-acc",
-      "sha256": "42dcbbe9064e1ef43415d9dcf9de7e893a9cfbf8e8af4992c18a498ce69d7015",
-      "checkedAt": "2026-10-11",
-      "modifiedAt": "2026-10-11"
+      "sha256": "8cdc415a6adc39df8246004f292cef26ad52c0451d70c2c532ab9c5930ced0a4",
+      "checkedAt": "2026-10-12",
+      "modifiedAt": "2026-10-12"
     },
     "holdings": {
       "rows": [
@@ -28700,9 +28737,9 @@
       "asOf": "2026-10-08",
       "basis": "fund",
       "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-cloud-computing-ucits-etf---usd-acc",
-      "sha256": "42dcbbe9064e1ef43415d9dcf9de7e893a9cfbf8e8af4992c18a498ce69d7015",
-      "checkedAt": "2026-10-11",
-      "modifiedAt": "2026-10-11"
+      "sha256": "8cdc415a6adc39df8246004f292cef26ad52c0451d70c2c532ab9c5930ced0a4",
+      "checkedAt": "2026-10-12",
+      "modifiedAt": "2026-10-12"
     },
     "characteristics": {
       "asOf": "2026-10-08",
@@ -28730,7 +28767,7 @@
       "checkedAt": "2026-10-12",
       "modifiedAt": "2026-10-11"
     },
-    "listings": {
+    "listingObservation": {
       "rows": [
         {
           "ticker": "WCLD",
@@ -29598,7 +29635,7 @@
       "scope": "fund",
       "asOf": "2026-10-09",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HQ30/historicaldata/download",
-      "sha256": "892b9c051f04970437e9a995bd61abcaa852eb5e01f4e1fdfceb067923a12668",
+      "sha256": "a43e6950831d300b6d1b4ee23a82008370da5df7a36e632ef03bf562ebb9fafa",
       "method": "DWS dated historical fund AUM, all share classes, workbook currency; not exact-share assets",
       "checkedAt": "2026-10-12",
       "modifiedAt": "2026-10-12"

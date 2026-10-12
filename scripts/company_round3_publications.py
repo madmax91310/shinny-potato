@@ -54,13 +54,16 @@ def discover(ident):
                 if report['ReportSubType']=='Fourth Quarter':annual.append(docs[0])
         selected=urls[:4]+annual[:2]
         if ident=='caterpillar':
-            pdfs=[]
-            for u in dict.fromkeys(selected):
-                soup=BeautifulSoup(get(u),'html.parser')
-                links=list(dict.fromkeys(urljoin(u,a['href'])for a in soup.select('a[href]')if a.get_text(' ',strip=True)=='Download PDF'))
-                if len(links)!=1:raise ValueError('Ambiguous Caterpillar earnings PDF')
-                pdfs.append(links[0])
-            selected=pdfs
+            # The issuer's earnings PDFs use the quarter/year already discovered
+            # in its official Q4 feed. Avoid dynamic HTML pages timing out on CI.
+            # A renamed or missing document fails closed, including identity/date.
+            codes=[]
+            for u in selected:
+                m=re.search(r'/([1-4]q\d{2})-results-caterpillar-inc\.html$',u)
+                if not m:raise ValueError('Caterpillar release path changed')
+                code=m[1]
+                codes.append(f'https://www.caterpillar.com/content/dam/caterpillarDotCom/releases/{code}/{code}-caterpillar-inc-financial-results.pdf')
+            selected=codes
     selected=list(dict.fromkeys(selected))
     allowed={urlparse(archive).hostname,'s22.q4cdn.com','s25.q4cdn.com'}
     if ident=='caterpillar':allowed.add('www.caterpillar.com')

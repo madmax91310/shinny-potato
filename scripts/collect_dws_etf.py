@@ -187,7 +187,11 @@ def parse_holdings(body, share, now, url):
     result = {}
     for field, groups in [('sectors', sectors), ('countries', countries)]:
         rows = [{'name': k, 'weightPct': round(v, 6)} for k, v in groups.items() if v != 0]
-        validated_rows(rows)
+        if (len({r['name'] for r in rows}) != len(rows) or
+            any(not math.isfinite(r['weightPct']) or not -100 <= r['weightPct'] <= 200 or
+                (r['weightPct'] < 0 and r['name'] != 'Cash and/or Derivatives') for r in rows) or
+            not 99 <= sum(r['weightPct'] for r in rows) <= 101):
+            reject('Invalid complete DWS net allocation')
         result[field] = {'asOf': stamp, 'basis': 'fund', 'sourceUrl': url, 'sha256': digest,
             'method': 'Full physical securities portfolio; registration country and industry; net cash/derivatives retained',
             'rows': sorted(rows, key=lambda r: -r['weightPct'])}

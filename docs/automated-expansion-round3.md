@@ -4,7 +4,7 @@ Les ajouts utilisent les registres partagés. Les fiches, textes et images garde
 
 ## ETF et historiques
 
-- Matériaux : iShares MSCI World Materials Sector Advanced, IE00BJ5JP766, fiche et historique WMTS Amsterdam USD depuis mai 2022. La sélection Advanced diffère du MSCI World Materials classique.
+- Matériaux : fiche classique Xtrackers IE00BM67HS53 et fiche iShares MSCI World Materials Sector Advanced, IE00BJ5JP766, fiche et historique WMTS Amsterdam USD depuis mai 2022. La sélection Advanced diffère du MSCI World Materials classique.
 - Services publics : Xtrackers MSCI World Utilities, IE00BM67HQ30, fiche et historique XDWU Xetra EUR depuis juin 2016. Les performances antérieures du fonds luxembourgeois fusionné ne prolongent pas cette part irlandaise.
 - Innovation médicale : IE00BYZK4776, fiche existante conservée ; collecte officielle de la part et historique HEAL Londres USD depuis octobre 2016.
 - Cloud : IE00BJGWQN72, fiche existante conservée ; historique WCLD Londres USD depuis octobre 2019. Les cotations sont extraites automatiquement de la table ISIN/devise/ticker/RIC de la fiche WisdomTree, indépendamment des dates des frais.
@@ -14,6 +14,8 @@ Ces quatre séries alimentent Performance depuis, Et si tu avais investi et Il y
 L’iShares World Utilities de mai 2025 reste exclu des constructions : aucune année civile complète publiée. Le fonds Xtrackers fournit une part plus ancienne réellement disponible. Minimum Volatility, Digital Security et les semi-conducteurs étaient déjà raccordés aux historiques : aucun doublon.
 
 ## Comparaisons et portefeuilles
+
+Les fiches de santé mondiale et des deux parts matériaux couvrent aussi les supports du générateur.
 
 Cinq comparatifs : Quality/Value, Momentum/Minimum Volatility, industrie/infrastructures, semi-conducteurs/robotique, matériaux classique/Advanced. Le comparatif santé/innovation/biotech existe déjà.
 
@@ -27,7 +29,7 @@ MSCI World Materials et MSCI World Utilities : documents MSCI, composition propr
 
 ## Entreprises
 
-Walmart, Netflix, Booking Holdings, Caterpillar, Deere et Waste Management : découverte renouvelable des publications depuis leurs archives officielles. Quatre trimestres publiés, historique consolidé GAAP, cours de dernière séance terminée et estimations publiques. Aucun Q4 calculé par soustraction.
+Walmart, Netflix, Booking Holdings, Caterpillar et Deere : découverte renouvelable des publications depuis leurs archives officielles. Quatre trimestres publiés, historique consolidé GAAP, cours de dernière séance terminée et estimations publiques. Aucun Q4 calculé par soustraction.
 
 La collecte officielle est primaire ; la SEC n’est pas nécessaire pour les comptes. Les composants annuels optionnels sont aussi relus dans les documents de l’émetteur. Un champ non qualifié reste absent. Les colonnes de pourcentages Walmart ne deviennent pas des montants ; les revenus financiers de Caterpillar ne remplacent pas son chiffre d’affaires consolidé ; les montants Netflix en milliers sont convertis explicitement.
 
@@ -38,3 +40,7 @@ Les divisions Netflix 10:1 et Booking 25:1 sont recoupées entre déclaration of
 ETF : collecteurs quotidiens existants. Indices : collecte quotidienne stricte. Historiques : les 2/4/8/16 du mois, reprise quotidienne des échecs et derniers cours chaque jour. Entreprises : workflow quotidien à 06:35 UTC. Les erreurs gardent les observations et leurs dates d’origine.
 
 Une PR de validation dédiée collecte les nouvelles sources sur GitHub Actions, vérifie les registres et constructions, compile le site, puis contrôle les outils et exports dans Chromium. La publication reste soumise à ces contrôles.
+
+Les poids nets de liquidités/dérivés DWS restent signés, sans écrêtage ni renormalisation des actions. Les données ETF sont partitionnées uniquement à la compilation, avec une source JSON unique et une limite de taille par fichier.
+
+Waste Management reste hors publication et collecte de production : ses documents répondent HTTP 403 sur GitHub Actions. Le candidat pourra être requalifié par une collecte explicite, sans activer de chiffres locaux à sa place.

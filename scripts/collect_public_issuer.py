@@ -190,7 +190,7 @@ def collect_one(share, now):
         if document.get('collectionErrors'):
             result.setdefault('collectionErrors', []).extend(document['collectionErrors'])
         if document.get('characteristics',{}).get('listings'):
-            result['listings']=document['listings']
+            result['listingObservation']=document['listingObservation']
         if document.get('performance'):
             result['performance']=document['performance']
             result['unavailable']=[item for item in result['unavailable'] if not item.startswith('performance:')]
@@ -245,7 +245,7 @@ def wisdomtree_factsheet(body, share, now):
             listings.append({'ticker':ticker,'exchange':'London Stock Exchange' if exchange=='LSE' else exchange,'mic':mic,'currency':currency,'symbol':ric,'sourceUrl':url,'checkedAt':now.date().isoformat(),'sourceDocumentAsOf':stamp,'evidenceId':f'{share["isin"]}-{mic}-{ticker}-{currency}','excerpt':line.strip(),'sha256':digest})
         if not listings:reject('No exact-share WisdomTree trading row')
         result['characteristics']['listings']=listings
-        result['listings']={'rows':listings,'asOf':stamp,'sourceUrl':url,'sha256':digest}
+        result['listingObservation']={'rows':listings,'asOf':stamp,'sourceUrl':url,'sha256':digest}
     result['characteristics'].update(asOf=stamp,sourceUrl=url,sha256=digest)
     if 'performance'in result:result['performance'].update(asOf=stamp,sourceUrl=url,sha256=digest)
     if share['documentType'] == 'wisdomtree-ucits':
