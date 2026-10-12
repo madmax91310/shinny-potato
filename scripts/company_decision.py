@@ -6,6 +6,8 @@ failure never recertifies an old observation. No estimates or adjusted FCF.
 import datetime as dt
 import math
 
+DECISION_VERSION = 2
+
 FCF_METHOD = 'Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites'
 
 
@@ -31,6 +33,8 @@ def sec_decision(body, profile, company, today):
         'operatingCashFlow': annual(['NetCashProvidedByUsedInOperatingActivities']),
         'capitalExpenditure': annual(['PaymentsToAcquirePropertyPlantAndEquipment','PaymentsToAcquireProductiveAssets']),
         'operatingIncome': annual(['OperatingIncomeLoss']),
+        'shareBasedCompensation': annual(['ShareBasedCompensation']),
+        'shareRepurchases': annual(['PaymentsForRepurchaseOfCommonStock']),
         # Never use net interest income/expense as a debt-servicing denominator.
         'interestExpense': annual(['InterestExpenseNonOperating', 'InterestAndDebtExpense', 'InterestExpense']),
         'dividendsPaid': annual(['PaymentsOfDividendsCommonStock', 'PaymentsOfDividends']),
@@ -47,6 +51,7 @@ def sec_decision(body, profile, company, today):
         period = candidates[0]
         result = {k: reference[k] for k in ('end', 'revenue', 'netIncome')}
         result.update(start=period['start'], sourceUrl=source, tags={})
+        result.update(sec_balance_components(body, period, today))
         for field, rows in fields.items():
             found = aligned(rows, period)
             if found and (field in ('operatingCashFlow', 'operatingIncome') or found['val'] >= 0):
@@ -75,7 +80,7 @@ def sec_decision(body, profile, company, today):
     if not years or years[-1]['end'] != company['annual']['end']:
         raise ValueError('Decision accounts do not match current annual accounts')
     block = {'observedAt': today.isoformat(), 'annualEnd': company['annual']['end'],
-             'years': years, 'sourceUrl': source, 'method': FCF_METHOD}
+             'years': years, 'sourceUrl': source, 'method': FCF_METHOD, 'componentVersion': DECISION_VERSION}
     from refresh_company_analysis import parse_accounts
     try:
         accounts = parse_accounts(body, profile, today)
@@ -88,6 +93,30 @@ def sec_decision(body, profile, company, today):
     except ValueError:
         pass
     return block
+
+
+def sec_balance_components(body, period, today):
+    def instant(tag, end):
+        rows = [r for r in body['facts'].get('us-gaap', {}).get(tag, {}).get('units', {}).get('USD', [])
+                if not r.get('start') and r.get('end') == end and r.get('accn') == period.get('accn')
+                and r.get('filed') == period['filed'] and r.get('form') in ('10-K','10-K/A')]
+        values = {r['val'] for r in rows}
+        if len(values) != 1 or not period.get('accn'): return None
+        v = values.pop()
+        return v if isinstance(v,(int,float)) and not isinstance(v,bool) and math.isfinite(v) else None
+    result = {}
+    for key, tag in [('currentAssets','AssetsCurrent'),('currentLiabilities','LiabilitiesCurrent')]:
+        v = instant(tag, period['end'])
+        if v is not None and v >= 0: result[key] = v
+    # Explicit common-stockholders income avoids mixing minority interests or preferred dividends.
+    from refresh_company_analysis import fact_rows, aligned
+    incomes = fact_rows(body,['NetIncomeLossAvailableToCommonStockholdersBasic'],'USD','10-K',330,400,today)
+    income = aligned(incomes,period)
+    before = (dt.date.fromisoformat(period['start']) - dt.timedelta(days=1)).isoformat()
+    opening, closing = instant('StockholdersEquity',before), instant('StockholdersEquity',period['end'])
+    if income and income.get('accn') == period.get('accn') and income['filed'] == period['filed'] and opening is not None and closing is not None:
+        result.update(roeIncome=income['val'], openingEquity=opening, closingEquity=closing)
+    return result
 
 
 def publication_decision(profile, company, today):
@@ -126,7 +155,7 @@ def publication_decision(profile, company, today):
             return prefix + field[0].upper() + field[1:] if prefix else field
         if any(annual[key(k)] != reference[k] for k in ('revenue', 'netIncome')):
             raise ValueError('Issuer decision income mismatch')
-        for field in ('freeCashFlow', 'operatingCashFlow', 'capitalExpenditure', 'dividendsPaid'):
+        for field in ('freeCashFlow', 'operatingCashFlow', 'capitalExpenditure', 'dividendsPaid', 'shareRepurchases', 'shareBasedCompensation', 'operatingIncome'):
             if key(field) in annual:
                 result[field] = annual[key(field)]
         if 'freeCashFlow' in result:
@@ -145,7 +174,7 @@ def publication_decision(profile, company, today):
     if not any('freeCashFlow' in y for y in years):
         raise ValueError('No qualified issuer cash flow')
     return {'observedAt': today.isoformat(), 'annualEnd': company['annual']['end'],
-            'years': years, 'method': FCF_METHOD}
+            'years': years, 'method': FCF_METHOD, 'componentVersion': DECISION_VERSION}
 
 
 def amd_publication_decision(profile, company, today):
@@ -362,7 +391,7 @@ def extended_publication_decision(profile, company, today):
         if found and all(found[k] == ref[k] for k in ('revenue','netIncome')): rows.append(found)
     if not rows or rows[-1]['end'] != company['annual']['end']:
         raise ValueError('Issuer decision history mismatch')
-    return {'observedAt': today.isoformat(), 'annualEnd': company['annual']['end'], 'years': rows, 'method': FCF_METHOD}
+    return {'observedAt': today.isoformat(), 'annualEnd': company['annual']['end'], 'years': rows, 'method': FCF_METHOD, 'componentVersion': DECISION_VERSION}
 
 
 def validate_decision(block, company, today):
@@ -373,7 +402,7 @@ def validate_decision(block, company, today):
             raise ValueError('Invalid decision provenance')
         if any(not math.isfinite(v) or isinstance(v, bool) for v in row.values() if isinstance(v, (int, float))):
             raise ValueError('Invalid decision number')
-        if any(row.get(k, 0) < 0 for k in ('capitalExpenditure','interestExpense','dividendsPaid','averageDilutedShares')):
+        if any(row.get(k, 0) < 0 for k in ('capitalExpenditure','interestExpense','dividendsPaid','averageDilutedShares','shareRepurchases','shareBasedCompensation','currentAssets','currentLiabilities')):
             raise ValueError('Negative unsigned decision component')
         if 'freeCashFlow' in row and abs(row['freeCashFlow'] - (row['operatingCashFlow'] - row['capitalExpenditure'])) > 1:
             raise ValueError('FCF does not reconcile')

@@ -90,11 +90,55 @@ export function activeDecision(company, now = new Date()) {
       || r.capitalExpenditure < 0 || Math.abs(r.freeCashFlow - (r.operatingCashFlow - r.capitalExpenditure)) > 1)))) return null
   return d
 }
+// Require consecutive annual observations and positive values throughout the window.
+export function annualizedGrowth(years, field, intervals, comparable = () => true) {
+  const window = years.slice(-(intervals + 1))
+  if (window.length !== intervals + 1 || intervals < 3 || window.some((r,i) => !finite(r[field]) || r[field] <= 0
+    || !comparable(r,window[0]) || (i && ((Date.parse(r.end)-Date.parse(window[i-1].end))/86400000 < 330
+      || (Date.parse(r.end)-Date.parse(window[i-1].end))/86400000 > 400)))) return null
+  const elapsed = (Date.parse(window.at(-1).end)-Date.parse(window[0].end))/86400000/365.25
+  return {value:(Math.pow(window.at(-1)[field]/window[0][field],1/elapsed)-1)*100,
+    intervals, start:window[0].end, end:window.at(-1).end}
+}
 export function decisionRatios(company, now = new Date()) {
   if (!canPublish(company, now)) return {}
   const d = activeDecision(company, now), a = company.annual, latest = d?.years.at(-1)
   const fcf = latest?.freeCashFlow ?? a.freeCashFlow
   const result = {}
+  const history = activeHistory(company, now)
+  result.longTerm = []
+  for (const intervals of [...new Set([3, history.length - 1])].filter(n => n >= 3)) {
+    for (const [field,label] of [['revenue','Chiffre d’affaires'],['netIncome','Bénéfice net']]) {
+      const value = annualizedGrowth(history,field,intervals)
+      if (value) result.longTerm.push({...value,label,key:field+intervals})
+    }
+    const cash = annualizedGrowth(d?.years ?? [],'freeCashFlow',intervals,
+      (row, first) => Boolean(row.freeCashFlowDefinition) && row.freeCashFlowDefinition === first.freeCashFlowDefinition)
+    if (cash) result.longTerm.push({...cash,label:'FCF',key:'freeCashFlow'+intervals})
+  }
+  const operating = latest?.operatingIncome ?? a.operatingIncome
+  if (finite(operating)) result.operatingMargin = operating/a.revenue*100
+  const priorOperating = d?.years.at(-2)
+  if (finite(result.operatingMargin)) {
+    const previousValue = finite(priorOperating?.operatingIncome) && priorOperating.revenue > 0
+      && (Date.parse(a.end)-Date.parse(priorOperating.end))/86400000 >= 330
+      && (Date.parse(a.end)-Date.parse(priorOperating.end))/86400000 <= 400
+      ? priorOperating.operatingIncome/priorOperating.revenue*100
+      : finite(a.previousOperatingIncome) && a.previousRevenue > 0 && a.previousEnd
+        && (Date.parse(a.end)-Date.parse(a.previousEnd))/86400000 >= 330
+        && (Date.parse(a.end)-Date.parse(a.previousEnd))/86400000 <= 400
+        ? a.previousOperatingIncome/a.previousRevenue*100 : null
+    if (finite(previousValue)) result.operatingMarginChange = result.operatingMargin - previousValue
+  }
+  if (finite(latest?.capitalExpenditure) && latest.capitalExpenditure >= 0) result.capexRevenue = latest.capitalExpenditure/a.revenue*100
+  for (const field of ['shareRepurchases','shareBasedCompensation']) {
+    if (finite(latest?.[field]) && latest[field] >= 0) {
+      result[field] = latest[field]
+      result[field+'Revenue'] = latest[field]/a.revenue*100
+    }
+  }
+  if (finite(latest?.currentAssets) && latest.currentAssets >= 0 && latest.currentLiabilities > 0) result.currentRatio = latest.currentAssets/latest.currentLiabilities
+  if (finite(latest?.roeIncome) && latest.openingEquity > 0 && latest.closingEquity > 0) result.roe = latest.roeIncome/((latest.openingEquity+latest.closingEquity)/2)*100
   if (finite(fcf)) {
     result.freeCashFlow = fcf
     result.fcfMargin = fcf / a.revenue * 100
@@ -116,6 +160,10 @@ export function decisionRatios(company, now = new Date()) {
   }
   if (finite(latest?.interestExpense) && latest.interestExpense > 0 && finite(latest.operatingIncome)) result.interestCoverage = latest.operatingIncome / latest.interestExpense
   const b = activeBalance(company, now)
+  if (finite(b?.netDebt) && b.netDebt >= 0 && fcf > 0) {
+    result.netDebtFCF = b.netDebt/fcf
+    result.netDebtFCFAsOf = b.asOf
+  }
   const priorBalance = company.balanceHistory?.filter(row => row.asOf < b?.asOf && row.definition === b.definition
     && finite(row.netDebt) && fresh(row.asOf, 1000, now) && row.sourceUrl?.startsWith('https://')).at(-1)
   if (finite(b?.netDebt) && priorBalance) {
@@ -152,6 +200,15 @@ export function decisionIndicators(company, now = new Date()) {
   if (finite(r.interestCoverage)) add('interestCoverage', 'Couverture des intérêts', `${fr(r.interestCoverage)}×`, 'Résultat opérationnel / charges d’intérêts publiées du même exercice. Une valeur négative conserve le signe de la perte opérationnelle.')
   if (finite(r.shareChange)) add('shareChange', 'Variation des actions diluées moyennes sur un an', `${r.shareChange > 0 ? '+' : ''}${fr(r.shareChange)} %`, 'Nombre moyen d’actions diluées publié sur deux exercices comparables du même document. Il tient compte des instruments dilutifs ; sa variation ne mesure pas uniquement les rachats.')
   if (finite(r.dividendFCF)) add('dividendFCF', 'Dividendes versés / FCF', `${fr(r.dividendFCF)} %`, 'Dividendes payés aux actionnaires / FCF positif du même exercice. Les dividendes exceptionnels sont inclus.')
+  if (finite(r.operatingMargin)) add('operatingMargin','Marge opérationnelle',`${fr(r.operatingMargin)} %`,'Résultat opérationnel publié / chiffre d’affaires du même exercice, avant charges financières et impôts.')
+  if (finite(r.operatingMarginChange)) add('operatingMarginChange','Évolution de la marge opérationnelle',`${r.operatingMarginChange > 0 ? '+' : ''}${fr(r.operatingMarginChange)} point(s)`,'Écart entre deux exercices annuels consécutifs ; variation en points de pourcentage.')
+  if (finite(r.capexRevenue)) add('capexRevenue','Investissements / chiffre d’affaires',`${fr(r.capexRevenue)} %`,'Achats d’immobilisations retenus dans le calcul du FCF / chiffre d’affaires annuel. Les acquisitions d’entreprises sont exclues.')
+  if (finite(r.netDebtFCF)) add('netDebtFCF','Dette nette / FCF annuel',`${fr(r.netDebtFCF)}×`,`Dette nette au ${dateLabel(r.netDebtFCFAsOf)} / FCF de l’exercice clos le ${dateLabel(company.annual.end)}. Ce rapport ne constitue pas un délai de remboursement.`)
+  if (finite(r.shareRepurchases)) add('shareRepurchases','Rachats d’actions payés',amount(r.shareRepurchases,company.currency),'Décaissements de rachats d’actions ordinaires sur l’exercice ; distincts de la variation nette du nombre d’actions et de l’autorisation de rachat.')
+  if (finite(r.shareBasedCompensation)) add('shareBasedCompensation','Rémunération en actions',amount(r.shareBasedCompensation,company.currency),`Charge de rémunération en actions publiée : ${fr(r.shareBasedCompensationRevenue)} % du chiffre d’affaires. Elle ne mesure pas directement la dilution.`)
+  if (finite(r.currentRatio)) add('currentRatio','Liquidité générale annuelle',`${fr(r.currentRatio)}×`,`Actifs courants / passifs courants au ${dateLabel(company.annual.end)}. La qualité des actifs et le secteur influencent la lecture.`)
+  if (finite(r.roe)) add('roe','Rentabilité des capitaux propres (ROE)',`${fr(r.roe)} %`,'Bénéfice attribuable aux actionnaires ordinaires / moyenne des capitaux propres d’ouverture et de clôture du même dépôt annuel. Masqué si un des capitaux propres est nul ou négatif.')
+  for (const row of r.longTerm ?? []) add(row.key,`${row.label} : croissance annualisée sur ${row.intervals} ans`,`${row.value > 0 ? '+' : ''}${fr(row.value)} %/an`,`Du ${dateLabel(row.start)} au ${dateLabel(row.end)}. Exercices consécutifs et valeurs positives, sans estimation.`)
   if (!d && !rows.length) return []
   return rows
 }

@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict'
-import {activeDecision, decisionRatios, decisionIndicators} from '../src/pages/company-analysis/lib.js'
+import {activeDecision, decisionRatios, decisionIndicators, annualizedGrowth} from '../src/pages/company-analysis/lib.js'
 const now=new Date('2026-10-12T12:00:00Z')
 const previous={end:'2024-12-31',revenue:100,netIncome:10,operatingCashFlow:30,capitalExpenditure:10,freeCashFlow:20,freeCashFlowDefinition:'same',averageDilutedShares:10,sharesBasisSource:'same-filing',sourceUrl:'https://issuer.test/report'}
 const latest={...previous,end:'2025-12-31',revenue:120,netIncome:12,operatingCashFlow:42,capitalExpenditure:12,freeCashFlow:30,interestExpense:2,operatingIncome:20,dividendsPaid:9,averageDilutedShares:11}
@@ -34,3 +34,23 @@ const debt={...c,balance:{asOf:'2026-09-30',observedAt:'2026-10-12',netDebt:5,de
 assert.equal(decisionRatios(debt,now).netDebtChange,-3)
 for(const company of [c,changed,negative,debt])assert(!/NaN|undefined|Infinity/.test(JSON.stringify(decisionIndicators(company,now))))
 console.log('Decision ratios: cash, losses, dividends, interest, dilution, price changes, split/freshness guards and comparable debt OK.')
+
+const years=[2022,2023,2024,2025].map((y,i)=>({end:`${y}-12-31`,revenue:100*Math.pow(1.1,i)}))
+assert(Math.abs(annualizedGrowth(years,'revenue',3).value-10)<0.02)
+assert.equal(annualizedGrowth(years.slice(1),'revenue',3),null)
+assert.equal(annualizedGrowth(years.map((r,i)=>i===1?{...r,revenue:-1}:r),'revenue',3),null)
+assert.equal(annualizedGrowth(years.map((r,i)=>i===1?{...r,end:'2022-12-31'}:r),'revenue',3),null)
+const extra=structuredClone(c)
+Object.assign(extra.decision.years[1],{shareRepurchases:6,shareBasedCompensation:3,currentAssets:50,currentLiabilities:25,roeIncome:12,openingEquity:60,closingEquity:80})
+Object.assign(extra,{balance:{asOf:'2026-09-30',observedAt:'2026-10-12',netDebt:60,definition:'same'}})
+r=decisionRatios(extra,now)
+assert.equal(r.capexRevenue,10);assert.equal(r.netDebtFCF,2);assert.equal(r.currentRatio,2)
+assert.equal(r.roe,12/70*100);assert.equal(r.shareBasedCompensationRevenue,2.5)
+assert.equal(r.operatingMargin,20/120*100)
+extra.decision.years[1].currentLiabilities=0;extra.decision.years[1].openingEquity=-1
+assert.equal(decisionRatios(extra,now).currentRatio,undefined);assert.equal(decisionRatios(extra,now).roe,undefined)
+extra.balance.netDebt=-5
+assert.equal(decisionRatios(extra,now).netDebtFCF,undefined)
+extra.decision.observedAt='2026-08-01'
+assert.equal(decisionRatios(extra,now).shareRepurchases,undefined)
+console.log('Extra indicators: CAGR gaps/losses, operating margin, investments, debt/FCF, stock compensation, liquidity and average-equity guards OK.')

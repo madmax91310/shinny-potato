@@ -147,6 +147,13 @@ def add_cash_flow(raw, annual, ident):
             if dividends and len(dividends) == len(ocf):
                 annual['dividendsPaid'] = abs(dividends[i])*1e6
                 annual['previousDividendsPaid'] = abs(dividends[j])*1e6
+            for field, labels in [
+                ('shareRepurchases', [r'Repurchases of common stock', r'Repurchases of Class A and Class C stock', r'Payments for repurchases of common stock', r'Common stock repurchased']),
+                ('shareBasedCompensation', [r'Share-based compensation expense', r'Share-based compensation', r'Stock-based compensation', r'Stock-based compensation expense'])]:
+                values = row(text, labels)
+                if values and len(values) == len(ocf) and (field != 'shareBasedCompensation' or all(v >= 0 for v in values)):
+                    annual[field] = abs(values[i])*1e6
+                    annual['previous'+field[0].upper()+field[1:]] = abs(values[j])*1e6
             annual['tags']['freeCashFlow'] = 'GAAP operating cash flow less cash purchases of property and equipment'
             if ident == 'nvidia':
                 annual['freeCashFlowDefinition'] = 'Flux d’exploitation moins acquisitions d’immobilisations et d’actifs incorporels'

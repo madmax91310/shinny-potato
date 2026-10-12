@@ -131,3 +131,40 @@ rester dans le périmètre du flux d’exploitation consolidé. Le FCF issu du s
 concept SEC d’achats de PPE est retiré pour AMD, car son périmètre était incomplet.
 Ces comptages décrivent cette collecte ; l’affichage reste conditionné à la
 fraîcheur et aux composantes disponibles lors des publications suivantes.
+
+## Indicateurs complémentaires (12 octobre 2026)
+
+Les composantes version 2 ajoutent les rachats d’actions ordinaires effectivement
+payés, la charge de rémunération en actions, les actifs/passifs courants et, lorsque
+publié explicitement, le bénéfice attribuable aux actionnaires ordinaires avec les
+capitaux propres d’ouverture et de clôture. Les bilans doivent provenir du même
+numéro de dépôt et de la même date de publication que le compte annuel réconcilié.
+Les composantes du ROE ne mélangent pas intérêts minoritaires et résultat du groupe.
+
+L’interface calcule la marge opérationnelle et sa variation en points, les achats
+d’immobilisations rapportés au CA, la dette nette rapportée au FCF positif, les
+rachats payés, la rémunération en actions et son poids dans le CA, la liquidité
+générale annuelle et le ROE sur capitaux propres moyens positifs. La date de bilan
+et celle de l’exercice sont précisées pour dette nette/FCF ; ce multiple n’est pas
+une durée de remboursement. Une trésorerie nette ne produit pas de multiple de dette.
+
+La croissance annualisée du CA, bénéfice net et FCF exige quatre observations
+annuelles consécutives pour trois ans, ou cinq pour quatre ans. Les dates exactes
+sont affichées et l’exposant tient compte du temps écoulé ; aucune période de cinq
+ans n’est annoncée avec seulement cinq observations. Les valeurs doivent être
+positives sur toute la fenêtre ; le FCF garde la même définition sur cette fenêtre.
+Les pertes, années absentes et périmètres non comparables masquent le calcul.
+
+Couverture de la collecte réelle SEC, rapprochée avec les comptes officiels déjà
+vérifiés : marge opérationnelle 19/20, variation de marge 17/20, investissements/CA
+19/20, dette nette/FCF 5/20, rachats 15/20, rémunération en actions 16/20, liquidité
+16/20, ROE 2/20 (Alphabet et PepsiCo), croissance du CA sur trois ans 16/20,
+bénéfice net sur trois ans 15/20 et FCF sur trois ans 12/20. Ce sont des observations
+ponctuelles ; chaque renouvellement requalifie sa propre couverture.
+
+Le ROIC reste exclu : aucun ensemble homogène vérifié NOPAT/capitaux investis
+moyens ne permet de l’activer dans cette collecte. La croissance annualisée du
+BPA reste exclue tant que l’historique par action sur une base comparable, incluant
+les divisions d’actions, n’est pas certifié. Les bilans complémentaires IFRS ne sont
+pas activés faute d’adaptateur qualifié. Rien n’est interpolé ou complété manuellement.
+Les nouveaux chiffres restent dans l’application ; texte et export existants sont conservés.

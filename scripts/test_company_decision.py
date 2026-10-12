@@ -13,6 +13,34 @@ TODAY = dt.date(2026, 10, 12)
 
 
 class DecisionTests(unittest.TestCase):
+    def test_optional_balance_requires_same_filing_and_common_income(self):
+        from company_decision import sec_balance_components
+        body=accounts()
+        period={'start':'2025-01-01','end':'2025-12-31','filed':'2026-02-01','accn':'same'}
+        facts=body['facts']['us-gaap']
+        for tag, values in [('AssetsCurrent',[('2025-12-31',50)]),('LiabilitiesCurrent',[('2025-12-31',25)]),
+                            ('StockholdersEquity',[('2024-12-31',100),('2025-12-31',120)])]:
+            facts[tag]={'units':{'USD':[dict(end=end,val=val,filed=period['filed'],accn='same',form='10-K')for end,val in values]}}
+        facts['NetIncomeLossAvailableToCommonStockholdersBasic']={'units':{'USD':[{**period,'val':20,'form':'10-K'}]}}
+        result=sec_balance_components(body,period,TODAY)
+        self.assertEqual(result['currentAssets'],50)
+        self.assertEqual(result['roeIncome'],20)
+        facts['StockholdersEquity']['units']['USD'][0]['accn']='different'
+        self.assertNotIn('roeIncome',sec_balance_components(body,period,TODAY))
+        facts['AssetsCurrent']['units']['USD'].append({**facts['AssetsCurrent']['units']['USD'][0],'val':60})
+        self.assertNotIn('currentAssets',sec_balance_components(body,period,TODAY))
+
+    def test_extra_cash_components_use_exact_annual_periods(self):
+        body=accounts()
+        for tag,val in [('PaymentsForRepurchaseOfCommonStock',10),('ShareBasedCompensation',3)]:
+            body['facts']['us-gaap'][tag]={'units':{'USD':[row('2025-01-01','2025-12-31',val)]}}
+        company={'annual':{'end':'2025-12-31','revenue':120,'netIncome':8}}
+        p={'id':'test','cik':'0000000001','currency':'USD'}
+        r=sec_decision(body,p,company,TODAY)['years'][-1]
+        self.assertEqual(r['shareRepurchases'],10); self.assertEqual(r['shareBasedCompensation'],3)
+        body['facts']['us-gaap']['ShareBasedCompensation']['units']['USD'][0]['start']='2025-10-01'
+        self.assertNotIn('shareBasedCompensation',sec_decision(body,p,company,TODAY)['years'][-1])
+
     def test_amd_standard_sec_capex_does_not_become_consolidated_fcf(self):
         from refresh_company_analysis import parse_accounts
         body=accounts()

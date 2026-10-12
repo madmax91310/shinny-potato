@@ -389,11 +389,11 @@ def main():
         # Optional components have independent provenance/freshness. A rejected
         # source never turns a preserved block into a newly checked observation.
         try:
-            from company_decision import sec_decision, publication_decision, validate_decision
+            from company_decision import sec_decision, publication_decision, validate_decision, DECISION_VERSION
             cached_decision = old.get('decision', {})
             cached_date = dt.date.fromisoformat(cached_decision['observedAt']) if cached_decision.get('observedAt') else None
             latest_end = (item.get('quarter') or item.get('halfYear') or item['annual'])['end']
-            if (cached_date and 0 <= (now.date()-cached_date).days <= 30
+            if (cached_decision.get('componentVersion') == DECISION_VERSION and cached_date and 0 <= (now.date()-cached_date).days <= 30
                 and cached_decision.get('accountsEndAtCollection') == latest_end
                 and cached_decision.get('annualEnd') == item['annual']['end']
                 and all(cached_decision['years'][-1][k] == item['annual'][k] for k in ('revenue','netIncome'))):
@@ -415,7 +415,7 @@ def main():
                             supplemental = {r['end']: r for r in decision['years']}
                             for row in official['years']:
                                 extra = supplemental.get(row['end'], {})
-                                for field in ('interestExpense','operatingIncome','averageDilutedShares','sharesBasisSource'):
+                                for field in ('interestExpense','operatingIncome','averageDilutedShares','sharesBasisSource','shareRepurchases','shareBasedCompensation','currentAssets','currentLiabilities','roeIncome','openingEquity','closingEquity'):
                                     if field not in row and field in extra:
                                         row[field] = extra[field]
                                         row.setdefault('additionalSourceUrls', [])
@@ -429,6 +429,7 @@ def main():
                             pass
                 except Exception:
                     decision = publication_decision(profile, item, now.date())
+                decision['componentVersion'] = DECISION_VERSION
                 decision['accountsEndAtCollection'] = latest_end
                 item['decision'] = validate_decision(decision, item, now.date())
                 status['decision'] = 'updated'

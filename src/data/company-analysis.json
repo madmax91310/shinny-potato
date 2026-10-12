@@ -263,7 +263,9 @@
             "additionalSourceUrls": [
               "https://data.sec.gov/api/xbrl/companyfacts/CIK0000320193.json"
             ],
-            "operatingIncome": 108949000000.0
+            "operatingIncome": 108949000000.0,
+            "shareRepurchases": 85971000000.0,
+            "shareBasedCompensation": 7906000000.0
           },
           {
             "end": "2022-09-24",
@@ -282,7 +284,9 @@
             "additionalSourceUrls": [
               "https://data.sec.gov/api/xbrl/companyfacts/CIK0000320193.json"
             ],
-            "operatingIncome": 119437000000.0
+            "operatingIncome": 119437000000.0,
+            "shareRepurchases": 89402000000.0,
+            "shareBasedCompensation": 9038000000.0
           },
           {
             "end": "2023-09-30",
@@ -301,7 +305,9 @@
             "additionalSourceUrls": [
               "https://data.sec.gov/api/xbrl/companyfacts/CIK0000320193.json"
             ],
-            "operatingIncome": 114301000000.0
+            "operatingIncome": 114301000000.0,
+            "shareRepurchases": 77550000000.0,
+            "shareBasedCompensation": 10833000000.0
           },
           {
             "end": "2024-09-28",
@@ -319,7 +325,11 @@
             "operatingIncome": 123216000000.0,
             "additionalSourceUrls": [
               "https://data.sec.gov/api/xbrl/companyfacts/CIK0000320193.json"
-            ]
+            ],
+            "shareRepurchases": 94949000000.0,
+            "shareBasedCompensation": 11688000000.0,
+            "currentAssets": 152987000000,
+            "currentLiabilities": 176392000000
           },
           {
             "end": "2025-09-27",
@@ -337,7 +347,11 @@
             "operatingIncome": 133050000000.0,
             "additionalSourceUrls": [
               "https://data.sec.gov/api/xbrl/companyfacts/CIK0000320193.json"
-            ]
+            ],
+            "shareRepurchases": 90711000000.0,
+            "shareBasedCompensation": 12863000000.0,
+            "currentAssets": 147957000000,
+            "currentLiabilities": 165631000000
           }
         ],
         "method": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
@@ -632,7 +646,12 @@
             "averageDilutedShares": 7540000000.0,
             "sharesBasisSource": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000789019.json#2024-07-30",
             "freeCashFlow": 65149000000.0,
-            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
+            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
+            "additionalSourceUrls": [
+              "https://data.sec.gov/api/xbrl/companyfacts/CIK0000789019.json"
+            ],
+            "shareRepurchases": 32696000000.0,
+            "shareBasedCompensation": 7502000000.0
           },
           {
             "end": "2023-06-30",
@@ -656,7 +675,12 @@
             "averageDilutedShares": 7472000000.0,
             "sharesBasisSource": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000789019.json#2025-07-30",
             "freeCashFlow": 59475000000.0,
-            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
+            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
+            "additionalSourceUrls": [
+              "https://data.sec.gov/api/xbrl/companyfacts/CIK0000789019.json"
+            ],
+            "shareRepurchases": 22245000000.0,
+            "shareBasedCompensation": 9611000000.0
           },
           {
             "end": "2024-06-30",
@@ -680,7 +704,12 @@
             "averageDilutedShares": 7469000000.0,
             "sharesBasisSource": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000789019.json#2026-07-29",
             "freeCashFlow": 74071000000.0,
-            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
+            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
+            "additionalSourceUrls": [
+              "https://data.sec.gov/api/xbrl/companyfacts/CIK0000789019.json"
+            ],
+            "shareRepurchases": 17254000000.0,
+            "shareBasedCompensation": 10734000000.0
           },
           {
             "end": "2025-06-30",
@@ -702,7 +731,14 @@
             "averageDilutedShares": 7465000000.0,
             "sharesBasisSource": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000789019.json#2026-07-29",
             "freeCashFlow": 71611000000.0,
-            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
+            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
+            "additionalSourceUrls": [
+              "https://data.sec.gov/api/xbrl/companyfacts/CIK0000789019.json"
+            ],
+            "shareRepurchases": 18420000000.0,
+            "shareBasedCompensation": 11974000000.0,
+            "currentAssets": 191131000000,
+            "currentLiabilities": 141218000000
           },
           {
             "end": "2026-06-30",
@@ -724,7 +760,14 @@
             "averageDilutedShares": 7453000000.0,
             "sharesBasisSource": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000789019.json#2026-07-29",
             "freeCashFlow": 66987000000.0,
-            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
+            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
+            "additionalSourceUrls": [
+              "https://data.sec.gov/api/xbrl/companyfacts/CIK0000789019.json"
+            ],
+            "shareRepurchases": 22271000000.0,
+            "shareBasedCompensation": 12405000000.0,
+            "currentAssets": 207710000000,
+            "currentLiabilities": 168825000000
           }
         ],
         "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000789019.json",
@@ -1024,7 +1067,9 @@
             "additionalSourceUrls": [
               "https://data.sec.gov/api/xbrl/companyfacts/CIK0001045810.json"
             ],
-            "operatingIncome": 10041000000.0
+            "operatingIncome": 10041000000.0,
+            "shareRepurchases": 0.0,
+            "shareBasedCompensation": 2004000000.0
           },
           {
             "end": "2023-01-29",
@@ -1038,7 +1083,9 @@
             "additionalSourceUrls": [
               "https://data.sec.gov/api/xbrl/companyfacts/CIK0001045810.json"
             ],
-            "operatingIncome": 4224000000.0
+            "operatingIncome": 4224000000.0,
+            "shareRepurchases": 10039000000.0,
+            "shareBasedCompensation": 2709000000.0
           },
           {
             "end": "2024-01-28",
@@ -1052,7 +1099,9 @@
             "additionalSourceUrls": [
               "https://data.sec.gov/api/xbrl/companyfacts/CIK0001045810.json"
             ],
-            "operatingIncome": 32972000000.0
+            "operatingIncome": 32972000000.0,
+            "shareRepurchases": 9533000000.0,
+            "shareBasedCompensation": 3549000000.0
           },
           {
             "end": "2025-01-26",
@@ -1070,7 +1119,11 @@
             "operatingIncome": 81453000000.0,
             "additionalSourceUrls": [
               "https://data.sec.gov/api/xbrl/companyfacts/CIK0001045810.json"
-            ]
+            ],
+            "shareRepurchases": 33706000000.0,
+            "shareBasedCompensation": 4737000000.0,
+            "currentAssets": 80126000000,
+            "currentLiabilities": 18047000000
           },
           {
             "end": "2026-01-25",
@@ -1088,7 +1141,11 @@
             "operatingIncome": 130387000000.0,
             "additionalSourceUrls": [
               "https://data.sec.gov/api/xbrl/companyfacts/CIK0001045810.json"
-            ]
+            ],
+            "shareRepurchases": 40086000000.0,
+            "shareBasedCompensation": 6386000000.0,
+            "currentAssets": 125605000000,
+            "currentLiabilities": 32163000000
           }
         ],
         "method": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
@@ -1379,7 +1436,11 @@
             "additionalSourceUrls": [
               "https://data.sec.gov/api/xbrl/companyfacts/CIK0001652044.json"
             ],
-            "operatingIncome": 78714000000.0
+            "operatingIncome": 78714000000.0,
+            "shareRepurchases": 50274000000.0,
+            "shareBasedCompensation": 15376000000.0,
+            "currentAssets": 188143000000,
+            "currentLiabilities": 64254000000
           },
           {
             "end": "2022-12-31",
@@ -1408,7 +1469,12 @@
             ],
             "operatingIncome": 84293000000.0,
             "averageDilutedShares": 12722000000.0,
-            "sharesBasisSource": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001652044.json#2026-02-05"
+            "sharesBasisSource": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001652044.json#2026-02-05",
+            "shareRepurchases": 61504000000.0,
+            "shareBasedCompensation": 22460000000.0,
+            "roeIncome": 73795000000.0,
+            "openingEquity": 256144000000,
+            "closingEquity": 283379000000
           },
           {
             "end": "2024-12-31",
@@ -1425,7 +1491,14 @@
               "https://data.sec.gov/api/xbrl/companyfacts/CIK0001652044.json"
             ],
             "averageDilutedShares": 12447000000.0,
-            "sharesBasisSource": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001652044.json#2026-02-05"
+            "sharesBasisSource": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001652044.json#2026-02-05",
+            "shareRepurchases": 62222000000.0,
+            "shareBasedCompensation": 22785000000.0,
+            "currentAssets": 163711000000,
+            "currentLiabilities": 89122000000,
+            "roeIncome": 100118000000.0,
+            "openingEquity": 283379000000,
+            "closingEquity": 325084000000
           },
           {
             "end": "2025-12-31",
@@ -1442,7 +1515,14 @@
               "https://data.sec.gov/api/xbrl/companyfacts/CIK0001652044.json"
             ],
             "averageDilutedShares": 12230000000.0,
-            "sharesBasisSource": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001652044.json#2026-02-05"
+            "sharesBasisSource": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001652044.json#2026-02-05",
+            "shareRepurchases": 45709000000.0,
+            "shareBasedCompensation": 24953000000.0,
+            "currentAssets": 206038000000,
+            "currentLiabilities": 102745000000,
+            "roeIncome": 132170000000.0,
+            "openingEquity": 325084000000,
+            "closingEquity": 415265000000
           }
         ],
         "method": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
@@ -1707,7 +1787,9 @@
             "additionalSourceUrls": [
               "https://data.sec.gov/api/xbrl/companyfacts/CIK0001018724.json"
             ],
-            "operatingIncome": 24879000000.0
+            "operatingIncome": 24879000000.0,
+            "shareRepurchases": 0.0,
+            "shareBasedCompensation": 12757000000.0
           },
           {
             "end": "2022-12-31",
@@ -1725,7 +1807,9 @@
             "additionalSourceUrls": [
               "https://data.sec.gov/api/xbrl/companyfacts/CIK0001018724.json"
             ],
-            "operatingIncome": 12248000000.0
+            "operatingIncome": 12248000000.0,
+            "shareRepurchases": 6000000000.0,
+            "shareBasedCompensation": 19621000000.0
           },
           {
             "end": "2023-12-31",
@@ -1743,7 +1827,9 @@
             "additionalSourceUrls": [
               "https://data.sec.gov/api/xbrl/companyfacts/CIK0001018724.json"
             ],
-            "operatingIncome": 36852000000.0
+            "operatingIncome": 36852000000.0,
+            "shareRepurchases": 0.0,
+            "shareBasedCompensation": 24023000000.0
           },
           {
             "end": "2024-12-31",
@@ -1760,7 +1846,11 @@
             "operatingIncome": 68593000000.0,
             "additionalSourceUrls": [
               "https://data.sec.gov/api/xbrl/companyfacts/CIK0001018724.json"
-            ]
+            ],
+            "shareRepurchases": 0.0,
+            "shareBasedCompensation": 22011000000.0,
+            "currentAssets": 190867000000,
+            "currentLiabilities": 179431000000
           },
           {
             "end": "2025-12-31",
@@ -1777,7 +1867,10 @@
             "operatingIncome": 79975000000.0,
             "additionalSourceUrls": [
               "https://data.sec.gov/api/xbrl/companyfacts/CIK0001018724.json"
-            ]
+            ],
+            "shareBasedCompensation": 19467000000.0,
+            "currentAssets": 229083000000,
+            "currentLiabilities": 218005000000
           }
         ],
         "method": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
@@ -2852,7 +2945,13 @@
             "capitalExpenditure": 1059000000.0,
             "freeCashFlow": 19696000000.0,
             "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites ; actifs incorporels inclus",
-            "dividendsPaid": 3751000000.0
+            "dividendsPaid": 3751000000.0,
+            "operatingIncome": 21000000000.0,
+            "additionalSourceUrls": [
+              "https://data.sec.gov/api/xbrl/companyfacts/CIK0001403161.json"
+            ],
+            "shareRepurchases": 12101000000.0,
+            "shareBasedCompensation": 765000000.0
           },
           {
             "end": "2024-09-30",
@@ -2866,7 +2965,15 @@
             "capitalExpenditure": 1257000000.0,
             "freeCashFlow": 18693000000.0,
             "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites ; actifs incorporels inclus",
-            "dividendsPaid": 4217000000.0
+            "dividendsPaid": 4217000000.0,
+            "operatingIncome": 23595000000.0,
+            "additionalSourceUrls": [
+              "https://data.sec.gov/api/xbrl/companyfacts/CIK0001403161.json"
+            ],
+            "shareRepurchases": 16713000000.0,
+            "shareBasedCompensation": 850000000.0,
+            "currentAssets": 34033000000,
+            "currentLiabilities": 26517000000
           },
           {
             "end": "2025-09-30",
@@ -2880,7 +2987,15 @@
             "capitalExpenditure": 1482000000.0,
             "freeCashFlow": 21577000000.0,
             "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites ; actifs incorporels inclus",
-            "dividendsPaid": 4634000000.0
+            "dividendsPaid": 4634000000.0,
+            "operatingIncome": 23994000000.0,
+            "additionalSourceUrls": [
+              "https://data.sec.gov/api/xbrl/companyfacts/CIK0001403161.json"
+            ],
+            "shareRepurchases": 18316000000.0,
+            "shareBasedCompensation": 897000000.0,
+            "currentAssets": 37766000000,
+            "currentLiabilities": 35048000000
           }
         ],
         "method": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
@@ -3045,7 +3160,13 @@
             "capitalExpenditure": 4710000000.0,
             "freeCashFlow": 6629000000.0,
             "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
-            "dividendsPaid": 9041000000.0
+            "dividendsPaid": 9041000000.0,
+            "operatingIncome": 9285000000.0,
+            "additionalSourceUrls": [
+              "https://data.sec.gov/api/xbrl/companyfacts/CIK0000909832.json"
+            ],
+            "shareRepurchases": 700000000.0,
+            "shareBasedCompensation": 818000000.0
           },
           {
             "end": "2025-08-31",
@@ -3059,7 +3180,15 @@
             "capitalExpenditure": 5498000000.0,
             "freeCashFlow": 7837000000.0,
             "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
-            "dividendsPaid": 2183000000.0
+            "dividendsPaid": 2183000000.0,
+            "operatingIncome": 10383000000.0,
+            "additionalSourceUrls": [
+              "https://data.sec.gov/api/xbrl/companyfacts/CIK0000909832.json"
+            ],
+            "shareRepurchases": 903000000.0,
+            "shareBasedCompensation": 860000000.0,
+            "currentAssets": 38380000000,
+            "currentLiabilities": 37108000000
           },
           {
             "end": "2026-08-30",
@@ -3073,7 +3202,15 @@
             "capitalExpenditure": 6435000000.0,
             "freeCashFlow": 9390000000.0,
             "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
-            "dividendsPaid": 2458000000.0
+            "dividendsPaid": 2458000000.0,
+            "operatingIncome": 11685000000.0,
+            "additionalSourceUrls": [
+              "https://data.sec.gov/api/xbrl/companyfacts/CIK0000909832.json"
+            ],
+            "shareRepurchases": 848000000.0,
+            "shareBasedCompensation": 924000000.0,
+            "currentAssets": 46582000000,
+            "currentLiabilities": 43952000000
           }
         ],
         "method": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
@@ -3339,7 +3476,11 @@
             ],
             "operatingIncome": 1900000000.0,
             "averageDilutedShares": 1637000000.0,
-            "sharesBasisSource": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000002488.json#2026-02-04"
+            "sharesBasisSource": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000002488.json#2026-02-04",
+            "shareRepurchases": 862000000.0,
+            "shareBasedCompensation": 1407000000.0,
+            "currentAssets": 19049000000,
+            "currentLiabilities": 7281000000
           },
           {
             "end": "2025-12-27",
@@ -3357,7 +3498,11 @@
             ],
             "operatingIncome": 3694000000.0,
             "averageDilutedShares": 1636000000.0,
-            "sharesBasisSource": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000002488.json#2026-02-04"
+            "sharesBasisSource": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000002488.json#2026-02-04",
+            "shareRepurchases": 1316000000.0,
+            "shareBasedCompensation": 1638000000.0,
+            "currentAssets": 26947000000,
+            "currentLiabilities": 9455000000
           }
         ],
         "method": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
@@ -3628,7 +3773,13 @@
             "freeCashFlow": 44068000000.0,
             "operatingCashFlow": 71113000000.0,
             "capitalExpenditure": 27045000000.0,
-            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
+            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
+            "operatingIncome": 46751000000.0,
+            "additionalSourceUrls": [
+              "https://data.sec.gov/api/xbrl/companyfacts/CIK0001326801.json"
+            ],
+            "shareRepurchases": 19774000000.0,
+            "shareBasedCompensation": 14027000000.0
           },
           {
             "end": "2024-12-31",
@@ -3640,7 +3791,15 @@
             "operatingCashFlow": 91328000000.0,
             "capitalExpenditure": 37256000000.0,
             "dividendsPaid": 5072000000.0,
-            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
+            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
+            "operatingIncome": 69380000000.0,
+            "additionalSourceUrls": [
+              "https://data.sec.gov/api/xbrl/companyfacts/CIK0001326801.json"
+            ],
+            "shareRepurchases": 30125000000.0,
+            "shareBasedCompensation": 16690000000.0,
+            "currentAssets": 100045000000,
+            "currentLiabilities": 33596000000
           },
           {
             "end": "2025-12-31",
@@ -3652,7 +3811,15 @@
             "operatingCashFlow": 115800000000.0,
             "capitalExpenditure": 69691000000.0,
             "dividendsPaid": 5324000000.0,
-            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
+            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
+            "operatingIncome": 83276000000.0,
+            "additionalSourceUrls": [
+              "https://data.sec.gov/api/xbrl/companyfacts/CIK0001326801.json"
+            ],
+            "shareRepurchases": 26248000000.0,
+            "shareBasedCompensation": 20427000000.0,
+            "currentAssets": 108722000000,
+            "currentLiabilities": 41836000000
           }
         ],
         "method": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
@@ -3902,7 +4069,12 @@
             "averageDilutedShares": 971000000.0,
             "sharesBasisSource": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001141391.json#2025-02-12",
             "freeCashFlow": 10753000000.0,
-            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
+            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
+            "additionalSourceUrls": [
+              "https://data.sec.gov/api/xbrl/companyfacts/CIK0001141391.json"
+            ],
+            "shareRepurchases": 8753000000.0,
+            "shareBasedCompensation": 295000000.0
           },
           {
             "end": "2023-12-31",
@@ -3926,7 +4098,12 @@
             "averageDilutedShares": 946000000.0,
             "sharesBasisSource": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001141391.json#2026-02-11",
             "freeCashFlow": 11609000000.0,
-            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
+            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
+            "additionalSourceUrls": [
+              "https://data.sec.gov/api/xbrl/companyfacts/CIK0001141391.json"
+            ],
+            "shareRepurchases": 9032000000.0,
+            "shareBasedCompensation": 460000000.0
           },
           {
             "end": "2024-12-31",
@@ -3948,7 +4125,14 @@
             "averageDilutedShares": 927000000.0,
             "sharesBasisSource": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001141391.json#2026-02-11",
             "freeCashFlow": 14306000000.0,
-            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
+            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
+            "additionalSourceUrls": [
+              "https://data.sec.gov/api/xbrl/companyfacts/CIK0001141391.json"
+            ],
+            "shareRepurchases": 10954000000.0,
+            "shareBasedCompensation": 526000000.0,
+            "currentAssets": 19724000000,
+            "currentLiabilities": 19220000000
           },
           {
             "end": "2025-12-31",
@@ -3970,7 +4154,14 @@
             "averageDilutedShares": 906000000.0,
             "sharesBasisSource": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001141391.json#2026-02-11",
             "freeCashFlow": 17159000000.0,
-            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
+            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
+            "additionalSourceUrls": [
+              "https://data.sec.gov/api/xbrl/companyfacts/CIK0001141391.json"
+            ],
+            "shareRepurchases": 11727000000.0,
+            "shareBasedCompensation": 597000000.0,
+            "currentAssets": 23558000000,
+            "currentLiabilities": 22762000000
           }
         ],
         "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001141391.json",
@@ -4211,7 +4402,12 @@
             "averageDilutedShares": 459100000.0,
             "sharesBasisSource": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000796343.json#2026-01-15",
             "freeCashFlow": 6942000000.0,
-            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
+            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
+            "additionalSourceUrls": [
+              "https://data.sec.gov/api/xbrl/companyfacts/CIK0000796343.json"
+            ],
+            "shareRepurchases": 4400000000.0,
+            "shareBasedCompensation": 1718000000.0
           },
           {
             "end": "2024-11-29",
@@ -4231,7 +4427,14 @@
             "averageDilutedShares": 449700000.0,
             "sharesBasisSource": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000796343.json#2026-01-15",
             "freeCashFlow": 7873000000.0,
-            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
+            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
+            "additionalSourceUrls": [
+              "https://data.sec.gov/api/xbrl/companyfacts/CIK0000796343.json"
+            ],
+            "shareRepurchases": 9500000000.0,
+            "shareBasedCompensation": 1833000000.0,
+            "currentAssets": 11232000000,
+            "currentLiabilities": 10521000000
           },
           {
             "end": "2025-11-28",
@@ -4251,7 +4454,14 @@
             "averageDilutedShares": 427000000.0,
             "sharesBasisSource": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000796343.json#2026-01-15",
             "freeCashFlow": 9852000000.0,
-            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
+            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
+            "additionalSourceUrls": [
+              "https://data.sec.gov/api/xbrl/companyfacts/CIK0000796343.json"
+            ],
+            "shareRepurchases": 11281000000.0,
+            "shareBasedCompensation": 1942000000.0,
+            "currentAssets": 10163000000,
+            "currentLiabilities": 10200000000
           }
         ],
         "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000796343.json",
@@ -4506,7 +4716,12 @@
             "averageDilutedShares": 997000000.0,
             "sharesBasisSource": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001108524.json#2025-03-05",
             "freeCashFlow": 6313000000.0,
-            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
+            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
+            "additionalSourceUrls": [
+              "https://data.sec.gov/api/xbrl/companyfacts/CIK0001108524.json"
+            ],
+            "shareRepurchases": 4000000000.0,
+            "shareBasedCompensation": 3279000000.0
           },
           {
             "end": "2024-01-31",
@@ -4528,7 +4743,12 @@
             "averageDilutedShares": 984000000.0,
             "sharesBasisSource": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001108524.json#2026-03-02",
             "freeCashFlow": 9498000000.0,
-            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
+            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
+            "additionalSourceUrls": [
+              "https://data.sec.gov/api/xbrl/companyfacts/CIK0001108524.json"
+            ],
+            "shareRepurchases": 7620000000.0,
+            "shareBasedCompensation": 2787000000.0
           },
           {
             "end": "2025-01-31",
@@ -4550,7 +4770,14 @@
             "averageDilutedShares": 974000000.0,
             "sharesBasisSource": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001108524.json#2026-03-02",
             "freeCashFlow": 12434000000.0,
-            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
+            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
+            "additionalSourceUrls": [
+              "https://data.sec.gov/api/xbrl/companyfacts/CIK0001108524.json"
+            ],
+            "shareRepurchases": 7829000000.0,
+            "shareBasedCompensation": 3183000000.0,
+            "currentAssets": 29727000000,
+            "currentLiabilities": 27980000000
           },
           {
             "end": "2026-01-31",
@@ -4572,7 +4799,14 @@
             "averageDilutedShares": 956000000.0,
             "sharesBasisSource": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001108524.json#2026-03-02",
             "freeCashFlow": 14402000000.0,
-            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
+            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
+            "additionalSourceUrls": [
+              "https://data.sec.gov/api/xbrl/companyfacts/CIK0001108524.json"
+            ],
+            "shareRepurchases": 12596000000.0,
+            "shareBasedCompensation": 3509000000.0,
+            "currentAssets": 28222000000,
+            "currentLiabilities": 37118000000
           }
         ],
         "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001108524.json",
@@ -4884,7 +5118,12 @@
             "averageDilutedShares": 203535000.0,
             "sharesBasisSource": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001373715.json#2025-01-30",
             "freeCashFlow": 2173000000.0,
-            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
+            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
+            "additionalSourceUrls": [
+              "https://data.sec.gov/api/xbrl/companyfacts/CIK0001373715.json"
+            ],
+            "shareRepurchases": 0.0,
+            "shareBasedCompensation": 1401000000.0
           },
           {
             "end": "2023-12-31",
@@ -4904,7 +5143,12 @@
             "averageDilutedShares": 1027953000.0,
             "sharesBasisSource": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001373715.json#2026-01-29",
             "freeCashFlow": 2704000000.0,
-            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
+            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
+            "additionalSourceUrls": [
+              "https://data.sec.gov/api/xbrl/companyfacts/CIK0001373715.json"
+            ],
+            "shareRepurchases": 538000000.0,
+            "shareBasedCompensation": 1604000000.0
           },
           {
             "end": "2024-12-31",
@@ -4924,7 +5168,14 @@
             "averageDilutedShares": 1042113000.0,
             "sharesBasisSource": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001373715.json#2026-01-29",
             "freeCashFlow": 3415000000.0,
-            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
+            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
+            "additionalSourceUrls": [
+              "https://data.sec.gov/api/xbrl/companyfacts/CIK0001373715.json"
+            ],
+            "shareRepurchases": 696000000.0,
+            "shareBasedCompensation": 1746000000.0,
+            "currentAssets": 9187000000,
+            "currentLiabilities": 8358000000
           },
           {
             "end": "2025-12-31",
@@ -4944,7 +5195,14 @@
             "averageDilutedShares": 1046691000.0,
             "sharesBasisSource": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001373715.json#2026-01-29",
             "freeCashFlow": 4576000000.0,
-            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
+            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
+            "additionalSourceUrls": [
+              "https://data.sec.gov/api/xbrl/companyfacts/CIK0001373715.json"
+            ],
+            "shareRepurchases": 1840000000.0,
+            "shareBasedCompensation": 1955000000.0,
+            "currentAssets": 10471000000,
+            "currentLiabilities": 10443000000
           }
         ],
         "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001373715.json",
@@ -5177,7 +5435,12 @@
             "averageDilutedShares": 283000000.0,
             "sharesBasisSource": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000896878.json#2025-09-03",
             "freeCashFlow": 4836000000.0,
-            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
+            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
+            "additionalSourceUrls": [
+              "https://data.sec.gov/api/xbrl/companyfacts/CIK0000896878.json"
+            ],
+            "shareRepurchases": 1967000000.0,
+            "shareBasedCompensation": 1712000000.0
           },
           {
             "end": "2024-07-31",
@@ -5199,7 +5462,12 @@
             "averageDilutedShares": 284000000.0,
             "sharesBasisSource": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000896878.json#2026-09-09",
             "freeCashFlow": 4693000000.0,
-            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
+            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
+            "additionalSourceUrls": [
+              "https://data.sec.gov/api/xbrl/companyfacts/CIK0000896878.json"
+            ],
+            "shareRepurchases": 1988000000.0,
+            "shareBasedCompensation": 1940000000.0
           },
           {
             "end": "2025-07-31",
@@ -5221,7 +5489,14 @@
             "averageDilutedShares": 283000000.0,
             "sharesBasisSource": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000896878.json#2026-09-09",
             "freeCashFlow": 6123000000.0,
-            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
+            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
+            "additionalSourceUrls": [
+              "https://data.sec.gov/api/xbrl/companyfacts/CIK0000896878.json"
+            ],
+            "shareRepurchases": 2772000000.0,
+            "shareBasedCompensation": 1968000000.0,
+            "currentAssets": 14107000000,
+            "currentLiabilities": 10370000000
           },
           {
             "end": "2026-07-31",
@@ -5243,7 +5518,14 @@
             "averageDilutedShares": 277000000.0,
             "sharesBasisSource": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000896878.json#2026-09-09",
             "freeCashFlow": 8663000000.0,
-            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
+            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
+            "additionalSourceUrls": [
+              "https://data.sec.gov/api/xbrl/companyfacts/CIK0000896878.json"
+            ],
+            "shareRepurchases": 5412000000.0,
+            "shareBasedCompensation": 2056000000.0,
+            "currentAssets": 15311000000,
+            "currentLiabilities": 10163000000
           }
         ],
         "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000896878.json",
@@ -5540,7 +5822,12 @@
             "averageDilutedShares": 4350000000.0,
             "sharesBasisSource": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000021344.json#2025-02-20",
             "freeCashFlow": 9534000000.0,
-            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
+            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
+            "additionalSourceUrls": [
+              "https://data.sec.gov/api/xbrl/companyfacts/CIK0000021344.json"
+            ],
+            "shareRepurchases": 1418000000.0,
+            "shareBasedCompensation": 356000000.0
           },
           {
             "end": "2023-12-31",
@@ -5564,7 +5851,12 @@
             "averageDilutedShares": 4339000000.0,
             "sharesBasisSource": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000021344.json#2026-02-20",
             "freeCashFlow": 9747000000.0,
-            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
+            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
+            "additionalSourceUrls": [
+              "https://data.sec.gov/api/xbrl/companyfacts/CIK0000021344.json"
+            ],
+            "shareRepurchases": 2289000000.0,
+            "shareBasedCompensation": 254000000.0
           },
           {
             "end": "2024-12-31",
@@ -5588,7 +5880,14 @@
             "averageDilutedShares": 4320000000.0,
             "sharesBasisSource": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000021344.json#2026-02-20",
             "freeCashFlow": 4741000000.0,
-            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
+            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
+            "additionalSourceUrls": [
+              "https://data.sec.gov/api/xbrl/companyfacts/CIK0000021344.json"
+            ],
+            "shareRepurchases": 1795000000.0,
+            "shareBasedCompensation": 286000000.0,
+            "currentAssets": 25997000000,
+            "currentLiabilities": 25249000000
           },
           {
             "end": "2025-12-31",
@@ -5612,7 +5911,14 @@
             "averageDilutedShares": 4313000000.0,
             "sharesBasisSource": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000021344.json#2026-02-20",
             "freeCashFlow": 5296000000.0,
-            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
+            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
+            "additionalSourceUrls": [
+              "https://data.sec.gov/api/xbrl/companyfacts/CIK0000021344.json"
+            ],
+            "shareRepurchases": 746000000.0,
+            "shareBasedCompensation": 279000000.0,
+            "currentAssets": 31044000000,
+            "currentLiabilities": 21281000000
           }
         ],
         "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000021344.json",
@@ -5874,7 +6180,12 @@
             "averageDilutedShares": 1387000000.0,
             "sharesBasisSource": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000077476.json#2025-02-04",
             "freeCashFlow": 5604000000.0,
-            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
+            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
+            "additionalSourceUrls": [
+              "https://data.sec.gov/api/xbrl/companyfacts/CIK0000077476.json"
+            ],
+            "shareRepurchases": 1500000000.0,
+            "shareBasedCompensation": 343000000.0
           },
           {
             "end": "2023-12-30",
@@ -5898,7 +6209,12 @@
             "averageDilutedShares": 1383000000.0,
             "sharesBasisSource": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000077476.json#2026-02-03",
             "freeCashFlow": 7924000000.0,
-            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
+            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
+            "additionalSourceUrls": [
+              "https://data.sec.gov/api/xbrl/companyfacts/CIK0000077476.json"
+            ],
+            "shareRepurchases": 1000000000.0,
+            "shareBasedCompensation": 380000000.0
           },
           {
             "end": "2024-12-28",
@@ -5922,7 +6238,14 @@
             "averageDilutedShares": 1378000000.0,
             "sharesBasisSource": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000077476.json#2026-02-03",
             "freeCashFlow": 7189000000.0,
-            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
+            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
+            "additionalSourceUrls": [
+              "https://data.sec.gov/api/xbrl/companyfacts/CIK0000077476.json"
+            ],
+            "shareRepurchases": 1000000000.0,
+            "shareBasedCompensation": 362000000.0,
+            "currentAssets": 25826000000,
+            "currentLiabilities": 31536000000
           },
           {
             "end": "2025-12-27",
@@ -5946,7 +6269,17 @@
             "averageDilutedShares": 1373000000.0,
             "sharesBasisSource": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000077476.json#2026-02-03",
             "freeCashFlow": 7672000000.0,
-            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
+            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
+            "additionalSourceUrls": [
+              "https://data.sec.gov/api/xbrl/companyfacts/CIK0000077476.json"
+            ],
+            "shareRepurchases": 1000000000.0,
+            "shareBasedCompensation": 288000000.0,
+            "currentAssets": 27949000000,
+            "currentLiabilities": 32764000000,
+            "roeIncome": 8240000000.0,
+            "openingEquity": 18041000000,
+            "closingEquity": 20406000000
           }
         ],
         "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000077476.json",
