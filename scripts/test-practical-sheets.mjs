@@ -31,7 +31,8 @@ for(const topic of TOPICS) {
   }
   for(const row of sheet.rows.filter(row=>/^\d{4} · EUR$/.test(row[0]))) for(const value of row.slice(1)) assert(tweet.includes(value),`${topic.id}: performance ${value}`)
   for(const title of ['💶 Les frais annuels','💼 L’encours','🛒 Le prix d’une part','📈 La tracking difference']) assert(tweet.includes(title),`${topic.id}: ${title}`)
- } else for(const source of sheet.sources) assert(tweet.includes(source.url),topic.id)
+ }
+ assert(!/https?:\/\/|Sources :/.test(tweet),topic.id)
 }
 for(const id of ['fees-euros','delay-invest','change-etf']) {
  const sheet=buildSheet(id,{scenario:{capital:23456,years:12,returnRate:4,feeA:0.1,feeB:0.6,tradeCost:42,delay:3}})

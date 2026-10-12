@@ -1,8 +1,8 @@
 import { imageCopy } from './imageCopy.js'
 
 // Dynamic canvas version of the approved dark, mint and gold composition.
-// All figures, rows, sources and notes come from the existing sheet model.
-const ink='#fffaf0', muted='#bed1c8', background='#071b14'
+// Publication images keep the main content; evidence stays in the tool.
+const ink='#fffaf0', background='#071b14'
 const accents=['#a3f3ba','#ffcf66','#a9cffa']
 export function wrapLines(ctx,text,width) {
  const lines=[]
@@ -59,12 +59,7 @@ export function drawSheet(canvas,sheet) {
  const tableH=headH+42+rowHeights.reduce((a,b)=>a+b,0)
  const takeTitleH=measure(ctx,copy.takeawayTitle,usable-80,52,700,true)
  const takeH=takeTitleH+20+measure(ctx,copy.takeaway,usable-130,39,400,true)+70
- const notes=sheet.notes.join(' ')
- const noteH=notes?measure(ctx,notes,usable-30,26)+24:0
- const labels=[...new Set(sheet.sources.map(s=>s.label.split(' · ')[0]))].slice(0,4).join(' · ')
- const sourceText=`Sources : ${labels}`
- const sourceH=measure(ctx,sourceText,usable,24)
- const H=Math.max(2000,tableTop+tableH+45+takeH+34+noteH+sourceH+95)
+ const H=tableTop+tableH+45+takeH+80
  canvas.width=W;canvas.height=Math.ceil(H)
  ctx.fillStyle=background;ctx.fillRect(0,0,W,H)
  // Restrained graphic edges, matching the approved image.
@@ -97,9 +92,5 @@ export function drawSheet(canvas,sheet) {
  rounded(ctx,pad,y,usable,takeH,54,'#102d21','#36584a')
  write(ctx,copy.takeawayTitle,pad+40,y+30,usable-80,52,accents[0],700,true,true)
  write(ctx,copy.takeaway,pad+65,y+30+takeTitleH+20,usable-130,39,ink,400,true,true)
- y+=takeH+34
- if(notes){write(ctx,notes,pad+15,y,usable-30,26,muted,400,true);y+=noteH}
- write(ctx,sourceText,pad,y,usable,24,muted,400,true)
- write(ctx,'Pas un conseil financier',pad,H-46,usable,24,ink,400,true)
  return {width:W,height:Math.ceil(H)}
 }

@@ -143,5 +143,5 @@ export function buildTweet(sheet) {
  const editorial=PRACTICAL_EDITORIAL[sheet.id]
  if(!editorial) throw new Error(`Texte de fiche manquant : ${sheet.id}`)
  const blocks=practicalTweetBlocks(sheet,editorial)
- return [editorial.hook+' 👇','🔖 Sauvegarde ce tweet',...blocks,editorial.closing,...sheet.notes,sheet.sources.length?'Sources : '+[...new Set(sheet.sources.map(s=>s.url).filter(Boolean))].join('\n'):null].filter(Boolean).join('\n\n')
+ return [editorial.hook+' 👇','🔖 Sauvegarde ce tweet',...blocks,editorial.closing,...sheet.notes].filter(Boolean).join('\n\n')
 }
