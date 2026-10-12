@@ -67,7 +67,7 @@ export function renderDcaImage(profile) {
   const ctx = canvas.getContext('2d')
   ctx.fillStyle = NAVY; ctx.fillRect(0,0,1600,1067); grain(ctx,0,0,1600,1067)
   skyline(ctx)
-  text(ctx,profile.name,50,145,730,142)
+  text(ctx,profile.name,50,135,730,130)
   text(ctx,`${profile.age} ans · ${profile.family}`,50,202,730,39)
   const occupation = `${profile.job} ${profile.location}`
   let jobSize = 33, jobLines = wrap(ctx,occupation,710,jobSize)
