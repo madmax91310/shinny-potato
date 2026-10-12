@@ -60,17 +60,22 @@
     },
     "collect-etf-pilot.yml": {
       "name": "ETF et compositions d’indices",
-      "runId": 38211197420,
+      "runId": 38213798136,
       "attempt": 1,
-      "completedAt": "2026-10-12T06:24:59Z",
-      "status": "success",
+      "completedAt": "2026-10-12T06:44:30Z",
+      "status": "failure",
       "lastSuccessAt": "2026-10-12T06:24:59Z",
-      "collectionStatus": "success",
+      "collectionStatus": "failure",
       "publicationStatus": "not-run",
       "lastCollectionSuccessAt": "2026-10-12T06:24:59Z",
       "lastPublicationSuccessAt": "2026-10-12T05:15:40Z",
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38211197420",
-      "failures": [],
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38213798136",
+      "failures": [
+        {
+          "job": "refresh",
+          "step": "Run npm run build"
+        }
+      ],
       "dataFailures": {}
     },
     "update-economic-data.yml": {
@@ -215,5 +220,5 @@
       "failures": []
     }
   },
-  "updatedAt": "2026-10-12T06:30:59Z"
+  "updatedAt": "2026-10-12T06:44:30Z"
 }
