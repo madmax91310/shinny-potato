@@ -16,7 +16,6 @@ export const ROLES = { base: 'Base', complement: 'Complément', theme: 'Thémati
 const choices = [
  ['utilities_world_dws','theme','Services publics mondiaux','utilities-world'],
  ['health_world_ishares','theme','Santé mondiale','health-world'],
- ['materials_world_dws','theme','Matériaux mondiaux','materials-world'],
  ['private_equity_ishares', 'theme', 'Private equity coté', 'listed-private-equity'],
  ['gaming_vaneck', 'theme', 'Jeux vidéo et eSport', 'gaming'],
  ['medical_innovation_ishares', 'theme', 'Innovation médicale', 'medical'],
