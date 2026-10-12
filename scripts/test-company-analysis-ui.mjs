@@ -23,7 +23,7 @@ try {
     await chooser.getByRole('button',{name:`${company.name} · ${company.symbol}`}).click()
     const text=await page.getByTestId('company-tweet').innerText()
     assert(text.includes(company.name));assert(text.includes(company.activity))
-    assert(text.includes('💰 Sur son exercice clos'))
+    assert(/💰 .*exercice terminé en/.test(text))
     assert(!text.includes('Ce que je regarderais'))
     assert(text.startsWith(company.editorialHook))
     assert(!text.includes('💬'))
