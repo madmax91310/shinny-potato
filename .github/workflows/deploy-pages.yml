@@ -86,6 +86,7 @@ jobs:
       - run: node scripts/test-wealth-simulator.mjs
       - run: node scripts/test-annual-rollover.mjs
       - run: node scripts/test-automated-indices.mjs
+      - run: node scripts/test-automated-index-sheets.mjs
       - run: node scripts/test-automation-gap-inventory.mjs
       - run: npm run audit:portfolio-provenance
       - run: npm run audit:portfolio-duels

@@ -196,6 +196,7 @@ jobs:
       - run: npm run audit:index-facts
       - run: npm run audit:index-completeness
       - run: node scripts/test-automated-indices.mjs
+      - run: node scripts/test-automated-index-sheets.mjs
       - run: npm run audit:etf-annual-performance
       - run: npm run audit:etf-completeness
       - run: npm run audit:etf-consistency
