@@ -10,7 +10,7 @@ import { computeComparativeSeries } from '../src/pages/investment-calculator/vid
 const read = path => JSON.parse(readFileSync(path));
 const config = read('scripts/monthly-automation.json');
 const records = { ...read('src/data/automated-monthly.json'), ...read('src/data/automated-etf-monthly.json') };
-const evidence = read('scripts/source-snapshots/monthly-automated.json');
+const evidence = { ...read('scripts/source-snapshots/monthly-automated-round4.json'), ...read('scripts/source-snapshots/monthly-automated.json') };
 for (const source of config.series.filter(source => source.consumerScope === 'catalog')) {
   assert(records[source.id], `${source.id}: registered ETF must have a validated active history`);
 }

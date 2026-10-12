@@ -301,7 +301,9 @@ def main():
         write_json_atomic(path,{k:v for k,v in merged.items() if v.get('consumerScope') != 'catalog'})
         write_json_atomic(etf_path,{k:v for k,v in merged.items() if v.get('consumerScope') == 'catalog'})
     evidence_path=ROOT/'scripts/source-snapshots/monthly-automated.json'
-    evidence=json.loads(evidence_path.read_text()) if evidence_path.exists() else {}
+    seed_path=ROOT/'scripts/source-snapshots/monthly-automated-round4.json'
+    evidence=json.loads(seed_path.read_text()) if seed_path.exists() else {}
+    evidence.update(json.loads(evidence_path.read_text()) if evidence_path.exists() else {})
     for observation in report['series']:
         if observation['status']=='validated':
             result=observation['evidence']
