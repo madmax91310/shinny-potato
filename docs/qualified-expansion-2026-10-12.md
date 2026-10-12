@@ -41,7 +41,7 @@ réutilisés en mémoire pendant une collecte afin que comptes et historique res
 fondés sur les mêmes publications ; aucune capture complète n’est publiée.
 Le PER historique n’est calculé que sur quatre BPA trimestriels publiés.
 La SEC répond dans l’environnement de développement mais refuse l’accès depuis
-GitHub Actions. Les neuf autres entreprises proposées ne sont donc pas ajoutées :
+GitHub Actions. AMD dispose désormais d’un collecteur de publications officiel validé et est conservée. Les huit autres entreprises proposées ne sont donc pas ajoutées :
 leur historique et leurs comptes doivent d’abord passer une collecte complète sur
 l’environnement d’exécution, via des sources de secours officielles.
 
