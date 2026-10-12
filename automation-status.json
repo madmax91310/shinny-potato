@@ -30,22 +30,17 @@
     },
     "update-market-monthly.yml": {
       "name": "Historiques mensuels des marchés",
-      "runId": 38266241640,
+      "runId": 38275019268,
       "attempt": 1,
-      "completedAt": "2026-10-12T15:12:49Z",
-      "status": "failure",
-      "lastSuccessAt": "2026-10-12T12:57:03Z",
+      "completedAt": "2026-10-12T16:25:54Z",
+      "status": "success",
+      "lastSuccessAt": "2026-10-12T16:25:54Z",
       "collectionStatus": "success",
-      "publicationStatus": "failure",
-      "lastCollectionSuccessAt": "2026-10-12T15:12:49Z",
+      "publicationStatus": "not-run",
+      "lastCollectionSuccessAt": "2026-10-12T16:25:54Z",
       "lastPublicationSuccessAt": "2026-10-12T06:30:56Z",
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38266241640",
-      "failures": [
-        {
-          "job": "deploy / build",
-          "step": "Run node scripts/test-investment-emerald.mjs"
-        }
-      ],
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38275019268",
+      "failures": [],
       "dataFailures": {}
     },
     "update-company-analysis.yml": {
@@ -237,5 +232,5 @@
       "failures": []
     }
   },
-  "updatedAt": "2026-10-12T16:19:46Z"
+  "updatedAt": "2026-10-12T16:25:54Z"
 }
