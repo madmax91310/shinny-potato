@@ -1,0 +1,81 @@
+name: Refresh fully automated index sheets
+on:
+  schedule:
+    - cron: '40 6 * * *'
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - '.github/workflows/refresh-automated-index-sheets.yml'
+      - 'scripts/index-automation.json'
+      - 'scripts/refresh_index_sources.py'
+      - 'scripts/collect_sp_composition.py'
+      - 'scripts/test_complete_index_sheets.py'
+      - 'src/data/automated-index-sheets.js'
+      - 'src/data/index-factsheets.js'
+      - 'src/data/index-facts.js'
+      - 'src/pages/factsheet-tweets/**'
+permissions:
+  contents: read
+jobs:
+  collect:
+    # Every displayed field must pass a real unattended collection.
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    concurrency:
+      group: active-market-data-${{ github.event_name == 'pull_request' && format('{0}-{1}', github.workflow, github.ref) || 'production' }}
+      cancel-in-progress: false
+    permissions:
+      contents: write
+    outputs:
+      commit_sha: ${{ steps.commit.outputs.commit_sha }}
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          ref: ${{ github.event_name == 'pull_request' && github.ref || 'master' }}
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 20
+      - run: sudo apt-get update && sudo apt-get install -y poppler-utils
+      - run: npm ci
+      - run: python -m unittest discover -s scripts -p 'test_complete_index_sheets.py'
+      - name: Collect all five indices directly and require every displayed field
+        run: >-
+          python scripts/refresh_index_sources.py --require-complete --apply
+          --output "${{ runner.temp }}/selected-index-observations.json"
+          --ids sp500-equal-weight world-ex-usa msci-world-minimum-volatility-usd
+          msci-world-sector-neutral-quality msci-world-enhanced-value
+      - run: node scripts/test-automated-index-sheets.mjs
+      - run: node scripts/test-automated-indices.mjs
+      - run: npm run audit:index-facts
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: complete-index-sheet-observations
+          path: ${{ runner.temp }}/selected-index-observations.json
+          retention-days: 35
+      - name: Publish validated observations
+        id: commit
+        if: github.event_name != 'pull_request'
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add src/data/automated-indices.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Refresh complete automated index sheets'
+            git pull --rebase origin master
+            git push origin HEAD:master
+          fi
+          echo "commit_sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+  deploy:
+    needs: collect
+    if: github.event_name != 'pull_request'
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    uses: ./.github/workflows/deploy-pages.yml
+    with:
+      ref: ${{ needs.collect.outputs.commit_sha }}

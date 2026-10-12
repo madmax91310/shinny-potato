@@ -6,6 +6,7 @@ import { SHEETS } from '../src/data/index-factsheets.js'
 import { buildFactsheetTweet } from '../src/pages/factsheet-tweets/lib.js'
 import { getIndexArt } from '../src/pages/factsheet-tweets/visualIdentity.js'
 
+assert.equal(new Set(SHEETS.map(sheet => sheet.id)).size, SHEETS.length, 'Duplicate index sheet')
 for (const definition of AUTOMATED_SHEET_DEFINITIONS) {
   const id = definition.id, source = config.indices.find(row => row.id === id)
   assert(source.enabled && source.requiredFields.includes('composition') && source.requiredFields.includes('returns'))
@@ -43,4 +44,4 @@ for (const definition of AUTOMATED_SHEET_DEFINITIONS) {
   const missing = structuredClone(records); delete missing[id].returns
   assert.throws(() => buildAutomatedIndexSheets(missing), /complètes exigées/)
 }
-console.log('Four fully automated index sheets: exact observations, future composition/year propagation, incomplete and Price Return data refused.')
+console.log(`${AUTOMATED_SHEET_DEFINITIONS.length} fully automated index sheets: exact observations, future composition/year propagation, incomplete and Price Return data refused.`)

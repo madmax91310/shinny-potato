@@ -113,15 +113,60 @@ def merge_records(current, observations):
     return merged
 
 
+def validate_complete_sheet(observation, now):
+    """Fail closed before storing a fully automated sheet, including its top weights."""
+    import math
+    if observation.get('errors'):
+        raise ValueError(f"{observation['id']}: direct collection failed: {observation['errors']}")
+    facts, returns = observation.get('facts', {}), observation.get('returns', {})
+    if not isinstance(facts.get('constituents'), int) or isinstance(facts['constituents'], bool) or facts['constituents'] <= 0:
+        raise ValueError('Missing exact constituent count')
+    for field in ['countries', 'sectors', 'holdings']:
+        rows = facts.get(field, [])
+        if not rows or any(not label or isinstance(value, bool) or not isinstance(value, (int, float)) or not math.isfinite(value) or not 0 <= value <= 100 for label, value in rows):
+            raise ValueError('Missing or invalid ' + field)
+    if returns.get('variant') not in ['NET', 'GROSS', 'TOTAL'] or returns.get('performance', {}).get('kind') != 'indice':
+        raise ValueError('Reinvested exact-index returns required')
+    values = returns.get('values', [])
+    years = [year for year, _ in values]
+    if len(set(years)) != len(years) or any(not math.isfinite(value) or value <= -100 for _, value in values):
+        raise ValueError('Invalid annual return observations')
+    if not set(range(now.year - 5, now.year)).issubset(years):
+        raise ValueError('Five latest complete calendar years required')
+    for record in [facts, returns]:
+        if not record.get('asOf') or not record.get('source', {}).get('sha256'):
+            raise ValueError('Dated source evidence required')
+        if record['source'].get('transport') == 'official-response-handoff':
+            raise ValueError('Direct unattended retrieval required')
+
+
 def main():
-    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--output',required=True,type=pathlib.Path);p.add_argument('--apply',action='store_true');p.add_argument('--only-derived',action='store_true');args=p.parse_args()
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--output',required=True,type=pathlib.Path);p.add_argument('--apply',action='store_true');p.add_argument('--only-derived',action='store_true')
+    p.add_argument('--ids', nargs='+', help='Refresh only these configured indices')
+    p.add_argument('--require-complete', action='store_true', help='Require complete direct observations before applying any selected record')
+    args=p.parse_args()
     config=json.loads((ROOT/'scripts/index-automation.json').read_text());now=dt.datetime.now(UTC)
     active = [c for c in config['indices'] if c.get('enabled', True) and (not args.only_derived or c['parser']=='monthly-derived')]
+    if args.ids:
+        unknown = set(args.ids) - {c['id'] for c in active}
+        if unknown: p.error('Unknown or disabled indices: ' + ', '.join(sorted(unknown)))
+        active = [c for c in active if c['id'] in args.ids]
+    if args.require_complete:
+        active = [{**c, 'allowPublicHandoff': False} for c in active]
     if args.only_derived:
         active = [{**c, 'collectComposition': False} for c in active]
     with ThreadPoolExecutor(max_workers=4)as pool:observations=list(pool.map(lambda c:collect_one(c,now),active))
-    report={'checkedAt':now.isoformat(),'indices':observations,'status':'validated','notQualified':[c['id'] for c in config['indices'] if not c.get('enabled', True)]}
+    qualification_errors = []
+    if args.require_complete:
+        for observation in observations:
+            try: validate_complete_sheet(observation, now)
+            except ValueError as error: qualification_errors.append(str(error))
+    report={'checkedAt':now.isoformat(),'indices':observations,
+            'status':'failed' if qualification_errors or any(o['errors'] for o in observations) else 'validated',
+            'notQualified':[c['id'] for c in config['indices'] if not c.get('enabled', True)]}
+    if qualification_errors: report['qualificationErrors'] = qualification_errors
     write_json_atomic(args.output,report)
+    if qualification_errors: raise ValueError('; '.join(qualification_errors))
     if args.apply:
         path=ROOT/'src/data/automated-indices.json';old=json.loads(path.read_text())if path.exists()else{}
         merged=merge_records(old,observations)
