@@ -1,6 +1,9 @@
 // Chaque côté : une base ETF, un complément facultatif, une thématique facultative.
 const row = (id, pct) => ({ id, pct })
 export const DUELS = [
+  {"id": "world-infrastructure", "title": "World seul ou 20 % d’infrastructures ?", "hook": "Tu conserves ton World, ou tu consacres 20 % de ton portefeuille aux infrastructures ?", "left": [{"id": "msci_world_ishares", "pct": 100}], "right": [{"id": "msci_world_ishares", "pct": 80}, {"id": "infrastructure_ishares", "pct": 20}], "labels": ["World seul", "World + infrastructures"], "question": "Quelle place donnerais-tu à cette exposition à côté de ton World ?"},
+  {"id": "world-private-equity", "title": "World seul ou 10 % de private equity coté ?", "hook": "Tu conserves ton World, ou tu consacres 10 % au private equity coté ?", "left": [{"id": "msci_world_ishares", "pct": 100}], "right": [{"id": "msci_world_ishares", "pct": 90}, {"id": "private_equity_ishares", "pct": 10}], "labels": ["World seul", "World + private equity coté"], "question": "Quelle place donnerais-tu à cette exposition à côté de ton World ?"},
+
   { id: 'world-europe', title: 'World seul ou 20 % de Europe ?', left: [row('msci_world_ishares',100)], right: [row('msci_world_ishares',80),row('msci_europe',20)], labels: ['World seul','World + Europe'], question: 'Tu renforcerais l’Europe déjà présente dans ton World ?' },
   { id: 'world-emergents', title: 'World seul ou 20 % de émergents ?', left: [row('msci_world_ishares',100)], right: [row('msci_world_ishares',80),row('msci_em',20)], labels: ['World seul','World + émergents'], question: 'Tu ajouterais les marchés émergents absents du World ?' },
   { id: 'world-quality', title: 'World seul ou 20 % de Quality ?', left: [row('msci_world_ishares',100)], right: [row('msci_world_ishares',80),row('world_quality_ishares',20)], labels: ['World seul','World + Quality'], question: 'Tu ajouterais des critères de qualité à ton World ?' },

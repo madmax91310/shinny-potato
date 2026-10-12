@@ -3,6 +3,16 @@ import RECORDS from './automated-etf-monthly.json' with { type: 'json' }
 // Exact shares shared by the investment, performance and anniversary tools.
 // Visual identities use exposure illustrations, never an invented issuer logo.
 export const ETF_HISTORY_IDENTITIES = {
+  etf_robotics: {"icon": "🌍", "scene": "robotics", "title": "AUTOMATION & ROBOTICS", "ticker": "RBOT"},
+  etf_financials: {"icon": "🌍", "scene": "finance", "title": "MSCI WORLD FINANCIALS SECTOR ADVANCED", "ticker": "WFNS"},
+  etf_smallcap: {"icon": "🌍", "scene": "world", "title": "MSCI WORLD SMALL CAP", "ticker": "WSML"},
+  etf_momentum: {"icon": "🌍", "scene": "world", "title": "EDGE MSCI WORLD MOMENTUM FACTOR", "ticker": "IWMO"},
+  etf_gold_miners: {"icon": "🌍", "scene": "gold", "title": "GOLD MINERS", "ticker": "GDX"},
+  etf_value: {"icon": "🌍", "scene": "world", "title": "EDGE MSCI WORLD VALUE FACTOR", "ticker": "IWVL"},
+  etf_infrastructure: {"icon": "🌍", "scene": "infrastructure", "title": "GLOBAL INFRASTRUCTURE", "ticker": "IDIN"},
+  etf_health: {"icon": "🌍", "scene": "health", "title": "MSCI WORLD HEALTH CARE SECTOR ADVANCED", "ticker": "WHCS"},
+  etf_quality: {"icon": "🌍", "scene": "world", "title": "EDGE MSCI WORLD QUALITY FACTOR", "ticker": "IWQU"},
+  etf_clean_energy: {"icon": "🌍", "scene": "renewables", "title": "GLOBAL CLEAN ENERGY TRANSITION", "ticker": "IQQH"},
   etfIndustrials: { icon: '🏭', scene: 'industry', title: 'WORLD INDUSTRIALS', ticker: 'XDWI' },
   etf_timber_ishares: {icon:'🌳',scene:'world',title:'BOIS ET FORETS',ticker:'WOOD'},
   etf_water_ishares: {icon:'🌍',scene:'world',title:"GLOBAL WATER",ticker:"DH2O"},

@@ -2,6 +2,8 @@
 // partagent un rôle ; un indice, un facteur ou un mécanisme différent a son propre texte.
 // Aucun rendement, frais ou statut fiscal n’est recopié ici.
 const entries = {};
+add('private_equity_ishares', 'theme', 'le private equity coté', 'On renforce ici des sociétés cotées liées au capital-investissement. Leurs participations et leur financement peuvent peser sur leur cours ; cette poche reste en actions et ne remplace pas un fonds non coté.');
+entries.private_equity_ishares.description = 'Des actions de sociétés cotées liées au capital-investissement.';
 add('gaming_vaneck', 'theme', 'les jeux vidéo et l’eSport', 'On renforce les entreprises du jeu vidéo avec une poche de conviction. Le panier est concentré et sensible aux succès commerciaux ; il ne remplace pas une base mondiale.');
 add('medical_innovation_ishares', 'theme', 'l’innovation médicale', 'On cible des entreprises de l’innovation dans les soins. Les essais, autorisations et financements peuvent peser sur la poche ; ce choix ne couvre pas tout le secteur santé.');
 // Chaque nouvelle exposition a un rôle distinct, sans changer les explications existantes.

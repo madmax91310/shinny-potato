@@ -9,6 +9,7 @@ const EURO50 = 'Il suit 50 grandes entreprises de la zone euro. Son périmètre 
 const TECH_EUROPE = 'Il cible les entreprises technologiques du STOXX Europe 600. Tu investis dans un secteur européen précis, plutôt que dans l’ensemble du marché européen.'
 export const ETF_EXPOSURE_COPY = {
   ...Object.fromEntries(QUALIFIED_EXPOSURE_SHEETS.map(r=>[r.isin,r.whatIs])),
+  IE00BQQP9F84: 'Il détient des actions de sociétés qui extraient de l’or. Leur résultat dépend aussi de leurs coûts de production et de leur gestion : leur performance peut donc différer de celle de l’or physique.',
   IE00B6R52259: ACWI,
   IE00BP3QZ601: 'Il sélectionne des entreprises du MSCI World selon leur rentabilité, leur endettement et la stabilité de leurs bénéfices. Les poids des secteurs restent proches du World ; ce filtre ne garantit pas une meilleure performance.',
   IE00BP3QZB59: 'Il sélectionne des entreprises du MSCI World dont la valorisation paraît plus faible selon plusieurs critères financiers. Une action moins chère peut le rester longtemps et cette sélection peut sous-performer le marché.',

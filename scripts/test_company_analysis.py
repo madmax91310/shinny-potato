@@ -349,4 +349,7 @@ class AMDPublicationsTests(unittest.TestCase):
                     self.fixture().replace(b'September 27, 2025', b'March 27, 2025')]:
             with self.assertRaises(ValueError): parse(raw, 'https://ir.amd.com/report', TODAY)
 
+# Keep the existing workflow entry point while covering the added issuer adapters.
+from test_company_round2 import Statements as Round2Statements, ShareBasis as Round2ShareBasis
+
 if __name__ == '__main__': unittest.main()
