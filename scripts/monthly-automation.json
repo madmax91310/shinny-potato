@@ -939,6 +939,25 @@
       "listingEvidenceId": "IE00B1TXHL60-XETR-IQQL-EUR",
       "sourceUrl": "https://www.ishares.com/uk/individual/en/products/251918/?siteEntryPassthrough=true&switchLocale=y",
       "timezone": "Europe/Berlin"
+    },
+    {
+      "id": "etf_timber_ishares",
+      "label": "iShares Global Timber & Forestry UCITS ETF",
+      "isin": "IE00B27YCF74",
+      "currency": "USD",
+      "periodStart": "2016-01",
+      "method": "Clôtures ajustées des distributions et divisions, dernière séance de chaque mois, recoupées avec la bougie mensuelle Yahoo ; part et cotation exactes",
+      "parser": "yahoo",
+      "symbol": "WOOD.SW",
+      "field": "adjclose",
+      "precision": 6,
+      "collectAnniversary": true,
+      "consumerScope": "catalog",
+      "ticker": "WOOD",
+      "mic": "XSWX",
+      "listingEvidenceId": "IE00B27YCF74-XSWX-WOOD-USD",
+      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/251912/?siteEntryPassthrough=true&switchLocale=y",
+      "timezone": "Europe/Zurich"
     }
   ]
 }

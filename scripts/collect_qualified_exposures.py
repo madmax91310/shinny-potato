@@ -2,19 +2,17 @@
 import argparse, datetime as dt, hashlib, json
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
-from bs4 import BeautifulSoup
-from collect_etf_pilot import fetch_product, Components, parse_share
+from collect_etf_pilot import product_data_url, parse_share
 from collect_etf_holdings import parse_holdings, collect_holdings
 from data_automation import get_text, UTC, write_json_atomic
-from issuer_documents import public_page
 from apply_etf_collection import merge_collection
 ROOT=Path(__file__).resolve().parents[1]
 MICS={'London Stock Exchange':'XLON','Deutsche Boerse Xetra':'XETR','Euronext Amsterdam':'XAMS','Borsa Italiana':'ETFP','SIX Swiss Exchange':'XSWX'}
 def collect_one(config,now):
  share={**config,'currency':'USD','collectHoldings':True,'requireFullHistory':False}
- body,url,attempts=fetch_product(share,get_text)
- if isinstance(body,str):p=Components();p.feed(body);components=p.components
- else:components=body['componentsByNameMap']
+ url=product_data_url(share).replace('holdings.all','holdings.all%2Clistings')
+ raw=get_text(url,('application/json',),10000000);body=json.loads(raw)
+ components=body['componentsByNameMap']
  facts=components['keyFundFacts']['containersByNameMap']['default']['dataPointsByNameMap']
  v=lambda key:facts[key]['value']
  share['distribution']=v('useOfProfitsCode')
@@ -24,25 +22,25 @@ def collect_one(config,now):
  result['holdings']=holdings
  if not result['countries'].get('rows'):result['countries']=countries
  if any(not result[field].get('rows') for field in ['holdings','countries','sectors']):raise ValueError('Incomplete issuer composition')
- page_url=f'https://www.ishares.com/uk/individual/en/products/{share["productId"]}/?siteEntryPassthrough=true&switchLocale=y'
- page=public_page(page_url,('text/html',),6000000);soup=BeautifulSoup(page,'html.parser')
- if config['isin'] not in page:raise ValueError('Product page ISIN mismatch')
- headings=[h.get_text(' ',strip=True) for h in soup.find_all('h1') if 'iShares' in h.get_text()]
- if len(set(headings))!=1:raise ValueError('Ambiguous issuer name')
+ page_url=url
+ name=body.get('fundName')
+ if not name or not name.startswith('iShares '):raise ValueError('Missing official fund name')
+ points=components['listings']['containersByNameMap']['default']['dataPointsByNameMap']
+ keys=['exchange','ticker','currencyCode','listingDate','ric']
+ arrays={key:points[key]['value']for key in keys}
+ if len({len(a)for a in arrays.values()})!=1:raise ValueError('Misaligned listing columns')
  listings=[]
- table=soup.find('table',attrs={'data-id':'listings-table'})
- if not table:raise ValueError('Missing official listing table')
- for row in table.select('tbody tr'):
-  cells=[td.get_text(' ',strip=True) for td in row.find_all('td')]
-  if len(cells)>=7 and cells[0] in MICS and cells[2] in ['USD','EUR'] and cells[1] and cells[6] not in ['-','']:
-   listings.append(dict(ticker=cells[1],exchange='Xetra' if MICS[cells[0]]=='XETR' else cells[0],excerpt=' | '.join(cells),mic=MICS[cells[0]],currency=cells[2],symbol=cells[6],sourceUrl=page_url,checkedAt=now.date().isoformat(),evidenceId=f'{config["isin"]}-{MICS[cells[0]]}-{cells[1]}-{cells[2]}'))
+ for cells in zip(*(arrays[key]for key in keys)):
+  exchange,ticker,currency,listing_date,ric=cells
+  if exchange in MICS and currency in ['USD','EUR'] and ticker and ric:
+   listings.append(dict(ticker=ticker,exchange='Xetra'if MICS[exchange]=='XETR'else exchange,excerpt=' | '.join(str(v)for v in cells),mic=MICS[exchange],currency=currency,symbol=ric,sourceUrl=url,checkedAt=now.date().isoformat(),evidenceId=f'{config["isin"]}-{MICS[exchange]}-{ticker}-{currency}'))
  if not listings:raise ValueError('No fully identified official listing')
  # Prefer USD London for historical calculations; the sheet uses the same exact listing.
  listing=sorted(listings,key=lambda x:(x['currency']!='USD',x['mic']!='XLON',x['ticker']))[0]
- result.update(name=headings[0],sourceUrl=url,listing=listing,listings=listings)
+ result.update(name=name,sourceUrl=url,listing=listing,listings=listings)
  result['characteristics']={'terPct':result['terPct'],'index':result['index'],'distribution':result['distribution'],'domicile':v('domicile'),'replicationMethod':v('productStructure')+' ('+v('fundMethodologyTypeCode')+')','inceptionDate':str(v('inceptionDate'))}
  if v('ucitsCompliantFlag')!='Yes' or v('assetClass')!='Equity':raise ValueError('Unexpected UCITS/asset class')
- result['checkedAt']=now.isoformat();result['pageSha256']=hashlib.sha256(page.encode()).hexdigest();result.pop('rawComponents',None)
+ result['checkedAt']=now.isoformat();result['pageSha256']=hashlib.sha256(raw.encode()).hexdigest();result.pop('rawComponents',None)
  return result
 
 def main():

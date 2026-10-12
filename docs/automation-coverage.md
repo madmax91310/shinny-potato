@@ -8,14 +8,14 @@ Rapport fondé sur les collecteurs configurés et les données actives, pas sur 
 
 | Domaine | Couverture active | Fréquence |
 |---|---|---|
-| Historiques mensuels des simulateurs | 74/74 séries ; 44 collecteurs communs + Bitcoin et or | Marchés : 2, 4, 8 et 16 du mois ; Bitcoin : 2, 4 et 8 ; or : tentatives du 3 au 10 |
-| Parts ETF mensuelles raccordées | 20 parts exactes ; investissement et performance revenus réinvestis, anniversaire hors distributions | Même collecte mensuelle et reprise quotidienne des échecs |
+| Historiques mensuels des simulateurs | 75/75 séries ; 44 collecteurs communs + Bitcoin et or | Marchés : 2, 4, 8 et 16 du mois ; Bitcoin : 2, 4 et 8 ; or : tentatives du 3 au 10 |
+| Parts ETF mensuelles raccordées | 21 parts exactes ; investissement et performance revenus réinvestis, anniversaire hors distributions | Même collecte mensuelle et reprise quotidienne des échecs |
 | ETF/ETC/ETP | 172/175 instruments, au moins un champ | Quotidienne |
 | Comparatif ETF | 82/82 parts raccordées dans 43 blocs ; 74 calendriers actifs, 8 absences qualifiées | Quotidienne ; ajout de part contrôlé en CI |
 | Compositions d’indices | 42 indices | 3 et 16 du mois |
 | Rendements annuels d’indices | 46 indices | 3 et 16 du mois |
 | Pouvoir d’achat | Prix généraux, alimentation, énergie, IRL et SMIC INSEE ; périodes et qualité publiées | Vérification quotidienne |
-| Anniversaires | 58 niveaux datés ; saisie manuelle facultative | Quotidienne ; or : dernière moyenne mensuelle |
+| Anniversaires | 68 niveaux datés ; saisie manuelle facultative | Quotidienne ; or : dernière moyenne mensuelle |
 | Inflation | INSEE, prolongement de la série mensuelle 2026+ | 1 et 16 du mois |
 | Portefeuilles d’investisseurs | 18 déclarants SEC 13F | Vérification quotidienne ; publication trimestrielle par les déclarants |
 | Suivi de fraîcheur | Rapport et rappels GitHub | Hebdomadaire ; ces rappels ne collectent pas les données manuelles |

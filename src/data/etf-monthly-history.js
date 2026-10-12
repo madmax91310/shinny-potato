@@ -3,6 +3,7 @@ import RECORDS from './automated-etf-monthly.json' with { type: 'json' }
 // Exact shares shared by the investment, performance and anniversary tools.
 // Visual identities use exposure illustrations, never an invented issuer logo.
 export const ETF_HISTORY_IDENTITIES = {
+  etf_timber_ishares: {icon:'🌳',scene:'world',title:'BOIS ET FORETS',ticker:'WOOD'},
   etf_water_ishares: {icon:'🌍',scene:'world',title:"GLOBAL WATER",ticker:"DH2O"},
   etf_agribusiness_ishares: {icon:'🌍',scene:'world',title:"AGRIBUSINESS USD (ACC)",ticker:"ISAG"},
   etf_world_staples: {icon:'🌍',scene:'world',title:"MSCI WORLD CONSUMER STAPLES SECTOR ADVANCED",ticker:"WCSS"},
@@ -10,8 +11,8 @@ export const ETF_HISTORY_IDENTITIES = {
   etf_world_energy: {icon:'🌍',scene:'world',title:"MSCI WORLD ENERGY SECTOR",ticker:"WENS"},
   etf_world_communication: {icon:'🌍',scene:'world',title:"MSCI WORLD COMMUNICATION SERVICES SECTOR ADVANCED",ticker:"WCMS"},
   etf_private_equity_ishares: {icon:'🌍',scene:'world',title:"LISTED PRIVATE EQUITY",ticker:"IQQL"},
-  etcPalladium: { icon: '⚪', scene: 'industry', title: 'PALLADIUM PHYSIQUE', ticker: 'IPDM' },
-  etcPlatinum: { icon: '⚪', scene: 'industry', title: 'PLATINE PHYSIQUE', ticker: 'IPLT' },
+  etcPalladium: { instrumentType:'ETC', icon: '⚪', scene: 'industry', title: 'PALLADIUM PHYSIQUE', ticker: 'IPDM' },
+  etcPlatinum: { instrumentType:'ETC', icon: '⚪', scene: 'industry', title: 'PLATINE PHYSIQUE', ticker: 'IPLT' },
   etfAvantisSmallValue: { icon: '🌍', scene: 'world', title: 'SMALL CAP VALUE', ticker: 'AVWS' },
   etfImie: { icon: '🌍', scene: 'world', title: 'ACWI IMI', ticker: 'IMIE' },
   etfVwce: { icon: '🌍', scene: 'world', title: 'FTSE ALL-WORLD', ticker: 'VWCE' },

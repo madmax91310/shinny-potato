@@ -180,6 +180,7 @@ export function getBenchmarkPerformance(startYm, endYm) {
 export function performanceBasis(assetId) {
   const asset = ASSETS[assetId];
   if (ANNIVERSARY_INDEX_VARIANTS[assetId]) return ANNIVERSARY_INDEX_VARIANTS[assetId];
+  if (asset.instrumentType === 'ETC') return `${asset.currency} · cours de l’ETC`;
   if (asset.priceMethod === 'adjusted') return `${asset.currency} · revenus réinvestis`;
   if (assetId === 'or') return `${asset.currency} · moyennes mensuelles du prix de l’or`;
   if (assetId === 'silver') return `${asset.currency} · futures COMEX, hors frais et roulement`;

@@ -234,51 +234,51 @@
       ]
     },
     "name": "iShares MSCI World Mid-Cap Equal Weight UCITS ETF",
-    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=270057&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=270057&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
     "listing": {
       "ticker": "IWSZ",
       "exchange": "London Stock Exchange",
+      "excerpt": "London Stock Exchange | IWSZ | USD | 20141006 | IWSZ.L",
       "mic": "XLON",
       "currency": "USD",
       "symbol": "IWSZ.L",
-      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/270057/?siteEntryPassthrough=true&switchLocale=y",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=270057&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "checkedAt": "2026-10-12",
-      "evidenceId": "IE00BP3QZD73-XLON-IWSZ-USD",
-      "excerpt": "London Stock Exchange | IWSZ | USD | IWSZ.L"
+      "evidenceId": "IE00BP3QZD73-XLON-IWSZ-USD"
     },
     "listings": [
       {
         "ticker": "IWSZ",
-        "exchange": "Borsa Italiana",
-        "mic": "ETFP",
-        "currency": "EUR",
-        "symbol": "IWSZ.MI",
-        "sourceUrl": "https://www.ishares.com/uk/individual/en/products/270057/?siteEntryPassthrough=true&switchLocale=y",
+        "exchange": "London Stock Exchange",
+        "excerpt": "London Stock Exchange | IWSZ | USD | 20141006 | IWSZ.L",
+        "mic": "XLON",
+        "currency": "USD",
+        "symbol": "IWSZ.L",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=270057&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "checkedAt": "2026-10-12",
-        "evidenceId": "IE00BP3QZD73-ETFP-IWSZ-EUR",
-        "excerpt": "Borsa Italiana | IWSZ | EUR | IWSZ.MI"
+        "evidenceId": "IE00BP3QZD73-XLON-IWSZ-USD"
       },
       {
         "ticker": "IS3T",
         "exchange": "Xetra",
+        "excerpt": "Deutsche Boerse Xetra | IS3T | EUR | 20141007 | IS3T.DE",
         "mic": "XETR",
         "currency": "EUR",
         "symbol": "IS3T.DE",
-        "sourceUrl": "https://www.ishares.com/uk/individual/en/products/270057/?siteEntryPassthrough=true&switchLocale=y",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=270057&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "checkedAt": "2026-10-12",
-        "evidenceId": "IE00BP3QZD73-XETR-IS3T-EUR",
-        "excerpt": "Deutsche Boerse Xetra | IS3T | EUR | IS3T.DE"
+        "evidenceId": "IE00BP3QZD73-XETR-IS3T-EUR"
       },
       {
         "ticker": "IWSZ",
-        "exchange": "London Stock Exchange",
-        "mic": "XLON",
-        "currency": "USD",
-        "symbol": "IWSZ.L",
-        "sourceUrl": "https://www.ishares.com/uk/individual/en/products/270057/?siteEntryPassthrough=true&switchLocale=y",
+        "exchange": "Borsa Italiana",
+        "excerpt": "Borsa Italiana | IWSZ | EUR | 20150216 | IWSZ.MI",
+        "mic": "ETFP",
+        "currency": "EUR",
+        "symbol": "IWSZ.MI",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=270057&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "checkedAt": "2026-10-12",
-        "evidenceId": "IE00BP3QZD73-XLON-IWSZ-USD",
-        "excerpt": "London Stock Exchange | IWSZ | USD | IWSZ.L"
+        "evidenceId": "IE00BP3QZD73-ETFP-IWSZ-EUR"
       }
     ],
     "characteristics": {
@@ -289,12 +289,12 @@
       "replicationMethod": "Physical (Optimised)",
       "inceptionDate": "20141003"
     },
-    "checkedAt": "2026-10-12T11:11:00.344629+00:00",
-    "pageSha256": "20f96bd3b102bdc23ba39ea3851f58c60a01dab89be2cbc2937c53d245d2f403",
+    "checkedAt": "2026-10-12T11:35:47.104357+00:00",
+    "pageSha256": "ee4585bfc3b1a6a63233608b453410a5fe3b35fc263eda4cc1e498be5c2e9a77",
     "automatedRecord": {
       "currency": "USD",
       "productId": 270057,
-      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=270057&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=270057&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "provider": "iShares",
       "aum": {
         "amount": 442157463.07,
@@ -730,62 +730,62 @@
       ]
     },
     "name": "iShares Global Water UCITS ETF",
-    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251913&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=251913&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
     "listing": {
       "ticker": "DH2O",
       "exchange": "London Stock Exchange",
+      "excerpt": "London Stock Exchange | DH2O | USD | 20070319 | DH2O.L",
       "mic": "XLON",
       "currency": "USD",
       "symbol": "DH2O.L",
-      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/251913/?siteEntryPassthrough=true&switchLocale=y",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=251913&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "checkedAt": "2026-10-12",
-      "evidenceId": "IE00B1TXK627-XLON-DH2O-USD",
-      "excerpt": "London Stock Exchange | DH2O | USD | DH2O.L"
+      "evidenceId": "IE00B1TXK627-XLON-DH2O-USD"
     },
     "listings": [
       {
-        "ticker": "IH2O",
-        "exchange": "Borsa Italiana",
-        "mic": "ETFP",
-        "currency": "EUR",
-        "symbol": "IH2O.MI",
-        "sourceUrl": "https://www.ishares.com/uk/individual/en/products/251913/?siteEntryPassthrough=true&switchLocale=y",
-        "checkedAt": "2026-10-12",
-        "evidenceId": "IE00B1TXK627-ETFP-IH2O-EUR",
-        "excerpt": "Borsa Italiana | IH2O | EUR | IH2O.MI"
-      },
-      {
         "ticker": "IQQQ",
         "exchange": "Xetra",
+        "excerpt": "Deutsche Boerse Xetra | IQQQ | EUR | 20070926 | IQQQ.DE",
         "mic": "XETR",
         "currency": "EUR",
         "symbol": "IQQQ.DE",
-        "sourceUrl": "https://www.ishares.com/uk/individual/en/products/251913/?siteEntryPassthrough=true&switchLocale=y",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=251913&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "checkedAt": "2026-10-12",
-        "evidenceId": "IE00B1TXK627-XETR-IQQQ-EUR",
-        "excerpt": "Deutsche Boerse Xetra | IQQQ | EUR | IQQQ.DE"
+        "evidenceId": "IE00B1TXK627-XETR-IQQQ-EUR"
       },
       {
         "ticker": "DH2O",
         "exchange": "London Stock Exchange",
+        "excerpt": "London Stock Exchange | DH2O | USD | 20070319 | DH2O.L",
         "mic": "XLON",
         "currency": "USD",
         "symbol": "DH2O.L",
-        "sourceUrl": "https://www.ishares.com/uk/individual/en/products/251913/?siteEntryPassthrough=true&switchLocale=y",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=251913&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "checkedAt": "2026-10-12",
-        "evidenceId": "IE00B1TXK627-XLON-DH2O-USD",
-        "excerpt": "London Stock Exchange | DH2O | USD | DH2O.L"
+        "evidenceId": "IE00B1TXK627-XLON-DH2O-USD"
+      },
+      {
+        "ticker": "IH2O",
+        "exchange": "Borsa Italiana",
+        "excerpt": "Borsa Italiana | IH2O | EUR | 20071130 | IH2O.MI",
+        "mic": "ETFP",
+        "currency": "EUR",
+        "symbol": "IH2O.MI",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=251913&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "checkedAt": "2026-10-12",
+        "evidenceId": "IE00B1TXK627-ETFP-IH2O-EUR"
       },
       {
         "ticker": "IH2O",
         "exchange": "SIX Swiss Exchange",
+        "excerpt": "SIX Swiss Exchange | IH2O | USD | 20071204 | IH2O.S",
         "mic": "XSWX",
         "currency": "USD",
         "symbol": "IH2O.S",
-        "sourceUrl": "https://www.ishares.com/uk/individual/en/products/251913/?siteEntryPassthrough=true&switchLocale=y",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=251913&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "checkedAt": "2026-10-12",
-        "evidenceId": "IE00B1TXK627-XSWX-IH2O-USD",
-        "excerpt": "SIX Swiss Exchange | IH2O | USD | IH2O.S"
+        "evidenceId": "IE00B1TXK627-XSWX-IH2O-USD"
       }
     ],
     "characteristics": {
@@ -796,12 +796,12 @@
       "replicationMethod": "Physical (Replicated)",
       "inceptionDate": "20070316"
     },
-    "checkedAt": "2026-10-12T11:11:00.344629+00:00",
-    "pageSha256": "f602ffe83915aaae8420894e3f18272868150b5816db73f89265b01de89e9584",
+    "checkedAt": "2026-10-12T11:35:47.104357+00:00",
+    "pageSha256": "272db99268fe1e4c5348f2a4b022f86482b312b753bff0f9e2252a7091c82800",
     "automatedRecord": {
       "currency": "USD",
       "productId": 251913,
-      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251913&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=251913&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "provider": "iShares",
       "aum": {
         "amount": 2133620400.16,
@@ -1177,51 +1177,51 @@
       ]
     },
     "name": "iShares Agribusiness UCITS ETF USD (Acc)",
-    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251707&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=251707&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
     "listing": {
       "ticker": "ISAG",
       "exchange": "London Stock Exchange",
+      "excerpt": "London Stock Exchange | ISAG | USD | 20110919 | ISAG.L",
       "mic": "XLON",
       "currency": "USD",
       "symbol": "ISAG.L",
-      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/251707/?siteEntryPassthrough=true&switchLocale=y",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=251707&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "checkedAt": "2026-10-12",
-      "evidenceId": "IE00B6R52143-XLON-ISAG-USD",
-      "excerpt": "London Stock Exchange | ISAG | USD | ISAG.L"
+      "evidenceId": "IE00B6R52143-XLON-ISAG-USD"
     },
     "listings": [
       {
-        "ticker": "ISAG",
-        "exchange": "Borsa Italiana",
-        "mic": "ETFP",
-        "currency": "EUR",
-        "symbol": "ISAG.MI",
-        "sourceUrl": "https://www.ishares.com/uk/individual/en/products/251707/?siteEntryPassthrough=true&switchLocale=y",
-        "checkedAt": "2026-10-12",
-        "evidenceId": "IE00B6R52143-ETFP-ISAG-EUR",
-        "excerpt": "Borsa Italiana | ISAG | EUR | ISAG.MI"
-      },
-      {
         "ticker": "ISAE",
         "exchange": "Euronext Amsterdam",
+        "excerpt": "Euronext Amsterdam | ISAE | EUR | 20211129 | ISAE.AS",
         "mic": "XAMS",
         "currency": "EUR",
         "symbol": "ISAE.AS",
-        "sourceUrl": "https://www.ishares.com/uk/individual/en/products/251707/?siteEntryPassthrough=true&switchLocale=y",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=251707&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "checkedAt": "2026-10-12",
-        "evidenceId": "IE00B6R52143-XAMS-ISAE-EUR",
-        "excerpt": "Euronext Amsterdam | ISAE | EUR | ISAE.AS"
+        "evidenceId": "IE00B6R52143-XAMS-ISAE-EUR"
       },
       {
         "ticker": "ISAG",
         "exchange": "London Stock Exchange",
+        "excerpt": "London Stock Exchange | ISAG | USD | 20110919 | ISAG.L",
         "mic": "XLON",
         "currency": "USD",
         "symbol": "ISAG.L",
-        "sourceUrl": "https://www.ishares.com/uk/individual/en/products/251707/?siteEntryPassthrough=true&switchLocale=y",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=251707&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "checkedAt": "2026-10-12",
-        "evidenceId": "IE00B6R52143-XLON-ISAG-USD",
-        "excerpt": "London Stock Exchange | ISAG | USD | ISAG.L"
+        "evidenceId": "IE00B6R52143-XLON-ISAG-USD"
+      },
+      {
+        "ticker": "ISAG",
+        "exchange": "Borsa Italiana",
+        "excerpt": "Borsa Italiana | ISAG | EUR | 20220524 | ISAG.MI",
+        "mic": "ETFP",
+        "currency": "EUR",
+        "symbol": "ISAG.MI",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=251707&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "checkedAt": "2026-10-12",
+        "evidenceId": "IE00B6R52143-ETFP-ISAG-EUR"
       }
     ],
     "characteristics": {
@@ -1232,12 +1232,12 @@
       "replicationMethod": "Physical (Replicated)",
       "inceptionDate": "20110916"
     },
-    "checkedAt": "2026-10-12T11:11:00.344629+00:00",
-    "pageSha256": "e8ef287140b84f955a52cb083c8d2eb935371c7ed7ca75e26c6f8defc1db88d5",
+    "checkedAt": "2026-10-12T11:35:47.104357+00:00",
+    "pageSha256": "c0a64c53f4823f59df429ee86f3f0d2b8cf591c49dff11759346c86936862de6",
     "automatedRecord": {
       "currency": "USD",
       "productId": 251707,
-      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251707&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=251707&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "provider": "iShares",
       "aum": {
         "amount": 583112478.35,
@@ -1606,29 +1606,29 @@
       ]
     },
     "name": "iShares Global Timber & Forestry UCITS ETF",
-    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251912&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=251912&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
     "listing": {
       "ticker": "WOOD",
       "exchange": "SIX Swiss Exchange",
+      "excerpt": "SIX Swiss Exchange | WOOD | USD | 20150402 | WOOD.S",
       "mic": "XSWX",
       "currency": "USD",
       "symbol": "WOOD.S",
-      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/251912/?siteEntryPassthrough=true&switchLocale=y",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=251912&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "checkedAt": "2026-10-12",
-      "evidenceId": "IE00B27YCF74-XSWX-WOOD-USD",
-      "excerpt": "SIX Swiss Exchange | WOOD | USD | WOOD.S"
+      "evidenceId": "IE00B27YCF74-XSWX-WOOD-USD"
     },
     "listings": [
       {
         "ticker": "WOOD",
         "exchange": "SIX Swiss Exchange",
+        "excerpt": "SIX Swiss Exchange | WOOD | USD | 20150402 | WOOD.S",
         "mic": "XSWX",
         "currency": "USD",
         "symbol": "WOOD.S",
-        "sourceUrl": "https://www.ishares.com/uk/individual/en/products/251912/?siteEntryPassthrough=true&switchLocale=y",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=251912&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "checkedAt": "2026-10-12",
-        "evidenceId": "IE00B27YCF74-XSWX-WOOD-USD",
-        "excerpt": "SIX Swiss Exchange | WOOD | USD | WOOD.S"
+        "evidenceId": "IE00B27YCF74-XSWX-WOOD-USD"
       }
     ],
     "characteristics": {
@@ -1639,12 +1639,12 @@
       "replicationMethod": "Physical (Replicated)",
       "inceptionDate": "20071012"
     },
-    "checkedAt": "2026-10-12T11:11:00.344629+00:00",
-    "pageSha256": "8d43d66be6a76fc89a03eb326250580786d17b6d0b0924845f53f1730daede86",
+    "checkedAt": "2026-10-12T11:35:47.104357+00:00",
+    "pageSha256": "dff2b22576a69cf66bc09e9c25f4cec5d5574b37c46b97062b2ba4d5197126d2",
     "automatedRecord": {
       "currency": "USD",
       "productId": 251912,
-      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251912&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=251912&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "provider": "iShares",
       "aum": {
         "amount": 78209109.63,
@@ -1992,62 +1992,62 @@
       ]
     },
     "name": "iShares Listed Private Equity UCITS ETF",
-    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251918&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=251918&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
     "listing": {
       "ticker": "IDPE",
       "exchange": "London Stock Exchange",
+      "excerpt": "London Stock Exchange | IDPE | USD | 20070319 | IDPE.L",
       "mic": "XLON",
       "currency": "USD",
       "symbol": "IDPE.L",
-      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/251918/?siteEntryPassthrough=true&switchLocale=y",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=251918&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "checkedAt": "2026-10-12",
-      "evidenceId": "IE00B1TXHL60-XLON-IDPE-USD",
-      "excerpt": "London Stock Exchange | IDPE | USD | IDPE.L"
+      "evidenceId": "IE00B1TXHL60-XLON-IDPE-USD"
     },
     "listings": [
       {
-        "ticker": "IQQL",
-        "exchange": "Xetra",
-        "mic": "XETR",
-        "currency": "EUR",
-        "symbol": "IQQL.DE",
-        "sourceUrl": "https://www.ishares.com/uk/individual/en/products/251918/?siteEntryPassthrough=true&switchLocale=y",
-        "checkedAt": "2026-10-12",
-        "evidenceId": "IE00B1TXHL60-XETR-IQQL-EUR",
-        "excerpt": "Deutsche Boerse Xetra | IQQL | EUR | IQQL.DE"
-      },
-      {
         "ticker": "IPRV",
         "exchange": "Euronext Amsterdam",
+        "excerpt": "Euronext Amsterdam | IPRV | EUR | 20070514 | IPRV.AS",
         "mic": "XAMS",
         "currency": "EUR",
         "symbol": "IPRV.AS",
-        "sourceUrl": "https://www.ishares.com/uk/individual/en/products/251918/?siteEntryPassthrough=true&switchLocale=y",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=251918&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "checkedAt": "2026-10-12",
-        "evidenceId": "IE00B1TXHL60-XAMS-IPRV-EUR",
-        "excerpt": "Euronext Amsterdam | IPRV | EUR | IPRV.AS"
+        "evidenceId": "IE00B1TXHL60-XAMS-IPRV-EUR"
+      },
+      {
+        "ticker": "IQQL",
+        "exchange": "Xetra",
+        "excerpt": "Deutsche Boerse Xetra | IQQL | EUR | 20070926 | IQQL.DE",
+        "mic": "XETR",
+        "currency": "EUR",
+        "symbol": "IQQL.DE",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=251918&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "checkedAt": "2026-10-12",
+        "evidenceId": "IE00B1TXHL60-XETR-IQQL-EUR"
       },
       {
         "ticker": "IDPE",
         "exchange": "London Stock Exchange",
+        "excerpt": "London Stock Exchange | IDPE | USD | 20070319 | IDPE.L",
         "mic": "XLON",
         "currency": "USD",
         "symbol": "IDPE.L",
-        "sourceUrl": "https://www.ishares.com/uk/individual/en/products/251918/?siteEntryPassthrough=true&switchLocale=y",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=251918&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "checkedAt": "2026-10-12",
-        "evidenceId": "IE00B1TXHL60-XLON-IDPE-USD",
-        "excerpt": "London Stock Exchange | IDPE | USD | IDPE.L"
+        "evidenceId": "IE00B1TXHL60-XLON-IDPE-USD"
       },
       {
         "ticker": "IPRV",
         "exchange": "SIX Swiss Exchange",
+        "excerpt": "SIX Swiss Exchange | IPRV | USD | 20071204 | IPRV.S",
         "mic": "XSWX",
         "currency": "USD",
         "symbol": "IPRV.S",
-        "sourceUrl": "https://www.ishares.com/uk/individual/en/products/251918/?siteEntryPassthrough=true&switchLocale=y",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=251918&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "checkedAt": "2026-10-12",
-        "evidenceId": "IE00B1TXHL60-XSWX-IPRV-USD",
-        "excerpt": "SIX Swiss Exchange | IPRV | USD | IPRV.S"
+        "evidenceId": "IE00B1TXHL60-XSWX-IPRV-USD"
       }
     ],
     "characteristics": {
@@ -2058,12 +2058,12 @@
       "replicationMethod": "Physical (Replicated)",
       "inceptionDate": "20070316"
     },
-    "checkedAt": "2026-10-12T11:11:00.344629+00:00",
-    "pageSha256": "7a9fe5f44b7612a20829bed3584cd416a82ded5839a6b8f08fae311d764b0826",
+    "checkedAt": "2026-10-12T11:35:47.104357+00:00",
+    "pageSha256": "97bddb5ba1dc3c4891d221b9238fa816e86ee0fa543c655e3c32fdc664f1dbe2",
     "automatedRecord": {
       "currency": "USD",
       "productId": 251918,
-      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251918&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=251918&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "provider": "iShares",
       "aum": {
         "amount": 733006280.94,
@@ -2383,40 +2383,40 @@
       ]
     },
     "name": "iShares MSCI World Industrials Sector Advanced UCITS ETF",
-    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=326347&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=326347&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
     "listing": {
       "ticker": "WINS",
       "exchange": "Euronext Amsterdam",
+      "excerpt": "Euronext Amsterdam | WINS | USD | 20220411 | WINSE.AS",
       "mic": "XAMS",
       "currency": "USD",
       "symbol": "WINSE.AS",
-      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/326347/?siteEntryPassthrough=true&switchLocale=y",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=326347&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "checkedAt": "2026-10-12",
-      "evidenceId": "IE00BJ5JP659-XAMS-WINS-USD",
-      "excerpt": "Euronext Amsterdam | WINS | USD | WINSE.AS"
+      "evidenceId": "IE00BJ5JP659-XAMS-WINS-USD"
     },
     "listings": [
       {
         "ticker": "WINS",
         "exchange": "Euronext Amsterdam",
+        "excerpt": "Euronext Amsterdam | WINS | USD | 20220411 | WINSE.AS",
         "mic": "XAMS",
         "currency": "USD",
         "symbol": "WINSE.AS",
-        "sourceUrl": "https://www.ishares.com/uk/individual/en/products/326347/?siteEntryPassthrough=true&switchLocale=y",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=326347&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "checkedAt": "2026-10-12",
-        "evidenceId": "IE00BJ5JP659-XAMS-WINS-USD",
-        "excerpt": "Euronext Amsterdam | WINS | USD | WINSE.AS"
+        "evidenceId": "IE00BJ5JP659-XAMS-WINS-USD"
       },
       {
         "ticker": "WINS",
         "exchange": "SIX Swiss Exchange",
+        "excerpt": "SIX Swiss Exchange | WINS | USD | 20220608 | WINSE.S",
         "mic": "XSWX",
         "currency": "USD",
         "symbol": "WINSE.S",
-        "sourceUrl": "https://www.ishares.com/uk/individual/en/products/326347/?siteEntryPassthrough=true&switchLocale=y",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=326347&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "checkedAt": "2026-10-12",
-        "evidenceId": "IE00BJ5JP659-XSWX-WINS-USD",
-        "excerpt": "SIX Swiss Exchange | WINS | USD | WINSE.S"
+        "evidenceId": "IE00BJ5JP659-XSWX-WINS-USD"
       }
     ],
     "characteristics": {
@@ -2427,12 +2427,12 @@
       "replicationMethod": "Physical (Replicated)",
       "inceptionDate": "20220407"
     },
-    "checkedAt": "2026-10-12T11:11:00.344629+00:00",
-    "pageSha256": "3675333ce4b83d0453e4dcd406b80cdbcc6f133e185c0d1a3de3919295e0cc1e",
+    "checkedAt": "2026-10-12T11:35:47.104357+00:00",
+    "pageSha256": "442d668444594d5b33f617b10b3a48a23800687331597f6b90848383de355467",
     "automatedRecord": {
       "currency": "USD",
       "productId": 326347,
-      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=326347&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=326347&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "provider": "iShares",
       "aum": {
         "amount": 179573854.24,
@@ -2739,29 +2739,29 @@
       ]
     },
     "name": "iShares MSCI World Consumer Staples Sector Advanced UCITS ETF",
-    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=308902&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=308902&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
     "listing": {
       "ticker": "WCSS",
       "exchange": "Euronext Amsterdam",
+      "excerpt": "Euronext Amsterdam | WCSS | USD | 20191021 | WCSS.AS",
       "mic": "XAMS",
       "currency": "USD",
       "symbol": "WCSS.AS",
-      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/308902/?siteEntryPassthrough=true&switchLocale=y",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=308902&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "checkedAt": "2026-10-12",
-      "evidenceId": "IE00BJ5JP329-XAMS-WCSS-USD",
-      "excerpt": "Euronext Amsterdam | WCSS | USD | WCSS.AS"
+      "evidenceId": "IE00BJ5JP329-XAMS-WCSS-USD"
     },
     "listings": [
       {
         "ticker": "WCSS",
         "exchange": "Euronext Amsterdam",
+        "excerpt": "Euronext Amsterdam | WCSS | USD | 20191021 | WCSS.AS",
         "mic": "XAMS",
         "currency": "USD",
         "symbol": "WCSS.AS",
-        "sourceUrl": "https://www.ishares.com/uk/individual/en/products/308902/?siteEntryPassthrough=true&switchLocale=y",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=308902&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "checkedAt": "2026-10-12",
-        "evidenceId": "IE00BJ5JP329-XAMS-WCSS-USD",
-        "excerpt": "Euronext Amsterdam | WCSS | USD | WCSS.AS"
+        "evidenceId": "IE00BJ5JP329-XAMS-WCSS-USD"
       }
     ],
     "characteristics": {
@@ -2772,12 +2772,12 @@
       "replicationMethod": "Physical (Replicated)",
       "inceptionDate": "20191017"
     },
-    "checkedAt": "2026-10-12T11:11:00.344629+00:00",
-    "pageSha256": "e72dfdb668fe8f32cb726c915a064ea03530fda79bd38ffce4d325ae67666fcf",
+    "checkedAt": "2026-10-12T11:35:47.104357+00:00",
+    "pageSha256": "576c13b8282a8c0adce2bd0559f1243bde974bc51d782bd0c8cd3a4aa9f0dc78",
     "automatedRecord": {
       "currency": "USD",
       "productId": 308902,
-      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=308902&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=308902&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "provider": "iShares",
       "aum": {
         "amount": 106946142.8,
@@ -3083,29 +3083,29 @@
       ]
     },
     "name": "iShares MSCI World Consumer Discretionary Sector Advanced UCITS ETF",
-    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=308873&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=308873&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
     "listing": {
       "ticker": "WCDS",
       "exchange": "Euronext Amsterdam",
+      "excerpt": "Euronext Amsterdam | WCDS | USD | 20191021 | WCDS.AS",
       "mic": "XAMS",
       "currency": "USD",
       "symbol": "WCDS.AS",
-      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/308873/?siteEntryPassthrough=true&switchLocale=y",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=308873&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "checkedAt": "2026-10-12",
-      "evidenceId": "IE00BJ5JP212-XAMS-WCDS-USD",
-      "excerpt": "Euronext Amsterdam | WCDS | USD | WCDS.AS"
+      "evidenceId": "IE00BJ5JP212-XAMS-WCDS-USD"
     },
     "listings": [
       {
         "ticker": "WCDS",
         "exchange": "Euronext Amsterdam",
+        "excerpt": "Euronext Amsterdam | WCDS | USD | 20191021 | WCDS.AS",
         "mic": "XAMS",
         "currency": "USD",
         "symbol": "WCDS.AS",
-        "sourceUrl": "https://www.ishares.com/uk/individual/en/products/308873/?siteEntryPassthrough=true&switchLocale=y",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=308873&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "checkedAt": "2026-10-12",
-        "evidenceId": "IE00BJ5JP212-XAMS-WCDS-USD",
-        "excerpt": "Euronext Amsterdam | WCDS | USD | WCDS.AS"
+        "evidenceId": "IE00BJ5JP212-XAMS-WCDS-USD"
       }
     ],
     "characteristics": {
@@ -3116,12 +3116,12 @@
       "replicationMethod": "Physical (Replicated)",
       "inceptionDate": "20191016"
     },
-    "checkedAt": "2026-10-12T11:11:00.344629+00:00",
-    "pageSha256": "9f4ad62d5b737286edd45f0b386562a28917323e150bfc73f24dab0ace76b4e1",
+    "checkedAt": "2026-10-12T11:35:47.104357+00:00",
+    "pageSha256": "223af1114559183d41a5f15306b1c211280699f3dd61eadd3bde95cb5851af6a",
     "automatedRecord": {
       "currency": "USD",
       "productId": 308873,
-      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=308873&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=308873&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "provider": "iShares",
       "aum": {
         "amount": 34887638.58,
@@ -3427,29 +3427,29 @@
       ]
     },
     "name": "iShares MSCI World Energy Sector UCITS ETF",
-    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=308904&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=308904&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
     "listing": {
       "ticker": "WENS",
       "exchange": "Euronext Amsterdam",
+      "excerpt": "Euronext Amsterdam | WENS | USD | 20191021 | WENS.AS",
       "mic": "XAMS",
       "currency": "USD",
       "symbol": "WENS.AS",
-      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/308904/?siteEntryPassthrough=true&switchLocale=y",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=308904&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "checkedAt": "2026-10-12",
-      "evidenceId": "IE00BJ5JP105-XAMS-WENS-USD",
-      "excerpt": "Euronext Amsterdam | WENS | USD | WENS.AS"
+      "evidenceId": "IE00BJ5JP105-XAMS-WENS-USD"
     },
     "listings": [
       {
         "ticker": "WENS",
         "exchange": "Euronext Amsterdam",
+        "excerpt": "Euronext Amsterdam | WENS | USD | 20191021 | WENS.AS",
         "mic": "XAMS",
         "currency": "USD",
         "symbol": "WENS.AS",
-        "sourceUrl": "https://www.ishares.com/uk/individual/en/products/308904/?siteEntryPassthrough=true&switchLocale=y",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=308904&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "checkedAt": "2026-10-12",
-        "evidenceId": "IE00BJ5JP105-XAMS-WENS-USD",
-        "excerpt": "Euronext Amsterdam | WENS | USD | WENS.AS"
+        "evidenceId": "IE00BJ5JP105-XAMS-WENS-USD"
       }
     ],
     "characteristics": {
@@ -3460,12 +3460,12 @@
       "replicationMethod": "Physical (Replicated)",
       "inceptionDate": "20191017"
     },
-    "checkedAt": "2026-10-12T11:11:00.344629+00:00",
-    "pageSha256": "feaf399b826a8315dad8d85a0e3f242b085f2252916dc1d6241cd3d2e0a7cee4",
+    "checkedAt": "2026-10-12T11:35:47.104357+00:00",
+    "pageSha256": "8b302a1a960abb4f0355d313ee1f6b3f060bfb88c081cbe34e639a6e523498ec",
     "automatedRecord": {
       "currency": "USD",
       "productId": 308904,
-      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=308904&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=308904&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "provider": "iShares",
       "aum": {
         "amount": 1468809375.72,
@@ -3760,40 +3760,40 @@
       ]
     },
     "name": "iShares MSCI World Communication Services Sector Advanced UCITS ETF",
-    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=326317&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=326317&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
     "listing": {
       "ticker": "WCMS",
       "exchange": "Euronext Amsterdam",
+      "excerpt": "Euronext Amsterdam | WCMS | USD | 20220411 | WCMS.AS",
       "mic": "XAMS",
       "currency": "USD",
       "symbol": "WCMS.AS",
-      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/326317/?siteEntryPassthrough=true&switchLocale=y",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=326317&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "checkedAt": "2026-10-12",
-      "evidenceId": "IE00BJ5JP436-XAMS-WCMS-USD",
-      "excerpt": "Euronext Amsterdam | WCMS | USD | WCMS.AS"
+      "evidenceId": "IE00BJ5JP436-XAMS-WCMS-USD"
     },
     "listings": [
       {
         "ticker": "WCMS",
         "exchange": "Euronext Amsterdam",
+        "excerpt": "Euronext Amsterdam | WCMS | USD | 20220411 | WCMS.AS",
         "mic": "XAMS",
         "currency": "USD",
         "symbol": "WCMS.AS",
-        "sourceUrl": "https://www.ishares.com/uk/individual/en/products/326317/?siteEntryPassthrough=true&switchLocale=y",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=326317&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "checkedAt": "2026-10-12",
-        "evidenceId": "IE00BJ5JP436-XAMS-WCMS-USD",
-        "excerpt": "Euronext Amsterdam | WCMS | USD | WCMS.AS"
+        "evidenceId": "IE00BJ5JP436-XAMS-WCMS-USD"
       },
       {
         "ticker": "WCMS",
         "exchange": "SIX Swiss Exchange",
+        "excerpt": "SIX Swiss Exchange | WCMS | USD | 20220608 | WCMS.S",
         "mic": "XSWX",
         "currency": "USD",
         "symbol": "WCMS.S",
-        "sourceUrl": "https://www.ishares.com/uk/individual/en/products/326317/?siteEntryPassthrough=true&switchLocale=y",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=326317&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "checkedAt": "2026-10-12",
-        "evidenceId": "IE00BJ5JP436-XSWX-WCMS-USD",
-        "excerpt": "SIX Swiss Exchange | WCMS | USD | WCMS.S"
+        "evidenceId": "IE00BJ5JP436-XSWX-WCMS-USD"
       }
     ],
     "characteristics": {
@@ -3804,12 +3804,12 @@
       "replicationMethod": "Physical (Replicated)",
       "inceptionDate": "20220407"
     },
-    "checkedAt": "2026-10-12T11:11:00.344629+00:00",
-    "pageSha256": "2a6304443d94c636a8a9ee44a211c15f1682748554f2d8ec1fd55ee43b8ad328",
+    "checkedAt": "2026-10-12T11:35:47.104357+00:00",
+    "pageSha256": "a1696b17f6f262e4b87d3c8636a4da902275d94dc5e2e527f21ebf88070133ae",
     "automatedRecord": {
       "currency": "USD",
       "productId": 326317,
-      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=326317&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=326317&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "provider": "iShares",
       "aum": {
         "amount": 135377975.49,
