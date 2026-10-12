@@ -1,6 +1,9 @@
 import { getInstrumentPeaStatus } from '../../../data/instruments.js'
 import { getPreferredInstrumentListing } from '../../../data/instrument-listings.js'
 import { isComparisonEtc } from './comparisonPolicy.js'
+import { getComparisonPerformance, getComparisonYears } from '../../tweet-midi/comparisonPerformance.js'
+import { comparisonPct } from './comparisonDetails.js'
+import { getComparisonComposition, COMPOSITION_LABELS } from './comparisonComposition.js'
 import { COMPARISON_HOOKS, getEtfExposureCopy } from './exposureCopy.js'
 
 export function buildTweetText(theme) {
@@ -16,6 +19,7 @@ export function buildTweetText(theme) {
   const lines = [hook, '']
   lines.push(`Voici ${count} ${kind}${theme.peaOnly ? ' éligibles au PEA' : ''} ${single ? 'à découvrir' : 'à comparer'} 👇`, '')
 
+  const years = getComparisonYears(theme.etfs.map(etf => etf.isin))
   theme.etfs.forEach((etf, index) => {
     const pea = getInstrumentPeaStatus(etf.isin)
     const ticker = getPreferredInstrumentListing(etf.isin)?.ticker
@@ -26,10 +30,21 @@ export function buildTweetText(theme) {
     lines.push(`💸 ${etf.isCopperEtc ? 'Frais de gestion' : 'Frais annuels'} : ${etf.frais ? `${etf.frais.replace(/\s*%$/, '')} %` : 'non renseignés'}`)
     if (!theme.peaOnly) {
       if (pea === true) lines.push('🏦 PEA : ✅ | CTO : ✅')
-      else if (isEtc || pea === false) lines.push('🏦 CTO')
+      else lines.push('🏦 CTO')
     }
     // Le taux de swap du cuivre n'est pas compris dans les frais de gestion.
     if (etf.isCopperEtc) lines.push('💸 Taux de swap annuel : 0,45 % en supplément')
+    const performance = getComparisonPerformance(etf.isin, years)
+    if (performance?.rows.length) {
+      const currency = performance.currency === 'USD' ? 'en dollars' : performance.currency === 'EUR' ? 'en euros' : `en ${performance.currency}`
+      lines.push('', `📈 Performances annuelles ${currency}`,
+        ...performance.rows.map(row => `${row.year} : ${comparisonPct(row.pct)}`))
+    }
+    for (const [field, title] of [['countries', '🌍 Principaux pays'], ['sectors', '🧩 Principaux secteurs']]) {
+      const composition = getComparisonComposition(etf.isin, field)
+      if (composition.rows.length) lines.push('', `${title}${composition.isIndex ? ' de l’indice suivi' : ''}`,
+        ...composition.rows.map(([name, value]) => `${field === 'countries' ? countryFlag(name) : ''}${COMPOSITION_LABELS[name] ?? name} : ${value.toLocaleString('fr-FR', { maximumFractionDigits: 2 })} %`))
+    }
     lines.push('')
   })
   if (!COMPARISON_HOOKS[theme.id] && theme.comparisonNote?.trim()) lines.push(`👀 ${theme.comparisonNote.trim()}`, '')
@@ -50,3 +65,14 @@ export function getLengthStatus(length) {
   }
   return { level: 'danger', label: `${length} caractères — trop long, à scinder en thread` }
 }
+
+const COUNTRY_FLAGS = {
+  'United States': '🇺🇸', 'États-Unis': '🇺🇸', Japan: '🇯🇵', Japon: '🇯🇵',
+  'United Kingdom': '🇬🇧', 'Royaume-Uni': '🇬🇧', Canada: '🇨🇦', France: '🇫🇷',
+  Netherlands: '🇳🇱', 'Pays-Bas': '🇳🇱', Germany: '🇩🇪', Allemagne: '🇩🇪',
+  Switzerland: '🇨🇭', Suisse: '🇨🇭', China: '🇨🇳', Chine: '🇨🇳', Taiwan: '🇹🇼', 'Taïwan': '🇹🇼',
+  India: '🇮🇳', Inde: '🇮🇳', Australia: '🇦🇺', Australie: '🇦🇺',
+  'Korea (South)': '🇰🇷', 'South Korea': '🇰🇷', 'Korea, Republic of': '🇰🇷', 'Corée du Sud': '🇰🇷',
+  Italy: '🇮🇹', Italie: '🇮🇹', Spain: '🇪🇸', Espagne: '🇪🇸',
+}
+function countryFlag(name) { return COUNTRY_FLAGS[name] ? `${COUNTRY_FLAGS[name]} ` : '' }

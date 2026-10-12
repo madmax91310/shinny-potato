@@ -1,7 +1,8 @@
 import { startPublicationDownload } from '../../design-system/publicationActions.js'
 import { loadEditorialFont } from './anniversaryArt.js'
 import { getComparisonPerformance, getComparisonYears } from './comparisonPerformance.js'
-import { COMPARISON_ETF_DETAILS } from '../../data/comparison-etf-details.js'
+import { getComparisonComposition as getComparisonImageComposition, COMPOSITION_LABELS } from '../etf-tweets/lib/comparisonComposition.js'
+export { getComparisonComposition as getComparisonImageComposition } from '../etf-tweets/lib/comparisonComposition.js'
 import { AUTOMATED_ETF } from '../../data/automated-etf.js'
 import { getPreferredInstrumentListing } from '../../data/instrument-listings.js'
 import { getInstrumentPeaStatus } from '../../data/instruments.js'
@@ -37,28 +38,6 @@ function rule(ctx, x, y, width) {
 }
 function detail(fund) {
   return fund.differenciateur.replace(/(?:non[ -]éligible\s+|éligible\s+|hors\s+|en\s+)?\bPEA\b(?: selon [^,;]+)?|\bCTO\b/gi, '').replace(/\s+([,;])/g, '$1').replace(/[,;]\s*[,;]/g, ',').replace(/^[\s·,;:|–—-]+|[\s·,;:|–—-]+$/g, '').trim()
-}
-export function getComparisonImageComposition(isin, field) {
-  const details = COMPARISON_ETF_DETAILS[isin]
-  const observation = AUTOMATED_ETF[isin]?.[field]
-  const basis = observation?.basis ?? (field === 'countries' ? details?.countriesBasis : details?.basis)
-  return {
-    rows: [...(details?.[field] ?? [])].filter(([label, value]) => Number.isFinite(value) && value > 0 && !/^(other|others|autres)$/i.test(label)).sort((a, b) => b[1] - a[1]).slice(0, 3),
-    asOf: details?.[`${field}AsOf`] ?? details?.asOf,
-    isIndex: basis === 'index' || basis === 'tracked-index',
-  }
-}
-const COMPOSITION_LABELS = {
-  Treasury: 'Emprunts d’État', 'Cash and/or Derivatives': 'Liquidités / dérivés',
-  Italy: 'Italie', Spain: 'Espagne',
-  'Information Technology': 'Technologie', Technology: 'Technologie', Financials: 'Finance', 'Consumer Discretionary': 'Conso. cyclique',
-  'Consumer Staples': 'Conso. de base', 'Communication Services': 'Communication', Industrials: 'Industrie',
-  'Health Care': 'Santé', Healthcare: 'Santé', Materials: 'Matériaux', Utilities: 'Services publics',
-  Energy: 'Énergie', 'Real Estate': 'Immobilier', Other: 'Autres',
-  'Korea (South)': 'Corée du Sud', 'Korea, Republic of': 'Corée du Sud', Taiwan: 'Taïwan', 'South Korea': 'Corée du Sud', China: 'Chine', Brazil: 'Brésil', Mexico: 'Mexique',
-  'South Africa': 'Afrique du Sud', 'Saudi Arabia': 'Arabie saoudite', UAE: 'Émirats arabes unis',
-  'United Arab Emirates': 'Émirats arabes unis', 'United States': 'États-Unis', 'United Kingdom': 'Royaume-Uni',
-  Japan: 'Japon', Germany: 'Allemagne', Switzerland: 'Suisse', Netherlands: 'Pays-Bas', India: 'Inde',
 }
 function rounded(ctx, x, y, width, height, color, radius = 24) {
   ctx.fillStyle = color; ctx.beginPath(); ctx.roundRect(x, y, width, height, radius); ctx.fill()
