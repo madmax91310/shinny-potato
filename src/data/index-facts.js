@@ -771,17 +771,13 @@ export function buildAutomatedIndexSnapshot(facts, baseline) {
 // Add newly dated observations; a named historical snapshot remains immutable.
 export const CURRENT_INDEX_KEYS = {};
 export const CURRENT_INDEX_SNAPSHOTS = {};
-// A new fully automated sheet starts its dated registry from collected evidence.
-// No numerical launch snapshot is copied into editorial source code.
-if (automatedIndices['sp-us-dividend-aristocrats']?.facts) INDEX_FACTS['sp-us-dividend-aristocrats'] = {};
 for (const [id, record] of Object.entries(automatedIndices)) {
   const history = INDEX_FACTS[id];
   if (!history || !record.facts) continue;
   const observations = { ...record.factsHistory, [record.facts.asOf]: record.facts };
   for (const facts of Object.values(observations)) {
     if (history[facts.asOf]) continue;
-    const baseline = Object.values(history).filter(f => f.asOf && f.asOf <= facts.asOf).sort((a,b) => b.asOf.localeCompare(a.asOf))[0]
-      ?? (id === 'sp-us-dividend-aristocrats' ? { markets: 'Entreprises américaines du S&P Composite 1500, sélection à dividendes' } : null);
+    const baseline = Object.values(history).filter(f => f.asOf && f.asOf <= facts.asOf).sort((a,b) => b.asOf.localeCompare(a.asOf))[0];
     if (!baseline) continue;
     history[facts.asOf] = buildAutomatedIndexSnapshot(facts, baseline);
   }

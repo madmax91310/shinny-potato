@@ -151,18 +151,22 @@ def main():
         unknown = set(args.ids) - {c['id'] for c in active}
         if unknown: p.error('Unknown or disabled indices: ' + ', '.join(sorted(unknown)))
         active = [c for c in active if c['id'] in args.ids]
-    else:
-        active = [c for c in active if not c.get('dedicatedRefreshOnly')]
     if args.require_complete:
         active = [{**c, 'allowPublicHandoff': False} for c in active]
     if args.only_derived:
         active = [{**c, 'collectComposition': False} for c in active]
     with ThreadPoolExecutor(max_workers=4)as pool:observations=list(pool.map(lambda c:collect_one(c,now),active))
-    report={'checkedAt':now.isoformat(),'indices':observations,'status':'validated','notQualified':[c['id'] for c in config['indices'] if not c.get('enabled', True)]}
-    write_json_atomic(args.output,report)
+    qualification_errors = []
     if args.require_complete:
         for observation in observations:
-            validate_complete_sheet(observation, now)
+            try: validate_complete_sheet(observation, now)
+            except ValueError as error: qualification_errors.append(str(error))
+    report={'checkedAt':now.isoformat(),'indices':observations,
+            'status':'failed' if qualification_errors or any(o['errors'] for o in observations) else 'validated',
+            'notQualified':[c['id'] for c in config['indices'] if not c.get('enabled', True)]}
+    if qualification_errors: report['qualificationErrors'] = qualification_errors
+    write_json_atomic(args.output,report)
+    if qualification_errors: raise ValueError('; '.join(qualification_errors))
     if args.apply:
         path=ROOT/'src/data/automated-indices.json';old=json.loads(path.read_text())if path.exists()else{}
         merged=merge_records(old,observations)

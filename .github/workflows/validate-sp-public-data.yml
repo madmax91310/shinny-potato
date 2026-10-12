@@ -38,7 +38,7 @@ jobs:
           from data_automation import UTC
           configurations = json.loads(pathlib.Path('scripts/index-automation.json').read_text())['indices']
           for config in configurations:
-              if not config.get('compositionDataUrl') or config.get('allowPublicHandoff', True) is False: continue
+              if not config.get('compositionDataUrl'): continue
               handoff = read_response(config, dt.datetime.now(UTC))
               facts = collect(config, dt.datetime.now(UTC))
               assert len(handoff['holdings']) == 10

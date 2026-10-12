@@ -837,32 +837,6 @@
       "returnCurrency": "USD",
       "returnVariant": "TOTAL",
       "performanceDetail": "S&P 500 Equal Weight · USD · dividendes réinvestis (SPXEWTR, ligne indice Invesco ; publication trimestrielle)"
-    },
-    {
-      "id": "sp-us-dividend-aristocrats",
-      "name": "S&P High Yield Dividend Aristocrats",
-      "expectedIndex": "S&P High Yield Dividend Aristocrats Index",
-      "isin": "IE00B6YX5D40",
-      "parser": "ssga-index",
-      "returnSourceUrl": "https://www.ssga.com/fr/en_gb/institutional/etfs/state-street-spdr-sp-us-dividend-aristocrats-ucits-etf-dist-spyd-gy",
-      "collectComposition": true,
-      "returnCurrency": "USD",
-      "returnVariant": "NET",
-      "firstYear": 2020,
-      "performanceDetail": "S&P High Yield Dividend Aristocrats · USD · dividendes nets réinvestis",
-      "requiredFields": [
-        "composition",
-        "returns"
-      ],
-      "enabled": true,
-      "compositionParser": "sp-printed-composition",
-      "compositionIndexId": 2325,
-      "compositionDataUrl": "https://www.spglobal.com/spdji/en/util/redesign/index-data/get-performance-data-for-datawidget-redesign.dot?indexId=2325&language_id=1",
-      "compositionDataName": "S&P High Yield Dividend Aristocrats Index",
-      "compositionPageUrl": "https://www.spglobal.com/spdji/en/indices/dividends-factors/sp-high-yield-dividend-aristocrats-index/",
-      "sourceUrl": "https://www.spglobal.com/spdji/en/indices/dividends-factors/sp-high-yield-dividend-aristocrats-index/",
-      "allowPublicHandoff": false,
-      "dedicatedRefreshOnly": true
     }
   ]
 }

@@ -12,11 +12,11 @@ from collect_sp_composition import collect
 import collect_sp_composition as collector
 
 NOW = dt.datetime(2026, 10, 9, 7, tzinfo=UTC)
-CONFIGS = [c for c in json.loads((ROOT/'scripts/index-automation.json').read_text())['indices'] if c.get('compositionDataUrl') and c.get('allowPublicHandoff', True)]
+CONFIGS = [c for c in json.loads((ROOT/'scripts/index-automation.json').read_text())['indices'] if c.get('compositionDataUrl')]
 
 
 def fixture(config):
-    name = 'euro' if config['id'].startswith('sp-euro') else 'us' if config['id'].startswith('sp-us') else 'global-quality'
+    name = 'euro' if config['id'].startswith('sp-euro') else 'global-quality'
     return (ROOT/f'scripts/fixtures/sp-composition/{name}-public-data-2026-09-30.json').read_bytes()
 
 

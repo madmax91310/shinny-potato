@@ -46,7 +46,7 @@ def refresh(configs, now, path=FEED, fetch=official_response):
     # leave the old timestamps unchanged so expiry remains visible to CI.
     observations = {}
     for config in configs:
-        if not config.get('compositionDataUrl') or config.get('allowPublicHandoff', True) is False: continue
+        if not config.get('compositionDataUrl'): continue
         body = fetch(config)
         facts = parse_public_data(body, config, now)
         body = gzip.compress(body, mtime=0)  # Lossless original response, compact handoff.
@@ -54,8 +54,7 @@ def refresh(configs, now, path=FEED, fetch=official_response):
             'retrievedAt': now.isoformat(), 'sha256': proof(body),
             'bodyBase64': base64.b64encode(body).decode('ascii')}
         print(config['id'], facts['asOf'], facts['constituents'], len(facts['holdings']))
-    expected = {c['id'] for c in configs if c.get('compositionDataUrl') and c.get('allowPublicHandoff', True)}
-    if not expected or set(observations) != expected: reject('Expected every configured S&P response')
+    if len(observations) != 2: reject('Expected both S&P Dividend Aristocrats responses')
     path.parent.mkdir(parents=True, exist_ok=True)
     temporary = path.with_suffix('.tmp')
     temporary.write_text(json.dumps({'schemaVersion': 1, 'observations': observations}, indent=2) + '\n')
