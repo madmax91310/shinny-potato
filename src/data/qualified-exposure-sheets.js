@@ -13,7 +13,7 @@ export const QUALIFIED_EXPOSURE_SHEETS = config.instruments.filter(c => records[
  return {id:c.id,isin:r.isin,name:r.name,category:c.category,source:r.sourceUrl,scene:c.scene,listing:r.listing,benchmark:f.index,
   incomePolicy:f.distribution==='Accumulating'?'accumulating':'distributing',replicationMethod:f.replicationMethod,domicile:f.domicile,
   hook:copy[0],whatIs:copy[1],whyInteresting:copy[2],whatToKnow:copy[3],verdict:`Tu cibles ${c.label.toLowerCase()} avec un risque actions.`,question:'Tu utiliserais cette exposition pour compléter ton portefeuille ?',
-  checkedAt:r.checkedAt.slice(0,10),presentationOnly:true}
+  checkedAt:r.checkedAt.slice(0,10),presentationOnly:!c.portfolioEnabled}
 })
 export const QUALIFIED_INSTRUMENTS = Object.fromEntries(QUALIFIED_EXPOSURE_SHEETS.map(r=>[r.isin,{name:r.name}]))
 export const QUALIFIED_FACTS = Object.fromEntries(QUALIFIED_EXPOSURE_SHEETS.map(r=>[r.isin,{
