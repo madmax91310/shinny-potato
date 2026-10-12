@@ -60,6 +60,7 @@ function wrap(ctx,text,width) {
 }
 function text(ctx,value,x,y,width,size=29,color=INK,weight=400,family=SANS){font(ctx,size,weight,family);ctx.fillStyle=color;const lines=wrap(ctx,value,width);lines.forEach((line,i)=>ctx.fillText(line,x,y+i*size*1.35));return y+lines.length*size*1.35}
 const brandAssets = {
+  tudigo: ['tudigo.svg'], lendosphere: ['lendosphere.svg'],
   fundora:['fundora.svg'], anaxago:['anaxago.svg'], mymarguerit:['mymarguerit.png'],
   bacchus:['bacchus.png'], 'france-valley':['france-valley.svg'], enerfip:['enerfip.svg'],
   hectarea:['hectarea.svg'], bricks:['bricks.svg'], matis:['matis.svg'],
@@ -110,6 +111,8 @@ export function presentationCardModel(record, kind) {
 }
 // One identity per product, including separate identities for contracts from one distributor.
 export const presentationBrands = {
+  tudigo: { color:'#cf7658', light:'#ffe1d4', dark:'#663126' },
+  lendosphere: { color:'#68ae82', light:'#d4ffe0', dark:'#2b5e40' },
   fundora: { color:'#9e83cb', light:'#ecdaff', dark:'#493066' },
   anaxago: { color:'#d4b26b', light:'#fff0c3', dark:'#66502b' },
   mymarguerit: { color:'#63aa76', light:'#d5ffdb', dark:'#295739' },

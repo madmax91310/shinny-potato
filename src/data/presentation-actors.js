@@ -125,6 +125,29 @@ const MANUAL_ACTORS = [
     highlights: [['Accès annoncé', '20 000 €'], ['Instrument', 'Oblig. conv.'], ['Horizon cible', '24 mois']],
     sources: [{ label: 'Offre française, titres, ticket et horizon cible', url: 'https://www.matis.club/comment-investir' }],
   }),
+  actor('tudigo', 'Tudigo', 'private-equity', {
+    role: 'Plateforme de financement participatif', offer: 'Investissement en actions non cotées',
+    exposure: 'Entreprises non cotées', vehicle: 'Actions de l’entreprise ou d’une société intermédiaire selon l’offre',
+    intro: 'Financer une entreprise non cotée peut passer par une plateforme. Tudigo présente des offres d’investissement en actions.',
+    mechanism: 'Tu souscris à une opération. Selon son montage, tu deviens actionnaire de l’entreprise ou d’une société qui détient sa participation.',
+    distinction: 'Tu détiens des actions. La revente dépend de l’opération ; ces titres ne se négocient pas comme un ETF en Bourse.',
+    income: 'Gains éventuels lors de la revente, après frais.', liquidity: 'Sortie liée à la revente des participations.',
+    risks: 'Perte en capital, échec de l’entreprise et argent immobilisé.',
+    access: 'Conditions propres à l’offre.', highlights: [['Exposition', 'Entreprises non cotées'], ['Instrument', 'Actions'], ['Sortie', 'Non garantie']],
+    sources: [{ label: 'Conditions publiques et frais en actions', url: 'https://www.tudigo.com/frais-investissement' }, { label: 'Montage des opérations', url: 'https://www.tudigo.com/legal/cgu' }],
+  }),
+  actor('lendosphere', 'Lendosphere', 'energie', {
+    role: 'Plateforme de financement participatif', offer: 'Financement de projets de transition énergétique',
+    exposure: 'Transition énergétique', vehicle: 'Titres de dette selon la collecte présentée',
+    intro: 'Lendosphere permet de financer des projets de transition énergétique. Pour les collectes en dette, tu avances de l’argent à un émetteur.',
+    mechanism: 'Le contrat du projet fixe les intérêts et le calendrier des paiements. Le capital peut être remboursé progressivement ou à la dernière échéance.',
+    distinction: 'Tu finances un émetteur : tu ne deviens pas directement propriétaire de ses équipements. Les offres en actions sont distinctes.',
+    income: 'Intérêts selon le contrat, non garantis.', liquidity: 'Remboursement selon l’échéancier de la collecte.',
+    risks: 'Perte en capital, défaillance de l’émetteur et retard de remboursement.',
+    access: 'Conditions publiées pour chaque collecte.', highlights: [['Exposition', 'Transition énergétique'], ['Durée', 'Selon le projet'], ['Financement', 'Dette']],
+    sources: [{ label: 'Fonctionnement et frais investisseurs', url: 'https://www.lendosphere.com/infos/questions-frequentes' }],
+  }),
+
 ]
 const offerCache = new WeakMap()
 export function applyActorOffer(record, offerId = record.offers?.[0]?.id) {

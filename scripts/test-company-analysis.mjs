@@ -70,7 +70,7 @@ assert.equal(activeBalance(computed,now),null)
 for (const company of COMPANIES) {
   const observationNow = observationDate(company)
   assert(canPublish(company,observationNow),`${company.name}: valid initial accounts`)
-  if(company.currency === 'USD') {
+  if(company.currency === 'USD' && company.accountsAdapter !== 'sec') {
     assert.equal(company.quarters?.length,4,`${company.name}: four published quarters`)
     assert.equal(company.trailing?.end,company.quarters[0].end)
     assert(Math.abs(company.trailing.dilutedEPS - company.quarters.reduce((sum,q)=>sum+q.dilutedEPS,0)) < 1e-9)

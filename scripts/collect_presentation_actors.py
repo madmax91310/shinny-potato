@@ -11,6 +11,8 @@ from bs4 import BeautifulSoup
 from collect_scpi import fetch, pdf_text, number, required
 
 SOURCES = {
+ 'tudigo': ['https://www.tudigo.com/frais-investissement', 'https://www.tudigo.com/legal/cgu'],
+ 'lendosphere': ['https://www.lendosphere.com/infos/questions-frequentes', 'https://www.lendosphere.com/infos/comment-ca-marche'],
  'fundora': ['https://www.fundora.fr/questions'],
  'mymarguerit': ['https://www.mymarguerit.com/'],
  'bacchus': ['https://bacchusconseil.com/fonctionnement/','https://bacchusconseil.com/gfv/gfv-cave-de-tain-crozes-hermitage/'],
@@ -37,6 +39,9 @@ def fmt(n):return f'{n:g}'.replace('.',',')
 
 def parse(id_, documents, today):
  if len(documents)!=len(SOURCES[id_]):raise ValueError('Incomplete official source set')
+ if id_ in ('tudigo', 'lendosphere'):
+  from presentation_actors_expansion import parse_platform
+  return parse_platform(id_, documents, SOURCES[id_], today)
  texts=[plain(doc) for doc in documents];t=texts[0];urls=SOURCES[id_]
  required({'france-valley':'GFI France Valley Patrimoine','bacchus':'Bacchus Conseil','anaxago':'AxClimat I','mymarguerit':'MyMarguerit','fundora':'Fundora','matis':'matis','enerfip':'Enerfip','hectarea':'Hectarea','bricks':'Bricks'}[id_],t)
  def val(pattern, text=t, group=1):return number(required(pattern,text)[group])

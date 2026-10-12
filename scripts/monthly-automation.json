@@ -747,6 +747,42 @@
       "ticker": "LOCK",
       "mic": "XLON",
       "listingEvidenceId": "IE00BG0J4C88-XLON-LOCK-USD"
+    },
+    {
+      "id": "etfIndustrials",
+      "label": "Xtrackers World Industrials",
+      "isin": "IE00BM67HV82",
+      "consumerScope": "catalog",
+      "currency": "EUR",
+      "periodStart": "2016-04",
+      "parser": "yahoo",
+      "symbol": "XDWI.DE",
+      "field": "adjclose",
+      "precision": 6,
+      "collectAnniversary": true,
+      "timezone": "Europe/Berlin",
+      "ticker": "XDWI",
+      "mic": "XETR",
+      "listingEvidenceId": "IE00BM67HV82-XETR-XDWI-EUR",
+      "method": "Cours de la part ETF ajustés des distributions et divisions ; dernière séance mensuelle recoupée avec la bougie mensuelle Yahoo ; frais du fonds inclus. Historique de la part exacte, sans prolongement par un autre fonds."
+    },
+    {
+      "id": "etfConsumerStaples",
+      "label": "iShares World Consumer Staples Advanced",
+      "isin": "IE00BJ5JP329",
+      "consumerScope": "catalog",
+      "currency": "USD",
+      "periodStart": "2019-11",
+      "parser": "yahoo",
+      "symbol": "WCSS.AS",
+      "field": "adjclose",
+      "precision": 6,
+      "collectAnniversary": true,
+      "timezone": "Europe/Amsterdam",
+      "ticker": "WCSS",
+      "mic": "XAMS",
+      "listingEvidenceId": "IE00BJ5JP329-XAMS-WCSS-USD",
+      "method": "Cours de la part ETF ajustés des distributions et divisions ; dernière séance mensuelle recoupée avec la bougie mensuelle Yahoo ; frais du fonds inclus. Historique de la part exacte, sans prolongement par un autre fonds."
     }
   ]
 }

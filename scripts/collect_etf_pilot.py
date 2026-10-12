@@ -158,6 +158,12 @@ def collect(config, baseline, now=None, fetch=get_text):
                     result['countries'] = holdings_countries
             except (ValueError, KeyError, TypeError, urllib.error.URLError, TimeoutError) as error:
                 result['collectionErrors'] = [{'field': 'holdings', 'url': url, 'reason': str(error)}]
+        for field in share.get('requiredFields', []):
+            observation = result.get(field, {})
+            if not observation or (field in ('countries', 'sectors', 'holdings') and not observation.get('rows')):
+                reject('Required automated ETF field missing: ' + field)
+        if share.get('requiredFields') and result.get('collectionErrors'):
+            reject('Incomplete newly qualified ETF holdings')
         active = baseline[share['isin']]
         if active.get('currency') and active['currency'] != share['currency']:
             reject('Active baseline has a different currency')

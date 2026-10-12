@@ -1237,6 +1237,23 @@
       "sourceUrl": "https://am.jpmorgan.com/content/dam/jpm-am-aem/asiapacific/sg/en/literature/fact-sheet/factsheet-jpmorgan-global-equity-premium-income-active-ucits-etf.pdf",
       "enabled": true,
       "required": true
+    },
+    {
+      "isin": "IE00BM67HV82",
+      "name": "Xtrackers MSCI World Industrials UCITS ETF 1C",
+      "currency": "USD",
+      "provider": "DWS",
+      "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HV82/pdpMetaTagsTealium",
+      "parser": "dws",
+      "required": true,
+      "enabled": true,
+      "requiredFields": [
+        "aum",
+        "countries",
+        "sectors",
+        "holdings",
+        "performance"
+      ]
     }
   ]
 }

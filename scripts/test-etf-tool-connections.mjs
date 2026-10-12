@@ -13,7 +13,7 @@ import { INVESTMENT_ART } from '../src/pages/investment-calculator/emeraldArt.js
 
 const clock = new Date('2026-10-11T12:00:00Z')
 const close = (a, b) => assert(Math.abs(a - b) < 1e-7, `${a} != ${b}`)
-assert.equal(Object.keys(ETF_MONTHLY_HISTORIES).length, 10)
+assert.equal(Object.keys(ETF_MONTHLY_HISTORIES).length, 12)
 for (const [id, asset] of Object.entries(ETF_MONTHLY_HISTORIES)) {
   assert.equal(ASSETS[id], asset)
   assert(ASSET_ORDER.includes(id))
@@ -64,4 +64,4 @@ for (const [id, asset] of Object.entries(ETF_MONTHLY_HISTORIES)) {
 assert(ASSETS.etfWqdv.points.some((p, i) => Math.abs(p.price - ASSETS.etfWqdv.anniversaryPoints[i].price) > .01))
 const comparative = buildAnniversaireComparatifText({ format: FORMATS.ANNIVERSAIRE, mode: MODES.COMPARATIF, assetIdA: 'etfImie', assetIdB: 'etfVwce', yearsBack: 1 }, '100', '200')
 assert(comparative.includes(ASSETS.etfImie.label) && comparative.includes(ASSETS.etfVwce.label))
-console.log('10 ETF: exact shares, lump/DCA, complete annual returns, raw anniversary prices, daily closes, comparisons and visual identities validated.')
+console.log('12 ETF: exact shares, lump/DCA, complete annual returns, raw anniversary prices, daily closes, comparisons and visual identities validated.')

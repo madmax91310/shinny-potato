@@ -1,6 +1,8 @@
 // Revue du 10/10/2026 : un angle propre à chaque indice, sans vécu personnel inventé.
 // Les chiffres et les constats de concentration sont dérivés de la fiche reçue.
 export const INDEX_HOOKS = {
+  'msci-world-industrials': 'L’industrie mondiale ne se limite pas aux usines. Les entreprises du transport et des équipements y occupent aussi une place 🏭',
+  'msci-world-consumer-staples': 'Les produits du quotidien ont aussi leur indice mondial. Mais leurs fabricants ne pèsent pas tous autant dans ce panier 🛒',
   'msci-em-imi': 'Les émergents ne se limitent pas aux grandes entreprises. Le MSCI Emerging Markets IMI inclut aussi les petites capitalisations 🌏',
   'ftse-all-world-high-dividend-yield': 'Un ETF mondial à dividendes élevés peut avoir une composition très différente d’un ETF All-World classique 💰',
   'sp-global-dividend-aristocrats': 'Derrière le mot « Aristocrats », il y a des règles de sélection. Un dividende élevé ne suffit pas à entrer dans cet indice 💰',

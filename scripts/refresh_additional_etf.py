@@ -59,6 +59,12 @@ def refresh(config,current,baseline,now=None,collect=collect_one):
         result = None
         try:
             result=collect(share,now)
+            for field in share.get('requiredFields', []):
+                observation = result.get(field, {})
+                if not observation or (field in ('countries', 'sectors', 'holdings') and not observation.get('rows')):
+                    raise ValueError('Required automated ETF field missing: ' + field)
+            if share.get('requiredFields') and result.get('unavailable'):
+                raise ValueError('Incomplete newly qualified ETF: ' + '; '.join(result['unavailable']))
             if result.get('performance')and baseline.get(share['isin'],{}).get('currency')not in (None,result['performance']['currency']):
                 result.setdefault('unavailable',[]).append('performance: existing simulation currency differs; history preserved')
                 result.pop('performance')

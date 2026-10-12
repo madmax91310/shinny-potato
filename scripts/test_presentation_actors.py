@@ -22,7 +22,10 @@ class ActorTermsTests(unittest.TestCase):
   self.assertEqual(len(parsed['matis']['offers'][0]['warnings']),1)
   for record in parsed.values():
    for offer in record['offers']:
-    self.assertTrue(offer['missing'])
+    if record['id'] in ('tudigo','lendosphere'):
+     self.assertEqual(set(offer['fields']), {'access','fees','duration','income','exit'})
+     self.assertIn('distinct',offer['scope'])
+    else:self.assertTrue(offer['missing'])
     self.assertEqual(set(offer['fields']),{'access','fees','duration','income','exit'})
  def test_wrong_page_disappearing_qualifier_and_unit_price_conflict(self):
   fixtures=self.fixtures()

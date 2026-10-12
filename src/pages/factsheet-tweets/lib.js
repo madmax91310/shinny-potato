@@ -5,6 +5,8 @@ const pct = (value, digits = 2) => `${value > 0 ? '+' : ''}${number(value, digit
 const weight = (value) => `${number(value, value % 1 === 0 ? 0 : 2)} %`
 
 const questions = {
+  'msci-world-industrials': 'Tu renforcerais l’industrie dans ton portefeuille ou tu garderais son poids dans le World ?',
+  'msci-world-consumer-staples': 'Tu choisirais une ligne sur la consommation de base ou sa place dans un ETF mondial ?',
   'msci-em-imi': 'Tu inclurais les petites entreprises dans ton exposition aux émergents ?',
   'ftse-all-world-high-dividend-yield': 'Tu choisirais cette sélection à dividendes ou un All-World classique ?',
   'sp-global-dividend-aristocrats': 'Tu regardes aussi les critères de sélection quand tu choisis un ETF à dividendes ?',
@@ -39,6 +41,8 @@ export function buildFactsheetTweet(sheet) {
   const count = sheet.constituents ?? sheet.indexFacts?.targetConstituents
   const countText = Number.isFinite(count) ? `${count.toLocaleString('fr-FR')} ${sheet.constituents === null ? 'sociétés visées' : 'titres'}` : 'les titres de son univers'
   const scopes = {
+    'msci-world-industrials': 'Il suit le secteur industriel des pays développés.',
+    'msci-world-consumer-staples': 'Il suit le secteur de la consommation de base des pays développés.',
     'msci-em-imi': 'Il couvre les grandes, moyennes et petites entreprises des marchés émergents.',
     'ftse-all-world-high-dividend-yield': 'Il sélectionne des entreprises des pays développés et émergents selon leur rendement en dividendes anticipé.',
     'sp-global-dividend-aristocrats': 'Il sélectionne des entreprises à dividendes avec des critères de régularité et de qualité financière.',

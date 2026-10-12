@@ -80,9 +80,10 @@ def growth(current, previous):
     return (current / previous - 1) * 100 if previous > 0 and current >= 0 else None
 
 
-def financial_period(body, form, minimum, maximum, today):
-    revenue = fact_rows(body, REVENUE, 'USD', form, minimum, maximum, today)
-    income = fact_rows(body, ['NetIncomeLoss'], 'USD', form, minimum, maximum, today)
+def financial_period(body, form, minimum, maximum, today, profile=None):
+    profile = profile or {}
+    revenue = fact_rows(body, profile.get('revenueTags', REVENUE), 'USD', form, minimum, maximum, today)
+    income = fact_rows(body, profile.get('incomeTags', ['NetIncomeLoss']), 'USD', form, minimum, maximum, today)
     if not revenue:
         return None
     latest = max(revenue, key=lambda r: r['end'])
@@ -121,10 +122,10 @@ def financial_period(body, form, minimum, maximum, today):
 def parse_accounts(body, profile, today):
     if str(body.get('cik', '')).zfill(10) != profile['cik']:
         raise ValueError('Wrong SEC identity')
-    annual = financial_period(body, '10-K', 330, 400, today)
+    annual = financial_period(body, '10-K', 330, 400, today, profile)
     if annual is None or (today - dt.date.fromisoformat(annual['end'])).days > 550:
         raise ValueError('Missing or stale annual accounts')
-    quarter = financial_period(body, '10-Q', 75, 105, today)
+    quarter = financial_period(body, '10-Q', 75, 105, today, profile)
     if quarter and (quarter['end'] <= annual['end'] or (today - dt.date.fromisoformat(quarter['end'])).days > 200):
         quarter = None
     result = {'annual': annual, 'quarter': quarter}
@@ -161,8 +162,8 @@ def parse_accounts(body, profile, today):
 def parse_history(body, profile, today):
     if str(body.get('cik', '')).zfill(10) != profile['cik']:
         raise ValueError('Wrong SEC history identity')
-    revenues = fact_rows(body, REVENUE, 'USD', '10-K', 330, 400, today)
-    incomes = fact_rows(body, ['NetIncomeLoss'], 'USD', '10-K', 330, 400, today)
+    revenues = fact_rows(body, profile.get('revenueTags', REVENUE), 'USD', '10-K', 330, 400, today)
+    incomes = fact_rows(body, profile.get('incomeTags', ['NetIncomeLoss']), 'USD', '10-K', 330, 400, today)
     result = []
     for revenue in sorted(revenues, key=lambda r: r['end'], reverse=True):
         net = aligned(incomes, revenue)
@@ -277,35 +278,44 @@ def main():
         except Exception as error:
             status['sec'] = 'not-applicable-ifrs' if ident in EUROPE else type(error).__name__
         try:
-            if extended:
-                from company_extended_publications import collect
+            if profile.get('accountsAdapter') == 'sec':
+                if sec_accounts is None:
+                    raise ValueError('SEC accounts unavailable for newly qualified company')
+                published = dict(sec_accounts)
+                published['annual'] = {**published['annual'], 'sourceUrl': url}
+                accounts = dict(published)
+                source = url
+                status['publications'] = 'sec-xbrl'
             else:
-                from company_publications import collect
-            published = collect(profile, now.date(), old)
-            accounts = dict(sec_accounts or published)
-            if sec_accounts:
-                # Never mix disagreeing earnings periods into a trailing ratio.
-                latest = sec_accounts['quarter'] or sec_accounts['annual']
-                matching = published['quarter'] or published['annual']
-                if latest['end'] < matching['end']:
-                    # A press release can precede the SEC 10-K/10-Q filing.
-                    sec_accounts = None
-                    accounts = dict(published)
-                elif latest['end'] != matching['end'] or any(abs(latest[k]-matching[k]) > 1 for k in ['revenue','netIncome']):
-                    raise ValueError('Issuer/SEC results disagree')
-                for block in ['annual','quarter']:
-                    official = published.get(block)
-                    existing = accounts.get(block)
-                    if official and existing and official['end']==existing['end']:
-                        for field in ['freeCashFlow','freeCashFlowDefinition']:
-                            if field not in existing and field in official:
-                                existing[field]=official[field]
-                                existing.setdefault('additionalSourceUrls',[]).append(official['sourceUrl'])
-            collected_history = published.get('historyYears')
-            accounts['trailing'] = published.get('trailing')
-            accounts['quarters'] = published.get('quarters', [])
-            status['publications'] = 'updated'
-            source = url if sec_accounts else published['annual']['sourceUrl']
+                if extended:
+                    from company_extended_publications import collect
+                else:
+                    from company_publications import collect
+                published = collect(profile, now.date(), old)
+                accounts = dict(sec_accounts or published)
+                if sec_accounts:
+                    # Never mix disagreeing earnings periods into a trailing ratio.
+                    latest = sec_accounts['quarter'] or sec_accounts['annual']
+                    matching = published['quarter'] or published['annual']
+                    if latest['end'] < matching['end']:
+                        # A press release can precede the SEC 10-K/10-Q filing.
+                        sec_accounts = None
+                        accounts = dict(published)
+                    elif latest['end'] != matching['end'] or any(abs(latest[k]-matching[k]) > 1 for k in ['revenue','netIncome']):
+                        raise ValueError('Issuer/SEC results disagree')
+                    for block in ['annual','quarter']:
+                        official = published.get(block)
+                        existing = accounts.get(block)
+                        if official and existing and official['end']==existing['end']:
+                            for field in ['freeCashFlow','freeCashFlowDefinition']:
+                                if field not in existing and field in official:
+                                    existing[field]=official[field]
+                                    existing.setdefault('additionalSourceUrls',[]).append(official['sourceUrl'])
+                collected_history = published.get('historyYears')
+                accounts['trailing'] = published.get('trailing')
+                accounts['quarters'] = published.get('quarters', [])
+                status['publications'] = 'updated'
+                source = url if sec_accounts else published['annual']['sourceUrl']
         except Exception as error:
             status['publications'] = type(error).__name__
             status['publicationsDetail'] = str(error)[:900]
@@ -334,10 +344,10 @@ def main():
                 status['trailing'] = 'updated'
             else:
                 status['trailing'] = 'unavailable'
-                if ident not in EUROPE or ident == 'totalenergies':
+                if (ident not in EUROPE or ident == 'totalenergies') and profile.get('accountsAdapter') != 'sec':
                     failures.append(ident + ':trailing')
                 else:
-                    status['trailing'] = 'not-reported'
+                    status['trailing'] = 'not-reported' # No invented fourth-quarter EPS or trailing PER.
             status['accounts'] = 'updated'
         except Exception as error:
             status['accounts'] = type(error).__name__

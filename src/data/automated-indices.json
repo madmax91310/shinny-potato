@@ -17239,5 +17239,537 @@
         }
       }
     }
+  },
+  "msci-world-industrials": {
+    "facts": {
+      "index": "MSCI World Industrials",
+      "asOf": "2026-09-30",
+      "constituents": 249,
+      "countries": [
+        [
+          "🇺🇸 États-Unis",
+          55.72
+        ],
+        [
+          "🇯🇵 Japon",
+          13.18
+        ],
+        [
+          "🇫🇷 France",
+          6.76
+        ],
+        [
+          "🇩🇪 Allemagne",
+          5.67
+        ],
+        [
+          "🇬🇧 Royaume-Uni",
+          4.08
+        ],
+        [
+          "🌍 Autres",
+          14.59
+        ]
+      ],
+      "sectors": [
+        [
+          "🏭 Industrie",
+          100.0
+        ]
+      ],
+      "holdings": [
+        [
+          "CATERPILLAR",
+          3.82
+        ],
+        [
+          "GE AEROSPACE",
+          3.32
+        ],
+        [
+          "GE VERNOVA",
+          2.62
+        ],
+        [
+          "RTX",
+          2.56
+        ],
+        [
+          "SIEMENS",
+          2.32
+        ],
+        [
+          "SCHNEIDER ELECTRIC",
+          1.87
+        ],
+        [
+          "EATON CORP PLC",
+          1.71
+        ],
+        [
+          "DEERE & CO",
+          1.67
+        ],
+        [
+          "ROLLS-ROYCE GROUP",
+          1.66
+        ],
+        [
+          "UNION PACIFIC CORP",
+          1.65
+        ]
+      ],
+      "source": {
+        "url": "https://www.msci.com/documents/10199/255599/msci-world-industrials-index-usd-net.pdf",
+        "checkedAt": "2026-10-12",
+        "label": "Composition officielle automatisée · MSCI World Industrials",
+        "sha256": "ef7e83a306b2d337fe0133fa518aa40413d152f86c5e1d572fc3391796f924ef"
+      },
+      "provenance": "Publication officielle extraite automatiquement ; compositions d’indice distinctes des portefeuilles ETF."
+    },
+    "factsHistory": {
+      "2026-09-30": {
+        "index": "MSCI World Industrials",
+        "asOf": "2026-09-30",
+        "constituents": 249,
+        "countries": [
+          [
+            "🇺🇸 États-Unis",
+            55.72
+          ],
+          [
+            "🇯🇵 Japon",
+            13.18
+          ],
+          [
+            "🇫🇷 France",
+            6.76
+          ],
+          [
+            "🇩🇪 Allemagne",
+            5.67
+          ],
+          [
+            "🇬🇧 Royaume-Uni",
+            4.08
+          ],
+          [
+            "🌍 Autres",
+            14.59
+          ]
+        ],
+        "sectors": [
+          [
+            "🏭 Industrie",
+            100.0
+          ]
+        ],
+        "holdings": [
+          [
+            "CATERPILLAR",
+            3.82
+          ],
+          [
+            "GE AEROSPACE",
+            3.32
+          ],
+          [
+            "GE VERNOVA",
+            2.62
+          ],
+          [
+            "RTX",
+            2.56
+          ],
+          [
+            "SIEMENS",
+            2.32
+          ],
+          [
+            "SCHNEIDER ELECTRIC",
+            1.87
+          ],
+          [
+            "EATON CORP PLC",
+            1.71
+          ],
+          [
+            "DEERE & CO",
+            1.67
+          ],
+          [
+            "ROLLS-ROYCE GROUP",
+            1.66
+          ],
+          [
+            "UNION PACIFIC CORP",
+            1.65
+          ]
+        ],
+        "source": {
+          "url": "https://www.msci.com/documents/10199/255599/msci-world-industrials-index-usd-net.pdf",
+          "checkedAt": "2026-10-12",
+          "label": "Composition officielle automatisée · MSCI World Industrials",
+          "sha256": "ef7e83a306b2d337fe0133fa518aa40413d152f86c5e1d572fc3391796f924ef"
+        },
+        "provenance": "Publication officielle extraite automatiquement ; compositions d’indice distinctes des portefeuilles ETF."
+      }
+    },
+    "returns": {
+      "asOf": "2026-09-30",
+      "currency": "USD",
+      "variant": "NET",
+      "values": [
+        [
+          2025,
+          24.93
+        ],
+        [
+          2024,
+          13.13
+        ],
+        [
+          2023,
+          23.16
+        ],
+        [
+          2022,
+          -13.2
+        ],
+        [
+          2021,
+          16.6
+        ],
+        [
+          2020,
+          11.68
+        ]
+      ],
+      "periodStart": "2020-01-01",
+      "periodEnd": "2025-12-31",
+      "source": {
+        "url": "https://www.msci.com/documents/10199/255599/msci-world-industrials-index-usd-net.pdf",
+        "checkedAt": "2026-10-12",
+        "sha256": "ef7e83a306b2d337fe0133fa518aa40413d152f86c5e1d572fc3391796f924ef",
+        "label": "Rendements calendaires officiels automatisés · MSCI World Industrials"
+      },
+      "performance": {
+        "kind": "indice",
+        "detail": "MSCI World Industrials · rendement net USD, dividendes nets réinvestis, hors frais ETF",
+        "date": "2026-09-30"
+      }
+    },
+    "returnsHistory": {
+      "2026-09-30": {
+        "asOf": "2026-09-30",
+        "currency": "USD",
+        "variant": "NET",
+        "values": [
+          [
+            2025,
+            24.93
+          ],
+          [
+            2024,
+            13.13
+          ],
+          [
+            2023,
+            23.16
+          ],
+          [
+            2022,
+            -13.2
+          ],
+          [
+            2021,
+            16.6
+          ],
+          [
+            2020,
+            11.68
+          ]
+        ],
+        "periodStart": "2020-01-01",
+        "periodEnd": "2025-12-31",
+        "source": {
+          "url": "https://www.msci.com/documents/10199/255599/msci-world-industrials-index-usd-net.pdf",
+          "checkedAt": "2026-10-12",
+          "sha256": "ef7e83a306b2d337fe0133fa518aa40413d152f86c5e1d572fc3391796f924ef",
+          "label": "Rendements calendaires officiels automatisés · MSCI World Industrials"
+        },
+        "performance": {
+          "kind": "indice",
+          "detail": "MSCI World Industrials · rendement net USD, dividendes nets réinvestis, hors frais ETF",
+          "date": "2026-09-30"
+        }
+      }
+    }
+  },
+  "msci-world-consumer-staples": {
+    "facts": {
+      "index": "MSCI World Consumer Staples",
+      "asOf": "2026-09-30",
+      "constituents": 87,
+      "countries": [
+        [
+          "🇺🇸 États-Unis",
+          65.63
+        ],
+        [
+          "🇬🇧 Royaume-Uni",
+          9.99
+        ],
+        [
+          "🇨🇭 Suisse",
+          5.98
+        ],
+        [
+          "🇯🇵 Japon",
+          4.47
+        ],
+        [
+          "🇫🇷 France",
+          3.93
+        ],
+        [
+          "🌍 Autres",
+          10.0
+        ]
+      ],
+      "sectors": [
+        [
+          "🛒 Consommation de base",
+          100.0
+        ]
+      ],
+      "holdings": [
+        [
+          "WALMART",
+          10.55
+        ],
+        [
+          "COSTCO WHOLESALE CORP",
+          9.37
+        ],
+        [
+          "PROCTER & GAMBLE CO",
+          7.85
+        ],
+        [
+          "COCA COLA (THE)",
+          7.73
+        ],
+        [
+          "PHILIP MORRIS INTL",
+          6.9
+        ],
+        [
+          "NESTLE",
+          5.44
+        ],
+        [
+          "PEPSICO",
+          4.01
+        ],
+        [
+          "UNILEVER PLC (GB)",
+          3.06
+        ],
+        [
+          "ALTRIA GROUP",
+          2.61
+        ],
+        [
+          "BRITISH AMERICAN TOBACCO",
+          2.55
+        ]
+      ],
+      "source": {
+        "url": "https://www.msci.com/documents/10199/255599/msci-world-consumer-staples-index-usd-net.pdf",
+        "checkedAt": "2026-10-12",
+        "label": "Composition officielle automatisée · MSCI World Consumer Staples",
+        "sha256": "f2923e7df1650a76c19f6e1466050dc999f0e3fb4fbf809f33d6c90178e46146"
+      },
+      "provenance": "Publication officielle extraite automatiquement ; compositions d’indice distinctes des portefeuilles ETF."
+    },
+    "factsHistory": {
+      "2026-09-30": {
+        "index": "MSCI World Consumer Staples",
+        "asOf": "2026-09-30",
+        "constituents": 87,
+        "countries": [
+          [
+            "🇺🇸 États-Unis",
+            65.63
+          ],
+          [
+            "🇬🇧 Royaume-Uni",
+            9.99
+          ],
+          [
+            "🇨🇭 Suisse",
+            5.98
+          ],
+          [
+            "🇯🇵 Japon",
+            4.47
+          ],
+          [
+            "🇫🇷 France",
+            3.93
+          ],
+          [
+            "🌍 Autres",
+            10.0
+          ]
+        ],
+        "sectors": [
+          [
+            "🛒 Consommation de base",
+            100.0
+          ]
+        ],
+        "holdings": [
+          [
+            "WALMART",
+            10.55
+          ],
+          [
+            "COSTCO WHOLESALE CORP",
+            9.37
+          ],
+          [
+            "PROCTER & GAMBLE CO",
+            7.85
+          ],
+          [
+            "COCA COLA (THE)",
+            7.73
+          ],
+          [
+            "PHILIP MORRIS INTL",
+            6.9
+          ],
+          [
+            "NESTLE",
+            5.44
+          ],
+          [
+            "PEPSICO",
+            4.01
+          ],
+          [
+            "UNILEVER PLC (GB)",
+            3.06
+          ],
+          [
+            "ALTRIA GROUP",
+            2.61
+          ],
+          [
+            "BRITISH AMERICAN TOBACCO",
+            2.55
+          ]
+        ],
+        "source": {
+          "url": "https://www.msci.com/documents/10199/255599/msci-world-consumer-staples-index-usd-net.pdf",
+          "checkedAt": "2026-10-12",
+          "label": "Composition officielle automatisée · MSCI World Consumer Staples",
+          "sha256": "f2923e7df1650a76c19f6e1466050dc999f0e3fb4fbf809f33d6c90178e46146"
+        },
+        "provenance": "Publication officielle extraite automatiquement ; compositions d’indice distinctes des portefeuilles ETF."
+      }
+    },
+    "returns": {
+      "asOf": "2026-09-30",
+      "currency": "USD",
+      "variant": "NET",
+      "values": [
+        [
+          2025,
+          8.72
+        ],
+        [
+          2024,
+          5.65
+        ],
+        [
+          2023,
+          2.31
+        ],
+        [
+          2022,
+          -6.13
+        ],
+        [
+          2021,
+          13.06
+        ],
+        [
+          2020,
+          7.78
+        ]
+      ],
+      "periodStart": "2020-01-01",
+      "periodEnd": "2025-12-31",
+      "source": {
+        "url": "https://www.msci.com/documents/10199/255599/msci-world-consumer-staples-index-usd-net.pdf",
+        "checkedAt": "2026-10-12",
+        "sha256": "f2923e7df1650a76c19f6e1466050dc999f0e3fb4fbf809f33d6c90178e46146",
+        "label": "Rendements calendaires officiels automatisés · MSCI World Consumer Staples"
+      },
+      "performance": {
+        "kind": "indice",
+        "detail": "MSCI World Consumer Staples · rendement net USD, dividendes nets réinvestis, hors frais ETF",
+        "date": "2026-09-30"
+      }
+    },
+    "returnsHistory": {
+      "2026-09-30": {
+        "asOf": "2026-09-30",
+        "currency": "USD",
+        "variant": "NET",
+        "values": [
+          [
+            2025,
+            8.72
+          ],
+          [
+            2024,
+            5.65
+          ],
+          [
+            2023,
+            2.31
+          ],
+          [
+            2022,
+            -6.13
+          ],
+          [
+            2021,
+            13.06
+          ],
+          [
+            2020,
+            7.78
+          ]
+        ],
+        "periodStart": "2020-01-01",
+        "periodEnd": "2025-12-31",
+        "source": {
+          "url": "https://www.msci.com/documents/10199/255599/msci-world-consumer-staples-index-usd-net.pdf",
+          "checkedAt": "2026-10-12",
+          "sha256": "f2923e7df1650a76c19f6e1466050dc999f0e3fb4fbf809f33d6c90178e46146",
+          "label": "Rendements calendaires officiels automatisés · MSCI World Consumer Staples"
+        },
+        "performance": {
+          "kind": "indice",
+          "detail": "MSCI World Consumer Staples · rendement net USD, dividendes nets réinvestis, hors frais ETF",
+          "date": "2026-09-30"
+        }
+      }
+    }
   }
 }

@@ -3,6 +3,8 @@ import RECORDS from './automated-etf-monthly.json' with { type: 'json' }
 // Exact shares shared by the investment, performance and anniversary tools.
 // Visual identities use exposure illustrations, never an invented issuer logo.
 export const ETF_HISTORY_IDENTITIES = {
+  etfIndustrials: { icon: '🏭', scene: 'industry', title: 'WORLD INDUSTRIALS', ticker: 'XDWI' },
+  etfConsumerStaples: { icon: '🛒', scene: 'world', title: 'WORLD CONSUMER STAPLES', ticker: 'WCSS' },
   etfImie: { icon: '🌍', scene: 'world', title: 'ACWI IMI', ticker: 'IMIE' },
   etfVwce: { icon: '🌍', scene: 'world', title: 'FTSE ALL-WORLD', ticker: 'VWCE' },
   etfEqualWeight: { icon: '🇺🇸', scene: 'america', title: 'S&P 500 EQUAL WEIGHT', ticker: 'XDEW' },

@@ -461,6 +461,24 @@
       "requireFullHistory": false,
       "collectHoldings": true,
       "provider": "iShares"
+    },
+    {
+      "isin": "IE00BJ5JP329",
+      "productId": 308902,
+      "name": "iShares MSCI World Consumer Staples Sector Advanced UCITS ETF USD (Dist)",
+      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/308902/",
+      "currency": "USD",
+      "distribution": "Distributing",
+      "requireFullHistory": false,
+      "collectHoldings": true,
+      "provider": "iShares",
+      "requiredFields": [
+        "aum",
+        "countries",
+        "sectors",
+        "holdings",
+        "performance"
+      ]
     }
   ],
   "excluded": [

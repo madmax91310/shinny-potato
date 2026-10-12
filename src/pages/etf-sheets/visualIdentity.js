@@ -21,10 +21,10 @@ const groups = {
   space: 'spatial',
   commodities: 'support-mp_large support-mp_large_icom',
   renewables: 'support-sect_energie_propre',
-  infrastructure: 'infrastructures',
+  infrastructure: 'world-industrials-xtrackers infrastructures',
   utilities: 'support-sect_utilities',
   resources: 'copper-miners-globalx basic-resources-pea mines-mondiales-vaneck',
-  consumer: 'support-sect_conso_defensive',
+  consumer: 'world-consumer-staples-ishares support-sect_conso_defensive',
 }
 const entries = Object.entries(groups).flatMap(([theme, ids]) => ids.split(' ').map(id => [id, { theme, scene: `etf-night/${theme}.webp`, kind: 'illustration' }]))
 entries.push(...'gold-miners-vaneck or support-or support-or_wisdomtree support-or_amundi'.split(' ').map(id => [id, { theme: 'gold', scene: 'etf-night/gold.webp', kind: 'illustration' }]))

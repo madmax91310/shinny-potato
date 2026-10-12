@@ -34,6 +34,8 @@ def collect_one(config, now, fetch=download):
     def load(url):
         if url not in cache:
             body = fetch(url); cache[url] = (pdf_text(body), proof(body))
+            if config.get('sectorScope') and url == config['sourceUrl']:
+                cache['countryText'] = pdf_text(body, (295, 300))
         return cache[url]
     result = {'id': config['id'], 'name': config['name'], 'errors': [], 'unavailable': []}
     if config.get('holdingsSourceUrl'):
@@ -54,7 +56,7 @@ def collect_one(config, now, fetch=download):
             else:
                 text, digest = load(config['sourceUrl'])
                 parser = msci_composition if config['parser'] == 'msci' else ftse_composition
-                facts = parser(text, config, now)
+                facts = parser(text, config, now, country_text=cache.get('countryText')) if config.get('sectorScope') else parser(text, config, now)
                 facts['source'] = {'url': config['sourceUrl'], 'checkedAt': now.date().isoformat(),
                                    'label': 'Composition officielle automatisée · ' + config['name'], 'sha256': digest}
                 facts['provenance'] = config.get('identityNote', 'Publication officielle extraite automatiquement ; compositions d’indice distinctes des portefeuilles ETF.')
