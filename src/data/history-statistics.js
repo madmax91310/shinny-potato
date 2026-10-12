@@ -34,7 +34,7 @@ export const HISTORY_FACTS = HISTORY_STATISTIC_IDS.flatMap(id => {
   const stats = monthlyDrawdown(points)
   const evidence = reviews[`history:${id}`]
   const period = `${points[0].date} à ${points.at(-1).date}`
-  const note = asset.methodNote && asset.priceUnit === 'points' ? `${asset.methodNote} Calcul sur les seuls niveaux mensuels ; hors frais et fiscalité.` : `${asset.isin ? 'Calcul sur les cours mensuels ajustés de l’ETF, revenus réinvestis. Frais du fonds déjà inclus ; hors frais du courtier et fiscalité.' : asset.priceMethod === 'adjusted' ? 'Calcul sur les clôtures mensuelles ajustées, dividendes réinvestis et divisions d’actions pris en compte. Hors frais et fiscalité.' : 'Calcul sur les niveaux mensuels d’un indice de prix, dividendes non réinvestis. Hors frais et fiscalité ; ce n’est pas la performance d’un ETF.'} Devise : ${asset.currency}.${asset.returnNote ? ' ' + asset.returnNote : ''}`
+  const note = asset.methodNote && asset.priceUnit === 'points' ? `${asset.methodNote} Calcul sur les seuls niveaux mensuels ; hors frais et fiscalité.` : `${asset.isin ? 'Calcul sur les cours mensuels ajustés du produit coté. Frais du produit déjà inclus ; hors frais du courtier et fiscalité.' : asset.priceMethod === 'adjusted' ? 'Calcul sur les clôtures mensuelles ajustées, dividendes réinvestis et divisions d’actions pris en compte. Hors frais et fiscalité.' : 'Calcul sur les niveaux mensuels d’un indice de prix, dividendes non réinvestis. Hors frais et fiscalité ; ce n’est pas la performance d’un ETF.'} Devise : ${asset.currency}.${asset.returnNote ? ' ' + asset.returnNote : ''}`
   const common = { methodNote: note, family: asset.isin ? 'obligations-historiques' : asset.priceUnit === 'points' ? 'indices-historiques' : 'actions-historiques', indices: [asset.label], source: `${asset.methodNote && /MSCI/.test(asset.label) ? 'MSCI' : 'Yahoo Finance'} · ${evidence.sourceUrls[0]}`, note }
   const initial = points.length * 100
   const lump = initial * points.at(-1).price / points[0].price
@@ -42,8 +42,8 @@ export const HISTORY_FACTS = HISTORY_STATISTIC_IDS.flatMap(id => {
   const currencyLabel = asset.currency === 'EUR' ? '€' : asset.currency
   const money = n => n.toLocaleString('fr-FR', { maximumFractionDigits: 0 }) + ' ' + currencyLabel
   const indexLabel = asset.label.replace(/^Indice /, '')
-  const subject = asset.isin ? `L’ETF ${asset.label}` : asset.priceUnit === 'points' ? `L’indice ${indexLabel}` : `L’action ${asset.label}`
-  const target = asset.isin ? `dans l’ETF ${asset.label}` : asset.priceUnit === 'points' ? `sur un placement suivant l’indice ${indexLabel}` : `dans l’action ${asset.label}`
+  const subject = asset.isin ? `L’${asset.instrumentType || 'ETF'} ${asset.label}` : asset.priceUnit === 'points' ? `L’indice ${indexLabel}` : `L’action ${asset.label}`
+  const target = asset.isin ? `dans l’${asset.instrumentType || 'ETF'} ${asset.label}` : asset.priceUnit === 'points' ? `sur un placement suivant l’indice ${indexLabel}` : `dans l’action ${asset.label}`
   // Revue éditoriale 10/10/2026 : regard personnel sur le parcours, sans inventer sa cause.
   // Les deux scénarios et les bornes mensuelles conservent exactement leurs calculs.
   const gap = lump - dca

@@ -211,6 +211,8 @@ export const MARKET_ASSETS = ASSET_ORDER.map((id) => ({
   sourceCredit: ASSETS[id].sourceCredit,
   anniversaryVariant: ANNIVERSARY_INDEX_VARIANTS[id],
   priceUnit: ASSETS[id].priceUnit,
+  instrumentType: ASSETS[id].instrumentType,
+  isin: ASSETS[id].isin,
 }));
 
 // Sous-ensemble de MARKET_ASSETS utilisable par le format Anniversaire (cf.

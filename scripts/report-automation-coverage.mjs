@@ -1,3 +1,5 @@
+import { AUTOMATED_ETF } from '../src/data/automated-etf.js';
+import qualified from './qualified-exposure-sources.json' with { type:'json' };
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { DATA_CATALOG } from '../src/data/catalog.js';
 import { writeGapInventory } from './automation-gap-inventory.mjs';
@@ -5,8 +7,8 @@ import { ASSETS } from '../src/data/market-history.js';
 import { auditComparisonAutomation } from './audit-comparison-automation.mjs';
 const comparisons = auditComparisonAutomation();
 const read=path=>JSON.parse(readFileSync(path));
-const etf=read('src/data/automated-etf.json'), indices=read('src/data/automated-indices.json'), monthly=read('src/data/automated-monthly.json');
-const sources=['etf-pilot.json','amundi-etf.json','ssga-etf.json','additional-etf-sources.json'].flatMap(file=>read(`scripts/${file}`).instruments);
+const etf=AUTOMATED_ETF, indices=read('src/data/automated-indices.json'), monthly=read('src/data/automated-monthly.json');
+const sources=['etf-pilot.json','amundi-etf.json','ssga-etf.json','additional-etf-sources.json'].flatMap(file=>read(`scripts/${file}`).instruments).concat(qualified.instruments);
 const configured=new Set(sources.filter(s=>s.enabled!==false).map(s=>s.isin));
 const instruments=DATA_CATALOG.filter(r=>r.type==='instrument');
 const uncovered=instruments.filter(r=>!configured.has(r.id)||!etf[r.id]);
@@ -61,7 +63,7 @@ const rows=[
  '## Champs restant manuels sur les instruments partiellement couverts','',
  'Les identités, domiciles, modes de réplication, couvertures de change, politiques de distribution, nombres de positions, statuts PEA et cotations ne sont pas raccordés à une actualisation automatique. Les données intermédiaires d’indice/distribution récupérées par certains collecteurs ne suffisent pas : elles ne remplacent pas encore ces registres dans l’application.','',
  '| ISIN | Instrument | Champs courants hors collecte active |','|---|---|---|',
- ...instruments.filter(r=>etf[r.id]).map(r=>`| ${r.id} | ${r.name} | ${expected.filter(f=>!fields(etf[r.id]).includes(f)).join(', ')||'Les six champs sont couverts ; caractéristiques et cotations restent manuelles'} |`),'',
+ ...instruments.filter(r=>etf[r.id]).map(r=>`| ${r.id} | ${r.name} | ${expected.filter(f=>!fields(etf[r.id]).includes(f)).join(', ')||(qualified.instruments.some(s=>s.isin===r.id)?'Les six champs, caractéristiques et cotations sont automatisés':'Les six champs sont couverts ; caractéristiques et cotations restent manuelles')} |`),'',
  '« Hors collecte » peut aussi signifier non publié ou non applicable. Une part récente n’a pas six années complètes : ses performances YTD, depuis création et périodes glissantes restent manuelles lorsqu’elles existent. Les proxys de simulation ne sont pas remplacés par une série incomplète. Le monétaire overnight n’a pas de composition actions pertinente ; publier son panier de swap comme exposition économique serait incorrect.','',
  '## Indices avec au moins un bloc restant manuel','',
  'S&P 500, S&P 500 Equal Weight, STOXX Europe 600 et EURO STOXX 50 : les compositions complètes sont raccordées aux fiches mensuelles Amundi avec identité exacte, nombre de titres et poids numériques. Les éditions sont découvertes à chaque collecte ; les dates de composition restent celles de la publication. Le benchmark NET de ces fiches ne remplace pas les conventions de rendement existantes. Voir [qualification du 7 octobre](source-reliability-index-coverage-2026-10-07.md).','',

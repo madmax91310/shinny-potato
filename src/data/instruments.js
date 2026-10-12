@@ -1,3 +1,4 @@
+import { QUALIFIED_INSTRUMENTS } from './qualified-exposure-sheets.js';
 import { PRESENTATION_ETF_ADDITIONS } from './presentation-etf-additions.js';
 import { EXPOSURE_ADDITIONS } from './exposure-additions.js';
 // Répertoire commun des produits identifiés par ISIN. Noms repris des outils existants :
@@ -7,6 +8,10 @@ import { EXPOSURE_ADDITIONS } from './exposure-additions.js';
 // preuves émetteurs/places et devises de négociation contrôlées le 30/09/2026.
 import { PEA_REVIEWS_BY_ISIN } from './instrument-pea.js';
 export const INSTRUMENTS_BY_ISIN = Object.freeze({
+  ...QUALIFIED_INSTRUMENTS,
+  IE00B4556L06: Object.freeze({name: "iShares Physical Palladium ETC", pea: false}),
+  IE0003R87OG3: Object.freeze({name: "Avantis Global Small Cap Value UCITS ETF USD Acc", pea: false}),
+  IE00B4LHWP62: Object.freeze({name: "iShares Physical Platinum ETC", pea: false}),
   ...Object.fromEntries(PRESENTATION_ETF_ADDITIONS.map(r => [r.isin, Object.freeze({ name: r.name })])),
   FR001400ZGO4: Object.freeze({name: "Amundi PEA Emergent (MSCI Emerging) ESG Transition UCITS ETF S - Acc"}),
   FR0007056841: Object.freeze({name: "Amundi Dow Jones Industrial Average UCITS ETF Dist"}),

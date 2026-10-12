@@ -4,12 +4,12 @@ Inventaire des champs réellement présents dans les observations actives. Couve
 
 | Champ ETF/ETP | Couverture |
 |---|---:|
-| ter | 162/162 |
-| aum | 162/162 |
-| performance | 148/162 |
-| countries | 147/162 |
-| sectors | 147/162 |
-| holdings | 147/162 |
+| ter | 172/175 |
+| aum | 172/175 |
+| performance | 158/175 |
+| countries | 157/175 |
+| sectors | 157/175 |
+| holdings | 157/175 |
 
 ## Premiers calendriers des 12 parts récentes
 
@@ -36,6 +36,24 @@ Les caractéristiques statiques et cotations sont exclues de ce chantier conform
 
 | Type | Instrument / indice | Champ absent | Motif | Action |
 |---|---|---|---|---|
+| instrument | iShares Physical Palladium ETC (IE00B4556L06) | Frais | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
+| instrument | iShares Physical Palladium ETC (IE00B4556L06) | Encours | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
+| instrument | iShares Physical Palladium ETC (IE00B4556L06) | Calendrier annuel | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
+| instrument | iShares Physical Palladium ETC (IE00B4556L06) | Pays | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
+| instrument | iShares Physical Palladium ETC (IE00B4556L06) | Secteurs | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
+| instrument | iShares Physical Palladium ETC (IE00B4556L06) | Positions pondérées | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
+| instrument | Avantis Global Small Cap Value UCITS ETF USD Acc (IE0003R87OG3) | Frais | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
+| instrument | Avantis Global Small Cap Value UCITS ETF USD Acc (IE0003R87OG3) | Encours | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
+| instrument | Avantis Global Small Cap Value UCITS ETF USD Acc (IE0003R87OG3) | Calendrier annuel | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
+| instrument | Avantis Global Small Cap Value UCITS ETF USD Acc (IE0003R87OG3) | Pays | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
+| instrument | Avantis Global Small Cap Value UCITS ETF USD Acc (IE0003R87OG3) | Secteurs | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
+| instrument | Avantis Global Small Cap Value UCITS ETF USD Acc (IE0003R87OG3) | Positions pondérées | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
+| instrument | iShares Physical Platinum ETC (IE00B4LHWP62) | Frais | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
+| instrument | iShares Physical Platinum ETC (IE00B4LHWP62) | Encours | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
+| instrument | iShares Physical Platinum ETC (IE00B4LHWP62) | Calendrier annuel | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
+| instrument | iShares Physical Platinum ETC (IE00B4LHWP62) | Pays | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
+| instrument | iShares Physical Platinum ETC (IE00B4LHWP62) | Secteurs | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
+| instrument | iShares Physical Platinum ETC (IE00B4LHWP62) | Positions pondérées | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
 | instrument | Global X Copper Miners UCITS ETF USD Acc (IE0003Z9E2Y3) | Calendrier annuel | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
 | instrument | Amundi PEA Emergent (MSCI Emerging) ESG Transition UCITS ETF S - Acc (FR001400ZGO4) | Calendrier annuel | Première année complète en cours ou à venir | Première année civile complète : 2026. Publication possible à partir du 2027-01-01, selon l’émetteur ; aucun calendrier complet ne peut encore être collecté. |
 | instrument | Amundi PEA Global (MSCI ACWI) UCITS ETF (Acc) (FR0014017NX3) | Calendrier annuel | Première année complète en cours ou à venir | Première année civile complète : 2027. Publication possible à partir du 2028-01-01, selon l’émetteur ; aucun calendrier complet ne peut encore être collecté. |

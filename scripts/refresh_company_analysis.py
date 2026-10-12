@@ -263,7 +263,7 @@ def main():
         published = None
         collected_history = None
         from company_extended_publications import EXTENDED, EUROPE
-        extended = ident in EXTENDED
+        extended = ident in EXTENDED or ident == 'amd'
         url = f"https://data.sec.gov/api/xbrl/companyfacts/CIK{profile['cik']}.json" if profile.get('cik') else profile['sourceUrl']
         sec_accounts = None
         sec_body = None
@@ -277,7 +277,9 @@ def main():
         except Exception as error:
             status['sec'] = 'not-applicable-ifrs' if ident in EUROPE else type(error).__name__
         try:
-            if extended:
+            if ident == 'amd':
+                from company_amd_publications import collect
+            elif extended:
                 from company_extended_publications import collect
             else:
                 from company_publications import collect

@@ -2034,6 +2034,253 @@
         "definition": "Somme de quatre BPA trimestriels GAAP publiés ; calendrier fiscal 12/16/17 semaines pour Costco",
         "observedAt": "2026-10-11"
       }
+    },
+    "amd": {
+      "annual": {
+        "start": "2024-12-29",
+        "end": "2025-12-27",
+        "filedAt": "2026-02-04",
+        "revenue": 34639000000.0,
+        "netIncome": 4335000000.0,
+        "margin": 12.514795461762754,
+        "previousStart": "2023-12-31",
+        "previousEnd": "2024-12-28",
+        "previousRevenue": 25785000000.0,
+        "previousNetIncome": 1641000000.0,
+        "revenueGrowth": 34.33779329067288,
+        "incomeGrowth": 164.16819012797075,
+        "tags": {
+          "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
+          "netIncome": "NetIncomeLoss",
+          "dilutedEPS": "EarningsPerShareDiluted",
+          "operatingIncome": "OperatingIncomeLoss",
+          "freeCashFlow": [
+            "NetCashProvidedByUsedInOperatingActivities",
+            "PaymentsToAcquirePropertyPlantAndEquipment"
+          ]
+        },
+        "dilutedEPS": 2.65,
+        "previousDilutedEPS": 1.0,
+        "operatingIncome": 3694000000.0,
+        "previousOperatingIncome": 1900000000.0,
+        "freeCashFlow": 6735000000.0
+      },
+      "quarter": {
+        "start": "2026-03-29",
+        "end": "2026-06-27",
+        "filedAt": "2026-08-05",
+        "revenue": 11536000000.0,
+        "netIncome": 2297000000.0,
+        "margin": 19.91158113730929,
+        "previousStart": "2025-03-30",
+        "previousEnd": "2025-06-28",
+        "previousRevenue": 7685000000.0,
+        "previousNetIncome": 872000000.0,
+        "revenueGrowth": 50.11060507482108,
+        "incomeGrowth": 163.41743119266056,
+        "tags": {
+          "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
+          "netIncome": "NetIncomeLoss",
+          "dilutedEPS": "EarningsPerShareDiluted",
+          "operatingIncome": "OperatingIncomeLoss"
+        },
+        "dilutedEPS": 1.38,
+        "previousDilutedEPS": 0.54,
+        "operatingIncome": 1990000000.0,
+        "previousOperatingIncome": -134000000.0
+      },
+      "balance": {
+        "asOf": "2026-06-27",
+        "cash": 5086000000.0,
+        "debt": 3226000000.0,
+        "netDebt": -1860000000.0,
+        "definition": "Dette financière publiée, hors locations, moins trésorerie et équivalents ; placements exclus",
+        "tags": {
+          "cash": "CashAndCashEquivalentsAtCarryingValue",
+          "debt": [
+            "LongTermDebtCurrent",
+            "LongTermDebtNoncurrent"
+          ]
+        },
+        "observedAt": "2026-10-12",
+        "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000002488.json"
+      },
+      "shares": {
+        "asOf": "2026-06-27",
+        "outstanding": 1632000000.0,
+        "observedAt": "2026-10-12",
+        "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000002488.json"
+      },
+      "accountsObservedAt": "2026-10-12",
+      "accountsSourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000002488.json",
+      "history": {
+        "years": [
+          {
+            "start": null,
+            "end": "2022-12-31",
+            "revenue": 23601000000.0,
+            "netIncome": 1320000000.0,
+            "margin": 5.592983348163213,
+            "sourceUrl": "https://ir.amd.com/news-events/press-releases/detail/1180/amd-reports-fourth-quarter-and-full-year-2023-financial-results"
+          },
+          {
+            "start": null,
+            "end": "2023-12-30",
+            "revenue": 22680000000.0,
+            "netIncome": 854000000.0,
+            "margin": 3.7654320987654324,
+            "sourceUrl": "https://ir.amd.com/news-events/press-releases/detail/1236/amd-reports-fourth-quarter-and-full-year-2024-financial-results"
+          },
+          {
+            "start": null,
+            "end": "2024-12-28",
+            "revenue": 25785000000.0,
+            "netIncome": 1641000000.0,
+            "margin": 6.364165212332752,
+            "sourceUrl": "https://ir.amd.com/news-events/press-releases/detail/1276/amd-reports-fourth-quarter-and-full-year-2025-financial-results"
+          },
+          {
+            "start": null,
+            "end": "2025-12-27",
+            "revenue": 34639000000.0,
+            "netIncome": 4335000000.0,
+            "margin": 12.514795461762754,
+            "sourceUrl": "https://ir.amd.com/news-events/press-releases/detail/1276/amd-reports-fourth-quarter-and-full-year-2025-financial-results"
+          }
+        ],
+        "observedAt": "2026-10-12",
+        "definition": "Comptes annuels consolidés GAAP ; marge nette = résultat net / chiffre d’affaires"
+      },
+      "estimates": {
+        "forwardEPS": 16.04,
+        "growthEPS5Y": 77.71,
+        "reportedForwardPE": 37.57,
+        "reportedPEG": 0.48,
+        "providerPrice": 602.68,
+        "observedAt": "2026-10-12",
+        "sourceName": "Finviz",
+        "sourceUrl": "https://finviz.com/quote.ashx?t=AMD",
+        "methodUrl": "https://finviz.com/help/screener",
+        "forwardHorizon": "Prochain exercice fiscal selon Finviz",
+        "pegHorizon": "Croissance annuelle estimée du BPA sur cinq ans",
+        "earningsBasis": "Base comptable des estimations non précisée par le fournisseur",
+        "accountsEndAtCollection": "2026-06-27"
+      },
+      "quote": {
+        "price": 608.0999755859375,
+        "asOf": "2026-10-09",
+        "observedAt": "2026-10-12",
+        "currency": "USD",
+        "splits": [],
+        "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/AMD?range=2y&interval=1d&events=splits"
+      },
+      "trailing": {
+        "end": "2026-06-27",
+        "dilutedEPS": 3.8899999999999997,
+        "revenue": 41305000000.0,
+        "sourceUrls": [
+          "https://ir.amd.com/news-events/press-releases/detail/1295/amd-reports-second-quarter-2026-financial-results",
+          "https://ir.amd.com/news-events/press-releases/detail/1284/amd-reports-first-quarter-2026-financial-results",
+          "https://ir.amd.com/news-events/press-releases/detail/1276/amd-reports-fourth-quarter-and-full-year-2025-financial-results",
+          "https://ir.amd.com/news-events/press-releases/detail/1265/amd-reports-third-quarter-2025-financial-results"
+        ],
+        "definition": "Somme de quatre trimestres GAAP publiés, sur la même base par action",
+        "observedAt": "2026-10-12"
+      },
+      "quarters": [
+        {
+          "start": null,
+          "end": "2026-06-27",
+          "previousStart": null,
+          "previousEnd": "2025-06-28",
+          "sourceUrl": "https://ir.amd.com/news-events/press-releases/detail/1295/amd-reports-second-quarter-2026-financial-results",
+          "durationMonths": 3,
+          "tags": {
+            "revenue": "AMD consolidated GAAP statement",
+            "netIncome": "AMD consolidated GAAP statement",
+            "operatingIncome": "AMD consolidated GAAP statement",
+            "dilutedEPS": "AMD consolidated GAAP statement"
+          },
+          "revenue": 11536000000.0,
+          "previousRevenue": 7685000000.0,
+          "netIncome": 2297000000.0,
+          "previousNetIncome": 872000000.0,
+          "operatingIncome": 1990000000.0,
+          "previousOperatingIncome": -134000000.0,
+          "dilutedEPS": 1.38,
+          "previousDilutedEPS": 0.54,
+          "margin": 19.91158113730929
+        },
+        {
+          "start": null,
+          "end": "2026-03-28",
+          "previousStart": null,
+          "previousEnd": "2025-03-29",
+          "sourceUrl": "https://ir.amd.com/news-events/press-releases/detail/1284/amd-reports-first-quarter-2026-financial-results",
+          "durationMonths": 3,
+          "tags": {
+            "revenue": "AMD consolidated GAAP statement",
+            "netIncome": "AMD consolidated GAAP statement",
+            "operatingIncome": "AMD consolidated GAAP statement",
+            "dilutedEPS": "AMD consolidated GAAP statement"
+          },
+          "revenue": 10253000000.0,
+          "previousRevenue": 7438000000.0,
+          "netIncome": 1383000000.0,
+          "previousNetIncome": 709000000.0,
+          "operatingIncome": 1476000000.0,
+          "previousOperatingIncome": 806000000.0,
+          "dilutedEPS": 0.84,
+          "previousDilutedEPS": 0.44,
+          "margin": 13.48873500438896
+        },
+        {
+          "start": null,
+          "end": "2025-12-27",
+          "previousStart": null,
+          "previousEnd": "2024-12-28",
+          "sourceUrl": "https://ir.amd.com/news-events/press-releases/detail/1276/amd-reports-fourth-quarter-and-full-year-2025-financial-results",
+          "durationMonths": 3,
+          "tags": {
+            "revenue": "AMD consolidated GAAP statement",
+            "netIncome": "AMD consolidated GAAP statement",
+            "operatingIncome": "AMD consolidated GAAP statement",
+            "dilutedEPS": "AMD consolidated GAAP statement"
+          },
+          "revenue": 10270000000.0,
+          "previousRevenue": 7658000000.0,
+          "netIncome": 1511000000.0,
+          "previousNetIncome": 482000000.0,
+          "operatingIncome": 1752000000.0,
+          "previousOperatingIncome": 871000000.0,
+          "dilutedEPS": 0.92,
+          "previousDilutedEPS": 0.29,
+          "margin": 14.712755598831547
+        },
+        {
+          "start": null,
+          "end": "2025-09-27",
+          "previousStart": null,
+          "previousEnd": "2024-09-28",
+          "sourceUrl": "https://ir.amd.com/news-events/press-releases/detail/1265/amd-reports-third-quarter-2025-financial-results",
+          "durationMonths": 3,
+          "tags": {
+            "revenue": "AMD consolidated GAAP statement",
+            "netIncome": "AMD consolidated GAAP statement",
+            "operatingIncome": "AMD consolidated GAAP statement",
+            "dilutedEPS": "AMD consolidated GAAP statement"
+          },
+          "revenue": 9246000000.0,
+          "previousRevenue": 6819000000.0,
+          "netIncome": 1243000000.0,
+          "previousNetIncome": 771000000.0,
+          "operatingIncome": 1270000000.0,
+          "previousOperatingIncome": 724000000.0,
+          "dilutedEPS": 0.75,
+          "previousDilutedEPS": 0.47,
+          "margin": 13.44365130867402
+        }
+      ]
     }
   }
 }

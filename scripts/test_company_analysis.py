@@ -309,4 +309,44 @@ class ExtendedIssuerTests(unittest.TestCase):
         self.assertEqual(r['historyObservedAt'],'2026-09-15')
         self.assertIsNone(extended.cached_history({'history':cached},dt.date(2026,10,16)))
 
+class AMDPublicationsTests(unittest.TestCase):
+    def fixture(self, annual=True):
+        dates = ['December 27, 2025', 'September 27, 2025', 'December 28, 2024']
+        if annual: dates += ['December 27, 2025', 'December 28, 2024']
+        count = len(dates)
+        rows = ["<tr><td>Three Months Ended " + ("Year Ended" if annual else "") + "</td></tr>",
+                '<tr>' + ''.join('<td>' + date + '</td>' for date in dates) + '</tr>']
+        for label, values in [('Net revenue', [100, 90, 80, 350, 300]), ('Net income', [10, 8, 6, 30, 25]),
+                              ('Operating income', [15, 12, 10, 50, 45]), ('Diluted earnings per share', [.5, .4, .3, 1.5, 1.25])]:
+            rows.append('<tr><td>' + label + '</td>' + ''.join('<td>' + str(v) + '</td>' for v in values[:count]) + '</tr>')
+        return ('<p>ADVANCED MICRO DEVICES, INC. CONDENSED CONSOLIDATED STATEMENTS OF OPERATIONS '
+                '(Millions except per share amounts) (Unaudited)</p><table>' + ''.join(rows) + '</table>').encode()
+
+    def test_distinguishes_quarter_and_annual_columns(self):
+        from company_amd_publications import parse
+        report = parse(self.fixture(), 'https://ir.amd.com/report', TODAY)
+        self.assertEqual(report['quarter']['revenue'], 100e6)
+        self.assertEqual(report['quarter']['previousRevenue'], 80e6)
+        self.assertEqual(report['annual']['revenue'], 350e6)
+        self.assertEqual(report['annual']['previousRevenue'], 300e6)
+        self.assertEqual(report['quarter']['dilutedEPS'], .5)
+        self.assertEqual(report['annual']['dilutedEPS'], 1.5)
+        self.assertIsNone(parse(self.fixture(False), 'https://ir.amd.com/report', TODAY)['annual'])
+        self.assertIsNone(parse(self.fixture().replace(b'Year Ended', b'Six Months Ended'), 'https://ir.amd.com/report', TODAY)['annual'])
+
+    def test_diluted_eps_cannot_be_replaced_by_share_count(self):
+        from company_amd_publications import parse
+        raw = self.fixture().replace(b'Diluted earnings per share', b'Earnings per share</td></tr><tr><td>Diluted')
+        raw = raw.replace(b'</table>', b'<tr><td>Shares used in per share calculation</td></tr><tr><td>Diluted</td><td>1000</td><td>1001</td><td>1002</td><td>1003</td><td>1004</td></tr></table>')
+        self.assertEqual(parse(raw, 'https://ir.amd.com/report', TODAY)['quarter']['dilutedEPS'], .5)
+        raw = raw.replace(b'<td>0.5</td><td>0.4</td><td>0.3</td><td>1.5</td><td>1.25</td>', b'')
+        with self.assertRaises(ValueError): parse(raw, 'https://ir.amd.com/report', TODAY)
+
+    def test_rejects_non_gaap_wrong_units_and_unaligned_dates(self):
+        from company_amd_publications import parse
+        for raw in [self.fixture().replace(b'CONDENSED CONSOLIDATED STATEMENTS OF OPERATIONS', b'NON-GAAP RECONCILIATION'),
+                    self.fixture().replace(b'Millions except', b'Thousands except'),
+                    self.fixture().replace(b'September 27, 2025', b'March 27, 2025')]:
+            with self.assertRaises(ValueError): parse(raw, 'https://ir.amd.com/report', TODAY)
+
 if __name__ == '__main__': unittest.main()

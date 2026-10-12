@@ -1,6 +1,6 @@
 # Analyse d’entreprise
 
-Route `/analyse-entreprise`, onze entreprises : Apple, Microsoft, Nvidia, Alphabet, Amazon, LVMH, Air Liquide, Schneider Electric, TotalEnergies, Visa et Costco.
+Route `/analyse-entreprise`, douze entreprises : Apple, Microsoft, Nvidia, Alphabet, Amazon, LVMH, Air Liquide, Schneider Electric, TotalEnergies, Visa, Costco et AMD.
 
 ## Collecte quotidienne sans configuration
 
@@ -62,3 +62,7 @@ Le contexte Apple est documenté dans `annualContext` du profil : services, mat�
 ## Horloge des tests après collecte
 
 Les scénarios synthétiques conservent une date fixe. Les contrôles du catalogue réel évaluent chaque entreprise à sa date d’observation des comptes, afin qu’une collecte ultérieure au 7 octobre 2026 ne soit pas rejetée comme future par le test. Les protections applicatives contre les observations futures et périmées restent vérifiées séparément et inchangées.
+
+## Extension AMD
+
+AMD est collecté par le même workflow quotidien, sans clé. Son archive officielle `financial-information/financial-results` est relue à chaque collecte pour découvrir les nouveaux communiqués et les dernières publications annuelles. Le parseur ne retient que le tableau consolidé GAAP de résultats, identifié par son titre et son unité. Il distingue les trois colonnes trimestrielles (récent, trimestre précédent, comparaison annuelle) des colonnes cumulées ; les cumuls de six ou neuf mois ne deviennent jamais des exercices annuels. Les lignes de BPA dilué sont séparées des lignes de nombres d’actions. Les quatre BPA trimestriels sont directement publiés, sans soustraction d’exercices et cumuls. Trois à cinq exercices consécutifs proviennent des publications et de leurs comparatifs récents ; les comptes SEC restent prioritaires lorsque leur période et les valeurs correspondent. La dernière clôture et les estimations sont récupérées par les mêmes sources que les autres actions américaines. Aucun chiffre de résultat, cours ou ratio n’est saisi manuellement.

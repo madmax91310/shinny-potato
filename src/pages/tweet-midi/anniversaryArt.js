@@ -4,7 +4,7 @@ import { ETF_HISTORY_IDENTITIES } from '../../data/etf-monthly-history.js'
 // Sources and visual review: public/asset-art/README.md.
 export const ANNIVERSARY_ART = Object.freeze({
   ...Object.fromEntries(Object.entries(ETF_HISTORY_IDENTITIES).map(([id, asset]) => [id, {
-    title: asset.title, subtitle: `ETF ${asset.ticker}`, kind: 'illustration', indexTitle: asset.ticker,
+    title: asset.title, subtitle: `${asset.instrumentType ?? 'ETF'} ${asset.ticker}`, kind: 'illustration', indexTitle: asset.ticker,
   }])),
   ...Object.fromEntries([
     ['msciEurope', 'MSCI EUROPE'],
