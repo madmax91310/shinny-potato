@@ -14,6 +14,57 @@ export { getInstrumentListings } from './instrument-listings.js';
 // PEA reste dans instruments.js : le statut ne se déduit ni du domicile ni de l'indice.
 // Les ETC et ETP gardent leur nature distincte des fonds ETF.
 export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
+  // Structure : sources Amundi et réplication dans le connecteur existant, revue du 12/10/2026.
+
+  "FR0013412038": {
+    "distribution": "Capitalisation et/ou distribution",
+    "location": "France, réplication synthétique (swap)",
+    "benchmark": "MSCI Europe Net TR EUR Index",
+    "incomePolicy": "capitalisation-and-or-distribution",
+    "replicationMethod": "Indirect(Swap Based)",
+    "domicile": "France",
+    "currencyHedge": null,
+    "reviewedAt": "12/10/2026",
+    "instrumentType": "ETF",
+    "positionsLabel": "Exposition suivie : MSCI Europe Net TR EUR Index",
+    "characteristicsSource": {
+      "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013412038/FRA/FRA/INSTITUTIONNEL/ETF",
+      "checkedAt": "2026-10-12"
+    }
+  },
+  "FR0013412020": {
+    "distribution": "Capitalisation et/ou distribution",
+    "location": "France, réplication synthétique (swap)",
+    "benchmark": "MSCI EM ex-Egypt ESG Broad CTB Select Index",
+    "incomePolicy": "capitalisation-and-or-distribution",
+    "replicationMethod": "Indirect(Swap Based)",
+    "domicile": "France",
+    "currencyHedge": null,
+    "reviewedAt": "12/10/2026",
+    "instrumentType": "ETF",
+    "positionsLabel": "Exposition suivie : MSCI EM ex-Egypt ESG Broad CTB Select Index",
+    "characteristicsSource": {
+      "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013412020/FRA/FRA/INSTITUTIONNEL/ETF",
+      "checkedAt": "2026-10-12"
+    }
+  },
+  "FR0011869320": {
+    "distribution": "Capitalisant",
+    "location": "France, réplication synthétique (swap)",
+    "benchmark": "MSCI Emerging Markets India Net TR (USD)",
+    "incomePolicy": "accumulating",
+    "replicationMethod": "Indirect(Swap Based)",
+    "domicile": "France",
+    "currencyHedge": null,
+    "reviewedAt": "12/10/2026",
+    "instrumentType": "ETF",
+    "positionsLabel": "Exposition suivie : MSCI Emerging Markets India Net TR (USD)",
+    "characteristicsSource": {
+      "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011869320/FRA/FRA/INSTITUTIONNEL/ETF",
+      "checkedAt": "2026-10-12"
+    }
+  }
+,
   ...Object.fromEntries(PRESENTATION_ETF_ADDITIONS.map(r => [r.isin, { distribution: r.incomePolicy === 'accumulating' ? 'Capitalisant' : 'Distribuant', location: `${r.domicile}, ${r.replicationMethod.startsWith('Active') ? 'gestion active, actions physiques et options' : r.replicationMethod.includes('sampling') ? 'réplication physique par échantillonnage' : 'réplication physique intégrale'}`, benchmark: r.benchmark, incomePolicy: r.incomePolicy, replicationMethod: r.replicationMethod, domicile: r.domicile, currencyHedge: null, reviewedAt: '11/10/2026', instrumentType: 'ETF', positionsLabel: r.replicationMethod.startsWith('Active') ? 'Exposition suivie : actions mondiales et vente d’options' : `Exposition suivie : ${r.benchmark}`, characteristicsSource: { url: r.source, checkedAt: '2026-10-11' } }])),
   "FR001400S9V0": {
   "distribution": "Capitalisant",

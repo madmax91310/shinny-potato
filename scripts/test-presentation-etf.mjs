@@ -1,3 +1,4 @@
+import { PRESENTATION_ETF_EXPANSION } from '../src/data/presentation-etf-expansion.js';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { PRESENTATION_ETF_ADDITIONS } from '../src/data/presentation-etf-additions.js';
@@ -37,3 +38,17 @@ for (const r of PRESENTATION_ETF_ADDITIONS) {
 }
 assert.equal(AUTOMATED_ETF.IE0003UVYC20.performance.years['2023'], undefined, 'Partial launch year stays excluded');
 console.log('Six exact shares: active collectors, automated fields, cumulative/calendar separation, future rollover and presentation-only scope OK.');
+
+const amundi = JSON.parse(readFileSync(new URL('./amundi-etf.json', import.meta.url))).instruments;
+for (const r of PRESENTATION_ETF_EXPANSION) {
+  const card = ETFS.find(c => c.isin === r.isin);
+  const record = AUTOMATED_ETF[r.isin];
+  assert(amundi.some(s => s.isin === r.isin && s.collectComposition));
+  assert(card.presentationOnly && card.pea === true && card.listing && getETFArt(card.id));
+  assert(record.aum.amount > 0 && Number.isFinite(record.characteristics.terPct));
+  const series = getAnnualPerformance(card);
+  assert.equal(series.currency, 'EUR');
+  assert(series.values.some(Number.isFinite));
+  assert.deepEqual(series.values, series.calendarYears.map(y => record.performance.years[y] ?? null));
+}
+console.log('Three PEA presentations: existing automated collectors, exact-share EUR performances, listing and visual identity OK.');
