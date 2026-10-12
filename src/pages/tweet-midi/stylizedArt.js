@@ -27,22 +27,31 @@ const neonGroups = {
   // Crypto use the existing verified vector symbols, illuminated in Canvas.
   crypto: ['bitcoin', 'ethereum'],
 }
+// These sectors already have reviewed night-studio illustrations. The neon
+// collection has no corresponding files; retain their explicit asset paths.
+const historicalEtfSceneFiles = Object.fromEntries(
+  ['robotics', 'health', 'finance', 'infrastructure', 'renewables'].map(scene => [scene, `etf-night/${scene}.webp`]),
+)
 export const NEON_ASSET_ART = Object.freeze({
   ...Object.fromEntries(Object.entries(neonGroups).flatMap(([scene, ids]) => ids.map(id => [id, { scene: scene === 'crypto' ? null : scene, mark: ANNIVERSARY_ART[id]?.kind === 'logo' ? ANNIVERSARY_ART[id].mark : null }]))),
   ...Object.fromEntries(Object.entries(ETF_HISTORY_IDENTITIES).map(([id, asset]) => [id, {
-    scene: id === 'etfCmod' ? 'industry' : asset.scene, mark: null,
+    scene: id === 'etfCmod' ? 'industry' : asset.scene,
+    ...(historicalEtfSceneFiles[asset.scene] ? { sceneFile: historicalEtfSceneFiles[asset.scene] } : {}), mark: null,
   }])),
 })
 
 export async function loadNeonArt(id) {
   const art = NEON_ASSET_ART[id]
   if (!art) throw new Error(`Illustration néon absente : ${id}`)
-  return { scene: art.scene ? await loadArtImage(`neon/${art.scene}.webp`) : null, mark: art.mark ? await loadArtImage(art.mark) : null }
+  return { scene: art.scene ? await loadArtImage(art.sceneFile ?? `neon/${art.scene}.webp`) : null, mark: art.mark ? await loadArtImage(art.mark) : null }
 }
 
 export function drawNeonArt(ctx, images, x, y, size) {
   ctx.save()
-  if (images.scene) ctx.drawImage(images.scene, x, y, size, size)
+  if (images.scene) {
+    const side = Math.min(images.scene.width, images.scene.height)
+    ctx.drawImage(images.scene, images.scene.width - side, 0, side, side, x, y, size, size)
+  }
   if (images.mark) {
     const side = images.scene ? size * .38 : size * .65
     const layer = document.createElement('canvas'); layer.width = side; layer.height = side
