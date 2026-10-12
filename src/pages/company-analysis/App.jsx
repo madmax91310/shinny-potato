@@ -5,7 +5,7 @@ import PageHeader from '../../design-system/PageHeader'
 import ToolWorkspace from '../../design-system/ToolWorkspace'
 import Button from '../../design-system/Button'
 import { COMPANIES } from './data.js'
-import { buildTweetText, canPublish, activeValuation, activeEstimates, activeHistory, activeAnnualContext, amount, dateLabel } from './lib.js'
+import { buildTweetText, canPublish, activeValuation, activeEstimates, activeHistory, activeAnnualContext, activeDecision, decisionIndicators, decisionReadings, amount, dateLabel } from './lib.js'
 import { renderCompanyImage } from './image.js'
 import './style.css'
 
@@ -22,6 +22,10 @@ export default function App() {
   const estimates = activeEstimates(company)
   const history = activeHistory(company)
   const annualContext = activeAnnualContext(company)
+  const decision = activeDecision(company)
+  const indicators = decisionIndicators(company)
+  const readings = decisionReadings(company)
+  const cashHistory = decision?.years.filter(year => Number.isFinite(year.freeCashFlow)) ?? []
   async function copy() {
     try { await copyPublicationText(text); setMessage('Texte copié.') }
     catch { setMessage('La copie a échoué. Tu peux sélectionner le texte dans l’aperçu.') }
@@ -64,6 +68,20 @@ export default function App() {
         </div>
       </section>
       <section className="tool-preview">
+        {ready && <section className="company-decision" aria-label="Indicateurs pour analyser l’entreprise">
+          <h2>Cash, solidité et valorisation</h2>
+          <p>Flux annuels : exercice clos le {dateLabel(company.annual.end)}. Les ratios de valorisation utilisent la dernière clôture disponible.</p>
+          {indicators.length ? <dl data-testid="company-decision-indicators">{indicators.map(row => <div key={row.key}>
+            <dt>{row.label}</dt><dd><strong>{row.value}</strong><span>{row.explanation}</span></dd>
+          </div>)}</dl> : <p>Les composantes nécessaires ne sont pas disponibles avec une collecte vérifiée pour cet exercice.</p>}
+          {readings.length > 0 && <ul className="company-decision-readings">{readings.map(line => <li key={line}>{line}</li>)}</ul>}
+          {cashHistory.length > 0 && <div className="company-history-scroll"><table data-testid="company-cash-history">
+            <caption>{cashHistory.length} exercice{cashHistory.length > 1 ? 's' : ''} de trésorerie disponible</caption>
+            <thead><tr><th scope="col">Exercice clos le</th><th scope="col">Flux d’exploitation</th><th scope="col">Investissements</th><th scope="col">FCF</th><th scope="col">Marge de FCF</th></tr></thead>
+            <tbody>{cashHistory.map(year => <tr key={year.end}><th scope="row"><a href={year.sourceUrl} target="_blank" rel="noreferrer">{dateLabel(year.end)}</a></th><td>{amount(year.operatingCashFlow, company.currency)}</td><td>{amount(year.capitalExpenditure, company.currency)}</td><td>{amount(year.freeCashFlow, company.currency)}</td><td>{(year.freeCashFlow/year.revenue*100).toLocaleString('fr-FR',{minimumFractionDigits:1,maximumFractionDigits:1})} %</td></tr>)}</tbody>
+          </table></div>}
+          {decision && <p className="company-decision-source">Composantes vérifiées le {dateLabel(decision.observedAt)}. {decision.years.at(-1).freeCashFlowDefinition ?? decision.method}. <a href={decision.years.at(-1).sourceUrl} target="_blank" rel="noreferrer">Source des composantes annuelles</a>. {decision.years.at(-1).additionalSourceUrls?.map(url => <a key={url} href={url} target="_blank" rel="noreferrer"> Source complémentaire.</a>)}</p>}
+        </section>}
         {history.length > 0 && <div className="company-history">
           <h2>{history.length} exercices de résultats</h2>
           <p>Comptes consolidés {company.accountingStandard ?? 'GAAP'} · {company.currency}. Marge nette = résultat net {company.annual?.incomeBasis ? 'part du groupe ' : ''}/ chiffre d’affaires. Vérifiés le {dateLabel(company.history.observedAt)}.</p>

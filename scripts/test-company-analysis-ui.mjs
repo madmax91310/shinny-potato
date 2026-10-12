@@ -2,7 +2,7 @@ import assert from 'node:assert/strict'
 import { spawn } from 'node:child_process'
 import { chromium } from 'playwright'
 import { COMPANIES } from '../src/data/companies.js'
-import { buildTweetText, calculatedRatios } from '../src/pages/company-analysis/lib.js'
+import { buildTweetText, calculatedRatios, decisionIndicators, activeDecision } from '../src/pages/company-analysis/lib.js'
 
 const server = spawn('node',['node_modules/vite/bin/vite.js','preview','--host','127.0.0.1','--port','4315','--strictPort'],{stdio:'ignore'})
 const base = 'http://127.0.0.1:4315/shinny-potato'
@@ -30,6 +30,15 @@ try {
     assert(!text.includes(company.watch))
     const now = new Date()
     assert.equal(text, buildTweetText(company, now))
+    const indicators = decisionIndicators(company, now)
+    if (indicators.length) {
+      const panel = page.getByTestId('company-decision-indicators')
+      assert.equal(await panel.locator('dt').count(), indicators.length)
+      for (const row of indicators) assert((await panel.innerText()).includes(row.value))
+      assert(!/NaN|undefined|Infinity/.test(await panel.innerText()))
+    }
+    const cashRows = activeDecision(company, now)?.years.filter(row => Number.isFinite(row.freeCashFlow)) ?? []
+    if (cashRows.length) assert.equal(await page.getByTestId('company-cash-history').locator('tbody tr').count(), cashRows.length)
     if(calculatedRatios(company, now).peTTM) assert(text.includes('bénéfice par action sur les douze derniers mois.'))
     assert(text.includes(company.editorialQuestion))
     assert(!text.includes('Le recul sur'))

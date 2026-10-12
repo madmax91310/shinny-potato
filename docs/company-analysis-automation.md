@@ -1,6 +1,6 @@
 # Analyse d’entreprise
 
-Route `/analyse-entreprise`, douze entreprises : Apple, Microsoft, Nvidia, Alphabet, Amazon, LVMH, Air Liquide, Schneider Electric, TotalEnergies, Visa, Costco et AMD.
+Route `/analyse-entreprise`, 20 entreprises : Apple, Microsoft, Nvidia, Alphabet, Amazon, LVMH, Air Liquide, Schneider Electric, TotalEnergies, Visa, Costco, AMD, Meta, Mastercard, Adobe, Salesforce, ServiceNow, Intuit, Coca-Cola et PepsiCo.
 
 ## Collecte quotidienne sans configuration
 
@@ -66,3 +66,68 @@ Les scénarios synthétiques conservent une date fixe. Les contrôles du catalog
 ## Extension AMD
 
 AMD est collecté par le même workflow quotidien, sans clé. Son archive officielle `financial-information/financial-results` est relue à chaque collecte pour découvrir les nouveaux communiqués et les dernières publications annuelles. Le parseur ne retient que le tableau consolidé GAAP de résultats, identifié par son titre et son unité. Il distingue les trois colonnes trimestrielles (récent, trimestre précédent, comparaison annuelle) des colonnes cumulées ; les cumuls de six ou neuf mois ne deviennent jamais des exercices annuels. Les lignes de BPA dilué sont séparées des lignes de nombres d’actions. Les quatre BPA trimestriels sont directement publiés, sans soustraction d’exercices et cumuls. Trois à cinq exercices consécutifs proviennent des publications et de leurs comparatifs récents ; les comptes SEC restent prioritaires lorsque leur période et les valeurs correspondent. La dernière clôture et les estimations sont récupérées par les mêmes sources que les autres actions américaines. Aucun chiffre de résultat, cours ou ratio n’est saisi manuellement.
+
+## Cash et indicateurs de décision
+
+La section « Cash, solidité et valorisation » calcule depuis les observations brutes :
+FCF annuel, variation annuelle en montant et en pourcentage lorsque la base le permet,
+marge de FCF, rendement du FCF rapporté à la capitalisation indicative, conversion
+FCF/bénéfice net positif, dette nette, couverture des intérêts, variation du nombre
+moyen d’actions **diluées**, et dividendes effectivement payés rapportés au FCF positif.
+Le nombre moyen d’actions diluées inclut les instruments dilutifs et ne représente
+ni le nombre d’actions en circulation à une date précise, ni les seuls rachats.
+Deux moyennes doivent provenir du même dépôt/document comparatif ; Alphabet, Meta
+et Visa restent exclus du calcul automatique de variation des actions et du rendement
+FCF avec un seul cours, compte tenu des classes d’actions.
+
+`scripts/company_decision.py` collecte les composantes SEC standardisées avec
+identité, devise, périodes annuelles exactes, CA et résultat net réconciliés avec les
+comptes déjà validés. Les concepts de taxonomie alternatifs sont sélectionnés par
+priorité, jamais amalgamés lorsque leurs périmètres diffèrent. Les communiqués
+consolidés officiels servent de secours, avec contrôle du titre du tableau, de
+l’unité et de toutes les années comparatives. Les lignes de flux intermédiaires,
+les indicateurs avant variation du BFR, les investissements financiers et les
+réconciliations non-GAAP ne deviennent pas des flux annuels standardisés.
+
+Les archives de FCF contiennent les composantes, la définition et le lien réel de
+chaque document. Les actifs incorporels sont inclus lorsqu’ils figurent dans les
+achats consolidés retenus ; les ventes d’actifs, acquisitions d’entreprises et
+paiements de locations ne sont pas ajoutés/déduits. Pour LVMH, le tableau retenu
+publie des investissements opérationnels nets : seul le flux d’exploitation est
+collecté ; aucun FCF standardisé n’est obtenu en assimilant ces investissements
+nets à des achats bruts. Les charges d’intérêts ne sont pas remplacées par les
+charges financières nettes. Les dividendes des minoritaires sont séparés lorsque
+le tableau le permet. Les dividendes exceptionnels restent inclus.
+
+Le workflow quotidien conserve le bloc `decision` et les observations de dette
+nette. Les archives complètes sont revérifiées après 30 jours, dès un changement
+de période publiée ou une révision des revenus/résultats. Un cache conserve sa
+date d’observation originale ; il ne redevient jamais une collecte fraîche. Les
+composantes expirent après 45 jours sans vérification et ne servent plus si les
+comptes actuels ne correspondent pas. Un échec de renouvellement d’un bloc déjà
+qualifié est signalé dans le rapport du workflow et conserve les valeurs précédentes.
+Les composantes non publiées ou non qualifiées restent absentes. L’évolution de
+la dette nette est calculée seulement entre deux bilans effectivement observés,
+à définition identique ; les photographies se constituent à chaque publication.
+
+L’image conserve les trois chiffres de résultats et le PER, et affiche le FCF
+annuel en cinquième donnée lorsqu’il est disponible. Le détail des indicateurs et
+l’historique du cash restent dans l’application ; le squelette du texte de la
+publication est conservé. Les phrases de lecture sont factuelles : aucun jugement
+automatique « acheter », « bon marché » ou « sous-évaluée ».
+
+Vérifications : tests Python des composantes SEC et des extraits officiels de six
+émetteurs, tests JS (FCF négatif, bénéfice nul, variation de cours, divisions
+d’actions, fraîcheur, dilution comparable et dette), et tests Chromium de tous
+les choix d’entreprises, des cartes, tableaux, export PNG, copie et mobile.
+
+Couverture vérifiée le 12 octobre 2026 : 20 blocs de composantes annuelles, dont
+19 FCF et marges/conversions/variations annuelles de FCF ; 7 rendements de FCF,
+6 dettes nettes, 4 couvertures d’intérêts, 12 variations comparables d’actions
+diluées et 14 ratios dividendes/FCF. LVMH affiche seulement le flux d’exploitation.
+AMD dispose de deux exercices de cash vérifiés : les investissements des activités
+abandonnées sont ajoutés aux investissements des activités poursuivies pour
+rester dans le périmètre du flux d’exploitation consolidé. Le FCF issu du seul
+concept SEC d’achats de PPE est retiré pour AMD, car son périmètre était incomplet.
+Ces comptages décrivent cette collecte ; l’affichage reste conditionné à la
+fraîcheur et aux composantes disponibles lors des publications suivantes.

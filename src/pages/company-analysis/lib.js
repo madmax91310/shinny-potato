@@ -71,9 +71,97 @@ export function calculatedRatios(company, now = new Date()) {
   return result
 }
 export function activeBalance(company, now = new Date()) {
-  const b = company.balance
-  return b && fresh(b.asOf, 200, now) && fresh(b.observedAt, 45, now)
-    && b.asOf >= (latestAccountsEnd(company)) ? b : null
+  for (const b of [company.balance, activeDecision(company, now)?.balance]) {
+    if (b && fresh(b.asOf, 200, now) && fresh(b.observedAt, 45, now)
+      && b.asOf >= latestAccountsEnd(company)) return b
+  }
+  return null
+}
+export function activeDecision(company, now = new Date()) {
+  const d = company.decision, a = company.annual
+  if (!canPublish(company, now) || !d || !fresh(d.observedAt, 45, now)
+    || d.annualEnd !== a.end || !Array.isArray(d.years) || !d.years.length) return null
+  const latest = d.years.at(-1)
+  if (latest.end !== a.end || latest.revenue !== a.revenue || latest.netIncome !== a.netIncome
+    || (finite(a.freeCashFlow) && finite(latest.freeCashFlow) && a.freeCashFlow !== latest.freeCashFlow)) return null
+  if (d.years.some((r, i) => !fresh(r.end, 2500, now) || !finite(r.revenue) || r.revenue <= 0 || !finite(r.netIncome)
+    || !r.sourceUrl?.startsWith('https://') || (i && r.end <= d.years[i-1].end)
+    || (finite(r.freeCashFlow) && (!finite(r.operatingCashFlow) || !finite(r.capitalExpenditure)
+      || r.capitalExpenditure < 0 || Math.abs(r.freeCashFlow - (r.operatingCashFlow - r.capitalExpenditure)) > 1)))) return null
+  return d
+}
+export function decisionRatios(company, now = new Date()) {
+  if (!canPublish(company, now)) return {}
+  const d = activeDecision(company, now), a = company.annual, latest = d?.years.at(-1)
+  const fcf = latest?.freeCashFlow ?? a.freeCashFlow
+  const result = {}
+  if (finite(fcf)) {
+    result.freeCashFlow = fcf
+    result.fcfMargin = fcf / a.revenue * 100
+    if (a.netIncome > 0) result.cashConversion = fcf / a.netIncome * 100
+    if (fcf > 0 && finite(latest?.dividendsPaid) && latest.dividendsPaid >= 0) result.dividendFCF = latest.dividendsPaid / fcf * 100
+  }
+  const priceFCF = calculatedRatios(company, now).priceFCF
+  if (finite(priceFCF) && priceFCF > 0 && !['alphabet','visa','meta'].includes(company.id)) {
+    result.fcfYield = 100 / priceFCF
+    result.fcfSharesAsOf = company.shares.asOf
+  }
+  else if (fcf > 0 && d?.shares && !['alphabet','visa','meta'].includes(company.id)) {
+    const s = d.shares, q = company.quote
+    if (s.outstanding > 0 && fresh(s.asOf, 200, now) && fresh(s.observedAt, 45, now) && s.asOf >= latestAccountsEnd(company)
+      && q?.price > 0 && fresh(q.asOf, 10, now) && Array.isArray(q.splits) && !q.splits.some(date => date > s.asOf && date <= q.asOf)) {
+      result.fcfYield = fcf / (q.price * s.outstanding) * 100
+      result.fcfSharesAsOf = s.asOf
+    }
+  }
+  if (finite(latest?.interestExpense) && latest.interestExpense > 0 && finite(latest.operatingIncome)) result.interestCoverage = latest.operatingIncome / latest.interestExpense
+  const b = activeBalance(company, now)
+  const priorBalance = company.balanceHistory?.filter(row => row.asOf < b?.asOf && row.definition === b.definition
+    && finite(row.netDebt) && fresh(row.asOf, 1000, now) && row.sourceUrl?.startsWith('https://')).at(-1)
+  if (finite(b?.netDebt) && priorBalance) {
+    result.netDebtChange = b.netDebt - priorBalance.netDebt
+    result.previousBalanceAsOf = priorBalance.asOf
+    result.balanceAsOf = b.asOf
+  }
+  const previous = d?.years.at(-2)
+  const annualGap = previous && (Date.parse(a.end) - Date.parse(previous.end)) / 86400000
+  if (annualGap >= 330 && annualGap <= 400 && finite(previous.freeCashFlow) && finite(latest.freeCashFlow)
+    && previous.freeCashFlowDefinition === latest.freeCashFlowDefinition) {
+    result.fcfChange = latest.freeCashFlow - previous.freeCashFlow
+    if (previous.freeCashFlow > 0 && latest.freeCashFlow >= 0) result.fcfGrowth = (latest.freeCashFlow / previous.freeCashFlow - 1) * 100
+  }
+  // Use published diluted averages from the same filing, never EPS to infer shares.
+  if (annualGap >= 330 && annualGap <= 400 && previous.averageDilutedShares > 0 && latest.averageDilutedShares > 0
+    && previous.sharesBasisSource && previous.sharesBasisSource === latest.sharesBasisSource
+    && !['visa','alphabet','meta'].includes(company.id)) result.shareChange = (latest.averageDilutedShares / previous.averageDilutedShares - 1) * 100
+  return result
+}
+export function decisionIndicators(company, now = new Date()) {
+  const r = decisionRatios(company, now), d = activeDecision(company, now), b = activeBalance(company, now)
+  const rows = []
+  const add = (key, label, value, explanation) => rows.push({key, label, value, explanation})
+  if (finite(r.freeCashFlow)) add('fcf', 'FCF du dernier exercice', amount(r.freeCashFlow, company.currency), 'Flux d’exploitation moins investissements. Les acquisitions d’entreprises et remboursements de locations ne sont pas déduits.')
+  if (finite(r.fcfGrowth)) add('fcfGrowth', 'Évolution du FCF sur un an', `${r.fcfGrowth > 0 ? '+' : ''}${fr(r.fcfGrowth)} %`, 'Comparaison de deux exercices consécutifs avec la même définition du FCF.')
+  else if (finite(r.fcfChange)) add('fcfChange', 'Variation du FCF sur un an', amount(r.fcfChange, company.currency), 'Variation en montant : une base négative ne produit pas un taux de croissance ordinaire.')
+  if (finite(r.fcfMargin)) add('fcfMargin', 'Marge de FCF', `${fr(r.fcfMargin)} %`, 'FCF / chiffre d’affaires du même exercice.')
+  if (finite(r.fcfYield)) add('fcfYield', 'Rendement du FCF annuel', `${fr(r.fcfYield, 2)} %`, `FCF / capitalisation indicative à la dernière clôture. Actions publiées au ${dateLabel(r.fcfSharesAsOf)}. Ce ratio n’est pas un dividende.`)
+  if (!finite(r.freeCashFlow) && finite(d?.years.at(-1).operatingCashFlow)) add('ocf', 'Flux de trésorerie d’exploitation annuel', amount(d.years.at(-1).operatingCashFlow, company.currency), 'Cash généré par les opérations après variation du besoin en fonds de roulement. Les investissements ne sont pas déduits : ce montant n’est pas un FCF.')
+  if (finite(r.cashConversion)) add('cashConversion', 'FCF / bénéfice net', `${fr(r.cashConversion)} %`, 'Compare le cash après investissements au bénéfice comptable. Le besoin en fonds de roulement, les investissements et les éléments exceptionnels peuvent modifier ce ratio.')
+  if (finite(b?.netDebt)) add('netDebt', b.netDebt < 0 ? 'Trésorerie nette' : 'Dette nette', amount(Math.abs(b.netDebt), company.currency), `${b.definition} · bilan au ${dateLabel(b.asOf)}.`)
+  if (finite(r.netDebtChange)) add('netDebtChange', 'Variation de la dette nette', amount(r.netDebtChange, company.currency), `Entre les bilans du ${dateLabel(r.previousBalanceAsOf)} et du ${dateLabel(r.balanceAsOf)}, à définition identique. Un montant négatif indique une baisse de la dette nette.`)
+  if (finite(r.interestCoverage)) add('interestCoverage', 'Couverture des intérêts', `${fr(r.interestCoverage)}×`, 'Résultat opérationnel / charges d’intérêts publiées du même exercice. Une valeur négative conserve le signe de la perte opérationnelle.')
+  if (finite(r.shareChange)) add('shareChange', 'Variation des actions diluées moyennes sur un an', `${r.shareChange > 0 ? '+' : ''}${fr(r.shareChange)} %`, 'Nombre moyen d’actions diluées publié sur deux exercices comparables du même document. Il tient compte des instruments dilutifs ; sa variation ne mesure pas uniquement les rachats.')
+  if (finite(r.dividendFCF)) add('dividendFCF', 'Dividendes versés / FCF', `${fr(r.dividendFCF)} %`, 'Dividendes payés aux actionnaires / FCF positif du même exercice. Les dividendes exceptionnels sont inclus.')
+  if (!d && !rows.length) return []
+  return rows
+}
+export function decisionReadings(company, now = new Date()) {
+  const r = decisionRatios(company, now), lines = []
+  if (finite(r.freeCashFlow)) lines.push(r.freeCashFlow > 0 ? 'L’activité génère un flux de trésorerie disponible positif après investissements.' : r.freeCashFlow < 0 ? 'Les investissements dépassent le cash généré par l’activité sur cet exercice.' : 'Le flux de trésorerie disponible est à l’équilibre sur cet exercice.')
+  if (finite(r.fcfChange) && r.fcfChange !== 0) lines.push(`Le FCF ${r.fcfChange > 0 ? 'progresse' : 'recule'} de ${amount(Math.abs(r.fcfChange), company.currency)} sur un an.`)
+  if (finite(r.shareChange) && Math.abs(r.shareChange) >= .05) lines.push(`Le nombre moyen d’actions diluées ${r.shareChange > 0 ? 'augmente' : 'diminue'} de ${fr(Math.abs(r.shareChange))} % sur un an.`)
+  if (r.dividendFCF > 100) lines.push('Les dividendes versés dépassent le FCF de cet exercice.')
+  return lines
 }
 function growth(current, previous) {
   return finite(current) && finite(previous) && previous > 0 && current >= 0 ? (current / previous - 1) * 100 : null

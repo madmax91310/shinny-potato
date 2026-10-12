@@ -137,7 +137,16 @@ def add_cash_flow(raw, annual, ident):
         if ocf and capex and len(ocf) == len(capex) and len(ocf) in (2,4):
             # Issuer order is verified by the income statement and fixed per adapter.
             i = -1 if ident in ('alphabet','amazon') else -2 if len(ocf)==4 else 0
-            annual['freeCashFlow'] = (ocf[i] - abs(capex[i]))*1e6
+            j = -2 if i == -1 else -1 if i == -2 else 1
+            for index, prefix in ((i, ''), (j, 'previous')):
+                for field, val in [('operatingCashFlow', ocf[index]*1e6), ('capitalExpenditure', abs(capex[index])*1e6),
+                                   ('freeCashFlow', (ocf[index]-abs(capex[index]))*1e6)]:
+                    key = prefix + field[0].upper() + field[1:] if prefix else field
+                    annual[key] = val
+            dividends = row(text, [r'Payments for dividends and dividend equivalents', r'Payments of dividends', r'Cash dividends paid', r'Dividends paid'])
+            if dividends and len(dividends) == len(ocf):
+                annual['dividendsPaid'] = abs(dividends[i])*1e6
+                annual['previousDividendsPaid'] = abs(dividends[j])*1e6
             annual['tags']['freeCashFlow'] = 'GAAP operating cash flow less cash purchases of property and equipment'
             if ident == 'nvidia':
                 annual['freeCashFlowDefinition'] = 'Flux d’exploitation moins acquisitions d’immobilisations et d’actifs incorporels'

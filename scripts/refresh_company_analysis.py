@@ -124,6 +124,12 @@ def parse_accounts(body, profile, today):
     annual = financial_period(body, '10-K', 330, 400, today)
     if annual is None or (today - dt.date.fromisoformat(annual['end'])).days > 550:
         raise ValueError('Missing or stale annual accounts')
+    if profile.get('id') == 'amd':
+        # The standard PPE tag excludes discontinued operations while total
+        # operating cash flow includes them. The issuer cash table supplies
+        # both investment lines in the independently verified decision block.
+        annual.pop('freeCashFlow', None)
+        annual['tags'].pop('freeCashFlow', None)
     quarter = financial_period(body, '10-Q', 75, 105, today)
     if quarter and (quarter['end'] <= annual['end'] or (today - dt.date.fromisoformat(quarter['end'])).days > 200):
         quarter = None
@@ -336,6 +342,12 @@ def main():
             for block in ['balance','shares']:
                 if block in accounts:
                     item[block] = {**accounts[block], 'observedAt':now.date().isoformat(), 'sourceUrl':accounts[block].get('sourceUrl',source)}
+            if accounts.get('balance') and 'netDebt' in accounts['balance']:
+                snapshots = {b['asOf']: b for b in old.get('balanceHistory', [])}
+                if old.get('balance') and 'netDebt' in old['balance']:
+                    snapshots[old['balance']['asOf']] = old['balance']
+                snapshots[item['balance']['asOf']] = item['balance']
+                item['balanceHistory'] = [snapshots[k] for k in sorted(snapshots)][-8:]
             if accounts.get('trailing'):
                 item['trailing']['observedAt'] = now.date().isoformat()
                 status['trailing'] = 'updated'
@@ -374,6 +386,68 @@ def main():
         except Exception as error:
             status['history'] = type(error).__name__
             failures.append(ident + ':history')
+        # Optional components have independent provenance/freshness. A rejected
+        # source never turns a preserved block into a newly checked observation.
+        try:
+            from company_decision import sec_decision, publication_decision, validate_decision
+            cached_decision = old.get('decision', {})
+            cached_date = dt.date.fromisoformat(cached_decision['observedAt']) if cached_decision.get('observedAt') else None
+            latest_end = (item.get('quarter') or item.get('halfYear') or item['annual'])['end']
+            if (cached_date and 0 <= (now.date()-cached_date).days <= 30
+                and cached_decision.get('accountsEndAtCollection') == latest_end
+                and cached_decision.get('annualEnd') == item['annual']['end']
+                and all(cached_decision['years'][-1][k] == item['annual'][k] for k in ('revenue','netIncome'))):
+                item['decision'] = validate_decision(cached_decision, item, now.date())
+                status['decision'] = 'cached-with-original-observation-date'
+            else:
+                if sec_body is None and profile.get('cik') and ident not in EUROPE:
+                    try:
+                        sec_body = fetch_json(f"https://data.sec.gov/api/xbrl/companyfacts/CIK{profile['cik']}.json")
+                    except Exception:
+                        pass
+                try:
+                    if sec_body is None:
+                        raise ValueError('SEC optional inputs unavailable')
+                    decision = sec_decision(sec_body, profile, item, now.date())
+                    if 'freeCashFlow' not in decision['years'][-1]:
+                        try:
+                            official = publication_decision(profile, item, now.date())
+                            supplemental = {r['end']: r for r in decision['years']}
+                            for row in official['years']:
+                                extra = supplemental.get(row['end'], {})
+                                for field in ('interestExpense','operatingIncome','averageDilutedShares','sharesBasisSource'):
+                                    if field not in row and field in extra:
+                                        row[field] = extra[field]
+                                        row.setdefault('additionalSourceUrls', [])
+                                        if extra['sourceUrl'] not in row['additionalSourceUrls']:
+                                            row['additionalSourceUrls'].append(extra['sourceUrl'])
+                            for key in ('balance','shares'):
+                                if key in decision:
+                                    official[key] = decision[key]
+                            decision = official
+                        except Exception:
+                            pass
+                except Exception:
+                    decision = publication_decision(profile, item, now.date())
+                decision['accountsEndAtCollection'] = latest_end
+                item['decision'] = validate_decision(decision, item, now.date())
+                status['decision'] = 'updated'
+                status['decisionFields'] = sorted({key for row in decision['years'] for key in row
+                                                   if key in ('freeCashFlow','interestExpense','dividendsPaid','averageDilutedShares')})
+        except Exception as error:
+            status['decision'] = 'unavailable-or-retained'
+            status['decisionDetail'] = str(error)[:300]
+            if old.get('decision'):
+                failures.append(ident + ':decision')
+        decision_balance = item.get('decision', {}).get('balance')
+        if decision_balance and decision_balance.get('asOf') == (item.get('quarter') or item.get('halfYear') or item['annual'])['end']:
+            snapshots = {b['asOf']: b for b in item.get('balanceHistory', [])}
+            previous = old.get('decision', {}).get('balance')
+            if previous and 'netDebt' in previous:
+                snapshots.setdefault(previous['asOf'], previous)
+            if 'netDebt' in decision_balance:
+                snapshots[decision_balance['asOf']] = decision_balance
+                item['balanceHistory'] = [snapshots[k] for k in sorted(snapshots)][-8:]
         try:
             if profile['currency'] != 'USD':
                 raise NotImplementedError('No verified estimates for this euro listing')

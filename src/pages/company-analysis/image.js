@@ -1,4 +1,4 @@
-import { amount, canPublish, dateLabel, calculatedRatios, activeValuation, fresh } from './lib.js'
+import { amount, canPublish, dateLabel, calculatedRatios, activeValuation, fresh, decisionRatios } from './lib.js'
 
 const finite = value => typeof value === 'number' && Number.isFinite(value)
 const fr = value => new Intl.NumberFormat('fr-FR', { minimumFractionDigits: 1, maximumFractionDigits: 1 }).format(value)
@@ -52,6 +52,7 @@ export function companyImageModel(company, now = new Date()) {
       { label: 'Marge nette', parts: [`${fr(a.netIncome / a.revenue * 100)} %`, ''], change: '' },
     ],
     pe: pe === null ? null : `${fr(pe)}×`,
+    fcf: finite(decisionRatios(company, now).freeCashFlow) ? amount(decisionRatios(company, now).freeCashFlow, company.currency).replace('USD','$').replace('EUR','€') : null,
     valuationDate: quoteDate ? `Cours au ${dateLabel(quoteDate)}` : pe ? `Ratio au ${dateLabel(activeValuation(company, now).observedAt)}` : '',
   }
 }
@@ -92,6 +93,12 @@ export async function renderCompanyImage(company, now = new Date()) {
   text(ctx, 'PER', 921, 401, 29, '#14171c', 205, 600)
   text(ctx, model.pe ?? 'Non disponible', 919, 487, model.pe ? 77 : 27, model.pe ? '#0063c9' : '#657080', 210, model.pe ? 800 : 400)
   if (model.pe) text(ctx, model.peBasis, 921, 530, 22, '#475365', 205)
+  if (model.fcf) {
+    ctx.fillStyle = 'rgba(248,249,251,0.96)'; ctx.beginPath();ctx.roundRect(56, 1024, 1088, 98, 18);ctx.fill()
+    text(ctx, 'Flux de trésorerie disponible annuel', 82, 1061, 27, '#14171c', 590, 600)
+    text(ctx, 'Après investissements en immobilisations', 82, 1097, 22, '#475365', 590)
+    ctx.textAlign = 'right';text(ctx, model.fcf, 1115, 1086, 48, '#0063c9', 420, 800);ctx.textAlign='left'
+  }
   ctx.fillStyle = '#f8f9fb';ctx.fillRect(0, 1140, 1200, 60)
   ctx.textAlign = 'center';text(ctx, 'Épargnant Libre', 600, 1180, 30, '#111317', 450, 400, 'Georgia, serif')
   return canvas
