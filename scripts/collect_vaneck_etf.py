@@ -81,7 +81,7 @@ def official_transport_url(value):
             and not parsed.username and not parsed.password)
 
 
-def collect_one(share,now,fetch=download):
+def download_document(share, fetch=download):
     urls=[share['sourceUrl'], *share.get('fallbackUrls',[])]
     document=pathlib.PurePosixPath(urlparse(share['sourceUrl']).path).name
     for url in urls:
@@ -100,7 +100,7 @@ def collect_one(share,now,fetch=download):
             if 'Expected official PDF' not in str(error):raise
             last_error=error;continue
         # An incompatible document must fail, never trigger another source.
-        return complement(parse_document(body,{**share,'sourceUrl':url},now),share,now,fetch)
+        return body, url
     if fetch is not download:raise last_error
     script=pathlib.Path(__file__).with_name('download-vaneck-document.mjs')
     for url in urls:
@@ -113,9 +113,14 @@ def collect_one(share,now,fetch=download):
             continue
         # Identity/date/content validation remains fatal; never seek another PDF
         # after a successful transport returned an incompatible document.
-        return complement(parse_document(result.stdout,{**share,'sourceUrl':url},now),share,now,fetch)
+        return result.stdout, url
     reject(str(last_error))
 
+
+
+def collect_one(share, now, fetch=download):
+    body, url = download_document(share, fetch)
+    return complement(parse_document(body, {**share, 'sourceUrl': url}, now), share, now, fetch)
 
 
 def complement(result, share, now, fetch):

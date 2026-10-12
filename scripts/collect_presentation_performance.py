@@ -21,6 +21,7 @@ SOURCES = [
      'method': 'calendar-year exact share NAV total return, net of fees'},
     {'isin': 'IE0007Y8Y157', 'currency': 'USD', 'provider': 'VanEck', 'parser': 'vaneck',
      'sourceUrl': 'https://www.vaneck.com/uk/en/library/fact-sheets/qntm-fact-sheet.pdf',
+     'fallbackUrls': ['https://www.vaneck.com/nl/en/library/fact-sheets/qntm-fact-sheet.pdf', 'https://www.vaneck.com/ucits/library/fact-sheets/qntm-fact-sheet.pdf'],
      'method': 'calendar-year NAV total return, net income reinvested, net of fees'}
 ]
 
@@ -77,8 +78,14 @@ def refresh(current, now=None, fetch=download):
         try:
             if current.get(share['isin'], {}).get('performance', {}).get('years'):
                 return {'isin': share['isin'], 'status': 'annual-active'}
-            body = fetch(share['sourceUrl'])
-            perf = parse(pdf_text(body), share, now)
+            source = share
+            if share['parser'] == 'vaneck':
+                from collect_vaneck_etf import download_document
+                body, url = download_document(share, fetch)
+                source = {**share, 'sourceUrl': url}
+            else:
+                body = fetch(share['sourceUrl'])
+            perf = parse(pdf_text(body), source, now)
             perf['sha256'] = proof(body)
             if perf['asOf'] < current.get(share['isin'], {}).get('performance', {}).get('asOf', ''):
                 reject('Older cumulative observation; active performance preserved')
