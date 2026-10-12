@@ -4,7 +4,7 @@
 export const TOOLS = [
   { to: '/le-dca-de', navLabel: 'Le DCA de…', title: 'Le DCA de…',
     publicationDay: 'Publication ponctuelle', icon: '👥', accent: '#65d5b0',
-    description: '30 profils fictifs, leurs investissements mensuels et une question pour ouvrir la discussion.', status: 'disponible' },
+    description: '50 profils fictifs, leurs investissements mensuels et une question pour ouvrir la discussion.', status: 'disponible' },
   {to:'/fiches-pratiques',navLabel:'Fiches pratiques',title:'Fiches pratiques',publicationDay:'Publication ponctuelle',icon:'📑',accent:'#267863',description:'Enveloppes, ETF, indices et démarches : une question, un texte et une image à garder.',status:'disponible'},
   { to: '/radar-editorial', navLabel: 'Radar', title: 'Radar éditorial',
     publicationDay: 'Actualisé chaque jour', icon: '📡', accent: '#65d5b0',
