@@ -5,7 +5,7 @@ import PageHeader from '../../design-system/PageHeader'
 import ToolWorkspace from '../../design-system/ToolWorkspace'
 import Button from '../../design-system/Button'
 import { COMPANIES } from './data.js'
-import { buildTweetText, canPublish, activeValuation, activeEstimates, activeHistory, activeAnnualContext, activeDecision, decisionIndicators, decisionReadings, amount, dateLabel } from './lib.js'
+import { buildTweetText, canPublish, activeValuation, activeEstimates, activeHistory, activeAnnualContext, activeDecision, activeSolidity, decisionIndicators, decisionReadings, amount, dateLabel } from './lib.js'
 import { renderCompanyImage } from './image.js'
 import './style.css'
 
@@ -22,6 +22,7 @@ export default function App() {
   const estimates = activeEstimates(company)
   const history = activeHistory(company)
   const annualContext = activeAnnualContext(company)
+  const solidity = activeSolidity(company)
   const decision = activeDecision(company)
   const indicators = decisionIndicators(company)
   const readings = decisionReadings(company)
@@ -80,6 +81,7 @@ export default function App() {
             <thead><tr><th scope="col">Exercice clos le</th><th scope="col">Flux d’exploitation</th><th scope="col">Investissements</th><th scope="col">FCF</th><th scope="col">Marge de FCF</th></tr></thead>
             <tbody>{cashHistory.map(year => <tr key={year.end}><th scope="row"><a href={year.sourceUrl} target="_blank" rel="noreferrer">{dateLabel(year.end)}</a></th><td>{amount(year.operatingCashFlow, company.currency)}</td><td>{amount(year.capitalExpenditure, company.currency)}</td><td>{amount(year.freeCashFlow, company.currency)}</td><td>{(year.freeCashFlow/year.revenue*100).toLocaleString('fr-FR',{minimumFractionDigits:1,maximumFractionDigits:1})} %</td></tr>)}</tbody>
           </table></div>}
+          {solidity && <p className="company-decision-source">Bilans vérifiés le {dateLabel(solidity.observedAt)}. <a href={solidity.annualBalances[1].sourceUrl} target="_blank" rel="noreferrer">Capitaux propres annuels comparatifs</a> ; <a href={solidity.latestBalance.sourceUrl} target="_blank" rel="noreferrer">bilan au {dateLabel(solidity.latestBalance.asOf)}</a>.</p>}
           {decision && <p className="company-decision-source">Composantes vérifiées le {dateLabel(decision.observedAt)}. {decision.years.at(-1).freeCashFlowDefinition ?? decision.method}. <a href={decision.years.at(-1).sourceUrl} target="_blank" rel="noreferrer">Source des composantes annuelles</a>. {decision.years.at(-1).additionalSourceUrls?.map(url => <a key={url} href={url} target="_blank" rel="noreferrer"> Source complémentaire.</a>)}</p>}
         </section>}
         {history.length > 0 && <div className="company-history">

@@ -449,6 +449,18 @@ def main():
             if 'netDebt' in decision_balance:
                 snapshots[decision_balance['asOf']] = decision_balance
                 item['balanceHistory'] = [snapshots[k] for k in sorted(snapshots)][-8:]
+        # Independent block: failures preserve the original date, never the cache
+        # as a fresh issuer observation. Only qualified adapters are attempted.
+        from company_balance import collect_balance, SUPPORTED
+        if ident in SUPPORTED:
+            try:
+                item['solidity'] = collect_balance(profile, item, now.date())
+                status['solidity'] = 'updated'
+            except Exception as error:
+                status['solidity'] = 'unavailable-or-retained'
+                status['solidityDetail'] = str(error)[:300]
+                if old.get('solidity'):
+                    failures.append(ident + ':solidity')
         try:
             if profile['currency'] != 'USD':
                 raise NotImplementedError('No verified estimates for this euro listing')
