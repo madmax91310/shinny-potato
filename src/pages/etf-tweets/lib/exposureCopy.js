@@ -6,6 +6,7 @@ const ACWI = 'Il couvre les grandes et moyennes entreprises des pays développé
 const EURO50 = 'Il suit 50 grandes entreprises de la zone euro. Son périmètre est plus restreint que celui du MSCI Europe ou du STOXX Europe 600 : le Royaume-Uni et la Suisse n’en font pas partie.'
 const TECH_EUROPE = 'Il cible les entreprises technologiques du STOXX Europe 600. Tu investis dans un secteur européen précis, plutôt que dans l’ensemble du marché européen.'
 export const ETF_EXPOSURE_COPY = {
+  IE00BP3QZ825: 'Il sélectionne des entreprises du MSCI World dont les cours ont récemment le mieux progressé, en tenant compte du risque. La composition évolue avec les tendances ; un retournement brutal peut lui être défavorable.',
   IE0002XZSHO1: WORLD,
   FR001400U5Q4: WORLD,
   LU1681043599: WORLD,
@@ -84,6 +85,7 @@ export function getEtfExposureCopy(etf) {
 }
 
 export const COMPARISON_HOOKS = {
+  'world-momentum': 'Suivre le World ou privilégier les actions qui ont récemment le mieux progressé ?',
   'monetaire-obligations-courtes': 'Monétaire ou obligations courtes : que choisir pour une poche en euros ?',
   'world-meme-indice-pea': 'Plusieurs ETF World sont accessibles sur PEA. Sur quels critères les choisir ?',
   'sp500-meme-indice-pea': 'Deux ETF pour suivre le S&P 500 dans ton PEA : comment les départager ?',

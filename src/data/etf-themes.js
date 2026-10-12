@@ -737,6 +737,9 @@ const reusedTheme = (id, nom, emoji, transition, products, cloture, question) =>
     nom: getInstrumentName(isin, 'tweet'), frais: formatEtfTer(isin), differenciateur })),
 })
 const COMPARISON_THEMES = [...existingThemes,
+ reusedTheme('world-momentum','MSCI World ou World Momentum','🌍','Suivre le World ou privilégier les actions dont les cours ont récemment le mieux progressé ?',
+  [['IE00B4L5Y983','MSCI World : grandes et moyennes entreprises des pays développés.'],['IE00BP3QZ825','MSCI World Momentum : sélection selon les tendances récentes des cours, ajustées du risque.']],
+  'Le Momentum sélectionne des entreprises du World. Les poids des pays et secteurs peuvent changer au fil des rééquilibrages ; un retournement des tendances peut lui être défavorable.', 'Tu préfères suivre le World ou privilégier les gagnantes récentes ?'),
  reusedTheme('monetaire-obligations-courtes', 'Monétaire ou obligations courtes', '💶', 'Pour une poche en euros, quelles différences entre le monétaire et les obligations courtes ?',
   [['LU0290358497', 'Taux monétaire en euros, suivi par swap ; revenus capitalisés.'], ['IE00B3FH7618', 'Obligations d’État de la zone euro à échéance de zéro à un an ; revenus distribués.'], ['IE00B14X4Q57', 'Obligations d’État de la zone euro à échéance de un à trois ans ; revenus distribués.']],
   'Le monétaire suit les taux au jour le jour. Les fonds obligataires suivent des emprunts dont le prix évolue aussi avec les taux. Aucun de ces fonds ne garantit le capital.', 'Tu choisirais le monétaire ou des obligations courtes pour cette poche ?'),
