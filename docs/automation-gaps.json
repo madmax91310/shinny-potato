@@ -308,16 +308,17 @@
   ],
   "checkedAt": "2026-10-12",
   "method": "Inventaire des champs réellement présents dans les observations actives. Couverture distincte de disponibilité réseau et de fraîcheur. Les catégories sont issues des qualifications de sources ; elles ne certifient pas un téléchargement réussi aujourd’hui.",
-  "instruments": 156,
+  "instruments": 162,
   "covered": {
-    "ter": 156,
-    "aum": 156,
-    "performance": 143,
-    "countries": 141,
-    "sectors": 141,
-    "holdings": 141
+    "ter": 162,
+    "aum": 162,
+    "performance": 148,
+    "countries": 147,
+    "sectors": 147,
+    "holdings": 147
   },
   "summary": {
+    "instrument:unqualified": 1,
     "instrument:waiting-first-year": 12,
     "instrument:not-applicable": 42,
     "instrument:source-conflict": 4,
@@ -325,6 +326,17 @@
     "index:not-applicable": 16
   },
   "gaps": [
+    {
+      "type": "instrument",
+      "id": "IE0003Z9E2Y3",
+      "name": "Global X Copper Miners UCITS ETF USD Acc",
+      "field": "performance",
+      "label": "Calendrier annuel",
+      "configured": true,
+      "status": "unqualified",
+      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
+      "sourceUrl": "https://globalxetfs.eu/funds/copx/"
+    },
     {
       "type": "instrument",
       "id": "FR001400ZGO4",
