@@ -43,7 +43,7 @@ assert.deepEqual(metrics(stale,now),[])
 const refreshed = {...base, accountsObservedAt:'2026-10-08'}
 assert.equal(canPublish(refreshed, now), false)
 assert.equal(buildTweetText(refreshed, now), '')
-assert.match(buildTweetText(refreshed, observationDate(refreshed)), /💰 Sur son exercice clos/)
+assert.match(buildTweetText(refreshed, observationDate(refreshed)), /💰 .*exercice terminé en/)
 assert.equal(canPublish(refreshed, new Date('2026-11-23T12:00:00Z')), false)
 
 const computed = { ...base, quote:{price:100,asOf:'2026-10-06',splits:[]},
@@ -55,7 +55,7 @@ const computed = { ...base, quote:{price:100,asOf:'2026-10-06',splits:[]},
 assert.equal(calculatedRatios(computed,now).peTTM,20)
 assert.equal(calculatedRatios(computed,now).priceFCF,10)
 assert.equal(calculatedRatios(computed,now).payout,25)
-assert.match(buildTweetText(computed,now),/Pour 100 dollars de chiffre d’affaires/)
+assert.match(buildTweetText(computed,now),/bénéfice net.*pour 100 dollars de ventes/)
 assert(metrics(computed,now).some(row => row.label.includes('opérationnelle') && row.value === '20,0 %'))
 computed.quote.price=200
 assert.equal(calculatedRatios(computed,now).peTTM,40)
@@ -107,7 +107,7 @@ for (const company of COMPANIES) {
   const tweet = buildTweetText(company, observationDate(company))
   assert(!/Ce que je regarderais|avant d’investir|belle entreprise|bon marché|chère|croissance future compte/.test(tweet))
   assert(!tweet.includes(company.watch))
-  assert.match(tweet, /💰 Sur son exercice clos/)
+  assert.match(tweet, /💰 .*exercice terminé en/)
 }
 const staleQuarter = {...base, quarter:{...base.annual,end:'2025-01-01'}}
 assert(!buildTweetText(staleQuarter,now).includes('derniers résultats'))
@@ -173,7 +173,7 @@ const european = {...base, currency:'EUR', accountingStandard:'IFRS', halfYear:{
 assert.equal(calculatedRatios(european,now).peAnnual,20)
 assert.equal(calculatedRatios(european,now).peTTM,undefined)
 assert(!buildTweetText(european,now).includes("Semestre"))
-assert.match(buildTweetText(european,now),/bénéfice dilué par action de l’exercice clos/)
+assert.match(buildTweetText(european,now),/bénéfice dilué par action de l’exercice terminé/)
 assert(!buildTweetText(european,now).includes('prochain exercice fiscal'))
 assert.equal(calculatedRatios({...european,quote:{...european.quote,splits:['2026-06-01']}},now).peAnnual,undefined)
 const weeks = {...base,quarter:{...base.annual,end:'2026-08-30',durationWeeks:16}}
