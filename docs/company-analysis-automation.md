@@ -131,3 +131,41 @@ rester dans le périmètre du flux d’exploitation consolidé. Le FCF issu du s
 concept SEC d’achats de PPE est retiré pour AMD, car son périmètre était incomplet.
 Ces comptages décrivent cette collecte ; l’affichage reste conditionné à la
 fraîcheur et aux composantes disponibles lors des publications suivantes.
+
+## Indicateurs complémentaires (12 octobre 2026)
+
+L’interface ajoute la marge opérationnelle et son évolution en points, les achats
+d’immobilisations rapportés au CA et la dette nette rapportée au FCF positif.
+La date de bilan et celle de l’exercice sont précisées pour dette nette/FCF ; ce
+multiple n’est pas une durée de remboursement. Une trésorerie nette ne produit
+pas de multiple de dette.
+
+La croissance annualisée du CA, bénéfice net et FCF exige quatre observations
+annuelles consécutives pour trois ans, ou cinq pour quatre ans. Les dates exactes
+sont affichées et l’exposant tient compte du temps écoulé ; aucune période de cinq
+ans n’est annoncée avec seulement cinq observations. Les valeurs doivent être
+positives sur toute la fenêtre ; le FCF garde la même définition sur cette fenêtre.
+Les pertes, années absentes et périmètres non comparables masquent le calcul.
+
+Les publications officielles fournissent également, lorsqu’une ligne et ses
+colonnes annuelles sont qualifiées, les rachats d’actions ordinaires effectivement
+payés et la charge de rémunération en actions. Les rachats ne sont pas assimilés
+à la variation nette du nombre d’actions ; la rémunération en actions ne mesure
+pas directement la dilution. Son poids dans le chiffre d’affaires est affiché.
+Les PDF sont bornés au tableau consolidé de flux ; les colonnes trimestrielles
+et annuelles sont distinguées et les pages de continuation conservées.
+Les réconciliations non-GAAP ne fournissent aucune composante.
+
+La SEC était accessible depuis l’environnement de développement mais bloquée
+sur les runners GitHub le 12 octobre. Aucun nouveau champ dépendant uniquement
+de la SEC n’est activé dans le jeu publié. Les nouvelles composantes sont retenues
+seulement après rapprochement réel avec les publications officielles, raccordées
+au workflow quotidien et soumises à la fraîcheur du bloc. La migration du cache
+force une nouvelle collecte des composantes avant de réutiliser les archives.
+
+ROE, ROIC et liquidité restent exclus de cette extension : les sources de bilan
+complémentaires ne sont pas encore qualifiées sur les runners. La croissance
+annualisée du BPA reste exclue tant que son historique sur une base comparable,
+incluant les divisions d’actions, n’est pas certifié. Rien n’est interpolé ou
+complété manuellement. La couverture varie selon l’émetteur et la période publiée.
+Les nouveaux chiffres restent dans l’application ; texte et export sont conservés.

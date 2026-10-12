@@ -160,14 +160,12 @@
             "operatingCashFlow": 104038000000.0,
             "capitalExpenditure": 11085000000.0,
             "dividendsPaid": 14467000000.0,
+            "shareRepurchases": 85971000000.0,
+            "shareBasedCompensation": 7906000000.0,
+            "operatingIncome": 108949000000.0,
             "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
             "averageDilutedShares": 16864919000.0,
-            "sharesBasisSource": "https://www.apple.com/newsroom/pdfs/FY22_Q4_Consolidated_Financial_Statements.pdf",
-            "interestExpense": 2645000000.0,
-            "additionalSourceUrls": [
-              "https://data.sec.gov/api/xbrl/companyfacts/CIK0000320193.json"
-            ],
-            "operatingIncome": 108949000000.0
+            "sharesBasisSource": "https://www.apple.com/newsroom/pdfs/FY22_Q4_Consolidated_Financial_Statements.pdf"
           },
           {
             "end": "2022-09-24",
@@ -179,14 +177,12 @@
             "operatingCashFlow": 122151000000.0,
             "capitalExpenditure": 10708000000.0,
             "dividendsPaid": 14841000000.0,
+            "shareRepurchases": 89402000000.0,
+            "shareBasedCompensation": 9038000000.0,
+            "operatingIncome": 119437000000.0,
             "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
             "averageDilutedShares": 16325819000.0,
-            "sharesBasisSource": "https://www.apple.com/newsroom/pdfs/fy2023-q4/FY23_Q4_Consolidated_Financial_Statements.pdf",
-            "interestExpense": 2931000000.0,
-            "additionalSourceUrls": [
-              "https://data.sec.gov/api/xbrl/companyfacts/CIK0000320193.json"
-            ],
-            "operatingIncome": 119437000000.0
+            "sharesBasisSource": "https://www.apple.com/newsroom/pdfs/fy2023-q4/FY23_Q4_Consolidated_Financial_Statements.pdf"
           },
           {
             "end": "2023-09-30",
@@ -198,14 +194,12 @@
             "operatingCashFlow": 110543000000.0,
             "capitalExpenditure": 10959000000.0,
             "dividendsPaid": 15025000000.0,
+            "shareRepurchases": 77550000000.0,
+            "shareBasedCompensation": 10833000000.0,
+            "operatingIncome": 114301000000.0,
             "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
             "averageDilutedShares": 15812547000.0,
-            "sharesBasisSource": "https://www.apple.com/newsroom/pdfs/fy2024-q4/FY24_Q4_Consolidated_Financial_Statements.pdf",
-            "interestExpense": 3933000000.0,
-            "additionalSourceUrls": [
-              "https://data.sec.gov/api/xbrl/companyfacts/CIK0000320193.json"
-            ],
-            "operatingIncome": 114301000000.0
+            "sharesBasisSource": "https://www.apple.com/newsroom/pdfs/fy2024-q4/FY24_Q4_Consolidated_Financial_Statements.pdf"
           },
           {
             "end": "2024-09-28",
@@ -217,13 +211,12 @@
             "operatingCashFlow": 118254000000.0,
             "capitalExpenditure": 9447000000.0,
             "dividendsPaid": 15234000000.0,
+            "shareRepurchases": 94949000000.0,
+            "shareBasedCompensation": 11688000000.0,
+            "operatingIncome": 123216000000.0,
             "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
             "averageDilutedShares": 15408095000.0,
-            "sharesBasisSource": "https://www.apple.com/newsroom/pdfs/fy2025-q4/FY25_Q4_Consolidated_Financial_Statements.pdf",
-            "operatingIncome": 123216000000.0,
-            "additionalSourceUrls": [
-              "https://data.sec.gov/api/xbrl/companyfacts/CIK0000320193.json"
-            ]
+            "sharesBasisSource": "https://www.apple.com/newsroom/pdfs/fy2025-q4/FY25_Q4_Consolidated_Financial_Statements.pdf"
           },
           {
             "end": "2025-09-27",
@@ -235,39 +228,15 @@
             "operatingCashFlow": 111482000000.0,
             "capitalExpenditure": 12715000000.0,
             "dividendsPaid": 15421000000.0,
+            "shareRepurchases": 90711000000.0,
+            "shareBasedCompensation": 12863000000.0,
+            "operatingIncome": 133050000000.0,
             "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
             "averageDilutedShares": 15004697000.0,
-            "sharesBasisSource": "https://www.apple.com/newsroom/pdfs/fy2025-q4/FY25_Q4_Consolidated_Financial_Statements.pdf",
-            "operatingIncome": 133050000000.0,
-            "additionalSourceUrls": [
-              "https://data.sec.gov/api/xbrl/companyfacts/CIK0000320193.json"
-            ]
+            "sharesBasisSource": "https://www.apple.com/newsroom/pdfs/fy2025-q4/FY25_Q4_Consolidated_Financial_Statements.pdf"
           }
         ],
         "method": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
-        "balance": {
-          "asOf": "2026-06-27",
-          "cash": 39544000000.0,
-          "debt": 84344000000.0,
-          "netDebt": 44800000000.0,
-          "definition": "Dette financière publiée, hors locations, moins trésorerie et équivalents ; placements exclus",
-          "tags": {
-            "cash": "CashAndCashEquivalentsAtCarryingValue",
-            "debt": [
-              "LongTermDebtCurrent",
-              "LongTermDebtNoncurrent",
-              "CommercialPaper"
-            ]
-          },
-          "observedAt": "2026-10-12",
-          "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000320193.json"
-        },
-        "shares": {
-          "asOf": "2026-06-27",
-          "outstanding": 14608963000.0,
-          "observedAt": "2026-10-12",
-          "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000320193.json"
-        },
         "accountsEndAtCollection": "2026-06-27"
       },
       "balanceHistory": [
@@ -523,143 +492,84 @@
             "end": "2022-06-30",
             "revenue": 198270000000.0,
             "netIncome": 72738000000.0,
-            "start": "2021-07-01",
-            "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000789019.json",
-            "tags": {
-              "operatingCashFlow": "NetCashProvidedByUsedInOperatingActivities",
-              "capitalExpenditure": "PaymentsToAcquirePropertyPlantAndEquipment",
-              "operatingIncome": "OperatingIncomeLoss",
-              "interestExpense": "InterestExpense",
-              "dividendsPaid": "PaymentsOfDividendsCommonStock",
-              "averageDilutedShares": "WeightedAverageNumberOfDilutedSharesOutstanding"
-            },
+            "sourceUrl": "https://www.microsoft.com/en-us/Investor/earnings/FY-2023-Q4/press-release-webcast",
+            "tags": {},
+            "freeCashFlow": 65149000000.0,
             "operatingCashFlow": 89035000000.0,
             "capitalExpenditure": 23886000000.0,
+            "shareRepurchases": 32696000000.0,
+            "shareBasedCompensation": 7502000000.0,
             "operatingIncome": 83383000000.0,
-            "interestExpense": 2063000000.0,
-            "dividendsPaid": 18135000000.0,
+            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
             "averageDilutedShares": 7540000000.0,
-            "sharesBasisSource": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000789019.json#2024-07-30",
-            "freeCashFlow": 65149000000.0,
-            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
+            "sharesBasisSource": "https://www.microsoft.com/en-us/Investor/earnings/FY-2023-Q4/press-release-webcast"
           },
           {
             "end": "2023-06-30",
             "revenue": 211915000000.0,
             "netIncome": 72361000000.0,
-            "start": "2022-07-01",
-            "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000789019.json",
-            "tags": {
-              "operatingCashFlow": "NetCashProvidedByUsedInOperatingActivities",
-              "capitalExpenditure": "PaymentsToAcquirePropertyPlantAndEquipment",
-              "operatingIncome": "OperatingIncomeLoss",
-              "interestExpense": "InterestExpense",
-              "dividendsPaid": "PaymentsOfDividendsCommonStock",
-              "averageDilutedShares": "WeightedAverageNumberOfDilutedSharesOutstanding"
-            },
+            "sourceUrl": "https://www.microsoft.com/en-us/Investor/earnings/FY-2024-Q4/press-release-webcast",
+            "tags": {},
+            "freeCashFlow": 59475000000.0,
             "operatingCashFlow": 87582000000.0,
             "capitalExpenditure": 28107000000.0,
+            "shareRepurchases": 22245000000.0,
+            "shareBasedCompensation": 9611000000.0,
             "operatingIncome": 88523000000.0,
-            "interestExpense": 1968000000.0,
-            "dividendsPaid": 19800000000.0,
+            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
             "averageDilutedShares": 7472000000.0,
-            "sharesBasisSource": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000789019.json#2025-07-30",
-            "freeCashFlow": 59475000000.0,
-            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
+            "sharesBasisSource": "https://www.microsoft.com/en-us/Investor/earnings/FY-2024-Q4/press-release-webcast"
           },
           {
             "end": "2024-06-30",
             "revenue": 245122000000.0,
             "netIncome": 88136000000.0,
-            "start": "2023-07-01",
-            "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000789019.json",
-            "tags": {
-              "operatingCashFlow": "NetCashProvidedByUsedInOperatingActivities",
-              "capitalExpenditure": "PaymentsToAcquirePropertyPlantAndEquipment",
-              "operatingIncome": "OperatingIncomeLoss",
-              "interestExpense": "InterestExpense",
-              "dividendsPaid": "PaymentsOfDividendsCommonStock",
-              "averageDilutedShares": "WeightedAverageNumberOfDilutedSharesOutstanding"
-            },
+            "sourceUrl": "https://www.microsoft.com/en-us/Investor/earnings/FY-2025-Q4/press-release-webcast",
+            "tags": {},
+            "freeCashFlow": 74071000000.0,
             "operatingCashFlow": 118548000000.0,
             "capitalExpenditure": 44477000000.0,
+            "shareRepurchases": 17254000000.0,
+            "shareBasedCompensation": 10734000000.0,
             "operatingIncome": 109433000000.0,
-            "interestExpense": 2935000000.0,
-            "dividendsPaid": 21771000000.0,
+            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
             "averageDilutedShares": 7469000000.0,
-            "sharesBasisSource": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000789019.json#2026-07-29",
-            "freeCashFlow": 74071000000.0,
-            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
+            "sharesBasisSource": "https://www.microsoft.com/en-us/Investor/earnings/FY-2025-Q4/press-release-webcast"
           },
           {
             "end": "2025-06-30",
             "revenue": 281724000000.0,
             "netIncome": 101832000000.0,
-            "start": "2024-07-01",
-            "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000789019.json",
-            "tags": {
-              "operatingCashFlow": "NetCashProvidedByUsedInOperatingActivities",
-              "capitalExpenditure": "PaymentsToAcquirePropertyPlantAndEquipment",
-              "operatingIncome": "OperatingIncomeLoss",
-              "dividendsPaid": "PaymentsOfDividendsCommonStock",
-              "averageDilutedShares": "WeightedAverageNumberOfDilutedSharesOutstanding"
-            },
+            "sourceUrl": "https://www.microsoft.com/en-us/Investor/earnings/FY-2026-Q4/press-release-webcast",
+            "tags": {},
+            "freeCashFlow": 71611000000.0,
             "operatingCashFlow": 136162000000.0,
             "capitalExpenditure": 64551000000.0,
+            "shareRepurchases": 18420000000.0,
+            "shareBasedCompensation": 11974000000.0,
             "operatingIncome": 128528000000.0,
-            "dividendsPaid": 24082000000.0,
+            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
             "averageDilutedShares": 7465000000.0,
-            "sharesBasisSource": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000789019.json#2026-07-29",
-            "freeCashFlow": 71611000000.0,
-            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
+            "sharesBasisSource": "https://www.microsoft.com/en-us/Investor/earnings/FY-2026-Q4/press-release-webcast"
           },
           {
             "end": "2026-06-30",
             "revenue": 331839000000.0,
             "netIncome": 133749000000.0,
-            "start": "2025-07-01",
-            "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000789019.json",
-            "tags": {
-              "operatingCashFlow": "NetCashProvidedByUsedInOperatingActivities",
-              "capitalExpenditure": "PaymentsToAcquirePropertyPlantAndEquipment",
-              "operatingIncome": "OperatingIncomeLoss",
-              "dividendsPaid": "PaymentsOfDividendsCommonStock",
-              "averageDilutedShares": "WeightedAverageNumberOfDilutedSharesOutstanding"
-            },
+            "sourceUrl": "https://www.microsoft.com/en-us/Investor/earnings/FY-2026-Q4/press-release-webcast",
+            "tags": {},
+            "freeCashFlow": 66987000000.0,
             "operatingCashFlow": 182935000000.0,
             "capitalExpenditure": 115948000000.0,
+            "shareRepurchases": 22271000000.0,
+            "shareBasedCompensation": 12405000000.0,
             "operatingIncome": 155237000000.0,
-            "dividendsPaid": 26445000000.0,
+            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
             "averageDilutedShares": 7453000000.0,
-            "sharesBasisSource": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000789019.json#2026-07-29",
-            "freeCashFlow": 66987000000.0,
-            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
+            "sharesBasisSource": "https://www.microsoft.com/en-us/Investor/earnings/FY-2026-Q4/press-release-webcast"
           }
         ],
-        "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000789019.json",
         "method": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
-        "balance": {
-          "asOf": "2026-06-30",
-          "cash": 20935000000.0,
-          "debt": 40294000000.0,
-          "netDebt": 19359000000.0,
-          "definition": "Dette financière publiée, hors locations, moins trésorerie et équivalents ; placements exclus",
-          "tags": {
-            "cash": "CashAndCashEquivalentsAtCarryingValue",
-            "debt": [
-              "LongTermDebtCurrent",
-              "LongTermDebtNoncurrent"
-            ]
-          },
-          "observedAt": "2026-10-12",
-          "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000789019.json"
-        },
-        "shares": {
-          "asOf": "2026-06-30",
-          "outstanding": 7427000000.0,
-          "observedAt": "2026-10-12",
-          "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000789019.json"
-        },
         "accountsEndAtCollection": "2026-06-30"
       },
       "balanceHistory": [
@@ -934,13 +844,9 @@
             "netIncome": 9752000000.0,
             "sourceUrl": "https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-fourth-quarter-and-fiscal-2023",
             "tags": {},
+            "operatingIncome": 10041000000.0,
             "averageDilutedShares": 2535000000.0,
-            "sharesBasisSource": "https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-fourth-quarter-and-fiscal-2023",
-            "interestExpense": 236000000.0,
-            "additionalSourceUrls": [
-              "https://data.sec.gov/api/xbrl/companyfacts/CIK0001045810.json"
-            ],
-            "operatingIncome": 10041000000.0
+            "sharesBasisSource": "https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-fourth-quarter-and-fiscal-2023"
           },
           {
             "end": "2023-01-29",
@@ -948,13 +854,9 @@
             "netIncome": 4368000000.0,
             "sourceUrl": "https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-fourth-quarter-and-fiscal-2024",
             "tags": {},
+            "operatingIncome": 4224000000.0,
             "averageDilutedShares": 2507000000.0,
-            "sharesBasisSource": "https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-fourth-quarter-and-fiscal-2024",
-            "interestExpense": 262000000.0,
-            "additionalSourceUrls": [
-              "https://data.sec.gov/api/xbrl/companyfacts/CIK0001045810.json"
-            ],
-            "operatingIncome": 4224000000.0
+            "sharesBasisSource": "https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-fourth-quarter-and-fiscal-2024"
           },
           {
             "end": "2024-01-28",
@@ -962,13 +864,9 @@
             "netIncome": 29760000000.0,
             "sourceUrl": "https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-fourth-quarter-and-fiscal-2025",
             "tags": {},
+            "operatingIncome": 32972000000.0,
             "averageDilutedShares": 24940000000.0,
-            "sharesBasisSource": "https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-fourth-quarter-and-fiscal-2025",
-            "interestExpense": 257000000.0,
-            "additionalSourceUrls": [
-              "https://data.sec.gov/api/xbrl/companyfacts/CIK0001045810.json"
-            ],
-            "operatingIncome": 32972000000.0
+            "sharesBasisSource": "https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-fourth-quarter-and-fiscal-2025"
           },
           {
             "end": "2025-01-26",
@@ -980,13 +878,12 @@
             "operatingCashFlow": 64089000000.0,
             "capitalExpenditure": 3236000000.0,
             "dividendsPaid": 834000000.0,
+            "shareRepurchases": 33706000000.0,
+            "shareBasedCompensation": 4737000000.0,
+            "operatingIncome": 81453000000.0,
             "freeCashFlowDefinition": "Flux d’exploitation moins acquisitions d’immobilisations et d’actifs incorporels",
             "averageDilutedShares": 24804000000.0,
-            "sharesBasisSource": "https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-fourth-quarter-and-fiscal-2026",
-            "operatingIncome": 81453000000.0,
-            "additionalSourceUrls": [
-              "https://data.sec.gov/api/xbrl/companyfacts/CIK0001045810.json"
-            ]
+            "sharesBasisSource": "https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-fourth-quarter-and-fiscal-2026"
           },
           {
             "end": "2026-01-25",
@@ -998,32 +895,15 @@
             "operatingCashFlow": 102718000000.0,
             "capitalExpenditure": 6042000000.0,
             "dividendsPaid": 974000000.0,
+            "shareRepurchases": 40086000000.0,
+            "shareBasedCompensation": 6386000000.0,
+            "operatingIncome": 130387000000.0,
             "freeCashFlowDefinition": "Flux d’exploitation moins acquisitions d’immobilisations et d’actifs incorporels",
             "averageDilutedShares": 24514000000.0,
-            "sharesBasisSource": "https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-fourth-quarter-and-fiscal-2026",
-            "operatingIncome": 130387000000.0,
-            "additionalSourceUrls": [
-              "https://data.sec.gov/api/xbrl/companyfacts/CIK0001045810.json"
-            ]
+            "sharesBasisSource": "https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-fourth-quarter-and-fiscal-2026"
           }
         ],
         "method": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
-        "balance": {
-          "asOf": "2026-07-26",
-          "cash": 22443000000.0,
-          "debt": 33366000000.0,
-          "netDebt": 10923000000.0,
-          "definition": "Dette financière publiée, hors locations, moins trésorerie et équivalents ; placements exclus",
-          "tags": {
-            "cash": "CashAndCashEquivalentsAtCarryingValue",
-            "debt": [
-              "LongTermDebtCurrent",
-              "LongTermDebtNoncurrent"
-            ]
-          },
-          "observedAt": "2026-10-12",
-          "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001045810.json"
-        },
         "accountsEndAtCollection": "2026-07-26"
       },
       "balanceHistory": [
@@ -1295,12 +1175,9 @@
             "freeCashFlow": 67012000000.0,
             "operatingCashFlow": 91652000000.0,
             "capitalExpenditure": 24640000000.0,
-            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
-            "interestExpense": 346000000.0,
-            "additionalSourceUrls": [
-              "https://data.sec.gov/api/xbrl/companyfacts/CIK0001652044.json"
-            ],
-            "operatingIncome": 78714000000.0
+            "shareBasedCompensation": 15376000000.0,
+            "operatingIncome": 78714000000.0,
+            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
           },
           {
             "end": "2022-12-31",
@@ -1311,6 +1188,8 @@
             "freeCashFlow": 60010000000.0,
             "operatingCashFlow": 91495000000.0,
             "capitalExpenditure": 31485000000.0,
+            "shareBasedCompensation": 19362000000.0,
+            "operatingIncome": 74842000000.0,
             "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
           },
           {
@@ -1322,14 +1201,9 @@
             "freeCashFlow": 69495000000.0,
             "operatingCashFlow": 101746000000.0,
             "capitalExpenditure": 32251000000.0,
-            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
-            "interestExpense": 308000000.0,
-            "additionalSourceUrls": [
-              "https://data.sec.gov/api/xbrl/companyfacts/CIK0001652044.json"
-            ],
+            "shareBasedCompensation": 22460000000.0,
             "operatingIncome": 84293000000.0,
-            "averageDilutedShares": 12722000000.0,
-            "sharesBasisSource": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001652044.json#2026-02-05"
+            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
           },
           {
             "end": "2024-12-31",
@@ -1340,13 +1214,9 @@
             "freeCashFlow": 72764000000.0,
             "operatingCashFlow": 125299000000.0,
             "capitalExpenditure": 52535000000.0,
-            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
+            "shareBasedCompensation": 22785000000.0,
             "operatingIncome": 112390000000.0,
-            "additionalSourceUrls": [
-              "https://data.sec.gov/api/xbrl/companyfacts/CIK0001652044.json"
-            ],
-            "averageDilutedShares": 12447000000.0,
-            "sharesBasisSource": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001652044.json#2026-02-05"
+            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
           },
           {
             "end": "2025-12-31",
@@ -1357,13 +1227,9 @@
             "freeCashFlow": 73266000000.0,
             "operatingCashFlow": 164713000000.0,
             "capitalExpenditure": 91447000000.0,
-            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
+            "shareBasedCompensation": 24953000000.0,
             "operatingIncome": 129039000000.0,
-            "additionalSourceUrls": [
-              "https://data.sec.gov/api/xbrl/companyfacts/CIK0001652044.json"
-            ],
-            "averageDilutedShares": 12230000000.0,
-            "sharesBasisSource": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001652044.json#2026-02-05"
+            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
           }
         ],
         "method": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
@@ -1626,14 +1492,11 @@
             "freeCashFlow": -14726000000.0,
             "operatingCashFlow": 46327000000.0,
             "capitalExpenditure": 61053000000.0,
+            "shareBasedCompensation": 12757000000.0,
+            "operatingIncome": 24879000000.0,
             "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
             "averageDilutedShares": 10296000000.0,
-            "sharesBasisSource": "https://ir.aboutamazon.com/news-release/news-release-details/2023/Amazon-com-Announces-Fourth-Quarter-Results/default.aspx",
-            "interestExpense": 1809000000.0,
-            "additionalSourceUrls": [
-              "https://data.sec.gov/api/xbrl/companyfacts/CIK0001018724.json"
-            ],
-            "operatingIncome": 24879000000.0
+            "sharesBasisSource": "https://ir.aboutamazon.com/news-release/news-release-details/2023/Amazon-com-Announces-Fourth-Quarter-Results/default.aspx"
           },
           {
             "end": "2022-12-31",
@@ -1644,14 +1507,11 @@
             "freeCashFlow": -16893000000.0,
             "operatingCashFlow": 46752000000.0,
             "capitalExpenditure": 63645000000.0,
+            "shareBasedCompensation": 19621000000.0,
+            "operatingIncome": 12248000000.0,
             "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
             "averageDilutedShares": 10189000000.0,
-            "sharesBasisSource": "https://ir.aboutamazon.com/news-release/news-release-details/2024/Amazon-com-Announces-Fourth-Quarter-Results/default.aspx",
-            "interestExpense": 2367000000.0,
-            "additionalSourceUrls": [
-              "https://data.sec.gov/api/xbrl/companyfacts/CIK0001018724.json"
-            ],
-            "operatingIncome": 12248000000.0
+            "sharesBasisSource": "https://ir.aboutamazon.com/news-release/news-release-details/2024/Amazon-com-Announces-Fourth-Quarter-Results/default.aspx"
           },
           {
             "end": "2023-12-31",
@@ -1662,14 +1522,11 @@
             "freeCashFlow": 32217000000.0,
             "operatingCashFlow": 84946000000.0,
             "capitalExpenditure": 52729000000.0,
+            "shareBasedCompensation": 24023000000.0,
+            "operatingIncome": 36852000000.0,
             "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
             "averageDilutedShares": 10492000000.0,
-            "sharesBasisSource": "https://ir.aboutamazon.com/news-release/news-release-details/2025/Amazon-com-Announces-Fourth-Quarter-Results/default.aspx",
-            "interestExpense": 3182000000.0,
-            "additionalSourceUrls": [
-              "https://data.sec.gov/api/xbrl/companyfacts/CIK0001018724.json"
-            ],
-            "operatingIncome": 36852000000.0
+            "sharesBasisSource": "https://ir.aboutamazon.com/news-release/news-release-details/2025/Amazon-com-Announces-Fourth-Quarter-Results/default.aspx"
           },
           {
             "end": "2024-12-31",
@@ -1680,13 +1537,11 @@
             "freeCashFlow": 32878000000.0,
             "operatingCashFlow": 115877000000.0,
             "capitalExpenditure": 82999000000.0,
+            "shareBasedCompensation": 22011000000.0,
+            "operatingIncome": 68593000000.0,
             "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
             "averageDilutedShares": 10721000000.0,
-            "sharesBasisSource": "https://ir.aboutamazon.com/news-release/news-release-details/2026/Amazon-com-Announces-Fourth-Quarter-Results/default.aspx",
-            "operatingIncome": 68593000000.0,
-            "additionalSourceUrls": [
-              "https://data.sec.gov/api/xbrl/companyfacts/CIK0001018724.json"
-            ]
+            "sharesBasisSource": "https://ir.aboutamazon.com/news-release/news-release-details/2026/Amazon-com-Announces-Fourth-Quarter-Results/default.aspx"
           },
           {
             "end": "2025-12-31",
@@ -1697,39 +1552,14 @@
             "freeCashFlow": 7695000000.0,
             "operatingCashFlow": 139514000000.0,
             "capitalExpenditure": 131819000000.0,
+            "shareBasedCompensation": 19467000000.0,
+            "operatingIncome": 79975000000.0,
             "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
             "averageDilutedShares": 10827000000.0,
-            "sharesBasisSource": "https://ir.aboutamazon.com/news-release/news-release-details/2026/Amazon-com-Announces-Fourth-Quarter-Results/default.aspx",
-            "operatingIncome": 79975000000.0,
-            "additionalSourceUrls": [
-              "https://data.sec.gov/api/xbrl/companyfacts/CIK0001018724.json"
-            ]
+            "sharesBasisSource": "https://ir.aboutamazon.com/news-release/news-release-details/2026/Amazon-com-Announces-Fourth-Quarter-Results/default.aspx"
           }
         ],
         "method": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
-        "balance": {
-          "asOf": "2026-06-30",
-          "cash": 78213000000.0,
-          "debt": 132549000000.0,
-          "netDebt": 54336000000.0,
-          "definition": "Dette financière publiée, hors locations, moins trésorerie et équivalents ; placements exclus",
-          "tags": {
-            "cash": "CashAndCashEquivalentsAtCarryingValue",
-            "debt": [
-              "LongTermDebtCurrent",
-              "LongTermDebtNoncurrent",
-              "ShortTermBorrowings"
-            ]
-          },
-          "observedAt": "2026-10-12",
-          "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001018724.json"
-        },
-        "shares": {
-          "asOf": "2026-06-30",
-          "outstanding": 10783000000.0,
-          "observedAt": "2026-10-12",
-          "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001018724.json"
-        },
         "accountsEndAtCollection": "2026-06-30"
       },
       "balanceHistory": [
@@ -2814,7 +2644,11 @@
             "capitalExpenditure": 1059000000.0,
             "freeCashFlow": 19696000000.0,
             "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites ; actifs incorporels inclus",
-            "dividendsPaid": 3751000000.0
+            "dividendsPaid": 3751000000.0,
+            "operatingIncome": 21000000000.0,
+            "additionalSourceUrls": [
+              "https://data.sec.gov/api/xbrl/companyfacts/CIK0001403161.json"
+            ]
           },
           {
             "end": "2024-09-30",
@@ -2828,7 +2662,11 @@
             "capitalExpenditure": 1257000000.0,
             "freeCashFlow": 18693000000.0,
             "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites ; actifs incorporels inclus",
-            "dividendsPaid": 4217000000.0
+            "dividendsPaid": 4217000000.0,
+            "operatingIncome": 23595000000.0,
+            "additionalSourceUrls": [
+              "https://data.sec.gov/api/xbrl/companyfacts/CIK0001403161.json"
+            ]
           },
           {
             "end": "2025-09-30",
@@ -2842,7 +2680,11 @@
             "capitalExpenditure": 1482000000.0,
             "freeCashFlow": 21577000000.0,
             "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites ; actifs incorporels inclus",
-            "dividendsPaid": 4634000000.0
+            "dividendsPaid": 4634000000.0,
+            "operatingIncome": 23994000000.0,
+            "additionalSourceUrls": [
+              "https://data.sec.gov/api/xbrl/companyfacts/CIK0001403161.json"
+            ]
           }
         ],
         "method": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
@@ -3007,7 +2849,11 @@
             "capitalExpenditure": 4710000000.0,
             "freeCashFlow": 6629000000.0,
             "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
-            "dividendsPaid": 9041000000.0
+            "dividendsPaid": 9041000000.0,
+            "operatingIncome": 9285000000.0,
+            "additionalSourceUrls": [
+              "https://data.sec.gov/api/xbrl/companyfacts/CIK0000909832.json"
+            ]
           },
           {
             "end": "2025-08-31",
@@ -3021,7 +2867,11 @@
             "capitalExpenditure": 5498000000.0,
             "freeCashFlow": 7837000000.0,
             "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
-            "dividendsPaid": 2183000000.0
+            "dividendsPaid": 2183000000.0,
+            "operatingIncome": 10383000000.0,
+            "additionalSourceUrls": [
+              "https://data.sec.gov/api/xbrl/companyfacts/CIK0000909832.json"
+            ]
           },
           {
             "end": "2026-08-30",
@@ -3035,7 +2885,11 @@
             "capitalExpenditure": 6435000000.0,
             "freeCashFlow": 9390000000.0,
             "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
-            "dividendsPaid": 2458000000.0
+            "dividendsPaid": 2458000000.0,
+            "operatingIncome": 11685000000.0,
+            "additionalSourceUrls": [
+              "https://data.sec.gov/api/xbrl/companyfacts/CIK0000909832.json"
+            ]
           }
         ],
         "method": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
@@ -3561,6 +3415,8 @@
             "freeCashFlow": 44068000000.0,
             "operatingCashFlow": 71113000000.0,
             "capitalExpenditure": 27045000000.0,
+            "shareBasedCompensation": 14027000000.0,
+            "operatingIncome": 46751000000.0,
             "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
           },
           {
@@ -3573,6 +3429,8 @@
             "operatingCashFlow": 91328000000.0,
             "capitalExpenditure": 37256000000.0,
             "dividendsPaid": 5072000000.0,
+            "shareBasedCompensation": 16690000000.0,
+            "operatingIncome": 69380000000.0,
             "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
           },
           {
@@ -3585,6 +3443,8 @@
             "operatingCashFlow": 115800000000.0,
             "capitalExpenditure": 69691000000.0,
             "dividendsPaid": 5324000000.0,
+            "shareBasedCompensation": 20427000000.0,
+            "operatingIncome": 83276000000.0,
             "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
           }
         ],
@@ -3813,96 +3673,63 @@
             "end": "2022-12-31",
             "revenue": 22237000000.0,
             "netIncome": 9930000000.0,
-            "start": "2022-01-01",
-            "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001141391.json",
-            "tags": {
-              "operatingCashFlow": "NetCashProvidedByUsedInOperatingActivities",
-              "capitalExpenditure": "PaymentsToAcquirePropertyPlantAndEquipment",
-              "operatingIncome": "OperatingIncomeLoss",
-              "interestExpense": "InterestExpense",
-              "dividendsPaid": "PaymentsOfDividends",
-              "averageDilutedShares": "WeightedAverageNumberOfDilutedSharesOutstanding"
-            },
+            "sourceUrl": "https://s25.q4cdn.com/479285134/files/doc_financials/2023/q4/4Q23-Mastercard-Earnings-Release.pdf",
+            "tags": {},
+            "operatingIncome": 12264000000.0,
             "operatingCashFlow": 11195000000.0,
             "capitalExpenditure": 442000000.0,
-            "operatingIncome": 12264000000.0,
-            "interestExpense": 471000000.0,
-            "dividendsPaid": 1903000000.0,
-            "averageDilutedShares": 971000000.0,
-            "sharesBasisSource": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001141391.json#2025-02-12",
             "freeCashFlow": 10753000000.0,
+            "dividendsPaid": 1903000000.0,
+            "shareRepurchases": 8753000000.0,
+            "shareBasedCompensation": 295000000.0,
             "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
           },
           {
             "end": "2023-12-31",
             "revenue": 25098000000.0,
             "netIncome": 11195000000.0,
-            "start": "2023-01-01",
-            "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001141391.json",
-            "tags": {
-              "operatingCashFlow": "NetCashProvidedByUsedInOperatingActivities",
-              "capitalExpenditure": "PaymentsToAcquirePropertyPlantAndEquipment",
-              "operatingIncome": "OperatingIncomeLoss",
-              "interestExpense": "InterestExpense",
-              "dividendsPaid": "PaymentsOfDividends",
-              "averageDilutedShares": "WeightedAverageNumberOfDilutedSharesOutstanding"
-            },
+            "sourceUrl": "https://s25.q4cdn.com/479285134/files/doc_financials/2024/q4/4Q24-Mastercard-Earnings-Release.pdf",
+            "tags": {},
+            "operatingIncome": 14008000000.0,
             "operatingCashFlow": 11980000000.0,
             "capitalExpenditure": 371000000.0,
-            "operatingIncome": 14008000000.0,
-            "interestExpense": 575000000.0,
-            "dividendsPaid": 2158000000.0,
-            "averageDilutedShares": 946000000.0,
-            "sharesBasisSource": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001141391.json#2026-02-11",
             "freeCashFlow": 11609000000.0,
+            "dividendsPaid": 2158000000.0,
+            "shareRepurchases": 9032000000.0,
+            "shareBasedCompensation": 460000000.0,
             "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
           },
           {
             "end": "2024-12-31",
             "revenue": 28167000000.0,
             "netIncome": 12874000000.0,
-            "start": "2024-01-01",
-            "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001141391.json",
-            "tags": {
-              "operatingCashFlow": "NetCashProvidedByUsedInOperatingActivities",
-              "capitalExpenditure": "PaymentsToAcquirePropertyPlantAndEquipment",
-              "operatingIncome": "OperatingIncomeLoss",
-              "dividendsPaid": "PaymentsOfDividends",
-              "averageDilutedShares": "WeightedAverageNumberOfDilutedSharesOutstanding"
-            },
+            "sourceUrl": "https://s25.q4cdn.com/479285134/files/doc_financials/2025/q4/4Q25-Mastercard-Earnings-Release.pdf",
+            "tags": {},
+            "operatingIncome": 15582000000.0,
             "operatingCashFlow": 14780000000.0,
             "capitalExpenditure": 474000000.0,
-            "operatingIncome": 15582000000.0,
-            "dividendsPaid": 2448000000.0,
-            "averageDilutedShares": 927000000.0,
-            "sharesBasisSource": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001141391.json#2026-02-11",
             "freeCashFlow": 14306000000.0,
+            "dividendsPaid": 2448000000.0,
+            "shareRepurchases": 10954000000.0,
+            "shareBasedCompensation": 526000000.0,
             "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
           },
           {
             "end": "2025-12-31",
             "revenue": 32791000000.0,
             "netIncome": 14968000000.0,
-            "start": "2025-01-01",
-            "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001141391.json",
-            "tags": {
-              "operatingCashFlow": "NetCashProvidedByUsedInOperatingActivities",
-              "capitalExpenditure": "PaymentsToAcquirePropertyPlantAndEquipment",
-              "operatingIncome": "OperatingIncomeLoss",
-              "dividendsPaid": "PaymentsOfDividends",
-              "averageDilutedShares": "WeightedAverageNumberOfDilutedSharesOutstanding"
-            },
+            "sourceUrl": "https://s25.q4cdn.com/479285134/files/doc_financials/2025/q4/4Q25-Mastercard-Earnings-Release.pdf",
+            "tags": {},
+            "operatingIncome": 18897000000.0,
             "operatingCashFlow": 17648000000.0,
             "capitalExpenditure": 489000000.0,
-            "operatingIncome": 18897000000.0,
-            "dividendsPaid": 2756000000.0,
-            "averageDilutedShares": 906000000.0,
-            "sharesBasisSource": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001141391.json#2026-02-11",
             "freeCashFlow": 17159000000.0,
+            "dividendsPaid": 2756000000.0,
+            "shareRepurchases": 11727000000.0,
+            "shareBasedCompensation": 597000000.0,
             "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
           }
         ],
-        "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001141391.json",
         "method": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
         "accountsEndAtCollection": "2026-06-30"
       },
@@ -4144,7 +3971,10 @@
             "averageDilutedShares": 459100000.0,
             "sharesBasisSource": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000796343.json#2026-01-15",
             "freeCashFlow": 6942000000.0,
-            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
+            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
+            "additionalSourceUrls": [
+              "https://data.sec.gov/api/xbrl/companyfacts/CIK0000796343.json"
+            ]
           },
           {
             "end": "2024-11-29",
@@ -4164,7 +3994,10 @@
             "averageDilutedShares": 449700000.0,
             "sharesBasisSource": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000796343.json#2026-01-15",
             "freeCashFlow": 7873000000.0,
-            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
+            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
+            "additionalSourceUrls": [
+              "https://data.sec.gov/api/xbrl/companyfacts/CIK0000796343.json"
+            ]
           },
           {
             "end": "2025-11-28",
@@ -4184,7 +4017,10 @@
             "averageDilutedShares": 427000000.0,
             "sharesBasisSource": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000796343.json#2026-01-15",
             "freeCashFlow": 9852000000.0,
-            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
+            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
+            "additionalSourceUrls": [
+              "https://data.sec.gov/api/xbrl/companyfacts/CIK0000796343.json"
+            ]
           }
         ],
         "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000796343.json",
@@ -4431,109 +4267,63 @@
             "end": "2023-01-31",
             "revenue": 31352000000.0,
             "netIncome": 208000000.0,
-            "start": "2022-02-01",
-            "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001108524.json",
-            "tags": {
-              "operatingCashFlow": "NetCashProvidedByUsedInOperatingActivities",
-              "capitalExpenditure": "PaymentsToAcquirePropertyPlantAndEquipment",
-              "operatingIncome": "OperatingIncomeLoss",
-              "dividendsPaid": "PaymentsOfDividends",
-              "averageDilutedShares": "WeightedAverageNumberOfDilutedSharesOutstanding"
-            },
+            "sourceUrl": "https://s205.q4cdn.com/626266368/files/doc_financials/2024/q4/CRM-Q4-FY24-Earnings-Press-Release-w-financials.pdf",
+            "tags": {},
+            "operatingIncome": 1030000000.0,
             "operatingCashFlow": 7111000000.0,
             "capitalExpenditure": 798000000.0,
-            "operatingIncome": 1030000000.0,
-            "dividendsPaid": 0.0,
-            "averageDilutedShares": 997000000.0,
-            "sharesBasisSource": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001108524.json#2025-03-05",
             "freeCashFlow": 6313000000.0,
+            "shareRepurchases": 4000000000.0,
+            "shareBasedCompensation": 3279000000.0,
             "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
           },
           {
             "end": "2024-01-31",
             "revenue": 34857000000.0,
             "netIncome": 4136000000.0,
-            "start": "2023-02-01",
-            "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001108524.json",
-            "tags": {
-              "operatingCashFlow": "NetCashProvidedByUsedInOperatingActivities",
-              "capitalExpenditure": "PaymentsToAcquirePropertyPlantAndEquipment",
-              "operatingIncome": "OperatingIncomeLoss",
-              "dividendsPaid": "PaymentsOfDividends",
-              "averageDilutedShares": "WeightedAverageNumberOfDilutedSharesOutstanding"
-            },
+            "sourceUrl": "https://s205.q4cdn.com/626266368/files/doc_financials/2025/q4/CRM-Q4-FY25-Earnings-Press-Release-w-financials.pdf",
+            "tags": {},
+            "operatingIncome": 5011000000.0,
             "operatingCashFlow": 10234000000.0,
             "capitalExpenditure": 736000000.0,
-            "operatingIncome": 5011000000.0,
-            "dividendsPaid": 0.0,
-            "averageDilutedShares": 984000000.0,
-            "sharesBasisSource": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001108524.json#2026-03-02",
             "freeCashFlow": 9498000000.0,
+            "dividendsPaid": 0.0,
+            "shareRepurchases": 7620000000.0,
+            "shareBasedCompensation": 2787000000.0,
             "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
           },
           {
             "end": "2025-01-31",
             "revenue": 37895000000.0,
             "netIncome": 6197000000.0,
-            "start": "2024-02-01",
-            "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001108524.json",
-            "tags": {
-              "operatingCashFlow": "NetCashProvidedByUsedInOperatingActivities",
-              "capitalExpenditure": "PaymentsToAcquirePropertyPlantAndEquipment",
-              "operatingIncome": "OperatingIncomeLoss",
-              "dividendsPaid": "PaymentsOfDividends",
-              "averageDilutedShares": "WeightedAverageNumberOfDilutedSharesOutstanding"
-            },
+            "sourceUrl": "https://s205.q4cdn.com/626266368/files/doc_financials/2026/q4/CRM-Q4-FY26-Earnings-Press-Release.pdf",
+            "tags": {},
+            "operatingIncome": 7205000000.0,
             "operatingCashFlow": 13092000000.0,
             "capitalExpenditure": 658000000.0,
-            "operatingIncome": 7205000000.0,
-            "dividendsPaid": 1537000000.0,
-            "averageDilutedShares": 974000000.0,
-            "sharesBasisSource": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001108524.json#2026-03-02",
             "freeCashFlow": 12434000000.0,
+            "dividendsPaid": 1537000000.0,
+            "shareRepurchases": 7829000000.0,
+            "shareBasedCompensation": 3183000000.0,
             "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
           },
           {
             "end": "2026-01-31",
             "revenue": 41525000000.0,
             "netIncome": 7457000000.0,
-            "start": "2025-02-01",
-            "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001108524.json",
-            "tags": {
-              "operatingCashFlow": "NetCashProvidedByUsedInOperatingActivities",
-              "capitalExpenditure": "PaymentsToAcquirePropertyPlantAndEquipment",
-              "operatingIncome": "OperatingIncomeLoss",
-              "dividendsPaid": "PaymentsOfDividends",
-              "averageDilutedShares": "WeightedAverageNumberOfDilutedSharesOutstanding"
-            },
+            "sourceUrl": "https://s205.q4cdn.com/626266368/files/doc_financials/2026/q4/CRM-Q4-FY26-Earnings-Press-Release.pdf",
+            "tags": {},
+            "operatingIncome": 8331000000.0,
             "operatingCashFlow": 14996000000.0,
             "capitalExpenditure": 594000000.0,
-            "operatingIncome": 8331000000.0,
-            "dividendsPaid": 1587000000.0,
-            "averageDilutedShares": 956000000.0,
-            "sharesBasisSource": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001108524.json#2026-03-02",
             "freeCashFlow": 14402000000.0,
+            "dividendsPaid": 1587000000.0,
+            "shareRepurchases": 12596000000.0,
+            "shareBasedCompensation": 3509000000.0,
             "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
           }
         ],
-        "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001108524.json",
         "method": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
-        "balance": {
-          "asOf": "2026-07-31",
-          "cash": 8310000000.0,
-          "debt": 39288000000.0,
-          "netDebt": 30978000000.0,
-          "definition": "Dette financière publiée, hors locations, moins trésorerie et équivalents ; placements exclus",
-          "tags": {
-            "cash": "CashAndCashEquivalentsAtCarryingValue",
-            "debt": [
-              "LongTermDebtCurrent",
-              "LongTermDebtNoncurrent"
-            ]
-          },
-          "observedAt": "2026-10-12",
-          "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001108524.json"
-        },
         "accountsEndAtCollection": "2026-07-31"
       },
       "balanceHistory": [
@@ -4783,93 +4573,59 @@
             "end": "2022-12-31",
             "revenue": 7245000000.0,
             "netIncome": 325000000.0,
-            "start": "2022-01-01",
-            "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001373715.json",
-            "tags": {
-              "operatingCashFlow": "NetCashProvidedByUsedInOperatingActivities",
-              "capitalExpenditure": "PaymentsToAcquirePropertyPlantAndEquipment",
-              "operatingIncome": "OperatingIncomeLoss",
-              "interestExpense": "InterestExpense",
-              "averageDilutedShares": "WeightedAverageNumberOfDilutedSharesOutstanding"
-            },
+            "sourceUrl": "https://s205.q4cdn.com/916135447/files/doc_financials/2023/q4/Q4-2023-Earnings-Release.pdf",
+            "tags": {},
+            "operatingIncome": 355000000.0,
             "operatingCashFlow": 2723000000.0,
             "capitalExpenditure": 550000000.0,
-            "operatingIncome": 355000000.0,
-            "interestExpense": 27000000.0,
-            "averageDilutedShares": 203535000.0,
-            "sharesBasisSource": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001373715.json#2025-01-30",
             "freeCashFlow": 2173000000.0,
+            "shareBasedCompensation": 1401000000.0,
             "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
           },
           {
             "end": "2023-12-31",
             "revenue": 8971000000.0,
             "netIncome": 1731000000.0,
-            "start": "2023-01-01",
-            "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001373715.json",
-            "tags": {
-              "operatingCashFlow": "NetCashProvidedByUsedInOperatingActivities",
-              "capitalExpenditure": "PaymentsToAcquirePropertyPlantAndEquipment",
-              "operatingIncome": "OperatingIncomeLoss",
-              "averageDilutedShares": "WeightedAverageNumberOfDilutedSharesOutstanding"
-            },
+            "sourceUrl": "https://s205.q4cdn.com/916135447/files/doc_financials/2024/q4/Q4-2024-Earnings-Release.pdf",
+            "tags": {},
+            "operatingIncome": 762000000.0,
             "operatingCashFlow": 3398000000.0,
             "capitalExpenditure": 694000000.0,
-            "operatingIncome": 762000000.0,
-            "averageDilutedShares": 1027953000.0,
-            "sharesBasisSource": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001373715.json#2026-01-29",
             "freeCashFlow": 2704000000.0,
+            "shareRepurchases": 538000000.0,
+            "shareBasedCompensation": 1604000000.0,
             "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
           },
           {
             "end": "2024-12-31",
             "revenue": 10984000000.0,
             "netIncome": 1425000000.0,
-            "start": "2024-01-01",
-            "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001373715.json",
-            "tags": {
-              "operatingCashFlow": "NetCashProvidedByUsedInOperatingActivities",
-              "capitalExpenditure": "PaymentsToAcquirePropertyPlantAndEquipment",
-              "operatingIncome": "OperatingIncomeLoss",
-              "averageDilutedShares": "WeightedAverageNumberOfDilutedSharesOutstanding"
-            },
+            "sourceUrl": "https://s205.q4cdn.com/916135447/files/doc_financials/2025/q4/ServiceNow-Reports-Fourth-Quarter-and-Full-Year-2025-Financial-Results.pdf",
+            "tags": {},
+            "operatingIncome": 1364000000.0,
             "operatingCashFlow": 4267000000.0,
             "capitalExpenditure": 852000000.0,
-            "operatingIncome": 1364000000.0,
-            "averageDilutedShares": 1042113000.0,
-            "sharesBasisSource": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001373715.json#2026-01-29",
             "freeCashFlow": 3415000000.0,
+            "shareRepurchases": 696000000.0,
+            "shareBasedCompensation": 1746000000.0,
             "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
           },
           {
             "end": "2025-12-31",
             "revenue": 13278000000.0,
             "netIncome": 1748000000.0,
-            "start": "2025-01-01",
-            "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001373715.json",
-            "tags": {
-              "operatingCashFlow": "NetCashProvidedByUsedInOperatingActivities",
-              "capitalExpenditure": "PaymentsToAcquirePropertyPlantAndEquipment",
-              "operatingIncome": "OperatingIncomeLoss",
-              "averageDilutedShares": "WeightedAverageNumberOfDilutedSharesOutstanding"
-            },
+            "sourceUrl": "https://s205.q4cdn.com/916135447/files/doc_financials/2025/q4/ServiceNow-Reports-Fourth-Quarter-and-Full-Year-2025-Financial-Results.pdf",
+            "tags": {},
+            "operatingIncome": 1824000000.0,
             "operatingCashFlow": 5444000000.0,
             "capitalExpenditure": 868000000.0,
-            "operatingIncome": 1824000000.0,
-            "averageDilutedShares": 1046691000.0,
-            "sharesBasisSource": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001373715.json#2026-01-29",
             "freeCashFlow": 4576000000.0,
+            "shareRepurchases": 1840000000.0,
+            "shareBasedCompensation": 1955000000.0,
             "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
           }
         ],
-        "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001373715.json",
         "method": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
-        "shares": {
-          "asOf": "2026-06-30",
-          "outstanding": 1033862000.0,
-          "observedAt": "2026-10-12",
-          "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001373715.json"
-        },
         "accountsEndAtCollection": "2026-06-30"
       },
       "quarters": [
@@ -5120,7 +4876,10 @@
             "averageDilutedShares": 283000000.0,
             "sharesBasisSource": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000896878.json#2025-09-03",
             "freeCashFlow": 4836000000.0,
-            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
+            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
+            "additionalSourceUrls": [
+              "https://data.sec.gov/api/xbrl/companyfacts/CIK0000896878.json"
+            ]
           },
           {
             "end": "2024-07-31",
@@ -5142,7 +4901,10 @@
             "averageDilutedShares": 284000000.0,
             "sharesBasisSource": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000896878.json#2026-09-09",
             "freeCashFlow": 4693000000.0,
-            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
+            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
+            "additionalSourceUrls": [
+              "https://data.sec.gov/api/xbrl/companyfacts/CIK0000896878.json"
+            ]
           },
           {
             "end": "2025-07-31",
@@ -5164,7 +4926,10 @@
             "averageDilutedShares": 283000000.0,
             "sharesBasisSource": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000896878.json#2026-09-09",
             "freeCashFlow": 6123000000.0,
-            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
+            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
+            "additionalSourceUrls": [
+              "https://data.sec.gov/api/xbrl/companyfacts/CIK0000896878.json"
+            ]
           },
           {
             "end": "2026-07-31",
@@ -5186,7 +4951,10 @@
             "averageDilutedShares": 277000000.0,
             "sharesBasisSource": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000896878.json#2026-09-09",
             "freeCashFlow": 8663000000.0,
-            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
+            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
+            "additionalSourceUrls": [
+              "https://data.sec.gov/api/xbrl/companyfacts/CIK0000896878.json"
+            ]
           }
         ],
         "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000896878.json",
@@ -5491,7 +5259,10 @@
             "averageDilutedShares": 4350000000.0,
             "sharesBasisSource": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000021344.json#2025-02-20",
             "freeCashFlow": 9534000000.0,
-            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
+            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
+            "additionalSourceUrls": [
+              "https://data.sec.gov/api/xbrl/companyfacts/CIK0000021344.json"
+            ]
           },
           {
             "end": "2023-12-31",
@@ -5515,7 +5286,10 @@
             "averageDilutedShares": 4339000000.0,
             "sharesBasisSource": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000021344.json#2026-02-20",
             "freeCashFlow": 9747000000.0,
-            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
+            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
+            "additionalSourceUrls": [
+              "https://data.sec.gov/api/xbrl/companyfacts/CIK0000021344.json"
+            ]
           },
           {
             "end": "2024-12-31",
@@ -5539,7 +5313,10 @@
             "averageDilutedShares": 4320000000.0,
             "sharesBasisSource": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000021344.json#2026-02-20",
             "freeCashFlow": 4741000000.0,
-            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
+            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
+            "additionalSourceUrls": [
+              "https://data.sec.gov/api/xbrl/companyfacts/CIK0000021344.json"
+            ]
           },
           {
             "end": "2025-12-31",
@@ -5563,7 +5340,10 @@
             "averageDilutedShares": 4313000000.0,
             "sharesBasisSource": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000021344.json#2026-02-20",
             "freeCashFlow": 5296000000.0,
-            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
+            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
+            "additionalSourceUrls": [
+              "https://data.sec.gov/api/xbrl/companyfacts/CIK0000021344.json"
+            ]
           }
         ],
         "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000021344.json",
@@ -5811,100 +5591,63 @@
             "end": "2022-12-31",
             "revenue": 86392000000.0,
             "netIncome": 8910000000.0,
-            "start": "2021-12-26",
-            "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000077476.json",
-            "tags": {
-              "operatingCashFlow": "NetCashProvidedByUsedInOperatingActivities",
-              "capitalExpenditure": "PaymentsToAcquireProductiveAssets",
-              "operatingIncome": "OperatingIncomeLoss",
-              "interestExpense": "InterestExpense",
-              "dividendsPaid": "PaymentsOfDividends",
-              "averageDilutedShares": "WeightedAverageNumberOfDilutedSharesOutstanding"
-            },
+            "sourceUrl": "https://investors.pepsico.com/docs/pepsico-5v9wci20/media/Files/investors/q4-2023-earnings-release.pdf",
+            "tags": {},
+            "operatingIncome": 11512000000.0,
             "operatingCashFlow": 10811000000.0,
             "capitalExpenditure": 5207000000.0,
-            "operatingIncome": 11512000000.0,
-            "interestExpense": 939000000.0,
-            "dividendsPaid": 6172000000.0,
-            "averageDilutedShares": 1387000000.0,
-            "sharesBasisSource": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000077476.json#2025-02-04",
             "freeCashFlow": 5604000000.0,
+            "dividendsPaid": 6172000000.0,
+            "shareRepurchases": 1500000000.0,
+            "shareBasedCompensation": 343000000.0,
             "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
           },
           {
             "end": "2023-12-30",
             "revenue": 91471000000.0,
             "netIncome": 9074000000.0,
-            "start": "2023-01-01",
-            "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000077476.json",
-            "tags": {
-              "operatingCashFlow": "NetCashProvidedByUsedInOperatingActivities",
-              "capitalExpenditure": "PaymentsToAcquireProductiveAssets",
-              "operatingIncome": "OperatingIncomeLoss",
-              "interestExpense": "InterestExpense",
-              "dividendsPaid": "PaymentsOfDividends",
-              "averageDilutedShares": "WeightedAverageNumberOfDilutedSharesOutstanding"
-            },
+            "sourceUrl": "https://investors.pepsico.com/docs/pepsico-5v9wci20/media/Files/investors/q4-2024-earnings-release.pdf",
+            "tags": {},
+            "operatingIncome": 11986000000.0,
             "operatingCashFlow": 13442000000.0,
             "capitalExpenditure": 5518000000.0,
-            "operatingIncome": 11986000000.0,
-            "interestExpense": 819000000.0,
-            "dividendsPaid": 6682000000.0,
-            "averageDilutedShares": 1383000000.0,
-            "sharesBasisSource": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000077476.json#2026-02-03",
             "freeCashFlow": 7924000000.0,
+            "dividendsPaid": 6682000000.0,
+            "shareRepurchases": 1000000000.0,
+            "shareBasedCompensation": 380000000.0,
             "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
           },
           {
             "end": "2024-12-28",
             "revenue": 91854000000.0,
             "netIncome": 9578000000.0,
-            "start": "2023-12-31",
-            "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000077476.json",
-            "tags": {
-              "operatingCashFlow": "NetCashProvidedByUsedInOperatingActivities",
-              "capitalExpenditure": "PaymentsToAcquireProductiveAssets",
-              "operatingIncome": "OperatingIncomeLoss",
-              "interestExpense": "InterestExpense",
-              "dividendsPaid": "PaymentsOfDividends",
-              "averageDilutedShares": "WeightedAverageNumberOfDilutedSharesOutstanding"
-            },
+            "sourceUrl": "https://investors.pepsico.com/docs/pepsico-5v9wci20/media/Files/investors/q4-2025-earnings-release.pdf",
+            "tags": {},
+            "operatingIncome": 12887000000.0,
             "operatingCashFlow": 12507000000.0,
             "capitalExpenditure": 5318000000.0,
-            "operatingIncome": 12887000000.0,
-            "interestExpense": 919000000.0,
-            "dividendsPaid": 7229000000.0,
-            "averageDilutedShares": 1378000000.0,
-            "sharesBasisSource": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000077476.json#2026-02-03",
             "freeCashFlow": 7189000000.0,
+            "dividendsPaid": 7229000000.0,
+            "shareRepurchases": 1000000000.0,
+            "shareBasedCompensation": 362000000.0,
             "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
           },
           {
             "end": "2025-12-27",
             "revenue": 93925000000.0,
             "netIncome": 8240000000.0,
-            "start": "2024-12-29",
-            "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000077476.json",
-            "tags": {
-              "operatingCashFlow": "NetCashProvidedByUsedInOperatingActivities",
-              "capitalExpenditure": "PaymentsToAcquireProductiveAssets",
-              "operatingIncome": "OperatingIncomeLoss",
-              "interestExpense": "InterestExpense",
-              "dividendsPaid": "PaymentsOfDividends",
-              "averageDilutedShares": "WeightedAverageNumberOfDilutedSharesOutstanding"
-            },
+            "sourceUrl": "https://investors.pepsico.com/docs/pepsico-5v9wci20/media/Files/investors/q4-2025-earnings-release.pdf",
+            "tags": {},
+            "operatingIncome": 11498000000.0,
             "operatingCashFlow": 12087000000.0,
             "capitalExpenditure": 4415000000.0,
-            "operatingIncome": 11498000000.0,
-            "interestExpense": 1121000000.0,
-            "dividendsPaid": 7638000000.0,
-            "averageDilutedShares": 1373000000.0,
-            "sharesBasisSource": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000077476.json#2026-02-03",
             "freeCashFlow": 7672000000.0,
+            "dividendsPaid": 7638000000.0,
+            "shareRepurchases": 1000000000.0,
+            "shareBasedCompensation": 288000000.0,
             "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
           }
         ],
-        "sourceUrl": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000077476.json",
         "method": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
         "accountsEndAtCollection": "2026-09-05"
       },

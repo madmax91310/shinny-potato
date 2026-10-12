@@ -13,6 +13,42 @@ TODAY = dt.date(2026, 10, 12)
 
 
 class DecisionTests(unittest.TestCase):
+    def test_pdf_cash_statement_isolation_and_annual_columns(self):
+        from company_decision import round2_publication_decision
+        annual={'end':'2025-12-31','previousEnd':'2024-12-31','revenue':120e6,'previousRevenue':100e6,'netIncome':12e6,'previousNetIncome':10e6,'durationMonths':12,'operatingIncome':20e6,'previousOperatingIncome':18e6}
+        ref={'end':'2025-12-31','revenue':120e6,'netIncome':12e6,'sourceUrl':'https://issuer.test/report.pdf'}
+        text="""Summary 2026 2025
+Net income 99 98
+Condensed Consolidated Statements of Cash Flows
+(in millions)
+Three Months Ended Year Ended
+2025 2024 2025 2024
+Cash flows from operating activities:
+Net cash provided by operating activities 9 8 42 30
+Purchases of property and equipment (3) (2) (12) (10)
+Stock-based compensation 1 1 4 3
+Repurchases of common stock (2) (1) (6) (5)
+Cash, cash equivalents at end of period 10 9 10 9
+Consolidated Statements of Comprehensive Income
+Net cash provided by operating activities 999 999 999 999
+"""
+        with patch('company_publications.get',return_value=b'%PDF'),patch('company_publications.sections',return_value=[text]),patch('company_round2_publications.parse',return_value=[annual]):
+            d=round2_publication_decision({'id':'servicenow'},{'annual':ref,'history':{'years':[ref]}},TODAY)
+        self.assertEqual(d['years'][-1]['freeCashFlow'],30e6)
+        self.assertEqual(d['years'][-1]['shareBasedCompensation'],4e6)
+        self.assertEqual(d['years'][-1]['shareRepurchases'],6e6)
+
+    def test_extra_cash_components_use_exact_annual_periods(self):
+        body=accounts()
+        for tag,val in [('PaymentsForRepurchaseOfCommonStock',10),('ShareBasedCompensation',3)]:
+            body['facts']['us-gaap'][tag]={'units':{'USD':[row('2025-01-01','2025-12-31',val)]}}
+        company={'annual':{'end':'2025-12-31','revenue':120,'netIncome':8}}
+        p={'id':'test','cik':'0000000001','currency':'USD'}
+        r=sec_decision(body,p,company,TODAY)['years'][-1]
+        self.assertEqual(r['shareRepurchases'],10); self.assertEqual(r['shareBasedCompensation'],3)
+        body['facts']['us-gaap']['ShareBasedCompensation']['units']['USD'][0]['start']='2025-10-01'
+        self.assertNotIn('shareBasedCompensation',sec_decision(body,p,company,TODAY)['years'][-1])
+
     def test_amd_standard_sec_capex_does_not_become_consolidated_fcf(self):
         from refresh_company_analysis import parse_accounts
         body=accounts()
