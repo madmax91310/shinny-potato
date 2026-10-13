@@ -88,9 +88,17 @@ export function calculateScenario(mode,input) {
  if(mode==='delay') return {...s,a:grow(s.years,s.feeA),b:grow(s.years-s.delay,s.feeA)}
  return {...s,a:grow(s.years,s.feeA),b:grow(s.years,s.feeB)}
 }
+function resourceTable(topic) {
+ const funds=topic.products.map((isin,i)=>({isin,name:getInstrumentName(isin),record:AUTOMATED_ETF[isin],description:topic.descriptions[i]}))
+ if(funds.some(f=>!f.record?.characteristics || !Number.isFinite(f.record.characteristics.terPct))) throw new Error('Caractéristiques du produit absentes.')
+ return {columns:funds.map(f=>f.name),rows:[['ISIN',...funds.map(f=>f.isin)],['Exposition',...funds.map(f=>f.description)],['Frais annuels',...funds.map(f=>formatEtfTer(f.isin)+' %')]],
+ sources:funds.map(f=>source(f.name,f.record.sourceUrl,f.record.characteristics.checkedAt)),
+ notes:funds.filter(f=>Number.isFinite(f.record.characteristics.annualSwapRatePct)).map(f=>f.name+' : taux de swap annuel '+pct(f.record.characteristics.annualSwapRatePct)+' en supplément des frais de gestion.')}
+}
 export function buildSheet(id,settings={}) {
  const topic=topicById(id)
  let table={columns:topic.columns ?? [],rows:(topic.rows ?? []).map(row=>[...row]),sources:[],notes:[]}
+ if(topic.mode==='resources') table=resourceTable(topic)
  if(topic.mode==='funds') table=fundTable(topic,settings.isins)
  if(topic.mode==='indices') table=indexTable(topic)
  if(topic.id==='pea-cto') {
@@ -139,6 +147,7 @@ export function buildSheet(id,settings={}) {
  return {...topic,...table,sources:unique,warnings,blocked:unique.some(s=>s.reviewRequired || !s.url || !s.checkedAt),notes:[...table.notes],takeaway:topic.takeaway}
 }
 export function buildTweet(sheet) {
+ if(sheet.mode==='resources') return [sheet.hook+' 👇','🔖 Sauvegarde ce tweet',...sheet.columns.map((name,i)=>[name,...sheet.rows.map(row=>row[0]+' : '+row[i+1])].join('\n')),sheet.takeaway,...sheet.notes,'💬 '+sheet.question].join('\n\n')
  if(sheet.mode==='funds') return buildFundTweet(sheet)
  const editorial=PRACTICAL_EDITORIAL[sheet.id]
  if(!editorial) throw new Error(`Texte de fiche manquant : ${sheet.id}`)

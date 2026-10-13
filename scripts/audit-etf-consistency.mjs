@@ -20,6 +20,7 @@
 import { ETFS } from "../src/data/etf-cards.js";
 import { DEFAULT_THEMES } from "../src/data/etf-themes.js";
 import { FAMILIES } from "../src/data/index-comparisons.js";
+import { DATA_CATALOG } from "../src/data/catalog.js";
 import { ETF_TER_BY_ISIN } from "../src/data/etf-ter.js";
 
 // Normalise "0,20%", "0,20 %", "0,06" (etf-tweets, pas de signe %) vers un nombre — la seule
@@ -52,6 +53,14 @@ FAMILIES.forEach((family) => {
   });
 });
 
+// Historical-only instruments also publish their fees in the searchable data library.
+// Count that real consumer, while still rejecting fee records absent from every consumer.
+const editorialIsins = new Set(entries.map(e => e.isin));
+for (const row of DATA_CATALOG.filter(r => r.type === 'instrument' && !editorialIsins.has(r.id))) {
+  const fee = row.fields.find(f => f.registry === 'src/data/etf-ter.js');
+  if (fee) entries.push({ isin: row.id, source: "Bibliothèque de données", name: row.name, terRaw: fee.value, terNum: parseTer(fee.value) });
+}
+
 const byIsin = new Map();
 entries.forEach((e) => {
   if (!byIsin.has(e.isin)) byIsin.set(e.isin, []);
@@ -75,7 +84,7 @@ for (const isin of Object.keys(ETF_TER_BY_ISIN)) {
   }
 }
 
-console.log(`${entries.length} lignes de fonds collectées (Fiches ETF: ${ETFS.length}, Tweets ETF: ${entries.filter((e) => e.source === "Tweets ETF").length}, Comparateur d'indices: ${entries.filter((e) => e.source === "Comparateur d'indices").length}).`);
+console.log(`${entries.length} lignes de fonds collectées (Fiches ETF: ${ETFS.length}, Tweets ETF: ${entries.filter((e) => e.source === "Tweets ETF").length}, Comparateur d'indices: ${entries.filter((e) => e.source === "Comparateur d'indices").length}, Bibliothèque de données: ${entries.filter(e => e.source === "Bibliothèque de données").length}).`);
 console.log(`${byIsin.size} ISIN distincts, dont ${[...byIsin.values()].filter((v) => v.length > 1).length} présents dans plusieurs sources.\n`);
 
 const TOLERANCE = 0.01;

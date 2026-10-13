@@ -1,4 +1,5 @@
 import MONTHLY_DUEL_RETURNS from './monthly-duel-returns.json' with {type:'json'};
+import { RESOURCE_DUEL_CHOICES } from './resource-selections.js'
 import { NON_BOND_SHEETS } from './non-bond-expansion.js';
 import annualFx from './annual-fx.json' with { type: 'json' };
 import { ASSETS } from './portfolio-assets.js'
@@ -93,6 +94,7 @@ const extraFunds = [
  ['europe-construction','DE000A0H08F7','Construction et matériaux européens','construction-europe'],
  ['em-small-cap','IE00B3F81G20','Petites capitalisations émergentes','em-smallcap','complement'],
  ['copper-miners','IE0003Z9E2Y3','Mines de cuivre','copper-miners'],
+  ...RESOURCE_DUEL_CHOICES,
   ['world_multifactor_ishares', 'IE00BZ0PKT83', 'World multifactoriel', 'multifactor', 'complement'],
   ['or_ishares', 'IE00B4ND3602', 'Or physique (ETC)', 'gold', 'complement'],
   ['em_ex_china', 'IE00BMG6Z448', 'Émergents hors Chine', 'em-ex-china', 'complement'],
@@ -103,7 +105,7 @@ const extraFunds = [
   const series = MONTHLY_DUEL_RETURNS[isin] ?? getInstrumentDuelSeries(isin)
   if (!series?.source) throw new Error(`Historique de part absent : ${isin}`)
   return { id, isin, label, exposure, name: getInstrumentName(isin), role, group: ROLES[role],
-    ...series, note: series.note ?? (exposure === 'multifactor' ? 'Rendements NAV de la part exacte, revenus réinvestis. Le fonds a changé d’indice : cet historique ne décrit pas uniquement la stratégie STOXX actuelle.' : exposure === 'gold' ? 'Rendements de l’ETC adossé à de l’or physique, sans revenu distribué ; années complètes communes.' : 'Rendements de la part exacte, revenus réinvestis ; seules les années complètes disponibles sont comparées.') }
+    ...series, note: series.note ?? (['copper','platinum','palladium'].includes(exposure) ? 'Rendements NAV de l’ETC exact, frais inclus, en USD. '+(exposure==='copper'?'Contrats à terme via swap ; renouvellement des contrats et frais de swap distincts.':'Adossé à du métal physique ; sans revenu distribué.') : exposure === 'multifactor' ? 'Rendements NAV de la part exacte, revenus réinvestis. Le fonds a changé d’indice : cet historique ne décrit pas uniquement la stratégie STOXX actuelle.' : exposure === 'gold' ? 'Rendements de l’ETC adossé à de l’or physique, sans revenu distribué ; années complètes communes.' : 'Rendements de la part exacte, revenus réinvestis ; seules les années complètes disponibles sont comparées.') }
 })
 const stoxxIsin = 'FR0011550193'
 const stoxxEvidence = COMPARATOR_RETURN_EVIDENCE[stoxxIsin]

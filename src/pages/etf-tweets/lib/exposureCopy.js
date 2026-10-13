@@ -10,6 +10,8 @@ const ACWI = 'Il couvre les grandes et moyennes entreprises des pays développé
 const EURO50 = 'Il suit 50 grandes entreprises de la zone euro. Son périmètre est plus restreint que celui du MSCI Europe ou du STOXX Europe 600 : le Royaume-Uni et la Suisse n’en font pas partie.'
 const TECH_EUROPE = 'Il cible les entreprises technologiques du STOXX Europe 600. Tu investis dans un secteur européen précis, plutôt que dans l’ensemble du marché européen.'
 export const ETF_EXPOSURE_COPY = {
+ IE00B4LHWP62:'Il est adossé à du platine physique. Tu détiens un ETC, pas des actions minières ni un ETF UCITS. Il ne distribue pas de revenu.',
+ IE00B4556L06:'Il est adossé à du palladium physique. Tu détiens un ETC, pas des actions minières ni un ETF UCITS. Il ne distribue pas de revenu.',
  ...Object.fromEntries(NON_BOND_SHEETS.map(r=>[r.isin,r.whatIs])),
  ...Object.fromEntries(LIFESTRATEGY_SHEETS.map(r=>{const n=Number(r.id.replace('lifestrategy',''));return [r.isin,`Il vise environ ${n} % d’actions mondiales et ${100-n} % d’obligations, via plusieurs ETF Vanguard. Le gestionnaire rééquilibre les poches et les revenus restent investis dans cette part.`]})),
   IE00BM67HV82: 'Il suit le secteur industriel du MSCI World, avec des grandes et moyennes entreprises des pays développés. Il couvre notamment les équipements, les transports et les services aux entreprises.',

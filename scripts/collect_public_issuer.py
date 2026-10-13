@@ -107,7 +107,14 @@ def globalx(text, share, now):
     starts=[i for i,t in enumerate(tokens[:-1]) if t=='Key Information' and tokens[i+1].startswith('As of ')]
     start=only(starts,'Global X dated key-information block'); end=tokens.index('Distributions',start)
     block='\n'.join(tokens[start:end])
-    if only(re.findall(r'Primary ISIN\n([A-Z0-9]{12})',block),'Global X ISIN') != share['isin']:
+    # Responsive markup may repeat the same trading identity. Conflicting
+    # identities still fail; identical repeated labels are one observation.
+    identities = list(dict.fromkeys(re.findall(r'Primary ISIN\n([^\n]+)',block)))
+    if not identities:
+        # Streaming HTML can omit the trading identity while serving key facts.
+        # Retry another public route; never apply figures without the exact ISIN.
+        raise ResponseFormatError('Incomplete Global X public HTML: primary ISIN missing')
+    if only(identities,'Global X ISIN') != share['isin']:
         reject('Wrong Global X exact share')
     stamp=document_date(only(re.findall(r'As of (\d+ [A-Za-z]+ \d{4})',block),'Global X date'),now)
     ter=float(only(re.findall(r'Total Expense Ratio\n([\d.]+)\n%',block),'Global X fee'))
@@ -167,12 +174,12 @@ def collect_one(share, now):
                 reject('Unexpected Global X UCITS official source')
             try:
                 text=public_page(url)
+                result=globalx(text,{**share,'sourceUrl':url},now)
             except (urllib.error.URLError,TimeoutError,ResponseFormatError) as error:
                 attempts.append({'url':url,'reason':str(error)})
                 if url==urls[-1]:raise
                 continue
             # A wrong identity, stale date or changed layout never selects another route.
-            result=globalx(text,{**share,'sourceUrl':url},now)
             if attempts:result['sourceAttempts']=[*attempts,{'url':url,'status':'validated'}]
             return result
     else:

@@ -310,17 +310,17 @@
   "method": "Inventaire des champs réellement présents dans les observations actives. Couverture distincte de disponibilité réseau et de fraîcheur. Les catégories sont issues des qualifications de sources ; elles ne certifient pas un téléchargement réussi aujourd’hui.",
   "instruments": 196,
   "covered": {
-    "ter": 192,
-    "aum": 192,
-    "performance": 178,
+    "ter": 196,
+    "aum": 196,
+    "performance": 180,
     "countries": 166,
     "sectors": 166,
     "holdings": 171
   },
   "summary": {
-    "instrument:not-published": 2,
-    "instrument:not-applicable": 60,
-    "instrument:unqualified": 33,
+    "instrument:not-published": 5,
+    "instrument:not-applicable": 66,
+    "instrument:unqualified": 14,
     "instrument:waiting-first-year": 12,
     "instrument:source-conflict": 4,
     "index:waiting-publication": 1,
@@ -639,34 +639,12 @@
       "type": "instrument",
       "id": "IE000UL6CLP7",
       "name": "Global X Silver Miners UCITS ETF USD Accumulating",
-      "field": "ter",
-      "label": "Frais",
-      "configured": false,
-      "status": "unqualified",
-      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
-      "sourceUrl": null
-    },
-    {
-      "type": "instrument",
-      "id": "IE000UL6CLP7",
-      "name": "Global X Silver Miners UCITS ETF USD Accumulating",
-      "field": "aum",
-      "label": "Encours",
-      "configured": false,
-      "status": "unqualified",
-      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
-      "sourceUrl": null
-    },
-    {
-      "type": "instrument",
-      "id": "IE000UL6CLP7",
-      "name": "Global X Silver Miners UCITS ETF USD Accumulating",
       "field": "performance",
       "label": "Calendrier annuel",
-      "configured": false,
-      "status": "unqualified",
-      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
-      "sourceUrl": null
+      "configured": true,
+      "status": "not-published",
+      "reason": "La source officielle actuelle publie des performances glissantes et cumulées, collectées séparément, sans calendrier annuel complet. Les historiques mensuels de la part restent automatisés avec leur propre source et convention.",
+      "sourceUrl": "https://globalxetfs.eu/funds/silv/"
     },
     {
       "type": "instrument",
@@ -674,10 +652,10 @@
       "name": "Global X Silver Miners UCITS ETF USD Accumulating",
       "field": "countries",
       "label": "Pays",
-      "configured": false,
+      "configured": true,
       "status": "unqualified",
       "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
-      "sourceUrl": null
+      "sourceUrl": "https://globalxetfs.eu/funds/silv/"
     },
     {
       "type": "instrument",
@@ -685,10 +663,10 @@
       "name": "Global X Silver Miners UCITS ETF USD Accumulating",
       "field": "sectors",
       "label": "Secteurs",
-      "configured": false,
+      "configured": true,
       "status": "unqualified",
       "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
-      "sourceUrl": null
+      "sourceUrl": "https://globalxetfs.eu/funds/silv/"
     },
     {
       "type": "instrument",
@@ -696,43 +674,10 @@
       "name": "Global X Silver Miners UCITS ETF USD Accumulating",
       "field": "holdings",
       "label": "Positions pondérées",
-      "configured": false,
+      "configured": true,
       "status": "unqualified",
       "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
-      "sourceUrl": null
-    },
-    {
-      "type": "instrument",
-      "id": "IE00B4556L06",
-      "name": "iShares Physical Palladium ETC",
-      "field": "ter",
-      "label": "Frais",
-      "configured": false,
-      "status": "unqualified",
-      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
-      "sourceUrl": null
-    },
-    {
-      "type": "instrument",
-      "id": "IE00B4556L06",
-      "name": "iShares Physical Palladium ETC",
-      "field": "aum",
-      "label": "Encours",
-      "configured": false,
-      "status": "unqualified",
-      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
-      "sourceUrl": null
-    },
-    {
-      "type": "instrument",
-      "id": "IE00B4556L06",
-      "name": "iShares Physical Palladium ETC",
-      "field": "performance",
-      "label": "Calendrier annuel",
-      "configured": false,
-      "status": "unqualified",
-      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
-      "sourceUrl": null
+      "sourceUrl": "https://globalxetfs.eu/funds/silv/"
     },
     {
       "type": "instrument",
@@ -740,10 +685,10 @@
       "name": "iShares Physical Palladium ETC",
       "field": "countries",
       "label": "Pays",
-      "configured": false,
-      "status": "unqualified",
-      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
-      "sourceUrl": null
+      "configured": true,
+      "status": "not-applicable",
+      "reason": "Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément.",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns&locale=en_GB&portfolioId=256574&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
     },
     {
       "type": "instrument",
@@ -751,10 +696,10 @@
       "name": "iShares Physical Palladium ETC",
       "field": "sectors",
       "label": "Secteurs",
-      "configured": false,
-      "status": "unqualified",
-      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
-      "sourceUrl": null
+      "configured": true,
+      "status": "not-applicable",
+      "reason": "Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément.",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns&locale=en_GB&portfolioId=256574&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
     },
     {
       "type": "instrument",
@@ -762,32 +707,10 @@
       "name": "iShares Physical Palladium ETC",
       "field": "holdings",
       "label": "Positions pondérées",
-      "configured": false,
-      "status": "unqualified",
-      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
-      "sourceUrl": null
-    },
-    {
-      "type": "instrument",
-      "id": "IE0003R87OG3",
-      "name": "Avantis Global Small Cap Value UCITS ETF USD Acc",
-      "field": "ter",
-      "label": "Frais",
-      "configured": false,
-      "status": "unqualified",
-      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
-      "sourceUrl": null
-    },
-    {
-      "type": "instrument",
-      "id": "IE0003R87OG3",
-      "name": "Avantis Global Small Cap Value UCITS ETF USD Acc",
-      "field": "aum",
-      "label": "Encours",
-      "configured": false,
-      "status": "unqualified",
-      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
-      "sourceUrl": null
+      "configured": true,
+      "status": "not-applicable",
+      "reason": "Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément.",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns&locale=en_GB&portfolioId=256574&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
     },
     {
       "type": "instrument",
@@ -795,10 +718,10 @@
       "name": "Avantis Global Small Cap Value UCITS ETF USD Acc",
       "field": "performance",
       "label": "Calendrier annuel",
-      "configured": false,
-      "status": "unqualified",
-      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
-      "sourceUrl": null
+      "configured": true,
+      "status": "not-published",
+      "reason": "La source officielle actuelle publie des performances glissantes et cumulées, collectées séparément, sans calendrier annuel complet. Les historiques mensuels de la part restent automatisés avec leur propre source et convention.",
+      "sourceUrl": "https://res.americancentury.com/docs/avantis-global-small-cap-value-ucits-etf-fact-sheet.pdf"
     },
     {
       "type": "instrument",
@@ -806,10 +729,10 @@
       "name": "Avantis Global Small Cap Value UCITS ETF USD Acc",
       "field": "countries",
       "label": "Pays",
-      "configured": false,
+      "configured": true,
       "status": "unqualified",
       "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
-      "sourceUrl": null
+      "sourceUrl": "https://res.americancentury.com/docs/avantis-global-small-cap-value-ucits-etf-fact-sheet.pdf"
     },
     {
       "type": "instrument",
@@ -817,10 +740,10 @@
       "name": "Avantis Global Small Cap Value UCITS ETF USD Acc",
       "field": "sectors",
       "label": "Secteurs",
-      "configured": false,
+      "configured": true,
       "status": "unqualified",
       "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
-      "sourceUrl": null
+      "sourceUrl": "https://res.americancentury.com/docs/avantis-global-small-cap-value-ucits-etf-fact-sheet.pdf"
     },
     {
       "type": "instrument",
@@ -828,43 +751,10 @@
       "name": "Avantis Global Small Cap Value UCITS ETF USD Acc",
       "field": "holdings",
       "label": "Positions pondérées",
-      "configured": false,
+      "configured": true,
       "status": "unqualified",
       "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
-      "sourceUrl": null
-    },
-    {
-      "type": "instrument",
-      "id": "IE00B4LHWP62",
-      "name": "iShares Physical Platinum ETC",
-      "field": "ter",
-      "label": "Frais",
-      "configured": false,
-      "status": "unqualified",
-      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
-      "sourceUrl": null
-    },
-    {
-      "type": "instrument",
-      "id": "IE00B4LHWP62",
-      "name": "iShares Physical Platinum ETC",
-      "field": "aum",
-      "label": "Encours",
-      "configured": false,
-      "status": "unqualified",
-      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
-      "sourceUrl": null
-    },
-    {
-      "type": "instrument",
-      "id": "IE00B4LHWP62",
-      "name": "iShares Physical Platinum ETC",
-      "field": "performance",
-      "label": "Calendrier annuel",
-      "configured": false,
-      "status": "unqualified",
-      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
-      "sourceUrl": null
+      "sourceUrl": "https://res.americancentury.com/docs/avantis-global-small-cap-value-ucits-etf-fact-sheet.pdf"
     },
     {
       "type": "instrument",
@@ -872,10 +762,10 @@
       "name": "iShares Physical Platinum ETC",
       "field": "countries",
       "label": "Pays",
-      "configured": false,
-      "status": "unqualified",
-      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
-      "sourceUrl": null
+      "configured": true,
+      "status": "not-applicable",
+      "reason": "Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément.",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns&locale=en_GB&portfolioId=258442&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
     },
     {
       "type": "instrument",
@@ -883,10 +773,10 @@
       "name": "iShares Physical Platinum ETC",
       "field": "sectors",
       "label": "Secteurs",
-      "configured": false,
-      "status": "unqualified",
-      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
-      "sourceUrl": null
+      "configured": true,
+      "status": "not-applicable",
+      "reason": "Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément.",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns&locale=en_GB&portfolioId=258442&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
     },
     {
       "type": "instrument",
@@ -894,10 +784,10 @@
       "name": "iShares Physical Platinum ETC",
       "field": "holdings",
       "label": "Positions pondérées",
-      "configured": false,
-      "status": "unqualified",
-      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
-      "sourceUrl": null
+      "configured": true,
+      "status": "not-applicable",
+      "reason": "Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément.",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns&locale=en_GB&portfolioId=258442&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
     },
     {
       "type": "instrument",
@@ -906,8 +796,8 @@
       "field": "performance",
       "label": "Calendrier annuel",
       "configured": true,
-      "status": "unqualified",
-      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
+      "status": "not-published",
+      "reason": "La source officielle actuelle publie des performances glissantes et cumulées, collectées séparément, sans calendrier annuel complet. Les historiques mensuels de la part restent automatisés avec leur propre source et convention.",
       "sourceUrl": "https://globalxetfs.eu/funds/copx/"
     },
     {
