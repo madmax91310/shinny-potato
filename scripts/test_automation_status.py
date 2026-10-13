@@ -144,6 +144,15 @@ class NewCollectorStatusTests(unittest.TestCase):
   self.assertEqual(set(current['dataFailures']),{'active'})
   self.assertEqual(current['collectionStatus'],'failure')
   self.assertEqual(normalize_report(report)['successes'],[])
+ def test_backfill_retires_legacy_candidate_from_same_run(self):
+  workflow='update-qualified-exposures.yml'
+  event=run(1,'success',workflow)
+  old=update_status({},event,[{'name':'refresh','conclusion':'success'}],[{'errors':[{'id':'never-active','error':'No annual NAV'}]}])
+  current=update_status(old,event,[{'name':'refresh','conclusion':'success'}],[{'records':[],'excluded':[{'isin':'never-active','error':'No annual NAV'}]}])['workflows'][workflow]
+  self.assertEqual(current['dataFailures'],{})
+  self.assertEqual(current['status'],'success')
+  self.assertEqual(current['collectionStatus'],'success')
+  self.assertEqual(current['runId'],event['id'])
  def test_composite_report_preserves_each_failure_domain(self):
   report={'funds':{'shares':[{'isin':'A','status':'failed','reason':'Issuer HTML'}]},'monthly':{'series':[{'id':'A','status':'validated'}]},'qualified':[{'id':'B','status':'failed','reason':'Factsheet'}],'levels':{'successes':[],'errors':[{'id':'A','error':'Daily price'}]}}
   normalized=normalize_report(report)
