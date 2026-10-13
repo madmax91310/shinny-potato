@@ -1277,24 +1277,6 @@
       ]
     },
     {
-      "isin": "IE00B4LHWP62",
-      "productId": 258442,
-      "name": "iShares Physical Platinum ETC",
-      "currency": "USD",
-      "distribution": "No Income",
-      "requireFullHistory": true,
-      "collectHoldings": false,
-      "collectSectors": false,
-      "provider": "iShares",
-      "parser": "ishares",
-      "physicalMetal": true,
-      "currencyField": "baseCurrencyCode",
-      "aumField": "totalNetAssetsFundLevel",
-      "aumScope": "fund",
-      "enabled": true,
-      "required": true
-    },
-    {
       "isin": "IE00B4556L06",
       "productId": 256574,
       "name": "iShares Physical Palladium ETC",
@@ -1302,15 +1284,50 @@
       "distribution": "No Income",
       "requireFullHistory": true,
       "collectHoldings": false,
-      "collectSectors": false,
       "provider": "iShares",
       "parser": "ishares",
-      "physicalMetal": true,
       "currencyField": "baseCurrencyCode",
       "aumField": "totalNetAssetsFundLevel",
       "aumScope": "fund",
+      "collectSectors": false,
+      "physicalMetal": true,
       "enabled": true,
       "required": true
+    },
+    {
+      "isin": "IE00B4LHWP62",
+      "productId": 258442,
+      "name": "iShares Physical Platinum ETC",
+      "currency": "USD",
+      "distribution": "No Income",
+      "requireFullHistory": true,
+      "collectHoldings": false,
+      "provider": "iShares",
+      "parser": "ishares",
+      "currencyField": "baseCurrencyCode",
+      "aumField": "totalNetAssetsFundLevel",
+      "aumScope": "fund",
+      "collectSectors": false,
+      "physicalMetal": true,
+      "enabled": true,
+      "required": true
+    },
+    {
+      "isin": "IE000UL6CLP7",
+      "name": "Global X Silver Miners UCITS ETF USD Accumulating",
+      "currency": "USD",
+      "provider": "Global X",
+      "parser": "globalx-priority",
+      "sourceUrl": "https://globalxetfs.eu/funds/silv/",
+      "ticker": "SILV"
+    },
+    {
+      "isin": "IE0003R87OG3",
+      "name": "Avantis Global Small Cap Value UCITS ETF USD Acc",
+      "currency": "USD",
+      "provider": "Avantis",
+      "parser": "avantis-priority",
+      "sourceUrl": "https://res.americancentury.com/docs/avantis-global-small-cap-value-ucits-etf-fact-sheet.pdf"
     }
   ]
 }

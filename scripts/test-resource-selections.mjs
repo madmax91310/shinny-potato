@@ -1,3 +1,5 @@
+import { getDuelArt } from '../src/pages/portfolio-duels/visualIdentity.js'
+import { existsSync } from 'node:fs'
 import { euroReturn } from '../src/data/duel-assets.js'
 import assert from 'node:assert/strict'
 import { RESOURCE_COMPARISONS, RESOURCE_DUEL_CHOICES } from '../src/data/resource-selections.js'
@@ -26,6 +28,7 @@ assert.equal(newDuels.length,8)
 for(const d of newDuels) {const result=buildDuel(d);assert(result.years.length>=3);assert(Number.isFinite(result.a.final));assert(Number.isFinite(result.b.final))}
 for(const [id,isin] of RESOURCE_DUEL_CHOICES) {
  const item=CATALOG.find(a=>a.id===id);assert.equal(item.isin,isin)
+ const art=getDuelArt(item);assert(art.scene);assert(existsSync('public/asset-art/'+art.scene),id)
  assert.equal(item.calendarReturns[2025],AUTOMATED_ETF[isin].performance.years[2025])
  assert.notEqual(euroReturn(item,2025),item.calendarReturns[2025],'USD must use verified FX')
 }
