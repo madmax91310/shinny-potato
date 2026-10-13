@@ -5,6 +5,9 @@ const pct = (value, digits = 2) => `${value > 0 ? '+' : ''}${number(value, digit
 const weight = (value) => `${number(value, value % 1 === 0 ? 0 : 2)} %`
 
 const questions = {
+  'msci-world-health-care': 'Tu renforcerais la santé dans ton portefeuille ou tu garderais sa place dans le World ?',
+  'msci-world-financials': 'Tu savais que les réseaux de paiement figuraient aussi dans le secteur financier ?',
+  'msci-world-energy': 'Pour une poche énergie, tu choisirais les entreprises ou une exposition directe au pétrole ?',
  'msci-world-materials':'Tu renforcerais les entreprises du secteur matériaux à côté de ton World ?',
  'msci-world-utilities':'Tu choisirais une poche de services publics ou leur place dans le World ?',
   'msci-world-industrials': 'Tu renforcerais l’industrie dans ton portefeuille ou tu garderais son poids dans le World ?',
@@ -43,6 +46,9 @@ export function buildFactsheetTweet(sheet) {
   const count = sheet.constituents ?? sheet.indexFacts?.targetConstituents
   const countText = Number.isFinite(count) ? `${count.toLocaleString('fr-FR')} ${sheet.constituents === null ? 'sociétés visées' : 'titres'}` : 'les titres de son univers'
   const scopes = {
+    'msci-world-health-care': 'Il suit les grandes et moyennes entreprises du secteur santé des pays développés.',
+    'msci-world-financials': 'Il suit les grandes et moyennes entreprises du secteur financier des pays développés.',
+    'msci-world-energy': 'Il suit les grandes et moyennes entreprises du secteur énergie des pays développés.',
     'msci-world-materials':'Il suit les grandes et moyennes entreprises du secteur matériaux des pays développés.',
     'msci-world-utilities':'Il suit les grandes et moyennes entreprises du secteur services publics des pays développés.',
     'msci-world-industrials': 'Il suit le secteur industriel des pays développés.',

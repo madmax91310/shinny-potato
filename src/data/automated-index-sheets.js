@@ -6,6 +6,15 @@ import { getCurrentIndexFacts, buildAutomatedIndexSnapshot } from './index-facts
 // These sheets have no numerical archive fallback: every displayed observation
 // comes from the validated records maintained by the daily issuer workflow.
 export const AUTOMATED_SHEET_DEFINITIONS = [
+  { id: 'msci-world-health-care', title: 'MSCI World Health Care',
+    intro: 'La santé en Bourse ne se limite pas aux laboratoires. Quelles entreprises prennent le plus de place dans cet indice mondial ? 🏥',
+    takeaway: 'Les traitements, équipements et services de santé ont des modèles différents. Renforcer ce secteur augmente une exposition déjà présente dans le World.' },
+  { id: 'msci-world-financials', title: 'MSCI World Financials',
+    intro: 'Derrière la finance mondiale, il n’y a pas seulement des banques. Que contient vraiment cet indice ? 🏦',
+    takeaway: 'La finance inclut aussi les assurances, les marchés de capitaux et les services financiers. Leurs actions restent sensibles à leur activité et aux conditions économiques.' },
+  { id: 'msci-world-energy', title: 'MSCI World Energy',
+    intro: 'Acheter des actions du secteur énergie, ce n’est pas acheter directement du pétrole. Voici les entreprises derrière cet indice mondial ⚡',
+    takeaway: 'Les entreprises énergétiques dépendent aussi de leurs coûts, de leurs investissements et de leurs marges. Leur performance ne reproduit pas celle du pétrole.' },
  {id:'world-islamic',title:'MSCI World Islamic',intro:'Un indice mondial peut changer de visage avec des critères sectoriels et financiers différents 👇',takeaway:'Les critères de finance islamique changent les entreprises retenues et les poids sectoriels. La sélection reste exposée au risque actions.'},
   {id:'msci-world-materials',title:'MSCI World Materials',intro:'Les entreprises de matériaux ne se résument pas aux mines. Que contient ce secteur mondial ? 🪨',takeaway:'Les matériaux regroupent notamment chimie, métaux et matériaux de construction. Les actions de ces entreprises ne suivent pas directement le prix des matières premières.'},
   {id:'msci-world-utilities',title:'MSCI World Utilities',intro:'Électricité, gaz et eau : quelles sociétés retrouves-tu derrière les services publics mondiaux ? 💡',takeaway:'Les services publics restent exposés aux taux, à la réglementation et aux investissements. Ce secteur actions ne garantit pas la stabilité du capital.'},

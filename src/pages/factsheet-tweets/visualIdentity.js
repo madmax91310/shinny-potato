@@ -1,5 +1,8 @@
 // Reviewed exposure illustrations. Abstract glass blocks never encode weights.
 const identities = {
+  'msci-world-health-care': ['health', 'Pays développés · secteur santé'],
+  'msci-world-financials': ['finance', 'Pays développés · secteur financier'],
+  'msci-world-energy': ['energy', 'Pays développés · secteur énergie'],
   'world-islamic':['world','Pays développés · filtres de finance islamique'],
   'msci-world-materials':['world','Pays développés · matériaux'],
   'msci-world-utilities':['infrastructure','Pays développés · services publics'],
@@ -44,7 +47,7 @@ export function getIndexArt(sheet) {
 export function loadIndexArt(sheet) {
   const { scene } = getIndexArt(sheet)
   if (!images.has(scene)) images.set(scene, (async () => {
-    const reused = ['property', 'infrastructure'].includes(scene)
+    const reused = ['property', 'infrastructure', 'health', 'finance', 'energy'].includes(scene)
     const response = await fetch(`${import.meta.env.BASE_URL}asset-art/${reused ? `etf-night/${scene}.webp` : `index-ribbon/${scene}.webp.b64`}`)
     if (!response.ok) throw new Error(`Illustration indisponible : ${scene}`)
     const image = new Image()

@@ -2,7 +2,7 @@ import { SHEETS } from '../src/data/index-factsheets.js'
 import { buildFactsheetTweet } from '../src/pages/factsheet-tweets/lib.js'
 import assert from 'node:assert/strict'
 
-assert.equal(SHEETS.length, 35, 'Trente-cinq sujets, World Islamic inclus')
+assert.equal(SHEETS.length, 38, 'Trente-huit sujets, santé, finance et énergie mondiales incluses')
 assert.equal(new Set(SHEETS.map(sheet => sheet.id)).size, SHEETS.length, 'Identifiants de fiches uniques')
 assert(SHEETS.some(sheet => sheet.id === 'world-islamic'), 'Indice World Islamic raccordé')
 for (const sheet of SHEETS) {

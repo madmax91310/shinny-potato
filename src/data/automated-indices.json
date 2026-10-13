@@ -18835,5 +18835,803 @@
         }
       }
     }
+  },
+  "msci-world-health-care": {
+    "facts": {
+      "index": "MSCI World Health Care",
+      "asOf": "2026-09-30",
+      "constituents": 111,
+      "countries": [
+        [
+          "🇺🇸 États-Unis",
+          74.04
+        ],
+        [
+          "🇨🇭 Suisse",
+          9.0
+        ],
+        [
+          "🇬🇧 Royaume-Uni",
+          4.75
+        ],
+        [
+          "🇯🇵 Japon",
+          3.37
+        ],
+        [
+          "🇫🇷 France",
+          2.04
+        ],
+        [
+          "🌍 Autres",
+          6.8
+        ]
+      ],
+      "sectors": [
+        [
+          "🏥 Santé",
+          100.0
+        ]
+      ],
+      "holdings": [
+        [
+          "LILLY (ELI) & COMPANY",
+          11.14
+        ],
+        [
+          "JOHNSON & JOHNSON",
+          7.66
+        ],
+        [
+          "ABBVIE",
+          5.56
+        ],
+        [
+          "MERCK & CO",
+          4.32
+        ],
+        [
+          "UNITEDHEALTH GROUP",
+          4.01
+        ],
+        [
+          "ROCHE HOLDING PART",
+          3.53
+        ],
+        [
+          "NOVARTIS",
+          3.16
+        ],
+        [
+          "THERMO FISHER SCIENTIFIC",
+          3.02
+        ],
+        [
+          "ASTRAZENECA",
+          2.97
+        ],
+        [
+          "AMGEN",
+          2.74
+        ]
+      ],
+      "source": {
+        "url": "https://www.msci.com/documents/10199/255599/msci-world-health-care-index-usd-net.pdf",
+        "checkedAt": "2026-10-13",
+        "label": "Composition officielle automatisée · MSCI World Health Care",
+        "sha256": "4500a6683d43f5adb65a449212329f3712908c0a3d559f249490d2e3685f12ad"
+      },
+      "provenance": "Publication officielle extraite automatiquement ; compositions d’indice distinctes des portefeuilles ETF."
+    },
+    "factsHistory": {
+      "2026-09-30": {
+        "index": "MSCI World Health Care",
+        "asOf": "2026-09-30",
+        "constituents": 111,
+        "countries": [
+          [
+            "🇺🇸 États-Unis",
+            74.04
+          ],
+          [
+            "🇨🇭 Suisse",
+            9.0
+          ],
+          [
+            "🇬🇧 Royaume-Uni",
+            4.75
+          ],
+          [
+            "🇯🇵 Japon",
+            3.37
+          ],
+          [
+            "🇫🇷 France",
+            2.04
+          ],
+          [
+            "🌍 Autres",
+            6.8
+          ]
+        ],
+        "sectors": [
+          [
+            "🏥 Santé",
+            100.0
+          ]
+        ],
+        "holdings": [
+          [
+            "LILLY (ELI) & COMPANY",
+            11.14
+          ],
+          [
+            "JOHNSON & JOHNSON",
+            7.66
+          ],
+          [
+            "ABBVIE",
+            5.56
+          ],
+          [
+            "MERCK & CO",
+            4.32
+          ],
+          [
+            "UNITEDHEALTH GROUP",
+            4.01
+          ],
+          [
+            "ROCHE HOLDING PART",
+            3.53
+          ],
+          [
+            "NOVARTIS",
+            3.16
+          ],
+          [
+            "THERMO FISHER SCIENTIFIC",
+            3.02
+          ],
+          [
+            "ASTRAZENECA",
+            2.97
+          ],
+          [
+            "AMGEN",
+            2.74
+          ]
+        ],
+        "source": {
+          "url": "https://www.msci.com/documents/10199/255599/msci-world-health-care-index-usd-net.pdf",
+          "checkedAt": "2026-10-13",
+          "label": "Composition officielle automatisée · MSCI World Health Care",
+          "sha256": "4500a6683d43f5adb65a449212329f3712908c0a3d559f249490d2e3685f12ad"
+        },
+        "provenance": "Publication officielle extraite automatiquement ; compositions d’indice distinctes des portefeuilles ETF."
+      }
+    },
+    "returns": {
+      "asOf": "2026-09-30",
+      "currency": "USD",
+      "variant": "NET",
+      "values": [
+        [
+          2025,
+          14.83
+        ],
+        [
+          2024,
+          1.13
+        ],
+        [
+          2023,
+          3.76
+        ],
+        [
+          2022,
+          -5.41
+        ],
+        [
+          2021,
+          19.8
+        ],
+        [
+          2020,
+          13.52
+        ]
+      ],
+      "periodStart": "2020-01-01",
+      "periodEnd": "2025-12-31",
+      "source": {
+        "url": "https://www.msci.com/documents/10199/255599/msci-world-health-care-index-usd-net.pdf",
+        "checkedAt": "2026-10-13",
+        "sha256": "4500a6683d43f5adb65a449212329f3712908c0a3d559f249490d2e3685f12ad",
+        "label": "Rendements calendaires officiels automatisés · MSCI World Health Care"
+      },
+      "performance": {
+        "kind": "indice",
+        "detail": "MSCI World Health Care · rendement net USD, dividendes nets réinvestis, hors frais ETF",
+        "date": "2026-09-30"
+      }
+    },
+    "returnsHistory": {
+      "2026-09-30": {
+        "asOf": "2026-09-30",
+        "currency": "USD",
+        "variant": "NET",
+        "values": [
+          [
+            2025,
+            14.83
+          ],
+          [
+            2024,
+            1.13
+          ],
+          [
+            2023,
+            3.76
+          ],
+          [
+            2022,
+            -5.41
+          ],
+          [
+            2021,
+            19.8
+          ],
+          [
+            2020,
+            13.52
+          ]
+        ],
+        "periodStart": "2020-01-01",
+        "periodEnd": "2025-12-31",
+        "source": {
+          "url": "https://www.msci.com/documents/10199/255599/msci-world-health-care-index-usd-net.pdf",
+          "checkedAt": "2026-10-13",
+          "sha256": "4500a6683d43f5adb65a449212329f3712908c0a3d559f249490d2e3685f12ad",
+          "label": "Rendements calendaires officiels automatisés · MSCI World Health Care"
+        },
+        "performance": {
+          "kind": "indice",
+          "detail": "MSCI World Health Care · rendement net USD, dividendes nets réinvestis, hors frais ETF",
+          "date": "2026-09-30"
+        }
+      }
+    }
+  },
+  "msci-world-financials": {
+    "facts": {
+      "index": "MSCI World Financials",
+      "asOf": "2026-09-30",
+      "constituents": 230,
+      "countries": [
+        [
+          "🇺🇸 États-Unis",
+          51.89
+        ],
+        [
+          "🇨🇦 Canada",
+          8.35
+        ],
+        [
+          "🇯🇵 Japon",
+          7.26
+        ],
+        [
+          "🇬🇧 Royaume-Uni",
+          5.88
+        ],
+        [
+          "🇦🇺 Australie",
+          3.98
+        ],
+        [
+          "🌍 Autres",
+          22.63
+        ]
+      ],
+      "sectors": [
+        [
+          "🏦 Finance",
+          100.0
+        ]
+      ],
+      "holdings": [
+        [
+          "JPMORGAN CHASE & CO",
+          6.18
+        ],
+        [
+          "BERKSHIRE HATHAWAY B",
+          4.93
+        ],
+        [
+          "VISA A",
+          4.19
+        ],
+        [
+          "MASTERCARD A",
+          3.14
+        ],
+        [
+          "BANK OF AMERICA CORP",
+          2.48
+        ],
+        [
+          "HSBC HOLDINGS (GB)",
+          2.4
+        ],
+        [
+          "ROYAL BANK OF CANADA",
+          1.92
+        ],
+        [
+          "GOLDMAN SACHS GROUP",
+          1.87
+        ],
+        [
+          "MITSUBISHI UFJ FIN GRP",
+          1.77
+        ],
+        [
+          "WELLS FARGO & CO",
+          1.7
+        ]
+      ],
+      "source": {
+        "url": "https://www.msci.com/documents/10199/255599/msci-world-financials-index-net.pdf",
+        "checkedAt": "2026-10-13",
+        "label": "Composition officielle automatisée · MSCI World Financials",
+        "sha256": "d5e24b10528b786226579e7ef06ddf6b5072bb99f96c4d7283508b264214878d"
+      },
+      "provenance": "Publication officielle extraite automatiquement ; compositions d’indice distinctes des portefeuilles ETF."
+    },
+    "factsHistory": {
+      "2026-09-30": {
+        "index": "MSCI World Financials",
+        "asOf": "2026-09-30",
+        "constituents": 230,
+        "countries": [
+          [
+            "🇺🇸 États-Unis",
+            51.89
+          ],
+          [
+            "🇨🇦 Canada",
+            8.35
+          ],
+          [
+            "🇯🇵 Japon",
+            7.26
+          ],
+          [
+            "🇬🇧 Royaume-Uni",
+            5.88
+          ],
+          [
+            "🇦🇺 Australie",
+            3.98
+          ],
+          [
+            "🌍 Autres",
+            22.63
+          ]
+        ],
+        "sectors": [
+          [
+            "🏦 Finance",
+            100.0
+          ]
+        ],
+        "holdings": [
+          [
+            "JPMORGAN CHASE & CO",
+            6.18
+          ],
+          [
+            "BERKSHIRE HATHAWAY B",
+            4.93
+          ],
+          [
+            "VISA A",
+            4.19
+          ],
+          [
+            "MASTERCARD A",
+            3.14
+          ],
+          [
+            "BANK OF AMERICA CORP",
+            2.48
+          ],
+          [
+            "HSBC HOLDINGS (GB)",
+            2.4
+          ],
+          [
+            "ROYAL BANK OF CANADA",
+            1.92
+          ],
+          [
+            "GOLDMAN SACHS GROUP",
+            1.87
+          ],
+          [
+            "MITSUBISHI UFJ FIN GRP",
+            1.77
+          ],
+          [
+            "WELLS FARGO & CO",
+            1.7
+          ]
+        ],
+        "source": {
+          "url": "https://www.msci.com/documents/10199/255599/msci-world-financials-index-net.pdf",
+          "checkedAt": "2026-10-13",
+          "label": "Composition officielle automatisée · MSCI World Financials",
+          "sha256": "d5e24b10528b786226579e7ef06ddf6b5072bb99f96c4d7283508b264214878d"
+        },
+        "provenance": "Publication officielle extraite automatiquement ; compositions d’indice distinctes des portefeuilles ETF."
+      }
+    },
+    "returns": {
+      "asOf": "2026-09-30",
+      "currency": "USD",
+      "variant": "NET",
+      "values": [
+        [
+          2025,
+          28.74
+        ],
+        [
+          2024,
+          26.67
+        ],
+        [
+          2023,
+          16.16
+        ],
+        [
+          2022,
+          -10.19
+        ],
+        [
+          2021,
+          27.87
+        ],
+        [
+          2020,
+          -2.84
+        ]
+      ],
+      "periodStart": "2020-01-01",
+      "periodEnd": "2025-12-31",
+      "source": {
+        "url": "https://www.msci.com/documents/10199/255599/msci-world-financials-index-net.pdf",
+        "checkedAt": "2026-10-13",
+        "sha256": "d5e24b10528b786226579e7ef06ddf6b5072bb99f96c4d7283508b264214878d",
+        "label": "Rendements calendaires officiels automatisés · MSCI World Financials"
+      },
+      "performance": {
+        "kind": "indice",
+        "detail": "MSCI World Financials · rendement net USD, dividendes nets réinvestis, hors frais ETF",
+        "date": "2026-09-30"
+      }
+    },
+    "returnsHistory": {
+      "2026-09-30": {
+        "asOf": "2026-09-30",
+        "currency": "USD",
+        "variant": "NET",
+        "values": [
+          [
+            2025,
+            28.74
+          ],
+          [
+            2024,
+            26.67
+          ],
+          [
+            2023,
+            16.16
+          ],
+          [
+            2022,
+            -10.19
+          ],
+          [
+            2021,
+            27.87
+          ],
+          [
+            2020,
+            -2.84
+          ]
+        ],
+        "periodStart": "2020-01-01",
+        "periodEnd": "2025-12-31",
+        "source": {
+          "url": "https://www.msci.com/documents/10199/255599/msci-world-financials-index-net.pdf",
+          "checkedAt": "2026-10-13",
+          "sha256": "d5e24b10528b786226579e7ef06ddf6b5072bb99f96c4d7283508b264214878d",
+          "label": "Rendements calendaires officiels automatisés · MSCI World Financials"
+        },
+        "performance": {
+          "kind": "indice",
+          "detail": "MSCI World Financials · rendement net USD, dividendes nets réinvestis, hors frais ETF",
+          "date": "2026-09-30"
+        }
+      }
+    }
+  },
+  "msci-world-energy": {
+    "facts": {
+      "index": "MSCI World Energy",
+      "asOf": "2026-09-30",
+      "constituents": 50,
+      "countries": [
+        [
+          "🇺🇸 États-Unis",
+          62.97
+        ],
+        [
+          "🇨🇦 Canada",
+          13.84
+        ],
+        [
+          "🇬🇧 Royaume-Uni",
+          10.68
+        ],
+        [
+          "🇫🇷 France",
+          4.58
+        ],
+        [
+          "🇦🇺 Australie",
+          1.69
+        ],
+        [
+          "🌍 Autres",
+          6.25
+        ]
+      ],
+      "sectors": [
+        [
+          "⚡ Énergie",
+          100.0
+        ]
+      ],
+      "holdings": [
+        [
+          "EXXONMOBIL HOLDINGS",
+          18.51
+        ],
+        [
+          "CHEVRON CORP",
+          10.32
+        ],
+        [
+          "SHELL",
+          7.53
+        ],
+        [
+          "TOTALENERGIES",
+          4.58
+        ],
+        [
+          "CONOCOPHILLIPS",
+          4.18
+        ],
+        [
+          "MARATHON PETROLEUM",
+          3.17
+        ],
+        [
+          "VALERO ENERGY CORP",
+          3.16
+        ],
+        [
+          "BP",
+          3.14
+        ],
+        [
+          "PHILLIPS 66",
+          2.81
+        ],
+        [
+          "ENBRIDGE",
+          2.79
+        ]
+      ],
+      "source": {
+        "url": "https://www.msci.com/documents/10199/255599/msci-world-energy-index-usd-net.pdf",
+        "checkedAt": "2026-10-13",
+        "label": "Composition officielle automatisée · MSCI World Energy",
+        "sha256": "b00daea1a867399095c56a4e28431e4809063004d9016f5e94295b674acd77f3"
+      },
+      "provenance": "Publication officielle extraite automatiquement ; compositions d’indice distinctes des portefeuilles ETF."
+    },
+    "factsHistory": {
+      "2026-09-30": {
+        "index": "MSCI World Energy",
+        "asOf": "2026-09-30",
+        "constituents": 50,
+        "countries": [
+          [
+            "🇺🇸 États-Unis",
+            62.97
+          ],
+          [
+            "🇨🇦 Canada",
+            13.84
+          ],
+          [
+            "🇬🇧 Royaume-Uni",
+            10.68
+          ],
+          [
+            "🇫🇷 France",
+            4.58
+          ],
+          [
+            "🇦🇺 Australie",
+            1.69
+          ],
+          [
+            "🌍 Autres",
+            6.25
+          ]
+        ],
+        "sectors": [
+          [
+            "⚡ Énergie",
+            100.0
+          ]
+        ],
+        "holdings": [
+          [
+            "EXXONMOBIL HOLDINGS",
+            18.51
+          ],
+          [
+            "CHEVRON CORP",
+            10.32
+          ],
+          [
+            "SHELL",
+            7.53
+          ],
+          [
+            "TOTALENERGIES",
+            4.58
+          ],
+          [
+            "CONOCOPHILLIPS",
+            4.18
+          ],
+          [
+            "MARATHON PETROLEUM",
+            3.17
+          ],
+          [
+            "VALERO ENERGY CORP",
+            3.16
+          ],
+          [
+            "BP",
+            3.14
+          ],
+          [
+            "PHILLIPS 66",
+            2.81
+          ],
+          [
+            "ENBRIDGE",
+            2.79
+          ]
+        ],
+        "source": {
+          "url": "https://www.msci.com/documents/10199/255599/msci-world-energy-index-usd-net.pdf",
+          "checkedAt": "2026-10-13",
+          "label": "Composition officielle automatisée · MSCI World Energy",
+          "sha256": "b00daea1a867399095c56a4e28431e4809063004d9016f5e94295b674acd77f3"
+        },
+        "provenance": "Publication officielle extraite automatiquement ; compositions d’indice distinctes des portefeuilles ETF."
+      }
+    },
+    "returns": {
+      "asOf": "2026-09-30",
+      "currency": "USD",
+      "variant": "NET",
+      "values": [
+        [
+          2025,
+          13.32
+        ],
+        [
+          2024,
+          2.7
+        ],
+        [
+          2023,
+          2.54
+        ],
+        [
+          2022,
+          46.01
+        ],
+        [
+          2021,
+          40.09
+        ],
+        [
+          2020,
+          -31.46
+        ]
+      ],
+      "periodStart": "2020-01-01",
+      "periodEnd": "2025-12-31",
+      "source": {
+        "url": "https://www.msci.com/documents/10199/255599/msci-world-energy-index-usd-net.pdf",
+        "checkedAt": "2026-10-13",
+        "sha256": "b00daea1a867399095c56a4e28431e4809063004d9016f5e94295b674acd77f3",
+        "label": "Rendements calendaires officiels automatisés · MSCI World Energy"
+      },
+      "performance": {
+        "kind": "indice",
+        "detail": "MSCI World Energy · rendement net USD, dividendes nets réinvestis, hors frais ETF",
+        "date": "2026-09-30"
+      }
+    },
+    "returnsHistory": {
+      "2026-09-30": {
+        "asOf": "2026-09-30",
+        "currency": "USD",
+        "variant": "NET",
+        "values": [
+          [
+            2025,
+            13.32
+          ],
+          [
+            2024,
+            2.7
+          ],
+          [
+            2023,
+            2.54
+          ],
+          [
+            2022,
+            46.01
+          ],
+          [
+            2021,
+            40.09
+          ],
+          [
+            2020,
+            -31.46
+          ]
+        ],
+        "periodStart": "2020-01-01",
+        "periodEnd": "2025-12-31",
+        "source": {
+          "url": "https://www.msci.com/documents/10199/255599/msci-world-energy-index-usd-net.pdf",
+          "checkedAt": "2026-10-13",
+          "sha256": "b00daea1a867399095c56a4e28431e4809063004d9016f5e94295b674acd77f3",
+          "label": "Rendements calendaires officiels automatisés · MSCI World Energy"
+        },
+        "performance": {
+          "kind": "indice",
+          "detail": "MSCI World Energy · rendement net USD, dividendes nets réinvestis, hors frais ETF",
+          "date": "2026-09-30"
+        }
+      }
+    }
   }
 }
