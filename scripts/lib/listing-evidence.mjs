@@ -2,7 +2,7 @@
 // Trois profils justETF sont recoupés avec les documents primaires ;
 // pas d'une inférence sur le domicile ou la devise du fonds.
 const SOURCE_HOSTS = new Set(['res.avantisinvestors.com', 'www.blackrock.com', 'www.ishares.com', 'www.invesco.com', 'www.amundietf.fr', 'www.amundietf.com',
-  'www.vaneck.com', 'www.ssga.com', 'www.vanguard.co.uk', 'coinshares.com',
+  'www.vaneck.com', 'www.ssga.com', 'www.vanguard.co.uk', 'fund-docs.vanguard.com', 'coinshares.com',
   'globalxetfs.eu', 'am.jpmorgan.com', 'dataspanapi.wisdomtree.com', 'bitwiseinvestments.eu', 'cdn.21shares.com', 'www.justetf.com', 'etf.dws.com', 'www.borsaitaliana.it', 'live.euronext.com']);
 const MARKETS = {
   XPAR: ['Euronext Paris', /Euronext Paris|Euronext\(FR\)|EURONEXT PARIS|EN Paris|Venue: Paris|MIC\s*\|\s*XPAR/],

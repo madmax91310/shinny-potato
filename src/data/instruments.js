@@ -1,3 +1,4 @@
+import { LIFESTRATEGY_INSTRUMENTS } from './lifestrategy.js';
 import { ROUND3_INSTRUMENTS } from './round3-fund-sheets.js';
 import { QUALIFIED_INSTRUMENTS } from './qualified-exposure-sheets.js';
 import { PRESENTATION_ETF_ADDITIONS } from './presentation-etf-additions.js';
@@ -9,6 +10,7 @@ import { EXPOSURE_ADDITIONS } from './exposure-additions.js';
 // preuves émetteurs/places et devises de négociation contrôlées le 30/09/2026.
 import { PEA_REVIEWS_BY_ISIN } from './instrument-pea.js';
 export const INSTRUMENTS_BY_ISIN = Object.freeze({
+  ...LIFESTRATEGY_INSTRUMENTS,
   ...QUALIFIED_INSTRUMENTS,
   ...ROUND3_INSTRUMENTS,
   IE000UL6CLP7: Object.freeze({name: "Global X Silver Miners UCITS ETF USD Accumulating"}),

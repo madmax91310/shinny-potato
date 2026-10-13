@@ -1,3 +1,4 @@
+import { LIFESTRATEGY_SHEETS } from './lifestrategy.js';
 import {ROUND3_FUND_SHEETS} from './round3-fund-sheets.js';
 import { QUALIFIED_EXPOSURE_SHEETS } from './qualified-exposure-sheets.js';
 import { PRESENTATION_ETF_EXPANSION } from './presentation-etf-expansion.js';
@@ -53,6 +54,7 @@ export const CATEGORY_ORDER = [
   ];
 
 export const CATEGORY_EMOJI = {
+  'Multi-actifs': '⚖️',
     "Cœur de portefeuille": "🔵",
     "Sectoriels classiques": "🟢",
     "Thématiques émergentes": "🟠",
@@ -63,7 +65,7 @@ export const CATEGORY_EMOJI = {
   };
 
 export const ETFS = [
-  ...[...QUALIFIED_EXPOSURE_SHEETS, ...ROUND3_FUND_SHEETS].map(r => ({ ...r, name: getInstrumentName(r.isin, 'sheet'), listing: getPreferredInstrumentListing(r.isin), ter: formatEtfTer(r.isin, 'sheet'), positions: getInstrumentPositions(r.isin), aum: getInstrumentAum(r.isin, 'sheet'), distribution: getInstrumentDistribution(r.isin), pea: null, cto: true, location: getInstrumentLocation(r.isin), lastVerified: r.checkedAt.split('-').reverse().join('/') })),
+  ...[...QUALIFIED_EXPOSURE_SHEETS, ...ROUND3_FUND_SHEETS, ...LIFESTRATEGY_SHEETS].map(r => ({ ...r, name: getInstrumentName(r.isin, 'sheet'), listing: getPreferredInstrumentListing(r.isin), ter: formatEtfTer(r.isin, 'sheet'), positions: getInstrumentPositions(r.isin), aum: getInstrumentAum(r.isin, 'sheet'), distribution: getInstrumentDistribution(r.isin), pea: null, cto: true, location: getInstrumentLocation(r.isin), lastVerified: r.checkedAt.split('-').reverse().join('/') })),
   ...PRESENTATION_ETF_EXPANSION.map(r => ({ ...r, name: getInstrumentName(r.isin, 'sheet'), listing: getPreferredInstrumentListing(r.isin), isNew: true, presentationOnly: true, ter: formatEtfTer(r.isin, 'sheet'), positions: getInstrumentPositions(r.isin), aum: getInstrumentAum(r.isin, 'sheet'), distribution: getInstrumentDistribution(r.isin), pea: getInstrumentPea(r.isin), cto: true, location: getInstrumentLocation(r.isin), lastVerified: '12/10/2026' })),
   ...PRESENTATION_ETF_ADDITIONS.map(r => ({ ...r, name: getInstrumentName(r.isin, 'sheet'), listing: getPreferredInstrumentListing(r.isin), isNew: true, presentationOnly: true, ter: formatEtfTer(r.isin, 'sheet'), positions: getInstrumentPositions(r.isin), aum: getInstrumentAum(r.isin, 'sheet'), distribution: getInstrumentDistribution(r.isin), pea: getInstrumentPea(r.isin), cto: true, location: getInstrumentLocation(r.isin), lastVerified: '11/10/2026' })),
   {

@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { LIFESTRATEGY_LISTING_EVIDENCE } from '../src/data/lifestrategy.js'
 import {ROUND3_LISTING_EVIDENCE} from '../src/data/round3-fund-sheets.js';
 import { QUALIFIED_LISTING_EVIDENCE } from '../src/data/qualified-exposure-sheets.js'
 import { readFileSync } from 'node:fs';
@@ -34,7 +35,7 @@ export function auditInstrumentListings() {
     }
     published[item.isin] = [...new Set([...(published[item.isin] ?? []), ...tickers])];
   }
-  return [...selectionErrors, ...validateListingEvidence({ published, listings: INSTRUMENT_LISTINGS_BY_ISIN, evidence: { ...snapshot.evidence, ...QUALIFIED_LISTING_EVIDENCE, ...ROUND3_LISTING_EVIDENCE } })];
+  return [...selectionErrors, ...validateListingEvidence({ published, listings: INSTRUMENT_LISTINGS_BY_ISIN, evidence: { ...snapshot.evidence, ...LIFESTRATEGY_LISTING_EVIDENCE, ...QUALIFIED_LISTING_EVIDENCE, ...ROUND3_LISTING_EVIDENCE } })];
 }
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
 const errors = auditInstrumentListings();

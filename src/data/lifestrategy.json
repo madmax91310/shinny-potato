@@ -1,0 +1,538 @@
+{
+  "IE00BMVB5K07": {
+    "id": "lifestrategy20",
+    "isin": "IE00BMVB5K07",
+    "name": "Vanguard LifeStrategy 20% Equity UCITS ETF (EUR) Accumulating",
+    "currency": "EUR",
+    "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9490/lifestrategy-20-equity-ucits-etf-eur-accumulating",
+    "checkedAt": "2026-10-13",
+    "pageSha256": "c6d874eee3e1a778ec0b618c573cdf0bba82ba294d10ffcb4a3130040e9fb8c7",
+    "documentSha256": "bc1de49e653133cea7a526def9939b051871d72390c701ec96fd31383e4c8abb",
+    "terPct": 0.25,
+    "characteristics": {
+      "terPct": 0.25,
+      "checkedAt": "2026-10-13",
+      "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_20_Equity_UCITS_ETF_EUR_Accumulating_9490_FR_INT_FR.pdf",
+      "listings": [
+        {
+          "ticker": "V20A",
+          "mic": "XETR",
+          "exchange": "Xetra",
+          "currency": "EUR",
+          "symbol": "V20A.DE",
+          "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_20_Equity_UCITS_ETF_EUR_Accumulating_9490_FR_INT_FR.pdf",
+          "checkedAt": "2026-10-13",
+          "evidenceId": "IE00BMVB5K07-XETR-V20A-EUR",
+          "excerpt": "IE00BMVB5K07 | Deutsche Börse | EUR | V20A | V20A.DE"
+        }
+      ],
+      "index": "Gestion active multi-actifs 20/80, sans indice de référence",
+      "distribution": "Accumulating",
+      "domicile": "Irlande",
+      "replicationMethod": "Gestion active, détention physique de fonds indiciels"
+    },
+    "aum": {
+      "amount": 102000000.0,
+      "currency": "EUR",
+      "scope": "share-class",
+      "asOf": "2026-08-31",
+      "checkedAt": "2026-10-13",
+      "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_20_Equity_UCITS_ETF_EUR_Accumulating_9490_FR_INT_FR.pdf",
+      "precisionNote": "Encours de la part arrondi au million dans la fiche Vanguard"
+    },
+    "holdings": {
+      "asOf": "2026-08-31",
+      "checkedAt": "2026-10-13",
+      "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_20_Equity_UCITS_ETF_EUR_Accumulating_9490_FR_INT_FR.pdf",
+      "basis": "fund",
+      "rows": [
+        {
+          "name": "Vanguard FTSE All-World UCITS ETF (USD) Accumulating",
+          "weightPct": 19.4
+        },
+        {
+          "name": "Vanguard Global Aggregate Bond UCITS ETF EUR Hedged Accumulating",
+          "weightPct": 19.3
+        },
+        {
+          "name": "Vanguard USD Treasury Bond UCITS ETF EUR Hedged Accumulating",
+          "weightPct": 19.2
+        },
+        {
+          "name": "Vanguard EUR Eurozone Government Bond UCITS ETF (EUR) Accumulating",
+          "weightPct": 16.2
+        },
+        {
+          "name": "Vanguard USD Corporate Bond UCITS ETF EUR Hedged Accumulating",
+          "weightPct": 16.1
+        },
+        {
+          "name": "Vanguard EUR Corporate Bond UCITS ETF (EUR) Accumulating",
+          "weightPct": 5.8
+        },
+        {
+          "name": "Vanguard U.K. Gilt UCITS ETF EUR Hedged Accumulating",
+          "weightPct": 3.2
+        },
+        {
+          "name": "Vanguard FTSE Developed World UCITS ETF (USD) Accumulating",
+          "weightPct": 0.8
+        },
+        {
+          "name": "Vanguard FTSE Emerging Markets UCITS ETF (USD) Accumulating",
+          "weightPct": 0.1
+        }
+      ]
+    },
+    "assetAllocation": {
+      "asOf": "2026-08-31",
+      "checkedAt": "2026-10-13",
+      "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9490/lifestrategy-20-equity-ucits-etf-eur-accumulating",
+      "basis": "fund",
+      "rows": [
+        {
+          "name": "Obligations",
+          "weightPct": 79.63
+        },
+        {
+          "name": "Liquidités",
+          "weightPct": 0.14
+        },
+        {
+          "name": "Actions",
+          "weightPct": 20.23
+        }
+      ]
+    },
+    "performance": {
+      "basis": "fund",
+      "currency": "EUR",
+      "method": "calendar-year NAV total return, gross income reinvested, fund fees included",
+      "years": {
+        "2021": 2.49,
+        "2022": -15.69,
+        "2023": 7.29,
+        "2024": 5.1,
+        "2025": 4.23
+      },
+      "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
+      "sha256": "0cd92b9c6cf9f35fcc824676544847b3fd03b8bcd105909794c9790d419c3fe5",
+      "checkedAt": "2026-10-13"
+    },
+    "unavailable": [
+      "countries: no qualified whole-fund look-through",
+      "sectors: asset allocation is not an equity sector table"
+    ]
+  },
+  "IE00BMVB5M21": {
+    "id": "lifestrategy40",
+    "isin": "IE00BMVB5M21",
+    "name": "Vanguard LifeStrategy 40% Equity UCITS ETF (EUR) Accumulating",
+    "currency": "EUR",
+    "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9492/lifestrategy-40-equity-ucits-etf-eur-accumulating",
+    "checkedAt": "2026-10-13",
+    "pageSha256": "527d162be7d2f5c8fecefa26dc1cfb9ba4e73385fcf9d72888952f5cf2b5192a",
+    "documentSha256": "23f2f86e9f7437b5dd7985929011ae9cada49050246dcc2b2fafb673766d2326",
+    "terPct": 0.25,
+    "characteristics": {
+      "terPct": 0.25,
+      "checkedAt": "2026-10-13",
+      "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_40_Equity_UCITS_ETF_EUR_Accumulating_9492_FR_INT_FR.pdf",
+      "listings": [
+        {
+          "ticker": "V40A",
+          "mic": "XETR",
+          "exchange": "Xetra",
+          "currency": "EUR",
+          "symbol": "V40A.DE",
+          "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_40_Equity_UCITS_ETF_EUR_Accumulating_9492_FR_INT_FR.pdf",
+          "checkedAt": "2026-10-13",
+          "evidenceId": "IE00BMVB5M21-XETR-V40A-EUR",
+          "excerpt": "IE00BMVB5M21 | Deutsche Börse | EUR | V40A | V40A.DE"
+        }
+      ],
+      "index": "Gestion active multi-actifs 40/60, sans indice de référence",
+      "distribution": "Accumulating",
+      "domicile": "Irlande",
+      "replicationMethod": "Gestion active, détention physique de fonds indiciels"
+    },
+    "aum": {
+      "amount": 245000000.0,
+      "currency": "EUR",
+      "scope": "share-class",
+      "asOf": "2026-08-31",
+      "checkedAt": "2026-10-13",
+      "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_40_Equity_UCITS_ETF_EUR_Accumulating_9492_FR_INT_FR.pdf",
+      "precisionNote": "Encours de la part arrondi au million dans la fiche Vanguard"
+    },
+    "holdings": {
+      "asOf": "2026-08-31",
+      "checkedAt": "2026-10-13",
+      "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_40_Equity_UCITS_ETF_EUR_Accumulating_9492_FR_INT_FR.pdf",
+      "basis": "fund",
+      "rows": [
+        {
+          "name": "Vanguard FTSE All-World UCITS ETF (USD) Accumulating",
+          "weightPct": 19.5
+        },
+        {
+          "name": "Vanguard Global Aggregate Bond UCITS ETF EUR Hedged Accumulating",
+          "weightPct": 19.1
+        },
+        {
+          "name": "Vanguard FTSE Developed World UCITS ETF (USD) Accumulating",
+          "weightPct": 18.9
+        },
+        {
+          "name": "Vanguard USD Treasury Bond UCITS ETF EUR Hedged Accumulating",
+          "weightPct": 15.1
+        },
+        {
+          "name": "Vanguard EUR Eurozone Government Bond UCITS ETF (EUR) Accumulating",
+          "weightPct": 10.0
+        },
+        {
+          "name": "Vanguard USD Corporate Bond UCITS ETF EUR Hedged Accumulating",
+          "weightPct": 9.8
+        },
+        {
+          "name": "Vanguard EUR Corporate Bond UCITS ETF (EUR) Accumulating",
+          "weightPct": 3.6
+        },
+        {
+          "name": "Vanguard FTSE Emerging Markets UCITS ETF (USD) Accumulating",
+          "weightPct": 2.2
+        },
+        {
+          "name": "Vanguard U.K. Gilt UCITS ETF EUR Hedged Accumulating",
+          "weightPct": 1.9
+        }
+      ]
+    },
+    "assetAllocation": {
+      "asOf": "2026-08-31",
+      "checkedAt": "2026-10-13",
+      "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9492/lifestrategy-40-equity-ucits-etf-eur-accumulating",
+      "basis": "fund",
+      "rows": [
+        {
+          "name": "Obligations",
+          "weightPct": 59.48
+        },
+        {
+          "name": "Liquidités",
+          "weightPct": 0.01
+        },
+        {
+          "name": "Actions",
+          "weightPct": 40.51
+        }
+      ]
+    },
+    "performance": {
+      "basis": "fund",
+      "currency": "EUR",
+      "method": "calendar-year NAV total return, gross income reinvested, fund fees included",
+      "years": {
+        "2021": 8.28,
+        "2022": -14.73,
+        "2023": 9.85,
+        "2024": 9.81,
+        "2025": 5.41
+      },
+      "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
+      "sha256": "d6ddfc4099289ee0b2d73969dc22592cadc45feac8cb5e153ff47b5fec0c7d63",
+      "checkedAt": "2026-10-13"
+    },
+    "unavailable": [
+      "countries: no qualified whole-fund look-through",
+      "sectors: asset allocation is not an equity sector table"
+    ]
+  },
+  "IE00BMVB5P51": {
+    "id": "lifestrategy60",
+    "isin": "IE00BMVB5P51",
+    "name": "Vanguard LifeStrategy 60% Equity UCITS ETF (EUR) Accumulating",
+    "currency": "EUR",
+    "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9494/lifestrategy-60-equity-ucits-etf-eur-accumulating",
+    "checkedAt": "2026-10-13",
+    "pageSha256": "aca8fc33b527e3a750cd2ac99fcf92fedca4fbf782e3da86ff1d88dde745b842",
+    "documentSha256": "b5c98f8da6d4ed79138b0d0e848bfe80fa3989960c158650324b9bd160081209",
+    "terPct": 0.25,
+    "characteristics": {
+      "terPct": 0.25,
+      "checkedAt": "2026-10-13",
+      "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_60_Equity_UCITS_ETF_EUR_Accumulating_9494_FR_INT_FR.pdf",
+      "listings": [
+        {
+          "ticker": "V60A",
+          "mic": "XETR",
+          "exchange": "Xetra",
+          "currency": "EUR",
+          "symbol": "V60A.DE",
+          "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_60_Equity_UCITS_ETF_EUR_Accumulating_9494_FR_INT_FR.pdf",
+          "checkedAt": "2026-10-13",
+          "evidenceId": "IE00BMVB5P51-XETR-V60A-EUR",
+          "excerpt": "IE00BMVB5P51 | Deutsche Börse | EUR | V60A | V60A.DE"
+        }
+      ],
+      "index": "Gestion active multi-actifs 60/40, sans indice de référence",
+      "distribution": "Accumulating",
+      "domicile": "Irlande",
+      "replicationMethod": "Gestion active, détention physique de fonds indiciels"
+    },
+    "aum": {
+      "amount": 966000000.0,
+      "currency": "EUR",
+      "scope": "share-class",
+      "asOf": "2026-08-31",
+      "checkedAt": "2026-10-13",
+      "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_60_Equity_UCITS_ETF_EUR_Accumulating_9494_FR_INT_FR.pdf",
+      "precisionNote": "Encours de la part arrondi au million dans la fiche Vanguard"
+    },
+    "holdings": {
+      "asOf": "2026-08-31",
+      "checkedAt": "2026-10-13",
+      "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_60_Equity_UCITS_ETF_EUR_Accumulating_9494_FR_INT_FR.pdf",
+      "basis": "fund",
+      "rows": [
+        {
+          "name": "Vanguard FTSE Developed World UCITS ETF (USD) Accumulating",
+          "weightPct": 19.3
+        },
+        {
+          "name": "Vanguard FTSE All-World UCITS ETF (USD) Accumulating",
+          "weightPct": 19.3
+        },
+        {
+          "name": "Vanguard Global Aggregate Bond UCITS ETF EUR Hedged Accumulating",
+          "weightPct": 19.2
+        },
+        {
+          "name": "Vanguard FTSE North America UCITS ETF",
+          "weightPct": 12.7
+        },
+        {
+          "name": "Vanguard USD Treasury Bond UCITS ETF EUR Hedged Accumulating",
+          "weightPct": 7.7
+        },
+        {
+          "name": "Vanguard EUR Eurozone Government Bond UCITS ETF (EUR) Accumulating",
+          "weightPct": 5.0
+        },
+        {
+          "name": "Vanguard USD Corporate Bond UCITS ETF EUR Hedged Accumulating",
+          "weightPct": 4.9
+        },
+        {
+          "name": "Vanguard FTSE Emerging Markets UCITS ETF (USD) Accumulating",
+          "weightPct": 4.2
+        },
+        {
+          "name": "Vanguard FTSE Developed Europe UCITS ETF (EUR) Accumulating",
+          "weightPct": 2.8
+        },
+        {
+          "name": "Vanguard EUR Corporate Bond UCITS ETF (EUR) Accumulating",
+          "weightPct": 1.8
+        },
+        {
+          "name": "Vanguard FTSE Japan UCITS ETF (USD) Accumulating",
+          "weightPct": 1.2
+        },
+        {
+          "name": "Vanguard FTSE Developed Asia Pacific ex Japan UCITS ETF (USD) Accumulating",
+          "weightPct": 1.0
+        },
+        {
+          "name": "Vanguard U.K. Gilt UCITS ETF EUR Hedged Accumulating",
+          "weightPct": 1.0
+        }
+      ]
+    },
+    "assetAllocation": {
+      "asOf": "2026-08-31",
+      "checkedAt": "2026-10-13",
+      "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9494/lifestrategy-60-equity-ucits-etf-eur-accumulating",
+      "basis": "fund",
+      "rows": [
+        {
+          "name": "Obligations",
+          "weightPct": 39.51
+        },
+        {
+          "name": "Liquidités",
+          "weightPct": 0.18
+        },
+        {
+          "name": "Actions",
+          "weightPct": 60.31
+        }
+      ]
+    },
+    "performance": {
+      "basis": "fund",
+      "currency": "EUR",
+      "method": "calendar-year NAV total return, gross income reinvested, fund fees included",
+      "years": {
+        "2021": 14.34,
+        "2022": -13.86,
+        "2023": 12.48,
+        "2024": 14.72,
+        "2025": 6.36
+      },
+      "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
+      "sha256": "ea5c05b355c3ae092c0e2d74fa952eb74b466bd6de3ceb708b10163f2af4e9a8",
+      "checkedAt": "2026-10-13"
+    },
+    "unavailable": [
+      "countries: no qualified whole-fund look-through",
+      "sectors: asset allocation is not an equity sector table"
+    ]
+  },
+  "IE00BMVB5R75": {
+    "id": "lifestrategy80",
+    "isin": "IE00BMVB5R75",
+    "name": "Vanguard LifeStrategy 80% Equity UCITS ETF (EUR) Accumulating",
+    "currency": "EUR",
+    "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9496/lifestrategy-80-equity-ucits-etf-eur-accumulating",
+    "checkedAt": "2026-10-13",
+    "pageSha256": "4c840c4b283c8ff8af142bf7bce873e3f0619fcbb3ce557e396d8b65fc8fdfdf",
+    "documentSha256": "89aeef02a049fc51d5d22550dd8e63a58d54f2c29cf6791fcf6a4fadd22c75d9",
+    "terPct": 0.25,
+    "characteristics": {
+      "terPct": 0.25,
+      "checkedAt": "2026-10-13",
+      "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_80_Equity_UCITS_ETF_EUR_Accumulating_9496_FR_INT_FR.pdf",
+      "listings": [
+        {
+          "ticker": "V80A",
+          "mic": "XETR",
+          "exchange": "Xetra",
+          "currency": "EUR",
+          "symbol": "V80A.DE",
+          "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_80_Equity_UCITS_ETF_EUR_Accumulating_9496_FR_INT_FR.pdf",
+          "checkedAt": "2026-10-13",
+          "evidenceId": "IE00BMVB5R75-XETR-V80A-EUR",
+          "excerpt": "IE00BMVB5R75 | Deutsche Börse | EUR | V80A | V80A.DE"
+        }
+      ],
+      "index": "Gestion active multi-actifs 80/20, sans indice de référence",
+      "distribution": "Accumulating",
+      "domicile": "Irlande",
+      "replicationMethod": "Gestion active, détention physique de fonds indiciels"
+    },
+    "aum": {
+      "amount": 1244000000.0,
+      "currency": "EUR",
+      "scope": "share-class",
+      "asOf": "2026-08-31",
+      "checkedAt": "2026-10-13",
+      "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_80_Equity_UCITS_ETF_EUR_Accumulating_9496_FR_INT_FR.pdf",
+      "precisionNote": "Encours de la part arrondi au million dans la fiche Vanguard"
+    },
+    "holdings": {
+      "asOf": "2026-08-31",
+      "checkedAt": "2026-10-13",
+      "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_80_Equity_UCITS_ETF_EUR_Accumulating_9496_FR_INT_FR.pdf",
+      "basis": "fund",
+      "rows": [
+        {
+          "name": "Vanguard Global Aggregate Bond UCITS ETF EUR Hedged Accumulating",
+          "weightPct": 19.2
+        },
+        {
+          "name": "Vanguard FTSE North America UCITS ETF",
+          "weightPct": 19.2
+        },
+        {
+          "name": "Vanguard FTSE All-World UCITS ETF (USD) Accumulating",
+          "weightPct": 19.2
+        },
+        {
+          "name": "Vanguard FTSE Developed World UCITS ETF (USD) Accumulating",
+          "weightPct": 19.2
+        },
+        {
+          "name": "Vanguard S&P 500 UCITS ETF (USD) Accumulating",
+          "weightPct": 6.3
+        },
+        {
+          "name": "Vanguard FTSE Emerging Markets UCITS ETF (USD) Accumulating",
+          "weightPct": 6.1
+        },
+        {
+          "name": "Vanguard FTSE Developed Europe UCITS ETF (EUR) Accumulating",
+          "weightPct": 5.6
+        },
+        {
+          "name": "Vanguard FTSE Japan UCITS ETF (USD) Accumulating",
+          "weightPct": 2.3
+        },
+        {
+          "name": "Vanguard FTSE Developed Asia Pacific ex Japan UCITS ETF (USD) Accumulating",
+          "weightPct": 2.0
+        },
+        {
+          "name": "Vanguard USD Treasury Bond UCITS ETF EUR Hedged Accumulating",
+          "weightPct": 0.3
+        },
+        {
+          "name": "Vanguard USD Corporate Bond UCITS ETF EUR Hedged Accumulating",
+          "weightPct": 0.2
+        },
+        {
+          "name": "Vanguard EUR Eurozone Government Bond UCITS ETF (EUR) Accumulating",
+          "weightPct": 0.2
+        },
+        {
+          "name": "Vanguard EUR Corporate Bond UCITS ETF (EUR) Accumulating",
+          "weightPct": 0.1
+        },
+        {
+          "name": "Vanguard U.K. Gilt UCITS ETF EUR Hedged Accumulating",
+          "weightPct": 0.0
+        }
+      ]
+    },
+    "assetAllocation": {
+      "asOf": "2026-08-31",
+      "checkedAt": "2026-10-13",
+      "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9496/lifestrategy-80-equity-ucits-etf-eur-accumulating",
+      "basis": "fund",
+      "rows": [
+        {
+          "name": "Obligations",
+          "weightPct": 19.94
+        },
+        {
+          "name": "Liquidités",
+          "weightPct": 0.05
+        },
+        {
+          "name": "Actions",
+          "weightPct": 80.01
+        }
+      ]
+    },
+    "performance": {
+      "basis": "fund",
+      "currency": "EUR",
+      "method": "calendar-year NAV total return, gross income reinvested, fund fees included",
+      "years": {
+        "2021": 20.73,
+        "2022": -13.0,
+        "2023": 15.09,
+        "2024": 19.87,
+        "2025": 7.14
+      },
+      "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
+      "sha256": "8a01acd62d8d6fbe687f19d3ecab50c9453dcdc5fa439a5c605a20045003268c",
+      "checkedAt": "2026-10-13"
+    },
+    "unavailable": [
+      "countries: no qualified whole-fund look-through",
+      "sectors: asset allocation is not an equity sector table"
+    ]
+  }
+}

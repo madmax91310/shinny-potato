@@ -1,3 +1,4 @@
+import { multiAssetAllocationLines } from '../../../data/lifestrategy.js'
 import { COMPARISON_ETF_DETAILS } from '../../../data/comparison-etf-details.js'
 import { getComparisonPerformance } from '../../tweet-midi/comparisonPerformance.js'
 import { AUTOMATED_ETF } from '../../../data/automated-etf.js'
@@ -21,6 +22,8 @@ export function buildComparisonEtfDetails(etf, selectedYears) {
   // ne doit pas transformer des positions d’indice en positions détenues.
   const collected = AUTOMATED_ETF[etf.isin]
   const commodities = commodityAllocationLines(etf.isin)
+  const multiAsset = multiAssetAllocationLines(etf.isin)
+  if (multiAsset.length) lines.push('', ...multiAsset)
   if (commodities.length) lines.push('', ...commodities)
   const holdingsExposure = collected?.holdings ? collected.holdings.basis === 'index' : details?.basis === 'tracked-index'
   const sectorsExposure = collected?.sectors ? collected.sectors.basis === 'index' : details?.basis === 'tracked-index'

@@ -1,9 +1,11 @@
+import { LIFESTRATEGY_RECORDS } from './lifestrategy.js';
 import {ROUND3_FUND_SHEETS} from './round3-fund-sheets.js';
 import { QUALIFIED_EXPOSURE_SHEETS } from './qualified-exposure-sheets.js';
 import { EXPOSURE_ADDITIONS } from './exposure-additions.js';
 import { PRESENTATION_ETF_ADDITIONS } from './presentation-etf-additions.js';
 // Profils individuels consultés le 30/09/2026. Les preuves chiffrées sont figées dans scripts/source-snapshots/instrument-profiles-2026-09-30.json.
 export const INSTRUMENT_REFERENCE_EVIDENCE = {
+ ...Object.values(LIFESTRATEGY_RECORDS).reduce((o,r)=>({...o,[r.isin]:{sourceUrls:[r.sourceUrl,r.characteristics.sourceUrl],checkedAt:r.checkedAt,dateStatus:'not-applicable',scope:`Part exacte ${r.isin}`,method:'Fiche Vanguard et API GPX officielles, collecte automatisée',note:'Encours arrondi au million ; rendements calendaires à partir de 2021.'}}),{}),
   IE000UL6CLP7: {sourceUrls:["https://globalxetfs.eu/funds/silv/"],checkedAt:"2026-10-12",dateStatus:"not-applicable",scope:"Part exacte USD capitalisante, SILV Londres",method:"Identité et cotation officielles; historique ajusté automatisé, recoupé quotidien/mensuel",note:"Historique seulement; composition sectorielle complète non publiée sur la source collectée."},
  ...Object.fromEntries(ROUND3_FUND_SHEETS.map(r=>[r.isin,{sourceUrls:[r.source],checkedAt:r.checkedAt,dateStatus:'not-applicable',scope:`Part exacte ${r.isin}`,method:'Caractéristiques et cotations issues de l’API officielle, collectées automatiquement'}])),
   IE00B4556L06: {sourceUrls: ['https://www.ishares.com/uk/individual/en/products/256574/ishares-physical-palladium-etc-fund?siteEntryPassthrough=true&switchLocale=y'], checkedAt:'2026-10-12',dateStatus:'not-applicable',scope:'ETC exact IE00B4556L06, cotation IPDM USD',method:'Identité et cotation officielle exactes; historique automatiquement actualisé et recoupé daily/monthly',note:'Historique du produit ETC adossé au palladium; pas le cours du métal ni un ETF UCITS. Août 2015 recoupé par une requête quotidienne de fin de mois indépendante.'},

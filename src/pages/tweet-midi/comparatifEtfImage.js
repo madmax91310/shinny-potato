@@ -1,3 +1,4 @@
+import { LIFESTRATEGY_RECORDS } from '../../data/lifestrategy.js'
 import { startPublicationDownload } from '../../design-system/publicationActions.js'
 import { loadEditorialFont } from './anniversaryArt.js'
 import { getComparisonPerformance, getComparisonYears } from './comparisonPerformance.js'
@@ -43,6 +44,19 @@ function rounded(ctx, x, y, width, height, color, radius = 24) {
   ctx.fillStyle = color; ctx.beginPath(); ctx.roundRect(x, y, width, height, radius); ctx.fill()
 }
 function composition(ctx, fund, field, x, y, width, accent) {
+  const multi = LIFESTRATEGY_RECORDS[fund.isin]
+  if (multi) {
+    const observation = field === 'sectors' ? multi.assetAllocation : multi.holdings
+    text(ctx, field === 'sectors' ? 'ACTIONS ET OBLIGATIONS' : 'FONDS SOUS-JACENTS', x, y, 30, { width })
+    const entries = [...observation.rows].sort((a,b)=>b.weightPct-a.weightPct).slice(0,3)
+    entries.forEach((entry,i)=>{
+      const label = entry.name.replace(/^Vanguard /,'').replace(/ UCITS ETF.*$/,'')
+      lines(ctx,label,x,y+52+i*70,width-120,2,27,{weight:400})
+      text(ctx,`${entry.weightPct.toLocaleString('fr-FR')} %`,x+width,y+52+i*70,29,{align:'right',width:116})
+    })
+    text(ctx,`Fonds · ${observation.asOf.split('-').reverse().join('/')}`,x,y+287,27,{width,weight:400,color:MUTED})
+    return
+  }
   const { rows, asOf, isIndex } = getComparisonImageComposition(fund.isin, field)
   // A rate index has no geographic or sector allocation. Keep the same panels,
   // showing its existing benchmark and currency instead of an unavailable portfolio.

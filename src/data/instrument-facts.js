@@ -1,3 +1,4 @@
+import { LIFESTRATEGY_FACTS } from './lifestrategy.js';
 import { ROUND3_FACTS } from './round3-fund-sheets.js';
 import { QUALIFIED_FACTS } from './qualified-exposure-sheets.js';
 import { PRESENTATION_ETF_ADDITIONS } from './presentation-etf-additions.js';
@@ -16,6 +17,7 @@ export { getInstrumentListings } from './instrument-listings.js';
 // PEA reste dans instruments.js : le statut ne se déduit ni du domicile ni de l'indice.
 // Les ETC et ETP gardent leur nature distincte des fonds ETF.
 export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
+  ...LIFESTRATEGY_FACTS,
   ...QUALIFIED_FACTS,
   ...ROUND3_FACTS,
   // Structure : sources Amundi et réplication dans le connecteur existant, revue du 12/10/2026.
