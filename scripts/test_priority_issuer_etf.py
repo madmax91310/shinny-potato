@@ -69,4 +69,27 @@ class RemainingIssuerSources(unittest.TestCase):
         with patch('collect_public_issuer.public_page',return_value=text.replace('Primary ISIN','Missing ISIN')):
             with self.assertRaises(ValueError): collect_one(config,NOW)
 
+
+class SilverResilience(unittest.TestCase):
+    def test_decorative_heading_is_not_a_required_data_boundary(self):
+        text = (FIX / 'silv.html').read_text()
+        original = silver(text, share('IE000UL6CLP7'), NOW)
+        changed = silver(text.replace('Regulatory', 'Documents'), share('IE000UL6CLP7'), NOW)
+        self.assertEqual(original['aum']['amount'], changed['aum']['amount'])
+        self.assertEqual(original['aum']['asOf'], changed['aum']['asOf'])
+        self.assertEqual(original['performance']['observations'], changed['performance']['observations'])
+
+    def test_incomplete_html_retries_once_but_wrong_identity_does_not(self):
+        from collect_priority_issuer_etf import collect_one as priority
+        text = (FIX / 'silv.html').read_text(); config = share('IE000UL6CLP7')
+        with patch('collect_priority_issuer_etf.public_page', side_effect=[text.replace('Primary ISIN', 'Missing'), text]) as fetch:
+            self.assertEqual(priority(config, NOW)['aum']['amount'], 1436170893.22)
+            self.assertEqual(fetch.call_count, 2)
+        with patch('collect_priority_issuer_etf.public_page', return_value=text.replace('Primary ISIN', 'Missing')) as fetch:
+            with self.assertRaises(ValueError): priority(config, NOW)
+            self.assertEqual(fetch.call_count, 2)
+        with patch('collect_priority_issuer_etf.public_page', return_value=text.replace(config['isin'], 'IE000OTHER00')) as fetch:
+            with self.assertRaises(ValueError): priority(config, NOW)
+            self.assertEqual(fetch.call_count, 1)
+
 if __name__ == '__main__': unittest.main()

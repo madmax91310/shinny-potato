@@ -41,59 +41,13 @@ jobs:
           node-version: 20
           cache: npm
       - run: npm ci
-      - uses: actions/setup-python@v7.0.0
-        with:
-          python-version: '3.12'
-      - run: pip install beautifulsoup4==4.15.0 openpyxl==3.1.5
-      - run: python -m unittest discover -s scripts -p 'test_broker_tariff*.py'
-      - run: python scripts/audit_broker_coverage.py
       - run: node scripts/test-broker-automation.mjs
-      - run: python -m unittest discover -s scripts -p 'test_data*.py'
-      - run: python -m unittest discover -s scripts -p 'test_active_refresh.py'
-      - run: python -m unittest discover -s scripts -p 'test_etf_resilience.py'
-      - run: python -m unittest discover -s scripts -p 'test_source_documents.py'
-      - run: pip install Pillow==12.3.0
-      - run: python -m unittest discover -s scripts -p 'test_russell_composition.py'
-      - run: python -m unittest discover -s scripts -p 'test_sp_composition.py'
-      - run: python -m unittest discover -s scripts -p 'test_monthly_automation.py'
-      - run: python -m unittest discover -s scripts -p 'test_roadmap_assets.py'
-      - run: python -m unittest discover -s scripts -p 'test_bnp_etf.py'
-      - run: python -m unittest discover -s scripts -p 'test_etf_field_completion.py'
-      - run: python -m unittest discover -s scripts -p 'test_priority_etf_completion.py'
-      - run: python -m unittest discover -s scripts -p 'test_document_etf.py'
-      - run: python -m unittest discover -s scripts -p 'test_new_issuer_sources.py'
-      - run: python -m unittest discover -s scripts -p 'test_priority_issuer_etf.py'
-      - run: python -m unittest discover -s scripts -p 'test_presentation_etf.py'
-      - run: python -m unittest discover -s scripts -p 'test_lifestrategy.py'
       - run: node scripts/test-lifestrategy.mjs
-      - run: python -m unittest discover -s scripts -p 'test_physical_etc.py'
       - run: node scripts/test-resource-selections.mjs
       - run: node scripts/test-dca-profiles.mjs
       - run: node scripts/test-presentation-etf.mjs
-      - run: python -m unittest discover -s scripts -p 'test_product_calendars.py'
-      - run: python -m unittest discover -s scripts -p 'test_commodity_allocations.py'
-      - run: python -m unittest discover -s scripts -p 'test_issuer_reliability.py'
-      - run: python -m unittest discover -s scripts -p 'test_four_issuer_recovery.py'
-      - run: python -m unittest discover -s scripts -p 'test_wisdomtree_allocations.py'
-      - run: python -m unittest discover -s scripts -p 'test_remaining_index_sources.py'
-      - run: python -m unittest discover -s scripts -p 'test_index_extensions.py'
-      - run: python -m unittest discover -s scripts -p 'test_world_sector_indices.py'
-      - run: python -m unittest discover -s scripts -p 'test_remaining_aum.py'
-      - run: pip install -r scripts/company-requirements.txt
-      - run: python -m unittest discover -s scripts -p 'test_scpi.py'
       - run: node scripts/test-scpi.mjs
-      - run: sudo apt-get update && sudo apt-get install -y poppler-utils tesseract-ocr tesseract-ocr-fra
-      - run: python -m unittest discover -s scripts -p 'test_corum.py'
-      - run: python -m unittest discover -s scripts -p 'test_corum_vector.py'
-      - run: python -m unittest discover -s scripts -p 'test_presentation_actors.py'
-      - run: python -m unittest discover -s scripts -p 'test_extended_scpi.py'
-      - run: python -m unittest discover -s scripts -p 'test_insurance.py'
-      - run: python -m unittest discover -s scripts -p 'test_publication_periods.py'
-      - run: python -m unittest discover -s scripts -p 'test_presentation_expansion.py'
       - run: node scripts/test-insurance.mjs
-      - run: python -m unittest discover -s scripts -p 'test_company_analysis.py'
-      - run: python -m unittest discover -s scripts -p 'test_non_bond_expansion.py'
-      - run: python -m unittest discover -s scripts -p 'test_support_expansion.py'
       - run: node scripts/test-company-analysis.mjs
       - run: npm run test:radar
       - run: node scripts/test-wealth-simulator.mjs
@@ -121,7 +75,6 @@ jobs:
       - run: node scripts/test-investment-crisis.mjs
       - run: node scripts/test-etf-tool-connections.mjs
       - run: node scripts/test-investment-conclusions.mjs
-      - run: python -m unittest discover -s scripts -p 'test_publication*.py'
       - run: node scripts/test-anniversary-indices.mjs
       - run: node scripts/test-existing-asset-formats.mjs
       - run: node scripts/test-publication-consumers.mjs
@@ -131,11 +84,6 @@ jobs:
       - run: node scripts/test-comparison-etf-details.mjs
       - run: npm run verify:tweet-midi
       - run: npm run audit:investor-profiles
-      - run: python -m unittest discover -s scripts -p "test_investor_refresh.py"
-      - run: python -m unittest discover -s scripts -p "test_data_automation.py"
-      - run: pip install -r scripts/requirements-gold.txt
-      - run: python -m unittest discover -s scripts -p "test_gold_monthly.py"
-      - run: python -m unittest discover -s scripts -p "test_pages_head.py"
       - run: npm run audit:household-statistics
       - run: node scripts/test-diversification-lot-one.mjs
       - run: node scripts/test-gaming-medical-reuse.mjs
@@ -155,100 +103,16 @@ jobs:
       - run: node scripts/test-publication-reliability.mjs
       - run: node scripts/test-historical-publications.mjs
       - run: npm run stress-test:portfolios
+      - run: node scripts/test-automation-overview.mjs
       - run: npm run build
       - run: node scripts/test-practical-sheets.mjs
       - run: node scripts/test-performance-links.mjs
-      - run: npx playwright install --with-deps chromium
-      - run: node scripts/test-investment-crisis.mjs --browser
       - uses: actions/upload-artifact@v7.0.1
-        if: always()
         with:
-          name: investment-crisis-visual-checks
-          path: test-artifacts/investment-crisis
-          if-no-files-found: ignore
-          retention-days: 7
-      - run: node scripts/test-resource-selections.mjs --browser
-      - uses: actions/upload-artifact@v7.0.1
-        if: always()
-        with:
-          name: resource-selections-visual-checks
-          path: test-artifacts/resource-selections
-          if-no-files-found: ignore
-          retention-days: 7
-      - run: node scripts/test-dca-images.mjs
-      - run: node scripts/test-practical-images.mjs
-      - run: node scripts/playwright-performance-links.mjs
-      - run: mkdir -p test-artifacts/company-analysis
-      - run: node scripts/test-route-loading.mjs
-      - run: node scripts/test-weekly-publications.mjs
-      - uses: actions/upload-artifact@v7.0.1
-        if: always()
-        with:
-          name: weekly-home-visual-checks
-          path: test-artifacts/weekly-publications
-          if-no-files-found: ignore
-          retention-days: 7
-      - run: node scripts/test-automation-overview.mjs
-      - run: node scripts/test-automation-failures-ui.mjs
-      - run: node scripts/test-data-review-calendar.mjs
-      - run: node scripts/test-scpi-ui.mjs
-      - run: node scripts/test-insurance-ui.mjs
-      - run: node scripts/test-presentations.mjs
-      - run: node scripts/test-presentations-ui.mjs
-      - run: node scripts/test-presentation-images.mjs
-      - run: node scripts/test-company-analysis-ui.mjs
-        env:
-          COMPANY_QA_DIR: test-artifacts/company-analysis
-      - run: node scripts/playwright-tools.mjs
-      - run: node scripts/playwright-publication-actions.mjs
-      - run: npm run test:radar:browser
-      - run: node scripts/playwright-wealth.mjs
-      - run: node scripts/test-regulatory-ui.mjs
-      - run: node scripts/test-commodity-allocation-ui.mjs
-      - run: node scripts/playwright-lifestrategy.mjs
-      - run: node scripts/test-portfolio-metallic.mjs
-      - run: node scripts/test-index-ribbon.mjs
-      - run: node scripts/test-index-ceramic.mjs
-      - run: node scripts/test-household-sculpture.mjs
-      - run: node scripts/test-purchasing-power-editorial.mjs
-      - run: node scripts/test-purchasing-power-receipt.mjs
-      - run: node scripts/test-export-copy.mjs
-      - run: node scripts/test-publication-studio.mjs
-      - run: node scripts/playwright-publication.mjs
-      - run: node scripts/test-anniversary-art.mjs
-      - run: node scripts/test-etf-art.mjs
-      - run: node scripts/test-stylized-formats.mjs
-      - run: node scripts/test-investment-emerald.mjs
-      - run: node scripts/test-duel-titanium.mjs
-      - run: node scripts/test-investor-screenprint.mjs
-      - uses: actions/upload-artifact@v7.0.1
-        if: always()
-        with:
-          name: investor-visual-checks
-          path: test-artifacts/investor-screenprint
-          if-no-files-found: ignore
-          retention-days: 7
-      - uses: actions/upload-artifact@v7.0.1
-        if: always()
-        with:
-          name: duel-visual-checks
-          path: test-artifacts/duel-titanium
-          if-no-files-found: ignore
-          retention-days: 7
-      - uses: actions/upload-artifact@v7.0.1
-        if: always()
-        with:
-          name: investment-visual-checks
-          path: test-artifacts/investment-emerald
-          if-no-files-found: ignore
-          retention-days: 7
-      - uses: actions/upload-artifact@v7.0.1
-        if: always()
-        with:
-          name: tool-visual-checks
-          path: test-artifacts
-          if-no-files-found: ignore
-          retention-days: 7
+          name: validated-site
+          path: dist
+          include-hidden-files: true
+          retention-days: 2
       - uses: actions/configure-pages@v6.0.0
         if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
       - uses: actions/upload-pages-artifact@v5.0.0
@@ -256,8 +120,113 @@ jobs:
         with:
           path: dist
 
-  deploy:
+  python-checks:
+    runs-on: ubuntu-26.04
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          ref: ${{ inputs.ref || github.sha }}
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: '3.12'
+      - run: pip install beautifulsoup4==4.15.0 openpyxl==3.1.5
+      - run: python -m unittest discover -s scripts -p 'test_broker_tariff*.py'
+      - run: python scripts/audit_broker_coverage.py
+      - run: python -m unittest discover -s scripts -p 'test_data*.py'
+      - run: python -m unittest discover -s scripts -p 'test_active_refresh.py'
+      - run: python -m unittest discover -s scripts -p 'test_etf_resilience.py'
+      - run: python -m unittest discover -s scripts -p 'test_source_documents.py'
+      - run: pip install Pillow==12.3.0
+      - run: python -m unittest discover -s scripts -p 'test_russell_composition.py'
+      - run: python -m unittest discover -s scripts -p 'test_sp_composition.py'
+      - run: python -m unittest discover -s scripts -p 'test_monthly_automation.py'
+      - run: python -m unittest discover -s scripts -p 'test_roadmap_assets.py'
+      - run: python -m unittest discover -s scripts -p 'test_bnp_etf.py'
+      - run: python -m unittest discover -s scripts -p 'test_etf_field_completion.py'
+      - run: python -m unittest discover -s scripts -p 'test_priority_etf_completion.py'
+      - run: python -m unittest discover -s scripts -p 'test_document_etf.py'
+      - run: python -m unittest discover -s scripts -p 'test_new_issuer_sources.py'
+      - run: python -m unittest discover -s scripts -p 'test_priority_issuer_etf.py'
+      - run: python -m unittest discover -s scripts -p 'test_presentation_etf.py'
+      - run: python -m unittest discover -s scripts -p 'test_lifestrategy.py'
+      - run: python -m unittest discover -s scripts -p 'test_physical_etc.py'
+      - run: python -m unittest discover -s scripts -p 'test_product_calendars.py'
+      - run: python -m unittest discover -s scripts -p 'test_commodity_allocations.py'
+      - run: python -m unittest discover -s scripts -p 'test_issuer_reliability.py'
+      - run: python -m unittest discover -s scripts -p 'test_four_issuer_recovery.py'
+      - run: python -m unittest discover -s scripts -p 'test_wisdomtree_allocations.py'
+      - run: python -m unittest discover -s scripts -p 'test_remaining_index_sources.py'
+      - run: python -m unittest discover -s scripts -p 'test_index_extensions.py'
+      - run: python -m unittest discover -s scripts -p 'test_world_sector_indices.py'
+      - run: python -m unittest discover -s scripts -p 'test_remaining_aum.py'
+      - run: pip install -r scripts/company-requirements.txt
+      - run: python -m unittest discover -s scripts -p 'test_scpi.py'
+      - run: sudo apt-get update && sudo apt-get install -y poppler-utils tesseract-ocr tesseract-ocr-fra
+      - run: python -m unittest discover -s scripts -p 'test_corum.py'
+      - run: python -m unittest discover -s scripts -p 'test_corum_vector.py'
+      - run: python -m unittest discover -s scripts -p 'test_presentation_actors.py'
+      - run: python -m unittest discover -s scripts -p 'test_extended_scpi.py'
+      - run: python -m unittest discover -s scripts -p 'test_insurance.py'
+      - run: python -m unittest discover -s scripts -p 'test_publication_periods.py'
+      - run: python -m unittest discover -s scripts -p 'test_presentation_expansion.py'
+      - run: python -m unittest discover -s scripts -p 'test_company_analysis.py'
+      - run: python -m unittest discover -s scripts -p 'test_non_bond_expansion.py'
+      - run: python -m unittest discover -s scripts -p 'test_support_expansion.py'
+      - run: python -m unittest discover -s scripts -p 'test_publication*.py'
+      - run: python -m unittest discover -s scripts -p "test_investor_refresh.py"
+      - run: python -m unittest discover -s scripts -p "test_data_automation.py"
+      - run: pip install -r scripts/requirements-gold.txt
+      - run: python -m unittest discover -s scripts -p "test_gold_monthly.py"
+      - run: python -m unittest discover -s scripts -p "test_pages_head.py"
+      - run: python -m unittest discover -s scripts -p 'test_automation_status.py'
+      - run: python -m unittest discover -s scripts -p 'test_audit_workflows.py'
+
+  browser-checks:
     needs: build
+    runs-on: ubuntu-26.04
+    permissions:
+      contents: read
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1, 2, 3]
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          ref: ${{ needs.build.outputs.commit_sha }}
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm run prebuild
+      - uses: actions/download-artifact@v4
+        with:
+          name: validated-site
+          path: dist
+      - uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: chromium-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+      - run: npx playwright install --with-deps chromium
+      - run: node scripts/run-browser-checks.mjs ${{ matrix.shard }} 4
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: tool-visual-checks-${{ matrix.shard }}
+          path: test-artifacts
+          if-no-files-found: ignore
+          retention-days: 7
+
+  deploy:
+    needs: [build, python-checks, browser-checks]
     if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
     # Explicitly validate the next ubuntu-latest image before its rollout.
     runs-on: ubuntu-26.04

@@ -3,7 +3,8 @@ import { INSTRUMENTS_BY_ISIN, getInstrumentName, getInstrumentPeaStatus } from '
 import { getPreferredInstrumentListing } from './instrument-listings.js'
 import { ETF_TER_BY_ISIN } from './etf-ter.js'
 
-export const normalizeSearch = text => String(text ?? '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()
+import { normalizeSearch } from './search-text.js'
+export { normalizeSearch } from './search-text.js'
 export const shortAssetName = name => String(name ?? '').replace(/\s+UCITS\s+ETF/gi, '').replace(/\s*\((Acc|Dist)\)/gi, '').trim()
 
 // Navigation only: labels derive from the existing identity, never from returns.

@@ -58,18 +58,7 @@ export function buildTweetText(theme) {
   return lines.join('\n')
 }
 
-export function getLengthStatus(length) {
-  if (length <= 280) {
-    return { level: 'ok', label: `${length} / 280 — format tweet classique` }
-  }
-  if (length <= 25000) {
-    return {
-      level: 'warn',
-      label: `${length} caractères — nécessite une note longue (X Premium) ou un thread`,
-    }
-  }
-  return { level: 'danger', label: `${length} caractères — trop long, à scinder en thread` }
-}
+export { getLengthStatus } from '../../../lib/publication-length.js'
 
 const COUNTRY_FLAGS = {
   'United States': '🇺🇸', 'États-Unis': '🇺🇸', Japan: '🇯🇵', Japon: '🇯🇵',

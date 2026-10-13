@@ -3,7 +3,7 @@ import json
 import re
 from collect_public_issuer import Page, only, money, base
 from issuer_documents import public_page, download, pdf_text, proof, document_date, bounded_return
-from data_automation import reject
+from data_automation import reject, ResponseFormatError
 
 
 def silver(text, share, now):
@@ -11,10 +11,20 @@ def silver(text, share, now):
         reject('Wrong Silver Miners share configuration')
     tokens = Page(text).tokens
     starts = [i for i, t in enumerate(tokens[:-1]) if t == 'Key Information' and tokens[i+1].startswith('As of ')]
+    if not starts:
+        raise ResponseFormatError('Incomplete Silver Miners HTML: dated key information missing')
     start = only(starts, 'Silver Miners dated facts')
-    end = tokens.index('Regulatory', start)
+    # End on the final required trading field, not a decorative section heading.
+    # Bound the search so another product or footer cannot fill a truncated block.
+    ends = [i for i in range(start + 2, min(len(tokens) - 1, start + 120)) if tokens[i] == 'Management Style']
+    if not ends:
+        raise ResponseFormatError('Incomplete Silver Miners HTML: trading details missing')
+    end = only(ends, 'Silver Miners management style') + 2
     block = '\n'.join(tokens[start:end])
-    if only(re.findall(r'Primary ISIN\n([A-Z0-9]{12})', block), 'Silver Miners ISIN') != share['isin']:
+    identities = re.findall(r'Primary ISIN\n([A-Z0-9]{12})', block)
+    if not identities:
+        raise ResponseFormatError('Incomplete Silver Miners HTML: primary ISIN missing')
+    if only(list(dict.fromkeys(identities)), 'Silver Miners ISIN') != share['isin']:
         reject('Wrong Silver Miners exact share')
     if 'USD Accumulating' not in '\n'.join(tokens) or 'Physical - Full Replication - Passively Managed Index Tracking' not in block:
         reject('Silver Miners income policy or replication changed')
@@ -35,6 +45,8 @@ def silver(text, share, now):
     for m in re.finditer(r'"performance":\s*(?=\{)', rsc):
         value, _ = json.JSONDecoder().raw_decode(rsc[m.end():])
         if 'PERFORMANCE_HISTORY' in value: candidates.append(value)
+    if not candidates:
+        raise ResponseFormatError('Incomplete Silver Miners HTML: performance payload missing')
     performance = only(candidates, 'Silver Miners performance')
     if performance['ETF_TICKER'] != 'SILV': reject('Wrong Silver Miners performance ticker')
     document_date(performance['AS_OF_DATE'], now)
@@ -90,6 +102,16 @@ def avantis(body, share, now):
 def collect_one(share, now):
     if share['parser'] == 'globalx-priority':
         if share['sourceUrl'] != 'https://globalxetfs.eu/funds/silv/': reject('Unexpected Silver Miners official source')
-        return silver(public_page(share['sourceUrl']), share, now)
+        attempts = []
+        for attempt in range(2):
+            try:
+                result = silver(public_page(share['sourceUrl']), share, now)
+                if attempts:
+                    result['sourceAttempts'] = attempts + [{'url': share['sourceUrl'], 'status': 'validated'}]
+                return result
+            except ResponseFormatError as error:
+                attempts.append({'url': share['sourceUrl'], 'reason': str(error)})
+                if attempt:
+                    raise
     if share['sourceUrl'] != 'https://res.americancentury.com/docs/avantis-global-small-cap-value-ucits-etf-fact-sheet.pdf': reject('Unexpected Avantis official source')
     return avantis(download(share['sourceUrl']), share, now)

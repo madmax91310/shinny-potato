@@ -1,5 +1,5 @@
 import { useId, useMemo, useState } from 'react'
-import { normalizeSearch } from '../data/asset-selection.js'
+import { normalizeSearch } from '../data/search-text.js'
 import './asset-picker.css'
 
 export default function AssetPicker({ items, value, onChange, label, id, className = '', emptyOption, selectOnGroupChange = false }) {

@@ -22,6 +22,7 @@ jobs:
       contents: write
     outputs:
       commit_sha: ${{ steps.commit.outputs.commit_sha }}
+      collection_failed: ${{ steps.collect.outcome == 'failure' }}
     steps:
       - uses: actions/checkout@v7.0.1
         with:
@@ -68,3 +69,11 @@ jobs:
     uses: ./.github/workflows/deploy-pages.yml
     with:
       ref: ${{ needs.refresh.outputs.commit_sha }}
+  report-failures:
+    needs: [refresh, deploy]
+    if: always() && needs.refresh.outputs.collection_failed == 'true'
+    runs-on: ubuntu-24.04
+    steps:
+      - run: |
+          echo 'Collecte partielle : dernières valeurs fiables conservées ; données validées publiées si les contrôles réussissent.' >> "$GITHUB_STEP_SUMMARY"
+          exit 1

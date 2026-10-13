@@ -1,3 +1,4 @@
+import { projectFeeCatalog } from './scripts/project-fee-catalog.mjs'
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
@@ -11,6 +12,7 @@ export default defineConfig({
     manifest: true,
     rolldownOptions: { output: { codeSplitting: { groups: [
       ...issuerParts.groups,
+      { name: 'light-helpers', test: /(?:search-text|format-currency|publication-length)\.js$/, priority: 110 },
       { name: 'non-bond-monthly', test: /non-bond-monthly-records\.json$/, priority: 100 },
       { name: 'company-history-expansion', test: /non-bond-company-histories\.json$/ },
       { name: 'market-monthly-records', test: /automated-monthly\.json$/ },
@@ -19,5 +21,5 @@ export default defineConfig({
       { name: 'official-index-history', test: /anniversary-index-history\.json$/ },
     ] } } },
   },
-  plugins: [react(), tailwindcss(), issuerParts.plugin],
+  plugins: [projectFeeCatalog(), react(), tailwindcss(), issuerParts.plugin],
 })

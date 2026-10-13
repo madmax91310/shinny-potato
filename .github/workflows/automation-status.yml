@@ -17,6 +17,10 @@ on:
       - Update official economic data
       - Update official regulatory data
       - Update practical sheet references
+      - Update Vanguard LifeStrategy data
+      - Update non-bond expansion
+      - Update qualified exposure ETF data
+      - Refresh fully automated index sheets
     types: [completed]
   workflow_dispatch:
   pull_request:
@@ -24,11 +28,13 @@ on:
       - ".github/workflows/automation-status.yml"
       - "scripts/publish_automation_status.py"
       - "scripts/test_automation_status.py"
+      - "src/data/automation-workflows.json"
   push:
     branches: [master]
     paths:
       - '.github/workflows/automation-status.yml'
       - 'scripts/publish_automation_status.py'
+      - 'src/data/automation-workflows.json'
 permissions:
   contents: read
 concurrency:
