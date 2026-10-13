@@ -17,7 +17,7 @@ for (const id of ['etfImie','etfVwce','etfEqualWeight','etfMinVol','etfWqdv','et
 for (const [id, asset] of Object.entries(ETF_MONTHLY_HISTORIES)) {
   assert.equal(ASSETS[id], asset)
   assert(ASSET_ORDER.includes(id))
-  assert(ANNIVERSAIRE_ELIGIBLE_ASSETS.some(a => a.id === id))
+  assert.equal(ANNIVERSAIRE_ELIGIBLE_ASSETS.some(a => a.id === id), Boolean(asset.anniversaryPoints?.length))
   assert(ANNIVERSARY_ART[id] && PERFORMANCE_ART[id] && INVESTMENT_ART[id])
   assert.equal(getPerformanceAssetId(asset.isin), id)
   assert.match(performanceBasis(id), asset.instrumentType === 'ETC' ? /cours de l’ETC/ : /revenus réinvestis/)
@@ -41,6 +41,10 @@ for (const [id, asset] of Object.entries(ETF_MONTHLY_HISTORIES)) {
   assert(rows.every(r => r.startDate.endsWith('-12') && r.endDate.endsWith('-12')))
   const annual = buildPerformanceDepuisText({ format: FORMATS.PERFORMANCE_DEPUIS, mode: MODES.SIMPLE, assetId: id, year: years[0] })
   assert(annual.includes(asset.currency) && annual.includes(asset.instrumentType === 'ETC' ? 'cours de l’ETC' : 'revenus réinvestis'))
+  if (!asset.anniversaryPoints?.length) {
+    assert(!LEVELS[id], `${id}: anniversary collection must remain disabled`)
+    continue
+  }
   const options = getValidYearsBackOptions(id, clock)
   assert(options.length)
   for (const back of options) {

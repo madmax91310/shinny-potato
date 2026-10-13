@@ -2,6 +2,11 @@
 // partagent un rôle ; un indice, un facteur ou un mécanisme différent a son propre texte.
 // Aucun rendement, frais ou statut fiscal n’est recopié ici.
 const entries = {};
+for (const n of [20,40,60,80]) {
+ add(`lifestrategy${n}`,'multi-asset',`LifeStrategy ${n}/${100-n}`,`On réunit environ ${n} % d’actions mondiales et ${100-n} % d’obligations dans cette ligne. Vanguard gère le rééquilibrage interne ; les deux poches peuvent baisser en même temps.`);
+ entries[`lifestrategy${n}`].description=`Un ETF multi-actifs avec une cible de ${n} % d’actions et ${100-n} % d’obligations.`;
+}
+
 add('utilities_world_dws','theme','les services publics mondiaux','On renforce ici les entreprises de services publics des pays développés. Leurs réseaux sont essentiels, mais les taux, les dettes et la réglementation restent des risques pour leurs actions.');
 entries.utilities_world_dws.description='Des actions mondiales de sociétés de services publics.';
 add('health_world_ishares','theme','la santé mondiale','On renforce ici des entreprises du secteur santé des pays développés. La sélection Advanced conserve ses filtres et ses plafonds ; cette poche peut recouper le World.');

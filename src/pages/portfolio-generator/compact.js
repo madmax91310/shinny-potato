@@ -4,6 +4,7 @@ import { shortAssetName } from '../../data/asset-selection.js'
 import { SIMULATION_PROXIES } from '../../data/simulation-proxies.js'
 
 const roles = {}
+for (const n of [20,40,60,80]) roles[`lifestrategy${n}`]=`Cette ligne vise ${n} % d’actions mondiales et ${100-n} % d’obligations, avec rééquilibrage géré par Vanguard.`
 const lotOneRoles = { acwi_imi_spdr: 'Cette ligne réunit grandes, moyennes et petites entreprises des pays développés et émergents. Leur poids suit leur capitalisation.', world_ex_usa: 'Cette ligne retire les entreprises américaines des pays développés, sans ajouter les émergents ni les petites capitalisations.' }
 Object.assign(roles, lotOneRoles)
 const add = (ids, text) => ids.split(' ').forEach(id => { roles[id] = text })

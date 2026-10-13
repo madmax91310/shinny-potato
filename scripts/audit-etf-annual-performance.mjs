@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { LIFESTRATEGY_RECORDS } from '../src/data/lifestrategy.js';
 import { AUTOMATED_ETF } from '../src/data/automated-etf.js';
 import { REVIEWED_PERFORMANCE_META } from '../src/data/instrument-performance-review.js';
 import { SIMULATION_PROXIES } from '../src/data/simulation-proxies.js';
@@ -35,7 +36,7 @@ for (const etf of ETFS) {
   if (asset && series.values.every(Number.isFinite) && JSON.stringify(series.calendarYears ? series.calendarYears.map(year => asset.calendarReturns[year] ?? null) : asset.r) !== JSON.stringify(series.values)) {
     console.error(`Divergence Fiches / Générateur : ${etf.isin}`); errors++
   }
-  if (asset && !series.values.every(Number.isFinite) && !SIMULATION_PROXIES[etf.isin] && !(REVIEWED_PERFORMANCE_META[etf.isin]?.portfolioHistoryBasis === 'proxy' && asset.confidenceNote)) {
+  if (asset && !series.values.every(Number.isFinite) && !(LIFESTRATEGY_RECORDS[etf.isin] && asset.manualOnly && series.values[0] === null && series.values.slice(1).every(Number.isFinite) && JSON.stringify(asset.r) === JSON.stringify(series.values)) && !SIMULATION_PROXIES[etf.isin] && !(REVIEWED_PERFORMANCE_META[etf.isin]?.portfolioHistoryBasis === 'proxy' && asset.confidenceNote)) {
     console.error(`Part à historique incomplet dans le Générateur : ${etf.isin}`); errors++
   }
 }

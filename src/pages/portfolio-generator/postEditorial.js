@@ -18,6 +18,7 @@ export function portfolioPostEditorial(selection) {
   const rows = selection.filter(row => row.pct > 0).slice().sort((a, b) => b.pct - a.pct)
   if (!rows.length) return { hooks: ['', '', ''], thesis: '' }
   const top = rows[0]
+  const multiAssets = rows.filter(row=>kind(row)==='multi-asset')
   const world = rows.find(row => ['world-developed', 'world-all', 'world-imi'].includes(kind(row)))
   const crypto = total(rows, ['bitcoin', 'ethereum'])
   const cryptoName = total(rows, ['bitcoin']) && total(rows, ['ethereum']) ? 'la crypto' : total(rows, ['bitcoin']) ? 'Bitcoin' : 'Ethereum'
@@ -103,6 +104,11 @@ export function portfolioPostEditorial(selection) {
     openings = ['Des obligations indexées et des métaux dans un portefeuille : est-ce suffisant pour faire face à l’inflation ?', 'Quand les prix montent, on pense souvent à l’or. Mais quelle place laisser aux autres placements ?', 'Chercher une exposition à l’inflation, c’est aussi accepter des placements dont les cours peuvent baisser.']
     transition = 'Voici la répartition de ce portefeuille illustratif et ses performances 👇'
     thesis = `Face à l’inflation, je regarde aussi ce qui peut faire baisser ces placements. Les obligations indexées représentent ${percent(inflation)} du portefeuille. Leurs paiements suivent l’inflation, mais leur cours dépend aussi des taux réels.${gold ? ` L’or occupe ${percent(gold)} de l’allocation et ne verse pas de revenu.` : ''}\n\nCes placements ne garantissent pas que la valeur du portefeuille suivra la hausse des prix.`
+  } else if (multiAssets.length) {
+    openings = ['Un ETF peut déjà contenir des actions et des obligations. Que lui ajoutes-tu autour ?', 'LifeStrategy réunit plusieurs fonds dans une ligne. Quelle place garder aux autres placements ?', 'Confier une partie de l’allocation à Vanguard, puis choisir les autres lignes : que contient ce portefeuille ?']
+    transition = 'Voici sa répartition et ses performances, sur un exemple illustratif 👇'
+    thesis = multiAssets.map(row=>`${percent(row.pct)} du portefeuille est consacré à ${label(row)}. ${assetEditorial(row).text}`).join(' ')
+    thesis += ' Les autres ETF actions peuvent détenir des entreprises déjà présentes dans LifeStrategy. Le rééquilibrage interne du fonds reste celui de Vanguard.'
   } else if ((euros || money || bonds) && equities) {
     openings = ['Investir en Bourse sans y mettre toute son épargne : comment répartir le portefeuille ?', 'Quelle place laisser aux actions quand on veut garder d’autres placements à côté ?', 'Un portefeuille peut profiter des marchés sans être entièrement investi en actions. Comment celui-ci est-il construit ?']
     transition = 'Voici la répartition de ce portefeuille illustratif et ses performances 👇'
