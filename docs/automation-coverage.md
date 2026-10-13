@@ -112,16 +112,16 @@ Les identités, domiciles, modes de réplication, couvertures de change, politiq
 | IE00B27YCN58 | iShares MSCI World Islamic UCITS ETF | Les six champs, caractéristiques et cotations sont automatisés |
 | IE00BM67HS53 | Xtrackers MSCI World Materials UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00BM67HQ30 | Xtrackers MSCI World Utilities UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
-| IE000UL6CLP7 | Global X Silver Miners UCITS ETF USD Accumulating | Pays, Secteurs, Principales positions |
+| IE000UL6CLP7 | Global X Silver Miners UCITS ETF USD Accumulating | Rendements calendaires, Pays, Secteurs, Principales positions |
 | IE00B4556L06 | iShares Physical Palladium ETC | Pays, Secteurs, Principales positions |
-| IE0003R87OG3 | Avantis Global Small Cap Value UCITS ETF USD Acc | Pays, Secteurs, Principales positions |
+| IE0003R87OG3 | Avantis Global Small Cap Value UCITS ETF USD Acc | Rendements calendaires, Pays, Secteurs, Principales positions |
 | IE00B4LHWP62 | iShares Physical Platinum ETC | Pays, Secteurs, Principales positions |
 | IE00BM67HV82 | Xtrackers MSCI World Industrials UCITS ETF 1C | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00B3F81G20 | iShares MSCI EM Small Cap UCITS ETF USD (Dist) | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00B52MJY50 | iShares Core MSCI Pacific ex-Japan UCITS ETF USD (Acc) | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00BJGWQN72 | WisdomTree Cloud Computing UCITS ETF USD Acc | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00BQQP9F84 | VanEck Gold Miners UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
-| IE0003Z9E2Y3 | Global X Copper Miners UCITS ETF USD Acc | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
+| IE0003Z9E2Y3 | Global X Copper Miners UCITS ETF USD Acc | Rendements calendaires |
 | IE0003UVYC20 | JPM Global Equity Premium Income Active UCITS ETF USD (Dist) | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | FR001400ZGO4 | Amundi PEA Emergent (MSCI Emerging) ESG Transition UCITS ETF S - Acc | Rendements calendaires |
 | FR0007056841 | Amundi Dow Jones Industrial Average UCITS ETF Dist | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
@@ -162,7 +162,7 @@ Les identités, domiciles, modes de réplication, couvertures de change, politiq
 | FR0013412038 | Amundi PEA MSCI Europe UCITS ETF (Acc) | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | FR0013416716 | Amundi Physical Gold ETC | Pays, Secteurs, Principales positions |
 | FR001400S9V0 | Amundi PEA Luxe Monde UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
-| FR001400U5Q4 | Amundi PEA Monde (MSCI World) UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
+| FR001400U5Q4 | Amundi PEA Monde (MSCI World) UCITS ETF | Rendements calendaires |
 | GB00B15KXQ89 | WisdomTree Copper | Pays, Secteurs, Principales positions |
 | GB00BJYDH287 | WisdomTree Physical Bitcoin | Pays, Secteurs, Principales positions |
 | GB00BLD4ZL17 | CoinShares Physical Bitcoin ETP | Pays, Secteurs, Principales positions |
@@ -170,9 +170,9 @@ Les identités, domiciles, modes de réplication, couvertures de change, politiq
 | IE0000N55FP4 | iShares MSCI Europe Small Cap UCITS ETF | Rendements calendaires |
 | IE0002XZSHO1 | iShares MSCI World Swap PEA UCITS ETF (Acc) | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE0002Y8CX98 | WisdomTree Europe Defence UCITS ETF | Rendements calendaires |
-| IE0007Y8Y157 | VanEck Quantum Computing UCITS ETF A | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
+| IE0007Y8Y157 | VanEck Quantum Computing UCITS ETF A | Rendements calendaires |
 | IE000C6ITGC8 | iShares Quantum Computing UCITS ETF | Rendements calendaires |
-| IE000DQLYVB9 | iShares S&P 500 Swap PEA UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
+| IE000DQLYVB9 | iShares S&P 500 Swap PEA UCITS ETF | Rendements calendaires |
 | IE000I8KRLL9 | iShares MSCI Global Semiconductors UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE000L6ZMMC4 | Xtrackers FTSE All-World UCITS ETF 1C | Rendements calendaires |
 | IE000M7V94E1 | VanEck Uranium and Nuclear Technologies UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
@@ -273,7 +273,7 @@ Les identités, domiciles, modes de réplication, couvertures de change, politiq
 | LU1931975079 | Amundi Core EUR Corporate Bond UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | LU2089238385 | Amundi Prime Japan UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | LU2196470426 | Xtrackers Nikkei 225 UCITS ETF 1C (Acc) | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
-| LU2970735911 | Amundi Core EUR High Yield Bond UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
+| LU2970735911 | Amundi Core EUR High Yield Bond UCITS ETF | Rendements calendaires |
 | LU3038520774 | Amundi STOXX Europe Defense UCITS ETF | Rendements calendaires |
 | NL0009690239 | VanEck Global Real Estate UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | NL0011683594 | VanEck Morningstar Developed Markets Dividend Leaders UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |

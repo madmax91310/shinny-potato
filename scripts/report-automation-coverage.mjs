@@ -16,7 +16,7 @@ const configured=new Set(sources.filter(s=>s.enabled!==false).map(s=>s.isin));
 const instruments=DATA_CATALOG.filter(r=>r.type==='instrument');
 const uncovered=instruments.filter(r=>!configured.has(r.id)||!etf[r.id]);
 const expected=['Frais','Encours','Rendements calendaires','Pays','Secteurs','Principales positions'];
-function fields(r={}) { return [r.characteristics?.terPct !== undefined,r.aum,r.performance,r.countries,r.sectors,r.holdings].map((v,i)=>v?expected[i]:null).filter(Boolean); }
+function fields(r={},id='') { return [Number.isFinite(r.characteristics?.terPct),r.aum?.amount,completeCalendarYears(id,r.performance?.years,new Date().toISOString().slice(0,10)).length,r.countries?.rows?.length,r.sectors?.rows?.length,r.holdings?.rows?.length].map((v,i)=>v?expected[i]:null).filter(Boolean); }
 const today=new Date().toISOString().slice(0,10);
 const count=field=>instruments.filter(({id})=>{const r=etf[id]??{};return field==='ter'?Number.isFinite(r.characteristics?.terPct):field==='performance'?completeCalendarYears(id,r.performance?.years,today).length>0:field==='aum'?Number.isFinite(r.aum?.amount):r[field]?.rows?.length>0;}).length;
 const rows=[
@@ -68,7 +68,7 @@ const rows=[
  '## Champs restant manuels sur les instruments partiellement couverts','',
  'Les identités, domiciles, modes de réplication, couvertures de change, politiques de distribution, nombres de positions, statuts PEA et cotations ne sont pas raccordés à une actualisation automatique. Les données intermédiaires d’indice/distribution récupérées par certains collecteurs ne suffisent pas : elles ne remplacent pas encore ces registres dans l’application.','',
  '| ISIN | Instrument | Champs courants hors collecte active |','|---|---|---|',
- ...instruments.filter(r=>etf[r.id]).map(r=>`| ${r.id} | ${r.name} | ${expected.filter(f=>!fields(etf[r.id]).includes(f)).join(', ')||(qualified.instruments.some(s=>s.isin===r.id)?'Les six champs, caractéristiques et cotations sont automatisés':'Les six champs sont couverts ; caractéristiques et cotations restent manuelles')} |`),'',
+ ...instruments.filter(r=>etf[r.id]).map(r=>`| ${r.id} | ${r.name} | ${expected.filter(f=>!fields(etf[r.id],r.id).includes(f)).join(', ')||(qualified.instruments.some(s=>s.isin===r.id)?'Les six champs, caractéristiques et cotations sont automatisés':'Les six champs sont couverts ; caractéristiques et cotations restent manuelles')} |`),'',
  '« Hors collecte » peut aussi signifier non publié ou non applicable. Une part récente n’a pas six années complètes : ses performances YTD, depuis création et périodes glissantes restent manuelles lorsqu’elles existent. Les proxys de simulation ne sont pas remplacés par une série incomplète. Le monétaire overnight n’a pas de composition actions pertinente ; publier son panier de swap comme exposition économique serait incorrect.','',
  '## Indices avec au moins un bloc restant manuel','',
  'S&P 500, S&P 500 Equal Weight, STOXX Europe 600 et EURO STOXX 50 : les compositions complètes sont raccordées aux fiches mensuelles Amundi avec identité exacte, nombre de titres et poids numériques. Les éditions sont découvertes à chaque collecte ; les dates de composition restent celles de la publication. Le benchmark NET de ces fiches ne remplace pas les conventions de rendement existantes. Voir [qualification du 7 octobre](source-reliability-index-coverage-2026-10-07.md).','',
