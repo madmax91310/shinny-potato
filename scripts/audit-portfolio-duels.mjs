@@ -1,5 +1,5 @@
-import {getDuelArt} from '../src/pages/portfolio-duels/visualIdentity.js'
 #!/usr/bin/env node
+import {getDuelArt} from '../src/pages/portfolio-duels/visualIdentity.js'
 import assert from 'node:assert/strict'
 import { DUELS } from '../src/pages/portfolio-duels/data.js'
 import { buildCustomDuel, buildDuel, buildTweet, CATALOG, resultReading } from '../src/pages/portfolio-duels/lib.js'
