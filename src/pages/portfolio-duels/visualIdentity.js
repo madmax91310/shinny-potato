@@ -6,6 +6,7 @@ import { loadArtImage } from '../tweet-midi/anniversaryArt.js'
 // Each exposure reuses its reviewed ETF illustration. These are exposure scenes,
 // never fund-provider logos; names distinguish geographic/factor variants.
 const references = {
+ 'europe-banks':'europe-banks', 'europe-insurance':'europe-insurance',
   ...Object.fromEntries(NON_BOND_SHEETS.filter(sheet => CATALOG.some(asset => asset.exposure === sheet.id)).map(sheet => [sheet.id, sheet.id])),
   'world-islamic': 'world-islamic',
   ...Object.fromEntries([20,40,60,80].map(n=>[`lifestrategy${n}`,`lifestrategy${n}`])),

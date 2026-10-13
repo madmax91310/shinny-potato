@@ -4,10 +4,10 @@ import { ETF_HISTORY_IDENTITIES } from '../../data/etf-monthly-history.js'
 // Explicit market identities. Index illustrations depict geography, never an ETF issuer.
 const groups = {
   world: ['msciWorld', 'msciWorldSmallCap','msciAcwi','msciAcwiImi','msciWorldExUsa', 'msciWorldMomentum', 'msciWorldQuality', 'msciWorldValue'], america: ['sp500', 'nasdaq100', 'msciUsa', 'russell2000'],
-  europe: ['stoxx600', 'cac40', 'msciEurope'], asia: ['msciEmerging', 'msciIndia', 'msciEmergingExChina'], chip: ['soxx', 'nvidia', 'google', 'meta', 'sap', 'intel'],
+  europe: ['stoxx600', 'cac40', 'msciEurope'], asia: ['msciEmerging', 'msciIndia', 'msciEmergingExChina'], chip: ['soxx', 'nvidia', 'google', 'meta', 'adobe','sap', 'intel'],
   bonds: ['euroGovShort', 'euroGov13', 'globalBondEur', 'euroInflationBond', 'euroCorporateBond', 'euroHighYieldBond'],
-  finance: ['jpmorgan', 'euroMoney', 'visa', 'paypal'], luxury: ['lvmh', 'hermes', 'loreal'],
-  consumer: ['nike','disney','procter-gamble', 'amazon', 'costco', 'nestle', 'cocacola', 'mcdonalds', 'netflix'],
+  finance: ['mastercard','jpmorgan', 'euroMoney', 'visa', 'paypal'], luxury: ['lvmh', 'hermes', 'loreal'],
+  consumer: ['home-depot','nike','disney','procter-gamble', 'amazon', 'costco', 'nestle', 'cocacola', 'mcdonalds', 'netflix'],
   health: ['johnson-johnson'], energy:['exxonmobil'], infrastructure: ['airliquide','caterpillar','waste-management'], utilities: ['schneider'], silver: ['silver'],
 }
 export const PERFORMANCE_ART = Object.freeze({

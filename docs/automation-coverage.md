@@ -8,14 +8,14 @@ Rapport fondé sur les collecteurs configurés et les données actives, pas sur 
 
 | Domaine | Couverture active | Fréquence |
 |---|---|---|
-| Historiques mensuels des simulateurs | 115/115 séries ; 52 collecteurs communs + Bitcoin et or | Marchés : 2, 4, 8 et 16 du mois ; Bitcoin : 2, 4 et 8 ; or : tentatives du 3 au 10 |
-| Parts ETF mensuelles raccordées | 53 parts exactes ; investissement et performance revenus réinvestis, anniversaire hors distributions | Même collecte mensuelle et reprise quotidienne des échecs |
-| ETF/ETC/ETP | 194/194 instruments, au moins un champ | Quotidienne |
-| Comparatif ETF | 101/101 parts raccordées dans 61 blocs ; 93 calendriers actifs, 10 absences qualifiées | Quotidienne ; ajout de part contrôlé en CI |
+| Historiques mensuels des simulateurs | 120/120 séries ; 55 collecteurs communs + Bitcoin et or | Marchés : 2, 4, 8 et 16 du mois ; Bitcoin : 2, 4 et 8 ; or : tentatives du 3 au 10 |
+| Parts ETF mensuelles raccordées | 55 parts exactes ; investissement et performance revenus réinvestis, anniversaire hors distributions | Même collecte mensuelle et reprise quotidienne des échecs |
+| ETF/ETC/ETP | 196/196 instruments, au moins un champ | Quotidienne |
+| Comparatif ETF | 103/103 parts raccordées dans 62 blocs ; 95 calendriers actifs, 10 absences qualifiées | Quotidienne ; ajout de part contrôlé en CI |
 | Compositions d’indices | 47 indices | 3 et 16 du mois |
 | Rendements annuels d’indices | 51 indices | 3 et 16 du mois |
 | Pouvoir d’achat | Prix généraux, alimentation, énergie, IRL et SMIC INSEE ; périodes et qualité publiées | Vérification quotidienne |
-| Anniversaires | 105 niveaux datés ; saisie manuelle facultative | Quotidienne ; or : dernière moyenne mensuelle |
+| Anniversaires | 110 niveaux datés ; saisie manuelle facultative | Quotidienne ; or : dernière moyenne mensuelle |
 | Inflation | INSEE, prolongement de la série mensuelle 2026+ | 1 et 16 du mois |
 | Portefeuilles d’investisseurs | 18 déclarants SEC 13F | Vérification quotidienne ; publication trimestrielle par les déclarants |
 | Suivi de fraîcheur | Rapport et rappels GitHub | Hebdomadaire ; ces rappels ne collectent pas les données manuelles |
@@ -24,7 +24,7 @@ Les mois incomplets sont exclus. Les cours ajustés, cours bruts, rendements NET
 
 ## Disponibilité à fiabiliser
 
-WPEA (IE0002XZSHO1) : le calendrier EUR 2025 est raccordé à la fiche exacte de la part. UBS World (IE00BD4TXV59) : les calendriers USD 2022–2025 sont raccordés. SPEA (IE000DQLYVB9) ne publie pas encore d’année civile complète. Ces historiques courts ne remplacent pas une fenêtre de simulation complète. WPEA et SPEA : les pages officielles iShares peuvent renvoyer HTTP 403. Le repli vers les fiches officielles courantes est désormais contrôlé (ISIN, devise, dates) et a été validé en production. Une modification de schéma reste signalée et conserve les dernières valeurs fiables. Les 194 instruments décrivent donc une couverture configurée et validée au moins une fois, pas 194 accès réussis à chaque exécution.
+WPEA (IE0002XZSHO1) : le calendrier EUR 2025 est raccordé à la fiche exacte de la part. UBS World (IE00BD4TXV59) : les calendriers USD 2022–2025 sont raccordés. SPEA (IE000DQLYVB9) ne publie pas encore d’année civile complète. Ces historiques courts ne remplacent pas une fenêtre de simulation complète. WPEA et SPEA : les pages officielles iShares peuvent renvoyer HTTP 403. Le repli vers les fiches officielles courantes est désormais contrôlé (ISIN, devise, dates) et a été validé en production. Une modification de schéma reste signalée et conserve les dernières valeurs fiables. Les 196 instruments décrivent donc une couverture configurée et validée au moins une fois, pas 196 accès réussis à chaque exécution.
 
 Les pages HTML WisdomTree Gold/Bitcoin/Copper/Defence/Quantum/Dividend Growth publient des encours datés ; elles peuvent renvoyer HTTP 403 depuis GitHub. Les six pages ont été qualifiées en collecte réelle, avec ISIN, devise et date propres contrôlés. Le connecteur utilise alors les fiches officielles courantes Dataspan : frais et calendriers complets publiés peuvent être actualisés. Pour Defence, Quantum et Dividend Growth, les tableaux PDF raccordent aussi les secteurs et dix principales positions. Les dix pays ne remplacent la répartition complète que si leur somme atteint 99–101 % ; aucun résidu n’est inventé. Les encours absents du PDF restent à leur dernière date validée tant que les pages sont bloquées. Les encours CoinShares utilisent désormais les widgets officiels liés à la page produit : ISIN et devise USD contrôlés, Rate Date de valorisation (jamais la date de cache). Les documents PDF restent la preuve des frais ; leurs rendements crypto de référence ne sont pas assimilés à ceux de la part. VanEck Gaming : URL régionale officielle France, puis fiches Pays-Bas/Royaume-Uni en cas de problème de transport ; le même nom de document, ISIN, devise et date sont contrôlés avant application. UBS : découverte du dernier PDF mensuel publié, avec repli entre les deux adresses officielles Swiss Fund Data puis le mois précédent ; identité, devise et fraîcheur sont contrôlées. WisdomTree : une panne du PDF conserve les champs HTML validés indépendamment et reste signalée comme erreur de collecte.
 
@@ -59,12 +59,12 @@ Les frais collectés peuvent être ceux du dernier exercice publié : leur date 
 
 | Champ collecté et consommé | Instruments |
 |---|---:|
-| Frais annuels | 194 |
-| Encours daté | 194 |
-| Rendements calendaires de la part (au moins une année complète) | 178 |
-| Pays | 164 |
-| Secteurs ou sous-secteurs publiés | 164 |
-| Principales positions | 169 |
+| Frais annuels | 196 |
+| Encours daté | 196 |
+| Rendements calendaires de la part (au moins une année complète) | 180 |
+| Pays | 166 |
+| Secteurs ou sous-secteurs publiés | 166 |
+| Principales positions | 171 |
 
 Ces couvertures ne s’additionnent pas : plusieurs champs concernent le même instrument. Les 23 expositions Amundi à l’indice suivi recouvrent des parts déjà collectées ; elles ne sont pas 23 fonds supplémentaires. Les compositions d’indice, portefeuilles de fonds et paniers de substitution ne sont jamais assimilés. Les simulations choisissent automatiquement la dernière fenêtre complète commune : six ans pour le Générateur, trois à six ans pour les Duels. Les comparatifs alignent les années des produits. Une publication tardive ou un change BCE manquant conserve la dernière période commune ; aucun rendement n’est extrapolé. Les getters historiques et photographies archivées gardent leur période fixe.
 
@@ -72,7 +72,7 @@ Les performances cumulées ou glissantes publiées par les émetteurs sont suivi
 
 ## Instruments entièrement hors collecte active
 
-Aucun instrument entièrement hors collecte : les 194 instruments ont au moins un champ actif. Les lacunes par champ restent détaillées ci-dessous.
+Aucun instrument entièrement hors collecte : les 196 instruments ont au moins un champ actif. Les lacunes par champ restent détaillées ci-dessous.
 
 | ISIN | Instrument | Blocage actuel |
 |---|---|---|
@@ -110,6 +110,8 @@ Les identités, domiciles, modes de réplication, couvertures de change, politiq
 | IE00BZ0PKT83 | iShares STOXX World Equity Multifactor UCITS ETF | Les six champs, caractéristiques et cotations sont automatisés |
 | IE0008UEVOE0 | iShares iBonds Dec 2028 Term € Corp UCITS ETF | Les six champs, caractéristiques et cotations sont automatisés |
 | IE00B27YCN58 | iShares MSCI World Islamic UCITS ETF | Les six champs, caractéristiques et cotations sont automatisés |
+| DE000A0F5UJ7 | iShares STOXX Europe 600 Banks UCITS ETF (DE) | Les six champs, caractéristiques et cotations sont automatisés |
+| DE000A0H08K7 | iShares STOXX Europe 600 Insurance UCITS ETF (DE) | Les six champs, caractéristiques et cotations sont automatisés |
 | IE00BM67HS53 | Xtrackers MSCI World Materials UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00BM67HQ30 | Xtrackers MSCI World Utilities UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE000UL6CLP7 | Global X Silver Miners UCITS ETF USD Accumulating | Rendements calendaires, Pays, Secteurs, Principales positions |

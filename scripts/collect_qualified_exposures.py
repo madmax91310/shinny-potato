@@ -40,7 +40,7 @@ def collect_one(config,now):
  # Prefer USD London for historical calculations; the sheet uses the same exact listing.
  listing=sorted(listings,key=lambda x:(x['currency']!='USD',x['mic']!='XLON',x['ticker']))[0]
  result.update(name=name,sourceUrl=url,listing=listing,listings=listings)
- result['characteristics']={'terPct':result['terPct'],'index':result['index'],'distribution':result['distribution'],'domicile':v('domicile'),'replicationMethod':v('productStructure')+' ('+v('fundMethodologyTypeCode')+')','inceptionDate':str(v('inceptionDate'))}
+ result['characteristics']={'terPct':result['terPct'],'index':result['index'],'distribution':result['distribution'],'domicile':v('domicile'),'replicationMethod':v('productStructure')+' ('+v('fundMethodologyTypeCode')+')','inceptionDate':str(v(config.get('inceptionField','inceptionDate')))}
  if v('ucitsCompliantFlag')!='Yes' or v('assetClass')!=config.get('holdingsAssetClass','Equity'):raise ValueError('Unexpected UCITS/asset class')
  result['checkedAt']=now.isoformat();result['pageSha256']=hashlib.sha256(raw.encode()).hexdigest();result.pop('rawComponents',None)
  return result

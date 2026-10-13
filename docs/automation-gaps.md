@@ -4,12 +4,12 @@ Inventaire des champs réellement présents dans les observations actives. Couve
 
 | Champ ETF/ETP | Couverture |
 |---|---:|
-| ter | 194/194 |
-| aum | 194/194 |
-| performance | 178/194 |
-| countries | 164/194 |
-| sectors | 164/194 |
-| holdings | 169/194 |
+| ter | 196/196 |
+| aum | 196/196 |
+| performance | 180/196 |
+| countries | 166/196 |
+| sectors | 166/196 |
+| holdings | 171/196 |
 
 ## Premiers calendriers des 12 parts récentes
 
