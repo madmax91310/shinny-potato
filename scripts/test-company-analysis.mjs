@@ -250,3 +250,34 @@ const normalised = { ...computed, quote: { ...computed.quote, splits: ['2026-06-
 assert.equal(calculatedRatios(normalised, now).peTTM, 40);
 normalised.trailing.splitAdjustments = [];
 assert.equal(calculatedRatios(normalised, now).peTTM, undefined);
+
+// New prose must use qualified figures and change with them, never stale components.
+const rich = structuredClone(base)
+rich.annual = {end:'2025-12-31',previousEnd:'2024-12-31',revenue:120e9,previousRevenue:100e9,netIncome:12e9,previousNetIncome:10e9,freeCashFlow:30e9}
+const cashYear = (year, revenue, netIncome, fcf) => ({end:`${year}-12-31`,revenue,netIncome,freeCashFlow:fcf,operatingCashFlow:fcf+12e9,capitalExpenditure:12e9,operatingIncome:revenue*.2,freeCashFlowDefinition:'same',sourceUrl:'https://issuer.test/report'})
+rich.decision = {observedAt:'2026-10-07',annualEnd:rich.annual.end,years:[cashYear(2022,80e9,8e9,15e9),cashYear(2023,90e9,9e9,18e9),cashYear(2024,100e9,10e9,20e9),{...cashYear(2025,120e9,12e9,30e9),shareRepurchases:6e9,shareBasedCompensation:3e9,dividendsPaid:36e9,interestExpense:2e9}]}
+rich.history = {observedAt:'2026-10-07',years:rich.decision.years.map(({end,revenue,netIncome})=>({end,revenue,netIncome}))}
+rich.balance = {asOf:'2026-09-30',observedAt:'2026-10-07',netDebt:60e9,definition:'same'}
+text=buildTweetText(rich,now)
+for (const phrase of [/30,0 milliards.*cash/,/progresse de 50,0 %/,/10,0 % des ventes/,/2,0 fois le FCF/,/6,0 milliards.*rachats/,/3,0 milliards.*2,5 % des ventes/,/dépassent donc le cash/,/charges d’intérêts/,/par an en moyenne/]) assert.match(text,phrase)
+const richer=structuredClone(rich)
+richer.decision.years.at(-1).freeCashFlow=40e9;richer.decision.years.at(-1).operatingCashFlow=52e9;richer.annual.freeCashFlow=40e9
+assert.match(buildTweetText(richer,now),/40,0 milliards.*cash/)
+assert.match(buildTweetText(richer,now),/progresse de 100,0 %/)
+const staleCash=structuredClone(rich);staleCash.decision.observedAt='2026-07-01';staleCash.balance.observedAt='2026-07-01';staleCash.history.observedAt='2026-07-01'
+text=buildTweetText(staleCash,now)
+assert.match(text,/30,0 milliards.*cash/) // independently fresh annual FCF remains
+assert(!/rachats|rémunération en actions|par an en moyenne|fois le FCF|charges d’intérêts/.test(text))
+const negativeCash=structuredClone(rich)
+negativeCash.annual.freeCashFlow=-5e9;negativeCash.decision.years.at(-1).freeCashFlow=-5e9;negativeCash.decision.years.at(-1).capitalExpenditure=47e9;negativeCash.decision.years.at(-1).operatingCashFlow=42e9
+text=buildTweetText(negativeCash,now)
+assert.match(text,/FCF est négatif de 5,0 milliards/)
+assert(!/fois le FCF|dividendes payés représentent|FCF.*reculé.*par an en moyenne/.test(text))
+const cashSurplus=structuredClone(rich);cashSurplus.balance.netDebt=-5e9
+assert.match(buildTweetText(cashSurplus,now),/trésorerie.*dépasse la dette.*5,0 milliards/)
+assert(!buildTweetText(cashSurplus,now).includes('fois le FCF'))
+for(const company of COMPANIES) {
+  const copy=buildTweetText(company,observationDate(company))
+  assert(!/NaN|undefined|Infinity|sous-évalu|surévalu|il faut acheter/.test(copy))
+}
+console.log('Financial prose: refreshed cash, CAGR, investments, debt, dividends, repurchases, compensation, stale inputs and negative FCF OK.')
