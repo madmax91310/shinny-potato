@@ -12,8 +12,8 @@ Rapport fondé sur les collecteurs configurés et les données actives, pas sur 
 | Parts ETF mensuelles raccordées | 58 parts exactes ; investissement et performance revenus réinvestis, anniversaire hors distributions | Même collecte mensuelle et reprise quotidienne des échecs |
 | ETF/ETC/ETP | 197/197 instruments, au moins un champ | Quotidienne |
 | Comparatif ETF | 109/109 parts raccordées dans 66 blocs ; 101 calendriers actifs, 10 absences qualifiées | Quotidienne ; ajout de part contrôlé en CI |
-| Compositions d’indices | 47 indices | 3 et 16 du mois |
-| Rendements annuels d’indices | 51 indices | 3 et 16 du mois |
+| Compositions d’indices | 50 indices | 3 et 16 du mois |
+| Rendements annuels d’indices | 54 indices | 3 et 16 du mois |
 | Pouvoir d’achat | Prix généraux, alimentation, énergie, IRL et SMIC INSEE ; périodes et qualité publiées | Vérification quotidienne |
 | Anniversaires | 113 niveaux datés ; saisie manuelle facultative | Quotidienne ; or : dernière moyenne mensuelle |
 | Inflation | INSEE, prolongement de la série mensuelle 2026+ | 1 et 16 du mois |
