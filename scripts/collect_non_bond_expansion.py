@@ -8,6 +8,8 @@ from bs4 import BeautifulSoup
 from issuer_documents import public_page, download, pdf_text, proof, document_date, validated_rows
 from data_automation import reject
 
+COMMODITY_LABELS = {'Crude Oil (Brent)': 'Pétrole Brent', 'Crude Oil (WTI)': 'Pétrole WTI', 'Natural Gas': 'Gaz naturel Henry Hub', 'Coffee': 'Café', 'Cocoa': 'Cacao', 'Wheat': 'Blé'}
+
 MICS = {'LSE':'XLON','London Stock Exchange':'XLON','Deutsche Börse (Primary)':'XETR',
         'Deutsche Börse (Xetra)':'XETR','Xetra':'XETR','Borsa Italiana':'ETFP','Euronext Milan':'ETFP',
         'Euronext (FR)':'XPAR','SIX Swiss Exchange':'XSWX'}
@@ -64,7 +66,7 @@ def wisdomtree_pdf(share, now, transport_error):
         physicalDelivery=False,currencyHedge=False,feeLabel='Management Fee (MER)')
     result['commodityAllocation']={'basis':'fund','asOf':stamp,'sourceUrl':url,'sha256':digest,
         'method':'Single commodity futures exposure in official investment objective; not spot or physical delivery',
-        'rows':[{'name':share['commodity'],'weightPct':100}]}
+        'rows':[{'name':share['commodity'],'label':COMMODITY_LABELS[share['commodity']],'weightPct':100}]}
     result['sourceAttempts']=[{'url':share['sourceUrl'],'reason':str(transport_error)},
                               {'url':url,'status':'validated'}]
     return result
@@ -102,7 +104,7 @@ def collect_one(share, now):
             physicalDelivery=False,currencyHedge=False,feeLabel='Management Fee (MER)')
         result['commodityAllocation']={'basis':'fund','asOf':result['characteristics']['asOf'],'sourceUrl':share['sourceUrl'],
             'sha256':proof(text.encode()),'method':'Single commodity futures exposure; not spot or physical delivery',
-            'rows':[{'name':share['commodity'],'weightPct':100}]}
+            'rows':[{'name':share['commodity'],'label':COMMODITY_LABELS[share['commodity']],'weightPct':100}]}
         result['unavailable']=[]
     elif kind=='invesco':
         from collect_invesco_etf import parse_document
