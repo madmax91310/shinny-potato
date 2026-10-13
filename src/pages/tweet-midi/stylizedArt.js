@@ -30,7 +30,7 @@ const neonGroups = {
 // These sectors already have reviewed night-studio illustrations. The neon
 // collection has no corresponding files; retain their explicit asset paths.
 const historicalEtfSceneFiles = Object.fromEntries(
-  ['robotics', 'health', 'finance', 'infrastructure', 'renewables'].map(scene => [scene, `etf-night/${scene}.webp`]),
+  ['robotics', 'health', 'finance', 'infrastructure', 'renewables', 'energy', 'commodities'].map(scene => [scene, `etf-night/${scene}.webp`]),
 )
 export const NEON_ASSET_ART = Object.freeze({
   ...Object.fromEntries(Object.entries(neonGroups).flatMap(([scene, ids]) => ids.map(id => [id, { scene: scene === 'crypto' ? null : scene, mark: ANNIVERSARY_ART[id]?.kind === 'logo' ? ANNIVERSARY_ART[id].mark : null }]))),
