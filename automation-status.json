@@ -160,48 +160,18 @@
     },
     "update-publication-observations.yml": {
       "name": "Pouvoir d’achat et niveaux des anniversaires",
-      "runId": 38290122164,
+      "runId": 38347275504,
       "attempt": 1,
-      "completedAt": "2026-10-12T18:37:17Z",
-      "status": "failure",
-      "lastSuccessAt": "2026-10-12T17:18:15Z",
-      "collectionStatus": "failure",
+      "completedAt": "2026-10-13T04:54:13Z",
+      "status": "success",
+      "lastSuccessAt": "2026-10-13T04:54:13Z",
+      "collectionStatus": "success",
       "publicationStatus": "not-run",
-      "lastCollectionSuccessAt": "2026-10-12T17:18:15Z",
+      "lastCollectionSuccessAt": "2026-10-13T04:54:13Z",
       "lastPublicationSuccessAt": "2026-10-11T14:35:58Z",
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38290122164",
-      "failures": [
-        {
-          "job": "report-failures",
-          "step": "Run echo 'Collecte partielle : dernières observations validées conservées. Voir publication-observations.' >> \"$GITHUB_STEP_SUMMARY\""
-        }
-      ],
-      "dataFailures": {
-        "anniversary-stoxx600": {
-          "name": "anniversary-stoxx600",
-          "completedAt": "2026-10-12T18:37:17Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38290122164",
-          "cause": "<urlopen error timed out>"
-        },
-        "anniversary-msciWorld": {
-          "name": "anniversary-msciWorld",
-          "completedAt": "2026-10-12T18:37:17Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38290122164",
-          "cause": "The read operation timed out"
-        },
-        "anniversary-msciEmerging": {
-          "name": "anniversary-msciEmerging",
-          "completedAt": "2026-10-12T18:37:17Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38290122164",
-          "cause": "The read operation timed out"
-        },
-        "anniversary-msciWorldSmallCap": {
-          "name": "anniversary-msciWorldSmallCap",
-          "completedAt": "2026-10-12T18:37:17Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38290122164",
-          "cause": "The read operation timed out"
-        }
-      }
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38347275504",
+      "failures": [],
+      "dataFailures": {}
     },
     "update-editorial-radar.yml": {
       "name": "Radar éditorial quotidien",
@@ -257,5 +227,5 @@
       "failures": []
     }
   },
-  "updatedAt": "2026-10-13T04:37:12Z"
+  "updatedAt": "2026-10-13T04:54:13Z"
 }
