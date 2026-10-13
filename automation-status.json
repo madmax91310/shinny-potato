@@ -60,16 +60,16 @@
     },
     "collect-etf-pilot.yml": {
       "name": "ETF et compositions d’indices",
-      "runId": 38412804239,
+      "runId": 38417855348,
       "attempt": 1,
-      "completedAt": "2026-10-13T14:47:24Z",
+      "completedAt": "2026-10-13T15:18:46Z",
       "status": "failure",
       "lastSuccessAt": "2026-10-13T10:24:50Z",
       "collectionStatus": "failure",
       "publicationStatus": "not-run",
       "lastCollectionSuccessAt": "2026-10-13T10:24:50Z",
       "lastPublicationSuccessAt": "2026-10-13T10:24:47Z",
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38412804239",
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38417855348",
       "failures": [
         {
           "job": "report-failures",
@@ -79,8 +79,8 @@
       "dataFailures": {
         "etf-additional-observation-IE00BM8R0J59": {
           "name": "ETF IE00BM8R0J59",
-          "completedAt": "2026-10-13T14:47:24Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38412804239",
+          "completedAt": "2026-10-13T15:18:46Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38417855348",
           "cause": "Missing or ambiguous issuer Global X ISIN"
         }
       }
@@ -227,5 +227,5 @@
       "failures": []
     }
   },
-  "updatedAt": "2026-10-13T14:56:33Z"
+  "updatedAt": "2026-10-13T15:18:46Z"
 }
