@@ -60,18 +60,30 @@
     },
     "collect-etf-pilot.yml": {
       "name": "ETF et compositions d’indices",
-      "runId": 38380925135,
+      "runId": 38412804239,
       "attempt": 1,
-      "completedAt": "2026-10-13T10:24:50Z",
-      "status": "success",
+      "completedAt": "2026-10-13T14:47:24Z",
+      "status": "failure",
       "lastSuccessAt": "2026-10-13T10:24:50Z",
-      "collectionStatus": "success",
-      "publicationStatus": "success",
+      "collectionStatus": "failure",
+      "publicationStatus": "not-run",
       "lastCollectionSuccessAt": "2026-10-13T10:24:50Z",
       "lastPublicationSuccessAt": "2026-10-13T10:24:47Z",
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38380925135",
-      "failures": [],
-      "dataFailures": {}
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38412804239",
+      "failures": [
+        {
+          "job": "report-failures",
+          "step": "Run echo 'Une source ETF ou indice a échoué. Ses dernières données fiables sont conservées ; les autres collectes validées ont été publiées si les audits et le déploiement ont réussi.' >> \"$GITHUB_STEP_SUMMARY\""
+        }
+      ],
+      "dataFailures": {
+        "etf-additional-observation-IE00BM8R0J59": {
+          "name": "ETF IE00BM8R0J59",
+          "completedAt": "2026-10-13T14:47:24Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38412804239",
+          "cause": "Missing or ambiguous issuer Global X ISIN"
+        }
+      }
     },
     "update-economic-data.yml": {
       "name": "Taux d’épargne, ménages, SCPI et fonds euros",
@@ -215,5 +227,5 @@
       "failures": []
     }
   },
-  "updatedAt": "2026-10-13T14:43:52Z"
+  "updatedAt": "2026-10-13T14:47:24Z"
 }
