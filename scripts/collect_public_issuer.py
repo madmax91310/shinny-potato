@@ -109,7 +109,7 @@ def globalx(text, share, now):
     block='\n'.join(tokens[start:end])
     # Responsive markup may repeat the same trading identity. Conflicting
     # identities still fail; identical repeated labels are one observation.
-    identities = list(dict.fromkeys(re.findall(r'Primary ISIN\n([A-Z0-9]{12})',block)))
+    identities = list(dict.fromkeys(re.findall(r'Primary ISIN\n([^\n]+)',block)))
     if not identities:
         # Streaming HTML can omit the trading identity while serving key facts.
         # Retry another public route; never apply figures without the exact ISIN.
