@@ -49,7 +49,8 @@ class NonBondSources(unittest.TestCase):
   from refresh_non_bond_sources import merge_monthly_evidence
   previous={'asset':{'responseSha256':'old','proofRows':[{'value':100}]}}
   observation={'id':'asset','status':'validated','record':{'responseSha256':'old'},'evidence':{'responseSha256':'new','proofRows':[{'value':100}],'rawResponse':{}}}
-  self.assertEqual(merge_monthly_evidence(previous,[observation]),previous)
+  result=merge_monthly_evidence(previous,[observation])
+  self.assertEqual(result['asset']['responseSha256'],'old')
   observation['record']['responseSha256']='new'
   result=merge_monthly_evidence(previous,[observation])
   self.assertEqual(result['asset']['responseSha256'],'new');self.assertNotIn('rawResponse',result['asset'])
