@@ -41,6 +41,8 @@ on:
       - 'scripts/*vaneck*.mjs'
       - 'scripts/refresh_additional_etf.py'
       - 'scripts/collect_public_issuer.py'
+      - 'scripts/collect_priority_issuer_etf.py'
+      - 'scripts/test_priority_issuer_etf.py'
       - 'scripts/collect_tracked_exposure.py'
       - 'scripts/collect_vanguard_holdings.py'
       - 'scripts/test_priority_etf_completion.py'
@@ -97,6 +99,8 @@ on:
       - 'scripts/fixtures/presentation-performance/**'
       - 'scripts/refresh_additional_etf.py'
       - 'scripts/collect_public_issuer.py'
+      - 'scripts/collect_priority_issuer_etf.py'
+      - 'scripts/test_priority_issuer_etf.py'
       - 'scripts/collect_tracked_exposure.py'
       - 'scripts/collect_vanguard_holdings.py'
       - 'scripts/test_priority_etf_completion.py'
@@ -164,6 +168,7 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_priority_etf_completion.py'
       - run: python -m unittest discover -s scripts -p 'test_document_etf.py'
       - run: python -m unittest discover -s scripts -p 'test_new_issuer_sources.py'
+      - run: python -m unittest discover -s scripts -p 'test_priority_issuer_etf.py'
       - run: python -m unittest discover -s scripts -p 'test_presentation_etf.py'
       - run: python -m unittest discover -s scripts -p 'test_presentation_performance.py'
       - run: node scripts/test-presentation-etf.mjs
@@ -205,6 +210,7 @@ jobs:
         run: python scripts/refresh_index_sources.py --output "$RUNNER_TEMP/index-observation.json" --apply
       - run: node scripts/report-automation-coverage.mjs --write
       - run: node scripts/test-automation-gap-inventory.mjs
+      - run: node scripts/test-priority-issuer-consumers.mjs
       - run: npm run audit:data-review
       - run: npm run audit:index-facts
       - run: npm run audit:index-completeness

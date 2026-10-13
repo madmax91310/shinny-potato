@@ -4,20 +4,21 @@ import { AUTOMATED_ETF } from '../src/data/automated-etf.js';
 import baseQualified from './qualified-exposure-sources.json' with { type:'json' };
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { DATA_CATALOG } from '../src/data/catalog.js';
-import { writeGapInventory } from './automation-gap-inventory.mjs';
+import { writeGapInventory, completeCalendarYears } from './automation-gap-inventory.mjs';
 import { ASSETS } from '../src/data/market-history.js';
 import { auditComparisonAutomation } from './audit-comparison-automation.mjs';
 const comparisons = auditComparisonAutomation();
 const qualified = {instruments:[...baseQualified.instruments,...nonBondQualified.instruments]};
 const read=path=>JSON.parse(readFileSync(path));
 const etf=AUTOMATED_ETF, indices=read('src/data/automated-indices.json'), monthly={...read('src/data/automated-monthly.json'),...read('src/data/non-bond-monthly-records.json')};
-const sources=['etf-pilot.json','amundi-etf.json','ssga-etf.json','additional-etf-sources.json'].flatMap(file=>read(`scripts/${file}`).instruments).concat(qualified.instruments,nonBondSources.instruments);
+const sources=['etf-pilot.json','amundi-etf.json','ssga-etf.json','additional-etf-sources.json','lifestrategy-sources.json'].flatMap(file=>read(`scripts/${file}`).instruments).concat(qualified.instruments,nonBondSources.instruments);
 const configured=new Set(sources.filter(s=>s.enabled!==false).map(s=>s.isin));
 const instruments=DATA_CATALOG.filter(r=>r.type==='instrument');
 const uncovered=instruments.filter(r=>!configured.has(r.id)||!etf[r.id]);
 const expected=['Frais','Encours','Rendements calendaires','Pays','Secteurs','Principales positions'];
-function fields(r={}) { return [r.characteristics?.terPct !== undefined,r.aum,r.performance,r.countries,r.sectors,r.holdings].map((v,i)=>v?expected[i]:null).filter(Boolean); }
-const count=field=>Object.values(etf).filter(r=>field==='ter'?r.characteristics?.terPct!==undefined:r[field]).length;
+function fields(r={},id='') { return [Number.isFinite(r.characteristics?.terPct),r.aum?.amount,completeCalendarYears(id,r.performance?.years,new Date().toISOString().slice(0,10)).length,r.countries?.rows?.length,r.sectors?.rows?.length,r.holdings?.rows?.length].map((v,i)=>v?expected[i]:null).filter(Boolean); }
+const today=new Date().toISOString().slice(0,10);
+const count=field=>instruments.filter(({id})=>{const r=etf[id]??{};return field==='ter'?Number.isFinite(r.characteristics?.terPct):field==='performance'?completeCalendarYears(id,r.performance?.years,today).length>0:field==='aum'?Number.isFinite(r.aum?.amount):r[field]?.rows?.length>0;}).length;
 const rows=[
  `# Automatisation des données — état du ${new Date().toISOString().slice(0,10)}`,'',
  'Inventaire courant par champ et motif : [détail des lacunes](automation-gaps.md), avec [version JSON](automation-gaps.json).','',
@@ -59,14 +60,15 @@ const rows=[
  '| Champ collecté et consommé | Instruments |','|---|---:|',
  ...[['Frais annuels','ter'],['Encours daté','aum'],['Rendements calendaires de la part (au moins une année complète)','performance'],['Pays','countries'],['Secteurs ou sous-secteurs publiés','sectors'],['Principales positions','holdings']].map(([label,field])=>`| ${label} | ${count(field)} |`),'',
  'Ces couvertures ne s’additionnent pas : plusieurs champs concernent le même instrument. Les 23 expositions Amundi à l’indice suivi recouvrent des parts déjà collectées ; elles ne sont pas 23 fonds supplémentaires. Les compositions d’indice, portefeuilles de fonds et paniers de substitution ne sont jamais assimilés. Les simulations choisissent automatiquement la dernière fenêtre complète commune : six ans pour le Générateur, trois à six ans pour les Duels. Les comparatifs alignent les années des produits. Une publication tardive ou un change BCE manquant conserve la dernière période commune ; aucun rendement n’est extrapolé. Les getters historiques et photographies archivées gardent leur période fixe.','',
+ 'Les performances cumulées ou glissantes publiées par les émetteurs sont suivies séparément des calendriers annuels : elles ne deviennent jamais des années civiles. Les historiques mensuels de cotation gardent leur devise, leur source et leur convention, indépendamment des rendements NAV.','',
  '## Instruments entièrement hors collecte active','',
- ...(uncovered.length ? [] : ['Aucun instrument entièrement hors collecte : les 155 instruments ont au moins un champ actif. Les lacunes par champ restent détaillées ci-dessous.','']),
+ ...(uncovered.length ? [] : [`Aucun instrument entièrement hors collecte : les ${instruments.length} instruments ont au moins un champ actif. Les lacunes par champ restent détaillées ci-dessous.`,'']),
  '| ISIN | Instrument | Blocage actuel |','|---|---|---|',
  ...uncovered.map(r=>`| ${r.id} | ${r.name} | ${sources.find(s=>s.isin===r.id)?.qualificationIssue ?? 'Connecteur officiel exact à qualifier ; les données existantes restent manuelles'} |`),'',
  '## Champs restant manuels sur les instruments partiellement couverts','',
  'Les identités, domiciles, modes de réplication, couvertures de change, politiques de distribution, nombres de positions, statuts PEA et cotations ne sont pas raccordés à une actualisation automatique. Les données intermédiaires d’indice/distribution récupérées par certains collecteurs ne suffisent pas : elles ne remplacent pas encore ces registres dans l’application.','',
  '| ISIN | Instrument | Champs courants hors collecte active |','|---|---|---|',
- ...instruments.filter(r=>etf[r.id]).map(r=>`| ${r.id} | ${r.name} | ${expected.filter(f=>!fields(etf[r.id]).includes(f)).join(', ')||(qualified.instruments.some(s=>s.isin===r.id)?'Les six champs, caractéristiques et cotations sont automatisés':'Les six champs sont couverts ; caractéristiques et cotations restent manuelles')} |`),'',
+ ...instruments.filter(r=>etf[r.id]).map(r=>`| ${r.id} | ${r.name} | ${expected.filter(f=>!fields(etf[r.id],r.id).includes(f)).join(', ')||(qualified.instruments.some(s=>s.isin===r.id)?'Les six champs, caractéristiques et cotations sont automatisés':'Les six champs sont couverts ; caractéristiques et cotations restent manuelles')} |`),'',
  '« Hors collecte » peut aussi signifier non publié ou non applicable. Une part récente n’a pas six années complètes : ses performances YTD, depuis création et périodes glissantes restent manuelles lorsqu’elles existent. Les proxys de simulation ne sont pas remplacés par une série incomplète. Le monétaire overnight n’a pas de composition actions pertinente ; publier son panier de swap comme exposition économique serait incorrect.','',
  '## Indices avec au moins un bloc restant manuel','',
  'S&P 500, S&P 500 Equal Weight, STOXX Europe 600 et EURO STOXX 50 : les compositions complètes sont raccordées aux fiches mensuelles Amundi avec identité exacte, nombre de titres et poids numériques. Les éditions sont découvertes à chaque collecte ; les dates de composition restent celles de la publication. Le benchmark NET de ces fiches ne remplace pas les conventions de rendement existantes. Voir [qualification du 7 octobre](source-reliability-index-coverage-2026-10-07.md).','',

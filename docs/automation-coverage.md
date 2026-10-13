@@ -10,7 +10,7 @@ Rapport fondé sur les collecteurs configurés et les données actives, pas sur 
 |---|---|---|
 | Historiques mensuels des simulateurs | 120/120 séries ; 55 collecteurs communs + Bitcoin et or | Marchés : 2, 4, 8 et 16 du mois ; Bitcoin : 2, 4 et 8 ; or : tentatives du 3 au 10 |
 | Parts ETF mensuelles raccordées | 55 parts exactes ; investissement et performance revenus réinvestis, anniversaire hors distributions | Même collecte mensuelle et reprise quotidienne des échecs |
-| ETF/ETC/ETP | 192/196 instruments, au moins un champ | Quotidienne |
+| ETF/ETC/ETP | 196/196 instruments, au moins un champ | Quotidienne |
 | Comparatif ETF | 103/103 parts raccordées dans 62 blocs ; 95 calendriers actifs, 10 absences qualifiées | Quotidienne ; ajout de part contrôlé en CI |
 | Compositions d’indices | 47 indices | 3 et 16 du mois |
 | Rendements annuels d’indices | 51 indices | 3 et 16 du mois |
@@ -24,7 +24,7 @@ Les mois incomplets sont exclus. Les cours ajustés, cours bruts, rendements NET
 
 ## Disponibilité à fiabiliser
 
-WPEA (IE0002XZSHO1) : le calendrier EUR 2025 est raccordé à la fiche exacte de la part. UBS World (IE00BD4TXV59) : les calendriers USD 2022–2025 sont raccordés. SPEA (IE000DQLYVB9) ne publie pas encore d’année civile complète. Ces historiques courts ne remplacent pas une fenêtre de simulation complète. WPEA et SPEA : les pages officielles iShares peuvent renvoyer HTTP 403. Le repli vers les fiches officielles courantes est désormais contrôlé (ISIN, devise, dates) et a été validé en production. Une modification de schéma reste signalée et conserve les dernières valeurs fiables. Les 192 instruments décrivent donc une couverture configurée et validée au moins une fois, pas 192 accès réussis à chaque exécution.
+WPEA (IE0002XZSHO1) : le calendrier EUR 2025 est raccordé à la fiche exacte de la part. UBS World (IE00BD4TXV59) : les calendriers USD 2022–2025 sont raccordés. SPEA (IE000DQLYVB9) ne publie pas encore d’année civile complète. Ces historiques courts ne remplacent pas une fenêtre de simulation complète. WPEA et SPEA : les pages officielles iShares peuvent renvoyer HTTP 403. Le repli vers les fiches officielles courantes est désormais contrôlé (ISIN, devise, dates) et a été validé en production. Une modification de schéma reste signalée et conserve les dernières valeurs fiables. Les 196 instruments décrivent donc une couverture configurée et validée au moins une fois, pas 196 accès réussis à chaque exécution.
 
 Les pages HTML WisdomTree Gold/Bitcoin/Copper/Defence/Quantum/Dividend Growth publient des encours datés ; elles peuvent renvoyer HTTP 403 depuis GitHub. Les six pages ont été qualifiées en collecte réelle, avec ISIN, devise et date propres contrôlés. Le connecteur utilise alors les fiches officielles courantes Dataspan : frais et calendriers complets publiés peuvent être actualisés. Pour Defence, Quantum et Dividend Growth, les tableaux PDF raccordent aussi les secteurs et dix principales positions. Les dix pays ne remplacent la répartition complète que si leur somme atteint 99–101 % ; aucun résidu n’est inventé. Les encours absents du PDF restent à leur dernière date validée tant que les pages sont bloquées. Les encours CoinShares utilisent désormais les widgets officiels liés à la page produit : ISIN et devise USD contrôlés, Rate Date de valorisation (jamais la date de cache). Les documents PDF restent la preuve des frais ; leurs rendements crypto de référence ne sont pas assimilés à ceux de la part. VanEck Gaming : URL régionale officielle France, puis fiches Pays-Bas/Royaume-Uni en cas de problème de transport ; le même nom de document, ISIN, devise et date sont contrôlés avant application. UBS : découverte du dernier PDF mensuel publié, avec repli entre les deux adresses officielles Swiss Fund Data puis le mois précédent ; identité, devise et fraîcheur sont contrôlées. WisdomTree : une panne du PDF conserve les champs HTML validés indépendamment et reste signalée comme erreur de collecte.
 
@@ -59,27 +59,23 @@ Les frais collectés peuvent être ceux du dernier exercice publié : leur date 
 
 | Champ collecté et consommé | Instruments |
 |---|---:|
-| Frais annuels | 192 |
-| Encours daté | 192 |
-| Rendements calendaires de la part (au moins une année complète) | 183 |
+| Frais annuels | 196 |
+| Encours daté | 196 |
+| Rendements calendaires de la part (au moins une année complète) | 180 |
 | Pays | 166 |
 | Secteurs ou sous-secteurs publiés | 166 |
 | Principales positions | 171 |
 
 Ces couvertures ne s’additionnent pas : plusieurs champs concernent le même instrument. Les 23 expositions Amundi à l’indice suivi recouvrent des parts déjà collectées ; elles ne sont pas 23 fonds supplémentaires. Les compositions d’indice, portefeuilles de fonds et paniers de substitution ne sont jamais assimilés. Les simulations choisissent automatiquement la dernière fenêtre complète commune : six ans pour le Générateur, trois à six ans pour les Duels. Les comparatifs alignent les années des produits. Une publication tardive ou un change BCE manquant conserve la dernière période commune ; aucun rendement n’est extrapolé. Les getters historiques et photographies archivées gardent leur période fixe.
 
+Les performances cumulées ou glissantes publiées par les émetteurs sont suivies séparément des calendriers annuels : elles ne deviennent jamais des années civiles. Les historiques mensuels de cotation gardent leur devise, leur source et leur convention, indépendamment des rendements NAV.
+
 ## Instruments entièrement hors collecte active
+
+Aucun instrument entièrement hors collecte : les 196 instruments ont au moins un champ actif. Les lacunes par champ restent détaillées ci-dessous.
 
 | ISIN | Instrument | Blocage actuel |
 |---|---|---|
-| IE00BMVB5K07 | Vanguard LifeStrategy 20% Equity UCITS ETF (EUR) Accumulating | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
-| IE00BMVB5M21 | Vanguard LifeStrategy 40% Equity UCITS ETF (EUR) Accumulating | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
-| IE00BMVB5P51 | Vanguard LifeStrategy 60% Equity UCITS ETF (EUR) Accumulating | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
-| IE00BMVB5R75 | Vanguard LifeStrategy 80% Equity UCITS ETF (EUR) Accumulating | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
-| IE000UL6CLP7 | Global X Silver Miners UCITS ETF USD Accumulating | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
-| IE00B4556L06 | iShares Physical Palladium ETC | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
-| IE0003R87OG3 | Avantis Global Small Cap Value UCITS ETF USD Acc | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
-| IE00B4LHWP62 | iShares Physical Platinum ETC | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
 
 ## Champs restant manuels sur les instruments partiellement couverts
 
@@ -118,12 +114,16 @@ Les identités, domiciles, modes de réplication, couvertures de change, politiq
 | DE000A0H08K7 | iShares STOXX Europe 600 Insurance UCITS ETF (DE) | Les six champs, caractéristiques et cotations sont automatisés |
 | IE00BM67HS53 | Xtrackers MSCI World Materials UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00BM67HQ30 | Xtrackers MSCI World Utilities UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
+| IE000UL6CLP7 | Global X Silver Miners UCITS ETF USD Accumulating | Rendements calendaires, Pays, Secteurs, Principales positions |
+| IE00B4556L06 | iShares Physical Palladium ETC | Pays, Secteurs, Principales positions |
+| IE0003R87OG3 | Avantis Global Small Cap Value UCITS ETF USD Acc | Rendements calendaires, Pays, Secteurs, Principales positions |
+| IE00B4LHWP62 | iShares Physical Platinum ETC | Pays, Secteurs, Principales positions |
 | IE00BM67HV82 | Xtrackers MSCI World Industrials UCITS ETF 1C | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00B3F81G20 | iShares MSCI EM Small Cap UCITS ETF USD (Dist) | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00B52MJY50 | iShares Core MSCI Pacific ex-Japan UCITS ETF USD (Acc) | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00BJGWQN72 | WisdomTree Cloud Computing UCITS ETF USD Acc | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00BQQP9F84 | VanEck Gold Miners UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
-| IE0003Z9E2Y3 | Global X Copper Miners UCITS ETF USD Acc | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
+| IE0003Z9E2Y3 | Global X Copper Miners UCITS ETF USD Acc | Rendements calendaires |
 | IE0003UVYC20 | JPM Global Equity Premium Income Active UCITS ETF USD (Dist) | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | FR001400ZGO4 | Amundi PEA Emergent (MSCI Emerging) ESG Transition UCITS ETF S - Acc | Rendements calendaires |
 | FR0007056841 | Amundi Dow Jones Industrial Average UCITS ETF Dist | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
@@ -164,7 +164,7 @@ Les identités, domiciles, modes de réplication, couvertures de change, politiq
 | FR0013412038 | Amundi PEA MSCI Europe UCITS ETF (Acc) | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | FR0013416716 | Amundi Physical Gold ETC | Pays, Secteurs, Principales positions |
 | FR001400S9V0 | Amundi PEA Luxe Monde UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
-| FR001400U5Q4 | Amundi PEA Monde (MSCI World) UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
+| FR001400U5Q4 | Amundi PEA Monde (MSCI World) UCITS ETF | Rendements calendaires |
 | GB00B15KXQ89 | WisdomTree Copper | Pays, Secteurs, Principales positions |
 | GB00BJYDH287 | WisdomTree Physical Bitcoin | Pays, Secteurs, Principales positions |
 | GB00BLD4ZL17 | CoinShares Physical Bitcoin ETP | Pays, Secteurs, Principales positions |
@@ -172,9 +172,9 @@ Les identités, domiciles, modes de réplication, couvertures de change, politiq
 | IE0000N55FP4 | iShares MSCI Europe Small Cap UCITS ETF | Rendements calendaires |
 | IE0002XZSHO1 | iShares MSCI World Swap PEA UCITS ETF (Acc) | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE0002Y8CX98 | WisdomTree Europe Defence UCITS ETF | Rendements calendaires |
-| IE0007Y8Y157 | VanEck Quantum Computing UCITS ETF A | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
+| IE0007Y8Y157 | VanEck Quantum Computing UCITS ETF A | Rendements calendaires |
 | IE000C6ITGC8 | iShares Quantum Computing UCITS ETF | Rendements calendaires |
-| IE000DQLYVB9 | iShares S&P 500 Swap PEA UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
+| IE000DQLYVB9 | iShares S&P 500 Swap PEA UCITS ETF | Rendements calendaires |
 | IE000I8KRLL9 | iShares MSCI Global Semiconductors UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE000L6ZMMC4 | Xtrackers FTSE All-World UCITS ETF 1C | Rendements calendaires |
 | IE000M7V94E1 | VanEck Uranium and Nuclear Technologies UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
@@ -275,7 +275,7 @@ Les identités, domiciles, modes de réplication, couvertures de change, politiq
 | LU1931975079 | Amundi Core EUR Corporate Bond UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | LU2089238385 | Amundi Prime Japan UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | LU2196470426 | Xtrackers Nikkei 225 UCITS ETF 1C (Acc) | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
-| LU2970735911 | Amundi Core EUR High Yield Bond UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
+| LU2970735911 | Amundi Core EUR High Yield Bond UCITS ETF | Rendements calendaires |
 | LU3038520774 | Amundi STOXX Europe Defense UCITS ETF | Rendements calendaires |
 | NL0009690239 | VanEck Global Real Estate UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | NL0011683594 | VanEck Morningstar Developed Markets Dividend Leaders UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
@@ -306,7 +306,7 @@ Russell 2000 : composition automatisée depuis les tables explicitement consacr�
 
 Les lacunes ne se traitent pas toutes de la même manière : une donnée non applicable (pays actions d’un ETC or) doit rester absente ; un calendrier non encore publié attend sa première année complète ; une source exploitable mais non raccordée nécessite un connecteur.
 
-1. Compléter les champs des instruments partiellement raccordés et fiabiliser la disponibilité des pages WisdomTree et du miroir des fiches BNP. 8 instruments restent entièrement hors collecte. Les pays, secteurs et dix positions du Dow Jones Amundi sont raccordés à ses tableaux d’indice datés, en conservant les caractéristiques de la part. Les encours CoinShares sont raccordés aux widgets officiels, avec leur Rate Date réelle ; les pages WisdomTree accessibles fournissent leurs encours datés ; compléter les calendriers exacts et compositions restant listés ci-dessus. CoinShares : les fiches publient un rendement crypto de référence, qui ne remplace pas celui de la part après frais ou staking. Distinguer explicitement les données non applicables, non publiées et réellement à connecter.
+1. Compléter les champs des instruments partiellement raccordés et fiabiliser la disponibilité des pages WisdomTree et du miroir des fiches BNP. 0 instruments restent entièrement hors collecte. Les pays, secteurs et dix positions du Dow Jones Amundi sont raccordés à ses tableaux d’indice datés, en conservant les caractéristiques de la part. Les encours CoinShares sont raccordés aux widgets officiels, avec leur Rate Date réelle ; les pages WisdomTree accessibles fournissent leurs encours datés ; compléter les calendriers exacts et compositions restant listés ci-dessus. CoinShares : les fiches publient un rendement crypto de référence, qui ne remplace pas celui de la part après frais ou staking. Distinguer explicitement les données non applicables, non publiées et réellement à connecter.
 2. Compléter les poids du top dix Russell 1000 encore non publiés ; les deux Dividend Aristocrats utilisent désormais leurs fiches S&P exactes (tables natives et lecture concordante des légendes sectorielles à deux résolutions) en conservant exactement la variante de rendement et la devise existantes. Suivre le renouvellement annuel automatique ; les sources sans nouveau millésime gardent leur dernière période documentée.
 3. Étendre les sources renouvelables aux produits et paramètres encore hors des collectes économiques et réglementaires déjà qualifiées. Les caractéristiques (réplication, distribution, domicile, couverture de change, PEA) sont exclues des priorités à la demande de l’utilisateur.
 4. Fiabiliser la disponibilité des collecteurs ; conserver la distinction entre taux réglementaire effectif, moyenne de marché et rendement d’un produit individuel.
