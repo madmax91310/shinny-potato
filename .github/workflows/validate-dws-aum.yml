@@ -3,6 +3,8 @@ on:
   pull_request:
     paths:
       - 'scripts/collect_dws_etf.py'
+      - 'scripts/collect_etf_pilot.py'
+      - 'scripts/test_data_refresh.py'
       - 'scripts/test_source_documents.py'
       - '.github/workflows/validate-dws-aum.yml'
 permissions:
@@ -17,6 +19,7 @@ jobs:
         with:
           python-version: '3.12'
       - run: python -m unittest discover -s scripts -p 'test_source_documents.py'
+      - run: python -m unittest discover -s scripts -p 'test_data_refresh.py'
       - name: Collect both exact shares from official DWS endpoints
         run: |
           python - <<'PY'
@@ -34,6 +37,32 @@ jobs:
               assert aum['scope'] == 'fund' and aum['currency'] == 'USD' and aum['amount'] > 0
               print(result['isin'], aum)
           PY
+      - name: Qualify exact iShares AUM through production collection and application
+        run: |
+          python - <<'PYTHON'
+          import datetime as dt, json, pathlib, sys, tempfile
+          sys.path.insert(0, 'scripts')
+          from collect_etf_pilot import collect, apply_valid_shares
+          config = json.loads(pathlib.Path('scripts/etf-pilot.json').read_text())
+          config['instruments'] = [s for s in config['instruments'] if s['isin'] in ('IE00B4WXJJ64', 'IE0000N55FP4')]
+          assert len(config['instruments']) == 2
+          previous = json.loads(pathlib.Path('src/data/automated-etf.json').read_text())
+          report = collect(config, {s['isin']: {'currency': s['currency']} for s in config['instruments']})
+          with tempfile.TemporaryDirectory() as directory:
+              destination = pathlib.Path(directory)/'active.json'
+              destination.write_text(json.dumps(previous))
+              apply_valid_shares(report, destination, {})
+              active = json.loads(destination.read_text())
+          pathlib.Path('ishares-aum-validation.json').write_text(json.dumps(report, indent=2))
+          assert not report['failures'], report['failures']
+          assert len(report['shares']) == 2
+          for share in report['shares']:
+              aum = share['aum']
+              assert aum['scope'] == 'share-class' and aum['currency'] == 'EUR' and aum['amount'] > 0
+              assert active[share['isin']]['aum']['amount'] == aum['amount']
+              assert active[share['isin']]['aum']['asOf'] == aum['asOf']
+              print(share['isin'], aum)
+          PYTHON
       - uses: actions/setup-node@v7.0.0
         with:
           node-version: 20
@@ -46,5 +75,7 @@ jobs:
         if: always()
         with:
           name: dws-aum-validation
-          path: dws-aum-validation.json
+          path: |
+            dws-aum-validation.json
+            ishares-aum-validation.json
           retention-days: 14

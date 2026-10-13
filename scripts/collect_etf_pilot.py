@@ -90,8 +90,16 @@ def parse_share(body, share, now):
     ter = number(value('emeaMgt'), positive=False)
     if ter > 5:
         reject('Invalid TER')
-    aum = facts[share.get('aumField','totalNetAssets')]
-    if aum.get('prefix', '').strip() != share['currency']:
+    aum_field = share.get('aumField', 'totalNetAssets')
+    aum = facts.get(aum_field)
+    if not isinstance(aum, dict) or aum.get('value') is None:
+        reject(f'Official iShares AUM unavailable: {aum_field}; previous validated record preserved')
+    prefix = aum.get('prefix')
+    if not isinstance(prefix, str) or not prefix.strip():
+        reject(f'Official iShares AUM currency unavailable: {aum_field}; previous validated record preserved')
+    if aum.get('asOfDate') is None:
+        reject(f'Official iShares AUM date unavailable: {aum_field}; previous validated record preserved')
+    if prefix.strip() != share['currency']:
         reject('Share AUM currency mismatch')
     exposure = components.get('exposureBreakdowns', {}).get('containersByNameMap', {})
     # Single-country funds may omit this component. Never invent a 100% allocation.

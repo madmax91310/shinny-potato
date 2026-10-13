@@ -32,6 +32,43 @@ class RefreshTests(unittest.TestCase):
         self.assertEqual(report['aum']['scope'], 'share-class')
         self.assertEqual(report['sectors']['asOf'], '2026-10-02')
 
+    def test_ishares_missing_aum_rejected_without_fund_substitution(self):
+        for defect in ('missing', 'null-point', 'value', 'prefix', 'asOfDate', 'wrong-currency', 'zero'):
+            components = copy.deepcopy(self.components)
+            facts = components['keyFundFacts']['containersByNameMap']['default']['dataPointsByNameMap']
+            facts['totalNetAssetsFundLevel'] = copy.deepcopy(facts['totalNetAssets'])
+            if defect == 'missing': del facts['totalNetAssets']
+            elif defect == 'null-point': facts['totalNetAssets'] = None
+            else:
+                key, value = {'wrong-currency': ('prefix', 'EUR'), 'zero': ('value', 0)}.get(defect, (defect, None))
+                facts['totalNetAssets'][key] = value
+            for body in (markup(components), {'productId': 1, 'currencyCode': 'USD', 'componentsByNameMap': components}):
+                with self.subTest(defect=defect, transport=type(body).__name__), self.assertRaises(ValueError):
+                    parse_share(body, {**SHARE, 'productId': 1}, NOW)
+
+    def test_ishares_null_aum_preserves_entire_record_and_recovers(self):
+        import tempfile
+        from collect_etf_pilot import collect, apply_valid_shares
+        share = {**SHARE, 'productId': 1, 'collectHoldings': False}
+        good = copy.deepcopy(self.components)
+        bad = copy.deepcopy(good)
+        bad['keyFundFacts']['containersByNameMap']['default']['dataPointsByNameMap']['totalNetAssets']['value'] = None
+        previous = {SHARE['isin']: {'aum': {'amount': 123, 'asOf': '2026-10-01'}, 'checkedAt': '2026-10-01'}}
+        baseline = {SHARE['isin']: {'currency': 'USD'}}
+        with tempfile.TemporaryDirectory() as directory:
+            path = pathlib.Path(directory)/'data.json'
+            path.write_text(json.dumps(previous))
+            report = collect({'instruments': [share]}, baseline, NOW, lambda *args: json.dumps({'productId': 1, 'currencyCode': 'USD', 'componentsByNameMap': bad}))
+            self.assertEqual(len(report['failures']), 1)
+            self.assertIn('Official iShares AUM unavailable', report['failures'][0]['reason'])
+            self.assertFalse(apply_valid_shares(report, path, baseline))
+            self.assertEqual(json.loads(path.read_text()), previous)
+            report = collect({'instruments': [share]}, baseline, NOW, lambda *args: json.dumps({'productId': 1, 'currencyCode': 'USD', 'componentsByNameMap': good}))
+            self.assertEqual(report['failures'], [])
+            path.write_text('{}')
+            self.assertTrue(apply_valid_shares(report, path, baseline))
+            self.assertEqual(json.loads(path.read_text())[SHARE['isin']]['aum']['scope'], 'share-class')
+
     def test_optional_inception_and_first_partial_year(self):
         facts = self.components['keyFundFacts']['containersByNameMap']['default']['dataPointsByNameMap']
         facts.pop('inceptionDate', None)
