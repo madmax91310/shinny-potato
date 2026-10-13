@@ -4,12 +4,12 @@ Inventaire des champs réellement présents dans les observations actives. Couve
 
 | Champ ETF/ETP | Couverture |
 |---|---:|
-| ter | 181/185 |
-| aum | 181/185 |
-| performance | 167/185 |
-| countries | 162/185 |
-| sectors | 162/185 |
-| holdings | 166/185 |
+| ter | 190/194 |
+| aum | 190/194 |
+| performance | 176/194 |
+| countries | 164/194 |
+| sectors | 164/194 |
+| holdings | 169/194 |
 
 ## Premiers calendriers des 12 parts récentes
 
@@ -36,6 +36,26 @@ Les caractéristiques statiques et cotations sont exclues de ce chantier conform
 
 | Type | Instrument / indice | Champ absent | Motif | Action |
 |---|---|---|---|---|
+| instrument | Invesco NASDAQ-100 Equal Weight UCITS ETF Acc (IE000L2SA8K5) | Pays | Non publié | L’API officielle Invesco ne fournit pas d’allocation complète qualifiée. Les dix positions de l’indice suivi restent datées et explicitement distinguées du portefeuille du fonds. |
+| instrument | Invesco NASDAQ-100 Equal Weight UCITS ETF Acc (IE000L2SA8K5) | Secteurs | Non publié | L’API officielle Invesco ne fournit pas d’allocation complète qualifiée. Les dix positions de l’indice suivi restent datées et explicitement distinguées du portefeuille du fonds. |
+| instrument | WisdomTree Brent Crude Oil (JE00B78CGV99) | Pays | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |
+| instrument | WisdomTree Brent Crude Oil (JE00B78CGV99) | Secteurs | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |
+| instrument | WisdomTree Brent Crude Oil (JE00B78CGV99) | Positions pondérées | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |
+| instrument | WisdomTree WTI Crude Oil (GB00B15KXV33) | Pays | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |
+| instrument | WisdomTree WTI Crude Oil (GB00B15KXV33) | Secteurs | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |
+| instrument | WisdomTree WTI Crude Oil (GB00B15KXV33) | Positions pondérées | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |
+| instrument | WisdomTree Natural Gas (JE00BN7KB334) | Pays | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |
+| instrument | WisdomTree Natural Gas (JE00BN7KB334) | Secteurs | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |
+| instrument | WisdomTree Natural Gas (JE00BN7KB334) | Positions pondérées | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |
+| instrument | WisdomTree Coffee (JE00BN7KB557) | Pays | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |
+| instrument | WisdomTree Coffee (JE00BN7KB557) | Secteurs | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |
+| instrument | WisdomTree Coffee (JE00BN7KB557) | Positions pondérées | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |
+| instrument | WisdomTree Cocoa (JE00B2QXZK10) | Pays | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |
+| instrument | WisdomTree Cocoa (JE00B2QXZK10) | Secteurs | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |
+| instrument | WisdomTree Cocoa (JE00B2QXZK10) | Positions pondérées | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |
+| instrument | WisdomTree Wheat (JE00BN7KB664) | Pays | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |
+| instrument | WisdomTree Wheat (JE00BN7KB664) | Secteurs | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |
+| instrument | WisdomTree Wheat (JE00BN7KB664) | Positions pondérées | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |
 | instrument | Vanguard LifeStrategy 20% Equity UCITS ETF (EUR) Accumulating (IE00BMVB5K07) | Pays | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
 | instrument | Vanguard LifeStrategy 20% Equity UCITS ETF (EUR) Accumulating (IE00BMVB5K07) | Secteurs | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
 | instrument | Vanguard LifeStrategy 40% Equity UCITS ETF (EUR) Accumulating (IE00BMVB5M21) | Pays | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
