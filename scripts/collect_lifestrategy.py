@@ -12,8 +12,7 @@ from issuer_documents import download, pdf_text, document_date, validated_rows
 from data_automation import UTC, write_json_atomic
 
 ROOT = Path(__file__).resolve().parents[1]
-CONFIG = [(20, '9490', 'IE00BMVB5K07'), (40, '9492', 'IE00BMVB5M21'),
-          (60, '9494', 'IE00BMVB5P51'), (80, '9496', 'IE00BMVB5R75')]
+CONFIG = [(r['equityPct'], r['productCode'], r['isin']) for r in json.loads((ROOT/'scripts/lifestrategy-sources.json').read_text())['instruments'] if r.get('enabled', True)]
 MONTHS = {'janvier': 1, 'février': 2, 'mars': 3, 'avril': 4, 'mai': 5, 'juin': 6,
           'juillet': 7, 'août': 8, 'septembre': 9, 'octobre': 10, 'novembre': 11, 'décembre': 12}
 

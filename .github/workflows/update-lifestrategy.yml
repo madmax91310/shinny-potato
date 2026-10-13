@@ -7,10 +7,12 @@ on:
     branches: [master]
     paths:
       - 'scripts/collect_lifestrategy.py'
+      - 'scripts/lifestrategy-sources.json'
       - '.github/workflows/update-lifestrategy.yml'
   pull_request:
     paths:
       - 'scripts/collect_lifestrategy.py'
+      - 'scripts/lifestrategy-sources.json'
       - 'scripts/test_lifestrategy.py'
       - 'scripts/test-lifestrategy.mjs'
       - 'src/data/lifestrategy*'

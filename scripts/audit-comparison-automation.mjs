@@ -1,3 +1,4 @@
+import lifestrategyConfig from './lifestrategy-sources.json' with {type:'json'};
 import qualifiedConfig from './qualified-exposure-sources.json' with { type:'json' };
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
@@ -7,7 +8,7 @@ import { AUTOMATED_ETF } from '../src/data/automated-etf.js';
 import { classifyInstrumentGap } from './automation-gap-inventory.mjs';
 
 const sources = ['etf-pilot.json', 'amundi-etf.json', 'ssga-etf.json', 'additional-etf-sources.json']
-  .flatMap(file => JSON.parse(readFileSync(new URL(file, import.meta.url))).instruments);
+  .flatMap(file => JSON.parse(readFileSync(new URL(file, import.meta.url))).instruments).concat(lifestrategyConfig.instruments);
 
 // Check the actual selection, including reused themes and PEA blocks.
 // This checks wiring and qualified observations, not today's network availability.
@@ -23,7 +24,7 @@ export function auditComparisonAutomation({ themes = DEFAULT_THEMES, configs = s
     assert(record, `${isin}: aucune observation automatique validée`);
     assert(Number.isFinite(record.characteristics?.terPct), `${isin}: frais non raccordés`);
     assert(record.aum?.amount > 0 && record.aum.asOf && record.aum.checkedAt, `${isin}: encours non raccordé ou non daté`);
-    for (const field of ['countries', 'sectors', 'holdings']) {
+    for (const field of lifestrategyConfig.instruments.some(c=>c.isin===isin) ? ['assetAllocation','holdings'] : ['countries', 'sectors', 'holdings']) {
       if (classifyInstrumentGap(isin, field, now).status === 'not-applicable') continue;
       assert(record[field]?.rows?.length && record[field].asOf, `${isin}: ${field} non raccordé ou non daté`);
     }

@@ -14,3 +14,6 @@ assert.throws(() => auditComparisonAutomation({ themes, records: { [isin]: { ...
 assert.throws(() => auditComparisonAutomation({ themes, records: { [isin]: { ...record, performance: undefined } } }), /calendrier absent sans motif/);
 assert.throws(() => auditComparisonAutomation({ themes, records: { [isin]: { ...record, performance: { ...record.performance, currency: 'USD' } } } }), /devise du calendrier/);
 console.log('Ajout sans source, observation manquante, composition perdue et calendrier incompatible bloqués.');
+
+const ls='IE00BMVB5P51';
+assert.throws(()=>auditComparisonAutomation({themes:[{etfs:[{isin:ls}]}],records:{[ls]:{...AUTOMATED_ETF[ls],assetAllocation:undefined}}}), /assetAllocation non raccordé/);
