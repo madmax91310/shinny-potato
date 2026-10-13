@@ -35,6 +35,8 @@ export const GOLD_CATEGORIES = ["Guide ETF", "Actu & humour"]
 export const COOLDOWN_DAYS = 45
 
 const ARCHIVED_TWEETS = [
+  // Texte transmis par l’auteur le 13/10/2026, conservé tel quel.
+  {"id":"simulation:taux-immobilier-france-2015-2025","month":"Octobre","category":"Simulation & chiffres","text":"🏠 Taux immobilier moyen par année en France :\n\n2015 : 2,14 %\n2016 : 1,63 %\n2017 : 1,52 %\n2018 : 1,45 %\n2019 : 1,24 %\n2020 : 1,18 %\n2021 : 1,06 %\n2022 : 1,63 %\n2023 : 3,51 %\n2024 : 3,66 %\n2025 : 3,11 %\n\n💬 Vous avez emprunté à quel taux?"},
   // Archives transmises par l’auteur le 13/10/2026, conservées telles quelles.
   // Dates de référence et hypothèses de calcul non fournies ; à vérifier avant réutilisation.
   {"id":"story:profil-monsieur-tout-le-monde","month":"Octobre","category":"Storytelling","text":"Certains me demandent mon âge, mon profil 👇\n\nJe suis Monsieur tout le monde : 32 ans, en CDI, 2150 euros net soit le salaire médian ⚡\n\nJ'ai commencé à mettre de côté sur mon assurance vie quand j'ai pris conscience que l'avenir est incertain. Puis j'ai investi sur le bitcoin il y a deux ans et ouvert un PEA en 2025. 📈\n\nLe plus drôle dans tout ça? J'ai gagné en sérénité. \n\nLe secret? Il n'y en a pas : un investissement régulier, chaque mois, dans des actifs que je comprends et dont je suis convaincu de la valeur \n\nLa morale de l'histoire?\nÉduquez-vous financièrement et prenez vos décisions en conséquence. 😊"},
