@@ -1,0 +1,474 @@
+{
+  "world-islamic": {
+    "id": "world-islamic",
+    "productId": 251394,
+    "isin": "IE00B27YCN58",
+    "label": "World Islamic",
+    "scene": "world",
+    "category": "Stratégiques",
+    "portfolioEnabled": true,
+    "currency": "USD",
+    "collectHoldings": true,
+    "requireFullHistory": false,
+    "distribution": "Distributing",
+    "terPct": 0.3,
+    "index": "MSCI Developed World Islamic Index (NET) (USD)",
+    "aum": {
+      "amount": 1744394943.29,
+      "currency": "USD",
+      "scope": "share-class",
+      "asOf": "2026-10-12"
+    },
+    "countries": {
+      "asOf": "2026-10-09",
+      "rows": [
+        {
+          "name": "United States",
+          "weightPct": 68.87
+        },
+        {
+          "name": "Japan",
+          "weightPct": 6.92
+        },
+        {
+          "name": "United Kingdom",
+          "weightPct": 3.87
+        },
+        {
+          "name": "Canada",
+          "weightPct": 3.66
+        },
+        {
+          "name": "France",
+          "weightPct": 3.41
+        },
+        {
+          "name": "Netherlands",
+          "weightPct": 2.89
+        },
+        {
+          "name": "Germany",
+          "weightPct": 2.53
+        },
+        {
+          "name": "Australia",
+          "weightPct": 1.58
+        },
+        {
+          "name": "Switzerland",
+          "weightPct": 1.55
+        },
+        {
+          "name": "Sweden",
+          "weightPct": 1.1
+        },
+        {
+          "name": "Other",
+          "weightPct": 3.33
+        },
+        {
+          "name": "Cash and/or Derivatives",
+          "weightPct": 0.28
+        }
+      ]
+    },
+    "sectors": {
+      "asOf": "2026-10-09",
+      "rows": [
+        {
+          "name": "Information Technology",
+          "weightPct": 45.66
+        },
+        {
+          "name": "Industrials",
+          "weightPct": 12.71
+        },
+        {
+          "name": "Energy",
+          "weightPct": 11.63
+        },
+        {
+          "name": "Health Care",
+          "weightPct": 9.8
+        },
+        {
+          "name": "Materials",
+          "weightPct": 8.46
+        },
+        {
+          "name": "Consumer Discretionary",
+          "weightPct": 6.76
+        },
+        {
+          "name": "Consumer Staples",
+          "weightPct": 2.94
+        },
+        {
+          "name": "Utilities",
+          "weightPct": 0.82
+        },
+        {
+          "name": "Real Estate",
+          "weightPct": 0.79
+        },
+        {
+          "name": "Communication",
+          "weightPct": 0.15
+        },
+        {
+          "name": "Cash and/or Derivatives",
+          "weightPct": 0.28
+        }
+      ]
+    },
+    "performance": {
+      "currency": "USD",
+      "basis": "fund",
+      "method": "calendar-year NAV total return, income reinvested, fund fees included",
+      "years": {
+        "2016": 7.42,
+        "2017": 19.09,
+        "2018": -9.37,
+        "2019": 22.0,
+        "2020": 8.02,
+        "2021": 21.51,
+        "2022": -11.79,
+        "2023": 22.94,
+        "2024": 5.26,
+        "2025": 19.53
+      }
+    },
+    "holdings": {
+      "asOf": "2026-10-09",
+      "basis": "fund",
+      "rows": [
+        {
+          "name": "MICROSOFT",
+          "weightPct": 13.98818,
+          "isin": "US5949181045"
+        },
+        {
+          "name": "MICRON TECHNOLOGY",
+          "weightPct": 4.30518,
+          "isin": "US5951121038"
+        },
+        {
+          "name": "TESLA INC",
+          "weightPct": 4.05602,
+          "isin": "US88160R1014"
+        },
+        {
+          "name": "ADVANCED MICRO DEVICES",
+          "weightPct": 3.67124,
+          "isin": "US0079031078"
+        },
+        {
+          "name": "EXXONMOBIL HOLDINGS CORP",
+          "weightPct": 2.59557,
+          "isin": "US30233Q1085"
+        },
+        {
+          "name": "ASML HOLDING",
+          "weightPct": 2.57944,
+          "isin": "NL0010273215"
+        },
+        {
+          "name": "JOHNSON & JOHNSON",
+          "weightPct": 2.32798,
+          "isin": "US4781601046"
+        },
+        {
+          "name": "CISCO SYSTEMS INC",
+          "weightPct": 1.73059,
+          "isin": "US17275R1023"
+        },
+        {
+          "name": "INTEL CORPORATION",
+          "weightPct": 1.70816,
+          "isin": "US4581401001"
+        },
+        {
+          "name": "APPLIED MATERIAL INC",
+          "weightPct": 1.48905,
+          "isin": "US0382221051"
+        }
+      ]
+    },
+    "name": "iShares MSCI World Islamic UCITS ETF",
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=251394&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "listing": {
+      "ticker": "ISDW",
+      "exchange": "London Stock Exchange",
+      "excerpt": "London Stock Exchange | ISDW | USD | 20071210 | ISDW.L",
+      "mic": "XLON",
+      "currency": "USD",
+      "symbol": "ISDW.L",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=251394&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "checkedAt": "2026-10-13",
+      "evidenceId": "IE00B27YCN58-XLON-ISDW-USD"
+    },
+    "listings": [
+      {
+        "ticker": "IUSD",
+        "exchange": "Xetra",
+        "excerpt": "Xetra | IUSD | EUR | 20230428 | IUSD.DE",
+        "mic": "XETR",
+        "currency": "EUR",
+        "symbol": "IUSD.DE",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=251394&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "checkedAt": "2026-10-13",
+        "evidenceId": "IE00B27YCN58-XETR-IUSD-EUR"
+      },
+      {
+        "ticker": "ISDW",
+        "exchange": "London Stock Exchange",
+        "excerpt": "London Stock Exchange | ISDW | USD | 20071210 | ISDW.L",
+        "mic": "XLON",
+        "currency": "USD",
+        "symbol": "ISDW.L",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=251394&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "checkedAt": "2026-10-13",
+        "evidenceId": "IE00B27YCN58-XLON-ISDW-USD"
+      },
+      {
+        "ticker": "ISWD",
+        "exchange": "SIX Swiss Exchange",
+        "excerpt": "SIX Swiss Exchange | ISWD | USD | 20150402 | ISWD.S",
+        "mic": "XSWX",
+        "currency": "USD",
+        "symbol": "ISWD.S",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=251394&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "checkedAt": "2026-10-13",
+        "evidenceId": "IE00B27YCN58-XSWX-ISWD-USD"
+      }
+    ],
+    "characteristics": {
+      "terPct": 0.3,
+      "index": "MSCI Developed World Islamic Index (NET) (USD)",
+      "distribution": "Distributing",
+      "domicile": "Ireland",
+      "replicationMethod": "Physical (Replicated)",
+      "inceptionDate": "20071207"
+    },
+    "checkedAt": "2026-10-13T11:37:48.833268+00:00",
+    "pageSha256": "ad43b54f7d58bcab11fb5656aa1ff733532adff35d396a2a6b7d71176439f0e9",
+    "automatedRecord": {
+      "currency": "USD",
+      "productId": 251394,
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=251394&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "provider": "iShares",
+      "aum": {
+        "amount": 1744394943.29,
+        "currency": "USD",
+        "scope": "share-class",
+        "asOf": "2026-10-12",
+        "checkedAt": "2026-10-13",
+        "modifiedAt": "2026-10-13"
+      },
+      "sectors": {
+        "asOf": "2026-10-09",
+        "rows": [
+          {
+            "name": "Information Technology",
+            "weightPct": 45.66,
+            "label": "Information Technology"
+          },
+          {
+            "name": "Industrials",
+            "weightPct": 12.71,
+            "label": "Industrials"
+          },
+          {
+            "name": "Energy",
+            "weightPct": 11.63,
+            "label": "Energy"
+          },
+          {
+            "name": "Health Care",
+            "weightPct": 9.8,
+            "label": "Health Care"
+          },
+          {
+            "name": "Materials",
+            "weightPct": 8.46,
+            "label": "Materials"
+          },
+          {
+            "name": "Consumer Discretionary",
+            "weightPct": 6.76,
+            "label": "Consumer Discretionary"
+          },
+          {
+            "name": "Consumer Staples",
+            "weightPct": 2.94,
+            "label": "Consumer Staples"
+          },
+          {
+            "name": "Utilities",
+            "weightPct": 0.82,
+            "label": "Utilities"
+          },
+          {
+            "name": "Real Estate",
+            "weightPct": 0.79,
+            "label": "Immobilier"
+          },
+          {
+            "name": "Communication",
+            "weightPct": 0.15,
+            "label": "Communication"
+          },
+          {
+            "name": "Cash and/or Derivatives",
+            "weightPct": 0.28,
+            "label": "Cash and/or Derivatives"
+          }
+        ],
+        "checkedAt": "2026-10-13",
+        "modifiedAt": "2026-10-13"
+      },
+      "countries": {
+        "asOf": "2026-10-09",
+        "rows": [
+          {
+            "name": "United States",
+            "weightPct": 68.87
+          },
+          {
+            "name": "Japan",
+            "weightPct": 6.92
+          },
+          {
+            "name": "United Kingdom",
+            "weightPct": 3.87
+          },
+          {
+            "name": "Canada",
+            "weightPct": 3.66
+          },
+          {
+            "name": "France",
+            "weightPct": 3.41
+          },
+          {
+            "name": "Netherlands",
+            "weightPct": 2.89
+          },
+          {
+            "name": "Germany",
+            "weightPct": 2.53
+          },
+          {
+            "name": "Australia",
+            "weightPct": 1.58
+          },
+          {
+            "name": "Switzerland",
+            "weightPct": 1.55
+          },
+          {
+            "name": "Sweden",
+            "weightPct": 1.1
+          },
+          {
+            "name": "Other",
+            "weightPct": 3.33
+          },
+          {
+            "name": "Cash and/or Derivatives",
+            "weightPct": 0.28
+          }
+        ],
+        "checkedAt": "2026-10-13",
+        "modifiedAt": "2026-10-13"
+      },
+      "holdings": {
+        "asOf": "2026-10-09",
+        "basis": "fund",
+        "rows": [
+          {
+            "name": "MICROSOFT",
+            "weightPct": 13.98818,
+            "isin": "US5949181045"
+          },
+          {
+            "name": "MICRON TECHNOLOGY",
+            "weightPct": 4.30518,
+            "isin": "US5951121038"
+          },
+          {
+            "name": "TESLA INC",
+            "weightPct": 4.05602,
+            "isin": "US88160R1014"
+          },
+          {
+            "name": "ADVANCED MICRO DEVICES",
+            "weightPct": 3.67124,
+            "isin": "US0079031078"
+          },
+          {
+            "name": "EXXONMOBIL HOLDINGS CORP",
+            "weightPct": 2.59557,
+            "isin": "US30233Q1085"
+          },
+          {
+            "name": "ASML HOLDING",
+            "weightPct": 2.57944,
+            "isin": "NL0010273215"
+          },
+          {
+            "name": "JOHNSON & JOHNSON",
+            "weightPct": 2.32798,
+            "isin": "US4781601046"
+          },
+          {
+            "name": "CISCO SYSTEMS INC",
+            "weightPct": 1.73059,
+            "isin": "US17275R1023"
+          },
+          {
+            "name": "INTEL CORPORATION",
+            "weightPct": 1.70816,
+            "isin": "US4581401001"
+          },
+          {
+            "name": "APPLIED MATERIAL INC",
+            "weightPct": 1.48905,
+            "isin": "US0382221051"
+          }
+        ],
+        "checkedAt": "2026-10-13",
+        "modifiedAt": "2026-10-13"
+      },
+      "characteristics": {
+        "terPct": 0.3,
+        "index": "MSCI Developed World Islamic Index (NET) (USD)",
+        "distribution": "Distributing",
+        "domicile": "Ireland",
+        "replicationMethod": "Physical (Replicated)",
+        "inceptionDate": "20071207",
+        "checkedAt": "2026-10-13",
+        "modifiedAt": "2026-10-13"
+      },
+      "performance": {
+        "currency": "USD",
+        "basis": "fund",
+        "method": "calendar-year NAV total return, income reinvested, fund fees included",
+        "years": {
+          "2016": 7.42,
+          "2017": 19.09,
+          "2018": -9.37,
+          "2019": 22.0,
+          "2020": 8.02,
+          "2021": 21.51,
+          "2022": -11.79,
+          "2023": 22.94,
+          "2024": 5.26,
+          "2025": 19.53
+        },
+        "checkedAt": "2026-10-13",
+        "modifiedAt": "2026-10-13"
+      }
+    }
+  }
+}

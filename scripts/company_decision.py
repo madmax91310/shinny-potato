@@ -101,6 +101,10 @@ def publication_decision(profile, company, today):
         return extended_publication_decision(profile, company, today)
     if profile['id'] == 'amd':
         return amd_publication_decision(profile, company, today)
+    from company_round4_publications import ROUND4
+    if profile['id'] in ROUND4:
+        from company_round4_publications import publication_decision as fourth_round
+        return fourth_round(profile, company, today)
     from company_round3_publications import ROUND3
     if profile['id'] in ROUND3:
         from company_round3_publications import publication_decision as third_round

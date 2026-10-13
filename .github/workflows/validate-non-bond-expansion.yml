@@ -1,0 +1,42 @@
+name: Validate non-bond expansion
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'scripts/*non_bond*'
+      - 'scripts/*non-bond*'
+      - 'scripts/company_round4_publications.py'
+      - 'scripts/fixtures/non-bond/**'
+      - 'src/data/non-bond*'
+      - '.github/workflows/validate-non-bond-expansion.yml'
+permissions:
+  contents: read
+jobs:
+  sources:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 20
+      - run: pip install -r scripts/company-requirements.txt openpyxl==3.1.5
+      - run: npm ci
+      - run: python -m unittest discover -s scripts -p 'test_non_bond_expansion.py'
+      - run: python scripts/validate_non_bond_expansion.py
+      - run: python scripts/refresh_non_bond_sources.py --fields etf --output "$RUNNER_TEMP/islamic.json"
+      - run: python scripts/refresh_company_analysis.py --only nike disney caterpillar waste-management --publications-only --output "$RUNNER_TEMP/companies.json"
+      - run: python scripts/refresh_index_sources.py --ids world-islamic --require-complete --output "$RUNNER_TEMP/index.json"
+      - run: node scripts/audit-calculator-series-archive.mjs
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: expansion-source-observations
+          path: |
+            ${{ runner.temp }}/islamic.json
+            ${{ runner.temp }}/companies.json
+            ${{ runner.temp }}/index.json
+          retention-days: 35

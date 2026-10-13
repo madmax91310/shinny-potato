@@ -4,13 +4,15 @@ import { ETF_MONTHLY_HISTORIES } from '../src/data/etf-monthly-history.js'
 import { derive, buildTweetText as buildInvestmentText } from '../src/pages/investment-calculator/lib.js'
 import { getPerformanceAssetId } from '../src/data/performance-links.js'
 import { resolveAnniversaryLevel } from '../src/data/anniversary-levels.js'
-import LEVELS from '../src/data/anniversary-levels.json' with { type: 'json' }
+import BASE_LEVELS from '../src/data/anniversary-levels.json' with { type: 'json' }
 import { ANNIVERSAIRE_ELIGIBLE_ASSETS, getHistoricalPrice, getValidYearsBackOptions, getAnnualReturnStartYears, getAnnualReturns, ymForYearsBack, performanceBasis } from '../src/pages/tweet-midi/data/marketHistory.js'
 import { buildAnniversaireText, buildAnniversaireComparatifText, buildPerformanceDepuisText, FORMATS, MODES } from '../src/pages/tweet-midi/lib.js'
 import { ANNIVERSARY_ART } from '../src/pages/tweet-midi/anniversaryArt.js'
 import { PERFORMANCE_ART } from '../src/pages/tweet-midi/performanceArt.js'
 import { INVESTMENT_ART } from '../src/pages/investment-calculator/emeraldArt.js'
 
+import NON_BOND_LEVELS from '../src/data/non-bond-levels.json' with {type:'json'};
+const LEVELS={...BASE_LEVELS,...NON_BOND_LEVELS};
 const clock = new Date('2026-10-11T12:00:00Z')
 const close = (a, b) => assert(Math.abs(a - b) < 1e-7, `${a} != ${b}`)
 for (const id of ['etfImie','etfVwce','etfEqualWeight','etfMinVol','etfWqdv','etfTdiv','etfEpra','etfCmod','etfSemi','etfLock']) assert(ETF_MONTHLY_HISTORIES[id], `Initial exact share missing: ${id}`)

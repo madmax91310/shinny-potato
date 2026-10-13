@@ -1,6 +1,11 @@
-import records from './qualified-exposure-etfs.json' with { type: 'json' }
-import config from '../../scripts/qualified-exposure-sources.json' with { type: 'json' }
+import baseRecords from './qualified-exposure-etfs.json' with { type: 'json' }
+import baseConfig from '../../scripts/qualified-exposure-sources.json' with { type: 'json' }
+import expansionConfig from '../../scripts/non-bond-qualified-sources.json' with { type:'json' }
+import nonBondRecords from './non-bond-qualified-records.json' with { type:'json' };
+const records={...baseRecords,...nonBondRecords};
+const config={instruments:[...baseConfig.instruments,...expansionConfig.instruments]}
 const descriptions = {
+ 'world-islamic':['Un World peut changer de composition avec des critères de sélection différents 👇','Tu suis les actions de pays développés retenues par le MSCI Developed World Islamic, qui applique des critères sectoriels et financiers de conformité à la finance islamique.','Tu compares cette sélection au World classique.','Les exclusions modifient la répartition sectorielle et peuvent accroître la concentration. Les performances peuvent diverger du World.'],
  'world-multifactor': ['Combiner plusieurs facteurs dans un seul ETF mondial : que change la sélection ? 👇', 'Tu détiens une sélection d’actions de pays développés selon le STOXX Developed World Equity Factor Screened. Le fonds combine plusieurs critères plutôt que la seule capitalisation boursière.', 'Tu explores une sélection multifactorielle dans une seule ligne, à comparer avec un World classique.', 'Les facteurs peuvent sous-performer pendant longtemps. Le fonds a changé d’indice au cours de son histoire : ses performances passées ne décrivent pas uniquement la stratégie actuelle.'],
  'ibonds-euro-2028': ['Un ETF obligataire peut avoir une échéance. Que se passe-t-il en 2028 ? 👇', 'Tu détiens un panier d’obligations d’entreprises en euros, de catégorie investment grade, arrivant à échéance en 2028. Cette part capitalise les revenus et le fonds a une durée définie.', 'Tu peux examiner une échéance précise, plutôt qu’un ETF qui renouvelle constamment ses obligations.', 'Le capital et le rendement ne sont pas garantis. Les défauts, les taux et les frais comptent ; les liquidités prennent davantage de place à l’approche de la fin du fonds.'],
  'history-etf_health': ['Un ETF santé mondial se limite-t-il aux laboratoires pharmaceutiques ? 👇','Tu suis des entreprises de santé des pays développés selon le MSCI World Health Care Advanced Select 20 35 Capped. Cet indice applique des filtres et des plafonds.','Tu examines une poche de santé à côté du World, qui détient déjà certaines de ces entreprises.','Les valorisations, les brevets et les décisions réglementaires peuvent peser sur ces actions.'],

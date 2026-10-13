@@ -1,5 +1,6 @@
 // Reviewed exposure illustrations. Abstract glass blocks never encode weights.
 const identities = {
+  'world-islamic':['world','Pays développés · filtres de finance islamique'],
   'msci-world-materials':['world','Pays développés · matériaux'],
   'msci-world-utilities':['infrastructure','Pays développés · services publics'],
   'msci-world-industrials': ['infrastructure', 'Pays développés · secteur industriel'],

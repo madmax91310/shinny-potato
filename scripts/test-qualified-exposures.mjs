@@ -1,10 +1,12 @@
 import assert from 'node:assert/strict'
 import { QUALIFIED_EXPOSURE_SHEETS, QUALIFIED_FACTS } from '../src/data/qualified-exposure-sheets.js'
-import records from '../src/data/qualified-exposure-etfs.json' with { type:'json' }
+import baseRecords from '../src/data/qualified-exposure-etfs.json' with { type:'json' }
 import { ETFS } from '../src/data/etf-cards.js'
 import { getETFArt } from '../src/pages/etf-sheets/visualIdentity.js'
 import { buildText } from '../src/pages/etf-sheets/lib.js'
 import { AUTOMATED_ETF } from '../src/data/automated-etf.js'
+import nonBondRecords from '../src/data/non-bond-qualified-records.json' with {type:'json'};
+const records={...baseRecords,...nonBondRecords};
 for(const s of QUALIFIED_EXPOSURE_SHEETS){
  const r=records[s.id],sheet=ETFS.find(x=>x.id===s.id)
  assert.equal(sheet.name,r.name);assert.equal(QUALIFIED_FACTS[r.isin].benchmark,r.characteristics.index)

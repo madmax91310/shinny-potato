@@ -273,14 +273,15 @@ def main():
         from company_extended_publications import EXTENDED, EUROPE
         from company_round2_publications import ROUND2
         from company_round3_publications import ROUND3
-        extended = ident in EXTENDED or ident == 'amd' or ident in ROUND2 or ident in ROUND3
+        from company_round4_publications import ROUND4
+        extended = ident in EXTENDED or ident == 'amd' or ident in ROUND2 or ident in ROUND3 or ident in ROUND4
         url = f"https://data.sec.gov/api/xbrl/companyfacts/CIK{profile['cik']}.json" if profile.get('cik') else profile['sourceUrl']
         sec_accounts = None
         sec_body = None
         try:
             if ident in EUROPE:
                 raise ValueError('IFRS issuer adapter required')
-            if ident in ROUND2 or ident in ROUND3:
+            if ident in ROUND2 or ident in ROUND3 or ident in ROUND4:
                 raise NotImplementedError('Renewable official issuer adapter is the primary source')
             if args.publications_only:
                 raise ValueError('Issuer fallback requested')
@@ -291,6 +292,8 @@ def main():
         try:
             if ident == 'amd':
                 from company_amd_publications import collect
+            elif ident in ROUND4:
+                from company_round4_publications import collect
             elif ident in ROUND3:
                 from company_round3_publications import collect
             elif ident in ROUND2:
@@ -487,7 +490,10 @@ def main():
             if old.get('quote', {}).get('asOf', '') > quote['asOf']:
                 raise ValueError('Price regressed')
             item['quote'] = {**quote, 'sourceUrl': quote_url}
-            if ident in ROUND3:
+            if ident in ROUND4:
+                from company_round2_publications import normalise_eps_basis
+                normalise_eps_basis(item, profile, item['quote'], quote_body)
+            elif ident in ROUND3:
                 from company_round3_publications import normalise_eps_basis
                 normalise_eps_basis(item, profile, item['quote'], quote_body)
             elif ident in ROUND2:

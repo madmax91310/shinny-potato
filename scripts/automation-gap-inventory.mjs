@@ -1,10 +1,14 @@
+import nonBondSources from './non-bond-expansion-sources.json' with { type:'json' };
+import nonBondQualified from './non-bond-qualified-sources.json' with { type:'json' };
 import { AUTOMATED_ETF } from '../src/data/automated-etf.js';
-import qualified from './qualified-exposure-sources.json' with { type:'json' };
+import baseQualified from './qualified-exposure-sources.json' with { type:'json' };
 import { readFileSync, writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { DATA_CATALOG } from '../src/data/catalog.js';
+const qualified = {instruments:[...baseQualified.instruments,...nonBondQualified.instruments]};
 const read = path => JSON.parse(readFileSync(new URL('../'+path, import.meta.url)));
 const nonEquity = new Set(['LU0290358497','CH0454664001','DE000A27Z304','FR0013416716','GB00B15KXQ89','GB00BJYDH287','GB00BLD4ZL17','GB00BLD4ZM24','IE00B4NCWG09','IE00B4ND3602','IE00B579F325','IE00BD6FTQ80','IE00BDFL4P12','JE00B1VS3770']);
+for (const source of nonBondSources.instruments.filter(s=>s.instrumentType==='ETC')) nonEquity.add(source.isin);
 const calendarEvidence = read('scripts/recent-calendar-evidence.json');
 export const recent = new Set(Object.keys(calendarEvidence.shares));
 export function completeCalendarYears(id, years, now) {
@@ -20,6 +24,7 @@ export function calendarEligibility(id, now) {
 }
 export function classifyInstrumentGap(id,field,now=new Date().toISOString().slice(0,10)) {
   if(['countries','sectors','holdings'].includes(field) && nonEquity.has(id)) return {status:'not-applicable',reason:'Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément.'};
+  if(id==='IE000L2SA8K5' && ['countries','sectors'].includes(field)) return {status:'not-published',reason:'L’API officielle Invesco ne fournit pas d’allocation complète qualifiée. Les dix positions de l’indice suivi restent datées et explicitement distinguées du portefeuille du fonds.',sourceUrl:'https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE000L2SA8K5/holdings/index?idType=isin'};
   if(field==='performance' && recent.has(id)) {
     const eligibility=calendarEligibility(id,now);
     return {...eligibility,reason:eligibility.status==='waiting-first-year'?`Première année civile complète : ${eligibility.firstCompleteYear}. Publication possible à partir du ${eligibility.earliestPublicationDate}, selon l’émetteur ; aucun calendrier complet ne peut encore être collecté.`:'Première année complète clôturée, mais aucun calendrier annuel qualifié dans les observations actives. Réessai par le collecteur ; aucun proxy assimilé à la part.'};
@@ -29,7 +34,7 @@ export function classifyInstrumentGap(id,field,now=new Date().toISOString().slic
   return {status:'unqualified',reason:'Champ absent des observations actives ; source ou connecteur à qualifier.'};
 }
 export function buildGapInventory({etf=AUTOMATED_ETF,indices=read('src/data/automated-indices.json'),insurance=read('src/data/automated-insurance.json').records,now=new Date().toISOString().slice(0,10)}={}) {
-  const sources=['etf-pilot.json','amundi-etf.json','ssga-etf.json','additional-etf-sources.json','lifestrategy-sources.json'].flatMap(f=>read('scripts/'+f).instruments).concat(qualified.instruments);
+  const sources=['etf-pilot.json','amundi-etf.json','ssga-etf.json','additional-etf-sources.json','lifestrategy-sources.json'].flatMap(f=>read('scripts/'+f).instruments).concat(qualified.instruments,nonBondSources.instruments);
   const configured=new Map(sources.filter(s=>s.enabled!==false).map(s=>[s.isin,s]));
   const names={ter:'Frais',aum:'Encours',performance:'Calendrier annuel',countries:'Pays',sectors:'Secteurs',holdings:'Positions pondérées'};
   const counts=Object.fromEntries(Object.keys(names).map(k=>[k,0]));const gaps=[];const rows=DATA_CATALOG.filter(r=>r.type==='instrument');

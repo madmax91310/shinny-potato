@@ -1,3 +1,4 @@
+import { NON_BOND_SHEETS } from './non-bond-expansion.js';
 import { LIFESTRATEGY_SHEETS } from './lifestrategy.js';
 import { SIMULATION_PROXIES } from './simulation-proxies.js';
 import { EXPOSURE_ADDITIONS } from './exposure-additions.js';
@@ -74,6 +75,8 @@ export const CATEGORIES = {
 };
 
 export const ASSETS = [
+ {id:'world-islamic',isin:'IE00B27YCN58',name:getInstrumentName('IE00B27YCN58'),cat:'actions_larges',emoji:'🌍',manualOnly:true,r:getInstrumentReturnValues('IE00B27YCN58'),desc:['Sélection d’actions développées conforme aux critères de finance islamique','Filtres sectoriels et financiers','Les exclusions modifient la concentration et les performances']},
+ ...NON_BOND_SHEETS.filter(r=>getInstrumentReturnValues(r.isin).every(Number.isFinite)).map(r=>({id:r.id,isin:r.isin,name:r.name,cat:r.instrumentType==='ETC'?'matieres_premieres':'actions_larges',emoji:r.icon,manualOnly:true,r:getInstrumentReturnValues(r.isin),desc:[r.whatIs,r.whyInteresting,r.whatToKnow],confidenceNote:`Rendements NAV de la part exacte en ${r.currency} ; seules les années complètes disponibles sont comparées. ${r.currency==='USD'?'Change EUR/USD exclu de cette série.':''}`})),
   ...LIFESTRATEGY_SHEETS.map(r => ({ id:r.id, isin:r.isin, name:getInstrumentName(r.isin,'portfolio'), cat:'multi_actifs', emoji:'⚖️', manualOnly:true, r:getInstrumentReturnValues(r.isin), desc:[r.whatIs,r.whyInteresting,r.whatToKnow], confidenceNote:'Rendements NAV EUR de la part capitalisante, années complètes à partir de 2021.' })),
   {id:'utilities_world_dws',name:getInstrumentName('IE00BM67HQ30','portfolio'),isin:'IE00BM67HQ30',cat:'actions_larges',emoji:'💡',r:getInstrumentReturnValues('IE00BM67HQ30'),confidenceNote:'Rendements NAV USD de la part exacte ; services publics des pays développés.',desc:['Services publics mondiaux','Une poche sectorielle de sociétés cotées','Sensibilité aux taux et à la réglementation']},
   {id:'health_world_ishares',name:getInstrumentName('IE00BJ5JNZ06','portfolio'),isin:'IE00BJ5JNZ06',cat:'actions_larges',emoji:'🩺',r:getInstrumentReturnValues('IE00BJ5JNZ06'),confidenceNote:'Rendements NAV de la part USD ; exposition mondiale avec filtres et plafonds Advanced.',desc:['Santé des pays développés, indice Advanced','Surpondération sectorielle à côté du World','Risque actions et concentration sectorielle']},
