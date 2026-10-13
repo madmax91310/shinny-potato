@@ -70,7 +70,7 @@ def parse_sources(html, pdf, api, config, now):
     url = identity['url']
     pdf_url = next(a['href'] for a in soup.find_all('a', href=True) if f'_{code}_FR_INT_FR.pdf' in a['href'])
     ticker = f'V{equity}A'
-    if not re.search(rf'\b{ticker}\.DE\b', text):
+    if not re.search(rf'Deutsche Börse\s*\n\s*EUR[^\n]*\b{ticker}\b[^\n]*\b{ticker}\.DE\b', text):
         raise ValueError('Exact Xetra EUR listing missing')
     checked = now.date().isoformat()
     digest = hashlib.sha256(html.encode()).hexdigest()

@@ -1,3 +1,5 @@
+import { CATALOG } from '../src/data/duel-assets.js'
+import { getDuelArt } from '../src/pages/portfolio-duels/visualIdentity.js'
 import assert from 'node:assert/strict'
 import { LIFESTRATEGY_RECORDS, LIFESTRATEGY_SHEETS } from '../src/data/lifestrategy.js'
 import { ETFS } from '../src/data/etf-cards.js'
@@ -29,6 +31,7 @@ for (const sheet of LIFESTRATEGY_SHEETS) {
   assert(MARKET_ASSETS.some(x=>x.id===history.id))
   assert(!ANNIVERSAIRE_ELIGIBLE_ASSETS.some(x=>x.id===history.id))
   assert(PORTFOLIO_ASSETS.some(x=>x.id===sheet.id))
+  assert(getDuelArt(CATALOG.find(x=>x.id===sheet.id)).scene)
   assert(PROFILES.some(p=>p.lines.some(l=>l.asset===sheet.id)))
 }
 for(const theme of DEFAULT_THEMES.filter(t=>t.id.startsWith('lifestrategy-'))) {

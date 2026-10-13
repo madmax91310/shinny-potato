@@ -16,6 +16,7 @@ class LifeStrategySources(unittest.TestCase):
 Vanguard LifeStrategy® 60% Equity UCITS ETF (EUR) Accumulating IE00BMVB5P51
 Encours total (million) 1 200 € | Encours classe d'actifs (million) 966 € au 31 août 2026
 Le Montant des frais courants (MFC)† 0,25 %
+Deutsche Börse
 EUR V60A V60A.DE
 Allocation aux fonds Vanguard sous-jacents
  Vanguard Example Equity UCITS ETF   60,0%
@@ -52,6 +53,8 @@ Total 100%
         with self.assertRaises(ValueError):self.parse(text=self.text.replace('40,0%','20,0%'))
     def test_pdf_page_fee_disagreement_rejected(self):
         with self.assertRaises(ValueError):self.parse(text=self.text.replace('0,25 %','0,35 %'))
+    def test_listing_currency_not_inferred_from_fund(self):
+        with self.assertRaises(ValueError):self.parse(text=self.text.replace('EUR V60A V60A.DE','USD V60A V60A.DE'))
     def test_api_other_share_rejected(self):
         api=copy.deepcopy(self.api);api['data']['funds'][0]['profile']['fundCurrency']='USD'
         with self.assertRaises(ValueError):self.parse(api=api)

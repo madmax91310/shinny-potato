@@ -26,6 +26,7 @@ jobs:
     concurrency:
       group: active-market-data-${{ github.event_name == 'pull_request' && format('{0}-{1}', github.workflow, github.ref) || 'production' }}
       cancel-in-progress: false
+      queue: max
     permissions:
       contents: write
     outputs:
@@ -50,6 +51,24 @@ jobs:
       - run: node scripts/test-lifestrategy.mjs
       - run: npm run audit:instrument-catalog
       - run: npm run build
+      - if: github.event_name == 'pull_request'
+        run: npx playwright install --with-deps chromium
+      - if: github.event_name == 'pull_request'
+        run: node scripts/playwright-lifestrategy.mjs
+      - if: github.event_name == 'pull_request'
+        run: node scripts/test-duel-titanium.mjs
+      - if: github.event_name == 'pull_request'
+        run: node scripts/test-portfolio-metallic.mjs
+      - uses: actions/upload-artifact@v7.0.1
+        if: always() && github.event_name == 'pull_request'
+        with:
+          name: lifestrategy-visual-checks
+          path: |
+            test-artifacts/lifestrategy
+            test-artifacts/duel-titanium
+            test-artifacts/portfolio-metallic
+          if-no-files-found: ignore
+          retention-days: 7
       - uses: actions/upload-artifact@v7.0.1
         if: always()
         with:
