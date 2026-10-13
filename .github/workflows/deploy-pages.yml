@@ -77,6 +77,7 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_wisdomtree_allocations.py'
       - run: python -m unittest discover -s scripts -p 'test_remaining_index_sources.py'
       - run: python -m unittest discover -s scripts -p 'test_index_extensions.py'
+      - run: python -m unittest discover -s scripts -p 'test_world_sector_indices.py'
       - run: python -m unittest discover -s scripts -p 'test_remaining_aum.py'
       - run: pip install -r scripts/company-requirements.txt
       - run: python -m unittest discover -s scripts -p 'test_scpi.py'

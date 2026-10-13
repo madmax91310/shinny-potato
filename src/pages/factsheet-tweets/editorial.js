@@ -1,6 +1,9 @@
 // Revue du 10/10/2026 : un angle propre à chaque indice, sans vécu personnel inventé.
 // Les chiffres et les constats de concentration sont dérivés de la fiche reçue.
 export const INDEX_HOOKS = {
+  'msci-world-health-care': 'Un ETF santé mondial peut contenir des laboratoires, des fabricants de matériel et des services de santé. Mais ces entreprises n’y pèsent pas toutes autant 🏥',
+  'msci-world-financials': 'Un ETF finance mondial ne contient pas seulement des banques. Tu y retrouves aussi des assureurs et des entreprises de paiement 🏦',
+  'msci-world-energy': 'Investir dans les entreprises de l’énergie, ce n’est pas acheter du pétrole. Leurs coûts et leurs marges comptent aussi ⚡',
   'msci-world-materials': 'Derrière un ETF matériaux, tu trouves des entreprises de chimie, de métaux ou de construction. Leurs actions évoluent aussi avec leurs coûts et leurs marges 🪨',
   'msci-world-utilities': 'Électricité, gaz, eau : les services publics ont leur indice mondial. Ces entreprises restent pourtant exposées au risque actions 💡',
   'msci-world-industrials': 'L’industrie mondiale ne se limite pas aux usines. Les entreprises du transport et des équipements y occupent aussi une place 🏭',
@@ -74,6 +77,11 @@ export const sectorMethodLabel = name => SECTOR_METHOD_LABELS[name] ?? name
 
 export function companyLabel(name) {
   const labels = [
+    [/^LILLY \(ELI\) & COMPANY$/i, 'Eli Lilly'], [/^JOHNSON & JOHNSON$/i, 'Johnson & Johnson'],
+    [/^ABBVIE$/i, 'AbbVie'], [/^MERCK & CO$/i, 'Merck & Co'], [/^UNITEDHEALTH GROUP$/i, 'UnitedHealth'],
+    [/^JPMORGAN CHASE & CO$/i, 'JPMorgan Chase'], [/^BERKSHIRE HATHAWAY B$/i, 'Berkshire Hathaway (classe B)'],
+    [/^VISA A$/i, 'Visa (classe A)'], [/^MASTERCARD A$/i, 'Mastercard (classe A)'],
+    [/^EXXONMOBIL HOLDINGS$/i, 'ExxonMobil'], [/^CHEVRON CORP$/i, 'Chevron'], [/^SHELL$/i, 'Shell'],
     [/^NVIDIA/i, 'Nvidia'], [/^APPLE/i, 'Apple'], [/^MICROSOFT/i, 'Microsoft'], [/^AMAZON/i, 'Amazon'],
     [/^ALPHABET.*(?: A|CLASS A)$/i, 'Alphabet (classe A)'], [/^ALPHABET.*(?: C|CLASS C)$/i, 'Alphabet (classe C)'],
     [/^META PLATFORMS/i, 'Meta'], [/^TAIWAN SEMICONDUCTOR/i, 'TSMC'], [/^SAMSUNG ELECTRONICS/i, 'Samsung Electronics'],
@@ -118,6 +126,9 @@ export function indexObservation(sheet) {
     ? 'Je regarde aussi le poids de ces entreprises : leurs variations ne comptent pas toutes autant dans la performance de l’indice.'
     : 'Je regarde les pays et les secteurs pour comprendre comment cet indice répartit l’investissement.'
   switch (sheet.id) {
+    case 'msci-world-health-care': return 'Je regarde les entreprises derrière le mot « santé ». Un laboratoire et un assureur santé ne dépendent pas des mêmes moteurs, même s’ils figurent dans le même secteur.'
+    case 'msci-world-financials': return 'Je retiens que la finance va au-delà des banques. Les assureurs et les réseaux de paiement ont des activités différentes, et les plus grandes entreprises prennent davantage de place.'
+    case 'msci-world-energy': return 'Je garde en tête que ce panier contient des actions d’entreprises énergétiques. Leurs bénéfices et leurs investissements comptent aussi : ce n’est pas une exposition directe au prix du pétrole.'
     case 'world': return concentration
     case 'acwi': case 'ftse-all-world': case 'acwi-imi': return usa > 50
       ? 'C’est ce que je regarde derrière le nom « tous pays » : les émergents sont bien inclus, mais les grandes entreprises américaines gardent beaucoup de poids. Couvrir davantage de pays ne veut pas dire répartir ton argent à parts égales entre eux.'

@@ -8,7 +8,7 @@ try{
  for(let i=0;i<100;i++){try{if((await fetch(base)).ok)break}catch{}await new Promise(r=>setTimeout(r,200))}
  browser=await chromium.launch({headless:true,...(process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH?{executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH}:{})})
  const page=await browser.newPage();await page.goto(base)
- const samples=await page.evaluate(async()=>{
+ const samples=await page.evaluate(async(sectorOnly)=>{
   const {SHEETS}=await import('/shinny-potato/src/data/index-factsheets.js')
   const {renderFactsheetImage}=await import('/shinny-potato/src/pages/factsheet-tweets/canvasImage.js')
   const {companyLabel,sortedRows}=await import('/shinny-potato/src/pages/factsheet-tweets/editorial.js')
@@ -23,13 +23,13 @@ try{
   }
   const ctxPixel=canvas=>canvas.getContext('2d').getImageData(0,0,1,1).data
   const results=[],fmt=n=>`${n>0?'+':n<0?'−':''}${Math.abs(n).toLocaleString('fr-FR',{minimumFractionDigits:2,maximumFractionDigits:2})} %`
-  try{for(const sheet of SHEETS){
+  try{for(const sheet of SHEETS.filter(sheet=>!sectorOnly||['msci-world-health-care','msci-world-financials','msci-world-energy'].includes(sheet.id))){
    labels=[];boxes=[];current=sheet.id;const canvas=await renderFactsheetImage(sheet)
    const annotation=labels.join(' ')
    if(!/dividendes.*réinvestis/.test(annotation)||/hors dividendes|Price Return|ETF Xtrackers|ETF Amundi/.test(annotation))throw new Error(`Wrong return convention ${sheet.id}`)
    if(!annotation.includes(sheet.performance.date))throw new Error(`Frozen return date ${sheet.id}`)
    if(labels.filter(t=>t==='Épargnant Libre').length!==1)throw new Error('Signature')
-   if(labels.some(t=>/COULISSES|ISIN|…/.test(t)))throw new Error('Series heading or truncation')
+   if(labels.some(t=>/COULISSES|ISIN|…/.test(t)))throw new Error(`Series heading or truncation ${sheet.id}: ${labels.filter(t=>/COULISSES|ISIN|…/.test(t)).join(' | ')}`)
    for(const [year,value]of sheet.returns)if(!labels.includes(String(year))||!labels.includes(fmt(value)))throw new Error('Changed return')
    for(const heading of ['PRINCIPAUX PAYS','PRINCIPAUX SECTEURS','PRINCIPALES ENTREPRISES'])if(!labels.includes(heading))throw new Error('Missing composition block')
    const background=ctxPixel(canvas)
@@ -40,7 +40,7 @@ try{
    results.push({id:sheet.id,png:canvas.toDataURL(),labels})
   }}finally{CanvasRenderingContext2D.prototype.fillText=original}
   return results
- })
+ },process.argv.includes('--world-sectors'))
  await mkdir('test-artifacts/index-ribbon',{recursive:true})
  for(const s of samples){await writeFile(`test-artifacts/index-ribbon/${s.id}.png`,Buffer.from(s.png.split(',')[1],'base64'));await writeFile(`test-artifacts/index-ribbon/${s.id}.txt`,s.labels.join('\n'))}
  await page.setViewportSize({width:390,height:844});await page.goto(`${base}tweets-factsheets`)

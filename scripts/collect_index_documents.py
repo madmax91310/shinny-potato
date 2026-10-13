@@ -40,7 +40,7 @@ def msci_composition(text, config, now, country_text=None):
         reject('Missing or inconsistent MSCI snapshot date')
     stamp = document_date(dates[0], now)
     sector_scope = config.get('sectorScope')
-    heading = 'SUB-INDUSTRY WEIGHTS' if sector_scope else 'SECTOR WEIGHTS'
+    heading = next((name for name in ('SUB-INDUSTRY WEIGHTS', 'INDUSTRY WEIGHTS') if name in text), 'SUB-INDUSTRY WEIGHTS') if sector_scope else 'SECTOR WEIGHTS'
     if heading not in text or 'TOP 10 CONSTITUENTS' not in text:
         reject('Missing MSCI composition table headings')
     section = (country_text or text).split('COUNTRY WEIGHTS' if sector_scope else heading, 1)[1].split('\f', 1)[0]
