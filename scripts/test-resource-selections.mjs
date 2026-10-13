@@ -42,7 +42,7 @@ if(process.argv.includes('--browser')) {
   const page=await browser.newPage({viewport:{width:1440,height:1000}}),errors=[]
   page.on('pageerror',e=>errors.push(e.message));await mkdir(dir,{recursive:true})
   for(const c of RESOURCE_COMPARISONS) {
-   await page.goto(base+'comparatif-etf');await page.locator(`[data-option][data-value="${c.id}"]`).click()
+   await page.goto(base+'comparatif-etf');await page.locator(`[data-option][data-value="${c.id}"]`).click();await page.getByRole('button',{name:'🔄 Générer',exact:true}).click()
    assert((await page.locator('textarea').inputValue()).includes(c.funds[0]))
    const result=await page.evaluate(async id=>{
     const {DEFAULT_THEMES}=await import('/shinny-potato/src/data/etf-themes.js')
