@@ -117,6 +117,7 @@ jobs:
       - run: npm run audit:calculator-series
       - run: node scripts/test-gold-consumers.mjs
       - run: node scripts/test-monthly-consumers.mjs
+      - run: node scripts/test-investment-crisis.mjs
       - run: node scripts/test-etf-tool-connections.mjs
       - run: node scripts/test-investment-conclusions.mjs
       - run: python -m unittest discover -s scripts -p 'test_publication*.py'
@@ -157,6 +158,14 @@ jobs:
       - run: node scripts/test-practical-sheets.mjs
       - run: node scripts/test-performance-links.mjs
       - run: npx playwright install --with-deps chromium
+      - run: node scripts/test-investment-crisis.mjs --browser
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: investment-crisis-visual-checks
+          path: test-artifacts/investment-crisis
+          if-no-files-found: ignore
+          retention-days: 7
       - run: node scripts/test-resource-selections.mjs --browser
       - uses: actions/upload-artifact@v7.0.1
         if: always()

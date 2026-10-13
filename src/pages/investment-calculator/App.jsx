@@ -1,3 +1,6 @@
+import CrisisResult from './CrisisResult.jsx'
+import { CRISES, compareCrisis, buildCrisisTweet } from './crisis.js'
+import { renderCrisisImage } from './crisisImage.js'
 import { historyOptionLabel } from '../../data/history-selection.js'
 import { copyPublicationText } from '../../design-system/publicationActions.js'
 import ChoicePicker from '../../design-system/ChoicePicker.jsx'
@@ -23,6 +26,8 @@ import Button from '../../design-system/Button'
 import './investment-calculator.css'
 
 const INITIAL_STATE = {
+  scenario: 'standard',
+  crisisId: 'covid',
   assetId: 'bitcoin',
   startYear: 2020,
   startMonth: 1,
@@ -255,6 +260,7 @@ function InvestmentWorkspace({ search }) {
   })
   const [copied, setCopied] = useState('idle')
 
+  const crisisMode = state.scenario === 'crisis'
   const isCustom = state.assetId === 'custom'
   const monthlyIndex = !isCustom && INCONSISTENT_MONTHLY_DATA_IDS.has(state.assetId)
   const effectiveMode = isCustom || monthlyIndex ? 'lump' : state.mode
@@ -296,7 +302,7 @@ function InvestmentWorkspace({ search }) {
   // en négatif ne doit jamais atteindre le calcul.
   const overridePriceInvalid = !isCustom && state.overridePriceRaw !== '' && !(parseFloat(state.overridePriceRaw) > 0)
   const hasValidOverride = !isCustom && !overridePriceInvalid && state.overridePriceRaw !== ''
-  const resultBlocked = amountInvalid || customStartInvalid || customEndInvalid || startDateInvalid || overridePriceInvalid
+  const resultBlocked = amountInvalid || customStartInvalid || customEndInvalid || (!crisisMode && (startDateInvalid || overridePriceInvalid))
   const d = useMemo(() => derive(state), [state])
   // Bloqué (pas juste un avertissement) : cf. SPARSE_MONTHLY_DATA_IDS dans data.js — ethereum/cac40/lvmh
   // n'ont que des points annuels sur leur plage utilisable, donc un DCA mensuel sur l'un d'eux
@@ -314,10 +320,12 @@ function InvestmentWorkspace({ search }) {
   const lastPoint = !isCustom ? ASSETS[state.assetId].points[ASSETS[state.assetId].points.length - 1] : null
   const lastPointLabel = lastPoint ? `${MONTHS_FULL[parseInt(lastPoint.date.split('-')[1], 10) - 1]} ${lastPoint.date.split('-')[0]}` : null
 
+  const crisisComparison = useMemo(() => compareCrisis({ assetId: state.assetId, crisisId: state.crisisId, amount, mode: effectiveMode }), [state.assetId, state.crisisId, amount, effectiveMode])
+
   const set = (patch) => setState((s) => ({ ...s, ...patch }))
 
   async function handleCopy() {
-    const text = buildTweetText(state, d)
+    const text = crisisMode ? buildCrisisTweet(crisisComparison) : buildTweetText(state, d)
     try {
       await copyPublicationText(text)
       setCopied('done')
@@ -334,8 +342,22 @@ function InvestmentWorkspace({ search }) {
         subtitle={`Simulateur d'éducation financière — données arrêtées au plus tard en ${MONTHS_FULL[Number(LATEST_YM.split('-')[1]) - 1]} ${LATEST_YM.split('-')[0]}.`}
       />
 
-      <ToolWorkspace className="ic-layout" renderImage={() => renderInvestmentImage(state, d)} imageDisabled={resultBlocked} imageAlt="Graphique du placement">
+      <ToolWorkspace className="ic-layout" renderImage={() => crisisMode ? renderCrisisImage(crisisComparison) : renderInvestmentImage(state, d)} imageDisabled={resultBlocked || (crisisMode && !crisisComparison.available)} imageAlt="Graphique du placement">
         <div className="ic-panel tool-settings">
+          <div>
+            <p className="ic-eyebrow">Scénario</p>
+            <div className="ic-segmented">
+              <button type="button" aria-pressed={!crisisMode} className={!crisisMode ? 'active' : ''} onClick={() => set({ scenario: 'standard' })}>Date libre</button>
+              <button type="button" aria-pressed={crisisMode} className={crisisMode ? 'active' : ''} onClick={() => set({ scenario: 'crisis' })}>Mauvais moment</button>
+            </div>
+          </div>
+          {crisisMode && <div>
+            <p className="ic-eyebrow">Crise à comparer</p>
+            <ChoicePicker className="ic-control" aria-label="Crise à comparer" value={state.crisisId} onChange={e => set({ crisisId: e.target.value })}>
+              {CRISES.map(crisis => <option value={crisis.id} key={crisis.id}>{crisis.label}</option>)}
+            </ChoicePicker>
+            <p className="ic-hint">Compare trois départs : avant, pendant et après la crise.</p>
+          </div>}
           <div>
             <p className="ic-eyebrow">Actif</p>
             <div className="ic-field">
@@ -367,7 +389,7 @@ function InvestmentWorkspace({ search }) {
                   {REDUCED_CONFIDENCE_LAST_POINT[state.assetId] && (
                     <p className="ic-field-warning">⚠️ {REDUCED_CONFIDENCE_LAST_POINT[state.assetId]}</p>
                   )}
-                  <SettingsDetails title="Actualiser le prix" summary={state.overridePriceRaw ? `Prix saisi : ${state.overridePriceRaw}` : 'Facultatif'}>
+                  {!crisisMode && <SettingsDetails title="Actualiser le prix" summary={state.overridePriceRaw ? `Prix saisi : ${state.overridePriceRaw}` : 'Facultatif'}>
                     <input
                       className="ic-control"
                       type="number"
@@ -384,7 +406,7 @@ function InvestmentWorkspace({ search }) {
                         Le prix saisi revalorise les parts acquises ; les versements restent arrêtés au dernier mois documenté ({lastPointLabel}). Vérifie ce prix avant publication.
                       </p>
                     )}
-                  </SettingsDetails>
+                  </SettingsDetails>}
                 </>
               )}
               {isCustom && (
@@ -425,7 +447,7 @@ function InvestmentWorkspace({ search }) {
             </div>
           </div>
 
-          <div>
+          {!crisisMode && <div>
             <p className="ic-eyebrow">Date de départ</p>
             <div className="ic-row2">
               <div className="ic-select-wrap">
@@ -480,7 +502,7 @@ function InvestmentWorkspace({ search }) {
                     : `Données ${ASSETS[state.assetId].label} non vérifiées avant cette date — choisis une date à partir de ${assetMinDateLabel}.`}
               </p>
             )}
-          </div>
+          </div>}
 
           <div>
             <p className="ic-eyebrow">Montant</p>
@@ -523,7 +545,7 @@ function InvestmentWorkspace({ search }) {
               </button>
             </div>
             <p className="ic-hint">
-              {isCustom
+              {crisisMode ? (effectiveMode === 'dca' ? 'Un même versement chaque mois, depuis chaque date de départ jusqu’à la dernière clôture disponible.' : 'Une même somme investie en une fois à chacune des trois dates de départ.') : isCustom
                 ? 'Le mode DCA nécessite un historique de prix : indisponible en saisie manuelle.'
                 : hasValidOverride
                   ? effectiveMode === 'dca'
@@ -542,7 +564,7 @@ function InvestmentWorkspace({ search }) {
         </div>
 
         <section className="tool-preview" aria-label="Résultat de la simulation">
-        {resultBlocked ? (
+        {crisisMode ? <CrisisResult comparison={crisisComparison} copied={copied} onCopy={handleCopy} /> : resultBlocked ? (
           <div className="ic-card ic-card-invalid">
             <p className="ic-invalid-message">
               {amountInvalid

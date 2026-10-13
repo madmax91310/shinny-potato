@@ -119,3 +119,12 @@ select.ic-control { padding-right: 30px; cursor: pointer; }
 .ic-video-progress-track { height: 6px; border-radius: 100px; background: var(--ic-surface-hover); overflow: hidden; }
 .ic-video-progress-fill { height: 100%; background: linear-gradient(90deg, var(--ic-accent), var(--ic-accent-bright)); transition: width .12s linear; }
 .ic-video-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+
+.ic-crisis-results { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 20px 0; }
+.ic-crisis-entry { padding: 18px; border: 1px solid #28464c; border-radius: 16px; background: #10292e; }
+.ic-crisis-entry h3 { color: #87f0c8; margin: 0 0 8px; }
+.ic-crisis-entry dl { margin: 20px 0 0; }
+.ic-crisis-entry dt { font-size: 12px; color: #afc3c5; margin-top: 14px; }
+.ic-crisis-entry dd { margin: 4px 0 0; font-weight: 700; color: #fff1cf; }
+.ic-crisis-entry .ic-crisis-capital { font-size: 23px; }
+@media (max-width: 900px) { .ic-crisis-results { grid-template-columns: 1fr; } }
