@@ -54,6 +54,7 @@ function exposureReading(portfolio) {
     ? `Les ${complement.pct} % d’Inde renforcent un pays déjà présent dans la base.`
     : `Les ${complement.pct} % d’Inde ajoutent une exposition à ce marché émergent.`)
   const factorReadings = {
+    multifactor: 'combinent plusieurs critères de sélection sur les actions des pays développés. Le fonds a changé d’indice pendant son histoire : les rendements ne représentent pas uniquement la stratégie actuelle',
     value: 'privilégient les actions des pays développés jugées peu chères par rapport à leurs fondamentaux',
     quality: 'privilégient les actions des pays développés sélectionnées selon leur rentabilité, leur endettement et la stabilité de leurs bénéfices',
     momentum: 'privilégient les actions des pays développés dont les cours ont récemment le plus progressé',

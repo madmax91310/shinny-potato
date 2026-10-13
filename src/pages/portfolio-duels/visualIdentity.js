@@ -10,6 +10,7 @@ const references = {
   world: 'support-msci_world_ishares', 'acwi-imi': 'acwi_imi_spdr', acwi: 'msci-acwi', 'acwi-pea': 'pea_global_amundi', allworld: 'ftse-all-world',
   exusa: 'world_ex_usa', equalweight: 'sp500_equal_weight', sp500: 'support-sp500_ishares', 'us-small': 'russell2000_spdr',
   'em-ex-china': 'em-ex-chine', em: 'msci-em', europe: 'support-msci_europe', smallcap: 'small-caps', nasdaq: 'nasdaq100', japan: 'support-actions_japon', india: 'inde',
+  multifactor: 'world-multifactor',
   value: 'value', quality: 'quality', momentum: 'momentum', minvol: 'low-volatility', dividend: 'support-high_dividend',
   'em-bond': 'oblig_em_usd_ishares', 'em-local-bond': 'em-local-bond', longbond: 'oblig_eur_long_ishares',
   cash: 'monetaire-eur', shortbond: 'obligations-etat-0-1',

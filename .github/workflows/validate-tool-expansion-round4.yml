@@ -1,0 +1,39 @@
+name: Validate automated expansion round 4
+on:
+  pull_request:
+    paths:
+      - 'scripts/*round4*'
+      - '.github/workflows/validate-tool-expansion-round4.yml'
+permissions:
+  contents: read
+jobs:
+  qualify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 20
+      - run: npm ci
+      - run: python scripts/validate_round4_sources.py
+      - run: python scripts/collect_qualified_exposures.py --apply --only world-multifactor ibonds-euro-2028 --output "$RUNNER_TEMP/round4-issuers.json"
+      - run: node scripts/export-monthly-baseline.mjs > "$RUNNER_TEMP/round4-baseline.json"
+      - run: python scripts/refresh_monthly_history.py --apply --baseline "$RUNNER_TEMP/round4-baseline.json" --only etfWorldMultifactor etfIbondsEuro2028 etcSilverPhysical etfSilverMiners --output "$RUNNER_TEMP/round4-histories.json"
+      - run: python scripts/refresh_anniversary_levels.py --apply --only etfWorldMultifactor etfIbondsEuro2028 etcSilverPhysical etfSilverMiners --output "$RUNNER_TEMP/round4-latest.json"
+      - run: node scripts/test-qualified-exposures.mjs && node scripts/test-etf-tool-connections.mjs && node scripts/test-monthly-consumers.mjs
+      - run: npm run audit:instrument-catalog && npm run audit:instrument-listings && npm run audit:data-provenance
+      - run: npm run build
+      - run: npx playwright install --with-deps chromium
+      - run: node scripts/test-round4-ui.mjs
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: round4-source-validation
+          path: |
+            ${{ runner.temp }}/round4-*.json
+            test-artifacts/round4/
+          retention-days: 14
