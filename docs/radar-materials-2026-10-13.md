@@ -103,3 +103,13 @@ vérifiée. Aucune publication automatique n'est effectuée.
 Sources : [issue #545](https://github.com/madmax91310/shinny-potato/issues/545),
 [API officielle DWS](https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HS53/holdings),
 commits et fixtures ci-dessus.
+
+## Validation en ligne du radar
+
+Le contrôle GitHub général a révélé un blocage indépendant : le flux RSS
+particuliers Service Public syndique aussi des articles du portail officiel
+`entreprendre.service-public.gouv.fr` (taxe sur les salaires, Urssaf).
+Le parseur ignore désormais uniquement les liens HTTPS d'actualités de ce
+portail professionnel connu ; les sources autorisées ne sont pas élargies et
+les liens inconnus, trompeurs ou avec identifiants continuent à être rejetés.
+Un test conserve l'article particuliers du même lot et vérifie ces rejets.
