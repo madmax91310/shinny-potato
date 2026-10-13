@@ -182,7 +182,15 @@ def parse(broker,field,raws,today,sources=None):
         conversion = {'account':'CTO','toEuro':True,'bankRate':True,'associatedFees':True,'rate':None}
     if broker == 'tr' and field == 'change' and decisive == 'trDividendsFx':
         supporting['trFxRules'] = find(r'Les cours d.achat ou de vente des devises nécessaires à la conversion monétaire.{0,320}?marges d.achat et de vente figurant dans la liste ci-dessous',texts['trFxRules'])[0]
-        conversion = {'incomeToEuro':True, 'marginByCurrency':True}
+        table = texts['trFxRules'].split('Marges spécifiques à la devise pour la conversion :')
+        if len(table) != 2: raise ValueError('Grille des marges de conversion absente ou ambiguë')
+        entries = re.findall(r'\b([A-Z]{3})\s*-\s*(\d+(?:[,.]\d+)?)(?![\d,.])', table[1])
+        margins = {currency:amount(value) for currency,value in entries}
+        if len(margins) != len(entries) or not {'USD','CHF','GBP','DKK','NOK','SEK'} <= margins.keys() or '%' in table[1]:
+            raise ValueError('Grille des marges de conversion modifiée ou unité ambiguë')
+        if any(not 0 <= value <= 100 for value in margins.values()): raise ValueError('Marge de conversion invalide')
+        supporting['trFxRules'] += ' ' + 'Marges spécifiques à la devise pour la conversion :' + table[1]
+        conversion = {'incomeToEuro':True, 'marginByCurrency':True,'publishedMargins':margins,'marginUnit':'valeurs de la grille officielle ; pas des pourcentages'}
     if broker == 'saxo' and field == 'dca':
         help_text = texts['saxoPepsHelp']
         frequency = find(r'automatique et mensuel', help_text)[0]

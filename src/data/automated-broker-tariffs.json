@@ -2479,7 +2479,45 @@
         "change": {
           "conversion": {
             "incomeToEuro": true,
-            "marginByCurrency": true
+            "marginByCurrency": true,
+            "publishedMargins": {
+              "AED": 0.0065,
+              "AUD": 0.0018,
+              "BGN": 0.0023,
+              "BRL": 0.0,
+              "CAD": 0.0018,
+              "CHF": 0.0014,
+              "CNH": 0.0093,
+              "CZK": 0.0306,
+              "DKK": 0.0089,
+              "GBP": 0.0011,
+              "HKD": 0.0112,
+              "HRK": 0.0089,
+              "HUF": 0.3717,
+              "IDR": 24.0,
+              "ILS": 0.0049,
+              "INR": 0.0,
+              "JPY": 0.1536,
+              "MXN": 0.0277,
+              "MYR": 0.0076,
+              "NOK": 0.0112,
+              "NZD": 0.0019,
+              "PEN": 0.0046,
+              "PHP": 0.09,
+              "PLN": 0.005,
+              "QAR": 0.0052,
+              "RON": 0.0055,
+              "RUB": 0.0818,
+              "SAR": 0.0053,
+              "SEK": 0.0114,
+              "SGD": 0.0019,
+              "THB": 0.0585,
+              "TRY": 0.0054,
+              "TWD": 0.0,
+              "USD": 0.0014,
+              "ZAR": 0.0178
+            },
+            "marginUnit": "valeurs de la grille officielle ; pas des pourcentages"
           },
           "available": null,
           "status": "partiel",
@@ -2506,12 +2544,12 @@
               "page": null,
               "sha256": "35e9c5414938fbd12c652e5a694327310dfa914acc4a8c0cecff1a4ddce3ffed",
               "kind": "page",
-              "statement": "Les cours d’achat ou de vente des devises nécessaires à la conversion monétaire sont calculés sur la base de ces cours et en prenant en compte une majoration ou une minoration correspondant aux marges d’achat et de vente figurant dans la liste ci-dessous"
+              "statement": "Les cours d’achat ou de vente des devises nécessaires à la conversion monétaire sont calculés sur la base de ces cours et en prenant en compte une majoration ou une minoration correspondant aux marges d’achat et de vente figurant dans la liste ci-dessous Marges spécifiques à la devise pour la conversion : Abréviation ISO - devise AED - 0,0065 AUD - 0,0018 BGN - 0,0023 BRL - 0 CAD - 0,0018 CHF - 0,0014 CNH - 0,0093 CZK - 0,0306 DKK - 0,0089 GBP - 0,0011 HKD - 0,0112 HRK - 0,0089 HUF - 0,3717 IDR - 24 ILS - 0,0049 INR - 0 JPY - 0,1536 MXN - 0,0277 MYR - 0,0076 NOK - 0,0112 NZD - 0,0019 PEN - 0,0046 PHP - 0,09 PLN - 0,005 QAR - 0,0052 RON - 0,0055 RUB - 0,0818 SAR - 0,0053 SEK - 0,0114 SGD - 0,0019 THB - 0,0585 TRY - 0,0054 TWD - 0 USD - 0,0014 ZAR - 0,0178"
             }
           ],
           "scope": "tr ; change ; portée exacte des sources publiques",
           "method": "Extraction déterministe d’une clause officielle ; absence de preuve = réponse inconnue",
-          "sha256": "7f6841989f3d8362eee23ab4df312f587af94e873ac9cc1207d9d8626a1225f6",
+          "sha256": "f246af54d30d46b4628076f8a57df5f1fa434b2dde4bfc6e030982cd3272bc49",
           "values": {},
           "decisiveDocument": "trDividendsFx",
           "statement": "Si des dividendes ou un rendement sont payés dans une autre devise (autre que l’euro), nous convertissons directement pour vous cette devise en euro",
@@ -2523,14 +2561,6 @@
             {
               "sourceUrl": "https://support.traderepublic.com/fr-fr/319?web_view=true",
               "sha256": "35e9c5414938fbd12c652e5a694327310dfa914acc4a8c0cecff1a4ddce3ffed"
-            },
-            {
-              "sourceUrl": "https://assets.traderepublic.com/assets/files/CA_FR-en-fr.pdf",
-              "sha256": "81e2b6dbdeeda9f516623fd710cf1a26a825341d44b3977687f6d3f2644f9375"
-            },
-            {
-              "sourceUrl": "https://support.traderepublic.com/fr-fr/719-How-expensive-is-it-to-open-a-securities-account",
-              "sha256": "8194741a6d119a73d8217012041f0bea542d01f05d06ca1b9ee2be57d71e0747"
             }
           ]
         },

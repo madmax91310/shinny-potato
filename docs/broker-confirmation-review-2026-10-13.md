@@ -35,30 +35,59 @@ Les marges de conversion des revenus Trade Republic sont variables selon la devi
 | CA Île-de-France | Liquidités rémunérées | Espèces du PEA non rémunérées ; rémunération du cash CTO non confirmée par les documents publics. |
 | CA Île-de-France | Transfert PEA | Entrée : possible ✅ Transfert du PEA entre banques avec conservation de l’antériorité fiscale. Frais entrants et remboursement éventuel à confirmer auprès de la caisse Île-de-France. Sortie : 15 € par ligne, maximum 150 € vers un établissement hors Crédit Agricole ; frais de correspondant possibles sur les titres étrangers. |
 
-## Demandes préparées aux établissements — non envoyées
+## Recherche complémentaire sans contact avec les établissements
 
-### Trade Republic — service client France
+À la demande de l’utilisateur, aucun établissement n’est contacté. Les demandes précédemment préparées sont retirées du dossier actif.
 
-Bonjour, je vérifie les conditions actuelles du PEA proposé par votre succursale française. Pouvez-vous communiquer la grille tarifaire PEA en vigueur et confirmer :
+Le 13 octobre, la recherche a été élargie aux archives tarifaires, conventions de compte, traductions officielles, comparatifs et retours publics d’utilisateurs. Aucun des six statuts partiels n’est converti en confirmation sans preuve supplémentaire de la portée exacte.
 
-1. Les frais de transfert entrant et sortant de l’intégralité du PEA, les éventuels frais de tiers et le remboursement éventuel des frais du courtier de départ.
-2. La règle et les marges de conversion des revenus en devises du PEA : la FAQ 319 s’applique-t-elle aussi au PEA et existe-t-il une autre commission ?
+- **Trade Republic, change :** la [FAQ officielle 319](https://support.traderepublic.com/fr-fr/319?web_view=true) contient une grille de **35 marges par devise**. Toutes sont désormais extraites, conservées dans `conversion.publishedMargins` et consultables dans le catalogue des données. Elles ne sont pas des pourcentages ; la grille porte sur les revenus en devises. La portée PEA spécifique reste non établie.
+- **Trade Republic, transfert sortant :** [Rankia](https://rankia.fr/cto-pea-trade-republic-avis/) indique une grille sur demande ; [L’investisseur long terme](https://www.l-investisseur-long-terme.fr/trade-republic-avis-dun-vrai-client-frais-dangers/) annonce 150 € au 2 septembre ; [Parrain du Web](https://parrainduweb.fr/blog/pea-trade-republic) annonce 0 €. Les pages ne fournissent pas la clause tarifaire PEA décisive. L’annonce de 150 € ne peut pas être adoptée par simple majorité des reprises. Les extraits archivés par LaBanque.org portent sur l’exécution des ordres ou le compte courant.
+- **IBKR, change :** le [barème IBIE](https://www.interactivebrokers.ie/fr/pricing/commissions-spot-currencies.php) confirme un ajustement généralement de 0,03 % et aucune commission distincte pour le service automatique ; la FAQ PEA confirme le mécanisme automatique. La [traduction hongroise de la page PEA](https://www.interactivebrokers.ie/hu/accounts/plan-depargne-en-action-accounts.php?menu=B) affiche 0,03 % dans un bandeau général qui annonce aussi des intérêts sur le cash : ce bandeau n’est donc pas une clause propre au PEA. Les témoignages trouvés portent explicitement sur des comptes au comptant assimilés au PEA, pas sur une opération PEA documentée.
+- **CA Île-de-France, dernière brochure :** l’[addendum du 12 octobre 2026](https://ca-paris.credit-agricole.fr/Reglementaire/Tarifs/2026/CADIF_tarif2026_PART/AddendumSuccession.pdf) traite des successions et de l’offre EKO, sans modifier le barème boursier. La [convention de dépôt publiée par la caisse](https://www.credit-agricole.fr/content/dam/assetsca/cr882/npc/documents/relation-banque-client/CGL_CPT_FUSIONNE_PART_PDF%28002%29.pdf), en vigueur au 7 août 2025, n’établit pas une rémunération ou une exclusion des intérêts du compte espèces associé au CTO. L’absence d’une offre annoncée ne prouve pas un taux nul.
+- **CA Île-de-France, change et entrée PEA :** les avis généraux Crédit Agricole ne précisent pas la caisse Île-de-France. La commission de 0,05 % appartient à la rubrique des opérations internationales et ne suffit pas à qualifier le change sur titres. Les tarifs gratuits de transferts entrants du Morbihan, Finistère ou Champagne-Bourgogne sont exclus de cette comparaison régionale.
 
-Merci d’indiquer la date d’effet et le lien ou document correspondant.
+### Grille officielle Trade Republic relevée en direct
 
-### Interactive Brokers Ireland — assistance PEA
+Valeurs reproduites telles que publiées, sans conversion en pourcentage ni extrapolation au PEA. Les sources sont retéléchargées réellement ; les valeurs modifiées et les changements d’unité sont contrôlés par les tests du collecteur.
 
-Bonjour, votre FAQ PEA 663047458 prévoit une conversion automatique en cas de négociation d’un titre dans une autre devise. Le barème général du service de conversion automatique indique un ajustement généralement de 0,03 %, à votre discrétion. Ce barème s’applique-t-il aux clients directs détenant un PEA, sans minimum de 2 USD et sans autre commission propre au PEA ? Merci de préciser les exceptions éventuelles et la source en vigueur.
-
-### Crédit Agricole Île-de-France — service bourse particuliers
-
-Bonjour, je vérifie les conditions de votre caisse régionale pour un particulier en gestion libre, Invest Store Initial ou Intégral. Pouvez-vous confirmer les trois points suivants à partir des conditions en vigueur :
-
-1. Le compte espèces associé à un CTO est-il rémunéré ? Si oui, quelles conditions et quel taux ; sinon, quelle clause l’exclut ? Le PEA, les livrets, les placements monétaires et le compte spécial de couverture sont exclus de cette question.
-2. Quels sont les frais d’un transfert entrant PEA (y compris lignes étrangères), et existe-t-il une offre standard de remboursement des frais du courtier de départ ?
-3. Quelle commission/marge s’applique à la conversion de devises pour une opération boursière sur CTO ou PEA ? L’article 20 de la convention CTO décrit le cours de la caisse et les frais associés sans les chiffrer. La commission des virements bancaires internationaux ne répond pas à cette question.
-
-Merci de préciser la date d’effet et de joindre la grille correspondante.
+| Devise | Marge publiée |
+| --- | --- |
+| AED | 0,0065 |
+| AUD | 0,0018 |
+| BGN | 0,0023 |
+| BRL | 0,0 |
+| CAD | 0,0018 |
+| CHF | 0,0014 |
+| CNH | 0,0093 |
+| CZK | 0,0306 |
+| DKK | 0,0089 |
+| GBP | 0,0011 |
+| HKD | 0,0112 |
+| HRK | 0,0089 |
+| HUF | 0,3717 |
+| IDR | 24,0 |
+| ILS | 0,0049 |
+| INR | 0,0 |
+| JPY | 0,1536 |
+| MXN | 0,0277 |
+| MYR | 0,0076 |
+| NOK | 0,0112 |
+| NZD | 0,0019 |
+| PEN | 0,0046 |
+| PHP | 0,09 |
+| PLN | 0,005 |
+| QAR | 0,0052 |
+| RON | 0,0055 |
+| RUB | 0,0818 |
+| SAR | 0,0053 |
+| SEK | 0,0114 |
+| SGD | 0,0019 |
+| THB | 0,0585 |
+| TRY | 0,0054 |
+| TWD | 0,0 |
+| USD | 0,0014 |
+| ZAR | 0,0178 |
 
 ## Registre actuel des 88 cases
 

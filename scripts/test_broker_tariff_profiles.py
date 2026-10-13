@@ -12,6 +12,19 @@ TODAY='2026-10-08'
 def raws(broker,field):return {key:(FIXTURES/(key+'.txt')).read_text() for key in DOCUMENTS[broker][field]}
 
 class BrokerProfilesTests(unittest.TestCase):
+    def test_tr_currency_margins_are_extracted_without_percentage_conversion(self):
+        raw = raws('tr','change')
+        observed = parse('tr','change',raw,TODAY)
+        self.assertEqual(observed['conversion']['publishedMargins']['USD'],0.0014)
+        self.assertEqual(observed['conversion']['publishedMargins']['SEK'],0.0114)
+        self.assertEqual(observed['conversion']['publishedMargins']['IDR'],24)
+        updated = dict(raw)
+        updated['trFxRules'] = raw['trFxRules'].replace('USD - 0,0014','USD - 0,0028')
+        self.assertEqual(parse('tr','change',updated,TODAY)['conversion']['publishedMargins']['USD'],0.0028)
+        updated['trFxRules'] = raw['trFxRules'].replace('USD - 0,0014','USD - 0,0014 %')
+        with self.assertRaises(ValueError): parse('tr','change',updated,TODAY)
+        self.assertEqual(observed['status'],'partiel')
+
     def test_peps_purchase_fee_and_paid_sale_are_revalidated(self):
         raw = raws('saxo','dca')
         observed = parse('saxo','dca',raw,TODAY)
