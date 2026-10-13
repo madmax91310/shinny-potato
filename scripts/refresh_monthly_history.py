@@ -92,27 +92,35 @@ def collect_yahoo(config, now, fetch=get_json):
         reject('Incomplete/stale Yahoo history')
     windows={}
     window_months=set(config.get('dailyWindowMonths', []))
+    sparse_ends=config.get('verifiedSparseMonthEnds', {})
+    if sparse_ends and (config.get('consumerScope') != 'catalog' or config.get('field') != 'adjclose'
+            or any(k not in expected or not isinstance(v,str) or not v.startswith(k+'-') for k,v in sparse_ends.items())):
+        reject('Unregistered sparse ETF month-end session')
     if window_months and (config.get('consumerScope') != 'catalog' or config.get('field') != 'adjclose'
                           or not window_months <= set(expected)):
         reject('Unregistered ETF daily window verification')
-    if config.get('allowMissingMonthly') or window_months:
+    if config.get('allowMissingMonthly') or window_months or sparse_ends:
         def window(key):
             boundary=month_shift(dt.datetime.strptime(key,'%Y-%m').replace(tzinfo=UTC),1)
             url='https://query2.finance.yahoo.com/v8/finance/chart/'+quote(config['symbol'],safe='')+'?'+urlencode({
-                'period1':int((boundary-dt.timedelta(days=7)).timestamp()),'period2':int(boundary.timestamp()),'interval':'1d','events':'div,splits'})
+                'period1':int((boundary-dt.timedelta(days=14 if key in sparse_ends else 7)).timestamp()),'period2':int(boundary.timestamp()),'interval':'1d','events':'div,splits'})
             response=fetch(url);rows,tz=yahoo_chart(response,config,'1d')
             rows=[r for r in rows if r[0].strftime('%Y-%m')==key]
-            if tz!=zone or not rows or rows[-1]!=final[key]:reject('Independent month-end daily window disagrees')
+            if (tz!=zone or not rows or rows[-1][0]!=final[key][0]
+                    or any(not math.isclose(a,b,rel_tol=(1e-7 if i==0 else 1e-6),abs_tol=1e-6) for i,(a,b) in enumerate(zip(rows[-1][1:],final[key][1:])))):reject(f'Independent month-end daily window disagrees: {key}, window {rows[-1] if rows else None}, full {final[key]}')
             return key,{'url':url,'response':response,'close':rows[-1][1]}
-        keys=[k for k in expected if k in window_months or k not in buckets]
+        keys=[k for k in expected if k in window_months or k in sparse_ends or k not in buckets]
         with ThreadPoolExecutor(max_workers=3) as pool:windows=dict(pool.map(window,keys))
         raw['monthEndWindows']={k:v['response'] for k,v in windows.items()}
     for key in expected:
         date, close, value = final[key]
         boundary = month_shift(dt.datetime.strptime(key, '%Y-%m').replace(tzinfo=UTC), 1).date()
         checked_close=windows[key]['close'] if key in windows else buckets[key]
-        if (boundary-date).days > 7 or abs(close-checked_close) > max(.02, close * 1e-7):
-            reject('Monthly close differs from final daily session')
+        sparse_verified = (key in sparse_ends and date.isoformat() == sparse_ends[key]
+            and key in buckets and key in windows and (boundary-date).days <= 10
+            and abs(close-buckets[key]) <= max(.02, close * 1e-7))
+        if ((boundary-date).days > 7 and not sparse_verified) or abs(close-checked_close) > max(.02, close * 1e-7):
+            reject(f'Monthly close differs from final daily session: {key}, session {date}, daily {close}, check {checked_close}')
         if config['symbol'] == 'ETH-USD':
             days = [r[0] for r in daily if r[0].strftime('%Y-%m') == key]
             if len(days) != (boundary - dt.date.fromisoformat(key+'-01')).days:
@@ -122,6 +130,7 @@ def collect_yahoo(config, now, fetch=get_json):
             anniversary.append([key, rounded(close, config['precision'])])
         proof_rows.append({'date': date.isoformat(), 'close': close, 'monthlyClose': None if key in windows else buckets.get(key), 'value': value,
                            **({'rejectedMonthlyClose':buckets.get(key), 'verificationReason':'Registered historical candle discrepancy; exact daily month-end window agrees'} if key in window_months else {}),
+                           **({'sparseMonthEndSession':date.isoformat(),'verificationReason':'Registered sparse quoted session agrees with monthly candle and independent daily window'} if sparse_verified else {}),
                            **({'windowClose':windows[key]['close'],'windowUrl':windows[key]['url']} if key in windows else {})})
     return {'points': points, 'anniversaryPoints': anniversary, 'sourceUrls': list(urls.values())+[v['url'] for v in windows.values()],
             'timezone': zone, 'proofRows': proof_rows, 'rawResponse': raw}

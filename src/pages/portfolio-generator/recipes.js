@@ -143,6 +143,7 @@ const newConstructions = {
 
 // 12/10/2026 : variantes explicites, sans levier, données de part communes aux duels.
 const focusedWorldRecipes = [
+ R('world-construction-europe','World et construction européenne','Une poche de 10 % renforce les entreprises européennes de construction et de matériaux.','Tu renforcerais les entreprises des chantiers à côté du World ?',A(['msci_world_ishares',90],['europe-construction',10])),
   R('world-utilities-simple','World et services publics','Une poche de 10 % renforce les sociétés de services publics des pays développés.','Tu ajouterais une poche consacrée aux réseaux ?',A(['msci_world_ishares',90],['utilities_world_dws',10])),
   R('world-minvol-simple','World et Minimum Volatility','Une poche de 20 % utilise une construction mondiale orientée volatilité, avec un recoupement possible des titres.','Tu ajouterais un filtre de risque à ton World ?',A(['msci_world_ishares',80],['world_minvol_ishares',20])),
   R('world-health-simple','World et santé mondiale','La poche de santé renforce un secteur déjà présent dans le World.','Tu consacrerais 10 % à la santé mondiale ?',A(['msci_world_ishares',90],['health_world_ishares',10])),

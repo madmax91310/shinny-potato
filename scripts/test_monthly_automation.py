@@ -86,6 +86,38 @@ class Monthly(unittest.TestCase):
             return fetch(url)
         with self.assertRaises(ValueError):collect_yahoo(config,NOW,inconsistent)
         with self.assertRaises(ValueError):collect_yahoo({**CONFIG,'dailyWindowMonths':['2026-01']},NOW,fetch)
+    def test_sparse_session_requires_registered_date_and_both_cross_checks(self):
+        now=dt.datetime(2026,1,6,tzinfo=UTC)
+        cfg={**CONFIG,'periodStart':'2025-12','consumerScope':'catalog',
+             'verifiedSparseMonthEnds':{'2025-12':'2025-12-24'}}
+        def fetch(url):
+            iv='1mo' if 'interval=1mo' in url else '1d'
+            raw=chart(iv)
+            day=1 if iv=='1mo' else 24
+            raw['chart']['result'][0]['timestamp']=[int(dt.datetime(2025,12,day,16,tzinfo=UTC).timestamp())]
+            return raw
+        result=collect_yahoo(cfg,now,fetch)
+        self.assertEqual(result['proofRows'][0]['sparseMonthEndSession'],'2025-12-24')
+        for invalid in [dict(cfg,verifiedSparseMonthEnds={}),dict(cfg,verifiedSparseMonthEnds={'2025-12':'2025-12-23'}),dict(cfg,consumerScope='simulator')]:
+            with self.assertRaises(ValueError):collect_yahoo(invalid,now,fetch)
+        def inconsistent(url):
+            raw=fetch(url)
+            if 'interval=1mo' in url:raw['chart']['result'][0]['indicators']['quote'][0]['close']=[13]
+            return raw
+        with self.assertRaises(ValueError):collect_yahoo(cfg,now,inconsistent)
+
+    def test_daily_window_allows_only_float_rounding(self):
+        cfg={**CONFIG,'consumerScope':'catalog','dailyWindowMonths':['2026-01']}
+        end=int(dt.datetime(2026,2,1,tzinfo=UTC).timestamp())
+        def fetch(url):
+            if 'interval=1mo' in url:return chart('1mo',close=15)
+            return chart(adjusted=10.000005 if f'period1={end-7*86400}' in url else 10)
+        self.assertEqual(collect_yahoo(cfg,NOW,fetch)['points'],[['2026-01',10]])
+        def invalid(url):
+            if f'period1={end-7*86400}' in url:return chart(adjusted=10.01)
+            return fetch(url)
+        with self.assertRaises(ValueError):collect_yahoo(cfg,NOW,invalid)
+
     def test_stale_missing_month_rejected(self):
         with self.assertRaises(ValueError):collect_yahoo({**CONFIG,'periodStart':'2025-12'},NOW,lambda url:chart('1mo' if 'interval=1mo' in url else '1d'))
     def test_msci_net_gross_never_substituted(self):

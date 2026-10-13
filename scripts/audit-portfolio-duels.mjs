@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import {getDuelArt} from '../src/pages/portfolio-duels/visualIdentity.js'
 import assert from 'node:assert/strict'
 import { DUELS } from '../src/pages/portfolio-duels/data.js'
 import { buildCustomDuel, buildDuel, buildTweet, CATALOG, resultReading } from '../src/pages/portfolio-duels/lib.js'
@@ -82,6 +83,7 @@ const invalid = [
 for (const left of invalid) assert.throws(() => buildCustomDuel({ left, right: DUELS[0].right }))
 // Tous les types de construction et toutes les parts sont couverts, y compris les séries courtes.
 for (const asset of CATALOG) {
+  assert(getDuelArt(asset).scene, `Illustration absente : ${asset.id}`)
   const left = asset.role === 'base' ? [{ id: asset.id, pct: 100 }]
     : [{ id: 'msci_world_ishares', pct: 80 }, { id: asset.id, pct: 20 }]
   inspect(buildCustomDuel({ left, right: DUELS[0].right }))

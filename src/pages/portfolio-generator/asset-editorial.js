@@ -2,6 +2,8 @@
 // partagent un rôle ; un indice, un facteur ou un mécanisme différent a son propre texte.
 // Aucun rendement, frais ou statut fiscal n’est recopié ici.
 const entries = {};
+add('europe-construction','theme','la construction européenne','On renforce ici les entreprises européennes de construction et de matériaux. Leurs commandes et leurs coûts dépendent du cycle économique et immobilier ; cette poche peut recouper le World.');
+entries['europe-construction'].description='Des actions européennes de construction et de matériaux.';
 add('europe-banks','theme','les banques européennes','On cible ici les banques européennes. Les marges sur les crédits, les défauts et les exigences de capital influencent leurs résultats ; cette poche concentrée peut recouper un indice européen large.');
 entries['europe-banks'].description='Des actions de banques européennes, avec des poids plafonnés dans l’indice.';
 add('europe-insurance','theme','les assurances européennes','On cible ici les assureurs européens. Les sinistres, les prix des contrats et le rendement de leurs placements comptent pour leurs résultats ; cette poche concentrée peut recouper un indice européen large.');

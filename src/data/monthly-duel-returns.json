@@ -1,0 +1,34 @@
+{
+  "IE0003Z9E2Y3": {
+    "isin": "IE0003Z9E2Y3",
+    "currency": "EUR",
+    "years": {
+      "2023": 3.656532456861128,
+      "2024": 10.146654776060249,
+      "2025": 73.58762239699091
+    },
+    "calendarReturns": {
+      "2023": 3.656532456861128,
+      "2024": 10.146654776060249,
+      "2025": 73.58762239699091
+    },
+    "values": [
+      null,
+      null,
+      null,
+      3.656532456861128,
+      10.146654776060249,
+      73.58762239699091
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/COPX.MI?period1=1646092800&period2=1790812800&interval=1d&events=div%2Csplits",
+    "sourceUrls": [
+      "https://query2.finance.yahoo.com/v8/finance/chart/COPX.MI?period1=1646092800&period2=1790812800&interval=1d&events=div%2Csplits",
+      "https://query2.finance.yahoo.com/v8/finance/chart/COPX.MI?period1=1646092800&period2=1790812800&interval=1mo&events=div%2Csplits"
+    ],
+    "checkedAt": "2026-10-13",
+    "basis": "market-price",
+    "method": "Cours de la part exacte, ajustés des distributions et divisions ; dernière séance mensuelle recoupée avec la bougie mensuelle Yahoo",
+    "responseSha256": "b2b4b8352a0bbbd13cf8da0cdb89e0207a9598d6c33c66cda9f5488cebd4e529",
+    "note": "Cours de la part COPX à Milan en EUR, ajustés des distributions et divisions ; années civiles complètes uniquement. Ces rendements de marché diffèrent des rendements NAV de l’émetteur."
+  }
+}
