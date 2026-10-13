@@ -4,6 +4,9 @@ const generalIds = new Set([2, 20, 28, 34, 39, 44])
 const personalIds = new Set([1, 3, 6, 7, 8, 9, 11, 14, 16, 18, 19, 22, 25, 29, 30, 33, 38, 40, 42, 43, 45, 46, 47])
 const marketIds = new Set([10, 15, 17, 21, 24, 27, 32, 37])
 export function reviewPolicy(tweet) {
+  // ISIN, frais, PEA et levier quotidien revus auprès des émetteurs le 13/10/2026.
+  // Références officielles dans tweet.sources ; exemple arithmétique hors coûts.
+  if (tweet.id === 'guide:leveraged-etfs') return { kind: 'reviewed', checkedAt: '2026-10-13', maxAge: 30 }
   // Guide matières premières : ISIN, TER, gestion, taux de swap et expositions
   // vérifiés auprès des émetteurs le 12/10/2026. Sources hors du texte copié :
   // https://www.invesco.com/uk/en/financial-products/etfs/invesco-bloomberg-commodity-ucits-etf.html
