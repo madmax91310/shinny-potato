@@ -7,7 +7,7 @@ import { fileURLToPath } from 'node:url';
 import { DATA_CATALOG } from '../src/data/catalog.js';
 const qualified = {instruments:[...baseQualified.instruments,...nonBondQualified.instruments]};
 const read = path => JSON.parse(readFileSync(new URL('../'+path, import.meta.url)));
-const nonEquity = new Set(['LU0290358497','CH0454664001','DE000A27Z304','FR0013416716','GB00B15KXQ89','GB00BJYDH287','GB00BLD4ZL17','GB00BLD4ZM24','IE00B4NCWG09','IE00B4ND3602','IE00B579F325','IE00BD6FTQ80','IE00BDFL4P12','JE00B1VS3770']);
+const nonEquity = new Set(['LU0290358497','CH0454664001','DE000A27Z304','FR0013416716','GB00B15KXQ89','GB00BJYDH287','GB00BLD4ZL17','GB00BLD4ZM24','IE00B4NCWG09','IE00B4ND3602','IE00B4556L06','IE00B4LHWP62','IE00B579F325','IE00BD6FTQ80','IE00BDFL4P12','JE00B1VS3770']);
 for (const source of nonBondSources.instruments.filter(s=>s.instrumentType==='ETC')) nonEquity.add(source.isin);
 const calendarEvidence = read('scripts/recent-calendar-evidence.json');
 export const recent = new Set(Object.keys(calendarEvidence.shares));
@@ -29,6 +29,7 @@ export function classifyInstrumentGap(id,field,now=new Date().toISOString().slic
     const eligibility=calendarEligibility(id,now);
     return {...eligibility,reason:eligibility.status==='waiting-first-year'?`Première année civile complète : ${eligibility.firstCompleteYear}. Publication possible à partir du ${eligibility.earliestPublicationDate}, selon l’émetteur ; aucun calendrier complet ne peut encore être collecté.`:'Première année complète clôturée, mais aucun calendrier annuel qualifié dans les observations actives. Réessai par le collecteur ; aucun proxy assimilé à la part.'};
   }
+  if(field==='performance' && ['IE000UL6CLP7','IE0003R87OG3','IE0003Z9E2Y3'].includes(id)) return {status:'not-published',reason:'La source officielle actuelle publie des performances glissantes et cumulées, collectées séparément, sans calendrier annuel complet. Les historiques mensuels de la part restent automatisés avec leur propre source et convention.'};
   if(id==='IE00BM8R0J59') return {status:'source-conflict',reason:'Part QYLD distribuante : composition contradictoire et calendrier exact non qualifié. Fiche indisponible et historique de distributions tronqué ; voir qualification du 9 octobre.'};
   if(id==='IE000QDFFK00' && field==='countries') return {status:'unqualified',reason:'Pays de l’indice exact raccordés via la fiche Amundi ; le portefeuille BNP publie seulement des régions. Une absence indique que le complément d’indice reste à valider.'};
   return {status:'unqualified',reason:'Champ absent des observations actives ; source ou connecteur à qualifier.'};

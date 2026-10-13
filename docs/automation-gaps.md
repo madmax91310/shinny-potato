@@ -4,9 +4,9 @@ Inventaire des champs réellement présents dans les observations actives. Couve
 
 | Champ ETF/ETP | Couverture |
 |---|---:|
-| ter | 190/194 |
-| aum | 190/194 |
-| performance | 176/194 |
+| ter | 194/194 |
+| aum | 194/194 |
+| performance | 178/194 |
 | countries | 164/194 |
 | sectors | 164/194 |
 | holdings | 169/194 |
@@ -64,31 +64,21 @@ Les caractéristiques statiques et cotations sont exclues de ce chantier conform
 | instrument | Vanguard LifeStrategy 60% Equity UCITS ETF (EUR) Accumulating (IE00BMVB5P51) | Secteurs | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
 | instrument | Vanguard LifeStrategy 80% Equity UCITS ETF (EUR) Accumulating (IE00BMVB5R75) | Pays | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
 | instrument | Vanguard LifeStrategy 80% Equity UCITS ETF (EUR) Accumulating (IE00BMVB5R75) | Secteurs | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
-| instrument | Global X Silver Miners UCITS ETF USD Accumulating (IE000UL6CLP7) | Frais | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
-| instrument | Global X Silver Miners UCITS ETF USD Accumulating (IE000UL6CLP7) | Encours | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
-| instrument | Global X Silver Miners UCITS ETF USD Accumulating (IE000UL6CLP7) | Calendrier annuel | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
+| instrument | Global X Silver Miners UCITS ETF USD Accumulating (IE000UL6CLP7) | Calendrier annuel | Non publié | La source officielle actuelle publie des performances glissantes et cumulées, collectées séparément, sans calendrier annuel complet. Les historiques mensuels de la part restent automatisés avec leur propre source et convention. |
 | instrument | Global X Silver Miners UCITS ETF USD Accumulating (IE000UL6CLP7) | Pays | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
 | instrument | Global X Silver Miners UCITS ETF USD Accumulating (IE000UL6CLP7) | Secteurs | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
 | instrument | Global X Silver Miners UCITS ETF USD Accumulating (IE000UL6CLP7) | Positions pondérées | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
-| instrument | iShares Physical Palladium ETC (IE00B4556L06) | Frais | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
-| instrument | iShares Physical Palladium ETC (IE00B4556L06) | Encours | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
-| instrument | iShares Physical Palladium ETC (IE00B4556L06) | Calendrier annuel | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
-| instrument | iShares Physical Palladium ETC (IE00B4556L06) | Pays | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
-| instrument | iShares Physical Palladium ETC (IE00B4556L06) | Secteurs | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
-| instrument | iShares Physical Palladium ETC (IE00B4556L06) | Positions pondérées | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
-| instrument | Avantis Global Small Cap Value UCITS ETF USD Acc (IE0003R87OG3) | Frais | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
-| instrument | Avantis Global Small Cap Value UCITS ETF USD Acc (IE0003R87OG3) | Encours | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
-| instrument | Avantis Global Small Cap Value UCITS ETF USD Acc (IE0003R87OG3) | Calendrier annuel | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
+| instrument | iShares Physical Palladium ETC (IE00B4556L06) | Pays | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |
+| instrument | iShares Physical Palladium ETC (IE00B4556L06) | Secteurs | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |
+| instrument | iShares Physical Palladium ETC (IE00B4556L06) | Positions pondérées | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |
+| instrument | Avantis Global Small Cap Value UCITS ETF USD Acc (IE0003R87OG3) | Calendrier annuel | Non publié | La source officielle actuelle publie des performances glissantes et cumulées, collectées séparément, sans calendrier annuel complet. Les historiques mensuels de la part restent automatisés avec leur propre source et convention. |
 | instrument | Avantis Global Small Cap Value UCITS ETF USD Acc (IE0003R87OG3) | Pays | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
 | instrument | Avantis Global Small Cap Value UCITS ETF USD Acc (IE0003R87OG3) | Secteurs | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
 | instrument | Avantis Global Small Cap Value UCITS ETF USD Acc (IE0003R87OG3) | Positions pondérées | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
-| instrument | iShares Physical Platinum ETC (IE00B4LHWP62) | Frais | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
-| instrument | iShares Physical Platinum ETC (IE00B4LHWP62) | Encours | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
-| instrument | iShares Physical Platinum ETC (IE00B4LHWP62) | Calendrier annuel | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
-| instrument | iShares Physical Platinum ETC (IE00B4LHWP62) | Pays | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
-| instrument | iShares Physical Platinum ETC (IE00B4LHWP62) | Secteurs | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
-| instrument | iShares Physical Platinum ETC (IE00B4LHWP62) | Positions pondérées | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
-| instrument | Global X Copper Miners UCITS ETF USD Acc (IE0003Z9E2Y3) | Calendrier annuel | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
+| instrument | iShares Physical Platinum ETC (IE00B4LHWP62) | Pays | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |
+| instrument | iShares Physical Platinum ETC (IE00B4LHWP62) | Secteurs | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |
+| instrument | iShares Physical Platinum ETC (IE00B4LHWP62) | Positions pondérées | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |
+| instrument | Global X Copper Miners UCITS ETF USD Acc (IE0003Z9E2Y3) | Calendrier annuel | Non publié | La source officielle actuelle publie des performances glissantes et cumulées, collectées séparément, sans calendrier annuel complet. Les historiques mensuels de la part restent automatisés avec leur propre source et convention. |
 | instrument | Amundi PEA Emergent (MSCI Emerging) ESG Transition UCITS ETF S - Acc (FR001400ZGO4) | Calendrier annuel | Première année complète en cours ou à venir | Première année civile complète : 2026. Publication possible à partir du 2027-01-01, selon l’émetteur ; aucun calendrier complet ne peut encore être collecté. |
 | instrument | Amundi PEA Global (MSCI ACWI) UCITS ETF (Acc) (FR0014017NX3) | Calendrier annuel | Première année complète en cours ou à venir | Première année civile complète : 2027. Publication possible à partir du 2028-01-01, selon l’émetteur ; aucun calendrier complet ne peut encore être collecté. |
 | instrument | Xtrackers II EUR Overnight Rate Swap UCITS ETF 1C (LU0290358497) | Pays | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |
@@ -184,7 +174,7 @@ Une valeur absente ne signifie pas absence de plafond. Les offres bonus, les con
 
 | Contrat | Fonds | Champ | Dernier contrôle des sources | Motif |
 |---|---|---|---|---|
-| Lucya Cardif | Fonds général | Plafond en euros | 2026-10-12 | Plafond unique en euros non qualifié ; les bornes ou clauses conditionnelles restent dans les conditions du fonds. |
-| Lucya Cardif | Euro Private Strategies | Plafond en euros | 2026-10-12 | Plafond unique en euros non qualifié ; les bornes ou clauses conditionnelles restent dans les conditions du fonds. |
-| Placement-direct Vie | Actif général SwissLife | Quote-part maximale | 2026-10-12 | La documentation de Placement-direct Vie ne chiffre pas la quote-part maximale actuelle de cet actif général ; les annonces du contrat distinct Placement-direct Euro+ ne s’y appliquent pas. |
-| Placement-direct Vie | Actif général SwissLife | Plafond en euros | 2026-10-12 | Plafond unique en euros non qualifié ; les bornes ou clauses conditionnelles restent dans les conditions du fonds. |
+| Lucya Cardif | Fonds général | Plafond en euros | 2026-10-13 | Plafond unique en euros non qualifié ; les bornes ou clauses conditionnelles restent dans les conditions du fonds. |
+| Lucya Cardif | Euro Private Strategies | Plafond en euros | 2026-10-13 | Plafond unique en euros non qualifié ; les bornes ou clauses conditionnelles restent dans les conditions du fonds. |
+| Placement-direct Vie | Actif général SwissLife | Quote-part maximale | 2026-10-13 | La documentation de Placement-direct Vie ne chiffre pas la quote-part maximale actuelle de cet actif général ; les annonces du contrat distinct Placement-direct Euro+ ne s’y appliquent pas. |
+| Placement-direct Vie | Actif général SwissLife | Plafond en euros | 2026-10-13 | Plafond unique en euros non qualifié ; les bornes ou clauses conditionnelles restent dans les conditions du fonds. |
