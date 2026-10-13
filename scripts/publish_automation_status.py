@@ -45,7 +45,8 @@ def normalize_report(report):
         failures = report.get('failed', []) + [row for row in report.get('excluded', []) if row.get('active', True)]
         return {'successes': [{'id': row.get('isin', row.get('id'))} for row in report['records']],
                 'errors': [{'id': row.get('isin', row.get('id')), 'name': row.get('isin', row.get('id')),
-                            'error': row.get('error', 'Collecte échouée')} for row in failures]}
+                            'error': row.get('error', 'Collecte échouée')} for row in failures],
+                'inactive': [{'id': row.get('isin', row.get('id'))} for row in report.get('excluded', []) if row.get('active') is False]}
     if report.get('seriesId') == '011814631' and report.get('rates') and report.get('checkedAt'):
         return {'successes':[{'id':'inflation:011814631'}], 'errors':[]}
     if isinstance(report.get('sources'), dict) and 'failed' in report and 'changed' in report:
@@ -177,6 +178,10 @@ def update_status(state, run, jobs, reports=None):
     data_failures = previous.get('dataFailures', {}).copy()
     for raw_report in reports or []:
         report = normalize_report(raw_report)
+        # Explicit exclusion of a non-production candidate retires its legacy alert,
+        # without claiming that the source recovered or clearing other failures.
+        for inactive in report.get('inactive', []):
+            data_failures.pop(inactive['id'], None)
         for success in report.get('successes', []):
             data_failures.pop(success['id'], None)
         for error in report.get('errors', []):
