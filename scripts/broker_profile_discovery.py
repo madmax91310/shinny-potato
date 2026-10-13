@@ -24,7 +24,8 @@ HUBS = {
 POLICIES = {
     'tr': {'support.traderepublic.com': r'/fr-fr/[^/]+',
            'assets.traderepublic.com': r'/assets/files/[^/]+\.pdf'},
-    'ibkr': {'www.interactivebrokers.ie': r'/fr/(?:accounts|trading)/[^/]+',
+    'ibkr': {'www.interactivebrokers.com': r'/campus/glossary-terms/dollar-cost-averaging-dca/',
+             'www.interactivebrokers.ie': r'/fr/(?:accounts|trading)/[^/]+',
              'www.ibkrguides.com': r'/clientportal/[^/]+\.htm'},
     'fortuneo': {'www.fortuneo.fr': r'/(?:faq|bourse|files|datas/files)/[^?#]+'},
     'bourso': {'www.boursobank.com': r'/(?:bourse|aide-en-ligne/bourse)/[^?#]+',

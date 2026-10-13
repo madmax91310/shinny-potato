@@ -31,7 +31,7 @@ const officialHosts = new Set([
   'bofip.impots.gouv.fr', 'assets.traderepublic.com', 'www.boursorama.com', 'www.boursobank.com', 'www.fortuneo.fr',
   'www.xtb.com', 'xtb.com', 'xas-new-cdn.xtb.com', 'ca-paris.credit-agricole.fr',
   'www.boursedirect.fr', 'www.boursedirect.com', 'epargne.boursedirect.fr', 'groupe.boursedirect.fr', 'www.home.saxo', 'www.help.saxo',
-  'www.interactivebrokers.ie', 'www.ibkrguides.com', 'www.credit-agricole.fr', 'www.ca-sicavetfcp.fr', 'traderepublic.com', 'support.traderepublic.com',
+  'www.interactivebrokers.ie', 'www.interactivebrokers.com', 'www.ibkrguides.com', 'www.credit-agricole.fr', 'www.ca-sicavetfcp.fr', 'traderepublic.com', 'support.traderepublic.com',
 ])
 for (const [id, document] of Object.entries(OFFICIAL_SOURCES)) {
   if (document.kind === 'customer-notice') {
@@ -48,7 +48,7 @@ for (const [id, document] of Object.entries(OFFICIAL_SOURCES)) {
   assert(document.kind === 'page' || /\.pdf(?:$|\?)/i.test(url.pathname + url.search) || namedDownload, `${id}: PDF attendu`)
   assert(document.checked && document.edition, `${id}: édition et contrôle requis`)
 }
-const secondaryHosts = new Set(['www.moneyvox.fr', 'www.cafedelabourse.com', 'brokerchooser.com', 'www.lemonde.fr', 'starfinance.fr', 'www.epargnant30.fr', 'moneyradar.org', 'finance-heros.fr', 'forum.finance-heros.fr', 'trading.prorealtime.com', 'www.prorealtime.com', 'pea.fr', 'sinvestir.fr', 'placements-boursiers.fr', 'www.detective-banque.fr', 'www.placeaurendement.com', 'investimieux.com'])
+const secondaryHosts = new Set(['rankia.fr','extraetf.com','www.ideal-investisseur.fr','www.moneyvox.fr', 'www.cafedelabourse.com', 'brokerchooser.com', 'www.lemonde.fr', 'starfinance.fr', 'www.epargnant30.fr', 'moneyradar.org', 'finance-heros.fr', 'forum.finance-heros.fr', 'trading.prorealtime.com', 'www.prorealtime.com', 'pea.fr', 'sinvestir.fr', 'placements-boursiers.fr', 'www.detective-banque.fr', 'www.placeaurendement.com', 'investimieux.com'])
 for (const [id, document] of Object.entries(SECONDARY_SOURCES)) {
   assert(secondaryHosts.has(new URL(document.url).hostname), `${id}: source externe non autorisée`)
   assert(['secondary-page', 'secondary-pdf'].includes(document.kind), `${id}: type externe absent`)
@@ -134,7 +134,7 @@ for (const a of BROKERS) for (const b of BROKERS) {
     for (const [field,label] of [['pme','PEA-PME'],['jeune','PEA Jeune']]) {
       if (broker.pea[field] == null) assert(!section(post,'🏦 ENVELOPPES').split('\n').find(line=>line.includes(broker.nom)).includes(label), `${ids}: unknown envelope converted into a claim`);
     }
-    if (BROKER_EVIDENCE[broker.id].dca.automatedEvidence?.available == null) assert(!section(post,'📈 DCA AUTOMATIQUE')?.includes(`${broker.emoji} ${broker.nom} →`));
+    if ((BROKER_EVIDENCE[broker.id].dca.reviewedEvidence ?? BROKER_EVIDENCE[broker.id].dca.automatedEvidence)?.available == null) assert(!section(post,'📈 DCA AUTOMATIQUE')?.includes(`${broker.emoji} ${broker.nom} →`));
   }
   if (ids.includes('saxo')) {
     assert(post.includes('VIP') && post.includes('31/12/2026') && post.includes('ouverts ou transférés éligibles'));

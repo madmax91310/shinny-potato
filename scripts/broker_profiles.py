@@ -17,7 +17,7 @@ DOCUMENTS = {
  'tr': {'dca':['trPeaHelp'], 'pea':['trContract'], 'pme':['trContract'], 'jeune':['trContract'], 'ifu':['trContract'], 'cash':['trContract'], 'change':['trDividendsFx','trFxRules'], 'garde':['trContract','trFees']},
  'bourso': {'dca':['boursoTariff'], 'pea':['boursoTariff'], 'pme':['boursoTariff'], 'jeune':['boursoTariff'], 'ifu':['boursoIfu'], 'cash':['boursoContract'], 'boursomarkets':['boursoMarkets'], 'garde':['boursoTariff']},
  'fortuneo': {'dca':['fortuneoSmartOrders','fortuneoContract'], 'pea':['fortuneoTariff'], 'pme':['fortuneoTariff'], 'jeune':['fortuneoContract'], 'ifu':['fortuneoIfu'], 'cash':['fortuneoContract','fortuneoCashFunctions','fortuneoCashCto']},
- 'ibkr': {'dca':['ibkrPea','ibkrDca','ibkrFractionalFaq','ibkrRecurringEligibilityFaq'], 'pea':['ibkrPea'], 'pme':['ibkrPea','ibkrPmeFaq'], 'jeune':['ibkrPea','ibkrYoungFaq'], 'ifu':['ibkrPea'], 'cash':['ibkrInterest','peaCashRules'], 'change':['ibkrFxFaq'], 'entrant':['ibkrTransfer','ibkrPea']},
+ 'ibkr': {'dca':['ibkrPea','ibkrDca','ibkrFractionalFaq','ibkrRecurringEligibilityFaq','ibkrDcaRequirement'], 'pea':['ibkrPea'], 'pme':['ibkrPea','ibkrPmeFaq'], 'jeune':['ibkrPea','ibkrYoungFaq'], 'ifu':['ibkrPea'], 'cash':['ibkrInterest','peaCashRules'], 'change':['ibkrFxFaq'], 'entrant':['ibkrTransfer','ibkrPea']},
  'xtb': {'dca':['xtbComparison'], 'pea':['xtbPea'], 'pme':['xtbComparison'], 'jeune':['xtbPea'], 'ifu':['xtbIfu'], 'cash':['xtbInterest','xtbPea']},
  'caidf': {'dca':['caPeb','caTariff'], 'pea':['caTariff'], 'pme':['caTariff'], 'jeune':['caIdfPea'], 'ifu':['caTariff','caInvest'], 'cash':['caIdfPeaPme','caIdfContract','caCtoContract'], 'change':['caTariff','caCtoContract']},
  'bd': {'dca':['bdPlans'], 'pea':['bdTariff'], 'pme':['bdTariff'], 'jeune':['bdTariff'], 'ifu':['bdContract'], 'cash':['bdPea','bdCto'], 'entrant':['bdTariffPage']},
@@ -108,7 +108,8 @@ def statement(broker, field, texts, qualification_texts=None, today=None):
             return proved(r'les frais de courtage sont gratuits pour les ETF.{0,130}?tarif habituel du client',True,'Plans programmés sur PEA et CTO ; ETF de la sélection sans courtage, actions au tarif habituel.')
         if broker=='ibkr':
             find(r'Recurring Investment is available to any client that has fractional share trading enabled',texts['ibkrRecurringEligibilityFaq'])
-            return proved(r'Fractional share trading is not allowed in a PEA Account',None,'Les investissements récurrents nécessitent une permission de fractions ; les fractions sont exclues du PEA. Ces clauses ne précisent pas si un mode en titres entiers est disponible sur PEA. DCA PEA : disponibilité non confirmée.','partiel',document='ibkrFractionalFaq')
+            find(r'Account must have fractional share trading enabled',texts['ibkrDcaRequirement'])
+            return proved(r'Fractional share trading is not allowed in a PEA Account',False,'Le service Recurring Investments est indisponible sur PEA : il exige l’activation des fractions, interdite sur ce compte.',document='ibkrFractionalFaq')
         # Generic recurring/conditional orders never qualify a PEA-specific service.
         return unknown('Achats automatiques sur PEA : disponibilité non confirmée par les sources officielles du service.',r'PEA|Fortuneo')
     if field=='cash':
@@ -172,6 +173,7 @@ def parse(broker,field,raws,today,sources=None):
     supporting = {}
     programmed = None
     if broker == 'ibkr' and field == 'dca' and decisive == 'ibkrFractionalFaq':
+        supporting['ibkrDcaRequirement'] = find(r'Account must have fractional share trading enabled', texts['ibkrDcaRequirement'])[0]
         supporting['ibkrRecurringEligibilityFaq'] = find(r'Recurring Investment is available to any client that has fractional share trading enabled', texts['ibkrRecurringEligibilityFaq'])[0]
     if broker == 'ibkr' and field == 'cash':
         supporting['peaCashRules'] = find(r"Le compte en espèces n.est pas rémunéré et ne peut pas présenter un solde débiteur", texts['peaCashRules'])[0]
@@ -180,7 +182,15 @@ def parse(broker,field,raws,today,sources=None):
         conversion = {'account':'CTO','toEuro':True,'bankRate':True,'associatedFees':True,'rate':None}
     if broker == 'tr' and field == 'change' and decisive == 'trDividendsFx':
         supporting['trFxRules'] = find(r'Les cours d.achat ou de vente des devises nécessaires à la conversion monétaire.{0,320}?marges d.achat et de vente figurant dans la liste ci-dessous',texts['trFxRules'])[0]
-        conversion = {'incomeToEuro':True, 'marginByCurrency':True}
+        table = texts['trFxRules'].split('Marges spécifiques à la devise pour la conversion :')
+        if len(table) != 2: raise ValueError('Grille des marges de conversion absente ou ambiguë')
+        entries = re.findall(r'\b([A-Z]{3})\s*-\s*(\d+(?:[,.]\d+)?)(?![\d,.])', table[1])
+        margins = {currency:amount(value) for currency,value in entries}
+        if len(margins) != len(entries) or not {'USD','CHF','GBP','DKK','NOK','SEK'} <= margins.keys() or '%' in table[1]:
+            raise ValueError('Grille des marges de conversion modifiée ou unité ambiguë')
+        if any(not 0 <= value <= 100 for value in margins.values()): raise ValueError('Marge de conversion invalide')
+        supporting['trFxRules'] += ' ' + 'Marges spécifiques à la devise pour la conversion :' + table[1]
+        conversion = {'incomeToEuro':True, 'marginByCurrency':True,'publishedMargins':margins,'marginUnit':'valeurs de la grille officielle ; pas des pourcentages'}
     if broker == 'saxo' and field == 'dca':
         help_text = texts['saxoPepsHelp']
         frequency = find(r'automatique et mensuel', help_text)[0]
@@ -208,7 +218,7 @@ def parse(broker,field,raws,today,sources=None):
         refs.append({'document':key,'sourceUrl':getattr(raw,'source_url',info['url']),'discoveryUrl':getattr(raw,'discovery_url',None),'page':page,'sha256':hashlib.sha256(raw.encode()).hexdigest(),'kind':kind,'statement':reference_quote})
     return {**({'programmed':programmed} if programmed else {}),**({'conversion':conversion} if conversion else {}),'available':available,'status':status,'copy':{'resume':summary,'full':summary},'checkedAt':today,
       'sourceUrl':getattr(raws[decisive],'source_url',sources[decisive]['url']),'refs':refs,'scope':f'{broker} ; {field} ; portée exacte des sources publiques',
-      'method':('Rapprochement de deux clauses officielles : permission de fractions requise pour le service et fractions exclues du PEA ; disponibilité d’un mode PEA en titres entiers non établie' if broker == 'ibkr' and field == 'dca' and decisive == 'ibkrFractionalFaq' else 'Extraction déterministe d’une clause officielle ; absence de preuve = réponse inconnue'),
+      'method':('Rapprochement de trois sources officielles : condition obligatoire d’activation des fractions pour Recurring Investments, entité IBIE éligible, et fractions interdites sur PEA ; exclusion déduite de cette incompatibilité' if broker == 'ibkr' and field == 'dca' and decisive == 'ibkrFractionalFaq' else 'Extraction déterministe d’une clause officielle ; absence de preuve = réponse inconnue'),
       'sha256':hashlib.sha256('\n'.join(raws.values()).encode()).hexdigest(),'values':{},'decisiveDocument':decisive,'statement':quote,
       'checkedSources':[{'sourceUrl':getattr(raw,'source_url',sources[key]['url']),'sha256':hashlib.sha256(raw.encode()).hexdigest()} for key,raw in raws.items()]}
 

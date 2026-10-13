@@ -6,7 +6,7 @@ const date = value => value.split('-').reverse().join('/');
 
 // Unknown answers stay in the evidence panel, never become negative answers.
 export function brokerShortCopy(id, observations = BROKER_TARIFFS, today) {
-  const o = observations[id], v = o.values, p = brokerProfile(id, observations);
+  const o = observations[id], v = o.values, p = brokerProfile(id, observations, today);
   const f = brokerFieldCopies(id, observations, today);
   const values = field => o.fields?.[field]?.values;
   const copy = {};
@@ -62,7 +62,7 @@ export function brokerShortCopy(id, observations = BROKER_TARIFFS, today) {
   if (p.ifu?.available != null) copy.ifu = `${yes(p.ifu.available)} ${p.ifu.available ? 'Oui' : 'Non'}${id === 'tr' ? ' pour l’offre française après migration' : ''}.`;
   copy.enveloppes = ['pea', 'pme', 'jeune'].filter(key => p[key]?.available != null)
     .map(key => `${{pea:'PEA',pme:'PEA-PME',jeune:'PEA Jeune'}[key]} ${yes(p[key].available)}`).join(' / ');
-  if (p.garde?.status === 'confirmé' && p.garde.available != null) copy.garde = p.garde.copy.full;
+  if (['confirmé','corroboré'].includes(p.garde?.status) && p.garde.available != null) copy.garde = p.garde.copy.full;
   else if (!p.garde && f.garde) copy.garde = f.garde;
   // A proved PEA exclusion says nothing about the availability on CTO.
   if (/Espèces du PEA non rémunérées|espèces du PEA exclues|PEA exclu/i.test(p.cash?.copy.full ?? '')) {
@@ -70,7 +70,7 @@ export function brokerShortCopy(id, observations = BROKER_TARIFFS, today) {
     if (id === 'tr') copy.cash += ' Hors PEA : intérêts après activation, sous conditions.';
     if (id === 'saxo') copy.cash += ' Hors PEA : clients VIP uniquement, sous conditions.';
     if (id === 'ibkr') copy.cash = p.cash.copy.full.replace('Espèces du PEA non rémunérées.', '❌ Sur PEA.');
-  } else if (p.cash?.status === 'confirmé' && p.cash.available === false) copy.cash = '❌ Non.';
+  } else if (['confirmé','corroboré'].includes(p.cash?.status) && p.cash.available === false) copy.cash = '❌ Non.';
   else if (id === 'xtb' && p.cash?.available === true) copy.cash = `❌ Sur PEA. ${p.cash.copy.full}`;
   if (id === 'ibkr' && p.cash?.available === true && !copy.cash) copy.cash = `Compte général : ${p.cash.copy.full.split(' Portée PEA')[0]}`;
   copy.entrant = p.entrant?.status === 'confirmé' ? p.entrant.copy.full : f.entrant;

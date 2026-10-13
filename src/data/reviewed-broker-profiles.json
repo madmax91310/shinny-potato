@@ -1,0 +1,131 @@
+{
+  "schemaVersion": 1,
+  "sources": {
+    "fhTr": {
+      "url": "https://finance-heros.fr/avis-courtier/avis-pea-trade-republic/",
+      "title": "Finance Héros · PEA Trade Republic",
+      "asOf": "2026-09-30"
+    },
+    "extraTr": {
+      "url": "https://extraetf.com/fr/ressources/pea-trade-republic",
+      "title": "extraETF · PEA Trade Republic",
+      "asOf": "2026-02-12"
+    },
+    "idealTr": {
+      "url": "https://www.ideal-investisseur.fr/pea/trade-republic-8.html",
+      "title": "Ideal Investisseur · PEA Trade Republic",
+      "asOf": null
+    },
+    "rankiaFortuneo": {
+      "url": "https://rankia.fr/fortuneo-bourse-avis-pea-compte-titres/",
+      "title": "Rankia · Fortuneo Bourse",
+      "asOf": null
+    },
+    "lemondeDca": {
+      "url": "https://www.lemonde.fr/argent/article/2025/09/26/comment-faire-des-investissements-programmes-sur-un-pea_6642989_1657007.html",
+      "title": "Le Monde · Investissements programmés PEA",
+      "asOf": "2025-09-26"
+    },
+    "sinvestirBourso": {
+      "url": "https://sinvestir.fr/cto-boursobank-avis/",
+      "title": "S’investir · CTO BoursoBank",
+      "asOf": "2026-10-05"
+    },
+    "brokerBourso": {
+      "url": "https://brokerchooser.com/fr/broker-reviews/boursobank-review",
+      "title": "BrokerChooser · BoursoBank",
+      "asOf": "2026-09-30"
+    },
+    "brokerFortuneo": {
+      "url": "https://brokerchooser.com/fr/broker-reviews/fortuneo-banque-review/fortuneo-banque-fees",
+      "title": "BrokerChooser · Frais Fortuneo",
+      "asOf": "2026-09-28"
+    },
+    "brokerBd": {
+      "url": "https://brokerchooser.com/fr/broker-reviews/bourse-direct-review",
+      "title": "BrokerChooser · Bourse Direct",
+      "asOf": null
+    },
+    "detective": {
+      "url": "https://www.detective-banque.fr/comparatif-de-bourse-en-ligne-quelle-offre-choisir/",
+      "title": "Détective Banque · Comparatif courtiers",
+      "asOf": null
+    }
+  },
+  "claims": {
+    "tr": {
+      "garde": {
+        "available": true,
+        "text": "0 € de droits de garde sur le PEA.",
+        "sources": [
+          "fhTr",
+          "extraTr"
+        ],
+        "checkedAt": "2026-10-13",
+        "reviewUntil": "2026-11-13",
+        "status": "corroboré"
+      },
+      "pme": {
+        "available": false,
+        "text": "PEA-PME non proposé.",
+        "sources": [
+          "fhTr",
+          "idealTr"
+        ],
+        "checkedAt": "2026-10-13",
+        "reviewUntil": "2026-11-13",
+        "status": "corroboré"
+      }
+    },
+    "fortuneo": {
+      "dca": {
+        "available": false,
+        "text": "Pas d’achats automatiques sur PEA ; les ordres sont passés manuellement.",
+        "sources": [
+          "rankiaFortuneo",
+          "lemondeDca"
+        ],
+        "checkedAt": "2026-10-13",
+        "reviewUntil": "2026-11-13",
+        "status": "corroboré"
+      },
+      "cash": {
+        "available": false,
+        "text": "Espèces du PEA et du CTO non rémunérées ; Livret + distinct.",
+        "sources": [
+          "brokerFortuneo",
+          "detective"
+        ],
+        "checkedAt": "2026-10-13",
+        "reviewUntil": "2026-11-13",
+        "status": "corroboré"
+      }
+    },
+    "bourso": {
+      "cash": {
+        "available": false,
+        "text": "Espèces du PEA et du CTO non rémunérées ; livrets distincts.",
+        "sources": [
+          "sinvestirBourso",
+          "brokerBourso"
+        ],
+        "checkedAt": "2026-10-13",
+        "reviewUntil": "2026-11-13",
+        "status": "corroboré"
+      }
+    },
+    "bd": {
+      "cash": {
+        "available": false,
+        "text": "Espèces du PEA et du CTO non rémunérées ; rémunération du prêt de titres distincte.",
+        "sources": [
+          "brokerBd",
+          "detective"
+        ],
+        "checkedAt": "2026-10-13",
+        "reviewUntil": "2026-11-13",
+        "status": "corroboré"
+      }
+    }
+  }
+}

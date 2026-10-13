@@ -12,6 +12,19 @@ TODAY='2026-10-08'
 def raws(broker,field):return {key:(FIXTURES/(key+'.txt')).read_text() for key in DOCUMENTS[broker][field]}
 
 class BrokerProfilesTests(unittest.TestCase):
+    def test_tr_currency_margins_are_extracted_without_percentage_conversion(self):
+        raw = raws('tr','change')
+        observed = parse('tr','change',raw,TODAY)
+        self.assertEqual(observed['conversion']['publishedMargins']['USD'],0.0014)
+        self.assertEqual(observed['conversion']['publishedMargins']['SEK'],0.0114)
+        self.assertEqual(observed['conversion']['publishedMargins']['IDR'],24)
+        updated = dict(raw)
+        updated['trFxRules'] = raw['trFxRules'].replace('USD - 0,0014','USD - 0,0028')
+        self.assertEqual(parse('tr','change',updated,TODAY)['conversion']['publishedMargins']['USD'],0.0028)
+        updated['trFxRules'] = raw['trFxRules'].replace('USD - 0,0014','USD - 0,0014 %')
+        with self.assertRaises(ValueError): parse('tr','change',updated,TODAY)
+        self.assertEqual(observed['status'],'partiel')
+
     def test_peps_purchase_fee_and_paid_sale_are_revalidated(self):
         raw = raws('saxo','dca')
         observed = parse('saxo','dca',raw,TODAY)
@@ -143,10 +156,13 @@ class BrokerProfilesTests(unittest.TestCase):
             self.assertEqual(observed['status'],'confirmé')
         dca=parse('ibkr','dca',raws('ibkr','dca'),TODAY)
         self.assertEqual({ref['document'] for ref in dca['refs']},
-                         {'ibkrFractionalFaq','ibkrRecurringEligibilityFaq'})
-        self.assertIsNone(dca['available'])
-        self.assertEqual(dca['status'],'partiel')
+                         {'ibkrFractionalFaq','ibkrRecurringEligibilityFaq','ibkrDcaRequirement'})
+        self.assertFalse(dca['available'])
+        self.assertEqual(dca['status'],'confirmé')
         self.assertIn('Rapprochement',dca['method'])
+        altered=raws('ibkr','dca')
+        altered['ibkrDcaRequirement']=altered['ibkrDcaRequirement'].replace('Account must have fractional share trading enabled','Account may have fractional share trading enabled')
+        with self.assertRaises(ValueError):parse('ibkr','dca',altered,TODAY)
         altered=raws('ibkr','dca')
         altered['ibkrRecurringEligibilityFaq']='Recurring Investment is available on PEA.'
         with self.assertRaises(ValueError):parse('ibkr','dca',altered,TODAY)

@@ -1,4 +1,4 @@
-import { brokerTariffCopy, brokerFieldCopies, BROKER_TARIFFS } from '../../data/broker-tariffs.js';
+import { brokerTariffCopy, brokerFieldCopies, brokerProfile, BROKER_TARIFFS } from '../../data/broker-tariffs.js';
 // Registre éditorial : PDF officiels et pages publiées par les courtiers.
 // Dans les PDF, la première page porte le numéro 1.
 // « Non établi » ne signifie jamais « non proposé ».
@@ -246,6 +246,13 @@ export const EVIDENCE_FIELDS = [
 
 const brokerNames = {bourso:'BoursoBank · Découverte',fortuneo:'Fortuneo · Starter',xtb:'XTB',saxo:'Saxo · Classic',caidf:'Crédit Agricole Île-de-France',ibkr:'Interactive Brokers · France',tr:'Trade Republic',bd:'Bourse Direct'};
 const fieldDocument = (id,key) => id === 'saxo' && key === 'entrant' ? 'saxoPeaTransferOffer' : `${id}Automated${key}`;
+// Availability-only clauses prove that a transfer is possible, not its price.
+// A later priced observation can complete the same cell without a manual override.
+export const transferConditionStatus = observation => {
+  const values = observation?.values ?? {};
+  return values.available === 1 && Object.keys(values).every(key =>
+    ['available', 'unlistedAccepted', 'taxAgePreserved'].includes(key)) ? 'partiel' : 'confirmé';
+};
 for (const [id, observation] of Object.entries(BROKER_TARIFFS)) {
   const document = `${id}AutomatedTariff`;
   const source = o => ({title: `${brokerNames[id]} · ${o.scope}`,url:o.sourceUrl,
@@ -271,6 +278,7 @@ for (const [id, observation] of Object.entries(BROKER_TARIFFS)) {
   // A transfer tariff does not recertify incoming eligibility or reimbursements.
   const transferFields = ['entrant','sortant'].filter(key => observation.fields?.[key]);
   if (transferFields.length) BROKER_EVIDENCE[id].transfert = {...BROKER_EVIDENCE[id].transfert,
+    status:transferFields.some(key => transferConditionStatus(observation.fields[key]) === 'partiel') ? 'partiel' : BROKER_EVIDENCE[id].transfert.status,
     automatedEvidence:observation.fields.entrant ?? observation.fields.sortant,
     summary:(!transferFields.includes('entrant') ? BROKER_EVIDENCE[id].transfert.summary.split(/Sortie\s*:/)[0].trim()+' ' : '')+transferFields.map(key => `${key === 'entrant' ? 'Entrée' : 'Sortie'} : ${brokerFieldCopies(id)[key] ?? 'Conditions non actives à cette date.'}`).join(' '),
     refs:[...BROKER_EVIDENCE[id].transfert.refs,...transferFields.map(key => ({document:fieldDocument(id,key),...(observation.fields[key].page ? {page:observation.fields[key].page} : {})}))]};
@@ -278,19 +286,20 @@ for (const [id, observation] of Object.entries(BROKER_TARIFFS)) {
 
 // Every product claim follows its separately revalidated official profile.
 for (const [id, observation] of Object.entries(BROKER_TARIFFS)) {
-  for (const [field,o] of Object.entries(observation.profile ?? {})) {
+  for (const [field,o] of Object.entries(brokerProfile(id))) {
     if (['entrant','sortant'].includes(field)) continue;
     const refs=o.refs.map((ref,index) => {
       const document=`${id}AutomatedProfile${field}${index}`;
-      OFFICIAL_SOURCES[document]={title:`${brokerNames[id]} · ${field}`,url:ref.sourceUrl,
-        checked:o.checkedAt.split('-').reverse().join('/'),edition:'Document public ; contrôle automatique de la clause',kind:ref.kind};
+      const registry = o.reviewed ? SECONDARY_SOURCES : OFFICIAL_SOURCES;
+      registry[document]={title:ref.title ?? `${brokerNames[id]} · ${field}`,url:ref.sourceUrl,
+        checked:o.checkedAt.split('-').reverse().join('/'),edition:o.reviewed ? ref.asOf ?? 'Publication externe non datée ; relecture manuelle' : 'Document public ; contrôle automatique de la clause',kind:ref.kind};
       return {document,...(ref.kind==='pdf' ? {page:ref.page} : {})};
     });
     const prior=BROKER_EVIDENCE[id][field];
     const generalFx = id==='ibkr' && field==='change' ? observation.fields?.change : null;
     const summary=o.copy.full+(generalFx ? ' Hors PEA / compte général : '+generalFx.copy.full : '');
     if (generalFx) refs.push({document:fieldDocument(id,'change')});
-    BROKER_EVIDENCE[id][field]={status:o.status,summary,refs,automatedEvidence:o,
+    BROKER_EVIDENCE[id][field]={status:o.status,summary,refs,automatedEvidence:o.reviewed ? observation.profile[field] : o,...(o.reviewed ? {reviewedEvidence:o} : {}),
       ...(field==='change' ? {post:o.copy.full} : {}),
       ...(prior.review ? {review:{...prior.review,checked:o.checkedAt.split('-').reverse().join('/'),
         ...(o.status==='confirmé' ? {outcome:'resolved',explicitStatement:o.statement,scope:o.scope,decisiveRefs:refs,documents:refs.map(ref=>ref.document),followUp:o.method} : {outcome:'unresolved'})}} : {})};
@@ -301,7 +310,7 @@ for (const [id, observation] of Object.entries(BROKER_TARIFFS)) {
     OFFICIAL_SOURCES[doc]={title:`${brokerNames[id]} · transfert entrant`,url:incoming.sourceUrl,
       checked:incoming.checkedAt.split('-').reverse().join('/'),edition:'Page publique ; contrôle automatique',kind:'page'};
     BROKER_EVIDENCE[id].transfert={...BROKER_EVIDENCE[id].transfert,
-      status:incoming.status === 'confirmé' && observation.fields?.sortant ? 'confirmé' : 'partiel',
+      status:incoming.status === 'confirmé' && observation.fields?.sortant && transferConditionStatus(observation.fields.sortant) === 'confirmé' ? 'confirmé' : 'partiel',
       summary:`Entrée : ${incoming.copy.full} Sortie : ${brokerFieldCopies(id).sortant ?? 'Tarif à confirmer.'}`,
       refs:[{document:doc},...BROKER_EVIDENCE[id].transfert.refs],automatedEvidence:incoming};
   }
