@@ -12,6 +12,7 @@ import urllib.request
 REGISTRY = json.loads((pathlib.Path(__file__).resolve().parents[1] / 'src/data/automation-workflows.json').read_text())
 WORKFLOWS = {key: value['name'] for key, value in REGISTRY.items()}
 REPORT_ARTIFACTS = {key: value['artifact'] for key, value in REGISTRY.items() if value.get('artifact')}
+ACTIVE_QUALIFIED = {row['isin'] for row in json.loads((pathlib.Path(__file__).resolve().parents[1] / 'src/data/qualified-exposure-etfs.json').read_text()).values()}
 BRANCH = 'automation-status'
 PATH = 'automation-status.json'
 
@@ -42,10 +43,13 @@ def normalize_report(report):
                 combined[kind].extend({**row, 'id': prefix + ':' + row['id']} for row in part.get(kind, []))
         return combined
     if isinstance(report.get('records'), list) and ('failed' in report or 'excluded' in report):
-        failures = report.get('failed', []) + [row for row in report.get('excluded', []) if row.get('active', True)]
+        # Older artifacts lack the active flag; consult the production catalogue.
+        excluded = [{**row, 'active': row.get('active', row.get('isin') in ACTIVE_QUALIFIED)} for row in report.get('excluded', [])]
+        failures = report.get('failed', []) + [row for row in excluded if row['active']]
         return {'successes': [{'id': row.get('isin', row.get('id'))} for row in report['records']],
                 'errors': [{'id': row.get('isin', row.get('id')), 'name': row.get('isin', row.get('id')),
-                            'error': row.get('error', 'Collecte échouée')} for row in failures]}
+                            'error': row.get('error', 'Collecte échouée')} for row in failures],
+                'inactive': [{'id': row.get('isin', row.get('id'))} for row in excluded if row['active'] is False]}
     if report.get('seriesId') == '011814631' and report.get('rates') and report.get('checkedAt'):
         return {'successes':[{'id':'inflation:011814631'}], 'errors':[]}
     if isinstance(report.get('sources'), dict) and 'failed' in report and 'changed' in report:
@@ -171,12 +175,18 @@ def update_status(state, run, jobs, reports=None):
     previous = entries.get(workflow, {})
     stamp = (run['updated_at'], run['id'], run.get('run_attempt', 1))
     old_stamp = (previous.get('completedAt', ''), previous.get('runId', 0), previous.get('attempt', 1))
-    if stamp <= old_stamp or run['conclusion'] in ('cancelled', 'skipped', 'neutral'):
+    inactive = {row['id'] for report in reports or [] for row in normalize_report(report).get('inactive', [])}
+    retires_legacy_alert = bool(inactive & previous.get('dataFailures', {}).keys())
+    if stamp < old_stamp or (stamp == old_stamp and not retires_legacy_alert) or run['conclusion'] in ('cancelled', 'skipped', 'neutral'):
         return result
     failed = run['conclusion'] in ('failure', 'timed_out', 'startup_failure', 'action_required')
     data_failures = previous.get('dataFailures', {}).copy()
     for raw_report in reports or []:
         report = normalize_report(raw_report)
+        # Explicit exclusion of a non-production candidate retires its legacy alert,
+        # without claiming that the source recovered or clearing other failures.
+        for inactive in report.get('inactive', []):
+            data_failures.pop(inactive['id'], None)
         for success in report.get('successes', []):
             data_failures.pop(success['id'], None)
         for error in report.get('errors', []):
