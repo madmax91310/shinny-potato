@@ -71,3 +71,9 @@ assert(ASSETS.etfWqdv.points.some((p, i) => Math.abs(p.price - ASSETS.etfWqdv.an
 const comparative = buildAnniversaireComparatifText({ format: FORMATS.ANNIVERSAIRE, mode: MODES.COMPARATIF, assetIdA: 'etfImie', assetIdB: 'etfVwce', yearsBack: 1 }, '100', '200')
 assert(comparative.includes(ASSETS.etfImie.label) && comparative.includes(ASSETS.etfVwce.label))
 console.log(`${Object.keys(ETF_MONTHLY_HISTORIES).length} ETF/ETC: exact shares, lump/DCA, complete annual returns, raw anniversary prices, daily closes, comparisons and visual identities validated.`)
+
+// New commodity labels must reach the actual copied presentation text.
+const { buildText: presentationText } = await import('../src/pages/etf-sheets/lib.js');
+const { ETFS: presentationCards } = await import('../src/data/etf-cards.js');
+for (const card of presentationCards.filter(card => card.id.startsWith('etc-')))
+  assert.doesNotMatch(presentationText(card), /undefined|NaN/, card.id);

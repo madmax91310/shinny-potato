@@ -38,6 +38,7 @@ class NonBondSources(unittest.TestCase):
   with patch.object(funds,'download',return_value=b'%PDF fixture'), patch.object(funds,'pdf_text',return_value=text), patch('issuer_documents.pdf_text',return_value=text):
    observation=funds.wisdomtree_pdf(share,now,Exception('HTTP 403'))
    self.assertNotIn('aum',observation)
+   self.assertEqual(observation['commodityAllocation']['rows'][0]['label'],'Pétrole Brent')
    self.assertTrue(observation['characteristics']['listings'])
    updated,report=refresh({'instruments':[share]},{share['isin']:old},{},now,collect=lambda s,n:observation)
    self.assertEqual(report['shares'][0]['status'],'validated')

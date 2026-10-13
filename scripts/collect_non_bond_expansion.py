@@ -8,7 +8,7 @@ from bs4 import BeautifulSoup
 from issuer_documents import public_page, download, pdf_text, proof, document_date, validated_rows
 from data_automation import reject
 
-COMMODITY_LABELS = {'Crude Oil (Brent)': 'Pétrole Brent', 'Crude Oil (WTI)': 'Pétrole WTI', 'Natural Gas': 'Gaz naturel Henry Hub', 'Coffee': 'Café', 'Cocoa': 'Cacao', 'Wheat': 'Blé'}
+COMMODITY_LABELS = {'Crude Oil (Brent)': 'Pétrole Brent', 'Crude Oil (WTI)': 'Pétrole WTI', 'Natural Gas (Henry Hub)': 'Gaz naturel Henry Hub', 'Coffee': 'Café', 'Cocoa': 'Cacao', 'Wheat': 'Blé'}
 
 MICS = {'LSE':'XLON','London Stock Exchange':'XLON','Deutsche Börse (Primary)':'XETR',
         'Deutsche Börse (Xetra)':'XETR','Xetra':'XETR','Borsa Italiana':'ETFP','Euronext Milan':'ETFP',
