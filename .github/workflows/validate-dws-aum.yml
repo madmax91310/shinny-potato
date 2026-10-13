@@ -1,0 +1,50 @@
+name: Validate dated DWS AUM recovery
+on:
+  pull_request:
+    paths:
+      - 'scripts/collect_dws_etf.py'
+      - 'scripts/test_source_documents.py'
+      - '.github/workflows/validate-dws-aum.yml'
+permissions:
+  contents: read
+jobs:
+  qualify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: '3.12'
+      - run: python -m unittest discover -s scripts -p 'test_source_documents.py'
+      - name: Collect both exact shares from official DWS endpoints
+        run: |
+          python - <<'PY'
+          import datetime as dt, json, pathlib, sys
+          sys.path.insert(0, 'scripts')
+          from refresh_additional_etf import refresh
+          config = json.loads(pathlib.Path('scripts/additional-etf-sources.json').read_text())
+          config['instruments'] = [s for s in config['instruments'] if s['isin'] in ('IE00BM67HV82', 'IE00BM67HQ30')]
+          assert len(config['instruments']) == 2
+          _, report = refresh(config, {}, {}, dt.datetime.now(dt.timezone.utc))
+          pathlib.Path('dws-aum-validation.json').write_text(json.dumps(report, indent=2))
+          for result in report['shares']:
+              assert result['status'] == 'validated', result
+              aum = result['record']['aum']
+              assert aum['scope'] == 'fund' and aum['currency'] == 'USD' and aum['amount'] > 0
+              print(result['isin'], aum)
+          PY
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 20
+      - run: npm ci
+      - run: node scripts/test-qualified-exposures.mjs
+      - run: node scripts/test-etf-tool-connections.mjs
+      - run: node scripts/test-monthly-consumers.mjs
+      - run: npm run audit:instrument-catalog && npm run audit:instrument-listings && npm run audit:data-provenance
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: dws-aum-validation
+          path: dws-aum-validation.json
+          retention-days: 14
