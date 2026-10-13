@@ -47,8 +47,15 @@ if(process.argv.includes('--browser')) {
    const result=await page.evaluate(async id=>{
     const {DEFAULT_THEMES}=await import('/shinny-potato/src/data/etf-themes.js')
     const {renderComparatifEtfImage}=await import('/shinny-potato/src/pages/tweet-midi/comparatifEtfImage.js')
-    const canvas=await renderComparatifEtfImage(DEFAULT_THEMES.find(t=>t.id===id))
-    return canvas.toDataURL('image/png')
+    const labels=[],original=CanvasRenderingContext2D.prototype.fillText
+    CanvasRenderingContext2D.prototype.fillText=function(value,...args){labels.push([this.canvas,String(value)]);return original.call(this,value,...args)}
+    try {
+     const canvas=await renderComparatifEtfImage(DEFAULT_THEMES.find(t=>t.id===id))
+     const words=labels.filter(([c])=>c===canvas).map(([,label])=>label)
+     if(words.some(word=>/Non disponible|N\/D/.test(word)))throw Error('Missing value in resource image')
+     if(id!=='water-timber-agriculture'&&words.some(word=>/PRINCIPAUX PAYS|PRINCIPAUX SECTEURS/.test(word)))throw Error('Equity composition shown for a commodity ETC')
+     return canvas.toDataURL('image/png')
+    }finally{CanvasRenderingContext2D.prototype.fillText=original}
    },c.id)
    await writeFile(`${dir}/${c.id}-comparison.png`,Buffer.from(result.split(',')[1],'base64'))
    await page.goto(base+'fiches-pratiques?fiche='+c.id)

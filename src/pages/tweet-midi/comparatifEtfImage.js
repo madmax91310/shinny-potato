@@ -1,3 +1,4 @@
+import { isComparisonEtc } from '../etf-tweets/lib/comparisonPolicy.js'
 import { LIFESTRATEGY_RECORDS } from '../../data/lifestrategy.js'
 import { startPublicationDownload } from '../../design-system/publicationActions.js'
 import { loadEditorialFont } from './anniversaryArt.js'
@@ -44,6 +45,12 @@ function rounded(ctx, x, y, width, height, color, radius = 24) {
   ctx.fillStyle = color; ctx.beginPath(); ctx.roundRect(x, y, width, height, radius); ctx.fill()
 }
 function composition(ctx, fund, field, x, y, width, accent) {
+  if (isComparisonEtc(fund)) {
+    const currency = AUTOMATED_ETF[fund.isin]?.performance?.currency
+    text(ctx, field === 'sectors' ? 'TYPE DE SUPPORT' : 'LECTURE DU RENDEMENT', x, y, 30, { width })
+    lines(ctx, field === 'sectors' ? 'ETC sur une matière première. Ce produit n’est pas un ETF UCITS d’actions.' : `Rendement du produit${currency ? ' en '+currency : ''}, frais inclus. En euros, les variations du change comptent aussi.`, x, y + 52, width, 5, 29, { weight: 400, color: MUTED })
+    return
+  }
   const multi = LIFESTRATEGY_RECORDS[fund.isin]
   if (multi) {
     const observation = field === 'sectors' ? multi.assetAllocation : multi.holdings
