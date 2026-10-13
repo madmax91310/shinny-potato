@@ -56,6 +56,7 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_russell_composition.py'
       - run: python -m unittest discover -s scripts -p 'test_sp_composition.py'
       - run: python -m unittest discover -s scripts -p 'test_monthly_automation.py'
+      - run: python -m unittest discover -s scripts -p 'test_roadmap_assets.py'
       - run: python -m unittest discover -s scripts -p 'test_bnp_etf.py'
       - run: python -m unittest discover -s scripts -p 'test_etf_field_completion.py'
       - run: python -m unittest discover -s scripts -p 'test_priority_etf_completion.py'

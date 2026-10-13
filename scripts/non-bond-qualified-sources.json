@@ -8,6 +8,30 @@
       "scene": "world",
       "category": "Stratégiques",
       "portfolioEnabled": true
+    },
+    {
+      "id": "europe-banks",
+      "productId": 251934,
+      "isin": "DE000A0F5UJ7",
+      "currency": "EUR",
+      "label": "Banques européennes",
+      "scene": "finance",
+      "category": "Sectoriels classiques",
+      "portfolioEnabled": true
+    },
+    {
+      "id": "europe-insurance",
+      "productId": 251950,
+      "currencyField": "baseCurrencyCode",
+      "inceptionField": "launchDate",
+      "aumField": "totalNetAssetsFundLevel",
+      "aumScope": "fund",
+      "isin": "DE000A0H08K7",
+      "currency": "EUR",
+      "label": "Assurances européennes",
+      "scene": "finance",
+      "category": "Sectoriels classiques",
+      "portfolioEnabled": true
     }
   ]
 }

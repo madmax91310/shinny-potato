@@ -2,6 +2,10 @@
 // partagent un rôle ; un indice, un facteur ou un mécanisme différent a son propre texte.
 // Aucun rendement, frais ou statut fiscal n’est recopié ici.
 const entries = {};
+add('europe-banks','theme','les banques européennes','On cible ici les banques européennes. Les marges sur les crédits, les défauts et les exigences de capital influencent leurs résultats ; cette poche concentrée peut recouper un indice européen large.');
+entries['europe-banks'].description='Des actions de banques européennes, avec des poids plafonnés dans l’indice.';
+add('europe-insurance','theme','les assurances européennes','On cible ici les assureurs européens. Les sinistres, les prix des contrats et le rendement de leurs placements comptent pour leurs résultats ; cette poche concentrée peut recouper un indice européen large.');
+entries['europe-insurance'].description='Des actions d’assureurs européens, avec des poids plafonnés dans l’indice.';
 for (const n of [20,40,60,80]) {
  add(`lifestrategy${n}`,'multi-asset',`LifeStrategy ${n}/${100-n}`,`On réunit environ ${n} % d’actions mondiales et ${100-n} % d’obligations dans cette ligne. Vanguard gère le rééquilibrage interne ; les deux poches peuvent baisser en même temps.`);
  entries[`lifestrategy${n}`].description=`Un ETF multi-actifs avec une cible de ${n} % d’actions et ${100-n} % d’obligations.`;
