@@ -306,19 +306,19 @@
       "active": true
     }
   ],
-  "checkedAt": "2026-10-12",
+  "checkedAt": "2026-10-13",
   "method": "Inventaire des champs réellement présents dans les observations actives. Couverture distincte de disponibilité réseau et de fraîcheur. Les catégories sont issues des qualifications de sources ; elles ne certifient pas un téléchargement réussi aujourd’hui.",
-  "instruments": 178,
+  "instruments": 181,
   "covered": {
-    "ter": 175,
-    "aum": 175,
-    "performance": 161,
-    "countries": 160,
-    "sectors": 160,
-    "holdings": 160
+    "ter": 177,
+    "aum": 177,
+    "performance": 163,
+    "countries": 162,
+    "sectors": 162,
+    "holdings": 162
   },
   "summary": {
-    "instrument:unqualified": 19,
+    "instrument:unqualified": 25,
     "instrument:waiting-first-year": 12,
     "instrument:not-applicable": 42,
     "instrument:source-conflict": 4,
@@ -326,6 +326,72 @@
     "index:not-applicable": 16
   },
   "gaps": [
+    {
+      "type": "instrument",
+      "id": "IE000UL6CLP7",
+      "name": "Global X Silver Miners UCITS ETF USD Accumulating",
+      "field": "ter",
+      "label": "Frais",
+      "configured": false,
+      "status": "unqualified",
+      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
+      "sourceUrl": null
+    },
+    {
+      "type": "instrument",
+      "id": "IE000UL6CLP7",
+      "name": "Global X Silver Miners UCITS ETF USD Accumulating",
+      "field": "aum",
+      "label": "Encours",
+      "configured": false,
+      "status": "unqualified",
+      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
+      "sourceUrl": null
+    },
+    {
+      "type": "instrument",
+      "id": "IE000UL6CLP7",
+      "name": "Global X Silver Miners UCITS ETF USD Accumulating",
+      "field": "performance",
+      "label": "Calendrier annuel",
+      "configured": false,
+      "status": "unqualified",
+      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
+      "sourceUrl": null
+    },
+    {
+      "type": "instrument",
+      "id": "IE000UL6CLP7",
+      "name": "Global X Silver Miners UCITS ETF USD Accumulating",
+      "field": "countries",
+      "label": "Pays",
+      "configured": false,
+      "status": "unqualified",
+      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
+      "sourceUrl": null
+    },
+    {
+      "type": "instrument",
+      "id": "IE000UL6CLP7",
+      "name": "Global X Silver Miners UCITS ETF USD Accumulating",
+      "field": "sectors",
+      "label": "Secteurs",
+      "configured": false,
+      "status": "unqualified",
+      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
+      "sourceUrl": null
+    },
+    {
+      "type": "instrument",
+      "id": "IE000UL6CLP7",
+      "name": "Global X Silver Miners UCITS ETF USD Accumulating",
+      "field": "holdings",
+      "label": "Positions pondérées",
+      "configured": false,
+      "status": "unqualified",
+      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
+      "sourceUrl": null
+    },
     {
       "type": "instrument",
       "id": "IE00B4556L06",

@@ -1,15 +1,15 @@
-# Champs restant à automatiser — 2026-10-12
+# Champs restant à automatiser — 2026-10-13
 
 Inventaire des champs réellement présents dans les observations actives. Couverture distincte de disponibilité réseau et de fraîcheur. Les catégories sont issues des qualifications de sources ; elles ne certifient pas un téléchargement réussi aujourd’hui.
 
 | Champ ETF/ETP | Couverture |
 |---|---:|
-| ter | 175/178 |
-| aum | 175/178 |
-| performance | 161/178 |
-| countries | 160/178 |
-| sectors | 160/178 |
-| holdings | 160/178 |
+| ter | 177/181 |
+| aum | 177/181 |
+| performance | 163/181 |
+| countries | 162/181 |
+| sectors | 162/181 |
+| holdings | 162/181 |
 
 ## Premiers calendriers des 12 parts récentes
 
@@ -36,6 +36,12 @@ Les caractéristiques statiques et cotations sont exclues de ce chantier conform
 
 | Type | Instrument / indice | Champ absent | Motif | Action |
 |---|---|---|---|---|
+| instrument | Global X Silver Miners UCITS ETF USD Accumulating (IE000UL6CLP7) | Frais | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
+| instrument | Global X Silver Miners UCITS ETF USD Accumulating (IE000UL6CLP7) | Encours | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
+| instrument | Global X Silver Miners UCITS ETF USD Accumulating (IE000UL6CLP7) | Calendrier annuel | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
+| instrument | Global X Silver Miners UCITS ETF USD Accumulating (IE000UL6CLP7) | Pays | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
+| instrument | Global X Silver Miners UCITS ETF USD Accumulating (IE000UL6CLP7) | Secteurs | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
+| instrument | Global X Silver Miners UCITS ETF USD Accumulating (IE000UL6CLP7) | Positions pondérées | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
 | instrument | iShares Physical Palladium ETC (IE00B4556L06) | Frais | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
 | instrument | iShares Physical Palladium ETC (IE00B4556L06) | Encours | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
 | instrument | iShares Physical Palladium ETC (IE00B4556L06) | Calendrier annuel | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
