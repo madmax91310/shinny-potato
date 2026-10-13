@@ -214,6 +214,28 @@
       "category": "Obligataires",
       "currency": "EUR",
       "holdingsAssetClass": "Fixed Income"
+    },
+    {
+      "id": "europe-construction",
+      "productId": 251940,
+      "isin": "DE000A0H08F7",
+      "label": "Construction et matériaux européens",
+      "currency": "EUR",
+      "currencyField": "baseCurrencyCode",
+      "category": "Sectoriels classiques",
+      "scene": "infrastructure",
+      "portfolioEnabled": true,
+      "aumField": "totalNetAssetsFundLevel",
+      "aumScope": "fund",
+      "inceptionField": "launchDate"
+    },
+    {
+      "id": "history-em-small-cap",
+      "productId": 251859,
+      "isin": "IE00B3F81G20",
+      "label": "Small caps émergentes",
+      "currency": "USD",
+      "historyOnly": true
     }
   ]
 }

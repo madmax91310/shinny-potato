@@ -1,3 +1,4 @@
+import MONTHLY_DUEL_RETURNS from './monthly-duel-returns.json' with {type:'json'};
 import { NON_BOND_SHEETS } from './non-bond-expansion.js';
 import annualFx from './annual-fx.json' with { type: 'json' };
 import { ASSETS } from './portfolio-assets.js'
@@ -89,6 +90,9 @@ const fundItems = choices.map(([id, role, label, exposure]) => {
 })
 // Revue du 02/10/2026 déjà consignée dans verified-returns.js ; aucune année inventée.
 const extraFunds = [
+ ['europe-construction','DE000A0H08F7','Construction et matériaux européens','construction-europe'],
+ ['em-small-cap','IE00B3F81G20','Petites capitalisations émergentes','em-smallcap','complement'],
+ ['copper-miners','IE0003Z9E2Y3','Mines de cuivre','copper-miners'],
   ['world_multifactor_ishares', 'IE00BZ0PKT83', 'World multifactoriel', 'multifactor', 'complement'],
   ['or_ishares', 'IE00B4ND3602', 'Or physique (ETC)', 'gold', 'complement'],
   ['em_ex_china', 'IE00BMG6Z448', 'Émergents hors Chine', 'em-ex-china', 'complement'],
@@ -96,10 +100,10 @@ const extraFunds = [
   ['financieres_monde', 'IE00BJ5JP097', 'Financières mondiales', 'financials'],
   ['blockchain_ishares', 'IE000RDRMSD1', 'Blockchain', 'blockchain'],
 ].map(([id, isin, label, exposure, role = 'theme']) => {
-  const series = getInstrumentDuelSeries(isin)
+  const series = MONTHLY_DUEL_RETURNS[isin] ?? getInstrumentDuelSeries(isin)
   if (!series?.source) throw new Error(`Historique de part absent : ${isin}`)
   return { id, isin, label, exposure, name: getInstrumentName(isin), role, group: ROLES[role],
-    ...series, note: exposure === 'multifactor' ? 'Rendements NAV de la part exacte, revenus réinvestis. Le fonds a changé d’indice : cet historique ne décrit pas uniquement la stratégie STOXX actuelle.' : exposure === 'gold' ? 'Rendements de l’ETC adossé à de l’or physique, sans revenu distribué ; années complètes communes.' : 'Rendements de la part exacte, revenus réinvestis ; seules les années complètes disponibles sont comparées.' }
+    ...series, note: series.note ?? (exposure === 'multifactor' ? 'Rendements NAV de la part exacte, revenus réinvestis. Le fonds a changé d’indice : cet historique ne décrit pas uniquement la stratégie STOXX actuelle.' : exposure === 'gold' ? 'Rendements de l’ETC adossé à de l’or physique, sans revenu distribué ; années complètes communes.' : 'Rendements de la part exacte, revenus réinvestis ; seules les années complètes disponibles sont comparées.') }
 })
 const stoxxIsin = 'FR0011550193'
 const stoxxEvidence = COMPARATOR_RETURN_EVIDENCE[stoxxIsin]
@@ -110,7 +114,7 @@ export const CATALOG = [...expansionFunds, ...fundItems, ...extraFunds, {
   currency: stoxxEvidence.currency, values: [null, null, null, ...COMPARATOR_RETURNS_BY_ISIN[stoxxIsin]],
   source: stoxxEvidence.sourceUrls[0], note: 'Rendements de la part exacte, disponibles sur 2023–2025 seulement.',
 }].filter((item) => Number.isFinite(item.values.at(-1)) && item.values.filter(Number.isFinite).length >= 3)
-for (const item of CATALOG) item.calendarReturns = getInstrumentCalendarReturns(item.isin, item.values);
+for (const item of CATALOG) item.calendarReturns ??= getInstrumentCalendarReturns(item.isin, item.values);
 export const ITEM_BY_ID = new Map(CATALOG.map((item) => [item.id, item]))
 
 export function euroReturn(item, year) {

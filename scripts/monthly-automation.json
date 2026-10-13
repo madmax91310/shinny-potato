@@ -1406,6 +1406,67 @@
       "ticker": "V80A",
       "mic": "XETR",
       "listingEvidenceId": "IE00BMVB5R75-XETR-V80A-EUR"
+    },
+    {
+      "id": "etfEmSmallCap",
+      "label": "iShares MSCI EM Small Cap UCITS ETF USD (Dist)",
+      "isin": "IE00B3F81G20",
+      "ticker": "IEMS",
+      "mic": "XLON",
+      "symbol": "IEMS.L",
+      "currency": "USD",
+      "periodStart": "2012-01",
+      "parser": "yahoo",
+      "field": "adjclose",
+      "precision": 6,
+      "consumerScope": "catalog",
+      "listingEvidenceId": "IE00B3F81G20-XLON-IEMS-USD",
+      "instrumentType": "ETF",
+      "method": "Cours de la part exacte, ajustés des distributions et divisions ; dernière séance mensuelle recoupée avec la bougie mensuelle Yahoo",
+      "collectAnniversary": true,
+      "dailyWindowMonths": [
+        "2013-03",
+        "2015-08"
+      ],
+      "verifiedSparseMonthEnds": {
+        "2025-12": "2025-12-24"
+      }
+    },
+    {
+      "id": "etfCopperMiners",
+      "label": "Global X Copper Miners UCITS ETF USD Acc",
+      "isin": "IE0003Z9E2Y3",
+      "ticker": "COPX",
+      "mic": "ETFP",
+      "symbol": "COPX.MI",
+      "currency": "EUR",
+      "periodStart": "2022-03",
+      "parser": "yahoo",
+      "field": "adjclose",
+      "precision": 6,
+      "consumerScope": "catalog",
+      "listingEvidenceId": "IE0003Z9E2Y3-ETFP-COPX-EUR",
+      "instrumentType": "ETF",
+      "method": "Cours de la part exacte, ajustés des distributions et divisions ; dernière séance mensuelle recoupée avec la bougie mensuelle Yahoo",
+      "collectAnniversary": true
+    },
+    {
+      "id": "etfEuropeConstruction",
+      "label": "iShares STOXX Europe 600 Construction & Materials UCITS ETF (DE)",
+      "isin": "DE000A0H08F7",
+      "ticker": "EXV8",
+      "mic": "XETR",
+      "symbol": "EXV8.DE",
+      "currency": "EUR",
+      "periodStart": "2010-01",
+      "parser": "yahoo",
+      "field": "adjclose",
+      "precision": 6,
+      "consumerScope": "catalog",
+      "listingEvidenceId": "DE000A0H08F7-XETR-EXV8-EUR",
+      "instrumentType": "ETF",
+      "method": "Cours de la part exacte, ajustés des distributions et divisions ; dernière séance mensuelle recoupée avec la bougie mensuelle Yahoo",
+      "collectAnniversary": true
     }
   ]
 }

@@ -50,7 +50,7 @@ for (const [id, record] of Object.entries(records)) {
     assert.equal(price, Math.round(row.value*10**record.precision)/10**record.precision);
     if (record.parser === 'yahoo') {
       if (row.monthlyClose === null) {
-        assert(record.allowMissingMonthly || record.dailyWindowMonths?.includes(date));
+        assert(record.allowMissingMonthly || record.dailyWindowMonths?.includes(date) || record.verifiedSparseMonthEnds?.[date]);
         assert(record.sourceUrls.includes(row.windowUrl));
       }
       assert(Math.abs(row.close-(row.monthlyClose ?? row.windowClose))<=Math.max(.02,row.close*1e-7));

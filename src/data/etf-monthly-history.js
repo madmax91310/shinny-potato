@@ -6,6 +6,9 @@ const RECORDS={...BASE_RECORDS,...Object.fromEntries(Object.entries(NON_BOND_REC
 // Exact shares shared by the investment, performance and anniversary tools.
 // Visual identities use exposure illustrations, never an invented issuer logo.
 export const ETF_HISTORY_IDENTITIES = {
+ etfEuropeConstruction:{icon:'🏗️',scene:'industry',title:'CONSTRUCTION EUROPE',ticker:'EXV8'},
+ etfEmSmallCap:{icon:'🌏',scene:'world',title:'SMALL CAPS EMERGENTES',ticker:'IEMS'},
+ etfCopperMiners:{icon:'⛏️',scene:'industry',title:'MINES DE CUIVRE',ticker:'COPX'},
  ...NON_BOND_HISTORY_IDENTITIES,
  etfEuropeBanks: {icon:'🏦',scene:'finance',title:'BANQUES EUROPÉENNES',ticker:'EXV1'},
  etfEuropeInsurance: {icon:'🛡️',scene:'finance',title:'ASSURANCES EUROPÉENNES',ticker:'EXH5'},

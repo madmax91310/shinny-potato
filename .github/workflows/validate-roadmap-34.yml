@@ -1,0 +1,47 @@
+name: Validate asset roadmap 3 and 4
+on:
+  pull_request:
+    paths:
+      - 'scripts/playwright-roadmap-34.mjs'
+      - '.github/workflows/validate-roadmap-34.yml'
+permissions:
+  contents: read
+jobs:
+  qualify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 20
+      - run: pip install -r scripts/company-requirements.txt
+      - run: npm ci
+      - run: python -m unittest discover -s scripts -p 'test_monthly_automation.py'
+      - run: python scripts/collect_qualified_exposures.py --apply --only europe-construction history-em-small-cap --output "$RUNNER_TEMP/roadmap-issuers.json"
+      - run: node scripts/export-monthly-baseline.mjs > "$RUNNER_TEMP/roadmap-baseline.json"
+      - run: python scripts/refresh_monthly_history.py --apply --baseline "$RUNNER_TEMP/roadmap-baseline.json" --only etfEuropeConstruction etfEmSmallCap etfCopperMiners --output "$RUNNER_TEMP/roadmap-monthly.json"
+      - run: node scripts/build-monthly-duel-returns.mjs
+      - run: python scripts/refresh_anniversary_levels.py --apply --only etfEuropeConstruction etfEmSmallCap etfCopperMiners --output "$RUNNER_TEMP/roadmap-levels.json"
+      - run: node scripts/audit-automated-monthly.mjs
+      - run: node scripts/test-qualified-exposures.mjs
+      - run: node scripts/test-monthly-consumers.mjs
+      - run: node scripts/test-etf-tool-connections.mjs
+      - run: node scripts/test-portfolio-recipes.mjs
+      - run: npm run audit:portfolio-duels
+      - run: npm run audit:instrument-catalog
+      - run: npm run audit:data-provenance
+      - run: npm run build
+      - run: npx playwright install --with-deps chromium
+      - run: node scripts/playwright-roadmap-34.mjs
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: roadmap-34-validation
+          path: |
+            ${{ runner.temp }}/roadmap-*.json
+            test-artifacts/roadmap-34/
+          retention-days: 14
