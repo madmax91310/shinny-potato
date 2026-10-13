@@ -45,6 +45,14 @@ class NonBondSources(unittest.TestCase):
   bad=text.replace('Debt security / ETC','Unqualified structure')
   with patch.object(funds,'download',return_value=b'%PDF fixture'), patch.object(funds,'pdf_text',return_value=bad), patch('issuer_documents.pdf_text',return_value=bad):
    self.assertRaises(ValueError,funds.wisdomtree_pdf,share,now,Exception('HTTP 403'))
+ def test_unchanged_monthly_prices_keep_proof_of_active_response(self):
+  from refresh_non_bond_sources import merge_monthly_evidence
+  previous={'asset':{'responseSha256':'old','proofRows':[{'value':100}]}}
+  observation={'id':'asset','status':'validated','record':{'responseSha256':'old'},'evidence':{'responseSha256':'new','proofRows':[{'value':100}],'rawResponse':{}}}
+  self.assertEqual(merge_monthly_evidence(previous,[observation]),previous)
+  observation['record']['responseSha256']='new'
+  result=merge_monthly_evidence(previous,[observation])
+  self.assertEqual(result['asset']['responseSha256'],'new');self.assertNotIn('rawResponse',result['asset'])
  def test_nike_actual_fiscal_dates_and_percent_columns(self):
   raw=(FIXTURES/'nike-income.html').read_bytes()
   row=companies.parse(raw,'nike','https://investors.nike.com/release',TODAY)[0]

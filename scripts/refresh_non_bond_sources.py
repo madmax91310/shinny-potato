@@ -12,6 +12,12 @@ from refresh_monthly_history import refresh as refresh_monthly
 from refresh_anniversary_levels import refresh as refresh_levels
 ROOT=Path(__file__).resolve().parents[1]
 def read(path):return json.loads((ROOT/path).read_text())
+def merge_monthly_evidence(evidence, observations):
+ for o in observations:
+  if o['status']=='validated' and o['evidence']['responseSha256']==o['record']['responseSha256']:
+   evidence[o['id']]={k:v for k,v in o['evidence'].items()if k not in ['rawResponse','points','anniversaryPoints']}
+ return evidence
+
 def main():
  p=argparse.ArgumentParser(description=__doc__);p.add_argument('--apply',action='store_true');p.add_argument('--output',required=True,type=Path);p.add_argument('--fields',nargs='+',choices=['etf','monthly','levels'],default=['etf','monthly','levels']);args=p.parse_args()
  now=dt.datetime.now(UTC);report={'checkedAt':now.isoformat()};writes={};errors=[]
@@ -35,9 +41,8 @@ def main():
   config=read('scripts/non-bond-monthly-sources.json');current=read('src/data/non-bond-monthly-records.json');baseline=read('src/data/non-bond-company-histories.json')
   merged,observations=refresh_monthly(config,current,baseline,now);writes['src/data/non-bond-monthly-records.json']=merged
   evidence=read('scripts/source-snapshots/non-bond-monthly-active.json')
-  for observation in observations['series']:
-   if observation['status']=='validated':evidence[observation['id']]={k:v for k,v in observation['evidence'].items()if k not in ['rawResponse','points','anniversaryPoints']}
-   else:errors.append(observation['id'])
+  evidence=merge_monthly_evidence(evidence,observations['series'])
+  errors += [o['id']for o in observations['series']if o['status']!='validated']
   writes['scripts/source-snapshots/non-bond-monthly-active.json']=evidence
   report['monthly']={**observations,'series':[{k:v for k,v in o.items()if k!='evidence'}for o in observations['series']]}
  if 'levels'in args.fields:
