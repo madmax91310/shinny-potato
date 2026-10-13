@@ -2,6 +2,7 @@
 import datetime as dt
 import json
 import re
+import urllib.error
 from urllib.parse import urljoin
 from bs4 import BeautifulSoup
 from issuer_documents import public_page, download, pdf_text, proof, document_date, validated_rows
@@ -44,6 +45,30 @@ def index_holdings(h):
     validated_rows([{'name':r['name'],'weightPct':r['weight']}for r in h['holdings']],complete=True)
     return validated_rows([{'name':r['name'],'isin':r['isin'],'weightPct':r['weight']}for r in sorted(rows,key=lambda r:r['weight'],reverse=True)[:10]],complete=False)
 
+def wisdomtree_pdf(share, now, transport_error):
+    """Refresh PDF-published fields only; retain, without redating, missing AUM."""
+    from collect_public_issuer import wisdomtree_factsheet
+    body=download(share['factsheetUrl'],headers={'User-Agent':'Mozilla/5.0','Accept':'application/pdf'})
+    result=wisdomtree_factsheet(body,{**share,'collectListings':True},now)
+    text=pdf_text(body);flat=' '.join(text.split())
+    if share['benchmark'] not in flat or not re.search(r'Domicile\s+Jersey',text) or 'Debt security / ETC' not in text:
+        reject('Unqualified commodity benchmark or legal form')
+    if not re.search(r'Currency Hedged\s+No',text) or not all(label in text for label in ['Replication Method', 'Synthetic - fully funded', 'collateralised swap', 'avoid taking actual delivery']):
+        reject('Unqualified commodity replication or hedge')
+    dates=re.findall(r'Inception Date\s+(\d{2}/\d{2}/\d{4})',text)
+    if len(set(dates))!=1:reject('Missing or ambiguous commodity inception')
+    stamp=result['characteristics']['asOf'];url=share['factsheetUrl'];digest=proof(body)
+    result['characteristics'].update(index=share['benchmark'],distribution='Not applicable',domicile='Jersey',
+        replicationMethod='Synthetic - fully funded collateralised swap',instrumentType='ETC',
+        inceptionDate=dt.datetime.strptime(dates[0],'%d/%m/%Y').date().isoformat(),
+        physicalDelivery=False,currencyHedge=False,feeLabel='Management Fee (MER)')
+    result['commodityAllocation']={'basis':'fund','asOf':stamp,'sourceUrl':url,'sha256':digest,
+        'method':'Single commodity futures exposure in official investment objective; not spot or physical delivery',
+        'rows':[{'name':share['commodity'],'weightPct':100}]}
+    result['sourceAttempts']=[{'url':share['sourceUrl'],'reason':str(transport_error)},
+                              {'url':url,'status':'validated'}]
+    return result
+
 def collect_one(share, now):
     kind=share['expansionKind']
     if kind=='ssga':
@@ -56,7 +81,10 @@ def collect_one(share, now):
         result['characteristics']={**identity,'terPct':result['terPct'],'index':result['index'],'distribution':result['distribution']}
     elif kind=='wisdomtree':
         from collect_public_issuer import wisdomtree, wisdomtree_factsheet, Page
-        text=public_page(share['sourceUrl']); result=wisdomtree(text,share,now)
+        try: text=public_page(share['sourceUrl'])
+        except (urllib.error.URLError, TimeoutError) as error:
+            return wisdomtree_pdf(share,now,error)
+        result=wisdomtree(text,share,now)
         body=download(share['factsheetUrl']);calendar=wisdomtree_factsheet(body,share,now)
         result['performance']=calendar['performance']
         page=Page(text);tables=[t['rows']for t in page.tables if t['rows']]

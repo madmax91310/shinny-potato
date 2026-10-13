@@ -1,4 +1,5 @@
 import datetime as dt
+import json
 import pathlib
 import types
 import unittest
@@ -27,6 +28,23 @@ class NonBondSources(unittest.TestCase):
   self.assertRaises(ValueError,funds.listings,[('London Stock Exchange','USD','QQQE','QQQE','row')],share,dt.datetime(2026,10,13),'https://issuer.example','a'*64)
   rows=funds.listings([('London Stock Exchange','USD','IEWQ','IEWQ.L','official')],share,dt.datetime(2026,10,13),'https://issuer.example','a'*64)
   self.assertEqual(rows[0]['mic'],'XLON');self.assertIn(share['isin'],rows[0]['excerpt'])
+ def test_pdf_transport_fallback_preserves_missing_aum_and_rejects_wrong_structure(self):
+  from refresh_additional_etf import refresh
+  root=pathlib.Path(__file__).resolve().parents[1]
+  share=json.loads((root/'scripts/non-bond-expansion-sources.json').read_text())['instruments'][2]
+  old=json.loads((root/'src/data/non-bond-etf-records.json').read_text())[share['isin']]
+  text=(FIXTURES/'brent-factsheet.txt').read_text()
+  now=dt.datetime(2026,10,13,tzinfo=dt.timezone.utc)
+  with patch.object(funds,'download',return_value=b'%PDF fixture'), patch.object(funds,'pdf_text',return_value=text), patch('issuer_documents.pdf_text',return_value=text):
+   observation=funds.wisdomtree_pdf(share,now,Exception('HTTP 403'))
+   self.assertNotIn('aum',observation)
+   self.assertTrue(observation['characteristics']['listings'])
+   updated,report=refresh({'instruments':[share]},{share['isin']:old},{},now,collect=lambda s,n:observation)
+   self.assertEqual(report['shares'][0]['status'],'validated')
+   self.assertEqual(updated[share['isin']]['aum'],old['aum'])
+  bad=text.replace('Debt security / ETC','Unqualified structure')
+  with patch.object(funds,'download',return_value=b'%PDF fixture'), patch.object(funds,'pdf_text',return_value=bad), patch('issuer_documents.pdf_text',return_value=bad):
+   self.assertRaises(ValueError,funds.wisdomtree_pdf,share,now,Exception('HTTP 403'))
  def test_nike_actual_fiscal_dates_and_percent_columns(self):
   raw=(FIXTURES/'nike-income.html').read_bytes()
   row=companies.parse(raw,'nike','https://investors.nike.com/release',TODAY)[0]
