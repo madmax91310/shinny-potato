@@ -4,12 +4,12 @@ Inventaire des champs réellement présents dans les observations actives. Couve
 
 | Champ ETF/ETP | Couverture |
 |---|---:|
-| ter | 177/181 |
-| aum | 177/181 |
-| performance | 163/181 |
-| countries | 162/181 |
-| sectors | 162/181 |
-| holdings | 162/181 |
+| ter | 181/185 |
+| aum | 181/185 |
+| performance | 167/185 |
+| countries | 162/185 |
+| sectors | 162/185 |
+| holdings | 166/185 |
 
 ## Premiers calendriers des 12 parts récentes
 
@@ -36,6 +36,14 @@ Les caractéristiques statiques et cotations sont exclues de ce chantier conform
 
 | Type | Instrument / indice | Champ absent | Motif | Action |
 |---|---|---|---|---|
+| instrument | Vanguard LifeStrategy 20% Equity UCITS ETF (EUR) Accumulating (IE00BMVB5K07) | Pays | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
+| instrument | Vanguard LifeStrategy 20% Equity UCITS ETF (EUR) Accumulating (IE00BMVB5K07) | Secteurs | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
+| instrument | Vanguard LifeStrategy 40% Equity UCITS ETF (EUR) Accumulating (IE00BMVB5M21) | Pays | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
+| instrument | Vanguard LifeStrategy 40% Equity UCITS ETF (EUR) Accumulating (IE00BMVB5M21) | Secteurs | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
+| instrument | Vanguard LifeStrategy 60% Equity UCITS ETF (EUR) Accumulating (IE00BMVB5P51) | Pays | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
+| instrument | Vanguard LifeStrategy 60% Equity UCITS ETF (EUR) Accumulating (IE00BMVB5P51) | Secteurs | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
+| instrument | Vanguard LifeStrategy 80% Equity UCITS ETF (EUR) Accumulating (IE00BMVB5R75) | Pays | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
+| instrument | Vanguard LifeStrategy 80% Equity UCITS ETF (EUR) Accumulating (IE00BMVB5R75) | Secteurs | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
 | instrument | Global X Silver Miners UCITS ETF USD Accumulating (IE000UL6CLP7) | Frais | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
 | instrument | Global X Silver Miners UCITS ETF USD Accumulating (IE000UL6CLP7) | Encours | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
 | instrument | Global X Silver Miners UCITS ETF USD Accumulating (IE000UL6CLP7) | Calendrier annuel | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |

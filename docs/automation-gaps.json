@@ -308,17 +308,17 @@
   ],
   "checkedAt": "2026-10-13",
   "method": "Inventaire des champs réellement présents dans les observations actives. Couverture distincte de disponibilité réseau et de fraîcheur. Les catégories sont issues des qualifications de sources ; elles ne certifient pas un téléchargement réussi aujourd’hui.",
-  "instruments": 181,
+  "instruments": 185,
   "covered": {
-    "ter": 177,
-    "aum": 177,
-    "performance": 163,
+    "ter": 181,
+    "aum": 181,
+    "performance": 167,
     "countries": 162,
     "sectors": 162,
-    "holdings": 162
+    "holdings": 166
   },
   "summary": {
-    "instrument:unqualified": 25,
+    "instrument:unqualified": 33,
     "instrument:waiting-first-year": 12,
     "instrument:not-applicable": 42,
     "instrument:source-conflict": 4,
@@ -326,6 +326,94 @@
     "index:not-applicable": 16
   },
   "gaps": [
+    {
+      "type": "instrument",
+      "id": "IE00BMVB5K07",
+      "name": "Vanguard LifeStrategy 20% Equity UCITS ETF (EUR) Accumulating",
+      "field": "countries",
+      "label": "Pays",
+      "configured": true,
+      "status": "unqualified",
+      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
+      "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9490/lifestrategy-20-equity-ucits-etf-eur-accumulating"
+    },
+    {
+      "type": "instrument",
+      "id": "IE00BMVB5K07",
+      "name": "Vanguard LifeStrategy 20% Equity UCITS ETF (EUR) Accumulating",
+      "field": "sectors",
+      "label": "Secteurs",
+      "configured": true,
+      "status": "unqualified",
+      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
+      "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9490/lifestrategy-20-equity-ucits-etf-eur-accumulating"
+    },
+    {
+      "type": "instrument",
+      "id": "IE00BMVB5M21",
+      "name": "Vanguard LifeStrategy 40% Equity UCITS ETF (EUR) Accumulating",
+      "field": "countries",
+      "label": "Pays",
+      "configured": true,
+      "status": "unqualified",
+      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
+      "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9492/lifestrategy-40-equity-ucits-etf-eur-accumulating"
+    },
+    {
+      "type": "instrument",
+      "id": "IE00BMVB5M21",
+      "name": "Vanguard LifeStrategy 40% Equity UCITS ETF (EUR) Accumulating",
+      "field": "sectors",
+      "label": "Secteurs",
+      "configured": true,
+      "status": "unqualified",
+      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
+      "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9492/lifestrategy-40-equity-ucits-etf-eur-accumulating"
+    },
+    {
+      "type": "instrument",
+      "id": "IE00BMVB5P51",
+      "name": "Vanguard LifeStrategy 60% Equity UCITS ETF (EUR) Accumulating",
+      "field": "countries",
+      "label": "Pays",
+      "configured": true,
+      "status": "unqualified",
+      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
+      "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9494/lifestrategy-60-equity-ucits-etf-eur-accumulating"
+    },
+    {
+      "type": "instrument",
+      "id": "IE00BMVB5P51",
+      "name": "Vanguard LifeStrategy 60% Equity UCITS ETF (EUR) Accumulating",
+      "field": "sectors",
+      "label": "Secteurs",
+      "configured": true,
+      "status": "unqualified",
+      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
+      "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9494/lifestrategy-60-equity-ucits-etf-eur-accumulating"
+    },
+    {
+      "type": "instrument",
+      "id": "IE00BMVB5R75",
+      "name": "Vanguard LifeStrategy 80% Equity UCITS ETF (EUR) Accumulating",
+      "field": "countries",
+      "label": "Pays",
+      "configured": true,
+      "status": "unqualified",
+      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
+      "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9496/lifestrategy-80-equity-ucits-etf-eur-accumulating"
+    },
+    {
+      "type": "instrument",
+      "id": "IE00BMVB5R75",
+      "name": "Vanguard LifeStrategy 80% Equity UCITS ETF (EUR) Accumulating",
+      "field": "sectors",
+      "label": "Secteurs",
+      "configured": true,
+      "status": "unqualified",
+      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
+      "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9496/lifestrategy-80-equity-ucits-etf-eur-accumulating"
+    },
     {
       "type": "instrument",
       "id": "IE000UL6CLP7",
