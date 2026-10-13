@@ -38,8 +38,9 @@ try {
  await page.reload({waitUntil:'networkidle'})
  assert.match(await section.textContent(),/Les données ont été collectées, mais leur publication dans l’application a échoué/)
  assert.match(await overview.textContent(),/La collecte a réussi ; son déploiement reste à reprendre/)
- assert.equal(await overview.getByText('Dernier contrôle de collecte réussi',{exact:true}).count(),1)
- assert.equal(await overview.getByText('Dernière publication réussie',{exact:true}).count(),1)
+ const insuranceRow=overview.locator('.dr-item').filter({has:page.getByRole('heading',{name:'Assurance-vie',exact:true})})
+ assert.equal(await insuranceRow.getByText('Dernier contrôle de collecte réussi',{exact:true}).count(),1)
+ assert.equal(await insuranceRow.getByText('Dernière publication réussie',{exact:true}).count(),1)
  assert.match(await overview.textContent(),/10\/10\/2026/)
  assert.match(await overview.textContent(),/09\/10\/2026/)
 
