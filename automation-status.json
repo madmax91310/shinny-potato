@@ -32,16 +32,16 @@
     },
     "update-market-monthly.yml": {
       "name": "Historiques mensuels des marchés",
-      "runId": 38458082603,
+      "runId": 38460410768,
       "attempt": 1,
-      "completedAt": "2026-10-13T20:14:50Z",
+      "completedAt": "2026-10-13T20:36:31Z",
       "status": "success",
-      "lastSuccessAt": "2026-10-13T20:14:50Z",
+      "lastSuccessAt": "2026-10-13T20:36:31Z",
       "collectionStatus": "success",
       "publicationStatus": "not-run",
-      "lastCollectionSuccessAt": "2026-10-13T20:14:50Z",
+      "lastCollectionSuccessAt": "2026-10-13T20:36:31Z",
       "lastPublicationSuccessAt": "2026-10-13T04:57:51Z",
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38458082603",
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38460410768",
       "failures": [],
       "dataFailures": {}
     },
@@ -268,23 +268,16 @@
       "runId": 38420855615,
       "attempt": 1,
       "completedAt": "2026-10-13T15:39:43Z",
-      "status": "failure",
-      "lastSuccessAt": null,
-      "collectionStatus": "failure",
+      "status": "success",
+      "lastSuccessAt": "2026-10-13T15:39:43Z",
+      "collectionStatus": "success",
       "publicationStatus": "success",
-      "lastCollectionSuccessAt": null,
+      "lastCollectionSuccessAt": "2026-10-13T15:39:43Z",
       "lastPublicationSuccessAt": "2026-10-13T15:39:39Z",
       "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38420855615",
       "failures": [],
-      "dataFailures": {
-        "IE000A89Y2G7": {
-          "name": "IE000A89Y2G7",
-          "completedAt": "2026-10-13T15:39:43Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38420855615",
-          "cause": "No complete annual NAV total return yet"
-        }
-      }
+      "dataFailures": {}
     }
   },
-  "updatedAt": "2026-10-13T20:28:30Z"
+  "updatedAt": "2026-10-13T20:36:31Z"
 }
