@@ -143,10 +143,13 @@ class BrokerProfilesTests(unittest.TestCase):
             self.assertEqual(observed['status'],'confirmé')
         dca=parse('ibkr','dca',raws('ibkr','dca'),TODAY)
         self.assertEqual({ref['document'] for ref in dca['refs']},
-                         {'ibkrFractionalFaq','ibkrRecurringEligibilityFaq'})
-        self.assertIsNone(dca['available'])
-        self.assertEqual(dca['status'],'partiel')
+                         {'ibkrFractionalFaq','ibkrRecurringEligibilityFaq','ibkrDcaRequirement'})
+        self.assertFalse(dca['available'])
+        self.assertEqual(dca['status'],'confirmé')
         self.assertIn('Rapprochement',dca['method'])
+        altered=raws('ibkr','dca')
+        altered['ibkrDcaRequirement']=altered['ibkrDcaRequirement'].replace('Account must have fractional share trading enabled','Account may have fractional share trading enabled')
+        with self.assertRaises(ValueError):parse('ibkr','dca',altered,TODAY)
         altered=raws('ibkr','dca')
         altered['ibkrRecurringEligibilityFaq']='Recurring Investment is available on PEA.'
         with self.assertRaises(ValueError):parse('ibkr','dca',altered,TODAY)

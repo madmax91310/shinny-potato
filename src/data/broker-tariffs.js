@@ -1,8 +1,21 @@
 import snapshot from './automated-broker-tariffs.json' with { type: 'json' }
+import reviewed from './reviewed-broker-profiles.json' with { type: 'json' }
 const number = value => value.toLocaleString('fr-FR', {maximumFractionDigits: 2}).replace(/\u202f/g, ' ')
 export const BROKER_TARIFFS = snapshot.brokers
 export const BROKER_PROFILE_FIELDS = ['dca','pea','pme','jeune','ifu','cash','boursomarkets'];
-export function brokerProfile(id, observations = snapshot.brokers) { return observations[id]?.profile ?? {}; }
+export function brokerProfile(id, observations = snapshot.brokers, today = new Intl.DateTimeFormat('en-CA', {timeZone:'Europe/Paris'}).format(new Date())) {
+  const profile = {...observations[id]?.profile};
+  for (const [key, claim] of Object.entries(reviewed.claims[id] ?? {})) {
+    // A current explicit issuer answer wins. Expired external reviews never
+    // turn an unknown official answer into a permanent negative.
+    if (profile[key]?.available != null || profile[key]?.status === 'confirmé' || claim.checkedAt > today || claim.reviewUntil < today) continue;
+    const refs = claim.sources.map(document => ({document:`reviewed_${document}`,sourceUrl:reviewed.sources[document].url,kind:'secondary-page',title:reviewed.sources[document].title,asOf:reviewed.sources[document].asOf}));
+    profile[key] = {available:claim.available,status:claim.status,checkedAt:claim.checkedAt,reviewUntil:claim.reviewUntil,
+      asOf:null,sourceUrl:refs[0].sourceUrl,refs,checkedSources:refs,copy:{full:claim.text},scope:`${id} ; ${key} ; recoupement externe manuel`,
+      method:'Deux sources externes relues ; cette corroboration ne constitue pas une confirmation contractuelle du courtier.',reviewed:true};
+  }
+  return profile;
+}
 export function applyBrokerProfile(broker, observations = snapshot.brokers) {
   const profile = brokerProfile(broker.id, observations);
   const result = {...broker, post:{...broker.post}, pea:{...broker.pea}};
@@ -10,13 +23,13 @@ export function applyBrokerProfile(broker, observations = snapshot.brokers) {
     const o = profile[key]; if (!o) continue;
     const text=o.copy.full;
     const resume=o.available === null ? 'À vérifier' : key==='dca' ? (o.available ? 'Oui · sous conditions' : 'Non actuellement sur PEA') : key==='ifu' ? (o.available ? 'Oui · selon les opérations' : 'Non') : text;
-    result[key]={resume, detail:text};
+    result[key]={resume:resume+(o.status === 'corroboré' ? '*' : ''), detail:text};
     result.post[key]=[text];
   }
   for (const key of ['pea','pme','jeune']) if (profile[key]) result.pea[key]=profile[key].available;
   if (profile.cash) {
     const o=profile.cash;
-    result.cash={resume:o.available === null ? 'À vérifier' : o.available ? 'Non sur PEA · hors PEA sous conditions' : 'Non',detail:o.copy.full,post:o.copy.full};
+    result.cash={resume:o.available === null ? 'À vérifier' : o.available ? 'Non sur PEA · hors PEA sous conditions' : o.status === 'corroboré' ? 'Non*' : 'Non',detail:o.copy.full,post:o.copy.full};
   }
   return result;
 }

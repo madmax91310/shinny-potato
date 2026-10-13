@@ -1,4 +1,4 @@
-import { brokerTariffCopy, brokerFieldCopies, BROKER_TARIFFS } from '../../data/broker-tariffs.js';
+import { brokerTariffCopy, brokerFieldCopies, brokerProfile, BROKER_TARIFFS } from '../../data/broker-tariffs.js';
 // Registre éditorial : PDF officiels et pages publiées par les courtiers.
 // Dans les PDF, la première page porte le numéro 1.
 // « Non établi » ne signifie jamais « non proposé ».
@@ -286,19 +286,20 @@ for (const [id, observation] of Object.entries(BROKER_TARIFFS)) {
 
 // Every product claim follows its separately revalidated official profile.
 for (const [id, observation] of Object.entries(BROKER_TARIFFS)) {
-  for (const [field,o] of Object.entries(observation.profile ?? {})) {
+  for (const [field,o] of Object.entries(brokerProfile(id))) {
     if (['entrant','sortant'].includes(field)) continue;
     const refs=o.refs.map((ref,index) => {
       const document=`${id}AutomatedProfile${field}${index}`;
-      OFFICIAL_SOURCES[document]={title:`${brokerNames[id]} · ${field}`,url:ref.sourceUrl,
-        checked:o.checkedAt.split('-').reverse().join('/'),edition:'Document public ; contrôle automatique de la clause',kind:ref.kind};
+      const registry = o.reviewed ? SECONDARY_SOURCES : OFFICIAL_SOURCES;
+      registry[document]={title:ref.title ?? `${brokerNames[id]} · ${field}`,url:ref.sourceUrl,
+        checked:o.checkedAt.split('-').reverse().join('/'),edition:o.reviewed ? ref.asOf ?? 'Publication externe non datée ; relecture manuelle' : 'Document public ; contrôle automatique de la clause',kind:ref.kind};
       return {document,...(ref.kind==='pdf' ? {page:ref.page} : {})};
     });
     const prior=BROKER_EVIDENCE[id][field];
     const generalFx = id==='ibkr' && field==='change' ? observation.fields?.change : null;
     const summary=o.copy.full+(generalFx ? ' Hors PEA / compte général : '+generalFx.copy.full : '');
     if (generalFx) refs.push({document:fieldDocument(id,'change')});
-    BROKER_EVIDENCE[id][field]={status:o.status,summary,refs,automatedEvidence:o,
+    BROKER_EVIDENCE[id][field]={status:o.status,summary,refs,automatedEvidence:o.reviewed ? observation.profile[field] : o,...(o.reviewed ? {reviewedEvidence:o} : {}),
       ...(field==='change' ? {post:o.copy.full} : {}),
       ...(prior.review ? {review:{...prior.review,checked:o.checkedAt.split('-').reverse().join('/'),
         ...(o.status==='confirmé' ? {outcome:'resolved',explicitStatement:o.statement,scope:o.scope,decisiveRefs:refs,documents:refs.map(ref=>ref.document),followUp:o.method} : {outcome:'unresolved'})}} : {})};

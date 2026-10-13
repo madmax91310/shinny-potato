@@ -1,7 +1,7 @@
 import practicalReferences from './automated-practical-sheets.json' with { type: 'json' };
 import { TOPICS as PRACTICAL_TOPICS, FUND_GROUPS as PRACTICAL_FUND_GROUPS } from './practical-sheet-topics.js';
 import { REGULATORY_OBSERVATIONS, REGULATORY_LEXICON_SOURCES } from './regulatory-data.js';
-import { BROKER_TARIFFS, brokerTariffCopy } from './broker-tariffs.js';
+import { BROKER_TARIFFS, brokerTariffCopy, brokerProfile } from './broker-tariffs.js';
 import { INDEX_DECISION_CASE_DEFINITIONS } from './index-decision-cases.js'
 import { REVIEWED_PERFORMANCE_META } from './instrument-performance-review.js';
 import { AUTOMATED_ETF, HISTORICAL_AUTOMATED_PERFORMANCE as AUTOMATED_PERFORMANCE, AUTOMATED_PERFORMANCE as LIVE_PERFORMANCE } from './automated-etf.js';
@@ -187,7 +187,7 @@ export const DATA_CATALOG = Object.freeze([
   ...Object.entries(BROKER_TARIFFS).map(([id, observation]) => ({
     id: `broker:${id}`, type: 'broker', name: {bourso:'BoursoBank · Découverte',fortuneo:'Fortuneo · Starter',xtb:'XTB',saxo:'Saxo · Classic',caidf:'Crédit Agricole Île-de-France',ibkr:'Interactive Brokers · France',tr:'Trade Republic',bd:'Bourse Direct'}[id], aliases: [id, 'courtage', 'tarifs'],
     consumers: [{tool: 'Comparateur de courtiers', path: '/comparatif-courtiers'}],
-    fields: [field('Tarif courtage automatisé', 'broker-tariffs', {...observation.values, description: brokerTariffCopy(id).full}, observation), ...Object.entries(observation.fields ?? {}).map(([key,o]) => field(`Paramètre automatisé · ${key}`, 'broker-tariffs', {...o.values,description:o.copy.full},o)), ...Object.entries(observation.profile ?? {}).map(([key,o]) => field(`Conditions officielles · ${key}`, 'broker-tariffs', {available:o.available,status:o.status,description:o.copy.full}, {...o,sourceUrls:o.checkedSources.map(s=>s.sourceUrl),dateStatus:'not-published'}))],
+    fields: [field('Tarif courtage automatisé', 'broker-tariffs', {...observation.values, description: brokerTariffCopy(id).full}, observation), ...Object.entries(observation.fields ?? {}).map(([key,o]) => field(`Paramètre automatisé · ${key}`, 'broker-tariffs', {...o.values,description:o.copy.full},o)), ...Object.entries(observation.profile ?? {}).map(([key,o]) => field(`Conditions officielles · ${key}`, 'broker-tariffs', {available:o.available,status:o.status,description:o.copy.full}, {...o,sourceUrls:o.checkedSources.map(s=>s.sourceUrl),dateStatus:'not-published'})), ...Object.entries(brokerProfile(id)).filter(([,o]) => o.reviewed).map(([key,o]) => field(`Recoupement externe · ${key}`, 'broker-tariffs', {available:o.available,status:o.status,description:o.copy.full}, {...o,sourceUrls:o.refs.map(r=>r.sourceUrl),dateStatus:'not-published',note:`Sources externes relues ; revue à renouveler après le ${o.reviewUntil}`}))],
   })),
   ...TERMES.map((value) => ({ id: `lexicon:${value.id}`, type: 'lexicon', name: value.titre ?? value.nom ?? value.title ?? value.terme ?? value.id, aliases: [value.id], consumers: [{ tool: 'Fiche lexique', path: '/fiche-lexique' }], fields: [field('Définition', 'financial-lexicon', value, { ...SUPPORTING_EVIDENCE[`lexicon:${value.id}`], dateStatus: 'not-applicable', scope: value.id }),
     ...(REGULATORY_LEXICON_SOURCES[value.id] ?? []).map(key => {

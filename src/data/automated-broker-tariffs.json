@@ -1812,11 +1812,11 @@
       "discoveryUrl": null,
       "profile": {
         "dca": {
-          "available": null,
-          "status": "partiel",
+          "available": false,
+          "status": "confirmé",
           "copy": {
-            "resume": "Les investissements récurrents nécessitent une permission de fractions ; les fractions sont exclues du PEA. Ces clauses ne précisent pas si un mode en titres entiers est disponible sur PEA. DCA PEA : disponibilité non confirmée.",
-            "full": "Les investissements récurrents nécessitent une permission de fractions ; les fractions sont exclues du PEA. Ces clauses ne précisent pas si un mode en titres entiers est disponible sur PEA. DCA PEA : disponibilité non confirmée."
+            "resume": "Le service Recurring Investments est indisponible sur PEA : il exige l’activation des fractions, interdite sur ce compte.",
+            "full": "Le service Recurring Investments est indisponible sur PEA : il exige l’activation des fractions, interdite sur ce compte."
           },
           "checkedAt": "2026-10-13",
           "sourceUrl": "https://www.interactivebrokers.ie/lib/cstools/faq/#/content/663047475",
@@ -1838,22 +1838,31 @@
               "sha256": "002d64800ffa3f2545c02f6c16e7bbca4e45b4e910784efa23af73feecbce38c",
               "kind": "page",
               "statement": "Recurring Investment is available to any client that has fractional share trading enabled"
+            },
+            {
+              "document": "ibkrDcaRequirement",
+              "sourceUrl": "https://www.interactivebrokers.com/campus/glossary-terms/dollar-cost-averaging-dca/",
+              "discoveryUrl": null,
+              "page": null,
+              "sha256": "4756424e331ac7452e3e4dc950eb7b3ea5a2e83a3c5b017f1e0e6df132116331",
+              "kind": "page",
+              "statement": "Account must have fractional share trading enabled"
             }
           ],
           "scope": "ibkr ; dca ; portée exacte des sources publiques",
-          "method": "Rapprochement de deux clauses officielles : permission de fractions requise pour le service et fractions exclues du PEA ; disponibilité d’un mode PEA en titres entiers non établie",
-          "sha256": "60ca7ab5f9a8bb927e2d5fdb601875862403b1552b93277b09a368181cef098a",
+          "method": "Rapprochement de trois sources officielles : condition obligatoire d’activation des fractions pour Recurring Investments, entité IBIE éligible, et fractions interdites sur PEA ; exclusion déduite de cette incompatibilité",
+          "sha256": "059f9157665e0d9a67693dfe44f99811ec2ca696ec7a80873c71d1ff1213e5cd",
           "values": {},
           "decisiveDocument": "ibkrFractionalFaq",
           "statement": "Fractional share trading is not allowed in a PEA Account",
           "checkedSources": [
             {
               "sourceUrl": "https://www.interactivebrokers.ie/fr/accounts/plan-depargne-en-action-accounts.php",
-              "sha256": "7ad3aa51a9b0cb6ecf294fdad51d7d6d16135733fd4f05e71da3b4b8b1598e00"
+              "sha256": "379e1b19962503c56d30db491aea18ad750fd71a94aebabdd2999f5812a0fc5a"
             },
             {
               "sourceUrl": "https://www.interactivebrokers.ie/fr/trading/recurring-investments.php",
-              "sha256": "b2dd677429616f24ec8a115aa99e83acc7d927840bbd4a79206d9d84a5cd4426"
+              "sha256": "cfd4ed2a30ffaa6f3a340dca653a77f68cc1853fa61b5960c93c7d3df3887328"
             },
             {
               "sourceUrl": "https://www.interactivebrokers.ie/lib/cstools/faq/#/content/663047475",
@@ -1864,16 +1873,8 @@
               "sha256": "002d64800ffa3f2545c02f6c16e7bbca4e45b4e910784efa23af73feecbce38c"
             },
             {
-              "sourceUrl": "https://www.ibkrguides.com/clientportal/adding-accounts-info.htm",
-              "sha256": "2882f95204a55dafa148a2fe9094ce08ca69dbacf66adba7ffd5b13de50ae5bf"
-            },
-            {
-              "sourceUrl": "https://www.interactivebrokers.ie/fr/trading/ordertypes.php",
-              "sha256": "f5d503c4ec58a98acc9796c86da2e0bc41d38ff9b61dde783c8dd573d2ec5fad"
-            },
-            {
-              "sourceUrl": "https://www.interactivebrokers.ie/fr/trading/third-party-integration.php",
-              "sha256": "49efed0db1a36bfb258b1df1a701074b8d59d46f623a3dca9a928b0841ea4862"
+              "sourceUrl": "https://www.interactivebrokers.com/campus/glossary-terms/dollar-cost-averaging-dca/",
+              "sha256": "4756424e331ac7452e3e4dc950eb7b3ea5a2e83a3c5b017f1e0e6df132116331"
             }
           ]
         },

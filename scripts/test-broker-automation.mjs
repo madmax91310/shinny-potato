@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict'
-import {BROKER_TARIFFS, brokerOffers, brokerFieldCopies, applyBrokerProfile} from '../src/data/broker-tariffs.js'
+import {BROKER_TARIFFS, brokerOffers, brokerFieldCopies, brokerProfile, applyBrokerProfile} from '../src/data/broker-tariffs.js'
 import {BROKERS} from '../src/pages/broker-comparator/data.js'
 import {BROKER_EDITORIAL} from '../src/pages/broker-comparator/editorial.js'
 import {BROKER_EVIDENCE, OFFICIAL_SOURCES, transferConditionStatus} from '../src/pages/broker-comparator/evidence.js'
@@ -9,9 +9,9 @@ for (const [id,o] of Object.entries(BROKER_TARIFFS)) {
  const copies=brokerFieldCopies(id)
  for (const [field,value] of Object.entries(o.fields??{})) {
   assert(record.fields.some(f=>JSON.stringify(f).includes(value.sourceUrl)),`${id}:${field} source lost from catalogue`)
-  if (['garde','change'].includes(field)) assert(BROKER_EVIDENCE[id][field].summary.startsWith((o.profile?.[field] ?? value).copy.full))
-  if (['garde','entrant','sortant'].includes(field)) assert.equal(BROKER_EDITORIAL[id][field],o.profile?.[field]?.copy.full ?? copies[field])
-  if (field==='garde') assert.equal(broker.post.garde[0],(o.profile?.garde ?? value).copy.full)
+  if (['garde','change'].includes(field)) assert(BROKER_EVIDENCE[id][field].summary.startsWith((brokerProfile(id)?.[field] ?? value).copy.full))
+  if (['garde','entrant','sortant'].includes(field)) assert.equal(BROKER_EDITORIAL[id][field],brokerProfile(id)?.[field]?.copy.full ?? copies[field])
+  if (field==='garde') assert.equal(broker.post.garde[0],(brokerProfile(id)?.garde ?? value).copy.full)
   if (field.startsWith('offer')) assert.equal(OFFICIAL_SOURCES[`${id}Automated${field}`].reviewUntil,value.until)
  }
 }
@@ -23,7 +23,7 @@ assert.doesNotMatch(brokerFieldCopies('saxo',BROKER_TARIFFS,'2027-01-01').entran
 assert.match(brokerFieldCopies('saxo',BROKER_TARIFFS,'2027-01-01').entrant,/expirée/)
 assert.equal(brokerFieldCopies('saxo',BROKER_TARIFFS,'2025-01-05').entrant,undefined)
 assert.equal(BROKER_EVIDENCE.ibkr.change.status,'partiel')
-assert.equal(BROKER_EVIDENCE.tr.garde.status,'partiel')
+assert.equal(BROKER_EVIDENCE.tr.garde.status,'corroboré')
 for (const id of ['tr', 'caidf']) {
  assert.equal(BROKER_EVIDENCE[id].transfert.status, 'partiel', `${id}: transfer fees remain unknown`);
  assert.match(BROKER_EVIDENCE[id].transfert.summary, /confirmer|non qualifiés/);
@@ -32,7 +32,7 @@ assert.equal(transferConditionStatus({values:{available:1}}), 'partiel');
 assert.equal(transferConditionStatus({values:{available:0}}), 'confirmé');
 assert.equal(transferConditionStatus({values:{available:1,fee:0}}), 'confirmé');
 assert.equal(transferConditionStatus({values:{perLine:15,maximum:150}}), 'confirmé');
-assert.match(BROKERS.find(b=>b.id==='tr').garde.detail,/PEA.*confirmer/)
+assert.match(BROKERS.find(b=>b.id==='tr').garde.detail,/0 €.*PEA/)
 assert.doesNotMatch(BROKER_EDITORIAL.tr.garde,/aucun ✅/)
 for(const id of ['xtb','caidf','saxo']) assert(BROKER_EVIDENCE[id].transfert.summary.includes(BROKER_EDITORIAL[id].entrant.split('✅').at(-1).split('❌')[0].trim().slice(0,8)) || BROKER_EVIDENCE[id].transfert.summary.includes('Transfert entrant') || BROKER_EVIDENCE[id].transfert.summary.includes('antériorité'))
 const changed=structuredClone(BROKER_TARIFFS)
@@ -70,3 +70,17 @@ assert(!future.includes('70 actions') && !future.includes('ETF Amundi de la sél
 assert(!/offre.*expirée|à confirmer/.test(future));
 
 assert(!brokerShortCopy('tr',changed).verdict.includes('achats programmés'));
+
+// External reviews expire and never override an explicit issuer observation.
+assert.equal(brokerProfile('tr', BROKER_TARIFFS, '2026-10-13').pme.available, false);
+assert.equal(brokerProfile('tr', BROKER_TARIFFS, '2026-11-14').pme.available, null);
+const issuerChange = structuredClone(BROKER_TARIFFS);
+issuerChange.tr.profile.pme = {...issuerChange.tr.profile.pme,available:true,status:'confirmé'};
+assert.equal(brokerProfile('tr', issuerChange, '2026-10-13').pme.available, true);
+assert.equal(brokerProfile('tr', issuerChange, '2026-10-13').pme.reviewed, undefined);
+for (const id of ['tr','bourso','fortuneo','bd']) for (const [key, review] of Object.entries(brokerProfile(id))) {
+ if (!review.reviewed) continue;
+ assert.equal(new Set(review.refs.map(r => new URL(r.sourceUrl).hostname)).size, 2);
+ assert.equal(BROKER_EVIDENCE[id][key].status, 'corroboré');
+ assert(DATA_CATALOG.find(r => r.id === `broker:${id}`).fields.some(f => f.value.description === review.copy.full));
+}

@@ -1,60 +1,78 @@
-# Comparatif courtiers — revue du 13 octobre 2026
+# Comparatif courtiers — recherche et vérification du 13 octobre 2026
 
-La revue couvre les 8 courtiers et les 11 rubriques (88 cellules). Bilan corrigé : **68 confirmées, 7 sans objet, 11 partielles et 2 non établies**. La confirmation intégrale n'est pas acquise : 13 rubriques demandent une preuve officielle supplémentaire.
+**69 confirmations officielles, 6 réponses recoupées, 7 cases sans objet, 6 rubriques partielles.** Les 88 cases sont examinées. Sept points ont trouvé une réponse exploitable pendant la recherche complémentaire : un officiel, six externes. Le statut externe reste visible dans le registre ; aucune corroboration n’est présentée comme une confirmation contractuelle.
 
-## Correction du bilan
+## Sources et méthode
 
-Les transferts PEA de Trade Republic et de Crédit Agricole Île-de-France étaient marqués confirmés alors que leurs textes laissaient les frais incomplets. Une clause de disponibilité ne suffit plus à confirmer la rubrique complète. Le bilan précédent de 70 confirmations comptait ces deux rubriques ; le bilan corrigé en compte 68. Les textes et les conditions documentées sont conservés. Une observation tarifée pourra lever la réserve automatiquement.
+La collecte GitHub du 13 octobre a revalidé les 8 barèmes et 56 champs de services sans erreur ([run 38393773704](https://github.com/madmax91310/shinny-potato/actions/runs/38393773704)). Les 6 recoupements manuels sont séparés de cette collecte et expirent après le 13 novembre 2026. Les 5 sources du dossier DCA IBKR, dont les 3 clauses décisives, ont été retéléchargées directement après adaptation du collecteur.
 
-## Contrôle réel des sources
+La documentation [IBKR Campus](https://www.interactivebrokers.com/campus/glossary-terms/dollar-cost-averaging-dca/) impose explicitement l’activation des fractions pour Recurring Investments. Ce caractère obligatoire, associé à l’exclusion des fractions dans la FAQ PEA, résout l’ambiguïté précédente : ce service n’est pas disponible sur PEA. La revalidation quotidienne contrôle les trois clauses ; une modification bloque la recertification.
 
-Le 13 octobre, la collecte directe a revalidé 7 barèmes sur 8 et 50 champs de services. Bourse Direct renvoie HTTP 502 pour son barème et plusieurs sources (domaines .fr et .com) ; ses dernières preuves du 12 octobre restent conservées avec leur date. Ces erreurs sont enregistrées séparément et ne recertifient pas les données conservées. La collecte GitHub du même jour a ensuite revalidé les **8 barèmes et 56 champs de services, sans erreur** ([run 38393773704](https://github.com/madmax91310/shinny-potato/actions/runs/38393773704)). Le jeu de données actif reprend cette collecte complète ; le bilan reste 68 confirmations, 7 sans objet et 13 rubriques incomplètes. Les audits de couverture, des 56 duels et des consommateurs ont été exécutés.
+Six réponses sont désormais exploitées dans le comparatif avec le statut distinct « corroboré » : garde PEA Trade Republic à 0 €, PEA-PME Trade Republic absent, achats automatiques PEA Fortuneo absents, espèces CTO BoursoBank/Fortuneo/Bourse Direct non rémunérées. Chaque réponse conserve deux domaines sources, la date de relecture et une échéance au 13 novembre 2026. Une réponse officielle explicite prime immédiatement ; une revue externe périmée cesse de remplir la rubrique. Les sources externes ne sont pas introduites dans la collecte officielle ni présentées comme revalidées quotidiennement.
 
-Les contrats France Trade Republic, conditions générales Fortuneo et BoursoBank, convention CTO régionale CA IDF et FAQ IBKR ont été relus. La FAQ IBKR [1112361625](https://www.interactivebrokers.ie/lib/cstools/faq/#/content/1112361625), en complément des FAQ déjà raccordées, exige la permission de fractions pour le service récurrent ; elle ne décrit pas un mode PEA en titres entiers. Le menu PEA sur une page générique ne démontre pas la compatibilité de cette fonctionnalité.
+| Réponse | Source récente | Recoupement |
+| --- | --- | --- |
+| TR : garde PEA 0 € | [Finance Héros, 30/09/2026](https://finance-heros.fr/avis-courtier/avis-pea-trade-republic/) | [extraETF, 12/02/2026](https://extraetf.com/fr/ressources/pea-trade-republic) |
+| TR : pas de PEA-PME | [Finance Héros](https://finance-heros.fr/avis-courtier/avis-pea-trade-republic/) | [Ideal Investisseur](https://www.ideal-investisseur.fr/pea/trade-republic-8.html) |
+| Fortuneo : pas de DCA automatisé PEA | [Rankia](https://rankia.fr/fortuneo-bourse-avis-pea-compte-titres/) | [Le Monde, 26/09/2025](https://www.lemonde.fr/argent/article/2025/09/26/comment-faire-des-investissements-programmes-sur-un-pea_6642989_1657007.html) |
+| BoursoBank : cash CTO sans intérêts | [S’investir, 05/10/2026](https://sinvestir.fr/cto-boursobank-avis/) | [BrokerChooser](https://brokerchooser.com/fr/broker-reviews/boursobank-review) |
+| Fortuneo : cash CTO sans intérêts | [BrokerChooser](https://brokerchooser.com/fr/broker-reviews/fortuneo-banque-review/fortuneo-banque-fees) | [Détective Banque](https://www.detective-banque.fr/comparatif-de-bourse-en-ligne-quelle-offre-choisir/) |
+| Bourse Direct : cash CTO sans intérêts | [BrokerChooser](https://brokerchooser.com/fr/broker-reviews/bourse-direct-review) | [Détective Banque](https://www.detective-banque.fr/comparatif-de-bourse-en-ligne-quelle-offre-choisir/) |
 
-La [FAQ tarifs Trade Republic](https://support.traderepublic.com/fr-fr/366) renvoie à la liste de prix et services dans l'application. Les sources publiques ne remplacent pas cette grille pour les frais propres au PEA. Les articles pédagogiques sur le DCA, le prêt de titres et les livrets ne prouvent respectivement ni les achats automatiques PEA, ni la rémunération du cash CTO.
+Les publications externes ne sont pas toutes fiables pour les tarifs restants : Rankia laisse le transfert sortant Trade Republic sur grille disponible sur demande, tandis que d’autres sites annoncent 0 €. L’archive tarifaire Trade Republic d’avril 2025 ne décrit pas explicitement le PEA et ne suffit pas pour octobre 2026. Le lien de grille d’extraETF renvoie à un ancien contrat 09/2022. Les tarifs d’autres caisses Crédit Agricole sont exclus.
 
-## Rubriques encore incomplètes
+Les marges de conversion des revenus Trade Republic sont variables selon la devise (FAQ officielle 319) : ce mécanisme est affiché sans inventer de pourcentage unique. La conversion PEA IBKR est automatique ; le taux généralement annoncé de 0,03 % appartient au barème général du service, qui précise que des accords/programmes peuvent modifier les conditions. Le montant propre au PEA reste distinct tant qu’il n’est pas confirmé.
 
-| Courtier | Rubrique | Ce qui manque |
+
+## Dernières questions à trancher
+
+| Établissement | Rubrique | Limite exacte |
 | --- | --- | --- |
 | Trade Republic | Conversion de devises | Revenus en devises convertis en euros au cours Trade Republic, avec marge d’achat/vente selon la devise. Commission propre au PEA non chiffrée. |
-| Trade Republic | Frais de garde | Frais de garde PEA à confirmer dans le barème ; gratuité du CTO distincte. |
-| Trade Republic | PEA-PME | PEA-PME : disponibilité non confirmée par le contrat public. |
 | Trade Republic | Transfert PEA | Entrée : possible ✅ Transfert entrant PEA prévu au contrat France ; un PEA contenant des titres non cotés est refusé. Frais PEA et remboursement éventuel non qualifiés par cette clause. Sortie : Transfert sortant PEA possible selon le contrat France. Les frais propres au PEA restent à confirmer dans le barème ; la gratuité du CTO ne les qualifie pas. |
-| BoursoBank | Liquidités rémunérées | Espèces du PEA non rémunérées ; rémunération du cash CTO non confirmée par les documents publics. |
 | Interactive Brokers | Conversion de devises | PEA : conversion automatique en cas d’achat d’un titre dans une autre devise ; barème propre au PEA non confirmé. Hors PEA / compte général : Barème général : généralement 0,03 % en automatique ; en manuel 0,002 %, minimum 2 USD. Application de ce barème au PEA à confirmer. |
-| Interactive Brokers | Investissement programmé | Les investissements récurrents nécessitent une permission de fractions ; les fractions sont exclues du PEA. Ces clauses ne précisent pas si un mode en titres entiers est disponible sur PEA. DCA PEA : disponibilité non confirmée. |
-| Fortuneo | Investissement programmé | Achats automatiques sur PEA : disponibilité non confirmée par les sources officielles du service. |
-| Fortuneo | Liquidités rémunérées | Espèces du PEA non rémunérées ; rémunération du cash CTO non confirmée par les documents publics. |
 | CA Île-de-France | Conversion de devises | CTO : conversion en euros au cours pratiqué par la caisse Île-de-France, avec frais et commissions associés. Montant et portée PEA non établis par cette clause. |
 | CA Île-de-France | Liquidités rémunérées | Espèces du PEA non rémunérées ; rémunération du cash CTO non confirmée par les documents publics. |
 | CA Île-de-France | Transfert PEA | Entrée : possible ✅ Transfert du PEA entre banques avec conservation de l’antériorité fiscale. Frais entrants et remboursement éventuel à confirmer auprès de la caisse Île-de-France. Sortie : 15 € par ligne, maximum 150 € vers un établissement hors Crédit Agricole ; frais de correspondant possibles sur les titres étrangers. |
-| Bourse Direct | Liquidités rémunérées | Espèces du PEA non rémunérées ; rémunération du cash CTO non confirmée par les documents publics. |
 
-## Pièces nécessaires pour terminer
+## Demandes préparées aux établissements — non envoyées
 
-- Trade Republic : grille France applicable au PEA (garde, conversion des revenus, transferts), et confirmation officielle de l'offre ou de l'exclusion du PEA-PME.
-- IBKR : confirmation officielle du barème de conversion sur PEA et de la disponibilité ou exclusion d'achats récurrents PEA en titres entiers.
-- Fortuneo : réponse officielle sur les achats automatiques PEA et sur les intérêts des espèces CTO.
-- BoursoBank et Bourse Direct : clause ou réponse officielle couvrant les espèces CTO.
-- Crédit Agricole Île-de-France : frais entrants PEA/remboursements, commission des conversions boursières et rémunération des espèces CTO. Une autre caisse ne suffit pas.
+### Trade Republic — service client France
 
-Aucun message n'a été envoyé aux établissements. Le contrôle quotidien existant continue à examiner les sources raccordées. Aucune inconnue n'est transformée en gratuité ou en réponse négative.
+Bonjour, je vérifie les conditions actuelles du PEA proposé par votre succursale française. Pouvez-vous communiquer la grille tarifaire PEA en vigueur et confirmer :
 
-## Registre complet
+1. Les frais de transfert entrant et sortant de l’intégralité du PEA, les éventuels frais de tiers et le remboursement éventuel des frais du courtier de départ.
+2. La règle et les marges de conversion des revenus en devises du PEA : la FAQ 319 s’applique-t-elle aussi au PEA et existe-t-il une autre commission ?
 
-La date ci-dessous est celle de la preuve active, pas une nouvelle date artificielle attribuée à une source indisponible. Les confirmations sont limitées aux conditions décrites dans la colonne constat.
+Merci d’indiquer la date d’effet et le lien ou document correspondant.
 
-| Courtier | Rubrique | État | Contrôle de la preuve | Constat et sources |
+### Interactive Brokers Ireland — assistance PEA
+
+Bonjour, votre FAQ PEA 663047458 prévoit une conversion automatique en cas de négociation d’un titre dans une autre devise. Le barème général du service de conversion automatique indique un ajustement généralement de 0,03 %, à votre discrétion. Ce barème s’applique-t-il aux clients directs détenant un PEA, sans minimum de 2 USD et sans autre commission propre au PEA ? Merci de préciser les exceptions éventuelles et la source en vigueur.
+
+### Crédit Agricole Île-de-France — service bourse particuliers
+
+Bonjour, je vérifie les conditions de votre caisse régionale pour un particulier en gestion libre, Invest Store Initial ou Intégral. Pouvez-vous confirmer les trois points suivants à partir des conditions en vigueur :
+
+1. Le compte espèces associé à un CTO est-il rémunéré ? Si oui, quelles conditions et quel taux ; sinon, quelle clause l’exclut ? Le PEA, les livrets, les placements monétaires et le compte spécial de couverture sont exclus de cette question.
+2. Quels sont les frais d’un transfert entrant PEA (y compris lignes étrangères), et existe-t-il une offre standard de remboursement des frais du courtier de départ ?
+3. Quelle commission/marge s’applique à la conversion de devises pour une opération boursière sur CTO ou PEA ? L’article 20 de la convention CTO décrit le cours de la caisse et les frais associés sans les chiffrer. La commission des virements bancaires internationaux ne répond pas à cette question.
+
+Merci de préciser la date d’effet et de joindre la grille correspondante.
+
+## Registre actuel des 88 cases
+
+Les dates indiquent la preuve active. Les recoupements externes conservent leur échéance et leurs sources ; les confirmations restent limitées à la portée de leur résumé.
+
+| Courtier | Rubrique | État | Contrôle | Constat et sources |
 | --- | --- | --- | --- | --- |
 | Trade Republic | Ordres PEA | confirmé | 2026-10-13 | 1 € de règlement externe par transaction ponctuelle hors plans d’épargne ; 2 € avec Direct Price. Spread, conversion et coûts tiers possibles. Les plafonds légaux PEA s’appliquent. [Source 1](https://support.traderepublic.com/fr-fr/784-Are-there-commissions-for-order-execution) [Source 2](https://support.traderepublic.com/fr-fr/835f9deb-b864-4587-b428-7facfc55296c) |
 | Trade Republic | Conversion de devises | partiel | 2026-10-13 | Revenus en devises convertis en euros au cours Trade Republic, avec marge d’achat/vente selon la devise. Commission propre au PEA non chiffrée. [Source 1](https://support.traderepublic.com/fr-fr/414) [Source 2](https://support.traderepublic.com/fr-fr/319?web_view=true) |
 | Trade Republic | BoursoMarkets | sans objet | sans objet | Offre BoursoMarkets propre à BoursoBank ; sans objet pour ce courtier.  |
 | Trade Republic | Investissement programmé | confirmé | 2026-10-13 | Plans programmés sur PEA sans frais d’exécution annoncés par Trade Republic ; frais des produits et spread possibles. [Source 1](https://support.traderepublic.com/fr-fr/ec74b91a-a9a7-4e80-b520-dd389dfbc68f) |
-| Trade Republic | Frais de garde | partiel | 2026-10-13 | Frais de garde PEA à confirmer dans le barème ; gratuité du CTO distincte. [Source 1](https://assets.traderepublic.com/assets/files/CA_FR-en-fr.pdf) [Source 2](https://support.traderepublic.com/fr-fr/719-How-expensive-is-it-to-open-a-securities-account) |
+| Trade Republic | Frais de garde | corroboré | 2026-10-13 | 0 € de droits de garde sur le PEA. [Source 1](https://finance-heros.fr/avis-courtier/avis-pea-trade-republic/) [Source 2](https://extraetf.com/fr/ressources/pea-trade-republic) |
 | Trade Republic | PEA | confirmé | 2026-10-13 | PEA proposé ✅ [Source 1](https://assets.traderepublic.com/assets/files/CA_FR-en-fr.pdf) |
-| Trade Republic | PEA-PME | non établi | 2026-10-13 | PEA-PME : disponibilité non confirmée par le contrat public. [Source 1](https://assets.traderepublic.com/assets/files/CA_FR-en-fr.pdf) |
+| Trade Republic | PEA-PME | corroboré | 2026-10-13 | PEA-PME non proposé. [Source 1](https://finance-heros.fr/avis-courtier/avis-pea-trade-republic/) [Source 2](https://www.ideal-investisseur.fr/pea/trade-republic-8.html) |
 | Trade Republic | PEA Jeune | confirmé | 2026-10-13 | PEA accessible aux majeurs rattachés, plafond de versements de 20 000 €. [Source 1](https://assets.traderepublic.com/assets/files/CA_FR-en-fr.pdf) |
 | Trade Republic | IFU | confirmé | 2026-10-13 | IFU pour l’offre française après migration ; anciens comptes étrangers distincts. [Source 1](https://assets.traderepublic.com/assets/files/CA_FR-en-fr.pdf) |
 | Trade Republic | Liquidités rémunérées | confirmé | 2026-10-13 | Intérêts possibles sur le compte général sous conditions et après activation ; espèces du PEA exclues. [Source 1](https://assets.traderepublic.com/assets/files/CA_FR-en-fr.pdf) |
@@ -68,12 +86,12 @@ La date ci-dessous est celle de la preuve active, pas une nouvelle date artifici
 | BoursoBank | PEA-PME | confirmé | 2026-10-13 | PEA-PME proposé ✅ [Source 1](https://www.boursobank.com/content/brochure_tarifaire/boursorama_bt.pdf) |
 | BoursoBank | PEA Jeune | confirmé | 2026-10-13 | PEA Jeune proposé ✅ [Source 1](https://www.boursobank.com/content/brochure_tarifaire/boursorama_bt.pdf) |
 | BoursoBank | IFU | confirmé | 2026-10-13 | IFU fourni selon les opérations à déclarer ; modalités dans la source officielle. [Source 1](https://www.boursobank.com/aide-en-ligne/fiscalite/ifu-imprime-fiscal-unique/qu-est-ce-qu-un-ifu-imprime-fiscal-unique/question/comment-telecharger-votre-imprime-fiscal-unique-ifu-2790948361) |
-| BoursoBank | Liquidités rémunérées | partiel | 2026-10-13 | Espèces du PEA non rémunérées ; rémunération du cash CTO non confirmée par les documents publics. [Source 1](https://www.boursorama.com/content/pdf/conditions-generales/conditions-generales.pdf) |
+| BoursoBank | Liquidités rémunérées | corroboré | 2026-10-13 | Espèces du PEA et du CTO non rémunérées ; livrets distincts. [Source 1](https://sinvestir.fr/cto-boursobank-avis/) [Source 2](https://brokerchooser.com/fr/broker-reviews/boursobank-review) |
 | BoursoBank | Transfert PEA | confirmé | 2026-10-13 | Entrée : Possible ✅ Premier transfert total : frais remboursés au double, jusqu’à 3 000 €, sans dépasser la valeur du compte, sous conditions. Justificatif à envoyer dans les 3 mois ; compte toujours ouvert au remboursement. Sortie : 15 € par ligne, maximum 150 €. [Source 1](https://www.boursobank.com/aide-en-ligne/bourse/mobilite-bourse/question/proposez-vous-une-offre-en-cas-de-transfert-de-compte-bourse-53103659) [Source 2](https://www.boursobank.com/content/brochure_tarifaire/boursorama_bt.pdf) |
 | Interactive Brokers | Ordres PEA | confirmé | 2026-10-13 | Actions France : 0,05 %, minimum 1,25 € en dégressif, plus frais de Bourse possibles. En fixe SmartRouting : 0,05 %, minimum 3 € ; routage direct 0,1 %, minimum 4 €. Autres places : barèmes distincts, sous le plafond légal PEA. [Source 1](https://www.interactivebrokers.ie/fr/pricing/commissions-stocks-europe.php) |
 | Interactive Brokers | Conversion de devises | partiel | 2026-10-13 | PEA : conversion automatique en cas d’achat d’un titre dans une autre devise ; barème propre au PEA non confirmé. Hors PEA / compte général : Barème général : généralement 0,03 % en automatique ; en manuel 0,002 %, minimum 2 USD. Application de ce barème au PEA à confirmer. [Source 1](https://www.interactivebrokers.ie/lib/cstools/faq/#/content/663047458) [Source 2](https://www.interactivebrokers.ie/fr/pricing/commissions-spot-currencies.php) |
 | Interactive Brokers | BoursoMarkets | sans objet | sans objet | Offre BoursoMarkets propre à BoursoBank ; sans objet pour ce courtier.  |
-| Interactive Brokers | Investissement programmé | partiel | 2026-10-13 | Les investissements récurrents nécessitent une permission de fractions ; les fractions sont exclues du PEA. Ces clauses ne précisent pas si un mode en titres entiers est disponible sur PEA. DCA PEA : disponibilité non confirmée. [Source 1](https://www.interactivebrokers.ie/lib/cstools/faq/#/content/663047475) [Source 2](https://www.interactivebrokers.ie/lib/cstools/faq/#/content/370325745) |
+| Interactive Brokers | Investissement programmé | confirmé | 2026-10-13 | Le service Recurring Investments est indisponible sur PEA : il exige l’activation des fractions, interdite sur ce compte. [Source 1](https://www.interactivebrokers.ie/lib/cstools/faq/#/content/663047475) [Source 2](https://www.interactivebrokers.ie/lib/cstools/faq/#/content/370325745) [Source 3](https://www.interactivebrokers.com/campus/glossary-terms/dollar-cost-averaging-dca/) |
 | Interactive Brokers | Frais de garde | confirmé | 2026-10-13 | Aucun droit de garde ni frais de tenue de compte PEA annoncés. [Source 1](https://www.interactivebrokers.ie/fr/accounts/plan-depargne-en-action-accounts.php) |
 | Interactive Brokers | PEA | confirmé | 2026-10-13 | PEA proposé aux résidents fiscaux français ✅ [Source 1](https://www.interactivebrokers.ie/fr/accounts/plan-depargne-en-action-accounts.php) |
 | Interactive Brokers | PEA-PME | confirmé | 2026-10-13 | IBKR does not offer PEA-PME Accounts. [Source 1](https://www.interactivebrokers.ie/lib/cstools/faq/#/content/749793090) |
@@ -84,13 +102,13 @@ La date ci-dessous est celle de la preuve active, pas une nouvelle date artifici
 | Fortuneo | Ordres PEA | confirmé | 2026-10-13 | Starter sur Euronext Paris, Bruxelles, Amsterdam ou Equiduct : 0 € le premier ordre du mois si son montant est inférieur ou égal à 500 €, puis 0,35 % par ordre. Anciens tarifs possibles pour les clients qui les conservent. [Source 1](https://www.fortuneo.fr/files/tarifs_fortuneo.pdf) |
 | Fortuneo | Conversion de devises | confirmé | 2026-10-13 | Taux J+1 et commission appliquée par l’intermédiaire + 0,12 %. [Source 1](https://www.fortuneo.fr/files/tarifs_fortuneo.pdf) |
 | Fortuneo | BoursoMarkets | sans objet | sans objet | Offre BoursoMarkets propre à BoursoBank ; sans objet pour ce courtier.  |
-| Fortuneo | Investissement programmé | non établi | 2026-10-13 | Achats automatiques sur PEA : disponibilité non confirmée par les sources officielles du service. [Source 1](https://www.fortuneo.fr/bourse/ordres-intelligents) |
+| Fortuneo | Investissement programmé | corroboré | 2026-10-13 | Pas d’achats automatiques sur PEA ; les ordres sont passés manuellement. [Source 1](https://rankia.fr/fortuneo-bourse-avis-pea-compte-titres/) [Source 2](https://www.lemonde.fr/argent/article/2025/09/26/comment-faire-des-investissements-programmes-sur-un-pea_6642989_1657007.html) |
 | Fortuneo | Frais de garde | confirmé | 2026-10-13 | Aucun ✅ [Source 1](https://www.fortuneo.fr/files/tarifs_fortuneo.pdf) |
 | Fortuneo | PEA | confirmé | 2026-10-13 | PEA proposé ✅ [Source 1](https://www.fortuneo.fr/files/tarifs_fortuneo.pdf) |
 | Fortuneo | PEA-PME | confirmé | 2026-10-13 | PEA-PME proposé ✅ [Source 1](https://www.fortuneo.fr/files/tarifs_fortuneo.pdf) |
 | Fortuneo | PEA Jeune | confirmé | 2026-10-13 | PEA Jeune non commercialisé ❌ [Source 1](https://www.fortuneo.fr/datas/files/fortuneo_cg.pdf) |
 | Fortuneo | IFU | confirmé | 2026-10-13 | IFU fourni selon les opérations à déclarer ; modalités dans la source officielle. [Source 1](https://www.fortuneo.fr/faq/comment-telecharger-mon-imprime-fiscal-unique-ifu) |
-| Fortuneo | Liquidités rémunérées | partiel | 2026-10-13 | Espèces du PEA non rémunérées ; rémunération du cash CTO non confirmée par les documents publics. [Source 1](https://www.fortuneo.fr/datas/files/fortuneo_cg.pdf) |
+| Fortuneo | Liquidités rémunérées | corroboré | 2026-10-13 | Espèces du PEA et du CTO non rémunérées ; Livret + distinct. [Source 1](https://brokerchooser.com/fr/broker-reviews/fortuneo-banque-review/fortuneo-banque-fees) [Source 2](https://www.detective-banque.fr/comparatif-de-bourse-en-ligne-quelle-offre-choisir/) |
 | Fortuneo | Transfert PEA | confirmé | 2026-10-13 | Entrée : Possible ✅ Premier transfert remboursé jusqu’à 100 € si l’encours est inférieur à 3 000 €, 150 € de 3 000 à moins de 5 000 €, ou 2 000 € à partir de 5 000 €, sous conditions. Justificatif dans les 3 mois suivant l’ouverture. Sortie : 15 € par ligne cotée, 50 € pour les titres non cotés ou nominatifs hors Euroclear, maximum 150 €. [Source 1](https://www.fortuneo.fr/faq/fortuneo-rembourse-t-il-les-frais-de-transfert-dun-compte-bourse) [Source 2](https://www.fortuneo.fr/faq/quelles-sont-les-conditions-de-remboursement-des-frais-de-transfert-de-compte-bourse-chez-fortuneo) [Source 3](https://www.fortuneo.fr/datas/files/tarifs_fortuneo.pdf) [Source 4](https://www.fortuneo.fr/files/tarifs_fortuneo.pdf) |
 | XTB | Ordres PEA | confirmé | 2026-10-13 | 0 % jusqu’à 100 000 € de transactions mensuelles cumulées sur tes comptes, puis 0,2 %. [Source 1](https://xas-new-cdn.xtb.com/file/0104/60/9eed09f6-8ad0-4895-bb8f-93dc9d02029f/table-des-frais-et-commissions-052026.pdf) |
 | XTB | Conversion de devises | confirmé | 2026-10-13 | 0,5 %. [Source 1](https://xas-new-cdn.xtb.com/file/0104/60/9eed09f6-8ad0-4895-bb8f-93dc9d02029f/table-des-frais-et-commissions-052026.pdf) |
@@ -117,13 +135,13 @@ La date ci-dessous est celle de la preuve active, pas une nouvelle date artifici
 | Bourse Direct | Ordres PEA | confirmé | 2026-10-13 | Euronext : plafond légal PEA de 0,50 % ; 0,99 € jusqu’à 500 €, 1,9 € jusqu’à 1000 €, 2,9 € jusqu’à 2000 €, 3,8 € jusqu’à 4400 €, puis 0,09 % sur la totalité de l’ordre. [Source 1](https://www.boursedirect.fr/pdf/tarifs_bd.pdf) |
 | Bourse Direct | Conversion de devises | confirmé | 2026-10-13 | Taux appliqué à Bourse Direct + 0,08 % par opération ; autres marchés : taux appliqué à Bourse Direct. [Source 1](https://www.boursedirect.fr/pdf/tarifs_bd.pdf) |
 | Bourse Direct | BoursoMarkets | sans objet | sans objet | Offre BoursoMarkets propre à BoursoBank ; sans objet pour ce courtier.  |
-| Bourse Direct | Investissement programmé | confirmé | 2026-10-13 | Plans programmés sur PEA et CTO ; ETF de la sélection sans courtage, actions au tarif habituel. [Source 1](https://groupe.boursedirect.fr/download/bourse-direct-lance-ses-plans-dinvestissement-programmes-sans-frais-sur-etf-a-partir-de-quelques-euros-disponibles-sur-pea-et-compte-titres?ind=1778573829227&filename=2026_BD_CP_Plan-Investissement.pdf&wpdmdl=11579&refresh=6ace1b6ca45371791892332) |
+| Bourse Direct | Investissement programmé | confirmé | 2026-10-13 | Plans programmés sur PEA et CTO ; ETF de la sélection sans courtage, actions au tarif habituel. [Source 1](https://groupe.boursedirect.fr/download/bourse-direct-lance-ses-plans-dinvestissement-programmes-sans-frais-sur-etf-a-partir-de-quelques-euros-disponibles-sur-pea-et-compte-titres?ind=1778573829227&filename=2026_BD_CP_Plan-Investissement.pdf&wpdmdl=11579&refresh=6ace1cf5d9eb71791892725) |
 | Bourse Direct | Frais de garde | confirmé | 2026-10-13 | 0 € hors Bourses étrangères ; conservation étrangère 0,036 % par an, facturée trimestriellement. [Source 1](https://www.boursedirect.fr/pdf/tarifs_bd.pdf) |
 | Bourse Direct | PEA | confirmé | 2026-10-13 | PEA proposé ✅ [Source 1](https://www.boursedirect.fr/pdf/tarifs_bd.pdf) |
 | Bourse Direct | PEA-PME | confirmé | 2026-10-13 | PEA-PME proposé ✅ [Source 1](https://www.boursedirect.fr/pdf/tarifs_bd.pdf) |
 | Bourse Direct | PEA Jeune | confirmé | 2026-10-13 | PEA Jeune proposé ✅ [Source 1](https://www.boursedirect.fr/pdf/tarifs_bd.pdf) |
 | Bourse Direct | IFU | confirmé | 2026-10-13 | IFU fourni selon les opérations à déclarer ; modalités dans la source officielle. [Source 1](https://www.boursedirect.fr/pdf/CGBDMARS24.pdf) |
-| Bourse Direct | Liquidités rémunérées | partiel | 2026-10-13 | Espèces du PEA non rémunérées ; rémunération du cash CTO non confirmée par les documents publics. [Source 1](https://epargne.boursedirect.fr/epargne/placements-epargne/compte-titres-dont-pea-et-pea-pme/le-pea-plan-d-epargne-en-actions) |
+| Bourse Direct | Liquidités rémunérées | corroboré | 2026-10-13 | Espèces du PEA et du CTO non rémunérées ; rémunération du prêt de titres distincte. [Source 1](https://brokerchooser.com/fr/broker-reviews/bourse-direct-review) [Source 2](https://www.detective-banque.fr/comparatif-de-bourse-en-ligne-quelle-offre-choisir/) |
 | Bourse Direct | Transfert PEA | confirmé | 2026-10-13 | Entrée : Transfert entrant PEA possible ; remboursement jusqu’à 200 €, sous conditions et sur justificatif. Sortie : 15 € par ligne cotée, 50 € par ligne non cotée, maximum 150 € pour le PEA. [Source 1](https://www.boursedirect.fr/fr/bourse/tarifs) [Source 2](https://www.boursedirect.fr/pdf/tarifs_bd.pdf) [Source 3](https://www.boursedirect.fr/fr/support) |
 | Saxo Bank | Ordres PEA | confirmé | 2026-10-13 | 0,08 % sur Euronext en formule Classic, minimum 2 €, dans la limite du plafond légal de 0,50 % pour les ordres en ligne. [Source 1](https://www.home.saxo/-/media/documents/regional/fr-fr/manuals/brochure-tarifaire-generale-2026.pdf?revision=2996f32d-c87a-4efc-9596-658f98c61848) [Source 2](https://www.home.saxo/fr-fr/accounts/pea/terms-and-conditions) [Source 3](https://www.home.saxo/fr-fr/campaigns/amundi-etf) |
 | Saxo Bank | Conversion de devises | confirmé | 2026-10-13 | 0,25 %. [Source 1](https://www.home.saxo/-/media/documents/regional/fr-fr/manuals/brochure-tarifaire-generale-2026.pdf?revision=2996f32d-c87a-4efc-9596-658f98c61848) |
