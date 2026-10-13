@@ -19,12 +19,26 @@ try {
   const {DEFAULT_THEMES}=await import('/shinny-potato/src/data/etf-themes.js')
   const {renderComparatifEtfImage}=await import('/shinny-potato/src/pages/tweet-midi/comparatifEtfImage.js')
   const output=[]
+  const originalText=CanvasRenderingContext2D.prototype.fillText
+  const originalRect=CanvasRenderingContext2D.prototype.roundRect
+  let dates=[]
+  CanvasRenderingContext2D.prototype.fillText=function(value,x,y,...rest) {
+    if(String(value).startsWith('Fonds · ')) dates.push({x,y})
+    return originalText.call(this,value,x,y,...rest)
+  }
+  CanvasRenderingContext2D.prototype.roundRect=function(x,y,w,h,...rest) {
+    if(dates.some(d=>d.x>=x&&d.x<x+w&&d.y>=y&&d.y<y+h)) throw new Error('Composition date covered by a subsequent card')
+    return originalRect.call(this,x,y,w,h,...rest)
+  }
   for(const theme of DEFAULT_THEMES.filter(t=>t.id.startsWith('lifestrategy-'))) {
+   dates=[]
    const result=await renderComparatifEtfImage(theme)
    const url=result.toDataURL('image/png')
    const image=new Image();image.src=url;await image.decode()
    output.push({id:theme.id,url,width:image.naturalWidth,height:image.naturalHeight})
   }
+  CanvasRenderingContext2D.prototype.fillText=originalText
+  CanvasRenderingContext2D.prototype.roundRect=originalRect
   return output
  })
  assert.equal(results.length,3);assert.deepEqual(errors,[])

@@ -54,7 +54,7 @@ function composition(ctx, fund, field, x, y, width, accent) {
       lines(ctx,label,x,y+52+i*70,width-120,2,27,{weight:400})
       text(ctx,`${entry.weightPct.toLocaleString('fr-FR')} %`,x+width,y+52+i*70,29,{align:'right',width:116})
     })
-    text(ctx,`Fonds · ${observation.asOf.split('-').reverse().join('/')}`,x,y+287,27,{width,weight:400,color:MUTED})
+    if (field === 'countries' || multi.assetAllocation.asOf !== multi.holdings.asOf) text(ctx,`Fonds · ${observation.asOf.split('-').reverse().join('/')}`,x,y+(field === 'sectors' ? 260 : 225),27,{width,weight:400,color:MUTED})
     return
   }
   const { rows, asOf, isIndex } = getComparisonImageComposition(fund.isin, field)
@@ -135,7 +135,7 @@ export async function renderComparatifEtfImage(theme) {
   text(ctx, title, W / 2, 282, 79, { width: W - 2 * PAD, align: 'center', serif: true, weight: 400 })
   rule(ctx, PAD, 385, W - 2 * PAD)
   theme.etfs.forEach((fund, i) => card(ctx, fund, series[i], years, i, theme.etfs.length))
-  text(ctx, 'Pas un conseil financier', W / 2, canvas.height - 66, 28, { color: MUTED, align: 'center', weight: 400 })
+  text(ctx, theme.etfs.every(f=>LIFESTRATEGY_RECORDS[f.isin]) ? 'Actions et obligations peuvent baisser.' : 'Pas un conseil financier', W / 2, canvas.height - 66, 28, { color: MUTED, align: 'center', weight: 400 })
   return canvas
 }
 export async function downloadComparatifEtfImage(theme) {
