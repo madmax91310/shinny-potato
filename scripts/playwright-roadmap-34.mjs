@@ -28,11 +28,15 @@ try{
   const images=await page.evaluate(async()=>{
    const {ETFS}=await import('/shinny-potato/src/data/etf-cards.js')
    const {DEFAULT_THEMES}=await import('/shinny-potato/src/data/etf-themes.js')
+   const {DUELS}=await import('/shinny-potato/src/pages/portfolio-duels/data.js')
+   const {buildDuel}=await import('/shinny-potato/src/pages/portfolio-duels/lib.js')
+   const {renderDuelImage}=await import('/shinny-potato/src/pages/portfolio-duels/canvasImage.js')
    const {renderETFImage}=await import('/shinny-potato/src/pages/etf-sheets/canvasImage.js')
    const {renderComparatifEtfImage}=await import('/shinny-potato/src/pages/tweet-midi/comparatifEtfImage.js')
    const sheet=await renderETFImage(ETFS.find(r=>r.id==='europe-construction'))
    const comparison=await renderComparatifEtfImage(DEFAULT_THEMES.find(r=>r.id==='construction-infrastructures'))
-   return [sheet,comparison].map(c=>({width:c.width,height:c.height,url:c.toDataURL('image/png')}))
+   const duels=await Promise.all(DUELS.filter(d=>['construction-infrastructure','world-em-smallcap','world-copper-miners'].includes(d.id)).map(d=>renderDuelImage(buildDuel(d))))
+   return [sheet,comparison,...duels].map(c=>({width:c.width,height:c.height,url:c.toDataURL('image/png')}))
   })
   for(const [i,r]of images.entries()){assert(r.width>=1000&&r.height>=1000);await writeFile(`test-artifacts/roadmap-34/export-${i}-${width}.png`,Buffer.from(r.url.split(',')[1],'base64'))}
   assert.deepEqual(errors,[]);await page.close()
