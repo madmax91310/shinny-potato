@@ -60,16 +60,16 @@
     },
     "collect-etf-pilot.yml": {
       "name": "ETF et compositions d’indices",
-      "runId": 38290122314,
+      "runId": 38355525439,
       "attempt": 1,
-      "completedAt": "2026-10-12T18:45:48Z",
+      "completedAt": "2026-10-13T06:36:30Z",
       "status": "failure",
       "lastSuccessAt": "2026-10-12T17:02:15Z",
       "collectionStatus": "failure",
-      "publicationStatus": "not-run",
+      "publicationStatus": "success",
       "lastCollectionSuccessAt": "2026-10-12T17:02:15Z",
-      "lastPublicationSuccessAt": "2026-10-12T13:04:04Z",
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38290122314",
+      "lastPublicationSuccessAt": "2026-10-13T06:36:22Z",
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38355525439",
       "failures": [
         {
           "job": "report-failures",
@@ -77,11 +77,17 @@
         }
       ],
       "dataFailures": {
-        "etf-additional-observation-IE000DQLYVB9": {
-          "name": "ETF IE000DQLYVB9",
-          "completedAt": "2026-10-12T18:45:48Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38290122314",
-          "cause": "HTTP Error 500: Internal Server Error"
+        "etf-observation-IE00B4WXJJ64": {
+          "name": "ETF IE00B4WXJJ64",
+          "completedAt": "2026-10-13T06:36:30Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38355525439",
+          "cause": "'NoneType' object has no attribute 'strip'"
+        },
+        "etf-observation-IE0000N55FP4": {
+          "name": "ETF IE0000N55FP4",
+          "completedAt": "2026-10-13T06:36:30Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38355525439",
+          "cause": "'NoneType' object has no attribute 'strip'"
         }
       }
     },
@@ -227,5 +233,5 @@
       "failures": []
     }
   },
-  "updatedAt": "2026-10-13T04:57:53Z"
+  "updatedAt": "2026-10-13T06:36:30Z"
 }
