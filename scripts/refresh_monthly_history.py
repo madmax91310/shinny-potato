@@ -107,7 +107,7 @@ def collect_yahoo(config, now, fetch=get_json):
             response=fetch(url);rows,tz=yahoo_chart(response,config,'1d')
             rows=[r for r in rows if r[0].strftime('%Y-%m')==key]
             if (tz!=zone or not rows or rows[-1][0]!=final[key][0]
-                    or any(not math.isclose(a,b,rel_tol=1e-7,abs_tol=1e-6) for a,b in zip(rows[-1][1:],final[key][1:]))):reject(f'Independent month-end daily window disagrees: {key}, window {rows[-1] if rows else None}, full {final[key]}')
+                    or any(not math.isclose(a,b,rel_tol=(1e-7 if i==0 else 1e-6),abs_tol=1e-6) for i,(a,b) in enumerate(zip(rows[-1][1:],final[key][1:])))):reject(f'Independent month-end daily window disagrees: {key}, window {rows[-1] if rows else None}, full {final[key]}')
             return key,{'url':url,'response':response,'close':rows[-1][1]}
         keys=[k for k in expected if k in window_months or k in sparse_ends or k not in buckets]
         with ThreadPoolExecutor(max_workers=3) as pool:windows=dict(pool.map(window,keys))

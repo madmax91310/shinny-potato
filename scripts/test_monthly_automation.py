@@ -111,7 +111,7 @@ class Monthly(unittest.TestCase):
         end=int(dt.datetime(2026,2,1,tzinfo=UTC).timestamp())
         def fetch(url):
             if 'interval=1mo' in url:return chart('1mo',close=15)
-            return chart(adjusted=10.0000005 if f'period1={end-7*86400}' in url else 10)
+            return chart(adjusted=10.000005 if f'period1={end-7*86400}' in url else 10)
         self.assertEqual(collect_yahoo(cfg,NOW,fetch)['points'],[['2026-01',10]])
         def invalid(url):
             if f'period1={end-7*86400}' in url:return chart(adjusted=10.01)
