@@ -1,0 +1,21 @@
+# DWS dated AUM recovery — 13 October 2026
+
+Run 38320643713 collected at 2026-10-12T23:12:21Z. Its saved observation reports `Official document date is missing, future or stale` for the AUM of IE00BM67HV82 and IE00BM67HQ30. Neither required AUM field was removed, and both previous observations were preserved.
+
+Live official `historicaldata/download` workbooks now supply both AUMs. The Industrials workbook's `As of` header reads 13.10.2026 even when requesting an end date of 12 October; its latest valuation is 09.10.2026. The product API's NAV date agrees. The midnight diagnosis is consistent with the saved failure and reproduced by passing a valid export to the parser at 23:12 UTC on the preceding day. The original failing raw workbook was not retained, so its exact export header cannot be verified retrospectively.
+
+The header is checked against the European export calendar (`Europe/Berlin`). Actual valuation dates still use the original UTC freshness/future checks, and the latest value must still match the official NAV date. An export cannot predate its values. Exact ISIN, USD currency, positive amount, duplicate dates, formula/size limits and fund scope remain mandatory. No estimate, currency conversion, cached fixture fallback or weakened valuation threshold is introduced.
+
+Regression tests cover the midnight boundary, genuinely future exports, future valuations, and exports preceding valuations. A focused Actions job collects both official DWS sources through the production refresh/merge path, then checks the round-four issuer and monthly consumers. Existing daily issuer refresh remains unchanged.
+
+## iShares exact-share AUM diagnosis and recovery
+
+The saved logs of run 38351910534 show 40/42 iShares shares validated; IE00B4WXJJ64 and IE0000N55FP4 failed with `NoneType object has no attribute 'strip'`. At the earlier investigation the official API and HTML published null exact-share assets, as recorded in the PR description. The failing raw responses were not retained, so that earlier upstream payload cannot be reconstructed from the exception alone.
+
+On 13 October 2026 the live official BlackRock product-data API and the iShares UK product HTML both again provide `totalNetAssets`, explicitly distinct from `totalNetAssetsFundLevel`, with EUR currency and a 12 October valuation date. Observed share amounts are EUR 5,408,678,246.12 (IE00B4WXJJ64, portfolio 251740) and EUR 8,997,008.87 (IE0000N55FP4, portfolio 348766). The first fund-level amount is EUR 6,281,867,312.59 and must not replace its share amount. These are diagnostic observations, not hardcoded collector values.
+
+Official sources: https://www.ishares.com/uk/individual/en/products/251740/?siteEntryPassthrough=true&switchLocale=y and https://www.ishares.com/uk/individual/en/products/348766/?siteEntryPassthrough=true&switchLocale=y . The API URL is constructed by `product_data_url` in `scripts/collect_etf_pilot.py`. API and HTML expose the same embedded component schema; their agreement does not establish independent upstream data provenance. Regional product pages and factsheet search results expose fund-level assets; none has been qualified as an independent, dated exact-share AUM fallback. NAV multiplied by shares outstanding is not substituted either.
+
+There are two separate causes: a documented transient upstream absence and an unsafe `.strip()` call on a nullable currency prefix. The parser now explicitly rejects missing/null AUM objects, amounts, currency prefixes and dates with actionable quality errors. Wrong currency, non-positive amounts, freshness and exact identity checks remain mandatory. A missing AUM still fails collection and preserves the entire last validated record with its original dates; it does not become a successful fresh observation. The normal scheduled collector retries the same official sources and resumes publication when the data return.
+
+Regression tests exercise API and HTML schemas, missing/null fields, wrong currency, zero assets, absence despite a populated fund-level field, record preservation and recovery. The focused Actions qualification collects both exact shares and applies them through the production merge/anomaly checks against existing records; the full issuer workflow also runs on the PR. Integration remains conditional on those fresh checks.

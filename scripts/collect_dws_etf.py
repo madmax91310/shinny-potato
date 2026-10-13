@@ -11,6 +11,7 @@ import io
 import zipfile
 import xml.etree.ElementTree as ET
 from urllib.parse import urlencode
+from zoneinfo import ZoneInfo
 from data_automation import UTC, get_text, number, reject, write_json_atomic
 from issuer_documents import bounded_return, document_date, validated_rows, download
 from apply_etf_collection import apply
@@ -231,7 +232,11 @@ def parse_aum_workbook(body, share, now, url, product):
         return values[0]
     if header('ISIN') != share['isin'] or header('Currency') != share['currency']:
         reject('DWS historical workbook share or currency changed')
-    document_date(header('As of').replace('.', '/'), now)
+    # This header dates the export, not its valuations. DWS rolls it over at
+    # European midnight while the runner may still be on the preceding UTC day.
+    # Keep the actual AUM/NAV dates below subject to the original UTC checks.
+    export_date = document_date(header('As of').replace('.', '/'),
+                                now.astimezone(ZoneInfo('Europe/Berlin')))
     headings = [i for i, row in enumerate(rows) if row.get('A') == 'Date']
     if len(headings) != 1 or rows[headings[0]].get('B') != 'Asset Under Management':
         reject('DWS workbook AUM column changed')
@@ -244,12 +249,15 @@ def parse_aum_workbook(body, share, now, url, product):
     if not points or len({date for date, _ in points}) != len(points):
         reject('Missing/duplicate DWS historical AUM dates')
     stamp, amount = max(points)
+    if export_date < stamp:
+        reject('DWS export predates its AUM valuation')
     # The product explicitly labels its AUM as FUND, not share-class. The
     # historical download supplies this field in the stated workbook currency.
     facts = {i['key']: i['value'] for i in items(product['pdpResult']['pageSections']['keyFacts'])}
     if 'Total AUM of fund' not in facts or document_date(facts['NAV date'], now) != stamp:
         reject('DWS dated fund-AUM context does not match the workbook')
     return {'amount': amount, 'currency': share['currency'], 'scope': 'fund', 'asOf': stamp,
+            'exportDate': export_date, 'exportTimezone': 'Europe/Berlin',
             'sourceUrl': url, 'sha256': hashlib.sha256(body).hexdigest(),
             'method': 'DWS dated historical fund AUM, all share classes, workbook currency; not exact-share assets'}
 

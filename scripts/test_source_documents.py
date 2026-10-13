@@ -3,6 +3,8 @@ import copy
 import datetime as dt
 import json
 import pathlib
+import io
+import zipfile
 import unittest
 import threading
 from http.server import HTTPServer, BaseHTTPRequestHandler
@@ -212,6 +214,33 @@ class CompletedIssuerCoverage(unittest.TestCase):
         with self.assertRaises(ValueError): parse_aum_workbook(body, {**share, 'currency':'EUR'}, self.now, '', product)
         with self.assertRaises(ValueError): parse_aum_workbook(body, {**share, 'isin':'WRONG'}, self.now, '', product)
         with self.assertRaises(ValueError): parse_aum_workbook(body, share, dt.datetime(2027,1,1,tzinfo=UTC), '', product)
+
+    def test_dws_export_midnight_keeps_strict_valuation_checks(self):
+        body = (self.folder/'dws-history.xlsx').read_bytes()
+        product = self.fixture('dws-exact-share.json'); share = self.share('IE00BLNMYC90')
+        now = dt.datetime(2026,10,5,23,12,tzinfo=UTC)
+        r = parse_aum_workbook(body, share, now, 'https://etf.dws.com/history', product)
+        self.assertEqual(r['exportDate'], '2026-10-06')
+        self.assertEqual(r['asOf'], '2026-10-02')
+        self.assertEqual(r['amount'], 15294969181.9763)
+        # Before European midnight the very same export is still future-dated.
+        with self.assertRaises(ValueError):
+            parse_aum_workbook(body, share, now.replace(hour=20), '', product)
+        def replace_string(old, new):
+            output = io.BytesIO()
+            with zipfile.ZipFile(io.BytesIO(body)) as source, zipfile.ZipFile(output, 'w') as target:
+                for entry in source.infolist():
+                    content = source.read(entry.filename)
+                    if entry.filename == 'xl/sharedStrings.xml':
+                        self.assertIn(old.encode(), content)
+                        content = content.replace(old.encode(), new.encode())
+                    target.writestr(entry, content)
+            return output.getvalue()
+        # A future valuation never inherits the export's timezone allowance.
+        for old, new in [('02.10.2026','06.10.2026'), ('06.10.2026','07.10.2026'),
+                         ('06.10.2026','01.10.2026')]:
+            with self.subTest(old=old,new=new), self.assertRaises(ValueError):
+                parse_aum_workbook(replace_string(old,new), share, now, '', product)
 
     def test_dws_physical_portfolio_preserves_cash_and_unclassified_positions(self):
         p = self.fixture('dws-physical-holdings.json'); s = self.share('IE00BM67HK77')
