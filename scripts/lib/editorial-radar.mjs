@@ -123,12 +123,31 @@ export function advanceRadar(previous, observations, { now = new Date(), sourceR
       }
       continue
     }
+    // A clean later period restarts comparison from a non-disputed baseline.
+    // Do this even below the editorial threshold; otherwise the bad anchor
+    // would contaminate a later cumulative movement.
+    const disputedAnchor = datedEtfSnapshot(after) && after.period > before.period &&
+      state.conflicts[`${key}:${before.period}`]?.proposals?.length
+    if (disputedAnchor) {
+      state.anchors[key] = after
+      continue
+    }
     if (!meaningful(before, after)) continue
     const event = makeEvent(before, after, stamp)
     state.anchors[key] = after
     if (!seen.has(event.id)) { seen.add(event.id); newEvents.push(event) }
   }
   state.events = [...newEvents, ...state.events].sort((a, b) => b.detectedAt.localeCompare(a.detectedAt) || a.id.localeCompare(b.id))
+  // A later revision can invalidate an already emitted cross-period movement.
+  // Keep its audit record, but never publish/retry a signal whose baseline or
+  // destination snapshot is disputed, even after that conflict is resolved.
+  const disputed = new Set(Object.values(state.conflicts).filter(c => c.proposals?.length)
+    .map(c => `${observationKey(c.accepted)}:${c.period}`))
+  for (const event of state.events) if (datedEtfSnapshot(event) && event.kind === 'change' &&
+    [event.beforePeriod, event.period].some(period => disputed.has(`${observationKey(event)}:${period}`))) {
+    event.status = 'source-conflict'
+  }
+  const publishableNewEvents = newEvents.filter(event => event.status !== 'source-conflict')
   for (const [conflictKey, conflict] of Object.entries(state.conflicts)) {
     const latest = state.current[observationKey(conflict.accepted)]
     if (latest?.period > conflict.period) conflict.resolvedAt ??= stamp
@@ -140,6 +159,6 @@ export function advanceRadar(previous, observations, { now = new Date(), sourceR
   const counts = Object.fromEntries(Object.keys(FAMILIES).map(family => [family, new Set(valid.filter(o => o.family === family).map(o => o.entity)).size]))
   // All history stays in the state branch. The public feed is bounded.
   const purchasingItems = Object.values(state.current).filter(o => o.family === 'pouvoir-achat').sort((a, b) => b.period.localeCompare(a.period) || a.label.localeCompare(b.label)).slice(0, 120)
-  const feed = { purchasingPower: { sources: purchasingSources, items: purchasingItems }, schemaVersion: 1, initializedAt: state.initializedAt, checkedAt: stamp, sourceRevision, observationCount: valid.length, coverage: counts, newSignalCount: newEvents.length, errors: issues, events: state.events.filter(event => event.status !== 'source-conflict').slice(0, 500), thresholds: { compositionPoints: 2, aumRelativePct: 20, occupancyPoints: 2 }, scopeNote: 'Produits et sources raccordés à l’application. Une nouvelle donnée suivie ne prouve pas un lancement sur le marché.' }
-  return { state, feed, newEvents }
+  const feed = { purchasingPower: { sources: purchasingSources, items: purchasingItems }, schemaVersion: 1, initializedAt: state.initializedAt, checkedAt: stamp, sourceRevision, observationCount: valid.length, coverage: counts, newSignalCount: publishableNewEvents.length, errors: issues, events: state.events.filter(event => event.status !== 'source-conflict').slice(0, 500), thresholds: { compositionPoints: 2, aumRelativePct: 20, occupancyPoints: 2 }, scopeNote: 'Produits et sources raccordés à l’application. Une nouvelle donnée suivie ne prouve pas un lancement sur le marché.' }
+  return { state, feed, newEvents: publishableNewEvents }
 }

@@ -72,8 +72,9 @@ proposition avec sa source et son empreinte dans `state.conflicts`, et affiche
 une réserve sans événement ni notification. Les répétitions d'une même
 proposition sont dédupliquées, même si la date de contrôle change. Un retour à
 la valeur acceptée ne blanchit pas automatiquement le conflit. Une observation
-sur une période ultérieure reprend le calcul contre l'ancre conservée : les
-petites variations continuent à s'accumuler et un retour réel reste détectable.
+sur une période ultérieure rétablit une ancre saine sans signal si l'ancre
+précédente est contradictoire, même sous le seuil éditorial. Les variations
+suivantes s'accumulent normalement entre observations non disputées.
 Le conflit précédent est alors marqué résolu, sans perdre ses propositions.
 Une correction officielle à date identique reste une donnée à vérifier ; elle
 n'est pas assimilée à une évolution de marché. Il n'y a pas d'acceptation
@@ -178,3 +179,17 @@ adoption définitive ou une promulgation. Un vote en commission ou dans une
 seule chambre ne suffit pas. Les anciens textes en discussion sont retirés
 des observations et des alertes, y compris lors d’une panne d’une source.
 Les autres actualités pratiques pour les particuliers restent suivies.
+
+## Révisions révélées après une alerte entre deux dates — 13 octobre 2026
+
+Les conflits conservés invalident désormais aussi les événements dont la date
+initiale ou finale est disputée, pour la même entité, le même champ et le même
+périmètre. Ils restent dans l'historique avec `status: source-conflict`, même
+après résolution du conflit ; ils sortent du flux public, des nouveautés et des
+notifications en attente. Les issues déjà envoyées et leurs acquittements ne
+sont pas supprimés. Une période ultérieure établit une nouvelle base saine.
+
+Le test reproduit les observations Git de l'issue #545, la migration d'un état
+contenant déjà le conflit, le filtrage des notifications, l'isolation des
+périmètres et la reprise des mouvements légitimes. Voir le diagnostic
+[Materials](radar-materials-2026-10-13.md) pour les preuves et leurs limites.

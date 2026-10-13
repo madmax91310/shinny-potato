@@ -38,6 +38,14 @@ assert.equal(parsePurchasingFeed(feed(item({ date: '2025-10-01' })), source, now
 assert.equal(parsePurchasingFeed(feed(item(), item({ link: row.sourceUrl + '?utm_source=foo' })), source, now).observations.length, 1)
 const mixed = parsePurchasingFeed(feed(item(), item({ link: 'https://evil.invalid/news' })), source, now)
 assert.equal(mixed.observations.length, 1); assert.equal(mixed.errors.length, 1)
+const professional = 'https://entreprendre.service-public.gouv.fr/actualites/A17480?xtor=RSS-111'
+const syndicated = parsePurchasingFeed(feed(item(), item({ title: 'Versement de la taxe sur les salaires', link: professional })), source, now)
+assert.equal(syndicated.observations.length, 1, 'Le flux particuliers conserve ses articles pertinents')
+assert.equal(syndicated.errors.length, 0, 'Le portail professionnel officiel est écarté du périmètre particuliers')
+for (const link of ['https://entreprendre.service-public.gouv.fr.evil.invalid/actualites/A17480', 'https://entreprendre.service-public.gouv.fr@evil.invalid/actualites/A17480', 'http://entreprendre.service-public.gouv.fr/actualites/A17480']) {
+  assert.equal(parsePurchasingFeed(feed(item({ link })), source, now).errors.length, 1, 'Le filtrage ne relâche pas la validation des URL')
+}
+assert.throws(() => officialUrl(professional, source), 'Le sous-domaine professionnel ne devient pas une source autorisée')
 const initialized = advanceRadar(null, [], { now }).state
 const bootstrap = advanceRadar(initialized, [row], { now })
 assert.equal(bootstrap.newEvents.length, 0, 'Ajout de la famille silencieux')

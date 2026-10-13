@@ -242,6 +242,26 @@ class CompletedIssuerCoverage(unittest.TestCase):
             with self.subTest(old=old,new=new), self.assertRaises(ValueError):
                 parse_aum_workbook(replace_string(old,new), share, now, '', product)
 
+    def test_dws_materials_country_is_published_not_inferred_from_isin(self):
+        body = self.fixture('dws-materials-2026-10-07.json')
+        now = dt.datetime(2026, 10, 13, tzinfo=UTC)
+        source = 'https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HS53/holdings'
+        parsed = dws_holdings(body, {'isin': 'IE00BM67HS53'}, now, source)
+        countries = {r['name']: r['weightPct'] for r in parsed['countries']['rows']}
+        self.assertEqual(parsed['countries']['sha256'], '996d5fc0e61f66cfcbe1361125d9ebd9078408219a1bbf875fcd9c716aa43bc8')
+        self.assertEqual(countries['Ireland'], 10.786354)
+        self.assertEqual(countries['United Kingdom'], 2.620017)
+        linde = next(r for r in body['tables'][0]['values'] if r['header']['value'] == 'IE000S9YS762')
+        self.assertEqual(linde['column_3']['value'], 'Ireland')
+        # Synthetic variant exercises attribution, not an archived DWS response.
+        variant = copy.deepcopy(body)
+        next(r for r in variant['tables'][0]['values'] if r['header']['value'] == 'IE000S9YS762')['column_3']['value'] = 'United Kingdom'
+        changed = dws_holdings(variant, {'isin': 'IE00BM67HS53'}, now, source)
+        moved = {r['name']: r['weightPct'] for r in changed['countries']['rows']}
+        self.assertEqual(moved['Ireland'], 2.953832)
+        self.assertEqual(moved['United Kingdom'], 10.452539)
+        self.assertEqual(parsed['holdings']['rows'], changed['holdings']['rows'])
+
     def test_dws_physical_portfolio_preserves_cash_and_unclassified_positions(self):
         p = self.fixture('dws-physical-holdings.json'); s = self.share('IE00BM67HK77')
         r = dws_holdings(p, s, self.now, s['sourceUrl'])

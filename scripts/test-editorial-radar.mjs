@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict'
 import { readFile } from 'node:fs/promises'
 import { advanceRadar, shouldRefreshRadar, observationKey, meaningful, displayValue } from './lib/editorial-radar.mjs'
+import { pendingNotifications } from './lib/radar-notifications.mjs'
 import { collectObservations } from './update-editorial-radar.mjs'
 import { validateFeed, staleFeed } from '../src/pages/editorial-radar/client.js'
 import { parseVanguardNews, parseGlobalXNews, GLOBALX_NEWS_URL, collectRadarNews } from './lib/radar-news.mjs'
@@ -26,7 +27,7 @@ const advance = (previous, rows, extra = {}) => advanceRadar(previous, rows, { n
   assert.equal(returned.feed.errors.length, 1, 'Un retour ne valide pas automatiquement la contradiction')
   assert.equal(returned.state.current[key].value, 98.558208)
   const newer = advance(returned.state, [{ ...rows[1], period: '2026-10-08' }])
-  assert.equal(newer.newEvents.length, 1, 'Une nouvelle période peut réellement baisser')
+  assert.equal(newer.newEvents.length, 0, 'Une ancre contradictoire ne prouve pas une baisse ; la nouvelle période rétablit une base')
   assert.equal(newer.feed.errors.length, 0)
   assert.ok(Object.values(newer.state.conflicts)[0].resolvedAt)
   assert.equal(advance(newer.state, [{ ...rows[1], period: '2026-10-08' }]).newEvents.length, 0)
@@ -49,6 +50,50 @@ const advance = (previous, rows, extra = {}) => advanceRadar(previous, rows, { n
   assert.equal(migrated.state.events.length, 2, 'Historique conservé pour audit')
   assert.equal(migrated.feed.events.length, 0, 'Alertes historiques trompeuses retirées du flux')
   assert.ok(migrated.state.events.every(e => e.status === 'source-conflict'))
+}
+{
+  const fixture = JSON.parse(await readFile(new URL('./fixtures/radar-materials-2026-10.json', import.meta.url)))
+  const countries = ['Ireland', 'United Kingdom']
+  const rows = fixture.snapshots.map(({ countries: c }) => countries.map(country => rate({
+    entity: fixture.entity, field: `countries:${country}`, fieldLabel: `Poids du pays ${country}`,
+    scope: `${fixture.entity} · fund · ${c.method}`, sourceUrl: fixture.sourceUrl,
+    checkedAt: '2026-10-13', period: c.asOf, sourceHash: c.sha256,
+    value: c.rows.find(r => r.name === country).weightPct, threshold: 2,
+  })))
+  const options = { now: new Date('2026-10-13T12:00:00Z') }
+  const first = advance(null, rows[0], options)
+  const movement = advance(first.state, rows[1], options)
+  assert.equal(movement.newEvents.length, 2, 'Reproduction des deux variations entre dates distinctes')
+  const revised = advance(movement.state, rows[2], options)
+  assert.equal(revised.newEvents.length, 0)
+  assert.equal(revised.feed.events.length, 0, 'Les variations deviennent impropres à publication après contradiction DWS')
+  assert.equal(revised.state.events.length, 2, 'Conservation des preuves et identifiants historiques')
+  assert.ok(revised.state.events.every(e => e.status === 'source-conflict'))
+  const ledger = { schemaVersion: 1, acknowledged: [] }
+  assert.equal(pendingNotifications(revised.state.events, ledger).length, 0, 'Aucune nouvelle tentative d’envoi')
+  const acknowledged = { schemaVersion: 1, acknowledged: movement.state.events.map(e => e.id) }
+  assert.deepEqual(acknowledged.acknowledged, revised.state.events.map(e => e.id))
+  const migrated = advance(revised.state, [], options)
+  assert.equal(migrated.feed.events.length, 0, 'Migration idempotente sans nouvelle collecte')
+  const later = advance(revised.state, rows[2].map(r => ({ ...r, period: '2026-10-08' })), options)
+  assert.equal(later.feed.newSignalCount, 0, 'Pas de comparaison publiable contre une ancre disputée')
+  assert.equal(later.newEvents.length, 0)
+  assert.ok(Object.values(later.state.conflicts).every(c => c.resolvedAt))
+  const small = advance(revised.state, rows[1].map(r => ({ ...r, period: '2026-10-08', value: r.value + .1 })), options)
+  assert.equal(small.newEvents.length, 0)
+  for (const row of rows[1]) assert.equal(small.state.anchors[observationKey(row)].period, '2026-10-08', 'Ancre saine rétablie même sous le seuil')
+  const clean = advance(later.state, rows[2].map(r => ({ ...r, period: '2026-10-09', value: r.value + 3 })), options)
+  assert.equal(clean.newEvents.length, 2, 'Les mouvements entre deux périodes non disputées restent détectés')
+  const mixed = structuredClone(revised.state)
+  const event = movement.state.events[0]
+  mixed.events.push({ ...event, id: 'f'.repeat(24), field: 'countries:Australia' },
+    { ...event, id: 'e'.repeat(24), scope: 'Autre méthode' },
+    { ...event, id: 'd'.repeat(24), entity: 'OTHER' })
+  assert.equal(advance(mixed, [], options).feed.events.length, 3, 'Seuls le même pays, produit, méthode et période sont affectés')
+  const [a, b] = fixture.snapshots.slice(1).map(s => s.holdings.rows.map(r => [r.isin, r.weightPct]))
+  assert.deepEqual(a, b, 'Les dix ISIN et poids du 7 octobre sont inchangés')
+  const delta = rows[2][0].value - rows[1][0].value
+  assert.ok(Math.abs(delta - fixture.snapshots[1].holdings.rows[0].weightPct) < 0.000001)
 }
 const initial = advance(null, [rate()])
 assert.equal(initial.newEvents.length, 0, 'Initialisation silencieuse')

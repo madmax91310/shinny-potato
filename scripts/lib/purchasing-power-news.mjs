@@ -99,7 +99,14 @@ export function parsePurchasingFeed(xml, source, now = new Date()) {
       if (!title || title.length > 350) throw new Error('Titre manquant ou trop long.')
       const topic = classifyTopic(title, summary)
       if (!topic) continue
-      const sourceUrl = officialUrl(cleanText(tag(item, 'link')), source)
+      const link = cleanText(tag(item, 'link'))
+      // The household RSS also syndicates the official professional portal.
+      // Discard this known out-of-scope host without trusting arbitrary links.
+      const candidate = new URL(link, source.url)
+      if (source.id === 'service-public' && candidate.protocol === 'https:' &&
+        ['entreprendre.service-public.gouv.fr', 'entreprendre.service-public.fr'].includes(candidate.hostname) &&
+        !candidate.username && !candidate.password && !candidate.port && /^\/actualites\/A\d+$/.test(candidate.pathname)) continue
+      const sourceUrl = officialUrl(link, source)
       if (!cleanText(tag(item, 'link'))) throw new Error('Lien manquant.')
       const rawDate = cleanText(tag(item, 'pubDate') || tag(item, 'dc:date'))
       // Bercy uses local calendar dates without an offset. Preserve the
