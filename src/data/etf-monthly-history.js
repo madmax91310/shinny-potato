@@ -3,6 +3,7 @@ import RECORDS from './automated-etf-monthly.json' with { type: 'json' }
 // Exact shares shared by the investment, performance and anniversary tools.
 // Visual identities use exposure illustrations, never an invented issuer logo.
 export const ETF_HISTORY_IDENTITIES = {
+ ...Object.fromEntries([20,40,60,80].map(n=>[`etfLifeStrategy${n}`,{icon:'⚖️',scene:'world',title:`LIFESTRATEGY ${n}/${100-n}`,ticker:`V${n}A`}])) ,
   etfWorldMultifactor: { icon:'🌍',scene:'world',title:'WORLD MULTIFACTOR',ticker:'IFSW' },
   etfIbondsEuro2028: { icon:'📅',scene:'world',title:'OBLIGATIONS EURO 2028',ticker:'B28A' },
   etcSilverPhysical: { instrumentType:'ETC',icon:'⚪',scene:'silver',title:'ARGENT PHYSIQUE',ticker:'SSLN' },

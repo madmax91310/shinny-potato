@@ -10,7 +10,7 @@ import { computeComparativeSeries } from '../src/pages/investment-calculator/vid
 const read = path => JSON.parse(readFileSync(path));
 const config = read('scripts/monthly-automation.json');
 const records = { ...read('src/data/automated-monthly.json'), ...read('src/data/automated-etf-monthly.json') };
-const evidence = { ...read('scripts/source-snapshots/monthly-automated-round4.json'), ...read('scripts/source-snapshots/monthly-automated.json') };
+const evidence = { ...read('scripts/source-snapshots/monthly-lifestrategy.json'), ...read('scripts/source-snapshots/monthly-automated-round4.json'), ...read('scripts/source-snapshots/monthly-automated.json') };
 for (const source of config.series.filter(source => source.consumerScope === 'catalog')) {
   assert(records[source.id], `${source.id}: registered ETF must have a validated active history`);
 }
@@ -22,8 +22,9 @@ for (const [id, record] of Object.entries(records)) {
   assert(asset, `Missing active history ${id}`);
   if (catalog) {
     assert.equal(record.field, 'adjclose');
-    assert.equal(record.collectAnniversary, true);
-    assert.equal(record.anniversaryPoints.length, record.points.length);
+    assert.equal(record.collectAnniversary, source.collectAnniversary);
+    if (source.collectAnniversary) assert.equal(record.anniversaryPoints.length, record.points.length);
+    else assert.equal(record.anniversaryPoints?.length ?? 0, 0);
     const suffix = { XPAR: '.PA', XAMS: '.AS', XSWX: '.SW', XETR: '.DE', XLON: '.L', ETFP: '.MI' }[record.mic];
     assert.equal(record.symbol, record.ticker + suffix);
     assert(INSTRUMENT_LISTINGS_BY_ISIN[record.isin]?.some(listing =>

@@ -1,3 +1,4 @@
+import { LIFESTRATEGY_SHEETS } from './lifestrategy.js';
 import { SIMULATION_PROXIES } from './simulation-proxies.js';
 import { EXPOSURE_ADDITIONS } from './exposure-additions.js';
 import { getInstrumentName } from './instruments.js';
@@ -62,6 +63,7 @@ export const YEARS = [2020, 2021, 2022, 2023, 2024, 2025];
 // L'émoji affiché dans le texte du tweet est porté par chaque actif individuellement (cf. plus bas),
 // car la nomenclature demandée classe par "rôle" plutôt que par catégorie de fonds.
 export const CATEGORIES = {
+  multi_actifs: {label:'Actions et obligations',color:'#687ca0'},
   obligataire: { label: "Obligataire / fonds euros", color: "#3987e5" },
   actions_larges: { label: "Actions développées", color: "#199e70" },
   matieres_premieres: { label: "Matières premières", color: "#d95926" },
@@ -72,6 +74,7 @@ export const CATEGORIES = {
 };
 
 export const ASSETS = [
+  ...LIFESTRATEGY_SHEETS.map(r => ({ id:r.id, isin:r.isin, name:getInstrumentName(r.isin,'portfolio'), cat:'multi_actifs', emoji:'⚖️', manualOnly:true, r:getInstrumentReturnValues(r.isin), desc:[r.whatIs,r.whyInteresting,r.whatToKnow], confidenceNote:'Rendements NAV EUR de la part capitalisante, années complètes à partir de 2021.' })),
   {id:'utilities_world_dws',name:getInstrumentName('IE00BM67HQ30','portfolio'),isin:'IE00BM67HQ30',cat:'actions_larges',emoji:'💡',r:getInstrumentReturnValues('IE00BM67HQ30'),confidenceNote:'Rendements NAV USD de la part exacte ; services publics des pays développés.',desc:['Services publics mondiaux','Une poche sectorielle de sociétés cotées','Sensibilité aux taux et à la réglementation']},
   {id:'health_world_ishares',name:getInstrumentName('IE00BJ5JNZ06','portfolio'),isin:'IE00BJ5JNZ06',cat:'actions_larges',emoji:'🩺',r:getInstrumentReturnValues('IE00BJ5JNZ06'),confidenceNote:'Rendements NAV de la part USD ; exposition mondiale avec filtres et plafonds Advanced.',desc:['Santé des pays développés, indice Advanced','Surpondération sectorielle à côté du World','Risque actions et concentration sectorielle']},
   {id:'materials_world_dws',name:getInstrumentName('IE00BM67HS53','portfolio'),isin:'IE00BM67HS53',cat:'actions_larges',emoji:'🪨',r:getInstrumentReturnValues('IE00BM67HS53'),confidenceNote:'Rendements NAV USD de la part exacte ; distincts de la sélection iShares Advanced.',desc:['Sociétés mondiales du secteur matériaux','Chimie, matériaux et entreprises minières','Sensibilité au cycle, aux coûts et aux prix']},

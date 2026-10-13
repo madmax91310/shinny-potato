@@ -4,6 +4,7 @@ import { loadArtImage } from '../tweet-midi/anniversaryArt.js'
 // Each exposure reuses its reviewed ETF illustration. These are exposure scenes,
 // never fund-provider logos; names distinguish geographic/factor variants.
 const references = {
+  ...Object.fromEntries([20,40,60,80].map(n=>[`lifestrategy${n}`,`lifestrategy${n}`])),
   'health-world':'sante-biotech','materials-world':'world-materials','utilities-world':'world-utilities-dws',
   'listed-private-equity': 'private-equity-ishares',
   gold: 'or', gaming: 'gaming_vaneck', medical: 'medical_innovation_ishares',

@@ -33,7 +33,8 @@ function exposureReading(portfolio) {
     return 'Une partie du World est remplacée par des petites entreprises américaines. Tu ajoutes un segment absent du World, plus sensible aux conditions économiques et de financement.'
   }
   const parts = []
-  if (base.exposure === 'world') parts.push('Le MSCI World suit les grandes et moyennes entreprises des pays développés.')
+  if (base.exposure.startsWith('lifestrategy')) parts.push(`${base.label} réunit des actions mondiales et des obligations. Vanguard gère le rééquilibrage interne ; la poche obligataire vise une couverture du change en euros.`)
+  else if (base.exposure === 'world') parts.push('Le MSCI World suit les grandes et moyennes entreprises des pays développés.')
   else if (['acwi', 'acwi-pea', 'allworld'].includes(base.exposure)) parts.push(`Le ${base.exposure.startsWith('acwi') ? 'MSCI ACWI' : 'FTSE All-World'} inclut les pays développés et émergents.`)
   else if (base.exposure === 'equalweight') parts.push('Les entreprises du S&P 500 partent du même poids à chaque rééquilibrage trimestriel.');
   else parts.push('Le S&P 500 constitue une base d’actions américaines.')

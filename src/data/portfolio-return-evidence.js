@@ -1,7 +1,9 @@
+import { LIFESTRATEGY_RECORDS } from './lifestrategy.js';
 import { getInstrumentAnnualPerformance } from './instrument-returns.js';
 import { EXPOSURE_ADDITIONS } from './exposure-additions.js';
 // Sources individuelles : publications émetteurs, proxys et historiques mixtes distingués.
 export const PORTFOLIO_RETURN_EVIDENCE = {
+ ...Object.values(LIFESTRATEGY_RECORDS).reduce((o,r)=>{const years=Object.keys(r.performance.years).map(Number);return {...o,[r.isin]:{sourceUrls:[r.performance.sourceUrl],checkedAt:r.checkedAt,asOf:`${Math.max(...years)}-12-31`,periodStart:`${Math.min(...years)}-01-01`,periodEnd:`${Math.max(...years)}-12-31`,currency:'EUR',scope:`Part exacte ${r.isin}`,method:r.performance.method,note:'Années complètes publiées depuis 2021 ; aucun rendement 2020 reconstitué.'}}},{}),
   'IE00B1TXHL60': (() => { const p = getInstrumentAnnualPerformance('IE00B1TXHL60'); return { sourceUrls: [p.source], checkedAt: p.checkedAt, asOf: p.periodEnd, periodStart: p.periodStart, periodEnd: p.periodEnd, currency: p.currency, scope: 'Part exacte IE00B1TXHL60', method: p.method, note: 'Calendrier officiel NAV réinvesti, actualisé quotidiennement ; sociétés cotées du private equity.' }; })(),
 ...{
   "FR0013411998": {

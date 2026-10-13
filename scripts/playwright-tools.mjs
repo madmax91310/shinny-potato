@@ -518,7 +518,7 @@ async function testEtfSheets(page) {
       || !sectionPositions.every((position, index) => position >= 0 && (index === 0 || position > sectionPositions[index - 1]))
       || !copied.endsWith('💬 ' + card.question)
       || /undefined|NaN/.test(copied)) badCount++;
-    if (card.lastVerified === '01/10/2026') {
+    if (card.lastVerified === '01/10/2026' || card.id.startsWith('lifestrategy')) {
       for (const buttonName of ['🖼️ Image récapitulative']) {
         await page.locator('.workspace-action-menu summary').click();
         await page.getByRole('button', { name: buttonName }).click();

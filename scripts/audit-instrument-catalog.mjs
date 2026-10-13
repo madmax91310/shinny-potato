@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { LIFESTRATEGY_SHEETS } from '../src/data/lifestrategy.js'
 import {ROUND3_FUND_SHEETS} from '../src/data/round3-fund-sheets.js';
 import { QUALIFIED_EXPOSURE_SHEETS } from '../src/data/qualified-exposure-sheets.js';
 import { ETF_MONTHLY_HISTORIES } from '../src/data/etf-monthly-history.js';
@@ -87,14 +88,14 @@ for (const [context, file, items] of collections) {
   const references = source.match(/name:\s*getInstrumentName\(|nom:\s*getInstrumentName\(/g) ?? [];
   // Les nouveaux thèmes construisent les libellés par une fonction commune ;
   // chaque résultat est comparé au registre par ISIN dans la boucle ci-dessous.
-  if (context !== 'tweet' && references.length + (source.includes('EXPOSURE_ADDITIONS.map(') ? EXPOSURE_ADDITIONS.length - 1 : 0) + (source.includes('PRESENTATION_ETF_ADDITIONS.map(') ? PRESENTATION_ETF_ADDITIONS.length - 1 : 0) + (source.includes('PRESENTATION_ETF_EXPANSION.map(') ? PRESENTATION_ETF_EXPANSION.length - 1 : 0) + (source.includes('[...QUALIFIED_EXPOSURE_SHEETS, ...ROUND3_FUND_SHEETS].map(') ? QUALIFIED_EXPOSURE_SHEETS.length + ROUND3_FUND_SHEETS.length - 1 : source.includes('QUALIFIED_EXPOSURE_SHEETS.map(') ? QUALIFIED_EXPOSURE_SHEETS.length - 1 : 0) + (context === 'index' ? 3 : 0) !== items.length) {
+  if (context !== 'tweet' && references.length + (source.includes('LIFESTRATEGY_SHEETS.map(') ? LIFESTRATEGY_SHEETS.length - 1 : 0) + (source.includes('EXPOSURE_ADDITIONS.map(') ? EXPOSURE_ADDITIONS.length - 1 : 0) + (source.includes('PRESENTATION_ETF_ADDITIONS.map(') ? PRESENTATION_ETF_ADDITIONS.length - 1 : 0) + (source.includes('PRESENTATION_ETF_EXPANSION.map(') ? PRESENTATION_ETF_EXPANSION.length - 1 : 0) + (source.includes('[...QUALIFIED_EXPOSURE_SHEETS, ...ROUND3_FUND_SHEETS, ...LIFESTRATEGY_SHEETS].map(') ? QUALIFIED_EXPOSURE_SHEETS.length + ROUND3_FUND_SHEETS.length + LIFESTRATEGY_SHEETS.length - 1 : source.includes('QUALIFIED_EXPOSURE_SHEETS.map(') ? QUALIFIED_EXPOSURE_SHEETS.length - 1 : 0) + (context === 'index' ? 3 : 0) !== items.length) {
     console.error(`${file} : ${references.length} références au catalogue pour ${items.length} produits.`);
     errors++;
   }
   if (context === 'sheet' || context === 'index') {
     const aumReferences = source.match(/aum:\s*getInstrumentAum\(/g) ?? [];
     const aumItems = items.filter(item => item.aum);
-    if (aumReferences.length + (source.includes('EXPOSURE_ADDITIONS.map(') ? EXPOSURE_ADDITIONS.length - 1 : 0) + (source.includes('PRESENTATION_ETF_ADDITIONS.map(') ? PRESENTATION_ETF_ADDITIONS.length - 1 : 0) + (source.includes('PRESENTATION_ETF_EXPANSION.map(') ? PRESENTATION_ETF_EXPANSION.length - 1 : 0) + (source.includes('[...QUALIFIED_EXPOSURE_SHEETS, ...ROUND3_FUND_SHEETS].map(') ? QUALIFIED_EXPOSURE_SHEETS.length + ROUND3_FUND_SHEETS.length - 1 : source.includes('QUALIFIED_EXPOSURE_SHEETS.map(') ? QUALIFIED_EXPOSURE_SHEETS.length - 1 : 0) + (context === 'index' ? 2 : 0) !== aumItems.length) {
+    if (aumReferences.length + (source.includes('EXPOSURE_ADDITIONS.map(') ? EXPOSURE_ADDITIONS.length - 1 : 0) + (source.includes('PRESENTATION_ETF_ADDITIONS.map(') ? PRESENTATION_ETF_ADDITIONS.length - 1 : 0) + (source.includes('PRESENTATION_ETF_EXPANSION.map(') ? PRESENTATION_ETF_EXPANSION.length - 1 : 0) + (source.includes('[...QUALIFIED_EXPOSURE_SHEETS, ...ROUND3_FUND_SHEETS, ...LIFESTRATEGY_SHEETS].map(') ? QUALIFIED_EXPOSURE_SHEETS.length + ROUND3_FUND_SHEETS.length + LIFESTRATEGY_SHEETS.length - 1 : source.includes('QUALIFIED_EXPOSURE_SHEETS.map(') ? QUALIFIED_EXPOSURE_SHEETS.length - 1 : 0) + (context === 'index' ? 2 : 0) !== aumItems.length) {
       console.error(`${file} : ${aumReferences.length} références d'encours pour ${aumItems.length} valeurs.`);
       errors++;
     }
@@ -233,7 +234,7 @@ for (const family of FAMILIES) for (const row of family.perfFunds ?? []) {
   }
 }
 const portfolioSource = readFileSync(new URL('../src/data/portfolio-assets.js', import.meta.url), 'utf8');
-if ((portfolioSource.match(/r:\s*getInstrumentReturnValues\(/g) ?? []).length + EXPOSURE_ADDITIONS.length - 1 !== returnUsages) {
+if ((portfolioSource.match(/r:\s*getInstrumentReturnValues\(/g) ?? []).length + EXPOSURE_ADDITIONS.length + LIFESTRATEGY_SHEETS.length - 2 !== returnUsages) {
   console.error('Générateur : une série ISIN reste codée dans l’outil.');
   errors++;
 }

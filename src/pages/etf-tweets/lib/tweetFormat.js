@@ -1,3 +1,4 @@
+import { multiAssetAllocationLines } from '../../../data/lifestrategy.js'
 import { getInstrumentPeaStatus } from '../../../data/instruments.js'
 import { getPreferredInstrumentListing } from '../../../data/instrument-listings.js'
 import { isComparisonEtc } from './comparisonPolicy.js'
@@ -40,6 +41,8 @@ export function buildTweetText(theme) {
       lines.push('', `📈 Performances annuelles ${currency}`,
         ...performance.rows.map(row => `${row.year} : ${comparisonPct(row.pct)}`))
     }
+    const multiAsset = multiAssetAllocationLines(etf.isin)
+    if (multiAsset.length) lines.push('', ...multiAsset)
     for (const [field, title] of [['countries', '🌍 Principaux pays'], ['sectors', '🧩 Principaux secteurs']]) {
       const composition = getComparisonComposition(etf.isin, field)
       if (composition.rows.length) lines.push('', `${title}${composition.isIndex ? ' de l’indice suivi' : ''}`,
