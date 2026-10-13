@@ -130,7 +130,7 @@ def parse_share(body, share, now):
         values = point['value']
         if not isinstance(values, list) or len(values) != len(types):
             reject('Performance columns changed')
-        inception = facts.get('inceptionDate', {}).get('value')
+        inception = facts.get(share.get('inceptionField', 'inceptionDate'), {}).get('value')
         if inception and f'{date.year}0101' < str(inception):
             continue
         result = float(values[position])
