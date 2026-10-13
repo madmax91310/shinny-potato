@@ -11,7 +11,9 @@
       "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38056933146",
       "failures": [],
       "dataFailures": {},
-      "publicationStatus": "not-run"
+      "publicationStatus": "not-run",
+      "collectionStatus": "success",
+      "lastCollectionSuccessAt": "2026-10-10T13:45:44Z"
     },
     "update-investor-13f.yml": {
       "name": "Portefeuilles des investisseurs",
@@ -20,9 +22,9 @@
       "completedAt": "2026-10-13T19:49:47Z",
       "status": "success",
       "lastSuccessAt": "2026-10-13T19:49:47Z",
-      "collectionStatus": "unknown",
+      "collectionStatus": "success",
       "publicationStatus": "success",
-      "lastCollectionSuccessAt": null,
+      "lastCollectionSuccessAt": "2026-10-13T19:49:47Z",
       "lastPublicationSuccessAt": "2026-10-13T19:49:44Z",
       "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38454201939",
       "failures": [],
@@ -144,7 +146,9 @@
       "failures": [],
       "dataFailures": {},
       "publicationStatus": "success",
-      "lastPublicationSuccessAt": "2026-10-08T14:09:31Z"
+      "lastPublicationSuccessAt": "2026-10-08T14:09:31Z",
+      "collectionStatus": "success",
+      "lastCollectionSuccessAt": "2026-10-08T14:09:35Z"
     },
     "update-publication-observations.yml": {
       "name": "Pouvoir d’achat et niveaux des anniversaires",
@@ -168,9 +172,9 @@
       "completedAt": "2026-10-13T20:19:14Z",
       "status": "success",
       "lastSuccessAt": "2026-10-13T20:19:14Z",
-      "collectionStatus": "unknown",
+      "collectionStatus": "success",
       "publicationStatus": "not-run",
-      "lastCollectionSuccessAt": null,
+      "lastCollectionSuccessAt": "2026-10-13T20:19:14Z",
       "lastPublicationSuccessAt": null,
       "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38461812779",
       "failures": [],
@@ -213,7 +217,74 @@
       "publicationStatus": "not-run",
       "dataFailures": {},
       "failures": []
+    },
+    "refresh-automated-index-sheets.yml": {
+      "name": "Fiches d’indices automatisées",
+      "runId": 38414278032,
+      "attempt": 1,
+      "completedAt": "2026-10-13T14:53:31Z",
+      "status": "success",
+      "lastSuccessAt": "2026-10-13T14:53:31Z",
+      "collectionStatus": "success",
+      "publicationStatus": "not-run",
+      "lastCollectionSuccessAt": "2026-10-13T14:53:31Z",
+      "lastPublicationSuccessAt": null,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38414278032",
+      "failures": [],
+      "dataFailures": {}
+    },
+    "update-lifestrategy.yml": {
+      "name": "Vanguard LifeStrategy",
+      "runId": 38380925232,
+      "attempt": 1,
+      "completedAt": "2026-10-13T10:22:46Z",
+      "status": "success",
+      "lastSuccessAt": "2026-10-13T10:22:46Z",
+      "collectionStatus": "success",
+      "publicationStatus": "not-run",
+      "lastCollectionSuccessAt": "2026-10-13T10:22:46Z",
+      "lastPublicationSuccessAt": null,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38380925232",
+      "failures": [],
+      "dataFailures": {}
+    },
+    "update-non-bond-expansion.yml": {
+      "name": "Nouveaux actifs et historiques",
+      "runId": 38430594497,
+      "attempt": 1,
+      "completedAt": "2026-10-13T16:49:03Z",
+      "status": "success",
+      "lastSuccessAt": "2026-10-13T16:49:03Z",
+      "collectionStatus": "success",
+      "publicationStatus": "not-run",
+      "lastCollectionSuccessAt": "2026-10-13T16:49:03Z",
+      "lastPublicationSuccessAt": null,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38430594497",
+      "failures": [],
+      "dataFailures": {}
+    },
+    "update-qualified-exposures.yml": {
+      "name": "Expositions ETF qualifiées",
+      "runId": 38420855615,
+      "attempt": 1,
+      "completedAt": "2026-10-13T15:39:43Z",
+      "status": "failure",
+      "lastSuccessAt": null,
+      "collectionStatus": "failure",
+      "publicationStatus": "success",
+      "lastCollectionSuccessAt": null,
+      "lastPublicationSuccessAt": "2026-10-13T15:39:39Z",
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38420855615",
+      "failures": [],
+      "dataFailures": {
+        "IE000A89Y2G7": {
+          "name": "IE000A89Y2G7",
+          "completedAt": "2026-10-13T15:39:43Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38420855615",
+          "cause": "No complete annual NAV total return yet"
+        }
+      }
     }
   },
-  "updatedAt": "2026-10-13T20:19:14Z"
+  "updatedAt": "2026-10-13T16:49:03Z"
 }
