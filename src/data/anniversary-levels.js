@@ -1,5 +1,7 @@
-import LEVELS from './anniversary-levels.json' with { type: 'json' }
+import BASE_LEVELS from './anniversary-levels.json' with { type: 'json' }
 
+import NON_BOND_LEVELS from './non-bond-levels.json' with { type:'json' };
+const LEVELS={...BASE_LEVELS,...NON_BOND_LEVELS};
 // A blank override uses a dated observation; an invalid override never silently falls back.
 export function resolveAnniversaryLevel(assetId, override, now = new Date(), levels = LEVELS) {
   if (override !== '' && override !== null && override !== undefined) {

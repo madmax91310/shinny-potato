@@ -2,10 +2,10 @@ import { loadArtImage, ANNIVERSARY_ART } from './anniversaryArt.js'
 import { ETF_HISTORY_IDENTITIES } from '../../data/etf-monthly-history.js'
 
 const paperGroups = {
-  world: ['world-listed-private-equity','world-midcap-equal-duel','world-consumption-duel','world-acwi-cto','world-quality','world-value','quality-momentum','world-momentum','world-minvol','monde','monde-toutes-tailles','world-avec-sans-usa','grandes-petites-monde','world-pea', 'world-meme-indice-pea'], america: ['sp500-equal-weight','nasdaq-sp500','usa','usa-pea','sp500-meme-indice-pea'], europe: ['europe','europe-pea'], emerging: ['emergents','emergents-avec-sans-chine','emergents-pea'], property: ['immobilier-infrastructures'],
+  world: ['world-islamic','small-value-selection','world-listed-private-equity','world-midcap-equal-duel','world-consumption-duel','world-acwi-cto','world-quality','world-value','quality-momentum','world-momentum','world-minvol','monde','monde-toutes-tailles','world-avec-sans-usa','grandes-petites-monde','world-pea', 'world-meme-indice-pea'], america: ['nasdaq-equal-weight','sp500-equal-weight','nasdaq-sp500','usa','usa-pea','sp500-meme-indice-pea'], europe: ['europe','europe-pea'], emerging: ['emergents','emergents-avec-sans-chine','emergents-pea'], property: ['immobilier-infrastructures'],
   gaming: ['jeux-video'], luxury: ['luxe'], robotics: ['ia-robotique'], health: ['sante','innovation-medicale'], renewables: ['energy-or-clean-energy','renouvelables'],
   dividends: ['dividendes'], japan: ['japon'], defense: ['defense'], quantum: ['quantique'],
-  space: ['spatial'], resources: ['gold-or-miners','ressources-naturelles'], finance: ['financieres', 'monetaire-obligations-courtes'],
+  space: ['spatial'], resources: ['brent-wti','agricultural-futures','energy-futures','gold-or-miners','ressources-naturelles'], finance: ['financieres', 'monetaire-obligations-courtes'],
   chip: ['tech-europe', 'semiconducteurs-tech'], blockchain: ['blockchain'], gold: ['etc-metaux'],
 }
 export const PAPER_THEME_ART = Object.freeze(Object.fromEntries(Object.entries(paperGroups).flatMap(([scene, ids]) => ids.map(id => [id, scene]))))
@@ -22,15 +22,15 @@ const neonGroups = {
   world: ['msciWorld', 'msciWorldSmallCap', 'msciAcwi','msciAcwiImi','msciWorldExUsa', 'msciWorldMomentum', 'msciWorldQuality', 'msciWorldValue'], america: ['sp500', 'nasdaq100', 'msciUsa', 'russell2000'], france: ['cac40'], europe: ['stoxx600', 'msciEurope'], emerging: ['msciEmerging', 'msciIndia', 'msciEmergingExChina'],
   chip: ['soxx', 'apple', 'microsoft', 'broadcom', 'nvidia', 'google', 'meta', 'sap', 'asml', 'intel'],
   gold: ['or'], silver: ['silver'], money: ['euroMoney'], bonds: ['euroGovShort', 'euroGov13', 'globalBondEur', 'euroInflationBond', 'euroCorporateBond', 'euroHighYieldBond', 'berkshire'],
-  luxury: ['lvmh', 'hermes'], car: ['tesla'], shopping: ['amazon', 'costco'], cinema: ['netflix'], payments: ['visa', 'paypal'], groceries: ['nestle', 'cocacola'],
-  industry: ['airliquide'], electricity: ['schneider'], cosmetics: ['loreal'], food: ['mcdonalds'],
+  luxury: ['lvmh', 'hermes'], car: ['tesla'], shopping: ['nike', 'amazon', 'costco'], cinema: ['disney','netflix'], payments: ['jpmorgan', 'visa', 'paypal'], groceries: ['procter-gamble', 'nestle', 'cocacola'],
+  industry: ['johnson-johnson','exxonmobil','caterpillar','waste-management','airliquide'], electricity: ['schneider'], cosmetics: ['loreal'], food: ['mcdonalds'],
   // Crypto use the existing verified vector symbols, illuminated in Canvas.
   crypto: ['bitcoin', 'ethereum'],
 }
 // These sectors already have reviewed night-studio illustrations. The neon
 // collection has no corresponding files; retain their explicit asset paths.
 const historicalEtfSceneFiles = Object.fromEntries(
-  ['robotics', 'health', 'finance', 'infrastructure', 'renewables'].map(scene => [scene, `etf-night/${scene}.webp`]),
+  ['robotics', 'health', 'finance', 'infrastructure', 'renewables', 'energy', 'commodities'].map(scene => [scene, `etf-night/${scene}.webp`]),
 )
 export const NEON_ASSET_ART = Object.freeze({
   ...Object.fromEntries(Object.entries(neonGroups).flatMap(([scene, ids]) => ids.map(id => [id, { scene: scene === 'crypto' ? null : scene, mark: ANNIVERSARY_ART[id]?.kind === 'logo' ? ANNIVERSARY_ART[id].mark : null }]))),

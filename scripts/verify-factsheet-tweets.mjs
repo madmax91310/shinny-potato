@@ -2,7 +2,9 @@ import { SHEETS } from '../src/data/index-factsheets.js'
 import { buildFactsheetTweet } from '../src/pages/factsheet-tweets/lib.js'
 import assert from 'node:assert/strict'
 
-if (SHEETS.length !== 34) throw new Error('Trente-quatre sujets attendus')
+assert.equal(SHEETS.length, 35, 'Trente-cinq sujets, World Islamic inclus')
+assert.equal(new Set(SHEETS.map(sheet => sheet.id)).size, SHEETS.length, 'Identifiants de fiches uniques')
+assert(SHEETS.some(sheet => sheet.id === 'world-islamic'), 'Indice World Islamic raccordé')
 for (const sheet of SHEETS) {
   const text = buildFactsheetTweet(sheet)
   assert.equal((text.match(/🔖 Sauvegarde ce tweet/g) ?? []).length, 1)

@@ -151,6 +151,22 @@ const newDescriptions = {
  oblig_eur_long_ishares: 'Des emprunts d’État de longue durée en euros.',
 };
 for (const [id, description] of Object.entries(newDescriptions)) entries[id].description = description;
+add('world-islamic', 'factor', 'le World Islamic', 'On suit ici les entreprises des pays développés qui respectent des filtres sectoriels et financiers de finance islamique. Les exclusions changent les secteurs et les poids ; cette sélection peut recouper un World classique.');
+entries['world-islamic'].description='Des actions des pays développés sélectionnées selon des critères de finance islamique.';
+add('small-value-europe', 'factor', 'les petites entreprises européennes value', 'On choisit ici de petites entreprises européennes avec une pondération orientée vers des valorisations relativement faibles. La taille et le filtre value peuvent produire des écarts durables avec un indice mondial large.');
+entries['small-value-europe'].description='Des petites capitalisations européennes repondérées selon des critères de valorisation.';
+for (const [id, label, underlying] of [
+ ['etc-brent-crude-oil', 'le pétrole Brent', 'le pétrole Brent'],
+ ['etc-wti-crude-oil', 'le pétrole WTI', 'le pétrole WTI'],
+ ['etc-natural-gas', 'le gaz naturel américain', 'le gaz Henry Hub américain'],
+ ['etc-coffee', 'le café', 'le café'],
+ ['etc-cocoa', 'le cacao', 'le cacao'],
+ ['etc-wheat', 'le blé', 'le blé'],
+]) {
+ add(id, 'commodity', label, `On s’expose ici à des contrats à terme sur ${underlying} à travers un ETC. Le renouvellement des contrats, les frais et le change influencent le rendement : cette ligne ne reproduit pas simplement le prix spot de la matière première.`);
+ entries[id].description=`Un ETC suivant un indice de contrats à terme sur ${underlying}.`;
+}
+
 export const ASSET_EDITORIAL = Object.freeze(entries);
 export function assetEditorial(asset) {
   const entry = ASSET_EDITORIAL[asset.id];

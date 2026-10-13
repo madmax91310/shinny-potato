@@ -773,6 +773,15 @@ export function buildAutomatedIndexSnapshot(facts, baseline) {
 }
 
 // Add newly dated observations; a named historical snapshot remains immutable.
+// No invented numerical archive for the newly qualified Islamic index.
+if (automatedIndices['world-islamic']?.facts) {
+  const facts = automatedIndices['world-islamic'].facts;
+  INDEX_FACTS['world-islamic'] = { [facts.asOf]: buildAutomatedIndexSnapshot(facts, {
+    markets: 'Marchés développés',
+    methodologyNote: 'Filtres sectoriels et ratios financiers de la méthodologie MSCI Islamic ; rendements Gross USD distincts de ceux de l’ETF.',
+    methodologySources: [facts.source],
+  }) };
+}
 export const CURRENT_INDEX_KEYS = {};
 export const CURRENT_INDEX_SNAPSHOTS = {};
 for (const [id, record] of Object.entries(automatedIndices)) {

@@ -387,6 +387,7 @@
     "imageSubtitle": "Machines et équipements",
     "editorialHook": "Caterpillar fabrique des équipements pour la construction, les mines et la production d’énergie. Voici ses résultats 👇",
     "editorialQuestion": "Quels points surveillerais-tu dans les prochains résultats de Caterpillar ?",
+    "artFile": "caterpillar.svg",
     "candidateOnly": true
   },
   {
@@ -419,6 +420,39 @@
     "imageSubtitle": "Collecte et traitement des déchets",
     "editorialHook": "Waste Management collecte, traite et valorise les déchets en Amérique du Nord. Voici ses résultats 👇",
     "editorialQuestion": "Quels points surveillerais-tu dans les prochains résultats de Waste Management ?",
+    "artFile": "waste-management.svg",
     "candidateOnly": true
+  },
+  {
+    "id": "nike",
+    "symbol": "NKE",
+    "cik": "0000320187",
+    "name": "Nike",
+    "currency": "USD",
+    "accountingStandard": "GAAP",
+    "sourceUrl": "https://investors.nike.com/financial-information/financial-results",
+    "activity": "Nike vend des chaussures, des vêtements et des équipements de sport à travers ses marques.",
+    "watch": "La demande, les ventes directes et les marges sont à suivre.",
+    "activityReviewedAt": "2026-10-13",
+    "imageSubtitle": "Chaussures et équipements de sport",
+    "editorialHook": "👟 Une paire de Nike raconte aussi une histoire de ventes et de marges. Voici les résultats 👇",
+    "editorialQuestion": "Qu’est-ce que tu regarderais en premier dans les résultats de Nike ?",
+    "artFile": "nike.svg"
+  },
+  {
+    "id": "disney",
+    "symbol": "DIS",
+    "cik": "0001744489",
+    "name": "Walt Disney",
+    "currency": "USD",
+    "accountingStandard": "GAAP",
+    "sourceUrl": "https://investors.thewaltdisneycompany.com",
+    "activity": "Disney produit et distribue des contenus et exploite des parcs et des expériences de loisirs.",
+    "watch": "La rentabilité du streaming et l’activité des parcs sont à suivre.",
+    "activityReviewedAt": "2026-10-13",
+    "imageSubtitle": "Films, streaming et parcs",
+    "editorialHook": "🎬 Disney, ce n’est pas seulement les films de ton enfance. Voici ses résultats 👇",
+    "editorialQuestion": "Tu regarderais surtout le streaming ou les parcs ?",
+    "artFile": "disney.svg"
   }
 ]

@@ -9,8 +9,9 @@ import { derive } from '../src/pages/investment-calculator/lib.js';
 import { computeComparativeSeries } from '../src/pages/investment-calculator/videoExport.js';
 const read = path => JSON.parse(readFileSync(path));
 const config = read('scripts/monthly-automation.json');
-const records = { ...read('src/data/automated-monthly.json'), ...read('src/data/automated-etf-monthly.json') };
-const evidence = { ...read('scripts/source-snapshots/monthly-lifestrategy.json'), ...read('scripts/source-snapshots/monthly-automated-round4.json'), ...read('scripts/source-snapshots/monthly-automated.json') };
+config.series.push(...read('scripts/non-bond-monthly-sources.json').series);
+const records = { ...read('src/data/automated-monthly.json'), ...read('src/data/automated-etf-monthly.json'), ...read('src/data/non-bond-monthly-records.json') };
+const evidence = { ...read('scripts/source-snapshots/monthly-lifestrategy.json'), ...read('scripts/source-snapshots/monthly-automated-round4.json'), ...read('scripts/source-snapshots/monthly-automated.json'), ...read('scripts/source-snapshots/non-bond-monthly-active.json') };
 for (const source of config.series.filter(source => source.consumerScope === 'catalog')) {
   assert(records[source.id], `${source.id}: registered ETF must have a validated active history`);
 }

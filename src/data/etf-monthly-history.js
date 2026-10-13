@@ -1,8 +1,13 @@
-import RECORDS from './automated-etf-monthly.json' with { type: 'json' }
+import { NON_BOND_HISTORY_IDENTITIES } from './non-bond-expansion.js';
+import BASE_RECORDS from './automated-etf-monthly.json' with { type: 'json' }
 
+import NON_BOND_RECORDS from './non-bond-monthly-records.json' with { type:'json' };
+const RECORDS={...BASE_RECORDS,...Object.fromEntries(Object.entries(NON_BOND_RECORDS).filter(([,r])=>r.consumerScope==='catalog'))};
 // Exact shares shared by the investment, performance and anniversary tools.
 // Visual identities use exposure illustrations, never an invented issuer logo.
 export const ETF_HISTORY_IDENTITIES = {
+ ...NON_BOND_HISTORY_IDENTITIES,
+ etfWorldIslamic: {icon:'🌍',scene:'world',title:'WORLD ISLAMIC',ticker:'ISDW'},
  ...Object.fromEntries([20,40,60,80].map(n=>[`etfLifeStrategy${n}`,{icon:'⚖️',scene:'world',title:`LIFESTRATEGY ${n}/${100-n}`,ticker:`V${n}A`}])) ,
   etfWorldMultifactor: { icon:'🌍',scene:'world',title:'WORLD MULTIFACTOR',ticker:'IFSW' },
   etfIbondsEuro2028: { icon:'📅',scene:'world',title:'OBLIGATIONS EURO 2028',ticker:'B28A' },

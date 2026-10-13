@@ -1,3 +1,4 @@
+import { NON_BOND_LISTINGS } from './non-bond-expansion.js';
 import { LIFESTRATEGY_LISTINGS } from './lifestrategy.js';
 import { ROUND3_LISTINGS } from './round3-fund-sheets.js';
 import { QUALIFIED_LISTINGS } from './qualified-exposure-sheets.js';
@@ -7,6 +8,7 @@ import { EXPOSURE_ADDITIONS } from './exposure-additions.js';
 // Sous-ensemble documenté, pas une liste exhaustive des marchés disponibles.
 // currency est la devise de négociation, jamais celle du fonds par déduction.
 export const INSTRUMENT_LISTINGS_BY_ISIN = Object.freeze({
+  ...NON_BOND_LISTINGS,
   ...LIFESTRATEGY_LISTINGS,
   "IE000UL6CLP7": [{"ticker": "SILV", "exchange": "London Stock Exchange", "mic": "XLON", "currency": "USD", "sourceUrl": "https://globalxetfs.eu/funds/silv/", "checkedAt": "2026-10-12", "evidenceId": "IE000UL6CLP7-XLON-SILV-USD"}],
   "IE00B4556L06": [{"ticker": "IPDM", "exchange": "London Stock Exchange", "mic": "XLON", "currency": "USD", "sourceUrl": "https://www.ishares.com/uk/individual/en/products/256574/ishares-physical-palladium-etc-fund?siteEntryPassthrough=true&switchLocale=y", "checkedAt": "2026-10-12", "evidenceId": "IE00B4556L06-XLON-IPDM-USD"}],

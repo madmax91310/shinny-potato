@@ -1,14 +1,17 @@
+import nonBondSources from './non-bond-expansion-sources.json' with {type:'json'};
+import nonBondQualified from './non-bond-qualified-sources.json' with { type:'json' };
 import { AUTOMATED_ETF } from '../src/data/automated-etf.js';
-import qualified from './qualified-exposure-sources.json' with { type:'json' };
+import baseQualified from './qualified-exposure-sources.json' with { type:'json' };
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { DATA_CATALOG } from '../src/data/catalog.js';
 import { writeGapInventory } from './automation-gap-inventory.mjs';
 import { ASSETS } from '../src/data/market-history.js';
 import { auditComparisonAutomation } from './audit-comparison-automation.mjs';
 const comparisons = auditComparisonAutomation();
+const qualified = {instruments:[...baseQualified.instruments,...nonBondQualified.instruments]};
 const read=path=>JSON.parse(readFileSync(path));
-const etf=AUTOMATED_ETF, indices=read('src/data/automated-indices.json'), monthly=read('src/data/automated-monthly.json');
-const sources=['etf-pilot.json','amundi-etf.json','ssga-etf.json','additional-etf-sources.json'].flatMap(file=>read(`scripts/${file}`).instruments).concat(qualified.instruments);
+const etf=AUTOMATED_ETF, indices=read('src/data/automated-indices.json'), monthly={...read('src/data/automated-monthly.json'),...read('src/data/non-bond-monthly-records.json')};
+const sources=['etf-pilot.json','amundi-etf.json','ssga-etf.json','additional-etf-sources.json'].flatMap(file=>read(`scripts/${file}`).instruments).concat(qualified.instruments,nonBondSources.instruments);
 const configured=new Set(sources.filter(s=>s.enabled!==false).map(s=>s.isin));
 const instruments=DATA_CATALOG.filter(r=>r.type==='instrument');
 const uncovered=instruments.filter(r=>!configured.has(r.id)||!etf[r.id]);
@@ -22,13 +25,13 @@ const rows=[
  '## Ce qui fonctionne sans assistant ni saisie manuelle','',
  '| Domaine | Couverture active | Fréquence |','|---|---|---|',
  `| Historiques mensuels des simulateurs | ${Object.keys(ASSETS).length}/${Object.keys(ASSETS).length} séries ; ${Object.values(monthly).filter(record => record.consumerScope !== 'catalog').length} collecteurs communs + Bitcoin et or | Marchés : 2, 4, 8 et 16 du mois ; Bitcoin : 2, 4 et 8 ; or : tentatives du 3 au 10 |`,
- `| Parts ETF mensuelles raccordées | ${Object.keys(read('src/data/automated-etf-monthly.json')).length} parts exactes ; investissement et performance revenus réinvestis, anniversaire hors distributions | Même collecte mensuelle et reprise quotidienne des échecs |`,
+ `| Parts ETF mensuelles raccordées | ${Object.keys({...read('src/data/automated-etf-monthly.json'),...Object.fromEntries(Object.entries(read('src/data/non-bond-monthly-records.json')).filter(([,r])=>r.consumerScope==='catalog'))}).length} parts exactes ; investissement et performance revenus réinvestis, anniversaire hors distributions | Même collecte mensuelle et reprise quotidienne des échecs |`,
  `| ETF/ETC/ETP | ${Object.keys(etf).length}/${instruments.length} instruments, au moins un champ | Quotidienne |`,
  `| Comparatif ETF | ${comparisons.instruments}/${comparisons.instruments} parts raccordées dans ${comparisons.themes} blocs ; ${comparisons.calendars} calendriers actifs, ${comparisons.waiting.length} absences qualifiées | Quotidienne ; ajout de part contrôlé en CI |`,
  `| Compositions d’indices | ${Object.values(indices).filter(r=>r.facts).length} indices | 3 et 16 du mois |`,
  `| Rendements annuels d’indices | ${Object.values(indices).filter(r=>r.returns).length} indices | 3 et 16 du mois |`,
  `| Pouvoir d’achat | Prix généraux, alimentation, énergie, IRL et SMIC INSEE ; périodes et qualité publiées | Vérification quotidienne |`,
- `| Anniversaires | ${Object.keys(read('src/data/anniversary-levels.json')).length} niveaux datés ; saisie manuelle facultative | Quotidienne ; or : dernière moyenne mensuelle |`,
+ `| Anniversaires | ${Object.keys({...read('src/data/anniversary-levels.json'),...read('src/data/non-bond-levels.json')}).length} niveaux datés ; saisie manuelle facultative | Quotidienne ; or : dernière moyenne mensuelle |`,
  '| Inflation | INSEE, prolongement de la série mensuelle 2026+ | 1 et 16 du mois |',
  '| Portefeuilles d’investisseurs | 18 déclarants SEC 13F | Vérification quotidienne ; publication trimestrielle par les déclarants |',
  '| Suivi de fraîcheur | Rapport et rappels GitHub | Hebdomadaire ; ces rappels ne collectent pas les données manuelles |','',

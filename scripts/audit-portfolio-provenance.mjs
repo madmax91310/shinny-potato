@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { NON_BOND_SHEETS } from '../src/data/non-bond-expansion.js'
 import { LIFESTRATEGY_RECORDS } from '../src/data/lifestrategy.js'
 import { EXPOSURE_ADDITIONS } from '../src/data/exposure-additions.js';
 import { SIMULATION_PROXIES } from '../src/data/simulation-proxies.js';
@@ -15,6 +16,7 @@ const groups = {
   'Autre fonds ou historique mixte': `qyld_ucits oblig_hy_amundi actions_asie_ex_japon quality_dividend bitcoin_etcgroup`,
   'Hypothèse non liée à un titre précis': `fonds_euros scpi`,
 }
+groups['Fonds confirmé chez l’émetteur'] += ' world-islamic ' + NON_BOND_SHEETS.filter(r=>getInstrumentReturnValues(r.isin).every(Number.isFinite)).map(r=>r.id).join(' ');
 for (const r of EXPOSURE_ADDITIONS) {
   const basis = r.id === 'world_ex_usa' ? 'Indice ou cours du sous-jacent' : r.id === 'pea_global_amundi' ? 'Autre fonds ou historique mixte' : 'Fonds confirmé chez l’émetteur';
   groups[basis] += ' ' + r.id;
@@ -54,6 +56,8 @@ const partialOrSyntheticYears = new Map(Object.entries({
   scpi: '2020 : ancienne mesure de performance globale, pas le RGI ASPIM',
 }))
 const issuerSources = {
+ ...Object.fromEntries(NON_BOND_SHEETS.filter(r=>getInstrumentReturnValues(r.isin).every(Number.isFinite)).map(r=>[r.id,getInstrumentAnnualPerformance(r.isin).source])),
+ 'world-islamic':getInstrumentAnnualPerformance('IE00B27YCN58').source,
  ...Object.fromEntries(Object.values(LIFESTRATEGY_RECORDS).map(r=>[r.id,r.performance.sourceUrl])),
   materials_world_dws: getInstrumentAnnualPerformance('IE00BM67HS53')?.source,
   utilities_world_dws: getInstrumentAnnualPerformance('IE00BM67HQ30')?.source,

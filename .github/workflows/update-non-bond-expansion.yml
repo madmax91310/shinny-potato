@@ -1,0 +1,83 @@
+name: Update non-bond expansion
+on:
+  schedule:
+    - cron: '15 7 * * *'
+  workflow_dispatch:
+  push:
+    branches: [master]
+    paths:
+      - 'scripts/*non_bond*'
+      - 'scripts/*non-bond*'
+      - '.github/workflows/update-non-bond-expansion.yml'
+  pull_request:
+    paths:
+      - 'scripts/*non_bond*'
+      - 'scripts/*non-bond*'
+      - 'src/data/non-bond*'
+      - '.github/workflows/update-non-bond-expansion.yml'
+permissions:
+  contents: read
+jobs:
+  refresh:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    concurrency:
+      group: non-bond-data-${{ github.event_name == 'pull_request' && github.ref || 'production' }}
+      cancel-in-progress: false
+    permissions:
+      contents: write
+    outputs:
+      commit_sha: ${{ steps.commit.outputs.commit_sha }}
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          ref: ${{ github.event_name == 'pull_request' && github.ref || 'master' }}
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 20
+      - run: sudo apt-get update && sudo apt-get install -y poppler-utils
+      - run: pip install -r scripts/company-requirements.txt openpyxl==3.1.5
+      - run: npm ci
+      - run: python -m unittest discover -s scripts -p 'test_non_bond_expansion.py'
+      - id: collect
+        continue-on-error: ${{ github.event_name != 'pull_request' }}
+        run: python scripts/refresh_non_bond_sources.py --apply --output "$RUNNER_TEMP/non-bond.json"
+      - run: node scripts/audit-automated-monthly.mjs
+      - run: node scripts/audit-comparison-automation.mjs
+      - run: node scripts/test-qualified-exposures.mjs
+      - run: node scripts/test-etf-tool-connections.mjs
+      - run: npm run audit:instrument-catalog
+      - run: npm run build
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: non-bond-source-observation
+          path: ${{ runner.temp }}/non-bond.json
+          retention-days: 35
+      - id: commit
+        if: github.event_name != 'pull_request'
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add src/data/non-bond-etf-records.json src/data/non-bond-qualified-records.json src/data/non-bond-monthly-records.json src/data/non-bond-levels.json scripts/source-snapshots/non-bond-monthly-active.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Refresh approved non-bond expansion sources'
+            git pull --rebase origin master
+            git push origin HEAD:master
+          fi
+          echo "commit_sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+      - if: steps.collect.outcome == 'failure'
+        run: exit 1
+  deploy:
+    needs: refresh
+    if: github.event_name != 'pull_request'
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    uses: ./.github/workflows/deploy-pages.yml
+    with:
+      ref: ${{ needs.refresh.outputs.commit_sha }}

@@ -6,6 +6,7 @@ import { getCurrentIndexFacts, buildAutomatedIndexSnapshot } from './index-facts
 // These sheets have no numerical archive fallback: every displayed observation
 // comes from the validated records maintained by the daily issuer workflow.
 export const AUTOMATED_SHEET_DEFINITIONS = [
+ {id:'world-islamic',title:'MSCI World Islamic',intro:'Un indice mondial peut changer de visage avec des critères sectoriels et financiers différents 👇',takeaway:'Les critères de finance islamique changent les entreprises retenues et les poids sectoriels. La sélection reste exposée au risque actions.'},
   {id:'msci-world-materials',title:'MSCI World Materials',intro:'Les entreprises de matériaux ne se résument pas aux mines. Que contient ce secteur mondial ? 🪨',takeaway:'Les matériaux regroupent notamment chimie, métaux et matériaux de construction. Les actions de ces entreprises ne suivent pas directement le prix des matières premières.'},
   {id:'msci-world-utilities',title:'MSCI World Utilities',intro:'Électricité, gaz et eau : quelles sociétés retrouves-tu derrière les services publics mondiaux ? 💡',takeaway:'Les services publics restent exposés aux taux, à la réglementation et aux investissements. Ce secteur actions ne garantit pas la stabilité du capital.'},
   { id: 'msci-world-industrials', title: 'MSCI World Industrials', takeaway: 'L’industrie regroupe plusieurs activités. Ajouter cette exposition renforce un secteur déjà présent dans le World.' },

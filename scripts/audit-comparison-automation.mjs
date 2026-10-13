@@ -1,5 +1,7 @@
+import nonBondSources from './non-bond-expansion-sources.json' with {type:'json'};
+import nonBondQualified from './non-bond-qualified-sources.json' with { type:'json' };
 import lifestrategyConfig from './lifestrategy-sources.json' with {type:'json'};
-import qualifiedConfig from './qualified-exposure-sources.json' with { type:'json' };
+import baseQualified from './qualified-exposure-sources.json' with { type:'json' };
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
@@ -7,8 +9,9 @@ import { DEFAULT_THEMES } from '../src/data/etf-themes.js';
 import { AUTOMATED_ETF } from '../src/data/automated-etf.js';
 import { classifyInstrumentGap } from './automation-gap-inventory.mjs';
 
+const qualifiedConfig = {instruments:[...baseQualified.instruments,...nonBondQualified.instruments]};
 const sources = ['etf-pilot.json', 'amundi-etf.json', 'ssga-etf.json', 'additional-etf-sources.json']
-  .flatMap(file => JSON.parse(readFileSync(new URL(file, import.meta.url))).instruments).concat(lifestrategyConfig.instruments);
+  .flatMap(file => JSON.parse(readFileSync(new URL(file, import.meta.url))).instruments).concat(lifestrategyConfig.instruments,nonBondSources.instruments);
 
 // Check the actual selection, including reused themes and PEA blocks.
 // This checks wiring and qualified observations, not today's network availability.
@@ -25,7 +28,13 @@ export function auditComparisonAutomation({ themes = DEFAULT_THEMES, configs = s
     assert(Number.isFinite(record.characteristics?.terPct), `${isin}: frais non raccordés`);
     assert(record.aum?.amount > 0 && record.aum.asOf && record.aum.checkedAt, `${isin}: encours non raccordé ou non daté`);
     for (const field of lifestrategyConfig.instruments.some(c=>c.isin===isin) ? ['assetAllocation','holdings'] : ['countries', 'sectors', 'holdings']) {
-      if (classifyInstrumentGap(isin, field, now).status === 'not-applicable') continue;
+      const gap=classifyInstrumentGap(isin, field, now);
+      if (gap.status === 'not-applicable') continue;
+      if (gap.status === 'not-published') {
+        assert(gap.sourceUrl && record.holdings?.basis==='index' && record.holdings.sourceUrl===gap.sourceUrl && /^[a-f0-9]{64}$/.test(record.holdings.sha256), `${isin}: absence sans preuve d’indice qualifiée`);
+        waiting.push({isin,name:fund.nom,field,...gap});
+        continue;
+      }
       assert(record[field]?.rows?.length && record[field].asOf, `${isin}: ${field} non raccordé ou non daté`);
     }
     if (Object.keys(record.performance?.years ?? {}).length) {

@@ -1,3 +1,4 @@
+import { NON_BOND_SHEETS } from './non-bond-expansion.js';
 import annualFx from './annual-fx.json' with { type: 'json' };
 import { ASSETS } from './portfolio-assets.js'
 import { getInstrumentDuelSeries, getInstrumentCalendarReturns } from './instrument-returns.js'
@@ -100,7 +101,8 @@ const extraFunds = [
 })
 const stoxxIsin = 'FR0011550193'
 const stoxxEvidence = COMPARATOR_RETURN_EVIDENCE[stoxxIsin]
-export const CATALOG = [...fundItems, ...extraFunds, {
+const expansionFunds=[...NON_BOND_SHEETS.map(r=>({id:r.id,isin:r.isin,label:r.title,exposure:r.id,role:'complement',group:ROLES.complement,name:r.name,...getInstrumentDuelSeries(r.isin),note:r.whatToKnow})),{id:'world-islamic',isin:'IE00B27YCN58',label:'World Islamic',exposure:'world-islamic',role:'complement',group:ROLES.complement,name:getInstrumentName('IE00B27YCN58'),...getInstrumentDuelSeries('IE00B27YCN58'),note:'Rendements NAV de la part exacte, revenus réinvestis ; critères sectoriels et financiers de finance islamique.'}];
+export const CATALOG = [...expansionFunds, ...fundItems, ...extraFunds, {
   id: 'stoxx600_bnp', isin: stoxxIsin, name: getInstrumentName(stoxxIsin),
   role: 'complement', label: 'STOXX Europe 600', exposure: 'europe', group: ROLES.complement,
   currency: stoxxEvidence.currency, values: [null, null, null, ...COMPARATOR_RETURNS_BY_ISIN[stoxxIsin]],

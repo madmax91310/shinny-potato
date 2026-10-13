@@ -4,7 +4,7 @@ import { AUTOMATED_ETF } from '../src/data/automated-etf.js';
 
 const report = auditComparisonAutomation();
 assert(report.instruments > 0 && report.calendars > 0);
-assert(report.waiting.every(fund => ['waiting-first-year', 'waiting-publication'].includes(fund.status)));
+assert(report.waiting.every(fund => ['waiting-first-year', 'waiting-publication', 'source-conflict', 'not-published'].includes(fund.status)));
 assert.throws(() => auditComparisonAutomation({ configs: [] }), /sans collecteur actif/);
 assert.throws(() => auditComparisonAutomation({ records: {} }), /aucune observation/);
 const isin = 'IE0002XZSHO1';

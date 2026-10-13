@@ -1,17 +1,23 @@
 import { spawnSync } from 'node:child_process';
 // A later month must reach every shared consumer without a code change.
 import assert from 'node:assert/strict';
-import { cpSync, mkdtempSync, readFileSync, writeFileSync, rmSync } from 'node:fs';
+import { cpSync, mkdirSync, mkdtempSync, readFileSync, writeFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { pathToFileURL } from 'node:url';
 const directory=mkdtempSync(join(tmpdir(),'monthly-consumers-'));
 try {
   cpSync('src',join(directory,'src'),{recursive:true});
+  mkdirSync(join(directory,'scripts'));
+  cpSync('scripts/non-bond-expansion-sources.json',join(directory,'scripts/non-bond-expansion-sources.json'));
+  cpSync('scripts/non-bond-qualified-sources.json',join(directory,'scripts/non-bond-qualified-sources.json'));
+  cpSync('scripts/qualified-exposure-sources.json',join(directory,'scripts/qualified-exposure-sources.json'));
   writeFileSync(join(directory,'package.json'),'{"type":"module"}');
   const path=join(directory,'src/data/automated-monthly.json');
   const etfPath=join(directory,'src/data/automated-etf-monthly.json');
-  const records={...JSON.parse(readFileSync(path)),...JSON.parse(readFileSync(etfPath))};
+  const nonBondPath=join(directory,'src/data/non-bond-monthly-records.json');
+  const nonBondRecords=JSON.parse(readFileSync(nonBondPath));
+  const records={...JSON.parse(readFileSync(path)),...JSON.parse(readFileSync(etfPath)),...nonBondRecords};
   for(const record of Object.values(records)) {
     const [year,month]=record.periodEnd.split('-').map(Number);
     const next=new Date(Date.UTC(year,month,1)).toISOString().slice(0,7);
@@ -19,6 +25,7 @@ try {
     if(record.anniversaryPoints?.length)record.anniversaryPoints.push([next,record.anniversaryPoints.at(-1)[1]*1.01]);
     record.periodEnd=next;record.checkedAt=new Date(Date.UTC(year,month+1,4)).toISOString().slice(0,10);
   }
+  writeFileSync(nonBondPath,JSON.stringify(Object.fromEntries(Object.entries(records).filter(([id])=>Object.hasOwn(nonBondRecords,id)))));
   writeFileSync(path,JSON.stringify(Object.fromEntries(Object.entries(records).filter(([,record])=>record.consumerScope!=='catalog'))));
   writeFileSync(etfPath,JSON.stringify(Object.fromEntries(Object.entries(records).filter(([,record])=>record.consumerScope==='catalog'))));
   for(const file of ['bitcoin-yahoo-monthly.json','worldbank-gold-monthly.json']) {

@@ -1,9 +1,11 @@
+import NON_BOND_COMPANY_HISTORIES from './non-bond-company-histories.json' with { type: 'json' };
 import { COMPANY_HISTORY_ADDITIONS, COMPANY_HISTORY_ADDITIONS_REVIEW } from './company-history-additions.js';
 // Séries mensuelles contrôlées le 02/10/2026 : dernières clôtures quotidiennes
 // ajustées Yahoo (dividendes et divisions), recoupées avec le close mensuel.
 // Source et captures : scripts/source-snapshots/calculator-companies-2026-10-02.json.
 // Six décimales conservées pour limiter l’arrondi des rendements historiques.
 export const COMPANY_HISTORY = {
+ ...NON_BOND_COMPANY_HISTORIES,
 ...COMPANY_HISTORY_ADDITIONS,
   costco: {
     label: "Costco", tweetPhrase: "Costco", icon: "🛒", currency: "USD", priceMethod: "adjusted", returnNote: "",
@@ -319,6 +321,7 @@ export const COMPANY_HISTORY = {
 }
 
 export const COMPANY_HISTORY_REVIEW = {
+ ...Object.fromEntries(Object.entries(NON_BOND_COMPANY_HISTORIES).map(([id,r])=>[`history:${id}`,r.review])),
 ...COMPANY_HISTORY_ADDITIONS_REVIEW,
   "history:costco": {
     "sourceUrls": [

@@ -4,13 +4,15 @@ import { ETF_MONTHLY_HISTORIES } from '../src/data/etf-monthly-history.js'
 import { derive, buildTweetText as buildInvestmentText } from '../src/pages/investment-calculator/lib.js'
 import { getPerformanceAssetId } from '../src/data/performance-links.js'
 import { resolveAnniversaryLevel } from '../src/data/anniversary-levels.js'
-import LEVELS from '../src/data/anniversary-levels.json' with { type: 'json' }
+import BASE_LEVELS from '../src/data/anniversary-levels.json' with { type: 'json' }
 import { ANNIVERSAIRE_ELIGIBLE_ASSETS, getHistoricalPrice, getValidYearsBackOptions, getAnnualReturnStartYears, getAnnualReturns, ymForYearsBack, performanceBasis } from '../src/pages/tweet-midi/data/marketHistory.js'
 import { buildAnniversaireText, buildAnniversaireComparatifText, buildPerformanceDepuisText, FORMATS, MODES } from '../src/pages/tweet-midi/lib.js'
 import { ANNIVERSARY_ART } from '../src/pages/tweet-midi/anniversaryArt.js'
 import { PERFORMANCE_ART } from '../src/pages/tweet-midi/performanceArt.js'
 import { INVESTMENT_ART } from '../src/pages/investment-calculator/emeraldArt.js'
 
+import NON_BOND_LEVELS from '../src/data/non-bond-levels.json' with {type:'json'};
+const LEVELS={...BASE_LEVELS,...NON_BOND_LEVELS};
 const clock = new Date('2026-10-11T12:00:00Z')
 const close = (a, b) => assert(Math.abs(a - b) < 1e-7, `${a} != ${b}`)
 for (const id of ['etfImie','etfVwce','etfEqualWeight','etfMinVol','etfWqdv','etfTdiv','etfEpra','etfCmod','etfSemi','etfLock']) assert(ETF_MONTHLY_HISTORIES[id], `Initial exact share missing: ${id}`)
@@ -69,3 +71,9 @@ assert(ASSETS.etfWqdv.points.some((p, i) => Math.abs(p.price - ASSETS.etfWqdv.an
 const comparative = buildAnniversaireComparatifText({ format: FORMATS.ANNIVERSAIRE, mode: MODES.COMPARATIF, assetIdA: 'etfImie', assetIdB: 'etfVwce', yearsBack: 1 }, '100', '200')
 assert(comparative.includes(ASSETS.etfImie.label) && comparative.includes(ASSETS.etfVwce.label))
 console.log(`${Object.keys(ETF_MONTHLY_HISTORIES).length} ETF/ETC: exact shares, lump/DCA, complete annual returns, raw anniversary prices, daily closes, comparisons and visual identities validated.`)
+
+// New commodity labels must reach the actual copied presentation text.
+const { buildText: presentationText } = await import('../src/pages/etf-sheets/lib.js');
+const { ETFS: presentationCards } = await import('../src/data/etf-cards.js');
+for (const card of presentationCards.filter(card => card.id.startsWith('etc-')))
+  assert.doesNotMatch(presentationText(card), /undefined|NaN/, card.id);

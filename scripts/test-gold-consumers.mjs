@@ -1,6 +1,6 @@
 // Prove next month's gold refresh reaches consumers without another code change.
 import assert from 'node:assert/strict'
-import { cpSync, mkdtempSync, readFileSync, writeFileSync, rmSync } from 'node:fs'
+import { cpSync, mkdirSync, mkdtempSync, readFileSync, writeFileSync, rmSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { pathToFileURL } from 'node:url'
@@ -8,6 +8,9 @@ import { pathToFileURL } from 'node:url'
 const dir = mkdtempSync(join(tmpdir(), 'gold-consumers-'))
 try {
   cpSync(new URL('../src', import.meta.url), join(dir, 'src'), { recursive: true })
+  mkdirSync(join(dir, 'scripts'))
+  for (const file of ['non-bond-expansion-sources.json', 'non-bond-qualified-sources.json', 'qualified-exposure-sources.json'])
+    cpSync(new URL(file, import.meta.url), join(dir, 'scripts', file))
   writeFileSync(join(dir, 'package.json'), '{"type":"module"}')
   const path = join(dir, 'src/data/worldbank-gold-monthly.json')
   const gold = JSON.parse(readFileSync(path))

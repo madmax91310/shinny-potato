@@ -6,9 +6,9 @@ const groups = {
   world: ['msciWorld', 'msciWorldSmallCap','msciAcwi','msciAcwiImi','msciWorldExUsa', 'msciWorldMomentum', 'msciWorldQuality', 'msciWorldValue'], america: ['sp500', 'nasdaq100', 'msciUsa', 'russell2000'],
   europe: ['stoxx600', 'cac40', 'msciEurope'], asia: ['msciEmerging', 'msciIndia', 'msciEmergingExChina'], chip: ['soxx', 'nvidia', 'google', 'meta', 'sap', 'intel'],
   bonds: ['euroGovShort', 'euroGov13', 'globalBondEur', 'euroInflationBond', 'euroCorporateBond', 'euroHighYieldBond'],
-  finance: ['euroMoney', 'visa', 'paypal'], luxury: ['lvmh', 'hermes', 'loreal'],
-  consumer: ['amazon', 'costco', 'nestle', 'cocacola', 'mcdonalds', 'netflix'],
-  infrastructure: ['airliquide'], utilities: ['schneider'], silver: ['silver'],
+  finance: ['jpmorgan', 'euroMoney', 'visa', 'paypal'], luxury: ['lvmh', 'hermes', 'loreal'],
+  consumer: ['nike','disney','procter-gamble', 'amazon', 'costco', 'nestle', 'cocacola', 'mcdonalds', 'netflix'],
+  health: ['johnson-johnson'], energy:['exxonmobil'], infrastructure: ['airliquide','caterpillar','waste-management'], utilities: ['schneider'], silver: ['silver'],
 }
 export const PERFORMANCE_ART = Object.freeze({
   ...Object.fromEntries(Object.entries(ETF_HISTORY_IDENTITIES).map(([id, asset]) => [id, {

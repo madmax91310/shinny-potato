@@ -1,0 +1,110 @@
+"""Renewable consolidated GAAP releases for Nike and Disney."""
+import datetime as dt
+import io
+import json
+import re
+from concurrent.futures import ThreadPoolExecutor
+from urllib.parse import urljoin, urlparse
+from bs4 import BeautifulSoup
+import pdfplumber
+from company_publications import get
+from company_round2_publications import statement_periods
+
+SOURCES={'nike':'https://investors.nike.com/financial-information/financial-results',
+         'disney':'https://investors.thewaltdisneycompany.com'}
+ROUND4=set(SOURCES)
+SYMBOLS={'nike':'NKE','disney':'DIS'}
+IDENTITY={'nike':r'NIKE,?\s*Inc', 'disney':r'Walt Disney'}
+
+def discover(ident):
+    archive=SOURCES[ident]
+    if ident=='nike':
+        soup=BeautifulSoup(get(archive),'html.parser')
+        rows=[(a['href'],' FY 'in a.get_text(' ',strip=True))for a in soup.select('a[href]')if a.get_text(' ',strip=True).startswith('Earnings Release ')]
+        allowed={'investors.nike.com'}
+    else:
+        url=archive+'/feed/FinancialReport.svc/GetFinancialReportList?reportTypes=First%20Quarter%7CSecond%20Quarter%7CThird%20Quarter%7CFourth%20Quarter&year=-1&startIndex=0&length=100'
+        reports=json.loads(get(url,max_bytes=20_000_000))['GetFinancialReportListResult'];rows=[]
+        reports=reports[:12]
+        for report in reports:
+            documents=[d['DocumentPath']for d in report['Documents']if d['DocumentCategory']=='news' and d['DocumentPath'].endswith('.pdf')]
+            if len(documents)>1:raise ValueError('Ambiguous Disney earnings release')
+            if documents:rows.append((documents[0],report['ReportSubType']=='Fourth Quarter'))
+        allowed={'s206.q4cdn.com'}
+    urls=list(dict.fromkeys([u for u,_ in rows[:5]]+[u for u,annual in rows if annual][:2]))
+    if len(urls)<4 or any(urlparse(u).scheme!='https' or urlparse(u).hostname not in allowed for u in urls):raise ValueError('Incomplete or unqualified official earnings archive')
+    return urls
+
+def parse(raw,ident,url,today):
+    if ident=='nike':
+        soup=BeautifulSoup(raw,'html.parser')
+        if not re.search(IDENTITY[ident],soup.get_text(' ',strip=True),re.I):raise ValueError('Wrong Nike issuer')
+        sections=[]
+        for table in soup.find_all('table'):
+            content=table.get_text(' ',strip=True)
+            if not all(x in content for x in ['NET INCOME','Weighted average common','THREE MONTHS ENDED']):continue
+            caption=table.find_previous(string=re.compile('CONSOLIDATED STATEMENTS OF INCOME',re.I))
+            if not caption and not re.search(r'CONSOLIDATED (?:STATEMENTS OF INCOME|INCOME STATEMENTS)',soup.get_text(' ',strip=True),re.I):raise ValueError('Missing GAAP statement caption')
+            rows=[]
+            for row in table.find_all('tr'):
+                cells=[c.get_text(' ',strip=True)for c in row.find_all(['td','th'],recursive=False)]
+                drop={i for i,v in enumerate(cells)if '%'in v}
+                for i in list(drop):
+                    if cells[i]=='%' and i and re.fullmatch(r'\(?-?[\d,.]+\)?',cells[i-1]):drop.add(i-1)
+                rows.append(' '.join(v for i,v in enumerate(cells)if i not in drop))
+            content='CONSOLIDATED STATEMENTS OF INCOME\n'+'\n'.join(rows)
+            content=re.sub(r'(\d{1,2})/(\d{1,2})/(20\d{2})',lambda m:dt.date(int(m[3]),int(m[1]),int(m[2])).strftime('%B %d, %Y'),content)
+            sections.append(content)
+    else:
+        if not raw.startswith(b'%PDF'):raise ValueError('Disney financial PDF required')
+        with pdfplumber.open(io.BytesIO(raw))as pdf:content='\n'.join(p.extract_text(x_tolerance=1)or''for p in pdf.pages[:40])
+        if not re.search(IDENTITY[ident],content,re.I):raise ValueError('Wrong Disney issuer')
+        starts=list(re.finditer(r'(?im)^CONDENSED CONSOLIDATED STATEMENTS OF (?:OPERATIONS|INCOME)\s*$',content));sections=[]
+        for start in starts:
+            section=content[start.start():];end=re.search(r'(?im)^CONDENSED CONSOLIDATED (?:BALANCE|STATEMENTS OF CASH)',section)
+            if end:section=section[:end.start()]
+            lines=[]
+            for line in section.splitlines():
+                if re.match(r'Net income(?: attributable)?',line,re.I):
+                    if not line.startswith('Net income attributable to The Walt Disney Company'):continue
+                    line=re.sub(r'^Net income attributable to The Walt Disney Company(?: \(Disney\))?', 'Net income',line)
+                lines.append(line)
+            sections.append('\n'.join(lines))
+    periods=[]
+    for section in sections:
+        periods.extend(statement_periods(section,ident,url,today))
+    if not periods:raise ValueError('No qualified consolidated GAAP periods')
+    if ident=='disney':
+        for p in periods:p['incomeBasis']='part du groupe'
+    return periods
+
+def collect(profile,today,old=None):
+    ident=profile['id']
+    if ident not in ROUND4 or profile['symbol']!=SYMBOLS[ident] or profile['currency']!='USD':raise ValueError('Wrong company identity')
+    def load(url):
+        try:return parse(get(url,max_bytes=20_000_000),ident,url,today)
+        except Exception as e:raise ValueError(str(e)+' / '+url)from e
+    with ThreadPoolExecutor(max_workers=3)as pool:periods=[p for report in pool.map(load,discover(ident))for p in report]
+    quarters=sorted({p['end']:p for p in periods if p['durationMonths']==3}.values(),key=lambda p:p['end'],reverse=True)[:4]
+    annuals=sorted({p['end']:p for p in periods if p['durationMonths']==12}.values(),key=lambda p:p['end'],reverse=True)
+    if len(quarters)!=4 or len(annuals)<2:raise ValueError('Four published quarters and two annual statements required')
+    if any(not 75<=(dt.date.fromisoformat(a['end'])-dt.date.fromisoformat(b['end'])).days<=105 for a,b in zip(quarters,quarters[1:])):raise ValueError('Missing published quarter')
+    if (today-dt.date.fromisoformat(quarters[0]['end'])).days>200:raise ValueError('Stale quarterly accounts')
+    history={}
+    for a in reversed(annuals):
+        for prev in [True,False]:
+            end=a['previousEnd']if prev else a['end'];revenue=a['previousRevenue']if prev else a['revenue'];income=a['previousNetIncome']if prev else a['netIncome']
+            history[end]={'start':None,'end':end,'revenue':revenue,'netIncome':income,'margin':income/revenue*100,'sourceUrl':a['sourceUrl']}
+    return {'annual':annuals[0],'quarter':quarters[0]if quarters[0]['end']>annuals[0]['end']else None,'quarters':quarters,
+            'trailing':{'end':quarters[0]['end'],'revenue':sum(p['revenue']for p in quarters),'sourceUrls':[p['sourceUrl']for p in quarters],'dilutedEPS':sum(p['dilutedEPS']for p in quarters),'periods':[p['end']for p in quarters],'observedAt':today.isoformat(),'definition':'Somme de quatre BPA dilués GAAP trimestriels publiés'},
+            'historyYears':[history[k]for k in sorted(history)[-5:]],'historyObservedAt':today.isoformat()}
+
+def publication_decision(profile,company,today):
+    from company_decision import DECISION_VERSION, FCF_METHOD
+    accounts=collect(profile,today)
+    rows=[]
+    for row in accounts['historyYears']:
+        rows.append({**row,'start':row.get('start'), 'sourceUnits':'USD millions','incomeBasis':'part du groupe' if profile['id']=='disney'else'consolidated'})
+    return {'componentVersion':DECISION_VERSION,'currency':'USD','observedAt':today.isoformat(),
+            'sourceUrls':sorted({r['sourceUrl']for r in rows}),'years':rows,'annualEnd':company['annual']['end'],'method':FCF_METHOD,
+            'unavailable':['freeCashFlow: cash-flow layout not qualified; no approximation from earnings']}

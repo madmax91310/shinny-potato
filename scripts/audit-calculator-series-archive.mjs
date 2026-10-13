@@ -253,7 +253,8 @@ const companyIds = ['costco', 'mcdonalds', 'airliquide', 'schneider', 'hermes', 
 const addedCompanies = JSON.parse(readFileSync(new URL('./source-snapshots/companies-additions-2026-10-03.json', import.meta.url)));
 for (const [id, r] of Object.entries(addedCompanies)) companies.records[id] = { ...r, lastDailyCloses: r.lastDailyCloses.map(p => ({...p, adjclose: p.adjustedClose})), dailyUrl: r.url, periodStart: '2015-01' };
 companyIds.push(...Object.keys(addedCompanies));
-if (Object.keys(COMPANY_HISTORY).sort().join() !== companyIds.sort().join() || companies.checkedAt !== '2026-10-02') throw new Error('Périmètre des entreprises incorrect');
+const expansionCompanyIds = ['nike','disney','procter-gamble','johnson-johnson','exxonmobil','jpmorgan','caterpillar','waste-management'];
+if (Object.keys(COMPANY_HISTORY).sort().join() !== [...companyIds,...expansionCompanyIds].sort().join() || companies.checkedAt !== '2026-10-02') throw new Error('Périmètre des entreprises incorrect');
 for (const id of companyIds) {
   const a = ASSETS[id], r = companies.records[id], m = r.monthlyResponse.chart.result[0];
   const count = (2026 - Number(r.periodStart.slice(0, 4))) * 12 + 9 - Number(r.periodStart.slice(5)) + 1;
@@ -347,3 +348,12 @@ for (const [id, code] of [['msciEmerging', '891800'], ['msciWorldSmallCap', '106
   if (getAnnualReturns(id, 2016).some(row => row.year >= 2026)) throw new Error(`${id}: année partielle publiée`);
 }
 console.log('Emerging Markets et World Small Cap : 282 clôtures mensuelles/quotidiennes concordantes, 22 rendements annuels recoupés, catalogue commun, DCA et vidéos OK.');
+
+const expansionEvidence = JSON.parse(readFileSync(new URL('./source-snapshots/non-bond-monthly-validation.json', import.meta.url))).results;
+for (const id of expansionCompanyIds) {
+ const source=expansionEvidence.find(r=>r.id===id), a=ASSETS[id], proof=source?.proofRows;
+ if (!source || source.field!=='adjclose' || source.periodStart!=='2015-01' || !/^[a-f0-9]{64}$/.test(source.responseSha256) || proof?.length!==a.points.length) throw new Error(`${id}: preuve mensuelle absente`);
+ for (const [i,p] of a.points.entries()) if(proof[i].date.slice(0,7)!==p.date || Math.abs(proof[i].value-p.price)>.000001) throw new Error(`${id}: clôture ajustée divergente`);
+ if (!ASSET_ORDER.includes(id) || !ANNIVERSAIRE_ELIGIBLE_ASSETS.some(asset => asset.id === id)) throw new Error(`${id}: historique non raccordé`);
+}
+console.log('Huit nouvelles actions : clôtures ajustées, preuves et sélecteurs contrôlés.');
