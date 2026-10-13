@@ -63,6 +63,9 @@ function exposureReading(portfolio) {
   }
   if (factorReadings[complement?.exposure]) parts.push(`Les ${complement.pct} % de ${complement.label} ${factorReadings[complement.exposure]}. Ce filtre peut retenir des entreprises déjà présentes dans la base.${complement.exposure === 'value' ? ' Une action peu chère peut le rester longtemps.' : complement.exposure === 'quality' ? ' Ces critères ne garantissent ni un bon prix d’achat ni de meilleures performances.' : ''}`)
   const complements = {
+    copper: 'suivent le cuivre via un ETC sur contrats à terme et swap ; le renouvellement des contrats et les coûts comptent, ce rendement diffère du prix spot',
+    platinum: 'suivent un ETC adossé à du platine physique, sans revenu distribué ; il ne garantit aucune protection contre les baisses',
+    palladium: 'suivent un ETC adossé à du palladium physique, sans revenu distribué ; il ne garantit aucune protection contre les baisses',
     gold: 'exposent au prix de l’or physique via un ETC. Cet instrument ne verse pas de revenu et sa valeur peut baisser ; il ne constitue pas une protection garantie',
     exusa: 'renforcent les pays développés hors États-Unis ; ce choix réduit le poids américain sans ajouter les émergents',
     'us-small': 'ajoutent les petites entreprises américaines, plus sensibles aux conditions économiques et de financement',
@@ -80,6 +83,7 @@ function exposureReading(portfolio) {
     dividend: 'renforcent les actions sélectionnées selon une stratégie de dividendes. Les revenus sont réinvestis dans cette comparaison ; ces actions peuvent déjà être présentes dans la base',
   }
   if (complements[complement?.exposure]) parts.push(`Les ${complement.pct} % de ${complement.label} ${complements[complement.exposure]}.`)
+  if (theme && ['water','timber','agribusiness'].includes(theme.exposure)) parts.push('Cette poche détient des actions d’entreprises, sans achat direct d’eau, de forêt ou de récoltes. Elle peut recouper des entreprises déjà présentes dans la base.');
   if (theme) parts.push(`La poche ${theme.label.toLowerCase()} représente ${theme.pct} % du portefeuille. Les entreprises de ce thème peuvent aussi être présentes dans les autres ETF.`)
   return parts.join(' ')
 }

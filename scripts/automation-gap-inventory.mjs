@@ -8,7 +8,7 @@ import { DATA_CATALOG } from '../src/data/catalog.js';
 const qualified = {instruments:[...baseQualified.instruments,...nonBondQualified.instruments]};
 const read = path => JSON.parse(readFileSync(new URL('../'+path, import.meta.url)));
 const nonEquity = new Set(['LU0290358497','CH0454664001','DE000A27Z304','FR0013416716','GB00B15KXQ89','GB00BJYDH287','GB00BLD4ZL17','GB00BLD4ZM24','IE00B4NCWG09','IE00B4ND3602','IE00B4556L06','IE00B4LHWP62','IE00B579F325','IE00BD6FTQ80','IE00BDFL4P12','JE00B1VS3770']);
-for (const source of nonBondSources.instruments.filter(s=>s.instrumentType==='ETC')) nonEquity.add(source.isin);
+for (const source of [...nonBondSources.instruments,...read('scripts/additional-etf-sources.json').instruments].filter(s=>s.instrumentType==='ETC'||s.physicalMetal===true)) nonEquity.add(source.isin);
 const calendarEvidence = read('scripts/recent-calendar-evidence.json');
 export const recent = new Set(Object.keys(calendarEvidence.shares));
 export function completeCalendarYears(id, years, now) {

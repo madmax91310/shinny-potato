@@ -24,7 +24,8 @@ const references = {
   corporatebond: 'corp-bond-ig', highyieldbond: 'high-yield', inflationbond: 'obligations-inflation',
   globalbond: 'obligations-globales-eur',
   financials: 'financieres', tech: 'technologie', energy: 'energie', health: 'sante-biotech', cyber: 'cybersecurite',
-  ai: 'ia', robotics: 'robotique', biotech: 'sante-biotech', water: 'eau', luxury: 'luxe', batteries: 'batteries-ve',
+  ai: 'ia', robotics: 'robotique', biotech: 'sante-biotech', water: 'eau', timber: 'timber-ishares', agribusiness: 'agribusiness-ishares',
+  copper: 'copper-miners-globalx', platinum: 'support-argent', palladium: 'support-argent', luxury: 'luxe', batteries: 'batteries-ve',
   cleanenergy: 'support-sect_energie_propre', infrastructure: 'infrastructures', property: 'immobilier-reit',
   semiconductors: 'semiconducteurs', blockchain: 'blockchain',
 }
