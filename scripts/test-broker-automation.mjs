@@ -2,7 +2,7 @@ import assert from 'node:assert/strict'
 import {BROKER_TARIFFS, brokerOffers, brokerFieldCopies, applyBrokerProfile} from '../src/data/broker-tariffs.js'
 import {BROKERS} from '../src/pages/broker-comparator/data.js'
 import {BROKER_EDITORIAL} from '../src/pages/broker-comparator/editorial.js'
-import {BROKER_EVIDENCE, OFFICIAL_SOURCES} from '../src/pages/broker-comparator/evidence.js'
+import {BROKER_EVIDENCE, OFFICIAL_SOURCES, transferConditionStatus} from '../src/pages/broker-comparator/evidence.js'
 import {DATA_CATALOG} from '../src/data/catalog.js'
 for (const [id,o] of Object.entries(BROKER_TARIFFS)) {
  const broker=BROKERS.find(b=>b.id===id), record=DATA_CATALOG.find(r=>r.id===`broker:${id}`)
@@ -24,6 +24,14 @@ assert.match(brokerFieldCopies('saxo',BROKER_TARIFFS,'2027-01-01').entrant,/expi
 assert.equal(brokerFieldCopies('saxo',BROKER_TARIFFS,'2025-01-05').entrant,undefined)
 assert.equal(BROKER_EVIDENCE.ibkr.change.status,'partiel')
 assert.equal(BROKER_EVIDENCE.tr.garde.status,'partiel')
+for (const id of ['tr', 'caidf']) {
+ assert.equal(BROKER_EVIDENCE[id].transfert.status, 'partiel', `${id}: transfer fees remain unknown`);
+ assert.match(BROKER_EVIDENCE[id].transfert.summary, /confirmer|non qualifiés/);
+}
+assert.equal(transferConditionStatus({values:{available:1}}), 'partiel');
+assert.equal(transferConditionStatus({values:{available:0}}), 'confirmé');
+assert.equal(transferConditionStatus({values:{available:1,fee:0}}), 'confirmé');
+assert.equal(transferConditionStatus({values:{perLine:15,maximum:150}}), 'confirmé');
 assert.match(BROKERS.find(b=>b.id==='tr').garde.detail,/PEA.*confirmer/)
 assert.doesNotMatch(BROKER_EDITORIAL.tr.garde,/aucun ✅/)
 for(const id of ['xtb','caidf','saxo']) assert(BROKER_EVIDENCE[id].transfert.summary.includes(BROKER_EDITORIAL[id].entrant.split('✅').at(-1).split('❌')[0].trim().slice(0,8)) || BROKER_EVIDENCE[id].transfert.summary.includes('Transfert entrant') || BROKER_EVIDENCE[id].transfert.summary.includes('antériorité'))
