@@ -4,6 +4,8 @@ const generalIds = new Set([2, 20, 28, 34, 39, 44])
 const personalIds = new Set([1, 3, 6, 7, 8, 9, 11, 14, 16, 18, 19, 22, 25, 29, 30, 33, 38, 40, 42, 43, 45, 46, 47])
 const marketIds = new Set([10, 15, 17, 21, 24, 27, 32, 37])
 export function reviewPolicy(tweet) {
+  // Récit validé par l’auteur, sans données chiffrées ou caractéristiques de produits à actualiser.
+  if (tweet.id === 'story:parler-investissement-proches') return { kind: 'general', maxAge: null }
   // Guide ETF actifs : ISIN, frais et stratégies vérifiés le 13/10/2026 ; sources dans l’entrée.
   if (tweet.id === 'guide:active-etfs') return { kind: 'reviewed', checkedAt: '2026-10-13', maxAge: 30 }
   // ISIN, frais, PEA et levier quotidien revus auprès des émetteurs le 13/10/2026.
