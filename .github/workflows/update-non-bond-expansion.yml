@@ -42,6 +42,7 @@ jobs:
       - run: pip install -r scripts/company-requirements.txt openpyxl==3.1.5
       - run: npm ci
       - run: python -m unittest discover -s scripts -p 'test_non_bond_expansion.py'
+      - run: python -m unittest discover -s scripts -p 'test_roadmap_assets.py'
       - id: collect
         continue-on-error: ${{ github.event_name != 'pull_request' }}
         run: python scripts/refresh_non_bond_sources.py --apply --output "$RUNNER_TEMP/non-bond.json"

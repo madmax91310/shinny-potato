@@ -1,3 +1,4 @@
+import { QUALIFIED_EXPOSURE_SHEETS } from './qualified-exposure-sheets.js';
 import { NON_BOND_SHEETS } from './non-bond-expansion.js';
 import { LIFESTRATEGY_SHEETS } from './lifestrategy.js';
 import { SIMULATION_PROXIES } from './simulation-proxies.js';
@@ -75,6 +76,8 @@ export const CATEGORIES = {
 };
 
 export const ASSETS = [
+ {id:'europe-banks',isin:'DE000A0F5UJ7',name:getInstrumentName('DE000A0F5UJ7','portfolio'),cat:'actions_larges',emoji:'🟢',manualOnly:true,distributing:true,r:getInstrumentReturnValues('DE000A0F5UJ7'),confidenceNote:'Rendements NAV de la part EUR, revenus réinvestis ; exposition sectorielle européenne.',desc: (()=>{const s=QUALIFIED_EXPOSURE_SHEETS.find(r=>r.id==='europe-banks');return [s.whatIs,s.whyInteresting,s.whatToKnow]})()},
+ {id:'europe-insurance',isin:'DE000A0H08K7',name:getInstrumentName('DE000A0H08K7','portfolio'),cat:'actions_larges',emoji:'🟢',manualOnly:true,distributing:true,r:getInstrumentReturnValues('DE000A0H08K7'),confidenceNote:'Rendements NAV de la part EUR, revenus réinvestis ; exposition sectorielle européenne.',desc: (()=>{const s=QUALIFIED_EXPOSURE_SHEETS.find(r=>r.id==='europe-insurance');return [s.whatIs,s.whyInteresting,s.whatToKnow]})()},
  {id:'world-islamic',isin:'IE00B27YCN58',name:getInstrumentName('IE00B27YCN58'),cat:'actions_larges',emoji:'🌍',manualOnly:true,r:getInstrumentReturnValues('IE00B27YCN58'),desc:['Sélection d’actions développées conforme aux critères de finance islamique','Filtres sectoriels et financiers','Les exclusions modifient la concentration et les performances']},
  ...NON_BOND_SHEETS.filter(r=>getInstrumentReturnValues(r.isin).every(Number.isFinite)).map(r=>({id:r.id,isin:r.isin,name:r.name,cat:r.instrumentType==='ETC'?'matieres_premieres':'actions_larges',emoji:r.icon,manualOnly:true,r:getInstrumentReturnValues(r.isin),desc:[r.whatIs,r.whyInteresting,r.whatToKnow],confidenceNote:`Rendements NAV de la part exacte en ${r.currency} ; seules les années complètes disponibles sont comparées. ${r.currency==='USD'?'Change EUR/USD exclu de cette série.':''}`})),
   ...LIFESTRATEGY_SHEETS.map(r => ({ id:r.id, isin:r.isin, name:getInstrumentName(r.isin,'portfolio'), cat:'multi_actifs', emoji:'⚖️', manualOnly:true, r:getInstrumentReturnValues(r.isin), desc:[r.whatIs,r.whyInteresting,r.whatToKnow], confidenceNote:'Rendements NAV EUR de la part capitalisante, années complètes à partir de 2021.' })),

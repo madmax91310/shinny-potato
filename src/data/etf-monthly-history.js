@@ -7,6 +7,8 @@ const RECORDS={...BASE_RECORDS,...Object.fromEntries(Object.entries(NON_BOND_REC
 // Visual identities use exposure illustrations, never an invented issuer logo.
 export const ETF_HISTORY_IDENTITIES = {
  ...NON_BOND_HISTORY_IDENTITIES,
+ etfEuropeBanks: {icon:'🏦',scene:'finance',title:'BANQUES EUROPÉENNES',ticker:'EXV1'},
+ etfEuropeInsurance: {icon:'🛡️',scene:'finance',title:'ASSURANCES EUROPÉENNES',ticker:'EXH5'},
  etfWorldIslamic: {icon:'🌍',scene:'world',title:'WORLD ISLAMIC',ticker:'ISDW'},
  ...Object.fromEntries([20,40,60,80].map(n=>[`etfLifeStrategy${n}`,{icon:'⚖️',scene:'world',title:`LIFESTRATEGY ${n}/${100-n}`,ticker:`V${n}A`}])) ,
   etfWorldMultifactor: { icon:'🌍',scene:'world',title:'WORLD MULTIFACTOR',ticker:'IFSW' },

@@ -15,6 +15,8 @@ export const ROLES = { base: 'Base', complement: 'Complément', theme: 'Thémati
 
 // Sélection éditoriale : les chiffres restent exclusivement dans les registres communs.
 const choices = [
+ ['europe-banks','theme','Banques européennes','europe-banks'],
+ ['europe-insurance','theme','Assurances européennes','europe-insurance'],
  ...[20,40,60,80].map(n=>[`lifestrategy${n}`,'base',`LifeStrategy ${n}/${100-n}`,`lifestrategy${n}`]),
  ['utilities_world_dws','theme','Services publics mondiaux','utilities-world'],
  ['health_world_ishares','theme','Santé mondiale','health-world'],

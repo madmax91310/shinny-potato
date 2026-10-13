@@ -27,7 +27,7 @@ export const ANNIVERSARY_ART = Object.freeze({
     ['costco', 'COSTCO'], ['mcdonalds', 'MCDONALD’S'], ['intel', 'INTEL'],
     ['paypal', 'PAYPAL'], ['schneider', 'SCHNEIDER ELECTRIC'], ['hermes', 'HERMÈS'],
     ['loreal', 'L’ORÉAL'], ['nestle', 'NESTLÉ'], ['sap', 'SAP'],
-    ['nike','NIKE'], ['disney','WALT DISNEY'], ['procter-gamble','PROCTER & GAMBLE'], ['johnson-johnson','JOHNSON & JOHNSON'], ['exxonmobil','EXXONMOBIL'], ['jpmorgan','JPMORGAN CHASE'], ['caterpillar','CATERPILLAR'], ['waste-management','WASTE MANAGEMENT'],
+    ['mastercard','MASTERCARD'], ['adobe','ADOBE'], ['home-depot','HOME DEPOT'], ['nike','NIKE'], ['disney','WALT DISNEY'], ['procter-gamble','PROCTER & GAMBLE'], ['johnson-johnson','JOHNSON & JOHNSON'], ['exxonmobil','EXXONMOBIL'], ['jpmorgan','JPMORGAN CHASE'], ['caterpillar','CATERPILLAR'], ['waste-management','WASTE MANAGEMENT'],
     ['netflix', 'NETFLIX'], ['visa', 'VISA'], ['cocacola', 'COCA-COLA'],
   ].map(([id, title]) => [id, { title, kind: 'illustration', indexTitle: title }])),
   bitcoin: { title: 'BITCOIN', mark: 'bitcoin.svg', kind: 'logo' },

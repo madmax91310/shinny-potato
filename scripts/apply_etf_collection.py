@@ -5,6 +5,8 @@ import json
 from data_automation import reject, write_json_atomic
 
 SECTORS = {
+    # ICB sector published by the STOXX Europe 600 Banks fund; keep its granularity.
+    'Banks': 'Banques',
     # VanEck sub-industries retain the issuer classification.
     **{s:s for s in ['Broadline Retail', 'Communications Equipment', 'Consumer Electronics', 'Data Center REITs', 'Diversified REITS', 'Diversified Real Estate Activities', 'Health Care REITs', 'Hotel & Resort REITs', 'Hotels, Resorts & Cruise Lines', 'Industrial Conglomerates', 'Industrial REITs', 'Integrated Telecommunication Services', 'Interactive Media & Services', 'Multi-Family Residential REITs', 'Other Specialized REITs', 'Other/Cash', 'Real Estate Development', 'Real Estate Operating Companies', 'Retail REITs', 'Self-Storage REITs', 'Single-Family Residential REITs', 'n/a']},
     **{s:s for s in ['Corporate - industrials','Corporate - financial institutions','Corporate - utilities','Cash*']},

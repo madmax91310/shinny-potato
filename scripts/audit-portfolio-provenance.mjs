@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import { NON_BOND_SHEETS } from '../src/data/non-bond-expansion.js'
+import { QUALIFIED_EXPOSURE_SHEETS } from '../src/data/qualified-exposure-sheets.js'
 import { LIFESTRATEGY_RECORDS } from '../src/data/lifestrategy.js'
 import { EXPOSURE_ADDITIONS } from '../src/data/exposure-additions.js';
 import { SIMULATION_PROXIES } from '../src/data/simulation-proxies.js';
@@ -17,6 +18,7 @@ const groups = {
   'Hypothèse non liée à un titre précis': `fonds_euros scpi`,
 }
 groups['Fonds confirmé chez l’émetteur'] += ' world-islamic ' + NON_BOND_SHEETS.filter(r=>getInstrumentReturnValues(r.isin).every(Number.isFinite)).map(r=>r.id).join(' ');
+groups['Fonds confirmé chez l’émetteur'] += ' europe-banks europe-insurance';
 for (const r of EXPOSURE_ADDITIONS) {
   const basis = r.id === 'world_ex_usa' ? 'Indice ou cours du sous-jacent' : r.id === 'pea_global_amundi' ? 'Autre fonds ou historique mixte' : 'Fonds confirmé chez l’émetteur';
   groups[basis] += ' ' + r.id;
@@ -56,6 +58,7 @@ const partialOrSyntheticYears = new Map(Object.entries({
   scpi: '2020 : ancienne mesure de performance globale, pas le RGI ASPIM',
 }))
 const issuerSources = {
+ ...Object.fromEntries(QUALIFIED_EXPOSURE_SHEETS.filter(r=>['europe-banks','europe-insurance'].includes(r.id)).map(r=>[r.id,getInstrumentAnnualPerformance(r.isin).source])),
  ...Object.fromEntries(NON_BOND_SHEETS.filter(r=>getInstrumentReturnValues(r.isin).every(Number.isFinite)).map(r=>[r.id,getInstrumentAnnualPerformance(r.isin).source])),
  'world-islamic':getInstrumentAnnualPerformance('IE00B27YCN58').source,
  ...Object.fromEntries(Object.values(LIFESTRATEGY_RECORDS).map(r=>[r.id,r.performance.sourceUrl])),

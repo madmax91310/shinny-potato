@@ -256,6 +256,78 @@
       "precision": 6,
       "method": "Dernière clôture mensuelle ajustée des dividendes et divisions, recoupée avec la clôture brute mensuelle Yahoo",
       "collectAnniversary": true
+    },
+    {
+      "id": "etfEuropeBanks",
+      "label": "iShares STOXX Europe 600 Banks UCITS ETF (DE)",
+      "isin": "DE000A0F5UJ7",
+      "ticker": "EXV1",
+      "mic": "XETR",
+      "currency": "EUR",
+      "periodStart": "2015-01",
+      "parser": "yahoo",
+      "symbol": "EXV1.DE",
+      "field": "adjclose",
+      "precision": 6,
+      "consumerScope": "catalog",
+      "listingEvidenceId": "DE000A0F5UJ7-XETR-EXV1-EUR",
+      "instrumentType": "ETF",
+      "method": "Cours de la part exacte, ajustés des distributions et divisions ; dernière séance mensuelle recoupée avec la bougie mensuelle Yahoo",
+      "collectAnniversary": true
+    },
+    {
+      "id": "etfEuropeInsurance",
+      "label": "iShares STOXX Europe 600 Insurance UCITS ETF (DE)",
+      "isin": "DE000A0H08K7",
+      "ticker": "EXH5",
+      "mic": "XETR",
+      "currency": "EUR",
+      "periodStart": "2015-01",
+      "parser": "yahoo",
+      "symbol": "EXH5.DE",
+      "field": "adjclose",
+      "precision": 6,
+      "consumerScope": "catalog",
+      "listingEvidenceId": "DE000A0H08K7-XETR-EXH5-EUR",
+      "instrumentType": "ETF",
+      "method": "Cours de la part exacte, ajustés des distributions et divisions ; dernière séance mensuelle recoupée avec la bougie mensuelle Yahoo",
+      "collectAnniversary": true
+    },
+    {
+      "id": "mastercard",
+      "label": "Mastercard",
+      "currency": "USD",
+      "periodStart": "2015-01",
+      "parser": "yahoo",
+      "symbol": "MA",
+      "field": "adjclose",
+      "precision": 6,
+      "method": "Dernière clôture mensuelle ajustée des dividendes et divisions, recoupée avec la clôture brute mensuelle Yahoo",
+      "collectAnniversary": true
+    },
+    {
+      "id": "adobe",
+      "label": "Adobe",
+      "currency": "USD",
+      "periodStart": "2015-01",
+      "parser": "yahoo",
+      "symbol": "ADBE",
+      "field": "adjclose",
+      "precision": 6,
+      "method": "Dernière clôture mensuelle ajustée des dividendes et divisions, recoupée avec la clôture brute mensuelle Yahoo",
+      "collectAnniversary": true
+    },
+    {
+      "id": "home-depot",
+      "label": "Home Depot",
+      "currency": "USD",
+      "periodStart": "2015-01",
+      "parser": "yahoo",
+      "symbol": "HD",
+      "field": "adjclose",
+      "precision": 6,
+      "method": "Dernière clôture mensuelle ajustée des dividendes et divisions, recoupée avec la clôture brute mensuelle Yahoo",
+      "collectAnniversary": true
     }
   ]
 }
