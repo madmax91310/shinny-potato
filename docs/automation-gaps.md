@@ -4,12 +4,12 @@ Inventaire des champs réellement présents dans les observations actives. Couve
 
 | Champ ETF/ETP | Couverture |
 |---|---:|
-| ter | 190/194 |
-| aum | 190/194 |
-| performance | 176/194 |
-| countries | 164/194 |
-| sectors | 164/194 |
-| holdings | 169/194 |
+| ter | 192/196 |
+| aum | 192/196 |
+| performance | 178/196 |
+| countries | 166/196 |
+| sectors | 166/196 |
+| holdings | 171/196 |
 
 ## Premiers calendriers des 12 parts récentes
 
@@ -184,7 +184,7 @@ Une valeur absente ne signifie pas absence de plafond. Les offres bonus, les con
 
 | Contrat | Fonds | Champ | Dernier contrôle des sources | Motif |
 |---|---|---|---|---|
-| Lucya Cardif | Fonds général | Plafond en euros | 2026-10-12 | Plafond unique en euros non qualifié ; les bornes ou clauses conditionnelles restent dans les conditions du fonds. |
-| Lucya Cardif | Euro Private Strategies | Plafond en euros | 2026-10-12 | Plafond unique en euros non qualifié ; les bornes ou clauses conditionnelles restent dans les conditions du fonds. |
-| Placement-direct Vie | Actif général SwissLife | Quote-part maximale | 2026-10-12 | La documentation de Placement-direct Vie ne chiffre pas la quote-part maximale actuelle de cet actif général ; les annonces du contrat distinct Placement-direct Euro+ ne s’y appliquent pas. |
-| Placement-direct Vie | Actif général SwissLife | Plafond en euros | 2026-10-12 | Plafond unique en euros non qualifié ; les bornes ou clauses conditionnelles restent dans les conditions du fonds. |
+| Lucya Cardif | Fonds général | Plafond en euros | 2026-10-13 | Plafond unique en euros non qualifié ; les bornes ou clauses conditionnelles restent dans les conditions du fonds. |
+| Lucya Cardif | Euro Private Strategies | Plafond en euros | 2026-10-13 | Plafond unique en euros non qualifié ; les bornes ou clauses conditionnelles restent dans les conditions du fonds. |
+| Placement-direct Vie | Actif général SwissLife | Quote-part maximale | 2026-10-13 | La documentation de Placement-direct Vie ne chiffre pas la quote-part maximale actuelle de cet actif général ; les annonces du contrat distinct Placement-direct Euro+ ne s’y appliquent pas. |
+| Placement-direct Vie | Actif général SwissLife | Plafond en euros | 2026-10-13 | Plafond unique en euros non qualifié ; les bornes ou clauses conditionnelles restent dans les conditions du fonds. |
