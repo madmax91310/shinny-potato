@@ -36,7 +36,7 @@ try{
    const sheet=await renderETFImage(ETFS.find(r=>r.id==='europe-construction'))
    const comparison=await renderComparatifEtfImage(DEFAULT_THEMES.find(r=>r.id==='construction-infrastructures'))
    const duels=await Promise.all(DUELS.filter(d=>['construction-infrastructure','world-em-smallcap','world-copper-miners'].includes(d.id)).map(d=>renderDuelImage(buildDuel(d))))
-   return [sheet,comparison,...duels].map(c=>({width:c.width,height:c.height,url:c.toDataURL('image/png')}))
+   return await Promise.all([sheet,comparison,...duels].map(async c=>{const url=typeof c==='string'?c:c.toDataURL('image/png');const image=new Image();image.src=url;await image.decode();return {width:image.naturalWidth,height:image.naturalHeight,url}}))
   })
   for(const [i,r]of images.entries()){assert(r.width>=1000&&r.height>=1000);await writeFile(`test-artifacts/roadmap-34/export-${i}-${width}.png`,Buffer.from(r.url.split(',')[1],'base64'))}
   assert.deepEqual(errors,[]);await page.close()
