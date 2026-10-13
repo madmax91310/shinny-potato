@@ -1,7 +1,9 @@
+import { RESOURCE_COMPARISONS } from '../../data/resource-selections.js'
 // Copie éditoriale des tweets. Les chiffres, sources et images restent dans leurs registres.
 // Les comparatifs et simulations utilisent toujours les lignes calculées de buildSheet.
 const copy = (hook, sections, closing) => ({ hook, sections, closing })
 export const PRACTICAL_EDITORIAL = {
+ ...Object.fromEntries(RESOURCE_COMPARISONS.map(c=>[c.id,copy(c.hook,null,c.cloture)])),
  'pea-cto': copy('PEA ou CTO pour investir en Bourse ?\n\nJe te montre les différences à connaître avant d’ouvrir ton compte', null, 'Je commence par vérifier où je peux acheter les placements qui m’intéressent. Ensuite, je compare les frais et la fiscalité.'),
  'av-cto': copy('Un même placement peut te coûter plus cher selon le compte utilisé.\n\nJe t’explique ce qui change entre assurance-vie et CTO', null, 'Je regarde les frais du contrat sur la durée et les supports disponibles avant de compter sur un avantage fiscal.'),
  'av-per': copy('Assurance-vie ou PER : quand pourras-tu récupérer ton argent ?\n\nC’est la première différence que je regarderais', null, 'Sur un PER, je regarde aussi ce que je paierai à la sortie. L’économie d’impôt au moment du versement ne suffit pas à faire le choix.'),

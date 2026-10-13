@@ -1,3 +1,4 @@
+import { AUTOMATED_ETF } from '../../../data/automated-etf.js'
 import { multiAssetAllocationLines } from '../../../data/lifestrategy.js'
 import { getInstrumentPeaStatus } from '../../../data/instruments.js'
 import { getPreferredInstrumentListing } from '../../../data/instrument-listings.js'
@@ -34,7 +35,8 @@ export function buildTweetText(theme) {
       else lines.push('🏦 CTO')
     }
     // Le taux de swap du cuivre n'est pas compris dans les frais de gestion.
-    if (etf.isCopperEtc) lines.push('💸 Taux de swap annuel : 0,45 % en supplément')
+    const swapRate = AUTOMATED_ETF[etf.isin]?.characteristics?.annualSwapRatePct
+    if (etf.isCopperEtc && Number.isFinite(swapRate)) lines.push(`💸 Taux de swap annuel : ${swapRate.toLocaleString('fr-FR')} % en supplément`)
     const performance = getComparisonPerformance(etf.isin, years)
     if (performance?.rows.length) {
       const currency = performance.currency === 'USD' ? 'en dollars' : performance.currency === 'EUR' ? 'en euros' : `en ${performance.currency}`
@@ -50,7 +52,7 @@ export function buildTweetText(theme) {
     }
     lines.push('')
   })
-  if (!COMPARISON_HOOKS[theme.id] && theme.comparisonNote?.trim()) lines.push(`👀 ${theme.comparisonNote.trim()}`, '')
+  if ((!COMPARISON_HOOKS[theme.id] || theme.includeComparisonNote) && theme.comparisonNote?.trim()) lines.push(`👀 ${theme.comparisonNote.trim()}`, '')
   // La question personnalisée clôt le texte, sans appel au partage générique.
   if (theme.ctaEngagement?.trim()) lines.push(`💬 ${theme.ctaEngagement.trim().replace(/^💬\s*/, '')}`)
   return lines.join('\n')

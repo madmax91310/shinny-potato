@@ -29948,5 +29948,85 @@
       "checkedAt": "2026-10-13",
       "modifiedAt": "2026-10-12"
     }
+  },
+  "IE00B4LHWP62": {
+    "currency": "USD",
+    "productId": 258442,
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns&locale=en_GB&portfolioId=258442&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "provider": "iShares",
+    "aum": {
+      "amount": 340825852.12,
+      "currency": "USD",
+      "scope": "fund",
+      "asOf": "2026-10-12",
+      "checkedAt": "2026-10-13",
+      "modifiedAt": "2026-10-13"
+    },
+    "characteristics": {
+      "terPct": 0.2,
+      "index": null,
+      "distribution": "No Income",
+      "checkedAt": "2026-10-13",
+      "modifiedAt": "2026-10-13"
+    },
+    "performance": {
+      "currency": "USD",
+      "basis": "fund",
+      "method": "calendar-year NAV total return, income reinvested, fund fees included",
+      "years": {
+        "2016": 3.6,
+        "2017": 1.8,
+        "2018": -14.69,
+        "2019": 21.8,
+        "2020": 10.36,
+        "2021": -10.69,
+        "2022": 10.49,
+        "2023": -5.73,
+        "2024": -9.33,
+        "2025": 121.33
+      },
+      "checkedAt": "2026-10-13",
+      "modifiedAt": "2026-10-13"
+    }
+  },
+  "IE00B4556L06": {
+    "currency": "USD",
+    "productId": 256574,
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns&locale=en_GB&portfolioId=256574&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "provider": "iShares",
+    "aum": {
+      "amount": 67706875.49,
+      "currency": "USD",
+      "scope": "fund",
+      "asOf": "2026-10-12",
+      "checkedAt": "2026-10-13",
+      "modifiedAt": "2026-10-13"
+    },
+    "characteristics": {
+      "terPct": 0.2,
+      "index": null,
+      "distribution": "No Income",
+      "checkedAt": "2026-10-13",
+      "modifiedAt": "2026-10-13"
+    },
+    "performance": {
+      "currency": "USD",
+      "basis": "fund",
+      "method": "calendar-year NAV total return, income reinvested, fund fees included",
+      "years": {
+        "2016": 23.09,
+        "2017": 55.59,
+        "2018": 19.12,
+        "2019": 51.41,
+        "2020": 23.05,
+        "2021": -18.81,
+        "2022": -7.45,
+        "2023": -37.54,
+        "2024": -18.93,
+        "2025": 72.04
+      },
+      "checkedAt": "2026-10-13",
+      "modifiedAt": "2026-10-13"
+    }
   }
 }

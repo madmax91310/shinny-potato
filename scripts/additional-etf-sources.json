@@ -1275,6 +1275,42 @@
         "performance",
         "characteristics"
       ]
+    },
+    {
+      "isin": "IE00B4LHWP62",
+      "productId": 258442,
+      "name": "iShares Physical Platinum ETC",
+      "currency": "USD",
+      "distribution": "No Income",
+      "requireFullHistory": true,
+      "collectHoldings": false,
+      "collectSectors": false,
+      "provider": "iShares",
+      "parser": "ishares",
+      "physicalMetal": true,
+      "currencyField": "baseCurrencyCode",
+      "aumField": "totalNetAssetsFundLevel",
+      "aumScope": "fund",
+      "enabled": true,
+      "required": true
+    },
+    {
+      "isin": "IE00B4556L06",
+      "productId": 256574,
+      "name": "iShares Physical Palladium ETC",
+      "currency": "USD",
+      "distribution": "No Income",
+      "requireFullHistory": true,
+      "collectHoldings": false,
+      "collectSectors": false,
+      "provider": "iShares",
+      "parser": "ishares",
+      "physicalMetal": true,
+      "currencyField": "baseCurrencyCode",
+      "aumField": "totalNetAssetsFundLevel",
+      "aumScope": "fund",
+      "enabled": true,
+      "required": true
     }
   ]
 }

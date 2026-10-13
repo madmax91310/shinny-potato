@@ -6,7 +6,7 @@ import {getInstrumentPeaStatus} from '../src/data/instruments.js'
 import {REGULATORY} from '../src/data/regulatory-data.js'
 import refs from '../src/data/automated-practical-sheets.json' with {type:'json'}
 import {PRACTICAL_EDITORIAL} from '../src/pages/practical-sheets/editorial.js'
-assert.equal(new Set(TOPICS.map(t=>t.id)).size,44)
+assert.equal(new Set(TOPICS.map(t=>t.id)).size,47)
 assert.deepEqual(Object.keys(PRACTICAL_EDITORIAL).sort(),TOPICS.map(t=>t.id).sort())
 for(const topic of TOPICS) {
  const sheet=buildSheet(topic.id),tweet=buildTweet(sheet)
@@ -75,4 +75,4 @@ const gold=buildSheet('gold-av-cto',{contractId:'linxea-spirit-2'});assert(gold.
 assert(!buildSheet('gold-av-cto',{contractId:'linxea-avenir-2'}).rows[0][1].includes('FR0013416716'))
 const ref=refs.sources.etf,old={...ref}
 try {ref.reviewRequired=true;assert(buildSheet('world-pea').blocked);assert(buildReview('2026-10-11').items.some(item=>item.id==='practical-source:etf'&&item.category==='reserve')); ref.reviewRequired=false;ref.status='error';ref.lastAttemptAt='2026-10-11';assert(buildSheet('world-pea').warnings.length);const alert=buildReview('2026-10-11').items.find(item=>item.id==='practical-source:etf');assert(alert);assert.equal(alert.checkedAt,old.checkedAt);assert.equal(alert.category,'reserve');assert(!buildSheet('world-pea').blocked);delete ref.checkedAt;assert(buildSheet('world-pea').blocked)} finally {Object.assign(ref,old)}
-console.log('44 fiches : sources, dimensions, PEA, fiscalité partagée, calculs, contrats et réserves validés.')
+console.log('47 fiches : sources, dimensions, PEA, fiscalité partagée, calculs, contrats et réserves validés.')

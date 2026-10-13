@@ -108,6 +108,8 @@ function card(ctx, fund, performance, years, i, count) {
   lines(ctx, detail(fund), xx + (envelope ? 123 : 0), y + 236, width - (envelope ? 123 : 0), 2, 32, { weight: 400 })
   text(ctx, fund.isCopperEtc ? 'Frais de gestion' : 'Frais annuels', xx, y + 344, 31, { width, weight: 400 })
   text(ctx, `${fund.frais.replace(/\s*%$/, '')} %`, xx + width, y + 394, 79, { width, align: 'right', color: accent })
+  const swapRate = AUTOMATED_ETF[fund.isin]?.characteristics?.annualSwapRatePct
+  if (fund.isCopperEtc && Number.isFinite(swapRate)) text(ctx, `Swap annuel : + ${swapRate.toLocaleString('fr-FR')} %`, xx, y + 477, 18, { width, weight: 400 })
   rule(ctx, xx, y + 501, width)
   text(ctx, performance ? `PERFORMANCES · ${performance.currency}` : 'HISTORIQUE', xx, y + 541, 27, { width })
   if (performance && years.length) {

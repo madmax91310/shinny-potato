@@ -64,6 +64,8 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_presentation_etf.py'
       - run: python -m unittest discover -s scripts -p 'test_lifestrategy.py'
       - run: node scripts/test-lifestrategy.mjs
+      - run: python -m unittest discover -s scripts -p 'test_physical_etc.py'
+      - run: node scripts/test-resource-selections.mjs
       - run: node scripts/test-dca-profiles.mjs
       - run: node scripts/test-presentation-etf.mjs
       - run: python -m unittest discover -s scripts -p 'test_product_calendars.py'
@@ -152,6 +154,14 @@ jobs:
       - run: node scripts/test-practical-sheets.mjs
       - run: node scripts/test-performance-links.mjs
       - run: npx playwright install --with-deps chromium
+      - run: node scripts/test-resource-selections.mjs --browser
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: resource-selections-visual-checks
+          path: test-artifacts/resource-selections
+          if-no-files-found: ignore
+          retention-days: 7
       - run: node scripts/test-dca-images.mjs
       - run: node scripts/test-practical-images.mjs
       - run: node scripts/playwright-performance-links.mjs

@@ -4,6 +4,7 @@
 // 25 classiques avec satellite, 20 actions + ETF, 20 atypiques, 10 concentrées.
 // Répartition fixée à la création ; budgets et identités conservés.
 const ASSETS = {
+ timber:['🌳','ETF bois et forêts'],agribusiness:['🌾','ETF agribusiness'],
  lifestrategy20:['⚖️','ETF Vanguard LifeStrategy 20/80'],lifestrategy40:['⚖️','ETF Vanguard LifeStrategy 40/60'],lifestrategy60:['⚖️','ETF Vanguard LifeStrategy 60/40'],lifestrategy80:['⚖️','ETF Vanguard LifeStrategy 80/20'],
   nintendo: ['🎮', 'Nintendo'],
   materials:['🪨','ETF matériaux mondiaux'],utilities:['💡','ETF services publics mondiaux'],
@@ -40,7 +41,7 @@ function profile(id, emoji, name, age, family, job, location, income, allocation
 export const PROFILES = [
   profile('julien', '👨‍🔧', 'Julien', 41, 'marié, 2 enfants', 'plombier à son compte', 'près de Bordeaux', 3200, [['infrastructure',155],['value',105],['nintendo',105],['eth',135]], true),
   profile('lea', '👩‍⚕️', 'Léa', 28, 'en couple, sans enfant', 'infirmière', 'à Nantes', 2300, [['nasdaq',65],['nvidia',70],['btc',80],['cybersecurity',85]]),
-  profile('thomas', '👨‍💻', 'Thomas', 30, 'célibataire, sans enfant', 'développeur salarié', 'à Lyon', 3100, [['europe',380],['reit',70]]),
+  profile('thomas', '👨‍💻', 'Thomas', 30, 'célibataire, sans enfant', 'développeur salarié', 'à Lyon', 3100, [['europe',350],['timber',30],['reit',70]]),
   profile('sophie', '👩‍🏫', 'Sophie', 39, 'pacsée, 2 enfants', 'professeure des écoles', 'près de Rennes', 2500, [['lifestrategy40',220],['gold',30]]),
   profile('karim', '👨‍🔧', 'Karim', 35, 'marié, 1 enfant', 'technicien de maintenance', 'à Lille', 2400, [['emerging',55],['reit',65],['berkshire',110],['gold',70]]),
   profile('emma', '👩‍💼', 'Emma', 26, 'célibataire, sans enfant', 'assistante administrative', 'à Tours', 1750, [['europe',20],['veolia',30],['sap',35],['vinci',20],['apple',20]]),
@@ -67,7 +68,7 @@ export const PROFILES = [
   profile('quentin', '👨‍💻', 'Quentin', 24, 'célibataire, sans enfant', 'technicien informatique', 'à Brest', 1950, [['allworld',125],['reit',20],['btc',30]]),
   profile('claire', '👩‍💼', 'Claire', 47, 'mariée, 1 enfant', 'cadre dans les ressources humaines', 'à Aix-en-Provence', 3900, [['dividend',260],['nintendo',105],['btc',285]]),
   profile('mehdi', '👨‍💻', 'Mehdi', 36, 'marié, 1 enfant', 'chef de projet informatique', 'à Lyon', 3400, [['europe',65],['water',130],['amazon',95],['silver',160]]),
-  profile('lucie', '👩‍💼', 'Lucie', 42, 'en couple, 2 enfants', 'ingénieure salariée', 'à Toulouse', 3600, [['world',425],['quality',35],['europe',90]]),
+  profile('lucie', '👩‍💼', 'Lucie', 42, 'en couple, 2 enfants', 'ingénieure salariée', 'à Toulouse', 3600, [['world',400],['quality',35],['agribusiness',25],['europe',90]]),
   profile('adrien', '👨‍⚕️', 'Adrien', 40, 'marié, 2 enfants', 'chirurgien-dentiste libéral', 'près de Nantes', 6500, [['berkshire',280],['reit',455],['silver',465]], true),
   profile('marion', '👩‍💼', 'Marion', 38, 'pacsée, sans enfant', 'directrice financière salariée', 'à Lyon', 6200, [['europe',225],['danone',350],['sanofi',245],['costco',225],['veolia',255]]),
   profile('frederic', '👨‍💼', 'Frédéric', 49, 'marié, 2 enfants adolescents', 'dirigeant d’une entreprise de bâtiment', 'près de Bordeaux', 7500, [['europe',390],['allianz',405],['deere',310],['vinci',395]], true),
@@ -75,7 +76,7 @@ export const PROFILES = [
   profile('laurent', '👨‍💻', 'Laurent', 46, 'pacsé, sans enfant', 'directeur informatique salarié', 'à Paris', 8500, [['allworld',855],['sap',600],['vinci',545]]),
   profile('julia', '👩‍💼', 'Julia', 31, 'en couple, sans enfant', 'acheteuse industrielle', 'à Saint-Étienne', 2800, [['world',210],['small',70],['emerging',70]]),
   profile('florian', '👨‍🔧', 'Florian', 34, 'marié, 1 enfant', 'technicien aéronautique', 'près de Toulouse', 2700, [['europe',65],['water',115],['amazon',105],['silver',65]]),
-  profile('audrey', '👩‍💼', 'Audrey', 41, 'divorcée, sans enfant', 'gestionnaire de paie', 'à Limoges', 2350, [['acwi',245],['europe',55]]),
+  profile('audrey', '👩‍💼', 'Audrey', 41, 'divorcée, sans enfant', 'gestionnaire de paie', 'à Limoges', 2350, [['acwi',225],['agribusiness',20],['europe',55]]),
   profile('yann', '👨‍💼', 'Yann', 52, 'marié, 2 enfants adultes', 'responsable d’agence bancaire', 'à Vannes', 3700, [['world',430],['small',100],['emerging',70]]),
   profile('mathilde', '👩‍🏫', 'Mathilde', 36, 'pacsée, 2 enfants', 'enseignante au collège', 'à Pau', 2600, [['reit',70],['semiconductors',50],['dividend',65],['silver',45],['eth',70]]),
   profile('cedric', '👨‍🔧', 'Cédric', 43, 'marié, 2 enfants', 'chef d’équipe dans l’industrie', 'à Mulhouse', 2900, [['world',185],['nvidia',70],['vinci',145]]),
@@ -89,7 +90,7 @@ export const PROFILES = [
   profile('samir', '👨‍💻', 'Samir', 39, 'en couple, sans enfant', 'consultant en cybersécurité indépendant', 'à Strasbourg', 4600, [['world',650],['utilities',200]], true),
   profile('coralie', '👩‍💼', 'Coralie', 35, 'célibataire, sans enfant', 'responsable de boutique', 'à Annecy', 2500, [['acwi',235],['materials',40],['infrastructure',25]]),
 
-  profile('alice', '👩‍📚', 'Alice', 23, 'célibataire, sans enfant', 'bibliothécaire contractuelle', 'à Albi', 1700, [['world',45],['semiconductors',10],['gold',10],['silver',10]]),
+  profile('alice', '👩‍📚', 'Alice', 23, 'célibataire, sans enfant', 'bibliothécaire contractuelle', 'à Albi', 1700, [['world',45],['timber',10],['gold',10],['silver',10]]),
   profile('enzo', '👨‍🔧', 'Enzo', 22, 'en couple, sans enfant', 'carrossier salarié', 'près de Valence', 1850, [['world',20],['loreal',45],['vinci',25],['airliquide',35]]),
   profile('louise', '👩‍⚕️', 'Louise', 34, 'séparée, 1 enfant', 'aide-soignante', 'à Arras', 2050, [['sp500',25],['lvmh',30],['loreal',20],['allianz',25],['michelin',25]]),
   profile('gaetan', '📮', 'Gaëtan', 39, 'pacsé, 2 enfants', 'facteur', 'près de Niort', 1900, [['allworld',115],['gold',35]]),
