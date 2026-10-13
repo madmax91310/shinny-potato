@@ -1,3 +1,5 @@
+import { fmtEUR } from '../../lib/format-currency.js'
+export { fmtEUR } from '../../lib/format-currency.js'
 import { INFLATION_MONTHLY } from '../../data/inflation-monthly.js'
 // Logique de calcul partagée avec Tweet Midi.
 import { ASSETS, LATEST_YM, MONTHS_FULL, LIVRET_A, INFLATION, INCONSISTENT_MONTHLY_DATA_IDS } from '../../data/market-history.js'
@@ -165,15 +167,7 @@ export function computeCustomSeries(startYm, endYm, amount, customStart, customE
   return { months, series, invested, finalValue: amount * ratio, totalInvested: amount }
 }
 
-export function fmtEUR(n, currency = 'EUR') {
-  try {
-    // currencyDisplay: 'narrowSymbol' — sans ça, l'Intl fr-FR affiche "$US" pour le dollar (retour
-    // utilisateur du 22/09/2026 : juste "$" attendu, comme "€" pour l'euro, déjà narrow par défaut).
-    return n.toLocaleString('fr-FR', { style: 'currency', currency, currencyDisplay: 'narrowSymbol', maximumFractionDigits: 0 })
-  } catch {
-    return Math.round(n).toLocaleString('fr-FR') + ' €'
-  }
-}
+
 
 // Symbole nu (pas de formatage de montant) — utilisé pour le suffixe du champ de saisie, où
 // afficher "1000 $US" via fmtEUR serait redondant avec le chiffre déjà tapé par l'utilisateur.

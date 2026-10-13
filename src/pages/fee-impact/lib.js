@@ -1,5 +1,5 @@
 import { FEE_COMPARISON_ASSETS } from '../../data/fee-comparison-assets.js'
-import { fmtEUR } from '../investment-calculator/lib.js'
+import { fmtEUR } from '../../lib/format-currency.js'
 import { AMOUNT_PRESETS, DURATION_PRESETS, RETURN_PRESETS, FEE_LEVELS } from './data.js'
 
 export { fmtEUR }

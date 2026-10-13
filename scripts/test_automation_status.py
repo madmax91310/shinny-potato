@@ -118,4 +118,35 @@ class StatusTests(unittest.TestCase):
   failed=update_status(previous,run(2),[{'name':'refresh','conclusion':'failure','steps':[{'name':'collect','conclusion':'failure'}]}])['workflows']['update-economic-data.yml']
   self.assertEqual(failed['lastSuccessAt'],'2026-10-01T10:00:00Z')
   self.assertEqual(failed['failures'][0]['step'],'collect')
-if __name__=='__main__':unittest.main()
+
+class NewCollectorStatusTests(unittest.TestCase):
+ def test_named_collection_jobs_are_independent_from_deploy(self):
+  for workflow,job in [('update-investor-13f.yml','update'),('update-gold-monthly.yml','update'),('refresh-automated-index-sheets.yml','collect')]:
+   row=update_status({},run(1,'success',workflow),[{'name':job,'conclusion':'success'}])['workflows'][workflow]
+   self.assertEqual(row['collectionStatus'],'success')
+   self.assertIsNotNone(row['lastCollectionSuccessAt'])
+   self.assertEqual(row['publicationStatus'],'not-run')
+   row=update_status({},run(1,'success',workflow),[{'name':'deploy / deploy','conclusion':'success'}])['workflows'][workflow]
+   self.assertEqual(row['collectionStatus'],'unknown')
+ def test_records_reports_recover_only_their_own_share(self):
+  for workflow in ['update-lifestrategy.yml','update-qualified-exposures.yml']:
+   failed=update_status({},run(workflow=workflow),[],[{'records':[{'isin':'one'}],'failed':[{'isin':'two','error':'Changed page'}]}])
+   still=update_status(failed,run(2,'success',workflow),[],[{'records':[{'isin':'one'}],'failed':[]}])
+   self.assertIn('two',still['workflows'][workflow]['dataFailures'])
+   fixed=update_status(still,run(3,'success',workflow),[],[{'records':[{'isin':'two'}],'failed':[]}])
+   self.assertEqual(fixed['workflows'][workflow]['dataFailures'],{})
+  self.assertEqual(normalize_report({'records':[],'excluded':[{'isin':'new','error':'No source','active':False}]}),{'successes':[],'errors':[]})
+ def test_composite_report_preserves_each_failure_domain(self):
+  report={'funds':{'shares':[{'isin':'A','status':'failed','reason':'Issuer HTML'}]},'monthly':{'series':[{'id':'A','status':'validated'}]},'qualified':[{'id':'B','status':'failed','reason':'Factsheet'}],'levels':{'successes':[],'errors':[{'id':'A','error':'Daily price'}]}}
+  normalized=normalize_report(report)
+  self.assertEqual({r['id']for r in normalized['errors']},{'funds:etf-issuer-A','qualified:B','levels:A'})
+  self.assertEqual(normalized['successes'],[{'id':'monthly:A'}])
+  state=update_status({},run(workflow='update-non-bond-expansion.yml'),[],[report])
+  fixed=update_status(state,run(2,'success','update-non-bond-expansion.yml'),[],[{'monthly':{'series':[{'id':'A','status':'validated'}]}}])
+  self.assertEqual(len(fixed['workflows']['update-non-bond-expansion.yml']['dataFailures']),3)
+ def test_selected_indices_and_nonstandard_report_filename(self):
+  path=Mock();path.name='selected-index-observations.json';path.stem='selected-index-observations';path.stat.return_value.st_size=200
+  path.read_text.return_value='{"indices":[{"id":"world","facts":{},"returns":{"values":[1]},"errors":[{"field":"composition","reason":"Missing weights"}]}]}'
+  self.assertEqual(read_report(path,'refresh-automated-index-sheets.yml')['errors'][0]['id'],'index-world-composition')
+
+if __name__ == '__main__': unittest.main()

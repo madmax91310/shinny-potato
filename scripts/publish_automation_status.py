@@ -9,25 +9,9 @@ import tempfile
 import urllib.error
 import urllib.request
 
-REPORT_ARTIFACTS = {'update-economic-data.yml': 'economic-observations', 'update-publication-observations.yml': 'publication-observations', 'collect-etf-pilot.yml': 'active-etf-observation', 'update-scpi.yml':'scpi-observations', 'update-insurance.yml':'insurance-observations', 'update-presentation-actors.yml':'actor-observations', 'update-regulatory-data.yml':'regulatory-observations', 'update-practical-sheets.yml':'practical-observations', 'update-inflation.yml':'insee-inflation-observation'}
-
-WORKFLOWS = {
-    'update-practical-sheets.yml': 'Sources des fiches pratiques',
-    'update-editorial-radar.yml': 'Radar éditorial quotidien',
-    'update-publication-observations.yml': 'Pouvoir d’achat et niveaux des anniversaires',
-    'update-insurance.yml': 'Présentations d’assurance-vie',
-    'update-scpi.yml': 'Présentations de SCPI',
-    'update-presentation-actors.yml': 'Présentations des acteurs et offres',
-    'update-regulatory-data.yml': 'Paramètres fiscaux, LDDS et tarifs de courtiers',
-    'collect-etf-pilot.yml': 'ETF et compositions d’indices',
-    'update-market-monthly.yml': 'Historiques mensuels des marchés',
-    'update-bitcoin-monthly.yml': 'Historique du bitcoin',
-    'update-gold-monthly.yml': 'Historique de l’or',
-    'update-inflation.yml': 'Inflation INSEE',
-    'update-investor-13f.yml': 'Portefeuilles des investisseurs',
-    'update-company-analysis.yml': 'Analyses d’entreprises',
-    'update-economic-data.yml': 'Taux d’épargne, ménages, SCPI et fonds euros',
-}
+REGISTRY = json.loads((pathlib.Path(__file__).resolve().parents[1] / 'src/data/automation-workflows.json').read_text())
+WORKFLOWS = {key: value['name'] for key, value in REGISTRY.items()}
+REPORT_ARTIFACTS = {key: value['artifact'] for key, value in REGISTRY.items() if value.get('artifact')}
 BRANCH = 'automation-status'
 PATH = 'automation-status.json'
 
@@ -39,6 +23,29 @@ DATA_LABELS = {'purchasing-general': 'Prix à la consommation', 'purchasing-alim
 
 def normalize_report(report):
     """Adapt issuer/index reports without turning preserved values into recovered sources."""
+    if any(key in report for key in ('funds', 'qualified', 'monthly', 'levels')):
+        # Each sub-collector has its own key: a price recovery cannot clear a fund failure.
+        combined = {'successes': [], 'errors': []}
+        parts = []
+        if 'funds' in report:
+            parts.append(('funds', normalize_report(report['funds'])))
+        for key, rows in [('qualified', report.get('qualified', [])),
+                          ('monthly', report.get('monthly', {}).get('series', []))]:
+            parts.append((key, {
+                'successes': [{'id': row['id']} for row in rows if row.get('status') == 'validated'],
+                'errors': [{'id': row['id'], 'error': row.get('reason', 'Collecte échouée')}
+                           for row in rows if row.get('status') != 'validated']}))
+        if 'levels' in report:
+            parts.append(('levels', report['levels']))
+        for prefix, part in parts:
+            for kind in combined:
+                combined[kind].extend({**row, 'id': prefix + ':' + row['id']} for row in part.get(kind, []))
+        return combined
+    if isinstance(report.get('records'), list) and ('failed' in report or 'excluded' in report):
+        failures = report.get('failed', []) + [row for row in report.get('excluded', []) if row.get('active', True)]
+        return {'successes': [{'id': row.get('isin', row.get('id'))} for row in report['records']],
+                'errors': [{'id': row.get('isin', row.get('id')), 'name': row.get('isin', row.get('id')),
+                            'error': row.get('error', 'Collecte échouée')} for row in failures]}
     if report.get('seriesId') == '011814631' and report.get('rates') and report.get('checkedAt'):
         return {'successes':[{'id':'inflation:011814631'}], 'errors':[]}
     if isinstance(report.get('sources'), dict) and 'failed' in report and 'changed' in report:
@@ -141,6 +148,10 @@ def repair_publication_history(state, history):
             if (run['id'], run.get('run_attempt', 1)) != (row.get('runId'), row.get('attempt', 1)):
                 continue
             row['publicationStatus'], actual = publication_summary(run, jobs)
+            collector = REGISTRY[workflow]['collectionJob']
+            if not row.get('dataFailures') and any(job['name'] == collector and job.get('conclusion') == 'success' for job in jobs):
+                row['collectionStatus'] = 'success'
+                row['lastCollectionSuccessAt'] = run['updated_at']
             skipped_dates = {job.get('completed_at') or run['updated_at'] for job in jobs
                              if job['name'].endswith('deploy') and job.get('conclusion') == 'success'
                              and not publication_summary(run, [job])[1]}
@@ -179,7 +190,7 @@ def update_status(state, run, jobs, reports=None):
         for step in job.get('steps', []):
             if step.get('conclusion') in ('failure', 'timed_out'):
                 failures.append({'job': job['name'], 'step': step['name']})
-    refresh_jobs = [job for job in jobs if job['name'] == 'refresh']
+    refresh_jobs = [job for job in jobs if job['name'] == REGISTRY[workflow]['collectionJob']]
     collection_status = 'failure' if data_failures or any(j.get('conclusion') in ('failure','timed_out') for j in refresh_jobs) else 'success' if reports or any(j.get('conclusion') == 'success' for j in refresh_jobs) else 'unknown'
     publication_status, published_at = publication_summary(run, jobs)
     result['workflows'] = entries
@@ -260,7 +271,7 @@ def main():
                     subprocess.run(['gh', 'run', 'download', str(run['id']), '--repo', repo,
                                     '--name', artifact_name, '--dir', directory],
                                    check=True, capture_output=True, timeout=90)
-                    for path in pathlib.Path(directory).glob('*observation.json'):
+                    for path in pathlib.Path(directory).glob('*.json'):
                         reports.append(read_report(path, run['path'].split('/')[-1]))
         state = update_status(state, run, jobs, reports)
         publication_history.append((run, jobs))

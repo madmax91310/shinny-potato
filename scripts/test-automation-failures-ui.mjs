@@ -1,3 +1,4 @@
+import registry from '../src/data/automation-workflows.json' with { type: 'json' }
 import assert from 'node:assert/strict'
 import { spawn } from 'node:child_process'
 import { chromium } from 'playwright'
@@ -16,15 +17,15 @@ try {
  assert.equal(await section.getByRole('link',{name:'Voir la cause et le suivi ↗'}).getAttribute('href'),status.workflows.economic.runUrl)
  assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth))
  await page.screenshot({path:'test-artifacts/automation-failure-mobile.png',fullPage:true})
- status={schemaVersion:1,workflows:{economic:{status:'success',name:'Données économiques',completedAt:'2026-10-09T10:00:00Z',lastSuccessAt:'2026-10-09T10:00:00Z'},pending:{status:'unknown',name:'Collecte non documentée'}}}
+ status={schemaVersion:1,workflows:{economic:{status:'success',collectionStatus:'success',name:'Données économiques',completedAt:'2026-10-09T10:00:00Z',lastSuccessAt:'2026-10-09T10:00:00Z'},pending:{status:'unknown',name:'Collecte non documentée'}}}
  await page.reload({waitUntil:'networkidle'});assert.equal(await section.count(),0)
  const overview=page.getByRole('region',{name:'Bilan des collectes automatiques'})
- assert.equal(await overview.locator('.dr-item').count(),2)
+ assert.equal(await overview.locator('.dr-item').count(),Object.keys(registry).length+2)
  await overview.getByRole('button',{name:'Réussies · 1',exact:true}).click()
  assert.equal(await overview.locator('.dr-item').count(),1)
  assert.match(await overview.textContent(),/09\/10\/2026/)
- await overview.getByRole('button',{name:'État non documenté · 1',exact:true}).click()
- assert.equal(await overview.locator('.dr-item').count(),1)
+ await overview.getByRole('button',{name:`État non documenté · ${Object.keys(registry).length+1}`,exact:true}).click()
+ assert.equal(await overview.locator('.dr-item').count(),Object.keys(registry).length+1)
  await overview.getByRole('button',{name:'En échec · 0',exact:true}).click()
  await overview.getByText('Aucune collecte pour cette sélection.').waitFor()
  status={schemaVersion:1,workflows:{etf:{name:'Update active ETF issuer data',status:'failure',completedAt:'2026-10-08T13:28:34Z',runUrl:'https://github.com/madmax91310/shinny-potato/actions/runs/37784356798'}}}
@@ -42,6 +43,11 @@ try {
  assert.match(await overview.textContent(),/10\/10\/2026/)
  assert.match(await overview.textContent(),/09\/10\/2026/)
 
+ status={schemaVersion:1,workflows:{'update-lifestrategy.yml':{name:'Vanguard LifeStrategy',status:'success',collectionStatus:'success',completedAt:'2020-01-01T00:00:00Z'}}}
+ await page.reload({waitUntil:'networkidle'})
+ await overview.getByRole('button',{name:'En retard · 1',exact:true}).click()
+ await overview.getByText('Contrôle en retard',{exact:true}).waitFor()
+ assert.equal(await overview.locator('.dr-item').count(),1)
  await page.unroute('**/automation-status/automation-status.json')
  await page.route('**/automation-status/automation-status.json',route=>route.fulfill({status:503,body:'unavailable'}))
  await page.reload({waitUntil:'networkidle'})

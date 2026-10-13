@@ -43,6 +43,7 @@ try {
   await page.getByText('Utiliser les frais d’un ETF', { exact: true }).waitFor()
   await page.unroute('**/assets/*.js')
   assert(requested.size > initialFiles.size, 'Navigation did not fetch deferred code')
+  assert(![...requested].some(file => /etf-issuer|market-monthly|instrument-returns/.test(file)), 'Fee tool must not fetch issuer holdings or historical returns')
   await page.locator('.workspace-sidebar nav').getByRole('link', { name: 'Accueil', exact: true }).click()
   await page.getByRole('heading', { name: 'Mes outils de la semaine' }).waitFor()
   await page.goBack()

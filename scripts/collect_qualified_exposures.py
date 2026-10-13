@@ -68,6 +68,8 @@ def main():
   report['records']=valid
   write_json_atomic(path,old)
   write_json_atomic(ROOT/'src/data/automated-etf.json',{k:v for k,v in current.items()if k not in {r['isin']for r in old.values()}})
+ active=json.loads((ROOT/'src/data/qualified-exposure-etfs.json').read_text())if (ROOT/'src/data/qualified-exposure-etfs.json').exists()else{}
+ for row in report['excluded']:row['active']=row['id']in active
  write_json_atomic(args.output,report)
  print(json.dumps({'qualified':[r['id']for r in report['records']],'excluded':report['excluded']},ensure_ascii=False))
  # Unqualified launch candidates stay excluded; failure of an already active record is fatal.

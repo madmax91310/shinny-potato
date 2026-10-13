@@ -35,3 +35,15 @@ for (const file of new Set(Object.values(manifest).map(chunk => chunk.file))) {
 }
 assert(initialBytes <= 300_000, 'Initial JavaScript exceeds the 300 kB regression budget')
 console.log(`Route bundles: ${toolChunks.length} lazy tools; initial JS ${(initialBytes / 1000).toFixed(2)} kB, gzip ${(initialGzip / 1000).toFixed(2)} kB; largest chunk ${(largest / 1000).toFixed(2)} kB.`)
+
+// A split file is not a lighter route: count all static imports exactly once.
+const budgets = JSON.parse(await readFile('scripts/route-budgets.json', 'utf8'))
+assert.deepEqual(new Set(Object.keys(budgets)), new Set(toolChunks.map(([key]) => key)), 'Every tool needs an explicit total-route budget')
+for (const [key] of toolChunks) {
+  const files = [...staticFiles(key)].filter(file => file.endsWith('.js'))
+  const contents = await Promise.all(files.map(file => readFile(`dist/${file}`)))
+  const bytes = contents.reduce((sum, content) => sum + content.length, 0)
+  const gzip = contents.reduce((sum, content) => sum + gzipSync(content).length, 0)
+  assert(bytes <= budgets[key], `${key}: total static JS ${bytes} exceeds ${budgets[key]} bytes`)
+  console.log(`Route total: ${key}: ${(bytes / 1000).toFixed(1)} kB (${(gzip / 1000).toFixed(1)} kB gzip), ${files.length} files`)
+}

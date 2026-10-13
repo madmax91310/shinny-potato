@@ -1,12 +1,11 @@
 import { notifyPublication, copyPublicationText, startPublicationDownload } from '../../design-system/publicationActions.js'
 import Button from '../../design-system/Button'
 import AssetPicker from '../../design-system/AssetPicker'
-import { instrumentOption } from '../../data/asset-selection.js'
 import ToolWorkspace from '../../design-system/ToolWorkspace'
 import SettingsDetails from '../../design-system/SettingsDetails'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import PageHeader from '../../design-system/PageHeader'
-import { getLengthStatus } from '../etf-tweets/lib/tweetFormat.js'
+import { getLengthStatus } from '../../lib/publication-length.js'
 import { AMOUNT_PRESETS, DURATION_PRESETS, RETURN_PRESETS, FEE_LEVELS, DEFAULT_FEE_LOW, DEFAULT_FEE_HIGH } from './data.js'
 import { buildTweetText, computeComparison, pickRandomState, simulateCapitalSeries } from './lib.js'
 import { drawFeeImpactImage } from './imageExport.js'
@@ -170,7 +169,7 @@ export default function App() {
               const asset = FEE_COMPARISON_ASSETS.find(item => item.isin === isin)
               return <div key={side}>
                 <AssetPicker className="fi-control" label={`ETF du scénario ${side}`} value={isin}
-                  items={FEE_COMPARISON_ASSETS.map(item => instrumentOption({ ...item, id: item.isin }))}
+                  items={FEE_COMPARISON_ASSETS}
                   emptyOption={{ id: '', label: 'Frais hypothétiques' }} onChange={value => selectFund(side, value)} />
                 {asset && <small>{asset.isin} · Frais contrôlés le {asset.evidence.checkedAt ?? 'date non documentée'} · <a href={asset.evidence.sourceUrls[0]} target="_blank" rel="noreferrer">Source</a></small>}
               </div>
