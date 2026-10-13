@@ -33,6 +33,7 @@ jobs:
       - run: node scripts/test-portfolio-recipes.mjs
       - run: npm run audit:portfolio-duels
       - run: npm run audit:portfolio-provenance
+      - run: npm run audit:etf-annual-performance
       - run: npm run audit:instrument-catalog
       - run: npm run audit:data-provenance
       - run: npm run build
