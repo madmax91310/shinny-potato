@@ -60,30 +60,18 @@
     },
     "collect-etf-pilot.yml": {
       "name": "ETF et compositions d’indices",
-      "runId": 38447084903,
+      "runId": 38458082660,
       "attempt": 1,
-      "completedAt": "2026-10-13T18:54:40Z",
-      "status": "failure",
-      "lastSuccessAt": "2026-10-13T17:42:40Z",
-      "collectionStatus": "failure",
-      "publicationStatus": "success",
-      "lastCollectionSuccessAt": "2026-10-13T17:42:40Z",
+      "completedAt": "2026-10-13T20:18:43Z",
+      "status": "success",
+      "lastSuccessAt": "2026-10-13T20:18:43Z",
+      "collectionStatus": "success",
+      "publicationStatus": "not-run",
+      "lastCollectionSuccessAt": "2026-10-13T20:18:43Z",
       "lastPublicationSuccessAt": "2026-10-13T18:54:32Z",
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38447084903",
-      "failures": [
-        {
-          "job": "report-failures",
-          "step": "Run echo 'Une source ETF ou indice a échoué. Ses dernières données fiables sont conservées ; les autres collectes validées ont été publiées si les audits et le déploiement ont réussi.' >> \"$GITHUB_STEP_SUMMARY\""
-        }
-      ],
-      "dataFailures": {
-        "etf-additional-observation-IE000UL6CLP7": {
-          "name": "ETF IE000UL6CLP7",
-          "completedAt": "2026-10-13T18:54:40Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38447084903",
-          "cause": "'Regulatory' is not in list"
-        }
-      }
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38458082660",
+      "failures": [],
+      "dataFailures": {}
     },
     "update-economic-data.yml": {
       "name": "Taux d’épargne, ménages, SCPI et fonds euros",
@@ -227,5 +215,5 @@
       "failures": []
     }
   },
-  "updatedAt": "2026-10-13T20:14:50Z"
+  "updatedAt": "2026-10-13T20:18:43Z"
 }
