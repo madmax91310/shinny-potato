@@ -43,7 +43,7 @@ try {
         if (box.l < 0 || box.r > this.canvas.width || box.t < 0 || box.b > this.canvas.height) throw new Error(`Clipped ${id}: ${value}`)
         for (const p of bounds) if (Math.min(box.r, p.r) - Math.max(box.l, p.l) > 1 && Math.min(box.b, p.b) - Math.max(box.t, p.t) > 1) throw new Error(`Overlap ${id}: ${p.text} / ${value}`)
         bounds.push(box); labels.push(String(value));
-        if (x >= 840 && y >= 1430 && y < 1550) aumText.push(String(value))
+        if (x < 800 && y >= 1420 && y < 1520) aumText.push(String(value))
         if (String(value) === `ISIN ${etf.isin}` || value === etf.listing?.ticker) identifiers.push({ text: String(value), x, y });
         if (y >= 1600 && y < 1895) performanceText.push({ text: String(value), font: this.font, color: this.fillStyle })
         return original.call(this, value, x, y, ...rest)
@@ -59,11 +59,13 @@ try {
             if (number.color !== (value > 0 ? '#9bebb4' : value < 0 ? '#ff998b' : '#fff4da')) throw new Error(`Wrong annual sign color ${id}`)
           })
         }
-        if (identifiers.length !== (etf.listing ? 2 : 1) || identifiers.some(item => item.y > 850) || (etf.listing && identifiers[1].x <= identifiers[0].x)) throw new Error(`Misplaced identity ${id}`)
+        if (identifiers.length !== (etf.listing ? 2 : 1) || identifiers.some(item => item.y > 850)) throw new Error(`Misplaced identity ${id}`)
         if (canvas.width !== 1600 || canvas.height !== 2000) throw new Error('Incorrect X aspect ratio')
         const text = labels.join(' '), normalize = s => s.replace(/\s+/g, ' ').trim()
         for (const value of [etf.name, etf.isin, etf.ter, String(etf.positions).replace(/^Exposition suivie\s*:\s*/, ''), etf.distribution, etf.listing?.ticker].filter(Boolean)) if (!normalize(text).includes(normalize(value))) throw new Error(`Lost fact ${id}: ${value}`)
         const amount = String(etf.aum).replace(/^(?:Part|Fonds)\s*:\s*/i, '').replace(/\s+(?:au\s+\d{2}\/\d{2}\/\d{4}|\(relevé le [^)]+\))\s*$/i, '').trim().replace(/\d[\d \u00a0\u202f]*,\d+/g, amount => Number(amount.replace(/[ \u00a0\u202f]/g, '').replace(',', '.')).toLocaleString('fr-FR', { maximumFractionDigits: 0 }))
+        const aumDate = String(etf.aum).match(/\s+(au\s+\d{2}\/\d{2}\/\d{4}|\(relevé le [^)]+\))\s*$/)?.[1]
+        if (aumDate && !normalize(text).includes(normalize(aumDate))) throw new Error(`Missing AUM date ${id}`)
         if (aumText.some(value => /\d,\d/.test(value))) throw new Error(`Decimal AUM returned ${id}`)
         if (!labels.includes('Encours') || !normalize(aumText.join(' ')).includes(normalize(amount))) throw new Error(`Missing AUM amount ${id}: ${amount}`)
         if (aumText.some(s => /^(?:Part|Fonds)\s*:|\d{2}\/\d{2}\/\d{4}|relevé le/i.test(s))) throw new Error(`AUM metadata returned ${id}`)

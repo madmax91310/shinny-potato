@@ -9,3 +9,7 @@ Les scènes proviennent exclusivement de la collection vérifiée `etf-night` (v
 Les calculs, le change déjà utilisé par le duel, les années communes et le texte du tweet sont inchangés. L’image affiche les dates, la mise de départ, tous les actifs/poids, le capital final et la performance cumulée des deux côtés, l’écart final et les rendements annuels. Aucun titre de série/portefeuille. L’export attend les scènes et la police locale, rejette une identité inconnue et permet de réessayer un chargement échoué.
 
 `node scripts/test-duel-titanium.mjs` vérifie dans Chromium les 45 supports, les 28 duels préparés, trois lignes de chaque côté et les historiques courts, les scènes réellement dessinées (ordre et nombre), les libellés complets, poids, capitaux, résultats annuels/cumulés, égalités, pertes, grands nombres, absence de chevauchement, une signature et le téléchargement/reprise/mobile. Les PNG représentatifs se trouvent dans l’artefact CI `duel-visual-checks`.
+
+## Construction
+
+`construction.webp`: decorative artwork generated with OpenAI ImageGen for the approved construction/infrastructure distinction. Financial information remains rendered from application data.

@@ -62,11 +62,11 @@ try {
         for (const fund of theme.etfs) if (!words.includes(fund.isin) || !words.includes(`${fund.frais.replace(/\s*%$/, '')} %`)) throw new Error('Lost fund fact')
         for (const fund of theme.etfs) {
           const composition = getComparisonComposition(fund.isin, 'countries')
-          if (composition.classification && !words.includes(compositionEvidenceLabel(composition))) throw new Error(`Missing dated DWS classification: ${fund.isin}`)
+          if (composition.classification && !words.join(' ').includes(compositionEvidenceLabel(composition))) throw new Error(`Missing dated DWS classification: ${fund.isin}`)
         }
         const peaInNames = theme.etfs.reduce((count, fund) => count + (fund.nom.match(/\bPEA\b/g)?.length ?? 0), 0)
         const peaOnImage = words.join(' ').match(/\bPEA\b/g)?.length ?? 0
-        if (peaOnImage !== peaInNames + (theme.nom.match(/\bPEA\b/g)?.length ?? 0) + theme.etfs.filter(fund => getInstrumentPeaStatus(fund.isin) === true).length) throw new Error('Incorrect qualified PEA badges')
+        if (peaOnImage !== peaInNames + (theme.nom.match(/\bPEA\b/g)?.length ?? 0) + theme.etfs.filter(fund => getInstrumentPeaStatus(fund.isin) === true).length + (theme.cloture?.match(/\bPEA\b/g)?.length ?? 0)) throw new Error('Incorrect qualified PEA badges')
       }
       for (const id of ASSET_ORDER) {
         const years = getAnnualReturnStartYears(id), year = years[0]
