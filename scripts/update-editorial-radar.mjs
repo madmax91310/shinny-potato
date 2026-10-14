@@ -26,7 +26,7 @@ export async function collectObservations(root = ROOT) {
       const block = r[field]
       if (!block?.asOf || !Array.isArray(block.rows) || !block.rows.length) continue
       const basis = block.basis ?? 'fund'
-      for (const row of block.rows) add({ ...base, checkedAt: block.checkedAt ?? c.checkedAt }, `${field}:${row.name ?? row.label}`, `${field === 'countries' ? 'Poids du pays' : 'Poids du secteur'} ${row.name ?? row.label}`, row.weightPct, block, { scope: `${isin} · ${basis} · ${block.method ?? field}`, threshold: 2, unit: '%', angle: 'Cette exposition est-elle aussi diversifiée que son nom le laisse penser ?', reason: 'Variation cumulée d’au moins 2 points de pourcentage, même périmètre.' })
+      for (const row of block.rows) add({ ...base, checkedAt: block.checkedAt ?? c.checkedAt }, `${field}:${row.name ?? row.label}`, `${field === 'countries' ? 'Poids du pays' : 'Poids du secteur'} ${row.name ?? row.label}`, row.weightPct, block, { completeComposition: block.complete === true, scope: `${isin} · ${basis} · ${block.method ?? field}`, threshold: 2, unit: '%', angle: 'Cette exposition est-elle aussi diversifiée que son nom le laisse penser ?', reason: 'Variation cumulée d’au moins 2 points de pourcentage, même périmètre.' })
     }
     if (r.holdings?.asOf && r.holdings.rows?.length === 10 && r.holdings.basis !== 'substitute-basket') {
       const block = r.holdings

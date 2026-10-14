@@ -210,3 +210,37 @@ console.log(`Radar : seuils cumulés, périmètres, dates, bootstrap, publicatio
   assert.equal(partial.errors.length,1)
   assert.equal(partial.observations.length,1,'Une newsroom en panne ne masque pas l’autre')
 }
+
+// #583: missing categories in complete DWS snapshots must not strand conflicts.
+{
+  const conflicts = JSON.parse(await readFile(new URL('./fixtures/radar-review-583/conflicts.json', import.meta.url)))
+  const initial = { schemaVersion: 1, initializedAt: '2026-10-08T00:00:00Z', current: {}, anchors: {}, events: [], conflicts }
+  for (const conflict of Object.values(conflicts)) {
+    initial.current[observationKey(conflict.accepted)] = conflict.accepted
+    initial.anchors[observationKey(conflict.accepted)] = conflict.accepted
+  }
+  const rows = JSON.parse(await readFile(new URL('./fixtures/radar-review-583/equal-weight-observations.json', import.meta.url)))
+  const opts = { now: new Date('2026-10-14T12:00:00Z') }
+  const result = advanceRadar(initial, rows, opts)
+  assert.equal(Object.values(result.state.conflicts).filter(c => !c.resolvedAt).length, 30)
+  assert.equal(result.newEvents.length, 0, 'No invented market movement on recovery')
+  for (const name of ['Switzerland', 'Bermuda']) {
+    const c = Object.values(conflicts).find(c => c.accepted.entity === 'IE00BLNMYC90' && c.accepted.field === `countries:${name}`)
+    const key = observationKey(c.accepted)
+    assert.equal(result.state.current[key].value, 0)
+    assert.equal(result.state.anchors[key].period, '2026-10-12')
+    assert.deepEqual(result.state.conflicts[`${key}:2026-10-07`].proposals, c.proposals)
+  }
+  const repeated = advanceRadar(result.state, rows, opts)
+  assert.equal(repeated.newEvents.length, 0)
+  assert.equal(Object.values(repeated.state.conflicts).filter(c => !c.resolvedAt).length, 30)
+  for (const unsafe of [[], rows.map(r => ({ ...r, completeComposition: false })), rows.slice(1),
+    rows.map(r => ({ ...r, scope: 'different methodology' })),
+    rows.map(r => ({ ...r, sourceHash: undefined })),
+    rows.map(r => ({ ...r, period: '2026-10-06' }))]) {
+    const unchanged = advanceRadar(initial, unsafe, opts)
+    assert.equal(Object.values(unchanged.state.conflicts).filter(c => !c.resolvedAt).length, 32, 'Incomplete, changed or old evidence cannot resolve conflicts')
+  }
+  const samePeriod = advanceRadar(initial, rows.map(r => ({ ...r, period: '2026-10-07' })), opts)
+  assert.equal(Object.values(samePeriod.state.conflicts).filter(c => !c.resolvedAt).length, 32, 'Omission at the disputed date remains a contradiction')
+}
