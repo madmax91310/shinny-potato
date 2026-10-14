@@ -18,6 +18,7 @@ try {
   const errors=[]; page.on('pageerror',e=>errors.push(e.message))
   await page.goto(`${base}/analyse-entreprise`,{waitUntil:'networkidle'})
   await page.getByRole('heading',{name:'Analyse d’entreprise',exact:true}).waitFor()
+  await page.getByText('Comptes détaillés et publication existante',{exact:true}).click()
   await page.getByText('Consulter les comptes et indicateurs détaillés',{exact:true}).click()
   const chooser=page.getByRole('group',{name:'Choisir une entreprise',exact:true})
   for(const company of COMPANIES) {
@@ -73,12 +74,13 @@ try {
   assert.equal(await valuationPanel.locator('.valuation-assumptions tbody tr').nth(1).innerText(),before)
   await valuationPanel.getByText('Ajuster les hypothèses',{exact:true}).click()
   await valuationPanel.getByRole('button',{name:'Flux de trésorerie',exact:true}).click()
+  await page.getByText('Comptes détaillés et publication existante',{exact:true}).click()
   if(process.env.COMPANY_QA_DIR) await valuationPanel.screenshot({path:`${process.env.COMPANY_QA_DIR}/valuation-desktop.png`})
   await page.setViewportSize({width:390,height:844})
-  await page.getByRole('button',{name:'Aperçu',exact:true}).click()
   assert(await page.evaluate(()=>document.documentElement.scrollWidth <= innerWidth))
   if(process.env.COMPANY_QA_DIR) await valuationPanel.screenshot({path:`${process.env.COMPANY_QA_DIR}/valuation-mobile.png`})
   await page.setViewportSize({width:1440,height:1100})
+  await page.getByText('Comptes détaillés et publication existante',{exact:true}).click()
   await page.getByRole('tab',{name:'Image',exact:true}).click()
   let previousImage = ''
   for (const company of COMPANIES) {
