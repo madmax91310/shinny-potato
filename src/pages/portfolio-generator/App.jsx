@@ -21,7 +21,7 @@ import {
 import { CATEGORIES, ASSETS, getAsset } from '../../data/portfolio-assets.js'
 import { renderPortfolioImage } from './canvasImage.js'
 import { loadPortfolioBackground } from './background.js'
-import { getLengthStatus } from '../etf-tweets/lib/tweetFormat.js'
+import { getLengthStatus } from '../../lib/publication-length.js'
 import PageHeader from '../../design-system/PageHeader'
 import Button from '../../design-system/Button'
 import './portfolio-generator.css'

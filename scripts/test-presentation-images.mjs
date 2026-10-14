@@ -95,7 +95,7 @@ try {
   const originalModel=presentationReliefModel(SCPI[0],'scpi')
   const changedModel=presentationReliefModel(changed,'scpi')
   assert.notEqual(originalModel.highlights[1].value,changedModel.highlights[1].value)
-  assert.equal(new Set([...SCPI,...INSURANCE].map(r=>presentationReliefModel(r,SCPI.includes(r)?'scpi':'insurance').brand.color)).size,14)
+  assert.equal(new Set([...SCPI,...INSURANCE].map(r=>presentationReliefModel(r,SCPI.includes(r)?'scpi':'insurance').brand.color)).size,SCPI.length + INSURANCE.length)
   // Asset failure must give a visible error and a later export must be able to retry.
   const failurePage=await browser.newPage()
   await failurePage.route('**/asset-art/presentation-logos/iroko-zen.svg',route=>route.abort())

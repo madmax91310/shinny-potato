@@ -88,9 +88,9 @@ export function buildScenarios(company, overrides = {}, now = new Date()) {
     const delta = (index - 1) * POLICY.spread
     const user = overrides[index] ?? {}
     const common = {years: POLICY.years, discount: POLICY.discount, multiple: POLICY.multiples[index]}
-    const cashAssumptions = inputs.cashReady ? {...common, growth: cashGrowth + delta, ...user, growth: user.cashGrowth ?? cashGrowth + delta, base: inputs.cashBase} : null
+    const cashAssumptions = inputs.cashReady ? {...common, ...user, growth: user.cashGrowth ?? cashGrowth + delta, base: inputs.cashBase} : null
     // Five-year provider forecast is not silently extrapolated ten years.
-    const earningsAssumptions = inputs.earningsReady ? {...common, years: 5, growth: epsGrowth + delta, ...user, growth: user.earningsGrowth ?? epsGrowth + delta, base: inputs.eps} : null
+    const earningsAssumptions = inputs.earningsReady ? {...common, years: 5, ...user, growth: user.earningsGrowth ?? epsGrowth + delta, base: inputs.eps} : null
     return {name, cashAssumptions, earningsAssumptions,
       cash: cashAssumptions ? cashValue(cashAssumptions) : null,
       earnings: earningsAssumptions ? earningsValue(earningsAssumptions) : null,

@@ -24,6 +24,14 @@ def parse_jpm(replace=None):
         return jpm_document(b'%PDF-fixture', share('IE0003UVYC20'), NOW)
 
 class PresentationSources(unittest.TestCase):
+    def test_copper_management_style_after_distributions(self):
+        text = (FIX/'copx.html').read_text()
+        # A section may move without changing the explicitly labelled strategy.
+        text = text.replace('Management Style', 'Distributions</div><div>Management Style')
+        self.assertEqual(globalx_physical(text, share('IE0003Z9E2Y3'), NOW)['characteristics']['terPct'], .55)
+        with self.assertRaises(ValueError):
+            globalx_physical(text.replace('Physical - Full Replication - Passively Managed Index Tracking', 'Synthetic'), share('IE0003Z9E2Y3'), NOW)
+
     def test_copper_periods_are_cumulative_exact_share_nav(self):
         r = globalx_physical((FIX/'copx.html').read_text(), share('IE0003Z9E2Y3'), NOW)
         self.assertEqual(r['performance']['years'], {})

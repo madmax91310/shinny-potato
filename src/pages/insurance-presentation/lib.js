@@ -35,7 +35,7 @@ export const fundAllocation = (fund, today = todayIso()) => accessExpired(fund, 
     ? 'Au plus un tiers du versement sur ce fonds ; au moins deux fois ce montant en unités de compte non garanties.'
     : `Jusqu’à ${format(fund.maxAllocation)} % du versement${fund.ceiling ? `, dans la limite de ${format(fund.ceiling)} € par contrat` : ''}.`
 export function buildTweet(record) {
-  const { name, insurer, fees, access, supports, euroFunds } = record
+  const { insurer, fees, access, supports, euroFunds } = record
   const fundLines = euroFunds.map(fund => {
     const latest = fund.years.at(-1)
     return [

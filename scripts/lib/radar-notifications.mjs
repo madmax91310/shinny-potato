@@ -28,19 +28,24 @@ export function pendingNotifications(events, ledger) {
   }).sort((a, b) => a.detectedAt.localeCompare(b.detectedAt) || a.id.localeCompare(b.id))
 }
 
-function eventBody(event, repo) {
+function eventBody(event, repo, revision, compact = false) {
+  const original = event
+  if (compact) event = Object.fromEntries(Object.entries(event).map(([key, value]) => [key, typeof value === 'string' && !['sourceUrl', 'previousSourceUrl', 'tool', 'id'].includes(key) && value.length > 600 ? value.slice(0, 600) + '…' : value]))
+  const archive = `https://github.com/${repo}/blob/${revision}/state.json`
+  const archiveNote = `\nValeurs complètes conservées dans [l’historique du radar](${link(archive)}) ; identifiant : ${original.id}.\n`
   const tool = typeof event.tool === 'string' && event.tool.startsWith('/') && !event.tool.startsWith('//') ? event.tool : null
   const toolUrl = tool ? `https://${repo.split('/')[0]}.github.io/${repo.split('/')[1]}${tool}` : null
-  const details = typeof event.before === 'object' && event.before !== null || typeof event.after === 'object'
+  const details = compact ? archiveNote : typeof event.before === 'object' && event.before !== null || typeof event.after === 'object'
     ? `\n<details><summary>Valeurs complètes publiées</summary>\n\n<pre>${JSON.stringify({ before: event.before, after: event.after }, null, 2).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/@/g, '&#64;')}</pre>\n\n</details>\n` : ''
   return `\n### ${text(event.title)}\n\n${marker(event.id)}\n\n| Élément | Avant | Après |\n| --- | --- | --- |\n| ${text(event.fieldLabel)} | ${text(event.beforeText)} | ${text(event.afterText)} |\n| Période de référence | ${text(event.beforePeriod ?? 'Première donnée suivie')} | ${text(event.period)} |\n| Source officielle | ${event.previousSourceUrl ? `[Source précédente](${link(event.previousSourceUrl)})` : 'Sans observation précédente'} | [Source actuelle](${link(event.sourceUrl)}) |\n\n- Détecté : ${text(event.detectedAt)} ; observation vérifiée : ${text(event.checkedAt)}.\n- Périmètre : ${text(event.scope)}.\n- Validation : ${text(event.reason)}.\n- Outil concerné : ${toolUrl ? `[${text(tool)}](${link(toolUrl)})` : 'Non renseigné'}.\n- Angle à explorer : ${text(event.angle)}.\n${details}`
 }
 
-function issueBatches(events, repo, assignee) {
+function issueBatches(events, repo, assignee, revision) {
   const header = `@${assignee}, de nouveaux signaux sourcés ont été validés par le radar éditorial.\n\nLes seuils du radar sont appliqués avant notification. Une nouvelle donnée suivie ne prouve pas un lancement ; ces signaux restent à interpréter avant publication.\n`
   const batches = []; let batch = [], body = header
   for (const event of events) {
-    const section = eventBody(event, repo)
+    let section = eventBody(event, repo, revision)
+    if (Buffer.byteLength(header + section) > 55000) section = eventBody(event, repo, revision, true)
     if (Buffer.byteLength(header + section) > 55000) throw new Error('Signal trop volumineux pour une issue GitHub ; historique conservé.')
     if (Buffer.byteLength(body + section) > 55000) { batches.push({ events: batch, body }); batch = []; body = header }
     batch.push(event); body += section
@@ -52,7 +57,8 @@ function issueBatches(events, repo, assignee) {
 // Issues carry durable per-event receipts. They also protect against a crash
 // after POST succeeds but before notifications.json is committed. Include
 // closed issues and every page; PRs and non-bot issues are never receipts.
-export async function notifyRadar({ events, ledger, api, repo, assignee = 'madmax91310' }) {
+export async function notifyRadar({ events, ledger, api, repo, assignee = 'madmax91310', evidenceRevision = 'radar-data' }) {
+  if (!/^(?:[a-f0-9]{40}|radar-data)$/.test(evidenceRevision)) throw new Error('Révision de preuve invalide.')
   const pending = pendingNotifications(events, ledger)
   if (!pending.length) return { ledger, issues: [], sent: 0, recovered: 0 }
   const receipts = new Set()
@@ -71,7 +77,7 @@ export async function notifyRadar({ events, ledger, api, repo, assignee = 'madma
   }
   const unsent = pending.filter(event => !receipts.has(event.id))
   // Render all batches before any side effect to reject invalid content early.
-  const batches = issueBatches(unsent, repo, assignee)
+  const batches = issueBatches(unsent, repo, assignee, evidenceRevision)
   if (batches.length || unassignedReceipts.size) {
     const repository = await api('')
     if (!repository.has_issues) throw new Error('Les issues GitHub doivent être activées pour notifier le radar.')

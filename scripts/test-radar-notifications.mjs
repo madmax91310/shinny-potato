@@ -94,3 +94,14 @@ const large = mock(); assert.equal((await send(many, ledger, large)).sent, 100)
 assert.ok(large.created.length > 1)
 for (const issue of large.created) assert.ok(Buffer.byteLength(issue.body) <= 55000)
 console.log('Notifications radar : silence initial, seuils, regroupement, preuves, attribution, reprise, pagination, issues fermées et déduplication vérifiés.')
+
+// A complete 13F portfolio can exceed GitHub's body limit on its own.
+const huge = {...event, after: {positions: Array.from({length: 3000}, (_, i) => ({ticker: `STOCK${i}`, value: 123456789}))}}
+const hugeServer = mock(), revision = 'a'.repeat(40)
+const hugeResult = await notifyRadar({events:[huge,second],ledger,api:hugeServer.api,repo,evidenceRevision:revision})
+assert.equal(hugeResult.sent,2)
+assert(hugeServer.created.every(issue=>Buffer.byteLength(issue.body)<=55000))
+assert(hugeServer.created.some(issue=>issue.body.includes(`/blob/${revision}/state.json`)))
+assert(hugeServer.created.some(issue=>issue.body.includes(`editorial-radar-event:${huge.id}`)))
+assert.equal(huge.after.positions.length,3000,'Full source evidence is not mutated')
+assert.equal((await send([huge,second],ledger,mock({issues:hugeServer.created}))).recovered,2)

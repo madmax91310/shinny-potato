@@ -5,6 +5,7 @@ import { Link, NavLink, Outlet, useLocation } from 'react-router-dom'
 import { TOOL_GROUPS } from '../tools'
 import ToolIcon from './ToolIcon'
 import RadarCount from './RadarCount'
+import ToolErrorBoundary from './ToolErrorBoundary'
 
 function Navigation() {
   return <nav aria-label="Outils">
@@ -38,7 +39,9 @@ export default function Layout() {
         <Navigation />
       </details>
       <main id="workspace-main" tabIndex={-1} className={`workspace-main ${pathname === '/' ? 'workspace-main--home' : ''}`}>
-        <Suspense fallback={<p role="status" className="workspace-loading">Chargement de l’outil…</p>}><Outlet /></Suspense>
+        <Suspense fallback={<p role="status" className="workspace-loading">Chargement de l’outil…</p>}>
+          <ToolErrorBoundary key={pathname}><Outlet /></ToolErrorBoundary>
+        </Suspense>
       </main>
     </div>
   </div>
