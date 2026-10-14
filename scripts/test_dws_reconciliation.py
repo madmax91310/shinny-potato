@@ -1,6 +1,7 @@
 import copy
 import datetime as dt
 import json
+import hashlib
 import pathlib
 import unittest
 
@@ -18,7 +19,9 @@ class VerificationTests(unittest.TestCase):
 
     def test_live_complete_source_matches_and_is_archived(self):
         proof = verify(self.isin, self.record, self.now, lambda url: self.body)
-        self.assertEqual(proof['body'], self.body)
+        self.assertEqual(json.loads(proof['canonicalBody']), self.body)
+        wire = json.loads(json.dumps(proof))
+        self.assertEqual(hashlib.sha256(wire['canonicalBody'].encode()).hexdigest(), proof['sourceHash'])
         self.assertEqual(proof['sourceHash'], self.record['countries']['sha256'])
 
     def test_wrong_weights_hash_date_or_partial_portfolio_never_confirm(self):
