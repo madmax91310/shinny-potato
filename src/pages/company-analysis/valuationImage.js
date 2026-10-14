@@ -50,7 +50,7 @@ export function renderValuationImage(p) {
   text(`Objectifs au ${dateLabel(p.targetDate)} · horizon ${p.years} an${p.years>1?'s':''}`,56,1119,27,ink,600)
   let row=wrap(p.reading.title.replace('tes hypothèses','ces hypothèses'),56,1171,1088,29,40)
   row=wrap(`Croissance annualisée équivalente : ${n(p.assumptions.growth*100)} %. Multiple de sortie : ${n(p.assumptions.multiple)}×. ${p.method==='earnings'?'BPA ajusté prévisionnel, distinct du BPA publié.':'FCF/action : trésorerie, investissements et actions projetés.'}`,56,row+10,1088,25,35)
-  text('Hypothèses et références détaillées dans le texte associé',56,1350,23,muted)
+  text(p.explanation.customGrowth?'Croissance personnalisée':p.method==='cash'?'Flux futurs : projections du modèle':`Estimations sources jusqu’à ${p.explanation.lastEstimate.slice(0,4)} · ${p.explanation.extrapolated}/${p.years} échéances extrapolées`,56,1350,23,muted)
   line(56,1383,1144,1383)
   text('Prévisions conditionnelles · hors dividendes',56,1421,25,muted)
   text('Épargnant Libre',56,1464,24,green,600);text('Pas un conseil financier',820,1464,24,muted,400,324)
