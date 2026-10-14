@@ -38,7 +38,7 @@ def discover(ident):
     if ident == 'walmart':
         soup=BeautifulSoup(get(archive,max_bytes=20_000_000),'html.parser')
         urls=[a['href'] for a in soup.select('a[href]') if a.get_text(' ',strip=True)=='Earnings Release PDF']
-        selected=urls[:4]+[u for u in urls if re.search(r'Q4|q4',u)][:2]
+        selected=urls[:4]+[u for u in urls if re.search(r'Q4|q4',u)][:3]
     elif ident == 'waste-management':
         # Explicitly qualify this archive as well; never fall back to a local snapshot.
         soup=BeautifulSoup(get(archive),'html.parser')
@@ -52,7 +52,7 @@ def discover(ident):
             if docs:
                 urls.append(docs[0])
                 if report['ReportSubType']=='Fourth Quarter':annual.append(docs[0])
-        selected=urls[:4]+annual[:2]
+        selected=urls[:4]+annual[:3 if ident == 'netflix' else 2]
         if ident=='caterpillar':
             # The issuer's earnings PDFs use the quarter/year already discovered
             # in its official Q4 feed. Avoid dynamic HTML pages timing out on CI.
@@ -232,18 +232,28 @@ def publication_decision(profile, company, today):
                 ocf=row(block,[r'Net cash provided by operating activities',r'Net cash provided by \(used in\) operating activities',r'Net cash provided by \(used for\) operating activities'])
                 capex=row(block,labels)
                 if not ocf or not capex or len(ocf)!=len(columns) or len(capex)!=len(columns):continue
-                cash.append((unit,[ocf[i]for i in selected],[capex[i]for i in selected]))
+                extras={}
+                for field,extra_labels in {
+                    'dividendsPaid':[r'Dividends paid',r'Dividends'],
+                    'shareRepurchases':[r'Purchase of Company stock',r'Repurchases of common stock',r'Payments for repurchase of common stock',r'Purchases of treasury stock'],
+                    'shareBasedCompensation':[r'Stock-based compensation(?: expense)?',r'Share-based compensation(?: expense)?'],
+                }.items():
+                    values=row(block,extra_labels)
+                    if values and len(values)==len(columns):extras[field]=[abs(values[i])*unit for i in selected]
+                cash.append((unit,[ocf[i]for i in selected],[capex[i]for i in selected],extras))
             if len(cash)>1:raise ValueError('Conflicting consolidated annual cash tables')
             if cash:
-                unit,ocf,capex=cash[0]
+                unit,ocf,capex,extras=cash[0]
                 for i,prefix in [(0,''),(1,'previous')]:
                     for k,v in [('operatingCashFlow',ocf[i]*unit),('capitalExpenditure',abs(capex[i])*unit),('freeCashFlow',(ocf[i]-abs(capex[i]))*unit)]:a[prefix+k[0].upper()+k[1:]if prefix else k]=v
+                for field,values in extras.items():
+                    a[field]=values[0];a['previous'+field[0].upper()+field[1:]]=values[1]
             documents[url]=a
         a=documents[url];previous=ref['end']==a['previousEnd'];prefix='previous'if previous else''
         def key(k):return prefix+k[0].upper()+k[1:]if prefix else k
         if ref['end']not in(a['end'],a['previousEnd'])or any(a[key(k)]!=ref[k]for k in ['revenue','netIncome']):raise ValueError('Decision/income period mismatch')
         result={k:ref[k]for k in ['end','revenue','netIncome']};result.update(sourceUrl=url,tags={})
-        for k in ['operatingIncome','interestExpense','operatingCashFlow','capitalExpenditure','freeCashFlow','averageDilutedShares']:
+        for k in ['operatingIncome','interestExpense','operatingCashFlow','capitalExpenditure','freeCashFlow','averageDilutedShares','dividendsPaid','shareRepurchases','shareBasedCompensation']:
             if key(k)in a:result[k]=a[key(k)]
         if 'averageDilutedShares' in result:result['sharesBasisSource']=url
         if 'freeCashFlow'in result:result['freeCashFlowDefinition']=FCF_METHOD

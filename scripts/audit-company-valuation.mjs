@@ -7,6 +7,7 @@ const report = {generatedAt: new Date().toISOString(), companies: COMPANIES.map(
     qualifiedEvidence: {cash:evidence.cash?.rationale,earnings:evidence.earnings?.rationale},
     priceHistoryPoints:company.quote?.history?.length??0,
     dataCoverage: {
+      annualFields: Object.fromEntries(['operatingCashFlow','capitalExpenditure','freeCashFlow','operatingIncome','interestExpense','dividendsPaid','shareRepurchases','shareBasedCompensation','averageDilutedShares'].map(field => [field,(company.decision?.years ?? []).filter(r => Number.isFinite(r[field])).length])),
       annualCashFlowYears: (company.decision?.years ?? []).filter(r => Number.isFinite(r.freeCashFlow)).length,
       publishedShareCountYears: (company.decision?.years ?? []).filter(r => r.averageDilutedShares > 0 && r.sharesBasisSource).length,
       shareBasisQualified: Boolean(company.valuationShareBasis),

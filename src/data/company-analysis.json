@@ -11826,6 +11826,50 @@
         ],
         "definition": "Somme de quatre trimestres GAAP réellement publiés",
         "observedAt": "2026-10-14"
+      },
+      "solidity": {
+        "componentVersion": 1,
+        "observedAt": "2026-10-14",
+        "annualEnd": "2025-11-28",
+        "revenue": 23769000000.0,
+        "netIncome": 7130000000.0,
+        "accountsEndAtCollection": "2026-08-28",
+        "annualBalances": [
+          {
+            "assets": 30230000000.0,
+            "currentAssets": 11232000000.0,
+            "currentLiabilities": 10521000000.0,
+            "equity": 14105000000.0,
+            "liabilitiesAndEquity": 30230000000.0,
+            "cash": 7613000000.0,
+            "asOf": "2024-11-29",
+            "liabilities": 16125000000.0,
+            "sourceUrl": "https://www.adobe.com/cc-shared/assets/investor-relations/pdfs/01215202/a54gu6y5tegrrf.pdf"
+          },
+          {
+            "assets": 29496000000.0,
+            "currentAssets": 10163000000.0,
+            "currentLiabilities": 10200000000.0,
+            "equity": 11623000000.0,
+            "liabilitiesAndEquity": 29496000000.0,
+            "cash": 5431000000.0,
+            "asOf": "2025-11-28",
+            "liabilities": 17873000000.0,
+            "sourceUrl": "https://www.adobe.com/cc-shared/assets/investor-relations/pdfs/01215202/a54gu6y5tegrrf.pdf"
+          }
+        ],
+        "latestBalance": {
+          "assets": 29981000000.0,
+          "currentAssets": 9158000000.0,
+          "currentLiabilities": 11888000000.0,
+          "equity": 11764000000.0,
+          "liabilitiesAndEquity": 29981000000.0,
+          "cash": 4359000000.0,
+          "asOf": "2026-08-28",
+          "liabilities": 18217000000.0,
+          "sourceUrl": "https://www.adobe.com/cc-shared/assets/investor-relations/pdfs/01906202/au56y4ter.pdf"
+        },
+        "method": "Consolidated GAAP issuer balance; opening and closing annual equity from the same comparative document"
       }
     },
     "salesforce": {
@@ -12702,6 +12746,8 @@
         "previousDilutedEPS": 1.37,
         "operatingIncome": 1824000000.0,
         "previousOperatingIncome": 1364000000.0,
+        "averageDilutedShares": 1047000000.0,
+        "previousAverageDilutedShares": 1042000000.0,
         "margin": 13.164633227895767
       },
       "quarter": {
@@ -12771,9 +12817,9 @@
       "estimates": {
         "forwardEPS": 5.02,
         "growthEPS5Y": 20.13,
-        "reportedForwardPE": 28.06,
+        "reportedForwardPE": 27.97,
         "reportedPEG": 1.39,
-        "providerPrice": 140.74,
+        "providerPrice": 140.3,
         "observedAt": "2026-10-14",
         "sourceName": "Finviz",
         "sourceUrl": "https://finviz.com/quote.ashx?t=NOW",
@@ -13227,10 +13273,12 @@
             "sourceUrl": "https://s205.q4cdn.com/916135447/files/doc_financials/2023/q4/Q4-2023-Earnings-Release.pdf",
             "tags": {},
             "operatingIncome": 355000000.0,
+            "averageDilutedShares": 204000000.0,
             "operatingCashFlow": 2723000000.0,
             "capitalExpenditure": 550000000.0,
             "freeCashFlow": 2173000000.0,
             "shareBasedCompensation": 1401000000.0,
+            "sharesBasisSource": "https://s205.q4cdn.com/916135447/files/doc_financials/2023/q4/Q4-2023-Earnings-Release.pdf",
             "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
           },
           {
@@ -13240,11 +13288,13 @@
             "sourceUrl": "https://s205.q4cdn.com/916135447/files/doc_financials/2024/q4/Q4-2024-Earnings-Release.pdf",
             "tags": {},
             "operatingIncome": 762000000.0,
+            "averageDilutedShares": 206000000.0,
             "operatingCashFlow": 3398000000.0,
             "capitalExpenditure": 694000000.0,
             "freeCashFlow": 2704000000.0,
             "shareRepurchases": 538000000.0,
             "shareBasedCompensation": 1604000000.0,
+            "sharesBasisSource": "https://s205.q4cdn.com/916135447/files/doc_financials/2024/q4/Q4-2024-Earnings-Release.pdf",
             "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
           },
           {
@@ -13254,11 +13304,13 @@
             "sourceUrl": "https://s205.q4cdn.com/916135447/files/doc_financials/2025/q4/ServiceNow-Reports-Fourth-Quarter-and-Full-Year-2025-Financial-Results.pdf",
             "tags": {},
             "operatingIncome": 1364000000.0,
+            "averageDilutedShares": 1042000000.0,
             "operatingCashFlow": 4267000000.0,
             "capitalExpenditure": 852000000.0,
             "freeCashFlow": 3415000000.0,
             "shareRepurchases": 696000000.0,
             "shareBasedCompensation": 1746000000.0,
+            "sharesBasisSource": "https://s205.q4cdn.com/916135447/files/doc_financials/2025/q4/ServiceNow-Reports-Fourth-Quarter-and-Full-Year-2025-Financial-Results.pdf",
             "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
           },
           {
@@ -13268,15 +13320,18 @@
             "sourceUrl": "https://s205.q4cdn.com/916135447/files/doc_financials/2025/q4/ServiceNow-Reports-Fourth-Quarter-and-Full-Year-2025-Financial-Results.pdf",
             "tags": {},
             "operatingIncome": 1824000000.0,
+            "averageDilutedShares": 1047000000.0,
             "operatingCashFlow": 5444000000.0,
             "capitalExpenditure": 868000000.0,
             "freeCashFlow": 4576000000.0,
             "shareRepurchases": 1840000000.0,
             "shareBasedCompensation": 1955000000.0,
+            "sharesBasisSource": "https://s205.q4cdn.com/916135447/files/doc_financials/2025/q4/ServiceNow-Reports-Fourth-Quarter-and-Full-Year-2025-Financial-Results.pdf",
             "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
           }
         ],
         "method": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
+        "publicationCoverageVersion": 1,
         "componentVersion": 5,
         "accountsEndAtCollection": "2026-06-30"
       },
@@ -13290,7 +13345,7 @@
         "sourceName": "Stock Analysis / S&P Global",
         "observedAt": "2026-10-14",
         "asOf": "2026-10-14",
-        "sourceHash": "408e09f6c0967790fbd255c011b67e3556d91b8a7baa98c257ecd07bcc531420",
+        "sourceHash": "16108b5fbd01d46558a8b95d9a3cbeffcf2bd5bbea76aed90b1b3a03885235df",
         "points": [
           {
             "end": "2025-12-31",
@@ -13378,6 +13433,8 @@
           "previousDilutedEPS": 0.44,
           "operatingIncome": 503000000.0,
           "previousOperatingIncome": 451000000.0,
+          "averageDilutedShares": 1040000000.0,
+          "previousAverageDilutedShares": 1047000000.0,
           "margin": 12.440318302387269,
           "epsShareBasisAsOf": "2026-10-13"
         },
@@ -13402,6 +13459,8 @@
           "previousDilutedEPS": 0.37,
           "operatingIncome": 443000000.0,
           "previousOperatingIncome": 374000000.0,
+          "averageDilutedShares": 1047000000.0,
+          "previousAverageDilutedShares": 1047000000.0,
           "margin": 11.238789237668161,
           "epsShareBasisAsOf": "2026-10-13"
         },
@@ -13426,6 +13485,8 @@
           "previousDilutedEPS": 2.07,
           "operatingIncome": 572000000.0,
           "previousOperatingIncome": 418000000.0,
+          "averageDilutedShares": 210000000.0,
+          "previousAverageDilutedShares": 209000000.0,
           "margin": 14.734370413853831,
           "reportedDilutedEPS": 2.4,
           "epsSplitAdjustments": [
@@ -16484,6 +16545,14 @@
         "years": [
           {
             "start": null,
+            "end": "2023-01-31",
+            "revenue": 611289000000.0,
+            "netIncome": 11680000000.0,
+            "margin": 1.9107165350595219,
+            "sourceUrl": "https://stock.walmart.com/_assets/_8c8425b76a1d46bbbbc16466da2a6b9c/walmart/db/938/9484/earnings_release/Earnings-Release-2024-Q4.pdf"
+          },
+          {
+            "start": null,
             "end": "2024-01-31",
             "revenue": 648125000000.0,
             "netIncome": 15511000000.0,
@@ -16513,9 +16582,9 @@
       "estimates": {
         "forwardEPS": 3.22,
         "growthEPS5Y": 11.01,
-        "reportedForwardPE": 35.89,
-        "reportedPEG": 3.26,
-        "providerPrice": 115.58,
+        "reportedForwardPE": 35.97,
+        "reportedPEG": 3.27,
+        "providerPrice": 115.83,
         "observedAt": "2026-10-14",
         "sourceName": "Finviz",
         "sourceUrl": "https://finviz.com/quote.ashx?t=WMT",
@@ -16530,6 +16599,22 @@
         "annualEnd": "2026-01-31",
         "years": [
           {
+            "end": "2023-01-31",
+            "revenue": 611289000000.0,
+            "netIncome": 11680000000.0,
+            "sourceUrl": "https://stock.walmart.com/_assets/_8c8425b76a1d46bbbbc16466da2a6b9c/walmart/db/938/9484/earnings_release/Earnings-Release-2024-Q4.pdf",
+            "tags": {},
+            "operatingIncome": 20428000000.0,
+            "operatingCashFlow": 28841000000.0,
+            "capitalExpenditure": 16857000000.0,
+            "freeCashFlow": 11984000000.0,
+            "averageDilutedShares": 2734000000.0,
+            "dividendsPaid": 6114000000.0,
+            "shareRepurchases": 9920000000.0,
+            "sharesBasisSource": "https://stock.walmart.com/_assets/_8c8425b76a1d46bbbbc16466da2a6b9c/walmart/db/938/9484/earnings_release/Earnings-Release-2024-Q4.pdf",
+            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
+          },
+          {
             "end": "2024-01-31",
             "revenue": 648125000000.0,
             "netIncome": 15511000000.0,
@@ -16540,6 +16625,8 @@
             "capitalExpenditure": 20606000000.0,
             "freeCashFlow": 15120000000.0,
             "averageDilutedShares": 8108000000.0,
+            "dividendsPaid": 6140000000.0,
+            "shareRepurchases": 2779000000.0,
             "sharesBasisSource": "https://stock.walmart.com/_assets/_8c8425b76a1d46bbbbc16466da2a6b9c/walmart/db/938/9939/earnings_release/Earnings+Release+%28FY25+Q4%29.pdf",
             "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
           },
@@ -16554,6 +16641,8 @@
             "capitalExpenditure": 23783000000.0,
             "freeCashFlow": 12660000000.0,
             "averageDilutedShares": 8081000000.0,
+            "dividendsPaid": 6688000000.0,
+            "shareRepurchases": 4494000000.0,
             "sharesBasisSource": "https://stock.walmart.com/_assets/_8c8425b76a1d46bbbbc16466da2a6b9c/walmart/db/938/9972/earnings_release/Earnings+Release+%28FY26+Q4%29.pdf",
             "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
           },
@@ -16568,12 +16657,15 @@
             "capitalExpenditure": 26642000000.0,
             "freeCashFlow": 14923000000.0,
             "averageDilutedShares": 8022000000.0,
+            "dividendsPaid": 7507000000.0,
+            "shareRepurchases": 8088000000.0,
             "sharesBasisSource": "https://stock.walmart.com/_assets/_8c8425b76a1d46bbbbc16466da2a6b9c/walmart/db/938/9972/earnings_release/Earnings+Release+%28FY26+Q4%29.pdf",
             "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
           }
         ],
         "method": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
         "componentVersion": 5,
+        "publicationCoverageVersion": 1,
         "accountsEndAtCollection": "2026-07-31"
       },
       "targetForecast": {
@@ -16586,7 +16678,7 @@
         "sourceName": "Stock Analysis / S&P Global",
         "observedAt": "2026-10-14",
         "asOf": "2026-10-14",
-        "sourceHash": "176127c90397f53d067a25a4c835a59dee52668b38406611f2b7292fd59925db",
+        "sourceHash": "65ae15fac91863a0f72bd0e6315fbab4097d4a79722941dcfbc781616c6675cb",
         "points": [
           {
             "end": "2026-01-31",
@@ -16808,6 +16900,14 @@
         "years": [
           {
             "start": null,
+            "end": "2022-12-31",
+            "revenue": 31615550000.0,
+            "netIncome": 4491924000.0,
+            "margin": 14.207957792921523,
+            "sourceUrl": "https://s22.q4cdn.com/959853165/files/doc_financials/2023/q4/NEW-FINAL-Q4-23-Shareholder-Letter.pdf"
+          },
+          {
+            "start": null,
             "end": "2023-12-31",
             "revenue": 33723297000.0,
             "netIncome": 5407990000.0,
@@ -16839,6 +16939,22 @@
         "annualEnd": "2025-12-31",
         "years": [
           {
+            "end": "2022-12-31",
+            "revenue": 31615550000.0,
+            "netIncome": 4491924000.0,
+            "sourceUrl": "https://s22.q4cdn.com/959853165/files/doc_financials/2023/q4/NEW-FINAL-Q4-23-Shareholder-Letter.pdf",
+            "tags": {},
+            "operatingIncome": 5632831000.0,
+            "interestExpense": 706212000.0,
+            "operatingCashFlow": 2026257000.0,
+            "capitalExpenditure": 407729000.0,
+            "freeCashFlow": 1618528000.0,
+            "averageDilutedShares": 451290000.0,
+            "shareBasedCompensation": 575452000.0,
+            "sharesBasisSource": "https://s22.q4cdn.com/959853165/files/doc_financials/2023/q4/NEW-FINAL-Q4-23-Shareholder-Letter.pdf",
+            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
+          },
+          {
             "end": "2023-12-31",
             "revenue": 33723297000.0,
             "netIncome": 5407990000.0,
@@ -16850,6 +16966,8 @@
             "capitalExpenditure": 348552000.0,
             "freeCashFlow": 6925749000.0,
             "averageDilutedShares": 449498000.0,
+            "shareRepurchases": 6045347000.0,
+            "shareBasedCompensation": 339368000.0,
             "sharesBasisSource": "https://s22.q4cdn.com/959853165/files/doc_financials/2024/q4/FINAL-Q4-24-Shareholder-Letter.pdf",
             "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
           },
@@ -16865,6 +16983,8 @@
             "capitalExpenditure": 439538000.0,
             "freeCashFlow": 6921826000.0,
             "averageDilutedShares": 4392608000.0,
+            "shareRepurchases": 6263746000.0,
+            "shareBasedCompensation": 272588000.0,
             "sharesBasisSource": "https://s22.q4cdn.com/959853165/files/doc_financials/2025/q4/FINAL-Q4-25-Shareholder-Letter.pdf",
             "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
           },
@@ -16880,11 +17000,14 @@
             "capitalExpenditure": 688220000.0,
             "freeCashFlow": 9461053000.0,
             "averageDilutedShares": 4343863000.0,
+            "shareRepurchases": 9127167000.0,
+            "shareBasedCompensation": 368449000.0,
             "sharesBasisSource": "https://s22.q4cdn.com/959853165/files/doc_financials/2025/q4/FINAL-Q4-25-Shareholder-Letter.pdf",
             "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
           }
         ],
         "method": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
+        "publicationCoverageVersion": 1,
         "componentVersion": 5,
         "accountsEndAtCollection": "2026-06-30"
       },
@@ -16893,7 +17016,7 @@
         "growthEPS5Y": 21.46,
         "reportedForwardPE": 18.55,
         "reportedPEG": 0.86,
-        "providerPrice": 70.41,
+        "providerPrice": 70.39,
         "observedAt": "2026-10-14",
         "sourceName": "Finviz",
         "sourceUrl": "https://finviz.com/quote.ashx?t=NFLX",
@@ -17346,7 +17469,7 @@
         "sourceName": "Stock Analysis / S&P Global",
         "observedAt": "2026-10-14",
         "asOf": "2026-10-13",
-        "sourceHash": "2cdc094f5d3134d0516cc9ec58b7b5523d4b9d4d0a0445035fae10507cc20773",
+        "sourceHash": "1316b967dc3aae8ba8c093342b4de24d1580278f7c3fdb43a98e4dd5538a1727",
         "points": [
           {
             "end": "2025-12-31",
@@ -18068,6 +18191,8 @@
             "operatingCashFlow": 7344000000.0,
             "capitalExpenditure": 345000000.0,
             "freeCashFlow": 6999000000.0,
+            "shareRepurchases": 10377000000.0,
+            "shareBasedCompensation": 530000000.0,
             "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
           },
           {
@@ -18080,6 +18205,9 @@
             "operatingCashFlow": 8323000000.0,
             "capitalExpenditure": 429000000.0,
             "freeCashFlow": 7894000000.0,
+            "dividendsPaid": 1174000000.0,
+            "shareRepurchases": 6509000000.0,
+            "shareBasedCompensation": 599000000.0,
             "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
           },
           {
@@ -18092,19 +18220,23 @@
             "operatingCashFlow": 9409000000.0,
             "capitalExpenditure": 322000000.0,
             "freeCashFlow": 9087000000.0,
+            "dividendsPaid": 1248000000.0,
+            "shareRepurchases": 6440000000.0,
+            "shareBasedCompensation": 617000000.0,
             "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
           }
         ],
         "method": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
+        "publicationCoverageVersion": 1,
         "componentVersion": 5,
         "accountsEndAtCollection": "2026-06-30"
       },
       "estimates": {
         "forwardEPS": 12.36,
         "growthEPS5Y": 16.47,
-        "reportedForwardPE": 12.87,
-        "reportedPEG": 0.78,
-        "providerPrice": 158.99,
+        "reportedForwardPE": 12.93,
+        "reportedPEG": 0.79,
+        "providerPrice": 159.82,
         "observedAt": "2026-10-14",
         "sourceName": "Finviz",
         "sourceUrl": "https://finviz.com/quote.ashx?t=BKNG",
@@ -18124,7 +18256,7 @@
         "sourceName": "Stock Analysis / S&P Global",
         "observedAt": "2026-10-14",
         "asOf": "2026-10-12",
-        "sourceHash": "bdc1ec67e4864c510c1edb32dadb9dfcfa253124cd0b245099790ad2d0694b7b",
+        "sourceHash": "347601fcc13f22e15f7ba45ba6615e00468fd03e5e3b810b0133f51755128449",
         "points": [
           {
             "end": "2025-12-31",
@@ -20208,6 +20340,14 @@
         "years": [
           {
             "start": null,
+            "end": "2023-05-31",
+            "revenue": 51217000000.0,
+            "netIncome": 5070000000.0,
+            "margin": 9.899056953745825,
+            "sourceUrl": "https://investors.nike.com/news-events/press-releases/detail/20/nike-inc-reports-fiscal-2024-fourth-quarter-and-full-year-results"
+          },
+          {
+            "start": null,
             "end": "2024-05-31",
             "revenue": 51362000000.0,
             "netIncome": 5700000000.0,
@@ -20239,54 +20379,65 @@
         "currency": "USD",
         "observedAt": "2026-10-14",
         "sourceUrls": [
+          "https://investors.nike.com/news-events/press-releases/detail/20/nike-inc-reports-fiscal-2024-fourth-quarter-and-full-year-results",
           "https://investors.nike.com/news-events/press-releases/detail/551/nike-inc-reports-fiscal-2025-fourth-quarter-and-full-year-results",
           "https://investors.nike.com/news-events/press-releases/detail/571/nike-inc-reports-fiscal-2026-fourth-quarter-and-full-year-results"
         ],
         "years": [
           {
-            "start": null,
+            "end": "2023-05-31",
+            "revenue": 51217000000.0,
+            "netIncome": 5070000000.0,
+            "sourceUrl": "https://investors.nike.com/news-events/press-releases/detail/20/nike-inc-reports-fiscal-2024-fourth-quarter-and-full-year-results",
+            "sourceUnits": "USD millions",
+            "incomeBasis": "consolidated",
+            "averageDilutedShares": 1569800000.0,
+            "interestExpense": 6000000.0,
+            "sharesBasisSource": "https://investors.nike.com/news-events/press-releases/detail/20/nike-inc-reports-fiscal-2024-fourth-quarter-and-full-year-results"
+          },
+          {
             "end": "2024-05-31",
             "revenue": 51362000000.0,
             "netIncome": 5700000000.0,
-            "margin": 11.097698687745803,
             "sourceUrl": "https://investors.nike.com/news-events/press-releases/detail/551/nike-inc-reports-fiscal-2025-fourth-quarter-and-full-year-results",
             "sourceUnits": "USD millions",
-            "incomeBasis": "consolidated"
+            "incomeBasis": "consolidated",
+            "averageDilutedShares": 1529700000.0,
+            "interestExpense": 161000000.0,
+            "sharesBasisSource": "https://investors.nike.com/news-events/press-releases/detail/551/nike-inc-reports-fiscal-2025-fourth-quarter-and-full-year-results"
           },
           {
-            "start": null,
             "end": "2025-05-31",
             "revenue": 46309000000.0,
             "netIncome": 3219000000.0,
-            "margin": 6.951132609212032,
             "sourceUrl": "https://investors.nike.com/news-events/press-releases/detail/571/nike-inc-reports-fiscal-2026-fourth-quarter-and-full-year-results",
             "sourceUnits": "USD millions",
-            "incomeBasis": "consolidated"
+            "incomeBasis": "consolidated",
+            "averageDilutedShares": 1487600000.0,
+            "sharesBasisSource": "https://investors.nike.com/news-events/press-releases/detail/571/nike-inc-reports-fiscal-2026-fourth-quarter-and-full-year-results"
           },
           {
-            "start": null,
             "end": "2026-05-31",
             "revenue": 46398000000.0,
             "netIncome": 3108000000.0,
-            "margin": 6.698564593301436,
             "sourceUrl": "https://investors.nike.com/news-events/press-releases/detail/571/nike-inc-reports-fiscal-2026-fourth-quarter-and-full-year-results",
             "sourceUnits": "USD millions",
-            "incomeBasis": "consolidated"
+            "incomeBasis": "consolidated",
+            "averageDilutedShares": 1481000000.0,
+            "sharesBasisSource": "https://investors.nike.com/news-events/press-releases/detail/571/nike-inc-reports-fiscal-2026-fourth-quarter-and-full-year-results"
           }
         ],
         "annualEnd": "2026-05-31",
         "method": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
-        "unavailable": [
-          "freeCashFlow: cash-flow layout not qualified; no approximation from earnings"
-        ],
+        "publicationCoverageVersion": 1,
         "accountsEndAtCollection": "2026-08-31"
       },
       "estimates": {
         "forwardEPS": 1.5,
         "growthEPS5Y": -4.38,
-        "reportedForwardPE": 23.26,
+        "reportedForwardPE": 23.47,
         "reportedPEG": null,
-        "providerPrice": 34.89,
+        "providerPrice": 35.2,
         "observedAt": "2026-10-14",
         "sourceName": "Finviz",
         "sourceUrl": "https://finviz.com/quote.ashx?t=NKE",
@@ -20737,7 +20888,7 @@
         "sourceName": "Stock Analysis / S&P Global",
         "observedAt": "2026-10-14",
         "asOf": "2026-10-14",
-        "sourceHash": "79f7e40d9501a22f46fe2dadca46b31ad313612dbe62b9333d868bee51da6074",
+        "sourceHash": "8330d2f0e829a14659ee2b620cea6af50f0fa639c0218601ce8ac63109448728",
         "points": [
           {
             "end": "2026-05-31",
@@ -20887,6 +21038,17 @@
         ],
         "observedAt": "2026-10-14",
         "definition": "Somme de quatre BPA dilués GAAP trimestriels publiés"
+      },
+      "valuationShareBasis": {
+        "version": 1,
+        "observedAt": "2026-10-14",
+        "annualEnd": "2026-05-31",
+        "accountsEndAtCollection": "2026-08-31",
+        "currency": "USD",
+        "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/NKE?period1=1653696000&period2=1792022400&interval=1mo&events=splits",
+        "splitCheckFrom": "2022-05-28",
+        "splitCheckThrough": "2026-10-14",
+        "definition": "Published annual diluted averages; complete historical split window checked"
       }
     },
     "disney": {
@@ -20908,6 +21070,8 @@
         "previousNetIncome": 4972000000.0,
         "dilutedEPS": 6.85,
         "previousDilutedEPS": 2.72,
+        "averageDilutedShares": 1811000000.0,
+        "previousAverageDilutedShares": 1831000000.0,
         "margin": 13.136351601800369,
         "incomeBasis": "part du groupe"
       },
@@ -20929,6 +21093,8 @@
         "previousNetIncome": 5262000000.0,
         "dilutedEPS": 1.51,
         "previousDilutedEPS": 2.92,
+        "averageDilutedShares": 1743000000.0,
+        "previousAverageDilutedShares": 1805000000.0,
         "margin": 10.448352344740178,
         "incomeBasis": "part du groupe"
       },
@@ -20936,6 +21102,14 @@
       "accountsSourceUrl": "https://s206.q4cdn.com/979796730/files/doc_events/2025/11/q4-fy25-earnings.pdf",
       "history": {
         "years": [
+          {
+            "start": null,
+            "end": "2022-10-01",
+            "revenue": 82722000000.0,
+            "netIncome": 3145000000.0,
+            "margin": 3.8018906699547883,
+            "sourceUrl": "https://s206.q4cdn.com/979796730/files/doc_events/2023/11/q4-fy23-earnings.pdf"
+          },
           {
             "start": null,
             "end": "2023-09-30",
@@ -20969,54 +21143,89 @@
         "currency": "USD",
         "observedAt": "2026-10-14",
         "sourceUrls": [
+          "https://s206.q4cdn.com/979796730/files/doc_events/2023/11/q4-fy23-earnings.pdf",
           "https://s206.q4cdn.com/979796730/files/doc_events/2024/11/q4-fy24-earnings.pdf",
           "https://s206.q4cdn.com/979796730/files/doc_events/2025/11/q4-fy25-earnings.pdf"
         ],
         "years": [
           {
-            "start": null,
+            "end": "2022-10-01",
+            "revenue": 82722000000.0,
+            "netIncome": 3145000000.0,
+            "sourceUrl": "https://s206.q4cdn.com/979796730/files/doc_events/2023/11/q4-fy23-earnings.pdf",
+            "sourceUnits": "USD millions",
+            "incomeBasis": "part du groupe",
+            "averageDilutedShares": 1827000000.0,
+            "operatingCashFlow": 6002000000.0,
+            "capitalExpenditure": 4943000000.0,
+            "freeCashFlow": 1059000000.0,
+            "shareBasedCompensation": 977000000.0,
+            "sharesBasisSource": "https://s206.q4cdn.com/979796730/files/doc_events/2023/11/q4-fy23-earnings.pdf",
+            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
+          },
+          {
             "end": "2023-09-30",
             "revenue": 88898000000.0,
             "netIncome": 2354000000.0,
-            "margin": 2.647978582195325,
             "sourceUrl": "https://s206.q4cdn.com/979796730/files/doc_events/2024/11/q4-fy24-earnings.pdf",
             "sourceUnits": "USD millions",
-            "incomeBasis": "part du groupe"
+            "incomeBasis": "part du groupe",
+            "averageDilutedShares": 1830000000.0,
+            "operatingCashFlow": 9866000000.0,
+            "capitalExpenditure": 4969000000.0,
+            "freeCashFlow": 4897000000.0,
+            "dividendsPaid": 0.0,
+            "shareRepurchases": 0.0,
+            "shareBasedCompensation": 1143000000.0,
+            "sharesBasisSource": "https://s206.q4cdn.com/979796730/files/doc_events/2024/11/q4-fy24-earnings.pdf",
+            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
           },
           {
-            "start": null,
             "end": "2024-09-28",
             "revenue": 91361000000.0,
             "netIncome": 4972000000.0,
-            "margin": 5.442147086831362,
             "sourceUrl": "https://s206.q4cdn.com/979796730/files/doc_events/2025/11/q4-fy25-earnings.pdf",
             "sourceUnits": "USD millions",
-            "incomeBasis": "part du groupe"
+            "incomeBasis": "part du groupe",
+            "averageDilutedShares": 1831000000.0,
+            "operatingCashFlow": 13971000000.0,
+            "capitalExpenditure": 5412000000.0,
+            "freeCashFlow": 8559000000.0,
+            "dividendsPaid": 1366000000.0,
+            "shareRepurchases": 2992000000.0,
+            "shareBasedCompensation": 1366000000.0,
+            "sharesBasisSource": "https://s206.q4cdn.com/979796730/files/doc_events/2025/11/q4-fy25-earnings.pdf",
+            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
           },
           {
-            "start": null,
             "end": "2025-09-27",
             "revenue": 94425000000.0,
             "netIncome": 12404000000.0,
-            "margin": 13.136351601800369,
             "sourceUrl": "https://s206.q4cdn.com/979796730/files/doc_events/2025/11/q4-fy25-earnings.pdf",
             "sourceUnits": "USD millions",
-            "incomeBasis": "part du groupe"
+            "incomeBasis": "part du groupe",
+            "averageDilutedShares": 1811000000.0,
+            "operatingCashFlow": 18101000000.0,
+            "capitalExpenditure": 8024000000.0,
+            "freeCashFlow": 10077000000.0,
+            "dividendsPaid": 1803000000.0,
+            "shareRepurchases": 3500000000.0,
+            "shareBasedCompensation": 1363000000.0,
+            "sharesBasisSource": "https://s206.q4cdn.com/979796730/files/doc_events/2025/11/q4-fy25-earnings.pdf",
+            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
           }
         ],
         "annualEnd": "2025-09-27",
         "method": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
-        "unavailable": [
-          "freeCashFlow: cash-flow layout not qualified; no approximation from earnings"
-        ],
+        "publicationCoverageVersion": 1,
         "accountsEndAtCollection": "2026-06-27"
       },
       "estimates": {
         "forwardEPS": 7.5,
         "growthEPS5Y": 12.42,
-        "reportedForwardPE": 14.46,
-        "reportedPEG": 1.16,
-        "providerPrice": 108.4,
+        "reportedForwardPE": 14.48,
+        "reportedPEG": 1.17,
+        "providerPrice": 108.56,
         "observedAt": "2026-10-14",
         "sourceName": "Finviz",
         "sourceUrl": "https://finviz.com/quote.ashx?t=DIS",
@@ -21467,7 +21676,7 @@
         "sourceName": "Stock Analysis / S&P Global",
         "observedAt": "2026-10-14",
         "asOf": "2026-10-09",
-        "sourceHash": "40bb0f74d6b6bb9685cd269fa8291c3212e00cc33001559f58c28531d75c2d75",
+        "sourceHash": "6e2f49ab360fb749fffb5104b3dc4178565a442e5594c74348fc037d636b6caf",
         "points": [
           {
             "end": "2025-09-27",
@@ -21528,6 +21737,8 @@
           "previousNetIncome": 5262000000.0,
           "dilutedEPS": 1.51,
           "previousDilutedEPS": 2.92,
+          "averageDilutedShares": 1743000000.0,
+          "previousAverageDilutedShares": 1805000000.0,
           "margin": 10.448352344740178,
           "incomeBasis": "part du groupe"
         },
@@ -21549,6 +21760,8 @@
           "previousNetIncome": 3275000000.0,
           "dilutedEPS": 1.27,
           "previousDilutedEPS": 1.81,
+          "averageDilutedShares": 1772000000.0,
+          "previousAverageDilutedShares": 1814000000.0,
           "margin": 8.92800381436745,
           "incomeBasis": "part du groupe"
         },
@@ -21570,6 +21783,8 @@
           "previousNetIncome": 2554000000.0,
           "dilutedEPS": 1.34,
           "previousDilutedEPS": 1.4,
+          "averageDilutedShares": 1793000000.0,
+          "previousAverageDilutedShares": 1818000000.0,
           "margin": 9.245217659058543,
           "incomeBasis": "part du groupe"
         },
@@ -21591,6 +21806,8 @@
           "previousNetIncome": 460000000.0,
           "dilutedEPS": 0.73,
           "previousDilutedEPS": 0.25,
+          "averageDilutedShares": 1806000000.0,
+          "previousAverageDilutedShares": 1819000000.0,
           "margin": 5.844907407407407,
           "incomeBasis": "part du groupe"
         }
@@ -21613,6 +21830,59 @@
         ],
         "observedAt": "2026-10-14",
         "definition": "Somme de quatre BPA dilués GAAP trimestriels publiés"
+      },
+      "valuationShareBasis": {
+        "version": 1,
+        "observedAt": "2026-10-14",
+        "annualEnd": "2025-09-27",
+        "accountsEndAtCollection": "2026-06-27",
+        "currency": "USD",
+        "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/DIS?period1=1633046400&period2=1792022400&interval=1mo&events=splits",
+        "splitCheckFrom": "2021-10-01",
+        "splitCheckThrough": "2026-10-14",
+        "definition": "Published annual diluted averages; complete historical split window checked"
+      },
+      "targetCashReference": {
+        "version": 1,
+        "observedAt": "2026-10-14",
+        "annualEnd": "2025-09-27",
+        "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/DIS?period1=1633046400&period2=1792022400&interval=1mo&events=splits",
+        "currency": "USD",
+        "historicalMultiples": [
+          {
+            "end": "2022-10-01",
+            "quotePeriodEnd": "2022-09-30",
+            "price": 94.33000183105469,
+            "base": 0.5796387520525451,
+            "multiple": 162.73929494366092,
+            "accountsSourceUrl": "https://s206.q4cdn.com/979796730/files/doc_events/2023/11/q4-fy23-earnings.pdf"
+          },
+          {
+            "end": "2023-09-30",
+            "quotePeriodEnd": "2023-09-30",
+            "price": 81.05000305175781,
+            "base": 2.6759562841530053,
+            "multiple": 30.288238836985258,
+            "accountsSourceUrl": "https://s206.q4cdn.com/979796730/files/doc_events/2024/11/q4-fy24-earnings.pdf"
+          },
+          {
+            "end": "2024-09-28",
+            "quotePeriodEnd": "2024-08-31",
+            "price": 90.37999725341797,
+            "base": 4.674494811578373,
+            "multiple": 19.33470907477606,
+            "accountsSourceUrl": "https://s206.q4cdn.com/979796730/files/doc_events/2025/11/q4-fy25-earnings.pdf"
+          },
+          {
+            "end": "2025-09-27",
+            "quotePeriodEnd": "2025-08-31",
+            "price": 118.37999725341797,
+            "base": 5.564329099944782,
+            "multiple": 21.27480153080678,
+            "accountsSourceUrl": "https://s206.q4cdn.com/979796730/files/doc_events/2025/11/q4-fy25-earnings.pdf"
+          }
+        ],
+        "definition": "Ex-post annual FCF per diluted share / split-adjusted monthly close; not point-in-time backtest data"
       }
     }
   }

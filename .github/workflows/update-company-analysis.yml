@@ -53,14 +53,15 @@ jobs:
           path: ${{ runner.temp }}/company-source-probe.json
           if-no-files-found: error
           retention-days: 35
-      - name: Qualify expanded Costco components from issuer documents
+      - name: Qualify expanded publication components from issuer documents
         if: github.event_name == 'pull_request'
-        run: python scripts/refresh_company_analysis.py --apply --publications-only --only costco --output "$RUNNER_TEMP/company-costco-qualification.json"
+        run: python scripts/refresh_company_analysis.py --apply --publications-only --only costco disney nike servicenow walmart netflix booking --output "$RUNNER_TEMP/company-expanded-qualification.json"
       - id: collect
         continue-on-error: ${{ github.event_name != 'pull_request' }}
         env:
           ALPHAVANTAGE_API_KEY: ${{ secrets.ALPHAVANTAGE_API_KEY }}
         run: python scripts/refresh_company_analysis.py --apply --output "$RUNNER_TEMP/company-observation.json"
+      - run: node scripts/test-company-expanded-coverage.mjs
       - run: node scripts/test-company-analysis.mjs
       - run: node scripts/test-company-decision.mjs
       - run: node scripts/test-company-valuation.mjs

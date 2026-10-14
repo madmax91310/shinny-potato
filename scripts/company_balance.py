@@ -1,6 +1,6 @@
 """Qualified issuer balances; ROIC stays unavailable without a qualified NOPAT.
 
-Only the five existing GAAP adapters are accepted. No SEC mirrors, estimates,
+Only explicitly qualified GAAP adapters are accepted. No SEC mirrors, estimates,
 net debt inferred from a long-term-only debt line, or cache recertification.
 """
 import datetime as dt
@@ -10,7 +10,7 @@ from company_publications import get, sections, numbers, statement, MONTHS
 
 SUPPORTED = {'apple': 'www.apple.com', 'microsoft': 'www.microsoft.com',
              'nvidia': 'nvidianews.nvidia.com', 'alphabet': 's206.q4cdn.com',
-             'amazon': 'ir.aboutamazon.com'}
+             'amazon': 'ir.aboutamazon.com', 'adobe':'www.adobe.com'}
 VERSION = 1
 
 
@@ -32,6 +32,11 @@ def row(text, labels, count):
 def parse_balance(raw, ident, expected_end, today):
     candidates = []
     for text in sections(raw):
+        if ident == 'adobe':
+            blocks = re.split(r'(?im)^Condensed Consolidated Balance Sheets\s*$', text)
+            if len(blocks) == 1:continue
+            if len(blocks) != 2:raise ValueError('Ambiguous Adobe balance caption')
+            text = 'CONSOLIDATED BALANCE SHEETS\n' + re.split(r'(?im)^Condensed Consolidated Statements of Cash Flows\s*$', blocks[1])[0]
         if not re.search(r'CONSOLIDATED BALANCE SHEETS', text, re.I):
             # Microsoft's caption and unit are outside the table. Check both
             # in the actual HTML, never infer them from a numeric row alone.
@@ -57,6 +62,7 @@ def parse_balance(raw, ident, expected_end, today):
                         int(dates[i if len(dates) == 2 else 0][1])).isoformat() for i, y in enumerate(years)]
         if len(set(ends)) != 2 or expected_end not in ends or any(dt.date.fromisoformat(e) > today for e in ends):
             raise ValueError('Balance period mismatch')
+        text = re.sub(r'\.{2,}', ' ', text)
         text = text.replace('’', "'")
         labels = {'assets': [r'Total assets'], 'currentAssets': [r'Total current assets'],
                   'currentLiabilities': [r'Total current liabilities'],
@@ -118,9 +124,17 @@ def collect_balance(profile, company, today):
         if urlparse(url).scheme != 'https' or urlparse(url).hostname != SUPPORTED[ident]:
             raise ValueError('Unexpected issuer document host')
         raw = get(url)
-        parsed, _ = statement(raw, ident)
+        parsed = None
+        if ident == 'adobe':
+            from company_round2_publications import parse
+            periods = parse(raw, ident, url, today)
+            matching = [p for p in periods if p['end'] == period['end'] and p['durationMonths'] == period['durationMonths']]
+            if len(matching) != 1:raise ValueError('Ambiguous Adobe balance income period')
+            income = matching[0]
+        else:
+            parsed, _ = statement(raw, ident)
         kind = 'annual' if period['end'] == a['end'] else 'quarter'
-        income = parsed[kind]
+        if parsed is not None:income = parsed[kind]
         if not income or any(income[k] != period[k] for k in ('end', 'revenue', 'netIncome')):
             raise ValueError('Balance document income mismatch')
         balances = parse_balance(raw, ident, period['end'], today)

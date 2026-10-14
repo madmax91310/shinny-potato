@@ -148,6 +148,8 @@ def income_sections(raw, ident):
 
 
 def statement_periods(text, ident, url, today):
+    # ServiceNow wraps the share-count label; join only that exact label.
+    text=re.sub(r'Weighted-average shares used to compute net income\s+per share - diluted', 'Diluted weighted-average shares outstanding',text)
     text=re.sub(r'(?<=[A-Za-z])\.+(?=[A-Za-z])','',text)
     text=re.sub(r'\.{2,}', ' ', text)
     text=re.sub(r'\b2\s+0(\d{2})\b',r'20\1',text)
@@ -230,7 +232,7 @@ def statement_periods(text, ident, url, today):
             p['interestExpense'] = abs(interests[i])*1e6
             p['previousInterestExpense'] = abs(interests[j])*1e6
         # Published diluted counts only, never reconstruct counts from EPS.
-        counts = row(text, [r'Diluted weighted.average shares outstanding',
+        counts = row(text, [r'Diluted weighted.average shares outstanding(?: \(\d+\))?',
             r'Weighted.average diluted common shares outstanding',
             r'Shares used (?:in computing|to compute) diluted net income(?: \(loss\))? per share',
             r'Shares used in diluted per share calculations',

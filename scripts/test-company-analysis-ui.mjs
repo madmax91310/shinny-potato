@@ -53,7 +53,7 @@ try {
     assert((await lastRow.innerText()).includes(company.annual.end.split('-').reverse().join('/')))
     assert((await lastRow.getByRole('link').getAttribute('href')).startsWith('https://'))
     assert(!/NaN|undefined|Infinity/.test(text))
-    if (['costco','waste-management'].includes(company.id) && buildScenarios(company, {}, now).inputs.cashReady) {
+    if (['costco','disney','waste-management'].includes(company.id) && buildScenarios(company, {}, now).inputs.cashReady) {
       const valuation = page.getByTestId('company-valuation')
       await valuation.getByRole('button', {name:'Flux de trésorerie', exact:true}).click()
       assert(/[0-9]/.test(await valuation.getByTestId('price-target').innerText()))

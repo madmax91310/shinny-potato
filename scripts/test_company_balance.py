@@ -16,6 +16,17 @@ class IssuerBalanceTest(unittest.TestCase):
                 self.assertEqual(rows[-1]['equity'], item['closingEquity'])
                 self.assertEqual(len(rows), 2)
 
+    def test_adobe_ignores_earnings_dates_before_balance_caption(self):
+        item=json.loads((Path(__file__).parent/'source-snapshots/company-balance-excerpts.json').read_text())['adobe']
+        whole='Adobe earnings November 28, 2025 November 29, 2024\n'+item['text']+'\nCondensed Consolidated Statements of Cash Flows\nNovember 28, 2025 November 29, 2024\n'
+        with patch('company_balance.sections',return_value=[whole]):
+            rows=parse_balance(b'', 'adobe', item['end'], TODAY)
+        self.assertEqual(rows[-1]['cash'],5431000000)
+        self.assertEqual(rows[-1]['currentLiabilities'],10200000000)
+        for text in [whole.replace('11,623','11,624,000'),whole+item['text']]:
+            with patch('company_balance.sections',return_value=[text]), self.assertRaises(ValueError):
+                parse_balance(b'', 'adobe',item['end'],TODAY)
+
     def test_numeric_row_does_not_consume_different_label(self):
         from company_balance import row
         self.assertIsNone(row("Total liabilities and shareholders' equity $ 100 90", [r'Total liabilities'], 2))
