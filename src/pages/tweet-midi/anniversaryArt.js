@@ -22,6 +22,7 @@ export const ANNIVERSARY_ART = Object.freeze({
     ['msciAcwi','MSCI ACWI'], ['msciAcwiImi','MSCI ACWI IMI'], ['msciWorldExUsa','MSCI WORLD EX USA'],
   ].map(([id, title]) => [id, { title, subtitle: ANNIVERSARY_INDEX_VARIANTS[id], kind: 'illustration', unit: 'pts', indexTitle: title }])),
   ...Object.fromEntries([
+    ['totalenergies','TOTALENERGIES'], ['vinci','VINCI'], ['sanofi','SANOFI'], ['booking','BOOKING HOLDINGS'],
     ['nvidia', 'NVIDIA'], ['amazon', 'AMAZON'], ['google', 'ALPHABET'],
     ['meta', 'META'], ['lvmh', 'LVMH'], ['airliquide', 'AIR LIQUIDE'],
     ['costco', 'COSTCO'], ['mcdonalds', 'MCDONALD’S'], ['intel', 'INTEL'],
