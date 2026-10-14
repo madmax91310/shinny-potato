@@ -1,9 +1,10 @@
+import { scenarioFactor } from './scenarioCalibration.js'
 import { targetEvidence } from './targetEvidence.js'
 import { valuationInputs } from './valuation.js'
 import { formatValue as n } from './valuationPresentation.js'
 import { dateLabel } from './lib.js'
 
-export const TARGET_POLICY = Object.freeze({version:1, horizons:[1,3,5], defaultYears:5, growthSpread:.03, multipleSpread:.20})
+export const TARGET_POLICY = Object.freeze({version:2, horizons:[1,3,5], defaultYears:5})
 const bounded=(v,lo,hi)=>Math.max(lo,Math.min(hi,v))
 const signed=v=>`${v>=0?'+':'−'}${n(Math.abs(v)*100)} %`
 export function priceTarget(a,price) {
@@ -35,9 +36,9 @@ export function buildPriceScenarios(company,overrides={},now=new Date(),years=5)
       if(!inputs[method==='cash'?'cashReady':'earningsReady'])return null
       const e=evidence[method],field=method==='cash'?'cashGrowth':'earningsGrowth'
       return {base:e.base,years,
-        path:user[field]===undefined?e.values.map((v,i)=>v*(1+direction*TARGET_POLICY.growthSpread)**(i+1)):null,
-        growth:user[field]??((1+central[method])*(1+direction*TARGET_POLICY.growthSpread)-1),
-        multiple:user[method==='cash'?'cashMultiple':'earningsMultiple']??bounded(multiples[method]*(1+direction*TARGET_POLICY.multipleSpread),.01,500),
+        path:user[field]===undefined?e.values.map((v,i)=>v*scenarioFactor(e.calibration,direction,i+1)):null,
+        growth:user[field]??((e.values.at(-1)*scenarioFactor(e.calibration,direction,years)/e.base)**(1/years)-1),
+        multiple:user[method==='cash'?'cashMultiple':'earningsMultiple']??bounded(multiples[method]*(direction<0?e.calibration.multiples.lower:direction>0?e.calibration.multiples.upper:1),.01,500),
         discount:.10}
     }
     const cashAssumptions=assumptions('cash'), earningsAssumptions=assumptions('earnings')
@@ -47,22 +48,23 @@ export function buildPriceScenarios(company,overrides={},now=new Date(),years=5)
   })
   return {inputs,evidence,scenarios,years,targetDate:inputs.price?targetDate(company.quote.asOf,years):null,multiples,central,
     orderChanged:['cashTarget','earningsTarget'].some(key=>scenarios.some((s,i)=>i>0&&s[key]&&scenarios[i-1][key]&&s[key].value<scenarios[i-1][key].value)),
-    growthSource:{cash:'Croissance annualisée du FCF/action publié sur les exercices comparables',earnings:'BPA ajustés annuels datés puis convergence explicite'},
-    rules:'Multiples de sortie fondés sur les références historiques comparables ; rapprochement avec des pairs qualifiés lorsqu’ils sont assez nombreux. Croissance annuelle variable selon les exercices. Scénarios ±3 % sur la trajectoire annuelle et ±20 % sur le multiple : conventions, pas probabilités. Une croissance personnalisée remplace la trajectoire par un taux constant.',
-    note:'BPA ajustés et PER prévisionnels ajustés restent séparés des BPA et PER publiés. Échéances calendaires et exercices fiscaux sont explicités. Aucun mélange avec la croissance Finviz. FCF : nombre d’actions constant. Potentiels hors dividendes, frais et fiscalité.'}
+    growthSource:{cash:'CA, marge de trésorerie, investissements et actions diluées',earnings:'BPA ajustés annuels datés puis convergence explicite'},
+    rules:'Multiples de sortie fondés sur les références historiques comparables ; rapprochement avec des pairs qualifiés lorsqu’ils sont assez nombreux. Croissance annuelle variable selon les exercices. Écarts propres à l’entreprise : dispersion des fondamentaux et quantiles des multiples historiques. Sensibilités, pas probabilités. Une croissance personnalisée remplace la trajectoire par un taux constant.',
+    note:'BPA ajustés et PER prévisionnels ajustés restent séparés des BPA et PER publiés. Échéances calendaires et exercices fiscaux sont explicités. Aucun mélange avec la croissance Finviz. FCF : évolution nette des actions appliquée une seule fois, rachats limités au financement observé. Potentiels hors dividendes, frais et fiscalité.'}
 
 }
 export function targetReading(model,index=1,method='earnings') {
   const scenario=model?.scenarios[index],cash=method==='cash'
   const a=cash?scenario?.cashAssumptions:scenario?.earningsAssumptions, result=cash?scenario?.cashTarget:scenario?.earningsTarget
   if(!a||!result)return null
-  const lowerMultiple=Math.max(.01,a.multiple*.8),upperMultiple=Math.min(500,a.multiple*1.2)
+  const cal=model.evidence[method].calibration
+  const lowerMultiple=Math.max(.01,a.multiple*cal.multiples.lower),upperMultiple=Math.min(500,a.multiple*cal.multiples.upper)
   const low=priceTarget({...a,multiple:lowerMultiple},model.inputs.price).value,high=priceTarget({...a,multiple:upperMultiple},model.inputs.price).value
   return {...result,
     title:`À ${model.years} an${model.years>1?'s':''}, ce scénario donne un potentiel de ${signed(result.upside)}.`,
     explanation:`L’objectif au ${dateLabel(model.targetDate)} repose sur ${n(a.growth*100)} % de croissance annualisée équivalente ${cash?'du FCF par action':'du BPA ajusté prévisionnel'} et un multiple de sortie de ${n(a.multiple)}.`,
     expectation:`Cela correspond à ${signed(result.annualised)} par an pour le cours, hors dividendes. La trajectoire reste hypothétique.`,
-    historical:`${model.evidence[method].basis}. ${model.evidence[method].trajectory} ${model.evidence[method].rationale}${cash?'':` BPA de sortie : exercice se terminant le ${model.evidence.earnings.periods.at(-1)}.`}`,
+    historical:`${model.evidence[method].basis}. ${model.evidence[method].trajectory} ${model.evidence[method].rationale} ${model.evidence[method].calibration.explanation} ${model.evidence[method].calibration.convention}${cash?'':` BPA de sortie : exercice se terminant le ${model.evidence.earnings.periods.at(-1)}.`}`,
     sensitivity:{low,high,lowerMultiple,upperMultiple},delta:result.upside,terminalShare:null}
 }
 export function targetChart(company,model,method='earnings') {

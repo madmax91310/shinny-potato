@@ -1,3 +1,5 @@
+import { projectCash } from './cashProjection.js'
+import { calibrateScenarios } from './scenarioCalibration.js'
 import { COMPANIES } from '../../data/companies.js'
 import { fresh, activeDecision } from './lib.js'
 const day=86400000,positive=x=>Number.isFinite(x)&&x>0
@@ -52,23 +54,23 @@ export function targetEvidence(c,inputs,now,dates,peers=COMPANIES) {
     // Historical company anchor dominates. Peer contribution is capped to avoid
     // importing a peer market bubble into the historical reference.
     const multiple=peerMedian?historical*.75+clamp(peerMedian,historical*.75,historical*1.25)*.25:historical
-    result.earnings={base:base.value,values:dates.map(d=>forwardAt(curve,d).value),periods:dates.map(d=>forwardAt(curve,d).end),curve,anchor,multiple,historical,peerMedian,peerRows,
+    result.earnings={calibration:calibrateScenarios(c.decision.years,refs,'earnings'),base:base.value,values:dates.map(d=>forwardAt(curve,d).value),periods:dates.map(d=>forwardAt(curve,d).end),curve,anchor,multiple,historical,peerMedian,peerRows,
       sourceUrl:f.sourceUrl,asOf:f.asOf,basis:'BPA ajusté prévisionnel du premier exercice se terminant après chaque échéance',
       rationale:`Médiane de ${refs.length} PER prévisionnels historiques ajustés : ${historical.toFixed(2)}×.${peerMedian?` Référence de ${peerRows.length} comparables : ${peerMedian.toFixed(2)}× (poids 25 %, écart borné à ±25 % de la médiane historique).`:' Comparables homogènes insuffisants : référence historique seule.'} Les perspectives agissent sur le BPA projeté, sans prime de multiple ajoutée.`,
       trajectory:`BPA annuels ajustés datés jusqu’au ${f.points.at(-1).end} ; au-delà, croissance ramenée en trois exercices vers ${(anchor*100).toFixed(1)} % (médiane de croissance du CA, bornée entre 0 et 10 %). Convention modifiable, pas un consensus au-delà des exercices sourcés.`}
   } else result.reasons.push('BPA ajustés datés et PER de même définition manquants ou périmés ; aucune croissance Finviz appliquée au BPA publié.')
   const r=c.targetCashReference
   if(inputs.cashReady&&r?.version===1&&r.currency===c.currency&&r.annualEnd===c.annual.end&&fresh(r.observedAt,35,now)&&r.historicalMultiples?.length>=3&&r.sourceUrl?.startsWith('https://')&&r.historicalMultiples.every(p=>{const h=inputs.history.find(h=>h.end===p.end);return positive(p.multiple)&&h&&positive(p.base)&&Math.abs(p.base-h.value)<1e-8})) {
-    const hist=inputs.history,initial=clamp(inputs.historicalGrowth,-.3,.3)
-    // Use the full comparable historical CAGR as the initial cash growth, not
-    // just the most recent annual jump. The base remains at its fiscal date.
-    const last=hist.at(-1),date=new Date(last.end);date.setUTCFullYear(date.getUTCFullYear()-1)
-    const curve=annualCurve([{end:date.toISOString().slice(0,10),value:last.value/(1+initial)},last],anchor)
-    const base=valueAt(curve,c.quote.asOf),multiple=median(r.historicalMultiples.map(p=>p.multiple))
-    result.cash={base,values:dates.map(d=>valueAt(curve,d)),anchor,multiple,historical:multiple,peerRows:[],curve,sourceUrl:r.sourceUrl,asOf:r.observedAt,
-      basis:'FCF/action publié ; base projetée de la date fiscale à la date du cours',
-      rationale:`Médiane de ${r.historicalMultiples.length} multiples historiques cours/FCF comparables : ${multiple.toFixed(2)}×. Références annuelles rétrospectives, pas une valorisation connue en temps réel à ces dates. Aucun comparable de FCF suffisamment harmonisé ajouté.`,
-      trajectory:`Croissance historique initiale ${(initial*100).toFixed(1)} %, convergence sur trois ans vers ${(anchor*100).toFixed(1)} % (croissance médiane du CA bornée entre 0 et 10 %). Nombre d’actions constant ; cette trajectoire reste une hypothèse.`}
+    const drivers=projectCash(c,inputs,anchor),refs=r.historicalMultiples.map(p=>p.multiple)
+    if(drivers) {
+      const curve=drivers.curve,base=valueAt(curve,c.quote.asOf),multiple=median(refs)
+      result.cash={base,values:dates.map(d=>valueAt(curve,d)),periods:dates.map(d=>curve.find(p=>p.end>=d)?.end),anchor,multiple,historical:multiple,peerRows:[],curve,drivers,
+        calibration:calibrateScenarios(c.decision.years,refs,'cash',inputs.history),sourceUrl:r.sourceUrl,asOf:r.observedAt,
+        basis:'FCF/action publié ; CA, trésorerie, investissements et actions projetés séparément',
+        rationale:`Médiane de ${refs.length} multiples historiques cours/FCF comparables : ${multiple.toFixed(2)}×. Références annuelles rétrospectives, pas une valorisation connue en temps réel à ces dates.`,
+        trajectory:drivers.explanation+' '+drivers.limits}
+    } else result.reasons.push('Composantes de trésorerie ou actions comparables insuffisantes ; projection FCF suspendue.')
   } else result.reasons.push('Références historiques de multiple FCF comparables manquantes ou périmées.')
+  for(const method of ['cash','earnings'])if(result[method]&&!result[method].calibration){result[method]=null;result.reasons.push('Historique insuffisant pour calibrer les scénarios.')}
   return result
 }

@@ -9076,7 +9076,9 @@
             "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites ; activités poursuivies et abandonnées incluses",
             "operatingCashFlow": 3565000000.0,
             "capitalExpenditure": 450000000.0,
-            "freeCashFlow": 3115000000.0
+            "freeCashFlow": 3115000000.0,
+            "averageDilutedShares": 1571000000.0,
+            "sharesBasisSource": "https://ir.amd.com/news-events/press-releases/detail/1180/amd-reports-fourth-quarter-and-full-year-2023-financial-results"
           },
           {
             "end": "2023-12-30",
@@ -9087,7 +9089,9 @@
             "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites ; activités poursuivies et abandonnées incluses",
             "operatingCashFlow": 1667000000.0,
             "capitalExpenditure": 546000000.0,
-            "freeCashFlow": 1121000000.0
+            "freeCashFlow": 1121000000.0,
+            "averageDilutedShares": 1625000000.0,
+            "sharesBasisSource": "https://ir.amd.com/news-events/press-releases/detail/1236/amd-reports-fourth-quarter-and-full-year-2024-financial-results"
           },
           {
             "end": "2024-12-28",
@@ -9098,7 +9102,9 @@
             "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites ; activités poursuivies et abandonnées incluses",
             "operatingCashFlow": 3041000000.0,
             "capitalExpenditure": 636000000.0,
-            "freeCashFlow": 2405000000.0
+            "freeCashFlow": 2405000000.0,
+            "averageDilutedShares": 1637000000.0,
+            "sharesBasisSource": "https://ir.amd.com/news-events/press-releases/detail/1276/amd-reports-fourth-quarter-and-full-year-2025-financial-results"
           },
           {
             "end": "2025-12-27",
@@ -9109,12 +9115,14 @@
             "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites ; activités poursuivies et abandonnées incluses",
             "operatingCashFlow": 7709000000.0,
             "capitalExpenditure": 1012000000.0,
-            "freeCashFlow": 6697000000.0
+            "freeCashFlow": 6697000000.0,
+            "averageDilutedShares": 1636000000.0,
+            "sharesBasisSource": "https://ir.amd.com/news-events/press-releases/detail/1276/amd-reports-fourth-quarter-and-full-year-2025-financial-results"
           }
         ],
         "method": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
-        "componentVersion": 4,
-        "accountsEndAtCollection": "2026-06-27"
+        "accountsEndAtCollection": "2026-06-27",
+        "componentVersion": 5
       },
       "balanceHistory": [
         {
@@ -9292,6 +9300,59 @@
         ],
         "definition": "Somme de quatre trimestres GAAP publiés, sur la même base par action",
         "observedAt": "2026-10-14"
+      },
+      "valuationShareBasis": {
+        "version": 1,
+        "observedAt": "2026-10-14",
+        "annualEnd": "2025-12-27",
+        "accountsEndAtCollection": "2026-06-27",
+        "currency": "USD",
+        "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/AMD?period1=1640649600&period2=1792022400&interval=1mo&events=splits",
+        "splitCheckFrom": "2021-12-28",
+        "splitCheckThrough": "2026-10-14",
+        "definition": "Published annual diluted averages; complete historical split window checked"
+      },
+      "targetCashReference": {
+        "version": 1,
+        "observedAt": "2026-10-14",
+        "annualEnd": "2025-12-27",
+        "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/AMD?period1=1640649600&period2=1792022400&interval=1mo&events=splits",
+        "currency": "USD",
+        "historicalMultiples": [
+          {
+            "end": "2022-12-31",
+            "quotePeriodEnd": "2022-12-31",
+            "price": 64.7699966430664,
+            "base": 1.9828134945894336,
+            "multiple": 32.665702961880356,
+            "accountsSourceUrl": "https://ir.amd.com/news-events/press-releases/detail/1180/amd-reports-fourth-quarter-and-full-year-2023-financial-results"
+          },
+          {
+            "end": "2023-12-30",
+            "quotePeriodEnd": "2023-11-30",
+            "price": 121.16000366210938,
+            "base": 0.6898461538461539,
+            "multiple": 175.63336837727718,
+            "accountsSourceUrl": "https://ir.amd.com/news-events/press-releases/detail/1236/amd-reports-fourth-quarter-and-full-year-2024-financial-results"
+          },
+          {
+            "end": "2024-12-28",
+            "quotePeriodEnd": "2024-11-30",
+            "price": 137.17999267578125,
+            "base": 1.4691508857666462,
+            "multiple": 93.3736582163218,
+            "accountsSourceUrl": "https://ir.amd.com/news-events/press-releases/detail/1276/amd-reports-fourth-quarter-and-full-year-2025-financial-results"
+          },
+          {
+            "end": "2025-12-27",
+            "quotePeriodEnd": "2025-11-30",
+            "price": 217.52999877929688,
+            "base": 4.093520782396088,
+            "multiple": 53.14007436209193,
+            "accountsSourceUrl": "https://ir.amd.com/news-events/press-releases/detail/1276/amd-reports-fourth-quarter-and-full-year-2025-financial-results"
+          }
+        ],
+        "definition": "Ex-post annual FCF per diluted share / split-adjusted monthly close; not point-in-time backtest data"
       }
     },
     "meta": {

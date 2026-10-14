@@ -24,7 +24,7 @@ export function valuationPublication(company,overrides,selected,method,now=new D
     `À croissance identique, un multiple de sortie de ${n(reading.sensitivity.lowerMultiple)} à ${n(reading.sensitivity.upperMultiple)} ferait varier cet objectif de ${n(reading.sensitivity.low,2)} à ${n(reading.sensitivity.high,2)} ${currency}.`,
     'Potentiels et progressions annualisées du cours hors dividendes. Les écarts entre scénarios sont des hypothèses, pas des probabilités ni un consensus d’analystes.',
     `Source : ${model.evidence[method].sourceUrl} · données du ${dateLabel(model.evidence[method].asOf)}.`,
-    cash?'Le FCF reste projeté sous hypothèse d’un nombre d’actions constant.':'Le BPA ajusté et le PER prévisionnel ajusté sont distincts des ratios sur bénéfices publiés.',
+    cash?model.evidence.cash.drivers.limits:'Le BPA ajusté et le PER prévisionnel ajusté sont distincts des ratios sur bénéfices publiés.',
     'Ces prévisions dépendent des hypothèses retenues. Pas un conseil financier.',
   ].join('\n\n')
   return {name:company.name,symbol:company.symbol,currency,quoteDate:company.quote.asOf,price,method,selected,years,targetDate:model.targetDate,

@@ -6,7 +6,7 @@ failure never recertifies an old observation. No estimates or adjusted FCF.
 import datetime as dt
 import math
 
-DECISION_VERSION = 4
+DECISION_VERSION = 5
 
 FCF_METHOD = 'Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites'
 
@@ -204,6 +204,9 @@ def amd_publication_decision(profile, company, today):
         result={k:reference[k]for k in('end','revenue','netIncome')}
         result.update(sourceUrl=url,tags={},freeCashFlowDefinition=FCF_METHOD+' ; activités poursuivies et abandonnées incluses')
         for k in('operatingCashFlow','capitalExpenditure','freeCashFlow'):result[k]=annual[key(k)]
+        if key('averageDilutedShares') in annual:
+            result['averageDilutedShares']=annual[key('averageDilutedShares')]
+            result['sharesBasisSource']=url
         years.append(result)
     years.sort(key=lambda r:r['end'])
     if not years or years[-1]['end']!=company['annual']['end']:raise ValueError('AMD cash-flow history mismatch')
