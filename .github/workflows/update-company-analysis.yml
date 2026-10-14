@@ -72,6 +72,7 @@ jobs:
         if: github.event_name == 'pull_request'
         env:
           COMPANY_QA_DIR: ${{ runner.temp }}/company-valuation-qa
+          COMPANY_REQUIRE_PRICE_HISTORY: "1"
         run: |
           mkdir -p "$COMPANY_QA_DIR"
           npx playwright install --with-deps chromium

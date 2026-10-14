@@ -41,7 +41,7 @@ export default function App() {
     } catch { setMessage('Impossible de préparer l’image.'); notifyPublication('Impossible de préparer l’image. Réessaie.', 'error') }
   }
   return <div className="company-analysis">
-    <PageHeader title="Analyse d’entreprise" subtitle="Son activité, ses résultats et les chiffres expliqués." />
+    <PageHeader title="Analyse d’entreprise" subtitle="Des objectifs de cours à 1, 3 ou 5 ans, calculés à partir des données de l’entreprise." />
     <div className="valuation-company-picker"><ChoicePicker aria-label="Choisir une entreprise" value={id} onChange={event => { setId(event.target.value); setMessage('') }}>
           {COMPANIES.map(item => <option key={item.id} value={item.id}>{item.name} · {item.symbol}</option>)}
         </ChoicePicker></div>

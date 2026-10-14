@@ -1,3 +1,4 @@
+import { buildPriceScenarios, priceTarget, targetChart } from '../src/pages/company-analysis/priceTargets.js'
 import { valuationPublication } from '../src/pages/company-analysis/valuationPublication.js'
 import assert from 'node:assert/strict'
 import { cashValue, earningsValue, impliedGrowth, impliedReturn, buildScenarios } from '../src/pages/company-analysis/valuation.js'
@@ -45,24 +46,64 @@ company.id='fixture';company.name='Entreprise témoin';company.symbol='TEST'
 for (const method of ['cash','earnings']) {
   for (const selected of [0,1,2]) {
     const publication=valuationPublication(company,{},selected,method,now)
-    const expected=method==='cash'?model.scenarios[selected].cash.value:model.scenarios[selected].earnings
+    const targets=buildPriceScenarios(company,{},now)
+    const expected=method==='cash'?targets.scenarios[selected].cashTarget.value:targets.scenarios[selected].earningsTarget.value
     assert.equal(publication.reading.value,expected)
     assert.equal(publication.scenarios[selected].value,expected)
     assert(publication.text.includes(model.scenarios[selected].name.toLowerCase()))
-    assert.equal(publication.chart.forecast[selected].points.at(-1).value,valuationChart(company,model,method,now).forecast[selected].points.at(-1).value)
+    assert.equal(publication.chart.forecast[selected].points.at(-1).value,targetChart(company,targets,method).forecast[selected].points.at(-1).value)
     assert(!/NaN|undefined|Infinity/.test(publication.text))
   }
 }
-const exported=valuationPublication(company,{1:{cashGrowth:.02,discount:.12,multiple:18}},1,'cash',now)
-assert.equal(exported.assumptions.discount,.12)
+const exported=valuationPublication(company,{1:{cashGrowth:.02,cashMultiple:18}},1,'cash',now)
+assert.equal(exported.years,5)
 assert.equal(exported.assumptions.multiple,18)
-assert(exported.text.includes('12 %'))
+assert(exported.text.includes('18'))
 assert.notEqual(exported.reading.value,model.scenarios[1].cash.value)
-assert.throws(()=>valuationPublication(company,{1:{discount:0}},1,'cash',now))
+assert.throws(()=>valuationPublication(company,{1:{cashMultiple:0}},1,'cash',now))
 assert.throws(()=>valuationPublication(company,{},1,'cash',new Date('2027-10-14')))
 assert.throws(()=>valuationPublication(company,{},1,'earnings',new Date('2027-10-14')))
 assert.throws(()=>valuationPublication(company,{},1,'history',now))
 assert.throws(()=>valuationPublication(company,{},9,'cash',now))
+
+// Product contract: future price, not discounted present value.
+const benchmark=priceTarget({base:10,growth:.1,years:5,multiple:20},200)
+assert(Math.abs(benchmark.value-322.102)<1e-8)
+assert(Math.abs(benchmark.upside-.61051)<1e-10)
+assert(Math.abs(benchmark.annualised-.1)<1e-10)
+assert.equal(priceTarget({base:10,growth:0,years:3,multiple:20},200).value,200)
+assert(priceTarget({base:10,growth:-.1,years:5,multiple:15},200).upside<0)
+assert.throws(()=>priceTarget({base:10,growth:.1,years:10,multiple:20},200))
+assert.throws(()=>priceTarget({base:10,growth:.1,years:5,multiple:NaN},200))
+company.quote.sourceUrl='https://example.com/quotes'
+company.quote.history=[{asOf:'2026-09-30',close:190},{asOf:'2026-10-14',close:200}]
+for(const horizon of [1,3,5]) {
+  const targets=buildPriceScenarios(company,{},now,horizon)
+  assert.equal(targets.scenarios[1].earningsAssumptions.growth,.09)
+  assert.equal(targets.scenarios[1].earningsAssumptions.multiple,20)
+  for(const method of ['cash','earnings']) {
+    const graph=targetChart(company,targets,method)
+    assert(graph.hasPriceHistory)
+    assert.equal(graph.history.at(-1).value,200)
+    for(const [i,series] of graph.forecast.entries()) {
+      const result=method==='cash'?targets.scenarios[i].cashTarget:targets.scenarios[i].earningsTarget
+      assert.equal(series.points[0].value,200)
+      assert(Math.abs(series.points.at(-1).value-result.value)<1e-8)
+      assert.equal(series.points.at(-1).end,targets.targetDate)
+      const pub=valuationPublication(company,{},i,method,now,horizon)
+      assert.equal(pub.reading.value,result.value)
+      assert(pub.text.includes(targets.targetDate.split('-').reverse().join('/')))
+    }
+  }
+}
+const originalTargets=buildPriceScenarios(company,{},now)
+company.estimates.growthEPS5Y=5
+assert(buildPriceScenarios(company,{},now).scenarios[1].earningsTarget.value<originalTargets.scenarios[1].earningsTarget.value)
+company.estimates.growthEPS5Y=9
+company.quote.history[1].close=199
+assert(!targetChart(company,originalTargets,'earnings').hasPriceHistory)
+company.quote.history[1].close=200
+assert.equal(targetChart(company,originalTargets,'history').forecast.length,0)
 
 company.valuationShareBasis.normalisedYears=company.decision.years.map(r=>({end:r.end,reportedAverageDilutedShares:r.averageDilutedShares,averageDilutedShares:r.averageDilutedShares*10,sourceUrl:r.sharesBasisSource,adjustments:[{ratio:10,issuerSourceUrl:'https://example.com/split'}]}))
 assert.equal(buildScenarios(company,{},now).inputs.cashBase,model.inputs.cashBase/10)
