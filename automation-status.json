@@ -167,16 +167,16 @@
     },
     "update-editorial-radar.yml": {
       "name": "Radar éditorial quotidien",
-      "runId": 38552819761,
+      "runId": 38554280232,
       "attempt": 1,
-      "completedAt": "2026-10-14T10:55:01Z",
+      "completedAt": "2026-10-14T11:07:23Z",
       "status": "success",
-      "lastSuccessAt": "2026-10-14T10:55:01Z",
+      "lastSuccessAt": "2026-10-14T11:07:23Z",
       "collectionStatus": "success",
       "publicationStatus": "not-run",
-      "lastCollectionSuccessAt": "2026-10-14T10:55:01Z",
+      "lastCollectionSuccessAt": "2026-10-14T11:07:23Z",
       "lastPublicationSuccessAt": null,
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38552819761",
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38554280232",
       "failures": [],
       "dataFailures": {}
     },
@@ -286,12 +286,33 @@
       "dataFailures": {}
     }
   },
-  "updatedAt": "2026-10-14T11:06:43Z",
+  "updatedAt": "2026-10-14T11:07:23Z",
   "monitoring": {
     "schemaVersion": 1,
-    "checkedAt": "2026-10-14T11:07:02.505946+00:00",
-    "revision": 5,
-    "active": {},
+    "checkedAt": "2026-10-14T11:07:35.462638+00:00",
+    "revision": 6,
+    "active": {
+      "radar:44882f934eb114198158f55a": {
+        "name": "SPDR € Corp Bond UCITS ETF",
+        "tools": [
+          "Générateur de portefeuilles",
+          "Impact des frais",
+          "Présentation ETF"
+        ],
+        "impactScope": "asset",
+        "sourceUrls": [
+          "https://www.justetf.com/en/etf-profile.html?isin=IE00B3T9LM79",
+          "https://www.ssga.com/fr/fr/intermediary/etfs/state-street-spdr-bloomberg-euro-corporate-bond-ucits-etf-dist-sybc-gy"
+        ],
+        "to": "/bibliotheque-donnees?id=IE00B3T9LM79",
+        "kind": "conflict",
+        "field": "Poids des dix premières lignes",
+        "cause": "Valeur contradictoire pour la même période (2026-10-13) : Poids des dix premières lignes. Dernière observation conservée ; propositions archivées (etf:IE00B3T9LM79:top10:0261a38d6b954a5f4e504dab:2026-10-13).",
+        "id": "radar:44882f934eb114198158f55a",
+        "firstSeenAt": "2026-10-14T11:07:35.462638+00:00",
+        "lastSeenAt": "2026-10-14T11:07:35.462638+00:00"
+      }
+    },
     "events": [
       {
         "revision": 1,
@@ -1197,6 +1218,14 @@
             "resolvedAt": "2026-10-14T09:50:06.756965+00:00"
           }
         ]
+      },
+      {
+        "revision": 6,
+        "at": "2026-10-14T11:07:35.462638+00:00",
+        "opened": [
+          "radar:44882f934eb114198158f55a"
+        ],
+        "resolved": []
       }
     ],
     "resolved": [
