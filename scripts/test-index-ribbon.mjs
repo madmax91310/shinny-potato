@@ -17,7 +17,7 @@ try{
   let labels=[],boxes=[],current;const original=CanvasRenderingContext2D.prototype.fillText
   CanvasRenderingContext2D.prototype.fillText=function(t,x,y,...args){
    const m=this.measureText(t),box={t:String(t),l:x-m.actualBoundingBoxLeft,r:x+m.actualBoundingBoxRight,top:y-m.actualBoundingBoxAscent,bottom:y+m.actualBoundingBoxDescent}
-   if(box.l<0||box.r>1600||box.top<0||box.bottom>1120)throw new Error(`Clipped ${current}: ${t}`)
+   if(box.l<0||box.r>1600||box.top<0||box.bottom>2000)throw new Error(`Clipped ${current}: ${t}`)
    for(const p of boxes)if(Math.min(p.r,box.r)-Math.max(p.l,box.l)>1&&Math.min(p.bottom,box.bottom)-Math.max(p.top,box.top)>1)throw new Error(`Overlap ${current}: ${p.t} / ${t}`)
    boxes.push(box);labels.push(String(t));return original.call(this,t,x,y,...args)
   }
@@ -35,7 +35,7 @@ try{
    const background=ctxPixel(canvas)
    if(background[0]<240||background[1]<240||background[2]<235)throw new Error('Missing light editorial background')
    for(const [name,value]of sortedRows(sheet.holdings).slice(0,4))if(!labels.join(' ').includes(companyLabel(name))||!labels.includes(fmt(value).replace('+','')))throw new Error('Changed company or weight')
-   if(canvas.width!==2400||canvas.height!==1680)throw new Error('Wrong PNG dimensions')
+   if(canvas.width!==1600||canvas.height!==2000)throw new Error('Wrong PNG dimensions')
    if(['world','acwi','ftse-all-world','world-ex-usa','world-small-cap','mscieurope'].includes(sheet.id)&&getIndexArt(sheet).scene!=='world')throw new Error('Wrong numeric scene')
    results.push({id:sheet.id,png:canvas.toDataURL(),labels})
   }}finally{CanvasRenderingContext2D.prototype.fillText=original}

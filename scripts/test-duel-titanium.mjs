@@ -16,6 +16,7 @@ assert.equal(getDuelArt(CATALOG.find(a => a.id === 'stoxx600_bnp')).theme, 'euro
 assert.equal(getDuelArt(CATALOG.find(a => a.id === 'sect_robotique')).theme, 'robotics')
 assert.equal(getDuelArt(CATALOG.find(a => a.id === 'sect_cyber_lg')).theme, 'security')
 assert.equal(getDuelArt(CATALOG.find(a => a.id === 'oblig_0_1_ishares')).theme, 'bonds')
+assert.notEqual(DUEL_EXPOSURE_ART['construction-europe'].scene, DUEL_EXPOSURE_ART.infrastructure.scene, 'Construction and infrastructure must have distinct artwork')
 assert.throws(() => getDuelArt({ id: 'unknown', exposure: 'unreviewed' }))
 const port = 4328, base = `http://127.0.0.1:${port}/shinny-potato/`
 const server = spawn('node', ['node_modules/vite/bin/vite.js', '--host', '127.0.0.1', '--port', String(port)], { stdio: 'ignore' })

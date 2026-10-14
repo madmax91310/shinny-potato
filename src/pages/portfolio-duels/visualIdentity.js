@@ -30,7 +30,7 @@ const references = {
   cleanenergy: 'support-sect_energie_propre', infrastructure: 'infrastructures', property: 'immobilier-reit',
   semiconductors: 'semiconducteurs', blockchain: 'blockchain',
 }
-export const DUEL_EXPOSURE_ART = Object.freeze(Object.fromEntries(Object.entries(references).map(([exposure, id]) => [exposure, getETFArt(id)])))
+export const DUEL_EXPOSURE_ART = Object.freeze(Object.fromEntries(Object.entries(references).map(([exposure, id]) => [exposure, exposure === 'construction-europe' ? { kind: 'illustration', theme: 'construction', scene: 'duels/construction.webp' } : getETFArt(id)])))
 export function getDuelArt(asset) {
   const art = DUEL_EXPOSURE_ART[asset.exposure]
   if (!art?.scene) throw new Error(`Illustration du duel non vérifiée : ${asset.id}`)

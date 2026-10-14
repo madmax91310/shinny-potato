@@ -10,7 +10,7 @@ import { getPreferredInstrumentListing } from '../../data/instrument-listings.js
 import { getInstrumentPeaStatus } from '../../data/instruments.js'
 import { INSTRUMENT_FACTS_BY_ISIN } from '../../data/instrument-facts.js'
 
-const W = 1800, PAD = 80, CARD_H = 1497, CARD_Y = 437, GAP = 31
+const W = 1800, PAD = 80, CARD_H = 2000, CARD_Y = 310, GAP = 65
 const INK = '#182e2a', GREEN = '#126047', RED = '#ad3924', MUTED = '#53685a'
 const PALETTE = [['#dbe9da', '#1f664e'], ['#eee0cc', '#a05d32'], ['#dde8ed', '#315578']]
 const pct = value => `${value > 0 ? '+' : value < 0 ? '−' : ''}${Math.abs(value).toLocaleString('fr-FR', { maximumFractionDigits: 2 })} %`
@@ -76,75 +76,86 @@ function composition(ctx, fund, field, x, y, width, accent) {
   text(ctx, field === 'sectors' ? 'PRINCIPAUX SECTEURS' : 'PRINCIPAUX PAYS', x, y, 30, { width })
   if (!rows.length) { text(ctx, 'Non disponible', x, y + 52, 29, { width, weight: 400, color: MUTED }); return }
   rows.forEach(([label, value], i) => {
-    const yy = y + 52 + i * (field === 'sectors' ? 82 : 70), valueW = 156
-    text(ctx, COMPOSITION_LABELS[label] ?? label, x, yy, 34, { width: width - valueW - 12, weight: 400 })
+    const yy = y + 52 + i * (field === 'sectors' ? 120 : 70), valueW = 120
+    lines(ctx, COMPOSITION_LABELS[label] ?? label, x, yy, width - valueW - 12, field === 'sectors' ? 3 : 2, 28, { weight: 400 })
     text(ctx, `${value.toLocaleString('fr-FR', { maximumFractionDigits: 2 })} %`, x + width, yy, 36, { align: 'right', width: valueW })
     if (field === 'sectors') {
-      rounded(ctx, x, yy + 46, width, 9, '#c4d2c7', 4)
-      rounded(ctx, x, yy + 46, width * Math.min(value / 100, 1), 9, accent, 4)
+      rounded(ctx, x, yy + 100, width, 9, '#c4d2c7', 4)
+      rounded(ctx, x, yy + 100, width * Math.min(value / 100, 1), 9, accent, 4)
     }
   })
   // Each composition keeps its own date and fund/index scope inside the card.
   const countries = getComparisonImageComposition(fund.isin, 'countries')
-  if (field === 'countries' || asOf !== countries.asOf || isIndex !== countries.isIndex) text(ctx, compositionEvidenceLabel(getComparisonImageComposition(fund.isin, field)), x, y + (field === 'sectors' ? 287 : 225), 27, { width, weight: 400, color: MUTED })
+  if (field === 'countries' || asOf !== countries.asOf || isIndex !== countries.isIndex) lines(ctx, compositionEvidenceLabel(getComparisonImageComposition(fund.isin, field)), x, y + (field === 'sectors' ? 410 : 225), width, 3, 25, { weight: 400, color: MUTED })
 }
 export function comparisonLayout(count) {
   const columns = count <= 3 ? Math.max(1, count) : 2
   const rows = Math.ceil(count / columns)
-  return { columns, rows, compact: count >= 4, height: CARD_Y + rows * CARD_H + (rows - 1) * GAP + 166 }
+  return { columns, rows, compact: count >= 4, height: CARD_Y + rows * CARD_H + (rows - 1) * GAP + 280 }
 }
-function card(ctx, fund, performance, years, i, count) {
-  const layout = comparisonLayout(count)
-  const row = Math.floor(i / layout.columns), col = i % layout.columns
-  const cardW = (W - 2 * PAD - GAP * (layout.columns - 1)) / layout.columns
-  const x = PAD + col * (cardW + GAP), y = CARD_Y + row * (CARD_H + GAP)
-  const [paper, accent] = PALETTE[i % PALETTE.length], inset = 28, width = cardW - 2 * inset
-  rounded(ctx, x, y, cardW, CARD_H, paper)
-  const xx = x + inset
-  const name = fund.nom.replace(/ UCITS ETF S.*$/i, ' · S').replace(/ UCITS ETF.*$/i, '').replace(/ ETF$/i, '')
-  lines(ctx, name, xx, y + 42, width, 3, 39)
-  const ticker = getPreferredInstrumentListing(fund.isin)?.ticker
-  const tickerW = ticker ? Math.max(116, Math.min(150, width * .28)) : 0
-  if (ticker) text(ctx, ticker, xx, y + 175, 29, { width: tickerW, color: accent })
-  text(ctx, fund.isin, xx + (ticker ? tickerW + 12 : 0), y + 178, 25, { width: width - (ticker ? tickerW + 12 : 0), weight: 400 })
-  const pea = getInstrumentPeaStatus(fund.isin), envelope = pea === true ? 'PEA' : 'CTO'
-  if (envelope) {
-    rounded(ctx, xx, y + 231, 102, 43, accent, 8)
-    text(ctx, envelope, xx + 51, y + 236, 26, { align: 'center', width: 92, color: '#ffffff' })
+// Shared rows make differences comparable without matching unrelated country labels.
+function group(ctx, funds, years, y) {
+  const labelW=300, start=PAD+labelW, colW=(W-2*PAD-labelW)/funds.length
+  const sharedRow=(label,offset,values,{size=39,height=75}={})=>{
+    text(ctx,label,PAD+16,y+offset+14,30,{width:labelW-35})
+    values.forEach((value,i)=>lines(ctx,value,start+i*colW+24,y+offset+14,colW-48,Math.max(1,Math.floor(height/48)),size,{weight:400}))
+    rule(ctx,PAD,y+offset+height,W-2*PAD)
   }
-  lines(ctx, detail(fund), xx + (envelope ? 123 : 0), y + 236, width - (envelope ? 123 : 0), 2, 32, { weight: 400 })
-  text(ctx, fund.isCopperEtc ? 'Frais de gestion' : 'Frais annuels', xx, y + 344, 31, { width, weight: 400 })
-  text(ctx, `${fund.frais.replace(/\s*%$/, '')} %`, xx + width, y + 394, 79, { width, align: 'right', color: accent })
-  const swapRate = AUTOMATED_ETF[fund.isin]?.characteristics?.annualSwapRatePct
-  if (fund.isCopperEtc && Number.isFinite(swapRate)) text(ctx, `Swap annuel : + ${swapRate.toLocaleString('fr-FR')} %`, xx, y + 477, 18, { width, weight: 400 })
-  rule(ctx, xx, y + 501, width)
-  text(ctx, performance ? `PERFORMANCES · ${performance.currency}` : 'HISTORIQUE', xx, y + 541, 27, { width })
-  if (performance && years.length) {
-    years.forEach((year, j) => {
-      const observation = performance.rows.find(value => value.year === year), yy = y + 599 + j * 90
-      text(ctx, String(year), xx, yy + 8, 31, { width: 100, weight: 400 })
-      text(ctx, observation ? pct(observation.pct) : 'N/D', xx + width, yy, 50, { align: 'right', width: width - 112, color: observation?.pct < 0 ? RED : GREEN })
+  funds.forEach((fund,i)=>{
+    const x=start+i*colW,[paper,accent]=PALETTE[i%PALETTE.length],width=colW-48
+    rounded(ctx,x+5,y,colW-10,235,paper,16)
+    const name=fund.nom.replace(/ UCITS ETF S.*$/i,' · S').replace(/ UCITS ETF.*$/i,'').replace(/ ETF$/i,'')
+    lines(ctx,name,x+24,y+26,width,3,42,{serif:true})
+    const ticker=getPreferredInstrumentListing(fund.isin)?.ticker
+    if(ticker)text(ctx,ticker,x+24,y+166,27,{width,color:accent})
+    text(ctx,fund.isin,x+24,y+204,26,{width,weight:400})
+  })
+  sharedRow('Stratégie',250,funds.map(detail),{size:33,height:200})
+  sharedRow('Enveloppe',460,funds.map(f=>getInstrumentPeaStatus(f.isin)===true?'PEA':'CTO'))
+  sharedRow('Frais annuels',545,funds.map(f=>`${f.frais.replace(/\s*%$/,'')} %`),{size:65,height:100})
+  funds.forEach((fund,i)=>{
+    const rate=AUTOMATED_ETF[fund.isin]?.characteristics?.annualSwapRatePct
+    if(fund.isCopperEtc && Number.isFinite(rate))lines(ctx,`Frais de gestion ; swap annuel : + ${rate.toLocaleString('fr-FR')} %`,start+i*colW+24,y+655,colW-48,2,25,{weight:400,color:MUTED})
+  })
+  rounded(ctx,PAD,y+740,W-2*PAD,58,'#e5e9da',10)
+  text(ctx,'PERFORMANCES ANNUELLES',PAD+20,y+754,31,{width:W-2*PAD-40,serif:true})
+  const series=funds.map(f=>getComparisonPerformance(f.isin,years))
+  series.forEach((performance,i)=>{
+    const x=start+i*colW+24,width=colW-48
+    text(ctx,performance?`ETF · ${performance.currency}`:'Historique',x,y+817,29,{width,color:MUTED})
+    if(!performance || !years.length)lines(ctx,'Historique annuel non disponible',x,y+882,width,3,29,{weight:400,color:MUTED})
+  })
+  years.forEach((year,j)=>{
+    const yy=y+875+j*88
+    text(ctx,String(year),PAD+20,yy,36,{width:labelW-40})
+    series.forEach((performance,i)=>{
+      if(!performance)return
+      const observation=performance.rows.find(row=>row.year===year)
+      text(ctx,observation?pct(observation.pct):'N/D',start+(i+1)*colW-25,yy,49,{width:colW-50,align:'right',color: observation?.pct < 0 ? RED : GREEN})
     })
-  } else lines(ctx, 'Historique annuel non disponible', xx, y + 613, width, 2, 32, { weight: 400, color: MUTED })
-  rule(ctx, xx, y + 894, width)
-  composition(ctx, fund, 'sectors', xx, y + 928, width, accent)
-  composition(ctx, fund, 'countries', xx, y + 1243, width, accent)
+    rule(ctx,PAD,yy+66,W-2*PAD)
+  })
+  funds.forEach((fund,i)=>{
+    const x=start+i*colW+24,width=colW-48,accent=PALETTE[i%PALETTE.length][1]
+    composition(ctx,fund,'sectors',x,y+1165,width,accent)
+    composition(ctx,fund,'countries',x,y+1640,width,accent)
+  })
 }
 export async function renderComparatifEtfImage(theme) {
   if (!theme?.etfs?.length) throw new Error('Sélection ETF vide')
   await loadEditorialFont()
-  const years = getComparisonYears(theme.etfs.map(fund => fund.isin))
-  const series = theme.etfs.map(fund => getComparisonPerformance(fund.isin, years))
-  const canvas = document.createElement('canvas'); canvas.width = W; canvas.height = comparisonLayout(theme.etfs.length).height
-  const ctx = canvas.getContext('2d')
-  ctx.fillStyle = '#f8f7f0'; ctx.fillRect(0, 0, W, canvas.height)
-  text(ctx, 'ÉPARGNANT LIBRE', W / 2, 55, 36, { color: INK, align: 'center' })
-  lines(ctx, `${theme.nom} :`, W / 2, 142, W - 2 * PAD, 1, 85, { align: 'center', serif: true, weight: 400 })
-  const title = theme.etfs.length === 1 ? 'un support à découvrir' : theme.etfs.some(fund => /\bET[CP]\b/.test(fund.nom)) ? 'quel support choisir ?' : 'quel ETF choisir ?'
-  text(ctx, title, W / 2, 282, 79, { width: W - 2 * PAD, align: 'center', serif: true, weight: 400 })
-  rule(ctx, PAD, 385, W - 2 * PAD)
-  theme.etfs.forEach((fund, i) => card(ctx, fund, series[i], years, i, theme.etfs.length))
-  text(ctx, theme.etfs.every(f=>LIFESTRATEGY_RECORDS[f.isin]) ? 'Actions et obligations peuvent baisser.' : 'Pas un conseil financier', W / 2, canvas.height - 66, 28, { color: MUTED, align: 'center', weight: 400 })
+  const layout=comparisonLayout(theme.etfs.length),years=getComparisonYears(theme.etfs.map(f=>f.isin))
+  const canvas=document.createElement('canvas');canvas.width=W;canvas.height=layout.height
+  const ctx=canvas.getContext('2d');ctx.fillStyle='#f8f7f0';ctx.fillRect(0,0,W,canvas.height)
+  text(ctx,'ÉPARGNANT LIBRE',W/2,45,32,{align:'center'})
+  lines(ctx,`${theme.nom} :`,W/2,110,W-2*PAD,2,70,{align:'center',serif:true,weight:400})
+  for(let row=0;row<layout.rows;row++)group(ctx,theme.etfs.slice(row*layout.columns,(row+1)*layout.columns),years,CARD_Y+row*(CARD_H+GAP))
+  const takeaway=theme.cloture?.trim()
+  if(takeaway){
+    rounded(ctx,PAD,canvas.height-245,W-2*PAD,150,'#e5e9da',18)
+    lines(ctx,takeaway,PAD+35,canvas.height-220,W-2*PAD-70,3,32,{serif:true,weight:400})
+  }
+  text(ctx,theme.etfs.every(f=>LIFESTRATEGY_RECORDS[f.isin])?'Actions et obligations peuvent baisser.':'Pas un conseil financier',W/2,canvas.height-55,28,{align:'center',weight:400,color:MUTED})
   return canvas
 }
 export async function downloadComparatifEtfImage(theme) {

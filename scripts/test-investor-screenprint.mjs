@@ -38,7 +38,10 @@ try {
         if(photos[0]!=='approved/investor-glass.webp'||photos.length!==2||photos[1]!==investorPortrait(slug).file)throw Error(`Wrong portrait ${slug}`)
         const all=labels.join(' ')
         for(const row of portfolio.holdings.slice(0,5))if(!all.includes(holdingName(row))||!labels.includes(percentage(row.weight)))throw Error(`Lost holding ${slug}: ${row.issuerName}`)
-        if(!all.includes(portfolio.identity.displayName)||!labels.includes(`Positions au ${dateFR(portfolio.snapshot.periodEnd)}`)||!labels.includes(investorPortrait(slug).person))throw Error('Lost identity/date')
+        if(!all.includes(portfolio.identity.displayName)||!labels.includes(`Positions déclarées au ${dateFR(portfolio.snapshot.periodEnd)}`)||!all.includes(investorPortrait(slug).person))throw Error('Lost identity/date')
+        const topWeight=portfolio.holdings.slice(0,5).reduce((sum,row)=>sum+row.weight,0)
+        if(!labels.includes(percentage(topWeight))||!labels.includes(percentage(Math.max(0,1-topWeight))))throw Error('Wrong concentration or remainder')
+        if(!all.includes('Périmètre 13F')||!all.includes(investorPortrait(slug).author))throw Error('Missing scope or portrait credit')
         if(!labels.includes('Autres positions'))throw Error('Lost remainder')
         await window.saveInvestor({slug,png})
       }
