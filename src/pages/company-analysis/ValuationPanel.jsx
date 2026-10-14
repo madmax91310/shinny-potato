@@ -16,7 +16,7 @@ export default function ValuationPanel({company}) {
   const metric=(label,value,hint)=><div><dt>{label}</dt><dd>{value}</dd><small>{hint}</small></div>
   function change(index,field,value){setOverrides(old=>({...old,[index]:{...old[index],[field]:value}}))}
   return <section className="valuation-studio" aria-label="Scénarios de valorisation" data-testid="company-valuation">
-    <header className="valuation-heading"><div><span className="valuation-eyebrow">L’ENTREPRISE, À CE PRIX</span><h2>{company.name}</h2><span>{company.symbol} · {company.sector}</span></div><div className="valuation-price"><small>Dernière clôture{price&&company.quote?` · ${dateLabel(company.quote.asOf)}`:''}</small><strong>{n(price,2)} <span>{currency}</span></strong></div></header>
+    <header className="valuation-heading"><div><span className="valuation-eyebrow">L’ENTREPRISE, À CE PRIX</span><h2>{company.name}</h2><span>{company.symbol}</span></div><div className="valuation-price"><small>Dernière clôture{price&&company.quote?` · ${dateLabel(company.quote.asOf)}`:''}</small><strong>{n(price,2)} <span>{currency}</span></strong></div></header>
     <dl className="valuation-metrics">
       {metric('PER',n(inputs.pe),'Bénéfices publiés')}
       {metric('PER forward',n(inputs.forwardPE),'Prochain exercice estimé')}
@@ -27,7 +27,7 @@ export default function ValuationPanel({company}) {
       <div className="valuation-thesis"><span className="valuation-eyebrow">{cash?'CROISSANCE EXIGÉE PAR LE COURS':method==='earnings'?'VALEUR SELON TES HYPOTHÈSES':'HISTORIQUE FINANCIER'}</span>
         <strong className="valuation-hero">{cash?n(selectedScenario?.requiredGrowth==null?null:selectedScenario.requiredGrowth*100):n(reading?.value,2)}<small>{cash?' % / an':` ${currency}`}</small></strong>
         <p>{cash?`Pendant ${selectedScenario?.cashAssumptions.years??10} ans, avec le rendement exigé et le multiple de sortie du scénario sélectionné.`:method==='earnings'?'Prix de revente actualisé sur cinq ans, hors dividendes.':'Le modèle sera activé automatiquement dès que ses données seront qualifiées.'}</p>
-        {cash&&<div className="valuation-return"><span>Rendement implicite du scénario</span><strong>{n(selectedScenario?.expectedReturn==null?null:selectedScenario.expectedReturn*100)} % / an</strong></div>}
+        {cash&&<div className="valuation-return"><span>Rendement implicite du scénario</span><strong>{selectedScenario?.expectedReturn==null?'Hors plage de calcul':`${n(selectedScenario.expectedReturn*100)} % / an`}</strong>{selectedScenario?.expectedReturn==null&&<small>Rendement recherché entre 1 % et 50 %.</small>}</div>}
         {(inputs.cashReady||inputs.earningsReady)&&<div className="valuation-method" role="group" aria-label="Méthode de valorisation">
           <button type="button" disabled={!inputs.cashReady} aria-pressed={cash} onClick={()=>setPreferred('cash')}>Flux de trésorerie</button>
           <button type="button" disabled={!inputs.earningsReady} aria-pressed={method==='earnings'} onClick={()=>setPreferred('earnings')}>Bénéfices</button>
