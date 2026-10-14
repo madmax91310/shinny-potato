@@ -47,7 +47,7 @@ export function buildTweetText(theme) {
     if (multiAsset.length) lines.push('', ...multiAsset)
     for (const [field, title] of [['countries', '🌍 Principaux pays'], ['sectors', '🧩 Principaux secteurs']]) {
       const composition = getComparisonComposition(etf.isin, field)
-      if (composition.rows.length) lines.push('', `${title}${composition.isIndex ? ' de l’indice suivi' : ''}`,
+      if (composition.rows.length) lines.push('', `${title}${composition.isIndex ? ' de l’indice suivi' : ''}${composition.asOf ? ` au ${composition.asOf.split('-').reverse().join('/')}` : ''}${composition.classification ? ` (${composition.classification})` : ''}`,
         ...composition.rows.map(([name, value]) => `${field === 'countries' ? countryFlag(name) : ''}${COMPOSITION_LABELS[name] ?? name} : ${value.toLocaleString('fr-FR', { maximumFractionDigits: 2 })} %`))
     }
     lines.push('')

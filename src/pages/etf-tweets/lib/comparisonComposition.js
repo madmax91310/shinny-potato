@@ -9,7 +9,13 @@ export function getComparisonComposition(isin, field) {
     rows: [...(details?.[field] ?? [])].filter(([label, value]) => Number.isFinite(value) && value > 0 && !/^(other|others|autres)$/i.test(label)).sort((a, b) => b[1] - a[1]).slice(0, 3),
     asOf: details?.[`${field}AsOf`] ?? details?.asOf,
     isIndex: basis === 'index' || basis === 'tracked-index',
+    classification: field === 'countries' && observation?.method?.includes('registration country') &&
+      observation?.sourceUrl?.startsWith('https://etf.dws.com/api/pdp/') ? 'classification DWS' : null,
   }
+}
+export function compositionEvidenceLabel(composition) {
+  return [composition.isIndex ? 'Indice suivi' : 'Fonds', composition.classification,
+    composition.asOf?.split('-').reverse().join('/')].filter(Boolean).join(' · ')
 }
 export const COMPOSITION_LABELS = {
   Treasury: 'Emprunts d’État', 'Cash and/or Derivatives': 'Liquidités / dérivés',

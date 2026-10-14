@@ -213,3 +213,26 @@ assert.match(momentumTweet, /🇺🇸 États-Unis/)
 assert.equal((momentumTweet.match(/🌍 Principaux pays/g) ?? []).length, 2)
 assert.equal((momentumTweet.match(/🧩 Principaux secteurs/g) ?? []).length, 2)
 console.log('Squelette comparatif ETF : performances, pays puis secteurs cohérents avec les images.')
+
+// Reviewed DWS publications must date both compositions and identify the country
+// classification. A registry country is not a revenue exposure or a transaction.
+const reviewedDws = new Set(['IE00BGV5VN51','IE00BM67HK77','IE00BM67HS53','IE00BM67HV82','IE00BM67HQ30','IE00BLNMYC90'])
+let reviewedThemes = 0
+for (const theme of DEFAULT_THEMES.filter(t => t.etfs.some(f => reviewedDws.has(f.isin)))) {
+ const tweet = buildTweetText(theme)
+ for (const fund of theme.etfs.filter(f => reviewedDws.has(f.isin))) {
+  for (const field of ['countries','sectors']) {
+   const source = AUTOMATED_ETF[fund.isin][field]
+   const view = getComparisonImageComposition(fund.isin, field)
+   assert.equal(view.asOf, source.asOf)
+   for (const [label, value] of view.rows) assert(source.rows.some(row => (row.label ?? row.name) === label && row.weightPct === value))
+   assert(tweet.includes(`au ${source.asOf.split('-').reverse().join('/')}`))
+  }
+  assert.equal(getComparisonImageComposition(fund.isin, 'countries').classification, 'classification DWS')
+  assert(tweet.includes('(classification DWS)'))
+ }
+ reviewedThemes++
+}
+assert(reviewedThemes >= 6)
+assert.equal(getComparisonImageComposition('FR001400ZGO4', 'countries').classification, null)
+console.log(`${reviewedThemes} comparatifs DWS : dates, chiffres et classification géographique vérifiés.`)

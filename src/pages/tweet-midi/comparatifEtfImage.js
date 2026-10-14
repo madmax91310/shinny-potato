@@ -3,7 +3,7 @@ import { LIFESTRATEGY_RECORDS } from '../../data/lifestrategy.js'
 import { startPublicationDownload } from '../../design-system/publicationActions.js'
 import { loadEditorialFont } from './anniversaryArt.js'
 import { getComparisonPerformance, getComparisonYears } from './comparisonPerformance.js'
-import { getComparisonComposition as getComparisonImageComposition, COMPOSITION_LABELS } from '../etf-tweets/lib/comparisonComposition.js'
+import { getComparisonComposition as getComparisonImageComposition, COMPOSITION_LABELS, compositionEvidenceLabel } from '../etf-tweets/lib/comparisonComposition.js'
 export { getComparisonComposition as getComparisonImageComposition } from '../etf-tweets/lib/comparisonComposition.js'
 import { AUTOMATED_ETF } from '../../data/automated-etf.js'
 import { getPreferredInstrumentListing } from '../../data/instrument-listings.js'
@@ -86,7 +86,7 @@ function composition(ctx, fund, field, x, y, width, accent) {
   })
   // Each composition keeps its own date and fund/index scope inside the card.
   const countries = getComparisonImageComposition(fund.isin, 'countries')
-  if (field === 'countries' || asOf !== countries.asOf || isIndex !== countries.isIndex) text(ctx, `${isIndex ? 'Indice suivi' : 'Fonds'}${asOf ? ` · ${asOf.split('-').reverse().join('/')}` : ''}`, x, y + (field === 'sectors' ? 287 : 225), 27, { width, weight: 400, color: MUTED })
+  if (field === 'countries' || asOf !== countries.asOf || isIndex !== countries.isIndex) text(ctx, compositionEvidenceLabel(getComparisonImageComposition(fund.isin, field)), x, y + (field === 'sectors' ? 287 : 225), 27, { width, weight: 400, color: MUTED })
 }
 export function comparisonLayout(count) {
   const columns = count <= 3 ? Math.max(1, count) : 2

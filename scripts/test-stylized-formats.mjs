@@ -36,6 +36,7 @@ try {
     const { getInstrumentPeaStatus } = await import('/shinny-potato/src/data/instruments.js')
     const { ASSET_ORDER } = await import('/shinny-potato/src/data/market-history.js')
     const { getAnnualReturnStartYears, getAnnualReturns } = await import('/shinny-potato/src/pages/tweet-midi/data/marketHistory.js')
+    const { getComparisonComposition, compositionEvidenceLabel } = await import('/shinny-potato/src/pages/etf-tweets/lib/comparisonComposition.js')
     const { renderComparatifEtfImage } = await import('/shinny-potato/src/pages/tweet-midi/comparatifEtfImage.js')
     const { renderPerformanceImage, cumulativePerformance } = await import('/shinny-potato/src/pages/tweet-midi/performanceImage.js')
     const original = CanvasRenderingContext2D.prototype.fillText
@@ -57,8 +58,12 @@ try {
     }
     try {
       for (const theme of DEFAULT_THEMES) {
-        const words = await check(`compare-${theme.id}`, () => renderComparatifEtfImage(theme), ['monde', 'usa', 'etc-metaux', 'semiconducteurs-tech', 'quantique', 'emergents-pea', 'world-pea', 'monetaire-obligations-courtes', 'world-meme-indice-pea', 'sp500-meme-indice-pea'].includes(theme.id))
+        const words = await check(`compare-${theme.id}`, () => renderComparatifEtfImage(theme), ['ia-robotique', 'sante', 'ressources-naturelles', 'materials-classic-advanced', 'industrie-infrastructures', 'sp500-equal-weight', 'monde', 'usa', 'etc-metaux', 'semiconducteurs-tech', 'quantique', 'emergents-pea', 'world-pea', 'monetaire-obligations-courtes', 'world-meme-indice-pea', 'sp500-meme-indice-pea'].includes(theme.id))
         for (const fund of theme.etfs) if (!words.includes(fund.isin) || !words.includes(`${fund.frais.replace(/\s*%$/, '')} %`)) throw new Error('Lost fund fact')
+        for (const fund of theme.etfs) {
+          const composition = getComparisonComposition(fund.isin, 'countries')
+          if (composition.classification && !words.includes(compositionEvidenceLabel(composition))) throw new Error(`Missing dated DWS classification: ${fund.isin}`)
+        }
         const peaInNames = theme.etfs.reduce((count, fund) => count + (fund.nom.match(/\bPEA\b/g)?.length ?? 0), 0)
         const peaOnImage = words.join(' ').match(/\bPEA\b/g)?.length ?? 0
         if (peaOnImage !== peaInNames + (theme.nom.match(/\bPEA\b/g)?.length ?? 0) + theme.etfs.filter(fund => getInstrumentPeaStatus(fund.isin) === true).length) throw new Error('Incorrect qualified PEA badges')
