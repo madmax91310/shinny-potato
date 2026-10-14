@@ -3,7 +3,7 @@ import { readFileSync } from 'node:fs';
 import { buildGapInventory, classifyInstrumentGap, recent, calendarEligibility } from './automation-gap-inventory.mjs';
 const r=buildGapInventory();
 assert.equal(classifyInstrumentGap('new-instrument','performance').status,'unqualified');
-assert.equal(classifyInstrumentGap('IE00BM8R0J59','performance').status,'source-conflict');
+assert.equal(classifyInstrumentGap('IE00BM8R0J59','performance').status,'unqualified');
 assert.equal(classifyInstrumentGap('IE000QDFFK00','countries').status,'unqualified');
 assert.equal(classifyInstrumentGap('IE00B4ND3602','sectors').status,'not-applicable');
 assert.equal(classifyInstrumentGap('IE00B4ND3602','ter').status,'unqualified');
@@ -80,3 +80,8 @@ assert.deepEqual([...recent].sort(),Object.keys(JSON.parse(readFileSync('scripts
 assert(!r.insuranceGaps.some(g=>['linxea-avenir-2','linxea-vie'].includes(g.id)))
 assert(buildGapInventory({now:'2027-01-01'}).insuranceGaps.some(g=>g.fund==='Netissima'&&g.field==='ceiling'))
 assert(!buildGapInventory({now:'2027-01-01'}).insuranceGaps.some(g=>g.fund==='Eurossima'&&g.field==='ceiling'))
+
+const qualified=structuredClone(data);
+delete qualified.IE00BM8R0J59.performance;
+qualified.IE00BM8R0J59.fieldQualification={performance:{status:'not-published',reason:'Exact share checked',checkedAt:'2026-10-14',sha256:'a'.repeat(64)}};
+assert.equal(buildGapInventory({etf:qualified}).gaps.find(g=>g.id==='IE00BM8R0J59'&&g.field==='performance').status,'not-published');

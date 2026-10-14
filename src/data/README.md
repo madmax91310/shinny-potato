@@ -1,5 +1,7 @@
 # Bibliothèque commune des données
 
+Les effectifs et outils accessibles sont générés dans [l’inventaire automatique](../../docs/app-inventory.md). Le comparateur d’indices cité ci-dessous désigne un moteur interne sans route publique.
+
 Les outils identifient une part par son ISIN et lisent ses données partagées ici.
 Les contenus des fiches et formats communs résident aussi dans cette bibliothèque ;
 les pages gardent leur logique d’affichage. Les chiffres partagés sont servis par :
@@ -20,18 +22,15 @@ les pages gardent leur logique d’affichage. Les chiffres partagés sont servis
 | Rendements 2020–2025 | `instrument-returns.js`, `verified-returns.js` | Générateur, Fiches ETF, Duels de portefeuilles, fiches de composition |
 | Historique 2023–2025 propre au comparateur | `instrument-comparator-returns.js` | Comparateur d’indices, fiches de composition |
 | Prix historiques, inflation et Livret A | `market-history.js` | Calculateur, Tweet Midi, pouvoir d’achat, Duels |
-| Catalogue des 87 supports et catégories | `portfolio-assets.js` | Générateur de portefeuilles, Duels |
+| Catalogue des supports et catégories | `portfolio-assets.js` | Générateur de portefeuilles, Duels |
 | Fiches ETF et textes de présentation | `etf-cards.js` | Fiches ETF, Duels, audits |
 | Thèmes et textes des comparatifs ETF | `etf-themes.js` | Tweet Midi, audits |
 | Définitions et catégories du lexique | `financial-lexicon.js` | Tweet Midi, audits |
 | Séries et postes du pouvoir d’achat | `purchasing-power.js` | Tweet Midi, simulateur |
 
-Les 85 lignes de produits du Générateur qui portent un ISIN utilisent
-`getInstrumentReturnValues(isin)`. Une série du Comparateur utilise la même série
-2020–2025 lorsqu’elle existe ; les 16 parts absentes du Générateur ont leur série
-2023–2025 dans le registre du comparateur. Pour IE00BP3QZB59, le comparateur
-conserve ses chiffres historiques distincts car sa note les présente en EUR et
-le Générateur indique une série USD : cette migration ne tranche pas la méthode.
+Les produits du Générateur qui portent un ISIN utilisent `getInstrumentReturnValues(isin)`.
+Les conventions de devise, de période et de source restent propres aux séries ;
+les rendements distincts ne sont pas fusionnés implicitement.
 
 Les cours spot et taux d’épargne résident maintenant aussi dans `src/data/`, mais
 restent distincts des rendements d’une part ETF : l'ISIN ne s'applique pas aux
@@ -47,11 +46,10 @@ dans `src/data/`, puis lancer `npm run audit:instrument-catalog`,
 
 ## Centralisation : les trois étapes réalisées
 
-* Les 34 références d’indices sont dans `index-facts.js`, par identifiant stable et
+* Les références d’indices sont dans `index-facts.js`, par identifiant stable et
   photographie. Les nombres exacts, objectifs nominaux de méthodologie et fourchettes
-  restent distincts. Les descriptions des 13 familles sont générées depuis ce registre.
-* La Bibliothèque de données (`/bibliotheque-donnees`) recherche 142 instruments,
-  34 indices, 24 séries et 44 définitions par ISIN, ticker, nom et identifiant.
+  restent distincts. Les descriptions des familles sont générées depuis ce registre.
+* La Bibliothèque de données (`/bibliotheque-donnees`) recherche les instruments, indices, séries et définitions du catalogue actif par ISIN, ticker, nom et identifiant.
   Elle indique les registres, sources, dates, devises, périmètres et outils consommateurs.
   Chaque fiche propose un lien direct et un export JSON autonome, avec `schemaVersion: 1`.
 * `normalizeEvidence` donne le même contrat de lecture et d’export aux différents

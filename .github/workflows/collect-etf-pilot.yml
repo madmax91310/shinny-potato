@@ -250,7 +250,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add src/data/annual-fx.json src/data/automated-etf.json src/data/automated-indices.json docs/automation-coverage.md docs/automation-gaps.md docs/automation-gaps.json
+          git add src/data/annual-fx.json src/data/automated-etf.json src/data/automated-indices.json docs/automation-coverage.md docs/automation-gaps.md docs/automation-gaps.json docs/app-inventory.md
           if ! git diff --cached --quiet; then
             git commit -m 'Refresh validated active ETF issuer data'
             git pull --rebase origin master

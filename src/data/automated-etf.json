@@ -644,7 +644,7 @@
     "productId": 251867,
     "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251867&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
     "aum": {
-      "amount": 8538494525.0,
+      "amount": 8538494525,
       "currency": "USD",
       "scope": "share-class",
       "asOf": "2026-10-13",
@@ -1832,7 +1832,7 @@
       "rows": [
         {
           "name": "United States",
-          "weightPct": 100.0
+          "weightPct": 100
         }
       ],
       "checkedAt": "2026-10-14",
@@ -2198,7 +2198,7 @@
       "rows": [
         {
           "name": "India",
-          "weightPct": 100.0
+          "weightPct": 100
         }
       ],
       "checkedAt": "2026-10-14",
@@ -2363,7 +2363,7 @@
       "rows": [
         {
           "name": "China",
-          "weightPct": 100.0
+          "weightPct": 100
         }
       ],
       "checkedAt": "2026-10-14",
@@ -2713,7 +2713,7 @@
       "rows": [
         {
           "name": "United States",
-          "weightPct": 100.0
+          "weightPct": 100
         }
       ],
       "checkedAt": "2026-10-14",
@@ -3047,7 +3047,7 @@
       "rows": [
         {
           "name": "Japan",
-          "weightPct": 100.0
+          "weightPct": 100
         }
       ],
       "checkedAt": "2026-10-14",
@@ -3212,7 +3212,7 @@
       "rows": [
         {
           "name": "Japan",
-          "weightPct": 100.0
+          "weightPct": 100
         }
       ],
       "checkedAt": "2026-10-14",
@@ -4749,7 +4749,7 @@
         },
         {
           "name": "UAE",
-          "weightPct": 0.0
+          "weightPct": 0
         }
       ],
       "checkedAt": "2026-10-14",
@@ -7235,7 +7235,7 @@
       "rows": [
         {
           "name": "Japan",
-          "weightPct": 100.0
+          "weightPct": 100
         }
       ],
       "checkedAt": "2026-10-14",
@@ -9160,7 +9160,7 @@
     "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251726&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
     "provider": "iShares",
     "aum": {
-      "amount": 8791737358.0,
+      "amount": 8791737358,
       "currency": "EUR",
       "scope": "share-class",
       "asOf": "2026-10-13",
@@ -17084,7 +17084,7 @@
         },
         {
           "name": "United Arab Emirates",
-          "weightPct": 0.0
+          "weightPct": 0
         }
       ],
       "checkedAt": "2026-10-14",
@@ -17688,7 +17688,7 @@
         },
         {
           "name": "Russian Federation",
-          "weightPct": 1e-06
+          "weightPct": 0.000001
         }
       ],
       "checkedAt": "2026-10-14",
@@ -18477,7 +18477,7 @@
         },
         {
           "name": "Other",
-          "weightPct": 2e-05
+          "weightPct": 0.00002
         },
         {
           "name": "Russia",
@@ -22118,7 +22118,7 @@
         },
         {
           "name": "Canada",
-          "weightPct": 1e-05
+          "weightPct": 0.00001
         },
         {
           "name": "Other",
@@ -26260,7 +26260,7 @@
       "asOf": "2026-10-14",
       "sourceUrl": "https://bitwiseinvestments.eu/products/bitwise-physical-bitcoin-etp/",
       "sha256": "8ed854f0813bc84024d8def577bbc1086c7161cebd68f9f2d21b8b11562b7530",
-      "terPct": 2.0,
+      "terPct": 2,
       "checkedAt": "2026-10-14",
       "modifiedAt": "2026-10-14"
     },
@@ -26930,7 +26930,7 @@
       "scope": "fund",
       "asOf": "2026-10-13",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "b738a2c122b012b3565f79d17479292f82070aab3ca93909055036ab3da4cf51",
+      "sha256": "db6c63d44fcba53eed4449cae0a88c78f089354c1efaf6703ea10cda17045b06",
       "checkedAt": "2026-10-14",
       "modifiedAt": "2026-10-14"
     },
@@ -26941,7 +26941,164 @@
       "terPct": 0.45,
       "checkedAt": "2026-10-14",
       "modifiedAt": "2026-10-14"
-    }
+    },
+    "fieldQualification": {
+      "performance": {
+        "status": "not-published",
+        "reason": "La section de performance ne fournit pas de calendrier annuel qualifié pour la part USD distribuante. Les rendements capitalisants ou glissants ne sont pas substitués.",
+        "checkedAt": "2026-10-14",
+        "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
+        "sha256": "db6c63d44fcba53eed4449cae0a88c78f089354c1efaf6703ea10cda17045b06",
+        "evidence": [
+          "Performance History",
+          "USD Accumulating",
+          "Avg. Annualised %",
+          "Cumulative %",
+          "As of recent",
+          "Month End",
+          "&",
+          "Quarter End",
+          "(",
+          "30 Sep 2026",
+          ")",
+          "ETF",
+          "Index",
+          "Difference",
+          "1 Year",
+          "19.39%",
+          "19.89%",
+          "-0.50%",
+          "3 Years",
+          "15.40%",
+          "15.86%",
+          "-0.46%",
+          "Since Inception",
+          "15.29%",
+          "15.75%",
+          "-0.46%",
+          "Performance is based on the fund’s NAV and is shown on a total return basis (i.e., with gross income reinvested, where applicable). The fund’s NAV may differ from its market price and, as a result, individual shareholders may realize returns that are different from the NAV performance. Cumulative return is the aggregate amount that an investment has gained or lost over time. Annualised return is the average return gained or lost by an investment each year over a given time period.",
+          "The performance data quoted represents past performance. Past performance does not guarantee future results. The investment return and principal value of an investment will fluctuate so that an investor's shares, when sold or redeemed, may be worth more or less than their original cost and current performance may be lower or higher than the performance quoted. High short-term performance, when observed, is unusual and investors should not expect such performance to be repeated. The return of your investment may increase or decrease as a result of currency fluctuations if your investment is made in a currency other than that used in past performance calculations."
+        ]
+      },
+      "countries": {
+        "status": "not-published",
+        "reason": "Aucune allocation géographique économique complète qualifiée dans la page ; les pays de commercialisation et le panier de substitution sont exclus.",
+        "checkedAt": "2026-10-14",
+        "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
+        "sha256": "db6c63d44fcba53eed4449cae0a88c78f089354c1efaf6703ea10cda17045b06",
+        "evidence": []
+      },
+      "holdings": {
+        "status": "source-conflict",
+        "reason": "Poids différents pour les mêmes titres dans la section datée de l’indice : AAPL, AMZN, GOOG, GOOGL, META, MSFT, NVDA, TSLA.",
+        "checkedAt": "2026-10-14",
+        "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
+        "sha256": "db6c63d44fcba53eed4449cae0a88c78f089354c1efaf6703ea10cda17045b06",
+        "evidence": [
+          "Top 10 Reference Index Constituents",
+          "As of 08 Oct 2026",
+          "Weight (%)",
+          "Ticker",
+          "Name",
+          "8.30",
+          "NVDA",
+          "NVIDIA Corp",
+          "7.40",
+          "AAPL",
+          "Apple Inc",
+          "5.80",
+          "MSFT",
+          "Microsoft Corp",
+          "4.80",
+          "MU",
+          "Micron Technology Inc",
+          "4.20",
+          "AMD",
+          "Advanced Micro Devices Inc",
+          "4.10",
+          "AMZN",
+          "Amazon.com Inc",
+          "3.20",
+          "META",
+          "Meta Platforms Inc Class A",
+          "3.10",
+          "GOOGL",
+          "Alphabet Inc Class A",
+          "3.00",
+          "TSLA",
+          "Tesla Inc",
+          "2.90",
+          "GOOG",
+          "Alphabet Inc Class C",
+          "9.20",
+          "NVDA",
+          "NVIDIA Corp",
+          "8.60",
+          "AAPL",
+          "Apple Inc",
+          "7.50",
+          "MSFT",
+          "Microsoft Corp",
+          "6.60",
+          "AVGO",
+          "Broadcom Inc",
+          "5.10",
+          "AMZN",
+          "Amazon.com Inc",
+          "3.80",
+          "GOOGL",
+          "Alphabet Inc Class A",
+          "3.60",
+          "GOOG",
+          "Alphabet Inc Class C",
+          "3.40",
+          "TSLA",
+          "Tesla Inc",
+          "3.00",
+          "META",
+          "Meta Platforms Inc Class A",
+          "2.20",
+          "PLTR",
+          "Palantir Technologies Inc Ordinary Shares - Class A"
+        ]
+      },
+      "sectors": {
+        "status": "unqualified",
+        "reason": "Table sectorielle de référence à recouper avec l’indice exact avant utilisation ; aucune allocation du panier de substitution utilisée.",
+        "checkedAt": "2026-10-14",
+        "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
+        "sha256": "db6c63d44fcba53eed4449cae0a88c78f089354c1efaf6703ea10cda17045b06",
+        "evidence": [
+          "Reference Index Sector Breakdown",
+          "As of 30 Sep 2026",
+          "Sector",
+          "Weight (%)",
+          "Information Technology",
+          "20.9",
+          "Financials",
+          "16.9",
+          "Industrials",
+          "16.6",
+          "Energy",
+          "11.0",
+          "Health Care",
+          "10.9",
+          "Consumer Discretionary",
+          "10.6",
+          "Materials",
+          "5.7",
+          "Utilities",
+          "4.0",
+          "Consumer Staples",
+          "2.5",
+          "Communication Services",
+          "1.1",
+          "Real Estate",
+          "0.0"
+        ]
+      }
+    },
+    "qualificationCheckedAt": "2026-10-14"
   },
   "GB00BLD4ZL17": {
     "currency": "USD",
@@ -26956,7 +27113,7 @@
       "checkedAt": "2026-10-14"
     },
     "aum": {
-      "amount": 1770456430.0,
+      "amount": 1770456430,
       "currency": "USD",
       "scope": "share-class",
       "asOf": "2026-10-13",
@@ -26995,7 +27152,7 @@
       "checkedAt": "2026-10-14"
     },
     "aum": {
-      "amount": 419531567.0,
+      "amount": 419531567,
       "currency": "USD",
       "scope": "share-class",
       "asOf": "2026-10-13",
@@ -27314,7 +27471,7 @@
       "rows": [
         {
           "name": "United States",
-          "weightPct": 100.0
+          "weightPct": 100
         }
       ],
       "checkedAt": "2026-10-14",
@@ -27831,7 +27988,7 @@
     "sourceUrl": "https://dokumenty.analizy.pl/pobierz/etf/E_AXAIC001_A_USD/KA/2026-09-30",
     "provider": "BNP Paribas",
     "aum": {
-      "amount": 2930700000.0,
+      "amount": 2930700000,
       "currency": "USD",
       "scope": "fund",
       "asOf": "2026-09-30",
@@ -27911,7 +28068,7 @@
         },
         {
           "name": "Utilities",
-          "weightPct": 1.0,
+          "weightPct": 1,
           "label": "Utilities"
         },
         {
@@ -28873,7 +29030,7 @@
       "rows": [
         {
           "name": "Canada",
-          "weightPct": 40.0
+          "weightPct": 40
         },
         {
           "name": "United States",

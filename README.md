@@ -4,18 +4,13 @@ Application React + Vite pour préparer des contenus pédagogiques sur l'investi
 
 ## Outils disponibles
 
-| Outil | Usage |
-| --- | --- |
-| Calculateur « Et si tu avais investi ? » | Comparer un placement historique au Livret A et à l'inflation. |
-| Générateur de portefeuilles | Construire des allocations illustratives selon un profil et un risque. |
-| Fiches ETF | Préparer une fiche, un texte et une image. |
-| Comparatif courtiers | Préparer une carte et un post comparant deux ou trois courtiers. |
-| Tweet Midi | Générer six formats de publications intemporelles. |
-| Impact des frais | Illustrer l'effet hypothétique de deux TER. |
-| Faits marquants des marchés | Préparer des statistiques historiques sourcées. |
-| Banque de tweets | Retrouver des publications et des explications pédagogiques sourcées, puis suivre leur période de repos. |
+L’[inventaire automatique](docs/app-inventory.md) liste toutes les routes accessibles,
+les effectifs du catalogue et la couverture des champs. `npm run inventory` le
+régénère depuis les registres ; chaque build vérifie les correspondances entre
+navigation, routes et modules. La collecte ETF quotidienne versionne son actualisation.
 
-Le registre de navigation et les routes disponibles sont définis dans `src/tools.js`. Les données de chaque outil se trouvent dans `src/pages/<outil>/data.js` ou les fichiers de son dossier.
+Le comparateur d’indices reste un moteur interne sans route publique. Les moteurs
+conservés et les liens de compatibilité sont distingués des outils accessibles.
 
 ## Démarrer
 
@@ -42,7 +37,8 @@ npm run test:tools
 
 Le test navigateur nécessite Chromium (`npx playwright install chromium`). La CI exécute les audits, le build et les contrôles navigateur avant le déploiement. Les audits de cohérence ne remplacent pas la vérification des chiffres auprès des émetteurs ou des grilles tarifaires. Voir `scripts/README.md` pour leur portée et `scripts/DATA-REVIEW-2026-09-24.md` pour les limites documentées des séries.
 
-Le comparatif de courtiers compte encore neuf conclusions corroborées sans confirmation officielle explicite. Voir l’[état des preuves au 30 septembre 2026](scripts/BROKER-AUDIT-CLOSURE-2026-09-30.md) ; la vérification intégrale n’est pas achevée.
+Les preuves et limites du comparatif courtiers sont documentées dans
+[la revue du 13 octobre](docs/broker-confirmation-review-2026-10-13.md).
 
 ## Déploiement
 
@@ -96,7 +92,7 @@ le versement unique, le DCA, les vidéos et les rendements annuels, sans modifie
 Elles sont exclues du format Anniversaire, qui affiche un prix historique brut : une
 clôture ajustée ne correspond pas au prix effectivement coté à cette date.
 Capture et limites : scripts/source-snapshots/calculator-companies-2026-10-02.json.
-Ces séries sont figées au dernier contrôle ; leur ajout ne crée pas d’actualisation programmée.
+Les séries raccordées sont renouvelées par les collecteurs mensuels ; la période disponible et la provenance sont celles du registre actif, consultables dans la Bibliothèque de données.
 
 Les portraits des investisseurs sont stockés localement avec leurs sources et crédits dans `public/asset-art/investors/sources.json`.
 
