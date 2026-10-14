@@ -217,7 +217,7 @@
           "checkedAt": "2026-10-14",
           "evidenceId": "IE00BSPLC298-XETR-ZPRX-EUR",
           "excerpt": "IE00BSPLC298 | Deutsche Börse (Primary) | EUR | 19 Feb 2015 | ZPRX | BSPLC63 | ZPRX GY | ZPRX.DE",
-          "sha256": "99a60ee056f9bc421cc3bf1b37e32a98e48a217c6fe10f1ecededb5fdf2ad6d0"
+          "sha256": "3269fd6b59f5a8fea1bc02580ea67fa63885e8f9a93ade01f0f345b8a61d43e8"
         }
       ],
       "terPct": 0.3,
@@ -1236,12 +1236,12 @@
     "sourceUrl": "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE000L2SA8K5_factsheet_en.pdf",
     "provider": "Invesco",
     "aum": {
-      "amount": 122250000.0,
+      "amount": 118930000.0,
       "currency": "USD",
       "scope": "fund",
-      "asOf": "2026-08-31",
+      "asOf": "2026-09-30",
       "checkedAt": "2026-10-14",
-      "modifiedAt": "2026-10-13"
+      "modifiedAt": "2026-10-14"
     },
     "holdings": {
       "rows": [
@@ -1320,8 +1320,8 @@
           "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE000L2SA8K5?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData",
           "checkedAt": "2026-10-14",
           "evidenceId": "IE000L2SA8K5-XLON-IEWQ-USD",
-          "excerpt": "IE000L2SA8K5 | {\"listingExchangeName\": \"London Stock Exchange\", \"settlementCycle\": \"T+2\", \"listingCurrency\": \"USD\", \"listingExchangeTicker\": \"IEWQ\", \"listingBloombergTicker\": \"IEWQ LN\", \"listingBloombergTickerInav\": \"IEWQIN\", \"listingRic\": \"IEWQ.L\", \"listingReutersInav\": \"IEWQUSiv.P\", \"listingWKN\": \"A3EE27\", \"listingValor\": \"126756532\", \"listingSedol\": \"BN6L4W7\", \"inav\": 8.118113, \"source\": \"Refinitiv\", \"effectiveDate\": \"2026-10-14T12:50:50\"}",
-          "sha256": "6cd65babfed952b96cf1c721a520f34024ce0a04a30915017625ca49bf97ea46"
+          "excerpt": "IE000L2SA8K5 | {\"listingExchangeName\": \"London Stock Exchange\", \"settlementCycle\": \"T+2\", \"listingCurrency\": \"USD\", \"listingExchangeTicker\": \"IEWQ\", \"listingBloombergTicker\": \"IEWQ LN\", \"listingBloombergTickerInav\": \"IEWQIN\", \"listingRic\": \"IEWQ.L\", \"listingReutersInav\": \"IEWQUSiv.P\", \"listingWKN\": \"A3EE27\", \"listingValor\": \"126756532\", \"listingSedol\": \"BN6L4W7\", \"inav\": 8.061365, \"source\": \"Refinitiv\", \"effectiveDate\": \"2026-10-14T15:29:50\"}",
+          "sha256": "50c37ebedb600fb1fe8a2807e9ef5da740e9992c3f54591616efbee1ece73893"
         },
         {
           "exchange": "Borsa Italiana",
@@ -1332,8 +1332,8 @@
           "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE000L2SA8K5?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData",
           "checkedAt": "2026-10-14",
           "evidenceId": "IE000L2SA8K5-ETFP-IEWQ-EUR",
-          "excerpt": "IE000L2SA8K5 | {\"listingExchangeName\": \"Euronext Milan\", \"settlementCycle\": \"T+2\", \"listingCurrency\": \"EUR\", \"listingExchangeTicker\": \"IEWQ\", \"listingBloombergTicker\": \"IEWQ IM\", \"listingBloombergTickerInav\": \"IEWQINE\", \"listingRic\": \"IEWQ.MI\", \"listingReutersInav\": \"IEWQEUiv.P\", \"listingWKN\": \"A3EE27\", \"listingValor\": \"126756532\", \"inav\": 7.285981, \"source\": \"Refinitiv\", \"effectiveDate\": \"2026-10-14T12:50:50\"}",
-          "sha256": "6cd65babfed952b96cf1c721a520f34024ce0a04a30915017625ca49bf97ea46"
+          "excerpt": "IE000L2SA8K5 | {\"listingExchangeName\": \"Euronext Milan\", \"settlementCycle\": \"T+2\", \"listingCurrency\": \"EUR\", \"listingExchangeTicker\": \"IEWQ\", \"listingBloombergTicker\": \"IEWQ IM\", \"listingBloombergTickerInav\": \"IEWQINE\", \"listingRic\": \"IEWQ.MI\", \"listingReutersInav\": \"IEWQEUiv.P\", \"listingWKN\": \"A3EE27\", \"listingValor\": \"126756532\", \"inav\": 7.249071, \"source\": \"Refinitiv\", \"effectiveDate\": \"2026-10-14T15:29:50\"}",
+          "sha256": "50c37ebedb600fb1fe8a2807e9ef5da740e9992c3f54591616efbee1ece73893"
         },
         {
           "exchange": "Xetra",
@@ -1344,8 +1344,8 @@
           "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE000L2SA8K5?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData",
           "checkedAt": "2026-10-14",
           "evidenceId": "IE000L2SA8K5-XETR-EWQA-EUR",
-          "excerpt": "IE000L2SA8K5 | {\"listingExchangeName\": \"Deutsche B\\u00f6rse (Xetra)\", \"settlementCycle\": \"T+2\", \"listingCurrency\": \"EUR\", \"listingExchangeTicker\": \"EWQA\", \"listingBloombergTicker\": \"EWQA GY\", \"listingBloombergTickerInav\": \"IEWQINE\", \"listingRic\": \"EWQA.DE\", \"listingReutersInav\": \"IEWQEUiv.P\", \"listingWKN\": \"A3EE27\", \"listingValor\": \"126756532\", \"inav\": 7.285981, \"source\": \"Refinitiv\", \"effectiveDate\": \"2026-10-14T12:50:50\"}",
-          "sha256": "6cd65babfed952b96cf1c721a520f34024ce0a04a30915017625ca49bf97ea46"
+          "excerpt": "IE000L2SA8K5 | {\"listingExchangeName\": \"Deutsche B\\u00f6rse (Xetra)\", \"settlementCycle\": \"T+2\", \"listingCurrency\": \"EUR\", \"listingExchangeTicker\": \"EWQA\", \"listingBloombergTicker\": \"EWQA GY\", \"listingBloombergTickerInav\": \"IEWQINE\", \"listingRic\": \"EWQA.DE\", \"listingReutersInav\": \"IEWQEUiv.P\", \"listingWKN\": \"A3EE27\", \"listingValor\": \"126756532\", \"inav\": 7.249071, \"source\": \"Refinitiv\", \"effectiveDate\": \"2026-10-14T15:29:50\"}",
+          "sha256": "50c37ebedb600fb1fe8a2807e9ef5da740e9992c3f54591616efbee1ece73893"
         }
       ],
       "checkedAt": "2026-10-14",
@@ -1366,32 +1366,32 @@
       "rows": [
         {
           "name": "Information technology",
-          "weightPct": 39.0,
+          "weightPct": 43.8,
           "label": "Technologie"
         },
         {
           "name": "Industrials",
-          "weightPct": 14.8,
+          "weightPct": 13.7,
           "label": "Industrials"
         },
         {
           "name": "Consumer discretionary",
-          "weightPct": 11.8,
+          "weightPct": 10.2,
           "label": "Consommation cyclique"
         },
         {
-          "name": "Health care",
-          "weightPct": 9.8,
-          "label": "Santé"
-        },
-        {
           "name": "Communication services",
-          "weightPct": 8.5,
+          "weightPct": 9.2,
           "label": "Communication"
         },
         {
+          "name": "Health care",
+          "weightPct": 8.9,
+          "label": "Santé"
+        },
+        {
           "name": "Consumer staples",
-          "weightPct": 8.2,
+          "weightPct": 6.7,
           "label": "Consommation de base"
         },
         {
@@ -1401,12 +1401,12 @@
         },
         {
           "name": "Energy",
-          "weightPct": 2.0,
+          "weightPct": 1.8,
           "label": "Energy"
         },
         {
           "name": "Financials",
-          "weightPct": 1.2,
+          "weightPct": 1.0,
           "label": "Financials"
         },
         {
@@ -1415,11 +1415,11 @@
           "label": "Autres"
         }
       ],
-      "asOf": "2026-08-31",
+      "asOf": "2026-09-30",
       "basis": "fund",
       "sourceUrl": "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE000L2SA8K5_factsheet_en.pdf",
       "method": "Published allocation of the exact physical ETF factsheet",
-      "sha256": "53e54b34157c2a786892dcb017e643dddcd8cd06e700052c2c6272ad4d69ddd4",
+      "sha256": "c813367cf33380c8e8eac116257b60409aa62ab247958a0d437d061cbcd08bce",
       "checkedAt": "2026-10-14",
       "modifiedAt": "2026-10-14"
     },
@@ -1427,38 +1427,38 @@
       "rows": [
         {
           "name": "United States",
-          "weightPct": 91.6
+          "weightPct": 92.0
         },
         {
           "name": "Netherlands",
-          "weightPct": 2.6
+          "weightPct": 3.3
         },
         {
           "name": "Canada",
-          "weightPct": 2.5
+          "weightPct": 1.9
         },
         {
           "name": "United Kingdom",
-          "weightPct": 1.2
-        },
-        {
-          "name": "Brazil",
-          "weightPct": 1.1
+          "weightPct": 1.0
         },
         {
           "name": "China",
-          "weightPct": 1.0
+          "weightPct": 0.9
+        },
+        {
+          "name": "Brazil",
+          "weightPct": 0.9
         },
         {
           "name": "Cash and/or Derivatives",
           "weightPct": 0.0
         }
       ],
-      "asOf": "2026-08-31",
+      "asOf": "2026-09-30",
       "basis": "fund",
       "sourceUrl": "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE000L2SA8K5_factsheet_en.pdf",
       "method": "Published allocation of the exact physical ETF factsheet",
-      "sha256": "53e54b34157c2a786892dcb017e643dddcd8cd06e700052c2c6272ad4d69ddd4",
+      "sha256": "c813367cf33380c8e8eac116257b60409aa62ab247958a0d437d061cbcd08bce",
       "checkedAt": "2026-10-14",
       "modifiedAt": "2026-10-14"
     }

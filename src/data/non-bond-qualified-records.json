@@ -20,39 +20,39 @@
       "asOf": "2026-10-13"
     },
     "countries": {
-      "asOf": "2026-10-12",
+      "asOf": "2026-10-13",
       "rows": [
         {
           "name": "United States",
-          "weightPct": 68.76
+          "weightPct": 68.77
         },
         {
           "name": "Japan",
-          "weightPct": 6.93
+          "weightPct": 6.91
         },
         {
           "name": "United Kingdom",
-          "weightPct": 3.9
+          "weightPct": 3.92
         },
         {
           "name": "Canada",
-          "weightPct": 3.67
+          "weightPct": 3.72
         },
         {
           "name": "France",
-          "weightPct": 3.42
+          "weightPct": 3.44
         },
         {
           "name": "Netherlands",
-          "weightPct": 2.85
+          "weightPct": 2.75
         },
         {
           "name": "Germany",
-          "weightPct": 2.54
+          "weightPct": 2.55
         },
         {
           "name": "Australia",
-          "weightPct": 1.6
+          "weightPct": 1.59
         },
         {
           "name": "Switzerland",
@@ -60,56 +60,56 @@
         },
         {
           "name": "Sweden",
-          "weightPct": 1.11
+          "weightPct": 1.12
         },
         {
           "name": "Other",
-          "weightPct": 3.3699999999999997
+          "weightPct": 3.3899999999999997
         },
         {
           "name": "Cash and/or Derivatives",
-          "weightPct": 0.28
+          "weightPct": 0.29
         }
       ]
     },
     "sectors": {
-      "asOf": "2026-10-12",
+      "asOf": "2026-10-13",
       "rows": [
         {
           "name": "Information Technology",
-          "weightPct": 45.28
+          "weightPct": 45.03
         },
         {
           "name": "Industrials",
-          "weightPct": 12.74
+          "weightPct": 12.81
         },
         {
           "name": "Energy",
-          "weightPct": 11.78
+          "weightPct": 12.05
         },
         {
           "name": "Health Care",
-          "weightPct": 9.92
+          "weightPct": 9.81
         },
         {
           "name": "Materials",
-          "weightPct": 8.51
+          "weightPct": 8.5
         },
         {
           "name": "Consumer Discretionary",
-          "weightPct": 6.73
+          "weightPct": 6.74
         },
         {
           "name": "Consumer Staples",
-          "weightPct": 2.98
+          "weightPct": 3.0
         },
         {
           "name": "Utilities",
-          "weightPct": 0.82
+          "weightPct": 0.83
         },
         {
           "name": "Real Estate",
-          "weightPct": 0.8
+          "weightPct": 0.81
         },
         {
           "name": "Communication",
@@ -117,7 +117,7 @@
         },
         {
           "name": "Cash and/or Derivatives",
-          "weightPct": 0.28
+          "weightPct": 0.29
         }
       ]
     },
@@ -139,63 +139,63 @@
       }
     },
     "holdings": {
-      "asOf": "2026-10-12",
+      "asOf": "2026-10-13",
       "basis": "fund",
       "rows": [
         {
           "name": "MICROSOFT",
-          "weightPct": 14.19451,
+          "weightPct": 14.30062,
           "isin": "US5949181045"
         },
         {
           "name": "MICRON TECHNOLOGY",
-          "weightPct": 4.15185,
+          "weightPct": 4.01421,
           "isin": "US5951121038"
         },
         {
           "name": "TESLA INC",
-          "weightPct": 4.01994,
+          "weightPct": 4.00298,
           "isin": "US88160R1014"
         },
         {
           "name": "ADVANCED MICRO DEVICES",
-          "weightPct": 3.59958,
+          "weightPct": 3.67975,
           "isin": "US0079031078"
         },
         {
           "name": "EXXONMOBIL HOLDINGS CORP",
-          "weightPct": 2.65375,
+          "weightPct": 2.69212,
           "isin": "US30233Q1085"
         },
         {
           "name": "ASML HOLDING",
-          "weightPct": 2.54115,
+          "weightPct": 2.44681,
           "isin": "NL0010273215"
         },
         {
           "name": "JOHNSON & JOHNSON",
-          "weightPct": 2.35623,
+          "weightPct": 2.22828,
           "isin": "US4781601046"
         },
         {
           "name": "CISCO SYSTEMS INC",
-          "weightPct": 1.69165,
+          "weightPct": 1.69311,
           "isin": "US17275R1023"
         },
         {
           "name": "INTEL CORPORATION",
-          "weightPct": 1.65904,
+          "weightPct": 1.68835,
           "isin": "US4581401001"
         },
         {
           "name": "CHEVRON",
-          "weightPct": 1.47537,
+          "weightPct": 1.4989,
           "isin": "US1667641005"
         }
       ]
     },
     "name": "iShares MSCI World Islamic UCITS ETF",
-    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=251394&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251394&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
     "listing": {
       "ticker": "ISDW",
       "exchange": "London Stock Exchange",
@@ -203,7 +203,7 @@
       "mic": "XLON",
       "currency": "USD",
       "symbol": "ISDW.L",
-      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=251394&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251394&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "checkedAt": "2026-10-14",
       "evidenceId": "IE00B27YCN58-XLON-ISDW-USD"
     },
@@ -215,7 +215,7 @@
         "mic": "XETR",
         "currency": "EUR",
         "symbol": "IUSD.DE",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=251394&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251394&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "checkedAt": "2026-10-14",
         "evidenceId": "IE00B27YCN58-XETR-IUSD-EUR"
       },
@@ -226,7 +226,7 @@
         "mic": "XLON",
         "currency": "USD",
         "symbol": "ISDW.L",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=251394&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251394&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "checkedAt": "2026-10-14",
         "evidenceId": "IE00B27YCN58-XLON-ISDW-USD"
       },
@@ -237,7 +237,7 @@
         "mic": "XSWX",
         "currency": "USD",
         "symbol": "ISWD.S",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=251394&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251394&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "checkedAt": "2026-10-14",
         "evidenceId": "IE00B27YCN58-XSWX-ISWD-USD"
       }
@@ -250,12 +250,24 @@
       "replicationMethod": "Physical (Replicated)",
       "inceptionDate": "20071207"
     },
-    "checkedAt": "2026-10-14T12:51:17.881284+00:00",
-    "pageSha256": "6202dbf893f56285788471e3278a8ad352282a103762ec88e8e96e5a7fa13abf",
+    "metrics": {
+      "twelveMonTrlYld": {
+        "value": 0.918349,
+        "label": "Rendement des distributions sur 12 mois",
+        "unit": "%",
+        "asOf": "2026-10-13",
+        "checkedAt": "2026-10-14",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251394&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "method": "The yield an investor would have received if they had held the fund over the last twelve months assuming the most recent NAV. The 12-Month yield is calculated by assuming any income distributions over the past twelve months and dividing by the sum of the most recent NAV and any capital gain distributions made over the past twelve months. This yield calculation does not take into account any dividends received and held by the fund, but are awaiting the next distribution date. This can cause deviation with index level yield values.",
+        "scope": "Exact share, trailing 12 months"
+      }
+    },
+    "checkedAt": "2026-10-14T20:58:55.409638+00:00",
+    "pageSha256": "79c8bc503fb93af71e547774ecfddc81fed392e70b496d432f7327becede9e05",
     "automatedRecord": {
       "currency": "USD",
       "productId": 251394,
-      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=251394&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251394&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "provider": "iShares",
       "aum": {
         "amount": 1738839596.04,
@@ -266,51 +278,51 @@
         "modifiedAt": "2026-10-14"
       },
       "sectors": {
-        "asOf": "2026-10-12",
+        "asOf": "2026-10-13",
         "rows": [
           {
             "name": "Information Technology",
-            "weightPct": 45.28,
+            "weightPct": 45.03,
             "label": "Information Technology"
           },
           {
             "name": "Industrials",
-            "weightPct": 12.74,
+            "weightPct": 12.81,
             "label": "Industrials"
           },
           {
             "name": "Energy",
-            "weightPct": 11.78,
+            "weightPct": 12.05,
             "label": "Energy"
           },
           {
             "name": "Health Care",
-            "weightPct": 9.92,
+            "weightPct": 9.81,
             "label": "Health Care"
           },
           {
             "name": "Materials",
-            "weightPct": 8.51,
+            "weightPct": 8.5,
             "label": "Materials"
           },
           {
             "name": "Consumer Discretionary",
-            "weightPct": 6.73,
+            "weightPct": 6.74,
             "label": "Consumer Discretionary"
           },
           {
             "name": "Consumer Staples",
-            "weightPct": 2.98,
+            "weightPct": 3.0,
             "label": "Consumer Staples"
           },
           {
             "name": "Utilities",
-            "weightPct": 0.82,
+            "weightPct": 0.83,
             "label": "Utilities"
           },
           {
             "name": "Real Estate",
-            "weightPct": 0.8,
+            "weightPct": 0.81,
             "label": "Immobilier"
           },
           {
@@ -320,47 +332,47 @@
           },
           {
             "name": "Cash and/or Derivatives",
-            "weightPct": 0.28,
+            "weightPct": 0.29,
             "label": "Cash and/or Derivatives"
           }
         ],
         "checkedAt": "2026-10-14",
-        "modifiedAt": "2026-10-13"
+        "modifiedAt": "2026-10-14"
       },
       "countries": {
-        "asOf": "2026-10-12",
+        "asOf": "2026-10-13",
         "rows": [
           {
             "name": "United States",
-            "weightPct": 68.76
+            "weightPct": 68.77
           },
           {
             "name": "Japan",
-            "weightPct": 6.93
+            "weightPct": 6.91
           },
           {
             "name": "United Kingdom",
-            "weightPct": 3.9
+            "weightPct": 3.92
           },
           {
             "name": "Canada",
-            "weightPct": 3.67
+            "weightPct": 3.72
           },
           {
             "name": "France",
-            "weightPct": 3.42
+            "weightPct": 3.44
           },
           {
             "name": "Netherlands",
-            "weightPct": 2.85
+            "weightPct": 2.75
           },
           {
             "name": "Germany",
-            "weightPct": 2.54
+            "weightPct": 2.55
           },
           {
             "name": "Australia",
-            "weightPct": 1.6
+            "weightPct": 1.59
           },
           {
             "name": "Switzerland",
@@ -368,77 +380,77 @@
           },
           {
             "name": "Sweden",
-            "weightPct": 1.11
+            "weightPct": 1.12
           },
           {
             "name": "Other",
-            "weightPct": 3.3699999999999997
+            "weightPct": 3.3899999999999997
           },
           {
             "name": "Cash and/or Derivatives",
-            "weightPct": 0.28
+            "weightPct": 0.29
           }
         ],
         "checkedAt": "2026-10-14",
-        "modifiedAt": "2026-10-13"
+        "modifiedAt": "2026-10-14"
       },
       "holdings": {
-        "asOf": "2026-10-12",
+        "asOf": "2026-10-13",
         "basis": "fund",
         "rows": [
           {
             "name": "MICROSOFT",
-            "weightPct": 14.19451,
+            "weightPct": 14.30062,
             "isin": "US5949181045"
           },
           {
             "name": "MICRON TECHNOLOGY",
-            "weightPct": 4.15185,
+            "weightPct": 4.01421,
             "isin": "US5951121038"
           },
           {
             "name": "TESLA INC",
-            "weightPct": 4.01994,
+            "weightPct": 4.00298,
             "isin": "US88160R1014"
           },
           {
             "name": "ADVANCED MICRO DEVICES",
-            "weightPct": 3.59958,
+            "weightPct": 3.67975,
             "isin": "US0079031078"
           },
           {
             "name": "EXXONMOBIL HOLDINGS CORP",
-            "weightPct": 2.65375,
+            "weightPct": 2.69212,
             "isin": "US30233Q1085"
           },
           {
             "name": "ASML HOLDING",
-            "weightPct": 2.54115,
+            "weightPct": 2.44681,
             "isin": "NL0010273215"
           },
           {
             "name": "JOHNSON & JOHNSON",
-            "weightPct": 2.35623,
+            "weightPct": 2.22828,
             "isin": "US4781601046"
           },
           {
             "name": "CISCO SYSTEMS INC",
-            "weightPct": 1.69165,
+            "weightPct": 1.69311,
             "isin": "US17275R1023"
           },
           {
             "name": "INTEL CORPORATION",
-            "weightPct": 1.65904,
+            "weightPct": 1.68835,
             "isin": "US4581401001"
           },
           {
             "name": "CHEVRON",
-            "weightPct": 1.47537,
+            "weightPct": 1.4989,
             "isin": "US1667641005"
           }
         ],
         "checkedAt": "2026-10-14",
-        "modifiedAt": "2026-10-13"
+        "modifiedAt": "2026-10-14"
       },
       "characteristics": {
         "terPct": 0.3,
@@ -486,41 +498,41 @@
     "terPct": 0.46,
     "index": "STOXX Europe 600 Banks (Capped) NET",
     "aum": {
-      "amount": 3195429021.53,
+      "amount": 2970764530.18,
       "currency": "EUR",
       "scope": "share-class",
-      "asOf": "2026-10-13"
+      "asOf": "2026-10-14"
     },
     "countries": {
-      "asOf": "2026-10-12",
+      "asOf": "2026-10-13",
       "rows": [
         {
           "name": "United Kingdom",
-          "weightPct": 26.81
+          "weightPct": 26.77
         },
         {
           "name": "Spain",
-          "weightPct": 18.89
+          "weightPct": 18.61
         },
         {
           "name": "Italy",
-          "weightPct": 13.98
+          "weightPct": 13.95
         },
         {
           "name": "France",
-          "weightPct": 7.77
+          "weightPct": 7.73
         },
         {
           "name": "Netherlands",
-          "weightPct": 5.48
+          "weightPct": 5.47
         },
         {
           "name": "Sweden",
-          "weightPct": 4.37
+          "weightPct": 4.38
         },
         {
           "name": "Germany",
-          "weightPct": 3.55
+          "weightPct": 3.5
         },
         {
           "name": "Finland",
@@ -528,52 +540,52 @@
         },
         {
           "name": "Austria",
-          "weightPct": 2.58
+          "weightPct": 2.59
         },
         {
           "name": "Poland",
-          "weightPct": 2.51
+          "weightPct": 2.5
         },
         {
           "name": "Denmark",
-          "weightPct": 2.37
+          "weightPct": 2.36
         },
         {
           "name": "Greece",
-          "weightPct": 2.0
+          "weightPct": 1.99
         },
         {
           "name": "Ireland",
-          "weightPct": 1.93
+          "weightPct": 1.94
         },
         {
           "name": "Norway",
-          "weightPct": 1.49
+          "weightPct": 1.51
         },
         {
           "name": "Belgium",
-          "weightPct": 1.49
+          "weightPct": 1.47
+        },
+        {
+          "name": "Cash and/or Derivatives",
+          "weightPct": 1.39
         },
         {
           "name": "Other",
           "weightPct": 1.06
-        },
-        {
-          "name": "Cash and/or Derivatives",
-          "weightPct": 0.95
         }
       ]
     },
     "sectors": {
-      "asOf": "2026-10-12",
+      "asOf": "2026-10-13",
       "rows": [
         {
           "name": "Banks",
-          "weightPct": 99.05
+          "weightPct": 98.61
         },
         {
           "name": "Cash and/or Derivatives",
-          "weightPct": 0.95
+          "weightPct": 1.39
         }
       ]
     },
@@ -595,63 +607,63 @@
       }
     },
     "holdings": {
-      "asOf": "2026-10-12",
+      "asOf": "2026-10-13",
       "basis": "fund",
       "rows": [
         {
           "name": "HSBC HOLDINGS PLC",
-          "weightPct": 14.10042,
+          "weightPct": 14.04781,
           "isin": "GB0005405286"
         },
         {
           "name": "BANCO SANTANDER",
-          "weightPct": 8.95756,
+          "weightPct": 8.84155,
           "isin": "ES0113900J37"
         },
         {
           "name": "BANCO BILBAO VIZCAYA ARGENTARIA SA",
-          "weightPct": 6.39455,
+          "weightPct": 6.2667,
           "isin": "ES0113211835"
         },
         {
           "name": "UNICREDIT",
-          "weightPct": 5.59583,
+          "weightPct": 5.61522,
           "isin": "IT0005239360"
         },
         {
           "name": "INTESA SANPAOLO",
-          "weightPct": 4.68353,
+          "weightPct": 4.66594,
           "isin": "IT0000072618"
         },
         {
           "name": "BNP PARIBAS SA",
-          "weightPct": 4.55156,
+          "weightPct": 4.5345,
           "isin": "FR0000131104"
         },
         {
           "name": "ING GROEP",
-          "weightPct": 4.19842,
+          "weightPct": 4.18497,
           "isin": "NL0011821202"
         },
         {
           "name": "LLOYDS BANKING GROUP PLC",
-          "weightPct": 3.47283,
+          "weightPct": 3.47127,
           "isin": "GB0008706128"
         },
         {
           "name": "BARCLAYS PLC",
-          "weightPct": 3.38796,
+          "weightPct": 3.36249,
           "isin": "GB0031348658"
         },
         {
           "name": "NATWEST GROUP PLC",
-          "weightPct": 3.06509,
+          "weightPct": 3.11201,
           "isin": "GB00BM8PJY71"
         }
       ]
     },
     "name": "iShares STOXX Europe 600 Banks UCITS ETF (DE)",
-    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=251934&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251934&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
     "listing": {
       "ticker": "EXV1",
       "exchange": "Xetra",
@@ -659,7 +671,7 @@
       "mic": "XETR",
       "currency": "EUR",
       "symbol": "SX7PEX.DE",
-      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=251934&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251934&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "checkedAt": "2026-10-14",
       "evidenceId": "DE000A0F5UJ7-XETR-EXV1-EUR"
     },
@@ -671,7 +683,7 @@
         "mic": "XETR",
         "currency": "EUR",
         "symbol": "SX7PEX.DE",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=251934&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251934&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "checkedAt": "2026-10-14",
         "evidenceId": "DE000A0F5UJ7-XETR-EXV1-EUR"
       },
@@ -682,7 +694,7 @@
         "mic": "XSWX",
         "currency": "EUR",
         "symbol": "EXV1.S",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=251934&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251934&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "checkedAt": "2026-10-14",
         "evidenceId": "DE000A0F5UJ7-XSWX-EXV1-EUR"
       }
@@ -695,68 +707,80 @@
       "replicationMethod": "Physical (Replicated)",
       "inceptionDate": "20010425"
     },
-    "checkedAt": "2026-10-14T12:51:17.881284+00:00",
-    "pageSha256": "e97ad3473e3b49c8cc46eafb08a104e9f60bfb3d0b1ad45fd1f9e0dff14d6189",
+    "metrics": {
+      "twelveMonTrlYld": {
+        "value": 3.597962,
+        "label": "Rendement des distributions sur 12 mois",
+        "unit": "%",
+        "asOf": "2026-10-13",
+        "checkedAt": "2026-10-14",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251934&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "method": "The yield an investor would have received if they had held the fund over the last twelve months assuming the most recent NAV. The 12-Month yield is calculated by assuming any income distributions over the past twelve months and dividing by the sum of the most recent NAV and any capital gain distributions made over the past twelve months. This yield calculation does not take into account any dividends received and held by the fund, but are awaiting the next distribution date. This can cause deviation with index level yield values.",
+        "scope": "Exact share, trailing 12 months"
+      }
+    },
+    "checkedAt": "2026-10-14T20:58:55.409638+00:00",
+    "pageSha256": "3bd7daa75866151359f483ab0be84519ea2d4f6c510359ffc57f022d95f40796",
     "automatedRecord": {
       "currency": "EUR",
       "productId": 251934,
-      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=251934&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251934&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "provider": "iShares",
       "aum": {
-        "amount": 3195429021.53,
+        "amount": 2970764530.18,
         "currency": "EUR",
         "scope": "share-class",
-        "asOf": "2026-10-13",
+        "asOf": "2026-10-14",
         "checkedAt": "2026-10-14",
-        "modifiedAt": "2026-10-13"
+        "modifiedAt": "2026-10-14"
       },
       "sectors": {
-        "asOf": "2026-10-12",
+        "asOf": "2026-10-13",
         "rows": [
           {
             "name": "Banks",
-            "weightPct": 99.05,
+            "weightPct": 98.61,
             "label": "Banques"
           },
           {
             "name": "Cash and/or Derivatives",
-            "weightPct": 0.95,
+            "weightPct": 1.39,
             "label": "Cash and/or Derivatives"
           }
         ],
         "checkedAt": "2026-10-14",
-        "modifiedAt": "2026-10-13"
+        "modifiedAt": "2026-10-14"
       },
       "countries": {
-        "asOf": "2026-10-12",
+        "asOf": "2026-10-13",
         "rows": [
           {
             "name": "United Kingdom",
-            "weightPct": 26.81
+            "weightPct": 26.77
           },
           {
             "name": "Spain",
-            "weightPct": 18.89
+            "weightPct": 18.61
           },
           {
             "name": "Italy",
-            "weightPct": 13.98
+            "weightPct": 13.95
           },
           {
             "name": "France",
-            "weightPct": 7.77
+            "weightPct": 7.73
           },
           {
             "name": "Netherlands",
-            "weightPct": 5.48
+            "weightPct": 5.47
           },
           {
             "name": "Sweden",
-            "weightPct": 4.37
+            "weightPct": 4.38
           },
           {
             "name": "Germany",
-            "weightPct": 3.55
+            "weightPct": 3.5
           },
           {
             "name": "Finland",
@@ -764,101 +788,101 @@
           },
           {
             "name": "Austria",
-            "weightPct": 2.58
+            "weightPct": 2.59
           },
           {
             "name": "Poland",
-            "weightPct": 2.51
+            "weightPct": 2.5
           },
           {
             "name": "Denmark",
-            "weightPct": 2.37
+            "weightPct": 2.36
           },
           {
             "name": "Greece",
-            "weightPct": 2.0
+            "weightPct": 1.99
           },
           {
             "name": "Ireland",
-            "weightPct": 1.93
+            "weightPct": 1.94
           },
           {
             "name": "Norway",
-            "weightPct": 1.49
+            "weightPct": 1.51
           },
           {
             "name": "Belgium",
-            "weightPct": 1.49
+            "weightPct": 1.47
+          },
+          {
+            "name": "Cash and/or Derivatives",
+            "weightPct": 1.39
           },
           {
             "name": "Other",
             "weightPct": 1.06
-          },
-          {
-            "name": "Cash and/or Derivatives",
-            "weightPct": 0.95
           }
         ],
         "checkedAt": "2026-10-14",
-        "modifiedAt": "2026-10-13"
+        "modifiedAt": "2026-10-14"
       },
       "holdings": {
-        "asOf": "2026-10-12",
+        "asOf": "2026-10-13",
         "basis": "fund",
         "rows": [
           {
             "name": "HSBC HOLDINGS PLC",
-            "weightPct": 14.10042,
+            "weightPct": 14.04781,
             "isin": "GB0005405286"
           },
           {
             "name": "BANCO SANTANDER",
-            "weightPct": 8.95756,
+            "weightPct": 8.84155,
             "isin": "ES0113900J37"
           },
           {
             "name": "BANCO BILBAO VIZCAYA ARGENTARIA SA",
-            "weightPct": 6.39455,
+            "weightPct": 6.2667,
             "isin": "ES0113211835"
           },
           {
             "name": "UNICREDIT",
-            "weightPct": 5.59583,
+            "weightPct": 5.61522,
             "isin": "IT0005239360"
           },
           {
             "name": "INTESA SANPAOLO",
-            "weightPct": 4.68353,
+            "weightPct": 4.66594,
             "isin": "IT0000072618"
           },
           {
             "name": "BNP PARIBAS SA",
-            "weightPct": 4.55156,
+            "weightPct": 4.5345,
             "isin": "FR0000131104"
           },
           {
             "name": "ING GROEP",
-            "weightPct": 4.19842,
+            "weightPct": 4.18497,
             "isin": "NL0011821202"
           },
           {
             "name": "LLOYDS BANKING GROUP PLC",
-            "weightPct": 3.47283,
+            "weightPct": 3.47127,
             "isin": "GB0008706128"
           },
           {
             "name": "BARCLAYS PLC",
-            "weightPct": 3.38796,
+            "weightPct": 3.36249,
             "isin": "GB0031348658"
           },
           {
             "name": "NATWEST GROUP PLC",
-            "weightPct": 3.06509,
+            "weightPct": 3.11201,
             "isin": "GB00BM8PJY71"
           }
         ],
         "checkedAt": "2026-10-14",
-        "modifiedAt": "2026-10-13"
+        "modifiedAt": "2026-10-14"
       },
       "characteristics": {
         "terPct": 0.46,
@@ -910,53 +934,53 @@
     "terPct": 0.46,
     "index": "STOXX Europe 600 Insurance (Capped) TR",
     "aum": {
-      "amount": 629618313.66,
+      "amount": 623818446.5,
       "currency": "EUR",
       "scope": "fund",
-      "asOf": "2026-10-13"
+      "asOf": "2026-10-14"
     },
     "countries": {
-      "asOf": "2026-10-12",
+      "asOf": "2026-10-13",
       "rows": [
         {
           "name": "Germany",
-          "weightPct": 32.32
+          "weightPct": 32.26
         },
         {
           "name": "Switzerland",
-          "weightPct": 23.69
+          "weightPct": 23.92
         },
         {
           "name": "United Kingdom",
-          "weightPct": 12.36
+          "weightPct": 12.31
         },
         {
           "name": "France",
-          "weightPct": 10.21
+          "weightPct": 10.18
         },
         {
           "name": "Italy",
-          "weightPct": 7.2
+          "weightPct": 7.18
         },
         {
           "name": "Netherlands",
-          "weightPct": 5.06
+          "weightPct": 5.03
         },
         {
           "name": "Finland",
-          "weightPct": 2.85
+          "weightPct": 2.84
         },
         {
           "name": "Norway",
-          "weightPct": 1.53
+          "weightPct": 1.54
         },
         {
           "name": "Belgium",
-          "weightPct": 1.43
+          "weightPct": 1.44
         },
         {
           "name": "Poland",
-          "weightPct": 1.22
+          "weightPct": 1.23
         },
         {
           "name": "Other",
@@ -964,20 +988,20 @@
         },
         {
           "name": "Cash and/or Derivatives",
-          "weightPct": 0.8
+          "weightPct": 0.74
         }
       ]
     },
     "sectors": {
-      "asOf": "2026-10-12",
+      "asOf": "2026-10-13",
       "rows": [
         {
           "name": "Insurance",
-          "weightPct": 99.2
+          "weightPct": 99.26
         },
         {
           "name": "Cash and/or Derivatives",
-          "weightPct": 0.8
+          "weightPct": 0.74
         }
       ]
     },
@@ -999,63 +1023,63 @@
       }
     },
     "holdings": {
-      "asOf": "2026-10-12",
+      "asOf": "2026-10-13",
       "basis": "fund",
       "rows": [
         {
           "name": "ALLIANZ",
-          "weightPct": 20.66508,
+          "weightPct": 20.6388,
           "isin": "DE0008404005"
         },
         {
           "name": "ZURICH INSURANCE GROUP AG",
-          "weightPct": 12.13022,
+          "weightPct": 12.24207,
           "isin": "CH0011075394"
         },
         {
           "name": "AXA SA",
-          "weightPct": 9.5282,
+          "weightPct": 9.49338,
           "isin": "FR0000120628"
         },
         {
           "name": "MUENCHENER RUECKVERSICHERUNGS-GESE",
-          "weightPct": 8.64412,
+          "weightPct": 8.61038,
           "isin": "DE0008430026"
         },
         {
           "name": "SWISS RE AG",
-          "weightPct": 5.89889,
+          "weightPct": 6.01971,
           "isin": "CH0126881561"
         },
         {
           "name": "ASSICURAZIONI GENERALI",
-          "weightPct": 5.85434,
+          "weightPct": 5.82006,
           "isin": "IT0000062072"
         },
         {
           "name": "SWISS LIFE HOLDING AG",
-          "weightPct": 3.4651,
+          "weightPct": 3.47158,
           "isin": "CH0014852781"
         },
         {
           "name": "PRUDENTIAL PLC",
-          "weightPct": 3.43883,
+          "weightPct": 3.38177,
           "isin": "GB0007099541"
         },
         {
           "name": "AVIVA PLC",
-          "weightPct": 3.15351,
+          "weightPct": 3.14751,
           "isin": "GB00BPQY8M80"
         },
         {
           "name": "SAMPO CLASS A",
-          "weightPct": 2.85296,
+          "weightPct": 2.84123,
           "isin": "FI4000552500"
         }
       ]
     },
     "name": "iShares STOXX Europe 600 Insurance UCITS ETF (DE)",
-    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=251950&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251950&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
     "listing": {
       "ticker": "EXH5",
       "exchange": "Xetra",
@@ -1063,7 +1087,7 @@
       "mic": "XETR",
       "currency": "EUR",
       "symbol": "SXIPEX.DE",
-      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=251950&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251950&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "checkedAt": "2026-10-14",
       "evidenceId": "DE000A0H08K7-XETR-EXH5-EUR"
     },
@@ -1075,7 +1099,7 @@
         "mic": "XETR",
         "currency": "EUR",
         "symbol": "SXIPEX.DE",
-        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=251950&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251950&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "checkedAt": "2026-10-14",
         "evidenceId": "DE000A0H08K7-XETR-EXH5-EUR"
       }
@@ -1088,80 +1112,92 @@
       "replicationMethod": "Physical (Replicated)",
       "inceptionDate": "20020708"
     },
-    "checkedAt": "2026-10-14T12:51:17.881284+00:00",
-    "pageSha256": "a9591e8d4f2f57c305c115021d9c405eeaaf041ee3da5a2923fd2864ab465e24",
+    "metrics": {
+      "twelveMonTrlYld": {
+        "value": 3.552276,
+        "label": "Rendement des distributions sur 12 mois",
+        "unit": "%",
+        "asOf": "2026-10-13",
+        "checkedAt": "2026-10-14",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251950&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "method": "The yield an investor would have received if they had held the fund over the last twelve months assuming the most recent NAV. The 12-Month yield is calculated by assuming any income distributions over the past twelve months and dividing by the sum of the most recent NAV and any capital gain distributions made over the past twelve months. This yield calculation does not take into account any dividends received and held by the fund, but are awaiting the next distribution date. This can cause deviation with index level yield values.",
+        "scope": "Exact share, trailing 12 months"
+      }
+    },
+    "checkedAt": "2026-10-14T20:58:55.409638+00:00",
+    "pageSha256": "94c05b5a184e4fcfda628a7467e270f4ae7a81434d8a645d559e35d798b2d7bd",
     "automatedRecord": {
       "currency": "EUR",
       "productId": 251950,
-      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings&locale=en_GB&portfolioId=251950&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251950&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "provider": "iShares",
       "aum": {
-        "amount": 629618313.66,
+        "amount": 623818446.5,
         "currency": "EUR",
         "scope": "fund",
-        "asOf": "2026-10-13",
+        "asOf": "2026-10-14",
         "checkedAt": "2026-10-14",
         "modifiedAt": "2026-10-14"
       },
       "sectors": {
-        "asOf": "2026-10-12",
+        "asOf": "2026-10-13",
         "rows": [
           {
             "name": "Insurance",
-            "weightPct": 99.2,
+            "weightPct": 99.26,
             "label": "Insurance"
           },
           {
             "name": "Cash and/or Derivatives",
-            "weightPct": 0.8,
+            "weightPct": 0.74,
             "label": "Cash and/or Derivatives"
           }
         ],
         "checkedAt": "2026-10-14",
-        "modifiedAt": "2026-10-13"
+        "modifiedAt": "2026-10-14"
       },
       "countries": {
-        "asOf": "2026-10-12",
+        "asOf": "2026-10-13",
         "rows": [
           {
             "name": "Germany",
-            "weightPct": 32.32
+            "weightPct": 32.26
           },
           {
             "name": "Switzerland",
-            "weightPct": 23.69
+            "weightPct": 23.92
           },
           {
             "name": "United Kingdom",
-            "weightPct": 12.36
+            "weightPct": 12.31
           },
           {
             "name": "France",
-            "weightPct": 10.21
+            "weightPct": 10.18
           },
           {
             "name": "Italy",
-            "weightPct": 7.2
+            "weightPct": 7.18
           },
           {
             "name": "Netherlands",
-            "weightPct": 5.06
+            "weightPct": 5.03
           },
           {
             "name": "Finland",
-            "weightPct": 2.85
+            "weightPct": 2.84
           },
           {
             "name": "Norway",
-            "weightPct": 1.53
+            "weightPct": 1.54
           },
           {
             "name": "Belgium",
-            "weightPct": 1.43
+            "weightPct": 1.44
           },
           {
             "name": "Poland",
-            "weightPct": 1.22
+            "weightPct": 1.23
           },
           {
             "name": "Other",
@@ -1169,69 +1205,69 @@
           },
           {
             "name": "Cash and/or Derivatives",
-            "weightPct": 0.8
+            "weightPct": 0.74
           }
         ],
         "checkedAt": "2026-10-14",
-        "modifiedAt": "2026-10-13"
+        "modifiedAt": "2026-10-14"
       },
       "holdings": {
-        "asOf": "2026-10-12",
+        "asOf": "2026-10-13",
         "basis": "fund",
         "rows": [
           {
             "name": "ALLIANZ",
-            "weightPct": 20.66508,
+            "weightPct": 20.6388,
             "isin": "DE0008404005"
           },
           {
             "name": "ZURICH INSURANCE GROUP AG",
-            "weightPct": 12.13022,
+            "weightPct": 12.24207,
             "isin": "CH0011075394"
           },
           {
             "name": "AXA SA",
-            "weightPct": 9.5282,
+            "weightPct": 9.49338,
             "isin": "FR0000120628"
           },
           {
             "name": "MUENCHENER RUECKVERSICHERUNGS-GESE",
-            "weightPct": 8.64412,
+            "weightPct": 8.61038,
             "isin": "DE0008430026"
           },
           {
             "name": "SWISS RE AG",
-            "weightPct": 5.89889,
+            "weightPct": 6.01971,
             "isin": "CH0126881561"
           },
           {
             "name": "ASSICURAZIONI GENERALI",
-            "weightPct": 5.85434,
+            "weightPct": 5.82006,
             "isin": "IT0000062072"
           },
           {
             "name": "SWISS LIFE HOLDING AG",
-            "weightPct": 3.4651,
+            "weightPct": 3.47158,
             "isin": "CH0014852781"
           },
           {
             "name": "PRUDENTIAL PLC",
-            "weightPct": 3.43883,
+            "weightPct": 3.38177,
             "isin": "GB0007099541"
           },
           {
             "name": "AVIVA PLC",
-            "weightPct": 3.15351,
+            "weightPct": 3.14751,
             "isin": "GB00BPQY8M80"
           },
           {
             "name": "SAMPO CLASS A",
-            "weightPct": 2.85296,
+            "weightPct": 2.84123,
             "isin": "FI4000552500"
           }
         ],
         "checkedAt": "2026-10-14",
-        "modifiedAt": "2026-10-13"
+        "modifiedAt": "2026-10-14"
       },
       "characteristics": {
         "terPct": 0.46,
