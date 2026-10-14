@@ -318,7 +318,7 @@ def main():
                     official = published.get(block)
                     existing = accounts.get(block)
                     if official and existing and official['end']==existing['end']:
-                        for field in ['freeCashFlow','freeCashFlowDefinition']:
+                        for field in ['freeCashFlow','freeCashFlowDefinition','cashFlow','sourceUrl']:
                             if field not in existing and field in official:
                                 existing[field]=official[field]
                                 existing.setdefault('additionalSourceUrls',[]).append(official['sourceUrl'])

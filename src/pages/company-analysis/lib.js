@@ -350,7 +350,7 @@ function annualStory(company, context) {
   }
   if (a.netIncome < 0) lines.push(`Cela représente une perte nette de ${fr(-a.netIncome / a.revenue * 100)} ${company.currency} pour 100 ${company.currency} de ventes.`)
   if (finite(context?.previousTaxCharge) && context.previousTaxCharge > 0 && a.previousNetIncome > 0 && a.netIncome > 0) {
-    lines.push(`Une charge fiscale exceptionnelle de ${storyAmount(context.previousTaxCharge, company.currency)} avait réduit le bénéfice de l’année précédente. En réintégrant cette charge au bénéfice précédent, la hausse revient à ${fr(growth(a.netIncome, a.previousNetIncome + context.previousTaxCharge))} %.`)
+    lines.push(`Attention à la comparaison : une charge fiscale exceptionnelle avait pénalisé l’année précédente. En retirant cet effet, le bénéfice est${changePhrase(growth(a.netIncome, a.previousNetIncome + context.previousTaxCharge)).replace(/^,/, "")}.`)
   } else if (explainedMargin) lines.push(explainedMargin)
   return lines.join('\n\n')
 }
@@ -361,7 +361,9 @@ function businessStory(company, context) {
     || s.services + s.products !== company.annual.revenue || s.previousServices + s.previousProducts !== company.annual.previousRevenue
     || s.iphone > s.products) return ''
   const a = company.annual
-  return `En ${a.end.slice(0,4)}, les services ont généré ${storyAmount(s.services, company.currency)}, soit ${fr(s.services / a.revenue * 100)} % des revenus du groupe. Leur chiffre d’affaires a progressé de ${fr(growth(s.services, s.previousServices))} %, contre ${fr(growth(s.products, s.previousProducts))} % pour le matériel. 📈\n\nL’iPhone reste un pilier d’Apple : il représente ${fr(s.iphone / a.revenue * 100)} % de ses ventes.`
+  const sg = growth(s.services,s.previousServices), pg = growth(s.products,s.previousProducts)
+  const movement = sg > 0 && pg > 0 ? `Ils progressent${sg > pg ? ' plus vite que le matériel' : ''} : +${fr(sg)} % sur un an, contre +${fr(pg)} % pour les produits.` : `Leurs revenus sont${changePhrase(sg).replace(/^,/, '')}, contre une variation de ${fr(pg)} % pour le matériel.`
+  return `Sur l’exercice clos le ${dateLabel(a.end)}, les services ont généré ${storyAmount(s.services, company.currency)}, soit ${fr(s.services / a.revenue * 100)} % des revenus du groupe. ${movement} 📈\n\nL’iPhone reste un pilier d’Apple : il représente ${fr(s.iphone / a.revenue * 100)} % de ses ventes.`
 }
 export function metrics(company, now = new Date()) {
   if (!canPublish(company, now)) return []
@@ -386,65 +388,65 @@ export function metrics(company, now = new Date()) {
   if (finite(calculated.dividendYield)) rows.push({ label: 'Rendement · dividendes annuels déclarés', value: `${fr(calculated.dividendYield, 2)} %` })
   return rows
 }
-// Reuse the same qualified, dated inputs as the indicator panel.
+// Publication copy selects evidence; the indicator panel retains the full detail.
+export function latestStoryPeriod(company, now = new Date()) {
+  if (!canPublish(company, now)) return null
+  return [company.quarter, company.halfYear].filter(p => p && p.end > company.annual.end
+    && fresh(p.end, 200, now) && [3, 6, 9].includes(p.durationMonths)
+    && finite(p.revenue) && p.revenue > 0 && finite(p.netIncome)
+    && p.sourceUrl?.startsWith('https://'))
+    .sort((a,b) => b.end.localeCompare(a.end))[0] ?? null
+}
+export function recentCash(company, now = new Date()) {
+  const p = latestStoryPeriod(company, now), c = p?.cashFlow
+  if (!c || c.end !== p.end || c.previousEnd !== p.previousEnd || ![3,6,9].includes(c.durationMonths)
+    || !c.sourceUrl?.startsWith('https://')
+    || !['operatingCashFlow','capitalExpenditure','previousOperatingCashFlow','previousCapitalExpenditure'].every(k => finite(c[k]))
+    || c.capitalExpenditure < 0 || c.previousCapitalExpenditure < 0
+    || (Date.parse(c.end)-Date.parse(c.previousEnd))/86400000 < 350
+    || (Date.parse(c.end)-Date.parse(c.previousEnd))/86400000 > 380) return null
+  return {...c, value:c.operatingCashFlow-c.capitalExpenditure, previous:c.previousOperatingCashFlow-c.previousCapitalExpenditure}
+}
+export function recentStory(company, now = new Date()) {
+  const p = latestStoryPeriod(company, now)
+  if (!p) return ''
+  const duration = {3:'trois',6:'six',9:'neuf'}[p.durationMonths]
+  const income = incomePhrase(p, company.currency)
+    .replace(amount(Math.abs(p.netIncome), company.currency), storyAmount(Math.abs(p.netIncome), company.currency))
+  return `Les derniers résultats donnent un point plus récent : sur les ${duration} mois clos le ${dateLabel(p.end)}, le chiffre d’affaires atteint ${storyAmount(p.revenue, company.currency)}${changePhrase(growth(p.revenue,p.previousRevenue))}. ${income}`
+}
 export function financialStory(company, now = new Date()) {
   if (!canPublish(company, now)) return ''
   const r = decisionRatios(company, now), b = activeBalance(company, now)
   const a = company.annual, paragraphs = []
   const dated = `sur l’exercice clos le ${dateLabel(a.end)}`
-  // Choose the longest available comparable window, without repeating 3/4-year rates.
-  const longest = field => (r.longTerm ?? []).filter(row => row.key.startsWith(field)).sort((a,b) => b.intervals-a.intervals)[0]
-  const revenue = longest('revenue'), profit = longest('netIncome')
-  if (revenue || profit) {
-    const row = revenue ?? profit
-    const parts = [revenue && `le chiffre d’affaires a ${revenue.value < 0 ? 'reculé' : 'progressé'} de ${fr(Math.abs(revenue.value))} % par an en moyenne`,
-      profit && `le bénéfice net a ${profit.value < 0 ? 'reculé' : 'progressé'} de ${fr(Math.abs(profit.value))} % par an en moyenne`].filter(Boolean)
-    paragraphs.push(`📈 Du ${dateLabel(row.start)} au ${dateLabel(row.end)}, ${parts.join(' et ')}.`)
-  }
-  if (finite(r.operatingMargin)) {
-    let line = `Sur 100 ${currencyWord(company.currency)} de ventes, il reste ${fr(r.operatingMargin)} ${currencyWord(company.currency)} de résultat opérationnel avant charges financières et impôts ${dated}.`
-    if (r.operatingMargin < 0) line = `L’activité affiche une perte opérationnelle de ${fr(-r.operatingMargin)} ${currencyWord(company.currency)} pour 100 ${currencyWord(company.currency)} de ventes ${dated}.`
-    if (finite(r.operatingMarginChange)) line += Math.abs(r.operatingMarginChange) < .05
-      ? ' La marge opérationnelle est presque stable sur un an.'
-      : ` La marge opérationnelle ${r.operatingMarginChange > 0 ? 'gagne' : 'perd'} ${fr(Math.abs(r.operatingMarginChange))} point${Math.abs(r.operatingMarginChange) >= 2 ? 's' : ''} sur un an.`
-    paragraphs.push(line)
-  }
+  const recent = recentCash(company,now)
+  // Annual cash never masquerades as the direction of newer quarterly results.
   if (finite(r.freeCashFlow)) {
-    const parts = [r.freeCashFlow > 0
-      ? `💸 Après les achats d’immobilisations, l’activité a généré ${storyAmount(r.freeCashFlow, company.currency)} de cash ${dated} (FCF).`
+    let line = r.freeCashFlow > 0
+      ? `💸 Après ses investissements en immobilisations, ${company.name} a généré ${storyAmount(r.freeCashFlow, company.currency)} de cash ${dated}.`
       : r.freeCashFlow < 0
-        ? `💸 Le cash généré par l’activité ne couvre pas les achats d’immobilisations ${dated} : le FCF est négatif de ${storyAmount(-r.freeCashFlow, company.currency)}.`
-        : `💸 Le cash généré par l’activité couvre exactement les achats d’immobilisations ${dated} : le FCF est à l’équilibre.`]
-    if (finite(r.fcfGrowth)) parts.push(`Ce montant ${r.fcfGrowth < 0 ? 'recule' : 'progresse'} de ${fr(Math.abs(r.fcfGrowth))} % sur un an.`)
-    else if (finite(r.fcfChange) && Math.abs(r.fcfChange) >= 5e4) parts.push(`Le FCF ${r.fcfChange > 0 ? 's’améliore' : 'se dégrade'} de ${storyAmount(Math.abs(r.fcfChange), company.currency)} sur un an.`)
-    const cash = longest('freeCashFlow')
-    if (cash) parts.push(`Du ${dateLabel(cash.start)} au ${dateLabel(cash.end)}, il a ${cash.value < 0 ? 'reculé' : 'progressé'} de ${fr(Math.abs(cash.value))} % par an en moyenne.`)
-    if (r.freeCashFlow > 0 && finite(r.cashConversion)) parts.push(`Cela représente ${fr(r.cashConversion)} % du bénéfice net ; le bénéfice comptable et le cash disponible sont deux mesures différentes.`)
-    if (finite(r.capexRevenue)) parts.push(`Les achats d’immobilisations représentent ${fr(r.capexRevenue)} % des ventes, hors acquisitions d’entreprises.`)
-    paragraphs.push(parts.join(' '))
-  }
-  if (finite(b?.netDebt)) {
-    let line = b.netDebt < 0
-      ? `🏦 Au ${dateLabel(b.asOf)}, la trésorerie retenue dans le calcul dépasse la dette retenue de ${storyAmount(-b.netDebt, company.currency)}.`
-      : `🏦 La dette nette atteint ${storyAmount(b.netDebt, company.currency)} au ${dateLabel(b.asOf)}.`
-    if (finite(r.netDebtFCF)) line += ` Soit ${fr(r.netDebtFCF)} fois le FCF de l’exercice clos le ${dateLabel(a.end)} : un ordre de grandeur, pas un délai de remboursement.`
-    if (finite(r.netDebtChange) && Math.abs(r.netDebtChange) >= 5e4) line += ` À définition identique, la dette nette a ${r.netDebtChange < 0 ? 'diminué' : 'augmenté'} de ${storyAmount(Math.abs(r.netDebtChange), company.currency)} depuis le ${dateLabel(r.previousBalanceAsOf)}.`
+        ? `💸 Les investissements en immobilisations dépassent le cash généré par l’activité ${dated}. Le FCF est négatif de ${storyAmount(-r.freeCashFlow, company.currency)}.`
+        : `💸 ${dated[0].toUpperCase()+dated.slice(1)}, le cash généré par l’activité couvre exactement les investissements en immobilisations.`
+    if (!latestStoryPeriod(company,now) && finite(r.fcfGrowth)) line += Math.abs(r.fcfGrowth) < .05
+      ? ' Ce montant est presque stable sur un an.'
+      : ` Ce montant ${r.fcfGrowth < 0 ? 'recule' : 'progresse'} de ${fr(Math.abs(r.fcfGrowth))} % sur un an.`
+    if (recent) {
+      const duration = {3:'trois',6:'six',9:'neuf'}[recent.durationMonths]
+      line += ` Sur les ${duration} mois clos le ${dateLabel(recent.end)}, le FCF ${recent.value < 0 ? 'est négatif de' : 'atteint'} ${storyAmount(Math.abs(recent.value),company.currency)}, contre ${storyAmount(recent.previous,company.currency)} sur la même période un an plus tôt.`
+    }
     paragraphs.push(line)
   }
-  const capital = []
-  if (finite(r.dividendFCF)) capital.push(`Les dividendes payés représentent ${fr(r.dividendFCF)} % du FCF ${dated}.${r.dividendFCF > 100 ? ' Ils dépassent donc le cash disponible après achats d’immobilisations sur cet exercice.' : ''}`)
-  if (finite(r.shareRepurchases) && r.shareRepurchases > 0) capital.push(`Le groupe a aussi consacré ${storyAmount(r.shareRepurchases, company.currency)} aux rachats d’actions ${dated}.`)
-  if (finite(r.shareChange) && Math.abs(r.shareChange) >= .05) capital.push(`Le nombre moyen d’actions diluées a ${r.shareChange > 0 ? 'augmenté' : 'diminué'} de ${fr(Math.abs(r.shareChange))} % sur un an ; les rachats seuls ne donnent pas la variation nette.`)
-  if (finite(r.shareBasedCompensation) && r.shareBasedCompensation > 0) capital.push(`La rémunération en actions représente une charge de ${storyAmount(r.shareBasedCompensation, company.currency)}, soit ${fr(r.shareBasedCompensationRevenue)} % des ventes ${dated}. Ce montant ne mesure pas directement la dilution.`)
-  if (capital.length) paragraphs.push(capital.join(' '))
-  const solidity = []
-  if (finite(r.roe)) solidity.push(`Le bénéfice net représente ${fr(r.roe)} % des capitaux propres moyens ${dated} (ROE). Les rachats d’actions peuvent relever ce ratio en réduisant les capitaux propres.`)
-  if (finite(r.currentRatio)) solidity.push(`Au ${dateLabel(r.solidityAsOf)}, les actifs à court terme représentent ${fr(r.currentRatio, 2)} fois les dettes à court terme.${Number(r.currentRatio.toFixed(2)) < 1 ? ' Ils sont donc inférieurs à ces dettes.' : ''} Leur montant ne garantit pas qu’ils soient immédiatement disponibles.`)
-  if (finite(r.interestCoverage)) solidity.push(r.interestCoverage < 0
-    ? `Le résultat opérationnel est négatif ${dated} ; il ne couvre donc pas les charges d’intérêts publiées.`
-    : `Le résultat opérationnel représente ${fr(r.interestCoverage)} fois les charges d’intérêts publiées ${dated}.`)
-  if (finite(r.cashRatio)) solidity.push(`La trésorerie et ses équivalents seuls représentent ${fr(r.cashRatio * 100)} % de ces dettes, hors placements.`)
-  if (solidity.length) paragraphs.push(solidity.join(' '))
+  // At most one extra topic, prioritising a concrete tension over routine ratios.
+  if (r.dividendFCF > 100) {
+    paragraphs.push(`Les dividendes versés dépassent le cash généré après investissements sur cet exercice : ils représentent ${fr(r.dividendFCF)} % du FCF. Ce niveau de distribution mérite donc d’être suivi.`)
+  } else if (finite(r.interestCoverage) && r.interestCoverage < 1) {
+    paragraphs.push(`Sur ce même exercice, le résultat opérationnel ne couvre pas les charges d’intérêts publiées.`)
+  } else if (finite(b?.netDebt) && r.netDebtFCF >= 3 && b.definition) {
+    paragraphs.push(`🏦 Au ${dateLabel(b.asOf)}, la dette nette atteint ${storyAmount(b.netDebt,company.currency)}. Périmètre : ${b.definition.replace(/\.$/,'')}.`)
+  } else if (!latestStoryPeriod(company,now) && finite(r.shareChange) && Math.abs(r.shareChange) >= 2) {
+    paragraphs.push(`Le nombre moyen d’actions diluées a ${r.shareChange > 0 ? 'augmenté' : 'diminué'} de ${fr(Math.abs(r.shareChange))} % sur cet exercice. ${r.shareChange > 0 ? 'À bénéfice identique, davantage d’actions signifie moins de bénéfice par action.' : 'À bénéfice identique, moins d’actions signifie davantage de bénéfice par action.'}`)
+  }
   return paragraphs.join('\n\n')
 }
 export function buildTweetText(company, now = new Date()) {
@@ -456,6 +458,8 @@ export function buildTweetText(company, now = new Date()) {
   lines.push(annualStory(company, context))
   const financial = financialStory(company, now)
   if (financial) lines.push(financial)
+  const recent = recentStory(company, now)
+  if (recent) lines.push(recent)
   // Market ratios use the same reproducible close; forecasts stay in the tool.
   const calculated = calculatedRatios(company, now)
   const q = company.quote
@@ -468,10 +472,9 @@ export function buildTweetText(company, now = new Date()) {
         : `. Soit environ ${fr(pe)} fois son bénéfice dilué par action de l’exercice terminé le ${dateLabel(company.annual.end)}.`
     } else price += '.'
     lines.push(price)
-    const cash = decisionRatios(company, now)
-    if (finite(cash.fcfYield)) lines.push(`Rapporté à la capitalisation indicative à cette clôture, le FCF de l’exercice clos le ${dateLabel(company.annual.end)} représente ${fr(cash.fcfYield, 2)} %. Ce rendement du FCF n’est pas un dividende ; le nombre d’actions utilisé est celui publié au ${dateLabel(cash.fcfSharesAsOf)}.`)
     if (company.id === 'totalenergies') lines.push('Le cours retenu est celui de l’action ordinaire cotée à New York en USD, la devise des comptes présentés.')
   }
   if (company.editorialQuestion) lines.push(`${company.editorialQuestion} 🤔`)
+  lines.push('Pas un conseil financier.')
   return lines.join('\n\n')
 }

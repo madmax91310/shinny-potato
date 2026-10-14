@@ -2,7 +2,7 @@ import { companyImageModel } from '../src/pages/company-analysis/image.js'
 import assert from 'node:assert/strict'
 import { searchData } from '../src/data/catalog.js'
 import { COMPANIES } from '../src/pages/company-analysis/data.js'
-import { buildTweetText, canPublish, activeValuation, calculatedRatios, activeBalance, metrics, marginExplanation, activeEstimates, activeHistory, activeAnnualContext } from '../src/pages/company-analysis/lib.js'
+import { buildTweetText, canPublish, activeValuation, calculatedRatios, activeBalance, metrics, marginExplanation, activeEstimates, activeHistory, activeAnnualContext, decisionIndicators, recentCash } from '../src/pages/company-analysis/lib.js'
 
 // Synthetic scenarios use a fixed clock; live roster checks use each observation date.
 const now = new Date('2026-10-07T07:00:00Z')
@@ -259,7 +259,10 @@ rich.decision = {observedAt:'2026-10-07',annualEnd:rich.annual.end,years:[cashYe
 rich.history = {observedAt:'2026-10-07',years:rich.decision.years.map(({end,revenue,netIncome})=>({end,revenue,netIncome}))}
 rich.balance = {asOf:'2026-09-30',observedAt:'2026-10-07',netDebt:60e9,definition:'same'}
 text=buildTweetText(rich,now)
-for (const phrase of [/30,0 milliards.*cash/,/progresse de 50,0 %/,/10,0 % des ventes/,/2,0 fois le FCF/,/6,0 milliards.*rachats/,/3,0 milliards.*2,5 % des ventes/,/dépassent donc le cash/,/charges d’intérêts/,/par an en moyenne/]) assert.match(text,phrase)
+for (const phrase of [/30,0 milliards.*cash/,/progresse de 50,0 %/,/dividendes versés dépassent/]) assert.match(text,phrase)
+// Detail stays available, but publication does not dump every ratio.
+for (const key of ['capexRevenue','netDebtFCF','shareRepurchases','shareBasedCompensation','interestCoverage']) assert(decisionIndicators(rich,now).some(r=>r.key===key))
+assert(!/rémunération en actions|ROE|par an en moyenne/.test(text))
 const richer=structuredClone(rich)
 richer.decision.years.at(-1).freeCashFlow=40e9;richer.decision.years.at(-1).operatingCashFlow=52e9;richer.annual.freeCashFlow=40e9
 assert.match(buildTweetText(richer,now),/40,0 milliards.*cash/)
@@ -274,10 +277,36 @@ text=buildTweetText(negativeCash,now)
 assert.match(text,/FCF est négatif de 5,0 milliards/)
 assert(!/fois le FCF|dividendes payés représentent|FCF.*reculé.*par an en moyenne/.test(text))
 const cashSurplus=structuredClone(rich);cashSurplus.balance.netDebt=-5e9
-assert.match(buildTweetText(cashSurplus,now),/trésorerie.*dépasse la dette.*5,0 milliards/)
+assert(decisionIndicators(cashSurplus,now).some(r=>r.key==='netDebt' && r.label==='Trésorerie nette'))
 assert(!buildTweetText(cashSurplus,now).includes('fois le FCF'))
 for(const company of COMPANIES) {
   const copy=buildTweetText(company,observationDate(company))
   assert(!/NaN|undefined|Infinity|sous-évalu|surévalu|il faut acheter/.test(copy))
 }
 console.log('Financial prose: refreshed cash, CAGR, investments, debt, dividends, repurchases, compensation, stale inputs and negative FCF OK.')
+
+// Newer accounts replace stale direction; cumulative cash never becomes quarterly cash.
+const recent = structuredClone(rich)
+recent.quarter = {end:'2026-06-30',previousEnd:'2025-06-30',durationMonths:3,revenue:50e9,previousRevenue:40e9,netIncome:5e9,previousNetIncome:4e9,sourceUrl:'https://issuer.test/q2',cashFlow:{end:'2026-06-30',previousEnd:'2025-06-30',durationMonths:6,operatingCashFlow:25e9,capitalExpenditure:5e9,previousOperatingCashFlow:15e9,previousCapitalExpenditure:5e9,sourceUrl:'https://issuer.test/q2'}}
+text=buildTweetText(recent,now)
+assert.match(text,/six mois clos.*20,0 milliards/)
+assert.match(text,/trois mois clos.*50,0 milliards/)
+assert(!text.includes('progresse de 50,0 %'))
+recent.quarter.cashFlow.operatingCashFlow=0
+assert.match(buildTweetText(recent,now),/FCF est négatif de 5,0 milliards/)
+recent.quarter.cashFlow.end='2026-03-31'
+assert.equal(recentCash(recent,now),null)
+recent.quarter.end='2026-11-30'
+assert(!buildTweetText(recent,now).includes('Les derniers résultats'))
+const debtStory=structuredClone(rich)
+debtStory.decision.years.at(-1).dividendsPaid=0
+debtStory.balance.netDebt=150e9
+debtStory.balance.definition='Dette financière hors locations moins trésorerie ; placements exclus'
+assert.match(buildTweetText(debtStory,now),/placements exclus/)
+for(const c of COMPANIES) {
+ const copy=buildTweetText(c,observationDate(c))
+ assert(copy.endsWith('Pas un conseil financier.'))
+ assert(copy.length<3400,`${c.id}: concise publication (${copy.length})`)
+ assert(!/Ce montant ne mesure pas|ordre de grandeur|Ce rendement du FCF|Le cash mérite/.test(copy))
+}
+console.log('Concise stories: all companies, latest periods, negative cash, date mismatches and explicit debt scope OK.')
