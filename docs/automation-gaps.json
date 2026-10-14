@@ -176,7 +176,7 @@
       "fund": "Fonds général",
       "field": "ceiling",
       "status": "unqualified",
-      "checkedAt": "2026-10-13",
+      "checkedAt": "2026-10-14",
       "sourceUrls": [
         "https://lucya.com/assurance-vie/lucya-cardif/",
         "https://lucya.com/app/uploads/2026/02/notice-lucya-cardif.pdf",
@@ -191,7 +191,7 @@
       "fund": "Euro Private Strategies",
       "field": "ceiling",
       "status": "unqualified",
-      "checkedAt": "2026-10-13",
+      "checkedAt": "2026-10-14",
       "sourceUrls": [
         "https://lucya.com/assurance-vie/lucya-cardif/",
         "https://lucya.com/app/uploads/2026/02/notice-lucya-cardif.pdf",
@@ -205,7 +205,7 @@
       "fund": "Actif général SwissLife",
       "field": "maxAllocation",
       "status": "not-published",
-      "checkedAt": "2026-10-13",
+      "checkedAt": "2026-10-14",
       "sourceUrls": [
         "https://www.placement-direct.fr/assurance-vie/placement-direct-vie",
         "https://static.placement-direct.fr/documents/dispositions-generales-du-contrat-placement-direct-vie.pdf",
@@ -219,7 +219,7 @@
       "fund": "Actif général SwissLife",
       "field": "ceiling",
       "status": "unqualified",
-      "checkedAt": "2026-10-13",
+      "checkedAt": "2026-10-14",
       "sourceUrls": [
         "https://www.placement-direct.fr/assurance-vie/placement-direct-vie",
         "https://static.placement-direct.fr/documents/dispositions-generales-du-contrat-placement-direct-vie.pdf",
@@ -259,11 +259,11 @@
       "name": "Linxea Zen",
       "fund": "Apicil Euroflex",
       "status": "unlimited",
-      "checkedAt": "2026-10-13",
+      "checkedAt": "2026-10-14",
       "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-zen/supports-disponibles-sur-linxea-zen/fonds-euro/",
       "statement": "Ce fonds en euros est accessible sans limite de montant et sans conditions d’unités de compte",
       "scope": "Souscriptions, versements complémentaires et programmés",
-      "sha256": "9d5765a4b58c6a17948a02aa08cae425453a58ba29c289dbe986babac7f90b6c",
+      "sha256": "b7f7854ad2553b3e83220ea9f5a28ddd26952beb853c3849d890ea163b5cb197",
       "active": true
     },
     {
@@ -271,11 +271,11 @@
       "name": "Linxea Zen",
       "fund": "Apicil Euro Garanti",
       "status": "unlimited",
-      "checkedAt": "2026-10-13",
+      "checkedAt": "2026-10-14",
       "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-zen/supports-disponibles-sur-linxea-zen/fonds-euro/",
       "statement": "Ce fonds en euros est accessible sans limite de montant et sans conditions d’unités de compte",
       "scope": "Souscriptions, versements complémentaires et programmés",
-      "sha256": "9d5765a4b58c6a17948a02aa08cae425453a58ba29c289dbe986babac7f90b6c",
+      "sha256": "b7f7854ad2553b3e83220ea9f5a28ddd26952beb853c3849d890ea163b5cb197",
       "active": true
     },
     {
@@ -714,7 +714,7 @@
       "status": "not-published",
       "checkedAt": "2026-10-14",
       "sourceUrl": "https://globalxetfs.eu/funds/silv/",
-      "sha256": "bfd7fb7588e6d3d39ae1985f614726c05fbdd9942b015c38b94289e3c4bbdec0",
+      "sha256": "649f9a83d8236d213f602ce5fa72b8a9033192a209401422599a28e8a9d326ea",
       "reason": "Aucun tableau sectoriel complet du fonds dans la page officielle contrôlée.",
       "evidence": {
         "datedCountryTable": true,
@@ -1450,7 +1450,7 @@
       "reason": "La section de performance ne fournit pas de calendrier annuel qualifié pour la part USD distribuante. Les rendements capitalisants ou glissants ne sont pas substitués.",
       "checkedAt": "2026-10-14",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "572af72da5b03df43bdaf3a5c438fa0e124f5ba5d76241992988d9f0cf95f0b1",
+      "sha256": "cf58e36dd30bc163dcea36301e67a5d706a3bab38eedbf904c7ca154b2984beb",
       "evidence": []
     },
     {
@@ -1464,7 +1464,7 @@
       "reason": "Aucune allocation géographique économique complète qualifiée dans la page ; les pays de commercialisation et le panier de substitution sont exclus.",
       "checkedAt": "2026-10-14",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "572af72da5b03df43bdaf3a5c438fa0e124f5ba5d76241992988d9f0cf95f0b1",
+      "sha256": "cf58e36dd30bc163dcea36301e67a5d706a3bab38eedbf904c7ca154b2984beb",
       "evidence": []
     },
     {
@@ -1478,7 +1478,7 @@
       "reason": "Table sectorielle de référence à recouper avec l’indice exact avant utilisation ; aucune allocation du panier de substitution utilisée.",
       "checkedAt": "2026-10-14",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "572af72da5b03df43bdaf3a5c438fa0e124f5ba5d76241992988d9f0cf95f0b1",
+      "sha256": "cf58e36dd30bc163dcea36301e67a5d706a3bab38eedbf904c7ca154b2984beb",
       "evidence": [
         "Reference Index Sector Breakdown",
         "As of 30 Sep 2026",
@@ -1519,7 +1519,7 @@
       "reason": "Poids différents pour les mêmes titres dans la section datée de l’indice : AAPL, AMZN, GOOG, GOOGL, META, MSFT, NVDA, TSLA.",
       "checkedAt": "2026-10-14",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "572af72da5b03df43bdaf3a5c438fa0e124f5ba5d76241992988d9f0cf95f0b1",
+      "sha256": "cf58e36dd30bc163dcea36301e67a5d706a3bab38eedbf904c7ca154b2984beb",
       "evidence": [
         "Top 10 Reference Index Constituents",
         "As of 08 Oct 2026",
