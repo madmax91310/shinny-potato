@@ -1,25 +1,44 @@
 """Collect complete exact-share issuer records; no assisted or cached source handoff."""
+import copy
 import argparse, datetime as dt, hashlib, json
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
-from collect_etf_pilot import product_data_url, parse_share
+from collect_etf_pilot import product_data_url, parse_share, source_date
 from collect_etf_holdings import parse_holdings, collect_holdings
 from data_automation import get_text, UTC, write_json_atomic
 from apply_etf_collection import merge_collection
 ROOT=Path(__file__).resolve().parents[1]
 MICS={'London Stock Exchange':'XLON','Deutsche Boerse Xetra':'XETR','Xetra':'XETR','Euronext Amsterdam':'XAMS','Nyse Euronext - Euronext Paris':'XPAR','Borsa Italiana':'ETFP','SIX Swiss Exchange':'XSWX'}
+def holdings_sectors(body,as_of):
+  points=body['componentsByNameMap']['holdings']['containersByNameMap']['all']['dataPointsByNameMap']
+  sectors={}
+  names=points['sectorName']['value'];weights=points['holdingPercent']['value'];kinds=points['assetClass']['value']
+  if len(names)!=len(weights):raise ValueError('Truncated holdings sector columns')
+  for name,weight,kind in zip(names,weights,kinds):
+   label=name if kind=='Equity' else 'Cash and/or Derivatives'
+   if not label:raise ValueError('Missing equity sector')
+   sectors[label]=sectors.get(label,0)+weight
+  return {'asOf':as_of,'method':'Sector of all published holdings, signed cash/derivatives included, no renormalisation','rows':[{'name':k,'weightPct':round(v,6)}for k,v in sectors.items()]}
+
 def collect_one(config,now):
  share={**config,'currency':config.get('currency','USD'),'collectHoldings':True,'requireFullHistory':False}
- url=product_data_url(share).replace('holdings.all','holdings.all%2Clistings')
- raw=get_text(url,('application/json',),10000000);body=json.loads(raw)
+ url=product_data_url(share).replace('holdings.all','holdings.all%2Clistings%2CfundamentalsAndRisk')
+ raw=get_text(url,('application/json',),20000000);body=json.loads(raw)
  components=body['componentsByNameMap']
  facts=components['keyFundFacts']['containersByNameMap']['default']['dataPointsByNameMap']
  v=lambda key:facts[key]['value']
  share['distribution']=v('useOfProfitsCode')
- result=parse_share(body,share,now)
+ # Hedged funds can publish gross exposure breakdowns. Use the complete signed
+ # positions instead, without renormalising them or confusing exposure with NAV.
+ parse_body=copy.deepcopy(body) if config.get('compositionFromHoldings') else body
+ if config.get('compositionFromHoldings'):parse_body['componentsByNameMap'].pop('exposureBreakdowns',None)
+ result=parse_share(parse_body,share,now)
  if not result.get('performance',{}).get('years'):raise ValueError('No complete annual NAV total return yet')
  holdings,countries=parse_holdings(body,share,now) if isinstance(body,dict) else collect_holdings(components['holdings'],share,now)
  result['holdings']=holdings
+ if config.get('compositionFromHoldings'):
+  result['sectors']=holdings_sectors(body,holdings['asOf'])
+  result['countries']=countries
  if not result['countries'].get('rows'):result['countries']=countries
  if any(not result[field].get('rows') for field in ['holdings','countries','sectors']):raise ValueError('Incomplete issuer composition')
  page_url=url
@@ -41,7 +60,16 @@ def collect_one(config,now):
  listing=sorted(listings,key=lambda x:(x['currency']!='USD',x['mic']!='XLON',x['ticker']))[0]
  result.update(name=name,sourceUrl=url,listing=listing,listings=listings)
  result['characteristics']={'terPct':result['terPct'],'index':result['index'],'distribution':result['distribution'],'domicile':v('domicile'),'replicationMethod':v('productStructure')+' ('+v('fundMethodologyTypeCode')+')','inceptionDate':str(v(config.get('inceptionField','inceptionDate')))}
- if v('ucitsCompliantFlag')!='Yes' or v('assetClass')!=config.get('holdingsAssetClass','Equity'):raise ValueError('Unexpected UCITS/asset class')
+ if v('ucitsCompliantFlag')!='Yes' or v('assetClass')!=config.get('fundAssetClass',config.get('holdingsAssetClass','Equity')):raise ValueError('Unexpected UCITS/asset class')
+ metrics=components.get('fundamentalsAndRisk',{}).get('containersByNameMap',{}).get('default',{}).get('dataPointsByNameMap',{})
+ result['metrics']={}
+ for field,label,unit,low,high in [('modelOad','Duration effective','ans',0,100),('weightedAvgLife','Maturité moyenne pondérée','ans',0,100),('yieldToWorst','Rendement actuariel moyen (YTM/YTW)','%',-20,100),('twelveMonTrlYld','Rendement des distributions sur 12 mois','%',0,100)]:
+  point=metrics.get(field,{})
+  if point.get('value') is None:continue
+  value=point['value']
+  if isinstance(value,bool) or not isinstance(value,(int,float)) or not low<=value<=high:raise ValueError('Invalid issuer metric: '+field)
+  result['metrics'][field]={'value':value,'label':label,'unit':unit,'asOf':source_date(point['asOfDate'],now),'checkedAt':now.date().isoformat(),'sourceUrl':url,'method':point.get('infoBubble',''),'scope':'Fund portfolio' if field!='twelveMonTrlYld' else 'Exact share, trailing 12 months'}
+ if config.get('currencyHedge') is True and 'Hedged' not in result['index']:raise ValueError('Hedge benchmark changed')
  result['checkedAt']=now.isoformat();result['pageSha256']=hashlib.sha256(raw.encode()).hexdigest();result.pop('rawComponents',None)
  return result
 
@@ -63,6 +91,7 @@ def main():
    try:
     merged=merge_collection({'checkedAt':now.isoformat(),'shares':[r]},current,{})
     if previous and any(r[field]['asOf']<previous[field]['asOf']for field in ['countries','sectors','holdings','aum']):raise ValueError('Observation date regressed')
+    if previous and any(k not in r.get('metrics',{}) or r['metrics'][k]['asOf']<v['asOf']for k,v in previous.get('metrics',{}).items()):raise ValueError('Issuer metric missing or observation date regressed')
     current=merged;r['automatedRecord']=merged[r['isin']];old[r['id']]=r;valid.append(r)
    except (ValueError,KeyError,TypeError)as e:report['excluded'].append({'id':r['id'],'isin':r['isin'],'error':str(e)})
   report['records']=valid

@@ -97,7 +97,7 @@ async function testPracticalSheets(page) {
 
 async function testWorkspaceNavigation(page) {
   await page.goto(`${BASE}/`, { waitUntil: 'networkidle' });
-  const checks = { allTools: await page.locator('.workspace-tool-card').count() === TOOLS.length };
+  const checks = { allTools: await page.locator('.workspace-tool-card').count() === TOOLS.filter(t=>!t.hidden).length };
   checks.publicationDays = (await page.locator('.workspace-publication-day').allTextContents()).sort().join('|') === TOOLS.filter(tool => tool.publicationDay).map(tool => tool.publicationDay).sort().join('|');
   checks.onlyTools = await page.locator('.workspace-search,.workspace-filters,.workspace-brand').count() === 0;
   checks.weeklyOrder = (await page.locator('.workspace-tool-card').evaluateAll(cards => cards.map(card => new URL(card.href).pathname.split('/').at(-1)))).join('|') === [...HOME_TOOLS.filter(tool => /^(Lundi|Mardi|Mercredi|Jeudi|Vendredi|Samedi|Dimanche)/.test(tool.publicationDay ?? '')), ...HOME_TOOLS.filter(tool => tool.publicationDay === 'Publication ponctuelle'), ...HOME_TOOLS.filter(tool => !/^(Lundi|Mardi|Mercredi|Jeudi|Vendredi|Samedi|Dimanche)/.test(tool.publicationDay ?? '') && tool.publicationDay !== 'Publication ponctuelle')].map(tool => tool.to.slice(1)).join('|');

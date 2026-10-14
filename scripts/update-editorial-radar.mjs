@@ -16,11 +16,21 @@ export async function collectObservations(root = ROOT) {
     if (value === null || value === undefined) return
     observations.push({ ...base, field, fieldLabel, value, ...(evidence.sha256 ? { sourceHash: evidence.sha256 } : {}), sourceUrl: evidence.sourceUrl ?? evidence.source?.url ?? base.sourceUrl, period: evidence.asOf ?? evidence.effectiveAt ?? evidence.referencePeriod ?? evidence.year?.toString() ?? base.period ?? evidence.checkedAt ?? base.checkedAt, checkedAt: evidence.checkedAt ?? evidence.source?.checkedAt ?? base.checkedAt, scope: evidence.scope ?? base.scope, ...extra })
   }
-  const etfs = await load('src/data/automated-etf.json')
+  const baseEtfs = await load('src/data/automated-etf.json')
+  const additions = await load('src/data/non-bond-etf-records.json')
+  const qualified = await load('src/data/qualified-exposure-etfs.json')
+  const expanded = await load('src/data/non-bond-qualified-records.json')
+  const lifeStrategy = await load('src/data/lifestrategy.json')
+  const etfs = { ...lifeStrategy, ...baseEtfs, ...additions, ...Object.fromEntries(Object.values({...qualified,...expanded}).map(r=>[r.isin,r.automatedRecord])) }
   for (const [isin, r] of Object.entries(etfs ?? {})) {
     const c = r.characteristics ?? {}, label = INSTRUMENTS_BY_ISIN[isin]?.name ?? `${r.provider ?? 'ETF'} ${isin}`
     const base = { family: 'etf', entity: isin, label, sourceUrl: r.sourceUrl, checkedAt: c.checkedAt, scope: `Part ${isin}`, tool: '/fiches-etf', maxAgeDays: 60 }
     add(base, 'ter', 'Frais annuels', c.terPct, c, { unit: '% / an', priority: 'high', discovery: true, angle: 'À exposition comparable, quelles différences avec les autres ETF disponibles ?', reason: 'Toute modification confirmée des frais annuels est signalée.' })
+    for (const [field, label] of Object.entries({index:'Indice suivi',distribution:'Politique de revenus',replicationMethod:'Méthode de réplication'})) {
+      if (c[field]) add(base, `characteristics:${field}`, label, c[field], c, { priority:'high', reason:'Modification d’une caractéristique de la part exacte ; vérifier le document émetteur avant publication.' })
+    }
+    const qualifiedRecord = Object.values({...qualified,...expanded}).find(q=>q.isin===isin)
+    for (const [field, m] of Object.entries(qualifiedRecord?.metrics ?? {})) add(base, `metric:${field}`, m.label, m.value, m, {unit:m.unit,threshold:field==='twelveMonTrlYld'?.5:field==='yieldToWorst'?.5:.25,scope:`${isin} · ${m.scope} · ${field}`,reason:'Variation cumulée de la mesure publiée ; ce rendement indicatif ne garantit pas la performance future.'})
     if (r.aum) add(base, 'aum', 'Encours', r.aum.amount, r.aum, { scope: `${isin} · ${r.aum.scope} · ${r.aum.currency}`, unit: r.aum.currency, relativeThreshold: .2, reason: 'Variation cumulée de l’encours d’au moins 20 %, même part/fonds et même devise. Ce n’est pas une mesure des flux nets.' })
     for (const field of ['countries', 'sectors']) {
       const block = r[field]

@@ -38,7 +38,7 @@ try {
     await started
     // Router transitions keep the previous content while a lazy route loads.
     assert(await page.getByRole('heading', { name: 'Mes outils de la semaine' }).isVisible())
-    assert.equal(await page.locator('.workspace-tool-card').count(), TOOLS.length, 'Previous home stays usable during loading')
+    assert.equal(await page.locator('.workspace-tool-card').count(), TOOLS.filter(t=>!t.hidden).length, 'Previous home stays usable during loading')
   } finally { release() }
   await page.getByText('Utiliser les frais d’un ETF', { exact: true }).waitFor()
   await page.unroute('**/assets/*.js')

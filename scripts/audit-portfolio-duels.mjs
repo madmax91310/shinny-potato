@@ -135,9 +135,9 @@ const strongerSmall={...smallDuel,b:{...smallDuel.b,final:smallDuel.a.final+1000
 assert.match(resultReading(strongerSmall),/de plus[\s\S]*mieux que le World seul chacune/)
 assert.doesNotMatch(resultReading(strongerSmall),/de moins|moins bien|mieux en 2020/)
 const closeSmall={...smallDuel,b:{...smallDuel.b,final:smallDuel.a.final+27}}
-assert.match(resultReading(closeSmall),/27.*frais et leur composition/)
+assert.match(resultReading(closeSmall),/27.*frais.*leur composition.*baisses/)
 const tieDifferentPath={...smallDuel,b:{...smallDuel.b,final:smallDuel.a.final}}
-assert.match(resultReading(tieDifferentPath),/même montant[\s\S]*pas évolué de la même façon chaque année/)
+assert.match(resultReading(tieDifferentPath),/même montant[\s\S]*résultats annuels diffèrent/)
 assert.doesNotMatch(resultReading(tieDifferentPath),/de plus|de moins/)
 console.log('Petites entreprises : formulation validée, ordre inversé, gagnant modifié, résultats proches et égalité vérifiés.')
 const nasdaqDuel=buildDuel(DUELS.find(d=>d.id==='world-nasdaq'))

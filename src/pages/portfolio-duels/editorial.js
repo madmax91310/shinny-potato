@@ -71,9 +71,9 @@ export function duelEditorial(duel) {
  let conclusion
  if (same) {
   conclusion='À l’euro près, les deux portefeuilles arrivent au même montant.'
-  if (!equalAnnual) conclusion+=' Ils n’ont pourtant pas évolué de la même façon chaque année. Ça compte aussi au moment de choisir.'
+  if (!equalAnnual) conclusion+=' Leurs résultats annuels diffèrent : arriver au même montant ne signifie pas avoir traversé les mêmes variations.'
  } else if (gap<200) {
-  conclusion=`Sur cette période, les deux portefeuilles arrivent presque au même résultat. Avec seulement ${money(gap)} d’écart, je regarderais plutôt leurs frais et leur composition pour les départager.`
+  conclusion=`Sur cette période, les deux portefeuilles arrivent presque au même résultat. Avec seulement ${money(gap)} d’écart, je regarderais aussi leurs frais, leur composition et les baisses traversées pour les départager.`
  } else if (solo && mixed.assets.length===2 && mixed.assets[0].exposure==='world' && ['smallcap','us-small'].includes(mixed.assets[1].exposure)) {
   const small=mixed.assets[1].exposure==='us-small' ? 'Les petites entreprises américaines' : 'Les petites entreprises des pays développés'
   const count=({3:'trois',4:'quatre',5:'cinq',6:'six'})[years.length] ?? years.length
@@ -88,7 +88,7 @@ export function duelEditorial(duel) {
    conclusion+=' Il fait mieux que le World seul chacune des années comparées.'
   }
  } else if (solo && mixed.assets.length===2 && mixed.assets[0].exposure==='world' && mixed.assets[1].exposure==='nasdaq' && mixed.final>solo.final && mixed.worst<solo.worst && mixed.worst<0 && solo.worst<0 && mixed.worstYear===solo.worstYear) {
-  conclusion=`Avec la poche Nasdaq, le portefeuille termine avec ${money(gap)} de plus sur cette période, mais elle accentue aussi la baisse en ${mixed.worstYear} : ${move(mixed.worst).replace('perd','le portefeuille perd')}, contre ${percent(solo.worst)} pour le World seul. Cette baisse compte aussi si tu envisages de renforcer des entreprises déjà présentes dans le World.`
+  conclusion=`Avec la poche Nasdaq, le portefeuille termine avec ${money(gap)} de plus sur cette période, mais elle accentue aussi la baisse en ${mixed.worstYear} : ${move(mixed.worst).replace('perd','le portefeuille perd')}, contre ${percent(solo.worst)} pour le World seul. Je regarde aussi cette baisse avant de renforcer des entreprises déjà présentes dans le World.`
  } else {
   conclusion=`Sur cette période, le portefeuille ${b.final>a.final ? 'B' : 'A'} termine avec ${money(gap)} de plus.`
   if (!equalAnnual) conclusion+=` En ${year}, A ${move(a.annual[year])}, et B ${move(b.annual[year])}.`

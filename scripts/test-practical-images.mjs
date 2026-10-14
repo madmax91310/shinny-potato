@@ -1,3 +1,4 @@
+import { TOPICS } from '../src/data/practical-sheet-topics.js'
 import assert from 'node:assert/strict'
 import { spawn } from 'node:child_process'
 import { mkdir, writeFile } from 'node:fs/promises'
@@ -50,7 +51,7 @@ try {
   } finally {CanvasRenderingContext2D.prototype.fillText=original}
   return TOPICS.length
  })
- assert.equal(count,47)
+ assert.equal(count,TOPICS.length)
  for(const viewport of [{width:1440,height:1000},{width:390,height:844}]){
   await page.setViewportSize(viewport)
   await page.goto(`${base}fiches-pratiques?fiche=pea-cto`,{waitUntil:'networkidle'})
@@ -66,5 +67,5 @@ try {
  const before=await page.locator('canvas').evaluate(c=>c.toDataURL())
  await page.getByRole('spinbutton',{name:'Capital initial (€)'}).fill('20000')
  await page.waitForFunction(previous=>document.querySelector('canvas').toDataURL()!==previous,before)
- console.log('47 images factuelles : chiffres conservés, pied de page retiré, aucun chevauchement ni rognage ; mobile, export PNG et scénario vérifiés.')
+ console.log('Images factuelles : chiffres conservés, pied de page retiré, aucun chevauchement ni rognage ; mobile, export PNG et scénario vérifiés.')
 }finally{await browser?.close();server.kill('SIGTERM')}

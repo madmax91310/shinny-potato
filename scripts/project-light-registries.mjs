@@ -7,6 +7,7 @@ import * as ter from '../src/data/etf-ter.js'
 import * as portfolio from '../src/data/portfolio-assets.js'
 import * as currencies from '../src/data/portfolio-currencies.js'
 import * as reference from '../src/data/instrument-reference-evidence.js'
+import * as qualified from '../src/data/qualified-exposure-sheets.js'
 import * as practical from '../src/data/practical-source-data.js'
 
 // Build-derived projections, never a second hand-maintained set of figures.
@@ -14,6 +15,7 @@ import * as practical from '../src/data/practical-source-data.js'
 // Canonical function bodies retain runtime validation and formatting behaviour.
 export function projectLightRegistries() {
   const definitions = [
+    ['qualified-exposure-sheets', qualified, ''],
     ['instrument-reference-evidence', reference, ''],
     ['instruments', instruments, "import { PEA_REVIEWS_BY_ISIN } from './instrument-pea.js';"],
     ['instrument-facts', facts, "import { getInstrumentListings } from './instrument-listings.js'; export { getInstrumentListings };"],

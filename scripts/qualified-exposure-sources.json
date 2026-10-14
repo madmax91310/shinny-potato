@@ -236,6 +236,87 @@
       "label": "Small caps émergentes",
       "currency": "USD",
       "historyOnly": true
+    },
+    {
+      "id": "world-eur-hedged",
+      "productId": 251891,
+      "isin": "IE00B441G979",
+      "label": "World couvert en euros",
+      "scene": "world",
+      "category": "Stratégiques",
+      "currency": "EUR",
+      "currencyField": "baseCurrencyCode",
+      "aumField": "totalNetAssetsFundLevel",
+      "aumScope": "fund",
+      "inceptionField": "launchDate",
+      "currencyHedge": true,
+      "portfolioEnabled": true,
+      "portfolioCategory": "actions_larges",
+      "compositionFromHoldings": true
+    },
+    {
+      "id": "euro-govt-5-7",
+      "productId": 251737,
+      "isin": "IE00B4WXJG34",
+      "label": "Obligations d’État euro 5–7 ans",
+      "scene": "bonds",
+      "category": "Obligataires",
+      "currency": "EUR",
+      "holdingsAssetClass": "Fixed Income",
+      "portfolioEnabled": true,
+      "portfolioCategory": "obligataire"
+    },
+    {
+      "id": "europe-property",
+      "productId": 251808,
+      "isin": "IE00B0M63284",
+      "label": "Immobilier coté européen hors Royaume-Uni",
+      "scene": "world",
+      "category": "Sectoriels classiques",
+      "currency": "EUR",
+      "fundAssetClass": "Real Estate",
+      "portfolioEnabled": true,
+      "portfolioCategory": "immobilier"
+    },
+    {
+      "id": "ibonds-euro-2029",
+      "productId": 338575,
+      "isin": "IE000SNLFDR7",
+      "label": "Obligations d’entreprises euro à échéance 2029",
+      "scene": "bonds",
+      "category": "Obligataires",
+      "currency": "EUR",
+      "holdingsAssetClass": "Fixed Income"
+    },
+    {
+      "id": "europe-utilities",
+      "productId": 251967,
+      "isin": "DE000A0Q4R02",
+      "label": "Services publics européens",
+      "scene": "infrastructure",
+      "category": "Sectoriels classiques",
+      "currency": "EUR",
+      "currencyField": "baseCurrencyCode",
+      "aumField": "totalNetAssetsFundLevel",
+      "aumScope": "fund",
+      "inceptionField": "launchDate",
+      "portfolioEnabled": true,
+      "portfolioCategory": "actions_larges"
+    },
+    {
+      "id": "europe-telecom",
+      "productId": 251963,
+      "isin": "DE000A0H08R2",
+      "label": "Télécommunications européennes",
+      "scene": "chip",
+      "category": "Sectoriels classiques",
+      "currency": "EUR",
+      "currencyField": "baseCurrencyCode",
+      "aumField": "totalNetAssetsFundLevel",
+      "aumScope": "fund",
+      "inceptionField": "launchDate",
+      "portfolioEnabled": true,
+      "portfolioCategory": "actions_larges"
     }
   ]
 }

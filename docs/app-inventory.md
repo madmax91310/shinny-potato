@@ -41,23 +41,23 @@ Généré depuis les routes, le catalogue et les observations actives. Régéné
 | company | 26 |
 | household | 29 |
 | index | 50 |
-| instrument | 197 |
+| instrument | 203 |
 | insurance | 7 |
 | lexicon | 44 |
-| reference | 9 |
+| reference | 11 |
 | scpi | 8 |
-| series | 130 |
+| series | 140 |
 
 ## Champs des instruments
 
 | Champ | Présents / instruments |
 |---|---:|
-| ter | 197/197 |
-| aum | 197/197 |
-| performance | 181/197 |
-| countries | 169/197 |
-| sectors | 169/197 |
-| holdings | 174/197 |
+| ter | 203/203 |
+| aum | 203/203 |
+| performance | 187/203 |
+| countries | 175/203 |
+| sectors | 175/203 |
+| holdings | 180/203 |
 
 Les raisons des absences figurent dans [l’inventaire des lacunes](automation-gaps.md).
 

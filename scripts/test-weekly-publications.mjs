@@ -12,7 +12,6 @@ const formats = [
   ['/il-y-a-x-ans', 'Il y a X ans', 'Il y a X ans'],
   ['/performance-depuis', 'Performance depuis', 'Performance depuis'],
   ['/pouvoir-achat', 'Pouvoir d’achat', "Pouvoir d'achat"],
-  ['/dilemme', 'Dilemme', 'Dilemme'],
 ]
 let browser
 try {
@@ -26,8 +25,8 @@ try {
   const errors = []
   page.on('pageerror', error => errors.push(error.message))
   await page.goto(`${base}/`, { waitUntil: 'networkidle' })
-  assert.equal(await page.locator('.workspace-tool-card').count(), TOOLS.length)
-  assert.equal(await page.getByRole('link', {name:/Vrai ou faux|Cas concrets|Comparateur indices/}).count(), 0)
+  assert.equal(await page.locator('.workspace-tool-card').count(), TOOLS.filter(t=>!t.hidden).length)
+  assert.equal(await page.getByRole('link', {name:/Vrai ou faux|Cas concrets|Comparateur indices|Dilemme/}).count(), 0)
   assert.equal(await page.locator('.workspace-tool-card[href$="/tweet-midi"]').count(), 0)
   for (const [path, day] of [
     ['/comparatif-etf', 'Lundi midi · alternance'], ['/fiche-lexique', 'Lundi midi · alternance'],
@@ -38,7 +37,7 @@ try {
     ['/presentations', 'Vendredi midi · alternance'],
     ['/portefeuilles-investisseurs', 'Dimanche midi'], ['/faits-marquants-marches', 'Dimanche soir'],
     ['/il-y-a-x-ans', 'Publication ponctuelle'], ['/performance-depuis', 'Publication ponctuelle'],
-    ['/pouvoir-achat', 'Publication ponctuelle'], ['/dilemme', 'Publication ponctuelle'],
+    ['/pouvoir-achat', 'Publication ponctuelle'],
     ['/comparatif-courtiers', 'Publication ponctuelle'], ['/impact-frais', 'Publication ponctuelle'],
   ]) assert.equal(await page.locator(`.workspace-tool-card[href$="${path}"] .workspace-publication-day`).innerText(), day)
   for (const width of [320, 390]) {
@@ -57,7 +56,7 @@ try {
     const row = page.locator('.home-day').filter({ has: page.locator(`.workspace-tool-card[href$="${tool.to}"]`) })
     assert.equal(await row.locator('.home-day-band h2').textContent(), tool.publicationDay.split(' ')[0])
   }
-  assert.equal(new Set(await page.locator('.workspace-tool-card').evaluateAll(cards => cards.map(card => card.getAttribute('href')))).size, TOOLS.length)
+  assert.equal(new Set(await page.locator('.workspace-tool-card').evaluateAll(cards => cards.map(card => card.getAttribute('href')))).size, TOOLS.filter(t=>!t.hidden).length)
   // Short screens and enlarged text must grow cards instead of overlapping labels.
   for (const [width, height, enlarged] of [[320, 568, false], [360, 640, false], [390, 700, false], [390, 844, true]]) {
     await page.setViewportSize({ width, height })
