@@ -86,10 +86,11 @@ for (const [isin, facts] of Object.entries(INSTRUMENT_FACTS_BY_ISIN)) {
 }
 for (const [context, file, items] of collections) {
   const source = readFileSync(new URL(`../${file}`, import.meta.url), 'utf8');
+  const qualifiedCount = context === 'portfolio' ? QUALIFIED_EXPOSURE_SHEETS.filter(r=>r.portfolioCategory && getInstrumentReturnValues(r.isin).every(Number.isFinite)).length : 0;
   const references = source.match(/name:\s*getInstrumentName\(|nom:\s*getInstrumentName\(/g) ?? [];
   // Les nouveaux thèmes construisent les libellés par une fonction commune ;
   // chaque résultat est comparé au registre par ISIN dans la boucle ci-dessous.
-  if (context !== 'tweet' && references.length + (source.includes('LIFESTRATEGY_SHEETS.map(') ? LIFESTRATEGY_SHEETS.length - 1 : 0) + (source.includes('EXPOSURE_ADDITIONS.map(') ? EXPOSURE_ADDITIONS.length - 1 : 0) + (source.includes('PRESENTATION_ETF_ADDITIONS.map(') ? PRESENTATION_ETF_ADDITIONS.length - 1 : 0) + (source.includes('PRESENTATION_ETF_EXPANSION.map(') ? PRESENTATION_ETF_EXPANSION.length - 1 : 0) + (source.includes('[...NON_BOND_SHEETS, ...QUALIFIED_EXPOSURE_SHEETS, ...ROUND3_FUND_SHEETS, ...LIFESTRATEGY_SHEETS].map(') ? QUALIFIED_EXPOSURE_SHEETS.length + ROUND3_FUND_SHEETS.length + LIFESTRATEGY_SHEETS.length + NON_BOND_SHEETS.length - 1 : source.includes('QUALIFIED_EXPOSURE_SHEETS.map(') ? QUALIFIED_EXPOSURE_SHEETS.length - 1 : 0) + (source.includes('NON_BOND_SHEETS.filter(') ? NON_BOND_SHEETS.filter(s => getInstrumentReturnValues(s.isin).every(Number.isFinite)).length : 0) + (context === 'index' ? 3 : 0) !== items.length) {
+  if (context !== 'tweet' && references.length + qualifiedCount + (source.includes('LIFESTRATEGY_SHEETS.map(') ? LIFESTRATEGY_SHEETS.length - 1 : 0) + (source.includes('EXPOSURE_ADDITIONS.map(') ? EXPOSURE_ADDITIONS.length - 1 : 0) + (source.includes('PRESENTATION_ETF_ADDITIONS.map(') ? PRESENTATION_ETF_ADDITIONS.length - 1 : 0) + (source.includes('PRESENTATION_ETF_EXPANSION.map(') ? PRESENTATION_ETF_EXPANSION.length - 1 : 0) + (source.includes('[...NON_BOND_SHEETS, ...QUALIFIED_EXPOSURE_SHEETS, ...ROUND3_FUND_SHEETS, ...LIFESTRATEGY_SHEETS].map(') ? QUALIFIED_EXPOSURE_SHEETS.length + ROUND3_FUND_SHEETS.length + LIFESTRATEGY_SHEETS.length + NON_BOND_SHEETS.length - 1 : source.includes('QUALIFIED_EXPOSURE_SHEETS.map(') ? QUALIFIED_EXPOSURE_SHEETS.length - 1 : 0) + (source.includes('NON_BOND_SHEETS.filter(') ? NON_BOND_SHEETS.filter(s => getInstrumentReturnValues(s.isin).every(Number.isFinite)).length : 0) + (context === 'index' ? 3 : 0) !== items.length) {
     console.error(`${file} : ${references.length} références au catalogue pour ${items.length} produits.`);
     errors++;
   }
@@ -235,7 +236,7 @@ for (const family of FAMILIES) for (const row of family.perfFunds ?? []) {
   }
 }
 const portfolioSource = readFileSync(new URL('../src/data/portfolio-assets.js', import.meta.url), 'utf8');
-if ((portfolioSource.match(/r:\s*getInstrumentReturnValues\(/g) ?? []).length + EXPOSURE_ADDITIONS.length + LIFESTRATEGY_SHEETS.length + NON_BOND_SHEETS.filter(s => getInstrumentReturnValues(s.isin).every(Number.isFinite)).length - 3 !== returnUsages) {
+if ((portfolioSource.match(/r:\s*getInstrumentReturnValues\(/g) ?? []).length + EXPOSURE_ADDITIONS.length + LIFESTRATEGY_SHEETS.length + NON_BOND_SHEETS.filter(s => getInstrumentReturnValues(s.isin).every(Number.isFinite)).length + QUALIFIED_EXPOSURE_SHEETS.filter(r=>r.portfolioCategory && getInstrumentReturnValues(r.isin).every(Number.isFinite)).length - 4 !== returnUsages) {
   console.error('Générateur : une série ISIN reste codée dans l’outil.');
   errors++;
 }

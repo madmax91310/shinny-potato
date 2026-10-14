@@ -3,6 +3,13 @@ import { RESOURCE_COMPARISONS } from '../../data/resource-selections.js'
 // Les comparatifs et simulations utilisent toujours les lignes calculées de buildSheet.
 const copy = (hook, sections, closing) => ({ hook, sections, closing })
 export const PRACTICAL_EDITORIAL = {
+ "bond-falls": copy("Ton ETF détient des obligations. Pourquoi sa valeur peut-elle baisser malgré les coupons ?", null, "Je distingue les revenus reçus de la variation du prix de mes parts."),
+ "bond-duration": copy("Deux ETF obligataires peuvent avoir une échéance moyenne proche sans réagir exactement de la même façon aux taux.", null, "Je vérifie le nom exact de la mesure et sa date avant de comparer deux fonds."),
+ "av-fee-layers": copy("Les frais de ton ETF ne sont pas forcément tous les frais de ton assurance-vie.", null, "Je compare le coût total du même placement, avec le même mode de gestion."),
+ "etf-aum-scope": copy("Deux encours différents pour le même ETF : les chiffres peuvent porter sur des périmètres différents.", null, "Je garde le périmètre et la date à côté du montant."),
+ "etf-spread": copy("Le prix d’achat et le prix de vente affichés pour un ETF ne sont pas toujours identiques.", null, "Je regarde le carnet et les conditions d’exécution avant de valider mon ordre."),
+ "13f-reading": copy("Une déclaration 13F montre des positions à une date passée. Peut-on en déduire tout le portefeuille ?", null, "Je lis le trimestre et le périmètre avant de reprendre une position d’un investisseur."),
+
  ...Object.fromEntries(RESOURCE_COMPARISONS.map(c=>[c.id,copy(c.hook,null,c.cloture)])),
  'pea-cto': copy('PEA ou CTO pour investir en Bourse ?\n\nLe compte choisi change les placements accessibles et la fiscalité. Voici les différences à connaître avant de l’ouvrir', null, 'Je commence par vérifier où je peux acheter les placements qui m’intéressent. Ensuite, je compare les frais et la fiscalité.'),
  'av-cto': copy('Un même placement peut te coûter plus cher selon le compte utilisé.\n\nAssurance-vie ou CTO : les frais et la fiscalité méritent d’être comparés ensemble', null, 'Je regarde les frais du contrat sur la durée et les supports disponibles avant de compter sur un avantage fiscal.'),

@@ -34,6 +34,7 @@ function exposureReading(portfolio) {
   }
   const parts = []
   if (base.exposure.startsWith('lifestrategy')) parts.push(`${base.label} réunit des actions mondiales et des obligations. Vanguard gère le rééquilibrage interne ; la poche obligataire vise une couverture du change en euros.`)
+  else if (base.exposure === 'world-hedged') parts.push('Le World couvert en euros suit les actions des pays développés et vise une couverture du change vers l’euro. La couverture ne protège pas des baisses des actions.')
   else if (base.exposure === 'world') parts.push('Le MSCI World suit les grandes et moyennes entreprises des pays développés.')
   else if (['acwi', 'acwi-pea', 'allworld'].includes(base.exposure)) parts.push(`Le ${base.exposure.startsWith('acwi') ? 'MSCI ACWI' : 'FTSE All-World'} inclut les pays développés et émergents.`)
   else if (base.exposure === 'equalweight') parts.push('Les entreprises du S&P 500 partent du même poids à chaque rééquilibrage trimestriel.');
@@ -73,6 +74,7 @@ function exposureReading(portfolio) {
     'em-local-bond': 'ajoutent des obligations émergentes émises dans les monnaies des pays emprunteurs, avec un risque de non-remboursement, des cours sensibles aux taux et une exposition aux variations des monnaies',
     longbond: 'ajoutent des obligations d’État longues en euros, dont les cours peuvent beaucoup baisser lorsque les taux montent',
     cash: 'suivent le taux monétaire en euros via swap. Le capital n’est pas garanti et le rendement varie avec les taux',
+    intermediatebond: 'ajoutent des obligations d’État euro de cinq à sept ans. Le fonds renouvelle ses titres et reste sensible aux variations des taux',
     shortbond: 'ajoutent des emprunts d’État en euros à très courte échéance. Leur valeur peut baisser',
     short13bond: 'ajoutent des emprunts d’État en euros dont l’échéance est comprise entre un et trois ans. Leur valeur reste sensible aux taux',
     governmentbond: 'ajoutent des obligations d’État en euros de différentes échéances. Leur prix peut baisser lorsque les taux montent',

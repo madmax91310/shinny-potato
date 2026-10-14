@@ -2,6 +2,16 @@
 // partagent un rôle ; un indice, un facteur ou un mécanisme différent a son propre texte.
 // Aucun rendement, frais ou statut fiscal n’est recopié ici.
 const entries = {};
+add('world-eur-hedged','world-developed','le World couvert en euros','On suit les actions des pays développés avec une couverture des devises vers l’euro. Cette couverture modifie le risque de change et ses coûts ; elle ne protège pas des baisses des actions.');
+entries['world-eur-hedged'].description='Des actions mondiales développées avec une couverture du change vers l’euro.';
+add('euro-govt-5-7','bond','les obligations d’État euro de cinq à sept ans','On ajoute des obligations d’État en euros à maturité intermédiaire. Le fonds renouvelle ses titres : il reste sensible aux taux et ne prévoit pas de rembourser ton capital à une date fixe.');
+entries['euro-govt-5-7'].description='Des obligations d’État euro de cinq à sept ans, avec des revenus distribués.';
+add('europe-property','theme','l’immobilier coté européen hors Royaume-Uni','On renforce les actions de sociétés immobilières européennes hors Royaume-Uni. Les taux, les dettes et les loyers influencent leur valeur ; on ne détient pas directement les immeubles.');
+entries['europe-property'].description='Des actions immobilières d’Europe développée, hors Royaume-Uni.';
+add('europe-utilities','theme','les services publics européens','On renforce les exploitants européens de services publics. Leurs investissements, leurs dettes et la réglementation comptent autant que le besoin de leurs services.');
+entries['europe-utilities'].description='Des actions européennes de services publics.';
+add('europe-telecom','theme','les télécommunications européennes','On renforce les opérateurs européens de télécommunications. Les dépenses de réseaux, la concurrence et les dettes peuvent peser sur leur cours.');
+entries['europe-telecom'].description='Des actions européennes du secteur des télécommunications.';
 add('europe-construction','theme','la construction européenne','On renforce ici les entreprises européennes de construction et de matériaux. Leurs commandes et leurs coûts dépendent du cycle économique et immobilier ; cette poche peut recouper le World.');
 entries['europe-construction'].description='Des actions européennes de construction et de matériaux.';
 add('europe-banks','theme','les banques européennes','On cible ici les banques européennes. Les marges sur les crédits, les défauts et les exigences de capital influencent leurs résultats ; cette poche concentrée peut recouper un indice européen large.');

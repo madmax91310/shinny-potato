@@ -23,7 +23,7 @@ export function validObservation(o, now) {
 export const observationKey = o => `${o.family}:${o.entity}:${o.field}:${digest(o.scope)}`
 // Valuation/exposure dates describe a snapshot, not the time of collection.
 // A revision of that snapshot is evidence to review, never a market movement.
-export const datedEtfSnapshot = o => o.family === 'etf' && (o.field === 'aum' || o.field === 'top10' || /^(countries|sectors):/.test(o.field))
+export const datedEtfSnapshot = o => o.family === 'etf' && (o.field === 'aum' || o.field === 'top10' || o.field?.startsWith('metric:') || /^(countries|sectors):/.test(o.field))
 export function meaningful(before, after) {
   if (same(before.value, after.value)) return after.rule === 'publication' && before.period !== after.period
   if (typeof before.value !== typeof after.value) return false

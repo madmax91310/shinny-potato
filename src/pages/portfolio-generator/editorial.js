@@ -12,14 +12,14 @@ const isTheme = s => s.id.startsWith("sect_") || ["tech_europe", "infrastructure
 const weight = (selection, test) => selection.filter(test).reduce((sum, s) => sum + s.pct, 0);
 
 function overlap(selection) {
-  if (selection.some(s => WORLD.includes(s.id)) && selection.some(s => SP500.includes(s.id))) return "L’indice monde contient déjà des actions américaines : ajouter le S&P 500 renforce cette exposition, avec des entreprises en commun."; 
-  if (selection.some(s => EURO.includes(s.id)) && selection.some(s => s.id === "cac40")) return "Le CAC 40 et l’Euro Stoxx 50 ont des entreprises en commun : leurs deux poids ne représentent pas deux expositions indépendantes."; 
-  if (selection.filter(s => WORLD.includes(s.id)).length > 1) return "Les indices monde se recoupent largement : plusieurs fonds ne multiplient pas automatiquement la diversification."; 
+  if (selection.some(s => WORLD.includes(s.id)) && selection.some(s => SP500.includes(s.id))) return "L’indice monde contient déjà des actions américaines : ajouter le S&P 500 renforce cette exposition, avec des entreprises en commun.";
+  if (selection.some(s => EURO.includes(s.id)) && selection.some(s => s.id === "cac40")) return "Le CAC 40 et l’Euro Stoxx 50 ont des entreprises en commun : leurs deux poids ne représentent pas deux expositions indépendantes.";
+  if (selection.filter(s => WORLD.includes(s.id)).length > 1) return "Plusieurs fonds mondiaux peuvent détenir les mêmes entreprises : je regarde leurs poids cumulés pour comprendre la répartition.";
   if (selection.some(s => assetEditorial(s).kind === "world-all") && selection.some(s => assetEditorial(s).kind === "emerging")) return "L’indice mondial contient déjà des marchés émergents : la ligne ajoutée renforce leur place au lieu d’apporter une exposition entièrement nouvelle.";
   if (selection.filter(s => assetEditorial(s).kind === "factor").length > 1) return "Ces fonds changent les critères de sélection des actions, mais leurs entreprises peuvent se recouper avec celles d’un indice large et entre elles.";
-  if (selection.filter(s => SP500.includes(s.id)).length > 1 || selection.filter(s => EURO.includes(s.id)).length > 1) return "Deux fonds suivent ici le même indice : leur exposition se cumule, même si leurs caractéristiques diffèrent."; 
-  if (selection.filter(s => s.id.startsWith("bitcoin")).length > 1) return "Plusieurs supports Bitcoin restent exposés au même actif : changer de produit ne diversifie pas le cours suivi."; 
-  if (selection.filter(s => s.id === "or" || s.id.startsWith("or_")).length > 1) return "Plusieurs supports sur l’or restent exposés au même métal : leur poids doit se lire ensemble."; 
+  if (selection.filter(s => SP500.includes(s.id)).length > 1 || selection.filter(s => EURO.includes(s.id)).length > 1) return "Deux fonds suivent ici le même indice : leur exposition se cumule, même si leurs caractéristiques diffèrent.";
+  if (selection.filter(s => s.id.startsWith("bitcoin")).length > 1) return "Plusieurs supports Bitcoin restent exposés au même actif : changer de produit ne diversifie pas le cours suivi.";
+  if (selection.filter(s => s.id === "or" || s.id.startsWith("or_")).length > 1) return "Plusieurs supports sur l’or restent exposés au même métal : leur poids doit se lire ensemble.";
   return null;
 }
 
@@ -30,11 +30,11 @@ function role(s, selection) {
   const info = assetEditorial(s);
   const euros = selection.find(a => a.id === "fonds_euros");
   let place = "";
-  if (selection.length === 1) place = "Ici, on lui confie toute l’épargne : il n’y a aucune autre poche pour prendre le relais.";
+  if (selection.length === 1) place = "Cette ligne représente toute l’épargne investie : le résultat dépend entièrement de son évolution.";
   else if (["bitcoin", "ethereum", "leverage"].includes(info.kind)) place = s.pct <= 15
     ? `On limite ici la mise à ${s.pct}% de l’épargne, sans pouvoir rendre ses mouvements plus petits.`
     : `On lui confie ${s.pct}% de l’épargne : ses mouvements deviennent un choix important à assumer dans cette répartition.`;
-  else if (s.pct >= 50) place = "On lui confie au moins la moitié de l’épargne : ce choix pèsera donc beaucoup dans le résultat.";
+  else if (s.pct >= 50) place = "Cette ligne représente au moins la moitié de l’épargne : son évolution pèsera donc beaucoup dans le résultat.";
 
   let link = "";
   if (["world-developed", "world-all"].includes(info.kind) && euros && euros.pct > s.pct) place = `On lui donne ici ${s.pct}% de l’épargne, tout en gardant davantage en fonds euros.`;

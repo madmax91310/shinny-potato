@@ -4,7 +4,7 @@ export const fundGuarantee = fund => fund.guarantee != null ? `Garantie annuelle
 const accessExpired = (fund, today) => fund.accessValidUntil && fund.accessValidUntil < today
 const todayIso = () => new Date().toISOString().slice(0, 10)
 function presentationHook({ name }) {
-  return `💶 ${name} : combien faut-il pour ouvrir ce contrat, et quels frais prévoir ? 👇`
+  return `💶 ${name} : quel budget à l’ouverture, quels placements et quels frais ? 👇`
 }
 // Keep contractual detail in the data and UI; publish only decision-relevant conditions.
 function shortFundAccess(fund) {
@@ -51,7 +51,7 @@ export function buildTweet(record) {
     fees.notes?.split('. ').find(note => note.startsWith('Les supports immobiliers')) ? fees.notes.split('. ').find(note => note.startsWith('Les supports immobiliers')) + '.' : '',
   ].filter(Boolean).join('\n')
   return [presentationHook(record),
-    `📄 Distribuée par ${record.distributor} et assurée par ${insurer}. En gestion libre, tu choisis toi-même tes placements.`,
+    `📄 Distribuée par ${record.distributor} et assurée par ${insurer}. En gestion libre, c’est toi qui choisis les supports parmi ceux du contrat.`,
     `💰 Accessible dès ${format(access.initial)} €.\nPour les versements suivants : ${format(access.free)} € minimum par versement libre ou dès ${format(access.monthly)} €/mois.`,
     `📦 Plus de ${format(supports.minimumCount)} supports annoncés : ${supports.categories.join(', ')}… et ${euroFunds.length > 1 ? `${euroFunds.length} fonds euros` : 'un fonds euros'}.`,
     `💸 Les principaux frais :\n• Versements : ${format(fees.subscription)} % · Arbitrages en ligne : ${format(fees.arbitrage)} %\n• Unités de compte : ${format(fees.units)} %/an, en plus des frais des supports\n• Transactions ETF : ${format(fees.etfTrade)} % par opération${extraFees ? `\n${extraFees}` : ''}${fees.options?.length ? '\nLes options de gestion ont des frais supplémentaires.' : ''}`,

@@ -10,6 +10,7 @@ const ACWI = 'Il couvre les grandes et moyennes entreprises des pays développé
 const EURO50 = 'Il suit 50 grandes entreprises de la zone euro. Il couvre moins de marchés que le MSCI Europe ou le STOXX Europe 600 : le Royaume-Uni et la Suisse n’en font pas partie.'
 const TECH_EUROPE = 'Il cible les entreprises technologiques du STOXX Europe 600. Tu investis dans un secteur européen précis, plutôt que dans l’ensemble du marché européen.'
 export const ETF_EXPOSURE_COPY = {
+ LU1437018838:'Il suit l’immobilier coté mondial via le FTSE EPRA/NAREIT Developed. Tu détiens des actions de sociétés immobilières des marchés développés, avec un risque de taux et de marché.',
  IE00B4LHWP62:'Il est adossé à du platine physique. Tu détiens un ETC, pas des actions minières ni un ETF UCITS. Il ne distribue pas de revenu.',
  IE00B4556L06:'Il est adossé à du palladium physique. Tu détiens un ETC, pas des actions minières ni un ETF UCITS. Il ne distribue pas de revenu.',
  ...Object.fromEntries(NON_BOND_SHEETS.map(r=>[r.isin,r.whatIs])),

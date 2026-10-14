@@ -1,3 +1,4 @@
+import { QUALIFIED_EXPOSURE_SHEETS } from './qualified-exposure-sheets.js'
 import practicalReferences from './automated-practical-sheets.json' with { type: 'json' };
 import { TOPICS as PRACTICAL_TOPICS, FUND_GROUPS as PRACTICAL_FUND_GROUPS } from './practical-sheet-topics.js';
 import { REGULATORY_OBSERVATIONS, REGULATORY_LEXICON_SOURCES } from './regulatory-data.js';
@@ -69,6 +70,8 @@ function field(label, registry, value, evidence) {
 function instrument(isin, identity) {
   const scope = `Part ${isin}`;
   const fields = [field('Identité', 'instruments', identity, { ...INSTRUMENT_REFERENCE_EVIDENCE[isin], scope })];
+  const qualified = QUALIFIED_EXPOSURE_SHEETS.find(r=>r.isin===isin);
+  for (const m of Object.values(qualified?.metrics ?? {})) fields.push(field(m.label, 'qualified-exposure-sheets', {value:m.value,unit:m.unit}, {...m,note:'Mesure publiée par l’émetteur, pas une garantie de performance. YTM avant frais ; YTW pour les obligations remboursables par anticipation.'}));
   const commodities = AUTOMATED_ETF[isin]?.commodityAllocation;
   if (commodities) fields.push(field('Allocation matières premières de l’indice suivi', 'automated-etf', commodities.rows, { ...commodities, note: 'Groupes de matières premières publiés par Invesco ; ni secteurs actions, ni panier de swap. Les arrondis signés publiés restent conservés.' }));
   if (ETF_TER_BY_ISIN[isin] != null) fields.push(field('Frais annuels (%)', 'etf-ter', ETF_TER_BY_ISIN[isin], { ...ETF_TER_EVIDENCE[isin], scope }) );

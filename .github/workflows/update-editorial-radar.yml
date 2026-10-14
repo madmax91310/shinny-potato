@@ -20,6 +20,9 @@ on:
       - 'scripts/lib/radar-notifications.mjs'
       - 'scripts/test-radar-notifications.mjs'
       - 'src/data/automated-*.json'
+      - 'src/data/qualified-exposure-etfs.json'
+      - 'src/data/non-bond-*-records.json'
+      - 'src/data/lifestrategy.json'
       - 'src/data/purchasing-power-observations.json'
       - 'public/data/investors/*.json'
   pull_request:
@@ -41,6 +44,9 @@ on:
   workflow_run:
     workflows:
       - Update active ETF issuer data
+      - Update qualified exposure ETF data
+      - Update non-bond expansion
+      - Update Vanguard LifeStrategy data
       - Update all 18 investor 13F portfolios
       - Update insurance presentations
       - Update SCPI presentations

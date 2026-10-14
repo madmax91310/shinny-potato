@@ -17,11 +17,11 @@ export function buildTweet(record) {
     'corum-origin': `Une SCPI peut détenir des biens dans plusieurs pays sans répartir son argent également entre eux. Regardons le patrimoine de ${name} et les revenus qu’elle a distribués 👇`,
     'corum-xl': `Derrière les revenus d’une SCPI, il y a des biens, des locataires et des marchés immobiliers. Voici ceux auxquels ${name} donne accès 👇`,
     'corum-eurion': `Deux SCPI peuvent afficher des revenus proches avec des patrimoines très différents. Voici comment ${name} répartit ses investissements 👇`,
-    'transitions-europe': `Tu peux devenir associé de ${name} dès ${format(c.minimum)} €. Avant de regarder ses distributions, voici où va l’argent investi 👇`,
+    'transitions-europe': `Tu peux devenir associé de ${name} dès ${format(c.minimum)} €. Regardons les biens détenus avant de comparer les revenus distribués 👇`,
     activimmo: `Avec ${format(c.minimum)} €, tu peux accéder au patrimoine immobilier d’${name}. Regardons les biens détenus et ce qui compte derrière les loyers 👇`,
     'epargne-pierre': `Investir avec ${name} commence à ${format(c.minimum)} €. Voici la répartition de son patrimoine, ses revenus publiés et les frais à comprendre 👇`,
   }
-  const hook = hooks[id] ?? `Avec ${name}, tu peux devenir associé dès ${format(c.minimum)} €. Voici le patrimoine et les conditions de cette SCPI 👇`
+  const hook = hooks[id] ?? `Avec ${name}, tu peux devenir associé dès ${format(c.minimum)} €. Regardons les biens détenus, les revenus publiés et les conditions de cette SCPI 👇`
   const snapshotDate = snapshot.asOf ? `Au ${dateLabel(snapshot.asOf)}` : `Répartition relevée le ${dateLabel(record.checkedAt)} ; date des graphiques non précisée`
   const priceHistory = price.previousValue != null && price.previousValue !== price.value
     ? `Prix de la part : ${format(price.previousValue)} € au ${dateLabel(price.previousAsOf)} → ${format(price.value)} € au ${dateLabel(price.asOf)}.`

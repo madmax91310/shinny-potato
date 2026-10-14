@@ -244,3 +244,16 @@ console.log(`Radar : seuils cumulés, périmètres, dates, bootstrap, publicatio
   const samePeriod = advanceRadar(initial, rows.map(r => ({ ...r, period: '2026-10-07' })), opts)
   assert.equal(Object.values(samePeriod.state.conflicts).filter(c => !c.resolvedAt).length, 32, 'Omission at the disputed date remains a contradiction')
 }
+
+// Every qualified source shares the same signals and date conflict rules.
+{
+for(const isin of ['IE00B441G979','IE00B4WXJG34','IE00B0M63284','IE000SNLFDR7','DE000A0Q4R02','DE000A0H08R2'])assert(actual.observations.some(o=>o.entity===isin&&o.field==='ter'))
+assert.equal(new Set(actual.observations.map(observationKey)).size,actual.observations.length)
+const metric=actual.observations.find(o=>o.entity==='IE00B4WXJG34'&&o.field==='metric:modelOad');assert(metric)
+const now=new Date(),state=advanceRadar(null,[metric],{now}).state
+assert.equal(advanceRadar(state,[{...metric,value:metric.value+.1,period:'2026-10-14'}],{now}).newEvents.length,0)
+assert.equal(advanceRadar(state,[{...metric,value:metric.value+.3,period:'2026-10-14'}],{now}).newEvents.length,1)
+const conflict=advanceRadar(state,[{...metric,value:metric.value+.3}],{now});assert.equal(conflict.newEvents.length,0);assert.equal(Object.keys(conflict.state.conflicts).length,1)
+console.log('All qualified ETFs monitored once; metric thresholds and same-date revisions verified.')
+
+}

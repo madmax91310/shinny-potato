@@ -17,6 +17,11 @@ export const ROLES = { base: 'Base', complement: 'Complément', theme: 'Thémati
 
 // Sélection éditoriale : les chiffres restent exclusivement dans les registres communs.
 const choices = [
+ ['world-eur-hedged','base','World couvert en euros','world-hedged'],
+ ['euro-govt-5-7','complement','Obligations euro 5–7 ans','intermediatebond'],
+ ['europe-property','theme','Immobilier européen hors Royaume-Uni','property-europe'],
+ ['europe-utilities','theme','Services publics européens','utilities-europe'],
+ ['europe-telecom','theme','Télécommunications européennes','telecom-europe'],
  ['europe-banks','theme','Banques européennes','europe-banks'],
  ['europe-insurance','theme','Assurances européennes','europe-insurance'],
  ...[20,40,60,80].map(n=>[`lifestrategy${n}`,'base',`LifeStrategy ${n}/${100-n}`,`lifestrategy${n}`]),

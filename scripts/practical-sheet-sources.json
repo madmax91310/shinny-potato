@@ -106,5 +106,23 @@
       "FR0013416716",
       "DE000A2T5DZ1"
     ]
+  },
+  "13f": {
+    "label": "SEC · questions et réponses sur le formulaire 13F",
+    "url": "https://www.sec.gov/divisions/investment/13ffaq",
+    "markers": [
+      "13F",
+      "short"
+    ],
+    "selector": "main"
+  },
+  "bonds": {
+    "label": "AMF · comprendre les obligations et le risque de taux",
+    "url": "https://www.amf-france.org/fr/espace-epargnants/comprendre-les-produits-financiers/actions-obligations/obligations",
+    "markers": [
+      "obligations",
+      "taux"
+    ],
+    "selector": "article"
   }
 }
