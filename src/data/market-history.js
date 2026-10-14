@@ -666,7 +666,7 @@ export const LATEST_YM = Object.values(ASSETS).map(asset => asset.points.at(-1).
 export const MONTHS_FULL = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre']
 export const MONTHS_SHORT = ['janv.', 'févr.', 'mars', 'avr.', 'mai', 'juin', 'juil.', 'août', 'sept.', 'oct.', 'nov.', 'déc.']
 
-export const AMOUNT_PRESETS = [100, 500, 1000, 5000]
+export { AMOUNT_PRESETS } from './investment-presets.js'
 export const DATE_PRESETS = [
   { label: 'janv. 2015', y: 2015, m: 1 },
   { label: 'janv. 2018', y: 2018, m: 1 },

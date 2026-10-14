@@ -1,3 +1,4 @@
+import { readFileSync } from 'node:fs'
 import { createHash } from 'node:crypto'
 import * as history from '../src/data/market-history.js'
 import { DATA_CATALOG } from '../src/data/catalog.js'
@@ -7,6 +8,7 @@ import { projectReviewCatalog } from '../src/data/review-projection.js'
 // No fetched copy or independently maintained financial value is introduced.
 export function projectToolData() {
   const modules = new Map(), groups = []
+  const historySource = readFileSync(new URL('../src/data/market-history.js', import.meta.url), 'utf8')
   function partition(name, values, array = false) {
     const parts = []; let part = [], bytes = 0
     for (const entry of values) {
@@ -29,7 +31,13 @@ export function projectToolData() {
       modules.set(id, partition(`history-${key.toLowerCase()}`, Object.entries(value)))
       return `export { default as ${key} } from '${id}';\nimport ${key} from '${id}';`
     }
-    if (typeof value === 'function') return `export ${value.toString()}`
+    if (typeof value === 'function') {
+      // Vite bundles its config and can rename closure bindings (ASSETS$1).
+      // Read the canonical function source, never stringify the bundled closure.
+      const declaration = historySource.match(new RegExp(`export function ${key}\\([\\s\\S]*?\\n}`))?.[0]
+      if (!declaration) throw new Error(`Missing canonical history function: ${key}`)
+      return declaration
+    }
     return `export const ${key} = ${value instanceof Set ? `new Set(${JSON.stringify([...value])})` : JSON.stringify(value)};`
   }).join('\n')
   const reviewId = 'virtual:tool-data:review'

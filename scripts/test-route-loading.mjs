@@ -75,7 +75,7 @@ try {
     assert(!fetched.some(url => /etf-issuer-part|history-assets-|automated-etf-monthly|non-bond-monthly/.test(url)), `${path} fetched unrelated financial payloads`)
     if (path === '/bibliotheque-donnees') {
       await isolated.getByRole('article', { name: 'Fiche de données' }).waitFor()
-      assert.equal(fetched.filter(url => /data\/catalog\/.test(url)).length, 1, 'Opening search should fetch exactly one full record')
+      assert.equal(fetched.filter(url => url.includes('/data/catalog/')).length, 1, 'Opening search should fetch exactly one full record')
     }
     await isolated.close()
   }
@@ -92,7 +92,7 @@ try {
   await catalogue.getByRole('button', {name:'Réessayer',exact:true}).click()
   await catalogue.getByRole('article', {name:'Fiche de données'}).filter({hasText:'FR001400U5Q4'}).waitFor()
   rejectRecord = true
-  await catalogue.getByRole('searchbox').fill('history:soxx')
+  await catalogue.getByRole('searchbox', {name:'ISIN, ticker, nom ou identifiant',exact:true}).fill('history:soxx')
   await catalogue.getByRole('button', {name:'Réessayer',exact:true}).waitFor()
   assert.equal(await catalogue.getByRole('button', {name:'Exporter la fiche JSON',exact:true}).count(),0)
   rejectRecord = false

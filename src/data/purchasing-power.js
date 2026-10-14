@@ -2,7 +2,7 @@
 // Prix : moyenne annuelle de départ -> niveau mensuel, dans la même base 2025.
 // IRL : T1 de départ -> dernier trimestre publié ; SMIC : janvier -> montant en vigueur.
 import OBSERVATIONS from './purchasing-power-observations.json' with { type: 'json' }
-export { AMOUNT_PRESETS } from './market-history.js'
+export { AMOUNT_PRESETS } from './investment-presets.js'
 export const PURCHASING_OBSERVATIONS = OBSERVATIONS
 export const YEAR_MIN = 2010
 export const YEAR_MAX = Math.min(...['general', 'alimentation', 'energie'].map(k => Math.max(...Object.keys(OBSERVATIONS.prices.annualLevels[k]).map(Number))))

@@ -105,6 +105,7 @@ jobs:
       - run: npm run stress-test:portfolios
       - run: node scripts/test-automation-overview.mjs
       - run: node scripts/test-format-loading.mjs
+      - run: node scripts/test-tool-projections.mjs
       - run: npm run build
       - run: node scripts/test-format-loading.mjs --built
       - run: node scripts/test-practical-sheets.mjs
