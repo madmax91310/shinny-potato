@@ -35,7 +35,7 @@ for (const assetId of Object.keys(ASSETS)) for (const mode of ['lump','dca']) {
     assert.match(text,/\([+-]?[\d\s,.]+ %\)/)
     assert.doesNotMatch(text, /sur les sommes versées/)
     assert(!text.split('\n')[0].includes('par mois'))
-    assert.match(text, /Tu aurais gardé cet investissement pendant toute la période/)
+    assert.match(text, /Tu aurais gardé ce placement jusqu’au bout/)
   }
   if (INCONSISTENT_MONTHLY_DATA_IDS.has(assetId)) assert.equal(d.effectiveMode,'lump')
   count++
