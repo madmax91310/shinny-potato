@@ -64,6 +64,20 @@ try {
   }
   const wrong=structuredClone(observed);wrong.records[0].currency='EUR'
   assert.equal(evaluate([{hash:'initial',snapshot:original},{hash:'wrong',snapshot:wrong}],'2026-01-10').results[0].priceStatus,'missing-observation')
+  const cashOrigin=structuredClone(original),cashActual=structuredClone(accounting)
+  Object.assign(cashOrigin.records[0].forecasts[0],{method:'cash',accountingDefinition:'operating-minus-capex'})
+  cashActual.records[0].actuals={earnings:[],cash:[{end:'2027-01-02',value:8,asOf:'2027-01-31',sourceUrl:'https://example.com/cash',definition:'operating-minus-capex'}]}
+  const assess=()=>evaluate([{hash:'cash-original',snapshot:cashOrigin},{hash:'cash-actual',snapshot:cashActual}],'2027-02-02').results[0]
+  assert.equal(assess().fundamentalStatus,'evaluated')
+  assert.equal(assess().actualFundamentalPeriod,'2027-01-02')
+  cashActual.records[0].actuals.cash[0].end='2027-02-01'
+  assert.equal(assess().fundamentalStatus,'awaiting-comparable-accounts')
+  cashActual.records[0].actuals.cash[0].end='2027-01-02'
+  cashActual.records[0].actuals.cash[0].definition='issuer-adjusted-cash'
+  assert.equal(assess().fundamentalStatus,'awaiting-comparable-accounts')
+  cashActual.records[0].actuals.cash[0].definition='operating-minus-capex'
+  cashActual.records[0].actuals.cash.push({...cashActual.records[0].actuals.cash[0],end:'2026-12-31'})
+  assert.equal(assess().fundamentalStatus,'awaiting-comparable-accounts')
   writeFileSync(file,bytes.replace('"revision": "initial"','"revision": "altered"'))
   assert.throws(()=>readSnapshots(dir),/corrompue/)
 }finally{rmSync(dir,{recursive:true,force:true})}

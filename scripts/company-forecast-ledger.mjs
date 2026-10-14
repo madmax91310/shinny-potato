@@ -73,10 +73,18 @@ export function evaluate(archives,today) {
           baselineAbsoluteError:Math.abs(r.quote.price/q.price-1),insideRange:q.price>=low&&q.price<=high})
       }
     }else if(Date.parse(today)>Date.parse(f.targetDate)+7*day)result.priceStatus='missing-observation'
-    const actual=observations.flatMap(o=>(o.record.actuals[f.method]??[]).filter(p=>p.end===f.fundamentalPeriod&&(f.method!=='cash'||p.definition===f.accountingDefinition)&&p.asOf<=o.issuedAt&&p.asOf>=p.end&&positive(p.value)).map(p=>({p,o}))).sort((x,y)=>x.o.issuedAt.localeCompare(y.o.issuedAt))[0]
+    // Cash projections use anniversary dates; 52/53-week issuer fiscal ends
+    // move by a few days. Require one unambiguous annual match within 14 days.
+    // Adjusted EPS stays on the exact fiscal dates used by its source.
+    const actual=observations.flatMap(o=>{
+      const matches=(o.record.actuals[f.method]??[]).filter(p=>
+        (f.method==='cash'?Math.abs(Date.parse(p.end)-Date.parse(f.fundamentalPeriod))<=14*day:p.end===f.fundamentalPeriod)
+        &&(f.method!=='cash'||p.definition===f.accountingDefinition)&&p.asOf<=o.issuedAt&&p.asOf>=p.end&&positive(p.value))
+      return matches.length===1?[{p:matches[0],o}]:[]
+    }).sort((x,y)=>x.o.issuedAt.localeCompare(y.o.issuedAt))[0]
     if(actual) {
       if(!comparable(observations,r.quote.asOf,actual.o.record.quote?.asOf??actual.p.asOf))result.fundamentalStatus='basis-unqualified'
-      else Object.assign(result,{fundamentalStatus:'evaluated',actualFundamental:actual.p.value,fundamentalAsOf:actual.p.asOf,fundamentalSourceUrl:actual.p.sourceUrl,fundamentalError:f.fundamentalValue/actual.p.value-1})
+      else Object.assign(result,{fundamentalStatus:'evaluated',actualFundamental:actual.p.value,actualFundamentalPeriod:actual.p.end,fundamentalAsOf:actual.p.asOf,fundamentalSourceUrl:actual.p.sourceUrl,fundamentalError:f.fundamentalValue/actual.p.value-1})
     } else if(today>f.fundamentalPeriod)result.fundamentalStatus='awaiting-comparable-accounts'
     results.push(result)
   }
