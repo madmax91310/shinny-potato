@@ -70,7 +70,10 @@ jobs:
       - run: npm run build
       - name: Verify company UI in Chromium
         if: github.event_name == 'pull_request'
+        env:
+          COMPANY_QA_DIR: ${{ runner.temp }}/company-valuation-qa
         run: |
+          mkdir -p "$COMPANY_QA_DIR"
           npx playwright install --with-deps chromium
           node scripts/test-company-analysis-ui.mjs
       - uses: actions/upload-artifact@v7.0.1
@@ -80,6 +83,12 @@ jobs:
           path: ${{ runner.temp }}/company-observation.json
           if-no-files-found: ignore
           retention-days: 35
+      - uses: actions/upload-artifact@v7.0.1
+        if: always() && github.event_name == 'pull_request'
+        with:
+          name: company-valuation-visuals
+          path: ${{ runner.temp }}/company-valuation-qa
+          if-no-files-found: ignore
       - name: Commit validated observations
         id: commit
         if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
