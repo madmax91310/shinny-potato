@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import TargetExplanation from './TargetExplanation.jsx'
 import ForecastEvaluation from './ForecastEvaluation.jsx'
 import ValuationPublication from './ValuationPublication.jsx'
 import { buildPriceScenarios, targetChart, targetReading } from './priceTargets.js'
@@ -48,7 +49,7 @@ export default function ValuationPanel({company}) {
       </details>
     </>}
     {error&&<p role="alert" className="valuation-error">{error} Les prévisions sont masquées jusqu’à correction.</p>}
-    {reading&&<section className="valuation-reading" data-testid="valuation-reading" aria-live="polite"><span className="valuation-eyebrow">CE QUE CES DONNÉES SUGGÈRENT</span><h3>{reading.title}</h3><p>{reading.explanation}</p><p>{reading.expectation}</p><details><summary>Données de départ et sensibilité</summary><p>{reading.historical}</p><div className="company-history-scroll"><table><caption>Trajectoire centrale automatique avant personnalisations</caption><thead><tr><th>Échéance</th><th>{cash?'FCF/action projeté':'BPA ajusté prévisionnel'}</th><th>Exercice / origine</th></tr></thead><tbody>{model.evidence[method].values.map((v,i)=><tr key={i}><td>{i+1} an{i?'s':''}</td><td>{n(v,2)} {currency}</td><td>{cash?'Modèle à croissance variable':`${model.evidence.earnings.periods[i]} · ${model.evidence.earnings.curve.find(p=>p.end===model.evidence.earnings.periods[i]).kind==='model'?'extrapolation':'estimation sourcée'}`}</td></tr>)}</tbody></table></div><p>Source de la méthode : <a href={model.evidence[method].sourceUrl} target="_blank" rel="noreferrer">données du {dateLabel(model.evidence[method].asOf)}</a>.</p><p>Avec un multiple de sortie de {n(reading.sensitivity.lowerMultiple)} à {n(reading.sensitivity.upperMultiple)}, l’objectif passe de {n(reading.sensitivity.low,2)} à {n(reading.sensitivity.high,2)} {currency}, à croissance identique.</p></details></section>}
+    {reading&&<TargetExplanation company={company} model={model} selected={selected} method={method} reading={reading}/>}
     {cash&&automatic.evidence.cash&&<details className="valuation-methodology" data-testid="cash-drivers"><summary>Construction du FCF : trésorerie, investissements et actions</summary>
       <p>{automatic.evidence.cash.drivers.explanation}</p>
       {automatic.evidence.cash.drivers.warning&&<p className="valuation-projection-note">{automatic.evidence.cash.drivers.warning}</p>}

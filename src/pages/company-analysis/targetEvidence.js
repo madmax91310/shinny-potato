@@ -6,19 +6,24 @@ const day=86400000,positive=x=>Number.isFinite(x)&&x>0
 export const median=xs=>{const a=[...xs].sort((a,b)=>a-b);return a.length?(a[Math.floor((a.length-1)/2)]+a[Math.ceil((a.length-1)/2)])/2:null}
 const clamp=(x,l,h)=>Math.max(l,Math.min(h,x))
 export const PEER_GROUPS=[['microsoft','adobe','salesforce','servicenow','intuit'],['costco','walmart'],['visa','mastercard'],['coca-cola','pepsico'],['caterpillar','deere'],['nvidia','amd']]
+// Comparable fiscal years only: missing years must not masquerade as annual growth.
+function annualPeriods(rows) {
+  return Array.isArray(rows)&&rows.length>=3&&rows.every((r,i)=>Number.isFinite(Date.parse(r.end))&&(!i||
+    (Date.parse(r.end)-Date.parse(rows[i-1].end))/day>=330&&(Date.parse(r.end)-Date.parse(rows[i-1].end))/day<=400))
+}
 export function validForecast(c,now) {
   const f=c.targetForecast
   return Boolean(f?.version===1&&f.symbol===c.symbol&&f.currency===c.currency&&f.basis==='adjusted-non-gaap'&&f.multipleBasis==='forward-adjusted-eps'
     &&f.sourceUrl?.startsWith('https://')&&fresh(f.asOf,35,now)&&fresh(f.observedAt,35,now)
-    &&f.points?.length>=3&&f.points.every((p,i)=>positive(p.eps)&&Number.isFinite(Date.parse(p.end))&&(!i||p.end>f.points[i-1].end))
+    &&annualPeriods(f.points)&&f.points.some(p=>p.kind==='estimate')&&f.points.every((p,i)=>positive(p.eps)&&['estimate','observed-adjusted'].includes(p.kind)&&(p.kind!=='observed-adjusted'||p.end<=f.asOf)&&Number.isFinite(Date.parse(p.end))&&(!i||p.end>f.points[i-1].end))
     &&!(c.quote?.splits??[]).some(s=>(typeof s==='string'?s:s.asOf??s.date)>f.asOf)
     &&f.points.at(-2).end>=c.annual?.end
     &&f.points.at(-1).end>c.quote?.asOf&&f.historicalMultiples?.length>=3
-    &&f.historicalMultiples.every(r=>positive(r.multiple)&&r.end<f.points.at(-2).end))
+    &&f.historicalMultiples.every((r,i)=>positive(r.multiple)&&Number.isFinite(Date.parse(r.end))&&r.end<f.points.at(-2).end&&(!i||r.end>f.historicalMultiples[i-1].end)))
 }
 function normalGrowth(c,now) {
   const rows=activeDecision(c,now)?.years??[],rates=rows.slice(1).flatMap((r,i)=>positive(r.revenue)&&positive(rows[i].revenue)?[r.revenue/rows[i].revenue-1]:[])
-  return rates.length>=2?clamp(median(rates),0,.10):null
+  return annualPeriods(rows)&&rates.length>=2?clamp(median(rates),0,.10):null
 }
 // Annual EPS estimates stay at their explicit fiscal dates. Beyond the last
 // disclosed estimate, the growth rate converges in 3 years to a revenue anchor.
@@ -41,7 +46,11 @@ function valueAt(curve,date) {
   return a.value*(b.value/a.value)**t
 }
 export function targetEvidence(c,inputs,now,dates,peers=COMPANIES) {
-  const anchor=normalGrowth(c,now),result={cash:null,earnings:null,reasons:[]}
+  const result={cash:null,earnings:null,reasons:[]}
+  if(c.valuationBusinessType!=='operating-company') {
+    result.reasons.push('Méthode non qualifiée pour ce type d’entreprise : une analyse adaptée est nécessaire.');return result
+  }
+  const anchor=normalGrowth(c,now)
   if(anchor===null){result.reasons.push('Deux variations annuelles de chiffre d’affaires comparables sont nécessaires.');return result}
   if(validForecast(c,now)&&inputs.price) {
     const f=c.targetForecast,curve=annualCurve(f.points,anchor),base=forwardAt(curve,c.quote.asOf),refs=f.historicalMultiples.map(r=>r.multiple)
