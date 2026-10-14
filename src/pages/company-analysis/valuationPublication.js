@@ -1,3 +1,4 @@
+import { targetExplanation } from './targetExplanation.js'
 import { buildPriceScenarios, targetChart, targetReading } from './priceTargets.js'
 import { formatValue as n } from './valuationPresentation.js'
 import { dateLabel, calculatedRatios } from './lib.js'
@@ -7,6 +8,7 @@ export function valuationPublication(company,overrides,selected,method,now=new D
   const model=buildPriceScenarios(company,overrides,now,years),cash=method==='cash'
   if(!(cash?model.inputs.cashReady:model.inputs.earningsReady))throw new Error('Les données de ce modèle sont incomplètes ou trop anciennes pour publier.')
   const reading=targetReading(model,selected,method),scenario=model.scenarios[selected],assumptions=cash?scenario.cashAssumptions:scenario.earningsAssumptions
+  const explanation=targetExplanation(company,model,selected,method)
   const currency=company.currency,price=model.inputs.price
   const metrics=[
     {label:'PER',value:n(model.inputs.pe),hint:calculatedRatios(company,now).peTTM?'Bénéfices sur 12 mois':`Exercice ${company.annual.end.slice(0,4)}`},
@@ -20,7 +22,7 @@ export function valuationPublication(company,overrides,selected,method,now=new D
     `Elle clôturait à ${n(price,2)} ${currency} le ${dateLabel(company.quote.asOf)}. Voici trois prévisions conditionnelles, calculées à partir ${cash?'du FCF par action publié':'de BPA ajustés prévisionnels comparables'}.`,
     `Objectifs au ${dateLabel(model.targetDate)} :\n${scenarios.map(s=>`${s.name} : ${n(s.value,2)} ${currency} (${signed(s.upside)}, soit ${signed(s.annualised)} / an)`).join('\n')}`,
     `Le scénario ${scenario.name.toLowerCase()} retient ${n(assumptions.growth*100)} % de croissance annualisée équivalente ${cash?'du FCF/action':'du BPA ajusté prévisionnel'} et un multiple de sortie de ${n(assumptions.multiple)}. Il donne un objectif de ${n(reading.value,2)} ${currency}.`,
-    `${reading.historical}${model.orderChanged?' Avec ces réglages personnalisés, les objectifs ne suivent plus l’ordre prudent → central → favorable.':''}`,
+    `${explanation.summary}\n\n${explanation.coverage}\n${explanation.limitations.join(" ")}${model.orderChanged?' Avec ces réglages personnalisés, les objectifs ne suivent plus l’ordre prudent → central → favorable.':''}`,
     `À croissance identique, un multiple de sortie de ${n(reading.sensitivity.lowerMultiple)} à ${n(reading.sensitivity.upperMultiple)} ferait varier cet objectif de ${n(reading.sensitivity.low,2)} à ${n(reading.sensitivity.high,2)} ${currency}.`,
     'Potentiels et progressions annualisées du cours hors dividendes. Les écarts entre scénarios sont des hypothèses, pas des probabilités ni un consensus d’analystes.',
     `Source : ${model.evidence[method].sourceUrl} · données du ${dateLabel(model.evidence[method].asOf)}.`,
@@ -28,6 +30,6 @@ export function valuationPublication(company,overrides,selected,method,now=new D
     'Ces prévisions dépendent des hypothèses retenues. Pas un conseil financier.',
   ].join('\n\n')
   return {name:company.name,symbol:company.symbol,currency,quoteDate:company.quote.asOf,price,method,selected,years,targetDate:model.targetDate,
-    metrics,scenarios,reading,assumptions,chart:targetChart(company,model,method),text,
+    metrics,scenarios,reading,explanation,assumptions,chart:targetChart(company,model,method),text,
     filename:`objectifs-${company.id}-${method}-${years}ans-${scenario.name.toLowerCase()}-${company.quote.asOf}.png`}
 }
