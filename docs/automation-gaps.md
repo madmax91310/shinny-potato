@@ -7,9 +7,9 @@ Inventaire des champs réellement présents dans les observations actives. Couve
 | ter | 197/197 |
 | aum | 197/197 |
 | performance | 181/197 |
-| countries | 167/197 |
-| sectors | 167/197 |
-| holdings | 172/197 |
+| countries | 168/197 |
+| sectors | 168/197 |
+| holdings | 174/197 |
 
 ## Premiers calendriers des 12 parts récentes
 
@@ -65,16 +65,12 @@ Les caractéristiques statiques et cotations sont exclues de ce chantier conform
 | instrument | Vanguard LifeStrategy 80% Equity UCITS ETF (EUR) Accumulating (IE00BMVB5R75) | Pays | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
 | instrument | Vanguard LifeStrategy 80% Equity UCITS ETF (EUR) Accumulating (IE00BMVB5R75) | Secteurs | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
 | instrument | Global X Silver Miners UCITS ETF USD Accumulating (IE000UL6CLP7) | Calendrier annuel | Non publié | La source officielle actuelle publie des performances glissantes et cumulées, collectées séparément, sans calendrier annuel complet. Les historiques mensuels de la part restent automatisés avec leur propre source et convention. |
-| instrument | Global X Silver Miners UCITS ETF USD Accumulating (IE000UL6CLP7) | Pays | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
 | instrument | Global X Silver Miners UCITS ETF USD Accumulating (IE000UL6CLP7) | Secteurs | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
-| instrument | Global X Silver Miners UCITS ETF USD Accumulating (IE000UL6CLP7) | Positions pondérées | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
 | instrument | iShares Physical Palladium ETC (IE00B4556L06) | Pays | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |
 | instrument | iShares Physical Palladium ETC (IE00B4556L06) | Secteurs | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |
 | instrument | iShares Physical Palladium ETC (IE00B4556L06) | Positions pondérées | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |
 | instrument | Avantis Global Small Cap Value UCITS ETF USD Acc (IE0003R87OG3) | Calendrier annuel | Non publié | La source officielle actuelle publie des performances glissantes et cumulées, collectées séparément, sans calendrier annuel complet. Les historiques mensuels de la part restent automatisés avec leur propre source et convention. |
 | instrument | Avantis Global Small Cap Value UCITS ETF USD Acc (IE0003R87OG3) | Pays | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
-| instrument | Avantis Global Small Cap Value UCITS ETF USD Acc (IE0003R87OG3) | Secteurs | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
-| instrument | Avantis Global Small Cap Value UCITS ETF USD Acc (IE0003R87OG3) | Positions pondérées | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
 | instrument | iShares Physical Platinum ETC (IE00B4LHWP62) | Pays | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |
 | instrument | iShares Physical Platinum ETC (IE00B4LHWP62) | Secteurs | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |
 | instrument | iShares Physical Platinum ETC (IE00B4LHWP62) | Positions pondérées | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |

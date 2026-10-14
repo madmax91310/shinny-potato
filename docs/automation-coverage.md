@@ -62,9 +62,9 @@ Les frais collectés peuvent être ceux du dernier exercice publié : leur date 
 | Frais annuels | 197 |
 | Encours daté | 197 |
 | Rendements calendaires de la part (au moins une année complète) | 181 |
-| Pays | 167 |
-| Secteurs ou sous-secteurs publiés | 167 |
-| Principales positions | 172 |
+| Pays | 168 |
+| Secteurs ou sous-secteurs publiés | 168 |
+| Principales positions | 174 |
 
 Ces couvertures ne s’additionnent pas : plusieurs champs concernent le même instrument. Les 23 expositions Amundi à l’indice suivi recouvrent des parts déjà collectées ; elles ne sont pas 23 fonds supplémentaires. Les compositions d’indice, portefeuilles de fonds et paniers de substitution ne sont jamais assimilés. Les simulations choisissent automatiquement la dernière fenêtre complète commune : six ans pour le Générateur, trois à six ans pour les Duels. Les comparatifs alignent les années des produits. Une publication tardive ou un change BCE manquant conserve la dernière période commune ; aucun rendement n’est extrapolé. Les getters historiques et photographies archivées gardent leur période fixe.
 
@@ -115,9 +115,9 @@ Les identités, domiciles, modes de réplication, couvertures de change, politiq
 | DE000A0H08K7 | iShares STOXX Europe 600 Insurance UCITS ETF (DE) | Les six champs, caractéristiques et cotations sont automatisés |
 | IE00BM67HS53 | Xtrackers MSCI World Materials UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00BM67HQ30 | Xtrackers MSCI World Utilities UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
-| IE000UL6CLP7 | Global X Silver Miners UCITS ETF USD Accumulating | Rendements calendaires, Pays, Secteurs, Principales positions |
+| IE000UL6CLP7 | Global X Silver Miners UCITS ETF USD Accumulating | Rendements calendaires, Secteurs |
 | IE00B4556L06 | iShares Physical Palladium ETC | Pays, Secteurs, Principales positions |
-| IE0003R87OG3 | Avantis Global Small Cap Value UCITS ETF USD Acc | Rendements calendaires, Pays, Secteurs, Principales positions |
+| IE0003R87OG3 | Avantis Global Small Cap Value UCITS ETF USD Acc | Rendements calendaires, Pays |
 | IE00B4LHWP62 | iShares Physical Platinum ETC | Pays, Secteurs, Principales positions |
 | IE00BM67HV82 | Xtrackers MSCI World Industrials UCITS ETF 1C | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00B3F81G20 | iShares MSCI EM Small Cap UCITS ETF USD (Dist) | Les six champs, caractéristiques et cotations sont automatisés |
