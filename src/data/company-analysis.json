@@ -867,6 +867,17 @@
         ],
         "definition": "Somme de quatre trimestres GAAP publiés, sur la même base par action",
         "observedAt": "2026-10-14"
+      },
+      "valuationShareBasis": {
+        "version": 1,
+        "observedAt": "2026-10-14",
+        "annualEnd": "2025-09-27",
+        "accountsEndAtCollection": "2026-06-27",
+        "currency": "USD",
+        "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/AAPL?period1=1600992000&period2=1792022400&interval=1mo&events=splits",
+        "splitCheckFrom": "2020-09-25",
+        "splitCheckThrough": "2026-10-14",
+        "definition": "Published annual diluted averages; complete historical split window checked"
       }
     },
     "microsoft": {
@@ -1667,6 +1678,17 @@
         ],
         "definition": "Somme de quatre trimestres GAAP publiés, sur la même base par action",
         "observedAt": "2026-10-14"
+      },
+      "valuationShareBasis": {
+        "version": 1,
+        "observedAt": "2026-10-14",
+        "annualEnd": "2026-06-30",
+        "accountsEndAtCollection": "2026-06-30",
+        "currency": "USD",
+        "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/MSFT?period1=1624838400&period2=1792022400&interval=1mo&events=splits",
+        "splitCheckFrom": "2021-06-28",
+        "splitCheckThrough": "2026-10-14",
+        "definition": "Published annual diluted averages; complete historical split window checked"
       }
     },
     "nvidia": {
@@ -2486,6 +2508,134 @@
         ],
         "definition": "Somme de quatre trimestres GAAP publiés, sur la même base par action",
         "observedAt": "2026-10-14"
+      },
+      "valuationShareBasis": {
+        "version": 1,
+        "observedAt": "2026-10-14",
+        "annualEnd": "2026-01-25",
+        "accountsEndAtCollection": "2026-07-26",
+        "currency": "USD",
+        "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/NVDA?period1=1611792000&period2=1792022400&interval=1mo&events=splits",
+        "splitCheckFrom": "2021-01-28",
+        "splitCheckThrough": "2026-10-14",
+        "definition": "Published diluted averages normalised using issuer-confirmed split dates and restated comparatives",
+        "normalisedYears": [
+          {
+            "end": "2022-01-30",
+            "reportedAverageDilutedShares": 2535000000.0,
+            "averageDilutedShares": 25350000000.0,
+            "sourceUrl": "https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-fourth-quarter-and-fiscal-2023",
+            "publishedAt": "2023-02-22",
+            "adjustments": [
+              {
+                "effectiveDate": "2021-07-19",
+                "ratio": 4.0,
+                "issuerSourceUrl": "https://nvidianews.nvidia.com/_gallery/download_pdf/611d6beded6ae506d7268d68/",
+                "asOf": "2021-07-20",
+                "action": "post-split-fiscal-year"
+              },
+              {
+                "effectiveDate": "2024-06-07",
+                "ratio": 10.0,
+                "issuerSourceUrl": "https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-first-quarter-fiscal-2025",
+                "asOf": "2024-06-10",
+                "action": "multiplied"
+              }
+            ]
+          },
+          {
+            "end": "2023-01-29",
+            "reportedAverageDilutedShares": 2507000000.0,
+            "averageDilutedShares": 25070000000.0,
+            "sourceUrl": "https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-fourth-quarter-and-fiscal-2024",
+            "publishedAt": "2024-02-21",
+            "adjustments": [
+              {
+                "effectiveDate": "2021-07-19",
+                "ratio": 4.0,
+                "issuerSourceUrl": "https://nvidianews.nvidia.com/_gallery/download_pdf/611d6beded6ae506d7268d68/",
+                "asOf": "2021-07-20",
+                "action": "post-split-fiscal-year"
+              },
+              {
+                "effectiveDate": "2024-06-07",
+                "ratio": 10.0,
+                "issuerSourceUrl": "https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-first-quarter-fiscal-2025",
+                "asOf": "2024-06-10",
+                "action": "multiplied"
+              }
+            ]
+          },
+          {
+            "end": "2024-01-28",
+            "reportedAverageDilutedShares": 24940000000.0,
+            "averageDilutedShares": 24940000000.0,
+            "sourceUrl": "https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-fourth-quarter-and-fiscal-2025",
+            "publishedAt": "2025-02-26",
+            "adjustments": [
+              {
+                "effectiveDate": "2021-07-19",
+                "ratio": 4.0,
+                "issuerSourceUrl": "https://nvidianews.nvidia.com/_gallery/download_pdf/611d6beded6ae506d7268d68/",
+                "asOf": "2021-07-20",
+                "action": "post-split-fiscal-year"
+              },
+              {
+                "effectiveDate": "2024-06-07",
+                "ratio": 10.0,
+                "issuerSourceUrl": "https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-first-quarter-fiscal-2025",
+                "asOf": "2024-06-10",
+                "action": "already-restated"
+              }
+            ]
+          },
+          {
+            "end": "2025-01-26",
+            "reportedAverageDilutedShares": 24804000000.0,
+            "averageDilutedShares": 24804000000.0,
+            "sourceUrl": "https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-fourth-quarter-and-fiscal-2026",
+            "publishedAt": "2026-02-25",
+            "adjustments": [
+              {
+                "effectiveDate": "2021-07-19",
+                "ratio": 4.0,
+                "issuerSourceUrl": "https://nvidianews.nvidia.com/_gallery/download_pdf/611d6beded6ae506d7268d68/",
+                "asOf": "2021-07-20",
+                "action": "post-split-fiscal-year"
+              },
+              {
+                "effectiveDate": "2024-06-07",
+                "ratio": 10.0,
+                "issuerSourceUrl": "https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-first-quarter-fiscal-2025",
+                "asOf": "2024-06-10",
+                "action": "post-split-fiscal-year"
+              }
+            ]
+          },
+          {
+            "end": "2026-01-25",
+            "reportedAverageDilutedShares": 24514000000.0,
+            "averageDilutedShares": 24514000000.0,
+            "sourceUrl": "https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-fourth-quarter-and-fiscal-2026",
+            "publishedAt": "2026-02-25",
+            "adjustments": [
+              {
+                "effectiveDate": "2021-07-19",
+                "ratio": 4.0,
+                "issuerSourceUrl": "https://nvidianews.nvidia.com/_gallery/download_pdf/611d6beded6ae506d7268d68/",
+                "asOf": "2021-07-20",
+                "action": "post-split-fiscal-year"
+              },
+              {
+                "effectiveDate": "2024-06-07",
+                "ratio": 10.0,
+                "issuerSourceUrl": "https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-first-quarter-fiscal-2025",
+                "asOf": "2024-06-10",
+                "action": "post-split-fiscal-year"
+              }
+            ]
+          }
+        ]
       }
     },
     "alphabet": {
@@ -10000,6 +10150,17 @@
         ],
         "definition": "Somme de quatre trimestres GAAP réellement publiés",
         "observedAt": "2026-10-14"
+      },
+      "valuationShareBasis": {
+        "version": 1,
+        "observedAt": "2026-10-14",
+        "annualEnd": "2025-12-31",
+        "accountsEndAtCollection": "2026-06-30",
+        "currency": "USD",
+        "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/MA?period1=1640649600&period2=1792022400&interval=1mo&events=splits",
+        "splitCheckFrom": "2021-12-28",
+        "splitCheckThrough": "2026-10-14",
+        "definition": "Published annual diluted averages; complete historical split window checked"
       }
     },
     "adobe": {
@@ -11446,6 +11607,17 @@
         ],
         "definition": "Somme de quatre trimestres GAAP réellement publiés",
         "observedAt": "2026-10-14"
+      },
+      "valuationShareBasis": {
+        "version": 1,
+        "observedAt": "2026-10-14",
+        "annualEnd": "2026-01-31",
+        "accountsEndAtCollection": "2026-07-31",
+        "currency": "USD",
+        "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/CRM?period1=1643328000&period2=1792022400&interval=1mo&events=splits",
+        "splitCheckFrom": "2022-01-28",
+        "splitCheckThrough": "2026-10-14",
+        "definition": "Published annual diluted averages; complete historical split window checked"
       }
     },
     "servicenow": {
@@ -12883,6 +13055,17 @@
         ],
         "definition": "Somme de quatre trimestres GAAP réellement publiés",
         "observedAt": "2026-10-14"
+      },
+      "valuationShareBasis": {
+        "version": 1,
+        "observedAt": "2026-10-14",
+        "annualEnd": "2026-07-31",
+        "accountsEndAtCollection": "2026-07-31",
+        "currency": "USD",
+        "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/INTU?period1=1658966400&period2=1792022400&interval=1mo&events=splits",
+        "splitCheckFrom": "2022-07-28",
+        "splitCheckThrough": "2026-10-14",
+        "definition": "Published annual diluted averages; complete historical split window checked"
       }
     },
     "coca-cola": {
@@ -13627,6 +13810,17 @@
         ],
         "definition": "Somme de quatre trimestres GAAP réellement publiés",
         "observedAt": "2026-10-14"
+      },
+      "valuationShareBasis": {
+        "version": 1,
+        "observedAt": "2026-10-14",
+        "annualEnd": "2025-12-31",
+        "accountsEndAtCollection": "2026-07-03",
+        "currency": "USD",
+        "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/KO?period1=1640649600&period2=1792022400&interval=1mo&events=splits",
+        "splitCheckFrom": "2021-12-28",
+        "splitCheckThrough": "2026-10-14",
+        "definition": "Published annual diluted averages; complete historical split window checked"
       }
     },
     "pepsico": {
@@ -14368,6 +14562,17 @@
         ],
         "definition": "Somme de quatre trimestres GAAP réellement publiés",
         "observedAt": "2026-10-14"
+      },
+      "valuationShareBasis": {
+        "version": 1,
+        "observedAt": "2026-10-14",
+        "annualEnd": "2025-12-27",
+        "accountsEndAtCollection": "2026-09-05",
+        "currency": "USD",
+        "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/PEP?period1=1640649600&period2=1792022400&interval=1mo&events=splits",
+        "splitCheckFrom": "2021-12-28",
+        "splitCheckThrough": "2026-10-14",
+        "definition": "Published annual diluted averages; complete historical split window checked"
       }
     },
     "walmart": {
