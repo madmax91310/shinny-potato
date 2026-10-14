@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict'
-import { automationOverview } from '../src/pages/data-review/automation.js'
+import { automationOverview, automationFailures } from '../src/pages/data-review/automation.js'
 import registry from '../src/data/automation-workflows.json' with { type: 'json' }
 const now = new Date('2026-10-13T20:00:00Z')
 assert.throws(() => automationOverview(null))
@@ -24,3 +24,9 @@ const staleFailure = structuredClone(status)
 staleFailure.workflows['update-lifestrategy.yml'].status = 'failure'
 assert.equal(automationOverview(staleFailure, now).find(r => r.id === 'update-lifestrategy.yml').state, 'failure')
 console.log('Automation overview: configured collectors, independent collection status, overdue checks and failures verified.')
+
+for (const completedAt of [undefined, 'invalid', '2026-10-14T00:00:00Z']) {
+  const bad = { schemaVersion: 1, workflows: { incomplete: { name: 'Sans date valide', collectionStatus: 'success', completedAt } } }
+  assert.equal(automationOverview(bad, now).find(r => r.id === 'incomplete').state, 'unknown')
+}
+assert(automationFailures(status).some(row => row.id === 'partial:one'), 'Un échec de champ doit apparaître même si le workflow global réussit')

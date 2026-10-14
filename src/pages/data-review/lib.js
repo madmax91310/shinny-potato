@@ -62,9 +62,19 @@ export function scheduledReview(base, field, today) {
     // Une consultation récente ne repousse pas une clôture mensuelle manquante.
     if (last) nextReviewAt = addMonths(`${last}-01`, 2)
   }
+  // Rechecking an unchanged source cannot make an old current snapshot fresh.
+  // Historical index photographs remain archives with their own review schedule.
+  const observationBound = /\/(instrument-aum|instrument-aum-observations)\.js$/.test(field.registry ?? '') ||
+    ((field.registry ?? '').endsWith('/index-facts.js') && field.label?.startsWith('Composition courante'))
+  const asOf = base.metadata?.asOf
+  const observationDay = dayNumber(asOf)
+  if (observationBound && observationDay !== null) {
+    const observationDeadline = addMonths(asOf, 3)
+    if (!nextReviewAt || observationDeadline < nextReviewAt) nextReviewAt = observationDeadline
+  }
   const remaining = nextReviewAt ? dayNumber(nextReviewAt) - dayNumber(today) : null
-  const category = checked === null ? 'undated' : checked > dayNumber(today) ? 'future-date' : remaining <= 0 ? 'stale' : remaining <= SOON_DAYS ? 'soon' : 'current'
-  return { ...base, nextReviewAt, category, cadence: policy.annual ? 'annual' : { 1: 'monthly', 3: 'quarterly', 6: 'semiannual', 12: 'annual' }[policy.months], dataType: policy.type, reason: policy.rule }
+  const category = observationBound && asOf && observationDay === null ? 'undated' : checked === null ? 'undated' : (checked > dayNumber(today) || (observationBound && observationDay > dayNumber(today))) ? 'future-date' : remaining <= 0 ? 'stale' : remaining <= SOON_DAYS ? 'soon' : 'current'
+  return { ...base, nextReviewAt, category, cadence: policy.annual ? 'annual' : { 1: 'monthly', 3: 'quarterly', 6: 'semiannual', 12: 'annual' }[policy.months], dataType: policy.type, reason: observationBound ? `${policy.rule} L’échéance tient aussi compte de la date de la donnée, indépendamment de sa consultation.` : policy.rule }
 }
 
 // Interface de maintenance uniquement : aucune modification des valeurs ou des générateurs.
