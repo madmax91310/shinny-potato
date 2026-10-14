@@ -69,7 +69,7 @@ try {
   const growthInput = valuationPanel.getByLabel('Croissance BPA Central', {exact:true})
   const before = await valuationPanel.locator('.valuation-assumptions tbody tr').nth(1).innerText()
   const chartBefore = await valuationPanel.locator('.valuation-forecast-line.selected').getAttribute('d')
-  assert((await valuationPanel.getByTestId('target-coverage').innerText()).includes('Estimations sourcées'))
+  assert((await valuationPanel.getByTestId('target-coverage').innerText()).includes('Les estimations publiées vont jusqu’à l’exercice'))
   await valuationPanel.getByText('Comprendre le calcul et consulter les sources',{exact:true}).click()
   assert.equal(await valuationPanel.getByTestId('target-origins').locator('tbody tr').count(),5)
   const readingBefore = await valuationPanel.getByTestId('valuation-reading').innerText()
