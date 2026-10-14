@@ -45,6 +45,7 @@ try {
     document.execCommand = () => true
   })
   await page.getByRole('button', { name: /Copier le texte|Copié/ }).click()
+  await page.locator('.publication-feedback [role=status]').filter({ hasText: 'Texte copié.' }).waitFor()
   assert.equal(await page.locator('.publication-feedback [role=status]').textContent(), 'Texte copié.')
   await page.evaluate(() => { document.execCommand = () => false })
   await page.getByRole('button', { name: /Copier le texte|Copié/ }).click()

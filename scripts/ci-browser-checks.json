@@ -1,4 +1,5 @@
 [
+  "node scripts/test-publication-continuity.mjs",
   "node scripts/test-investment-crisis.mjs --browser",
   "node scripts/test-resource-selections.mjs --browser",
   "node scripts/test-dca-images.mjs",
@@ -36,6 +37,5 @@
   "node scripts/test-stylized-formats.mjs",
   "node scripts/test-investment-emerald.mjs",
   "node scripts/test-duel-titanium.mjs",
-  "node scripts/test-investor-screenprint.mjs",
-  "node scripts/test-publication-continuity.mjs"
+  "node scripts/test-investor-screenprint.mjs"
 ]

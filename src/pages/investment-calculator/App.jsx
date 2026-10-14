@@ -258,7 +258,9 @@ export default function App() {
 
 function InvestmentWorkspace({ search }) {
   const [state, setState] = useState(() => {
-    const assetId = getSimulationAssetId(new URLSearchParams(search).get('asset'))
+    const params = new URLSearchParams(search)
+    const assetId = getSimulationAssetId(params.get('asset'))
+    if (params.has('asset') && !assetId) return INITIAL_STATE
     if (!assetId) return readPreference('investment-settings', INITIAL_STATE, validSavedSettings)
     const minDate = getAssetMinDate(assetId)
     const maxDate = ASSETS[assetId].points.at(-1).date

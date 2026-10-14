@@ -22,6 +22,12 @@ try {
     await page.reload({ waitUntil: 'networkidle' })
     assert.equal(await picker.getAttribute('data-value'), second, `${route}: selection restored`)
   }
+  await page.goto(`${base}/calculateur-investissement`, { waitUntil: 'networkidle' })
+  await page.locator('.ic-amount-wrap input').fill('4321')
+  await page.reload({ waitUntil: 'networkidle' })
+  assert.equal(await page.locator('.ic-amount-wrap input').inputValue(), '4321')
+  await page.goto(`${base}/calculateur-investissement?asset=apple`, { waitUntil: 'networkidle' })
+  assert.equal(await page.locator('.ic-amount-wrap input').inputValue(), '1000', 'explicit link starts a fresh simulation')
   await page.goto(`${base}/fiches-etf`, { waitUntil: 'networkidle' })
   await page.getByRole('button', { name: '☆ Ajouter aux favoris', exact: true }).click()
   await page.reload({ waitUntil: 'networkidle' })
