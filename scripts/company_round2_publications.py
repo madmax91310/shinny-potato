@@ -229,10 +229,10 @@ def statement_periods(text, ident, url, today):
         if interests and len(interests) == len(rv):
             p['interestExpense'] = abs(interests[i])*1e6
             p['previousInterestExpense'] = abs(interests[j])*1e6
-        share_section = re.split(r'(?im)^\s*(?:Weighted.average shares|Shares used)', text, 1)
+        share_section = re.split(r'(?im)^\s*(?:Weighted.average (?:common )?shares|Shares used|Weighted.average number of (?:common )?shares)', text, 1)
         if len(share_section) == 2:
             counts = row(share_section[1], [r'Diluted(?: \(\d+\))?'])
-            if counts and len(counts) == len(rv) and min(counts)>100:
+            if counts and len(counts) == len(rv) and min(counts)>0 and all(abs(net[k]/counts[k]-eps[k]) <= max(.03,abs(eps[k])*.01) for k in range(len(rv))):
                 p['averageDilutedShares'] = counts[i]*1e6
                 p['previousAverageDilutedShares'] = counts[j]*1e6
         p['margin']=p['netIncome']/p['revenue']*100;result.append(p)
