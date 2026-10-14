@@ -119,3 +119,10 @@
  .valuation-scenarios button strong { font-size:17px; }
  .valuation-scenarios button small { font-size:8px; line-height:1.5; }
 }
+
+.valuation-company-picker { margin-bottom:20px; }
+.company-publication { margin-top:28px; }
+.company-publication > summary { padding:18px 0; font-size:14px; cursor:pointer; color:var(--text-secondary,#657080); }
+.valuation-studio { container-type:inline-size; }
+.valuation-metrics dd { white-space:nowrap; }
+@container(max-width:600px) { .valuation-main { grid-template-columns:1fr; gap:24px; } }
