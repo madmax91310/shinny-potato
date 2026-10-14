@@ -71,6 +71,7 @@ export default function App() {
       </section>
       <section className="tool-preview">
         <ValuationPanel key={company.id} company={company} />
+        <details className="company-financial-details"><summary>Consulter les comptes et indicateurs détaillés</summary>
         {ready && <section className="company-decision" aria-label="Indicateurs pour analyser l’entreprise">
           <h2>Cash, solidité et valorisation</h2>
           <p>Flux annuels : exercice clos le {dateLabel(company.annual.end)}. Les ratios de valorisation utilisent la dernière clôture disponible.</p>
@@ -95,6 +96,7 @@ export default function App() {
           </table></div>
         </div>}
 
+        </details>
         {ready ? <>
           {editing ? <label className="company-editor">Texte de la publication
             <textarea value={text} onChange={event => { setDrafts(previous => ({...previous, [id]: event.target.value})); setMessage('') }} rows={22} />
