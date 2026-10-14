@@ -256,7 +256,7 @@ export function buildTweetText(state, d) {
   const monthly = d.effectiveMode === 'dca'
   const endingQuestion = monthly
     ? 'Tu aurais continué tes achats pendant les baisses ?'
-    : 'Tu aurais gardé cet investissement pendant toute la période ?'
+    : 'Tu aurais gardé ce placement jusqu’au bout ?'
   const hookLine = d.effectiveMode === 'dca'
     ? `Et si tu avais investi ${amountFmt} par mois dans ${investmentLabel} depuis ${monthLabel} ${yearLabel} ? 🫢`
     : `Et si tu avais investi ${amountFmt} dans ${investmentLabel} en ${monthLabel} ${yearLabel} ? 🫢`

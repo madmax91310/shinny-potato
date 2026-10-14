@@ -2,19 +2,19 @@
 const PRESENTATION_COPY = Object.fromEntries([
   [['gaming_vaneck'], {
     hook: 'Le jeu vidéo ne se résume pas aux consoles que tu as chez toi. Cet ETF réunit des entreprises qui vivent aussi des jeux et de l’eSport 👇',
-    whyInteresting: 'Tu cibles les éditeurs, développeurs et activités liées au jeu vidéo plutôt que tout le secteur technologique. Le panier contient notamment des entreprises japonaises, chinoises et américaines.\n\nCe qui m’intéresse ici, c’est de regarder quelles entreprises tirent réellement leurs revenus du jeu vidéo, au-delà des marques qu’on connaît.',
+    whyInteresting: 'Tu cibles les éditeurs, développeurs et activités liées au jeu vidéo plutôt que tout le secteur technologique. Le panier contient notamment des entreprises japonaises, chinoises et américaines.\n\nDerrière les marques qu’on connaît, je regarde surtout quelles entreprises gagnent réellement leur argent dans le jeu vidéo.',
   }],
   [['medical_innovation_ishares'], {
     hook: 'Investir dans la santé peut vouloir dire suivre tout le secteur ou chercher les entreprises qui développent de nouveaux traitements et équipements. Cet ETF fait ce second choix 👇',
-    whyInteresting: 'Tu peux comparer cette sélection tournée vers l’innovation à un secteur santé large ou aux seules biotechnologies américaines. Pour moi, la différence commence là : ces trois approches ne couvrent pas les mêmes entreprises.',
+    whyInteresting: 'Tu peux comparer cette sélection tournée vers l’innovation à un secteur santé large ou aux seules biotechnologies américaines. Ce choix compte : tu ne retrouves pas les mêmes entreprises dans les trois cas.',
   }],
   [['acwi_imi_spdr'], {
     hook: 'Pays développés, émergents et petites entreprises : cet ETF les rassemble dans une seule ligne. Voici ce que cette couverture mondiale comprend 👇',
-    whyInteresting: 'Tu réunis les marchés développés, les émergents et les petites capitalisations sans gérer plusieurs fonds. Ce que je retiens, c’est cette couverture plus large qu’un World classique. La répartition suit toutefois l’indice : tu ne choisis pas séparément le poids de chaque ensemble.',
+    whyInteresting: 'Tu réunis les marchés développés, les émergents et les petites capitalisations sans gérer plusieurs fonds. Tu vas donc plus loin qu’un World classique. La répartition suit toutefois l’indice : tu ne choisis pas séparément le poids de chaque ensemble.',
   }],
   [['sp500_equal_weight'], {
     hook: 'Dans le S&P 500, les plus grandes entreprises occupent le plus de place. Cet ETF change la règle en redonnant le même poids à chacune lors des rééquilibrages 👇',
-    whyInteresting: 'Tu gardes les entreprises du S&P 500, mais tu répartis autrement ton argent entre elles. C’est ce que je trouve intéressant à comparer : le changement vient des poids, pas de l’ajout d’un nouveau marché.',
+    whyInteresting: 'Tu gardes les entreprises du S&P 500, mais tu répartis autrement ton argent entre elles. Tu changes le poids des entreprises, sans ajouter un nouveau marché.',
   }],
   [['russell2000_spdr'], {
     hook: 'La Bourse américaine ne se limite pas à ses grands groupes. Cet ETF suit le Russell 2000 pour faire une place aux petites entreprises américaines 👇',
@@ -30,11 +30,11 @@ const PRESENTATION_COPY = Object.fromEntries([
   }],
   [['world_ex_usa'], {
     hook: 'Tu aimerais choisir toi-même la place des États-Unis dans ton portefeuille mondial ? Cet ETF suit les pays développés en les laissant de côté 👇',
-    whyInteresting: 'Tu peux associer ce fonds à une ligne américaine et fixer toi-même leur répartition. Ce qui m’intéresse dans cette construction, c’est ce choix explicite du poids des États-Unis. Cela ne complète pas pour autant tous les marchés absents du World.',
+    whyInteresting: 'Tu peux associer ce fonds à une ligne américaine et fixer toi-même leur répartition. C’est toi qui décides de la place des États-Unis. Cela ne complète pas pour autant tous les marchés absents du World.',
   }],
   [['pea_global_amundi'], {
     hook: 'Réunir pays développés et émergents dans ton PEA sans gérer deux ETF séparés, c’est l’idée de ce fonds qui suit le MSCI ACWI 👇',
-    whyInteresting: 'Tu gardes une seule ligne mondiale au lieu de gérer séparément World et émergents. J’apprécie la simplicité de cette approche : leur poids suit l’indice, sans rééquilibrage à faire toi-même entre les deux poches.',
+    whyInteresting: 'Tu gardes une seule ligne mondiale au lieu de gérer séparément World et émergents. Leur poids suit l’indice. Tu n’as donc pas à rééquilibrer toi-même les deux poches.',
   }],
   [['obligations-etat-0-1'], {
     hook: 'Les obligations d’État ne se comportent pas toutes de la même façon. Cet ETF se concentre sur les échéances très courtes en euros 👇',
@@ -300,7 +300,7 @@ const PRESENTATION_COPY = Object.fromEntries([
 const OVERRIDES = {
   'msci-em': {
     hook: 'Un ETF World couvre beaucoup de pays, mais les marchés émergents n’en font pas partie. Cet ETF permet de leur faire une place dans ton portefeuille 👇',
-    whyInteresting: 'Tu ajoutes des entreprises de pays absents du MSCI World, avec aussi des petites capitalisations.\n\nCe que je trouve intéressant ici, c’est de pouvoir choisir la place des émergents dans le portefeuille. Cela élargit l’exposition, mais les risques politiques et les variations des monnaies restent à prendre en compte.',
+    whyInteresting: 'Tu ajoutes des entreprises de pays absents du MSCI World, avec aussi des petites capitalisations.\n\nTu choisis toi-même la place des émergents dans ton portefeuille. Cela élargit l’exposition, mais les risques politiques et les variations des monnaies restent à prendre en compte.',
   },
   'covered-call': {
     hook: 'Recevoir de l’argent chaque mois avec un ETF, ça peut donner envie. Avec ce fonds, ces distributions viennent d’une stratégie qui limite aussi une partie de la hausse du Nasdaq-100 👇',
@@ -313,7 +313,7 @@ const OVERRIDES = {
   ia: {
     hook: '🤖 Quand on parle d’investissement dans l’IA, on pense souvent aux fabricants de puces. Cet ETF va aussi chercher du côté des logiciels et des applications 👇',
     whatIs: 'Cet ETF suit un indice qui sélectionne des entreprises liées à plusieurs activités de l’intelligence artificielle : infrastructures, logiciels et applications.\n\nIl ne se limite donc pas aux fabricants de puces ou aux entreprises qui développent des modèles d’IA.',
-    whyInteresting: 'Tu réunis plusieurs activités liées à l’IA dans une seule ligne.\n\nC’est ce qui m’intéresse ici : comprendre quelles entreprises le fonds retient derrière ce thème très large. Deux ETF portant « IA » dans leur nom ne proposent pas forcément la même exposition.\n\nLa sélection dépend des règles de l’indice : toutes les entreprises associées à l’IA ne sont pas forcément présentes.',
+    whyInteresting: 'Tu réunis plusieurs activités liées à l’IA dans une seule ligne.\n\nJe regarde surtout quelles entreprises le fonds met derrière ce thème très large. Deux ETF portant « IA » dans leur nom ne proposent pas forcément la même exposition.\n\nLa sélection dépend des règles de l’indice : toutes les entreprises associées à l’IA ne sont pas forcément présentes.',
     whatToKnow: 'Le développement de l’IA ne garantit pas la hausse des actions de ces entreprises.\n\nTu peux aussi détenir certaines de ces sociétés dans ton ETF World ou technologique. Ajouter ce fonds peut renforcer une exposition que tu as déjà.',
     verdict: 'L&G Artificial Intelligence rassemble plusieurs métiers liés à l’IA. Pour comprendre ce que tu achètes, regarde les entreprises détenues et leur poids, au-delà du nom du thème.',
     question: 'Tu voudrais investir dans toute la chaîne de l’IA ou privilégier une activité précise ?',
@@ -321,7 +321,7 @@ const OVERRIDES = {
   'msci-world': {
     hook: '🌍 Investir dans plusieurs pays avec une seule ligne dans ton PEA, c’est ce que permet cet ETF World 👇',
     whatIs: 'Cet ETF suit le MSCI World : de grandes et moyennes entreprises de pays développés, dans plusieurs secteurs.\n\nLes entreprises ayant les plus grosses capitalisations occupent le plus de place. Les États-Unis et leurs grands groupes pèsent donc fortement dans cette exposition.',
-    whyInteresting: 'Tu suis de grandes et moyennes entreprises de pays développés, sans sélectionner les actions une par une.\n\nCe que j’apprécie dans cette approche, c’est de ne pas avoir à deviner quelles entreprises feront les meilleures performances. En revanche, les émergents et les petites capitalisations restent en dehors.\n\nLa réplication synthétique permet de rendre cette exposition accessible dans un PEA.',
+    whyInteresting: 'Tu suis de grandes et moyennes entreprises de pays développés, sans sélectionner les actions une par une.\n\nTu n’as pas à deviner quelles entreprises feront les meilleures performances. En revanche, les émergents et les petites capitalisations restent en dehors.\n\nLa réplication synthétique permet de rendre cette exposition accessible dans un PEA.',
     whatToKnow: 'Le MSCI World n’inclut ni les marchés émergents ni les petites capitalisations.\n\nDétenir beaucoup d’entreprises ne signifie pas que chaque pays a le même poids. Et cet ETF reste exposé aux baisses des marchés actions.',
     verdict: 'Amundi PEA Monde permet de suivre le MSCI World dans ton PEA. Si tu veux aussi des émergents ou des petites capitalisations, ces expositions sont à chercher ailleurs.',
     question: 'Dans ton PEA, tu gardes un World seul ou tu ajoutes d’autres expositions à côté ?',
@@ -346,7 +346,7 @@ const EXPOSURE_COPY = {
   },
   cybersecurite: {
     hook: '🔐 Protéger les données et les réseaux fait vivre plusieurs entreprises cotées. Cet ETF réunit des acteurs de la sécurité numérique : voici ce qu’il contient 👇',
-    whyInteresting: 'Tu réunis plusieurs entreprises de sécurité numérique sans les choisir une par une.\n\nLe besoin de protéger les systèmes explique leur activité. Leurs profits dépendent aussi de la concurrence, des contrats remportés et du coût de développement de leurs produits.',
+    whyInteresting: 'Tu réunis plusieurs entreprises de sécurité numérique sans les choisir une par une.\n\nLes systèmes ont besoin d’être protégés, mais ces entreprises doivent aussi gagner des contrats. Leurs profits dépendent de la concurrence et du coût de développement de leurs produits.',
     whatToKnow: 'La croissance des besoins de cybersécurité ne garantit pas la hausse de ces actions. Les attentes peuvent déjà être intégrées dans leurs cours.\n\nCertaines entreprises peuvent aussi être présentes dans tes ETF mondiaux ou technologiques : ajouter cette ligne augmente alors leur poids.',
     question: 'Tu as déjà un ETF thématique dans ton portefeuille ?',
   },

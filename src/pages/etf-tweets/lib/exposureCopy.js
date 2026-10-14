@@ -7,7 +7,7 @@ import { QUALIFIED_ETF_COMPARISONS } from '../../../data/qualified-etf-compariso
 // lus dans leurs sources existantes. Une même part conserve le même texte.
 const WORLD = 'Il couvre les grandes et moyennes entreprises des pays développés, comme les États-Unis, le Japon et la France. Les marchés émergents et les petites capitalisations n’y figurent pas.'
 const ACWI = 'Il couvre les grandes et moyennes entreprises des pays développés et émergents, comme la Chine et l’Inde. Par rapport au World, il ajoute les marchés émergents, sans inclure les petites capitalisations.'
-const EURO50 = 'Il suit 50 grandes entreprises de la zone euro. Son périmètre est plus restreint que celui du MSCI Europe ou du STOXX Europe 600 : le Royaume-Uni et la Suisse n’en font pas partie.'
+const EURO50 = 'Il suit 50 grandes entreprises de la zone euro. Il couvre moins de marchés que le MSCI Europe ou le STOXX Europe 600 : le Royaume-Uni et la Suisse n’en font pas partie.'
 const TECH_EUROPE = 'Il cible les entreprises technologiques du STOXX Europe 600. Tu investis dans un secteur européen précis, plutôt que dans l’ensemble du marché européen.'
 export const ETF_EXPOSURE_COPY = {
  IE00B4LHWP62:'Il est adossé à du platine physique. Tu détiens un ETC, pas des actions minières ni un ETF UCITS. Il ne distribue pas de revenu.',
@@ -51,7 +51,7 @@ export const ETF_EXPOSURE_COPY = {
   LU1681048630: 'Il suit le S&P Global Luxury, qui sélectionne des entreprises mondiales liées au luxe. La composition dépend des règles de cet indice et peut différer de celle de l’ETF PEA Luxe Monde.',
   IE00BGV5VN51: 'Il cible des entreprises liées à l’intelligence artificielle et au traitement de grandes quantités de données. Son univers dépasse la robotique et ne correspond pas à tout le secteur technologique.',
   IE00BK5BCD43: 'Il suit le ROBO Global Artificial Intelligence, une sélection d’entreprises liées à l’intelligence artificielle. Les règles de cet indice donnent un panier différent de celui de l’ETF IA et Big Data.',
-  IE00BYZK4552: 'Il cible les entreprises de l’automatisation et de la robotique. Son exposition porte aussi sur des applications industrielles, au-delà de l’intelligence artificielle seule.',
+  IE00BYZK4552: 'Il cible les entreprises de l’automatisation et de la robotique. Tu retrouves aussi des applications industrielles, au-delà de l’intelligence artificielle seule.',
   LU1834986900: 'Il cible les entreprises du secteur santé du STOXX Europe 600. Son exposition est européenne, contrairement aux ETF santé des marchés développés mondiaux.',
   IE00BJ5JNZ06: 'Il couvre le secteur de la santé dans les pays développés. Son indice Advanced applique des exclusions : le panier diffère de celui du MSCI World Health Care classique.',
   IE00BM67HK77: 'Il suit le secteur de la santé du MSCI World, dans les pays développés. Son exposition porte sur l’ensemble de ce secteur, plutôt que sur la seule innovation médicale ou les biotechnologies.',
@@ -75,22 +75,22 @@ export const ETF_EXPOSURE_COPY = {
   LU1834983550: 'Il cible les entreprises européennes des ressources de base, comme les activités minières. Ce sont des actions d’entreprises : leur performance ne suit pas directement le prix des matières premières.',
   LU1834983634: 'Il cible le secteur des matériaux en Europe. Son périmètre est plus large que les seules minières et reste distinct d’un investissement direct dans les matières premières.',
   IE00BDFBTQ78: 'Il cible des entreprises minières à l’échelle mondiale. Leur performance dépend aussi de leurs coûts et de leur activité, et pas seulement du prix des métaux.',
-  IE00BM67HS53: 'Il couvre le secteur des matériaux dans les pays développés. Son périmètre dépasse les seules entreprises minières et ne se limite pas à l’Europe.',
+  IE00BM67HS53: 'Il couvre le secteur des matériaux dans les pays développés. Tu y retrouves davantage que des minières, et pas seulement des entreprises européennes.',
   IE00B4ND3602: 'Cet ETC est adossé à de l’or physique. Il donne une exposition au prix de l’or, plutôt qu’aux actions d’entreprises minières.',
   IE00B4NCWG09: 'Cet ETC est adossé à de l’argent physique. Il donne une exposition au prix de l’argent, plutôt qu’aux entreprises qui l’extraient.',
   GB00B15KXQ89: 'Cet ETC suit des contrats à terme sur le cuivre via un swap, sans détenir du cuivre physique. Le renouvellement des contrats peut faire évoluer sa performance différemment du prix au comptant.',
   IE00B8FHGS14: 'Il part des actions des pays développés et ajuste la sélection et les poids pour rechercher une volatilité plus faible. Il ne garantit pas une baisse moindre à chaque période et ne couvre pas le change en euros.',
   IE00BYWQWR46: 'Il cible les éditeurs, développeurs et autres entreprises liées aux jeux vidéo et à l’eSport. Son panier se concentre sur cette industrie, plutôt que sur toute la technologie.',
-  IE00BYZK4776: 'Il cible des entreprises liées à l’innovation médicale et aux nouvelles solutions de soins. Son périmètre est plus spécialisé que celui d’un ETF couvrant l’ensemble du secteur santé.',
+  IE00BYZK4776: 'Il cible des entreprises liées à l’innovation médicale et aux nouvelles solutions de soins. Tu te concentres sur une partie de la santé, sans couvrir tout le secteur.',
   IE00BYXG2H39: 'Il cible les entreprises de biotechnologie et pharmaceutiques cotées au Nasdaq. Il ne couvre donc pas l’ensemble du secteur santé mondial.',
   IE00BMG6Z448: 'Il couvre les grandes et moyennes entreprises des marchés émergents, en excluant la Chine. Contrairement à l’EM IMI, il n’inclut pas non plus les petites capitalisations.',
   IE00B1FZS350: 'Il cible l’immobilier coté des pays développés, avec un filtre lié au rendement des dividendes. Tu détiens des actions de sociétés immobilières, plutôt que des biens immobiliers en direct.',
   IE00B1FZS467: 'Il cible des entreprises mondiales d’infrastructures, notamment dans les transports et les réseaux. Son activité est différente de l’immobilier coté, même si les deux fonds détiennent des actions.',
   IE0006WW1TQ4: 'Il couvre les grandes et moyennes entreprises des pays développés en excluant les États-Unis. Les marchés émergents et les petites capitalisations restent absents.',
-  IE00BF4RFH31: 'Il couvre les petites entreprises des pays développés. Il complète la tranche de taille absente du MSCI World, sans ajouter les marchés émergents.',
+  IE00BF4RFH31: 'Il couvre les petites entreprises des pays développés. Tu ajoutes les petites entreprises absentes du MSCI World, mais pas les marchés émergents.',
   IE00B4JNQZ49: 'Il cible le secteur financier du S&P 500. Son exposition se concentre sur de grandes entreprises américaines, plutôt que sur la finance de plusieurs pays.',
   IE00BJ5JP097: 'Il cible le secteur financier des pays développés, avec les exclusions de son indice Advanced. Les États-Unis en font partie, mais le périmètre dépasse le marché américain.',
-  IE000I8KRLL9: 'Il cible les entreprises mondiales des semi-conducteurs. Son exposition est spécialisée dans cette industrie, plutôt que dans l’ensemble du secteur technologique.',
+  IE000I8KRLL9: 'Il cible les entreprises mondiales des semi-conducteurs. Tu te concentres sur cette industrie, sans couvrir tout le secteur technologique.',
   IE00BJ5JNY98: 'Il couvre le secteur technologique des pays développés, avec les exclusions de son indice Advanced. Il inclut les semi-conducteurs, mais aussi d’autres activités technologiques.',
   IE000RDRMSD1: 'Il cible des actions d’entreprises liées à la blockchain. Il ne détient pas directement de Bitcoin et sa performance peut donc être différente de celle des cryptomonnaies.',
   FR0013412012: 'Il cible les grandes et moyennes entreprises des marchés émergents asiatiques, avec les exclusions de son indice Screened. Son périmètre est régional, plutôt que celui de tous les marchés émergents.',

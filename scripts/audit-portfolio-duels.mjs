@@ -137,7 +137,7 @@ assert.doesNotMatch(resultReading(strongerSmall),/de moins|moins bien|mieux en 2
 const closeSmall={...smallDuel,b:{...smallDuel.b,final:smallDuel.a.final+27}}
 assert.match(resultReading(closeSmall),/27.*frais et leur composition/)
 const tieDifferentPath={...smallDuel,b:{...smallDuel.b,final:smallDuel.a.final}}
-assert.match(resultReading(tieDifferentPath),/même montant[\s\S]*parcours annuels diffèrent/)
+assert.match(resultReading(tieDifferentPath),/même montant[\s\S]*pas évolué de la même façon chaque année/)
 assert.doesNotMatch(resultReading(tieDifferentPath),/de plus|de moins/)
 console.log('Petites entreprises : formulation validée, ordre inversé, gagnant modifié, résultats proches et égalité vérifiés.')
 const nasdaqDuel=buildDuel(DUELS.find(d=>d.id==='world-nasdaq'))
