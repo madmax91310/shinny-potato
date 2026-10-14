@@ -14,6 +14,34 @@ NOW = dt.datetime(2026, 10, 13, tzinfo=UTC)
 def share(isin): return next(s for s in CONFIG if s['isin'] == isin)
 
 class RemainingIssuerSources(unittest.TestCase):
+    def test_silver_sector_publication_and_invalid_table_preserve_other_fields(self):
+        text = (FIX / 'silv.html').read_text(); config = share('IE000UL6CLP7')
+        table = '<h2>Sector Breakdown</h2><p>As of 30 Sep 2026</p><table><tr><th></th><th>Sector</th><th>Weight (%)</th></tr><tr><td></td><td>Materials</td><td>100</td></tr></table>'
+        absent = silver(text, config, NOW)
+        self.assertEqual(absent['fieldQualification']['sectors']['status'], 'not-published')
+        result = silver(text+table, config, NOW)
+        self.assertEqual(result['sectors']['rows'], [{'name':'Materials','weightPct':100}])
+        self.assertEqual(result['fieldQualification']['sectors']['status'], 'qualified')
+        for invalid in [table.replace('100','70'), table.replace('2026','2027'), table+table]:
+            with self.subTest(invalid=invalid):
+                result = silver(text+invalid, config, NOW)
+                self.assertNotIn('sectors', result)
+                self.assertIn('countries', result)
+                self.assertEqual(result['fieldQualification']['sectors']['status'], 'unqualified')
+                self.assertEqual(result['collectionErrors'][0]['field'], 'sectors')
+        result = silver(text+table.replace('Sector Breakdown','Reference Index Sector Breakdown'), config, NOW)
+        self.assertNotIn('sectors', result)
+
+    def test_avantis_partial_country_evidence_is_never_a_complete_allocation(self):
+        from collect_priority_issuer_etf import avantis_country_qualification
+        text = (FIX / 'avantis.txt').read_text()
+        result = avantis_country_qualification(text, '2026-09-30', 'https://issuer.example/facts.pdf', 'digest', NOW)
+        self.assertEqual(result['status'], 'not-published')
+        self.assertEqual(result['evidence']['coveragePct'], 88.72)
+        self.assertEqual(len(result['evidence']['rows']), 5)
+        for altered in [text.replace('Top 5 Countries %','Country Allocation %'), text.replace('67.44','167.44'), text.replace('Australia','Japan')]:
+            self.assertEqual(avantis_country_qualification(altered, '2026-09-30', 'url', 'digest', NOW)['status'], 'unqualified')
+
     def test_silver_exact_identity_currency_and_rolling_returns(self):
         text = (FIX / 'silv.html').read_text(); config = share('IE000UL6CLP7')
         result = silver(text, config, NOW)

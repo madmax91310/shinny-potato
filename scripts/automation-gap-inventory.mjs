@@ -47,7 +47,7 @@ export function buildGapInventory({etf=AUTOMATED_ETF,indices=read('src/data/auto
     for(const field of Object.keys(names)) {
       const present=field==='ter'?Number.isFinite(data.characteristics?.terPct):field==='aum'?Number.isFinite(data.aum?.amount):field==='performance'?completeCalendarYears(row.id,data.performance?.years,now).length>0:(data[field]?.rows?.length??0)>0;
       if(present){counts[field]++;continue;}
-      gaps.push({type:'instrument',id:row.id,name:row.name,field,label:names[field],configured:!!source,...(data.fieldQualification?.[field]??classifyInstrumentGap(row.id,field,now)),sourceUrl:source?.factsheetUrl??source?.sourceUrl??data.sourceUrl??null});
+      gaps.push({type:'instrument',id:row.id,name:row.name,field,label:names[field],configured:!!source,...(data.fieldQualification?.[field]??classifyInstrumentGap(row.id,field,now)),sourceUrl:data.fieldQualification?.[field]?.sourceUrl??source?.factsheetUrl??source?.sourceUrl??data.sourceUrl??null});
     }
   }
   const configs=read('scripts/index-automation.json').indices.filter(c=>c.enabled!==false);

@@ -17688,7 +17688,7 @@
         },
         {
           "name": "Russian Federation",
-          "weightPct": 1e-06
+          "weightPct": 0.000001
         }
       ],
       "checkedAt": "2026-10-14",
@@ -18477,7 +18477,7 @@
         },
         {
           "name": "Other",
-          "weightPct": 2e-05
+          "weightPct": 0.00002
         },
         {
           "name": "Russia",
@@ -22118,7 +22118,7 @@
         },
         {
           "name": "Canada",
-          "weightPct": 1e-05
+          "weightPct": 0.00001
         },
         {
           "name": "Other",
@@ -26260,7 +26260,7 @@
       "asOf": "2026-10-14",
       "sourceUrl": "https://bitwiseinvestments.eu/products/bitwise-physical-bitcoin-etp/",
       "sha256": "9326d8664b3b952bb8cb803dc3baaa3a543390e8de0b7fcc050398232adeca6f",
-      "terPct": 2.0,
+      "terPct": 2,
       "checkedAt": "2026-10-14",
       "modifiedAt": "2026-10-14"
     },
@@ -27084,7 +27084,7 @@
       "checkedAt": "2026-10-14"
     },
     "aum": {
-      "amount": 1770456430.0,
+      "amount": 1770456430,
       "currency": "USD",
       "scope": "share-class",
       "asOf": "2026-10-13",
@@ -27123,7 +27123,7 @@
       "checkedAt": "2026-10-14"
     },
     "aum": {
-      "amount": 419531567.0,
+      "amount": 419531567,
       "currency": "USD",
       "scope": "share-class",
       "asOf": "2026-10-13",
@@ -29001,7 +29001,7 @@
       "rows": [
         {
           "name": "Canada",
-          "weightPct": 40.0
+          "weightPct": 40
         },
         {
           "name": "United States",
@@ -32120,7 +32120,7 @@
       "scope": "fund",
       "asOf": "2026-10-13",
       "sourceUrl": "https://globalxetfs.eu/funds/silv/",
-      "sha256": "54ba3a1a0789ea8a12c71150b434073101deaa002179cd93203ad8a7f08770fa",
+      "sha256": "7126e5c77aa4ef6f448930083ef11b0cc042aced8127120ecf7dc1b21b50b51a",
       "checkedAt": "2026-10-14",
       "modifiedAt": "2026-10-14"
     },
@@ -32138,7 +32138,7 @@
       "years": {},
       "asOf": "2026-09-30",
       "sourceUrl": "https://globalxetfs.eu/funds/silv/",
-      "sha256": "54ba3a1a0789ea8a12c71150b434073101deaa002179cd93203ad8a7f08770fa",
+      "sha256": "7126e5c77aa4ef6f448930083ef11b0cc042aced8127120ecf7dc1b21b50b51a",
       "method": "cumulative exact-share NAV total return, gross income reinvested, net of fees",
       "observations": [
         {
@@ -32208,7 +32208,7 @@
       "asOf": "2026-09-30",
       "basis": "fund",
       "sourceUrl": "https://globalxetfs.eu/funds/silv/",
-      "sha256": "54ba3a1a0789ea8a12c71150b434073101deaa002179cd93203ad8a7f08770fa",
+      "sha256": "7126e5c77aa4ef6f448930083ef11b0cc042aced8127120ecf7dc1b21b50b51a",
       "checkedAt": "2026-10-14",
       "modifiedAt": "2026-10-14"
     },
@@ -32258,10 +32258,25 @@
       "asOf": "2026-10-13",
       "basis": "fund",
       "sourceUrl": "https://globalxetfs.eu/funds/silv/",
-      "sha256": "54ba3a1a0789ea8a12c71150b434073101deaa002179cd93203ad8a7f08770fa",
+      "sha256": "7126e5c77aa4ef6f448930083ef11b0cc042aced8127120ecf7dc1b21b50b51a",
       "checkedAt": "2026-10-14",
       "modifiedAt": "2026-10-14"
-    }
+    },
+    "fieldQualification": {
+      "sectors": {
+        "status": "not-published",
+        "checkedAt": "2026-10-14",
+        "sourceUrl": "https://globalxetfs.eu/funds/silv/",
+        "sha256": "7126e5c77aa4ef6f448930083ef11b0cc042aced8127120ecf7dc1b21b50b51a",
+        "reason": "Aucun tableau sectoriel complet du fonds dans la page officielle contrôlée.",
+        "evidence": {
+          "datedCountryTable": true,
+          "datedHoldingsTable": true,
+          "sectorTables": 0
+        }
+      }
+    },
+    "qualificationCheckedAt": "2026-10-14"
   },
   "IE0003R87OG3": {
     "currency": "USD",
@@ -32430,7 +32445,44 @@
       "sha256": "43ac17cfbd6ff218e06494094aa3b80b00c93549cf8f22fb1a5544afab9907e4",
       "checkedAt": "2026-10-14",
       "modifiedAt": "2026-10-14"
-    }
+    },
+    "fieldQualification": {
+      "countries": {
+        "status": "not-published",
+        "checkedAt": "2026-10-14",
+        "asOf": "2026-09-30",
+        "sourceUrl": "https://res.americancentury.com/docs/avantis-global-small-cap-value-ucits-etf-fact-sheet.pdf",
+        "sha256": "43ac17cfbd6ff218e06494094aa3b80b00c93549cf8f22fb1a5544afab9907e4",
+        "reason": "La fiche ne publie que les cinq premiers pays (88.72 %). Le solde ne peut pas être attribué à des pays sans source complète.",
+        "evidence": {
+          "scope": "top-five-countries",
+          "rows": [
+            {
+              "name": "United States",
+              "weightPct": 67.44
+            },
+            {
+              "name": "Japan",
+              "weightPct": 11.15
+            },
+            {
+              "name": "United Kingdom",
+              "weightPct": 3.72
+            },
+            {
+              "name": "Canada",
+              "weightPct": 3.42
+            },
+            {
+              "name": "Australia",
+              "weightPct": 2.99
+            }
+          ],
+          "coveragePct": 88.72
+        }
+      }
+    },
+    "qualificationCheckedAt": "2026-10-14"
   },
   "IE00B3F81G20": {
     "currency": "USD",

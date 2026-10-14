@@ -80,6 +80,24 @@ def parse_sources(html, pdf, api, config, now):
                'evidenceId': evidence, 'excerpt': f'{isin} | Deutsche Börse | EUR | {ticker} | {ticker}.DE'}
     observed = lambda source, date, values: {'asOf': date, 'checkedAt': checked, 'sourceUrl': source,
                                            'basis': 'fund', 'rows': values}
+    # Recheck the exact fund's disclosures daily. Fund holdings and the equity
+    # sleeve alone cannot establish whole-fund economic country/sector weights.
+    fund = api['data']['funds'][0]  # identity already validated by parse_api
+    market_rows = fund.get('marketAllocation') or []
+    qualifications = {}
+    for field, keywords in [('countries', r'country|market allocation|répartition géographique'),
+                            ('sectors', r'sector|secteur')]:
+        headings = [h.get_text(' ', strip=True) for h in soup.find_all(['h2', 'h3', 'h4'])
+                    if re.search(keywords, h.get_text(' ', strip=True), re.I)]
+        detected = bool(headings or (field == 'countries' and market_rows))
+        qualifications[field] = {
+            'status': 'unqualified' if detected else 'not-published',
+            'checkedAt': checked, 'sourceUrl': url, 'sha256': digest,
+            'reason': ('Nouvelle section économique détectée : vérifier le périmètre du fonds entier avant intégration.' if detected else
+                       'Aucune répartition économique complète du fonds dans la page et les données qualifiées ; les fonds sous-jacents et la poche actions ne constituent pas une allocation pays/secteurs du fonds entier.'),
+            'evidence': {'headings': headings, 'marketAllocationRows': len(market_rows) if field == 'countries' else None,
+                         'underlyingFunds': len(holdings), 'holdingsAsOf': stamp,
+                         'assetAllocationAsOf': allocation_date, 'documentSha256': hashlib.sha256(pdf).hexdigest()}}
     return {'id': f'lifestrategy{equity}', 'isin': isin,
             'name': f'Vanguard LifeStrategy {equity}% Equity UCITS ETF (EUR) Accumulating',
             'currency': 'EUR', 'sourceUrl': url, 'checkedAt': checked, 'pageSha256': digest,
@@ -94,6 +112,7 @@ def parse_sources(html, pdf, api, config, now):
             'holdings': observed(pdf_url, stamp, holdings),
             'assetAllocation': observed(url, allocation_date, rows),
             'performance': {**extra['performance'], 'checkedAt': checked},
+            'fieldQualification': qualifications,
             'unavailable': ['countries: no qualified whole-fund look-through', 'sectors: asset allocation is not an equity sector table']}
 
 def collect_one(config, now):
@@ -115,6 +134,9 @@ def main():
     with ThreadPoolExecutor(max_workers=4) as pool: results = list(pool.map(one, CONFIG))
     report = {'checkedAt': now.isoformat(), 'records': [r['record'] for r in results if 'record' in r],
               'failed': [r for r in results if 'record' not in r]}
+    for record in report['records']:
+        report['failed'].extend({'isin': record['isin'], 'field': field, 'error': q['reason']}
+                               for field, q in record['fieldQualification'].items() if q['status'] == 'unqualified')
     path = ROOT/'src/data/lifestrategy.json'
     old = json.loads(path.read_text()) if path.exists() else {}
     for r in report['records']:
