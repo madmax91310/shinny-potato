@@ -25,13 +25,13 @@ def discover(ident):
     else:
         url=archive+'/feed/FinancialReport.svc/GetFinancialReportList?reportTypes=First%20Quarter%7CSecond%20Quarter%7CThird%20Quarter%7CFourth%20Quarter&year=-1&startIndex=0&length=100'
         reports=json.loads(get(url,max_bytes=20_000_000))['GetFinancialReportListResult'];rows=[]
-        reports=reports[:12]
+        reports=reports[:16]
         for report in reports:
             documents=[d['DocumentPath']for d in report['Documents']if d['DocumentCategory']=='news' and d['DocumentPath'].endswith('.pdf')]
             if len(documents)>1:raise ValueError('Ambiguous Disney earnings release')
             if documents:rows.append((documents[0],report['ReportSubType']=='Fourth Quarter'))
         allowed={'s206.q4cdn.com'}
-    urls=list(dict.fromkeys([u for u,_ in rows[:5]]+[u for u,annual in rows if annual][:2]))
+    urls=list(dict.fromkeys([u for u,_ in rows[:5]]+[u for u,annual in rows if annual][:3]))
     if len(urls)<4 or any(urlparse(u).scheme!='https' or urlparse(u).hostname not in allowed for u in urls):raise ValueError('Incomplete or unqualified official earnings archive')
     return urls
 
@@ -69,7 +69,9 @@ def parse(raw,ident,url,today):
                     if not line.startswith('Net income attributable to The Walt Disney Company'):continue
                     line=re.sub(r'^Net income attributable to The Walt Disney Company(?: \(Disney\))?', 'Net income',line)
                 lines.append(line)
-            sections.append('\n'.join(lines))
+            section='\n'.join(lines)
+            section=re.sub(r'Weighted average number of common and common\s+equivalent shares outstanding:', 'Weighted average shares outstanding:', section)
+            sections.append(section)
     periods=[]
     for section in sections:
         periods.extend(statement_periods(section,ident,url,today))
@@ -99,12 +101,65 @@ def collect(profile,today,old=None):
             'trailing':{'end':quarters[0]['end'],'revenue':sum(p['revenue']for p in quarters),'sourceUrls':[p['sourceUrl']for p in quarters],'dilutedEPS':sum(p['dilutedEPS']for p in quarters),'periods':[p['end']for p in quarters],'observedAt':today.isoformat(),'definition':'Somme de quatre BPA dilués GAAP trimestriels publiés'},
             'historyYears':[history[k]for k in sorted(history)[-5:]],'historyObservedAt':today.isoformat()}
 
+def disney_cash(raw, annual):
+    """Only the dated annual consolidated cash table, never the DTC summary."""
+    from company_publications import row, MONTHS
+    from company_round3_publications import text
+    content=text(raw)
+    candidates=[]
+    for heading in re.finditer(r'(?im)^CONDENSED CONSOLIDATED STATEMENTS OF CASH FLOWS\s*$', content):
+        block=content[heading.end():]
+        header=block.split('OPERATING ACTIVITIES',1)[0]
+        if not re.search(r'Year Ended',header,re.I) or not re.search(r'in millions',header,re.I):continue
+        years=re.findall(r'\b20\d{2}\b',header)
+        dates=re.findall(r'('+'|'.join(MONTHS)+r')\s+(\d{1,2}),',header,re.I)
+        if len(years)!=2 or len(dates)!=2:continue
+        ends=[dt.date(int(y),MONTHS[m.lower()],int(d)).isoformat()for (m,d),y in zip(dates,years)]
+        if ends!=[annual['end'],annual['previousEnd']]:continue
+        block=block.split('Cash, cash equivalents and restricted cash, end',1)[0]
+        # A printed dash in an amount cell is a reported zero, not a missing row.
+        block=re.sub(r'(?<!\S)[—–](?!\S)', '0', block)
+        labels={
+            'operatingCashFlow':[r'Cash provided by operations'],
+            'capitalExpenditure':[r'Investments in parks, resorts and other property'],
+            'dividendsPaid':[r'Dividends'],
+            'shareRepurchases':[r'Repurchases of common stock'],
+            'shareBasedCompensation':[r'Equity-based compensation'],
+        }
+        values={k:row(block,v,2)for k,v in labels.items()}
+        if not values['operatingCashFlow'] or not values['capitalExpenditure']:continue
+        candidates.append(values)
+    if len(candidates)!=1:raise ValueError('No unique dated Disney annual cash table')
+    for i,prefix in [(0,''),(1,'previous')]:
+        for k,values in candidates[0].items():
+            if values is not None:
+                annual[prefix+k[0].upper()+k[1:]if prefix else k]=(values[i]if k=='operatingCashFlow'else abs(values[i]))*1e6
+        key=lambda k:prefix+k[0].upper()+k[1:]if prefix else k
+        annual[key('freeCashFlow')]=annual[key('operatingCashFlow')]-annual[key('capitalExpenditure')]
+    return annual
+
+
 def publication_decision(profile,company,today):
     from company_decision import DECISION_VERSION, FCF_METHOD
-    accounts=collect(profile,today)
-    rows=[]
-    for row in accounts['historyYears']:
-        rows.append({**row,'start':row.get('start'), 'sourceUnits':'USD millions','incomeBasis':'part du groupe' if profile['id']=='disney'else'consolidated'})
+    ident=profile['id'];documents={};rows=[]
+    for ref in company.get('history',{}).get('years',[]) or [company['annual']]:
+        url=ref['sourceUrl']
+        if url not in documents:
+            raw=get(url,max_bytes=20_000_000)
+            annuals=[p for p in parse(raw,ident,url,today)if p['durationMonths']==12]
+            if len(annuals)!=1:raise ValueError('Ambiguous annual statement')
+            a=annuals[0]
+            if ident=='disney':disney_cash(raw,a)
+            documents[url]=a
+        a=documents[url];prefix='previous'if ref['end']==a['previousEnd']else''
+        key=lambda k:prefix+k[0].upper()+k[1:]if prefix else k
+        if ref['end']not in(a['end'],a['previousEnd'])or any(a[key(k)]!=ref[k]for k in ['revenue','netIncome']):raise ValueError('Decision/income period mismatch')
+        r={k:ref[k]for k in ['end','revenue','netIncome']}
+        r.update(sourceUrl=url,sourceUnits='USD millions',incomeBasis='part du groupe'if ident=='disney'else'consolidated')
+        for k in ['averageDilutedShares','operatingIncome','interestExpense','operatingCashFlow','capitalExpenditure','freeCashFlow','dividendsPaid','shareRepurchases','shareBasedCompensation']:
+            if key(k)in a:r[k]=a[key(k)]
+        if 'averageDilutedShares'in r:r['sharesBasisSource']=url
+        if 'freeCashFlow'in r:r['freeCashFlowDefinition']=FCF_METHOD
+        rows.append(r)
     return {'componentVersion':DECISION_VERSION,'currency':'USD','observedAt':today.isoformat(),
-            'sourceUrls':sorted({r['sourceUrl']for r in rows}),'years':rows,'annualEnd':company['annual']['end'],'method':FCF_METHOD,
-            'unavailable':['freeCashFlow: cash-flow layout not qualified; no approximation from earnings']}
+            'sourceUrls':sorted({r['sourceUrl']for r in rows}),'years':rows,'annualEnd':company['annual']['end'],'method':FCF_METHOD}

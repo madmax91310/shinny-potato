@@ -59,6 +59,11 @@ for (const method of ['cash','earnings']) {
     assert(publication.text.includes(model.scenarios[selected].name.toLowerCase()))
     assert.equal(publication.chart.forecast[selected].points.at(-1).value,targetChart(company,targets,method).forecast[selected].points.at(-1).value)
     assert(!/NaN|undefined|Infinity/.test(publication.text))
+    assert(publication.text.includes('hors dividendes'))
+    assert(publication.text.includes(company.targetForecast.sourceUrl) || method==='cash')
+    assert(!publication.text.includes('croissance annualisée équivalente'))
+    assert.equal((publication.text.match(/Pas un conseil financier/g)||[]).length,1)
+    assert.equal((publication.text.match(/Trois scénarios au/g)||[]).length,1)
   }
 }
 const exported=valuationPublication(company,{1:{cashGrowth:.02,cashMultiple:18}},1,'cash',now)

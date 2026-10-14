@@ -25,7 +25,7 @@ export function targetExplanation(company, model, index, method) {
   const extrapolated=customGrowth?periods.length:cash?periods.length:periods.filter(p=>p.end>lastEstimate).length
   const coverage=customGrowth?'La croissance a été personnalisée : les résultats affichés suivent ce réglage.':cash?
     'Les flux futurs sont calculés à partir des comptes publiés ; ce ne sont pas des prévisions d’analystes.':
-    `Estimations sourcées jusqu’à l’exercice ${lastEstimate?.slice(0,4)}. ${extrapolated?`${extrapolated} échéance${extrapolated>1?'s':''} sur ${periods.length} utilise${extrapolated>1?'nt':''} ensuite une extrapolation du modèle.`:'Les exercices utilisés restent couverts par les estimations sourcées.'}`
+    `Les estimations publiées vont jusqu’à l’exercice ${lastEstimate?.slice(0,4)}. ${extrapolated?'Au-delà, la croissance est prolongée par le modèle pour calculer cet objectif.':'Cet objectif utilise uniquement les exercices couverts par ces estimations.'}`
   const limitations=[
     ...(s.customised?['Les hypothèses personnalisées remplacent tout ou partie des réglages automatiques.']:[]),
     ...(extrapolated&&!cash&&!customGrowth?['L’objectif sélectionné dépasse les prévisions disponibles : il dépend de la croissance prolongée par le modèle.']:[]),

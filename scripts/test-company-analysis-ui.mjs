@@ -53,7 +53,7 @@ try {
     assert((await lastRow.innerText()).includes(company.annual.end.split('-').reverse().join('/')))
     assert((await lastRow.getByRole('link').getAttribute('href')).startsWith('https://'))
     assert(!/NaN|undefined|Infinity/.test(text))
-    if (['costco','waste-management'].includes(company.id) && buildScenarios(company, {}, now).inputs.cashReady) {
+    if (['costco','disney','waste-management'].includes(company.id) && buildScenarios(company, {}, now).inputs.cashReady) {
       const valuation = page.getByTestId('company-valuation')
       await valuation.getByRole('button', {name:'Flux de trésorerie', exact:true}).click()
       assert(/[0-9]/.test(await valuation.getByTestId('price-target').innerText()))
@@ -69,7 +69,7 @@ try {
   const growthInput = valuationPanel.getByLabel('Croissance BPA Central', {exact:true})
   const before = await valuationPanel.locator('.valuation-assumptions tbody tr').nth(1).innerText()
   const chartBefore = await valuationPanel.locator('.valuation-forecast-line.selected').getAttribute('d')
-  assert((await valuationPanel.getByTestId('target-coverage').innerText()).includes('Estimations sourcées'))
+  assert((await valuationPanel.getByTestId('target-coverage').innerText()).includes('Les estimations publiées vont jusqu’à l’exercice'))
   await valuationPanel.getByText('Comprendre le calcul et consulter les sources',{exact:true}).click()
   assert.equal(await valuationPanel.getByTestId('target-origins').locator('tbody tr').count(),5)
   const readingBefore = await valuationPanel.getByTestId('valuation-reading').innerText()
