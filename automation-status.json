@@ -212,30 +212,18 @@
     },
     "update-inflation.yml": {
       "name": "Inflation INSEE",
-      "runId": 38535016478,
+      "runId": 38544647107,
       "attempt": 1,
-      "completedAt": "2026-10-14T08:27:00Z",
-      "status": "failure",
-      "lastSuccessAt": null,
-      "collectionStatus": "failure",
+      "completedAt": "2026-10-14T09:45:31Z",
+      "status": "success",
+      "lastSuccessAt": "2026-10-14T09:45:31Z",
+      "collectionStatus": "success",
       "publicationStatus": "not-run",
-      "lastCollectionSuccessAt": null,
+      "lastCollectionSuccessAt": "2026-10-14T09:45:31Z",
       "lastPublicationSuccessAt": null,
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38535016478",
-      "failures": [
-        {
-          "job": "collect",
-          "step": "Run python scripts/update_inflation.py --baseline \"$RUNNER_TEMP/inflation-baseline.json\" --output \"$RUNNER_TEMP/inflation-observation.json\" --apply"
-        }
-      ],
-      "dataFailures": {
-        "inflation:011814631": {
-          "name": "Inflation mensuelle INSEE",
-          "completedAt": "2026-10-14T08:27:00Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38535016478",
-          "cause": "TimeoutError: The read operation timed out"
-        }
-      }
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38544647107",
+      "failures": [],
+      "dataFailures": {}
     },
     "refresh-automated-index-sheets.yml": {
       "name": "Fiches d’indices automatisées",
@@ -298,32 +286,12 @@
       "dataFailures": {}
     }
   },
-  "updatedAt": "2026-10-14T09:38:33Z",
+  "updatedAt": "2026-10-14T09:45:31Z",
   "monitoring": {
     "schemaVersion": 1,
-    "checkedAt": "2026-10-14T09:38:45.861560+00:00",
-    "revision": 4,
-    "active": {
-      "collection:update-inflation.yml:inflation:011814631": {
-        "name": "Inflation mensuelle INSEE",
-        "tools": [
-          "Pouvoir d’achat"
-        ],
-        "impactScope": "collector",
-        "workflow": "update-inflation.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38535016478",
-        "to": "/donnees-a-revoir",
-        "completedAt": "2026-10-14T08:27:00Z",
-        "cause": "TimeoutError: The read operation timed out",
-        "sourceUrls": [],
-        "kind": "collection",
-        "field": "Champs du collecteur",
-        "dataId": "inflation:011814631",
-        "id": "collection:update-inflation.yml:inflation:011814631",
-        "firstSeenAt": "2026-10-14T08:27:23.149392+00:00",
-        "lastSeenAt": "2026-10-14T09:38:45.861560+00:00"
-      }
-    },
+    "checkedAt": "2026-10-14T09:50:06.756965+00:00",
+    "revision": 5,
+    "active": {},
     "events": [
       {
         "revision": 1,
@@ -1202,9 +1170,56 @@
             "resolvedAt": "2026-10-14T09:16:12.378585+00:00"
           }
         ]
+      },
+      {
+        "revision": 5,
+        "at": "2026-10-14T09:50:06.756965+00:00",
+        "opened": [],
+        "resolved": [
+          {
+            "name": "Inflation mensuelle INSEE",
+            "tools": [
+              "Pouvoir d’achat"
+            ],
+            "impactScope": "collector",
+            "workflow": "update-inflation.yml",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38535016478",
+            "to": "/donnees-a-revoir",
+            "completedAt": "2026-10-14T08:27:00Z",
+            "cause": "TimeoutError: The read operation timed out",
+            "sourceUrls": [],
+            "kind": "collection",
+            "field": "Champs du collecteur",
+            "dataId": "inflation:011814631",
+            "id": "collection:update-inflation.yml:inflation:011814631",
+            "firstSeenAt": "2026-10-14T08:27:23.149392+00:00",
+            "lastSeenAt": "2026-10-14T09:38:45.861560+00:00",
+            "resolvedAt": "2026-10-14T09:50:06.756965+00:00"
+          }
+        ]
       }
     ],
     "resolved": [
+      {
+        "name": "Inflation mensuelle INSEE",
+        "tools": [
+          "Pouvoir d’achat"
+        ],
+        "impactScope": "collector",
+        "workflow": "update-inflation.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38535016478",
+        "to": "/donnees-a-revoir",
+        "completedAt": "2026-10-14T08:27:00Z",
+        "cause": "TimeoutError: The read operation timed out",
+        "sourceUrls": [],
+        "kind": "collection",
+        "field": "Champs du collecteur",
+        "dataId": "inflation:011814631",
+        "id": "collection:update-inflation.yml:inflation:011814631",
+        "firstSeenAt": "2026-10-14T08:27:23.149392+00:00",
+        "lastSeenAt": "2026-10-14T09:38:45.861560+00:00",
+        "resolvedAt": "2026-10-14T09:50:06.756965+00:00"
+      },
       {
         "name": "Xtrackers MSCI World Health Care UCITS ETF",
         "tools": [
