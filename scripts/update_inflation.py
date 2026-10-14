@@ -2,6 +2,8 @@
 import argparse
 import datetime as dt
 import json
+import http.client
+import urllib.error
 import os
 import pathlib
 import xml.etree.ElementTree as ET
@@ -10,6 +12,31 @@ from data_automation import UTC, get_text, number, reject, write_json_atomic
 
 SERIES = '011814631'
 URL = f'https://bdm.insee.fr/series/sdmx/data/SERIES_BDM/{SERIES}?startPeriod=2026-01'
+
+FALLBACK_URL = f'https://api.insee.fr/series/BDM/V1/data/SERIES_BDM/{SERIES}?startPeriod=2026-01'
+
+
+def collect_rates(now):
+    """Try the second official entry point only after a transport failure.
+
+    Invalid observations remain failures: changing endpoint must never hide a
+    changed series, stale data, a consent page or an authorization refusal.
+    """
+    attempts = []
+    for url in (URL, FALLBACK_URL):
+        try:
+            body = get_text(url, ('application/xml', 'text/xml', 'application/vnd.sdmx.structurespecificdata+xml'))
+        except (urllib.error.URLError, TimeoutError, http.client.IncompleteRead, ConnectionError) as error:
+            if isinstance(error, urllib.error.HTTPError) and error.code not in (429, 500, 502, 503, 504):
+                raise
+            attempts.append({'url': url, 'error': f'{type(error).__name__}: {error}'})
+            if url == FALLBACK_URL:
+                raise
+            continue
+        report = parse_rates(body, now)
+        report['sourceUrl'] = url
+        report['transportFailures'] = attempts
+        return body, report
 
 
 def parse_rates(body, now):
@@ -69,8 +96,7 @@ def main():
     now = dt.datetime.now(UTC)
     baseline = json.loads(args.baseline.read_text())
     try:
-        body = get_text(URL, ('application/xml', 'text/xml', 'application/vnd.sdmx.structurespecificdata+xml'))
-        report = parse_rates(body, now)
+        body, report = collect_rates(now)
         merged = merge_rates(baseline, report)
     except Exception as error:
         # Keep a diagnostic artifact even when no observation was obtained.

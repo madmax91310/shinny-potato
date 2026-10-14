@@ -1,7 +1,9 @@
 name: Update INSEE monthly inflation
 on:
   schedule:
-    - cron: '15 7 1,16 * *'
+    # Daily checks recover from outages and pick up provisional-to-final revisions.
+    # Unchanged observations create neither a commit nor a deployment.
+    - cron: '15 7 * * *'
   workflow_dispatch:
   # Bootstrap production when the collector is installed or repaired. PR runs
   # remain validation only; their success must never stand in for production.

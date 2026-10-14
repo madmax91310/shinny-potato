@@ -47,6 +47,39 @@ class RefreshTests(unittest.TestCase):
             self.assertNotIn('sourceUpdatedAt', report)
         self.assertEqual([path.read_bytes() for path in active], before)
 
+    def test_insee_official_fallback_after_transport_failure(self):
+        from unittest.mock import patch
+        from update_inflation import collect_rates, URL, FALLBACK_URL
+        with patch('update_inflation.get_text', side_effect=[TimeoutError('read timeout'), self.xml]) as fetch:
+            body, report = collect_rates(NOW)
+        self.assertEqual(body, self.xml)
+        self.assertEqual(report['sourceUrl'], FALLBACK_URL)
+        self.assertEqual(report['transportFailures'][0]['url'], URL)
+        self.assertEqual(fetch.call_count, 2)
+        self.assertEqual(report['rates'], parse_rates(self.xml, NOW)['rates'])
+
+    def test_insee_invalid_observations_and_access_refusal_never_fall_back(self):
+        import urllib.error
+        from unittest.mock import patch
+        from update_inflation import collect_rates, URL
+        for response in (self.xml.replace('011814631', '000000000'), '<html/>',
+                         urllib.error.HTTPError(URL, 403, 'Forbidden', {}, None)):
+            with self.subTest(response=str(response)[:40]):
+                kwargs = {'side_effect': response} if isinstance(response, Exception) else {'return_value': response}
+                with patch('update_inflation.get_text', **kwargs) as fetch:
+                    with self.assertRaises((ValueError, urllib.error.HTTPError)):
+                        collect_rates(NOW)
+                self.assertEqual(fetch.call_count, 1)
+
+    def test_insee_primary_success_does_not_request_fallback(self):
+        from unittest.mock import patch
+        from update_inflation import collect_rates, URL
+        with patch('update_inflation.get_text', return_value=self.xml) as fetch:
+            _, report = collect_rates(NOW)
+        self.assertEqual(report['sourceUrl'], URL)
+        self.assertEqual(report['transportFailures'], [])
+        self.assertEqual(fetch.call_count, 1)
+
     def test_issuer_matches_active_fund_not_benchmark(self):
         report = parse_share(markup(self.components), SHARE, NOW)
         self.assertEqual(report['performance']['years']['2020'], 15.95)
