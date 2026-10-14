@@ -4,26 +4,28 @@ import { join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { COMPANIES } from '../src/data/companies.js'
 import { buildPriceScenarios, TARGET_POLICY } from '../src/pages/company-analysis/priceTargets.js'
-import { activeDecision } from '../src/pages/company-analysis/lib.js'
+import { activeDecision, fresh } from '../src/pages/company-analysis/lib.js'
 import { valuationInputs } from '../src/pages/company-analysis/valuation.js'
 const day=86400000,hash=x=>createHash('sha256').update(JSON.stringify(x)).digest('hex')
 export function snapshot(companies,now,revision) {
   const issuedAt=now.toISOString().slice(0,10)
   const records=companies.map(c=>{
-    const forecasts=[],excluded=[],inputs=valuationInputs(c,now)
+    const forecasts=[],excluded=[],inputs=valuationInputs(c,now),q=c.quote
+    // Old forecasts still need market outcomes when fresh accounts are unavailable.
+    const quoteQualified=q?.currency===c.currency&&Number.isFinite(q.price)&&q.price>0&&fresh(q.asOf,10,now)&&q.sourceUrl?.startsWith('https://')&&Array.isArray(q.splits)
     for(const years of TARGET_POLICY.horizons) {
       const m=buildPriceScenarios(c,{},now,years)
       for(const method of ['cash','earnings']) {
         const e=m.evidence[method]
-        if(!e){excluded.push({method,years,reasons:m.inputs.reasons});continue}
+        if(!e||!quoteQualified){excluded.push({method,years,reasons:[...m.inputs.reasons,...(!quoteQualified?['Clôture qualifiée requise pour archiver la prévision.']:[])]});continue}
         const period=e.periods.at(-1),annual=e.curve.find(p=>p.end===period)
         forecasts.push({method,years,targetDate:m.targetDate,fundamentalPeriod:period,fundamentalValue:annual.value,
           basis:e.basis,accountingDefinition:method==='cash'?m.inputs.history.at(-1).definition:'adjusted-non-gaap',sourceUrl:e.sourceUrl,sourceAsOf:e.asOf,calibration:e.calibration,trajectory:e.trajectory,rationale:e.rationale,
           scenarios:m.scenarios.map(s=>({name:s.name,assumptions:s[method+'Assumptions'],target:s[method+'Target']}))})
       }
     }
-    const f=c.targetForecast,q=c.quote,decision=activeDecision(c,now)
-    return {id:c.id,symbol:c.symbol,currency:c.currency,quote:inputs.price?{price:q.price,asOf:q.asOf,sourceUrl:q.sourceUrl,splits:q.splits,coverageFrom:q.history?.[0]?.asOf??q.asOf}:null,
+    const f=c.targetForecast,decision=activeDecision(c,now)
+    return {id:c.id,symbol:c.symbol,currency:c.currency,quote:quoteQualified?{price:q.price,asOf:q.asOf,sourceUrl:q.sourceUrl,splits:q.splits,coverageFrom:q.history?.[0]?.asOf??q.asOf}:null,
       // Keep source inputs and both exclusions/eligible models; never recreate old forecasts with today's code.
       sources:{annual:c.annual,decision:c.decision,targetForecast:f,targetCashReference:c.targetCashReference,valuationShareBasis:c.valuationShareBasis},
       actuals:{earnings:f?.basis==='adjusted-non-gaap'&&f.currency===c.currency&&f.symbol===c.symbol&&f.sourceUrl?.startsWith('https://')&&f.asOf<=issuedAt?

@@ -104,4 +104,9 @@ const distressedRecord=snapshot([distressed],new Date(),'loss-fixture').records[
 assert(distressedRecord.actuals.cash.some(p=>p.value<0))
 assert(distressedRecord.actuals.earnings.some(p=>p.value<0))
 assert.equal(distressedRecord.forecasts.length,0)
+const oldAccounts=structuredClone(COMPANIES.find(c=>c.id==='apple'))
+oldAccounts.accountsObservedAt='2020-01-01'
+const oldRecord=snapshot([oldAccounts],new Date(),'stale-accounts').records[0]
+assert.equal(oldRecord.forecasts.length,0)
+assert.equal(oldRecord.quote.price,oldAccounts.quote.price)
 console.log('Company scenarios, FCF drivers and immutable forecast ledger: independent numerical and lifecycle checks passed')

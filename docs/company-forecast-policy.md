@@ -31,3 +31,5 @@ Une division d'actions dans la période ou une couverture de contrôle insuffisa
 Les résultats détaillés sont recalculables dans `evaluation.json`, les hypothèses d'origine restent fixes. Le site expose le résumé `src/data/company-forecast-evaluation.json`. Aucun score n'est annoncé avant maturité. Les PR testent une archive temporaire ; seule la collecte de production pousse la branche d'historique.
 
 Les observations fondamentales restent collectées lorsque la société devient déficitaire ou son FCF devient négatif, indépendamment de son éligibilité à de nouvelles projections. Les pertes sont évaluées avec `(prévision − constat) / abs(constat)`. Un constat nul reste évalué en unités par action ; son pourcentage est indéfini et il est exclu du seul dénominateur des erreurs relatives, dont le nombre est affiché séparément.
+
+Une clôture récente et sourcée reste archivée même si les comptes de l’entreprise ne sont plus assez récents pour émettre de nouveaux objectifs. Les observations de marché sont ainsi indépendantes du renouvellement des comptes.
