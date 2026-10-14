@@ -1,0 +1,151 @@
+"""Incident lifecycle and one grouped GitHub notification, independent of Pages."""
+import datetime as dt
+import hashlib
+import json
+import re
+
+MARKER = '<!-- data-reliability-monitor:v1 -->'
+
+def timestamp(value):
+    try:
+        return dt.datetime.fromisoformat(value.replace('Z', '+00:00')).astimezone(dt.timezone.utc)
+    except (ValueError, AttributeError, TypeError):
+        return None
+
+
+def incident_context(identifier, context, fallback):
+    # Exact alias boundaries avoid mixing World with World Quality, or managers.
+    isin = re.search(r'[A-Z]{2}[A-Z0-9]{10}', identifier)
+    entity = isin.group() if isin else re.sub(r'^index-(.*)-(composition|returns)$', r'\1', identifier)
+    entity = entity.removeprefix('investor:')
+    matches = [row for row in context['entities'] if entity in row.get('aliases', [])]
+    return {'name': matches[0]['name'] if matches else fallback,
+            'tools': sorted({tool for row in matches for tool in row.get('tools', [])}),
+            'impactScope': 'asset' if matches else 'collector',
+            'sourceUrls': sorted({url for row in matches for url in row.get('sourceUrls', [])}),
+            'to': matches[0].get('to') if matches else '/donnees-a-revoir'}
+
+
+def evaluate_monitoring(state, context, registry, now, radar=None):
+    if context.get('schemaVersion') != 1 or not isinstance(context.get('alerts'), list) or not isinstance(context.get('entities'), list):
+        raise ValueError('Calendrier de surveillance incomplet')
+    current = timestamp(now)
+    if not current:
+        raise ValueError('Date de surveillance invalide')
+    previous = state.get('monitoring', {})
+    old = previous.get('active', {})
+    active = {}
+    def add(key, row):
+        active[key] = {**row, 'id': key, 'firstSeenAt': old.get(key, {}).get('firstSeenAt', now), 'lastSeenAt': now}
+    for workflow, config in registry.items():
+        row = state.get('workflows', {}).get(workflow, {})
+        tools = config.get('tools', [])
+        base = {'name': config['name'], 'tools': tools, 'impactScope': 'collector', 'workflow': workflow, 'runUrl': row.get('runUrl'), 'to': '/donnees-a-revoir'}
+        completed = timestamp(row.get('completedAt'))
+        if not completed or completed > current:
+            add('unobserved:' + workflow, {**base, 'kind': 'unobserved', 'field': 'Exécution', 'cause': 'Aucune exécution terminée avec une date exploitable.'})
+        elif (current - completed).total_seconds() > config['maxAgeHours'] * 3600:
+            add('overdue:' + workflow, {**base, 'kind': 'overdue', 'field': 'Fréquence de collecte', 'cause': f"Aucune exécution terminée depuis plus de {config['maxAgeHours']} heures.", 'lastSuccessAt': row.get('lastCollectionSuccessAt')})
+        for identifier, failure in row.get('dataFailures', {}).items():
+            details = incident_context(identifier, context, failure.get('name', identifier))
+            if not details['tools']:
+                details['tools'] = tools
+            add(f'collection:{workflow}:{identifier}', {**base, **failure, **details, 'tools': details['tools'], 'kind': 'collection',
+                'field': failure.get('field') or ('Composition' if identifier.endswith('-composition') else 'Performances' if identifier.endswith('-returns') else 'Champs du collecteur'),
+                'dataId': identifier})
+        if row.get('status') == 'failure' and (not row.get('dataFailures') or row.get('publicationStatus') == 'failure'):
+            publishing = row.get('publicationStatus') == 'failure'
+            add(('publication:' if publishing else 'workflow:') + workflow, {**base, 'kind': 'publication' if publishing else 'collection',
+                'field': 'Publication' if publishing else 'Exécution du collecteur',
+                'cause': ' ; '.join(f"{f['job']} : {f['step']}" for f in row.get('failures', [])) or 'Exécution en échec ; consulter le journal.'})
+    for row in context['alerts']:
+        add('calendar:' + row['id'], {**row, 'kind': 'freshness', 'cause': ('Date future à vérifier.' if row['category'] == 'future-date' else 'Échéance de vérification atteinte ; contrôler la période disponible.'), 'lastSuccessAt': row.get('checkedAt')})
+    # Radar contradictions are review signals, never confirmed market movements.
+    # A missing feed retains prior alerts and cannot claim a recovery.
+    if radar is None:
+        for key, row in old.items():
+            if key.startswith('radar:'):
+                add(key, row)
+        add('monitor:radar', {'kind': 'unobserved', 'name': 'Contradictions du radar', 'field': 'Lecture du radar', 'tools': ['Radar éditorial'], 'cause': 'Lecture indisponible ; alertes précédentes conservées.', 'to': '/donnees-a-revoir'})
+    else:
+        for error in radar.get('errors', []):
+            if 'Valeur contradictoire pour la même période' not in error.get('reason', ''):
+                continue
+            key = 'radar:' + hashlib.sha256(json.dumps(error, sort_keys=True).encode()).hexdigest()[:24]
+            details = incident_context(error.get('entity', ''), context, error.get('entity', 'Radar'))
+            field = re.search(r'\) : (.+?)\. Dernière observation', error['reason'])
+            add(key, {**details, 'kind': 'conflict', 'field': field.group(1) if field else 'Concordance des sources', 'cause': error['reason']})
+    resolved = [{**row, 'resolvedAt': now} for key, row in old.items() if key not in active]
+    opened = [row for key, row in active.items() if key not in old]
+    changed = bool(opened or resolved)
+    revision = previous.get('revision', 0) + int(changed)
+    events = previous.get('events', [])
+    if changed:
+        events = [*events, {'revision': revision, 'at': now, 'opened': [r['id'] for r in opened], 'resolved': resolved}][-30:]
+    return {'schemaVersion': 1, 'checkedAt': now, 'revision': revision, 'active': active, 'events': events,
+            'resolved': [*resolved, *previous.get('resolved', [])][:100]}
+
+
+def safe(value):
+    return re.sub(r'[\r\n]+', ' ', str(value or '')).replace('@', '&#64;').replace('<', '&lt;').replace('>', '&gt;').replace('|', '\\|')[:500]
+
+
+def issue_body(monitor, repo):
+    rows = sorted(monitor['active'].values(), key=lambda r: (r['kind'], r['name'], r['id']))
+    lines = [MARKER, f"<!-- monitor-revision:{monitor['revision']} -->", '# Fiabilité des données', '',
+             f"{len(rows)} point(s) à examiner. Les retards et contradictions demandent une vérification ; ils ne prouvent pas une erreur de valeur.", '',
+             f"[Détail complet dans l’application](https://{repo.split('/')[0]}.github.io/{repo.split('/')[1]}/donnees-a-revoir)", '',
+             '| Type | Actif / collecte | Champ | Outils utilisant cet actif ou périmètre du collecteur | Cause |', '| --- | --- | --- | --- | --- |']
+    # All incidents remain in JSON/UI; bounded digest fits GitHub's body limit.
+    shown = 0
+    for row in rows[:40]:
+        line = '| ' + ' | '.join(safe(value) for value in [row['kind'], row['name'], row.get('field'), ', '.join(row.get('tools', [])), row.get('cause')]) + ' |'
+        if len(('\n'.join(lines) + line).encode()) > 45000:
+            break
+        lines.append(line)
+        shown += 1
+    if len(rows) > shown:
+        lines.append(f"\n{len(rows) - shown} autre(s) point(s) dans le détail complet.")
+    if not rows:
+        lines.append('\nRetour à la normale : tous les incidents précédemment suivis sont résolus.')
+    return '\n'.join(lines)
+
+
+def sync_monitoring_issue(monitor, api, repo):
+    """One reusable bot issue. Durable comment receipts survive failed retries."""
+    issues = []
+    for page in range(1, 10000):
+        batch = api(f'/issues?state=all&creator=github-actions%5Bbot%5D&per_page=100&page={page}')
+        issues.extend(i for i in batch if not i.get('pull_request') and i.get('user', {}).get('login') == 'github-actions[bot]' and MARKER in (i.get('body') or ''))
+        if len(batch) < 100:
+            break
+    if not issues and not monitor['active']:
+        return
+    body = issue_body(monitor, repo)
+    title = f"Fiabilité des données : {len(monitor['active'])} point(s) à examiner" if monitor['active'] else 'Fiabilité des données : retour à la normale'
+    receipt = f"<!-- monitor-notified:{monitor['revision']} -->"
+    if not issues:
+        api('/issues', 'POST', {'title': title, 'body': body + '\n' + receipt})
+        return
+    issue = max(issues, key=lambda i: i['number'])
+    if receipt in (issue.get('body') or ''):
+        return
+    comments = []
+    for page in range(1, 10000):
+        batch = api(f"/issues/{issue['number']}/comments?per_page=100&page={page}")
+        comments.extend(batch)
+        if len(batch) < 100:
+            break
+    known = {int(match) for text in [issue.get('body') or '', *(c.get('body') or '' for c in comments if c.get('user', {}).get('login') == 'github-actions[bot]')]
+             for match in re.findall(r'<!-- monitor-notified:(\d+) -->', text)}
+    if monitor['revision'] in known:
+        return
+    # Reconcile open/closed state and body before the notification receipt.
+    api(f"/issues/{issue['number']}", 'PATCH', {'title': title, 'body': body + '\n' + '\n'.join(f'<!-- monitor-notified:{revision} -->' for revision in sorted(known)[-30:]), 'state': 'open' if monitor['active'] else 'closed'})
+    changes = [e for e in monitor.get('events', []) if e['revision'] > max(known, default=-1)]
+    recovered = [r for event in changes for r in event['resolved']]
+    opened = sum(len(e['opened']) for e in changes)
+    summary = [receipt, f"{opened} nouveau(x) point(s) ; {len(recovered)} retour(s) à la normale ; {len(monitor['active'])} point(s) encore actif(s)."]
+    summary += [f"- Résolu : {safe(r['name'])} · {safe(r.get('field'))}." for r in recovered[:40]]
+    summary.append('Le détail regroupé figure dans le corps de cette issue et dans « Données à revoir ».')
+    api(f"/issues/{issue['number']}/comments", 'POST', {'body': '\n\n'.join(summary)})

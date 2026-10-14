@@ -1,5 +1,6 @@
 """Publish only real automation failures independently of the application build."""
 import argparse
+import datetime as dt
 import base64
 import json
 import os
@@ -8,6 +9,8 @@ import subprocess
 import tempfile
 import urllib.error
 import urllib.request
+
+from automation_monitoring import evaluate_monitoring, sync_monitoring_issue, timestamp
 
 REGISTRY = json.loads((pathlib.Path(__file__).resolve().parents[1] / 'src/data/automation-workflows.json').read_text())
 WORKFLOWS = {key: value['name'] for key, value in REGISTRY.items()}
@@ -24,6 +27,10 @@ DATA_LABELS = {'purchasing-general': 'Prix à la consommation', 'purchasing-alim
 
 def normalize_report(report):
     """Adapt issuer/index reports without turning preserved values into recovered sources."""
+    if isinstance(report.get('managers'), list):
+        return {'successes': [{'id': 'investor:' + row['slug']} for row in report['managers'] if row.get('status') == 'validated'],
+                'errors': [{'id': 'investor:' + row['slug'], 'field': 'Portefeuille 13F', 'error': row.get('reason', 'Collecte échouée')}
+                           for row in report['managers'] if row.get('status') != 'validated']}
     if any(key in report for key in ('funds', 'qualified', 'monthly', 'levels')):
         # Each sub-collector has its own key: a price recovery cannot clear a fund failure.
         combined = {'successes': [], 'errors': []}
@@ -97,7 +104,7 @@ def normalize_report(report):
             causes = ([item.get('reason', 'Collecte échouée')] if item.get('status') == 'failed' else [])
             causes += [e.get('reason', 'Champ non validé') for e in item.get('collectionErrors', [])]
             if causes:
-                errors.append({'id': id_, 'name': 'ETF ' + item['isin'], 'error': ' ; '.join(causes)})
+                errors.append({'id': id_, 'name': 'ETF ' + item['isin'], 'field': ', '.join(sorted({e.get('field', 'Collecte') for e in item.get('collectionErrors', [])})) or 'Collecte ETF', 'error': ' ; '.join(causes)})
             else:
                 successes.append({'id': id_})
         errors += [{'id': 'etf-' + report.get('_collector', 'issuer') + '-' + e['isin'], 'name': 'ETF ' + e['isin'], 'error': e['reason']} for e in report.get('failures', [])]
@@ -192,7 +199,7 @@ def update_status(state, run, jobs, reports=None):
         for error in report.get('errors', []):
             id_ = error['id']
             data_failures[id_] = {'name': error.get('name', DATA_LABELS.get(id_, id_)), 'completedAt': run['updated_at'],
-                'runUrl': run['html_url'], 'cause': str(error['error'])[:500]}
+                'runUrl': run['html_url'], 'cause': str(error['error'])[:500], **({'field': error['field']} if error.get('field') else {})}
     failures = []
     for job in jobs:
         if job.get('conclusion') not in ('failure', 'timed_out'):
@@ -219,7 +226,9 @@ def update_status(state, run, jobs, reports=None):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--event', type=pathlib.Path)
-    parser.add_argument('--backfill', action='store_true')
+    mode = parser.add_mutually_exclusive_group()
+    mode.add_argument('--backfill', action='store_true')
+    mode.add_argument('--monitor-only', action='store_true')
     args = parser.parse_args()
     repo = os.environ['GITHUB_REPOSITORY']
     token = os.environ['GH_TOKEN']
@@ -258,7 +267,7 @@ def main():
                 if successful:
                     runs.append(max(successful, key=lambda r: r['updated_at']))
                 runs.append(latest)
-    else:
+    elif not args.monitor_only:
         require_event = json.loads(args.event.read_text())
         runs = [require_event['workflow_run']]
     publication_history = []
@@ -296,11 +305,25 @@ def main():
             head = api('/git/ref/heads/master')['object']['sha']
             api('/git/refs', 'POST', {'ref': f'refs/heads/{BRANCH}', 'sha': head})
     state = include_configured_workflows(state)
+    context = json.loads(subprocess.run(['node', 'scripts/build-monitoring-context.mjs'], check=True, capture_output=True, text=True, timeout=120).stdout)
+    radar = None
+    try:
+        feed = api('/contents/feed.json?ref=radar-data')
+        candidate = json.loads(base64.b64decode(feed['content']))
+        checked = timestamp(candidate.get('checkedAt'))
+        age = (dt.datetime.now(dt.timezone.utc) - checked).total_seconds() if checked else -1
+        if candidate.get('schemaVersion') == 1 and isinstance(candidate.get('errors'), list) and 0 <= age <= 18 * 3600:
+            radar = candidate
+    except (urllib.error.HTTPError, urllib.error.URLError, ValueError, KeyError):
+        print('Radar non lisible ; alertes précédentes conservées.')
+    state['monitoring'] = evaluate_monitoring(state, context, REGISTRY, dt.datetime.now(dt.timezone.utc).isoformat(), radar)
     encoded = base64.b64encode((json.dumps(state,ensure_ascii=False,indent=2)+'\n').encode()).decode()
     payload = {'message': 'Update automation failure status', 'branch': BRANCH, 'content': encoded}
     if sha:
         payload['sha'] = sha
     api(f'/contents/{PATH}', 'PUT', payload)
+    # Persist incidents before notifying. Bot issue/comment receipts make retries idempotent.
+    sync_monitoring_issue(state['monitoring'], api, repo)
     print(f'Statuts publiés : {len(state["workflows"])} automatisations')
 
 

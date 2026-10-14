@@ -9,30 +9,7 @@ permissions:
   contents: read
 
 jobs:
-  reminder:
-    # Sérialiser lecture + création pour éviter deux rappels d'une même échéance.
-    concurrency:
-      group: data-review-reminders
-      cancel-in-progress: false
-    continue-on-error: true
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      issues: write
-    steps:
-      - uses: actions/checkout@v7.0.1
-      - uses: actions/setup-node@v7.0.0
-        with:
-          node-version: 20
-      - name: Tester le calendrier et le rappel
-        run: |
-          npm run audit:data-review
-          node scripts/test-data-review-reminder.mjs
-      - name: Ouvrir les rappels du calendrier sans bloquer les publications
-        continue-on-error: true
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: node scripts/data-review-reminder.mjs --sync
+  # Incident notifications are centralized in automation-status.yml.
   report:
     runs-on: ubuntu-latest
     steps:

@@ -4,126 +4,207 @@
     "workflowName": "Update practical sheet references",
     "collectionJob": "refresh",
     "maxAgeHours": 48,
-    "artifact": "practical-observations"
+    "artifact": "practical-observations",
+    "tools": [
+      "Fiches pratiques"
+    ]
   },
   "update-editorial-radar.yml": {
     "name": "Radar éditorial quotidien",
     "workflowName": "Update editorial radar",
     "collectionJob": "update",
-    "maxAgeHours": 18
+    "maxAgeHours": 18,
+    "tools": [
+      "Radar éditorial"
+    ]
   },
   "update-publication-observations.yml": {
     "name": "Pouvoir d’achat et niveaux des anniversaires",
     "workflowName": "Update publication observations",
     "collectionJob": "refresh",
     "maxAgeHours": 48,
-    "artifact": "publication-observations"
+    "artifact": "publication-observations",
+    "tools": [
+      "Pouvoir d’achat",
+      "Il y a X ans"
+    ]
   },
   "update-insurance.yml": {
     "name": "Présentations d’assurance-vie",
     "workflowName": "Update insurance presentations",
     "collectionJob": "refresh",
     "maxAgeHours": 48,
-    "artifact": "insurance-observations"
+    "artifact": "insurance-observations",
+    "tools": [
+      "Présentations assurance-vie"
+    ]
   },
   "update-scpi.yml": {
     "name": "Présentations de SCPI",
     "workflowName": "Update SCPI presentations",
     "collectionJob": "refresh",
     "maxAgeHours": 48,
-    "artifact": "scpi-observations"
+    "artifact": "scpi-observations",
+    "tools": [
+      "Présentations SCPI"
+    ]
   },
   "update-presentation-actors.yml": {
     "name": "Présentations des acteurs et offres",
     "workflowName": "Update actor presentations",
     "collectionJob": "refresh",
     "maxAgeHours": 48,
-    "artifact": "actor-observations"
+    "artifact": "actor-observations",
+    "tools": [
+      "Présentations"
+    ]
   },
   "update-regulatory-data.yml": {
     "name": "Paramètres fiscaux, LDDS et tarifs de courtiers",
     "workflowName": "Update official regulatory data",
     "collectionJob": "refresh",
     "maxAgeHours": 48,
-    "artifact": "regulatory-observations"
+    "artifact": "regulatory-observations",
+    "tools": [
+      "Comparatif courtiers",
+      "Fiches pratiques"
+    ]
   },
   "collect-etf-pilot.yml": {
     "name": "ETF et compositions d’indices",
     "workflowName": "Update active ETF issuer data",
     "collectionJob": "refresh",
     "maxAgeHours": 48,
-    "artifact": "active-etf-observation"
+    "artifact": "active-etf-observation",
+    "tools": [
+      "Présentation ETF",
+      "Comparatif ETF",
+      "Coulisses des indices",
+      "Comparateur indices"
+    ]
   },
   "update-market-monthly.yml": {
     "name": "Historiques mensuels des marchés",
     "workflowName": "Update active monthly market histories",
     "collectionJob": "refresh",
-    "maxAgeHours": 48
+    "maxAgeHours": 48,
+    "tools": [
+      "Et si tu avais investi",
+      "Performance depuis",
+      "Duel",
+      "Générateur"
+    ]
   },
   "update-bitcoin-monthly.yml": {
     "name": "Historique du bitcoin",
     "workflowName": "Update active Bitcoin Yahoo data",
     "collectionJob": "refresh",
-    "maxAgeHours": 768
+    "maxAgeHours": 768,
+    "tools": [
+      "Et si tu avais investi",
+      "Performance depuis",
+      "Duel"
+    ]
   },
   "update-gold-monthly.yml": {
     "name": "Historique de l’or",
     "workflowName": "Update World Bank monthly gold data",
     "collectionJob": "update",
-    "maxAgeHours": 768
+    "maxAgeHours": 768,
+    "tools": [
+      "Et si tu avais investi",
+      "Performance depuis",
+      "Duel"
+    ]
   },
   "update-inflation.yml": {
     "name": "Inflation INSEE",
     "workflowName": "Update INSEE monthly inflation",
     "collectionJob": "collect",
     "maxAgeHours": 480,
-    "artifact": "insee-inflation-observation"
+    "artifact": "insee-inflation-observation",
+    "tools": [
+      "Pouvoir d’achat"
+    ]
   },
   "update-investor-13f.yml": {
     "name": "Portefeuilles des investisseurs",
     "workflowName": "Update all 18 investor 13F portfolios",
     "collectionJob": "update",
-    "maxAgeHours": 48
+    "maxAgeHours": 48,
+    "artifact": "investor-observations",
+    "tools": [
+      "Présentation investisseur"
+    ]
   },
   "update-company-analysis.yml": {
     "name": "Analyses d’entreprises",
     "workflowName": "Update company analysis",
     "collectionJob": "refresh",
-    "maxAgeHours": 48
+    "maxAgeHours": 48,
+    "tools": [
+      "Analyse d’entreprise"
+    ]
   },
   "update-economic-data.yml": {
     "name": "Taux d’épargne, ménages, SCPI et fonds euros",
     "workflowName": "Update official economic data",
     "collectionJob": "refresh",
     "maxAgeHours": 48,
-    "artifact": "economic-observations"
+    "artifact": "economic-observations",
+    "tools": [
+      "Pouvoir d’achat",
+      "France en 100 ménages"
+    ]
   },
   "update-lifestrategy.yml": {
     "name": "Vanguard LifeStrategy",
     "workflowName": "Update Vanguard LifeStrategy data",
     "collectionJob": "refresh",
     "maxAgeHours": 48,
-    "artifact": "lifestrategy-issuer-observation"
+    "artifact": "lifestrategy-issuer-observation",
+    "tools": [
+      "Présentation ETF",
+      "Comparatif ETF",
+      "Duel",
+      "Générateur"
+    ]
   },
   "update-non-bond-expansion.yml": {
     "name": "Nouveaux actifs et historiques",
     "workflowName": "Update non-bond expansion",
     "collectionJob": "refresh",
     "maxAgeHours": 48,
-    "artifact": "non-bond-source-observation"
+    "artifact": "non-bond-source-observation",
+    "tools": [
+      "Présentation ETF",
+      "Comparatif ETF",
+      "Et si tu avais investi",
+      "Il y a X ans"
+    ]
   },
   "update-qualified-exposures.yml": {
     "name": "Expositions ETF qualifiées",
     "workflowName": "Update qualified exposure ETF data",
     "collectionJob": "refresh",
     "maxAgeHours": 48,
-    "artifact": "qualified-exposures-observation"
+    "artifact": "qualified-exposures-observation",
+    "tools": [
+      "Présentation ETF",
+      "Comparatif ETF",
+      "Duel",
+      "Générateur"
+    ]
   },
   "refresh-automated-index-sheets.yml": {
     "name": "Fiches d’indices automatisées",
     "workflowName": "Refresh fully automated index sheets",
     "collectionJob": "collect",
     "maxAgeHours": 48,
-    "artifact": "complete-index-sheet-observations"
+    "artifact": "complete-index-sheet-observations",
+    "tools": [
+      "Coulisses des indices",
+      "Comparateur indices"
+    ]
   }
 }

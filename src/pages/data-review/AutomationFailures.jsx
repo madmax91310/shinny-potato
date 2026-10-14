@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react'
+import MonitoringIncidents from './MonitoringIncidents.jsx'
 import { AUTOMATION_STATUS_URL, automationFailures, automationOverview } from './automation.js'
 
 const publicationLabel = value => ({ success: 'Réussie', failure: 'En échec', 'not-run': 'Non exécutée' }[value] ?? 'Non documentée')
 const date = value => value && Number.isFinite(Date.parse(value)) ? new Intl.DateTimeFormat('fr-FR', {dateStyle: 'short', timeStyle: 'short', timeZone: 'Europe/Paris'}).format(new Date(value)) : 'Non documenté'
 export default function AutomationFailures() {
+  const [monitor, setMonitor] = useState(null)
   const [alerts, setAlerts] = useState([])
   const [overview, setOverview] = useState(null)
   const [filter, setFilter] = useState('all')
@@ -20,7 +22,7 @@ export default function AutomationFailures() {
         const status = await response.json()
         const rows = automationOverview(status)
         const next = automationFailures(status)
-        if (active) { setAlerts(next); setOverview(rows); setUnavailable(false) }
+        if (active) { setAlerts(next); setOverview(rows); setMonitor(status.monitoring ?? null); setUnavailable(false) }
       } catch { if (active) setUnavailable(true) }
       finally { clearTimeout(timeout) }
     }
@@ -29,7 +31,7 @@ export default function AutomationFailures() {
     return () => { active = false; clearInterval(timer); controller?.abort() }
   }, [])
   const rows = overview?.filter(row => filter === 'all' || row.state === filter) ?? []
-  return <section className="dr-automation" aria-label="Bilan des collectes automatiques">
+  return <><section className="dr-automation" aria-label="Bilan des collectes automatiques">
     <h2>Bilan des collectes automatiques</h2>
     <p className="dr-note">Les dates ci-dessous suivent les exécutions des collecteurs. Une collecte réussie peut conserver une valeur inchangée ; elle ne change pas la date de la donnée. La publication de l’application est suivie séparément. Les champs indisponibles figurent dans les réserves de cette page.</p>
     {!overview && !unavailable && <p role="status" className="dr-note">Chargement du bilan des collectes…</p>}
@@ -56,5 +58,5 @@ export default function AutomationFailures() {
         <div className="dr-links"><a href={alert.runUrl} target="_blank" rel="noreferrer">Voir la cause et le suivi ↗</a></div>
       </article>)}</div></section>}
     {unavailable && <p className="dr-note" role="status">Le suivi des automatisations est momentanément indisponible. Les éventuelles alertes affichées n’ont pas pu être revérifiées.</p>}
-  </section>
+  </section><MonitoringIncidents monitor={monitor} /></>
 }
