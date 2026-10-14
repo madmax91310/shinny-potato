@@ -1,3 +1,4 @@
+import { targetExplanation } from '../src/pages/company-analysis/targetExplanation.js'
 import { buildPriceScenarios, priceTarget, targetChart } from '../src/pages/company-analysis/priceTargets.js'
 import { valuationPublication } from '../src/pages/company-analysis/valuationPublication.js'
 import assert from 'node:assert/strict'
@@ -20,7 +21,7 @@ assert(cashValue({...a,discount:.15}).value<cashValue(a).value)
 const years = [2022,2023,2024,2025].map((year,i)=>({end:`${year}-12-31`, revenue:1000, netIncome:100,
   freeCashFlow:100+i*5, operatingCashFlow:120+i*5, capitalExpenditure:20, averageDilutedShares:10,
   freeCashFlowDefinition:'operating-minus-capex', sourceUrl:'https://example.com/accounts', sharesBasisSource:'https://example.com/accounts'}))
-const company={currency:'USD', accountingStandard:'IFRS', accountsObservedAt:'2026-10-14',
+const company={valuationBusinessType:'operating-company',currency:'USD', accountingStandard:'IFRS', accountsObservedAt:'2026-10-14',
   annual:{...years.at(-1),dilutedEPS:10}, quarter:{end:'2026-06-30'},
   quote:{price:200,currency:'USD',asOf:'2026-10-14',splits:[]},
   estimates:{observedAt:'2026-10-14',accountsEndAtCollection:'2026-06-30',forwardEPS:12,growthEPS5Y:9},
@@ -123,6 +124,43 @@ company.quote.history[1].close=199
 assert(!targetChart(company,originalTargets,'earnings').hasPriceHistory)
 company.quote.history[1].close=200
 assert.equal(targetChart(company,originalTargets,'history').forecast.length,0)
+
+// Explanations must reconcile independently to prices, including custom scenarios.
+for(const horizon of [1,3,5])for(const method of ['cash','earnings'])for(const index of [0,1,2]) {
+  for(const overrides of [{},{[index]:{[method==='cash'?'cashGrowth':'earningsGrowth']:.02}}]) {
+    const m=buildPriceScenarios(company,overrides,now,horizon),x=targetExplanation(company,m,index,method)
+    const target=m.scenarios[index][method+'Target']
+    assert(Math.abs(200+x.fundamentalEffect+x.multipleEffect-target.value)<1e-8)
+    assert.equal(x.periods.at(-1).value,target.fundamental)
+    assert.equal(x.customGrowth,Object.keys(overrides).length>0)
+    assert.equal(x.historyCount,4)
+    if(x.customGrowth)assert(x.periods.every(p=>p.origin==='Réglage personnel'))
+    if(method==='earnings'&&horizon===1&&!x.customGrowth)assert.equal(x.extrapolated,0)
+    if(method==='earnings'&&horizon===5&&!x.customGrowth)assert.equal(x.extrapolated,4)
+    const pub=valuationPublication(company,overrides,index,method,now,horizon)
+    assert(pub.text.includes(x.summary)&&pub.text.includes(x.coverage))
+  }
+}
+// Independent bridge example: 200 -> 240 at unchanged multiple -> 180 at 15x.
+const bridgeModel={inputs:{price:200},evidence:{earnings:{periods:['2027-12-31'],curve:[{end:'2027-12-31',kind:'estimate'}],calibration:{multiples:{count:3}},asOf:'2026-10-14'}},scenarios:[{earningsAssumptions:{base:10,path:[12],multiple:15},earningsTarget:{fundamental:12,value:180,upside:-.1}}]}
+const bridge=targetExplanation(company,bridgeModel,0,'earnings')
+assert.equal(bridge.fundamentalEffect,40);assert.equal(bridge.multipleEffect,-60)
+assert(bridge.summary.includes('ne compense pas'))
+for(const type of [undefined,'bank','insurer','reit']) {
+  const bad={...company,valuationBusinessType:type}
+  assert.equal(buildPriceScenarios(bad,{},now).inputs.earningsReady,false)
+  assert.equal(buildPriceScenarios(bad,{},now).inputs.cashReady,false)
+}
+for(const mutate of [
+  c=>{c.targetForecast.points[1].end='2026-01-01'},
+  c=>{c.targetForecast.points[1].kind='unknown'},
+  c=>{c.targetForecast.points[2].kind='observed-adjusted'},
+  c=>{c.targetForecast.historicalMultiples[1].end=c.targetForecast.historicalMultiples[0].end},
+  c=>{c.decision.years[1].end='2020-01-01'}
+]) {
+  const bad=structuredClone(company);mutate(bad)
+  assert.equal(buildPriceScenarios(bad,{},now).inputs.earningsReady,false)
+}
 
 company.valuationShareBasis.normalisedYears=company.decision.years.map(r=>({end:r.end,reportedAverageDilutedShares:r.averageDilutedShares,averageDilutedShares:r.averageDilutedShares*10,sourceUrl:r.sharesBasisSource,adjustments:[{ratio:10,issuerSourceUrl:'https://example.com/split'}]}))
 assert.equal(buildScenarios(company,{},now).inputs.cashBase,model.inputs.cashBase/10)
