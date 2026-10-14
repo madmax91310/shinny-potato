@@ -77,6 +77,7 @@ try {
   await valuationPanel.getByText('Ajuster les hypothèses',{exact:true}).click()
   await valuationPanel.getByRole('button',{name:'Flux de trésorerie',exact:true}).click()
   await valuationPanel.getByText('Préparer la publication pour X',{exact:true}).click()
+  assert.equal(await page.locator('.company-publication .workspace-actions').evaluate(el=>getComputedStyle(el).position),'static')
   const publication=valuationPanel.getByRole('region',{name:'Publication de valorisation'})
   const exportImage=publication.locator('img')
   await exportImage.waitFor()
