@@ -61,6 +61,13 @@ jobs:
       - run: node scripts/test-company-analysis.mjs
       - run: node scripts/test-company-decision.mjs
       - run: node scripts/test-company-valuation.mjs
+      - run: node scripts/test-company-forecast-ledger.mjs
+      - name: Exercise forecast archive without publishing on PR
+        if: github.event_name == 'pull_request'
+        run: node scripts/company-forecast-ledger.mjs "$RUNNER_TEMP/company-archive" "$RUNNER_TEMP/company-forecast-evaluation.json" "$(git rev-parse HEAD)"
+      - name: Archive original forecasts and evaluate matured records
+        if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
+        run: bash scripts/company-forecast-archive.sh
       - name: Audit automatic valuation coverage
         run: node scripts/audit-company-valuation.mjs "$RUNNER_TEMP/company-valuation-coverage.json"
       - uses: actions/upload-artifact@v7.0.1
@@ -96,7 +103,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add src/data/company-analysis.json
+          git add src/data/company-analysis.json src/data/company-forecast-evaluation.json
           if ! git diff --cached --quiet; then
             git commit -m 'Refresh company accounts and valuation observations'
             git pull --rebase origin master

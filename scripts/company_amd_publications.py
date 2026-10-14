@@ -53,6 +53,13 @@ def parse(raw, source_url, today):
         values[field] = row(field_text, labels, len(dates))
         if values[field] is None:
             raise ValueError('Incomplete AMD GAAP statement: ' + field + ' / ' + source_url)
+    share_text = re.split(r'Shares used in per share calculation', text, flags=re.I)
+    if len(share_text) == 2:
+        counts = row(share_text[1], [r'Diluted'], len(dates))
+        if counts and all(v > 0 for v in counts):
+            # Rounded GAAP EPS must reconcile with the separately published count.
+            if all(abs(values['netIncome'][i]/counts[i]-values['dilutedEPS'][i]) <= .015 for i in range(len(dates))):
+                values['averageDilutedShares'] = counts
     if any(v <= 0 for v in values['revenue']):
         raise ValueError('Invalid AMD revenue')
     def period(index, previous, duration):

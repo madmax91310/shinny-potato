@@ -366,6 +366,13 @@ class AMDPublicationsTests(unittest.TestCase):
         raw = raw.replace(b'<td>0.5</td><td>0.4</td><td>0.3</td><td>1.5</td><td>1.25</td>', b'')
         with self.assertRaises(ValueError): parse(raw, 'https://ir.amd.com/report', TODAY)
 
+    def test_qualified_diluted_counts_reconcile_with_gaap_eps(self):
+        from company_amd_publications import parse
+        raw = self.fixture().replace(b'</table>', b'<tr><td>Shares used in per share calculation</td></tr><tr><td>Diluted</td><td>20</td><td>20</td><td>20</td><td>20</td><td>20</td></tr></table>')
+        self.assertEqual(parse(raw, 'https://ir.amd.com/report', TODAY)['annual']['averageDilutedShares'], 20e6)
+        wrong = raw.replace(b'<td>20</td>', b'<td>40</td>')
+        self.assertNotIn('averageDilutedShares', parse(wrong, 'https://ir.amd.com/report', TODAY)['annual'])
+
     def test_rejects_non_gaap_wrong_units_and_unaligned_dates(self):
         from company_amd_publications import parse
         for raw in [self.fixture().replace(b'CONDENSED CONSOLIDATED STATEMENTS OF OPERATIONS', b'NON-GAAP RECONCILIATION'),
