@@ -1,6 +1,6 @@
 import { startPublicationDownload } from '../../design-system/publicationActions.js'
 import { performanceBasis } from './data/marketHistory.js'
-import { getPerformanceEntries, MODES } from './lib.js'
+import { getPerformanceEntries, MODES } from './engines/performance.js'
 import { loadPerformanceArt, drawPerformanceArt } from './performanceArt.js'
 
 import { loadArtImage } from './anniversaryArt.js'

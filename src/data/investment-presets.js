@@ -1,0 +1,1 @@
+export const AMOUNT_PRESETS = [100, 500, 1000, 5000]

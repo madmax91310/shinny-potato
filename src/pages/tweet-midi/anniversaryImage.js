@@ -2,7 +2,7 @@ import { startPublicationDownload } from '../../design-system/publicationActions
 import { resolveAnniversaryLevel } from '../../data/anniversary-levels.js'
 import { MONTHS_FULL } from '../../data/market-history.js'
 import { getHistoricalPrice, ymForYearsBack, fmtYm } from './data/marketHistory.js'
-import { getMarketAsset, MODES, TODAY } from './lib.js'
+import { getMarketAsset, MODES, TODAY } from './engines/anniversaire.js'
 import { ANNIVERSARY_ART, loadArtImage, loadEditorialFont, drawTitaniumMark } from './anniversaryArt.js'
 
 const W = 1600, H = 2000

@@ -1,4 +1,4 @@
-import { fmtEUR } from '../../lib/format-currency.js'
+import { fmtEUR, fmtPct } from '../../lib/format-currency.js'
 export { fmtEUR } from '../../lib/format-currency.js'
 import { INFLATION_MONTHLY } from '../../data/inflation-monthly.js'
 // Logique de calcul partagée avec Tweet Midi.
@@ -175,10 +175,7 @@ export function currencySymbol(currency) {
   return currency === 'USD' ? '$' : '€'
 }
 
-export function fmtPct(n) {
-  const s = n.toLocaleString('fr-FR', { minimumFractionDigits: 1, maximumFractionDigits: 1 })
-  return (n >= 0 ? '+' : '') + s + ' %'
-}
+export { fmtPct } from '../../lib/format-currency.js'
 
 export function pct(final, invested) {
   return invested > 0 ? ((final - invested) / invested) * 100 : 0

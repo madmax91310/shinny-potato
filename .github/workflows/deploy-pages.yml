@@ -104,7 +104,10 @@ jobs:
       - run: node scripts/test-historical-publications.mjs
       - run: npm run stress-test:portfolios
       - run: node scripts/test-automation-overview.mjs
+      - run: node scripts/test-format-loading.mjs
+      - run: node scripts/test-tool-projections.mjs
       - run: npm run build
+      - run: node scripts/test-format-loading.mjs --built
       - run: node scripts/test-practical-sheets.mjs
       - run: node scripts/test-performance-links.mjs
       - uses: actions/upload-artifact@v7.0.1
