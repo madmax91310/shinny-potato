@@ -3,7 +3,7 @@ import { HOME_TOOLS, WEEKLY_ORDER } from '../src/tools.js'
 import { INSURANCE, ARCHIVED_INSURANCE } from '../src/data/insurance.js'
 import { buildTweet } from '../src/pages/insurance-presentation/lib.js'
 import { searchData } from '../src/data/catalog.js'
-assert.equal(INSURANCE.length, 5)
+assert.equal(INSURANCE.length, 6)
 assert.equal(ARCHIVED_INSURANCE.length, 1)
 assert(!INSURANCE.some(r => r.id === 'linxea-avenir-2'))
 assert(HOME_TOOLS.some(tool => tool.to === '/presentations'))

@@ -67,7 +67,7 @@ const brandAssets = {
   'iroko-zen':['iroko-zen.svg'], 'remake-live':['remake-live.png'],
   'corum-origin':['corum.svg'], 'corum-xl':['corum.svg'], 'corum-eurion':['corum.svg'],
   'transitions-europe':['arkea.png'], 'activimmo':['activimmo.png'], 'epargne-pierre':['epargne-pierre.svg'],
-  'linxea-spirit-2':['linxea-spirit-2.svg'], 'linxea-avenir-2':['linxea-avenir-2.svg'],
+  'linxea-spirit-2':['linxea-spirit-2.svg'], 'linxea-avenir-2':['linxea-avenir-2.svg'], 'linxea-avenir-2-plus':['linxea-avenir-2-plus.svg'],
   'linxea-vie':['linxea-vie.svg'], 'linxea-zen':['linxea-zen.svg'],
   'lucya-cardif':['lucya.png','cardif.png'], 'placement-direct-vie':['placement-direct-vie.svg'],
 }
@@ -131,6 +131,7 @@ export const presentationBrands = {
   'activimmo': { color:'#5599bd', light:'#c4edff', dark:'#1b455f' },
   'epargne-pierre': { color:'#dc934a', light:'#ffe3b9', dark:'#704323' },
   'linxea-spirit-2': { color:'#aa73d5', light:'#ebd4ff', dark:'#4d2c71' },
+  'linxea-avenir-2-plus': { color:'#4da3e1', light:'#c9eeff', dark:'#1a4976' },
   'linxea-avenir-2': { color:'#4da3e1', light:'#c9eeff', dark:'#1a4976' },
   'linxea-zen': { color:'#68b4a6', light:'#d2fff0', dark:'#285b52' },
   'linxea-vie': { color:'#d86b93', light:'#ffd5e5', dark:'#6d304e' },
@@ -258,7 +259,7 @@ export async function renderPresentationImage(record,kind) {
     if(i<2){ctx.fillStyle=model.brand.light+'60';ctx.fillRect(x+470,706,1,105)}
   }
   ctx.textAlign='left'
-  fittedText(ctx,model.qualifier,80,855,1440,30,28,'#bed0dc',400,SANS,2)
+  fittedText(ctx,model.qualifier,80,875,1440,30,28,'#bed0dc',400,SANS,2)
   text(ctx,model.compactFooter,80,952,1180,28,'#bed0dc')
   ctx.textAlign='right';font(ctx,24,400,SERIF);ctx.fillStyle='#e1edf3';ctx.fillText('Épargnant Libre',1520,952)
   return canvas

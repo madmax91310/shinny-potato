@@ -31,8 +31,10 @@ try {
     await page.getByRole('button',{name:'Rétablir le texte',exact:true}).click()
     assert.equal(await page.locator('#insurance-draft').inputValue(),buildTweet(record))
   }
+  // The tiered-rate test targets its contract explicitly, independent of catalogue order.
+  await chooser.getByRole('button',{name:'Placement-direct Vie',exact:true}).click()
   await page.getByText('Les fonds euros et leurs conditions',{exact:true}).click()
-  assert.equal(await page.locator('.insurance-return-history tbody tr').count(),INSURANCE.at(-1).euroFunds.reduce((sum,fund)=>sum+fund.years.length,0))
+  assert.equal(await page.locator('.insurance-return-history tbody tr').count(),INSURANCE.find(r=>r.id==='placement-direct-vie').euroFunds.reduce((sum,fund)=>sum+fund.years.length,0))
   await page.getByText('Barème de rendement 2025',{exact:true}).click()
   assert.equal(await page.locator('.insurance-rate-tiers[open] tbody tr').count(),6)
   assert((await page.locator('.insurance-rate-tiers[open]').innerText()).includes('250 000'))

@@ -127,9 +127,8 @@ for (const isin of ['IE00BD6FTQ80','IE00BDFL4P12']) {
  assert.equal(allocation.basis, 'index');
  assert.equal(allocation.classification, 'commodity-groups');
  const text = buildComparisonEtfDetails({ isin, nom: 'ETF' }).join('\n');
- assert.match(text, /Matières premières de l’indice suivi au 31\/08\/2026/);
- assert.match(text, /Métaux précieux : 15,3 %/);
- assert.match(text, /Autres : -0,01 %/);
+ assert(text.includes(`Matières premières de l’indice suivi au ${allocation.asOf.split('-').reverse().join('/')}`));
+ for (const row of allocation.rows) assert(text.includes(`${row.label} : ${row.weightPct.toLocaleString('fr-FR', {maximumFractionDigits:2})} %`));
  assert.doesNotMatch(text, /🏭|🏢/);
 }
 

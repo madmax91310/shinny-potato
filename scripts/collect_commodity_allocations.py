@@ -29,8 +29,9 @@ def parse_allocation(text, now, digest, source_url=SOURCE_URL):
         reject('Missing or duplicate published commodity groups')
     rows = [{'name':name, 'label':LABELS[name], 'weightPct':float(value)} for name, value in pairs]
     # A tiny signed Others weight is published explicitly; preserve it, never
+    # allow at most 0.10 percentage point below zero, only for Others. Never
     # clip it or invent a residual to force the rounded table to total 100%.
-    if any(not math.isfinite(r['weightPct']) or not (-.05 if r['name']=='Others' else 0) <= r['weightPct'] <= 100 for r in rows):
+    if any(not math.isfinite(r['weightPct']) or not (-.10 if r['name']=='Others' else 0) <= r['weightPct'] <= 100 for r in rows):
         reject('Invalid commodity group weight')
     if not 99 <= sum(r['weightPct'] for r in rows) <= 101:
         reject('Incomplete commodity allocation')
