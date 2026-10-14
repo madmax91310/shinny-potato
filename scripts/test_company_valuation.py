@@ -17,6 +17,14 @@ class ValuationInputs(unittest.TestCase):
  def test_change_column_is_not_a_share_count(self):
   t=statement('Years Ended December 31,\n2025 2024','350 300 17','50 40 25','5 4 25')+'Average Shares Outstanding Assuming Dilution 10 10 0\n'
   self.assertEqual(statement_periods(t,'coca-cola',URL,TODAY)[0]['averageDilutedShares'],10e6)
+ def test_nvidia_historical_singular_purchase_caption(self):
+  from company_publications import add_cash_flow
+  from unittest.mock import patch
+  text='CONSOLIDATED STATEMENTS OF CASH FLOWS\nTwelve Months Ended\nNet cash provided by operating activities 2249 3033 5641 9108\nPurchase related to property and equipment and intangible assets (509) (273) (1833) (976)\nPrincipal payments on property and equipment and intangible assets (4) (21) (58) (83)'
+  annual={'tags':{}}
+  with patch('company_publications.sections',return_value=[text]):add_cash_flow(b'issuer',annual,'nvidia')
+  self.assertEqual(annual['freeCashFlow'],3808e6)
+  self.assertEqual(annual['previousFreeCashFlow'],8132e6)
  def test_full_window_and_splits_fail_closed(self):
   c={'annual':{'end':'2025-12-31'},'decision':{'years':[{'end':f'{y}-12-31','averageDilutedShares':100,'sharesBasisSource':URL}for y in range(2022,2026)]}}
   p={'id':'test','symbol':'TEST','currency':'USD'}
