@@ -3,7 +3,7 @@ import { spawn } from 'node:child_process'
 import { chromium } from 'playwright'
 import { COMPANIES } from '../src/data/companies.js'
 import { valuationPublication } from '../src/pages/company-analysis/valuationPublication.js'
-import { buildScenarios } from '../src/pages/company-analysis/valuation.js'
+import { buildPriceScenarios as buildScenarios } from '../src/pages/company-analysis/priceTargets.js'
 import { buildTweetText, calculatedRatios, decisionIndicators, activeDecision } from '../src/pages/company-analysis/lib.js'
 
 const server = spawn('node',['node_modules/vite/bin/vite.js','preview','--host','127.0.0.1','--port','4315','--strictPort'],{stdio:'ignore'})
@@ -67,7 +67,7 @@ try {
   assert.notEqual(await valuationPanel.locator('.valuation-forecast-line.selected').getAttribute('d'),chartBefore)
   assert.notEqual(await valuationPanel.getByTestId('valuation-reading').innerText(),readingBefore)
   assert.notEqual(await valuationPanel.locator('.valuation-assumptions tbody tr').nth(1).innerText(), before)
-  await valuationPanel.getByLabel('Rendement Central', {exact:true}).fill('0')
+  await valuationPanel.getByLabel('Multiple Central', {exact:true}).fill('0')
   await valuationPanel.getByRole('alert').waitFor()
   assert.equal(await valuationPanel.locator('.valuation-forecast-line').count(),0)
   assert.equal(await valuationPanel.getByTestId('valuation-reading').count(),0)
@@ -82,6 +82,12 @@ try {
   const exportImage=publication.locator('img')
   await exportImage.waitFor()
   assert.deepEqual(await exportImage.evaluate(img=>[img.naturalWidth,img.naturalHeight]),[1200,1500])
+  for(const horizon of [1,3,5]) {
+    await valuationPanel.getByRole('group',{name:'Horizon de prévision'}).getByRole('button',{name:`${horizon} an${horizon>1?'s':''}`,exact:true}).click()
+    const expected=valuationPublication(COMPANIES.find(c=>c.id==='apple'),{},1,'cash',new Date(),horizon)
+    assert.equal(await publication.getByTestId('valuation-tweet').innerText(),expected.text)
+    assert.equal(await valuationPanel.getByTestId('price-target').innerText(),`${expected.reading.value.toLocaleString('fr-FR',{maximumFractionDigits:2})} USD`)
+  }
   for(const method of ['cash','earnings']) {
     await valuationPanel.getByRole('button',{name:method==='cash'?'Flux de trésorerie':'Bénéfices',exact:true}).click()
     for(const [index,name] of ['Prudent','Central','Favorable'].entries()) {
@@ -100,9 +106,9 @@ try {
   const png=page.waitForEvent('download')
   await publication.getByRole('button',{name:'Télécharger l’image de valorisation',exact:true}).click()
   const downloaded=await png
-  assert.match(downloaded.suggestedFilename(),/^valorisation-apple-earnings-central-.*\.png$/)
+  assert.match(downloaded.suggestedFilename(),/^objectifs-apple-earnings-5ans-central-.*\.png$/)
   if(process.env.COMPANY_QA_DIR) await downloaded.saveAs(`${process.env.COMPANY_QA_DIR}/valuation-export-earnings.png`)
-  await valuationPanel.getByLabel('Rendement Central',{exact:true}).fill('0')
+  await valuationPanel.getByLabel('Multiple Central',{exact:true}).fill('0')
   assert.equal(await publication.locator('img').count(),0)
   assert.equal(await publication.getByRole('button').count(),0)
   await valuationPanel.getByRole('button',{name:'Rétablir les scénarios automatiques'}).click()
@@ -121,6 +127,7 @@ try {
     await chooser.getByRole('button',{name:`${company.name} · ${company.symbol}`}).click()
     if(!await valuationPanel.locator('.valuation-publication-details').evaluate(el=>el.open)) await valuationPanel.getByText('Préparer la publication pour X',{exact:true}).click()
     const inputs=buildScenarios(company).inputs
+    if(process.env.COMPANY_REQUIRE_PRICE_HISTORY && (inputs.cashReady||inputs.earningsReady)) assert(company.quote.history?.length>10,`${company.id}: missing real closing history`)
     if(inputs.cashReady||inputs.earningsReady) {
       await publication.locator('img').waitFor()
       assert(!/NaN|undefined|Infinity/.test(await publication.getByTestId('valuation-tweet').innerText()))

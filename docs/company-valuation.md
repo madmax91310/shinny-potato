@@ -1,3 +1,50 @@
+# Promesse produit : des prévisions de cours fondées sur les données
+
+Objectif confirmé le 14 octobre 2026 : choisir une entreprise et obtenir
+**trois objectifs de cours futurs**, leur échéance (1, 3 ou 5 ans), le potentiel
+par rapport à la dernière clôture et la progression annualisée du cours.
+Le graphique doit montrer les clôtures observées puis des trajectoires
+conditionnelles vers ces objectifs. L’image et le texte pour X reprennent
+exactement le modèle, l’horizon et les hypothèses affichés.
+
+Une valeur actualisée aujourd’hui ne remplit pas cette promesse. Les moteurs
+de valeur actuelle ci-dessous restent des calculs distincts ; ils ne doivent
+jamais être renommés « objectifs de cours ».
+
+## Prévisions de cours — méthode active
+
+`priceTargets.js` est le moteur utilisé par l’interface et les exports.
+Objectif = BPA ou FCF/action de départ × (1 + croissance)^horizon × multiple de sortie.
+Potentiel = objectif / cours − 1. Progression annualisée =
+(objectif / cours)^(1 / horizon) − 1. Aucun dividende, frais ou impôt ajouté.
+
+Les bases sont publiées et qualifiées. La croissance centrale vient de l’estimation
+Finviz sur cinq ans pour le BPA, ou du CAGR des exercices comparables pour le FCF.
+La même croissance annuelle est appliquée à l’horizon choisi. Elle est bornée à
+±30 % dans les réglages automatiques, avec le chiffre source expliqué à l’utilisateur.
+Le multiple central est le multiple actuel de l’entreprise (cours / base publiée),
+pas un multiple identique imposé à toutes les entreprises. Les écarts prudent et
+favorable (±3 points de croissance, ±20 % de multiple) sont des conventions
+explicites et modifiables. Ce ne sont ni des probabilités ni un consensus d’objectifs
+d’analystes. La base Finviz peut différer du BPA publié ; cette limite reste indiquée.
+
+Le graphique conserve les dernières clôtures hebdomadaires sur deux ans et la
+plus récente séance complète, collectées quotidiennement dans la série Yahoo
+`close`, sans utiliser `adjclose` ni fabriquer des rendements totaux. Le multiple
+converge géométriquement du multiple actuel à celui du scénario ; c’est une convention
+de trajectoire, pas une prédiction des mouvements intermédiaires. Les pointsillés
+commencent à la dernière clôture et finissent exactement à l’objectif. En l’absence
+d’historique qualifié, seule la dernière clôture est affichée et identifiée.
+
+Les tests empêchent la régression vers des valeurs actualisées : benchmark indépendant
+322,102 pour une base 10, croissance 10 %, multiple 20 à cinq ans ; contrôle du
+potentiel et de l’annualisation ; coïncidence des objectifs, dates, points terminaux,
+textes et PNG ; changement automatique après modification de la donnée source.
+La CI collecte les sources réelles et exige un historique de cours pour les
+entreprises disposant d’un modèle actif.
+
+## Référence des moteurs de valeur actuelle (distincts des objectifs futurs)
+
 # Valorisation des entreprises — fondations (roadmap 1–4)
 
 Le registre existant reste la seule source. `valuationInputs` audite à chaque
@@ -73,45 +120,10 @@ inversion, monotonie, bornes, fraîcheur et qualification. Tests Python des unit
 comptages publiés, profondeur du contrôle des splits et refus des fenêtres
 incomplètes. Tests Chromium de modification, erreur et réinitialisation.
 
-Les étapes 5–6 sont intégrées : interface ivoire/verte, quatre ratios, scénarios
-sélectionnables, réglages repliables, vrai graphique SVG calculé depuis les données,
-lecture automatique et sensibilité au multiple de sortie. Le graphique distingue
-les observations et les projections ; les flux futurs commencent à la date du
-cours avec le dernier FCF annuel pour base. La base BPA est explicitement une base
-de modèle, pas une série d’observations historiques. Les valeurs et sources sont
-accessibles dans un tableau. Une hypothèse invalide masque les projections et le
-commentaire au lieu de conserver un résultat devenu incohérent.
+L’interface, le graphique et les exports actifs suivent désormais la promesse
+« objectifs de cours » décrite en tête de ce document. Les calculs historiques de
+valeur actuelle restent distincts dans valuation.js.
 
-Les nombres dilués de Mastercard, Coca-Cola, PepsiCo, Intuit, Adobe et Salesforce
-sont recherchés dans leurs libellés publiés et rapprochés du BPA. Les colonnes de
-variation ne sont jamais assimilées à des nombres d’actions. Les intitulés de
-cash-flow HTML internes au tableau sont reconnus. La version 4 force la relecture
-des sources ; la couverture réellement obtenue est mesurée par la collecte CI.
-La couverture reste limitée lorsqu’il manque des exercices, un FCF annuel ou une
-preuve de comparabilité. Aucun compte n’est complété par une estimation.
-
-Les étapes 7–8 ajoutent un export PNG 1200 × 1500, son aperçu et un texte long
-pour X. Ils reprennent le modèle choisi, les trois scénarios, le scénario sélectionné,
-les hypothèses personnelles et la date du cours. Le texte est calculé, sans génération
-externe, depuis le même instantané que l’image ; les anciens exports restent séparés.
-Les téléchargements ne publient rien sur X.
-
-Les données sont requalifiées chaque minute, au retour sur l’onglet et à chaque
-copie/téléchargement. Une base périmée ou des hypothèses invalides retirent l’aperçu
-et empêchent l’export ; aucune substitution silencieuse de modèle lors d’un clic.
-Le graphique bénéfices distingue explicitement son BPA de départ d’un historique publié.
-
-Validation reproductible : `node scripts/test-company-valuation.mjs` vérifie les
-six combinaisons méthode/scénario, les hypothèses personnalisées, le refus des
-entrées invalides et périmées, en plus des benchmarks numériques indépendants.
-Après build, `node scripts/test-company-analysis-ui.mjs` contrôle les exports PNG,
-le presse-papiers, les changements de méthode/scénario, les données invalides,
-l’expiration d’un onglet, les entreprises éligibles et le parcours mobile.
-Les captures sont conservées comme artefacts CI ; les tests numériques sont aussi
-exécutés dans le déploiement de production. La collecte quotidienne conserve
-l’audit de couverture et les échecs sont suivis par la surveillance existante
-`update-company-analysis.yml` (délai de surveillance : 48 h).
-
-La validation du produit ne signifie pas une couverture FCF de toutes les entreprises :
-les modèles restent suspendus tant que leurs sources ne permettent pas de qualifier
-les historiques. Les trois scénarios restent des conventions modifiables, pas un consensus.
+La couverture FCF reste conditionnée aux publications qualifiées : aucune
+estimation ne remplace des nombres d’actions ou exercices manquants. L’audit
+quotidien archive la couverture et les objectifs pour les trois horizons.

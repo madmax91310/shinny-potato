@@ -1,36 +1,32 @@
-import { buildScenarios } from './valuation.js'
-import { valuationChart, valuationReading, formatValue as n } from './valuationPresentation.js'
+import { buildPriceScenarios, targetChart, targetReading } from './priceTargets.js'
+import { formatValue as n } from './valuationPresentation.js'
 import { dateLabel, calculatedRatios } from './lib.js'
-
-// One immutable publication snapshot drives text, image and download.
-// Rebuild at export time so an old open tab cannot publish expired observations.
-export function valuationPublication(company, overrides, selected, method, now = new Date()) {
-  if (!['cash','earnings'].includes(method) || ![0,1,2].includes(selected)) throw new Error('Choisis un modèle et un scénario disponibles.')
-  const model = buildScenarios(company, overrides, now), cash = method === 'cash'
-  if (!(cash ? model.inputs.cashReady : model.inputs.earningsReady)) throw new Error('Les données de ce modèle sont incomplètes ou trop anciennes pour publier.')
-  const reading = valuationReading(model, selected, method), scenario = model.scenarios[selected]
-  const assumptions = cash ? scenario.cashAssumptions : scenario.earningsAssumptions
-  const currency = company.currency, price = model.inputs.price
-  const metrics = [
-    {label:'PER', value:n(model.inputs.pe), hint:calculatedRatios(company,now).peTTM ? 'Bénéfices sur 12 mois' : `Exercice ${company.annual.end.slice(0,4)}`},
-    {label:'PER forward', value:n(model.inputs.forwardPE), hint:'Prochain exercice estimé'},
-    {label:'FCF / action', value:model.inputs.cashReady ? `${n(model.inputs.cashBase,2)} ${currency}` : '—', hint:`Exercice ${company.annual.end.slice(0,4)}`},
-    {label:'Rendement FCF', value:model.inputs.cashReady ? `${n(model.inputs.cashBase/price*100)} %` : '—', hint:'FCF annuel / cours'},
+const signed=v=>`${v>=0?'+':'−'}${n(Math.abs(v)*100)} %`
+export function valuationPublication(company,overrides,selected,method,now=new Date(),years=5) {
+  if(!['cash','earnings'].includes(method)||![0,1,2].includes(selected))throw new Error('Choisis un modèle et un scénario disponibles.')
+  const model=buildPriceScenarios(company,overrides,now,years),cash=method==='cash'
+  if(!(cash?model.inputs.cashReady:model.inputs.earningsReady))throw new Error('Les données de ce modèle sont incomplètes ou trop anciennes pour publier.')
+  const reading=targetReading(model,selected,method),scenario=model.scenarios[selected],assumptions=cash?scenario.cashAssumptions:scenario.earningsAssumptions
+  const currency=company.currency,price=model.inputs.price
+  const metrics=[
+    {label:'PER',value:n(model.inputs.pe),hint:calculatedRatios(company,now).peTTM?'Bénéfices sur 12 mois':`Exercice ${company.annual.end.slice(0,4)}`},
+    {label:'PER forward',value:n(model.inputs.forwardPE),hint:'Prochain exercice estimé'},
+    {label:'FCF / action',value:model.inputs.cashReady?`${n(model.inputs.cashBase,2)} ${currency}`:'—',hint:`Exercice ${company.annual.end.slice(0,4)}`},
+    {label:'Rendement FCF',value:model.inputs.cashReady?`${n(model.inputs.cashBase/price*100)} %`:'—',hint:'FCF annuel / cours'},
   ]
-  const scenarios = model.scenarios.map(s => ({name:s.name, value:cash?s.cash.value:s.earnings, assumptions:cash?s.cashAssumptions:s.earningsAssumptions}))
-  const text = [
-    `${company.name} à ${n(price,2)} ${currency} : ${cash?'quelle croissance faudrait-il pour justifier ce prix ?':'que donnent mes hypothèses de valorisation ?'}`,
-    `Clôture du ${dateLabel(company.quote.asOf)}. Je regarde ici ${cash?'le FCF par action':'les bénéfices par action'}, avec trois scénarios de simulation.`,
-    `${metrics.filter(m=>m.value!=='—').map(m=>`${m.label} : ${m.value}`).join(' · ')}.`,
-    scenarios.map(s=>`${s.name} : ${n(s.value,2)} ${currency} par action`).join('\n'),
-    `Le scénario ${scenario.name.toLowerCase()} retient ${n(assumptions.growth*100)} % de croissance par an pendant ${assumptions.years} ans, un multiple de sortie de ${n(assumptions.multiple)} et un rendement exigé de ${n(assumptions.discount*100)} %.`,
-    reading.title.replace('tes hypothèses','ces hypothèses'),
-    reading.expectation,
-    `Avec un multiple de sortie de ${n(reading.sensitivity.lowerMultiple)} à ${n(reading.sensitivity.upperMultiple)}, la valeur passe de ${n(reading.sensitivity.low,2)} à ${n(reading.sensitivity.high,2)} ${currency}, toutes les autres hypothèses restant identiques.`,
-    cash?'Modèle FCF simplifié : nombre d’actions constant, sans financement net par dette. Dividendes et trésorerie ne sont pas ajoutés.':'Modèle bénéfices : prix de revente actualisé, hors dividendes. La base des estimations peut différer des comptes publiés.',
-    'Ces scénarios sont des hypothèses, pas des prévisions. Pas un conseil financier.',
+  const scenarios=model.scenarios.map(s=>({name:s.name,customised:s.customised,...(cash?s.cashTarget:s.earningsTarget),assumptions:cash?s.cashAssumptions:s.earningsAssumptions}))
+  const text=[
+    `Où pourrait être l’action ${company.name} dans ${years} an${years>1?'s':''} ?`,
+    `Elle clôturait à ${n(price,2)} ${currency} le ${dateLabel(company.quote.asOf)}. Voici trois prévisions conditionnelles, calculées à partir ${cash?'du FCF par action publié':'du BPA publié et de sa croissance estimée'}.`,
+    `Objectifs au ${dateLabel(model.targetDate)} :\n${scenarios.map(s=>`${s.name} : ${n(s.value,2)} ${currency} (${signed(s.upside)}, soit ${signed(s.annualised)} / an)`).join('\n')}`,
+    `Le scénario ${scenario.name.toLowerCase()} retient ${n(assumptions.growth*100)} % de croissance annuelle ${cash?'du FCF/action':'du BPA'} et un multiple de sortie de ${n(assumptions.multiple)}. Il donne un objectif de ${n(reading.value,2)} ${currency}.`,
+    `${reading.historical}${model.orderChanged?' Avec ces réglages personnalisés, les objectifs ne suivent plus l’ordre prudent → central → favorable.':''}`,
+    `À croissance identique, un multiple de sortie de ${n(reading.sensitivity.lowerMultiple)} à ${n(reading.sensitivity.upperMultiple)} ferait varier cet objectif de ${n(reading.sensitivity.low,2)} à ${n(reading.sensitivity.high,2)} ${currency}.`,
+    'Potentiels et progressions annualisées du cours hors dividendes. Les écarts entre scénarios sont des hypothèses, pas des probabilités ni un consensus d’analystes.',
+    cash?'La croissance passée est prolongée sous hypothèse d’un nombre d’actions constant.':'Les estimations de croissance peuvent utiliser une base différente du BPA publié.',
+    'Ces prévisions dépendent des hypothèses retenues. Pas un conseil financier.',
   ].join('\n\n')
-  return {name:company.name, symbol:company.symbol, currency, quoteDate:company.quote.asOf, price, method, selected,
-    metrics, scenarios, reading, assumptions, chart:valuationChart(company,model,method,now), text,
-    filename:`valorisation-${company.id}-${method}-${scenario.name.toLowerCase()}-${company.quote.asOf}.png`}
+  return {name:company.name,symbol:company.symbol,currency,quoteDate:company.quote.asOf,price,method,selected,years,targetDate:model.targetDate,
+    metrics,scenarios,reading,assumptions,chart:targetChart(company,model,method),text,
+    filename:`objectifs-${company.id}-${method}-${years}ans-${scenario.name.toLowerCase()}-${company.quote.asOf}.png`}
 }

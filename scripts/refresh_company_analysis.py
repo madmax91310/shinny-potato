@@ -223,7 +223,16 @@ def parse_quote(body, profile, now):
         raise ValueError('Stale price')
     splits = [dt.datetime.fromtimestamp(int(s['date']), UTC).astimezone(zone).date().isoformat()
               for s in data.get('events', {}).get('splits', {}).values()]
-    return {'price': price, 'asOf': day.isoformat(), 'observedAt': now.date().isoformat(),
+    # Keep actual weekly closing observations (not total-return adjusted prices).
+    # The provider close series is already on its split basis; do not adjust it twice.
+    weekly = {}
+    for d, v in candidates:
+        weekly[d.isocalendar()[:2]] = {'asOf': d.isoformat(), 'close': v}
+    history = list(weekly.values())
+    if len({p['asOf'] for p in history}) != len(history):
+        raise ValueError('Duplicate price history dates')
+    return {'history': history, 'historyBasis': 'Yahoo close; weekly last completed session; no dividend reinvestment',
+            'price': price, 'asOf': day.isoformat(), 'observedAt': now.date().isoformat(),
             'currency': profile['currency'], 'splits':sorted(s for s in splits if s <= day.isoformat())}
 
 

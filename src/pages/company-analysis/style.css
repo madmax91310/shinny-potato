@@ -139,3 +139,8 @@
 @media(max-width:760px) { .valuation-export-preview { grid-template-columns:1fr; } .valuation-export-preview article { max-height:none; } }
 /* Keep legacy exports beside their own preview, never over the valuation. */
 .company-analysis .company-publication .workspace-actions { position:static; }
+
+.valuation-horizon { display:flex; align-items:center; flex-wrap:wrap; gap:10px; font-size:12px; margin:0 0 24px; }
+.valuation-horizon button { border:1px solid #b4c7b4; background:transparent; color:#22684f; border-radius:20px; padding:8px 14px; cursor:pointer; }
+.valuation-horizon button[aria-pressed=true] { background:#22684f; color:white; }
+.valuation-projection-note { font-size:11px; color:#637467; line-height:1.6; }

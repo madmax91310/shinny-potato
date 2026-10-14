@@ -61,8 +61,18 @@ class CompanyAnalysisTests(unittest.TestCase):
         stamps = [int(dt.datetime(2026,10,day,14,tzinfo=dt.timezone.utc).timestamp()) for day in [6,7]]
         body = {'chart':{'result':[{'meta':{'symbol':'TEST','currency':'USD','dataGranularity':'1d','exchangeTimezoneName':'America/New_York'},'timestamp':stamps,'indicators':{'quote':[{'close':[100,200]}]}}]}}
         self.assertEqual(parse_quote(body,PROFILE,now)['price'],100)
+        self.assertEqual(parse_quote(body,PROFILE,now)['history'],[{'asOf':'2026-10-06','close':100}])
         body['chart']['result'][0]['meta']['currency'] = 'EUR'
         with self.assertRaises(ValueError):parse_quote(body,PROFILE,now)
+
+    def test_weekly_close_keeps_observed_values_without_dividend_adjustment(self):
+        now = dt.datetime(2026,10,14,18,tzinfo=dt.timezone.utc)
+        days = [2,5,6,9,12,13,14]
+        stamps = [int(dt.datetime(2026,10,day,14,tzinfo=dt.timezone.utc).timestamp()) for day in days]
+        body = {'chart':{'result':[{'meta':{'symbol':'TEST','currency':'USD','dataGranularity':'1d','exchangeTimezoneName':'America/New_York'},'timestamp':stamps,'indicators':{'quote':[{'close':[90,95,96,99,101,102,999]}], 'adjclose':[{'adjclose':[1]*7}]}}]}}
+        quote=parse_quote(body,PROFILE,now)
+        self.assertEqual(quote['history'],[{'asOf':'2026-10-02','close':90},{'asOf':'2026-10-09','close':99},{'asOf':'2026-10-13','close':102}])
+        self.assertEqual(quote['price'],quote['history'][-1]['close'])
 
     def test_rate_limit_is_not_a_valuation(self):
         with self.assertRaises(ValueError):parse_overview({'Information':'rate limit'},PROFILE,dt.datetime(2026,10,7,tzinfo=dt.timezone.utc))

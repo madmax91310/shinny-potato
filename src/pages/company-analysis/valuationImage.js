@@ -17,7 +17,7 @@ export function renderValuationImage(p) {
     text(row,x,y,size,muted);return y+line
   }
   function line(x,y,x2,y2,color='#e0e4d8',width=1) {c.strokeStyle=color;c.lineWidth=width;c.beginPath();c.moveTo(x,y);c.lineTo(x2,y2);c.stroke()}
-  text('L’ENTREPRISE, À CE PRIX',56,66,23,muted,600)
+  text('OBJECTIFS DE COURS',56,66,23,muted,600)
   text(p.name,56,140,61,ink,600,760);text(`${n(p.price,2)} ${p.currency}`,850,140,40,ink,600,294)
   text(`${p.symbol} · Clôture du ${dateLabel(p.quoteDate)}`,56,188,26,muted)
   line(56,218,1144,218)
@@ -34,23 +34,24 @@ export function renderValuationImage(p) {
   text('Hypothèses →',Math.min(x(last.time)+12,850),477,22,muted)
   function curve(rows,color,dashed,width) {c.setLineDash(dashed?[10,8]:[]);c.strokeStyle=color;c.lineWidth=width;c.beginPath();rows.forEach((v,i)=>i?c.lineTo(x(v.time),y(v.value)):c.moveTo(x(v.time),y(v.value)));c.stroke();c.setLineDash([])}
   curve(p.chart.history,ink,false,4)
-  for(const v of p.chart.history){c.beginPath();c.arc(x(v.time),y(v.value),5,0,2*Math.PI);c.fillStyle=ink;c.fill()}
+  for(const v of p.chart.history.filter((_,i)=>p.chart.history.length<20||i===0||i===p.chart.history.length-1)){c.beginPath();c.arc(x(v.time),y(v.value),5,0,2*Math.PI);c.fillStyle=ink;c.fill()}
   p.chart.forecast.forEach((s,i)=>curve(s.points,colors[i],true,i===p.selected?5:2))
   text(String(new Date(t0).getUTCFullYear()),135,836,24,muted)
   text(String(new Date(t1).getUTCFullYear()),1028,836,24,muted)
-  text(p.method==='cash'?'Trait plein : FCF publié · Pointillés : hypothèses':'Point initial : BPA du modèle · Pointillés : hypothèses',56,883,25,muted)
+  if(p.chart.hasPriceHistory)text(String(new Date(last.time).getUTCFullYear()),x(last.time)-25,836,24,muted)
+  text(p.chart.hasPriceHistory?'Trait plein : clôtures · Pointillés : trajectoires hypothétiques':'Dernière clôture puis trajectoires hypothétiques',56,883,25,muted)
   p.scenarios.forEach((s,i)=>{
     const left=56+i*370;c.fillStyle=i===p.selected?'#e8efdf':'#f2f3ea';c.beginPath();c.roundRect(left,916,348,149,16);c.fill()
-    text(s.name+(i===p.selected?' · sélectionné':''),left+20,950,25,colors[i],600,310)
+    text(s.name+(s.customised?' · personnalisé':i===p.selected?' · sélectionné':''),left+20,950,25,colors[i],600,310)
     text(`${n(s.value,2)} ${p.currency}`,left+20,992,39,ink,500,310)
     text(`${n(s.assumptions.growth*100)} % / an · sortie ${n(s.assumptions.multiple)}×`,left+20,1027,23,muted,400,310)
-    text(`Rendement exigé : ${n(s.assumptions.discount*100)} %`,left+20,1053,20,muted,400,310)
+    text(`${s.upside>=0?'+':''}${n(s.upside*100)} % · ${s.annualised>=0?'+':''}${n(s.annualised*100)} % / an`,left+20,1053,22,colors[i],600,310)
   })
-  text(`${p.scenarios[p.selected].name} · ${p.assumptions.years} ans · rendement exigé ${n(p.assumptions.discount*100)} %`,56,1119,27,ink,600)
+  text(`Objectifs au ${dateLabel(p.targetDate)} · horizon ${p.years} an${p.years>1?'s':''}`,56,1119,27,ink,600)
   let row=wrap(p.reading.title.replace('tes hypothèses','ces hypothèses'),56,1171,1088,29,40)
-  row=wrap(p.method==='cash'&&p.scenarios[p.selected] ? p.reading.expectation : 'Prix de revente actualisé, hors dividendes. Les estimations peuvent différer des comptes publiés.',56,row+10,1088,25,35)
+  row=wrap(p.reading.explanation+' '+p.reading.expectation,56,row+10,1088,25,35)
   line(56,1383,1144,1383)
-  text('Scénarios de simulation, pas des prévisions.',56,1421,25,muted)
+  text('Prévisions conditionnelles · hors dividendes',56,1421,25,muted)
   text('Épargnant Libre',56,1464,24,green,600);text('Pas un conseil financier',820,1464,24,muted,400,324)
   return canvas
 }
