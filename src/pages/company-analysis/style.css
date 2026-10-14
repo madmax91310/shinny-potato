@@ -138,4 +138,4 @@
 .valuation-export-actions button { background:#22684f; color:white; border:0; border-radius:9px; padding:12px 18px; font-size:13px; cursor:pointer; }
 @media(max-width:760px) { .valuation-export-preview { grid-template-columns:1fr; } .valuation-export-preview article { max-height:none; } }
 /* Keep legacy exports beside their own preview, never over the valuation. */
-.company-publication .workspace .workspace-actions { position:static; }
+.company-analysis .company-publication .workspace-actions { position:static; }
