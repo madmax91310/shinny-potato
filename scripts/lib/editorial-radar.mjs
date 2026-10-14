@@ -1,5 +1,6 @@
 import { createHash } from 'node:crypto'
 import { publishablePurchasingNews } from './purchasing-power-news.mjs'
+import { reconcileDws } from './dws-reconciliation.mjs'
 
 export const FAMILIES = { etf: 'ETF', indices: 'Indices', courtiers: 'Courtiers', epargne: 'Épargne', scpi: 'SCPI', assurance: 'Assurance-vie', investisseurs: 'Investisseurs', economie: 'Repères économiques', 'pouvoir-achat': 'Pouvoir d’achat' }
 export function stable(value) {
@@ -64,7 +65,7 @@ export function shouldRefreshRadar(previous, { eventName, sourceRevision, now = 
   const elapsed = now.getTime() - Date.parse(previous.lastCheckedAt)
   return !Number.isFinite(elapsed) || elapsed < 0 || elapsed >= 15 * 60000
 }
-export function advanceRadar(previous, observations, { now = new Date(), sourceRevision = '', errors = [], purchasingSources = [] } = {}) {
+export function advanceRadar(previous, observations, { now = new Date(), sourceRevision = '', errors = [], purchasingSources = [], verifiedCompositions = [], compositionVerificationFailures = [] } = {}) {
   if (previous && (previous.schemaVersion !== 1 || !previous.current || !previous.anchors || !Array.isArray(previous.events))) throw new Error('Historique radar invalide : conservation du fichier précédent.')
   const stamp = now.toISOString(), state = previous ? structuredClone(previous) : { schemaVersion: 1, initializedAt: stamp, current: {}, anchors: {}, events: [] }
   // Retire the removed legislative category from existing items and alert retries.
@@ -103,11 +104,13 @@ export function advanceRadar(previous, observations, { now = new Date(), sourceR
         absenceEvidence: 'Absent from a validated complete allocation' })
     }
   }
+  const reconciled = reconcileDws(state, valid, verifiedCompositions, now, compositionVerificationFailures)
   const keys = new Set()
   for (const after of valid) {
     const key = observationKey(after)
     if (keys.has(key)) throw new Error(`Observation dupliquée : ${key}`)
     keys.add(key)
+    if (reconciled.has(key)) continue
     const before = state.anchors[key]
     const latest = state.current[key]
     if (latest && (after.period < latest.period || after.period === latest.period && Date.parse(after.checkedAt) < Date.parse(latest.checkedAt))) {
@@ -117,6 +120,12 @@ export function advanceRadar(previous, observations, { now = new Date(), sourceR
     if (latest && datedEtfSnapshot(after) && after.period === latest.period && !same(latest.value, after.value)) {
       const conflictKey = `${key}:${after.period}`
       const conflict = state.conflicts[conflictKey] ??= { accepted: latest, period: after.period, firstSeenAt: stamp, proposals: [] }
+      if (conflict.resolvedAt) {
+        conflict.resolutions ??= []
+        conflict.resolutions.push({ resolvedAt: conflict.resolvedAt, ...conflict.resolution })
+        delete conflict.resolvedAt
+        delete conflict.resolution
+      }
       const proposalId = digest({ value: after.value, sourceUrl: after.sourceUrl, sourceHash: after.sourceHash ?? null })
       const existing = conflict.proposals.find(p => p.id === proposalId)
       if (existing) existing.lastSeenAt = stamp

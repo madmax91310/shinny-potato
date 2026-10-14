@@ -9,6 +9,10 @@ on:
       - '.github/workflows/update-editorial-radar.yml'
       - 'scripts/*editorial-radar.mjs'
       - 'scripts/lib/editorial-radar.mjs'
+      - 'scripts/lib/dws-reconciliation.mjs'
+      - 'scripts/verify_dws_compositions.py'
+      - 'scripts/test_dws_reconciliation.py'
+      - 'scripts/test-dws-reconciliation.mjs'
       - 'scripts/lib/radar-news.mjs'
       - 'scripts/lib/purchasing-power-news.mjs'
       - 'scripts/lib/purchasing-power-sources.mjs'
@@ -23,6 +27,10 @@ on:
       - '.github/workflows/update-editorial-radar.yml'
       - 'scripts/*editorial-radar.mjs'
       - 'scripts/lib/editorial-radar.mjs'
+      - 'scripts/lib/dws-reconciliation.mjs'
+      - 'scripts/verify_dws_compositions.py'
+      - 'scripts/test_dws_reconciliation.py'
+      - 'scripts/test-dws-reconciliation.mjs'
       - 'scripts/lib/radar-news.mjs'
       - 'scripts/lib/purchasing-power-news.mjs'
       - 'scripts/lib/purchasing-power-sources.mjs'
@@ -56,11 +64,27 @@ jobs:
       - uses: actions/setup-node@v7.0.0
         with:
           node-version: 20
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: '3.12'
+      - run: python -m unittest discover -s scripts -p 'test_dws_reconciliation.py'
+      - run: node scripts/test-dws-reconciliation.mjs
       - run: node scripts/test-editorial-radar.mjs
       - run: node scripts/test-radar-notifications.mjs
       - run: node scripts/test-purchasing-power-news.mjs
       - name: Check official purchasing-power feeds
         run: node scripts/test-purchasing-power-news.mjs --live
+      - name: Verify live DWS portfolios independently
+        run: |
+          python scripts/verify_dws_compositions.py > "$RUNNER_TEMP/dws-verification.json"
+          python -c 'import json,os; r=json.load(open(os.environ["RUNNER_TEMP"]+"/dws-verification.json")); assert r["verified"] and not r["errors"], r["errors"]'
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: dws-composition-verification
+          path: ${{ runner.temp }}/dws-verification.json
+          retention-days: 35
+          if-no-files-found: ignore
       - run: node scripts/update-editorial-radar.mjs --output "$RUNNER_TEMP/editorial-radar"
   update:
     if: github.event_name != 'pull_request' && (github.event_name != 'workflow_run' || (github.event.workflow_run.head_branch == 'master' && github.event.workflow_run.head_repository.full_name == github.repository && github.event.workflow_run.event != 'pull_request'))
@@ -77,6 +101,11 @@ jobs:
       - uses: actions/setup-node@v7.0.0
         with:
           node-version: 20
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: '3.12'
+      - run: python -m unittest discover -s scripts -p 'test_dws_reconciliation.py'
+      - run: node scripts/test-dws-reconciliation.mjs
       - run: node scripts/test-editorial-radar.mjs
       - run: node scripts/test-radar-notifications.mjs
       - run: node scripts/test-purchasing-power-news.mjs
