@@ -195,7 +195,9 @@
       "returnCurrency": "USD",
       "performanceDetail": "Russell 1000 · USD · dividendes réinvestis",
       "requiredFields": [
-        "returns"
+        "returns",
+        "composition",
+        "holdings"
       ],
       "enabled": true,
       "returnDocumentName": "Russell 1000 Equal Weight",

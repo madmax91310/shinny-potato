@@ -41,7 +41,23 @@ export function normalizePortfolio(payload) {
   if (identity?.archetype !== 'hedge_fund' || !snapshot?.periodEnd || !Array.isArray(snapshot.holdings)) {
     throw new Error('Ce portefeuille 13F ne contient pas de photographie exploitable.')
   }
+  const period = snapshot.periodEnd
+  const keys = new Set()
+  if (!INVESTORS.some(([slug]) => slug === identity.slug) || !/^\d{4}-(03-31|06-30|09-30|12-31)$/.test(period) || period > new Date().toISOString().slice(0, 10)) {
+    throw new Error('L’identité ou la date du relevé 13F est invalide.')
+  }
+  for (const row of snapshot.holdings) {
+    const key = JSON.stringify([row.ticker && row.ticker !== 'Unmapped CUSIP' ? row.ticker : row.issuerName, row.putCall || null])
+    if (typeof row.issuerName !== 'string' || !row.issuerName.trim() || typeof (row.ticker ?? '') !== 'string'
+      || ![undefined, null, 'PUT', 'CALL'].includes(row.putCall) || !Number.isFinite(row.weight) || row.weight <= 0 || row.weight > 1 || keys.has(key)) {
+      throw new Error('Le relevé contient une position invalide ou dupliquée.')
+    }
+    keys.add(key)
+  }
+  const declaredWeight = snapshot.holdings.reduce((sum, row) => sum + row.weight, 0)
+  if (declaredWeight < .95 || declaredWeight > 1.02) throw new Error('Le relevé 13F est incomplet.')
   const holdings = snapshot.holdings.filter((row) => !row.putCall && Number.isFinite(row.weight) && row.weight > 0)
+    .map(row => row.ticker === 'Unmapped CUSIP' ? { ...row, ticker: '' } : row)
     .sort((a, b) => b.weight - a.weight)
   if (!holdings.length || holdings.some((row) => row.weight > 1) || holdings.reduce((sum, row) => sum + row.weight, 0) > 1.02) {
     throw new Error('Les poids transmis ne permettent pas une répartition fiable.')
@@ -78,7 +94,7 @@ export function portfolioCompanies(holdings) {
 }
 
 function tickers(row) {
-  return row.ticker ? ({ 'GOOG(L)': '$GOOG $GOOGL', 'BRK.{A,B}': '$BRK.A $BRK.B' }[row.ticker] || '$' + row.ticker) : ''
+  return row.ticker && row.ticker !== 'Unmapped CUSIP' ? ({ 'GOOG(L)': '$GOOG $GOOGL', 'BRK.{A,B}': '$BRK.A $BRK.B' }[row.ticker] || '$' + row.ticker) : ''
 }
 
 // Editorial observations follow the loaded filing, not a fixed list of holdings.

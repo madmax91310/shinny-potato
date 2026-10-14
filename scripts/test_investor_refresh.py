@@ -7,6 +7,7 @@ from contextlib import redirect_stderr
 import pathlib
 import tempfile
 import unittest
+import copy
 from unittest.mock import patch
 
 spec = importlib.util.spec_from_file_location('refresh_13f', pathlib.Path(__file__).with_name('update-investor-13f.py'))
@@ -14,11 +15,72 @@ module = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(module)
 
 
-def portfolio(period, weight=1):
-    return {'as_of': 'checked-now', 'data': {'snapshot': {'periodEnd': period, 'holdings': [{'weight': weight}]}}}
+def portfolio(period, weight=1, slug='li-lu'):
+    rows = [{'issuerName': 'Example', 'ticker': 'TEST', 'weight': weight, 'putCall': None}]
+    if weight < 1:
+        rows.append({'issuerName': 'Other', 'ticker': 'OTHER', 'weight': 1-weight, 'putCall': None})
+    return {'as_of': 'checked-now', 'data': {'identity': {'slug': slug, 'archetype': 'hedge_fund'},
+            'sourceUrl': 'https://foliofact.com/funds/example',
+            'snapshot': {'periodEnd': period, 'holdings': rows}}}
 
 
 class RefreshTests(unittest.TestCase):
+    def setUp(self):
+        fixed_date = patch.object(module, 'current_date', return_value=module.dt.date(2026, 10, 14))
+        fixed_date.start()
+        self.addCleanup(fixed_date.stop)
+
+    def test_missing_tickers_keep_distinct_security_identities(self):
+        data = portfolio('2026-06-30', .6)
+        for row in data['data']['snapshot']['holdings']:
+            row['ticker'] = 'Unmapped CUSIP'
+        module.validate_portfolio(data, 'li-lu')
+        data['data']['snapshot']['holdings'][1]['issuerName'] = 'Example'
+        with self.assertRaisesRegex(ValueError, 'Duplicate security'):
+            module.validate_portfolio(data, 'li-lu')
+
+    def test_identity_quarter_duplicates_and_invalid_weights_rejected(self):
+        good = portfolio('2026-06-30', .6)
+        now = module.dt.date(2026, 10, 14)
+        module.validate_portfolio(good, 'li-lu', now)
+        for kind in ['identity', 'mid-quarter', 'future', 'stale', 'duplicate', 'nan', 'negative', 'boolean', 'source', 'incomplete']:
+            bad = copy.deepcopy(good)
+            snap = bad['data']['snapshot']
+            if kind == 'identity': bad['data']['identity']['slug'] = 'ackman'
+            if kind == 'mid-quarter': snap['periodEnd'] = '2026-06-29'
+            if kind == 'future': snap['periodEnd'] = '2026-12-31'
+            if kind == 'stale': snap['periodEnd'] = '2025-12-31'
+            if kind == 'duplicate': snap['holdings'][1]['ticker'] = 'TEST'
+            if kind == 'nan': snap['holdings'][0]['weight'] = float('nan')
+            if kind == 'negative': snap['holdings'][0]['weight'] = -.6
+            if kind == 'boolean': snap['holdings'][0]['weight'] = True
+            if kind == 'source': bad['data']['sourceUrl'] = 'https://example.com/'
+            if kind == 'incomplete': snap['holdings'].pop()
+            with self.subTest(kind=kind), self.assertRaises(ValueError):
+                module.validate_portfolio(bad, 'li-lu', now)
+
+    def test_all_managers_checked_and_reported_on_multiple_failures(self):
+        with tempfile.TemporaryDirectory() as folder:
+            directory = pathlib.Path(folder) / 'investors'
+            directory.mkdir()
+            for slug in module.MANAGERS:
+                (directory / f'{slug}.json').write_text(json.dumps(portfolio('2026-06-30', slug=slug)))
+            before = {p.name: p.read_bytes() for p in directory.iterdir()}
+            attempted = []
+            def fetch(slug, *args):
+                attempted.append(slug)
+                if slug in ('tepper', 'hohn'): raise ValueError('Provider unavailable')
+                return portfolio('2026-09-30', slug=slug)
+            report = pathlib.Path(folder) / 'report.json'
+            with patch.object(module.time, 'sleep'), self.assertRaises(RuntimeError):
+                module.refresh(directory, fetch, report)
+            self.assertEqual(set(attempted), set(module.MANAGERS))
+            self.assertEqual(before, {p.name: p.read_bytes() for p in directory.iterdir()})
+            result = json.loads(report.read_text())
+            self.assertFalse(result['readyToApply'])
+            self.assertEqual(len(result['managers']), 18)
+            self.assertEqual(sum(c['status'] == 'failed' for c in result['managers']), 2)
+
     def test_all_existing_investors_are_tracked(self):
         self.assertEqual(set(module.MANAGERS), {'tepper', 'ackman', 'berkshire', 'cathie-wood', 'thiel',
                          'druckenmiller', 'loeb', 'aschenbrenner', 'li-lu', 'gates-trust', 'klarman', 'terry-smith', 'pabrai', 'hohn', 'baker-bros', 'icahn', 'laffont', 'renaissance'})
@@ -27,8 +89,8 @@ class RefreshTests(unittest.TestCase):
         rows = [{'security': {'name': str(i), 'ticker': str(i)}, 'position_type': kind,
                  'value': value, 'change': 'hold'} for i, (kind, value) in enumerate([
                      ('direct', 40), ('direct', 30), ('call', 20), ('put', 10)])]
-        fund = {'filing': {'report_period_on': '2026-06-30', 'quarter': 'Q2 2026', 'total_value': 100}}
-        table = {'quarter': 'Q2 2026', 'total_value': 100, 'holdings': rows}
+        fund = {'fund': {'slug': 'duquesne-family-office'}, 'filing': {'report_period_on': '2026-06-30', 'quarter': 'Q2 2026', 'total_value': 100}}
+        table = {'fund': {'slug': 'duquesne-family-office'}, 'quarter': 'Q2 2026', 'total_value': 100, 'holdings': rows}
         with patch.object(module, 'get_json', side_effect=[fund, table]):
             result = module.make_portfolio('druckenmiller', 'duquesne-family-office', 'Stanley', 'Duquesne')
         holdings = result['data']['snapshot']['holdings']
@@ -41,7 +103,7 @@ class RefreshTests(unittest.TestCase):
         self.assertEqual(set(module.MANAGERS), set(re.findall(r"\['([^']+)',", ui)))
 
     def test_ackman_uses_fresher_validated_alternate(self):
-        fund = {'filing': {'report_period_on': '2026-03-31'}}
+        fund = {'fund': {'slug': 'pershing-square-capital-management'}, 'filing': {'report_period_on': '2026-03-31'}}
         alternate = portfolio('2026-06-30')
         alternate['data']['identity'] = {'slug': 'ackman', 'archetype': 'hedge_fund'}
         with patch.object(module, 'get_json', side_effect=[fund, {}, alternate]):
@@ -55,8 +117,8 @@ class RefreshTests(unittest.TestCase):
             for slug in module.MANAGERS:
                 (directory / f'{slug}.json').write_text(json.dumps(portfolio('2026-03-31')))
             with patch.object(module.time, 'sleep'):
-                module.refresh(directory, lambda *args: portfolio('2026-06-30'))
-                module.refresh(directory, lambda *args: portfolio('2026-06-30', .9))
+                module.refresh(directory, lambda *args: portfolio('2026-06-30', slug=args[0]))
+                module.refresh(directory, lambda *args: portfolio('2026-06-30', .9, slug=args[0]))
             for slug in module.MANAGERS:
                 archive = directory / 'archive' / slug / '2026-03-31.json'
                 self.assertEqual(json.loads(archive.read_text())['data']['snapshot']['holdings'][0]['weight'], 1)
@@ -71,8 +133,8 @@ class RefreshTests(unittest.TestCase):
                     'shares': value, 'value': value, 'change': change, 'change_percent': percent}
         rows = [row('NEW', 20, 'new'), row('UP', 20, 'add', 18), row('DOWN', 20, 'trim', 12),
                 row('HOLD', 20, 'hold'), row('LAST', 20, 'hold'), row('EXIT', 0, 'sold')]
-        fund = {'filing': {'report_period_on': '2026-03-31', 'quarter': 'Q1 2026', 'total_value': 100}}
-        table = {'quarter': 'Q1 2026', 'total_value': 100, 'holdings': rows[:3],
+        fund = {'fund': {'slug': 'baupost-group'}, 'filing': {'report_period_on': '2026-03-31', 'quarter': 'Q1 2026', 'total_value': 100}}
+        table = {'fund': {'slug': 'baupost-group'}, 'quarter': 'Q1 2026', 'total_value': 100, 'holdings': rows[:3],
                  'pagination': {'total_pages': 2, 'total': 6}}
         last = {**table, 'holdings': rows[3:]}
         with patch.object(module, 'get_json', side_effect=[fund, table, last]) as fetch:
@@ -103,11 +165,11 @@ class RefreshTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as folder:
             directory = pathlib.Path(folder)
             with patch.object(module.time, 'sleep'):
-                module.refresh(directory, lambda *args: portfolio('2026-06-30'))
+                module.refresh(directory, lambda *args: portfolio('2026-06-30', slug=args[0]))
                 before = {p.name: p.read_bytes() for p in directory.iterdir()}
                 checked_later = portfolio('2026-06-30')
                 checked_later['as_of'] = 'later-poll'
-                module.refresh(directory, lambda *args: checked_later)
+                module.refresh(directory, lambda *args: {**checked_later, 'data': {**checked_later['data'], 'identity': {'slug': args[0], 'archetype': 'hedge_fund'}}})
             self.assertEqual(before, {p.name: p.read_bytes() for p in directory.iterdir()})
             reviews = json.loads((directory / 'review-metadata.json').read_text())
             self.assertEqual({row['data']['identity']['slug'] for row in reviews}, set(module.MANAGERS))
@@ -130,7 +192,7 @@ class RefreshTests(unittest.TestCase):
             def failing_fetch(slug, *args):
                 if slug == 'gates-trust':
                     raise RuntimeError('provider unavailable')
-                return portfolio('2026-09-30')
+                return portfolio('2026-09-30', slug=slug)
             with patch.object(module.time, 'sleep'), self.assertRaises(RuntimeError):
                 module.refresh(directory, failing_fetch)
             self.assertEqual(before, {p.name: p.read_bytes() for p in directory.iterdir()})
@@ -139,8 +201,8 @@ class RefreshTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as folder:
             directory = pathlib.Path(folder)
             with patch.object(module.time, 'sleep'):
-                module.refresh(directory, lambda *args: portfolio('2026-09-30'))
-                module.refresh(directory, lambda *args: portfolio('2026-09-30', .9))
+                module.refresh(directory, lambda *args: portfolio('2026-09-30', slug=args[0]))
+                module.refresh(directory, lambda *args: portfolio('2026-09-30', .9, slug=args[0]))
             for slug in module.MANAGERS:
                 data = json.loads((directory / f'{slug}.json').read_text())
                 self.assertEqual(data['data']['snapshot']['holdings'][0]['weight'], .9)
@@ -161,7 +223,8 @@ class RateLimitTests(unittest.TestCase):
         self.clock = 1000.0
         self.delays = []
         self.starts = []
-        self.patches = [patch.object(module, '_last_request_at', 0),
+        self.patches = [patch.object(module, 'current_date', return_value=module.dt.date(2026, 10, 14)),
+                        patch.object(module, '_last_request_at', 0),
                         patch.object(module.time, 'monotonic', lambda: self.clock),
                         patch.object(module.time, 'sleep', self.sleep)]
         for mock in self.patches:
@@ -237,8 +300,8 @@ class RateLimitTests(unittest.TestCase):
             def fetch(slug, *args):
                 if slug == 'loeb':
                     module.get_json(self.url)
-                return portfolio('2026-09-30')
-            with self.fetch([self.error() for _ in range(4)]), redirect_stderr(io.StringIO()), self.assertRaises(module.urllib.error.HTTPError):
+                return portfolio('2026-09-30', slug=slug)
+            with self.fetch([self.error() for _ in range(4)]), redirect_stderr(io.StringIO()), self.assertRaisesRegex(RuntimeError, 'all stored filings preserved'):
                 module.refresh(directory, fetch)
             self.assertEqual(before, {p.relative_to(directory): p.read_bytes() for p in directory.rglob('*') if p.is_file()})
 

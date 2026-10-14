@@ -1037,7 +1037,7 @@ async function testHouseholds(page) {
 }
 
 async function testInvestorIntroductions(page) {
-  const { INVESTORS } = await import('../src/pages/investor-portfolio/data.js');
+  const { INVESTORS, dateFR } = await import('../src/pages/investor-portfolio/data.js');
   const { investorIntroduction } = await import('../src/data/investor-profiles.js');
   // Exercise every shipped filing before using editorial fixtures. The actual
   // local payloads include large paginated portfolios and disclosed options.
@@ -1048,7 +1048,7 @@ async function testInvestorIntroductions(page) {
     await choose(page.getByLabel('Choisir un investisseur'), slug);
     await page.waitForFunction(intro => document.querySelector('#ip-draft')?.value.includes(intro), investorIntroduction(slug));
     const actual = await page.getByLabel('Tweet modifiable', { exact: true }).inputValue();
-    snapshotsOk &&= actual.includes('30 juin 2026') && !/NaN|undefined/.test(actual);
+    snapshotsOk &&= actual.includes(dateFR(payload.data.snapshot.periodEnd)) && !/NaN|undefined/.test(actual);
     snapshotsOk &&= actual.includes('Les options du relevé sont exclues') === payload.data.snapshot.holdings.some(row => row.putCall);
     const credit = await page.locator('.ip-credit').innerText();
     snapshotsOk &&= credit.includes(payload.data.identity.dataProvider);
@@ -1057,7 +1057,7 @@ async function testInvestorIntroductions(page) {
   await page.route('**/data/investors/*.json', async route => {
     const slug = new URL(route.request().url()).pathname.split('/').at(-1).replace('.json', '');
     const displayName = INVESTORS.find(([id]) => id === slug)?.[1];
-    await route.fulfill({ headers: { 'access-control-allow-origin': '*' }, json: { as_of: '2026-10-01', data: { identity: { slug, displayName, entityName: 'Déclarant de test', archetype: 'hedge_fund' }, snapshot: { periodEnd: '2026-06-30', filedAt: '2026-08-14', quarterChanges: { priorPeriodLabel: 'Q1 2026', exits: [{ issuerName: 'Sortie de test', ticker: 'EXIT' }] }, holdings: [{ issuerName: 'Entreprise de test', ticker: 'TEST', weight: .6, isNew: true }, { issuerName: 'Hausse de test', ticker: 'UP', weight: .2, sharesChangePct: 18 }, { issuerName: 'Baisse de test', ticker: 'DOWN', weight: .1, sharesChangePct: -12 }] } } } });
+    await route.fulfill({ headers: { 'access-control-allow-origin': '*' }, json: { as_of: '2026-10-01', data: { identity: { slug, displayName, entityName: 'Déclarant de test', archetype: 'hedge_fund' }, snapshot: { periodEnd: '2026-06-30', filedAt: '2026-08-14', quarterChanges: { priorPeriodLabel: 'Q1 2026', exits: [{ issuerName: 'Sortie de test', ticker: 'EXIT' }] }, holdings: [{ issuerName: 'Entreprise de test', ticker: 'TEST', weight: .6, isNew: true }, { issuerName: 'Hausse de test', ticker: 'UP', weight: .2, sharesChangePct: 18 }, { issuerName: 'Baisse de test', ticker: 'DOWN', weight: .1, sharesChangePct: -12 }, { issuerName: 'Autre position', ticker: 'OTHER', weight: .1 }] } } } });
   });
   await page.goto(`${BASE}/portefeuilles-investisseurs`, { waitUntil: 'networkidle' });
   await page.evaluate(() => Object.defineProperty(navigator, 'clipboard', {
@@ -1092,7 +1092,14 @@ async function testInvestorIntroductions(page) {
   ok &&= await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth);
   await page.setViewportSize({ width: 1280, height: 720 });
   await page.unroute('**/data/investors/*.json');
-  record('Portefeuille d’investisseur', ok, `${INVESTORS.length} présentations et tweets synchronisés, modification, réinitialisation, changement de profil et mobile`);
+  const incomplete = JSON.parse(await readFile(new URL('../public/data/investors/tepper.json', import.meta.url), 'utf8'));
+  incomplete.data.snapshot.holdings = [{ issuerName: 'Relevé partiel', ticker: 'PART', weight: .1 }];
+  await page.route('**/data/investors/tepper.json', route => route.fulfill({ json: incomplete }));
+  await page.goto(`${BASE}/portefeuilles-investisseurs`, { waitUntil: 'networkidle' });
+  await page.getByRole('alert').filter({ hasText: 'Le relevé 13F est incomplet.' }).waitFor();
+  ok &&= await page.getByLabel('Tweet modifiable', { exact: true }).count() === 0;
+  await page.unroute('**/data/investors/tepper.json');
+  record('Portefeuille d’investisseur', ok, `${INVESTORS.length} présentations et tweets synchronisés, modification, réinitialisation, changement de profil, mobile et rejet des relevés incomplets`);
 }
 
 async function testDataReuse(page) {
