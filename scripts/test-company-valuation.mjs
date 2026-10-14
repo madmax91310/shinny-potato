@@ -43,6 +43,11 @@ assert(reading.sensitivity.low<reading.value && reading.sensitivity.high>reading
 assert(valuationReading(buildScenarios(company,{1:{cashGrowth:.01}},now),1,'cash').value<reading.value)
 assert.equal(valuationReading(undefined),null)
 company.id='fixture';company.name='Entreprise témoin';company.symbol='TEST'
+company.targetForecast={version:1,symbol:'TEST',currency:'USD',basis:'adjusted-non-gaap',multipleBasis:'forward-adjusted-eps',asOf:'2026-10-14',observedAt:'2026-10-14',sourceUrl:'https://example.com/adjusted',
+  points:[{end:'2025-12-31',eps:10,kind:'observed-adjusted'},{end:'2026-12-31',eps:12,kind:'estimate'},{end:'2027-12-31',eps:15,kind:'estimate'}],
+  historicalMultiples:[{end:'2023-12-31',multiple:15},{end:'2024-12-31',multiple:20},{end:'2025-12-31',multiple:25}]}
+company.targetCashReference={version:1,currency:'USD',annualEnd:'2025-12-31',observedAt:'2026-10-14',sourceUrl:'https://example.com/history',historicalMultiples:years.slice(0,3).map((r,i)=>({end:r.end,base:r.freeCashFlow/r.averageDilutedShares,multiple:10+i*2}))}
+
 for (const method of ['cash','earnings']) {
   for (const selected of [0,1,2]) {
     const publication=valuationPublication(company,{},selected,method,now)
@@ -79,7 +84,8 @@ company.quote.sourceUrl='https://example.com/quotes'
 company.quote.history=[{asOf:'2026-09-30',close:190},{asOf:'2026-10-14',close:200}]
 for(const horizon of [1,3,5]) {
   const targets=buildPriceScenarios(company,{},now,horizon)
-  assert.equal(targets.scenarios[1].earningsAssumptions.growth,.09)
+  assert.equal(targets.scenarios[1].earningsAssumptions.base,12)
+  if(horizon===1)assert.equal(targets.scenarios[1].earningsTarget.value,300)
   assert.equal(targets.scenarios[1].earningsAssumptions.multiple,20)
   for(const method of ['cash','earnings']) {
     const graph=targetChart(company,targets,method)
@@ -98,8 +104,21 @@ for(const horizon of [1,3,5]) {
 }
 const originalTargets=buildPriceScenarios(company,{},now)
 company.estimates.growthEPS5Y=5
+assert.equal(buildPriceScenarios(company,{},now).scenarios[1].earningsTarget.value,originalTargets.scenarios[1].earningsTarget.value)
+company.targetForecast.points.at(-1).eps=13
 assert(buildPriceScenarios(company,{},now).scenarios[1].earningsTarget.value<originalTargets.scenarios[1].earningsTarget.value)
-company.estimates.growthEPS5Y=9
+company.targetForecast.points.at(-1).eps=15
+const saved=company.targetForecast.basis;company.targetForecast.basis='unknown'
+assert.equal(buildPriceScenarios(company,{},now).inputs.earningsReady,false)
+assert.throws(()=>valuationPublication(company,{},1,'earnings',now))
+company.targetForecast.basis=saved
+company.quote.splits=['2026-10-15'];company.targetForecast.asOf='2026-10-13'
+assert.equal(buildPriceScenarios(company,{},now).inputs.earningsReady,false)
+company.quote.splits=[];company.targetForecast.asOf='2026-10-14'
+const normalTarget=buildPriceScenarios(company,{},now).scenarios[1].earningsTarget.value
+company.quote.price=400
+assert.equal(buildPriceScenarios(company,{},now).scenarios[1].earningsTarget.value,normalTarget)
+company.quote.price=200
 company.quote.history[1].close=199
 assert(!targetChart(company,originalTargets,'earnings').hasPriceHistory)
 company.quote.history[1].close=200

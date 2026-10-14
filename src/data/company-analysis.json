@@ -878,6 +878,108 @@
         "splitCheckFrom": "2020-09-25",
         "splitCheckThrough": "2026-10-14",
         "definition": "Published annual diluted averages; complete historical split window checked"
+      },
+      "targetForecast": {
+        "version": 1,
+        "symbol": "AAPL",
+        "currency": "USD",
+        "basis": "adjusted-non-gaap",
+        "multipleBasis": "forward-adjusted-eps",
+        "sourceUrl": "https://stockanalysis.com/stocks/aapl/forecast/",
+        "sourceName": "Stock Analysis / S&P Global",
+        "observedAt": "2026-10-14",
+        "asOf": "2026-10-12",
+        "sourceHash": "8493160e0ae85d78dbc0aa18d22736847888c9904b997f1aea7f619a843db98c",
+        "points": [
+          {
+            "end": "2025-09-27",
+            "eps": 7.46,
+            "kind": "observed-adjusted"
+          },
+          {
+            "end": "2026-09-30",
+            "eps": 8.83,
+            "kind": "estimate"
+          },
+          {
+            "end": "2027-09-30",
+            "eps": 9.59,
+            "kind": "estimate"
+          }
+        ],
+        "historicalMultiples": [
+          {
+            "end": "2021-09-25",
+            "multiple": 26.67
+          },
+          {
+            "end": "2022-09-24",
+            "multiple": 24.27
+          },
+          {
+            "end": "2023-09-30",
+            "multiple": 26.72
+          },
+          {
+            "end": "2024-09-28",
+            "multiple": 31.48
+          },
+          {
+            "end": "2025-09-27",
+            "multiple": 32.97
+          }
+        ],
+        "definition": "EPS and Forward PE are based on non-GAAP adjusted numbers."
+      },
+      "targetCashReference": {
+        "version": 1,
+        "observedAt": "2026-10-14",
+        "annualEnd": "2025-09-27",
+        "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/AAPL?period1=1600992000&period2=1792022400&interval=1mo&events=splits",
+        "currency": "USD",
+        "historicalMultiples": [
+          {
+            "end": "2021-09-25",
+            "quotePeriodEnd": "2021-08-31",
+            "price": 151.8300018310547,
+            "base": 5.511618526006559,
+            "multiple": 27.547262408427795,
+            "accountsSourceUrl": "https://www.apple.com/newsroom/pdfs/FY22_Q4_Consolidated_Financial_Statements.pdf"
+          },
+          {
+            "end": "2022-09-24",
+            "quotePeriodEnd": "2022-08-31",
+            "price": 157.22000122070312,
+            "base": 6.8261812776437125,
+            "multiple": 23.031911229139364,
+            "accountsSourceUrl": "https://www.apple.com/newsroom/pdfs/fy2023-q4/FY23_Q4_Consolidated_Financial_Statements.pdf"
+          },
+          {
+            "end": "2023-09-30",
+            "quotePeriodEnd": "2023-09-30",
+            "price": 171.2100067138672,
+            "base": 6.2977836524375235,
+            "multiple": 27.185755523310373,
+            "accountsSourceUrl": "https://www.apple.com/newsroom/pdfs/fy2024-q4/FY24_Q4_Consolidated_Financial_Statements.pdf"
+          },
+          {
+            "end": "2024-09-28",
+            "quotePeriodEnd": "2024-08-31",
+            "price": 229.0,
+            "base": 7.061677644121483,
+            "multiple": 32.428554734529946,
+            "accountsSourceUrl": "https://www.apple.com/newsroom/pdfs/fy2025-q4/FY25_Q4_Consolidated_Financial_Statements.pdf"
+          },
+          {
+            "end": "2025-09-27",
+            "quotePeriodEnd": "2025-08-31",
+            "price": 232.13999938964844,
+            "base": 6.582405496092323,
+            "multiple": 35.2667424587348,
+            "accountsSourceUrl": "https://www.apple.com/newsroom/pdfs/fy2025-q4/FY25_Q4_Consolidated_Financial_Statements.pdf"
+          }
+        ],
+        "definition": "Ex-post annual FCF per diluted share / split-adjusted monthly close; not point-in-time backtest data"
       }
     },
     "microsoft": {
@@ -1689,6 +1791,108 @@
         "splitCheckFrom": "2021-06-28",
         "splitCheckThrough": "2026-10-14",
         "definition": "Published annual diluted averages; complete historical split window checked"
+      },
+      "targetCashReference": {
+        "version": 1,
+        "observedAt": "2026-10-14",
+        "annualEnd": "2026-06-30",
+        "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/MSFT?period1=1624838400&period2=1792022400&interval=1mo&events=splits",
+        "currency": "USD",
+        "historicalMultiples": [
+          {
+            "end": "2022-06-30",
+            "quotePeriodEnd": "2022-06-30",
+            "price": 256.8299865722656,
+            "base": 8.640450928381963,
+            "multiple": 29.724141564028347,
+            "accountsSourceUrl": "https://www.microsoft.com/en-us/Investor/earnings/FY-2023-Q4/press-release-webcast"
+          },
+          {
+            "end": "2023-06-30",
+            "quotePeriodEnd": "2023-06-30",
+            "price": 340.5400085449219,
+            "base": 7.959716274089936,
+            "multiple": 42.78293306175126,
+            "accountsSourceUrl": "https://www.microsoft.com/en-us/Investor/earnings/FY-2024-Q4/press-release-webcast"
+          },
+          {
+            "end": "2024-06-30",
+            "quotePeriodEnd": "2024-06-30",
+            "price": 446.95001220703125,
+            "base": 9.917124113000401,
+            "multiple": 45.068510499038986,
+            "accountsSourceUrl": "https://www.microsoft.com/en-us/Investor/earnings/FY-2025-Q4/press-release-webcast"
+          },
+          {
+            "end": "2025-06-30",
+            "quotePeriodEnd": "2025-06-30",
+            "price": 497.4100036621094,
+            "base": 9.59290020093771,
+            "multiple": 51.85188975628949,
+            "accountsSourceUrl": "https://www.microsoft.com/en-us/Investor/earnings/FY-2026-Q4/press-release-webcast"
+          },
+          {
+            "end": "2026-06-30",
+            "quotePeriodEnd": "2026-06-30",
+            "price": 373.0199890136719,
+            "base": 8.987924325774856,
+            "multiple": 41.50235087582511,
+            "accountsSourceUrl": "https://www.microsoft.com/en-us/Investor/earnings/FY-2026-Q4/press-release-webcast"
+          }
+        ],
+        "definition": "Ex-post annual FCF per diluted share / split-adjusted monthly close; not point-in-time backtest data"
+      },
+      "targetForecast": {
+        "version": 1,
+        "symbol": "MSFT",
+        "currency": "USD",
+        "basis": "adjusted-non-gaap",
+        "multipleBasis": "forward-adjusted-eps",
+        "sourceUrl": "https://stockanalysis.com/stocks/msft/forecast/",
+        "sourceName": "Stock Analysis / S&P Global",
+        "observedAt": "2026-10-14",
+        "asOf": "2026-10-13",
+        "sourceHash": "e24c937af26f860bb271c2d224fca0399d0548de638349f5b204893d37b19d0e",
+        "points": [
+          {
+            "end": "2026-06-30",
+            "eps": 17.28,
+            "kind": "observed-adjusted"
+          },
+          {
+            "end": "2027-06-30",
+            "eps": 19.76,
+            "kind": "estimate"
+          },
+          {
+            "end": "2028-06-30",
+            "eps": 23.67,
+            "kind": "estimate"
+          }
+        ],
+        "historicalMultiples": [
+          {
+            "end": "2022-06-30",
+            "multiple": 25.33
+          },
+          {
+            "end": "2023-06-30",
+            "multiple": 32.37
+          },
+          {
+            "end": "2024-06-30",
+            "multiple": 35.35
+          },
+          {
+            "end": "2025-06-30",
+            "multiple": 34.5
+          },
+          {
+            "end": "2026-06-30",
+            "multiple": 20.14
+          }
+        ],
+        "definition": "EPS and Forward PE are based on non-GAAP adjusted numbers."
       }
     },
     "nvidia": {
@@ -2636,6 +2840,108 @@
             ]
           }
         ]
+      },
+      "targetForecast": {
+        "version": 1,
+        "symbol": "NVDA",
+        "currency": "USD",
+        "basis": "adjusted-non-gaap",
+        "multipleBasis": "forward-adjusted-eps",
+        "sourceUrl": "https://stockanalysis.com/stocks/nvda/forecast/",
+        "sourceName": "Stock Analysis / S&P Global",
+        "observedAt": "2026-10-14",
+        "asOf": "2026-10-09",
+        "sourceHash": "c162463a7b546765cd978a70b1e23342b8f160fc158a9888044a35dd1d55242a",
+        "points": [
+          {
+            "end": "2026-01-25",
+            "eps": 4.77,
+            "kind": "observed-adjusted"
+          },
+          {
+            "end": "2027-01-31",
+            "eps": 9.31,
+            "kind": "estimate"
+          },
+          {
+            "end": "2028-01-31",
+            "eps": 15.91,
+            "kind": "estimate"
+          }
+        ],
+        "historicalMultiples": [
+          {
+            "end": "2022-01-30",
+            "multiple": 45.52
+          },
+          {
+            "end": "2023-01-29",
+            "multiple": 52.57
+          },
+          {
+            "end": "2024-01-28",
+            "multiple": 31.19
+          },
+          {
+            "end": "2025-01-26",
+            "multiple": 36.25
+          },
+          {
+            "end": "2026-01-25",
+            "multiple": 26.73
+          }
+        ],
+        "definition": "EPS and Forward PE are based on non-GAAP adjusted numbers."
+      },
+      "targetCashReference": {
+        "version": 1,
+        "observedAt": "2026-10-14",
+        "annualEnd": "2026-01-25",
+        "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/NVDA?period1=1611792000&period2=1792022400&interval=1mo&events=splits",
+        "currency": "USD",
+        "historicalMultiples": [
+          {
+            "end": "2022-01-30",
+            "quotePeriodEnd": "2021-12-31",
+            "price": 29.410999298095703,
+            "base": 0.3207889546351085,
+            "multiple": 91.68332909576071,
+            "accountsSourceUrl": "https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-fourth-quarter-and-fiscal-2023"
+          },
+          {
+            "end": "2023-01-29",
+            "quotePeriodEnd": "2022-12-31",
+            "price": 14.61400032043457,
+            "base": 0.15189469485440765,
+            "multiple": 96.21139391630638,
+            "accountsSourceUrl": "https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-fourth-quarter-and-fiscal-2024"
+          },
+          {
+            "end": "2024-01-28",
+            "quotePeriodEnd": "2023-12-31",
+            "price": 49.52199935913086,
+            "base": 1.083440256615878,
+            "multiple": 45.708103475693854,
+            "accountsSourceUrl": "https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-fourth-quarter-and-fiscal-2025"
+          },
+          {
+            "end": "2025-01-26",
+            "quotePeriodEnd": "2024-12-31",
+            "price": 134.2899932861328,
+            "base": 2.45335429769392,
+            "multiple": 54.73730125826563,
+            "accountsSourceUrl": "https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-fourth-quarter-and-fiscal-2026"
+          },
+          {
+            "end": "2026-01-25",
+            "quotePeriodEnd": "2025-12-31",
+            "price": 186.5,
+            "base": 3.9437056375948436,
+            "multiple": 47.29054780917705,
+            "accountsSourceUrl": "https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-fourth-quarter-and-fiscal-2026"
+          }
+        ],
+        "definition": "Ex-post annual FCF per diluted share / split-adjusted monthly close; not point-in-time backtest data"
       }
     },
     "alphabet": {
@@ -3417,6 +3723,58 @@
         ],
         "definition": "Somme de quatre trimestres GAAP publiés, sur la même base par action",
         "observedAt": "2026-10-14"
+      },
+      "targetForecast": {
+        "version": 1,
+        "symbol": "GOOGL",
+        "currency": "USD",
+        "basis": "adjusted-non-gaap",
+        "multipleBasis": "forward-adjusted-eps",
+        "sourceUrl": "https://stockanalysis.com/stocks/googl/forecast/",
+        "sourceName": "Stock Analysis / S&P Global",
+        "observedAt": "2026-10-14",
+        "asOf": "2026-10-14",
+        "sourceHash": "458dce3f5d8beddf55f35381354b586491a30dc6d3ac6b364edaa7b76e302419",
+        "points": [
+          {
+            "end": "2025-12-31",
+            "eps": 10.81,
+            "kind": "observed-adjusted"
+          },
+          {
+            "end": "2026-12-31",
+            "eps": 11.89,
+            "kind": "estimate"
+          },
+          {
+            "end": "2027-12-31",
+            "eps": 15.32,
+            "kind": "estimate"
+          }
+        ],
+        "historicalMultiples": [
+          {
+            "end": "2021-12-31",
+            "multiple": 26.61
+          },
+          {
+            "end": "2022-12-31",
+            "multiple": 17.89
+          },
+          {
+            "end": "2023-12-31",
+            "multiple": 21.69
+          },
+          {
+            "end": "2024-12-31",
+            "multiple": 22.05
+          },
+          {
+            "end": "2025-12-31",
+            "multiple": 29.41
+          }
+        ],
+        "definition": "EPS and Forward PE are based on non-GAAP adjusted numbers."
       }
     },
     "amazon": {
@@ -4236,6 +4594,58 @@
         ],
         "definition": "Somme de quatre trimestres GAAP publiés, sur la même base par action",
         "observedAt": "2026-10-14"
+      },
+      "targetForecast": {
+        "version": 1,
+        "symbol": "AMZN",
+        "currency": "USD",
+        "basis": "adjusted-non-gaap",
+        "multipleBasis": "forward-adjusted-eps",
+        "sourceUrl": "https://stockanalysis.com/stocks/amzn/forecast/",
+        "sourceName": "Stock Analysis / S&P Global",
+        "observedAt": "2026-10-14",
+        "asOf": "2026-10-12",
+        "sourceHash": "6c6bfde73b10d9c6243ccc7f801c3fd1bb4d11415cecf8d7919c885a904d22fc",
+        "points": [
+          {
+            "end": "2025-12-31",
+            "eps": 7.17,
+            "kind": "observed-adjusted"
+          },
+          {
+            "end": "2026-12-31",
+            "eps": 8.31,
+            "kind": "estimate"
+          },
+          {
+            "end": "2027-12-31",
+            "eps": 10.47,
+            "kind": "estimate"
+          }
+        ],
+        "historicalMultiples": [
+          {
+            "end": "2021-12-31",
+            "multiple": 84.84
+          },
+          {
+            "end": "2022-12-31",
+            "multiple": 60.23
+          },
+          {
+            "end": "2023-12-31",
+            "multiple": 45.35
+          },
+          {
+            "end": "2024-12-31",
+            "multiple": 37.46
+          },
+          {
+            "end": "2025-12-31",
+            "multiple": 31.01
+          }
+        ],
+        "definition": "EPS and Forward PE are based on non-GAAP adjusted numbers."
       }
     },
     "lvmh": {
@@ -7375,6 +7785,58 @@
         ],
         "definition": "Somme de quatre BPA trimestriels GAAP publiés ; calendrier fiscal 12/16/17 semaines pour Costco",
         "observedAt": "2026-10-14"
+      },
+      "targetForecast": {
+        "version": 1,
+        "symbol": "V",
+        "currency": "USD",
+        "basis": "adjusted-non-gaap",
+        "multipleBasis": "forward-adjusted-eps",
+        "sourceUrl": "https://stockanalysis.com/stocks/v/forecast/",
+        "sourceName": "Stock Analysis / S&P Global",
+        "observedAt": "2026-10-14",
+        "asOf": "2026-10-14",
+        "sourceHash": "7e67a721f28f24cfa69e366de0832b25fa617255d2162239fa9a0298b4c5c1ad",
+        "points": [
+          {
+            "end": "2025-09-30",
+            "eps": 11.47,
+            "kind": "observed-adjusted"
+          },
+          {
+            "end": "2026-09-30",
+            "eps": 13.23,
+            "kind": "estimate"
+          },
+          {
+            "end": "2027-09-30",
+            "eps": 15.0,
+            "kind": "estimate"
+          }
+        ],
+        "historicalMultiples": [
+          {
+            "end": "2021-09-30",
+            "multiple": 32.56
+          },
+          {
+            "end": "2022-09-30",
+            "multiple": 22.16
+          },
+          {
+            "end": "2023-09-30",
+            "multiple": 24.17
+          },
+          {
+            "end": "2024-09-30",
+            "multiple": 25.68
+          },
+          {
+            "end": "2025-09-30",
+            "multiple": 27.5
+          }
+        ],
+        "definition": "EPS and Forward PE are based on non-GAAP adjusted numbers."
       }
     },
     "costco": {
@@ -7992,6 +8454,58 @@
         ],
         "definition": "Somme de quatre BPA trimestriels GAAP publiés ; calendrier fiscal 12/16/17 semaines pour Costco",
         "observedAt": "2026-10-14"
+      },
+      "targetForecast": {
+        "version": 1,
+        "symbol": "COST",
+        "currency": "USD",
+        "basis": "adjusted-non-gaap",
+        "multipleBasis": "forward-adjusted-eps",
+        "sourceUrl": "https://stockanalysis.com/stocks/cost/forecast/",
+        "sourceName": "Stock Analysis / S&P Global",
+        "observedAt": "2026-10-14",
+        "asOf": "2026-10-14",
+        "sourceHash": "00261f424e47d666d39492609c53a5ad03927be742bef802c69a6e1aef5f9a60",
+        "points": [
+          {
+            "end": "2026-08-30",
+            "eps": 20.61,
+            "kind": "observed-adjusted"
+          },
+          {
+            "end": "2027-08-31",
+            "eps": 22.8,
+            "kind": "estimate"
+          },
+          {
+            "end": "2028-08-31",
+            "eps": 25.01,
+            "kind": "estimate"
+          }
+        ],
+        "historicalMultiples": [
+          {
+            "end": "2022-08-28",
+            "multiple": 38.18
+          },
+          {
+            "end": "2023-09-03",
+            "multiple": 35.33
+          },
+          {
+            "end": "2024-09-01",
+            "multiple": 51.99
+          },
+          {
+            "end": "2025-08-31",
+            "multiple": 48.66
+          },
+          {
+            "end": "2026-08-30",
+            "multiple": 43.14
+          }
+        ],
+        "definition": "EPS and Forward PE are based on non-GAAP adjusted numbers."
       }
     },
     "amd": {
@@ -8726,6 +9240,58 @@
         ],
         "definition": "Somme de quatre trimestres GAAP publiés, sur la même base par action",
         "observedAt": "2026-10-14"
+      },
+      "targetForecast": {
+        "version": 1,
+        "symbol": "AMD",
+        "currency": "USD",
+        "basis": "adjusted-non-gaap",
+        "multipleBasis": "forward-adjusted-eps",
+        "sourceUrl": "https://stockanalysis.com/stocks/amd/forecast/",
+        "sourceName": "Stock Analysis / S&P Global",
+        "observedAt": "2026-10-14",
+        "asOf": "2026-10-06",
+        "sourceHash": "998ea8f9510159f8e386aa23752a9970fe2da1a1e57237769cbe515c60eaf09e",
+        "points": [
+          {
+            "end": "2025-12-27",
+            "eps": 4.17,
+            "kind": "observed-adjusted"
+          },
+          {
+            "end": "2026-12-31",
+            "eps": 7.59,
+            "kind": "estimate"
+          },
+          {
+            "end": "2027-12-31",
+            "eps": 15.72,
+            "kind": "estimate"
+          }
+        ],
+        "historicalMultiples": [
+          {
+            "end": "2021-12-25",
+            "multiple": 46.64
+          },
+          {
+            "end": "2022-12-31",
+            "multiple": 20.28
+          },
+          {
+            "end": "2023-12-30",
+            "multiple": 44.35
+          },
+          {
+            "end": "2024-12-28",
+            "multiple": 27.74
+          },
+          {
+            "end": "2025-12-27",
+            "multiple": 38.76
+          }
+        ],
+        "definition": "EPS and Forward PE are based on non-GAAP adjusted numbers."
       }
     },
     "meta": {
@@ -9420,6 +9986,58 @@
         ],
         "definition": "Somme de quatre trimestres GAAP publiés, sur la même base par action",
         "observedAt": "2026-10-14"
+      },
+      "targetForecast": {
+        "version": 1,
+        "symbol": "META",
+        "currency": "USD",
+        "basis": "adjusted-non-gaap",
+        "multipleBasis": "forward-adjusted-eps",
+        "sourceUrl": "https://stockanalysis.com/stocks/meta/forecast/",
+        "sourceName": "Stock Analysis / S&P Global",
+        "observedAt": "2026-10-14",
+        "asOf": "2026-10-14",
+        "sourceHash": "56bc49504f9be2347ed7a993727f0e72ddb2ff40ff027120386ed4001b47734d",
+        "points": [
+          {
+            "end": "2025-12-31",
+            "eps": 29.68,
+            "kind": "observed-adjusted"
+          },
+          {
+            "end": "2026-12-31",
+            "eps": 30.4,
+            "kind": "estimate"
+          },
+          {
+            "end": "2027-12-31",
+            "eps": 34.65,
+            "kind": "estimate"
+          }
+        ],
+        "historicalMultiples": [
+          {
+            "end": "2021-12-31",
+            "multiple": 24.69
+          },
+          {
+            "end": "2022-12-31",
+            "multiple": 16.39
+          },
+          {
+            "end": "2023-12-31",
+            "multiple": 20.78
+          },
+          {
+            "end": "2024-12-31",
+            "multiple": 23.96
+          },
+          {
+            "end": "2025-12-31",
+            "multiple": 22.59
+          }
+        ],
+        "definition": "EPS and Forward PE are based on non-GAAP adjusted numbers."
       }
     },
     "mastercard": {
@@ -10161,6 +10779,100 @@
         "splitCheckFrom": "2021-12-28",
         "splitCheckThrough": "2026-10-14",
         "definition": "Published annual diluted averages; complete historical split window checked"
+      },
+      "targetForecast": {
+        "version": 1,
+        "symbol": "MA",
+        "currency": "USD",
+        "basis": "adjusted-non-gaap",
+        "multipleBasis": "forward-adjusted-eps",
+        "sourceUrl": "https://stockanalysis.com/stocks/ma/forecast/",
+        "sourceName": "Stock Analysis / S&P Global",
+        "observedAt": "2026-10-14",
+        "asOf": "2026-10-14",
+        "sourceHash": "b852516a87e173555f37ad836ddece24af99021dde5f5e8b4ffc08c3a481a321",
+        "points": [
+          {
+            "end": "2025-12-31",
+            "eps": 17.01,
+            "kind": "observed-adjusted"
+          },
+          {
+            "end": "2026-12-31",
+            "eps": 19.94,
+            "kind": "estimate"
+          },
+          {
+            "end": "2027-12-31",
+            "eps": 23.05,
+            "kind": "estimate"
+          }
+        ],
+        "historicalMultiples": [
+          {
+            "end": "2021-12-31",
+            "multiple": 36.62
+          },
+          {
+            "end": "2022-12-31",
+            "multiple": 30.19
+          },
+          {
+            "end": "2023-12-31",
+            "multiple": 31.2
+          },
+          {
+            "end": "2024-12-31",
+            "multiple": 33.59
+          },
+          {
+            "end": "2025-12-31",
+            "multiple": 31.04
+          }
+        ],
+        "definition": "EPS and Forward PE are based on non-GAAP adjusted numbers."
+      },
+      "targetCashReference": {
+        "version": 1,
+        "observedAt": "2026-10-14",
+        "annualEnd": "2025-12-31",
+        "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/MA?period1=1640649600&period2=1792022400&interval=1mo&events=splits",
+        "currency": "USD",
+        "historicalMultiples": [
+          {
+            "end": "2022-12-31",
+            "quotePeriodEnd": "2022-12-31",
+            "price": 347.7300109863281,
+            "base": 11.07415036045314,
+            "multiple": 31.400152577673637,
+            "accountsSourceUrl": "https://s25.q4cdn.com/479285134/files/doc_financials/2023/q4/4Q23-Mastercard-Earnings-Release.pdf"
+          },
+          {
+            "end": "2023-12-31",
+            "quotePeriodEnd": "2023-12-31",
+            "price": 426.510009765625,
+            "base": 12.271670190274842,
+            "multiple": 34.75566105937473,
+            "accountsSourceUrl": "https://s25.q4cdn.com/479285134/files/doc_financials/2024/q4/4Q24-Mastercard-Earnings-Release.pdf"
+          },
+          {
+            "end": "2024-12-31",
+            "quotePeriodEnd": "2024-12-31",
+            "price": 526.5700073242188,
+            "base": 15.432578209277239,
+            "multiple": 34.12067641475959,
+            "accountsSourceUrl": "https://s25.q4cdn.com/479285134/files/doc_financials/2025/q4/4Q25-Mastercard-Earnings-Release.pdf"
+          },
+          {
+            "end": "2025-12-31",
+            "quotePeriodEnd": "2025-12-31",
+            "price": 570.8800048828125,
+            "base": 18.939293598233995,
+            "multiple": 30.14262395383345,
+            "accountsSourceUrl": "https://s25.q4cdn.com/479285134/files/doc_financials/2025/q4/4Q25-Mastercard-Earnings-Release.pdf"
+          }
+        ],
+        "definition": "Ex-post annual FCF per diluted share / split-adjusted monthly close; not point-in-time backtest data"
       }
     },
     "adobe": {
@@ -10860,6 +11572,58 @@
         ],
         "definition": "Somme de quatre trimestres GAAP réellement publiés",
         "observedAt": "2026-10-14"
+      },
+      "targetForecast": {
+        "version": 1,
+        "symbol": "ADBE",
+        "currency": "USD",
+        "basis": "adjusted-non-gaap",
+        "multipleBasis": "forward-adjusted-eps",
+        "sourceUrl": "https://stockanalysis.com/stocks/adbe/forecast/",
+        "sourceName": "Stock Analysis / S&P Global",
+        "observedAt": "2026-10-14",
+        "asOf": "2026-10-13",
+        "sourceHash": "ec5f723c05ecde6d766b124f3faff96589ddd680fb448df57495fe61fb8f427e",
+        "points": [
+          {
+            "end": "2025-11-28",
+            "eps": 20.94,
+            "kind": "observed-adjusted"
+          },
+          {
+            "end": "2026-11-30",
+            "eps": 24.48,
+            "kind": "estimate"
+          },
+          {
+            "end": "2027-11-30",
+            "eps": 27.64,
+            "kind": "estimate"
+          }
+        ],
+        "historicalMultiples": [
+          {
+            "end": "2021-12-03",
+            "multiple": 45.17
+          },
+          {
+            "end": "2022-12-02",
+            "multiple": 23.09
+          },
+          {
+            "end": "2023-12-01",
+            "multiple": 35.27
+          },
+          {
+            "end": "2024-11-29",
+            "multiple": 25.95
+          },
+          {
+            "end": "2025-11-28",
+            "multiple": 14.03
+          }
+        ],
+        "definition": "EPS and Forward PE are based on non-GAAP adjusted numbers."
       }
     },
     "salesforce": {
@@ -11618,6 +12382,100 @@
         "splitCheckFrom": "2022-01-28",
         "splitCheckThrough": "2026-10-14",
         "definition": "Published annual diluted averages; complete historical split window checked"
+      },
+      "targetForecast": {
+        "version": 1,
+        "symbol": "CRM",
+        "currency": "USD",
+        "basis": "adjusted-non-gaap",
+        "multipleBasis": "forward-adjusted-eps",
+        "sourceUrl": "https://stockanalysis.com/stocks/crm/forecast/",
+        "sourceName": "Stock Analysis / S&P Global",
+        "observedAt": "2026-10-14",
+        "asOf": "2026-10-12",
+        "sourceHash": "b9eb1167e3d046cbfa811de77efe9f0544828c72f4029052666269a7bb7908b7",
+        "points": [
+          {
+            "end": "2026-01-31",
+            "eps": 12.52,
+            "kind": "observed-adjusted"
+          },
+          {
+            "end": "2027-01-31",
+            "eps": 16.76,
+            "kind": "estimate"
+          },
+          {
+            "end": "2028-01-31",
+            "eps": 16.02,
+            "kind": "estimate"
+          }
+        ],
+        "historicalMultiples": [
+          {
+            "end": "2022-01-31",
+            "multiple": 55.99
+          },
+          {
+            "end": "2023-01-31",
+            "multiple": 29.97
+          },
+          {
+            "end": "2024-01-31",
+            "multiple": 30.4
+          },
+          {
+            "end": "2025-01-31",
+            "multiple": 31.67
+          },
+          {
+            "end": "2026-01-31",
+            "multiple": 16.77
+          }
+        ],
+        "definition": "EPS and Forward PE are based on non-GAAP adjusted numbers."
+      },
+      "targetCashReference": {
+        "version": 1,
+        "observedAt": "2026-10-14",
+        "annualEnd": "2026-01-31",
+        "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/CRM?period1=1643328000&period2=1792022400&interval=1mo&events=splits",
+        "currency": "USD",
+        "historicalMultiples": [
+          {
+            "end": "2023-01-31",
+            "quotePeriodEnd": "2023-01-31",
+            "price": 167.97000122070312,
+            "base": 6.331995987963892,
+            "multiple": 26.527180614136068,
+            "accountsSourceUrl": "https://s205.q4cdn.com/626266368/files/doc_financials/2024/q4/CRM-Q4-FY24-Earnings-Press-Release-w-financials.pdf"
+          },
+          {
+            "end": "2024-01-31",
+            "quotePeriodEnd": "2024-01-31",
+            "price": 281.0899963378906,
+            "base": 9.652439024390244,
+            "multiple": 29.121136702093533,
+            "accountsSourceUrl": "https://s205.q4cdn.com/626266368/files/doc_financials/2025/q4/CRM-Q4-FY25-Earnings-Press-Release-w-financials.pdf"
+          },
+          {
+            "end": "2025-01-31",
+            "quotePeriodEnd": "2025-01-31",
+            "price": 341.70001220703125,
+            "base": 12.765913757700206,
+            "multiple": 26.766592559888082,
+            "accountsSourceUrl": "https://s205.q4cdn.com/626266368/files/doc_financials/2026/q4/CRM-Q4-FY26-Earnings-Press-Release.pdf"
+          },
+          {
+            "end": "2026-01-31",
+            "quotePeriodEnd": "2026-01-31",
+            "price": 212.2899932861328,
+            "base": 15.064853556485355,
+            "multiple": 14.091739590441811,
+            "accountsSourceUrl": "https://s205.q4cdn.com/626266368/files/doc_financials/2026/q4/CRM-Q4-FY26-Earnings-Press-Release.pdf"
+          }
+        ],
+        "definition": "Ex-post annual FCF per diluted share / split-adjusted monthly close; not point-in-time backtest data"
       }
     },
     "servicenow": {
@@ -12325,6 +13183,58 @@
         ],
         "definition": "Somme de quatre trimestres GAAP réellement publiés",
         "observedAt": "2026-10-14"
+      },
+      "targetForecast": {
+        "version": 1,
+        "symbol": "NOW",
+        "currency": "USD",
+        "basis": "adjusted-non-gaap",
+        "multipleBasis": "forward-adjusted-eps",
+        "sourceUrl": "https://stockanalysis.com/stocks/now/forecast/",
+        "sourceName": "Stock Analysis / S&P Global",
+        "observedAt": "2026-10-14",
+        "asOf": "2026-10-14",
+        "sourceHash": "dcaa6d16c5334d8ad5f6a7d81d0596b1edd502efdad0da2974bdbe95459f7b9a",
+        "points": [
+          {
+            "end": "2025-12-31",
+            "eps": 3.51,
+            "kind": "observed-adjusted"
+          },
+          {
+            "end": "2026-12-31",
+            "eps": 4.07,
+            "kind": "estimate"
+          },
+          {
+            "end": "2027-12-31",
+            "eps": 5.01,
+            "kind": "estimate"
+          }
+        ],
+        "historicalMultiples": [
+          {
+            "end": "2021-12-31",
+            "multiple": 96.16
+          },
+          {
+            "end": "2022-12-31",
+            "multiple": 45.27
+          },
+          {
+            "end": "2023-12-31",
+            "multiple": 59.51
+          },
+          {
+            "end": "2024-12-31",
+            "multiple": 67.74
+          },
+          {
+            "end": "2025-12-31",
+            "multiple": 39.52
+          }
+        ],
+        "definition": "EPS and Forward PE are based on non-GAAP adjusted numbers."
       }
     },
     "intuit": {
@@ -13066,6 +13976,100 @@
         "splitCheckFrom": "2022-07-28",
         "splitCheckThrough": "2026-10-14",
         "definition": "Published annual diluted averages; complete historical split window checked"
+      },
+      "targetCashReference": {
+        "version": 1,
+        "observedAt": "2026-10-14",
+        "annualEnd": "2026-07-31",
+        "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/INTU?period1=1658966400&period2=1792022400&interval=1mo&events=splits",
+        "currency": "USD",
+        "historicalMultiples": [
+          {
+            "end": "2023-07-31",
+            "quotePeriodEnd": "2023-07-31",
+            "price": 511.70001220703125,
+            "base": 16.91166077738516,
+            "multiple": 30.257230140950657,
+            "accountsSourceUrl": "https://investors.intuit.com/news-events/press-releases/detail/1202/intuit-reports-strong-fourth-quarter-and-full-year-results-sets-fiscal-2025-guidance-with-double-digit-revenue-and-earnings-growth"
+          },
+          {
+            "end": "2024-07-31",
+            "quotePeriodEnd": "2024-07-31",
+            "price": 647.3499755859375,
+            "base": 16.316901408450704,
+            "multiple": 39.67358503806781,
+            "accountsSourceUrl": "https://investors.intuit.com/news-events/press-releases/detail/1266/intuit-reports-strong-fourth-quarter-and-full-year-fiscal-2025-results-sets-fiscal-2026-guidance-with-double-digit-revenue-growth-and-continued-operating-margin-expansion"
+          },
+          {
+            "end": "2025-07-31",
+            "quotePeriodEnd": "2025-07-31",
+            "price": 785.1300048828125,
+            "base": 21.49469964664311,
+            "multiple": 36.52667949726055,
+            "accountsSourceUrl": "https://investors.intuit.com/news-events/press-releases/detail/1320/intuit-reports-fourth-quarter-and-full-year-fiscal-2026-results-sets-fiscal-2027-guidance"
+          },
+          {
+            "end": "2026-07-31",
+            "quotePeriodEnd": "2026-07-31",
+            "price": 316.07000732421875,
+            "base": 31.108303249097474,
+            "multiple": 10.160310088059486,
+            "accountsSourceUrl": "https://investors.intuit.com/news-events/press-releases/detail/1320/intuit-reports-fourth-quarter-and-full-year-fiscal-2026-results-sets-fiscal-2027-guidance"
+          }
+        ],
+        "definition": "Ex-post annual FCF per diluted share / split-adjusted monthly close; not point-in-time backtest data"
+      },
+      "targetForecast": {
+        "version": 1,
+        "symbol": "INTU",
+        "currency": "USD",
+        "basis": "adjusted-non-gaap",
+        "multipleBasis": "forward-adjusted-eps",
+        "sourceUrl": "https://stockanalysis.com/stocks/intu/forecast/",
+        "sourceName": "Stock Analysis / S&P Global",
+        "observedAt": "2026-10-14",
+        "asOf": "2026-10-12",
+        "sourceHash": "acc130b6787275a4a8dee1e422ff5a57d174abe5235e1172331b155ad492c15f",
+        "points": [
+          {
+            "end": "2026-07-31",
+            "eps": 24.27,
+            "kind": "observed-adjusted"
+          },
+          {
+            "end": "2027-07-31",
+            "eps": 23.95,
+            "kind": "estimate"
+          },
+          {
+            "end": "2028-07-31",
+            "eps": 27.08,
+            "kind": "estimate"
+          }
+        ],
+        "historicalMultiples": [
+          {
+            "end": "2022-07-31",
+            "multiple": 33.51
+          },
+          {
+            "end": "2023-07-31",
+            "multiple": 32.85
+          },
+          {
+            "end": "2024-07-31",
+            "multiple": 34.57
+          },
+          {
+            "end": "2025-07-31",
+            "multiple": 34.89
+          },
+          {
+            "end": "2026-07-31",
+            "multiple": 11.84
+          }
+        ],
+        "definition": "EPS and Forward PE are based on non-GAAP adjusted numbers."
       }
     },
     "coca-cola": {
@@ -13821,6 +14825,100 @@
         "splitCheckFrom": "2021-12-28",
         "splitCheckThrough": "2026-10-14",
         "definition": "Published annual diluted averages; complete historical split window checked"
+      },
+      "targetForecast": {
+        "version": 1,
+        "symbol": "KO",
+        "currency": "USD",
+        "basis": "adjusted-non-gaap",
+        "multipleBasis": "forward-adjusted-eps",
+        "sourceUrl": "https://stockanalysis.com/stocks/ko/forecast/",
+        "sourceName": "Stock Analysis / S&P Global",
+        "observedAt": "2026-10-14",
+        "asOf": "2026-10-14",
+        "sourceHash": "d32d825149d794c8dfda65af91b02d98a761fc264c53ccdf478e2165c168b357",
+        "points": [
+          {
+            "end": "2025-12-31",
+            "eps": 3.0,
+            "kind": "observed-adjusted"
+          },
+          {
+            "end": "2026-12-31",
+            "eps": 3.3,
+            "kind": "estimate"
+          },
+          {
+            "end": "2027-12-31",
+            "eps": 3.52,
+            "kind": "estimate"
+          }
+        ],
+        "historicalMultiples": [
+          {
+            "end": "2021-12-31",
+            "multiple": 24.88
+          },
+          {
+            "end": "2022-12-31",
+            "multiple": 25.68
+          },
+          {
+            "end": "2023-12-31",
+            "multiple": 21.35
+          },
+          {
+            "end": "2024-12-31",
+            "multiple": 21.38
+          },
+          {
+            "end": "2025-12-31",
+            "multiple": 21.87
+          }
+        ],
+        "definition": "EPS and Forward PE are based on non-GAAP adjusted numbers."
+      },
+      "targetCashReference": {
+        "version": 1,
+        "observedAt": "2026-10-14",
+        "annualEnd": "2025-12-31",
+        "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/KO?period1=1640649600&period2=1792022400&interval=1mo&events=splits",
+        "currency": "USD",
+        "historicalMultiples": [
+          {
+            "end": "2022-12-31",
+            "quotePeriodEnd": "2022-12-31",
+            "price": 63.61000061035156,
+            "base": 2.1917241379310344,
+            "multiple": 29.02281336847381,
+            "accountsSourceUrl": "https://investors.coca-colacompany.com/_assets/_58ca73310d2ced796ebc757917b74f04/cocacolacompany/db/880/10238/earnings_release/2023_Q4_Earnings_Release_%28Ex-99.1%29_-_FINAL.pdf"
+          },
+          {
+            "end": "2023-12-31",
+            "quotePeriodEnd": "2023-12-31",
+            "price": 58.93000030517578,
+            "base": 2.246370131366674,
+            "multiple": 26.233432986986532,
+            "accountsSourceUrl": "https://investors.coca-colacompany.com/_assets/_58ca73310d2ced796ebc757917b74f04/cocacolacompany/db/880/10242/earnings_release/2024_Q4_Earnings_Release_%28Ex-99.1%29_-_Final.pdf"
+          },
+          {
+            "end": "2024-12-31",
+            "quotePeriodEnd": "2024-12-31",
+            "price": 62.2599983215332,
+            "base": 1.0974537037037038,
+            "multiple": 56.731320976381234,
+            "accountsSourceUrl": "https://investors.coca-colacompany.com/_assets/_58ca73310d2ced796ebc757917b74f04/cocacolacompany/db/880/11088/earnings_release/Coca-Cola+Q4+2025+Earnings+Release_Full+Release_2.10.26.pdf"
+          },
+          {
+            "end": "2025-12-31",
+            "quotePeriodEnd": "2025-12-31",
+            "price": 69.91000366210938,
+            "base": 1.2279156039879435,
+            "multiple": 56.933883269387785,
+            "accountsSourceUrl": "https://investors.coca-colacompany.com/_assets/_58ca73310d2ced796ebc757917b74f04/cocacolacompany/db/880/11088/earnings_release/Coca-Cola+Q4+2025+Earnings+Release_Full+Release_2.10.26.pdf"
+          }
+        ],
+        "definition": "Ex-post annual FCF per diluted share / split-adjusted monthly close; not point-in-time backtest data"
       }
     },
     "pepsico": {
@@ -14573,6 +15671,100 @@
         "splitCheckFrom": "2021-12-28",
         "splitCheckThrough": "2026-10-14",
         "definition": "Published annual diluted averages; complete historical split window checked"
+      },
+      "targetForecast": {
+        "version": 1,
+        "symbol": "PEP",
+        "currency": "USD",
+        "basis": "adjusted-non-gaap",
+        "multipleBasis": "forward-adjusted-eps",
+        "sourceUrl": "https://stockanalysis.com/stocks/pep/forecast/",
+        "sourceName": "Stock Analysis / S&P Global",
+        "observedAt": "2026-10-14",
+        "asOf": "2026-10-14",
+        "sourceHash": "16c3db06a514ed6103eb83dc9a0e5435e4b65bfb45afa423c7d61be4833647aa",
+        "points": [
+          {
+            "end": "2025-12-27",
+            "eps": 8.14,
+            "kind": "observed-adjusted"
+          },
+          {
+            "end": "2026-12-31",
+            "eps": 8.4,
+            "kind": "estimate"
+          },
+          {
+            "end": "2027-12-31",
+            "eps": 8.64,
+            "kind": "estimate"
+          }
+        ],
+        "historicalMultiples": [
+          {
+            "end": "2021-12-25",
+            "multiple": 26.1
+          },
+          {
+            "end": "2022-12-31",
+            "multiple": 25.22
+          },
+          {
+            "end": "2023-12-30",
+            "multiple": 21.24
+          },
+          {
+            "end": "2024-12-28",
+            "multiple": 18.05
+          },
+          {
+            "end": "2025-12-27",
+            "multiple": 16.93
+          }
+        ],
+        "definition": "EPS and Forward PE are based on non-GAAP adjusted numbers."
+      },
+      "targetCashReference": {
+        "version": 1,
+        "observedAt": "2026-10-14",
+        "annualEnd": "2025-12-27",
+        "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/PEP?period1=1640649600&period2=1792022400&interval=1mo&events=splits",
+        "currency": "USD",
+        "historicalMultiples": [
+          {
+            "end": "2022-12-31",
+            "quotePeriodEnd": "2022-12-31",
+            "price": 180.66000366210938,
+            "base": 4.040374909877434,
+            "multiple": 44.71367328325226,
+            "accountsSourceUrl": "https://investors.pepsico.com/docs/pepsico-5v9wci20/media/Files/investors/q4-2023-earnings-release.pdf"
+          },
+          {
+            "end": "2023-12-30",
+            "quotePeriodEnd": "2023-11-30",
+            "price": 168.2899932861328,
+            "base": 5.729573391178597,
+            "multiple": 29.37216818711783,
+            "accountsSourceUrl": "https://investors.pepsico.com/docs/pepsico-5v9wci20/media/Files/investors/q4-2024-earnings-release.pdf"
+          },
+          {
+            "end": "2024-12-28",
+            "quotePeriodEnd": "2024-11-30",
+            "price": 163.4499969482422,
+            "base": 5.216981132075472,
+            "multiple": 31.330379161869207,
+            "accountsSourceUrl": "https://investors.pepsico.com/docs/pepsico-5v9wci20/media/Files/investors/q4-2025-earnings-release.pdf"
+          },
+          {
+            "end": "2025-12-27",
+            "quotePeriodEnd": "2025-11-30",
+            "price": 148.74000549316406,
+            "base": 5.5877640203932994,
+            "multiple": 26.61887741685535,
+            "accountsSourceUrl": "https://investors.pepsico.com/docs/pepsico-5v9wci20/media/Files/investors/q4-2025-earnings-release.pdf"
+          }
+        ],
+        "definition": "Ex-post annual FCF per diluted share / split-adjusted monthly close; not point-in-time backtest data"
       }
     },
     "walmart": {
@@ -15269,6 +16461,58 @@
         ],
         "definition": "Somme de quatre trimestres GAAP réellement publiés",
         "observedAt": "2026-10-14"
+      },
+      "targetForecast": {
+        "version": 1,
+        "symbol": "WMT",
+        "currency": "USD",
+        "basis": "adjusted-non-gaap",
+        "multipleBasis": "forward-adjusted-eps",
+        "sourceUrl": "https://stockanalysis.com/stocks/wmt/forecast/",
+        "sourceName": "Stock Analysis / S&P Global",
+        "observedAt": "2026-10-14",
+        "asOf": "2026-10-14",
+        "sourceHash": "1cd0135b67fa76511a6d0206eb8c457c990f113ae1645169dd74e9afb8133d6b",
+        "points": [
+          {
+            "end": "2026-01-31",
+            "eps": 2.64,
+            "kind": "observed-adjusted"
+          },
+          {
+            "end": "2027-01-31",
+            "eps": 2.89,
+            "kind": "estimate"
+          },
+          {
+            "end": "2028-01-31",
+            "eps": 3.22,
+            "kind": "estimate"
+          }
+        ],
+        "historicalMultiples": [
+          {
+            "end": "2022-01-31",
+            "multiple": 21.06
+          },
+          {
+            "end": "2023-01-31",
+            "multiple": 22.76
+          },
+          {
+            "end": "2024-01-31",
+            "multiple": 24.21
+          },
+          {
+            "end": "2025-01-31",
+            "multiple": 36.96
+          },
+          {
+            "end": "2026-01-31",
+            "multiple": 41.65
+          }
+        ],
+        "definition": "EPS and Forward PE are based on non-GAAP adjusted numbers."
       }
     },
     "netflix": {
@@ -15987,6 +17231,58 @@
         ],
         "definition": "Somme de quatre trimestres GAAP réellement publiés",
         "observedAt": "2026-10-14"
+      },
+      "targetForecast": {
+        "version": 1,
+        "symbol": "NFLX",
+        "currency": "USD",
+        "basis": "adjusted-non-gaap",
+        "multipleBasis": "forward-adjusted-eps",
+        "sourceUrl": "https://stockanalysis.com/stocks/nflx/forecast/",
+        "sourceName": "Stock Analysis / S&P Global",
+        "observedAt": "2026-10-14",
+        "asOf": "2026-10-13",
+        "sourceHash": "44c955a09c9c79edd59961817effb567722c956c8c1f0c140f2e4267dd69eaea",
+        "points": [
+          {
+            "end": "2025-12-31",
+            "eps": 2.53,
+            "kind": "observed-adjusted"
+          },
+          {
+            "end": "2026-12-31",
+            "eps": 3.59,
+            "kind": "estimate"
+          },
+          {
+            "end": "2027-12-31",
+            "eps": 3.8,
+            "kind": "estimate"
+          }
+        ],
+        "historicalMultiples": [
+          {
+            "end": "2021-12-31",
+            "multiple": 52.17
+          },
+          {
+            "end": "2022-12-31",
+            "multiple": 31.56
+          },
+          {
+            "end": "2023-12-31",
+            "multiple": 32.36
+          },
+          {
+            "end": "2024-12-31",
+            "multiple": 39.12
+          },
+          {
+            "end": "2025-12-31",
+            "multiple": 30.51
+          }
+        ],
+        "definition": "EPS and Forward PE are based on non-GAAP adjusted numbers."
       }
     },
     "booking": {
@@ -16667,6 +17963,58 @@
         ],
         "definition": "Somme de quatre trimestres GAAP réellement publiés",
         "observedAt": "2026-10-14"
+      },
+      "targetForecast": {
+        "version": 1,
+        "symbol": "BKNG",
+        "currency": "USD",
+        "basis": "adjusted-non-gaap",
+        "multipleBasis": "forward-adjusted-eps",
+        "sourceUrl": "https://stockanalysis.com/stocks/bkng/forecast/",
+        "sourceName": "Stock Analysis / S&P Global",
+        "observedAt": "2026-10-14",
+        "asOf": "2026-10-12",
+        "sourceHash": "4398a49fcde07c5b987879ffa8c5f0c32d4a6314aa9033ad5f8154e81a1082e8",
+        "points": [
+          {
+            "end": "2025-12-31",
+            "eps": 9.12,
+            "kind": "observed-adjusted"
+          },
+          {
+            "end": "2026-12-31",
+            "eps": 10.45,
+            "kind": "estimate"
+          },
+          {
+            "end": "2027-12-31",
+            "eps": 12.38,
+            "kind": "estimate"
+          }
+        ],
+        "historicalMultiples": [
+          {
+            "end": "2021-12-31",
+            "multiple": 26.57
+          },
+          {
+            "end": "2022-12-31",
+            "multiple": 16.86
+          },
+          {
+            "end": "2023-12-31",
+            "multiple": 20.64
+          },
+          {
+            "end": "2024-12-31",
+            "multiple": 24.45
+          },
+          {
+            "end": "2025-12-31",
+            "multiple": 20.8
+          }
+        ],
+        "definition": "EPS and Forward PE are based on non-GAAP adjusted numbers."
       }
     },
     "deere": {
@@ -17327,6 +18675,58 @@
         ],
         "definition": "Somme de quatre trimestres GAAP réellement publiés",
         "observedAt": "2026-10-14"
+      },
+      "targetForecast": {
+        "version": 1,
+        "symbol": "DE",
+        "currency": "USD",
+        "basis": "adjusted-non-gaap",
+        "multipleBasis": "forward-adjusted-eps",
+        "sourceUrl": "https://stockanalysis.com/stocks/de/forecast/",
+        "sourceName": "Stock Analysis / S&P Global",
+        "observedAt": "2026-10-14",
+        "asOf": "2026-10-09",
+        "sourceHash": "049d5b1de2162b84d680ce873ea1a2217ac68dc140c94ac4e16f000c34ee4d4a",
+        "points": [
+          {
+            "end": "2025-11-02",
+            "eps": 18.5,
+            "kind": "observed-adjusted"
+          },
+          {
+            "end": "2026-10-31",
+            "eps": 18.1,
+            "kind": "estimate"
+          },
+          {
+            "end": "2027-10-31",
+            "eps": 22.77,
+            "kind": "estimate"
+          }
+        ],
+        "historicalMultiples": [
+          {
+            "end": "2021-10-31",
+            "multiple": 16.75
+          },
+          {
+            "end": "2022-10-30",
+            "multiple": 14.85
+          },
+          {
+            "end": "2023-10-29",
+            "multiple": 11.16
+          },
+          {
+            "end": "2024-10-27",
+            "multiple": 19.39
+          },
+          {
+            "end": "2025-11-02",
+            "multiple": 24.63
+          }
+        ],
+        "definition": "EPS and Forward PE are based on non-GAAP adjusted numbers."
       }
     },
     "caterpillar": {
@@ -17585,6 +18985,58 @@
         "currency": "USD",
         "splits": [],
         "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/CAT?range=2y&interval=1d&events=splits"
+      },
+      "targetForecast": {
+        "version": 1,
+        "symbol": "CAT",
+        "currency": "USD",
+        "basis": "adjusted-non-gaap",
+        "multipleBasis": "forward-adjusted-eps",
+        "sourceUrl": "https://stockanalysis.com/stocks/cat/forecast/",
+        "sourceName": "Stock Analysis / S&P Global",
+        "observedAt": "2026-10-14",
+        "asOf": "2026-10-14",
+        "sourceHash": "78a610e96d4da5d4bc347f51ed10209ec74b5ffc6c22f4a28df251ea7e508a1e",
+        "points": [
+          {
+            "end": "2025-12-31",
+            "eps": 19.06,
+            "kind": "observed-adjusted"
+          },
+          {
+            "end": "2026-12-31",
+            "eps": 27.33,
+            "kind": "estimate"
+          },
+          {
+            "end": "2027-12-31",
+            "eps": 32.59,
+            "kind": "estimate"
+          }
+        ],
+        "historicalMultiples": [
+          {
+            "end": "2021-12-31",
+            "multiple": 17.95
+          },
+          {
+            "end": "2022-12-31",
+            "multiple": 15.83
+          },
+          {
+            "end": "2023-12-31",
+            "multiple": 14.51
+          },
+          {
+            "end": "2024-12-31",
+            "multiple": 17.06
+          },
+          {
+            "end": "2025-12-31",
+            "multiple": 27.73
+          }
+        ],
+        "definition": "EPS and Forward PE are based on non-GAAP adjusted numbers."
       }
     },
     "waste-management": {
@@ -17840,6 +19292,58 @@
         "currency": "USD",
         "splits": [],
         "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/WM?range=2y&interval=1d&events=splits"
+      },
+      "targetForecast": {
+        "version": 1,
+        "symbol": "WM",
+        "currency": "USD",
+        "basis": "adjusted-non-gaap",
+        "multipleBasis": "forward-adjusted-eps",
+        "sourceUrl": "https://stockanalysis.com/stocks/wm/forecast/",
+        "sourceName": "Stock Analysis / S&P Global",
+        "observedAt": "2026-10-14",
+        "asOf": "2026-10-14",
+        "sourceHash": "bd5d1492572020166bf4d875b5026ee5ee7dcc7ae3d1885df41d92c3d324d981",
+        "points": [
+          {
+            "end": "2025-12-31",
+            "eps": 7.5,
+            "kind": "observed-adjusted"
+          },
+          {
+            "end": "2026-12-31",
+            "eps": 8.14,
+            "kind": "estimate"
+          },
+          {
+            "end": "2027-12-31",
+            "eps": 9.08,
+            "kind": "estimate"
+          }
+        ],
+        "historicalMultiples": [
+          {
+            "end": "2021-12-31",
+            "multiple": 30.82
+          },
+          {
+            "end": "2022-12-31",
+            "multiple": 26.22
+          },
+          {
+            "end": "2023-12-31",
+            "multiple": 27.4
+          },
+          {
+            "end": "2024-12-31",
+            "multiple": 25.74
+          },
+          {
+            "end": "2025-12-31",
+            "multiple": 27.23
+          }
+        ],
+        "definition": "EPS and Forward PE are based on non-GAAP adjusted numbers."
       }
     },
     "nike": {
@@ -18520,6 +20024,58 @@
         ],
         "observedAt": "2026-10-14",
         "definition": "Somme de quatre BPA dilués GAAP trimestriels publiés"
+      },
+      "targetForecast": {
+        "version": 1,
+        "symbol": "NKE",
+        "currency": "USD",
+        "basis": "adjusted-non-gaap",
+        "multipleBasis": "forward-adjusted-eps",
+        "sourceUrl": "https://stockanalysis.com/stocks/nke/forecast/",
+        "sourceName": "Stock Analysis / S&P Global",
+        "observedAt": "2026-10-14",
+        "asOf": "2026-10-14",
+        "sourceHash": "e7ef11ac306cd03c493195007efb701a28c3cca2067509b1228f25be0ae40e6b",
+        "points": [
+          {
+            "end": "2026-05-31",
+            "eps": 1.58,
+            "kind": "observed-adjusted"
+          },
+          {
+            "end": "2027-05-31",
+            "eps": 1.32,
+            "kind": "estimate"
+          },
+          {
+            "end": "2028-05-31",
+            "eps": 1.69,
+            "kind": "estimate"
+          }
+        ],
+        "historicalMultiples": [
+          {
+            "end": "2022-05-31",
+            "multiple": 27.75
+          },
+          {
+            "end": "2023-05-31",
+            "multiple": 27.68
+          },
+          {
+            "end": "2024-05-31",
+            "multiple": 24.95
+          },
+          {
+            "end": "2025-05-31",
+            "multiple": 36.76
+          },
+          {
+            "end": "2026-05-31",
+            "multiple": 28.29
+          }
+        ],
+        "definition": "EPS and Forward PE are based on non-GAAP adjusted numbers."
       }
     },
     "disney": {
@@ -19194,6 +20750,58 @@
         ],
         "observedAt": "2026-10-14",
         "definition": "Somme de quatre BPA dilués GAAP trimestriels publiés"
+      },
+      "targetForecast": {
+        "version": 1,
+        "symbol": "DIS",
+        "currency": "USD",
+        "basis": "adjusted-non-gaap",
+        "multipleBasis": "forward-adjusted-eps",
+        "sourceUrl": "https://stockanalysis.com/stocks/dis/forecast/",
+        "sourceName": "Stock Analysis / S&P Global",
+        "observedAt": "2026-10-14",
+        "asOf": "2026-10-09",
+        "sourceHash": "882c084524700d260a6e0984f254a6d095981b9a82ae5055ebcafda30871c0e3",
+        "points": [
+          {
+            "end": "2025-09-27",
+            "eps": 5.93,
+            "kind": "observed-adjusted"
+          },
+          {
+            "end": "2026-09-30",
+            "eps": 6.93,
+            "kind": "estimate"
+          },
+          {
+            "end": "2027-09-30",
+            "eps": 7.47,
+            "kind": "estimate"
+          }
+        ],
+        "historicalMultiples": [
+          {
+            "end": "2021-10-02",
+            "multiple": 40.17
+          },
+          {
+            "end": "2022-10-01",
+            "multiple": 19.63
+          },
+          {
+            "end": "2023-09-30",
+            "multiple": 17.67
+          },
+          {
+            "end": "2024-09-28",
+            "multiple": 18.8
+          },
+          {
+            "end": "2025-09-27",
+            "multiple": 18.61
+          }
+        ],
+        "definition": "EPS and Forward PE are based on non-GAAP adjusted numbers."
       }
     }
   }
