@@ -1,5 +1,7 @@
 import { writeFile, mkdir } from 'node:fs/promises'
 import { resolve } from 'node:path'
+import { execFile } from 'node:child_process'
+import { promisify } from 'node:util'
 import { collectObservations } from './update-editorial-radar.mjs'
 import { advanceRadar, shouldRefreshRadar } from './lib/editorial-radar.mjs'
 import { collectPurchasingNews } from './lib/purchasing-power-news.mjs'
@@ -49,11 +51,22 @@ if (refresh) {
   if (!observations.length || errors.some(error => error.family === 'radar')) throw new Error('Sources locales incomplètes ; historique conservé.')
   const [news, purchasing] = await Promise.all([collectRadarNews(), collectPurchasingNews(new Date(), fetch, previous)])
   observations.push(...news.observations, ...purchasing.observations); errors.push(...news.errors, ...purchasing.errors)
-  result = advanceRadar(previous, observations, { sourceRevision: process.env.RADAR_SOURCE_SHA ?? '', errors, purchasingSources: purchasing.sources })
+  const { stdout } = await promisify(execFile)('python', ['scripts/verify_dws_compositions.py'], { maxBuffer: 16 * 1024 * 1024, timeout: 300000 })
+  const verification = JSON.parse(stdout)
+  errors.push(...verification.errors)
+  result = advanceRadar(previous, observations, { sourceRevision: process.env.RADAR_SOURCE_SHA ?? '', errors, purchasingSources: purchasing.sources,
+    verifiedCompositions: verification.verified.map(({ body, ...proof }) => proof),
+    compositionVerificationFailures: verification.errors.map(error => error.entity) })
   // Create only after successful extraction and validation.
   const parent = ref ? ref.object.sha : (await api('git/ref/heads/master')).object.sha
   const commit = await api(`git/commits/${parent}`)
   const tree = []
+  // Content-addressed raw portfolios are retained on radar-data with the
+  // conflict ledger. A reconciliation is not published without its evidence.
+  for (const proof of verification.verified) {
+    const blob = await api('git/blobs', 'POST', { content: `${JSON.stringify(proof.body)}\n`, encoding: 'utf-8' })
+    tree.push({ path: `dws-snapshots/${proof.sourceHash}.json`, mode: '100644', type: 'blob', sha: blob.sha })
+  }
   for (const [path, content] of [['state.json', result.state], ['feed.json', result.feed], ['notifications.json', ledger]]) {
     const blob = await api('git/blobs', 'POST', { content: `${JSON.stringify(content, null, 2)}\n`, encoding: 'utf-8' })
     tree.push({ path, mode: '100644', type: 'blob', sha: blob.sha })
