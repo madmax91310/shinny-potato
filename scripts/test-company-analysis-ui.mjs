@@ -2,6 +2,8 @@ import assert from 'node:assert/strict'
 import { spawn } from 'node:child_process'
 import { chromium } from 'playwright'
 import { COMPANIES } from '../src/data/companies.js'
+import { valuationPublication } from '../src/pages/company-analysis/valuationPublication.js'
+import { buildScenarios } from '../src/pages/company-analysis/valuation.js'
 import { buildTweetText, calculatedRatios, decisionIndicators, activeDecision } from '../src/pages/company-analysis/lib.js'
 
 const server = spawn('node',['node_modules/vite/bin/vite.js','preview','--host','127.0.0.1','--port','4315','--strictPort'],{stdio:'ignore'})
@@ -74,6 +76,71 @@ try {
   assert.equal(await valuationPanel.locator('.valuation-assumptions tbody tr').nth(1).innerText(),before)
   await valuationPanel.getByText('Ajuster les hypothèses',{exact:true}).click()
   await valuationPanel.getByRole('button',{name:'Flux de trésorerie',exact:true}).click()
+  await valuationPanel.getByText('Préparer la publication pour X',{exact:true}).click()
+  const publication=valuationPanel.getByRole('region',{name:'Publication de valorisation'})
+  const exportImage=publication.locator('img')
+  await exportImage.waitFor()
+  assert.deepEqual(await exportImage.evaluate(img=>[img.naturalWidth,img.naturalHeight]),[1200,1500])
+  for(const method of ['cash','earnings']) {
+    await valuationPanel.getByRole('button',{name:method==='cash'?'Flux de trésorerie':'Bénéfices',exact:true}).click()
+    for(const [index,name] of ['Prudent','Central','Favorable'].entries()) {
+      await valuationPanel.getByRole('group',{name:'Choisir un scénario'}).getByRole('button',{name:new RegExp(name)}).click()
+      assert.equal(await publication.getByTestId('valuation-tweet').innerText(),valuationPublication(COMPANIES.find(c=>c.id==='apple'),{},index,method).text)
+    }
+  }
+  await valuationPanel.getByRole('group',{name:'Choisir un scénario'}).getByRole('button',{name:/Central/}).click()
+  await valuationPanel.getByText('Ajuster les hypothèses',{exact:true}).click()
+  const oldImage=await exportImage.getAttribute('src')
+  await growthInput.fill('2')
+  assert.notEqual(await exportImage.getAttribute('src'),oldImage)
+  assert.equal(await publication.getByTestId('valuation-tweet').innerText(),valuationPublication(COMPANIES.find(c=>c.id==='apple'),{1:{earningsGrowth:.02}},1,'earnings').text)
+  await publication.getByRole('button',{name:'Copier le texte de valorisation',exact:true}).click()
+  assert.equal(await page.evaluate(()=>navigator.clipboard.readText()),await publication.getByTestId('valuation-tweet').innerText())
+  const png=page.waitForEvent('download')
+  await publication.getByRole('button',{name:'Télécharger l’image de valorisation',exact:true}).click()
+  const downloaded=await png
+  assert.match(downloaded.suggestedFilename(),/^valorisation-apple-earnings-central-.*\.png$/)
+  if(process.env.COMPANY_QA_DIR) await downloaded.saveAs(`${process.env.COMPANY_QA_DIR}/valuation-export-earnings.png`)
+  await valuationPanel.getByLabel('Rendement Central',{exact:true}).fill('0')
+  assert.equal(await publication.locator('img').count(),0)
+  assert.equal(await publication.getByRole('button').count(),0)
+  await valuationPanel.getByRole('button',{name:'Rétablir les scénarios automatiques'}).click()
+  await valuationPanel.getByText('Ajuster les hypothèses',{exact:true}).click()
+  await valuationPanel.getByRole('button',{name:'Flux de trésorerie',exact:true}).click()
+  if(process.env.COMPANY_QA_DIR) {
+    const {writeFile}=await import('node:fs/promises')
+    await writeFile(`${process.env.COMPANY_QA_DIR}/valuation-export-fcf.png`,Buffer.from((await exportImage.getAttribute('src')).split(',')[1],'base64'))
+  }
+  await page.setViewportSize({width:390,height:844})
+  assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth))
+  if(process.env.COMPANY_QA_DIR) await publication.screenshot({path:`${process.env.COMPANY_QA_DIR}/valuation-publication-mobile.png`})
+  await page.setViewportSize({width:1440,height:1100})
+  // Every currently eligible company can generate a finite image/text snapshot.
+  for(const company of COMPANIES) {
+    await chooser.getByRole('button',{name:`${company.name} · ${company.symbol}`}).click()
+    if(!await valuationPanel.locator('.valuation-publication-details').evaluate(el=>el.open)) await valuationPanel.getByText('Préparer la publication pour X',{exact:true}).click()
+    const inputs=buildScenarios(company).inputs
+    if(inputs.cashReady||inputs.earningsReady) {
+      await publication.locator('img').waitFor()
+      assert(!/NaN|undefined|Infinity/.test(await publication.getByTestId('valuation-tweet').innerText()))
+      if(process.env.COMPANY_QA_DIR) {
+        const {writeFile}=await import('node:fs/promises')
+        await writeFile(`${process.env.COMPANY_QA_DIR}/valuation-${company.id}.png`,Buffer.from((await publication.locator('img').getAttribute('src')).split(',')[1],'base64'))
+      }
+    } else assert.equal(await publication.getByRole('button').count(),0)
+  }
+  await chooser.getByRole('button',{name:'Apple · AAPL'}).click()
+  // A tab left open beyond the freshness window must withdraw publication.
+  await valuationPanel.getByText('Préparer la publication pour X',{exact:true}).click()
+  await page.clock.install()
+  await page.clock.setSystemTime(new Date('2035-01-01T12:00:00Z'))
+  await page.evaluate(()=>window.dispatchEvent(new Event('focus')))
+  await publication.getByRole('alert').waitFor()
+  assert.equal(await publication.locator('img').count(),0)
+  await page.clock.setSystemTime(new Date())
+  await page.evaluate(()=>window.dispatchEvent(new Event('focus')))
+  await publication.locator('img').waitFor()
+  await valuationPanel.getByText('Préparer la publication pour X',{exact:true}).click()
   await page.getByText('Comptes détaillés et publication existante',{exact:true}).click()
   if(process.env.COMPANY_QA_DIR) await valuationPanel.screenshot({path:`${process.env.COMPANY_QA_DIR}/valuation-desktop.png`})
   await page.setViewportSize({width:390,height:844})

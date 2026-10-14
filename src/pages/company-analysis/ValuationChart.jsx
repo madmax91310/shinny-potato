@@ -15,7 +15,7 @@ export default function ValuationChart({chart, selected}) {
   return <figure className="valuation-chart" data-testid="valuation-chart">
     <figcaption><strong>{chart.title}</strong><span>{chart.unit}</span></figcaption>
     <svg viewBox="0 0 720 280" role="img" aria-labelledby={titleId} onPointerMove={inspect} onPointerLeave={()=>setHover(null)}>
-      <title id={titleId}>{chart.title}. {chart.history.length} observations publiées{chart.forecast.length?' et trois projections hypothétiques':''}. Les valeurs exactes sont disponibles sous le graphique.</title>
+      <title id={titleId}>{chart.title}. {chart.history.length} points de départ{chart.forecast.length?' et trois projections hypothétiques':''}. Les valeurs exactes sont disponibles sous le graphique.</title>
       {g.ticks.map((v,i)=><g key={i}><line x1={g.left} x2={g.right} y1={g.y(v)} y2={g.y(v)} className="valuation-grid"/><text x={g.left-10} y={g.y(v)+4} textAnchor="end">{formatValue(v)}</text></g>)}
       {chart.forecast.length>0&&<><line x1={g.x(last.time)} x2={g.x(last.time)} y1={g.top} y2={g.bottom} className="valuation-boundary"/><text x={g.x(last.time)+9} y={14}>Hypothèses →</text></>}
       <path d={g.path(chart.history)} className="valuation-history-line"/>
@@ -24,7 +24,7 @@ export default function ValuationChart({chart, selected}) {
       {[...new Set(years)].map((time,i)=><text key={time} x={g.x(time)} y="255" textAnchor={i===0?'start':i===years.length-1?'end':'middle'}>{new Date(time).getUTCFullYear()}</text>)}
       {hover&&<><line x1={g.x(hover.time)} x2={g.x(hover.time)} y1={g.top} y2={g.bottom} className="valuation-boundary"/><circle cx={g.x(hover.time)} cy={g.y(hover.value)} r="5" fill="#175b48"/></>}
     </svg>
-    <div className="valuation-chart-caption">{hover?`${hover.label} · ${formatValue(hover.value,2)} ${chart.unit}`:chart.forecast.length?'Trait plein : données publiées · pointillés : scénarios, pas des prévisions.':'Données publiées uniquement · aucune projection FCF sans base par action qualifiée.'}</div>
-    <details className="valuation-chart-data"><summary>Valeurs et sources du graphique</summary><div className="company-history-scroll"><table><thead><tr><th>Période</th><th>Série</th><th>{chart.unit}</th></tr></thead><tbody>{all.map((p,i)=><tr key={i}><td>{p.sourceUrl?<a href={p.sourceUrl} target="_blank" rel="noreferrer">{p.label}</a>:p.label}</td><td>{p.scenario??'Publié'}</td><td>{formatValue(p.value,2)}</td></tr>)}</tbody></table></div></details>
+    <div className="valuation-chart-caption">{hover?`${hover.label} · ${formatValue(hover.value,2)} ${chart.unit}`:chart.forecast.length?(chart.title.startsWith('Bénéfice')?'Point initial : BPA du modèle · pointillés : hypothèses, pas des prévisions.':'Trait plein : données publiées · pointillés : scénarios, pas des prévisions.'):'Données publiées uniquement · aucune projection FCF sans base par action qualifiée.'}</div>
+    <details className="valuation-chart-data"><summary>Valeurs et sources du graphique</summary><div className="company-history-scroll"><table><thead><tr><th>Période</th><th>Série</th><th>{chart.unit}</th></tr></thead><tbody>{all.map((p,i)=><tr key={i}><td>{p.sourceUrl?<a href={p.sourceUrl} target="_blank" rel="noreferrer">{p.label}</a>:p.label}</td><td>{p.scenario??(p.sourceUrl?'Publié':'Base du modèle')}</td><td>{formatValue(p.value,2)}</td></tr>)}</tbody></table></div></details>
   </figure>
 }
