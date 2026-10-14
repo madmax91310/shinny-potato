@@ -11,7 +11,7 @@ Rapport fondé sur les collecteurs configurés et les données actives, pas sur 
 | Historiques mensuels des simulateurs | 123/123 séries ; 55 collecteurs communs + Bitcoin et or | Marchés : 2, 4, 8 et 16 du mois ; Bitcoin : 2, 4 et 8 ; or : tentatives du 3 au 10 |
 | Parts ETF mensuelles raccordées | 58 parts exactes ; investissement et performance revenus réinvestis, anniversaire hors distributions | Même collecte mensuelle et reprise quotidienne des échecs |
 | ETF/ETC/ETP | 197/197 instruments, au moins un champ | Quotidienne |
-| Comparatif ETF | 109/109 parts raccordées dans 66 blocs ; 101 calendriers actifs, 10 absences qualifiées | Quotidienne ; ajout de part contrôlé en CI |
+| Comparatif ETF | 109/109 parts raccordées dans 66 blocs ; 101 calendriers actifs, 8 absences qualifiées | Quotidienne ; ajout de part contrôlé en CI |
 | Compositions d’indices | 50 indices | 3 et 16 du mois |
 | Rendements annuels d’indices | 54 indices | 3 et 16 du mois |
 | Pouvoir d’achat | Prix généraux, alimentation, énergie, IRL et SMIC INSEE ; périodes et qualité publiées | Vérification quotidienne |
@@ -62,8 +62,8 @@ Les frais collectés peuvent être ceux du dernier exercice publié : leur date 
 | Frais annuels | 197 |
 | Encours daté | 197 |
 | Rendements calendaires de la part (au moins une année complète) | 181 |
-| Pays | 168 |
-| Secteurs ou sous-secteurs publiés | 168 |
+| Pays | 169 |
+| Secteurs ou sous-secteurs publiés | 169 |
 | Principales positions | 174 |
 
 Ces couvertures ne s’additionnent pas : plusieurs champs concernent le même instrument. Les 23 expositions Amundi à l’indice suivi recouvrent des parts déjà collectées ; elles ne sont pas 23 fonds supplémentaires. Les compositions d’indice, portefeuilles de fonds et paniers de substitution ne sont jamais assimilés. Les simulations choisissent automatiquement la dernière fenêtre complète commune : six ans pour le Générateur, trois à six ans pour les Duels. Les comparatifs alignent les années des produits. Une publication tardive ou un change BCE manquant conserve la dernière période commune ; aucun rendement n’est extrapolé. Les getters historiques et photographies archivées gardent leur période fixe.
@@ -83,7 +83,7 @@ Les identités, domiciles, modes de réplication, couvertures de change, politiq
 
 | ISIN | Instrument | Champs courants hors collecte active |
 |---|---|---|
-| IE000L2SA8K5 | Invesco NASDAQ-100 Equal Weight UCITS ETF Acc | Pays, Secteurs |
+| IE000L2SA8K5 | Invesco NASDAQ-100 Equal Weight UCITS ETF Acc | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00BSPLC298 | State Street SPDR MSCI Europe Small Cap Value Weighted UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | JE00B78CGV99 | WisdomTree Brent Crude Oil | Pays, Secteurs, Principales positions |
 | GB00B15KXV33 | WisdomTree WTI Crude Oil | Pays, Secteurs, Principales positions |
