@@ -106,14 +106,18 @@ def parse(raw, ident, url, today):
             section=section.replace('(in thousands, except per share data)','(in millions, except per share data)')
             parsed=statement_periods(section,'broadcom',url,today)
             for p in parsed:
-                for k in ('revenue','netIncome','operatingIncome','interestExpense','previousRevenue','previousNetIncome','previousOperatingIncome','previousInterestExpense'):
+                for k in ('revenue','netIncome','operatingIncome','interestExpense','previousRevenue','previousNetIncome','previousOperatingIncome','previousInterestExpense','averageDilutedShares','previousAverageDilutedShares'):
                     if k in p:p[k]/=1000
                 if re.search(r'retroactively adjusted to reflect the ten-for-one forward stock split',section,re.I):p['epsRestatedForSplit']=True
             result.extend(parsed)
         elif ident=='booking':
             # PDF rows wrap the EPS label immediately before its numerical row.
             section=re.sub(r'Net income applicable to common stockholders per diluted\s*common share','Diluted',section,flags=re.I)
-            result.extend(statement_periods(section,'mastercard',url,today))
+            parsed=statement_periods(section,'mastercard',url,today)
+            for p in parsed:
+                for k in ('averageDilutedShares','previousAverageDilutedShares'):
+                    p.pop(k,None)
+            result.extend(parsed)
         elif ident=='deere':
             section=section.replace('STATEMENTS OF CONSOLIDATED INCOME','CONSOLIDATED STATEMENTS OF INCOME')
             section=re.sub(r'(?im)^Net Income Attributable to Deere & Company\b','Net income',section)
@@ -239,8 +243,9 @@ def publication_decision(profile, company, today):
         def key(k):return prefix+k[0].upper()+k[1:]if prefix else k
         if ref['end']not in(a['end'],a['previousEnd'])or any(a[key(k)]!=ref[k]for k in ['revenue','netIncome']):raise ValueError('Decision/income period mismatch')
         result={k:ref[k]for k in ['end','revenue','netIncome']};result.update(sourceUrl=url,tags={})
-        for k in ['operatingIncome','interestExpense','operatingCashFlow','capitalExpenditure','freeCashFlow']:
+        for k in ['operatingIncome','interestExpense','operatingCashFlow','capitalExpenditure','freeCashFlow','averageDilutedShares']:
             if key(k)in a:result[k]=a[key(k)]
+        if 'averageDilutedShares' in result:result['sharesBasisSource']=url
         if 'freeCashFlow'in result:result['freeCashFlowDefinition']=FCF_METHOD
         years.append(result)
     if not years or years[-1]['end']!=company['annual']['end']:raise ValueError('Annual decision history mismatch')

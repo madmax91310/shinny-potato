@@ -50,6 +50,18 @@ try {
     assert((await lastRow.getByRole('link').getAttribute('href')).startsWith('https://'))
     assert(!/NaN|undefined|Infinity/.test(text))
   }
+  // Exercise valuation inputs in the actual browser, including invalid input and reset.
+  await chooser.getByRole('button',{name:'Apple · AAPL'}).click()
+  const valuationPanel = page.getByTestId('company-valuation')
+  const growthInput = valuationPanel.getByLabel('Croissance BPA Central', {exact:true})
+  const before = await valuationPanel.locator('tbody tr').nth(1).innerText()
+  await growthInput.fill('2')
+  assert.notEqual(await valuationPanel.locator('tbody tr').nth(1).innerText(), before)
+  await valuationPanel.getByLabel('Rendement Central', {exact:true}).fill('0')
+  await valuationPanel.getByRole('alert').waitFor()
+  await valuationPanel.getByRole('button',{name:'Rétablir les scénarios automatiques'}).click()
+  assert.equal(await valuationPanel.getByRole('alert').count(),0)
+  assert.equal(await valuationPanel.locator('tbody tr').nth(1).innerText(),before)
   await page.getByRole('tab',{name:'Image',exact:true}).click()
   let previousImage = ''
   for (const company of COMPANIES) {

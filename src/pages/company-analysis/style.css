@@ -29,3 +29,5 @@
 .company-decision th:first-child { text-align: left; }
 .company-decision caption { text-align: left; font-weight: 600; padding: 12px 0; }
 @media (max-width: 640px) { .company-decision dl { grid-template-columns: 1fr; } }
+
+[data-testid="company-valuation"] input { width: 5.5rem; padding: .45rem; border: 1px solid #b8c9c4; border-radius: .3rem; }
