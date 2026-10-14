@@ -1,3 +1,4 @@
+import ValuationPanel from './ValuationPanel.jsx'
 import { notifyPublication, copyPublicationText, startPublicationDownload } from '../../design-system/publicationActions.js'
 import { useState } from 'react'
 import ChoicePicker from '../../design-system/ChoicePicker.jsx'
@@ -69,6 +70,7 @@ export default function App() {
         </div>
       </section>
       <section className="tool-preview">
+        <ValuationPanel key={company.id} company={company} />
         {ready && <section className="company-decision" aria-label="Indicateurs pour analyser l’entreprise">
           <h2>Cash, solidité et valorisation</h2>
           <p>Flux annuels : exercice clos le {dateLabel(company.annual.end)}. Les ratios de valorisation utilisent la dernière clôture disponible.</p>
