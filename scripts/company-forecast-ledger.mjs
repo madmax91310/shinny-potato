@@ -4,31 +4,33 @@ import { join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { COMPANIES } from '../src/data/companies.js'
 import { buildPriceScenarios, TARGET_POLICY } from '../src/pages/company-analysis/priceTargets.js'
-import { activeDecision } from '../src/pages/company-analysis/lib.js'
+import { activeDecision, fresh } from '../src/pages/company-analysis/lib.js'
 import { valuationInputs } from '../src/pages/company-analysis/valuation.js'
-const day=86400000,hash=x=>createHash('sha256').update(JSON.stringify(x)).digest('hex'),positive=x=>Number.isFinite(x)&&x>0
+const day=86400000,hash=x=>createHash('sha256').update(JSON.stringify(x)).digest('hex')
 export function snapshot(companies,now,revision) {
   const issuedAt=now.toISOString().slice(0,10)
   const records=companies.map(c=>{
-    const forecasts=[],excluded=[],inputs=valuationInputs(c,now)
+    const forecasts=[],excluded=[],inputs=valuationInputs(c,now),q=c.quote
+    // Old forecasts still need market outcomes when fresh accounts are unavailable.
+    const quoteQualified=q?.currency===c.currency&&Number.isFinite(q.price)&&q.price>0&&fresh(q.asOf,10,now)&&q.sourceUrl?.startsWith('https://')&&Array.isArray(q.splits)
     for(const years of TARGET_POLICY.horizons) {
       const m=buildPriceScenarios(c,{},now,years)
       for(const method of ['cash','earnings']) {
         const e=m.evidence[method]
-        if(!e){excluded.push({method,years,reasons:m.inputs.reasons});continue}
+        if(!e||!quoteQualified){excluded.push({method,years,reasons:[...m.inputs.reasons,...(!quoteQualified?['Clôture qualifiée requise pour archiver la prévision.']:[])]});continue}
         const period=e.periods.at(-1),annual=e.curve.find(p=>p.end===period)
         forecasts.push({method,years,targetDate:m.targetDate,fundamentalPeriod:period,fundamentalValue:annual.value,
           basis:e.basis,accountingDefinition:method==='cash'?m.inputs.history.at(-1).definition:'adjusted-non-gaap',sourceUrl:e.sourceUrl,sourceAsOf:e.asOf,calibration:e.calibration,trajectory:e.trajectory,rationale:e.rationale,
           scenarios:m.scenarios.map(s=>({name:s.name,assumptions:s[method+'Assumptions'],target:s[method+'Target']}))})
       }
     }
-    const f=c.targetForecast,q=c.quote,decision=activeDecision(c,now)
-    return {id:c.id,symbol:c.symbol,currency:c.currency,quote:inputs.price?{price:q.price,asOf:q.asOf,sourceUrl:q.sourceUrl,splits:q.splits,coverageFrom:q.history?.[0]?.asOf??q.asOf}:null,
+    const f=c.targetForecast,decision=activeDecision(c,now)
+    return {id:c.id,symbol:c.symbol,currency:c.currency,quote:quoteQualified?{price:q.price,asOf:q.asOf,sourceUrl:q.sourceUrl,splits:q.splits,coverageFrom:q.history?.[0]?.asOf??q.asOf}:null,
       // Keep source inputs and both exclusions/eligible models; never recreate old forecasts with today's code.
       sources:{annual:c.annual,decision:c.decision,targetForecast:f,targetCashReference:c.targetCashReference,valuationShareBasis:c.valuationShareBasis},
       actuals:{earnings:f?.basis==='adjusted-non-gaap'&&f.currency===c.currency&&f.symbol===c.symbol&&f.sourceUrl?.startsWith('https://')&&f.asOf<=issuedAt?
         f.points.filter(p=>p.kind==='observed-adjusted'&&p.end<=f.asOf).map(p=>({end:p.end,value:p.eps,asOf:f.asOf,sourceUrl:f.sourceUrl})):[],
-        cash:inputs.cashReady&&decision?inputs.history.map(p=>({...p,asOf:decision.observedAt})):[]},forecasts,excluded}
+        cash:decision?inputs.history.filter(p=>p.definition&&p.end>=c.valuationShareBasis?.splitCheckFrom).map(p=>({...p,asOf:decision.observedAt})):[]},forecasts,excluded}
   })
   return {version:1,modelVersion:TARGET_POLICY.version,issuedAt,revision,records}
 }
@@ -79,31 +81,31 @@ export function evaluate(archives,today) {
     const actual=observations.flatMap(o=>{
       const matches=(o.record.actuals[f.method]??[]).filter(p=>
         (f.method==='cash'?Math.abs(Date.parse(p.end)-Date.parse(f.fundamentalPeriod))<=14*day:p.end===f.fundamentalPeriod)
-        &&(f.method!=='cash'||p.definition===f.accountingDefinition)&&p.asOf<=o.issuedAt&&p.asOf>=p.end&&positive(p.value))
+        &&(f.method!=='cash'||p.definition===f.accountingDefinition)&&p.asOf<=o.issuedAt&&p.asOf>=p.end&&Number.isFinite(p.value))
       return matches.length===1?[{p:matches[0],o}]:[]
     }).sort((x,y)=>x.o.issuedAt.localeCompare(y.o.issuedAt))[0]
     if(actual) {
       if(!comparable(observations,r.quote.asOf,actual.o.record.quote?.asOf??actual.p.asOf))result.fundamentalStatus='basis-unqualified'
-      else Object.assign(result,{fundamentalStatus:'evaluated',actualFundamental:actual.p.value,actualFundamentalPeriod:actual.p.end,fundamentalAsOf:actual.p.asOf,fundamentalSourceUrl:actual.p.sourceUrl,fundamentalError:f.fundamentalValue/actual.p.value-1})
+      else Object.assign(result,{fundamentalStatus:'evaluated',actualFundamental:actual.p.value,actualFundamentalPeriod:actual.p.end,fundamentalAsOf:actual.p.asOf,fundamentalSourceUrl:actual.p.sourceUrl,fundamentalError:actual.p.value===0?null:(f.fundamentalValue-actual.p.value)/Math.abs(actual.p.value),fundamentalAbsoluteError:Math.abs(f.fundamentalValue-actual.p.value)})
     } else if(today>f.fundamentalPeriod)result.fundamentalStatus='awaiting-comparable-accounts'
     results.push(result)
   }
   const groups={}
   for(const r of results) {
     const key=`${r.company}/${r.method}/${r.years}/v${r.modelVersion}`
-    const g=groups[key]??={company:r.company,method:r.method,years:r.years,modelVersion:r.modelVersion,count:0,pending:0,missing:0,blocked:0,priceErrors:[],baselineErrors:[],fundamentalErrors:[],inside:0}
+    const g=groups[key]??={company:r.company,method:r.method,years:r.years,modelVersion:r.modelVersion,count:0,pending:0,missing:0,blocked:0,priceErrors:[],baselineErrors:[],fundamentalErrors:[],fundamentalObserved:0,inside:0}
     g.count++
     if(r.priceStatus==='evaluated'){g.priceErrors.push(r.absoluteError);g.baselineErrors.push(r.baselineAbsoluteError);g.inside+=Number(r.insideRange)}
     else if(['pending','waiting'].includes(r.priceStatus))g.pending++
     else if(r.priceStatus==='basis-unqualified')g.blocked++
     else g.missing++
-    if(r.fundamentalStatus==='evaluated')g.fundamentalErrors.push(Math.abs(r.fundamentalError))
+    if(r.fundamentalStatus==='evaluated'){g.fundamentalObserved++;if(Number.isFinite(r.fundamentalError))g.fundamentalErrors.push(Math.abs(r.fundamentalError))}
   }
   const mean=xs=>xs.length?xs.reduce((a,b)=>a+b,0)/xs.length:null
   const summary={version:1,updatedAt:today,startedAt:snapshots[0]?.snapshot.issuedAt??null,snapshots:snapshots.length,
     archiveUrl:'https://github.com/madmax91310/shinny-potato/tree/company-forecast-history',
-    convention:'Prévisions automatiques uniquement. Cours : première clôture observée dans les 7 jours suivant l’échéance, délai explicite, hors dividendes. Erreur absolue = |prévision / constat − 1|. Référence naïve : cours inchangé. Fondamentaux : même exercice et définition. Comparaison suspendue si division d’actions ou couverture de contrôle insuffisante. Les prévisions quotidiennes se recouvrent et ne sont pas des observations indépendantes.',
-    groups:Object.values(groups).map(g=>({company:g.company,method:g.method,years:g.years,modelVersion:g.modelVersion,count:g.count,pending:g.pending,missing:g.missing,blocked:g.blocked,evaluated:g.priceErrors.length,mae:mean(g.priceErrors),baselineMae:mean(g.baselineErrors),rangeCoverage:g.priceErrors.length?g.inside/g.priceErrors.length:null,fundamentalEvaluated:g.fundamentalErrors.length,fundamentalMae:mean(g.fundamentalErrors)}))}
+    convention:'Prévisions automatiques uniquement. Cours : première clôture observée dans les 7 jours suivant l’échéance, délai explicite, hors dividendes. Erreur absolue = |prévision / constat − 1|. Référence naïve : cours inchangé. Fondamentaux : même exercice et définition, pertes incluses ; erreur relative = (prévision − constat) / |constat|. Un constat nul reste enregistré avec une erreur absolue en unités, sans pourcentage. Comparaison suspendue si division d’actions ou couverture de contrôle insuffisante. Les prévisions quotidiennes se recouvrent et ne sont pas des observations indépendantes.',
+    groups:Object.values(groups).map(g=>({company:g.company,method:g.method,years:g.years,modelVersion:g.modelVersion,count:g.count,pending:g.pending,missing:g.missing,blocked:g.blocked,evaluated:g.priceErrors.length,mae:mean(g.priceErrors),baselineMae:mean(g.baselineErrors),rangeCoverage:g.priceErrors.length?g.inside/g.priceErrors.length:null,fundamentalEvaluated:g.fundamentalObserved,fundamentalRelativeCount:g.fundamentalErrors.length,fundamentalMae:mean(g.fundamentalErrors)}))}
   return {summary,results}
 }
 if(process.argv[1]&&resolve(process.argv[1])===fileURLToPath(import.meta.url)) {

@@ -64,6 +64,16 @@ try {
   }
   const wrong=structuredClone(observed);wrong.records[0].currency='EUR'
   assert.equal(evaluate([{hash:'initial',snapshot:original},{hash:'wrong',snapshot:wrong}],'2026-01-10').results[0].priceStatus,'missing-observation')
+  for(const value of [-8,0]) {
+    const loss=structuredClone(accounting);loss.records[0].actuals.earnings[0].value=value
+    const outcome=evaluate([{hash:'initial',snapshot:original},{hash:'loss',snapshot:loss}],'2027-02-02')
+    assert.equal(outcome.results[0].fundamentalStatus,'evaluated')
+    assert.equal(outcome.results[0].actualFundamental,value)
+    assert.equal(outcome.results[0].fundamentalError,value===0?null:2.25)
+    assert.equal(outcome.results[0].fundamentalAbsoluteError,value===0?10:18)
+    assert.equal(outcome.summary.groups[0].fundamentalEvaluated,1)
+    assert.equal(outcome.summary.groups[0].fundamentalRelativeCount,value===0?0:1)
+  }
   const cashOrigin=structuredClone(original),cashActual=structuredClone(accounting)
   Object.assign(cashOrigin.records[0].forecasts[0],{method:'cash',accountingDefinition:'operating-minus-capex'})
   cashActual.records[0].actuals={earnings:[],cash:[{end:'2027-01-02',value:8,asOf:'2027-01-31',sourceUrl:'https://example.com/cash',definition:'operating-minus-capex'}]}
@@ -85,4 +95,18 @@ const live=snapshot(COMPANIES,new Date(),'test-revision')
 assert.equal(live.records.length,COMPANIES.length)
 assert(live.records.every(r=>r.forecasts.length+r.excluded.length===6))
 assert(live.records.flatMap(r=>r.forecasts).length>0)
+const distressed=structuredClone(COMPANIES.find(c=>c.id==='apple'))
+const last=distressed.decision.years.at(-1)
+last.freeCashFlow=-100;last.operatingCashFlow=last.capitalExpenditure-100
+distressed.annual.freeCashFlow=-100;distressed.annual.operatingCashFlow=last.operatingCashFlow
+const observedEPS=distressed.targetForecast.points.find(p=>p.kind==='observed-adjusted');observedEPS.eps=-1
+const distressedRecord=snapshot([distressed],new Date(),'loss-fixture').records[0]
+assert(distressedRecord.actuals.cash.some(p=>p.value<0))
+assert(distressedRecord.actuals.earnings.some(p=>p.value<0))
+assert.equal(distressedRecord.forecasts.length,0)
+const oldAccounts=structuredClone(COMPANIES.find(c=>c.id==='apple'))
+oldAccounts.accountsObservedAt='2020-01-01'
+const oldRecord=snapshot([oldAccounts],new Date(),'stale-accounts').records[0]
+assert.equal(oldRecord.forecasts.length,0)
+assert.equal(oldRecord.quote.price,oldAccounts.quote.price)
 console.log('Company scenarios, FCF drivers and immutable forecast ledger: independent numerical and lifecycle checks passed')

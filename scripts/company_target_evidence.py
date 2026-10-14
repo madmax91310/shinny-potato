@@ -9,10 +9,10 @@ from bs4 import BeautifulSoup
 from company_publications import get
 
 
-def number(text):
+def number(text, positive=True):
     try:
-        value = float(text.replace(',', ''))
-        return value if math.isfinite(value) and value > 0 else None
+        value = float(text.replace(',', '').replace('−', '-'))
+        return value if math.isfinite(value) and (not positive or value > 0) else None
     except ValueError:
         return None
 
@@ -42,26 +42,27 @@ def parse_forecast(raw, profile, today):
     dates = [dt.datetime.strptime(x,'%b %d, %Y').date().isoformat() for x in rows['Period Ending']]
     if dates != sorted(set(dates)) or any(len(rows[k]) != len(dates) for k in ('EPS','Forward PE')):
         raise ValueError('Misaligned forecast dates')
-    eps = [number(v) for v in rows['EPS']]
+    eps = [number(v, positive=False) for v in rows['EPS']]
     visible = [i for i,v in enumerate(eps) if v is not None]
     if len(visible)<2: raise ValueError('Two dated comparable EPS required')
     current = visible[-1]
     def card(label):
         found = soup.find_all(string=lambda s:s and s.strip()==label)
         if len(found)!=1: raise ValueError('Missing/ambiguous EPS card')
-        content = found[0].parent.parent.get_text(' ',strip=True)
-        match = re.search(re.escape(label)+r'\s+([\d.,]+)\s+from\s+([\d.,]+)',content)
+        content = found[0].parent.parent.get_text(' ',strip=True).replace('−', '-')
+        match = re.search(re.escape(label)+r'\s+([+-]?[\d.,]+)\s+from\s+([+-]?[\d.,]+)',content)
         if not match: raise ValueError('Unrecognised EPS card')
-        return number(match[1]),number(match[2])
+        return number(match[1], positive=False),number(match[2], positive=False)
     this,previous = card('EPS This Year'); following,base = card('EPS Next Year')
-    if this != eps[current] or previous != eps[current-1] or base != this or not following or current+1>=len(dates):
+    if this != eps[current] or previous != eps[current-1] or base != this or following is None or current+1>=len(dates):
         raise ValueError('Annual table/cards do not reconcile')
     if not 0 < (dt.date.fromisoformat(dates[current+1])-today).days <= 800:
         raise ValueError('Next fiscal estimate is not a future annual period')
     points=[{'end':dates[i],'eps':eps[i],'kind':'observed-adjusted' if i<current else 'estimate'} for i in visible]
     points.append({'end':dates[current+1],'eps':following,'kind':'estimate'})
     refs=[{'end':dates[i],'multiple':number(v)} for i,v in enumerate(rows['Forward PE']) if i<current and number(v)]
-    if len(refs)<3: raise ValueError('Three historical forward PE references required')
+    # Keep observed losses/zero EPS even when too few positive multiples remain.
+    # The presentation model independently requires three comparable multiples.
     return {'version':1,'symbol':profile['symbol'],'currency':'USD','basis':'adjusted-non-gaap',
         'multipleBasis':'forward-adjusted-eps','sourceUrl':f"https://stockanalysis.com/stocks/{profile['symbol'].lower()}/forecast/",
         'sourceName':'Stock Analysis / S&P Global','observedAt':today.isoformat(),'asOf':asof.isoformat(),
