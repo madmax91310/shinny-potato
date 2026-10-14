@@ -31,6 +31,13 @@ try {
   await page.getByRole('button', {name:'🔄 Générer', exact:true}).click()
   await page.locator('#niveau-actuel').fill('15000')
   assert.ok(await page.getByText('S&P 500 : Total Return', {exact:false}).isVisible(), 'Index variant missing in input')
+  // Stream each export separately: a growing catalogue must not build a
+  // single >512 MB Playwright message containing every PNG.
+  await mkdir('test-artifacts/anniversary',{recursive:true})
+  await page.exposeFunction('saveAnniversaryExport',async record=>{
+    await writeFile(`test-artifacts/anniversary/${record.name}.png`,Buffer.from(record.png.split(',')[1],'base64'))
+    await writeFile(`test-artifacts/anniversary/${record.name}.txt`,record.labels.join('\n'))
+  })
   const records=await page.evaluate(async()=>{
     const { renderAnniversaryImage }=await import('/shinny-potato/src/pages/tweet-midi/anniversaryImage.js')
     const { ANNIVERSARY_ART }=await import('/shinny-potato/src/pages/tweet-midi/anniversaryArt.js')
@@ -63,7 +70,8 @@ try {
       if(!labels.some(v=>v.endsWith(ANNIVERSARY_ART[asset.id].unit || (asset.currency==='USD'?'$':'€'))))throw new Error(`${asset.id}: wrong unit`)
       if(asset.id==='or'&&!labels.some(v=>v.includes('CC BY 4.0')))throw new Error('Gold attribution lost')
       if(canvas.width!==1600||canvas.height!==2000)throw new Error('Incorrect single aspect ratio')
-      records.push({name:asset.id,png:canvas.toDataURL(),labels:[...labels]})
+      await window.saveAnniversaryExport({name:asset.id,png:canvas.toDataURL(),labels:[...labels]})
+      records.push({name:asset.id})
     }
     for(const [a,b] of [['apple','or'],['bitcoin','ethereum'],['asml','berkshire'],['nasdaq100','soxx'],['sp500','cac40'],['msciWorld','stoxx600'],['nvidia','amazon'],['google','meta'],['lvmh','airliquide'],['netflix','visa'],['cocacola','nvidia'],['costco','mcdonalds'],['intel','paypal'],['schneider','hermes'],['loreal','nestle'],['sap','msciEurope'],['msciUsa','msciIndia'],['russell2000','msciEmergingExChina'],['msciWorldMomentum','msciWorldQuality'],['msciWorldValue','ftseAllWorld']]){
       const yearsBack=Math.min(3,Math.max(...getValidYearsBackOptions(a,TODAY)),Math.max(...getValidYearsBackOptions(b,TODAY))), pastA=getHistoricalPrice(a,ymForYearsBack(yearsBack,TODAY)),pastB=getHistoricalPrice(b,ymForYearsBack(yearsBack,TODAY))
@@ -72,7 +80,8 @@ try {
       if(!labels.includes('+50,0 %')||!labels.includes('−25,0 %'))throw new Error('Comparative inputs mixed up')
       if(labels.filter(v=>v==='ÉPARGNANT LIBRE').length!==1||labels.filter(v=>v===`EN ${yearsBack} ${yearsBack===1?'AN':'ANS'}`).length!==1)throw new Error('Comparative repetitions')
       if(canvas.width!==2400||canvas.height!==1500)throw new Error('Incorrect comparative aspect ratio')
-      records.push({name:`${a}-${b}`,png:canvas.toDataURL(),labels:[...labels]})
+      await window.saveAnniversaryExport({name:`${a}-${b}`,png:canvas.toDataURL(),labels:[...labels]})
+      records.push({name:`${a}-${b}`})
     }
     for(const current of ['no', '0', '-1', 'Infinity']){
       let rejected=false;try{await renderAnniversaryImage({mode:'simple',assetId:'apple',yearsBack:3},current)}catch{rejected=true}
@@ -84,11 +93,6 @@ try {
     return records
   })
   assert.ok(!requests.some(url=>!url.startsWith(`http://127.0.0.1:${port}`)), 'External request during export')
-  await mkdir('test-artifacts/anniversary',{recursive:true})
-  for(const record of records){
-    await writeFile(`test-artifacts/anniversary/${record.name}.png`,Buffer.from(record.png.split(',')[1],'base64'))
-    await writeFile(`test-artifacts/anniversary/${record.name}.txt`,record.labels.join('\n'))
-  }
   // A failed visual load must not silently export a wrong generic logo, and retry works.
   const retry=await browser.newPage();await retry.goto(base)
   await retry.route('**/asset-art/apple.svg', route=>route.abort())
