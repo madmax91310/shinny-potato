@@ -17,7 +17,7 @@ GitHub Actions : l’accès local seul n’est pas suffisant (ancien blocage HTT
 
 Le contrôle intégral des divisions d’actions, les quatre FCF positifs consécutifs,
 les sources de multiples historiques et les contrôles de fraîcheur sont conservés.
-La migration de version des composantes force une nouvelle lecture des documents.
+Une migration ciblée force la relecture des composantes des deux adaptateurs étendus.
 Le workflow quotidien existant renouvelle les données et déploie les observations
 validées. Une erreur garde les anciennes dates et déclenche le signalement existant.
 
@@ -26,9 +26,13 @@ d’actions disponibles, la qualification de leur base, la dernière période
 estimée par la source et le nombre de multiples historiques. Ce diagnostic
 n’est pas une mesure de précision prédictive.
 
-Après collecte locale officielle : 27 entreprises actives, 11 modèles FCF et
-23 modèles bénéfices (contre 26/9/22). Ce comptage dépend de la validation sur
-runner et, ensuite, de la disponibilité et de la fraîcheur des données.
+La collecte locale qualifie les deux adaptateurs, mais le runner refuse encore
+les comptes Waste Management (HTTP 403, run 38614183457). Cette entreprise reste
+candidate et exclue des collectes de production. Aucune activation sur la seule
+base des données locales. Costco réussit sur runner ; une étape de PR relit
+explicitement toutes ses composantes officielles sans réutiliser leur cache.
+Couverture active après extension Costco : 26 entreprises, 10 modèles FCF et
+22 modèles bénéfices (contre 26/9/22), sous réserve de fraîcheur quotidienne.
 Les extraits de test incluent les URL exactes ; aucun chiffre de production
 n’est saisi dans les adaptateurs. Les limites des autres entreprises restent
 explicites : absence de composantes, de source qualifiée ou base par action
