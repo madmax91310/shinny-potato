@@ -103,6 +103,7 @@ jobs:
       - run: node scripts/test-publication-reliability.mjs
       - run: node scripts/test-historical-publications.mjs
       - run: npm run stress-test:portfolios
+      - run: node scripts/test-observation-freshness.mjs
       - run: node scripts/test-automation-overview.mjs
       - run: node scripts/test-format-loading.mjs
       - run: node scripts/test-tool-projections.mjs

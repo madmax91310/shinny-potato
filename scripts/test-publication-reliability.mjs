@@ -62,3 +62,12 @@ assert.equal(reviewPolicy({ id: 'pedagogy:new-unreviewed' }).kind, 'verification
 assert.equal(countAvailable([personal], {}), 0, 'Completed cooldown does not validate content')
 assert.equal(countAvailable([general], {}), 1)
 console.log('OK: verified currency coverage, generator/duel EUR parity, missing FX, proxy disclosure, stale saved results, independent content freshness, date validation and edited-review invalidation.')
+
+assert.equal(annualizedReturn({ 2020: 10, 2022: 10 }), null, 'A missing year cannot shorten the annualization denominator')
+assert.equal(annualizedReturn({ 2020: -110, 2021: -110 }), null, 'Two impossible losses cannot manufacture positive growth')
+assert.equal(annualizedReturn({ 2020: -100, 2021: 10 }), -100, 'Total loss remains a total loss')
+assert.equal(annualizedReturn({ [new Date().getUTCFullYear()]: 10 }), null, 'An unfinished year cannot be annualized')
+for (const selection of [[], [{ ...eur, pct: 50 }], [{ ...eur, pct: -20 }, { ...eur, pct: 120 }], [{ ...eur, pct: NaN }]]) {
+  assert(Object.values(computeYearlyPerf(selection)).every(value => value === null), 'Invalid allocation cannot produce publishable returns')
+}
+assert.equal(assetReturn({ returnCurrency: 'EUR', calendarReturns: { 2020: -101 } }, 2020), null)

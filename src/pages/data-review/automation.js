@@ -10,18 +10,19 @@ export function automationOverview(status, now = new Date()) {
     const failures = Object.keys(value.dataFailures ?? {}).length
     const maxAge = registry[id]?.maxAgeHours
     const completed = Date.parse(value.completedAt)
-    const overdue = Number.isFinite(completed) && maxAge && now.getTime() - completed > maxAge * 3600000
+    const validCompleted = Number.isFinite(completed) && completed <= now.getTime()
+    const overdue = validCompleted && maxAge && now.getTime() - completed > maxAge * 3600000
     const state = value.status === 'failure' || failures ? 'failure'
-      : overdue ? 'overdue' : value.collectionStatus === 'success' ? 'success' : 'unknown'
+      : overdue ? 'overdue' : validCompleted && value.collectionStatus === 'success' ? 'success' : 'unknown'
     return { ...value, id, state, failureCount: failures, maxAgeHours: maxAge }
   }).sort((a, b) => a.name.localeCompare(b.name, 'fr'))
 }
 
 export function automationFailures(status) {
   if (status?.schemaVersion !== 1 || !status.workflows || typeof status.workflows !== 'object') throw new Error('Statut des automatisations indisponible')
-  return Object.entries(status.workflows).filter(([, value]) => value.status === 'failure').flatMap(([id, value]) => {
+  return automationOverview(status).filter(value => value.state === 'failure').map(value => [value.id, value]).flatMap(([id, value]) => {
     const failures = Object.entries(value.dataFailures ?? {})
-    return failures.length ? failures.map(([dataId, data]) => ({ id: `${id}:${dataId}`, ...value, ...data })) : [{ id, ...value }]
+    return failures.length ? failures.map(([dataId, data]) => ({ ...value, ...data, id: `${id}:${dataId}` })) : [{ id, ...value }]
   })
     .sort((a, b) => a.name.localeCompare(b.name, 'fr'))
 }

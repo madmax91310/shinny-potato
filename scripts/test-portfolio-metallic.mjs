@@ -12,7 +12,7 @@ try {
   const result = await page.evaluate(async () => {
     const { ASSETS, YEARS } = await import('/shinny-potato/src/data/portfolio-assets.js')
     const { buildManualPortfolio, generatePortfolio } = await import('/shinny-potato/src/pages/portfolio-generator/engine.js')
-    const { computeYearlyPerf } = await import('/shinny-potato/src/pages/portfolio-generator/performance.js')
+    const { computeYearlyPerf, returnCurrency } = await import('/shinny-potato/src/pages/portfolio-generator/performance.js')
     const { renderPortfolioImage } = await import('/shinny-potato/src/pages/portfolio-generator/canvasImage.js')
     const { loadPortfolioBackground } = await import('/shinny-potato/src/pages/portfolio-generator/background.js')
     const background = await loadPortfolioBackground()
@@ -36,6 +36,8 @@ try {
       const perf = computeYearlyPerf(portfolio.selection)
       const canvas = renderPortfolioImage(portfolio, background)
       const words = labels.join(' ')
+      if (!words.includes('Performances annuelles simulées') || !words.includes('hors courtage et fiscalité')) throw new Error('Missing simulation convention')
+      if (words.includes('change BCE') !== portfolio.selection.some(asset => returnCurrency(asset) === 'USD')) throw new Error('Wrong currency convention')
       if (/devises non converties|ÉQUILIBRÉ|EXEMPLE DE PORTEFEUILLE|Le Généraliste|…/i.test(words)) throw new Error(`Forbidden heading/footer ${name}`)
       if (labels.filter(label => label === 'Épargnant Libre').length !== 1) throw new Error('Signature')
       for (const asset of portfolio.selection.filter(a => a.pct > 0)) {
