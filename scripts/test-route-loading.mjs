@@ -63,6 +63,21 @@ try {
   await slow.getByText('Utiliser les frais d’un ETF', { exact: true }).waitFor()
   await slow.close()
 
+  // Rejected chunks and render exceptions must leave an actionable fallback.
+  for (const failure of ['network', 'render']) {
+    const broken = await browser.newPage()
+    await broken.route(`**/${feeChunk}`, route => failure === 'network'
+      ? route.abort('failed')
+      : route.fulfill({contentType:'application/javascript', body:'export default function Broken(){throw new Error("render fixture")}'}))
+    await broken.goto(`${base}/impact-frais`, {waitUntil:'networkidle'})
+    await broken.getByRole('alert').filter({hasText:'L’outil n’a pas pu s’afficher'}).waitFor()
+    assert(await broken.locator('.workspace-sidebar nav').getByRole('link',{name:'Accueil',exact:true}).isVisible())
+    await broken.unroute(`**/${feeChunk}`)
+    await broken.getByRole('button',{name:'Réessayer',exact:true}).click()
+    await broken.getByText('Utiliser les frais d’un ETF',{exact:true}).waitFor()
+    await broken.close()
+  }
+
   // Cold lightweight formats must not fetch issuer holdings or monthly histories,
   // including the asynchronous renderer used by the preview.
   for (const path of ['/fiche-lexique', '/pouvoir-achat', '/bibliotheque-donnees']) {

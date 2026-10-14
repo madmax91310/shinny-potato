@@ -1,5 +1,5 @@
 import { notifyPublication, copyPublicationText } from '../../design-system/publicationActions.js'
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { usePresentationDraft } from '../presentation-shared/drafts.jsx'
 import { renderPresentationImage } from '../presentation-shared/imageExport.js'
 import { downloadImage } from '../../design-system/downloadImage.js'
@@ -7,7 +7,7 @@ import PageHeader from '../../design-system/PageHeader'
 import ChoicePicker from '../../design-system/ChoicePicker.jsx'
 import ToolWorkspace from '../../design-system/ToolWorkspace'
 import Button from '../../design-system/Button'
-import { INSURANCE } from '../../data/insurance.js'
+import { INSURANCE, ARCHIVED_INSURANCE } from '../../data/insurance.js'
 import { dateLabel, format, annualPublicationNote } from '../scpi-presentation/lib.js'
 import { buildTweet, fundReturn, fundGuarantee, fundAllocation, fundOperations, fundCeiling } from './lib.js'
 import '../scpi-presentation/style.css'
@@ -15,8 +15,9 @@ import '../scpi-presentation/style.css'
 export default function App({ embedded = false }) {
   const [id, setId, draft, setDraft] = usePresentationDraft('insurance', INSURANCE[0]?.id)
   const [message, setMessage] = useState('')
-  const record = INSURANCE.find(row => row.id === id)
-  const text = draft ?? (record ? buildTweet(record) : '')
+  const record = INSURANCE.find(row => row.id === id) ?? INSURANCE[0]
+  useEffect(() => { if (record && record.id !== id) setId(record.id) }, [record, id, setId])
+  const text = (record?.id === id ? draft : null) ?? (record ? buildTweet(record) : '')
   const [exporting, setExporting] = useState(false)
   const renderImage = useCallback(() => renderPresentationImage(record, 'insurance'), [record])
   async function exportImage() {
@@ -39,10 +40,11 @@ export default function App({ embedded = false }) {
       <span>{message}</span>
     </>}>
       <section className="tool-settings">
-        <ChoicePicker aria-label="Choisir une assurance-vie" value={id} onChange={event => { setId(event.target.value); setMessage('') }}>
+        <ChoicePicker aria-label="Choisir une assurance-vie" value={record.id} onChange={event => { setId(event.target.value); setMessage('') }}>
           {INSURANCE.map(row => <option key={row.id} value={row.id}>{row.name}</option>)}
         </ChoicePicker>
         <div className="scpi-evidence">
+          {ARCHIVED_INSURANCE.map(row => <p key={row.id} role="status">{row.name} : fiche archivée. La page officielle présente désormais {row.availability.successorName}. Ses nouvelles conditions ne sont pas attribuées à l’ancien contrat. <a href={row.availability.sourceUrl} target="_blank" rel="noreferrer">Voir le contrat présenté par Linxea</a></p>)}
           <h2>Les données utilisées</h2>
           <p>Sources officielles vérifiées le {dateLabel(record.checkedAt)}. Les frais et conditions sont ceux observés sur ces pages ; leur date d’effet n’y est pas toujours précisée.</p>
           <p><a href={record.sourceUrl} target="_blank" rel="noreferrer">Présentation officielle du contrat</a></p>

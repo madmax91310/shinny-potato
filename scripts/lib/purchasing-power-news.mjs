@@ -148,7 +148,7 @@ async function fetchFeed(source, request) {
   }
   throw lastError
 }
-export async function collectPurchasingNews(now = new Date(), request = fetch, previous = null) {
+export async function collectPurchasingNews(now = new Date(), request = fetch, _previous = null) {
   const results = await Promise.all(PURCHASING_SOURCES.map(async source => {
     try {
       const content = await fetchFeed(source, request)

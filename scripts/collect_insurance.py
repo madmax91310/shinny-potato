@@ -29,11 +29,38 @@ def plain(html):
     return re.sub(r'\s+', ' ', BeautifulSoup(html, 'html.parser').get_text(' ', strip=True))
 
 
+
+class ContractSuperseded(ValueError):
+    def __init__(self, evidence):
+        super().__init__('Contract explicitly superseded: ' + evidence['successorName'])
+        self.evidence = evidence
+
+
+def check_contract_identity(soup, id_, today):
+    config = PRODUCTS[id_]
+    heading = soup.select_one('h1')
+    actual = heading.get_text(' ', strip=True) if heading else ''
+    if actual == config['name']:
+        return
+    # Avenir 2+ is explicitly a successor, NOT a spelling variant of Avenir 2.
+    # The previous figures remain archived and are never refreshed from 2+.
+    canonical = soup.select_one('link[rel="canonical"]')
+    hero = heading.find_parent('section') if heading else None
+    if (id_ == 'linxea-avenir-2' and actual == 'Linxea Avenir 2+'
+            and canonical and canonical.get('href') == BASE + id_ + '/'
+            and hero and 'Successeur de Linxea Avenir 2,' in hero.get_text(' ', strip=True)
+            and 'géré par Suravenir' in plain(str(soup))):
+        raise ContractSuperseded({'status': 'superseded', 'successorName': actual,
+            'checkedAt': today.isoformat(), 'sourceUrl': BASE + id_ + '/',
+            'statement': 'Linxea Avenir 2+ — Successeur de Linxea Avenir 2',
+            'sha256': hashlib.sha256(str(soup).encode()).hexdigest()})
+    raise ValueError('Wrong contract identity')
+
+
 def parse_contract(html, id_, today):
     config = PRODUCTS[id_]
     soup = BeautifulSoup(html, 'html.parser')
-    if soup.select_one('h1').get_text(' ', strip=True) != config['name']:
-        raise ValueError('Wrong contract identity')
+    check_contract_identity(soup, id_, today)
     text = plain(html)
     if not any(config['insurer'].lower() in str(tag).lower() for tag in soup.select('img')):
         raise ValueError('Missing insurer identity')
@@ -262,9 +289,9 @@ def qualify_vie_guarantees(record, notice, url):
     block = required(r'Dispositions essentielles du contrat(.*?)Sommaire', text)[1]
     required(r'Linxea Vie est un contrat.*?Generali Vie', text)
     required(r'Pour la partie des droits exprimés en euros\s*:\s*le contrat comporte une garantie en capital qui est au moins égale aux sommes versées, nettes de frais', block)
-    fees = required(r'Frais de gestion sur le\(s\) fonds en euros\s*:(.*?)Frais de gestion sur le fonds croissance', block)[1]
+    fees = required(r'Frais de gestion sur le\(s\) (?:fonds|support\(s\)) en euros\s*:(.*?)Frais de gestion sur le fonds croissance', block)[1]
     for fund in record['euroFunds']:
-        match = required(r'([\d ,]+)\s*% maximum par an de la provision mathématique du contrat libellée en euros sur le fonds en euros ' + re.escape(fund['name']), fees)
+        match = required(r'([\d ,]+)\s*% maximum par an de la provision mathématique (?:du contrat|de l[’\']adhésion) libellée en euros sur le fonds en euros ' + re.escape(fund['name']), fees)
         management = number(match[1])
         if abs(management - fund['managementFeeMax']) > .001:
             raise ValueError('Notice and distributor fund fees disagree')
@@ -297,6 +324,13 @@ def refresh(previous, adapters, today):
                         if before.get(field) is not None and fund.get(field) is None:
                             raise ValueError('Qualified fund condition disappeared: ' + fund['name'] + ' / ' + field)
             records[id_]=record;observations.append({'id':id_,'name':record['name'],'status':'success'})
+        except ContractSuperseded as error:
+            if id_ not in records:
+                observations.append({'id':id_, 'status':'failure', 'reason':str(error)})
+                continue
+            records[id_] = {**records[id_], 'availability': error.evidence}
+            observations.append({'id':id_, 'name':records[id_]['name'], 'status':'superseded',
+                'reason':str(error), 'successorName':error.evidence['successorName']})
         except Exception as error:
             observations.append({'id':id_,'name':records.get(id_,{}).get('name',id_),'status':'failure','reason':str(error)[:250]})
     return {'records':list(records.values())},observations

@@ -18,7 +18,8 @@ def globalx_physical(text, share, now):
         reject('Wrong Global X share/income policy')
     key = block.split('Key Information\nAs of ', 1)[1].split('Distributions', 1)[0]
     stamp = document_date(key.splitlines()[0], now)
-    if 'Physical - Full Replication - Passively Managed Index Tracking' not in key:
+    style = only(re.findall(r'Management Style\n([^\n]+)', block), 'Global X management style')
+    if style != 'Physical - Full Replication - Passively Managed Index Tracking':
         reject('Global X replication changed')
     ter = float(only(re.findall(r'Total Expense Ratio\n([\d.]+)\n%', key), 'TER'))
     if not 0 <= ter <= 5: reject('Invalid Global X TER')

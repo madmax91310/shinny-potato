@@ -1,11 +1,10 @@
 import { TOPICS, FUND_GROUPS, DEFAULT_SCENARIO } from './data.js'
-import { AUTOMATED_ETF } from '../../data/automated-etf.js'
+import { PRACTICAL_ETF as AUTOMATED_ETF, PRACTICAL_INDEX_FACTS } from '../../data/practical-source-data.js'
 import { INSTRUMENT_FACTS_BY_ISIN } from '../../data/instrument-facts.js'
 import { INSTRUMENT_REFERENCE_EVIDENCE } from '../../data/instrument-reference-evidence.js'
 import { getInstrumentName, getInstrumentPeaStatus } from '../../data/instruments.js'
 import { formatEtfTer, ETF_TER_EVIDENCE } from '../../data/etf-ter.js'
 import { getPreferredInstrumentListing } from '../../data/instrument-listings.js'
-import { getCurrentIndexFacts } from '../../data/index-facts.js'
 import { REGULATORY as R, REGULATORY_OBSERVATIONS } from '../../data/regulatory-data.js'
 import { INSURANCE } from '../../data/insurance.js'
 import { currentSavingsObservation } from '../../data/economic-data.js'
@@ -66,7 +65,7 @@ function fundTable(topic, selected) {
  return {columns,rows,funds:productFunds,sources:evidence,notes:[performanceNote,...(['europe','em'].includes(topic.fundGroup)?['Les indices diffèrent : comparer les expositions avant de comparer les rendements.']:[]),...(!performanceNote?['Pas d’année complète commune suffisamment documentée : aucune performance extrapolée.']:[])].filter(Boolean)}
 }
 function indexTable(topic) {
- const facts=topic.indices.map(id=>getCurrentIndexFacts(id))
+ const facts=topic.indices.map(id=>PRACTICAL_INDEX_FACTS[id])
  if(facts.some(f=>!f)) throw new Error('Composition d’indice indisponible.')
  const rows=[['Périmètre',...facts.map(f=>plain(f.markets ?? f.index))],['Titres',...facts.map(f=>number(f.constituents,0))],['Première ligne',...facts.map(f=>f.holdings?.length?`${plain(f.holdings[0][0])}\n${pct(f.holdings[0][1])}`:'Non publiée')],['Photographie',...facts.map(f=>date(f.asOf))]]
  return {columns:facts.map(f=>f.index),rows,sources:facts.map(f=>source(f.source?.label ?? f.index,f.source?.url,f.source?.checkedAt,f.asOf)).filter(s=>s.url),notes:['Compositions d’indices ; les photographies peuvent avoir des dates différentes.']}

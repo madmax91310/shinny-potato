@@ -1,3 +1,5 @@
+import { PARTIAL_PUBLICATION_SCOPE } from '../src/pages/broker-comparator/publicationScope.js'
+import { brokerShortCopy } from '../src/pages/broker-comparator/shortCopy.js'
 import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
 import { BROKERS, buildTweet } from '../src/pages/broker-comparator/data.js'
@@ -153,3 +155,16 @@ const counts = Object.values(BROKER_EVIDENCE).flatMap(fields => Object.values(fi
   return result
 }, {})
 console.log(`État des ${BROKERS.length * EVIDENCE_FIELDS.length} cellules : ${JSON.stringify(counts)} ; réserves encore ouvertes : ${reservations.filter(([b, f]) => BROKER_EVIDENCE[b][f].review.outcome === 'unresolved').length}.`)
+
+for (const [id, fields] of Object.entries(BROKER_EVIDENCE)) for (const [field, evidence] of Object.entries(fields)) {
+  if (evidence.status === 'partiel') assert(PARTIAL_PUBLICATION_SCOPE[id]?.[field]?.excluded, `${id}.${field}: missing publication scope`)
+}
+const tr = brokerShortCopy('tr'), ibkr = brokerShortCopy('ibkr'), ca = brokerShortCopy('caidf')
+assert(!tr.sortant && !/rembours|gratuit|0 €/.test(tr.entrant))
+assert(!/\d/.test(tr.change))
+assert(ibkr.change.includes('PEA : conversion automatique'))
+assert(!/\d/.test(ibkr.change.split('Compte général :')[0]))
+assert(ca.change.startsWith('CTO :') && !/\d|PEA/.test(ca.change))
+assert.equal(ca.cash, '❌ Sur PEA.')
+assert(!/rembours|gratuit|0 €/.test(ca.entrant))
+console.log('Six partial fields: publication scopes explicit; unsupported PEA/CTO prices excluded.')

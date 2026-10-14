@@ -1,9 +1,11 @@
 import assert from 'node:assert/strict'
 import { HOME_TOOLS, WEEKLY_ORDER } from '../src/tools.js'
-import { INSURANCE } from '../src/data/insurance.js'
+import { INSURANCE, ARCHIVED_INSURANCE } from '../src/data/insurance.js'
 import { buildTweet } from '../src/pages/insurance-presentation/lib.js'
 import { searchData } from '../src/data/catalog.js'
-assert.equal(INSURANCE.length, 6)
+assert.equal(INSURANCE.length, 5)
+assert.equal(ARCHIVED_INSURANCE.length, 1)
+assert(!INSURANCE.some(r => r.id === 'linxea-avenir-2'))
 assert(HOME_TOOLS.some(tool => tool.to === '/presentations'))
 assert(WEEKLY_ORDER.includes('/presentations'))
 for (const record of INSURANCE) {
@@ -23,7 +25,7 @@ for (const record of INSURANCE) {
   assert(updated.includes('0,77 %/an') && updated.includes('3,88 %') && updated.includes('Garantie annuelle : 96 %') && updated.includes('Jusqu’à 80 %'))
 }
 const spirit = buildTweet(INSURANCE.find(row => row.id === 'linxea-spirit-2'))
-const avenir = buildTweet(INSURANCE.find(row => row.id === 'linxea-avenir-2'))
+const avenir = buildTweet(ARCHIVED_INSURANCE.find(row => row.id === 'linxea-avenir-2'))
 assert(spirit.includes('0,06 % par opération') && spirit.includes('3,26 %'))
 assert(avenir.includes('0,1 % par opération') && avenir.includes('Au moins 30 %'))
 console.log('Insurance: shared records, changed fees/returns/conditions and contract catalogue OK.')
@@ -75,5 +77,5 @@ assert.equal(fundCeiling(netissima,'2027-01-01'),'')
 const eurossima=vie.euroFunds.find(f=>f.name==='Eurossima')
 assert(fundCeiling(eurossima).match(/entre 0 et 50\s*000 €/))
 assert(fundCeiling(eurossima).includes('montant applicable à ton contrat reste à confirmer'))
-const rendement=INSURANCE.find(r=>r.id==='linxea-avenir-2').euroFunds.find(f=>f.name==='Suravenir Rendement 2')
+const rendement=ARCHIVED_INSURANCE.find(r=>r.id==='linxea-avenir-2').euroFunds.find(f=>f.name==='Suravenir Rendement 2')
 assert(fundCeiling(rendement).includes('au moins 30 % en unités de compte'))

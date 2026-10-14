@@ -132,3 +132,10 @@
   .workspace .publication-text-heading { flex-wrap: wrap; gap: 10px; }
   .workspace .publication-text-heading > div { flex: 1 1 100%; }
 }
+
+.workspace-error { padding: 2rem; border: 1px solid #d6d7ce; border-radius: 1rem; background: #fffef9; color: #243b32; }
+.workspace-error h1 { font-size: 1.4rem; }
+.workspace-error div { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; margin-top: 1rem; }
+.workspace-error button, .workspace-error a { min-height: 44px; padding: .75rem 1rem; border-radius: .5rem; }
+.workspace-error button { background: #24644e; color: white; border: 0; cursor: pointer; }
+.workspace-error a { color: #24644e; }

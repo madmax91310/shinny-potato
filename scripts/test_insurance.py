@@ -8,6 +8,27 @@ TODAY=dt.date(2026,10,10)
 ROOT=pathlib.Path(__file__).resolve().parents[1]
 
 class InsuranceTests(unittest.TestCase):
+    def test_successor_is_archived_without_refreshing_old_terms(self):
+        html = '<link rel="canonical" href="https://www.linxea.com/assurance-vie/linxea-avenir-2/"><section><h1>Linxea Avenir 2+</h1><p>Successeur de Linxea Avenir 2, le contrat idéal</p></section><p>géré par Suravenir</p>'
+        previous = self.previous()
+        old = next(r for r in previous['records'] if r['id'] == 'linxea-avenir-2')
+        result, observations = refresh(previous, {'linxea-avenir-2': lambda day: parse_contract(html, 'linxea-avenir-2', day)}, TODAY)
+        archived = next(r for r in result['records'] if r['id'] == old['id'])
+        self.assertEqual(observations[0]['status'], 'superseded')
+        self.assertEqual(archived['availability']['successorName'], 'Linxea Avenir 2+')
+        self.assertEqual({k:v for k,v in archived.items() if k != 'availability'}, {k:v for k,v in old.items() if k != 'availability'})
+        for bad in [html.replace('Successeur de Linxea Avenir 2,', ''), html.replace('Suravenir', 'Autre'), html.replace('Linxea Avenir 2+', 'Autre contrat')]:
+            retained, observations = refresh(previous, {'linxea-avenir-2': lambda day: parse_contract(bad, 'linxea-avenir-2', day)}, TODAY)
+            self.assertEqual(observations[0]['status'], 'failure')
+            self.assertEqual(retained, previous)
+
+    def test_vie_current_notice_wording(self):
+        notice = (ROOT/'scripts/fixtures/linxea-vie-essential.txt').read_text()
+        notice = notice.replace('fonds en euros', 'support(s) en euros', 1).replace('du contrat libellée', "de l'adhésion libellée")
+        record = copy.deepcopy(next(r for r in self.previous()['records'] if r['id']=='linxea-vie'))
+        qualify_vie_guarantees(record, notice, 'https://www.linxea.com/document/conditions-generales-linxea-vie/')
+        self.assertEqual([f['guarantee'] for f in record['euroFunds']], [99.25, 99.25])
+
     def test_conditional_ceiling_bounds_and_allocation_must_agree(self):
         record=copy.deepcopy(next(r for r in self.previous()['records'] if r['id']=='linxea-vie'))
         fund=next(f for f in record['euroFunds'] if f['name']=='Eurossima')

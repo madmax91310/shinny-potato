@@ -4,7 +4,6 @@ import { computeBrut, computePoste, fmtEUR as fmtPowerEUR } from '../src/pages/p
 import { PRICE_OBSERVATION } from '../src/data/purchasing-power.js';
 import { BROKERS as COMPARISON_BROKERS, DUELS as BROKER_DUELS, buildTweet as buildBrokerPost } from '../src/pages/broker-comparator/data.js';
 import { buildReview } from '../src/pages/data-review/lib.js';
-import { BROKER_EVIDENCE } from '../src/pages/broker-comparator/evidence.js';
 import { MARKET_HISTORY_REVIEW } from '../src/data/market-history-review.js';
 import { choose } from './card-selection.mjs'
 import { TOPICS as PRACTICAL_TOPICS } from '../src/data/practical-sheet-topics.js'

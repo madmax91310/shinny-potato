@@ -1,3 +1,4 @@
+import { PARTIAL_PUBLICATION_SCOPE } from './publicationScope.js'
 import { copyPublicationText } from '../../design-system/publicationActions.js'
 import ToolWorkspace from '../../design-system/ToolWorkspace'
 import { useState, useEffect, useRef, Fragment } from 'react'
@@ -93,9 +94,11 @@ function EvidencePanel({ selected }) {
             <ul>
               {EVIDENCE_FIELDS.map(([field, label]) => {
                 const entry = BROKER_EVIDENCE[id][field]
+                const scope = entry.status === 'partiel' ? PARTIAL_PUBLICATION_SCOPE[id]?.[field] : null
                 return (
                   <li key={field}>
                     <strong>{label} · {entry.status}</strong> — {entry.summary}
+                    {scope && <p><strong>Périmètre publiable :</strong> {scope.published} <strong>Informations exclues :</strong> {scope.excluded}</p>}
                     {entry.automatedEvidence?.method?.startsWith('Rapprochement') && <span> · {entry.automatedEvidence.method}.</span>}
                     {entry.refs?.map(({ document, page }) => {
                       const source = OFFICIAL_SOURCES[document] ?? SECONDARY_SOURCES[document]

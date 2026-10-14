@@ -1,7 +1,6 @@
 import { latestCommonYears, performanceYears, calendarMap, HISTORICAL_YEARS } from '../../data/annual-window.js'
 export { performanceYears }
-import { getInstrumentDuelSeries } from '../../data/instrument-returns.js'
-import { PORTFOLIO_RETURN_EVIDENCE } from '../../data/portfolio-return-evidence.js'
+import { PORTFOLIO_CURRENCIES } from '../../data/portfolio-currencies.js'
 import annualFx from '../../data/annual-fx.json' with { type: 'json' }
 import { getAsset } from '../../data/portfolio-assets.js'
 import { dataLabels } from './compact.js'
@@ -10,8 +9,7 @@ import { dataLabels } from './compact.js'
 const historicalCurrencies = { fonds_euros: 'EUR', scpi: 'EUR', msci_world_amundi_pea: 'EUR', smallcap_europe: 'EUR', qyld_ucits: 'USD', oblig_hy_amundi: 'EUR' }
 export function returnCurrency(asset) {
   const isin = asset.isin ?? getAsset(asset.id)?.isin
-  return historicalCurrencies[asset.id] ?? getInstrumentDuelSeries(isin)?.currency
-    ?? PORTFOLIO_RETURN_EVIDENCE[isin]?.currency ?? asset.returnCurrency ?? null
+  return historicalCurrencies[asset.id] ?? PORTFOLIO_CURRENCIES[isin] ?? asset.returnCurrency ?? null
 }
 export function assetReturn(asset, year) {
   const original = (asset.calendarReturns ?? calendarMap(asset.r))[year]

@@ -1,3 +1,4 @@
+import { projectLightRegistries } from './scripts/project-light-registries.mjs'
 import { projectToolData } from './scripts/project-tool-data.mjs'
 import { projectFeeCatalog } from './scripts/project-fee-catalog.mjs'
 import { defineConfig } from 'vite'
@@ -25,5 +26,5 @@ export default defineConfig({
       { name: 'official-index-history', test: /anniversary-index-history\.json$/ },
     ] } } },
   },
-  plugins: [toolData.plugin, projectFeeCatalog(), react(), tailwindcss(), issuerParts.plugin],
+  plugins: [projectLightRegistries(), toolData.plugin, projectFeeCatalog(), react(), tailwindcss(), issuerParts.plugin],
 })

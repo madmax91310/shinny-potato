@@ -56,7 +56,7 @@ if (refresh) {
   const verification = JSON.parse(stdout)
   errors.push(...verification.errors)
   result = advanceRadar(previous, observations, { sourceRevision: process.env.RADAR_SOURCE_SHA ?? '', errors, purchasingSources: purchasing.sources,
-    verifiedCompositions: verification.verified.map(({ canonicalBody, ...proof }) => proof),
+    verifiedCompositions: verification.verified.map(({ canonicalBody: _canonicalBody, ...proof }) => proof),
     compositionVerificationFailures: verification.errors.map(error => error.entity) })
   // Create only after successful extraction and validation.
   const parent = ref ? ref.object.sha : (await api('git/ref/heads/master')).object.sha
@@ -93,7 +93,7 @@ await writeFile(resolve(output, 'feed.json'), `${JSON.stringify(result.feed, nul
 
 // Data has already been committed. A notification failure leaves the daily
 // feed working and the unacknowledged events available for tomorrow's retry.
-const notification = await notifyRadar({ events: result.state.events, ledger, api, repo })
+const notification = await notifyRadar({ events: result.state.events, ledger, api, repo, evidenceRevision: nextCommit.sha })
 if (notification.sent || notification.recovered) {
   const blob = await api('git/blobs', 'POST', { content: `${JSON.stringify(notification.ledger, null, 2)}\n`, encoding: 'utf-8' })
   const receiptTree = await api('git/trees', 'POST', { base_tree: nextTree.sha, tree: [{ path: 'notifications.json', mode: '100644', type: 'blob', sha: blob.sha }] })
