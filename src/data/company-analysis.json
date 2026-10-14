@@ -571,9 +571,9 @@
       "estimates": {
         "forwardEPS": 9.62,
         "growthEPS5Y": 12.77,
-        "reportedForwardPE": 35.73,
-        "reportedPEG": 2.8,
-        "providerPrice": 343.6,
+        "reportedForwardPE": 35.58,
+        "reportedPEG": 2.79,
+        "providerPrice": 342.13,
         "observedAt": "2026-10-14",
         "sourceName": "Finviz",
         "sourceUrl": "https://finviz.com/quote.ashx?t=AAPL",
@@ -756,7 +756,7 @@
         "sourceName": "Stock Analysis / S&P Global",
         "observedAt": "2026-10-14",
         "asOf": "2026-10-12",
-        "sourceHash": "56c8fde2fda3b0fc24468e4e78b83f6fb6a9a47805be92bc2e5955f2ec9b1d2b",
+        "sourceHash": "526cf1173afcec22a6a56a02b634fe90deab510658dc9fa469b752709702ab08",
         "points": [
           {
             "end": "2025-09-27",
@@ -1519,9 +1519,9 @@
       "estimates": {
         "forwardEPS": 23.5,
         "growthEPS5Y": 18.49,
-        "reportedForwardPE": 22.81,
+        "reportedForwardPE": 22.77,
         "reportedPEG": 1.23,
-        "providerPrice": 536.1,
+        "providerPrice": 535.23,
         "observedAt": "2026-10-14",
         "sourceName": "Finviz",
         "sourceUrl": "https://finviz.com/quote.ashx?t=MSFT",
@@ -1749,7 +1749,7 @@
         "sourceName": "Stock Analysis / S&P Global",
         "observedAt": "2026-10-14",
         "asOf": "2026-10-13",
-        "sourceHash": "ba60ca892195f858472433bb290d1546bcb7842ed5f791fe5efac005c35bb268",
+        "sourceHash": "6aefe40a00646f31fc2543ab5f6beebd15308c4fa2a59062cc64ab672aa5f418",
         "points": [
           {
             "end": "2026-06-30",
@@ -2450,9 +2450,9 @@
       "estimates": {
         "forwardEPS": 15.77,
         "growthEPS5Y": 64.96,
-        "reportedForwardPE": 14.1,
+        "reportedForwardPE": 14.03,
         "reportedPEG": 0.22,
-        "providerPrice": 222.3,
+        "providerPrice": 221.26,
         "observedAt": "2026-10-14",
         "sourceName": "Finviz",
         "sourceUrl": "https://finviz.com/quote.ashx?t=NVDA",
@@ -2748,7 +2748,7 @@
         "sourceName": "Stock Analysis / S&P Global",
         "observedAt": "2026-10-14",
         "asOf": "2026-10-09",
-        "sourceHash": "436b34835bfc6f2274f74934adba0a4e8ac07c0179b26baed8b063486218b26f",
+        "sourceHash": "ead292dc1bda3b79dc15613a38f11a13f80df065bc1b042e589096266a7f3068",
         "points": [
           {
             "end": "2026-01-25",
@@ -3491,9 +3491,9 @@
       "estimates": {
         "forwardEPS": 15.25,
         "growthEPS5Y": 18.83,
-        "reportedForwardPE": 22.9,
-        "reportedPEG": 1.22,
-        "providerPrice": 349.21,
+        "reportedForwardPE": 22.84,
+        "reportedPEG": 1.21,
+        "providerPrice": 348.23,
         "observedAt": "2026-10-14",
         "sourceName": "Finviz",
         "sourceUrl": "https://finviz.com/quote.ashx?t=GOOGL",
@@ -3631,7 +3631,7 @@
         "sourceName": "Stock Analysis / S&P Global",
         "observedAt": "2026-10-14",
         "asOf": "2026-10-14",
-        "sourceHash": "f75fa44d2c601e9f45bdfa0d61d71e0bfce55cdeb4c3fafade3cc37bb18734bc",
+        "sourceHash": "43fa20abca9cd3ec2b1e8a41f824f56121cfcd6ff77aa5ad822263d7060f4167",
         "points": [
           {
             "end": "2025-12-31",
@@ -4330,9 +4330,9 @@
       "estimates": {
         "forwardEPS": 10.64,
         "growthEPS5Y": 25.47,
-        "reportedForwardPE": 23.87,
+        "reportedForwardPE": 23.85,
         "reportedPEG": 0.94,
-        "providerPrice": 254.07,
+        "providerPrice": 253.79,
         "observedAt": "2026-10-14",
         "sourceName": "Finviz",
         "sourceUrl": "https://finviz.com/quote.ashx?t=AMZN",
@@ -4502,7 +4502,7 @@
         "sourceName": "Stock Analysis / S&P Global",
         "observedAt": "2026-10-14",
         "asOf": "2026-10-12",
-        "sourceHash": "f79ee2dcddbdf0c408456c6bd931c15938059d214fc3654fe1ba375ea6e70ab1",
+        "sourceHash": "f0580e9c41c904a11328a2c2313bef5e9d9b511d850d07361466425ce610dfd5",
         "points": [
           {
             "end": "2025-12-31",
@@ -6563,9 +6563,9 @@
       "estimates": {
         "forwardEPS": 10.81,
         "growthEPS5Y": 11.79,
-        "reportedForwardPE": 8.23,
+        "reportedForwardPE": 8.25,
         "reportedPEG": 0.7,
-        "providerPrice": 88.99,
+        "providerPrice": 89.11,
         "observedAt": "2026-10-14",
         "sourceName": "Finviz",
         "sourceUrl": "https://finviz.com/quote.ashx?t=TTE",
@@ -7085,6 +7085,37 @@
         "componentVersion": 5,
         "accountsEndAtCollection": "2026-06-30"
       },
+      "targetForecast": {
+        "version": 1,
+        "symbol": "TTE",
+        "currency": "USD",
+        "basis": "adjusted-non-gaap",
+        "multipleBasis": "forward-adjusted-eps",
+        "sourceUrl": "https://stockanalysis.com/stocks/tte/forecast/",
+        "sourceName": "Stock Analysis / S&P Global",
+        "observedAt": "2026-10-14",
+        "asOf": "2026-10-08",
+        "sourceHash": "fae29ae0297fd16d1ef8097680d3c4541ed6f86cd4f77771dd3c4cfdaf50c4cd",
+        "points": [
+          {
+            "end": "2025-12-31",
+            "eps": 6.89,
+            "kind": "observed-adjusted"
+          },
+          {
+            "end": "2026-12-31",
+            "eps": 11.95,
+            "kind": "estimate"
+          },
+          {
+            "end": "2027-12-31",
+            "eps": 10.99,
+            "kind": "estimate"
+          }
+        ],
+        "historicalMultiples": [],
+        "definition": "EPS and Forward PE are based on non-GAAP adjusted numbers."
+      },
       "halfYear": null,
       "quarters": [
         {
@@ -7156,37 +7187,6 @@
         ],
         "definition": "Somme de quatre BPA trimestriels IFRS publiés, part du groupe",
         "observedAt": "2026-10-14"
-      },
-      "targetForecast": {
-        "version": 1,
-        "symbol": "TTE",
-        "currency": "USD",
-        "basis": "adjusted-non-gaap",
-        "multipleBasis": "forward-adjusted-eps",
-        "sourceUrl": "https://stockanalysis.com/stocks/tte/forecast/",
-        "sourceName": "Stock Analysis / S&P Global",
-        "observedAt": "2026-10-14",
-        "asOf": "2026-10-08",
-        "sourceHash": "280640d68888a8072b4f526d4e3a1d7b3b62349afe9b2dcc290df76b4028b642",
-        "points": [
-          {
-            "end": "2025-12-31",
-            "eps": 6.89,
-            "kind": "observed-adjusted"
-          },
-          {
-            "end": "2026-12-31",
-            "eps": 11.95,
-            "kind": "estimate"
-          },
-          {
-            "end": "2027-12-31",
-            "eps": 10.99,
-            "kind": "estimate"
-          }
-        ],
-        "historicalMultiples": [],
-        "definition": "EPS and Forward PE are based on non-GAAP adjusted numbers."
       }
     },
     "visa": {
@@ -7258,7 +7258,7 @@
         "growthEPS5Y": 14.17,
         "reportedForwardPE": 26.13,
         "reportedPEG": 1.84,
-        "providerPrice": 392.94,
+        "providerPrice": 392.92,
         "observedAt": "2026-10-14",
         "sourceName": "Finviz",
         "sourceUrl": "https://finviz.com/quote.ashx?t=V",
@@ -7760,7 +7760,7 @@
         "sourceName": "Stock Analysis / S&P Global",
         "observedAt": "2026-10-14",
         "asOf": "2026-10-14",
-        "sourceHash": "694a5e299818d9a9a6a309c944e4ced1419ec0fb55f06ea014ade804318a3c09",
+        "sourceHash": "530ae2e2476f017b7bbe68f6412584530bf996596346eea616a762935e81522d",
         "points": [
           {
             "end": "2025-09-30",
@@ -7925,9 +7925,9 @@
       "estimates": {
         "forwardEPS": 25.06,
         "growthEPS5Y": 9.73,
-        "reportedForwardPE": 38.98,
+        "reportedForwardPE": 38.99,
         "reportedPEG": 4.01,
-        "providerPrice": 976.67,
+        "providerPrice": 977.06,
         "observedAt": "2026-10-14",
         "sourceName": "Finviz",
         "sourceUrl": "https://finviz.com/quote.ashx?t=COST",
@@ -8429,7 +8429,7 @@
         "sourceName": "Stock Analysis / S&P Global",
         "observedAt": "2026-10-14",
         "asOf": "2026-10-14",
-        "sourceHash": "5eb2e7bca3f5d5a49874b174c82a5860cf664205364d4cd3f21a4977ff214f6b",
+        "sourceHash": "962e39748cb9ff2cc3a469200d7c8099cd9806bff953065e00b99fa0bede036d",
         "points": [
           {
             "end": "2026-08-30",
@@ -8657,9 +8657,9 @@
       "estimates": {
         "forwardEPS": 16.04,
         "growthEPS5Y": 77.71,
-        "reportedForwardPE": 35.76,
+        "reportedForwardPE": 35.66,
         "reportedPEG": 0.46,
-        "providerPrice": 573.52,
+        "providerPrice": 571.97,
         "observedAt": "2026-10-14",
         "sourceName": "Finviz",
         "sourceUrl": "https://finviz.com/quote.ashx?t=AMD",
@@ -9189,7 +9189,7 @@
         "sourceName": "Stock Analysis / S&P Global",
         "observedAt": "2026-10-14",
         "asOf": "2026-10-06",
-        "sourceHash": "bf1adaddc1feef52c08a4f4c1032e199b8d3888adc3e4c2cbca219bda75875b6",
+        "sourceHash": "9b049af73e60e90f52424ca3bd0860e08cfd574f5939bcb0623929b63f44594c",
         "points": [
           {
             "end": "2025-12-27",
@@ -9495,9 +9495,9 @@
       "estimates": {
         "forwardEPS": 34.05,
         "growthEPS5Y": 18.82,
-        "reportedForwardPE": 21.66,
+        "reportedForwardPE": 21.63,
         "reportedPEG": 1.15,
-        "providerPrice": 737.59,
+        "providerPrice": 736.55,
         "observedAt": "2026-10-14",
         "sourceName": "Finviz",
         "sourceUrl": "https://finviz.com/quote.ashx?t=META",
@@ -10004,7 +10004,7 @@
         "sourceName": "Stock Analysis / S&P Global",
         "observedAt": "2026-10-14",
         "asOf": "2026-10-14",
-        "sourceHash": "268a4eddc59165cca5f75387cd51a1635cbdfbdc588672a9b92907b0425806f6",
+        "sourceHash": "225e1b97594578badc6b2143175529ce5519eba2892d3994241feedf2af39e1e",
         "points": [
           {
             "end": "2025-12-31",
@@ -10244,9 +10244,9 @@
       "estimates": {
         "forwardEPS": 23.1,
         "growthEPS5Y": 16.47,
-        "reportedForwardPE": 26.18,
+        "reportedForwardPE": 26.14,
         "reportedPEG": 1.59,
-        "providerPrice": 604.83,
+        "providerPrice": 603.9,
         "observedAt": "2026-10-14",
         "sourceName": "Finviz",
         "sourceUrl": "https://finviz.com/quote.ashx?t=MA",
@@ -10785,7 +10785,7 @@
         "sourceName": "Stock Analysis / S&P Global",
         "observedAt": "2026-10-14",
         "asOf": "2026-10-14",
-        "sourceHash": "fb4cc2425e87cafc2f11351fe6eea44d0c023ca57d3ce54b050686f7328103c5",
+        "sourceHash": "2a1b050c29f81bbb066ad641d946fa54daa9e47ed3052b409c39465006d8a5c2",
         "points": [
           {
             "end": "2025-12-31",
@@ -11075,9 +11075,9 @@
       "estimates": {
         "forwardEPS": 27.73,
         "growthEPS5Y": 14.48,
-        "reportedForwardPE": 8.56,
+        "reportedForwardPE": 8.57,
         "reportedPEG": 0.59,
-        "providerPrice": 237.41,
+        "providerPrice": 237.74,
         "observedAt": "2026-10-14",
         "sourceName": "Finviz",
         "sourceUrl": "https://finviz.com/quote.ashx?t=ADBE",
@@ -11570,7 +11570,7 @@
         "sourceName": "Stock Analysis / S&P Global",
         "observedAt": "2026-10-14",
         "asOf": "2026-10-13",
-        "sourceHash": "c69e8192d6d83a427b348ca2799a126d8b2521db63cc57300cfd34d1d6775049",
+        "sourceHash": "c968856808add03ece2e469261dd5e1c8de62b9c063fe9faa84d66506f28c947",
         "points": [
           {
             "end": "2025-11-28",
@@ -11830,9 +11830,9 @@
       "estimates": {
         "forwardEPS": 16.07,
         "growthEPS5Y": 13.98,
-        "reportedForwardPE": 14.63,
+        "reportedForwardPE": 14.62,
         "reportedPEG": 1.05,
-        "providerPrice": 235.18,
+        "providerPrice": 234.93,
         "observedAt": "2026-10-14",
         "sourceName": "Finviz",
         "sourceUrl": "https://finviz.com/quote.ashx?t=CRM",
@@ -12388,7 +12388,7 @@
         "sourceName": "Stock Analysis / S&P Global",
         "observedAt": "2026-10-14",
         "asOf": "2026-10-12",
-        "sourceHash": "34f4b54ebb1aebb965738c2df104e04e9f1b0d2dc1fb954345f892d3ac965c0a",
+        "sourceHash": "266dd1c200ee41070b11a53e451dcdec2c1030651a5381841ad26bc1fc3a1caf",
         "points": [
           {
             "end": "2026-01-31",
@@ -12679,9 +12679,9 @@
       "estimates": {
         "forwardEPS": 5.02,
         "growthEPS5Y": 20.13,
-        "reportedForwardPE": 27.86,
+        "reportedForwardPE": 27.81,
         "reportedPEG": 1.38,
-        "providerPrice": 139.76,
+        "providerPrice": 139.52,
         "observedAt": "2026-10-14",
         "sourceName": "Finviz",
         "sourceUrl": "https://finviz.com/quote.ashx?t=NOW",
@@ -13198,7 +13198,7 @@
         "sourceName": "Stock Analysis / S&P Global",
         "observedAt": "2026-10-14",
         "asOf": "2026-10-14",
-        "sourceHash": "914a85e6701c1ca6d9a59334b9dca57e683375b9ab2b60ad799331e4b834fa23",
+        "sourceHash": "842c5b5bc978d047dda0d367566cae19482d45fa138455e2e27afd686ee58dff",
         "points": [
           {
             "end": "2025-12-31",
@@ -13446,9 +13446,9 @@
       "estimates": {
         "forwardEPS": 26.28,
         "growthEPS5Y": 21.48,
-        "reportedForwardPE": 11.59,
+        "reportedForwardPE": 11.61,
         "reportedPEG": 0.54,
-        "providerPrice": 304.58,
+        "providerPrice": 305.2,
         "observedAt": "2026-10-14",
         "sourceName": "Finviz",
         "sourceUrl": "https://finviz.com/quote.ashx?t=INTU",
@@ -14043,7 +14043,7 @@
         "sourceName": "Stock Analysis / S&P Global",
         "observedAt": "2026-10-14",
         "asOf": "2026-10-12",
-        "sourceHash": "bc2389179c1cb46befd8e83f59d757ca5bb45129acc3a1c04a3f0048683b6107",
+        "sourceHash": "7a690b60002ad3eee20423fd0a3af303c0454e694effa459a351b8a3e3eb4ea1",
         "points": [
           {
             "end": "2026-07-31",
@@ -14271,9 +14271,9 @@
       "estimates": {
         "forwardEPS": 3.53,
         "growthEPS5Y": 8.19,
-        "reportedForwardPE": 25.95,
+        "reportedForwardPE": 26.0,
         "reportedPEG": 3.17,
-        "providerPrice": 91.62,
+        "providerPrice": 91.77,
         "observedAt": "2026-10-14",
         "sourceName": "Finviz",
         "sourceUrl": "https://finviz.com/quote.ashx?t=KO",
@@ -14846,7 +14846,7 @@
         "sourceName": "Stock Analysis / S&P Global",
         "observedAt": "2026-10-14",
         "asOf": "2026-10-14",
-        "sourceHash": "b7f312bf34dc4560e3cc49b2f922838dc9bf9fba08bc697eff3f648dc655cdb6",
+        "sourceHash": "61d716afecda1d726db599458244c1dfe155005f31dbbb9842fd60a9e9a9385f",
         "points": [
           {
             "end": "2025-12-31",
@@ -15155,9 +15155,9 @@
       "estimates": {
         "forwardEPS": 8.6,
         "growthEPS5Y": 3.63,
-        "reportedForwardPE": 14.99,
-        "reportedPEG": 4.13,
-        "providerPrice": 128.88,
+        "reportedForwardPE": 14.97,
+        "reportedPEG": 4.12,
+        "providerPrice": 128.68,
         "observedAt": "2026-10-14",
         "sourceName": "Finviz",
         "sourceUrl": "https://finviz.com/quote.ashx?t=PEP",
@@ -15696,7 +15696,7 @@
         "sourceName": "Stock Analysis / S&P Global",
         "observedAt": "2026-10-14",
         "asOf": "2026-10-14",
-        "sourceHash": "2e409825746ebb6c3380530529b728e9e4a67eee79fe6419444adcbb45497c28",
+        "sourceHash": "8439ad763b38ce223e218e721c382aed1c86b272239a077bbfde3e3680c78246",
         "points": [
           {
             "end": "2025-12-27",
@@ -16421,9 +16421,9 @@
       "estimates": {
         "forwardEPS": 3.22,
         "growthEPS5Y": 11.01,
-        "reportedForwardPE": 35.73,
+        "reportedForwardPE": 35.77,
         "reportedPEG": 3.25,
-        "providerPrice": 115.06,
+        "providerPrice": 115.18,
         "observedAt": "2026-10-14",
         "sourceName": "Finviz",
         "sourceUrl": "https://finviz.com/quote.ashx?t=WMT",
@@ -16494,7 +16494,7 @@
         "sourceName": "Stock Analysis / S&P Global",
         "observedAt": "2026-10-14",
         "asOf": "2026-10-14",
-        "sourceHash": "e397f27e1b3d968d1994ae313a2e148ff3862039eae668121b1bcd01b97d7b46",
+        "sourceHash": "b5eb2c7641be927ef59dc6c9669dd5e4da51903b8b4829ae2056417ff419995b",
         "points": [
           {
             "end": "2026-01-31",
@@ -16799,9 +16799,9 @@
       "estimates": {
         "forwardEPS": 3.8,
         "growthEPS5Y": 21.46,
-        "reportedForwardPE": 18.44,
+        "reportedForwardPE": 18.54,
         "reportedPEG": 0.86,
-        "providerPrice": 69.97,
+        "providerPrice": 70.35,
         "observedAt": "2026-10-14",
         "sourceName": "Finviz",
         "sourceUrl": "https://finviz.com/quote.ashx?t=NFLX",
@@ -17254,7 +17254,7 @@
         "sourceName": "Stock Analysis / S&P Global",
         "observedAt": "2026-10-14",
         "asOf": "2026-10-13",
-        "sourceHash": "027e3d4b1ccdbcac7a44cb577ad5429ee971df13c77d083aee50e6d343709e09",
+        "sourceHash": "48ce831b4dc86f465aa282fcc5204b88e3dace154dbea8e121c8845c5e129781",
         "points": [
           {
             "end": "2025-12-31",
@@ -18010,9 +18010,9 @@
       "estimates": {
         "forwardEPS": 12.36,
         "growthEPS5Y": 16.47,
-        "reportedForwardPE": 12.85,
+        "reportedForwardPE": 12.83,
         "reportedPEG": 0.78,
-        "providerPrice": 158.83,
+        "providerPrice": 158.55,
         "observedAt": "2026-10-14",
         "sourceName": "Finviz",
         "sourceUrl": "https://finviz.com/quote.ashx?t=BKNG",
@@ -18032,7 +18032,7 @@
         "sourceName": "Stock Analysis / S&P Global",
         "observedAt": "2026-10-14",
         "asOf": "2026-10-12",
-        "sourceHash": "67f1509849ad74236cf29d3cc7a52f20c2b7311727f4b310fe931403843408f8",
+        "sourceHash": "bdc1ec67e4864c510c1edb32dadb9dfcfa253124cd0b245099790ad2d0694b7b",
         "points": [
           {
             "end": "2025-12-31",
@@ -18730,9 +18730,9 @@
       "estimates": {
         "forwardEPS": 22.68,
         "growthEPS5Y": 13.61,
-        "reportedForwardPE": 28.56,
+        "reportedForwardPE": 28.54,
         "reportedPEG": 2.1,
-        "providerPrice": 647.52,
+        "providerPrice": 647.26,
         "observedAt": "2026-10-14",
         "sourceName": "Finviz",
         "sourceUrl": "https://finviz.com/quote.ashx?t=DE",
@@ -18785,7 +18785,7 @@
         "sourceName": "Stock Analysis / S&P Global",
         "observedAt": "2026-10-14",
         "asOf": "2026-10-09",
-        "sourceHash": "652914e0c583a69989124dd59af25615c4f1860de86cd2fe976e077857ea19e4",
+        "sourceHash": "c6e9f2c5ba8946046a9dc4d39822bb11bf422e534e6d1c17988e5fe5611b1a3e",
         "points": [
           {
             "end": "2025-11-02",
@@ -19675,9 +19675,9 @@
       "estimates": {
         "forwardEPS": 1.5,
         "growthEPS5Y": -4.38,
-        "reportedForwardPE": 23.3,
+        "reportedForwardPE": 23.23,
         "reportedPEG": null,
-        "providerPrice": 34.96,
+        "providerPrice": 34.84,
         "observedAt": "2026-10-14",
         "sourceName": "Finviz",
         "sourceUrl": "https://finviz.com/quote.ashx?t=NKE",
@@ -20128,7 +20128,7 @@
         "sourceName": "Stock Analysis / S&P Global",
         "observedAt": "2026-10-14",
         "asOf": "2026-10-14",
-        "sourceHash": "3fd3c802d471282936ec6b3af5f7789727d521b19c4115db9f0d792441cf9c7a",
+        "sourceHash": "79f7e40d9501a22f46fe2dadca46b31ad313612dbe62b9333d868bee51da6074",
         "points": [
           {
             "end": "2026-05-31",
@@ -20405,9 +20405,9 @@
       "estimates": {
         "forwardEPS": 7.5,
         "growthEPS5Y": 12.42,
-        "reportedForwardPE": 14.41,
+        "reportedForwardPE": 14.42,
         "reportedPEG": 1.16,
-        "providerPrice": 108.08,
+        "providerPrice": 108.15,
         "observedAt": "2026-10-14",
         "sourceName": "Finviz",
         "sourceUrl": "https://finviz.com/quote.ashx?t=DIS",
@@ -20858,7 +20858,7 @@
         "sourceName": "Stock Analysis / S&P Global",
         "observedAt": "2026-10-14",
         "asOf": "2026-10-09",
-        "sourceHash": "423b5874038e92210a76d98a5aa3c9487ecc00369f7532550e5bf8892e6f73ff",
+        "sourceHash": "40bb0f74d6b6bb9685cd269fa8291c3212e00cc33001559f58c28531d75c2d75",
         "points": [
           {
             "end": "2025-09-27",
