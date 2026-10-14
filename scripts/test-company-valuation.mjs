@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict'
 import { cashValue, earningsValue, impliedGrowth, impliedReturn, buildScenarios } from '../src/pages/company-analysis/valuation.js'
+import { valuationChart, chartGeometry, valuationReading } from '../src/pages/company-analysis/valuationPresentation.js'
 import { COMPANIES } from '../src/data/companies.js'
 // Independent closed-form annuity benchmark: zero growth, 10 annual units,
 // 10% discount, terminal resale 100 after 10 years => exactly 100 today.
@@ -30,6 +31,20 @@ assert(model.inputs.cashReady)
 assert(model.scenarios[0].cash.value<model.scenarios[1].cash.value)
 assert(model.scenarios[1].cash.value<model.scenarios[2].cash.value)
 assert.notEqual(model.scenarios[1].cashAssumptions.growth,model.scenarios[1].earningsAssumptions.growth)
+const chart=valuationChart(company,model,'cash',now)
+assert.equal(chart.forecast[1].points.at(-1).value,model.scenarios[1].cash.flows.at(-1))
+assert.equal(new Date(chart.forecast[1].points.at(-1).time).getUTCFullYear(),2036)
+assert(!chartGeometry(chart).path(chart.forecast[1].points).includes('NaN'))
+const reading=valuationReading(model,1,'cash')
+assert.equal(reading.value,model.scenarios[1].cash.value)
+assert(reading.sensitivity.low<reading.value && reading.sensitivity.high>reading.value)
+assert(valuationReading(buildScenarios(company,{1:{cashGrowth:.01}},now),1,'cash').value<reading.value)
+assert.equal(valuationReading(undefined),null)
+company.valuationShareBasis.normalisedYears=company.decision.years.map(r=>({end:r.end,reportedAverageDilutedShares:r.averageDilutedShares,averageDilutedShares:r.averageDilutedShares*10,sourceUrl:r.sharesBasisSource,adjustments:[{ratio:10,issuerSourceUrl:'https://example.com/split'}]}))
+assert.equal(buildScenarios(company,{},now).inputs.cashBase,model.inputs.cashBase/10)
+company.valuationShareBasis.normalisedYears[0].reportedAverageDilutedShares=999
+assert.equal(buildScenarios(company,{},now).inputs.cashReady,false)
+delete company.valuationShareBasis.normalisedYears
 company.valuationShareBasis.splitCheckThrough='2026-10-01';assert(!buildScenarios(company,{},now).inputs.cashReady)
 company.valuationShareBasis.splitCheckThrough='2026-10-14'
 company.decision.years[0].freeCashFlow=-1;assert(!buildScenarios(company,{},now).inputs.cashReady)

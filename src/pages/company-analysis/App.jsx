@@ -42,6 +42,11 @@ export default function App() {
   }
   return <div className="company-analysis">
     <PageHeader title="Analyse d’entreprise" subtitle="Son activité, ses résultats et les chiffres expliqués." />
+    <div className="valuation-company-picker"><ChoicePicker aria-label="Choisir une entreprise" value={id} onChange={event => { setId(event.target.value); setMessage('') }}>
+          {COMPANIES.map(item => <option key={item.id} value={item.id}>{item.name} · {item.symbol}</option>)}
+        </ChoicePicker></div>
+    <ValuationPanel key={company.id} company={company} />
+    <details className="company-publication"><summary>Comptes détaillés et publication existante</summary>
     <ToolWorkspace renderImage={() => renderCompanyImage(company)} imageDisabled={!ready} imageAlt={`Les chiffres de ${company.name}`} actions={<>
       <Button onClick={copy} disabled={!ready}>Copier le texte</Button>
       <Button variant="secondary" onClick={() => setEditing(value => !value)} disabled={!ready}>{editing ? 'Voir le texte' : 'Modifier le texte'}</Button>
@@ -49,9 +54,6 @@ export default function App() {
       <span>{message}</span>
     </>}>
       <section className="tool-settings">
-        <ChoicePicker aria-label="Choisir une entreprise" value={id} onChange={event => { setId(event.target.value); setMessage('') }}>
-          {COMPANIES.map(item => <option key={item.id} value={item.id}>{item.name} · {item.symbol}</option>)}
-        </ChoicePicker>
         <div className="company-evidence">
           <h2>Les données utilisées</h2>
           {company.annual && <p>Dernier exercice : {dateLabel(company.annual.end)}.</p>}
@@ -70,7 +72,7 @@ export default function App() {
         </div>
       </section>
       <section className="tool-preview">
-        <ValuationPanel key={company.id} company={company} />
+        <details className="company-financial-details"><summary>Consulter les comptes et indicateurs détaillés</summary>
         {ready && <section className="company-decision" aria-label="Indicateurs pour analyser l’entreprise">
           <h2>Cash, solidité et valorisation</h2>
           <p>Flux annuels : exercice clos le {dateLabel(company.annual.end)}. Les ratios de valorisation utilisent la dernière clôture disponible.</p>
@@ -95,6 +97,7 @@ export default function App() {
           </table></div>
         </div>}
 
+        </details>
         {ready ? <>
           {editing ? <label className="company-editor">Texte de la publication
             <textarea value={text} onChange={event => { setDrafts(previous => ({...previous, [id]: event.target.value})); setMessage('') }} rows={22} />
@@ -107,5 +110,6 @@ export default function App() {
           : <p role="alert">Les comptes de cette entreprise sont indisponibles ou trop anciens pour générer une publication.</p>}
       </section>
     </ToolWorkspace>
+    </details>
   </div>
 }

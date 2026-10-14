@@ -229,12 +229,22 @@ def statement_periods(text, ident, url, today):
         if interests and len(interests) == len(rv):
             p['interestExpense'] = abs(interests[i])*1e6
             p['previousInterestExpense'] = abs(interests[j])*1e6
-        share_section = re.split(r'(?im)^\s*(?:Weighted.average (?:common )?shares|Shares used|Weighted.average number of (?:common )?shares)', text, 1)
-        if len(share_section) == 2:
-            counts = row(share_section[1], [r'Diluted(?: \(\d+\))?'])
-            if counts and len(counts) == len(rv) and min(counts)>0 and all(abs(net[k]/counts[k]-eps[k]) <= max(.03,abs(eps[k])*.01) for k in range(len(rv))):
-                p['averageDilutedShares'] = counts[i]*1e6
-                p['previousAverageDilutedShares'] = counts[j]*1e6
+        # Published diluted counts only, never reconstruct counts from EPS.
+        counts = row(text, [r'Diluted weighted.average shares outstanding',
+            r'Shares used (?:in computing|to compute) diluted net income(?: \(loss\))? per share',
+            r'Shares used in diluted per share calculations',
+            r'Average Shares Outstanding Assuming Dilution'])
+        if not counts:
+            share_section = re.split(r'(?im)^\s*(?:Weighted.average (?:common )?shares|Shares used|Weighted.average number of (?:common )?shares)', text, 1)
+            if len(share_section) == 2:
+                counts = row(share_section[1], [r'Diluted(?: \(\d+\))?'])
+        if not counts and ident == 'pepsico' and re.search(r'(?im)^\s*Diluted\s*$', text):
+            counts = row(text, [r'Weighted.average common shares outstanding'])
+        if counts and ident in ('sp-global','coca-cola') and len(counts) in (3,6):
+            counts = [counts[k] for k in ([0,1,3,4] if len(counts)==6 else [0,1])]
+        if counts and len(counts) == len(rv) and min(counts)>0 and all(abs(net[k]/counts[k]-eps[k]) <= max(.03,abs(eps[k])*.01) for k in range(len(rv))):
+            p['averageDilutedShares'] = counts[i]*1e6
+            p['previousAverageDilutedShares'] = counts[j]*1e6
         p['margin']=p['netIncome']/p['revenue']*100;result.append(p)
     return result
 

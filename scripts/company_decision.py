@@ -6,7 +6,7 @@ failure never recertifies an old observation. No estimates or adjusted FCF.
 import datetime as dt
 import math
 
-DECISION_VERSION = 3
+DECISION_VERSION = 4
 
 FCF_METHOD = 'Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites'
 
@@ -244,11 +244,14 @@ def round2_publication_decision(profile, company, today):
                 soup = BeautifulSoup(raw, 'html.parser')
                 cash_sections = []
                 for table in soup.find_all('table'):
+                    lines = [' '.join(cell.get_text(' ',strip=True)for cell in tr.find_all(['td','th'],recursive=False))for tr in table.find_all('tr')if tr.find_parent('table')is table]
+                    text='\n'.join(lines)
+                    if re.search(r'CONSOLIDATED STATEMENTS? OF CASH FLOWS', text, re.I):
+                        cash_sections.append(text)
+                        continue
                     caption = table.find_previous(string=re.compile(r'CONSOLIDATED (?:STATEMENTS?|BALANCE)',re.I))
                     if not caption or not re.search(r'CONSOLIDATED STATEMENTS? OF CASH FLOWS',str(caption),re.I):continue
                     heading = caption.parent.get_text(' ',strip=True)
-                    lines = [' '.join(cell.get_text(' ',strip=True)for cell in tr.find_all(['td','th'],recursive=False))for tr in table.find_all('tr')if tr.find_parent('table')is table]
-                    text='\n'.join(lines)
                     cash_sections.append((heading if len(heading)<400 else str(caption))+'\n'+text)
             for text in cash_sections:
                 if not re.search(r'CONSOLIDATED STATEMENTS? OF CASH FLOWS', text, re.I): continue

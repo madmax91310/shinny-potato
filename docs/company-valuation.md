@@ -15,8 +15,11 @@ annuels servent à l’historique FCF/action, pas à fabriquer une capitalisatio
 La migration du bloc decision version 3 déclenche la relecture des archives.
 
 `company_valuation.py` vérifie quotidiennement les événements de division sur
-**toute** la fenêtre historique, au-delà des deux ans de cours habituels. Un split
-bloque le modèle FCF tant que les retraitements des rapports ne sont pas qualifiés.
+**toute** la fenêtre historique, au-delà des deux ans de cours habituels. Nvidia dispose
+d’un adaptateur de retraitement : dates et ratios recoupés avec les publications
+officielles, date de publication de chaque rapport, détection des comparatifs déjà
+retraités. Les nombres publiés restent conservés. Les autres splits bloquent le
+modèle FCF tant que leur base n’est pas qualifiée.
 Les classes multiples sont exclues. Une erreur supprime la qualification et
 suspend le calcul ; les comptes précédents gardent leur date réelle.
 
@@ -70,6 +73,22 @@ inversion, monotonie, bornes, fraîcheur et qualification. Tests Python des unit
 comptages publiés, profondeur du contrôle des splits et refus des fenêtres
 incomplètes. Tests Chromium de modification, erreur et réinitialisation.
 
-Les étapes 5–8 (grand graphique, mise en page finale, texte et nouvel export)
-ne font pas partie de cette livraison. Le panneau fonctionnel expose les étapes
-1–4 sans remplacer le format de publication existant.
+Les étapes 5–6 sont intégrées : interface ivoire/verte, quatre ratios, scénarios
+sélectionnables, réglages repliables, vrai graphique SVG calculé depuis les données,
+lecture automatique et sensibilité au multiple de sortie. Le graphique distingue
+les observations et les projections ; les flux futurs commencent à la date du
+cours avec le dernier FCF annuel pour base. La base BPA est explicitement une base
+de modèle, pas une série d’observations historiques. Les valeurs et sources sont
+accessibles dans un tableau. Une hypothèse invalide masque les projections et le
+commentaire au lieu de conserver un résultat devenu incohérent.
+
+Les nombres dilués de Mastercard, Coca-Cola, PepsiCo, Intuit, Adobe et Salesforce
+sont recherchés dans leurs libellés publiés et rapprochés du BPA. Les colonnes de
+variation ne sont jamais assimilées à des nombres d’actions. Les intitulés de
+cash-flow HTML internes au tableau sont reconnus. La version 4 force la relecture
+des sources ; la couverture réellement obtenue est mesurée par la collecte CI.
+La couverture reste limitée lorsqu’il manque des exercices, un FCF annuel ou une
+preuve de comparabilité. Aucun compte n’est complété par une estimation.
+
+L’export de valorisation (étape 7) reste à réaliser ; l’image et le texte de
+publication existants sont conservés, distincts de cette simulation interactive.

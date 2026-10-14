@@ -54,8 +54,13 @@ export function valuationInputs(company, now = new Date()) {
     && basis.annualEnd === company.annual?.end && basis.accountsEndAtCollection === latestAccountsEnd(company)
     && basis.splitCheckThrough >= q?.asOf && basis.sourceUrl?.startsWith('https://')
   if (!basisOK) reasons.push('Historique des divisions d’actions et nombres d’actions à qualifier.')
-  const history = basisOK && d ? d.years.filter(y => Number.isFinite(y.freeCashFlow) && positive(y.averageDilutedShares)
-    && y.sharesBasisSource?.startsWith('https://')).map(y => ({end: y.end, value: y.freeCashFlow / y.averageDilutedShares,
+  const normalised = basis?.normalisedYears
+  const normalisedOK = !normalised || (normalised.length === d?.years.length && d.years.every(r => {
+    const n = normalised.find(p=>p.end===r.end)
+    return n && positive(n.averageDilutedShares) && n.reportedAverageDilutedShares===r.averageDilutedShares && n.sourceUrl===r.sharesBasisSource && n.adjustments?.length && n.adjustments.every(a=>positive(a.ratio)&&a.issuerSourceUrl?.startsWith('https://'))
+  }))
+  const history = basisOK && normalisedOK && d ? d.years.filter(y => Number.isFinite(y.freeCashFlow) && positive(y.averageDilutedShares)
+    && y.sharesBasisSource?.startsWith('https://')).map(y => ({end: y.end, value: y.freeCashFlow / (normalised?.find(p=>p.end===y.end)?.averageDilutedShares ?? y.averageDilutedShares),
       sourceUrl: y.sourceUrl, sharesSourceUrl: y.sharesBasisSource, definition: y.freeCashFlowDefinition})) : []
   const continuous = history.length >= 4 && history.length === d?.years.length
     && history.at(-1).end === company.annual?.end && basis?.splitCheckFrom <= history[0].end
