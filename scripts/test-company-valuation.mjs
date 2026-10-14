@@ -13,7 +13,16 @@ assert.equal(impliedReturn(a,1e30),null)
 for(const bad of [{base:0},{base:-1},{discount:NaN},{discount:-1},{growth:-1},{years:2.5},{multiple:Infinity}]) assert.throws(()=>cashValue({...a,...bad}))
 assert(cashValue({...a,growth:.03}).value>cashValue(a).value)
 assert(cashValue({...a,discount:.15}).value<cashValue(a).value)
-const company=structuredClone(COMPANIES.find(c=>c.id==='apple'))
+// Fixed synthetic accounting fixture: scheduled refreshes must not change unit-test inputs.
+const years = [2022,2023,2024,2025].map((year,i)=>({end:`${year}-12-31`, revenue:1000, netIncome:100,
+  freeCashFlow:100+i*5, operatingCashFlow:120+i*5, capitalExpenditure:20, averageDilutedShares:10,
+  freeCashFlowDefinition:'operating-minus-capex', sourceUrl:'https://example.com/accounts', sharesBasisSource:'https://example.com/accounts'}))
+const company={currency:'USD', accountingStandard:'IFRS', accountsObservedAt:'2026-10-14',
+  annual:{...years.at(-1),dilutedEPS:10}, quarter:{end:'2026-06-30'},
+  quote:{price:200,currency:'USD',asOf:'2026-10-14',splits:[]},
+  estimates:{observedAt:'2026-10-14',accountsEndAtCollection:'2026-06-30',forwardEPS:12,growthEPS5Y:9},
+  decision:{observedAt:'2026-10-14',annualEnd:'2025-12-31',accountsEndAtCollection:'2026-06-30',years}}
+
 const now=new Date('2026-10-14T12:00:00Z')
 company.valuationShareBasis={version:1,currency:company.currency,observedAt:'2026-10-14',annualEnd:company.annual.end,accountsEndAtCollection:company.quarter.end,splitCheckFrom:'2020-01-01',splitCheckThrough:'2026-10-14',sourceUrl:'https://example.com/splits'}
 let model=buildScenarios(company,{},now)
