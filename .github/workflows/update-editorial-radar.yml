@@ -74,6 +74,17 @@ jobs:
       - run: node scripts/test-purchasing-power-news.mjs
       - name: Check official purchasing-power feeds
         run: node scripts/test-purchasing-power-news.mjs --live
+      - name: Verify live DWS portfolios independently
+        run: |
+          python scripts/verify_dws_compositions.py > "$RUNNER_TEMP/dws-verification.json"
+          python -c 'import json,os; r=json.load(open(os.environ["RUNNER_TEMP"]+"/dws-verification.json")); assert r["verified"] and not r["errors"], r["errors"]'
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: dws-composition-verification
+          path: ${{ runner.temp }}/dws-verification.json
+          retention-days: 35
+          if-no-files-found: ignore
       - run: node scripts/update-editorial-radar.mjs --output "$RUNNER_TEMP/editorial-radar"
   update:
     if: github.event_name != 'pull_request' && (github.event_name != 'workflow_run' || (github.event.workflow_run.head_branch == 'master' && github.event.workflow_run.head_repository.full_name == github.repository && github.event.workflow_run.event != 'pull_request'))
