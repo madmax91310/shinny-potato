@@ -93,5 +93,5 @@ export function buildScenarios(company, overrides = {}, now = new Date()) {
       expectedReturn: cashAssumptions ? impliedReturn(cashAssumptions, inputs.price) : null}
   })
   return {inputs, scenarios, policy: POLICY, note: MODEL_NOTE,
-    rules: 'FCF : croissance historique annualisée bornée entre −10 et +10 %. BPA : croissance estimée sur cinq ans bornée entre 0 et 10 %, horizon cinq ans. Écart de ±3 points ; multiples 15/20/25 ; rendement exigé 10 %. Conventions de simulation, pas des prévisions ni des probabilités. Les deux méthodes ne sont pas moyennées.'}
+    rules: 'FCF : croissance historique annualisée bornée entre −10 et +10 %. BPA : croissance estimée sur cinq ans bornée entre 0 et 10 %, horizon cinq ans. Écart de ±3 points ; multiples 15/20/25 ; rendement exigé 10 %. Conventions de simulation, pas des prévisions ni des probabilités. La base comptable des prévisions Finviz n’est pas précisée ; elle peut différer du BPA publié. Les deux méthodes ne sont pas moyennées.'}
 }
