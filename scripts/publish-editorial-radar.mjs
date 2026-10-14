@@ -2,6 +2,7 @@ import { writeFile, mkdir } from 'node:fs/promises'
 import { resolve } from 'node:path'
 import { execFile } from 'node:child_process'
 import { promisify } from 'node:util'
+import { createHash } from 'node:crypto'
 import { collectObservations } from './update-editorial-radar.mjs'
 import { advanceRadar, shouldRefreshRadar } from './lib/editorial-radar.mjs'
 import { collectPurchasingNews } from './lib/purchasing-power-news.mjs'
@@ -55,7 +56,7 @@ if (refresh) {
   const verification = JSON.parse(stdout)
   errors.push(...verification.errors)
   result = advanceRadar(previous, observations, { sourceRevision: process.env.RADAR_SOURCE_SHA ?? '', errors, purchasingSources: purchasing.sources,
-    verifiedCompositions: verification.verified.map(({ body, ...proof }) => proof),
+    verifiedCompositions: verification.verified.map(({ canonicalBody, ...proof }) => proof),
     compositionVerificationFailures: verification.errors.map(error => error.entity) })
   // Create only after successful extraction and validation.
   const parent = ref ? ref.object.sha : (await api('git/ref/heads/master')).object.sha
@@ -64,7 +65,8 @@ if (refresh) {
   // Content-addressed raw portfolios are retained on radar-data with the
   // conflict ledger. A reconciliation is not published without its evidence.
   for (const proof of verification.verified) {
-    const blob = await api('git/blobs', 'POST', { content: `${JSON.stringify(proof.body)}\n`, encoding: 'utf-8' })
+    if (createHash('sha256').update(proof.canonicalBody).digest('hex') !== proof.sourceHash) throw new Error('Empreinte DWS incohérente : publication annulée.')
+    const blob = await api('git/blobs', 'POST', { content: `${proof.canonicalBody}\n`, encoding: 'utf-8' })
     tree.push({ path: `dws-snapshots/${proof.sourceHash}.json`, mode: '100644', type: 'blob', sha: blob.sha })
   }
   for (const [path, content] of [['state.json', result.state], ['feed.json', result.feed], ['notifications.json', ledger]]) {

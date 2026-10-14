@@ -24,7 +24,9 @@ def verify(isin, record, now, fetch=get_json):
             'sourceUrl': url, 'sourceHash': parsed['countries']['sha256'],
             'method': parsed['countries']['method'], 'checkedAt': now.isoformat(),
             'allocations': {field: parsed[field]['rows'] for field in ('countries', 'sectors')},
-            'body': body}
+            # Preserve Python's numeric representation (e.g. 1.0 vs 1) so the
+            # archived bytes reproduce the canonical hash across JS/Python.
+            'canonicalBody': json.dumps(body, sort_keys=True, allow_nan=False)}
 
 
 def collect(records, now, fetch=get_json):
