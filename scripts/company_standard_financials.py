@@ -75,11 +75,12 @@ def collect(profile,today,load=get):
         # Displayed counts are rounded to millions; EPS reconciliation uses
         # an explicit rounding allowance rather than deriving an invented count.
         expected=inc['EPS (Diluted)']*shares
-        tolerance=max(2e6,abs(common)*.02)
+        tolerance=abs(inc['EPS (Diluted)'])*.5e6+shares*.005+.5e6
         if abs(expected-common)>tolerance:raise ValueError('Diluted shares/EPS do not reconcile')
         ocf=flow['Operating Cash Flow']*1e6;capex=-flow['Capital Expenditures']*1e6;fcf=ocf-capex
         if abs(fcf-flow['Free Cash Flow']*1e6)>2e6:raise ValueError('FCF does not reconcile with operations/investments')
         year={'end':end,'revenue':inc['Revenue']*1e6,'netIncome':inc['Net Income']*1e6,
+              'netIncomeToCommon':common,'epsReconciliationResidual':expected-common,'epsRoundingAllowance':tolerance,
               'dilutedEPS':inc['EPS (Diluted)'],'averageDilutedShares':shares,'sharesBasisSource':income_url,
               'operatingCashFlow':ocf,'capitalExpenditure':capex,'freeCashFlow':fcf,'freeCashFlowDefinition':FCF_METHOD,
               'sourceUrl':income_url,'additionalSourceUrls':[cash_url],

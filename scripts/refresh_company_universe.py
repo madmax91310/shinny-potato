@@ -77,7 +77,7 @@ def collect(profile, old, now):
             if key in accounts:
                 accounts[key].update(sourceUrl=source, observedAt=now.date().isoformat())
         item.update(accounts, accountsSourceUrl=source, accountsObservedAt=now.date().isoformat(),
-                    history={'years': history, 'observedAt': now.date().isoformat(), 'definition': 'Comptes consolidés GAAP / SEC'})
+                    history={'years': history, 'observedAt': now.date().isoformat(), 'definition': 'Comptes annuels standardisés / Stock Analysis / S&P Global' if secondary else 'Comptes consolidés GAAP / SEC'})
         decision = secondary['decision'] if secondary else sec_decision(body, profile, item, now.date())
         decision['accountsEndAtCollection'] = latest
         item['decision'] = validate_decision(decision, item, now.date())
