@@ -41,6 +41,7 @@ jobs:
           node-version: 20
           cache: npm
       - run: npm ci
+      - run: node scripts/test-browser-shards.mjs
       - run: node scripts/test-broker-automation.mjs
       - run: node scripts/test-lifestrategy.mjs
       - run: node scripts/test-resource-selections.mjs
@@ -119,6 +120,15 @@ jobs:
           path: dist
           include-hidden-files: true
           retention-days: 2
+      - uses: actions/upload-artifact@v7.0.1
+        with:
+          name: validated-generated-data
+          path: |
+            src/data/performance-links.json
+            src/data/simulation-links.json
+            src/data/monthly-duel-returns.json
+          if-no-files-found: error
+          retention-days: 2
       - uses: actions/configure-pages@v6.0.0
         if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
       - uses: actions/upload-pages-artifact@v5.0.0
@@ -164,6 +174,7 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_lifestrategy.py'
       - run: python -m unittest discover -s scripts -p 'test_physical_etc.py'
       - run: python -m unittest discover -s scripts -p 'test_product_calendars.py'
+      - run: python -m unittest discover -s scripts -p 'test_issuer_calendar_capture.py'
       - run: python -m unittest discover -s scripts -p 'test_commodity_allocations.py'
       - run: python -m unittest discover -s scripts -p 'test_issuer_reliability.py'
       - run: python scripts/test_radar_review_583.py
@@ -214,7 +225,11 @@ jobs:
           node-version: 20
           cache: npm
       - run: npm ci
-      - run: npm run prebuild
+      # Reuse the exact data generated and validated by the build job.
+      - uses: actions/download-artifact@v4
+        with:
+          name: validated-generated-data
+          path: src/data
       - uses: actions/download-artifact@v4
         with:
           name: validated-site

@@ -9,6 +9,23 @@ import company_round4_publications as companies
 
 FIXTURES=pathlib.Path(__file__).parent/'fixtures/non-bond'
 TODAY=dt.date(2026,10,13)
+class InvescoAllocations(unittest.TestCase):
+ def test_complete_dated_tables_and_wrapped_labels(self):
+  from collect_invesco_allocations import parse_allocations
+  text=(FIXTURES/'invesco-allocation.txt').read_text()
+  config={'isin':'IE000L2SA8K5','sourceUrl':'https://issuer.example/factsheet.pdf'}
+  rows=parse_allocations(text,config,dt.datetime(2026,10,14))
+  self.assertEqual(len(rows['countries']['rows']),7)
+  self.assertEqual(len(rows['sectors']['rows']),10)
+  self.assertEqual(rows['countries']['asOf'],'2026-08-31')
+  self.assertEqual(rows['sectors']['basis'],'fund')
+  self.assertTrue(any(r['name']=='Consumer discretionary' for r in rows['sectors']['rows']))
+  for old,new in [('IE000L2SA8K5','IE000OTHER00'),('Physical','Synthetic'),
+                  ('Geographic allocation (%)','Missing allocation'),
+                  ('91.6','1.6'),('31 Aug 2026','31 Aug 2027'),
+                  ('Sector allocation (%)','Sector allocation (%) Sector allocation (%)')]:
+   with self.subTest(old=old),self.assertRaises(ValueError):parse_allocations(text.replace(old,new),config,dt.datetime(2026,10,14))
+
 class NonBondSources(unittest.TestCase):
  def holdings(self):
   return {'holdings':[{'isin':f'US{i:010d}','name':f'Security {i}','weight':i}for i in range(1,11)]+[{'name':'Cash and/or Derivatives','weight':45}]}
