@@ -51,6 +51,14 @@ class RemainingIssuerSources(unittest.TestCase):
         with self.assertRaises(ValueError): parse(text,facts.replace('USD','EUR'))
         with self.assertRaises(ValueError): parse(text,facts.replace('0.39%','9.39%'))
 
+    def test_avantis_year_end_flows_into_calendar(self):
+        text = (FIX / 'avantis.txt').read_text().replace('30/09/2026', '31/12/2026').replace('23.05', '18.31')
+        facts = (FIX / 'avantis-facts.txt').read_text().replace('30/09/2026', '31/12/2026')
+        with patch('collect_priority_issuer_etf.pdf_text', side_effect=[text, facts]):
+            result = avantis(b'%PDF-year-end-fixture', share('IE0003R87OG3'), dt.datetime(2027,1,15,tzinfo=UTC))
+        self.assertEqual(result['performance']['years'], {'2026':18.31})
+        self.assertEqual(result['performance']['yearEvidence']['2026']['asOf'], '2026-12-31')
+
     def test_qyld_incomplete_stream_retries_but_wrong_identity_does_not(self):
         text = (FIX.parent / 'new-issuers/globalx.html').read_text()
         config = share('IE00BM8R0J59')

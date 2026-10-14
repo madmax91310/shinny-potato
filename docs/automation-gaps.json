@@ -313,42 +313,19 @@
     "ter": 197,
     "aum": 197,
     "performance": 181,
-    "countries": 168,
-    "sectors": 168,
+    "countries": 169,
+    "sectors": 169,
     "holdings": 174
   },
   "summary": {
-    "instrument:not-published": 5,
     "instrument:not-applicable": 66,
-    "instrument:unqualified": 10,
+    "instrument:not-published": 13,
     "instrument:waiting-first-year": 12,
     "instrument:source-conflict": 4,
     "index:waiting-publication": 1,
     "index:not-applicable": 16
   },
   "gaps": [
-    {
-      "type": "instrument",
-      "id": "IE000L2SA8K5",
-      "name": "Invesco NASDAQ-100 Equal Weight UCITS ETF Acc",
-      "field": "countries",
-      "label": "Pays",
-      "configured": true,
-      "status": "not-published",
-      "reason": "L’API officielle Invesco ne fournit pas d’allocation complète qualifiée. Les dix positions de l’indice suivi restent datées et explicitement distinguées du portefeuille du fonds.",
-      "sourceUrl": "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE000L2SA8K5_factsheet_en.pdf"
-    },
-    {
-      "type": "instrument",
-      "id": "IE000L2SA8K5",
-      "name": "Invesco NASDAQ-100 Equal Weight UCITS ETF Acc",
-      "field": "sectors",
-      "label": "Secteurs",
-      "configured": true,
-      "status": "not-published",
-      "reason": "L’API officielle Invesco ne fournit pas d’allocation complète qualifiée. Les dix positions de l’indice suivi restent datées et explicitement distinguées du portefeuille du fonds.",
-      "sourceUrl": "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE000L2SA8K5_factsheet_en.pdf"
-    },
     {
       "type": "instrument",
       "id": "JE00B78CGV99",
@@ -554,8 +531,8 @@
       "field": "countries",
       "label": "Pays",
       "configured": true,
-      "status": "unqualified",
-      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
+      "status": "not-published",
+      "reason": "Vérification du 14 octobre 2026 : aucune répartition complète pays/secteurs du fonds dans les sources qualifiées. Les tableaux de la brochure portent uniquement sur la poche actions ; les fonds sous-jacents et leur allocation restent suivis séparément.",
       "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9490/lifestrategy-20-equity-ucits-etf-eur-accumulating"
     },
     {
@@ -565,8 +542,8 @@
       "field": "sectors",
       "label": "Secteurs",
       "configured": true,
-      "status": "unqualified",
-      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
+      "status": "not-published",
+      "reason": "Vérification du 14 octobre 2026 : aucune répartition complète pays/secteurs du fonds dans les sources qualifiées. Les tableaux de la brochure portent uniquement sur la poche actions ; les fonds sous-jacents et leur allocation restent suivis séparément.",
       "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9490/lifestrategy-20-equity-ucits-etf-eur-accumulating"
     },
     {
@@ -576,8 +553,8 @@
       "field": "countries",
       "label": "Pays",
       "configured": true,
-      "status": "unqualified",
-      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
+      "status": "not-published",
+      "reason": "Vérification du 14 octobre 2026 : aucune répartition complète pays/secteurs du fonds dans les sources qualifiées. Les tableaux de la brochure portent uniquement sur la poche actions ; les fonds sous-jacents et leur allocation restent suivis séparément.",
       "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9492/lifestrategy-40-equity-ucits-etf-eur-accumulating"
     },
     {
@@ -587,8 +564,8 @@
       "field": "sectors",
       "label": "Secteurs",
       "configured": true,
-      "status": "unqualified",
-      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
+      "status": "not-published",
+      "reason": "Vérification du 14 octobre 2026 : aucune répartition complète pays/secteurs du fonds dans les sources qualifiées. Les tableaux de la brochure portent uniquement sur la poche actions ; les fonds sous-jacents et leur allocation restent suivis séparément.",
       "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9492/lifestrategy-40-equity-ucits-etf-eur-accumulating"
     },
     {
@@ -598,8 +575,8 @@
       "field": "countries",
       "label": "Pays",
       "configured": true,
-      "status": "unqualified",
-      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
+      "status": "not-published",
+      "reason": "Vérification du 14 octobre 2026 : aucune répartition complète pays/secteurs du fonds dans les sources qualifiées. Les tableaux de la brochure portent uniquement sur la poche actions ; les fonds sous-jacents et leur allocation restent suivis séparément.",
       "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9494/lifestrategy-60-equity-ucits-etf-eur-accumulating"
     },
     {
@@ -609,8 +586,8 @@
       "field": "sectors",
       "label": "Secteurs",
       "configured": true,
-      "status": "unqualified",
-      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
+      "status": "not-published",
+      "reason": "Vérification du 14 octobre 2026 : aucune répartition complète pays/secteurs du fonds dans les sources qualifiées. Les tableaux de la brochure portent uniquement sur la poche actions ; les fonds sous-jacents et leur allocation restent suivis séparément.",
       "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9494/lifestrategy-60-equity-ucits-etf-eur-accumulating"
     },
     {
@@ -620,8 +597,8 @@
       "field": "countries",
       "label": "Pays",
       "configured": true,
-      "status": "unqualified",
-      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
+      "status": "not-published",
+      "reason": "Vérification du 14 octobre 2026 : aucune répartition complète pays/secteurs du fonds dans les sources qualifiées. Les tableaux de la brochure portent uniquement sur la poche actions ; les fonds sous-jacents et leur allocation restent suivis séparément.",
       "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9496/lifestrategy-80-equity-ucits-etf-eur-accumulating"
     },
     {
@@ -631,8 +608,8 @@
       "field": "sectors",
       "label": "Secteurs",
       "configured": true,
-      "status": "unqualified",
-      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
+      "status": "not-published",
+      "reason": "Vérification du 14 octobre 2026 : aucune répartition complète pays/secteurs du fonds dans les sources qualifiées. Les tableaux de la brochure portent uniquement sur la poche actions ; les fonds sous-jacents et leur allocation restent suivis séparément.",
       "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9496/lifestrategy-80-equity-ucits-etf-eur-accumulating"
     },
     {
@@ -643,7 +620,7 @@
       "label": "Calendrier annuel",
       "configured": true,
       "status": "not-published",
-      "reason": "La source officielle actuelle publie des performances glissantes et cumulées, collectées séparément, sans calendrier annuel complet. Les historiques mensuels de la part restent automatisés avec leur propre source et convention.",
+      "reason": "La source officielle actuelle publie des performances glissantes et cumulées, collectées séparément, sans calendrier annuel complet. Les historiques mensuels restent automatisés. Le rendement NAV depuis janvier sera intégré comme année civile uniquement sur une observation au 31 décembre, après clôture et hors année de lancement partielle, avec sa preuve conservée.",
       "sourceUrl": "https://globalxetfs.eu/funds/silv/"
     },
     {
@@ -653,8 +630,8 @@
       "field": "sectors",
       "label": "Secteurs",
       "configured": true,
-      "status": "unqualified",
-      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
+      "status": "not-published",
+      "reason": "La page officielle publie pays et positions, sans tableau sectoriel complet qualifié.",
       "sourceUrl": "https://globalxetfs.eu/funds/silv/"
     },
     {
@@ -698,7 +675,7 @@
       "label": "Calendrier annuel",
       "configured": true,
       "status": "not-published",
-      "reason": "La source officielle actuelle publie des performances glissantes et cumulées, collectées séparément, sans calendrier annuel complet. Les historiques mensuels de la part restent automatisés avec leur propre source et convention.",
+      "reason": "La source officielle actuelle publie des performances glissantes et cumulées, collectées séparément, sans calendrier annuel complet. Les historiques mensuels restent automatisés. Le rendement NAV depuis janvier sera intégré comme année civile uniquement sur une observation au 31 décembre, après clôture et hors année de lancement partielle, avec sa preuve conservée.",
       "sourceUrl": "https://res.americancentury.com/docs/avantis-global-small-cap-value-ucits-etf-fact-sheet.pdf"
     },
     {
@@ -708,8 +685,8 @@
       "field": "countries",
       "label": "Pays",
       "configured": true,
-      "status": "unqualified",
-      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
+      "status": "not-published",
+      "reason": "La fiche officielle publie seulement les cinq premiers pays ; ce classement partiel ne constitue pas une allocation complète.",
       "sourceUrl": "https://res.americancentury.com/docs/avantis-global-small-cap-value-ucits-etf-fact-sheet.pdf"
     },
     {
@@ -753,7 +730,7 @@
       "label": "Calendrier annuel",
       "configured": true,
       "status": "not-published",
-      "reason": "La source officielle actuelle publie des performances glissantes et cumulées, collectées séparément, sans calendrier annuel complet. Les historiques mensuels de la part restent automatisés avec leur propre source et convention.",
+      "reason": "La source officielle actuelle publie des performances glissantes et cumulées, collectées séparément, sans calendrier annuel complet. Les historiques mensuels restent automatisés. Le rendement NAV depuis janvier sera intégré comme année civile uniquement sur une observation au 31 décembre, après clôture et hors année de lancement partielle, avec sa preuve conservée.",
       "sourceUrl": "https://globalxetfs.eu/funds/copx/"
     },
     {

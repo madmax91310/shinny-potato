@@ -71,7 +71,7 @@ for (const id of ['sp500-pea','nasdaq-pea','sp500-equal-weight','topix','nikkei2
 for (const [isin, r] of Object.entries(AUTOMATED_ETF)) {
   if (r.holdings?.basis === 'index') {
     const refreshed=refreshFundDetails(isin);
-    assert.equal(refreshed.basis,'tracked-index');
+    assert.equal(refreshed.holdingsBasis,'tracked-index');
     assert.equal(refreshed.holdingsSource,r.holdings.sourceUrl);
     assert.equal(refreshed.holdingsAsOf,r.holdings.asOf);
   }
@@ -91,3 +91,11 @@ for (const id of ['gold-physical', 'silver-physical', 'bitcoin', 'ethereum', 'sp
   const current = getCurrentIndexReturnSeries(id, date);
   assert.equal(current.source.url, AUTOMATED_INDICES[id].returns.source.url, `${id}: active exact-reference calendar series ignored`);
 }
+
+// A physical ETF can publish fund allocations alongside separate index holdings.
+const mixed = refreshFundDetails('IE000L2SA8K5');
+assert.equal(mixed.holdingsBasis, 'tracked-index');
+assert.equal(mixed.sectorsBasis, 'fund');
+assert.equal(mixed.countriesBasis, 'fund');
+assert.equal(mixed.sectorsAsOf, AUTOMATED_ETF.IE000L2SA8K5.sectors.asOf);
+assert.equal(mixed.holdingsAsOf, AUTOMATED_ETF.IE000L2SA8K5.holdings.asOf);

@@ -124,7 +124,9 @@ def collect_one(share, now):
         url=base+'/holdings/index?idType=isin';raw=download(url);h=json.loads(raw);stamp=document_date(h['effectiveDate'],now)
         result['holdings']={'rows':index_holdings(h),
             'asOf':stamp,'basis':'index','sourceUrl':url,'sha256':proof(raw)}
-        result['unavailable']=['countries/sectors: no qualified complete allocation; index top-ten labelled separately']
+        from collect_invesco_allocations import collect_allocations
+        result.update(collect_allocations(body, share, now))
+        result['unavailable']=[]
     else:reject('Unknown non-bond issuer')
     if not result.get('performance',{}).get('years'):reject('Missing complete NAV calendar')
     return result

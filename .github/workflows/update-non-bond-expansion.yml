@@ -7,11 +7,13 @@ on:
     branches: [master]
     paths:
       - 'scripts/*non_bond*'
+      - 'scripts/collect_invesco_allocations.py'
       - 'scripts/*non-bond*'
       - '.github/workflows/update-non-bond-expansion.yml'
   pull_request:
     paths:
       - 'scripts/*non_bond*'
+      - 'scripts/collect_invesco_allocations.py'
       - 'scripts/*non-bond*'
       - 'src/data/non-bond*'
       - '.github/workflows/update-non-bond-expansion.yml'

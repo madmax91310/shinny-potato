@@ -25,8 +25,8 @@ export function buildComparisonEtfDetails(etf, selectedYears) {
   const multiAsset = multiAssetAllocationLines(etf.isin)
   if (multiAsset.length) lines.push('', ...multiAsset)
   if (commodities.length) lines.push('', ...commodities)
-  const holdingsExposure = collected?.holdings ? collected.holdings.basis === 'index' : details?.basis === 'tracked-index'
-  const sectorsExposure = collected?.sectors ? collected.sectors.basis === 'index' : details?.basis === 'tracked-index'
+  const holdingsExposure = collected?.holdings ? collected.holdings.basis === 'index' : (details?.holdingsBasis ?? details?.basis) === 'tracked-index'
+  const sectorsExposure = collected?.sectors ? collected.sectors.basis === 'index' : (details?.sectorsBasis ?? details?.basis) === 'tracked-index'
   const holdingsDate = date(details?.holdingsAsOf ?? details?.asOf)
   const sectorsDate = date(details?.sectorsAsOf ?? details?.asOf)
   if (policy.showHoldings && details?.holdings?.length) {

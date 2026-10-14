@@ -1,5 +1,6 @@
 """Exact-share public sources for physical Global X and JPMorgan presentation ETFs."""
 import datetime as dt
+from issuer_calendar_capture import capture_year_end
 import json
 import re
 from urllib.parse import urlparse
@@ -56,6 +57,8 @@ def globalx_physical(text, share, now):
     result['performance'] = dict(currency='USD', basis='fund', years={}, observations=observations,
         asOf=date, sourceUrl=share['sourceUrl'], sha256=digest, note='',
         method='cumulative exact-share NAV total return, gross income reinvested, net of fees')
+    launch = document_date(only(re.findall(r'Inception Date\n([^\n]+)', key), 'Global X inception'), now, max_age=36500)
+    capture_year_end(result['performance'], launch, now)
     return result
 
 

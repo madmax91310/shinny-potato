@@ -1,6 +1,7 @@
 """Apply a fully validated issuer collection to the active shared ETF registry."""
 import copy
 import datetime as dt
+import re
 import json
 from data_automation import reject, write_json_atomic
 
@@ -113,7 +114,18 @@ def merge_collection(report, current, baseline):
         if previous_performance and any(previous_performance.get(k) != performance.get(k)
                                         for k in ('currency', 'basis', 'method')):
             reject('Annual performance convention changed')
+        evidence = performance.get('yearEvidence', {})
+        for year, proof in evidence.items():
+            if (year not in years or proof.get('asOf') != f'{year}-12-31'
+                    or not proof.get('sourceUrl') or not re.fullmatch(r'[0-9a-f]{64}', proof.get('sha256', ''))):
+                reject('Invalid calendar-year evidence')
         performance = {**performance, 'years': {**previous_performance.get('years', {}), **years}}
+        preserved_evidence = {**previous_performance.get('yearEvidence', {})}
+        # A replacement value cannot inherit proof of the old observation.
+        for year in years:
+            preserved_evidence.pop(year, None)
+        if preserved_evidence or evidence:
+            performance['yearEvidence'] = {**preserved_evidence, **evidence}
         if checked >= (old.get('performance', {}).get('checkedAt') or baseline.get(isin, {}).get('performanceCheckedAt') or ''):
             record['performance'] = checked_observation(performance, old.get('performance', {}), checked)
         next_records[isin] = record

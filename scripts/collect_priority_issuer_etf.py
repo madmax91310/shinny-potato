@@ -1,4 +1,5 @@
 """Exact-share fees, dated fund assets and published NAV returns for remaining issuers."""
+from issuer_calendar_capture import capture_year_end
 import json
 import re
 from collect_public_issuer import Page, only, money, base
@@ -56,6 +57,8 @@ def silver(text, share, now):
         method='cumulative exact-share NAV total return, gross income reinvested, net of fees',
         observations=[dict(label=label, value=bounded_return(100 * returns[key]), asOf=date) for key, label in
             [('ONE_MONTH','1 mois'),('THREE_MONTH','3 mois'),('ONE_YEAR','1 an'),('YTD','Depuis janvier'),('SINCE_INCEPTION','Depuis le lancement')]])
+    launch = document_date(only(re.findall(r'Inception Date\n([^\n]+)', block), 'Silver Miners inception'), now, max_age=36500)
+    capture_year_end(result['performance'], launch, now)
     # Use only explicitly dated portfolio tables, never lending collateral.
     page = Page(text)
     for field, title, header in [
@@ -73,6 +76,8 @@ def silver(text, share, now):
                              basis='fund', sourceUrl=share['sourceUrl'], sha256=digest)
     result['unavailable'] = ['performance-calendar: issuer discrete returns are rolling years, not calendar years; separately collected exact-share market histories preserved',
                              'sectors: no complete sector allocation published in the official page']
+    if result['performance']['years']:
+        result['unavailable'] = [reason for reason in result['unavailable'] if not reason.startswith('performance-calendar:')]
     return result
 
 
@@ -109,9 +114,15 @@ def avantis(body, share, now):
     result['performance'] = dict(currency='USD', basis='fund', years={}, observations=observations, asOf=stamp, sourceUrl=share['sourceUrl'], sha256=digest,
         method='cumulative exact-share NAV total return, income reinvested, fund fees included',
         note='Only cumulative QTR/YTD/1-year columns collected; annualised inception return excluded')
+    launch = document_date(only(re.findall(r'FUND INCEPTION DATE\s+CUSIP\s+(\d{2}/\d{2}/\d{4})', facts), 'Avantis inception'), now, max_age=36500)
+    capture_year_end(result['performance'], launch, now)
     result.update(avantis_composition(text, stamp, share['sourceUrl'], digest))
     result['unavailable'] = ['performance-calendar: current factsheet publishes rolling returns, no complete calendar year; separate exact-share monthly history retained',
                              'countries: top five is not a complete country allocation']
+    if result['performance']['years']:
+        result['unavailable'] = [reason for reason in result['unavailable'] if not reason.startswith('performance-calendar:')]
+    if result['performance']['years']:
+        result['unavailable'] = [reason for reason in result['unavailable'] if not reason.startswith('performance-calendar:')]
     return result
 
 
