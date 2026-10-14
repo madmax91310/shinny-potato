@@ -1,6 +1,6 @@
 import practicalReferences from '../../data/automated-practical-sheets.json' with { type: 'json' }
 import investorReviews from '../../../public/data/investors/review-metadata.json' with { type: 'json' }
-import { DATA_CATALOG } from '../../data/catalog.js'
+import { REVIEW_CATALOG as DATA_CATALOG } from '../../data/review-catalog.js'
 import { BROKERS } from '../broker-comparator/data.js'
 import { BROKER_EVIDENCE, EVIDENCE_FIELDS, OFFICIAL_SOURCES, SECONDARY_SOURCES } from '../broker-comparator/evidence.js'
 

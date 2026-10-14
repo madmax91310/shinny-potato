@@ -1,5 +1,5 @@
 import { Children, useId, useLayoutEffect, useRef, useState } from 'react'
-import { normalizeSearch } from '../data/asset-selection.js'
+import { normalizeSearch } from '../data/search-text.js'
 import './asset-picker.css'
 
 // Retain the callers' option values while presenting every choice as a real button.

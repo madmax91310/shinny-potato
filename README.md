@@ -101,3 +101,23 @@ Ces séries sont figées au dernier contrôle ; leur ajout ne crée pas d’actu
 Les portraits des investisseurs sont stockés localement avec leurs sources et crédits dans `public/asset-art/investors/sources.json`.
 
 Le vendredi midi est consacré aux présentations de placements, en alternance SCPI et assurance-vie. Le comparatif ETF conserve son créneau du lundi midi en alternance avec le lexique.
+
+### Chargement des outils et des formats
+
+Les six formats de publication ont chacun une entrée différée dans
+`src/pages/tweet-midi/formats/` et un moteur dans `engines/`. Ils partagent les
+contrôles de `Workspace.jsx` et les fonctions pures de `engine.js`, avec uniquement
+les sources du format sélectionné. `/tweet-midi` conserve son fonctionnement mixte
+pour les anciens liens. Les rendus d’images sont importés à la demande.
+
+À chaque compilation, `scripts/project-tool-data.mjs` dérive les historiques utilisés
+par les outils et les métadonnées de revue depuis les registres canoniques. La recherche
+charge un index léger, puis une fiche JSON complète par sélection ; son URL contient
+une empreinte du contenu pour éviter les mélanges entre versions. Les valeurs,
+preuves historiques et exports JSON restent complets. Ne pas éditer ces projections :
+modifier leurs registres sources, puis relancer la compilation.
+
+`node scripts/test-format-loading.mjs --built` compare les sélections, textes,
+échéances, liens de maintenance et fiches exportées. Les budgets par route et les
+tests navigateur vérifient aussi l’absence de chargements financiers sans rapport
+avec les formats légers, ainsi que la reprise d’une fiche après une erreur réseau.

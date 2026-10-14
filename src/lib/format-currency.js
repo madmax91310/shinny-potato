@@ -7,3 +7,8 @@ export function fmtEUR(n, currency = 'EUR') {
     return Math.round(n).toLocaleString('fr-FR') + ' €'
   }
 }
+
+export function fmtPct(n) {
+  const s = n.toLocaleString('fr-FR', { minimumFractionDigits: 1, maximumFractionDigits: 1 })
+  return (n >= 0 ? '+' : '') + s + ' %'
+}

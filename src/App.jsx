@@ -27,7 +27,16 @@ const CompanyAnalysis = lazy(() => import('./pages/company-analysis/App'))
 const Presentations = lazy(() => import('./pages/presentations/App'))
 const InvestorPortfolio = lazy(() => import('./pages/investor-portfolio/App'))
 
-// Individual publication routes reuse one lazy engine and its existing data.
+const FORMAT_COMPONENTS = {
+  'dilemme': lazy(() => import('./pages/tweet-midi/formats/dilemme/App.jsx')),
+  'fiche-lexique': lazy(() => import('./pages/tweet-midi/formats/lexique/App.jsx')),
+  'comparatif-etf': lazy(() => import('./pages/tweet-midi/formats/comparatif/App.jsx')),
+  'anniversaire': lazy(() => import('./pages/tweet-midi/formats/anniversaire/App.jsx')),
+  'performance-depuis': lazy(() => import('./pages/tweet-midi/formats/performance/App.jsx')),
+  'pouvoir-achat': lazy(() => import('./pages/tweet-midi/formats/pouvoir/App.jsx')),
+}
+
+// Individual publication routes load their own engine and sources.
 // The old /tweet-midi URL remains available for saved links.
 const TOOL_ELEMENTS = {
   '/le-dca-de': <DcaProfiles />,
@@ -60,7 +69,7 @@ export default function App() {
           <Route
             key={tool.to}
             path={tool.to.slice(1)}
-            element={tool.format ? <TweetMidi key={tool.to} initialFormat={tool.format} title={tool.title} description={tool.description} /> : TOOL_ELEMENTS[tool.to] ?? <ComingSoon title={tool.title} description={tool.description} />}
+            element={tool.format ? <FormatRoute tool={tool} /> : TOOL_ELEMENTS[tool.to] ?? <ComingSoon title={tool.title} description={tool.description} />}
           />
         ))}
         <Route path="presentation-assurance-vie" element={<Navigate to="/presentations?famille=insurance" replace />} />
@@ -70,4 +79,9 @@ export default function App() {
       </Route>
     </Routes>
   )
+}
+
+function FormatRoute({ tool }) {
+  const Component = FORMAT_COMPONENTS[tool.format]
+  return <Component key={tool.to} title={tool.title} description={tool.description} />
 }

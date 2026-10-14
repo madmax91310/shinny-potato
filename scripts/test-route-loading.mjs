@@ -63,6 +63,43 @@ try {
   await slow.getByText('Utiliser les frais d’un ETF', { exact: true }).waitFor()
   await slow.close()
 
+  // Cold lightweight formats must not fetch issuer holdings or monthly histories,
+  // including the asynchronous renderer used by the preview.
+  for (const path of ['/fiche-lexique', '/pouvoir-achat', '/bibliotheque-donnees']) {
+    const isolated = await browser.newPage()
+    isolated.on('pageerror', error => errors.push(error.message))
+    const fetched = []
+    isolated.on('request', request => fetched.push(request.url()))
+    await isolated.goto(`${base}${path}`, { waitUntil: 'networkidle' })
+    await isolated.locator('main h1').first().waitFor()
+    assert(!fetched.some(url => /etf-issuer-part|history-assets-|automated-etf-monthly|non-bond-monthly/.test(url)), `${path} fetched unrelated financial payloads`)
+    if (path === '/bibliotheque-donnees') {
+      await isolated.getByRole('article', { name: 'Fiche de données' }).waitFor()
+      assert.equal(fetched.filter(url => /data\/catalog\/.test(url)).length, 1, 'Opening search should fetch exactly one full record')
+    }
+    await isolated.close()
+  }
+  // A failed record can be retried, and the previously loaded record cannot be
+  // exported while a different selection is waiting for its own payload.
+  const catalogue = await browser.newPage()
+  catalogue.on('pageerror', error => errors.push(error.message))
+  let rejectRecord = true
+  await catalogue.route('**/data/catalog/*.json', route => rejectRecord ? route.fulfill({status:503,body:'unavailable'}) : route.continue())
+  await catalogue.goto(`${base}/bibliotheque-donnees?q=FR001400U5Q4`, {waitUntil:'networkidle'})
+  await catalogue.getByRole('button', {name:'Réessayer',exact:true}).waitFor()
+  assert.equal(await catalogue.getByRole('button', {name:'Exporter la fiche JSON',exact:true}).count(),0)
+  rejectRecord = false
+  await catalogue.getByRole('button', {name:'Réessayer',exact:true}).click()
+  await catalogue.getByRole('article', {name:'Fiche de données'}).filter({hasText:'FR001400U5Q4'}).waitFor()
+  rejectRecord = true
+  await catalogue.getByRole('searchbox').fill('history:soxx')
+  await catalogue.getByRole('button', {name:'Réessayer',exact:true}).waitFor()
+  assert.equal(await catalogue.getByRole('button', {name:'Exporter la fiche JSON',exact:true}).count(),0)
+  rejectRecord = false
+  await catalogue.getByRole('button', {name:'Réessayer',exact:true}).click()
+  await catalogue.getByRole('article', {name:'Fiche de données'}).filter({hasText:'history:soxx'}).waitFor()
+  await catalogue.close()
+
   // Emulate Pages' actual 404 instead of Vite preview's SPA fallback.
   const notFound = await readFile('dist/404.html', 'utf8')
   const direct = await browser.newPage()

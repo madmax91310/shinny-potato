@@ -1,10 +1,11 @@
 import { copyPublicationText, startPublicationDownload } from '../../design-system/publicationActions.js'
 import ChoicePicker from '../../design-system/ChoicePicker.jsx'
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import PageHeader from '../../design-system/PageHeader'
 import MaintenanceLinks from '../../design-system/MaintenanceLinks'
-import { searchData, exportDataRecord } from '../../data/catalog.js'
+import { CATALOG_INDEX, RECORD_URLS } from '../../data/catalog-browser.js'
+import { searchCatalog, exportDataRecord } from '../../data/catalog-search.js'
 import { describeDataField, describeEvidenceDate } from './lib.js'
 import './data-search.css'
 
@@ -15,8 +16,26 @@ export default function DataSearch() {
   const [params, setParams] = useSearchParams()
   const query = params.get('q') ?? ''
   const type = Object.hasOwn(TYPES, params.get('type')) ? params.get('type') : 'all'
-  const results = useMemo(() => searchData(query, type), [query, type])
-  const selected = results.find((r) => r.id === params.get('id')) ?? results[0]
+  const results = useMemo(() => searchCatalog(CATALOG_INDEX, query, type), [query, type])
+  const target = results.find((r) => r.id === params.get('id')) ?? results[0]
+  const targetId = target?.id
+  const [record, setRecord] = useState(null)
+  const [error, setError] = useState(false)
+  const [attempt, setAttempt] = useState(0)
+  const selected = record?.id === target?.id ? record : null
+  useEffect(() => {
+    const controller = new AbortController()
+    setError(false)
+    if (!targetId) return () => controller.abort()
+    fetch(RECORD_URLS[targetId], { signal: controller.signal }).then(response => {
+      if (!response.ok) throw new Error('Fiche indisponible')
+      return response.json()
+    }).then(value => {
+      if (value.id !== targetId || !Array.isArray(value.fields)) throw new Error('Fiche invalide')
+      if (!controller.signal.aborted) setRecord(value)
+    }).catch(() => { if (!controller.signal.aborted) setError(true) })
+    return () => controller.abort()
+  }, [targetId, attempt])
   const [message, setMessage] = useState('')
   function update(key, value) {
     // Navigation updates the URL before React finishes rendering the new filters.
@@ -47,7 +66,8 @@ export default function DataSearch() {
     </div>
     <p role="status" className="ds-status">{results.length} résultat{results.length > 1 ? 's' : ''}{message ? ` · ${message}` : ''}</p>
     <div className="ds-layout">
-      <nav className="ds-results" aria-label="Résultats de recherche">{results.map((record) => <button key={record.id} className={selected?.id === record.id ? 'selected' : ''} aria-pressed={selected?.id === record.id} onClick={() => update('id', record.id)}><strong>{record.name}</strong><span>{record.id} · {TYPES[record.type]}</span></button>)}</nav>
+      <nav className="ds-results" aria-label="Résultats de recherche">{results.map((record) => <button key={record.id} className={target?.id === record.id ? 'selected' : ''} aria-pressed={target?.id === record.id} onClick={() => update('id', record.id)}><strong>{record.name}</strong><span>{record.id} · {TYPES[record.type]}</span></button>)}</nav>
+      {target && !selected && <p role="status">{error ? <>Impossible de charger cette fiche. <button onClick={() => setAttempt(n => n + 1)}>Réessayer</button></> : 'Chargement de la fiche…'}</p>}
       {selected ? <article className="ds-detail" aria-label="Fiche de données">
         <h2>{selected.name}</h2><p className="ds-id">{selected.id}</p>
         <div className="ds-actions"><button onClick={download}>Exporter la fiche JSON</button><button onClick={share}>Copier le lien de la fiche</button></div>
@@ -63,7 +83,7 @@ export default function DataSearch() {
           {field.metadata.note && <p className="ds-note">{field.metadata.note}</p>}
           <details><summary>Voir les valeurs enregistrées</summary><pre>{JSON.stringify(field.value, null, 2)}</pre></details>
         </section>)}
-      </article> : <p className="ds-detail">Aucune donnée ne correspond à cette recherche.</p>}
+      </article> : !target && <p className="ds-detail">Aucune donnée ne correspond à cette recherche.</p>}
     </div>
   </div>
 }
