@@ -15,6 +15,7 @@ export default defineConfig({
     rolldownOptions: { output: { codeSplitting: { groups: [
       ...issuerParts.groups,
       ...toolData.groups,
+      { name: 'company-observations', test: /company-analysis\.json$/, priority: 100 },
       { name: 'light-helpers', test: /(?:search-text|asset-labels|investment-presets|format-currency|publication-length)\.js$/, priority: 110 },
       { name: 'non-bond-monthly', test: /non-bond-monthly-records\.json$/, priority: 100 },
       { name: 'company-history-expansion', test: /non-bond-company-histories\.json$/ },

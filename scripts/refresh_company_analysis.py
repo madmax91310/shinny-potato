@@ -525,6 +525,19 @@ def main():
             status['valuationShareBasisDetail'] = str(error)[:300]
             if old.get('valuationShareBasis'):
                 failures.append(ident + ':valuationShareBasis')
+        from company_target_evidence import collect_forecast, collect_cash_references
+        for block, collector in (
+            ('targetForecast', lambda: collect_forecast(profile, now.date())),
+            ('targetCashReference', lambda: collect_cash_references(item, profile, fetch_json, now.date())),
+        ):
+            try:
+                item[block] = collector()
+                status[block] = 'qualified'
+            except Exception as error:
+                # Retain date, never certify a failed fetch as a fresh observation.
+                status[block] = 'unavailable-or-retained'
+                status[block+'Detail'] = str(error)[:300]
+                if old.get(block): failures.append(ident + ':' + block)
         if key and profile['currency'] == 'USD':
             # Never store URLs containing the optional provider key.
             try:

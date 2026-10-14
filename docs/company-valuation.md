@@ -11,7 +11,7 @@ Une valeur actualisée aujourd’hui ne remplit pas cette promesse. Les moteurs
 de valeur actuelle ci-dessous restent des calculs distincts ; ils ne doivent
 jamais être renommés « objectifs de cours ».
 
-## Prévisions de cours — méthode active
+## Première version des prévisions — remplacée par la révision 2 ci-dessous
 
 `priceTargets.js` est le moteur utilisé par l’interface et les exports.
 Objectif = BPA ou FCF/action de départ × (1 + croissance)^horizon × multiple de sortie.
@@ -127,3 +127,49 @@ valeur actuelle restent distincts dans valuation.js.
 La couverture FCF reste conditionnée aux publications qualifiées : aucune
 estimation ne remplace des nombres d’actions ou exercices manquants. L’audit
 quotidien archive la couverture et les objectifs pour les trois horizons.
+
+## Révision 2 — bases comparables, horizons et multiples (14 octobre 2026)
+
+Cette révision remplace la méthode automatique décrite en tête du document : le
+PER actuel et la croissance Finviz ne déterminent plus l’objectif central.
+
+- **Bénéfices** : collecte quotidienne des seuls tableaux et cartes publics de
+  Stock Analysis / S&P Global, explicitement en BPA non-GAAP ajustés. Dates fiscales,
+  rapprochement cartes/tableau, identité, devise, date de mise à jour et empreinte
+  conservés. Aucune cellule payante/masquée utilisée. Les ratios GAAP publiés restent
+  séparés. Sans définition commune ou données fraîches, cette méthode est suspendue.
+- **Horizon** : à chaque échéance, le BPA retenu est celui du premier exercice
+  finissant après cette date, car le multiple de référence est un PER *forward*.
+  Ce n’est ni le BPA TTM ni une estimation exactement à douze mois. Les valeurs
+  annuelles sourcées restent intactes, y compris les croissances supérieures à 50 %.
+  Au-delà du dernier exercice sourcé, la croissance annuelle initiale (bornée à
+  ±30 %) converge en trois exercices vers la médiane de croissance du CA, bornée
+  entre 0 et 10 %. Il faut au moins trois années de CA. Cette normalisation est
+  une convention explicite, pas une prévision de consensus. Un tableau montre
+  les exercices utilisés et distingue estimations sourcées et extrapolations.
+- **Multiple** : médiane d’au moins trois PER forward historiques ajustés publiés
+  par la même source. Lorsque deux pairs au moins du groupe explicite sont qualifiés,
+  pondération 75 % historique / 25 % médiane des pairs, cette dernière bornée à
+  ±25 % de l’ancre historique. Les groupes métier sont codés, les données actualisées
+  automatiquement. Sinon référence historique seule, annoncée. Les différences
+  économiques au sein d’un groupe restent une limite ; aucune prime arbitraire de
+  croissance n’est ajoutée au multiple. Les perspectives agissent sur le BPA.
+- **FCF** : médiane d’au moins trois cours/FCF annuels, prix mensuels ajustés des
+  splits et nombres dilués déjà qualifiés. On utilise un mois entièrement terminé
+  avant la clôture fiscale. Références rétrospectives (comptes connus après clôture),
+  impropres à un backtest sans biais d’anticipation. Pas de pairs FCF non harmonisés.
+  Le CAGR historique amorce une convergence sur trois ans vers l’ancre de CA.
+  La base est projetée depuis sa vraie date fiscale à la date du cours avant les
+  horizons futurs ; elle n’est plus silencieusement assimilée à un FCF d’aujourd’hui.
+- **Scénarios** : ±3 % sur chaque étape de trajectoire et ±20 % sur le multiple.
+  Ces conventions restent la prochaine priorité, elles ne sont pas des intervalles
+  de confiance. La croissance affichée est un taux annualisé équivalent ; une
+  personnalisation la remplace par une trajectoire à taux constant.
+
+Les tests vérifient notamment l’indépendance du prix central au cours présent,
+les périodes fiscales, le refus d’une base inconnue et la concordance graphique /
+objectif / export. Le rapport quotidien utilise désormais le moteur actif et
+conserve la justification des références. Couverture initiale vérifiée : 22 modèles
+bénéfices, 8 modèles FCF sur les 26 entreprises actives. Sources indisponibles :
+conservation de leur date réelle, suspension à expiration et nouvelle tentative
+quotidienne. Toute perte d’un bloc déjà collecté est signalée par le workflow.
