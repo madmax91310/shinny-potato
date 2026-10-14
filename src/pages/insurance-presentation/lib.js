@@ -4,7 +4,7 @@ export const fundGuarantee = fund => fund.guarantee != null ? `Garantie annuelle
 const accessExpired = (fund, today) => fund.accessValidUntil && fund.accessValidUntil < today
 const todayIso = () => new Date().toISOString().slice(0, 10)
 function presentationHook({ name }) {
-  return `💶 Fonds euros, ETF, immobilier… Que propose l’assurance-vie ${name} ? 👇`
+  return `💶 ${name} : combien faut-il pour ouvrir ce contrat, et quels frais prévoir ? 👇`
 }
 // Keep contractual detail in the data and UI; publish only decision-relevant conditions.
 function shortFundAccess(fund) {
@@ -52,11 +52,11 @@ export function buildTweet(record) {
   ].filter(Boolean).join('\n')
   return [presentationHook(record),
     `📄 Distribuée par ${record.distributor} et assurée par ${insurer}. En gestion libre, tu choisis toi-même tes placements.`,
-    `💰 Accessible dès ${format(access.initial)} €.\nEnsuite : ${format(access.free)} € minimum par versement libre ou dès ${format(access.monthly)} €/mois.`,
+    `💰 Accessible dès ${format(access.initial)} €.\nPour les versements suivants : ${format(access.free)} € minimum par versement libre ou dès ${format(access.monthly)} €/mois.`,
     `📦 Plus de ${format(supports.minimumCount)} supports annoncés : ${supports.categories.join(', ')}… et ${euroFunds.length > 1 ? `${euroFunds.length} fonds euros` : 'un fonds euros'}.`,
     `💸 Les principaux frais :\n• Versements : ${format(fees.subscription)} % · Arbitrages en ligne : ${format(fees.arbitrage)} %\n• Unités de compte : ${format(fees.units)} %/an, en plus des frais des supports\n• Transactions ETF : ${format(fees.etfTrade)} % par opération${extraFees ? `\n${extraFees}` : ''}${fees.options?.length ? '\nLes options de gestion ont des frais supplémentaires.' : ''}`,
     `🛡️ Derniers rendements publiés des fonds euros :\n${fundLines}\n\nTaux nets de frais de gestion, avant prélèvements sociaux et fiscaux, hors bonus liés aux offres commerciales.`,
     `⚠️ Les unités de compte présentent un risque de perte en capital. Les rendements passés ne garantissent pas les suivants.`,
-    `💬 Ton assurance-vie, tu l’utilises surtout pour le fonds euros ou pour investir sur d’autres supports ?`,
+    `💬 Dans ton assurance-vie, quelle place donnes-tu au fonds euros ?`,
   ].join('\n\n')
 }

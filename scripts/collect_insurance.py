@@ -24,6 +24,39 @@ PRODUCTS = {
         ('Suravenir Rendement 2', 'Suravenir Rendement 2', 'fonds-euro/')]},
 }
 
+# The successor uses the existing distributor URL but has its own identity.
+PRODUCTS['linxea-avenir-2-plus'] = {
+    'name': 'Linxea Avenir 2+', 'insurer': 'Suravenir', 'sourceSlug': 'linxea-avenir-2',
+    'funds': PRODUCTS['linxea-avenir-2']['funds'],
+}
+AVENIR_PLUS_FEES = 'https://www.linxea.com/document/contrat-linxea-avenir-2-plus-tableau-des-frais/'
+
+
+def contract_url(id_):
+    return BASE + PRODUCTS[id_].get('sourceSlug', id_) + '/'
+
+
+def qualify_avenir_plus(record, notice, url, today):
+    text = re.sub(r'\s+', ' ', notice)
+    required(r'Les frais du contrat LINXEA AVENIR 2\+ Contrat d.assurance-vie de type multisupport n°2284', text)
+    stamp = required(r'Document mis à jour le (\d{2})/(\d{2})/(\d{4})', text)
+    date = dt.date(int(stamp[3]), int(stamp[2]), int(stamp[1]))
+    if not 0 <= (today - date).days <= 370:
+        raise ValueError('Stale or future Avenir 2+ fee notice')
+    checks = [
+        (r'Montant minimal de versement initial ([\d,.]+) €', record['access']['initial']),
+        (r'Support unités de compte ([\d,.]+) % frais maximal', record['fees']['units']),
+        (r'Frais sur versement ([\d,.]+) %', record['fees']['subscription']),
+        (r"Frais d'arbitrage Proportionnels ou forfaitaires ([\d,.]+) %", record['fees']['arbitrage']),
+    ]
+    for pattern, expected in checks:
+        if abs(number(required(pattern, text)[1]) - expected) > .0001:
+            raise ValueError('Avenir 2+ notice and distributor terms disagree')
+    record['contractEvidence'] = {'contractNumber': '2284', 'sourceUrl': url,
+        'asOf': date.isoformat(), 'checkedAt': today.isoformat(),
+        'sha256': hashlib.sha256(notice.encode()).hexdigest()}
+    record['fees']['sourceUrls'] = [record['sourceUrl'], url]
+
 
 def plain(html):
     return re.sub(r'\s+', ' ', BeautifulSoup(html, 'html.parser').get_text(' ', strip=True))
@@ -47,11 +80,11 @@ def check_contract_identity(soup, id_, today):
     canonical = soup.select_one('link[rel="canonical"]')
     hero = heading.find_parent('section') if heading else None
     if (id_ == 'linxea-avenir-2' and actual == 'Linxea Avenir 2+'
-            and canonical and canonical.get('href') == BASE + id_ + '/'
+            and canonical and canonical.get('href') == contract_url(id_)
             and hero and 'Successeur de Linxea Avenir 2,' in hero.get_text(' ', strip=True)
             and 'géré par Suravenir' in plain(str(soup))):
         raise ContractSuperseded({'status': 'superseded', 'successorName': actual,
-            'checkedAt': today.isoformat(), 'sourceUrl': BASE + id_ + '/',
+            'checkedAt': today.isoformat(), 'sourceUrl': contract_url(id_),
             'statement': 'Linxea Avenir 2+ — Successeur de Linxea Avenir 2',
             'sha256': hashlib.sha256(str(soup).encode()).hexdigest()})
     raise ValueError('Wrong contract identity')
@@ -77,7 +110,7 @@ def parse_contract(html, id_, today):
             raise ValueError('Missing/ambiguous contract tariff: ' + label)
         return number(required(r'^([\d,.]+)\s*%', values[0]).group(1))
     fees = {'subscription': tariff('Versement'), 'arbitrage': tariff('Arbitrage en ligne'),
-            'units': tariff('Gestion des unités de compte / an'), 'etfTrade': tariff('Transactions ETF(?: / ETC)?')}
+            'units': tariff('Gestion des unités de compte / an'), 'etfTrade': tariff(r'Transactions ETF(?: / ETC)?\*?')}
     # Parse the explicit eligibility block, not the 20-year illustrative simulation.
     initial = number(required(r'Accessible dès ([\d ]+)€ de versement initial', text).group(1))
     free = number(required(r'Versement libre dès ([\d ]+)€', text).group(1))
@@ -92,14 +125,16 @@ def parse_contract(html, id_, today):
     if re.search(r'\bActions\b', hero):
         supports.append('actions en direct')
     return {'id': id_, 'name': config['name'], 'insurer': config['insurer'], 'distributor': 'Linxea',
-            'checkedAt': today.isoformat(), 'sourceUrl': BASE + id_ + '/',
-            'fees': {**fees, 'sourceUrl': BASE + id_ + '/', 'scope': 'Gestion libre, opérations en ligne ; hors frais des supports et garanties optionnelles.'},
-            'access': {'initial': initial, 'free': free, 'monthly': monthly, 'sourceUrl': BASE + id_ + '/'},
-            'supports': {'minimumCount': count, 'categories': supports, 'sourceUrl': BASE + id_ + '/'}, 'euroFunds': []}
+            'checkedAt': today.isoformat(), 'sourceUrl': contract_url(id_),
+            'fees': {**fees, 'sourceUrl': contract_url(id_), 'scope': 'Gestion libre, opérations en ligne ; hors frais des supports et garanties optionnelles.'},
+            'access': {'initial': initial, 'free': free, 'monthly': monthly, 'sourceUrl': contract_url(id_)},
+            'supports': {'minimumCount': count, 'categories': supports, 'sourceUrl': contract_url(id_)}, 'euroFunds': []}
 
 
 def parse_fund(html, id_, name, label, url, today, contract_html=None):
     text = plain(html)
+    if id_ == 'linxea-avenir-2-plus':
+        required(r'Fonctionnement des Fonds euros de Linxea Avenir 2 / Avenir 2\+', text)
     # Restrict return parsing to the named fund card before its risk/method notes.
     card = required(r'LE FONDS EUROS ' + re.escape(label) + r' (.*?)(?:Les rendements passés|Les performances passées|\(1\) Net de frais|\* Taux de)', text).group(1)
     values = {}
@@ -200,6 +235,8 @@ def parse_fund(html, id_, name, label, url, today, contract_html=None):
             quota = number(required(r'minimum de ([\d,.]+)\s*% en unités de compte', body).group(1))
             if quota != 100 - max_allocation: raise ValueError('Conflicting allocation conditions')
             operations = f'Au moins {100-max_allocation:g} % en unités de compte non garanties ; arbitrages possibles.'
+        if id_ == 'linxea-avenir-2-plus':
+            notes = 'Historique des fonds euros communs à Avenir 2 et Avenir 2+ ; ces rendements ne constituent pas un historique du nouveau contrat.'
         ceiling = None
         condition = r'et sans conditions d’unités de compte' if label == 'Suravenir Opportunités 2' else r'avec un minimum de [\d,.]+ % en unités de compte qui présentent un risque de perte en capital'
         clause = required(r'Ce fonds en euros est accessible sans limite de montant ' + condition, body).group(0)
@@ -256,14 +293,19 @@ def validate(record, today):
 
 
 def collect(id_, today):
-    contract_html = fetch(BASE+id_+'/').decode()
+    contract_html = fetch(contract_url(id_)).decode()
     record = parse_contract(contract_html, id_, today)
     cache = {}
     for name,label,suffix in PRODUCTS[id_]['funds']:
-        url = BASE+id_+'/supports-disponibles-sur-'+id_+'/'+suffix
+        slug = PRODUCTS[id_].get('sourceSlug', id_)
+        url = contract_url(id_)+'supports-disponibles-sur-'+slug+'/'+suffix
         if url not in cache:
             cache[url] = fetch(url).decode()
         record['euroFunds'].append(parse_fund(cache[url],id_,name,label,url,today,contract_html))
+    if id_ == 'linxea-avenir-2-plus':
+        if AVENIR_PLUS_FEES not in contract_html:
+            raise ValueError('Missing exact Avenir 2+ fee notice link')
+        qualify_avenir_plus(record, pdf_text(fetch(AVENIR_PLUS_FEES), layout=False), AVENIR_PLUS_FEES, today)
     if id_ == 'linxea-vie':
         url = vie_notice_url(contract_html)
         qualify_vie_guarantees(record, pdf_text(fetch(url), layout=False), url)

@@ -129,24 +129,40 @@ export function parsePurchasingFeed(xml, source, now = new Date()) {
   for (const o of observations) if (!unique.has(o.entity) || o.period > unique.get(o.entity).period) unique.set(o.entity, o)
   return { observations: [...unique.values()], errors, itemCount: items.length }
 }
-async function fetchFeed(source, request) {
-  let lastError
-  for (let attempt = 0; attempt < 2; attempt++) {
+const pause = ms => new Promise(resolve => setTimeout(resolve, ms))
+const TRANSIENT_HTTP = new Set([408, 429, 500, 502, 503, 504])
+export async function fetchFeed(source, request, wait = pause) {
+  for (let attempt = 0; attempt < 3; attempt++) {
+    let response
     try {
-      const response = await request(source.url, { signal: AbortSignal.timeout(25000), headers: { 'User-Agent': 'Mozilla/5.0 EpargnantLibre-Radar/1.0', Accept: source.format === 'html' ? 'text/html' : 'application/rss+xml, application/xml, text/xml' } })
-      if (!response.ok) throw new Error(`Flux officiel indisponible (HTTP ${response.status}).`)
-      if (response.url) officialUrl(response.url, source)
-      if (!(source.format === 'html' ? /html/i : /xml|rss/i).test(response.headers.get('content-type') ?? '')) throw new Error('La source n’a pas renvoyé un flux XML.')
-      const bytes = await response.arrayBuffer()
-      if (bytes.byteLength > 2000000) throw new Error('Flux officiel trop volumineux.')
-      // Some publishers serve gzip without a Content-Encoding header.
-      const buffer = Buffer.from(bytes)
-      const decoded = buffer[0] === 0x1f && buffer[1] === 0x8b ? (await import('node:zlib')).gunzipSync(buffer, { maxOutputLength: 2000000 }) : buffer
-      const encoding = decoded.subarray(0, 150).toString('ascii').match(/encoding=['"]([^'"]+)/i)?.[1]
-      return new TextDecoder(/iso-8859/i.test(encoding ?? '') ? 'iso-8859-15' : 'utf-8').decode(decoded)
-    } catch (error) { lastError = error }
+      response = await request(source.url, { signal: AbortSignal.timeout(25000), headers: { 'User-Agent': 'Mozilla/5.0 EpargnantLibre-Radar/1.0', Accept: source.format === 'html' ? 'text/html' : 'application/rss+xml, application/xml, text/xml' } })
+    } catch (error) {
+      if (attempt === 2) throw error
+      await wait(1000 * 2 ** attempt)
+      continue
+    }
+    if (!response.ok) {
+      const error = new Error(`Flux officiel indisponible (HTTP ${response.status}).`)
+      if (!TRANSIENT_HTTP.has(response.status) || attempt === 2) throw error
+      const header = response.headers.get('retry-after')
+      const seconds = header && /^\d+$/.test(header.trim()) ? Number(header) : NaN
+      const delay = Number.isFinite(seconds) ? seconds * 1000 : Date.parse(header) - Date.now()
+      // Respect short publisher cooldowns. A long cooldown is left to the next
+      // scheduled run, rather than retrying earlier than the publisher allows.
+      if (Number.isFinite(delay) && delay > 30000) throw error
+      await wait(Math.max(1000 * 2 ** attempt, Number.isFinite(delay) ? delay : 0))
+      continue
+    }
+    // Source/schema failures are not transport failures: do not retry them.
+    if (response.url) officialUrl(response.url, source)
+    if (!(source.format === 'html' ? /html/i : /xml|rss/i).test(response.headers.get('content-type') ?? '')) throw new Error('La source n’a pas renvoyé le format officiel attendu.')
+    const bytes = await response.arrayBuffer()
+    if (bytes.byteLength > 2000000) throw new Error('Flux officiel trop volumineux.')
+    const buffer = Buffer.from(bytes)
+    const decoded = buffer[0] === 0x1f && buffer[1] === 0x8b ? (await import('node:zlib')).gunzipSync(buffer, { maxOutputLength: 2000000 }) : buffer
+    const encoding = decoded.subarray(0, 150).toString('ascii').match(/encoding=['"]([^'"]+)/i)?.[1]
+    return new TextDecoder(/iso-8859/i.test(encoding ?? '') ? 'iso-8859-15' : 'utf-8').decode(decoded)
   }
-  throw lastError
 }
 export async function collectPurchasingNews(now = new Date(), request = fetch, _previous = null) {
   const results = await Promise.all(PURCHASING_SOURCES.map(async source => {

@@ -42,7 +42,7 @@ Généré depuis les routes, le catalogue et les observations actives. Régéné
 | household | 29 |
 | index | 50 |
 | instrument | 197 |
-| insurance | 6 |
+| insurance | 7 |
 | lexicon | 44 |
 | reference | 9 |
 | scpi | 8 |

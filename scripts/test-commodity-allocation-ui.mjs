@@ -2,6 +2,7 @@ import assert from 'node:assert/strict'
 import { chromium } from 'playwright'
 import { spawn } from 'node:child_process'
 import { readFile, mkdir } from 'node:fs/promises'
+import { AUTOMATED_ETF } from '../src/data/automated-etf.js'
 import { ETFS } from '../src/data/etf-cards.js'
 import { choose } from './card-selection.mjs'
 import { commodityAllocationLines } from '../src/data/commodity-allocation.js'
@@ -38,12 +39,12 @@ try {
   await page.goto(`${base}/bibliotheque-donnees?q=${isin}&id=${isin}`,{waitUntil:'networkidle'})
   const field=page.locator('.ds-field').filter({has:page.getByRole('heading',{name:'Allocation matières premières de l’indice suivi',exact:true})})
   await field.waitFor()
-  assert((await field.innerText()).includes('2026-08-31'))
+  assert((await field.innerText()).includes(AUTOMATED_ETF[isin].commodityAllocation.asOf))
   assert((await field.locator('a').allTextContents()).some(x=>x.includes('IE00BD6FTQ80_factsheet_en.pdf')))
   const [download]=await Promise.all([page.waitForEvent('download'),page.getByRole('button',{name:'Exporter la fiche JSON'}).click()])
   const data=JSON.parse(await readFile(await download.path(),'utf8'))
   const allocation=data.fields.find(f=>f.label==='Allocation matières premières de l’indice suivi')
-  assert.equal(allocation.value.length,7);assert.equal(allocation.value.at(-1).weightPct,-.01)
+  assert.deepEqual(allocation.value, AUTOMATED_ETF[isin].commodityAllocation.rows)
  }
  assert.deepEqual(errors,[])
  console.log('Commodity allocations: mobile cards, copied text, dated provenance and JSON exports verified for both exact shares.')

@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict'
-import { PURCHASING_SOURCES, parsePurchasingFeed, collectPurchasingNews, classifyStatus, classifyTopic, officialUrl, adoptedLaw, publishablePurchasingNews } from './lib/purchasing-power-news.mjs'
+import { fetchFeed, PURCHASING_SOURCES, parsePurchasingFeed, collectPurchasingNews, classifyStatus, classifyTopic, officialUrl, adoptedLaw, publishablePurchasingNews } from './lib/purchasing-power-news.mjs'
 import { advanceRadar, observationKey } from './lib/editorial-radar.mjs'
 import { validateFeed } from '../src/pages/editorial-radar/client.js'
 import { pendingNotifications, notificationState } from './lib/radar-notifications.mjs'
@@ -121,3 +121,26 @@ assert.equal(cleaned.state.current.proposal, undefined)
 assert.equal(cleaned.newEvents.length, 0)
 validateFeed(cleaned.feed)
 console.log('Lois adoptées : votes intermédiaires exclus, adoption définitive et promulgation acceptées, anciens textes retirés.')
+
+// Retry transient HTTP responses with a cooldown, but keep permanent/schema failures visible.
+for (const status of [429, 503]) {
+  let calls = 0; const delays = []
+  await fetchFeed(source, async () => ++calls < 3
+    ? { ok: false, status, headers: new Headers({ 'retry-after': '3' }) }
+    : response(feed()), async ms => delays.push(ms))
+  assert.equal(calls, 3)
+  assert.deepEqual(delays, [3000, 3000])
+}
+for (const failedResponse of [
+  { ok: false, status: 404, headers: new Headers() },
+  { ok: false, status: 503, headers: new Headers({ 'retry-after': '3600' }) },
+  { ok: true, headers: new Headers({ 'content-type': 'text/html' }) },
+]) {
+  let calls = 0
+  await assert.rejects(fetchFeed(source, async () => { calls++; return failedResponse }, async () => assert.fail('No retry expected')))
+  assert.equal(calls, 1)
+}
+let calls = 0; const delays = []
+await assert.rejects(fetchFeed(source, async () => { calls++; return { ok: false, status: 503, headers: new Headers() } }, async ms => delays.push(ms)), /HTTP 503/)
+assert.equal(calls, 3)
+assert.deepEqual(delays, [1000, 2000])

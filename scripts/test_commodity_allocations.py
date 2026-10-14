@@ -19,6 +19,15 @@ class CommodityAllocations(unittest.TestCase):
         self.assertEqual(r['rows'][-1]['weightPct'], -.01)
         self.assertAlmostEqual(sum(x['weightPct'] for x in r['rows']), 100.09)
 
+    def test_current_signed_residual_is_preserved(self):
+        source = (pathlib.Path(__file__).parent/'fixtures/official-documents/commodity-allocation/invesco-sep-2026.txt').read_text()
+        result = parse_allocation(source, NOW, 'b'*64)
+        self.assertEqual(result['asOf'], '2026-09-30')
+        self.assertEqual(result['rows'][-1]['weightPct'], -.06)
+        self.assertAlmostEqual(sum(row['weightPct'] for row in result['rows']), 99.94)
+        for altered in [source.replace('-0.06', '-0.11'), source.replace('38.90', '-0.01'), source.replace('38.90', '30.00')]:
+            with self.assertRaises(ValueError): parse_allocation(altered, NOW, 'b'*64)
+
     def test_identity_dates_completeness_and_duplicates(self):
         for a,b in [('IE00BD6FTQ80','IE00OTHER001'),('BCOMTR','OTHER'),
                     ('31 Aug 2026','31 Aug 2027'),('31 Aug 2026','31 Jan 2026'),

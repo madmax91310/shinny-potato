@@ -777,6 +777,135 @@
           }
         }
       ]
+    },
+    {
+      "id": "linxea-avenir-2-plus",
+      "name": "Linxea Avenir 2+",
+      "insurer": "Suravenir",
+      "distributor": "Linxea",
+      "checkedAt": "2026-10-14",
+      "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-avenir-2/",
+      "fees": {
+        "subscription": 0.0,
+        "arbitrage": 0.0,
+        "units": 0.6,
+        "etfTrade": 0.1,
+        "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-avenir-2/",
+        "scope": "Gestion libre, opérations en ligne ; hors frais des supports et garanties optionnelles.",
+        "sourceUrls": [
+          "https://www.linxea.com/assurance-vie/linxea-avenir-2/",
+          "https://www.linxea.com/document/contrat-linxea-avenir-2-plus-tableau-des-frais/"
+        ]
+      },
+      "access": {
+        "initial": 100.0,
+        "free": 100.0,
+        "monthly": 50.0,
+        "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-avenir-2/"
+      },
+      "supports": {
+        "minimumCount": 600,
+        "categories": [
+          "ETF",
+          "SCPI",
+          "private equity"
+        ],
+        "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-avenir-2/"
+      },
+      "euroFunds": [
+        {
+          "name": "Suravenir Opportunités 2",
+          "years": [
+            {
+              "year": 2023,
+              "return": 2.5
+            },
+            {
+              "year": 2024,
+              "return": 2.5
+            },
+            {
+              "year": 2025,
+              "return": 3.0
+            }
+          ],
+          "asOf": "2025-12-31",
+          "guarantee": 97.0,
+          "managementFeeMax": 3.0,
+          "maxAllocation": 100.0,
+          "ceiling": null,
+          "ceilingEvidence": {
+            "status": "unlimited",
+            "checkedAt": "2026-10-14",
+            "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-avenir-2/supports-disponibles-sur-linxea-avenir-2/fonds-euro/",
+            "statement": "Ce fonds en euros est accessible sans limite de montant et sans conditions d’unités de compte",
+            "scope": "Souscriptions, versements complémentaires et programmés",
+            "sha256": "17e2926c1b1fee14eb2210ee6b8439f32eb6831a3372cd79ae7cb96fc3870524"
+          },
+          "operations": "Versements uniquement à l’entrée ; arbitrages sortants possibles.",
+          "notes": "Historique des fonds euros communs à Avenir 2 et Avenir 2+ ; ces rendements ne constituent pas un historique du nouveau contrat.",
+          "accessValidUntil": null,
+          "sourceUrls": [
+            "https://www.linxea.com/assurance-vie/linxea-avenir-2/supports-disponibles-sur-linxea-avenir-2/fonds-euro/"
+          ],
+          "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-avenir-2/supports-disponibles-sur-linxea-avenir-2/fonds-euro/",
+          "publication": {
+            "latestPublishedYear": 2025,
+            "expectedYear": 2025,
+            "awaitingPublication": false
+          }
+        },
+        {
+          "name": "Suravenir Rendement 2",
+          "years": [
+            {
+              "year": 2023,
+              "return": 2.2
+            },
+            {
+              "year": 2024,
+              "return": 2.2
+            },
+            {
+              "year": 2025,
+              "return": 2.1
+            }
+          ],
+          "asOf": "2025-12-31",
+          "guarantee": 99.4,
+          "managementFeeMax": 0.6,
+          "maxAllocation": 70.0,
+          "ceiling": null,
+          "ceilingEvidence": {
+            "status": "unlimited",
+            "checkedAt": "2026-10-14",
+            "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-avenir-2/supports-disponibles-sur-linxea-avenir-2/fonds-euro/",
+            "statement": "Ce fonds en euros est accessible sans limite de montant avec un minimum de 30 % en unités de compte qui présentent un risque de perte en capital",
+            "scope": "Souscriptions, versements complémentaires et programmés",
+            "minimumUnits": 30.0,
+            "sha256": "17e2926c1b1fee14eb2210ee6b8439f32eb6831a3372cd79ae7cb96fc3870524"
+          },
+          "operations": "Au moins 30 % en unités de compte non garanties ; arbitrages possibles.",
+          "notes": "Historique des fonds euros communs à Avenir 2 et Avenir 2+ ; ces rendements ne constituent pas un historique du nouveau contrat.",
+          "accessValidUntil": null,
+          "sourceUrls": [
+            "https://www.linxea.com/assurance-vie/linxea-avenir-2/supports-disponibles-sur-linxea-avenir-2/fonds-euro/"
+          ],
+          "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-avenir-2/supports-disponibles-sur-linxea-avenir-2/fonds-euro/",
+          "publication": {
+            "latestPublishedYear": 2025,
+            "expectedYear": 2025,
+            "awaitingPublication": false
+          }
+        }
+      ],
+      "contractEvidence": {
+        "contractNumber": "2284",
+        "sourceUrl": "https://www.linxea.com/document/contrat-linxea-avenir-2-plus-tableau-des-frais/",
+        "asOf": "2026-10-07",
+        "checkedAt": "2026-10-14",
+        "sha256": "e07cf3e5b5755832db138de016c45fe66f470c1ea1f776993b81a20160c74064"
+      }
     }
   ]
 }

@@ -3,7 +3,7 @@ import datetime as dt
 import json
 import pathlib
 import unittest
-from collect_insurance import parse_contract, parse_fund, refresh, validate, qualify_vie_guarantees, vie_notice_url
+from collect_insurance import parse_contract, parse_fund, refresh, validate, qualify_vie_guarantees, vie_notice_url, qualify_avenir_plus, contract_url, AVENIR_PLUS_FEES
 TODAY=dt.date(2026,10,10)
 ROOT=pathlib.Path(__file__).resolve().parents[1]
 
@@ -21,6 +21,21 @@ class InsuranceTests(unittest.TestCase):
             retained, observations = refresh(previous, {'linxea-avenir-2': lambda day: parse_contract(bad, 'linxea-avenir-2', day)}, TODAY)
             self.assertEqual(observations[0]['status'], 'failure')
             self.assertEqual(retained, previous)
+
+    def test_avenir_plus_exact_identity_and_tariff_proof(self):
+        html = self.contract().replace('Linxea Spirit 2', 'Linxea Avenir 2+').replace('Spirica', 'Suravenir').replace('Transactions ETF</td>', 'Transactions ETF*</td>')
+        record = parse_contract(html, 'linxea-avenir-2-plus', TODAY)
+        self.assertEqual(record['sourceUrl'], contract_url('linxea-avenir-2'))
+        notice = """Les frais du contrat LINXEA AVENIR 2+ Contrat d'assurance-vie de type multisupport n°2284
+        Montant minimal de versement initial 500.00 € Support unités de compte 0.50 % frais maximal
+        Frais sur versement 0.00 % Frais d'arbitrage Proportionnels ou forfaitaires 0.00 %
+        Document mis à jour le 07/10/2026."""
+        qualify_avenir_plus(record, notice, AVENIR_PLUS_FEES, TODAY)
+        self.assertEqual(record['contractEvidence']['contractNumber'], '2284')
+        for bad in [notice.replace('2+', '2'), notice.replace('2284', '0000'), notice.replace('0.50', '0.60'), notice.replace('07/10/2026', '07/10/2027')]:
+            with self.assertRaises(ValueError): qualify_avenir_plus(record, bad, AVENIR_PLUS_FEES, TODAY)
+        with self.assertRaises(ValueError): parse_contract(html.replace('2+', '2'), 'linxea-avenir-2-plus', TODAY)
+        with self.assertRaises(ValueError): parse_fund('Fonctionnement des Fonds euros de Linxea Avenir 2', 'linxea-avenir-2-plus', 'Suravenir Opportunités 2', 'Suravenir Opportunités 2', contract_url('linxea-avenir-2'), TODAY)
 
     def test_vie_current_notice_wording(self):
         notice = (ROOT/'scripts/fixtures/linxea-vie-essential.txt').read_text()
