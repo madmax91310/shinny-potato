@@ -504,6 +504,16 @@ def main():
             status['quote'] = type(error).__name__
             status['quoteDetail'] = str(error)[:300]
             failures.append(ident + ':quote')
+        # Recheck the complete historical share basis every day, independently
+        # from the cached annual accounts. A failed check removes eligibility.
+        from company_valuation import qualify_share_basis
+        try:
+            item['valuationShareBasis'] = qualify_share_basis(item, profile, fetch_json, now.date())
+            status['valuationShareBasis'] = 'qualified'
+        except Exception as error:
+            item.pop('valuationShareBasis', None)
+            status['valuationShareBasis'] = 'unavailable'
+            status['valuationShareBasisDetail'] = str(error)[:300]
         if key and profile['currency'] == 'USD':
             # Never store URLs containing the optional provider key.
             try:
