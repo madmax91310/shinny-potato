@@ -111,6 +111,7 @@ jobs:
       - run: node scripts/test-format-loading.mjs
       - run: node scripts/test-tool-projections.mjs
       - run: npm run build
+      - run: node scripts/build-app-inventory.mjs --check
       - run: node scripts/test-format-loading.mjs --built
       - run: node scripts/test-practical-sheets.mjs
       - run: node scripts/test-performance-links.mjs
@@ -170,6 +171,7 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_document_etf.py'
       - run: python -m unittest discover -s scripts -p 'test_new_issuer_sources.py'
       - run: python -m unittest discover -s scripts -p 'test_priority_issuer_etf.py'
+      - run: python -m unittest discover -s scripts -p 'test_qyld_qualification.py'
       - run: python -m unittest discover -s scripts -p 'test_presentation_etf.py'
       - run: python -m unittest discover -s scripts -p 'test_lifestrategy.py'
       - run: python -m unittest discover -s scripts -p 'test_physical_etc.py'

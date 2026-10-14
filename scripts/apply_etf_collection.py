@@ -82,6 +82,9 @@ def merge_collection(report, current, baseline):
                     and (not facts_date or not active_facts_date or facts_date >= active_facts_date
                          or characteristics == {k: v for k, v in old.get('characteristics', {}).items() if k not in AUDIT_DATES})):
                 record['characteristics'] = checked_observation(characteristics, old.get('characteristics', {}), checked)
+        if share.get('fieldQualification') and checked >= old.get('qualificationCheckedAt', ''):
+            record['fieldQualification'] = copy.deepcopy(share['fieldQualification'])
+            record['qualificationCheckedAt'] = checked
         performance = share.get('performance')
         if not performance:
             next_records[isin] = record

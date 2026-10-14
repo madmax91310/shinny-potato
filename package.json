@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "predev": "node scripts/build-performance-links.mjs && node scripts/build-monthly-duel-returns.mjs",
-    "prebuild": "node scripts/build-performance-links.mjs && node scripts/build-monthly-duel-returns.mjs",
+    "prebuild": "node scripts/build-performance-links.mjs && node scripts/build-monthly-duel-returns.mjs && node scripts/build-app-inventory.mjs",
     "dev": "vite",
     "build": "vite build && node scripts/audit-route-bundles.mjs",
     "lint": "oxlint",
@@ -42,7 +42,8 @@
     "test:wealth": "node scripts/test-wealth-simulator.mjs",
     "test:wealth:browser": "node scripts/playwright-wealth.mjs",
     "test:radar": "node scripts/test-dws-reconciliation.mjs && node scripts/test-editorial-radar.mjs && node scripts/test-radar-notifications.mjs && node scripts/test-purchasing-power-news.mjs",
-    "test:radar:browser": "node scripts/playwright-radar.mjs"
+    "test:radar:browser": "node scripts/playwright-radar.mjs",
+    "inventory": "node scripts/build-app-inventory.mjs"
   },
   "dependencies": {
     "react": "^19.2.8",

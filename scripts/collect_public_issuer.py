@@ -102,6 +102,41 @@ def wisdomtree(text, share, now):
     return result
 
 
+def qualify_qyld(page, share, now, digest):
+    """Re-examine missing fields on each exact-share page; never infer basket exposure."""
+    tokens = page.tokens
+    def section(start, end):
+        if start not in tokens or end not in tokens[tokens.index(start)+1:]:
+            return []
+        a = tokens.index(start)
+        return tokens[a:tokens.index(end, a+1)]
+    history = section('Performance History', 'Options Contract Detail')
+    holdings = section('Top 10 Reference Index Constituents', 'Holdings are subject to change.')
+    sectors = section('Reference Index Sector Breakdown', 'Source: AltaVista Research, LLC')
+    seen = {}; conflicts = []
+    for i in range(len(holdings)-2):
+        if re.fullmatch(r'\d+(?:\.\d+)?', holdings[i]) and re.fullmatch(r'[A-Z]{1,8}', holdings[i+1]):
+            ticker, weight = holdings[i+1], float(holdings[i])
+            if ticker in seen and seen[ticker] != weight:
+                conflicts.append(ticker)
+            seen[ticker] = weight
+    results = {}
+    def add(field, status, reason, evidence):
+        results[field] = {'status':status, 'reason':reason, 'checkedAt':now.date().isoformat(),
+                          'sourceUrl':share['sourceUrl'], 'sha256':digest, 'evidence':evidence}
+    add('performance', 'not-published' if history and 'USD Accumulating' in history and 'USD Distributing' not in history else 'unqualified',
+        'La section de performance ne fournit pas de calendrier annuel qualifié pour la part USD distribuante. Les rendements capitalisants ou glissants ne sont pas substitués.', history[:35])
+    country_headings = [t for t in tokens if re.search(r'Country (Breakdown|Allocation)|Geographic',t,re.I)]
+    complete_page = bool(history and holdings and sectors)
+    add('countries', 'not-published' if complete_page and not country_headings else 'unqualified',
+        'Aucune allocation géographique économique complète qualifiée dans la page ; les pays de commercialisation et le panier de substitution sont exclus.', country_headings)
+    add('holdings', 'source-conflict' if conflicts else 'unqualified',
+        ('Poids différents pour les mêmes titres dans la section datée de l’indice : '+', '.join(sorted(set(conflicts)))+'.') if conflicts else 'Composition de référence à qualifier ; aucune substitution par le panier détenu.', holdings)
+    add('sectors', 'unqualified',
+        'Table sectorielle de référence à recouper avec l’indice exact avant utilisation ; aucune allocation du panier de substitution utilisée.', sectors)
+    return results
+
+
 def globalx(text, share, now):
     page=Page(text); tokens=page.tokens
     starts=[i for i,t in enumerate(tokens[:-1]) if t=='Key Information' and tokens[i+1].startswith('As of ')]
@@ -123,7 +158,8 @@ def globalx(text, share, now):
     if share['currency']!='USD' or currency!='USD':reject('Wrong Global X USD share convention')
     digest=proof(text.encode());result=base(share,stamp,digest);result['characteristics']['terPct']=ter
     result['aum']={'amount':amount,'currency':currency,'scope':'fund','asOf':stamp,'sourceUrl':share['sourceUrl'],'sha256':digest}
-    result['unavailable'] += ['performance: no qualified calendar for USD Distributing IE00BM8R0J59; accumulating-share and rolling returns excluded','exposures: dated reference-index section contains contradictory duplicate top-ten tables; sector weights conflict with Nasdaq equity exposure; substitution basket excluded pending qualified primary source']
+    result['fieldQualification'] = qualify_qyld(page, share, now, digest)
+    result['unavailable'] += [field+': '+value['reason'] for field,value in result['fieldQualification'].items()]
     return result
 
 

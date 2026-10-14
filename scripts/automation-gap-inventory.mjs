@@ -33,7 +33,7 @@ export function classifyInstrumentGap(id,field,now=new Date().toISOString().slic
     return {...eligibility,reason:eligibility.status==='waiting-first-year'?`Première année civile complète : ${eligibility.firstCompleteYear}. Publication possible à partir du ${eligibility.earliestPublicationDate}, selon l’émetteur ; aucun calendrier complet ne peut encore être collecté.`:'Première année complète clôturée, mais aucun calendrier annuel qualifié dans les observations actives. Réessai par le collecteur ; aucun proxy assimilé à la part.'};
   }
   if(field==='performance' && ['IE000UL6CLP7','IE0003R87OG3','IE0003Z9E2Y3'].includes(id)) return {status:'not-published',reason:'La source officielle actuelle publie des performances glissantes et cumulées, collectées séparément, sans calendrier annuel complet. Les historiques mensuels restent automatisés. Le rendement NAV depuis janvier sera intégré comme année civile uniquement sur une observation au 31 décembre, après clôture et hors année de lancement partielle, avec sa preuve conservée.'};
-  if(id==='IE00BM8R0J59') return {status:'source-conflict',reason:'Part QYLD distribuante : composition contradictoire et calendrier exact non qualifié. Fiche indisponible et historique de distributions tronqué ; voir qualification du 9 octobre.'};
+  if(id==='IE00BM8R0J59') return {status:'unqualified',reason:'Qualification automatique de la page exacte attendue ; aucune donnée d’une autre part ou du panier de substitution utilisée.'};
   if(id==='IE000QDFFK00' && field==='countries') return {status:'unqualified',reason:'Pays de l’indice exact raccordés via la fiche Amundi ; le portefeuille BNP publie seulement des régions. Une absence indique que le complément d’indice reste à valider.'};
   return {status:'unqualified',reason:'Champ absent des observations actives ; source ou connecteur à qualifier.'};
 }
@@ -47,7 +47,7 @@ export function buildGapInventory({etf=AUTOMATED_ETF,indices=read('src/data/auto
     for(const field of Object.keys(names)) {
       const present=field==='ter'?Number.isFinite(data.characteristics?.terPct):field==='aum'?Number.isFinite(data.aum?.amount):field==='performance'?completeCalendarYears(row.id,data.performance?.years,now).length>0:(data[field]?.rows?.length??0)>0;
       if(present){counts[field]++;continue;}
-      gaps.push({type:'instrument',id:row.id,name:row.name,field,label:names[field],configured:!!source,...classifyInstrumentGap(row.id,field,now),sourceUrl:source?.factsheetUrl??source?.sourceUrl??data.sourceUrl??null});
+      gaps.push({type:'instrument',id:row.id,name:row.name,field,label:names[field],configured:!!source,...(data.fieldQualification?.[field]??classifyInstrumentGap(row.id,field,now)),sourceUrl:source?.factsheetUrl??source?.sourceUrl??data.sourceUrl??null});
     }
   }
   const configs=read('scripts/index-automation.json').indices.filter(c=>c.enabled!==false);
