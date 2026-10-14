@@ -49,9 +49,18 @@ def collect(profile, old, now):
             time.sleep(.15)
         return cache[url]
     try:
-        body = select_revenue_concept(fetch(source), now.date())
-        accounts = parse_accounts(body, profile, now.date())
-        history = parse_history(body, profile, now.date())
+        secondary = None
+        try:
+            body = select_revenue_concept(fetch(source), now.date())
+            accounts = parse_accounts(body, profile, now.date())
+            history = parse_history(body, profile, now.date())
+        except Exception as primary_error:
+            from company_standard_financials import collect as collect_standard
+            secondary = collect_standard(profile, now.date())
+            accounts = {k: secondary[k] for k in ('annual', 'quarter')}
+            history = secondary['history']
+            source = secondary['sourceUrl']
+            status['primarySource'] = str(primary_error)[:150]
         if history[-1]['end'] != accounts['annual']['end']:
             raise ValueError('Annual history mismatch')
         latest = (accounts.get('quarter') or accounts['annual'])['end']
@@ -69,9 +78,11 @@ def collect(profile, old, now):
                 accounts[key].update(sourceUrl=source, observedAt=now.date().isoformat())
         item.update(accounts, accountsSourceUrl=source, accountsObservedAt=now.date().isoformat(),
                     history={'years': history, 'observedAt': now.date().isoformat(), 'definition': 'Comptes consolidés GAAP / SEC'})
-        decision = sec_decision(body, profile, item, now.date())
+        decision = secondary['decision'] if secondary else sec_decision(body, profile, item, now.date())
         decision['accountsEndAtCollection'] = latest
         item['decision'] = validate_decision(decision, item, now.date())
+        item['accountsSourceKind'] = 'standardised-secondary' if secondary else 'sec'
+        if secondary:item['accountsProvenance'] = secondary['provenance']
         status['accounts'] = 'updated'
     except Exception as error:
         status['accounts'] = str(error)[:250]

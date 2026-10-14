@@ -33,6 +33,7 @@ class UniverseTests(unittest.TestCase):
                'quote': {'price': 100, 'asOf': '2026-10-12'},
                'targetForecast': {'observedAt': '2026-10-01'}, 'valuationShareBasis': {'version': 1}}
         with patch('refresh_company_universe.fetch_json', side_effect=OSError('source offline')), \
+             patch('company_standard_financials.collect', side_effect=OSError('source offline')), \
              patch('refresh_company_universe.collect_forecast', side_effect=OSError('source offline')), \
              patch('refresh_company_universe.qualify_share_basis', side_effect=OSError('source offline')):
             item, status = collect(self.profile, old, dt.datetime(2026, 10, 14, tzinfo=dt.timezone.utc))
