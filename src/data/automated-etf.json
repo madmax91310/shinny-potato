@@ -31986,7 +31986,7 @@
       "scope": "fund",
       "asOf": "2026-10-13",
       "sourceUrl": "https://globalxetfs.eu/funds/silv/",
-      "sha256": "77052716cc180c1ecf8c45df4f6918daf60f74736a20335d65faae30ec8f45e4",
+      "sha256": "b1f72dd5b90e100d5251e0f9de53660a861e70b61c1882024ef117052cf59360",
       "checkedAt": "2026-10-14",
       "modifiedAt": "2026-10-14"
     },
@@ -32004,7 +32004,7 @@
       "years": {},
       "asOf": "2026-09-30",
       "sourceUrl": "https://globalxetfs.eu/funds/silv/",
-      "sha256": "77052716cc180c1ecf8c45df4f6918daf60f74736a20335d65faae30ec8f45e4",
+      "sha256": "b1f72dd5b90e100d5251e0f9de53660a861e70b61c1882024ef117052cf59360",
       "method": "cumulative exact-share NAV total return, gross income reinvested, net of fees",
       "observations": [
         {
@@ -32033,6 +32033,98 @@
           "asOf": "2026-09-30"
         }
       ],
+      "checkedAt": "2026-10-14",
+      "modifiedAt": "2026-10-14"
+    },
+    "countries": {
+      "rows": [
+        {
+          "name": "Canada",
+          "weightPct": 59.3
+        },
+        {
+          "name": "United States",
+          "weightPct": 22.2
+        },
+        {
+          "name": "Mexico",
+          "weightPct": 5.9
+        },
+        {
+          "name": "Britain",
+          "weightPct": 5.4
+        },
+        {
+          "name": "Peru",
+          "weightPct": 3.8
+        },
+        {
+          "name": "South Korea",
+          "weightPct": 2.4
+        },
+        {
+          "name": "Australia",
+          "weightPct": 0.9
+        },
+        {
+          "name": "Sweden",
+          "weightPct": 0.1
+        }
+      ],
+      "asOf": "2026-09-30",
+      "basis": "fund",
+      "sourceUrl": "https://globalxetfs.eu/funds/silv/",
+      "sha256": "b1f72dd5b90e100d5251e0f9de53660a861e70b61c1882024ef117052cf59360",
+      "checkedAt": "2026-10-14",
+      "modifiedAt": "2026-10-14"
+    },
+    "holdings": {
+      "rows": [
+        {
+          "name": "WHEATON PRECIOUS METALS CORP",
+          "weightPct": 16.48
+        },
+        {
+          "name": "PAN AMERICAN SILVER CORP",
+          "weightPct": 12.58
+        },
+        {
+          "name": "COEUR MINING INC",
+          "weightPct": 11.21
+        },
+        {
+          "name": "HECLA MINING CO",
+          "weightPct": 7.18
+        },
+        {
+          "name": "INDUSTRIAS PENOLES SAB DE CV",
+          "weightPct": 6.16
+        },
+        {
+          "name": "FIRST MAJESTIC SILVER CORP",
+          "weightPct": 5.33
+        },
+        {
+          "name": "SSR MINING INC",
+          "weightPct": 4.45
+        },
+        {
+          "name": "OR ROYALTIES INC",
+          "weightPct": 4.32
+        },
+        {
+          "name": "FRESNILLO PLC",
+          "weightPct": 4.16
+        },
+        {
+          "name": "CIA DE MINAS BUENAVENTUR-ADR",
+          "weightPct": 3.89
+        }
+      ],
+      "asOf": "2026-10-13",
+      "basis": "fund",
+      "sourceUrl": "https://globalxetfs.eu/funds/silv/",
+      "sha256": "b1f72dd5b90e100d5251e0f9de53660a861e70b61c1882024ef117052cf59360",
       "checkedAt": "2026-10-14",
       "modifiedAt": "2026-10-14"
     }
@@ -32089,6 +32181,121 @@
       "note": "Only cumulative QTR/YTD/1-year columns collected; annualised inception return excluded",
       "checkedAt": "2026-10-14",
       "modifiedAt": "2026-10-13"
+    },
+    "sectors": {
+      "rows": [
+        {
+          "name": "Consumer Discretionary",
+          "weightPct": 18.85,
+          "label": "Consumer Discretionary"
+        },
+        {
+          "name": "Energy",
+          "weightPct": 14.55,
+          "label": "Energy"
+        },
+        {
+          "name": "Financials",
+          "weightPct": 23.54,
+          "label": "Financials"
+        },
+        {
+          "name": "Consumer Staples",
+          "weightPct": 5.05,
+          "label": "Consumer Staples"
+        },
+        {
+          "name": "Materials",
+          "weightPct": 10.59,
+          "label": "Materials"
+        },
+        {
+          "name": "Industrials",
+          "weightPct": 15.47,
+          "label": "Industrials"
+        },
+        {
+          "name": "Communication Services",
+          "weightPct": 2.54,
+          "label": "Communication"
+        },
+        {
+          "name": "Information Technology",
+          "weightPct": 4.83,
+          "label": "Information Technology"
+        },
+        {
+          "name": "Utilities",
+          "weightPct": 0.3,
+          "label": "Utilities"
+        },
+        {
+          "name": "Health Care",
+          "weightPct": 3.49,
+          "label": "Health Care"
+        },
+        {
+          "name": "Real Estate",
+          "weightPct": 0.8,
+          "label": "Immobilier"
+        }
+      ],
+      "asOf": "2026-09-30",
+      "basis": "fund",
+      "sourceUrl": "https://res.americancentury.com/docs/avantis-global-small-cap-value-ucits-etf-fact-sheet.pdf",
+      "sha256": "43ac17cfbd6ff218e06494094aa3b80b00c93549cf8f22fb1a5544afab9907e4",
+      "checkedAt": "2026-10-14",
+      "modifiedAt": "2026-10-14"
+    },
+    "holdings": {
+      "rows": [
+        {
+          "name": "Macy's Inc",
+          "weightPct": 0.62
+        },
+        {
+          "name": "Lear Corp",
+          "weightPct": 0.61
+        },
+        {
+          "name": "Chord Energy Corp",
+          "weightPct": 0.61
+        },
+        {
+          "name": "Matson Inc",
+          "weightPct": 0.6
+        },
+        {
+          "name": "Abercrombie & Fitch Co",
+          "weightPct": 0.6
+        },
+        {
+          "name": "Lyft Inc",
+          "weightPct": 0.58
+        },
+        {
+          "name": "Crocs Inc",
+          "weightPct": 0.57
+        },
+        {
+          "name": "Weatherford International PLC",
+          "weightPct": 0.53
+        },
+        {
+          "name": "Matador Resources Co",
+          "weightPct": 0.52
+        },
+        {
+          "name": "SM Energy Co",
+          "weightPct": 0.52
+        }
+      ],
+      "asOf": "2026-09-30",
+      "basis": "fund",
+      "sourceUrl": "https://res.americancentury.com/docs/avantis-global-small-cap-value-ucits-etf-fact-sheet.pdf",
+      "sha256": "43ac17cfbd6ff218e06494094aa3b80b00c93549cf8f22fb1a5544afab9907e4",
+      "checkedAt": "2026-10-14",
+      "modifiedAt": "2026-10-14"
     }
   },
   "IE00B3F81G20": {

@@ -1,3 +1,4 @@
+import { usePublicationPreference } from '../../lib/usePublicationPreference.js'
 import { notifyPublication, copyPublicationText } from '../../design-system/publicationActions.js'
 import ActionMenu from '../../design-system/ActionMenu'
 import { downloadImage } from '../../design-system/downloadImage'
@@ -5,7 +6,7 @@ import WorkspaceActions from '../../design-system/WorkspaceActions'
 import AssetPicker from '../../design-system/AssetPicker'
 import { exposureGroup } from '../../data/asset-selection.js'
 import ToolWorkspace from '../../design-system/ToolWorkspace'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import PageHeader from '../../design-system/PageHeader'
 import Button from '../../design-system/Button'
 import { SHEETS } from './data.js'
@@ -14,10 +15,13 @@ import { renderFactsheetImage } from './canvasImage.js'
 import './factsheet-tweets.css'
 
 export default function App() {
-  const [selected, setSelected] = useState(SHEETS[0].id)
+  const [selected, setSelected] = usePublicationPreference('index-sheet', SHEETS[0].id, id => SHEETS.some(s => s.id === id))
   const [drafts, setDrafts] = useState({})
   const [copied, setCopied] = useState(false)
   const [image, setImage] = useState(null)
+  const selectedRef = useRef(selected)
+  selectedRef.current = selected
+  useEffect(() => { setImage(null) }, [selected])
   const sheet = SHEETS.find((entry) => entry.id === selected)
   const text = drafts[selected] ?? buildFactsheetTweet(sheet)
 
@@ -33,7 +37,10 @@ export default function App() {
   }
 
   async function previewImage() {
-    setImage({ url: (await renderFactsheetImage(sheet)).toDataURL('image/png'), filename: `${sheet.id}-dans-les-coulisses.png` })
+    try {
+      const canvas = await renderFactsheetImage(sheet)
+      if (selectedRef.current === sheet.id) setImage({ url: canvas.toDataURL('image/png'), filename: `${sheet.id}-dans-les-coulisses.png` })
+    } catch { notifyPublication('Impossible de préparer l’image. Réessaie.', 'error') }
   }
 
   return <div className="fs-scope">
@@ -55,7 +62,7 @@ export default function App() {
     <div className="fs-panel fs-editor tool-preview">
       <div className="fs-editor-top"><label className="fs-label" htmlFor="factsheet-draft">Publication modifiable</label><span>{text.length.toLocaleString('fr-FR')} caractères</span></div>
       <textarea id="factsheet-draft" spellCheck="true" value={text} onChange={(event) => { setDrafts((current) => ({ ...current, [selected]: event.target.value })); setCopied(false) }} />
-      <WorkspaceActions><Button onClick={copy}>{copied ? '✅ Copié' : '📋 Copier le texte'}</Button><Button variant="secondary" onClick={async () => { try { downloadImage(await renderFactsheetImage(sheet), `${sheet.id}-dans-les-coulisses.png`) } catch { notifyPublication('Impossible de préparer l’image. Réessaie.', 'error') } }}>Télécharger l’image</Button><ActionMenu><Button variant="secondary" onClick={previewImage}>🖼️ Prévisualiser l’image PNG</Button><Button variant="secondary" onClick={() => { setDrafts((current) => { const next = { ...current }; delete next[selected]; return next }); notifyPublication('Texte d’origine rétabli.') }}>↩️ Rétablir le modèle</Button></ActionMenu></WorkspaceActions>
+      <WorkspaceActions><Button onClick={copy}>{copied ? '✅ Copié' : '📋 Copier le texte'}</Button><Button variant="secondary" onClick={async () => { try { const canvas = await renderFactsheetImage(sheet); if (selectedRef.current === sheet.id) downloadImage(canvas, `${sheet.id}-dans-les-coulisses.png`) } catch { notifyPublication('Impossible de préparer l’image. Réessaie.', 'error') } }}>Télécharger l’image</Button><ActionMenu><Button variant="secondary" onClick={previewImage}>🖼️ Prévisualiser l’image PNG</Button><Button variant="secondary" onClick={() => { setDrafts((current) => { const next = { ...current }; delete next[selected]; return next }); notifyPublication('Texte d’origine rétabli.') }}>↩️ Rétablir le modèle</Button></ActionMenu></WorkspaceActions>
     </div>
     </ToolWorkspace>
     {image && <div className="fs-image-overlay" role="presentation" onClick={() => setImage(null)}>

@@ -1,3 +1,4 @@
+import { readPreference, writePreference } from '../../lib/publication-preferences.js'
 import CrisisResult from './CrisisResult.jsx'
 import { CRISES, compareCrisis, buildCrisisTweet } from './crisis.js'
 import { renderCrisisImage } from './crisisImage.js'
@@ -37,6 +38,15 @@ const INITIAL_STATE = {
   customStart: '',
   customEnd: '',
   overridePriceRaw: '',
+}
+
+function validSavedSettings(value) {
+  return value && typeof value === 'object' && ['standard', 'crisis'].includes(value.scenario)
+    && (value.assetId === 'custom' || Object.hasOwn(ASSETS, value.assetId)) && ['lump', 'dca'].includes(value.mode)
+    && CRISES.some(crisis => crisis.id === value.crisisId)
+    && Number.isInteger(value.startYear) && value.startYear >= 1900 && value.startYear <= new Date().getFullYear()
+    && Number.isInteger(value.startMonth) && value.startMonth >= 1 && value.startMonth <= 12
+    && ['crisisId', 'amountRaw', 'customLabel', 'customStart', 'customEnd', 'overridePriceRaw'].every(key => typeof value[key] === 'string' && value[key].length <= 100)
 }
 
 function CompareItem({ label, value, deltaVal, currency, highlight }) {
@@ -249,7 +259,7 @@ export default function App() {
 function InvestmentWorkspace({ search }) {
   const [state, setState] = useState(() => {
     const assetId = getSimulationAssetId(new URLSearchParams(search).get('asset'))
-    if (!assetId) return INITIAL_STATE
+    if (!assetId) return readPreference('investment-settings', INITIAL_STATE, validSavedSettings)
     const minDate = getAssetMinDate(assetId)
     const maxDate = ASSETS[assetId].points.at(-1).date
     // Carry identity only. Defaults must remain within this exact history;
@@ -258,6 +268,7 @@ function InvestmentWorkspace({ search }) {
     const date = preferredDate > maxDate ? maxDate : preferredDate
     return { ...INITIAL_STATE, assetId, startYear: Number(date.slice(0, 4)), startMonth: Number(date.slice(5)) }
   })
+  useEffect(() => { writePreference('investment-settings', state) }, [state])
   const [copied, setCopied] = useState('idle')
 
   const crisisMode = state.scenario === 'crisis'
@@ -343,7 +354,7 @@ function InvestmentWorkspace({ search }) {
       />
 
       <ToolWorkspace className="ic-layout" renderImage={() => crisisMode ? renderCrisisImage(crisisComparison) : renderInvestmentImage(state, d)} imageDisabled={resultBlocked || (crisisMode && !crisisComparison.available)} imageAlt="Graphique du placement">
-        <div className="ic-panel tool-settings">
+        <div className="ic-panel tool-settings"><Button variant="secondary" onClick={() => setState(INITIAL_STATE)}>Réinitialiser les réglages</Button>
           <div>
             <p className="ic-eyebrow">Scénario</p>
             <div className="ic-segmented">

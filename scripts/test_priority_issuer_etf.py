@@ -28,7 +28,9 @@ class RemainingIssuerSources(unittest.TestCase):
                         ('SILV','COPX'),('$1,436,170,893.22','€1,436,170,893.22'),
                         ('12 Oct 2026','12 Oct 2027'),('2026-09-30','2026-01-31')]:
             with self.subTest(old=old), self.assertRaises(ValueError): silver(text.replace(old,new),config,NOW)
-        self.assertNotIn('countries', result) # Lending collateral is not the equity portfolio.
+        self.assertEqual(result['countries']['asOf'], '2026-09-30')
+        self.assertEqual(result['holdings']['rows'][0]['name'], 'WHEATON PRECIOUS METALS CORP')
+        self.assertFalse(any('TREAS' in row['name'] for row in result['holdings']['rows']))
 
     def test_avantis_rounded_fund_assets_and_no_annualised_inception_substitution(self):
         text = (FIX / 'avantis.txt').read_text(); facts = (FIX / 'avantis-facts.txt').read_text()
@@ -91,5 +93,26 @@ class SilverResilience(unittest.TestCase):
         with patch('collect_priority_issuer_etf.public_page', return_value=text.replace(config['isin'], 'IE000OTHER00')) as fetch:
             with self.assertRaises(ValueError): priority(config, NOW)
             self.assertEqual(fetch.call_count, 1)
+
+
+class TargetedCompositions(unittest.TestCase):
+    def test_silver_rejects_missing_country_table_and_future_holdings(self):
+        text = (FIX / 'silv.html').read_text(); config = share('IE000UL6CLP7')
+        for old,new in [('Country Breakdown', 'No countries'), ('As of 13 Oct 2026', 'As of 13 Oct 2027'), ('<td>59.3</td>', '<td>20.0</td>')]:
+            with self.subTest(old=old), self.assertRaises(ValueError):
+                silver(text.replace(old,new),config,NOW)
+
+    def test_avantis_fund_column_and_truncation(self):
+        from collect_priority_issuer_etf import avantis_composition
+        text = (FIX / 'avantis.txt').read_text()
+        def parse(value): return avantis_composition(value, '2026-09-30', 'official', 'sha')
+        result = parse(text)
+        self.assertEqual(len(result['sectors']['rows']),11)
+        self.assertEqual(result['sectors']['rows'][0]['weightPct'],18.85)
+        self.assertEqual(len(result['holdings']['rows']),10)
+        self.assertEqual(result['holdings']['rows'][0]['name'],"Macy's Inc")
+        self.assertNotIn('countries',result) # Only five countries are published.
+        for old,new in [('Consumer Discretionary','Missing sector'),("Macy's Inc",'Top Ten Holdings Total'),('5.76','9.99'),('18.85','8.83')]:
+            with self.subTest(old=old), self.assertRaises(ValueError): parse(text.replace(old,new))
 
 if __name__ == '__main__': unittest.main()

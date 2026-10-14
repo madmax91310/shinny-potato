@@ -1,3 +1,4 @@
+import { usePublicationPreference } from '../../lib/usePublicationPreference.js'
 import { notifyPublication, copyPublicationText, startPublicationDownload } from '../../design-system/publicationActions.js'
 import { getPresentationCopy, presentationTicker } from './editorial.js'
 import { Link } from 'react-router-dom'
@@ -192,13 +193,16 @@ function Lightbox({ dataUrl, filename, title, onClose }) {
 }
 
 export default function App() {
-  const [currentId, setCurrentId] = useState('sp500')
+  const [currentId, setCurrentId] = usePublicationPreference('etf-sheet', 'sp500', id => Object.hasOwn(byId, id))
   const [copied, setCopied] = useState(false)
   const [lightbox, setLightbox] = useState(null)
   const [imageBusy, setImageBusy] = useState(false)
   const [imageError, setImageError] = useState('')
   const seenThisSession = useRef([currentId])
 
+  const selectedRef = useRef(currentId)
+  selectedRef.current = currentId
+  useEffect(() => { setLightbox(null) }, [currentId])
   const currentEtf = byId[currentId]
   const performanceHref = getPerformanceHref(currentEtf.isin)
 
@@ -236,6 +240,7 @@ export default function App() {
     setImageError('')
     try {
       const canvas = await renderETFImage(currentEtf)
+      if (selectedRef.current !== currentEtf.id) return
       if (directDownload) downloadImage(canvas, `${currentEtf.id}-fiche-etf.png`)
       else setLightbox({ dataUrl: canvas.toDataURL('image/png'), filename: currentEtf.id + '-fiche-etf.png', title: currentEtf.name })
     } catch (error) {
