@@ -41,6 +41,15 @@ Total 100%
         self.assertEqual(r['aum']['asOf'],'2026-08-31');self.assertIn('arrondi',r['aum']['precisionNote'])
         self.assertEqual(r['assetAllocation']['rows'][0]['name'],'Actions')
         self.assertNotIn('sectors',r);self.assertNotIn('countries',r)
+        self.assertEqual(r['fieldQualification']['countries']['status'], 'not-published')
+        self.assertEqual(r['fieldQualification']['countries']['checkedAt'], '2026-10-13')
+    def test_new_country_payload_requires_whole_fund_qualification(self):
+        api=copy.deepcopy(self.api)
+        api['data']['funds'][0]['marketAllocation']=[{'countryName':'United States','fundMktPercent':100}]
+        result=self.parse(api=api)
+        self.assertEqual(result['fieldQualification']['countries']['status'],'unqualified')
+        self.assertEqual(result['fieldQualification']['countries']['evidence']['marketAllocationRows'],1)
+        self.assertNotIn('countries',result)
     def test_absent_share_assets_rejected(self):
         with self.assertRaises(ValueError):self.parse(text=self.text.replace("Encours classe d'actifs",'Other assets'))
     def test_wrong_isin_rejected(self):

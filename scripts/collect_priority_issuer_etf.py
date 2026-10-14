@@ -76,6 +76,32 @@ def silver(text, share, now):
                              basis='fund', sourceUrl=share['sourceUrl'], sha256=digest)
     result['unavailable'] = ['performance-calendar: issuer discrete returns are rolling years, not calendar years; separately collected exact-share market histories preserved',
                              'sectors: no complete sector allocation published in the official page']
+    # The issuer currently hides this chart. Re-evaluate the dated, fund-scoped
+    # table every day so a future publication does not require a manual refresh.
+    sector_tables = [t for t in page.tables if 'Sector Breakdown As of' in t['context']
+                     and 'Reference Index' not in t['context']
+                     and t['rows'] and t['rows'][0] == ['', 'Sector', 'Weight (%)']]
+    qualification = dict(status='not-published', checkedAt=now.date().isoformat(),
+        sourceUrl=share['sourceUrl'], sha256=digest,
+        reason='Aucun tableau sectoriel complet du fonds dans la page officielle contrôlée.',
+        evidence={'datedCountryTable': True, 'datedHoldingsTable': True, 'sectorTables': len(sector_tables)})
+    if sector_tables:
+        try:
+            table = only(sector_tables, 'Silver Miners sectors')
+            date = document_date(only(re.findall(r'As of (\d+ [A-Za-z]+ \d{4})', table['context'].split('Sector Breakdown', 1)[1]), 'sector date'), now)
+            rows = validated_rows([dict(name=r[1], weightPct=float(r[2])) for r in table['rows'][1:] if len(r) == 3])
+            if len(rows) != len(table['rows'])-1:
+                reject('Malformed Silver Miners sector table')
+            result['sectors'] = dict(rows=rows, asOf=date, basis='fund', sourceUrl=share['sourceUrl'], sha256=digest)
+            qualification.update(status='qualified', reason='Table sectorielle complète du fonds, datée et validée.', asOf=date)
+            result['unavailable'] = [r for r in result['unavailable'] if not r.startswith('sectors:')]
+        except (ValueError, IndexError) as error:
+            qualification.update(status='unqualified', reason=str(error))
+            result.setdefault('collectionErrors', []).append(dict(field='sectors', url=share['sourceUrl'], reason=str(error)))
+    elif 'Sector Breakdown' in page.tokens:
+        qualification.update(status='unqualified', reason='Section sectorielle détectée mais tableau complet non reconnu ; format à qualifier.')
+        result.setdefault('collectionErrors', []).append(dict(field='sectors', url=share['sourceUrl'], reason=qualification['reason']))
+    result['fieldQualification'] = {'sectors': qualification}
     if result['performance']['years']:
         result['unavailable'] = [reason for reason in result['unavailable'] if not reason.startswith('performance-calendar:')]
     return result
@@ -117,12 +143,41 @@ def avantis(body, share, now):
     launch = document_date(only(re.findall(r'FUND INCEPTION DATE\s+CUSIP\s+(\d{2}/\d{2}/\d{4})', facts), 'Avantis inception'), now, max_age=36500)
     capture_year_end(result['performance'], launch, now)
     result.update(avantis_composition(text, stamp, share['sourceUrl'], digest))
+    result['fieldQualification'] = {'countries': avantis_country_qualification(text, stamp, share['sourceUrl'], digest, now)}
+    if result['fieldQualification']['countries']['status'] == 'unqualified':
+        result.setdefault('collectionErrors', []).append(dict(field='countries', url=share['sourceUrl'],
+            reason=result['fieldQualification']['countries']['reason']))
     result['unavailable'] = ['performance-calendar: current factsheet publishes rolling returns, no complete calendar year; separate exact-share monthly history retained',
                              'countries: top five is not a complete country allocation']
     if result['performance']['years']:
         result['unavailable'] = [reason for reason in result['unavailable'] if not reason.startswith('performance-calendar:')]
-    if result['performance']['years']:
-        result['unavailable'] = [reason for reason in result['unavailable'] if not reason.startswith('performance-calendar:')]
+    return result
+
+
+def avantis_country_qualification(text, stamp, url, digest, now):
+    """Record what the exact factsheet actually discloses; never infer countries from ISINs."""
+    lines = text.splitlines()
+    headers = [(i, line.index('Top 5 Countries %')) for i, line in enumerate(lines) if 'Top 5 Countries %' in line]
+    result = dict(status='unqualified', checkedAt=now.date().isoformat(), asOf=stamp,
+                  sourceUrl=url, sha256=digest,
+                  reason='Format géographique modifié ou absent : nouvelle qualification nécessaire.')
+    if len(headers) != 1:
+        return result
+    start, column = headers[0]
+    rows = []
+    for line in lines[start+1:]:
+        if 'DUE TO MARKET VOLATILITY' in line: break
+        match = re.fullmatch(r'(.+?)\s{2,}(\d+\.\d+)', line[column:].strip())
+        if match: rows.append(dict(name=match[1], weightPct=float(match[2])))
+    try:
+        validated_rows(rows, complete=False)
+        if len(rows) != 5: reject('Expected exactly five countries')
+    except ValueError:
+        return result
+    total = round(sum(r['weightPct'] for r in rows), 2)
+    result.update(status='not-published',
+        reason=f'La fiche ne publie que les cinq premiers pays ({total:g} %). Le solde ne peut pas être attribué à des pays sans source complète.',
+        evidence={'scope':'top-five-countries', 'rows': rows, 'coveragePct': total})
     return result
 
 
