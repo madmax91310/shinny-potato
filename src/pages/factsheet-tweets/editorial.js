@@ -123,35 +123,35 @@ export function indexObservation(sheet) {
   const usa = countries.find(([name]) => /États-Unis|United States/i.test(name))?.[1] ?? 0
   const asia = countries.filter(([name]) => /Taïwan|Taiwan|Corée|Korea/i.test(name))
   const concentration = top.length
-    ? 'Je regarde aussi le poids de ces entreprises : leurs variations ne comptent pas toutes autant dans la performance de l’indice.'
-    : 'Je regarde les pays et les secteurs pour comprendre comment cet indice répartit l’investissement.'
+    ? 'Toutes ces entreprises ne pèsent pas autant. Quand une grosse ligne bouge, elle compte davantage dans la performance de l’indice.'
+    : 'Les pays et les secteurs permettent de voir où va l’argent investi dans cet indice.'
   switch (sheet.id) {
-    case 'msci-world-health-care': return 'Je regarde les entreprises derrière le mot « santé ». Un laboratoire et un assureur santé ne dépendent pas des mêmes moteurs, même s’ils figurent dans le même secteur.'
-    case 'msci-world-financials': return 'Je retiens que la finance va au-delà des banques. Les assureurs et les réseaux de paiement ont des activités différentes, et les plus grandes entreprises prennent davantage de place.'
-    case 'msci-world-energy': return 'Je garde en tête que ce panier contient des actions d’entreprises énergétiques. Leurs bénéfices et leurs investissements comptent aussi : ce n’est pas une exposition directe au prix du pétrole.'
+    case 'msci-world-health-care': return 'Je regarde les entreprises derrière le mot « santé ». Un laboratoire et un assureur santé ne gagnent pas leur argent de la même façon, même s’ils figurent dans le même secteur.'
+    case 'msci-world-financials': return 'Dans cet indice, la finance ne se limite pas aux banques. Les assureurs et les réseaux de paiement ont des activités différentes, et les plus grandes entreprises prennent davantage de place.'
+    case 'msci-world-energy': return 'Avec cet indice, tu achètes des actions d’entreprises énergétiques. Leurs bénéfices et leurs investissements comptent aussi : ce n’est pas une exposition directe au prix du pétrole.'
     case 'world': return concentration
     case 'acwi': case 'ftse-all-world': case 'acwi-imi': return usa > 50
-      ? 'C’est ce que je regarde derrière le nom « tous pays » : les émergents sont bien inclus, mais les grandes entreprises américaines gardent beaucoup de poids. Couvrir davantage de pays ne veut pas dire répartir ton argent à parts égales entre eux.'
+      ? 'Derrière le nom « tous pays », il faut regarder les poids : les émergents sont bien inclus, mais les grandes entreprises américaines gardent beaucoup de poids. Couvrir davantage de pays ne veut pas dire répartir ton argent à parts égales entre eux.'
       : 'Je regarde aussi la place de chaque pays : cet indice couvre les marchés développés et émergents, mais ne répartit pas l’investissement à parts égales entre eux.'
     case 'world-small-cap': return 'Je vois cet indice comme un complément au World : il ajoute les petites entreprises que le World classique laisse de côté. Il contient aussi des entreprises américaines.'
-    case 'world-ex-usa': return 'Je retiens surtout que cet indice retire les États-Unis sans ajouter les marchés émergents. Il donne davantage de place aux autres pays développés déjà présents dans le World.'
+    case 'world-ex-usa': return 'Cet indice enlève les États-Unis, mais n’ajoute pas les marchés émergents. Il donne davantage de place aux autres pays développés déjà présents dans le World.'
     case 'em-standard': case 'em-esg': case 'msci-em-ex-china': return asia.length === 2 && sumRows(asia) > 40
-      ? 'Je retiens surtout la place de Taïwan et de la Corée du Sud. À eux deux, ils représentent une grande partie de l’indice, même si les émergents couvrent bien d’autres pays.'
+      ? 'Taïwan et la Corée du Sud prennent beaucoup de place ici. À eux deux, ils représentent une grande partie de l’indice, même si les émergents couvrent bien d’autres pays.'
       : 'Je regarde les pays et les entreprises derrière le mot « émergents ». Selon l’indice choisi, leur place peut être très différente.'
-    case 'stoxx600': return 'Je retiens surtout que cet indice dépasse la zone euro. Le Royaume-Uni et la Suisse en font partie, contrairement à l’EURO STOXX 50.'
+    case 'stoxx600': return 'Cet indice ne s’arrête pas à la zone euro. Le Royaume-Uni et la Suisse en font partie, contrairement à l’EURO STOXX 50.'
     case 'mscieurope': return 'Je regarde aussi les secteurs : acheter des entreprises européennes, c’est investir dans des activités qui n’ont pas toutes le même poids dans cet indice.'
     case 'eurostoxx50': return top[0]?.[1] >= 10
       ? `Quand je regarde cette composition, je garde surtout le poids de ${companyLabel(top[0][0])} en tête. Avec ${top[0][1] > 10 ? 'plus de' : ''} 10 % de l’indice, ses variations comptent bien davantage que celles d’une entreprise qui n’en représente que 1 %.`.replace('  ', ' ')
       : concentration
     case 'topix': return 'Je regarde aussi la construction de l’indice. Le TOPIX donne davantage de poids aux entreprises selon leur valeur en Bourse et les actions disponibles à l’échange ; le Nikkei utilise les prix ajustés des actions.'
-    case 'nikkei225': return 'Je retiens surtout sa règle de calcul : les prix ajustés des actions déterminent leur poids. Une entreprise peut donc peser lourd sans être la plus importante en valeur boursière.'
+    case 'nikkei225': return 'Le détail à connaître, c’est sa règle de calcul : les prix ajustés des actions déterminent leur poids. Une entreprise peut donc peser lourd sans être la plus importante en valeur boursière.'
     case 'sp500-pea': case 'nasdaq-pea': return concentration
-    case 'sp500-equal-weight': return 'Je trouve ce changement intéressant : on garde les entreprises du S&P 500, mais on leur redonne le même poids à chaque rééquilibrage. Entre deux rééquilibrages, les cours font évoluer ces poids.'
+    case 'sp500-equal-weight': return 'On retrouve les entreprises du S&P 500. Ce qui change, c’est qu’on leur redonne le même poids à chaque rééquilibrage. Entre deux rééquilibrages, les cours font évoluer ces poids.'
     case 'russell-2000': return 'Je vois cet indice comme un investissement dans les petites entreprises américaines. Il ne remplace pas une exposition aux grandes entreprises ou aux autres pays.'
     case 'msci-world-momentum': return 'Je regarde la composition du moment : la sélection suit les tendances récentes des cours. Les entreprises retenues et leur poids peuvent donc changer au fil des rééquilibrages.'
     case 'msci-world-minimum-volatility-usd': return 'Je regarde surtout comment les actions se comportent ensemble. L’indice cherche à réduire les variations de l’ensemble, pas seulement celles de chaque action. Il peut tout de même baisser.'
     case 'msci-world-sector-neutral-quality': return 'Je retiens que « Quality » décrit une méthode de sélection : rentabilité, dette et stabilité des bénéfices. Cela ne promet ni de meilleures performances ni une protection contre les baisses.'
-    case 'msci-world-enhanced-value': return 'Je garde en tête qu’une entreprise jugée peu chère peut le rester longtemps. Le filtre compare son prix à ses données financières, sans prédire quand le cours remontera.'
+    case 'msci-world-enhanced-value': return 'Une entreprise jugée peu chère peut le rester longtemps. Le filtre compare son prix à ses données financières, sans prédire quand le cours remontera.'
     case 'ftse-epra-nareit-developed-dividend-plus': return 'Je regarde la valeur des actions autant que les dividendes reçus. Ces sociétés possèdent de l’immobilier, mais leur cours reste sensible à leur financement et aux marchés.'
     case 'ftse-global-core-infrastructure': return 'Je regarde les activités derrière le nom « infrastructures ». Ces entreprises exploitent des équipements utiles, mais leurs actions peuvent baisser comme celles des autres sociétés cotées.'
     default: return concentration

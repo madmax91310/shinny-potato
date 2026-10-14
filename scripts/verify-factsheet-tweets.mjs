@@ -1,6 +1,7 @@
 import { SHEETS } from '../src/data/index-factsheets.js'
 import { buildFactsheetTweet } from '../src/pages/factsheet-tweets/lib.js'
 import assert from 'node:assert/strict'
+import { indexObservation } from '../src/pages/factsheet-tweets/editorial.js'
 
 assert.equal(SHEETS.length, 38, 'Trente-huit sujets, santé, finance et énergie mondiales incluses')
 assert.equal(new Set(SHEETS.map(sheet => sheet.id)).size, SHEETS.length, 'Identifiants de fiches uniques')
@@ -20,7 +21,9 @@ for (const sheet of SHEETS) {
   if (!sheet.returns?.length || sheet.returns.some(([year, value]) => year < 2021 || year > 2025 || !Number.isFinite(value))) throw new Error(`${sheet.id}: rendements incomplets`)
   if (sheet.performance.kind === 'ETF' && (!sheet.isin || !text.includes(`performances de l’ETF ${sheet.isin}`))) throw new Error(`${sheet.id}: confusion indice/ETF`)
   if (sheet.performance.kind === 'indice' && text.includes('performances de l’ETF')) throw new Error(`${sheet.id}: fausse attribution des rendements`)
-  if (/undefined|NaN/.test(text) || !/\bje\b|j[’']|m[’']|\bmon\b|\bme\b/i.test(text)) throw new Error(`${sheet.id}: regard personnel ou texte absent`)
+  if (/undefined|NaN/.test(text)) throw new Error(`${sheet.id}: texte invalide`)
+  // Une remarque naturelle n’a pas besoin de commencer systématiquement par « je ».
+  assert(indexObservation(sheet).trim() && text.includes(indexObservation(sheet)), `${sheet.id}: remarque absente`)
   for (const [year, value] of sheet.returns) {
     const display = `${value > 0 ? '+' : ''}${value.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} %`
     assert(text.includes(`${year} : ${display}`), `${sheet.id}: rendement altéré`)

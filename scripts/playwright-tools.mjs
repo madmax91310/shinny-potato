@@ -173,7 +173,7 @@ async function testCalculateur(page) {
   }));
   await choose(page.locator("[data-selector].ic-control").first(), "bitcoin");
   await page.getByRole('button', { name: /Copier le texte du post/ }).click();
-  let conclusionsOk = /Tu aurais gardé cet investissement pendant toute la période/.test(await page.evaluate(() => window.__investmentCopiedText));
+  let conclusionsOk = /Tu aurais gardé ce placement jusqu’au bout/.test(await page.evaluate(() => window.__investmentCopiedText));
   conclusionsOk &&= !(await page.evaluate(() => window.__investmentCopiedText)).includes('Livret A');
   await page.waitForTimeout(150);
   const hero = await page.locator(".ic-hero-number").innerText();
