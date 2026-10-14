@@ -2,17 +2,17 @@
   "version": 1,
   "updatedAt": "2026-10-14",
   "startedAt": "2026-10-14",
-  "snapshots": 2,
+  "snapshots": 3,
   "archiveUrl": "https://github.com/madmax91310/shinny-potato/tree/company-forecast-history",
-  "convention": "Prévisions automatiques uniquement. Cours : première clôture observée dans les 7 jours suivant l’échéance, délai explicite, hors dividendes. Erreur absolue = |prévision / constat − 1|. Référence naïve : cours inchangé. Fondamentaux : même exercice et définition. Comparaison suspendue si division d’actions ou couverture de contrôle insuffisante. Les prévisions quotidiennes se recouvrent et ne sont pas des observations indépendantes.",
+  "convention": "Prévisions automatiques uniquement. Cours : première clôture observée dans les 7 jours suivant l’échéance, délai explicite, hors dividendes. Erreur absolue = |prévision / constat − 1|. Référence naïve : cours inchangé. Fondamentaux : même exercice et définition, pertes incluses ; erreur relative = (prévision − constat) / |constat|. Un constat nul reste enregistré avec une erreur absolue en unités, sans pourcentage. Comparaison suspendue si division d’actions ou couverture de contrôle insuffisante. Les prévisions quotidiennes se recouvrent et ne sont pas des observations indépendantes.",
   "groups": [
     {
       "company": "apple",
       "method": "cash",
       "years": 1,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -20,6 +20,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -27,8 +28,8 @@
       "method": "earnings",
       "years": 1,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -36,6 +37,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -43,8 +45,8 @@
       "method": "cash",
       "years": 3,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -52,6 +54,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -59,8 +62,8 @@
       "method": "earnings",
       "years": 3,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -68,6 +71,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -75,8 +79,8 @@
       "method": "cash",
       "years": 5,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -84,6 +88,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -91,8 +96,8 @@
       "method": "earnings",
       "years": 5,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -100,6 +105,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -107,8 +113,8 @@
       "method": "cash",
       "years": 1,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -116,6 +122,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -123,8 +130,8 @@
       "method": "earnings",
       "years": 1,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -132,6 +139,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -139,8 +147,8 @@
       "method": "cash",
       "years": 3,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -148,6 +156,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -155,8 +164,8 @@
       "method": "earnings",
       "years": 3,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -164,6 +173,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -171,8 +181,8 @@
       "method": "cash",
       "years": 5,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -180,6 +190,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -187,8 +198,8 @@
       "method": "earnings",
       "years": 5,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -196,6 +207,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -203,8 +215,8 @@
       "method": "cash",
       "years": 1,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -212,6 +224,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -219,8 +232,8 @@
       "method": "earnings",
       "years": 1,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -228,6 +241,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -235,8 +249,8 @@
       "method": "cash",
       "years": 3,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -244,6 +258,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -251,8 +266,8 @@
       "method": "earnings",
       "years": 3,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -260,6 +275,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -267,8 +283,8 @@
       "method": "cash",
       "years": 5,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -276,6 +292,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -283,8 +300,8 @@
       "method": "earnings",
       "years": 5,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -292,6 +309,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -299,8 +317,8 @@
       "method": "earnings",
       "years": 1,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -308,6 +326,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -315,8 +334,8 @@
       "method": "earnings",
       "years": 3,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -324,6 +343,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -331,8 +351,8 @@
       "method": "earnings",
       "years": 5,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -340,6 +360,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -347,8 +368,8 @@
       "method": "earnings",
       "years": 1,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -356,6 +377,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -363,8 +385,8 @@
       "method": "earnings",
       "years": 3,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -372,6 +394,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -379,8 +402,8 @@
       "method": "earnings",
       "years": 5,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -388,6 +411,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -395,8 +419,8 @@
       "method": "earnings",
       "years": 1,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -404,6 +428,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -411,8 +436,8 @@
       "method": "earnings",
       "years": 3,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -420,6 +445,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -427,8 +453,8 @@
       "method": "earnings",
       "years": 5,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -436,6 +462,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -443,8 +470,8 @@
       "method": "earnings",
       "years": 1,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -452,6 +479,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -459,8 +487,8 @@
       "method": "earnings",
       "years": 3,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -468,6 +496,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -475,8 +504,8 @@
       "method": "earnings",
       "years": 5,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -484,6 +513,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -491,8 +521,8 @@
       "method": "cash",
       "years": 1,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -500,6 +530,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -507,8 +538,8 @@
       "method": "earnings",
       "years": 1,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -516,6 +547,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -523,8 +555,8 @@
       "method": "cash",
       "years": 3,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -532,6 +564,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -539,8 +572,8 @@
       "method": "earnings",
       "years": 3,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -548,6 +581,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -555,8 +589,8 @@
       "method": "cash",
       "years": 5,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -564,6 +598,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -571,8 +606,8 @@
       "method": "earnings",
       "years": 5,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -580,6 +615,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -587,8 +623,8 @@
       "method": "earnings",
       "years": 1,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -596,6 +632,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -603,8 +640,8 @@
       "method": "earnings",
       "years": 3,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -612,6 +649,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -619,8 +657,8 @@
       "method": "earnings",
       "years": 5,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -628,6 +666,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -635,8 +674,8 @@
       "method": "cash",
       "years": 1,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -644,6 +683,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -651,8 +691,8 @@
       "method": "earnings",
       "years": 1,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -660,6 +700,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -667,8 +708,8 @@
       "method": "cash",
       "years": 3,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -676,6 +717,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -683,8 +725,8 @@
       "method": "earnings",
       "years": 3,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -692,6 +734,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -699,8 +742,8 @@
       "method": "cash",
       "years": 5,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -708,6 +751,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -715,8 +759,8 @@
       "method": "earnings",
       "years": 5,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -724,6 +768,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -731,8 +776,8 @@
       "method": "earnings",
       "years": 1,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -740,6 +785,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -747,8 +793,8 @@
       "method": "earnings",
       "years": 3,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -756,6 +802,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -763,8 +810,8 @@
       "method": "earnings",
       "years": 5,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -772,6 +819,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -779,8 +827,8 @@
       "method": "cash",
       "years": 1,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -788,6 +836,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -795,8 +844,8 @@
       "method": "earnings",
       "years": 1,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -804,6 +853,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -811,8 +861,8 @@
       "method": "cash",
       "years": 3,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -820,6 +870,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -827,8 +878,8 @@
       "method": "earnings",
       "years": 3,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -836,6 +887,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -843,8 +895,8 @@
       "method": "cash",
       "years": 5,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -852,6 +904,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -859,8 +912,8 @@
       "method": "earnings",
       "years": 5,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -868,6 +921,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -875,8 +929,8 @@
       "method": "earnings",
       "years": 1,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -884,6 +938,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -891,8 +946,8 @@
       "method": "earnings",
       "years": 3,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -900,6 +955,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -907,8 +963,8 @@
       "method": "earnings",
       "years": 5,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -916,6 +972,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -923,8 +980,8 @@
       "method": "cash",
       "years": 1,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -932,6 +989,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -939,8 +997,8 @@
       "method": "earnings",
       "years": 1,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -948,6 +1006,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -955,8 +1014,8 @@
       "method": "cash",
       "years": 3,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -964,6 +1023,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -971,8 +1031,8 @@
       "method": "earnings",
       "years": 3,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -980,6 +1040,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -987,8 +1048,8 @@
       "method": "cash",
       "years": 5,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -996,6 +1057,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -1003,8 +1065,8 @@
       "method": "earnings",
       "years": 5,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -1012,6 +1074,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -1019,8 +1082,8 @@
       "method": "cash",
       "years": 1,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -1028,6 +1091,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -1035,8 +1099,8 @@
       "method": "earnings",
       "years": 1,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -1044,6 +1108,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -1051,8 +1116,8 @@
       "method": "cash",
       "years": 3,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -1060,6 +1125,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -1067,8 +1133,8 @@
       "method": "earnings",
       "years": 3,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -1076,6 +1142,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -1083,8 +1150,8 @@
       "method": "cash",
       "years": 5,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -1092,6 +1159,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -1099,8 +1167,8 @@
       "method": "earnings",
       "years": 5,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -1108,6 +1176,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -1115,8 +1184,8 @@
       "method": "cash",
       "years": 1,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -1124,6 +1193,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -1131,8 +1201,8 @@
       "method": "earnings",
       "years": 1,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -1140,6 +1210,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -1147,8 +1218,8 @@
       "method": "cash",
       "years": 3,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -1156,6 +1227,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -1163,8 +1235,8 @@
       "method": "earnings",
       "years": 3,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -1172,6 +1244,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -1179,8 +1252,8 @@
       "method": "cash",
       "years": 5,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -1188,6 +1261,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -1195,8 +1269,8 @@
       "method": "earnings",
       "years": 5,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -1204,6 +1278,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -1211,8 +1286,8 @@
       "method": "earnings",
       "years": 1,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -1220,6 +1295,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -1227,8 +1303,8 @@
       "method": "earnings",
       "years": 3,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -1236,6 +1312,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -1243,8 +1320,8 @@
       "method": "earnings",
       "years": 5,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -1252,6 +1329,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -1259,8 +1337,8 @@
       "method": "earnings",
       "years": 1,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -1268,6 +1346,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -1275,8 +1354,8 @@
       "method": "earnings",
       "years": 3,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -1284,6 +1363,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -1291,8 +1371,8 @@
       "method": "earnings",
       "years": 5,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -1300,6 +1380,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -1307,8 +1388,8 @@
       "method": "earnings",
       "years": 1,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -1316,6 +1397,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -1323,8 +1405,8 @@
       "method": "earnings",
       "years": 3,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -1332,6 +1414,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -1339,8 +1422,8 @@
       "method": "earnings",
       "years": 5,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -1348,6 +1431,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -1355,8 +1439,8 @@
       "method": "earnings",
       "years": 1,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -1364,6 +1448,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -1371,8 +1456,8 @@
       "method": "earnings",
       "years": 3,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -1380,6 +1465,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -1387,8 +1473,8 @@
       "method": "earnings",
       "years": 5,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -1396,6 +1482,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -1403,8 +1490,8 @@
       "method": "earnings",
       "years": 1,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -1412,6 +1499,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -1419,8 +1507,8 @@
       "method": "earnings",
       "years": 3,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -1428,6 +1516,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -1435,8 +1524,8 @@
       "method": "earnings",
       "years": 5,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -1444,6 +1533,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -1451,8 +1541,8 @@
       "method": "earnings",
       "years": 1,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -1460,6 +1550,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -1467,8 +1558,8 @@
       "method": "earnings",
       "years": 3,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -1476,6 +1567,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     },
     {
@@ -1483,8 +1575,8 @@
       "method": "earnings",
       "years": 5,
       "modelVersion": 2,
-      "count": 2,
-      "pending": 2,
+      "count": 3,
+      "pending": 3,
       "missing": 0,
       "blocked": 0,
       "evaluated": 0,
@@ -1492,6 +1584,7 @@
       "baselineMae": null,
       "rangeCoverage": null,
       "fundamentalEvaluated": 0,
+      "fundamentalRelativeCount": 0,
       "fundamentalMae": null
     }
   ]
