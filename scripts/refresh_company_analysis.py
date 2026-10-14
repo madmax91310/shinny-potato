@@ -514,6 +514,8 @@ def main():
             item.pop('valuationShareBasis', None)
             status['valuationShareBasis'] = 'unavailable'
             status['valuationShareBasisDetail'] = str(error)[:300]
+            if old.get('valuationShareBasis'):
+                failures.append(ident + ':valuationShareBasis')
         if key and profile['currency'] == 'USD':
             # Never store URLs containing the optional provider key.
             try:
