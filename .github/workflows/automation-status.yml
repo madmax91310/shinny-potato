@@ -23,17 +23,25 @@ on:
       - Refresh fully automated index sheets
     types: [completed]
   workflow_dispatch:
+  schedule:
+    - cron: "23 * * * *"
   pull_request:
     paths:
       - ".github/workflows/automation-status.yml"
       - "scripts/publish_automation_status.py"
       - "scripts/test_automation_status.py"
+      - "scripts/automation_monitoring.py"
+      - "scripts/test_automation_monitoring.py"
+      - "scripts/build-monitoring-context.mjs"
+      - "scripts/test-monitoring-context.mjs"
       - "src/data/automation-workflows.json"
   push:
     branches: [master]
     paths:
       - '.github/workflows/automation-status.yml'
       - 'scripts/publish_automation_status.py'
+      - 'scripts/automation_monitoring.py'
+      - 'scripts/build-monitoring-context.mjs'
       - 'src/data/automation-workflows.json'
 permissions:
   contents: read
@@ -50,7 +58,11 @@ jobs:
       - uses: actions/setup-python@v7.0.0
         with:
           python-version: '3.12'
-      - run: python -m unittest discover -s scripts -p 'test_automation_status.py'
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 24
+      - run: node scripts/test-monitoring-context.mjs
+      - run: python -m unittest discover -s scripts -p 'test_automation*.py'
   publish:
     if: github.event_name != 'pull_request' && (github.event_name != 'workflow_run' || (github.event.workflow_run.head_branch == 'master' && github.event.workflow_run.head_repository.full_name == github.repository && github.event.workflow_run.event != 'pull_request'))
     runs-on: ubuntu-26.04
@@ -58,6 +70,7 @@ jobs:
     permissions:
       actions: read
       contents: write
+      issues: write
     steps:
       - uses: actions/checkout@v7.0.1
         with:
@@ -65,14 +78,23 @@ jobs:
       - uses: actions/setup-python@v7.0.0
         with:
           python-version: '3.12'
-      - run: python -m unittest discover -s scripts -p 'test_automation_status.py'
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 24
+      - run: node scripts/test-monitoring-context.mjs
+      - run: python -m unittest discover -s scripts -p 'test_automation*.py'
       - name: Record completed automation
         if: github.event_name == 'workflow_run'
         env:
           GH_TOKEN: ${{ github.token }}
         run: python scripts/publish_automation_status.py --event "$GITHUB_EVENT_PATH"
       - name: Initialise current statuses
-        if: github.event_name != 'workflow_run'
+        if: github.event_name != 'workflow_run' && github.event_name != 'schedule'
         env:
           GH_TOKEN: ${{ github.token }}
         run: python scripts/publish_automation_status.py --backfill
+      - name: Check silent collectors and data deadlines
+        if: github.event_name == 'schedule'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python scripts/publish_automation_status.py --monitor-only
