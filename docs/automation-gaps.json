@@ -263,7 +263,7 @@
       "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-zen/supports-disponibles-sur-linxea-zen/fonds-euro/",
       "statement": "Ce fonds en euros est accessible sans limite de montant et sans conditions d’unités de compte",
       "scope": "Souscriptions, versements complémentaires et programmés",
-      "sha256": "b7f7854ad2553b3e83220ea9f5a28ddd26952beb853c3849d890ea163b5cb197",
+      "sha256": "10c68a4b37deffa57e7f5eb0ac7186652aeede96317a7ed7099e0e10f3808014",
       "active": true
     },
     {
@@ -275,7 +275,7 @@
       "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-zen/supports-disponibles-sur-linxea-zen/fonds-euro/",
       "statement": "Ce fonds en euros est accessible sans limite de montant et sans conditions d’unités de compte",
       "scope": "Souscriptions, versements complémentaires et programmés",
-      "sha256": "b7f7854ad2553b3e83220ea9f5a28ddd26952beb853c3849d890ea163b5cb197",
+      "sha256": "10c68a4b37deffa57e7f5eb0ac7186652aeede96317a7ed7099e0e10f3808014",
       "active": true
     },
     {
@@ -283,12 +283,12 @@
       "name": "Linxea Vie",
       "fund": "Netissima",
       "status": "unlimited",
-      "checkedAt": "2026-10-13",
+      "checkedAt": "2026-10-14",
       "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-vie/supports-disponibles-sur-linxea-vie/fonds-euro/",
       "statement": "ce fonds en euros est accessible sans limite de montant et sans conditions d’unités de compte jusqu’au 31/12/2026",
       "validUntil": "2026-12-31",
       "scope": "Souscriptions, versements libres et programmés",
-      "sha256": "d0a6c5f62f9adf06617bbd05db5a54d13425711c218def940384817db895175a",
+      "sha256": "68d573432e9c77e478757c59eae60a94ee99353d960b50ee0c673a6166956703",
       "active": true
     },
     {
@@ -296,13 +296,38 @@
       "name": "Linxea Vie",
       "fund": "Eurossima",
       "status": "insurer-defined",
-      "checkedAt": "2026-10-13",
+      "checkedAt": "2026-10-14",
       "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-vie/supports-disponibles-sur-linxea-vie/fonds-euro/",
       "statement": "Le montant que vous pourrez investir à 100 % sur le fonds en euros Eurossima s’élèvera entre 0 et 50 000 euros l’année civile de votre souscription puis entre 0 et 25 000 euros par année civile les années suivantes, quel que soit le type d’investissement réalisé (versement initial, versement libre ou versement libre programmé). L’Assureur communiquera par tout moyen ce montant maximum d’investissement annuel sur le fonds en euros Eurossima.",
       "scope": "Versements initiaux, libres et programmés ; année civile",
       "openingYearUpperBound": 50000,
       "followingYearUpperBound": 25000,
-      "sha256": "d0a6c5f62f9adf06617bbd05db5a54d13425711c218def940384817db895175a",
+      "sha256": "68d573432e9c77e478757c59eae60a94ee99353d960b50ee0c673a6166956703",
+      "active": true
+    },
+    {
+      "id": "linxea-avenir-2-plus",
+      "name": "Linxea Avenir 2+",
+      "fund": "Suravenir Opportunités 2",
+      "status": "unlimited",
+      "checkedAt": "2026-10-14",
+      "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-avenir-2/supports-disponibles-sur-linxea-avenir-2/fonds-euro/",
+      "statement": "Ce fonds en euros est accessible sans limite de montant et sans conditions d’unités de compte",
+      "scope": "Souscriptions, versements complémentaires et programmés",
+      "sha256": "17e2926c1b1fee14eb2210ee6b8439f32eb6831a3372cd79ae7cb96fc3870524",
+      "active": true
+    },
+    {
+      "id": "linxea-avenir-2-plus",
+      "name": "Linxea Avenir 2+",
+      "fund": "Suravenir Rendement 2",
+      "status": "unlimited",
+      "checkedAt": "2026-10-14",
+      "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-avenir-2/supports-disponibles-sur-linxea-avenir-2/fonds-euro/",
+      "statement": "Ce fonds en euros est accessible sans limite de montant avec un minimum de 30 % en unités de compte qui présentent un risque de perte en capital",
+      "scope": "Souscriptions, versements complémentaires et programmés",
+      "minimumUnits": 30,
+      "sha256": "17e2926c1b1fee14eb2210ee6b8439f32eb6831a3372cd79ae7cb96fc3870524",
       "active": true
     }
   ],
@@ -319,9 +344,9 @@
   },
   "summary": {
     "instrument:not-applicable": 66,
-    "instrument:not-published": 13,
+    "instrument:not-published": 15,
     "instrument:waiting-first-year": 12,
-    "instrument:unqualified": 3,
+    "instrument:unqualified": 1,
     "instrument:source-conflict": 1,
     "index:waiting-publication": 1,
     "index:not-applicable": 16
@@ -714,7 +739,7 @@
       "status": "not-published",
       "checkedAt": "2026-10-14",
       "sourceUrl": "https://globalxetfs.eu/funds/silv/",
-      "sha256": "649f9a83d8236d213f602ce5fa72b8a9033192a209401422599a28e8a9d326ea",
+      "sha256": "0f35888be11e6a459ce58dac41323a1238bef7851b59d1f155965813f75bfce6",
       "reason": "Aucun tableau sectoriel complet du fonds dans la page officielle contrôlée.",
       "evidence": {
         "datedCountryTable": true,
@@ -1446,12 +1471,41 @@
       "field": "performance",
       "label": "Calendrier annuel",
       "configured": true,
-      "status": "unqualified",
+      "status": "not-published",
       "reason": "La section de performance ne fournit pas de calendrier annuel qualifié pour la part USD distribuante. Les rendements capitalisants ou glissants ne sont pas substitués.",
       "checkedAt": "2026-10-14",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "cf58e36dd30bc163dcea36301e67a5d706a3bab38eedbf904c7ca154b2984beb",
-      "evidence": []
+      "sha256": "cc02b9d477f7a6dc2a68ca5b7d33270c44da5623ce85694188c48edf1faa4516",
+      "evidence": [
+        "Performance History",
+        "USD Accumulating",
+        "Avg. Annualised %",
+        "Cumulative %",
+        "As of recent",
+        "Month End",
+        "&",
+        "Quarter End",
+        "(",
+        "30 Sep 2026",
+        ")",
+        "ETF",
+        "Index",
+        "Difference",
+        "1 Year",
+        "19.39%",
+        "19.89%",
+        "-0.50%",
+        "3 Years",
+        "15.40%",
+        "15.86%",
+        "-0.46%",
+        "Since Inception",
+        "15.29%",
+        "15.75%",
+        "-0.46%",
+        "Performance is based on the fund’s NAV and is shown on a total return basis (i.e., with gross income reinvested, where applicable). The fund’s NAV may differ from its market price and, as a result, individual shareholders may realize returns that are different from the NAV performance. Cumulative return is the aggregate amount that an investment has gained or lost over time. Annualised return is the average return gained or lost by an investment each year over a given time period.",
+        "The performance data quoted represents past performance. Past performance does not guarantee future results. The investment return and principal value of an investment will fluctuate so that an investor's shares, when sold or redeemed, may be worth more or less than their original cost and current performance may be lower or higher than the performance quoted. High short-term performance, when observed, is unusual and investors should not expect such performance to be repeated. The return of your investment may increase or decrease as a result of currency fluctuations if your investment is made in a currency other than that used in past performance calculations."
+      ]
     },
     {
       "type": "instrument",
@@ -1460,11 +1514,11 @@
       "field": "countries",
       "label": "Pays",
       "configured": true,
-      "status": "unqualified",
+      "status": "not-published",
       "reason": "Aucune allocation géographique économique complète qualifiée dans la page ; les pays de commercialisation et le panier de substitution sont exclus.",
       "checkedAt": "2026-10-14",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "cf58e36dd30bc163dcea36301e67a5d706a3bab38eedbf904c7ca154b2984beb",
+      "sha256": "cc02b9d477f7a6dc2a68ca5b7d33270c44da5623ce85694188c48edf1faa4516",
       "evidence": []
     },
     {
@@ -1478,7 +1532,7 @@
       "reason": "Table sectorielle de référence à recouper avec l’indice exact avant utilisation ; aucune allocation du panier de substitution utilisée.",
       "checkedAt": "2026-10-14",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "cf58e36dd30bc163dcea36301e67a5d706a3bab38eedbf904c7ca154b2984beb",
+      "sha256": "cc02b9d477f7a6dc2a68ca5b7d33270c44da5623ce85694188c48edf1faa4516",
       "evidence": [
         "Reference Index Sector Breakdown",
         "As of 30 Sep 2026",
@@ -1519,7 +1573,7 @@
       "reason": "Poids différents pour les mêmes titres dans la section datée de l’indice : AAPL, AMZN, GOOG, GOOGL, META, MSFT, NVDA, TSLA.",
       "checkedAt": "2026-10-14",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "cf58e36dd30bc163dcea36301e67a5d706a3bab38eedbf904c7ca154b2984beb",
+      "sha256": "cc02b9d477f7a6dc2a68ca5b7d33270c44da5623ce85694188c48edf1faa4516",
       "evidence": [
         "Top 10 Reference Index Constituents",
         "As of 08 Oct 2026",

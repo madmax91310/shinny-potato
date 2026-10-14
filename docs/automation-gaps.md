@@ -122,8 +122,8 @@ Les caractéristiques statiques et cotations sont exclues de ce chantier conform
 | instrument | iShares Diversified Commodity Swap UCITS ETF (IE00BDFL4P12) | Pays | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |
 | instrument | iShares Diversified Commodity Swap UCITS ETF (IE00BDFL4P12) | Secteurs | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |
 | instrument | iShares Diversified Commodity Swap UCITS ETF (IE00BDFL4P12) | Positions pondérées | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |
-| instrument | Global X Nasdaq 100 Covered Call UCITS ETF (IE00BM8R0J59) | Calendrier annuel | À qualifier | La section de performance ne fournit pas de calendrier annuel qualifié pour la part USD distribuante. Les rendements capitalisants ou glissants ne sont pas substitués. |
-| instrument | Global X Nasdaq 100 Covered Call UCITS ETF (IE00BM8R0J59) | Pays | À qualifier | Aucune allocation géographique économique complète qualifiée dans la page ; les pays de commercialisation et le panier de substitution sont exclus. |
+| instrument | Global X Nasdaq 100 Covered Call UCITS ETF (IE00BM8R0J59) | Calendrier annuel | Non publié | La section de performance ne fournit pas de calendrier annuel qualifié pour la part USD distribuante. Les rendements capitalisants ou glissants ne sont pas substitués. |
+| instrument | Global X Nasdaq 100 Covered Call UCITS ETF (IE00BM8R0J59) | Pays | Non publié | Aucune allocation géographique économique complète qualifiée dans la page ; les pays de commercialisation et le panier de substitution sont exclus. |
 | instrument | Global X Nasdaq 100 Covered Call UCITS ETF (IE00BM8R0J59) | Secteurs | À qualifier | Table sectorielle de référence à recouper avec l’indice exact avant utilisation ; aucune allocation du panier de substitution utilisée. |
 | instrument | Global X Nasdaq 100 Covered Call UCITS ETF (IE00BM8R0J59) | Positions pondérées | Source contradictoire | Poids différents pour les mêmes titres dans la section datée de l’indice : AAPL, AMZN, GOOG, GOOGL, META, MSFT, NVDA, TSLA. |
 | instrument | WisdomTree Physical Gold (JE00B1VS3770) | Pays | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |
@@ -161,6 +161,8 @@ Couverture : une donnée active peut être conservée malgré un accès désorma
 | Linxea Zen | Apicil Euro Garanti | Sans limite de montant | Souscriptions, versements complémentaires et programmés | Non publiée |
 | Linxea Vie | Netissima | Sans limite de montant | Souscriptions, versements libres et programmés | 2026-12-31 |
 | Linxea Vie | Eurossima | Fixé par l’assureur, entre 0 et 50000 € l’année de souscription puis entre 0 et 25000 €/an | Versements initiaux, libres et programmés ; année civile | Non publiée |
+| Linxea Avenir 2+ | Suravenir Opportunités 2 | Sans limite de montant | Souscriptions, versements complémentaires et programmés | Non publiée |
+| Linxea Avenir 2+ | Suravenir Rendement 2 | Sans limite de montant, minimum 30 % UC | Souscriptions, versements complémentaires et programmés | Non publiée |
 
 ## Conditions AV restant à qualifier
 
