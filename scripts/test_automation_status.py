@@ -34,6 +34,18 @@ class StatusTests(unittest.TestCase):
   report['sources']['etf']['reviewRequired']=False;report['changed']=[]
   fixed=update_status(recovered,run(3,'success',workflow=workflow),[],[report])
   self.assertEqual(fixed['workflows'][workflow]['status'],'success')
+ def test_insee_timeout_is_actionable_and_only_real_recovery_clears_it(self):
+  workflow='update-inflation.yml'
+  report={'seriesId':'011814631','checkedAt':'2026-10-14','successes':[], 'errors':[{'id':'inflation:011814631','name':'Inflation mensuelle INSEE','error':'TimeoutError: TLS timeout'}]}
+  failed=update_status({},run(workflow=workflow),[{'name':'collect','conclusion':'failure'}],[report])
+  row=failed['workflows'][workflow]
+  self.assertEqual(row['collectionStatus'],'failure')
+  self.assertIn('TLS timeout',str(row['dataFailures']))
+  self.assertIsNone(row['lastCollectionSuccessAt'])
+  recovered=update_status(failed,run(2,'success',workflow),[{'name':'collect','conclusion':'success'}],[{'seriesId':'011814631','rates':{'2026-09':-.3},'checkedAt':'2026-10-14'}])
+  self.assertEqual(recovered['workflows'][workflow]['dataFailures'],{})
+  self.assertEqual(recovered['workflows'][workflow]['collectionStatus'],'success')
+
  def test_inflation_report_marks_exact_series_as_collected(self):
   self.assertEqual(normalize_report({'seriesId':'011814631','rates':{'2026-09':-.3},'checkedAt':'2026-10-11'})['successes'],[{'id':'inflation:011814631'}])
  def test_regulatory_reports_keep_retained_failure_and_clear_only_checked_sources(self):

@@ -67,11 +67,22 @@ def main():
     parser.add_argument('--apply', action='store_true')
     args = parser.parse_args()
     now = dt.datetime.now(UTC)
-    body = get_text(URL, ('application/xml', 'text/xml', 'application/vnd.sdmx.structurespecificdata+xml'))
-    report = parse_rates(body, now)
-    report['rawResponse'] = body
     baseline = json.loads(args.baseline.read_text())
-    merged = merge_rates(baseline, report)
+    try:
+        body = get_text(URL, ('application/xml', 'text/xml', 'application/vnd.sdmx.structurespecificdata+xml'))
+        report = parse_rates(body, now)
+        merged = merge_rates(baseline, report)
+    except Exception as error:
+        # Keep a diagnostic artifact even when no observation was obtained.
+        # Re-raise so a failed fetch can never become a successful collection.
+        write_json_atomic(args.output, {
+            'seriesId': SERIES, 'sourceUrl': URL, 'checkedAt': now.isoformat(),
+            'successes': [], 'errors': [{'id': f'inflation:{SERIES}',
+                'name': 'Inflation mensuelle INSEE',
+                'error': f'{type(error).__name__}: {error}'}],
+        })
+        raise
+    report['rawResponse'] = body
     report['changes'] = [{'month': month, 'previous': baseline.get(month), 'value': value}
                          for month, value in report['rates'].items() if baseline.get(month) != value]
     report['checkedAt'] = now.isoformat()

@@ -43,6 +43,7 @@ jobs:
       - run: node scripts/export-inflation-baseline.mjs > "$RUNNER_TEMP/inflation-baseline.json"
       - run: python scripts/update_inflation.py --baseline "$RUNNER_TEMP/inflation-baseline.json" --output "$RUNNER_TEMP/inflation-observation.json" --apply
       - uses: actions/upload-artifact@v7.0.1
+        if: always()
         with:
           name: insee-inflation-pr-observation
           path: ${{ runner.temp }}/inflation-observation.json
@@ -69,6 +70,7 @@ jobs:
       - run: node scripts/export-inflation-baseline.mjs > "$RUNNER_TEMP/inflation-baseline.json"
       - run: python scripts/update_inflation.py --baseline "$RUNNER_TEMP/inflation-baseline.json" --output "$RUNNER_TEMP/inflation-observation.json" --apply
       - uses: actions/upload-artifact@v7.0.1
+        if: always()
         with:
           name: insee-inflation-observation
           path: ${{ runner.temp }}/inflation-observation.json

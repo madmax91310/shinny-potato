@@ -20,10 +20,19 @@ existant enregistre le succès même si aucune valeur n’a changé ; aucune dat
 fictive et aucun succès manuel ne sont inscrits dans automation-status.
 Une absence de modification ne doit pas provoquer un déploiement supplémentaire.
 
-Le contrôle HTTP local a expiré ; la lecture réelle de la source est donc
-vérifiée dans le job INSEE de la PR, puis dans le job de production après fusion.
-La levée de l’incident nécessite ce second passage et sa prise en compte par
-`Publish automation failures`.
+Le contrôle réel de la PR #587 a révélé une indisponibilité du service BDM :
+expiration de connexion TLS / lecture, également reproduite localement. Les
+cinq autres séries BDM du workflow publications ont expiré pendant le même
+passage. Il s’agit d’un échec d’accès à la source, pas d’une valeur rejetée.
+Le site officiel conserve cette URL SDMX dans sa documentation actuelle ;
+aucun remplacement de série ni repli sur une capture ancienne n’est effectué.
+
+Le collecteur écrit désormais aussi un rapport d’échec horodaté avec la série,
+l’URL et l’erreur exacte. Le workflow conserve cet artifact même en cas d’échec
+et reste rouge. Le suivi peut ainsi remplacer « non observé » par un échec
+explicite relié au passage de production. Un prochain succès réel de la même
+série lèvera automatiquement cet incident. La disponibilité de la source et
+la réussite de la collecte restent à confirmer après fusion.
 
 ## Publications effectivement concernées
 
