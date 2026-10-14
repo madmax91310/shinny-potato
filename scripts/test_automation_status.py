@@ -5,6 +5,19 @@ from publish_automation_status import update_status, read_report, publication_su
 def run(id=1,conclusion='failure',workflow='update-economic-data.yml',**kwargs):
  return {'id':id,'path':'.github/workflows/'+workflow,'head_branch':'master','event':'schedule','status':'completed','conclusion':conclusion,'updated_at':f'2026-10-{id:02d}T10:00:00Z','html_url':f'https://github.com/test/repo/actions/runs/{id}',**kwargs}
 class StatusTests(unittest.TestCase):
+ def test_insee_requires_a_real_production_collection_even_without_changes(self):
+  state=include_configured_workflows({'schemaVersion':1,'workflows':{}})
+  report={'seriesId':'011814631','rates':{'2026-09':-.6},'checkedAt':'2026-10-14T08:00:00Z','changes':[]}
+  jobs=[{'name':'collect','conclusion':'success'}]
+  pr=run(14,'success',workflow='update-inflation.yml',event='pull_request',head_branch='fix/insee')
+  self.assertEqual(update_status(state,pr,jobs,[report]),state)
+  production=run(14,'success',workflow='update-inflation.yml',event='push')
+  recorded=update_status(state,production,jobs,[report])['workflows']['update-inflation.yml']
+  self.assertEqual(recorded['collectionStatus'],'success')
+  self.assertEqual(recorded['completedAt'],production['updated_at'])
+  self.assertEqual(recorded['lastCollectionSuccessAt'],production['updated_at'])
+  self.assertEqual(recorded['publicationStatus'],'not-run')
+  self.assertIsNone(recorded['lastPublicationSuccessAt'])
  def test_all_configured_workflows_are_visible_without_false_success(self):
   state=include_configured_workflows({'schemaVersion':1,'workflows':{}})
   for key in ['update-inflation.yml','update-practical-sheets.yml']:
@@ -21,6 +34,18 @@ class StatusTests(unittest.TestCase):
   report['sources']['etf']['reviewRequired']=False;report['changed']=[]
   fixed=update_status(recovered,run(3,'success',workflow=workflow),[],[report])
   self.assertEqual(fixed['workflows'][workflow]['status'],'success')
+ def test_insee_timeout_is_actionable_and_only_real_recovery_clears_it(self):
+  workflow='update-inflation.yml'
+  report={'seriesId':'011814631','checkedAt':'2026-10-14','successes':[], 'errors':[{'id':'inflation:011814631','name':'Inflation mensuelle INSEE','error':'TimeoutError: TLS timeout'}]}
+  failed=update_status({},run(workflow=workflow),[{'name':'collect','conclusion':'failure'}],[report])
+  row=failed['workflows'][workflow]
+  self.assertEqual(row['collectionStatus'],'failure')
+  self.assertIn('TLS timeout',str(row['dataFailures']))
+  self.assertIsNone(row['lastCollectionSuccessAt'])
+  recovered=update_status(failed,run(2,'success',workflow),[{'name':'collect','conclusion':'success'}],[{'seriesId':'011814631','rates':{'2026-09':-.3},'checkedAt':'2026-10-14'}])
+  self.assertEqual(recovered['workflows'][workflow]['dataFailures'],{})
+  self.assertEqual(recovered['workflows'][workflow]['collectionStatus'],'success')
+
  def test_inflation_report_marks_exact_series_as_collected(self):
   self.assertEqual(normalize_report({'seriesId':'011814631','rates':{'2026-09':-.3},'checkedAt':'2026-10-11'})['successes'],[{'id':'inflation:011814631'}])
  def test_regulatory_reports_keep_retained_failure_and_clear_only_checked_sources(self):

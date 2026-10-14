@@ -25,6 +25,28 @@ class RefreshTests(unittest.TestCase):
         self.components = json.loads((FIXTURES / 'ishares-world-pilot.json').read_text())
         self.xml = (FIXTURES / 'insee-ipc-pilot.xml').read_text()
 
+    def test_insee_failure_writes_diagnostic_without_touching_active_data(self):
+        import tempfile
+        from unittest.mock import patch
+        from update_inflation import main
+        root = pathlib.Path(__file__).resolve().parents[1]
+        active = [root / 'src/data/inflation-monthly.js',
+                  root / 'scripts/source-snapshots/inflation-automated.json']
+        before = [path.read_bytes() for path in active]
+        with tempfile.TemporaryDirectory() as directory:
+            baseline, output = pathlib.Path(directory)/'baseline.json', pathlib.Path(directory)/'report.json'
+            baseline.write_text('{"2026-09": -0.3}')
+            with patch('sys.argv', ['update_inflation', '--baseline', str(baseline), '--output', str(output), '--apply']), patch('update_inflation.get_text', side_effect=TimeoutError('TLS timeout')):
+                with self.assertRaises(TimeoutError):
+                    main()
+            report = json.loads(output.read_text())
+            self.assertEqual(report['successes'], [])
+            self.assertEqual(report['errors'][0]['id'], 'inflation:011814631')
+            self.assertIn('TLS timeout', report['errors'][0]['error'])
+            self.assertNotIn('rates', report)
+            self.assertNotIn('sourceUpdatedAt', report)
+        self.assertEqual([path.read_bytes() for path in active], before)
+
     def test_issuer_matches_active_fund_not_benchmark(self):
         report = parse_share(markup(self.components), SHARE, NOW)
         self.assertEqual(report['performance']['years']['2020'], 15.95)

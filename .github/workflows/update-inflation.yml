@@ -3,6 +3,15 @@ on:
   schedule:
     - cron: '15 7 1,16 * *'
   workflow_dispatch:
+  # Bootstrap production when the collector is installed or repaired. PR runs
+  # remain validation only; their success must never stand in for production.
+  push:
+    branches: [master]
+    paths:
+      - '.github/workflows/update-inflation.yml'
+      - 'scripts/update_inflation.py'
+      - 'scripts/data_automation.py'
+      - 'scripts/export-inflation-baseline.mjs'
   pull_request:
     paths:
       - '.github/workflows/update-inflation.yml'
@@ -34,6 +43,7 @@ jobs:
       - run: node scripts/export-inflation-baseline.mjs > "$RUNNER_TEMP/inflation-baseline.json"
       - run: python scripts/update_inflation.py --baseline "$RUNNER_TEMP/inflation-baseline.json" --output "$RUNNER_TEMP/inflation-observation.json" --apply
       - uses: actions/upload-artifact@v7.0.1
+        if: always()
         with:
           name: insee-inflation-pr-observation
           path: ${{ runner.temp }}/inflation-observation.json
@@ -60,6 +70,7 @@ jobs:
       - run: node scripts/export-inflation-baseline.mjs > "$RUNNER_TEMP/inflation-baseline.json"
       - run: python scripts/update_inflation.py --baseline "$RUNNER_TEMP/inflation-baseline.json" --output "$RUNNER_TEMP/inflation-observation.json" --apply
       - uses: actions/upload-artifact@v7.0.1
+        if: always()
         with:
           name: insee-inflation-observation
           path: ${{ runner.temp }}/inflation-observation.json
