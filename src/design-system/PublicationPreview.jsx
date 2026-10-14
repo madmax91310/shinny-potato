@@ -1,3 +1,4 @@
+import { startPublicationDownload } from './publicationActions.js'
 import { useEffect, useId, useRef, useState } from 'react'
 import ImageZoom from './ImageZoom'
 
@@ -30,16 +31,25 @@ export default function PublicationPreview({ children, renderImage, imageContent
       setZoomError(''); setZoom(src)
     } catch { setZoomError('Impossible d’agrandir cette image. Réessaie après sa préparation.') }
   }
+  const [attempt, setAttempt] = useState(0)
+  useEffect(() => { setZoom(null); setZoomError('') }, [renderImage, imageContent, imageDisabled])
   useEffect(() => {
     if (tab !== 'image' || !renderImage || imageDisabled) return
     let active = true
     setImage({ status: 'loading', url: '' })
     Promise.resolve().then(renderImage).then(result => {
       const url = typeof result === 'string' ? result : result.toDataURL('image/png')
-      if (active) setImage({ status: 'ready', url })
+      if (active) setImage({ status: 'ready', url, owner: renderImage })
     }).catch(error => { if (active) setImage({ status: 'error', url: '', error: error.message }) })
     return () => { active = false }
-  }, [tab, renderImage, imageDisabled])
+  }, [tab, renderImage, imageDisabled, attempt])
+  const ready = image.status === 'ready' && image.owner === renderImage && !imageDisabled
+  function downloadPreview() {
+    if (!ready) return
+    const link = document.createElement('a')
+    link.href = image.url; link.download = 'publication.png'
+    document.body.append(link); startPublicationDownload(link); link.remove()
+  }
   function select(next) { setTab(next) }
   function keydown(event) {
     if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return
@@ -53,13 +63,14 @@ export default function PublicationPreview({ children, renderImage, imageContent
     </div>}
     <div id={`${id}-text`} role={hasImage ? 'tabpanel' : undefined} aria-labelledby={hasImage ? `${id}-text-tab` : undefined} hidden={hasImage && tab !== 'text'}>{children}</div>
     {hasImage && <div id={`${id}-image`} role="tabpanel" aria-labelledby={`${id}-image-tab`} hidden={tab !== 'image'}>
-      {!imageDisabled && hasMedia && <button ref={enlargeButton} type="button" className="publication-enlarge" onClick={enlarge}>Agrandir l’image</button>}
+      {!imageDisabled && hasMedia && (imageContent || ready) && <button ref={enlargeButton} type="button" className="publication-enlarge" onClick={enlarge}>Agrandir l’image</button>}
+      {ready && !imageContent && <button type="button" className="publication-enlarge" onClick={downloadPreview}>Télécharger cet aperçu</button>}
       {zoomError && <p role="alert">{zoomError}</p>}
       <div ref={stage} className="publication-image-stage" onClick={event => { if (event.target.closest('img,canvas,svg')) enlarge() }}>
       {imageDisabled ? <p role="status">Complète les réglages pour afficher le visuel.</p> : imageContent || <>
         {image.status === 'loading' && <p role="status">Préparation du visuel…</p>}
-        {image.status === 'error' && <p role="alert">{image.error || 'Impossible de préparer ce visuel.'}</p>}
-        {image.status === 'ready' && <img src={image.url} alt={imageAlt} />}
+        {image.status === 'error' && <div><p role="alert">{image.error || 'Impossible de préparer ce visuel.'}</p><button type="button" onClick={() => setAttempt(n => n + 1)}>Réessayer</button></div>}
+        {ready && <img src={image.url} alt={imageAlt} />}
       </>}
       </div>
     </div>}

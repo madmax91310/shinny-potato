@@ -2,7 +2,7 @@
 import json
 import re
 from collect_public_issuer import Page, only, money, base
-from issuer_documents import public_page, download, pdf_text, proof, document_date, bounded_return
+from issuer_documents import public_page, download, pdf_text, proof, document_date, bounded_return, validated_rows
 from data_automation import reject, ResponseFormatError
 
 
@@ -56,8 +56,23 @@ def silver(text, share, now):
         method='cumulative exact-share NAV total return, gross income reinvested, net of fees',
         observations=[dict(label=label, value=bounded_return(100 * returns[key]), asOf=date) for key, label in
             [('ONE_MONTH','1 mois'),('THREE_MONTH','3 mois'),('ONE_YEAR','1 an'),('YTD','Depuis janvier'),('SINCE_INCEPTION','Depuis le lancement')]])
+    # Use only explicitly dated portfolio tables, never lending collateral.
+    page = Page(text)
+    for field, title, header in [
+        ('countries', 'Country Breakdown', ['', 'Country', 'Weight (%)']),
+        ('holdings', 'Top Holdings', ['Net Assets (%)', 'Ticker', 'Name', 'Country', 'SEDOL', 'Market Price ($)', 'Shares Held', 'Market Value ($)']),
+    ]:
+        tables = [t for t in page.tables if title + ' As of' in t['context'] and t['rows'][0] == header]
+        if not tables:
+            raise ResponseFormatError('Incomplete Silver Miners portfolio: ' + title)
+        table = only(tables, title)
+        date = document_date(only(re.findall(r'As of (\d+ [A-Za-z]+ \d{4})', table['context'].split(title, 1)[1]), title + ' date'), now)
+        rows = [dict(name=r[2], weightPct=float(r[0])) if field == 'holdings'
+                else dict(name=r[1], weightPct=float(r[2])) for r in table['rows'][1:]]
+        result[field] = dict(rows=validated_rows(rows, complete=field != 'holdings'), asOf=date,
+                             basis='fund', sourceUrl=share['sourceUrl'], sha256=digest)
     result['unavailable'] = ['performance-calendar: issuer discrete returns are rolling years, not calendar years; separately collected exact-share market histories preserved',
-                             'exposures: client-loaded holdings not substituted with securities-lending collateral']
+                             'sectors: no complete sector allocation published in the official page']
     return result
 
 
@@ -94,9 +109,40 @@ def avantis(body, share, now):
     result['performance'] = dict(currency='USD', basis='fund', years={}, observations=observations, asOf=stamp, sourceUrl=share['sourceUrl'], sha256=digest,
         method='cumulative exact-share NAV total return, income reinvested, fund fees included',
         note='Only cumulative QTR/YTD/1-year columns collected; annualised inception return excluded')
+    result.update(avantis_composition(text, stamp, share['sourceUrl'], digest))
     result['unavailable'] = ['performance-calendar: current factsheet publishes rolling returns, no complete calendar year; separate exact-share monthly history retained',
                              'countries: top five is not a complete country allocation']
     return result
+
+
+def avantis_composition(text, stamp, url, digest):
+    # Read the Fund column, not the adjacent benchmark or active-weight chart.
+    section = text.split('Sector Allocation %', 1)[1].split('DUE TO MARKET VOLATILITY', 1)[0]
+    labels = ['Consumer Discretionary', 'Energy', 'Financials', 'Consumer Staples', 'Materials',
+              'Industrials', 'Communication Services', 'Information Technology', 'Utilities', 'Health Care', 'Real Estate']
+    sectors = []
+    for label in labels:
+        values = re.findall(re.escape(label) + r'\s{2,}(\d+\.\d+)\s+(\d+\.\d+)', section)
+        value = only(values, 'Avantis fund sector ' + label)
+        sectors.append(dict(name=label, weightPct=float(value[0])))
+    validated_rows(sectors)
+    lines = text.splitlines()
+    header = only([i for i,line in enumerate(lines) if 'Top 10 Holdings %' in line], 'Avantis holdings heading')
+    column = lines[header].index('Top 10 Holdings %')
+    holdings = []
+    total = None
+    for line in lines[header+1:]:
+        cell = line[column:].strip()
+        if cell.startswith('Top Ten Holdings Total'):
+            total = float(cell.split()[-1]); break
+        match = re.fullmatch(r'(.+?)\s{2,}(\d+\.\d+)', cell)
+        if match:
+            holdings.append(dict(name=match[1], weightPct=float(match[2])))
+    validated_rows(holdings, complete=False)
+    if len(holdings) != 10 or total is None or abs(sum(row['weightPct'] for row in holdings)-total) > .06:
+        reject('Avantis top holdings incomplete or total inconsistent')
+    return {field:dict(rows=rows, asOf=stamp, basis='fund', sourceUrl=url, sha256=digest)
+            for field,rows in [('sectors',sectors),('holdings',holdings)]}
 
 
 def collect_one(share, now):

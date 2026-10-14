@@ -1,3 +1,4 @@
+import { usePublicationPreference } from '../../lib/usePublicationPreference.js'
 import { notifyPublication, copyPublicationText, startPublicationDownload } from '../../design-system/publicationActions.js'
 import ChoicePicker from '../../design-system/ChoicePicker.jsx'
 import WorkspaceActions from '../../design-system/WorkspaceActions'
@@ -14,6 +15,7 @@ import { generateDuel } from './generate.js'
 import './portfolio-duels.css'
 
 const duels = DUELS.map(buildDuel)
+const validAllocation = rows => Array.isArray(rows) && rows.length <= 3 && rows.every(r => r && CATALOG.some(a => a.id === r.id) && (r.pct === '' || Number.isFinite(r.pct)))
 const initialLeft = [{ id: 'msci_world_ishares', pct: 80 }, { id: 'msci_em', pct: 20 }]
 const initialRight = [{ id: 'msci_acwi_ishares', pct: 100 }]
 
@@ -50,15 +52,17 @@ function AllocationEditor({ label, lines, onChange }) {
 
 
 export default function App() {
-  const [index, setIndex] = useState(0)
-  const [mode, setMode] = useState('prepared')
-  const [left, setLeft] = useState(initialLeft)
-  const [right, setRight] = useState(initialRight)
+  const [selectedId, setSelectedId] = usePublicationPreference('duel-selected', duels[0].id, id => duels.some(d => d.id === id))
+  const index = duels.findIndex(d => d.id === selectedId)
+  const setIndex = next => setSelectedId(duels[next].id)
+  const [mode, setMode] = usePublicationPreference('duel-mode', 'prepared', mode => ['prepared', 'manual'].includes(mode))
+  const [left, setLeft] = usePublicationPreference('duel-left', initialLeft, validAllocation)
+  const [right, setRight] = usePublicationPreference('duel-right', initialRight, validAllocation)
   const [generated, setGenerated] = useState(() => generateDuel())
   const [copyStatus, setCopyStatus] = useState('')
   const [imageStatus, setImageStatus] = useState('')
   const [imageError, setImageError] = useState('')
-  const lastIndex = useRef(0)
+  const lastIndex = useRef(index)
   let manual = null
   let error = ''
   if (mode === 'manual') {
@@ -66,6 +70,8 @@ export default function App() {
   }
   const duel = mode === 'manual' ? manual : mode === 'generated' ? generated : duels[index]
   const tweet = duel ? buildTweet(duel) : ''
+  const publicationRef = useRef(tweet)
+  publicationRef.current = tweet
 
   function choose(next) {
     lastIndex.current = next
@@ -90,9 +96,11 @@ export default function App() {
 
   async function downloadImage() {
     if (!duel || imageStatus === 'loading') return
+    const requestedTweet = tweet
     setImageStatus('loading'); setImageError('')
     try {
       const url = await renderDuelImage(duel)
+      if (publicationRef.current !== requestedTweet) return
       const link = document.createElement('a')
       link.href = url
       link.download = `duel-${duel.id}.png`
@@ -106,6 +114,7 @@ export default function App() {
       <PageHeader title="Duel de portefeuilles" subtitle="Une base ETF, un complément et une thématique si tu le souhaites : compare deux constructions de portefeuille." />
       <ToolWorkspace renderImage={() => renderDuelImage(duel)} imageDisabled={!duel} imageAlt="Duel de portefeuilles">
       <section className="tool-settings">
+      <Button variant="secondary" onClick={() => { setIndex(0); setMode('prepared'); setLeft(initialLeft); setRight(initialRight) }}>Réinitialiser les réglages</Button>
       <div className="pd-modes" role="group" aria-label="Mode de duel">
         {[['prepared', 'Duels préparés'], ['generated', 'Générer un duel'], ['manual', 'Composer A et B']].map(([key, label]) =>
           <button key={key} type="button" className={mode === key ? 'pd-mode-active' : ''} aria-pressed={mode === key} onClick={() => { setMode(key); setCopyStatus('') }}>{label}</button>)}

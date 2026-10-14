@@ -1,8 +1,11 @@
+import { usePublicationPreference } from '../lib/usePublicationPreference.js'
 import { useId, useMemo, useState } from 'react'
 import { normalizeSearch } from '../data/search-text.js'
 import './asset-picker.css'
 
 export default function AssetPicker({ items, value, onChange, label, id, className = '', emptyOption, selectOnGroupChange = false }) {
+  const [favorites, setFavorites] = usePublicationPreference(`favorites:${globalThis.location?.pathname ?? ''}:${id ?? label ?? 'assets'}`, [], value => Array.isArray(value) && value.length <= 200 && value.every(id => typeof id === 'string'))
+  const favoriteItems = items.filter(item => favorites.includes(String(item.id)))
   const uniqueId = useId()
   const selectId = id ?? uniqueId
   const [query, setQuery] = useState('')
@@ -19,6 +22,14 @@ export default function AssetPicker({ items, value, onChange, label, id, classNa
   return <div className="asset-picker">
     {label && <span className="asset-picker-label">{label}</span>}
     {(current || (emptyOption && String(value) === String(emptyOption.id))) && <p className="picker-selection"><span aria-hidden="true">✓</span><span><small>Sélection actuelle</small><strong>{current?.label ?? emptyOption.label}</strong></span></p>}
+    {current && <button type="button" className="asset-picker-more" aria-pressed={favorites.includes(String(current.id))}
+      onClick={() => setFavorites(all => all.includes(String(current.id)) ? all.filter(id => id !== String(current.id)) : [...all, String(current.id)].slice(-200))}>
+      {favorites.includes(String(current.id)) ? '★ Retirer des favoris' : '☆ Ajouter aux favoris'}
+    </button>}
+    {favoriteItems.length > 0 && <div className="asset-picker-groups" role="group" aria-label={`Favoris : ${label ?? 'actif'}`}>
+      {favoriteItems.map(item => <button type="button" key={item.id} aria-pressed={String(item.id) === String(value)}
+        onClick={() => { setQuery(''); setGroup('Tous'); setPeaOnly(false); onChange(String(item.id)) }}>{item.label}</button>)}
+    </div>}
     <input type="search" value={query} onChange={event => setQuery(event.target.value)}
       aria-label={`Rechercher : ${label ?? 'actif'}`} placeholder="Nom, indice, ticker ou ISIN…" />
     <div className="asset-picker-groups" role="group" aria-label={`Expositions : ${label ?? 'actif'}`}>

@@ -1,4 +1,5 @@
 [
+  "node scripts/test-publication-continuity.mjs",
   "node scripts/test-investment-crisis.mjs --browser",
   "node scripts/test-resource-selections.mjs --browser",
   "node scripts/test-dca-images.mjs",

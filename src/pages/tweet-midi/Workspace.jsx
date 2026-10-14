@@ -4,7 +4,8 @@ import WorkspaceActions from '../../design-system/WorkspaceActions'
 import AssetPicker from '../../design-system/AssetPicker'
 import { exposureGroup } from '../../data/asset-labels.js'
 import ToolWorkspace from '../../design-system/ToolWorkspace'
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { readPreference, writePreference } from "../../lib/publication-preferences.js";
 import { Link, useLocation } from 'react-router-dom';
 import { getPerformanceAssetId } from '../../data/performance-links.js';
 import { getSimulationAssetId, getSimulationHref } from '../../data/simulation-links.js';
@@ -68,10 +69,13 @@ function TweetMidiWorkspace({ search, initialFormat, title, description, runtime
   // Recheck against the actual pool: a removed/unusable history cannot trigger
   // pickForSelection's fallback to an unrelated asset.
   const initialSubject = requestedAsset && getSecondaryOptionsForFormat(initialFormat, MODES.SIMPLE, requestedAsset).length
-    ? requestedAsset : SUBJECT_ALEATOIRE;
+    ? requestedAsset : initialFormat === FORMATS.COMPARATIF_ETF
+      ? readPreference('comparison-subject', SUBJECT_ALEATOIRE, id => id === SUBJECT_ALEATOIRE || getSubjectsForFormat(initialFormat).some(group => group.items.some(item => item.id === id)))
+      : SUBJECT_ALEATOIRE;
   const [format, setFormat] = useState(initialFormat);
   const [mode, setMode] = useState(MODES.SIMPLE);
   const [subject, setSubject] = useState(initialSubject);
+  useEffect(() => { if (format === FORMATS.COMPARATIF_ETF) writePreference('comparison-subject', subject) }, [format, subject]);
   const [subjectB, setSubjectB] = useState(SUBJECT_ALEATOIRE);
   const [secondary, setSecondary] = useState(SUBJECT_ALEATOIRE);
   const [current, setCurrent] = useState(() => pickForSelection({

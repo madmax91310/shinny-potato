@@ -483,6 +483,9 @@ async function testPortfolioDuels(page) {
 
 async function testEtfSheets(page) {
   await page.goto(`${BASE}/fiches-etf`, { waitUntil: "networkidle" });
+  // This scenario checks a first visit; continuity has its own browser test.
+  await page.evaluate(() => localStorage.removeItem('epargnant-publication:v1:etf-sheet'));
+  await page.reload({ waitUntil: 'networkidle' });
   // Capture la sortie du bouton sans dépendre du presse-papiers du navigateur CI.
   await page.evaluate(() => Object.defineProperty(navigator, 'clipboard', {
     configurable: true,
@@ -1116,6 +1119,8 @@ async function testDataReuse(page) {
   ok &&= await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth);
   await page.setViewportSize({ width: 1280, height: 720 });
   await page.goto(`${BASE}/duels-portefeuilles`, { waitUntil: 'networkidle' });
+  // The previous scenario deliberately leaves a manual duel saved.
+  await page.getByRole('button', { name: 'Duels préparés', exact: true }).click();
   const prepared = await page.locator('#pd-select [data-option]').allTextContents();
   await choose(page.locator('#pd-select'), String(prepared.findIndex(text => text.includes('XEON'))));
   ok &&= (await page.locator('#pd-tweet').inputValue()).includes('XEON');

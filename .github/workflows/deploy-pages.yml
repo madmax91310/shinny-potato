@@ -98,6 +98,7 @@ jobs:
       - run: npm run audit:index-completeness
       - run: npm run verify:factsheet-tweets
       - run: node scripts/test-portfolio-editorial.mjs
+      - run: node scripts/test-publication-preferences.mjs
       - run: node scripts/test-asset-selection.mjs
       - run: node scripts/test-portfolio-recipes.mjs
       - run: node scripts/test-publication-reliability.mjs
