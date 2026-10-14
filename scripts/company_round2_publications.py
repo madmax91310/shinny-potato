@@ -231,6 +231,7 @@ def statement_periods(text, ident, url, today):
             p['previousInterestExpense'] = abs(interests[j])*1e6
         # Published diluted counts only, never reconstruct counts from EPS.
         counts = row(text, [r'Diluted weighted.average shares outstanding',
+            r'Weighted.average diluted common shares outstanding',
             r'Shares used (?:in computing|to compute) diluted net income(?: \(loss\))? per share',
             r'Shares used in diluted per share calculations',
             r'Average Shares Outstanding Assuming Dilution'])

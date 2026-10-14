@@ -7882,6 +7882,8 @@
         "previousRevenue": 275235000000.0,
         "previousNetIncome": 8099000000.0,
         "dilutedEPS": 20.76,
+        "averageDilutedShares": 444427000.0,
+        "previousAverageDilutedShares": 444803000.0,
         "sourceUrl": "https://investor.costco.com/news/news-details/2026/Costco-Wholesale-Corporation-Reports-Fourth-Quarter-and-Fiscal-Year-2026-Operating-Results/default.aspx"
       },
       "quarter": null,
@@ -7889,6 +7891,14 @@
       "accountsSourceUrl": "https://investor.costco.com/news/news-details/2026/Costco-Wholesale-Corporation-Reports-Fourth-Quarter-and-Fiscal-Year-2026-Operating-Results/default.aspx",
       "history": {
         "years": [
+          {
+            "start": null,
+            "end": "2023-09-03",
+            "revenue": 242290000000.0,
+            "netIncome": 6292000000.0,
+            "sourceUrl": "https://investor.costco.com/news/news-details/2024/Costco-Wholesale-Corporation-Reports-Fourth-Quarter-and-Fiscal-Year-2024-Operating-Results/default.aspx",
+            "margin": 2.59688802674481
+          },
           {
             "start": null,
             "end": "2024-09-01",
@@ -7916,18 +7926,20 @@
             "previousRevenue": 275235000000.0,
             "previousNetIncome": 8099000000.0,
             "dilutedEPS": 20.76,
+            "averageDilutedShares": 444427000.0,
+            "previousAverageDilutedShares": 444803000.0,
             "sourceUrl": "https://investor.costco.com/news/news-details/2026/Costco-Wholesale-Corporation-Reports-Fourth-Quarter-and-Fiscal-Year-2026-Operating-Results/default.aspx"
           }
         ],
-        "observedAt": "2026-10-07",
+        "observedAt": "2026-10-14",
         "definition": "Comptes annuels consolidés GAAP ; marge nette = résultat net / chiffre d’affaires"
       },
       "estimates": {
         "forwardEPS": 25.06,
         "growthEPS5Y": 9.73,
-        "reportedForwardPE": 38.99,
+        "reportedForwardPE": 39.0,
         "reportedPEG": 4.01,
-        "providerPrice": 977.06,
+        "providerPrice": 977.19,
         "observedAt": "2026-10-14",
         "sourceName": "Finviz",
         "sourceUrl": "https://finviz.com/quote.ashx?t=COST",
@@ -8373,6 +8385,22 @@
         "annualEnd": "2026-08-30",
         "years": [
           {
+            "end": "2023-09-03",
+            "revenue": 242290000000.0,
+            "netIncome": 6292000000.0,
+            "sourceUrl": "https://investor.costco.com/news/news-details/2024/Costco-Wholesale-Corporation-Reports-Fourth-Quarter-and-Fiscal-Year-2024-Operating-Results/default.aspx",
+            "operatingCashFlow": 11068000000.0,
+            "tags": {
+              "operatingCashFlow": "Net cash provided by operating activities"
+            },
+            "capitalExpenditure": 4323000000.0,
+            "freeCashFlow": 6745000000.0,
+            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
+            "dividendsPaid": 1251000000.0,
+            "averageDilutedShares": 444452000.0,
+            "sharesBasisSource": "https://investor.costco.com/news/news-details/2024/Costco-Wholesale-Corporation-Reports-Fourth-Quarter-and-Fiscal-Year-2024-Operating-Results/default.aspx"
+          },
+          {
             "end": "2024-09-01",
             "revenue": 254453000000.0,
             "netIncome": 7367000000.0,
@@ -8384,7 +8412,9 @@
             "capitalExpenditure": 4710000000.0,
             "freeCashFlow": 6629000000.0,
             "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
-            "dividendsPaid": 9041000000.0
+            "dividendsPaid": 9041000000.0,
+            "averageDilutedShares": 444759000.0,
+            "sharesBasisSource": "https://investor.costco.com/news/news-details/2025/Costco-Wholesale-Corporation-Reports-Fourth-Quarter-and-Fiscal-Year-2025-Operating-Results/default.aspx"
           },
           {
             "end": "2025-08-31",
@@ -8398,7 +8428,9 @@
             "capitalExpenditure": 5498000000.0,
             "freeCashFlow": 7837000000.0,
             "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
-            "dividendsPaid": 2183000000.0
+            "dividendsPaid": 2183000000.0,
+            "averageDilutedShares": 444803000.0,
+            "sharesBasisSource": "https://investor.costco.com/news/news-details/2026/Costco-Wholesale-Corporation-Reports-Fourth-Quarter-and-Fiscal-Year-2026-Operating-Results/default.aspx"
           },
           {
             "end": "2026-08-30",
@@ -8412,12 +8444,15 @@
             "capitalExpenditure": 6435000000.0,
             "freeCashFlow": 9390000000.0,
             "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
-            "dividendsPaid": 2458000000.0
+            "dividendsPaid": 2458000000.0,
+            "averageDilutedShares": 444427000.0,
+            "sharesBasisSource": "https://investor.costco.com/news/news-details/2026/Costco-Wholesale-Corporation-Reports-Fourth-Quarter-and-Fiscal-Year-2026-Operating-Results/default.aspx"
           }
         ],
         "method": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
         "componentVersion": 5,
-        "accountsEndAtCollection": "2026-08-30"
+        "accountsEndAtCollection": "2026-08-30",
+        "shareCoverageVersion": 1
       },
       "targetForecast": {
         "version": 1,
@@ -8429,7 +8464,7 @@
         "sourceName": "Stock Analysis / S&P Global",
         "observedAt": "2026-10-14",
         "asOf": "2026-10-14",
-        "sourceHash": "962e39748cb9ff2cc3a469200d7c8099cd9806bff953065e00b99fa0bede036d",
+        "sourceHash": "d738ed506ab50705ad2b589c3fe906ceecb454da627a22da3abc73a4be22394e",
         "points": [
           {
             "end": "2026-08-30",
@@ -8483,6 +8518,8 @@
           "previousNetIncome": 2610000000.0,
           "dilutedEPS": 6.75,
           "durationWeeks": 16,
+          "averageDilutedShares": 444364000.0,
+          "previousAverageDilutedShares": 444706000.0,
           "sourceUrl": "https://investor.costco.com/news/news-details/2026/Costco-Wholesale-Corporation-Reports-Fourth-Quarter-and-Fiscal-Year-2026-Operating-Results/default.aspx"
         },
         {
@@ -8522,6 +8559,8 @@
           "previousNetIncome": 1798000000.0,
           "dilutedEPS": 4.5,
           "durationWeeks": 12,
+          "averageDilutedShares": 444515000.0,
+          "previousAverageDilutedShares": 444891000.0,
           "sourceUrl": "https://investor.costco.com/news/news-details/2025/Costco-Wholesale-Corporation-Reports-First-Quarter-Fiscal-Year-2026-Operating-Results/default.aspx"
         }
       ],
@@ -8537,6 +8576,59 @@
         ],
         "definition": "Somme de quatre BPA trimestriels GAAP publiés ; calendrier fiscal 12/16/17 semaines pour Costco",
         "observedAt": "2026-10-14"
+      },
+      "valuationShareBasis": {
+        "version": 1,
+        "observedAt": "2026-10-14",
+        "annualEnd": "2026-08-30",
+        "accountsEndAtCollection": "2026-08-30",
+        "currency": "USD",
+        "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/COST?period1=1662163200&period2=1792022400&interval=1mo&events=splits",
+        "splitCheckFrom": "2022-09-03",
+        "splitCheckThrough": "2026-10-14",
+        "definition": "Published annual diluted averages; complete historical split window checked"
+      },
+      "targetCashReference": {
+        "version": 1,
+        "observedAt": "2026-10-14",
+        "annualEnd": "2026-08-30",
+        "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/COST?period1=1662163200&period2=1792022400&interval=1mo&events=splits",
+        "currency": "USD",
+        "historicalMultiples": [
+          {
+            "end": "2023-09-03",
+            "quotePeriodEnd": "2023-08-31",
+            "price": 549.280029296875,
+            "base": 15.175992008135863,
+            "multiple": 36.19401150200959,
+            "accountsSourceUrl": "https://investor.costco.com/news/news-details/2024/Costco-Wholesale-Corporation-Reports-Fourth-Quarter-and-Fiscal-Year-2024-Operating-Results/default.aspx"
+          },
+          {
+            "end": "2024-09-01",
+            "quotePeriodEnd": "2024-08-31",
+            "price": 892.3800048828125,
+            "base": 14.904701197727308,
+            "multiple": 59.87238476266025,
+            "accountsSourceUrl": "https://investor.costco.com/news/news-details/2025/Costco-Wholesale-Corporation-Reports-Fourth-Quarter-and-Fiscal-Year-2025-Operating-Results/default.aspx"
+          },
+          {
+            "end": "2025-08-31",
+            "quotePeriodEnd": "2025-08-31",
+            "price": 943.3200073242188,
+            "base": 17.619035842833792,
+            "multiple": 53.5398199844117,
+            "accountsSourceUrl": "https://investor.costco.com/news/news-details/2026/Costco-Wholesale-Corporation-Reports-Fourth-Quarter-and-Fiscal-Year-2026-Operating-Results/default.aspx"
+          },
+          {
+            "end": "2026-08-30",
+            "quotePeriodEnd": "2026-07-31",
+            "price": 951.8900146484375,
+            "base": 21.12832928692451,
+            "multiple": 45.05278205965507,
+            "accountsSourceUrl": "https://investor.costco.com/news/news-details/2026/Costco-Wholesale-Corporation-Reports-Fourth-Quarter-and-Fiscal-Year-2026-Operating-Results/default.aspx"
+          }
+        ],
+        "definition": "Ex-post annual FCF per diluted share / split-adjusted monthly close; not point-in-time backtest data"
       }
     },
     "amd": {
@@ -19263,6 +19355,8 @@
         "previousDilutedEPS": 6.81,
         "operatingIncome": 4308000000.0,
         "previousOperatingIncome": 4063000000.0,
+        "averageDilutedShares": 404200000.0,
+        "previousAverageDilutedShares": 403400000.0,
         "margin": 10.74432629741311
       },
       "quarter": {
@@ -19286,119 +19380,22 @@
         "previousDilutedEPS": 1.8,
         "operatingIncome": 1253000000.0,
         "previousOperatingIncome": 1151000000.0,
+        "averageDilutedShares": 402400000.0,
+        "previousAverageDilutedShares": 404300000.0,
         "margin": 11.744464392579294
       },
-      "quarters": [
-        {
-          "start": null,
-          "end": "2026-06-30",
-          "previousStart": null,
-          "previousEnd": "2025-06-30",
-          "durationMonths": 3,
-          "sourceUrl": "https://investors.wm.com/static-files/7330b8ac-17d7-4959-bdb4-f05f7cb39906",
-          "tags": {
-            "revenue": "Official consolidated GAAP statement",
-            "netIncome": "Official consolidated GAAP statement",
-            "dilutedEPS": "Official consolidated GAAP statement",
-            "operatingIncome": "Official consolidated GAAP statement"
-          },
-          "revenue": 6684000000.0,
-          "previousRevenue": 6430000000.0,
-          "netIncome": 785000000.0,
-          "previousNetIncome": 726000000.0,
-          "dilutedEPS": 1.95,
-          "previousDilutedEPS": 1.8,
-          "operatingIncome": 1253000000.0,
-          "previousOperatingIncome": 1151000000.0,
-          "margin": 11.744464392579294
-        },
-        {
-          "start": null,
-          "end": "2026-03-31",
-          "previousStart": null,
-          "previousEnd": "2025-03-31",
-          "durationMonths": 3,
-          "sourceUrl": "https://investors.wm.com/static-files/c4aa7b56-854c-4981-ada3-127d52c597e6",
-          "tags": {
-            "revenue": "Official consolidated GAAP statement",
-            "netIncome": "Official consolidated GAAP statement",
-            "dilutedEPS": "Official consolidated GAAP statement",
-            "operatingIncome": "Official consolidated GAAP statement"
-          },
-          "revenue": 6227000000.0,
-          "previousRevenue": 6018000000.0,
-          "netIncome": 723000000.0,
-          "previousNetIncome": 637000000.0,
-          "dilutedEPS": 1.79,
-          "previousDilutedEPS": 1.58,
-          "operatingIncome": 1113000000.0,
-          "previousOperatingIncome": 1013000000.0,
-          "margin": 11.610727477115786
-        },
-        {
-          "start": null,
-          "end": "2025-12-31",
-          "previousStart": null,
-          "previousEnd": "2024-12-31",
-          "durationMonths": 3,
-          "sourceUrl": "https://investors.wm.com/static-files/b205de78-0616-4ed9-9ac8-0ecbbd943527",
-          "tags": {
-            "revenue": "Official consolidated GAAP statement",
-            "netIncome": "Official consolidated GAAP statement",
-            "dilutedEPS": "Official consolidated GAAP statement",
-            "operatingIncome": "Official consolidated GAAP statement"
-          },
-          "revenue": 6313000000.0,
-          "previousRevenue": 5893000000.0,
-          "netIncome": 742000000.0,
-          "previousNetIncome": 598000000.0,
-          "dilutedEPS": 1.83,
-          "previousDilutedEPS": 1.48,
-          "operatingIncome": 1155000000.0,
-          "previousOperatingIncome": 919000000.0,
-          "margin": 11.753524473309044
-        },
-        {
-          "start": null,
-          "end": "2025-09-30",
-          "previousStart": null,
-          "previousEnd": "2024-09-30",
-          "durationMonths": 3,
-          "sourceUrl": "https://investors.wm.com/static-files/8e52baca-0a45-4c96-8134-5d5a59dab711",
-          "tags": {
-            "revenue": "Official consolidated GAAP statement",
-            "netIncome": "Official consolidated GAAP statement",
-            "dilutedEPS": "Official consolidated GAAP statement",
-            "operatingIncome": "Official consolidated GAAP statement"
-          },
-          "revenue": 6443000000.0,
-          "previousRevenue": 5609000000.0,
-          "netIncome": 603000000.0,
-          "previousNetIncome": 760000000.0,
-          "dilutedEPS": 1.49,
-          "previousDilutedEPS": 1.88,
-          "operatingIncome": 989000000.0,
-          "previousOperatingIncome": 1119000000.0,
-          "margin": 9.35899425733354
-        }
-      ],
-      "trailing": {
-        "end": "2026-06-30",
-        "dilutedEPS": 7.0600000000000005,
-        "revenue": 25667000000.0,
-        "sourceUrls": [
-          "https://investors.wm.com/static-files/7330b8ac-17d7-4959-bdb4-f05f7cb39906",
-          "https://investors.wm.com/static-files/c4aa7b56-854c-4981-ada3-127d52c597e6",
-          "https://investors.wm.com/static-files/b205de78-0616-4ed9-9ac8-0ecbbd943527",
-          "https://investors.wm.com/static-files/8e52baca-0a45-4c96-8134-5d5a59dab711"
-        ],
-        "definition": "Somme de quatre trimestres GAAP réellement publiés",
-        "observedAt": "2026-10-13"
-      },
-      "accountsObservedAt": "2026-10-13",
+      "accountsObservedAt": "2026-10-14",
       "accountsSourceUrl": "https://investors.wm.com/static-files/b205de78-0616-4ed9-9ac8-0ecbbd943527",
       "history": {
         "years": [
+          {
+            "start": null,
+            "end": "2022-12-31",
+            "revenue": 19698000000.0,
+            "netIncome": 2238000000.0,
+            "margin": 11.36155954919281,
+            "sourceUrl": "https://investors.wm.com/static-files/1331b248-ec1e-4fc3-bfa5-12dc003e4bf0"
+          },
           {
             "start": null,
             "end": "2023-12-31",
@@ -19424,13 +19421,27 @@
             "sourceUrl": "https://investors.wm.com/static-files/b205de78-0616-4ed9-9ac8-0ecbbd943527"
           }
         ],
-        "observedAt": "2026-10-13",
+        "observedAt": "2026-10-14",
         "definition": "Comptes annuels consolidés GAAP ; marge nette = résultat net / chiffre d’affaires"
       },
       "decision": {
-        "observedAt": "2026-10-13",
+        "observedAt": "2026-10-14",
         "annualEnd": "2025-12-31",
         "years": [
+          {
+            "end": "2022-12-31",
+            "revenue": 19698000000.0,
+            "netIncome": 2238000000.0,
+            "sourceUrl": "https://investors.wm.com/static-files/1331b248-ec1e-4fc3-bfa5-12dc003e4bf0",
+            "tags": {},
+            "operatingIncome": 3365000000.0,
+            "operatingCashFlow": 4536000000.0,
+            "capitalExpenditure": 2587000000.0,
+            "freeCashFlow": 1949000000.0,
+            "averageDilutedShares": 415000000.0,
+            "sharesBasisSource": "https://investors.wm.com/static-files/1331b248-ec1e-4fc3-bfa5-12dc003e4bf0",
+            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
+          },
           {
             "end": "2023-12-31",
             "revenue": 20426000000.0,
@@ -19441,6 +19452,8 @@
             "operatingCashFlow": 4719000000.0,
             "capitalExpenditure": 2895000000.0,
             "freeCashFlow": 1824000000.0,
+            "averageDilutedShares": 406900000.0,
+            "sharesBasisSource": "https://investors.wm.com/static-files/75772dcb-b736-466b-9bbe-be867a1ce13a",
             "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
           },
           {
@@ -19453,6 +19466,8 @@
             "operatingCashFlow": 5390000000.0,
             "capitalExpenditure": 3231000000.0,
             "freeCashFlow": 2159000000.0,
+            "averageDilutedShares": 403400000.0,
+            "sharesBasisSource": "https://investors.wm.com/static-files/b205de78-0616-4ed9-9ac8-0ecbbd943527",
             "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
           },
           {
@@ -19465,20 +19480,23 @@
             "operatingCashFlow": 6043000000.0,
             "capitalExpenditure": 3227000000.0,
             "freeCashFlow": 2816000000.0,
+            "averageDilutedShares": 404200000.0,
+            "sharesBasisSource": "https://investors.wm.com/static-files/b205de78-0616-4ed9-9ac8-0ecbbd943527",
             "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites"
           }
         ],
         "method": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
-        "componentVersion": 2,
-        "accountsEndAtCollection": "2026-06-30"
+        "componentVersion": 5,
+        "accountsEndAtCollection": "2026-06-30",
+        "shareCoverageVersion": 1
       },
       "estimates": {
         "forwardEPS": 9.03,
-        "growthEPS5Y": 9.56,
-        "reportedForwardPE": 23.54,
-        "reportedPEG": 2.46,
-        "providerPrice": 212.7,
-        "observedAt": "2026-10-13",
+        "growthEPS5Y": 9.54,
+        "reportedForwardPE": 23.79,
+        "reportedPEG": 2.49,
+        "providerPrice": 214.96,
+        "observedAt": "2026-10-14",
         "sourceName": "Finviz",
         "sourceUrl": "https://finviz.com/quote.ashx?t=WM",
         "methodUrl": "https://finviz.com/help/screener",
@@ -19488,9 +19506,432 @@
         "accountsEndAtCollection": "2026-06-30"
       },
       "quote": {
-        "price": 211.13999938964844,
-        "asOf": "2026-10-12",
-        "observedAt": "2026-10-13",
+        "history": [
+          {
+            "asOf": "2024-10-18",
+            "close": 212.75
+          },
+          {
+            "asOf": "2024-10-25",
+            "close": 206.8000030517578
+          },
+          {
+            "asOf": "2024-11-01",
+            "close": 213.99000549316406
+          },
+          {
+            "asOf": "2024-11-08",
+            "close": 224.1199951171875
+          },
+          {
+            "asOf": "2024-11-15",
+            "close": 217.89999389648438
+          },
+          {
+            "asOf": "2024-11-22",
+            "close": 224.41000366210938
+          },
+          {
+            "asOf": "2024-11-29",
+            "close": 228.22000122070312
+          },
+          {
+            "asOf": "2024-12-06",
+            "close": 222.19000244140625
+          },
+          {
+            "asOf": "2024-12-13",
+            "close": 213.1999969482422
+          },
+          {
+            "asOf": "2024-12-20",
+            "close": 205.8300018310547
+          },
+          {
+            "asOf": "2024-12-27",
+            "close": 204.02000427246094
+          },
+          {
+            "asOf": "2025-01-03",
+            "close": 201.64999389648438
+          },
+          {
+            "asOf": "2025-01-10",
+            "close": 207.25
+          },
+          {
+            "asOf": "2025-01-17",
+            "close": 211.7100067138672
+          },
+          {
+            "asOf": "2025-01-24",
+            "close": 209.42999267578125
+          },
+          {
+            "asOf": "2025-01-31",
+            "close": 220.25999450683594
+          },
+          {
+            "asOf": "2025-02-07",
+            "close": 224.91000366210938
+          },
+          {
+            "asOf": "2025-02-14",
+            "close": 227.72999572753906
+          },
+          {
+            "asOf": "2025-02-21",
+            "close": 228.02999877929688
+          },
+          {
+            "asOf": "2025-02-28",
+            "close": 232.77999877929688
+          },
+          {
+            "asOf": "2025-03-07",
+            "close": 229.5500030517578
+          },
+          {
+            "asOf": "2025-03-14",
+            "close": 224.86000061035156
+          },
+          {
+            "asOf": "2025-03-21",
+            "close": 224.91000366210938
+          },
+          {
+            "asOf": "2025-03-28",
+            "close": 227.9199981689453
+          },
+          {
+            "asOf": "2025-04-04",
+            "close": 225.1999969482422
+          },
+          {
+            "asOf": "2025-04-11",
+            "close": 229.3800048828125
+          },
+          {
+            "asOf": "2025-04-17",
+            "close": 230.91000366210938
+          },
+          {
+            "asOf": "2025-04-25",
+            "close": 228.30999755859375
+          },
+          {
+            "asOf": "2025-05-02",
+            "close": 233.94000244140625
+          },
+          {
+            "asOf": "2025-05-09",
+            "close": 232.75
+          },
+          {
+            "asOf": "2025-05-16",
+            "close": 229.8699951171875
+          },
+          {
+            "asOf": "2025-05-23",
+            "close": 236.80999755859375
+          },
+          {
+            "asOf": "2025-05-30",
+            "close": 240.97000122070312
+          },
+          {
+            "asOf": "2025-06-06",
+            "close": 236.3300018310547
+          },
+          {
+            "asOf": "2025-06-13",
+            "close": 236.5
+          },
+          {
+            "asOf": "2025-06-20",
+            "close": 231.94000244140625
+          },
+          {
+            "asOf": "2025-06-27",
+            "close": 228.25999450683594
+          },
+          {
+            "asOf": "2025-07-03",
+            "close": 227.10000610351562
+          },
+          {
+            "asOf": "2025-07-11",
+            "close": 226.00999450683594
+          },
+          {
+            "asOf": "2025-07-18",
+            "close": 227.32000732421875
+          },
+          {
+            "asOf": "2025-07-25",
+            "close": 229.6699981689453
+          },
+          {
+            "asOf": "2025-08-01",
+            "close": 228.8800048828125
+          },
+          {
+            "asOf": "2025-08-08",
+            "close": 235.08999633789062
+          },
+          {
+            "asOf": "2025-08-15",
+            "close": 226.80999755859375
+          },
+          {
+            "asOf": "2025-08-22",
+            "close": 227.02000427246094
+          },
+          {
+            "asOf": "2025-08-29",
+            "close": 226.38999938964844
+          },
+          {
+            "asOf": "2025-09-05",
+            "close": 220.05999755859375
+          },
+          {
+            "asOf": "2025-09-12",
+            "close": 218.16000366210938
+          },
+          {
+            "asOf": "2025-09-19",
+            "close": 216.39999389648438
+          },
+          {
+            "asOf": "2025-09-26",
+            "close": 218.69000244140625
+          },
+          {
+            "asOf": "2025-10-03",
+            "close": 219.75999450683594
+          },
+          {
+            "asOf": "2025-10-10",
+            "close": 219.25
+          },
+          {
+            "asOf": "2025-10-17",
+            "close": 215.47999572753906
+          },
+          {
+            "asOf": "2025-10-24",
+            "close": 214.66000366210938
+          },
+          {
+            "asOf": "2025-10-31",
+            "close": 199.77000427246094
+          },
+          {
+            "asOf": "2025-11-07",
+            "close": 201.9199981689453
+          },
+          {
+            "asOf": "2025-11-14",
+            "close": 209.1699981689453
+          },
+          {
+            "asOf": "2025-11-21",
+            "close": 216.6199951171875
+          },
+          {
+            "asOf": "2025-11-28",
+            "close": 217.8699951171875
+          },
+          {
+            "asOf": "2025-12-05",
+            "close": 213.5800018310547
+          },
+          {
+            "asOf": "2025-12-12",
+            "close": 215.61000061035156
+          },
+          {
+            "asOf": "2025-12-19",
+            "close": 216.33999633789062
+          },
+          {
+            "asOf": "2025-12-26",
+            "close": 221.10000610351562
+          },
+          {
+            "asOf": "2026-01-02",
+            "close": 218.39999389648438
+          },
+          {
+            "asOf": "2026-01-09",
+            "close": 220.91000366210938
+          },
+          {
+            "asOf": "2026-01-16",
+            "close": 221.22999572753906
+          },
+          {
+            "asOf": "2026-01-23",
+            "close": 229.22999572753906
+          },
+          {
+            "asOf": "2026-01-30",
+            "close": 222.24000549316406
+          },
+          {
+            "asOf": "2026-02-06",
+            "close": 226.7899932861328
+          },
+          {
+            "asOf": "2026-02-13",
+            "close": 234.52000427246094
+          },
+          {
+            "asOf": "2026-02-20",
+            "close": 230.30999755859375
+          },
+          {
+            "asOf": "2026-02-27",
+            "close": 240.83999633789062
+          },
+          {
+            "asOf": "2026-03-06",
+            "close": 246.0500030517578
+          },
+          {
+            "asOf": "2026-03-13",
+            "close": 238.52999877929688
+          },
+          {
+            "asOf": "2026-03-20",
+            "close": 231.24000549316406
+          },
+          {
+            "asOf": "2026-03-27",
+            "close": 225.05999755859375
+          },
+          {
+            "asOf": "2026-04-02",
+            "close": 235.4199981689453
+          },
+          {
+            "asOf": "2026-04-10",
+            "close": 229.4499969482422
+          },
+          {
+            "asOf": "2026-04-17",
+            "close": 223.9499969482422
+          },
+          {
+            "asOf": "2026-04-24",
+            "close": 229.52999877929688
+          },
+          {
+            "asOf": "2026-05-01",
+            "close": 228.77000427246094
+          },
+          {
+            "asOf": "2026-05-08",
+            "close": 215.3699951171875
+          },
+          {
+            "asOf": "2026-05-15",
+            "close": 219.82000732421875
+          },
+          {
+            "asOf": "2026-05-22",
+            "close": 217.89999389648438
+          },
+          {
+            "asOf": "2026-05-29",
+            "close": 211.4600067138672
+          },
+          {
+            "asOf": "2026-06-05",
+            "close": 220.39999389648438
+          },
+          {
+            "asOf": "2026-06-12",
+            "close": 219.4499969482422
+          },
+          {
+            "asOf": "2026-06-18",
+            "close": 214.60000610351562
+          },
+          {
+            "asOf": "2026-06-26",
+            "close": 225.52999877929688
+          },
+          {
+            "asOf": "2026-07-02",
+            "close": 230.39999389648438
+          },
+          {
+            "asOf": "2026-07-10",
+            "close": 233.3300018310547
+          },
+          {
+            "asOf": "2026-07-17",
+            "close": 239.30999755859375
+          },
+          {
+            "asOf": "2026-07-24",
+            "close": 238.75
+          },
+          {
+            "asOf": "2026-07-31",
+            "close": 226.5500030517578
+          },
+          {
+            "asOf": "2026-08-07",
+            "close": 227.67999267578125
+          },
+          {
+            "asOf": "2026-08-14",
+            "close": 224.5500030517578
+          },
+          {
+            "asOf": "2026-08-21",
+            "close": 224.05999755859375
+          },
+          {
+            "asOf": "2026-08-28",
+            "close": 219.66000366210938
+          },
+          {
+            "asOf": "2026-09-04",
+            "close": 218.99000549316406
+          },
+          {
+            "asOf": "2026-09-11",
+            "close": 213.4600067138672
+          },
+          {
+            "asOf": "2026-09-18",
+            "close": 211.10000610351562
+          },
+          {
+            "asOf": "2026-09-25",
+            "close": 206.8300018310547
+          },
+          {
+            "asOf": "2026-10-02",
+            "close": 204.4499969482422
+          },
+          {
+            "asOf": "2026-10-09",
+            "close": 208.8300018310547
+          },
+          {
+            "asOf": "2026-10-13",
+            "close": 211.8300018310547
+          }
+        ],
+        "historyBasis": "Yahoo close; weekly last completed session; no dividend reinvestment",
+        "price": 211.8300018310547,
+        "asOf": "2026-10-13",
+        "observedAt": "2026-10-14",
         "currency": "USD",
         "splits": [],
         "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/WM?range=2y&interval=1d&events=splits"
@@ -19505,7 +19946,7 @@
         "sourceName": "Stock Analysis / S&P Global",
         "observedAt": "2026-10-14",
         "asOf": "2026-10-14",
-        "sourceHash": "bd5d1492572020166bf4d875b5026ee5ee7dcc7ae3d1885df41d92c3d324d981",
+        "sourceHash": "252e680cf9edd7c2cdb07c1e9607c8f73d133208512bb782756a788bd217115f",
         "points": [
           {
             "end": "2025-12-31",
@@ -19546,6 +19987,174 @@
           }
         ],
         "definition": "EPS and Forward PE are based on non-GAAP adjusted numbers."
+      },
+      "quarters": [
+        {
+          "start": null,
+          "end": "2026-06-30",
+          "previousStart": null,
+          "previousEnd": "2025-06-30",
+          "durationMonths": 3,
+          "sourceUrl": "https://investors.wm.com/static-files/7330b8ac-17d7-4959-bdb4-f05f7cb39906",
+          "tags": {
+            "revenue": "Official consolidated GAAP statement",
+            "netIncome": "Official consolidated GAAP statement",
+            "dilutedEPS": "Official consolidated GAAP statement",
+            "operatingIncome": "Official consolidated GAAP statement"
+          },
+          "revenue": 6684000000.0,
+          "previousRevenue": 6430000000.0,
+          "netIncome": 785000000.0,
+          "previousNetIncome": 726000000.0,
+          "dilutedEPS": 1.95,
+          "previousDilutedEPS": 1.8,
+          "operatingIncome": 1253000000.0,
+          "previousOperatingIncome": 1151000000.0,
+          "averageDilutedShares": 402400000.0,
+          "previousAverageDilutedShares": 404300000.0,
+          "margin": 11.744464392579294
+        },
+        {
+          "start": null,
+          "end": "2026-03-31",
+          "previousStart": null,
+          "previousEnd": "2025-03-31",
+          "durationMonths": 3,
+          "sourceUrl": "https://investors.wm.com/static-files/c4aa7b56-854c-4981-ada3-127d52c597e6",
+          "tags": {
+            "revenue": "Official consolidated GAAP statement",
+            "netIncome": "Official consolidated GAAP statement",
+            "dilutedEPS": "Official consolidated GAAP statement",
+            "operatingIncome": "Official consolidated GAAP statement"
+          },
+          "revenue": 6227000000.0,
+          "previousRevenue": 6018000000.0,
+          "netIncome": 723000000.0,
+          "previousNetIncome": 637000000.0,
+          "dilutedEPS": 1.79,
+          "previousDilutedEPS": 1.58,
+          "operatingIncome": 1113000000.0,
+          "previousOperatingIncome": 1013000000.0,
+          "averageDilutedShares": 404400000.0,
+          "previousAverageDilutedShares": 403900000.0,
+          "margin": 11.610727477115786
+        },
+        {
+          "start": null,
+          "end": "2025-12-31",
+          "previousStart": null,
+          "previousEnd": "2024-12-31",
+          "durationMonths": 3,
+          "sourceUrl": "https://investors.wm.com/static-files/b205de78-0616-4ed9-9ac8-0ecbbd943527",
+          "tags": {
+            "revenue": "Official consolidated GAAP statement",
+            "netIncome": "Official consolidated GAAP statement",
+            "dilutedEPS": "Official consolidated GAAP statement",
+            "operatingIncome": "Official consolidated GAAP statement"
+          },
+          "revenue": 6313000000.0,
+          "previousRevenue": 5893000000.0,
+          "netIncome": 742000000.0,
+          "previousNetIncome": 598000000.0,
+          "dilutedEPS": 1.83,
+          "previousDilutedEPS": 1.48,
+          "operatingIncome": 1155000000.0,
+          "previousOperatingIncome": 919000000.0,
+          "averageDilutedShares": 404500000.0,
+          "previousAverageDilutedShares": 403600000.0,
+          "margin": 11.753524473309044
+        },
+        {
+          "start": null,
+          "end": "2025-09-30",
+          "previousStart": null,
+          "previousEnd": "2024-09-30",
+          "durationMonths": 3,
+          "sourceUrl": "https://investors.wm.com/static-files/8e52baca-0a45-4c96-8134-5d5a59dab711",
+          "tags": {
+            "revenue": "Official consolidated GAAP statement",
+            "netIncome": "Official consolidated GAAP statement",
+            "dilutedEPS": "Official consolidated GAAP statement",
+            "operatingIncome": "Official consolidated GAAP statement"
+          },
+          "revenue": 6443000000.0,
+          "previousRevenue": 5609000000.0,
+          "netIncome": 603000000.0,
+          "previousNetIncome": 760000000.0,
+          "dilutedEPS": 1.49,
+          "previousDilutedEPS": 1.88,
+          "operatingIncome": 989000000.0,
+          "previousOperatingIncome": 1119000000.0,
+          "averageDilutedShares": 404300000.0,
+          "previousAverageDilutedShares": 403200000.0,
+          "margin": 9.35899425733354
+        }
+      ],
+      "trailing": {
+        "end": "2026-06-30",
+        "dilutedEPS": 7.0600000000000005,
+        "revenue": 25667000000.0,
+        "sourceUrls": [
+          "https://investors.wm.com/static-files/7330b8ac-17d7-4959-bdb4-f05f7cb39906",
+          "https://investors.wm.com/static-files/c4aa7b56-854c-4981-ada3-127d52c597e6",
+          "https://investors.wm.com/static-files/b205de78-0616-4ed9-9ac8-0ecbbd943527",
+          "https://investors.wm.com/static-files/8e52baca-0a45-4c96-8134-5d5a59dab711"
+        ],
+        "definition": "Somme de quatre trimestres GAAP réellement publiés",
+        "observedAt": "2026-10-14"
+      },
+      "valuationShareBasis": {
+        "version": 1,
+        "observedAt": "2026-10-14",
+        "annualEnd": "2025-12-31",
+        "accountsEndAtCollection": "2026-06-30",
+        "currency": "USD",
+        "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/WM?period1=1640649600&period2=1792022400&interval=1mo&events=splits",
+        "splitCheckFrom": "2021-12-28",
+        "splitCheckThrough": "2026-10-14",
+        "definition": "Published annual diluted averages; complete historical split window checked"
+      },
+      "targetCashReference": {
+        "version": 1,
+        "observedAt": "2026-10-14",
+        "annualEnd": "2025-12-31",
+        "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/WM?period1=1640649600&period2=1792022400&interval=1mo&events=splits",
+        "currency": "USD",
+        "historicalMultiples": [
+          {
+            "end": "2022-12-31",
+            "quotePeriodEnd": "2022-12-31",
+            "price": 156.8800048828125,
+            "base": 4.696385542168675,
+            "multiple": 33.404413558936476,
+            "accountsSourceUrl": "https://investors.wm.com/static-files/1331b248-ec1e-4fc3-bfa5-12dc003e4bf0"
+          },
+          {
+            "end": "2023-12-31",
+            "quotePeriodEnd": "2023-12-31",
+            "price": 179.10000610351562,
+            "base": 4.482673875645122,
+            "multiple": 39.953833598421326,
+            "accountsSourceUrl": "https://investors.wm.com/static-files/75772dcb-b736-466b-9bbe-be867a1ce13a"
+          },
+          {
+            "end": "2024-12-31",
+            "quotePeriodEnd": "2024-12-31",
+            "price": 201.7899932861328,
+            "base": 5.3520079325731285,
+            "multiple": 37.703605044754966,
+            "accountsSourceUrl": "https://investors.wm.com/static-files/b205de78-0616-4ed9-9ac8-0ecbbd943527"
+          },
+          {
+            "end": "2025-12-31",
+            "quotePeriodEnd": "2025-12-31",
+            "price": 219.7100067138672,
+            "base": 6.966848095002474,
+            "multiple": 31.536500253460623,
+            "accountsSourceUrl": "https://investors.wm.com/static-files/b205de78-0616-4ed9-9ac8-0ecbbd943527"
+          }
+        ],
+        "definition": "Ex-post annual FCF per diluted share / split-adjusted monthly close; not point-in-time backtest data"
       }
     },
     "nike": {

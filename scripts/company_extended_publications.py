@@ -388,6 +388,23 @@ def collect_europe(profile, today, old=None):
     return result
 
 
+def costco_sections(raw):
+    """Older releases put the consolidated caption immediately before the table."""
+    from bs4 import BeautifulSoup
+    soup = BeautifulSoup(raw, 'html.parser')
+    for table in soup.find_all('table'):
+        if 'COSTCO WHOLESALE CORPORATION' in table.get_text(' ', strip=True):
+            continue
+        previous = table.find_previous_sibling()
+        if previous and previous.get_text(' ', strip=True) == 'Subject to Reclassification':
+            previous = previous.find_previous_sibling()
+        title = previous.get_text(' ', strip=True) if previous else ''
+        if re.fullmatch(r'COSTCO WHOLESALE CORPORATION (?:CONDENSED )?CONSOLIDATED (?:STATEMENTS OF INCOME|STATEMENTS OF CASH FLOWS|BALANCE SHEETS) \(.*millions.*\) \(unaudited\)', title):
+            row = soup.new_tag('tr'); cell = soup.new_tag('td')
+            cell.string = title; row.append(cell); table.insert(0, row)
+    return sections(str(soup).encode('utf-8'))
+
+
 def parse_us(raw, ident):
     if ident=='visa':
         text=pdf_text(raw)
@@ -413,7 +430,7 @@ def parse_us(raw, ident):
         q=period(end,previous_end,revenue[0],income[0],eps[0],revenue[1],income[1],3)
         a=period(end,previous_end,revenue[2],income[2],eps[2],revenue[3],income[3]) if annual else None
     else:
-        choices=[s for s in sections(raw) if re.search(r'COSTCO WHOLESALE CORPORATION (?:CONDENSED )?CONSOLIDATED STATEMENTS OF INCOME', s)]
+        choices=[s for s in costco_sections(raw) if re.search(r'COSTCO WHOLESALE CORPORATION (?:CONDENSED )?CONSOLIDATED STATEMENTS OF INCOME', s)]
         if len(choices)!=1:raise ValueError('Missing Costco consolidated income statement')
         text=choices[0]; header=re.split(r'\nREVENUE',text)[0]
         if not re.search(r'dollars in millions, except per share data', header, re.I):
@@ -430,7 +447,16 @@ def parse_us(raw, ident):
         q=period(end(dates[0]),end(dates[1]),revenue[0],income[0],eps[0],revenue[1],income[1],3)
         q.pop('durationMonths')
         q['durationWeeks']=weeks[0]
-        a=period(end(dates[2]),end(dates[3]),revenue[2],income[2],eps[2],revenue[3],income[3]) if count==4 and len(weeks)>1 and weeks[1] in (52,53) else None
+        a=period(end(dates[2]),end(dates[3]),revenue[2],income[2],eps[2],revenue[3],income[3]) if count==4 and ((len(weeks)==2 and weeks[1] in (52,53)) or (len(weeks)==4 and weeks[1] in (12,16,17) and all(w in (52,53) for w in weeks[2:]))) else None
+        # Costco publishes share counts in thousands, while income is in
+        # millions. Keep the explicitly labelled diluted average, never NI/EPS.
+        share_parts = re.split(r'Shares used in calculation \(000[’\x27]s\):', text, maxsplit=1)
+        if len(share_parts) == 2:
+            counts = value(share_parts[1], r'Diluted', count, optional=True)
+            if counts and min(counts) > 0 and all(abs(income[i]*1000/counts[i]-eps[i]) <= .03 for i in range(count)):
+                q.update(averageDilutedShares=counts[0]*1000, previousAverageDilutedShares=counts[1]*1000)
+                if a:
+                    a.update(averageDilutedShares=counts[2]*1000, previousAverageDilutedShares=counts[3]*1000)
     return {'annual':a,'quarter':q}
 
 
@@ -456,6 +482,9 @@ def us_candidates(ident,today):
 def collect_us(profile,today,old=None):
     reports=[]; years={}
     cached = cached_history(old,today)
+    minimum_years = 4 if profile['id'] == 'costco' else 3
+    if cached and len(cached['years']) < minimum_years:
+        cached = None
     history_observed=today.isoformat()
     for year,q,url in us_candidates(profile['id'],today):
         # Once four current published quarters exist, only older annual reports are needed.
@@ -479,7 +508,7 @@ def collect_us(profile,today,old=None):
                 for row in cached['years']:years.setdefault(row['end'],row)
                 history_observed=cached['observedAt']
                 break
-        if len(years)>=3 and len(reports)>=4:break
+        if len(years)>=minimum_years and len(reports)>=4:break
     annuals=[r['annual'] for r in reports if r['annual']]
     if not annuals:raise ValueError('No official US annual statement')
     annual=max(annuals,key=lambda r:r['end'])

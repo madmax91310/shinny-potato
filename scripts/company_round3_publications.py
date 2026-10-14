@@ -42,7 +42,7 @@ def discover(ident):
     elif ident == 'waste-management':
         # Explicitly qualify this archive as well; never fall back to a local snapshot.
         soup=BeautifulSoup(get(archive),'html.parser')
-        selected=[urljoin(archive,a['href'])for a in soup.select('a[href]')if a.get_text(' ',strip=True)=='News Release'][:10]
+        selected=[urljoin(archive,a['href'])for a in soup.select('a[href]')if a.get_text(' ',strip=True)=='News Release'][:14]
     else:
         endpoint=archive+'/feed/FinancialReport.svc/GetFinancialReportList?reportTypes=First%20Quarter%7CSecond%20Quarter%7CThird%20Quarter%7CFourth%20Quarter&year=-1&startIndex=0&length=100'
         reports=json.loads(get(endpoint))['GetFinancialReportListResult']; urls=[]; annual=[]

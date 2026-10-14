@@ -410,7 +410,8 @@ def main():
             cached_decision = old.get('decision', {})
             cached_date = dt.date.fromisoformat(cached_decision['observedAt']) if cached_decision.get('observedAt') else None
             latest_end = (item.get('quarter') or item.get('halfYear') or item['annual'])['end']
-            if (not args.publications_only and cached_decision.get('componentVersion') == DECISION_VERSION and cached_date and 0 <= (now.date()-cached_date).days <= 30
+            if (not args.publications_only and cached_decision.get('componentVersion') == DECISION_VERSION
+                and (ident not in ('costco', 'waste-management') or cached_decision.get('shareCoverageVersion') == 1) and cached_date and 0 <= (now.date()-cached_date).days <= 30
                 and cached_decision.get('accountsEndAtCollection') == latest_end
                 and cached_decision.get('annualEnd') == item['annual']['end']
                 and all(cached_decision['years'][-1][k] == item['annual'][k] for k in ('revenue','netIncome'))):
@@ -447,6 +448,8 @@ def main():
                 except Exception:
                     decision = publication_decision(profile, item, now.date())
                 decision['componentVersion'] = DECISION_VERSION
+                if ident in ('costco', 'waste-management'):
+                    decision['shareCoverageVersion'] = 1
                 decision['accountsEndAtCollection'] = latest_end
                 item['decision'] = validate_decision(decision, item, now.date())
                 status['decision'] = 'updated'

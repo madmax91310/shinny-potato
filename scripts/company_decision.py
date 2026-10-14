@@ -307,7 +307,7 @@ def round2_publication_decision(profile, company, today):
 
 
 def extended_publication_decision(profile, company, today):
-    from company_extended_publications import load, pdf_text, parse_europe, parse_us, value
+    from company_extended_publications import load, pdf_text, parse_europe, parse_us, value, costco_sections
     from company_publications import sections
     import re
     ident = profile['id']
@@ -319,7 +319,7 @@ def extended_publication_decision(profile, company, today):
             continue
         try:
             raw = load(url)
-            text = pdf_text(raw) if raw.startswith(b'%PDF') else '\n'.join(sections(raw))
+            text = pdf_text(raw) if raw.startswith(b'%PDF') else '\n'.join(costco_sections(raw) if ident == 'costco' else sections(raw))
             if ident in ('visa', 'costco'):
                 parsed = parse_us(raw, ident)['annual']
                 if parsed is None:
@@ -384,6 +384,11 @@ def extended_publication_decision(profile, company, today):
                         r.update(capitalExpenditure=abs(capex[i])*1e6, freeCashFlow=(ocf[i]-abs(capex[i]))*1e6,
                                  freeCashFlowDefinition=FCF_METHOD + (' ; actifs incorporels inclus' if ident in ('air-liquide','schneider','totalenergies','visa') else ''))
                     if dividends: r['dividendsPaid'] = abs(dividends[i])*1e6
+                    if ident == 'costco':
+                        share_key = 'averageDilutedShares' if p['end'] == parsed['end'] else 'previousAverageDilutedShares'
+                        if share_key in parsed:
+                            r['averageDilutedShares'] = parsed[share_key]
+                            r['sharesBasisSource'] = url
                     # Only standalone interest expense, never net finance costs.
                     if ident == 'schneider':
                         income = re.split(r'Other comprehensive income', text, 1)[0]

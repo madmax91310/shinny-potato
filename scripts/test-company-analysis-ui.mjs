@@ -53,6 +53,13 @@ try {
     assert((await lastRow.innerText()).includes(company.annual.end.split('-').reverse().join('/')))
     assert((await lastRow.getByRole('link').getAttribute('href')).startsWith('https://'))
     assert(!/NaN|undefined|Infinity/.test(text))
+    if (['costco','waste-management'].includes(company.id) && buildScenarios(company, {}, now).inputs.cashReady) {
+      const valuation = page.getByTestId('company-valuation')
+      await valuation.getByRole('button', {name:'Flux de trésorerie', exact:true}).click()
+      assert(/[0-9]/.test(await valuation.getByTestId('price-target').innerText()))
+      assert.equal(await valuation.getByTestId('cash-drivers').count(), 1)
+      assert.equal(await valuation.locator('.valuation-forecast-line.selected').count(), 1)
+    }
   }
   // Exercise valuation inputs in the actual browser, including invalid input and reset.
   await chooser.getByRole('button',{name:'Apple · AAPL'}).click()

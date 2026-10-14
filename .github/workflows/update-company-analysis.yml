@@ -53,6 +53,9 @@ jobs:
           path: ${{ runner.temp }}/company-source-probe.json
           if-no-files-found: error
           retention-days: 35
+      - name: Qualify expanded Costco components from issuer documents
+        if: github.event_name == 'pull_request'
+        run: python scripts/refresh_company_analysis.py --apply --publications-only --only costco --output "$RUNNER_TEMP/company-costco-qualification.json"
       - id: collect
         continue-on-error: ${{ github.event_name != 'pull_request' }}
         env:
