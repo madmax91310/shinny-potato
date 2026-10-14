@@ -58,10 +58,11 @@ try {
       boxes = []; labels = []; current = name
       const d = derive(state), before = JSON.stringify(d), canvas = await renderInvestmentImage(state, d)
       const currency = d.isCustom ? 'EUR' : ASSETS[state.assetId].currency
+      if (canvas.width !== 1600 || canvas.height !== 1600) throw new Error('Export must stay square')
       if (JSON.stringify(d) !== before) throw new Error('Changed calculation')
       if (!labels.includes(fmtEUR(d.result.finalValue, currency)) || !labels.includes(fmtPct(pct(d.result.finalValue, d.result.totalInvested)))) throw new Error('Wrong capital or return')
       if (!labels.includes(`En ${currency}`) && !labels.some(label => label.startsWith(`En ${currency} ·`))) throw new Error('Wrong currency')
-      if (labels.filter(label => /[ée]pargnant.?libre/i.test(label)).length !== 1) throw new Error('Signature must appear once')
+      if (labels.filter(label => label === '@Epargnantlibre').length !== 1) throw new Error('Signature must appear once')
       if (d.effectiveMode === 'dca' && !labels.some(label => label.startsWith('TOTAL VERSÉ'))) throw new Error('Lost monthly contributions')
       for (const credit of (ASSETS[state.assetId]?.sourceCredit || '').replace(' · Calculs Épargnant Libre', '').split('\n').filter(Boolean)) if (!labels.includes(credit)) throw new Error('Missing source credit')
       if (!labels.includes('Pas un conseil financier')) throw new Error('Wrong footer')
@@ -79,8 +80,14 @@ try {
       await check('single-month', { ...stateFor('apple'), startYear: Number(last.slice(0, 4)), startMonth: Number(last.slice(5, 7)) })
       await check('custom-two-points', { assetId: 'custom', mode: 'lump', amountRaw: '1000', startYear: 2020, startMonth: 1, customStart: '100', customEnd: '60', customLabel: 'Mon placement', overridePriceRaw: '' }, true)
       // Annual fixture uses actual December observations from the shared Apple history.
+      const monthlyState = stateFor('apple'), monthlyDerived = derive(monthlyState)
+      if (investmentChartKind(monthlyState, monthlyDerived) !== 'monthly') throw new Error('Complete monthly history must use a curve')
       const originalPoints = ASSETS.apple.points
       try {
+        ASSETS.apple.points = originalPoints.filter(p => p.date !== monthlyDerived.startYm)
+        if (investmentChartKind(monthlyState, monthlyDerived) !== 'annual') throw new Error('Missing starting month must not draw a monthly curve')
+        ASSETS.apple.points = originalPoints.filter(p => p.date !== '2021-06')
+        if (investmentChartKind(monthlyState, monthlyDerived) !== 'annual') throw new Error('Missing middle month must not draw a monthly curve')
         ASSETS.apple.points = originalPoints.filter(p => p.date >= '2019-12' && p.date <= '2025-12' && p.date.endsWith('-12'))
         const state = { ...stateFor('apple'), startYear: 2019, startMonth: 12 }, d = await check('annual-apple', state, true)
         if (investmentChartKind(state, d) !== 'annual') throw new Error('Annual observations drawn as monthly')
