@@ -28,7 +28,7 @@ jobs:
       contents: write
     outputs:
       commit_sha: ${{ steps.commit.outputs.commit_sha }}
-      collection_failed: ${{ steps.collect.outcome == 'failure' }}
+      collection_failed: ${{ steps.collect.outcome == 'failure' || steps.universe.outcome == 'failure' || steps.coverage.outcome == 'failure' }}
     steps:
       - uses: actions/checkout@v7.0.1
         with:
@@ -43,6 +43,23 @@ jobs:
       - run: npm ci
       - run: pip install -r scripts/company-requirements.txt
       - run: python -m unittest discover -s scripts -p 'test_company*.py'
+      - id: universe
+        name: Renew the SEC universe and retain original dates on failure
+        continue-on-error: ${{ github.event_name != 'pull_request' }}
+        run: python scripts/refresh_company_universe.py --apply --output "$RUNNER_TEMP/company-universe-observation.json"
+      - name: Qualify candidates against the complete product contract
+        run: node scripts/qualify-company-universe.mjs --promote --output="$RUNNER_TEMP/company-universe-coverage.json"
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: company-universe-qualified-data
+          path: |
+            src/data/company-analysis.json
+            src/data/company-profiles.json
+            ${{ runner.temp }}/company-universe-observation.json
+            ${{ runner.temp }}/company-universe-coverage.json
+          if-no-files-found: error
+          retention-days: 35
       - name: Probe official balance sources on runner
         if: github.event_name == 'pull_request'
         run: python scripts/probe_company_sources.py "$RUNNER_TEMP/company-source-probe.json"
@@ -65,6 +82,11 @@ jobs:
       - run: node scripts/test-company-analysis.mjs
       - run: node scripts/test-company-decision.mjs
       - run: node scripts/test-company-valuation.mjs
+      - run: node scripts/test-company-explorer.mjs
+      - id: coverage
+        name: Require 60 complete companies for product acceptance
+        continue-on-error: ${{ github.event_name != 'pull_request' }}
+        run: node scripts/qualify-company-universe.mjs --require-60 --output="$RUNNER_TEMP/company-universe-coverage-final.json"
       - run: node scripts/test-company-forecast-ledger.mjs
       - name: Exercise forecast archive without publishing on PR
         if: github.event_name == 'pull_request'
@@ -107,7 +129,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add src/data/company-analysis.json src/data/company-forecast-evaluation.json
+          git add src/data/company-analysis.json src/data/company-forecast-evaluation.json src/data/company-profiles.json
           if ! git diff --cached --quiet; then
             git commit -m 'Refresh company accounts and valuation observations'
             git pull --rebase origin master
@@ -140,3 +162,4 @@ jobs:
       - run: |
           echo 'Some sources failed. Previous observations were retained independently; stale ratios are omitted by the publication engine.' >> "$GITHUB_STEP_SUMMARY"
           exit 1
+

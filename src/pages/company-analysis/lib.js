@@ -57,7 +57,7 @@ export function calculatedRatios(company, now = new Date()) {
     && company.quarters?.length === 4 && (!splitAfter(company.quarters[3].end) || verifiedShareBasis)) {
     result.peTTM = q.price / t.dilutedEPS
   }
-  if (!result.peTTM && company.accountingStandard === 'IFRS' && finite(a.dilutedEPS) && a.dilutedEPS > 0 && !splitAfter(a.end)) result.peAnnual = q.price / a.dilutedEPS
+  if (!result.peTTM && (company.accountingStandard === 'IFRS' || company.collectionAdapter === 'sec-companyfacts') && finite(a.dilutedEPS) && a.dilutedEPS > 0 && !splitAfter(a.end)) result.peAnnual = q.price / a.dilutedEPS
   const shares = company.shares
   if (shares && fresh(shares.observedAt, 45, now) && fresh(shares.asOf, 200, now)
     && shares.asOf >= (latestAccountsEnd(company)) && !splitAfter(shares.asOf)
@@ -478,3 +478,4 @@ export function buildTweetText(company, now = new Date()) {
   lines.push('Pas un conseil financier.')
   return lines.join('\n\n')
 }
+

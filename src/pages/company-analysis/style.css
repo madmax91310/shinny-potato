@@ -144,3 +144,10 @@
 .valuation-horizon button { border:1px solid #b4c7b4; background:transparent; color:#22684f; border-radius:20px; padding:8px 14px; cursor:pointer; }
 .valuation-horizon button[aria-pressed=true] { background:#22684f; color:white; }
 .valuation-projection-note { font-size:11px; color:#637467; line-height:1.6; }
+
+.valuation-explorer { margin: 24px 0; padding: 20px; border: 1px solid #dce3d5; border-radius: 16px; }
+.valuation-explorer summary { cursor: pointer; font-weight: 650; }
+.valuation-explorer p { line-height: 1.6; margin: 14px 0; }
+.valuation-explorer input { width: 85px; margin: 0 8px; padding: 8px; border: 1px solid #a9b5a2; border-radius: 8px; }
+.valuation-explorer td small { display: block; color: #52634f; margin-top: 4px; }
+.valuation-explorer .sensitivity-selected { background: #e5eedc; font-weight: 700; }
