@@ -9,7 +9,7 @@ export function validForecast(c,now) {
   return Boolean(f?.version===1&&f.symbol===c.symbol&&f.currency===c.currency&&f.basis==='adjusted-non-gaap'&&f.multipleBasis==='forward-adjusted-eps'
     &&f.sourceUrl?.startsWith('https://')&&fresh(f.asOf,35,now)&&fresh(f.observedAt,35,now)
     &&f.points?.length>=3&&f.points.every((p,i)=>positive(p.eps)&&Number.isFinite(Date.parse(p.end))&&(!i||p.end>f.points[i-1].end))
-    &&!(c.quote?.splits??[]).some(s=>(s.asOf??s.date)>f.asOf)
+    &&!(c.quote?.splits??[]).some(s=>(typeof s==='string'?s:s.asOf??s.date)>f.asOf)
     &&f.points.at(-2).end>=c.annual?.end
     &&f.points.at(-1).end>c.quote?.asOf&&f.historicalMultiples?.length>=3
     &&f.historicalMultiples.every(r=>positive(r.multiple)&&r.end<f.points.at(-2).end))
@@ -58,7 +58,7 @@ export function targetEvidence(c,inputs,now,dates,peers=COMPANIES) {
       trajectory:`BPA annuels ajustés datés jusqu’au ${f.points.at(-1).end} ; au-delà, croissance ramenée en trois exercices vers ${(anchor*100).toFixed(1)} % (médiane de croissance du CA, bornée entre 0 et 10 %). Convention modifiable, pas un consensus au-delà des exercices sourcés.`}
   } else result.reasons.push('BPA ajustés datés et PER de même définition manquants ou périmés ; aucune croissance Finviz appliquée au BPA publié.')
   const r=c.targetCashReference
-  if(inputs.cashReady&&r?.version===1&&r.currency===c.currency&&r.annualEnd===c.annual.end&&fresh(r.observedAt,35,now)&&r.historicalMultiples?.length>=3&&r.historicalMultiples.every(p=>positive(p.multiple))) {
+  if(inputs.cashReady&&r?.version===1&&r.currency===c.currency&&r.annualEnd===c.annual.end&&fresh(r.observedAt,35,now)&&r.historicalMultiples?.length>=3&&r.sourceUrl?.startsWith('https://')&&r.historicalMultiples.every(p=>{const h=inputs.history.find(h=>h.end===p.end);return positive(p.multiple)&&h&&positive(p.base)&&Math.abs(p.base-h.value)<1e-8})) {
     const hist=inputs.history,initial=clamp(inputs.historicalGrowth,-.3,.3)
     // Use the full comparable historical CAGR as the initial cash growth, not
     // just the most recent annual jump. The base remains at its fiscal date.

@@ -46,7 +46,7 @@ company.id='fixture';company.name='Entreprise témoin';company.symbol='TEST'
 company.targetForecast={version:1,symbol:'TEST',currency:'USD',basis:'adjusted-non-gaap',multipleBasis:'forward-adjusted-eps',asOf:'2026-10-14',observedAt:'2026-10-14',sourceUrl:'https://example.com/adjusted',
   points:[{end:'2025-12-31',eps:10,kind:'observed-adjusted'},{end:'2026-12-31',eps:12,kind:'estimate'},{end:'2027-12-31',eps:15,kind:'estimate'}],
   historicalMultiples:[{end:'2023-12-31',multiple:15},{end:'2024-12-31',multiple:20},{end:'2025-12-31',multiple:25}]}
-company.targetCashReference={version:1,currency:'USD',annualEnd:'2025-12-31',observedAt:'2026-10-14',sourceUrl:'https://example.com/history',historicalMultiples:[{multiple:10},{multiple:12},{multiple:14}]}
+company.targetCashReference={version:1,currency:'USD',annualEnd:'2025-12-31',observedAt:'2026-10-14',sourceUrl:'https://example.com/history',historicalMultiples:years.slice(0,3).map((r,i)=>({end:r.end,base:r.freeCashFlow/r.averageDilutedShares,multiple:10+i*2}))}
 
 for (const method of ['cash','earnings']) {
   for (const selected of [0,1,2]) {
@@ -112,6 +112,9 @@ const saved=company.targetForecast.basis;company.targetForecast.basis='unknown'
 assert.equal(buildPriceScenarios(company,{},now).inputs.earningsReady,false)
 assert.throws(()=>valuationPublication(company,{},1,'earnings',now))
 company.targetForecast.basis=saved
+company.quote.splits=['2026-10-15'];company.targetForecast.asOf='2026-10-13'
+assert.equal(buildPriceScenarios(company,{},now).inputs.earningsReady,false)
+company.quote.splits=[];company.targetForecast.asOf='2026-10-14'
 const normalTarget=buildPriceScenarios(company,{},now).scenarios[1].earningsTarget.value
 company.quote.price=400
 assert.equal(buildPriceScenarios(company,{},now).scenarios[1].earningsTarget.value,normalTarget)
