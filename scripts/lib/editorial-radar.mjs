@@ -81,6 +81,28 @@ export function advanceRadar(previous, observations, { now = new Date(), sourceR
     issues.push({ family: o?.family ?? 'radar', entity: o?.entity ?? '', reason: `Observation non exploitable : ${o?.fieldLabel ?? o?.field ?? 'champ inconnu'}.` })
     return false
   })
+  // Only an explicitly complete, validated allocation proves an omitted group
+  // has zero weight. A partial/missing collection must never erase a value.
+  const allocations = new Map()
+  for (const row of valid) if (row.family === 'etf' && /^(countries|sectors):/.test(row.field)) {
+    const group = stable([row.entity, row.scope, row.field.split(':')[0], row.period])
+    if (!allocations.has(group)) allocations.set(group, [])
+    allocations.get(group).push(row)
+  }
+  for (const rows of allocations.values()) {
+    const sample = rows[0], prefix = sample.field.split(':')[0] + ':'
+    const fields = new Set(rows.map(row => row.field))
+    const total = rows.reduce((sum, row) => sum + row.value, 0)
+    if (!rows.every(row => row.completeComposition === true && typeof row.value === 'number' &&
+      row.sourceHash && row.sourceHash === sample.sourceHash && row.sourceUrl === sample.sourceUrl &&
+      row.checkedAt === sample.checkedAt) || fields.size !== rows.length || total < 99 || total > 101) continue
+    for (const old of Object.values(state.current)) {
+      if (old.family !== 'etf' || old.entity !== sample.entity || old.scope !== sample.scope ||
+          !old.field.startsWith(prefix) || fields.has(old.field) || old.period > sample.period) continue
+      valid.push({ ...sample, field: old.field, fieldLabel: old.fieldLabel, value: 0,
+        absenceEvidence: 'Absent from a validated complete allocation' })
+    }
+  }
   const keys = new Set()
   for (const after of valid) {
     const key = observationKey(after)

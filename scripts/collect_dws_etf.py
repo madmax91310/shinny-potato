@@ -193,7 +193,7 @@ def parse_holdings(body, share, now, url):
                 (r['weightPct'] < 0 and r['name'] != 'Cash and/or Derivatives') for r in rows) or
             not 99 <= sum(r['weightPct'] for r in rows) <= 101):
             reject('Invalid complete DWS net allocation')
-        result[field] = {'asOf': stamp, 'basis': 'fund', 'sourceUrl': url, 'sha256': digest,
+        result[field] = {'asOf': stamp, 'basis': 'fund', 'sourceUrl': url, 'sha256': digest, 'complete': True,
             'method': 'Full physical securities portfolio; registration country and industry; net cash/derivatives retained',
             'rows': sorted(rows, key=lambda r: -r['weightPct'])}
     holdings = sorted(holdings, key=lambda r: -r['weightPct'])[:10]
