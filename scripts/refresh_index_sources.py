@@ -13,7 +13,7 @@ from collect_index_documents import msci_composition, msci_returns, ftse_composi
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 
 
-def collect_one(config, now, fetch=download):
+def _collect_one(config, now, fetch=download):
     if config['parser'] in ('nasdaq-factsheet', 'amundi-index-document'):
         from collect_remaining_indices import collect_one as remaining
         return remaining(config, now, fetch)
@@ -87,6 +87,44 @@ def collect_one(config, now, fetch=download):
                 result['returns']['source'].update(sourceUrls=[config['returnSourceUrl'],config['identitySourceUrl']], identityCheckedAt=config['identityCheckedAt'])
         except Exception as error:
             result['errors'].append({'field':'returns','reason':str(error),'url':config['returnSourceUrl']})
+    return result
+
+
+def validate_composition(facts, config, now):
+    """Common gate for every parser, not just the ten complete-sheet selections."""
+    import re
+    from issuer_documents import validated_rows
+    if facts.get('index') != config['name']:
+        raise ValueError('Exact index composition identity mismatch')
+    document_date(facts.get('asOf', ''), now)
+    count = facts.get('constituents')
+    if isinstance(count, bool) or not isinstance(count, int) or count <= 0:
+        raise ValueError('Missing exact constituent count')
+    source = facts.get('source', {})
+    if not source.get('url', '').startswith('https://') or not re.fullmatch(r'[a-f0-9]{64}', source.get('sha256', '')):
+        raise ValueError('Missing composition source evidence')
+    for field in ['countries', 'sectors', 'holdings']:
+        rows = facts.get(field, [])
+        # Russell publishes monthly sectors and quarterly holdings separately.
+        # Never fill a monthly snapshot with a different quarter's weights.
+        if field == 'holdings' and config.get('holdingsSourceUrl') and not rows:
+            continue
+        if any(not isinstance(row, (list, tuple)) or len(row) != 2 or isinstance(row[1], bool)
+               or not isinstance(row[1], (int, float)) for row in rows):
+            raise ValueError('Invalid composition rows: ' + field)
+        validated_rows([{'name': label, 'weightPct': value} for label, value in rows], complete=field != 'holdings')
+        if field == 'holdings' and len(rows) > count:
+            raise ValueError('More principal holdings than constituents')
+
+
+def collect_one(config, now, fetch=download):
+    result = _collect_one(config, now, fetch)
+    if 'facts' in result:
+        try:
+            validate_composition(result['facts'], config, now)
+        except (ValueError, TypeError, KeyError) as error:
+            result.pop('facts')
+            result['errors'].append({'field': 'composition', 'reason': str(error), 'url': config.get('sourceUrl', config.get('compositionSourceUrl'))})
     return result
 
 

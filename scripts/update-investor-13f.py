@@ -1,5 +1,6 @@
 """Refresh selected 13F managers from FolioFact's public holdings API."""
 import datetime as dt
+import argparse
 from email.utils import parsedate_to_datetime
 import json
 import math
@@ -35,6 +36,51 @@ MANAGERS = {
 _last_request_at = 0
 MAX_RATE_LIMIT_RETRIES = 3
 MAX_RETRY_AFTER_SECONDS = 300
+
+
+def current_date():
+    return dt.datetime.now(dt.timezone.utc).date()
+
+
+def filing_period(value, now=None):
+    period = dt.date.fromisoformat(value)
+    today = now or current_date()
+    if (period.month, period.day) not in ((3, 31), (6, 30), (9, 30), (12, 31)) or period > today:
+        raise ValueError('Invalid or future 13F quarter end')
+    return period
+
+
+def validate_portfolio(portfolio, slug, now=None):
+    """Validate the full declared denominator before excluding options in the UI."""
+    data = portfolio['data']
+    identity, snapshot = data.get('identity', {}), data['snapshot']
+    if identity.get('slug') != slug or identity.get('archetype') != 'hedge_fund':
+        raise ValueError('Investor identity mismatch: ' + slug)
+    period = filing_period(snapshot['periodEnd'], now)
+    today = now or current_date()
+    # Operational stale-feed guard; this is not an assertion about SEC deadlines.
+    if (today - period).days > 200:
+        raise ValueError('13F source older than 200 days: ' + slug)
+    rows = snapshot.get('holdings', [])
+    if not rows:
+        raise ValueError('Empty 13F holdings: ' + slug)
+    keys = set()
+    for row in rows:
+        weight, name = row.get('weight'), row.get('issuerName')
+        if not isinstance(name, str) or not name.strip() or not isinstance(row.get('ticker', ''), str):
+            raise ValueError('Invalid security identity: ' + slug)
+        if row.get('putCall') not in (None, 'PUT', 'CALL') or isinstance(weight, bool) or not isinstance(weight, (int, float)) or not math.isfinite(weight) or not 0 < weight <= 1:
+            raise ValueError('Invalid security weight/type: ' + slug)
+        ticker = row.get('ticker')
+        key = (name if not ticker or ticker == 'Unmapped CUSIP' else ticker, row.get('putCall'))
+        if key in keys:
+            raise ValueError('Duplicate security across holdings pages: ' + slug)
+        keys.add(key)
+    if not any(row.get('putCall') is None for row in rows) or not .95 <= sum(row['weight'] for row in rows) <= 1.02:
+        raise ValueError('Incomplete declared 13F portfolio: ' + slug)
+    source = urllib.parse.urlparse(data.get('sourceUrl', ''))
+    if source.scheme != 'https' or source.hostname not in ('foliofact.com', 'tracefour.com'):
+        raise ValueError('Missing investor source: ' + slug)
 
 
 def retry_after_seconds(value):
@@ -98,10 +144,13 @@ def shares_change(row):
 def make_portfolio(slug, source_slug, display, entity):
     base = f'https://foliofact.com/api/v1/funds/{source_slug}'
     fund = get_json(base)
+    if fund.get('fund', {}).get('slug') != source_slug:
+        raise ValueError('Provider fund identity mismatch: ' + slug)
     # The larger page size keeps broad portfolios (Renaissance) within the
     # same paced request budget; every page is still validated before writing.
     table = get_json(f'{base}/holdings?per_page=100')
     period = fund['filing']['report_period_on']
+    filing_period(period)
     # Ackman's FolioFact feed was still Q1 when Tracefour already served Q2 on
     # 03/10/2026. Prefer the freshest validated filing, never an older quarter.
     if slug == 'ackman':
@@ -120,27 +169,42 @@ def make_portfolio(slug, source_slug, display, entity):
                 raise ValueError('Invalid alternate Ackman filing')
             identity['dataProvider'] = 'Tracefour'
             alternate_data['sourceUrl'] = 'https://tracefour.com/trackers/ackman'
-            alternate_data.pop('filingHistory', None)
-            return alternate
+            # Provider valuation histories/benchmarks are not manager returns.
+            # Persist only the sourced filing consumed by this tool.
+            result = {'as_of': dt.datetime.now(dt.timezone.utc).isoformat(), 'data': {
+                'identity': identity, 'snapshot': alternate_snapshot,
+                'sourceUrl': alternate_data['sourceUrl']}}
+            validate_portfolio(result, slug)
+            return result
     total = float(table['total_value'])
     dt.date.fromisoformat(period)
     if not math.isfinite(total) or total <= 0 or total != float(fund['filing']['total_value']):
         raise ValueError(f'Inconsistent report for {slug}')
-    if table.get('quarter') != fund['filing'].get('quarter'):
+    if table.get('fund', {}).get('slug') != source_slug or table.get('quarter') != fund['filing'].get('quarter'):
         raise ValueError(f'Inconsistent quarter for {slug}')
     rows = list(table['holdings'])
     pagination = table.get('pagination', {})
-    for page in range(2, int(pagination.get('total_pages', 1)) + 1):
+    pages = pagination.get('total_pages', 1)
+    if isinstance(pages, bool) or not isinstance(pages, int) or not 1 <= pages <= 200:
+        raise ValueError('Invalid holdings page count: ' + slug)
+    for page in range(2, pages + 1):
         if page == 2 or page % 10 == 0:
             print(f'{slug}: holdings page {page}/{pagination["total_pages"]}', flush=True)
         next_table = get_json(f'{base}/holdings?per_page=100&page={page}')
-        if next_table['quarter'] != table['quarter'] or float(next_table['total_value']) != total:
+        if next_table.get('fund', {}).get('slug') != source_slug or next_table['quarter'] != table['quarter'] or float(next_table['total_value']) != total or next_table.get('pagination', {}).get('total_pages', pages) != pages or next_table.get('pagination', {}).get('total', pagination.get('total')) != pagination.get('total'):
             raise ValueError(f'Inconsistent holdings page for {slug}')
         rows.extend(next_table['holdings'])
     if pagination.get('total') is not None and len(rows) != int(pagination['total']):
         raise ValueError(f'Incomplete holdings pages for {slug}')
+    expected_quarter = f'Q{(filing_period(period).month - 1) // 3 + 1} {period[:4]}'
+    if table['quarter'] != expected_quarter:
+        raise ValueError('Quarter label disagrees with report date: ' + slug)
+    for row in rows:
+        value = row.get('value')
+        if isinstance(value, bool) or not isinstance(value, (int, float)) or not math.isfinite(value) or value < 0 or row.get('position_type') not in ('direct', 'call', 'put'):
+            raise ValueError('Invalid or unrecognized declared security: ' + slug)
     holdings = [
-        {'issuerName': row['security']['name'], 'ticker': row['security']['ticker'] or '',
+        {'issuerName': row['security']['name'], 'ticker': '' if row['security']['ticker'] == 'Unmapped CUSIP' else row['security']['ticker'] or '',
          'putCall': {'call': 'CALL', 'put': 'PUT'}.get(row.get('position_type')), 'weight': float(row['value']) / total,
          'isNew': row.get('change') == 'new',
          'sharesChangePct': shares_change(row)}
@@ -155,13 +219,15 @@ def make_portfolio(slug, source_slug, display, entity):
     exits = [{'issuerName': row['security']['name'], 'ticker': row['security']['ticker'] or '', 'putCall': None}
              for row in rows if row.get('position_type') == 'direct' and row.get('change') == 'sold'
              and float(row.get('value') or 0) == 0 and float(row.get('shares') or 0) == 0]
-    return {'as_of': dt.datetime.now(dt.timezone.utc).isoformat(), 'data': {
+    result = {'as_of': dt.datetime.now(dt.timezone.utc).isoformat(), 'data': {
         'identity': {'slug': slug, 'archetype': 'hedge_fund', 'displayName': display,
                      'entityName': entity, 'dataProvider': 'FolioFact'},
         'snapshot': {'periodEnd': period, 'holdings': holdings,
                      'quarterChanges': {'priorPeriodLabel': prior_label, 'exits': exits}},
         'sourceUrl': f'https://foliofact.com/funds/{source_slug}',
     }}
+    validate_portfolio(result, slug)
+    return result
 
 
 def prepare_update(destination, portfolio):
@@ -185,15 +251,25 @@ def prepare_update(destination, portfolio):
     return json.dumps(portfolio, ensure_ascii=False, indent=2) + '\n'
 
 
-def refresh(directory, fetch_portfolio=make_portfolio):
+def refresh(directory, fetch_portfolio=make_portfolio, report_path=None):
     # Validate all responses before changing any snapshot. A provider failure keeps
     # the last successful set intact and fails the workflow visibly.
     pending = []
     reviews = []
+    checks = []
+    failures = []
     for slug, (source_slug, display, entity) in MANAGERS.items():
-        portfolio = fetch_portfolio(slug, source_slug, display, entity)
         destination = directory / f'{slug}.json'
-        content = prepare_update(destination, portfolio)
+        try:
+            portfolio = fetch_portfolio(slug, source_slug, display, entity)
+            validate_portfolio(portfolio, slug)
+            content = prepare_update(destination, portfolio)
+        except Exception as error:
+            failures.append(f'{slug}: {error}')
+            checks.append({'slug': slug, 'status': 'failed', 'reason': str(error)})
+            print(f'{slug}: failed — {error}', flush=True)
+            continue
+        checks.append({'slug': slug, 'status': 'validated', 'periodEnd': portfolio['data']['snapshot']['periodEnd'], 'changed': content is not None})
         if content is not None:
             if destination.exists():
                 previous = json.loads(destination.read_text())
@@ -216,6 +292,20 @@ def refresh(directory, fetch_portfolio=make_portfolio):
         }})
         print(slug, portfolio['data']['snapshot']['periodEnd'], 'changed' if content else 'unchanged')
         time.sleep(.2)
+    report = {'checkedAt': dt.datetime.now(dt.timezone.utc).isoformat(),
+              'status': 'failed' if failures else 'validated', 'readyToApply': not failures,
+              'managers': checks}
+    if report_path:
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(json.dumps(report, ensure_ascii=False, indent=2) + '\n')
+    if os.environ.get('GITHUB_STEP_SUMMARY'):
+        with open(os.environ['GITHUB_STEP_SUMMARY'], 'a') as summary:
+            summary.write('\n## Contrôle des 18 investisseurs\n\n')
+            summary.write('Derniers fichiers conservés : échec de validation.\n' if failures else 'Tous les relevés sont validés.\n')
+            for check in checks:
+                summary.write(f"- {check['slug']} : {check['status']} — {check.get('periodEnd', check.get('reason'))}\n")
+    if failures:
+        raise RuntimeError('Investor refresh failed; all stored filings preserved: ' + '; '.join(failures))
     review_file = directory / 'review-metadata.json'
     review_content = json.dumps(reviews, ensure_ascii=False, indent=2) + '\n'
     if not review_file.exists() or review_file.read_text() != review_content:
@@ -229,7 +319,11 @@ def refresh(directory, fetch_portfolio=make_portfolio):
 
 
 def main():
-    refresh(ROOT / 'public/data/investors')
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--output', type=pathlib.Path, help='Diagnostic report, including every manager on failure')
+    parser.add_argument('--directory', type=pathlib.Path, default=ROOT / 'public/data/investors')
+    args = parser.parse_args()
+    refresh(args.directory, report_path=args.output)
 
 
 if __name__ == '__main__':

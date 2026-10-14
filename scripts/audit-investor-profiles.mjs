@@ -27,8 +27,8 @@ console.log(`${INVESTORS.length} présentations sourcées : couverture complète
 for (const [slug] of INVESTORS) {
   const portfolio = normalizePortfolio(JSON.parse(readFileSync(new URL(`../public/data/investors/${slug}.json`, import.meta.url), 'utf8')))
   assert.equal(portfolio.identity.slug, slug)
-  assert.equal(portfolio.identity.dataProvider, slug === 'ackman' ? 'Tracefour' : 'FolioFact')
-  assert.equal(new URL(portfolio.sourceUrl).hostname, slug === 'ackman' ? 'tracefour.com' : 'foliofact.com')
+  assert(['Tracefour', 'FolioFact'].includes(portfolio.identity.dataProvider))
+  assert.equal(new URL(portfolio.sourceUrl).hostname, portfolio.identity.dataProvider === 'Tracefour' ? 'tracefour.com' : 'foliofact.com')
   assert(buildTweet(portfolio).includes(investorIntroduction(slug)))
 }
 console.log(`${INVESTORS.length} instantanés 13F locaux sont présents et exploitables.`)
@@ -45,7 +45,10 @@ assert.equal(portfolioCompanies([{ issuerName: 'Alphabet Inc.', ticker: 'GOOGL',
 const identity = { slug: 'tepper', displayName: 'David Tepper', entityName: 'Déclarant de test' }
 const make = holdings => ({ identity, snapshot: { periodEnd: '2026-06-30' }, holdings })
 const liLu = normalizePortfolio(JSON.parse(readFileSync(new URL('../public/data/investors/li-lu.json', import.meta.url), 'utf8')))
-assert(portfolioEditorial(liLu).explanation.includes('85,1 %'))
+assert(portfolioEditorial({ ...liLu, holdings: [
+  { issuerName: 'A', ticker: 'A', weight: .3 }, { issuerName: 'B', ticker: 'B', weight: .3 },
+  { issuerName: 'C', ticker: 'C', weight: .251 }, { issuerName: 'D', ticker: 'D', weight: .149 },
+] }).explanation.includes('85,1 %'))
 assert(buildTweet(make(splitClasses)).includes('52,0 %'))
 const balanced = Array.from({ length: 10 }, (_, i) => ({ issuerName: 'Société ' + i, ticker: 'T' + i, weight: .1 }))
 assert(!portfolioEditorial(make(balanced)).hook.includes('seulement'))
@@ -125,12 +128,17 @@ for (const [slug] of INVESTORS) {
 }
 assert.equal(hooks.size, INVESTORS.length)
 assert.equal(observations.size, INVESTORS.length)
-const ackman = readPortfolio('ackman')
+// Fixed editorial scenarios are independent of tomorrow's real filing.
+const ackman = { ...readPortfolio('ackman'), holdings: [
+  ['UBER', .179], ['MSFT', .1], ['AMZN', .1], ['BN', .1], ['HHH', .1],
+  ...Array.from({ length: 5 }, (_, i) => ['OTHER' + i, .0842]),
+].map(([ticker, weight]) => ({ ticker, issuerName: ticker, weight })) }
 assert(buildTweet(ackman).includes('Microsoft et Amazon aux côtés'))
 assert(buildTweet(ackman).includes('57,9 %'))
 const refreshedAckman = { ...ackman, holdings: ackman.holdings.filter(row => row.ticker !== 'BN') }
 assert(!portfolioEditorial(refreshedAckman).explanation.includes('Brookfield'))
-const renaissanceEditorial = portfolioEditorial(readPortfolio('renaissance'))
+const renaissanceEditorial = portfolioEditorial({ ...readPortfolio('renaissance'), holdings:
+  Array.from({ length: 2970 }, (_, i) => ({ ticker: 'T' + i, issuerName: 'Title ' + i, weight: i < 5 ? .0162 : .919 / 2965 })) })
 assert(renaissanceEditorial.hook.includes('2\u202f970 positions'))
 assert(renaissanceEditorial.explanation.includes('8,1 %'))
 const concentrated = portfolioEditorial(make(fallbackRows))
@@ -141,3 +149,30 @@ const memory = readPortfolio('aschenbrenner')
 const reducedMemory = { ...memory, holdings: memory.holdings.map(row => ['MU', 'SNDK'].includes(row.ticker) ? { ...row, weight: .005 } : row).sort((a,b) => b.weight - a.weight) }
 assert(!portfolioEditorial(reducedMemory).explanation.includes('stockage et la mémoire'))
 console.log(`${hooks.size} accroches et commentaires personnels : données courantes, disparition des anciennes lignes et changements de poids vérifiés.`)
+
+// Reject malformed payloads instead of silently dropping bad rows before exports.
+const validPayload = JSON.parse(readFileSync(new URL('../public/data/investors/li-lu.json', import.meta.url), 'utf8'))
+for (const change of ['date', 'duplicate', 'nan', 'option', 'incomplete', 'name']) {
+  const payload = structuredClone(validPayload), rows = payload.data.snapshot.holdings
+  if (change === 'date') payload.data.snapshot.periodEnd = '2026-06-29'
+  if (change === 'duplicate') rows.push({ ...rows[0] })
+  if (change === 'nan') rows[0].weight = NaN
+  if (change === 'option') rows[0].putCall = 'UNKNOWN'
+  if (change === 'incomplete') payload.data.snapshot.holdings = [{ issuerName: 'Partial', ticker: 'PART', weight: .1 }]
+  if (change === 'name') rows[0].issuerName = 42
+  assert.throws(() => normalizePortfolio(payload), undefined, change)
+}
+const unknownTickers = structuredClone(validPayload)
+unknownTickers.data.snapshot.holdings = [
+  { issuerName: 'First CUSIP', ticker: 'Unmapped CUSIP', weight: .6 },
+  { issuerName: 'Second CUSIP', ticker: 'Unmapped CUSIP', weight: .4 },
+]
+const unknownPortfolio = normalizePortfolio(unknownTickers)
+assert.equal(unknownPortfolio.holdings.length, 2)
+assert(!buildTweet(unknownPortfolio).includes('$Unmapped'))
+// A valuation history or a benchmark series is never a sourced fund return.
+const withValuations = structuredClone(validPayload)
+withValuations.data.valueHistory = [{ returnPct: 999 }]
+withValuations.data.benchmarkSeries = [{ returnPct: 888 }]
+assert.equal(buildTweet(normalizePortfolio(withValuations)), buildTweet(normalizePortfolio(validPayload)))
+console.log('Relevés invalides rejetés ; tickers inconnus distincts ; valorisations non assimilées à une performance.')

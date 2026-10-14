@@ -10,6 +10,7 @@ on:
       - 'scripts/refresh_index_sources.py'
       - 'scripts/collect_index_documents.py'
       - 'scripts/test_world_sector_indices.py'
+      - 'scripts/test_index_composition_gate.py'
       - 'scripts/collect_sp_composition.py'
       - 'scripts/test_complete_index_sheets.py'
       - 'src/data/automated-index-sheets.js'
@@ -44,6 +45,7 @@ jobs:
       - run: npm ci
       - run: python -m unittest discover -s scripts -p 'test_complete_index_sheets.py'
       - run: python -m unittest discover -s scripts -p 'test_world_sector_indices.py'
+      - run: python -m unittest discover -s scripts -p 'test_index_composition_gate.py'
       - name: Collect selected indices directly and require every displayed field
         run: >-
           python scripts/refresh_index_sources.py --require-complete --apply

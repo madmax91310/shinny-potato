@@ -6,6 +6,8 @@ on:
     paths:
       - 'scripts/update-investor-13f.py'
       - 'scripts/test_investor_refresh.py'
+      - 'scripts/audit-investor-profiles.mjs'
+      - 'src/pages/investor-portfolio/data.js'
       - '.github/workflows/update-investor-13f.yml'
   workflow_dispatch:
 permissions:
@@ -30,10 +32,17 @@ jobs:
       - run: python -m unittest discover -s scripts -p "test_investor_refresh.py"
       # Fetch and validate all 18 live portfolios in the disposable PR workspace.
       # No commit or deployment is possible from this read-only job.
-      - run: python -u scripts/update-investor-13f.py
+      - run: python -u scripts/update-investor-13f.py --output "$RUNNER_TEMP/investor-observations.json"
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: investor-observations
+          path: ${{ runner.temp }}/investor-observations.json
+          retention-days: 35
   update:
     if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
     runs-on: ubuntu-26.04
+    timeout-minutes: 30
     outputs:
       changed: ${{ steps.commit.outputs.changed }}
       commit_sha: ${{ steps.commit.outputs.commit_sha }}
@@ -45,7 +54,13 @@ jobs:
         with:
           python-version: '3.12'
       - run: python -m unittest discover -s scripts -p "test_investor_refresh.py"
-      - run: python scripts/update-investor-13f.py
+      - run: python -u scripts/update-investor-13f.py --output "$RUNNER_TEMP/investor-observations.json"
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: investor-observations
+          path: ${{ runner.temp }}/investor-observations.json
+          retention-days: 35
       - name: Commit changed filings
         id: commit
         run: |
@@ -56,6 +71,7 @@ jobs:
             echo "changed=false" >> "$GITHUB_OUTPUT"
           else
             git commit -m 'Update SEC 13F portfolios and preserve prior quarters'
+            git pull --rebase origin master
             git push origin HEAD:master
             echo "changed=true" >> "$GITHUB_OUTPUT"
           fi
