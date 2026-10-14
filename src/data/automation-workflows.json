@@ -121,7 +121,7 @@
     "name": "Inflation INSEE",
     "workflowName": "Update INSEE monthly inflation",
     "collectionJob": "collect",
-    "maxAgeHours": 480,
+    "maxAgeHours": 48,
     "artifact": "insee-inflation-observation",
     "tools": [
       "Pouvoir d’achat"
