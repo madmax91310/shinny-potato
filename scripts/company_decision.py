@@ -6,7 +6,7 @@ failure never recertifies an old observation. No estimates or adjusted FCF.
 import datetime as dt
 import math
 
-DECISION_VERSION = 2
+DECISION_VERSION = 3
 
 FCF_METHOD = 'Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites'
 
