@@ -90,5 +90,28 @@ des sources ; la couverture réellement obtenue est mesurée par la collecte CI.
 La couverture reste limitée lorsqu’il manque des exercices, un FCF annuel ou une
 preuve de comparabilité. Aucun compte n’est complété par une estimation.
 
-L’export de valorisation (étape 7) reste à réaliser ; l’image et le texte de
-publication existants sont conservés, distincts de cette simulation interactive.
+Les étapes 7–8 ajoutent un export PNG 1200 × 1500, son aperçu et un texte long
+pour X. Ils reprennent le modèle choisi, les trois scénarios, le scénario sélectionné,
+les hypothèses personnelles et la date du cours. Le texte est calculé, sans génération
+externe, depuis le même instantané que l’image ; les anciens exports restent séparés.
+Les téléchargements ne publient rien sur X.
+
+Les données sont requalifiées chaque minute, au retour sur l’onglet et à chaque
+copie/téléchargement. Une base périmée ou des hypothèses invalides retirent l’aperçu
+et empêchent l’export ; aucune substitution silencieuse de modèle lors d’un clic.
+Le graphique bénéfices distingue explicitement son BPA de départ d’un historique publié.
+
+Validation reproductible : `node scripts/test-company-valuation.mjs` vérifie les
+six combinaisons méthode/scénario, les hypothèses personnalisées, le refus des
+entrées invalides et périmées, en plus des benchmarks numériques indépendants.
+Après build, `node scripts/test-company-analysis-ui.mjs` contrôle les exports PNG,
+le presse-papiers, les changements de méthode/scénario, les données invalides,
+l’expiration d’un onglet, les entreprises éligibles et le parcours mobile.
+Les captures sont conservées comme artefacts CI ; les tests numériques sont aussi
+exécutés dans le déploiement de production. La collecte quotidienne conserve
+l’audit de couverture et les échecs sont suivis par la surveillance existante
+`update-company-analysis.yml` (délai de surveillance : 48 h).
+
+La validation du produit ne signifie pas une couverture FCF de toutes les entreprises :
+les modèles restent suspendus tant que leurs sources ne permettent pas de qualifier
+les historiques. Les trois scénarios restent des conventions modifiables, pas un consensus.

@@ -50,6 +50,7 @@ jobs:
       - run: node scripts/test-scpi.mjs
       - run: node scripts/test-insurance.mjs
       - run: node scripts/test-company-analysis.mjs
+      - run: node scripts/test-company-valuation.mjs
       - run: npm run test:radar
       - run: node scripts/test-wealth-simulator.mjs
       - run: node scripts/test-annual-rollover.mjs

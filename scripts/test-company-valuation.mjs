@@ -1,3 +1,4 @@
+import { valuationPublication } from '../src/pages/company-analysis/valuationPublication.js'
 import assert from 'node:assert/strict'
 import { cashValue, earningsValue, impliedGrowth, impliedReturn, buildScenarios } from '../src/pages/company-analysis/valuation.js'
 import { valuationChart, chartGeometry, valuationReading } from '../src/pages/company-analysis/valuationPresentation.js'
@@ -40,6 +41,29 @@ assert.equal(reading.value,model.scenarios[1].cash.value)
 assert(reading.sensitivity.low<reading.value && reading.sensitivity.high>reading.value)
 assert(valuationReading(buildScenarios(company,{1:{cashGrowth:.01}},now),1,'cash').value<reading.value)
 assert.equal(valuationReading(undefined),null)
+company.id='fixture';company.name='Entreprise témoin';company.symbol='TEST'
+for (const method of ['cash','earnings']) {
+  for (const selected of [0,1,2]) {
+    const publication=valuationPublication(company,{},selected,method,now)
+    const expected=method==='cash'?model.scenarios[selected].cash.value:model.scenarios[selected].earnings
+    assert.equal(publication.reading.value,expected)
+    assert.equal(publication.scenarios[selected].value,expected)
+    assert(publication.text.includes(model.scenarios[selected].name.toLowerCase()))
+    assert.equal(publication.chart.forecast[selected].points.at(-1).value,valuationChart(company,model,method,now).forecast[selected].points.at(-1).value)
+    assert(!/NaN|undefined|Infinity/.test(publication.text))
+  }
+}
+const exported=valuationPublication(company,{1:{cashGrowth:.02,discount:.12,multiple:18}},1,'cash',now)
+assert.equal(exported.assumptions.discount,.12)
+assert.equal(exported.assumptions.multiple,18)
+assert(exported.text.includes('12 %'))
+assert.notEqual(exported.reading.value,model.scenarios[1].cash.value)
+assert.throws(()=>valuationPublication(company,{1:{discount:0}},1,'cash',now))
+assert.throws(()=>valuationPublication(company,{},1,'cash',new Date('2027-10-14')))
+assert.throws(()=>valuationPublication(company,{},1,'earnings',new Date('2027-10-14')))
+assert.throws(()=>valuationPublication(company,{},1,'history',now))
+assert.throws(()=>valuationPublication(company,{},9,'cash',now))
+
 company.valuationShareBasis.normalisedYears=company.decision.years.map(r=>({end:r.end,reportedAverageDilutedShares:r.averageDilutedShares,averageDilutedShares:r.averageDilutedShares*10,sourceUrl:r.sharesBasisSource,adjustments:[{ratio:10,issuerSourceUrl:'https://example.com/split'}]}))
 assert.equal(buildScenarios(company,{},now).inputs.cashBase,model.inputs.cashBase/10)
 company.valuationShareBasis.normalisedYears[0].reportedAverageDilutedShares=999

@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import ValuationPublication from './ValuationPublication.jsx'
 import { buildScenarios } from './valuation.js'
 import { dateLabel } from './lib.js'
 import { formatValue as n, valuationChart, valuationReading } from './valuationPresentation.js'
@@ -6,12 +7,18 @@ import ValuationChart from './ValuationChart.jsx'
 
 export default function ValuationPanel({company}) {
   const [overrides,setOverrides]=useState({}), [selected,setSelected]=useState(1), [preferred,setPreferred]=useState('cash')
-  const automatic=buildScenarios(company), inputs=automatic.inputs
+  const [now,setNow]=useState(()=>new Date()), [publicationOpen,setPublicationOpen]=useState(false)
+  useEffect(()=>{
+    const refresh=()=>setNow(new Date()), timer=setInterval(refresh,60000)
+    window.addEventListener('focus',refresh)
+    return ()=>{clearInterval(timer);window.removeEventListener('focus',refresh)}
+  },[])
+  const automatic=buildScenarios(company,{},now), inputs=automatic.inputs
   const method=preferred==='cash'&&inputs.cashReady?'cash':preferred==='earnings'&&inputs.earningsReady?'earnings':inputs.cashReady?'cash':inputs.earningsReady?'earnings':'history'
   let model,error
-  try {model=buildScenarios(company,overrides)}catch(e){error=e.message}
+  try {model=buildScenarios(company,overrides,now)}catch(e){error=e.message}
   const selectedScenario=model?.scenarios[selected], reading=valuationReading(model,selected,method)
-  const chart=valuationChart(company,model,error?'history':method)
+  const chart=valuationChart(company,model,error?'history':method,now)
   const cash=method==='cash', price=inputs.price, currency=company.currency
   const metric=(label,value,hint)=><div><dt>{label}</dt><dd>{value}</dd><small>{hint}</small></div>
   function change(index,field,value){setOverrides(old=>({...old,[index]:{...old[index],[field]:value}}))}
@@ -50,6 +57,9 @@ export default function ValuationPanel({company}) {
     </>}
     {error&&<p role="alert" className="valuation-error">{error} Les projections sont masquées jusqu’à correction.</p>}
     {reading&&<section className="valuation-reading" data-testid="valuation-reading" aria-live="polite"><span className="valuation-eyebrow">CE QUE ÇA SIGNIFIE</span><h3>{reading.title}</h3><p>{reading.explanation}</p><p>{reading.expectation}</p><details><summary>Recul historique et sensibilité</summary>{reading.historical&&<p>{reading.historical}</p>}<p>En gardant la même croissance et le même rendement exigé, un multiple de sortie de {n(reading.sensitivity.lowerMultiple)} à {n(reading.sensitivity.upperMultiple)} donne une valeur de {n(reading.sensitivity.low,2)} à {n(reading.sensitivity.high,2)} {currency}.</p>{reading.terminalShare!==null&&<p>La valeur de revente représente {n(reading.terminalShare*100)} % de cette valorisation. Le résultat dépend donc aussi du prix auquel l’entreprise pourrait se négocier à terme.</p>}</details></section>}
+    <details className="valuation-publication-details" onToggle={event=>setPublicationOpen(event.currentTarget.open)}><summary>Préparer la publication pour X</summary>
+      {publicationOpen&&<ValuationPublication company={company} overrides={overrides} selected={selected} method={method} now={now}/>}
+    </details>
     <footer className="valuation-footer"><span>Données actualisées automatiquement</span><span>Pas un conseil financier</span></footer>
     <details className="valuation-methodology"><summary>Sources, disponibilité et méthode</summary>
       {!inputs.cashReady&&<p>Modèle FCF suspendu : {inputs.reasons.join(' ')}</p>}{!inputs.earningsReady&&<p>Modèle bénéfices suspendu : BPA positif comparable et croissance estimée récente requis.</p>}
