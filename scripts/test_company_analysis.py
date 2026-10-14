@@ -94,6 +94,20 @@ class CompanyAnalysisTests(unittest.TestCase):
                 publications.add_cash_flow(b'',result['annual'],ident)
                 self.assertEqual(result['annual']['freeCashFlow'],expected)
 
+    def test_apple_interim_cash_has_its_own_duration_and_dates(self):
+        samples = json.loads((Path(__file__).parent/'source-snapshots/company-publications-2026-10-07.json').read_text())
+        with patch.object(publications,'sections',return_value=samples['apple']):
+            result,_ = publications.statement(b'', 'apple')
+            cash = publications.apple_interim_cash(b'',result['quarter'],'https://issuer.test/q3')
+            self.assertEqual(cash['durationMonths'],9)
+            self.assertEqual(cash['operatingCashFlow']-cash['capitalExpenditure'],110197e6)
+            self.assertEqual(cash['previousOperatingCashFlow']-cash['previousCapitalExpenditure'],72281e6)
+            result['quarter']['end']='2026-03-28'
+            self.assertIsNone(publications.apple_interim_cash(b'',result['quarter'],'https://issuer.test/q3'))
+        broken=[t.replace('2026 2025','2025 2026') for t in samples['apple']]
+        with patch.object(publications,'sections',return_value=broken):
+            self.assertIsNone(publications.apple_interim_cash(b'',{'end':'2026-06-27','previousEnd':'2025-06-28'},'https://issuer.test/q3'))
+
     def test_changed_or_non_gaap_layout_is_rejected(self):
         samples = json.loads((Path(__file__).parent/'source-snapshots/company-publications-2026-10-07.json').read_text())
         broken = [s.replace('2026 2025 2026 2025','2026 2025 2025 2024').replace('109,417','109,417 999') for s in samples['apple']]
