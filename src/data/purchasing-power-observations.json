@@ -59,16 +59,16 @@
       }
     },
     "latestLevels": {
-      "general": 102.99,
-      "alimentation": 101.91,
-      "energie": 120.01
+      "general": 103.07,
+      "alimentation": 101.83,
+      "energie": 120.13
     },
-    "provisional": true,
+    "provisional": false,
     "sources": {
       "general": {
         "seriesId": "011814630",
         "sourceUrl": "https://bdm.insee.fr/series/sdmx/data/SERIES_BDM/011814630?startPeriod=2010",
-        "sourceUpdatedAt": "2026-09-30",
+        "sourceUpdatedAt": "2026-10-15",
         "title": "Indice des prix à la consommation - Base 2025 - Ensemble des ménages - France - Nomenclature Coicop : 00 - Ensemble",
         "scope": "FE",
         "frequency": "M",
@@ -273,7 +273,7 @@
           "2026-06": 102.11,
           "2026-07": 102.68,
           "2026-08": 103.35,
-          "2026-09": 102.99
+          "2026-09": 103.07
         },
         "quality": {
           "2010-01": "DEF",
@@ -476,14 +476,14 @@
           "2026-06": "DEF",
           "2026-07": "DEF",
           "2026-08": "DEF",
-          "2026-09": "P"
+          "2026-09": "DEF"
         },
-        "sha256": "5a8557d5dbacdcbb9cfaf6ea4039124e54953370b60f0bf7faf796f272e29e88"
+        "sha256": "f8878afa6dbb2f5ab5d7a5be88016dcb8db531864caafe67e926aaa78d5923f4"
       },
       "alimentation": {
         "seriesId": "011813717",
         "sourceUrl": "https://bdm.insee.fr/series/sdmx/data/SERIES_BDM/011813717?startPeriod=2010",
-        "sourceUpdatedAt": "2026-09-30",
+        "sourceUpdatedAt": "2026-10-15",
         "title": "Indice des prix à la consommation - Base 2025 - Ensemble des ménages - France - Alimentation",
         "scope": "FE",
         "frequency": "M",
@@ -688,7 +688,7 @@
           "2026-06": 101.14,
           "2026-07": 101.29,
           "2026-08": 101.69,
-          "2026-09": 101.91
+          "2026-09": 101.83
         },
         "quality": {
           "2010-01": "DEF",
@@ -891,14 +891,14 @@
           "2026-06": "DEF",
           "2026-07": "DEF",
           "2026-08": "DEF",
-          "2026-09": "P"
+          "2026-09": "DEF"
         },
-        "sha256": "9ff1fd076a76b4d8ed1c63e02cc66900c67f85432ef24b1638400659aeeb9f6c"
+        "sha256": "c152cd01e53f63d4c1afc1279b6f828f1c25cdb5bc6cb8228d3a55f249ceb3e7"
       },
       "energie": {
         "seriesId": "011813864",
         "sourceUrl": "https://bdm.insee.fr/series/sdmx/data/SERIES_BDM/011813864?startPeriod=2010",
-        "sourceUpdatedAt": "2026-09-30",
+        "sourceUpdatedAt": "2026-10-15",
         "title": "Indice des prix à la consommation - Base 2025 - Ensemble des ménages - France - Énergie",
         "scope": "FE",
         "frequency": "M",
@@ -1103,7 +1103,7 @@
           "2026-06": 109.24,
           "2026-07": 111.75,
           "2026-08": 115.6,
-          "2026-09": 120.01
+          "2026-09": 120.13
         },
         "quality": {
           "2010-01": "DEF",
@@ -1306,14 +1306,14 @@
           "2026-06": "DEF",
           "2026-07": "DEF",
           "2026-08": "DEF",
-          "2026-09": "P"
+          "2026-09": "DEF"
         },
-        "sha256": "e19af75beb1a461e6887a161ab9145c8625e3ad2e02ee41740c1e1f18345be71"
+        "sha256": "4d08eb361130ad4bb53bf88e61d918f6a7e2d3356615b410f703f6f0aaee1fd8"
       }
     }
   },
   "irl": {
-    "asOf": "2026-Q2",
+    "asOf": "2026-Q3",
     "values": {
       "2010-Q1": 117.81,
       "2010-Q2": 118.26,
@@ -1380,12 +1380,13 @@
       "2025-Q3": 145.77,
       "2025-Q4": 145.78,
       "2026-Q1": 146.6,
-      "2026-Q2": 148.37
+      "2026-Q2": 148.37,
+      "2026-Q3": 148.06
     },
     "source": {
       "seriesId": "001515333",
       "sourceUrl": "https://bdm.insee.fr/series/sdmx/data/SERIES_BDM/001515333?startPeriod=2010",
-      "sourceUpdatedAt": "2026-07-10",
+      "sourceUpdatedAt": "2026-10-15",
       "title": "Indice de référence des loyers (IRL)",
       "scope": "FM",
       "frequency": "T",
@@ -1455,7 +1456,8 @@
         "2025-Q3": 145.77,
         "2025-Q4": 145.78,
         "2026-Q1": 146.6,
-        "2026-Q2": 148.37
+        "2026-Q2": 148.37,
+        "2026-Q3": 148.06
       },
       "quality": {
         "2010-Q1": "DEF",
@@ -1523,9 +1525,10 @@
         "2025-Q3": "DEF",
         "2025-Q4": "DEF",
         "2026-Q1": "DEF",
-        "2026-Q2": "DEF"
+        "2026-Q2": "DEF",
+        "2026-Q3": "DEF"
       },
-      "sha256": "8c2a19ce41bdeee532d3ecd551e9a647346214cdee189e85ea0dd40905391883"
+      "sha256": "2610f23c0ae2165c8bcd2e3b378a50773d78e1bf1ece5fb2969a5792807875a4"
     }
   },
   "smic": {
@@ -2149,7 +2152,7 @@
         "2026-09": "DEF",
         "2026-10": "DEF"
       },
-      "sha256": "a62a6818806a724d9af0a9fbd8f4f734005fca1f4efff45c4269431d9bec24f8"
+      "sha256": "1da6225cee7262dbf126c25a2e76575fc55968599016b220814903471a11e0b9"
     }
   },
   "schemaVersion": 1
