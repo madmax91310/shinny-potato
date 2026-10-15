@@ -1,3 +1,4 @@
+import { EQUITY_HISTORY_IDENTITIES } from '../../data/equity-history-identities.js'
 import { loadArtImage, ANNIVERSARY_ART } from './anniversaryArt.js'
 import { ETF_HISTORY_IDENTITIES } from '../../data/etf-monthly-history.js'
 
@@ -11,6 +12,7 @@ const groups = {
   health: ['unitedhealth','sanofi','johnson-johnson'], energy:['totalenergies','exxonmobil'], infrastructure: ['vinci','airliquide','caterpillar','waste-management'], utilities: ['schneider'], silver: ['silver'],
 }
 export const PERFORMANCE_ART = Object.freeze({
+  ...Object.fromEntries(Object.entries(EQUITY_HISTORY_IDENTITIES).map(([id, asset]) => [id, {scene:`etf-night/${asset.scene}.webp`}])),
   ...Object.fromEntries(Object.entries(ETF_HISTORY_IDENTITIES).map(([id, asset]) => [id, {
     scene: `etf-night/${id === 'etfIndustrials' ? 'infrastructure' : id === 'etfEpra' ? 'property' : id === 'etfCmod' ? 'commodities' : id === 'etfLock' ? 'security' : asset.scene === 'industry' ? 'silver' : asset.scene}.webp`,
   }])),

@@ -1,3 +1,4 @@
+import { currencySymbol } from '../investment-calculator/lib.js'
 import { startPublicationDownload } from '../../design-system/publicationActions.js'
 import { resolveAnniversaryLevel } from '../../data/anniversary-levels.js'
 import { MONTHS_FULL } from '../../data/market-history.js'
@@ -36,7 +37,7 @@ function snapshot(item, raw, assetId) {
   const date = ymForYearsBack(item.yearsBack, TODAY)
   return { asset, art, past: getHistoricalPrice(assetId, date), current: observation.value, currentLabel: observation.label, dateLabel: fmtYm(date, { monthLabels: MONTHS_FULL }) }
 }
-const level = (value, snap) => `${number(value)} ${snap.art.unit || (snap.asset.currency === 'USD' ? '$' : '€')}`
+const level = (value, snap) => `${number(value)} ${snap.art.unit || currencySymbol(snap.asset.currency)}`
 
 function panel(ctx, snap, images, { x = 0, scale = 1, period = true, yearsBack } = {}) {
   ctx.save(); ctx.translate(x,0); ctx.scale(scale,scale)
