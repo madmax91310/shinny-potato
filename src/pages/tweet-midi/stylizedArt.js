@@ -22,8 +22,8 @@ const neonGroups = {
   world: ['msciWorld', 'msciWorldSmallCap', 'msciAcwi','msciAcwiImi','msciWorldExUsa', 'msciWorldMomentum', 'msciWorldQuality', 'msciWorldValue'], america: ['sp500', 'nasdaq100', 'msciUsa', 'russell2000'], france: ['cac40'], europe: ['stoxx600', 'msciEurope'], emerging: ['msciEmerging', 'msciIndia', 'msciEmergingExChina'],
   chip: ['soxx', 'apple', 'microsoft', 'broadcom', 'nvidia', 'google', 'meta', 'adobe','sap', 'asml', 'intel'],
   gold: ['or'], silver: ['silver'], money: ['euroMoney'], bonds: ['euroGovShort', 'euroGov13', 'globalBondEur', 'euroInflationBond', 'euroCorporateBond', 'euroHighYieldBond', 'berkshire'],
-  luxury: ['lvmh', 'hermes'], car: ['tesla'], shopping: ['booking','home-depot','nike', 'amazon', 'costco'], cinema: ['disney','netflix'], payments: ['mastercard','jpmorgan', 'visa', 'paypal'], groceries: ['procter-gamble', 'nestle', 'cocacola'],
-  industry: ['totalenergies','vinci','sanofi','johnson-johnson','exxonmobil','caterpillar','waste-management','airliquide'], electricity: ['schneider'], cosmetics: ['loreal'], food: ['mcdonalds'],
+  luxury: ['lvmh', 'hermes'], car: ['tesla'], shopping: ['booking','home-depot','nike', 'amazon', 'costco'], cinema: ['disney','netflix'], payments: ['mastercard','jpmorgan', 'visa', 'paypal'], groceries: ['pepsico','procter-gamble', 'nestle', 'cocacola'],
+  industry: ['unitedhealth','totalenergies','vinci','sanofi','johnson-johnson','exxonmobil','caterpillar','waste-management','airliquide'], electricity: ['schneider'], cosmetics: ['loreal'], food: ['mcdonalds'],
   // Crypto use the existing verified vector symbols, illuminated in Canvas.
   crypto: ['bitcoin', 'ethereum'],
 }

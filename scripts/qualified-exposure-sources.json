@@ -6,7 +6,9 @@
       "isin": "IE00BP3QZD73",
       "label": "Moyennes capitalisations mondiales équipondérées",
       "scene": "world",
-      "category": "Stratégiques"
+      "category": "Stratégiques",
+      "portfolioEnabled": true,
+      "portfolioCategory": "actions_larges"
     },
     {
       "id": "water-ishares",
@@ -14,7 +16,9 @@
       "isin": "IE00B1TXK627",
       "label": "Eau",
       "scene": "water",
-      "category": "Thématiques émergentes"
+      "category": "Thématiques émergentes",
+      "portfolioEnabled": true,
+      "portfolioCategory": "actions_larges"
     },
     {
       "id": "agribusiness-ishares",
@@ -22,7 +26,9 @@
       "isin": "IE00B6R52143",
       "label": "Agriculture et agro-industrie",
       "scene": "commodities",
-      "category": "Thématiques émergentes"
+      "category": "Thématiques émergentes",
+      "portfolioEnabled": true,
+      "portfolioCategory": "actions_larges"
     },
     {
       "id": "timber-ishares",
@@ -30,7 +36,9 @@
       "isin": "IE00B27YCF74",
       "label": "Bois et exploitation forestière",
       "scene": "commodities",
-      "category": "Thématiques émergentes"
+      "category": "Thématiques émergentes",
+      "portfolioEnabled": true,
+      "portfolioCategory": "actions_larges"
     },
     {
       "id": "private-equity-ishares",
@@ -47,7 +55,8 @@
       "isin": "IE00BJ5JP659",
       "label": "Industrie mondiale",
       "scene": "infrastructure",
-      "category": "Sectoriels classiques"
+      "category": "Sectoriels classiques",
+      "portfolioEnabled": false
     },
     {
       "id": "world-staples",
@@ -55,7 +64,9 @@
       "isin": "IE00BJ5JP329",
       "label": "Consommation de base mondiale",
       "scene": "world",
-      "category": "Sectoriels classiques"
+      "category": "Sectoriels classiques",
+      "portfolioEnabled": true,
+      "portfolioCategory": "actions_larges"
     },
     {
       "id": "world-discretionary",
@@ -63,7 +74,9 @@
       "isin": "IE00BJ5JP212",
       "label": "Consommation discrétionnaire mondiale",
       "scene": "world",
-      "category": "Sectoriels classiques"
+      "category": "Sectoriels classiques",
+      "portfolioEnabled": true,
+      "portfolioCategory": "actions_larges"
     },
     {
       "id": "world-utilities",
@@ -79,7 +92,9 @@
       "isin": "IE00BJ5JP105",
       "label": "Énergie mondiale",
       "scene": "energy",
-      "category": "Sectoriels classiques"
+      "category": "Sectoriels classiques",
+      "portfolioEnabled": true,
+      "portfolioCategory": "actions_larges"
     },
     {
       "id": "world-communication",
@@ -87,7 +102,8 @@
       "isin": "IE00BJ5JP436",
       "label": "Communications mondiales",
       "scene": "chip",
-      "category": "Sectoriels classiques"
+      "category": "Sectoriels classiques",
+      "portfolioEnabled": false
     },
     {
       "id": "history-etf_clean_energy",
@@ -186,7 +202,8 @@
       "isin": "IE00BJ5JP766",
       "label": "Matériaux mondiaux",
       "scene": "commodities",
-      "category": "Sectoriels classiques"
+      "category": "Sectoriels classiques",
+      "portfolioEnabled": false
     },
     {
       "id": "history-healthcare-innovation",
@@ -203,7 +220,9 @@
       "isin": "IE00BZ0PKT83",
       "label": "Multifactoriel mondial",
       "scene": "world",
-      "category": "Stratégiques"
+      "category": "Stratégiques",
+      "portfolioEnabled": true,
+      "portfolioCategory": "actions_larges"
     },
     {
       "id": "ibonds-euro-2028",
@@ -309,6 +328,51 @@
       "isin": "DE000A0H08R2",
       "label": "Télécommunications européennes",
       "scene": "chip",
+      "category": "Sectoriels classiques",
+      "currency": "EUR",
+      "currencyField": "baseCurrencyCode",
+      "aumField": "totalNetAssetsFundLevel",
+      "aumScope": "fund",
+      "inceptionField": "launchDate",
+      "portfolioEnabled": true,
+      "portfolioCategory": "actions_larges"
+    },
+    {
+      "id": "europe-food",
+      "productId": 251944,
+      "isin": "DE000A0H08H3",
+      "label": "Alimentation et boissons européennes",
+      "scene": "world",
+      "category": "Sectoriels classiques",
+      "currency": "EUR",
+      "currencyField": "baseCurrencyCode",
+      "aumField": "totalNetAssetsFundLevel",
+      "aumScope": "fund",
+      "inceptionField": "launchDate",
+      "portfolioEnabled": true,
+      "portfolioCategory": "actions_larges"
+    },
+    {
+      "id": "europe-media",
+      "productId": 251952,
+      "isin": "DE000A0H08L5",
+      "label": "Médias européens",
+      "scene": "chip",
+      "category": "Sectoriels classiques",
+      "currency": "EUR",
+      "currencyField": "baseCurrencyCode",
+      "aumField": "totalNetAssetsFundLevel",
+      "aumScope": "fund",
+      "inceptionField": "launchDate",
+      "portfolioEnabled": true,
+      "portfolioCategory": "actions_larges"
+    },
+    {
+      "id": "europe-retail",
+      "productId": 251959,
+      "isin": "DE000A0H08P6",
+      "label": "Distribution européenne",
+      "scene": "world",
       "category": "Sectoriels classiques",
       "currency": "EUR",
       "currencyField": "baseCurrencyCode",

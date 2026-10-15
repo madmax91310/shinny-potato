@@ -6,6 +6,7 @@ import { loadArtImage } from '../tweet-midi/anniversaryArt.js'
 // Each exposure reuses its reviewed ETF illustration. These are exposure scenes,
 // never fund-provider logos; names distinguish geographic/factor variants.
 const references = {
+ 'europe-food':'europe-food','europe-media':'europe-media','europe-retail':'europe-retail',
  'world-hedged':'world-eur-hedged', intermediatebond:'euro-govt-5-7', 'property-europe':'europe-property', 'utilities-europe':'europe-utilities', 'telecom-europe':'europe-telecom',
  'construction-europe':'europe-construction', 'em-smallcap':'em-small-cap-ishares', 'copper-miners':'copper-miners-globalx',
  'europe-banks':'europe-banks', 'europe-insurance':'europe-insurance',

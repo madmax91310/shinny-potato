@@ -1,5 +1,10 @@
 // Une présentation courte par profil ; les déclarations 13F restent une source distincte.
 export const INVESTOR_PROFILES = Object.freeze(Object.fromEntries([
+  ["einhorn", "David Einhorn a cofondé Greenlight Capital en 1996, une société de gestion qui investit notamment dans les actions.", ["https://greenlightre.com/about-us"]],
+  ["halvorsen", "Andreas Halvorsen est le cofondateur de Viking Global, une société de gestion qui investit dans les entreprises cotées et privées.", ["https://vikingglobal.com/our-team/"]],
+  ["gerstner", "Brad Gerstner a fondé Altimeter, une société de gestion spécialisée dans les entreprises technologiques cotées et privées.", ["https://milkeninstitute.org/events/global-conference-2026/speakers/brad-gerstner"]],
+  ["gayner", "Tom Gayner dirige Markel Group, un groupe qui réunit des activités d’assurance, des entreprises et un portefeuille de placements.", ["https://ir.mklgroup.com/investor-relations/governance/board-of-directors/person-details/default.aspx?ItemId=8d182144-912b-4754-8328-744dd68649df"]],
+
   ['tepper', 'David Tepper a fondé Appaloosa en 1993, après avoir travaillé sur les entreprises en difficulté.', ['https://www.panthers.com/team/ownership_business/test-david-a-tepper']],
   ['ackman', 'Bill Ackman est le fondateur de Pershing Square, une société de gestion qui investit dans des entreprises cotées.', ['https://www.pershingsquareinc.com/team/bill-ackman/', 'https://pershingsquareholdings.com/about-us/']],
   ['berkshire', 'Berkshire Hathaway est le conglomérat développé par Warren Buffett et Charlie Munger, qui possède des entreprises et un portefeuille d’actions.', ['https://www.berkshirehathaway.com/2025ar/2025ar.pdf']],
@@ -18,6 +23,6 @@ export const INVESTOR_PROFILES = Object.freeze(Object.fromEntries([
   ['icahn', 'Carl Icahn est un investisseur activiste qui prend des participations dans les entreprises et cherche à influencer leurs décisions.', ['https://carlicahn.com/about/']],
   ['laffont', 'Philippe Laffont a fondé Coatue, une société de gestion qui investit dans les entreprises technologiques cotées et privées.', ['https://www.coatue.com/']],
   ['renaissance', 'Renaissance Technologies est une société de gestion quantitative fondée par le mathématicien Jim Simons, décédé en 2024.', ['https://www.simonsfoundation.org/2024/05/10/simons-foundation-co-founder-mathematician-and-investor-jim-simons-dies-at-86/']],
-].map(([slug, intro, sourceUrls]) => [slug, Object.freeze({ intro, sourceUrls: Object.freeze(sourceUrls), checkedAt: ['terry-smith', 'pabrai', 'hohn', 'baker-bros', 'icahn', 'laffont', 'renaissance'].includes(slug) ? '2026-10-04' : '2026-10-01' })])))
+].map(([slug, intro, sourceUrls]) => [slug, Object.freeze({ intro, sourceUrls: Object.freeze(sourceUrls), checkedAt: ['einhorn','halvorsen','gerstner','gayner'].includes(slug) ? '2026-10-15' : ['terry-smith', 'pabrai', 'hohn', 'baker-bros', 'icahn', 'laffont', 'renaissance'].includes(slug) ? '2026-10-04' : '2026-10-01' })])))
 
 export function investorIntroduction(slug) { return INVESTOR_PROFILES[slug]?.intro ?? '' }

@@ -78,11 +78,11 @@ class RefreshTests(unittest.TestCase):
             self.assertEqual(before, {p.name: p.read_bytes() for p in directory.iterdir()})
             result = json.loads(report.read_text())
             self.assertFalse(result['readyToApply'])
-            self.assertEqual(len(result['managers']), 18)
+            self.assertEqual(len(result['managers']), len(module.MANAGERS))
             self.assertEqual(sum(c['status'] == 'failed' for c in result['managers']), 2)
 
     def test_all_existing_investors_are_tracked(self):
-        self.assertEqual(set(module.MANAGERS), {'tepper', 'ackman', 'berkshire', 'cathie-wood', 'thiel',
+        self.assertEqual(set(module.MANAGERS), {'einhorn', 'halvorsen', 'gerstner', 'gayner', 'tepper', 'ackman', 'berkshire', 'cathie-wood', 'thiel',
                          'druckenmiller', 'loeb', 'aschenbrenner', 'li-lu', 'gates-trust', 'klarman', 'terry-smith', 'pabrai', 'hohn', 'baker-bros', 'icahn', 'laffont', 'renaissance'})
 
     def test_options_keep_declared_weight_denominator(self):

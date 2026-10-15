@@ -17,6 +17,9 @@ export const ROLES = { base: 'Base', complement: 'Complément', theme: 'Thémati
 
 // Sélection éditoriale : les chiffres restent exclusivement dans les registres communs.
 const choices = [
+ ['europe-food','theme','Alimentation et boissons européennes','europe-food'],
+ ['europe-media','theme','Médias européens','europe-media'],
+ ['europe-retail','theme','Distribution européenne','europe-retail'],
  ['world-eur-hedged','base','World couvert en euros','world-hedged'],
  ['euro-govt-5-7','complement','Obligations euro 5–7 ans','intermediatebond'],
  ['europe-property','theme','Immobilier européen hors Royaume-Uni','property-europe'],

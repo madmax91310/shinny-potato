@@ -666,7 +666,7 @@ async function testTweetMidi(page) {
   await page.getByRole("button", { name: "🔄 Générer", exact: true }).click();
   const performance = await page.locator('pre').innerText();
   const minimal = /^📈 Performance du S&P 500 depuis 2016 👇\nTotal Return · USD · dividendes bruts réinvestis\n\n/u.test(performance)
-    && performance.split('\n').at(-1).startsWith('Cumulé sur la période : ')
+    && performance.split('\n').at(-1).startsWith('Sur toute la période : ')
     && !/💬|Livret A|Cours en dollars/u.test(performance)
     && (await page.getByRole('checkbox').count()) === 0;
   if (!minimal) failed.push('Performance depuis : format minimal');
@@ -683,7 +683,7 @@ async function testTweetMidi(page) {
   await page.getByRole("button", { name: "🔄 Générer", exact: true }).click();
   const comparison = await page.locator('pre').innerText();
   if ((comparison.match(/^📈 Performance /gmu) ?? []).length !== 2
-      || (comparison.match(/^Cumulé sur la période : /gmu) ?? []).length !== 2
+      || (comparison.match(/^Sur toute la période : /gmu) ?? []).length !== 2
       || comparison.includes('💬')) failed.push('Performance depuis : comparatif');
   await page.getByRole('button', { name: 'Performance depuis', exact: true }).click();
   for (const id of ['berkshire', 'asml', 'costco', 'mcdonalds', 'airliquide', 'schneider', 'hermes', 'loreal', 'intel', 'paypal', 'lvmh', 'nvidia', 'amazon', 'google', 'meta', 'nestle', 'sap', 'visa', 'netflix', 'cocacola', 'euroMoney', 'euroGovShort', 'euroGov13', 'globalBondEur', 'euroInflationBond', 'euroCorporateBond', 'euroHighYieldBond']) {

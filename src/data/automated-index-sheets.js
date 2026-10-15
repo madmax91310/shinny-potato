@@ -6,6 +6,8 @@ import { getCurrentIndexFacts, buildAutomatedIndexSnapshot } from './index-facts
 // These sheets have no numerical archive fallback: every displayed observation
 // comes from the validated records maintained by the daily issuer workflow.
 export const AUTOMATED_SHEET_DEFINITIONS = [
+{"id": "msci-world-consumer-discretionary", "title": "MSCI World Consumer Discretionary", "intro": "Quand les ménages repoussent certains achats, quelles entreprises sont concernées en Bourse ? 🛍️", "takeaway": "Les achats discrétionnaires restent sensibles aux revenus et au crédit. Cet indice classique diffère des variantes filtrées de certains ETF."},
+{"id": "msci-world-communication-services", "title": "MSCI World Communication Services", "intro": "Les services de communication regroupent bien plus que les opérateurs téléphoniques. Regardons les entreprises de cet indice 📡", "takeaway": "Les plateformes, les médias et les télécoms ont des modèles différents. Cet indice classique ne se confond pas avec les variantes filtrées et plafonnées des ETF."},
   { id: 'msci-world-health-care', title: 'MSCI World Health Care',
     intro: 'La santé en Bourse ne se limite pas aux laboratoires. Quelles entreprises prennent le plus de place dans cet indice mondial ? 🏥',
     takeaway: 'Les traitements, équipements et services de santé ont des modèles différents. Renforcer ce secteur augmente une exposition déjà présente dans le World.' },

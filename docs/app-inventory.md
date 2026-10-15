@@ -40,24 +40,24 @@ Généré depuis les routes, le catalogue et les observations actives. Régéné
 | broker | 8 |
 | company | 26 |
 | household | 29 |
-| index | 50 |
-| instrument | 203 |
+| index | 52 |
+| instrument | 206 |
 | insurance | 7 |
 | lexicon | 44 |
 | reference | 11 |
 | scpi | 8 |
-| series | 140 |
+| series | 145 |
 
 ## Champs des instruments
 
 | Champ | Présents / instruments |
 |---|---:|
-| ter | 203/203 |
-| aum | 203/203 |
-| performance | 187/203 |
-| countries | 175/203 |
-| sectors | 175/203 |
-| holdings | 180/203 |
+| ter | 206/206 |
+| aum | 206/206 |
+| performance | 190/206 |
+| countries | 178/206 |
+| sectors | 178/206 |
+| holdings | 183/206 |
 
 Les raisons des absences figurent dans [l’inventaire des lacunes](automation-gaps.md).
 

@@ -253,7 +253,7 @@ const companyIds = ['costco', 'mcdonalds', 'airliquide', 'schneider', 'hermes', 
 const addedCompanies = JSON.parse(readFileSync(new URL('./source-snapshots/companies-additions-2026-10-03.json', import.meta.url)));
 for (const [id, r] of Object.entries(addedCompanies)) companies.records[id] = { ...r, lastDailyCloses: r.lastDailyCloses.map(p => ({...p, adjclose: p.adjustedClose})), dailyUrl: r.url, periodStart: '2015-01' };
 companyIds.push(...Object.keys(addedCompanies));
-const expansionCompanyIds = ['totalenergies','vinci','sanofi','booking','mastercard','adobe','home-depot','nike','disney','procter-gamble','johnson-johnson','exxonmobil','jpmorgan','caterpillar','waste-management'];
+const expansionCompanyIds = ['pepsico','unitedhealth','totalenergies','vinci','sanofi','booking','mastercard','adobe','home-depot','nike','disney','procter-gamble','johnson-johnson','exxonmobil','jpmorgan','caterpillar','waste-management'];
 if (Object.keys(COMPANY_HISTORY).sort().join() !== [...companyIds,...expansionCompanyIds].sort().join() || companies.checkedAt !== '2026-10-02') throw new Error('Périmètre des entreprises incorrect');
 for (const id of companyIds) {
   const a = ASSETS[id], r = companies.records[id], m = r.monthlyResponse.chart.result[0];
@@ -349,7 +349,7 @@ for (const [id, code] of [['msciEmerging', '891800'], ['msciWorldSmallCap', '106
 }
 console.log('Emerging Markets et World Small Cap : 282 clôtures mensuelles/quotidiennes concordantes, 22 rendements annuels recoupés, catalogue commun, DCA et vidéos OK.');
 
-const expansionEvidence = [...JSON.parse(readFileSync(new URL('./source-snapshots/non-bond-monthly-validation.json', import.meta.url))).results, ...JSON.parse(readFileSync(new URL('./source-snapshots/roadmap-monthly-validation.json', import.meta.url))).results];
+const expansionEvidence = [...JSON.parse(readFileSync(new URL('./source-snapshots/catalog-expansion-monthly-validation.json', import.meta.url))).results, ...JSON.parse(readFileSync(new URL('./source-snapshots/non-bond-monthly-validation.json', import.meta.url))).results, ...JSON.parse(readFileSync(new URL('./source-snapshots/roadmap-monthly-validation.json', import.meta.url))).results];
 for (const id of expansionCompanyIds) {
  const source=expansionEvidence.find(r=>r.id===id), a=ASSETS[id], proof=source?.proofRows;
  if (!source || source.field!=='adjclose' || source.periodStart!==( ['totalenergies','vinci','sanofi'].includes(id)?'2016-01':'2015-01') || !/^[a-f0-9]{64}$/.test(source.responseSha256) || proof?.length!==a.points.length) throw new Error(`${id}: preuve mensuelle absente`);

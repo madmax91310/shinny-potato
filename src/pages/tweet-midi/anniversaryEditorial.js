@@ -13,7 +13,7 @@ export function anniversaryResult(asset, gainPct, formattedPct) {
 export function anniversaryQuestion(asset) {
   if (asset.priceUnit === 'points') return `À l’époque, tu investissais déjà via un ETF qui suit ${asset.tweetPhrase} ?`
   const subject = /^[A-Z]/.test(asset.tweetPhrase) ? `l’action ${asset.label}` : asset.tweetPhrase
-  return `À l’époque, tu trouvais déjà ${subject} trop cher${subject.startsWith('l’action') ? 'e' : ''} ?`
+  return `À l’époque, tu suivais déjà ${subject} ?`
 }
 
 export function anniversaryClosing(asset, gainPct) {

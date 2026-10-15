@@ -109,11 +109,11 @@ export function indexHook(sheet) {
     }
   }
   const transition = {
-    acwi: 'On décrypte le MSCI ACWI 👇',
-    eurostoxx50: 'On décrypte l’EURO STOXX 50, ses principales entreprises et leur poids 👇',
-    stoxx600: 'On décrypte l’indice, ses principaux pays et ses entreprises 👇',
+    acwi: 'Regardons ce que contient le MSCI ACWI 👇',
+    eurostoxx50: 'Regardons les principales entreprises de l’EURO STOXX 50 et la place qu’elles occupent 👇',
+    stoxx600: 'Regardons les pays et les entreprises qui composent cet indice 👇',
     'world-ex-usa': 'Je t’explique ce que contient cet indice 👇',
-  }[sheet.id] ?? `On décrypte ${sheet.index}, ses principales entreprises et leur poids 👇`
+  }[sheet.id] ?? `Regardons les principales entreprises du ${sheet.index} et leur poids 👇`
   return `${hook}\n\n${transition}\n\n🔖 Sauvegarde ce tweet`
 }
 
@@ -123,9 +123,11 @@ export function indexObservation(sheet) {
   const usa = countries.find(([name]) => /États-Unis|United States/i.test(name))?.[1] ?? 0
   const asia = countries.filter(([name]) => /Taïwan|Taiwan|Corée|Korea/i.test(name))
   const concentration = top.length
-    ? 'Toutes ces entreprises ne pèsent pas autant. Quand une grosse ligne bouge, elle compte davantage dans la performance de l’indice.'
+    ? 'Je regarde les poids autant que les noms : une grande position influence davantage le résultat qu’une petite, même si elles appartiennent au même indice.'
     : 'Les pays et les secteurs permettent de voir où va l’argent investi dans cet indice.'
   switch (sheet.id) {
+    case 'msci-world-consumer-discretionary': return 'Je regarde les achats que les ménages peuvent repousser. Le crédit et leur confiance peuvent changer la demande, même si les entreprises de ce secteur vendent des produits très différents.'
+    case 'msci-world-communication-services': return 'Je regarde les activités derrière le mot « communication ». Une plateforme financée par la publicité et un opérateur qui facture des abonnements ne dépendent pas des mêmes revenus.'
     case 'msci-world-health-care': return 'Je regarde les entreprises derrière le mot « santé ». Un laboratoire et un assureur santé ne gagnent pas leur argent de la même façon, même s’ils figurent dans le même secteur.'
     case 'msci-world-financials': return 'Dans cet indice, la finance ne se limite pas aux banques. Les assureurs et les réseaux de paiement ont des activités différentes, et les plus grandes entreprises prennent davantage de place.'
     case 'msci-world-energy': return 'Avec cet indice, tu achètes des actions d’entreprises énergétiques. Leurs bénéfices et leurs investissements comptent aussi : ce n’est pas une exposition directe au prix du pétrole.'

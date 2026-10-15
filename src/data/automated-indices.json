@@ -19895,5 +19895,537 @@
         }
       }
     }
+  },
+  "msci-world-consumer-discretionary": {
+    "facts": {
+      "index": "MSCI World Consumer Discretionary",
+      "asOf": "2026-09-30",
+      "constituents": 116,
+      "countries": [
+        [
+          "🇺🇸 États-Unis",
+          75.9
+        ],
+        [
+          "🇯🇵 Japon",
+          10.23
+        ],
+        [
+          "🇫🇷 France",
+          2.96
+        ],
+        [
+          "🇨🇭 Suisse",
+          1.67
+        ],
+        [
+          "🇩🇪 Allemagne",
+          1.64
+        ],
+        [
+          "🌍 Autres",
+          7.59
+        ]
+      ],
+      "sectors": [
+        [
+          "🛍️ Consommation cyclique",
+          100.0
+        ]
+      ],
+      "holdings": [
+        [
+          "AMAZON.COM",
+          31.93
+        ],
+        [
+          "TESLA",
+          13.44
+        ],
+        [
+          "HOME DEPOT",
+          3.75
+        ],
+        [
+          "TOYOTA MOTOR CORP",
+          2.33
+        ],
+        [
+          "MCDONALD'S CORP",
+          2.17
+        ],
+        [
+          "TJX COMPANIES",
+          1.93
+        ],
+        [
+          "SONY GROUP CORP",
+          1.84
+        ],
+        [
+          "BOOKING HOLDINGS",
+          1.67
+        ],
+        [
+          "FIN RICHEMONT NAMEN A",
+          1.53
+        ],
+        [
+          "LVMH MOET HENNESSY",
+          1.45
+        ]
+      ],
+      "source": {
+        "url": "https://www.msci.com/documents/10199/255599/msci-world-consumer-discretionary-index-usd-net.pdf",
+        "checkedAt": "2026-10-15",
+        "label": "Composition officielle automatisée · MSCI World Consumer Discretionary",
+        "sha256": "fc6c1b7fd235c83db623890115d77ceb3cc0c05ec4bf8b6a90309dd54929b082"
+      },
+      "provenance": "Publication officielle extraite automatiquement ; compositions d’indice distinctes des portefeuilles ETF."
+    },
+    "factsHistory": {
+      "2026-09-30": {
+        "index": "MSCI World Consumer Discretionary",
+        "asOf": "2026-09-30",
+        "constituents": 116,
+        "countries": [
+          [
+            "🇺🇸 États-Unis",
+            75.9
+          ],
+          [
+            "🇯🇵 Japon",
+            10.23
+          ],
+          [
+            "🇫🇷 France",
+            2.96
+          ],
+          [
+            "🇨🇭 Suisse",
+            1.67
+          ],
+          [
+            "🇩🇪 Allemagne",
+            1.64
+          ],
+          [
+            "🌍 Autres",
+            7.59
+          ]
+        ],
+        "sectors": [
+          [
+            "🛍️ Consommation cyclique",
+            100.0
+          ]
+        ],
+        "holdings": [
+          [
+            "AMAZON.COM",
+            31.93
+          ],
+          [
+            "TESLA",
+            13.44
+          ],
+          [
+            "HOME DEPOT",
+            3.75
+          ],
+          [
+            "TOYOTA MOTOR CORP",
+            2.33
+          ],
+          [
+            "MCDONALD'S CORP",
+            2.17
+          ],
+          [
+            "TJX COMPANIES",
+            1.93
+          ],
+          [
+            "SONY GROUP CORP",
+            1.84
+          ],
+          [
+            "BOOKING HOLDINGS",
+            1.67
+          ],
+          [
+            "FIN RICHEMONT NAMEN A",
+            1.53
+          ],
+          [
+            "LVMH MOET HENNESSY",
+            1.45
+          ]
+        ],
+        "source": {
+          "url": "https://www.msci.com/documents/10199/255599/msci-world-consumer-discretionary-index-usd-net.pdf",
+          "checkedAt": "2026-10-15",
+          "label": "Composition officielle automatisée · MSCI World Consumer Discretionary",
+          "sha256": "fc6c1b7fd235c83db623890115d77ceb3cc0c05ec4bf8b6a90309dd54929b082"
+        },
+        "provenance": "Publication officielle extraite automatiquement ; compositions d’indice distinctes des portefeuilles ETF."
+      }
+    },
+    "returns": {
+      "asOf": "2026-09-30",
+      "currency": "USD",
+      "variant": "NET",
+      "values": [
+        [
+          2025,
+          8.35
+        ],
+        [
+          2024,
+          21.54
+        ],
+        [
+          2023,
+          35.05
+        ],
+        [
+          2022,
+          -33.36
+        ],
+        [
+          2021,
+          17.93
+        ],
+        [
+          2020,
+          36.62
+        ]
+      ],
+      "periodStart": "2020-01-01",
+      "periodEnd": "2025-12-31",
+      "source": {
+        "url": "https://www.msci.com/documents/10199/255599/msci-world-consumer-discretionary-index-usd-net.pdf",
+        "checkedAt": "2026-10-15",
+        "sha256": "fc6c1b7fd235c83db623890115d77ceb3cc0c05ec4bf8b6a90309dd54929b082",
+        "label": "Rendements calendaires officiels automatisés · MSCI World Consumer Discretionary"
+      },
+      "performance": {
+        "kind": "indice",
+        "detail": "MSCI World Consumer Discretionary · rendement net USD, dividendes nets réinvestis, hors frais ETF",
+        "date": "2026-09-30"
+      }
+    },
+    "returnsHistory": {
+      "2026-09-30": {
+        "asOf": "2026-09-30",
+        "currency": "USD",
+        "variant": "NET",
+        "values": [
+          [
+            2025,
+            8.35
+          ],
+          [
+            2024,
+            21.54
+          ],
+          [
+            2023,
+            35.05
+          ],
+          [
+            2022,
+            -33.36
+          ],
+          [
+            2021,
+            17.93
+          ],
+          [
+            2020,
+            36.62
+          ]
+        ],
+        "periodStart": "2020-01-01",
+        "periodEnd": "2025-12-31",
+        "source": {
+          "url": "https://www.msci.com/documents/10199/255599/msci-world-consumer-discretionary-index-usd-net.pdf",
+          "checkedAt": "2026-10-15",
+          "sha256": "fc6c1b7fd235c83db623890115d77ceb3cc0c05ec4bf8b6a90309dd54929b082",
+          "label": "Rendements calendaires officiels automatisés · MSCI World Consumer Discretionary"
+        },
+        "performance": {
+          "kind": "indice",
+          "detail": "MSCI World Consumer Discretionary · rendement net USD, dividendes nets réinvestis, hors frais ETF",
+          "date": "2026-09-30"
+        }
+      }
+    }
+  },
+  "msci-world-communication-services": {
+    "facts": {
+      "index": "MSCI World Communication Services",
+      "asOf": "2026-09-30",
+      "constituents": 60,
+      "countries": [
+        [
+          "🇺🇸 États-Unis",
+          88.43
+        ],
+        [
+          "🇯🇵 Japon",
+          5.03
+        ],
+        [
+          "🇩🇪 Allemagne",
+          1.34
+        ],
+        [
+          "Sweden",
+          1.31
+        ],
+        [
+          "🇬🇧 Royaume-Uni",
+          0.82
+        ],
+        [
+          "🌍 Autres",
+          3.08
+        ]
+      ],
+      "sectors": [
+        [
+          "📡 Communication",
+          100.0
+        ]
+      ],
+      "holdings": [
+        [
+          "ALPHABET A",
+          26.88
+        ],
+        [
+          "ALPHABET C",
+          21.21
+        ],
+        [
+          "META PLATFORMS A",
+          21.2
+        ],
+        [
+          "NETFLIX",
+          3.86
+        ],
+        [
+          "VERIZON COMMUNICATIONS",
+          2.55
+        ],
+        [
+          "DISNEY (WALT)",
+          2.43
+        ],
+        [
+          "AT&T",
+          2.26
+        ],
+        [
+          "SOFTBANK GROUP CORP",
+          2.02
+        ],
+        [
+          "DEUTSCHE TELEKOM",
+          1.34
+        ],
+        [
+          "SPACE EXPL TECH CORP A",
+          1.22
+        ]
+      ],
+      "source": {
+        "url": "https://www.msci.com/documents/10199/255599/msci-world-telecommunication-services-index-usd-net.pdf",
+        "checkedAt": "2026-10-15",
+        "label": "Composition officielle automatisée · MSCI World Communication Services",
+        "sha256": "32bde73de421f0244d95a83f06a5ab3a17a632d562cbcc8f1f8529c5119c48aa"
+      },
+      "provenance": "Publication officielle extraite automatiquement ; compositions d’indice distinctes des portefeuilles ETF."
+    },
+    "factsHistory": {
+      "2026-09-30": {
+        "index": "MSCI World Communication Services",
+        "asOf": "2026-09-30",
+        "constituents": 60,
+        "countries": [
+          [
+            "🇺🇸 États-Unis",
+            88.43
+          ],
+          [
+            "🇯🇵 Japon",
+            5.03
+          ],
+          [
+            "🇩🇪 Allemagne",
+            1.34
+          ],
+          [
+            "Sweden",
+            1.31
+          ],
+          [
+            "🇬🇧 Royaume-Uni",
+            0.82
+          ],
+          [
+            "🌍 Autres",
+            3.08
+          ]
+        ],
+        "sectors": [
+          [
+            "📡 Communication",
+            100.0
+          ]
+        ],
+        "holdings": [
+          [
+            "ALPHABET A",
+            26.88
+          ],
+          [
+            "ALPHABET C",
+            21.21
+          ],
+          [
+            "META PLATFORMS A",
+            21.2
+          ],
+          [
+            "NETFLIX",
+            3.86
+          ],
+          [
+            "VERIZON COMMUNICATIONS",
+            2.55
+          ],
+          [
+            "DISNEY (WALT)",
+            2.43
+          ],
+          [
+            "AT&T",
+            2.26
+          ],
+          [
+            "SOFTBANK GROUP CORP",
+            2.02
+          ],
+          [
+            "DEUTSCHE TELEKOM",
+            1.34
+          ],
+          [
+            "SPACE EXPL TECH CORP A",
+            1.22
+          ]
+        ],
+        "source": {
+          "url": "https://www.msci.com/documents/10199/255599/msci-world-telecommunication-services-index-usd-net.pdf",
+          "checkedAt": "2026-10-15",
+          "label": "Composition officielle automatisée · MSCI World Communication Services",
+          "sha256": "32bde73de421f0244d95a83f06a5ab3a17a632d562cbcc8f1f8529c5119c48aa"
+        },
+        "provenance": "Publication officielle extraite automatiquement ; compositions d’indice distinctes des portefeuilles ETF."
+      }
+    },
+    "returns": {
+      "asOf": "2026-09-30",
+      "currency": "USD",
+      "variant": "NET",
+      "values": [
+        [
+          2025,
+          32.03
+        ],
+        [
+          2024,
+          33.84
+        ],
+        [
+          2023,
+          45.55
+        ],
+        [
+          2022,
+          -36.93
+        ],
+        [
+          2021,
+          14.35
+        ],
+        [
+          2020,
+          22.98
+        ]
+      ],
+      "periodStart": "2020-01-01",
+      "periodEnd": "2025-12-31",
+      "source": {
+        "url": "https://www.msci.com/documents/10199/255599/msci-world-telecommunication-services-index-usd-net.pdf",
+        "checkedAt": "2026-10-15",
+        "sha256": "32bde73de421f0244d95a83f06a5ab3a17a632d562cbcc8f1f8529c5119c48aa",
+        "label": "Rendements calendaires officiels automatisés · MSCI World Communication Services"
+      },
+      "performance": {
+        "kind": "indice",
+        "detail": "MSCI World Communication Services · rendement net USD, dividendes nets réinvestis, hors frais ETF",
+        "date": "2026-09-30"
+      }
+    },
+    "returnsHistory": {
+      "2026-09-30": {
+        "asOf": "2026-09-30",
+        "currency": "USD",
+        "variant": "NET",
+        "values": [
+          [
+            2025,
+            32.03
+          ],
+          [
+            2024,
+            33.84
+          ],
+          [
+            2023,
+            45.55
+          ],
+          [
+            2022,
+            -36.93
+          ],
+          [
+            2021,
+            14.35
+          ],
+          [
+            2020,
+            22.98
+          ]
+        ],
+        "periodStart": "2020-01-01",
+        "periodEnd": "2025-12-31",
+        "source": {
+          "url": "https://www.msci.com/documents/10199/255599/msci-world-telecommunication-services-index-usd-net.pdf",
+          "checkedAt": "2026-10-15",
+          "sha256": "32bde73de421f0244d95a83f06a5ab3a17a632d562cbcc8f1f8529c5119c48aa",
+          "label": "Rendements calendaires officiels automatisés · MSCI World Communication Services"
+        },
+        "performance": {
+          "kind": "indice",
+          "detail": "MSCI World Communication Services · rendement net USD, dividendes nets réinvestis, hors frais ETF",
+          "date": "2026-09-30"
+        }
+      }
+    }
   }
 }

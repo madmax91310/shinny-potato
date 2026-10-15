@@ -2,6 +2,28 @@
 // partagent un rôle ; un indice, un facteur ou un mécanisme différent a son propre texte.
 // Aucun rendement, frais ou statut fiscal n’est recopié ici.
 const entries = {};
+add("world-midcap-equal",'theme',"moyennes capitalisations mondiales équipondérées","On fait une place aux moyennes entreprises des pays développés avec une pondération égale aux rééquilibrages. La taille et la pondération changent le comportement de cette poche par rapport au World.");
+entries["world-midcap-equal"].description="Une exposition dédiée à moyennes capitalisations mondiales équipondérées.";
+add("water-ishares",'theme',"eau","On renforce les entreprises du traitement, des équipements et des services liés à l’eau. On détient leurs actions ; leur rentabilité dépend aussi des coûts et des prix pratiqués.");
+entries["water-ishares"].description="Une exposition dédiée à eau.";
+add("agribusiness-ishares",'theme',"agriculture et agro-industrie","On renforce les entreprises de la chaîne agricole. Leurs actions ne suivent pas directement le prix du blé ou du maïs : les coûts, la météo et la demande comptent aussi.");
+entries["agribusiness-ishares"].description="Une exposition dédiée à agriculture et agro-industrie.";
+add("timber-ishares",'theme',"bois et exploitation forestière","On renforce les sociétés liées au bois et à l’exploitation forestière. On détient des actions cotées, dont le prix peut varier avec la construction et les coûts de production.");
+entries["timber-ishares"].description="Une exposition dédiée à bois et exploitation forestière.";
+add("world-staples",'theme',"consommation de base mondiale","On renforce les entreprises de consommation de base des pays développés. Leurs produits sont achetés régulièrement, mais leurs marges et leurs cours peuvent tout de même baisser.");
+entries["world-staples"].description="Une exposition dédiée à consommation de base mondiale.";
+add("world-discretionary",'theme',"consommation discrétionnaire mondiale","On renforce les entreprises dont les ventes dépendent des achats que les ménages peuvent repousser. Les revenus, le crédit et la confiance des consommateurs comptent pour cette poche.");
+entries["world-discretionary"].description="Une exposition dédiée à consommation discrétionnaire mondiale.";
+add("world-energy",'theme',"énergie mondiale","On renforce les entreprises énergétiques des pays développés. Leur rentabilité dépend du prix de l’énergie et de leurs coûts ; les actions ne reproduisent pas le cours du pétrole.");
+entries["world-energy"].description="Une exposition dédiée à énergie mondiale.";
+add("world-multifactor",'theme',"multifactoriel mondial","On combine plusieurs critères de sélection dans les actions des pays développés. Le fonds a changé d’indice pendant son histoire : les performances passées ne décrivent pas uniquement sa stratégie actuelle.");
+entries["world-multifactor"].description="Une exposition dédiée à multifactoriel mondial.";
+add("europe-food",'theme',"alimentation et boissons européennes","On renforce les fabricants européens de produits alimentaires et de boissons. Le prix des ingrédients et les volumes vendus comptent pour leurs bénéfices ; leurs actions restent exposées aux baisses.");
+entries["europe-food"].description="Une exposition dédiée à alimentation et boissons européennes.";
+add("europe-media",'theme',"médias européens","On renforce les entreprises européennes des médias. La publicité et les changements d’usage peuvent peser sur leurs résultats ; cette poche ne couvre pas tout le secteur de la communication.");
+entries["europe-media"].description="Une exposition dédiée à médias européens.";
+add("europe-retail",'theme',"distribution européenne","On renforce les entreprises européennes de distribution. Les dépenses des ménages, les stocks et les marges comptent pour leurs résultats ; certaines sont déjà présentes dans les indices larges.");
+entries["europe-retail"].description="Une exposition dédiée à distribution européenne.";
 add('world-eur-hedged','world-developed','le World couvert en euros','On suit les actions des pays développés avec une couverture des devises vers l’euro. Cette couverture modifie le risque de change et ses coûts ; elle ne protège pas des baisses des actions.');
 entries['world-eur-hedged'].description='Des actions mondiales développées avec une couverture du change vers l’euro.';
 add('euro-govt-5-7','bond','les obligations d’État euro de cinq à sept ans','On ajoute des obligations d’État en euros à maturité intermédiaire. Le fonds renouvelle ses titres : il reste sensible aux taux et ne prévoit pas de rembourser ton capital à une date fixe.');
