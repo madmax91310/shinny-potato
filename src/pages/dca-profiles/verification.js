@@ -18,8 +18,8 @@ export function sharedPositions(lines,references,now=new Date(),observations=hol
   const h=observations[line.asset],age=(today-Date.parse(h?.asOf))/86400000
   const valid=line.isin===references[line.asset]?.isin&&h?.sourceUrl&&Number.isFinite(age)&&age>=0&&age<=EXPOSURE_MAX_AGE_DAYS&&['fund','index'].includes(h.basis)&&!(h.synthetic&&h.basis==='fund')&&h.rows?.length&&h.rows.every(r=>Number.isFinite(r.weightPct)&&r.weightPct>=0)&&h.rows.reduce((s,r)=>s+r.weightPct,0)<=100.5
   if(!valid){unavailable.push(line.label);continue}
-  const rows=new Map()
-  for(const row of h.rows.filter(r=>/^[A-Z]{2}[A-Z0-9]{9}[0-9]$/.test(r.isin||'')))rows.set(row.isin,{...row,weightPct:(rows.get(row.isin)?.weightPct||0)+row.weightPct})
+  const rows=new Map(),scale=Math.min(1,100/h.rows.reduce((s,r)=>s+r.weightPct,0))
+  for(const row of h.rows.filter(r=>/^[A-Z]{2}[A-Z0-9]{9}[0-9]$/.test(r.isin||'')))rows.set(row.isin,{...row,weightPct:(rows.get(row.isin)?.weightPct||0)+row.weightPct*scale})
   eligible.push({line,h,rows})
  }
  const pairs=[]

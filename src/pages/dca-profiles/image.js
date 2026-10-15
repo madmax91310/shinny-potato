@@ -77,8 +77,8 @@ function fullPortfolio(ctx,p,a){
  text(ctx,'Répartition des actifs',70,190,595,40,C.ivory,700,'DcaEditorial')
  const holdings=p.lines.filter(l=>l.weight>0).map((l,i)=>({name:l.label,weight:l.weight,color:colors[i]}))
  const crowded=holdings.length>4
- if(!p.imageOnly){text(ctx,`Le DCA de ${p.name}`,70,228,595,28,C.ivory,700,'DcaEditorial');text(ctx,`${euro(a.monthly)} investis par mois`,70,264,595,25,C.yellow)}
- const cy=crowded?404:469,r=crowded?132:p.imageOnly?230:185
+ if(!p.imageOnly){text(ctx,`Le DCA de ${p.name}`,70,245,595,28,C.ivory,700,'DcaEditorial');text(ctx,`${euro(a.monthly)} investis par mois`,70,282,595,25,C.yellow)}
+ const cy=crowded?435:p.imageOnly?469:490,r=crowded?120:p.imageOnly?230:185
  ring(ctx,holdings,368,cy,r,r*.67)
  centered(ctx,'100 %',368,cy+12,r*1.7,crowded?42:64)
  centered(ctx,'du portefeuille',368,cy+48,r*1.55,crowded?18:26,C.muted,400)
