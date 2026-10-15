@@ -5,7 +5,9 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import {splitEtfRecords} from './scripts/split-etf-records.mjs'
+import {splitCompanyRecords} from './scripts/split-company-records.mjs'
 const issuerParts=splitEtfRecords()
+const companyParts=splitCompanyRecords()
 const toolData = projectToolData()
 
 // https://vite.dev/config/
@@ -15,6 +17,7 @@ export default defineConfig({
     manifest: true,
     rolldownOptions: { output: { codeSplitting: { groups: [
       ...issuerParts.groups,
+      ...companyParts.groups,
       ...toolData.groups,
       { name: 'company-observations', test: /company-analysis\.json$/, priority: 100 },
       { name: 'light-helpers', test: /(?:search-text|asset-labels|investment-presets|format-currency|publication-length)\.js$/, priority: 110 },
@@ -26,5 +29,5 @@ export default defineConfig({
       { name: 'official-index-history', test: /anniversary-index-history\.json$/ },
     ] } } },
   },
-  plugins: [projectLightRegistries(), toolData.plugin, projectFeeCatalog(), react(), tailwindcss(), issuerParts.plugin],
+  plugins: [projectLightRegistries(), toolData.plugin, projectFeeCatalog(), react(), tailwindcss(), issuerParts.plugin, companyParts.plugin],
 })

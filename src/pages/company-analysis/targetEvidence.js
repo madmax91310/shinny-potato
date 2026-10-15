@@ -1,6 +1,6 @@
 import { projectCash } from './cashProjection.js'
 import { calibrateScenarios } from './scenarioCalibration.js'
-import { COMPANIES } from '../../data/companies.js'
+import { COMPANY_PEERS } from '../../data/company-peers.js'
 import { fresh, activeDecision } from './lib.js'
 const day=86400000,positive=x=>Number.isFinite(x)&&x>0
 export const median=xs=>{const a=[...xs].sort((a,b)=>a-b);return a.length?(a[Math.floor((a.length-1)/2)]+a[Math.ceil((a.length-1)/2)])/2:null}
@@ -45,7 +45,7 @@ function valueAt(curve,date) {
   const a=curve[i-1],b=curve[i],t=(time-Date.parse(a.end))/(Date.parse(b.end)-Date.parse(a.end))
   return a.value*(b.value/a.value)**t
 }
-export function targetEvidence(c,inputs,now,dates,peers=COMPANIES) {
+export function targetEvidence(c,inputs,now,dates,peers=COMPANY_PEERS) {
   const result={cash:null,earnings:null,reasons:[]}
   if(c.valuationBusinessType!=='operating-company') {
     result.reasons.push('Méthode non qualifiée pour ce type d’entreprise : une analyse adaptée est nécessaire.');return result
@@ -83,3 +83,4 @@ export function targetEvidence(c,inputs,now,dates,peers=COMPANIES) {
   for(const method of ['cash','earnings'])if(result[method]&&!result[method].calibration){result[method]=null;result.reasons.push('Historique insuffisant pour calibrer les scénarios.')}
   return result
 }
+

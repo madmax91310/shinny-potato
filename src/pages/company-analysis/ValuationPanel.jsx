@@ -3,9 +3,10 @@ import TargetExplanation from './TargetExplanation.jsx'
 import ForecastEvaluation from './ForecastEvaluation.jsx'
 import ValuationPublication from './ValuationPublication.jsx'
 import { buildPriceScenarios, targetChart, targetReading } from './priceTargets.js'
-import { dateLabel } from './lib.js'
+import { dateLabel, calculatedRatios } from './lib.js'
 import { formatValue as n } from './valuationPresentation.js'
 import ValuationChart from './ValuationChart.jsx'
+import ValuationExplorer from './ValuationExplorer.jsx'
 
 const pct=v=>Number.isFinite(v)?`${v>=0?'+':'−'}${n(Math.abs(v)*100)} %`:'—'
 export default function ValuationPanel({company}) {
@@ -24,9 +25,9 @@ export default function ValuationPanel({company}) {
   return <section className="valuation-studio" aria-label="Objectifs de cours" data-testid="company-valuation">
     <header className="valuation-heading"><div><span className="valuation-eyebrow">OBJECTIFS DE COURS</span><h2>{company.name}</h2><span>{company.symbol}</span></div><div className="valuation-price"><small>Dernière clôture{inputs.price?` · ${dateLabel(company.quote.asOf)}`:''}</small><strong>{n(inputs.price,2)} <span>{currency}</span></strong></div></header>
     <dl className="valuation-metrics">
-      {metric('PER',n(inputs.pe),'Bénéfices publiés')}{metric('PER prév. ajusté',n(automatic.evidence.earnings?inputs.price/automatic.evidence.earnings.base:null),'Base du modèle bénéfices')}
-      {metric('FCF / action',inputs.cashReady?`${n(inputs.cashBase,2)} ${currency}`:'—',`Exercice ${company.annual?.end?.slice(0,4)??'—'}`)}
-      {metric('Rendement FCF',inputs.cashReady?`${n(inputs.cashBase/inputs.price*100)} %`:'—','FCF annuel / cours')}
+      {metric('PER',n(inputs.pe),calculatedRatios(company,now).peTTM?'Bénéfices sur 12 mois':`Exercice ${company.annual?.end?.slice(0,4)??'—'}`)}{metric('PER prév. ajusté',n(automatic.evidence.earnings?inputs.price/automatic.evidence.earnings.base:null),'Base du modèle bénéfices')}
+      {metric('FCF / action',Number.isFinite(inputs.reportedCashPerShare)?`${n(inputs.reportedCashPerShare,2)} ${currency}`:'—',`Exercice ${company.annual?.end?.slice(0,4)??'—'}`)}
+      {metric('Rendement FCF',Number.isFinite(inputs.reportedCashPerShare)&&inputs.price?`${n(inputs.reportedCashPerShare/inputs.price*100)} %`:'—','FCF annuel / cours')}
     </dl>
     <div className="valuation-horizon" role="group" aria-label="Horizon de prévision"><span>Objectifs à</span>{[1,3,5].map(h=><button type="button" key={h} aria-pressed={years===h} onClick={()=>setYears(h)}>{h} an{h>1?'s':''}</button>)}<span>{automatic.targetDate?dateLabel(automatic.targetDate):''}</span></div>
     <div className="valuation-main"><div className="valuation-thesis">
@@ -50,6 +51,7 @@ export default function ValuationPanel({company}) {
     </>}
     {error&&<p role="alert" className="valuation-error">{error} Les prévisions sont masquées jusqu’à correction.</p>}
     {reading&&<TargetExplanation company={company} model={model} selected={selected} method={method} reading={reading}/>}
+    {reading&&<ValuationExplorer model={model} selected={selected} method={method} currency={currency}/>}
     {cash&&automatic.evidence.cash&&<details className="valuation-methodology" data-testid="cash-drivers"><summary>Construction du FCF : trésorerie, investissements et actions</summary>
       <p>{automatic.evidence.cash.drivers.explanation}</p>
       {automatic.evidence.cash.drivers.warning&&<p className="valuation-projection-note">{automatic.evidence.cash.drivers.warning}</p>}
@@ -67,3 +69,4 @@ export default function ValuationPanel({company}) {
     </details>
   </section>
 }
+

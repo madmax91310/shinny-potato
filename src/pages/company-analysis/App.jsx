@@ -1,21 +1,42 @@
 import ValuationPanel from './ValuationPanel.jsx'
 import { notifyPublication, copyPublicationText, startPublicationDownload } from '../../design-system/publicationActions.js'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import ChoicePicker from '../../design-system/ChoicePicker.jsx'
 import PageHeader from '../../design-system/PageHeader'
 import ToolWorkspace from '../../design-system/ToolWorkspace'
 import Button from '../../design-system/Button'
-import { COMPANIES } from './data.js'
+import { profiles, loadCompany } from 'virtual:company-dossiers'
 import { buildTweetText, canPublish, activeValuation, activeEstimates, activeHistory, activeAnnualContext, activeDecision, activeSolidity, decisionIndicators, decisionReadings, amount, dateLabel } from './lib.js'
 import { renderCompanyImage } from './image.js'
 import './style.css'
 
 export default function App() {
-  const [id, setId] = useState(COMPANIES[0].id)
-  const [message, setMessage] = useState('')
+  const [id, setId] = useState(profiles[0].id)
+  const [loaded, setLoaded] = useState(null)
+  const [error, setError] = useState(false)
+  const [attempt, setAttempt] = useState(0)
   const [drafts, setDrafts] = useState({})
+  useEffect(()=>{
+    let active=true;setError(false)
+    loadCompany(id).then(company=>{if(active)setLoaded(company)}).catch(()=>{if(active)setError(true)})
+    return ()=>{active=false}
+  },[id,attempt])
+  return <div className="company-analysis">
+    <PageHeader title="Analyse d’entreprise" subtitle="Des objectifs de cours à 1, 3 ou 5 ans, calculés à partir des données de l’entreprise." />
+    <div className="valuation-company-picker"><ChoicePicker aria-label="Choisir une entreprise" value={id} onChange={event=>setId(event.target.value)}>
+      {profiles.map(item=><option key={item.id} value={item.id}>{item.name} · {item.symbol}</option>)}
+    </ChoicePicker></div>
+    {error?<div role="alert"><p>Le dossier n’a pas pu être chargé.</p><Button onClick={()=>setAttempt(n=>n+1)}>Réessayer</Button></div>
+      :loaded?.id!==id?<p role="status">Chargement du dossier…</p>:null}
+    {loaded&&<div hidden={error||loaded.id!==id} data-loaded-company={loaded.id}><CompanyDossier company={loaded} drafts={drafts} setDrafts={setDrafts}/></div>}
+  </div>
+}
+
+function CompanyDossier({ company, drafts, setDrafts }) {
+  const id=company.id
+  const [message, setMessage] = useState('')
   const [editing, setEditing] = useState(false)
-  const company = COMPANIES.find(item => item.id === id)
+  useEffect(()=>{setMessage('')},[id])
   const generatedText = buildTweetText(company)
   const text = drafts[id] ?? generatedText
   const ready = canPublish(company)
@@ -40,11 +61,7 @@ export default function App() {
       startPublicationDownload(link); setMessage('Téléchargement lancé.')
     } catch { setMessage('Impossible de préparer l’image.'); notifyPublication('Impossible de préparer l’image. Réessaie.', 'error') }
   }
-  return <div className="company-analysis">
-    <PageHeader title="Analyse d’entreprise" subtitle="Des objectifs de cours à 1, 3 ou 5 ans, calculés à partir des données de l’entreprise." />
-    <div className="valuation-company-picker"><ChoicePicker aria-label="Choisir une entreprise" value={id} onChange={event => { setId(event.target.value); setMessage('') }}>
-          {COMPANIES.map(item => <option key={item.id} value={item.id}>{item.name} · {item.symbol}</option>)}
-        </ChoicePicker></div>
+  return <>
     <ValuationPanel key={company.id} company={company} />
     <details className="company-publication"><summary>Comptes détaillés et publication existante</summary>
     <ToolWorkspace renderImage={() => renderCompanyImage(company)} imageDisabled={!ready} imageAlt={`Les chiffres de ${company.name}`} actions={<>
@@ -58,8 +75,8 @@ export default function App() {
           <h2>Les données utilisées</h2>
           {company.annual && <p>Dernier exercice : {dateLabel(company.annual.end)}.</p>}
           {company.quoteListing && <p>Cotation utilisée : {company.quoteListing}.</p>}
-          {company.accountsObservedAt && <p>Comptes vérifiés le {dateLabel(company.accountsObservedAt)}.</p>}
-          <p><a href={company.accountsSourceUrl ?? `https://www.sec.gov/edgar/browse/?CIK=${company.cik}`} target="_blank" rel="noreferrer">Comptes officiels</a></p>
+          {company.accountsObservedAt && <p>Comptes annuels vérifiés le {dateLabel(company.accountsObservedAt)}.</p>}
+          <p><a href={company.accountsSourceUrl ?? `https://www.sec.gov/edgar/browse/?CIK=${company.cik}`} target="_blank" rel="noreferrer">{company.accountsSourceKind==='standardised-secondary'?'Comptes standardisés · Stock Analysis / S&P Global':'Comptes officiels'}</a></p>
           <p><a href={company.sourceUrl} target="_blank" rel="noreferrer">Activité de l’entreprise</a></p>
           {annualContext && <p><a href={annualContext.sourceUrl} target="_blank" rel="noreferrer">Contexte annuel : services, matériel et charge fiscale</a> · exercice clos le {dateLabel(annualContext.end)} · vérifié le {dateLabel(annualContext.reviewedAt)}. Ce contexte est retiré si les comptes changent.</p>}
           {company.quarter && <p>Dernière période trimestrielle : <a href={company.quarter.sourceUrl} target="_blank" rel="noreferrer">{dateLabel(company.quarter.end)}</a>{company.quarter.durationWeeks ? ` · ${company.quarter.durationWeeks} semaines` : ''} · revenus : {amount(company.quarter.revenue, company.currency)} · résultat net : {amount(company.quarter.netIncome, company.currency)}.</p>}
@@ -111,5 +128,6 @@ export default function App() {
       </section>
     </ToolWorkspace>
     </details>
-  </div>
+  </>
 }
+
