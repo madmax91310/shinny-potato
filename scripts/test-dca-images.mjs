@@ -37,19 +37,28 @@ try {
       {...prepareProfile(PROFILES[0]),id:'zero-dca',lines:prepareProfile(PROFILES[0]).lines.map(l=>({...l,amount:0}))},
       {...prepareProfile(PROFILES[0]),id:'karim-approved',name:'Karim',age:32,job:'informaticien',location:'',income:2500,variable:false,lines:[['world',70,350],['europe',20,100],['emerging',10,50]].map(([asset,weight,amount])=>({asset,label:ASSETS[asset][1],emoji:ASSETS[asset][0],weight,amount,isin:references[asset].isin}))}
     ]
-    for(const [index,{raw,field}] of cases.flatMap(raw=>['countries','sectors'].map(field=>({raw,field}))).entries()){
+    for(const [index,{raw,field}] of cases.flatMap(raw=>['countries','sectors','both'].map(field=>({raw,field}))).entries()){
       const profile=raw.lines.every(l=>Number.isFinite(l.weight))?raw:prepareProfile(raw,index)
       labels=[];boxes=[]
       const canvas=await renderDcaImage(profile,field)
       if(labels.some(l=>/fictif|undefined|\bNaN\b/i.test(l)))throw Error(profile.id+' unwanted text')
       if(!labels.includes(profile.name)||labels.filter(l=>l==='Épargnant Libre').length!==1)throw Error('Identity: '+profile.id)
-      for(const line of profile.lines)if(!labels.join(' ').includes(line.label))throw Error('Allocation missing: '+profile.id)
+      for(const line of profile.lines)if(field!=='both'&&!labels.join(' ').includes(line.label))throw Error('Allocation missing: '+profile.id)
       output.push({id:profile.id+'-'+field,labels:[...labels],png:['julien','alexandre','patrick','arthur','laurent','helene','eight-lines','zero-dca','karim-approved'].includes(profile.id)?canvas.toDataURL():null})
+    }
+    for(const field of ['countries','sectors','both']){
+      labels=[];boxes=[]
+      const anonymous={...prepareProfile(PROFILES[0]),name:'',imageOnly:true}
+      const canvas=await renderDcaImage(anonymous,field)
+      if(labels.some(l=>/LE DCA DE|investis par mois|Salaire|ans|Julien/.test(l)))throw Error('Identity or amounts leaked')
+      if(!labels.includes('Expositions du portefeuille'))throw Error('Missing anonymous heading')
+      if(field==='both'&&(!labels.includes('Exposition géographique')||!labels.includes('Exposition sectorielle')))throw Error('Missing panel')
+      output.push({id:'anonymous-'+field,labels:[...labels],png:canvas.toDataURL()})
     }
     CanvasRenderingContext2D.prototype.fillText=original
     return output
   })
-  assert.equal(records.length,206)
+  assert.equal(records.length,312)
   await mkdir('test-artifacts/dca',{recursive:true})
   for(const record of records.filter(r=>r.png))await writeFile(`test-artifacts/dca/${record.id}.png`,Buffer.from(record.png.split(',')[1],'base64'))
   await page.getByRole('button',{name:'Créer une participation',exact:true}).click()
@@ -57,7 +66,7 @@ try {
   await page.getByLabel('DCA position 1',{exact:true}).fill('300')
   assert(await page.getByRole('button',{name:'Télécharger le PNG',exact:true}).isDisabled())
   await page.getByRole('group',{name:'Support position 1',exact:true}).locator('[data-option][data-value="IE00B4L5Y983"]').click()
-  await page.getByRole('checkbox').check()
+  await page.getByRole('checkbox',{name:'La personne a validé',exact:false}).check()
   assert(await page.getByRole('button',{name:'Télécharger le PNG',exact:true}).isEnabled())
   await page.getByLabel('Poids position 1',{exact:true}).fill('90')
   assert(await page.getByRole('button',{name:'Télécharger le PNG',exact:true}).isDisabled())

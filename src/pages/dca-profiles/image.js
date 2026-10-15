@@ -38,6 +38,23 @@ export function donutData(analysis,field='countries'){
  if(missing>.000001)rows.push({name:'Non ventilé ici',weight:missing,color:'#57718e'})
  return {group,rows}
 }
+function exposurePanel(ctx,a,field,x,y,width){
+ const {group,rows}=donutData(a,field)
+ text(ctx,field==='countries'?'Exposition géographique':'Exposition sectorielle',x,y,width,36,C.ivory,700,'DcaEditorial')
+ const cx=x+width/2,cy=y+280,r=220,inner=150
+ let angle=-Math.PI/2
+ for(const row of rows){const end=angle+row.weight/100*Math.PI*2;ctx.beginPath();ctx.arc(cx,cy,r,angle,end);ctx.arc(cx,cy,inner,end,angle,true);ctx.closePath();ctx.fillStyle=row.color;ctx.fill();angle=end}
+ const percentages=integerPercentages(rows)
+ rows.forEach((row,i)=>{
+  const left=x+(i%2)*width/2,top=y+540+Math.floor(i/2)*65
+  ctx.fillStyle=row.color;ctx.beginPath();ctx.arc(left+8,top-7,7,0,Math.PI*2);ctx.fill()
+  text(ctx,row.name,left+24,top,width/2-35,22,C.ivory,400)
+  text(ctx,`${percentages[i]} %`,left+24,top+28,width/2-35,25)
+ })
+ const source=group?`${group.oldest!==group.asOf?group.oldest+' → ':''}${group.asOf} · couverture ${Math.round(group.coverage)} %`:'Aucune ventilation qualifiée'
+ text(ctx,source,x,y+735,width,18,C.muted,400)
+ if(group?.classification==='country-registration')text(ctx,'Pays d’enregistrement',x,y+757,width,16,C.muted,400)
+}
 let fontReady
 async function loadDcaFont(){
  if(!fontReady)fontReady=new FontFace('DcaEditorial',`url("${import.meta.env.BASE_URL}asset-art/editorial.woff2")`,{weight:'500'}).load().then(font=>document.fonts.add(font)).catch(error=>{fontReady=undefined;throw error})
@@ -49,6 +66,18 @@ export async function renderDcaImage(input,field='countries'){
  if(a.errors.length)throw Error(a.errors.join(' '))
  const canvas=document.createElement('canvas');canvas.width=1600;canvas.height=1067;const ctx=canvas.getContext('2d')
  const bg=ctx.createLinearGradient(0,0,1600,1067);bg.addColorStop(0,'#071b36');bg.addColorStop(.5,'#03152c');bg.addColorStop(1,'#092952');ctx.fillStyle=bg;ctx.fillRect(0,0,1600,1067)
+ if(p.imageOnly||field==='both'){
+  text(ctx,p.imageOnly?'Expositions du portefeuille':`Le DCA de ${p.name}`,64,100,1472,65,C.ivory,700,'DcaEditorial')
+  if(!p.imageOnly)text(ctx,`${euro(a.monthly)} investis par mois`,66,158,1470,34,C.yellow)
+  if(field==='both'){
+   exposurePanel(ctx,a,'countries',66,218,700)
+   exposurePanel(ctx,a,'sectors',834,218,700)
+  }else exposurePanel(ctx,a,field,450,218,700)
+  rule(ctx,64,1013,1472)
+  text(ctx,p.scope,64,1050,1000,20,C.muted,400)
+  text(ctx,'Épargnant Libre',1205,1051,330,32,C.ivory,700,'DcaEditorial')
+  return canvas
+ }
  text(ctx,'LE DCA DE',64,62,710,26,C.muted,700)
  text(ctx,p.name,62,161,710,96,C.ivory,700,'DcaEditorial')
  text(ctx,[p.age&&`${p.age} ans`,p.job].filter(Boolean).join(' · '),66,212,710,30,C.ivory,400)

@@ -14,7 +14,7 @@ export function filterProfiles(profiles,filters,used=[]){return profiles.filter(
  && (!filters.unused || !used.includes(p.id))
 })}
 export function validSaved(record){
- try{return record&&typeof record.id==='string'&&record.id.length<=100&&typeof record.title==='string'&&record.title.length<=80&&typeof record.draft==='string'&&record.draft.length<=20000&&['countries','sectors'].includes(record.field)&&!validateProfile(record.profile).length}catch{return false}
+ try{return record&&typeof record.id==='string'&&record.id.length<=100&&typeof record.title==='string'&&record.title.length<=80&&typeof record.draft==='string'&&record.draft.length<=20000&&['countries','sectors','both'].includes(record.field)&&!validateProfile(record.profile).length}catch{return false}
 }
 export function readSaved(storage){
  const raw=storage.getItem(SAVED_KEY)

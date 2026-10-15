@@ -37,3 +37,7 @@ Visuel : bleu nuit, crème et jaune ; typographie serif pour les titres et monta
 - Duplication et jusqu’à 50 sauvegardes locales nommées, contenant portefeuille, texte personnalisé et choix du donut. Mise à jour et suppression individuelles ; restauration sans autorisation de publication. Ancien brouillon unique conservé. Les données corrompues ne sont pas écrasées silencieusement.
 
 Validation supplémentaire : `node scripts/test-dca-upgrade.mjs`, `python -m unittest discover -s scripts -p 'test_dca_equities.py'`, 206 rendus (deux modes), filtres, recherche, duplication, sauvegardes après rechargement et mobile.
+
+## Images d’exposition
+
+Option « Expositions uniquement » : aucun pseudonyme, âge, activité, revenu ou montant de versement dans le PNG. Un nom vide est accepté dans ce mode. Choix géographie, secteurs ou les deux côte à côte, conservé dans les sauvegardes et brouillons. Chaque donut garde sa propre couverture et ses dates. Le mode avec identité reste disponible.
