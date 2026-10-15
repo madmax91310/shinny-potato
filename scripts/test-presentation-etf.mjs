@@ -8,8 +8,8 @@ import { AUTOMATED_ETF, buildAnnualPerformance } from '../src/data/automated-etf
 import { getAnnualPerformance, performanceEntries } from '../src/pages/etf-sheets/annualPerformance.js';
 import { getETFArt } from '../src/pages/etf-sheets/visualIdentity.js';
 const config = [...JSON.parse(readFileSync(new URL('./additional-etf-sources.json', import.meta.url))).instruments, ...JSON.parse(readFileSync(new URL('./etf-pilot.json', import.meta.url))).instruments.map(s => ({...s, enabled:true, required:true}))];
-assert.equal(PRESENTATION_ETF_ADDITIONS.length, 7);
-for (const r of PRESENTATION_ETF_ADDITIONS) {
+assert.equal(PRESENTATION_ETF_ADDITIONS.length, 11);
+for (const r of PRESENTATION_ETF_ADDITIONS.filter(r=>!r.reviewedAt)) {
   const card = ETFS.find(c => c.isin === r.isin);
   const record = AUTOMATED_ETF[r.isin];
   assert(getETFArt(card.id));
@@ -57,3 +57,20 @@ for (const r of PRESENTATION_ETF_EXPANSION) {
   assert.deepEqual(series.values, series.calendarYears.map(y => record.performance.years[y] ?? null));
 }
 console.log('Five PEA presentations: existing automated collectors, exact-share EUR performances, listing and visual identity OK.');
+
+// New cards retain actual short histories and explicitly unavailable country data.
+for (const r of PRESENTATION_ETF_ADDITIONS.filter(r=>r.reviewedAt)) {
+ const card=ETFS.find(c=>c.isin===r.isin),record=AUTOMATED_ETF[r.isin];
+ assert(card.presentationOnly && card.listing && getETFArt(card.id));
+ assert.equal(card.lastVerified,'15/10/2026');
+ assert.equal(card.distribution,r.distribution);
+ const series=getAnnualPerformance(card);
+ assert.equal(series.currency,record.performance.currency);
+ assert(performanceEntries(series).length);
+ for(const field of ['holdings','countries','sectors']) {
+  if(record[field]) assert(record[field].rows.length && record[field].asOf);
+  else assert.equal(record.fieldQualification[field].status,'not-published');
+ }
+ if(r.isin==='IE0003R87OG3') assert(series.values.every(v=>v===null));
+}
+console.log('Four additional cards: issuer facts, exact listings and short/missing histories preserved.');

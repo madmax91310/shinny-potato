@@ -258,6 +258,15 @@ async function testCalculateur(page) {
       && (await page.locator('.ic-current-level').innerText()).includes('points')
       && (await page.locator('.ic-method-note').innerText()).includes(`${name} ${variant}`);
   }
+  for (const id of ['etfWorldTech','etfAiBigData','etfWorldExUs','etfEmExChina']) {
+    await choose(page.locator('[data-selector].ic-control').first(), id);
+    const dca=page.getByRole('button',{name:'Mensuel (DCA)',exact:true});
+    septemberOk &&= await dca.isEnabled();
+    await dca.click();
+    await page.getByRole('button',{name:/Copier le texte du post|✓ Copié/}).click();
+    const post=await page.evaluate(()=>window.__investmentCopiedText);
+    septemberOk &&= post.includes('septembre 2026') && !/NaN|undefined/.test(post);
+  }
   await choose(page.locator('[data-selector].ic-control').first(), 'or');
   septemberOk &&= (await page.locator('.ic-current-level').innerText()).includes('septembre 2026');
   await page.getByRole('button', { name: /Copier le texte du post|✓ Copié/ }).click();
@@ -538,7 +547,7 @@ async function testEtfSheets(page) {
       || !sectionPositions.every((position, index) => position >= 0 && (index === 0 || position > sectionPositions[index - 1]))
       || !copied.endsWith('💬 ' + card.question)
       || /undefined|NaN/.test(copied)) badCount++;
-    if (card.lastVerified === '01/10/2026' || card.id.startsWith('lifestrategy')) {
+    if (card.lastVerified === '15/10/2026' || card.lastVerified === '01/10/2026' || card.id.startsWith('lifestrategy')) {
       for (const buttonName of ['🖼️ Image récapitulative']) {
         await page.locator('.workspace-action-menu summary').click();
         await page.getByRole('button', { name: buttonName }).click();

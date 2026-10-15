@@ -26,7 +26,7 @@ function validate(profile, risk, selection) {
   }
   if (profile === 'thematique') {
     const options = risk==='defensif' ? THEME_OPTIONS_CALM : risk==='equilibre' ? THEME_OPTIONS_FULL : THEME_OPTIONS_AGGRESSIVE;
-    assert.ok([...options,'health_europe_pea','utilities_world_dws','cloud-wisdomtree','ia-big-data-xtrackers','industry_world_dws'].includes(selection[0].id));
+    assert.ok([...options,'world-staples','world-discretionary','world-energy','water-ishares','health_europe_pea','utilities_world_dws','cloud-wisdomtree','ia-big-data-xtrackers','industry_world_dws'].includes(selection[0].id));
     assert.equal(selection[0].pct, {defensif:35,equilibre:35,dynamique:55,offensif:70}[risk]);
   }
 }

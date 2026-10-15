@@ -22,6 +22,7 @@ export function expandedRecipes(profile,risk) {
     const stable=[80,65,35,0,0][level];
     const satellite=[5,10,15,20,25][level];
     return [
+      ...['world-staples','world-discretionary','world-energy','water-ishares','world-multifactor'].map(id=>make(`global-${id}`,'Socle mondial et poche spécialisée',[[GLOBAL,100-stable-satellite],[id,satellite],['fonds_euros',stable]])),
       make('europe-minvol','Europe et volatilité mondiale réduite', [['msci_europe',100-stable-satellite],['world_minvol_ishares',satellite],['fonds_euros',stable]]),
       make('usa-equal-value','S&P 500 équipondéré et value mondiale', [['sp500_equal_weight',100-stable-satellite],['actions_value',satellite],['fonds_euros',stable]]),
       make('global-industrie','Marché mondial et industrie',[[GLOBAL,100-stable-satellite],['industry_world_dws',satellite],['fonds_euros',stable]]),
@@ -33,6 +34,7 @@ export function expandedRecipes(profile,risk) {
   if(profile==='pro_europe') {
     const core=[5,20,45,65,75][level], sector=[5,10,15,20,25][level];
     return [
+      make('europe-small-value','Europe et petites entreprises value', [['msci_europe',core],['small-value-europe',sector],['oblig_etat_eur_short',100-core-sector-(level===0?20:0)],['fonds_euros',level===0?20:0]]),
       make('europe-sante','Europe large et santé', [['msci_europe',core],['health_europe_pea',sector],['oblig_etat_eur_short',100-core-sector-(level===0?20:0)],['fonds_euros',level===0?20:0]]),
       make('europe-assurance','Europe large et assurances', [['msci_europe',core],['europe-insurance',sector],['oblig_etat_eur_short',100-core-sector-(level===0?20:0)],['fonds_euros',level===0?20:0]]),
       make('europe-dividendes','Europe et dividendes réguliers', [['msci_europe',core],['euro-dividend-aristocrats',sector],['oblig_etat_eur_short',100-core-sector-(level===0?20:0)],['fonds_euros',level===0?20:0]]),
@@ -78,9 +80,9 @@ export function expandedRecipes(profile,risk) {
     const theme=[0,35,35,55,70][level];
     // Les nouvelles convictions restent distinctes. Une santé européenne ne
     // devient pas implicitement un ETF mondial lors d'un changement d'émetteur.
-    const themes=level===1 ? ['health_europe_pea','utilities_world_dws','sect_conso_defensive']
-      : ['cloud-wisdomtree','ia-big-data-xtrackers','industry_world_dws','health_europe_pea'];
-    const labels = {health_europe_pea:'Santé européenne',utilities_world_dws:'Services publics mondiaux',sect_conso_defensive:'Consommation de base',
+    const themes=level===1 ? ['health_europe_pea','utilities_world_dws','sect_conso_defensive','world-staples']
+      : ['cloud-wisdomtree','ia-big-data-xtrackers','industry_world_dws','health_europe_pea','world-staples','world-discretionary','world-energy','water-ishares'];
+    const labels = {'world-staples':'Consommation de base mondiale','world-discretionary':'Consommation discrétionnaire mondiale','world-energy':'Énergie mondiale','water-ishares':'Eau',health_europe_pea:'Santé européenne',utilities_world_dws:'Services publics mondiaux',sect_conso_defensive:'Consommation de base',
       'cloud-wisdomtree':'Cloud','ia-big-data-xtrackers':'Intelligence artificielle et big data',industry_world_dws:'Industrie mondiale'};
     return themes.map(id=>make(`theme-${id}`,`${labels[id]} et socle mondial`,[
       [id,theme,0],[GLOBAL,level===1?15:level===2?15:level===3?15:20],
