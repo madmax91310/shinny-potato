@@ -49,6 +49,8 @@ try {
   appendSnapshot(dir,observed);appendSnapshot(dir,accounting)
   let evaluated=evaluate(readSnapshots(dir),'2027-02-02')
   const result=evaluated.results[0]
+  assert.equal(evaluated.summary.groups[0].nextTargetDate,null)
+  assert.equal(evaluate(readSnapshots(dir),'2025-12-31').summary.groups[0].nextTargetDate,'2026-01-01')
   assert.equal(result.priceStatus,'evaluated');assert.equal(result.lagDays,1)
   assert(Math.abs(result.absoluteError-.2)<1e-12)
   assert(Math.abs(result.baselineAbsoluteError-.1)<1e-12)

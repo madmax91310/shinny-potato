@@ -1,3 +1,4 @@
+import { scenarioContext } from './scenarioContext.js'
 import { formatValue as n } from './valuationPresentation.js'
 // One explanation for screen and exports. No independent price forecast here.
 export function targetExplanation(company, model, index, method) {
@@ -15,7 +16,8 @@ export function targetExplanation(company, model, index, method) {
   const subject=cash?'La trésorerie disponible par action':'Le bénéfice ajusté par action'
   const movement=rising?'progresse':falling?'recule':'reste proche de son niveau de départ'
   let summary=`${subject} ${movement} dans ce scénario.`
-  if(rising&&cheaper&&r.upside<0)summary+=' Cette progression ne compense pas une valorisation moins élevée : l’objectif reste inférieur au cours actuel.'
+  if(rising&&cheaper&&Math.abs(r.upside)<.00005)summary+=' La progression du résultat compense le changement de multiple : l’objectif reste proche du cours actuel.'
+  else if(rising&&cheaper&&r.upside<0)summary+=' Cette progression ne compense pas une valorisation moins élevée : l’objectif reste inférieur au cours actuel.'
   else if(rising&&cheaper)summary+=' Cette progression compense le prix plus faible payé pour chaque unité de résultat : l’objectif reste au-dessus du cours actuel.'
   else if(dearer)summary+=' Le calcul suppose aussi que le marché paie plus cher chaque unité de résultat. Cela relève l’objectif, sans garantir une hausse par rapport au cours actuel.'
   else if(cheaper)summary+=' Une valorisation moins élevée pèse également sur l’objectif.'
@@ -41,7 +43,11 @@ export function targetExplanation(company, model, index, method) {
     ...(e.calibration.shortHistory?['L’historique utilisé pour les scénarios est court.']:[]),
     'Prudent, central et favorable décrivent des hypothèses différentes. Ces noms ne disent pas quel scénario a le plus de chances de se réaliser.'
   ]
-  return {summary,coverage,limitations,methodComparison,disagreement,anchorExplanation,periods,lastEstimate,extrapolated,customGrowth,
+  const money=v=>`${n(Math.abs(v),2)} ${company.currency}`
+  const effect=(v,label)=>Math.abs(v)<.005?`${label} a un effet inférieur à 0,01 ${company.currency}`:`${label} ${v>=0?'ajoute':'retire'} ${money(v)}`
+  const bridgeText=`À partir du cours de ${n(model.inputs.price,2)} ${company.currency}, ${effect(fundamentalEffect,cash?"l’évolution du FCF par action":"l’évolution du bénéfice ajusté par action")}, puis ${effect(multipleEffect,"le changement de multiple")}. On arrive ainsi à ${n(r.value,2)} ${company.currency}. Les effets sont calculés dans cet ordre, avant arrondi ; ce ne sont pas deux rendements à additionner.`
+  const context=scenarioContext(company,model,index,method)
+  return {bridgeText,context,summary,coverage,limitations,methodComparison,disagreement,anchorExplanation,periods,lastEstimate,extrapolated,customGrowth,
     fundamental:r.fundamental,multiple:a.multiple,currentMultiple,fundamentalEffect,multipleEffect,
     historyCount:company.decision?.years?.length??0,multipleCount:e.calibration.multiples.count,
     sourceDate:e.asOf,period:e.periods.at(-1),cash,

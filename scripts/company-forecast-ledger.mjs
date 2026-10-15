@@ -93,8 +93,9 @@ export function evaluate(archives,today) {
   const groups={}
   for(const r of results) {
     const key=`${r.company}/${r.method}/${r.years}/v${r.modelVersion}`
-    const g=groups[key]??={company:r.company,method:r.method,years:r.years,modelVersion:r.modelVersion,count:0,pending:0,missing:0,blocked:0,priceErrors:[],baselineErrors:[],fundamentalErrors:[],fundamentalObserved:0,inside:0}
+    const g=groups[key]??={company:r.company,method:r.method,years:r.years,modelVersion:r.modelVersion,count:0,pending:0,missing:0,blocked:0,nextTargetDate:null,priceErrors:[],baselineErrors:[],fundamentalErrors:[],fundamentalObserved:0,inside:0}
     g.count++
+    if(r.priceStatus==='pending'&&(!g.nextTargetDate||r.targetDate<g.nextTargetDate))g.nextTargetDate=r.targetDate
     if(r.priceStatus==='evaluated'){g.priceErrors.push(r.absoluteError);g.baselineErrors.push(r.baselineAbsoluteError);g.inside+=Number(r.insideRange)}
     else if(['pending','waiting'].includes(r.priceStatus))g.pending++
     else if(r.priceStatus==='basis-unqualified')g.blocked++
@@ -105,7 +106,7 @@ export function evaluate(archives,today) {
   const summary={version:1,updatedAt:today,startedAt:snapshots[0]?.snapshot.issuedAt??null,snapshots:snapshots.length,
     archiveUrl:'https://github.com/madmax91310/shinny-potato/tree/company-forecast-history',
     convention:'Prévisions automatiques uniquement. Cours : première clôture observée dans les 7 jours suivant l’échéance, délai explicite, hors dividendes. Erreur absolue = |prévision / constat − 1|. Référence naïve : cours inchangé. Fondamentaux : même exercice et définition, pertes incluses ; erreur relative = (prévision − constat) / |constat|. Un constat nul reste enregistré avec une erreur absolue en unités, sans pourcentage. Comparaison suspendue si division d’actions ou couverture de contrôle insuffisante. Les prévisions quotidiennes se recouvrent et ne sont pas des observations indépendantes.',
-    groups:Object.values(groups).map(g=>({company:g.company,method:g.method,years:g.years,modelVersion:g.modelVersion,count:g.count,pending:g.pending,missing:g.missing,blocked:g.blocked,evaluated:g.priceErrors.length,mae:mean(g.priceErrors),baselineMae:mean(g.baselineErrors),rangeCoverage:g.priceErrors.length?g.inside/g.priceErrors.length:null,fundamentalEvaluated:g.fundamentalObserved,fundamentalRelativeCount:g.fundamentalErrors.length,fundamentalMae:mean(g.fundamentalErrors)}))}
+    groups:Object.values(groups).map(g=>({company:g.company,method:g.method,years:g.years,modelVersion:g.modelVersion,nextTargetDate:g.nextTargetDate,count:g.count,pending:g.pending,missing:g.missing,blocked:g.blocked,evaluated:g.priceErrors.length,mae:mean(g.priceErrors),baselineMae:mean(g.baselineErrors),rangeCoverage:g.priceErrors.length?g.inside/g.priceErrors.length:null,fundamentalEvaluated:g.fundamentalObserved,fundamentalRelativeCount:g.fundamentalErrors.length,fundamentalMae:mean(g.fundamentalErrors)}))}
   return {summary,results}
 }
 if(process.argv[1]&&resolve(process.argv[1])===fileURLToPath(import.meta.url)) {

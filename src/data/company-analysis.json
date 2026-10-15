@@ -5472,20 +5472,20 @@
             "close": 380.0
           },
           {
-            "asOf": "2026-10-13",
-            "close": 384.04998779296875
+            "asOf": "2026-10-14",
+            "close": 389.54998779296875
           }
         ],
         "historyBasis": "Yahoo close; weekly last completed session; no dividend reinvestment",
-        "price": 384.04998779296875,
-        "asOf": "2026-10-13",
+        "price": 389.54998779296875,
+        "asOf": "2026-10-14",
         "observedAt": "2026-10-15",
         "currency": "EUR",
         "splits": [],
         "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/MC.PA?range=2y&interval=1d&events=splits"
       },
       "decision": {
-        "observedAt": "2026-10-14",
+        "observedAt": "2026-10-15",
         "annualEnd": "2025-12-31",
         "years": [
           {
@@ -5496,7 +5496,12 @@
             "operatingCashFlow": 17833000000.0,
             "tags": {
               "operatingCashFlow": "Net cash from/\\(used in\\) operating activities"
-            }
+            },
+            "capitalExpenditure": 4948000000.0,
+            "freeCashFlow": 12885000000.0,
+            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
+            "averageDilutedShares": 502480100.0,
+            "sharesBasisSource": "https://lvmh-com.cdn.prismic.io/lvmh-com/Z5kVBpbqstJ999KR_Financialdocuments-December31%2C2024.pdf"
           },
           {
             "end": "2023-12-31",
@@ -5506,7 +5511,12 @@
             "operatingCashFlow": 18400000000.0,
             "tags": {
               "operatingCashFlow": "Net cash from/\\(used in\\) operating activities"
-            }
+            },
+            "capitalExpenditure": 7536000000.0,
+            "freeCashFlow": 10864000000.0,
+            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
+            "averageDilutedShares": 500304316.0,
+            "sharesBasisSource": "https://lvmh-com.cdn.prismic.io/lvmh-com/aXjqHgIvOtkhB_8I_Financialdocuments-December31%2C2025.pdf"
           },
           {
             "end": "2024-12-31",
@@ -5516,7 +5526,12 @@
             "operatingCashFlow": 18924000000.0,
             "tags": {
               "operatingCashFlow": "Net cash from/\\(used in\\) operating activities"
-            }
+            },
+            "capitalExpenditure": 5519000000.0,
+            "freeCashFlow": 13405000000.0,
+            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
+            "averageDilutedShares": 499681046.0,
+            "sharesBasisSource": "https://lvmh-com.cdn.prismic.io/lvmh-com/aXjqHgIvOtkhB_8I_Financialdocuments-December31%2C2025.pdf"
           },
           {
             "end": "2025-12-31",
@@ -5526,21 +5541,25 @@
             "operatingCashFlow": 18874000000.0,
             "tags": {
               "operatingCashFlow": "Net cash from/\\(used in\\) operating activities"
-            }
+            },
+            "capitalExpenditure": 4595000000.0,
+            "freeCashFlow": 14279000000.0,
+            "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
+            "averageDilutedShares": 497976118.0,
+            "sharesBasisSource": "https://lvmh-com.cdn.prismic.io/lvmh-com/aXjqHgIvOtkhB_8I_Financialdocuments-December31%2C2025.pdf"
           }
         ],
         "method": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
         "componentVersion": 5,
-        "accountsEndAtCollection": "2026-06-30"
+        "accountsEndAtCollection": "2026-06-30",
+        "shareNotesVersion": 1
       },
       "valuationCollection": {
         "observedAt": "2026-10-15",
-        "valuationShareBasis": "unavailable",
-        "valuationShareBasisDetail": "Four annual published diluted share counts required",
+        "valuationShareBasis": "qualified",
         "targetForecast": "unavailable-or-retained",
         "targetForecastDetail": "No qualified source for this listing",
-        "targetCashReference": "unavailable-or-retained",
-        "targetCashReferenceDetail": "Qualified split/share basis required"
+        "targetCashReference": "qualified"
       },
       "halfYear": {
         "start": null,
@@ -5558,7 +5577,60 @@
         "sourceUrl": "https://lvmh-com.cdn.prismic.io/lvmh-com/CmJbUDA5Jzsdufho_LVMH_2026Firsthalffinancialreport.pdf"
       },
       "trailing": null,
-      "quarters": []
+      "quarters": [],
+      "valuationShareBasis": {
+        "version": 1,
+        "observedAt": "2026-10-15",
+        "annualEnd": "2025-12-31",
+        "accountsEndAtCollection": "2026-06-30",
+        "currency": "EUR",
+        "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/MC.PA?period1=1640649600&period2=1792108800&interval=1mo&events=splits",
+        "splitCheckFrom": "2021-12-28",
+        "splitCheckThrough": "2026-10-15",
+        "definition": "Published annual diluted averages; complete historical split window checked"
+      },
+      "targetCashReference": {
+        "version": 1,
+        "observedAt": "2026-10-15",
+        "annualEnd": "2025-12-31",
+        "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/MC.PA?period1=1640649600&period2=1792108800&interval=1mo&events=splits",
+        "currency": "EUR",
+        "historicalMultiples": [
+          {
+            "end": "2022-12-31",
+            "quotePeriodEnd": "2022-12-31",
+            "price": 800.0,
+            "base": 25.642806550946,
+            "multiple": 31.197833139309274,
+            "accountsSourceUrl": "https://lvmh-com.cdn.prismic.io/lvmh-com/Z5kVBpbqstJ999KR_Financialdocuments-December31%2C2024.pdf"
+          },
+          {
+            "end": "2023-12-31",
+            "quotePeriodEnd": "2023-12-31",
+            "price": 773.5999755859375,
+            "base": 21.714783687774542,
+            "multiple": 35.62549766597378,
+            "accountsSourceUrl": "https://lvmh-com.cdn.prismic.io/lvmh-com/aXjqHgIvOtkhB_8I_Financialdocuments-December31%2C2025.pdf"
+          },
+          {
+            "end": "2024-12-31",
+            "quotePeriodEnd": "2024-12-31",
+            "price": 703.5,
+            "base": 26.827113230146416,
+            "multiple": 26.223470038120105,
+            "accountsSourceUrl": "https://lvmh-com.cdn.prismic.io/lvmh-com/aXjqHgIvOtkhB_8I_Financialdocuments-December31%2C2025.pdf"
+          },
+          {
+            "end": "2025-12-31",
+            "quotePeriodEnd": "2025-12-31",
+            "price": 546.9000244140625,
+            "base": 28.67406585148728,
+            "multiple": 19.072984879320686,
+            "accountsSourceUrl": "https://lvmh-com.cdn.prismic.io/lvmh-com/aXjqHgIvOtkhB_8I_Financialdocuments-December31%2C2025.pdf"
+          }
+        ],
+        "definition": "Ex-post annual FCF per diluted share / split-adjusted monthly close; not point-in-time backtest data"
+      }
     },
     "air-liquide": {
       "annual": {
@@ -5573,12 +5645,12 @@
         "previousNetIncome": 3306100000.0,
         "operatingIncome": 5278700000.0,
         "incomeBasis": "Résultat net part du groupe (IFRS)",
-        "sourceUrl": "https://live.euronext.com/sites/default/files/company_press_releases/attachments/2026/02/20/cpr03_lesechos_16165_1389885_Air_Liquide_FY_2025__ENG__PR__Activity_Report_.pdf"
+        "sourceUrl": "https://www.airliquide.com/sites/airliquide.com/files/2026-02/air-liquide-pr-fy-2025-with-record-performance-and-confident-in-its-transformation-dynamic-air-liquide-confirms-its-growth-outlook.pdf"
       },
       "quarter": null,
       "trailingUnavailableReason": "Quatre BPA trimestriels comparables non publiés par cet émetteur",
       "accountsObservedAt": "2026-10-15",
-      "accountsSourceUrl": "https://live.euronext.com/sites/default/files/company_press_releases/attachments/2026/02/20/cpr03_lesechos_16165_1389885_Air_Liquide_FY_2025__ENG__PR__Activity_Report_.pdf",
+      "accountsSourceUrl": "https://www.airliquide.com/sites/airliquide.com/files/2026-02/air-liquide-pr-fy-2025-with-record-performance-and-confident-in-its-transformation-dynamic-air-liquide-confirms-its-growth-outlook.pdf",
       "history": {
         "years": [
           {
@@ -5635,7 +5707,7 @@
             "previousNetIncome": null,
             "operatingIncome": 4945600000.0,
             "incomeBasis": "Résultat net part du groupe (IFRS)",
-            "sourceUrl": "https://live.euronext.com/sites/default/files/company_press_releases/attachments/2026/02/20/cpr03_lesechos_16165_1389885_Air_Liquide_FY_2025__ENG__PR__Activity_Report_.pdf"
+            "sourceUrl": "https://www.airliquide.com/sites/airliquide.com/files/2026-02/air-liquide-pr-fy-2025-with-record-performance-and-confident-in-its-transformation-dynamic-air-liquide-confirms-its-growth-outlook.pdf"
           },
           {
             "start": null,
@@ -5649,7 +5721,7 @@
             "previousNetIncome": 3306100000.0,
             "operatingIncome": 5278700000.0,
             "incomeBasis": "Résultat net part du groupe (IFRS)",
-            "sourceUrl": "https://live.euronext.com/sites/default/files/company_press_releases/attachments/2026/02/20/cpr03_lesechos_16165_1389885_Air_Liquide_FY_2025__ENG__PR__Activity_Report_.pdf"
+            "sourceUrl": "https://www.airliquide.com/sites/airliquide.com/files/2026-02/air-liquide-pr-fy-2025-with-record-performance-and-confident-in-its-transformation-dynamic-air-liquide-confirms-its-growth-outlook.pdf"
           }
         ],
         "observedAt": "2026-10-07",
@@ -6074,13 +6146,13 @@
             "close": 169.67999267578125
           },
           {
-            "asOf": "2026-10-13",
-            "close": 169.0
+            "asOf": "2026-10-14",
+            "close": 170.33999633789062
           }
         ],
         "historyBasis": "Yahoo close; weekly last completed session; no dividend reinvestment",
-        "price": 169.0,
-        "asOf": "2026-10-13",
+        "price": 170.33999633789062,
+        "asOf": "2026-10-14",
         "observedAt": "2026-10-15",
         "currency": "EUR",
         "splits": [
@@ -6144,9 +6216,10 @@
         "margin": 13.18059864476891,
         "previousRevenue": 13722200000.0,
         "previousNetIncome": 1801100000.0,
+        "dilutedEPS": 2.86,
         "operatingIncome": 2770400000.0,
         "incomeBasis": "Résultat net part du groupe (IFRS)",
-        "sourceUrl": "https://live.euronext.com/sites/default/files/company_press_releases/attachments/2026/07/28/cpr03_lesechos_16165_1424019_H1_2026__EN__PR__Activity_Report.pdf"
+        "sourceUrl": "https://www.airliquide.com/sites/airliquide.com/files/2026-07/air-liquide-first-half-2026-financial-report.pdf"
       },
       "trailing": null,
       "quarters": []
@@ -6671,20 +6744,20 @@
             "close": 266.3999938964844
           },
           {
-            "asOf": "2026-10-13",
+            "asOf": "2026-10-14",
             "close": 264.3999938964844
           }
         ],
         "historyBasis": "Yahoo close; weekly last completed session; no dividend reinvestment",
         "price": 264.3999938964844,
-        "asOf": "2026-10-13",
+        "asOf": "2026-10-14",
         "observedAt": "2026-10-15",
         "currency": "EUR",
         "splits": [],
         "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/SU.PA?range=2y&interval=1d&events=splits"
       },
       "decision": {
-        "observedAt": "2026-10-14",
+        "observedAt": "2026-10-15",
         "annualEnd": "2025-12-31",
         "years": [
           {
@@ -6700,6 +6773,8 @@
             "freeCashFlow": 2740000000.0,
             "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites ; actifs incorporels inclus",
             "dividendsPaid": 1447000000.0,
+            "averageDilutedShares": 564682000.0,
+            "sharesBasisSource": "https://www.se.com/ww/en/assets/564/document/379351/accounts-fy-results-2022.pdf",
             "interestExpense": 99000000.0,
             "operatingIncome": 4331000000.0
           },
@@ -6716,6 +6791,8 @@
             "freeCashFlow": 3261000000.0,
             "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites ; actifs incorporels inclus",
             "dividendsPaid": 1618000000.0,
+            "averageDilutedShares": 565161000.0,
+            "sharesBasisSource": "https://www.se.com/ww/en/assets/564/document/453167/accounts-fy-results-2023.pdf",
             "interestExpense": 130000000.0,
             "operatingIncome": 4933000000.0
           },
@@ -6732,6 +6809,8 @@
             "freeCashFlow": 4542000000.0,
             "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites ; actifs incorporels inclus",
             "dividendsPaid": 1767000000.0,
+            "averageDilutedShares": 566588000.0,
+            "sharesBasisSource": "https://www.se.com/ww/en/assets/564/document/453167/accounts-fy-results-2023.pdf",
             "interestExpense": 387000000.0,
             "operatingIncome": 5933000000.0
           },
@@ -6748,6 +6827,8 @@
             "freeCashFlow": 4161000000.0,
             "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites ; actifs incorporels inclus",
             "dividendsPaid": 1963000000.0,
+            "averageDilutedShares": 569085000.0,
+            "sharesBasisSource": "https://www.se.com/ww/en/assets/564/document/528238/accounts-fy-results-2025.pdf",
             "interestExpense": 435000000.0,
             "operatingIncome": 6449000000.0
           },
@@ -6764,22 +6845,23 @@
             "freeCashFlow": 4588000000.0,
             "freeCashFlowDefinition": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites ; actifs incorporels inclus",
             "dividendsPaid": 2191000000.0,
+            "averageDilutedShares": 570516000.0,
+            "sharesBasisSource": "https://www.se.com/ww/en/assets/564/document/528238/accounts-fy-results-2025.pdf",
             "interestExpense": 473000000.0,
             "operatingIncome": 6699000000.0
           }
         ],
         "method": "Flux d’exploitation moins achats d’immobilisations ; locations et acquisitions d’entreprises non déduites",
         "componentVersion": 5,
-        "accountsEndAtCollection": "2026-06-30"
+        "accountsEndAtCollection": "2026-06-30",
+        "shareNotesVersion": 1
       },
       "valuationCollection": {
         "observedAt": "2026-10-15",
-        "valuationShareBasis": "unavailable",
-        "valuationShareBasisDetail": "Four annual published diluted share counts required",
+        "valuationShareBasis": "qualified",
         "targetForecast": "unavailable-or-retained",
         "targetForecastDetail": "No qualified source for this listing",
-        "targetCashReference": "unavailable-or-retained",
-        "targetCashReferenceDetail": "Qualified split/share basis required"
+        "targetCashReference": "qualified"
       },
       "halfYear": {
         "start": null,
@@ -6797,7 +6879,68 @@
         "sourceUrl": "https://www.se.com/ww/en/assets/pdf/accounts-hy-results-2026"
       },
       "trailing": null,
-      "quarters": []
+      "quarters": [],
+      "valuationShareBasis": {
+        "version": 1,
+        "observedAt": "2026-10-15",
+        "annualEnd": "2025-12-31",
+        "accountsEndAtCollection": "2026-06-30",
+        "currency": "EUR",
+        "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/SU.PA?period1=1609113600&period2=1792108800&interval=1mo&events=splits",
+        "splitCheckFrom": "2020-12-28",
+        "splitCheckThrough": "2026-10-15",
+        "definition": "Published annual diluted averages; complete historical split window checked"
+      },
+      "targetCashReference": {
+        "version": 1,
+        "observedAt": "2026-10-15",
+        "annualEnd": "2025-12-31",
+        "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/SU.PA?period1=1609113600&period2=1792108800&interval=1mo&events=splits",
+        "currency": "EUR",
+        "historicalMultiples": [
+          {
+            "end": "2021-12-31",
+            "quotePeriodEnd": "2021-12-31",
+            "price": 149.36000061035156,
+            "base": 4.852288544703036,
+            "multiple": 30.781351775421367,
+            "accountsSourceUrl": "https://www.se.com/ww/en/assets/564/document/379351/accounts-fy-results-2022.pdf"
+          },
+          {
+            "end": "2022-12-31",
+            "quotePeriodEnd": "2022-12-31",
+            "price": 148.32000732421875,
+            "base": 5.770037210635554,
+            "multiple": 25.705208113880033,
+            "accountsSourceUrl": "https://www.se.com/ww/en/assets/564/document/453167/accounts-fy-results-2023.pdf"
+          },
+          {
+            "end": "2023-12-31",
+            "quotePeriodEnd": "2023-12-31",
+            "price": 182.89999389648438,
+            "base": 8.016406983557717,
+            "multiple": 22.815707120612352,
+            "accountsSourceUrl": "https://www.se.com/ww/en/assets/564/document/453167/accounts-fy-results-2023.pdf"
+          },
+          {
+            "end": "2024-12-31",
+            "quotePeriodEnd": "2024-12-31",
+            "price": 245.35000610351562,
+            "base": 7.311737262447613,
+            "multiple": 33.55563764081211,
+            "accountsSourceUrl": "https://www.se.com/ww/en/assets/564/document/528238/accounts-fy-results-2025.pdf"
+          },
+          {
+            "end": "2025-12-31",
+            "quotePeriodEnd": "2025-12-31",
+            "price": 242.3000030517578,
+            "base": 8.041842822988313,
+            "multiple": 30.129910318456112,
+            "accountsSourceUrl": "https://www.se.com/ww/en/assets/564/document/528238/accounts-fy-results-2025.pdf"
+          }
+        ],
+        "definition": "Ex-post annual FCF per diluted share / split-adjusted monthly close; not point-in-time backtest data"
+      }
     },
     "totalenergies": {
       "annual": {
@@ -6907,11 +7050,11 @@
         "definition": "Comptes annuels consolidés IFRS ; résultat net part du groupe / chiffre d’affaires"
       },
       "estimates": {
-        "forwardEPS": 10.81,
-        "growthEPS5Y": 11.79,
-        "reportedForwardPE": 8.39,
-        "reportedPEG": 0.71,
-        "providerPrice": 90.63,
+        "forwardEPS": 10.94,
+        "growthEPS5Y": 11.29,
+        "reportedForwardPE": 8.31,
+        "reportedPEG": 0.74,
+        "providerPrice": 91.0,
         "observedAt": "2026-10-15",
         "sourceName": "Finviz",
         "sourceUrl": "https://finviz.com/quote.ashx?t=TTE",
@@ -7441,7 +7584,7 @@
         "sourceName": "Stock Analysis / S&P Global",
         "observedAt": "2026-10-15",
         "asOf": "2026-10-08",
-        "sourceHash": "3c459b5e3c3138ed00e79f94b5474befb5f18271718845b5125594dbabe79ae1",
+        "sourceHash": "60151295cce473e8d23e8f84816c8a69e3a675ff155da602605d2f150ab95f08",
         "points": [
           {
             "end": "2025-12-31",
@@ -7450,7 +7593,7 @@
           },
           {
             "end": "2026-12-31",
-            "eps": 11.95,
+            "eps": 11.97,
             "kind": "estimate"
           },
           {
