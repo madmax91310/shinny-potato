@@ -43,7 +43,7 @@ try {
   await page.getByLabel('Pseudonyme',{exact:true}).fill('Test participation')
   await page.getByLabel('DCA position 1',{exact:true}).fill('300')
   assert(await page.getByRole('button',{name:'Télécharger le PNG',exact:true}).isDisabled())
-  await page.getByLabel('Support position 1',{exact:true}).selectOption('IE00B4L5Y983')
+  await page.getByRole('group',{name:'Support position 1',exact:true}).locator('[data-option][data-value="IE00B4L5Y983"]').click()
   await page.getByRole('checkbox').check()
   assert(await page.getByRole('button',{name:'Télécharger le PNG',exact:true}).isEnabled())
   await page.getByLabel('Poids position 1',{exact:true}).fill('90')
