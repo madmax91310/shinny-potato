@@ -209,6 +209,7 @@ export const MARKET_ASSETS = ASSET_ORDER.map((id) => ({
   minDate: getAssetMinDate(id),
   priceMethod: ASSETS[id].priceMethod,
   returnNote: ASSETS[id].returnNote,
+  methodNote: ASSETS[id].methodNote,
   label: ASSETS[id].label,
   tweetPhrase: ASSETS[id].tweetPhrase,
   icon: ASSETS[id].icon,

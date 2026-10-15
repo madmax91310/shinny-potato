@@ -1,7 +1,8 @@
+import { ANNIVERSARY_INDEX_VARIANTS } from '../pages/tweet-midi/data/indexVariants.js'
 import { useState } from 'react'
 import { historicalWindows } from '../lib/history-windows.js'
 const pct=n=>`${n.toLocaleString('fr-FR',{maximumFractionDigits:2})} %`
-export default function HistoricalContext({asset, minDate = asset?.minDate}) {
+export default function HistoricalContext({asset, assetId = asset?.id, minDate = asset?.minDate}) {
   const [years,setYears]=useState(3)
   if(!asset?.points)return null
   const result=historicalWindows(asset.points.filter(p => !minDate || p.date >= minDate),years)
@@ -12,7 +13,7 @@ export default function HistoricalContext({asset, minDate = asset?.minDate}) {
       <p>Rendement annualisé le plus faible : {pct(result.min.annualized)} ({result.min.start} → {result.min.end}).</p>
       <p>Rendement annualisé le plus élevé : {pct(result.max.annualized)} ({result.max.start} → {result.max.end}).</p>
       <p>Plus forte baisse depuis un sommet mensuel, parmi ces fenêtres : {pct(result.worstDrawdown.drawdown)}. Les baisses à l’intérieur d’un mois ne sont pas mesurées.</p></>}
-    <p>{asset.methodNote ?? asset.returnNote ?? (asset.priceMethod==='adjusted'?'Série ajustée, distributions réinvesties selon la méthode de la source.':'Variation de la série de prix ; aucun dividende ajouté.')}</p>
+    <p>{asset.methodNote || ANNIVERSARY_INDEX_VARIANTS[assetId] || asset.returnNote || (asset.priceMethod==='adjusted'?'Série ajustée, distributions réinvesties selon la méthode de la source.':'Variation de la série de prix ; aucun dividende ajouté.')}</p>
     <p>Les fenêtres se chevauchent. Ces extrêmes historiques ne constituent pas des probabilités ni des prévisions.</p>
   </details>
 }
