@@ -41,12 +41,12 @@ export function projectLightRegistries() {
     const texts = [...counts].filter(([, count]) => count > 1).map(([value]) => value)
     const indexes = new Map(texts.map((value, i) => [value, i]))
     function serialize(value) {
-      if (typeof value === 'string' && indexes.has(value)) return `__registryTexts[${indexes.get(value)}]`
+      if (typeof value === 'string' && indexes.has(value)) return `__registryText${indexes.get(value)}`
       if (Array.isArray(value)) return '[' + value.map(v => serialize(v) ?? 'null').join(',') + ']'
       if (value && typeof value === 'object') return '{' + Object.entries(value).filter(([, v]) => v !== undefined).map(([k, v]) => JSON.stringify(k) + ':' + serialize(v)).join(',') + '}'
       return JSON.stringify(value)
     }
-    const declarations = `const __registryTexts = Object.freeze(${JSON.stringify(texts)});`
+    const declarations = texts.map((text,index)=>`const __registryText${index} = ${JSON.stringify(text)};`).join("\n")
     const code = Object.entries(exports).flatMap(([key, value]) => {
       if (name === 'instrument-facts' && key === 'getInstrumentListings') return []
       if (typeof value !== 'function') return `export const ${key} = ${serialize(value)};`

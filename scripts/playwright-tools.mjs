@@ -958,7 +958,7 @@ async function testDataSearch(page) {
   const checks = {};
   await page.locator('.ds-etf-development > summary').click();
   await page.locator('.ds-etf-development section > h3').nth(3).waitFor({ state:'visible' });
-  checks.etfLots = await page.locator('.ds-etf-development section > h3').count() === 4;
+  checks.etfLots = await page.locator('.ds-etf-development section > h3').count() === 5;
   const shortHistory = page.locator('.ds-etf-development section > details').filter({hasText:'IE0003R87OG3'});
   await shortHistory.locator('summary').click();
   checks.etfShortHistory = (await shortHistory.innerText()).includes('Six années communes : indisponibles');

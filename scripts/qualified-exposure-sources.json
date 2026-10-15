@@ -381,6 +381,28 @@
       "inceptionField": "launchDate",
       "portfolioEnabled": true,
       "portfolioCategory": "actions_larges"
+    },
+    {
+      "id": "em-value-ishares",
+      "productId": 297452,
+      "isin": "IE00BG0SKF03",
+      "label": "Émergents value",
+      "scene": "world",
+      "category": "Stratégiques",
+      "portfolioEnabled": true,
+      "portfolioCategory": "emergents"
+    },
+    {
+      "id": "euro-ultrashort-ishares",
+      "productId": 258114,
+      "isin": "IE00BCRY6557",
+      "label": "Obligations euro ultracourtes",
+      "scene": "bonds",
+      "category": "Obligataires",
+      "portfolioEnabled": true,
+      "portfolioCategory": "obligataire",
+      "currency": "EUR",
+      "holdingsAssetClass": "Fixed Income"
     }
   ]
 }

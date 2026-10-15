@@ -2,9 +2,9 @@
   "fieldCoverage": {
     "ter": {
       "label": "Frais",
-      "present": 206,
-      "total": 206,
-      "applicable": 206,
+      "present": 209,
+      "total": 209,
+      "applicable": 209,
       "notApplicable": 0,
       "waiting": 0,
       "notPublished": 0,
@@ -12,9 +12,9 @@
     },
     "aum": {
       "label": "Encours",
-      "present": 206,
-      "total": 206,
-      "applicable": 206,
+      "present": 209,
+      "total": 209,
+      "applicable": 209,
       "notApplicable": 0,
       "waiting": 0,
       "notPublished": 0,
@@ -22,9 +22,9 @@
     },
     "performance": {
       "label": "Calendrier annuel",
-      "present": 190,
-      "total": 206,
-      "applicable": 206,
+      "present": 193,
+      "total": 209,
+      "applicable": 209,
       "notApplicable": 0,
       "waiting": 12,
       "notPublished": 3,
@@ -32,9 +32,9 @@
     },
     "countries": {
       "label": "Pays",
-      "present": 178,
-      "total": 206,
-      "applicable": 184,
+      "present": 181,
+      "total": 209,
+      "applicable": 187,
       "notApplicable": 22,
       "waiting": 0,
       "notPublished": 5,
@@ -42,9 +42,9 @@
     },
     "sectors": {
       "label": "Secteurs",
-      "present": 178,
-      "total": 206,
-      "applicable": 184,
+      "present": 181,
+      "total": 209,
+      "applicable": 187,
       "notApplicable": 22,
       "waiting": 0,
       "notPublished": 5,
@@ -52,9 +52,9 @@
     },
     "holdings": {
       "label": "Positions pondérées",
-      "present": 183,
-      "total": 206,
-      "applicable": 184,
+      "present": 186,
+      "total": 209,
+      "applicable": 187,
       "notApplicable": 22,
       "waiting": 0,
       "notPublished": 0,
@@ -395,14 +395,14 @@
   ],
   "checkedAt": "2026-10-15",
   "method": "Inventaire des champs réellement présents dans les observations actives. Couverture distincte de disponibilité réseau et de fraîcheur. Les catégories sont issues des qualifications de sources ; elles ne certifient pas un téléchargement réussi aujourd’hui.",
-  "instruments": 206,
+  "instruments": 209,
   "covered": {
-    "ter": 206,
-    "aum": 206,
-    "performance": 190,
-    "countries": 178,
-    "sectors": 178,
-    "holdings": 183
+    "ter": 209,
+    "aum": 209,
+    "performance": 193,
+    "countries": 181,
+    "sectors": 181,
+    "holdings": 186
   },
   "summary": {
     "instrument:not-applicable": 66,
@@ -801,7 +801,7 @@
       "status": "not-published",
       "checkedAt": "2026-10-15",
       "sourceUrl": "https://globalxetfs.eu/funds/silv/",
-      "sha256": "77e73668bb7ad7defc0365bf8ab577251519238e71c9f3fdc5a7e435d1d5cb06",
+      "sha256": "8a3db58c8facec4baccded23f1692b148605089a8274d1bcacc4d67fbc0ef253",
       "reason": "Aucun tableau sectoriel complet du fonds dans la page officielle contrôlée.",
       "evidence": {
         "datedCountryTable": true,
@@ -1537,7 +1537,7 @@
       "reason": "La section de performance ne fournit pas de calendrier annuel qualifié pour la part USD distribuante. Les rendements capitalisants ou glissants ne sont pas substitués.",
       "checkedAt": "2026-10-15",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "2e620c6dd0efacef992dddddb27a9e2e0e3b59925b2aeea420b4dff9fed120d2",
+      "sha256": "8fa2e26df777236901a254ff00f0f868d58f6a116c240ac638d7a11e2eaf198e",
       "evidence": []
     },
     {
@@ -1551,7 +1551,7 @@
       "reason": "Aucune allocation géographique économique complète qualifiée dans la page ; les pays de commercialisation et le panier de substitution sont exclus.",
       "checkedAt": "2026-10-15",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "2e620c6dd0efacef992dddddb27a9e2e0e3b59925b2aeea420b4dff9fed120d2",
+      "sha256": "8fa2e26df777236901a254ff00f0f868d58f6a116c240ac638d7a11e2eaf198e",
       "evidence": []
     },
     {
@@ -1565,7 +1565,7 @@
       "reason": "Table sectorielle de référence à recouper avec l’indice exact avant utilisation ; aucune allocation du panier de substitution utilisée.",
       "checkedAt": "2026-10-15",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "2e620c6dd0efacef992dddddb27a9e2e0e3b59925b2aeea420b4dff9fed120d2",
+      "sha256": "8fa2e26df777236901a254ff00f0f868d58f6a116c240ac638d7a11e2eaf198e",
       "evidence": [
         "Reference Index Sector Breakdown",
         "As of 30 Sep 2026",
@@ -1606,7 +1606,7 @@
       "reason": "Poids différents pour les mêmes titres dans la section datée de l’indice : AAPL, AMZN, GOOG, GOOGL, META, MSFT, NVDA, TSLA.",
       "checkedAt": "2026-10-15",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "2e620c6dd0efacef992dddddb27a9e2e0e3b59925b2aeea420b4dff9fed120d2",
+      "sha256": "8fa2e26df777236901a254ff00f0f868d58f6a116c240ac638d7a11e2eaf198e",
       "evidence": [
         "Top 10 Reference Index Constituents",
         "As of 08 Oct 2026",

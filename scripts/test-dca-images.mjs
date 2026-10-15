@@ -52,7 +52,7 @@ try {
       const anonymous={...prepareProfile(PROFILES[0]),name:'',imageOnly:true,lines:prepareProfile(PROFILES[0]).lines.map(({amount:_amount,...line})=>line)}
       const canvas=await renderDcaImage(anonymous,field)
       if(labels.some(l=>/LE DCA DE|investis par mois|Salaire|ans|Julien/.test(l)))throw Error('Identity or amounts leaked')
-      if(!labels.includes('Expositions du portefeuille'))throw Error('Missing anonymous heading')
+      if(!labels.includes(field==='all'?'Épargnant Libre':'Expositions du portefeuille'))throw Error('Missing anonymous heading')
       if(['both','all'].includes(field)&&(!labels.includes('Exposition géographique')||!labels.includes('Exposition sectorielle')))throw Error('Missing panel')
       output.push({id:'anonymous-'+field,labels:[...labels],png:canvas.toDataURL()})
     }
@@ -148,5 +148,14 @@ try {
   await page.getByRole('button',{name:'Restaurer le brouillon',exact:true}).click()
   assert(await page.getByLabel('Répartition uniquement — sans nom ni montants',{exact:true}).isChecked())
   assert.equal(await page.getByRole('group',{name:'Donut de l’image',exact:true}).getAttribute('data-value'),'all')
+  await page.getByRole('button',{name:'Composer un portefeuille',exact:true}).click()
+  assert.equal(await page.getByLabel('DCA position 1',{exact:true}).count(),0)
+  await page.getByLabel('Rechercher position 1',{exact:true}).fill('WPEA')
+  await page.getByRole('group',{name:'Actif position 1',exact:true}).locator('[data-option][data-value="IE0002XZSHO1"]').click()
+  assert.equal(await page.getByRole('group',{name:'Support position 1',exact:true}).getAttribute('data-value'),'IE0002XZSHO1')
+  assert((await draft.inputValue()).includes('iShares MSCI World Swap PEA'))
+  await page.getByRole('checkbox',{name:'Je valide les expositions à publier.',exact:true}).check()
+  assert(await page.getByRole('button',{name:'Télécharger le PNG',exact:true}).isEnabled())
+  assert(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth+1))
   console.log('416 images DCA : données, texte sans mention fictive, aucun chevauchement ni dépassement, aperçu, changement de profil, téléchargement et mobile validés.')
 } finally {await browser?.close();server.kill('SIGTERM')}

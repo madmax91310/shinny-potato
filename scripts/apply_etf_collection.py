@@ -6,6 +6,9 @@ import json
 from data_automation import reject, write_json_atomic
 
 SECTORS = {
+    # iShares EM Value, official product 297452, checked 2026-10-15.
+    # Preserve published sub-industry labels; never aggregate these as broad sectors.
+    **{name:name for name in ['Steel', 'Automobile Manufacturers', 'Automotive Parts & Equipment', 'Marine Transportation', 'Copper', 'Aluminum', 'Specialized Finance', 'Gold', 'Diversified Chemicals', 'Precious Metals & Minerals', 'Construction & Engineering', 'Paper Products', 'Construction Materials', 'Tires & Rubber', 'Passenger Airlines', 'Construction Machinery & Heavy Transportation Equipment', 'Marine Ports & Services', 'Automotive Retail', 'Coal & Consumable Fuels', 'Oil & Gas Drilling', 'Renewable Electricity', 'Wireless Telecommunication Services', 'MULTI-LINE INSURANCE']},
     # ICB sector published by the STOXX Europe 600 Banks fund; keep its granularity.
     'Banks': 'Banques',
     # VanEck sub-industries retain the issuer classification.

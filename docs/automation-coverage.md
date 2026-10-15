@@ -10,8 +10,8 @@ Rapport fondé sur les collecteurs configurés et les données actives, pas sur 
 |---|---|---|
 | Historiques mensuels des simulateurs | 142/142 séries ; 61 collecteurs communs + Bitcoin et or | Marchés : 2, 4, 8 et 16 du mois ; Bitcoin : 2, 4 et 8 ; or : tentatives du 3 au 10 |
 | Parts ETF mensuelles raccordées | 71 parts exactes ; investissement et performance revenus réinvestis, anniversaire hors distributions | Même collecte mensuelle et reprise quotidienne des échecs |
-| ETF/ETC/ETP | 206/206 instruments, au moins un champ | Quotidienne |
-| Comparatif ETF | 123/123 parts raccordées dans 80 blocs ; 115 calendriers actifs, 8 absences qualifiées | Quotidienne ; ajout de part contrôlé en CI |
+| ETF/ETC/ETP | 209/209 instruments, au moins un champ | Quotidienne |
+| Comparatif ETF | 128/128 parts raccordées dans 83 blocs ; 120 calendriers actifs, 8 absences qualifiées | Quotidienne ; ajout de part contrôlé en CI |
 | Compositions d’indices | 52 indices | 3 et 16 du mois |
 | Rendements annuels d’indices | 56 indices | 3 et 16 du mois |
 | Pouvoir d’achat | Prix généraux, alimentation, énergie, IRL et SMIC INSEE ; périodes et qualité publiées | Vérification quotidienne |
@@ -24,7 +24,7 @@ Les mois incomplets sont exclus. Les cours ajustés, cours bruts, rendements NET
 
 ## Disponibilité à fiabiliser
 
-WPEA (IE0002XZSHO1) : le calendrier EUR 2025 est raccordé à la fiche exacte de la part. UBS World (IE00BD4TXV59) : les calendriers USD 2022–2025 sont raccordés. SPEA (IE000DQLYVB9) ne publie pas encore d’année civile complète. Ces historiques courts ne remplacent pas une fenêtre de simulation complète. WPEA et SPEA : les pages officielles iShares peuvent renvoyer HTTP 403. Le repli vers les fiches officielles courantes est désormais contrôlé (ISIN, devise, dates) et a été validé en production. Une modification de schéma reste signalée et conserve les dernières valeurs fiables. Les 206 instruments décrivent donc une couverture configurée et validée au moins une fois, pas 206 accès réussis à chaque exécution.
+WPEA (IE0002XZSHO1) : le calendrier EUR 2025 est raccordé à la fiche exacte de la part. UBS World (IE00BD4TXV59) : les calendriers USD 2022–2025 sont raccordés. SPEA (IE000DQLYVB9) ne publie pas encore d’année civile complète. Ces historiques courts ne remplacent pas une fenêtre de simulation complète. WPEA et SPEA : les pages officielles iShares peuvent renvoyer HTTP 403. Le repli vers les fiches officielles courantes est désormais contrôlé (ISIN, devise, dates) et a été validé en production. Une modification de schéma reste signalée et conserve les dernières valeurs fiables. Les 209 instruments décrivent donc une couverture configurée et validée au moins une fois, pas 209 accès réussis à chaque exécution.
 
 Les pages HTML WisdomTree Gold/Bitcoin/Copper/Defence/Quantum/Dividend Growth publient des encours datés ; elles peuvent renvoyer HTTP 403 depuis GitHub. Les six pages ont été qualifiées en collecte réelle, avec ISIN, devise et date propres contrôlés. Le connecteur utilise alors les fiches officielles courantes Dataspan : frais et calendriers complets publiés peuvent être actualisés. Pour Defence, Quantum et Dividend Growth, les tableaux PDF raccordent aussi les secteurs et dix principales positions. Les dix pays ne remplacent la répartition complète que si leur somme atteint 99–101 % ; aucun résidu n’est inventé. Les encours absents du PDF restent à leur dernière date validée tant que les pages sont bloquées. Les encours CoinShares utilisent désormais les widgets officiels liés à la page produit : ISIN et devise USD contrôlés, Rate Date de valorisation (jamais la date de cache). Les documents PDF restent la preuve des frais ; leurs rendements crypto de référence ne sont pas assimilés à ceux de la part. VanEck Gaming : URL régionale officielle France, puis fiches Pays-Bas/Royaume-Uni en cas de problème de transport ; le même nom de document, ISIN, devise et date sont contrôlés avant application. UBS : découverte du dernier PDF mensuel publié, avec repli entre les deux adresses officielles Swiss Fund Data puis le mois précédent ; identité, devise et fraîcheur sont contrôlées. WisdomTree : une panne du PDF conserve les champs HTML validés indépendamment et reste signalée comme erreur de collecte.
 
@@ -59,12 +59,12 @@ Les frais collectés peuvent être ceux du dernier exercice publié : leur date 
 
 | Champ collecté et consommé | Instruments |
 |---|---:|
-| Frais annuels | 206 |
-| Encours daté | 206 |
-| Rendements calendaires de la part (au moins une année complète) | 190 |
-| Pays | 178 |
-| Secteurs ou sous-secteurs publiés | 178 |
-| Principales positions | 183 |
+| Frais annuels | 209 |
+| Encours daté | 209 |
+| Rendements calendaires de la part (au moins une année complète) | 193 |
+| Pays | 181 |
+| Secteurs ou sous-secteurs publiés | 181 |
+| Principales positions | 186 |
 
 Ces couvertures ne s’additionnent pas : plusieurs champs concernent le même instrument. Les 23 expositions Amundi à l’indice suivi recouvrent des parts déjà collectées ; elles ne sont pas 23 fonds supplémentaires. Les compositions d’indice, portefeuilles de fonds et paniers de substitution ne sont jamais assimilés. Les simulations choisissent automatiquement la dernière fenêtre complète commune : six ans pour le Générateur, trois à six ans pour les Duels. Les comparatifs alignent les années des produits. Une publication tardive ou un change BCE manquant conserve la dernière période commune ; aucun rendement n’est extrapolé. Les getters historiques et photographies archivées gardent leur période fixe.
 
@@ -72,7 +72,7 @@ Les performances cumulées ou glissantes publiées par les émetteurs sont suivi
 
 ## Instruments entièrement hors collecte active
 
-Aucun instrument entièrement hors collecte : les 206 instruments ont au moins un champ actif. Les lacunes par champ restent détaillées ci-dessous.
+Aucun instrument entièrement hors collecte : les 209 instruments ont au moins un champ actif. Les lacunes par champ restent détaillées ci-dessous.
 
 | ISIN | Instrument | Blocage actuel |
 |---|---|---|
@@ -91,6 +91,7 @@ Les identités, domiciles, modes de réplication, couvertures de change, politiq
 | JE00BN7KB557 | WisdomTree Coffee | Pays, Secteurs, Principales positions |
 | JE00B2QXZK10 | WisdomTree Cocoa | Pays, Secteurs, Principales positions |
 | JE00BN7KB664 | WisdomTree Wheat | Pays, Secteurs, Principales positions |
+| IE00BSPLC413 | State Street SPDR MSCI USA Small Cap Value Weighted UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00BMVB5K07 | Vanguard LifeStrategy 20% Equity UCITS ETF (EUR) Accumulating | Pays, Secteurs |
 | IE00BMVB5M21 | Vanguard LifeStrategy 40% Equity UCITS ETF (EUR) Accumulating | Pays, Secteurs |
 | IE00BMVB5P51 | Vanguard LifeStrategy 60% Equity UCITS ETF (EUR) Accumulating | Pays, Secteurs |
@@ -119,6 +120,8 @@ Les identités, domiciles, modes de réplication, couvertures de change, politiq
 | DE000A0H08H3 | iShares STOXX Europe 600 Food & Beverage UCITS ETF (DE) | Les six champs, caractéristiques et cotations sont automatisés |
 | DE000A0H08L5 | iShares STOXX Europe 600 Media UCITS ETF (DE) | Les six champs, caractéristiques et cotations sont automatisés |
 | DE000A0H08P6 | iShares STOXX Europe 600 Retail UCITS ETF (DE) | Les six champs, caractéristiques et cotations sont automatisés |
+| IE00BG0SKF03 | iShares Edge MSCI EM Value Factor UCITS ETF | Les six champs, caractéristiques et cotations sont automatisés |
+| IE00BCRY6557 | iShares € Ultrashort Bond UCITS ETF | Les six champs, caractéristiques et cotations sont automatisés |
 | IE00B27YCN58 | iShares MSCI World Islamic UCITS ETF | Les six champs, caractéristiques et cotations sont automatisés |
 | DE000A0F5UJ7 | iShares STOXX Europe 600 Banks UCITS ETF (DE) | Les six champs, caractéristiques et cotations sont automatisés |
 | DE000A0H08K7 | iShares STOXX Europe 600 Insurance UCITS ETF (DE) | Les six champs, caractéristiques et cotations sont automatisés |

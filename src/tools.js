@@ -4,7 +4,7 @@
 export const TOOLS = [
   { to: '/le-dca-de', navLabel: 'Le DCA de…', title: 'Le DCA de…',
     publicationDay: 'Publication ponctuelle', icon: '👥', accent: '#65d5b0',
-    description: '100 profils fictifs, leurs investissements mensuels et une question pour ouvrir la discussion.', status: 'disponible' },
+    description: 'Compose un portefeuille en pourcentages, vérifie ses expositions géographiques et sectorielles, ou retrouve les 100 profils DCA.', status: 'disponible' },
   {to:'/fiches-pratiques',navLabel:'Fiches pratiques',title:'Fiches pratiques',publicationDay:'Publication ponctuelle',icon:'📑',accent:'#267863',description:'Enveloppes, ETF, indices et démarches : une question, un texte et une image à garder.',status:'disponible'},
   { to: '/radar-editorial', navLabel: 'Radar', title: 'Radar éditorial',
     publicationDay: 'Actualisé chaque jour', icon: '📡', accent: '#65d5b0',
@@ -164,7 +164,7 @@ export const TOOLS = [
 ]
 
 const TOOL_SUMMARIES = {
-  '/le-dca-de': 'Un profil, son budget et ses choix d’investissement mensuels.',
+  '/le-dca-de': 'Portefeuille manuel, expositions et profils DCA, avec un visuel à exporter.',
   '/fiches-pratiques':'Les différences utiles pour comprendre et choisir un placement.',
   '/radar-editorial': 'Les changements sourcés qui peuvent devenir tes prochains posts.',
   '/simulateur-patrimoine': 'Ton patrimoine aujourd’hui et demain, avec des comparaisons pour X.',

@@ -4,12 +4,12 @@ Inventaire des champs réellement présents dans les observations actives. Couve
 
 | Champ ETF/ETP | Présent / applicable | Non applicable | En attente | Non publié | À résoudre |
 |---|---:|---:|---:|---:|---:|
-| Frais | 206/206 | 0 | 0 | 0 | 0 |
-| Encours | 206/206 | 0 | 0 | 0 | 0 |
-| Calendrier annuel | 190/206 | 0 | 12 | 3 | 1 |
-| Pays | 178/184 | 22 | 0 | 5 | 1 |
-| Secteurs | 178/184 | 22 | 0 | 5 | 1 |
-| Positions pondérées | 183/184 | 22 | 0 | 0 | 1 |
+| Frais | 209/209 | 0 | 0 | 0 | 0 |
+| Encours | 209/209 | 0 | 0 | 0 | 0 |
+| Calendrier annuel | 193/209 | 0 | 12 | 3 | 1 |
+| Pays | 181/187 | 22 | 0 | 5 | 1 |
+| Secteurs | 181/187 | 22 | 0 | 5 | 1 |
+| Positions pondérées | 186/187 | 22 | 0 | 0 | 1 |
 
 ## Premiers calendriers des 12 parts récentes
 

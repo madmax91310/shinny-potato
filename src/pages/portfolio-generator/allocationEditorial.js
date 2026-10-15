@@ -47,7 +47,7 @@ export function allocationAngle(selection) {
   const emerging=total(sorted,['emerging'])
   if (themes.length) {
    fact=line(themes[0]);detail=`qui assume une conviction ${themes.length>1 ? 'sur plusieurs thèmes' : 'sur ce thème'}`
-   logic=`${pct(themes.reduce((sum,s)=>sum+s.pct,0))} du portefeuille est consacré à des thèmes précis. Croire à leur développement ne garantit pas de bons rendements : le prix des actions et les entreprises sélectionnées comptent aussi.`
+   logic=`${pct(themes.reduce((sum,s)=>sum+s.pct,0))} du portefeuille est consacré à ${themes.length===1 ? label(themes[0]) : 'des thèmes précis'}. ${world ? 'Le fonds mondial détient déjà une partie de ces activités : cette poche renforce leur poids.' : 'Cette sélection concentre une partie du risque sur ces activités.'} Le développement du secteur ne garantit pas le rendement des actions.`
   } else if (small && world) {
    fact=`${pct(small)} en petites entreprises à côté de ${pct(world.pct)} sur ${label(world)}`;detail='qui va au-delà des grands groupes'
    logic=assetEditorial(world).kind==='world-imi' ? 'L’ACWI IMI inclut déjà les petites capitalisations. La ligne dédiée aux petites entreprises développées renforce ce segment, avec ses risques de financement et de liquidité.' : 'Les petites entreprises élargissent la sélection au-delà des grandes et moyennes entreprises du fonds mondial. Elles ajoutent aussi leurs propres risques de financement et de liquidité.'

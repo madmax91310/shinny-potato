@@ -1,13 +1,13 @@
 # Automatisation et raccordements ETF — 15 octobre 2026
 
-Le catalogue contient 206 instruments, pas 202. Une collecte passée ne certifie pas la fraîcheur présente. Les compteurs distinguent les champs applicables, non publiés, en attente et non résolus. Les alertes opérationnelles existantes restent la référence pour les pannes.
+Après intégration des chantiers parallèles, le catalogue contient 209 instruments, pas 202. Une collecte passée ne certifie pas la fraîcheur présente. Les compteurs distinguent les champs applicables, non publiés, en attente et non résolus. Les alertes opérationnelles existantes restent la référence pour les pannes.
 
 ## Livré
 
-- Santé Xtrackers IE00BM67HK77 et Amundi New Energy FR0010524777 : raccordement au générateur avec six années exactes, texte dédié, classification sectorielle et plafonds existants. Huit constructions supplémentaires, 285 au total.
+- Santé Xtrackers IE00BM67HK77 et Amundi New Energy FR0010524777 : raccordement au générateur avec six années exactes, texte dédié, classification sectorielle et plafonds existants. Huit constructions supplémentaires ; 355 au total après intégration des autres chantiers.
 - Tableau de couverture de tous les instruments dans le suivi ETF de la Bibliothèque de données, recherche par nom/ISIN et filtre des lacunes. Le suivi des 35 références reste disponible.
 - Calendriers émetteurs et observations glissantes distingués des rendements calculés sur cotations exactes. Les calculs utilisent des cours ajustés et exigent décembre précédent et les douze mois de l’année close, une identité de cotation et les sources. Aucun cours brut, mois absent, année en cours ni conversion implicite.
-- 71 cotations ont un calendrier calculable. Cela fournit notamment des performances annuelles pour Avantis Small Cap Value (EUR), Global X Copper Miners (EUR) et Silver Miners (USD), sans remplacer leur calendrier NAV émetteur absent. 190 calendriers émetteurs, 193 instruments avec au moins une des deux formes de calendrier. Les séries récentes restent courtes.
+- 71 cotations ont un calendrier calculable. Cela fournit notamment des performances annuelles pour Avantis Small Cap Value (EUR), Global X Copper Miners (EUR) et Silver Miners (USD), sans remplacer leur calendrier NAV émetteur absent. 193 calendriers émetteurs, 196 instruments avec au moins une des deux formes de calendrier. Les séries récentes restent courtes.
 - Projection recalculée à chaque build/publication depuis les données communes : pas de copie manuelle des rendements.
 
 ## Sources vérifiées réellement
@@ -27,4 +27,8 @@ La page QYLD exacte a été relue. Elle donne deux poids différents pour AAPL, 
 
 ## Validation
 
-Tests des calculs annuels (mois manquant, doublon, cours brut, année incomplète, identité absente, devise), comptes applicables, classification de risque, 11 040 combinaisons et 2 790 générations déterministes, verrouillage/remplacements et build avec budgets. Test navigateur mobile/ordinateur ajouté à la CI : lancement Chromium local bloqué par socket Operation not permitted.
+Tests des calculs annuels (mois manquant, doublon, cours brut, année incomplète, identité absente, devise), comptes applicables, classification de risque, 11 347 combinaisons et 2 790 générations déterministes, verrouillage/remplacements et build avec budgets. Test navigateur mobile/ordinateur ajouté à la CI : lancement Chromium local bloqué par socket Operation not permitted.
+
+## Intégration des autres chantiers
+
+Les trois nouveaux instruments et le vérificateur d’exposition de master sont conservés, ainsi que le cinquième groupe du catalogue et les liens vers les outils raccordés. Le suivi est recalculé sur les 209 instruments. Les limites non publiées restent inchangées.

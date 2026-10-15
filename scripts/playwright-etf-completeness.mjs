@@ -10,7 +10,7 @@ try {
   const page=await browser.newPage({viewport:{width,height:900}}),errors=[];page.on('pageerror',e=>errors.push(e.message));
   await page.goto('http://127.0.0.1:4363/shinny-potato/bibliotheque-donnees',{waitUntil:'networkidle'});
   await page.locator('.ds-etf-development > summary').click();
-  await page.getByRole('heading',{name:'Couverture des 206 instruments'}).waitFor();
+  await page.getByRole('heading',{name:/^Couverture des \d+ instruments$/}).waitFor();
   await page.getByLabel('Rechercher un ETF ou un ISIN').fill('IE0003R87OG3');
   const detail=page.locator('.ds-etf-development details').filter({has:page.locator('summary').filter({hasText:'IE0003R87OG3'})}).first();
   await detail.locator('summary').click();

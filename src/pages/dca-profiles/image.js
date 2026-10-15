@@ -60,33 +60,55 @@ function ring(ctx,rows,cx,cy,r,inner){
  let angle=-Math.PI/2
  for(const row of rows){const end=angle+row.weight/100*Math.PI*2;ctx.beginPath();ctx.arc(cx,cy,r,angle,end);ctx.arc(cx,cy,inner,end,angle,true);ctx.closePath();ctx.fillStyle=row.color;ctx.fill();angle=end}
 }
+function panel(ctx,x,y,width,height){ctx.fillStyle=C.panel;ctx.strokeStyle='#23425e';ctx.lineWidth=1;ctx.beginPath();ctx.roundRect(x,y,width,height,24);ctx.fill();ctx.stroke()}
+function centered(ctx,value,x,y,width,size,color=C.ivory,weight=700){ctx.save();ctx.textAlign='center';text(ctx,value,x,y,width,size,color,weight,'DcaEditorial');ctx.restore()}
+function wrappedLabel(ctx,value,x,y,width,size){
+ ctx.font=`400 ${size}px Arial`
+ if(ctx.measureText(value).width<=width){text(ctx,value,x,y,width,size,C.ivory,400);return}
+ const words=value.split(' ');let first=''
+ while(words.length&&ctx.measureText((first+' '+words[0]).trim()).width<=width)first=(first+' '+words.shift()).trim()
+ text(ctx,first||words.shift(),x,y-8,width,size,C.ivory,400)
+ text(ctx,words.join(' '),x,y+size-8,width,size,C.ivory,400)
+}
 function fullPortfolio(ctx,p,a){
+ centered(ctx,'Épargnant Libre',800,83,1480,49)
+ panel(ctx,35,125,665,815)
+ panel(ctx,725,125,840,395);panel(ctx,725,545,840,395)
+ text(ctx,'Répartition des actifs',70,190,595,40,C.ivory,700,'DcaEditorial')
  const holdings=p.lines.filter(l=>l.weight>0).map((l,i)=>({name:l.label,weight:l.weight,color:colors[i]}))
- text(ctx,'Répartition des actifs',64,240,640,42,C.ivory,700,'DcaEditorial')
- ring(ctx,holdings,370,480,210,145)
- text(ctx,'100 %',286,497,180,54,C.yellow,700,'DcaEditorial')
- const percentages=integerPercentages(holdings)
+ const crowded=holdings.length>4
+ if(!p.imageOnly){text(ctx,`Le DCA de ${p.name}`,70,245,595,28,C.ivory,700,'DcaEditorial');text(ctx,`${euro(a.monthly)} investis par mois`,70,282,595,25,C.yellow)}
+ const cy=crowded?435:p.imageOnly?469:490,r=crowded?120:p.imageOnly?230:185
+ ring(ctx,holdings,368,cy,r,r*.67)
+ centered(ctx,'100 %',368,cy+12,r*1.7,crowded?42:64)
+ centered(ctx,'du portefeuille',368,cy+48,r*1.55,crowded?18:26,C.muted,400)
+ const percentages=integerPercentages(holdings),top=crowded?575:holdings.length===4?725:775
+ const gap=Math.min(62,(915-top)/Math.max(holdings.length-1,1)),size=crowded?19:holdings.length===4?23:28
  holdings.forEach((row,i)=>{
-  const y=736+i*33
-  ctx.fillStyle=row.color;ctx.beginPath();ctx.arc(75,y-7,7,0,Math.PI*2);ctx.fill()
-  text(ctx,row.name,96,y,466,25,C.ivory,400)
-  text(ctx,`${percentages[i]} %`,584,y,110,27)
+  const y=top+i*gap
+  ctx.fillStyle=row.color;ctx.beginPath();ctx.arc(83,y-9,7,0,Math.PI*2);ctx.fill()
+  wrappedLabel(ctx,row.name,103,y,445,size)
+  text(ctx,exposurePercentage(row.weight,percentages[i]),574,y,90,size+2)
  })
- for(const [field,x] of [['countries',760],['sectors',1170]]){
-  const {group,rows}=donutData(a,field),width=366
-  text(ctx,field==='countries'?'Exposition géographique':'Exposition sectorielle',x,240,width,30,C.ivory,700,'DcaEditorial')
-  ring(ctx,rows,x+width/2,461,153,105)
-  const rounded=integerPercentages(rows)
+ for(const [field,y] of [['countries',125],['sectors',545]]){
+  const {group,rows}=donutData(a,field)
+  text(ctx,field==='countries'?'Exposition géographique':'Exposition sectorielle',755,y+59,780,37,C.ivory,700,'DcaEditorial')
+  ring(ctx,rows,899,y+235,140,94)
+  const rounded=integerPercentages(rows),lead=rows.findIndex(r=>!['Non ventilé','Non ventilé ici','Écart d’arrondi'].includes(r.name))
+  if(lead>=0){centered(ctx,exposurePercentage(rows[lead].weight,rounded[lead]),899,y+231,173,41);centered(ctx,rows[lead].name,899,y+273,168,17,C.muted,400)}
+  else centered(ctx,'Non ventilé',899,y+239,170,23,C.muted)
+  const gap=rows.length>5?39:49
   rows.forEach((row,i)=>{
-   const y=666+i*43
-   ctx.fillStyle=row.color;ctx.beginPath();ctx.arc(x+7,y-7,6,0,Math.PI*2);ctx.fill()
-   text(ctx,row.name,x+22,y,258,23,C.ivory,400)
-   text(ctx,exposurePercentage(row.weight,rounded[i]),x+285,y,81,25)
+   const top=y+137+i*gap
+   ctx.fillStyle=row.color;ctx.beginPath();ctx.arc(1076,top-9,6,0,Math.PI*2);ctx.fill()
+   text(ctx,row.name,1095,top,322,27,C.ivory,400)
+   text(ctx,exposurePercentage(row.weight,rounded[i]),1454,top,85,27)
   })
-  text(ctx,group?`${group.oldest&&group.oldest!==group.asOf?group.oldest+' → ':''}${group.asOf}`:'Aucune ventilation qualifiée',x,954,width,18,C.muted,400)
-  if(group)text(ctx,`Couverture ${Math.round(group.coverage)} %`,x,978,width,18,C.muted,400)
-  if(group?.classification==='country-registration')text(ctx,'Pays d’enregistrement',x,1001,width,16,C.muted,400)
+  const coverage=group?.coverage||0
+  const source=group?`${group.oldest!==group.asOf?group.oldest+' → ':''}${group.asOf}`:'Aucune ventilation qualifiée'
+  text(ctx,`${source} · ${Math.round(coverage)} % ventilés`,1070,y+375,460,16,C.muted,400)
  }
+ centered(ctx,'Pourcentages arrondis · Les parts non ventilées restent visibles',800,978,1480,18,C.muted,400)
 }
 let fontReady
 async function loadDcaFont(){
@@ -97,9 +119,10 @@ export async function renderDcaImage(input,field='countries'){
  await loadDcaFont()
  const p=input.lines.every(l=>Number.isFinite(l.weight))?input:prepareProfile(input),a=analyzeProfile(p)
  if(a.errors.length)throw Error(a.errors.join(' '))
- const canvas=document.createElement('canvas');canvas.width=1600;canvas.height=1067;const ctx=canvas.getContext('2d')
+ const canvas=document.createElement('canvas');canvas.width=1600;canvas.height=field==='all'?1000:1067;const ctx=canvas.getContext('2d')
  const bg=ctx.createLinearGradient(0,0,1600,1067);bg.addColorStop(0,'#071b36');bg.addColorStop(.5,'#03152c');bg.addColorStop(1,'#092952');ctx.fillStyle=bg;ctx.fillRect(0,0,1600,1067)
- if(p.imageOnly||field==='both'||field==='all'){
+ if(field==='all'){fullPortfolio(ctx,p,a);return canvas}
+ if(p.imageOnly||field==='both'){
   text(ctx,p.imageOnly?'Expositions du portefeuille':`Le DCA de ${p.name}`,64,100,1472,65,C.ivory,700,'DcaEditorial')
   if(!p.imageOnly)text(ctx,`${euro(a.monthly)} investis par mois`,66,158,1470,34,C.yellow)
   if(field==='all'){

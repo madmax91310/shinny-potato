@@ -9,7 +9,7 @@ export const NON_BOND_SHEETS = NON_BOND_DEFINITIONS.filter(c => records[c.isin]?
  const swap=Number.isFinite(f.annualSwapRatePct)?` Frais de gestion : ${f.terPct.toLocaleString('fr-FR')} % ; frais annuels de swap : ${f.annualSwapRatePct.toLocaleString('fr-FR')} %, distincts.`:''
  return {...c,source:r.sourceUrl,listing,benchmark:f.index,incomePolicy:isEtc?'not-applicable':/^Accum/.test(f.distribution)?'accumulating':'distributing',
   replicationMethod:f.replicationMethod,domicile:f.domicile,checkedAt:f.checkedAt,
-  hook:isEtc?`Investir dans le ${c.title.toLowerCase()} : que suit réellement ce produit ? 👇`:c.id==='nasdaq-equal'?'Le Nasdaq-100 change de visage quand on change les poids des entreprises 👇':'Petites capitalisations value européennes : qu’est-ce que ça change dans un portefeuille ? 👇',
+  hook:isEtc?`Investir dans le ${c.title.toLowerCase()} : que suit réellement ce produit ? 👇`:c.hook ?? (c.id==='nasdaq-equal'?'Le Nasdaq-100 change de visage quand on change les poids des entreprises 👇':'Petites capitalisations value européennes : qu’est-ce que ça change dans un portefeuille ? 👇'),
   whatToKnow:c.whatToKnow+swap,verdict:isEtc?'Une exposition à des contrats à terme sur une matière première.':'Une autre sélection ou pondération d’actions cotées.',question:'Tu utiliserais cette exposition pour compléter ton portefeuille ?',presentationOnly:false}
 })
 export const NON_BOND_INSTRUMENTS = Object.fromEntries(NON_BOND_SHEETS.map(r=>[r.isin,{name:r.name,pea:false}]))
@@ -23,4 +23,4 @@ export const NON_BOND_FACTS = Object.fromEntries(NON_BOND_SHEETS.map(r=>[r.isin,
 export const NON_BOND_LISTINGS = Object.fromEntries(NON_BOND_SHEETS.map(r=>[r.isin,records[r.isin].characteristics.listings]))
 export const NON_BOND_LISTING_EVIDENCE = Object.fromEntries(Object.entries(NON_BOND_LISTINGS).flatMap(([isin,ls])=>ls.map(l=>[l.evidenceId,{isin,sourceUrl:l.sourceUrl,checkedAt:l.checkedAt,identityEvidence:isin,excerpt:l.excerpt,pageSha256:l.sha256}])))
 export const NON_BOND_REFERENCE_EVIDENCE = Object.fromEntries(NON_BOND_SHEETS.map(r=>[r.isin,{sourceUrls:[r.source,r.listing.sourceUrl],checkedAt:r.checkedAt,dateStatus:'not-applicable',scope:`Part exacte ${r.isin}`,method:'Identité et cotation officielles collectées automatiquement ; historique de la part exacte',note:r.whatToKnow}]))
-export const NON_BOND_HISTORY_IDENTITIES = Object.fromEntries(NON_BOND_DEFINITIONS.map(r=>[r.historyId,{icon:r.icon,scene:r.scene,title:r.title,ticker:r.preferredSymbol.split('.')[0],instrumentType:r.instrumentType||'ETF'}]))
+export const NON_BOND_HISTORY_IDENTITIES = Object.fromEntries(NON_BOND_DEFINITIONS.filter(r=>r.historyEnabled!==false).map(r=>[r.historyId,{icon:r.icon,scene:r.scene,title:r.title,ticker:r.preferredSymbol.split('.')[0],instrumentType:r.instrumentType||'ETF'}]))

@@ -11,6 +11,9 @@ const ACWI = 'Il couvre les grandes et moyennes entreprises des pays développé
 const EURO50 = 'Il suit 50 grandes entreprises de la zone euro. Il couvre moins de marchés que le MSCI Europe ou le STOXX Europe 600 : le Royaume-Uni et la Suisse n’en font pas partie.'
 const TECH_EUROPE = 'Il cible les entreprises technologiques du STOXX Europe 600. Tu investis dans un secteur européen précis, plutôt que dans l’ensemble du marché européen.'
 export const ETF_EXPOSURE_COPY = {
+ IE00BJ38QD84:'Il suit les petites entreprises américaines du Russell 2000. Leur poids dépend de leur capitalisation, sans le filtre de valorisation de la sélection value.',
+ IE00B3F81R35:'Il détient des obligations d’entreprises investment grade libellées en euros. Les maturités sont variées ; la valeur dépend des taux et du risque de crédit.',
+
  ...Object.fromEntries(PRESENTATION_ETF_ADDITIONS.map(r=>[r.isin,r.whatIs])),
  IE00BG0J4C88:'Il cible les entreprises de la sécurité numérique. Cette sélection peut couvrir des activités différentes de celles d’un indice exclusivement consacré à la cybersécurité.',
  IE00BYPLS672:'Il cible les entreprises de cybersécurité selon les règles de son indice. Les poids et les critères de sélection peuvent différer des autres ETF de sécurité numérique.',
