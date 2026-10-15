@@ -13,7 +13,7 @@ for(const filename of process.argv.slice(2)) {
   const observation=JSON.parse(fs.readFileSync(filename,'utf8'))
   const failures=Object.entries(observation.companies??{}).flatMap(([id,status])=>{
     if(!profiles.some(p=>p.id===id&&!p.candidateOnly))return []
-    return Object.entries(status).filter(([key,value])=>!key.endsWith('Detail')&&typeof value==='string'&&!['updated','qualified','cached','cached-with-original-observation-date','public-finviz-estimates','published-accounts-only','not-applicable-ifrs'].includes(value)).map(([key,value])=>`- ${id} · ${key} : ${(status[key+'Detail']??value).replace(/[\r\n]/g,' ')}`)
+    return Object.entries(status).filter(([key,value])=>!key.endsWith('Detail')&&!(key==='primarySource'&&status.accounts==='updated')&&!(key==='quarter'&&status.accounts==='updated')&&typeof value==='string'&&!['updated','qualified','cached','cached-with-original-observation-date','public-finviz-estimates','published-accounts-only','not-applicable-ifrs'].includes(value)).map(([key,value])=>`- ${id} · ${key} : ${(status[key+'Detail']??value).replace(/[\r\n]/g,' ')}`)
   })
   if(failures.length)report+=`\n### Collecte ${path.basename(filename)}\n\n${failures.join('\n')}\n`
 }

@@ -68,7 +68,7 @@ jobs:
         with:
           name: company-source-probe
           path: ${{ runner.temp }}/company-source-probe.json
-          if-no-files-found: error
+          if-no-files-found: ignore
           retention-days: 35
       - name: Qualify expanded publication components from issuer documents
         if: github.event_name == 'pull_request'

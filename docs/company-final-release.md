@@ -10,7 +10,7 @@ Les objectifs conditionnels à 1/3/5 ans, trois scénarios, hypothèses modifiab
 
 | Entreprise | Symbole | Domaine |
 |---|---|---|
-| Accenture | ACN | Logiciels et services |
+| Jack Henry | JKHY | Logiciels et services |
 | Autodesk | ADSK | Logiciels et services |
 | Cadence | CDNS | Logiciels et services |
 | Synopsys | SNPS | Logiciels et services |
@@ -23,13 +23,13 @@ Les objectifs conditionnels à 1/3/5 ans, trois scénarios, hypothèses modifiab
 | Broadridge | BR | Logiciels et services |
 | Eaton | ETN | Industrie |
 | AMETEK | AME | Industrie |
-| Grainger | GWW | Industrie |
+| C.H. Robinson | CHRW | Industrie |
 | Expeditors | EXPD | Industrie |
 | Wabtec | WAB | Industrie |
 | Quanta Services | PWR | Industrie |
 | Cummins | CMI | Industrie |
 | Otis | OTIS | Industrie |
-| Carrier | CARR | Industrie |
+| J.B. Hunt | JBHT | Industrie |
 | Trane Technologies | TT | Industrie |
 | Xylem | XYL | Industrie |
 | Lennox | LII | Industrie |
@@ -43,7 +43,7 @@ Les objectifs conditionnels à 1/3/5 ans, trois scénarios, hypothèses modifiab
 | Mettler-Toledo | MTD | Santé |
 | Lululemon | LULU | Consommation |
 | D.R. Horton | DHI | Consommation |
-| AutoZone | AZO | Consommation |
+| PulteGroup | PHM | Consommation |
 | Yum! Brands | YUM | Consommation |
 | Domino’s Pizza | DPZ | Consommation |
 | Pool Corporation | POOL | Consommation |
@@ -92,7 +92,10 @@ Les comptes trimestriels, bilans, estimations et historiques de fractionnements 
 ## Vérifications locales
 
 - 108 tests Python réussis, dont rapprochement intersources, refus des contradictions et conservation des dates d’origine.
-- 1 971 publications de valorisation vérifiées sur les 112 dossiers complets.
+- 1 962 publications de valorisation vérifiées sur les 112 dossiers complets.
 - Tests existants des comptes, de la couverture, des modèles et du calcul inverse réussis.
 - Compilation et budgets JavaScript inchangés vérifiés.
-- La réception navigateur et GitHub est consignée dans la PR de livraison ; ne pas déduire un déploiement réussi de ce document seul.
+- Tests Chromium sur toutes les entreprises, copie, téléchargement PNG, mobile sans débordement et recherche partagée réussis.
+- La réception GitHub est consignée dans la PR de livraison ; ne pas déduire un déploiement réussi de ce document seul.
+
+Le premier passage GitHub a refusé le repli comptable de quatre candidates (ACN, GWW, CARR, AZO). Elles ont été remplacées par JKHY, CHRW, JBHT et PHM, dont les tableaux de repli ont été rapprochés avant nouvelle réception. Aucun seuil comptable n’a été assoupli.
