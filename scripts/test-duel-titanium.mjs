@@ -69,15 +69,15 @@ try {
       return png
     }
     try {
-      for (const definition of DUELS) await check(definition.id, buildDuel(definition), ['sp500-pondere-ou-equal', 'oblig-courtes-longues', 'usa-europe-sante-ou-acwi-tech', 'oblig-0-1-ou-1-3', 'oblig-etat-ou-entreprises', 'oblig-ig-ou-high-yield', 'oblig-etat-ou-inflation'].includes(definition.id))
+      for (const definition of DUELS) await check(definition.id, buildDuel(definition), ['sp500-equal-europe', 'oblig-courtes-longues', 'usa-europe-sante-ou-acwi-tech', 'oblig-0-1-ou-1-3', 'oblig-etat-ou-entreprises', 'oblig-ig-ou-high-yield', 'oblig-etat-ou-inflation'].includes(definition.id))
       for (const asset of CATALOG) {
-        const left = asset.role === 'base' ? [{ id: asset.id, pct: 100 }] : [{ id: 'msci_world_ishares', pct: 80 }, { id: asset.id, pct: 20 }]
-        const right = [{ id: 'msci_world_ishares', pct: 100 }]
+        const left = asset.role === 'base' ? [{ id: asset.id, pct: 80 }, { id: 'msci_em', pct: 20 }] : [{ id: 'msci_world_ishares', pct: 80 }, { id: asset.id, pct: 20 }]
+        const right = [{ id: 'msci_world_ishares', pct: 80 }, { id: 'msci_em', pct: 20 }]
         await check(asset.id, buildCustomDuel({ left, right }), ['sect_robotique', 'immo_ishares_yield', 'sect_energie_propre'].includes(asset.id))
       }
       const three = buildCustomDuel({ left: [{ id: 'msci_world_ishares', pct: 80 }, { id: 'oblig_global_agg_eur_hedged', pct: 10 }, { id: 'immo_ishares_yield', pct: 10 }], right: [{ id: 'msci_acwi_ishares', pct: 70 }, { id: 'stoxx600_bnp', pct: 20 }, { id: 'sect_robotique', pct: 10 }] })
       await check('three-assets-short-history', three, true)
-      const same = buildCustomDuel({ left: [{ id: 'msci_world_ishares', pct: 100 }], right: [{ id: 'msci_world_ishares', pct: 100 }] })
+      const same = buildCustomDuel({ left: [{ id: 'msci_world_ishares', pct: 80 }, { id: 'msci_em', pct: 20 }], right: [{ id: 'msci_world_ishares', pct: 80 }, { id: 'msci_em', pct: 20 }] })
       await check('equal-results', same)
       const negative = structuredClone(same)
       negative.a.final = 5600; negative.b.final = 7000
@@ -89,7 +89,7 @@ try {
   // Real UI: failed art does not silently substitute a different asset, and retry works.
   await page.route('**/asset-art/etf-night/america.webp', route => route.abort())
   await page.goto(`${base}duels-portefeuilles`)
-  const failureDuel = DUELS.findIndex(duel => duel.id === 'sp500-pondere-ou-equal')
+  const failureDuel = DUELS.findIndex(duel => duel.id === 'sp500-equal-europe')
   assert(failureDuel >= 0, 'An American exposure is required for the failed-art/retry test')
   await choose(page.locator('#pd-select'), String(failureDuel))
   await page.getByRole('button', { name: /Télécharger l’image PNG/i }).click()
@@ -101,5 +101,5 @@ try {
   await page.getByRole('img', { name: 'Duel de portefeuilles', exact: true }).waitFor()
   await page.setViewportSize({ width: 390, height: 844 })
   assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true)
-  console.log(`${CATALOG.length} supports, ${DUELS.length} duels, 1–3 actifs par côté : illustrations effectivement dessinées, poids, dates communes, capitaux, performances, pertes, égalités, grands montants, textes sans chevauchement et téléchargement/reprise vérifiés dans Chromium.`)
+  console.log(`${CATALOG.length} supports, ${DUELS.length} duels, 2–3 actifs par côté : illustrations effectivement dessinées, poids, dates communes, capitaux, performances, pertes, égalités, grands montants, textes sans chevauchement et téléchargement/reprise vérifiés dans Chromium.`)
 } finally { await browser?.close(); server.kill('SIGTERM') }
