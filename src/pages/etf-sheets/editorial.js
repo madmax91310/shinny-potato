@@ -95,11 +95,11 @@ const PRESENTATION_COPY = Object.fromEntries([
     hook: 'Acheter des actions d’entreprises énergétiques, ce n’est pas acheter directement du pétrole. Voici l’exposition que propose cet ETF sectoriel 👇',
   }],
   [['defense'], {
-    hook: 'Les contrats de défense attirent l’attention sur plusieurs entreprises cotées. Cet ETF les réunit dans une ligne dédiée : regardons ce qu’il contient 👇',
+    hook: 'Derrière les contrats de défense, il y a des entreprises cotées. Cet ETF en réunit plusieurs : voici celles que tu retrouves dans le panier 👇',
   }],
   [['eau'], {
     hook: 'L’eau est indispensable, mais un ETF eau reste un investissement dans des entreprises. Voici les activités auxquelles ce fonds donne accès 👇',
-    whyInteresting: 'Tu réunis plusieurs métiers liés à l’eau sans choisir chaque entreprise. Ce que je regarde derrière ce thème, c’est la manière dont ces activités produisent des revenus : le besoin d’eau ne dit pas, à lui seul, quels actionnaires en profiteront.',
+    whyInteresting: 'Tu réunis plusieurs métiers liés à l’eau sans choisir chaque entreprise. Je regarde comment ces entreprises gagnent leur argent. Le besoin d’eau est bien réel, mais il ne suffit pas à garantir leur rentabilité.',
   }],
   [['luxe'], {
     hook: 'Une marque de luxe peut être connue dans le monde entier sans que son action soit toujours une bonne affaire. Cet ETF rassemble plusieurs groupes du secteur 👇',
@@ -122,7 +122,7 @@ const PRESENTATION_COPY = Object.fromEntries([
     hook: 'Le quantique fait beaucoup parler de lui, mais les entreprises du secteur n’en sont pas toutes au même stade. Cet ETF en réunit plusieurs 👇',
   }],
   [['robotique'], {
-    hook: 'Les robots et l’automatisation prennent une place croissante dans de nombreuses activités. Cet ETF permet de regarder les entreprises qui développent ces solutions 👇',
+    hook: 'Les entreprises qui fabriquent les robots ou développent leurs logiciels sont aussi cotées en Bourse. Lesquelles retrouve-t-on dans cet ETF ? 👇',
   }],
   [['blockchain'], {
     hook: 'On peut investir dans des entreprises liées à la blockchain sans acheter directement de cryptomonnaies. C’est l’approche de cet ETF 👇',

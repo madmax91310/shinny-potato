@@ -2,6 +2,11 @@ import sources from '../../../public/asset-art/investors/sources.json'
 
 // Explicit person → portrait mapping. Entities remain labelled as entities.
 const people = {
+  "einhorn": "David Einhorn",
+  "halvorsen": "Andreas Halvorsen",
+  "gerstner": "Brad Gerstner",
+  "gayner": "Tom Gayner",
+
   tepper: 'David Tepper', ackman: 'Bill Ackman', berkshire: 'Warren Buffett',
   'cathie-wood': 'Cathie Wood', thiel: 'Peter Thiel', druckenmiller: 'Stanley Druckenmiller',
   loeb: 'Daniel Loeb', aschenbrenner: 'Leopold Aschenbrenner', 'li-lu': 'Li Lu',

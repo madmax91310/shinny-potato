@@ -10,7 +10,7 @@ import { normalizeEvidence } from './evidence.js';
 // Clé = indice + photographie : une nouvelle date ajoute une entrée, elle ne remplace pas l’histoire.
 // Les archives migrées gardent leur provenance ; les revues externes sont identifiées séparément.
 export const INDEX_FACTS = {
-...Object.fromEntries(['msci-world-industrials', 'msci-world-consumer-staples', 'msci-world-materials', 'msci-world-utilities', 'msci-world-health-care', 'msci-world-financials', 'msci-world-energy'].map(id => {
+...Object.fromEntries(['msci-world-consumer-discretionary', 'msci-world-communication-services', 'msci-world-industrials', 'msci-world-consumer-staples', 'msci-world-materials', 'msci-world-utilities', 'msci-world-health-care', 'msci-world-financials', 'msci-world-energy'].map(id => {
   const facts = automatedIndices[id].facts;
   return [id, { [facts.asOf]: { ...facts, markets: '23 marchés développés, grandes et moyennes capitalisations', sectorClassification: 'GICS' } }];
 })),

@@ -30,7 +30,7 @@ export async function collectObservations(root = ROOT) {
       if (c[field]) add(base, `characteristics:${field}`, label, c[field], c, { priority:'high', reason:'Modification d’une caractéristique de la part exacte ; vérifier le document émetteur avant publication.' })
     }
     const qualifiedRecord = Object.values({...qualified,...expanded}).find(q=>q.isin===isin)
-    for (const [field, m] of Object.entries(qualifiedRecord?.metrics ?? {})) add(base, `metric:${field}`, m.label, m.value, m, {unit:m.unit,threshold:field==='twelveMonTrlYld'?.5:field==='yieldToWorst'?.5:.25,scope:`${isin} · ${m.scope} · ${field}`,reason:'Variation cumulée de la mesure publiée ; ce rendement indicatif ne garantit pas la performance future.'})
+    for (const [field, m] of Object.entries(qualifiedRecord?.metrics ?? {})) add(base, `metric:${field}`, m.label, m.value, m, {unit:m.unit,threshold:({numHoldings:1,priceEarnings:1,priceBook:.1,volatilitySourced3YrAnnualized:1,twelveMonTrlYld:.5,yieldToWorst:.5})[field] ?? .25,scope:`${isin} · ${m.scope} · ${field}`,reason:'Variation cumulée de la mesure publiée par l’émetteur, à méthode et périmètre identiques ; ce n’est pas une prévision de performance.'})
     if (r.aum) add(base, 'aum', 'Encours', r.aum.amount, r.aum, { scope: `${isin} · ${r.aum.scope} · ${r.aum.currency}`, unit: r.aum.currency, relativeThreshold: .2, reason: 'Variation cumulée de l’encours d’au moins 20 %, même part/fonds et même devise. Ce n’est pas une mesure des flux nets.' })
     for (const field of ['countries', 'sectors']) {
       const block = r[field]

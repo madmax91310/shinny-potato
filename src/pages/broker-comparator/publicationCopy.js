@@ -1,6 +1,8 @@
 // Reformule la copie collectée pour le tweet, sans modifier les données ni les
 // réserves du registre. Une nouvelle formulation non reconnue reste inchangée.
 const REPHRASINGS = [
+  ['Spread et coûts tiers possibles.', 'Un écart entre le prix d’achat et de vente (spread) et des coûts tiers peuvent s’ajouter.'],
+  ['Les frais sont plus élevés hors Euronext.', 'Si tu achètes sur une autre place qu’Euronext, regarde le tarif applicable : les frais sont plus élevés.'],
   ['Frais PEA et remboursement éventuel non qualifiés par cette clause.', 'Ce passage du contrat ne précise ni les frais du transfert ni leur éventuel remboursement.'],
   ['la gratuité du CTO ne les qualifie pas.', 'la gratuité annoncée pour le CTO ne permet pas de conclure pour le PEA.'],
   ['gratuité du CTO distincte.', 'la gratuité annoncée pour le CTO ne permet pas de conclure pour le PEA.'],

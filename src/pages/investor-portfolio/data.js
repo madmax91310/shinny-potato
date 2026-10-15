@@ -1,5 +1,10 @@
 import { investorIntroduction } from '../../data/investor-profiles.js'
 export const INVESTORS = [
+  ['einhorn', 'David Einhorn'],
+  ['halvorsen', 'Andreas Halvorsen'],
+  ['gerstner', 'Brad Gerstner'],
+  ['gayner', 'Tom Gayner'],
+
   ['tepper', 'David Tepper'], ['ackman', 'Bill Ackman'], ['berkshire', 'Berkshire Hathaway'],
   ['cathie-wood', 'Cathie Wood'], ['thiel', 'Peter Thiel'],
   ['druckenmiller', 'Stanley Druckenmiller'], ['loeb', 'Daniel Loeb'],
@@ -125,13 +130,18 @@ export function portfolioEditorial(portfolio) {
     : 'À elles seules, ces ' + number(top.length) + ' positions représentent ' + almostAll(topSum) + ' du portefeuille déclaré.'
   let observation = second && lead.weight - second.weight <= .005 + 1e-9
     ? 'Ce qui me frappe, c’est le peu d’écart entre ' + leadName + ' et ' + holdingName(second) + '. Les deux premières lignes sont presque à égalité, même si ' + leadName + ' arrive en tête.'
-    : 'Je m’arrête d’abord sur ' + leadName + ', qui pèse ' + percentage(lead.weight) + ' des positions déclarées' + (second ? ', devant ' + holdingName(second) + ' à ' + percentage(second.weight) : '') + '.'
+    : 'Je regarde d’abord la place de ' + leadName + ', qui pèse ' + percentage(lead.weight) + ' des positions déclarées' + (second ? ', devant ' + holdingName(second) + ' à ' + percentage(second.weight) : '') + '.'
   let question = top.length > 1 ? 'Parmi ces ' + number(top.length) + ' positions, laquelle t’intéresse le plus ?' : 'Qu’est-ce qui t’intéresse dans cette position ?'
   if (lead.weight > total / 2 && companies.length > 1) {
     observation = 'Ce qui me frappe, c’est qu’une seule ligne pèse plus lourd que toutes les autres réunies : ' + percentage(lead.weight) + ' pour ' + leadName + ', contre ' + percentage(total - lead.weight) + ' pour le reste. C’est donc l’entreprise que j’aurais envie de creuser en premier.'
     question = 'Qu’est-ce que tu voudrais vérifier avant de donner autant de poids à ' + leadName + ' ?'
   }
   const hooks = {
+    einhorn: 'Chez David Einhorn, je regarde d’abord ' + leadName + ', puis la place laissée aux autres positions déclarées 👀',
+    halvorsen: 'Chez Viking Global, ' + leadName + ' arrive en tête. Je regarde comment cette ligne se compare au reste du relevé 👀',
+    gerstner: 'Chez Brad Gerstner, je commence par le poids ' + de(leadName) + ' dans les positions déclarées par Altimeter 👀',
+    gayner: 'Je regarde les actions déclarées par Markel Group, avec ' + leadName + ' en première position 👀',
+
     tepper: 'Chez David Tepper, je m’arrête sur ' + leadName + ', la première ligne du portefeuille déclaré 👀',
     ackman: leadName + ' est la première position du portefeuille déclaré de Bill Ackman, et je trouve intéressant de regarder ce qu’il y a autour 👀',
     berkshire: leadName + ' arrive en tête des actions déclarées par Berkshire Hathaway, mais je m’intéresse aussi aux entreprises qui suivent 👀',
@@ -237,7 +247,7 @@ export function portfolioEditorial(portfolio) {
     berkshire: 'Quelle position de Berkshire aurais-tu envie de creuser ?',
     'cathie-wood': 'Parmi ces positions d’ARK, laquelle te semble la plus intéressante à suivre ?',
     thiel: 'Quelle position du relevé de Peter Thiel te surprend le plus ?',
-    druckenmiller: second && lead.weight > second.weight * 2 ? 'Tu connaissais déjà ' + leadName + ' ?' : 'Quelle entreprise de cette sélection aurais-tu envie de creuser ?',
+    druckenmiller: second && lead.weight > second.weight * 2 ? 'Tu connaissais déjà ' + leadName + ' ?' : 'Quelle entreprise de cette sélection aimerais-tu mieux connaître ?',
     loeb: 'Tu suis déjà ' + leadName + ' ?',
     aschenbrenner: 'Quelle position aurais-tu envie de creuser dans ce portefeuille centré sur l’IA ?',
     'gates-trust': 'Quelle entreprise de cette sélection te paraît intéressante pour le long terme ?',

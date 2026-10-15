@@ -1,3 +1,4 @@
+import { INVESTORS } from "../src/pages/investor-portfolio/data.js"
 import practicalReferences from '../src/data/automated-practical-sheets.json' with {type:'json'}
 import assert from 'node:assert/strict'
 import { assertReviewObservation } from './lib/data-review-observation.mjs'
@@ -101,7 +102,7 @@ assert.equal(scheduledReview({ checkedAt: '2026-09-30' }, { registry: 'src/data/
 assert.equal(scheduledReview({ checkedAt: '2026-09-30' }, { registry: 'src/data/instrument-returns.js' }, '2026-10-02').nextReviewAt, '2027-01-01')
 assert.equal(new Set(current.schedule.map(x => x.id)).size, current.schedule.length)
 assert(current.schedule.every(x => x.nextReviewAt || x.category === 'undated'))
-assert.equal(current.schedule.filter(x => x.id.startsWith('investor:')).length, 18)
+assert.equal(current.schedule.filter(x => x.id.startsWith('investor:')).length, INVESTORS.length)
 assert(current.schedule.filter(x => x.id.startsWith('investor:')).every(x => x.nextReviewAt === '2026-11-14'))
 
 const calendar = reviewCalendar(buildReview('2026-10-03'))
@@ -112,7 +113,7 @@ assert.equal(groups.reduce((sum, group) => sum + group.total, 0), calendar.lengt
 assert(groups.every(group => group.due === 0), 'Les contrôles de cette semaine sont pris en compte')
 assert.equal(groups.find(group => group.id === 'monthly').nextReviewAt, '2026-11-01')
 assert(groups.find(group => group.id === 'quarterly').types.includes('Portefeuilles trimestriels'))
-assert.equal(calendar.filter(item => item.id.startsWith('investor:') && item.cadence === 'quarterly').length, 18)
+assert.equal(calendar.filter(item => item.id.startsWith('investor:') && item.cadence === 'quarterly').length, INVESTORS.length)
 assert.equal(groups.find(group => group.id === 'event').total, 3)
 assert.equal(groups.find(group => group.id === 'annual').nextReviewAt, '2027-01-01')
 const groupFixture = summarizeCadences([

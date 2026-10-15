@@ -1,5 +1,7 @@
 // Reviewed exposure illustrations. Abstract glass blocks never encode weights.
 const identities = {
+ 'msci-world-consumer-discretionary':['world','Pays développés · consommation discrétionnaire'],
+ 'msci-world-communication-services':['world','Pays développés · services de communication'],
   'msci-world-health-care': ['health', 'Pays développés · secteur santé'],
   'msci-world-financials': ['finance', 'Pays développés · secteur financier'],
   'msci-world-energy': ['energy', 'Pays développés · secteur énergie'],

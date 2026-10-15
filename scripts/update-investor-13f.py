@@ -14,6 +14,11 @@ import urllib.parse
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 MANAGERS = {
+    'einhorn': ('greenlight-capital', 'David Einhorn', 'Greenlight Capital Inc.'),
+    'halvorsen': ('viking-global-investors', 'Andreas Halvorsen', 'Viking Global Investors LP'),
+    'gerstner': ('altimeter-capital-management', 'Brad Gerstner', 'Altimeter Capital Management LP'),
+    'gayner': ('markel-group', 'Tom Gayner', 'Markel Group Inc.'),
+
     'tepper': ('appaloosa', 'David Tepper', 'Appaloosa LP'),
     'ackman': ('pershing-square-capital-management', 'Bill Ackman', 'Pershing Square Capital Management LP'),
     'berkshire': ('berkshire-hathaway', 'Berkshire Hathaway', 'Berkshire Hathaway Inc.'),
@@ -300,7 +305,7 @@ def refresh(directory, fetch_portfolio=make_portfolio, report_path=None):
         report_path.write_text(json.dumps(report, ensure_ascii=False, indent=2) + '\n')
     if os.environ.get('GITHUB_STEP_SUMMARY'):
         with open(os.environ['GITHUB_STEP_SUMMARY'], 'a') as summary:
-            summary.write('\n## Contrôle des 18 investisseurs\n\n')
+            summary.write(f'\n## Contrôle des {len(MANAGERS)} investisseurs\n\n')
             summary.write('Derniers fichiers conservés : échec de validation.\n' if failures else 'Tous les relevés sont validés.\n')
             for check in checks:
                 summary.write(f"- {check['slug']} : {check['status']} — {check.get('periodEnd', check.get('reason'))}\n")

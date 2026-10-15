@@ -3,14 +3,14 @@ import { buildFactsheetTweet } from '../src/pages/factsheet-tweets/lib.js'
 import assert from 'node:assert/strict'
 import { indexObservation } from '../src/pages/factsheet-tweets/editorial.js'
 
-assert.equal(SHEETS.length, 38, 'Trente-huit sujets, santé, finance et énergie mondiales incluses')
+assert.equal(SHEETS.length, 40, 'Quarante sujets, consommation discrétionnaire et communication mondiales incluses')
 assert.equal(new Set(SHEETS.map(sheet => sheet.id)).size, SHEETS.length, 'Identifiants de fiches uniques')
 assert(SHEETS.some(sheet => sheet.id === 'world-islamic'), 'Indice World Islamic raccordé')
 for (const sheet of SHEETS) {
   const text = buildFactsheetTweet(sheet)
   assert.equal((text.match(/🔖 Sauvegarde ce tweet/g) ?? []).length, 1)
   assert(text.indexOf('🔖 Sauvegarde ce tweet') < text.indexOf('🌍 Les principaux pays'), `${sheet.id}: sauvegarde trop tardive`)
-  assert.match(text.split('🔖')[0], /(?:On décrypte|Je t’explique).*👇/)
+  assert.match(text.split('🔖')[0], /(?:Regardons|Je t’explique).*👇/)
   assert.doesNotMatch(text, /Ce qui m’intéresse|Je regarderais|Son univers :|Ajouter des marchés ou des entreprises ne leur/)
   const countries = sheet.countries.reduce((sum, [, weight]) => sum + weight, 0)
   const sectors = sheet.sectors.reduce((sum, [, weight]) => sum + weight, 0)

@@ -11,7 +11,7 @@ export function compactLiteral(value) {
   const tokens=/"(?:[^"\\]|\\.)*"(\s*:)?/g
   json.replace(tokens,(s,key)=>{if(!key&&s.length>=26)counts.set(s,(counts.get(s)??0)+1);return s})
   const shared=[...counts].filter(([,n])=>n>=3).map(([s])=>s),indices=new Map(shared.map((s,i)=>[s,i]))
-  return `const strings=[${shared.join(',')}];\nexport default `+json.replace(tokens,(s,key)=>!key&&indices.has(s)?`strings[${indices.get(s)}]`:s)+';'
+  return `const strings=Object.freeze([${shared.join(',')}]);\nexport default `+json.replace(tokens,(s,key)=>!key&&indices.has(s)?`strings[${indices.get(s)}]`:s)+';'
 }
 
 // Projections are derived from the same registries on every build/dev startup.

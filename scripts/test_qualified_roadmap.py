@@ -16,6 +16,15 @@ class QualifiedRoadmap(unittest.TestCase):
   self.assertEqual(r['metrics']['modelOad']['asOf'],'2026-10-13')
   self.assertIn('does not include fees',r['metrics']['yieldToWorst']['method'])
   self.assertEqual(r['metrics']['twelveMonTrlYld']['scope'],'Exact share, trailing 12 months')
+ def test_equity_metrics_keep_their_definition_and_reject_fractional_counts(self):
+  points=self.body['componentsByNameMap']['fundamentalsAndRisk']['containersByNameMap']['default']['dataPointsByNameMap']
+  points['numHoldings']={'value':24,'asOfDate':20261013,'infoBubble':'Excludes cash and derivatives'}
+  points['priceEarnings']={'value':21.16,'asOfDate':20261013,'infoBubble':'Negative earnings excluded'}
+  r=self.collect()
+  self.assertEqual(r['metrics']['numHoldings']['unit'],'positions')
+  self.assertEqual(r['metrics']['priceEarnings']['method'],'Negative earnings excluded')
+  points['numHoldings']['value']=24.5
+  with self.assertRaises(ValueError):self.collect()
  def test_other_share_is_rejected(self):
   self.config['isin']='IE00B441G979'
   with self.assertRaises(ValueError):self.collect()

@@ -63,11 +63,11 @@ def collect_one(config,now):
  if v('ucitsCompliantFlag')!='Yes' or v('assetClass')!=config.get('fundAssetClass',config.get('holdingsAssetClass','Equity')):raise ValueError('Unexpected UCITS/asset class')
  metrics=components.get('fundamentalsAndRisk',{}).get('containersByNameMap',{}).get('default',{}).get('dataPointsByNameMap',{})
  result['metrics']={}
- for field,label,unit,low,high in [('modelOad','Duration effective','ans',0,100),('weightedAvgLife','Maturité moyenne pondérée','ans',0,100),('yieldToWorst','Rendement actuariel moyen (YTM/YTW)','%',-20,100),('twelveMonTrlYld','Rendement des distributions sur 12 mois','%',0,100)]:
+ for field,label,unit,low,high in [('modelOad','Duration effective','ans',0,100),('weightedAvgLife','Maturité moyenne pondérée','ans',0,100),('yieldToWorst','Rendement actuariel moyen (YTM/YTW)','%',-20,100),('twelveMonTrlYld','Rendement des distributions sur 12 mois','%',0,100),('numHoldings','Nombre de positions hors liquidités et dérivés','positions',1,100000),('priceEarnings','PER du portefeuille selon l’émetteur','fois',0,1000),('priceBook','Cours / actif net comptable selon l’émetteur','fois',0,1000),('volatilitySourced3YrAnnualized','Volatilité annualisée sur 3 ans','%',0,200)]:
   point=metrics.get(field,{})
   if point.get('value') is None:continue
   value=point['value']
-  if isinstance(value,bool) or not isinstance(value,(int,float)) or not low<=value<=high:raise ValueError('Invalid issuer metric: '+field)
+  if isinstance(value,bool) or not isinstance(value,(int,float)) or not low<=value<=high or (field=='numHoldings' and value!=int(value)):raise ValueError('Invalid issuer metric: '+field)
   result['metrics'][field]={'value':value,'label':label,'unit':unit,'asOf':source_date(point['asOfDate'],now),'checkedAt':now.date().isoformat(),'sourceUrl':url,'method':point.get('infoBubble',''),'scope':'Fund portfolio' if field!='twelveMonTrlYld' else 'Exact share, trailing 12 months'}
  if config.get('currencyHedge') is True and 'Hedged' not in result['index']:raise ValueError('Hedge benchmark changed')
  result['checkedAt']=now.isoformat();result['pageSha256']=hashlib.sha256(raw.encode()).hexdigest();result.pop('rawComponents',None)
