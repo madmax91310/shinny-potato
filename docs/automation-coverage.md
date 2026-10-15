@@ -8,14 +8,14 @@ Rapport fondé sur les collecteurs configurés et les données actives, pas sur 
 
 | Domaine | Couverture active | Fréquence |
 |---|---|---|
-| Historiques mensuels des simulateurs | 138/138 séries ; 61 collecteurs communs + Bitcoin et or | Marchés : 2, 4, 8 et 16 du mois ; Bitcoin : 2, 4 et 8 ; or : tentatives du 3 au 10 |
-| Parts ETF mensuelles raccordées | 67 parts exactes ; investissement et performance revenus réinvestis, anniversaire hors distributions | Même collecte mensuelle et reprise quotidienne des échecs |
+| Historiques mensuels des simulateurs | 142/142 séries ; 61 collecteurs communs + Bitcoin et or | Marchés : 2, 4, 8 et 16 du mois ; Bitcoin : 2, 4 et 8 ; or : tentatives du 3 au 10 |
+| Parts ETF mensuelles raccordées | 71 parts exactes ; investissement et performance revenus réinvestis, anniversaire hors distributions | Même collecte mensuelle et reprise quotidienne des échecs |
 | ETF/ETC/ETP | 206/206 instruments, au moins un champ | Quotidienne |
-| Comparatif ETF | 121/121 parts raccordées dans 74 blocs ; 113 calendriers actifs, 8 absences qualifiées | Quotidienne ; ajout de part contrôlé en CI |
+| Comparatif ETF | 123/123 parts raccordées dans 80 blocs ; 115 calendriers actifs, 8 absences qualifiées | Quotidienne ; ajout de part contrôlé en CI |
 | Compositions d’indices | 52 indices | 3 et 16 du mois |
 | Rendements annuels d’indices | 56 indices | 3 et 16 du mois |
 | Pouvoir d’achat | Prix généraux, alimentation, énergie, IRL et SMIC INSEE ; périodes et qualité publiées | Vérification quotidienne |
-| Anniversaires | 128 niveaux datés ; saisie manuelle facultative | Quotidienne ; or : dernière moyenne mensuelle |
+| Anniversaires | 132 niveaux datés ; saisie manuelle facultative | Quotidienne ; or : dernière moyenne mensuelle |
 | Inflation | INSEE, prolongement de la série mensuelle 2026+ | 1 et 16 du mois |
 | Portefeuilles d’investisseurs | 18 déclarants SEC 13F | Vérification quotidienne ; publication trimestrielle par les déclarants |
 | Suivi de fraîcheur | Rapport et rappels GitHub | Hebdomadaire ; ces rappels ne collectent pas les données manuelles |
@@ -128,6 +128,9 @@ Les identités, domiciles, modes de réplication, couvertures de change, politiq
 | IE00B4556L06 | iShares Physical Palladium ETC | Pays, Secteurs, Principales positions |
 | IE0003R87OG3 | Avantis Global Small Cap Value UCITS ETF USD Acc | Rendements calendaires, Pays |
 | IE00B4LHWP62 | iShares Physical Platinum ETC | Pays, Secteurs, Principales positions |
+| IE00BM67HK77 | Xtrackers MSCI World Health Care UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
+| FR0010524777 | Amundi MSCI New Energy UCITS ETF Dist | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
+| IE00BK5BCH80 | L&G Clean Energy UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00BM67HV82 | Xtrackers MSCI World Industrials UCITS ETF 1C | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00B3F81G20 | iShares MSCI EM Small Cap UCITS ETF USD (Dist) | Les six champs, caractéristiques et cotations sont automatisés |
 | IE00B52MJY50 | iShares Core MSCI Pacific ex-Japan UCITS ETF USD (Acc) | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
@@ -155,7 +158,6 @@ Les identités, domiciles, modes de réplication, couvertures de change, politiq
 | DE000A0H08Q4 | iShares STOXX Europe 600 Technology UCITS ETF (DE) | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | DE000A27Z304 | Bitwise Physical Bitcoin ETP | Pays, Secteurs, Principales positions |
 | FR0010342592 | Amundi Nasdaq-100 Daily (2x) Leveraged UCITS ETF Acc | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
-| FR0010524777 | Amundi MSCI New Energy UCITS ETF Dist | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | FR0010527275 | Amundi MSCI Water UCITS ETF (Dist) | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | FR0010755611 | Amundi MSCI USA Daily (2x) Leveraged UCITS ETF Acc | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | FR0011440478 | Amundi PEA Emergent EMEA (MSCI Emerging EMEA) ESG Transition UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
@@ -245,7 +247,6 @@ Les identités, domiciles, modes de réplication, couvertures de change, politiq
 | IE00BJ5JP097 | iShares MSCI World Financials Sector Advanced UCITS ETF USD (Dist) | Les six champs, caractéristiques et cotations sont automatisés |
 | IE00BJ5JPG56 | iShares MSCI China UCITS ETF (Acc) | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00BK5BCD43 | L&G Artificial Intelligence UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
-| IE00BK5BCH80 | L&G Clean Energy UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00BK5BQT80 | Vanguard FTSE All-World UCITS ETF (USD) Accumulating | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00BK5BR626 | Vanguard FTSE All-World High Dividend Yield UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00BK5BR733 | Vanguard FTSE Emerging Markets UCITS ETF (Acc) | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
@@ -253,7 +254,6 @@ Les identités, domiciles, modes de réplication, couvertures de change, politiq
 | IE00BKM4GZ66 | iShares Core MSCI EM IMI UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00BKPSFC54 | iShares MSCI World Quality Dividend Advanced UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00BKPX3K41 | iShares MSCI AC Far East ex-Japan UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
-| IE00BM67HK77 | Xtrackers MSCI World Health Care UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00BM8R0J59 | Global X Nasdaq 100 Covered Call UCITS ETF | Rendements calendaires, Pays, Secteurs, Principales positions |
 | IE00BMG6Z448 | iShares MSCI EM ex-China UCITS ETF (Acc) | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00BMW42413 | iShares MSCI Europe Information Technology Sector UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
