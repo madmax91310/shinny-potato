@@ -4,7 +4,7 @@ import { QUALIFIED_EXPOSURE_SHEETS } from '../../data/qualified-exposure-sheets.
 import { NON_BOND_SHEETS } from '../../data/non-bond-expansion.js'
 // Explicit exposure illustrations, never issuer/index logos. Review: public/asset-art/etf-night/README.md.
 const groups = {
-  world: 'pea-emergents-amundi em-small-cap-ishares global-premium-income-jpm quality-dividend-growth-wisdomtree acwi_imi_spdr world_ex_usa pea_global_amundi msci-world msci-em msci-acwi ftse-all-world em-ex-chine low-volatility value small-caps quality momentum dividendes covered-call support-msci_world support-msci_world_ishares support-msci_acwi support-msci_em_amundi support-ftse_em_vanguard support-msci_em_spdr support-strat_dividendes_dist support-high_dividend support-high_dividend_dist support-quality_dividend support-quality_dividend_dist support-dividend_leaders',
+  world: 'small-value-world-avantis pea-emergents-amundi em-small-cap-ishares global-premium-income-jpm quality-dividend-growth-wisdomtree acwi_imi_spdr world_ex_usa pea_global_amundi msci-world msci-em msci-acwi ftse-all-world em-ex-chine low-volatility value small-caps quality momentum dividendes covered-call support-msci_world support-msci_world_ishares support-msci_acwi support-msci_em_amundi support-ftse_em_vanguard support-msci_em_spdr support-strat_dividendes_dist support-high_dividend support-high_dividend_dist support-quality_dividend support-quality_dividend_dist support-dividend_leaders',
   america: 'sp500_equal_weight russell2000_spdr sp500-spea sp500 nasdaq100 support-sp500_ishares support-nasdaq100_ishares support-lqq support-cl2',
   europe: 'pea-europe-amundi euro-dividend-aristocrats eurostoxx50 support-cac40 support-eurostoxx50_ishares support-msci_europe support-smallcap_europe',
   asia: 'pea-inde-amundi pacific-ex-japan-ishares inde topix-pea-hedged support-actions_japon support-actions_coree support-actions_taiwan support-actions_asie_ex_japon',
@@ -12,7 +12,7 @@ const groups = {
   property: 'immobilier-reit support-foncieres_etf support-foncieres_etf_dist support-immo_gpr',
   chip: 'pea-tech-europe cloud-wisdomtree ia-big-data-xtrackers semiconducteurs technologie quantique ia blockchain support-tech_europe support-sect_tech',
   gaming: 'gaming_vaneck',
-  health: 'pea-health-europe medical_innovation_ishares sante-biotech support-sect_sante',
+  health: 'world-healthcare-xtrackers pea-health-europe medical_innovation_ishares sante-biotech support-sect_sante',
   energy: 'energie support-sect_energie',
   defense: 'defense',
   security: 'cybersecurite support-sect_cybersecurite',
@@ -24,7 +24,7 @@ const groups = {
   batteries: 'batteries-ve',
   space: 'spatial',
   commodities: 'support-mp_large support-mp_large_icom',
-  renewables: 'support-sect_energie_propre',
+  renewables: 'new-energy-amundi clean-energy-lg support-sect_energie_propre',
   infrastructure: 'world-industrials-xtrackers infrastructures',
   utilities: 'support-sect_utilities',
   resources: 'copper-miners-globalx basic-resources-pea mines-mondiales-vaneck',

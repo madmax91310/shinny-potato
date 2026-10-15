@@ -4,12 +4,12 @@ export const MONTHLY_STORY_ANGLES = {
   nvidia: {
     category: 'Nvidia : supporter la baisse',
     hook: 'La hausse de Nvidia peut faire oublier les fortes baisses traversées par ses actionnaires 🫠',
-    twist: 'C’est facile de regarder une action après une hausse et de se dire qu’il suffisait de l’acheter. Mais pour profiter de la suite, il fallait aussi garder son argent investi pendant cette baisse, sans connaître la fin du graphique.\n\nLe parcours compte autant que le point d’arrivée pour comprendre ce qu’un investissement aurait demandé.',
+    twist: 'C’est facile de regarder une action après une hausse et de se dire qu’il suffisait de l’acheter. Mais pour profiter de la suite, il fallait aussi garder son argent investi pendant cette baisse, sans connaître la fin du graphique.',
   },
   meta: {
     category: 'Meta : garder ou vendre ?',
     hook: 'L’histoire de Meta montre à quel point garder une action pendant une forte baisse peut être difficile 🫠',
-    twist: 'Après une telle chute, attendre le rebond n’offre aucune garantie. Le retour au sommet se voit aujourd’hui sur le graphique, mais il ne pouvait pas servir de réponse au moment de décider.\n\nLe résultat final ne suffit pas à décrire l’incertitude traversée.',
+    twist: 'Après une telle chute, attendre le rebond n’offre aucune garantie. Le retour au sommet se voit aujourd’hui sur le graphique, mais il ne pouvait pas servir de réponse au moment de décider.',
   },
   paypal: {
     category: 'PayPal : attendre son prix d’achat',
@@ -26,7 +26,7 @@ export const MONTHLY_STORY_ANGLES = {
     // https://www.ishares.com/uk/individual/en/products/291770/ishares-core-global-aggregate-bond-ucits-etf
     category: 'Obligations : la couverture ne protège pas de tout',
     hook: '« Obligations mondiales couvertes en euros » peut sembler rassurant. Le fonds reste pourtant exposé à des baisses.',
-    twist: 'La couverture en euros vise le risque de change. Elle n’empêche pas les obligations de perdre de la valeur.\n\nSon rôle dans le portefeuille dépend aussi des baisses qu’il peut traverser. Son nom ne suffit pas à les décrire.',
+    twist: 'La couverture en euros vise le risque de change. Elle n’empêche pas les obligations de perdre de la valeur.',
   },
   euroInflationBond: {
     // Risques recoupés dans la fiche iShares IBCI le 10/10/2026 :

@@ -2,7 +2,8 @@ import { metricCopy } from '../../data/etf-metric-copy.js'
 import { usePublicationPreference } from '../../lib/usePublicationPreference.js'
 import { notifyPublication, copyPublicationText, startPublicationDownload } from '../../design-system/publicationActions.js'
 import { getPresentationCopy, presentationTicker } from './editorial.js'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
+import AssetToolLinks from '../../design-system/AssetToolLinks.jsx'
 import { getPerformanceHref } from '../../data/performance-links.js'
 import ActionMenu from '../../design-system/ActionMenu'
 import { downloadImage } from '../../design-system/downloadImage'
@@ -195,7 +196,16 @@ function Lightbox({ dataUrl, filename, title, onClose }) {
 }
 
 export default function App() {
-  const [currentId, setCurrentId] = usePublicationPreference('etf-sheet', 'sp500', id => Object.hasOwn(byId, id))
+  const { search } = useLocation()
+  return <EtfWorkspace key={search} search={search} />
+}
+
+function EtfWorkspace({ search }) {
+  const requested = ETFS.find(etf => etf.isin === new URLSearchParams(search).get('isin'))
+  const [savedId, setSavedId] = usePublicationPreference('etf-sheet', 'sp500', id => Object.hasOwn(byId, id))
+  const [linkedId, setLinkedId] = useState(requested?.id ?? null)
+  const currentId = linkedId ?? savedId
+  const setCurrentId = id => { setLinkedId(null); setSavedId(id) }
   const [copied, setCopied] = useState(false)
   const [lightbox, setLightbox] = useState(null)
   const [imageBusy, setImageBusy] = useState(false)
@@ -273,6 +283,7 @@ export default function App() {
               <AssetPicker id="es-etf-select" className="es-select" label="Choisir un ETF" items={options} value={currentId} onChange={selectETF} selectOnGroupChange />
             </div>
             <Button type="button" variant="secondary" onClick={pickRandom}>🔄 ETF aléatoire</Button>
+            <AssetToolLinks isin={currentEtf.isin} exclude="sheet" />
             {performanceHref && <Button as={Link} to={performanceHref} variant="secondary">Voir sa performance</Button>}
           </div>
           <p className="es-disclaimer" style={{ marginTop: 16 }}>Choisis un ETF, puis ouvre l’aperçu pour relire ta publication. Les boutons ci-dessous créent les visuels.</p>

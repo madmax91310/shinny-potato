@@ -181,7 +181,12 @@ export function advanceRadar(previous, observations, { now = new Date(), sourceR
   const publishableNewEvents = newEvents.filter(event => event.status !== 'source-conflict')
   for (const [conflictKey, conflict] of Object.entries(state.conflicts)) {
     const latest = state.current[observationKey(conflict.accepted)]
-    if (latest?.period > conflict.period) conflict.resolvedAt ??= stamp
+    if (latest?.period > conflict.period && !conflict.resolvedAt) {
+      conflict.resolvedAt = stamp
+      conflict.resolution = { kind: 'superseded-period', period: latest.period,
+        sourceUrl: latest.sourceUrl, sourceHash: latest.sourceHash ?? null,
+        reason: 'Publication plus récente ; contradiction historique conservée, sans validation rétroactive ni mouvement de marché déduit.' }
+    }
     if (!conflict.resolvedAt) issues.push({ family: conflict.accepted.family, entity: conflict.accepted.entity, reason: `Valeur contradictoire pour la même période (${conflict.period}) : ${conflict.accepted.fieldLabel}. Dernière observation conservée ; propositions archivées (${conflictKey}).` })
   }
   state.lastCheckedAt = stamp

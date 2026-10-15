@@ -154,7 +154,7 @@ def parse_holdings(body, share, now, url):
         if isinstance(value, bool) or not isinstance(value, (float, int)) or not math.isfinite(value) or not -100 <= value <= 100:
             reject('Invalid DWS securities weight')
         asset = p['column_5']['value']
-        if asset in ('Equities', 'Depository Receipts', 'Preferred Stock', 'Right'):
+        if asset in ('Equities', 'Depository Receipts', 'Preferred Stock', 'Right', 'Real Estate Investment Trust'):
             if value < 0:
                 reject('Unqualified DWS equity exposure')
             sector = INDUSTRY_SECTORS.get(p['column_4']['value'], p['column_4']['value'])

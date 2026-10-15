@@ -1,4 +1,3 @@
-const money = value => `${new Intl.NumberFormat('fr-FR', {maximumFractionDigits:0}).format(Math.round(value))} €`
 const percent = value => `${new Intl.NumberFormat('fr-FR', {minimumFractionDigits:1,maximumFractionDigits:1}).format(Math.abs(value))} %`
 const move = value => `${value<0 ? 'perd' : 'gagne'} ${percent(value)}`
 const topics = {
@@ -10,7 +9,7 @@ const topics = {
  'usa-europe-sante-ou-acwi-tech': ['S&P 500 avec Europe et santé ou ACWI avec 20 % de technologie', 'Tu choisirais la répartition USA, Europe et santé, ou la base ACWI renforcée en technologie ?'],
  'allworld-cyber-ou-world-em': ['All-World avec 10 % de cybersécurité ou World avec 20 % d’émergents', 'Tu consacrerais une poche à la cybersécurité, ou tu choisirais toi-même le poids des émergents ?'],
  'world-em-energie-ou-allworld-tech': ['World, émergents et énergie ou All-World avec technologie', 'Tu renforcerais les entreprises de l’énergie ou celles de la technologie dans ta poche mondiale ?'],
- 'world-value-ou-world-quality': ['Actions peu chères ou entreprises sélectionnées pour leur solidité financière', 'Pour compléter ton World, tu privilégierais le prix des actions, les critères de qualité ?'],
+ 'world-value-ou-world-quality': ['Actions peu chères ou entreprises sélectionnées pour leur solidité financière', 'Pour compléter ton World, tu privilégierais le prix des actions ou les critères de qualité ?'],
  'sp500-japon-ou-acwi-inde': ['S&P 500 avec 20 % de Japon ou ACWI avec 20 % d’Inde', 'Tu choisirais la base américaine avec le Japon, ou l’ACWI avec davantage d’Inde ?'],
  'world-energie-propre-ou-allworld-infrastructure': ['World avec énergies propres ou All-World avec infrastructures', 'Tu choisirais les énergies propres à côté du World ou les infrastructures à côté de l’All-World ?'],
 }
@@ -49,15 +48,16 @@ export function duelEditorial(duel) {
   const other=winner===a ? b : a
   const winnerName=winner===a ? 'A' : 'B'
   const otherName=winner===a ? 'B' : 'A'
-  conclusion=`Sur cette période, le portefeuille ${winnerName} termine avec ${money(gap)} de plus.`
+  conclusion=`L’avantage de ${winnerName} se mesure ici sur ${years.length} années complètes.`
   if (gap<200) conclusion+=' Cet écart reste faible pour 10 000 € investis : la composition, les frais et les baisses traversées comptent aussi pour les départager.'
   if (winner.worst<other.worst && winner.worst<0) {
-   conclusion+=` Mais sa pire année est plus difficile : ${winnerName} ${move(winner.worst)} en ${winner.worstYear}, contre ${otherName} qui ${move(other.worst)} en ${other.worstYear}. La performance finale ne suffit donc pas à départager ces portefeuilles.`
+   conclusion+=` Mais sa pire année est plus difficile : ${winnerName} ${move(winner.worst)} en ${winner.worstYear}, contre ${otherName} qui ${move(other.worst)} en ${other.worstYear}. Ce gain supplémentaire s’accompagne donc d’une année plus difficile à traverser.`
   } else if (!equalAnnual) {
    conclusion+=` En ${year}, A ${move(a.annual[year])}, et B ${move(b.annual[year])}.`
   }
-  if (a.assets[0].exposure!==b.assets[0].exposure) conclusion+=' Leur placement principal change aussi : cet écart porte sur les portefeuilles entiers, pas seulement sur leurs compléments.'
+  if (a.assets[0].exposure!==b.assets[0].exposure || a.assets[0].pct!==b.assets[0].pct) conclusion+=' Leur base ou son poids change aussi : cet écart porte sur les portefeuilles entiers, pas seulement sur leurs compléments.'
  }
 
+ if (years.length < 6) conclusion+=` La comparaison couvre seulement ${years.length} années communes ; elle ne montre pas tous les épisodes de marché plus anciens.`
  return {hook,question,conclusion}
 }

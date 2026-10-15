@@ -1,5 +1,7 @@
 import { readFileSync } from 'node:fs'
 import { createHash } from 'node:crypto'
+import * as marketFacts from '../src/pages/market-facts/data.js'
+import * as duel from '../src/data/duel-assets.js'
 import * as history from '../src/data/market-history.js'
 import { DATA_CATALOG } from '../src/data/catalog.js'
 import { projectReviewCatalog } from '../src/data/review-projection.js'
@@ -73,6 +75,13 @@ export function projectToolData() {
     }
     return `export const ${key} = ${value instanceof Set ? `new Set(${JSON.stringify([...value])})` : JSON.stringify(value)};`
   }).join('\n')
+  // These tools consume finished facts / annual series. Do not ship the raw
+  // monthly histories and issuer parsers used to derive them at build time.
+  const factsId = 'virtual:tool-data:market-facts'
+  modules.set(factsId, compactLiteral(marketFacts))
+  const duelId = 'virtual:tool-data:duel-catalog'
+  modules.set(duelId, compactLiteral({ CATALOG:duel.CATALOG, EUR_USD:duel.EUR_USD, FX_SOURCE:duel.FX_SOURCE, ROLES:duel.ROLES }))
+  const euroReturnSource = readFileSync(new URL('../src/data/duel-assets.js', import.meta.url), 'utf8').match(/export function euroReturn\([\s\S]*?\n}/)[0]
   const reviewId = 'virtual:tool-data:review'
   modules.set(reviewId, partition('review-metadata', projectReviewCatalog(DATA_CATALOG), true))
   const records = DATA_CATALOG.map(record => {
@@ -97,6 +106,8 @@ export function projectToolData() {
     },
     transform(code, id) {
       const path = id.replaceAll('\\', '/').split('?')[0]
+      if (path.endsWith('/src/pages/market-facts/data.js')) return { code: `import data from '${factsId}'; export const {FACTS,FAMILIES}=data;`, map:null }
+      if (path.endsWith('/src/data/duel-assets.js')) return { code: `import data from '${duelId}'; export const {CATALOG,EUR_USD,FX_SOURCE,ROLES}=data; export const ITEM_BY_ID=new Map(CATALOG.map(item=>[item.id,item]));\n${euroReturnSource}`, map:null }
       if (path.endsWith('/src/data/market-history.js')) return { code: historyCode, map: null }
       if (path.endsWith('/src/data/review-catalog.js')) return { code: `export { default as REVIEW_CATALOG } from '${reviewId}';`, map: null }
       if (path.endsWith('/src/data/catalog-browser.js')) {
