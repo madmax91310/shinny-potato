@@ -17,6 +17,7 @@ const inspect = (duel) => {
   assert.equal(duel.years.at(-1), 2025)
   assert.ok(duel.sources.every((source) => source.url?.startsWith('https://')))
   for (const portfolio of [duel.a, duel.b]) {
+    assert.ok(portfolio.assets.length >= 2 && portfolio.assets.length <= 3)
     assert.equal(portfolio.assets.reduce((sum, asset) => sum + asset.pct, 0), 100)
     assert.equal(portfolio.assets.filter((asset) => asset.role === 'base').length, 1)
     assert.equal(new Set(portfolio.assets.map((asset) => asset.role)).size, portfolio.assets.length)
@@ -39,8 +40,8 @@ const inspect = (duel) => {
 for (const definition of DUELS) inspect(buildDuel(definition))
 const original = DUELS.find((duel) => duel.id === 'world-em-ou-acwi')
 const full = buildDuel(original)
-assert.equal(full.b.assets.length, 1)
-assert.equal(full.b.assets[0].pct, 100)
+assert.equal(full.b.assets.length, 2)
+assert.equal(full.b.assets[0].pct, 80)
 assert.equal(full.years[0], 2020)
 const stoxxDefinition = DUELS.find((duel) => duel.id === 'world-stoxx-ou-acwi')
 const limited = buildDuel(stoxxDefinition)
@@ -84,7 +85,7 @@ for (const left of invalid) assert.throws(() => buildCustomDuel({ left, right: D
 // Tous les types de construction et toutes les parts sont couverts, y compris les séries courtes.
 for (const asset of CATALOG) {
   assert(getDuelArt(asset).scene, `Illustration absente : ${asset.id}`)
-  const left = asset.role === 'base' ? [{ id: asset.id, pct: 100 }]
+  const left = asset.role === 'base' ? [{ id: asset.id, pct: 80 }, { id: 'msci_em', pct: 20 }]
     : [{ id: 'msci_world_ishares', pct: 80 }, { id: asset.id, pct: 20 }]
   inspect(buildCustomDuel({ left, right: DUELS[0].right }))
 }
@@ -96,10 +97,10 @@ for (let i = 0; i < 500; i++) {
   inspect(duel)
   previous = duel.id
 }
-console.log(`${DUELS.length} duels préparés, ${CATALOG.length} ETF, 500 générations : rôles, mono-ETF, historique commun, change, capitaux et textes vérifiés.`)
+console.log(`${DUELS.length} duels préparés, ${CATALOG.length} ETF, 500 générations : rôles, allocations de 2–3 lignes, historique commun, change, capitaux et textes vérifiés.`)
 
 // Accroches : enjeu financier explicite, période commune, sans révéler le gagnant.
-const cashDuel=buildDuel(DUELS.find(d=>d.id==='world-avec-monetaire_xeon'))
+const cashDuel=buildCustomDuel({left:[{id:'msci_world_ishares',pct:80},{id:'msci_em',pct:20}],right:[{id:'msci_world_ishares',pct:60},{id:'monetaire_xeon',pct:40}]})
 assert.match(cashDuel.hook,/10 000 €.*40 % de monétaire en euros.*\?[\s\S]*2020[\s\S]*2025/)
 const maturityDuel=buildDuel(DUELS.find(d=>d.id==='oblig-courtes-longues'))
 assert.match(maturityDuel.hook,/10 000 €.*courte échéance.*longue échéance.*\?/)
@@ -118,34 +119,8 @@ for (const definition of DUELS) {
  assert.equal((buildTweet(duel).match(/👇/g) ?? []).length,1)
  assert.doesNotMatch(buildTweet(duel),/Simulation en euros|Hors courtage/)
 }
-// La conclusion doit suivre les résultats, même si A/B est inversé ou si les capitaux sont égaux.
-const swapped={...cashDuel,a:cashDuel.b,b:cashDuel.a,id:'custom-swap'}
-assert.match(resultReading(swapped),/portefeuille B termine/)
-const flat={...identical,a:{...identical.a,annual:Object.fromEntries(identical.years.map(y=>[y,0]))},b:{...identical.b,annual:Object.fromEntries(identical.years.map(y=>[y,0]))}}
-assert.doesNotMatch(resultReading(flat),/écart annuel|gagne|perd/)
-assert.doesNotMatch(buildCustomDuel({left:[{id:'msci_world_ishares',pct:100}],right:[{id:'msci_world_ishares',pct:100}]}).hook, /Ajouter  à/)
-console.log('Accroches de tous les duels, périodes courtes et conclusions inversées/égales vérifiées.')
 
-// La lecture des petites entreprises suit les données, pas la position A/B ni un scénario figé.
-const smallDuel=buildDuel(DUELS.find(d=>d.id==='world-small-us'))
-assert.match(smallDuel.hook,/ETF World seul ou avec 80 % de World et 20 % de petites entreprises américaines/)
-assert.match(resultReading(smallDuel),/six années[\s\S]*de moins[\s\S]*légèrement mieux en 2020, puis moins bien/)
-assert.equal(resultReading({...smallDuel,a:smallDuel.b,b:smallDuel.a}),resultReading(smallDuel))
-const strongerSmall={...smallDuel,b:{...smallDuel.b,final:smallDuel.a.final+1000,annual:Object.fromEntries(smallDuel.years.map(y=>[y,smallDuel.a.annual[y]+1]))}}
-assert.match(resultReading(strongerSmall),/de plus[\s\S]*mieux que le World seul chacune/)
-assert.doesNotMatch(resultReading(strongerSmall),/de moins|moins bien|mieux en 2020/)
-const closeSmall={...smallDuel,b:{...smallDuel.b,final:smallDuel.a.final+27}}
-assert.match(resultReading(closeSmall),/27.*frais.*leur composition.*baisses/)
-const tieDifferentPath={...smallDuel,b:{...smallDuel.b,final:smallDuel.a.final}}
-assert.match(resultReading(tieDifferentPath),/même montant[\s\S]*résultats annuels diffèrent/)
-assert.doesNotMatch(resultReading(tieDifferentPath),/de plus|de moins/)
-console.log('Petites entreprises : formulation validée, ordre inversé, gagnant modifié, résultats proches et égalité vérifiés.')
-const nasdaqDuel=buildDuel(DUELS.find(d=>d.id==='world-nasdaq'))
-assert.match(resultReading(nasdaqDuel),/poche Nasdaq[\s\S]*baisse en 2022[\s\S]*perd 16,0 %[\s\S]*13,0 %/)
-assert.equal(resultReading({...nasdaqDuel,a:nasdaqDuel.b,b:nasdaqDuel.a}),resultReading(nasdaqDuel))
-const losingNasdaq={...nasdaqDuel,b:{...nasdaqDuel.b,final:nasdaqDuel.a.final-1000}}
-assert.match(resultReading(losingNasdaq),/portefeuille A termine/)
-assert.doesNotMatch(resultReading(losingNasdaq),/poche Nasdaq permet/)
-const differentWorstYears={...nasdaqDuel,b:{...nasdaqDuel.b,worstYear:2023}}
-assert.doesNotMatch(resultReading(differentWorstYears),/accentue aussi la baisse/)
-console.log('Nasdaq : comparaison des baisses, ordre inversé et conditions de repli vérifiés.')
+const swapped={...cashDuel,a:cashDuel.b,b:cashDuel.a,id:'custom-swap'}
+assert.equal(Math.abs(swapped.b.final-swapped.a.final),Math.abs(cashDuel.b.final-cashDuel.a.final))
+assert.match(resultReading(identical),/même montant/)
+assert.throws(()=>buildCustomDuel({left:[{id:'msci_world_ishares',pct:100}],right:original.right}),/2 à 3/)

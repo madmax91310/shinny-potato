@@ -11,6 +11,7 @@ import { ASSETS } from '../src/data/portfolio-assets.js'
 import { VERIFIED_RETURNS } from '../src/data/verified-returns.js'
 import { HISTORICAL_AUTOMATED_PERFORMANCE } from '../src/data/automated-etf.js'
 
+const roadmapIds = new Set('em_ex_china semiconducteurs_monde financieres_monde blockchain_ishares cloud-wisdomtree ia-big-data-xtrackers gold-miners-vaneck euro-dividend-aristocrats'.split(' '))
 const groups = {
   'Fonds confirmé chez l’émetteur': `lifestrategy20 lifestrategy40 lifestrategy60 lifestrategy80 private_equity_ishares bitcoin_21shares topix_pea_hedged basic_resources_pea argent monetaire_xeon oblig_0_1_ishares oblig_global_agg_eur_hedged actions_india_ishares infrastructure_ishares oblig_hy_ishares_acc oblig_em_local_ishares_acc world_minvol_ishares world_quality_ishares world_momentum_ishares msci_acwi_ishares immo_ishares_yield sect_cyber_lg sect_biotech_ishares sect_energy_spdr sect_tech_world_ishares sect_ai_lg sect_batteries_lg sect_water_amundi sect_luxury_amundi dividend_aristocrats_us_spdr msci_world sp500 nasdaq100 nasdaq100_ishares cac40 eurostoxx50 eurostoxx50_ishares msci_em_amundi actions_coree actions_taiwan oblig_etat_eur_short oblig_etat_eur oblig_corp_ig oblig_hy oblig_inflation sp500_ishares lqq cl2 sect_sante mp_large strat_dividendes strat_dividendes_dist high_dividend high_dividend_dist quality_dividend_dist tech_europe sect_energie sect_tech sect_robotique sect_cybersecurite dividend_leaders immo_gpr oblig_etat_us actions_japon actions_value sect_financieres smallcap_monde ftse_em_vanguard mp_large_icom oblig_corp_amundi oblig_corp_vanguard oblig_corp_spdr sect_energie_propre sect_conso_defensive sect_utilities foncieres_etf foncieres_etf_dist ftse_allworld_vanguard msci_europe msci_em or or_ishares or_amundi msci_world_ishares msci_acwi msci_em_spdr or_wisdomtree bitcoin_wisdomtree`,
   'Indice ou cours du sous-jacent': `bitcoin ethereum msci_world_amundi_pea smallcap_europe`,
@@ -25,6 +26,7 @@ for (const r of EXPOSURE_ADDITIONS) {
 }
 // Exact-share issuer NAV returns, with the same verified annual-performance checks below.
 groups['Fonds confirmé chez l’émetteur'] += ' em_pea_amundi europe_pea_amundi health_europe_pea tech_europe_pea industry_world_dws em_small_ishares utilities_world_dws health_world_ishares materials_world_dws';
+groups['Fonds confirmé chez l’émetteur'] += ' ' + [...roadmapIds].join(' ')
 const tagged = new Map()
 let errors = 0
 for (const [basis, list] of Object.entries(groups)) {
@@ -58,6 +60,7 @@ const partialOrSyntheticYears = new Map(Object.entries({
   scpi: '2020 : ancienne mesure de performance globale, pas le RGI ASPIM',
 }))
 const issuerSources = {
+ ...Object.fromEntries(ASSETS.filter(a=>roadmapIds.has(a.id)).map(a=>[a.id,getInstrumentAnnualPerformance(a.isin)?.source])),
  ...Object.fromEntries(ASSETS.filter(a=>['em_pea_amundi','europe_pea_amundi','health_europe_pea','tech_europe_pea','industry_world_dws','em_small_ishares'].includes(a.id)).map(a=>[a.id,getInstrumentAnnualPerformance(a.isin).source])),
  ...Object.fromEntries(QUALIFIED_EXPOSURE_SHEETS.filter(r=>r.portfolioCategory || ['europe-banks','europe-insurance','europe-construction'].includes(r.id)).map(r=>[r.id,getInstrumentAnnualPerformance(r.isin).source])),
  ...Object.fromEntries(NON_BOND_SHEETS.filter(r=>getInstrumentReturnValues(r.isin).every(Number.isFinite)).map(r=>[r.id,getInstrumentAnnualPerformance(r.isin).source])),
@@ -251,7 +254,9 @@ for (const asset of ASSETS) {
   if (requiredDisclosures.has(asset.id) && !requiredDisclosures.get(asset.id).test(asset.confidenceNote ?? '')) {
     console.error(`Limite spécifique de l'historique mixte non visible : ${asset.id}`); errors++
   }
-  if (!asset.r.every(Number.isFinite) && !(LIFESTRATEGY_RECORDS[asset.isin] && asset.manualOnly && asset.r[0] === null && asset.r.slice(1).every(Number.isFinite))) {
+  const official = getInstrumentAnnualPerformance(asset.isin)
+  const qualifiedShort = roadmapIds.has(asset.id) && asset.manualOnly && official?.basis === 'fund' && official.source && asset.r.filter(Number.isFinite).length >= 3 && asset.r.every((v,i) => v === null ? official.values[i] === null : Number.isFinite(official.values[i]) && Math.abs(v-official.values[i]) <= .051)
+  if (!asset.r.every(Number.isFinite) && !qualifiedShort && !(LIFESTRATEGY_RECORDS[asset.isin] && asset.manualOnly && asset.r[0] === null && asset.r.slice(1).every(Number.isFinite))) {
     console.error(`Année manquante pour un actif sélectionnable : ${asset.id}`); errors++
   }
 }

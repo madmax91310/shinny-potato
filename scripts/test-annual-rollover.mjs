@@ -50,7 +50,12 @@ try {
   EUR_USD[2026] = 1.2; // Simulate the next completed ECB year, never write it to data.
   assert(Number.isFinite(euroReturn(world, 2026)));
   const { buildCustomDuel, buildTweet } = await import('../src/pages/portfolio-duels/lib.js');
-  const duel = buildCustomDuel({ left: [{ id: world.id, pct: 100 }], right: [{ id: world.id, pct: 100 }] });
+  const complement = CATALOG.find(item => item.id === 'msci_em');
+  const savedCalendar = complement.calendarReturns;
+  complement.calendarReturns = {...world.calendarReturns};
+  let duel;
+  try { duel = buildCustomDuel({ left: [{ id: world.id, pct: 80 }, {id:complement.id,pct:20}], right: [{ id: world.id, pct: 80 }, {id:complement.id,pct:20}] }); }
+  finally { complement.calendarReturns = savedCalendar; }
   assert.deepEqual(duel.years, [2021, 2022, 2023, 2024, 2025, 2026]);
   assert.match(buildTweet(duel), /début 2021.*fin 2026/);
   delete EUR_USD[2026];

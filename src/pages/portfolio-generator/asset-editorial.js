@@ -212,6 +212,23 @@ for (const [id, label, underlying] of [
  entries[id].description=`Un ETC suivant un indice de contrats à terme sur ${underlying}.`;
 }
 
+add("em_ex_china","emerging","les émergents hors Chine","Cette poche modifie volontairement la répartition des émergents. La Chine est exclue, mais les autres risques des marchés émergents restent présents.");
+entries["em_ex_china"].description="Les actions émergentes en excluant la Chine.";
+add("semiconducteurs_monde","theme","les semi-conducteurs mondiaux","On renforce un secteur déjà présent dans les indices larges. La demande, les investissements et les restrictions commerciales peuvent entraîner de fortes variations.");
+entries["semiconducteurs_monde"].description="Les entreprises de la chaîne des semi-conducteurs.";
+add("financieres_monde","theme","les financières mondiales","On renforce les banques, assurances et autres services financiers selon l’indice du fonds. Les taux et le coût du risque influencent leurs résultats.");
+entries["financieres_monde"].description="Les sociétés financières des pays développés.";
+add("blockchain_ishares","theme","les entreprises liées à la blockchain","Ce fonds détient des entreprises cotées, pas directement du Bitcoin. La concentration et la dépendance au marché des cryptomonnaies peuvent accentuer les baisses.");
+entries["blockchain_ishares"].description="Des actions liées à la blockchain et aux cryptomonnaies.";
+
+add('cloud-wisdomtree','theme','les logiciels et services du cloud','On renforce les entreprises du cloud. Leurs abonnements ne garantissent pas le rendement des actions : les dépenses des clients, la concurrence et le prix payé comptent aussi.');
+entries['cloud-wisdomtree'].description='Les entreprises spécialisées dans les logiciels et services du cloud.';
+add("ia-big-data-xtrackers","theme","l’intelligence artificielle et le big data","On renforce des entreprises liées à l’IA et aux données. Elles peuvent déjà figurer dans le World ; la croissance du thème ne garantit pas un bon prix d’achat.");
+entries["ia-big-data-xtrackers"].description="Des actions liées à l’intelligence artificielle et au traitement des données.";
+add("gold-miners-vaneck","theme","les sociétés minières aurifères","On détient des entreprises minières, pas de l’or physique. Leurs coûts, leurs dettes et leurs projets comptent aussi dans le rendement ; les baisses peuvent être fortes.");
+entries["gold-miners-vaneck"].description="Les actions de sociétés minières aurifères.";
+add("euro-dividend-aristocrats","dividend","les actions européennes à dividendes réguliers","On privilégie un historique de dividendes selon les règles de l’indice. Les distributions futures restent variables et ce filtre modifie les secteurs et les entreprises détenus.");
+entries["euro-dividend-aristocrats"].description="Une sélection d’actions de la zone euro fondée sur les dividendes.";
 export const ASSET_EDITORIAL = Object.freeze(entries);
 export function assetEditorial(asset) {
   const entry = ASSET_EDITORIAL[asset.id];

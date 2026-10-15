@@ -5,6 +5,11 @@ import { getInstrumentAnnualPerformance } from './instrument-returns.js';
 import { EXPOSURE_ADDITIONS } from './exposure-additions.js';
 // Sources individuelles : publications émetteurs, proxys et historiques mixtes distingués.
 export const PORTFOLIO_RETURN_EVIDENCE = {
+ ...Object.fromEntries(['IE00BMG6Z448','IE000I8KRLL9','IE00BJ5JP097','IE000RDRMSD1','IE00BJGWQN72','IE00BGV5VN51','IE00BQQP9F84','IE00B5M1WJ87'].map(isin=>{
+   const p=getInstrumentAnnualPerformance(isin)
+   const years=Object.keys(p.years).map(Number).filter(y=>Number.isFinite(p.years[y]))
+   return [isin,{sourceUrls:[p.source],checkedAt:p.checkedAt,asOf:p.asOf??null,periodStart:`${Math.min(...years)}-01-01`,periodEnd:`${Math.max(...years)}-12-31`,currency:p.currency,scope:`Part exacte ${isin}`,method:p.method,note:'Années complètes réellement publiées ; aucune année manquante reconstituée.'}]
+ })),
  ...Object.fromEntries(['DE000A0H08F7','IE00B3F81G20'].map(isin=>{const p=getInstrumentAnnualPerformance(isin);return [isin,{sourceUrls:[p.source],checkedAt:p.checkedAt,asOf:p.periodEnd,periodStart:p.periodStart,periodEnd:p.periodEnd,currency:p.currency,scope:`Part exacte ${isin}`,method:p.method,note:'Années complètes NAV publiées, revenus réinvestis ; aucune année antérieure au lancement inventée.'}]})),
  ...Object.fromEntries(QUALIFIED_EXPOSURE_SHEETS.filter(r=>r.portfolioCategory || ['europe-banks','europe-insurance'].includes(r.id)).map(r=>{const p=getInstrumentAnnualPerformance(r.isin);return [r.isin,{sourceUrls:[p.source],checkedAt:p.checkedAt,asOf:p.periodEnd,periodStart:p.periodStart,periodEnd:p.periodEnd,currency:p.currency,scope:`Part exacte ${r.isin}`,method:p.method,note:'Années complètes NAV, revenus réinvestis ; aucune série d’indice substituée.'}]})),
  ...Object.fromEntries([...NON_BOND_SHEETS.map(r=>r.isin),'IE00B27YCN58'].map(isin=>{const p=getInstrumentAnnualPerformance(isin);return [isin,{sourceUrls:[p.source],checkedAt:p.checkedAt,asOf:p.periodEnd,periodStart:p.periodStart,periodEnd:p.periodEnd,currency:p.currency,scope:`Part exacte ${isin}`,method:p.method,note:'Années complètes NAV publiées ; pas de substitution par un indice.'}]})),
