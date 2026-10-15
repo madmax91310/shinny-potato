@@ -42,7 +42,7 @@ const rows=[{id:'collection',kind:'collection',tools:['A','B']},{id:'publication
 assert.equal(prioritizeIncidents(rows)[0].id,'publication');assert.equal(rows[0].id,'collection')
 const review={id:'one',name:'ETF',category:'stale',urls:['https://example.org'],tools:['A']}
 assert.equal(groupReviews([review,review])[0].items.length,1)
-for(const isin of ['IE000I8KRLL9','IE00BJ5JP097','IE00B4LHWP62','IE00B4556L06']) {
+for(const isin of ['IE000I8KRLL9','IE00BJ5JP097','IE00BJGWQN72','IE00BQQP9F84']) {
  assert(getPerformanceHref(isin),isin)
  assert(getSimulationHref(getPerformanceAssetId(isin)),isin)
 }
