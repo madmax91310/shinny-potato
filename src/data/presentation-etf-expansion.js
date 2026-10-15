@@ -3,6 +3,7 @@ export const PRESENTATION_ETF_EXPANSION = [
   {
     "id": "pea-europe-amundi",
     "isin": "FR0013412038",
+    "portfolioEnabled": true,
     "benchmark": "MSCI Europe Net TR EUR Index",
     "hook": "Ton World contient déjà de l’Europe. Que changes-tu en lui ajoutant un ETF européen dans ton PEA ? 👇",
     "whatIs": "Tu suis les grandes et moyennes entreprises des pays développés européens à travers le MSCI Europe. Le fonds utilise une réplication synthétique pour rendre cette exposition accessible dans un PEA.",
@@ -16,6 +17,7 @@ export const PRESENTATION_ETF_EXPANSION = [
   {
     "id": "pea-emergents-amundi",
     "isin": "FR0013412020",
+    "portfolioEnabled": true,
     "benchmark": "MSCI EM ex-Egypt ESG Broad CTB Select Index",
     "hook": "Ton ETF World laisse les marchés émergents de côté. Comment leur faire une place dans un PEA ? 👇",
     "whatIs": "Tu suis une sélection d’entreprises des marchés émergents avec des critères ESG et climatiques. Le fonds utilise un swap pour reproduire son indice tout en restant éligible au PEA.",

@@ -47,7 +47,9 @@ for (const r of PRESENTATION_ETF_EXPANSION) {
   const card = ETFS.find(c => c.isin === r.isin);
   const record = AUTOMATED_ETF[r.isin];
   assert(amundi.some(s => s.isin === r.isin && s.collectComposition));
-  assert(card.presentationOnly && card.pea === true && card.listing && getETFArt(card.id));
+  assert.equal(card.presentationOnly, !r.portfolioEnabled);
+  assert(card.pea === true && card.listing && getETFArt(card.id));
+  if (r.portfolioEnabled) assert(ASSETS.find(a=>a.isin===r.isin)?.r.every(Number.isFinite));
   assert(record.aum.amount > 0 && Number.isFinite(record.characteristics.terPct));
   const series = getAnnualPerformance(card);
   assert.equal(series.currency, 'EUR');
