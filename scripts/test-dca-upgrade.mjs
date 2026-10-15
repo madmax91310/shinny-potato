@@ -21,6 +21,7 @@ result=dcaExposure(lines,{world:record('2026-10-13'),acwi:record('2026-08-01')},
 assert.equal(result.groups.length,2,'Do not chain incompatible observation dates')
 result=dcaExposure(lines,{world:record('2026-10-13','country-risk',[{name:'US',weightPct:50}]),acwi:record('2026-10-13')},'countries',now)
 assert.equal(result.coverage,60,'Incomplete tables never inflate coverage')
+assert.notEqual(references.reit.sectors.compatibility,references.water.sectors.compatibility,'Undocumented taxonomies stay separate even for the same provider')
 assert.equal(references.nasdaq.isin,'IE00B53SZB19');assert.match(references.nasdaq.name,/Nasdaq/i)
 assert.equal(Object.values(references).filter(r=>r.kind==='equity').length,37)
 assert.equal(references.airliquide.countries.rows[0].name,'France')

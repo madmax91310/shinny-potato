@@ -12,8 +12,8 @@ const records = Object.fromEntries(Object.entries(mapping).map(([asset,isin])=>{
   const registration=/registration country/i.test(observation.method || '')
   // Explicit compatible attribution only; ICB and unqualified classifications stay separate.
   const compatibility=field==='countries'
-   ? registration?'country-registration':source?.provider==='iShares'||/country of risk/i.test(observation.method||'')?'country-risk':`country-${source?.provider||isin}`
-   : source?.provider==='iShares'||registration?'gics':`sector-${source?.provider||isin}`
+   ? registration?'country-registration':source?.provider==='iShares'||/country of risk/i.test(observation.method||'')?'country-risk':`country-support-${isin}`
+   : source?.provider==='iShares'||registration?'gics':`sector-support-${isin}`
   record[field]={...observation,compatibility}
  }
  return [asset,record]
