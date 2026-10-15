@@ -1,3 +1,4 @@
+import { metricCopy } from '../../../data/etf-metric-copy.js'
 import { multiAssetAllocationLines } from '../../../data/lifestrategy.js'
 import { COMPARISON_ETF_DETAILS } from '../../../data/comparison-etf-details.js'
 import { getComparisonPerformance } from '../../tweet-midi/comparisonPerformance.js'
@@ -38,5 +39,7 @@ export function buildComparisonEtfDetails(etf, selectedYears) {
     lines.push('', `🏭 ${sectorsExposure ? 'Secteurs de l’indice suivi' : 'Répartition sectorielle du fonds'}${sectorsDate ? ` au ${sectorsDate}` : ''}`,
       ...sectors.map(([name, value]) => `${name} : ${weight(value)}`))
   }
+  const metric = metricCopy(etf.isin)
+  if (metric) lines.push('', metric)
   return lines
 }

@@ -1,3 +1,4 @@
+import { groupReviews, reviewAction } from './groups.js'
 import ChoicePicker from '../../design-system/ChoicePicker.jsx'
 import { useEffect, useMemo, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
@@ -48,6 +49,7 @@ export default function DataReview() {
     const visible = view === 'calendar' || (view === 'soon' && ['soon', 'ending'].includes(item.category)) || view === 'all' || (view === 'action' && ACTIONABLE.includes(item.category)) || (view === 'deadlines' && item.until) || (view === 'reserve' && item.category === 'reserve') || (view === 'dates' && !item.until && item.category !== 'reserve')
     return visible && (!cadence || item.cadence === cadence) && matches(item)
   })
+  const groups = groupReviews(items)
   const count = categories => report.items.filter(item => categories.includes(item.category)).length
   return <div className="data-review">
     <PageHeader title="Données à revoir" subtitle="Les réserves, échéances et contrôles de sources réunis pour préparer les prochaines mises à jour." />
@@ -79,6 +81,9 @@ export default function DataReview() {
       <label>Outil<ChoicePicker aria-label="Outil" value={tool} onChange={event => update('tool', event.target.value)}><option value="">Tous les outils</option>{tools.map(name => <option key={name} value={name}>{name}</option>)}</ChoicePicker></label>
     </div>
     <p role="status" className="dr-note">{items.length} élément{items.length > 1 ? 's' : ''} affiché{items.length > 1 ? 's' : ''}</p>
+    <details className="dr-reminders" aria-label="Vérifications regroupées par source"><summary>Regrouper les {items.length} champs en {groups.length} vérifications</summary><p>Les champs d’un même sujet, d’un même statut et des mêmes sources sont réunis. Les priorités tiennent compte du statut et du nombre d’outils touchés.</p>
+      {groups.map(group=><details key={group.id} className="dr-item"><summary>{group.name} · {group.items.length} champ(s) · {LABELS[group.category]}</summary><p>{reviewAction(group.category)}</p><p>Publications concernées : {group.tools.join(' · ')}</p><ul>{group.items.map(item=><li key={item.id}>{item.field} : {item.reason}</li>)}</ul><Link to={group.items[0].to}>Ouvrir les données concernées</Link></details>)}
+    </details>
     <div className="dr-list">{items.map(item => <article className="dr-item" key={item.id}>
       <span className={`dr-badge dr-${item.category}`}>{LABELS[item.category]}</span>
       <h2>{item.name} · {item.field}</h2>

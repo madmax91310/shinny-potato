@@ -1,3 +1,5 @@
+import { lazy, Suspense } from 'react'
+const PortfolioExposure = lazy(() => import('../../design-system/PortfolioExposure.jsx'))
 import { copyPublicationText } from '../../design-system/publicationActions.js'
 import { performanceYears, performanceNotes, formatPerformance } from './performance.js'
 import ChoicePicker from '../../design-system/ChoicePicker.jsx'
@@ -617,6 +619,7 @@ export default function App() {
             {current.recipeLabel && <p className="pg-fine-print pg-recipe-label">{current.recipeLabel}</p>}
             <AllocationList selection={current.selection} />
             <CategorySummary selection={current.selection} />
+            <Suspense fallback={<p>Chargement des expositions…</p>}><PortfolioExposure lines={current.selection} /></Suspense>
             {current.mode === 'auto' && <ReplacementPanel key={current.id} portfolio={current} onReplace={(assetId, replacementId) => {
               const updated = replacePortfolioAsset(current, assetId, replacementId, history.slice(0, -1))
               setHistory(previous => [...previous.slice(0, -1), updated])

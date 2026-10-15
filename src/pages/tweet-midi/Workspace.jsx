@@ -1,3 +1,5 @@
+import { lazy, Suspense } from 'react'
+const HistoricalContext = lazy(() => import('../../design-system/HistoricalContext.jsx'))
 import { notifyPublication, copyPublicationText } from '../../design-system/publicationActions.js'
 import ChoicePicker from '../../design-system/ChoicePicker.jsx'
 import WorkspaceActions from '../../design-system/WorkspaceActions'
@@ -535,6 +537,7 @@ function TweetMidiWorkspace({ search, initialFormat, title, description, runtime
         </div>
 
         <div className="tool-preview">
+          {isMarketFormat && current && <Suspense fallback={null}><HistoricalContext asset={isComparatifCurrent ? currentAssetA : getMarketAsset(current.assetId)} /></Suspense>}
           <div className="flex flex-col gap-3 lg:sticky lg:top-4 lg:h-fit">
             <div className="publication-text-heading flex items-center justify-between">
               <div className="flex items-center gap-2">

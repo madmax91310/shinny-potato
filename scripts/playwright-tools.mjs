@@ -717,8 +717,8 @@ async function testFeeImpact(page) {
   await page.goto(`${BASE}/impact-frais`, { waitUntil: "networkidle" });
   const preview = page.locator('.fi-preview-text');
   const initial = await preview.innerText();
-  let editorialOk = /^💸 22\s115\s€ de moins après 20 ans/.test(initial)
-    && /153\s402\s€/.test(initial) && /131\s287\s€/.test(initial)
+  let editorialOk = /^💸 21\s442\s€ de moins après 20 ans/.test(initial)
+    && /148\s612\s€/.test(initial) && /127\s170\s€/.test(initial)
     && /Dans les deux cas, tu as versé 72\s000\s€/.test(initial)
     && initial.includes('ils comprennent aussi ces gains manqués')
     && initial.includes('Tu connais le montant des frais annuels de tes placements ?')

@@ -158,7 +158,7 @@ export const TOOLS = [
     title: 'Dans les coulisses des indices',
     publicationDay: 'Lundi soir',
     icon: '🔎',
-    description: 'Onze indices et ETF décortiqués à partir de leurs fiches officielles, avec un texte modifiable avant publication.',
+    description: 'Des indices et ETF décortiqués à partir de leurs fiches officielles, avec un texte modifiable avant publication.',
     status: 'disponible',
   },
 ]

@@ -1,3 +1,4 @@
+import { annualAfterFees, monthlyEffective } from '../../lib/simulation-rates.js'
 import { FEE_COMPARISON_ASSETS } from '../../data/fee-comparison-assets.js'
 import { fmtEUR } from '../../lib/format-currency.js'
 import { AMOUNT_PRESETS, DURATION_PRESETS, RETURN_PRESETS, FEE_LEVELS } from './data.js'
@@ -31,10 +32,7 @@ export function feeLabel(value) {
   return FEE_LEVELS.find((f) => f.value === value)?.label ?? `${value} %`
 }
 
-// Simulation d'intérêts composés mensuels, versement en début de mois (convention "annuité due" :
-// le versement du mois grossit avant le suivant, ce qui inclut le rendement du dernier mois versé —
-// hypothèse de calcul standard, pas une donnée réelle) : rendement net = rendement brut - frais
-// annuels, puis division arithmétique par 12 (taux nominal mensuel, pas racine douzième).
+// Même convention que le Simulateur de patrimoine : taux effectif, frais proportionnels, fin de mois.
 export function simulateCapital(monthlyAmount, years, grossReturnPct, feePct) {
   return simulateCapitalSeries(monthlyAmount, years, grossReturnPct, feePct).at(-1).capital
 }
@@ -43,12 +41,11 @@ export function simulateCapital(monthlyAmount, years, grossReturnPct, feePct) {
 // Les mêmes versements et le même taux mensuel servent au tweet et à l'image.
 export function simulateCapitalSeries(monthlyAmount, years, grossReturnPct, feePct) {
   const months = Math.round(years * 12)
-  const netAnnual = grossReturnPct - feePct
-  const monthlyRate = netAnnual / 100 / 12
+  const monthlyRate = monthlyEffective(annualAfterFees(grossReturnPct, feePct))
   let capital = 0
   const points = [{ year: 0, capital: 0 }]
   for (let i = 0; i < months; i++) {
-    capital = (capital + monthlyAmount) * (1 + monthlyRate)
+    capital = capital * (1 + monthlyRate) + monthlyAmount
     if ((i + 1) % 12 === 0 || i + 1 === months) points.push({ year: (i + 1) / 12, capital })
   }
   return points
@@ -106,7 +103,7 @@ export function buildTweetText(state) {
     '💬 Tu connais le montant des frais annuels de tes placements ?',
     ``,
     ...(selectedFunds.some(Boolean) ? ['Frais des produits relevés dans la banque de données ; même rendement brut supposé, sans comparer leurs performances réelles.', ...selectedFunds.filter(Boolean).map(fund => `Source frais ${fund.isin} : ${fund.evidence.sourceUrls[0]}`), ''] : []),
-    'Hypothèse de rendement constant, versements en début de mois. Hors fiscalité et inflation.',
+    'Hypothèse de rendement constant, versements en fin de mois. Hors fiscalité et inflation.',
   ].join('\n')
 }
 

@@ -22,7 +22,7 @@ export function concentrationCopy(record) {
   const c = holdingConcentration(record)
   if (!c || c.weight < 20) return ''
   const scope = c.basis === 'index' ? 'de l’indice suivi' : 'du fonds'
-  return `Au ${date(c.asOf)}, les trois premières positions publiées ${scope} pèsent ensemble ${pct(c.weight)}. Leur évolution peut donc compter sensiblement dans le résultat.`
+  return `Au ${date(c.asOf)}, les trois premières positions publiées ${scope} pèsent ensemble ${pct(c.weight)}. ${c.top[0].name} arrive en tête, avec ${pct(c.top[0].weightPct)}.`
 }
 
 // Une comparaison de poids n'est produite que sur une même photographie et

@@ -96,8 +96,11 @@ export default function App() {
             <ChoicePicker aria-label={`Convention de rendement ${p.name}`} value={p.rateMode} onChange={e=>patchPocket(p.id,'rateMode',e.target.value)}><option value="net">Rendement déjà net de frais</option><option value="gross">Rendement avant frais</option></ChoicePicker>
             {p.rateMode==='gross' && <NumberField label="Frais annuels (%)" value={p.fee} max={30} step={0.01} onChange={v=>patchPocket(p.id,'fee',v)}/>}
             <NumberField label="Hausse annuelle du versement (%)" value={p.contributionGrowth} min={-100} max={100} step={1} onChange={v=>patchPocket(p.id,'contributionGrowth',v)}/>
+            <label className="wealth-field"><span>Base fiscale actuelle (€), facultative</span><input type="number" min="0" value={p.taxBasis ?? ''} onChange={e=>patchPocket(p.id,'taxBasis',e.target.value===''?null:Number(e.target.value))}/></label>
+            <label className="wealth-field"><span>Capacité de versement future restante (€), facultative</span><input type="number" min="0" value={p.depositRoom ?? ''} onChange={e=>patchPocket(p.id,'depositRoom',e.target.value===''?null:Number(e.target.value))}/></label>
+            <p className="wealth-note">Montants propres à cette poche, saisis depuis ton contrat ou relevé. Un retrait ne reconstitue pas automatiquement la capacité saisie. Répartis cette capacité entre les poches d’une même enveloppe.</p>
             <NumberField label="Taxe hypothétique à la sortie sur les gains (%)" value={p.tax} max={100} step={0.1} onChange={v=>patchPocket(p.id,'tax',v)}/>
-            <p className="wealth-note">La taxe sert uniquement à une estimation de liquidation finale. Aucun régime fiscal, abattement, prélèvement annuel ou impôt sur les retraits n’est calculé. La base initiale est supposée égale au capital actuel.</p>
+            <p className="wealth-note">La taxe sert uniquement à une estimation de liquidation finale. Aucun régime fiscal, abattement, prélèvement annuel ou impôt sur les retraits n’est calculé. Sans base fiscale saisie, elle est supposée égale au capital actuel.</p>
           </details>
 
         </article>)}

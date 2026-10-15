@@ -5,9 +5,9 @@ import { FEE_COMPARISON_ASSETS } from '../src/data/fee-comparison-assets.js'
 
 const base = { amount: 300, years: 25, returnRate: 7, fee1: 0.2, fee2: 1.5 }
 const text = buildTweetText(base)
-assert.equal(Math.round(computeComparison(base).ecart), 43309)
-assert(text.startsWith(`💸 ${fmtEUR(43309)} de moins après 25 ans`))
-assert(text.includes(fmtEUR(236803)) && text.includes(fmtEUR(193494)))
+assert.equal(Math.round(computeComparison(base).ecart), 41686)
+assert(text.startsWith(`💸 ${fmtEUR(41686)} de moins après 25 ans`))
+assert(text.includes(fmtEUR(227608)) && text.includes(fmtEUR(185922)))
 assert(text.includes('Dans les deux cas, tu as versé ' + fmtEUR(90000)))
 assert.match(text, /gains manqués/)
 assert.equal(buildTweetText({...base, fee1: base.fee2, fee2: base.fee1}).split('\n')[0], text.split('\n')[0])
@@ -28,10 +28,10 @@ for (const amount of AMOUNT_PRESETS) for (const years of DURATION_PRESETS) for (
   for (const f1 of FEE_LEVELS) for (const f2 of FEE_LEVELS) {
     const state = {amount, years, returnRate, fee1: f1.value, fee2: f2.value}
     const result = computeComparison(state)
-    // Independent annuity-due formula checks the existing monthly calculation.
+    // Independent ordinary-annuity formula checks effective annual compounding.
     const capital = fee => {
-      const rate = (returnRate-fee)/100/12
-      return rate === 0 ? amount*years*12 : amount*(1+rate)*((1+rate)**(years*12)-1)/rate
+      const rate = ((1+returnRate/100)*(1-fee/100))**(1/12)-1
+      return rate === 0 ? amount*years*12 : amount*((1+rate)**(years*12)-1)/rate
     }
     assert(Math.abs(result.capital1-capital(f1.value)) < 1e-6)
     assert(Math.abs(result.capital2-capital(f2.value)) < 1e-6)
