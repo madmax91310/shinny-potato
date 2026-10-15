@@ -1,3 +1,4 @@
+import PortfolioHistoryLinks from '../../design-system/PortfolioHistoryLinks.jsx'
 import { lazy, Suspense } from 'react'
 const PortfolioExposure = lazy(() => import('../../design-system/PortfolioExposure.jsx'))
 import { copyPublicationText } from '../../design-system/publicationActions.js'
@@ -319,6 +320,7 @@ function AllocationList({ selection }) {
               <span className="pg-alloc-name-text">
                 {s.emoji} {s.name}
               </span>
+              <PortfolioHistoryLinks isin={s.isin} />
               {dataLabels(s).map(label => (
                 <span key={label} className="pg-data-label" title={s.confidenceNote}>{label}</span>
               ))}
