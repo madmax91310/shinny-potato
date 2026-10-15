@@ -23,3 +23,20 @@ export function portfolioExposure(lines, records, field) {
   }
   return [...groups.values()].map(g => ({ ...g, sources:[...g.sources], rows:[...g.rows].map(([name,weight])=>({name,weight})).sort((a,b)=>b.weight-a.weight) }))
 }
+
+// Compare only matching complete photographs; absence of a country is not a zero.
+export function comparePortfolioExposure(left, right, records, field) {
+  const a = portfolioExposure(left, records, field)
+  const b = portfolioExposure(right, records, field)
+  const results = []
+  for (const x of a.filter(g => Math.abs(g.coverage - 100) < .01)) {
+    const y = b.find(g => g.asOf === x.asOf && g.basis === x.basis && g.classification === x.classification && Math.abs(g.coverage - 100) < .01)
+    if (!y) continue
+    const rows = x.rows.flatMap(row => {
+      const other = y.rows.find(r => r.name === row.name)
+      return other ? [{ name: row.name, a: row.weight, b: other.weight, difference: other.weight - row.weight }] : []
+    }).sort((a,b) => Math.abs(b.difference) - Math.abs(a.difference))
+    results.push({ asOf:x.asOf, basis:x.basis, classification:x.classification, rows, sources:[...new Set([...x.sources,...y.sources])] })
+  }
+  return results
+}
