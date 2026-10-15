@@ -33,7 +33,7 @@ for(const definition of DUELS) {
   for(const y of duel.years) if(Number.isFinite(generated[y]))assert.ok(Math.abs(generated[y]-portfolio.annual[y])<1e-9)
  }
 }
-const observation=(date,weight)=>({countries:{asOf:date,basis:'fund',sourceUrl:'https://example.org/source',rows:[{name:'France',weightPct:weight},{name:'Japan',weightPct:100-weight}]}})
+const observation=(date,weight)=>({countries:{asOf:date,basis:'fund',method:'Country of risk, all holdings',sourceUrl:'https://example.org/source',rows:[{name:'France',weightPct:weight},{name:'Japan',weightPct:100-weight}]}})
 const records={a:observation('2026-09-30',70),b:observation('2026-09-30',40)}
 const left=[{isin:'a',pct:100}],right=[{isin:'b',pct:100}]
 assert.equal(comparePortfolioExposure(left,right,records,'countries')[0].rows[0].difference,-30)
