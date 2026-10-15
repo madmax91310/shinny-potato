@@ -1,9 +1,9 @@
 import { investorIntroduction } from '../../data/investor-profiles.js'
 export const INVESTORS = [
-  ["einhorn", "David Einhorn"],
-  ["halvorsen", "Andreas Halvorsen"],
-  ["gerstner", "Brad Gerstner"],
-  ["gayner", "Tom Gayner"],
+  ['einhorn', 'David Einhorn'],
+  ['halvorsen', 'Andreas Halvorsen'],
+  ['gerstner', 'Brad Gerstner'],
+  ['gayner', 'Tom Gayner'],
 
   ['tepper', 'David Tepper'], ['ackman', 'Bill Ackman'], ['berkshire', 'Berkshire Hathaway'],
   ['cathie-wood', 'Cathie Wood'], ['thiel', 'Peter Thiel'],
