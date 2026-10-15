@@ -14,7 +14,7 @@ const weight = (selection, test) => selection.filter(test).reduce((sum, s) => su
 function overlap(selection) {
   if (selection.some(s => WORLD.includes(s.id)) && selection.some(s => SP500.includes(s.id))) return "L’indice monde contient déjà des actions américaines : ajouter le S&P 500 renforce cette exposition, avec des entreprises en commun.";
   if (selection.some(s => EURO.includes(s.id)) && selection.some(s => s.id === "cac40")) return "Le CAC 40 et l’Euro Stoxx 50 ont des entreprises en commun : leurs deux poids ne représentent pas deux expositions indépendantes.";
-  if (selection.filter(s => WORLD.includes(s.id)).length > 1) return "Plusieurs fonds mondiaux peuvent détenir les mêmes entreprises : je regarde leurs poids cumulés pour comprendre la répartition.";
+  if (selection.filter(s => WORLD.includes(s.id)).length > 1) return "Plusieurs fonds mondiaux peuvent détenir les mêmes entreprises : leurs poids cumulés déterminent la répartition réelle.";
   if (selection.some(s => assetEditorial(s).kind === "world-all") && selection.some(s => assetEditorial(s).kind === "emerging")) return "L’indice mondial contient déjà des marchés émergents : la ligne ajoutée renforce leur place au lieu d’apporter une exposition entièrement nouvelle.";
   if (selection.filter(s => assetEditorial(s).kind === "factor").length > 1) return "Ces fonds changent les critères de sélection des actions, mais leurs entreprises peuvent se recouper avec celles d’un indice large et entre elles.";
   if (selection.filter(s => SP500.includes(s.id)).length > 1 || selection.filter(s => EURO.includes(s.id)).length > 1) return "Deux fonds suivent ici le même indice : leur exposition se cumule, même si leurs caractéristiques diffèrent.";

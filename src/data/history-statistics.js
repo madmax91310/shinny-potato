@@ -53,33 +53,33 @@ export const HISTORY_FACTS = HISTORY_STATISTIC_IDS.flatMap(id => {
     ? `Il faut attendre ${monthName(stats.recovery.date)} pour retrouver le niveau de ${monthName(stats.peak.date)}, soit ${stats.monthsToRecovery} mois après ce sommet.`
     : `À la dernière clôture disponible, en ${end}, le niveau de ${monthName(stats.peak.date)} n’a toujours pas été retrouvé.`
   const waiting = !stats.recovery
-    ? 'C’est ce qui me ferait hésiter avant de raconter cette baisse comme un épisode terminé : à la fin de la série, le retour à ce niveau se fait encore attendre.'
+    ? 'Cette baisse ne peut pas être présentée comme un épisode terminé : à la fin de la série, le retour à ce niveau se fait encore attendre.'
     : stats.monthsToRecovery >= 120
-      ? 'Dix ans ou davantage pour retrouver ce niveau, ça me fait réfléchir à ce que veut dire « investir à long terme ». On peut accepter d’attendre sans pouvoir repousser tous ses projets aussi longtemps.'
+      ? 'Dix ans ou davantage pour retrouver ce niveau peuvent dépasser l’horizon de nombreux projets. On peut accepter d’attendre sans pouvoir repousser tous ses projets aussi longtemps.'
       : stats.monthsToRecovery >= 60
-        ? 'Je peux regarder ces années sur un graphique en connaissant la fin. Mais avec mon argent investi, je me demanderais probablement bien avant si j’ai fait le bon choix.'
+        ? 'Ces années se lisent aujourd’hui sur un graphique dont la suite est connue. Les investisseurs ont dû les traverser sans savoir quand ce niveau serait retrouvé.'
         : stats.monthsToRecovery >= 12
-          ? 'Ce qui m’intéresse, c’est l’attente entre les deux dates. Sur le graphique, le retour au sommet est déjà là. Avec son argent investi, il fallait encore traverser les mois sans savoir quand il arriverait.'
-          : 'Avec le recul, le retour à ce niveau paraît rapide. Je ferais quand même attention à ne pas oublier qu’au moment de la baisse, personne ne connaissait cette date à l’avance.'
+          ? 'L’attente entre les deux dates fait partie du parcours. Sur le graphique, le retour au sommet est déjà là. Avec son argent investi, il fallait encore traverser les mois sans savoir quand il arriverait.'
+          : 'Avec le recul, le retour à ce niveau paraît rapide. Au moment de la baisse, personne ne connaissait cette date à l’avance.'
   const drawdownHook = stats.drawdown < 0
     ? `${subject} a perdu ${pct(Math.abs(stats.drawdown))} % entre ${monthName(stats.peak.date)} et ${monthName(stats.trough.date)}. C’est le passage de son historique mensuel qui retient mon attention.`
-    : `L’historique mensuel disponible de ${asset.label} ne montre aucune baisse depuis un sommet. Je trouve utile de regarder de quelle période on parle avant d’en tirer une conclusion.`
+    : `L’historique mensuel disponible de ${asset.label} ne montre aucune baisse depuis un sommet. La période couverte limite ce que cette observation permet de conclure.`
   const drawdownContext = stats.drawdown < 0
     ? `C’est la plus forte baisse depuis un sommet dans la série qui va de ${start} à ${end}.\n\n${recovery}`
     : `La série va de ${start} à ${end}. Elle ne montre donc aucune baisse depuis un sommet entre deux clôtures mensuelles, même si les cours ont pu reculer à l’intérieur d’un mois.`
   const comparisonEnding = gap > 0
-    ? `Le placement en une fois termine donc avec environ ${money(gap)} de plus. Je comprends l’intérêt de faire travailler l’argent plus tôt, mais il fallait aussi accepter d’exposer toute la somme aux baisses dès le départ.`
+    ? `Le placement en une fois termine donc avec environ ${money(gap)} de plus. L’argent a été investi plus tôt, avec toute la somme exposée aux baisses dès le départ.`
     : gap < 0
-      ? `Les achats mensuels terminent donc avec environ ${money(-gap)} de plus. Sur cette période, étaler les achats a mieux fonctionné. Je ferais toutefois attention à ne pas transformer ce résultat en règle pour tous les prochains investissements.`
-      : 'Les deux approches donnent finalement le même montant. Dans ce cas, je m’intéresserais surtout à celle avec laquelle je serais le plus à l’aise pendant les baisses.'
+      ? `Les achats mensuels terminent donc avec environ ${money(-gap)} de plus. Sur cette période, étaler les achats a mieux fonctionné. Ce résultat ne constitue pas une règle pour les prochains investissements.`
+      : 'Les deux approches donnent finalement le même montant. Le même résultat final ne signifie pas la même exposition aux baisses pendant la période.'
   return [
     { ...common, id: `monthly-drawdown-${id}`, category: 'Baisse maximale mensuelle',
       hook: drawdownHook,
       context: drawdownContext,
-      twist: `${stats.drawdown < 0 ? waiting + '\n\n' : 'Je ne prendrais pas cette courbe comme la preuve que ce placement ne peut pas baisser.\n\n'}Les clôtures mensuelles peuvent masquer une baisse plus forte en cours de mois. Ce n’est pas une limite à ce que ce placement pourrait perdre à l’avenir.`,
+      twist: `${stats.drawdown < 0 ? waiting + '\n\n' : 'Cette courbe ne prouve pas que ce placement ne peut pas baisser.\n\n'}Les clôtures mensuelles peuvent masquer une baisse plus forte en cours de mois. Ce n’est pas une limite à ce que ce placement pourrait perdre à l’avenir.`,
       fact: `Baisse et récupération calculées sur les seuls points mensuels (${period}). ${note}` },
     { ...common, id: `monthly-dca-${id}`, category: 'Tout investir ou étaler',
-      hook: `Si j’avais ${money(initial)} à investir ${target}, je me demanderais si je préfère tout placer d’un coup ou étaler mes achats.`,
+      hook: `Avec ${money(initial)} à investir ${target}, quel aurait été le résultat en plaçant tout d’un coup ou en étalant les achats ?`,
       context: `Voilà ce que donnent les deux approches sur son historique de ${start} à ${end}.\n\nEn investissant toute la somme à la première clôture, le placement termine à environ ${money(lump)}. En achetant pour 100 ${currencyLabel} à chaque clôture mensuelle, il termine à environ ${money(dca)}.\n\nLa somme versée est la même dans les deux cas.`,
       twist: `${comparisonEnding}\n\nDans ce calcul, l’argent qui attend d’être investi ne rapporte rien. Le résultat raconte cette période, pas ce que donnera le prochain départ.`,
       fact: `Versements aux clôtures mensuelles (${period}), fractions de titres admises. ${note}` },

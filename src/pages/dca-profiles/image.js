@@ -70,7 +70,7 @@ export async function renderDcaImage(input){
   text(ctx,row.name,x+28,y,190,23,C.ivory,400)
   text(ctx,`${percentages[i]} %`,x+28,y+32,190,29,C.ivory,700)
  })
- const source=group?`${group.asOf} · ${group.basis==='fund'?'Fonds':'Indice'} · couverture ${Math.round(group.coverage)} %`:'Aucune ventilation qualifiée'
+ const source=group?`${group.asOf} · ${group.basis==='fund'?'Fonds':'Indice'} · poids détaillé ${Math.round(group.detailedCoverage)} %`:'Aucune ventilation qualifiée'
  text(ctx,source,860,982,670,18,C.muted,400)
  if(group?.classification==='Pays d’enregistrement DWS')text(ctx,'Pays d’enregistrement',860,1004,670,16,C.muted,400)
  rule(ctx,64,1013,1472)
