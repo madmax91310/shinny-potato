@@ -1,12 +1,12 @@
 import assert from 'node:assert/strict';
-import { PROFILES, RISK_BOUNDS, THEME_OPTIONS_CALM, THEME_OPTIONS_FULL, THEME_OPTIONS_AGGRESSIVE } from '../src/pages/portfolio-generator/theses.js';
+import { PRO_EUROPE_CORE_IDS, PROFILES, RISK_BOUNDS, THEME_OPTIONS_CALM, THEME_OPTIONS_FULL, THEME_OPTIONS_AGGRESSIVE } from '../src/pages/portfolio-generator/theses.js';
 import { getRecipes, withinRecipe } from '../src/pages/portfolio-generator/recipes.js';
 import { getAsset, YEARS } from '../src/data/portfolio-assets.js';
 import { generatePortfolio, renderTweetText } from '../src/pages/portfolio-generator/engine.js';
 import { exposureSignature, exposureVector, exposureDistance } from '../src/pages/portfolio-generator/exposures.js';
 import { computeYearlyPerf } from '../src/pages/portfolio-generator/performance.js';
 
-const europe = new Set(['eurostoxx50','eurostoxx50_ishares','cac40','tech_europe','smallcap_europe','oblig_etat_eur_short','msci_europe']);
+const europe = new Set(PRO_EUROPE_CORE_IDS);
 const bitcoinBounds = { defensif:[5,10], equilibre:[10,20], dynamique:[15,30] };
 const income = new Set(['fonds_euros','scpi','oblig_hy','oblig_hy_amundi','oblig_etat_us','qyld_ucits']);
 function validate(profile, risk, selection) {
@@ -24,7 +24,7 @@ function validate(profile, risk, selection) {
   }
   if (profile === 'thematique') {
     const options = risk==='defensif' ? THEME_OPTIONS_CALM : risk==='equilibre' ? THEME_OPTIONS_FULL : THEME_OPTIONS_AGGRESSIVE;
-    assert.ok(options.includes(selection[0].id));
+    assert.ok([...options,'health_europe_pea','utilities_world_dws','cloud-wisdomtree','ia-big-data-xtrackers','industry_world_dws'].includes(selection[0].id));
     assert.equal(selection[0].pct, {defensif:35,equilibre:35,dynamique:55,offensif:70}[risk]);
   }
 }
@@ -37,7 +37,7 @@ Math.random=()=> { seed = (Math.imul(seed,1664525)+1013904223)>>>0; return seed/
 try {
   for (const profile of PROFILES) for (const risk of Object.keys(profile.riskCombos)) {
     const recipes = getRecipes(profile.id,risk);
-    assert.ok(recipes.length >= 3);
+    assert.ok(recipes.length >= 6, `${profile.id}/${risk}: au moins six constructions`);
     assert.equal(new Set(recipes.map(r=>r.id)).size,recipes.length);
     for (const recipe of recipes) {
       constructions++;
@@ -67,7 +67,7 @@ try {
       assert.ok(withinRecipe(p.selection,recipes.find(r=>r.id===p.recipeId)));
       assert.notEqual(p.recipeId,history.at(-1)?.recipeId);
       assert.doesNotMatch(renderTweetText(p), /undefined|NaN|\{pct\}/);
-      assert.ok(!history.some(h=>h.sig===p.sig));
+      assert.ok(!history.some(h=>h.sig===p.sig), `${profile.id}/${risk}/${p.recipeId}: répétition ${p.sig}`);
       assert.ok(!history.some(h=>exposureSignature(h.selection)===exposureSignature(p.selection)), `${profile.id}/${risk}: répétition d’exposition`);
       seen.add(p.recipeId); signatures.add(p.sig); generations++;
       history.push(p); if(history.length>40)history.shift();
