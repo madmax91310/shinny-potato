@@ -99,6 +99,7 @@ export default function InvestorPortfolio() {
           <Button type="button" onClick={copy}>{copied ? '✅ Copié' : '📋 Copier le tweet'}</Button>
           <Button type="button" variant="secondary" onClick={download} disabled={exporting}>{exporting ? 'Création du PNG…' : '⬇️ Télécharger le PNG'}</Button>
         </WorkspaceActions>
+        <p className="ip-note">Les catégories d’actions d’une même entreprise sont regroupées : deux catégories ne constituent pas deux entreprises différentes.</p>
         <p className="ip-note">Le visuel reprend les chiffres chargés et peut différer si tu modifies manuellement le tweet. Les déclarations 13F paraissent après la fin du trimestre et ne montrent pas toutes les positions du gestionnaire.</p>
         <p className="ip-note">Photo de {investorPortrait(portfolio.identity.slug).person} : <a href={investorPortrait(portfolio.identity.slug).source} target="_blank" rel="noreferrer">{investorPortrait(portfolio.identity.slug).author} ↗</a> · {investorPortrait(portfolio.identity.slug).license}</p>
         <History portfolio={portfolio} />

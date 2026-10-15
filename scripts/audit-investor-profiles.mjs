@@ -13,9 +13,9 @@ for (const [slug, displayName] of INVESTORS) {
   const tweet = buildTweet(portfolio)
   assert(tweet.includes(investorIntroduction(slug)))
   assert(tweet.includes('💼 Ses principales positions au 30 juin 2026'))
-  assert(tweet.includes('Cette ligne représente') && !tweet.includes('Ces cinq lignes'))
-  assert(/\bje\b|mon attention|me frappe|m’intéresse/i.test(tweet), 'Un regard personnel dans le tweet')
-  for (const label of ['💼 Ses principales positions', '💬 ']) assert(tweet.includes(label))
+  assert(tweet.includes('sur une seule entreprise') && !tweet.includes('Ces cinq lignes'))
+  assert(!/\bje\b|mon attention|me frappe|m’intéresse/i.test(tweet), 'Ton factuel sans opinion personnelle inventée')
+  for (const label of ['Qui ', '💼 Ses principales positions', '🔍 Ce qui distingue ce portefeuille', '💬 ']) assert(tweet.includes(label))
   assert(!/undefined|NaN|\\\\n/.test(tweet))
   assert(!tweet.includes('place-t-il'))
   assert(buildTweet(portfolio, 'Ma présentation.').includes('Ma présentation.'))
@@ -48,13 +48,13 @@ const liLu = normalizePortfolio(JSON.parse(readFileSync(new URL('../public/data/
 assert(portfolioEditorial({ ...liLu, holdings: [
   { issuerName: 'A', ticker: 'A', weight: .3 }, { issuerName: 'B', ticker: 'B', weight: .3 },
   { issuerName: 'C', ticker: 'C', weight: .251 }, { issuerName: 'D', ticker: 'D', weight: .149 },
-] }).explanation.includes('85,1 %'))
+] }).explanation.includes('30,0 %'))
 assert(buildTweet(make(splitClasses)).includes('52,0 %'))
 const balanced = Array.from({ length: 10 }, (_, i) => ({ issuerName: 'Société ' + i, ticker: 'T' + i, weight: .1 }))
 assert(!portfolioEditorial(make(balanced)).hook.includes('seulement'))
-assert(portfolioEditorial(make(balanced)).explanation.includes('50,0 %'))
+assert(portfolioEditorial(make(balanced)).explanation.includes('presque à égalité'))
 const fund = { issuerName: 'Vanguard ETF', ticker: 'ETF', weight: 1 }
-assert(portfolioEditorial(make([fund])).hook.includes('ligne'))
+assert(portfolioEditorial(make([fund])).hook.includes('position'))
 assert(!portfolioEditorial(make([fund])).hook.includes('entreprise'))
 console.log('Hooks calculés, catégories regroupées, concentration et fonds : cas limites validés.')
 
@@ -79,16 +79,16 @@ assert.equal(movementExcerpt({ holdings: movements.holdings }), '')
 assert.equal(movementExcerpt({ ...movements, holdings: [], quarterChanges: { priorPeriodLabel: 'Q1 2026', exits: [] } }), '')
 const withMoves = buildTweet({ ...make(movements.holdings), snapshot: movements })
 assert(withMoves.indexOf('🔄 Quelques mouvements') > withMoves.indexOf('💼 Ses principales positions'))
-assert(withMoves.indexOf('🔄 Quelques mouvements') < withMoves.indexOf('À elles seules'))
+assert(withMoves.indexOf('🔄 Quelques mouvements') < withMoves.indexOf('🔍 Ce qui distingue'))
 console.log('Encart mouvements : quatre lignes, quantités, classes distinctes, options exclues et comparaison manquante validés.')
 
 const baker = normalizePortfolio(JSON.parse(readFileSync(new URL('../public/data/investors/baker-bros.json', import.meta.url), 'utf8')))
 const renaissance = normalizePortfolio(JSON.parse(readFileSync(new URL('../public/data/investors/renaissance.json', import.meta.url), 'utf8')))
 assert(buildTweet(baker).includes('Felix et Julian Baker'))
-assert(buildTweet(baker).includes('Les frères Baker'))
+assert(buildTweet(baker).includes('des frères Baker'))
 assert(buildTweet(renaissance).includes('société de gestion quantitative'))
 assert(buildTweet(renaissance).includes('décédé en 2024'))
-assert(buildTweet(renaissance).includes('Renaissance Technologies déclare'))
+assert(buildTweet(renaissance).includes('portefeuille déclaré de Renaissance Technologies'))
 assert(!buildTweet(renaissance).includes('portefeuille déclaré de Jim Simons'))
 console.log('Baker Bros et Renaissance : identités collectives et fondateur historique correctement distingués.')
 
@@ -115,7 +115,9 @@ for (const [slug] of INVESTORS) {
   const editorial = portfolioEditorial(portfolio), tweet = buildTweet(portfolio)
   assert.equal(JSON.stringify(portfolio), before, 'La rédaction ne modifie pas les données')
   assert(!/undefined|NaN|\\n/.test(tweet))
-  assert(!tweet.includes('📄 Positions issues') && !tweet.includes('🔍 Ce qui distingue'))
+  assert(!tweet.includes('📄 Positions issues') && tweet.includes('🔍 Ce qui distingue'))
+  assert(!tweet.includes('Les catégories d’actions'))
+  assert(!/\bje\b|me frappe|mon attention/i.test(tweet))
   assert(tweet.includes(dateFR(portfolio.snapshot.periodEnd)))
   for (const row of editorial.top) assert(tweet.includes(percentage(row.weight)))
   assert(editorial.question.endsWith('?'))
@@ -123,24 +125,12 @@ for (const [slug] of INVESTORS) {
   const refreshed = { ...portfolio, holdings: fallbackRows }
   const changed = portfolioEditorial(refreshed)
   assert(!oldNames.test(changed.explanation), `${slug}: anciennes positions retirées du commentaire`)
-  assert(changed.explanation.includes('100,0 %'), `${slug}: nouvelle concentration prise en compte`)
+  assert(changed.hook.includes('100,0 %') && changed.explanation.includes('35,0 %'), `${slug}: nouvelle concentration et comparaison prises en compte`)
   assert(buildTweet(refreshed).includes('65,0 %'))
 }
 assert.equal(hooks.size, INVESTORS.length)
 assert.equal(observations.size, INVESTORS.length)
-// Fixed editorial scenarios are independent of tomorrow's real filing.
-const ackman = { ...readPortfolio('ackman'), holdings: [
-  ['UBER', .179], ['MSFT', .1], ['AMZN', .1], ['BN', .1], ['HHH', .1],
-  ...Array.from({ length: 5 }, (_, i) => ['OTHER' + i, .0842]),
-].map(([ticker, weight]) => ({ ticker, issuerName: ticker, weight })) }
-assert(buildTweet(ackman).includes('Microsoft et Amazon aux côtés'))
-assert(buildTweet(ackman).includes('57,9 %'))
-const refreshedAckman = { ...ackman, holdings: ackman.holdings.filter(row => row.ticker !== 'BN') }
-assert(!portfolioEditorial(refreshedAckman).explanation.includes('Brookfield'))
-const renaissanceEditorial = portfolioEditorial({ ...readPortfolio('renaissance'), holdings:
-  Array.from({ length: 2970 }, (_, i) => ({ ticker: 'T' + i, issuerName: 'Title ' + i, weight: i < 5 ? .0162 : .919 / 2965 })) })
-assert(renaissanceEditorial.hook.includes('2\u202f970 positions'))
-assert(renaissanceEditorial.explanation.includes('8,1 %'))
+// The approved factual template adapts to concentrated and balanced filings.
 const concentrated = portfolioEditorial(make(fallbackRows))
 assert(/65,0 %.*contre 35,0 %/.test(concentrated.explanation))
 const near = portfolioEditorial(make([{ issuerName: 'A', ticker: 'A', weight: .28 }, { issuerName: 'B', ticker: 'B', weight: .277 }, { issuerName: 'C', ticker: 'C', weight: .1 }]))
@@ -148,7 +138,7 @@ assert(near.explanation.includes('presque à égalité'))
 const memory = readPortfolio('aschenbrenner')
 const reducedMemory = { ...memory, holdings: memory.holdings.map(row => ['MU', 'SNDK'].includes(row.ticker) ? { ...row, weight: .005 } : row).sort((a,b) => b.weight - a.weight) }
 assert(!portfolioEditorial(reducedMemory).explanation.includes('stockage et la mémoire'))
-console.log(`${hooks.size} accroches et commentaires personnels : données courantes, disparition des anciennes lignes et changements de poids vérifiés.`)
+console.log(`${hooks.size} accroches et commentaires factuels : données courantes, disparition des anciennes lignes et changements de poids vérifiés.`)
 
 // Reject malformed payloads instead of silently dropping bad rows before exports.
 const validPayload = JSON.parse(readFileSync(new URL('../public/data/investors/li-lu.json', import.meta.url), 'utf8'))

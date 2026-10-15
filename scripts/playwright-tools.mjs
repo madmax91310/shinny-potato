@@ -1076,9 +1076,8 @@ async function testInvestorIntroductions(page) {
     await page.waitForFunction(intro => document.querySelector('#ip-intro')?.value === intro && document.querySelector('#ip-draft')?.value.includes(intro), investorIntroduction(slug));
     ok &&= (await page.locator('.ip-bio').innerText()) === investorIntroduction(slug);
     const tweet = await page.getByLabel('Tweet modifiable', { exact: true }).inputValue();
-    ok &&= /\bje\b|mon attention|me frappe|m’intéresse/i.test(tweet)
-      && ['💼 Ses principales positions', 'du portefeuille déclaré.', '💬 '].every(label => tweet.includes(label))
-      && !tweet.includes('🔍 Ce qui distingue ce portefeuille')
+    ok &&= tweet.startsWith('📊 ') && tweet.includes('🔍 Ce qui distingue ce portefeuille') && !/\bje\b|mon attention|me frappe|m’intéresse/i.test(tweet)
+      && ['💼 Ses principales positions', '🔍 Ce qui distingue ce portefeuille', '💬 '].every(label => tweet.includes(label))
       && !tweet.includes('📄 Positions issues')
       && !/place-t-il|undefined|NaN|\\\\n/.test(tweet);
     if (!['li-lu', 'gates-trust', 'klarman'].includes(slug)) {
