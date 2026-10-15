@@ -34,7 +34,7 @@ assert(publicationReady({...p,mode:'participant',approved:true}))
 console.log('DCA moteur : 100 profils, pondérations, couverture, absences, zéro DCA, première position et validation vérifiés.')
 
 // The donut represents the entire portfolio, including uncovered weight.
-const {donutData}=await import('../src/pages/dca-profiles/image.js')
+const {donutData,integerPercentages}=await import('../src/pages/dca-profiles/image.js')
 const {incomeLabel}=await import('../src/pages/dca-profiles/lib.js')
 for(const [i,raw] of PROFILES.entries()){
  const p=prepareProfile(raw,i),d=donutData(analyzeProfile(p))
@@ -55,3 +55,12 @@ assert(buildTweetText(karim).startsWith('👦 Karim, 32 ans, informaticien\n💸
 assert(buildTweetText(karim).includes('Le World reste son placement principal.'))
 assert(!/undefined|NaN/.test(buildTweetText({...karim,age:null,job:'',income:0})))
 console.log('Donuts : total, couverture partielle, dates séparées et accroche validée.')
+
+for(const raw of PROFILES){
+ assert.deepEqual(prepareProfile(raw,0),prepareProfile(raw,99),'Holdings must not depend on list order')
+ const rows=donutData(analyzeProfile(prepareProfile(raw))).rows
+ const rounded=integerPercentages(rows)
+ assert.equal(rounded.reduce((a,b)=>a+b,0),100)
+ rounded.forEach((n,i)=>{assert(Number.isInteger(n));assert(Math.abs(n-rows[i].weight)<1.000001)})
+}
+assert.deepEqual(integerPercentages([{weight:33.4},{weight:33.3},{weight:33.3}]),[34,33,33])

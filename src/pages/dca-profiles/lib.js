@@ -7,6 +7,23 @@ export function incomeLabel(profile) {
 export function portfolioComment(profile) {
   const held = profile.lines.filter(l => l.weight > 0).sort((a,b) => b.weight-a.weight)
   const assets = new Set(held.map(l => l.asset))
+  const weight = key => held.find(l=>l.asset===key)?.weight || 0
+  const core = held.find(l=>['world','acwi','allworld','sp500'].includes(l.asset))
+  if(core && assets.has('nasdaq'))return 'Le Nasdaq renforce des entreprises déjà présentes dans son ETF principal. La place des grandes valeurs technologiques augmente donc aussi.'
+  if(core && weight('btc')+weight('eth')>=15)return `Les cryptomonnaies représentent ${pct(weight('btc')+weight('eth'))} de son portefeuille. Cette poche peut peser sensiblement sur ses variations.`
+  if(core && weight('semiconductors')>=18)return 'Les semi-conducteurs occupent une place importante. Plusieurs de ces entreprises sont aussi présentes dans son ETF principal.'
+  if(core && weight('europe')>=28)return 'L’Europe occupe une place renforcée dans son portefeuille. Ce choix l’éloigne de la répartition géographique d’un indice mondial.'
+  if(core && weight('gold')>=25)return `L’or représente ${pct(weight('gold'))} de son portefeuille. C’est un choix qui pèse dans la répartition, même si l’or ne verse aucun revenu.`
+  if(core && weight('dividend')>=18)return 'Une partie du portefeuille privilégie les actions à dividendes. Les distributions ne garantissent pas un meilleur rendement total.'
+  if(core && weight('reit')>=20)return 'L’immobilier coté occupe une place importante. Cette poche reste exposée aux variations de la Bourse.'
+  if(core && weight('emerging')>=25)return 'Les marchés émergents ont un poids marqué dans son portefeuille. Leurs variations pèseront donc davantage sur le résultat.'
+  if(core && weight('momentum')>=20)return 'Le complément Momentum privilégie les actions ayant récemment le mieux progressé. Il modifie la sélection sans ajouter une nouvelle classe d’actifs.'
+  if(core && weight('quality')>=20)return 'Le complément Quality renforce une sélection d’entreprises déjà susceptibles de figurer dans son ETF principal.'
+  if(core && weight('value')>=20)return 'Le complément Value donne plus de poids aux actions jugées moins chères selon les critères de l’indice.'
+  const themes=['cybersecurity','healthcare','water','infrastructure','industrials','semiconductors']
+  if(core && held.some(l=>themes.includes(l.asset)&&l.weight>=20))return 'Une conviction sectorielle occupe une place importante à côté de son ETF principal. Elle rend le portefeuille plus concentré sur ce thème.'
+  const direct=held.filter(l=>['airliquide','total','nvidia','microsoft','apple','airbus','asml','novo','nintendo','schneider'].includes(l.asset))
+  if(core && direct.reduce((s,l)=>s+l.weight,0)>=18)return `Les actions détenues en direct représentent ${pct(direct.reduce((s,l)=>s+l.weight,0))} du portefeuille. Le résultat dépend donc davantage de ces entreprises.`
   if (assets.has('world') && assets.has('europe') && assets.has('emerging') && held.length===3 && held[0].asset==='world') {
     return 'Le World reste son placement principal. Son ETF Europe renforce une région déjà présente dans le World, tandis que les émergents ajoutent des marchés qui en sont absents.'
   }
