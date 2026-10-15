@@ -17,7 +17,7 @@ export default function ValuationPublication({company,overrides,selected,method,
     }catch(error){setMessage(error.message)}
   }
   return <section className="valuation-publication" aria-label="Publication de valorisation">
-    <p>L’image et le texte reprennent les hypothèses affichées. Change un scénario ou un réglage pour actualiser les deux.</p>
+    <p>Le texte présente les trois scénarios de chaque méthode disponible. L’image reste centrée sur la méthode et le scénario sélectionnés. Les réglages personnalisés sont repris dans la publication.</p>
     {result.error?<p role="alert">{result.error}</p>:<>
       <div className="valuation-export-preview">
         <img src={result.image} alt={`Objectifs de cours de ${company.name} · ${result.snapshot.scenarios[selected].name}`} width="1200" height="1500"/>

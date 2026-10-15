@@ -143,7 +143,9 @@ for(const horizon of [1,3,5])for(const method of ['cash','earnings'])for(const i
     if(method==='earnings'&&horizon===1&&!x.customGrowth)assert.equal(x.extrapolated,0)
     if(method==='earnings'&&horizon===5&&!x.customGrowth)assert.equal(x.extrapolated,4)
     const pub=valuationPublication(company,overrides,index,method,now,horizon)
-    assert(pub.text.includes(x.summary)&&pub.text.includes(x.coverage))
+    assert.deepEqual(pub.explanation,x)
+    assert(pub.text.includes(targetExplanation(company,m,1,method).coverage))
+    assert.equal(pub.text,valuationPublication(company,overrides,1,method==='cash'?'earnings':'cash',now,horizon).text)
   }
 }
 // Independent bridge example: 200 -> 240 at unchanged multiple -> 180 at 15x.
@@ -178,3 +180,28 @@ company.decision.years[0].freeCashFlow=-1;assert(!buildScenarios(company,{},now)
 assert(!buildScenarios(company,{},new Date('2027-01-01')).inputs.earningsReady)
 for (const c of COMPANIES) assert.doesNotThrow(()=>buildScenarios(c,{},now))
 console.log('Company valuation: independent annuity, inverse, bounds, monotonicity and eligibility checks passed')
+
+company.decision.years[0].freeCashFlow=100
+// Whole-publication contract: both methods, all three targets, no dependency on selection.
+for(const horizon of [1,3,5]) {
+  const overrides={0:{cashGrowth:-.02},1:{earningsGrowth:-.03},2:{cashMultiple:1}}
+  const m=buildPriceScenarios(company,overrides,now,horizon)
+  const pub=valuationPublication(company,overrides,0,'earnings',now,horizon)
+  for(const method of ['cash','earnings'])for(const s of m.scenarios) {
+    assert(pub.text.includes(s[method+'Target'].value.toLocaleString('fr-FR',{maximumFractionDigits:2})))
+  }
+  assert(pub.text.includes('une baisse moyenne de 3 %'))
+  assert(pub.text.includes('personnalisées'))
+  assert(pub.text.includes('modifié l’ordre'))
+  assert(!pub.text.includes('hypothèses plus optimistes'))
+  assert.equal(pub.text.includes('Pas des rendements annuels'),horizon>1)
+}
+for(const method of ['cash','earnings']) {
+  const one=structuredClone(company)
+  delete one[method==='cash'?'targetForecast':'targetCashReference']
+  const pub=valuationPublication(one,{},1,method,now)
+  assert(pub.text.includes('Une seule approche'))
+  assert.equal((pub.text.match(/• /g)||[]).length,3)
+  assert(!pub.text.includes(method==='cash'?'💰 Prix projetés':'🏦 Prix projetés'))
+}
+console.log('Combined tweet: both methods, single method, custom contractions/order and horizons verified.')
