@@ -10,11 +10,13 @@ import { prepareProfile, analyzeProfile, PROFILE_SCOPES, references, pct, euro, 
 import { exposureDisplay } from './exposure.js'
 import { renderDcaImage } from './image.js'
 import { filterProfiles, searchAssets, readSaved, writeSaved, readUsed, USED_KEY } from './management.js'
+import Verification from './Verification.jsx'
+import catalog from './catalog.json' with {type:'json'}
 import './dca-profiles.css'
 const profiles=PROFILES.map(prepareProfile)
 export default function App(){
  const [profile,setProfile]=useState(profiles[0]),[draft,setDraft]=useState(buildTweetText(profiles[0])),[feedback,setFeedback]=useState('')
- const [field,setField]=useState('countries'),[filters,setFilters]=useState({budget:'',lines:'',kind:'',unused:false})
+ const [field,setField]=useState('all'),[assetFilter,setAssetFilter]=useState(''),[filters,setFilters]=useState({budget:'',lines:'',kind:'',unused:false})
  const [used,setUsed]=useState(()=>{try{return readUsed(localStorage)}catch{return []}}),[queries,setQueries]=useState({})
  const [savedState,setSavedState]=useState(()=>{try{return {items:readSaved(localStorage),error:''}}catch{return {items:[],error:'Impossible de lire les portefeuilles enregistrés. Le stockage existant a été conservé.'}}})
  const [savedId,setSavedId]=useState(''),[saveTitle,setSaveTitle]=useState(profiles[0].name)
@@ -28,6 +30,7 @@ export default function App(){
  function edit(patch){update({...profile,...patch,approved:false})}
  function lineEdit(index,patch){edit({lines:profile.lines.map((l,i)=>i===index?{...l,...patch}:l)})}
  function select(next){if(!next)return;update(structuredClone(next));seen.current.add(next.id);setSavedId('');setSaveTitle(next.name);setQueries({})}
+ function compose(){setSavedId('');setSaveTitle('Mon portefeuille');setQueries({});setField('all');update({id:crypto.randomUUID(),name:'',scope:'Portefeuille investi',mode:'participant',imageOnly:true,approved:false,lines:[{asset:'world',label:catalog.world.name,emoji:'📊',isin:references.world.isin,weight:100,amount:0}]})}
  function duplicate(){setProfile({...structuredClone(profile),id:crypto.randomUUID(),mode:'participant',approved:false});setSavedId('');setSaveTitle(profile.name+' — copie');setFeedback('Copie créée. Tu peux la modifier et l’enregistrer séparément.')}
  function toggleUsed(){try{const next=used.includes(profile.id)?used.filter(id=>id!==profile.id):[...used,profile.id];localStorage.setItem(USED_KEY,JSON.stringify(next));setUsed(next);setFeedback(next.includes(profile.id)?'Profil marqué comme utilisé.':'Profil marqué comme non utilisé.')}catch{setFeedback('Le suivi ne peut pas être enregistré sur cet appareil.')}}
  function savePortfolio(){try{
@@ -44,12 +47,12 @@ export default function App(){
  function save(){try{localStorage.setItem('el-dca-draft-v1',JSON.stringify({profile,draft,field}));setFeedback('Brouillon enregistré sur cet appareil.')}catch{setFeedback('Le stockage local est indisponible.')}}
  function restore(){try{const saved=JSON.parse(localStorage.getItem('el-dca-draft-v1'));if(!saved?.profile||analyzeProfile(saved.profile).errors.length||typeof saved.draft!=='string')throw Error();setProfile({...saved.profile,approved:false});setDraft(saved.draft);setField(['countries','sectors','both','all'].includes(saved.field)?saved.field:'countries');setSavedId('');setSaveTitle(saved.profile.name);setFeedback('Brouillon restauré.')}catch{setFeedback('Aucun brouillon valide enregistré.')}}
  return <div className="dca-profiles-scope">
- <PageHeader title="Le DCA de…" subtitle="Le portefeuille en pourcentage, les versements en euros. Deux lectures complémentaires, sans dévoiler le capital." />
+ <PageHeader title="Portefeuille & expositions" subtitle="Compose un portefeuille en pourcentages ou retrouve les profils DCA. Vérifie ses expositions, puis prépare ton visuel." />
  <ToolWorkspace renderImage={renderImage} imageDisabled={!!a.errors.length} imageAlt={profile.imageOnly?'Expositions du portefeuille':`Portefeuille et versements de ${profile.name}`} actions={<>
  <Button onClick={copy} disabled={!ready||!draft.trim()}>Copier le texte</Button><Button variant="secondary" onClick={download} disabled={!ready}>Télécharger le PNG</Button>
  </>}>
  <section className="tool-settings">
- <div className="dca-mode"><button aria-pressed={profile.mode==='prepared'} onClick={()=>select(profiles[0])}>Profils préparés</button><button aria-pressed={profile.mode==='participant'} onClick={()=>{setSavedId('');setSaveTitle('Nouveau portefeuille');setQueries({});update({id:'personnalise',name:'',scope:'PEA + CTO',mode:'participant',approved:false,lines:[{asset:'world',label:ASSETS.world[1],emoji:ASSETS.world[0],isin:'',weight:100,amount:0}]})}}>Créer une participation</button></div>
+ <div className="dca-mode"><button aria-pressed={!!profile.imageOnly} onClick={compose}>Composer un portefeuille</button><button aria-pressed={profile.mode==='prepared'&&!profile.imageOnly} onClick={()=>select(profiles[0])}>Profils préparés</button><button aria-pressed={profile.mode==='participant'&&!profile.imageOnly} onClick={()=>{setSavedId('');setSaveTitle('Nouveau portefeuille');setQueries({});update({id:'personnalise',name:'',scope:'PEA + CTO',mode:'participant',approved:false,lines:[{asset:'world',label:ASSETS.world[1],emoji:ASSETS.world[0],isin:'',weight:100,amount:0}]})}}>Créer une participation</button></div>
  {profile.mode==='prepared'&&<>
  <details className="dca-filters"><summary>Filtrer les profils · {filtered.length} résultat{filtered.length>1?'s':''}</summary>
  <div className="dca-fields"><label>Budget mensuel<ChoicePicker aria-label="Budget mensuel" value={filters.budget} onChange={e=>setFilter('budget',e.target.value)}><option value="">Tous les budgets</option><option value="small">Jusqu’à 200 €</option><option value="medium">Plus de 200 à 500 €</option><option value="large">Plus de 500 à 1 000 €</option><option value="high">Plus de 1 000 €</option></ChoicePicker></label>
@@ -75,16 +78,19 @@ export default function App(){
  <div className="dca-fields"><label>{profile.imageOnly?'Pseudonyme (facultatif, masqué à l’export)':'Pseudonyme'}<input maxLength={45} value={profile.name} onChange={e=>edit({name:e.target.value})}/></label><label>Périmètre<ChoicePicker aria-label="Périmètre du portefeuille" value={profile.scope} onChange={e=>edit({scope:e.target.value})}>{PROFILE_SCOPES.map(s=><option key={s} value={s}>{s}</option>)}</ChoicePicker></label></div>
  {!profile.imageOnly&&<details><summary>Présentation facultative</summary><div className="dca-fields"><label>Âge<input type="number" min="18" max="100" value={profile.age||''} onChange={e=>edit({age:Math.min(100,Math.max(0,Number(e.target.value)))})}/></label><label>Activité<input maxLength={70} value={profile.job||''} onChange={e=>edit({job:e.target.value})}/></label><label>Localisation générale<input maxLength={60} value={profile.location||''} onChange={e=>edit({location:e.target.value})}/></label><label>Revenu net mensuel (facultatif)<input type="number" min="0" value={profile.income||''} onChange={e=>edit({income:Math.max(0,Number(e.target.value))})}/></label></div></details>}
  <h2>{profile.imageOnly?'Répartition du portefeuille':'Portefeuille & versements'}</h2><p className="dca-note">{profile.imageOnly?'Saisis les actifs et leurs poids, pour un total de 100 %. Aucun montant ni versement mensuel n’est nécessaire.':'Une position peut être conservée sans versement, ou recevoir un premier versement avec un poids actuel de 0 %.'}</p>
+ <label>Filtrer les actifs<ChoicePicker aria-label="Filtrer les actifs" value={assetFilter} onChange={e=>setAssetFilter(e.target.value)}><option value="">Tous</option><option value="pea">Éligibles PEA documentés</option><option value="nonpea">Non éligibles PEA documentés</option><option value="equity">Actions</option><option value="fund">ETF / ETC / crypto</option></ChoicePicker></label>
  {profile.lines.map((l,i)=><fieldset className="dca-position" key={i}><legend>Position {i+1}</legend>
- <label>Rechercher par nom ou ISIN<input type="search" aria-label={`Rechercher position ${i+1}`} value={queries[i]||''} onChange={e=>setQueries({...queries,[i]:e.target.value})} placeholder="World, Air Liquide, IE00…"/></label>
- <label>Actif<ChoicePicker aria-label={`Actif position ${i+1}`} value={l.asset} onChange={e=>{const asset=e.target.value;lineEdit(i,{asset,emoji:ASSETS[asset][0],label:ASSETS[asset][1],isin:profile.mode==='prepared'?references[asset]?.isin||'':''})}}>{[...new Set([l.asset,...searchAssets(queries[i]||'')])].map(key=><option key={key} value={key}>{ASSETS[key][1]}</option>)}</ChoicePicker></label>
- {queries[i]&&!searchAssets(queries[i]).length&&<p className="dca-note">Aucun résultat dans le catalogue. La position actuelle reste sélectionnée.</p>}
+ <label>Rechercher par nom, ticker ou ISIN<input type="search" aria-label={`Rechercher position ${i+1}`} value={queries[i]||''} onChange={e=>setQueries({...queries,[i]:e.target.value})} placeholder="World, Air Liquide, IE00…"/></label>
+ <label>Actif<ChoicePicker aria-label={`Actif position ${i+1}`} value={l.asset} onChange={e=>{const asset=e.target.value;lineEdit(i,{asset,emoji:ASSETS[asset][0],label:catalog[asset]?.name||ASSETS[asset][1],isin:references[asset]?.isin||''})}}>{[...new Set([l.asset,...searchAssets(queries[i]||'',assetFilter)])].map(key=><option key={key} value={key}>{catalog[key]?.name||ASSETS[key][1]}</option>)}</ChoicePicker></label>
+ {queries[i]&&!searchAssets(queries[i],assetFilter).length&&<p className="dca-note">Aucun résultat dans le catalogue. La position actuelle reste sélectionnée.</p>}
+ {references[l.asset]&&<p className="dca-note">{references[l.asset].isin} · {references[l.asset].kind==='equity'?'Action':references[l.asset].kind.toUpperCase()} · {references[l.asset].pea===true?'Éligibilité PEA documentée':references[l.asset].pea===false?'Non éligible PEA':'Éligibilité PEA non documentée'}{references[l.asset].synthetic?' · Pour ce support synthétique, seules les données de l’indice suivi sont utilisées.':''}</p>}
  <div className="dca-fields"><label>Poids actuel (%)<input aria-label={`Poids position ${i+1}`} type="number" min="0" max="100" step="0.01" value={Number.isFinite(l.weight)?l.weight:''} onChange={e=>lineEdit(i,{weight:e.target.value===''?NaN:Number(e.target.value)})}/></label>{!profile.imageOnly&&<label>DCA (€/mois)<input aria-label={`DCA position ${i+1}`} type="number" min="0" max="1000000" step="0.01" value={Number.isFinite(l.amount)?l.amount:''} onChange={e=>lineEdit(i,{amount:e.target.value===''?NaN:Number(e.target.value)})}/></label>}</div>
  {references[l.asset]&&<label className="dca-reference">Support exact pour les expositions<ChoicePicker aria-label={`Support position ${i+1}`} value={l.isin||''} onChange={e=>lineEdit(i,{isin:e.target.value})}><option value="">Aucun support confirmé</option><option value={references[l.asset].isin}>{references[l.asset].name} · {references[l.asset].isin}</option></ChoicePicker></label>}
  <button className="dca-remove" onClick={()=>edit({lines:profile.lines.filter((_,j)=>j!==i)})}>Retirer la position {i+1}</button></fieldset>)}
  <Button variant="secondary" disabled={profile.lines.length>=8} onClick={()=>{const asset=Object.keys(ASSETS).find(k=>!profile.lines.some(l=>l.asset===k));edit({lines:[...profile.lines,{asset,label:ASSETS[asset][1],emoji:ASSETS[asset][0],isin:'',weight:0,amount:0}]})}}>Ajouter une position</Button>
  <p className="dca-total">Total : {pct(profile.lines.reduce((s,l)=>s+(Number.isFinite(l.weight)?l.weight:0),0))}{!profile.imageOnly&&<> · {euro(profile.lines.reduce((s,l)=>s+(Number.isFinite(l.amount)?l.amount:0),0))} / mois</>}</p>
  {!!a.errors.length&&<div role="alert" className="dca-errors">{a.errors.map(e=><p key={e}>{e}</p>)}</div>}
+ {!a.errors.length&&<Verification profile={profile} analysis={a}/> }
  {!a.errors.length&&<details className="dca-evidence"><summary>Expositions, couverture et sources</summary>
  <p>Synthèse indicative des dernières observations compatibles : 93 jours maximum, avec au plus 45 jours d’écart. Chaque source conserve sa date. Les pays désignent le rattachement des titres, pas leurs lieux de chiffre d’affaires. Les classifications différentes restent séparées.</p>
  {['countries','sectors'].map(f=><div key={f}><h3>{f==='countries'?'Pays':'Secteurs'} · données disponibles {pct(exposureDisplay(a[f]).coverage)} dans le graphique</h3>
@@ -95,6 +101,7 @@ export default function App(){
  {a[f].excluded.map(x=><p key={x.asset}>{x.label} : {x.reason} ({pct(x.weight)}).</p>)}
  <p>Part grise du donut : {pct(Math.max(0,100-(a[f].groups[0]?.coverage||0)-a[f].neutralWeight))}. Elle comprend les données absentes, anciennes ou incompatibles avec la classification principale.</p>
  </div>)}</details>}
+ {profile.scope==='PEA'&&profile.lines.some(l=>references[l.asset]?.pea!==true)&&<p className="dca-note" role="status">Ce portefeuille contient des supports dont l’éligibilité PEA n’est pas établie : {profile.lines.filter(l=>references[l.asset]?.pea!==true).map(l=>l.label).join(' · ')}. Vérifie le périmètre choisi.</p>}
  {profile.mode==='participant'&&<label className="dca-consent"><input type="checkbox" checked={profile.approved} onChange={e=>setProfile({...profile,approved:e.target.checked})}/>{profile.imageOnly?'Je valide les expositions à publier.':'La personne a validé le texte, le visuel et les informations à publier.'}</label>}
  <details className="dca-saved"><summary>Mes portefeuilles · {savedState.items.length}/50</summary>
  <label>Nom de la sauvegarde<input maxLength={80} value={saveTitle} onChange={e=>setSaveTitle(e.target.value)}/></label>

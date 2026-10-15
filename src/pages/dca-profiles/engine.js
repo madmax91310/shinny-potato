@@ -1,4 +1,8 @@
-import references from './exposures.json' with {type:'json'}
+import legacyReferences from './exposures.json' with {type:'json'}
+import extra0 from './exposures-extra-0.json' with {type:'json'}
+import extra1 from './exposures-extra-1.json' with {type:'json'}
+import extra2 from './exposures-extra-2.json' with {type:'json'}
+const references={...legacyReferences,...extra0,...extra1,...extra2}
 import { ASSETS } from './data.js'
 import { dcaExposure } from './exposure.js'
 export { references }
@@ -22,7 +26,7 @@ export function validateProfile(profile) {
   if(profile.lines.some(l=>!ASSETS[l.asset] || !Number.isFinite(l.weight)||l.weight<0||l.weight>100||(!profile.imageOnly&&(!Number.isFinite(l.amount)||l.amount<0||l.amount>1000000)))) errors.push('Vérifie les actifs, les poids et les versements : uniquement des nombres positifs ou nuls.')
   if(profile.lines.some(l=>l.weight===0 && (profile.imageOnly||l.amount===0))) errors.push('Supprime les positions sans poids ni versement.')
   if(profile.lines.some(l=>l.isin && l.isin!==references[l.asset]?.isin)) errors.push('Le support confirmé doit correspondre à l’actif sélectionné.')
-  if(new Set(profile.lines.map(l=>l.asset)).size!==profile.lines.length) errors.push('Regroupe les positions portant sur le même actif.')
+  if(new Set(profile.lines.map(l=>l.isin||l.asset)).size!==profile.lines.length) errors.push('Regroupe les positions portant sur le même actif.')
   if(Math.abs(profile.lines.reduce((s,l)=>s+l.weight,0)-100)>.001) errors.push('Les poids du portefeuille doivent totaliser 100 %.')
   return errors
 }
