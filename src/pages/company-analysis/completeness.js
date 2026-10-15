@@ -6,6 +6,7 @@ import { buildPriceScenarios, targetChart } from './priceTargets.js'
 export function companyCompleteness(company,now=new Date()) {
   const missing=[]
   const need=(condition,reason)=>{if(!condition)missing.push(reason)}
+  need(!company.requireStandardFallback||company.accountsSourceKind==='standardised-secondary','source de secours comptable renouvelable non qualifiée')
   need(canPublish(company,now),'comptes récents')
   need(activeHistory(company,now).length>=4,'quatre exercices comparables')
   const decision=activeDecision(company,now),rows=decision?.years??[]

@@ -1,4 +1,4 @@
-# Scénarios et suivi des prévisions — version 2
+# Scénarios et suivi des prévisions — version 3
 
 ## Écarts propres à chaque société
 
@@ -33,3 +33,7 @@ Les résultats détaillés sont recalculables dans `evaluation.json`, les hypoth
 Les observations fondamentales restent collectées lorsque la société devient déficitaire ou son FCF devient négatif, indépendamment de son éligibilité à de nouvelles projections. Les pertes sont évaluées avec `(prévision − constat) / abs(constat)`. Un constat nul reste évalué en unités par action ; son pourcentage est indéfini et il est exclu du seul dénominateur des erreurs relatives, dont le nombre est affiché séparément.
 
 Une clôture récente et sourcée reste archivée même si les comptes de l’entreprise ne sont plus assez récents pour émettre de nouveaux objectifs. Les observations de marché sont ainsi indépendantes du renouvellement des comptes.
+
+## Ancrage de croissance — version 3
+
+La médiane des variations annuelles du chiffre d’affaires est désormais bornée entre −10 et +10 %, au lieu de 0 à +10 %. Une contraction observée ne devient plus automatiquement une stagnation. La convergence reste une convention explicite, commune aux trajectoires bénéfices et FCF, et non une prévision sourcée. Les archives antérieures gardent leur version et leurs hypothèses.

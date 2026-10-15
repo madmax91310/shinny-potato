@@ -29,7 +29,7 @@ for(const c of COMPANIES)for(const years of [1,3,5]){
    close(r.value,expected);close(r.annualised,Math.exp(Math.log(expected/c.quote.price)/years)-1)
    close(targetChart(c,m,method).forecast[i].points.at(-1).value,expected)
    const p=valuationPublication(c,{},i,method,now,years)
-   assert(p.text.includes('progression annualisée du cours'));assert(!p.text.includes('ce prix suppose'))
+   assert(p.text.includes('variation annualisée du cours'));assert(!p.text.includes('ce prix suppose'))
    if(method==='cash'){
     const d=distributionCashAssumptions(m,i),cash=discountedCash(d,.1)
     let independently=0

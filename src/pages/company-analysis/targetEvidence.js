@@ -23,7 +23,7 @@ export function validForecast(c,now) {
 }
 function normalGrowth(c,now) {
   const rows=activeDecision(c,now)?.years??[],rates=rows.slice(1).flatMap((r,i)=>positive(r.revenue)&&positive(rows[i].revenue)?[r.revenue/rows[i].revenue-1]:[])
-  return annualPeriods(rows)&&rates.length>=2?clamp(median(rates),0,.10):null
+  return annualPeriods(rows)&&rates.length>=2?clamp(median(rates),-.10,.10):null
 }
 // Annual EPS estimates stay at their explicit fiscal dates. Beyond the last
 // disclosed estimate, the growth rate converges in 3 years to a revenue anchor.
@@ -67,7 +67,7 @@ export function targetEvidence(c,inputs,now,dates,peers=COMPANY_PEERS) {
     result.earnings={calibration:calibrateScenarios(c.decision.years,refs,'earnings'),base:base.value,values:dates.map(d=>forwardAt(curve,d).value),periods:dates.map(d=>forwardAt(curve,d).end),curve,anchor,multiple,historical,peerMedian,peerRows,
       sourceUrl:f.sourceUrl,asOf:f.asOf,basis:'BPA ajusté prévisionnel du premier exercice se terminant après chaque échéance',
       rationale:`Médiane de ${refs.length} PER prévisionnels historiques ajustés : ${historical.toFixed(2)}×.${peerMedian?` Référence de ${peerRows.length} comparables : ${peerMedian.toFixed(2)}× (poids 25 %, écart borné à ±25 % de la médiane historique).`:' Comparables homogènes insuffisants : référence historique seule.'} Les perspectives agissent sur le BPA projeté, sans prime de multiple ajoutée.`,
-      trajectory:`BPA annuels ajustés datés jusqu’au ${f.points.at(-1).end} ; au-delà, croissance ramenée en trois exercices vers ${(anchor*100).toFixed(1)} % (médiane de croissance du CA, bornée entre 0 et 10 %). Convention modifiable, pas un consensus au-delà des exercices sourcés.`}
+      trajectory:`BPA annuels ajustés datés jusqu’au ${f.points.at(-1).end} ; au-delà, croissance ramenée en trois exercices vers ${(anchor*100).toFixed(1)} % (médiane de croissance du CA, bornée entre −10 et +10 %). Convention modifiable, pas un consensus au-delà des exercices sourcés.`}
   } else block('BPA ajustés datés et PER de même définition manquants ou périmés ; aucune croissance Finviz appliquée au BPA publié.',['earnings'])
   const r=c.targetCashReference
   if(inputs.cashReady&&r?.version===1&&r.currency===c.currency&&r.annualEnd===c.annual.end&&fresh(r.observedAt,35,now)&&r.historicalMultiples?.length>=3&&r.sourceUrl?.startsWith('https://')&&r.historicalMultiples.every(p=>{const h=inputs.history.find(h=>h.end===p.end);return positive(p.multiple)&&h&&positive(p.base)&&Math.abs(p.base-h.value)<1e-8})) {

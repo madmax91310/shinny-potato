@@ -4,7 +4,7 @@ import { valuationInputs } from './valuation.js'
 import { formatValue as n } from './valuationPresentation.js'
 import { dateLabel } from './lib.js'
 
-export const TARGET_POLICY = Object.freeze({version:2, horizons:[1,3,5], defaultYears:5})
+export const TARGET_POLICY = Object.freeze({version:3, horizons:[1,3,5], defaultYears:5})
 const bounded=(v,lo,hi)=>Math.max(lo,Math.min(hi,v))
 const signed=v=>`${v>=0?'+':'−'}${n(Math.abs(v)*100)} %`
 export function priceTarget(a,price) {

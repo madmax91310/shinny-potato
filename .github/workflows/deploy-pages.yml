@@ -76,6 +76,7 @@ jobs:
       - run: node scripts/test-company-valuation.mjs
       - run: node scripts/test-company-release.mjs
       - run: node scripts/test-company-independent.mjs
+      - run: node scripts/test-company-professional.mjs
       - run: node scripts/test-company-forecast-ledger.mjs
       - run: npm run test:radar
       - run: node scripts/test-wealth-simulator.mjs

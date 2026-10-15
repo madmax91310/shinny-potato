@@ -24,6 +24,24 @@ class UniverseTests(unittest.TestCase):
         self.assertEqual(item['decision']['accountsEndAtCollection'],'2026-06-30')
         self.assertEqual(old,original)
 
+    def test_partial_primary_uses_reconciled_fallback(self):
+        fallback={'annual':{'end':'2025-12-31'},'quarter':None,'history':[{'end':'2025-12-31'}],
+                  'sourceUrl':'https://secondary.example/annual','decision':{},'provenance':{}}
+        with patch('refresh_company_universe.fetch_json',return_value={}), \
+             patch('refresh_company_universe.select_revenue_concept',return_value={}), \
+             patch('refresh_company_universe.parse_accounts',return_value={'annual':{'end':'2025-12-31'}}), \
+             patch('refresh_company_universe.parse_history',return_value=[{'end':'2025-12-31'}]), \
+             patch('refresh_company_universe.sec_decision',return_value={'years':[{'end':'2025-12-31'}]}), \
+             patch('company_standard_financials.collect',return_value=fallback) as secondary, \
+             patch('refresh_company_universe.validate_decision',side_effect=lambda d,*a:d), \
+             patch('refresh_company_universe.collect_forecast',side_effect=OSError('offline')), \
+             patch('refresh_company_universe.qualify_share_basis',side_effect=OSError('offline')):
+            item,status=collect({'id':'test','symbol':'TEST','cik':'0000000001'}, {}, dt.datetime(2026,10,15,tzinfo=dt.timezone.utc))
+        secondary.assert_called_once()
+        self.assertEqual(status['accounts'],'updated')
+        self.assertEqual(item['accountsSourceKind'],'standardised-secondary')
+        self.assertIn('components incomplete',status['primarySource'])
+
     def setUp(self):
         self.today = dt.date(2026, 10, 14)
         self.profile = {'id': 'test', 'symbol': 'TEST', 'currency': 'USD', 'cik': '0000000001'}

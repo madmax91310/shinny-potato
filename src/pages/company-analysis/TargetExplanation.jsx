@@ -25,6 +25,8 @@ export default function TargetExplanation({company,model,selected,method,reading
       <div className="company-history-scroll"><table data-testid="target-origins"><caption>Trajectoire du scénario sélectionné</caption><thead><tr><th>Horizon</th><th>{x.cash?'FCF/action':'BPA ajusté'}</th><th>Exercice de référence</th><th>Origine</th></tr></thead><tbody>{x.periods.map((p,i)=><tr key={i}><th>{i+1} an{i?'s':''}</th><td>{money(p.value)}</td><td>{dateLabel(p.end)}</td><td>{p.origin}</td></tr>)}</tbody></table></div>
       <p>{x.historyCount} exercices de comptes ; {x.multipleCount} références de valorisation. Données de la méthode datées du {dateLabel(x.sourceDate)}.</p>
       <p>{model.evidence[method].rationale}</p>
+      <p>{x.anchorExplanation}</p>
+      {x.methodComparison&&<p data-testid="method-comparison">{x.methodComparison}</p>}
       <p>{model.evidence[method].trajectory}</p>
       <ul>{x.limitations.map(t=><li key={t}>{t}</li>)}</ul>
       <p>À croissance identique, un multiple de {n(reading.sensitivity.lowerMultiple)} à {n(reading.sensitivity.upperMultiple)} donne un objectif de {money(reading.sensitivity.low)} à {money(reading.sensitivity.high)}.</p>
