@@ -3,6 +3,9 @@
 // 50 profils classiques et 50 profils à convictions marquées, sans étiquette dans les exports.
 // Budgets conservés ; poids détenus explicites, distincts des versements mensuels.
 export const ASSETS = {
+  ussmallvalue:["🔎","ETF USA Small Cap Value"],
+  emvalue:["🌍","ETF Emerging Markets Value"],
+  euroultrashort:["📅","ETF EUR Ultrashort Bond"],
   equalweight:["⚖️", "ETF S&P 500 Equal Weight"],
   robotics:["🤖", "ETF robotique"],
   ai:["🧠", "ETF intelligence artificielle et big data"],

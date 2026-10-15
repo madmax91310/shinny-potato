@@ -1467,5 +1467,213 @@
       "checkedAt": "2026-10-15",
       "modifiedAt": "2026-10-14"
     }
+  },
+  "IE00BSPLC413": {
+    "currency": "USD",
+    "productId": "IE00BSPLC413",
+    "sourceUrl": "https://www.ssga.com/uk/en_gb/institutional/etfs/state-street-spdr-msci-usa-small-cap-value-weighted-ucits-etf-zprv-gy",
+    "provider": "State Street",
+    "aum": {
+      "amount": 999969629.2,
+      "currency": "USD",
+      "scope": "fund",
+      "asOf": "2026-10-14",
+      "checkedAt": "2026-10-15",
+      "modifiedAt": "2026-10-15"
+    },
+    "sectors": {
+      "asOf": "2026-10-14",
+      "rows": [
+        {
+          "name": "Financials",
+          "weightPct": 22.633012,
+          "label": "Financials"
+        },
+        {
+          "name": "Industrials",
+          "weightPct": 15.305339,
+          "label": "Industrials"
+        },
+        {
+          "name": "Consumer Discretionary",
+          "weightPct": 15.169115,
+          "label": "Consumer Discretionary"
+        },
+        {
+          "name": "Health Care",
+          "weightPct": 9.451436,
+          "label": "Health Care"
+        },
+        {
+          "name": "Energy",
+          "weightPct": 8.051759,
+          "label": "Energy"
+        },
+        {
+          "name": "Information Technology",
+          "weightPct": 7.620686,
+          "label": "Information Technology"
+        },
+        {
+          "name": "Consumer Staples",
+          "weightPct": 6.236998,
+          "label": "Consumer Staples"
+        },
+        {
+          "name": "Real Estate",
+          "weightPct": 5.540192,
+          "label": "Immobilier"
+        },
+        {
+          "name": "Materials",
+          "weightPct": 4.958561,
+          "label": "Materials"
+        },
+        {
+          "name": "Utilities",
+          "weightPct": 2.645597,
+          "label": "Utilities"
+        },
+        {
+          "name": "Communication Services",
+          "weightPct": 2.344338,
+          "label": "Communication"
+        },
+        {
+          "name": "Unassigned",
+          "weightPct": 0.042966,
+          "label": "Non classé"
+        }
+      ],
+      "basis": "fund",
+      "checkedAt": "2026-10-15",
+      "modifiedAt": "2026-10-15"
+    },
+    "countries": {
+      "asOf": "2026-10-14",
+      "rows": [
+        {
+          "name": "United States",
+          "weightPct": 100.0
+        }
+      ],
+      "basis": "fund",
+      "checkedAt": "2026-10-15",
+      "modifiedAt": "2026-10-15"
+    },
+    "holdings": {
+      "asOf": "2026-10-14",
+      "basis": "fund",
+      "rows": [
+        {
+          "name": "HF Sinclair Corporation",
+          "isin": "US4039491000",
+          "weightPct": 0.659698
+        },
+        {
+          "name": "TD SYNNEX Corporation",
+          "isin": "US87162W1009",
+          "weightPct": 0.646753
+        },
+        {
+          "name": "PBF Energy Inc. Class A",
+          "isin": "US69318G1067",
+          "weightPct": 0.627604
+        },
+        {
+          "name": "Reinsurance Group of America Incorporated",
+          "isin": "US7593516047",
+          "weightPct": 0.618912
+        },
+        {
+          "name": "RenaissanceRe Holdings Ltd.",
+          "isin": "BMG7496G1033",
+          "weightPct": 0.595106
+        },
+        {
+          "name": "Performance Food Group Co",
+          "isin": "US71377A1034",
+          "weightPct": 0.552591
+        },
+        {
+          "name": "Ovintiv Inc",
+          "isin": "US69047Q1022",
+          "weightPct": 0.51319
+        },
+        {
+          "name": "Tenet Healthcare Corporation",
+          "isin": "US88033G4073",
+          "weightPct": 0.507205
+        },
+        {
+          "name": "Moderna Inc.",
+          "isin": "US60770K1079",
+          "weightPct": 0.505168
+        },
+        {
+          "name": "Molina Healthcare Inc.",
+          "isin": "US60855R1005",
+          "weightPct": 0.503268
+        }
+      ],
+      "sourceUrl": "https://www.ssga.com/library-content/products/fund-data/etfs/emea/holdings-daily-emea-en-zprv-gy.xlsx",
+      "checkedAt": "2026-10-15",
+      "modifiedAt": "2026-10-15"
+    },
+    "characteristics": {
+      "domicile": "Ireland",
+      "replicationMethod": "Optimised",
+      "inceptionDate": "2015-02-18",
+      "listings": [
+        {
+          "exchange": "Xetra",
+          "mic": "XETR",
+          "currency": "EUR",
+          "ticker": "ZPRV",
+          "symbol": "ZPRV.DE",
+          "sourceUrl": "https://www.ssga.com/uk/en_gb/institutional/etfs/state-street-spdr-msci-usa-small-cap-value-weighted-ucits-etf-zprv-gy",
+          "checkedAt": "2026-10-15",
+          "evidenceId": "IE00BSPLC413-XETR-ZPRV-EUR",
+          "excerpt": "IE00BSPLC413 | Deutsche Börse (Primary) | EUR | 19 Feb 2015 | ZPRV | BSPLC85 | ZPRV GY | ZPRV.DE",
+          "sha256": "3aa7153a7509a0b5988af232d94140cd2fdac1cc9a575c4e020f6d4fd8063a4c"
+        },
+        {
+          "exchange": "London Stock Exchange",
+          "mic": "XLON",
+          "currency": "USD",
+          "ticker": "USSC",
+          "symbol": "USSC.L",
+          "sourceUrl": "https://www.ssga.com/uk/en_gb/institutional/etfs/state-street-spdr-msci-usa-small-cap-value-weighted-ucits-etf-zprv-gy",
+          "checkedAt": "2026-10-15",
+          "evidenceId": "IE00BSPLC413-XLON-USSC-USD",
+          "excerpt": "IE00BSPLC413 | London Stock Exchange | USD | 20 Feb 2015 | USSC | BSPLC41 | USSC LN | USSC.L",
+          "sha256": "3aa7153a7509a0b5988af232d94140cd2fdac1cc9a575c4e020f6d4fd8063a4c"
+        }
+      ],
+      "terPct": 0.3,
+      "index": "MSCI USA Small Cap Value Weighted Index",
+      "distribution": "Accumulation",
+      "checkedAt": "2026-10-15",
+      "modifiedAt": "2026-10-15"
+    },
+    "performance": {
+      "currency": "USD",
+      "basis": "fund",
+      "method": "calendar-year fund NAV net total return, income reinvested, fund fees included",
+      "years": {
+        "2016": 25.83,
+        "2017": 9.37,
+        "2018": -14.31,
+        "2019": 23.8,
+        "2020": 8.46,
+        "2021": 35.4,
+        "2022": -10.23,
+        "2023": 21.18,
+        "2024": 9.67,
+        "2025": 13.89
+      },
+      "checkedAt": "2026-10-15",
+      "modifiedAt": "2026-10-15"
+    }
   }
 }

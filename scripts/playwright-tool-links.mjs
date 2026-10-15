@@ -63,6 +63,18 @@ try {
         assert((await page.locator('main').textContent()).includes(ASSETS[id].label))
       }
     }
+    for(const newIsin of ['IE00BSPLC413','IE00BG0SKF03','IE00BCRY6557']) {
+      await page.goto(`${base}/fiches-etf?isin=${newIsin}`)
+      await page.locator('.es-card').waitFor({state:'attached'})
+      assert((await page.locator('.es-card').textContent()).includes(newIsin))
+      for(const kind of ['comparison','duel']) {
+        const link=links[newIsin].find(row=>row.kind===kind)
+        assert(link, `${newIsin}: ${kind}`)
+        await page.goto(base+link.href)
+        if(kind==='duel') await page.locator('#pd-tweet').waitFor({state:'attached'})
+        else { await page.locator('pre').waitFor({state:'attached'}); assert((await page.locator('pre').textContent()).includes(newIsin)) }
+      }
+    }
     assert.deepEqual(errors,[])
     await page.close()
   }

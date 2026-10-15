@@ -209,6 +209,30 @@
       "parser": "non-bond-expansion",
       "enabled": true,
       "required": true
+    },
+    {
+      "id": "small-value-usa",
+      "isin": "IE00BSPLC413",
+      "name": "State Street SPDR MSCI USA Small Cap Value Weighted UCITS ETF",
+      "currency": "USD",
+      "provider": "State Street",
+      "expansionKind": "ssga",
+      "sourceUrl": "https://www.ssga.com/uk/en_gb/institutional/etfs/state-street-spdr-msci-usa-small-cap-value-weighted-ucits-etf-zprv-gy",
+      "collectComposition": true,
+      "historyId": "etfSmallValueUsa",
+      "historyStart": "2016-01",
+      "preferredSymbol": "USSC.L",
+      "scene": "world",
+      "category": "Stratégiques",
+      "icon": "🔎",
+      "title": "SMALL CAP VALUE USA",
+      "whatIs": "Tu détiens de petites entreprises américaines, repondérées selon des critères de valorisation.",
+      "whyInteresting": "Tu compares le biais value aux petites capitalisations américaines classiques.",
+      "whatToKnow": "La petite taille et le biais value peuvent sous-performer longtemps. Cette poche reste concentrée sur les États-Unis.",
+      "parser": "non-bond-expansion",
+      "enabled": true,
+      "required": true,
+      "hook": "Petites entreprises américaines et filtre value : que change cette sélection ? 👇"
     }
   ]
 }

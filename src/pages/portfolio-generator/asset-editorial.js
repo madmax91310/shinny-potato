@@ -2,6 +2,13 @@
 // partagent un rôle ; un indice, un facteur ou un mécanisme différent a son propre texte.
 // Aucun rendement, frais ou statut fiscal n’est recopié ici.
 const entries = {};
+add('euro-ultrashort-ishares','bond','les obligations euro ultracourtes','Cette poche détient des obligations très courtes en euros. Elle reste exposée au crédit des entreprises et ne bénéficie pas de la garantie d’un dépôt bancaire.');
+entries['euro-ultrashort-ishares'].description='Des obligations très courtes en euros, avec des revenus distribués.';
+add('small-value-usa','us-small','les petites entreprises américaines value','Cette poche combine petites capitalisations et critères de valorisation. Elle renforce les États-Unis et peut s’écarter longtemps des grands indices.');
+entries['small-value-usa'].description='De petites entreprises américaines repondérées selon leur valorisation.';
+add('em-value-ishares','emerging','les marchés émergents value','Le filtre value change les entreprises et les secteurs retenus dans les marchés émergents. Il peut sous-performer durablement l’indice large.');
+entries['em-value-ishares'].description='Une sélection value au sein des marchés émergents.';
+
 add("world-midcap-equal",'theme',"moyennes capitalisations mondiales équipondérées","On fait une place aux moyennes entreprises des pays développés avec une pondération égale aux rééquilibrages. La taille et la pondération changent le comportement de cette poche par rapport au World.");
 entries["world-midcap-equal"].description="Une exposition dédiée à moyennes capitalisations mondiales équipondérées.";
 add("water-ishares",'theme',"eau","On renforce les entreprises du traitement, des équipements et des services liés à l’eau. On détient leurs actions ; leur rentabilité dépend aussi des coûts et des prix pratiqués.");

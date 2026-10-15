@@ -16361,5 +16361,1584 @@
         "modifiedAt": "2026-10-15"
       }
     }
+  },
+  "euro-ultrashort-ishares": {
+    "id": "euro-ultrashort-ishares",
+    "productId": 258114,
+    "isin": "IE00BCRY6557",
+    "label": "Obligations euro ultracourtes",
+    "scene": "bond",
+    "category": "Obligataires",
+    "portfolioEnabled": true,
+    "portfolioCategory": "obligataire",
+    "currency": "EUR",
+    "holdingsAssetClass": "Fixed Income",
+    "collectHoldings": true,
+    "requireFullHistory": false,
+    "distribution": "Distributing",
+    "terPct": 0.09,
+    "index": "iBoxx EUR Liquid Investment Grade Ultrashort Index (EUR)",
+    "aum": {
+      "amount": 3421028193.53,
+      "currency": "EUR",
+      "scope": "share-class",
+      "asOf": "2026-10-14"
+    },
+    "countries": {
+      "asOf": "2026-10-14",
+      "rows": [
+        {
+          "name": "United States",
+          "weightPct": 18.06
+        },
+        {
+          "name": "France",
+          "weightPct": 15.52
+        },
+        {
+          "name": "Germany",
+          "weightPct": 13.5
+        },
+        {
+          "name": "United Kingdom",
+          "weightPct": 6.98
+        },
+        {
+          "name": "Spain",
+          "weightPct": 5.1
+        },
+        {
+          "name": "Netherlands",
+          "weightPct": 5.1
+        },
+        {
+          "name": "Canada",
+          "weightPct": 4.76
+        },
+        {
+          "name": "Italy",
+          "weightPct": 4.68
+        },
+        {
+          "name": "Sweden",
+          "weightPct": 4.33
+        },
+        {
+          "name": "Switzerland",
+          "weightPct": 2.32
+        },
+        {
+          "name": "Denmark",
+          "weightPct": 2.29
+        },
+        {
+          "name": "Japan",
+          "weightPct": 2.24
+        },
+        {
+          "name": "Australia",
+          "weightPct": 2.16
+        },
+        {
+          "name": "Finland",
+          "weightPct": 2.13
+        },
+        {
+          "name": "Belgium",
+          "weightPct": 1.58
+        },
+        {
+          "name": "Austria",
+          "weightPct": 1.26
+        },
+        {
+          "name": "Other",
+          "weightPct": 4.510000000000001
+        },
+        {
+          "name": "Cash and/or Derivatives",
+          "weightPct": 3.46
+        }
+      ],
+      "sourceComponent": "exposureBreakdowns.geography.countries"
+    },
+    "sectors": {
+      "asOf": "2026-10-14",
+      "rows": [
+        {
+          "name": "Banking",
+          "weightPct": 36.46
+        },
+        {
+          "name": "Consumer Cyclical",
+          "weightPct": 8.24
+        },
+        {
+          "name": "Capital Goods",
+          "weightPct": 6.16
+        },
+        {
+          "name": "Consumer Non-Cyclical",
+          "weightPct": 5.57
+        },
+        {
+          "name": "Healthcare",
+          "weightPct": 5.52
+        },
+        {
+          "name": "Communications",
+          "weightPct": 5.27
+        },
+        {
+          "name": "Owned No Guarantee",
+          "weightPct": 3.98
+        },
+        {
+          "name": "Local Government No Guarantee",
+          "weightPct": 2.61
+        },
+        {
+          "name": "Electric",
+          "weightPct": 2.47
+        },
+        {
+          "name": "Basic Industry",
+          "weightPct": 2.36
+        },
+        {
+          "name": "Transportation",
+          "weightPct": 2.3
+        },
+        {
+          "name": "Energy",
+          "weightPct": 2.07
+        },
+        {
+          "name": "Insurance",
+          "weightPct": 1.9
+        },
+        {
+          "name": "Reits",
+          "weightPct": 1.79
+        },
+        {
+          "name": "Real Estate",
+          "weightPct": 1.57
+        },
+        {
+          "name": "Natural Gas",
+          "weightPct": 1.49
+        },
+        {
+          "name": "Financial Other",
+          "weightPct": 1.15
+        },
+        {
+          "name": "Utility Other",
+          "weightPct": 0.89
+        },
+        {
+          "name": "Finance Companies",
+          "weightPct": 0.72
+        },
+        {
+          "name": "Brokerage/Asset Managers/Exchanges",
+          "weightPct": 0.37
+        },
+        {
+          "name": "Government Sponsored",
+          "weightPct": 0.12
+        },
+        {
+          "name": "Industrial Other",
+          "weightPct": 0.08
+        },
+        {
+          "name": "Other",
+          "weightPct": 3.46
+        },
+        {
+          "name": "Cash and/or Derivatives",
+          "weightPct": 3.46
+        }
+      ],
+      "sourceComponent": "exposureBreakdowns.sector"
+    },
+    "performance": {
+      "currency": "EUR",
+      "basis": "fund",
+      "method": "calendar-year NAV total return, income reinvested, fund fees included",
+      "years": {
+        "2016": 0.2,
+        "2017": -0.01,
+        "2018": -0.52,
+        "2019": 0.21,
+        "2020": 0.1,
+        "2021": -0.35,
+        "2022": -0.31,
+        "2023": 3.46,
+        "2024": 4.05,
+        "2025": 2.65
+      }
+    },
+    "holdings": {
+      "asOf": "2026-10-14",
+      "basis": "fund",
+      "rows": [
+        {
+          "name": "DEUTSCHE BANK AG MTN RegS · DE000DL19U23",
+          "weightPct": 0.53512,
+          "isin": "DE000DL19U23"
+        },
+        {
+          "name": "VOLKSWAGEN INTERNATIONAL FINANCE N RegS · XS1586555945",
+          "weightPct": 0.50617,
+          "isin": "XS1586555945"
+        },
+        {
+          "name": "AT&T INC MTN · XS3181534937",
+          "weightPct": 0.44753,
+          "isin": "XS3181534937"
+        },
+        {
+          "name": "BANQUE FEDERATIVE DU CREDIT MUTUEL MTN RegS · FR001400CMY0",
+          "weightPct": 0.41187,
+          "isin": "FR001400CMY0"
+        },
+        {
+          "name": "WELLS FARGO & COMPANY MTN RegS · XS1400169931",
+          "weightPct": 0.40937,
+          "isin": "XS1400169931"
+        },
+        {
+          "name": "WELLS FARGO & COMPANY MTN RegS · XS1463043973",
+          "weightPct": 0.40623,
+          "isin": "XS1463043973"
+        },
+        {
+          "name": "CREDIT AGRICOLE SA         RegS · XS1204154410",
+          "weightPct": 0.40486,
+          "isin": "XS1204154410"
+        },
+        {
+          "name": "ANHEUSER BUSCH INBEV NV MTN RegS · BE6301510028",
+          "weightPct": 0.40354,
+          "isin": "BE6301510028"
+        },
+        {
+          "name": "MORGAN STANLEY MTN · XS1603892149",
+          "weightPct": 0.39891,
+          "isin": "XS1603892149"
+        },
+        {
+          "name": "CDP FINANCIAL INC MTN RegS · XS2466358111",
+          "weightPct": 0.3738,
+          "isin": "XS2466358111"
+        }
+      ]
+    },
+    "name": "iShares € Ultrashort Bond UCITS ETF",
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=258114&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "listing": {
+      "ticker": "ERNE",
+      "exchange": "London Stock Exchange",
+      "excerpt": "London Stock Exchange | ERNE | EUR | 20131017 | ERNE.L",
+      "mic": "XLON",
+      "currency": "EUR",
+      "symbol": "ERNE.L",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=258114&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "checkedAt": "2026-10-15",
+      "evidenceId": "IE00BCRY6557-XLON-ERNE-EUR"
+    },
+    "listings": [
+      {
+        "ticker": "ERNE",
+        "exchange": "London Stock Exchange",
+        "excerpt": "London Stock Exchange | ERNE | EUR | 20131017 | ERNE.L",
+        "mic": "XLON",
+        "currency": "EUR",
+        "symbol": "ERNE.L",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=258114&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "checkedAt": "2026-10-15",
+        "evidenceId": "IE00BCRY6557-XLON-ERNE-EUR"
+      },
+      {
+        "ticker": "ERNE",
+        "exchange": "Euronext Amsterdam",
+        "excerpt": "Euronext Amsterdam | ERNE | EUR | 20131113 | ERNE.AS",
+        "mic": "XAMS",
+        "currency": "EUR",
+        "symbol": "ERNE.AS",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=258114&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "checkedAt": "2026-10-15",
+        "evidenceId": "IE00BCRY6557-XAMS-ERNE-EUR"
+      },
+      {
+        "ticker": "IS3M",
+        "exchange": "Xetra",
+        "excerpt": "Deutsche Boerse Xetra | IS3M | EUR | 20131018 | IS3M.DE",
+        "mic": "XETR",
+        "currency": "EUR",
+        "symbol": "IS3M.DE",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=258114&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "checkedAt": "2026-10-15",
+        "evidenceId": "IE00BCRY6557-XETR-IS3M-EUR"
+      },
+      {
+        "ticker": "ERNE",
+        "exchange": "Borsa Italiana",
+        "excerpt": "Borsa Italiana | ERNE | EUR | 20140109 | ERNE.MI",
+        "mic": "ETFP",
+        "currency": "EUR",
+        "symbol": "ERNE.MI",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=258114&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "checkedAt": "2026-10-15",
+        "evidenceId": "IE00BCRY6557-ETFP-ERNE-EUR"
+      }
+    ],
+    "characteristics": {
+      "terPct": 0.09,
+      "index": "iBoxx EUR Liquid Investment Grade Ultrashort Index (EUR)",
+      "distribution": "Distributing",
+      "domicile": "Ireland",
+      "replicationMethod": "Physical (Sampled)",
+      "inceptionDate": "20131016"
+    },
+    "metrics": {
+      "modelOad": {
+        "value": 0.36358,
+        "label": "Duration effective",
+        "unit": "ans",
+        "asOf": "2026-10-14",
+        "checkedAt": "2026-10-15",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=258114&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "method": "A measure of the responsiveness of a bond&#39;s or portfolio&#39;s price to changes in interest rates. Effective Duration adjusts for changes in projected cash flows as a result of yield changes, accounting for embedded optionality.",
+        "scope": "Fund portfolio"
+      },
+      "weightedAvgLife": {
+        "value": 0.61,
+        "label": "Maturité moyenne pondérée",
+        "unit": "ans",
+        "asOf": "2026-10-14",
+        "checkedAt": "2026-10-15",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=258114&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "method": "Weighted Average Maturity is the length of time until the average security in the fund will mature or be redeemed by its issuer. It indicates a fixed income fund&#39;s sensitivity to interest rate changes. Longer average weighted maturity implies greater volatility in response to interest rate changes. This metric considers the likelihood that bonds will be called or prepaid.",
+        "scope": "Fund portfolio"
+      },
+      "yieldToWorst": {
+        "value": 3.25,
+        "label": "Rendement actuariel moyen (YTM/YTW)",
+        "unit": "%",
+        "asOf": "2026-10-14",
+        "checkedAt": "2026-10-15",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=258114&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "method": "The discount rate that equates the present value of a bond’s cash flows with its market price (including accrued interest). The Fund Average Yield to Maturity is the weighted average of the fund’s individual bond holding yields based on Net Asset Value (‘NAV’). The measure does not include fees and expenses. For callable bonds, this yield is the yield-to-worst. For non-callable bonds the Yield to Maturity is equivalent to the yield-to-worst.",
+        "scope": "Fund portfolio"
+      },
+      "twelveMonTrlYld": {
+        "value": 2.937498,
+        "label": "Rendement des distributions sur 12 mois",
+        "unit": "%",
+        "asOf": "2026-10-14",
+        "checkedAt": "2026-10-15",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=258114&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "method": "The yield an investor would have received if they had held the fund over the last twelve months assuming the most recent NAV. The 12-Month yield is calculated by assuming any income distributions over the past twelve months and dividing by the sum of the most recent NAV and any capital gain distributions made over the past twelve months. This yield calculation does not take into account any dividends received and held by the fund, but are awaiting the next distribution date. This can cause deviation with index level yield values.",
+        "scope": "Exact share, trailing 12 months"
+      },
+      "numHoldings": {
+        "value": 687.0,
+        "label": "Nombre de positions hors liquidités et dérivés",
+        "unit": "positions",
+        "asOf": "2026-10-14",
+        "checkedAt": "2026-10-15",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=258114&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "method": "The number of holdings in the fund excluding cash positions and derivatives exposures. Derivatives are contracts used by the fund to gain exposure to an investment without buying it directly.  They can be used in a number of ways. For example a &#39;currency forward&#39; derivative contract can be used to &#39;hedge&#39; or aim to mitigate the effects of changes in exchange rates.",
+        "scope": "Fund portfolio"
+      },
+      "volatilitySourced3YrAnnualized": {
+        "value": 0.291872,
+        "label": "Volatilité annualisée sur 3 ans",
+        "unit": "%",
+        "asOf": "2026-09-30",
+        "checkedAt": "2026-10-15",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=258114&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "method": "Standard deviation measures how dispersed returns are around the average. A higher standard deviation indicates that returns are spread out over a larger range of values and thus, more volatile.",
+        "scope": "Fund portfolio"
+      }
+    },
+    "checkedAt": "2026-10-15T19:52:28.245767+00:00",
+    "pageSha256": "d6ea06d596db8e346b2256515192128c052a60eee9095b7ffd363f477770a9c4",
+    "automatedRecord": {
+      "currency": "EUR",
+      "productId": 258114,
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=258114&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "provider": "iShares",
+      "aum": {
+        "amount": 3421028193.53,
+        "currency": "EUR",
+        "scope": "share-class",
+        "asOf": "2026-10-14",
+        "checkedAt": "2026-10-15",
+        "modifiedAt": "2026-10-15"
+      },
+      "sectors": {
+        "asOf": "2026-10-14",
+        "rows": [
+          {
+            "name": "Banking",
+            "weightPct": 36.46,
+            "label": "Banking"
+          },
+          {
+            "name": "Consumer Cyclical",
+            "weightPct": 8.24,
+            "label": "Consumer Cyclical"
+          },
+          {
+            "name": "Capital Goods",
+            "weightPct": 6.16,
+            "label": "Capital Goods"
+          },
+          {
+            "name": "Consumer Non-Cyclical",
+            "weightPct": 5.57,
+            "label": "Consumer Non-Cyclical"
+          },
+          {
+            "name": "Healthcare",
+            "weightPct": 5.52,
+            "label": "Healthcare"
+          },
+          {
+            "name": "Communications",
+            "weightPct": 5.27,
+            "label": "Communication"
+          },
+          {
+            "name": "Owned No Guarantee",
+            "weightPct": 3.98,
+            "label": "Owned No Guarantee"
+          },
+          {
+            "name": "Local Government No Guarantee",
+            "weightPct": 2.61,
+            "label": "Local Government No Guarantee"
+          },
+          {
+            "name": "Electric",
+            "weightPct": 2.47,
+            "label": "Electric"
+          },
+          {
+            "name": "Basic Industry",
+            "weightPct": 2.36,
+            "label": "Basic Industry"
+          },
+          {
+            "name": "Transportation",
+            "weightPct": 2.3,
+            "label": "Transportation"
+          },
+          {
+            "name": "Energy",
+            "weightPct": 2.07,
+            "label": "Energy"
+          },
+          {
+            "name": "Insurance",
+            "weightPct": 1.9,
+            "label": "Insurance"
+          },
+          {
+            "name": "Reits",
+            "weightPct": 1.79,
+            "label": "Reits"
+          },
+          {
+            "name": "Real Estate",
+            "weightPct": 1.57,
+            "label": "Immobilier"
+          },
+          {
+            "name": "Natural Gas",
+            "weightPct": 1.49,
+            "label": "Natural Gas"
+          },
+          {
+            "name": "Financial Other",
+            "weightPct": 1.15,
+            "label": "Financial Other"
+          },
+          {
+            "name": "Utility Other",
+            "weightPct": 0.89,
+            "label": "Utility Other"
+          },
+          {
+            "name": "Finance Companies",
+            "weightPct": 0.72,
+            "label": "Finance Companies"
+          },
+          {
+            "name": "Brokerage/Asset Managers/Exchanges",
+            "weightPct": 0.37,
+            "label": "Brokerage/Asset Managers/Exchanges"
+          },
+          {
+            "name": "Government Sponsored",
+            "weightPct": 0.12,
+            "label": "Government Sponsored"
+          },
+          {
+            "name": "Industrial Other",
+            "weightPct": 0.08,
+            "label": "Industrial Other"
+          },
+          {
+            "name": "Other",
+            "weightPct": 3.46,
+            "label": "Autres"
+          },
+          {
+            "name": "Cash and/or Derivatives",
+            "weightPct": 3.46,
+            "label": "Cash and/or Derivatives"
+          }
+        ],
+        "sourceComponent": "exposureBreakdowns.sector",
+        "checkedAt": "2026-10-15",
+        "modifiedAt": "2026-10-15"
+      },
+      "countries": {
+        "asOf": "2026-10-14",
+        "rows": [
+          {
+            "name": "United States",
+            "weightPct": 18.06
+          },
+          {
+            "name": "France",
+            "weightPct": 15.52
+          },
+          {
+            "name": "Germany",
+            "weightPct": 13.5
+          },
+          {
+            "name": "United Kingdom",
+            "weightPct": 6.98
+          },
+          {
+            "name": "Spain",
+            "weightPct": 5.1
+          },
+          {
+            "name": "Netherlands",
+            "weightPct": 5.1
+          },
+          {
+            "name": "Canada",
+            "weightPct": 4.76
+          },
+          {
+            "name": "Italy",
+            "weightPct": 4.68
+          },
+          {
+            "name": "Sweden",
+            "weightPct": 4.33
+          },
+          {
+            "name": "Switzerland",
+            "weightPct": 2.32
+          },
+          {
+            "name": "Denmark",
+            "weightPct": 2.29
+          },
+          {
+            "name": "Japan",
+            "weightPct": 2.24
+          },
+          {
+            "name": "Australia",
+            "weightPct": 2.16
+          },
+          {
+            "name": "Finland",
+            "weightPct": 2.13
+          },
+          {
+            "name": "Belgium",
+            "weightPct": 1.58
+          },
+          {
+            "name": "Austria",
+            "weightPct": 1.26
+          },
+          {
+            "name": "Other",
+            "weightPct": 4.510000000000001
+          },
+          {
+            "name": "Cash and/or Derivatives",
+            "weightPct": 3.46
+          }
+        ],
+        "sourceComponent": "exposureBreakdowns.geography.countries",
+        "checkedAt": "2026-10-15",
+        "modifiedAt": "2026-10-15"
+      },
+      "holdings": {
+        "asOf": "2026-10-14",
+        "basis": "fund",
+        "rows": [
+          {
+            "name": "DEUTSCHE BANK AG MTN RegS · DE000DL19U23",
+            "weightPct": 0.53512,
+            "isin": "DE000DL19U23"
+          },
+          {
+            "name": "VOLKSWAGEN INTERNATIONAL FINANCE N RegS · XS1586555945",
+            "weightPct": 0.50617,
+            "isin": "XS1586555945"
+          },
+          {
+            "name": "AT&T INC MTN · XS3181534937",
+            "weightPct": 0.44753,
+            "isin": "XS3181534937"
+          },
+          {
+            "name": "BANQUE FEDERATIVE DU CREDIT MUTUEL MTN RegS · FR001400CMY0",
+            "weightPct": 0.41187,
+            "isin": "FR001400CMY0"
+          },
+          {
+            "name": "WELLS FARGO & COMPANY MTN RegS · XS1400169931",
+            "weightPct": 0.40937,
+            "isin": "XS1400169931"
+          },
+          {
+            "name": "WELLS FARGO & COMPANY MTN RegS · XS1463043973",
+            "weightPct": 0.40623,
+            "isin": "XS1463043973"
+          },
+          {
+            "name": "CREDIT AGRICOLE SA         RegS · XS1204154410",
+            "weightPct": 0.40486,
+            "isin": "XS1204154410"
+          },
+          {
+            "name": "ANHEUSER BUSCH INBEV NV MTN RegS · BE6301510028",
+            "weightPct": 0.40354,
+            "isin": "BE6301510028"
+          },
+          {
+            "name": "MORGAN STANLEY MTN · XS1603892149",
+            "weightPct": 0.39891,
+            "isin": "XS1603892149"
+          },
+          {
+            "name": "CDP FINANCIAL INC MTN RegS · XS2466358111",
+            "weightPct": 0.3738,
+            "isin": "XS2466358111"
+          }
+        ],
+        "checkedAt": "2026-10-15",
+        "modifiedAt": "2026-10-15"
+      },
+      "characteristics": {
+        "terPct": 0.09,
+        "index": "iBoxx EUR Liquid Investment Grade Ultrashort Index (EUR)",
+        "distribution": "Distributing",
+        "domicile": "Ireland",
+        "replicationMethod": "Physical (Sampled)",
+        "inceptionDate": "20131016",
+        "checkedAt": "2026-10-15",
+        "modifiedAt": "2026-10-15"
+      },
+      "performance": {
+        "currency": "EUR",
+        "basis": "fund",
+        "method": "calendar-year NAV total return, income reinvested, fund fees included",
+        "years": {
+          "2016": 0.2,
+          "2017": -0.01,
+          "2018": -0.52,
+          "2019": 0.21,
+          "2020": 0.1,
+          "2021": -0.35,
+          "2022": -0.31,
+          "2023": 3.46,
+          "2024": 4.05,
+          "2025": 2.65
+        },
+        "checkedAt": "2026-10-15",
+        "modifiedAt": "2026-10-15"
+      }
+    }
+  },
+  "em-value-ishares": {
+    "id": "em-value-ishares",
+    "productId": 297452,
+    "isin": "IE00BG0SKF03",
+    "label": "Émergents value",
+    "scene": "world",
+    "category": "Stratégiques",
+    "portfolioEnabled": true,
+    "portfolioCategory": "emergents",
+    "currency": "USD",
+    "collectHoldings": true,
+    "requireFullHistory": false,
+    "distribution": "Accumulating",
+    "terPct": 0.4,
+    "index": "MSCI Emerging Markets Select Value Factor Focus NET Index",
+    "aum": {
+      "amount": 1788554486.98,
+      "currency": "USD",
+      "scope": "share-class",
+      "asOf": "2026-10-14"
+    },
+    "countries": {
+      "asOf": "2026-10-14",
+      "rows": [
+        {
+          "name": "China",
+          "weightPct": 27.12
+        },
+        {
+          "name": "Taiwan",
+          "weightPct": 25.63
+        },
+        {
+          "name": "Korea (South)",
+          "weightPct": 22.63
+        },
+        {
+          "name": "Brazil",
+          "weightPct": 9.53
+        },
+        {
+          "name": "India",
+          "weightPct": 5.46
+        },
+        {
+          "name": "South Africa",
+          "weightPct": 2.04
+        },
+        {
+          "name": "United Arab Emirates",
+          "weightPct": 1.81
+        },
+        {
+          "name": "Poland",
+          "weightPct": 1.5
+        },
+        {
+          "name": "Turkey",
+          "weightPct": 1.03
+        },
+        {
+          "name": "Other",
+          "weightPct": 2.2399999999999998
+        },
+        {
+          "name": "Cash and/or Derivatives",
+          "weightPct": 1.0
+        }
+      ],
+      "sourceComponent": "exposureBreakdowns.geography.countries"
+    },
+    "sectors": {
+      "asOf": "2026-10-14",
+      "rows": [
+        {
+          "name": "Semiconductors",
+          "weightPct": 21.88
+        },
+        {
+          "name": "Technology Hardware, Storage & Peripherals",
+          "weightPct": 17.78
+        },
+        {
+          "name": "Diversified Banks",
+          "weightPct": 16.09
+        },
+        {
+          "name": "Integrated Oil & Gas",
+          "weightPct": 7.64
+        },
+        {
+          "name": "Electronic Components",
+          "weightPct": 3.43
+        },
+        {
+          "name": "Steel",
+          "weightPct": 3.26
+        },
+        {
+          "name": "Electronic Manufacturing Services",
+          "weightPct": 3.11
+        },
+        {
+          "name": "Automobile Manufacturers",
+          "weightPct": 2.63
+        },
+        {
+          "name": "Real Estate Development",
+          "weightPct": 1.81
+        },
+        {
+          "name": "Automotive Parts & Equipment",
+          "weightPct": 1.2
+        },
+        {
+          "name": "Pharmaceuticals",
+          "weightPct": 1.18
+        },
+        {
+          "name": "Packaged Foods & Meats",
+          "weightPct": 1.18
+        },
+        {
+          "name": "Industrial Conglomerates",
+          "weightPct": 1.1
+        },
+        {
+          "name": "Marine Transportation",
+          "weightPct": 1.07
+        },
+        {
+          "name": "Interactive Media & Services",
+          "weightPct": 1.07
+        },
+        {
+          "name": "Copper",
+          "weightPct": 1.05
+        },
+        {
+          "name": "Property & Casualty Insurance",
+          "weightPct": 0.92
+        },
+        {
+          "name": "Aluminum",
+          "weightPct": 0.91
+        },
+        {
+          "name": "Oil & Gas Refining & Marketing & Transportation",
+          "weightPct": 0.86
+        },
+        {
+          "name": "Specialized Finance",
+          "weightPct": 0.85
+        },
+        {
+          "name": "Gold",
+          "weightPct": 0.76
+        },
+        {
+          "name": "Diversified Chemicals",
+          "weightPct": 0.74
+        },
+        {
+          "name": "Electric Utilities",
+          "weightPct": 0.72
+        },
+        {
+          "name": "Regional Banks",
+          "weightPct": 0.67
+        },
+        {
+          "name": "Broadline Retail",
+          "weightPct": 0.63
+        },
+        {
+          "name": "Precious Metals & Minerals",
+          "weightPct": 0.54
+        },
+        {
+          "name": "Construction & Engineering",
+          "weightPct": 0.47
+        },
+        {
+          "name": "Gas Utilities",
+          "weightPct": 0.45
+        },
+        {
+          "name": "Paper Products",
+          "weightPct": 0.42
+        },
+        {
+          "name": "Life Sciences Tools & Services",
+          "weightPct": 0.39
+        },
+        {
+          "name": "Independent Power Producers & Energy Traders",
+          "weightPct": 0.39
+        },
+        {
+          "name": "Integrated Telecommunication Services",
+          "weightPct": 0.38
+        },
+        {
+          "name": "Construction Materials",
+          "weightPct": 0.36
+        },
+        {
+          "name": "IT Consulting & Other Services",
+          "weightPct": 0.28
+        },
+        {
+          "name": "Investment Banking & Brokerage",
+          "weightPct": 0.27
+        },
+        {
+          "name": "Tires & Rubber",
+          "weightPct": 0.26
+        },
+        {
+          "name": "Passenger Airlines",
+          "weightPct": 0.26
+        },
+        {
+          "name": "Health Care Distributors",
+          "weightPct": 0.25
+        },
+        {
+          "name": "Construction Machinery & Heavy Transportation Equipment",
+          "weightPct": 0.24
+        },
+        {
+          "name": "Marine Ports & Services",
+          "weightPct": 0.23
+        },
+        {
+          "name": "Automotive Retail",
+          "weightPct": 0.22
+        },
+        {
+          "name": "Consumer Staples Merchandise Retail",
+          "weightPct": 0.19
+        },
+        {
+          "name": "Communications Equip.",
+          "weightPct": 0.16
+        },
+        {
+          "name": "Coal & Consumable Fuels",
+          "weightPct": 0.14
+        },
+        {
+          "name": "Oil & Gas Drilling",
+          "weightPct": 0.13
+        },
+        {
+          "name": "Renewable Electricity",
+          "weightPct": 0.13
+        },
+        {
+          "name": "Personal Care Products",
+          "weightPct": 0.13
+        },
+        {
+          "name": "Electronic Equipment & Instruments",
+          "weightPct": 0.1
+        },
+        {
+          "name": "Wireless Telecommunication Services",
+          "weightPct": 0.04
+        },
+        {
+          "name": "Biotechnology",
+          "weightPct": 0.02
+        },
+        {
+          "name": "MULTI-LINE INSURANCE",
+          "weightPct": 0.02
+        },
+        {
+          "name": "Cash and/or Derivatives",
+          "weightPct": 1.0
+        }
+      ],
+      "sourceComponent": "exposureBreakdowns.sector"
+    },
+    "performance": {
+      "currency": "USD",
+      "basis": "fund",
+      "method": "calendar-year NAV total return, income reinvested, fund fees included",
+      "years": {
+        "2019": 16.51,
+        "2020": 7.57,
+        "2021": 5.89,
+        "2022": -16.6,
+        "2023": 19.08,
+        "2024": 14.2,
+        "2025": 42.74
+      }
+    },
+    "holdings": {
+      "asOf": "2026-10-14",
+      "basis": "fund",
+      "rows": [
+        {
+          "name": "TAIWAN SEMICONDUCTOR MANUFACTURING",
+          "weightPct": 13.42156,
+          "isin": "TW0002330008"
+        },
+        {
+          "name": "SAMSUNG ELECTRONICS LTD",
+          "weightPct": 8.42394,
+          "isin": "KR7005930003"
+        },
+        {
+          "name": "SK HYNIX",
+          "weightPct": 6.52528,
+          "isin": "KR7000660001"
+        },
+        {
+          "name": "CHINA CONSTRUCTION BANK CORP H",
+          "weightPct": 2.98516,
+          "isin": "CNE1000002H1"
+        },
+        {
+          "name": "SAMSUNG ELECTRONICS NON VOTING PRE",
+          "weightPct": 2.91745,
+          "isin": "KR7005931001"
+        },
+        {
+          "name": "PETROLEO BRASILEIRO ADR REPTG  PRE",
+          "weightPct": 2.82476,
+          "isin": "US71654V1017"
+        },
+        {
+          "name": "PETROLEO BRASILEIRO SA PETROBRAS",
+          "weightPct": 2.80588,
+          "isin": "BRPETRACNOR9"
+        },
+        {
+          "name": "BANK OF CHINA LTD H",
+          "weightPct": 2.67397,
+          "isin": "CNE1000001Z5"
+        },
+        {
+          "name": "HON HAI PRECISION INDUSTRY",
+          "weightPct": 2.62471,
+          "isin": "TW0002317005"
+        },
+        {
+          "name": "INDUSTRIAL AND COMMERCIAL BANK OF",
+          "weightPct": 2.59435,
+          "isin": "CNE1000003G1"
+        }
+      ]
+    },
+    "name": "iShares Edge MSCI EM Value Factor UCITS ETF",
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=297452&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "listing": {
+      "ticker": "EMVL",
+      "exchange": "London Stock Exchange",
+      "excerpt": "London Stock Exchange | EMVL | USD | 20181212 | EMVL.L",
+      "mic": "XLON",
+      "currency": "USD",
+      "symbol": "EMVL.L",
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=297452&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "checkedAt": "2026-10-15",
+      "evidenceId": "IE00BG0SKF03-XLON-EMVL-USD"
+    },
+    "listings": [
+      {
+        "ticker": "EMVL",
+        "exchange": "London Stock Exchange",
+        "excerpt": "London Stock Exchange | EMVL | USD | 20181212 | EMVL.L",
+        "mic": "XLON",
+        "currency": "USD",
+        "symbol": "EMVL.L",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=297452&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "checkedAt": "2026-10-15",
+        "evidenceId": "IE00BG0SKF03-XLON-EMVL-USD"
+      },
+      {
+        "ticker": "5MVL",
+        "exchange": "Xetra",
+        "excerpt": "Xetra | 5MVL | EUR | 20181213 | 5MVL.DE",
+        "mic": "XETR",
+        "currency": "EUR",
+        "symbol": "5MVL.DE",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=297452&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "checkedAt": "2026-10-15",
+        "evidenceId": "IE00BG0SKF03-XETR-5MVL-EUR"
+      }
+    ],
+    "characteristics": {
+      "terPct": 0.4,
+      "index": "MSCI Emerging Markets Select Value Factor Focus NET Index",
+      "distribution": "Accumulating",
+      "domicile": "Ireland",
+      "replicationMethod": "Physical (Replicated)",
+      "inceptionDate": "20181206"
+    },
+    "metrics": {
+      "numHoldings": {
+        "value": 151.0,
+        "label": "Nombre de positions hors liquidités et dérivés",
+        "unit": "positions",
+        "asOf": "2026-10-14",
+        "checkedAt": "2026-10-15",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=297452&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "method": "The number of holdings in the fund excluding cash positions and derivatives exposures. Derivatives are contracts used by the fund to gain exposure to an investment without buying it directly.  They can be used in a number of ways. For example a &#39;currency forward&#39; derivative contract can be used to &#39;hedge&#39; or aim to mitigate the effects of changes in exchange rates.",
+        "scope": "Fund portfolio"
+      },
+      "priceEarnings": {
+        "value": 11.94633,
+        "label": "PER du portefeuille selon l’émetteur",
+        "unit": "fois",
+        "asOf": "2026-10-14",
+        "checkedAt": "2026-10-15",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=297452&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "method": "The price to earnings ratio (P/E) is a fundamental measure used to determine if an investment is valued appropriately. Each holdings&#39; P/E is the latest closing price divided by the latest 12 months&#39; earnings per share. Negative earnings are excluded, extraordinary items are excluded, and P/E ratios over 60 are set to 60.",
+        "scope": "Fund portfolio"
+      },
+      "priceBook": {
+        "value": 1.39997,
+        "label": "Cours / actif net comptable selon l’émetteur",
+        "unit": "fois",
+        "asOf": "2026-10-14",
+        "checkedAt": "2026-10-15",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=297452&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "method": "The price to book (P/B) value ratio is a fundamental measure used to determine if an investment is valued appropriately. The book value of a company is a measure of how much a company&#39;s assets are worth assuming the company&#39;s debts are paid off. Negative book values are excluded from this calculation and holding price to book ratios over 25 are set to 25.",
+        "scope": "Fund portfolio"
+      },
+      "volatilitySourced3YrAnnualized": {
+        "value": 20.174343,
+        "label": "Volatilité annualisée sur 3 ans",
+        "unit": "%",
+        "asOf": "2026-09-30",
+        "checkedAt": "2026-10-15",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=297452&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "method": "Standard deviation measures how dispersed returns are around the average. A higher standard deviation indicates that returns are spread out over a larger range of values and thus, more volatile.",
+        "scope": "Fund portfolio"
+      }
+    },
+    "checkedAt": "2026-10-15T19:54:20.880717+00:00",
+    "pageSha256": "552c6cf4e0acf858e7b66cbe568cf24afc6fc8e8eac34ce17c4c415457ba228b",
+    "automatedRecord": {
+      "currency": "USD",
+      "productId": 297452,
+      "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=297452&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+      "provider": "iShares",
+      "aum": {
+        "amount": 1788554486.98,
+        "currency": "USD",
+        "scope": "share-class",
+        "asOf": "2026-10-14",
+        "checkedAt": "2026-10-15",
+        "modifiedAt": "2026-10-15"
+      },
+      "sectors": {
+        "asOf": "2026-10-14",
+        "rows": [
+          {
+            "name": "Semiconductors",
+            "weightPct": 21.88,
+            "label": "Semiconductors"
+          },
+          {
+            "name": "Technology Hardware, Storage & Peripherals",
+            "weightPct": 17.78,
+            "label": "Technology Hardware, Storage & Peripherals"
+          },
+          {
+            "name": "Diversified Banks",
+            "weightPct": 16.09,
+            "label": "Diversified Banks"
+          },
+          {
+            "name": "Integrated Oil & Gas",
+            "weightPct": 7.64,
+            "label": "Integrated Oil & Gas"
+          },
+          {
+            "name": "Electronic Components",
+            "weightPct": 3.43,
+            "label": "Electronic Components"
+          },
+          {
+            "name": "Steel",
+            "weightPct": 3.26,
+            "label": "Steel"
+          },
+          {
+            "name": "Electronic Manufacturing Services",
+            "weightPct": 3.11,
+            "label": "Electronic Manufacturing Services"
+          },
+          {
+            "name": "Automobile Manufacturers",
+            "weightPct": 2.63,
+            "label": "Automobile Manufacturers"
+          },
+          {
+            "name": "Real Estate Development",
+            "weightPct": 1.81,
+            "label": "Real Estate Development"
+          },
+          {
+            "name": "Automotive Parts & Equipment",
+            "weightPct": 1.2,
+            "label": "Automotive Parts & Equipment"
+          },
+          {
+            "name": "Pharmaceuticals",
+            "weightPct": 1.18,
+            "label": "Pharmaceuticals"
+          },
+          {
+            "name": "Packaged Foods & Meats",
+            "weightPct": 1.18,
+            "label": "Packaged Foods & Meats"
+          },
+          {
+            "name": "Industrial Conglomerates",
+            "weightPct": 1.1,
+            "label": "Industrial Conglomerates"
+          },
+          {
+            "name": "Marine Transportation",
+            "weightPct": 1.07,
+            "label": "Marine Transportation"
+          },
+          {
+            "name": "Interactive Media & Services",
+            "weightPct": 1.07,
+            "label": "Interactive Media & Services"
+          },
+          {
+            "name": "Copper",
+            "weightPct": 1.05,
+            "label": "Copper"
+          },
+          {
+            "name": "Property & Casualty Insurance",
+            "weightPct": 0.92,
+            "label": "Property & Casualty Insurance"
+          },
+          {
+            "name": "Aluminum",
+            "weightPct": 0.91,
+            "label": "Aluminum"
+          },
+          {
+            "name": "Oil & Gas Refining & Marketing & Transportation",
+            "weightPct": 0.86,
+            "label": "Oil & Gas Refining & Marketing & Transportation"
+          },
+          {
+            "name": "Specialized Finance",
+            "weightPct": 0.85,
+            "label": "Specialized Finance"
+          },
+          {
+            "name": "Gold",
+            "weightPct": 0.76,
+            "label": "Gold"
+          },
+          {
+            "name": "Diversified Chemicals",
+            "weightPct": 0.74,
+            "label": "Diversified Chemicals"
+          },
+          {
+            "name": "Electric Utilities",
+            "weightPct": 0.72,
+            "label": "Electric Utilities"
+          },
+          {
+            "name": "Regional Banks",
+            "weightPct": 0.67,
+            "label": "Regional Banks"
+          },
+          {
+            "name": "Broadline Retail",
+            "weightPct": 0.63,
+            "label": "Broadline Retail"
+          },
+          {
+            "name": "Precious Metals & Minerals",
+            "weightPct": 0.54,
+            "label": "Precious Metals & Minerals"
+          },
+          {
+            "name": "Construction & Engineering",
+            "weightPct": 0.47,
+            "label": "Construction & Engineering"
+          },
+          {
+            "name": "Gas Utilities",
+            "weightPct": 0.45,
+            "label": "Gas Utilities"
+          },
+          {
+            "name": "Paper Products",
+            "weightPct": 0.42,
+            "label": "Paper Products"
+          },
+          {
+            "name": "Life Sciences Tools & Services",
+            "weightPct": 0.39,
+            "label": "Life Sciences Tools & Services"
+          },
+          {
+            "name": "Independent Power Producers & Energy Traders",
+            "weightPct": 0.39,
+            "label": "Independent Power Producers & Energy Traders"
+          },
+          {
+            "name": "Integrated Telecommunication Services",
+            "weightPct": 0.38,
+            "label": "Integrated Telecommunication Services"
+          },
+          {
+            "name": "Construction Materials",
+            "weightPct": 0.36,
+            "label": "Construction Materials"
+          },
+          {
+            "name": "IT Consulting & Other Services",
+            "weightPct": 0.28,
+            "label": "IT Consulting & Other Services"
+          },
+          {
+            "name": "Investment Banking & Brokerage",
+            "weightPct": 0.27,
+            "label": "Investment Banking & Brokerage"
+          },
+          {
+            "name": "Tires & Rubber",
+            "weightPct": 0.26,
+            "label": "Tires & Rubber"
+          },
+          {
+            "name": "Passenger Airlines",
+            "weightPct": 0.26,
+            "label": "Passenger Airlines"
+          },
+          {
+            "name": "Health Care Distributors",
+            "weightPct": 0.25,
+            "label": "Health Care Distributors"
+          },
+          {
+            "name": "Construction Machinery & Heavy Transportation Equipment",
+            "weightPct": 0.24,
+            "label": "Construction Machinery & Heavy Transportation Equipment"
+          },
+          {
+            "name": "Marine Ports & Services",
+            "weightPct": 0.23,
+            "label": "Marine Ports & Services"
+          },
+          {
+            "name": "Automotive Retail",
+            "weightPct": 0.22,
+            "label": "Automotive Retail"
+          },
+          {
+            "name": "Consumer Staples Merchandise Retail",
+            "weightPct": 0.19,
+            "label": "Consumer Staples Merchandise Retail"
+          },
+          {
+            "name": "Communications Equip.",
+            "weightPct": 0.16,
+            "label": "Communications Equip."
+          },
+          {
+            "name": "Coal & Consumable Fuels",
+            "weightPct": 0.14,
+            "label": "Coal & Consumable Fuels"
+          },
+          {
+            "name": "Oil & Gas Drilling",
+            "weightPct": 0.13,
+            "label": "Oil & Gas Drilling"
+          },
+          {
+            "name": "Renewable Electricity",
+            "weightPct": 0.13,
+            "label": "Renewable Electricity"
+          },
+          {
+            "name": "Personal Care Products",
+            "weightPct": 0.13,
+            "label": "Personal Care Products"
+          },
+          {
+            "name": "Electronic Equipment & Instruments",
+            "weightPct": 0.1,
+            "label": "Electronic Equipment & Instruments"
+          },
+          {
+            "name": "Wireless Telecommunication Services",
+            "weightPct": 0.04,
+            "label": "Wireless Telecommunication Services"
+          },
+          {
+            "name": "Biotechnology",
+            "weightPct": 0.02,
+            "label": "Biotechnology"
+          },
+          {
+            "name": "MULTI-LINE INSURANCE",
+            "weightPct": 0.02,
+            "label": "MULTI-LINE INSURANCE"
+          },
+          {
+            "name": "Cash and/or Derivatives",
+            "weightPct": 1.0,
+            "label": "Cash and/or Derivatives"
+          }
+        ],
+        "sourceComponent": "exposureBreakdowns.sector",
+        "checkedAt": "2026-10-15",
+        "modifiedAt": "2026-10-15"
+      },
+      "countries": {
+        "asOf": "2026-10-14",
+        "rows": [
+          {
+            "name": "China",
+            "weightPct": 27.12
+          },
+          {
+            "name": "Taiwan",
+            "weightPct": 25.63
+          },
+          {
+            "name": "Korea (South)",
+            "weightPct": 22.63
+          },
+          {
+            "name": "Brazil",
+            "weightPct": 9.53
+          },
+          {
+            "name": "India",
+            "weightPct": 5.46
+          },
+          {
+            "name": "South Africa",
+            "weightPct": 2.04
+          },
+          {
+            "name": "United Arab Emirates",
+            "weightPct": 1.81
+          },
+          {
+            "name": "Poland",
+            "weightPct": 1.5
+          },
+          {
+            "name": "Turkey",
+            "weightPct": 1.03
+          },
+          {
+            "name": "Other",
+            "weightPct": 2.2399999999999998
+          },
+          {
+            "name": "Cash and/or Derivatives",
+            "weightPct": 1.0
+          }
+        ],
+        "sourceComponent": "exposureBreakdowns.geography.countries",
+        "checkedAt": "2026-10-15",
+        "modifiedAt": "2026-10-15"
+      },
+      "holdings": {
+        "asOf": "2026-10-14",
+        "basis": "fund",
+        "rows": [
+          {
+            "name": "TAIWAN SEMICONDUCTOR MANUFACTURING",
+            "weightPct": 13.42156,
+            "isin": "TW0002330008"
+          },
+          {
+            "name": "SAMSUNG ELECTRONICS LTD",
+            "weightPct": 8.42394,
+            "isin": "KR7005930003"
+          },
+          {
+            "name": "SK HYNIX",
+            "weightPct": 6.52528,
+            "isin": "KR7000660001"
+          },
+          {
+            "name": "CHINA CONSTRUCTION BANK CORP H",
+            "weightPct": 2.98516,
+            "isin": "CNE1000002H1"
+          },
+          {
+            "name": "SAMSUNG ELECTRONICS NON VOTING PRE",
+            "weightPct": 2.91745,
+            "isin": "KR7005931001"
+          },
+          {
+            "name": "PETROLEO BRASILEIRO ADR REPTG  PRE",
+            "weightPct": 2.82476,
+            "isin": "US71654V1017"
+          },
+          {
+            "name": "PETROLEO BRASILEIRO SA PETROBRAS",
+            "weightPct": 2.80588,
+            "isin": "BRPETRACNOR9"
+          },
+          {
+            "name": "BANK OF CHINA LTD H",
+            "weightPct": 2.67397,
+            "isin": "CNE1000001Z5"
+          },
+          {
+            "name": "HON HAI PRECISION INDUSTRY",
+            "weightPct": 2.62471,
+            "isin": "TW0002317005"
+          },
+          {
+            "name": "INDUSTRIAL AND COMMERCIAL BANK OF",
+            "weightPct": 2.59435,
+            "isin": "CNE1000003G1"
+          }
+        ],
+        "checkedAt": "2026-10-15",
+        "modifiedAt": "2026-10-15"
+      },
+      "characteristics": {
+        "terPct": 0.4,
+        "index": "MSCI Emerging Markets Select Value Factor Focus NET Index",
+        "distribution": "Accumulating",
+        "domicile": "Ireland",
+        "replicationMethod": "Physical (Replicated)",
+        "inceptionDate": "20181206",
+        "checkedAt": "2026-10-15",
+        "modifiedAt": "2026-10-15"
+      },
+      "performance": {
+        "currency": "USD",
+        "basis": "fund",
+        "method": "calendar-year NAV total return, income reinvested, fund fees included",
+        "years": {
+          "2019": 16.51,
+          "2020": 7.57,
+          "2021": 5.89,
+          "2022": -16.6,
+          "2023": 19.08,
+          "2024": 14.2,
+          "2025": 42.74
+        },
+        "checkedAt": "2026-10-15",
+        "modifiedAt": "2026-10-15"
+      }
+    }
   }
 }

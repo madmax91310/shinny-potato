@@ -1,0 +1,27 @@
+import assert from 'node:assert/strict';
+import { AUTOMATED_ETF } from '../src/data/automated-etf.js';
+import { ETFS } from '../src/data/etf-cards.js';
+import { ETF_DEVELOPMENT_CATALOG, etfDevelopmentEntry } from '../src/data/etf-development.js';
+import { qualifyExposureClassification } from '../src/lib/exposure-classification.js';
+import { PROFILES } from '../src/pages/portfolio-generator/theses.js';
+import { getRecipes } from '../src/pages/portfolio-generator/recipes.js';
+import { getAsset } from '../src/data/portfolio-assets.js';
+import { getDuelArt } from '../src/pages/portfolio-duels/visualIdentity.js';
+import { CATALOG } from '../src/data/duel-assets.js';
+import { existsSync } from 'node:fs';
+const inventory=new Set(ETF_DEVELOPMENT_CATALOG.flatMap(lot=>lot.entries.map(([,isin])=>isin)));
+assert(ETFS.every(etf=>inventory.has(etf.isin)), 'Every published ETF appears in the routing inventory');
+for(const isin of ['IE00BSPLC413','IE00BG0SKF03','IE00BCRY6557']) {
+ const entry=etfDevelopmentEntry(isin);
+ assert(entry.collected && entry.sheet && entry.sixYears);
+ for(const kind of ['sheet','comparison','duel']) assert(entry.tools.some(tool=>tool.kind===kind));
+ const asset=CATALOG.find(asset=>asset.isin===isin);
+ const art=getDuelArt(asset);
+ assert(existsSync(`public/asset-art/${art.scene}`),art.scene);
+}
+const em=AUTOMATED_ETF.IE00BG0SKF03;
+assert(em.sectors.rows.some(row=>row.name==='Steel' && row.label==='Steel'));
+assert.equal(qualifyExposureClassification({...em.sectors,provider:em.provider},'sectors'),null,'Sub-industries must not silently become broad sectors');
+const used=new Set(PROFILES.flatMap(p=>Object.keys(p.riskCombos).flatMap(r=>getRecipes(p.id,r).flatMap(recipe=>recipe.assets.flatMap(slot=>slot.idOptions??[slot.id])))));
+for(const id of ['small-value-usa','em-value-ishares','euro-ultrashort-ishares','world-eur-hedged','world-midcap-equal','timber-ishares','agribusiness-ishares','europe-utilities','europe-telecom','europe-food','europe-media','europe-retail']) assert(used.has(id)&&!getAsset(id).manualOnly,id);
+console.log(`Routing checked for ${inventory.size} published ISINs, three new shares and twelve activated supports; source taxonomy preserved.`);
