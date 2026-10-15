@@ -40750,7 +40750,7 @@
       "field": "aum",
       "fieldLabel": "Encours",
       "value": 8169049590.43,
-      "sourceHash": "1e472b2beabab59ffe00a1038cb45502fee263778d9ca415fb55b46f6f79780e",
+      "sourceHash": "8c4aaceb11381153ea3ff6958d3df8b8e0f5fc90ded5aef562f94179d5eb87ef",
       "period": "2026-10-14",
       "unit": "USD",
       "relativeThreshold": 0.2,
@@ -44068,7 +44068,7 @@
       "field": "aum",
       "fieldLabel": "Encours",
       "value": 795939664.62,
-      "sourceHash": "19eef4eb9f966eae369553d7c7705c96c8cf12afb7a98e81a8e64f1a89bedffa",
+      "sourceHash": "262b52caa5a41c1ca57ca432354cec991078c4e8859d448efdeabe273912191b",
       "period": "2026-10-14",
       "unit": "USD",
       "relativeThreshold": 0.2,
@@ -44645,7 +44645,7 @@
       "field": "aum",
       "fieldLabel": "Encours",
       "value": 14678907824.62,
-      "sourceHash": "2e0a1cdc03c5682e046c9aad4aa472b388090949d346622edd406a9849ba988d",
+      "sourceHash": "2343398805dd74ea434fa8e7511581e8d54b8b6495891229f74133a1b176a484",
       "period": "2026-10-14",
       "unit": "USD",
       "relativeThreshold": 0.2,
@@ -46035,7 +46035,7 @@
       "field": "aum",
       "fieldLabel": "Encours",
       "value": 506654585432.512,
-      "sourceHash": "087677af618c782ca73a6627e2c2acebfae9be26156cc3a31504b089f194c9e1",
+      "sourceHash": "23b534bc1ca445f0d56d52ea46d297f7e0e46407eb1bc79fa139531553133f96",
       "period": "2026-10-14",
       "unit": "JPY",
       "relativeThreshold": 0.2,
@@ -64697,7 +64697,7 @@
       "field": "ter",
       "fieldLabel": "Frais annuels",
       "value": 2,
-      "sourceHash": "7b19d6f74ca295240144cc9413199e83fb994c583fe17d819ad61033ace081da",
+      "sourceHash": "63b6f043fd1c287160dd6f9e7482bf0a6b5ae0a892f78d7d5adce909e187fe12",
       "period": "2026-10-15",
       "unit": "% / an",
       "priority": "high",
@@ -64717,7 +64717,7 @@
       "field": "aum",
       "fieldLabel": "Encours",
       "value": 894220843.63,
-      "sourceHash": "7b19d6f74ca295240144cc9413199e83fb994c583fe17d819ad61033ace081da",
+      "sourceHash": "63b6f043fd1c287160dd6f9e7482bf0a6b5ae0a892f78d7d5adce909e187fe12",
       "period": "2026-10-15",
       "unit": "USD",
       "relativeThreshold": 0.2,
@@ -66401,7 +66401,7 @@
       "field": "aum",
       "fieldLabel": "Encours",
       "value": 947997109.77,
-      "sourceHash": "6b0ca4706bcf67bbfb62621dbc8d8775603c15d3ff1c66e7105bc6cfecf25ab4",
+      "sourceHash": "7286fd55e8f40e359e70b8cdbe8eb58ad42b05fbd133ddd46cfb0b21d50008a8",
       "period": "2026-10-14",
       "unit": "USD",
       "relativeThreshold": 0.2,
@@ -86775,12 +86775,12 @@
       "entity": "prices-general",
       "label": "Indice des prix à la consommation - Base 2025 - Ensemble des ménages - France - Nomenclature Coicop : 00 - Ensemble",
       "sourceUrl": "https://bdm.insee.fr/series/sdmx/data/SERIES_BDM/011814630?startPeriod=2010",
-      "checkedAt": "2026-09-30",
+      "checkedAt": "2026-10-15",
       "scope": "011814630 · base 2025 · FE",
       "tool": "/pouvoir-achat",
       "field": "index",
       "fieldLabel": "Indice des prix publié",
-      "value": 102.99,
+      "value": 103.07,
       "period": "2026-09",
       "rule": "publication"
     },
@@ -86789,12 +86789,12 @@
       "entity": "prices-alimentation",
       "label": "Indice des prix à la consommation - Base 2025 - Ensemble des ménages - France - Alimentation",
       "sourceUrl": "https://bdm.insee.fr/series/sdmx/data/SERIES_BDM/011813717?startPeriod=2010",
-      "checkedAt": "2026-09-30",
+      "checkedAt": "2026-10-15",
       "scope": "011813717 · base 2025 · FE",
       "tool": "/pouvoir-achat",
       "field": "index",
       "fieldLabel": "Indice des prix publié",
-      "value": 101.91,
+      "value": 101.83,
       "period": "2026-09",
       "rule": "publication"
     },
@@ -86803,12 +86803,12 @@
       "entity": "prices-energie",
       "label": "Indice des prix à la consommation - Base 2025 - Ensemble des ménages - France - Énergie",
       "sourceUrl": "https://bdm.insee.fr/series/sdmx/data/SERIES_BDM/011813864?startPeriod=2010",
-      "checkedAt": "2026-09-30",
+      "checkedAt": "2026-10-15",
       "scope": "011813864 · base 2025 · FE",
       "tool": "/pouvoir-achat",
       "field": "index",
       "fieldLabel": "Indice des prix publié",
-      "value": 120.01,
+      "value": 120.13,
       "period": "2026-09",
       "rule": "publication"
     },
@@ -106778,7 +106778,7 @@
       "value": "Vanguard reduces fees on six equity ETFs",
       "sourceUrl": "https://www.vanguard.co.uk/content/dam/intl/europe/documents/press-releases/uk-equity-etf-fee-reductions-press-release.pdf",
       "period": "2025-09-30",
-      "checkedAt": "2026-10-15T12:48:48.500Z",
+      "checkedAt": "2026-10-15T12:51:57.276Z",
       "scope": "Communiqué Vanguard Europe · titre et date publiés",
       "tool": "/fiches-etf",
       "discovery": true,
@@ -106796,7 +106796,7 @@
       "value": "Vanguard Reduces Fees Across Fixed Income ETF Range",
       "sourceUrl": "https://www.vanguard.co.uk/content/dam/intl/europe/documents/en/vg-fi-ucits-etf-fee-cuts-press-release.pdf",
       "period": "2025-06-23",
-      "checkedAt": "2026-10-15T12:48:48.500Z",
+      "checkedAt": "2026-10-15T12:51:57.276Z",
       "scope": "Communiqué Vanguard Europe · titre et date publiés",
       "tool": "/fiches-etf",
       "discovery": true,
@@ -108217,7 +108217,7 @@
       "value": "Dividend Announcement DYLD",
       "sourceUrl": "https://globalxetfs.eu/news",
       "period": "2026-09-24",
-      "checkedAt": "2026-10-15T12:48:48.500Z",
+      "checkedAt": "2026-10-15T12:51:57.276Z",
       "scope": "Communiqué Global X Europe · titre et date publiés",
       "tool": "/fiches-etf",
       "discovery": true,
@@ -108235,7 +108235,7 @@
       "value": "Dividend Announcement QYLD",
       "sourceUrl": "https://globalxetfs.eu/news",
       "period": "2026-09-24",
-      "checkedAt": "2026-10-15T12:48:48.500Z",
+      "checkedAt": "2026-10-15T12:51:57.276Z",
       "scope": "Communiqué Global X Europe · titre et date publiés",
       "tool": "/fiches-etf",
       "discovery": true,
@@ -108253,7 +108253,7 @@
       "value": "Dividend Announcement SYLD",
       "sourceUrl": "https://globalxetfs.eu/news",
       "period": "2026-09-24",
-      "checkedAt": "2026-10-15T12:48:48.500Z",
+      "checkedAt": "2026-10-15T12:51:57.276Z",
       "scope": "Communiqué Global X Europe · titre et date publiés",
       "tool": "/fiches-etf",
       "discovery": true,
@@ -108414,7 +108414,7 @@
         "status": "À préciser"
       },
       "period": "2026-10-08",
-      "checkedAt": "2026-10-15T12:48:48.503Z",
+      "checkedAt": "2026-10-15T12:51:57.279Z",
       "sourceUrl": "https://www.economie.gouv.fr/particuliers/vie-en-entreprise/comment-fonctionne-lactionnariat-salarie",
       "scope": "Actualité officielle · particuliers",
       "tool": "/pouvoir-achat",
@@ -108554,7 +108554,7 @@
         "status": "À préciser"
       },
       "period": "2026-10-06",
-      "checkedAt": "2026-10-15T12:48:48.503Z",
+      "checkedAt": "2026-10-15T12:51:57.279Z",
       "sourceUrl": "https://www.banque-france.fr/fr/statistiques/credit/credits-aux-particuliers-2026-08",
       "scope": "Actualité officielle · particuliers",
       "tool": "/pouvoir-achat",
@@ -108582,7 +108582,7 @@
         "status": "À préciser"
       },
       "period": "2026-09-07",
-      "checkedAt": "2026-10-15T12:48:48.503Z",
+      "checkedAt": "2026-10-15T12:51:57.279Z",
       "sourceUrl": "https://www.banque-france.fr/fr/statistiques/credit/credits-aux-particuliers-2026-07",
       "scope": "Actualité officielle · particuliers",
       "tool": "/pouvoir-achat",
@@ -108610,7 +108610,7 @@
         "status": "À préciser"
       },
       "period": "2026-09-10",
-      "checkedAt": "2026-10-15T12:48:48.503Z",
+      "checkedAt": "2026-10-15T12:51:57.279Z",
       "sourceUrl": "https://www.cre.fr/documents/communiques-de-presse/le-prix-repere-de-vente-de-gaz-augmente-de-63-ttc-au-1er-octobre-2026.html",
       "scope": "Actualité officielle · particuliers",
       "tool": "/pouvoir-achat",
@@ -110105,7 +110105,7 @@
       "field": "aum",
       "fieldLabel": "Encours",
       "value": 1222401912.73,
-      "sourceHash": "3a0417f3457cd777754412e1a72821055f117761c72acc5701aa3d6bf2817a13",
+      "sourceHash": "918d72fdc0744b8c8916ff17fde052c824715458251e47fbe879b83b28597a6e",
       "period": "2026-10-14",
       "unit": "USD",
       "relativeThreshold": 0.2,
@@ -110123,7 +110123,7 @@
       "field": "countries:Canada",
       "fieldLabel": "Poids du pays Canada",
       "value": 40,
-      "sourceHash": "3a0417f3457cd777754412e1a72821055f117761c72acc5701aa3d6bf2817a13",
+      "sourceHash": "918d72fdc0744b8c8916ff17fde052c824715458251e47fbe879b83b28597a6e",
       "period": "2026-09-30",
       "completeComposition": false,
       "threshold": 2,
@@ -110143,7 +110143,7 @@
       "field": "countries:United States",
       "fieldLabel": "Poids du pays United States",
       "value": 10.5,
-      "sourceHash": "3a0417f3457cd777754412e1a72821055f117761c72acc5701aa3d6bf2817a13",
+      "sourceHash": "918d72fdc0744b8c8916ff17fde052c824715458251e47fbe879b83b28597a6e",
       "period": "2026-09-30",
       "completeComposition": false,
       "threshold": 2,
@@ -110163,7 +110163,7 @@
       "field": "countries:Australia",
       "fieldLabel": "Poids du pays Australia",
       "value": 9.8,
-      "sourceHash": "3a0417f3457cd777754412e1a72821055f117761c72acc5701aa3d6bf2817a13",
+      "sourceHash": "918d72fdc0744b8c8916ff17fde052c824715458251e47fbe879b83b28597a6e",
       "period": "2026-09-30",
       "completeComposition": false,
       "threshold": 2,
@@ -110183,7 +110183,7 @@
       "field": "countries:China",
       "fieldLabel": "Poids du pays China",
       "value": 8.7,
-      "sourceHash": "3a0417f3457cd777754412e1a72821055f117761c72acc5701aa3d6bf2817a13",
+      "sourceHash": "918d72fdc0744b8c8916ff17fde052c824715458251e47fbe879b83b28597a6e",
       "period": "2026-09-30",
       "completeComposition": false,
       "threshold": 2,
@@ -110203,7 +110203,7 @@
       "field": "countries:Japan",
       "fieldLabel": "Poids du pays Japan",
       "value": 6.8,
-      "sourceHash": "3a0417f3457cd777754412e1a72821055f117761c72acc5701aa3d6bf2817a13",
+      "sourceHash": "918d72fdc0744b8c8916ff17fde052c824715458251e47fbe879b83b28597a6e",
       "period": "2026-09-30",
       "completeComposition": false,
       "threshold": 2,
@@ -110223,7 +110223,7 @@
       "field": "countries:Britain",
       "fieldLabel": "Poids du pays Britain",
       "value": 4.8,
-      "sourceHash": "3a0417f3457cd777754412e1a72821055f117761c72acc5701aa3d6bf2817a13",
+      "sourceHash": "918d72fdc0744b8c8916ff17fde052c824715458251e47fbe879b83b28597a6e",
       "period": "2026-09-30",
       "completeComposition": false,
       "threshold": 2,
@@ -110243,7 +110243,7 @@
       "field": "countries:Switzerland",
       "fieldLabel": "Poids du pays Switzerland",
       "value": 4.7,
-      "sourceHash": "3a0417f3457cd777754412e1a72821055f117761c72acc5701aa3d6bf2817a13",
+      "sourceHash": "918d72fdc0744b8c8916ff17fde052c824715458251e47fbe879b83b28597a6e",
       "period": "2026-09-30",
       "completeComposition": false,
       "threshold": 2,
@@ -110263,7 +110263,7 @@
       "field": "countries:Poland",
       "fieldLabel": "Poids du pays Poland",
       "value": 4.6,
-      "sourceHash": "3a0417f3457cd777754412e1a72821055f117761c72acc5701aa3d6bf2817a13",
+      "sourceHash": "918d72fdc0744b8c8916ff17fde052c824715458251e47fbe879b83b28597a6e",
       "period": "2026-09-30",
       "completeComposition": false,
       "threshold": 2,
@@ -110283,7 +110283,7 @@
       "field": "countries:Sweden",
       "fieldLabel": "Poids du pays Sweden",
       "value": 4.2,
-      "sourceHash": "3a0417f3457cd777754412e1a72821055f117761c72acc5701aa3d6bf2817a13",
+      "sourceHash": "918d72fdc0744b8c8916ff17fde052c824715458251e47fbe879b83b28597a6e",
       "period": "2026-09-30",
       "completeComposition": false,
       "threshold": 2,
@@ -110303,7 +110303,7 @@
       "field": "countries:Germany",
       "fieldLabel": "Poids du pays Germany",
       "value": 2.4,
-      "sourceHash": "3a0417f3457cd777754412e1a72821055f117761c72acc5701aa3d6bf2817a13",
+      "sourceHash": "918d72fdc0744b8c8916ff17fde052c824715458251e47fbe879b83b28597a6e",
       "period": "2026-09-30",
       "completeComposition": false,
       "threshold": 2,
@@ -110323,7 +110323,7 @@
       "field": "countries:Hong Kong",
       "fieldLabel": "Poids du pays Hong Kong",
       "value": 2.3,
-      "sourceHash": "3a0417f3457cd777754412e1a72821055f117761c72acc5701aa3d6bf2817a13",
+      "sourceHash": "918d72fdc0744b8c8916ff17fde052c824715458251e47fbe879b83b28597a6e",
       "period": "2026-09-30",
       "completeComposition": false,
       "threshold": 2,
@@ -110343,7 +110343,7 @@
       "field": "countries:Other",
       "fieldLabel": "Poids du pays Other",
       "value": 1.2,
-      "sourceHash": "3a0417f3457cd777754412e1a72821055f117761c72acc5701aa3d6bf2817a13",
+      "sourceHash": "918d72fdc0744b8c8916ff17fde052c824715458251e47fbe879b83b28597a6e",
       "period": "2026-09-30",
       "completeComposition": false,
       "threshold": 2,
@@ -110363,7 +110363,7 @@
       "field": "sectors:Materials",
       "fieldLabel": "Poids du secteur Materials",
       "value": 97.6,
-      "sourceHash": "3a0417f3457cd777754412e1a72821055f117761c72acc5701aa3d6bf2817a13",
+      "sourceHash": "918d72fdc0744b8c8916ff17fde052c824715458251e47fbe879b83b28597a6e",
       "period": "2026-09-30",
       "completeComposition": false,
       "threshold": 2,
@@ -110383,7 +110383,7 @@
       "field": "sectors:Industrials",
       "fieldLabel": "Poids du secteur Industrials",
       "value": 2.4,
-      "sourceHash": "3a0417f3457cd777754412e1a72821055f117761c72acc5701aa3d6bf2817a13",
+      "sourceHash": "918d72fdc0744b8c8916ff17fde052c824715458251e47fbe879b83b28597a6e",
       "period": "2026-09-30",
       "completeComposition": false,
       "threshold": 2,
@@ -110403,7 +110403,7 @@
       "field": "top10",
       "fieldLabel": "Poids des dix premières lignes",
       "value": 50.66,
-      "sourceHash": "3a0417f3457cd777754412e1a72821055f117761c72acc5701aa3d6bf2817a13",
+      "sourceHash": "918d72fdc0744b8c8916ff17fde052c824715458251e47fbe879b83b28597a6e",
       "period": "2026-10-14",
       "threshold": 2,
       "unit": "%",
@@ -111036,7 +111036,7 @@
       "field": "aum",
       "fieldLabel": "Encours",
       "value": 1341597479.74,
-      "sourceHash": "8f0ae02f3282f34b6b0a5218aa619130806124c65d3505ef464116fd2c181e9f",
+      "sourceHash": "6cce29e2fc5d0a5ca125aa151d9d908a8f5b7cf297c3eb59c0a5e98d140c3361",
       "period": "2026-10-14",
       "unit": "USD",
       "relativeThreshold": 0.2,
@@ -112157,7 +112157,7 @@
         "status": "À préciser"
       },
       "period": "2026-10-12",
-      "checkedAt": "2026-10-15T12:48:48.503Z",
+      "checkedAt": "2026-10-15T12:51:57.279Z",
       "sourceUrl": "https://www.service-public.gouv.fr/particuliers/actualites/A17956",
       "scope": "Actualité officielle · particuliers",
       "tool": "/pouvoir-achat",
@@ -112185,7 +112185,7 @@
         "status": "À préciser"
       },
       "period": "2026-10-12",
-      "checkedAt": "2026-10-15T12:48:48.503Z",
+      "checkedAt": "2026-10-15T12:51:57.279Z",
       "sourceUrl": "https://www.service-public.gouv.fr/particuliers/actualites/A19092",
       "scope": "Actualité officielle · particuliers",
       "tool": "/pouvoir-achat",
@@ -113548,7 +113548,7 @@
       "field": "aum",
       "fieldLabel": "Encours",
       "value": 1318782652.78,
-      "sourceHash": "169aacbaf8d6f05a0f1e90022347b984968d75c9ea3439b09e1a7b686a4a6ae3",
+      "sourceHash": "6320624f9df42142f16220f7e950e2a2144a662d7fd1807328b40d9e179f0c0e",
       "period": "2026-10-14",
       "unit": "USD",
       "relativeThreshold": 0.2,
@@ -114077,7 +114077,7 @@
       "field": "countries:Canada",
       "fieldLabel": "Poids du pays Canada",
       "value": 59.3,
-      "sourceHash": "169aacbaf8d6f05a0f1e90022347b984968d75c9ea3439b09e1a7b686a4a6ae3",
+      "sourceHash": "6320624f9df42142f16220f7e950e2a2144a662d7fd1807328b40d9e179f0c0e",
       "period": "2026-09-30",
       "completeComposition": false,
       "threshold": 2,
@@ -114097,7 +114097,7 @@
       "field": "countries:United States",
       "fieldLabel": "Poids du pays United States",
       "value": 22.2,
-      "sourceHash": "169aacbaf8d6f05a0f1e90022347b984968d75c9ea3439b09e1a7b686a4a6ae3",
+      "sourceHash": "6320624f9df42142f16220f7e950e2a2144a662d7fd1807328b40d9e179f0c0e",
       "period": "2026-09-30",
       "completeComposition": false,
       "threshold": 2,
@@ -114117,7 +114117,7 @@
       "field": "countries:Mexico",
       "fieldLabel": "Poids du pays Mexico",
       "value": 5.9,
-      "sourceHash": "169aacbaf8d6f05a0f1e90022347b984968d75c9ea3439b09e1a7b686a4a6ae3",
+      "sourceHash": "6320624f9df42142f16220f7e950e2a2144a662d7fd1807328b40d9e179f0c0e",
       "period": "2026-09-30",
       "completeComposition": false,
       "threshold": 2,
@@ -114137,7 +114137,7 @@
       "field": "countries:Britain",
       "fieldLabel": "Poids du pays Britain",
       "value": 5.4,
-      "sourceHash": "169aacbaf8d6f05a0f1e90022347b984968d75c9ea3439b09e1a7b686a4a6ae3",
+      "sourceHash": "6320624f9df42142f16220f7e950e2a2144a662d7fd1807328b40d9e179f0c0e",
       "period": "2026-09-30",
       "completeComposition": false,
       "threshold": 2,
@@ -114157,7 +114157,7 @@
       "field": "countries:Peru",
       "fieldLabel": "Poids du pays Peru",
       "value": 3.8,
-      "sourceHash": "169aacbaf8d6f05a0f1e90022347b984968d75c9ea3439b09e1a7b686a4a6ae3",
+      "sourceHash": "6320624f9df42142f16220f7e950e2a2144a662d7fd1807328b40d9e179f0c0e",
       "period": "2026-09-30",
       "completeComposition": false,
       "threshold": 2,
@@ -114177,7 +114177,7 @@
       "field": "countries:South Korea",
       "fieldLabel": "Poids du pays South Korea",
       "value": 2.4,
-      "sourceHash": "169aacbaf8d6f05a0f1e90022347b984968d75c9ea3439b09e1a7b686a4a6ae3",
+      "sourceHash": "6320624f9df42142f16220f7e950e2a2144a662d7fd1807328b40d9e179f0c0e",
       "period": "2026-09-30",
       "completeComposition": false,
       "threshold": 2,
@@ -114197,7 +114197,7 @@
       "field": "countries:Australia",
       "fieldLabel": "Poids du pays Australia",
       "value": 0.9,
-      "sourceHash": "169aacbaf8d6f05a0f1e90022347b984968d75c9ea3439b09e1a7b686a4a6ae3",
+      "sourceHash": "6320624f9df42142f16220f7e950e2a2144a662d7fd1807328b40d9e179f0c0e",
       "period": "2026-09-30",
       "completeComposition": false,
       "threshold": 2,
@@ -114217,7 +114217,7 @@
       "field": "countries:Sweden",
       "fieldLabel": "Poids du pays Sweden",
       "value": 0.1,
-      "sourceHash": "169aacbaf8d6f05a0f1e90022347b984968d75c9ea3439b09e1a7b686a4a6ae3",
+      "sourceHash": "6320624f9df42142f16220f7e950e2a2144a662d7fd1807328b40d9e179f0c0e",
       "period": "2026-09-30",
       "completeComposition": false,
       "threshold": 2,
@@ -114237,7 +114237,7 @@
       "field": "top10",
       "fieldLabel": "Poids des dix premières lignes",
       "value": 75.69,
-      "sourceHash": "169aacbaf8d6f05a0f1e90022347b984968d75c9ea3439b09e1a7b686a4a6ae3",
+      "sourceHash": "6320624f9df42142f16220f7e950e2a2144a662d7fd1807328b40d9e179f0c0e",
       "period": "2026-10-14",
       "threshold": 2,
       "unit": "%",
@@ -114493,7 +114493,7 @@
         "status": "À préciser"
       },
       "period": "2026-10-14",
-      "checkedAt": "2026-10-15T12:48:48.503Z",
+      "checkedAt": "2026-10-15T12:51:57.279Z",
       "sourceUrl": "https://www.service-public.gouv.fr/particuliers/actualites/A19057",
       "scope": "Actualité officielle · particuliers",
       "tool": "/pouvoir-achat",
@@ -114521,7 +114521,7 @@
         "status": "À préciser"
       },
       "period": "2026-10-14",
-      "checkedAt": "2026-10-15T12:48:48.503Z",
+      "checkedAt": "2026-10-15T12:51:57.279Z",
       "sourceUrl": "https://www.service-public.gouv.fr/particuliers/actualites/A19094",
       "scope": "Actualité officielle · particuliers",
       "tool": "/pouvoir-achat",
@@ -137430,7 +137430,7 @@
         "status": "À préciser"
       },
       "period": "2026-10-15",
-      "checkedAt": "2026-10-15T12:48:48.503Z",
+      "checkedAt": "2026-10-15T12:51:57.279Z",
       "sourceUrl": "https://www.service-public.gouv.fr/particuliers/actualites/A17342",
       "scope": "Actualité officielle · particuliers",
       "tool": "/pouvoir-achat",
@@ -137458,7 +137458,7 @@
         "status": "À préciser"
       },
       "period": "2026-10-15",
-      "checkedAt": "2026-10-15T12:48:48.503Z",
+      "checkedAt": "2026-10-15T12:51:57.279Z",
       "sourceUrl": "https://www.service-public.gouv.fr/particuliers/actualites/A17790",
       "scope": "Actualité officielle · particuliers",
       "tool": "/pouvoir-achat",
@@ -220316,12 +220316,12 @@
       "entity": "prices-general",
       "label": "Indice des prix à la consommation - Base 2025 - Ensemble des ménages - France - Nomenclature Coicop : 00 - Ensemble",
       "sourceUrl": "https://bdm.insee.fr/series/sdmx/data/SERIES_BDM/011814630?startPeriod=2010",
-      "checkedAt": "2026-09-30",
+      "checkedAt": "2026-10-15",
       "scope": "011814630 · base 2025 · FE",
       "tool": "/pouvoir-achat",
       "field": "index",
       "fieldLabel": "Indice des prix publié",
-      "value": 102.99,
+      "value": 103.07,
       "period": "2026-09",
       "rule": "publication"
     },
@@ -220330,12 +220330,12 @@
       "entity": "prices-alimentation",
       "label": "Indice des prix à la consommation - Base 2025 - Ensemble des ménages - France - Alimentation",
       "sourceUrl": "https://bdm.insee.fr/series/sdmx/data/SERIES_BDM/011813717?startPeriod=2010",
-      "checkedAt": "2026-09-30",
+      "checkedAt": "2026-10-15",
       "scope": "011813717 · base 2025 · FE",
       "tool": "/pouvoir-achat",
       "field": "index",
       "fieldLabel": "Indice des prix publié",
-      "value": 101.91,
+      "value": 101.83,
       "period": "2026-09",
       "rule": "publication"
     },
@@ -220344,12 +220344,12 @@
       "entity": "prices-energie",
       "label": "Indice des prix à la consommation - Base 2025 - Ensemble des ménages - France - Énergie",
       "sourceUrl": "https://bdm.insee.fr/series/sdmx/data/SERIES_BDM/011813864?startPeriod=2010",
-      "checkedAt": "2026-09-30",
+      "checkedAt": "2026-10-15",
       "scope": "011813864 · base 2025 · FE",
       "tool": "/pouvoir-achat",
       "field": "index",
       "fieldLabel": "Indice des prix publié",
-      "value": 120.01,
+      "value": 120.13,
       "period": "2026-09",
       "rule": "publication"
     },
@@ -270923,6 +270923,87 @@
   },
   "events": [
     {
+      "id": "875271ff383f869048904e60",
+      "family": "economie",
+      "entity": "prices-alimentation",
+      "label": "Indice des prix à la consommation - Base 2025 - Ensemble des ménages - France - Alimentation",
+      "field": "index",
+      "fieldLabel": "Indice des prix publié",
+      "title": "Indice des prix à la consommation - Base 2025 - Ensemble des ménages - France - Alimentation : indice des prix publié en mouvement",
+      "kind": "change",
+      "priority": "normal",
+      "detectedAt": "2026-10-15T12:52:03.563Z",
+      "before": 101.91,
+      "after": 101.83,
+      "beforeText": "101,91",
+      "afterText": "101,83",
+      "beforePeriod": "2026-09",
+      "period": "2026-09",
+      "scope": "011813717 · base 2025 · FE",
+      "unit": "",
+      "sourceUrl": "https://bdm.insee.fr/series/sdmx/data/SERIES_BDM/011813717?startPeriod=2010",
+      "previousSourceUrl": "https://bdm.insee.fr/series/sdmx/data/SERIES_BDM/011813717?startPeriod=2010",
+      "checkedAt": "2026-10-15",
+      "tool": "/pouvoir-achat",
+      "angle": "Qu’est-ce que cette évolution change pour quelqu’un qui utilise Indice des prix à la consommation - Base 2025 - Ensemble des ménages - France - Alimentation ?",
+      "draft": "Indice des prix publié : 101,91 → 101,83.\n\nIndice des prix à la consommation - Base 2025 - Ensemble des ménages - France - Alimentation\nPérimètre : 011813717 · base 2025 · FE\nAncienne observation : 2026-09\nObservation actuelle : 2026-09\n\nQu’est-ce que cette évolution change pour quelqu’un qui utilise Indice des prix à la consommation - Base 2025 - Ensemble des ménages - France - Alimentation ?",
+      "reason": "Changement d’une donnée publiée, à périmètre comparable."
+    },
+    {
+      "id": "9ea03ff7339be0b3ca8c28db",
+      "family": "economie",
+      "entity": "prices-general",
+      "label": "Indice des prix à la consommation - Base 2025 - Ensemble des ménages - France - Nomenclature Coicop : 00 - Ensemble",
+      "field": "index",
+      "fieldLabel": "Indice des prix publié",
+      "title": "Indice des prix à la consommation - Base 2025 - Ensemble des ménages - France - Nomenclature Coicop : 00 - Ensemble : indice des prix publié en mouvement",
+      "kind": "change",
+      "priority": "normal",
+      "detectedAt": "2026-10-15T12:52:03.563Z",
+      "before": 102.99,
+      "after": 103.07,
+      "beforeText": "102,99",
+      "afterText": "103,07",
+      "beforePeriod": "2026-09",
+      "period": "2026-09",
+      "scope": "011814630 · base 2025 · FE",
+      "unit": "",
+      "sourceUrl": "https://bdm.insee.fr/series/sdmx/data/SERIES_BDM/011814630?startPeriod=2010",
+      "previousSourceUrl": "https://bdm.insee.fr/series/sdmx/data/SERIES_BDM/011814630?startPeriod=2010",
+      "checkedAt": "2026-10-15",
+      "tool": "/pouvoir-achat",
+      "angle": "Qu’est-ce que cette évolution change pour quelqu’un qui utilise Indice des prix à la consommation - Base 2025 - Ensemble des ménages - France - Nomenclature Coicop : 00 - Ensemble ?",
+      "draft": "Indice des prix publié : 102,99 → 103,07.\n\nIndice des prix à la consommation - Base 2025 - Ensemble des ménages - France - Nomenclature Coicop : 00 - Ensemble\nPérimètre : 011814630 · base 2025 · FE\nAncienne observation : 2026-09\nObservation actuelle : 2026-09\n\nQu’est-ce que cette évolution change pour quelqu’un qui utilise Indice des prix à la consommation - Base 2025 - Ensemble des ménages - France - Nomenclature Coicop : 00 - Ensemble ?",
+      "reason": "Changement d’une donnée publiée, à périmètre comparable."
+    },
+    {
+      "id": "b88565d2789e6d889ef3c5e8",
+      "family": "economie",
+      "entity": "prices-energie",
+      "label": "Indice des prix à la consommation - Base 2025 - Ensemble des ménages - France - Énergie",
+      "field": "index",
+      "fieldLabel": "Indice des prix publié",
+      "title": "Indice des prix à la consommation - Base 2025 - Ensemble des ménages - France - Énergie : indice des prix publié en mouvement",
+      "kind": "change",
+      "priority": "normal",
+      "detectedAt": "2026-10-15T12:52:03.563Z",
+      "before": 120.01,
+      "after": 120.13,
+      "beforeText": "120,01",
+      "afterText": "120,13",
+      "beforePeriod": "2026-09",
+      "period": "2026-09",
+      "scope": "011813864 · base 2025 · FE",
+      "unit": "",
+      "sourceUrl": "https://bdm.insee.fr/series/sdmx/data/SERIES_BDM/011813864?startPeriod=2010",
+      "previousSourceUrl": "https://bdm.insee.fr/series/sdmx/data/SERIES_BDM/011813864?startPeriod=2010",
+      "checkedAt": "2026-10-15",
+      "tool": "/pouvoir-achat",
+      "angle": "Qu’est-ce que cette évolution change pour quelqu’un qui utilise Indice des prix à la consommation - Base 2025 - Ensemble des ménages - France - Énergie ?",
+      "draft": "Indice des prix publié : 120,01 → 120,13.\n\nIndice des prix à la consommation - Base 2025 - Ensemble des ménages - France - Énergie\nPérimètre : 011813864 · base 2025 · FE\nAncienne observation : 2026-09\nObservation actuelle : 2026-09\n\nQu’est-ce que cette évolution change pour quelqu’un qui utilise Indice des prix à la consommation - Base 2025 - Ensemble des ménages - France - Énergie ?",
+      "reason": "Changement d’une donnée publiée, à périmètre comparable."
+    },
+    {
       "id": "3e6cfa6e58310c85a76a6382",
       "family": "etf",
       "entity": "IE00B8GKDB10",
@@ -309423,8 +309504,8 @@
       "reason": "Changement d’une donnée publiée, à périmètre comparable."
     }
   ],
-  "lastCheckedAt": "2026-10-15T12:48:55.481Z",
-  "sourceRevision": "8cec0b5d7ffeeda0a775a57148603486dca110f8",
+  "lastCheckedAt": "2026-10-15T12:52:03.563Z",
+  "sourceRevision": "308367ca4bee0041afa1bb7f1576aa5b4d798ef1",
   "lastErrorCount": 39,
   "conflicts": {
     "etf:IE00BLNMYC90:countries:United States:8abd3910625177898532bf9d:2026-10-07": {
@@ -316599,7 +316680,7 @@
             "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
           },
           "firstSeenAt": "2026-10-15T12:48:55.481Z",
-          "lastSeenAt": "2026-10-15T12:48:55.481Z"
+          "lastSeenAt": "2026-10-15T12:52:03.563Z"
         }
       ],
       "resolutions": [
@@ -316815,7 +316896,7 @@
             "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
           },
           "firstSeenAt": "2026-10-15T12:48:55.481Z",
-          "lastSeenAt": "2026-10-15T12:48:55.481Z"
+          "lastSeenAt": "2026-10-15T12:52:03.563Z"
         }
       ],
       "resolutions": [
@@ -316905,7 +316986,7 @@
             "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
           },
           "firstSeenAt": "2026-10-15T12:48:55.481Z",
-          "lastSeenAt": "2026-10-15T12:48:55.481Z"
+          "lastSeenAt": "2026-10-15T12:52:03.563Z"
         }
       ],
       "resolutions": [
@@ -317310,7 +317391,7 @@
             "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
           },
           "firstSeenAt": "2026-10-15T12:48:55.481Z",
-          "lastSeenAt": "2026-10-15T12:48:55.481Z"
+          "lastSeenAt": "2026-10-15T12:52:03.563Z"
         }
       ],
       "resolutions": [
@@ -317400,7 +317481,7 @@
             "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
           },
           "firstSeenAt": "2026-10-15T12:48:55.481Z",
-          "lastSeenAt": "2026-10-15T12:48:55.481Z"
+          "lastSeenAt": "2026-10-15T12:52:03.563Z"
         }
       ],
       "resolutions": [
@@ -317553,7 +317634,7 @@
             "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
           },
           "firstSeenAt": "2026-10-15T12:48:55.481Z",
-          "lastSeenAt": "2026-10-15T12:48:55.481Z"
+          "lastSeenAt": "2026-10-15T12:52:03.563Z"
         }
       ],
       "resolutions": [
@@ -317643,7 +317724,7 @@
             "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
           },
           "firstSeenAt": "2026-10-15T12:48:55.481Z",
-          "lastSeenAt": "2026-10-15T12:48:55.481Z"
+          "lastSeenAt": "2026-10-15T12:52:03.563Z"
         }
       ],
       "resolutions": [
@@ -317797,7 +317878,7 @@
             "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
           },
           "firstSeenAt": "2026-10-15T12:48:55.481Z",
-          "lastSeenAt": "2026-10-15T12:48:55.481Z"
+          "lastSeenAt": "2026-10-15T12:52:03.563Z"
         }
       ],
       "resolutions": [
@@ -318014,7 +318095,7 @@
             "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
           },
           "firstSeenAt": "2026-10-15T12:48:55.481Z",
-          "lastSeenAt": "2026-10-15T12:48:55.481Z"
+          "lastSeenAt": "2026-10-15T12:52:03.563Z"
         }
       ],
       "resolutions": [
@@ -318167,7 +318248,7 @@
             "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
           },
           "firstSeenAt": "2026-10-15T12:48:55.481Z",
-          "lastSeenAt": "2026-10-15T12:48:55.481Z"
+          "lastSeenAt": "2026-10-15T12:52:03.563Z"
         }
       ],
       "resolutions": [
@@ -318320,7 +318401,7 @@
             "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
           },
           "firstSeenAt": "2026-10-15T12:48:55.481Z",
-          "lastSeenAt": "2026-10-15T12:48:55.481Z"
+          "lastSeenAt": "2026-10-15T12:52:03.563Z"
         }
       ],
       "resolutions": [
@@ -318789,7 +318870,7 @@
             "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
           },
           "firstSeenAt": "2026-10-15T12:48:55.481Z",
-          "lastSeenAt": "2026-10-15T12:48:55.481Z"
+          "lastSeenAt": "2026-10-15T12:52:03.563Z"
         }
       ],
       "resolutions": [
@@ -319046,7 +319127,7 @@
             "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
           },
           "firstSeenAt": "2026-10-15T12:48:55.481Z",
-          "lastSeenAt": "2026-10-15T12:48:55.481Z"
+          "lastSeenAt": "2026-10-15T12:52:03.563Z"
         }
       ]
     },
@@ -319097,7 +319178,7 @@
             "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
           },
           "firstSeenAt": "2026-10-15T12:48:55.481Z",
-          "lastSeenAt": "2026-10-15T12:48:55.481Z"
+          "lastSeenAt": "2026-10-15T12:52:03.563Z"
         }
       ]
     },
@@ -319149,7 +319230,7 @@
             "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
           },
           "firstSeenAt": "2026-10-15T12:48:55.481Z",
-          "lastSeenAt": "2026-10-15T12:48:55.481Z"
+          "lastSeenAt": "2026-10-15T12:52:03.563Z"
         }
       ]
     },
@@ -319201,7 +319282,7 @@
             "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
           },
           "firstSeenAt": "2026-10-15T12:48:55.481Z",
-          "lastSeenAt": "2026-10-15T12:48:55.481Z"
+          "lastSeenAt": "2026-10-15T12:52:03.563Z"
         }
       ]
     },
@@ -319252,7 +319333,7 @@
             "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
           },
           "firstSeenAt": "2026-10-15T12:48:55.481Z",
-          "lastSeenAt": "2026-10-15T12:48:55.481Z"
+          "lastSeenAt": "2026-10-15T12:52:03.563Z"
         }
       ]
     },
@@ -319303,7 +319384,7 @@
             "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
           },
           "firstSeenAt": "2026-10-15T12:48:55.481Z",
-          "lastSeenAt": "2026-10-15T12:48:55.481Z"
+          "lastSeenAt": "2026-10-15T12:52:03.563Z"
         }
       ]
     },
@@ -319354,7 +319435,7 @@
             "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
           },
           "firstSeenAt": "2026-10-15T12:48:55.481Z",
-          "lastSeenAt": "2026-10-15T12:48:55.481Z"
+          "lastSeenAt": "2026-10-15T12:52:03.563Z"
         }
       ]
     },
@@ -319405,7 +319486,7 @@
             "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
           },
           "firstSeenAt": "2026-10-15T12:48:55.481Z",
-          "lastSeenAt": "2026-10-15T12:48:55.481Z"
+          "lastSeenAt": "2026-10-15T12:52:03.563Z"
         }
       ]
     },
@@ -319456,7 +319537,7 @@
             "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
           },
           "firstSeenAt": "2026-10-15T12:48:55.481Z",
-          "lastSeenAt": "2026-10-15T12:48:55.481Z"
+          "lastSeenAt": "2026-10-15T12:52:03.563Z"
         }
       ]
     },
@@ -319507,7 +319588,7 @@
             "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
           },
           "firstSeenAt": "2026-10-15T12:48:55.481Z",
-          "lastSeenAt": "2026-10-15T12:48:55.481Z"
+          "lastSeenAt": "2026-10-15T12:52:03.563Z"
         }
       ]
     },
@@ -319558,7 +319639,7 @@
             "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
           },
           "firstSeenAt": "2026-10-15T12:48:55.481Z",
-          "lastSeenAt": "2026-10-15T12:48:55.481Z"
+          "lastSeenAt": "2026-10-15T12:52:03.563Z"
         }
       ]
     },
@@ -319609,7 +319690,7 @@
             "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
           },
           "firstSeenAt": "2026-10-15T12:48:55.481Z",
-          "lastSeenAt": "2026-10-15T12:48:55.481Z"
+          "lastSeenAt": "2026-10-15T12:52:03.563Z"
         }
       ]
     },
@@ -319660,7 +319741,7 @@
             "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
           },
           "firstSeenAt": "2026-10-15T12:48:55.481Z",
-          "lastSeenAt": "2026-10-15T12:48:55.481Z"
+          "lastSeenAt": "2026-10-15T12:52:03.563Z"
         }
       ]
     },
@@ -319711,7 +319792,7 @@
             "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
           },
           "firstSeenAt": "2026-10-15T12:48:55.481Z",
-          "lastSeenAt": "2026-10-15T12:48:55.481Z"
+          "lastSeenAt": "2026-10-15T12:52:03.563Z"
         }
       ]
     },
@@ -319762,7 +319843,7 @@
             "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
           },
           "firstSeenAt": "2026-10-15T12:48:55.481Z",
-          "lastSeenAt": "2026-10-15T12:48:55.481Z"
+          "lastSeenAt": "2026-10-15T12:52:03.563Z"
         }
       ]
     },
@@ -319813,7 +319894,7 @@
             "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
           },
           "firstSeenAt": "2026-10-15T12:48:55.481Z",
-          "lastSeenAt": "2026-10-15T12:48:55.481Z"
+          "lastSeenAt": "2026-10-15T12:52:03.563Z"
         }
       ]
     },
@@ -319864,7 +319945,7 @@
             "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
           },
           "firstSeenAt": "2026-10-15T12:48:55.481Z",
-          "lastSeenAt": "2026-10-15T12:48:55.481Z"
+          "lastSeenAt": "2026-10-15T12:52:03.563Z"
         }
       ]
     },
@@ -319915,7 +319996,7 @@
             "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
           },
           "firstSeenAt": "2026-10-15T12:48:55.481Z",
-          "lastSeenAt": "2026-10-15T12:48:55.481Z"
+          "lastSeenAt": "2026-10-15T12:52:03.563Z"
         }
       ]
     },
@@ -319966,7 +320047,7 @@
             "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
           },
           "firstSeenAt": "2026-10-15T12:48:55.481Z",
-          "lastSeenAt": "2026-10-15T12:48:55.481Z"
+          "lastSeenAt": "2026-10-15T12:52:03.563Z"
         }
       ]
     },
@@ -320017,7 +320098,7 @@
             "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
           },
           "firstSeenAt": "2026-10-15T12:48:55.481Z",
-          "lastSeenAt": "2026-10-15T12:48:55.481Z"
+          "lastSeenAt": "2026-10-15T12:52:03.563Z"
         }
       ]
     },
@@ -320068,7 +320149,7 @@
             "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
           },
           "firstSeenAt": "2026-10-15T12:48:55.481Z",
-          "lastSeenAt": "2026-10-15T12:48:55.481Z"
+          "lastSeenAt": "2026-10-15T12:52:03.563Z"
         }
       ]
     },
@@ -320119,7 +320200,7 @@
             "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
           },
           "firstSeenAt": "2026-10-15T12:48:55.481Z",
-          "lastSeenAt": "2026-10-15T12:48:55.481Z"
+          "lastSeenAt": "2026-10-15T12:52:03.563Z"
         }
       ]
     },
@@ -320170,7 +320251,7 @@
             "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
           },
           "firstSeenAt": "2026-10-15T12:48:55.481Z",
-          "lastSeenAt": "2026-10-15T12:48:55.481Z"
+          "lastSeenAt": "2026-10-15T12:52:03.563Z"
         }
       ]
     },
@@ -320221,7 +320302,7 @@
             "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
           },
           "firstSeenAt": "2026-10-15T12:48:55.481Z",
-          "lastSeenAt": "2026-10-15T12:48:55.481Z"
+          "lastSeenAt": "2026-10-15T12:52:03.563Z"
         }
       ]
     },
@@ -320272,7 +320353,7 @@
             "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
           },
           "firstSeenAt": "2026-10-15T12:48:55.481Z",
-          "lastSeenAt": "2026-10-15T12:48:55.481Z"
+          "lastSeenAt": "2026-10-15T12:52:03.563Z"
         }
       ]
     },
@@ -320323,7 +320404,7 @@
             "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
           },
           "firstSeenAt": "2026-10-15T12:48:55.481Z",
-          "lastSeenAt": "2026-10-15T12:48:55.481Z"
+          "lastSeenAt": "2026-10-15T12:52:03.563Z"
         }
       ]
     },
@@ -320375,7 +320456,7 @@
             "absenceEvidence": "Absent from a validated complete allocation"
           },
           "firstSeenAt": "2026-10-15T12:48:55.481Z",
-          "lastSeenAt": "2026-10-15T12:48:55.481Z"
+          "lastSeenAt": "2026-10-15T12:52:03.563Z"
         }
       ]
     }
@@ -320440,7 +320521,7 @@
     "LU1875395870:2026-10-09": {
       "sourceHash": "1a7ce59dfb82ecf99b889cdc1920f52d8d571c2f5054804892d4ebd68546da5c",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU1875395870/holdings",
-      "checkedAt": "2026-10-15T12:48:53.112594+00:00",
+      "checkedAt": "2026-10-15T12:52:01.978139+00:00",
       "stableSince": "2026-10-14T19:12:06.498387+00:00",
       "evidencePath": "dws-snapshots/1a7ce59dfb82ecf99b889cdc1920f52d8d571c2f5054804892d4ebd68546da5c.json",
       "status": "confirmed"
@@ -320448,7 +320529,7 @@
     "LU2196470426:2026-10-09": {
       "sourceHash": "175e4141344d7f3e395e4aa963761874fa34d5bd5e77e73cc3a80b1e66358cc6",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU2196470426/holdings",
-      "checkedAt": "2026-10-15T12:48:53.112594+00:00",
+      "checkedAt": "2026-10-15T12:52:01.978139+00:00",
       "stableSince": "2026-10-14T19:12:06.498387+00:00",
       "evidencePath": "dws-snapshots/175e4141344d7f3e395e4aa963761874fa34d5bd5e77e73cc3a80b1e66358cc6.json",
       "status": "confirmed"
@@ -320472,7 +320553,7 @@
     "IE00BGV5VN51:2026-10-13": {
       "sourceHash": "bcb8af4afc10adcd97dcfaaeb02664629b784a53846d0a9e62ec8d523b378bb0",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BGV5VN51/holdings",
-      "checkedAt": "2026-10-15T12:48:53.112594+00:00",
+      "checkedAt": "2026-10-15T12:52:01.978139+00:00",
       "stableSince": "2026-10-15T12:48:53.112594+00:00",
       "evidencePath": "dws-snapshots/bcb8af4afc10adcd97dcfaaeb02664629b784a53846d0a9e62ec8d523b378bb0.json",
       "status": "pending"
@@ -320480,7 +320561,7 @@
     "IE00BM67HK77:2026-10-13": {
       "sourceHash": "c5de83da70bc2109212791cff15873060e232fff90c2d0663945a7e2f46d13ac",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HK77/holdings",
-      "checkedAt": "2026-10-15T12:48:53.112594+00:00",
+      "checkedAt": "2026-10-15T12:52:01.978139+00:00",
       "stableSince": "2026-10-15T12:48:53.112594+00:00",
       "evidencePath": "dws-snapshots/c5de83da70bc2109212791cff15873060e232fff90c2d0663945a7e2f46d13ac.json",
       "status": "pending"
@@ -320488,7 +320569,7 @@
     "IE00BM67HS53:2026-10-13": {
       "sourceHash": "9f904a9ae20dba464e987ea97dd3f3d2107f29d6ae0e385730a10bdf55f03fa3",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HS53/holdings",
-      "checkedAt": "2026-10-15T12:48:53.112594+00:00",
+      "checkedAt": "2026-10-15T12:52:01.978139+00:00",
       "stableSince": "2026-10-15T12:48:53.112594+00:00",
       "evidencePath": "dws-snapshots/9f904a9ae20dba464e987ea97dd3f3d2107f29d6ae0e385730a10bdf55f03fa3.json",
       "status": "pending"
@@ -320496,7 +320577,7 @@
     "IE00BM67HV82:2026-10-13": {
       "sourceHash": "9881460c16f54a73c552c82ec2475737dd7ab1117e4c39b18f3da42911cb4256",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HV82/holdings",
-      "checkedAt": "2026-10-15T12:48:53.112594+00:00",
+      "checkedAt": "2026-10-15T12:52:01.978139+00:00",
       "stableSince": "2026-10-15T12:48:53.112594+00:00",
       "evidencePath": "dws-snapshots/9881460c16f54a73c552c82ec2475737dd7ab1117e4c39b18f3da42911cb4256.json",
       "status": "pending"
@@ -320504,7 +320585,7 @@
     "IE00BM67HQ30:2026-10-13": {
       "sourceHash": "b1af9ff23981c4e95a5c7a566f8d7c712a627c8f9a563d6f6db61820fad0f73f",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HQ30/holdings",
-      "checkedAt": "2026-10-15T12:48:53.112594+00:00",
+      "checkedAt": "2026-10-15T12:52:01.978139+00:00",
       "stableSince": "2026-10-14T19:12:06.498387+00:00",
       "evidencePath": "dws-snapshots/b1af9ff23981c4e95a5c7a566f8d7c712a627c8f9a563d6f6db61820fad0f73f.json",
       "status": "confirmed"
@@ -320512,7 +320593,7 @@
     "IE00BLNMYC90:2026-10-13": {
       "sourceHash": "18bd3dea7f18d311cfca2c627cd66f44e6285ef0ad3cc3d0a64dc56eee4169cd",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/holdings",
-      "checkedAt": "2026-10-15T12:48:53.112594+00:00",
+      "checkedAt": "2026-10-15T12:52:01.978139+00:00",
       "stableSince": "2026-10-15T12:48:53.112594+00:00",
       "evidencePath": "dws-snapshots/18bd3dea7f18d311cfca2c627cd66f44e6285ef0ad3cc3d0a64dc56eee4169cd.json",
       "status": "pending"
@@ -320520,7 +320601,7 @@
     "IE0006WW1TQ4:2026-10-13": {
       "sourceHash": "ca141078ea5033580a1097e0e4de9d27a1472c9f96f784e0cfb21c15992e3e2e",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/holdings",
-      "checkedAt": "2026-10-15T12:48:53.112594+00:00",
+      "checkedAt": "2026-10-15T12:52:01.978139+00:00",
       "stableSince": "2026-10-15T12:48:53.112594+00:00",
       "evidencePath": "dws-snapshots/ca141078ea5033580a1097e0e4de9d27a1472c9f96f784e0cfb21c15992e3e2e.json",
       "status": "pending"
@@ -320528,7 +320609,7 @@
     "IE000L6ZMMC4:2026-10-13": {
       "sourceHash": "b6129fd086b05087698c4400b9f7acc8fd52e88a2f5477d30260f9b1faaa1dd0",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE000L6ZMMC4/holdings",
-      "checkedAt": "2026-10-15T12:48:53.112594+00:00",
+      "checkedAt": "2026-10-15T12:52:01.978139+00:00",
       "stableSince": "2026-10-15T12:48:53.112594+00:00",
       "evidencePath": "dws-snapshots/b6129fd086b05087698c4400b9f7acc8fd52e88a2f5477d30260f9b1faaa1dd0.json",
       "status": "pending"
@@ -320536,7 +320617,7 @@
     "IE00BTJRMP35:2026-10-13": {
       "sourceHash": "52f52d286db7b3b4d813b9ea7739fe809b0c12321c14aa9760ed8a65bce5f8a5",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BTJRMP35/holdings",
-      "checkedAt": "2026-10-15T12:48:53.112594+00:00",
+      "checkedAt": "2026-10-15T12:52:01.978139+00:00",
       "stableSince": "2026-10-14T19:12:06.498387+00:00",
       "evidencePath": "dws-snapshots/52f52d286db7b3b4d813b9ea7739fe809b0c12321c14aa9760ed8a65bce5f8a5.json",
       "status": "confirmed"
