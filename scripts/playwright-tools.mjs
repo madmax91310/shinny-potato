@@ -1123,12 +1123,14 @@ async function testDataReuse(page) {
   ok &&= await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth);
   await page.setViewportSize({ width: 1280, height: 720 });
   await page.goto(`${BASE}/duels-portefeuilles`, { waitUntil: 'networkidle' });
-  // The previous scenario deliberately leaves a manual duel saved.
-  await page.getByRole('button', { name: 'Duels préparés', exact: true }).click();
-  const prepared = await page.locator('#pd-select [data-option]').allTextContents();
-  await choose(page.locator('#pd-select'), String(prepared.findIndex(text => text.includes('XEON'))));
+  // Reuse the saved three-line allocation and replace its complement with XEON.
+  await page.getByRole('button', { name: 'Composer A et B', exact: true }).click();
+  await choose(page.getByRole('group', { name: 'Complément du portefeuille A', exact: true }), 'monetaire_xeon');
   ok &&= (await page.locator('#pd-tweet').inputValue()).includes('XEON');
-  await choose(page.locator('#pd-select'), String(prepared.findIndex(text => text.includes('semi-conducteurs ou blockchain'))));
+  await page.getByRole('button', { name: 'Duels préparés', exact: true }).click();
+  const blockchainDuel = DUELS.findIndex(duel => duel.id === 'semiconducteurs_monde-contre-blockchain_ishares');
+  if (blockchainDuel < 0) throw new Error('Missing prepared blockchain allocation');
+  await choose(page.locator('#pd-select'), String(blockchainDuel));
   ok &&= (await page.locator('.pd-table tbody th').allTextContents()).join(',') === '2023,2024,2025';
   await page.goto(`${BASE}/faits-marquants-marches`, { waitUntil: 'networkidle' });
   await choose(page.getByLabel('Choisir un fait'), 'monthly-drawdown-paypal');
