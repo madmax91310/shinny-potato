@@ -7,6 +7,8 @@ on:
     paths:
       - 'scripts/collect_qualified_exposures.py'
       - 'scripts/qualified-exposure-sources.json'
+      - 'scripts/collect_dca_equities.py'
+      - 'scripts/dca-equity-identities.json'
       - 'src/data/qualified-exposure*'
       - '.github/workflows/update-qualified-exposures.yml'
 permissions:
@@ -22,7 +24,7 @@ jobs:
       contents: write
     outputs:
       commit_sha: ${{ steps.commit.outputs.commit_sha }}
-      collection_failed: ${{ steps.collect.outcome == 'failure' }}
+      collection_failed: ${{ steps.collect.outcome == 'failure' || steps.equities.outcome == 'failure' }}
     steps:
       - uses: actions/checkout@v7.0.1
         with:
@@ -38,6 +40,10 @@ jobs:
       - id: collect
         continue-on-error: ${{ github.event_name != 'pull_request' }}
         run: python scripts/collect_qualified_exposures.py --apply --output "$RUNNER_TEMP/qualified-exposures.json"
+      - id: equities
+        continue-on-error: ${{ github.event_name != 'pull_request' }}
+        run: python scripts/collect_dca_equities.py --apply --output "$RUNNER_TEMP/dca-equities.json"
+      - run: node scripts/build-dca-exposures.mjs && npm run test:dca
       - run: node scripts/test-qualified-exposures.mjs
       - run: npm run audit:instrument-catalog
       - run: npm run build
@@ -52,7 +58,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add src/data/qualified-exposure-etfs.json src/data/automated-etf.json
+          git add src/data/qualified-exposure-etfs.json src/data/automated-etf.json src/data/dca-equity-exposures.json src/pages/dca-profiles/exposures.json
           if ! git diff --cached --quiet; then
             git commit -m 'Refresh qualified exact-share exposure data'
             git pull --rebase origin master
