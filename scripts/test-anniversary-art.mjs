@@ -67,8 +67,8 @@ try {
       if(!labels.includes('+50,0 %'))throw new Error(`${asset.id}: ratio changed`)
       if(labels.filter(v=>v==='ÉPARGNANT LIBRE').length!==1)throw new Error(`${asset.id}: signature count`)
       if(!labels.includes(ANNIVERSARY_ART[asset.id].title))throw new Error(`${asset.id}: mismatched title`)
-      const expectedUnit=ANNIVERSARY_ART[asset.id].unit || ({USD:'$',EUR:'€',KRW:'₩'}[asset.currency] ?? asset.currency)
-      if(!labels.some(v=>v.endsWith(expectedUnit)))throw new Error(`${asset.id}: wrong unit, expected ${expectedUnit}`)
+      const expectedUnit=ANNIVERSARY_ART[asset.id].unit || ({USD:'$',EUR:'€',KRW:'₩'})[asset.currency]
+      if(!expectedUnit || !labels.some(v=>v.endsWith(expectedUnit)))throw new Error(`${asset.id}: wrong unit for ${asset.currency}`)
       if(asset.id==='or'&&!labels.some(v=>v.includes('CC BY 4.0')))throw new Error('Gold attribution lost')
       if(canvas.width!==1600||canvas.height!==2000)throw new Error('Incorrect single aspect ratio')
       await window.saveAnniversaryExport({name:asset.id,png:canvas.toDataURL(),labels:[...labels]})
