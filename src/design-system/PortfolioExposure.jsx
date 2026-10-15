@@ -11,7 +11,7 @@ export default function PortfolioExposure({ lines, name = 'Portefeuille' }) {
     {open && <><p>Poids dans le portefeuille actuel, sans reconstitution historique. Les dates, périmètres fonds/indice et classifications différents restent séparés. Aucune estimation des entreprises détenues en commun.</p>
       {fields.map(({field,groups})=><section key={field}><h4>{field==='countries'?'Pays':'Secteurs'}</h4>
         {!groups.length && <p>Aucune composition qualifiée pour cette sélection.</p>}
-        {groups.map(g=><div key={[g.asOf,g.basis,g.classification].join('|')}><p>Au {g.asOf.split('-').reverse().join('/')} · {g.basis==='fund'?'Fonds':'Indices suivis'} · {g.classification}. Couverture : {pct(g.coverage)} du portefeuille.</p>
+        {groups.map(g=><div key={[g.asOf,g.basis,g.classificationId].join('|')}><p>Au {g.asOf.split('-').reverse().join('/')} · {g.basis==='fund'?'Fonds':'Indices suivis'} · {g.classification}. Couverture des supports : {pct(g.coverage)} du portefeuille ; poids détaillé par la source : {pct(g.detailedCoverage)}.</p>
           <ul>{g.rows.slice(0,5).map(r=><li key={r.name}>{r.name} : {pct(r.weight)} du portefeuille</li>)}</ul>
           <p>Les lignes non détaillées et les supports hors de cette photographie ne sont pas réattribués. Pondérations arrondies par les sources.</p>
           {g.sources.map((url,i)=><a key={url} href={url} target="_blank" rel="noreferrer">Source {i+1} ↗ </a>)}

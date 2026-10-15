@@ -124,3 +124,16 @@ const swapped={...cashDuel,a:cashDuel.b,b:cashDuel.a,id:'custom-swap'}
 assert.equal(Math.abs(swapped.b.final-swapped.a.final),Math.abs(cashDuel.b.final-cashDuel.a.final))
 assert.match(resultReading(identical),/même montant/)
 assert.throws(()=>buildCustomDuel({left:[{id:'msci_world_ishares',pct:100}],right:original.right}),/2 à 3/)
+
+// Conclusions must be reachable with the supported multi-line portfolios.
+const nasdaqDuel=buildCustomDuel({
+ left:[{id:'msci_world_ishares',pct:80},{id:'msci_em',pct:20}],
+ right:[{id:'msci_world_ishares',pct:80},{id:'nasdaq100',pct:20}],
+})
+assert(nasdaqDuel.b.final>nasdaqDuel.a.final && nasdaqDuel.b.worst<nasdaqDuel.a.worst)
+assert.match(resultReading(nasdaqDuel),/portefeuille B termine.*Mais sa pire année est plus difficile/)
+assert.match(resultReading({...nasdaqDuel,a:nasdaqDuel.b,b:nasdaqDuel.a}),/portefeuille A termine.*Mais sa pire année est plus difficile/)
+assert.doesNotMatch(resultReading(nasdaqDuel),/World seul|100 % de World|la poche Nasdaq.*accentue/)
+const differentBase=DUELS.map(buildDuel).find(d=>d.a.assets[0].exposure!==d.b.assets[0].exposure && Math.abs(d.a.final-d.b.final)>=.5)
+assert(differentBase)
+assert.match(resultReading(differentBase),/portefeuilles entiers/)

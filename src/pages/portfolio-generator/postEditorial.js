@@ -43,7 +43,7 @@ export function portfolioPostEditorial(selection) {
   if (rows.length === 1) {
     openings = [`Un seul placement pour tout le portefeuille : que retrouve-t-on dans ${label(top)} ?`, `Tout le portefeuille sur ${label(top)}. Qu’est-ce que ce choix implique ?`, `Multiplier les lignes n’est pas obligatoire. Mais que détient-on avec ${label(top)} comme seul placement ?`]
     transition = `Ce portefeuille illustratif consacre ${percent(top.pct)} à cette ligne. Voici ses performances 👇`
-    thesis = `Avec une seule ligne, je regarde surtout ce qu’elle contient : toute l’allocation repose sur ${label(top)}. ${assetEditorial(top).text}`
+    thesis = `Avec une seule ligne, toute l’allocation repose sur ${label(top)}. ${assetEditorial(top).text}`
   } else if (crypto) {
     openings = leverage
       ? [`${cryptoName === 'la crypto' ? 'La crypto' : cryptoName} et des ETF à levier dans le même portefeuille : quelle place laisser aux autres placements ?`, `Associer ${cryptoName} à du levier, c’est cumuler deux expositions qui peuvent beaucoup bouger. À quoi ressemble la répartition ?`, `Un portefeuille avec ${cryptoName} et du levier peut vite devenir mouvementé. Comment celui-ci est-il construit ?`]
@@ -52,13 +52,13 @@ export function portfolioPostEditorial(selection) {
         : [`Tu veux une place pour ${cryptoName} dans ton portefeuille${euros || money || total(rows, ['short-bond']) ? ', mais aussi des placements moins mouvementés à côté' : ', sans lui consacrer toute l’allocation'} ?`, `${cryptoName === 'la crypto' ? 'La crypto' : cryptoName} représente ${percent(crypto)} de ce portefeuille. Que trouve-t-on à côté ?`, `Ajouter ${cryptoName} à un portefeuille, c’est aussi décider de ce qu’on garde autour. Comment celui-ci est-il réparti ?`]
     transition = 'Voici la répartition de ce portefeuille illustratif et ses performances 👇'
     const rest = join([equities && `${percent(equities)} d’actions`, euros && `${percent(euros)} de fonds euros`, money && `${percent(money)} de monétaire`, bonds && `${percent(bonds)} d’obligations`, gold && `${percent(gold)} d’or`, total(rows, ['silver']) && `${percent(total(rows, ['silver']))} d’argent`, total(rows, ['commodities']) && `${percent(total(rows, ['commodities']))} de matières premières`, inflation && `${percent(inflation)} d’obligations indexées`, total(rows, ['property-private']) && `${percent(total(rows, ['property-private']))} de SCPI`].filter(Boolean))
-    thesis = `Ce que je regarde d’abord ici, c’est la place de ${cryptoName} : ${cryptoName === 'la crypto' ? 'la crypto' : cryptoName} représente ${percent(crypto)} du portefeuille.${rest ? ` À côté, on retrouve ${rest}.` : ''}`
+    thesis = `${cryptoName === 'la crypto' ? 'La crypto' : cryptoName} représente ${percent(crypto)} du portefeuille.${rest ? ` À côté, on retrouve ${rest}.` : ''}`
     if (leverage) thesis += ' Le levier 2x est quotidien, pas une multiplication par deux du rendement sur plusieurs années.'
     thesis += crypto === 100 ? '\n\nToute l’allocation dépend de ces deux cryptos : leurs différences ne les empêchent pas de baisser ensemble.' : `\n\nUne baisse de moitié de la poche crypto retirerait ${percent(crypto / 2)} au portefeuille si les autres placements restaient inchangés.`
   } else if (leverage) {
     openings = ['Ajouter du levier à un portefeuille, ça peut amplifier les gains. Mais quelle place lui laisser quand les marchés baissent ?', 'Un ETF à levier à côté des autres placements : que change cette poche dans le portefeuille ?', `Ce portefeuille consacre ${percent(leverage)} aux ETF à levier. Comment le reste est-il réparti ?`]
     transition = 'Voici la répartition de ce portefeuille illustratif et ses performances 👇'
-    thesis = `La poche que je surveillerais particulièrement ici, c’est le levier. Il occupe ${percent(leverage)} du portefeuille${world ? `, à côté de ${percent(world.pct)} sur ${label(world)}` : ''}. Le levier 2x est quotidien, pas une multiplication par deux du rendement sur plusieurs années.\n\nCette poche amplifie les mouvements de son indice à la hausse comme à la baisse. Son influence peut dépasser son poids dans l’allocation.`
+    thesis = `Le levier occupe ${percent(leverage)} du portefeuille${world ? `, à côté de ${percent(world.pct)} sur ${label(world)}` : ''}. Le levier 2x est quotidien, pas une multiplication par deux du rendement sur plusieurs années.\n\nCette poche amplifie les mouvements de son indice à la hausse comme à la baisse. Son influence peut dépasser son poids dans l’allocation.`
   } else if (options || dividends || property) {
     const distributed = rows.some(row => row.distributing || row.id === 'scpi')
     openings = options
@@ -68,7 +68,7 @@ export function portfolioPostEditorial(selection) {
         : ['Un ETF à dividendes ou immobilier ne dit pas, à lui seul, comment les revenus sont utilisés.', 'Dividendes ou immobilier dans un portefeuille : que trouve-t-on à côté ?', 'Choisir des actions pour leurs dividendes, c’est aussi choisir les entreprises qui vont composer le portefeuille.']
     transition = 'Voici les placements réunis dans ce portefeuille illustratif, leur répartition et leurs performances 👇'
     const sources = join([dividends && 'les actions à dividendes', property && 'l’immobilier', options && 'la vente d’options', bonds && 'les obligations', euros && 'le fonds euros'].filter(Boolean))
-    thesis = `Pour comprendre d’où viennent les revenus, je regarde les placements réunis ici : ${sources}.`
+    thesis = `Les revenus proviennent des placements réunis ici : ${sources}.`
     if (options) thesis += ` Les options représentent ${percent(options)} : une partie de la hausse possible est échangée contre des primes.`
     if (!distributed) thesis += ' Les parts capitalisantes réinvestissent leurs revenus dans le fonds.'
     if (property) thesis += `\n\nL’immobilier représente ${percent(property)} de l’allocation${total(rows, ['property-private']) && total(rows, ['property']) ? ', réparti entre sociétés cotées et SCPI' : ''}. Les revenus comme la valeur de ces placements peuvent baisser.`
@@ -77,7 +77,7 @@ export function portfolioPostEditorial(selection) {
     const theme = themes[0]
     openings = [`Tu t’intéresses ${toLabel(theme)}. Mais quelle place donner à ce thème dans un portefeuille ?`, `Un portefeuille avec ${percent(theme.pct)} sur ${label(theme)} : quels placements mettre à côté ?`, `Croire au développement d’un secteur ne veut pas dire y consacrer tout son portefeuille. Comment répartir le reste ?`]
     transition = 'Voici un portefeuille illustratif construit autour de cette conviction, avec sa répartition et ses performances 👇'
-    thesis = `Je regarde surtout le poids donné à cette conviction : ${percent(themes.reduce((sum, row) => sum + row.pct, 0))} du portefeuille est consacré ${themes.length > 1 ? 'à plusieurs thèmes' : toLabel(theme)}.${world ? ` ${label(world)[0].toUpperCase()}${label(world).slice(1)} complète cette conviction avec ${percent(world.pct)} de l’allocation.` : ''}\n\nCertaines entreprises peuvent déjà être présentes dans les autres ETF. Ajouter une ligne thématique peut donc renforcer leur poids, plutôt qu’ajouter uniquement de nouvelles sociétés.`
+    thesis = `Le poids donné à cette conviction est explicite : ${percent(themes.reduce((sum, row) => sum + row.pct, 0))} du portefeuille est consacré ${themes.length > 1 ? 'à plusieurs thèmes' : toLabel(theme)}.${world ? ` ${label(world)[0].toUpperCase()}${label(world).slice(1)} complète cette conviction avec ${percent(world.pct)} de l’allocation.` : ''}\n\nCertaines entreprises peuvent déjà être présentes dans les autres ETF. Ajouter une ligne thématique peut donc renforcer leur poids, plutôt qu’ajouter uniquement de nouvelles sociétés.`
   } else if (world && (emerging || small || exUs || us || factors.length)) {
     const additions = join([emerging && 'des émergents', small && 'des petites entreprises', exUs && 'un ETF hors États-Unis', us && 'des actions américaines', factors.length && 'des filtres de sélection', gold && 'de l’or'].filter(Boolean))
     const base = kind(world) === 'world-developed' ? 'World' : kind(world) === 'world-imi' ? 'ACWI IMI' : /All-World/.test(world.name) ? 'All-World' : 'ACWI'
@@ -95,15 +95,15 @@ export function portfolioPostEditorial(selection) {
   } else if (exUs && us) {
     openings = ['Un indice mondial fixe lui-même le poids des États-Unis. Et si tu voulais le choisir séparément ?', 'Grandes entreprises américaines, petites entreprises et autres pays développés : comment répartir ces marchés ?', 'Choisir soi-même la place des États-Unis dans un portefeuille, ça donne quoi ?']
     transition = 'Voici un portefeuille illustratif construit avec des lignes séparées, sa répartition et ses performances 👇'
-    thesis = `Ce que je trouve intéressant ici, c’est de choisir directement la place des États-Unis. Les lignes américaines représentent ${percent(us)}, contre ${percent(exUs)} pour les autres pays développés. Leur poids est choisi directement, plutôt que repris d’un indice mondial.${!emerging ? ' Les marchés émergents ne sont pas inclus.' : ''}`
+    thesis = `Les lignes américaines représentent ${percent(us)}, contre ${percent(exUs)} pour les autres pays développés. Leur poids est choisi directement, plutôt que repris d’un indice mondial.${!emerging ? ' Les marchés émergents ne sont pas inclus.' : ''}`
   } else if (europe.length && !world) {
     openings = ['Investir en Europe, ça peut passer par ses entreprises, mais aussi par ses emprunts.', 'Un portefeuille tourné vers l’Europe : quelle place donner aux actions et aux autres placements ?', 'Miser sur l’Europe ne se résume pas à choisir quelques actions françaises. À quoi ressemble ce portefeuille ?']
     transition = 'Voici la répartition de ce portefeuille illustratif et ses performances 👇'
-    thesis = `Je regarde d’abord la place des actions européennes : elles représentent ${percent(europe.reduce((sum, row) => sum + row.pct, 0))} du portefeuille.${bonds ? ` Les obligations ajoutent ${percent(bonds)} d’emprunts, avec une sensibilité aux taux qui dépend de leurs échéances.` : ''}${total(rows, ['small']) ? ' Les petites entreprises ont leur propre ligne, à côté des grands groupes.' : ''}`
+    thesis = `Les actions européennes représentent ${percent(europe.reduce((sum, row) => sum + row.pct, 0))} du portefeuille.${bonds ? ` Les obligations ajoutent ${percent(bonds)} d’emprunts, avec une sensibilité aux taux qui dépend de leurs échéances.` : ''}${total(rows, ['small']) ? ' Les petites entreprises ont leur propre ligne, à côté des grands groupes.' : ''}`
   } else if (inflation) {
     openings = ['Des obligations indexées et des métaux dans un portefeuille : est-ce suffisant pour faire face à l’inflation ?', 'Quand les prix montent, on pense souvent à l’or. Mais quelle place laisser aux autres placements ?', 'Chercher une exposition à l’inflation, c’est aussi accepter des placements dont les cours peuvent baisser.']
     transition = 'Voici la répartition de ce portefeuille illustratif et ses performances 👇'
-    thesis = `Face à l’inflation, je regarde aussi ce qui peut faire baisser ces placements. Les obligations indexées représentent ${percent(inflation)} du portefeuille. Leurs paiements suivent l’inflation, mais leur cours dépend aussi des taux réels.${gold ? ` L’or occupe ${percent(gold)} de l’allocation et ne verse pas de revenu.` : ''}\n\nCes placements ne garantissent pas que la valeur du portefeuille suivra la hausse des prix.`
+    thesis = `Les obligations indexées représentent ${percent(inflation)} du portefeuille. Leurs paiements suivent l’inflation, mais leur cours dépend aussi des taux réels.${gold ? ` L’or occupe ${percent(gold)} de l’allocation et ne verse pas de revenu.` : ''}\n\nCes placements ne garantissent pas que la valeur du portefeuille suivra la hausse des prix.`
   } else if (multiAssets.length) {
     openings = ['Un ETF peut déjà contenir des actions et des obligations. Que lui ajoutes-tu autour ?', 'LifeStrategy réunit plusieurs fonds dans une ligne. Quelle place garder aux autres placements ?', 'Confier une partie de l’allocation à Vanguard, puis choisir les autres lignes : que contient ce portefeuille ?']
     transition = 'Voici sa répartition et ses performances, sur un exemple illustratif 👇'
@@ -112,12 +112,12 @@ export function portfolioPostEditorial(selection) {
   } else if ((euros || money || bonds) && equities) {
     openings = ['Investir en Bourse sans y mettre toute son épargne : comment répartir le portefeuille ?', 'Quelle place laisser aux actions quand on veut garder d’autres placements à côté ?', 'Un portefeuille peut profiter des marchés sans être entièrement investi en actions. Comment celui-ci est-il construit ?']
     transition = 'Voici la répartition de ce portefeuille illustratif et ses performances 👇'
-    thesis = `Le premier chiffre que je regarde ici, c’est la part investie en actions : ${percent(equities)} du portefeuille.`
+    thesis = `La part investie en actions représente ${percent(equities)} du portefeuille.`
     thesis += `${euros ? ` Le fonds euros occupe ${percent(euros)}, selon les conditions de garantie du contrat.` : ''}${money ? ` Le monétaire représente ${percent(money)} et suit les taux courts, sans garantie de dépôt.` : ''}${bonds ? ` Les obligations représentent ${percent(bonds)} et restent exposées aux taux et au risque de remboursement.` : ''}`
   } else {
     openings = [`${label(top)[0].toUpperCase()}${label(top).slice(1)} occupe la première place. Mais que trouve-t-on dans le reste du portefeuille ?`, 'Plusieurs placements dans un portefeuille, ça ne suffit pas à savoir ce qu’on détient. Qu’est-ce qui les relie ici ?', 'À quoi ressemble un portefeuille qui réunit ces placements plutôt qu’une seule ligne ?']
     transition = 'Voici sa répartition et ses performances, sur un exemple illustratif 👇'
-    thesis = `Pour comprendre ce portefeuille, je regarde comment les lignes se complètent. ${allocationAngle(rows).logic}`
+    thesis = `Les lignes de ce portefeuille se complètent de la façon suivante. ${allocationAngle(rows).logic}`
   }
   const globalCount = rows.filter(row => ['world-developed', 'world-all', 'world-imi'].includes(kind(row))).length
   if (globalCount > 1 && !thesis.includes('fonds mondiaux')) thesis += ' Les fonds mondiaux se recoupent : plusieurs lignes ne multiplient pas automatiquement la diversification.'
@@ -125,6 +125,6 @@ export function portfolioPostEditorial(selection) {
   if (euros && !thesis.includes('fonds euros')) thesis += ` Le fonds euros représente ${percent(euros)}, selon les conditions de garantie du contrat.`
   if (money && !thesis.includes('monétaire')) thesis += ` Le monétaire occupe ${percent(money)} et suit les taux courts, sans garantie de dépôt.`
   if (gold && !/[Ll]’or|d’or/.test(thesis)) thesis += `\n\nL’or représente ${percent(gold)} de l’allocation.`
-  if (equities >= 70 && !leverage && !crypto) thesis += `\n\nMais le chiffre que je garde en tête, c’est surtout les ${percent(equities)} d’actions : ${rows.length > 1 ? `avec ${rows.length} lignes, ` : ''}ce portefeuille reste largement dépendant des Bourses${gold ? ', même avec cette poche d’or' : ''}.`
+  if (equities >= 70 && !leverage && !crypto) thesis += `\n\nAvec ${percent(equities)} d’actions, ${rows.length > 1 ? `réparties parmi ${rows.length} lignes, ` : ''}ce portefeuille reste largement dépendant des Bourses${gold ? ', même avec cette poche d’or' : ''}.`
   return { hooks: openings.map(opening => `${opening}\n\n${transition}`), thesis }
 }

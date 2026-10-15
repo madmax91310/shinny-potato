@@ -2,6 +2,7 @@ import references from './exposures.json' with {type:'json'}
 import { ASSETS } from './data.js'
 import { dcaExposure } from './exposure.js'
 export { references }
+export const PROFILE_SCOPES = ['Portefeuille investi','PEA + CTO','PEA','CTO','Ensemble des placements']
 export const pct = n => `${n.toLocaleString('fr-FR', {maximumFractionDigits:2})} %`
 export const euro = n => `${n.toLocaleString('fr-FR', {maximumFractionDigits:2})} €`
 export function prepareProfile(profile) {
@@ -16,7 +17,7 @@ export function prepareProfile(profile) {
 export function validateProfile(profile) {
   const errors=[]
   if (!profile.name?.trim() || profile.name.length>45) errors.push('Indique un pseudonyme de 1 à 45 caractères.')
-  if (!profile.scope?.trim() || profile.scope.length>60) errors.push('Précise le périmètre (60 caractères maximum).')
+  if (!PROFILE_SCOPES.includes(profile.scope)) errors.push('Choisis un périmètre dans la liste.')
   if (!Array.isArray(profile.lines) || profile.lines.length<1 || profile.lines.length>8) return [...errors,'Le portefeuille doit contenir entre 1 et 8 positions.']
   if(profile.lines.some(l=>!ASSETS[l.asset] || !Number.isFinite(l.weight)||l.weight<0||l.weight>100||!Number.isFinite(l.amount)||l.amount<0||l.amount>1000000)) errors.push('Vérifie les actifs, les poids et les versements : uniquement des nombres positifs ou nuls.')
   if(profile.lines.some(l=>l.weight===0 && l.amount===0)) errors.push('Supprime les positions sans poids ni versement.')

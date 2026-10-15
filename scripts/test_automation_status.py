@@ -5,6 +5,18 @@ from publish_automation_status import update_status, read_report, publication_su
 def run(id=1,conclusion='failure',workflow='update-economic-data.yml',**kwargs):
  return {'id':id,'path':'.github/workflows/'+workflow,'head_branch':'master','event':'schedule','status':'completed','conclusion':conclusion,'updated_at':f'2026-10-{id:02d}T10:00:00Z','html_url':f'https://github.com/test/repo/actions/runs/{id}',**kwargs}
 class StatusTests(unittest.TestCase):
+ def test_recording_failure_is_distinct_from_collection(self):
+  jobs=[{'name':'refresh','conclusion':'failure','steps':[{'name':'Commit validated observations','conclusion':'failure'}]}]
+  report={'successes':[{'id':'company:A'}], 'errors':[]}
+  row=update_status({},run(workflow='update-company-analysis.yml'),jobs,[report])['workflows']['update-company-analysis.yml']
+  self.assertEqual(row['collectionStatus'],'success')
+  self.assertEqual(row['recordingStatus'],'failure')
+  self.assertEqual(row['publicationStatus'],'not-run')
+  self.assertEqual(row['status'],'failure')
+  report['errors']=[{'id':'company:B','error':'Source unavailable'}]
+  row=update_status({},run(workflow='update-company-analysis.yml'),jobs,[report])['workflows']['update-company-analysis.yml']
+  self.assertEqual(row['collectionStatus'],'failure')
+  self.assertEqual(row['recordingStatus'],'failure')
  def test_insee_requires_a_real_production_collection_even_without_changes(self):
   state=include_configured_workflows({'schemaVersion':1,'workflows':{}})
   report={'seriesId':'011814631','rates':{'2026-09':-.6},'checkedAt':'2026-10-14T08:00:00Z','changes':[]}

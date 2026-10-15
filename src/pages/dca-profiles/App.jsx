@@ -6,7 +6,7 @@ import Button from '../../design-system/Button'
 import { copyPublicationText, startPublicationDownload } from '../../design-system/publicationActions.js'
 import { PROFILES, ASSETS } from './data.js'
 import { buildTweetText, pickUnseenProfile } from './lib.js'
-import { prepareProfile, analyzeProfile, references, pct, euro, publicationReady } from './engine.js'
+import { prepareProfile, analyzeProfile, PROFILE_SCOPES, references, pct, euro, publicationReady } from './engine.js'
 import { renderDcaImage } from './image.js'
 import { filterProfiles, searchAssets, readSaved, writeSaved, readUsed, USED_KEY } from './management.js'
 import './dca-profiles.css'
@@ -62,7 +62,7 @@ export default function App(){
  </>}
  <div className="dca-buttons"><Button variant="secondary" disabled={!!a.errors.length} onClick={duplicate}>Dupliquer ce portefeuille</Button></div>
  <label className="dca-visual-choice">Donut de l’image<select aria-label="Donut de l’image" value={field} onChange={e=>setExposure(e.target.value)}><option value="countries">Exposition géographique</option><option value="sectors">Exposition sectorielle</option></select></label>
- <div className="dca-fields"><label>Pseudonyme<input maxLength={45} value={profile.name} onChange={e=>edit({name:e.target.value})}/></label><label>Périmètre<ChoicePicker value={profile.scope} onChange={e=>edit({scope:e.target.value})}>{['Portefeuille investi','PEA + CTO','PEA','CTO','Ensemble des placements'].map(s=><option key={s}>{s}</option>)}</ChoicePicker></label></div>
+ <div className="dca-fields"><label>Pseudonyme<input maxLength={45} value={profile.name} onChange={e=>edit({name:e.target.value})}/></label><label>Périmètre<ChoicePicker aria-label="Périmètre du portefeuille" value={profile.scope} onChange={e=>edit({scope:e.target.value})}>{PROFILE_SCOPES.map(s=><option key={s} value={s}>{s}</option>)}</ChoicePicker></label></div>
  <details><summary>Présentation facultative</summary><div className="dca-fields"><label>Âge<input type="number" min="18" max="100" value={profile.age||''} onChange={e=>edit({age:Math.min(100,Math.max(0,Number(e.target.value)))})}/></label><label>Activité<input maxLength={70} value={profile.job||''} onChange={e=>edit({job:e.target.value})}/></label><label>Localisation générale<input maxLength={60} value={profile.location||''} onChange={e=>edit({location:e.target.value})}/></label><label>Revenu net mensuel (facultatif)<input type="number" min="0" value={profile.income||''} onChange={e=>edit({income:Math.max(0,Number(e.target.value))})}/></label></div></details>
  <h2>Portefeuille & versements</h2><p className="dca-note">Une position peut être conservée sans versement, ou recevoir un premier versement avec un poids actuel de 0 %.</p>
  {profile.lines.map((l,i)=><fieldset className="dca-position" key={i}><legend>Position {i+1}</legend>

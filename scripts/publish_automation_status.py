@@ -209,12 +209,21 @@ def update_status(state, run, jobs, reports=None):
                 failures.append({'job': job['name'], 'step': step['name']})
     refresh_jobs = [job for job in jobs if job['name'] == REGISTRY[workflow]['collectionJob']]
     collection_status = 'failure' if data_failures or any(j.get('conclusion') in ('failure','timed_out') for j in refresh_jobs) else 'success' if reports or any(j.get('conclusion') == 'success' for j in refresh_jobs) else 'unknown'
+    recording_steps = [step for job in refresh_jobs for step in job.get('steps', [])
+                       if step.get('name') == 'Commit validated observations']
+    recording_status = ('failure' if any(s.get('conclusion') in ('failure', 'timed_out') for s in recording_steps)
+                        else 'success' if any(s.get('conclusion') == 'success' for s in recording_steps) else 'not-run')
+    # Reaching this commit step means the preceding mandatory validation passed.
+    # Preserve real collector/report failures even when recording also fails.
+    only_recording_failed = failures and all(f['step'] == 'Commit validated observations' for f in failures)
+    if recording_status == 'failure' and only_recording_failed and reports and not data_failures:
+        collection_status = 'success'
     publication_status, published_at = publication_summary(run, jobs)
     result['workflows'] = entries
     entries[workflow] = {'name': WORKFLOWS[workflow], 'runId': run['id'], 'attempt': run.get('run_attempt', 1),
         'completedAt': run['updated_at'], 'status': 'failure' if failed or data_failures else 'success',
         'lastSuccessAt': previous.get('lastSuccessAt') if failed or data_failures else run['updated_at'],
-        'collectionStatus': collection_status, 'publicationStatus': publication_status,
+        'collectionStatus': collection_status, 'recordingStatus': recording_status, 'publicationStatus': publication_status,
         'lastCollectionSuccessAt': run['updated_at'] if collection_status == 'success' else previous.get('lastCollectionSuccessAt'),
         'lastPublicationSuccessAt': published_at if publication_status == 'success' else previous.get('lastPublicationSuccessAt'),
         'runUrl': run['html_url'], 'failures': failures, 'dataFailures': data_failures}

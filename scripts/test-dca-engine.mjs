@@ -64,3 +64,11 @@ for(const raw of PROFILES){
  rounded.forEach((n,i)=>{assert(Number.isInteger(n));assert(Math.abs(n-rows[i].weight)<1.000001)})
 }
 assert.deepEqual(integerPercentages([{weight:33.4},{weight:33.3},{weight:33.3}]),[34,33,33])
+
+const {PROFILE_SCOPES}=await import('../src/pages/dca-profiles/engine.js')
+for(const scope of PROFILE_SCOPES){
+ const selected={...p,scope}
+ assert.deepEqual(validateProfile(selected),[])
+ if(scope!=='Portefeuille investi')assert(buildTweetText(selected).includes(`(${scope})`))
+}
+for(const scope of [undefined,'undefined','','Inconnu'])assert(validateProfile({...p,scope}).length)
