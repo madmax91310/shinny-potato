@@ -59,3 +59,16 @@ const audited = advance(withEvent)
 assert.equal(audited.state.events[0].status, 'source-conflict')
 assert.equal(audited.feed.events.length, 0)
 console.log('DWS: 34 source revisions reconciled; missing, stale, partial, changing and replayed evidence remain guarded; no editorial signal.')
+
+const nextPeriod = rows.map(r => ({ ...r, period: '2026-10-15', checkedAt: '2026-10-15T10:00:00Z' }))
+const superseded = advance(state, nextPeriod, [], new Date('2026-10-15T10:00:00Z'))
+assert.equal(active(superseded).length, 0)
+assert.equal(superseded.newEvents.length, 0)
+for (const [key, c] of Object.entries(superseded.state.conflicts)) {
+  assert.equal(c.resolution.kind, 'superseded-period')
+  assert.equal(c.resolution.period, '2026-10-15')
+  assert.deepEqual(c.accepted, state.conflicts[key].accepted)
+  assert.deepEqual(c.proposals, state.conflicts[key].proposals)
+}
+const certifiedThenLater = advance(result.state, nextPeriod, [], new Date('2026-10-15T10:00:00Z'))
+for (const c of Object.values(certifiedThenLater.state.conflicts)) assert.equal(c.resolution.kind, 'verified-source-revision')
