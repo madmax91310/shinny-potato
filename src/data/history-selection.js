@@ -1,6 +1,7 @@
 // Navigation labels only; publication wording and historical series stay intact.
 export function historyOptionLabel(id, asset) {
   const label = asset.label
+  if (asset.instrumentType === 'EQUITY') return `${label} · ${asset.currency}`
   if (asset.instrumentType === 'ETC') return `ETC · ${label.replace(/ — ETC$/, '')}${asset.ticker ? ` (${asset.ticker})` : ''} · ${asset.currency}`
   if (asset.isin || /\bETF\b/i.test(label)) {
     const name = label.replace(/^ETF\s+/i, '')

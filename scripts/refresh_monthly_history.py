@@ -41,6 +41,8 @@ def yahoo_chart(body, config, interval):
     zone = meta['exchangeTimezoneName']
     if config.get('timezone') and zone != config['timezone']:
         reject('Yahoo exchange timezone changed')
+    if config.get('consumerScope') == 'equity' and meta.get('instrumentType') != 'EQUITY':
+        reject('Expected an equity, not an index, fund or derivative')
     tz = ZoneInfo(zone)
     stamps = data['timestamp']; closes = data['indicators']['quote'][0]['close']
     adjusted = data['indicators'].get('adjclose', [{}])[0].get('adjclose', [])
@@ -253,14 +255,18 @@ def refresh(config, current, baseline, now=None, collect=collect_one):
             result=collect(source,now)
             old=baseline.get(source['id'])
             if old is None:
-                # Only explicitly identified catalogue ETF parts may bootstrap.
+                # Explicitly identified ETF parts and equities may bootstrap.
                 # Existing simulator histories still require their baseline.
-                if (source.get('consumerScope') != 'catalog' or source.get('parser') != 'yahoo'
+                equity = (source.get('consumerScope') == 'equity' and source.get('instrumentType') == 'EQUITY'
+                          and source.get('symbol') and source.get('timezone') and source.get('label')
+                          and source.get('parser') == 'yahoo' and source.get('field') == 'adjclose'
+                          and source.get('collectAnniversary') is True)
+                if not equity and (source.get('consumerScope') != 'catalog' or source.get('parser') != 'yahoo'
                         or source.get('field') != 'adjclose' or not re.fullmatch(r'[A-Z]{2}[A-Z0-9]{9}[0-9]', source.get('isin',''))
                         or not source.get('listingEvidenceId')):
                     reject('Unregistered monthly history bootstrap')
                 if result['points'][0][0] != source['periodStart']:
-                    reject('New ETF coverage differs from its registered start')
+                    reject('New history coverage differs from its registered start')
             else:
                 if old['currency'] != result['currency'] or result['points'][0][0] != old['points'][0]['date']:
                     reject('Existing series currency or coverage changed')

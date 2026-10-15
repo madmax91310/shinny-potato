@@ -18,10 +18,12 @@ IDS = {'ethereum','stoxx600','sp500','msciWorld','nasdaq100','soxx','silver','ap
 def configurations():
     sources = json.loads((ROOT/'scripts/monthly-automation.json').read_text())['series']
     etfs = [s for s in sources if s.get('consumerScope') == 'catalog' and s.get('collectAnniversary')]
-    sources = [{**s, 'field': 'close'} for s in sources if s['id'] in IDS or s in etfs]
+    active = json.loads((ROOT/'src/data/automated-monthly.json').read_text())
+    equities = [s for s in sources if s.get('consumerScope') == 'equity' and s['id'] in active]
+    sources = [{**s, 'field': 'close'} for s in sources if s['id'] in IDS or s in etfs or s in equities]
     sources += [{'id':'bitcoin','label':'Bitcoin','parser':'yahoo','symbol':'BTC-USD','currency':'USD','field':'close','timezone':'UTC'},
                 {'id':'cac40','label':'CAC 40','parser':'yahoo','symbol':'^FCHI','currency':'EUR','field':'close','timezone':'Europe/Paris'}]
-    if {s['id'] for s in sources} != IDS | {'bitcoin','cac40'} | {s['id'] for s in etfs}: reject('Configuration anniversaire incomplète')
+    if {s['id'] for s in sources} != IDS | {'bitcoin','cac40'} | {s['id'] for s in etfs} | {s['id'] for s in equities}: reject('Configuration anniversaire incomplète')
     from refresh_anniversary_indices import configurations as index_configurations
     return sources + index_configurations()
 

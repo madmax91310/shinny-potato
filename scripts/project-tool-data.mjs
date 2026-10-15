@@ -1,3 +1,4 @@
+import { compactHistory } from './compact-history.mjs'
 import { readFileSync } from 'node:fs'
 import { createHash } from 'node:crypto'
 import * as marketFacts from '../src/pages/market-facts/data.js'
@@ -54,7 +55,7 @@ export function projectToolData() {
     if (part.length) parts.push(part)
     const imports = parts.map((part, i) => {
       const key = `virtual:tool-data:${name}:${i}`
-      modules.set(key, compactLiteral(array ? part : Object.fromEntries(part)))
+      modules.set(key, name.startsWith('history-') ? compactHistory(Object.fromEntries(part)) : compactLiteral(array ? part : Object.fromEntries(part)))
       groups.push({ name: `${name}-${i}`, test: new RegExp(`tool-data:${name}:${i}$`), priority: 120 })
       return `import p${i} from '${key}';`
     }).join('\n')
