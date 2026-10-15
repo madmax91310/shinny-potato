@@ -17,11 +17,12 @@ export function donutData(analysis){
  // Source rounding can marginally exceed covered weight. Scale only that excess.
  const scale=total>group.coverage?group.coverage/total:1
  const known=raw.map(r=>({...r,weight:r.weight*scale})).sort((a,b)=>b.weight-a.weight)
- const rows=known.slice(0,4).map((r,i)=>({...r,color:colors[i]}))
- const rest=known.slice(4).reduce((s,r)=>s+r.weight,0)
- if(rest>0)rows.push({name:'Autres expositions',weight:rest,color:colors[4]})
+ const named=known.filter(r=>!/^autres?$|^other$/i.test(r.name))
+ const rows=named.slice(0,4).map((r,i)=>({...r,color:colors[i]}))
+ const rest=known.reduce((s,r)=>s+r.weight,0)-rows.reduce((s,r)=>s+r.weight,0)
+ if(rest>1e-9)rows.push({name:'Autres expositions',weight:rest,color:colors[4]})
  const missing=Math.max(0,100-rows.reduce((s,r)=>s+r.weight,0))
- if(missing>.000001)rows.push({name:'Hors photographie',weight:missing,color:'#57718e'})
+ if(missing>.000001)rows.push({name:'Non ventilé ici',weight:missing,color:'#57718e'})
  return {group,rows}
 }
 export function renderDcaImage(input){
@@ -62,7 +63,7 @@ export function renderDcaImage(input){
  text(ctx,'EXPOSITION',cx-99,cy-9,198,25)
  text(ctx,'géographique',cx-82,cy+29,170,22,C.muted,500)
  const start=rows.length>5?457:485,step=rows.length>5?65:70
- rows.forEach((row,i)=>{const y=start+i*step;box(ctx,1242,y-14,14,14,row.color);text(ctx,row.name,1270,y,234,24);text(ctx,pct(row.weight),1370,y+30,132,27,row.color,800)})
+ rows.forEach((row,i)=>{const y=start+i*step;box(ctx,1242,y-14,14,14,row.color);text(ctx,row.name,1270,y,234,24);text(ctx,pct(row.weight),1370,y+30,132,27,row.color==='#57718e'?C.muted:row.color,800)})
  if(group){
   text(ctx,`${group.asOf} · ${group.basis==='fund'?'Fonds':'Indice'} · couverture ${pct(group.coverage)}`,802,882,697,21,C.muted,500)
   if(group.classification==='Pays d’enregistrement DWS')text(ctx,'Pays d’enregistrement',802,913,697,20,C.muted,500)

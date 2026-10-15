@@ -72,5 +72,5 @@ try {
   assert(await page.getByRole('img',{name:/Portefeuille et versements de/}).isVisible())
   assert(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth+1))
   await page.screenshot({path:'test-artifacts/dca/mobile.png',fullPage:true})
-  console.log('100 images DCA : données, texte sans mention fictive, aucun chevauchement ni dépassement, aperçu, changement de profil, téléchargement et mobile validés.')
+  console.log('103 images DCA : données, texte sans mention fictive, aucun chevauchement ni dépassement, aperçu, changement de profil, téléchargement et mobile validés.')
 } finally {await browser?.close();server.kill('SIGTERM')}

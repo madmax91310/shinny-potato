@@ -43,7 +43,7 @@ for(const [i,raw] of PROFILES.entries()){
 }
 const snapshot=(coverage,rows,asOf='2026-10-01')=>({coverage,rows,asOf,basis:'fund'})
 const partial=donutData({countries:{groups:[snapshot(60,[{name:'France',weight:30},{name:'Japon',weight:30}]),snapshot(40,[{name:'États-Unis',weight:40}],'2026-09-30')]}})
-assert.equal(partial.rows.find(r=>r.name==='Hors photographie').weight,40)
+assert.equal(partial.rows.find(r=>r.name==='Non ventilé ici').weight,40)
 assert(!partial.rows.some(r=>r.name==='États-Unis'))
 assert.equal(donutData({countries:{groups:[]}}).rows[0].weight,100)
 assert.equal(incomeLabel({job:'retraité',variable:false}),'Retraite')
