@@ -4,7 +4,7 @@ const now=new Date('2026-10-12T12:00:00Z')
 const previous={end:'2024-12-31',revenue:100,netIncome:10,operatingCashFlow:30,capitalExpenditure:10,freeCashFlow:20,freeCashFlowDefinition:'same',averageDilutedShares:10,sharesBasisSource:'same-filing',sourceUrl:'https://issuer.test/report'}
 const latest={...previous,end:'2025-12-31',revenue:120,netIncome:12,operatingCashFlow:42,capitalExpenditure:12,freeCashFlow:30,interestExpense:2,operatingIncome:20,dividendsPaid:9,averageDilutedShares:11}
 const c={id:'test',currency:'USD',accountsObservedAt:'2026-10-12',annual:{end:latest.end,revenue:120,netIncome:12,freeCashFlow:30},
-  quote:{price:100,asOf:'2026-10-09',splits:[]},shares:{outstanding:10,asOf:'2026-09-30',observedAt:'2026-10-12'},
+  quote:{currency:'USD',sourceUrl:'https://example.com/quotes',price:100,asOf:'2026-10-09',splits:[]},shares:{outstanding:10,asOf:'2026-09-30',observedAt:'2026-10-12'},
   decision:{observedAt:'2026-10-12',annualEnd:latest.end,years:[previous,latest]}}
 let r=decisionRatios(c,now)
 assert.equal(r.fcfMargin,25);assert.equal(r.cashConversion,250);assert.equal(r.fcfYield,3)

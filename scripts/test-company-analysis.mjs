@@ -46,7 +46,7 @@ assert.equal(buildTweetText(refreshed, now), '')
 assert.match(buildTweetText(refreshed, observationDate(refreshed)), /💰 .*exercice terminé en/)
 assert.equal(canPublish(refreshed, new Date('2026-11-23T12:00:00Z')), false)
 
-const computed = { ...base, quote:{price:100,asOf:'2026-10-06',splits:[]},
+const computed = { ...base, quote:{currency:'USD',sourceUrl:'https://example.com/quotes',price:100,asOf:'2026-10-06',splits:[]},
   trailing:{end:'2026-06-30',dilutedEPS:5,observedAt:'2026-10-07'},
   quarters:[{end:'2026-06-30'},{end:'2026-03-31'},{end:'2025-12-31'},{end:'2025-09-30'}],
   balance:{asOf:'2026-06-30',observedAt:'2026-10-07',netDebt:-10e9,debt:5e9,cash:15e9},
@@ -141,7 +141,7 @@ for (const company of COMPANIES) {
 }
 console.log('Company image: live PER, missing/stale values, dated annual results and losses OK.')
 
-const forecasted = {...base, quote:{price:100,asOf:'2026-10-06',splits:[]},
+const forecasted = {...base, quote:{currency:'USD',sourceUrl:'https://example.com/quotes',price:100,asOf:'2026-10-06',splits:[]},
   estimates:{forwardEPS:5,growthEPS5Y:10,observedAt:'2026-10-07',accountsEndAtCollection:'2025-12-31'}}
 assert.equal(activeEstimates(forecasted,now).forwardPE,20)
 assert.equal(activeEstimates(forecasted,now).peg,2)
@@ -176,7 +176,7 @@ const gap = structuredClone(historic);gap.history.years[0].end='2022-12-31'
 assert.deepEqual(activeHistory(gap,now),[])
 console.log('Forward PER/PEG: common close, missing/negative growth, splits, freshness and new results; annual history: losses, periods, recalculated margins and matching accounts OK.')
 
-const european = {...base, currency:'EUR', accountingStandard:'IFRS', halfYear:{...base.annual,end:'2026-06-30',durationMonths:6}, annual:{...base.annual,dilutedEPS:5}, quote:{price:100,asOf:'2026-10-06',splits:[]}, estimates:null}
+const european = {...base, currency:'EUR', accountingStandard:'IFRS', halfYear:{...base.annual,end:'2026-06-30',durationMonths:6}, annual:{...base.annual,dilutedEPS:5}, quote:{currency:'EUR',sourceUrl:'https://example.com/quotes',price:100,asOf:'2026-10-06',splits:[]}, estimates:null}
 assert.equal(calculatedRatios(european,now).peAnnual,20)
 assert.equal(calculatedRatios(european,now).peTTM,undefined)
 assert(!buildTweetText(european,now).includes("Semestre"))
@@ -218,7 +218,7 @@ const appleProfile = COMPANIES.find(c => c.id === 'apple')
 // Freeze the reviewed 2025 source scenario; daily collection must not invalidate this fixture.
 const apple = {...appleProfile, accountsObservedAt:'2026-10-10',
  annual:{...appleProfile.annual,...appleProfile.annualContext}, quarter:null, halfYear:null,
- quote:{price:340.42,asOf:'2026-10-08',splits:[]},
+ quote:{currency:'USD',sourceUrl:'https://example.com/quotes',price:340.42,asOf:'2026-10-08',splits:[]},
  trailing:{end:'2026-06-27',dilutedEPS:8.72,observedAt:'2026-10-10'},
  quarters:[{end:'2026-06-27',dilutedEPS:2.02},{end:'2026-03-28',dilutedEPS:2.01},
    {end:'2025-12-27',dilutedEPS:2.84},{end:'2025-09-27',dilutedEPS:1.85}]}

@@ -43,9 +43,10 @@ export const impliedReturn = (input, price) => solve(discount => cashValue({...i
 
 export function valuationInputs(company, now = new Date()) {
   const reasons = [], q = company.quote, d = activeDecision(company, now)
-  const quoteOK = canPublish(company, now) && q?.currency === company.currency && positive(q?.price)
-    && fresh(q.asOf, 10, now) && Array.isArray(q.splits)
-  if (!quoteOK) reasons.push('Cours récent et devise cohérente requis.')
+  const quoteOK = canPublish(company, now) && company.annual?.sourceUrl?.startsWith('https://') && q?.currency === company.currency && positive(q?.price)
+    && q.sourceUrl?.startsWith('https://') && fresh(q.asOf, 10, now) && Array.isArray(q.splits)
+  if (!quoteOK) reasons.push('Comptes et cours récents, source et devise cohérente requis.')
+  const commonReasons=[...reasons]
   if (!d || d.accountsEndAtCollection !== latestAccountsEnd(company)) reasons.push('Composantes annuelles à renouveler.')
   // Publication counts from different documents may have different split bases.
   // Explicitly certified full-window split observation is required; never infer from an empty two-year quote feed.
@@ -71,9 +72,10 @@ export function valuationInputs(company, now = new Date()) {
   const ratios = calculatedRatios(company, now), estimates = activeEstimates(company, now)
   const eps = ratios.peTTM ? company.trailing.dilutedEPS : ratios.peAnnual ? company.annual.dilutedEPS : null
   const earningsReady = Boolean(quoteOK && positive(eps) && positive(estimates?.growthEPS5Y))
-  const cashReady = Boolean(quoteOK && basisOK && continuous)
+  const cashReady = Boolean(quoteOK && basisOK && normalisedOK && continuous)
+  const cashReasons=[...reasons]
   const elapsed = continuous ? (Date.parse(history.at(-1).end)-Date.parse(history[0].end))/86400000/365.25 : null
-  return {cashReady, earningsReady, reasons, history, price: quoteOK ? q.price : null, eps,
+  return {cashReady, earningsReady, reasons, commonReasons, cashReasons, history, price: quoteOK ? q.price : null, eps,
     reportedCashPerShare: quoteOK && basisOK && history.at(-1)?.end === company.annual?.end ? history.at(-1).value : null,
     cashBase: cashReady ? history.at(-1).value : null,
     historicalGrowth: cashReady ? (history.at(-1).value/history[0].value)**(1/elapsed)-1 : null,

@@ -6,6 +6,7 @@ import { buildPriceScenarios, targetChart, targetReading } from './priceTargets.
 import { dateLabel, calculatedRatios } from './lib.js'
 import { formatValue as n } from './valuationPresentation.js'
 import ValuationChart from './ValuationChart.jsx'
+import DataQualification from './DataQualification.jsx'
 import ValuationExplorer from './ValuationExplorer.jsx'
 
 const pct=v=>Number.isFinite(v)?`${v>=0?'+':'−'}${n(Math.abs(v)*100)} %`:'—'
@@ -29,6 +30,7 @@ export default function ValuationPanel({company}) {
       {metric('FCF / action',Number.isFinite(inputs.reportedCashPerShare)?`${n(inputs.reportedCashPerShare,2)} ${currency}`:'—',`Exercice ${company.annual?.end?.slice(0,4)??'—'}`)}
       {metric('Rendement FCF',Number.isFinite(inputs.reportedCashPerShare)&&inputs.price?`${n(inputs.reportedCashPerShare/inputs.price*100)} %`:'—','FCF annuel / cours')}
     </dl>
+    <DataQualification company={company} model={automatic} now={now}/>
     <div className="valuation-horizon" role="group" aria-label="Horizon de prévision"><span>Objectifs à</span>{[1,3,5].map(h=><button type="button" key={h} aria-pressed={years===h} onClick={()=>setYears(h)}>{h} an{h>1?'s':''}</button>)}<span>{automatic.targetDate?dateLabel(automatic.targetDate):''}</span></div>
     <div className="valuation-main"><div className="valuation-thesis">
       <span className="valuation-eyebrow">{ready?`OBJECTIF ${automatic.scenarios[selected].name.toUpperCase()} À ${years} AN${years>1?'S':''}`:'PRÉVISION NON DISPONIBLE'}</span>
@@ -39,7 +41,7 @@ export default function ValuationPanel({company}) {
     {ready&&<>
       <div className="valuation-scenarios" role="group" aria-label="Choisir un scénario">{automatic.scenarios.map((s,i)=>{const r=model?.scenarios[i],a=cash?r?.cashAssumptions:r?.earningsAssumptions,t=cash?r?.cashTarget:r?.earningsTarget;return <button type="button" key={s.name} aria-pressed={selected===i} onClick={()=>setSelected(i)} className={`scenario-${i}`}><span>{s.name}</span><strong>{n(t?.value,2)} <small>{currency}</small></strong><span>{pct(t?.upside)} · {pct(t?.annualised)} / an</span><small>{a?`${n(a.growth*100)} % annualisés équivalents · sortie ${n(a.multiple)}×`:'Hypothèses à corriger'}</small></button>})}</div>
       {model?.orderChanged&&<p className="valuation-projection-note">Avec tes réglages, les objectifs ne suivent plus l’ordre prudent → central → favorable.</p>}
-      <p className="valuation-projection-note">Prévisions conditionnelles à {years} an{years>1?'s':''}, hors dividendes. Les scénarios ne sont ni des garanties ni des objectifs de cours d’analystes.</p>
+      <p className="valuation-projection-note">Scénarios conditionnels à {years} an{years>1?'s':''}, hors dividendes. Les scénarios ne sont ni des garanties ni des objectifs de cours d’analystes.</p>
       <details className="valuation-assumptions"><summary>Ajuster les hypothèses</summary><p>{automatic.rules}</p>
         <div className="company-history-scroll"><table><caption>Objectif futur = {cash?'FCF/action':'BPA'} projeté × multiple de sortie</caption><thead><tr><th>Scénario</th><th>Croissance annualisée équivalente</th><th>Multiple de sortie</th><th>Objectif à {years} ans</th></tr></thead><tbody>{automatic.scenarios.map((s,i)=>{
           const original=cash?s.cashAssumptions:s.earningsAssumptions,field=cash?'cashGrowth':'earningsGrowth',multipleField=cash?'cashMultiple':'earningsMultiple'
@@ -60,9 +62,9 @@ export default function ValuationPanel({company}) {
     </details>}
     <ForecastEvaluation company={company}/>
     <details className="valuation-publication-details" onToggle={e=>setPublicationOpen(e.currentTarget.open)}><summary>Préparer la publication pour X</summary>{publicationOpen&&<ValuationPublication company={company} overrides={overrides} selected={selected} method={method} now={now} years={years}/>}</details>
-    <footer className="valuation-footer"><span>Données actualisées automatiquement</span><span>Pas un conseil financier</span></footer>
+    <footer className="valuation-footer"><span>Collecte automatique · disponibilité contrôlée</span><span>Pas un conseil financier</span></footer>
     <details className="valuation-methodology"><summary>Sources, disponibilité et méthode</summary><p>{automatic.note}</p><p>{automatic.rules}</p><p>Bénéfices : BPA ajusté du premier exercice se terminant après chaque échéance, associé à un PER prévisionnel ajusté. Les exercices sourcés et extrapolés sont distingués. FCF : croissance ramenée progressivement vers une référence de chiffre d’affaires. Le multiple rejoint progressivement celui du scénario ; cette trajectoire est une convention, pas une prévision des fluctuations de marché.</p>
-      {!inputs.cashReady&&<p>Modèle FCF suspendu : {inputs.reasons.join(' ')}</p>}{!inputs.earningsReady&&<p>Modèle bénéfices suspendu : {inputs.reasons.join(' ')}</p>}
+      {!inputs.cashReady&&<p>Modèle FCF suspendu : {automatic.evidence.methodReasons.cash.join(' ')}</p>}{!inputs.earningsReady&&<p>Modèle bénéfices suspendu : {automatic.evidence.methodReasons.earnings.join(' ')}</p>}
       {company.quote?.sourceUrl&&<p><a href={company.quote.sourceUrl} target="_blank" rel="noreferrer">Cours de clôture · Yahoo Finance</a> · {dateLabel(company.quote.asOf)} · hors dividendes réinvestis.</p>}
       {company.targetForecast&&<p><a href={company.targetForecast.sourceUrl} target="_blank" rel="noreferrer">BPA ajustés et multiples historiques · Stock Analysis / S&amp;P Global</a> · {dateLabel(company.targetForecast.asOf)}</p>}
       {company.valuationShareBasis&&<p><a href={company.valuationShareBasis.sourceUrl} target="_blank" rel="noreferrer">Base comparable du FCF/action</a> · {dateLabel(company.valuationShareBasis.observedAt)}</p>}

@@ -1,6 +1,11 @@
 const finite = value => typeof value === 'number' && Number.isFinite(value)
-const fr = (value, digits = 1) => new Intl.NumberFormat('fr-FR', { maximumFractionDigits: digits, minimumFractionDigits: digits }).format(value)
-export const dateLabel = value => new Intl.DateTimeFormat('fr-FR', { timeZone: 'UTC' }).format(new Date(`${value}T00:00:00Z`))
+const numberFormats = new Map()
+const fr = (value, digits = 1) => {
+  if (!numberFormats.has(digits)) numberFormats.set(digits, new Intl.NumberFormat('fr-FR', {maximumFractionDigits:digits, minimumFractionDigits:digits}))
+  return numberFormats.get(digits).format(value)
+}
+const dateFormat = new Intl.DateTimeFormat('fr-FR', {timeZone:'UTC'})
+export const dateLabel = value => dateFormat.format(new Date(`${value}T00:00:00Z`))
 export function amount(value, currency = 'USD') {
   if (!finite(value)) return 'Non disponible'
   const unit = Math.abs(value) >= 1e9 ? 1e9 : 1e6
@@ -46,7 +51,7 @@ export function activeHistory(company, now = new Date()) {
 }
 export function calculatedRatios(company, now = new Date()) {
   const a = company.annual, q = company.quote, t = company.trailing
-  if (!canPublish(company, now) || !q || !finite(q.price) || q.price <= 0 || !Array.isArray(q.splits) || !fresh(q.asOf, 10, now)) return {}
+  if (!canPublish(company, now) || !q || q.currency !== company.currency || !q.sourceUrl?.startsWith('https://') || !finite(q.price) || q.price <= 0 || !Array.isArray(q.splits) || !fresh(q.asOf, 10, now)) return {}
   const splitAfter = end => (q.splits ?? []).some(date => date > end && date <= q.asOf)
   const result = {}
   const splitDates = (q.splits ?? []).filter(date => date > (company.quarters?.at(-1)?.end ?? '') && date <= q.asOf)

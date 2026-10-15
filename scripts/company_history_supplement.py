@@ -8,7 +8,7 @@ from company_standard_financials import collect
 from company_decision import validate_decision
 from refresh_company_analysis import validate_history
 
-SUPPORTED = {'adobe', 'booking', 'nike'}
+SUPPORTED = {'adobe', 'booking', 'nike', 'alphabet', 'meta', 'visa', 'deere'}
 
 
 def supplement(profile, company, today, load=collect):

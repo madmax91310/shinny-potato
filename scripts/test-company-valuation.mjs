@@ -23,7 +23,7 @@ const years = [2022,2023,2024,2025].map((year,i)=>({end:`${year}-12-31`, revenue
   freeCashFlowDefinition:'operating-minus-capex', sourceUrl:'https://example.com/accounts', sharesBasisSource:'https://example.com/accounts'}))
 const company={valuationBusinessType:'operating-company',currency:'USD', accountingStandard:'IFRS', accountsObservedAt:'2026-10-14',
   annual:{...years.at(-1),dilutedEPS:10}, quarter:{end:'2026-06-30'},
-  quote:{price:200,currency:'USD',asOf:'2026-10-14',splits:[]},
+  quote:{sourceUrl:'https://example.com/quotes',price:200,currency:'USD',asOf:'2026-10-14',splits:[]},
   estimates:{observedAt:'2026-10-14',accountsEndAtCollection:'2026-06-30',forwardEPS:12,growthEPS5Y:9},
   decision:{observedAt:'2026-10-14',annualEnd:'2025-12-31',accountsEndAtCollection:'2026-06-30',years}}
 

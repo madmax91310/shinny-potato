@@ -571,6 +571,7 @@ def main():
                 failures.append(ident + ':valuation')
         else:
             status['valuation'] = 'public-finviz-estimates' if status.get('estimates') == 'updated' else 'published-accounts-only'
+        item['valuationCollection'] = {'observedAt':now.date().isoformat(), **{k:v for k,v in status.items() if k in ('valuationShareBasis','valuationShareBasisDetail','targetForecast','targetForecastDetail','targetCashReference','targetCashReferenceDetail','historySupplement','historySupplementDetail')}}
         if item:
             data['companies'][ident] = item
         report['companies'][ident] = status
