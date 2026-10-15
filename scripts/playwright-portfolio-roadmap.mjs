@@ -22,7 +22,7 @@ try {
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+2),false)
   await page.screenshot({path:`test-artifacts/portfolio-roadmap/duel-${width}.png`,fullPage:true})
   await page.goto(`${base}/generateur-portefeuilles`,{waitUntil:'networkidle'})
-  const generatorPreview=page.locator('.workspace-view-switch').getByRole('button',{name:'Aperçu',exact:true})
+  const generatorPreview=page.locator('.workspace-view-switch').getByRole('button',{name:'Réglages',exact:true})
   if(await generatorPreview.isVisible())await generatorPreview.click()
   await page.locator('.pg-alloc-list').waitFor()
   const history=page.getByRole('link',{name:'Performance de cette part'}).first()
