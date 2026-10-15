@@ -17,6 +17,9 @@ export const ROLES = { base: 'Base', complement: 'Complément', theme: 'Thémati
 
 // Sélection éditoriale : les chiffres restent exclusivement dans les registres communs.
 const choices = [
+ ['industry_world_dws','theme','Industrie mondiale','industrials'],
+ ['world-staples','theme','Consommation de base mondiale','staples'],
+ ['world-discretionary','theme','Consommation discrétionnaire mondiale','discretionary'],
  ['europe-food','theme','Alimentation et boissons européennes','europe-food'],
  ['europe-media','theme','Médias européens','europe-media'],
  ['europe-retail','theme','Distribution européenne','europe-retail'],
