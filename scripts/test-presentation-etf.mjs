@@ -15,7 +15,7 @@ for (const r of PRESENTATION_ETF_ADDITIONS) {
   assert(getETFArt(card.id));
   assert.equal(card.presentationOnly, !r.portfolioEnabled);
   const asset = ASSETS.find(a => a.isin === r.isin);
-  if (r.portfolioEnabled) { assert(asset?.manualOnly); assert.equal(asset.r.length, 6); assert(asset.r.every(Number.isFinite)); }
+  if (r.portfolioEnabled) { assert(asset); assert.equal(asset.r.length, 6); assert(asset.r.every(Number.isFinite)); }
   else assert(!asset);
   assert(config.some(s => s.isin === r.isin && s.enabled && s.required));
   assert(record.aum.amount > 0 && record.aum.asOf && record.aum.checkedAt);

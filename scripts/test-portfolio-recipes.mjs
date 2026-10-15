@@ -44,7 +44,7 @@ try {
       function visit(index, selection) {
         if(index===recipe.assets.length) { validate(profile.id,risk,selection); combinations++; return; }
         const slot=recipe.assets[index];
-        for(const id of slot.idOptions??[slot.id]) visit(index+1,[...selection,{id,pct:slot.pct,r:getAsset(id).r}]);
+        for(const id of slot.idOptions??[slot.id]) { assert.ok(!getAsset(id).manualOnly, `${id}: réservé au manuel`); visit(index+1,[...selection,{id,pct:slot.pct,r:getAsset(id).r}]); }
       }
       try { visit(0,[]); } catch(error) { throw new Error(`${profile.id}/${risk}/${recipe.id}: ${error.message}`); }
     }
