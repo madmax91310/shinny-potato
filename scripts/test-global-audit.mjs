@@ -79,3 +79,21 @@ if (process.argv.includes('--browser')) {
   console.log('Audit global Chromium : expositions des deux outils, fenêtres historiques, sources regroupées, archives 13F et cinq pages mobiles validés.')
  } finally {await browser?.close();server.kill()}
 }
+
+// Never combine incompatible or undeclared taxonomies, or call partial rows complete.
+const {comparePortfolioExposure}=await import('../src/lib/portfolio-exposure.js')
+const sector={...observation,method:'Published Sector weights, percent of net assets, no renormalisation'}
+const subindustry={...sector,method:'Published SubIndustry weights, percent of net assets, no renormalisation'}
+const taxonomies={a:{sectors:sector},b:{sectors:subindustry}}
+assert.equal(portfolioExposure(lines,taxonomies,'sectors').length,2)
+assert.deepEqual(comparePortfolioExposure([{isin:'a',pct:100}],[{isin:'b',pct:100}],taxonomies,'sectors'),[])
+taxonomies.b.sectors={...sector}
+assert.equal(portfolioExposure(lines,taxonomies,'sectors').length,1)
+assert.equal(comparePortfolioExposure([{isin:'a',pct:100}],[{isin:'b',pct:100}],taxonomies,'sectors').length,1)
+taxonomies.a.sectors={...sector,rows:[{name:'Technology',weightPct:40}]}
+const partialExposure=portfolioExposure([{isin:'a',pct:100}],taxonomies,'sectors')[0]
+assert.equal(partialExposure.coverage,100)
+assert.equal(partialExposure.detailedCoverage,40)
+assert.equal(partialExposure.complete,false)
+assert.deepEqual(comparePortfolioExposure([{isin:'a',pct:100}],[{isin:'a',pct:100}],taxonomies,'sectors'),[])
+assert.equal(portfolioExposure(lines,{a:{countries:observation},b:{countries:observation}},'countries').length,2)

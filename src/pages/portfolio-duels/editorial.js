@@ -31,22 +31,11 @@ export function duelEditorial(duel) {
  const label=asset=>hookLabels[asset.exposure] ?? asset.label
  const allocation=asset=>`${asset.pct} % ${/^[aeiouéèêîôœ]/i.test(label(asset)) ? 'd’' : 'de '}${label(asset)}`
  const describe=portfolio=>portfolio.assets.map(allocation).join(' et ')
- const soloWorld=portfolio=>portfolio.assets.length===1 && portfolio.assets[0].exposure==='world'
  const sameBase=a.assets[0].id===b.assets[0].id && a.assets[0].pct===b.assets[0].pct
  const extra=portfolio=>portfolio.assets.slice(1).map(allocation).join(' et ')
- const solo=soloWorld(a) ? a : soloWorld(b) ? b : null
- const mixed=solo===a ? b : a
- let hookQuestion
- if (solo && mixed.assets.length>1 && mixed.assets[0].exposure==='world') {
-  // Le montant et la comparaison sont explicites avant de présenter les résultats.
-  hookQuestion=`Avec 10 000 € investis, aurais-tu gagné davantage avec un ETF World seul ou avec ${describe(mixed)} ?`
- } else if (sameBase && a.assets.length>1 && b.assets.length>1) {
-  hookQuestion=`Avec 10 000 € investis et ${allocation(a.assets[0])} dans les deux cas, aurais-tu gagné davantage avec ${extra(a)} ou ${extra(b)} ?`
- } else if (a.assets.length===1 && b.assets.length===1) {
-  hookQuestion=`Avec 10 000 € investis, quel ETF t’aurait rapporté le plus : ${label(a.assets[0])} ou ${label(b.assets[0])} ?`
- } else {
-  hookQuestion=`Avec 10 000 € investis, lequel de ces portefeuilles t’aurait rapporté le plus : ${describe(a)} ou ${describe(b)} ?`
- }
+ const hookQuestion=sameBase
+  ? `Avec 10 000 € investis et ${allocation(a.assets[0])} dans les deux cas, aurais-tu gagné davantage avec ${extra(a)} ou ${extra(b)} ?`
+  : `Avec 10 000 € investis, lequel de ces portefeuilles t’aurait rapporté le plus : ${describe(a)} ou ${describe(b)} ?`
  const hook=`${hookQuestion}\n\nVoici la comparaison entre début ${years[0]} et fin ${years.at(-1)}, sans versement supplémentaire 👇`
  const year=years.reduce((best,y)=>Math.abs(a.annual[y]-b.annual[y])>Math.abs(a.annual[best]-b.annual[best])?y:best)
  const question=topic?.[1] ?? duel.closingQuestion ?? `Tu choisirais ${a.name} ou ${b.name}, et qu’est-ce qui ferait pencher ton choix ?`
@@ -55,26 +44,20 @@ export function duelEditorial(duel) {
  if (same) {
   conclusion='À l’euro près, les deux portefeuilles arrivent au même montant.'
   if (!equalAnnual) conclusion+=' Leurs résultats annuels diffèrent : arriver au même montant ne signifie pas avoir traversé les mêmes variations.'
- } else if (gap<200) {
-  conclusion=`Sur cette période, les deux portefeuilles arrivent presque au même résultat. Avec seulement ${money(gap)} d’écart, je regarderais aussi leurs frais, leur composition et les baisses traversées pour les départager.`
- } else if (solo && mixed.assets.length===2 && mixed.assets[0].exposure==='world' && ['smallcap','us-small'].includes(mixed.assets[1].exposure)) {
-  const small=mixed.assets[1].exposure==='us-small' ? 'Les petites entreprises américaines' : 'Les petites entreprises des pays développés'
-  const count=({3:'trois',4:'quatre',5:'cinq',6:'six'})[years.length] ?? years.length
-  const wins=mixed.final>solo.final
-  conclusion=`${small} sont absentes du MSCI World, donc je comprends qu’on veuille les ajouter à son portefeuille.\n\n${wins ? 'Sur' : 'Mais sur'} ces ${count} années, le portefeuille qui en contient termine avec ${money(gap)} de ${wins ? 'plus' : 'moins'}.`
-  const first=years[0]
-  if (mixed.annual[first]>solo.annual[first]+.001 && years.slice(1).every(y=>mixed.annual[y]<solo.annual[y]-.001)) {
-   conclusion+=` Il fait ${mixed.annual[first]-solo.annual[first]<1 ? 'légèrement ' : ''}mieux en ${first}, puis moins bien que le World seul chaque année suivante.`
-  } else if (years.every(y=>mixed.annual[y]<solo.annual[y]-.001)) {
-   conclusion+=' Il fait moins bien que le World seul chacune des années comparées.'
-  } else if (years.every(y=>mixed.annual[y]>solo.annual[y]+.001)) {
-   conclusion+=' Il fait mieux que le World seul chacune des années comparées.'
-  }
- } else if (solo && mixed.assets.length===2 && mixed.assets[0].exposure==='world' && mixed.assets[1].exposure==='nasdaq' && mixed.final>solo.final && mixed.worst<solo.worst && mixed.worst<0 && solo.worst<0 && mixed.worstYear===solo.worstYear) {
-  conclusion=`Avec la poche Nasdaq, le portefeuille termine avec ${money(gap)} de plus sur cette période, mais elle accentue aussi la baisse en ${mixed.worstYear} : ${move(mixed.worst).replace('perd','le portefeuille perd')}, contre ${percent(solo.worst)} pour le World seul. La performance finale ne suffit donc pas à départager ces portefeuilles.`
  } else {
-  conclusion=`Sur cette période, le portefeuille ${b.final>a.final ? 'B' : 'A'} termine avec ${money(gap)} de plus.`
-  if (!equalAnnual) conclusion+=` En ${year}, A ${move(a.annual[year])}, et B ${move(b.annual[year])}.`
+  const winner=b.final>a.final ? b : a
+  const other=winner===a ? b : a
+  const winnerName=winner===a ? 'A' : 'B'
+  const otherName=winner===a ? 'B' : 'A'
+  conclusion=`Sur cette période, le portefeuille ${winnerName} termine avec ${money(gap)} de plus.`
+  if (gap<200) conclusion+=' Cet écart reste faible pour 10 000 € investis : la composition, les frais et les baisses traversées comptent aussi pour les départager.'
+  if (winner.worst<other.worst && winner.worst<0) {
+   conclusion+=` Mais sa pire année est plus difficile : ${winnerName} ${move(winner.worst)} en ${winner.worstYear}, contre ${otherName} qui ${move(other.worst)} en ${other.worstYear}. La performance finale ne suffit donc pas à départager ces portefeuilles.`
+  } else if (!equalAnnual) {
+   conclusion+=` En ${year}, A ${move(a.annual[year])}, et B ${move(b.annual[year])}.`
+  }
+  if (a.assets[0].exposure!==b.assets[0].exposure) conclusion+=' Leur placement principal change aussi : cet écart porte sur les portefeuilles entiers, pas seulement sur leurs compléments.'
  }
+
  return {hook,question,conclusion}
 }

@@ -10,6 +10,14 @@ try {
   browser=await chromium.launch({headless:true, ...(process.env.CHROMIUM_PATH ? {executablePath:process.env.CHROMIUM_PATH,args:['--no-sandbox']} : {})})
   const page=await browser.newPage({viewport:{width:1440,height:1100}})
   await page.goto(base+'le-dca-de')
+  for(const scope of ['PEA','CTO','PEA + CTO','Ensemble des placements','Portefeuille investi']){
+    const picker=page.getByRole('group',{name:'Périmètre du portefeuille',exact:true})
+    await picker.locator(`[data-option][data-value="${scope}"]`).click()
+    assert.equal(await picker.locator('[aria-pressed="true"]').getAttribute('data-value'),scope)
+    const text=await page.locator('textarea').inputValue()
+    assert(!/undefined|NaN/.test(text))
+    if(scope!=='Portefeuille investi')assert(text.includes(`(${scope})`))
+  }
   const records=await page.evaluate(async()=>{
     const {PROFILES, ASSETS}=await import('/shinny-potato/src/pages/dca-profiles/data.js')
     const {prepareProfile, references}=await import('/shinny-potato/src/pages/dca-profiles/engine.js')

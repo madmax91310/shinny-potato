@@ -5,5 +5,5 @@ export const PORTFOLIO_EXPOSURES = Object.fromEntries(Object.entries(AUTOMATED_E
     const o = r[field]
     const basis = o?.basis ?? (r.provider === 'iShares' ? 'fund' : null)
     return o && ['fund', 'index', 'tracked-index'].includes(basis)
-      ? [[field, { ...o, basis: basis === 'tracked-index' ? 'index' : basis, sourceUrl: o.sourceUrl ?? r.sourceUrl }]] : []
+      ? [[field, { ...o, provider:r.provider, basis: basis === 'tracked-index' ? 'index' : basis, sourceUrl: o.sourceUrl ?? r.sourceUrl }]] : []
   }))]))

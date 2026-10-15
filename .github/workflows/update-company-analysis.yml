@@ -7,6 +7,8 @@ on:
     paths:
       - '.github/workflows/update-company-analysis.yml'
       - 'scripts/*company*'
+      - 'scripts/commit-validated-data.sh'
+      - 'scripts/test_validated_data_commit.py'
       - 'src/data/company-*.json'
       - 'src/pages/company-analysis/**'
   push:
@@ -14,6 +16,8 @@ on:
     paths:
       - '.github/workflows/update-company-analysis.yml'
       - 'scripts/*company*'
+      - 'scripts/commit-validated-data.sh'
+      - 'scripts/test_validated_data_commit.py'
       - 'src/data/company-profiles.json'
 permissions:
   contents: read
@@ -43,6 +47,7 @@ jobs:
       - run: npm ci
       - run: pip install -r scripts/company-requirements.txt
       - run: python -m unittest discover -s scripts -p 'test_company*.py'
+      - run: python -m unittest discover -s scripts -p 'test_validated_data_commit.py'
       - id: universe
         name: Renew the SEC universe and retain original dates on failure
         continue-on-error: ${{ github.event_name != 'pull_request' }}
@@ -158,13 +163,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add src/data/company-analysis.json src/data/company-forecast-evaluation.json src/data/company-profiles.json
-          if ! git diff --cached --quiet; then
-            git commit -m 'Refresh company accounts and valuation observations'
-            git pull --rebase origin master
-            git push origin HEAD:master
-          fi
-          echo "commit_sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+          bash scripts/commit-validated-data.sh 'Refresh company accounts and valuation observations' src/data/company-analysis.json src/data/company-forecast-evaluation.json src/data/company-profiles.json
       - name: Report optional valuation access
         if: github.event_name != 'pull_request'
         env:

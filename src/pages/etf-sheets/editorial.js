@@ -3,7 +3,7 @@ import { frenchLocation } from '../../data/french-characteristics.js'
 const PRESENTATION_COPY = Object.fromEntries([
   [['gaming_vaneck'], {
     hook: 'Le jeu vidéo ne se résume pas aux consoles que tu as chez toi. Cet ETF réunit des entreprises qui vivent aussi des jeux et de l’eSport 👇',
-    whyInteresting: 'Tu cibles les éditeurs, développeurs et activités liées au jeu vidéo plutôt que tout le secteur technologique. Le panier contient notamment des entreprises japonaises, chinoises et américaines.\n\nDerrière les marques qu’on connaît, je regarde surtout quelles entreprises gagnent réellement leur argent dans le jeu vidéo.',
+    whyInteresting: 'Tu cibles les éditeurs, développeurs et activités liées au jeu vidéo plutôt que tout le secteur technologique. Le panier contient notamment des entreprises japonaises, chinoises et américaines.\n\nLes activités des entreprises retenues comptent davantage que la notoriété des marques : elles précisent la place réelle du jeu vidéo dans leurs revenus.',
   }],
   [['medical_innovation_ishares'], {
     hook: 'Investir dans la santé peut vouloir dire suivre tout le secteur ou chercher les entreprises qui développent de nouveaux traitements et équipements. Cet ETF fait ce second choix 👇',
@@ -27,7 +27,7 @@ const PRESENTATION_COPY = Object.fromEntries([
   }],
   [['oblig_eur_long_ishares'], {
     hook: 'Deux ETF d’obligations d’État peuvent réagir très différemment aux taux. Celui-ci détient des emprunts en euros à longue échéance 👇',
-    whyInteresting: 'La durée change beaucoup le comportement de ces obligations. Je trouve la comparaison avec les échéances courtes utile : les longues peuvent davantage monter quand les taux baissent, mais aussi davantage reculer quand ils augmentent.',
+    whyInteresting: 'La durée change beaucoup le comportement de ces obligations. Par rapport aux échéances courtes, les longues peuvent davantage monter quand les taux baissent, mais aussi davantage reculer quand ils augmentent.',
   }],
   [['world_ex_usa'], {
     hook: 'Tu aimerais choisir toi-même la place des États-Unis dans ton portefeuille mondial ? Cet ETF suit les pays développés en les laissant de côté 👇',
@@ -43,11 +43,11 @@ const PRESENTATION_COPY = Object.fromEntries([
   }],
   [['obligations-globales-eur'], {
     hook: 'Un ETF obligataire mondial peut aussi bouger avec les devises. Cette part ajoute une couverture en euros pour en limiter l’effet 👇',
-    whyInteresting: 'Tu réunis de nombreux emprunteurs et plusieurs marchés, avec des revenus qui restent investis dans le fonds. Je distingue bien les deux risques ici : la couverture limite l’effet du change, mais les prix des obligations peuvent toujours varier.',
+    whyInteresting: 'Tu réunis de nombreux emprunteurs et plusieurs marchés, avec des revenus qui restent investis dans le fonds. La couverture limite l’effet du change, mais les prix des obligations peuvent toujours varier.',
   }],
   [['obligations-inflation'], {
     hook: '« Indexé sur l’inflation » peut donner l’impression d’un placement à l’abri des baisses. Regardons ce que cela signifie pour les obligations de cet ETF 👇',
-    whyInteresting: 'Tu retrouves plusieurs emprunts dont les paiements sont liés à l’inflation, avec des revenus réinvestis dans cette part. Ce que je garde en tête, c’est que cet ajustement ne stabilise pas le prix de l’ETF : les deux peuvent évoluer différemment.',
+    whyInteresting: 'Tu retrouves plusieurs emprunts dont les paiements sont liés à l’inflation, avec des revenus réinvestis dans cette part. Cet ajustement ne stabilise pas le prix de l’ETF : les deux peuvent évoluer différemment.',
   }],
   [['em-ex-chine'], {
     hook: 'Les marchés émergents t’intéressent, mais tu voudrais choisir séparément ton exposition à la Chine ? Cet ETF l’exclut de sa sélection 👇',
@@ -64,11 +64,11 @@ const PRESENTATION_COPY = Object.fromEntries([
   }],
   [['topix-pea-hedged'], {
     hook: 'Quand tu investis au Japon, le yen peut modifier ton résultat en euros. Cet ETF accessible dans le PEA ajoute une couverture du change 👇',
-    whyInteresting: 'Tu détiens des actions japonaises dans ton PEA avec une couverture qui limite l’influence du yen. Je regarde ce choix dans les deux sens : la couverture a un coût et peut aussi retirer l’effet favorable d’une hausse de la monnaie japonaise.',
+    whyInteresting: 'Tu détiens des actions japonaises dans ton PEA avec une couverture qui limite l’influence du yen. La couverture a un coût et peut aussi retirer l’effet favorable d’une hausse de la monnaie japonaise.',
   }],
   [['sp500'], {
     hook: 'Les grandes entreprises américaines sont déjà très présentes dans un World. Cet ETF permet de leur donner une place dédiée dans ton PEA 👇',
-    whyInteresting: 'La réplication synthétique rend le S&P 500 accessible dans ton PEA, sans acheter chaque action séparément. Avant d’ajouter cette ligne, je regarderais surtout la place que ces entreprises occupent déjà dans le reste du portefeuille.',
+    whyInteresting: 'La réplication synthétique rend le S&P 500 accessible dans ton PEA, sans acheter chaque action séparément. Cette ligne peut renforcer des entreprises déjà présentes dans le reste du portefeuille.',
   }],
   [['support-sp500_ishares'], {
     hook: 'Suivre les grandes entreprises américaines sans choisir chaque action, c’est ce que propose cet ETF S&P 500. Voici ce que tu détiens avec cette ligne 👇',
@@ -100,7 +100,7 @@ const PRESENTATION_COPY = Object.fromEntries([
   }],
   [['eau'], {
     hook: 'L’eau est indispensable, mais un ETF eau reste un investissement dans des entreprises. Voici les activités auxquelles ce fonds donne accès 👇',
-    whyInteresting: 'Tu réunis plusieurs métiers liés à l’eau sans choisir chaque entreprise. Je regarde comment ces entreprises gagnent leur argent. Le besoin d’eau est bien réel, mais il ne suffit pas à garantir leur rentabilité.',
+    whyInteresting: 'Tu réunis plusieurs métiers liés à l’eau sans choisir chaque entreprise. Leurs activités et leurs clients déterminent leurs revenus. Le besoin d’eau est bien réel, mais il ne suffit pas à garantir leur rentabilité.',
   }],
   [['luxe'], {
     hook: 'Une marque de luxe peut être connue dans le monde entier sans que son action soit toujours une bonne affaire. Cet ETF rassemble plusieurs groupes du secteur 👇',
@@ -151,7 +151,7 @@ const PRESENTATION_COPY = Object.fromEntries([
   }],
   [['quality'], {
     hook: 'La rentabilité et l’endettement peuvent aussi servir à sélectionner des actions. Cet ETF suit des critères de qualité financière plutôt que la seule taille des entreprises 👇',
-    whyInteresting: 'Tu donnes davantage de place à ces caractéristiques financières sans analyser chaque entreprise toi-même. Je garde toutefois le prix d’achat en tête : une entreprise solide peut être un investissement décevant si son action est payée trop cher.',
+    whyInteresting: 'Tu donnes davantage de place à ces caractéristiques financières sans analyser chaque entreprise toi-même. Le prix d’achat compte aussi : une entreprise solide peut être un investissement décevant si son action est payée trop cher.',
   }],
   [['momentum'], {
     hook: 'Certaines stratégies privilégient les actions dont les cours ont récemment bien évolué. Cet ETF suit cette approche, appelée momentum 👇',
@@ -309,12 +309,12 @@ const OVERRIDES = {
   },
   'monetaire-eur': {
     hook: 'Tu as peut-être déjà croisé XEON en cherchant où placer des euros sur ton compte-titres. Son rendement suit les taux au jour le jour : voici comment cet ETF fonctionne 👇',
-    whyInteresting: 'Le rendement vient des taux courts en euros. Les revenus restent investis dans le fonds, puisque cette part est capitalisante.\n\nC’est surtout ce lien avec les taux que je retiens : si ceux-ci baissent, le rendement du placement baisse aussi.',
+    whyInteresting: 'Le rendement vient des taux courts en euros. Les revenus restent investis dans le fonds, puisque cette part est capitalisante.\n\nSi les taux courts baissent, le rendement du placement baisse aussi.',
   },
   ia: {
     hook: '🤖 Quand on parle d’investissement dans l’IA, on pense souvent aux fabricants de puces. Cet ETF va aussi chercher du côté des logiciels et des applications 👇',
     whatIs: 'Cet ETF suit un indice qui sélectionne des entreprises liées à plusieurs activités de l’intelligence artificielle : infrastructures, logiciels et applications.\n\nIl ne se limite donc pas aux fabricants de puces ou aux entreprises qui développent des modèles d’IA.',
-    whyInteresting: 'Tu réunis plusieurs activités liées à l’IA dans une seule ligne.\n\nJe regarde surtout quelles entreprises le fonds met derrière ce thème très large. Deux ETF portant « IA » dans leur nom ne proposent pas forcément la même exposition.\n\nLa sélection dépend des règles de l’indice : toutes les entreprises associées à l’IA ne sont pas forcément présentes.',
+    whyInteresting: 'Tu réunis plusieurs activités liées à l’IA dans une seule ligne.\n\nLe thème recouvre des activités très différentes selon les entreprises retenues. Deux ETF portant « IA » dans leur nom ne proposent pas forcément la même exposition.\n\nLa sélection dépend des règles de l’indice : toutes les entreprises associées à l’IA ne sont pas forcément présentes.',
     whatToKnow: 'Le développement de l’IA ne garantit pas la hausse des actions de ces entreprises.\n\nTu peux aussi détenir certaines de ces sociétés dans ton ETF World ou technologique. Ajouter ce fonds peut renforcer une exposition que tu as déjà.',
     verdict: 'L&G Artificial Intelligence rassemble plusieurs métiers liés à l’IA. Pour comprendre ce que tu achètes, regarde les entreprises détenues et leur poids, au-delà du nom du thème.',
     question: 'Tu voudrais investir dans toute la chaîne de l’IA ou privilégier une activité précise ?',
