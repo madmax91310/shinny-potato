@@ -522,6 +522,15 @@ def main():
             status['quote'] = type(error).__name__
             status['quoteDetail'] = str(error)[:300]
             failures.append(ident + ':quote')
+        # Renew the independently reconciled supplement before qualifying shares.
+        from company_history_supplement import supplement, SUPPORTED as HISTORY_SUPPLEMENTS
+        if ident in HISTORY_SUPPLEMENTS:
+            try:
+                item = supplement(profile, item, now.date())
+                status['historySupplement'] = 'updated'
+            except Exception as error:
+                status['historySupplement'] = 'unavailable-or-retained'
+                status['historySupplementDetail'] = str(error)[:300]
         # Recheck the complete historical share basis every day, independently
         # from the cached annual accounts. A failed check removes eligibility.
         from company_valuation import qualify_share_basis

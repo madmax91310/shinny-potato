@@ -10,8 +10,8 @@ export function companyCompleteness(company,now=new Date()) {
   need(activeHistory(company,now).length>=4,'quatre exercices comparables')
   const decision=activeDecision(company,now),rows=decision?.years??[]
   need(rows.length>=4,'composantes annuelles')
-  for(const key of ['operatingCashFlow','capitalExpenditure','freeCashFlow','averageDilutedShares'])
-    need(rows.length>=4&&rows.every(r=>Number.isFinite(r[key])&&(key!=='averageDilutedShares'||r[key]>0)),key)
+  for(const [key,label] of Object.entries({operatingCashFlow:'flux de trésorerie d’exploitation sur quatre exercices',capitalExpenditure:'investissements sur quatre exercices',freeCashFlow:'flux de trésorerie disponible sur quatre exercices',averageDilutedShares:'nombre moyen d’actions diluées sur quatre exercices'}))
+    need(rows.length>=4&&rows.every(r=>Number.isFinite(r[key])&&(key!=='averageDilutedShares'||r[key]>0)),label)
   need(Boolean(company.activity&&company.watch),'explication de l’activité et vigilance')
   let methods=[]
   try {
