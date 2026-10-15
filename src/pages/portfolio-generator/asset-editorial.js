@@ -230,10 +230,10 @@ entries["gold-miners-vaneck"].description="Les actions de sociétés minières a
 add("euro-dividend-aristocrats","dividend","les actions européennes à dividendes réguliers","On privilégie un historique de dividendes selon les règles de l’indice. Les distributions futures restent variables et ce filtre modifie les secteurs et les entreprises détenus.");
 entries["euro-dividend-aristocrats"].description="Une sélection d’actions de la zone euro fondée sur les dividendes.";
 
-add('health_world_dws','theme','la santé mondiale avec Xtrackers','On renforce le secteur santé des pays développés. Les brevets, la réglementation et les dépenses de santé influencent les résultats ; cette poche recoupe en partie le World.');
-entries.health_world_dws.description='Des actions du secteur santé des pays développés, indice MSCI World Health Care.';
-add('new_energy_amundi','theme','les nouvelles énergies','On renforce des entreprises liées aux nouvelles énergies. Les taux, les besoins de financement et les politiques publiques peuvent fortement affecter ces actions.');
-entries.new_energy_amundi.description='Une poche thématique consacrée aux nouvelles énergies.';
+add('health_world_dws','theme','la santé mondiale avec Xtrackers','Cette poche santé recoupe le World. Brevets, réglementation et dépenses de santé influencent ses résultats.');
+entries.health_world_dws.description='Secteur santé du MSCI World.';
+add('new_energy_amundi','theme','les nouvelles énergies','Ces actions des nouvelles énergies dépendent notamment des taux, du financement et des politiques publiques.');
+entries.new_energy_amundi.description='Actions des nouvelles énergies.';
 
 export const ASSET_EDITORIAL = Object.freeze(entries);
 export function assetEditorial(asset) {
