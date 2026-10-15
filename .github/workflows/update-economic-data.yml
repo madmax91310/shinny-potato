@@ -55,7 +55,8 @@ jobs:
       - run: npm ci
       - run: python -m unittest discover -s scripts -p 'test_economic_data.py'
       - run: python -m unittest discover -s scripts -p 'test_automation_status.py'
-      - run: node scripts/test-economic-consumers.mjs
+      - name: "Validate observations: node scripts test-economic-consumers.mjs"
+        run: node scripts/test-economic-consumers.mjs
       - id: cadence
         name: Determine publication cadence
         env:
@@ -84,12 +85,18 @@ jobs:
         if: steps.cadence.outputs.full == 'true'
         continue-on-error: true
         run: python scripts/collect_economic_data.py --family fonds_euros --apply --output "$RUNNER_TEMP/funds-observation.json"
-      - run: npm run audit:household-statistics
-      - run: npm run audit:portfolio-provenance
-      - run: npm run audit:data-catalog
-      - run: npm run audit:data-provenance
-      - run: node scripts/test-economic-consumers.mjs
-      - run: npm run build
+      - name: "Validate observations: npm run audit:household-statistics"
+        run: npm run audit:household-statistics
+      - name: "Validate observations: npm run audit:portfolio-provenance"
+        run: npm run audit:portfolio-provenance
+      - name: "Validate observations: npm run audit:data-catalog"
+        run: npm run audit:data-catalog
+      - name: "Validate observations: npm run audit:data-provenance"
+        run: npm run audit:data-provenance
+      - name: "Validate observations: node scripts test-economic-consumers.mjs"
+        run: node scripts/test-economic-consumers.mjs
+      - name: "Validate observations: npm run build"
+        run: npm run build
       - uses: actions/upload-artifact@v7.0.1
         if: always()
         with:
@@ -98,19 +105,15 @@ jobs:
           retention-days: 35
           overwrite: true
           if-no-files-found: ignore
-      - name: Commit validated official economic data
+      - name: Validate collected observations
+        run: echo 'Mandatory observation checks passed'
+      - name: Commit validated observations
         id: commit
         if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add src/data/automated-economic.json
-          if ! git diff --cached --quiet; then
-            git commit -m 'Refresh validated official economic observations'
-            git pull --rebase origin master
-            git push origin HEAD:master
-          fi
-          echo "commit_sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+          bash scripts/commit-validated-data.sh 'Refresh validated official economic observations' src/data/automated-economic.json
   deploy:
     needs: refresh
     if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'

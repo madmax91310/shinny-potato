@@ -49,6 +49,8 @@ class IssuerRefreshTests(unittest.TestCase):
         p,s=amundi();r=parse_product(p,s,NOW)
         self.assertEqual(r['holdings']['rows'][0]['weightPct'],8)
         self.assertEqual(r['sectors']['asOf'],'2026-09-30')
+        self.assertEqual(r['countries']['sourceComponent'],'FUND_COUNTRIES')
+        self.assertEqual(r['sectors']['sourceComponent'],'FUND_SECTORS')
         self.assertEqual(r['holdings']['asOf'],'2026-10-01')
         self.assertEqual(r['aum']['amount'],123456789) # API amounts are units, despite historic indicator name.
         self.assertEqual(r['performance']['years']['2025'],10)

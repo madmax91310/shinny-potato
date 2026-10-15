@@ -27,7 +27,7 @@ jobs:
     permissions:
       contents: write
     outputs:
-      commit_sha: ${{ steps.commit.outputs.sha }}
+      commit_sha: ${{ steps.commit.outputs.commit_sha }}
       failed: ${{ steps.collect.outcome == 'failure' }}
     steps:
       - uses: actions/checkout@v7.0.1
@@ -44,7 +44,8 @@ jobs:
       - run: npm ci
       - run: python -m unittest discover -s scripts -p test_practical_sheets.py
       - run: node scripts/test-practical-sheets.mjs
-      - id: collect
+      - name: "Collect observations: collect"
+        id: collect
         continue-on-error: true
         run: python scripts/collect_practical_sheets.py --apply --output "$RUNNER_TEMP/practical-observation.json"
       - name: Report source changes and failures
@@ -60,26 +61,25 @@ jobs:
                   out.write('Documents à relire : '+(', '.join(report['changed']) or 'aucun')+'\n\n')
                   out.write('Les échecs conservent la dernière observation qualifiée. Les changements bloquent les exports concernés jusqu’à revue éditoriale.\n')
           PY
-      - run: npm run audit:data-catalog
-      - run: npm run build
+      - name: "Validate observations: npm run audit:data-catalog"
+        run: npm run audit:data-catalog
+      - name: "Validate observations: npm run build"
+        run: npm run build
       - uses: actions/upload-artifact@v7.0.1
         if: always()
         with:
           name: practical-observations
           path: ${{ runner.temp }}/practical-observation.json
           retention-days: 35
-      - id: commit
+      - name: Validate collected observations
+        run: echo 'Mandatory observation checks passed'
+      - name: Commit validated observations
+        id: commit
         if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add src/data/automated-practical-sheets.json
-          if ! git diff --cached --quiet; then
-            git commit -m 'Refresh official practical sheet references'
-            git pull --rebase origin master
-            git push origin HEAD:master
-          fi
-          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+          bash scripts/commit-validated-data.sh 'Refresh official practical sheet references' src/data/automated-practical-sheets.json
   deploy:
     needs: refresh
     if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'

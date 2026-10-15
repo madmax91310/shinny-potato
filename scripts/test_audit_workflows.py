@@ -19,6 +19,20 @@ class WorkflowContracts(unittest.TestCase):
             self.assertIn('  '+config['collectionJob']+':', workflow)
             if config.get('artifact'): self.assertIn('name: '+config['artifact'], workflow)
 
+    def test_publishers_use_isolated_recording_and_known_phase_steps(self):
+        for filename, config in REGISTRY.items():
+            if filename == 'update-editorial-radar.yml':
+                continue  # Dedicated status branch, no data commit to master.
+            workflow = (ROOT/'.github/workflows'/filename).read_text()
+            job = workflow.split('  '+config['collectionJob']+':\n')[1].split('\n  deploy:')[0]
+            self.assertIn('bash scripts/commit-validated-data.sh ', job, filename)
+            self.assertNotRegex(job, r'git (?:add|commit|pull|push) ')
+            self.assertTrue(config['collectionSteps'], filename)
+            for name in config['collectionSteps'] + config['validationSteps']:
+                self.assertTrue('name: '+name+'\n' in job or 'name: '+json.dumps(name)+'\n' in job, (filename,name))
+            self.assertLess(job.index('name: Validate collected observations'),job.index('bash scripts/commit-validated-data.sh'))
+            self.assertIn('steps.commit.outputs.commit_sha', job)
+
     def test_partial_failure_signal_cannot_block_validated_publication(self):
         for filename in ['update-lifestrategy.yml','update-non-bond-expansion.yml','update-qualified-exposures.yml']:
             workflow = (ROOT/'.github/workflows'/filename).read_text()
@@ -27,11 +41,11 @@ class WorkflowContracts(unittest.TestCase):
             failures = "steps.collect.outcome == 'failure'"
             if filename == 'update-qualified-exposures.yml':
                 failures += " || steps.equities.outcome == 'failure'"
-                self.assertIn("- id: equities\n        continue-on-error: ${{ github.event_name != 'pull_request' }}", refresh)
+                self.assertIn("id: equities\n        continue-on-error: ${{ github.event_name != 'pull_request' }}", refresh)
             self.assertIn("collection_failed: ${{ " + failures + " }}", refresh)
             self.assertIn('needs: [refresh, deploy]', workflow)
             self.assertIn("if: always() && needs.refresh.outputs.collection_failed == 'true'", workflow)
-            self.assertLess(refresh.index('npm run build'), refresh.index('git push'))
+            self.assertLess(refresh.index('npm run build'), refresh.index('bash scripts/commit-validated-data.sh'))
 
     def test_deploy_requires_every_validation_job_and_same_built_commit(self):
         workflow = (ROOT/'.github/workflows/deploy-pages.yml').read_text()

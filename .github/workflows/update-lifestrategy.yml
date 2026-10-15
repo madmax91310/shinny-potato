@@ -46,20 +46,27 @@ jobs:
       - run: sudo apt-get update && sudo apt-get install -y poppler-utils
       - run: npm ci
       - run: python -m unittest discover -s scripts -p 'test_lifestrategy.py'
-      - id: collect
+      - name: "Collect observations: collect"
+        id: collect
         continue-on-error: ${{ github.event_name != 'pull_request' }}
         run: python scripts/collect_lifestrategy.py --apply --output "$RUNNER_TEMP/lifestrategy.json"
-      - run: node scripts/test-lifestrategy.mjs
+      - name: "Validate observations: node scripts test-lifestrategy.mjs"
+        run: node scripts/test-lifestrategy.mjs
       - run: node scripts/automation-gap-inventory.mjs --write
-      - run: npm run audit:instrument-catalog
-      - run: npm run build
+      - name: "Validate observations: npm run audit:instrument-catalog"
+        run: npm run audit:instrument-catalog
+      - name: "Validate observations: npm run build"
+        run: npm run build
       - if: github.event_name == 'pull_request'
         run: npx playwright install --with-deps chromium
-      - if: github.event_name == 'pull_request'
+      - name: "Validate observations: node scripts playwright-lifestrategy.mjs"
+        if: github.event_name == 'pull_request'
         run: node scripts/playwright-lifestrategy.mjs
-      - if: github.event_name == 'pull_request'
+      - name: "Validate observations: node scripts test-duel-titanium.mjs"
+        if: github.event_name == 'pull_request'
         run: node scripts/test-duel-titanium.mjs
-      - if: github.event_name == 'pull_request'
+      - name: "Validate observations: node scripts test-portfolio-metallic.mjs"
+        if: github.event_name == 'pull_request'
         run: node scripts/test-portfolio-metallic.mjs
       - uses: actions/upload-artifact@v7.0.1
         if: always() && github.event_name == 'pull_request'
@@ -77,18 +84,15 @@ jobs:
           name: lifestrategy-issuer-observation
           path: ${{ runner.temp }}/lifestrategy.json
           retention-days: 35
-      - id: commit
+      - name: Validate collected observations
+        run: echo 'Mandatory observation checks passed'
+      - name: Commit validated observations
+        id: commit
         if: github.event_name != 'pull_request'
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add src/data/lifestrategy.json docs/automation-gaps.json docs/automation-gaps.md docs/app-inventory.md
-          if ! git diff --cached --quiet; then
-            git commit -m 'Refresh Vanguard LifeStrategy issuer data'
-            git pull --rebase origin master
-            git push origin HEAD:master
-          fi
-          echo "commit_sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+          bash scripts/commit-validated-data.sh 'Refresh Vanguard LifeStrategy issuer data' src/data/lifestrategy.json docs/automation-gaps.json docs/automation-gaps.md docs/app-inventory.md
   deploy:
     needs: refresh
     if: github.event_name != 'pull_request'

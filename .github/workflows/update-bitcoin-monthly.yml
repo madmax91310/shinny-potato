@@ -43,17 +43,28 @@ jobs:
       - run: npm ci
       - run: python -m unittest discover -s scripts -p 'test_active_refresh.py'
       - run: node scripts/export-bitcoin-baseline.mjs > "$RUNNER_TEMP/baseline.json"
-      - run: python scripts/update_bitcoin_monthly.py --output "$RUNNER_TEMP/observation.json" --apply
-      - run: python scripts/refresh_index_sources.py --only-derived --output "$RUNNER_TEMP/derived-index-observation.json" --apply
-      - run: python -m unittest discover -s scripts -p 'test_remaining_index_sources.py'
-      - run: python -m unittest discover -s scripts -p 'test_index_extensions.py'
-      - run: npm run audit:index-facts
-      - run: node scripts/test-automated-indices.mjs
-      - run: npm run audit:etf-annual-performance
-      - run: npm run audit:etf-consistency
-      - run: npm run audit:calculator-series
-      - run: node scripts/test-comparison-etf-details.mjs
-      - run: npm run build
+      - name: "Collect observations: python scripts update_bitcoin_monthly.py --output RUNNER_TEMP observation.json --apply"
+        run: python scripts/update_bitcoin_monthly.py --output "$RUNNER_TEMP/observation.json" --apply
+      - name: "Collect observations: python scripts refresh_index_sources.py --only-derived --output RUNNER_TEMP derived-index-observation.json --apply"
+        run: python scripts/refresh_index_sources.py --only-derived --output "$RUNNER_TEMP/derived-index-observation.json" --apply
+      - name: "Validate observations: python -m unittest discover -s scripts -p  test_remaining_index_sources.py"
+        run: python -m unittest discover -s scripts -p 'test_remaining_index_sources.py'
+      - name: "Validate observations: python -m unittest discover -s scripts -p  test_index_extensions.py"
+        run: python -m unittest discover -s scripts -p 'test_index_extensions.py'
+      - name: "Validate observations: npm run audit:index-facts"
+        run: npm run audit:index-facts
+      - name: "Validate observations: node scripts test-automated-indices.mjs"
+        run: node scripts/test-automated-indices.mjs
+      - name: "Validate observations: npm run audit:etf-annual-performance"
+        run: npm run audit:etf-annual-performance
+      - name: "Validate observations: npm run audit:etf-consistency"
+        run: npm run audit:etf-consistency
+      - name: "Validate observations: npm run audit:calculator-series"
+        run: npm run audit:calculator-series
+      - name: "Validate observations: node scripts test-comparison-etf-details.mjs"
+        run: node scripts/test-comparison-etf-details.mjs
+      - name: "Validate observations: npm run build"
+        run: npm run build
       - uses: actions/upload-artifact@v7.0.1
         if: always()
         with:
@@ -63,19 +74,15 @@ jobs:
             ${{ runner.temp }}/derived-index-observation.json
           if-no-files-found: ignore
           retention-days: 35
-      - name: Commit validated active data
+      - name: Validate collected observations
+        run: echo 'Mandatory observation checks passed'
+      - name: Commit validated observations
         id: commit
         if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add src/data/automated-indices.json src/data/bitcoin-yahoo-monthly.json scripts/source-snapshots/bitcoin-automated.json
-          if ! git diff --cached --quiet; then
-            git commit -m 'Refresh validated active Bitcoin Yahoo data'
-            git pull --rebase origin master
-            git push origin HEAD:master
-          fi
-          echo "commit_sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+          bash scripts/commit-validated-data.sh 'Refresh validated active Bitcoin Yahoo data' src/data/automated-indices.json src/data/bitcoin-yahoo-monthly.json scripts/source-snapshots/bitcoin-automated.json
   deploy:
     needs: refresh
     if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'

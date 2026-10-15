@@ -58,7 +58,8 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_monthly_automation.py'
       - run: python -m unittest discover -s scripts -p 'test_data_automation.py'
       - run: node scripts/export-monthly-baseline.mjs > "$RUNNER_TEMP/baseline.json"
-      - id: collect
+      - name: "Collect observations: collect"
+        id: collect
         continue-on-error: true
         env:
           RETRY_FAILED: ${{ github.event_name == 'schedule' && github.event.schedule == '45 6 * * *' }}
@@ -67,18 +68,30 @@ jobs:
           if [ "$RETRY_FAILED" = 'true' ]; then args+=(--retry-failed); fi
           python scripts/refresh_monthly_history.py --baseline "$RUNNER_TEMP/baseline.json" --output "$RUNNER_TEMP/monthly-observation.json" --apply "${args[@]}"
       - run: node scripts/build-monthly-duel-returns.mjs
-      - run: python scripts/refresh_index_sources.py --only-derived --output "$RUNNER_TEMP/derived-index-observation.json" --apply
-      - run: python -m unittest discover -s scripts -p 'test_remaining_index_sources.py'
-      - run: python -m unittest discover -s scripts -p 'test_index_extensions.py'
-      - run: npm run audit:index-facts
-      - run: node scripts/test-automated-indices.mjs
-      - run: npm run audit:calculator-series
-      - run: node scripts/test-monthly-consumers.mjs
-      - run: node scripts/test-etf-tool-connections.mjs
-      - run: npm run audit:data-catalog
-      - run: npm run audit:data-provenance
-      - run: npm run verify:tweet-midi
-      - run: npm run build
+      - name: "Collect observations: python scripts refresh_index_sources.py --only-derived --output RUNNER_TEMP derived-index-observation.json --apply"
+        run: python scripts/refresh_index_sources.py --only-derived --output "$RUNNER_TEMP/derived-index-observation.json" --apply
+      - name: "Validate observations: python -m unittest discover -s scripts -p  test_remaining_index_sources.py"
+        run: python -m unittest discover -s scripts -p 'test_remaining_index_sources.py'
+      - name: "Validate observations: python -m unittest discover -s scripts -p  test_index_extensions.py"
+        run: python -m unittest discover -s scripts -p 'test_index_extensions.py'
+      - name: "Validate observations: npm run audit:index-facts"
+        run: npm run audit:index-facts
+      - name: "Validate observations: node scripts test-automated-indices.mjs"
+        run: node scripts/test-automated-indices.mjs
+      - name: "Validate observations: npm run audit:calculator-series"
+        run: npm run audit:calculator-series
+      - name: "Validate observations: node scripts test-monthly-consumers.mjs"
+        run: node scripts/test-monthly-consumers.mjs
+      - name: "Validate observations: node scripts test-etf-tool-connections.mjs"
+        run: node scripts/test-etf-tool-connections.mjs
+      - name: "Validate observations: npm run audit:data-catalog"
+        run: npm run audit:data-catalog
+      - name: "Validate observations: npm run audit:data-provenance"
+        run: npm run audit:data-provenance
+      - name: "Validate observations: npm run verify:tweet-midi"
+        run: npm run verify:tweet-midi
+      - name: "Validate observations: npm run build"
+        run: npm run build
       - uses: actions/upload-artifact@v7.0.1
         if: always()
         with:
@@ -88,19 +101,15 @@ jobs:
             ${{ runner.temp }}/derived-index-observation.json
           if-no-files-found: ignore
           retention-days: 35
-      - name: Commit validated active data
+      - name: Validate collected observations
+        run: echo 'Mandatory observation checks passed'
+      - name: Commit validated observations
         id: commit
         if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add src/data/monthly-duel-returns.json src/data/automated-indices.json src/data/automated-monthly.json src/data/automated-etf-monthly.json scripts/source-snapshots/monthly-automated.json scripts/source-snapshots/monthly-collection-status.json
-          if ! git diff --cached --quiet; then
-            git commit -m 'Refresh validated monthly market histories'
-            git pull --rebase origin master
-            git push origin HEAD:master
-          fi
-          echo "commit_sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+          bash scripts/commit-validated-data.sh 'Refresh validated monthly market histories' src/data/monthly-duel-returns.json src/data/automated-indices.json src/data/automated-monthly.json src/data/automated-etf-monthly.json scripts/source-snapshots/monthly-automated.json scripts/source-snapshots/monthly-collection-status.json
   deploy:
     needs: refresh
     if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'

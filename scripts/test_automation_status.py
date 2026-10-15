@@ -5,6 +5,34 @@ from publish_automation_status import update_status, read_report, publication_su
 def run(id=1,conclusion='failure',workflow='update-economic-data.yml',**kwargs):
  return {'id':id,'path':'.github/workflows/'+workflow,'head_branch':'master','event':'schedule','status':'completed','conclusion':conclusion,'updated_at':f'2026-10-{id:02d}T10:00:00Z','html_url':f'https://github.com/test/repo/actions/runs/{id}',**kwargs}
 class StatusTests(unittest.TestCase):
+ def test_dca_equity_report_tracks_missing_and_recovered_classifications(self):
+  report={'_collector':'dca-equities','updated':['airliquide'],'missing':['nintendo']}
+  failed=update_status({},run(workflow='update-qualified-exposures.yml'),[],[report])
+  self.assertEqual(set(failed['workflows']['update-qualified-exposures.yml']['dataFailures']),{'dca-equity:nintendo'})
+  report.update(updated=['nintendo'],missing=[])
+  recovered=update_status(failed,run(2,'success',workflow='update-qualified-exposures.yml'),[],[report])
+  self.assertEqual(recovered['workflows']['update-qualified-exposures.yml']['dataFailures'],{})
+
+ def test_four_phases_with_validation_failure_and_setup_failure(self):
+  from publish_automation_status import REGISTRY
+  workflow='update-company-analysis.yml';config=REGISTRY[workflow]
+  def evaluate(steps, conclusion='failure'):
+   return update_status({},run(workflow=workflow,conclusion=conclusion),[{'name':config['collectionJob'],'conclusion':conclusion,'steps':steps}],[])['workflows'][workflow]
+  collected=[{'name':n,'conclusion':'success'} for n in config['collectionSteps']]
+  row=evaluate(collected+[{'name':config['validationSteps'][0],'conclusion':'failure'},{'name':'Validate collected observations','conclusion':'skipped'},{'name':'Commit validated observations','conclusion':'skipped'}])
+  self.assertEqual([row[k] for k in ['collectionStatus','validationStatus','recordingStatus','publicationStatus']],['success','failure','not-run','not-run'])
+  row=evaluate([{'name':'Setup dependencies','conclusion':'failure'}])
+  self.assertEqual(row['collectionStatus'],'unknown')
+  self.assertEqual(row['validationStatus'],'unknown')
+  row=evaluate(collected+[{'name':'Validate collected observations','conclusion':'success'},{'name':'Commit validated observations','conclusion':'failure'}])
+  self.assertEqual(row['collectionStatus'],'success');self.assertEqual(row['validationStatus'],'success');self.assertEqual(row['recordingStatus'],'failure')
+  row=evaluate(collected+[{'name':config['collectionSteps'][0],'conclusion':'failure'},{'name':'Validate collected observations','conclusion':'success'}])
+  self.assertEqual(row['collectionStatus'],'failure')
+  row=evaluate([{'name':n,'conclusion':'skipped'} for n in config['collectionSteps']])
+  self.assertEqual(row['collectionStatus'],'not-run')
+  row=evaluate(collected+[{'name':'Validate collected observations','conclusion':'success'},{'name':'Commit validated observations','conclusion':'success'}],'success')
+  self.assertEqual(row['recordingStatus'],'success');self.assertEqual(row['publicationStatus'],'not-run')
+
  def test_recording_failure_is_distinct_from_collection(self):
   jobs=[{'name':'refresh','conclusion':'failure','steps':[{'name':'Commit validated observations','conclusion':'failure'}]}]
   report={'successes':[{'id':'company:A'}], 'errors':[]}

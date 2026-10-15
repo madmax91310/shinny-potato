@@ -110,6 +110,8 @@ def parse_share(body, share, now):
     countries = (allocation(exposure['geography']['subContainersByNameMap']['countries'], now)
                  if 'geography' in exposure else {'status': 'not-published', 'rows': []})
     sectors = allocation(exposure['sector'], now) if share.get('collectSectors', True) and 'sector' in exposure else {'status': 'not-published', 'rows': []}
+    if countries.get('rows'): countries['sourceComponent'] = 'exposureBreakdowns.geography.countries'
+    if sectors.get('rows'): sectors['sourceComponent'] = 'exposureBreakdowns.sector'
     calendar = components.get('performance', {}).get('containersByNameMap', {}).get('returns', {}).get('subContainersByNameMap', {}).get('calendar', {}).get('dataPointsByNameMap', {})
     types = calendar.get('returnTypes', {}).get('value', [])
     if not types and not share.get('requireFullHistory', True):
