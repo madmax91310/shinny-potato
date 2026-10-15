@@ -69,7 +69,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          bash scripts/commit-validated-data.sh 'Refresh qualified exact-share exposure data' src/data/qualified-exposure-etfs.json src/data/automated-etf.json src/data/dca-equity-exposures.json src/pages/dca-profiles/exposures.json
+          bash scripts/commit-validated-data.sh 'Refresh qualified exact-share exposure data' src/data/qualified-exposure-etfs.json src/data/automated-etf.json src/data/dca-equity-exposures.json src/pages/dca-profiles/exposures.json src/pages/dca-profiles/exposures-extra-0.json src/pages/dca-profiles/exposures-extra-1.json src/pages/dca-profiles/exposures-extra-2.json src/pages/dca-profiles/catalog.json src/pages/dca-profiles/holdings.json
   deploy:
     needs: refresh
     if: github.event_name != 'pull_request'

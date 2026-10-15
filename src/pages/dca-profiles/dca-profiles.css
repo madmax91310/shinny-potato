@@ -31,3 +31,8 @@
 .dca-profiles-scope .dca-saved-row span{flex:1;min-width:120px;overflow-wrap:anywhere}
 .dca-profiles-scope .dca-saved-row button{padding:8px;background:transparent;color:inherit;border:1px solid var(--workspace-border,#526071);border-radius:6px;cursor:pointer}
 .dca-profiles-scope .dca-evidence a{overflow-wrap:anywhere}
+
+.dca-profiles-scope .dca-check-card{padding:14px;border:1px solid var(--workspace-border,#526071);border-radius:12px;font-size:.85rem;overflow-wrap:anywhere}
+.dca-profiles-scope .dca-verification p{font-size:.85rem;line-height:1.6;overflow-wrap:anywhere}
+.dca-profiles-scope .dca-catalog-list{max-height:480px;overflow:auto;margin-top:16px}
+.dca-profiles-scope .dca-catalog-list article{padding:14px 0;border-bottom:1px solid var(--workspace-border,#526071);overflow-wrap:anywhere}

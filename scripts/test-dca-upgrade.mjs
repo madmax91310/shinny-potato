@@ -58,7 +58,8 @@ console.log('DCA upgrade: recency, compatibility, stocks, neutral assets, both d
 const anonymous={...prepared[0],name:'',imageOnly:true}
 assert.deepEqual(analyzeProfile(anonymous).errors,[])
 assert(analyzeProfile({...anonymous,imageOnly:false}).errors.length)
-assert.deepEqual(searchAssets('Nasdaq'),['nasdaq'])
+assert(searchAssets('Nasdaq').includes('nasdaq'))
+assert(searchAssets('Nasdaq').includes('FR0011871110'))
 assert.deepEqual(searchAssets('IE00B53SZB19'),['nasdaq'])
 assert(!searchAssets('IE00B53L3W79').includes('nasdaq'))
 
