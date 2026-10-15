@@ -458,7 +458,8 @@ async function testPortfolioDuels(page) {
   valid &&= (await page.locator('.pd-card').count()) === 2;
   await choose(page.getByRole('group', { name: 'Complément du portefeuille A', exact: true }), '');
   await page.getByRole('spinbutton', { name: 'Poids base du portefeuille A' }).fill('100');
-  valid &&= (await page.locator('.pd-card').first().locator('p').count()) === 1;
+  valid &&= await page.getByRole('alert').isVisible();
+  valid &&= (await page.locator('.pd-card').count()) === 0;
   await page.locator('summary').filter({ hasText: 'Thématique du portefeuille A' }).click();
   await choose(page.getByRole('group', { name: 'Thématique du portefeuille A', exact: true }), 'sect_cyber_lg');
   await page.getByRole('spinbutton', { name: 'Poids base du portefeuille A' }).fill('90');
@@ -467,7 +468,7 @@ async function testPortfolioDuels(page) {
   await page.getByRole('spinbutton', { name: 'Poids base du portefeuille A' }).fill('80');
   const customExpected = buildCustomDuel({
     left: [{ id: 'msci_world_ishares', pct: 80 }, { id: 'stoxx600_bnp', pct: 10 }, { id: 'sect_cyber_lg', pct: 10 }],
-    right: [{ id: 'msci_acwi_ishares', pct: 100 }],
+    right: [{ id: 'msci_acwi_ishares', pct: 80 }, { id: 'smallcap_monde', pct: 20 }],
   });
   valid &&= (await page.locator('.pd-table tbody tr').count()) === customExpected.years.length;
   valid &&= (await page.locator('#pd-tweet').inputValue()) === buildTweet(customExpected);
