@@ -71,7 +71,7 @@ export function duelEditorial(duel) {
    conclusion+=' Il fait mieux que le World seul chacune des années comparées.'
   }
  } else if (solo && mixed.assets.length===2 && mixed.assets[0].exposure==='world' && mixed.assets[1].exposure==='nasdaq' && mixed.final>solo.final && mixed.worst<solo.worst && mixed.worst<0 && solo.worst<0 && mixed.worstYear===solo.worstYear) {
-  conclusion=`Avec la poche Nasdaq, le portefeuille termine avec ${money(gap)} de plus sur cette période, mais elle accentue aussi la baisse en ${mixed.worstYear} : ${move(mixed.worst).replace('perd','le portefeuille perd')}, contre ${percent(solo.worst)} pour le World seul. Je regarde aussi cette baisse avant de renforcer des entreprises déjà présentes dans le World.`
+  conclusion=`Avec la poche Nasdaq, le portefeuille termine avec ${money(gap)} de plus sur cette période, mais elle accentue aussi la baisse en ${mixed.worstYear} : ${move(mixed.worst).replace('perd','le portefeuille perd')}, contre ${percent(solo.worst)} pour le World seul. La performance finale ne suffit donc pas à départager ces portefeuilles.`
  } else {
   conclusion=`Sur cette période, le portefeuille ${b.final>a.final ? 'B' : 'A'} termine avec ${money(gap)} de plus.`
   if (!equalAnnual) conclusion+=` En ${year}, A ${move(a.annual[year])}, et B ${move(b.annual[year])}.`

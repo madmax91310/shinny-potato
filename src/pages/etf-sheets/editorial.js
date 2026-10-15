@@ -305,7 +305,7 @@ const OVERRIDES = {
   },
   'covered-call': {
     hook: 'Recevoir de l’argent chaque mois avec un ETF, ça peut donner envie. Avec ce fonds, ces distributions viennent d’une stratégie qui limite aussi une partie de la hausse du Nasdaq-100 👇',
-    whyInteresting: 'Cette stratégie vise des versements réguliers, ce qui peut intéresser quelqu’un qui cherche des revenus.\n\nPour ma part, je regarde aussi ce que devient la valeur des parts. Les sommes reçues comptent, mais c’est en les ajoutant à cette évolution qu’on peut comparer le résultat à celui d’un ETF Nasdaq-100 classique.',
+    whyInteresting: 'Cette stratégie vise des versements réguliers, ce qui peut intéresser quelqu’un qui cherche des revenus.\n\nLes revenus distribués ne suffisent pas à mesurer le résultat : la valeur des parts peut aussi monter ou baisser. Les sommes reçues comptent, mais c’est en les ajoutant à cette évolution qu’on peut comparer le résultat à celui d’un ETF Nasdaq-100 classique.',
   },
   'monetaire-eur': {
     hook: 'Tu as peut-être déjà croisé XEON en cherchant où placer des euros sur ton compte-titres. Son rendement suit les taux au jour le jour : voici comment cet ETF fonctionne 👇',
