@@ -66,18 +66,96 @@
     },
     "collect-etf-pilot.yml": {
       "name": "ETF et compositions d’indices",
-      "runId": 38735969127,
+      "runId": 38780015456,
       "attempt": 1,
-      "completedAt": "2026-10-15T12:53:49Z",
-      "status": "success",
+      "completedAt": "2026-10-15T18:07:55Z",
+      "status": "failure",
       "lastSuccessAt": "2026-10-15T12:53:49Z",
-      "collectionStatus": "success",
+      "collectionStatus": "failure",
+      "validationStatus": "success",
+      "recordingStatus": "success",
       "publicationStatus": "not-run",
       "lastCollectionSuccessAt": "2026-10-15T12:53:49Z",
       "lastPublicationSuccessAt": "2026-10-15T05:46:54Z",
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38735969127",
-      "failures": [],
-      "dataFailures": {}
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38780015456",
+      "failures": [
+        {
+          "job": "report-failures",
+          "step": "Run echo 'Une source ETF ou indice a échoué. Ses dernières données fiables sont conservées ; les autres collectes validées ont été publiées si les audits et le déploiement ont réussi.' >> \"$GITHUB_STEP_SUMMARY\""
+        }
+      ],
+      "dataFailures": {
+        "etf-presentation-performance-IE0007Y8Y157": {
+          "name": "ETF IE0007Y8Y157",
+          "completedAt": "2026-10-15T18:07:55Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38780015456",
+          "cause": "Expected official PDF at https://www.vaneck.com/ucits/library/fact-sheets/qntm-fact-sheet.pdf; received VanEck U.S. - ETF &amp; Mutual Fund Manager at https://www.vaneck.com/us/en/; browser initialisation failed: file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:41\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/",
+          "field": "Collecte ETF"
+        },
+        "etf-additional-observation-IE00BYWQWR46": {
+          "name": "ETF IE00BYWQWR46",
+          "completedAt": "2026-10-15T18:07:55Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38780015456",
+          "cause": "Expected official PDF at https://www.vaneck.com/uk/en/library/fact-sheets/espo-fact-sheet.pdf; received VanEck U.S. - ETF &amp; Mutual Fund Manager at https://www.vaneck.com/us/en/; browser initialisation failed: file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:41\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/",
+          "field": "Collecte ETF"
+        },
+        "etf-additional-observation-IE0007Y8Y157": {
+          "name": "ETF IE0007Y8Y157",
+          "completedAt": "2026-10-15T18:07:55Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38780015456",
+          "cause": "Expected official PDF at https://www.vaneck.com/uk/en/library/fact-sheets/qntm-fact-sheet.pdf; received VanEck U.S. - ETF &amp; Mutual Fund Manager at https://www.vaneck.com/us/en/; browser initialisation failed: file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:41\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/",
+          "field": "Collecte ETF"
+        },
+        "etf-additional-observation-IE000M7V94E1": {
+          "name": "ETF IE000M7V94E1",
+          "completedAt": "2026-10-15T18:07:55Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38780015456",
+          "cause": "Expected official PDF at https://www.vaneck.com/uk/en/library/fact-sheets/nucl-fact-sheet.pdf; received VanEck U.S. - ETF &amp; Mutual Fund Manager at https://www.vaneck.com/us/en/; browser initialisation failed: file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:41\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/",
+          "field": "Collecte ETF"
+        },
+        "etf-additional-observation-IE000YU9K6K2": {
+          "name": "ETF IE000YU9K6K2",
+          "completedAt": "2026-10-15T18:07:55Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38780015456",
+          "cause": "Expected official PDF at https://www.vaneck.com/uk/en/library/fact-sheets/jedi-fact-sheet.pdf; received VanEck U.S. - ETF &amp; Mutual Fund Manager at https://www.vaneck.com/us/en/; browser initialisation failed: file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:41\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/",
+          "field": "Collecte ETF"
+        },
+        "etf-additional-observation-IE000YYE6WK5": {
+          "name": "ETF IE000YYE6WK5",
+          "completedAt": "2026-10-15T18:07:55Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38780015456",
+          "cause": "Expected official PDF at https://www.vaneck.com/uk/en/library/fact-sheets/dfns-fact-sheet.pdf; received VanEck U.S. - ETF &amp; Mutual Fund Manager at https://www.vaneck.com/us/en/; browser initialisation failed: file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:41\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/",
+          "field": "Collecte ETF"
+        },
+        "etf-additional-observation-IE00BDFBTQ78": {
+          "name": "ETF IE00BDFBTQ78",
+          "completedAt": "2026-10-15T18:07:55Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38780015456",
+          "cause": "Expected official PDF at https://www.vaneck.com/uk/en/library/fact-sheets/gdig-fact-sheet.pdf; received VanEck U.S. - ETF &amp; Mutual Fund Manager at https://www.vaneck.com/us/en/; browser initialisation failed: file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:41\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/",
+          "field": "Collecte ETF"
+        },
+        "etf-additional-observation-NL0009690239": {
+          "name": "ETF NL0009690239",
+          "completedAt": "2026-10-15T18:07:55Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38780015456",
+          "cause": "Expected official PDF at https://www.vaneck.com/uk/en/library/fact-sheets/tret-fact-sheet.pdf; received VanEck U.S. - ETF &amp; Mutual Fund Manager at https://www.vaneck.com/us/en/; browser initialisation failed: file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:41\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/",
+          "field": "Collecte ETF"
+        },
+        "etf-additional-observation-NL0011683594": {
+          "name": "ETF NL0011683594",
+          "completedAt": "2026-10-15T18:07:55Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38780015456",
+          "cause": "Expected official PDF at https://www.vaneck.com/uk/en/library/fact-sheets/tdiv-fact-sheet.pdf; received VanEck U.S. - ETF &amp; Mutual Fund Manager at https://www.vaneck.com/us/en/; browser initialisation failed: file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:41\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/",
+          "field": "Collecte ETF"
+        },
+        "etf-additional-observation-IE00BQQP9F84": {
+          "name": "ETF IE00BQQP9F84",
+          "completedAt": "2026-10-15T18:07:55Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38780015456",
+          "cause": "Expected official PDF at https://www.vaneck.com/uk/en/library/fact-sheets/gdx-fact-sheet.pdf; received VanEck U.S. - ETF &amp; Mutual Fund Manager at https://www.vaneck.com/us/en/; browser initialisation failed: file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:41\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/s",
+          "field": "Collecte ETF"
+        }
+      }
     },
     "update-economic-data.yml": {
       "name": "Taux d’épargne, ménages, SCPI et fonds euros",
@@ -383,11 +461,11 @@
       "dataFailures": {}
     }
   },
-  "updatedAt": "2026-10-15T18:00:25Z",
+  "updatedAt": "2026-10-15T18:07:55Z",
   "monitoring": {
     "schemaVersion": 1,
-    "checkedAt": "2026-10-15T18:00:43.103700+00:00",
-    "revision": 29,
+    "checkedAt": "2026-10-15T18:08:23.322045+00:00",
+    "revision": 30,
     "active": {
       "collection:update-practical-sheets.yml:practical:13f": {
         "name": "SEC · questions et réponses sur le formulaire 13F",
@@ -408,7 +486,7 @@
         "dataId": "practical:13f",
         "id": "collection:update-practical-sheets.yml:practical:13f",
         "firstSeenAt": "2026-10-14T21:07:26.171294+00:00",
-        "lastSeenAt": "2026-10-15T18:00:43.103700+00:00"
+        "lastSeenAt": "2026-10-15T18:08:23.322045+00:00"
       },
       "collection:update-insurance.yml:linxea-avenir-2": {
         "name": "Linxea Avenir 2",
@@ -427,7 +505,7 @@
         "dataId": "linxea-avenir-2",
         "id": "collection:update-insurance.yml:linxea-avenir-2",
         "firstSeenAt": "2026-10-14T13:08:27.203935+00:00",
-        "lastSeenAt": "2026-10-15T18:00:43.103700+00:00"
+        "lastSeenAt": "2026-10-15T18:08:23.322045+00:00"
       },
       "collection:update-scpi.yml:remake-live": {
         "name": "Remake Live",
@@ -450,7 +528,7 @@
         "dataId": "remake-live",
         "id": "collection:update-scpi.yml:remake-live",
         "firstSeenAt": "2026-10-15T13:02:43.499914+00:00",
-        "lastSeenAt": "2026-10-15T18:00:43.103700+00:00"
+        "lastSeenAt": "2026-10-15T18:08:23.322045+00:00"
       },
       "collection:update-regulatory-data.yml:broker-observation:caidf:profile:change": {
         "name": "caidf:profile:change",
@@ -470,7 +548,256 @@
         "dataId": "broker-observation:caidf:profile:change",
         "id": "collection:update-regulatory-data.yml:broker-observation:caidf:profile:change",
         "firstSeenAt": "2026-10-15T18:00:14.760687+00:00",
-        "lastSeenAt": "2026-10-15T18:00:43.103700+00:00"
+        "lastSeenAt": "2026-10-15T18:08:23.322045+00:00"
+      },
+      "collection:collect-etf-pilot.yml:etf-presentation-performance-IE0007Y8Y157": {
+        "name": "VanEck Quantum Computing UCITS ETF A",
+        "tools": [
+          "Comparatif ETF",
+          "Impact des frais",
+          "Présentation ETF"
+        ],
+        "impactScope": "asset",
+        "workflow": "collect-etf-pilot.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38780015456",
+        "to": "/bibliotheque-donnees?id=IE0007Y8Y157",
+        "completedAt": "2026-10-15T18:07:55Z",
+        "cause": "Expected official PDF at https://www.vaneck.com/ucits/library/fact-sheets/qntm-fact-sheet.pdf; received VanEck U.S. - ETF &amp; Mutual Fund Manager at https://www.vaneck.com/us/en/; browser initialisation failed: file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:41\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/",
+        "field": "Collecte ETF",
+        "sourceUrls": [
+          "https://www.justetf.com/en/etf-profile.html?isin=IE0007Y8Y157",
+          "https://www.vaneck.com/ucits/library/fact-sheets/qntm-fact-sheet.pdf",
+          "https://www.vaneck.com/uk/en/library/fact-sheets/qntm-fact-sheet.pdf"
+        ],
+        "kind": "collection",
+        "dataId": "etf-presentation-performance-IE0007Y8Y157",
+        "id": "collection:collect-etf-pilot.yml:etf-presentation-performance-IE0007Y8Y157",
+        "firstSeenAt": "2026-10-15T18:08:23.322045+00:00",
+        "lastSeenAt": "2026-10-15T18:08:23.322045+00:00"
+      },
+      "collection:collect-etf-pilot.yml:etf-additional-observation-IE00BYWQWR46": {
+        "name": "VanEck Video Gaming and eSports UCITS ETF",
+        "tools": [
+          "Comparatif ETF",
+          "Duels de portefeuilles",
+          "Générateur de portefeuilles",
+          "Impact des frais",
+          "Présentation ETF"
+        ],
+        "impactScope": "asset",
+        "workflow": "collect-etf-pilot.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38780015456",
+        "to": "/bibliotheque-donnees?id=IE00BYWQWR46",
+        "completedAt": "2026-10-15T18:07:55Z",
+        "cause": "Expected official PDF at https://www.vaneck.com/uk/en/library/fact-sheets/espo-fact-sheet.pdf; received VanEck U.S. - ETF &amp; Mutual Fund Manager at https://www.vaneck.com/us/en/; browser initialisation failed: file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:41\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/",
+        "field": "Collecte ETF",
+        "sourceUrls": [
+          "https://www.vaneck.com/fr/en/library/fact-sheets/espo-fact-sheet.pdf",
+          "https://www.vaneck.com/fr/fr/library/fact-sheets/espo-fact-sheet.pdf"
+        ],
+        "kind": "collection",
+        "dataId": "etf-additional-observation-IE00BYWQWR46",
+        "id": "collection:collect-etf-pilot.yml:etf-additional-observation-IE00BYWQWR46",
+        "firstSeenAt": "2026-10-15T18:08:23.322045+00:00",
+        "lastSeenAt": "2026-10-15T18:08:23.322045+00:00"
+      },
+      "collection:collect-etf-pilot.yml:etf-additional-observation-IE0007Y8Y157": {
+        "name": "VanEck Quantum Computing UCITS ETF A",
+        "tools": [
+          "Comparatif ETF",
+          "Impact des frais",
+          "Présentation ETF"
+        ],
+        "impactScope": "asset",
+        "workflow": "collect-etf-pilot.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38780015456",
+        "to": "/bibliotheque-donnees?id=IE0007Y8Y157",
+        "completedAt": "2026-10-15T18:07:55Z",
+        "cause": "Expected official PDF at https://www.vaneck.com/uk/en/library/fact-sheets/qntm-fact-sheet.pdf; received VanEck U.S. - ETF &amp; Mutual Fund Manager at https://www.vaneck.com/us/en/; browser initialisation failed: file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:41\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/",
+        "field": "Collecte ETF",
+        "sourceUrls": [
+          "https://www.justetf.com/en/etf-profile.html?isin=IE0007Y8Y157",
+          "https://www.vaneck.com/ucits/library/fact-sheets/qntm-fact-sheet.pdf",
+          "https://www.vaneck.com/uk/en/library/fact-sheets/qntm-fact-sheet.pdf"
+        ],
+        "kind": "collection",
+        "dataId": "etf-additional-observation-IE0007Y8Y157",
+        "id": "collection:collect-etf-pilot.yml:etf-additional-observation-IE0007Y8Y157",
+        "firstSeenAt": "2026-10-15T18:08:23.322045+00:00",
+        "lastSeenAt": "2026-10-15T18:08:23.322045+00:00"
+      },
+      "collection:collect-etf-pilot.yml:etf-additional-observation-IE000M7V94E1": {
+        "name": "VanEck Uranium and Nuclear Technologies UCITS ETF",
+        "tools": [
+          "Impact des frais",
+          "Présentation ETF"
+        ],
+        "impactScope": "asset",
+        "workflow": "collect-etf-pilot.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38780015456",
+        "to": "/bibliotheque-donnees?id=IE000M7V94E1",
+        "completedAt": "2026-10-15T18:07:55Z",
+        "cause": "Expected official PDF at https://www.vaneck.com/uk/en/library/fact-sheets/nucl-fact-sheet.pdf; received VanEck U.S. - ETF &amp; Mutual Fund Manager at https://www.vaneck.com/us/en/; browser initialisation failed: file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:41\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/",
+        "field": "Collecte ETF",
+        "sourceUrls": [
+          "https://www.justetf.com/en/etf-profile.html?isin=IE000M7V94E1",
+          "https://www.vaneck.com/fr/fr/library/fact-sheets/nucl-fact-sheet.pdf",
+          "https://www.vaneck.com/ucits/library/fact-sheets/nucl-fact-sheet.pdf"
+        ],
+        "kind": "collection",
+        "dataId": "etf-additional-observation-IE000M7V94E1",
+        "id": "collection:collect-etf-pilot.yml:etf-additional-observation-IE000M7V94E1",
+        "firstSeenAt": "2026-10-15T18:08:23.322045+00:00",
+        "lastSeenAt": "2026-10-15T18:08:23.322045+00:00"
+      },
+      "collection:collect-etf-pilot.yml:etf-additional-observation-IE000YU9K6K2": {
+        "name": "VanEck Space Innovators UCITS ETF",
+        "tools": [
+          "Comparatif ETF",
+          "Impact des frais",
+          "Présentation ETF"
+        ],
+        "impactScope": "asset",
+        "workflow": "collect-etf-pilot.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38780015456",
+        "to": "/bibliotheque-donnees?id=IE000YU9K6K2",
+        "completedAt": "2026-10-15T18:07:55Z",
+        "cause": "Expected official PDF at https://www.vaneck.com/uk/en/library/fact-sheets/jedi-fact-sheet.pdf; received VanEck U.S. - ETF &amp; Mutual Fund Manager at https://www.vaneck.com/us/en/; browser initialisation failed: file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:41\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/",
+        "field": "Collecte ETF",
+        "sourceUrls": [
+          "https://www.justetf.com/en/etf-profile.html?isin=IE000YU9K6K2",
+          "https://www.vaneck.com/fr/en/library/fact-sheets/jedi-fact-sheet",
+          "https://www.vaneck.com/ucits/library/fact-sheets/jedi-fact-sheet.pdf"
+        ],
+        "kind": "collection",
+        "dataId": "etf-additional-observation-IE000YU9K6K2",
+        "id": "collection:collect-etf-pilot.yml:etf-additional-observation-IE000YU9K6K2",
+        "firstSeenAt": "2026-10-15T18:08:23.322045+00:00",
+        "lastSeenAt": "2026-10-15T18:08:23.322045+00:00"
+      },
+      "collection:collect-etf-pilot.yml:etf-additional-observation-IE000YYE6WK5": {
+        "name": "VanEck Defense UCITS ETF",
+        "tools": [
+          "Comparatif ETF",
+          "Impact des frais",
+          "Présentation ETF"
+        ],
+        "impactScope": "asset",
+        "workflow": "collect-etf-pilot.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38780015456",
+        "to": "/bibliotheque-donnees?id=IE000YYE6WK5",
+        "completedAt": "2026-10-15T18:07:55Z",
+        "cause": "Expected official PDF at https://www.vaneck.com/uk/en/library/fact-sheets/dfns-fact-sheet.pdf; received VanEck U.S. - ETF &amp; Mutual Fund Manager at https://www.vaneck.com/us/en/; browser initialisation failed: file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:41\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/",
+        "field": "Collecte ETF",
+        "sourceUrls": [
+          "https://www.justetf.com/en/etf-profile.html?isin=IE000YYE6WK5",
+          "https://www.vaneck.com/ucits/library/fact-sheets/dfns-fact-sheet.pdf",
+          "https://www.vaneck.com/uk/en/library/fact-sheets/dfns-fact-sheet.pdf"
+        ],
+        "kind": "collection",
+        "dataId": "etf-additional-observation-IE000YYE6WK5",
+        "id": "collection:collect-etf-pilot.yml:etf-additional-observation-IE000YYE6WK5",
+        "firstSeenAt": "2026-10-15T18:08:23.322045+00:00",
+        "lastSeenAt": "2026-10-15T18:08:23.322045+00:00"
+      },
+      "collection:collect-etf-pilot.yml:etf-additional-observation-IE00BDFBTQ78": {
+        "name": "VanEck S&P Global Mining UCITS ETF",
+        "tools": [
+          "Comparatif ETF",
+          "Impact des frais",
+          "Présentation ETF"
+        ],
+        "impactScope": "asset",
+        "workflow": "collect-etf-pilot.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38780015456",
+        "to": "/bibliotheque-donnees?id=IE00BDFBTQ78",
+        "completedAt": "2026-10-15T18:07:55Z",
+        "cause": "Expected official PDF at https://www.vaneck.com/uk/en/library/fact-sheets/gdig-fact-sheet.pdf; received VanEck U.S. - ETF &amp; Mutual Fund Manager at https://www.vaneck.com/us/en/; browser initialisation failed: file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:41\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/",
+        "field": "Collecte ETF",
+        "sourceUrls": [
+          "https://www.justetf.com/en/etf-profile.html?isin=IE00BDFBTQ78",
+          "https://www.vaneck.com/fr/en/library/fact-sheets/gdig-fact-sheet.pdf",
+          "https://www.vaneck.com/ucits/library/fact-sheets/gdig-fact-sheet.pdf"
+        ],
+        "kind": "collection",
+        "dataId": "etf-additional-observation-IE00BDFBTQ78",
+        "id": "collection:collect-etf-pilot.yml:etf-additional-observation-IE00BDFBTQ78",
+        "firstSeenAt": "2026-10-15T18:08:23.322045+00:00",
+        "lastSeenAt": "2026-10-15T18:08:23.322045+00:00"
+      },
+      "collection:collect-etf-pilot.yml:etf-additional-observation-NL0009690239": {
+        "name": "VanEck Global Real Estate UCITS ETF",
+        "tools": [
+          "Générateur de portefeuilles",
+          "Impact des frais",
+          "Présentation ETF"
+        ],
+        "impactScope": "asset",
+        "workflow": "collect-etf-pilot.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38780015456",
+        "to": "/bibliotheque-donnees?id=NL0009690239",
+        "completedAt": "2026-10-15T18:07:55Z",
+        "cause": "Expected official PDF at https://www.vaneck.com/uk/en/library/fact-sheets/tret-fact-sheet.pdf; received VanEck U.S. - ETF &amp; Mutual Fund Manager at https://www.vaneck.com/us/en/; browser initialisation failed: file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:41\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/",
+        "field": "Collecte ETF",
+        "sourceUrls": [
+          "https://www.justetf.com/en/etf-profile.html?isin=NL0009690239",
+          "https://www.vaneck.com/ucits/library/fact-sheets/tret-fact-sheet.pdf",
+          "https://www.vaneck.com/uk/en/library/fact-sheets/tret-fact-sheet.pdf"
+        ],
+        "kind": "collection",
+        "dataId": "etf-additional-observation-NL0009690239",
+        "id": "collection:collect-etf-pilot.yml:etf-additional-observation-NL0009690239",
+        "firstSeenAt": "2026-10-15T18:08:23.322045+00:00",
+        "lastSeenAt": "2026-10-15T18:08:23.322045+00:00"
+      },
+      "collection:collect-etf-pilot.yml:etf-additional-observation-NL0011683594": {
+        "name": "VanEck Morningstar Developed Markets Dividend Leaders UCITS ETF",
+        "tools": [
+          "Générateur de portefeuilles",
+          "Impact des frais",
+          "Présentation ETF"
+        ],
+        "impactScope": "asset",
+        "workflow": "collect-etf-pilot.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38780015456",
+        "to": "/bibliotheque-donnees?id=NL0011683594",
+        "completedAt": "2026-10-15T18:07:55Z",
+        "cause": "Expected official PDF at https://www.vaneck.com/uk/en/library/fact-sheets/tdiv-fact-sheet.pdf; received VanEck U.S. - ETF &amp; Mutual Fund Manager at https://www.vaneck.com/us/en/; browser initialisation failed: file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:41\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/",
+        "field": "Collecte ETF",
+        "sourceUrls": [
+          "https://www.justetf.com/en/etf-profile.html?isin=NL0011683594",
+          "https://www.vaneck.com/ucits/library/fact-sheets/tdiv-fact-sheet.pdf",
+          "https://www.vaneck.com/uk/en/library/fact-sheets/tdiv-fact-sheet.pdf"
+        ],
+        "kind": "collection",
+        "dataId": "etf-additional-observation-NL0011683594",
+        "id": "collection:collect-etf-pilot.yml:etf-additional-observation-NL0011683594",
+        "firstSeenAt": "2026-10-15T18:08:23.322045+00:00",
+        "lastSeenAt": "2026-10-15T18:08:23.322045+00:00"
+      },
+      "collection:collect-etf-pilot.yml:etf-additional-observation-IE00BQQP9F84": {
+        "name": "VanEck Gold Miners UCITS ETF",
+        "tools": [
+          "Comparatif ETF",
+          "Générateur de portefeuilles",
+          "Impact des frais",
+          "Présentation ETF"
+        ],
+        "impactScope": "asset",
+        "workflow": "collect-etf-pilot.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38780015456",
+        "to": "/bibliotheque-donnees?id=IE00BQQP9F84",
+        "completedAt": "2026-10-15T18:07:55Z",
+        "cause": "Expected official PDF at https://www.vaneck.com/uk/en/library/fact-sheets/gdx-fact-sheet.pdf; received VanEck U.S. - ETF &amp; Mutual Fund Manager at https://www.vaneck.com/us/en/; browser initialisation failed: file:///home/runner/work/shinny-potato/shinny-potato/scripts/download-vaneck-document.mjs:41\n  if (!result.body) throw new Error('Official VanEck regional gate still active');\n                          ^\n\nError: Official VanEck regional gate still active\n    at file:///home/runner/work/s",
+        "field": "Collecte ETF",
+        "sourceUrls": [
+          "https://www.vaneck.com/nl/en/library/fact-sheets/gdx-fact-sheet.pdf"
+        ],
+        "kind": "collection",
+        "dataId": "etf-additional-observation-IE00BQQP9F84",
+        "id": "collection:collect-etf-pilot.yml:etf-additional-observation-IE00BQQP9F84",
+        "firstSeenAt": "2026-10-15T18:08:23.322045+00:00",
+        "lastSeenAt": "2026-10-15T18:08:23.322045+00:00"
       },
       "collection:update-lifestrategy.yml:IE00BMVB5K07": {
         "name": "Vanguard LifeStrategy 20% Equity UCITS ETF (EUR) Accumulating",
@@ -497,7 +824,7 @@
         "dataId": "IE00BMVB5K07",
         "id": "collection:update-lifestrategy.yml:IE00BMVB5K07",
         "firstSeenAt": "2026-10-15T10:23:56.855354+00:00",
-        "lastSeenAt": "2026-10-15T18:00:43.103700+00:00"
+        "lastSeenAt": "2026-10-15T18:08:23.322045+00:00"
       },
       "collection:update-lifestrategy.yml:IE00BMVB5M21": {
         "name": "Vanguard LifeStrategy 40% Equity UCITS ETF (EUR) Accumulating",
@@ -524,7 +851,7 @@
         "dataId": "IE00BMVB5M21",
         "id": "collection:update-lifestrategy.yml:IE00BMVB5M21",
         "firstSeenAt": "2026-10-15T10:23:56.855354+00:00",
-        "lastSeenAt": "2026-10-15T18:00:43.103700+00:00"
+        "lastSeenAt": "2026-10-15T18:08:23.322045+00:00"
       },
       "collection:update-lifestrategy.yml:IE00BMVB5P51": {
         "name": "Vanguard LifeStrategy 60% Equity UCITS ETF (EUR) Accumulating",
@@ -551,7 +878,7 @@
         "dataId": "IE00BMVB5P51",
         "id": "collection:update-lifestrategy.yml:IE00BMVB5P51",
         "firstSeenAt": "2026-10-15T10:23:56.855354+00:00",
-        "lastSeenAt": "2026-10-15T18:00:43.103700+00:00"
+        "lastSeenAt": "2026-10-15T18:08:23.322045+00:00"
       },
       "collection:update-lifestrategy.yml:IE00BMVB5R75": {
         "name": "Vanguard LifeStrategy 80% Equity UCITS ETF (EUR) Accumulating",
@@ -578,7 +905,7 @@
         "dataId": "IE00BMVB5R75",
         "id": "collection:update-lifestrategy.yml:IE00BMVB5R75",
         "firstSeenAt": "2026-10-15T10:23:56.855354+00:00",
-        "lastSeenAt": "2026-10-15T18:00:43.103700+00:00"
+        "lastSeenAt": "2026-10-15T18:08:23.322045+00:00"
       }
     },
     "events": [
@@ -4211,6 +4538,23 @@
         "at": "2026-10-15T18:00:14.760687+00:00",
         "opened": [
           "collection:update-regulatory-data.yml:broker-observation:caidf:profile:change"
+        ],
+        "resolved": []
+      },
+      {
+        "revision": 30,
+        "at": "2026-10-15T18:08:23.322045+00:00",
+        "opened": [
+          "collection:collect-etf-pilot.yml:etf-presentation-performance-IE0007Y8Y157",
+          "collection:collect-etf-pilot.yml:etf-additional-observation-IE00BYWQWR46",
+          "collection:collect-etf-pilot.yml:etf-additional-observation-IE0007Y8Y157",
+          "collection:collect-etf-pilot.yml:etf-additional-observation-IE000M7V94E1",
+          "collection:collect-etf-pilot.yml:etf-additional-observation-IE000YU9K6K2",
+          "collection:collect-etf-pilot.yml:etf-additional-observation-IE000YYE6WK5",
+          "collection:collect-etf-pilot.yml:etf-additional-observation-IE00BDFBTQ78",
+          "collection:collect-etf-pilot.yml:etf-additional-observation-NL0009690239",
+          "collection:collect-etf-pilot.yml:etf-additional-observation-NL0011683594",
+          "collection:collect-etf-pilot.yml:etf-additional-observation-IE00BQQP9F84"
         ],
         "resolved": []
       }
