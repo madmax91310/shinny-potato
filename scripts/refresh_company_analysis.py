@@ -415,6 +415,7 @@ def main():
             latest_end = (item.get('quarter') or item.get('halfYear') or item['annual'])['end']
             if (not args.publications_only and cached_decision.get('componentVersion') == DECISION_VERSION
                 and (ident not in ('disney','nike','servicenow','walmart','netflix','booking') or cached_decision.get('publicationCoverageVersion') == 1)
+                and (ident not in ('lvmh', 'schneider') or (cached_decision.get('shareNotesVersion') == 1 and sum('averageDilutedShares' in r for r in cached_decision.get('years', [])) >= 4))
                 and (ident not in ('costco', 'waste-management') or cached_decision.get('shareCoverageVersion') == 1) and cached_date and 0 <= (now.date()-cached_date).days <= 30
                 and cached_decision.get('accountsEndAtCollection') == latest_end
                 and cached_decision.get('annualEnd') == item['annual']['end']
@@ -453,6 +454,8 @@ def main():
                     decision = publication_decision(profile, item, now.date())
                 if ident in ('disney','nike','servicenow','walmart','netflix','booking'):
                     decision['publicationCoverageVersion'] = 1
+                if ident in ('lvmh', 'schneider'):
+                    decision['shareNotesVersion'] = 1
                 decision['componentVersion'] = DECISION_VERSION
                 if ident in ('costco', 'waste-management'):
                     decision['shareCoverageVersion'] = 1

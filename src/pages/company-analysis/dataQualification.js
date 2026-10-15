@@ -59,5 +59,9 @@ export function companyQualification(company,now=new Date(),model=buildPriceScen
     const reason=detail.includes('Multiple share classes')?'Les différentes classes d’actions ne disposent pas encore d’une base FCF par action qualifiée.':detail.includes('Split in historical window')?'Un fractionnement figure dans l’historique : le retraitement des nombres d’actions doit être certifié par les publications de l’émetteur.':detail.includes('Four annual published')?'Quatre nombres moyens d’actions diluées publiés et sourcés sont nécessaires.':null
     if(reason)methods.cash.reasons=[reason,...methods.cash.reasons]
   }
+  if(!methods.cash.available) {
+    const years=(activeDecision(company,now)?.years??[]).filter(r=>Number.isFinite(r.freeCashFlow)&&r.freeCashFlow<=0).map(r=>r.end.slice(0,4))
+    if(years.length)methods.cash.reasons=[`Le FCF publié est nul ou négatif en ${years.join(', ')}. Cette méthode exige un historique positif ; ces exercices sont conservés dans les données.`,...methods.cash.reasons]
+  }
   return {id:company.id,name:company.name,checkedAt:now.toISOString(),latestAccountsEnd:latestAccountsEnd(company),fields,methods,financialDepth:financialDepth(company,now)}
 }

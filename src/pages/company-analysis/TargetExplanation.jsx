@@ -10,6 +10,8 @@ export default function TargetExplanation({company,model,selected,method,reading
   return <section className="valuation-reading" data-testid="valuation-reading" aria-live="polite">
     <span className="valuation-eyebrow">💡 COMPRENDRE L’OBJECTIF</span>
     <h3>{reading.title}</h3><p data-testid="target-summary">{x.summary}</p>
+    <p data-testid="target-bridge-reading">{x.bridgeText}</p>
+    {x.context&&<div data-testid="scenario-context"><p>{x.context.growthText}</p><p>{x.context.multipleText}</p></div>}
     <p data-testid="target-coverage">{x.coverage}</p>
     <p><strong>📌 À garder en tête :</strong> {x.limitations[0]}</p>
     <details><summary>Comprendre le calcul et consulter les sources</summary>

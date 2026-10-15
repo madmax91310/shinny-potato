@@ -369,6 +369,13 @@ def extended_publication_decision(profile, company, today):
                 }[ident]
                 ocf = value(block, labels[0], n, notes=True)
                 capex = value(block, labels[1], n, notes=True) if labels[1] else None
+                if ident == 'lvmh':
+                    from company_share_notes import lvmh_cash_note, lvmh_investments
+                    try:
+                        investments = lvmh_investments(lvmh_cash_note(raw), years)
+                        capex = [investments[f'{year}-12-31']/1e6 for year in years]
+                    except ValueError:
+                        pass  # Preserve qualified OCF when the supplementary note is absent.
                 if ident == 'schneider':
                     extra = value(block, r'Purchases of intangible assets', n, notes=True)
                     capex = [abs(a) + abs(b) for a, b in zip(capex, extra)]
@@ -384,6 +391,22 @@ def extended_publication_decision(profile, company, today):
                         r.update(capitalExpenditure=abs(capex[i])*1e6, freeCashFlow=(ocf[i]-abs(capex[i]))*1e6,
                                  freeCashFlowDefinition=FCF_METHOD + (' ; actifs incorporels inclus' if ident in ('air-liquide','schneider','totalenergies','visa') else ''))
                     if dividends: r['dividendsPaid'] = abs(dividends[i])*1e6
+                    if ident == 'lvmh':
+                        from company_share_notes import lvmh_shares
+                        try:
+                            r['averageDilutedShares'] = lvmh_shares(text, years)[p['end']]
+                            r['sharesBasisSource'] = url
+                        except ValueError:
+                            pass
+                    if ident == 'schneider':
+                        from company_share_notes import schneider_shares
+                        try:
+                            counts = schneider_shares(text)
+                            if p['end'] in counts:
+                                r['averageDilutedShares'] = counts[p['end']]
+                                r['sharesBasisSource'] = url
+                        except ValueError:
+                            pass
                     if ident == 'costco':
                         share_key = 'averageDilutedShares' if p['end'] == parsed['end'] else 'previousAverageDilutedShares'
                         if share_key in parsed:

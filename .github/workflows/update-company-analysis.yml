@@ -84,6 +84,7 @@ jobs:
         run: python scripts/refresh_company_depth.py --apply --output "$RUNNER_TEMP/company-depth-observation.json"
       - run: node scripts/test-company-independent.mjs
       - run: node scripts/test-company-professional.mjs
+      - run: node scripts/test-company-context.mjs
       - name: Qualify every method and field
         if: always()
         run: node scripts/report-company-qualification.mjs "$RUNNER_TEMP/company-qualification.json"
