@@ -129,10 +129,10 @@ export default function App() {
         </ChoicePicker>
         <Button type="button" variant="secondary" onClick={randomDuel}>🎲 Un autre duel</Button>
       </div>}
-      {mode === 'generated' && <div className="pd-controls"><p>Chaque portefeuille contient une base ETF, avec éventuellement un complément et une thématique.</p><Button type="button" onClick={regenerate}>🎲 Générer un autre duel</Button></div>}
+      {mode === 'generated' && <div className="pd-controls"><p>Chaque portefeuille contient une base ETF et un complément, avec parfois une troisième ligne thématique.</p><Button type="button" onClick={regenerate}>🎲 Générer un autre duel</Button></div>}
       {mode === 'manual' && <>
         <div className="pd-editors"><AllocationEditor label="A" lines={left} onChange={setLeft} /><AllocationEditor label="B" lines={right} onChange={setRight} /></div>
-        <p className="pd-hint">1 à 3 ETF par portefeuille : une base, un complément facultatif, une thématique facultative · mêmes dates et calcul en euros · pondérations rétablies au début de chaque année.</p>
+        <p className="pd-hint">2 à 3 lignes par portefeuille : une base ETF et au moins un complément ou une thématique · mêmes dates et calcul en euros · pondérations rétablies au début de chaque année.</p>
         {error && <p className="pd-error" role="alert">{error}</p>}
       </>}
 
