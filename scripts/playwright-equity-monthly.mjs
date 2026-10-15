@@ -12,6 +12,7 @@ try {
   const page=await browser.newPage(), errors=[];page.on('pageerror',e=>errors.push(e.message))
   for (const route of ['calculateur-investissement','il-y-a-x-ans','performance-depuis']) {
     await page.goto(`${base}/${route}`,{waitUntil:'networkidle'})
+    await page.locator(`[data-option][data-value="${ids[0]}"]`).waitFor({state:'attached',timeout:60000})
     for(const id of ids) assert.equal(await page.locator(`[data-option][data-value="${id}"]`).count(),1,`${route}: ${id} available`)
     for(const id of ['walmart','airbus','samsung','sk-hynix']) {
       await page.locator(`[data-option][data-value="${id}"]`).click()
