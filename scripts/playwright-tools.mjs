@@ -260,6 +260,11 @@ async function testCalculateur(page) {
   }
   for (const id of ['etfWorldTech','etfAiBigData','etfWorldExUs','etfEmExChina']) {
     await choose(page.locator('[data-selector].ic-control').first(), id);
+    // A recent listing must reject the previous 2020 start rather than invent observations.
+    await choose(page.getByRole('group',{name:'Année de départ',exact:true}), '2020');
+    septemberOk &&= (await page.getByRole('button',{name:/Copier le texte du post|✓ Copié/}).count()) === 0;
+    await choose(page.getByRole('group',{name:'Année de départ',exact:true}), '2025');
+    await choose(page.getByRole('group',{name:'Mois de départ',exact:true}), '1');
     const dca=page.getByRole('button',{name:'Mensuel (DCA)',exact:true});
     septemberOk &&= await dca.isEnabled();
     await dca.click();
@@ -267,6 +272,7 @@ async function testCalculateur(page) {
     const post=await page.evaluate(()=>window.__investmentCopiedText);
     septemberOk &&= post.includes('septembre 2026') && !/NaN|undefined/.test(post);
   }
+  await choose(page.getByRole('group',{name:'Année de départ',exact:true}), '2020');
   await choose(page.locator('[data-selector].ic-control').first(), 'or');
   septemberOk &&= (await page.locator('.ic-current-level').innerText()).includes('septembre 2026');
   await page.getByRole('button', { name: /Copier le texte du post|✓ Copié/ }).click();
@@ -674,7 +680,7 @@ async function testTweetMidi(page) {
   const historical = HISTORY.bitcoin.points.find(p => p.date === pastYm);
   const anniversary = await page.locator("pre").innerText();
   if (historical && !anniversary.includes(fmtHistoryPrice(historical.price, "USD"))) failed.push("Il y a X ans : clôture historique Bitcoin");
-  for (const id of ['berkshire', 'asml']) {
+  for (const id of ['berkshire', 'asml', 'etfWorldTech','etfAiBigData','etfWorldExUs','etfEmExChina']) {
     await choose(page.locator('#subject-select'), id);
     await choose(page.locator('#secondary-select'), '1');
     await page.getByRole('button', { name: '🔄 Générer', exact: true }).click();
@@ -693,6 +699,13 @@ async function testTweetMidi(page) {
     && !/💬|Livret A|Cours en dollars/u.test(performance)
     && (await page.getByRole('checkbox').count()) === 0;
   if (!minimal) failed.push('Performance depuis : format minimal');
+  for (const id of ['etfWorldTech','etfAiBigData','etfWorldExUs','etfEmExChina']) {
+    await choose(page.locator('#subject-select'), id);
+    await choose(page.locator('#secondary-select'), '2025');
+    await page.getByRole('button',{name:'🔄 Générer',exact:true}).click();
+    const post=await page.locator('pre').innerText();
+    if(!post.includes('2025 :') || /2024 :|2026 :|NaN|undefined/.test(post)) failed.push(`${id}: années complètes de la part`);
+  }
   await choose(page.locator('#subject-select'), 'stoxx600');
   await page.getByRole('button', { name: '🔄 Générer', exact: true }).click();
   const stoxxPerformance = await page.locator('pre').innerText();
