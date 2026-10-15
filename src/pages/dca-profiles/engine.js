@@ -4,7 +4,7 @@ import { portfolioExposure } from '../../lib/portfolio-exposure.js'
 export { references }
 export const pct = n => `${n.toLocaleString('fr-FR', {maximumFractionDigits:2})} %`
 export const euro = n => `${n.toLocaleString('fr-FR', {maximumFractionDigits:2})} €`
-export function prepareProfile(profile, index=0) {
+export function prepareProfile(profile) {
   // Prepared holdings are explicit editorial scenarios, never inferred from DCA.
   // The fallback only initializes custom inputs that do not carry holdings yet.
   const weights = profile.holdings?.length === profile.lines.length

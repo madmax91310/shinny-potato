@@ -33,26 +33,32 @@ export function donutData(analysis){
  if(missing>.000001)rows.push({name:'Non ventilé ici',weight:missing,color:'#57718e'})
  return {group,rows}
 }
-export function renderDcaImage(input){
+let fontReady
+async function loadDcaFont(){
+ if(!fontReady)fontReady=new FontFace('DcaEditorial',`url("${import.meta.env.BASE_URL}asset-art/editorial.woff2")`,{weight:'500'}).load().then(font=>document.fonts.add(font)).catch(error=>{fontReady=undefined;throw error})
+ return fontReady
+}
+export async function renderDcaImage(input){
+ await loadDcaFont()
  const p=input.lines.every(l=>Number.isFinite(l.weight))?input:prepareProfile(input),a=analyzeProfile(p)
  if(a.errors.length)throw Error(a.errors.join(' '))
  const canvas=document.createElement('canvas');canvas.width=1600;canvas.height=1067;const ctx=canvas.getContext('2d')
  const bg=ctx.createLinearGradient(0,0,1600,1067);bg.addColorStop(0,'#071b36');bg.addColorStop(.5,'#03152c');bg.addColorStop(1,'#092952');ctx.fillStyle=bg;ctx.fillRect(0,0,1600,1067)
  text(ctx,'LE DCA DE',64,62,710,26,C.muted,700)
- text(ctx,p.name,62,161,710,96,C.ivory,700,'Georgia')
+ text(ctx,p.name,62,161,710,96,C.ivory,700,'DcaEditorial')
  text(ctx,[p.age&&`${p.age} ans`,p.job].filter(Boolean).join(' · '),66,212,710,30,C.ivory,400)
  if(p.income)text(ctx,`${incomeLabel(p)} : ${euro(p.income)} / mois`,66,263,710,32,C.ivory,400)
  text(ctx,'CHAQUE MOIS',66,341,710,26,C.muted)
- text(ctx,euro(a.monthly),56,495,720,160,C.yellow,700,'Georgia')
- text(ctx,'investis par mois',66,552,710,40,C.ivory,700,'Georgia')
+ text(ctx,euro(a.monthly),56,495,720,160,C.yellow,700,'DcaEditorial')
+ text(ctx,'investis par mois',66,552,710,40,C.ivory,700,'DcaEditorial')
  const rowHeight=Math.min(112,366/p.lines.length),top=597
  p.lines.forEach((l,i)=>{
   const y=top+i*rowHeight
   rule(ctx,66,y,710)
-  text(ctx,euro(l.amount),66,y+rowHeight*.66,220,Math.min(49,rowHeight*.55),C.yellow,700,'Georgia')
-  text(ctx,l.label,312,y+rowHeight*.62,464,Math.min(31,rowHeight*.45),C.ivory,700,'Georgia')
+  text(ctx,euro(l.amount),66,y+rowHeight*.66,220,Math.min(49,rowHeight*.55),C.yellow,700,'DcaEditorial')
+  text(ctx,l.label,312,y+rowHeight*.62,464,Math.min(31,rowHeight*.45),C.ivory,700,'DcaEditorial')
  })
- text(ctx,'Son portefeuille',865,112,670,65,C.ivory,700,'Georgia')
+ text(ctx,'Son portefeuille',865,112,670,65,C.ivory,700,'DcaEditorial')
  text(ctx,'Exposition géographique',880,163,650,32,C.muted,400)
  const {group,rows}=donutData(a),cx=1197,cy=508,r=280,inner=195
  let angle=-Math.PI/2
@@ -69,6 +75,6 @@ export function renderDcaImage(input){
  if(group?.classification==='Pays d’enregistrement DWS')text(ctx,'Pays d’enregistrement',860,1004,670,16,C.muted,400)
  rule(ctx,64,1013,1472)
  text(ctx,p.scope,64,1050,1000,20,C.muted,400)
- text(ctx,'Épargnant Libre',1205,1051,330,32,C.ivory,700,'Georgia')
+ text(ctx,'Épargnant Libre',1205,1051,330,32,C.ivory,700,'DcaEditorial')
  return canvas
 }
