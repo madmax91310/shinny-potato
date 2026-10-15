@@ -4,6 +4,16 @@ import * as history from '../src/data/market-history.js'
 import { DATA_CATALOG } from '../src/data/catalog.js'
 import { projectReviewCatalog } from '../src/data/review-projection.js'
 
+// Lossless string interning keeps repeated source URLs and review instructions
+// from growing once per company/field. Objects and dates remain unchanged.
+export function compactLiteral(value) {
+  const json=JSON.stringify(value),counts=new Map()
+  const tokens=/"(?:[^"\\]|\\.)*"(\s*:)?/g
+  json.replace(tokens,(s,key)=>{if(!key&&s.length>=26)counts.set(s,(counts.get(s)??0)+1);return s})
+  const shared=[...counts].filter(([,n])=>n>=3).map(([s])=>s),indices=new Map(shared.map((s,i)=>[s,i]))
+  return `const strings=Object.freeze([${shared.join(',')}]);\nexport default `+json.replace(tokens,(s,key)=>!key&&indices.has(s)?`strings[${indices.get(s)}]`:s)+';'
+}
+
 // Projections are derived from the same registries on every build/dev startup.
 // No fetched copy or independently maintained financial value is introduced.
 export function projectToolData() {
@@ -19,24 +29,7 @@ export function projectToolData() {
     if (part.length) parts.push(part)
     const imports = parts.map((part, i) => {
       const key = `virtual:tool-data:${name}:${i}`
-      const value = array ? part : Object.fromEntries(part)
-      const counts = new Map()
-      function visit(v) {
-        if (typeof v === 'string' && v.length > 60) counts.set(v, (counts.get(v) ?? 0) + 1)
-        else if (Array.isArray(v)) v.forEach(visit)
-        else if (v && typeof v === 'object') Object.values(v).forEach(visit)
-      }
-      visit(value)
-      const strings = [...counts].filter(([, n]) => n > 1).map(([v]) => v)
-      const indexes = new Map(strings.map((v, i) => [v, i]))
-      function serialize(v) {
-        if (typeof v === 'string' && indexes.has(v)) return `texts[${indexes.get(v)}]`
-        if (Array.isArray(v)) return '[' + v.map(x => serialize(x) ?? 'null').join(',') + ']'
-        if (v && typeof v === 'object') return '{' + Object.entries(v).filter(([, x]) => x !== undefined).map(([k, x]) => JSON.stringify(k) + ':' + serialize(x)).join(',') + '}'
-        return JSON.stringify(v)
-      }
-      // One copy of repeated provenance text; consumers receive identical values.
-      modules.set(key, `const texts = Object.freeze(${JSON.stringify(strings)}); export default ${serialize(value)};`)
+      modules.set(key, compactLiteral(array ? part : Object.fromEntries(part)))
       groups.push({ name: `${name}-${i}`, test: new RegExp(`tool-data:${name}:${i}$`), priority: 120 })
       return `import p${i} from '${key}';`
     }).join('\n')

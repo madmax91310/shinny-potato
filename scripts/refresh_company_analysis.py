@@ -271,6 +271,9 @@ def main():
     report = {'checkedAt': now.isoformat(), 'alphaVantageConfigured': bool(key), 'companies': {}}
     failures = []
     for profile in profiles:
+        # The scalable SEC cohort has its own bounded, independent collector.
+        if profile.get('collectionAdapter') == 'sec-companyfacts':
+            continue
         if profile.get('candidateOnly') and not args.only:
             continue
         if args.only and profile['id'] not in args.only:
@@ -573,3 +576,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+

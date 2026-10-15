@@ -70,10 +70,17 @@ assert.equal(activeBalance(computed,now),null)
 for (const company of COMPANIES) {
   const observationNow = observationDate(company)
   assert(canPublish(company,observationNow),`${company.name}: valid initial accounts`)
-  if(company.currency === 'USD') {
+  if(company.currency === 'USD'&&company.collectionAdapter!=='sec-companyfacts') {
     assert.equal(company.quarters?.length,4,`${company.name}: four published quarters`)
     assert.equal(company.trailing?.end,company.quarters[0].end)
     assert(Math.abs(company.trailing.dilutedEPS - company.quarters.reduce((sum,q)=>sum+q.dilutedEPS,0)) < 1e-9)
+  }
+  if(company.collectionAdapter==='sec-companyfacts'&&!company.trailing) {
+    const ratios=calculatedRatios(company,observationNow)
+    assert.equal(ratios.peTTM,undefined,`${company.name}: annual EPS must not become TTM`)
+    if(ratios.peAnnual)assert(Math.abs(ratios.peAnnual-company.quote.price/company.annual.dilutedEPS)<1e-9)
+    assert.equal(company.annual.durationMonths,12)
+    assert(company.history.years.length>=4)
   }
   text = buildTweetText(company,observationNow)
   const record = searchData(company.symbol,'company').find(record => record.id === `company:${company.id}`)
@@ -310,3 +317,4 @@ for(const c of COMPANIES) {
  assert(!/Ce montant ne mesure pas|ordre de grandeur|Ce rendement du FCF|Le cash mérite/.test(copy))
 }
 console.log('Concise stories: all companies, latest periods, negative cash, date mismatches and explicit debt scope OK.')
+

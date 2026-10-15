@@ -38,7 +38,7 @@ Généré depuis les routes, le catalogue et les observations actives. Régéné
 |---|---:|
 | actor | 11 |
 | broker | 8 |
-| company | 26 |
+| company | 75 |
 | household | 29 |
 | index | 52 |
 | instrument | 206 |

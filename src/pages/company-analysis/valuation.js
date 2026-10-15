@@ -74,6 +74,7 @@ export function valuationInputs(company, now = new Date()) {
   const cashReady = Boolean(quoteOK && basisOK && continuous)
   const elapsed = continuous ? (Date.parse(history.at(-1).end)-Date.parse(history[0].end))/86400000/365.25 : null
   return {cashReady, earningsReady, reasons, history, price: quoteOK ? q.price : null, eps,
+    reportedCashPerShare: quoteOK && basisOK && history.at(-1)?.end === company.annual?.end ? history.at(-1).value : null,
     cashBase: cashReady ? history.at(-1).value : null,
     historicalGrowth: cashReady ? (history.at(-1).value/history[0].value)**(1/elapsed)-1 : null,
     estimatedGrowth: earningsReady ? estimates.growthEPS5Y/100 : null,
@@ -100,3 +101,4 @@ export function buildScenarios(company, overrides = {}, now = new Date()) {
   return {inputs, scenarios, policy: POLICY, note: MODEL_NOTE,
     rules: 'FCF : croissance historique annualisée bornée entre −10 et +10 %. BPA : croissance estimée sur cinq ans bornée entre 0 et 10 %, horizon cinq ans. Écart de ±3 points ; multiples 15/20/25 ; rendement exigé 10 %. Conventions de simulation, pas des prévisions ni des probabilités. La base comptable des prévisions Finviz n’est pas précisée ; elle peut différer du BPA publié. Les deux méthodes ne sont pas moyennées.'}
 }
+

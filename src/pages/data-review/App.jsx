@@ -22,7 +22,9 @@ export default function DataReview() {
   const query = params.get('q') ?? ''
   const view = Object.hasOwn(VIEWS, params.get('view')) ? params.get('view') : 'action'
   function update(key, value) {
-    const next = new URLSearchParams(params)
+    // Navigation updates the URL before a large list finishes rendering. Read
+    // that current URL so a quick second click cannot restore an older filter.
+    const next = new URLSearchParams(window.location.search)
     next.set(key, value)
     // Une réserve n'a pas de cycle de contrôle : ne pas la masquer derrière
     // la temporalité du calendrier précédemment sélectionnée.
@@ -36,7 +38,7 @@ export default function DataReview() {
   const calendar = reviewCalendar(report)
   const summaries = summarizeCadences(calendar.filter(matches), today)
   function selectCadence(value) {
-    const next = new URLSearchParams(params)
+    const next = new URLSearchParams(window.location.search)
     next.set('cadence', value)
     next.set('view', 'calendar')
     setParams(next, { replace: true })
