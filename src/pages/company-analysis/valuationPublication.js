@@ -1,8 +1,8 @@
 import { targetExplanation } from './targetExplanation.js'
 import { buildPriceScenarios, targetChart, targetReading } from './priceTargets.js'
 import { formatValue as n } from './valuationPresentation.js'
-import { dateLabel, calculatedRatios } from './lib.js'
-const signed=v=>`${v>=0?'+':'−'}${n(Math.abs(v)*100)} %`
+import { calculatedRatios } from './lib.js'
+import { valuationTweet } from './valuationTweet.js'
 export function valuationPublication(company,overrides,selected,method,now=new Date(),years=5) {
   if(!['cash','earnings'].includes(method)||![0,1,2].includes(selected))throw new Error('Choisis un modèle et un scénario disponibles.')
   const model=buildPriceScenarios(company,overrides,now,years),cash=method==='cash'
@@ -17,30 +17,7 @@ export function valuationPublication(company,overrides,selected,method,now=new D
     {label:'Rendement FCF',value:Number.isFinite(model.inputs.reportedCashPerShare)?`${n(model.inputs.reportedCashPerShare/price*100)} %`:'—',hint:'FCF annuel / cours'},
   ]
   const scenarios=model.scenarios.map(s=>({name:s.name,customised:s.customised,...(cash?s.cashTarget:s.earningsTarget),assumptions:cash?s.cashAssumptions:s.earningsAssumptions}))
-  // Export a readable investment argument; the screen keeps the full audit trail.
-  const unit=cash?'trésorerie disponible par action après investissements':'bénéfice ajusté par action'
-  const growthText=Math.abs(assumptions.growth)<.00005?'reste stable':`${assumptions.growth<0?'recule':'progresse'} de ${n(Math.abs(assumptions.growth)*100)} % par an en moyenne`
-  const watch=company.watch?.replace(/\.$/,'')
-  const text=[
-    `🔎 ${company.name} : quel cours envisager dans ${years} an${years>1?'s':''} ?`,
-    company.activity,
-    `L’action clôturait à ${n(price,2)} ${currency} le ${dateLabel(company.quote.asOf)}. À partir de ce cours, voici ce que donnent les hypothèses du modèle.`,
-    `🎯 Trois scénarios au ${dateLabel(model.targetDate)} :\n${scenarios.map(s=>`• ${s.name} : ${n(s.value,2)} ${currency} (${signed(s.upside)})`).join('\n')}\nLes pourcentages indiquent l’écart avec le cours de départ, hors dividendes.`,
-    `🧮 Ce que suppose le scénario ${scenario.name.toLowerCase()}\n${cash?'La '+unit:'Le '+unit} ${growthText}. ${cash?'C’est le flux de trésorerie qui reste après les investissements, rapporté à une action.':'Il s’agit du bénéfice après les ajustements retenus par la source, rapporté à une action.'}`,
-    `À l’échéance, le calcul suppose que le marché paie ${n(assumptions.multiple)} fois ${cash?'ce flux':'le bénéfice ajusté attendu'}. On multiplie donc ${n(explanation.fundamental,2)} ${currency} par ${n(assumptions.multiple)} pour obtenir l’objectif. (avec les valeurs exactes avant arrondi).`,
-    `Cela donnerait une variation annualisée du cours de ${signed(reading.annualised)}, hors dividendes. C’est un rythme moyen sur la période : le cours ne suivrait pas forcément cette évolution chaque année.`,
-    `💡 Ce qui explique cet objectif\n${explanation.summary}\n${explanation.bridgeText}`,
-    explanation.context?.growthText,
-    explanation.context?.multipleText,
-    `⚖️ Et si le marché payait moins cher ?\nAvec la même croissance, un multiple de ${n(reading.sensitivity.lowerMultiple)} au lieu de ${n(reading.sensitivity.upperMultiple)} ferait passer l’objectif de ${n(reading.sensitivity.high,2)} à ${n(reading.sensitivity.low,2)} ${currency}.`,
-    watch?`👀 Le point à surveiller\n${watch}.`:company.editorialQuestion,
-    `📌 D’où viennent ces projections ?\n${explanation.coverage}`,
-    scenario.customised?'Les hypothèses de ce scénario ont été personnalisées.':null,
-    model.orderChanged?'Les réglages personnalisés ont modifié l’ordre des objectifs.':null,
-    cash?`Comptes : ${company.annual.sourceUrl} · exercice clos le ${dateLabel(company.annual.end)}.`:null,
-    `Source du modèle : ${model.evidence[method].sourceUrl} · données du ${dateLabel(model.evidence[method].asOf)}.`,
-    'Ces objectifs dépendent des hypothèses retenues. Le scénario central n’est pas une prévision certaine.\nPas un conseil financier.',
-  ].filter(Boolean).join('\n\n')
+  const text=valuationTweet(company,model)
   return {name:company.name,symbol:company.symbol,currency,quoteDate:company.quote.asOf,price,method,selected,years,targetDate:model.targetDate,
     metrics,scenarios,reading,explanation,assumptions,chart:targetChart(company,model,method),text,
     filename:`objectifs-${company.id}-${method}-${years}ans-${scenario.name.toLowerCase()}-${company.quote.asOf}.png`}
