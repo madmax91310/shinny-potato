@@ -1,3 +1,5 @@
+import { AUTOMATED_ETF } from '../../data/automated-etf.js'
+import { concentrationCopy } from '../../data/exposure-observations.js'
 import { getPresentationCopy, presentationTicker } from './editorial.js'
 import { CATEGORY_EMOJI } from '../../data/etf-cards.js'
 import { annualPerformanceRange, formatAnnualPerformance, getAnnualPerformance, formatTweetPerformance } from './annualPerformance.js'
@@ -22,6 +24,7 @@ export function buildText(sourceEtf) {
   const tickerStr = presentationTicker(etf)
   const dot = CATEGORY_EMOJI[etf.category] || '⚫'
   const annual = getAnnualPerformance(etf)
+  const concentration = concentrationCopy(AUTOMATED_ETF[etf.isin])
   const commodities = commodityAllocationLines(etf.isin)
   return (
     etf.hook + '\n\n' +
@@ -39,7 +42,7 @@ export function buildText(sourceEtf) {
     (commodities.length ? '\n' + commodities.join('\n') + '\n' : '') +
     '\n' +
     '🔍 Ce que tu achètes\n' +
-    etf.whatIs + '\n' +
+    etf.whatIs + (concentration ? ' ' + concentration : '') + '\n' +
     '\n' +
     '✅ L’intérêt de cette exposition\n' +
     etf.whyInteresting + '\n' +

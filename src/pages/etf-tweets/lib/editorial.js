@@ -35,6 +35,7 @@ export const COMPARISON_EDITORIAL = {
 
 // Une phrase utile par produit, fondée sur les caractéristiques déjà documentées.
 export const FUND_EXPOSURES = {
+  IE00B3F81G20: 'Les petites capitalisations des marchés émergents, avec les revenus distribués.',
   IE00BD4TXV59: 'Des actions de pays développés, sans les marchés émergents.',
   IE00BK5BQT80: 'Des actions de pays développés et émergents dans une seule ligne.',
   IE00B44Z5B48: 'Des pays développés et émergents également, avec un indice construit par MSCI plutôt que FTSE.',

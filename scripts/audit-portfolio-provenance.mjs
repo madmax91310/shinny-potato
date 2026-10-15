@@ -24,7 +24,7 @@ for (const r of EXPOSURE_ADDITIONS) {
   groups[basis] += ' ' + r.id;
 }
 // Exact-share issuer NAV returns, with the same verified annual-performance checks below.
-groups['Fonds confirmé chez l’émetteur'] += ' utilities_world_dws health_world_ishares materials_world_dws';
+groups['Fonds confirmé chez l’émetteur'] += ' em_pea_amundi europe_pea_amundi health_europe_pea tech_europe_pea industry_world_dws em_small_ishares utilities_world_dws health_world_ishares materials_world_dws';
 const tagged = new Map()
 let errors = 0
 for (const [basis, list] of Object.entries(groups)) {
@@ -40,7 +40,7 @@ const requiresNote = new Set(['Indice ou cours du sous-jacent', 'Autre fonds ou 
 const additionalNotes = new Set('nasdaq100_ishares sp500_ishares ftse_em_vanguard actions_coree actions_taiwan actions_japon actions_value oblig_etat_us sect_energie sect_tech sect_robotique sect_cybersecurite sect_financieres sect_sante smallcap_monde mp_large high_dividend high_dividend_dist quality_dividend quality_dividend_dist strat_dividendes strat_dividendes_dist'.split(' '))
 // Devise de la série effectivement utilisée, indépendamment de la place où la part se cote.
 // Les autres lignes restent « à documenter » tant qu'une fiche ne l'établit pas clairement.
-const usdReturns = new Set(`private_equity_ishares argent actions_india_ishares infrastructure_ishares nasdaq100_ishares actions_coree actions_taiwan actions_asie_ex_japon
+const usdReturns = new Set(`industry_world_dws em_small_ishares private_equity_ishares argent actions_india_ishares infrastructure_ishares nasdaq100_ishares actions_coree actions_taiwan actions_asie_ex_japon
   ftse_em_vanguard or or_wisdomtree or_ishares or_amundi bitcoin bitcoin_wisdomtree
   bitcoin_etcgroup bitcoin_21shares ethereum sect_energie_propre sect_conso_defensive
   sect_utilities sect_energie sect_tech sect_robotique sect_cybersecurite oblig_etat_us
@@ -58,6 +58,7 @@ const partialOrSyntheticYears = new Map(Object.entries({
   scpi: '2020 : ancienne mesure de performance globale, pas le RGI ASPIM',
 }))
 const issuerSources = {
+ ...Object.fromEntries(ASSETS.filter(a=>['em_pea_amundi','europe_pea_amundi','health_europe_pea','tech_europe_pea','industry_world_dws','em_small_ishares'].includes(a.id)).map(a=>[a.id,getInstrumentAnnualPerformance(a.isin).source])),
  ...Object.fromEntries(QUALIFIED_EXPOSURE_SHEETS.filter(r=>r.portfolioCategory || ['europe-banks','europe-insurance','europe-construction'].includes(r.id)).map(r=>[r.id,getInstrumentAnnualPerformance(r.isin).source])),
  ...Object.fromEntries(NON_BOND_SHEETS.filter(r=>getInstrumentReturnValues(r.isin).every(Number.isFinite)).map(r=>[r.id,getInstrumentAnnualPerformance(r.isin).source])),
  'world-islamic':getInstrumentAnnualPerformance('IE00B27YCN58').source,
@@ -179,6 +180,7 @@ world_ex_usa: SIMULATION_PROXIES.IE0006WW1TQ4.source,
 // Garde les corrections chiffrées issues des tableaux annuels du fournisseur indiqué.
 // Les cours crypto proviennent de Slickcharts, les rendements d'ETF de leur émetteur.
 const primarySeries = new Map(Object.entries({
+ ...Object.fromEntries(ASSETS.filter(a=>["em_pea_amundi","europe_pea_amundi","health_europe_pea","tech_europe_pea","industry_world_dws","em_small_ishares"].includes(a.id)).map(a=>[a.id,getInstrumentReturnValues(a.isin)])),
   argent: getInstrumentReturnValues('IE00B4NCWG09'),
 world_ex_usa: SIMULATION_PROXIES.IE0006WW1TQ4.values,
   msci_world_amundi_pea: [6.33, 31.07, -12.78, 19.60, 26.60, 6.77],
