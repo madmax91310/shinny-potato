@@ -22,7 +22,7 @@ export function projectCash(company,inputs,anchor) {
     const previous=projected.at(-1),growth=revenueGrowth+(anchor-revenueGrowth)*Math.min(i/3,1)
     const revenue=previous.revenue*(1+growth),margin=latestMargin+(cashMargin-latestMargin)*Math.min(i/3,1)
     const ocf=revenue*margin,capex=revenue*capexIntensity,shares=previous.shares*(1+sharesGrowth)
-    const date=new Date(`${latest.end}T00:00:00Z`);date.setUTCFullYear(date.getUTCFullYear()+i)
+    const date=new Date(`${latest.end}T00:00:00Z`);const month=date.getUTCMonth();date.setUTCFullYear(date.getUTCFullYear()+i);if(date.getUTCMonth()!==month)date.setUTCDate(0)
     projected.push({end:date.toISOString().slice(0,10),value:(ocf-capex)/shares,revenue,ocf,capex,shares,kind:'model'})
   }
   if(projected.some(p=>!positive(p.value)))return null

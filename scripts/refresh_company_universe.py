@@ -122,6 +122,7 @@ def collect(profile, old, now):
             # when historical positive multiples cannot support a cash model.
             item.pop('targetCashReference', None)
             status['cashReference'] = str(error)[:250]
+    item['valuationCollection'] = {'observedAt':now.date().isoformat(), **{k:v for k,v in status.items() if k in ('cashBasis','cashReference','forecast')}}
     return item, status
 
 

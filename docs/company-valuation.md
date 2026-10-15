@@ -1,175 +1,111 @@
-# Promesse produit : des prévisions de cours fondées sur les données
+# Valorisation — règles en vigueur au 15 octobre 2026
 
-Objectif confirmé le 14 octobre 2026 : choisir une entreprise et obtenir
-**trois objectifs de cours futurs**, leur échéance (1, 3 ou 5 ans), le potentiel
-par rapport à la dernière clôture et la progression annualisée du cours.
-Le graphique doit montrer les clôtures observées puis des trajectoires
-conditionnelles vers ces objectifs. L’image et le texte pour X reprennent
-exactement le modèle, l’horizon et les hypothèses affichés.
+Ce document remplace les anciennes conventions de croissance constante, écarts
+fixes de ±3 points et multiples universels 15/20/25. Ces conventions ne décrivent
+pas le parcours actuel. Les fonctions historiques de `valuation.js` subsistent
+pour leurs tests de référence ; l’interface appelle `priceTargets.js`.
 
-Une valeur actualisée aujourd’hui ne remplit pas cette promesse. Les moteurs
-de valeur actuelle ci-dessous restent des calculs distincts ; ils ne doivent
-jamais être renommés « objectifs de cours ».
+## Promesse et périmètre
 
-## Première version des prévisions — remplacée par la révision 2 ci-dessous
+Trois scénarios de cours à 1, 3 et 5 ans, réglables, fondés sur les observations
+qualifiées de chaque entreprise. Ce sont des scénarios conditionnels et non des
+prédictions certaines ni des objectifs d’analystes. Aucune probabilité n’est
+attachée aux noms Prudent, Central et Favorable.
 
-`priceTargets.js` est le moteur utilisé par l’interface et les exports.
-Objectif = BPA ou FCF/action de départ × (1 + croissance)^horizon × multiple de sortie.
-Potentiel = objectif / cours − 1. Progression annualisée =
-(objectif / cours)^(1 / horizon) − 1. Aucun dividende, frais ou impôt ajouté.
+Objectif = fondamental par action à l’échéance × multiple de sortie.
+Potentiel = objectif / dernière clôture − 1.
+Progression annualisée du cours = (objectif / clôture)^(1 / années) − 1.
+Dividendes, frais et fiscalité sont exclus de cette progression.
 
-Les bases sont publiées et qualifiées. La croissance centrale vient de l’estimation
-Finviz sur cinq ans pour le BPA, ou du CAGR des exercices comparables pour le FCF.
-La même croissance annuelle est appliquée à l’horizon choisi. Elle est bornée à
-±30 % dans les réglages automatiques, avec le chiffre source expliqué à l’utilisateur.
-Le multiple central est le multiple actuel de l’entreprise (cours / base publiée),
-pas un multiple identique imposé à toutes les entreprises. Les écarts prudent et
-favorable (±3 points de croissance, ±20 % de multiple) sont des conventions
-explicites et modifiables. Ce ne sont ni des probabilités ni un consensus d’objectifs
-d’analystes. La base Finviz peut différer du BPA publié ; cette limite reste indiquée.
+## Deux méthodes distinctes
 
-Le graphique conserve les dernières clôtures hebdomadaires sur deux ans et la
-plus récente séance complète, collectées quotidiennement dans la série Yahoo
-`close`, sans utiliser `adjclose` ni fabriquer des rendements totaux. Le multiple
-converge géométriquement du multiple actuel à celui du scénario ; c’est une convention
-de trajectoire, pas une prédiction des mouvements intermédiaires. Les pointsillés
-commencent à la dernière clôture et finissent exactement à l’objectif. En l’absence
-d’historique qualifié, seule la dernière clôture est affichée et identifiée.
+**Bénéfices** : BPA ajustés datés et PER prévisionnels de même définition.
+Le BPA retenu est celui du premier exercice fiscal se terminant après l’échéance
+calendaire. Les points sourcés sont distingués des extrapolations : après la
+dernière estimation, la croissance converge en trois exercices vers la médiane
+de croissance historique du chiffre d’affaires, bornée entre 0 et 10 %.
+Une estimation ajustée n’est jamais appliquée au BPA comptable publié.
 
-Les tests empêchent la régression vers des valeurs actualisées : benchmark indépendant
-322,102 pour une base 10, croissance 10 %, multiple 20 à cinq ans ; contrôle du
-potentiel et de l’annualisation ; coïncidence des objectifs, dates, points terminaux,
-textes et PNG ; changement automatique après modification de la donnée source.
-La CI collecte les sources réelles et exige un historique de cours pour les
-entreprises disposant d’un modèle actif.
+**FCF** : quatre exercices consécutifs positifs et comparables, composantes OCF
+et investissements, nombres moyens dilués, source et contrôle des fractionnements
+sur toute la fenêtre. Le chiffre d’affaires, la marge opérationnelle de trésorerie,
+les investissements et les actions sont projetés séparément. Les rachats sont
+bornés par le financement observé après dividendes. La rémunération en actions
+n’est pas retirée une seconde fois lorsque la variation nette des actions est
+utilisée. Le modèle ne projette pas explicitement acquisitions, locations et
+financements futurs. Une série négative, des classes d’actions non qualifiées ou
+un fractionnement non certifié bloquent cette méthode.
 
-## Référence des moteurs de valeur actuelle (distincts des objectifs futurs)
+Les deux méthodes ne sont pas moyennées. Les banques, assurances et autres
+activités incompatibles ne doivent pas être déclarées `operating-company` pour
+forcer leur admission. Les pertes sont conservées dans les comptes et élargissent
+les sensibilités ; elles ne sont pas remplacées par des bénéfices fictifs.
 
-# Valorisation des entreprises — fondations (roadmap 1–4)
+## Multiples et sensibilités
 
-Le registre existant reste la seule source. `valuationInputs` audite à chaque
-calcul la fraîcheur, les comptes, les devises, les historiques et la base par
-action. `audit-company-valuation.mjs` produit le rapport de couverture dans
-l’artefact quotidien `company-valuation-coverage`. Une absence reste explicite,
-aucune interpolation ni approximation par bénéfice/FCF.
+Au moins trois multiples historiques comparables. La médiane de l’entreprise
+reste la référence. Les pairs ne contribuent que si au moins deux autres sociétés
+d’un groupe explicitement qualifié sont exploitables ; poids 25 %, écart de leur
+médiane borné à ±25 % de la référence historique. Les secteurs seuls ne suffisent
+pas à qualifier un groupe. Aucun élargissement arbitraire des comparables.
 
-## Collecte renouvelable
+La dispersion des variations logarithmiques du chiffre d’affaires et des
+fondamentaux détermine les chocs. Plancher 4 % (12 % si pertes), plafond 40 % ;
+historique court majoré de 25 %. Facteur = exp(±dispersion × racine de l’horizon).
+Les multiples utilisent les quantiles historiques 20–80 %, avec bornes de
+40–95 % et 105–200 % de la référence. Ce sont des conventions de sensibilité,
+pas des intervalles statistiques de confiance. Elles ne couvrent pas nécessairement
+un cycle économique complet. Une croissance personnalisée remplace la trajectoire
+variable par un taux constant ; l’origine du réglage est affichée.
 
-Le collecteur existant réexamine les publications officielles, avec les nouveaux
-libellés de nombres moyens dilués. Les nombres sont publiés, jamais déduits du BPA ;
-le rapprochement bénéfice/nombre/BPA vérifie les colonnes. Les nombres moyens
-annuels servent à l’historique FCF/action, pas à fabriquer une capitalisation.
-La migration du bloc decision version 3 déclenche la relecture des archives.
+## Lecture inverse et DCF
 
-`company_valuation.py` vérifie quotidiennement les événements de division sur
-**toute** la fenêtre historique, au-delà des deux ans de cours habituels. Nvidia dispose
-d’un adaptateur de retraitement : dates et ratios recoupés avec les publications
-officielles, date de publication de chaque rapport, détection des comparatifs déjà
-retraités. Les nombres publiés restent conservés. Les autres splits bloquent le
-modèle FCF tant que leur base n’est pas qualifiée.
-Les classes multiples sont exclues. Une erreur supprime la qualification et
-suspend le calcul ; les comptes précédents gardent leur date réelle.
+La lecture inverse du prix de revente calcule la croissance constante nécessaire
+pour obtenir un niveau ou une progression annualisée du cours, avec le multiple
+final choisi. Elle reste distincte des objectifs directs et de leur tweet.
 
-Il faut quatre exercices consécutifs positifs, à définition identique, avec
-nombres moyens dilués sourcés. Les sociétés insuffisamment couvertes restent
-visibles dans l’analyse et dans le rapport avec la raison du blocage. Le workflow
-quotidien tente à nouveau les sources, sans intervention ni clé supplémentaire.
+Le DCF actualise les flux distribués annuels et une revente finale. Il emploie
+une convention à nombre d’actions constant à compter de la date du cours : la
+variation des actions intégrée à la trajectoire automatique est neutralisée.
+Ainsi la même trésorerie ne finance pas à la fois des rachats et une distribution
+intégrale. Une croissance personnalisée est interprétée à actions constantes.
+Cette valeur actuelle peut donc reposer sur un flux par action différent de celui
+des objectifs. Ni dividende ajouté, ni trésorerie ajoutée, ni seconde déduction de
+dette : modèle simplifié après intérêts, financement net par dette nul, pas FCFF.
+La recherche inverse est bornée à −50/+50 % ; absence de solution = indisponible.
 
-## Modèles, unités et conventions
+## Qualification et données de vigilance
 
-Tous les taux internes sont décimaux. Flux en fin d’année ; multiple appliqué au
-flux de la dernière année. Base = dernier FCF annuel / moyenne diluée annuelle.
+`companyQualification` sépare présence, fraîcheur et utilisabilité des comptes,
+cours, historiques, estimations et base par action. Les restrictions sont propres
+à chaque méthode. `companyCompleteness` conserve le contrat historique strict
+d’admission ; il ne signifie pas disponibilité des deux méthodes. Aucun seuil
+n’est abaissé pour augmenter le nombre de dossiers dits complets.
 
-FCF : V = somme(F0*(1+g)^t/(1+r)^t, t=1..N)
-+ M*F0*(1+g)^N/(1+r)^N.
+Les données de dette, trésorerie, locations, acquisitions, rémunération en actions
+et rachats portent une définition, une période et une source. Le complément annuel
+standardisé est rapproché du chiffre d’affaires et du résultat retenus. Le bilan
+est rapproché de son équation comptable ; les champs absents restent absents et
+les erreurs conservent les dates des anciennes observations. La dette standardisée
+peut inclure les locations : aucune addition automatique. Les comptes trimestriels
+ou semestriels manquants sont signalés ; ils ne sont pas fabriqués à partir de l’annuel.
 
-C’est un modèle simplifié de flux après intérêts sous financement net par dette
-nul et nombre d’actions constant, pas un FCFF. Aucun ajout de trésorerie, aucune
-soustraction supplémentaire de dette, aucun ajout des dividendes ou rachats.
-Les capex sont déjà déduits du flux ; la croissance ne doit pas être interprétée
-comme indépendante des besoins de réinvestissement. Les locations et acquisitions
-ne sont pas intégralement capturées par le FCF collecté. Ces limites sont visibles.
-Référence de méthode : https://pages.stern.nyu.edu/~adamodar/New_Home_Page/AppldCF/derivn/ch11deriv.html
+## Restitution et surveillance
 
-Bénéfices : V = BPA0*(1+g)^N*PER_sortie/(1+r)^N, **hors dividendes**.
-Les bénéfices annuels ne sont pas ajoutés comme des flux distribuables.
-Le BPA de départ est celui qualifié par le calcul du PER existant.
-Les résultats des deux modèles ne sont jamais moyennés.
+Graphique : clôtures réelles hors dividendes et trajectoires hypothétiques.
+Le multiple converge géométriquement ; les points terminaux rejoignent exactement
+les objectifs. Écran, texte et PNG utilisent le même modèle. Les estimations
+externes, extrapolations et réglages personnels sont explicités dans la publication.
 
-La croissance implicite inverse le modèle FCF dans [-50 %, +50 %]. Le rendement
-implicite est recherché dans [1 %, 50 %]. Pas de solution dans ces bornes => null,
-jamais une borne présentée comme une solution. Hypothèses invalides rejetées.
+Le workflow quotidien collecte, qualifie, conserve les observations valides et
+signale les régressions. `company-method-and-field-qualification` contient la matrice
+de tous les dossiers et les erreurs du complément financier. Les autres artefacts
+conservent les erreurs des collectes de comptes et de valorisation. Les échecs ne
+rafraîchissent pas les observations retenues ; les méthodes périmées sont retirées.
+Les projections initiales restent archivées par `company-forecast-archive.sh`.
 
-## Scénarios automatiques version 1
-
-FCF : CAGR calculé avec les dates réelles sur les exercices disponibles, borné à
-[-10 %, +10 %] pour le central. Horizons 10 ans. Prudent/central/favorable =
-central moins 3 points / central / central plus 3 points.
-BPA : croissance Finviz cinq ans, bornée à [0 %, 10 %], horizon **5 ans** ; mêmes
-écarts. La prévision cinq ans n’est pas prolongée silencieusement à dix ans.
-Les croissances FCF et BPA restent distinctes, modifiables séparément.
-Multiples 15/20/25 et rendement exigé 10 % sont des **conventions explicites**,
-pas des valeurs issues d’un consensus ni des estimations sectorielles.
-Les hypothèses personnelles survivent aux recalculs tant que l’entreprise reste
-sélectionnée ; réinitialisation explicite disponible. Aucun stockage de compte.
-
-## Validation et suite
-
-Tests indépendants : annuité à croissance nulle, valeur terminale seule,
-inversion, monotonie, bornes, fraîcheur et qualification. Tests Python des unités,
-comptages publiés, profondeur du contrôle des splits et refus des fenêtres
-incomplètes. Tests Chromium de modification, erreur et réinitialisation.
-
-L’interface, le graphique et les exports actifs suivent désormais la promesse
-« objectifs de cours » décrite en tête de ce document. Les calculs historiques de
-valeur actuelle restent distincts dans valuation.js.
-
-La couverture FCF reste conditionnée aux publications qualifiées : aucune
-estimation ne remplace des nombres d’actions ou exercices manquants. L’audit
-quotidien archive la couverture et les objectifs pour les trois horizons.
-
-## Révision 2 — bases comparables, horizons et multiples (14 octobre 2026)
-
-Cette révision remplace la méthode automatique décrite en tête du document : le
-PER actuel et la croissance Finviz ne déterminent plus l’objectif central.
-
-- **Bénéfices** : collecte quotidienne des seuls tableaux et cartes publics de
-  Stock Analysis / S&P Global, explicitement en BPA non-GAAP ajustés. Dates fiscales,
-  rapprochement cartes/tableau, identité, devise, date de mise à jour et empreinte
-  conservés. Aucune cellule payante/masquée utilisée. Les ratios GAAP publiés restent
-  séparés. Sans définition commune ou données fraîches, cette méthode est suspendue.
-- **Horizon** : à chaque échéance, le BPA retenu est celui du premier exercice
-  finissant après cette date, car le multiple de référence est un PER *forward*.
-  Ce n’est ni le BPA TTM ni une estimation exactement à douze mois. Les valeurs
-  annuelles sourcées restent intactes, y compris les croissances supérieures à 50 %.
-  Au-delà du dernier exercice sourcé, la croissance annuelle initiale (bornée à
-  ±30 %) converge en trois exercices vers la médiane de croissance du CA, bornée
-  entre 0 et 10 %. Il faut au moins trois années de CA. Cette normalisation est
-  une convention explicite, pas une prévision de consensus. Un tableau montre
-  les exercices utilisés et distingue estimations sourcées et extrapolations.
-- **Multiple** : médiane d’au moins trois PER forward historiques ajustés publiés
-  par la même source. Lorsque deux pairs au moins du groupe explicite sont qualifiés,
-  pondération 75 % historique / 25 % médiane des pairs, cette dernière bornée à
-  ±25 % de l’ancre historique. Les groupes métier sont codés, les données actualisées
-  automatiquement. Sinon référence historique seule, annoncée. Les différences
-  économiques au sein d’un groupe restent une limite ; aucune prime arbitraire de
-  croissance n’est ajoutée au multiple. Les perspectives agissent sur le BPA.
-- **FCF** : médiane d’au moins trois cours/FCF annuels, prix mensuels ajustés des
-  splits et nombres dilués déjà qualifiés. On utilise un mois entièrement terminé
-  avant la clôture fiscale. Références rétrospectives (comptes connus après clôture),
-  impropres à un backtest sans biais d’anticipation. Pas de pairs FCF non harmonisés.
-  Le CAGR historique amorce une convergence sur trois ans vers l’ancre de CA.
-  La base est projetée depuis sa vraie date fiscale à la date du cours avant les
-  horizons futurs ; elle n’est plus silencieusement assimilée à un FCF d’aujourd’hui.
-- **Scénarios** : ±3 % sur chaque étape de trajectoire et ±20 % sur le multiple.
-  Ces conventions restent la prochaine priorité, elles ne sont pas des intervalles
-  de confiance. La croissance affichée est un taux annualisé équivalent ; une
-  personnalisation la remplace par une trajectoire à taux constant.
-
-Les tests vérifient notamment l’indépendance du prix central au cours présent,
-les périodes fiscales, le refus d’une base inconnue et la concordance graphique /
-objectif / export. Le rapport quotidien utilise désormais le moteur actif et
-conserve la justification des références. Couverture initiale vérifiée : 22 modèles
-bénéfices, 8 modèles FCF sur les 26 entreprises actives. Sources indisponibles :
-conservation de leur date réelle, suspension à expiration et nouvelle tentative
-quotidienne. Toute perte d’un bloc déjà collecté est signalée par le workflow.
+Réception : tests indépendants de sommes géométriques, objectifs, annualisation,
+calculs inverses, DCF à actions constantes, devises, sources, dates fiscales,
+chaque méthode et scénario pour tous les dossiers, puis tests Chromium mobile,
+exports, copie, péremption et compilation avec budgets inchangés. Ces vérifications
+internes ne constituent pas une certification financière externe.

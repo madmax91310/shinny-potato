@@ -52,7 +52,7 @@ export function renderValuationImage(p) {
   row=wrap(`Croissance annualisée équivalente : ${n(p.assumptions.growth*100)} %. Multiple de sortie : ${n(p.assumptions.multiple)}×. ${p.method==='earnings'?'BPA ajusté prévisionnel, distinct du BPA publié.':'FCF/action : trésorerie, investissements et actions projetés.'}`,56,row+10,1088,25,35)
   text(p.explanation.customGrowth?'Croissance personnalisée':p.method==='cash'?'Flux futurs : projections du modèle':`Estimations sources jusqu’à ${p.explanation.lastEstimate.slice(0,4)} · ${p.explanation.extrapolated}/${p.years} échéances extrapolées`,56,1350,23,muted)
   line(56,1383,1144,1383)
-  text('Prévisions conditionnelles · hors dividendes',56,1421,25,muted)
+  text('Scénarios conditionnels · cours hors dividendes',56,1421,25,muted)
   text('Épargnant Libre',56,1464,24,green,600);text('Pas un conseil financier',820,1464,24,muted,400,324)
   return canvas
 }

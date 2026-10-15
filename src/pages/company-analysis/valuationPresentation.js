@@ -1,7 +1,12 @@
 import { cashValue, earningsValue } from './valuation.js'
 import { activeDecision } from './lib.js'
 
-export const formatValue = (value, digits = 1) => Number.isFinite(value) ? value.toLocaleString('fr-FR', {maximumFractionDigits: digits}) : '—'
+const valueFormats = new Map()
+export const formatValue = (value, digits = 1) => {
+  if (!Number.isFinite(value)) return '—'
+  if (!valueFormats.has(digits)) valueFormats.set(digits,new Intl.NumberFormat('fr-FR',{maximumFractionDigits:digits}))
+  return valueFormats.get(digits).format(value)
+}
 const pct = value => `${formatValue(value * 100)} %`
 
 // Commentary is derived from exactly the model shown, never from a second forecast.

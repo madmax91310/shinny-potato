@@ -31,7 +31,7 @@ export function annualCurve(points,anchor) {
   const out=points.map(p=>({...p,value:p.eps??p.value})),last=out.at(-1),previous=out.at(-2)
   const initial=clamp((last.value/previous.value)**(365.25*day/(Date.parse(last.end)-Date.parse(previous.end)))-1,-.3,.3)
   for(let i=1;i<=7;i++) {
-    const date=new Date(`${last.end}T00:00:00Z`);date.setUTCFullYear(date.getUTCFullYear()+i)
+    const date=new Date(`${last.end}T00:00:00Z`);const month=date.getUTCMonth();date.setUTCFullYear(date.getUTCFullYear()+i);if(date.getUTCMonth()!==month)date.setUTCDate(0)
     const growth=initial+(anchor-initial)*Math.min(i/3,1)
     out.push({end:date.toISOString().slice(0,10),value:out.at(-1).value*(1+growth),kind:'model',growth})
   }
@@ -46,12 +46,13 @@ function valueAt(curve,date) {
   return a.value*(b.value/a.value)**t
 }
 export function targetEvidence(c,inputs,now,dates,peers=COMPANY_PEERS) {
-  const result={cash:null,earnings:null,reasons:[]}
+  const result={cash:null,earnings:null,reasons:[],methodReasons:{cash:[...inputs.cashReasons],earnings:[...inputs.commonReasons]}}
+  const block=(message,methods=['cash','earnings'])=>{result.reasons.push(message);for(const method of methods)result.methodReasons[method].push(message)}
   if(c.valuationBusinessType!=='operating-company') {
-    result.reasons.push('Méthode non qualifiée pour ce type d’entreprise : une analyse adaptée est nécessaire.');return result
+    block('Méthode non qualifiée pour ce type d’entreprise : une analyse adaptée est nécessaire.');return result
   }
   const anchor=normalGrowth(c,now)
-  if(anchor===null){result.reasons.push('Deux variations annuelles de chiffre d’affaires comparables sont nécessaires.');return result}
+  if(anchor===null){block('Deux variations annuelles de chiffre d’affaires comparables sont nécessaires.');return result}
   if(validForecast(c,now)&&inputs.price) {
     const f=c.targetForecast,curve=annualCurve(f.points,anchor),base=forwardAt(curve,c.quote.asOf),refs=f.historicalMultiples.map(r=>r.multiple)
     const group=PEER_GROUPS.find(g=>g.includes(c.id))??[]
@@ -67,7 +68,7 @@ export function targetEvidence(c,inputs,now,dates,peers=COMPANY_PEERS) {
       sourceUrl:f.sourceUrl,asOf:f.asOf,basis:'BPA ajusté prévisionnel du premier exercice se terminant après chaque échéance',
       rationale:`Médiane de ${refs.length} PER prévisionnels historiques ajustés : ${historical.toFixed(2)}×.${peerMedian?` Référence de ${peerRows.length} comparables : ${peerMedian.toFixed(2)}× (poids 25 %, écart borné à ±25 % de la médiane historique).`:' Comparables homogènes insuffisants : référence historique seule.'} Les perspectives agissent sur le BPA projeté, sans prime de multiple ajoutée.`,
       trajectory:`BPA annuels ajustés datés jusqu’au ${f.points.at(-1).end} ; au-delà, croissance ramenée en trois exercices vers ${(anchor*100).toFixed(1)} % (médiane de croissance du CA, bornée entre 0 et 10 %). Convention modifiable, pas un consensus au-delà des exercices sourcés.`}
-  } else result.reasons.push('BPA ajustés datés et PER de même définition manquants ou périmés ; aucune croissance Finviz appliquée au BPA publié.')
+  } else block('BPA ajustés datés et PER de même définition manquants ou périmés ; aucune croissance Finviz appliquée au BPA publié.',['earnings'])
   const r=c.targetCashReference
   if(inputs.cashReady&&r?.version===1&&r.currency===c.currency&&r.annualEnd===c.annual.end&&fresh(r.observedAt,35,now)&&r.historicalMultiples?.length>=3&&r.sourceUrl?.startsWith('https://')&&r.historicalMultiples.every(p=>{const h=inputs.history.find(h=>h.end===p.end);return positive(p.multiple)&&h&&positive(p.base)&&Math.abs(p.base-h.value)<1e-8})) {
     const drivers=projectCash(c,inputs,anchor),refs=r.historicalMultiples.map(p=>p.multiple)
@@ -78,9 +79,15 @@ export function targetEvidence(c,inputs,now,dates,peers=COMPANY_PEERS) {
         basis:'FCF/action publié ; CA, trésorerie, investissements et actions projetés séparément',
         rationale:`Médiane de ${refs.length} multiples historiques cours/FCF comparables : ${multiple.toFixed(2)}×. Références annuelles rétrospectives, pas une valorisation connue en temps réel à ces dates.`,
         trajectory:drivers.explanation+' '+drivers.limits}
-    } else result.reasons.push('Composantes de trésorerie ou actions comparables insuffisantes ; projection FCF suspendue.')
-  } else result.reasons.push('Références historiques de multiple FCF comparables manquantes ou périmées.')
-  for(const method of ['cash','earnings'])if(result[method]&&!result[method].calibration){result[method]=null;result.reasons.push('Historique insuffisant pour calibrer les scénarios.')}
+    } else block('Composantes de trésorerie ou actions comparables insuffisantes ; projection FCF suspendue.',['cash'])
+  } else block('Références historiques de multiple FCF comparables manquantes ou périmées.',['cash'])
+  for(const method of ['cash','earnings'])if(result[method]&&!result[method].calibration){result[method]=null;block('Historique insuffisant pour calibrer les scénarios.',[method])}
+  for(const method of ['cash','earnings']) {
+    const e=result[method]
+    if(e&&(!positive(e.base)||e.values.some(v=>!positive(v))||!positive(e.multiple)||e.multiple>500)){result[method]=null;block('Trajectoire ou multiple hors du domaine de validité.',[method])}
+    if(result[method])result.methodReasons[method]=[]
+    else result.methodReasons[method]=[...new Set(result.methodReasons[method])]
+  }
   return result
 }
 

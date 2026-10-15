@@ -42,3 +42,17 @@ export function sensitivityGrid(a,price) {
   const multiples=[Math.max(.01,a.multiple*.8),a.multiple,Math.min(500,a.multiple*1.2)]
   return {rates,multiples,rows:rates.map(g=>multiples.map(m=>priceTarget({...a,path:null,growth:g,multiple:m},price)))}
 }
+
+// A full cash distribution cannot also fund the buybacks embedded in the
+// price-target path. Freeze the share count at the quote date for this separate
+// DCF convention; positive dilution is removed too. User growth is explicitly
+// interpreted at constant shares and is never silently adjusted.
+export function distributionCashAssumptions(model, selected) {
+  const a=model.scenarios[selected]?.cashAssumptions
+  if(!a)return null
+  const shareGrowth=model.evidence.cash?.drivers.sharesGrowth
+  if(!Number.isFinite(shareGrowth)||shareGrowth<=-1)throw new RangeError('Variation des actions non qualifiée.')
+  if(!a.path)return {...a,constantShares:true}
+  const path=a.path.map((value,i)=>value*(1+shareGrowth)**(i+1))
+  return {...a,path,growth:(path.at(-1)/a.base)**(1/a.years)-1,constantShares:true}
+}

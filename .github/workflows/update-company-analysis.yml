@@ -20,7 +20,7 @@ permissions:
 jobs:
   refresh:
     runs-on: ubuntu-26.04
-    timeout-minutes: 35
+    timeout-minutes: 55
     concurrency:
       group: company-data-${{ github.event_name == 'pull_request' && github.ref || 'production' }}
       cancel-in-progress: ${{ github.event_name == 'pull_request' }}
@@ -28,7 +28,7 @@ jobs:
       contents: write
     outputs:
       commit_sha: ${{ steps.commit.outputs.commit_sha }}
-      collection_failed: ${{ steps.collect.outcome == 'failure' || steps.universe.outcome == 'failure' || steps.coverage.outcome == 'failure' }}
+      collection_failed: ${{ steps.collect.outcome == 'failure' || steps.universe.outcome == 'failure' || steps.coverage.outcome == 'failure' || steps.depth.outcome == 'failure' }}
     steps:
       - uses: actions/checkout@v7.0.1
         with:
@@ -78,6 +78,23 @@ jobs:
         env:
           ALPHAVANTAGE_API_KEY: ${{ secrets.ALPHAVANTAGE_API_KEY }}
         run: python scripts/refresh_company_analysis.py --apply --output "$RUNNER_TEMP/company-observation.json"
+      - id: depth
+        name: Renew independently reconciled annual risk information
+        continue-on-error: true
+        run: python scripts/refresh_company_depth.py --apply --output "$RUNNER_TEMP/company-depth-observation.json"
+      - run: node scripts/test-company-independent.mjs
+      - name: Qualify every method and field
+        if: always()
+        run: node scripts/report-company-qualification.mjs "$RUNNER_TEMP/company-qualification.json"
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: company-method-and-field-qualification
+          path: |
+            ${{ runner.temp }}/company-qualification.json
+            ${{ runner.temp }}/company-depth-observation.json
+          if-no-files-found: ignore
+          retention-days: 35
       - run: node scripts/test-company-expanded-coverage.mjs
       - run: node scripts/test-company-analysis.mjs
       - run: node scripts/test-company-decision.mjs
@@ -89,7 +106,7 @@ jobs:
         run: node scripts/qualify-company-universe.mjs --minimum=110 --output="$RUNNER_TEMP/company-universe-coverage-final.json"
       - name: Report affected companies and missing inputs
         if: always()
-        run: node scripts/report-company-acceptance.mjs "$RUNNER_TEMP/company-universe-observation.json" "$RUNNER_TEMP/company-observation.json"
+        run: node scripts/report-company-acceptance.mjs "$RUNNER_TEMP/company-universe-observation.json" "$RUNNER_TEMP/company-observation.json" "$RUNNER_TEMP/company-depth-observation.json"
       - uses: actions/upload-artifact@v7.0.1
         if: always()
         with:
