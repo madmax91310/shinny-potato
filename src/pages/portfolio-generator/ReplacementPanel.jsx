@@ -5,11 +5,12 @@ import Button from '../../design-system/Button'
 import { instrumentOption } from '../../data/asset-selection.js'
 import { getReplacementCandidates } from './engine.js'
 
-export default function ReplacementPanel({ portfolio, onReplace }) {
+export default function ReplacementPanel({ portfolio, onReplace, locked = [] }) {
   const [assetId, setAssetId] = useState(portfolio.selection[0].id)
   const [replacementId, setReplacementId] = useState('')
   const original = portfolio.selection.find(asset => asset.id === assetId)
-  const candidates = getReplacementCandidates(portfolio, assetId)
+  const isLocked = locked.some(row => row.id === assetId)
+  const candidates = isLocked ? [] : getReplacementCandidates(portfolio, assetId)
   const options = candidates.map(asset => ({ ...instrumentOption(asset), group: asset.sameBenchmark ? 'Même indice' : 'Autres supports compatibles' }))
   return <details className="pg-replacement">
     <summary>Remplacer un support</summary>
@@ -23,7 +24,7 @@ export default function ReplacementPanel({ portfolio, onReplace }) {
         <AssetPicker label="Support de remplacement" items={options} value={replacementId} onChange={setReplacementId}
           emptyOption={{ id: '', label: 'Choisir un support compatible' }} />
         <Button type="button" variant="secondary" disabled={!replacementId} onClick={() => onReplace(assetId, replacementId)}>Appliquer le remplacement</Button>
-      </> : <p>Aucun autre support compatible dans la banque pour cette ligne.</p>}
+      </> : <p>{isLocked ? 'Déverrouille cette ligne pour remplacer son support.' : 'Aucun autre support compatible dans la banque pour cette ligne.'}</p>}
     </div>
   </details>
 }

@@ -1,6 +1,6 @@
 import { copyPublicationText, startPublicationDownload } from '../../design-system/publicationActions.js'
 import ChoicePicker from '../../design-system/ChoicePicker.jsx'
-import { useEffect, useMemo, useState } from 'react'
+import { lazy, Suspense, useEffect, useMemo, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import PageHeader from '../../design-system/PageHeader'
 import MaintenanceLinks from '../../design-system/MaintenanceLinks'
@@ -8,6 +8,8 @@ import { CATALOG_INDEX, RECORD_URLS } from '../../data/catalog-browser.js'
 import { searchCatalog, exportDataRecord } from '../../data/catalog-search.js'
 import { describeDataField, describeEvidenceDate } from './lib.js'
 import './data-search.css'
+
+const EtfDevelopment = lazy(() => import('./EtfDevelopment'))
 
 const TYPES = { reference: 'Documents officiels', actor: 'Acteurs et offres', insurance: 'Assurance-vie', scpi: 'SCPI', broker: 'Courtiers', company: 'Entreprises', all: 'Toutes les données', instrument: 'Instruments', index: 'Indices', series: 'Séries historiques', lexicon: 'Lexique', household: 'Ménages / patrimoine' }
 const unknown = (value) => value ?? 'Non documenté'
@@ -60,6 +62,7 @@ export default function DataSearch() {
   }
   return <div className="data-search">
     <PageHeader title="Bibliothèque de données" subtitle="Retrouve un instrument ou un indice, ses sources, ses historiques et les outils qui l’utilisent." />
+    <Suspense fallback={<p>Chargement du suivi ETF…</p>}><EtfDevelopment /></Suspense>
     <div className="ds-controls">
       <label>ISIN, ticker, nom ou identifiant<input type="search" value={query} onChange={(e) => update('q', e.target.value)} placeholder="DCAM, MSCI USA, FR001400U5Q4…" /></label>
       <label>Type de donnée<ChoicePicker value={type} onChange={(e) => update('type', e.target.value)}>{Object.entries(TYPES).map(([key, label]) => <option key={key} value={key}>{label}</option>)}</ChoicePicker></label>

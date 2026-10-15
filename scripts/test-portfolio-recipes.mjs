@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { constructionIssues } from '../src/pages/portfolio-generator/controls.js';
 import { PRO_EUROPE_CORE_IDS, PROFILES, RISK_BOUNDS, THEME_OPTIONS_CALM, THEME_OPTIONS_FULL, THEME_OPTIONS_AGGRESSIVE } from '../src/pages/portfolio-generator/theses.js';
 import { getRecipes, withinRecipe } from '../src/pages/portfolio-generator/recipes.js';
 import { getAsset, YEARS } from '../src/data/portfolio-assets.js';
@@ -10,6 +11,7 @@ const europe = new Set(PRO_EUROPE_CORE_IDS);
 const bitcoinBounds = { defensif:[5,10], equilibre:[10,20], dynamique:[15,30] };
 const income = new Set(['fonds_euros','scpi','oblig_hy','oblig_hy_amundi','oblig_etat_us','qyld_ucits']);
 function validate(profile, risk, selection) {
+  assert.deepEqual(constructionIssues(selection,risk), [], `${profile}/${risk}: plafonds cumulés`);
   assert.equal(selection.reduce((sum,s) => sum+s.pct,0),100);
   assert.equal(new Set(selection.map(s=>s.id)).size,selection.length);
   const perf = computeYearlyPerf(selection);
@@ -29,8 +31,7 @@ function validate(profile, risk, selection) {
   }
 }
 let combinations=0, constructions=0, generations=0;
-// Exploration reproductible avec une fenêtre bornée de 40 résultats.
-// L’interface conserve son historique de session entier.
+// Exploration reproductible sur tout l’historique, comme la session de l’interface.
 const originalRandom = Math.random;
 let seed=20261002;
 Math.random=()=> { seed = (Math.imul(seed,1664525)+1013904223)>>>0; return seed/4294967296; };
@@ -70,10 +71,10 @@ try {
       assert.ok(!history.some(h=>h.sig===p.sig), `${profile.id}/${risk}/${p.recipeId}: répétition ${p.sig}`);
       assert.ok(!history.some(h=>exposureSignature(h.selection)===exposureSignature(p.selection)), `${profile.id}/${risk}: répétition d’exposition`);
       seen.add(p.recipeId); signatures.add(p.sig); generations++;
-      history.push(p); if(history.length>40)history.shift();
+      history.push(p);
     }
     assert.equal(seen.size,recipes.length,`${profile.id}/${risk}: couverture`);
-    assert.ok(signatures.size>=80,`${profile.id}/${risk}: variété`);
+    assert.ok(signatures.size>=80,`${profile.id}/${risk}: variété ${signatures.size}/90`);
   }
   const world=[{id:'msci_world',pct:60},{id:'or',pct:40}];
   const twins=[{id:'msci_world_ishares',pct:60},{id:'or_amundi',pct:40}];

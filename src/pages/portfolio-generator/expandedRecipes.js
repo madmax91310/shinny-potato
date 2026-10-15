@@ -22,6 +22,8 @@ export function expandedRecipes(profile,risk) {
     const stable=[80,65,35,0,0][level];
     const satellite=[5,10,15,20,25][level];
     return [
+      make('europe-minvol','Europe et volatilité mondiale réduite', [['msci_europe',100-stable-satellite],['world_minvol_ishares',satellite],['fonds_euros',stable]]),
+      make('usa-equal-value','S&P 500 équipondéré et value mondiale', [['sp500_equal_weight',100-stable-satellite],['actions_value',satellite],['fonds_euros',stable]]),
       make('global-industrie','Marché mondial et industrie',[[GLOBAL,100-stable-satellite],['industry_world_dws',satellite],['fonds_euros',stable]]),
       make('global-sante','Marché mondial et santé européenne',[[GLOBAL,100-stable-satellite],['health_europe_pea',satellite],[SHORT,stable]]),
       make('usa-qualite','S&P 500 et qualité mondiale',[[['sp500','sp500_ishares'],100-stable-satellite],['world_quality_ishares',satellite],['fonds_euros',stable]]),
