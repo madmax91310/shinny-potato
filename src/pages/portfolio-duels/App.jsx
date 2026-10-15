@@ -1,4 +1,5 @@
 import { lazy, Suspense } from 'react'
+const PortfolioExposureComparison = lazy(() => import('../../design-system/PortfolioExposureComparison.jsx'))
 const PortfolioExposure = lazy(() => import('../../design-system/PortfolioExposure.jsx'))
 import { usePublicationPreference } from '../../lib/usePublicationPreference.js'
 import { notifyPublication, copyPublicationText, startPublicationDownload } from '../../design-system/publicationActions.js'
@@ -17,9 +18,9 @@ import { generateDuel } from './generate.js'
 import './portfolio-duels.css'
 
 const duels = DUELS.map(buildDuel)
-const validAllocation = rows => Array.isArray(rows) && rows.length <= 3 && rows.every(r => r && CATALOG.some(a => a.id === r.id) && (r.pct === '' || Number.isFinite(r.pct)))
+const validAllocation = rows => Array.isArray(rows) && rows.length >= 2 && rows.length <= 3 && rows.every(r => r && CATALOG.some(a => a.id === r.id) && (r.pct === '' || Number.isFinite(r.pct)))
 const initialLeft = [{ id: 'msci_world_ishares', pct: 80 }, { id: 'msci_em', pct: 20 }]
-const initialRight = [{ id: 'msci_acwi_ishares', pct: 100 }]
+const initialRight = [{ id: 'msci_acwi_ishares', pct: 80 }, { id: 'smallcap_monde', pct: 20 }]
 
 function AllocationEditor({ label, lines, onChange }) {
   const total = lines.reduce((sum, line) => sum + Number(line.pct || 0), 0)
@@ -152,6 +153,7 @@ export default function App() {
             </section>
           ))}
         </div>
+        <Suspense fallback={<p>Chargement de la comparaison…</p>}><PortfolioExposureComparison left={duel.a.assets} right={duel.b.assets} /></Suspense>
         <div className="pd-table-wrap">
           <table className="pd-table">
             <caption>Performances annuelles des deux portefeuilles ({duel.currency})</caption>
