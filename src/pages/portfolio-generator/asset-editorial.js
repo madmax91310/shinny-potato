@@ -236,6 +236,12 @@ add("gold-miners-vaneck","theme","les sociétés minières aurifères","On déti
 entries["gold-miners-vaneck"].description="Les actions de sociétés minières aurifères.";
 add("euro-dividend-aristocrats","dividend","les actions européennes à dividendes réguliers","On privilégie un historique de dividendes selon les règles de l’indice. Les distributions futures restent variables et ce filtre modifie les secteurs et les entreprises détenus.");
 entries["euro-dividend-aristocrats"].description="Une sélection d’actions de la zone euro fondée sur les dividendes.";
+
+add('health_world_dws','theme','la santé mondiale avec Xtrackers','Cette poche santé recoupe le World. Brevets, réglementation et dépenses de santé influencent ses résultats.');
+entries.health_world_dws.description='Secteur santé du MSCI World.';
+add('new_energy_amundi','theme','les nouvelles énergies','Ces actions des nouvelles énergies dépendent notamment des taux, du financement et des politiques publiques.');
+entries.new_energy_amundi.description='Actions des nouvelles énergies.';
+
 export const ASSET_EDITORIAL = Object.freeze(entries);
 export function assetEditorial(asset) {
   const entry = ASSET_EDITORIAL[asset.id];

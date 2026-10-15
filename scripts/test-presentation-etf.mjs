@@ -61,7 +61,10 @@ console.log('Five PEA presentations: existing automated collectors, exact-share 
 // New cards retain actual short histories and explicitly unavailable country data.
 for (const r of PRESENTATION_ETF_ADDITIONS.filter(r=>r.reviewedAt)) {
  const card=ETFS.find(c=>c.isin===r.isin),record=AUTOMATED_ETF[r.isin];
- assert(card.presentationOnly && card.listing && getETFArt(card.id));
+ assert.equal(card.presentationOnly, !r.portfolioEnabled);
+ assert(card.listing && getETFArt(card.id));
+ if(r.portfolioEnabled) assert(ASSETS.find(a=>a.isin===r.isin)?.r.every(Number.isFinite));
+ else assert(!ASSETS.some(a=>a.isin===r.isin));
  assert.equal(card.lastVerified,'15/10/2026');
  assert.equal(card.distribution,r.distribution);
  const series=getAnnualPerformance(card);

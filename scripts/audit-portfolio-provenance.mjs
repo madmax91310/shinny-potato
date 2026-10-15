@@ -25,7 +25,7 @@ for (const r of EXPOSURE_ADDITIONS) {
   groups[basis] += ' ' + r.id;
 }
 // Exact-share issuer NAV returns, with the same verified annual-performance checks below.
-groups['Fonds confirmé chez l’émetteur'] += ' em_pea_amundi europe_pea_amundi health_europe_pea tech_europe_pea industry_world_dws em_small_ishares utilities_world_dws health_world_ishares materials_world_dws';
+groups['Fonds confirmé chez l’émetteur'] += ' health_world_dws new_energy_amundi em_pea_amundi europe_pea_amundi health_europe_pea tech_europe_pea industry_world_dws em_small_ishares utilities_world_dws health_world_ishares materials_world_dws';
 groups['Fonds confirmé chez l’émetteur'] += ' ' + [...roadmapIds].join(' ')
 const tagged = new Map()
 let errors = 0
@@ -42,7 +42,7 @@ const requiresNote = new Set(['Indice ou cours du sous-jacent', 'Autre fonds ou 
 const additionalNotes = new Set('nasdaq100_ishares sp500_ishares ftse_em_vanguard actions_coree actions_taiwan actions_japon actions_value oblig_etat_us sect_energie sect_tech sect_robotique sect_cybersecurite sect_financieres sect_sante smallcap_monde mp_large high_dividend high_dividend_dist quality_dividend quality_dividend_dist strat_dividendes strat_dividendes_dist'.split(' '))
 // Devise de la série effectivement utilisée, indépendamment de la place où la part se cote.
 // Les autres lignes restent « à documenter » tant qu'une fiche ne l'établit pas clairement.
-const usdReturns = new Set(`industry_world_dws em_small_ishares private_equity_ishares argent actions_india_ishares infrastructure_ishares nasdaq100_ishares actions_coree actions_taiwan actions_asie_ex_japon
+const usdReturns = new Set(`health_world_dws industry_world_dws em_small_ishares private_equity_ishares argent actions_india_ishares infrastructure_ishares nasdaq100_ishares actions_coree actions_taiwan actions_asie_ex_japon
   ftse_em_vanguard or or_wisdomtree or_ishares or_amundi bitcoin bitcoin_wisdomtree
   bitcoin_etcgroup bitcoin_21shares ethereum sect_energie_propre sect_conso_defensive
   sect_utilities sect_energie sect_tech sect_robotique sect_cybersecurite oblig_etat_us
@@ -61,7 +61,7 @@ const partialOrSyntheticYears = new Map(Object.entries({
 }))
 const issuerSources = {
  ...Object.fromEntries(ASSETS.filter(a=>roadmapIds.has(a.id)).map(a=>[a.id,getInstrumentAnnualPerformance(a.isin)?.source])),
- ...Object.fromEntries(ASSETS.filter(a=>['em_pea_amundi','europe_pea_amundi','health_europe_pea','tech_europe_pea','industry_world_dws','em_small_ishares'].includes(a.id)).map(a=>[a.id,getInstrumentAnnualPerformance(a.isin).source])),
+ ...Object.fromEntries(ASSETS.filter(a=>['health_world_dws','new_energy_amundi','em_pea_amundi','europe_pea_amundi','health_europe_pea','tech_europe_pea','industry_world_dws','em_small_ishares'].includes(a.id)).map(a=>[a.id,getInstrumentAnnualPerformance(a.isin).source])),
  ...Object.fromEntries(QUALIFIED_EXPOSURE_SHEETS.filter(r=>r.portfolioCategory || ['europe-banks','europe-insurance','europe-construction'].includes(r.id)).map(r=>[r.id,getInstrumentAnnualPerformance(r.isin).source])),
  ...Object.fromEntries(NON_BOND_SHEETS.filter(r=>getInstrumentReturnValues(r.isin).every(Number.isFinite)).map(r=>[r.id,getInstrumentAnnualPerformance(r.isin).source])),
  'world-islamic':getInstrumentAnnualPerformance('IE00B27YCN58').source,
