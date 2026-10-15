@@ -45,12 +45,12 @@ function exposureReading(portfolio) {
       ? `Les ${complement.pct} % d’émergents IMI renforcent une zone déjà présente dans la base et incluent aussi des petites capitalisations.`
       : `Les ${complement.pct} % d’émergents IMI ajoutent ces marchés, avec leurs grandes, moyennes et petites capitalisations.`)
   }
-  if (complement?.exposure === 'europe') parts.push(base.exposure === 'sp500'
+  if (complement?.exposure === 'europe') parts.push(['sp500','equalweight'].includes(base.exposure)
     ? `Les ${complement.pct} % d’Europe ajoutent une autre zone géographique.`
     : `Les ${complement.pct} % d’Europe renforcent une zone déjà présente dans la base.`)
-  if (complement?.exposure === 'smallcap') parts.push(base.exposure === 'acwi-imi' ? `Les ${complement.pct} % de petites capitalisations renforcent des entreprises déjà présentes dans l’ACWI IMI.` : `Les ${complement.pct} % de petites capitalisations des pays développés ajoutent un segment absent de la base.`)
+  if (complement?.exposure === 'smallcap') parts.push(base.exposure === 'acwi-imi' ? `Les ${complement.pct} % de petites capitalisations renforcent des entreprises déjà présentes dans l’ACWI IMI.` : `Les ${complement.pct} % de petites capitalisations des pays développés donnent une place dédiée aux petites entreprises.`)
   if (complement?.exposure === 'nasdaq') parts.push(`Les ${complement.pct} % de Nasdaq-100 renforcent les grandes entreprises non financières cotées au Nasdaq, avec un poids important de la technologie. Plusieurs figurent déjà dans la base.`)
-  if (complement?.exposure === 'japan') parts.push(base.exposure === 'sp500'
+  if (complement?.exposure === 'japan') parts.push(['sp500','equalweight'].includes(base.exposure)
     ? `Les ${complement.pct} % de Japon IMI ajoutent les actions japonaises, y compris des petites capitalisations.`
     : `Les ${complement.pct} % de Japon IMI renforcent un pays déjà présent dans la base et incluent aussi des petites capitalisations.`)
   if (complement?.exposure === 'india') parts.push(['acwi', 'acwi-pea', 'acwi-imi', 'allworld'].includes(base.exposure)
