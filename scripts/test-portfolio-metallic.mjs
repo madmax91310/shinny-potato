@@ -34,6 +34,7 @@ try {
     const check = (name, portfolio, keep = false) => {
       current = name; labels = []; boxes = []; rects = []
       const perf = computeYearlyPerf(portfolio.selection)
+      const YEARS = Object.keys(perf).map(Number).sort((a,b)=>a-b)
       const canvas = renderPortfolioImage(portfolio, background)
       const words = labels.join(' ')
       if (!words.includes('Performances annuelles simulées') || !words.includes('hors courtage et fiscalité')) throw new Error('Missing simulation convention')
