@@ -7,6 +7,7 @@ import { copyPublicationText, startPublicationDownload } from '../../design-syst
 import { PROFILES, ASSETS } from './data.js'
 import { buildTweetText, pickUnseenProfile } from './lib.js'
 import { prepareProfile, analyzeProfile, PROFILE_SCOPES, references, pct, euro, publicationReady } from './engine.js'
+import { exposureDisplay } from './exposure.js'
 import { renderDcaImage } from './image.js'
 import { filterProfiles, searchAssets, readSaved, writeSaved, readUsed, USED_KEY } from './management.js'
 import './dca-profiles.css'
@@ -63,6 +64,14 @@ export default function App(){
  <div className="dca-buttons"><Button variant="secondary" disabled={!!a.errors.length} onClick={duplicate}>Dupliquer ce portefeuille</Button></div>
  <label><input type="checkbox" checked={!!profile.imageOnly} onChange={e=>{update({...profile,imageOnly:e.target.checked,approved:false});if(e.target.checked)setField('all')}}/>Répartition uniquement — sans nom ni montants</label>
  <label className="dca-visual-choice">Donut de l’image<ChoicePicker aria-label="Donut de l’image" value={field} onChange={e=>setExposure(e.target.value)}><option value="countries">Exposition géographique</option><option value="sectors">Exposition sectorielle</option><option value="both">Géographie et secteurs</option><option value="all">Répartition + géographie + secteurs</option></ChoicePicker></label>
+ {!a.errors.length&&['countries','sectors'].filter(f=>field==='both'||field==='all'||field===f).map(f=>{
+  const shown=exposureDisplay(a[f])
+  return shown.missing>=.5?<p className="dca-note" role="status" key={f}>
+   {f==='countries'?'Géographie':'Secteurs'} : {pct(shown.coverage)} du portefeuille ventilé dans ce graphique.
+   {shown.omitted.map(o=>` ${o.label} (${pct(o.weight)}) : ${o.reason.toLowerCase()}.`).join('')}
+   {' La part grise correspond à des données non intégrées, pas à une zone ou à un secteur.'}
+  </p>:null
+ })}
  <div className="dca-fields"><label>{profile.imageOnly?'Pseudonyme (facultatif, masqué à l’export)':'Pseudonyme'}<input maxLength={45} value={profile.name} onChange={e=>edit({name:e.target.value})}/></label><label>Périmètre<ChoicePicker aria-label="Périmètre du portefeuille" value={profile.scope} onChange={e=>edit({scope:e.target.value})}>{PROFILE_SCOPES.map(s=><option key={s} value={s}>{s}</option>)}</ChoicePicker></label></div>
  {!profile.imageOnly&&<details><summary>Présentation facultative</summary><div className="dca-fields"><label>Âge<input type="number" min="18" max="100" value={profile.age||''} onChange={e=>edit({age:Math.min(100,Math.max(0,Number(e.target.value)))})}/></label><label>Activité<input maxLength={70} value={profile.job||''} onChange={e=>edit({job:e.target.value})}/></label><label>Localisation générale<input maxLength={60} value={profile.location||''} onChange={e=>edit({location:e.target.value})}/></label><label>Revenu net mensuel (facultatif)<input type="number" min="0" value={profile.income||''} onChange={e=>edit({income:Math.max(0,Number(e.target.value))})}/></label></div></details>}
  <h2>{profile.imageOnly?'Répartition du portefeuille':'Portefeuille & versements'}</h2><p className="dca-note">{profile.imageOnly?'Saisis les actifs et leurs poids, pour un total de 100 %. Aucun montant ni versement mensuel n’est nécessaire.':'Une position peut être conservée sans versement, ou recevoir un premier versement avec un poids actuel de 0 %.'}</p>
@@ -78,7 +87,7 @@ export default function App(){
  {!!a.errors.length&&<div role="alert" className="dca-errors">{a.errors.map(e=><p key={e}>{e}</p>)}</div>}
  {!a.errors.length&&<details className="dca-evidence"><summary>Expositions, couverture et sources</summary>
  <p>Synthèse indicative des dernières observations compatibles : 93 jours maximum, avec au plus 45 jours d’écart. Chaque source conserve sa date. Les pays désignent le rattachement des titres, pas leurs lieux de chiffre d’affaires. Les classifications différentes restent séparées.</p>
- {['countries','sectors'].map(f=><div key={f}><h3>{f==='countries'?'Pays':'Secteurs'} · données disponibles {pct(a[f].coverage)}</h3>
+ {['countries','sectors'].map(f=><div key={f}><h3>{f==='countries'?'Pays':'Secteurs'} · données disponibles {pct(exposureDisplay(a[f]).coverage)} dans le graphique</h3>
  {a[f].groups.map((g,i)=><section key={i}><p>{i===0?'Utilisé dans le donut':'Autre classification'} · {g.oldest} → {g.asOf} · {g.classification} · {pct(g.coverage)} du portefeuille</p>
  {g.rows.map(r=><div className="dca-exposure" key={r.name}><span>{r.name}</span><b>{pct(r.weight)}</b></div>)}
  {g.observations.map(o=><p key={o.asset}><a href={o.sourceUrl} target="_blank" rel="noreferrer">{o.label} ↗</a> · {o.asOf} · {o.basis==='equity'?'Action':o.basis==='fund'?'Fonds':'Indice suivi'} · {o.method}</p>)}</section>)}

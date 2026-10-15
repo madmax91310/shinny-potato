@@ -52,3 +52,12 @@ export function dcaExposure(lines,references,field,now=new Date()){
  result.sort((a,b)=>b.coverage-a.coverage)
  return {groups:result,coverage:result.reduce((s,g)=>s+g.coverage,0),neutralRows,neutralWeight:neutralRows.reduce((s,r)=>s+r.weight,0),excluded}
 }
+
+// Coverage shown to the user must describe the same group as the donut.
+export function exposureDisplay(exposure){
+ const group=exposure.groups[0]
+ const omitted=[...exposure.excluded,...exposure.groups.slice(1).flatMap(g=>g.observations.map(o=>({
+  ...o,reason:g.classification===group?.classification?'Dates trop éloignées pour ce graphique':'Méthode géographique ou sectorielle différente'
+ })))]
+ return {coverage:group?.coverage||0,missing:Math.max(0,100-(group?.coverage||0)-exposure.neutralWeight),omitted}
+}

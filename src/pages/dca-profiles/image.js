@@ -7,6 +7,7 @@ function text(ctx,value,x,y,width,size,color=C.ivory,weight=700,family='Arial'){
  while(ctx.measureText(value).width>width && size>10)ctx.font=`${weight} ${--size}px ${family}`
  ctx.fillStyle=color;ctx.fillText(value,x,y)
 }
+export const exposurePercentage = (weight,rounded) => weight>0&&weight<1?'< 1 %':`${rounded} %`
 function rule(ctx,x,y,width){ctx.strokeStyle='#304d70';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x+width,y);ctx.stroke()}
 // Largest-remainder display rounding: true geometry is untouched, labels sum to 100.
 export function integerPercentages(rows){
@@ -35,7 +36,7 @@ export function donutData(analysis,field='countries'){
  if(rest>1e-9)rows.push({name:'Autres expositions',weight:rest,color:colors[4]})
  if(neutralWeight)rows.push({name:neutral.length===1?neutral[0].name:'Métaux / crypto',weight:neutralWeight,color:'#b79b6b'})
  const missing=Math.max(0,100-rows.reduce((s,r)=>s+r.weight,0))
- if(missing>.000001)rows.push({name:'Non ventilé ici',weight:missing,color:'#57718e'})
+ if(missing>.000001)rows.push({name:missing<.01?'Écart d’arrondi':'Non ventilé ici',weight:missing,color:'#57718e'})
  return {group,rows}
 }
 function exposurePanel(ctx,a,field,x,y,width){
@@ -49,7 +50,7 @@ function exposurePanel(ctx,a,field,x,y,width){
   const left=x+(i%2)*width/2,top=y+540+Math.floor(i/2)*65
   ctx.fillStyle=row.color;ctx.beginPath();ctx.arc(left+8,top-7,7,0,Math.PI*2);ctx.fill()
   text(ctx,row.name,left+24,top,width/2-35,22,C.ivory,400)
-  text(ctx,`${percentages[i]} %`,left+24,top+28,width/2-35,25)
+  text(ctx,exposurePercentage(row.weight,percentages[i]),left+24,top+28,width/2-35,25)
  })
  const source=group?`${group.oldest!==group.asOf?group.oldest+' → ':''}${group.asOf} · couverture ${Math.round(group.coverage)} %`:'Aucune ventilation qualifiée'
  text(ctx,source,x,y+735,width,18,C.muted,400)
@@ -80,7 +81,7 @@ function fullPortfolio(ctx,p,a){
    const y=666+i*43
    ctx.fillStyle=row.color;ctx.beginPath();ctx.arc(x+7,y-7,6,0,Math.PI*2);ctx.fill()
    text(ctx,row.name,x+22,y,258,23,C.ivory,400)
-   text(ctx,`${rounded[i]} %`,x+285,y,81,25)
+   text(ctx,exposurePercentage(row.weight,rounded[i]),x+285,y,81,25)
   })
   text(ctx,group?`${group.oldest&&group.oldest!==group.asOf?group.oldest+' → ':''}${group.asOf}`:'Aucune ventilation qualifiée',x,954,width,18,C.muted,400)
   if(group)text(ctx,`Couverture ${Math.round(group.coverage)} %`,x,978,width,18,C.muted,400)
@@ -136,7 +137,7 @@ export async function renderDcaImage(input,field='countries'){
   const x=860+(i%3)*226,y=839+Math.floor(i/3)*73
   ctx.fillStyle=row.color;ctx.beginPath();ctx.arc(x+10,y-8,9,0,Math.PI*2);ctx.fill()
   text(ctx,row.name,x+28,y,190,23,C.ivory,400)
-  text(ctx,`${percentages[i]} %`,x+28,y+32,190,29,C.ivory,700)
+  text(ctx,exposurePercentage(row.weight,percentages[i]),x+28,y+32,190,29,C.ivory,700)
  })
  const source=group?`${group.oldest&&group.oldest!==group.asOf?group.oldest+' → ':''}${group.asOf} · couverture ${Math.round(group.coverage)} %`:(a[field].neutralWeight===100?'Métaux / crypto : hors classification':'Aucune ventilation qualifiée')
  text(ctx,source,860,982,670,18,C.muted,400)
