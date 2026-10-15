@@ -42,7 +42,7 @@ try {
       labels=[];boxes=[]
       const canvas=await renderDcaImage(profile,field)
       if(labels.some(l=>/fictif|undefined|\bNaN\b/i.test(l)))throw Error(profile.id+' unwanted text')
-      if(!labels.includes(profile.name)||labels.filter(l=>l==='Épargnant Libre').length!==1)throw Error('Identity: '+profile.id)
+      if(!labels.includes(field==='both'?`Le DCA de ${profile.name}`:profile.name)||labels.filter(l=>l==='Épargnant Libre').length!==1)throw Error('Identity: '+profile.id)
       for(const line of profile.lines)if(field!=='both'&&!labels.join(' ').includes(line.label))throw Error('Allocation missing: '+profile.id)
       output.push({id:profile.id+'-'+field,labels:[...labels],png:['julien','alexandre','patrick','arthur','laurent','helene','eight-lines','zero-dca','karim-approved'].includes(profile.id)?canvas.toDataURL():null})
     }
@@ -135,5 +135,5 @@ try {
   await page.setViewportSize({width:390,height:844})
   assert(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth+1))
   await page.screenshot({path:'test-artifacts/dca/management-mobile.png',fullPage:true})
-  console.log('206 images DCA : données, texte sans mention fictive, aucun chevauchement ni dépassement, aperçu, changement de profil, téléchargement et mobile validés.')
+  console.log('312 images DCA : données, texte sans mention fictive, aucun chevauchement ni dépassement, aperçu, changement de profil, téléchargement et mobile validés.')
 } finally {await browser?.close();server.kill('SIGTERM')}
