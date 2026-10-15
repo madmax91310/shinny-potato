@@ -220,15 +220,15 @@ add("financieres_monde","theme","les financières mondiales","On renforce les ba
 entries["financieres_monde"].description="Les sociétés financières des pays développés.";
 add("blockchain_ishares","theme","les entreprises liées à la blockchain","Ce fonds détient des entreprises cotées, pas directement du Bitcoin. La concentration et la dépendance au marché des cryptomonnaies peuvent accentuer les baisses.");
 entries["blockchain_ishares"].description="Des actions liées à la blockchain et aux cryptomonnaies.";
-add("stoxx600_bnp","europe","le STOXX Europe 600","À côté d’un World, cette poche augmente le poids de l’Europe déjà présente. À côté du S&P 500, elle ajoute une autre zone géographique.");
-entries["stoxx600_bnp"].description="Des entreprises européennes de différentes tailles.";
-add("cuivre_wisdomtree","commodity","le cuivre via contrats à terme","Le renouvellement des contrats et les frais influencent la performance. Tu ne détiens pas du cuivre physique et le résultat peut différer du prix spot.");
-entries["cuivre_wisdomtree"].description="Un ETC cuivre sur contrats à terme via swap.";
-add("platine_ishares","commodity","le platine physique","Cette ligne suit un métal sans revenu distribué. La demande industrielle et le change comptent ; sa présence ne garantit pas une protection du portefeuille.");
-entries["platine_ishares"].description="Un ETC adossé à du platine physique.";
-add("palladium_ishares","commodity","le palladium physique","La demande industrielle peut fortement influencer ce métal. Le produit ne distribue pas de revenu et son prix peut subir de fortes baisses.");
-entries["palladium_ishares"].description="Un ETC adossé à du palladium physique.";
 
+add('cloud-wisdomtree','theme','les logiciels et services du cloud','On renforce les entreprises du cloud. Leurs abonnements ne garantissent pas le rendement des actions : les dépenses des clients, la concurrence et le prix payé comptent aussi.');
+entries['cloud-wisdomtree'].description='Les entreprises spécialisées dans les logiciels et services du cloud.';
+add("ia-big-data-xtrackers","theme","l’intelligence artificielle et le big data","On renforce des entreprises liées à l’IA et aux données. Elles peuvent déjà figurer dans le World ; la croissance du thème ne garantit pas un bon prix d’achat.");
+entries["ia-big-data-xtrackers"].description="Des actions liées à l’intelligence artificielle et au traitement des données.";
+add("gold-miners-vaneck","theme","les sociétés minières aurifères","On détient des entreprises minières, pas de l’or physique. Leurs coûts, leurs dettes et leurs projets comptent aussi dans le rendement ; les baisses peuvent être fortes.");
+entries["gold-miners-vaneck"].description="Les actions de sociétés minières aurifères.";
+add("euro-dividend-aristocrats","dividend","les actions européennes à dividendes réguliers","On privilégie un historique de dividendes selon les règles de l’indice. Les distributions futures restent variables et ce filtre modifie les secteurs et les entreprises détenus.");
+entries["euro-dividend-aristocrats"].description="Une sélection d’actions de la zone euro fondée sur les dividendes.";
 export const ASSET_EDITORIAL = Object.freeze(entries);
 export function assetEditorial(asset) {
   const entry = ASSET_EDITORIAL[asset.id];
