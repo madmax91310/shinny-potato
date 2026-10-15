@@ -63,13 +63,19 @@ def collect(profile, old, now):
             status['primarySource'] = str(primary_error)[:150]
         if history[-1]['end'] != accounts['annual']['end']:
             raise ValueError('Annual history mismatch')
+        retained_quarter = bool(secondary and not accounts.get('quarter') and old.get('quarter')
+                                and old['quarter']['end'] > accounts['annual']['end'])
+        if retained_quarter:
+            accounts['quarter'] = {**old['quarter'], 'observedAt': old['quarter'].get('observedAt', old.get('accountsObservedAt'))}
+            status['quarter'] = 'retained with original observation date; annual-only fallback'
         latest = (accounts.get('quarter') or accounts['annual'])['end']
         previous = (old.get('quarter') or old.get('annual') or {}).get('end', '')
         if latest < previous or accounts['annual']['end'] < old.get('annual', {}).get('end', ''):
             raise ValueError('Accounts regressed')
         for key in ('annual', 'quarter'):
-            if accounts.get(key):
+            if accounts.get(key) and not (key == 'quarter' and retained_quarter):
                 accounts[key]['sourceUrl'] = source
+                accounts[key]['observedAt'] = now.date().isoformat()
         accounts['annual']['durationMonths'] = 12
         if accounts.get('quarter'):
             accounts['quarter']['durationMonths'] = 3

@@ -75,7 +75,7 @@ function CompanyDossier({ company, drafts, setDrafts }) {
           <h2>Les données utilisées</h2>
           {company.annual && <p>Dernier exercice : {dateLabel(company.annual.end)}.</p>}
           {company.quoteListing && <p>Cotation utilisée : {company.quoteListing}.</p>}
-          {company.accountsObservedAt && <p>Comptes vérifiés le {dateLabel(company.accountsObservedAt)}.</p>}
+          {company.accountsObservedAt && <p>Comptes annuels vérifiés le {dateLabel(company.accountsObservedAt)}.</p>}
           <p><a href={company.accountsSourceUrl ?? `https://www.sec.gov/edgar/browse/?CIK=${company.cik}`} target="_blank" rel="noreferrer">{company.accountsSourceKind==='standardised-secondary'?'Comptes standardisés · Stock Analysis / S&P Global':'Comptes officiels'}</a></p>
           <p><a href={company.sourceUrl} target="_blank" rel="noreferrer">Activité de l’entreprise</a></p>
           {annualContext && <p><a href={annualContext.sourceUrl} target="_blank" rel="noreferrer">Contexte annuel : services, matériel et charge fiscale</a> · exercice clos le {dateLabel(annualContext.end)} · vérifié le {dateLabel(annualContext.reviewedAt)}. Ce contexte est retiré si les comptes changent.</p>}
