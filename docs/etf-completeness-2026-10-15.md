@@ -21,7 +21,7 @@ La page QYLD exacte a été relue. Elle donne deux poids différents pour AAPL, 
 1. QYLD : qualifier une source officielle distincte pour la part IE00BM8R0J59, ses performances total return et la composition de l’indice économique exact ; débloquer seulement après réconciliation.
 2. LifeStrategy : trouver une ventilation complète ou qualifier un calcul traversant tous les fonds sous-jacents. Les ventilations de la seule poche actions ne couvrent pas le fonds entier.
 3. Avantis : obtenir les pays complets ; Silver Miners : obtenir une classification sectorielle publiée. Conserver les champs manquants tant que les sources restent partielles.
-4. Parts récentes : le contrôle quotidien existant attend neuf premiers calendriers en 2027 au plus tôt et trois en 2028. Aucun objectif artificiel de 206 calendriers aujourd’hui.
+4. Parts récentes : le contrôle quotidien existant attend neuf premiers calendriers en 2027 au plus tôt et trois en 2028. Aucun objectif artificiel de 209 calendriers aujourd’hui.
 5. Générateur : Communication iShares, Clean Energy L&G et Avantis restent exclus du moteur à six années. Ils sont déjà exploitables dans d’autres outils avec leurs historiques réels ; l’adaptation à des fenêtres communes plus courtes doit être un chantier distinct.
 6. Nouveaux actifs : sélectionner seulement les expositions absentes du catalogue et qualifiables, après ces limites ; aucun doublon proposé comme nouveauté.
 
