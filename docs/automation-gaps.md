@@ -1,15 +1,15 @@
-# Champs restant à automatiser — 2026-10-14
+# Champs restant à automatiser — 2026-10-15
 
 Inventaire des champs réellement présents dans les observations actives. Couverture distincte de disponibilité réseau et de fraîcheur. Les catégories sont issues des qualifications de sources ; elles ne certifient pas un téléchargement réussi aujourd’hui.
 
 | Champ ETF/ETP | Couverture |
 |---|---:|
-| ter | 203/203 |
-| aum | 203/203 |
-| performance | 187/203 |
-| countries | 175/203 |
-| sectors | 175/203 |
-| holdings | 180/203 |
+| ter | 206/206 |
+| aum | 206/206 |
+| performance | 190/206 |
+| countries | 178/206 |
+| sectors | 178/206 |
+| holdings | 183/206 |
 
 ## Premiers calendriers des 12 parts récentes
 

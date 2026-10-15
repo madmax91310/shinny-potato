@@ -331,16 +331,16 @@
       "active": true
     }
   ],
-  "checkedAt": "2026-10-14",
+  "checkedAt": "2026-10-15",
   "method": "Inventaire des champs réellement présents dans les observations actives. Couverture distincte de disponibilité réseau et de fraîcheur. Les catégories sont issues des qualifications de sources ; elles ne certifient pas un téléchargement réussi aujourd’hui.",
-  "instruments": 203,
+  "instruments": 206,
   "covered": {
-    "ter": 203,
-    "aum": 203,
-    "performance": 187,
-    "countries": 175,
-    "sectors": 175,
-    "holdings": 180
+    "ter": 206,
+    "aum": 206,
+    "performance": 190,
+    "countries": 178,
+    "sectors": 178,
+    "holdings": 183
   },
   "summary": {
     "instrument:not-applicable": 66,
@@ -737,9 +737,9 @@
       "label": "Secteurs",
       "configured": true,
       "status": "not-published",
-      "checkedAt": "2026-10-14",
+      "checkedAt": "2026-10-15",
       "sourceUrl": "https://globalxetfs.eu/funds/silv/",
-      "sha256": "a50cf9aab1159c0a4c198cc6afa4d10daedb0ae9258df33dc4eb1007152223c6",
+      "sha256": "6659e019214e1b8f755da589b59ef6a0b673ba196ac05fb83e85c2684479c0ad",
       "reason": "Aucun tableau sectoriel complet du fonds dans la page officielle contrôlée.",
       "evidence": {
         "datedCountryTable": true,
@@ -799,7 +799,7 @@
       "label": "Pays",
       "configured": true,
       "status": "not-published",
-      "checkedAt": "2026-10-14",
+      "checkedAt": "2026-10-15",
       "asOf": "2026-09-30",
       "sourceUrl": "https://res.americancentury.com/docs/avantis-global-small-cap-value-ucits-etf-fact-sheet.pdf",
       "sha256": "43ac17cfbd6ff218e06494094aa3b80b00c93549cf8f22fb1a5544afab9907e4",
@@ -1473,9 +1473,9 @@
       "configured": true,
       "status": "unqualified",
       "reason": "La section de performance ne fournit pas de calendrier annuel qualifié pour la part USD distribuante. Les rendements capitalisants ou glissants ne sont pas substitués.",
-      "checkedAt": "2026-10-14",
+      "checkedAt": "2026-10-15",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "8bd9edf81f66818ed8116b2f15f20c6ae601bfaa988fda11030948a7ee031d42",
+      "sha256": "acc39861a51b270d503f4fe4ab910334891f09eb232b66623aff77e8276aef52",
       "evidence": []
     },
     {
@@ -1487,9 +1487,9 @@
       "configured": true,
       "status": "unqualified",
       "reason": "Aucune allocation géographique économique complète qualifiée dans la page ; les pays de commercialisation et le panier de substitution sont exclus.",
-      "checkedAt": "2026-10-14",
+      "checkedAt": "2026-10-15",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "8bd9edf81f66818ed8116b2f15f20c6ae601bfaa988fda11030948a7ee031d42",
+      "sha256": "acc39861a51b270d503f4fe4ab910334891f09eb232b66623aff77e8276aef52",
       "evidence": []
     },
     {
@@ -1501,9 +1501,9 @@
       "configured": true,
       "status": "unqualified",
       "reason": "Table sectorielle de référence à recouper avec l’indice exact avant utilisation ; aucune allocation du panier de substitution utilisée.",
-      "checkedAt": "2026-10-14",
+      "checkedAt": "2026-10-15",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "8bd9edf81f66818ed8116b2f15f20c6ae601bfaa988fda11030948a7ee031d42",
+      "sha256": "acc39861a51b270d503f4fe4ab910334891f09eb232b66623aff77e8276aef52",
       "evidence": [
         "Reference Index Sector Breakdown",
         "As of 30 Sep 2026",
@@ -1542,9 +1542,9 @@
       "configured": true,
       "status": "source-conflict",
       "reason": "Poids différents pour les mêmes titres dans la section datée de l’indice : AAPL, AMZN, GOOG, GOOGL, META, MSFT, NVDA, TSLA.",
-      "checkedAt": "2026-10-14",
+      "checkedAt": "2026-10-15",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "8bd9edf81f66818ed8116b2f15f20c6ae601bfaa988fda11030948a7ee031d42",
+      "sha256": "acc39861a51b270d503f4fe4ab910334891f09eb232b66623aff77e8276aef52",
       "evidence": [
         "Top 10 Reference Index Constituents",
         "As of 08 Oct 2026",
