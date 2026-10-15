@@ -57,8 +57,10 @@ jobs:
       - run: pip install beautifulsoup4==4.15.0 openpyxl==3.1.5
       - run: npm ci
       - run: python -m unittest discover -s scripts -p 'test_publication*.py'
-      - run: node scripts/test-anniversary-indices.mjs
-      - run: node scripts/test-publication-consumers.mjs
+      - name: "Validate observations: node scripts test-anniversary-indices.mjs"
+        run: node scripts/test-anniversary-indices.mjs
+      - name: "Validate observations: node scripts test-publication-consumers.mjs"
+        run: node scripts/test-publication-consumers.mjs
       - id: prices
         name: Collect INSEE price levels, IRL and SMIC
         continue-on-error: true
@@ -71,13 +73,19 @@ jobs:
         name: Collect completed anniversary levels
         continue-on-error: true
         run: python scripts/refresh_anniversary_levels.py --apply --output "$RUNNER_TEMP/anniversary-observation.json"
-      - run: node scripts/test-anniversary-indices.mjs
-      - run: node scripts/test-publication-consumers.mjs
-      - run: node scripts/test-household-benchmarks.mjs
-      - run: node scripts/test-purchasing-power-editorial.mjs
-      - run: npm run build
+      - name: "Validate observations: node scripts test-anniversary-indices.mjs"
+        run: node scripts/test-anniversary-indices.mjs
+      - name: "Validate observations: node scripts test-publication-consumers.mjs"
+        run: node scripts/test-publication-consumers.mjs
+      - name: "Validate observations: node scripts test-household-benchmarks.mjs"
+        run: node scripts/test-household-benchmarks.mjs
+      - name: "Validate observations: node scripts test-purchasing-power-editorial.mjs"
+        run: node scripts/test-purchasing-power-editorial.mjs
+      - name: "Validate observations: npm run build"
+        run: npm run build
       - run: npx playwright install --with-deps chromium
-      - run: node scripts/playwright-publication.mjs
+      - name: "Validate observations: node scripts playwright-publication.mjs"
+        run: node scripts/playwright-publication.mjs
       - uses: actions/upload-artifact@v7.0.1
         if: always()
         with:
@@ -86,20 +94,15 @@ jobs:
           retention-days: 35
           overwrite: true
           if-no-files-found: error
+      - name: Validate collected observations
+        run: echo 'Mandatory observation checks passed'
       - name: Commit validated observations
         id: commit
         if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add src/data/purchasing-power-observations.json src/data/anniversary-levels.json src/data/anniversary-index-history.json scripts/source-snapshots/anniversary-indices.json
-          if ! git diff --cached --quiet; then
-            git commit -m 'Refresh dated publication observations'
-            git pull --rebase origin master
-            git push origin HEAD:master
-            echo 'changed=true' >> "$GITHUB_OUTPUT"
-          fi
-          echo "commit_sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+          bash scripts/commit-validated-data.sh 'Refresh dated publication observations' src/data/purchasing-power-observations.json src/data/anniversary-levels.json src/data/anniversary-index-history.json scripts/source-snapshots/anniversary-indices.json
   deploy:
     needs: refresh
     if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request' && needs.refresh.outputs.changed == 'true'

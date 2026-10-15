@@ -50,6 +50,14 @@ try {
  assert.match(await overview.textContent(),/L’enregistrement des données validées a échoué/)
  assert.equal(await overview.getByText('Collecte en échec',{exact:true}).count(),0)
 
+ status={schemaVersion:1,workflows:{'update-company-analysis.yml':{name:'Analyse entreprises',status:'failure',collectionStatus:'success',validationStatus:'failure',recordingStatus:'not-run',publicationStatus:'not-run'}}}
+ await page.reload({waitUntil:'networkidle'})
+ await overview.getByText('Validation en échec',{exact:true}).waitFor()
+ const validationRow=overview.locator(':scope > .dr-list > .dr-item').filter({has:page.getByRole('heading',{name:'Analyse entreprises',exact:true})})
+ for(const phase of ['Collecte','Validation','Enregistrement','Publication'])assert.equal(await validationRow.getByText(`${phase} de cette exécution`,{exact:true}).count(),1)
+ assert.match(await validationRow.textContent(),/Leur enregistrement est bloqué/)
+ assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth))
+
  status={schemaVersion:1,workflows:{'update-lifestrategy.yml':{name:'Vanguard LifeStrategy',status:'success',collectionStatus:'success',completedAt:'2020-01-01T00:00:00Z'}}}
  await page.reload({waitUntil:'networkidle'})
  await overview.getByRole('button',{name:'En retard · 1',exact:true}).click()

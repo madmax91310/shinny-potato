@@ -42,7 +42,7 @@ jobs:
     permissions:
       contents: write
     outputs:
-      commit_sha: ${{ steps.commit.outputs.sha }}
+      commit_sha: ${{ steps.commit.outputs.commit_sha }}
       failed: ${{ steps.fiscal.outcome == 'failure' || steps.brokers.outcome == 'failure' }}
     steps:
       - uses: actions/checkout@v7.0.1
@@ -59,13 +59,18 @@ jobs:
       - run: npm ci
       - run: python -m unittest discover -s scripts -p 'test_broker_tariff*.py'
       - run: python -m unittest discover -s scripts -p 'test_regulatory*.py'
-      - run: python scripts/audit_broker_coverage.py
-      - run: node scripts/test-broker-automation.mjs
-      - run: node scripts/test-regulatory-consumers.mjs
-      - id: fiscal
+      - name: "Validate observations: python scripts audit_broker_coverage.py"
+        run: python scripts/audit_broker_coverage.py
+      - name: "Validate observations: node scripts test-broker-automation.mjs"
+        run: node scripts/test-broker-automation.mjs
+      - name: "Validate observations: node scripts test-regulatory-consumers.mjs"
+        run: node scripts/test-regulatory-consumers.mjs
+      - name: "Collect observations: fiscal"
+        id: fiscal
         continue-on-error: true
         run: python scripts/collect_regulatory_data.py --apply --output "$RUNNER_TEMP/fiscal-observation.json"
-      - id: brokers
+      - name: "Collect observations: brokers"
+        id: brokers
         continue-on-error: true
         run: python scripts/collect_broker_tariffs.py --apply --output "$RUNNER_TEMP/broker-observation.json"
       - name: Report live source availability
@@ -76,30 +81,33 @@ jobs:
           if [ "$COLLECTION_FAILED" = 'true' ]; then
             echo 'Collecte partielle : les dernières observations qualifiées sont conservées. Voir les sources en échec dans regulatory-observations.' >> "$GITHUB_STEP_SUMMARY"
           fi
-      - run: python scripts/audit_broker_coverage.py
-      - run: node scripts/test-broker-automation.mjs
-      - run: node scripts/test-regulatory-consumers.mjs
-      - run: npm run audit:data-catalog
-      - run: npm run audit:broker-evidence
-      - run: npm run build
+      - name: "Validate observations: python scripts audit_broker_coverage.py"
+        run: python scripts/audit_broker_coverage.py
+      - name: "Validate observations: node scripts test-broker-automation.mjs"
+        run: node scripts/test-broker-automation.mjs
+      - name: "Validate observations: node scripts test-regulatory-consumers.mjs"
+        run: node scripts/test-regulatory-consumers.mjs
+      - name: "Validate observations: npm run audit:data-catalog"
+        run: npm run audit:data-catalog
+      - name: "Validate observations: npm run audit:broker-evidence"
+        run: npm run audit:broker-evidence
+      - name: "Validate observations: npm run build"
+        run: npm run build
       - uses: actions/upload-artifact@v7.0.1
         if: always()
         with:
           name: regulatory-observations
           path: ${{ runner.temp }}/*-observation.json
           retention-days: 35
-      - id: commit
+      - name: Validate collected observations
+        run: echo 'Mandatory observation checks passed'
+      - name: Commit validated observations
+        id: commit
         if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add src/data/automated-regulatory.json src/data/automated-broker-tariffs.json
-          if ! git diff --cached --quiet; then
-            git commit -m 'Refresh validated fiscal parameters and broker tariffs'
-            git pull --rebase origin master
-            git push origin HEAD:master
-          fi
-          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+          bash scripts/commit-validated-data.sh 'Refresh validated fiscal parameters and broker tariffs' src/data/automated-regulatory.json src/data/automated-broker-tariffs.json
   deploy:
     needs: refresh
     if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'

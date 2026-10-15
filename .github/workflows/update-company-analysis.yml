@@ -78,7 +78,8 @@ jobs:
       - name: Qualify expanded publication components from issuer documents
         if: github.event_name == 'pull_request'
         run: python scripts/refresh_company_analysis.py --apply --publications-only --only costco disney nike servicenow walmart netflix booking --output "$RUNNER_TEMP/company-expanded-qualification.json"
-      - id: collect
+      - name: "Collect observations: collect"
+        id: collect
         continue-on-error: ${{ github.event_name != 'pull_request' }}
         env:
           ALPHAVANTAGE_API_KEY: ${{ secrets.ALPHAVANTAGE_API_KEY }}
@@ -87,9 +88,12 @@ jobs:
         name: Renew independently reconciled annual risk information
         continue-on-error: true
         run: python scripts/refresh_company_depth.py --apply --output "$RUNNER_TEMP/company-depth-observation.json"
-      - run: node scripts/test-company-independent.mjs
-      - run: node scripts/test-company-professional.mjs
-      - run: node scripts/test-company-context.mjs
+      - name: "Validate observations: node scripts test-company-independent.mjs"
+        run: node scripts/test-company-independent.mjs
+      - name: "Validate observations: node scripts test-company-professional.mjs"
+        run: node scripts/test-company-professional.mjs
+      - name: "Validate observations: node scripts test-company-context.mjs"
+        run: node scripts/test-company-context.mjs
       - name: Qualify every method and field
         if: always()
         run: node scripts/report-company-qualification.mjs "$RUNNER_TEMP/company-qualification.json"
@@ -102,11 +106,16 @@ jobs:
             ${{ runner.temp }}/company-depth-observation.json
           if-no-files-found: ignore
           retention-days: 35
-      - run: node scripts/test-company-expanded-coverage.mjs
-      - run: node scripts/test-company-analysis.mjs
-      - run: node scripts/test-company-decision.mjs
-      - run: node scripts/test-company-valuation.mjs
-      - run: node scripts/test-company-explorer.mjs
+      - name: "Validate observations: node scripts test-company-expanded-coverage.mjs"
+        run: node scripts/test-company-expanded-coverage.mjs
+      - name: "Validate observations: node scripts test-company-analysis.mjs"
+        run: node scripts/test-company-analysis.mjs
+      - name: "Validate observations: node scripts test-company-decision.mjs"
+        run: node scripts/test-company-decision.mjs
+      - name: "Validate observations: node scripts test-company-valuation.mjs"
+        run: node scripts/test-company-valuation.mjs
+      - name: "Validate observations: node scripts test-company-explorer.mjs"
+        run: node scripts/test-company-explorer.mjs
       - id: coverage
         name: Require 150 usable companies and preserve the complete-data floor
         continue-on-error: ${{ github.event_name != 'pull_request' }}
@@ -120,8 +129,10 @@ jobs:
           name: company-final-acceptance
           path: ${{ runner.temp }}/company-universe-coverage-final.json
           if-no-files-found: ignore
-      - run: node scripts/test-company-release.mjs
-      - run: node scripts/test-company-forecast-ledger.mjs
+      - name: "Validate observations: node scripts test-company-release.mjs"
+        run: node scripts/test-company-release.mjs
+      - name: "Validate observations: node scripts test-company-forecast-ledger.mjs"
+        run: node scripts/test-company-forecast-ledger.mjs
       - name: Exercise forecast archive without publishing on PR
         if: github.event_name == 'pull_request'
         run: node scripts/company-forecast-ledger.mjs "$RUNNER_TEMP/company-archive" "$RUNNER_TEMP/company-forecast-evaluation.json" "$(git rev-parse HEAD)"
@@ -134,7 +145,8 @@ jobs:
         with:
           name: company-valuation-coverage
           path: ${{ runner.temp }}/company-valuation-coverage.json
-      - run: npm run build
+      - name: "Validate observations: npm run build"
+        run: npm run build
       - name: Verify company UI in Chromium
         if: github.event_name == 'pull_request'
         env:
@@ -157,6 +169,8 @@ jobs:
           name: company-valuation-visuals
           path: ${{ runner.temp }}/company-valuation-qa
           if-no-files-found: ignore
+      - name: Validate collected observations
+        run: echo 'Mandatory observation checks passed'
       - name: Commit validated observations
         id: commit
         if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'

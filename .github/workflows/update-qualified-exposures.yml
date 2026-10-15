@@ -35,30 +35,31 @@ jobs:
           node-version: 20
       - run: pip install beautifulsoup4==4.15.0
       - run: npm ci
-      - id: collect
+      - name: "Collect observations: collect"
+        id: collect
         continue-on-error: ${{ github.event_name != 'pull_request' }}
         run: python scripts/collect_qualified_exposures.py --apply --output "$RUNNER_TEMP/qualified-exposures.json"
-      - run: node scripts/test-qualified-exposures.mjs
-      - run: npm run audit:instrument-catalog
-      - run: npm run build
+      - name: "Validate observations: node scripts test-qualified-exposures.mjs"
+        run: node scripts/test-qualified-exposures.mjs
+      - name: "Validate observations: npm run audit:instrument-catalog"
+        run: npm run audit:instrument-catalog
+      - name: "Validate observations: npm run build"
+        run: npm run build
       - uses: actions/upload-artifact@v7.0.1
         if: always()
         with:
           name: qualified-exposures-observation
           path: ${{ runner.temp }}/qualified-exposures.json
           retention-days: 35
-      - id: commit
+      - name: Validate collected observations
+        run: echo 'Mandatory observation checks passed'
+      - name: Commit validated observations
+        id: commit
         if: github.event_name != 'pull_request'
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add src/data/qualified-exposure-etfs.json src/data/automated-etf.json
-          if ! git diff --cached --quiet; then
-            git commit -m 'Refresh qualified exact-share exposure data'
-            git pull --rebase origin master
-            git push origin HEAD:master
-          fi
-          echo "commit_sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+          bash scripts/commit-validated-data.sh 'Refresh qualified exact-share exposure data' src/data/qualified-exposure-etfs.json src/data/automated-etf.json
   deploy:
     needs: refresh
     if: github.event_name != 'pull_request'

@@ -7,6 +7,14 @@
     "artifact": "practical-observations",
     "tools": [
       "Fiches pratiques"
+    ],
+    "collectionSteps": [
+      "Collect observations: collect"
+    ],
+    "validationSteps": [
+      "Validate observations: npm run audit:data-catalog",
+      "Validate observations: npm run build",
+      "Validate collected observations"
     ]
   },
   "update-editorial-radar.yml": {
@@ -27,6 +35,20 @@
     "tools": [
       "Pouvoir d’achat",
       "Il y a X ans"
+    ],
+    "collectionSteps": [
+      "Collect INSEE price levels, IRL and SMIC",
+      "Collect completed official anniversary index months",
+      "Collect completed anniversary levels"
+    ],
+    "validationSteps": [
+      "Validate observations: node scripts test-anniversary-indices.mjs",
+      "Validate observations: node scripts test-publication-consumers.mjs",
+      "Validate observations: node scripts test-household-benchmarks.mjs",
+      "Validate observations: node scripts test-purchasing-power-editorial.mjs",
+      "Validate observations: npm run build",
+      "Validate observations: node scripts playwright-publication.mjs",
+      "Validate collected observations"
     ]
   },
   "update-insurance.yml": {
@@ -37,6 +59,15 @@
     "artifact": "insurance-observations",
     "tools": [
       "Présentations assurance-vie"
+    ],
+    "collectionSteps": [
+      "Collect observations: collect"
+    ],
+    "validationSteps": [
+      "Validate observations: node scripts test-insurance.mjs",
+      "Validate observations: npm run audit:data-catalog",
+      "Validate observations: npm run build",
+      "Validate collected observations"
     ]
   },
   "update-scpi.yml": {
@@ -47,6 +78,15 @@
     "artifact": "scpi-observations",
     "tools": [
       "Présentations SCPI"
+    ],
+    "collectionSteps": [
+      "Collect observations: collect"
+    ],
+    "validationSteps": [
+      "Validate observations: node scripts test-scpi.mjs",
+      "Validate observations: npm run audit:data-catalog",
+      "Validate observations: npm run build",
+      "Validate collected observations"
     ]
   },
   "update-presentation-actors.yml": {
@@ -57,6 +97,15 @@
     "artifact": "actor-observations",
     "tools": [
       "Présentations"
+    ],
+    "collectionSteps": [
+      "Collect observations: collect"
+    ],
+    "validationSteps": [
+      "Validate observations: node scripts test-presentations.mjs",
+      "Validate observations: npm run audit:data-catalog",
+      "Validate observations: npm run build",
+      "Validate collected observations"
     ]
   },
   "update-regulatory-data.yml": {
@@ -68,6 +117,19 @@
     "tools": [
       "Comparatif courtiers",
       "Fiches pratiques"
+    ],
+    "collectionSteps": [
+      "Collect observations: fiscal",
+      "Collect observations: brokers"
+    ],
+    "validationSteps": [
+      "Validate observations: python scripts audit_broker_coverage.py",
+      "Validate observations: node scripts test-broker-automation.mjs",
+      "Validate observations: node scripts test-regulatory-consumers.mjs",
+      "Validate observations: npm run audit:data-catalog",
+      "Validate observations: npm run audit:broker-evidence",
+      "Validate observations: npm run build",
+      "Validate collected observations"
     ]
   },
   "collect-etf-pilot.yml": {
@@ -81,6 +143,32 @@
       "Comparatif ETF",
       "Coulisses des indices",
       "Comparateur indices"
+    ],
+    "collectionSteps": [
+      "Collect observations: ishares",
+      "Collect observations: amundi",
+      "Collect observations: ssga",
+      "Collect observations: additional",
+      "Collect observations: presentation_performance",
+      "Collect observations: fx",
+      "Collect observations: indices"
+    ],
+    "validationSteps": [
+      "Validate observations: node scripts test-automation-gap-inventory.mjs",
+      "Validate observations: node scripts test-priority-issuer-consumers.mjs",
+      "Validate observations: npm run audit:data-review",
+      "Validate observations: npm run audit:index-facts",
+      "Validate observations: npm run audit:index-completeness",
+      "Validate observations: node scripts test-automated-indices.mjs",
+      "Validate observations: node scripts test-automated-index-sheets.mjs",
+      "Validate observations: npm run audit:etf-annual-performance",
+      "Validate observations: npm run audit:etf-completeness",
+      "Validate observations: npm run audit:etf-consistency",
+      "Validate observations: node scripts test-four-issuer-consumers.mjs",
+      "Validate observations: npm run audit:calculator-series",
+      "Validate observations: node scripts test-comparison-etf-details.mjs",
+      "Validate observations: npm run build",
+      "Validate collected observations"
     ]
   },
   "update-market-monthly.yml": {
@@ -93,6 +181,24 @@
       "Performance depuis",
       "Duel",
       "Générateur"
+    ],
+    "collectionSteps": [
+      "Collect observations: collect",
+      "Collect observations: python scripts refresh_index_sources.py --only-derived --output RUNNER_TEMP derived-index-observation.json --apply"
+    ],
+    "validationSteps": [
+      "Validate observations: python -m unittest discover -s scripts -p  test_remaining_index_sources.py",
+      "Validate observations: python -m unittest discover -s scripts -p  test_index_extensions.py",
+      "Validate observations: npm run audit:index-facts",
+      "Validate observations: node scripts test-automated-indices.mjs",
+      "Validate observations: npm run audit:calculator-series",
+      "Validate observations: node scripts test-monthly-consumers.mjs",
+      "Validate observations: node scripts test-etf-tool-connections.mjs",
+      "Validate observations: npm run audit:data-catalog",
+      "Validate observations: npm run audit:data-provenance",
+      "Validate observations: npm run verify:tweet-midi",
+      "Validate observations: npm run build",
+      "Validate collected observations"
     ]
   },
   "update-bitcoin-monthly.yml": {
@@ -104,6 +210,22 @@
       "Et si tu avais investi",
       "Performance depuis",
       "Duel"
+    ],
+    "collectionSteps": [
+      "Collect observations: python scripts update_bitcoin_monthly.py --output RUNNER_TEMP observation.json --apply",
+      "Collect observations: python scripts refresh_index_sources.py --only-derived --output RUNNER_TEMP derived-index-observation.json --apply"
+    ],
+    "validationSteps": [
+      "Validate observations: python -m unittest discover -s scripts -p  test_remaining_index_sources.py",
+      "Validate observations: python -m unittest discover -s scripts -p  test_index_extensions.py",
+      "Validate observations: npm run audit:index-facts",
+      "Validate observations: node scripts test-automated-indices.mjs",
+      "Validate observations: npm run audit:etf-annual-performance",
+      "Validate observations: npm run audit:etf-consistency",
+      "Validate observations: npm run audit:calculator-series",
+      "Validate observations: node scripts test-comparison-etf-details.mjs",
+      "Validate observations: npm run build",
+      "Validate collected observations"
     ]
   },
   "update-gold-monthly.yml": {
@@ -115,6 +237,14 @@
       "Et si tu avais investi",
       "Performance depuis",
       "Duel"
+    ],
+    "collectionSteps": [
+      "Collect official monthly workbook"
+    ],
+    "validationSteps": [
+      "Validate gold observations",
+      "Validate collected observations",
+      "Commit validated observations"
     ]
   },
   "update-inflation.yml": {
@@ -125,6 +255,12 @@
     "artifact": "insee-inflation-observation",
     "tools": [
       "Pouvoir d’achat"
+    ],
+    "collectionSteps": [
+      "Collect observations: python scripts update_inflation.py --baseline  RUNNER_TEMP inflation-baseline.json  --output  RUNNER_TEMP inflation-observation.json  --apply"
+    ],
+    "validationSteps": [
+      "Validate collected observations"
     ]
   },
   "update-investor-13f.yml": {
@@ -135,6 +271,12 @@
     "artifact": "investor-observations",
     "tools": [
       "Présentation investisseur"
+    ],
+    "collectionSteps": [
+      "Collect observations: python -u scripts update-investor-13f.py --output  RUNNER_TEMP investor-observations.json"
+    ],
+    "validationSteps": [
+      "Validate collected observations"
     ]
   },
   "update-company-analysis.yml": {
@@ -144,6 +286,30 @@
     "maxAgeHours": 48,
     "tools": [
       "Analyse d’entreprise"
+    ],
+    "collectionSteps": [
+      "Renew the SEC universe and retain original dates on failure",
+      "Qualify expanded publication components from issuer documents",
+      "Collect observations: collect",
+      "Renew independently reconciled annual risk information"
+    ],
+    "validationSteps": [
+      "Qualify candidates against the complete product contract",
+      "Validate observations: node scripts test-company-independent.mjs",
+      "Validate observations: node scripts test-company-professional.mjs",
+      "Validate observations: node scripts test-company-context.mjs",
+      "Validate observations: node scripts test-company-expanded-coverage.mjs",
+      "Validate observations: node scripts test-company-analysis.mjs",
+      "Validate observations: node scripts test-company-decision.mjs",
+      "Validate observations: node scripts test-company-valuation.mjs",
+      "Validate observations: node scripts test-company-explorer.mjs",
+      "Require 150 usable companies and preserve the complete-data floor",
+      "Validate observations: node scripts test-company-release.mjs",
+      "Validate observations: node scripts test-company-forecast-ledger.mjs",
+      "Audit automatic valuation coverage",
+      "Validate observations: npm run build",
+      "Verify company UI in Chromium",
+      "Validate collected observations"
     ]
   },
   "update-economic-data.yml": {
@@ -155,6 +321,21 @@
     "tools": [
       "Pouvoir d’achat",
       "France en 100 ménages"
+    ],
+    "collectionSteps": [
+      "Collect legal Livret A rate",
+      "Collect INSEE household indicators",
+      "Collect ASPIM annual real estate return",
+      "Collect ACPR annual euro fund average"
+    ],
+    "validationSteps": [
+      "Validate observations: npm run audit:household-statistics",
+      "Validate observations: npm run audit:portfolio-provenance",
+      "Validate observations: npm run audit:data-catalog",
+      "Validate observations: npm run audit:data-provenance",
+      "Validate observations: node scripts test-economic-consumers.mjs",
+      "Validate observations: npm run build",
+      "Validate collected observations"
     ]
   },
   "update-lifestrategy.yml": {
@@ -168,6 +349,18 @@
       "Comparatif ETF",
       "Duel",
       "Générateur"
+    ],
+    "collectionSteps": [
+      "Collect observations: collect"
+    ],
+    "validationSteps": [
+      "Validate observations: node scripts test-lifestrategy.mjs",
+      "Validate observations: npm run audit:instrument-catalog",
+      "Validate observations: npm run build",
+      "Validate observations: node scripts playwright-lifestrategy.mjs",
+      "Validate observations: node scripts test-duel-titanium.mjs",
+      "Validate observations: node scripts test-portfolio-metallic.mjs",
+      "Validate collected observations"
     ]
   },
   "update-non-bond-expansion.yml": {
@@ -181,6 +374,18 @@
       "Comparatif ETF",
       "Et si tu avais investi",
       "Il y a X ans"
+    ],
+    "collectionSteps": [
+      "Collect observations: collect"
+    ],
+    "validationSteps": [
+      "Validate observations: node scripts audit-automated-monthly.mjs",
+      "Validate observations: node scripts audit-comparison-automation.mjs",
+      "Validate observations: node scripts test-qualified-exposures.mjs",
+      "Validate observations: node scripts test-etf-tool-connections.mjs",
+      "Validate observations: npm run audit:instrument-catalog",
+      "Validate observations: npm run build",
+      "Validate collected observations"
     ]
   },
   "update-qualified-exposures.yml": {
@@ -194,6 +399,15 @@
       "Comparatif ETF",
       "Duel",
       "Générateur"
+    ],
+    "collectionSteps": [
+      "Collect observations: collect"
+    ],
+    "validationSteps": [
+      "Validate observations: node scripts test-qualified-exposures.mjs",
+      "Validate observations: npm run audit:instrument-catalog",
+      "Validate observations: npm run build",
+      "Validate collected observations"
     ]
   },
   "refresh-automated-index-sheets.yml": {
@@ -205,6 +419,15 @@
     "tools": [
       "Coulisses des indices",
       "Comparateur indices"
+    ],
+    "collectionSteps": [
+      "Collect selected indices directly and require every displayed field"
+    ],
+    "validationSteps": [
+      "Validate observations: node scripts test-automated-index-sheets.mjs",
+      "Validate observations: node scripts test-automated-indices.mjs",
+      "Validate observations: npm run audit:index-facts",
+      "Validate collected observations"
     ]
   }
 }

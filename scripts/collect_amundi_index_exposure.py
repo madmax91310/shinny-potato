@@ -23,6 +23,8 @@ def parse_product(product, share, now):
         if not allocation:
             reject('Missing Amundi index allocation: ' + field)
         allocation['basis'] = 'index'
+        if key in ('countries', 'sectors'):
+            allocation['sourceComponent'] = field
         if top and len(allocation['rows']) != 10:
             reject('Incomplete Amundi top-ten index allocation')
         result[key] = allocation

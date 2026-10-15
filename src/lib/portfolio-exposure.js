@@ -1,9 +1,12 @@
+import { qualifyExposureClassification } from './exposure-classification.js'
 import { frenchCharacteristic } from '../data/french-characteristics.js'
 
 // An undeclared taxonomy is only comparable with the same support. Published
 // method + issuer identify a taxonomy conservatively; Sector and SubIndustry
 // remain distinct even when their dates and fund/index scope match.
 function taxonomy(observation, isin, field) {
+  const qualified = qualifyExposureClassification(observation,field)
+  if (qualified) return {classificationId:qualified.id,classification:qualified.label}
   const method = observation.method?.trim().replace(/\s+/g, ' ').toLowerCase()
   const issuer = observation.provider || new URL(observation.sourceUrl).hostname
   if (!method) return { classificationId:`${field}:support:${isin}`, classification:'Classification non documentée · support distinct' }

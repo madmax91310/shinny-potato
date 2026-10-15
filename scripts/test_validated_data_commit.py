@@ -33,9 +33,9 @@ class CommitValidatedData(unittest.TestCase):
         self.git(path, 'config', 'user.name', 'Test')
         self.git(path, 'config', 'user.email', 'test@example.com')
 
-    def publish(self):
+    def publish(self, extra_env=None):
         return subprocess.run(['bash', str(SCRIPT), 'validated update', 'validated.json'], cwd=self.local,
-            env={**os.environ, 'GITHUB_OUTPUT': str(self.root / 'output')}, capture_output=True, text=True)
+            env={**os.environ, 'GITHUB_OUTPUT': str(self.root / 'output'), **(extra_env or {})}, capture_output=True, text=True)
 
     def advance_remote(self, name):
         (self.other / name).write_text('concurrent update\n')
@@ -56,7 +56,7 @@ class CommitValidatedData(unittest.TestCase):
         self.assertEqual(self.git(self.remote, 'show', 'master:other.txt'), 'concurrent update')
         self.assertEqual(self.git(self.local, 'diff', '--cached'), before)
         self.assertEqual((self.local / 'generated.json').read_text(), 'generated but not validated\n')
-        self.assertEqual((self.root / 'output').read_text().strip(), 'commit_sha=' + self.git(self.remote, 'rev-parse', 'master'))
+        self.assertEqual(dict(line.split('=',1) for line in (self.root / 'output').read_text().splitlines()), {'commit_sha':self.git(self.remote, 'rev-parse', 'master'),'changed':'true'})
 
     def test_conflict_never_overwrites_remote_or_local(self):
         (self.local / 'validated.json').write_text('local update\n')
@@ -67,11 +67,21 @@ class CommitValidatedData(unittest.TestCase):
         self.assertEqual((self.local / 'validated.json').read_text(), 'local update\n')
         self.assertFalse((self.root / 'output').exists())
 
+    def test_rebased_validation_failure_never_publishes(self):
+        (self.local / 'validated.json').write_text('local update\n')
+        self.advance_remote('other.txt')
+        head = self.git(self.remote, 'rev-parse', 'master')
+        result = self.publish({'VALIDATED_DATA_CHECK': 'test "$(cat other.txt)" = original'})
+        self.assertNotEqual(result.returncode, 0)
+        self.assertEqual(self.git(self.remote, 'rev-parse', 'master'), head)
+        self.assertFalse((self.root / 'output').exists())
+
     def test_no_change_does_not_publish_generated_files(self):
         head = self.git(self.remote, 'rev-parse', 'master')
         (self.local / 'generated.json').write_text('generated\n')
         self.assertEqual(self.publish().returncode, 0)
         self.assertEqual(self.git(self.remote, 'rev-parse', 'master'), head)
+        self.assertIn('changed=false', (self.root / 'output').read_text())
 
 if __name__ == '__main__':
     unittest.main()

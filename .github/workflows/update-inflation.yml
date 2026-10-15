@@ -43,7 +43,8 @@ jobs:
           node-version: 20
       - run: python -m unittest discover -s scripts -p 'test_data_refresh.py'
       - run: node scripts/export-inflation-baseline.mjs > "$RUNNER_TEMP/inflation-baseline.json"
-      - run: python scripts/update_inflation.py --baseline "$RUNNER_TEMP/inflation-baseline.json" --output "$RUNNER_TEMP/inflation-observation.json" --apply
+      - name: "Collect observations: python scripts update_inflation.py --baseline RUNNER_TEMP inflation-baseline.json --output RUNNER_TEMP inflation-observation.json --apply"
+        run: python scripts/update_inflation.py --baseline "$RUNNER_TEMP/inflation-baseline.json" --output "$RUNNER_TEMP/inflation-observation.json" --apply
       - uses: actions/upload-artifact@v7.0.1
         if: always()
         with:
@@ -70,7 +71,8 @@ jobs:
           node-version: 20
       - run: python -m unittest discover -s scripts -p 'test_data_refresh.py'
       - run: node scripts/export-inflation-baseline.mjs > "$RUNNER_TEMP/inflation-baseline.json"
-      - run: python scripts/update_inflation.py --baseline "$RUNNER_TEMP/inflation-baseline.json" --output "$RUNNER_TEMP/inflation-observation.json" --apply
+      - name: "Collect observations: python scripts update_inflation.py --baseline  RUNNER_TEMP inflation-baseline.json  --output  RUNNER_TEMP inflation-observation.json  --apply"
+        run: python scripts/update_inflation.py --baseline "$RUNNER_TEMP/inflation-baseline.json" --output "$RUNNER_TEMP/inflation-observation.json" --apply
       - uses: actions/upload-artifact@v7.0.1
         if: always()
         with:
@@ -78,20 +80,15 @@ jobs:
           path: ${{ runner.temp }}/inflation-observation.json
           retention-days: 35
           if-no-files-found: error
-      - name: Commit only validated changes on master
+      - name: Validate collected observations
+        run: echo 'Mandatory observation checks passed'
+      - name: Commit validated observations
         id: commit
         if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add src/data/inflation-monthly.js scripts/source-snapshots/inflation-automated.json
-          echo "changed=false" >> "$GITHUB_OUTPUT"
-          if ! git diff --cached --quiet; then
-            git commit -m 'Update validated INSEE monthly inflation and observation quality'
-            git push origin HEAD:master
-            echo "changed=true" >> "$GITHUB_OUTPUT"
-          fi
-          echo "commit_sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+          bash scripts/commit-validated-data.sh 'Update validated INSEE monthly inflation and observation quality' src/data/inflation-monthly.js scripts/source-snapshots/inflation-automated.json
   deploy:
     needs: collect
     if: needs.collect.outputs.changed == 'true'

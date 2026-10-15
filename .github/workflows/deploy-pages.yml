@@ -67,6 +67,7 @@ jobs:
       - run: node scripts/test-lifestrategy.mjs
       - run: node scripts/test-resource-selections.mjs
       - run: node scripts/build-dca-exposures.mjs && npm run test:dca
+      - run: node scripts/test-exposure-classification.mjs
       - run: node scripts/test-global-audit.mjs
       - run: node scripts/test-portfolio-roadmap.mjs
       - run: node scripts/test-exposure-observations.mjs

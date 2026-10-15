@@ -54,28 +54,27 @@ jobs:
           msci-world-sector-neutral-quality msci-world-enhanced-value
           msci-world-materials msci-world-utilities
           msci-world-health-care msci-world-financials msci-world-energy
-      - run: node scripts/test-automated-index-sheets.mjs
-      - run: node scripts/test-automated-indices.mjs
-      - run: npm run audit:index-facts
+      - name: "Validate observations: node scripts test-automated-index-sheets.mjs"
+        run: node scripts/test-automated-index-sheets.mjs
+      - name: "Validate observations: node scripts test-automated-indices.mjs"
+        run: node scripts/test-automated-indices.mjs
+      - name: "Validate observations: npm run audit:index-facts"
+        run: npm run audit:index-facts
       - uses: actions/upload-artifact@v7.0.1
         if: always()
         with:
           name: complete-index-sheet-observations
           path: ${{ runner.temp }}/selected-index-observations.json
           retention-days: 35
-      - name: Publish validated observations
+      - name: Validate collected observations
+        run: echo 'Mandatory observation checks passed'
+      - name: Commit validated observations
         id: commit
         if: github.event_name != 'pull_request'
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add src/data/automated-indices.json
-          if ! git diff --cached --quiet; then
-            git commit -m 'Refresh complete automated index sheets'
-            git pull --rebase origin master
-            git push origin HEAD:master
-          fi
-          echo "commit_sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+          bash scripts/commit-validated-data.sh 'Refresh complete automated index sheets' src/data/automated-indices.json
   deploy:
     needs: collect
     if: github.event_name != 'pull_request'

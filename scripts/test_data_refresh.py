@@ -86,6 +86,8 @@ class RefreshTests(unittest.TestCase):
         self.assertEqual(report['performance']['years']['2025'], 21.16)
         self.assertEqual(report['aum']['scope'], 'share-class')
         self.assertEqual(report['sectors']['asOf'], '2026-10-02')
+        self.assertEqual(report['countries']['sourceComponent'], 'exposureBreakdowns.geography.countries')
+        self.assertEqual(report['sectors']['sourceComponent'], 'exposureBreakdowns.sector')
 
     def test_ishares_missing_aum_rejected_without_fund_substitution(self):
         for defect in ('missing', 'null-point', 'value', 'prefix', 'asOfDate', 'wrong-currency', 'zero'):

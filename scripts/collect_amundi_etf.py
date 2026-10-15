@@ -113,6 +113,7 @@ def parse_product(product, share, now):
                 ('countries','FUND_COUNTRIES','FUND_BREAKDOWNS_AS_OF_DATE',False)]:
             allocation = breakdown(product['breakDowns'], field, facts.get(date), now, top)
             if allocation:
+                if key in ('countries','sectors'): allocation['sourceComponent'] = field
                 result[key] = allocation
     returns = {}
     for metric in product['metrics']:

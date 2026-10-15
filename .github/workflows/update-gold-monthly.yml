@@ -42,32 +42,21 @@ jobs:
         with:
           node-version: 20
       - name: Collect official monthly workbook
+        run: python scripts/update_gold_monthly.py
+      - name: Validate gold observations
         run: |
-          python scripts/update_gold_monthly.py
           node scripts/audit-calculator-series.mjs
           node scripts/test-gold-consumers.mjs
-      - name: Commit validated gold update
+      - name: Validate collected observations
+        run: echo 'Mandatory observation checks passed'
+      - name: Commit validated observations
         id: commit
         if: github.event_name != 'pull_request' && github.ref == 'refs/heads/master'
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add src/data/worldbank-gold-monthly.json
-          if git diff --cached --quiet; then
-            echo 'changed=false' >> "$GITHUB_OUTPUT"
-          else
-            git commit -m 'Update World Bank monthly gold history'
-            pushed=false
-            for attempt in 1 2 3; do
-              if git push origin HEAD:master; then pushed=true; break; fi
-              git fetch origin master
-              git rebase origin/master
-              node scripts/audit-calculator-series.mjs
-            done
-            if [ "$pushed" != 'true' ]; then exit 1; fi
-            echo 'changed=true' >> "$GITHUB_OUTPUT"
-          fi
-          echo "commit_sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+          VALIDATED_DATA_CHECK='node scripts/audit-calculator-series.mjs' \
+          bash scripts/commit-validated-data.sh 'Update World Bank monthly gold history' src/data/worldbank-gold-monthly.json
       - name: Collection summary
         run: |
           node --input-type=module -e "import fs from 'node:fs'; const d = JSON.parse(fs.readFileSync('src/data/worldbank-gold-monthly.json')); fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, 'Or : ' + d.points.length + ' mois, jusqu’à ' + d.points.at(-1)[0] + '. Source Banque mondiale, CC BY 4.0.\n');"

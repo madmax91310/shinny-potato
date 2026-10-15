@@ -119,7 +119,7 @@ def include_configured_workflows(state):
     entries = result.setdefault('workflows', {})
     for workflow, name in WORKFLOWS.items():
         entries.setdefault(workflow, {'name':name, 'status':'unknown', 'collectionStatus':'unknown',
-            'publicationStatus':'not-run', 'dataFailures':{}, 'failures':[]})
+            'validationStatus':'unknown', 'recordingStatus':'not-run', 'publicationStatus':'not-run', 'dataFailures':{}, 'failures':[]})
     return result
 
 
@@ -160,7 +160,7 @@ def repair_publication_history(state, history):
                 continue
             row['publicationStatus'], actual = publication_summary(run, jobs)
             collector = REGISTRY[workflow]['collectionJob']
-            if not row.get('dataFailures') and any(job['name'] == collector and job.get('conclusion') == 'success' for job in jobs):
+            if 'validationStatus' not in row and not row.get('dataFailures') and any(job['name'] == collector and job.get('conclusion') == 'success' for job in jobs):
                 row['collectionStatus'] = 'success'
                 row['lastCollectionSuccessAt'] = run['updated_at']
             skipped_dates = {job.get('completed_at') or run['updated_at'] for job in jobs
@@ -208,22 +208,44 @@ def update_status(state, run, jobs, reports=None):
             if step.get('conclusion') in ('failure', 'timed_out'):
                 failures.append({'job': job['name'], 'step': step['name']})
     refresh_jobs = [job for job in jobs if job['name'] == REGISTRY[workflow]['collectionJob']]
-    collection_status = 'failure' if data_failures or any(j.get('conclusion') in ('failure','timed_out') for j in refresh_jobs) else 'success' if reports or any(j.get('conclusion') == 'success' for j in refresh_jobs) else 'unknown'
-    recording_steps = [step for job in refresh_jobs for step in job.get('steps', [])
-                       if step.get('name') == 'Commit validated observations']
-    recording_status = ('failure' if any(s.get('conclusion') in ('failure', 'timed_out') for s in recording_steps)
-                        else 'success' if any(s.get('conclusion') == 'success' for s in recording_steps) else 'not-run')
-    # Reaching this commit step means the preceding mandatory validation passed.
-    # Preserve real collector/report failures even when recording also fails.
-    only_recording_failed = failures and all(f['step'] == 'Commit validated observations' for f in failures)
-    if recording_status == 'failure' and only_recording_failed and reports and not data_failures:
-        collection_status = 'success'
+    steps = [step for job in refresh_jobs for step in job.get('steps', [])]
+    def phase_status(names):
+        selected = [step for step in steps if step.get('name') in names]
+        if any(step.get('conclusion') in ('failure', 'timed_out') for step in selected):
+            return 'failure'
+        if any(step.get('conclusion') == 'success' for step in selected):
+            return 'success'
+        return 'not-run' if selected else 'unknown'
+
+    collection_names = REGISTRY[workflow].get('collectionSteps', [])
+    collection_status = phase_status(collection_names)
+    validation_status = phase_status(REGISTRY[workflow].get('validationSteps', []))
+    # A partial set of successful checks does not certify validation as complete.
+    checkpoint = next((s for s in steps if s.get('name') == 'Validate collected observations'), None)
+    if validation_status != 'failure':
+        validation_status = ('success' if checkpoint and checkpoint.get('conclusion') == 'success'
+                             else 'not-run' if checkpoint else 'unknown')
+    recording_status = phase_status(['Commit validated observations'])
+    if recording_status == 'unknown':
+        recording_status = 'not-run'
+    if data_failures:
+        collection_status = 'failure'
+    elif not any(step.get('name') in collection_names for step in steps):
+        # Older runs have no phase metadata. Keep their historical evidence,
+        # without interpreting a named setup failure as a collection failure.
+        only_recording_failed = failures and all(f['step'] == 'Commit validated observations' for f in failures)
+        collection_status = ('success' if reports and only_recording_failed
+                             else 'unknown' if steps and failures
+                             else 'failure' if any(j.get('conclusion') in ('failure', 'timed_out') for j in refresh_jobs)
+                             else 'success' if reports or any(j.get('conclusion') == 'success' for j in refresh_jobs)
+                             else 'unknown')
     publication_status, published_at = publication_summary(run, jobs)
+    failed = failed or any(value == 'failure' for value in (collection_status, validation_status, recording_status, publication_status))
     result['workflows'] = entries
     entries[workflow] = {'name': WORKFLOWS[workflow], 'runId': run['id'], 'attempt': run.get('run_attempt', 1),
         'completedAt': run['updated_at'], 'status': 'failure' if failed or data_failures else 'success',
         'lastSuccessAt': previous.get('lastSuccessAt') if failed or data_failures else run['updated_at'],
-        'collectionStatus': collection_status, 'recordingStatus': recording_status, 'publicationStatus': publication_status,
+        'collectionStatus': collection_status, 'validationStatus': validation_status, 'recordingStatus': recording_status, 'publicationStatus': publication_status,
         'lastCollectionSuccessAt': run['updated_at'] if collection_status == 'success' else previous.get('lastCollectionSuccessAt'),
         'lastPublicationSuccessAt': published_at if publication_status == 'success' else previous.get('lastPublicationSuccessAt'),
         'runUrl': run['html_url'], 'failures': failures, 'dataFailures': data_failures}

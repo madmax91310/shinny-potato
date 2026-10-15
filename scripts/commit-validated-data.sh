@@ -20,6 +20,7 @@ trap cleanup EXIT
 GIT_INDEX_FILE="$task_dir/index" git read-tree "$base"
 GIT_INDEX_FILE="$task_dir/index" git add -- "$@"
 tree=$(GIT_INDEX_FILE="$task_dir/index" git write-tree)
+changed=false
 if [[ "$tree" == "$(git rev-parse "$base^{tree}")" ]]; then
   result=$base
 else
@@ -29,8 +30,12 @@ else
   for attempt in 1 2 3; do
     git -C "$task_dir/checkout" fetch origin master
     git -C "$task_dir/checkout" rebase FETCH_HEAD
+    if [[ -n "${VALIDATED_DATA_CHECK:-}" ]]; then
+      (cd "$task_dir/checkout" && bash -e -c "$VALIDATED_DATA_CHECK")
+    fi
     if git -C "$task_dir/checkout" push origin HEAD:master; then
       result=$(git -C "$task_dir/checkout" rev-parse HEAD)
+      changed=true
       break
     fi
     echo "Push refused (attempt $attempt/3); checking the new remote head." >&2
@@ -41,3 +46,4 @@ else
   fi
 fi
 printf 'commit_sha=%s\n' "$result" >> "${GITHUB_OUTPUT:-/dev/stdout}"
+printf 'changed=%s\n' "$changed" >> "${GITHUB_OUTPUT:-/dev/stdout}"
