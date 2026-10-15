@@ -140,6 +140,13 @@ theme("infrastructure_ishares", "les infrastructures", "On investit ici dans des
 
 // L’identité courte reste distincte du rôle dans la composition. Elle remplace
 // les anciennes descriptions longues ou absolues, sans toucher la banque commune.
+add('em_pea_amundi', 'emerging', 'les marchés émergents filtrés dans le PEA', 'On fait une place aux grandes et moyennes entreprises émergentes avec des filtres ESG et de transition. Les pays et les titres peuvent peser différemment du MSCI Emerging Markets classique.');
+add('europe_pea_amundi', 'europe', 'les actions européennes dans le PEA', 'On renforce les grandes et moyennes entreprises de plusieurs marchés européens. Certaines sont déjà dans un ETF mondial : cette ligne augmente alors leur poids.');
+add('health_europe_pea', 'theme', 'la santé européenne', 'On renforce les entreprises européennes de la santé dans le PEA. Leurs résultats dépendent notamment des produits, des brevets et des dépenses de santé ; le secteur peut aussi baisser.');
+add('tech_europe_pea', 'theme', 'la technologie européenne', 'On cible les entreprises technologiques européennes dans le PEA. Cette sélection reste concentrée et ne représente pas toute la technologie mondiale.');
+add('industry_world_dws', 'theme', 'l’industrie mondiale', 'On renforce les entreprises industrielles des pays développés. Les commandes et les investissements de leurs clients comptent pour leurs résultats ; beaucoup figurent déjà dans le World.');
+add('em_small_ishares', 'emerging', 'les petites entreprises des marchés émergents', 'On ajoute une poche de petites capitalisations émergentes. Elles ne sont pas incluses dans les indices limités aux grandes et moyennes entreprises, mais le sont déjà dans un indice IMI ; leur liquidité peut être plus faible.');
+
 const descriptions = {
   euros: "Un fonds euros au sein d’un contrat d’assurance-vie.",
   "world-developed": "Des actions de plusieurs pays développés.",

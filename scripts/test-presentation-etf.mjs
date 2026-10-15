@@ -12,8 +12,11 @@ assert.equal(PRESENTATION_ETF_ADDITIONS.length, 7);
 for (const r of PRESENTATION_ETF_ADDITIONS) {
   const card = ETFS.find(c => c.isin === r.isin);
   const record = AUTOMATED_ETF[r.isin];
-  assert(card.presentationOnly && getETFArt(card.id));
-  assert(!ASSETS.some(a => a.isin === r.isin));
+  assert(getETFArt(card.id));
+  assert.equal(card.presentationOnly, !r.portfolioEnabled);
+  const asset = ASSETS.find(a => a.isin === r.isin);
+  if (r.portfolioEnabled) { assert(asset?.manualOnly); assert.equal(asset.r.length, 6); assert(asset.r.every(Number.isFinite)); }
+  else assert(!asset);
   assert(config.some(s => s.isin === r.isin && s.enabled && s.required));
   assert(record.aum.amount > 0 && record.aum.asOf && record.aum.checkedAt);
   assert(Number.isFinite(record.characteristics.terPct));
@@ -44,11 +47,13 @@ for (const r of PRESENTATION_ETF_EXPANSION) {
   const card = ETFS.find(c => c.isin === r.isin);
   const record = AUTOMATED_ETF[r.isin];
   assert(amundi.some(s => s.isin === r.isin && s.collectComposition));
-  assert(card.presentationOnly && card.pea === true && card.listing && getETFArt(card.id));
+  assert.equal(card.presentationOnly, !r.portfolioEnabled);
+  assert(card.pea === true && card.listing && getETFArt(card.id));
+  if (r.portfolioEnabled) assert(ASSETS.find(a=>a.isin===r.isin)?.r.every(Number.isFinite));
   assert(record.aum.amount > 0 && Number.isFinite(record.characteristics.terPct));
   const series = getAnnualPerformance(card);
   assert.equal(series.currency, 'EUR');
   assert(series.values.some(Number.isFinite));
   assert.deepEqual(series.values, series.calendarYears.map(y => record.performance.years[y] ?? null));
 }
-console.log('Three PEA presentations: existing automated collectors, exact-share EUR performances, listing and visual identity OK.');
+console.log('Five PEA presentations: existing automated collectors, exact-share EUR performances, listing and visual identity OK.');

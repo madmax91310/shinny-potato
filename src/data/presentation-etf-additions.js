@@ -1,9 +1,10 @@
 // Parts exactes sélectionnées le 11/10/2026. Données variables dans automated-etf.json.
-// Fiches seules : aucune inscription implicite dans les outils de simulation.
+// Simulation uniquement après qualification explicite et raccordement du 15/10/2026.
 export const PRESENTATION_ETF_ADDITIONS = [
 {
   "id": "world-industrials-xtrackers",
   "isin": "IE00BM67HV82",
+  "portfolioEnabled": true,
   "name": "Xtrackers MSCI World Industrials UCITS ETF 1C",
   "category": "Sectoriels classiques",
   "ter": "0,25",
@@ -31,6 +32,7 @@ export const PRESENTATION_ETF_ADDITIONS = [
   {
     "id": "em-small-cap-ishares",
     "isin": "IE00B3F81G20",
+  "portfolioEnabled": true,
     "name": "iShares MSCI EM Small Cap UCITS ETF USD (Dist)",
     "category": "Cœur de portefeuille",
     "ter": "0,74",

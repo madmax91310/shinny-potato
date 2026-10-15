@@ -1,3 +1,4 @@
+import { comparisonConcentration } from '../../../data/exposure-observations.js'
 import { AUTOMATED_ETF } from '../../../data/automated-etf.js'
 import { multiAssetAllocationLines } from '../../../data/lifestrategy.js'
 import { getInstrumentPeaStatus } from '../../../data/instruments.js'
@@ -52,7 +53,10 @@ export function buildTweetText(theme) {
     }
     lines.push('')
   })
-  if ((!COMPARISON_HOOKS[theme.id] || theme.includeComparisonNote) && theme.comparisonNote?.trim()) lines.push(`👀 ${theme.comparisonNote.trim()}`, '')
+  const note = (!COMPARISON_HOOKS[theme.id] || theme.includeComparisonNote) ? theme.comparisonNote?.trim() : ''
+  const observation = comparisonConcentration(theme.etfs, AUTOMATED_ETF)
+  const reading = [note, observation].filter(Boolean).join(' ')
+  if (reading) lines.push(`👀 ${reading}`, '')
   // La question personnalisée clôt le texte, sans appel au partage générique.
   if (theme.ctaEngagement?.trim()) lines.push(`💬 ${theme.ctaEngagement.trim().replace(/^💬\s*/, '')}`)
   return lines.join('\n')
