@@ -2,14 +2,14 @@
 
 Inventaire des champs réellement présents dans les observations actives. Couverture distincte de disponibilité réseau et de fraîcheur. Les catégories sont issues des qualifications de sources ; elles ne certifient pas un téléchargement réussi aujourd’hui.
 
-| Champ ETF/ETP | Couverture |
-|---|---:|
-| ter | 206/206 |
-| aum | 206/206 |
-| performance | 190/206 |
-| countries | 178/206 |
-| sectors | 178/206 |
-| holdings | 183/206 |
+| Champ ETF/ETP | Présent / applicable | Non applicable | En attente | Non publié | À résoudre |
+|---|---:|---:|---:|---:|---:|
+| Frais | 206/206 | 0 | 0 | 0 | 0 |
+| Encours | 206/206 | 0 | 0 | 0 | 0 |
+| Calendrier annuel | 190/206 | 0 | 12 | 3 | 1 |
+| Pays | 178/184 | 22 | 0 | 5 | 1 |
+| Secteurs | 178/184 | 22 | 0 | 5 | 1 |
+| Positions pondérées | 183/184 | 22 | 0 | 0 | 1 |
 
 ## Premiers calendriers des 12 parts récentes
 

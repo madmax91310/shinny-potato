@@ -49,6 +49,6 @@ export function etfDevelopmentEntry(isin) {
   return {isin,name:getInstrumentName(isin),years,sixYears:Boolean(sixYears),observations,gaps,
     collected:Boolean(record.provider),sheet:ETFS.some(etf=>etf.isin===isin),
     portfolio:assets.length ? assets.some(asset=>!asset.manualOnly) ? 'Disponible en automatique et manuel' : 'Disponible en manuel' : 'Non raccordé',
-    status:gaps.length ? 'À compléter' : 'Données réunies · affectation à examiner',
+    status:gaps.length ? 'À compléter' : assets.length ? 'Données réunies · raccordé au générateur' : 'Données réunies · affectation à examiner',
   };
 }

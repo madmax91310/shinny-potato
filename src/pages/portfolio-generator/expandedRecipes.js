@@ -25,6 +25,8 @@ export function expandedRecipes(profile,risk) {
       ...[['world-staples','Monde et consommation de base'],['world-discretionary','Monde et consommation discrétionnaire'],['world-energy','Monde et énergie'],['water-ishares','Monde et entreprises de l’eau'],['world-multifactor','Monde et sélection multifactorielle']].map(([id,label])=>make(`global-${id}`,label,[[GLOBAL,100-stable-satellite],[id,satellite],['fonds_euros',stable]])),
       make('europe-minvol','Europe et volatilité mondiale réduite', [['msci_europe',100-stable-satellite],['world_minvol_ishares',satellite],['fonds_euros',stable]]),
       make('usa-equal-value','S&P 500 équipondéré et value mondiale', [['sp500_equal_weight',100-stable-satellite],['actions_value',satellite],['fonds_euros',stable]]),
+      make('global-sante-dws','Marché mondial et santé mondiale',[[GLOBAL,100-stable-satellite],['health_world_dws',satellite],['fonds_euros',stable]]),
+      ...(level>=2 ? [make('global-nouvelles-energies','Marché mondial et nouvelles énergies',[[GLOBAL,100-stable-satellite],['new_energy_amundi',satellite],['fonds_euros',stable]])] : []),
       make('global-industrie','Marché mondial et industrie',[[GLOBAL,100-stable-satellite],['industry_world_dws',satellite],['fonds_euros',stable]]),
       make('global-sante','Marché mondial et santé européenne',[[GLOBAL,100-stable-satellite],['health_europe_pea',satellite],[SHORT,stable]]),
       make('usa-qualite','S&P 500 et qualité mondiale',[[['sp500','sp500_ishares'],100-stable-satellite],['world_quality_ishares',satellite],['fonds_euros',stable]]),

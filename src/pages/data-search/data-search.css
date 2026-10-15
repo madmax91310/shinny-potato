@@ -6,3 +6,8 @@
 .ds-etf-development summary { cursor: pointer; font-weight: 600; }
 .ds-etf-development section > details { padding: 0.6rem 0; }
 .ds-etf-development p, .ds-etf-development li { line-height: 1.6; }
+
+.ds-etf-development table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+.ds-etf-development th, .ds-etf-development td { text-align: left; padding: .6rem; border-bottom: 1px solid var(--border, #cbd5e1); }
+.ds-etf-development > details { padding: .6rem 0; }
+.ds-etf-development > label { display: block; margin: .75rem 0; }
