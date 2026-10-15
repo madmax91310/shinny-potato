@@ -172,7 +172,7 @@ export const FICHE_LEXIQUE_EDITORIAL = {
       },
       {
         "titre": "⚠️ À retenir",
-        "contenu": "Pour évaluer la diversification, je regarde ce que les placements contiennent, pas seulement leur nombre.\n\nElle réduit certains risques, mais plusieurs placements peuvent baisser en même temps."
+        "contenu": "Avoir plusieurs placements ne suffit pas : ils peuvent détenir les mêmes entreprises. La diversification dépend aussi de leur contenu.\n\nElle réduit certains risques, mais plusieurs placements peuvent baisser en même temps."
       }
     ],
     ouverture: "La diversification, c’est quoi ?\n\n« Ne pas mettre tous ses œufs dans le même panier » : en Bourse, ça veut dire quoi ? Je t’explique 👇",

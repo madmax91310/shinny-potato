@@ -123,7 +123,7 @@ export function indexObservation(sheet) {
   const usa = countries.find(([name]) => /États-Unis|United States/i.test(name))?.[1] ?? 0
   const asia = countries.filter(([name]) => /Taïwan|Taiwan|Corée|Korea/i.test(name))
   const concentration = top.length
-    ? 'Je regarde les poids autant que les noms : une grande position influence davantage le résultat qu’une petite, même si elles appartiennent au même indice.'
+    ? 'Une entreprise à 10 % pèse dix fois plus dans l’indice qu’une entreprise à 1 %. Le nombre de titres ne raconte donc pas tout.'
     : 'Les pays et les secteurs permettent de voir où va l’argent investi dans cet indice.'
   switch (sheet.id) {
     case 'msci-world-consumer-discretionary': return 'Je regarde les achats que les ménages peuvent repousser. Le crédit et leur confiance peuvent changer la demande, même si les entreprises de ce secteur vendent des produits très différents.'

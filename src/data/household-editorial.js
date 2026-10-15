@@ -63,7 +63,7 @@ export const HOUSEHOLD_EDITORIAL = {
   ],
   'salary-median': [
     "🇫🇷 Les gros salaires attirent l’attention. Mais combien gagne la moitié des salariés du privé ? 👀",
-    '🇫🇷 En {period}, le salaire net médian dans le privé est de {value} € par mois. Sur 100 salariés, la moitié se situe en dessous, l’autre au-dessus.\n\nOn parle du net après cotisations sociales, avant impôt sur le revenu, en équivalent temps plein : un temps partiel est ramené à une base de temps plein.\n\nCe que je trouve utile avec la médiane, c’est qu’elle partage les salaires en deux. Quelques très hauts salaires peuvent relever la moyenne sans changer de la même façon ce repère.\n\nÇa ne raconte pas toutes les difficultés du quotidien, mais ça évite déjà de prendre les revenus les plus visibles pour une situation ordinaire.',
+    '🇫🇷 En {period}, le salaire net médian dans le privé est de {value} € par mois. Sur 100 salariés, la moitié se situe en dessous, l’autre au-dessus.\n\nOn parle du net après cotisations sociales, avant impôt sur le revenu, en équivalent temps plein : un temps partiel est ramené à une base de temps plein.\n\nQuelques très hauts salaires peuvent relever la moyenne sans modifier autant la médiane.\n\nÇa ne raconte pas toutes les difficultés du quotidien, mais ça évite déjà de prendre les revenus les plus visibles pour une situation ordinaire.',
     '💬 Ce montant ressemble-t-il aux salaires que tu vois autour de toi ?',
   ],
   'young-wealth': [

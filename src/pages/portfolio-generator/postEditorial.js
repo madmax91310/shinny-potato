@@ -81,9 +81,9 @@ export function portfolioPostEditorial(selection) {
   } else if (world && (emerging || small || exUs || us || factors.length)) {
     const additions = join([emerging && 'des émergents', small && 'des petites entreprises', exUs && 'un ETF hors États-Unis', us && 'des actions américaines', factors.length && 'des filtres de sélection', gold && 'de l’or'].filter(Boolean))
     const base = kind(world) === 'world-developed' ? 'World' : kind(world) === 'world-imi' ? 'ACWI IMI' : /All-World/.test(world.name) ? 'All-World' : 'ACWI'
-    openings = [`Quand j’ajoute un ETF à un portefeuille, j’aime comprendre ce qu’il apporte à côté des autres 👀`, `Un ETF ${base} couvre déjà beaucoup d’entreprises. Avant d’ajouter ${additions}, je regarde ce que ça change vraiment 👀`, `Quand je vois plusieurs ETF autour d’un ${base}, je me demande ce que chaque ligne apporte 👀`]
+    openings = [`Ajouter un ETF, d’accord. Mais qu’apporte-t-il aux lignes déjà présentes ? 👀`, `Un ETF ${base} couvre déjà beaucoup d’entreprises. Avec ${additions}, que change-t-on vraiment ? 👀`, `Plusieurs ETF autour d’un ${base} : qu’apporte chaque ligne au portefeuille ? 👀`]
     transition = 'Voici un portefeuille illustratif, avec sa répartition et ses performances 👇'
-    thesis = `Ce que je trouve intéressant ici, c’est qu’on garde ${percent(world.pct)} sur ${label(world)} tout en choisissant la place des autres lignes.`
+    thesis = `Ce portefeuille conserve ${percent(world.pct)} sur ${label(world)} tout en donnant une place précise aux autres lignes.`
     if (emerging || small) {
       const extra = join([emerging && 'Les émergents', small && `${emerging ? 'les' : 'Les'} petites entreprises`].filter(Boolean))
       const overlap = (emerging && kind(world) !== 'world-developed') || (small && kind(world) === 'world-imi')

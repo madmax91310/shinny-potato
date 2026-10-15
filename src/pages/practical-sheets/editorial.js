@@ -5,7 +5,7 @@ const copy = (hook, sections, closing) => ({ hook, sections, closing })
 export const PRACTICAL_EDITORIAL = {
  "etf-pe": copy("Un ETF affiche un PER plus faible. Est-ce forcément une meilleure affaire ?", null, "Je vérifie la méthode de l’émetteur avant de comparer deux PER."),
  "etf-volatility": copy("Un ETF a moins bougé pendant trois ans. Que peux-tu vraiment en déduire ?", null, "Je distingue une mesure des variations passées d’une protection de mon capital."),
- "sector-theme": copy("Deux ETF parlent de technologie sans acheter les mêmes entreprises. Comment les distinguer ?", null, "Je regarde la sélection réelle avant de me fier au nom de l’ETF."),
+ "sector-theme": copy("Deux ETF parlent de technologie sans acheter les mêmes entreprises. Comment les distinguer ?", null, "Deux ETF au nom proche peuvent détenir des entreprises très différentes. Leur composition permet de voir ce qu’on achète réellement."),
  "em-small": copy("Un ETF émergents ne contient pas forcément les petites entreprises. Que change leur ajout ?", null, "Je vérifie d’abord si mon ETF émergents inclut déjà les petites entreprises."),
  "bond-falls": copy("Ton ETF détient des obligations. Pourquoi sa valeur peut-elle baisser malgré les coupons ?", null, "Je distingue les revenus reçus de la variation du prix de mes parts."),
  "bond-duration": copy("Deux ETF obligataires peuvent avoir une échéance moyenne proche sans réagir exactement de la même façon aux taux.", null, "Je vérifie le nom exact de la mesure et sa date avant de comparer deux fonds."),

@@ -16,9 +16,9 @@ export const EDITORIAL = {
     twist: 'Avec le recul, on peut ranger chaque épisode dans une catégorie. Mais ce qui m’intéresse, c’est le moment où rien n’est encore joué : tu regardes ton placement baisser et tu dois décider quoi faire sans connaître la suite.\n\nCes décomptes décrivent le passé, pas les chances de rebond de la prochaine correction.',
   },
   'records-1987-pire-seance': {
-    hook: 'Je me demande comment j’aurais réagi en voyant mes placements perdre plus de 20 % dans la journée 🫠',
+    hook: 'Perdre plus de 20 % en une seule journée : c’est ce qui est arrivé au Dow Jones en octobre 1987 🫠',
     context: 'C’est ce qu’ont vécu les investisseurs exposés au Dow Jones le 19 octobre 1987 : l’indice termine la séance à −22,6 %.\n\nPourtant, fin août, il affichait encore une hausse de 44 % depuis le début de l’année. De quoi se sentir plutôt à l’aise avec ses placements.\n\nMais en octobre, les marchés commencent à reculer. Le lundi, les ordres de vente s’accumulent et les acheteurs ne suivent plus.\n\nCertaines stratégies censées protéger les portefeuilles aggravent même la chute : elles vendent à mesure que les cours baissent, ce qui entraîne de nouvelles ventes.',
-    twist: 'Ce qui me frappe, c’est la vitesse à laquelle la situation se retourne. Quelques semaines avant, les investisseurs avaient de belles performances à regarder. Puis ils se retrouvent à voir leurs économies fondre, sans savoir où ça va s’arrêter.\n\nJe peux me dire aujourd’hui que j’aurais gardé mes placements. Mais avec mon argent qui chute comme ça sous mes yeux, je ne suis pas sûr que j’aurais été aussi serein.',
+    twist: 'Quelques semaines auparavant, les marchés montaient encore. Puis les investisseurs voient leurs économies chuter, sans savoir où la baisse s’arrêtera.',
   },
   'records-1933-meilleure-seance-dow': {
     hook: 'En mars 1933, les Américains ne peuvent même plus aller retirer leur argent à la banque.',
