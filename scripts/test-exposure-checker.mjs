@@ -6,9 +6,9 @@ import {dcaExposure,exposureDisplay} from '../src/pages/dca-profiles/exposure.js
 import {catalogCoverage,sharedPositions} from '../src/pages/dca-profiles/verification.js'
 import {searchAssets} from '../src/pages/dca-profiles/management.js'
 import {donutData} from '../src/pages/dca-profiles/image.js'
-const now=new Date('2026-10-15T12:00:00Z')
+const now=new Date('2026-10-15T12:00:00Z'),liveNow=new Date()
 const line=(asset,weight)=>({asset,label:references[asset].name,isin:references[asset].isin,weight})
-const all=catalogCoverage(references,now)
+const all=catalogCoverage(references,liveNow)
 assert.equal(new Set(Object.values(references).map(r=>r.isin)).size,Object.keys(references).length)
 for(const isin of Object.keys(AUTOMATED_ETF)){
  const [asset,r]=Object.entries(references).find(([,r])=>r.isin===isin)||[]
@@ -18,7 +18,7 @@ for(const isin of Object.keys(AUTOMATED_ETF)){
  const p={name:'',imageOnly:true,mode:'participant',scope:'Portefeuille investi',lines:[line(asset,100)]}
  assert.deepEqual(validateProfile(p),[])
  for(const field of ['countries','sectors']){
-  const e=dcaExposure(p.lines,references,field,now),d=exposureDisplay(e)
+  const e=dcaExposure(p.lines,references,field,liveNow),d=exposureDisplay(e)
   assert(Math.abs(d.coverage+d.missing+e.neutralWeight-100)<1e-6)
   assert(Math.abs(donutData({[field]:e},field).rows.reduce((s,r)=>s+r.weight,0)-100)<1e-6)
   for(const row of e.groups.flatMap(g=>g.rows))assert(Math.abs(row.contributions.reduce((s,c)=>s+c.weight,0)-row.weight)<1e-8)
@@ -28,12 +28,12 @@ assert(searchAssets('', 'pea').every(k=>references[k].pea===true))
 assert(searchAssets('WPEA').includes('IE0002XZSHO1'))
 const trio=[line('world',34),line('nasdaq',33),line('sp500',33)]
 for(const field of ['countries','sectors']){
- const a=dcaExposure(trio,references,field,now),b=dcaExposure([...trio].reverse(),references,field,now)
+ const a=dcaExposure(trio,references,field,liveNow),b=dcaExposure([...trio].reverse(),references,field,liveNow)
  const sorted=e=>e.groups.map(g=>[g.classification,g.coverage,g.rows.map(r=>[r.name,r.weight]).sort()])
  assert.deepEqual(sorted(a),sorted(b))
  assert(exposureDisplay(a).coverage>99.5)
 }
-const pairs=sharedPositions(trio,references,now)
+const pairs=sharedPositions(trio,references,liveNow)
 assert(pairs.pairs.some(p=>p.common.some(r=>r.isin==='US67066G1040')))
 assert(pairs.pairs.every(p=>!p.full&&p.overlap===null),'Top ten is not complete holdings')
 const obs=(rows,extra={})=>({asOf:'2026-10-14',sourceUrl:'https://example.com/holdings',basis:'fund',rows,...extra})
