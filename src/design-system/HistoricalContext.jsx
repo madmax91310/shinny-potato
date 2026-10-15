@@ -1,3 +1,4 @@
+import ChoicePicker from './ChoicePicker.jsx'
 import { ANNIVERSARY_INDEX_VARIANTS } from '../pages/tweet-midi/data/indexVariants.js'
 import { useState } from 'react'
 import { historicalWindows } from '../lib/history-windows.js'
@@ -8,7 +9,7 @@ export default function HistoricalContext({asset, assetId = asset?.id, minDate =
   const result=historicalWindows(asset.points.filter(p => !minDate || p.date >= minDate),years)
   return <details className="portfolio-exposure"><summary>Ce que change la date de départ</summary>
     <p>Placement unique, sans versement supplémentaire, dans la devise de la série ({asset.currency}). Fenêtres mensuelles de même durée ; aucune interpolation des points manquants.</p>
-    <label>Durée comparée <select value={years} onChange={e=>setYears(Number(e.target.value))}>{[1,3,5,10].map(y=><option key={y} value={y}>{y} an(s)</option>)}</select></label>
+    <label>Durée comparée <ChoicePicker aria-label="Durée comparée" value={years} onChange={e=>setYears(Number(e.target.value))}>{[1,3,5,10].map(y=><option key={y} value={y}>{y} an(s)</option>)}</ChoicePicker></label>
     {!result ? <p>Historique mensuel continu insuffisant pour cette durée.</p> : <><p>{result.count} fenêtres disponibles, recalculées depuis l’historique de cet actif.</p>
       <p>Rendement annualisé le plus faible : {pct(result.min.annualized)} ({result.min.start} → {result.min.end}).</p>
       <p>Rendement annualisé le plus élevé : {pct(result.max.annualized)} ({result.max.start} → {result.max.end}).</p>
