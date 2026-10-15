@@ -107,6 +107,7 @@ jobs:
       - run: npm run audit:calculator-series
       - run: node scripts/test-gold-consumers.mjs
       - run: node scripts/test-monthly-consumers.mjs
+      - run: node scripts/test-equity-monthly.mjs
       - run: node scripts/test-investment-crisis.mjs
       - run: node scripts/test-etf-tool-connections.mjs
       - run: node scripts/test-investment-conclusions.mjs
@@ -286,6 +287,8 @@ jobs:
       - run: node scripts/playwright-etf-completeness.mjs
         if: matrix.shard == 0
       - run: node scripts/playwright-tool-links.mjs
+        if: matrix.shard == 0
+      - run: node scripts/playwright-equity-monthly.mjs
         if: matrix.shard == 0
       - uses: actions/upload-artifact@v7.0.1
         if: always()

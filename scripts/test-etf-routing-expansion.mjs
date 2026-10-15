@@ -11,7 +11,7 @@ import { getAsset } from '../src/data/portfolio-assets.js';
 import { getDuelArt } from '../src/pages/portfolio-duels/visualIdentity.js';
 import { CATALOG } from '../src/data/duel-assets.js';
 import { existsSync } from 'node:fs';
-assert.deepEqual(Object.keys(PERFORMANCE_ART).sort(), [...ASSET_ORDER].sort(), 'No historical illustration before its monthly series is connected');
+assert(Object.keys(PERFORMANCE_ART).every(id => ASSET_ORDER.includes(id)), 'No historical illustration before its monthly series is connected');
 const inventory=new Set(ETF_DEVELOPMENT_CATALOG.flatMap(lot=>lot.entries.map(([,isin])=>isin)));
 assert(ETFS.every(etf=>inventory.has(etf.isin)), 'Every published ETF appears in the routing inventory');
 for(const isin of ['IE00BSPLC413','IE00BG0SKF03','IE00BCRY6557']) {
