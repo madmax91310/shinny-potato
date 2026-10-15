@@ -22,7 +22,7 @@ export function expandedRecipes(profile,risk) {
     const stable=[80,65,35,0,0][level];
     const satellite=[5,10,15,20,25][level];
     return [
-      ...['world-staples','world-discretionary','world-energy','water-ishares','world-multifactor'].map(id=>make(`global-${id}`,'Socle mondial et poche spécialisée',[[GLOBAL,100-stable-satellite],[id,satellite],['fonds_euros',stable]])),
+      ...[['world-staples','Monde et consommation de base'],['world-discretionary','Monde et consommation discrétionnaire'],['world-energy','Monde et énergie'],['water-ishares','Monde et entreprises de l’eau'],['world-multifactor','Monde et sélection multifactorielle']].map(([id,label])=>make(`global-${id}`,label,[[GLOBAL,100-stable-satellite],[id,satellite],['fonds_euros',stable]])),
       make('europe-minvol','Europe et volatilité mondiale réduite', [['msci_europe',100-stable-satellite],['world_minvol_ishares',satellite],['fonds_euros',stable]]),
       make('usa-equal-value','S&P 500 équipondéré et value mondiale', [['sp500_equal_weight',100-stable-satellite],['actions_value',satellite],['fonds_euros',stable]]),
       make('global-industrie','Marché mondial et industrie',[[GLOBAL,100-stable-satellite],['industry_world_dws',satellite],['fonds_euros',stable]]),

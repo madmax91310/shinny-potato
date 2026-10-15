@@ -40,6 +40,7 @@ try {
     const recipes = getRecipes(profile.id,risk);
     assert.ok(recipes.length >= 6, `${profile.id}/${risk}: au moins six constructions`);
     assert.equal(new Set(recipes.map(r=>r.id)).size,recipes.length);
+    assert.equal(new Set(recipes.map(r=>r.label)).size,recipes.length,`${profile.id}/${risk}: libellés de constructions distincts`);
     for (const recipe of recipes) {
       constructions++;
       function visit(index, selection) {
