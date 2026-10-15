@@ -10,6 +10,7 @@ assert.equal(annualListingReturns({...r,points:r.points.slice(1)}),null);
 assert.equal(annualListingReturns({...r,points:r.points.filter(([m])=>m!=='2025-06')}),null);
 assert.equal(annualListingReturns({...r,points:[...r.points,r.points[0]]}),null);
 assert.equal(annualListingReturns(r,'2025-12-31'),null);
+assert.equal(annualListingReturns({...r,points:r.points.map(([m,v])=>[m,m==='2024-12'?Number.MIN_VALUE:v])}),null);
 const report=buildCompleteness();
 for(const f of Object.values(report.fieldCoverage)) {
  assert.equal(f.present+f.waiting+f.notPublished+f.unresolved,f.applicable);

@@ -10,7 +10,8 @@ export function annualListingReturns(record, now=new Date().toISOString().slice(
   const map=new Map(points),years={};
   for(let year=Number(points[0]?.[0]?.slice(0,4))+1;year<Number(now.slice(0,4));year++) {
     if(!map.has(`${year-1}-12`)||!Array.from({length:12},(_,i)=>`${year}-${String(i+1).padStart(2,'0')}`).every(m=>map.has(m)))continue;
-    years[year]=(map.get(`${year}-12`)/map.get(`${year-1}-12`)-1)*100;
+    const value=(map.get(`${year}-12`)/map.get(`${year-1}-12`)-1)*100;
+    if(Number.isFinite(value))years[year]=value;
   }
   if(!Object.keys(years).length)return null;
   return {currency:record.currency,symbol:record.symbol,years,method:record.method,sourceUrls:record.sourceUrls,checkedAt:record.checkedAt??null,listingEvidenceId:record.listingEvidenceId};
