@@ -1,7 +1,6 @@
 import { ETF_DEVELOPMENT_LOTS, etfDevelopmentEntry } from '../../data/etf-development.js'
 export default function EtfDevelopment() {
-  return <details className="ds-etf-development">
-    <summary>Ajout d’ETF · suivi des quatre lots</summary>
+  return <>
     <p>Les références ci-dessous utilisent les données communes déjà collectées. Les affectations aux outils restent à examiner. Une collecte disponible ne suffit pas à qualifier un historique : les séries courtes ne sont pas prolongées.</p>
     {ETF_DEVELOPMENT_LOTS.map(lot=><section key={lot.id}>
       <h3>{lot.label}</h3>
@@ -14,5 +13,5 @@ export default function EtfDevelopment() {
         {row.gaps.length>0 && <ul>{row.gaps.map(gap=><li key={gap}>{gap}</li>)}</ul>}
       </details>})}
     </section>)}
-  </details>
+  </>
 }

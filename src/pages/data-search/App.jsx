@@ -16,6 +16,7 @@ const unknown = (value) => value ?? 'Non documenté'
 
 export default function DataSearch() {
   const [params, setParams] = useSearchParams()
+  const [etfOpen, setEtfOpen] = useState(false)
   const query = params.get('q') ?? ''
   const type = Object.hasOwn(TYPES, params.get('type')) ? params.get('type') : 'all'
   const results = useMemo(() => searchCatalog(CATALOG_INDEX, query, type), [query, type])
@@ -62,7 +63,10 @@ export default function DataSearch() {
   }
   return <div className="data-search">
     <PageHeader title="Bibliothèque de données" subtitle="Retrouve un instrument ou un indice, ses sources, ses historiques et les outils qui l’utilisent." />
-    <Suspense fallback={<p>Chargement du suivi ETF…</p>}><EtfDevelopment /></Suspense>
+    <details className="ds-etf-development" onToggle={event => setEtfOpen(event.currentTarget.open)}>
+      <summary>Ajout d’ETF · suivi des quatre lots</summary>
+      {etfOpen && <Suspense fallback={<p>Chargement du suivi ETF…</p>}><EtfDevelopment /></Suspense>}
+    </details>
     <div className="ds-controls">
       <label>ISIN, ticker, nom ou identifiant<input type="search" value={query} onChange={(e) => update('q', e.target.value)} placeholder="DCAM, MSCI USA, FR001400U5Q4…" /></label>
       <label>Type de donnée<ChoicePicker value={type} onChange={(e) => update('type', e.target.value)}>{Object.entries(TYPES).map(([key, label]) => <option key={key} value={key}>{label}</option>)}</ChoicePicker></label>
