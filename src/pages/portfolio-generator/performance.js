@@ -37,7 +37,12 @@ export function computeYearlyPerf(selection) {
   const validAllocation = selection.length > 0 && selection.every(asset => Number.isFinite(asset.pct) && asset.pct >= 0) &&
     Math.abs(selection.reduce((sum, asset) => sum + asset.pct, 0) - 100) < 1e-6
   const maps = selection.map(asset => asset.calendarReturns ?? calendarMap(asset.r))
-  const years = latestCommonYears(maps)
+  // Recent shares may have fewer years, but an internal gap must stay visible.
+  const hasInternalGap = maps.some(map => {
+    const available = Object.keys(map).map(Number).filter(year => Number.isFinite(map[year])).sort((a,b)=>a-b)
+    return available.some((year,i) => i > 0 && year !== available[i-1]+1)
+  })
+  const years = latestCommonYears(maps, { minimum: hasInternalGap ? 6 : 3 })
   // No mixed periods: retain the explicitly dated archive if a live window is unavailable.
   const selectedYears = years.length ? years : HISTORICAL_YEARS
   selectedYears.forEach(year => {
