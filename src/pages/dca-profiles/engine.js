@@ -4,13 +4,12 @@ import { portfolioExposure } from '../../lib/portfolio-exposure.js'
 export { references }
 export const pct = n => `${n.toLocaleString('fr-FR', {maximumFractionDigits:2})} %`
 export const euro = n => `${n.toLocaleString('fr-FR', {maximumFractionDigits:2})} €`
-export function prepareProfile(profile, index=0) {
-  // Editorial holdings, independent of the monthly contributions; never infer capital.
-  const patterns = [[55,25,15,5],[40,35,20,5],[65,20,10,5],[30,30,25,15]]
-  const raw = profile.lines.map((_,i)=>patterns[index%4][i] ?? 5)
-  const total = raw.reduce((s,n)=>s+n,0)
-  const weights = raw.map(n=>Math.round(n/total*100))
-  weights[0] += 100-weights.reduce((s,n)=>s+n,0)
+export function prepareProfile(profile) {
+  // Prepared holdings are explicit editorial scenarios, never inferred from DCA.
+  // The fallback only initializes custom inputs that do not carry holdings yet.
+  const weights = profile.holdings?.length === profile.lines.length
+    ? profile.holdings
+    : profile.lines.map((_,i)=>i===0?100:0)
   return {...profile, mode:'prepared',scope:'Portefeuille investi', approved:false,
     lines:profile.lines.map((line,i)=>({...line,weight:weights[i],isin:references[line.asset]?.isin ?? ''}))}
 }

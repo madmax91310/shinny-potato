@@ -20,7 +20,7 @@ export default function App(){
  function lineEdit(index,patch){edit({lines:profile.lines.map((l,i)=>i===index?{...l,...patch}:l)})}
  function select(next){update(structuredClone(next));seen.current.add(next.id)}
  async function copy(){try{await copyPublicationText(draft);setFeedback('Texte copié.')}catch{setFeedback('Copie impossible. Sélectionne le texte.')}}
- function download(){try{const link=document.createElement('a');link.href=renderImage().toDataURL('image/png');link.download=`dca-${profile.id}.png`;startPublicationDownload(link);setFeedback('Téléchargement lancé.')}catch{setFeedback('Impossible de préparer l’image.')}}
+ async function download(){try{const link=document.createElement('a');link.href=(await renderImage()).toDataURL('image/png');link.download=`dca-${profile.id}.png`;startPublicationDownload(link);setFeedback('Téléchargement lancé.')}catch{setFeedback('Impossible de préparer l’image.')}}
  function save(){try{localStorage.setItem('el-dca-draft-v1',JSON.stringify({profile,draft}));setFeedback('Brouillon enregistré sur cet appareil.')}catch{setFeedback('Le stockage local est indisponible.')}}
  function restore(){try{const saved=JSON.parse(localStorage.getItem('el-dca-draft-v1'));if(!saved?.profile||analyzeProfile(saved.profile).errors.length||typeof saved.draft!=='string')throw Error();setProfile({...saved.profile,approved:false});setDraft(saved.draft);setFeedback('Brouillon restauré.')}catch{setFeedback('Aucun brouillon valide enregistré.')}}
  return <div className="dca-profiles-scope">

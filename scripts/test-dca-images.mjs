@@ -32,7 +32,7 @@ try {
     for(const [index,raw] of cases.entries()){
       const profile=raw.lines.every(l=>Number.isFinite(l.weight))?raw:prepareProfile(raw,index)
       labels=[];boxes=[]
-      const canvas=renderDcaImage(profile)
+      const canvas=await renderDcaImage(profile)
       if(labels.some(l=>/fictif|undefined|\bNaN\b/i.test(l)))throw Error(profile.id+' unwanted text')
       if(!labels.includes(profile.name)||labels.filter(l=>l==='Épargnant Libre').length!==1)throw Error('Identity: '+profile.id)
       for(const line of profile.lines)if(!labels.join(' ').includes(line.label))throw Error('Allocation missing: '+profile.id)
