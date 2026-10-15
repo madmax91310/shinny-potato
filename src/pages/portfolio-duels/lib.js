@@ -14,7 +14,7 @@ export function formatCapital(value, currency = 'EUR') {
 }
 
 export function validateAllocation(lines, side) {
-  if (!Array.isArray(lines) || lines.length < 1 || lines.length > 3) throw new Error(`Le portefeuille ${side} doit avoir 1 à 3 ETF.`)
+  if (!Array.isArray(lines) || lines.length < 2 || lines.length > 3) throw new Error(`Le portefeuille ${side} doit avoir 2 à 3 lignes, dont une base ETF.`)
   if (lines.some((line) => !ITEM_BY_ID.has(line.id) || !Number.isInteger(line.pct) || line.pct < 1 || line.pct > 100)) {
     throw new Error(`Choix ou pondération invalide dans le portefeuille ${side}.`)
   }
@@ -37,22 +37,23 @@ function exposureReading(portfolio) {
   else if (base.exposure === 'world-hedged') parts.push('Le World couvert en euros suit les actions des pays développés et vise une couverture du change vers l’euro. La couverture ne protège pas des baisses des actions.')
   else if (base.exposure === 'world') parts.push('Le MSCI World suit les grandes et moyennes entreprises des pays développés.')
   else if (['acwi', 'acwi-pea', 'allworld'].includes(base.exposure)) parts.push(`Le ${base.exposure.startsWith('acwi') ? 'MSCI ACWI' : 'FTSE All-World'} inclut les pays développés et émergents.`)
+  else if (base.exposure === 'acwi-imi') parts.push('Le MSCI ACWI IMI inclut les pays développés et émergents, avec leurs grandes, moyennes et petites entreprises.')
   else if (base.exposure === 'equalweight') parts.push('Les entreprises du S&P 500 partent du même poids à chaque rééquilibrage trimestriel.');
   else parts.push('Le S&P 500 constitue une base d’actions américaines.')
   if (complement?.exposure === 'em') {
-    parts.push(['acwi', 'acwi-pea', 'allworld'].includes(base.exposure)
+    parts.push(['acwi', 'acwi-pea', 'acwi-imi', 'allworld'].includes(base.exposure)
       ? `Les ${complement.pct} % d’émergents IMI renforcent une zone déjà présente dans la base et incluent aussi des petites capitalisations.`
       : `Les ${complement.pct} % d’émergents IMI ajoutent ces marchés, avec leurs grandes, moyennes et petites capitalisations.`)
   }
   if (complement?.exposure === 'europe') parts.push(base.exposure === 'sp500'
     ? `Les ${complement.pct} % d’Europe ajoutent une autre zone géographique.`
     : `Les ${complement.pct} % d’Europe renforcent une zone déjà présente dans la base.`)
-  if (complement?.exposure === 'smallcap') parts.push(`Les ${complement.pct} % de petites capitalisations des pays développés ajoutent un segment absent de la base.`)
+  if (complement?.exposure === 'smallcap') parts.push(base.exposure === 'acwi-imi' ? `Les ${complement.pct} % de petites capitalisations renforcent des entreprises déjà présentes dans l’ACWI IMI.` : `Les ${complement.pct} % de petites capitalisations des pays développés ajoutent un segment absent de la base.`)
   if (complement?.exposure === 'nasdaq') parts.push(`Les ${complement.pct} % de Nasdaq-100 renforcent les grandes entreprises non financières cotées au Nasdaq, avec un poids important de la technologie. Plusieurs figurent déjà dans la base.`)
   if (complement?.exposure === 'japan') parts.push(base.exposure === 'sp500'
     ? `Les ${complement.pct} % de Japon IMI ajoutent les actions japonaises, y compris des petites capitalisations.`
     : `Les ${complement.pct} % de Japon IMI renforcent un pays déjà présent dans la base et incluent aussi des petites capitalisations.`)
-  if (complement?.exposure === 'india') parts.push(['acwi', 'acwi-pea', 'allworld'].includes(base.exposure)
+  if (complement?.exposure === 'india') parts.push(['acwi', 'acwi-pea', 'acwi-imi', 'allworld'].includes(base.exposure)
     ? `Les ${complement.pct} % d’Inde renforcent un pays déjà présent dans la base.`
     : `Les ${complement.pct} % d’Inde ajoutent une exposition à ce marché émergent.`)
   const factorReadings = {
