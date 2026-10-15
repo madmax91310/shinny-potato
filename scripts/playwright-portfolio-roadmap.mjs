@@ -26,7 +26,13 @@ try {
   if(await generatorPreview.isVisible())await generatorPreview.click()
   await page.locator('.pg-alloc-list').waitFor()
   const history=page.getByRole('link',{name:'Performance de cette part'}).first()
-  if(await history.count()) {await history.click();await page.locator('pre').waitFor();assert.match(page.url(),/performance-depuis/)}
+  if(await history.count()) {
+   await history.click()
+   const historyPreview=page.locator('.workspace-view-switch').getByRole('button',{name:'Aperçu',exact:true})
+   if(await historyPreview.isVisible())await historyPreview.click()
+   await page.locator('pre').waitFor()
+   assert.match(page.url(),/performance-depuis/)
+  }
   assert.deepEqual(errors,[])
   await page.close()
  }
