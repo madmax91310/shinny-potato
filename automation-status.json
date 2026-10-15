@@ -47,16 +47,16 @@
     },
     "update-company-analysis.yml": {
       "name": "Analyses d’entreprises",
-      "runId": 38684958520,
+      "runId": 38689518347,
       "attempt": 1,
-      "completedAt": "2026-10-15T05:24:24Z",
+      "completedAt": "2026-10-15T06:16:17Z",
       "status": "success",
-      "lastSuccessAt": "2026-10-15T05:24:24Z",
+      "lastSuccessAt": "2026-10-15T06:16:17Z",
       "collectionStatus": "success",
-      "publicationStatus": "success",
-      "lastCollectionSuccessAt": "2026-10-15T05:24:24Z",
+      "publicationStatus": "not-run",
+      "lastCollectionSuccessAt": "2026-10-15T06:16:17Z",
       "lastPublicationSuccessAt": "2026-10-15T05:24:22Z",
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38684958520",
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38689518347",
       "failures": [],
       "dataFailures": {}
     },
@@ -305,10 +305,10 @@
       "dataFailures": {}
     }
   },
-  "updatedAt": "2026-10-15T05:47:39Z",
+  "updatedAt": "2026-10-15T06:16:17Z",
   "monitoring": {
     "schemaVersion": 1,
-    "checkedAt": "2026-10-15T06:14:48.069045+00:00",
+    "checkedAt": "2026-10-15T06:16:32.330725+00:00",
     "revision": 20,
     "active": {
       "collection:update-practical-sheets.yml:practical:13f": {
@@ -330,7 +330,7 @@
         "dataId": "practical:13f",
         "id": "collection:update-practical-sheets.yml:practical:13f",
         "firstSeenAt": "2026-10-14T21:07:26.171294+00:00",
-        "lastSeenAt": "2026-10-15T06:14:48.069045+00:00"
+        "lastSeenAt": "2026-10-15T06:16:32.330725+00:00"
       },
       "collection:update-insurance.yml:linxea-avenir-2": {
         "name": "Linxea Avenir 2",
@@ -349,7 +349,7 @@
         "dataId": "linxea-avenir-2",
         "id": "collection:update-insurance.yml:linxea-avenir-2",
         "firstSeenAt": "2026-10-14T13:08:27.203935+00:00",
-        "lastSeenAt": "2026-10-15T06:14:48.069045+00:00"
+        "lastSeenAt": "2026-10-15T06:16:32.330725+00:00"
       },
       "radar:44882f934eb114198158f55a": {
         "name": "SPDR € Corp Bond UCITS ETF",
@@ -369,7 +369,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-13) : Poids des dix premières lignes. Dernière observation conservée ; propositions archivées (etf:IE00B3T9LM79:top10:0261a38d6b954a5f4e504dab:2026-10-13).",
         "id": "radar:44882f934eb114198158f55a",
         "firstSeenAt": "2026-10-14T11:07:35.462638+00:00",
-        "lastSeenAt": "2026-10-15T06:14:48.069045+00:00"
+        "lastSeenAt": "2026-10-15T06:16:32.330725+00:00"
       }
     },
     "events": [
