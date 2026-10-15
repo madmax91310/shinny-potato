@@ -24,3 +24,10 @@
 .dca-profiles-scope .dca-consent{padding:16px;border:1px solid #75a98e;border-radius:10px;margin-top:18px}
 .dca-profiles-scope .dca-consent input{margin-right:8px}
 @media(max-width:500px){.dca-profiles-scope .dca-fields{grid-template-columns:1fr}.dca-profiles-scope .dca-mode{flex-direction:column}}
+
+.dca-profiles-scope .dca-visual-choice{margin:20px 0}
+.dca-profiles-scope .dca-position input[type=search]{margin-bottom:12px}
+.dca-profiles-scope .dca-saved-row{display:flex;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid var(--workspace-border,#526071);flex-wrap:wrap}
+.dca-profiles-scope .dca-saved-row span{flex:1;min-width:120px;overflow-wrap:anywhere}
+.dca-profiles-scope .dca-saved-row button{padding:8px;background:transparent;color:inherit;border:1px solid var(--workspace-border,#526071);border-radius:6px;cursor:pointer}
+.dca-profiles-scope .dca-evidence a{overflow-wrap:anywhere}

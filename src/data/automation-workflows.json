@@ -401,9 +401,11 @@
       "Générateur"
     ],
     "collectionSteps": [
-      "Collect observations: collect"
+      "Collect observations: collect",
+      "Collect observations: equities"
     ],
     "validationSteps": [
+      "Validate DCA observations",
       "Validate observations: node scripts test-qualified-exposures.mjs",
       "Validate observations: npm run audit:instrument-catalog",
       "Validate observations: npm run build",

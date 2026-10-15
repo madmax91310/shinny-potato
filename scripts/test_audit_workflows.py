@@ -38,7 +38,11 @@ class WorkflowContracts(unittest.TestCase):
             workflow = (ROOT/'.github/workflows'/filename).read_text()
             refresh = workflow.split('  refresh:\n')[1].split('  deploy:\n')[0]
             self.assertNotIn('run: exit 1', refresh)
-            self.assertIn("collection_failed: ${{ steps.collect.outcome == 'failure' }}", refresh)
+            failures = "steps.collect.outcome == 'failure'"
+            if filename == 'update-qualified-exposures.yml':
+                failures += " || steps.equities.outcome == 'failure'"
+                self.assertIn("id: equities\n        continue-on-error: ${{ github.event_name != 'pull_request' }}", refresh)
+            self.assertIn("collection_failed: ${{ " + failures + " }}", refresh)
             self.assertIn('needs: [refresh, deploy]', workflow)
             self.assertIn("if: always() && needs.refresh.outputs.collection_failed == 'true'", workflow)
             self.assertLess(refresh.index('npm run build'), refresh.index('bash scripts/commit-validated-data.sh'))

@@ -16,6 +16,8 @@
 
 La qualification est recalculée à chaque construction des données communes, y compris l’extrait DCA. Elle ne modifie ni les poids ni les dates. Deux observations ne sont regroupées que si classification, date et périmètre fonds/indice coïncident. Une table partielle ne devient pas une couverture complète et n’autorise pas une comparaison intégrale. Les méthodes non reconnues suivent les règles conservatrices existantes ; sans méthode, chaque support reste isolé.
 
+L’outil DCA conserve son approximation récente et les dates individuelles introduites par son évolution dédiée. Sa compatibilité ETF utilise les mêmes identifiants qualifiés et distingue fonds/indice ; la seule identité iShares ne suffit plus à déclarer GICS ou pays de risque. Les actions individuelles et leurs classifications explicites restent disponibles.
+
 Le test `node scripts/test-exposure-classification.mjs` couvre les regroupements compatibles, les sources non reconnues, les contradictions de composant, les dates, les périmètres et les couvertures partielles.
 
 ## Collecteurs

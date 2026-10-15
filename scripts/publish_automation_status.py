@@ -27,6 +27,11 @@ DATA_LABELS = {'purchasing-general': 'Prix à la consommation', 'purchasing-alim
 
 def normalize_report(report):
     """Adapt issuer/index reports without turning preserved values into recovered sources."""
+    if report.get('_collector') == 'dca-equities':
+        return {'successes': [{'id': 'dca-equity:' + asset} for asset in report.get('updated', [])],
+                'errors': [{'id': 'dca-equity:' + asset, 'field': 'Classification pays/secteur',
+                            'error': 'Classification absente de la source ; dernière observation conservée'}
+                           for asset in report.get('missing', [])]}
     if isinstance(report.get('managers'), list):
         return {'successes': [{'id': 'investor:' + row['slug']} for row in report['managers'] if row.get('status') == 'validated'],
                 'errors': [{'id': 'investor:' + row['slug'], 'field': 'Portefeuille 13F', 'error': row.get('reason', 'Collecte échouée')}
