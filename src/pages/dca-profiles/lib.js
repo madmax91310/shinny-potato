@@ -41,6 +41,7 @@ export function buildTweetText(input) {
   const intro = `${profile.emoji || '👤'} ${[profile.name,profile.age && `${profile.age} ans`,profile.job].filter(Boolean).join(', ')}`
   const income = profile.income ? `💸 ${incomeLabel(profile)} : ${compactEuro(profile.income)}/mois` : ''
   const held = profile.lines.filter(l=>l.weight>0).map(l=>`${l.emoji || '•'} ${pct(l.weight)} ${l.label}`).join('\n')
+  if(profile.imageOnly)return `📊 Voilà la répartition de ce portefeuille :\n\n${held}\n\n${portfolioComment(profile)}\n\nPas un conseil financier`
   const flows = profile.lines.filter(l=>l.amount>0).map(l=>`→ ${compactEuro(l.amount)} sur ${l.label}`).join('\n')
   const ending = /^[AEÉÈÊIÎOÔUÙY]/i.test(profile.name) ? `d’${profile.name}` : `de ${profile.name}`
   const scope = profile.scope && profile.scope!=='Portefeuille investi' ? ` (${profile.scope})` : ''

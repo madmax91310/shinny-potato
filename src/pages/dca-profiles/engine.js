@@ -19,8 +19,8 @@ export function validateProfile(profile) {
   if ((!profile.imageOnly && !profile.name?.trim()) || (profile.name||'').length>45) errors.push('Indique un pseudonyme de 1 à 45 caractères.')
   if (!PROFILE_SCOPES.includes(profile.scope)) errors.push('Choisis un périmètre dans la liste.')
   if (!Array.isArray(profile.lines) || profile.lines.length<1 || profile.lines.length>8) return [...errors,'Le portefeuille doit contenir entre 1 et 8 positions.']
-  if(profile.lines.some(l=>!ASSETS[l.asset] || !Number.isFinite(l.weight)||l.weight<0||l.weight>100||!Number.isFinite(l.amount)||l.amount<0||l.amount>1000000)) errors.push('Vérifie les actifs, les poids et les versements : uniquement des nombres positifs ou nuls.')
-  if(profile.lines.some(l=>l.weight===0 && l.amount===0)) errors.push('Supprime les positions sans poids ni versement.')
+  if(profile.lines.some(l=>!ASSETS[l.asset] || !Number.isFinite(l.weight)||l.weight<0||l.weight>100||(!profile.imageOnly&&(!Number.isFinite(l.amount)||l.amount<0||l.amount>1000000)))) errors.push('Vérifie les actifs, les poids et les versements : uniquement des nombres positifs ou nuls.')
+  if(profile.lines.some(l=>l.weight===0 && (profile.imageOnly||l.amount===0))) errors.push('Supprime les positions sans poids ni versement.')
   if(profile.lines.some(l=>l.isin && l.isin!==references[l.asset]?.isin)) errors.push('Le support confirmé doit correspondre à l’actif sélectionné.')
   if(new Set(profile.lines.map(l=>l.asset)).size!==profile.lines.length) errors.push('Regroupe les positions portant sur le même actif.')
   if(Math.abs(profile.lines.reduce((s,l)=>s+l.weight,0)-100)>.001) errors.push('Les poids du portefeuille doivent totaliser 100 %.')
@@ -29,7 +29,7 @@ export function validateProfile(profile) {
 export function analyzeProfile(profile) {
   const errors=validateProfile(profile)
   if(errors.length) return {errors}
-  const monthly=profile.lines.reduce((s,l)=>s+l.amount,0)
+  const monthly=profile.imageOnly?0:profile.lines.reduce((s,l)=>s+l.amount,0)
   const changes=profile.lines.map(l=>({...l,share:monthly?l.amount/monthly*100:0,delta:monthly?l.amount/monthly*100-l.weight:0})).sort((a,b)=>Math.abs(b.delta)-Math.abs(a.delta))
   const fields=Object.fromEntries(['countries','sectors'].map(field=>[field,dcaExposure(profile.lines,references,field)]))
   return {errors:[],monthly,changes,...fields}
