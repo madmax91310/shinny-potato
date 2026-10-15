@@ -18,7 +18,7 @@ for (const record of records) {
   assert(!/\{\w+\}/.test(tweet), 'Variable non remplacée')
   assert(!/https?:\/\/|Source\s*:/i.test(tweet), 'La source reste dans l’application, pas dans le tweet')
   assert(tweet.endsWith(record.question), 'Question finale conservée')
-  assert.match(tweet, /\bje\b|\bj’ai\b|\bmoi\b|\bme\b|\bm’/i, `${record.id} : regard personnel`)
+  // Le texte peut expliquer directement le repère, sans imposer un « je ».
   assert(tweet.includes(record.referencePeriod), `${record.id} : période conservée`)
   assert(tweet.includes(record.value.toLocaleString('fr-FR')), `${record.id} : valeur exacte conservée`)
   if (record.population === 'personnes') {
