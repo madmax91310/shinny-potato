@@ -11,8 +11,8 @@ try {
   const page=await browser.newPage({viewport:{width:1440,height:1100}})
   await page.goto(base+'le-dca-de')
   const records=await page.evaluate(async()=>{
-    const {PROFILES}=await import('/shinny-potato/src/pages/dca-profiles/data.js')
-    const {prepareProfile}=await import('/shinny-potato/src/pages/dca-profiles/engine.js')
+    const {PROFILES, ASSETS}=await import('/shinny-potato/src/pages/dca-profiles/data.js')
+    const {prepareProfile, references}=await import('/shinny-potato/src/pages/dca-profiles/engine.js')
     const {renderDcaImage}=await import('/shinny-potato/src/pages/dca-profiles/image.js')
     const original=CanvasRenderingContext2D.prototype.fillText
     let labels=[],boxes=[]
@@ -24,19 +24,24 @@ try {
       return original.call(this,value,x,y,...args)
     }
     const output=[]
-    for(const [index,raw] of PROFILES.entries()){
-      const profile=prepareProfile(raw,index)
+    const cases=[...PROFILES,
+      {...prepareProfile(PROFILES[0]),id:'eight-lines',name:'Pseudonyme long pour vérifier le rendu mobile',lines:Object.keys(ASSETS).slice(0,8).map((asset,i)=>({asset,label:ASSETS[asset][1],emoji:ASSETS[asset][0],weight:12.5,amount:i?1000000:0,isin:''}))},
+      {...prepareProfile(PROFILES[0]),id:'zero-dca',lines:prepareProfile(PROFILES[0]).lines.map(l=>({...l,amount:0}))},
+      {...prepareProfile(PROFILES[0]),id:'karim-approved',name:'Karim',age:32,job:'informaticien',location:'',income:2500,variable:false,lines:[['world',70,350],['europe',20,100],['emerging',10,50]].map(([asset,weight,amount])=>({asset,label:ASSETS[asset][1],emoji:ASSETS[asset][0],weight,amount,isin:references[asset].isin}))}
+    ]
+    for(const [index,raw] of cases.entries()){
+      const profile=raw.lines.every(l=>Number.isFinite(l.weight))?raw:prepareProfile(raw,index)
       labels=[];boxes=[]
       const canvas=renderDcaImage(profile)
       if(labels.some(l=>/fictif|undefined|\bNaN\b/i.test(l)))throw Error(profile.id+' unwanted text')
       if(!labels.includes(profile.name)||labels.filter(l=>l==='Épargnant Libre').length!==1)throw Error('Identity: '+profile.id)
       for(const line of profile.lines)if(!labels.join(' ').includes(line.label))throw Error('Allocation missing: '+profile.id)
-      output.push({id:profile.id,labels:[...labels],png:['julien','alexandre','patrick','arthur','laurent','helene'].includes(profile.id)?canvas.toDataURL():null})
+      output.push({id:profile.id,labels:[...labels],png:['julien','alexandre','patrick','arthur','laurent','helene','eight-lines','zero-dca','karim-approved'].includes(profile.id)?canvas.toDataURL():null})
     }
     CanvasRenderingContext2D.prototype.fillText=original
     return output
   })
-  assert.equal(records.length,100)
+  assert.equal(records.length,103)
   await mkdir('test-artifacts/dca',{recursive:true})
   for(const record of records.filter(r=>r.png))await writeFile(`test-artifacts/dca/${record.id}.png`,Buffer.from(record.png.split(',')[1],'base64'))
   await page.getByRole('button',{name:'Créer une participation',exact:true}).click()
@@ -67,5 +72,5 @@ try {
   assert(await page.getByRole('img',{name:/Portefeuille et versements de/}).isVisible())
   assert(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth+1))
   await page.screenshot({path:'test-artifacts/dca/mobile.png',fullPage:true})
-  console.log('100 images DCA : données, texte sans mention fictive, aucun chevauchement ni dépassement, aperçu, changement de profil, téléchargement et mobile validés.')
+  console.log('103 images DCA : données, texte sans mention fictive, aucun chevauchement ni dépassement, aperçu, changement de profil, téléchargement et mobile validés.')
 } finally {await browser?.close();server.kill('SIGTERM')}

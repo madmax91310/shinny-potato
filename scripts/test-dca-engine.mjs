@@ -32,3 +32,26 @@ assert.equal(analyzeProfile(unconfirmed).countries.coverage,0)
 assert(!publicationReady({...p,mode:'participant',approved:false}))
 assert(publicationReady({...p,mode:'participant',approved:true}))
 console.log('DCA moteur : 100 profils, pondérations, couverture, absences, zéro DCA, première position et validation vérifiés.')
+
+// The donut represents the entire portfolio, including uncovered weight.
+const {donutData}=await import('../src/pages/dca-profiles/image.js')
+const {incomeLabel}=await import('../src/pages/dca-profiles/lib.js')
+for(const [i,raw] of PROFILES.entries()){
+ const p=prepareProfile(raw,i),d=donutData(analyzeProfile(p))
+ assert(Math.abs(d.rows.reduce((s,r)=>s+r.weight,0)-100)<1e-8)
+ assert(d.rows.every(r=>r.weight>0))
+}
+const snapshot=(coverage,rows,asOf='2026-10-01')=>({coverage,rows,asOf,basis:'fund'})
+const partial=donutData({countries:{groups:[snapshot(60,[{name:'France',weight:30},{name:'Japon',weight:30}]),snapshot(40,[{name:'États-Unis',weight:40}],'2026-09-30')]}})
+assert.equal(partial.rows.find(r=>r.name==='Non ventilé ici').weight,40)
+assert(!partial.rows.some(r=>r.name==='États-Unis'))
+assert.equal(donutData({countries:{groups:[]}}).rows[0].weight,100)
+assert.equal(incomeLabel({job:'retraité',variable:false}),'Retraite')
+const karim={...p,name:'Karim',emoji:'👦',age:32,job:'informaticien',income:2500,lines:[
+ {asset:'world',label:'MSCI World',emoji:'🌍',weight:70,amount:350,isin:references.world.isin},
+ {asset:'europe',label:'STOXX Europe 600',emoji:'🇪🇺',weight:20,amount:100,isin:references.europe.isin},
+ {asset:'emerging',label:'MSCI Emerging Markets',emoji:'🌏',weight:10,amount:50,isin:references.emerging.isin}],variable:false}
+assert(buildTweetText(karim).startsWith('👦 Karim, 32 ans, informaticien\n💸 Salaire : 2500€/mois\n📊 DCA de 500€ par mois'))
+assert(buildTweetText(karim).includes('Le World reste son placement principal.'))
+assert(!/undefined|NaN/.test(buildTweetText({...karim,age:null,job:'',income:0})))
+console.log('Donuts : total, couverture partielle, dates séparées et accroche validée.')
