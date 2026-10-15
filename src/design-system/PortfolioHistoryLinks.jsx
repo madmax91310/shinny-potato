@@ -6,5 +6,5 @@ export default function PortfolioHistoryLinks({ isin }) {
   const performance = getPerformanceHref(isin)
   const simulation = getSimulationHref(getPerformanceAssetId(isin))
   if (!performance) return null
-  return <span className="pg-data-label"><Link to={performance}>Performance de cette part</Link>{simulation && <> · <Link to={simulation}>Simuler avec son historique mensuel</Link></>}</span>
+  return <span className="pg-history-links"><Link to={performance}>Performance de cette part</Link>{simulation && <> · <Link to={simulation}>Simuler avec son historique mensuel</Link></>}</span>
 }
