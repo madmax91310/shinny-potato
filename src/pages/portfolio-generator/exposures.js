@@ -1,6 +1,8 @@
 // Familles pour mesurer la variété de composition, pas le chevauchement des titres.
 // Certains indices voisins gardent des différences réelles de sociétés et de rendements.
 const FAMILIES = [
+  ['cybersecurity', ['sect_cybersecurite','sect_cyber_lg']],
+  ['europe-technology', ['tech_europe','tech_europe_pea']],
   ['world', ['msci_world','msci_world_ishares','msci_world_amundi_pea']],
   ['world-all', ['msci_acwi','msci_acwi_ishares','ftse_allworld_vanguard','pea_global_amundi']],
   ['emerging', ['msci_em','msci_em_amundi','msci_em_spdr','ftse_em_vanguard']],
@@ -16,10 +18,14 @@ const FAMILIES = [
 ];
 const FAMILY_BY_ID = new Map(FAMILIES.flatMap(([family, ids]) => ids.map(id => [id, family])));
 
+export function exposureFamily(id) {
+  return FAMILY_BY_ID.get(id) ?? id;
+}
+
 export function exposureVector(selection) {
   const vector = {};
   for (const { id, pct } of selection) {
-    const family = FAMILY_BY_ID.get(id) ?? id;
+    const family = exposureFamily(id);
     vector[family] = (vector[family] ?? 0) + pct;
   }
   return vector;

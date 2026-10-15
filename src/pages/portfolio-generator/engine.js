@@ -7,7 +7,7 @@ import {
   PROFILES, RISK_ORDER, RISK_LABELS, RISK_BOUNDS, WORLD_OPTIONS, LEVERAGE_OPTIONS,
   isCompatible, getFrequencyCap, PRO_EUROPE_CORE_IDS,
 } from "./theses.js";
-import { exposureVector, exposureSignature, exposureDistance } from "./exposures.js";
+import { exposureFamily, exposureVector, exposureSignature, exposureDistance } from "./exposures.js";
 import { getRecipes, withinRecipe } from "./recipes.js";
 import { buildEditorial } from "./editorial.js";
 
@@ -101,6 +101,11 @@ function computeAssetUsage(history) {
       counts[s.id] = (counts[s.id] || 0) + 1;
     });
   });
+  for (const h of history) {
+    for (const family of new Set(h.selection.map(s => exposureFamily(s.id)))) {
+      counts[`family:${family}`] = (counts[`family:${family}`] || 0) + 1;
+    }
+  }
   return counts;
 }
 
@@ -116,7 +121,10 @@ function pickLeastUsed(options, usageCounts) {
 // équiprobabilité, pour que les alternatives sous-utilisées comblent vite leur retard.
 function resolveAssetId(slot, usageCounts, historyLength) {
   if (!slot.idOptions) return slot.id;
-  let candidates = slot.idOptions;
+  // Choose an exposure first: multiple issuers must not give a theme extra tickets.
+  const families = [...new Set(slot.idOptions.map(exposureFamily))];
+  const family = weightedPick(families, families.map(key => 1 / ((usageCounts[`family:${key}`] || 0) + 1)));
+  let candidates = slot.idOptions.filter(id => exposureFamily(id) === family);
   if (historyLength >= 5) {
     const cap = getFrequencyCap(slot.idOptions);
     const underCap = candidates.filter((id) => (usageCounts[id] || 0) / historyLength <= cap);
@@ -160,6 +168,7 @@ function jitterSelection(selection, bound, profileId, riskId, recipe) {
 }
 
 function withinBound(value, bound) {
+  if (!Number.isFinite(value)) return false;
   if (bound.min !== null && value < bound.min) return false;
   if (bound.max !== null && value > bound.max) return false;
   return true;
@@ -350,6 +359,8 @@ export function generatePortfolio(history, targetRiskKey, targetProfileKey) {
   // Un changement d’émetteur ne suffit plus à faire passer une allocation pour nouvelle.
   for (let tries = 0; tries < 200 && freshCandidates < 16; tries++) {
     const candidate = jitterSelection(buildSelection(combo, assetUsage, history.length), bound, profileId, riskId, combo);
+    const candidatePerf = computeYearlyPerf(candidate);
+    if (performanceYears(candidatePerf).length !== 6 || !Object.values(candidatePerf).every(Number.isFinite)) continue;
     if (!withinRecipe(candidate, combo) || !withinBound(worstYearOf(computeYearlyPerf(candidate)).value, bound)
       || violatesProfileInvariant(profileId, candidate, riskId)) continue;
     fallback ??= candidate;

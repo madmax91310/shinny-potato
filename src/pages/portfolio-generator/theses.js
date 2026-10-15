@@ -6,7 +6,7 @@
 // — voir aussi le tableau de compatibilité exposé par `isCompatible()` en bas de fichier).
 
 // Bloc Europe reconnu par le moteur et les intitulés éditoriaux.
-export const PRO_EUROPE_CORE_IDS = ["eurostoxx50", "eurostoxx50_ishares", "cac40", "tech_europe", "smallcap_europe", "oblig_etat_eur_short", "msci_europe"];
+export const PRO_EUROPE_CORE_IDS = ["health_europe_pea", "europe-insurance", "europe-banks", "euro-dividend-aristocrats", "eurostoxx50", "eurostoxx50_ishares", "cac40", "tech_europe", "smallcap_europe", "oblig_etat_eur_short", "msci_europe"];
 
 export const RISK_ORDER = ["prudent", "defensif", "equilibre", "dynamique", "offensif"];
 
