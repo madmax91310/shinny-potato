@@ -9,6 +9,10 @@ import { getPerformanceHref, getPerformanceAssetId } from '../src/data/performan
 import { getSimulationHref } from '../src/data/simulation-links.js'
 import { prioritizeIncidents } from '../src/pages/data-review/incident-priority.js'
 import { groupReviews } from '../src/pages/data-review/groups.js'
+const recent=ASSETS.find(a=>a.id==='blockchain_ishares')
+const recentPerf=computeYearlyPerf([{...recent,pct:100}])
+assert.deepEqual(Object.keys(recentPerf),['2023','2024','2025'])
+assert(Object.values(recentPerf).every(Number.isFinite))
 let compared=0
 for(const asset of ASSETS) {
   const duel=CATALOG.find(d=>d.isin===asset.isin)
