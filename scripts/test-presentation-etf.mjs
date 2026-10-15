@@ -56,4 +56,4 @@ for (const r of PRESENTATION_ETF_EXPANSION) {
   assert(series.values.some(Number.isFinite));
   assert.deepEqual(series.values, series.calendarYears.map(y => record.performance.years[y] ?? null));
 }
-console.log('Three PEA presentations: existing automated collectors, exact-share EUR performances, listing and visual identity OK.');
+console.log('Five PEA presentations: existing automated collectors, exact-share EUR performances, listing and visual identity OK.');

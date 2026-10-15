@@ -1,5 +1,7 @@
+import { PEA_SECTOR_COMPLETION } from './pea-sector-completion.js';
 // Expositions PEA déjà collectées par scripts/amundi-etf.json ; aucune valeur de marché recopiée.
 export const PRESENTATION_ETF_EXPANSION = [
+  ...PEA_SECTOR_COMPLETION,
   {
     "id": "pea-europe-amundi",
     "isin": "FR0013412038",
