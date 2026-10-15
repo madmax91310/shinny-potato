@@ -16,19 +16,24 @@ export function integerPercentages(rows){
  for(let i=0;i<remaining;i++)values[order[i%order.length].i]++
  return values
 }
-// A single compatible snapshot, never a blend of dates or classifications.
+// Most-covered compatible synthesis, preserving the actual source date range.
 // Missing coverage keeps its true weight in grey; never renormalize known countries to 100%.
-export function donutData(analysis){
- const group=[...analysis.countries.groups].sort((a,b)=>b.coverage-a.coverage)[0]
- if(!group)return {group:null,rows:[{name:'Non ventilé',weight:100,color:'#57718e'}]}
+export function donutData(analysis,field='countries'){
+ const exposure=analysis[field]
+ const neutral=exposure.neutralRows||[]
+ const neutralWeight=neutral.reduce((s,r)=>s+r.weight,0)
+ const group=[...exposure.groups].sort((a,b)=>b.coverage-a.coverage)[0]
+ if(!group&&!neutralWeight)return {group:null,rows:[{name:'Non ventilé',weight:100,color:'#57718e'}]}
+ if(!group)return {group:null,rows:[{name:neutral.length===1?neutral[0].name:'Métaux / crypto',weight:neutralWeight,color:'#b79b6b'},...(neutralWeight<100?[{name:'Non ventilé ici',weight:100-neutralWeight,color:'#57718e'}]:[])]}
  const raw=group.rows.filter(r=>r.weight>0),total=raw.reduce((s,r)=>s+r.weight,0)
  // Source rounding can marginally exceed covered weight. Scale only that excess.
  const scale=total>group.coverage?group.coverage/total:1
  const known=raw.map(r=>({...r,weight:r.weight*scale})).sort((a,b)=>b.weight-a.weight)
  const named=known.filter(r=>!/^autres?$|^other$/i.test(r.name))
- const rows=named.slice(0,4).map((r,i)=>({...r,color:colors[i]}))
+ const rows=named.slice(0,neutralWeight?3:4).map((r,i)=>({...r,color:colors[i]}))
  const rest=known.reduce((s,r)=>s+r.weight,0)-rows.reduce((s,r)=>s+r.weight,0)
  if(rest>1e-9)rows.push({name:'Autres expositions',weight:rest,color:colors[4]})
+ if(neutralWeight)rows.push({name:neutral.length===1?neutral[0].name:'Métaux / crypto',weight:neutralWeight,color:'#b79b6b'})
  const missing=Math.max(0,100-rows.reduce((s,r)=>s+r.weight,0))
  if(missing>.000001)rows.push({name:'Non ventilé ici',weight:missing,color:'#57718e'})
  return {group,rows}
@@ -38,7 +43,7 @@ async function loadDcaFont(){
  if(!fontReady)fontReady=new FontFace('DcaEditorial',`url("${import.meta.env.BASE_URL}asset-art/editorial.woff2")`,{weight:'500'}).load().then(font=>document.fonts.add(font)).catch(error=>{fontReady=undefined;throw error})
  return fontReady
 }
-export async function renderDcaImage(input){
+export async function renderDcaImage(input,field='countries'){
  await loadDcaFont()
  const p=input.lines.every(l=>Number.isFinite(l.weight))?input:prepareProfile(input),a=analyzeProfile(p)
  if(a.errors.length)throw Error(a.errors.join(' '))
@@ -59,8 +64,8 @@ export async function renderDcaImage(input){
   text(ctx,l.label,312,y+rowHeight*.62,464,Math.min(31,rowHeight*.45),C.ivory,700,'DcaEditorial')
  })
  text(ctx,'Son portefeuille',865,112,670,65,C.ivory,700,'DcaEditorial')
- text(ctx,'Exposition géographique',880,163,650,32,C.muted,400)
- const {group,rows}=donutData(a),cx=1197,cy=508,r=280,inner=195
+ text(ctx,field==='sectors'?'Exposition sectorielle':'Exposition géographique',880,163,650,32,C.muted,400)
+ const {group,rows}=donutData(a,field),cx=1197,cy=508,r=280,inner=195
  let angle=-Math.PI/2
  for(const row of rows){const span=row.weight/100*Math.PI*2;ctx.beginPath();ctx.arc(cx,cy,r,angle,angle+span);ctx.arc(cx,cy,inner,angle+span,angle,true);ctx.closePath();ctx.fillStyle=row.color;ctx.fill();angle+=span}
  const percentages=integerPercentages(rows)
@@ -70,9 +75,9 @@ export async function renderDcaImage(input){
   text(ctx,row.name,x+28,y,190,23,C.ivory,400)
   text(ctx,`${percentages[i]} %`,x+28,y+32,190,29,C.ivory,700)
  })
- const source=group?`${group.asOf} · ${group.basis==='fund'?'Fonds':'Indice'} · couverture ${Math.round(group.coverage)} %`:'Aucune ventilation qualifiée'
+ const source=group?`${group.oldest&&group.oldest!==group.asOf?group.oldest+' → ':''}${group.asOf} · couverture ${Math.round(group.coverage)} %`:(a[field].neutralWeight===100?'Métaux / crypto : hors classification':'Aucune ventilation qualifiée')
  text(ctx,source,860,982,670,18,C.muted,400)
- if(group?.classification==='Pays d’enregistrement DWS')text(ctx,'Pays d’enregistrement',860,1004,670,16,C.muted,400)
+ if(group?.classification==='country-registration')text(ctx,'Pays d’enregistrement',860,1004,670,16,C.muted,400)
  rule(ctx,64,1013,1472)
  text(ctx,p.scope,64,1050,1000,20,C.muted,400)
  text(ctx,'Épargnant Libre',1205,1051,330,32,C.ivory,700,'DcaEditorial')

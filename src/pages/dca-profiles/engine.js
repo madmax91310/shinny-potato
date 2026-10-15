@@ -1,6 +1,6 @@
 import references from './exposures.json' with {type:'json'}
 import { ASSETS } from './data.js'
-import { portfolioExposure } from '../../lib/portfolio-exposure.js'
+import { dcaExposure } from './exposure.js'
 export { references }
 export const pct = n => `${n.toLocaleString('fr-FR', {maximumFractionDigits:2})} %`
 export const euro = n => `${n.toLocaleString('fr-FR', {maximumFractionDigits:2})} €`
@@ -30,12 +30,7 @@ export function analyzeProfile(profile) {
   if(errors.length) return {errors}
   const monthly=profile.lines.reduce((s,l)=>s+l.amount,0)
   const changes=profile.lines.map(l=>({...l,share:monthly?l.amount/monthly*100:0,delta:monthly?l.amount/monthly*100-l.weight:0})).sort((a,b)=>Math.abs(b.delta)-Math.abs(a.delta))
-  const records=Object.fromEntries(Object.values(references).map(r=>[r.isin,r]))
-  const held=profile.lines.filter(l=>l.weight>0).map(l=>({isin:l.isin,pct:l.weight}))
-  const fields=Object.fromEntries(['countries','sectors'].map(field=>{
-    const groups=portfolioExposure(held,records,field)
-    return [field,{groups,coverage:groups.reduce((s,g)=>s+g.coverage,0)}]
-  }))
+  const fields=Object.fromEntries(['countries','sectors'].map(field=>[field,dcaExposure(profile.lines,references,field)]))
   return {errors:[],monthly,changes,...fields}
 }
 export function observation(profile,analysis=analyzeProfile(profile)) {
