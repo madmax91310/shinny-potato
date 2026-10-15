@@ -51,9 +51,18 @@ def collect(profile, old, now):
     try:
         secondary = None
         try:
+            if profile.get('requireStandardFallback'):
+                raise ValueError('Admission requires the runner-accessible reconciled fallback')
             body = select_revenue_concept(fetch(source), now.date())
             accounts = parse_accounts(body, profile, now.date())
             history = parse_history(body, profile, now.date())
+            # A successful SEC parse may still omit annual cash-flow concepts.
+            # Try the independently reconciled fallback rather than treating
+            # a partial parse as a complete renewable dossier.
+            required = ('operatingCashFlow', 'capitalExpenditure', 'freeCashFlow', 'averageDilutedShares')
+            primary_components = sec_decision(body, profile, {**accounts, 'history': {'years': history}}, now.date())['years']
+            if len(primary_components) < 4 or any(any(not isinstance(row.get(key), (int, float)) for key in required) for row in primary_components):
+                raise ValueError('SEC annual components incomplete; reconciled fallback required')
         except Exception as primary_error:
             from company_standard_financials import collect as collect_standard
             secondary = collect_standard(profile, now.date())

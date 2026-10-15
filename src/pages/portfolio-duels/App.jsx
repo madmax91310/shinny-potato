@@ -1,3 +1,5 @@
+import { lazy, Suspense } from 'react'
+const PortfolioExposure = lazy(() => import('../../design-system/PortfolioExposure.jsx'))
 import { usePublicationPreference } from '../../lib/usePublicationPreference.js'
 import { notifyPublication, copyPublicationText, startPublicationDownload } from '../../design-system/publicationActions.js'
 import ChoicePicker from '../../design-system/ChoicePicker.jsx'
@@ -144,6 +146,7 @@ export default function App() {
             <section className={`pd-card pd-${i ? 'b' : 'a'}`} key={portfolio.name}>
               <h3>{i ? 'B' : 'A'} · {portfolio.name}</h3>
               {portfolio.assets.map((asset) => <p key={asset.id}>{asset.pct} % {asset.label} <small>· {ROLES[asset.role]}</small></p>)}
+              <Suspense fallback={<p>Chargement des expositions…</p>}><PortfolioExposure lines={portfolio.assets} name={i ? "B" : "A"} /></Suspense>
               <strong>{formatCapital(portfolio.final, duel.currency)}</strong>
               <small>pour 10 000 {duel.currency === 'USD' ? '$' : '€'} au départ</small>
             </section>

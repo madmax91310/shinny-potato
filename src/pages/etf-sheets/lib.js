@@ -1,4 +1,5 @@
-import { AUTOMATED_ETF } from '../../data/automated-etf.js'
+import { metricCopy } from '../../data/etf-metric-copy.js'
+import { ETF_PUBLICATION_DATA } from '../../data/etf-publication-data.js'
 import { concentrationCopy } from '../../data/exposure-observations.js'
 import { getPresentationCopy, presentationTicker } from './editorial.js'
 import { CATEGORY_EMOJI } from '../../data/etf-cards.js'
@@ -24,7 +25,7 @@ export function buildText(sourceEtf) {
   const tickerStr = presentationTicker(etf)
   const dot = CATEGORY_EMOJI[etf.category] || '⚫'
   const annual = getAnnualPerformance(etf)
-  const concentration = concentrationCopy(AUTOMATED_ETF[etf.isin])
+  const concentration = concentrationCopy(ETF_PUBLICATION_DATA[etf.isin])
   const commodities = commodityAllocationLines(etf.isin)
   return (
     etf.hook + '\n\n' +
@@ -48,7 +49,7 @@ export function buildText(sourceEtf) {
     etf.whyInteresting + '\n' +
     '\n' +
     '⚠️ Ce qu’il faut garder en tête\n' +
-    etf.whatToKnow + '\n' +
+    etf.whatToKnow + (metricCopy(etf.isin) ? '\n\n' + metricCopy(etf.isin) : '') + '\n' +
     '\n' +
     (etf.closing ? etf.closing + '\n\n' : '') +
     '💬 ' + etf.question
@@ -66,7 +67,7 @@ export function buildFactRows(etf) {
     { icon: '💰', text: 'Encours : ' + getPresentationCopy(etf).aum },
     { icon: '🔄', text: etf.distribution },
     { icon: '🏦', text: accountLabel(etf, '   |   ') },
-    { icon: '📍', text: etf.location },
+    { icon: '📍', text: getPresentationCopy(etf).location },
     ...(annual ? [{ icon: '📈', text: annualPerformanceRange(annual) + ' (' + annual.currency + ') : ' + formatAnnualPerformance(annual) }] : []),
   ]
 }

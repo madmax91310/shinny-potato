@@ -1,7 +1,7 @@
-import { getInstrumentAnnualPerformance } from '../../data/instrument-returns.js'
+import { ETF_PUBLICATION_DATA } from '../../data/etf-publication-data.js'
 
 export function getAnnualPerformance(etf) {
-  return getInstrumentAnnualPerformance(etf.isin)
+  return ETF_PUBLICATION_DATA[etf.isin]?.performance ?? null
 }
 
 export function formatAnnualPerformance(series) {

@@ -1,3 +1,4 @@
+import { readableSignal, signalPriority } from './presentation.js'
 import { notifyPublication, copyPublicationText } from '../../design-system/publicationActions.js'
 import { useCallback, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
@@ -24,6 +25,7 @@ function Signal({ event, read, onRead }) {
   </article>
 }
 export default function App() {
+  const [priority, setPriority] = useState(false)
   const [feed, setFeed] = useState(null), [error, setError] = useState(''), [loading, setLoading] = useState(true)
   const [family, setFamily] = useState('all'), [topic, setTopic] = useState('all'), [mode, setMode] = useState('all'), [search, setSearch] = useState(''), [read, setRead] = useState(readIds), [message, setMessage] = useState('')
   const refresh = useCallback(async (signal) => {
@@ -40,7 +42,7 @@ export default function App() {
     return () => { clearInterval(timer); controller?.abort(); window.removeEventListener(READ_EVENT, updateRead); window.removeEventListener('storage', updateRead) }
   }, [refresh])
   function onRead(ids) { if (!markRead(Array.isArray(ids) ? ids : [ids])) setMessage('La mémorisation sur cet appareil est indisponible.') }
-  const events = feed?.events ?? [], unread = events.filter(event => !read.includes(event.id)).length
+  const events = (feed?.events ?? []).map(readableSignal), unread = events.filter(event => !read.includes(event.id)).length
   const matchesNews = item => (topic === 'all' || item.topic === topic) && `${item.label} ${item.summary} ${item.status}`.toLocaleLowerCase('fr-FR').includes(search.toLocaleLowerCase('fr-FR'))
   const newsItems = (feed?.purchasingPower?.items ?? []).filter(matchesNews)
   const filtered = events.filter(event => (family === 'all' || family === event.family) && (event.family !== 'pouvoir-achat' || topic === 'all' || event.topic === topic) && (mode !== 'unread' || !read.includes(event.id)) && `${event.title} ${event.entity} ${event.angle}`.toLocaleLowerCase('fr-FR').includes(search.toLocaleLowerCase('fr-FR')))
@@ -52,9 +54,10 @@ export default function App() {
     {error && <p role="alert" className="radar-warning">{error}{feed ? ' Les derniers signaux chargés restent affichés.' : ''}</p>}
     {feed && staleFeed(feed) && <p role="status" className="radar-warning">Le dernier contrôle date de plus de 36 heures. Le radar ne peut pas confirmer l’absence de nouveautés.</p>}
     <div className="radar-filters"><div className="radar-choices" role="group" aria-label="Catégorie"><button aria-pressed={family === 'all'} onClick={() => setFamily('all')}>Tout</button>{Object.entries(FAMILIES).map(([id, label]) => <button key={id} aria-pressed={family === id} onClick={() => setFamily(id)}>{label}</button>)}</div>{family === 'pouvoir-achat' && <div className="radar-choices" role="group" aria-label="Thème pouvoir d’achat">{Object.entries({ all: 'Tous les thèmes', logement: 'Logement', fiscalite: 'Épargne et fiscalité', depenses: 'Dépenses courantes', revenus: 'Revenus et aides' }).map(([id, label]) => <button key={id} aria-pressed={topic === id} onClick={() => setTopic(id)}>{label}</button>)}</div>}<div className="radar-choices" role="group" aria-label="Lecture"><button aria-pressed={mode === 'all'} onClick={() => setMode('all')}>Tous les signaux</button><button aria-pressed={mode === 'unread'} onClick={() => setMode('unread')}>Non lus</button></div><label>Rechercher<input type="search" value={search} onChange={e => setSearch(e.target.value)} placeholder="Un ETF, un courtier, un sujet…" /></label><Button onClick={() => onRead(filtered.map(event => event.id))} disabled={!filtered.some(event => !read.includes(event.id))}>Marquer la sélection comme lue</Button></div>
+    <label><input type="checkbox" checked={priority} onChange={e=>setPriority(e.target.checked)} /> Prioriser les changements de frais, de conditions et les sujets économiques</label>
     <p role="status">{message}</p>
     {feed && !filtered.length && <section className="radar-empty"><h2>{events.length ? 'Aucun signal pour cette sélection' : 'Le radar est en veille'}</h2><p>{events.length ? 'Change les filtres pour retrouver les autres signaux.' : 'Le premier relevé sert de référence. Les prochains changements pertinents apparaîtront ici automatiquement.'}</p></section>}
-    <div className="radar-list">{filtered.map(event => <Signal key={event.id} event={event} read={read.includes(event.id)} onRead={onRead} />)}</div>
+    <div className="radar-list">{(priority ? [...filtered].sort((a,b)=>signalPriority(a)-signalPriority(b)) : filtered).map(event => <Signal key={event.id} event={event} read={read.includes(event.id)} onRead={onRead} />)}</div>
     {family === 'pouvoir-achat' && feed?.purchasingPower && <section className="radar-news" aria-label="Veille pouvoir d’achat">
       <h2>Les informations récupérées</h2><p>Les dernières actualités officielles restent disponibles ici, y compris celles du premier relevé silencieux.</p>
       <div className="radar-list">{newsItems.map(item => <article className="radar-card" key={item.entity}><div className="radar-card-top"><span className="radar-label">{item.topicLabel}</span><time>{item.period}</time></div><h3>{item.label}</h3><p><strong>{item.status}</strong></p><p>{item.summary}</p>{item.originalLabel ? <details><summary>Lire le texte officiel</summary><p>{item.originalLabel}</p><p>{item.originalSummary}</p><p>{item.statusEvidence}</p></details> : item.statusEvidence && <p className="radar-scope">Formulation de la source : {item.statusEvidence}</p>}<p className="radar-scope">Dernier relevé de cet article : {date(item.checkedAt)}</p><div className="radar-actions"><a href={item.sourceUrl} target="_blank" rel="noreferrer">{item.publisher} ↗</a><Link to={item.tool}>Ouvrir l’outil</Link></div></article>)}</div>

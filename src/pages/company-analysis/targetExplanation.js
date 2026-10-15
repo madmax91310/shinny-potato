@@ -1,3 +1,4 @@
+import { formatValue as n } from './valuationPresentation.js'
 // One explanation for screen and exports. No independent price forecast here.
 export function targetExplanation(company, model, index, method) {
   const e=model?.evidence[method],s=model?.scenarios[index]
@@ -28,8 +29,8 @@ export function targetExplanation(company, model, index, method) {
     `Les estimations publiées vont jusqu’à l’exercice ${lastEstimate?.slice(0,4)}. ${extrapolated?'Au-delà, la croissance est prolongée par le modèle pour calculer cet objectif.':'Cet objectif utilise uniquement les exercices couverts par ces estimations.'}`
   const other=s[cash?'earningsTarget':'cashTarget']
   const disagreement=other?Math.abs(r.value-other.value)/((r.value+other.value)/2):null
-  const methodComparison=other?`Les deux méthodes donnent des objectifs différents : le bénéfice ajusté et la trésorerie après investissements ne décrivent pas la même chose. L’écart relatif entre leurs objectifs est de ${(disagreement*100).toFixed(1)} %, rapporté à leur moyenne. Aucun objectif moyen n’est calculé.`:null
-  const anchorExplanation=customGrowth?'La croissance personnalisée remplace la convergence automatique : le même taux est appliqué chaque année.':`Après la période initiale, la croissance rejoint progressivement ${(e.anchor*100).toFixed(1)} % par an, une référence tirée de l’évolution passée du chiffre d’affaires. Ce prolongement peut être trop favorable ou trop prudent si l’activité change durablement.`
+  const methodComparison=other?`Les deux méthodes donnent des objectifs différents : le bénéfice ajusté et la trésorerie après investissements ne décrivent pas la même chose. L’écart relatif entre leurs objectifs est de ${n(disagreement*100)} %, rapporté à leur moyenne. Aucun objectif moyen n’est calculé.`:null
+  const anchorExplanation=customGrowth?'La croissance personnalisée remplace la convergence automatique : le même taux est appliqué chaque année.':`Après la période initiale, la croissance rejoint progressivement ${n(e.anchor*100)} % par an, une référence tirée de l’évolution passée du chiffre d’affaires. Ce prolongement peut être trop favorable ou trop prudent si l’activité change durablement.`
   const limitations=[
     ...(cash&&e.drivers.warning?[e.drivers.warning]:[]),
     ...(cash&&e.drivers.observedShares<0&&!e.drivers.fundingKnown?['Les données de financement sont insuffisantes pour prolonger les rachats : aucune baisse du nombre d’actions n’est projetée.']:[]),

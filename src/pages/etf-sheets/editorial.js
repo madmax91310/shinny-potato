@@ -1,3 +1,4 @@
+import { frenchLocation } from '../../data/french-characteristics.js'
 // Les parts d’une même exposition partagent une intention éditoriale, jamais leurs données.
 const PRESENTATION_COPY = Object.fromEntries([
   [['gaming_vaneck'], {
@@ -362,7 +363,7 @@ export function getPresentationCopy(etf) {
         ? 'Dans tes ETF obligataires, tu regardes surtout la durée ou la qualité des emprunteurs ?'
         : 'Tu détiens déjà cette exposition dans ton portefeuille ?'
     : copy.question
-  return { ...copy, question, aum: copy.aum.replace(/^(?:Part|Fonds)\s*:\s*/, '') }
+  return { ...copy, question, location: frenchLocation(copy.location), aum: copy.aum.replace(/^(?:Part|Fonds)\s*:\s*/, '') }
 }
 
 export function presentationTicker(etf) {

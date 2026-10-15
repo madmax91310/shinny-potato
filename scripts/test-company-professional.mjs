@@ -12,7 +12,7 @@ assert.equal(TARGET_POLICY.version,3)
 assert(Math.abs(model.evidence.earnings.anchor+.05)<1e-12)
 assert(model.evidence.earnings.curve.at(-1).value<model.evidence.earnings.curve.at(-2).value)
 const explanation=targetExplanation(company,model,1,'earnings')
-assert(explanation.anchorExplanation.includes('-5.0 %'))
+assert(explanation.anchorExplanation.includes('-5 %'))
 if(model.evidence.cash)assert(explanation.methodComparison.includes('Aucun objectif moyen'))
 // Operating-company formulas cannot silently produce bank/insurance targets.
 for(const type of ['bank','insurance','reit']){

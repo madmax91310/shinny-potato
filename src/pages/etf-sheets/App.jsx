@@ -1,3 +1,4 @@
+import { metricCopy } from '../../data/etf-metric-copy.js'
 import { usePublicationPreference } from '../../lib/usePublicationPreference.js'
 import { notifyPublication, copyPublicationText, startPublicationDownload } from '../../design-system/publicationActions.js'
 import { getPresentationCopy, presentationTicker } from './editorial.js'
@@ -13,8 +14,8 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { CATEGORY_EMOJI, ETFS } from '../../data/etf-cards.js'
 import { formatTweetPerformance, getAnnualPerformance } from './annualPerformance'
 import { accountLabel, buildText } from './lib'
-import { renderETFImage } from './canvasImage'
-import { INSTRUMENT_AUM_BY_ISIN } from '../../data/instrument-aum'
+const renderETFImage = async etf => (await import('./canvasImage')).renderETFImage(etf)
+import { ETF_PUBLICATION_DATA } from '../../data/etf-publication-data.js'
 import { commodityAllocationLines } from '../../data/commodity-allocation'
 import PageHeader from '../../design-system/PageHeader'
 import Button from '../../design-system/Button'
@@ -67,7 +68,7 @@ function EtfCard({ etf: sourceEtf }) {
           <span className="es-fi">💰</span>
           <span className="es-fv">
             Encours : {etf.aum}
-            {etf.lastVerified && !INSTRUMENT_AUM_BY_ISIN[etf.isin]?.source && <span className="es-last-verified"> · vérifié le {etf.lastVerified}</span>}
+            {etf.lastVerified && !ETF_PUBLICATION_DATA[etf.isin]?.aumSource && <span className="es-last-verified"> · vérifié le {etf.lastVerified}</span>}
           </span>
         </li>
         <li>
@@ -104,6 +105,7 @@ function EtfCard({ etf: sourceEtf }) {
       <section className="es-block">
         <h3 className="es-block-title">⚠️ Ce qu’il faut garder en tête</h3>
         <p>{etf.whatToKnow}</p>
+        {metricCopy(etf.isin) && <p>{metricCopy(etf.isin)}</p>}
       </section>
       {etf.closing && <section className="es-block">
         <p>{etf.closing}</p>

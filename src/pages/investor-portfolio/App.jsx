@@ -1,3 +1,4 @@
+import History from './History.jsx'
 import { notifyPublication, copyPublicationText, startPublicationDownload } from '../../design-system/publicationActions.js'
 import ChoicePicker from '../../design-system/ChoicePicker.jsx'
 import WorkspaceActions from '../../design-system/WorkspaceActions'
@@ -89,7 +90,7 @@ export default function InvestorPortfolio() {
             <label htmlFor="ip-intro">Présentation de l’investisseur (modifiable)</label>
             <textarea id="ip-intro" value={intro} onChange={(event) => updateIntro(event.target.value)} rows="3" />
             <Button type="button" variant="secondary" onClick={() => { updateIntro(investorIntroduction(slug)); notifyPublication('Présentation d’origine rétablie.') }}>Rétablir la présentation</Button>
-            <p className="ip-note">Source de la présentation proposée : {INVESTOR_PROFILES[slug]?.sourceUrls.map((url, i) => <span key={url}>{i > 0 && ' · '}<a href={url} target="_blank" rel="noreferrer">{new URL(url).hostname} ↗</a></span>)}</p>
+        <p className="ip-note">Source de la présentation proposée : {INVESTOR_PROFILES[slug]?.sourceUrls.map((url, i) => <span key={url}>{i > 0 && ' · '}<a href={url} target="_blank" rel="noreferrer">{new URL(url).hostname} ↗</a></span>)}</p>
             <label htmlFor="ip-draft">Tweet modifiable</label>
             <textarea id="ip-draft" value={draft} onChange={(event) => setDraft(event.target.value)} rows="16" />
           </div>
@@ -100,6 +101,7 @@ export default function InvestorPortfolio() {
         </WorkspaceActions>
         <p className="ip-note">Le visuel reprend les chiffres chargés et peut différer si tu modifies manuellement le tweet. Les déclarations 13F paraissent après la fin du trimestre et ne montrent pas toutes les positions du gestionnaire.</p>
         <p className="ip-note">Photo de {investorPortrait(portfolio.identity.slug).person} : <a href={investorPortrait(portfolio.identity.slug).source} target="_blank" rel="noreferrer">{investorPortrait(portfolio.identity.slug).author} ↗</a> · {investorPortrait(portfolio.identity.slug).license}</p>
+        <History portfolio={portfolio} />
         <p className="ip-credit">{portfolio.identity.dataProvider === 'FolioFact' ? 'Données : FolioFact · déclarations SEC 13F' : portfolio.identity.dataProvider === 'SEC' ? 'Données : SEC EDGAR' : ATTRIBUTION} · <a href={portfolio.sourceUrl} target="_blank" rel="noreferrer">Voir {portfolio.identity.dataProvider === 'FolioFact' ? 'FolioFact' : portfolio.identity.dataProvider === 'SEC' ? 'la déclaration' : 'Tracefour'} ↗</a></p>
       </>}
       {!portfolio && <p role="status">{loading ? 'Chargement des déclarations…' : 'Choisis un investisseur dans les réglages.'}</p>}

@@ -16,6 +16,8 @@ export default defineConfig({
   build: {
     manifest: true,
     rolldownOptions: { output: { codeSplitting: { groups: [
+      { name: 'etf-card-metadata', test: /src\/data\/etf-cards\.js$/, priority: 130 },
+      { name: 'etf-publication-data', test: /src\/data\/etf-publication-data\.js$/, priority: 130 },
       ...issuerParts.groups,
       ...companyParts.groups,
       ...toolData.groups,

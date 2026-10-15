@@ -158,7 +158,7 @@ export default function App() {
                 </button>
               ))}
             </div>
-            <p className="fi-hint">Hypothèse constante, pas une performance observée. Chaque versement est placé en début de mois ; le taux brut annuel moins les frais annuels est divisé par 12. Fiscalité et inflation exclues.</p>
+            <p className="fi-hint">Hypothèse constante, pas une performance observée. Versements en fin de mois ; taux mensuel équivalent au rendement annuel effectif après frais proportionnels, comme dans le Simulateur de patrimoine. Fiscalité et inflation exclues.</p>
           </div>
 
           <div className="fi-panel">

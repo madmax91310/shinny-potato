@@ -1,3 +1,4 @@
+import { firstGrapheme } from '../lib/first-grapheme.js'
 import { usePublicationPreference } from '../lib/usePublicationPreference.js'
 import { useId, useMemo, useState } from 'react'
 import { normalizeSearch } from '../data/search-text.js'
@@ -55,7 +56,7 @@ export default function AssetPicker({ items, value, onChange, label, id, classNa
         aria-pressed={String(value) === String(emptyOption.id)} onClick={() => onChange(String(emptyOption.id))}>{emptyOption.label}</button>}
       {filtered.map(item => <button type="button" className="asset-option" data-option data-value={String(item.id)} key={item.id}
         aria-pressed={String(item.id) === String(value)} onClick={() => onChange(String(item.id))}>
-        <span className="asset-option-icon" aria-hidden="true">{(item.name ?? item.label).slice(0, 1)}</span>
+        <span className="asset-option-icon" aria-hidden="true">{firstGrapheme(item.name ?? item.label)}</span>
         <span className="asset-option-copy"><strong>{item.label}</strong>
           {item.detail && <small>{item.detail}</small>}
           {item.isin && <small>{item.isin}</small>}
