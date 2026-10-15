@@ -57,7 +57,7 @@ def merge_collection(report, current, baseline):
         if issues:
             reject('Suspicious ETF change; previous record preserved: ' + ' ; '.join(issues))
         record = {**old, 'currency': share['currency'], 'productId': share['productId'], 'sourceUrl': old.get('sourceUrl', share['sourceUrl']) if share.get('exposureOnly') else share['sourceUrl'], 'provider': share.get('provider', 'iShares')}
-        for field in ('aum', 'sectors', 'countries', 'holdings', 'commodityAllocation', 'listingObservation'):
+        for field in ('aum', 'sectors', 'countries', 'countriesRisk', 'holdings', 'commodityAllocation', 'listingObservation'):
             if field not in share:
                 continue
             incoming = copy.deepcopy(share[field])

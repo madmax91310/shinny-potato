@@ -1,4 +1,6 @@
 import { readFileSync, writeFileSync } from 'node:fs'
+import { AUTOMATED_ETF } from '../src/data/automated-etf.js'
+import { qualifyExposureClassification } from '../src/lib/exposure-classification.js'
 import { PORTFOLIO_EXPOSURES } from '../src/data/portfolio-exposure-data.js'
 import { getInstrumentName } from '../src/data/instruments.js'
 // Explicit example instruments, never silently assigned to a participant's generic ETF.
@@ -6,7 +8,18 @@ const mapping = {equalweight:'IE00BLNMYC90',robotics:'IE00BYZK4552',ai:'IE00BGV5
 const records = Object.fromEntries(Object.entries(mapping).map(([asset,isin])=>{
  const record={isin,name:getInstrumentName(isin) || isin,kind:'etf'}
  for(const field of ['countries','sectors']){
-  const observation=PORTFOLIO_EXPOSURES[isin]?.[field]
+  let observation=PORTFOLIO_EXPOSURES[isin]?.[field]
+ // Prefer the same complete holdings-based country contract when a current,
+ // non-negative alternative exists. Never relabel the published table as risk.
+ if(field==='countries'){
+  const risk=AUTOMATED_ETF[isin]?.countriesRisk
+  const candidate=risk&&{...risk,provider:AUTOMATED_ETF[isin].provider,basis:'fund'}
+  const classification=candidate&&qualifyExposureClassification(candidate,'countries')
+  const sum=candidate?.rows?.reduce((s,r)=>s+r.weightPct,0)
+  if(classification?.id==='ishares-risk-net'&&(!observation||candidate.asOf>=observation.asOf)
+     &&sum>=99&&sum<=100.5&&candidate.rows.every(r=>Number.isFinite(r.weightPct)&&r.weightPct>=0))
+   observation={...candidate,classificationMetadata:classification}
+ }
   if(!observation)continue
   // Use the shared qualified contract; issuer identity alone never proves GICS
   // or country-of-risk equivalence. Fund/index scopes remain separate.

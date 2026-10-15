@@ -20,7 +20,7 @@ def anomalies(previous, incoming):
         ratio = new['amount'] / old['amount']
         if days <= 45 and (ratio >= 2 or ratio <= .5):
             issues.append(f'aum: {old["amount"]} -> {new["amount"]} {new["currency"]}, ratio {ratio:.3f} in {days} days')
-    for field in ('countries', 'sectors', 'holdings'):
+    for field in ('countries', 'countriesRisk', 'sectors', 'holdings'):
         old, new = previous.get(field, {}), incoming.get(field, {})
         if not old.get('rows') or not new.get('rows'):
             continue

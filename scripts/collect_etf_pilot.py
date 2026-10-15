@@ -172,6 +172,9 @@ def collect(config, baseline, now=None, fetch=get_text):
                     result['holdings']['sourceUrl'] = holdings_countries['sourceUrl'] = url
                 else:
                     result['holdings'], holdings_countries = collect_holdings(result['rawComponents']['holdings'], share, now)
+                # Keep a common holdings-based geography alongside the issuer table.
+                # DCA can combine this exact method across funds without conflating taxonomies.
+                result['countriesRisk'] = {**holdings_countries, 'basis': 'fund'}
                 if not result['countries'].get('rows'):
                     result['countries'] = holdings_countries
             except (ValueError, KeyError, TypeError, urllib.error.URLError, TimeoutError) as error:
