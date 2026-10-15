@@ -36,7 +36,9 @@ for (const etf of ETFS) {
   if (asset && series.values.every(Number.isFinite) && JSON.stringify(series.calendarYears ? series.calendarYears.map(year => asset.calendarReturns[year] ?? null) : asset.r) !== JSON.stringify(series.values)) {
     console.error(`Divergence Fiches / Générateur : ${etf.isin}`); errors++
   }
-  if (asset && !series.values.every(Number.isFinite) && !(LIFESTRATEGY_RECORDS[etf.isin] && asset.manualOnly && series.values[0] === null && series.values.slice(1).every(Number.isFinite) && JSON.stringify(asset.r) === JSON.stringify(series.values)) && !SIMULATION_PROXIES[etf.isin] && !(REVIEWED_PERFORMANCE_META[etf.isin]?.portfolioHistoryBasis === 'proxy' && asset.confidenceNote)) {
+  const publishedYears = Object.keys(asset?.calendarReturns ?? {}).map(Number).filter(year=>Number.isFinite(asset.calendarReturns[year])).sort((a,b)=>a-b)
+  const qualifiedRecent = asset?.manualOnly && series.basis === 'fund' && Boolean(series.source ?? series.sourceUrl) && publishedYears.length >= 3 && publishedYears.every((year,i)=>!i || year === publishedYears[i-1]+1) && series.values.every((v,i)=>v === null || Math.abs(v-(asset.calendarReturns[series.calendarYears?.[i] ?? 2020+i] ?? NaN)) < .051)
+  if (asset && !qualifiedRecent && !series.values.every(Number.isFinite) && !(LIFESTRATEGY_RECORDS[etf.isin] && asset.manualOnly && series.values[0] === null && series.values.slice(1).every(Number.isFinite) && JSON.stringify(asset.r) === JSON.stringify(series.values)) && !SIMULATION_PROXIES[etf.isin] && !(REVIEWED_PERFORMANCE_META[etf.isin]?.portfolioHistoryBasis === 'proxy' && asset.confidenceNote)) {
     console.error(`Part à historique incomplet dans le Générateur : ${etf.isin}`); errors++
   }
 }
