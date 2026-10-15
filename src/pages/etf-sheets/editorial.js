@@ -31,7 +31,7 @@ const PRESENTATION_COPY = Object.fromEntries([
   }],
   [['world_ex_usa'], {
     hook: 'Tu aimerais choisir toi-même la place des États-Unis dans ton portefeuille mondial ? Cet ETF suit les pays développés en les laissant de côté 👇',
-    whyInteresting: 'Tu peux associer ce fonds à une ligne américaine et fixer toi-même leur répartition. C’est toi qui décides de la place des États-Unis. Cela ne complète pas pour autant tous les marchés absents du World.',
+    whyInteresting: 'Tu peux associer ce fonds à une ligne américaine et fixer toi-même leur répartition. Les marchés émergents restent en dehors de cette combinaison.',
   }],
   [['pea_global_amundi'], {
     hook: 'Réunir pays développés et émergents dans ton PEA sans gérer deux ETF séparés, c’est l’idée de ce fonds qui suit le MSCI ACWI 👇',

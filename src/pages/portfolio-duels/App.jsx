@@ -1,3 +1,5 @@
+import { useLocation } from 'react-router-dom'
+import AssetToolLinks from '../../design-system/AssetToolLinks.jsx'
 import { lazy, Suspense } from 'react'
 const PortfolioExposureComparison = lazy(() => import('../../design-system/PortfolioExposureComparison.jsx'))
 const PortfolioExposure = lazy(() => import('../../design-system/PortfolioExposure.jsx'))
@@ -12,7 +14,7 @@ import PageHeader from '../../design-system/PageHeader'
 import Button from '../../design-system/Button'
 import { DUELS } from './data.js'
 import { buildCustomDuel, buildDuel, buildTweet, CATALOG, ROLES, resultReading, formatCapital, formatPercent } from './lib.js'
-import { renderDuelImage } from './canvasImage.js'
+const renderDuelImage = async duel => (await import('./canvasImage.js')).renderDuelImage(duel)
 import { YEARS } from '../../data/portfolio-assets.js'
 import { generateDuel } from './generate.js'
 import './portfolio-duels.css'
@@ -55,10 +57,22 @@ function AllocationEditor({ label, lines, onChange }) {
 
 
 export default function App() {
-  const [selectedId, setSelectedId] = usePublicationPreference('duel-selected', duels[0].id, id => duels.some(d => d.id === id))
+  const { search } = useLocation()
+  return <DuelWorkspace key={search} search={search} />
+}
+
+function DuelWorkspace({ search }) {
+  const requested = duels.find(d => d.id === new URLSearchParams(search).get('duel'))
+  const [linkedId, setLinkedId] = useState(requested?.id ?? null)
+  const [savedId, setSavedId] = usePublicationPreference('duel-selected', duels[0].id, id => duels.some(d => d.id === id))
+  const selectedId = linkedId ?? savedId
+  const setSelectedId = id => { setLinkedId(null); setSavedId(id) }
   const index = duels.findIndex(d => d.id === selectedId)
   const setIndex = next => setSelectedId(duels[next].id)
-  const [mode, setMode] = usePublicationPreference('duel-mode', 'prepared', mode => ['prepared', 'manual'].includes(mode))
+  const [savedMode, setSavedMode] = usePublicationPreference('duel-mode', 'prepared', mode => ['prepared', 'manual'].includes(mode))
+  const [linkedMode, setLinkedMode] = useState(requested ? 'prepared' : null)
+  const mode = linkedMode ?? savedMode
+  const setMode = value => { setLinkedMode(null); setSavedMode(value) }
   const [left, setLeft] = usePublicationPreference('duel-left', initialLeft, validAllocation)
   const [right, setRight] = usePublicationPreference('duel-right', initialRight, validAllocation)
   const [generated, setGenerated] = useState(() => generateDuel())
@@ -174,6 +188,7 @@ export default function App() {
       </WorkspaceActions>
       <label className="pd-text-label" htmlFor="pd-tweet">Texte prêt à publier</label>
       <textarea id="pd-tweet" readOnly value={tweet} rows={18} onFocus={(event) => event.target.select()} />
+      <details><summary>Explorer les supports de ce duel</summary>{[...new Map([...duel.a.assets, ...duel.b.assets].map(asset => [asset.isin,asset])).values()].map(asset => <section key={asset.isin}><h3>{asset.name}</h3><AssetToolLinks isin={asset.isin} exclude="duel" /></section>)}</details>
       <details className="pd-sources">
         <summary>Sources et calcul</summary>
         <p>Calcul en euros sur les années complètes disponibles pour les deux portefeuilles. Rendements USD convertis chaque année avec les taux EUR/USD de fin d’année de la BCE. Revenus réinvestis, pondérations rétablies au début de chaque année. Résultats indicatifs hors courtage, frais de rééquilibrage et fiscalité. Les frais courants des fonds sont déjà intégrés à leurs rendements publiés.</p>

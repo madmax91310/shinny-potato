@@ -215,7 +215,7 @@ function scene(selection, shared, profileId, riskId) {
   if (shared) return make("overlap", [
     "Tu ajoutes un fonds en pensant élargir ton portefeuille. Mais si tu achetais surtout davantage de ce que tu possèdes déjà ? Regardons cet exemple 👇",
     "Deux noms de fonds différents, ça donne vite l’impression de diversifier. Avant d’en ajouter un, voici ce qui mérite un coup d’œil 👇",
-    "On peut multiplier les lignes et retrouver les mêmes entreprises derrière. Voici un portefeuille qui pose justement cette question 👇",
+    "Plusieurs lignes, mais parfois les mêmes entreprises : regardons ce que ces fonds ont en commun 👇",
   ], "Ici, il faut regarder les expositions qui se répètent avant de compter les fonds.",
   [
     selection.some(s => SP500.includes(s.id)) ? "Les entreprises américaines sont déjà dans l’indice mondial. Tu renforcerais leur place ou tu garderais une seule ligne ?" : "Tu garderais ces fonds qui se recoupent pour renforcer ta conviction, ou tu simplifierais ?",
@@ -309,7 +309,7 @@ function scene(selection, shared, profileId, riskId) {
   if (gold >= 25) return make("gold", [
     "Tu voudrais que ton épargne ne repose pas seulement sur les entreprises. L’or peut donner envie, mais quelle place lui laisser quand il ne verse aucun revenu ? Voici un exemple 👇",
     "L’or attire souvent quand les marchés inquiètent. Mais un portefeuille, ça se garde aussi lorsque l’inquiétude retombe. Regardons la place qu’on lui fait 👇",
-    "Ajouter de l’or paraît simple. Décider ce qu’on accepte de lui confier l’est moins. Voici un portefeuille pour se poser la question 👇",
+    "Quelle part de ton portefeuille laisserais-tu à l’or ? Voici une répartition pour voir la place qui reste aux autres placements 👇",
   ], "On donne ici une place importante à l’or, avec d’autres supports autour.",
   [
     `Tu garderais ${gold}% d’or, ou tu préférerais faire plus de place aux autres supports ?`,
@@ -320,7 +320,7 @@ function scene(selection, shared, profileId, riskId) {
     `Tu aimerais faire une place ${to(topInfo.label)} dans ton épargne. Mais que choisir pour accompagner cette idée ? Voici un portefeuille pour en discuter 👇`,
     "On choisit facilement un placement qui nous plaît. Le faire tenir avec les autres demande un peu plus de réflexion. Regardons ce portefeuille 👇",
     "Quels placements serais-tu capable de garder ensemble quand les marchés deviennent moins confortables ? Voici un exemple pour en discuter 👇",
-  ], "Chaque ligne a ici une place précise. Regardons ce qu’on lui demande et ce qu’on accepte en échange.",
+  ], "Regardons comment les montants se répartissent et ce que chaque support apporte au portefeuille.",
   [
     `Tu garderais ${topInfo.label} à ${top.pct}%, ou tu donnerais davantage de place à une autre ligne ?`,
     "Dans cette répartition, quelle ligne garderais-tu en priorité et laquelle retirerais-tu ?",
