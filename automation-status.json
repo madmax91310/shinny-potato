@@ -266,18 +266,48 @@
     },
     "update-lifestrategy.yml": {
       "name": "Vanguard LifeStrategy",
-      "runId": 38556641496,
+      "runId": 38718840924,
       "attempt": 1,
-      "completedAt": "2026-10-14T11:38:46Z",
-      "status": "success",
+      "completedAt": "2026-10-15T10:23:40Z",
+      "status": "failure",
       "lastSuccessAt": "2026-10-14T11:38:46Z",
-      "collectionStatus": "success",
-      "publicationStatus": "not-run",
+      "collectionStatus": "failure",
+      "publicationStatus": "success",
       "lastCollectionSuccessAt": "2026-10-14T11:38:46Z",
-      "lastPublicationSuccessAt": "2026-10-14T10:42:24Z",
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38556641496",
-      "failures": [],
-      "dataFailures": {}
+      "lastPublicationSuccessAt": "2026-10-15T10:23:30Z",
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38718840924",
+      "failures": [
+        {
+          "job": "report-failures",
+          "step": "Run echo 'Collecte partielle : dernières valeurs fiables conservées ; données validées publiées si les contrôles réussissent.' >> \"$GITHUB_STEP_SUMMARY\""
+        }
+      ],
+      "dataFailures": {
+        "IE00BMVB5K07": {
+          "name": "IE00BMVB5K07",
+          "completedAt": "2026-10-15T10:23:40Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38718840924",
+          "cause": "Missing French observation date"
+        },
+        "IE00BMVB5M21": {
+          "name": "IE00BMVB5M21",
+          "completedAt": "2026-10-15T10:23:40Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38718840924",
+          "cause": "Missing French observation date"
+        },
+        "IE00BMVB5P51": {
+          "name": "IE00BMVB5P51",
+          "completedAt": "2026-10-15T10:23:40Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38718840924",
+          "cause": "Missing French observation date"
+        },
+        "IE00BMVB5R75": {
+          "name": "IE00BMVB5R75",
+          "completedAt": "2026-10-15T10:23:40Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38718840924",
+          "cause": "Missing French observation date"
+        }
+      }
     },
     "update-non-bond-expansion.yml": {
       "name": "Nouveaux actifs et historiques",
@@ -310,11 +340,11 @@
       "dataFailures": {}
     }
   },
-  "updatedAt": "2026-10-15T09:32:15Z",
+  "updatedAt": "2026-10-15T10:23:40Z",
   "monitoring": {
     "schemaVersion": 1,
-    "checkedAt": "2026-10-15T09:32:33.902751+00:00",
-    "revision": 21,
+    "checkedAt": "2026-10-15T10:23:56.855354+00:00",
+    "revision": 22,
     "active": {
       "collection:update-practical-sheets.yml:practical:13f": {
         "name": "SEC · questions et réponses sur le formulaire 13F",
@@ -335,7 +365,7 @@
         "dataId": "practical:13f",
         "id": "collection:update-practical-sheets.yml:practical:13f",
         "firstSeenAt": "2026-10-14T21:07:26.171294+00:00",
-        "lastSeenAt": "2026-10-15T09:32:33.902751+00:00"
+        "lastSeenAt": "2026-10-15T10:23:56.855354+00:00"
       },
       "collection:update-insurance.yml:linxea-avenir-2": {
         "name": "Linxea Avenir 2",
@@ -354,7 +384,7 @@
         "dataId": "linxea-avenir-2",
         "id": "collection:update-insurance.yml:linxea-avenir-2",
         "firstSeenAt": "2026-10-14T13:08:27.203935+00:00",
-        "lastSeenAt": "2026-10-15T09:32:33.902751+00:00"
+        "lastSeenAt": "2026-10-15T10:23:56.855354+00:00"
       },
       "workflow:update-company-analysis.yml": {
         "name": "Analyses d’entreprises",
@@ -370,7 +400,115 @@
         "cause": "refresh : Run npm run build",
         "id": "workflow:update-company-analysis.yml",
         "firstSeenAt": "2026-10-15T09:32:33.902751+00:00",
-        "lastSeenAt": "2026-10-15T09:32:33.902751+00:00"
+        "lastSeenAt": "2026-10-15T10:23:56.855354+00:00"
+      },
+      "collection:update-lifestrategy.yml:IE00BMVB5K07": {
+        "name": "Vanguard LifeStrategy 20% Equity UCITS ETF (EUR) Accumulating",
+        "tools": [
+          "Comparatif ETF",
+          "Duels de portefeuilles",
+          "Générateur de portefeuilles",
+          "Impact des frais",
+          "Présentation ETF"
+        ],
+        "impactScope": "asset",
+        "workflow": "update-lifestrategy.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38718840924",
+        "to": "/bibliotheque-donnees?id=IE00BMVB5K07",
+        "completedAt": "2026-10-15T10:23:40Z",
+        "cause": "Missing French observation date",
+        "sourceUrls": [
+          "https://fund-docs.vanguard.com/LifeStrategy_20_Equity_UCITS_ETF_EUR_Accumulating_9490_FR_INT_FR.pdf",
+          "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9490/lifestrategy-20-equity-ucits-etf-eur-accumulating",
+          "https://www.vanguard.co.uk/gpx/graphql"
+        ],
+        "kind": "collection",
+        "field": "Champs du collecteur",
+        "dataId": "IE00BMVB5K07",
+        "id": "collection:update-lifestrategy.yml:IE00BMVB5K07",
+        "firstSeenAt": "2026-10-15T10:23:56.855354+00:00",
+        "lastSeenAt": "2026-10-15T10:23:56.855354+00:00"
+      },
+      "collection:update-lifestrategy.yml:IE00BMVB5M21": {
+        "name": "Vanguard LifeStrategy 40% Equity UCITS ETF (EUR) Accumulating",
+        "tools": [
+          "Comparatif ETF",
+          "Duels de portefeuilles",
+          "Générateur de portefeuilles",
+          "Impact des frais",
+          "Présentation ETF"
+        ],
+        "impactScope": "asset",
+        "workflow": "update-lifestrategy.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38718840924",
+        "to": "/bibliotheque-donnees?id=IE00BMVB5M21",
+        "completedAt": "2026-10-15T10:23:40Z",
+        "cause": "Missing French observation date",
+        "sourceUrls": [
+          "https://fund-docs.vanguard.com/LifeStrategy_40_Equity_UCITS_ETF_EUR_Accumulating_9492_FR_INT_FR.pdf",
+          "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9492/lifestrategy-40-equity-ucits-etf-eur-accumulating",
+          "https://www.vanguard.co.uk/gpx/graphql"
+        ],
+        "kind": "collection",
+        "field": "Champs du collecteur",
+        "dataId": "IE00BMVB5M21",
+        "id": "collection:update-lifestrategy.yml:IE00BMVB5M21",
+        "firstSeenAt": "2026-10-15T10:23:56.855354+00:00",
+        "lastSeenAt": "2026-10-15T10:23:56.855354+00:00"
+      },
+      "collection:update-lifestrategy.yml:IE00BMVB5P51": {
+        "name": "Vanguard LifeStrategy 60% Equity UCITS ETF (EUR) Accumulating",
+        "tools": [
+          "Comparatif ETF",
+          "Duels de portefeuilles",
+          "Générateur de portefeuilles",
+          "Impact des frais",
+          "Présentation ETF"
+        ],
+        "impactScope": "asset",
+        "workflow": "update-lifestrategy.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38718840924",
+        "to": "/bibliotheque-donnees?id=IE00BMVB5P51",
+        "completedAt": "2026-10-15T10:23:40Z",
+        "cause": "Missing French observation date",
+        "sourceUrls": [
+          "https://fund-docs.vanguard.com/LifeStrategy_60_Equity_UCITS_ETF_EUR_Accumulating_9494_FR_INT_FR.pdf",
+          "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9494/lifestrategy-60-equity-ucits-etf-eur-accumulating",
+          "https://www.vanguard.co.uk/gpx/graphql"
+        ],
+        "kind": "collection",
+        "field": "Champs du collecteur",
+        "dataId": "IE00BMVB5P51",
+        "id": "collection:update-lifestrategy.yml:IE00BMVB5P51",
+        "firstSeenAt": "2026-10-15T10:23:56.855354+00:00",
+        "lastSeenAt": "2026-10-15T10:23:56.855354+00:00"
+      },
+      "collection:update-lifestrategy.yml:IE00BMVB5R75": {
+        "name": "Vanguard LifeStrategy 80% Equity UCITS ETF (EUR) Accumulating",
+        "tools": [
+          "Comparatif ETF",
+          "Duels de portefeuilles",
+          "Générateur de portefeuilles",
+          "Impact des frais",
+          "Présentation ETF"
+        ],
+        "impactScope": "asset",
+        "workflow": "update-lifestrategy.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38718840924",
+        "to": "/bibliotheque-donnees?id=IE00BMVB5R75",
+        "completedAt": "2026-10-15T10:23:40Z",
+        "cause": "Missing French observation date",
+        "sourceUrls": [
+          "https://fund-docs.vanguard.com/LifeStrategy_80_Equity_UCITS_ETF_EUR_Accumulating_9496_FR_INT_FR.pdf",
+          "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9496/lifestrategy-80-equity-ucits-etf-eur-accumulating",
+          "https://www.vanguard.co.uk/gpx/graphql"
+        ],
+        "kind": "collection",
+        "field": "Champs du collecteur",
+        "dataId": "IE00BMVB5R75",
+        "id": "collection:update-lifestrategy.yml:IE00BMVB5R75",
+        "firstSeenAt": "2026-10-15T10:23:56.855354+00:00",
+        "lastSeenAt": "2026-10-15T10:23:56.855354+00:00"
       },
       "radar:44882f934eb114198158f55a": {
         "name": "SPDR € Corp Bond UCITS ETF",
@@ -390,7 +528,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-13) : Poids des dix premières lignes. Dernière observation conservée ; propositions archivées (etf:IE00B3T9LM79:top10:0261a38d6b954a5f4e504dab:2026-10-13).",
         "id": "radar:44882f934eb114198158f55a",
         "firstSeenAt": "2026-10-14T11:07:35.462638+00:00",
-        "lastSeenAt": "2026-10-15T09:32:33.902751+00:00"
+        "lastSeenAt": "2026-10-15T10:23:56.855354+00:00"
       }
     },
     "events": [
@@ -3012,6 +3150,17 @@
         "at": "2026-10-15T09:32:33.902751+00:00",
         "opened": [
           "workflow:update-company-analysis.yml"
+        ],
+        "resolved": []
+      },
+      {
+        "revision": 22,
+        "at": "2026-10-15T10:23:56.855354+00:00",
+        "opened": [
+          "collection:update-lifestrategy.yml:IE00BMVB5K07",
+          "collection:update-lifestrategy.yml:IE00BMVB5M21",
+          "collection:update-lifestrategy.yml:IE00BMVB5P51",
+          "collection:update-lifestrategy.yml:IE00BMVB5R75"
         ],
         "resolved": []
       }
