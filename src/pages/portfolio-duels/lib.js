@@ -25,13 +25,10 @@ export function validateAllocation(lines, side) {
   if (lines.reduce((total, line) => total + line.pct, 0) !== 100) throw new Error(`Le portefeuille ${side} doit totaliser 100 %.`)
 }
 
-function exposureReading(portfolio) {
+function exposureReading(portfolio, includeBase = true) {
   const base = portfolio.assets.find((asset) => asset.role === 'base')
   const complement = portfolio.assets.find((asset) => asset.role === 'complement')
   const theme = portfolio.assets.find((asset) => asset.role === 'theme')
-  if (base.exposure === 'world' && complement?.exposure === 'us-small' && !theme) {
-    return 'Une partie du World est remplacée par des petites entreprises américaines. Tu ajoutes un segment absent du World, plus sensible aux conditions économiques et de financement.'
-  }
   const parts = []
   if (base.exposure.startsWith('lifestrategy')) parts.push(`${base.label} réunit des actions mondiales et des obligations. Vanguard gère le rééquilibrage interne ; la poche obligataire vise une couverture du change en euros.`)
   else if (base.exposure === 'world-hedged') parts.push('Le World couvert en euros suit les actions des pays développés et vise une couverture du change vers l’euro. La couverture ne protège pas des baisses des actions.')
@@ -40,11 +37,14 @@ function exposureReading(portfolio) {
   else if (base.exposure === 'acwi-imi') parts.push('Le MSCI ACWI IMI inclut les pays développés et émergents, avec leurs grandes, moyennes et petites entreprises.')
   else if (base.exposure === 'equalweight') parts.push('Les entreprises du S&P 500 partent du même poids à chaque rééquilibrage trimestriel.');
   else parts.push('Le S&P 500 constitue une base d’actions américaines.')
+  if (!includeBase) parts.length = 0
   if (complement?.exposure === 'em') {
     parts.push(['acwi', 'acwi-pea', 'acwi-imi', 'allworld'].includes(base.exposure)
       ? `Les ${complement.pct} % d’émergents IMI renforcent une zone déjà présente dans la base et incluent aussi des petites capitalisations.`
       : `Les ${complement.pct} % d’émergents IMI ajoutent ces marchés, avec leurs grandes, moyennes et petites capitalisations.`)
   }
+  if (complement?.exposure === 'em-ex-china') parts.push(`Les ${complement.pct} % d’émergents hors Chine excluent la Chine de cette poche.${['acwi','acwi-pea','acwi-imi','allworld'].includes(base.exposure) ? ' La base mondiale peut toujours en détenir : le portefeuille entier n’est pas sans Chine.' : ' Tu ne retrouves donc pas tous les pays d’un indice émergent classique.'}`)
+  if (complement?.exposure === 'em-smallcap') parts.push(`Les ${complement.pct} % de petites capitalisations émergentes ciblent la taille des entreprises autant que leur zone géographique.`)
   if (complement?.exposure === 'europe') parts.push(['sp500','equalweight'].includes(base.exposure)
     ? `Les ${complement.pct} % d’Europe ajoutent une autre zone géographique.`
     : `Les ${complement.pct} % d’Europe renforcent une zone déjà présente dans la base.`)
@@ -86,8 +86,14 @@ function exposureReading(portfolio) {
     dividend: 'renforcent les actions sélectionnées selon une stratégie de dividendes. Les revenus sont réinvestis dans cette comparaison ; ces actions peuvent déjà être présentes dans la base',
   }
   if (complements[complement?.exposure]) parts.push(`Les ${complement.pct} % de ${complement.label} ${complements[complement.exposure]}.`)
-  if (theme && ['water','timber','agribusiness'].includes(theme.exposure)) parts.push('Cette poche détient des actions d’entreprises, sans achat direct d’eau, de forêt ou de récoltes. Elle peut recouper des entreprises déjà présentes dans la base.');
-  if (theme) parts.push(`La poche ${theme.label.toLowerCase()} représente ${theme.pct} % du portefeuille. Les entreprises de ce thème peuvent aussi être présentes dans les autres ETF.`)
+  if (theme) {
+    const directAsset = ['water','timber','agribusiness'].includes(theme.exposure)
+      ? ' Tu achètes des actions d’entreprises, pas directement de l’eau, des forêts ou des récoltes.' : ''
+    parts.push(`Les ${theme.pct} % consacrés à ${theme.label.toLowerCase()} concentrent cette poche sur une activité.${directAsset} Ces entreprises peuvent aussi figurer dans la base : le poids du thème dans le portefeuille peut donc dépasser ${theme.pct} %.`)
+  }
+  if (complement && !['em','em-ex-china','em-smallcap','europe','smallcap','nasdaq','japan','india',...Object.keys(factorReadings),...Object.keys(complements)].includes(complement.exposure)) {
+    parts.push(`Les ${complement.pct} % de ${complement.label} ajoutent une sélection dédiée. ${complement.note ?? ''}`)
+  }
   return parts.join(' ')
 }
 
@@ -128,6 +134,13 @@ export function buildCustomDuel(definition) {
     readings: [exposureReading(a), exposureReading(b)],
     sources: [...unique.map((asset) => ({ name: asset.name, isin: asset.isin, url: asset.source, note: asset.note })),
       ...(unique.some((asset) => asset.currency === 'USD') ? [{ name: 'Taux EUR/USD de fin d’année (BCE)', url: FX_SOURCE, note: 'Conversion annuelle des rendements USD vers EUR.' }] : [])],
+  }
+  // Avoid explaining the same base twice; make a changed weight explicit.
+  if (a.assets[0].id === b.assets[0].id) {
+    const baseChange = a.assets[0].pct === b.assets[0].pct
+      ? `Même base ${baseB} à ${b.assets[0].pct} %.`
+      : `La même base ${baseB} passe de ${a.assets[0].pct} % dans A à ${b.assets[0].pct} % dans B.`
+    duel.readings[1] = baseChange + ' ' + exposureReading(b, false)
   }
   const editorial = duelEditorial(duel)
   return { ...duel, hook: editorial.hook, question: editorial.question }
