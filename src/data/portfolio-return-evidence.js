@@ -5,7 +5,7 @@ import { getInstrumentAnnualPerformance } from './instrument-returns.js';
 import { EXPOSURE_ADDITIONS } from './exposure-additions.js';
 // Sources individuelles : publications émetteurs, proxys et historiques mixtes distingués.
 export const PORTFOLIO_RETURN_EVIDENCE = {
- ...Object.fromEntries(['IE00BMG6Z448','IE000I8KRLL9','IE00BJ5JP097','IE000RDRMSD1','FR0011550193','GB00B15KXQ89','IE00B4LHWP62','IE00B4556L06'].map(isin=>{
+ ...Object.fromEntries(['IE00BMG6Z448','IE000I8KRLL9','IE00BJ5JP097','IE000RDRMSD1','IE00BJGWQN72','IE00BGV5VN51','IE00BQQP9F84','IE00B5M1WJ87'].map(isin=>{
    const p=getInstrumentAnnualPerformance(isin)
    const years=Object.keys(p.years).map(Number).filter(y=>Number.isFinite(p.years[y]))
    return [isin,{sourceUrls:[p.source],checkedAt:p.checkedAt,asOf:p.asOf??null,periodStart:`${Math.min(...years)}-01-01`,periodEnd:`${Math.max(...years)}-12-31`,currency:p.currency,scope:`Part exacte ${isin}`,method:p.method,note:'Années complètes réellement publiées ; aucune année manquante reconstituée.'}]
