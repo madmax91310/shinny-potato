@@ -3,7 +3,7 @@ import {dcaExposure} from '../src/pages/dca-profiles/exposure.js'
 import {donutData,integerPercentages} from '../src/pages/dca-profiles/image.js'
 import {PROFILES} from '../src/pages/dca-profiles/data.js'
 import {prepareProfile,analyzeProfile,references} from '../src/pages/dca-profiles/engine.js'
-import {filterProfiles,searchAssets,readSaved,writeSaved,SAVED_KEY} from '../src/pages/dca-profiles/management.js'
+import {validSaved, filterProfiles,searchAssets,readSaved,writeSaved,SAVED_KEY} from '../src/pages/dca-profiles/management.js'
 const now=new Date('2026-10-15T12:00:00Z')
 const record=(asOf,compatibility='country-risk',rows=[{name:'United States',weightPct:100}])=>({countries:{asOf,compatibility,rows,basis:'fund',sourceUrl:'https://example.com/data'}})
 const lines=[{asset:'world',isin:'one',weight:60,label:'World'},{asset:'acwi',isin:'two',weight:30,label:'ACWI'},{asset:'gold',weight:10,label:'Or'}]
@@ -61,3 +61,12 @@ assert(analyzeProfile({...anonymous,imageOnly:false}).errors.length)
 assert.deepEqual(searchAssets('Nasdaq'),['nasdaq'])
 assert.deepEqual(searchAssets('IE00B53SZB19'),['nasdaq'])
 assert(!searchAssets('IE00B53L3W79').includes('nasdaq'))
+
+const percentagesOnly={...anonymous,lines:anonymous.lines.map(({amount:_amount,...line})=>line)}
+assert.deepEqual(analyzeProfile(percentagesOnly).errors,[])
+assert.equal(analyzeProfile(percentagesOnly).monthly,0)
+const {buildTweetText}=await import('../src/pages/dca-profiles/lib.js')
+const percentageTweet=buildTweetText(percentagesOnly)
+assert(percentageTweet.startsWith('📊 Voilà la répartition de ce portefeuille'))
+assert(!/DCA|€|Salaire|Julien|versement/.test(percentageTweet))
+assert(validSaved({...one,profile:percentagesOnly,field:'all'}))

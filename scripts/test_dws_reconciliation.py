@@ -44,6 +44,22 @@ class VerificationTests(unittest.TestCase):
         self.assertEqual(report['verified'], [])
         self.assertIn('DWS timeout', report['errors'][0]['reason'])
 
+    def test_official_reit_class_preserves_country_industry_and_weights(self):
+        body = copy.deepcopy(self.body)
+        row = next(r for r in body['tables'][0]['values'] if r['column_5']['value'] == 'Equities')
+        row['column_5']['value'] = 'Real Estate Investment Trust'
+        parsed = parse_holdings(body, {'isin': self.isin}, self.now, self.url)
+        for field in ('countries', 'sectors'):
+            self.assertEqual(parsed[field]['rows'], self.record[field]['rows'])
+        proof = verify(self.isin, parsed, self.now, lambda url: body)
+        self.assertEqual(proof['sourceHash'], parsed['countries']['sha256'])
+        row['column_1']['sortValue'] = -1
+        with self.assertRaises(ValueError):
+            parse_holdings(body, {'isin': self.isin}, self.now, self.url)
+        row['column_5']['value'] = 'Unknown fund type'
+        with self.assertRaises(ValueError):
+            parse_holdings(body, {'isin': self.isin}, self.now, self.url)
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -38,6 +38,11 @@
       "href": "/comparatif-etf?subject=small-value-selection"
     },
     {
+      "kind": "duel",
+      "label": "All-World + petites valeurs mondiales ou européennes value ?",
+      "href": "/duels-portefeuilles?duel=allworld-small-value-europe"
+    },
+    {
       "kind": "performance",
       "label": "Performance depuis",
       "href": "/performance-depuis?isin=IE00BSPLC298"
@@ -389,6 +394,11 @@
       "href": "/comparatif-etf?subject=world-consumption-duel"
     },
     {
+      "kind": "duel",
+      "label": "ACWI + consommation de base ou discrétionnaire ?",
+      "href": "/duels-portefeuilles?duel=acwi-consommation"
+    },
+    {
       "kind": "performance",
       "label": "Performance depuis",
       "href": "/performance-depuis?isin=IE00BJ5JP329"
@@ -414,6 +424,11 @@
       "kind": "comparison",
       "label": "Consommation de base ou discrétionnaire",
       "href": "/comparatif-etf?subject=world-consumption-duel"
+    },
+    {
+      "kind": "duel",
+      "label": "ACWI + consommation de base ou discrétionnaire ?",
+      "href": "/duels-portefeuilles?duel=acwi-consommation"
     },
     {
       "kind": "performance",
@@ -493,6 +508,11 @@
     },
     {
       "kind": "comparison",
+      "label": "Santé mondiale : classique ou Advanced",
+      "href": "/comparatif-etf?subject=health-classic-advanced"
+    },
+    {
+      "kind": "comparison",
       "label": "Santé, innovation médicale ou biotech",
       "href": "/comparatif-etf?subject=innovation-medicale"
     },
@@ -549,6 +569,11 @@
       "kind": "sheet",
       "label": "Présentation ETF",
       "href": "/fiches-etf?isin=IE00BZ0PKT83"
+    },
+    {
+      "kind": "comparison",
+      "label": "World Quality ou multifactoriel",
+      "href": "/comparatif-etf?subject=world-quality-multifactor"
     },
     {
       "kind": "comparison",
@@ -1191,6 +1216,84 @@
       "href": "/fiches-etf?isin=FR0011869320"
     }
   ],
+  "IE00BM67HK77": [
+    {
+      "kind": "sheet",
+      "label": "Présentation ETF",
+      "href": "/fiches-etf?isin=IE00BM67HK77"
+    },
+    {
+      "kind": "comparison",
+      "label": "Santé",
+      "href": "/comparatif-etf?subject=sante"
+    },
+    {
+      "kind": "comparison",
+      "label": "Santé mondiale : classique ou Advanced",
+      "href": "/comparatif-etf?subject=health-classic-advanced"
+    }
+  ],
+  "FR0010524777": [
+    {
+      "kind": "sheet",
+      "label": "Présentation ETF",
+      "href": "/fiches-etf?isin=FR0010524777"
+    },
+    {
+      "kind": "comparison",
+      "label": "Renouvelables",
+      "href": "/comparatif-etf?subject=renouvelables"
+    },
+    {
+      "kind": "comparison",
+      "label": "Transition énergétique : Amundi ou L&G",
+      "href": "/comparatif-etf?subject=new-energy-methods"
+    }
+  ],
+  "IE00BK5BCH80": [
+    {
+      "kind": "sheet",
+      "label": "Présentation ETF",
+      "href": "/fiches-etf?isin=IE00BK5BCH80"
+    },
+    {
+      "kind": "comparison",
+      "label": "Renouvelables",
+      "href": "/comparatif-etf?subject=renouvelables"
+    },
+    {
+      "kind": "comparison",
+      "label": "Énergies propres : iShares ou L&G",
+      "href": "/comparatif-etf?subject=clean-energy-methods"
+    },
+    {
+      "kind": "comparison",
+      "label": "Transition énergétique : Amundi ou L&G",
+      "href": "/comparatif-etf?subject=new-energy-methods"
+    }
+  ],
+  "IE0003R87OG3": [
+    {
+      "kind": "sheet",
+      "label": "Présentation ETF",
+      "href": "/fiches-etf?isin=IE0003R87OG3"
+    },
+    {
+      "kind": "performance",
+      "label": "Performance depuis",
+      "href": "/performance-depuis?isin=IE0003R87OG3"
+    },
+    {
+      "kind": "simulation",
+      "label": "Et si tu avais investi",
+      "href": "/calculateur-investissement?asset=etfAvantisSmallValue"
+    },
+    {
+      "kind": "anniversary",
+      "label": "Il y a X ans",
+      "href": "/il-y-a-x-ans?asset=etfAvantisSmallValue"
+    }
+  ],
   "IE00BM67HV82": [
     {
       "kind": "sheet",
@@ -1201,6 +1304,11 @@
       "kind": "comparison",
       "label": "Industrie ou infrastructures",
       "href": "/comparatif-etf?subject=industrie-infrastructures"
+    },
+    {
+      "kind": "duel",
+      "label": "World + technologie ou industrie ?",
+      "href": "/duels-portefeuilles?duel=world-tech-industrie"
     },
     {
       "kind": "performance",
@@ -1352,6 +1460,26 @@
       "kind": "comparison",
       "label": "IA / Robotique",
       "href": "/comparatif-etf?subject=ia-robotique"
+    },
+    {
+      "kind": "comparison",
+      "label": "Intelligence artificielle : Xtrackers ou L&G",
+      "href": "/comparatif-etf?subject=ai-big-data-methods"
+    },
+    {
+      "kind": "performance",
+      "label": "Performance depuis",
+      "href": "/performance-depuis?isin=IE00BGV5VN51"
+    },
+    {
+      "kind": "simulation",
+      "label": "Et si tu avais investi",
+      "href": "/calculateur-investissement?asset=etfAiBigData"
+    },
+    {
+      "kind": "anniversary",
+      "label": "Il y a X ans",
+      "href": "/il-y-a-x-ans?asset=etfAiBigData"
     }
   ],
   "IE00BDFBTQ78": [
@@ -1554,6 +1682,21 @@
       "kind": "duel",
       "label": "World + Europe ou ACWI + pays développés hors USA ?",
       "href": "/duels-portefeuilles?duel=world-stoxx-ou-acwi"
+    },
+    {
+      "kind": "performance",
+      "label": "Performance depuis",
+      "href": "/performance-depuis?isin=IE0006WW1TQ4"
+    },
+    {
+      "kind": "simulation",
+      "label": "Et si tu avais investi",
+      "href": "/calculateur-investissement?asset=etfWorldExUs"
+    },
+    {
+      "kind": "anniversary",
+      "label": "Il y a X ans",
+      "href": "/il-y-a-x-ans?asset=etfWorldExUs"
     }
   ],
   "FR0014017NX3": [
@@ -1706,6 +1849,21 @@
       "kind": "duel",
       "label": "Émergents avec ou sans Chine ?",
       "href": "/duels-portefeuilles?duel=emergents-chine"
+    },
+    {
+      "kind": "performance",
+      "label": "Performance depuis",
+      "href": "/performance-depuis?isin=IE00BMG6Z448"
+    },
+    {
+      "kind": "simulation",
+      "label": "Et si tu avais investi",
+      "href": "/calculateur-investissement?asset=etfEmExChina"
+    },
+    {
+      "kind": "anniversary",
+      "label": "Il y a X ans",
+      "href": "/il-y-a-x-ans?asset=etfEmExChina"
     }
   ],
   "IE00BZCQB185": [
@@ -1941,6 +2099,11 @@
     },
     {
       "kind": "duel",
+      "label": "ACWI + consommation de base ou discrétionnaire ?",
+      "href": "/duels-portefeuilles?duel=acwi-consommation"
+    },
+    {
+      "kind": "duel",
       "label": "USA, Europe et santé ou ACWI et tech ?",
       "href": "/duels-portefeuilles?duel=usa-europe-sante-ou-acwi-tech"
     },
@@ -1975,6 +2138,16 @@
       "kind": "duel",
       "label": "All-World + santé mondiale ou All-World + eau ?",
       "href": "/duels-portefeuilles?duel=allworld-health-water"
+    },
+    {
+      "kind": "duel",
+      "label": "World + Quality ou All-World + Value ?",
+      "href": "/duels-portefeuilles?duel=world-quality-allworld-value"
+    },
+    {
+      "kind": "duel",
+      "label": "All-World + petites valeurs mondiales ou européennes value ?",
+      "href": "/duels-portefeuilles?duel=allworld-small-value-europe"
     },
     {
       "kind": "duel",
@@ -2137,6 +2310,16 @@
       "href": "/fiches-etf?isin=IE00BYPLS672"
     },
     {
+      "kind": "comparison",
+      "label": "Cybersécurité : iShares ou L&G",
+      "href": "/comparatif-etf?subject=cybersecurity-methods"
+    },
+    {
+      "kind": "duel",
+      "label": "World + cybersécurité ou robotique ?",
+      "href": "/duels-portefeuilles?duel=world-cyber-robotique"
+    },
+    {
       "kind": "duel",
       "label": "All-World + cyber ou World + émergents ?",
       "href": "/duels-portefeuilles?duel=allworld-cyber-ou-world-em"
@@ -2223,6 +2406,11 @@
     },
     {
       "kind": "duel",
+      "label": "World + technologie ou industrie ?",
+      "href": "/duels-portefeuilles?duel=world-tech-industrie"
+    },
+    {
+      "kind": "duel",
       "label": "World + technologie ou financières américaines ?",
       "href": "/duels-portefeuilles?duel=sect_tech_world_ishares-contre-sect_financieres"
     },
@@ -2240,6 +2428,21 @@
       "kind": "duel",
       "label": "ACWI IMI + Quality ou World + émergents + technologie ?",
       "href": "/duels-portefeuilles?duel=acwi-imi-quality-world-em-tech"
+    },
+    {
+      "kind": "performance",
+      "label": "Performance depuis",
+      "href": "/performance-depuis?isin=IE00BJ5JNY98"
+    },
+    {
+      "kind": "simulation",
+      "label": "Et si tu avais investi",
+      "href": "/calculateur-investissement?asset=etfWorldTech"
+    },
+    {
+      "kind": "anniversary",
+      "label": "Il y a X ans",
+      "href": "/il-y-a-x-ans?asset=etfWorldTech"
     }
   ],
   "IE0007Y8Y157": [
@@ -2266,6 +2469,11 @@
       "href": "/comparatif-etf?subject=ia-robotique"
     },
     {
+      "kind": "comparison",
+      "label": "Intelligence artificielle : Xtrackers ou L&G",
+      "href": "/comparatif-etf?subject=ai-big-data-methods"
+    },
+    {
       "kind": "duel",
       "label": "World + IA ou World + robotique ?",
       "href": "/duels-portefeuilles?duel=world-ai-robotique"
@@ -2286,6 +2494,11 @@
       "kind": "comparison",
       "label": "Semi-conducteurs ou robotique",
       "href": "/comparatif-etf?subject=semi-robotique"
+    },
+    {
+      "kind": "duel",
+      "label": "World + cybersécurité ou robotique ?",
+      "href": "/duels-portefeuilles?duel=world-cyber-robotique"
     },
     {
       "kind": "duel",
@@ -2425,6 +2638,11 @@
     },
     {
       "kind": "duel",
+      "label": "World + Quality ou All-World + Value ?",
+      "href": "/duels-portefeuilles?duel=world-quality-allworld-value"
+    },
+    {
+      "kind": "duel",
       "label": "World + Value ou World + Quality ?",
       "href": "/duels-portefeuilles?duel=world-value-ou-world-quality"
     },
@@ -2459,6 +2677,11 @@
       "kind": "comparison",
       "label": "Grandes ou petites entreprises mondiales",
       "href": "/comparatif-etf?subject=grandes-petites-monde"
+    },
+    {
+      "kind": "duel",
+      "label": "All-World + petites valeurs mondiales ou européennes value ?",
+      "href": "/duels-portefeuilles?duel=allworld-small-value-europe"
     },
     {
       "kind": "duel",
@@ -2524,6 +2747,11 @@
     },
     {
       "kind": "comparison",
+      "label": "World Quality ou multifactoriel",
+      "href": "/comparatif-etf?subject=world-quality-multifactor"
+    },
+    {
+      "kind": "comparison",
       "label": "World Quality ou World Value",
       "href": "/comparatif-etf?subject=quality-value"
     },
@@ -2541,6 +2769,11 @@
       "kind": "duel",
       "label": "World + Momentum ou World + Quality ?",
       "href": "/duels-portefeuilles?duel=world-momentum-quality"
+    },
+    {
+      "kind": "duel",
+      "label": "World + Quality ou All-World + Value ?",
+      "href": "/duels-portefeuilles?duel=world-quality-allworld-value"
     },
     {
       "kind": "duel",
@@ -3155,6 +3388,21 @@
     },
     {
       "kind": "duel",
+      "label": "World + technologie ou industrie ?",
+      "href": "/duels-portefeuilles?duel=world-tech-industrie"
+    },
+    {
+      "kind": "duel",
+      "label": "World + Quality ou All-World + Value ?",
+      "href": "/duels-portefeuilles?duel=world-quality-allworld-value"
+    },
+    {
+      "kind": "duel",
+      "label": "World + cybersécurité ou robotique ?",
+      "href": "/duels-portefeuilles?duel=world-cyber-robotique"
+    },
+    {
+      "kind": "duel",
       "label": "Services publics ou télécommunications européennes ?",
       "href": "/duels-portefeuilles?duel=europe-networks"
     },
@@ -3439,6 +3687,11 @@
       "href": "/fiches-etf?isin=IE00BG0J4C88"
     },
     {
+      "kind": "comparison",
+      "label": "Cybersécurité : iShares ou L&G",
+      "href": "/comparatif-etf?subject=cybersecurity-methods"
+    },
+    {
       "kind": "performance",
       "label": "Performance depuis",
       "href": "/performance-depuis?isin=IE00BG0J4C88"
@@ -3464,6 +3717,11 @@
       "kind": "comparison",
       "label": "Renouvelables",
       "href": "/comparatif-etf?subject=renouvelables"
+    },
+    {
+      "kind": "comparison",
+      "label": "Énergies propres : iShares ou L&G",
+      "href": "/comparatif-etf?subject=clean-energy-methods"
     },
     {
       "kind": "comparison",
@@ -3683,27 +3941,6 @@
       "href": "/comparatif-etf?subject=em-large-small"
     }
   ],
-  "IE00BM67HK77": [
-    {
-      "kind": "comparison",
-      "label": "Santé",
-      "href": "/comparatif-etf?subject=sante"
-    }
-  ],
-  "FR0010524777": [
-    {
-      "kind": "comparison",
-      "label": "Renouvelables",
-      "href": "/comparatif-etf?subject=renouvelables"
-    }
-  ],
-  "IE00BK5BCH80": [
-    {
-      "kind": "comparison",
-      "label": "Renouvelables",
-      "href": "/comparatif-etf?subject=renouvelables"
-    }
-  ],
   "FR0013411980": [
     {
       "kind": "comparison",
@@ -3870,23 +4107,6 @@
       "kind": "comparison",
       "label": "Marchés émergents · PEA",
       "href": "/comparatif-etf?subject=emergents-pea"
-    }
-  ],
-  "IE0003R87OG3": [
-    {
-      "kind": "performance",
-      "label": "Performance depuis",
-      "href": "/performance-depuis?isin=IE0003R87OG3"
-    },
-    {
-      "kind": "simulation",
-      "label": "Et si tu avais investi",
-      "href": "/calculateur-investissement?asset=etfAvantisSmallValue"
-    },
-    {
-      "kind": "anniversary",
-      "label": "Il y a X ans",
-      "href": "/il-y-a-x-ans?asset=etfAvantisSmallValue"
     }
   ],
   "IE000UL6CLP7": [

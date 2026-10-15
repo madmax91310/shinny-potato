@@ -9,15 +9,15 @@ Mesures de dépendances JavaScript statiques, build local :
 | Route | Avant | Après | Réduction |
 |---|---:|---:|---:|
 | Faits marquants | 2 538 ko | 312 ko | 88 % |
-| Duel | 1 856 ko | 498 ko | 73 % |
+| Duel | 1 856 ko | 502 ko | 73 % |
 
 Ces chiffres incluent le code commun, mais pas les modules chargés ensuite (expositions, image, destinations). Les budgets de régression sont abaissés à 350 et 580 ko. Ce sont des poids, pas une mesure de temps de chargement mobile.
 
 ## Utilisation des actifs
 
-Un index dérivé au build relie 191 ISIN à 705 destinations disponibles : présentation, comparatif, duel préparé, performance annuelle, simulation mensuelle et anniversaire. Les liens conservent la part exacte. Chaque outil revalide son identifiant et les historiques restent soumis aux contrôles existants. Les destinations ne sont chargées qu’à l’ouverture du panneau.
+Un index dérivé au build relie 191 ISIN à 749 destinations disponibles : présentation, comparatif, duel préparé, performance annuelle, simulation mensuelle et anniversaire. Les liens conservent la part exacte. Chaque outil revalide son identifiant et les historiques restent soumis aux contrôles existants. Les destinations ne sont chargées qu’à l’ouverture du panneau.
 
-Trois duels préparés ajoutés sans nouvelle donnée manuelle : World + Momentum / Quality ; ACWI + émergents / émergents hors Chine ; All-World + santé mondiale / eau. Le catalogue contient désormais 45 duels préparés. Tous conservent deux ou trois supports et au moins trois années complètes communes.
+Trois duels préparés ajoutés sans nouvelle donnée manuelle : World + Momentum / Quality ; ACWI + émergents / émergents hors Chine ; All-World + santé mondiale / eau. Le catalogue contient désormais 50 duels préparés. Tous conservent deux ou trois supports et au moins trois années complètes communes.
 
 ## Explications du Duel
 
@@ -36,3 +36,5 @@ Corrections ciblées : question Value/Quality, répétitions du socle et du rés
 - `test-portfolio-editorial.mjs`, `test-resource-selections.mjs`, `test-light-registries.mjs`.
 - Compilation avec budgets de routes réduits.
 - `playwright-tool-links.mjs` en CI : destinations et priorité sur réglages enregistrés, mobile/ordinateur, rendu image du Duel. Suite navigateur habituelle conservée.
+
+Intégration de la PR #649 : ses cinq duels et ses nouveaux supports sont conservés. Les 50 duels combinés et 749 destinations ont été revalidés avec les dernières données.

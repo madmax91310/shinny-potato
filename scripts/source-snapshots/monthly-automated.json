@@ -68404,5 +68404,1091 @@
     "checkedAt": "2026-10-15",
     "periodEnd": "2026-09",
     "responseSha256": "3abd87e940a5d1a2dda25ea364b820ceadc2138c237298cce01452a28bac9417"
+  },
+  "etfWorldExUs": {
+    "id": "etfWorldExUs",
+    "label": "Xtrackers MSCI World ex USA (EXUS)",
+    "isin": "IE0006WW1TQ4",
+    "consumerScope": "catalog",
+    "currency": "EUR",
+    "periodStart": "2024-03",
+    "method": "Cours de la part ETF ajustés des distributions et divisions ; dernière séance mensuelle, recoupée avec la bougie mensuelle Yahoo ; frais du fonds inclus dans le cours",
+    "parser": "yahoo",
+    "symbol": "EXUS.DE",
+    "field": "adjclose",
+    "precision": 6,
+    "collectAnniversary": true,
+    "timezone": "Europe/Berlin",
+    "ticker": "EXUS",
+    "mic": "XETR",
+    "listingEvidenceId": "IE0006WW1TQ4-XETR-EXUS-EUR",
+    "sourceUrls": [
+      "https://query2.finance.yahoo.com/v8/finance/chart/EXUS.DE?period1=1709251200&period2=1790812800&interval=1d&events=div%2Csplits",
+      "https://query2.finance.yahoo.com/v8/finance/chart/EXUS.DE?period1=1709251200&period2=1790812800&interval=1mo&events=div%2Csplits"
+    ],
+    "proofRows": [
+      {
+        "date": "2024-03-28",
+        "close": 29.280000686645508,
+        "monthlyClose": 29.280000686645508,
+        "value": 29.280000686645508
+      },
+      {
+        "date": "2024-04-30",
+        "close": 28.739999771118164,
+        "monthlyClose": 28.739999771118164,
+        "value": 28.739999771118164
+      },
+      {
+        "date": "2024-05-31",
+        "close": 29.329999923706055,
+        "monthlyClose": 29.329999923706055,
+        "value": 29.329999923706055
+      },
+      {
+        "date": "2024-06-28",
+        "close": 29.325000762939453,
+        "monthlyClose": 29.325000762939453,
+        "value": 29.325000762939453
+      },
+      {
+        "date": "2024-07-31",
+        "close": 29.790000915527344,
+        "monthlyClose": 29.790000915527344,
+        "value": 29.790000915527344
+      },
+      {
+        "date": "2024-08-30",
+        "close": 30.06999969482422,
+        "monthlyClose": 30.06999969482422,
+        "value": 30.06999969482422
+      },
+      {
+        "date": "2024-09-30",
+        "close": 30.225000381469727,
+        "monthlyClose": 30.225000381469727,
+        "value": 30.225000381469727
+      },
+      {
+        "date": "2024-10-31",
+        "close": 29.399999618530273,
+        "monthlyClose": 29.399999618530273,
+        "value": 29.399999618530273
+      },
+      {
+        "date": "2024-11-29",
+        "close": 30.385000228881836,
+        "monthlyClose": 30.385000228881836,
+        "value": 30.385000228881836
+      },
+      {
+        "date": "2024-12-30",
+        "close": 29.889999389648438,
+        "monthlyClose": 29.889999389648438,
+        "value": 29.889999389648438
+      },
+      {
+        "date": "2025-01-31",
+        "close": 31.56999969482422,
+        "monthlyClose": 31.56999969482422,
+        "value": 31.56999969482422
+      },
+      {
+        "date": "2025-02-28",
+        "close": 32.025001525878906,
+        "monthlyClose": 32.025001525878906,
+        "value": 32.025001525878906
+      },
+      {
+        "date": "2025-03-31",
+        "close": 30.75,
+        "monthlyClose": 30.75,
+        "value": 30.75
+      },
+      {
+        "date": "2025-04-30",
+        "close": 30.43000030517578,
+        "monthlyClose": 30.43000030517578,
+        "value": 30.43000030517578
+      },
+      {
+        "date": "2025-05-30",
+        "close": 31.979999542236328,
+        "monthlyClose": 31.979999542236328,
+        "value": 31.979999542236328
+      },
+      {
+        "date": "2025-06-30",
+        "close": 31.68000030517578,
+        "monthlyClose": 31.68000030517578,
+        "value": 31.68000030517578
+      },
+      {
+        "date": "2025-07-31",
+        "close": 32.14500045776367,
+        "monthlyClose": 32.14500045776367,
+        "value": 32.14500045776367
+      },
+      {
+        "date": "2025-08-29",
+        "close": 32.64500045776367,
+        "monthlyClose": 32.64500045776367,
+        "value": 32.64500045776367
+      },
+      {
+        "date": "2025-09-30",
+        "close": 33.18000030517578,
+        "monthlyClose": 33.18000030517578,
+        "value": 33.18000030517578
+      },
+      {
+        "date": "2025-10-31",
+        "close": 34.25,
+        "monthlyClose": 34.25,
+        "value": 34.25
+      },
+      {
+        "date": "2025-11-28",
+        "close": 34.439998626708984,
+        "monthlyClose": 34.439998626708984,
+        "value": 34.439998626708984
+      },
+      {
+        "date": "2025-12-30",
+        "close": 35.209999084472656,
+        "monthlyClose": 35.209999084472656,
+        "value": 35.209999084472656
+      },
+      {
+        "date": "2026-01-30",
+        "close": 36.310001373291016,
+        "monthlyClose": 36.310001373291016,
+        "value": 36.310001373291016
+      },
+      {
+        "date": "2026-02-27",
+        "close": 38.17499923706055,
+        "monthlyClose": 38.17499923706055,
+        "value": 38.17499923706055
+      },
+      {
+        "date": "2026-03-31",
+        "close": 35.404998779296875,
+        "monthlyClose": 35.404998779296875,
+        "value": 35.404998779296875
+      },
+      {
+        "date": "2026-04-30",
+        "close": 37.314998626708984,
+        "monthlyClose": 37.314998626708984,
+        "value": 37.314998626708984
+      },
+      {
+        "date": "2026-05-29",
+        "close": 38.505001068115234,
+        "monthlyClose": 38.505001068115234,
+        "value": 38.505001068115234
+      },
+      {
+        "date": "2026-06-30",
+        "close": 39.435001373291016,
+        "monthlyClose": 39.435001373291016,
+        "value": 39.435001373291016
+      },
+      {
+        "date": "2026-07-31",
+        "close": 39.78499984741211,
+        "monthlyClose": 39.78499984741211,
+        "value": 39.78499984741211
+      },
+      {
+        "date": "2026-08-31",
+        "close": 40.25,
+        "monthlyClose": 40.25,
+        "value": 40.25
+      },
+      {
+        "date": "2026-09-30",
+        "close": 39.95500183105469,
+        "monthlyClose": 39.95500183105469,
+        "value": 39.95500183105469
+      }
+    ],
+    "checkedAt": "2026-10-15",
+    "periodEnd": "2026-09",
+    "responseSha256": "68b85e90e87675652921e510474149098ed1e5b0350c692d2e21e0f018d46f10"
+  },
+  "etfWorldTech": {
+    "id": "etfWorldTech",
+    "label": "iShares MSCI World Information Technology (WITS)",
+    "isin": "IE00BJ5JNY98",
+    "consumerScope": "catalog",
+    "currency": "EUR",
+    "periodStart": "2023-03",
+    "method": "Cours de la part ETF ajustés des distributions et divisions ; dernière séance mensuelle, recoupée avec la bougie mensuelle Yahoo ; frais du fonds inclus dans le cours",
+    "parser": "yahoo",
+    "symbol": "WITS.MI",
+    "field": "adjclose",
+    "precision": 6,
+    "collectAnniversary": true,
+    "timezone": "Europe/Rome",
+    "ticker": "WITS",
+    "mic": "ETFP",
+    "listingEvidenceId": "IE00BJ5JNY98-ETFP-WITS-EUR",
+    "sourceUrls": [
+      "https://query2.finance.yahoo.com/v8/finance/chart/WITS.MI?period1=1677628800&period2=1790812800&interval=1d&events=div%2Csplits",
+      "https://query2.finance.yahoo.com/v8/finance/chart/WITS.MI?period1=1677628800&period2=1790812800&interval=1mo&events=div%2Csplits"
+    ],
+    "proofRows": [
+      {
+        "date": "2023-03-31",
+        "close": 7.692999839782715,
+        "monthlyClose": 7.692999839782715,
+        "value": 7.588827133178711
+      },
+      {
+        "date": "2023-04-28",
+        "close": 7.401000022888184,
+        "monthlyClose": 7.401000022888184,
+        "value": 7.300781726837158
+      },
+      {
+        "date": "2023-05-31",
+        "close": 8.581000328063965,
+        "monthlyClose": 8.581000328063965,
+        "value": 8.464803695678711
+      },
+      {
+        "date": "2023-06-30",
+        "close": 8.829999923706055,
+        "monthlyClose": 8.829999923706055,
+        "value": 8.735640525817871
+      },
+      {
+        "date": "2023-07-31",
+        "close": 9.045000076293945,
+        "monthlyClose": 9.045000076293945,
+        "value": 8.948343276977539
+      },
+      {
+        "date": "2023-08-31",
+        "close": 9.166999816894531,
+        "monthlyClose": 9.166999816894531,
+        "value": 9.069039344787598
+      },
+      {
+        "date": "2023-09-29",
+        "close": 8.812000274658203,
+        "monthlyClose": 8.812000274658203,
+        "value": 8.71783447265625
+      },
+      {
+        "date": "2023-10-31",
+        "close": 8.583000183105469,
+        "monthlyClose": 8.583000183105469,
+        "value": 8.491280555725098
+      },
+      {
+        "date": "2023-11-30",
+        "close": 9.588000297546387,
+        "monthlyClose": 9.588000297546387,
+        "value": 9.485541343688965
+      },
+      {
+        "date": "2023-12-29",
+        "close": 9.89900016784668,
+        "monthlyClose": 9.89900016784668,
+        "value": 9.812857627868652
+      },
+      {
+        "date": "2024-01-31",
+        "close": 10.697999954223633,
+        "monthlyClose": 10.697999954223633,
+        "value": 10.604905128479004
+      },
+      {
+        "date": "2024-02-29",
+        "close": 11.432000160217285,
+        "monthlyClose": 11.432000160217285,
+        "value": 11.33251953125
+      },
+      {
+        "date": "2024-03-28",
+        "close": 11.8100004196167,
+        "monthlyClose": 11.8100004196167,
+        "value": 11.707228660583496
+      },
+      {
+        "date": "2024-04-30",
+        "close": 11.13599967956543,
+        "monthlyClose": 11.13599967956543,
+        "value": 11.039093971252441
+      },
+      {
+        "date": "2024-05-31",
+        "close": 11.454000473022461,
+        "monthlyClose": 11.454000473022461,
+        "value": 11.354327201843262
+      },
+      {
+        "date": "2024-06-28",
+        "close": 12.84000015258789,
+        "monthlyClose": 12.84000015258789,
+        "value": 12.756797790527344
+      },
+      {
+        "date": "2024-07-31",
+        "close": 12.187999725341797,
+        "monthlyClose": 12.187999725341797,
+        "value": 12.109021186828613
+      },
+      {
+        "date": "2024-08-30",
+        "close": 11.949999809265137,
+        "monthlyClose": 11.949999809265137,
+        "value": 11.872564315795898
+      },
+      {
+        "date": "2024-09-30",
+        "close": 12.095999717712402,
+        "monthlyClose": 12.095999717712402,
+        "value": 12.017618179321289
+      },
+      {
+        "date": "2024-10-31",
+        "close": 12.305999755859375,
+        "monthlyClose": 12.305999755859375,
+        "value": 12.226258277893066
+      },
+      {
+        "date": "2024-11-29",
+        "close": 13.38599967956543,
+        "monthlyClose": 13.38599967956543,
+        "value": 13.299259185791016
+      },
+      {
+        "date": "2024-12-30",
+        "close": 13.37399959564209,
+        "monthlyClose": 13.37399959564209,
+        "value": 13.308770179748535
+      },
+      {
+        "date": "2025-01-31",
+        "close": 13.687999725341797,
+        "monthlyClose": 13.687999725341797,
+        "value": 13.621238708496094
+      },
+      {
+        "date": "2025-02-28",
+        "close": 12.86400032043457,
+        "monthlyClose": 12.86400032043457,
+        "value": 12.801257133483887
+      },
+      {
+        "date": "2025-03-31",
+        "close": 11.307999610900879,
+        "monthlyClose": 11.307999610900879,
+        "value": 11.252845764160156
+      },
+      {
+        "date": "2025-04-30",
+        "close": 11.064000129699707,
+        "monthlyClose": 11.064000129699707,
+        "value": 11.010037422180176
+      },
+      {
+        "date": "2025-05-30",
+        "close": 12.265999794006348,
+        "monthlyClose": 12.265999794006348,
+        "value": 12.20617389678955
+      },
+      {
+        "date": "2025-06-30",
+        "close": 12.763999938964844,
+        "monthlyClose": 12.763999938964844,
+        "value": 12.729459762573242
+      },
+      {
+        "date": "2025-07-31",
+        "close": 13.652000427246094,
+        "monthlyClose": 13.652000427246094,
+        "value": 13.615056991577148
+      },
+      {
+        "date": "2025-08-29",
+        "close": 13.23799991607666,
+        "monthlyClose": 13.23799991607666,
+        "value": 13.202177047729492
+      },
+      {
+        "date": "2025-09-30",
+        "close": 14.10200023651123,
+        "monthlyClose": 14.10200023651123,
+        "value": 14.06383991241455
+      },
+      {
+        "date": "2025-10-31",
+        "close": 15.312000274658203,
+        "monthlyClose": 15.312000274658203,
+        "value": 15.270565032958984
+      },
+      {
+        "date": "2025-11-28",
+        "close": 14.508000373840332,
+        "monthlyClose": 14.508000373840332,
+        "value": 14.468741416931152
+      },
+      {
+        "date": "2025-12-30",
+        "close": 14.53600025177002,
+        "monthlyClose": 14.53600025177002,
+        "value": 14.514418601989746
+      },
+      {
+        "date": "2026-01-30",
+        "close": 14.119999885559082,
+        "monthlyClose": 14.119999885559082,
+        "value": 14.09903621673584
+      },
+      {
+        "date": "2026-02-27",
+        "close": 13.706000328063965,
+        "monthlyClose": 13.706000328063965,
+        "value": 13.685650825500488
+      },
+      {
+        "date": "2026-03-31",
+        "close": 13.071999549865723,
+        "monthlyClose": 13.071999549865723,
+        "value": 13.052591323852539
+      },
+      {
+        "date": "2026-04-30",
+        "close": 15.234000205993652,
+        "monthlyClose": 15.234000205993652,
+        "value": 15.211382865905762
+      },
+      {
+        "date": "2026-05-29",
+        "close": 17.652000427246094,
+        "monthlyClose": 17.652000427246094,
+        "value": 17.62579345703125
+      },
+      {
+        "date": "2026-06-30",
+        "close": 17.95800018310547,
+        "monthlyClose": 17.95800018310547,
+        "value": 17.95800018310547
+      },
+      {
+        "date": "2026-07-31",
+        "close": 16.923999786376953,
+        "monthlyClose": 16.923999786376953,
+        "value": 16.923999786376953
+      },
+      {
+        "date": "2026-08-31",
+        "close": 17.940000534057617,
+        "monthlyClose": 17.940000534057617,
+        "value": 17.940000534057617
+      },
+      {
+        "date": "2026-09-30",
+        "close": 19.200000762939453,
+        "monthlyClose": 19.200000762939453,
+        "value": 19.200000762939453
+      }
+    ],
+    "checkedAt": "2026-10-15",
+    "periodEnd": "2026-09",
+    "responseSha256": "7aa1f1300dd79572b5855d2bc886bb56d86f8c4c47481451c1581655b14acc4a"
+  },
+  "etfAiBigData": {
+    "id": "etfAiBigData",
+    "label": "Xtrackers Artificial Intelligence & Big Data (XAIX)",
+    "isin": "IE00BGV5VN51",
+    "consumerScope": "catalog",
+    "currency": "EUR",
+    "periodStart": "2021-05",
+    "method": "Cours de la part ETF ajustés des distributions et divisions ; dernière séance mensuelle, recoupée avec la bougie mensuelle Yahoo ; frais du fonds inclus dans le cours",
+    "parser": "yahoo",
+    "symbol": "XAIX.MI",
+    "field": "adjclose",
+    "precision": 6,
+    "collectAnniversary": true,
+    "timezone": "Europe/Rome",
+    "ticker": "XAIX",
+    "mic": "ETFP",
+    "listingEvidenceId": "IE00BGV5VN51-ETFP-XAIX-EUR",
+    "sourceUrls": [
+      "https://query2.finance.yahoo.com/v8/finance/chart/XAIX.MI?period1=1619827200&period2=1790812800&interval=1d&events=div%2Csplits",
+      "https://query2.finance.yahoo.com/v8/finance/chart/XAIX.MI?period1=1619827200&period2=1790812800&interval=1mo&events=div%2Csplits"
+    ],
+    "proofRows": [
+      {
+        "date": "2021-05-31",
+        "close": 76.2699966430664,
+        "monthlyClose": 76.2699966430664,
+        "value": 76.2699966430664
+      },
+      {
+        "date": "2021-06-30",
+        "close": 83.05999755859375,
+        "monthlyClose": 83.05999755859375,
+        "value": 83.05999755859375
+      },
+      {
+        "date": "2021-07-30",
+        "close": 81.06999969482422,
+        "monthlyClose": 81.06999969482422,
+        "value": 81.06999969482422
+      },
+      {
+        "date": "2021-08-31",
+        "close": 83.08999633789062,
+        "monthlyClose": 83.08999633789062,
+        "value": 83.08999633789062
+      },
+      {
+        "date": "2021-09-30",
+        "close": 80.86000061035156,
+        "monthlyClose": 80.86000061035156,
+        "value": 80.86000061035156
+      },
+      {
+        "date": "2021-10-29",
+        "close": 85.68000030517578,
+        "monthlyClose": 85.68000030517578,
+        "value": 85.68000030517578
+      },
+      {
+        "date": "2021-11-30",
+        "close": 87.31999969482422,
+        "monthlyClose": 87.31999969482422,
+        "value": 87.31999969482422
+      },
+      {
+        "date": "2021-12-30",
+        "close": 90.1500015258789,
+        "monthlyClose": 90.1500015258789,
+        "value": 90.1500015258789
+      },
+      {
+        "date": "2022-01-31",
+        "close": 80.69000244140625,
+        "monthlyClose": 80.69000244140625,
+        "value": 80.69000244140625
+      },
+      {
+        "date": "2022-02-28",
+        "close": 78.3499984741211,
+        "monthlyClose": 78.3499984741211,
+        "value": 78.3499984741211
+      },
+      {
+        "date": "2022-03-31",
+        "close": 81.20999908447266,
+        "monthlyClose": 81.20999908447266,
+        "value": 81.20999908447266
+      },
+      {
+        "date": "2022-04-29",
+        "close": 78.0199966430664,
+        "monthlyClose": 78.0199966430664,
+        "value": 78.0199966430664
+      },
+      {
+        "date": "2022-05-31",
+        "close": 73.44999694824219,
+        "monthlyClose": 73.44999694824219,
+        "value": 73.44999694824219
+      },
+      {
+        "date": "2022-06-30",
+        "close": 68.41999816894531,
+        "monthlyClose": 68.41999816894531,
+        "value": 68.41999816894531
+      },
+      {
+        "date": "2022-07-29",
+        "close": 73.43000030517578,
+        "monthlyClose": 73.43000030517578,
+        "value": 73.43000030517578
+      },
+      {
+        "date": "2022-08-31",
+        "close": 71.5199966430664,
+        "monthlyClose": 71.5199966430664,
+        "value": 71.5199966430664
+      },
+      {
+        "date": "2022-09-30",
+        "close": 65.06999969482422,
+        "monthlyClose": 65.06999969482422,
+        "value": 65.06999969482422
+      },
+      {
+        "date": "2022-10-31",
+        "close": 65.8499984741211,
+        "monthlyClose": 65.8499984741211,
+        "value": 65.8499984741211
+      },
+      {
+        "date": "2022-11-30",
+        "close": 66.05999755859375,
+        "monthlyClose": 66.05999755859375,
+        "value": 66.05999755859375
+      },
+      {
+        "date": "2022-12-30",
+        "close": 61.150001525878906,
+        "monthlyClose": 61.150001525878906,
+        "value": 61.150001525878906
+      },
+      {
+        "date": "2023-01-31",
+        "close": 67.83999633789062,
+        "monthlyClose": 67.83999633789062,
+        "value": 67.83999633789062
+      },
+      {
+        "date": "2023-02-28",
+        "close": 69.58000183105469,
+        "monthlyClose": 69.58000183105469,
+        "value": 69.58000183105469
+      },
+      {
+        "date": "2023-03-31",
+        "close": 74.0,
+        "monthlyClose": 74.0,
+        "value": 74.0
+      },
+      {
+        "date": "2023-04-28",
+        "close": 72.5,
+        "monthlyClose": 72.5,
+        "value": 72.5
+      },
+      {
+        "date": "2023-05-31",
+        "close": 83.58999633789062,
+        "monthlyClose": 83.58999633789062,
+        "value": 83.58999633789062
+      },
+      {
+        "date": "2023-06-30",
+        "close": 86.45999908447266,
+        "monthlyClose": 86.45999908447266,
+        "value": 86.45999908447266
+      },
+      {
+        "date": "2023-07-31",
+        "close": 89.29000091552734,
+        "monthlyClose": 89.29000091552734,
+        "value": 89.29000091552734
+      },
+      {
+        "date": "2023-08-31",
+        "close": 90.22000122070312,
+        "monthlyClose": 90.22000122070312,
+        "value": 90.22000122070312
+      },
+      {
+        "date": "2023-09-29",
+        "close": 88.69000244140625,
+        "monthlyClose": 88.69000244140625,
+        "value": 88.69000244140625
+      },
+      {
+        "date": "2023-10-31",
+        "close": 87.1500015258789,
+        "monthlyClose": 87.1500015258789,
+        "value": 87.1500015258789
+      },
+      {
+        "date": "2023-11-30",
+        "close": 96.0,
+        "monthlyClose": 96.0,
+        "value": 96.0
+      },
+      {
+        "date": "2023-12-29",
+        "close": 99.47000122070312,
+        "monthlyClose": 99.47000122070312,
+        "value": 99.47000122070312
+      },
+      {
+        "date": "2024-01-31",
+        "close": 106.5,
+        "monthlyClose": 106.5,
+        "value": 106.5
+      },
+      {
+        "date": "2024-02-29",
+        "close": 111.75,
+        "monthlyClose": 111.75,
+        "value": 111.75
+      },
+      {
+        "date": "2024-03-28",
+        "close": 115.79000091552734,
+        "monthlyClose": 115.79000091552734,
+        "value": 115.79000091552734
+      },
+      {
+        "date": "2024-04-30",
+        "close": 110.75,
+        "monthlyClose": 110.75,
+        "value": 110.75
+      },
+      {
+        "date": "2024-05-31",
+        "close": 110.2300033569336,
+        "monthlyClose": 110.2300033569336,
+        "value": 110.2300033569336
+      },
+      {
+        "date": "2024-06-28",
+        "close": 124.11000061035156,
+        "monthlyClose": 124.11000061035156,
+        "value": 124.11000061035156
+      },
+      {
+        "date": "2024-07-31",
+        "close": 119.0,
+        "monthlyClose": 119.0,
+        "value": 119.0
+      },
+      {
+        "date": "2024-08-30",
+        "close": 115.94999694824219,
+        "monthlyClose": 115.94999694824219,
+        "value": 115.94999694824219
+      },
+      {
+        "date": "2024-09-30",
+        "close": 119.87000274658203,
+        "monthlyClose": 119.87000274658203,
+        "value": 119.87000274658203
+      },
+      {
+        "date": "2024-10-31",
+        "close": 123.18000030517578,
+        "monthlyClose": 123.18000030517578,
+        "value": 123.18000030517578
+      },
+      {
+        "date": "2024-11-29",
+        "close": 135.7899932861328,
+        "monthlyClose": 135.7899932861328,
+        "value": 135.7899932861328
+      },
+      {
+        "date": "2024-12-30",
+        "close": 135.5,
+        "monthlyClose": 135.5,
+        "value": 135.5
+      },
+      {
+        "date": "2025-01-31",
+        "close": 141.7100067138672,
+        "monthlyClose": 141.7100067138672,
+        "value": 141.7100067138672
+      },
+      {
+        "date": "2025-02-28",
+        "close": 134.7100067138672,
+        "monthlyClose": 134.7100067138672,
+        "value": 134.7100067138672
+      },
+      {
+        "date": "2025-03-31",
+        "close": 120.47000122070312,
+        "monthlyClose": 120.47000122070312,
+        "value": 120.47000122070312
+      },
+      {
+        "date": "2025-04-30",
+        "close": 117.75,
+        "monthlyClose": 117.75,
+        "value": 117.75
+      },
+      {
+        "date": "2025-05-30",
+        "close": 129.27000427246094,
+        "monthlyClose": 129.27000427246094,
+        "value": 129.27000427246094
+      },
+      {
+        "date": "2025-06-30",
+        "close": 136.89999389648438,
+        "monthlyClose": 136.89999389648438,
+        "value": 136.89999389648438
+      },
+      {
+        "date": "2025-07-31",
+        "close": 143.67999267578125,
+        "monthlyClose": 143.67999267578125,
+        "value": 143.67999267578125
+      },
+      {
+        "date": "2025-08-29",
+        "close": 139.50999450683594,
+        "monthlyClose": 139.50999450683594,
+        "value": 139.50999450683594
+      },
+      {
+        "date": "2025-09-30",
+        "close": 148.41000366210938,
+        "monthlyClose": 148.41000366210938,
+        "value": 148.41000366210938
+      },
+      {
+        "date": "2025-10-31",
+        "close": 160.58999633789062,
+        "monthlyClose": 160.58999633789062,
+        "value": 160.58999633789062
+      },
+      {
+        "date": "2025-11-28",
+        "close": 152.47999572753906,
+        "monthlyClose": 152.47999572753906,
+        "value": 152.47999572753906
+      },
+      {
+        "date": "2025-12-30",
+        "close": 155.8699951171875,
+        "monthlyClose": 155.8699951171875,
+        "value": 155.8699951171875
+      },
+      {
+        "date": "2026-01-30",
+        "close": 156.05999755859375,
+        "monthlyClose": 156.05999755859375,
+        "value": 156.05999755859375
+      },
+      {
+        "date": "2026-02-27",
+        "close": 151.67999267578125,
+        "monthlyClose": 151.67999267578125,
+        "value": 151.67999267578125
+      },
+      {
+        "date": "2026-03-31",
+        "close": 142.60000610351562,
+        "monthlyClose": 142.60000610351562,
+        "value": 142.60000610351562
+      },
+      {
+        "date": "2026-04-30",
+        "close": 169.3800048828125,
+        "monthlyClose": 169.3800048828125,
+        "value": 169.3800048828125
+      },
+      {
+        "date": "2026-05-29",
+        "close": 210.99000549316406,
+        "monthlyClose": 210.99000549316406,
+        "value": 210.99000549316406
+      },
+      {
+        "date": "2026-06-30",
+        "close": 211.5800018310547,
+        "monthlyClose": 211.5800018310547,
+        "value": 211.5800018310547
+      },
+      {
+        "date": "2026-07-31",
+        "close": 193.30999755859375,
+        "monthlyClose": 193.30999755859375,
+        "value": 193.30999755859375
+      },
+      {
+        "date": "2026-08-31",
+        "close": 206.25,
+        "monthlyClose": 206.25,
+        "value": 206.25
+      },
+      {
+        "date": "2026-09-30",
+        "close": 220.30999755859375,
+        "monthlyClose": 220.30999755859375,
+        "value": 220.30999755859375
+      }
+    ],
+    "checkedAt": "2026-10-15",
+    "periodEnd": "2026-09",
+    "responseSha256": "53d12f58ace62a844ba732e4bb176de2b639aebcedba6ebbe4b843c832b980b1"
+  },
+  "etfEmExChina": {
+    "id": "etfEmExChina",
+    "label": "iShares MSCI EM ex-China (EXCH)",
+    "isin": "IE00BMG6Z448",
+    "consumerScope": "catalog",
+    "currency": "EUR",
+    "periodStart": "2024-10",
+    "method": "Cours de la part ETF ajustés des distributions et divisions ; dernière séance mensuelle, recoupée avec la bougie mensuelle Yahoo ; frais du fonds inclus dans le cours",
+    "parser": "yahoo",
+    "symbol": "EXCH.MI",
+    "field": "adjclose",
+    "precision": 6,
+    "collectAnniversary": true,
+    "timezone": "Europe/Rome",
+    "ticker": "EXCH",
+    "mic": "ETFP",
+    "listingEvidenceId": "IE00BMG6Z448-ETFP-EXCH-EUR",
+    "sourceUrls": [
+      "https://query2.finance.yahoo.com/v8/finance/chart/EXCH.MI?period1=1727740800&period2=1790812800&interval=1d&events=div%2Csplits",
+      "https://query2.finance.yahoo.com/v8/finance/chart/EXCH.MI?period1=1727740800&period2=1790812800&interval=1mo&events=div%2Csplits"
+    ],
+    "proofRows": [
+      {
+        "date": "2024-10-31",
+        "close": 4.897500038146973,
+        "monthlyClose": 4.897500038146973,
+        "value": 4.897500038146973
+      },
+      {
+        "date": "2024-11-29",
+        "close": 4.96750020980835,
+        "monthlyClose": 4.96750020980835,
+        "value": 4.96750020980835
+      },
+      {
+        "date": "2024-12-30",
+        "close": 4.911499977111816,
+        "monthlyClose": 4.911499977111816,
+        "value": 4.911499977111816
+      },
+      {
+        "date": "2025-01-31",
+        "close": 5.034999847412109,
+        "monthlyClose": 5.034999847412109,
+        "value": 5.034999847412109
+      },
+      {
+        "date": "2025-02-28",
+        "close": 4.822500228881836,
+        "monthlyClose": 4.822500228881836,
+        "value": 4.822500228881836
+      },
+      {
+        "date": "2025-03-31",
+        "close": 4.682000160217285,
+        "monthlyClose": 4.682000160217285,
+        "value": 4.682000160217285
+      },
+      {
+        "date": "2025-04-30",
+        "close": 4.608500003814697,
+        "monthlyClose": 4.608500003814697,
+        "value": 4.608500003814697
+      },
+      {
+        "date": "2025-05-30",
+        "close": 4.8414998054504395,
+        "monthlyClose": 4.8414998054504395,
+        "value": 4.8414998054504395
+      },
+      {
+        "date": "2025-06-30",
+        "close": 5.026000022888184,
+        "monthlyClose": 5.026000022888184,
+        "value": 5.026000022888184
+      },
+      {
+        "date": "2025-07-31",
+        "close": 5.169000148773193,
+        "monthlyClose": 5.169000148773193,
+        "value": 5.169000148773193
+      },
+      {
+        "date": "2025-08-29",
+        "close": 5.078000068664551,
+        "monthlyClose": 5.078000068664551,
+        "value": 5.078000068664551
+      },
+      {
+        "date": "2025-09-30",
+        "close": 5.389999866485596,
+        "monthlyClose": 5.389999866485596,
+        "value": 5.389999866485596
+      },
+      {
+        "date": "2025-10-31",
+        "close": 5.86899995803833,
+        "monthlyClose": 5.86899995803833,
+        "value": 5.86899995803833
+      },
+      {
+        "date": "2025-11-28",
+        "close": 5.749000072479248,
+        "monthlyClose": 5.749000072479248,
+        "value": 5.749000072479248
+      },
+      {
+        "date": "2025-12-30",
+        "close": 5.896999835968018,
+        "monthlyClose": 5.896999835968018,
+        "value": 5.896999835968018
+      },
+      {
+        "date": "2026-01-30",
+        "close": 6.431000232696533,
+        "monthlyClose": 6.431000232696533,
+        "value": 6.431000232696533
+      },
+      {
+        "date": "2026-02-27",
+        "close": 7.061999797821045,
+        "monthlyClose": 7.061999797821045,
+        "value": 7.061999797821045
+      },
+      {
+        "date": "2026-03-31",
+        "close": 6.285999774932861,
+        "monthlyClose": 6.285999774932861,
+        "value": 6.285999774932861
+      },
+      {
+        "date": "2026-04-30",
+        "close": 7.296999931335449,
+        "monthlyClose": 7.296999931335449,
+        "value": 7.296999931335449
+      },
+      {
+        "date": "2026-05-29",
+        "close": 8.213000297546387,
+        "monthlyClose": 8.213000297546387,
+        "value": 8.213000297546387
+      },
+      {
+        "date": "2026-06-30",
+        "close": 8.505999565124512,
+        "monthlyClose": 8.505999565124512,
+        "value": 8.505999565124512
+      },
+      {
+        "date": "2026-07-31",
+        "close": 7.623000144958496,
+        "monthlyClose": 7.623000144958496,
+        "value": 7.623000144958496
+      },
+      {
+        "date": "2026-08-31",
+        "close": 8.071999549865723,
+        "monthlyClose": 8.071999549865723,
+        "value": 8.071999549865723
+      },
+      {
+        "date": "2026-09-30",
+        "close": 8.331000328063965,
+        "monthlyClose": 8.331000328063965,
+        "value": 8.331000328063965
+      }
+    ],
+    "checkedAt": "2026-10-15",
+    "periodEnd": "2026-09",
+    "responseSha256": "e35afef5c6bf225b49b3840b2d33eab7a0ad92eee1fcf67d9c90c07b3bf90530"
   }
 }

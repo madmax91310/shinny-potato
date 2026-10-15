@@ -6,6 +6,10 @@ const RECORDS={...BASE_RECORDS,...Object.fromEntries(Object.entries(NON_BOND_REC
 // Exact shares shared by the investment, performance and anniversary tools.
 // Visual identities use exposure illustrations, never an invented issuer logo.
 export const ETF_HISTORY_IDENTITIES = {
+ etfWorldTech:{icon:'💻',scene:'chip',title:'TECHNOLOGIE MONDIALE',ticker:'WITS'},
+ etfAiBigData:{icon:'🧠',scene:'chip',title:'IA ET BIG DATA',ticker:'XAIX'},
+ etfWorldExUs:{icon:'🌍',scene:'world',title:'WORLD HORS USA',ticker:'EXUS'},
+ etfEmExChina:{icon:'🌏',scene:'world',title:'EMERGENTS HORS CHINE',ticker:'EXCH'},
  etfEuropeFood:{icon:'🛒',scene:'world',title:'ALIMENTATION EUROPE',ticker:'EXH3'},
  etfEuropeMedia:{icon:'📺',scene:'world',title:'MEDIAS EUROPE',ticker:'EXH6'},
  etfEuropeRetail:{icon:'🛍️',scene:'world',title:'DISTRIBUTION EUROPE',ticker:'EXH8'},

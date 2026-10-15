@@ -37,28 +37,29 @@ try {
       {...prepareProfile(PROFILES[0]),id:'zero-dca',lines:prepareProfile(PROFILES[0]).lines.map(l=>({...l,amount:0}))},
       {...prepareProfile(PROFILES[0]),id:'karim-approved',name:'Karim',age:32,job:'informaticien',location:'',income:2500,variable:false,lines:[['world',70,350],['europe',20,100],['emerging',10,50]].map(([asset,weight,amount])=>({asset,label:ASSETS[asset][1],emoji:ASSETS[asset][0],weight,amount,isin:references[asset].isin}))}
     ]
-    for(const [index,{raw,field}] of cases.flatMap(raw=>['countries','sectors','both'].map(field=>({raw,field}))).entries()){
+    for(const [index,{raw,field}] of cases.flatMap(raw=>['countries','sectors','both','all'].map(field=>({raw,field}))).entries()){
       const profile=raw.lines.every(l=>Number.isFinite(l.weight))?raw:prepareProfile(raw,index)
       labels=[];boxes=[]
       const canvas=await renderDcaImage(profile,field)
+      if(field==='all'&&!labels.includes('Répartition des actifs'))throw Error('Missing allocation donut')
       if(labels.some(l=>/fictif|undefined|\bNaN\b/i.test(l)))throw Error(profile.id+' unwanted text')
-      if(!labels.includes(field==='both'?`Le DCA de ${profile.name}`:profile.name)||labels.filter(l=>l==='Épargnant Libre').length!==1)throw Error('Identity: '+profile.id)
+      if(!labels.includes(['both','all'].includes(field)?`Le DCA de ${profile.name}`:profile.name)||labels.filter(l=>l==='Épargnant Libre').length!==1)throw Error('Identity: '+profile.id)
       for(const line of profile.lines)if(field!=='both'&&!labels.join(' ').includes(line.label))throw Error('Allocation missing: '+profile.id)
       output.push({id:profile.id+'-'+field,labels:[...labels],png:['julien','alexandre','patrick','arthur','laurent','helene','eight-lines','zero-dca','karim-approved'].includes(profile.id)?canvas.toDataURL():null})
     }
-    for(const field of ['countries','sectors','both']){
+    for(const field of ['countries','sectors','both','all']){
       labels=[];boxes=[]
-      const anonymous={...prepareProfile(PROFILES[0]),name:'',imageOnly:true}
+      const anonymous={...prepareProfile(PROFILES[0]),name:'',imageOnly:true,lines:prepareProfile(PROFILES[0]).lines.map(({amount:_amount,...line})=>line)}
       const canvas=await renderDcaImage(anonymous,field)
       if(labels.some(l=>/LE DCA DE|investis par mois|Salaire|ans|Julien/.test(l)))throw Error('Identity or amounts leaked')
       if(!labels.includes('Expositions du portefeuille'))throw Error('Missing anonymous heading')
-      if(field==='both'&&(!labels.includes('Exposition géographique')||!labels.includes('Exposition sectorielle')))throw Error('Missing panel')
+      if(['both','all'].includes(field)&&(!labels.includes('Exposition géographique')||!labels.includes('Exposition sectorielle')))throw Error('Missing panel')
       output.push({id:'anonymous-'+field,labels:[...labels],png:canvas.toDataURL()})
     }
     CanvasRenderingContext2D.prototype.fillText=original
     return output
   })
-  assert.equal(records.length,312)
+  assert.equal(records.length,416)
   await mkdir('test-artifacts/dca',{recursive:true})
   for(const record of records.filter(r=>r.png))await writeFile(`test-artifacts/dca/${record.id}.png`,Buffer.from(record.png.split(',')[1],'base64'))
   await page.getByRole('button',{name:'Créer une participation',exact:true}).click()
@@ -135,5 +136,17 @@ try {
   await page.setViewportSize({width:390,height:844})
   assert(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth+1))
   await page.screenshot({path:'test-artifacts/dca/management-mobile.png',fullPage:true})
-  console.log('312 images DCA : données, texte sans mention fictive, aucun chevauchement ni dépassement, aperçu, changement de profil, téléchargement et mobile validés.')
+  await page.getByLabel('Répartition uniquement — sans nom ni montants',{exact:true}).check()
+  assert.equal(await page.getByLabel('DCA position 1',{exact:true}).count(),0)
+  assert.equal(await page.getByRole('group',{name:'Donut de l’image',exact:true}).getAttribute('data-value'),'all')
+  assert(!/DCA|€|Salaire/.test(await draft.inputValue()))
+  await page.getByRole('checkbox',{name:'Je valide les expositions à publier.',exact:true}).check()
+  assert(await page.getByRole('button',{name:'Télécharger le PNG',exact:true}).isEnabled())
+  assert(await page.getByRole('button',{name:'Copier le texte',exact:true}).isEnabled())
+  await page.getByRole('button',{name:'Enregistrer le brouillon',exact:true}).click()
+  await page.getByLabel('Répartition uniquement — sans nom ni montants',{exact:true}).uncheck()
+  await page.getByRole('button',{name:'Restaurer le brouillon',exact:true}).click()
+  assert(await page.getByLabel('Répartition uniquement — sans nom ni montants',{exact:true}).isChecked())
+  assert.equal(await page.getByRole('group',{name:'Donut de l’image',exact:true}).getAttribute('data-value'),'all')
+  console.log('416 images DCA : données, texte sans mention fictive, aucun chevauchement ni dépassement, aperçu, changement de profil, téléchargement et mobile validés.')
 } finally {await browser?.close();server.kill('SIGTERM')}

@@ -1,3 +1,4 @@
+import { PRESENTATION_ETF_ADDITIONS } from '../../../data/presentation-etf-additions.js'
 import { NON_BOND_SHEETS } from '../../../data/non-bond-expansion.js'
 import { LIFESTRATEGY_SHEETS } from '../../../data/lifestrategy.js'
 import { QUALIFIED_EXPOSURE_SHEETS } from '../../../data/qualified-exposure-sheets.js'
@@ -10,6 +11,9 @@ const ACWI = 'Il couvre les grandes et moyennes entreprises des pays développé
 const EURO50 = 'Il suit 50 grandes entreprises de la zone euro. Il couvre moins de marchés que le MSCI Europe ou le STOXX Europe 600 : le Royaume-Uni et la Suisse n’en font pas partie.'
 const TECH_EUROPE = 'Il cible les entreprises technologiques du STOXX Europe 600. Tu investis dans un secteur européen précis, plutôt que dans l’ensemble du marché européen.'
 export const ETF_EXPOSURE_COPY = {
+ ...Object.fromEntries(PRESENTATION_ETF_ADDITIONS.map(r=>[r.isin,r.whatIs])),
+ IE00BG0J4C88:'Il cible les entreprises de la sécurité numérique. Cette sélection peut couvrir des activités différentes de celles d’un indice exclusivement consacré à la cybersécurité.',
+ IE00BYPLS672:'Il cible les entreprises de cybersécurité selon les règles de son indice. Les poids et les critères de sélection peuvent différer des autres ETF de sécurité numérique.',
  IE00B3F81G20: 'Il suit les petites capitalisations des marchés émergents. Il complète un indice de grandes et moyennes entreprises ; les pays et les secteurs peuvent y occuper des poids différents.',
  LU1437018838:'Il suit l’immobilier coté mondial via le FTSE EPRA/NAREIT Developed. Tu détiens des actions de sociétés immobilières des marchés développés, avec un risque de taux et de marché.',
  IE00B4LHWP62:'Il est adossé à du platine physique. Tu détiens un ETC, pas des actions minières ni un ETF UCITS. Il ne distribue pas de revenu.',
