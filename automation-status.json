@@ -198,19 +198,24 @@
     },
     "update-publication-observations.yml": {
       "name": "Pouvoir d’achat et niveaux des anniversaires",
-      "runId": 38789235142,
+      "runId": 38805030022,
       "attempt": 1,
-      "completedAt": "2026-10-15T19:07:45Z",
-      "status": "success",
+      "completedAt": "2026-10-15T20:56:56Z",
+      "status": "failure",
       "lastSuccessAt": "2026-10-15T19:07:45Z",
       "collectionStatus": "success",
       "validationStatus": "success",
       "recordingStatus": "success",
-      "publicationStatus": "not-run",
-      "lastCollectionSuccessAt": "2026-10-15T19:07:45Z",
+      "publicationStatus": "failure",
+      "lastCollectionSuccessAt": "2026-10-15T20:56:56Z",
       "lastPublicationSuccessAt": "2026-10-11T14:35:58Z",
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38789235142",
-      "failures": [],
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38805030022",
+      "failures": [
+        {
+          "job": "deploy / build",
+          "step": "Run node scripts/test-etf-routing-expansion.mjs"
+        }
+      ],
       "dataFailures": {}
     },
     "update-editorial-radar.yml": {
@@ -388,11 +393,11 @@
       "dataFailures": {}
     }
   },
-  "updatedAt": "2026-10-15T20:55:33Z",
+  "updatedAt": "2026-10-15T20:56:56Z",
   "monitoring": {
     "schemaVersion": 1,
-    "checkedAt": "2026-10-15T20:56:15.173431+00:00",
-    "revision": 32,
+    "checkedAt": "2026-10-15T20:57:15.425381+00:00",
+    "revision": 33,
     "active": {
       "collection:update-practical-sheets.yml:practical:13f": {
         "name": "SEC · questions et réponses sur le formulaire 13F",
@@ -413,7 +418,24 @@
         "dataId": "practical:13f",
         "id": "collection:update-practical-sheets.yml:practical:13f",
         "firstSeenAt": "2026-10-14T21:07:26.171294+00:00",
-        "lastSeenAt": "2026-10-15T20:56:15.173431+00:00"
+        "lastSeenAt": "2026-10-15T20:57:15.425381+00:00"
+      },
+      "publication:update-publication-observations.yml": {
+        "name": "Pouvoir d’achat et niveaux des anniversaires",
+        "tools": [
+          "Pouvoir d’achat",
+          "Il y a X ans"
+        ],
+        "impactScope": "collector",
+        "workflow": "update-publication-observations.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38805030022",
+        "to": "/donnees-a-revoir",
+        "kind": "publication",
+        "field": "Publication",
+        "cause": "deploy / build : Run node scripts/test-etf-routing-expansion.mjs",
+        "id": "publication:update-publication-observations.yml",
+        "firstSeenAt": "2026-10-15T20:57:15.425381+00:00",
+        "lastSeenAt": "2026-10-15T20:57:15.425381+00:00"
       },
       "collection:update-insurance.yml:linxea-avenir-2": {
         "name": "Linxea Avenir 2",
@@ -432,7 +454,7 @@
         "dataId": "linxea-avenir-2",
         "id": "collection:update-insurance.yml:linxea-avenir-2",
         "firstSeenAt": "2026-10-14T13:08:27.203935+00:00",
-        "lastSeenAt": "2026-10-15T20:56:15.173431+00:00"
+        "lastSeenAt": "2026-10-15T20:57:15.425381+00:00"
       },
       "collection:update-scpi.yml:remake-live": {
         "name": "Remake Live",
@@ -455,7 +477,7 @@
         "dataId": "remake-live",
         "id": "collection:update-scpi.yml:remake-live",
         "firstSeenAt": "2026-10-15T13:02:43.499914+00:00",
-        "lastSeenAt": "2026-10-15T20:56:15.173431+00:00"
+        "lastSeenAt": "2026-10-15T20:57:15.425381+00:00"
       },
       "collection:update-regulatory-data.yml:broker-observation:caidf:profile:change": {
         "name": "caidf:profile:change",
@@ -475,7 +497,7 @@
         "dataId": "broker-observation:caidf:profile:change",
         "id": "collection:update-regulatory-data.yml:broker-observation:caidf:profile:change",
         "firstSeenAt": "2026-10-15T18:00:14.760687+00:00",
-        "lastSeenAt": "2026-10-15T20:56:15.173431+00:00"
+        "lastSeenAt": "2026-10-15T20:57:15.425381+00:00"
       },
       "collection:update-lifestrategy.yml:IE00BMVB5K07": {
         "name": "Vanguard LifeStrategy 20% Equity UCITS ETF (EUR) Accumulating",
@@ -502,7 +524,7 @@
         "dataId": "IE00BMVB5K07",
         "id": "collection:update-lifestrategy.yml:IE00BMVB5K07",
         "firstSeenAt": "2026-10-15T10:23:56.855354+00:00",
-        "lastSeenAt": "2026-10-15T20:56:15.173431+00:00"
+        "lastSeenAt": "2026-10-15T20:57:15.425381+00:00"
       },
       "collection:update-lifestrategy.yml:IE00BMVB5M21": {
         "name": "Vanguard LifeStrategy 40% Equity UCITS ETF (EUR) Accumulating",
@@ -529,7 +551,7 @@
         "dataId": "IE00BMVB5M21",
         "id": "collection:update-lifestrategy.yml:IE00BMVB5M21",
         "firstSeenAt": "2026-10-15T10:23:56.855354+00:00",
-        "lastSeenAt": "2026-10-15T20:56:15.173431+00:00"
+        "lastSeenAt": "2026-10-15T20:57:15.425381+00:00"
       },
       "collection:update-lifestrategy.yml:IE00BMVB5P51": {
         "name": "Vanguard LifeStrategy 60% Equity UCITS ETF (EUR) Accumulating",
@@ -556,7 +578,7 @@
         "dataId": "IE00BMVB5P51",
         "id": "collection:update-lifestrategy.yml:IE00BMVB5P51",
         "firstSeenAt": "2026-10-15T10:23:56.855354+00:00",
-        "lastSeenAt": "2026-10-15T20:56:15.173431+00:00"
+        "lastSeenAt": "2026-10-15T20:57:15.425381+00:00"
       },
       "collection:update-lifestrategy.yml:IE00BMVB5R75": {
         "name": "Vanguard LifeStrategy 80% Equity UCITS ETF (EUR) Accumulating",
@@ -583,7 +605,7 @@
         "dataId": "IE00BMVB5R75",
         "id": "collection:update-lifestrategy.yml:IE00BMVB5R75",
         "firstSeenAt": "2026-10-15T10:23:56.855354+00:00",
-        "lastSeenAt": "2026-10-15T20:56:15.173431+00:00"
+        "lastSeenAt": "2026-10-15T20:57:15.425381+00:00"
       },
       "monitor:radar": {
         "kind": "unobserved",
@@ -596,36 +618,10 @@
         "to": "/donnees-a-revoir",
         "id": "monitor:radar",
         "firstSeenAt": "2026-10-15T18:53:46.175472+00:00",
-        "lastSeenAt": "2026-10-15T20:56:15.173431+00:00"
+        "lastSeenAt": "2026-10-15T20:57:15.425381+00:00"
       }
     },
     "events": [
-      {
-        "revision": 3,
-        "at": "2026-10-14T08:27:23.149392+00:00",
-        "opened": [
-          "collection:update-inflation.yml:inflation:011814631"
-        ],
-        "resolved": [
-          {
-            "name": "Inflation INSEE",
-            "tools": [
-              "Pouvoir d’achat"
-            ],
-            "impactScope": "collector",
-            "workflow": "update-inflation.yml",
-            "runUrl": null,
-            "to": "/donnees-a-revoir",
-            "kind": "unobserved",
-            "field": "Exécution",
-            "cause": "Aucune exécution terminée avec une date exploitable.",
-            "id": "unobserved:update-inflation.yml",
-            "firstSeenAt": "2026-10-14T07:02:59.832459+00:00",
-            "lastSeenAt": "2026-10-14T08:26:40.495049+00:00",
-            "resolvedAt": "2026-10-14T08:27:23.149392+00:00"
-          }
-        ]
-      },
       {
         "revision": 4,
         "at": "2026-10-14T09:16:12.378585+00:00",
@@ -4418,6 +4414,14 @@
             "resolvedAt": "2026-10-15T19:05:50.718620+00:00"
           }
         ]
+      },
+      {
+        "revision": 33,
+        "at": "2026-10-15T20:57:15.425381+00:00",
+        "opened": [
+          "publication:update-publication-observations.yml"
+        ],
+        "resolved": []
       }
     ],
     "resolved": [
