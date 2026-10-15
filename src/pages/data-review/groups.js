@@ -5,7 +5,7 @@ export function groupReviews(items) {
     // Une source commune ne suffit pas à confondre deux contrats ou deux réserves.
     const key = [item.name, item.category, [...item.urls].sort().join('|')].join('::')
     const group = groups.get(key) ?? { id:key, name:item.name, category:item.category, items:[], tools:new Set(), urls:item.urls }
-    group.items.push(item); item.tools.forEach(t=>group.tools.add(t)); groups.set(key,group)
+    if (!group.items.some(existing => existing.id === item.id)) group.items.push(item); item.tools.forEach(t=>group.tools.add(t)); groups.set(key,group)
   }
   return [...groups.values()].map(g=>({...g,tools:[...g.tools]})).sort((a,b)=>(PRIORITIES[a.category]??9)-(PRIORITIES[b.category]??9)||b.tools.length-a.tools.length||a.name.localeCompare(b.name,'fr'))
 }
