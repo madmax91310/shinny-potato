@@ -4,6 +4,16 @@ import * as history from '../src/data/market-history.js'
 import { DATA_CATALOG } from '../src/data/catalog.js'
 import { projectReviewCatalog } from '../src/data/review-projection.js'
 
+// Lossless string interning keeps repeated source URLs and review instructions
+// from growing once per company/field. Objects and dates remain unchanged.
+export function compactLiteral(value) {
+  const json=JSON.stringify(value),counts=new Map()
+  const tokens=/"(?:[^"\\]|\\.)*"(\s*:)?/g
+  json.replace(tokens,(s,key)=>{if(!key&&s.length>=26)counts.set(s,(counts.get(s)??0)+1);return s})
+  const shared=[...counts].filter(([,n])=>n>=3).map(([s])=>s),indices=new Map(shared.map((s,i)=>[s,i]))
+  return `const strings=[${shared.join(',')}];\nexport default `+json.replace(tokens,(s,key)=>!key&&indices.has(s)?`strings[${indices.get(s)}]`:s)+';'
+}
+
 // Projections are derived from the same registries on every build/dev startup.
 // No fetched copy or independently maintained financial value is introduced.
 export function projectToolData() {
@@ -19,7 +29,7 @@ export function projectToolData() {
     if (part.length) parts.push(part)
     const imports = parts.map((part, i) => {
       const key = `virtual:tool-data:${name}:${i}`
-      modules.set(key, `export default ${JSON.stringify(array ? part : Object.fromEntries(part))};`)
+      modules.set(key, compactLiteral(array ? part : Object.fromEntries(part)))
       groups.push({ name: `${name}-${i}`, test: new RegExp(`tool-data:${name}:${i}$`), priority: 120 })
       return `import p${i} from '${key}';`
     }).join('\n')

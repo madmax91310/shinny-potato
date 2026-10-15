@@ -44,6 +44,18 @@ class UniverseTests(unittest.TestCase):
         self.assertIn('valuationShareBasis', old)
         self.assertNotEqual(status['accounts'], 'updated')
 
+    def test_missing_cash_multiple_does_not_remove_verified_shares(self):
+        basis={'version':1,'annualEnd':'2025-12-31'}
+        with patch('refresh_company_universe.fetch_json', side_effect=OSError('offline')), \
+             patch('company_standard_financials.collect', side_effect=OSError('offline')), \
+             patch('refresh_company_universe.collect_forecast', side_effect=OSError('offline')), \
+             patch('refresh_company_universe.qualify_share_basis', return_value=basis), \
+             patch('refresh_company_universe.collect_cash_references', side_effect=ValueError('No positive FCF multiples')):
+            item,status=collect(self.profile,{},dt.datetime(2026,10,14,tzinfo=dt.timezone.utc))
+        self.assertEqual(item['valuationShareBasis'],basis)
+        self.assertEqual(status['cashBasis'],'updated')
+        self.assertNotIn('targetCashReference',item)
+
 
 if __name__ == '__main__':
     unittest.main()

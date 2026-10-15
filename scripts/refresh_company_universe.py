@@ -102,12 +102,20 @@ def collect(profile, old, now):
         status['forecast'] = str(error)[:250]
     try:
         item['valuationShareBasis'] = qualify_share_basis(item, profile, fetch, now.date())
-        item['targetCashReference'] = collect_cash_references(item, profile, fetch, now.date())
         status['cashBasis'] = 'updated'
     except Exception as error:
         # A failed full-window split check must not preserve model eligibility.
         item.pop('valuationShareBasis', None)
         status['cashBasis'] = str(error)[:250]
+    if status.get('cashBasis') == 'updated':
+        try:
+            item['targetCashReference'] = collect_cash_references(item, profile, fetch, now.date())
+            status['cashReference'] = 'updated'
+        except Exception as error:
+            # A valid share basis still supports the published FCF per share
+            # when historical positive multiples cannot support a cash model.
+            item.pop('targetCashReference', None)
+            status['cashReference'] = str(error)[:250]
     return item, status
 
 

@@ -37,8 +37,12 @@ try {
   await page.getByText('Comptes détaillés et publication existante',{exact:true}).click()
   await page.getByText('Consulter les comptes et indicateurs détaillés',{exact:true}).click()
   const chooser=page.getByRole('group',{name:'Choisir une entreprise',exact:true})
+  async function choose(company) {
+    await chooser.getByRole('button',{name:`${company.name} · ${company.symbol}`,exact:true}).click()
+    await page.locator(`[data-loaded-company="${company.id}"]:not([hidden])`).waitFor({state:'visible'})
+  }
   for(const company of COMPANIES) {
-    await chooser.getByRole('button',{name:`${company.name} · ${company.symbol}`}).click()
+    await choose(company)
     const text=await page.getByTestId('company-tweet').innerText()
     assert(text.includes(company.name));assert(text.includes(company.activity))
     assert(/💰 .*exercice terminé en/.test(text))
@@ -76,7 +80,7 @@ try {
     }
   }
   // Exercise valuation inputs in the actual browser, including invalid input and reset.
-  await chooser.getByRole('button',{name:'Apple · AAPL'}).click()
+  await choose(COMPANIES.find(c=>c.id==='apple'))
   const valuationPanel = page.getByTestId('company-valuation')
   await valuationPanel.getByRole('button',{name:'Bénéfices',exact:true}).click()
   await valuationPanel.getByText('Ajuster les hypothèses',{exact:true}).click()
@@ -158,7 +162,7 @@ try {
   await page.setViewportSize({width:1440,height:1100})
   // Every currently eligible company can generate a finite image/text snapshot.
   for(const company of COMPANIES) {
-    await chooser.getByRole('button',{name:`${company.name} · ${company.symbol}`}).click()
+    await choose(company)
     if(!await valuationPanel.locator('.valuation-publication-details').evaluate(el=>el.open)) await valuationPanel.getByText('Préparer la publication pour X',{exact:true}).click()
     const inputs=buildScenarios(company).inputs
     if(process.env.COMPANY_REQUIRE_PRICE_HISTORY && (inputs.cashReady||inputs.earningsReady)) assert(company.quote.history?.length>10,`${company.id}: missing real closing history`)
@@ -171,7 +175,7 @@ try {
       }
     } else assert.equal(await publication.getByRole('button').count(),0)
   }
-  await chooser.getByRole('button',{name:'Apple · AAPL'}).click()
+  await choose(COMPANIES.find(c=>c.id==='apple'))
   // A tab left open beyond the freshness window must withdraw publication.
   await valuationPanel.getByText('Préparer la publication pour X',{exact:true}).click()
   await page.clock.install()
@@ -193,7 +197,7 @@ try {
   await page.getByRole('tab',{name:'Image',exact:true}).click()
   let previousImage = ''
   for (const company of COMPANIES) {
-    await chooser.getByRole('button',{name:`${company.name} · ${company.symbol}`}).click()
+    await choose(company)
     const rendered = page.getByRole('img',{name:`Les chiffres de ${company.name}`})
     await rendered.waitFor()
     await page.waitForFunction(previous => {
@@ -207,7 +211,7 @@ try {
     }
   }
   await page.getByRole('tab',{name:'Texte',exact:true}).click()
-  await chooser.getByRole('button',{name:'Apple · AAPL'}).click()
+  await choose(COMPANIES.find(c=>c.id==='apple'))
   await page.getByRole('button',{name:'Copier le texte',exact:true}).click()
   const copied=await page.evaluate(()=>navigator.clipboard.readText())
   assert.equal(copied,await page.getByTestId('company-tweet').innerText())
@@ -215,9 +219,9 @@ try {
   await page.getByRole('textbox',{name:'Texte de la publication'}).fill('📱 Mon analyse Apple modifiée')
   await page.getByRole('button',{name:'Copier le texte',exact:true}).click()
   assert.equal(await page.evaluate(()=>navigator.clipboard.readText()), '📱 Mon analyse Apple modifiée')
-  await chooser.getByRole('button',{name:'Microsoft · MSFT'}).click()
+  await choose(COMPANIES.find(c=>c.id==='microsoft'))
   assert((await page.getByRole('textbox',{name:'Texte de la publication'}).inputValue()).includes('Microsoft'))
-  await chooser.getByRole('button',{name:'Apple · AAPL'}).click()
+  await choose(COMPANIES.find(c=>c.id==='apple'))
   assert.equal(await page.getByRole('textbox',{name:'Texte de la publication'}).inputValue(), '📱 Mon analyse Apple modifiée')
   await page.getByRole('button',{name:'Rétablir le texte d’origine',exact:true}).click()
   assert.equal(await page.getByRole('textbox',{name:'Texte de la publication'}).inputValue(), copied)
@@ -237,7 +241,7 @@ try {
   assert.match((await downloadPromise).suggestedFilename(),/^analyse-apple-.*\.png$/)
   await page.setViewportSize({width:390,height:844})
   await page.getByRole('button',{name:'Réglages',exact:true}).click()
-  await chooser.getByRole('button',{name:'Microsoft · MSFT'}).click()
+  await choose(COMPANIES.find(c=>c.id==='microsoft'))
   await page.getByRole('button',{name:'Aperçu',exact:true}).click()
   await page.getByRole('tab',{name:'Texte',exact:true}).click()
   assert((await page.getByTestId('company-tweet').innerText()).includes('Microsoft'))

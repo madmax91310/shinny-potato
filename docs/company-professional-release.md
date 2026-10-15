@@ -35,21 +35,27 @@ FCF après intérêts ne procède pas à une seconde déduction de dette et n'es
 pas un modèle FCFF de valeur d'entreprise. Les banques et assurances ne sont
 pas ajoutées avec cette méthode générique.
 
-## Réception encore à réaliser
+## Réception de la première livraison
 
-Le catalogue existant comporte 26 entreprises ; les 64 nouvelles entrées sont
-des candidates, pas des entreprises validées. L'objectif de 60 n'est pas atteint
-par une simple inscription dans ce catalogue. Les observations de collecte
-locale interrompue ne sont pas utilisées comme données de production.
+Le jeu préparé le 14 octobre 2026 contient 75 entreprises actives, dont 60
+satisfont le contrat complet. Les 15 dossiers historiques encore partiels
+conservent leurs réserves ; ils ne sont pas comptés dans ce seuil.
+49 entreprises nouvellement qualifiées rejoignent les 26 dossiers existants.
+Les autres candidates restent exclues du catalogue publié.
 
-1. Autoriser l'envoi des modifications vers madmax91310/shinny-potato : la revue
-   automatique a rejeté le premier envoi avant création de branche ou de PR.
-2. Exécuter le workflow GitHub de qualification et examiner son rapport.
-3. Réintégrer uniquement les observations effectivement qualifiées sur runner.
-4. Compléter les éventuels manques jusqu'à 60 entreprises complètes.
-5. Vérifier navigateur/mobile/exports sur les données finales, puis les budgets
-   de bundle ; les tests locaux ne remplacent pas cette réception finale.
-6. Fusionner seulement après réussite des contrôles, puis vérifier Pages.
+Les comptes proviennent de la SEC ou, en cas d'échec, des tableaux annuels
+visibles de Stock Analysis / S&P Global. Ce second cas est explicitement
+indiqué. Les comptes trimestriels, la dette et la trésorerie manquants ne sont
+pas inventés. Les montants attribuables aux actionnaires sont rapprochés du
+BPA et des actions diluées, dans la limite des arrondis affichés.
+
+Les dossiers sont chargés à la demande. Les comparables utilisent une
+projection des mêmes observations ; les données de suivi sont compactées sans
+perte. Les budgets JavaScript restent inchangés.
+
+La qualification des données et les tests locaux passent. La réception GitHub,
+la fusion et la vérification du déploiement restent des étapes de livraison.
+La seconde livraison doit ajouter 50 entreprises complètes supplémentaires.
 
 La commande de réception est :
 
