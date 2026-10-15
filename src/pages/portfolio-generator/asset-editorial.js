@@ -212,6 +212,23 @@ for (const [id, label, underlying] of [
  entries[id].description=`Un ETC suivant un indice de contrats à terme sur ${underlying}.`;
 }
 
+add("em_ex_china","emerging","les émergents hors Chine","Cette poche modifie volontairement la répartition des émergents. La Chine est exclue, mais les autres risques des marchés émergents restent présents.");
+entries["em_ex_china"].description="Les actions émergentes en excluant la Chine.";
+add("semiconducteurs_monde","theme","les semi-conducteurs mondiaux","On renforce un secteur déjà présent dans les indices larges. La demande, les investissements et les restrictions commerciales peuvent entraîner de fortes variations.");
+entries["semiconducteurs_monde"].description="Les entreprises de la chaîne des semi-conducteurs.";
+add("financieres_monde","theme","les financières mondiales","On renforce les banques, assurances et autres services financiers selon l’indice du fonds. Les taux et le coût du risque influencent leurs résultats.");
+entries["financieres_monde"].description="Les sociétés financières des pays développés.";
+add("blockchain_ishares","theme","les entreprises liées à la blockchain","Ce fonds détient des entreprises cotées, pas directement du Bitcoin. La concentration et la dépendance au marché des cryptomonnaies peuvent accentuer les baisses.");
+entries["blockchain_ishares"].description="Des actions liées à la blockchain et aux cryptomonnaies.";
+add("stoxx600_bnp","europe","le STOXX Europe 600","À côté d’un World, cette poche augmente le poids de l’Europe déjà présente. À côté du S&P 500, elle ajoute une autre zone géographique.");
+entries["stoxx600_bnp"].description="Des entreprises européennes de différentes tailles.";
+add("cuivre_wisdomtree","commodity","le cuivre via contrats à terme","Le renouvellement des contrats et les frais influencent la performance. Tu ne détiens pas du cuivre physique et le résultat peut différer du prix spot.");
+entries["cuivre_wisdomtree"].description="Un ETC cuivre sur contrats à terme via swap.";
+add("platine_ishares","commodity","le platine physique","Cette ligne suit un métal sans revenu distribué. La demande industrielle et le change comptent ; sa présence ne garantit pas une protection du portefeuille.");
+entries["platine_ishares"].description="Un ETC adossé à du platine physique.";
+add("palladium_ishares","commodity","le palladium physique","La demande industrielle peut fortement influencer ce métal. Le produit ne distribue pas de revenu et son prix peut subir de fortes baisses.");
+entries["palladium_ishares"].description="Un ETC adossé à du palladium physique.";
+
 export const ASSET_EDITORIAL = Object.freeze(entries);
 export function assetEditorial(asset) {
   const entry = ASSET_EDITORIAL[asset.id];
