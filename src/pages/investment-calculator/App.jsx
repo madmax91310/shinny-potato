@@ -1,3 +1,4 @@
+import HistoricalContext from '../../design-system/HistoricalContext.jsx'
 import { readPreference, writePreference } from '../../lib/publication-preferences.js'
 import CrisisResult from './CrisisResult.jsx'
 import { CRISES, compareCrisis, buildCrisisTweet } from './crisis.js'
@@ -164,6 +165,7 @@ function ResultCard({ state, d, copied, onCopy }) {
           </span>
         </div>
         <Sparkline series={d.result.series} invested={d.result.invested} />
+        <HistoricalContext asset={asset} minDate={asset ? getAssetMinDate(state.assetId) : null} />
       </div>
 
       <div className="ic-compare">

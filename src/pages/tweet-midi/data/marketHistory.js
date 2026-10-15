@@ -205,6 +205,10 @@ export function hasComparableLevel(assetId) {
 // ordre, mêmes libellés/icônes), sans dupliquer les prix.
 export const MARKET_ASSETS = ASSET_ORDER.map((id) => ({
   id,
+  points: ASSETS[id].points,
+  minDate: getAssetMinDate(id),
+  priceMethod: ASSETS[id].priceMethod,
+  returnNote: ASSETS[id].returnNote,
   label: ASSETS[id].label,
   tweetPhrase: ASSETS[id].tweetPhrase,
   icon: ASSETS[id].icon,
@@ -222,6 +226,7 @@ export const MARKET_ASSETS = ASSET_ORDER.map((id) => ({
 export const ANNIVERSAIRE_ELIGIBLE_ASSETS = [
   ...MARKET_ASSETS.filter((a) => !ANNIVERSAIRE_EXCLUDED_IDS.has(a.id)),
   ...Object.entries(INDEX_ASSETS).filter(([id]) => !ASSET_ORDER.includes(id)).map(([id, asset]) => ({
+    points: asset.points, minDate: getAssetMinDate(id), returnNote: asset.returnNote, priceMethod: asset.priceMethod,
     id, label: asset.label, tweetPhrase: asset.tweetPhrase, icon: asset.icon,
     currency: asset.currency, sourceCredit: asset.sourceCredit, priceUnit: 'points',
     anniversaryVariant: ANNIVERSARY_INDEX_VARIANTS[id],

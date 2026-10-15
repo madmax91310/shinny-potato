@@ -67,6 +67,7 @@ jobs:
       - run: node scripts/test-lifestrategy.mjs
       - run: node scripts/test-resource-selections.mjs
       - run: node scripts/test-dca-profiles.mjs
+      - run: node scripts/test-global-audit.mjs
       - run: node scripts/test-exposure-observations.mjs
       - run: node scripts/test-presentation-etf.mjs
       - run: node scripts/test-scpi.mjs

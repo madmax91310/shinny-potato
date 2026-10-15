@@ -153,7 +153,18 @@ export function practicalTweetBlocks(sheet, editorial) {
  if (editorial.sections) return editorial.sections.map(([title, text]) => `${title}\n\n${text}`)
  return sheet.rows.map(row => {
   const title = `${ROW_EMOJI[row[0]] ?? '📈'} ${row[0]}`
-  const values = sheet.columns.map((column, i) => `${column.split('\n')[0]} : ${String(row[i + 1]).replaceAll('\n', ' · ')}`)
+  const values = sheet.columns.map((column, i) => `${column === 'À comprendre' ? '' : column.split('\n')[0] + ' : '}${String(row[i + 1]).replaceAll('\n', ' · ')}`)
   return `${title}\n\n${values.join('\n')}`
  })
+}
+
+export const PRACTICAL_EXAMPLES = {
+ 'etf-pe': 'Exemple fictif : un PER de 15 pour un ETF bancaire et de 25 pour un ETF technologique ne compare pas les mêmes activités. Le ratio seul ne permet pas de les départager.',
+ 'etf-volatility': 'Exemple fictif : une volatilité de 10 % n’est pas une perte maximale de 10 %. La baisse peut dépasser ce chiffre.',
+ 'sector-theme': 'Par exemple, une entreprise de cybersécurité peut appartenir au secteur technologique. Un ETF technologique large et un ETF cybersécurité peuvent donc la détenir tous les deux.',
+ 'em-small': 'Par exemple, associer un ETF émergents IMI et un ETF petites capitalisations émergentes peut renforcer des entreprises déjà présentes dans le premier.',
+ 'bond-duration': 'Exemple simplifié : une duration de 5 correspond approximativement à une baisse de prix de 5 % si les taux montent de 1 point, toutes choses égales par ailleurs. Cette approximation ignore notamment la convexité.',
+ 'av-fee-layers': 'Par exemple, les frais annuels du contrat et ceux de l’ETF peuvent s’appliquer au même investissement. Il faut aussi vérifier les éventuels frais de transaction et de gestion pilotée.',
+ 'etf-aum-scope': 'Par exemple, une part capitalisante et une part distribuante peuvent appartenir au même fonds. L’encours du fonds entier ne doit pas être présenté comme celui de chaque part.',
+ '13f-reading': 'Par exemple, le poids d’une entreprise peut augmenter parce que son cours monte, sans achat supplémentaire. Je vérifie le nombre d’actions avant de parler de renforcement.',
 }

@@ -1,3 +1,7 @@
+import * as commodities from '../src/data/commodity-publication-data.js'
+import * as exposures from '../src/data/portfolio-exposure-data.js'
+import * as cards from '../src/data/etf-cards.js'
+import * as publication from '../src/data/etf-publication-data.js'
 import { readFileSync } from 'node:fs'
 import * as instruments from '../src/data/instruments.js'
 import * as facts from '../src/data/instrument-facts.js'
@@ -16,6 +20,7 @@ import * as practical from '../src/data/practical-source-data.js'
 // Canonical function bodies retain runtime validation and formatting behaviour.
 export function projectLightRegistries() {
   const definitions = [
+    ['commodity-publication-data', commodities, ''], ['portfolio-exposure-data', exposures, ''], ['etf-cards', cards, ''], ['etf-publication-data', publication, ''],
     ['qualified-exposure-sheets', qualified, ''],
     ['qualified-exposure-metrics', metrics, ''],
     ['instrument-reference-evidence', reference, ''],

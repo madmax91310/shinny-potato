@@ -1,3 +1,4 @@
+import { PRACTICAL_EXAMPLES } from './editorial.js'
 import { TOPICS, FUND_GROUPS, DEFAULT_SCENARIO } from './data.js'
 import { PRACTICAL_ETF as AUTOMATED_ETF, PRACTICAL_INDEX_FACTS } from '../../data/practical-source-data.js'
 import { INSTRUMENT_FACTS_BY_ISIN } from '../../data/instrument-facts.js'
@@ -151,5 +152,5 @@ export function buildTweet(sheet) {
  const editorial=PRACTICAL_EDITORIAL[sheet.id]
  if(!editorial) throw new Error(`Texte de fiche manquant : ${sheet.id}`)
  const blocks=practicalTweetBlocks(sheet,editorial)
- return [editorial.hook+' 👇','🔖 Sauvegarde ce tweet',...blocks,editorial.closing,...sheet.notes].filter(Boolean).join('\n\n')
+ return [editorial.hook+' 👇','🔖 Sauvegarde ce tweet',...blocks,PRACTICAL_EXAMPLES[sheet.id],editorial.closing,...sheet.notes].filter(Boolean).join('\n\n')
 }

@@ -97,3 +97,7 @@ body { margin: 0; background: var(--ui-bg); color: var(--ui-ink); font-family: I
  .workspace-page-help { margin-left: 48px; }
 }
 @media (prefers-reduced-motion: reduce) { .workspace-tool-card,.workspace-button { transition: none; } }
+
+.portfolio-exposure { margin: 1rem 0; padding: .8rem; border: 1px solid #b9c5ba; border-radius: 12px; overflow-wrap: anywhere; font-size: .9rem; }
+.portfolio-exposure summary { cursor: pointer; font-weight: 650; }
+.portfolio-exposure ul { padding-left: 1.2rem; }
