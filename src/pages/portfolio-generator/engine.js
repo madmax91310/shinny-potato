@@ -1,3 +1,4 @@
+import { constructionIssues } from './controls.js';
 import { benchmarkKey } from '../../data/asset-selection.js';
 import { portfolioPostEditorial, portfolioPostName } from './postEditorial.js';
 import { ASSETS, getAsset } from '../../data/portfolio-assets.js';
@@ -16,9 +17,6 @@ function rand(min, max) {
 }
 function randInt(min, max) {
   return Math.floor(rand(min, max + 1));
-}
-function pick(arr) {
-  return arr[randInt(0, arr.length - 1)];
 }
 function shuffle(arr) {
   const a = arr.slice();
@@ -148,11 +146,12 @@ function buildSelection(combo, usageCounts, historyLength) {
 // Échange de 1 à 25 points entre deux lignes, dans les limites propres à la recette.
 // Chaque échange est annulé s’il casse ces limites, le filtre historique ou une règle
 // du profil. Le levier et la conviction centrale thématique sont fixes dans recipes.js.
-function jitterSelection(selection, bound, profileId, riskId, recipe) {
+function jitterSelection(selection, bound, profileId, riskId, recipe, locked = []) {
   const attempts = randInt(3, 9);
   for (let i = 0; i < attempts; i++) {
-    if (selection.length < 2) break;
-    const [ia, ib] = shuffle(selection.map((_, idx) => idx)).slice(0, 2);
+    const movable = selection.map((row, idx) => locked.some(lock => lock.id === row.id) ? -1 : idx).filter(idx => idx >= 0);
+    if (movable.length < 2) break;
+    const [ia, ib] = shuffle(movable).slice(0, 2);
     const amount = randInt(1, 25);
     if (selection[ia].pct - amount < 5) continue;
     selection[ia].pct -= amount;
@@ -191,6 +190,7 @@ const CRYPTO_CURIEUX_BITCOIN_BOUNDS = {
   dynamique: { min: 15, max: 30 },
 };
 function violatesProfileInvariant(profileId, selection, riskId) {
+  if (constructionIssues(selection, riskId).length) return true;
   if (profileId === "pro_europe") {
     const europePct = selection
       .filter((s) => PRO_EUROPE_CORE_IDS.includes(s.id))
@@ -333,23 +333,62 @@ export function buildManualPortfolio(rawSelection, profileId, history) {
   };
 }
 
-function pickRecipe(profileId, riskId, history) {
-  const recipes = getRecipes(profileId, riskId);
+// Match exact supports to distinct slots, preserving each recipe's limits.
+function lockSlots(recipe, locked) {
+  const matched = new Map();
+  function match(i) {
+    if (i === locked.length) return true;
+    const lock = locked[i];
+    for (let j = 0; j < recipe.assets.length; j++) {
+      const slot = recipe.assets[j];
+      if (matched.has(j) || !(slot.idOptions ?? [slot.id]).includes(lock.id)
+        || lock.pct < slot.minPct || lock.pct > slot.maxPct) continue;
+      matched.set(j, lock);
+      if (match(i + 1)) return true;
+      matched.delete(j);
+    }
+    return false;
+  }
+  if (!match(0)) return null;
+  const fixed = locked.reduce((sum, row) => sum + row.pct, 0);
+  const free = recipe.assets.filter((_, i) => !matched.has(i));
+  return fixed + free.reduce((sum, row) => sum + row.minPct, 0) <= 100
+    && fixed + free.reduce((sum, row) => sum + row.maxPct, 0) >= 100 ? matched : null;
+}
+function lockedSelection(recipe, locked, usage, length) {
+  const slots = lockSlots(recipe, locked);
+  if (!slots) return null;
+  const selection = buildSelection(recipe, usage, length);
+  for (const [index, lock] of slots) selection[index] = { ...getAsset(lock.id), pct: lock.pct, desc: getAsset(lock.id).desc[0] };
+  let delta = 100 - selection.reduce((sum, row) => sum + row.pct, 0);
+  for (const index of shuffle(selection.map((_, i) => i).filter(i => !slots.has(i)))) {
+    const row = selection[index], slot = recipe.assets[index];
+    const transfer = delta > 0 ? Math.min(delta, slot.maxPct - row.pct) : -Math.min(-delta, row.pct - slot.minPct);
+    row.pct += transfer; delta -= transfer;
+  }
+  return delta === 0 ? selection : null;
+}
+function rankedRecipes(profileId, riskId, history, locked) {
+  const recipes = getRecipes(profileId, riskId).filter(r => lockSlots(r, locked));
   const recent = history.filter(h => h.profileId === profileId && h.riskId === riskId);
   const last = recent.at(-1)?.recipeId;
-  const candidates = recipes.filter(r => r.id !== last);
   const count = r => recent.filter(h => h.recipeId === r.id).length;
-  const minimum = Math.min(...candidates.map(count));
-  return pick(candidates.filter(r => count(r) === minimum));
+  return shuffle(recipes).sort((a,b) => Number(a.id === last) - Number(b.id === last) || count(a) - count(b));
 }
 
-export function generatePortfolio(history, targetRiskKey, targetProfileKey) {
+export function generatePortfolio(history, targetRiskKey, targetProfileKey, { locked = [] } = {}) {
+  if (new Set(locked.map(row => row.id)).size !== locked.length || locked.some(row => !Number.isInteger(row.pct) || row.pct <= 0))
+    throw new Error('Les lignes conservées doivent être distinctes et avoir un poids entier positif.');
+  if (locked.length && (!targetRiskKey || targetRiskKey === 'auto' || !targetProfileKey || targetProfileKey === 'auto'))
+    throw new Error('Conserver une ligne nécessite de conserver le profil et le risque.');
+  if (locked.length && !isCompatible(targetProfileKey, targetRiskKey)) throw new Error('Profil et risque incompatibles avec les lignes conservées.');
   const assetUsage = computeAssetUsage(history);
   const pairUsage = computePairUsage(history);
 
   const { profileId, riskId } = pickPair(targetRiskKey, targetProfileKey, pairUsage);
   const profile = PROFILES.find(p => p.id === profileId);
-  const combo = pickRecipe(profileId, riskId, history);
+  const recipes = rankedRecipes(profileId, riskId, history, locked);
+  let combo;
   const bound = RISK_BOUNDS[riskId];
   const used = new Set(history.map(h => h.exposureSig ?? exposureSignature(h.selection)));
   const recent = history.filter(h => h.profileId === profileId && h.riskId === riskId)
@@ -357,22 +396,29 @@ export function generatePortfolio(history, targetRiskKey, targetProfileKey) {
   let selection, fallback, bestScore = -Infinity, freshCandidates = 0;
   // Compare plusieurs tirages de la même recette ; la rotation des recettes reste prioritaire.
   // Un changement d’émetteur ne suffit plus à faire passer une allocation pour nouvelle.
-  for (let tries = 0; tries < 200 && freshCandidates < 16; tries++) {
-    const candidate = jitterSelection(buildSelection(combo, assetUsage, history.length), bound, profileId, riskId, combo);
-    const candidatePerf = computeYearlyPerf(candidate);
-    if (performanceYears(candidatePerf).length !== 6 || !Object.values(candidatePerf).every(Number.isFinite)) continue;
-    if (!withinRecipe(candidate, combo) || !withinBound(worstYearOf(computeYearlyPerf(candidate)).value, bound)
-      || violatesProfileInvariant(profileId, candidate, riskId)) continue;
-    fallback ??= candidate;
-    if (used.has(exposureSignature(candidate))) continue;
-    freshCandidates++;
-    const vector = exposureVector(candidate);
-    const score = recent.length ? Math.min(...recent.map(old => exposureDistance(vector, old))) : 100;
-    if (score > bestScore) { selection = candidate; bestScore = score; }
+  for (const recipe of recipes) {
+    combo = recipe;
+    for (let tries = 0; tries < 240 && freshCandidates < 32; tries++) {
+      const initial = lockedSelection(combo, locked, assetUsage, history.length);
+      if (!initial) continue;
+      const candidate = jitterSelection(initial, bound, profileId, riskId, combo, locked);
+      const candidatePerf = computeYearlyPerf(candidate);
+      if (performanceYears(candidatePerf).length !== 6 || !Object.values(candidatePerf).every(Number.isFinite)) continue;
+      if (!withinRecipe(candidate, combo) || !withinBound(worstYearOf(computeYearlyPerf(candidate)).value, bound)
+        || violatesProfileInvariant(profileId, candidate, riskId)) continue;
+      fallback ??= candidate;
+      if (used.has(exposureSignature(candidate))) continue;
+      freshCandidates++;
+      const vector = exposureVector(candidate);
+      const score = recent.length ? Math.min(...recent.map(old => exposureDistance(vector, old))) : 100;
+      const diverseScore = score + Math.random() * 3;
+      if (diverseScore > bestScore) { selection = candidate; bestScore = diverseScore; }
+    }
+    if (selection || fallback) break;
   }
   // Un historique saturé ne doit jamais conduire à relâcher les règles de risque.
   selection ??= fallback;
-  if (!selection) throw new Error("Aucune composition respectant le profil et le risque n’a été trouvée.");
+  if (!selection) throw new Error(locked.length ? "Aucune composition compatible avec ces lignes conservées. Déverrouille une ligne pour élargir les choix." : "Aucune composition respectant le profil et le risque n’a été trouvée.");
 
   const perf = computeYearlyPerf(selection);
   const worst = worstYearOf(perf);

@@ -125,7 +125,7 @@ for (const [risk, w] of Object.entries({defensif:[35,30,25,10],equilibre:[35,35,
   const themes = risk === 'defensif' ? THEME_OPTIONS_CALM.filter(id => id !== 'sect_energie') : risk === 'equilibre' ? THEME_OPTIONS_FULL : THEME_OPTIONS_AGGRESSIVE;
   additions.thematique[risk] = [
     R('theme-stabilisateurs', 'Thème, obligations et or', 'La conviction sectorielle garde une place centrale, avec un socle mondial, des supports courts et de l’or.', 'Une conviction forte : que doit faire le reste du portefeuille ?', A([themes,theme],[WORLD,world],[SHORT,bond],[GOLD,gold])),
-    R('theme-geographies', 'Thème et diversification géographique', 'La conviction sectorielle est entourée de marchés développés et émergents, avec une poche d’or.', 'Un thème mondial suffit-il à diversifier les pays du portefeuille ?', A([themes,theme],[WORLD,risk === 'equilibre' ? world-10 : world],[EM,risk === 'defensif' ? 10 : bond],...(risk === 'defensif' ? [[SHORT,bond-10]] : []),[GOLD,risk === 'equilibre' ? gold+10 : gold])),
+    R('theme-geographies', 'Thème et diversification géographique', 'La conviction sectorielle est entourée de marchés développés et émergents, avec une poche d’or.', 'Un thème mondial suffit-il à diversifier les pays du portefeuille ?', A([themes,theme],[WORLD,risk === 'defensif' || risk === 'equilibre' ? world-10 : world],[EM,risk === 'defensif' ? 10 : bond],...(risk === 'defensif' ? [[SHORT,bond]] : []),[GOLD,risk === 'equilibre' ? gold+10 : gold])),
   ];
 }
 
@@ -169,7 +169,17 @@ export function getRecipes(profileId, riskId) {
   if (!base) return [];
   // Une ligne World ne devient plus implicitement ACWI, Quality ou Momentum.
   // Les nouveaux biais factoriels et petites capitalisations ont leurs propres recettes.
-  const assets = base.assets.map(slot => {
+  // Rebalance historical seeds before jitter: cumulative caps must already be
+  // satisfiable, including a liquid sleeve in the former all-commodity recipe.
+  const seedWeights = {
+    'rentier/equilibre':[15,35,25,17,8],
+    'anti_inflation/equilibre':[25,15,25,25,10],
+    'anti_inflation/dynamique':[40,35,25],
+    'anti_inflation/offensif':[50,35],
+  }[`${profileId}/${riskId}`];
+  const seedAssets = base.assets.map((slot,i) => ({...slot, pct:seedWeights?.[i] ?? slot.pct}));
+  if (profileId === 'anti_inflation' && riskId === 'offensif') seedAssets.push({ idOptions:SHORT, pct:15 });
+  const assets = seedAssets.map(slot => {
     let options = slot.idOptions;
     if (options?.includes('msci_world')) options = WORLD;
     if (options?.includes('msci_em')) options = EM;

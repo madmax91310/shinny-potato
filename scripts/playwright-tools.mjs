@@ -331,6 +331,19 @@ async function testPortfolioGenerator(page) {
     recipesOk &&= weights.reduce((sum, text) => sum + parseFloat(text), 0) === 100;
   }
   recipesOk &&= recipesSeen.size === expectedRecipes;
+  await page.getByText('Conserver des lignes au prochain tirage', {exact:true}).click();
+  const lockBox = page.locator('.pg-locks input').first();
+  const lockedLabel = await lockBox.locator('..').innerText();
+  await lockBox.check();
+  await page.getByRole('button', { name: /Générer un nouveau portefeuille/i }).click();
+  const retained = page.locator('.pg-locks label').filter({hasText:lockedLabel});
+  recipesOk &&= await retained.count() === 1 && await retained.locator('input').isChecked();
+  await page.getByText('Concentration et recoupements', {exact:true}).click();
+  recipesOk &&= await page.getByText(/Ces plafonds de construction s’ajoutent au filtre historique/).isVisible();
+  await page.getByText('Variété de cette session', {exact:true}).click();
+  recipesOk &&= await page.getByText(/composition\(s\) proche\(s\)/).count() > 0;
+  await page.getByRole('group', { name:'Choisir un niveau de risque cible' }).getByRole('button', {name:'Dynamique',exact:true}).click();
+  recipesOk &&= await page.locator('.pg-locks input:checked').count() === 0;
   await page.setViewportSize({ width: 390, height: 844 });
   recipesOk &&= await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth);
   await page.setViewportSize({ width: 1280, height: 720 });
@@ -921,6 +934,13 @@ async function testFactsheetTweets(page) {
 async function testDataSearch(page) {
   await page.goto(`${BASE}/bibliotheque-donnees`, { waitUntil: 'networkidle' });
   const checks = {};
+  await page.locator('.ds-etf-development > summary').click();
+  await page.locator('.ds-etf-development h3').nth(3).waitFor({ state:'visible' });
+  checks.etfLots = await page.locator('.ds-etf-development h3').count() === 4;
+  const shortHistory = page.locator('.ds-etf-development section > details').filter({hasText:'IE0003R87OG3'});
+  await shortHistory.locator('summary').click();
+  checks.etfShortHistory = (await shortHistory.innerText()).includes('Six années communes : indisponibles');
+  await page.locator('.ds-etf-development > summary').click();
   const search = page.getByRole('searchbox', { name: 'ISIN, ticker, nom ou identifiant', exact: true });
   await search.fill('DCAM');
   // Le changement de paramètres est une navigation React ; attendre la fiche correspondante.

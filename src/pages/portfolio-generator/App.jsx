@@ -1,3 +1,4 @@
+import GeneratorControls from './GeneratorControls'
 import PortfolioHistoryLinks from '../../design-system/PortfolioHistoryLinks.jsx'
 import { lazy, Suspense } from 'react'
 const PortfolioExposure = lazy(() => import('../../design-system/PortfolioExposure.jsx'))
@@ -419,6 +420,8 @@ export default function App() {
   const [selectedProfile, setSelectedProfile] = useState('auto')
   const [history, setHistory] = useState(() => [generatePortfolio([], 'auto', 'auto')])
   const [copyState, setCopyState] = useState('idle')
+  const [locked, setLocked] = useState([])
+  const [generationError, setGenerationError] = useState('')
   const [replacementNotice, setReplacementNotice] = useState('')
   const textareaRef = useRef(null)
 
@@ -451,11 +454,18 @@ export default function App() {
     (riskOverride, profileOverride) => {
       const risk = riskOverride ?? selectedRisk
       const profile = profileOverride ?? selectedProfile
-      setHistory((h) => [...h, generatePortfolio(h, risk, profile)])
+      const retained = riskOverride !== undefined || profileOverride !== undefined ? [] : locked
+      if (!retained.length) setLocked([])
+      try {
+        const next = generatePortfolio(history, retained.length ? current.riskId : risk,
+          retained.length ? current.profileId : profile, { locked: retained })
+        setHistory(h => [...h, next])
+        setGenerationError('')
+      } catch (error) { setGenerationError(error.message) }
       setReplacementNotice('')
       setCopyState('idle')
     },
-    [selectedRisk, selectedProfile],
+    [selectedRisk, selectedProfile, locked, history, current],
   )
 
   const handleSelectRisk = useCallback(
@@ -476,6 +486,8 @@ export default function App() {
 
   const handleModeChange = useCallback((next) => {
     setMode(next)
+    setLocked([])
+    setGenerationError('')
     if (next === 'manual') setManualEditing(true)
   }, [])
 
@@ -620,9 +632,11 @@ export default function App() {
             <div className="pg-panel-title">Répartition — {current.selection.length} lignes</div>
             {current.recipeLabel && <p className="pg-fine-print pg-recipe-label">{current.recipeLabel}</p>}
             <AllocationList selection={current.selection} />
+            {current.mode === 'auto' && mode === 'auto' && <GeneratorControls portfolio={current} history={history} locked={locked} onLock={setLocked} />}
+            {generationError && <p role="alert">{generationError}</p>}
             <CategorySummary selection={current.selection} />
             <Suspense fallback={<p>Chargement des expositions…</p>}><PortfolioExposure lines={current.selection} /></Suspense>
-            {current.mode === 'auto' && <ReplacementPanel key={current.id} portfolio={current} onReplace={(assetId, replacementId) => {
+            {current.mode === 'auto' && <ReplacementPanel key={current.id} portfolio={current} locked={locked} onReplace={(assetId, replacementId) => {
               const updated = replacePortfolioAsset(current, assetId, replacementId, history.slice(0, -1))
               setHistory(previous => [...previous.slice(0, -1), updated])
               setCopyState('idle')
