@@ -26,7 +26,7 @@ export function valuationPublication(company,overrides,selected,method,now=new D
     company.activity,
     `L’action clôturait à ${n(price,2)} ${currency} le ${dateLabel(company.quote.asOf)}. Voici ce que donneraient trois scénarios construits à partir des données disponibles.`,
     `Trois scénarios au ${dateLabel(model.targetDate)} :\n${scenarios.map(s=>`${s.name} : ${n(s.value,2)} ${currency} (${signed(s.upside)})`).join('\n')}`,
-    `Le scénario ${scenario.name.toLowerCase()} suppose que ${cash?'la '+unit:'le '+unit} ${growthText}. Il retient aussi une valorisation de ${n(assumptions.multiple)} fois ${cash?'ce flux':'le bénéfice ajusté attendu'} à l’arrivée. Cela correspond à une progression annualisée du cours de ${signed(reading.annualised)}, hors dividendes. Ce multiple indique le prix payé pour une unité de ${cash?'trésorerie disponible':'bénéfice ajusté'}.`,
+    `Le scénario ${scenario.name.toLowerCase()} suppose que ${cash?'la '+unit:'le '+unit} ${growthText}. Il retient aussi une valorisation de ${n(assumptions.multiple)} fois ${cash?'ce flux':'le bénéfice ajusté attendu'} à l’arrivée. Cela correspond à une variation annualisée du cours de ${signed(reading.annualised)}, hors dividendes. Ce multiple indique le prix payé pour une unité de ${cash?'trésorerie disponible':'bénéfice ajusté'}.`,
     explanation.summary,
     `Le prix que le marché acceptera de payer compte aussi. Avec la même croissance, un multiple de ${n(reading.sensitivity.lowerMultiple)} au lieu de ${n(reading.sensitivity.upperMultiple)} ferait passer l’objectif de ${n(reading.sensitivity.high,2)} à ${n(reading.sensitivity.low,2)} ${currency}.`,
     watch?`${watch}.`:company.editorialQuestion,

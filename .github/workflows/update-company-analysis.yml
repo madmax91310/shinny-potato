@@ -83,6 +83,7 @@ jobs:
         continue-on-error: true
         run: python scripts/refresh_company_depth.py --apply --output "$RUNNER_TEMP/company-depth-observation.json"
       - run: node scripts/test-company-independent.mjs
+      - run: node scripts/test-company-professional.mjs
       - name: Qualify every method and field
         if: always()
         run: node scripts/report-company-qualification.mjs "$RUNNER_TEMP/company-qualification.json"
@@ -101,9 +102,9 @@ jobs:
       - run: node scripts/test-company-valuation.mjs
       - run: node scripts/test-company-explorer.mjs
       - id: coverage
-        name: Require 110 complete companies for product acceptance
+        name: Require 150 usable companies and preserve the complete-data floor
         continue-on-error: ${{ github.event_name != 'pull_request' }}
-        run: node scripts/qualify-company-universe.mjs --minimum=110 --output="$RUNNER_TEMP/company-universe-coverage-final.json"
+        run: node scripts/qualify-company-universe.mjs --minimum=140 --minimum-usable=150 --output="$RUNNER_TEMP/company-universe-coverage-final.json"
       - name: Report affected companies and missing inputs
         if: always()
         run: node scripts/report-company-acceptance.mjs "$RUNNER_TEMP/company-universe-observation.json" "$RUNNER_TEMP/company-observation.json" "$RUNNER_TEMP/company-depth-observation.json"

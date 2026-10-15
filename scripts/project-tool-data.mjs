@@ -7,11 +7,34 @@ import { projectReviewCatalog } from '../src/data/review-projection.js'
 // Lossless string interning keeps repeated source URLs and review instructions
 // from growing once per company/field. Objects and dates remain unchanged.
 export function compactLiteral(value) {
-  const json=JSON.stringify(value),counts=new Map()
-  const tokens=/"(?:[^"\\]|\\.)*"(\s*:)?/g
-  json.replace(tokens,(s,key)=>{if(!key&&s.length>=26)counts.set(s,(counts.get(s)??0)+1);return s})
-  const shared=[...counts].filter(([,n])=>n>=3).map(([s])=>s),indices=new Map(shared.map((s,i)=>[s,i]))
-  return `const strings=Object.freeze([${shared.join(',')}]);\nexport default `+json.replace(tokens,(s,key)=>!key&&indices.has(s)?`strings[${indices.get(s)}]`:s)+';'
+  value=JSON.parse(JSON.stringify(value))
+  // Shared literal values are reconstructed losslessly. Arrays/objects stay
+  // independent: factories prevent accidental aliasing between catalog rows.
+  const counts=new Map(),values=new Map()
+  function visit(v) {
+    if(v===null||typeof v!=='object')return
+    const key=JSON.stringify(v)
+    if(key.length>=50){counts.set(key,(counts.get(key)??0)+1);values.set(key,v)}
+    Object.values(v).forEach(visit)
+  }
+  visit(value)
+  const repeated=[...counts].filter(([key,n])=>n>=3&&key.length*(n-1)>60).map(([key])=>key).sort((a,b)=>a.length-b.length)
+  const ids=new Map(repeated.map((key,i)=>[key,i]))
+  function encode(v,root=false){
+    if(v&&typeof v==='object'){
+      const key=JSON.stringify(v)
+      if(!root&&ids.has(key))return `v${ids.get(key)}()`
+      if(Array.isArray(v))return '['+v.map(x=>encode(x)).join(',')+']'
+      return '{'+Object.entries(v).map(([k,x])=>JSON.stringify(k)+':'+encode(x)).join(',')+'}'
+    }
+    return JSON.stringify(v)
+  }
+  const code=repeated.map((key,i)=>`const v${i}=()=>(${encode(values.get(key),true)});`).join('\n')+'\nexport default '+encode(value)+';'
+  const countsText=new Map(),tokens=/"(?:[^"\\]|\\.)*"(\s*:)?/g
+  code.replace(tokens,(s,key)=>{if(!key&&s.length>=26)countsText.set(s,(countsText.get(s)??0)+1);return s})
+  const shared=[...countsText].filter(([,n])=>n>=3).map(([s])=>s),indices=new Map(shared.map((s,i)=>[s,i]))
+  return `const strings=Object.freeze([${shared.join(',')}]);\n`+code.replace(tokens,(s,key)=>!key&&indices.has(s)?`strings[${indices.get(s)}]`:s)
+
 }
 
 // Projections are derived from the same registries on every build/dev startup.
