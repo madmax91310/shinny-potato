@@ -28,4 +28,4 @@
 
 ## Limites explicites
 
-Deux pistes restent en qualification, sans faux statut « intégré ». Les nouveaux historiques mensuels et les répartitions sectorielles incompatibles ne sont pas inventés. Le chantier séparé de refonte de l'image et d'exposition complète reste indépendant.
+Deux pistes restent en qualification, sans faux statut « intégré ». Les nouveaux historiques mensuels et les répartitions sectorielles incompatibles ne sont pas inventés. La refonte de l'image à trois donuts et la vérification des expositions livrées par la PR #652 sont conservées. Le catalogue DCA commun expose également les trois nouvelles parts.

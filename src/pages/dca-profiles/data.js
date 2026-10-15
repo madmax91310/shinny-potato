@@ -1,11 +1,10 @@
+import catalog from './catalog.json' with {type:'json'}
 // Scénarios éditoriaux fictifs : les revenus ne sont pas des statistiques salariales.
 // Les montants sont des objectifs mensuels, indépendants des cours des titres.
 // 50 profils classiques et 50 profils à convictions marquées, sans étiquette dans les exports.
 // Budgets conservés ; poids détenus explicites, distincts des versements mensuels.
 export const ASSETS = {
-  ussmallvalue:["🔎","ETF USA Small Cap Value"],
-  emvalue:["🌍","ETF Emerging Markets Value"],
-  euroultrashort:["📅","ETF EUR Ultrashort Bond"],
+  ...Object.fromEntries(Object.entries(catalog).map(([key,r])=>[key,['📊',r.name]])),
   equalweight:["⚖️", "ETF S&P 500 Equal Weight"],
   robotics:["🤖", "ETF robotique"],
   ai:["🧠", "ETF intelligence artificielle et big data"],

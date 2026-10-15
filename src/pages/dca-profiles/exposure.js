@@ -16,7 +16,8 @@ export function dcaExposure(lines,references,field,now=new Date()){
  const groups=new Map(),neutralRows=[],excluded=[]
  const today=Date.parse(new Date(now).toISOString().slice(0,10)+'T00:00:00Z')
  for(const l of lines.filter(l=>l.weight>0)){
-  if(neutral[l.asset]){neutralRows.push({name:neutral[l.asset],weight:l.weight});continue}
+  const outside=neutral[l.asset]||(l.isin===references[l.asset]?.isin&&references[l.asset]?.outsideClassification)
+  if(outside){neutralRows.push({name:outside,weight:l.weight});continue}
   const r=references[l.asset],o=r?.[field]
   let reason=!l.isin?'Support non confirmé':!o?'Ventilation absente':null
   if(!reason){
@@ -35,21 +36,26 @@ export function dcaExposure(lines,references,field,now=new Date()){
  const result=[]
  for(const [classification,items] of groups){
   // Cluster from the freshest observation; do not chain dates across a long interval.
-  items.sort((a,b)=>b.o.asOf.localeCompare(a.o.asOf))
+  items.sort((a,b)=>b.o.asOf.localeCompare(a.o.asOf)||a.line.asset.localeCompare(b.line.asset))
   while(items.length){
    const latest=items[0].o.asOf,cluster=[]
    while(items.length&&(stamp(latest)-stamp(items[0].o.asOf))/day<=EXPOSURE_MAX_SPREAD_DAYS)cluster.push(items.shift())
-   const rows=new Map(),observations=[];let coverage=0
+   const rows=new Map(),contributions=new Map(),observations=[];let coverage=0
    for(const {line:l,o,sum} of cluster){
     const scale=sum>100?100/sum:1 // Only source rounding excess, never fill a short table.
     coverage+=l.weight*Math.min(sum,100)/100
-    for(const row of o.rows){const name=nameOf(row.label||row.name);rows.set(name,(rows.get(name)||0)+l.weight*row.weightPct*scale/100)}
+    for(const row of o.rows){
+     const name=nameOf(row.label||row.name),weight=l.weight*row.weightPct*scale/100
+     rows.set(name,(rows.get(name)||0)+weight)
+     if(!contributions.has(name))contributions.set(name,[])
+     contributions.get(name).push({asset:l.asset,label:l.label,weight,withinAsset:row.weightPct*scale})
+    }
     observations.push({asset:l.asset,label:l.label,asOf:o.asOf,basis:o.basis,sourceUrl:o.sourceUrl,method:o.method||classification,weight:l.weight})
    }
-   result.push({asOf:latest,oldest:cluster.at(-1).o.asOf,basis:[...new Set(observations.map(o=>o.basis))].join('+'),classification,coverage,observations,sources:[...new Set(observations.map(o=>o.sourceUrl))],rows:[...rows].map(([name,weight])=>({name,weight})).filter(r=>r.weight>0).sort((a,b)=>b.weight-a.weight)})
+   result.push({asOf:latest,oldest:cluster.at(-1).o.asOf,basis:[...new Set(observations.map(o=>o.basis))].join('+'),classification,coverage,observations,sources:[...new Set(observations.map(o=>o.sourceUrl))],rows:[...rows].map(([name,weight])=>({name,weight,contributions:contributions.get(name).sort((a,b)=>b.weight-a.weight)})).filter(r=>r.weight>0).sort((a,b)=>b.weight-a.weight)})
   }
  }
- result.sort((a,b)=>b.coverage-a.coverage)
+ result.sort((a,b)=>b.coverage-a.coverage||a.classification.localeCompare(b.classification)||b.asOf.localeCompare(a.asOf))
  return {groups:result,coverage:result.reduce((s,g)=>s+g.coverage,0),neutralRows,neutralWeight:neutralRows.reduce((s,r)=>s+r.weight,0),excluded}
 }
 
