@@ -39,7 +39,7 @@ for (const a of PORTFOLIO) {
   if (!Array.isArray(a.r) || a.r.length !== 6 || a.r.some(n => !Number.isFinite(n))) { console.error(`Années 2020-2025 incomplètes : ${a.id}`); errors++ }
 }
 for (const [id, a] of Object.entries(CALCULATOR)) {
-  if (!['EUR', 'USD'].includes(a.currency)) { console.error(`Devise inconnue : ${id}`); errors++ }
+  if (!['EUR', 'USD', 'KRW'].includes(a.currency)) { console.error(`Devise inconnue : ${id}`); errors++ }
   if (!a.points.every((p, i, arr) => /^\d{4}-\d{2}$/.test(p.date) && Number.isFinite(p.price) && p.price > 0 && (i === 0 || p.date > arr[i - 1].date))) { console.error(`Points mensuels invalides : ${id}`); errors++ }
 }
 // La continuité des six séries est contrôlée ici. audit:calculator-series

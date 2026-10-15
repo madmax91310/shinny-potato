@@ -16,6 +16,24 @@ def chart(interval='1d',close=12,adjusted=10):
         'timestamp':[int(date.timestamp())],'indicators':{'quote':[{'close':[close]}],'adjclose':[{'adjclose':[adjusted]}]}}]}}
 
 class Monthly(unittest.TestCase):
+    def test_equity_bootstrap_requires_adjustments_and_identity(self):
+        source={**CONFIG, 'consumerScope':'equity', 'instrumentType':'EQUITY',
+                'label':'Test equity', 'timezone':'America/New_York', 'collectAnniversary':True}
+        def collect(s, now):
+            return {**s, 'points':[['2026-01',10]], 'anniversaryPoints':[['2026-01',12]],
+                    'periodEnd':'2026-01', 'proofRows':[], 'rawResponse':{}}
+        merged, report=refresh({'series':[source]}, {}, {}, NOW, collect)
+        self.assertEqual(report['series'][0]['status'], 'validated')
+        for key in ['instrumentType','label','timezone','collectAnniversary','symbol']:
+            invalid=source.copy(); invalid.pop(key)
+            result, report=refresh({'series':[invalid]}, {}, {}, NOW, collect)
+            self.assertEqual(report['series'][0]['status'], 'failed')
+            self.assertNotIn('test', result)
+        raw=chart();raw['chart']['result'][0]['meta']['instrumentType']='ETF'
+        with self.assertRaises(ValueError):yahoo_chart(raw,source,'1d')
+        raw['chart']['result'][0]['meta']['instrumentType']='EQUITY'
+        self.assertEqual(yahoo_chart(raw,source,'1d')[0][0][2],10)
+
     def test_recovery_contacts_only_failed_sources_then_stops(self):
         config={'series':[dict(CONFIG,id='ok'),dict(CONFIG,id='bad')]}
         status={'series':{'ok':{'status':'validated'},'bad':{'status':'failed'}}}
