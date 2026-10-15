@@ -1,20 +1,33 @@
-import { analyzeProfile, prepareProfile, observation, euro, pct } from './engine.js'
+import { analyzeProfile, prepareProfile, pct } from './engine.js'
+export const compactEuro = n => `${n.toLocaleString('fr-FR', {useGrouping:false, maximumFractionDigits:2})}€`
+export function incomeLabel(profile) {
+  if (/retrait/i.test(profile.job || '')) return 'Retraite'
+  return profile.variable || /libéral|libérale|à son compte|indépendant|gérant|associé|entrepreneur/i.test(profile.job || '') ? 'Revenu moyen' : 'Salaire'
+}
+export function portfolioComment(profile) {
+  const held = profile.lines.filter(l => l.weight > 0).sort((a,b) => b.weight-a.weight)
+  const assets = new Set(held.map(l => l.asset))
+  if (assets.has('world') && assets.has('europe') && assets.has('emerging') && held.length===3 && held[0].asset==='world') {
+    return 'Le World reste son placement principal. Son ETF Europe renforce une région déjà présente dans le World, tandis que les émergents ajoutent des marchés qui en sont absents.'
+  }
+  const largest=held[0]
+  if(held.length===1) return `Son portefeuille est entièrement investi sur ${largest.label}.`
+  const tied=held.filter(l=>Math.abs(l.weight-largest.weight)<.001)
+  if(tied.length===held.length) return 'Chaque placement occupe la même place dans son portefeuille.'
+  if(tied.length>1) return `${tied.map(l=>l.label).join(' et ')} occupent les premières places, avec ${pct(largest.weight)} chacun.`
+  return `${largest.label} représente la plus grande part de son portefeuille, avec ${pct(largest.weight)}.`
+}
 export function buildTweetText(input) {
   const profile = input.lines.every(l => Number.isFinite(l.weight)) ? input : prepareProfile(input)
   const a = analyzeProfile(profile)
   if (a.errors.length) return ''
-  const intro = profile.mode === 'participant' ? `📊 Le portefeuille de ${profile.name}` : `📊 ${profile.name} — portefeuille et versements`
-  const context = [profile.age && `${profile.age} ans`, profile.job, profile.location].filter(Boolean).join(', ')
-  const income = profile.income ? `Revenu net ${profile.variable ? 'moyen ' : ''}: ${euro(profile.income)} / mois.` : ''
-  const held = profile.lines.filter(l=>l.weight>0).map(l=>`${l.emoji} ${pct(l.weight)} · ${l.label}`).join('\n')
-  const flows = profile.lines.filter(l=>l.amount>0).map(l=>`${l.emoji} ${euro(l.amount)} · ${l.label}`).join('\n')
-  const exposureText = ['countries','sectors'].flatMap(field=> {
-    const g=[...a[field].groups].sort((x,y)=>y.coverage-x.coverage)[0]
-    if(!g)return []
-    return [`${field==='countries'?'🌍 Pays':'🏭 Secteurs'} — photographie du ${g.asOf}, couvrant ${pct(g.coverage)} du portefeuille : ${g.rows.slice(0,2).map(r=>`${r.name} ${pct(r.weight)}`).join(' · ')}. Poids rapportés au portefeuille total.`]
-  }).join('\n')
-  const sourceNote = profile.lines.some(l=>l.isin) ? '\nExpositions calculées sur les supports identifiés dans le détail de l’outil.' : ''
-  return `${intro}\n${[context,income].filter(Boolean).join('\n')}\n\n💼 ${profile.scope}\n${held}\n\n🔁 ${euro(a.monthly)} investis par mois\n${flows || 'Aucun versement prévu.'}\n\n🔎 ${observation(profile,a)}\n${a.monthly ? 'L’évolution réelle dépend aussi des marchés ; les versements ne donnent pas le montant du capital.\n' : ''}${exposureText ? `\n${exposureText}` : ''}${sourceNote}\n\n💬 Et chez vous, les versements suivent-ils la répartition du portefeuille ?\n\nPas un conseil financier`.replace(/\n{3,}/g,'\n\n')
+  const intro = `${profile.emoji || '👤'} ${[profile.name,profile.age && `${profile.age} ans`,profile.job].filter(Boolean).join(', ')}`
+  const income = profile.income ? `💸 ${incomeLabel(profile)} : ${compactEuro(profile.income)}/mois` : ''
+  const held = profile.lines.filter(l=>l.weight>0).map(l=>`${l.emoji || '•'} ${pct(l.weight)} ${l.label}`).join('\n')
+  const flows = profile.lines.filter(l=>l.amount>0).map(l=>`→ ${compactEuro(l.amount)} sur ${l.label}`).join('\n')
+  const ending = /^[AEÉÈÊIÎOÔUÙY]/i.test(profile.name) ? `d’${profile.name}` : `de ${profile.name}`
+  const scope = profile.scope && profile.scope!=='Portefeuille investi' ? ` (${profile.scope})` : ''
+  return `${[intro,income,`📊 DCA de ${compactEuro(a.monthly)} par mois`].filter(Boolean).join('\n')}\n\n💼 Son portefeuille${scope} :\n\n${held}\n\n${a.monthly?'Chaque mois, '+(profile.emoji?.includes('👩')?'elle':profile.emoji?'il':'la personne')+' investit :':'Aucun versement mensuel prévu.'}${flows?'\n'+flows:''}\n\n${portfolioComment(profile)}\n\nQue pensez-vous du DCA ${ending} ? 👇\n\nPas un conseil financier`
 }
 export function pickUnseenProfile(profiles, currentId, seen, random = Math.random) {
   let pool = profiles.filter(profile => profile.id !== currentId && !seen.has(profile.id))

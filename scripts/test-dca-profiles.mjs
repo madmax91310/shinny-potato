@@ -17,12 +17,14 @@ for (const profile of PROFILES) {
   assert(!tweet.includes('(profil fictif)'))
   const ending = /^[AEÉÈÊIÎOÔUÙY]/i.test(profile.name) ? `d’${profile.name}` : `de ${profile.name}`
   assert(tweet.endsWith('Pas un conseil financier'))
+  assert(tweet.includes(`Que pensez-vous du DCA ${ending} ? 👇`))
+  assert(!/Les versements suivent|Ses versements suivent|photographie|L’évolution réelle/.test(tweet))
   assert(!tweet.includes('undefined'))
 }
 const julien = PROFILES[0]
 assert.equal(julien.monthly, 500)
 assert.equal(julien.lines.reduce((sum, line) => sum + line.amount, 0), 500)
-assert(buildTweetText(julien).includes('3\u202f200 €'))
+assert(buildTweetText(julien).includes('3200€'))
 let current = julien
 const seen = new Set([current.id])
 const cycle = new Set(seen)

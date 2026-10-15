@@ -11,3 +11,9 @@
 - Export PNG 1600 × 1067 et texte modifiable. Modifier une position régénère le texte ; le message dans l'interface l'annonce.
 
 Validation : `npm run test:dca`, `node scripts/test-dca-images.mjs` (avec `CHROMIUM_PATH` si nécessaire), `npm run build`.
+
+## Publication validée le 15 octobre 2026
+
+Accroche : prénom, âge et activité, revenu mensuel, puis DCA. Répartition détenue, versements par support et commentaire factuel sur la composition. Conclusion « Que pensez-vous du DCA de… ? ». Aucun paragraphe sur les versements suivant la répartition.
+
+Image 1600 × 1067 : montant mensuel dominant, cartes des versements avec poids détenus, donut géographique. Le donut utilise une seule photographie compatible ; la couverture non représentée reste grise. La date, la base et la couverture restent discrètes. Les légendes longues et 1 à 8 lignes s’adaptent au cadre.
