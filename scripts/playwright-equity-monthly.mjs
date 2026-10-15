@@ -12,6 +12,7 @@ try {
   const page=await browser.newPage(), errors=[];page.on('pageerror',e=>errors.push(e.message))
   for (const route of ['calculateur-investissement','il-y-a-x-ans','performance-depuis']) {
     await page.goto(`${base}/${route}`,{waitUntil:'networkidle'})
+    await page.evaluate(()=>{window.__painted=[];const original=CanvasRenderingContext2D.prototype.fillText;CanvasRenderingContext2D.prototype.fillText=function(text,...args){window.__painted.push(String(text));return original.call(this,text,...args)}})
     await page.locator(`[data-option][data-value="${ids[0]}"]`).waitFor({state:'attached',timeout:60000})
     for(const id of ids) assert.equal(await page.locator(`[data-option][data-value="${id}"]`).count(),1,`${route}: ${id} available`)
     for(const id of ['walmart','airbus','samsung','sk-hynix']) {
@@ -25,6 +26,12 @@ try {
         assert(!(await page.locator('body').innerText()).includes('NaN'))
         if(id==='samsung') assert((await page.locator('.ic-current-level').innerText()).includes('₩'))
       }
+      await page.evaluate(()=>{window.__painted=[]})
+      await page.getByRole('tab',{name:'Image',exact:true}).click()
+      await page.locator('.publication-image-stage img').waitFor({state:'visible',timeout:60000})
+      assert((await page.locator('.publication-image-stage img').getAttribute('src')).startsWith('data:image/png'))
+      if(id==='samsung' && route!=='performance-depuis') assert(await page.evaluate(()=>window.__painted.some(t=>t.includes('₩'))),`${route}: KRW on exported image`)
+      await page.getByRole('tab',{name:'Texte',exact:true}).click()
     }
     await page.setViewportSize({width:390,height:844})
     assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),`${route}: mobile overflow`)

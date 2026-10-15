@@ -1,5 +1,9 @@
 import assert from 'node:assert/strict'
-import { readFileSync } from 'node:fs'
+import { readFileSync, existsSync } from 'node:fs'
+import { EQUITY_HISTORY_IDENTITIES } from '../src/data/equity-history-identities.js'
+import { PERFORMANCE_ART } from '../src/pages/tweet-midi/performanceArt.js'
+import { ANNIVERSARY_ART } from '../src/pages/tweet-midi/anniversaryArt.js'
+import { NEON_ASSET_ART } from '../src/pages/tweet-midi/stylizedArt.js'
 import { ASSETS, ASSET_ORDER } from '../src/data/market-history.js'
 import { MARKET_ASSETS, ANNIVERSAIRE_ELIGIBLE_ASSETS, getHistoricalPrice } from '../src/pages/tweet-midi/data/marketHistory.js'
 import { derive, currencySymbol } from '../src/pages/investment-calculator/lib.js'
@@ -12,6 +16,9 @@ assert.equal(new Set(ASSET_ORDER).size,ASSET_ORDER.length)
 for (const config of configs) {
   const {id}=config, record=records[id]
   assert(record,`${id}: initial collection must pass before release`)
+  assert(EQUITY_HISTORY_IDENTITIES[id] && ANNIVERSARY_ART[id])
+  assert(existsSync(`public/asset-art/${PERFORMANCE_ART[id].scene}`))
+  assert(existsSync(`public/asset-art/${NEON_ASSET_ART[id].sceneFile}`))
   const asset=ASSETS[id]
   assert.equal(asset.currency,config.currency)
   assert.equal(asset.priceMethod,'adjusted')
