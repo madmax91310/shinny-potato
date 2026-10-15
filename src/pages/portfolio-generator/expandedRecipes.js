@@ -5,7 +5,7 @@ const GLOBAL = ['msci_acwi','msci_acwi_ishares','ftse_allworld_vanguard'];
 const DIV = ['strat_dividendes_dist','high_dividend_dist','quality_dividend_dist'];
 const BTC = ['bitcoin','bitcoin_wisdomtree','bitcoin_etcgroup','bitcoin_21shares'];
 const GOLD = ['or','or_ishares','or_amundi','or_wisdomtree'];
-const SHORT = ['monetaire_xeon','oblig_0_1_ishares'];
+const SHORT = ['monetaire_xeon','oblig_0_1_ishares','euro-ultrashort-ishares'];
 const slot = (ids, pct, spread = 10) => ({
   ...(Array.isArray(ids) ? {idOptions:ids} : {id:ids}), pct,
   minPct:Math.max(5,pct-spread), maxPct:Math.min(100,pct+spread),
@@ -22,7 +22,7 @@ export function expandedRecipes(profile,risk) {
     const stable=[80,65,35,0,0][level];
     const satellite=[5,10,15,20,25][level];
     return [
-      ...[['world-staples','Monde et consommation de base'],['world-discretionary','Monde et consommation discrétionnaire'],['world-energy','Monde et énergie'],['water-ishares','Monde et entreprises de l’eau'],['world-multifactor','Monde et sélection multifactorielle']].map(([id,label])=>make(`global-${id}`,label,[[GLOBAL,100-stable-satellite],[id,satellite],['fonds_euros',stable]])),
+      ...[['small-value-usa','Monde et petites entreprises américaines value'],['em-value-ishares','Monde et émergents value'],['world-midcap-equal','Monde et moyennes entreprises équipondérées'],['world-eur-hedged','Monde et actions couvertes en euros'],['agribusiness-ishares','Monde et agro-industrie'],['timber-ishares','Monde et filière bois'],['world-staples','Monde et consommation de base'],['world-discretionary','Monde et consommation discrétionnaire'],['world-energy','Monde et énergie'],['water-ishares','Monde et entreprises de l’eau'],['world-multifactor','Monde et sélection multifactorielle']].map(([id,label])=>make(`global-${id}`,label,[[GLOBAL,100-stable-satellite],[id,satellite],['fonds_euros',stable]])),
       make('europe-minvol','Europe et volatilité mondiale réduite', [['msci_europe',100-stable-satellite],['world_minvol_ishares',satellite],['fonds_euros',stable]]),
       make('usa-equal-value','S&P 500 équipondéré et value mondiale', [['sp500_equal_weight',100-stable-satellite],['actions_value',satellite],['fonds_euros',stable]]),
       make('global-industrie','Marché mondial et industrie',[[GLOBAL,100-stable-satellite],['industry_world_dws',satellite],['fonds_euros',stable]]),
@@ -35,6 +35,7 @@ export function expandedRecipes(profile,risk) {
     const core=[5,20,45,65,75][level], sector=[5,10,15,20,25][level];
     return [
       make('europe-small-value','Europe et petites entreprises value', [['msci_europe',core],['small-value-europe',sector],['oblig_etat_eur_short',100-core-sector-(level===0?20:0)],['fonds_euros',level===0?20:0]]),
+      ...['europe-utilities','europe-telecom','europe-food','europe-media','europe-retail'].map(id=>make(`europe-${id}`,{'europe-utilities':'Europe et services publics','europe-telecom':'Europe et télécommunications','europe-food':'Europe et alimentation','europe-media':'Europe et médias','europe-retail':'Europe et distribution'}[id],[['msci_europe',core],[id,sector],['oblig_etat_eur_short',100-core-sector-(level===0?20:0)],['fonds_euros',level===0?20:0]])),
       make('europe-sante','Europe large et santé', [['msci_europe',core],['health_europe_pea',sector],['oblig_etat_eur_short',100-core-sector-(level===0?20:0)],['fonds_euros',level===0?20:0]]),
       make('europe-assurance','Europe large et assurances', [['msci_europe',core],['europe-insurance',sector],['oblig_etat_eur_short',100-core-sector-(level===0?20:0)],['fonds_euros',level===0?20:0]]),
       make('europe-dividendes','Europe et dividendes réguliers', [['msci_europe',core],['euro-dividend-aristocrats',sector],['oblig_etat_eur_short',100-core-sector-(level===0?20:0)],['fonds_euros',level===0?20:0]]),
@@ -44,6 +45,7 @@ export function expandedRecipes(profile,risk) {
   if(profile==='rentier') {
     const stable=[80,60,30,10,0][level], sector=[5,10,15,20,25][level];
     return [
+      ...['europe-utilities','europe-telecom','timber-ishares'].map(id=>make(`revenus-${id}`,{'europe-utilities':'Dividendes et services publics','europe-telecom':'Dividendes et télécommunications','timber-ishares':'Dividendes et filière bois'}[id],[[DIV,100-stable-sector],[id,sector],['fonds_euros',stable]])),
       make('revenus-europe','Dividendes mondiaux et zone euro',[[DIV,100-stable-sector],['euro-dividend-aristocrats',sector],['fonds_euros',stable]]),
       make('revenus-assurances','Dividendes et assurances européennes',[[DIV,100-stable-sector],['europe-insurance',sector],['fonds_euros',stable]]),
       make('revenus-smallcaps','Dividendes et petites entreprises émergentes',[[DIV,100-stable-sector],['em_small_ishares',sector],['fonds_euros',stable]]),

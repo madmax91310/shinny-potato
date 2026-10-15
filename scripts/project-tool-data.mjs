@@ -20,7 +20,7 @@ export function compactLiteral(value) {
     Object.values(v).forEach(visit)
   }
   visit(value)
-  const repeated=[...counts].filter(([key,n])=>n>=3&&key.length*(n-1)>60).map(([key])=>key).sort((a,b)=>a.length-b.length)
+  const repeated=[...counts].filter(([key,n])=>n>=2&&key.length*(n-1)>60).map(([key])=>key).sort((a,b)=>a.length-b.length)
   const ids=new Map(repeated.map((key,i)=>[key,i]))
   function encode(v,root=false){
     if(v&&typeof v==='object'){
@@ -34,7 +34,7 @@ export function compactLiteral(value) {
   const code=repeated.map((key,i)=>`const v${i}=()=>(${encode(values.get(key),true)});`).join('\n')+'\nexport default '+encode(value)+';'
   const countsText=new Map(),tokens=/"(?:[^"\\]|\\.)*"(\s*:)?/g
   code.replace(tokens,(s,key)=>{if(!key&&s.length>=26)countsText.set(s,(countsText.get(s)??0)+1);return s})
-  const shared=[...countsText].filter(([,n])=>n>=3).map(([s])=>s),indices=new Map(shared.map((s,i)=>[s,i]))
+  const shared=[...countsText].filter(([,n])=>n>=2).map(([s])=>s),indices=new Map(shared.map((s,i)=>[s,i]))
   return `const strings=Object.freeze([${shared.join(',')}]);\n`+code.replace(tokens,(s,key)=>!key&&indices.has(s)?`strings[${indices.get(s)}]`:s)
 
 }

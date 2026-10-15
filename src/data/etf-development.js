@@ -1,3 +1,4 @@
+import { getToolLinks } from './tool-links.js';
 import { AUTOMATED_ETF } from './automated-etf.js';
 import { getInstrumentName } from './instruments.js';
 import { INSTRUMENT_FACTS_BY_ISIN } from './instrument-facts.js';
@@ -29,6 +30,8 @@ export const ETF_DEVELOPMENT_LOTS = [
     ['Émergents hors Chine','IE00BMG6Z448'],['Small caps émergentes','IE00B3F81G20'],
   ]},
 ];
+const tracked = new Set(ETF_DEVELOPMENT_LOTS.flatMap(lot=>lot.entries.map(([,isin])=>isin)));
+export const ETF_DEVELOPMENT_CATALOG = [...ETF_DEVELOPMENT_LOTS, {id:'remaining-catalog',label:'5 · Autres ETF du catalogue',entries:ETFS.filter(etf=>!tracked.has(etf.isin)).filter((etf,index,all)=>all.findIndex(row=>row.isin===etf.isin)===index).map(etf=>[etf.category,etf.isin])}];
 const dated = (field, record) => Boolean(field && /^\d{4}-\d{2}-\d{2}$/.test(field.asOf ?? '') && (field.sourceUrl || record.sourceUrl));
 export function etfDevelopmentEntry(isin) {
   const record = AUTOMATED_ETF[isin] ?? {}, facts = INSTRUMENT_FACTS_BY_ISIN[isin];
@@ -46,9 +49,10 @@ export function etfDevelopmentEntry(isin) {
   for (const [key,label] of [['aum','Encours'],['holdings','Positions'],['countries','Pays'],['sectors','Secteurs']]) if(!observations[key].available)gaps.push(`${label} : observation datée manquante`);
   if(!sixYears)gaps.push('Historique annuel de part insuffisant pour six années communes');
   const assets=ASSETS.filter(asset=>asset.isin===isin);
-  return {isin,name:getInstrumentName(isin),years,sixYears:Boolean(sixYears),observations,gaps,
+  const tools=getToolLinks(isin);
+  return {tools,isin,name:getInstrumentName(isin),years,sixYears:Boolean(sixYears),observations,gaps,
     collected:Boolean(record.provider),sheet:ETFS.some(etf=>etf.isin===isin),
     portfolio:assets.length ? assets.some(asset=>!asset.manualOnly) ? 'Disponible en automatique et manuel' : 'Disponible en manuel' : 'Non raccordé',
-    status:gaps.length ? 'À compléter' : 'Données réunies · affectation à examiner',
+    status:gaps.length ? 'Raccordements disponibles · données partielles' : 'Données réunies',
   };
 }
