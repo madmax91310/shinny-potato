@@ -47,17 +47,22 @@
     },
     "update-company-analysis.yml": {
       "name": "Analyses d’entreprises",
-      "runId": 38702790515,
+      "runId": 38712322003,
       "attempt": 1,
-      "completedAt": "2026-10-15T08:22:58Z",
-      "status": "success",
+      "completedAt": "2026-10-15T09:32:15Z",
+      "status": "failure",
       "lastSuccessAt": "2026-10-15T08:22:58Z",
-      "collectionStatus": "success",
-      "publicationStatus": "success",
+      "collectionStatus": "failure",
+      "publicationStatus": "not-run",
       "lastCollectionSuccessAt": "2026-10-15T08:22:58Z",
       "lastPublicationSuccessAt": "2026-10-15T08:22:55Z",
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38702790515",
-      "failures": [],
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38712322003",
+      "failures": [
+        {
+          "job": "refresh",
+          "step": "Run npm run build"
+        }
+      ],
       "dataFailures": {}
     },
     "collect-etf-pilot.yml": {
@@ -305,11 +310,11 @@
       "dataFailures": {}
     }
   },
-  "updatedAt": "2026-10-15T08:22:58Z",
+  "updatedAt": "2026-10-15T09:32:15Z",
   "monitoring": {
     "schemaVersion": 1,
-    "checkedAt": "2026-10-15T08:45:05.953730+00:00",
-    "revision": 20,
+    "checkedAt": "2026-10-15T09:32:33.902751+00:00",
+    "revision": 21,
     "active": {
       "collection:update-practical-sheets.yml:practical:13f": {
         "name": "SEC · questions et réponses sur le formulaire 13F",
@@ -330,7 +335,7 @@
         "dataId": "practical:13f",
         "id": "collection:update-practical-sheets.yml:practical:13f",
         "firstSeenAt": "2026-10-14T21:07:26.171294+00:00",
-        "lastSeenAt": "2026-10-15T08:45:05.953730+00:00"
+        "lastSeenAt": "2026-10-15T09:32:33.902751+00:00"
       },
       "collection:update-insurance.yml:linxea-avenir-2": {
         "name": "Linxea Avenir 2",
@@ -349,7 +354,23 @@
         "dataId": "linxea-avenir-2",
         "id": "collection:update-insurance.yml:linxea-avenir-2",
         "firstSeenAt": "2026-10-14T13:08:27.203935+00:00",
-        "lastSeenAt": "2026-10-15T08:45:05.953730+00:00"
+        "lastSeenAt": "2026-10-15T09:32:33.902751+00:00"
+      },
+      "workflow:update-company-analysis.yml": {
+        "name": "Analyses d’entreprises",
+        "tools": [
+          "Analyse d’entreprise"
+        ],
+        "impactScope": "collector",
+        "workflow": "update-company-analysis.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38712322003",
+        "to": "/donnees-a-revoir",
+        "kind": "collection",
+        "field": "Exécution du collecteur",
+        "cause": "refresh : Run npm run build",
+        "id": "workflow:update-company-analysis.yml",
+        "firstSeenAt": "2026-10-15T09:32:33.902751+00:00",
+        "lastSeenAt": "2026-10-15T09:32:33.902751+00:00"
       },
       "radar:44882f934eb114198158f55a": {
         "name": "SPDR € Corp Bond UCITS ETF",
@@ -369,7 +390,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-13) : Poids des dix premières lignes. Dernière observation conservée ; propositions archivées (etf:IE00B3T9LM79:top10:0261a38d6b954a5f4e504dab:2026-10-13).",
         "id": "radar:44882f934eb114198158f55a",
         "firstSeenAt": "2026-10-14T11:07:35.462638+00:00",
-        "lastSeenAt": "2026-10-15T08:45:05.953730+00:00"
+        "lastSeenAt": "2026-10-15T09:32:33.902751+00:00"
       }
     },
     "events": [
@@ -2985,6 +3006,14 @@
             "resolvedAt": "2026-10-15T00:31:06.137308+00:00"
           }
         ]
+      },
+      {
+        "revision": 21,
+        "at": "2026-10-15T09:32:33.902751+00:00",
+        "opened": [
+          "workflow:update-company-analysis.yml"
+        ],
+        "resolved": []
       }
     ],
     "resolved": [
