@@ -4,8 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "predev": "node scripts/build-performance-links.mjs && node scripts/build-monthly-duel-returns.mjs",
-    "prebuild": "node scripts/build-performance-links.mjs && node scripts/build-monthly-duel-returns.mjs && node scripts/build-app-inventory.mjs",
+    "predev": "node scripts/build-dca-exposures.mjs && node scripts/build-performance-links.mjs && node scripts/build-monthly-duel-returns.mjs",
+    "prebuild": "node scripts/build-dca-exposures.mjs && node scripts/build-performance-links.mjs && node scripts/build-monthly-duel-returns.mjs && node scripts/build-app-inventory.mjs",
     "dev": "vite",
     "build": "vite build && node scripts/audit-route-bundles.mjs",
     "lint": "oxlint",
@@ -43,7 +43,8 @@
     "test:wealth:browser": "node scripts/playwright-wealth.mjs",
     "test:radar": "node scripts/test-dws-reconciliation.mjs && node scripts/test-editorial-radar.mjs && node scripts/test-radar-notifications.mjs && node scripts/test-purchasing-power-news.mjs",
     "test:radar:browser": "node scripts/playwright-radar.mjs",
-    "inventory": "node scripts/build-app-inventory.mjs"
+    "inventory": "node scripts/build-app-inventory.mjs",
+    "test:dca": "node scripts/test-dca-profiles.mjs && node scripts/test-dca-engine.mjs"
   },
   "dependencies": {
     "react": "^19.2.8",
