@@ -5,6 +5,7 @@
 export const PRESENTATION_ETF_ADDITIONS = [
 {
   "id": "world-healthcare-xtrackers",
+  "portfolioEnabled": true,
   "isin": "IE00BM67HK77",
   "name": "Xtrackers MSCI World Health Care UCITS ETF 1C",
   "category": "Sectoriels classiques",
@@ -36,6 +37,7 @@ export const PRESENTATION_ETF_ADDITIONS = [
 },
 {
   "id": "new-energy-amundi",
+  "portfolioEnabled": true,
   "isin": "FR0010524777",
   "name": "Amundi MSCI New Energy UCITS ETF Dist",
   "category": "Thématiques émergentes",
