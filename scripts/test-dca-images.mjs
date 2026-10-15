@@ -7,11 +7,12 @@ const server=spawn('node',['node_modules/vite/bin/vite.js','--host','127.0.0.1',
 let browser
 try {
   for(let i=0;i<100;i++){try{if((await fetch(base)).ok)break}catch{} await new Promise(r=>setTimeout(r,100))}
-  browser=await chromium.launch({headless:true})
+  browser=await chromium.launch({headless:true, ...(process.env.CHROMIUM_PATH ? {executablePath:process.env.CHROMIUM_PATH,args:['--no-sandbox']} : {})})
   const page=await browser.newPage({viewport:{width:1440,height:1100}})
   await page.goto(base+'le-dca-de')
   const records=await page.evaluate(async()=>{
     const {PROFILES}=await import('/shinny-potato/src/pages/dca-profiles/data.js')
+    const {prepareProfile}=await import('/shinny-potato/src/pages/dca-profiles/engine.js')
     const {renderDcaImage}=await import('/shinny-potato/src/pages/dca-profiles/image.js')
     const original=CanvasRenderingContext2D.prototype.fillText
     let labels=[],boxes=[]
@@ -23,7 +24,8 @@ try {
       return original.call(this,value,x,y,...args)
     }
     const output=[]
-    for(const profile of PROFILES){
+    for(const [index,raw] of PROFILES.entries()){
+      const profile=prepareProfile(raw,index)
       labels=[];boxes=[]
       const canvas=renderDcaImage(profile)
       if(labels.some(l=>/fictif|undefined|\bNaN\b/i.test(l)))throw Error(profile.id+' unwanted text')
@@ -37,16 +39,33 @@ try {
   assert.equal(records.length,100)
   await mkdir('test-artifacts/dca',{recursive:true})
   for(const record of records.filter(r=>r.png))await writeFile(`test-artifacts/dca/${record.id}.png`,Buffer.from(record.png.split(',')[1],'base64'))
+  await page.getByRole('button',{name:'Créer une participation',exact:true}).click()
+  await page.getByLabel('Pseudonyme',{exact:true}).fill('Test participation')
+  await page.getByLabel('DCA position 1',{exact:true}).fill('300')
+  assert(await page.getByRole('button',{name:'Télécharger le PNG',exact:true}).isDisabled())
+  await page.getByRole('group',{name:'Support position 1',exact:true}).locator('[data-option][data-value="IE00B4L5Y983"]').click()
+  await page.getByRole('checkbox').check()
+  assert(await page.getByRole('button',{name:'Télécharger le PNG',exact:true}).isEnabled())
+  await page.getByLabel('Poids position 1',{exact:true}).fill('90')
+  assert(await page.getByRole('button',{name:'Télécharger le PNG',exact:true}).isDisabled())
+  await page.getByRole('alert').waitFor()
+  await page.getByLabel('Poids position 1',{exact:true}).fill('100')
+  await page.getByRole('button',{name:'Enregistrer le brouillon',exact:true}).click()
+  await page.getByLabel('Pseudonyme',{exact:true}).fill('Changement')
+  await page.getByRole('button',{name:'Restaurer le brouillon',exact:true}).click()
+  assert.equal(await page.getByLabel('Pseudonyme',{exact:true}).inputValue(),'Test participation')
+  await page.getByRole('button',{name:'Profils préparés',exact:true}).click()
   await page.getByRole('tab',{name:'Image',exact:true}).click()
-  await page.getByRole('img',{name:'Investissements mensuels de Julien',exact:true}).waitFor()
+  await page.getByRole('img',{name:'Portefeuille et versements de Julien',exact:true}).waitFor()
   const downloadEvent=page.waitForEvent('download')
   await page.getByRole('button',{name:'Télécharger le PNG',exact:true}).click()
   assert.equal((await downloadEvent).suggestedFilename(),'dca-julien.png')
   await page.getByRole('button',{name:'Autre profil aléatoire',exact:true}).click()
-  await page.waitForFunction(()=>document.querySelector('.publication-image-stage img')?.alt!=='Investissements mensuels de Julien')
+  await page.waitForFunction(()=>document.querySelector('.publication-image-stage img')?.alt!=='Portefeuille et versements de Julien')
   await page.setViewportSize({width:390,height:844})
   await page.getByRole('button',{name:'Aperçu',exact:true}).click()
-  assert(await page.getByRole('img',{name:/Investissements mensuels de/}).isVisible())
+  assert(await page.getByRole('img',{name:/Portefeuille et versements de/}).isVisible())
   assert(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth+1))
+  await page.screenshot({path:'test-artifacts/dca/mobile.png',fullPage:true})
   console.log('100 images DCA : données, texte sans mention fictive, aucun chevauchement ni dépassement, aperçu, changement de profil, téléchargement et mobile validés.')
 } finally {await browser?.close();server.kill('SIGTERM')}

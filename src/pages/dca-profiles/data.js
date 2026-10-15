@@ -3,7 +3,7 @@
 // Allocations éditoriales mélangées indépendamment du métier : 25 classiques,
 // 25 classiques avec satellite, 20 actions + ETF, 20 atypiques, 10 concentrées.
 // Répartition fixée à la création ; budgets et identités conservés.
-const ASSETS = {
+export const ASSETS = {
  timber:['🌳','ETF bois et forêts'],agribusiness:['🌾','ETF agribusiness'],
  lifestrategy20:['⚖️','ETF Vanguard LifeStrategy 20/80'],lifestrategy40:['⚖️','ETF Vanguard LifeStrategy 40/60'],lifestrategy60:['⚖️','ETF Vanguard LifeStrategy 60/40'],lifestrategy80:['⚖️','ETF Vanguard LifeStrategy 80/20'],
   nintendo: ['🎮', 'Nintendo'],
