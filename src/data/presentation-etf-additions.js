@@ -86,6 +86,7 @@ export const PRESENTATION_ETF_ADDITIONS = [
   },
   {
     "id": "cloud-wisdomtree",
+    "portfolioEnabled": true,
     "isin": "IE00BJGWQN72",
     "name": "WisdomTree Cloud Computing UCITS ETF USD Acc",
     "category": "Thématiques émergentes",
@@ -113,6 +114,7 @@ export const PRESENTATION_ETF_ADDITIONS = [
   },
   {
     "id": "gold-miners-vaneck",
+    "portfolioEnabled": true,
     "isin": "IE00BQQP9F84",
     "name": "VanEck Gold Miners UCITS ETF",
     "category": "Sectoriels classiques",
