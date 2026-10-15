@@ -54,3 +54,10 @@ writeSaved(storage,[two]);assert.equal(readSaved(storage).length,1)
 storage.setItem(SAVED_KEY,'broken');assert.throws(()=>readSaved(storage))
 assert.throws(()=>writeSaved(storage,Array.from({length:51},(_,i)=>({...one,id:String(i)}))))
 console.log('DCA upgrade: recency, compatibility, stocks, neutral assets, both donuts, filters and multiple saves verified.')
+
+const anonymous={...prepared[0],name:'',imageOnly:true}
+assert.deepEqual(analyzeProfile(anonymous).errors,[])
+assert(analyzeProfile({...anonymous,imageOnly:false}).errors.length)
+assert.deepEqual(searchAssets('Nasdaq'),['nasdaq'])
+assert.deepEqual(searchAssets('IE00B53SZB19'),['nasdaq'])
+assert(!searchAssets('IE00B53L3W79').includes('nasdaq'))
