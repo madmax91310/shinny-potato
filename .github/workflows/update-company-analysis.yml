@@ -68,7 +68,7 @@ jobs:
         with:
           name: company-source-probe
           path: ${{ runner.temp }}/company-source-probe.json
-          if-no-files-found: error
+          if-no-files-found: ignore
           retention-days: 35
       - name: Qualify expanded publication components from issuer documents
         if: github.event_name == 'pull_request'
@@ -84,9 +84,19 @@ jobs:
       - run: node scripts/test-company-valuation.mjs
       - run: node scripts/test-company-explorer.mjs
       - id: coverage
-        name: Require 60 complete companies for product acceptance
+        name: Require 110 complete companies for product acceptance
         continue-on-error: ${{ github.event_name != 'pull_request' }}
-        run: node scripts/qualify-company-universe.mjs --require-60 --output="$RUNNER_TEMP/company-universe-coverage-final.json"
+        run: node scripts/qualify-company-universe.mjs --minimum=110 --output="$RUNNER_TEMP/company-universe-coverage-final.json"
+      - name: Report affected companies and missing inputs
+        if: always()
+        run: node scripts/report-company-acceptance.mjs "$RUNNER_TEMP/company-universe-observation.json" "$RUNNER_TEMP/company-observation.json"
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: company-final-acceptance
+          path: ${{ runner.temp }}/company-universe-coverage-final.json
+          if-no-files-found: ignore
+      - run: node scripts/test-company-release.mjs
       - run: node scripts/test-company-forecast-ledger.mjs
       - name: Exercise forecast archive without publishing on PR
         if: github.event_name == 'pull_request'

@@ -1,4 +1,5 @@
 import ValuationPanel from './ValuationPanel.jsx'
+import { companyCompleteness } from './completeness.js'
 import { notifyPublication, copyPublicationText, startPublicationDownload } from '../../design-system/publicationActions.js'
 import { useEffect, useState } from 'react'
 import ChoicePicker from '../../design-system/ChoicePicker.jsx'
@@ -34,6 +35,7 @@ export default function App() {
 
 function CompanyDossier({ company, drafts, setDrafts }) {
   const id=company.id
+  const completeness=companyCompleteness(company)
   const [message, setMessage] = useState('')
   const [editing, setEditing] = useState(false)
   useEffect(()=>{setMessage('')},[id])
@@ -62,6 +64,7 @@ function CompanyDossier({ company, drafts, setDrafts }) {
     } catch { setMessage('Impossible de préparer l’image.'); notifyPublication('Impossible de préparer l’image. Réessaie.', 'error') }
   }
   return <>
+    {!completeness.complete&&<details className="company-coverage-note" data-testid="company-coverage-note"><summary>Dossier partiel · consulter les données à compléter</summary><p>Ce dossier n’est pas compté parmi les entreprises complètes. Les calculs disponibles utilisent uniquement leurs données qualifiées.</p><ul>{completeness.missing.map(reason=><li key={reason}>{reason}</li>)}</ul></details>}
     <ValuationPanel key={company.id} company={company} />
     <details className="company-publication"><summary>Comptes détaillés et publication existante</summary>
     <ToolWorkspace renderImage={() => renderCompanyImage(company)} imageDisabled={!ready} imageAlt={`Les chiffres de ${company.name}`} actions={<>

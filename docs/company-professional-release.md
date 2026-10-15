@@ -66,3 +66,7 @@ node scripts/qualify-company-universe.mjs --require-60 --output=/tmp/company-cov
 En collecte quotidienne, une régression de couverture est signalée après
 publication des observations valides ; elle ne doit pas empêcher leur mise à
 jour. Le contrôle PR reste bloquant pour la livraison initiale.
+
+## Seconde livraison
+
+Voir [la réception finale](company-final-release.md) : 50 entreprises supplémentaires, compléments historiques et seuil de 110 dossiers complets. Commande courante : `node scripts/qualify-company-universe.mjs --minimum=110`. Les limites résiduelles sont recensées séparément.

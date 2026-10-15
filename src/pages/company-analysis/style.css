@@ -151,3 +151,7 @@
 .valuation-explorer input { width: 85px; margin: 0 8px; padding: 8px; border: 1px solid #a9b5a2; border-radius: 8px; }
 .valuation-explorer td small { display: block; color: #52634f; margin-top: 4px; }
 .valuation-explorer .sensitivity-selected { background: #e5eedc; font-weight: 700; }
+
+.company-coverage-note { margin: 0 0 1rem; padding: .8rem 1rem; border: 1px solid #ddd8c7; border-radius: 12px; color: #635a43; background: #faf8ee; }
+.company-coverage-note summary { cursor: pointer; font-weight: 600; }
+.company-coverage-note p, .company-coverage-note li { font-size: .9rem; line-height: 1.5; }
