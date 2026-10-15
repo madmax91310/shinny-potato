@@ -11,7 +11,7 @@ import { ANNIVERSAIRE_ELIGIBLE_ASSETS, MARKET_ASSETS } from '../src/pages/tweet-
 import { buildCustomDuel } from '../src/pages/portfolio-duels/lib.js'
 import { DUELS } from '../src/pages/portfolio-duels/data.js'
 import { ASSETS as PORTFOLIO_ASSETS } from '../src/data/portfolio-assets.js'
-import { PROFILES } from '../src/pages/dca-profiles/data.js'
+import { ASSETS as DCA_ASSETS } from '../src/pages/dca-profiles/data.js'
 import { buildComparisonEtfDetails } from '../src/pages/etf-tweets/lib/comparisonDetails.js'
 assert.equal(LIFESTRATEGY_SHEETS.length, 4)
 for (const sheet of LIFESTRATEGY_SHEETS) {
@@ -32,7 +32,8 @@ for (const sheet of LIFESTRATEGY_SHEETS) {
   assert(!ANNIVERSAIRE_ELIGIBLE_ASSETS.some(x=>x.id===history.id))
   assert(PORTFOLIO_ASSETS.some(x=>x.id===sheet.id))
   assert(getDuelArt(CATALOG.find(x=>x.id===sheet.id)).scene)
-  assert(PROFILES.some(p=>p.lines.some(l=>l.asset===sheet.id)))
+  // Prepared profiles now require a broad equity core; balanced funds remain selectable.
+  assert(DCA_ASSETS[sheet.id])
 }
 for(const theme of DEFAULT_THEMES.filter(t=>t.id.startsWith('lifestrategy-'))) {
   assert(theme.etfs.length>=2)
