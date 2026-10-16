@@ -1207,7 +1207,9 @@ async function testDataReuse(page) {
   ok &&= (await page.locator('.pd-table tbody th').allTextContents()).join(',') === '2023,2024,2025';
   await page.goto(`${BASE}/faits-marquants-marches`, { waitUntil: 'networkidle' });
   await choose(page.getByLabel('Choisir un fait'), 'monthly-drawdown-paypal');
-  ok &&= (await page.locator('.mf-fact-text').innerText()).includes('clôtures mensuelles ajustées');
+  ok &&= (await page.locator('.mf-fact-text').innerText()) === buildMarketStory(MARKET_FACTS.find(fact=>fact.id==='monthly-drawdown-paypal'));
+  await page.locator('.mf-details summary').click();
+  ok &&= (await page.locator('.mf-details').innerText()).includes('clôtures mensuelles ajustées');
   ok &&= (await page.getByLabel('Choisir un fait').locator('[data-option][data-value="monthly-dca-costco"]').count()) === 0;
   await choose(page.getByLabel('Choisir un fait'), 'monthly-drawdown-nvidia');
   ok &&= (await page.locator('.mf-fact-text').innerText()) === buildMarketStory(MARKET_FACTS.find(fact => fact.id === 'monthly-drawdown-nvidia'));
