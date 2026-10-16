@@ -6,7 +6,7 @@ import AssetPicker from '../../design-system/AssetPicker.jsx'
 import ChoicePicker from '../../design-system/ChoicePicker.jsx'
 import { copyPublicationText, notifyPublication, startPublicationDownload } from '../../design-system/publicationActions.js'
 import { CATEGORIES, COLORS, RANKING_ASSETS } from './data.js'
-import { basisLabel, buildRanking, buildTweet, commonCoverage, formatPercent, rollingRegularity } from './engine.js'
+import { annualColumns, basisLabel, buildRanking, buildTweet, commonCoverage, formatPercent, monthIndex, rollingRegularity } from './engine.js'
 import './rankings.css'
 
 const CATEGORY = CATEGORIES[0]
@@ -21,7 +21,6 @@ export default function App() {
   const [ids, setIds] = useState(CATEGORY.ids)
   const [mode, setMode] = useState('years')
   const [dates, setDates] = useState(() => defaultDates(CATEGORY.ids))
-  const [annualized, setAnnualized] = useState(false)
   const [title, setTitle] = useState(CATEGORY.label)
   const [showRegularity, setShowRegularity] = useState(false)
   const [months, setMonths] = useState(60)
@@ -34,7 +33,7 @@ export default function App() {
   const computed = useMemo(() => {
     try {
       const coverage = commonCoverage(assets)
-      const result = buildRanking(assets, { ...dates, mode, annualized })
+      const result = buildRanking(assets, { ...dates, mode, annualized: monthIndex(dates.end) - monthIndex(dates.start) > 12 })
       const regularity = showRegularity ? rollingRegularity(assets, months) : null
       return { coverage, result, regularity }
     } catch (error) {
@@ -42,8 +41,9 @@ export default function App() {
       try { coverage = commonCoverage(assets) } catch { /* A new selection may still have fewer than two assets. */ }
       return { error: error.message, coverage }
     }
-  }, [assets, dates, mode, annualized, showRegularity, months])
+  }, [assets, dates, mode, showRegularity, months])
   const { coverage, result, regularity, error } = computed
+  const imageColumns = result ? annualColumns(result) : []
   const generatedText = result ? buildTweet(result, title, regularity) : ''
   // Keep a manual draft only for its exact calculation snapshot.
   const text = draft?.owner === generatedText ? draft.value : generatedText
@@ -107,14 +107,14 @@ export default function App() {
         <fieldset className="rk-modes"><legend>Temporalité</legend>{[['year', 'Une année'], ['years', 'Année par année'], ['period', 'Période libre']].map(([value, label]) => <button type="button" key={value} aria-pressed={mode === value} onClick={() => setMode(value)}>{label}</button>)}</fieldset>
         {mode === 'period' ? <>
           <div className="rk-date-fields"><label>Début, fin de mois<input type="month" min={coverage?.start} max={coverage?.end} value={dates.start} onChange={e => dateField('start', e.target.value)} /></label><label>Fin, fin de mois<input type="month" min={coverage?.start} max={coverage?.end} value={dates.end} onChange={e => dateField('end', e.target.value)} /></label></div>
-          <label className="rk-check"><input type="checkbox" checked={annualized} onChange={e => setAnnualized(e.target.checked)} /> Afficher la performance annualisée</label>
+          <p className="rk-note">Le tweet affiche la performance annualisée au-delà d’un an. L’image détaille chaque année ; les périodes partielles sont signalées.</p>
         </> : <div className="rk-date-fields">
           <label>{mode === 'year' ? 'Année' : 'Première année'}<ChoicePicker aria-label={mode === 'year' ? 'Année' : 'Première année'} value={dates.startYear ?? ''} onChange={e => dateField('startYear', Number(e.target.value))}>{coverage?.years.map(y => <option key={y} value={y}>{y}</option>)}</ChoicePicker></label>
           {mode === 'years' && <label>Dernière année<ChoicePicker aria-label="Dernière année" value={dates.endYear ?? ''} onChange={e => dateField('endYear', Number(e.target.value))}>{coverage?.years.map(y => <option key={y} value={y}>{y}</option>)}</ChoicePicker></label>}
         </div>}
         {coverage && <p className="rk-coverage"><strong>{coverage.currency} · {basisLabel(coverage.basis)}</strong><br />Historique commun : {coverage.start} → {coverage.end}{coverage.years.length ? ` · ${coverage.years.length} années civiles complètes` : ' · aucune année civile complète'}</p>}
         {error && <p className="rk-error" role="alert">{error}</p>}
-        <label className="rk-field">Titre de l’image<input maxLength={85} value={title} onChange={e => setTitle(e.target.value)} /></label>
+        <label className="rk-field">Univers du tweet<input maxLength={85} value={title} onChange={e => setTitle(e.target.value)} /></label>
         <details className="rk-regularity"><summary>Ajouter la régularité historique</summary>
           <label className="rk-check"><input type="checkbox" checked={showRegularity} onChange={e => setShowRegularity(e.target.checked)} /> Montrer la fréquence de première place</label>
           <label className="rk-field">Durée de chaque période<ChoicePicker aria-label="Durée de chaque période" value={months} onChange={e => setMonths(Number(e.target.value))}>{[12, 36, 60, 120].map(m => <option key={m} value={m}>{m / 12} an{m > 12 ? 's' : ''}</option>)}</ChoicePicker></label>
@@ -129,7 +129,8 @@ export default function App() {
       <section className="tool-preview rk-preview">
         {result ? <>
           <h2>{title || 'Classement'}</h2>
-          <div className="rk-table-scroll"><table className="rk-table"><caption>{mode === 'period' ? `${result.start} → ${result.end}` : 'Classement par année civile'} · {coverage.currency}</caption><thead><tr><th scope="col">Rang</th>{result.columns.map(c => <th key={c.label} scope="col">{c.label}</th>)}</tr></thead><tbody>{assets.map((_, i) => <tr key={i}><th scope="row">{i + 1}</th>{result.columns.map(c => { const r = c.rows[i]; return <td key={c.label} style={{ '--rk-color': COLORS[r.order] }}><strong>{r.label}</strong><span>{formatPercent(r.value)}</span>{r.rank !== i + 1 && <small>ex æquo, rang {r.rank}</small>}</td> })}</tr>)}</tbody></table></div>
+          <div className="rk-table-scroll"><table className="rk-table"><caption>Performances par année · {coverage.currency} · 🏆 Meilleure performance</caption><thead><tr><th scope="col">Actif</th>{imageColumns.map(c => <th key={c.label} scope="col" title={c.detail}>{c.label}{c.partial ? '*' : ''}</th>)}</tr></thead><tbody>{assets.map((asset, i) => <tr key={asset.id}><th scope="row">{asset.shortLabel}</th>{imageColumns.map(c => { const r = c.rows.find(r => r.id === asset.id); return <td key={c.label} style={{ '--rk-color': COLORS[i] }} className={`${r.rank === 1 ? 'rk-winner ' : ''}${r.value < 0 ? 'rk-negative' : 'rk-positive'}`}><span>{r.rank === 1 && <span aria-label="Meilleure performance">🏆 </span>}{formatPercent(r.value)}</span></td> })}</tr>)}</tbody></table></div>
+          {imageColumns.filter(c => c.partial).map(c => <p className="rk-note" key={c.label}>* {c.label} : clôtures {c.detail} (période partielle).</p>)}
           <label className="rk-field">Texte à publier<textarea aria-label="Texte à publier" rows={16} value={text} onChange={e => setDraft({ owner: generatedText, value: e.target.value })} /></label>
           <button type="button" className="rk-text-button" onClick={() => setDraft(null)}>Rétablir le texte généré</button>
         </> : <p>Complète la sélection et choisis une période couverte pour préparer le classement.</p>}
