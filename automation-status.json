@@ -215,9 +215,9 @@
     },
     "update-editorial-radar.yml": {
       "name": "Radar éditorial quotidien",
-      "runId": 38902999517,
+      "runId": 38903152855,
       "attempt": 1,
-      "completedAt": "2026-10-16T12:48:22Z",
+      "completedAt": "2026-10-16T12:48:57Z",
       "status": "failure",
       "lastSuccessAt": "2026-10-16T12:39:54Z",
       "collectionStatus": "unknown",
@@ -226,7 +226,7 @@
       "publicationStatus": "not-run",
       "lastCollectionSuccessAt": "2026-10-16T12:39:54Z",
       "lastPublicationSuccessAt": null,
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38902999517",
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38903152855",
       "failures": [
         {
           "job": "update",
@@ -372,10 +372,10 @@
       "dataFailures": {}
     }
   },
-  "updatedAt": "2026-10-16T12:48:35Z",
+  "updatedAt": "2026-10-16T12:48:57Z",
   "monitoring": {
     "schemaVersion": 1,
-    "checkedAt": "2026-10-16T12:49:02.157239+00:00",
+    "checkedAt": "2026-10-16T12:49:21.303346+00:00",
     "revision": 44,
     "active": {
       "collection:update-practical-sheets.yml:practical:13f": {
@@ -397,7 +397,7 @@
         "dataId": "practical:13f",
         "id": "collection:update-practical-sheets.yml:practical:13f",
         "firstSeenAt": "2026-10-14T21:07:26.171294+00:00",
-        "lastSeenAt": "2026-10-16T12:49:02.157239+00:00"
+        "lastSeenAt": "2026-10-16T12:49:21.303346+00:00"
       },
       "workflow:update-editorial-radar.yml": {
         "name": "Radar éditorial quotidien",
@@ -406,14 +406,14 @@
         ],
         "impactScope": "collector",
         "workflow": "update-editorial-radar.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38902999517",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38903152855",
         "to": "/donnees-a-revoir",
         "kind": "collection",
         "field": "Exécution du collecteur",
         "cause": "update : Run node scripts/test-editorial-radar.mjs",
         "id": "workflow:update-editorial-radar.yml",
         "firstSeenAt": "2026-10-16T12:48:40.252625+00:00",
-        "lastSeenAt": "2026-10-16T12:49:02.157239+00:00"
+        "lastSeenAt": "2026-10-16T12:49:21.303346+00:00"
       },
       "collection:update-insurance.yml:linxea-avenir-2": {
         "name": "Linxea Avenir 2",
@@ -432,7 +432,7 @@
         "dataId": "linxea-avenir-2",
         "id": "collection:update-insurance.yml:linxea-avenir-2",
         "firstSeenAt": "2026-10-14T13:08:27.203935+00:00",
-        "lastSeenAt": "2026-10-16T12:49:02.157239+00:00"
+        "lastSeenAt": "2026-10-16T12:49:21.303346+00:00"
       },
       "collection:update-scpi.yml:remake-live": {
         "name": "Remake Live",
@@ -455,7 +455,7 @@
         "dataId": "remake-live",
         "id": "collection:update-scpi.yml:remake-live",
         "firstSeenAt": "2026-10-15T13:02:43.499914+00:00",
-        "lastSeenAt": "2026-10-16T12:49:02.157239+00:00"
+        "lastSeenAt": "2026-10-16T12:49:21.303346+00:00"
       },
       "collection:update-regulatory-data.yml:broker-observation:caidf:profile:change": {
         "name": "caidf:profile:change",
@@ -475,7 +475,7 @@
         "dataId": "broker-observation:caidf:profile:change",
         "id": "collection:update-regulatory-data.yml:broker-observation:caidf:profile:change",
         "firstSeenAt": "2026-10-15T18:00:14.760687+00:00",
-        "lastSeenAt": "2026-10-16T12:49:02.157239+00:00"
+        "lastSeenAt": "2026-10-16T12:49:21.303346+00:00"
       },
       "publication:update-qualified-exposures.yml": {
         "name": "Expositions ETF qualifiées",
@@ -495,7 +495,7 @@
         "cause": "deploy / build : Run npm run test:radar",
         "id": "publication:update-qualified-exposures.yml",
         "firstSeenAt": "2026-10-16T12:48:21.924866+00:00",
-        "lastSeenAt": "2026-10-16T12:49:02.157239+00:00"
+        "lastSeenAt": "2026-10-16T12:49:21.303346+00:00"
       },
       "monitor:radar": {
         "kind": "unobserved",
@@ -508,7 +508,7 @@
         "to": "/donnees-a-revoir",
         "id": "monitor:radar",
         "firstSeenAt": "2026-10-15T18:53:46.175472+00:00",
-        "lastSeenAt": "2026-10-16T12:49:02.157239+00:00"
+        "lastSeenAt": "2026-10-16T12:49:21.303346+00:00"
       }
     },
     "events": [
