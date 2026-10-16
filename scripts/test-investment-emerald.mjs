@@ -39,7 +39,8 @@ try {
     await writeFile(`test-artifacts/investment-emerald/${sample.name}.txt`, sample.labels.join('\n'))
   })
   await page.evaluate(async () => {
-    const { ASSETS, ASSET_ORDER } = await import('/shinny-potato/src/data/market-history.js')
+    const { ASSETS, ASSET_ORDER, ensureCalculatorAsset } = await import('/shinny-potato/src/data/calculator-history.js')
+    await Promise.all(ASSET_ORDER.map(ensureCalculatorAsset))
     const { derive, fmtEUR, fmtPct, pct } = await import('/shinny-potato/src/pages/investment-calculator/lib.js')
     const { renderInvestmentImage, investmentChartKind, annualInvestmentCapital } = await import('/shinny-potato/src/pages/investment-calculator/imageExport.js')
     const original = CanvasRenderingContext2D.prototype.fillText
