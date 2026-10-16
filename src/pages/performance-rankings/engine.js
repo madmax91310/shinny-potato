@@ -81,12 +81,13 @@ export function rollingRegularity(assets, months) {
   return { count, months, start: coverage.start, end: coverage.end, stats }
 }
 export const formatPercent = value => `${value > 0 ? '+' : ''}${value.toLocaleString('fr-FR', { minimumFractionDigits: 1, maximumFractionDigits: 2 })} %`
+export const formatMonth = (value, short = false) => new Date(`${value}-01T00:00:00Z`).toLocaleDateString('fr-FR', { month: short ? 'short' : 'long', year: 'numeric', timeZone: 'UTC' })
 export function basisLabel(basis) {
   return ({ adjusted: 'Cours ajustés · revenus réinvestis', 'index-net': 'Indices · dividendes nets réinvestis', 'index-gross': 'Indices · dividendes bruts réinvestis', 'spot-close': 'Cours de clôture' })[basis] ?? basis
 }
 export function buildTweet(result, title, regularity) {
   const { columns, coverage } = result
-  const intro = result.mode === 'period' ? `Du ${result.start} au ${result.end}` : columns.length === 1 ? `En ${columns[0].label}` : `De ${columns[0].label} à ${columns.at(-1).label}`
+  const intro = result.mode === 'period' ? `De ${formatMonth(result.start)} à ${formatMonth(result.end)}` : columns.length === 1 ? `En ${columns[0].label}` : `De ${columns[0].label} à ${columns.at(-1).label}`
   const lines = columns.length === 1 ? columns[0].rows.map(r => `${r.rank}. ${r.label} : ${formatPercent(r.value)}`)
     : columns.map(c => `${c.label} : ${c.rows.filter(r => r.rank === 1).map(r => `${r.label} (${formatPercent(r.value)})`).join(' / ')}`)
   const regularityText = regularity ? `\n\nSur ${regularity.count} périodes glissantes de ${regularity.months / 12} an${regularity.months > 12 ? 's' : ''}, entre ${regularity.start} et ${regularity.end} :\n${regularity.stats.map(s => `${s.label} : premier dans ${(100 * s.wins / regularity.count).toLocaleString('fr-FR', { maximumFractionDigits: 1 })} % des périodes`).join('\n')}\nPériodes mensuelles qui se chevauchent ; victoires partagées en cas d’égalité. Ce ne sont pas des probabilités futures.` : ''

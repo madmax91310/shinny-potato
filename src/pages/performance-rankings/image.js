@@ -1,11 +1,16 @@
 import { COLORS } from './data.js'
-import { basisLabel, formatPercent } from './engine.js'
+import { basisLabel, formatMonth, formatPercent } from './engine.js'
 
 function text(ctx, value, x, y, size, color = '#f2f5f3', align = 'left', weight = 600) {
   ctx.font = `${weight} ${size}px Arial, sans-serif`; ctx.fillStyle = color; ctx.textAlign = align; ctx.textBaseline = 'top'; ctx.fillText(value, x, y)
 }
 function fit(ctx, value, x, y, size, width, color, align = 'left') {
   while (size > 15) { ctx.font = `600 ${size}px Arial, sans-serif`; if (ctx.measureText(value).width <= width) break; size-- }
+  ctx.font = `600 ${size}px Arial, sans-serif`
+  if (ctx.measureText(value).width > width) {
+    while (value.length > 1 && ctx.measureText(`${value}…`).width > width) value = value.slice(0, -1)
+    value += '…'
+  }
   text(ctx, value, x, y, size, color, align)
 }
 function card(ctx, x, y, w, h, color, alpha = .09) {
@@ -34,7 +39,7 @@ export function renderRankingImage(result, title, regularity) {
   const glow = ctx.createRadialGradient(width * .2, 0, 0, width * .2, 0, width * .7); glow.addColorStop(0, '#3aa28a30'); glow.addColorStop(1, '#3aa28a00'); ctx.fillStyle = glow; ctx.fillRect(0, 0, width, height)
   text(ctx, 'ÉPARGNANT LIBRE', width / 2, 35, 24, '#94b8b1', 'center')
   fit(ctx, title, width / 2, 89, 46, width - 120, '#f5f4ec', 'center')
-  const period = result.mode === 'period' ? `${result.start} → ${result.end}` : columns.length === 1 ? columns[0].label : `${columns[0].label} → ${columns.at(-1).label}`
+  const period = result.mode === 'period' ? `${formatMonth(result.start, true)} → ${formatMonth(result.end, true)}` : columns.length === 1 ? columns[0].label : `${columns[0].label} → ${columns.at(-1).label}`
   text(ctx, `${period}   ·   ${result.coverage.currency}   ·   ${result.annualized ? 'Performance annualisée' : result.mode === 'period' ? 'Performance cumulée' : 'Performances annuelles'}`, width / 2, 154, 24, '#afc4c3', 'center')
   const color = id => COLORS[result.assets.findIndex(a => a.id === id) % COLORS.length]
   if (single) {
