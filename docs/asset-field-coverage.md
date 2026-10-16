@@ -11,10 +11,10 @@ Les états décrivent les observations enregistrées, pas une garantie réseau. 
 | Pays | 215/244 | 212 | 3 | 0 |
 | Secteurs | 215/244 | 212 | 3 | 0 |
 | Principales positions | 218/244 | 215 | 3 | 0 |
-| Distribution | 205/244 | 205 | 0 | 0 |
-| Domicile | 96/244 | 96 | 0 | 0 |
-| Réplication | 105/244 | 105 | 0 | 0 |
-| Cotations | 15/244 | 15 | 0 | 0 |
+| Distribution | 206/244 | 206 | 0 | 0 |
+| Domicile | 128/244 | 128 | 0 | 0 |
+| Réplication | 174/244 | 174 | 0 | 0 |
+| Cotations | 16/244 | 16 | 0 | 0 |
 | Éligibilité PEA | 0/244 | 0 | 0 | 0 |
 | Couverture de change | 6/244 | 6 | 0 | 0 |
 
