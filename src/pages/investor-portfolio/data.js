@@ -1,5 +1,12 @@
 import { investorIntroduction } from '../../data/investor-profiles.js'
 export const INVESTORS = [
+  ['morfit', 'Mason Morfit'],
+  ['dorsey', 'Pat Dorsey'],
+  ['vinall', 'Robert Vinall'],
+  ['marks', 'Howard Marks'],
+  ['watsa', 'Prem Watsa'],
+  ['gavin-baker', 'Gavin Baker'],
+
   ['einhorn', 'David Einhorn'],
   ['halvorsen', 'Andreas Halvorsen'],
   ['gerstner', 'Brad Gerstner'],

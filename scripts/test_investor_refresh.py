@@ -82,7 +82,7 @@ class RefreshTests(unittest.TestCase):
             self.assertEqual(sum(c['status'] == 'failed' for c in result['managers']), 2)
 
     def test_all_existing_investors_are_tracked(self):
-        self.assertEqual(set(module.MANAGERS), {'einhorn', 'halvorsen', 'gerstner', 'gayner', 'tepper', 'ackman', 'berkshire', 'cathie-wood', 'thiel',
+        self.assertEqual(set(module.MANAGERS), {'morfit', 'dorsey', 'vinall', 'marks', 'watsa', 'gavin-baker', 'einhorn', 'halvorsen', 'gerstner', 'gayner', 'tepper', 'ackman', 'berkshire', 'cathie-wood', 'thiel',
                          'druckenmiller', 'loeb', 'aschenbrenner', 'li-lu', 'gates-trust', 'klarman', 'terry-smith', 'pabrai', 'hohn', 'baker-bros', 'icahn', 'laffont', 'renaissance'})
 
     def test_options_keep_declared_weight_denominator(self):

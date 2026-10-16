@@ -14,6 +14,13 @@ import urllib.parse
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 MANAGERS = {
+    'morfit': ('valueact-capital', 'Mason Morfit', 'ValueAct Capital Management LP'),
+    'dorsey': ('dorsey-asset-management', 'Pat Dorsey', 'Dorsey Asset Management LLC'),
+    'vinall': ('rv-capital', 'Robert Vinall', 'RV Capital GmbH'),
+    'marks': ('oaktree-capital-management', 'Howard Marks', 'Oaktree Capital Management LP'),
+    'watsa': ('fairfax-financial-holdings', 'Prem Watsa', 'Fairfax Financial Holdings Ltd'),
+    'gavin-baker': ('atreides-management', 'Gavin Baker', 'Atreides Management LP'),
+
     'einhorn': ('greenlight-capital', 'David Einhorn', 'Greenlight Capital Inc.'),
     'halvorsen': ('viking-global-investors', 'Andreas Halvorsen', 'Viking Global Investors LP'),
     'gerstner': ('altimeter-capital-management', 'Brad Gerstner', 'Altimeter Capital Management LP'),
