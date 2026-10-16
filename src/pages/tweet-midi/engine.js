@@ -32,6 +32,10 @@ export function createFormatEngine({
   PA_POSTE_ORDER = [],
   buildPouvoirAchatTweetText = unavailable
 } = {}) {
+// Histories are immutable for this engine's lifetime. Compute each asset's
+// eligible years once, not once for every comparison partner (quadratic work).
+const anniversaryYears = new Map(ANNIVERSAIRE_ELIGIBLE_ASSETS.map(asset => [asset.id, getValidYearsBackOptions(asset.id, TODAY)]));
+const performanceYears = new Map(MARKET_ASSETS.map(asset => [asset.id, getAnnualReturnStartYears(asset.id)]));
 // ── Pools par format ──────────────────────────────────────────────────────────────────────
 // Chaque entrée porte son format d'origine pour permettre le filtrage par format ET
 // l'anti-répétition globale (même pool d'ids, cf. pickNext). Les formats "Fiche lexique" et
@@ -50,7 +54,7 @@ const POOL_COMPARATIF_ETF = COMPARATIF_ETF_SUBJECTS.map((t) => ({
 // getValidYearsBackOptions dans marketHistory.js — jamais 1..10 supposé pour tous, certains
 // actifs ont une plage réelle plus courte, ex. LVMH limité à 1-5 ans).
 const POOL_ANNIVERSAIRE = ANNIVERSAIRE_ELIGIBLE_ASSETS.flatMap((asset) =>
-  getValidYearsBackOptions(asset.id, TODAY).map((yearsBack) => ({
+  anniversaryYears.get(asset.id).map((yearsBack) => ({
     id: `anniversaire:${asset.id}:${yearsBack}`,
     format: FORMATS.ANNIVERSAIRE,
     mode: MODES.SIMPLE,
@@ -63,7 +67,7 @@ const POOL_ANNIVERSAIRE = ANNIVERSAIRE_ELIGIBLE_ASSETS.flatMap((asset) =>
 // jamais une année sans clôture N-1 vérifiée pour servir de référence à sa propre ligne, ni
 // l'année en cours (encore partielle).
 const POOL_PERFORMANCE_DEPUIS = MARKET_ASSETS.flatMap((asset) =>
-  getAnnualReturnStartYears(asset.id).map((year) => ({
+  performanceYears.get(asset.id).map((year) => ({
     id: `perf-depuis:${asset.id}:${year}`,
     format: FORMATS.PERFORMANCE_DEPUIS,
     mode: MODES.SIMPLE,
@@ -79,11 +83,11 @@ const POOL_PERFORMANCE_DEPUIS = MARKET_ASSETS.flatMap((asset) =>
 // pour un seul (contrainte du brief).
 const POOL_ANNIVERSAIRE_COMPARATIF = [];
 for (let i = 0; i < ANNIVERSAIRE_ELIGIBLE_ASSETS.length; i++) {
+  const yearsBackA = new Set(anniversaryYears.get(ANNIVERSAIRE_ELIGIBLE_ASSETS[i].id));
   for (let j = i + 1; j < ANNIVERSAIRE_ELIGIBLE_ASSETS.length; j++) {
     const a = ANNIVERSAIRE_ELIGIBLE_ASSETS[i];
     const b = ANNIVERSAIRE_ELIGIBLE_ASSETS[j];
-    const yearsBackA = new Set(getValidYearsBackOptions(a.id, TODAY));
-    getValidYearsBackOptions(b.id, TODAY).forEach((yearsBack) => {
+    anniversaryYears.get(b.id).forEach((yearsBack) => {
       if (yearsBackA.has(yearsBack)) {
         POOL_ANNIVERSAIRE_COMPARATIF.push({
           id: `anniversaire-cmp:${a.id}:${b.id}:${yearsBack}`,
@@ -103,11 +107,11 @@ for (let i = 0; i < ANNIVERSAIRE_ELIGIBLE_ASSETS.length; i++) {
 // faible "au moins un point la même année" d'avant la refonte.
 const POOL_PERFORMANCE_DEPUIS_COMPARATIF = [];
 for (let i = 0; i < MARKET_ASSETS.length; i++) {
+  const yearsA = new Set(performanceYears.get(MARKET_ASSETS[i].id));
   for (let j = i + 1; j < MARKET_ASSETS.length; j++) {
     const a = MARKET_ASSETS[i];
     const b = MARKET_ASSETS[j];
-    const yearsA = new Set(getAnnualReturnStartYears(a.id));
-    getAnnualReturnStartYears(b.id).forEach((year) => {
+    performanceYears.get(b.id).forEach((year) => {
       if (yearsA.has(year)) {
         POOL_PERFORMANCE_DEPUIS_COMPARATIF.push({
           id: `perf-depuis-cmp:${a.id}:${b.id}:${year}`,
