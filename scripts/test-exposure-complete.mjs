@@ -5,6 +5,15 @@ import {references,validateProfile} from '../src/pages/dca-profiles/engine.js'
 import {sharedPositions} from '../src/pages/dca-profiles/verification.js'
 import {allocationRows} from '../src/pages/dca-profiles/image.js'
 import {searchAssets} from '../src/pages/dca-profiles/management.js'
+import {selectDcaHoldings} from './select-dca-holdings.mjs'
+const completeSample={asOf:'2026-10-14',complete:true,rows:[{name:'Full source'}]}
+const newerTopTen={asOf:'2026-10-15',complete:false,rows:[{name:'Top ten'}]}
+const selectionDate=new Date('2026-10-16')
+assert.equal(selectDcaHoldings(completeSample,newerTopTen,selectionDate),completeSample)
+assert.equal(selectDcaHoldings({...completeSample,asOf:'2026-01-01'},newerTopTen,selectionDate),newerTopTen)
+const newerComplete={...newerTopTen,complete:true}
+assert.equal(selectDcaHoldings(completeSample,newerComplete,selectionDate),newerComplete)
+assert.equal(selectDcaHoldings(undefined,newerTopTen,selectionDate),newerTopTen)
 const universe=equityUniverse()
 for(const [asset,r] of Object.entries(universe)){
  assert.equal(references[asset].kind,'equity')
