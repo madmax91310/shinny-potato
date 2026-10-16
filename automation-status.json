@@ -203,24 +203,19 @@
     },
     "update-publication-observations.yml": {
       "name": "Pouvoir d’achat et niveaux des anniversaires",
-      "runId": 38805030022,
+      "runId": 38852245264,
       "attempt": 1,
-      "completedAt": "2026-10-15T20:56:56Z",
-      "status": "failure",
-      "lastSuccessAt": "2026-10-15T19:07:45Z",
+      "completedAt": "2026-10-16T04:59:37Z",
+      "status": "success",
+      "lastSuccessAt": "2026-10-16T04:59:37Z",
       "collectionStatus": "success",
       "validationStatus": "success",
       "recordingStatus": "success",
-      "publicationStatus": "failure",
-      "lastCollectionSuccessAt": "2026-10-15T20:56:56Z",
+      "publicationStatus": "not-run",
+      "lastCollectionSuccessAt": "2026-10-16T04:59:37Z",
       "lastPublicationSuccessAt": "2026-10-11T14:35:58Z",
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38805030022",
-      "failures": [
-        {
-          "job": "deploy / build",
-          "step": "Run node scripts/test-etf-routing-expansion.mjs"
-        }
-      ],
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38852245264",
+      "failures": [],
       "dataFailures": {}
     },
     "update-editorial-radar.yml": {
@@ -398,11 +393,11 @@
       "dataFailures": {}
     }
   },
-  "updatedAt": "2026-10-16T04:46:00Z",
+  "updatedAt": "2026-10-16T04:59:37Z",
   "monitoring": {
     "schemaVersion": 1,
-    "checkedAt": "2026-10-16T04:58:36.715803+00:00",
-    "revision": 34,
+    "checkedAt": "2026-10-16T04:59:55.936499+00:00",
+    "revision": 35,
     "active": {
       "collection:update-practical-sheets.yml:practical:13f": {
         "name": "SEC · questions et réponses sur le formulaire 13F",
@@ -423,24 +418,7 @@
         "dataId": "practical:13f",
         "id": "collection:update-practical-sheets.yml:practical:13f",
         "firstSeenAt": "2026-10-14T21:07:26.171294+00:00",
-        "lastSeenAt": "2026-10-16T04:58:36.715803+00:00"
-      },
-      "publication:update-publication-observations.yml": {
-        "name": "Pouvoir d’achat et niveaux des anniversaires",
-        "tools": [
-          "Pouvoir d’achat",
-          "Il y a X ans"
-        ],
-        "impactScope": "collector",
-        "workflow": "update-publication-observations.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38805030022",
-        "to": "/donnees-a-revoir",
-        "kind": "publication",
-        "field": "Publication",
-        "cause": "deploy / build : Run node scripts/test-etf-routing-expansion.mjs",
-        "id": "publication:update-publication-observations.yml",
-        "firstSeenAt": "2026-10-15T20:57:15.425381+00:00",
-        "lastSeenAt": "2026-10-16T04:58:36.715803+00:00"
+        "lastSeenAt": "2026-10-16T04:59:55.936499+00:00"
       },
       "collection:update-insurance.yml:linxea-avenir-2": {
         "name": "Linxea Avenir 2",
@@ -459,7 +437,7 @@
         "dataId": "linxea-avenir-2",
         "id": "collection:update-insurance.yml:linxea-avenir-2",
         "firstSeenAt": "2026-10-14T13:08:27.203935+00:00",
-        "lastSeenAt": "2026-10-16T04:58:36.715803+00:00"
+        "lastSeenAt": "2026-10-16T04:59:55.936499+00:00"
       },
       "collection:update-scpi.yml:remake-live": {
         "name": "Remake Live",
@@ -482,7 +460,7 @@
         "dataId": "remake-live",
         "id": "collection:update-scpi.yml:remake-live",
         "firstSeenAt": "2026-10-15T13:02:43.499914+00:00",
-        "lastSeenAt": "2026-10-16T04:58:36.715803+00:00"
+        "lastSeenAt": "2026-10-16T04:59:55.936499+00:00"
       },
       "collection:update-regulatory-data.yml:broker-observation:caidf:profile:change": {
         "name": "caidf:profile:change",
@@ -502,7 +480,7 @@
         "dataId": "broker-observation:caidf:profile:change",
         "id": "collection:update-regulatory-data.yml:broker-observation:caidf:profile:change",
         "firstSeenAt": "2026-10-15T18:00:14.760687+00:00",
-        "lastSeenAt": "2026-10-16T04:58:36.715803+00:00"
+        "lastSeenAt": "2026-10-16T04:59:55.936499+00:00"
       },
       "publication:update-market-monthly.yml": {
         "name": "Historiques mensuels des marchés",
@@ -521,7 +499,7 @@
         "cause": "deploy / build : Run node scripts/test-etf-routing-expansion.mjs",
         "id": "publication:update-market-monthly.yml",
         "firstSeenAt": "2026-10-15T20:59:37.311807+00:00",
-        "lastSeenAt": "2026-10-16T04:58:36.715803+00:00"
+        "lastSeenAt": "2026-10-16T04:59:55.936499+00:00"
       },
       "collection:update-lifestrategy.yml:IE00BMVB5K07": {
         "name": "Vanguard LifeStrategy 20% Equity UCITS ETF (EUR) Accumulating",
@@ -548,7 +526,7 @@
         "dataId": "IE00BMVB5K07",
         "id": "collection:update-lifestrategy.yml:IE00BMVB5K07",
         "firstSeenAt": "2026-10-15T10:23:56.855354+00:00",
-        "lastSeenAt": "2026-10-16T04:58:36.715803+00:00"
+        "lastSeenAt": "2026-10-16T04:59:55.936499+00:00"
       },
       "collection:update-lifestrategy.yml:IE00BMVB5M21": {
         "name": "Vanguard LifeStrategy 40% Equity UCITS ETF (EUR) Accumulating",
@@ -575,7 +553,7 @@
         "dataId": "IE00BMVB5M21",
         "id": "collection:update-lifestrategy.yml:IE00BMVB5M21",
         "firstSeenAt": "2026-10-15T10:23:56.855354+00:00",
-        "lastSeenAt": "2026-10-16T04:58:36.715803+00:00"
+        "lastSeenAt": "2026-10-16T04:59:55.936499+00:00"
       },
       "collection:update-lifestrategy.yml:IE00BMVB5P51": {
         "name": "Vanguard LifeStrategy 60% Equity UCITS ETF (EUR) Accumulating",
@@ -602,7 +580,7 @@
         "dataId": "IE00BMVB5P51",
         "id": "collection:update-lifestrategy.yml:IE00BMVB5P51",
         "firstSeenAt": "2026-10-15T10:23:56.855354+00:00",
-        "lastSeenAt": "2026-10-16T04:58:36.715803+00:00"
+        "lastSeenAt": "2026-10-16T04:59:55.936499+00:00"
       },
       "collection:update-lifestrategy.yml:IE00BMVB5R75": {
         "name": "Vanguard LifeStrategy 80% Equity UCITS ETF (EUR) Accumulating",
@@ -629,7 +607,7 @@
         "dataId": "IE00BMVB5R75",
         "id": "collection:update-lifestrategy.yml:IE00BMVB5R75",
         "firstSeenAt": "2026-10-15T10:23:56.855354+00:00",
-        "lastSeenAt": "2026-10-16T04:58:36.715803+00:00"
+        "lastSeenAt": "2026-10-16T04:59:55.936499+00:00"
       },
       "monitor:radar": {
         "kind": "unobserved",
@@ -642,37 +620,10 @@
         "to": "/donnees-a-revoir",
         "id": "monitor:radar",
         "firstSeenAt": "2026-10-15T18:53:46.175472+00:00",
-        "lastSeenAt": "2026-10-16T04:58:36.715803+00:00"
+        "lastSeenAt": "2026-10-16T04:59:55.936499+00:00"
       }
     },
     "events": [
-      {
-        "revision": 5,
-        "at": "2026-10-14T09:50:06.756965+00:00",
-        "opened": [],
-        "resolved": [
-          {
-            "name": "Inflation mensuelle INSEE",
-            "tools": [
-              "Pouvoir d’achat"
-            ],
-            "impactScope": "collector",
-            "workflow": "update-inflation.yml",
-            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38535016478",
-            "to": "/donnees-a-revoir",
-            "completedAt": "2026-10-14T08:27:00Z",
-            "cause": "TimeoutError: The read operation timed out",
-            "sourceUrls": [],
-            "kind": "collection",
-            "field": "Champs du collecteur",
-            "dataId": "inflation:011814631",
-            "id": "collection:update-inflation.yml:inflation:011814631",
-            "firstSeenAt": "2026-10-14T08:27:23.149392+00:00",
-            "lastSeenAt": "2026-10-14T09:38:45.861560+00:00",
-            "resolvedAt": "2026-10-14T09:50:06.756965+00:00"
-          }
-        ]
-      },
       {
         "revision": 6,
         "at": "2026-10-14T11:07:35.462638+00:00",
@@ -3706,9 +3657,52 @@
           "publication:update-market-monthly.yml"
         ],
         "resolved": []
+      },
+      {
+        "revision": 35,
+        "at": "2026-10-16T04:59:55.936499+00:00",
+        "opened": [],
+        "resolved": [
+          {
+            "name": "Pouvoir d’achat et niveaux des anniversaires",
+            "tools": [
+              "Pouvoir d’achat",
+              "Il y a X ans"
+            ],
+            "impactScope": "collector",
+            "workflow": "update-publication-observations.yml",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38805030022",
+            "to": "/donnees-a-revoir",
+            "kind": "publication",
+            "field": "Publication",
+            "cause": "deploy / build : Run node scripts/test-etf-routing-expansion.mjs",
+            "id": "publication:update-publication-observations.yml",
+            "firstSeenAt": "2026-10-15T20:57:15.425381+00:00",
+            "lastSeenAt": "2026-10-16T04:58:36.715803+00:00",
+            "resolvedAt": "2026-10-16T04:59:55.936499+00:00"
+          }
+        ]
       }
     ],
     "resolved": [
+      {
+        "name": "Pouvoir d’achat et niveaux des anniversaires",
+        "tools": [
+          "Pouvoir d’achat",
+          "Il y a X ans"
+        ],
+        "impactScope": "collector",
+        "workflow": "update-publication-observations.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38805030022",
+        "to": "/donnees-a-revoir",
+        "kind": "publication",
+        "field": "Publication",
+        "cause": "deploy / build : Run node scripts/test-etf-routing-expansion.mjs",
+        "id": "publication:update-publication-observations.yml",
+        "firstSeenAt": "2026-10-15T20:57:15.425381+00:00",
+        "lastSeenAt": "2026-10-16T04:58:36.715803+00:00",
+        "resolvedAt": "2026-10-16T04:59:55.936499+00:00"
+      },
       {
         "name": "VanEck Quantum Computing UCITS ETF A",
         "tools": [
@@ -5967,34 +5961,6 @@
         "field": "Poids du pays Singapore",
         "cause": "Valeur contradictoire pour la même période (2026-10-12) : Poids du pays Singapore. Dernière observation conservée ; propositions archivées (etf:IE0006WW1TQ4:countries:Singapore:896eb444159fd8c94545e70e:2026-10-12).",
         "id": "radar:6743ee853fa8d7a286f6d9d9",
-        "firstSeenAt": "2026-10-14T11:42:41.168472+00:00",
-        "lastSeenAt": "2026-10-14T19:11:55.324201+00:00",
-        "resolvedAt": "2026-10-14T19:12:42.647375+00:00"
-      },
-      {
-        "name": "Xtrackers MSCI World ex USA UCITS ETF 1C",
-        "tools": [
-          "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Impact des frais",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "sourceUrls": [
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/historicaldata/download",
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/pdpMetaTagsTealium",
-          "https://etf.dws.com/download/asset/82292b8e-bf9e-44f2-b20d-722c743110a3",
-          "https://etf.dws.com/fr-fr/AssetDownload/Index/410e8206-23cd-463b-b2a5-6018bfc1fd32/Factsheet.pdf",
-          "https://www.justetf.com/en/etf-profile.html?isin=IE0006WW1TQ4",
-          "https://www.msci.com/documents/10199/255599/msci-world-ex-usa-index-net.pdf",
-          "https://www.zonebourse.com/cours/etf/XTRACKERS-MSCI-WORLD-EX-U-169862014/"
-        ],
-        "to": "/bibliotheque-donnees?id=IE0006WW1TQ4",
-        "kind": "conflict",
-        "field": "Poids du pays Hong Kong",
-        "cause": "Valeur contradictoire pour la même période (2026-10-12) : Poids du pays Hong Kong. Dernière observation conservée ; propositions archivées (etf:IE0006WW1TQ4:countries:Hong Kong:896eb444159fd8c94545e70e:2026-10-12).",
-        "id": "radar:95e0381ac8bfe2bb40baa599",
         "firstSeenAt": "2026-10-14T11:42:41.168472+00:00",
         "lastSeenAt": "2026-10-14T19:11:55.324201+00:00",
         "resolvedAt": "2026-10-14T19:12:42.647375+00:00"
