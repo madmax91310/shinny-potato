@@ -20,7 +20,7 @@ assert(Math.abs(result.result.finalValue-100*record.points.at(-1)[1]/points['202
 console.log('XNDX: full monthly series, independent annual returns, text convention and simulation verified.')
 const { resolveAnniversaryLevel }=await import('../src/data/anniversary-levels.js')
 const daily=JSON.parse(readFileSync('src/data/anniversary-levels.json')).nasdaq100
-assert.equal(daily.symbol,'XNDX')
+assert.equal(daily.symbol,'^XNDX')
 assert.equal(daily.variant,'TOTAL')
 const now=new Date(`${daily.asOf}T12:00:00Z`)
 assert.equal(resolveAnniversaryLevel('nasdaq100','',now).value,daily.value)

@@ -8,7 +8,7 @@ import re
 from concurrent.futures import ThreadPoolExecutor
 from urllib.parse import quote, urlencode
 from zoneinfo import ZoneInfo
-from data_automation import UTC, get_json, get_text, number, reject, write_json_atomic
+from data_automation import UTC, get_json, number, reject, write_json_atomic
 from issuer_documents import download
 from refresh_monthly_history import yahoo_chart, msci_rows, get_msci_json
 
@@ -21,6 +21,13 @@ def configurations():
     active = json.loads((ROOT/'src/data/automated-monthly.json').read_text())
     equities = [s for s in sources if s.get('consumerScope') == 'equity' and s['id'] in active]
     sources = [{**s, 'field': 'close'} for s in sources if s['id'] in IDS or s in etfs or s in equities]
+    # XNDX has only short daily coverage on Yahoo, sufficient for the current level.
+    # The full monthly XNDX history remains Nasdaq via FRED; never use ^NDX here.
+    for source in sources:
+        if source['id'] == 'nasdaq100':
+            if (source.get('symbol'),source.get('currency'),source.get('variant')) != ('XNDX','USD','TOTAL'):
+                reject('Nasdaq monthly/daily return convention differs')
+            source.update(parser='yahoo',symbol='^XNDX',timezone='America/New_York')
     sources += [{'id':'bitcoin','label':'Bitcoin','parser':'yahoo','symbol':'BTC-USD','currency':'USD','field':'close','timezone':'UTC'},
                 {'id':'cac40','label':'CAC 40','parser':'yahoo','symbol':'^FCHI','currency':'EUR','field':'close','timezone':'Europe/Paris'}]
     if {s['id'] for s in sources} != IDS | {'bitcoin','cac40'} | {s['id'] for s in etfs} | {s['id'] for s in equities}: reject('Configuration anniversaire incomplète')
@@ -35,7 +42,7 @@ def completed(rows, now, timezone='UTC'):
     if (today - day).days > 7: reject('Dernière séance trop ancienne')
     return day.isoformat(), number(value)
 
-def collect_one(config, now, json_fetch=None, byte_fetch=download, text_fetch=None):
+def collect_one(config, now, json_fetch=None, byte_fetch=download):
     start, end = now.date()-dt.timedelta(days=15), now.date()
     parser = config['parser']
     # Daily levels need the same bounded transient recovery as monthly MSCI
@@ -48,24 +55,6 @@ def collect_one(config, now, json_fetch=None, byte_fetch=download, text_fetch=No
             'period2':int(dt.datetime.combine(end,dt.time(),UTC).timestamp()),'interval':'1d','events':'splits'})
         body=json_fetch(url); rows, zone=yahoo_chart(body,config,'1d')
         asof,value=completed([(r[0],r[1]) for r in rows],now,zone)
-    elif parser == 'fred':
-        import csv
-        import io
-        if (config.get('seriesId'),config.get('symbol'),config.get('currency'),config.get('variant')) != ('NASDAQXNDX','XNDX','USD','TOTAL'):
-            reject('Wrong FRED index or return convention')
-        url='https://fred.stlouisfed.org/graph/fredgraph.csv?id=NASDAQXNDX'
-        body=(text_fetch or (lambda url: get_text(url, ('text/csv','application/csv','text/plain'))))(url)
-        reader=csv.DictReader(io.StringIO(body))
-        if reader.fieldnames != ['observation_date','NASDAQXNDX']:reject('Wrong FRED CSV series')
-        rows=[];dates=[]
-        for row in reader:
-            day=dt.date.fromisoformat(row['observation_date']);dates.append(day)
-            if row['NASDAQXNDX'] not in ('','.'):
-                value=number(float(row['NASDAQXNDX']))
-                if value <= 0:reject('Invalid FRED level')
-                if start <= day < end:rows.append((day,value))
-        if dates != sorted(set(dates)):reject('Duplicate or unordered FRED dates')
-        asof,value=completed(rows,now,'America/New_York')
     elif parser == 'msci':
         url='https://app2.msci.com/products/service/index/indexmaster/getLevelDataForGraph?'+urlencode({
             'currency_symbol':config['currency'],'index_variant':config['variant'],'start_date':start.strftime('%Y%m%d'),
@@ -105,7 +94,7 @@ def collect_one(config, now, json_fetch=None, byte_fetch=download, text_fetch=No
     return {'value':value,'asOf':asof,'currency':config['currency'],'parser':parser,
             'symbol':config.get('symbol'),'indexCode':config.get('indexCode'),'variant':config.get('variant'),
             'sourceUrl':url,'sha256':hashlib.sha256(json.dumps(body,sort_keys=True,allow_nan=False).encode()).hexdigest(),
-            'method':'Dernière séance terminée ; cours brut' if parser=='yahoo' else ('Niveau officiel de fin de mois, Total Return USD' if parser=='ftse' else 'Niveau officiel de fin de séance, variante exacte'),
+            'method':('Niveau XNDX Total Return USD de la dernière séance terminée, dividendes bruts réinvestis' if config.get('symbol')=='^XNDX' else 'Dernière séance terminée ; cours brut') if parser=='yahoo' else ('Niveau officiel de fin de mois, Total Return USD' if parser=='ftse' else 'Niveau officiel de fin de séance, variante exacte'),
             'maxAgeDays':45 if parser=='ftse' else 7,
             **({key:config[key] for key in ('isin','ticker','mic','listingEvidenceId')} if config.get('consumerScope')=='catalog' else {})}
 

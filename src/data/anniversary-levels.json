@@ -52,16 +52,16 @@
     "maxAgeDays": 7
   },
   "nasdaq100": {
-    "value": 36590.23,
+    "value": 36590.234375,
     "asOf": "2026-10-15",
     "currency": "USD",
-    "parser": "fred",
-    "symbol": "XNDX",
+    "parser": "yahoo",
+    "symbol": "^XNDX",
     "indexCode": null,
     "variant": "TOTAL",
-    "sourceUrl": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=NASDAQXNDX&cosd=2026-10-01&coed=2026-10-15",
-    "sha256": "7d93e514d557b53f2b0517a584ad1d9d26462d671338d143979ed34c86fc8b0f",
-    "method": "Niveau officiel de fin de séance, variante exacte",
+    "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/%5EXNDX?period1=1790812800&period2=1792108800&interval=1d&events=splits",
+    "sha256": "453c1aed561ff12c6dd46d5d213545269e7c9d700a445f6ad83e84b42667e2b1",
+    "method": "Niveau XNDX Total Return USD de la dernière séance terminée, dividendes bruts réinvestis",
     "maxAgeDays": 7
   },
   "soxx": {
