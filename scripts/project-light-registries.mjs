@@ -8,6 +8,7 @@ import * as facts from '../src/data/instrument-facts.js'
 import * as listings from '../src/data/instrument-listings.js'
 import * as pea from '../src/data/instrument-pea.js'
 import * as ter from '../src/data/etf-ter.js'
+import * as terEvidence from '../src/data/etf-ter-evidence.js'
 import * as portfolio from '../src/data/portfolio-assets.js'
 import * as currencies from '../src/data/portfolio-currencies.js'
 import * as reference from '../src/data/instrument-reference-evidence.js'
@@ -26,7 +27,7 @@ export function projectLightRegistries() {
     ['instrument-reference-evidence', reference, ''],
     ['instruments', instruments, "import { PEA_REVIEWS_BY_ISIN } from './instrument-pea.js';"],
     ['instrument-facts', facts, "import { getInstrumentListings } from './instrument-listings.js'; export { getInstrumentListings };"],
-    ['instrument-listings', listings, ''], ['instrument-pea', pea, ''], ['etf-ter', ter, ''],
+    ['instrument-listings', listings, ''], ['instrument-pea', pea, ''], ['etf-ter', ter, ''], ['etf-ter-evidence', terEvidence, ''],
     ['portfolio-assets', portfolio, ''], ['portfolio-currencies', currencies, ''], ['practical-source-data', practical, ''],
   ]
   const projections = new Map(definitions.map(([name, exports, imports]) => {
