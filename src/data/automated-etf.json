@@ -18993,7 +18993,7 @@
       "exportDate": "2026-10-16",
       "exportTimezone": "Europe/Berlin",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/historicaldata/download",
-      "sha256": "982bfd35d7ee206d7200fc536359d71db3408333fa9befa00a5bbc99031a3a00",
+      "sha256": "629dae4978e99acdbdcd195a1d647756e9e333756b559dc0bd3290e5e11f60a8",
       "method": "DWS dated historical fund AUM, all share classes, workbook currency; not exact-share assets",
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-16"
@@ -19183,7 +19183,7 @@
       "exportDate": "2026-10-16",
       "exportTimezone": "Europe/Berlin",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/historicaldata/download",
-      "sha256": "f503b8c2ae4cf3f9d9b62bcca78aa9cc3be1cee7b2a600e53f85764294c4bc0a",
+      "sha256": "af1b20fb66fc60cd335c17fd6744b42308ec5460265fb4105ad5c0a753eae44d",
       "method": "DWS dated historical fund AUM, all share classes, workbook currency; not exact-share assets",
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-16"
@@ -19512,7 +19512,7 @@
       "exportDate": "2026-10-16",
       "exportTimezone": "Europe/Berlin",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0290358497/historicaldata/download",
-      "sha256": "d15a89f5239fa534b26801841fa268b8f938f545ee7b27490928619cee764479",
+      "sha256": "fe47277571bfba1b3db9807d92181efb536d3424a524eed43263a3e2de4da04a",
       "method": "DWS dated historical fund AUM, all share classes, workbook currency; not exact-share assets",
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-16"
@@ -19537,7 +19537,7 @@
       "exportDate": "2026-10-16",
       "exportTimezone": "Europe/Berlin",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE000L6ZMMC4/historicaldata/download",
-      "sha256": "43a61bcf9aebe9567933dcea9f1eebc477ceeb92c68e09ca1279ca2da01aa7c6",
+      "sha256": "7ff822eb57c8de74125cce825c686f52d6a5350ec940b53052121d62ed01ad75",
       "method": "DWS dated historical fund AUM, all share classes, workbook currency; not exact-share assets",
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-16"
@@ -19945,7 +19945,7 @@
       "exportDate": "2026-10-16",
       "exportTimezone": "Europe/Berlin",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BGV5VN51/historicaldata/download",
-      "sha256": "991f42cfa52490039866cff16435915ee778f987951b73d9335b154ce1b97a0c",
+      "sha256": "ada03aa13bcc93cd57b21489b9dc46ff7d15bccd19eaad9591176b9b563cc136",
       "method": "DWS dated historical fund AUM, all share classes, workbook currency; not exact-share assets",
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-16"
@@ -20147,7 +20147,7 @@
       "exportDate": "2026-10-16",
       "exportTimezone": "Europe/Berlin",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HK77/historicaldata/download",
-      "sha256": "5e854e333cb4d97970019e6367af0dfd292d9a14e896b949e8c55b3ccaa5486c",
+      "sha256": "9d1bbd5272561c7ea5c69e0af8a345db177563f2e286ab913d68d2f7bae09d81",
       "method": "DWS dated historical fund AUM, all share classes, workbook currency; not exact-share assets",
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-16"
@@ -20343,17 +20343,6 @@
       "listings": [
         {
           "ticker": "XDWM",
-          "exchange": "Xetra",
-          "mic": "XETR",
-          "currency": "EUR",
-          "symbol": "XDWM.DE",
-          "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HS53/pdpMetaTagsTealium",
-          "checkedAt": "2026-10-16",
-          "evidenceId": "IE00BM67HS53-XETR-XDWM-EUR",
-          "excerpt": "IE00BM67HS53 | XETRA | XDWM | EUR | XDWM.DE"
-        },
-        {
-          "ticker": "XDWM",
           "exchange": "Borsa Italiana",
           "mic": "ETFP",
           "currency": "EUR",
@@ -20362,6 +20351,17 @@
           "checkedAt": "2026-10-16",
           "evidenceId": "IE00BM67HS53-ETFP-XDWM-EUR",
           "excerpt": "IE00BM67HS53 | Borsa Italiana | XDWM | EUR | XDWM.MI"
+        },
+        {
+          "ticker": "XDWM",
+          "exchange": "Xetra",
+          "mic": "XETR",
+          "currency": "EUR",
+          "symbol": "XDWM.DE",
+          "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HS53/pdpMetaTagsTealium",
+          "checkedAt": "2026-10-16",
+          "evidenceId": "IE00BM67HS53-XETR-XDWM-EUR",
+          "excerpt": "IE00BM67HS53 | XETRA | XDWM | EUR | XDWM.DE"
         },
         {
           "ticker": "XDWM",
@@ -20404,7 +20404,7 @@
       "exportDate": "2026-10-16",
       "exportTimezone": "Europe/Berlin",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HS53/historicaldata/download",
-      "sha256": "387b8ce0a18b6ab5b40a3ff4a57ec76cb69aa54b38b2042d47537a1fbf55dc1e",
+      "sha256": "aec4dae73f724532b785e61ebb78772af900ea552856d0beb27562035425696c",
       "method": "DWS dated historical fund AUM, all share classes, workbook currency; not exact-share assets",
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-16"
@@ -20632,7 +20632,7 @@
       "exportDate": "2026-10-16",
       "exportTimezone": "Europe/Berlin",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BTJRMP35/historicaldata/download",
-      "sha256": "a05b82c724d61d61eb139f037e0f7814627909b07a52c5595600707242e459e1",
+      "sha256": "b7b87d56fb1d4ad69318e9317b42f2475d93ed913cf44105a71c8180bc094154",
       "method": "DWS dated historical fund AUM, all share classes, workbook currency; not exact-share assets",
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-16"
@@ -20965,7 +20965,7 @@
       "exportDate": "2026-10-16",
       "exportTimezone": "Europe/Berlin",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU1875395870/historicaldata/download",
-      "sha256": "4292a61df03c1fcb30ab042553aa2a82d059111023656317d7583afc7874ac1e",
+      "sha256": "d036783b3427b0f6d547173e99726fdfcb0b83d56e8f06a26a0cecc4099086ef",
       "method": "DWS dated historical fund AUM, all share classes, workbook currency; not exact-share assets",
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-16"
@@ -21147,7 +21147,7 @@
       "exportDate": "2026-10-16",
       "exportTimezone": "Europe/Berlin",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU2196470426/historicaldata/download",
-      "sha256": "43b89798a57df693ab1f5308cf0fdbe89b92bede54e47afef6f33cfde3c530df",
+      "sha256": "96964b09ce989084fd6029fa88701225c191d4349d1a71bb294f201496c87769",
       "method": "DWS dated historical fund AUM, all share classes, workbook currency; not exact-share assets",
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-16"
@@ -29085,7 +29085,7 @@
       },
       "asOf": "2026-10-15",
       "sourceUrl": "https://api.primary.21shares.com/api/product_valuation_history/ABTC",
-      "sha256": "c6736336e2c519c26acf7099ef8013ea050a784b9501d1396cd56ab833a22f05",
+      "sha256": "8eff43953cd03d01fd3dd7768f85541a83a1d52401793e5cf139a339913903e9",
       "method": "calendar-year exact ETP USD NAV return, net of fees, issuer-adjusted for share splits; monthly issuer returns cross-checked; derived from rounded issuer NAV levels",
       "validationSources": [
         "https://api.primary.21shares.com/api/product_details/ABTC",
@@ -30348,14 +30348,14 @@
       "scope": "share-class",
       "asOf": "2026-10-16",
       "sourceUrl": "https://bitwiseinvestments.eu/products/bitwise-physical-bitcoin-etp/",
-      "sha256": "2b3914e89ad19625a9ea99fbf7a5004303a875a45f8fc4aa6835c4a9f10747c2",
+      "sha256": "932126dc3dd47192c3958aff64a1c5e84c532f280a36279e89ecba475a351a06",
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-16"
     },
     "characteristics": {
       "asOf": "2026-10-16",
       "sourceUrl": "https://bitwiseinvestments.eu/products/bitwise-physical-bitcoin-etp/",
-      "sha256": "2b3914e89ad19625a9ea99fbf7a5004303a875a45f8fc4aa6835c4a9f10747c2",
+      "sha256": "932126dc3dd47192c3958aff64a1c5e84c532f280a36279e89ecba475a351a06",
       "terPct": 2.0,
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-16"
@@ -30372,7 +30372,7 @@
       },
       "asOf": "2026-10-16",
       "sourceUrl": "https://bitwiseinvestments.eu/products/bitwise-physical-bitcoin-etp/",
-      "sha256": "2b3914e89ad19625a9ea99fbf7a5004303a875a45f8fc4aa6835c4a9f10747c2",
+      "sha256": "932126dc3dd47192c3958aff64a1c5e84c532f280a36279e89ecba475a351a06",
       "method": "calendar-year exact ETP NAV total return, net of fees",
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-16"
@@ -31026,7 +31026,7 @@
       "scope": "fund",
       "asOf": "2026-10-15",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "acb96707cf5604ee25c52352489d29d0c3374da882653e8c1d7e99dc2ff7dfdf",
+      "sha256": "26c5a509ac9d78be5d039749b01cd80846859918860061bf17bd50d7c2698445",
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-16"
     },
@@ -31044,7 +31044,7 @@
         "reason": "La section de performance ne fournit pas de calendrier annuel qualifié pour la part USD distribuante. Les rendements capitalisants ou glissants ne sont pas substitués.",
         "checkedAt": "2026-10-16",
         "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-        "sha256": "acb96707cf5604ee25c52352489d29d0c3374da882653e8c1d7e99dc2ff7dfdf",
+        "sha256": "26c5a509ac9d78be5d039749b01cd80846859918860061bf17bd50d7c2698445",
         "evidence": [
           "Performance History",
           "USD Accumulating",
@@ -31073,7 +31073,14 @@
           "15.75%",
           "-0.46%",
           "Performance is based on the fund’s NAV and is shown on a total return basis (i.e., with gross income reinvested, where applicable). The fund’s NAV may differ from its market price and, as a result, individual shareholders may realize returns that are different from the NAV performance. Cumulative return is the aggregate amount that an investment has gained or lost over time. Annualised return is the average return gained or lost by an investment each year over a given time period.",
-          "The performance data quoted represents past performance. Past performance does not guarantee future results. The investment return and principal value of an investment will fluctuate so that an investor's shares, when sold or redeemed, may be worth more or less than their original cost and current performance may be lower or higher than the performance quoted. High short-term performance, when observed, is unusual and investors should not expect such performance to be repeated. The return of your investment may increase or decrease as a result of currency fluctuations if your investment is made in a currency other than that used in past performance calculations."
+          "The performance data quoted represents past performance. Past performance does not guarantee future results. The investment return and principal value of an investment will fluctuate so that an investor's shares, when sold or redeemed, may be worth more or less than their original cost and current performance may be lower or higher than the performance quoted. High short-term performance, when observed, is unusual and investors should not expect such performance to be repeated. The return of your investment may increase or decrease as a result of currency fluctuations if your investment is made in a currency other than that used in past performance calculations.",
+          "Top 10 Reference Index Constituents",
+          "As of 08 Oct 2026",
+          "Weight (%)",
+          "Ticker",
+          "Name",
+          "8.30",
+          "NVDA"
         ]
       },
       "countries": {
@@ -31081,7 +31088,7 @@
         "reason": "Aucune allocation géographique économique complète qualifiée dans la page ; les pays de commercialisation et le panier de substitution sont exclus.",
         "checkedAt": "2026-10-16",
         "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-        "sha256": "acb96707cf5604ee25c52352489d29d0c3374da882653e8c1d7e99dc2ff7dfdf",
+        "sha256": "26c5a509ac9d78be5d039749b01cd80846859918860061bf17bd50d7c2698445",
         "evidence": []
       },
       "holdings": {
@@ -31089,7 +31096,7 @@
         "reason": "Poids différents pour les mêmes titres dans la section datée de l’indice : AAPL, AMZN, GOOG, GOOGL, META, MSFT, NVDA, TSLA.",
         "checkedAt": "2026-10-16",
         "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-        "sha256": "acb96707cf5604ee25c52352489d29d0c3374da882653e8c1d7e99dc2ff7dfdf",
+        "sha256": "26c5a509ac9d78be5d039749b01cd80846859918860061bf17bd50d7c2698445",
         "evidence": [
           "Top 10 Reference Index Constituents",
           "As of 08 Oct 2026",
@@ -31163,7 +31170,7 @@
         "reason": "Table sectorielle de référence à recouper avec l’indice exact avant utilisation ; aucune allocation du panier de substitution utilisée.",
         "checkedAt": "2026-10-16",
         "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-        "sha256": "acb96707cf5604ee25c52352489d29d0c3374da882653e8c1d7e99dc2ff7dfdf",
+        "sha256": "26c5a509ac9d78be5d039749b01cd80846859918860061bf17bd50d7c2698445",
         "evidence": [
           "Reference Index Sector Breakdown",
           "As of 30 Sep 2026",
@@ -31214,7 +31221,7 @@
       "scope": "share-class",
       "asOf": "2026-10-15",
       "sourceUrl": "https://www-api.coinshares.com/api/v2/Widgets?ApiKey=094DA478-140C-4E3E-B394-7A19BBE8326B&names=ISIN_DYNKEYSTATISTICS_GB00BLD4ZL17,ISIN_STATMETADATA_GB00BLD4ZL17",
-      "sha256": "e69f6527165b9e9872b01fbfc4d8238776115adce0faa44f37ae5787b9c52530",
+      "sha256": "4036b34bc85942a18a3679c81f8e3c68930056983a1fb761d6043591d3532b32",
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-16"
     },
@@ -31229,7 +31236,7 @@
       },
       "asOf": "2026-10-15",
       "sourceUrl": "https://www-api.coinshares.com/api/v2/Widgets?ApiKey=094DA478-140C-4E3E-B394-7A19BBE8326B&names=ISIN_GRAPH_GB00BLD4ZL17%40%25,ISIN_KEYSTATS_GB00BLD4ZL17",
-      "sha256": "9d97f5d660a215d88e14d992a156306b90b21c3c2c56fcbf8ae45d40efd750b0",
+      "sha256": "5c33446ca9b79051b6d06de0e8abd5f7f8e5b623e26cd4c689c17f43ae3f467c",
       "method": "calendar-year exact ETP return from issuer normalized USD product series; fees and staking reflected; derived from rounded issuer levels",
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-16"
@@ -31253,7 +31260,7 @@
       "scope": "share-class",
       "asOf": "2026-10-15",
       "sourceUrl": "https://www-api.coinshares.com/api/v2/Widgets?ApiKey=094DA478-140C-4E3E-B394-7A19BBE8326B&names=ISIN_DYNKEYSTATISTICS_GB00BLD4ZM24,ISIN_STATMETADATA_GB00BLD4ZM24",
-      "sha256": "0adfa5cc8a291d9489848db02ff87ea54d9cecea7d69de1be64a6255cd9e5205",
+      "sha256": "7c380fa5c396c5c11389e3a1aedff1109923e89bd70999654381df93c9f9f284",
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-16"
     },
@@ -31268,7 +31275,7 @@
       },
       "asOf": "2026-10-15",
       "sourceUrl": "https://www-api.coinshares.com/api/v2/Widgets?ApiKey=094DA478-140C-4E3E-B394-7A19BBE8326B&names=ISIN_GRAPH_GB00BLD4ZM24%40%25,ISIN_KEYSTATS_GB00BLD4ZM24",
-      "sha256": "a00c9e283f9386a1095abf629557cf01e4c40cc5b37a08bcf56566c88c5efb31",
+      "sha256": "dcca3940b84439056b27a10527e2e261129e727d9733ff8e5dad294cec85e18b",
       "method": "calendar-year exact ETP return from issuer normalized USD product series; fees and staking reflected; derived from rounded issuer levels",
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-16"
@@ -33146,7 +33153,7 @@
       "scope": "fund",
       "asOf": "2026-10-15",
       "sourceUrl": "https://globalxetfs.eu/funds/copx/",
-      "sha256": "78ef105706f6eb4309020631d69a5f6d33666c19289c73ca5a308321f2094c1c",
+      "sha256": "c68bd32dd4823fea732cd495536a28c2cf53d3ffe1c4647c1cb0b84d2842f727",
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-16"
     },
@@ -33166,7 +33173,7 @@
       "asOf": "2026-09-30",
       "basis": "fund",
       "sourceUrl": "https://globalxetfs.eu/funds/copx/",
-      "sha256": "78ef105706f6eb4309020631d69a5f6d33666c19289c73ca5a308321f2094c1c",
+      "sha256": "c68bd32dd4823fea732cd495536a28c2cf53d3ffe1c4647c1cb0b84d2842f727",
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-16"
     },
@@ -33224,7 +33231,7 @@
       "asOf": "2026-09-30",
       "basis": "fund",
       "sourceUrl": "https://globalxetfs.eu/funds/copx/",
-      "sha256": "78ef105706f6eb4309020631d69a5f6d33666c19289c73ca5a308321f2094c1c",
+      "sha256": "c68bd32dd4823fea732cd495536a28c2cf53d3ffe1c4647c1cb0b84d2842f727",
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-16"
     },
@@ -33274,7 +33281,7 @@
       "asOf": "2026-10-15",
       "basis": "fund",
       "sourceUrl": "https://globalxetfs.eu/funds/copx/",
-      "sha256": "78ef105706f6eb4309020631d69a5f6d33666c19289c73ca5a308321f2094c1c",
+      "sha256": "c68bd32dd4823fea732cd495536a28c2cf53d3ffe1c4647c1cb0b84d2842f727",
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-16"
     },
@@ -33319,7 +33326,7 @@
       ],
       "asOf": "2026-09-30",
       "sourceUrl": "https://globalxetfs.eu/funds/copx/",
-      "sha256": "78ef105706f6eb4309020631d69a5f6d33666c19289c73ca5a308321f2094c1c",
+      "sha256": "c68bd32dd4823fea732cd495536a28c2cf53d3ffe1c4647c1cb0b84d2842f727",
       "note": "",
       "method": "cumulative exact-share NAV total return, gross income reinvested, net of fees",
       "checkedAt": "2026-10-16",
@@ -33555,7 +33562,7 @@
       "exportDate": "2026-10-16",
       "exportTimezone": "Europe/Berlin",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HV82/historicaldata/download",
-      "sha256": "c4d7685248c7ca3adc1621ae0b5cd5f5fb3809354f635d31ece1bb2f90c62652",
+      "sha256": "96cc723f9591c2992935292bf9adaa03f81ad5704fcb4ba69eaf86d7d2abf1e8",
       "method": "DWS dated historical fund AUM, all share classes, workbook currency; not exact-share assets",
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-16"
@@ -33786,7 +33793,7 @@
       "exportDate": "2026-10-16",
       "exportTimezone": "Europe/Berlin",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HQ30/historicaldata/download",
-      "sha256": "9e0fbfc9711b6c9ec018d33c9c9a54cb408a3750d61f5322537f84a1a6d8709f",
+      "sha256": "f4084e9861322a486592b50a98eb3a48a6833646be78fee5c9dc54097c92da48",
       "method": "DWS dated historical fund AUM, all share classes, workbook currency; not exact-share assets",
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-16"
@@ -33980,17 +33987,6 @@
       "listings": [
         {
           "ticker": "XDWU",
-          "exchange": "Xetra",
-          "mic": "XETR",
-          "currency": "EUR",
-          "symbol": "XDWU.DE",
-          "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HQ30/pdpMetaTagsTealium",
-          "checkedAt": "2026-10-16",
-          "evidenceId": "IE00BM67HQ30-XETR-XDWU-EUR",
-          "excerpt": "IE00BM67HQ30 | XETRA | XDWU | EUR | XDWU.DE"
-        },
-        {
-          "ticker": "XDWU",
           "exchange": "Borsa Italiana",
           "mic": "ETFP",
           "currency": "EUR",
@@ -33999,6 +33995,17 @@
           "checkedAt": "2026-10-16",
           "evidenceId": "IE00BM67HQ30-ETFP-XDWU-EUR",
           "excerpt": "IE00BM67HQ30 | Borsa Italiana | XDWU | EUR | XDWU.MI"
+        },
+        {
+          "ticker": "XDWU",
+          "exchange": "Xetra",
+          "mic": "XETR",
+          "currency": "EUR",
+          "symbol": "XDWU.DE",
+          "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HQ30/pdpMetaTagsTealium",
+          "checkedAt": "2026-10-16",
+          "evidenceId": "IE00BM67HQ30-XETR-XDWU-EUR",
+          "excerpt": "IE00BM67HQ30 | XETRA | XDWU | EUR | XDWU.DE"
         },
         {
           "ticker": "XDWU",
@@ -34125,7 +34132,7 @@
       "scope": "fund",
       "asOf": "2026-10-15",
       "sourceUrl": "https://globalxetfs.eu/funds/silv/",
-      "sha256": "b2a56209d20c840e66af0ab312a81d278de5f42b40c290c3b9b210fdff56c388",
+      "sha256": "617a7c3b073d0a9813e98e705ce7f9696779497f03e04bdcb4b9ce479f305d48",
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-16"
     },
@@ -34143,7 +34150,7 @@
       "years": {},
       "asOf": "2026-09-30",
       "sourceUrl": "https://globalxetfs.eu/funds/silv/",
-      "sha256": "b2a56209d20c840e66af0ab312a81d278de5f42b40c290c3b9b210fdff56c388",
+      "sha256": "617a7c3b073d0a9813e98e705ce7f9696779497f03e04bdcb4b9ce479f305d48",
       "method": "cumulative exact-share NAV total return, gross income reinvested, net of fees",
       "observations": [
         {
@@ -34213,7 +34220,7 @@
       "asOf": "2026-09-30",
       "basis": "fund",
       "sourceUrl": "https://globalxetfs.eu/funds/silv/",
-      "sha256": "b2a56209d20c840e66af0ab312a81d278de5f42b40c290c3b9b210fdff56c388",
+      "sha256": "617a7c3b073d0a9813e98e705ce7f9696779497f03e04bdcb4b9ce479f305d48",
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-16"
     },
@@ -34263,7 +34270,7 @@
       "asOf": "2026-10-15",
       "basis": "fund",
       "sourceUrl": "https://globalxetfs.eu/funds/silv/",
-      "sha256": "b2a56209d20c840e66af0ab312a81d278de5f42b40c290c3b9b210fdff56c388",
+      "sha256": "617a7c3b073d0a9813e98e705ce7f9696779497f03e04bdcb4b9ce479f305d48",
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-16"
     },
@@ -34272,7 +34279,7 @@
         "status": "not-published",
         "checkedAt": "2026-10-16",
         "sourceUrl": "https://globalxetfs.eu/funds/silv/",
-        "sha256": "b2a56209d20c840e66af0ab312a81d278de5f42b40c290c3b9b210fdff56c388",
+        "sha256": "617a7c3b073d0a9813e98e705ce7f9696779497f03e04bdcb4b9ce479f305d48",
         "reason": "Aucun tableau sectoriel complet du fonds dans la page officielle contrôlée.",
         "evidence": {
           "datedCountryTable": true,
