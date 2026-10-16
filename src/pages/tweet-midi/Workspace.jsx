@@ -518,7 +518,7 @@ function TweetMidiWorkspace({ search, initialFormat, title, description, runtime
                   {currency === 'native' ? 'Devise d’origine' : currency === 'EUR' ? 'Euros (EUR)' : 'Dollars (USD)'}
                 </Button>)}
               </div>
-              <p className="mt-2 text-xs text-slate-400">Le texte et l’image suivent la devise choisie. La conversion utilise les taux historiques BCE de fin d’année, sans couverture de change.</p>
+              <p className="mt-2 text-xs text-slate-400">Le texte et l’image suivent la devise choisie. La série officielle dans cette devise est privilégiée lorsqu’elle est raccordée ; sinon, conversion aux taux historiques BCE de fin d’année, sans couverture de change.</p>
               {availableCurrencies.length < 2 && <p className="mt-1 text-xs text-slate-400">Le choix dépend des devises et de l’historique de change disponibles sur toute la période.</p>}
             </div>}
 
