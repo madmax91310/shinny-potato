@@ -19,11 +19,14 @@ browser=await chromium.launch({headless:true,...(process.env.CHROMIUM_PATH?{exec
   const weights=page.locator('.dca-simple-line input')
   await weights.nth(0).fill('80');await weights.nth(1).fill('20')
   for(const choice of ['all','both','countries','sectors']){
-   await page.getByLabel('Donuts de l’image',{exact:true}).selectOption(choice)
+   await page.getByRole('group',{name:'Donuts de l’image',exact:true}).locator(`[data-option][data-value="${choice}"]`).click()
    await page.getByRole('button',{name:'Générer l’image',exact:true}).click()
    await page.locator('.dca-simple-preview img').waitFor()
    assert(await page.locator('.dca-simple-preview img').evaluate(async img=>{await img.decode();return img.naturalWidth===1600}))
   }
+  const download=page.waitForEvent('download')
+  await page.getByRole('button',{name:'Télécharger le PNG',exact:true}).click()
+  assert.equal((await download).suggestedFilename(),'epargnant-libre-expositions.png')
   await weights.nth(0).fill('70')
   assert.equal(await page.locator('.dca-simple-preview img').count(),0)
   assert(await page.getByRole('button',{name:'Générer l’image',exact:true}).isDisabled())

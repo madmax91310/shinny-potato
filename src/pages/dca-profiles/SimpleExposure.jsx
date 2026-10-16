@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import PageHeader from '../../design-system/PageHeader'
 import Button from '../../design-system/Button'
+import ChoicePicker from '../../design-system/ChoicePicker.jsx'
 import { startPublicationDownload } from '../../design-system/publicationActions.js'
 import { ASSETS } from './data.js'
 import catalog from './catalog.json' with {type:'json'}
@@ -46,12 +47,12 @@ export default function SimpleExposure(){
     </div>)}
     <p className="dca-total">Total : {pct(total)} / 100 %</p>
     {!!lines.length&&!!analysis.errors.length&&<div role="status" className="dca-note">{analysis.errors.map(error=><p key={error}>{error}</p>)}</div>}
-    <label>Donuts de l’image<select value={field} onChange={e=>{invalidate();setField(e.target.value)}}>
+    <label>Donuts de l’image<ChoicePicker aria-label="Donuts de l’image" value={field} onChange={e=>{invalidate();setField(e.target.value)}}>
      <option value="all">Répartition + géographie + secteurs</option>
      <option value="both">Géographie + secteurs</option>
      <option value="countries">Géographie uniquement</option>
      <option value="sectors">Secteurs uniquement</option>
-    </select></label>
+    </ChoicePicker></label>
     <Button disabled={!!analysis.errors.length||busy} onClick={generate}>{busy?'Génération…':'Générer l’image'}</Button>
    </section>
    <section className="dca-simple-card dca-simple-preview" aria-label="Image des expositions" aria-busy={busy}>
