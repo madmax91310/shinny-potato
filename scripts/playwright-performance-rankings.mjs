@@ -1,14 +1,14 @@
 import assert from 'node:assert/strict'
-import { mkdir } from 'node:fs/promises'
+import { mkdir, writeFile } from 'node:fs/promises'
 import { chromium } from 'playwright'
 import { spawn } from 'node:child_process'
 const port = 4372, base = process.env.TEST_BASE_URL || `http://127.0.0.1:${port}/shinny-potato`
 const server = process.env.TEST_BASE_URL ? null : spawn('node', ['node_modules/vite/bin/vite.js', 'preview', '--host', '127.0.0.1', '--port', String(port)], { stdio: 'ignore' })
-let browser
+let browser, page
 try {
   for (let i = 0; i < 100; i++) { try { if ((await fetch(base)).ok) break } catch {} await new Promise(r => setTimeout(r, 200)) }
   browser = await chromium.launch({ headless: true, ...(process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH ? { executablePath: process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH } : {}) })
-  const page = await browser.newPage({ viewport: { width: 1440, height: 1000 }, acceptDownloads: true })
+  page = await browser.newPage({ viewport: { width: 1440, height: 1000 }, acceptDownloads: true })
   const errors = []; page.on('pageerror', e => errors.push(e.message))
   await page.goto(`${base}/classements-performances`, { waitUntil: 'networkidle' })
   await page.getByRole('heading', { name: 'Qui a vraiment gagné ?', exact: true }).waitFor()
@@ -58,4 +58,11 @@ try {
   await page.screenshot({ path: 'test-artifacts/performance-rankings/mobile.png', fullPage: true })
   assert.deepEqual(errors, [])
   console.log('Rankings: categories, calendar/custom modes, annualization, regularity, invalid dates, exact manual selections, PNG download, desktop and mobile passed.')
+} catch (error) {
+  if (page) {
+    await mkdir('test-artifacts/performance-rankings', { recursive: true })
+    await page.screenshot({ path: 'test-artifacts/performance-rankings/failure.png' }).catch(() => {})
+    await writeFile('test-artifacts/performance-rankings/failure.html', await page.content()).catch(() => {})
+  }
+  throw error
 } finally { await browser?.close(); server?.kill() }

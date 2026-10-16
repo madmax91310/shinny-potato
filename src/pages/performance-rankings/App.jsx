@@ -55,7 +55,11 @@ export default function App() {
   function applyIds(next) {
     setIds(next); setStatus('')
     if (next.length >= 2) {
-      try { setDates(defaultDates(next)) } catch { /* Error is shown in the editor. */ }
+      try {
+        const nextDates = defaultDates(next)
+        setDates(nextDates)
+        if (nextDates.startYear === undefined) setMode('period')
+      } catch { /* Error is shown in the editor. */ }
     }
   }
   function chooseCategory(id) {
@@ -105,8 +109,8 @@ export default function App() {
           <div className="rk-date-fields"><label>Début, fin de mois<input type="month" min={coverage?.start} max={coverage?.end} value={dates.start} onChange={e => dateField('start', e.target.value)} /></label><label>Fin, fin de mois<input type="month" min={coverage?.start} max={coverage?.end} value={dates.end} onChange={e => dateField('end', e.target.value)} /></label></div>
           <label className="rk-check"><input type="checkbox" checked={annualized} onChange={e => setAnnualized(e.target.checked)} /> Afficher la performance annualisée</label>
         </> : <div className="rk-date-fields">
-          <label>{mode === 'year' ? 'Année' : 'Première année'}<ChoicePicker aria-label={mode === 'year' ? 'Année' : 'Première année'} value={dates.startYear ?? ''} onChange={e => dateField('startYear', Number(e.target.value))}>{coverage?.years.map(y => <option key={y}>{y}</option>)}</ChoicePicker></label>
-          {mode === 'years' && <label>Dernière année<ChoicePicker aria-label="Dernière année" value={dates.endYear ?? ''} onChange={e => dateField('endYear', Number(e.target.value))}>{coverage?.years.map(y => <option key={y}>{y}</option>)}</ChoicePicker></label>}
+          <label>{mode === 'year' ? 'Année' : 'Première année'}<ChoicePicker aria-label={mode === 'year' ? 'Année' : 'Première année'} value={dates.startYear ?? ''} onChange={e => dateField('startYear', Number(e.target.value))}>{coverage?.years.map(y => <option key={y} value={y}>{y}</option>)}</ChoicePicker></label>
+          {mode === 'years' && <label>Dernière année<ChoicePicker aria-label="Dernière année" value={dates.endYear ?? ''} onChange={e => dateField('endYear', Number(e.target.value))}>{coverage?.years.map(y => <option key={y} value={y}>{y}</option>)}</ChoicePicker></label>}
         </div>}
         {coverage && <p className="rk-coverage"><strong>{coverage.currency} · {basisLabel(coverage.basis)}</strong><br />Historique commun : {coverage.start} → {coverage.end}{coverage.years.length ? ` · ${coverage.years.length} années civiles complètes` : ' · aucune année civile complète'}</p>}
         {error && <p className="rk-error" role="alert">{error}</p>}
