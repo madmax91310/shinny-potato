@@ -1,5 +1,5 @@
 import datetime as dt,unittest,copy,json
-from collect_exposure_sleeves import equity_rows,parse_avantis,joined
+from collect_exposure_sleeves import equity_rows,parse_avantis,joined,issuer_classifications
 NOW=dt.datetime(2026,10,16,tzinfo=dt.timezone.utc)
 class EquitySleeves(unittest.TestCase):
  def body(self):
@@ -26,4 +26,10 @@ class EquitySleeves(unittest.TestCase):
   row={'name':'A','isin':'ISIN','weight':'100%','securityType':'FOREIGN COMMON STOCK'}
   self.assertEqual(parse_avantis(prefix+json.dumps([row]),NOW)[0][0]['weightPct'],100)
   with self.assertRaises((ValueError,json.JSONDecodeError)):parse_avantis(prefix+'[evil()]',NOW)
+ def test_same_issuer_classification_uses_security_not_listing_country(self):
+  prefix='productName:"Avantis International Small Cap Value ETF",ticker:"AVDV",etfHoldingsAsOfDate:"10/15/2026",etfHoldings:'
+  rows=[{'isin':str(i),'securityType':'FOREIGN COMMON STOCK','country':'JAPAN','sector':'INFORMATION TECHNOLOGY'} for i in range(100)]
+  got=issuer_classifications(prefix+json.dumps(rows),'Avantis International Small Cap Value ETF','AVDV',NOW)
+  self.assertEqual(got[0]['countryOfRisk'],'Japan');self.assertEqual(got[0]['asOf'],'2026-10-15')
+  with self.assertRaises(ValueError):issuer_classifications(prefix+json.dumps(rows),'WRONG','AVDV',NOW)
 if __name__=='__main__':unittest.main()

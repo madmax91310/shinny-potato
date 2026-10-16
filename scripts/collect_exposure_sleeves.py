@@ -48,6 +48,23 @@ def parse_avantis(text, now):
     if not stocks or any(r['weightPct']<0 for r in stocks) or not 98<=sum(r['weightPct'] for r in stocks)<=101:raise ValueError('Incomplete Avantis equity portfolio')
     return stocks,stamp
 
+def issuer_classifications(text, name, ticker, now):
+    if not re.search(r'(?:productName:|\.productName=)"'+re.escape(name)+'"',text) or not re.search(r'(?:ticker:|\.ticker=)"'+re.escape(ticker)+'"',text):raise ValueError('Wrong Avantis classification portfolio')
+    raw=re.search(r'etfHoldingsAsOfDate:"([\d/]+)"',text)[1]
+    fmt='%Y/%m/%d' if len(raw.split('/')[0])==4 else '%m/%d/%Y'
+    stamp=document_date(dt.datetime.strptime(raw,fmt).date().isoformat(),now)
+    literal=text.split('etfHoldings:',1)[1]
+    literal=re.sub(r'("(?:\\.|[^"\\])*")|([A-Za-z_$][\w$]*)\s*:',lambda m:m[1] if m[1] else '"'+m[2]+'":',literal)
+    rows=json.JSONDecoder().raw_decode(literal)[0]
+    if len(rows)<100:raise ValueError('Incomplete classification portfolio')
+    out=[]
+    for r in rows:
+        if not r.get('isin') or 'COMMON' not in (r.get('securityType') or ''):continue
+        if not r.get('country') or not r.get('sector'):continue
+        out.append({'isin':r['isin'],'countryOfRisk':r['country'].title(),'sectorName':r['sector'].title(),'asOf':stamp})
+    if len(out)<100:raise ValueError('Missing issuer security classifications')
+    return out
+
 def joined(rows, stamp, url, index, now, field):
     total=sum(r['weightPct'] for r in rows);weights={};missing=[];sources=set();dates=[stamp]
     for r in rows:
@@ -57,7 +74,7 @@ def joined(rows, stamp, url, index, now, field):
         sources.add(evidence['sourceUrl']);dates.append(evidence['asOf'])
     if (dt.date.fromisoformat(max(dates))-dt.date.fromisoformat(min(dates))).days>45:raise ValueError('Classification dates too far apart')
     return {'asOf':min(dates),'holdingsAsOf':stamp,'checkedAt':now.date().isoformat(),'sourceUrl':url,'sourceUrls':sorted(sources|{url}),'basis':'fund','compatibility':'exact-isin-lookthrough-'+field,
-            'method':'Official complete equity holdings joined by exact ISIN to dated BlackRock security classifications; unknown positions remain unallocated',
+            'method':'Official complete equity holdings joined by exact ISIN to dated issuer security classifications; unknown positions remain unallocated',
             'rows':[{'name':n,'weightPct':w} for n,w in sorted(weights.items(),key=lambda x:-x[1])],
             'unclassified':[{'isin':r['isin'],'weightPct':100*r['weightPct']/total} for r in missing]}
 
@@ -92,6 +109,16 @@ def main():
             for r in rows:
                 if r['isin'] not in index or stamp>=index[r['isin']]['asOf']:index[r['isin']]={**r,'asOf':stamp,'sourceUrl':url}
         except Exception as e:errors.append({'source':code,'error':str(e)})
+    # Same-issuer per-security classifications cover the smaller companies absent
+    # from the broad index portfolios. Only exact ISIN matches are used.
+    for ticker,name,url,file in [
+        ('AVDV','Avantis International Small Cap Value ETF','https://www.avantisinvestors.com/avantis-investments/en-us/total-holdings/120/?type=etf','avdv.html'),
+        ('AVUV','Avantis U.S. Small Cap Value ETF','https://www.avantisinvestors.com/avantis-investments/en-us/total-holdings/119/?type=etf','avuv.html')]:
+        try:
+            for r in issuer_classifications(get(url,file),name,ticker,now):
+                if r['isin'] not in index:index[r['isin']]={**r,'sourceUrl':url}
+            successful.add('avantis-'+ticker)
+        except Exception as e:errors.append({'source':'avantis-'+ticker,'error':str(e)})
     # Exact depositary receipts have the same issuer classification, never the US listing country.
     for adr,ordinary in [('US8740391003','TW0002330008'),('GB0009895292','GB0009895292')]:
         r=index.get(ordinary)
@@ -126,6 +153,8 @@ def main():
         for f in ['countries','sectors']:
             if f not in r:continue
             if r[f]['asOf']<previous.get(isin,{}).get(f,{}).get('asOf',''):raise ValueError('Date regression '+isin)
+            old=previous.get(isin,{}).get(f)
+            if errors and old and sum(x['weightPct'] for x in r[f]['rows'])+0.001<sum(x['weightPct'] for x in old['rows']):r[f]=old
         previous[isin]={**previous.get(isin,{}),**r}
     if args.apply:write_json_atomic(path,previous)
     report={'checkedAt':now.isoformat(),'updated':list(fresh),'successes':[{'id':'exposure-sleeve:'+isin} for isin in sorted(set(fresh)|successful)],

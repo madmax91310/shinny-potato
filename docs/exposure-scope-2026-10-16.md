@@ -12,10 +12,10 @@ Le détail repliable présente tous les pays/secteurs disponibles et leur part d
 - LifeStrategy 20/40/60/80 : transparisation de la poche actions, avec collecte des trois fonds Vanguard supplémentaires nécessaires. Les compositions de fonds entiers ne sont pas fabriquées à partir de cette poche.
 - Deux fonds obligataires : conservés dans l’allocation ; exclus des donuts de la poche actions. Leurs expositions obligataires communes restent disponibles dans les données.
 - QYLD : l’émetteur confirme que le sous-jacent actions correspond aux constituants du Nasdaq-100. Utilisation de la composition de cet indice déjà collectée automatiquement, en précisant le sous-jacent actions et en excluant le panier de substitution et le profil de rendement des options.
-- Avantis : positions complètes collectées auprès d’Avantis, classifications pays jointes par ISIN aux positions officielles BlackRock. Les positions sans correspondance restent non ventilées. Ni le préfixe de l’ISIN, ni le pays de cotation ne servent de pays de risque.
+- Avantis : positions complètes collectées auprès d’Avantis, classifications pays jointes par ISIN aux positions officielles BlackRock et aux classifications de titres publiées par Avantis. Les positions sans correspondance restent non ventilées. Ni le préfixe de l’ISIN, ni le pays de cotation ne servent de pays de risque.
 - Silver Miners : positions complètes Global X et secteurs des titres rapprochés par ISIN avec BlackRock. Les sociétés non retrouvées restent non ventilées ; le thème minier n’est pas arbitrairement assimilé à 100 % Matériaux.
 
-Le résultat chiffré reproductible est dans `docs/exposure-coverage.md`. **Avantis et Silver Miners restent partiels** : les nouveaux collecteurs réduisent leurs lacunes mais ne certifient pas 100 % de classification. Aucune suppression d’actif ou réattribution automatique ne masque ce reste.
+Le résultat chiffré reproductible est dans `docs/exposure-coverage.md`. **Silver Miners reste partiel** ; Avantis dépasse désormais 99,5 % de pays identifiés. Les nouveaux collecteurs ne certifient pas 100 % de classification pour chaque ligne. Aucune suppression d’actif ou réattribution automatique ne masque ce reste.
 
 ## Actualisation
 
