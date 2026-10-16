@@ -2,6 +2,13 @@ import sources from '../../../public/asset-art/investors/sources.json'
 
 // Explicit person → portrait mapping. Entities remain labelled as entities.
 const people = {
+  'morfit': 'Mason Morfit',
+  'dorsey': 'Pat Dorsey',
+  'vinall': 'Robert Vinall',
+  'marks': 'Howard Marks',
+  'watsa': 'Prem Watsa',
+  'gavin-baker': 'Gavin Baker',
+
   "einhorn": "David Einhorn",
   "halvorsen": "Andreas Halvorsen",
   "gerstner": "Brad Gerstner",

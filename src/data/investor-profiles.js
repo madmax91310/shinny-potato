@@ -1,5 +1,12 @@
 // Une présentation courte par profil ; les déclarations 13F restent une source distincte.
 export const INVESTOR_PROFILES = Object.freeze(Object.fromEntries([
+  ["morfit", "Mason Morfit est codirecteur général de ValueAct Capital, une société de gestion qui dialogue avec les entreprises de son portefeuille.", ["https://www.salesforce.com/company/mason-morfit-bio/"]],
+  ["dorsey", "Pat Dorsey a fondé Dorsey Asset Management après avoir dirigé la recherche actions de Morningstar et travaillé sur les avantages concurrentiels des entreprises.", ["https://dorseyasset.com/who-we-are/"]],
+  ["vinall", "Robert Vinall a fondé RV Capital en 2006, une société de gestion qui investit dans les entreprises avec une approche de propriétaire à long terme.", ["https://www.rvcapital.ch/"]],
+  ["marks", "Howard Marks est le cofondateur d’Oaktree, une société de gestion connue notamment pour ses investissements dans le crédit.", ["https://www.oaktreecapital.com/about/leadership/bio/howard-marks"]],
+  ["watsa", "Prem Watsa a fondé Fairfax, un groupe d’assurance et de réassurance qui détient également un portefeuille de placements.", ["https://www.fairfax.ca/corporate/watsa-v-prem/"]],
+  ["gavin-baker", "Gavin Baker a fondé Atreides en 2019 après une carrière chez Fidelity ; il en dirige les investissements et la gestion du portefeuille.", ["https://atreidesmgmt.com/team/gavin-baker/"]],
+
   ["einhorn", "David Einhorn a cofondé Greenlight Capital en 1996, une société de gestion qui investit notamment dans les actions.", ["https://greenlightre.com/about-us"]],
   ["halvorsen", "Andreas Halvorsen est le cofondateur de Viking Global, une société de gestion qui investit dans les entreprises cotées et privées.", ["https://vikingglobal.com/our-team/"]],
   ["gerstner", "Brad Gerstner a fondé Altimeter, une société de gestion spécialisée dans les entreprises technologiques cotées et privées.", ["https://milkeninstitute.org/events/global-conference-2026/speakers/brad-gerstner"]],
@@ -23,6 +30,6 @@ export const INVESTOR_PROFILES = Object.freeze(Object.fromEntries([
   ['icahn', 'Carl Icahn est un investisseur activiste qui prend des participations dans les entreprises et cherche à influencer leurs décisions.', ['https://carlicahn.com/about/']],
   ['laffont', 'Philippe Laffont a fondé Coatue, une société de gestion qui investit dans les entreprises technologiques cotées et privées.', ['https://www.coatue.com/']],
   ['renaissance', 'Renaissance Technologies est une société de gestion quantitative fondée par le mathématicien Jim Simons, décédé en 2024.', ['https://www.simonsfoundation.org/2024/05/10/simons-foundation-co-founder-mathematician-and-investor-jim-simons-dies-at-86/']],
-].map(([slug, intro, sourceUrls]) => [slug, Object.freeze({ intro, sourceUrls: Object.freeze(sourceUrls), checkedAt: ['einhorn','halvorsen','gerstner','gayner'].includes(slug) ? '2026-10-15' : ['terry-smith', 'pabrai', 'hohn', 'baker-bros', 'icahn', 'laffont', 'renaissance'].includes(slug) ? '2026-10-04' : '2026-10-01' })])))
+].map(([slug, intro, sourceUrls]) => [slug, Object.freeze({ intro, sourceUrls: Object.freeze(sourceUrls), checkedAt: ["morfit", "dorsey", "vinall", "marks", "watsa", "gavin-baker"].includes(slug) ? '2026-10-16' : ['einhorn','halvorsen','gerstner','gayner'].includes(slug) ? '2026-10-15' : ['terry-smith', 'pabrai', 'hohn', 'baker-bros', 'icahn', 'laffont', 'renaissance'].includes(slug) ? '2026-10-04' : '2026-10-01' })])))
 
 export function investorIntroduction(slug) { return INVESTOR_PROFILES[slug]?.intro ?? '' }
