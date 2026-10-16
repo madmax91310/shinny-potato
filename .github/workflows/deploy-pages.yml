@@ -286,6 +286,8 @@ jobs:
           path: ~/.cache/ms-playwright
           key: chromium-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
       - run: npx playwright install --with-deps chromium
+      - run: node scripts/test-simple-exposure.mjs
+        if: matrix.shard == 1
       - run: node scripts/run-browser-checks.mjs ${{ matrix.shard }} 4
       - run: node scripts/playwright-etf-completeness.mjs
         if: matrix.shard == 0

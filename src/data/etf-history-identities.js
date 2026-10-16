@@ -1,6 +1,10 @@
 import config from '../../scripts/non-bond-expansion-sources.json' with { type: 'json' }
 const NON_BOND_HISTORY_IDENTITIES = Object.fromEntries(config.instruments.filter(r=>r.historyEnabled!==false).map(r=>[r.historyId,{icon:r.icon,scene:r.scene,title:r.title,ticker:r.preferredSymbol.split('.')[0],instrumentType:r.instrumentType||'ETF'}]))
 export const ETF_HISTORY_IDENTITIES = {
+ etfAmundiWater:{icon:'💧',scene:'world',title:'EAU',ticker:'WAT'},
+ etfAmundiLuxury:{icon:'💎',scene:'world',title:'LUXE',ticker:'GLUX'},
+ etfLgArtificialIntelligence:{icon:'🧠',scene:'chip',title:'INTELLIGENCE ARTIFICIELLE',ticker:'AIAI'},
+ etfLgBattery:{icon:'🔋',scene:'industry',title:'BATTERIES',ticker:'BATT'},
  etfWorldTech:{icon:'💻',scene:'chip',title:'TECHNOLOGIE MONDIALE',ticker:'WITS'},
  etfAiBigData:{icon:'🧠',scene:'chip',title:'IA ET BIG DATA',ticker:'XAIX'},
  etfWorldExUs:{icon:'🌍',scene:'world',title:'WORLD HORS USA',ticker:'EXUS'},
