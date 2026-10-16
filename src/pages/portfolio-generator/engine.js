@@ -476,14 +476,15 @@ export function renderTweetText(p) {
     ? '📈 Quelles performances pour ce portefeuille ? 👀'
     : `📈 ${formatPerformance(annualized)} par an sur la période ${years[0]}–${years.at(-1)} : ${questions[index]} 👀`;
   const blocks = [`${hook}\n\nVoici sa répartition et le détail des performances simulées 👇`, '💼 La répartition'];
+  if (p.strategyLabel) blocks.splice(1, 0, `🌦️ ${p.strategyLabel}`);
   // Sort a copy: recipe slots and replacements still rely on the stored order.
   const ordered = [...p.selection].filter(s => s.pct > 0).sort((a, b) => b.pct - a.pct);
-  blocks.push(ordered.map(s => `${s.emoji} ${s.pct}% ${portfolioPostName(s)}`).join("\n"));
+  blocks.push(ordered.map(s => `${s.emoji} ${s.pct.toLocaleString('fr-FR')}% ${portfolioPostName(s)}`).join("\n"));
   blocks.push(performanceExcerpt(perf));
   const notes = performanceNotes(p.selection, { includeMethod: false });
   if (notes) blocks.push(notes);
   blocks.push('La pire année civile observée n’est pas une perte maximale : une baisse en cours d’année peut être plus forte.');
-  blocks.push(`📌 ${editorial.thesis}`);
+  blocks.push(`📌 ${p.strategyThesis ?? editorial.thesis}`);
   blocks.push('💬 Que penses-tu de ce portefeuille ?');
   return blocks.join("\n\n");
 }
