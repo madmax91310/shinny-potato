@@ -2,6 +2,8 @@ import assert from 'node:assert/strict'
 import { mkdir, writeFile } from 'node:fs/promises'
 import { chromium } from 'playwright'
 import { spawn } from 'node:child_process'
+import { CATEGORIES, RANKING_ASSETS } from '../src/pages/performance-rankings/data.js'
+import { commonCoverage, monthIndex } from '../src/pages/performance-rankings/engine.js'
 const port = 4372, base = process.env.TEST_BASE_URL || `http://127.0.0.1:${port}/shinny-potato`
 const server = process.env.TEST_BASE_URL ? null : spawn('node', ['node_modules/vite/bin/vite.js', 'preview', '--host', '127.0.0.1', '--port', String(port)], { stdio: 'ignore' })
 let browser, page
@@ -30,7 +32,10 @@ try {
   assert.match(await page.getByLabel('Texte à publier', { exact: true }).inputValue(), /Performance annualisée/)
   await page.getByText('Ajouter la régularité historique', { exact: true }).click()
   await page.getByLabel('Montrer la fréquence de première place').check()
-  assert.match(await page.getByLabel('Texte à publier', { exact: true }).inputValue(), /81 périodes glissantes/)
+  const factors = CATEGORIES.find(category => category.id === 'factors').ids.map(id => RANKING_ASSETS[id])
+  const factorCoverage = commonCoverage(factors)
+  const expectedWindows = monthIndex(factorCoverage.end) - monthIndex(factorCoverage.start) - 60 + 1
+  assert((await page.getByLabel('Texte à publier', { exact: true }).inputValue()).includes(`${expectedWindows} périodes glissantes`))
   await page.getByLabel('Début, fin de mois', { exact: true }).fill('2014-12')
   await page.getByRole('alert').waitFor()
   assert(await page.getByRole('button', { name: 'Télécharger l’image', exact: true }).isDisabled())
