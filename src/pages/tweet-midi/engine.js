@@ -1,3 +1,5 @@
+import { convertPerformanceEntries, performanceCurrencies, performanceDisplayBasis } from './performanceCurrency.js'
+import { formatPerformancePct, performancePeriod } from './performanceFormat.js'
 import { FORMATS, MODES, TODAY, SUBJECT_ALEATOIRE } from './constants.js'
 const unavailable = () => { throw new Error('Format dependency unavailable') }
 export function createFormatEngine({
@@ -451,20 +453,20 @@ function cumulatePct(returns) {
 }
 
 // Même bloc pour tous les actifs, sans conclusion ni comparaison annexe.
-function buildPerformanceBlock(asset, year, returns) {
+function buildPerformanceBlock(asset, returns) {
   return [
-    `📈 Performance ${dePhrase(asset.tweetPhrase)} depuis ${year} 👇`,
-    performanceBasis(asset.id),
+    `📈 Performance ${dePhrase(asset.tweetPhrase)} ${performancePeriod(returns)} 👇`,
+    performanceDisplayBasis(asset, performanceBasis(asset.id)),
     "",
-    ...returns.map(({ year: annualYear, pct }) => `${pct >= 0 ? "🟢" : "🔴"} ${annualYear} : ${fmtPct(pct)}`),
+    ...returns.map(({ year: annualYear, pct }) => `${pct >= 0 ? "🟢" : "🔴"} ${annualYear} : ${formatPerformancePct(pct)}`),
     "",
-    `Sur toute la période : ${fmtPct(cumulatePct(returns))}`,
+    `Sur toute la période : ${formatPerformancePct(cumulatePct(returns))}`,
   ].join("\n");
 }
 
 function buildPerformanceDepuisText(item) {
   const [{ asset, returns }] = getPerformanceEntries(item);
-  return buildPerformanceBlock(asset, item.year, returns);
+  return buildPerformanceBlock(asset, returns);
 }
 
 // Both observations retain their own date and convention.
@@ -516,18 +518,23 @@ function buildAnniversaireComparatifText(item, rawNiveauActuelA, rawNiveauActuel
 // Le texte peut dépasser 280 caractères ; le badge de longueur de l’app le signale.
 function getPerformanceEntries(item) {
   const ids = item.mode === MODES.COMPARATIF ? [item.assetIdA, item.assetIdB] : [item.assetId];
-  const entries = ids.map(id => ({ asset: findAsset(id), returns: getAnnualReturns(id, item.year) }));
+  let entries = ids.map(id => ({ asset: findAsset(id), returns: getAnnualReturns(id, item.year) }));
   if (entries.some(entry => !entry.asset || !entry.returns.length)) throw new Error('Actif ou performances annuelles absents');
   const sharedLastYear = Math.min(...entries.map(entry => entry.returns.at(-1).year));
   entries.forEach(entry => { entry.returns = entry.returns.filter(row => row.year <= sharedLastYear); });
+  entries = convertPerformanceEntries(entries, item.currency);
   if (entries.every(entry => entry.asset.currency === entries[0].asset.currency)) {
     entries.sort((a, b) => cumulatePct(b.returns) - cumulatePct(a.returns));
   }
   return entries;
 }
 
+function getPerformanceCurrencies(item) {
+  return performanceCurrencies(getPerformanceEntries({ ...item, currency: 'native' }));
+}
+
 function buildPerformanceDepuisComparatifText(item) {
-  return getPerformanceEntries(item).map(({ asset, returns }) => buildPerformanceBlock(asset, item.year, returns)).join("\n\n");
+  return getPerformanceEntries(item).map(({ asset, returns }) => buildPerformanceBlock(asset, returns)).join("\n\n");
 }
 
 function buildPouvoirAchatText(item) {
@@ -552,5 +559,5 @@ function buildTweetText(item, extra = {}) {
   return "";
 }
 
-return { ALL_ITEMS, poolForFormat, getSubjectsForFormat, getSecondaryOptionsForFormat, pickNext, pickForSelection, buildDilemmeText, getMarketAsset, buildAnniversaireText, buildPerformanceDepuisText, buildAnniversaireComparatifText, getPerformanceEntries, buildPerformanceDepuisComparatifText, buildPouvoirAchatText, buildTweetText };
+return { getPerformanceCurrencies, ALL_ITEMS, poolForFormat, getSubjectsForFormat, getSecondaryOptionsForFormat, pickNext, pickForSelection, buildDilemmeText, getMarketAsset, buildAnniversaireText, buildPerformanceDepuisText, buildAnniversaireComparatifText, getPerformanceEntries, buildPerformanceDepuisComparatifText, buildPouvoirAchatText, buildTweetText };
 }

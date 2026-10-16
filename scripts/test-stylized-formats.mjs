@@ -77,13 +77,14 @@ try {
         const { performanceBasis } = await import('/shinny-potato/src/pages/tweet-midi/data/marketHistory.js')
         const currency = (await import('/shinny-potato/src/pages/tweet-midi/lib.js')).getMarketAsset(id).currency
         if (!words.includes(performanceBasis(id).replace(`${currency} · `, '').replace(` · ${currency}`, ''))) throw new Error('Missing return convention')
-        if (!words.includes(`Fin ${rows[0].year - 1} → Fin ${rows.at(-1).year}`) || !words.includes(`EN ${(await import('/shinny-potato/src/pages/tweet-midi/lib.js')).getMarketAsset(id).currency}`)) throw new Error('Missing dates or currency')
+        if (!words.includes(`de début ${rows[0].year} à fin ${rows.at(-1).year}`) || !words.includes(`EN ${(await import('/shinny-potato/src/pages/tweet-midi/lib.js')).getMarketAsset(id).currency}`)) throw new Error('Missing dates or currency')
+        const { formatPerformancePct } = await import('/shinny-potato/src/pages/tweet-midi/performanceFormat.js')
         for (const row of rows) {
-          const annual = `${row.pct >= 0 ? '+' : '−'}${Math.abs(row.pct).toLocaleString('fr-FR', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} %`
+          const annual = formatPerformancePct(row.pct)
           if (!words.includes(annual) || !words.includes(String(row.year))) throw new Error('Missing annual bar label')
         }
         const total = cumulativePerformance(rows)
-        const percent = `${total >= 0 ? '+' : '−'}${Math.abs(total).toLocaleString('fr-FR', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} %`
+        const percent = formatPerformancePct(total)
         if (!words.includes(percent)) throw new Error('Changed performance calculation')
       }
       await check('performance-duel', () => renderPerformanceImage({ mode: 'comparatif', assetIdA: 'msciWorld', assetIdB: 'or', year: 2020 }), true)

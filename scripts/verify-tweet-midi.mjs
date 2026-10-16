@@ -117,7 +117,7 @@ for (const item of ALL_ITEMS) {
     const end = Math.min(a.at(-1).year, b.at(-1).year);
     const annualLines = [...text.matchAll(/^[🟢🔴] (\d{4}) :/gmu)].map((m) => Number(m[1]));
     const expected = [...a, ...b].filter((r) => r.year <= end).map((r) => r.year);
-    if ((text.match(/^📈 Performance .* depuis \d{4} 👇$/gmu) ?? []).length !== 2 ||
+    if ((text.match(/^📈 Performance .* de début \d{4} à fin \d{4} 👇$/gmu) ?? []).length !== 2 ||
         (text.match(/^Sur toute la période : /gmu) ?? []).length !== 2) {
       problems.push('structure du comparatif de performances non respectée');
     }
@@ -128,7 +128,7 @@ for (const item of ALL_ITEMS) {
 
   if (!error && item.format === FORMATS.PERFORMANCE_DEPUIS) {
     const blocks = text.split(/\n\n(?=📈)/u);
-    const blockPattern = /^📈 Performance [^\n]+ depuis \d{4} 👇\n[^\n]*(?:USD|EUR|KRW|CHF|DKK|JPY|HKD)[^\n]*\n\n(?:[🟢🔴] \d{4} : [+-]?[\d\s.,]+ %\n)+\nSur toute la période : [+-]?[\d\s.,]+ %$/u;
+    const blockPattern = /^📈 Performance [^\n]+ de début \d{4} à fin \d{4} 👇\n[^\n]*(?:USD|EUR|KRW|CHF|DKK|JPY|HKD)[^\n]*\n\n(?:[🟢🔴] \d{4} : [+−-]?(?:< )?[\d\s.,]+ %\n)+\nSur toute la période : [+−-]?(?:< )?[\d\s.,]+ %$/u;
     if (!blocks.every((block) => blockPattern.test(block))) {
       problems.push('format minimal de performance non respecté');
     }

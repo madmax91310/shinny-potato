@@ -25,5 +25,30 @@ try {
   await page.setViewportSize({width:1280,height:900})
   console.log(`${route}: Nasdaq Total Return text, PNG and mobile verified`)
  }
+ // Currency selection updates the same actual period in text and PNG, including mobile.
+ await page.goto(`${base}/performance-depuis?asset=msciWorld`,{waitUntil:'networkidle'})
+ await page.locator('#secondary-select [data-option][data-value="2016"]').click()
+ await page.getByRole('button',{name:'🔄 Générer',exact:true}).click()
+ let previousImage
+ for(const [currency,label,total] of [['USD','Dollars (USD)','+231,7 %'],['EUR','Euros (EUR)','+207,4 %']]) {
+  await page.getByRole('button',{name:label,exact:true}).click()
+  assert.equal(await page.getByRole('button',{name:label,exact:true}).getAttribute('aria-pressed'),'true')
+  const tweet=await page.locator('pre').innerText()
+  assert.match(tweet,/de début 2016 à fin 2025/)
+  assert(tweet.includes(`Gross Return · ${currency} · dividendes bruts réinvestis`),tweet)
+  assert(tweet.includes(`Sur toute la période : ${total}`),tweet)
+  await page.evaluate(()=>{window.__currencyPaint=[];const original=CanvasRenderingContext2D.prototype.fillText;CanvasRenderingContext2D.prototype.fillText=function(text,...args){window.__currencyPaint.push(String(text));return original.call(this,text,...args)}})
+  await page.getByRole('tab',{name:'Image',exact:true}).click()
+  await page.locator('.publication-image-stage img').waitFor({state:'visible',timeout:60000})
+  const image=await page.locator('.publication-image-stage img').getAttribute('src')
+  assert.notEqual(image,previousImage)
+  previousImage=image
+  assert(await page.evaluate(currency=>window.__currencyPaint.includes(`EN ${currency}`),currency))
+  assert(await page.evaluate(total=>window.__currencyPaint.includes(total),total))
+  await page.getByRole('tab',{name:'Texte',exact:true}).click()
+ }
+ await page.setViewportSize({width:390,height:844})
+ assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth))
+ console.log('MSCI World: EUR/USD controls, exact periods, converted cumulative returns, PNG and mobile verified')
  assert.deepEqual(errors,[])
 } finally {await browser?.close();server?.kill()}

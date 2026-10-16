@@ -32,11 +32,11 @@ def parse(body, now):
         value = float(rates[0].attrib['rate'])
         if not math.isfinite(value) or not 0 < value < 10:
             reject('Invalid ECB USD per EUR rate')
-        if date.year >= 2019 and date.year < now.year and date.month == 12:
+        if date.year >= 1999 and date.year < now.year and date.month == 12:
             key = str(date.year)
             if key not in observed or date.isoformat() > observed[key]['asOf']:
                 observed[key] = {'value': value, 'asOf': date.isoformat()}
-    expected = {str(y) for y in range(2019, now.year)}
+    expected = {str(y) for y in range(1999, now.year)}
     if set(observed) != expected:
         reject('Incomplete completed-year ECB coverage')
     if any((dt.date(int(y) + 1, 1, 1) - dt.date.fromisoformat(row['asOf'])).days > 7

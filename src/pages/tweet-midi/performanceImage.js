@@ -1,3 +1,5 @@
+import { performanceDisplayBasis } from './performanceCurrency.js'
+import { formatPerformancePct, performancePeriod } from './performanceFormat.js'
 import { startPublicationDownload } from '../../design-system/publicationActions.js'
 import { performanceBasis } from './data/marketHistory.js'
 import { getPerformanceEntries, MODES } from './engines/performance.js'
@@ -12,7 +14,7 @@ const assetTitle = asset => {
   const name = (asset.tweetPhrase || asset.label).replace(/^l['’]indice /i, 'le ')
   return name.charAt(0).toUpperCase() + name.slice(1)
 }
-const percentage = value => `${value >= 0 ? '+' : '−'}${Math.abs(value).toLocaleString('fr-FR', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} %`
+const percentage = formatPerformancePct
 function text(ctx, value, x, y, size, { width = W, color = INK, align = 'left', weight = 700, serif = false } = {}) {
   ctx.textBaseline = 'top'; ctx.textAlign = align; ctx.fillStyle = color
   let fitted = size
@@ -54,9 +56,9 @@ function panel(ctx, entry, image, studio, goldStudio, y) {
     ctx.restore()
   }
   text(ctx, assetTitle(asset), 670, 120, 98, { width: 830, color: GOLD, serif: true })
-  text(ctx, `Fin ${returns[0].year - 1} → Fin ${returns.at(-1).year}`, 670, 252, 48, { width: 825, serif: true })
+  text(ctx, performancePeriod(returns), 670, 252, 48, { width: 825, serif: true })
   text(ctx, `EN ${asset.currency}`, 675, 327, 27, { color: MUTED })
-  text(ctx, performanceBasis(asset.id).replace(`${asset.currency} · `, '').replace(` · ${asset.currency}`, ''), 1500, 329, 23, { width: 600, align: 'right', color: MUTED, weight: 400 })
+  text(ctx, performanceDisplayBasis(asset, performanceBasis(asset.id)).replace(`${asset.currency} · `, '').replace(` · ${asset.currency}`, ''), 1500, 329, 23, { width: 600, align: 'right', color: MUTED, weight: 400 })
   ctx.save(); ctx.shadowColor = total < 0 ? '#b02d38' : '#2f9fe6'; ctx.shadowBlur = 14
   text(ctx, percentage(total), 1080, 385, 151, { width: 825, align: 'center', color: total < 0 ? RED : GREEN, serif: true })
   ctx.restore()
@@ -99,6 +101,6 @@ export async function downloadPerformanceImage(item) {
   const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'))
   if (!blob) throw new Error('Export PNG impossible')
   const url = URL.createObjectURL(blob), link = document.createElement('a')
-  link.href = url; link.download = `performance-depuis-${item.year}-${item.mode === MODES.COMPARATIF ? `${item.assetIdA}-${item.assetIdB}` : item.assetId}.png`
+  link.href = url; link.download = `performance-depuis-${item.currency || 'native'}-${item.year}-${item.mode === MODES.COMPARATIF ? `${item.assetIdA}-${item.assetIdB}` : item.assetId}.png`
   document.body.appendChild(link); startPublicationDownload(link); link.remove(); setTimeout(() => URL.revokeObjectURL(url), 1000)
 }

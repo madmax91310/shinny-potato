@@ -1,3 +1,4 @@
+import './test-performance-currency.mjs'
 import assert from 'node:assert/strict'
 import { ASSETS, ASSET_ORDER } from '../src/data/market-history.js'
 import { getAnnualReturns, getAnnualReturnStartYears, getHistoricalPrice, performanceBasis } from '../src/pages/tweet-midi/data/marketHistory.js'
