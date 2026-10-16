@@ -1,0 +1,91 @@
+name: Refresh 35 portfolio exposure ETFs
+on:
+  schedule:
+    - cron: '45 7 * * *'
+  workflow_dispatch:
+  push:
+    branches: [master]
+    paths:
+      - 'scripts/collect_exposure_expansion.py'
+      - 'scripts/collect_ishares_german.py'
+      - 'scripts/collect_dws_etf.py'
+      - 'scripts/collect_vaneck_etf.py'
+      - 'scripts/collect_invesco_allocations.py'
+      - 'scripts/collect_presentation_etf.py'
+      - 'scripts/exposure-etf-expansion.json'
+      - '.github/workflows/update-exposure-expansion.yml'
+  pull_request:
+    paths:
+      - 'scripts/collect_exposure_expansion.py'
+      - 'scripts/collect_ishares_german.py'
+      - 'scripts/collect_dws_etf.py'
+      - 'scripts/collect_vaneck_etf.py'
+      - 'scripts/collect_invesco_allocations.py'
+      - 'scripts/collect_presentation_etf.py'
+      - 'scripts/exposure-etf-expansion.json'
+      - 'scripts/test_exposure_expansion.py'
+      - 'src/data/exposure-etf-expansion*'
+      - '.github/workflows/update-exposure-expansion.yml'
+permissions:
+  contents: read
+jobs:
+  refresh:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    concurrency:
+      group: active-market-data-${{ github.event_name == 'pull_request' && format('{0}-{1}', github.workflow, github.ref) || 'production' }}
+      cancel-in-progress: false
+    permissions:
+      contents: write
+    outputs:
+      commit_sha: ${{ steps.commit.outputs.commit_sha }}
+      collection_failed: ${{ steps.collect.outcome == 'failure' }}
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          ref: ${{ github.event_name == 'pull_request' && github.ref || 'master' }}
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 20
+      - run: sudo apt-get update && sudo apt-get install -y poppler-utils
+      - run: npm ci
+      - run: python -m unittest discover -s scripts -p 'test_exposure_expansion.py'
+      - name: Collect exact-share observations
+        id: collect
+        continue-on-error: ${{ github.event_name != 'pull_request' }}
+        run: python scripts/collect_exposure_expansion.py --apply --report "$RUNNER_TEMP/exposure-expansion.json"
+      - run: npm run build && node scripts/test-exposure-expansion.mjs
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: exposure-expansion-observations
+          path: ${{ runner.temp }}/exposure-expansion.json
+          retention-days: 35
+      - name: Commit validated observations
+        id: commit
+        if: github.event_name != 'pull_request'
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          bash scripts/commit-validated-data.sh 'Refresh 35 exact-share ETF exposures' src/data/exposure-etf-expansion-records.json src/pages/dca-profiles/catalog.json src/pages/dca-profiles/exposures*.json src/pages/dca-profiles/holdings*.json
+  deploy:
+    needs: refresh
+    if: github.event_name != 'pull_request'
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    uses: ./.github/workflows/deploy-pages.yml
+    with:
+      ref: ${{ needs.refresh.outputs.commit_sha }}
+  report-failures:
+    needs: [refresh, deploy]
+    if: always() && needs.refresh.outputs.collection_failed == 'true'
+    runs-on: ubuntu-24.04
+    steps:
+      - run: |
+          echo 'ETF exposure collection incomplete; previous validated observations preserved.' >> "$GITHUB_STEP_SUMMARY"
+          exit 1
