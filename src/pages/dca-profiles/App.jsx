@@ -11,10 +11,15 @@ import { exposureDisplay } from './exposure.js'
 import { renderDcaImage } from './image.js'
 import { filterProfiles, searchAssets, migrateProfile, readSaved, writeSaved, readUsed, USED_KEY } from './management.js'
 import Analytics from './Analytics.jsx'
+import SimpleExposure from './SimpleExposure.jsx'
 import catalog from './catalog.json' with {type:'json'}
 import './dca-profiles.css'
 const profiles=PROFILES.map(prepareProfile)
 export default function App(){
+ const [mode,setMode]=useState('exposure'),[dcaVisited,setDcaVisited]=useState(false)
+ return <><nav className="dca-simple-tabs" aria-label="Choisir un outil"><button aria-pressed={mode==='exposure'} onClick={()=>setMode('exposure')}>Actifs & expositions</button><button aria-pressed={mode==='dca'} onClick={()=>{setDcaVisited(true);setMode('dca')}}>Le DCA de…</button></nav><div hidden={mode!=='exposure'}><SimpleExposure/></div><div hidden={mode!=='dca'}>{dcaVisited&&<DcaApp/>}</div></>
+}
+function DcaApp(){
  const [profile,setProfile]=useState(profiles[0]),[draft,setDraft]=useState(buildTweetText(profiles[0])),[feedback,setFeedback]=useState('')
  const [field,setField]=useState('all'),[assetFilter,setAssetFilter]=useState(''),[filters,setFilters]=useState({budget:'',lines:'',kind:'',unused:false})
  const [used,setUsed]=useState(()=>{try{return readUsed(localStorage)}catch{return []}}),[queries,setQueries]=useState({})

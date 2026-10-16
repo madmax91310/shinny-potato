@@ -32,7 +32,7 @@ export function donutData(analysis,field='countries'){
  const neutralWeight=neutral.reduce((s,r)=>s+r.weight,0)
  const group=[...exposure.groups].sort((a,b)=>b.coverage-a.coverage)[0]
  if(!group&&!neutralWeight)return {group:null,rows:[{name:'Non ventilé',weight:100,color:'#57718e'}]}
- if(!group)return {group:null,rows:[{name:neutral.length===1?neutral[0].name:'Métaux / crypto',weight:neutralWeight,color:'#b79b6b'},...(neutralWeight<100?[{name:'Non ventilé ici',weight:100-neutralWeight,color:'#57718e'}]:[])]}
+ if(!group)return {group:null,rows:[{name:neutral.length===1?neutral[0].name:'Hors classification',weight:neutralWeight,color:'#b79b6b'},...(neutralWeight<100?[{name:'Non ventilé ici',weight:100-neutralWeight,color:'#57718e'}]:[])]}
  const raw=group.rows.filter(r=>r.weight>0),total=raw.reduce((s,r)=>s+r.weight,0)
  // Source rounding can marginally exceed covered weight. Scale only that excess.
  const scale=total>group.coverage?group.coverage/total:1
@@ -41,7 +41,7 @@ export function donutData(analysis,field='countries'){
  const rows=named.slice(0,neutralWeight?3:4).map((r,i)=>({...r,color:colors[i]}))
  const rest=known.reduce((s,r)=>s+r.weight,0)-rows.reduce((s,r)=>s+r.weight,0)
  if(rest>1e-9)rows.push({name:'Autres expositions',weight:rest,color:colors[4]})
- if(neutralWeight)rows.push({name:neutral.length===1?neutral[0].name:'Métaux / crypto',weight:neutralWeight,color:'#b79b6b'})
+ if(neutralWeight)rows.push({name:neutral.length===1?neutral[0].name:'Hors classification',weight:neutralWeight,color:'#b79b6b'})
  const missing=Math.max(0,100-rows.reduce((s,r)=>s+r.weight,0))
  if(missing>.000001)rows.push({name:missing<.01?'Écart d’arrondi':'Non ventilé ici',weight:missing,color:'#57718e'})
  return {group,rows}
@@ -210,7 +210,7 @@ export async function renderDcaImage(input,field='countries'){
   text(ctx,row.name,x+28,y,190,23,C.ivory,400)
   text(ctx,exposurePercentage(row.weight,percentages[i]),x+28,y+32,190,29,C.ivory,700)
  })
- const source=group?`${group.oldest&&group.oldest!==group.asOf?group.oldest+' → ':''}${group.asOf} · couverture ${Math.round(group.coverage)} %`:(a[field].neutralWeight===100?'Métaux / crypto : hors classification':'Aucune ventilation qualifiée')
+ const source=group?`${group.oldest&&group.oldest!==group.asOf?group.oldest+' → ':''}${group.asOf} · couverture ${Math.round(group.coverage)} %`:(a[field].neutralWeight===100?'Actifs hors classification':'Aucune ventilation qualifiée')
  text(ctx,source,860,982,670,18,C.muted,400)
  if(group?.classification==='country-registration')text(ctx,'Pays d’enregistrement',860,1004,670,16,C.muted,400)
  rule(ctx,64,1013,1472)

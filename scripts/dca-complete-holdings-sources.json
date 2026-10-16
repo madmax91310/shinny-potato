@@ -324,5 +324,42 @@
     "parser": "dws",
     "required": true,
     "enabled": true
+  },
+  "IE00B1FZS350": {
+    "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251801&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "fundAssetClass": "Real Estate"
+  },
+  "IE000XZSV718": {
+    "isin": "IE000XZSV718",
+    "name": "State Street SPDR S&P 500 UCITS ETF (Acc)",
+    "sourceUrl": "https://www.ssga.com/fr/en_gb/intermediary/etfs/state-street-spdr-sp-500-ucits-etf-acc-spyl-gy",
+    "currency": "USD",
+    "provider": "State Street",
+    "collectComposition": true,
+    "parser": "ssga"
+  },
+  "IE00BM67HV82": {
+    "isin": "IE00BM67HV82",
+    "name": "Xtrackers MSCI World Industrials UCITS ETF 1C",
+    "currency": "USD",
+    "provider": "DWS",
+    "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HV82/pdpMetaTagsTealium",
+    "parser": "dws",
+    "required": true,
+    "enabled": true,
+    "requiredFields": [
+      "aum",
+      "countries",
+      "sectors",
+      "holdings",
+      "performance"
+    ]
+  },
+  "IE000A89Y2G7": {
+    "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=340744&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+  },
+  "IE00B0M63284": {
+    "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251808&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "fundAssetClass": "Real Estate"
   }
 }

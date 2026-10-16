@@ -58,7 +58,7 @@ Généré le 2026-10-16 par `node scripts/audit-asset-tool-routing.mjs --write`.
 | Legrand | FR0010307819 | — | — | missing | Oui / Oui | — | — / — / — |
 | Amundi Nasdaq-100 Daily (2x) Leveraged UCITS ETF Acc | FR0010342592 | Oui | — | automatic | Oui / Oui | Partielle | — / — / — |
 | Amundi MSCI New Energy UCITS ETF Dist | FR0010524777 | Oui | Oui | automatic | Oui / Oui | Partielle | — / — / — |
-| Amundi MSCI Water UCITS ETF (Dist) | FR0010527275 | Oui | — | automatic | Oui / Oui | Partielle | — / — / — |
+| Amundi MSCI Water UCITS ETF (Dist) | FR0010527275 | Oui | — | automatic | Oui / Oui | Partielle | Oui / Oui / Oui |
 | Amundi MSCI USA Daily (2x) Leveraged UCITS ETF Acc | FR0010755611 | Oui | — | automatic | Oui / Oui | Partielle | — / — / — |
 | Amundi PEA Emergent EMEA (MSCI Emerging EMEA) ESG Transition UCITS ETF | FR0011440478 | — | Oui | missing | Oui / Oui | Partielle | — / — / — |
 | BNP Paribas Easy S&P 500 UCITS ETF (Acc) | FR0011550185 | — | — | missing | Oui / Oui | Partielle | — / — / — |
@@ -82,7 +82,7 @@ Généré le 2026-10-16 par `node scripts/audit-asset-tool-routing.mjs --write`.
 | Amundi PEA Emergent (MSCI Emerging) ESG Transition UCITS ETF S - Acc | FR001400ZGO4 | — | — | missing | Oui / Oui | Partielle | — / — / — |
 | Amundi PEA Global (MSCI ACWI) UCITS ETF (Acc) | FR0014017NX3 | Oui | Oui | automatic | Oui / Oui | Partielle | — / — / — |
 | WisdomTree Copper | GB00B15KXQ89 | — | Oui | missing | Partiel / Partiel | — | — / — / — |
-| WisdomTree WTI Crude Oil | GB00B15KXV33 | Oui | Oui | manual | Partiel / Partiel | — | Oui / Oui / Oui |
+| WisdomTree WTI Crude Oil | GB00B15KXV33 | Oui | Oui | manual | Sans objet / Sans objet | — | Oui / Oui / Oui |
 | WisdomTree Physical Bitcoin | GB00BJYDH287 | Oui | — | automatic | Sans objet / Sans objet | — | — / — / — |
 | CoinShares Physical Bitcoin ETP | GB00BLD4ZL17 | Oui | — | automatic | Sans objet / Sans objet | — | — / — / — |
 | CoinShares Ethereum Staking ETP | GB00BLD4ZM24 | Oui | — | automatic | Sans objet / Sans objet | — | — / — / — |
@@ -108,15 +108,15 @@ Généré le 2026-10-16 par `node scripts/audit-asset-tool-routing.mjs --write`.
 | iShares iBonds Dec 2029 Term € Corp UCITS ETF | IE000SNLFDR7 | Oui | Oui | missing | Oui / Partiel | Partielle | Oui / Oui / Oui |
 | Global X Silver Miners UCITS ETF USD Accumulating | IE000UL6CLP7 | — | — | missing | Oui / Partiel | Partielle | Oui / Oui / Oui |
 | WisdomTree Quantum Computing UCITS ETF | IE000W8WMSL2 | — | Oui | missing | Oui / Oui | Partielle | — / — / — |
-| SPDR S&P 500 UCITS ETF Acc | IE000XZSV718 | — | — | missing | Oui / Oui | Partielle | — / — / — |
+| SPDR S&P 500 UCITS ETF Acc | IE000XZSV718 | — | — | missing | Oui / Oui | Complète | — / — / — |
 | VanEck Space Innovators UCITS ETF | IE000YU9K6K2 | Oui | Oui | missing | Oui / Oui | Partielle | — / — / — |
 | VanEck Defense UCITS ETF | IE000YYE6WK5 | Oui | Oui | missing | Oui / Oui | Partielle | — / — / — |
 | iShares China Large Cap UCITS ETF (Dist) | IE00B02KXK85 | — | — | missing | Oui / Oui | Complète | — / — / — |
 | iShares € Inflation Linked Govt Bond UCITS ETF | IE00B0M62X26 | Oui | — | automatic | Oui / Oui | Partielle | Oui / Oui / — |
-| iShares European Property Yield UCITS ETF | IE00B0M63284 | Oui | Oui | automatic | Oui / Oui | Partielle | Oui / Oui / Oui |
+| iShares European Property Yield UCITS ETF | IE00B0M63284 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui |
 | iShares MSCI Taiwan UCITS ETF | IE00B0M63623 | Oui | — | automatic | Oui / Oui | Complète | — / — / — |
 | iShares € Govt Bond 1-3yr UCITS ETF | IE00B14X4Q57 | Oui | Oui | automatic | Oui / Oui | Partielle | Oui / Oui / — |
-| iShares Developed Markets Property Yield UCITS ETF USD (Dist) | IE00B1FZS350 | Oui | Oui | automatic | Oui / Oui | Partielle | — / — / — |
+| iShares Developed Markets Property Yield UCITS ETF USD (Dist) | IE00B1FZS350 | Oui | Oui | automatic | Oui / Oui | Complète | — / — / — |
 | iShares Global Infrastructure UCITS ETF USD (Dist) | IE00B1FZS467 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui |
 | iShares € Govt Bond 15-30yr UCITS ETF EUR (Dist) | IE00B1FZS913 | Oui | — | automatic | Oui / Oui | Partielle | — / — / — |
 | iShares Listed Private Equity UCITS ETF | IE00B1TXHL60 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui |
@@ -131,7 +131,7 @@ Généré le 2026-10-16 par `node scripts/audit-asset-tool-routing.mjs --write`.
 | SPDR € Corp Bond UCITS ETF | IE00B3T9LM79 | Oui | — | automatic | Oui / Oui | Partielle | — / — / — |
 | Vanguard FTSE Emerging Markets UCITS ETF (Dist) | IE00B3VVMM84 | — | — | missing | Oui / Oui | Partielle | — / — / — |
 | iShares S&P 500 Information Technology Sector UCITS ETF | IE00B3WJKG14 | Oui | — | automatic | Oui / Oui | Complète | — / — / — |
-| State Street SPDR MSCI All Country World Investable Market UCITS ETF (Acc) | IE00B3YLTY66 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui |
+| State Street SPDR MSCI All Country World Investable Market UCITS ETF (Acc) | IE00B3YLTY66 | Oui | Oui | automatic | Oui / Oui | Partielle | Oui / Oui / Oui |
 | iShares S&P 500 Consumer Staples Sector UCITS ETF | IE00B40B8R38 | Oui | — | automatic | Oui / Oui | Complète | — / — / — |
 | iShares S&P 500 Energy Sector UCITS ETF | IE00B42NKQ00 | Oui | — | automatic | Oui / Oui | Complète | — / — / — |
 | iShares S&P 500 Health Care Sector UCITS ETF | IE00B43HR379 | Oui | — | automatic | Oui / Oui | Complète | — / — / — |
@@ -168,11 +168,11 @@ Généré le 2026-10-16 par `node scripts/audit-asset-tool-routing.mjs --write`.
 | SPDR S&P Global Dividend Aristocrats UCITS ETF | IE00B9CQXS71 | Oui | Oui | automatic | Oui / Oui | Partielle | — / — / — |
 | iShares € Ultrashort Bond UCITS ETF | IE00BCRY6557 | Oui | Oui | automatic | Oui / Oui | Partielle | Oui / Oui / Oui |
 | UBS Core MSCI World UCITS ETF | IE00BD4TXV59 | — | — | missing | Oui / Oui | Partielle | — / — / — |
-| Invesco Bloomberg Commodity UCITS ETF | IE00BD6FTQ80 | Oui | — | automatic | Partiel / Partiel | — | Oui / Oui / Oui |
+| Invesco Bloomberg Commodity UCITS ETF | IE00BD6FTQ80 | Oui | — | automatic | Sans objet / Sans objet | — | Oui / Oui / Oui |
 | iShares Core Global Aggregate Bond UCITS ETF EUR Hedged (Acc) | IE00BDBRDM35 | Oui | — | automatic | Oui / Oui | Partielle | Oui / Oui / — |
 | VanEck S&P Global Mining UCITS ETF | IE00BDFBTQ78 | Oui | Oui | missing | Oui / Oui | Partielle | — / — / — |
-| iShares Diversified Commodity Swap UCITS ETF | IE00BDFL4P12 | Oui | — | automatic | Partiel / Partiel | — | — / — / — |
-| L&G Battery Value-Chain UCITS ETF | IE00BF0M2Z96 | Oui | — | automatic | Oui / Oui | Partielle | — / — / — |
+| iShares Diversified Commodity Swap UCITS ETF | IE00BDFL4P12 | Oui | — | automatic | Sans objet / Sans objet | — | — / — / — |
+| L&G Battery Value-Chain UCITS ETF | IE00BF0M2Z96 | Oui | — | automatic | Oui / Oui | Partielle | Oui / Oui / Oui |
 | iShares € High Yield Corp Bond UCITS ETF (Acc) | IE00BF3N7094 | Oui | — | automatic | Oui / Oui | Partielle | — / — / — |
 | iShares MSCI World Small Cap UCITS ETF | IE00BF4RFH31 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui |
 | Allegion | IE00BFRT3W74 | — | — | missing | Oui / Oui | — | — / — / — |
@@ -192,7 +192,7 @@ Généré le 2026-10-16 par `node scripts/audit-asset-tool-routing.mjs --write`.
 | iShares MSCI World Materials Sector Advanced UCITS ETF | IE00BJ5JP766 | Oui | Oui | missing | Oui / Oui | Complète | Oui / Oui / Oui |
 | iShares MSCI China UCITS ETF (Acc) | IE00BJ5JPG56 | — | — | missing | Oui / Oui | Complète | — / — / — |
 | WisdomTree Cloud Computing UCITS ETF USD Acc | IE00BJGWQN72 | Oui | — | automatic | Oui / Oui | Partielle | Oui / Oui / Oui |
-| L&G Artificial Intelligence UCITS ETF | IE00BK5BCD43 | Oui | Oui | automatic | Oui / Oui | Partielle | — / — / — |
+| L&G Artificial Intelligence UCITS ETF | IE00BK5BCD43 | Oui | Oui | automatic | Oui / Oui | Partielle | Oui / Oui / Oui |
 | L&G Clean Energy UCITS ETF | IE00BK5BCH80 | Oui | Oui | missing | Oui / Oui | Partielle | — / — / — |
 | Vanguard FTSE All-World UCITS ETF (USD) Accumulating | IE00BK5BQT80 | Oui | Oui | automatic | Oui / Oui | Partielle | Oui / Oui / Oui |
 | Vanguard FTSE All-World High Dividend Yield UCITS ETF | IE00BK5BR626 | Oui | — | automatic | Oui / Oui | Partielle | — / — / — |
@@ -206,7 +206,7 @@ Généré le 2026-10-16 par `node scripts/audit-asset-tool-routing.mjs --write`.
 | Xtrackers MSCI World Health Care UCITS ETF | IE00BM67HK77 | Oui | Oui | automatic | Oui / Oui | Complète | — / — / — |
 | Xtrackers MSCI World Utilities UCITS ETF | IE00BM67HQ30 | Oui | — | automatic | Oui / Oui | Complète | Oui / Oui / Oui |
 | Xtrackers MSCI World Materials UCITS ETF | IE00BM67HS53 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui |
-| Xtrackers MSCI World Industrials UCITS ETF 1C | IE00BM67HV82 | Oui | Oui | automatic | Oui / Oui | Partielle | Oui / Oui / Oui |
+| Xtrackers MSCI World Industrials UCITS ETF 1C | IE00BM67HV82 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui |
 | Global X Nasdaq 100 Covered Call UCITS ETF | IE00BM8R0J59 | Oui | — | automatic | Partiel / Partiel | — | — / — / — |
 | iShares MSCI EM ex-China UCITS ETF (Acc) | IE00BMG6Z448 | Oui | Oui | manual | Oui / Oui | Complète | Oui / Oui / Oui |
 | Vanguard LifeStrategy 20% Equity UCITS ETF (EUR) Accumulating | IE00BMVB5K07 | Oui | Oui | manual | Partiel / Partiel | Partielle | Oui / Oui / — |
@@ -235,11 +235,11 @@ Généré le 2026-10-16 par `node scripts/audit-asset-tool-routing.mjs --write`.
 | WisdomTree Global Quality Dividend Growth UCITS ETF USD Acc | IE00BZ56SW52 | Oui | Oui | missing | Oui / Oui | Partielle | — / — / — |
 | iShares MSCI India UCITS ETF USD (Acc) | IE00BZCQB185 | Oui | — | automatic | Oui / Oui | Complète | — / — / — |
 | WisdomTree Physical Gold | JE00B1VS3770 | Oui | — | automatic | Sans objet / Sans objet | — | — / — / — |
-| WisdomTree Cocoa | JE00B2QXZK10 | Oui | Oui | manual | Partiel / Partiel | — | Oui / Oui / Oui |
-| WisdomTree Brent Crude Oil | JE00B78CGV99 | Oui | Oui | manual | Partiel / Partiel | — | Oui / Oui / Oui |
-| WisdomTree Natural Gas | JE00BN7KB334 | Oui | Oui | manual | Partiel / Partiel | — | Oui / Oui / Oui |
-| WisdomTree Coffee | JE00BN7KB557 | Oui | Oui | manual | Partiel / Partiel | — | Oui / Oui / Oui |
-| WisdomTree Wheat | JE00BN7KB664 | Oui | Oui | manual | Partiel / Partiel | — | Oui / Oui / Oui |
+| WisdomTree Cocoa | JE00B2QXZK10 | Oui | Oui | manual | Sans objet / Sans objet | — | Oui / Oui / Oui |
+| WisdomTree Brent Crude Oil | JE00B78CGV99 | Oui | Oui | manual | Sans objet / Sans objet | — | Oui / Oui / Oui |
+| WisdomTree Natural Gas | JE00BN7KB334 | Oui | Oui | manual | Sans objet / Sans objet | — | Oui / Oui / Oui |
+| WisdomTree Coffee | JE00BN7KB557 | Oui | Oui | manual | Sans objet / Sans objet | — | Oui / Oui / Oui |
+| WisdomTree Wheat | JE00BN7KB664 | Oui | Oui | manual | Sans objet / Sans objet | — | Oui / Oui / Oui |
 | Sony | JP3435000009 | — | — | missing | Oui / Oui | — | — / — / — |
 | Toyota | JP3633400001 | — | — | missing | Oui / Oui | — | — / — / — |
 | Nintendo | JP3756600007 | — | — | missing | Oui / Oui | — | — / — / — |
@@ -252,12 +252,12 @@ Généré le 2026-10-16 par `node scripts/audit-asset-tool-routing.mjs --write`.
 | Amundi MSCI World Swap UCITS ETF (Acc) | LU1681043599 | Oui | Oui | automatic | Oui / Oui | Partielle | — / — / — |
 | Amundi MSCI Emerging Markets UCITS ETF | LU1681045370 | Oui | — | automatic | Oui / Oui | Partielle | — / — / — |
 | Amundi Core EURO STOXX 50 UCITS ETF | LU1681047236 | Oui | Oui | automatic | Oui / Oui | Partielle | — / — / — |
-| Amundi S&P Global Luxury UCITS ETF | LU1681048630 | Oui | Oui | automatic | Oui / Oui | Partielle | — / — / — |
+| Amundi S&P Global Luxury UCITS ETF | LU1681048630 | Oui | Oui | automatic | Oui / Oui | Partielle | Oui / Oui / Oui |
 | Amundi FTSE EPRA NAREIT Global UCITS ETF Dist | LU1737652823 | Oui | — | automatic | Oui / Oui | Partielle | — / — / — |
 | Amundi STOXX Europe 600 Basic Resources UCITS ETF | LU1834983550 | Oui | Oui | automatic | Oui / Oui | Partielle | — / — / — |
 | Amundi STOXX Europe 600 Basic Materials UCITS ETF | LU1834983634 | — | Oui | missing | Oui / Oui | Partielle | — / — / — |
 | Amundi STOXX Europe 600 Healthcare UCITS ETF | LU1834986900 | Oui | Oui | automatic | Oui / Oui | Partielle | — / — / — |
-| Amundi STOXX Europe 600 Technology UCITS ETF | LU1834988518 | Oui | Oui | manual | Oui / Oui | Partielle | — / — / — |
+| Amundi STOXX Europe 600 Technology UCITS ETF | LU1834988518 | Oui | Oui | automatic | Oui / Oui | Partielle | — / — / — |
 | Xtrackers Nikkei 225 UCITS ETF | LU1875395870 | — | Oui | missing | Oui / Oui | Complète | — / — / — |
 | Amundi Core EUR Corporate Bond UCITS ETF | LU1931975079 | Oui | — | automatic | Oui / Oui | Partielle | — / — / — |
 | Amundi Prime Japan UCITS ETF | LU2089238385 | — | Oui | missing | Oui / Oui | Partielle | — / — / — |

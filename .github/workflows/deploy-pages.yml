@@ -289,6 +289,8 @@ jobs:
       - run: npx playwright install --with-deps chromium
       - run: node scripts/playwright-routing-additions.mjs
         if: matrix.shard == 1
+      - run: node scripts/test-simple-exposure.mjs
+        if: matrix.shard == 1
       - run: node scripts/run-browser-checks.mjs ${{ matrix.shard }} 4
       - run: node scripts/playwright-etf-completeness.mjs
         if: matrix.shard == 0

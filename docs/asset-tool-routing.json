@@ -1,14 +1,14 @@
 {
-  "checkedAt": "2026-10-16T12:28:14.882Z",
+  "checkedAt": "2026-10-16T12:39:21.989Z",
   "summary": {
     "instruments": 438,
     "sheets": 174,
     "comparisons": 128,
-    "generatorAutomatic": 137,
+    "generatorAutomatic": 138,
     "dca": 438,
     "fullExposure": 404,
-    "outsideExposure": 12,
-    "automaticHistories": 76,
+    "outsideExposure": 20,
+    "automaticHistories": 80,
     "historyCandidates": 3,
     "unused": 0
   },
@@ -1582,7 +1582,18 @@
         "identifiedCoverage": 43.77781900000001,
         "automatic": false
       },
-      "monthly": [],
+      "monthly": [
+        {
+          "id": "etfAmundiWater",
+          "automatic": true,
+          "first": "2020-01",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
       "historyCandidate": false,
       "decision": "keep-used"
     },
@@ -2303,16 +2314,12 @@
       "generator": "manual",
       "dca": true,
       "countries": {
-        "status": "incomplete",
-        "coverage": 0,
-        "outside": 0,
-        "reason": "Ventilation absente"
+        "status": "not-applicable",
+        "reason": "Hors classification"
       },
       "sectors": {
-        "status": "incomplete",
-        "coverage": 0,
-        "outside": 0,
-        "reason": "Ventilation absente"
+        "status": "not-applicable",
+        "reason": "Hors classification"
       },
       "holdings": null,
       "monthly": [
@@ -2643,7 +2650,7 @@
       "dca": true,
       "countries": {
         "status": "available",
-        "coverage": 99.99999900000003,
+        "coverage": 100,
         "outside": 0,
         "reason": "Disponible",
         "date": "2026-10-14"
@@ -2881,9 +2888,9 @@
         "date": "2026-09-30"
       },
       "holdings": {
-        "asOf": "2026-10-14",
+        "asOf": "2026-10-15",
         "complete": false,
-        "identifiedCoverage": 11.919100000000002,
+        "identifiedCoverage": 11.943800000000001,
         "automatic": false
       },
       "monthly": [
@@ -2911,7 +2918,7 @@
       "dca": true,
       "countries": {
         "status": "available",
-        "coverage": 99.99998600000005,
+        "coverage": 99.99998700000006,
         "outside": 0,
         "reason": "Disponible",
         "date": "2026-10-14"
@@ -3075,7 +3082,7 @@
         "status": "incomplete",
         "coverage": 0,
         "outside": 0,
-        "reason": "Ventilation invalide",
+        "reason": "Poids signés incompatibles avec un donut",
         "date": "2026-10-13"
       },
       "holdings": {
@@ -3183,23 +3190,23 @@
       "dca": true,
       "countries": {
         "status": "available",
-        "coverage": 99.99996900000001,
+        "coverage": 99.99999,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-10-14"
+        "date": "2026-10-15"
       },
       "sectors": {
         "status": "available",
-        "coverage": 99.99996600000003,
+        "coverage": 99.99998699999998,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-10-14"
+        "date": "2026-10-15"
       },
       "holdings": {
-        "asOf": "2026-10-14",
-        "complete": false,
-        "identifiedCoverage": 38.852751000000005,
-        "automatic": false
+        "asOf": "2026-10-15",
+        "complete": true,
+        "identifiedCoverage": 99.99998200000005,
+        "automatic": true
       },
       "monthly": [],
       "historyCandidate": false,
@@ -3367,10 +3374,10 @@
         "date": "2026-10-13"
       },
       "holdings": {
-        "asOf": "2026-10-13",
-        "complete": false,
-        "identifiedCoverage": 60.672219999999996,
-        "automatic": false
+        "asOf": "2026-10-14",
+        "complete": true,
+        "identifiedCoverage": 99.20269000000008,
+        "automatic": true
       },
       "monthly": [
         {
@@ -3486,9 +3493,9 @@
       },
       "holdings": {
         "asOf": "2026-10-14",
-        "complete": false,
-        "identifiedCoverage": 36.82299,
-        "automatic": false
+        "complete": true,
+        "identifiedCoverage": 99.2658100000001,
+        "automatic": true
       },
       "monthly": [],
       "historyCandidate": false,
@@ -3803,7 +3810,7 @@
         "status": "incomplete",
         "coverage": 0,
         "outside": 0,
-        "reason": "Ventilation invalide",
+        "reason": "Poids signés incompatibles avec un donut",
         "date": "2026-10-14"
       },
       "holdings": {
@@ -3878,7 +3885,7 @@
         "status": "incomplete",
         "coverage": 0,
         "outside": 0,
-        "reason": "Ventilation invalide",
+        "reason": "Poids signés incompatibles avec un donut",
         "date": "2026-10-14"
       },
       "holdings": {
@@ -3955,22 +3962,22 @@
       "dca": true,
       "countries": {
         "status": "available",
-        "coverage": 100,
+        "coverage": 99.99999899999999,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-10-14"
+        "date": "2026-10-15"
       },
       "sectors": {
         "status": "available",
         "coverage": 100,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-10-14"
+        "date": "2026-10-15"
       },
       "holdings": {
-        "asOf": "2026-10-14",
+        "asOf": "2026-10-15",
         "complete": false,
-        "identifiedCoverage": 1.21036,
+        "identifiedCoverage": 1.209066,
         "automatic": false
       },
       "monthly": [],
@@ -4051,22 +4058,22 @@
       "dca": true,
       "countries": {
         "status": "available",
-        "coverage": 99.99393199999993,
+        "coverage": 99.99389400000001,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-10-14"
+        "date": "2026-10-15"
       },
       "sectors": {
         "status": "available",
-        "coverage": 99.998664,
+        "coverage": 99.997724,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-10-14"
+        "date": "2026-10-15"
       },
       "holdings": {
-        "asOf": "2026-10-14",
-        "complete": true,
-        "identifiedCoverage": 99.99822000000029,
+        "asOf": "2026-10-15",
+        "complete": false,
+        "identifiedCoverage": 22.60526,
         "automatic": true
       },
       "monthly": [
@@ -4192,14 +4199,14 @@
         "status": "incomplete",
         "coverage": 0,
         "outside": 0,
-        "reason": "Ventilation invalide",
+        "reason": "Poids signés incompatibles avec un donut",
         "date": "2026-10-13"
       },
       "sectors": {
         "status": "incomplete",
         "coverage": 0,
         "outside": 0,
-        "reason": "Ventilation invalide",
+        "reason": "Poids signés incompatibles avec un donut",
         "date": "2026-10-13"
       },
       "holdings": {
@@ -4233,22 +4240,22 @@
       "dca": true,
       "countries": {
         "status": "available",
-        "coverage": 99.99862200000003,
+        "coverage": 99.99858300000001,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-10-14"
+        "date": "2026-10-15"
       },
       "sectors": {
         "status": "available",
-        "coverage": 99.99999899999999,
+        "coverage": 99.99990100000002,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-10-14"
+        "date": "2026-10-15"
       },
       "holdings": {
-        "asOf": "2026-10-14",
+        "asOf": "2026-10-15",
         "complete": false,
-        "identifiedCoverage": 25.549407000000002,
+        "identifiedCoverage": 25.452771,
         "automatic": false
       },
       "monthly": [],
@@ -4300,19 +4307,19 @@
         "coverage": 100,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-10-14"
+        "date": "2026-10-15"
       },
       "sectors": {
         "status": "available",
-        "coverage": 99.99999999999999,
+        "coverage": 99.99703299999999,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-10-14"
+        "date": "2026-10-15"
       },
       "holdings": {
-        "asOf": "2026-10-14",
+        "asOf": "2026-10-15",
         "complete": false,
-        "identifiedCoverage": 37.570571,
+        "identifiedCoverage": 36.560666000000005,
         "automatic": false
       },
       "monthly": [],
@@ -4865,19 +4872,19 @@
         "coverage": 100,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-10-14"
+        "date": "2026-10-15"
       },
       "sectors": {
         "status": "available",
         "coverage": 100,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-10-14"
+        "date": "2026-10-15"
       },
       "holdings": {
-        "asOf": "2026-10-14",
+        "asOf": "2026-10-15",
         "complete": false,
-        "identifiedCoverage": 36.89485199999999,
+        "identifiedCoverage": 36.98594,
         "automatic": false
       },
       "monthly": [],
@@ -5047,19 +5054,19 @@
         "coverage": 100,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-10-14"
+        "date": "2026-10-15"
       },
       "sectors": {
         "status": "available",
         "coverage": 100,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-10-14"
+        "date": "2026-10-15"
       },
       "holdings": {
-        "asOf": "2026-10-14",
+        "asOf": "2026-10-15",
         "complete": false,
-        "identifiedCoverage": 20.690475,
+        "identifiedCoverage": 20.700681999999997,
         "automatic": false
       },
       "monthly": [],
@@ -5178,22 +5185,22 @@
       "dca": true,
       "countries": {
         "status": "available",
-        "coverage": 99.99999999999999,
+        "coverage": 100,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-10-14"
+        "date": "2026-10-15"
       },
       "sectors": {
         "status": "available",
         "coverage": 100,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-10-14"
+        "date": "2026-10-15"
       },
       "holdings": {
-        "asOf": "2026-10-14",
+        "asOf": "2026-10-15",
         "complete": false,
-        "identifiedCoverage": 18.063654,
+        "identifiedCoverage": 18.023982,
         "automatic": false
       },
       "monthly": [],
@@ -5284,16 +5291,12 @@
       "generator": "automatic",
       "dca": true,
       "countries": {
-        "status": "incomplete",
-        "coverage": 0,
-        "outside": 0,
-        "reason": "Ventilation absente"
+        "status": "not-applicable",
+        "reason": "Hors classification"
       },
       "sectors": {
-        "status": "incomplete",
-        "coverage": 0,
-        "outside": 0,
-        "reason": "Ventilation absente"
+        "status": "not-applicable",
+        "reason": "Hors classification"
       },
       "holdings": null,
       "monthly": [
@@ -5395,16 +5398,12 @@
       "generator": "automatic",
       "dca": true,
       "countries": {
-        "status": "incomplete",
-        "coverage": 0,
-        "outside": 0,
-        "reason": "Ventilation absente"
+        "status": "not-applicable",
+        "reason": "Hors classification"
       },
       "sectors": {
-        "status": "incomplete",
-        "coverage": 0,
-        "outside": 0,
-        "reason": "Ventilation absente"
+        "status": "not-applicable",
+        "reason": "Hors classification"
       },
       "holdings": null,
       "monthly": [],
@@ -5439,7 +5438,18 @@
         "identifiedCoverage": 0,
         "automatic": false
       },
-      "monthly": [],
+      "monthly": [
+        {
+          "id": "etfLgBattery",
+          "automatic": true,
+          "first": "2020-01",
+          "last": "2026-09",
+          "currency": "USD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
       "historyCandidate": false,
       "decision": "keep-used"
     },
@@ -5716,22 +5726,22 @@
       "dca": true,
       "countries": {
         "status": "available",
-        "coverage": 99.99999899999999,
+        "coverage": 100,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-10-14"
+        "date": "2026-10-15"
       },
       "sectors": {
         "status": "available",
         "coverage": 100,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-10-14"
+        "date": "2026-10-15"
       },
       "holdings": {
-        "asOf": "2026-10-14",
+        "asOf": "2026-10-15",
         "complete": false,
-        "identifiedCoverage": 3.317869,
+        "identifiedCoverage": 3.247537,
         "automatic": false
       },
       "monthly": [],
@@ -6217,7 +6227,18 @@
         "identifiedCoverage": 0,
         "automatic": false
       },
-      "monthly": [],
+      "monthly": [
+        {
+          "id": "etfLgArtificialIntelligence",
+          "automatic": true,
+          "first": "2020-01",
+          "last": "2026-09",
+          "currency": "USD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
       "historyCandidate": false,
       "decision": "keep-used"
     },
@@ -6643,7 +6664,7 @@
       "dca": true,
       "countries": {
         "status": "available",
-        "coverage": 100,
+        "coverage": 99.999999,
         "outside": 0,
         "reason": "Disponible",
         "date": "2026-10-14"
@@ -6686,7 +6707,7 @@
       "dca": true,
       "countries": {
         "status": "available",
-        "coverage": 99.99999699999998,
+        "coverage": 99.99999699999996,
         "outside": 0,
         "reason": "Disponible",
         "date": "2026-10-14"
@@ -6700,9 +6721,9 @@
       },
       "holdings": {
         "asOf": "2026-10-14",
-        "complete": false,
-        "identifiedCoverage": 22.64211637,
-        "automatic": false
+        "complete": true,
+        "identifiedCoverage": 99.80973573000004,
+        "automatic": true
       },
       "monthly": [
         {
@@ -7210,7 +7231,7 @@
         "status": "incomplete",
         "coverage": 0,
         "outside": 0,
-        "reason": "Ventilation invalide",
+        "reason": "Poids signés incompatibles avec un donut",
         "date": "2026-10-14"
       },
       "sectors": {
@@ -7243,19 +7264,19 @@
         "coverage": 100,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-10-14"
+        "date": "2026-10-15"
       },
       "sectors": {
         "status": "available",
-        "coverage": 100,
+        "coverage": 99.99999799999998,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-10-14"
+        "date": "2026-10-15"
       },
       "holdings": {
-        "asOf": "2026-10-14",
+        "asOf": "2026-10-15",
         "complete": false,
-        "identifiedCoverage": 8.976142999999999,
+        "identifiedCoverage": 9.032975,
         "automatic": false
       },
       "monthly": [
@@ -7286,19 +7307,19 @@
         "coverage": 100,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-10-14"
+        "date": "2026-10-15"
       },
       "sectors": {
         "status": "available",
-        "coverage": 99.999999,
+        "coverage": 100,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-10-14"
+        "date": "2026-10-15"
       },
       "holdings": {
-        "asOf": "2026-10-14",
+        "asOf": "2026-10-15",
         "complete": false,
-        "identifiedCoverage": 5.729495000000001,
+        "identifiedCoverage": 5.647784999999999,
         "automatic": false
       },
       "monthly": [
@@ -7390,22 +7411,22 @@
       "dca": true,
       "countries": {
         "status": "available",
-        "coverage": 100,
+        "coverage": 99.99999900000003,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-10-14"
+        "date": "2026-10-15"
       },
       "sectors": {
         "status": "available",
-        "coverage": 100,
+        "coverage": 99.999999,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-10-14"
+        "date": "2026-10-15"
       },
       "holdings": {
-        "asOf": "2026-10-14",
+        "asOf": "2026-10-15",
         "complete": false,
-        "identifiedCoverage": 61.200924,
+        "identifiedCoverage": 61.233869000000006,
         "automatic": false
       },
       "monthly": [],
@@ -7774,16 +7795,12 @@
       "generator": "manual",
       "dca": true,
       "countries": {
-        "status": "incomplete",
-        "coverage": 0,
-        "outside": 0,
-        "reason": "Ventilation absente"
+        "status": "not-applicable",
+        "reason": "Hors classification"
       },
       "sectors": {
-        "status": "incomplete",
-        "coverage": 0,
-        "outside": 0,
-        "reason": "Ventilation absente"
+        "status": "not-applicable",
+        "reason": "Hors classification"
       },
       "holdings": null,
       "monthly": [
@@ -7810,16 +7827,12 @@
       "generator": "manual",
       "dca": true,
       "countries": {
-        "status": "incomplete",
-        "coverage": 0,
-        "outside": 0,
-        "reason": "Ventilation absente"
+        "status": "not-applicable",
+        "reason": "Hors classification"
       },
       "sectors": {
-        "status": "incomplete",
-        "coverage": 0,
-        "outside": 0,
-        "reason": "Ventilation absente"
+        "status": "not-applicable",
+        "reason": "Hors classification"
       },
       "holdings": null,
       "monthly": [
@@ -7846,16 +7859,12 @@
       "generator": "manual",
       "dca": true,
       "countries": {
-        "status": "incomplete",
-        "coverage": 0,
-        "outside": 0,
-        "reason": "Ventilation absente"
+        "status": "not-applicable",
+        "reason": "Hors classification"
       },
       "sectors": {
-        "status": "incomplete",
-        "coverage": 0,
-        "outside": 0,
-        "reason": "Ventilation absente"
+        "status": "not-applicable",
+        "reason": "Hors classification"
       },
       "holdings": null,
       "monthly": [
@@ -7882,16 +7891,12 @@
       "generator": "manual",
       "dca": true,
       "countries": {
-        "status": "incomplete",
-        "coverage": 0,
-        "outside": 0,
-        "reason": "Ventilation absente"
+        "status": "not-applicable",
+        "reason": "Hors classification"
       },
       "sectors": {
-        "status": "incomplete",
-        "coverage": 0,
-        "outside": 0,
-        "reason": "Ventilation absente"
+        "status": "not-applicable",
+        "reason": "Hors classification"
       },
       "holdings": null,
       "monthly": [
@@ -7918,16 +7923,12 @@
       "generator": "manual",
       "dca": true,
       "countries": {
-        "status": "incomplete",
-        "coverage": 0,
-        "outside": 0,
-        "reason": "Ventilation absente"
+        "status": "not-applicable",
+        "reason": "Hors classification"
       },
       "sectors": {
-        "status": "incomplete",
-        "coverage": 0,
-        "outside": 0,
-        "reason": "Ventilation absente"
+        "status": "not-applicable",
+        "reason": "Hors classification"
       },
       "holdings": null,
       "monthly": [
@@ -8342,7 +8343,18 @@
         "identifiedCoverage": 55.329208,
         "automatic": false
       },
-      "monthly": [],
+      "monthly": [
+        {
+          "id": "etfAmundiLuxury",
+          "automatic": true,
+          "first": "2020-01",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
       "historyCandidate": false,
       "decision": "keep-used"
     },
@@ -8480,7 +8492,7 @@
       "kind": "etf",
       "sheet": true,
       "comparison": true,
-      "generator": "manual",
+      "generator": "automatic",
       "dca": true,
       "countries": {
         "status": "available",

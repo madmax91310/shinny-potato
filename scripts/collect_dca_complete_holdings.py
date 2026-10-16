@@ -6,10 +6,10 @@ from urllib.parse import urlsplit, parse_qs
 from data_automation import get_json, get_text, UTC, write_json_atomic
 from collect_etf_holdings import parse_holdings
 ROOT=Path(__file__).resolve().parents[1]
-def parse_complete(body,isin,url,now):
+def parse_complete(body,isin,url,now,fund_asset_class="Equity"):
     facts=body['componentsByNameMap']['keyFundFacts']['containersByNameMap']['default']['dataPointsByNameMap']
     if facts['isin']['value']!=isin:raise ValueError('Wrong exact share identity')
-    if facts.get('productStructure',{}).get('value')!='Physical' or facts.get('assetClass',{}).get('value')!='Equity':raise ValueError('Only physical equity funds are qualified')
+    if fund_asset_class not in ('Equity','Real Estate') or facts.get('productStructure',{}).get('value')!='Physical' or facts.get('assetClass',{}).get('value')!=fund_asset_class:raise ValueError('Only explicitly qualified physical equity or listed real-estate funds are supported')
     product=parse_qs(urlsplit(url).query)['portfolioId'][0]
     h,_=parse_holdings(body,{'productId':product,'currency':body['currencyCode']},now)
     p=body['componentsByNameMap']['holdings']['containersByNameMap']['all']['dataPointsByNameMap']
@@ -62,7 +62,7 @@ def main():
                 url = c['sourceUrl'].rsplit('/', 1)[0] + '/holdings'
                 body = json.loads(get_text(url, ('application/json',), 25_000_000))
                 return isin, (parse_holdings(body, c, now, url, complete=True)['completeHoldings'], []), None
-            return isin,parse_complete(json.loads(get_text(c['url'],('application/json',),25_000_000)),isin,c['url'],now),None
+            return isin,parse_complete(json.loads(get_text(c['url'],('application/json',),25_000_000)),isin,c['url'],now,c.get('fundAssetClass','Equity')),None
         except Exception as e:return isin,None,str(e)
     with ThreadPoolExecutor(max_workers=6) as pool:
         for isin,result,error in pool.map(one,config.items()):

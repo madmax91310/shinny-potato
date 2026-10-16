@@ -96,3 +96,24 @@
  .dca-profiles-scope .dca-section-nav{gap:6px;margin-bottom:14px}
  .dca-profiles-scope .dca-section-nav a{flex:1;text-align:center;padding:10px 6px}
 }
+
+.dca-simple-tabs{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+.dca-simple-tabs button{padding:12px 20px;border:1px solid #bbc8d5;border-radius:999px;font-weight:700;cursor:pointer}
+.dca-simple-tabs button[aria-pressed=true]{background:#071d36;color:#fff4df}
+.dca-simple-grid{display:grid;grid-template-columns:minmax(300px,1fr) minmax(0,1.35fr);gap:24px;align-items:start}
+.dca-simple-card{padding:24px;border:1px solid #ccd4dc;border-radius:20px;background:var(--surface,#fff);display:grid;gap:18px;min-width:0}
+.dca-simple-card h2,.dca-simple-card p{margin:0}
+.dca-simple-card label{display:grid;gap:8px;font-weight:600}
+.dca-simple-card input,.dca-simple-card select{width:100%;min-width:0;border:1px solid #aebdca;border-radius:10px;padding:12px;background:var(--surface,#fff);color:inherit;box-sizing:border-box}
+.dca-simple-results{display:grid;max-height:280px;overflow:auto;border:1px solid #ccd4dc;border-radius:12px}
+.dca-simple-results button{display:grid;text-align:left;padding:12px;border:0;border-bottom:1px solid #e1e6ec;background:transparent;cursor:pointer;color:inherit}
+.dca-simple-results button:hover{background:#edf3f8}
+.dca-simple-line{display:grid;grid-template-columns:minmax(0,1fr) 100px 32px;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid #dbe2e9}
+.dca-simple-line strong{overflow-wrap:anywhere;font-size:14px}
+.dca-simple-line small,.dca-simple-results small{display:block;color:#607080;font-size:11px;margin-top:4px}
+.dca-simple-line label{display:flex;align-items:center;gap:5px}
+.dca-simple-line input{padding:10px 6px}
+.dca-simple-line button{font-size:25px;background:none;border:0;cursor:pointer;color:inherit}
+.dca-simple-preview{min-height:280px;place-items:center;text-align:center;background:#f4f7fa}
+.dca-simple-preview img{width:100%;height:auto;border-radius:12px}
+@media(max-width:760px){.dca-simple-grid{grid-template-columns:1fr}.dca-simple-card{padding:16px;gap:16px}.dca-simple-line{gap:8px;grid-template-columns:minmax(0,1fr) 90px 28px}}

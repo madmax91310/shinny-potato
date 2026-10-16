@@ -70,6 +70,8 @@ jobs:
           retention-days: 35
       - name: Validate collected observations
         run: echo 'Mandatory observation checks passed'
+      - name: Verify histories reach all publication tools
+        run: node scripts/build-dca-exposures.mjs && node scripts/audit-portfolio-routing.mjs
       - name: Commit validated observations
         id: commit
         if: github.event_name != 'pull_request'

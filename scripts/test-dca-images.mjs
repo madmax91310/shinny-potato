@@ -12,6 +12,7 @@ try {
   let failHoldings=true
   await page.route(/\/holdings-\d+\.json/,route=>failHoldings&&!/[?&](import|url)([=&]|$)/.test(route.request().url())?route.abort():route.continue())
   await page.goto(base+'le-dca-de')
+  await page.getByRole('button',{name:'Le DCA de…',exact:true}).click()
   await page.getByRole('button',{name:'Relancer l’analyse',exact:true}).waitFor()
   failHoldings=false
   await page.getByRole('button',{name:'Relancer l’analyse',exact:true}).click()
@@ -120,6 +121,7 @@ try {
   await page.getByRole('group',{name:'Donut de l’image',exact:true}).locator('[data-option][data-value="countries"]').click()
   await page.getByRole('button',{name:'Enregistrer ce portefeuille',exact:true}).click()
   await page.reload()
+  await page.getByRole('button',{name:'Le DCA de…',exact:true}).click()
   await page.locator('.dca-saved summary').click()
   await page.getByRole('button',{name:'Ouvrir Premier portefeuille',exact:true}).click()
   assert.equal(await draft.inputValue(),'Texte personnalisé à conserver')
@@ -131,6 +133,7 @@ try {
   assert.equal(await page.locator('.dca-saved-row').count(),1)
   await page.getByRole('button',{name:'Marquer utilisé',exact:true}).click()
   await page.reload()
+  await page.getByRole('button',{name:'Le DCA de…',exact:true}).click()
   await page.locator('.dca-saved summary').click()
   await page.getByRole('button',{name:'Ouvrir Premier renommé',exact:true}).click()
   assert(await page.getByRole('button',{name:'Marquer non utilisé',exact:true}).isVisible())

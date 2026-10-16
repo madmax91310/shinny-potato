@@ -372,8 +372,17 @@ function rankedRecipes(profileId, riskId, history, locked) {
   const recipes = getRecipes(profileId, riskId).filter(r => lockSlots(r, locked));
   const recent = history.filter(h => h.profileId === profileId && h.riskId === riskId);
   const last = recent.at(-1)?.recipeId;
-  const count = r => recent.filter(h => h.recipeId === r.id).length;
-  return shuffle(recipes).sort((a,b) => Number(a.id === last) - Number(b.id === last) || count(a) - count(b));
+  const counts = new Map();
+  for(const h of recent)counts.set(h.recipeId,(counts.get(h.recipeId)||0)+1);
+  const usage = computeAssetUsage(recent);
+  // Preserve recipe rotation, then favour families least seen in this profile/risk.
+  // Multiple issuers for the same exposure do not get extra weight.
+  const rarity = r => {
+    const families = [...new Set(r.assets.flatMap(slot => (slot.idOptions || [slot.id]).map(exposureFamily)))];
+    return families.reduce((sum,family)=>sum+1/(1+(usage[`family:${family}`]||0)),0)/families.length;
+  };
+  const scores=new Map(recipes.map(r=>[r.id,rarity(r)]));
+  return shuffle(recipes).sort((a,b) => Number(a.id === last) - Number(b.id === last) || (counts.get(a.id)||0) - (counts.get(b.id)||0) || scores.get(b.id)-scores.get(a.id));
 }
 
 export function generatePortfolio(history, targetRiskKey, targetProfileKey, { locked = [] } = {}) {
