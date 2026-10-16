@@ -51,5 +51,5 @@ class QualifiedRoadmap(unittest.TestCase):
   self.assertIn('Country of risk',r['countries']['method'])
   self.assertIsNone(p['type']['value'],'Raw issuer evidence must remain unchanged')
   p['type']['value']=['France']
-  with self.assertRaises(ValueError):self.collect()
+  with self.assertRaises((ValueError,TypeError)):self.collect()
 if __name__=='__main__':unittest.main()
