@@ -121,16 +121,41 @@ export function basisLabel(basis) {
 export function supportLabel(assets) {
   return [...new Set(assets.map(a => a.portfolio ? 'Portefeuilles' : a.isin ? a.instrumentType ?? 'ETF' : a.priceUnit === 'points' ? 'Indices' : a.basis === 'adjusted' ? 'Actions' : 'Actifs au comptant'))].join(' / ')
 }
-export function buildTweet(result, title, regularity) {
-  const { columns, coverage } = result
-  const intro = result.mode === 'period' ? `De ${formatMonth(result.start)} à ${formatMonth(result.end)}` : columns.length === 1 ? `En ${columns[0].label}` : `De ${columns[0].label} à ${columns.at(-1).label}`
-  const lines = columns.length === 1 ? columns[0].rows.map(r => `${r.rank}. ${r.label} : ${formatPercent(r.value)}`)
-    : columns.map(c => `${c.label} : ${c.rows.filter(r => r.rank === 1).map(r => `${r.label} (${formatPercent(r.value)})`).join(' / ')}`)
-  const regularityText = regularity ? `\n\nSur ${regularity.count} périodes glissantes de ${regularity.months / 12} an${regularity.months > 12 ? 's' : ''}, entre ${regularity.start} et ${regularity.end} :\n${regularity.stats.map(s => `${s.label} : premier dans ${(100 * s.wins / regularity.count).toLocaleString('fr-FR', { maximumFractionDigits: 1 })} % des périodes`).join('\n')}\nPériodes mensuelles qui se chevauchent ; victoires partagées en cas d’égalité. Ce ne sont pas des probabilités futures.` : ''
-  const fundNote = result.assets.some(a => a.portfolio) ? '\nFrais des fonds détenus déjà inclus. Hors frais de courtage, coûts de rééquilibrage et fiscalité. Dans la grille annuelle, les pondérations évoluent depuis son début ; chaque fenêtre glissante repart des pondérations cibles.' : result.assets.some(a => a.isin) ? '\nPerformances des produits sélectionnés, frais des fonds inclus ; hors frais du courtier et fiscalité.' : '\nHors frais et fiscalité.'
-  const fxNote = result.assets.some(a => a.fxConverted) ? '\nConversion aux références BCE de fin de mois, sans couverture de change.' : ''
-  const portfolios = result.assets.filter(a => a.portfolio).map(a => `\n${a.label} : ${a.portfolio.lines.map(l => `${l.pct} % ${l.asset.shortLabel ?? l.asset.label}`).join(' + ')}. ${rebalanceLabel(a.portfolio.rebalance)}.`).join('')
-  return `📊 ${title}\n\n${intro} · ${coverage.currency}\n${supportLabel(result.assets)} · ${basisLabel(coverage.basis)}\n${result.annualized ? 'Performance annualisée' : result.mode === 'period' ? 'Performance cumulée' : 'Performances par année civile'}\n\n${lines.join('\n')}${fundNote}${fxNote}${portfolios}${regularityText}\n\nLes performances passées ne préjugent pas des performances futures.\nPas un conseil financier.`
+// Export fixed asset rows for all modes, splitting custom periods at calendar boundaries.
+export function annualColumns(result) {
+  if (result.mode !== 'period') return result.columns
+  const columns = []
+  let start = result.start
+  while (start < result.end) {
+    const year = Number(start.slice(0, 4)) + (start.endsWith('-12') ? 1 : 0)
+    const end = `${year}-12` < result.end ? `${year}-12` : result.end
+    const fullYear = start === `${year - 1}-12` && end === `${year}-12`
+    columns.push({ label: String(year), partial: !fullYear,
+      detail: fullYear ? '' : `${formatMonth(start, true)} → ${formatMonth(end, true)}`,
+      start, end, rows: rankPeriod(result.assets, start, end, false, result.start) })
+    start = end
+  }
+  return columns
+}
+export function publicationRanking(result) {
+  const annualized = monthIndex(result.end) - monthIndex(result.start) > 12
+  return { annualized, rows: rankPeriod(result.assets, result.start, result.end, annualized) }
+}
+function tweetUniverse(result, title) {
+  const etfs = result.assets.every(a => a.isin && (!a.instrumentType || a.instrumentType === 'ETF'))
+  const kinds = result.assets.every(a => a.portfolio) ? 'ces portefeuilles' : etfs ? 'ces ETF' : result.assets.every(a => !a.isin && a.basis === 'adjusted') ? 'ces actions' : result.assets.every(a => a.priceUnit === 'points') ? 'ces indices' : 'ces actifs'
+  const qualifiers = { 'Marchés mondiaux': 'mondiaux', 'Marchés européens': 'européens', 'Facteurs mondiaux': 'factoriels mondiaux', 'Secteurs européens': 'sectoriels européens', 'Secteurs mondiaux': 'sectoriels mondiaux', 'Thématiques': 'thématiques', 'Stratégies dividendes': 'à dividendes', 'Obligations': 'obligataires' }
+  return `${kinds}${qualifiers[title] ? ` ${qualifiers[title]}` : ''}`
+}
+export function buildTweet(result, title) {
+  const { rows, annualized } = publicationRanking(result)
+  const fullYears = result.start.endsWith('-12') && result.end.endsWith('-12')
+  const firstYear = Number(result.start.slice(0, 4)) + 1
+  const lastYear = Number(result.end.slice(0, 4))
+  const period = fullYears ? firstYear === lastYear ? `en ${lastYear}` : `entre ${firstYear} et ${lastYear}` : `entre fin ${formatMonth(result.start)} et fin ${formatMonth(result.end)}`
+  const badges = ['🥇', '🥈', '🥉', '4️⃣', '5️⃣', '6️⃣']
+  const lines = rows.map(r => `${badges[r.rank - 1]} ${r.label} : ${formatPercent(r.value)}${annualized ? '/an' : ''}`)
+  return `Parmi ${tweetUniverse(result, title)}, lequel a le mieux performé ${period} ? 👇\n\n${lines.join('\n')}\n\nLe détail année par année dans l’image 👇\n\n💬 Tu es exposé à l’un d’entre eux ?\n\nPas un conseil financier.`
 }
 
 export function rebalanceLabel(value) { return ({ none: 'Sans rééquilibrage', annual: 'Rééquilibrage en décembre', monthly: 'Rééquilibrage chaque mois' })[value] }

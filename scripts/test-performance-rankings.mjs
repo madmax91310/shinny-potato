@@ -3,7 +3,7 @@ import { convertAsset, buildPortfolio } from '../src/pages/performance-rankings/
 import { ANNUAL_ASSETS, ANNUAL_CATEGORIES } from '../src/pages/performance-rankings/data.js'
 import assert from 'node:assert/strict'
 import { CATEGORIES, RANKING_ASSETS, buildRankingAssets } from '../src/pages/performance-rankings/data.js'
-import { buildRanking, buildTweet, commonCoverage, monthAt, monthIndex, periodReturn, rankRows, rollingRegularity } from '../src/pages/performance-rankings/engine.js'
+import { annualColumns, buildRanking, buildTweet, commonCoverage, monthAt, monthIndex, periodReturn, publicationRanking, rankRows, rollingRegularity } from '../src/pages/performance-rankings/engine.js'
 
 const make = (id, rate = .01, start = '2019-12', count = 85) => ({ id, label: id, currency: 'EUR', basis: 'adjusted', points: Array.from({ length: count }, (_, i) => ({ date: monthAt(monthIndex(start) + i), price: 100 * (1 + rate) ** i })) })
 const a = make('a'), b = make('b', -.005)
@@ -47,7 +47,9 @@ for (const category of CATEGORIES) {
     const result = buildRanking(assets, { mode, startYear: c.years.at(-6) ?? c.years[0], endYear: c.years.at(-1), start: c.start, end: c.end })
     const text = buildTweet(result, category.label, rollingRegularity(assets, 60))
     assert(!/undefined|NaN|Infinity/.test(text), text)
-    assert(text.includes(c.currency))
+    assert(text.includes('Le détail année par année dans l’image 👇'))
+    assert(!text.includes('périodes glissantes'))
+    assert(text.includes('💬 Tu es exposé à l’un d’entre eux ?'))
   }
 }
 // A newly refreshed month automatically extends selectable dates and rolling windows.
@@ -104,3 +106,34 @@ for (const asset of Object.values(RANKING_ASSETS).filter(a => a.symbol === 'SGLD
 const annualFX = { months: { '2019-12': { rates: { EUR: 1, USD: 2 } }, '2020-12': { rates: { EUR: 1, USD: 4 } } } }
 const annualUSD = convertAsset({ ...annual, years: { 2020: 10 } }, 'USD', annualFX)
 assert(Math.abs(annualUSD.years[2020] - 120) < 1e-10)
+
+// The tweet compounds the exact full period, independently of the annual table.
+const years = buildRanking([a, b], { mode: 'years', startYear: 2020, endYear: 2025 })
+assert(publicationRanking(years).annualized)
+assert(Math.abs(publicationRanking(years).rows[0].value - ((1.01 ** 12 - 1) * 100)) < 1e-10)
+assert.match(buildTweet(years, 'Ma sélection'), /entre 2020 et 2025/)
+assert.match(buildTweet(years, 'Ma sélection'), /🥇 a : .*%\/an/)
+const oneYear = buildRanking([a, b], { mode: 'year', startYear: 2020 })
+assert(!publicationRanking(oneYear).annualized)
+assert(!buildTweet(oneYear, 'Ma sélection').includes('/an'))
+assert.match(buildTweet(oneYear, 'Ma sélection'), /en 2020/)
+const custom = buildRanking([a, b], { mode: 'period', start: '2020-05', end: '2022-08' })
+const table = annualColumns(custom)
+assert.deepEqual(table.map(c => [c.label, c.partial, c.start, c.end]), [
+  ['2020', true, '2020-05', '2020-12'], ['2021', false, '2020-12', '2021-12'], ['2022', true, '2021-12', '2022-08']
+])
+assert(Math.abs(table.reduce((ratio, c) => ratio * (1 + c.rows.find(r => r.id === a.id).value / 100), 1) - (1 + periodReturn(a, custom.start, custom.end) / 100)) < 1e-10)
+const tied = buildRanking([a, { ...a, id: 'tie' }], { mode: 'year', startYear: 2020 })
+assert.equal(buildTweet(tied, 'Ma sélection').split('🥇').length - 1, 2)
+const { rankingImageLayout } = await import('../src/pages/performance-rankings/image.js')
+assert(rankingImageLayout(3, 6).height < rankingImageLayout(5, 6).height)
+assert.equal(rankingImageLayout(3, 6).tableBottom + 94, rankingImageLayout(3, 6).height)
+console.log('Publication: exact compound annualization, single-year returns, tied medals, partial boundaries and compact three-asset canvas passed.')
+
+// A custom multi-year portfolio table keeps drifting weights from the selection start.
+const driftCustom = buildRanking([drift, reset], { mode: 'period', start: '2019-12', end: '2021-12' })
+const driftColumns = annualColumns(driftCustom)
+assert(driftColumns[1].rows.find(r => r.id === 'p').value > driftColumns[0].rows.find(r => r.id === 'p').value)
+const annualGrid = buildRanking([annual, { ...annual, id: 'copy' }], { mode: 'period', start: '2019-12', end: '2021-12' })
+assert.equal(annualColumns(annualGrid).length, 2)
+assert(Number.isFinite(publicationRanking(annualGrid).rows[0].value))
