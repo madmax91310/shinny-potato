@@ -3,6 +3,9 @@ import { INVESTORS } from './data/investor-roster.js'
 // status: 'disponible' une fois l'outil migré et branché, 'bientot' tant qu'il affiche un écran d'attente.
 // Les couleurs historiques servent aux contenus exportés ; l’accueil emploie des icônes sobres.
 export const TOOLS = [
+  { to: '/classements-performances', navLabel: 'Classements', title: 'Qui a vraiment gagné ?',
+    publicationDay: 'Publication ponctuelle', icon: '🏆', accent: '#76cdb7',
+    description: 'Classe les actifs sur une année, année par année ou sur une période choisie. Quinze catégories, sélection manuelle, régularité historique, texte et image.', status: 'disponible' },
   { to: '/le-dca-de', navLabel: 'Portefeuille & DCA', title: 'Portefeuille & DCA',
     publicationDay: 'Publication ponctuelle', icon: '👥', accent: '#65d5b0',
     description: 'Analyse les expositions, les titres communs et la concentration de ton portefeuille. Prépare un DCA ou une image à publier.', status: 'disponible' },
@@ -165,6 +168,7 @@ export const TOOLS = [
 ]
 
 const TOOL_SUMMARIES = {
+  '/classements-performances': 'Les gagnants par année ou sur une période commune, avec une image à publier.',
   '/le-dca-de': 'Portefeuille manuel, expositions et profils DCA, avec un visuel à exporter.',
   '/fiches-pratiques':'Les différences utiles pour comprendre et choisir un placement.',
   '/radar-editorial': 'Les changements sourcés qui peuvent devenir tes prochains posts.',
@@ -194,7 +198,7 @@ const TOOL_SUMMARIES = {
 
 // Les mêmes groupes alimentent l’accueil et la navigation.
 export const TOOL_GROUPS = [
-  { id: 'compare', title: 'Comparer et simuler', description: 'Mettre les placements et leurs résultats en perspective.', paths: ['/simulateur-patrimoine', '/comparatif-courtiers', '/calculateur-investissement', '/impact-frais'] },
+  { id: 'compare', title: 'Comparer et simuler', description: 'Mettre les placements et leurs résultats en perspective.', paths: ['/classements-performances', '/simulateur-patrimoine', '/comparatif-courtiers', '/calculateur-investissement', '/impact-frais'] },
   { id: 'portfolio', title: 'Construire un portefeuille', description: 'Explorer des allocations et les choix des investisseurs.', paths: ['/le-dca-de', '/generateur-portefeuilles', '/duels-portefeuilles', '/portefeuilles-investisseurs'] },
   { id: 'publish', title: 'Préparer une publication', description: 'Choisir un sujet, préparer son texte et ses visuels.', paths: ['/fiches-pratiques', '/radar-editorial', '/presentations', '/analyse-entreprise', '/fiche-lexique', '/comparatif-etf', '/il-y-a-x-ans', '/performance-depuis', '/pouvoir-achat', '/fiches-etf', '/tweets-factsheets', '/faits-marquants-marches', '/france-100-menages', '/banque-tweets'] },
   { id: 'data', title: 'Gérer les données', description: 'Retrouver les sources et les prochaines mises à jour.', paths: ['/bibliotheque-donnees', '/donnees-a-revoir'] },
@@ -206,6 +210,7 @@ export const WEEKLY_ORDER = [
   '/comparatif-etf', '/fiche-lexique', '/tweets-factsheets',
   '/france-100-menages', '/generateur-portefeuilles',
   '/performance-depuis', '/calculateur-investissement',
+  '/classements-performances',
   '/duels-portefeuilles', '/fiches-etf',
   '/presentations',
   '/portefeuilles-investisseurs', '/faits-marquants-marches',
