@@ -6,7 +6,7 @@ import WorkspaceActions from '../../design-system/WorkspaceActions'
 import AssetPicker from '../../design-system/AssetPicker'
 import { exposureGroup } from '../../data/asset-labels.js'
 import ToolWorkspace from '../../design-system/ToolWorkspace'
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { readPreference, writePreference } from "../../lib/publication-preferences.js";
 import { Link, useLocation } from 'react-router-dom';
 import { getPerformanceAssetId } from '../../data/performance-links.js';
@@ -85,6 +85,12 @@ function TweetMidiWorkspace({ search, initialFormat, title, description, runtime
     pouvoirAchat: { amount: 1000, startYear: 2015, paMode: 'brut', posteId: 'loyer' },
   }).item);
   const [history, setHistory] = useState(() => [current.id]);
+  const [performanceCurrency, setPerformanceCurrency] = useState(() => readPreference('performance-currency', 'native', value => ['native', 'EUR', 'USD'].includes(value)));
+  const availableCurrencies = current.format === FORMATS.PERFORMANCE_DEPUIS
+    ? (runtime.engine.getPerformanceCurrencies?.(current) ?? []) : [];
+  const effectiveCurrency = availableCurrencies.includes(performanceCurrency) ? performanceCurrency : 'native';
+  const publicationItem = useMemo(() => current.format === FORMATS.PERFORMANCE_DEPUIS
+    ? { ...current, currency: effectiveCurrency } : current, [current, effectiveCurrency]);
   const [copied, setCopied] = useState(false);
   const [imageState, setImageState] = useState('idle');
   // Niveau(x) actuel(s) — Format "Il y a X ans" uniquement, un champ en mode Simple, deux en mode
@@ -207,7 +213,7 @@ function TweetMidiWorkspace({ search, initialFormat, title, description, runtime
     (isAnniversaire && !isComparatifCurrent && !niveauActuelValide) ||
     (isAnniversaire && isComparatifCurrent && !(niveauActuelValide && niveauActuelBValide));
 
-  const text = buildTweetText(current, { niveauActuel, niveauActuelB });
+  const text = buildTweetText(publicationItem, { niveauActuel, niveauActuelB });
   const status = getLengthStatus(text.length);
   const isLongFormat = current.format === FORMATS.FICHE_LEXIQUE || current.format === FORMATS.COMPARATIF_ETF;
   // Les fiches lexique et comparatifs ETF dépassent 280 caractères par nature : le palier
@@ -243,7 +249,7 @@ function TweetMidiWorkspace({ search, initialFormat, title, description, runtime
   async function handleImageDownload() {
     setImageState('loading');
     try {
-      await downloadFormatImage(current, niveauActuel, niveauActuelB);
+      await downloadFormatImage(publicationItem, niveauActuel, niveauActuelB);
       setImageState('idle');
     } catch {
       setImageState('error'); notifyPublication('Impossible de préparer l’image. Réessaie.', 'error');
@@ -272,7 +278,7 @@ function TweetMidiWorkspace({ search, initialFormat, title, description, runtime
         subtitle={description ?? "Dilemmes, Fiches lexique, Comparatifs ETF, Anniversaires de prix, Performances historiques et Pouvoir d'achat, prêts à publier pour le créneau midi — sans dépendre de l'actualité du jour."}
       />
 
-      <ToolWorkspace renderImage={current.format === FORMATS.DILEMME ? undefined : () => renderFormatImage(current, niveauActuel, niveauActuelB)} imageDisabled={copyDisabled} imageAlt={`Visuel ${title ?? "Tweet Midi"}`}>
+      <ToolWorkspace renderImage={current.format === FORMATS.DILEMME ? undefined : () => renderFormatImage(publicationItem, niveauActuel, niveauActuelB)} imageDisabled={copyDisabled} imageAlt={`Visuel ${title ?? "Tweet Midi"}`}>
         <div className="tool-settings">
           <Card className="flex flex-col gap-4 p-5">
             {initialFormat === FORMATS.ALEATOIRE && <div>
@@ -502,6 +508,19 @@ function TweetMidiWorkspace({ search, initialFormat, title, description, runtime
                 </div>
               </div>
             )}
+
+            {current.format === FORMATS.PERFORMANCE_DEPUIS && <div>
+              <span className="mb-2 block text-xs font-semibold tracking-widest text-slate-500 uppercase">Devise des performances</span>
+              <div className="flex flex-wrap gap-2" role="group" aria-label="Devise des performances">
+                {['native', ...availableCurrencies].map(currency => <Button key={currency} type="button"
+                  variant={effectiveCurrency === currency ? 'primary' : 'secondary'} aria-pressed={effectiveCurrency === currency}
+                  onClick={() => { setPerformanceCurrency(currency); writePreference('performance-currency', currency); setCopied(false) }}>
+                  {currency === 'native' ? 'Devise d’origine' : currency === 'EUR' ? 'Euros (EUR)' : 'Dollars (USD)'}
+                </Button>)}
+              </div>
+              <p className="mt-2 text-xs text-slate-400">Le texte et l’image suivent la devise choisie. La conversion utilise les taux historiques BCE de fin d’année, sans couverture de change.</p>
+              {availableCurrencies.length < 2 && <p className="mt-1 text-xs text-slate-400">Le choix dépend des devises et de l’historique de change disponibles sur toute la période.</p>}
+            </div>}
 
             {showSecondarySelector && (
               <div className="border-l-2 border-teal-500/30 pl-3">

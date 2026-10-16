@@ -39,6 +39,8 @@ class RemainingAumTests(unittest.TestCase):
         body = (FIXTURES / 'ecb-eurusd.xml').read_bytes()
         r = fx(body, NOW)
         self.assertNotIn('2026', r['years'])
+        self.assertEqual(r['years']['2015']['value'], 1.0887)
+        self.assertEqual(min(r['years']), '1999')
         self.assertEqual(r['years']['2023'], {'value': 1.105, 'asOf': '2023-12-29'})
         self.assertEqual(r['years']['2025']['value'], 1.175)
         for modified in [body.replace(b'2025-12-31', b'2025-12-01'), body.replace(b'currency="USD"', b'currency="EUR"'), body.replace(b'1.175', b'NaN')]:
