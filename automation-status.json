@@ -365,13 +365,23 @@
         }
       ],
       "dataFailures": {}
+    },
+    "update-exposure-expansion.yml": {
+      "name": "35 ETF des allocations",
+      "status": "unknown",
+      "collectionStatus": "unknown",
+      "validationStatus": "unknown",
+      "recordingStatus": "not-run",
+      "publicationStatus": "not-run",
+      "dataFailures": {},
+      "failures": []
     }
   },
   "updatedAt": "2026-10-16T14:16:46Z",
   "monitoring": {
     "schemaVersion": 1,
-    "checkedAt": "2026-10-16T14:43:03.026315+00:00",
-    "revision": 45,
+    "checkedAt": "2026-10-16T14:43:25.592084+00:00",
+    "revision": 46,
     "active": {
       "collection:update-practical-sheets.yml:practical:13f": {
         "name": "SEC · questions et réponses sur le formulaire 13F",
@@ -392,7 +402,7 @@
         "dataId": "practical:13f",
         "id": "collection:update-practical-sheets.yml:practical:13f",
         "firstSeenAt": "2026-10-14T21:07:26.171294+00:00",
-        "lastSeenAt": "2026-10-16T14:43:03.026315+00:00"
+        "lastSeenAt": "2026-10-16T14:43:25.592084+00:00"
       },
       "collection:update-insurance.yml:linxea-avenir-2": {
         "name": "Linxea Avenir 2",
@@ -411,7 +421,7 @@
         "dataId": "linxea-avenir-2",
         "id": "collection:update-insurance.yml:linxea-avenir-2",
         "firstSeenAt": "2026-10-14T13:08:27.203935+00:00",
-        "lastSeenAt": "2026-10-16T14:43:03.026315+00:00"
+        "lastSeenAt": "2026-10-16T14:43:25.592084+00:00"
       },
       "collection:update-scpi.yml:remake-live": {
         "name": "Remake Live",
@@ -434,7 +444,7 @@
         "dataId": "remake-live",
         "id": "collection:update-scpi.yml:remake-live",
         "firstSeenAt": "2026-10-15T13:02:43.499914+00:00",
-        "lastSeenAt": "2026-10-16T14:43:03.026315+00:00"
+        "lastSeenAt": "2026-10-16T14:43:25.592084+00:00"
       },
       "collection:update-regulatory-data.yml:broker-observation:caidf:profile:change": {
         "name": "caidf:profile:change",
@@ -454,7 +464,7 @@
         "dataId": "broker-observation:caidf:profile:change",
         "id": "collection:update-regulatory-data.yml:broker-observation:caidf:profile:change",
         "firstSeenAt": "2026-10-15T18:00:14.760687+00:00",
-        "lastSeenAt": "2026-10-16T14:43:03.026315+00:00"
+        "lastSeenAt": "2026-10-16T14:43:25.592084+00:00"
       },
       "publication:update-qualified-exposures.yml": {
         "name": "Expositions ETF qualifiées",
@@ -474,7 +484,23 @@
         "cause": "deploy / build : Run npm run test:radar",
         "id": "publication:update-qualified-exposures.yml",
         "firstSeenAt": "2026-10-16T12:48:21.924866+00:00",
-        "lastSeenAt": "2026-10-16T14:43:03.026315+00:00"
+        "lastSeenAt": "2026-10-16T14:43:25.592084+00:00"
+      },
+      "unobserved:update-exposure-expansion.yml": {
+        "name": "35 ETF des allocations",
+        "tools": [
+          "Portefeuille / DCA"
+        ],
+        "impactScope": "collector",
+        "workflow": "update-exposure-expansion.yml",
+        "runUrl": null,
+        "to": "/donnees-a-revoir",
+        "kind": "unobserved",
+        "field": "Exécution",
+        "cause": "Aucune exécution terminée avec une date exploitable.",
+        "id": "unobserved:update-exposure-expansion.yml",
+        "firstSeenAt": "2026-10-16T14:43:25.592084+00:00",
+        "lastSeenAt": "2026-10-16T14:43:25.592084+00:00"
       },
       "monitor:radar": {
         "kind": "unobserved",
@@ -487,562 +513,10 @@
         "to": "/donnees-a-revoir",
         "id": "monitor:radar",
         "firstSeenAt": "2026-10-15T18:53:46.175472+00:00",
-        "lastSeenAt": "2026-10-16T14:43:03.026315+00:00"
+        "lastSeenAt": "2026-10-16T14:43:25.592084+00:00"
       }
     },
     "events": [
-      {
-        "revision": 16,
-        "at": "2026-10-14T19:12:42.647375+00:00",
-        "opened": [
-          "radar:9b3991b6333477f8b8319328",
-          "radar:16e014639b280f2aff0b8110",
-          "radar:dbf8fd8ce336c8ff42118967",
-          "radar:f5768b0191dbb559e4a6a839",
-          "radar:5d04335f99c8ff9a3b3d97d7",
-          "radar:681f0502cb9d52c12b410bb1",
-          "radar:a2bd3ba255824bbd1d640487",
-          "radar:bd415a4ee6ccc0c60001c968",
-          "radar:33a80019ce2a4da17fced4ba",
-          "radar:7b5944001cb1a578a34a1416",
-          "radar:ad0b26aa7ef1fe5069109f11",
-          "radar:7166571bda25a69c7c2f98c1",
-          "radar:ae071925d947dd8f2a33637c",
-          "radar:15299251ff9915c1e371c813",
-          "radar:d4eb9fdf91e5a772926534d5",
-          "radar:9717a58fe57eed4be8a46496",
-          "radar:61aa5b51be668ed72655e630",
-          "radar:3cd88d9f35f58fe286dc847d",
-          "radar:238a7a13460493a8dfdc2735",
-          "radar:0fab71ab4c13d8254ac241f7",
-          "radar:4266e36be9d36af092006428",
-          "radar:81b7ae452323b62fcdbe6abe",
-          "radar:a38feb8f5ecfb289e6ba32e6",
-          "radar:da5680ed736153eb76f1d77b",
-          "radar:b022ad1f072e8c46c1ada4e6",
-          "radar:299976fcd22b9bda7e4a553e",
-          "radar:971d03d09c328a73885bb586",
-          "radar:577cfcc3e8d12b0517b5aa41",
-          "radar:e40f6638126bc8f279ab91b0",
-          "radar:21f2d014850195264b1f58e7",
-          "radar:6e8af40e078a77571b038036",
-          "radar:8ab978a6cb66fe8913c5fced",
-          "radar:517bbed910b922cde030dddb",
-          "radar:ffc8559aebc3093a0a88ef30"
-        ],
-        "resolved": [
-          {
-            "name": "Xtrackers S&P 500 Equal Weight UCITS ETF 1C",
-            "tools": [
-              "Comparatif ETF",
-              "Duels de portefeuilles",
-              "Générateur de portefeuilles",
-              "Impact des frais",
-              "Présentation ETF"
-            ],
-            "impactScope": "asset",
-            "sourceUrls": [
-              "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/historicaldata/download",
-              "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/pdpMetaTagsTealium",
-              "https://etf.dws.com/en-ch/IE00BLNMYC90-s-p-500-equal-weight-ucits-etf-1c/",
-              "https://www.borsaitaliana.it/borsa/etf/scheda/IE00BLNMYC90.html?lang=en",
-              "https://www.zonebourse.com/cours/etf/XTRACKERS-S-P-500-EQUAL-W-122801274/composition/"
-            ],
-            "to": "/bibliotheque-donnees?id=IE00BLNMYC90",
-            "kind": "conflict",
-            "field": "Poids du pays United States",
-            "cause": "Valeur contradictoire pour la même période (2026-10-12) : Poids du pays United States. Dernière observation conservée ; propositions archivées (etf:IE00BLNMYC90:countries:United States:8abd3910625177898532bf9d:2026-10-12).",
-            "id": "radar:6264e6c6f5fc93e131495b77",
-            "firstSeenAt": "2026-10-14T11:42:41.168472+00:00",
-            "lastSeenAt": "2026-10-14T19:11:55.324201+00:00",
-            "resolvedAt": "2026-10-14T19:12:42.647375+00:00"
-          },
-          {
-            "name": "Xtrackers S&P 500 Equal Weight UCITS ETF 1C",
-            "tools": [
-              "Comparatif ETF",
-              "Duels de portefeuilles",
-              "Générateur de portefeuilles",
-              "Impact des frais",
-              "Présentation ETF"
-            ],
-            "impactScope": "asset",
-            "sourceUrls": [
-              "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/historicaldata/download",
-              "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/pdpMetaTagsTealium",
-              "https://etf.dws.com/en-ch/IE00BLNMYC90-s-p-500-equal-weight-ucits-etf-1c/",
-              "https://www.borsaitaliana.it/borsa/etf/scheda/IE00BLNMYC90.html?lang=en",
-              "https://www.zonebourse.com/cours/etf/XTRACKERS-S-P-500-EQUAL-W-122801274/composition/"
-            ],
-            "to": "/bibliotheque-donnees?id=IE00BLNMYC90",
-            "kind": "conflict",
-            "field": "Poids du pays Ireland",
-            "cause": "Valeur contradictoire pour la même période (2026-10-12) : Poids du pays Ireland. Dernière observation conservée ; propositions archivées (etf:IE00BLNMYC90:countries:Ireland:8abd3910625177898532bf9d:2026-10-12).",
-            "id": "radar:552c63c21929594ba3d43c71",
-            "firstSeenAt": "2026-10-14T11:42:41.168472+00:00",
-            "lastSeenAt": "2026-10-14T19:11:55.324201+00:00",
-            "resolvedAt": "2026-10-14T19:12:42.647375+00:00"
-          },
-          {
-            "name": "Xtrackers S&P 500 Equal Weight UCITS ETF 1C",
-            "tools": [
-              "Comparatif ETF",
-              "Duels de portefeuilles",
-              "Générateur de portefeuilles",
-              "Impact des frais",
-              "Présentation ETF"
-            ],
-            "impactScope": "asset",
-            "sourceUrls": [
-              "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/historicaldata/download",
-              "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/pdpMetaTagsTealium",
-              "https://etf.dws.com/en-ch/IE00BLNMYC90-s-p-500-equal-weight-ucits-etf-1c/",
-              "https://www.borsaitaliana.it/borsa/etf/scheda/IE00BLNMYC90.html?lang=en",
-              "https://www.zonebourse.com/cours/etf/XTRACKERS-S-P-500-EQUAL-W-122801274/composition/"
-            ],
-            "to": "/bibliotheque-donnees?id=IE00BLNMYC90",
-            "kind": "conflict",
-            "field": "Poids du pays Singapore",
-            "cause": "Valeur contradictoire pour la même période (2026-10-12) : Poids du pays Singapore. Dernière observation conservée ; propositions archivées (etf:IE00BLNMYC90:countries:Singapore:8abd3910625177898532bf9d:2026-10-12).",
-            "id": "radar:7ecf824b7b5c50cea4ece3b2",
-            "firstSeenAt": "2026-10-14T11:42:41.168472+00:00",
-            "lastSeenAt": "2026-10-14T19:11:55.324201+00:00",
-            "resolvedAt": "2026-10-14T19:12:42.647375+00:00"
-          },
-          {
-            "name": "Xtrackers S&P 500 Equal Weight UCITS ETF 1C",
-            "tools": [
-              "Comparatif ETF",
-              "Duels de portefeuilles",
-              "Générateur de portefeuilles",
-              "Impact des frais",
-              "Présentation ETF"
-            ],
-            "impactScope": "asset",
-            "sourceUrls": [
-              "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/historicaldata/download",
-              "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/pdpMetaTagsTealium",
-              "https://etf.dws.com/en-ch/IE00BLNMYC90-s-p-500-equal-weight-ucits-etf-1c/",
-              "https://www.borsaitaliana.it/borsa/etf/scheda/IE00BLNMYC90.html?lang=en",
-              "https://www.zonebourse.com/cours/etf/XTRACKERS-S-P-500-EQUAL-W-122801274/composition/"
-            ],
-            "to": "/bibliotheque-donnees?id=IE00BLNMYC90",
-            "kind": "conflict",
-            "field": "Poids du pays Switzerland",
-            "cause": "Valeur contradictoire pour la même période (2026-10-12) : Poids du pays Switzerland. Dernière observation conservée ; propositions archivées (etf:IE00BLNMYC90:countries:Switzerland:8abd3910625177898532bf9d:2026-10-12).",
-            "id": "radar:cdc877fda7404402abef4457",
-            "firstSeenAt": "2026-10-14T11:42:41.168472+00:00",
-            "lastSeenAt": "2026-10-14T19:11:55.324201+00:00",
-            "resolvedAt": "2026-10-14T19:12:42.647375+00:00"
-          },
-          {
-            "name": "Xtrackers MSCI World ex USA UCITS ETF 1C",
-            "tools": [
-              "Comparatif ETF",
-              "Duels de portefeuilles",
-              "Générateur de portefeuilles",
-              "Impact des frais",
-              "Présentation ETF"
-            ],
-            "impactScope": "asset",
-            "sourceUrls": [
-              "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/historicaldata/download",
-              "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/pdpMetaTagsTealium",
-              "https://etf.dws.com/download/asset/82292b8e-bf9e-44f2-b20d-722c743110a3",
-              "https://etf.dws.com/fr-fr/AssetDownload/Index/410e8206-23cd-463b-b2a5-6018bfc1fd32/Factsheet.pdf",
-              "https://www.justetf.com/en/etf-profile.html?isin=IE0006WW1TQ4",
-              "https://www.msci.com/documents/10199/255599/msci-world-ex-usa-index-net.pdf",
-              "https://www.zonebourse.com/cours/etf/XTRACKERS-MSCI-WORLD-EX-U-169862014/"
-            ],
-            "to": "/bibliotheque-donnees?id=IE0006WW1TQ4",
-            "kind": "conflict",
-            "field": "Poids du pays United Kingdom",
-            "cause": "Valeur contradictoire pour la même période (2026-10-12) : Poids du pays United Kingdom. Dernière observation conservée ; propositions archivées (etf:IE0006WW1TQ4:countries:United Kingdom:896eb444159fd8c94545e70e:2026-10-12).",
-            "id": "radar:efba37ffd0046e945c026629",
-            "firstSeenAt": "2026-10-14T11:42:41.168472+00:00",
-            "lastSeenAt": "2026-10-14T19:11:55.324201+00:00",
-            "resolvedAt": "2026-10-14T19:12:42.647375+00:00"
-          },
-          {
-            "name": "Xtrackers MSCI World ex USA UCITS ETF 1C",
-            "tools": [
-              "Comparatif ETF",
-              "Duels de portefeuilles",
-              "Générateur de portefeuilles",
-              "Impact des frais",
-              "Présentation ETF"
-            ],
-            "impactScope": "asset",
-            "sourceUrls": [
-              "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/historicaldata/download",
-              "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/pdpMetaTagsTealium",
-              "https://etf.dws.com/download/asset/82292b8e-bf9e-44f2-b20d-722c743110a3",
-              "https://etf.dws.com/fr-fr/AssetDownload/Index/410e8206-23cd-463b-b2a5-6018bfc1fd32/Factsheet.pdf",
-              "https://www.justetf.com/en/etf-profile.html?isin=IE0006WW1TQ4",
-              "https://www.msci.com/documents/10199/255599/msci-world-ex-usa-index-net.pdf",
-              "https://www.zonebourse.com/cours/etf/XTRACKERS-MSCI-WORLD-EX-U-169862014/"
-            ],
-            "to": "/bibliotheque-donnees?id=IE0006WW1TQ4",
-            "kind": "conflict",
-            "field": "Poids du pays Switzerland",
-            "cause": "Valeur contradictoire pour la même période (2026-10-12) : Poids du pays Switzerland. Dernière observation conservée ; propositions archivées (etf:IE0006WW1TQ4:countries:Switzerland:896eb444159fd8c94545e70e:2026-10-12).",
-            "id": "radar:c012c99b66733df597a789d5",
-            "firstSeenAt": "2026-10-14T11:42:41.168472+00:00",
-            "lastSeenAt": "2026-10-14T19:11:55.324201+00:00",
-            "resolvedAt": "2026-10-14T19:12:42.647375+00:00"
-          },
-          {
-            "name": "Xtrackers MSCI World ex USA UCITS ETF 1C",
-            "tools": [
-              "Comparatif ETF",
-              "Duels de portefeuilles",
-              "Générateur de portefeuilles",
-              "Impact des frais",
-              "Présentation ETF"
-            ],
-            "impactScope": "asset",
-            "sourceUrls": [
-              "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/historicaldata/download",
-              "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/pdpMetaTagsTealium",
-              "https://etf.dws.com/download/asset/82292b8e-bf9e-44f2-b20d-722c743110a3",
-              "https://etf.dws.com/fr-fr/AssetDownload/Index/410e8206-23cd-463b-b2a5-6018bfc1fd32/Factsheet.pdf",
-              "https://www.justetf.com/en/etf-profile.html?isin=IE0006WW1TQ4",
-              "https://www.msci.com/documents/10199/255599/msci-world-ex-usa-index-net.pdf",
-              "https://www.zonebourse.com/cours/etf/XTRACKERS-MSCI-WORLD-EX-U-169862014/"
-            ],
-            "to": "/bibliotheque-donnees?id=IE0006WW1TQ4",
-            "kind": "conflict",
-            "field": "Poids du pays Germany",
-            "cause": "Valeur contradictoire pour la même période (2026-10-12) : Poids du pays Germany. Dernière observation conservée ; propositions archivées (etf:IE0006WW1TQ4:countries:Germany:896eb444159fd8c94545e70e:2026-10-12).",
-            "id": "radar:93ae9c0ee7de7e1a0d37d4fc",
-            "firstSeenAt": "2026-10-14T11:42:41.168472+00:00",
-            "lastSeenAt": "2026-10-14T19:11:55.324201+00:00",
-            "resolvedAt": "2026-10-14T19:12:42.647375+00:00"
-          },
-          {
-            "name": "Xtrackers MSCI World ex USA UCITS ETF 1C",
-            "tools": [
-              "Comparatif ETF",
-              "Duels de portefeuilles",
-              "Générateur de portefeuilles",
-              "Impact des frais",
-              "Présentation ETF"
-            ],
-            "impactScope": "asset",
-            "sourceUrls": [
-              "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/historicaldata/download",
-              "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/pdpMetaTagsTealium",
-              "https://etf.dws.com/download/asset/82292b8e-bf9e-44f2-b20d-722c743110a3",
-              "https://etf.dws.com/fr-fr/AssetDownload/Index/410e8206-23cd-463b-b2a5-6018bfc1fd32/Factsheet.pdf",
-              "https://www.justetf.com/en/etf-profile.html?isin=IE0006WW1TQ4",
-              "https://www.msci.com/documents/10199/255599/msci-world-ex-usa-index-net.pdf",
-              "https://www.zonebourse.com/cours/etf/XTRACKERS-MSCI-WORLD-EX-U-169862014/"
-            ],
-            "to": "/bibliotheque-donnees?id=IE0006WW1TQ4",
-            "kind": "conflict",
-            "field": "Poids du pays Australia",
-            "cause": "Valeur contradictoire pour la même période (2026-10-12) : Poids du pays Australia. Dernière observation conservée ; propositions archivées (etf:IE0006WW1TQ4:countries:Australia:896eb444159fd8c94545e70e:2026-10-12).",
-            "id": "radar:385b050d47dc049398569aad",
-            "firstSeenAt": "2026-10-14T11:42:41.168472+00:00",
-            "lastSeenAt": "2026-10-14T19:11:55.324201+00:00",
-            "resolvedAt": "2026-10-14T19:12:42.647375+00:00"
-          },
-          {
-            "name": "Xtrackers MSCI World ex USA UCITS ETF 1C",
-            "tools": [
-              "Comparatif ETF",
-              "Duels de portefeuilles",
-              "Générateur de portefeuilles",
-              "Impact des frais",
-              "Présentation ETF"
-            ],
-            "impactScope": "asset",
-            "sourceUrls": [
-              "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/historicaldata/download",
-              "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/pdpMetaTagsTealium",
-              "https://etf.dws.com/download/asset/82292b8e-bf9e-44f2-b20d-722c743110a3",
-              "https://etf.dws.com/fr-fr/AssetDownload/Index/410e8206-23cd-463b-b2a5-6018bfc1fd32/Factsheet.pdf",
-              "https://www.justetf.com/en/etf-profile.html?isin=IE0006WW1TQ4",
-              "https://www.msci.com/documents/10199/255599/msci-world-ex-usa-index-net.pdf",
-              "https://www.zonebourse.com/cours/etf/XTRACKERS-MSCI-WORLD-EX-U-169862014/"
-            ],
-            "to": "/bibliotheque-donnees?id=IE0006WW1TQ4",
-            "kind": "conflict",
-            "field": "Poids du pays Netherlands",
-            "cause": "Valeur contradictoire pour la même période (2026-10-12) : Poids du pays Netherlands. Dernière observation conservée ; propositions archivées (etf:IE0006WW1TQ4:countries:Netherlands:896eb444159fd8c94545e70e:2026-10-12).",
-            "id": "radar:736c2dd317e4831b683d42c2",
-            "firstSeenAt": "2026-10-14T11:42:41.168472+00:00",
-            "lastSeenAt": "2026-10-14T19:11:55.324201+00:00",
-            "resolvedAt": "2026-10-14T19:12:42.647375+00:00"
-          },
-          {
-            "name": "Xtrackers MSCI World ex USA UCITS ETF 1C",
-            "tools": [
-              "Comparatif ETF",
-              "Duels de portefeuilles",
-              "Générateur de portefeuilles",
-              "Impact des frais",
-              "Présentation ETF"
-            ],
-            "impactScope": "asset",
-            "sourceUrls": [
-              "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/historicaldata/download",
-              "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/pdpMetaTagsTealium",
-              "https://etf.dws.com/download/asset/82292b8e-bf9e-44f2-b20d-722c743110a3",
-              "https://etf.dws.com/fr-fr/AssetDownload/Index/410e8206-23cd-463b-b2a5-6018bfc1fd32/Factsheet.pdf",
-              "https://www.justetf.com/en/etf-profile.html?isin=IE0006WW1TQ4",
-              "https://www.msci.com/documents/10199/255599/msci-world-ex-usa-index-net.pdf",
-              "https://www.zonebourse.com/cours/etf/XTRACKERS-MSCI-WORLD-EX-U-169862014/"
-            ],
-            "to": "/bibliotheque-donnees?id=IE0006WW1TQ4",
-            "kind": "conflict",
-            "field": "Poids du pays Singapore",
-            "cause": "Valeur contradictoire pour la même période (2026-10-12) : Poids du pays Singapore. Dernière observation conservée ; propositions archivées (etf:IE0006WW1TQ4:countries:Singapore:896eb444159fd8c94545e70e:2026-10-12).",
-            "id": "radar:6743ee853fa8d7a286f6d9d9",
-            "firstSeenAt": "2026-10-14T11:42:41.168472+00:00",
-            "lastSeenAt": "2026-10-14T19:11:55.324201+00:00",
-            "resolvedAt": "2026-10-14T19:12:42.647375+00:00"
-          },
-          {
-            "name": "Xtrackers MSCI World ex USA UCITS ETF 1C",
-            "tools": [
-              "Comparatif ETF",
-              "Duels de portefeuilles",
-              "Générateur de portefeuilles",
-              "Impact des frais",
-              "Présentation ETF"
-            ],
-            "impactScope": "asset",
-            "sourceUrls": [
-              "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/historicaldata/download",
-              "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/pdpMetaTagsTealium",
-              "https://etf.dws.com/download/asset/82292b8e-bf9e-44f2-b20d-722c743110a3",
-              "https://etf.dws.com/fr-fr/AssetDownload/Index/410e8206-23cd-463b-b2a5-6018bfc1fd32/Factsheet.pdf",
-              "https://www.justetf.com/en/etf-profile.html?isin=IE0006WW1TQ4",
-              "https://www.msci.com/documents/10199/255599/msci-world-ex-usa-index-net.pdf",
-              "https://www.zonebourse.com/cours/etf/XTRACKERS-MSCI-WORLD-EX-U-169862014/"
-            ],
-            "to": "/bibliotheque-donnees?id=IE0006WW1TQ4",
-            "kind": "conflict",
-            "field": "Poids du pays Hong Kong",
-            "cause": "Valeur contradictoire pour la même période (2026-10-12) : Poids du pays Hong Kong. Dernière observation conservée ; propositions archivées (etf:IE0006WW1TQ4:countries:Hong Kong:896eb444159fd8c94545e70e:2026-10-12).",
-            "id": "radar:95e0381ac8bfe2bb40baa599",
-            "firstSeenAt": "2026-10-14T11:42:41.168472+00:00",
-            "lastSeenAt": "2026-10-14T19:11:55.324201+00:00",
-            "resolvedAt": "2026-10-14T19:12:42.647375+00:00"
-          },
-          {
-            "name": "Xtrackers MSCI World ex USA UCITS ETF 1C",
-            "tools": [
-              "Comparatif ETF",
-              "Duels de portefeuilles",
-              "Générateur de portefeuilles",
-              "Impact des frais",
-              "Présentation ETF"
-            ],
-            "impactScope": "asset",
-            "sourceUrls": [
-              "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/historicaldata/download",
-              "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/pdpMetaTagsTealium",
-              "https://etf.dws.com/download/asset/82292b8e-bf9e-44f2-b20d-722c743110a3",
-              "https://etf.dws.com/fr-fr/AssetDownload/Index/410e8206-23cd-463b-b2a5-6018bfc1fd32/Factsheet.pdf",
-              "https://www.justetf.com/en/etf-profile.html?isin=IE0006WW1TQ4",
-              "https://www.msci.com/documents/10199/255599/msci-world-ex-usa-index-net.pdf",
-              "https://www.zonebourse.com/cours/etf/XTRACKERS-MSCI-WORLD-EX-U-169862014/"
-            ],
-            "to": "/bibliotheque-donnees?id=IE0006WW1TQ4",
-            "kind": "conflict",
-            "field": "Poids du pays Chile",
-            "cause": "Valeur contradictoire pour la même période (2026-10-12) : Poids du pays Chile. Dernière observation conservée ; propositions archivées (etf:IE0006WW1TQ4:countries:Chile:896eb444159fd8c94545e70e:2026-10-12).",
-            "id": "radar:f2a6cdac8e58486984fa0fda",
-            "firstSeenAt": "2026-10-14T11:42:41.168472+00:00",
-            "lastSeenAt": "2026-10-14T19:11:55.324201+00:00",
-            "resolvedAt": "2026-10-14T19:12:42.647375+00:00"
-          },
-          {
-            "name": "IE000L6ZMMC4",
-            "tools": [],
-            "impactScope": "collector",
-            "sourceUrls": [],
-            "to": "/donnees-a-revoir",
-            "kind": "conflict",
-            "field": "Poids du pays United States",
-            "cause": "Valeur contradictoire pour la même période (2026-10-12) : Poids du pays United States. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:United States:630657e8b950b3715e6c0f9a:2026-10-12).",
-            "id": "radar:e8595e9308c68b3f57e4de2a",
-            "firstSeenAt": "2026-10-14T11:42:41.168472+00:00",
-            "lastSeenAt": "2026-10-14T19:11:55.324201+00:00",
-            "resolvedAt": "2026-10-14T19:12:42.647375+00:00"
-          },
-          {
-            "name": "IE000L6ZMMC4",
-            "tools": [],
-            "impactScope": "collector",
-            "sourceUrls": [],
-            "to": "/donnees-a-revoir",
-            "kind": "conflict",
-            "field": "Poids du pays United Kingdom",
-            "cause": "Valeur contradictoire pour la même période (2026-10-12) : Poids du pays United Kingdom. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:United Kingdom:630657e8b950b3715e6c0f9a:2026-10-12).",
-            "id": "radar:a813486f0ea80fa564912507",
-            "firstSeenAt": "2026-10-14T11:42:41.168472+00:00",
-            "lastSeenAt": "2026-10-14T19:11:55.324201+00:00",
-            "resolvedAt": "2026-10-14T19:12:42.647375+00:00"
-          },
-          {
-            "name": "IE000L6ZMMC4",
-            "tools": [],
-            "impactScope": "collector",
-            "sourceUrls": [],
-            "to": "/donnees-a-revoir",
-            "kind": "conflict",
-            "field": "Poids du pays Korea, Republic of",
-            "cause": "Valeur contradictoire pour la même période (2026-10-12) : Poids du pays Korea, Republic of. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Korea, Republic of:630657e8b950b3715e6c0f9a:2026-10-12).",
-            "id": "radar:cbb2a798d2de39e8e1e21157",
-            "firstSeenAt": "2026-10-14T11:42:41.168472+00:00",
-            "lastSeenAt": "2026-10-14T19:11:55.324201+00:00",
-            "resolvedAt": "2026-10-14T19:12:42.647375+00:00"
-          },
-          {
-            "name": "IE000L6ZMMC4",
-            "tools": [],
-            "impactScope": "collector",
-            "sourceUrls": [],
-            "to": "/donnees-a-revoir",
-            "kind": "conflict",
-            "field": "Poids du pays Switzerland",
-            "cause": "Valeur contradictoire pour la même période (2026-10-12) : Poids du pays Switzerland. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Switzerland:630657e8b950b3715e6c0f9a:2026-10-12).",
-            "id": "radar:02121a347ce5f784d26783d8",
-            "firstSeenAt": "2026-10-14T11:42:41.168472+00:00",
-            "lastSeenAt": "2026-10-14T19:11:55.324201+00:00",
-            "resolvedAt": "2026-10-14T19:12:42.647375+00:00"
-          },
-          {
-            "name": "IE000L6ZMMC4",
-            "tools": [],
-            "impactScope": "collector",
-            "sourceUrls": [],
-            "to": "/donnees-a-revoir",
-            "kind": "conflict",
-            "field": "Poids du pays Germany",
-            "cause": "Valeur contradictoire pour la même période (2026-10-12) : Poids du pays Germany. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Germany:630657e8b950b3715e6c0f9a:2026-10-12).",
-            "id": "radar:c660e2b8aee99c1fa7daa4fd",
-            "firstSeenAt": "2026-10-14T11:42:41.168472+00:00",
-            "lastSeenAt": "2026-10-14T19:11:55.324201+00:00",
-            "resolvedAt": "2026-10-14T19:12:42.647375+00:00"
-          },
-          {
-            "name": "IE000L6ZMMC4",
-            "tools": [],
-            "impactScope": "collector",
-            "sourceUrls": [],
-            "to": "/donnees-a-revoir",
-            "kind": "conflict",
-            "field": "Poids du pays Australia",
-            "cause": "Valeur contradictoire pour la même période (2026-10-12) : Poids du pays Australia. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Australia:630657e8b950b3715e6c0f9a:2026-10-12).",
-            "id": "radar:b788c8941eb2526d61b2bc78",
-            "firstSeenAt": "2026-10-14T11:42:41.168472+00:00",
-            "lastSeenAt": "2026-10-14T19:11:55.324201+00:00",
-            "resolvedAt": "2026-10-14T19:12:42.647375+00:00"
-          },
-          {
-            "name": "IE000L6ZMMC4",
-            "tools": [],
-            "impactScope": "collector",
-            "sourceUrls": [],
-            "to": "/donnees-a-revoir",
-            "kind": "conflict",
-            "field": "Poids du pays Netherlands",
-            "cause": "Valeur contradictoire pour la même période (2026-10-12) : Poids du pays Netherlands. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Netherlands:630657e8b950b3715e6c0f9a:2026-10-12).",
-            "id": "radar:208a1c02ef484c837c2debb0",
-            "firstSeenAt": "2026-10-14T11:42:41.168472+00:00",
-            "lastSeenAt": "2026-10-14T19:11:55.324201+00:00",
-            "resolvedAt": "2026-10-14T19:12:42.647375+00:00"
-          },
-          {
-            "name": "IE000L6ZMMC4",
-            "tools": [],
-            "impactScope": "collector",
-            "sourceUrls": [],
-            "to": "/donnees-a-revoir",
-            "kind": "conflict",
-            "field": "Poids du pays Ireland",
-            "cause": "Valeur contradictoire pour la même période (2026-10-12) : Poids du pays Ireland. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Ireland:630657e8b950b3715e6c0f9a:2026-10-12).",
-            "id": "radar:b681f25e737f267d05d5a0c6",
-            "firstSeenAt": "2026-10-14T11:42:41.168472+00:00",
-            "lastSeenAt": "2026-10-14T19:11:55.324201+00:00",
-            "resolvedAt": "2026-10-14T19:12:42.647375+00:00"
-          },
-          {
-            "name": "IE000L6ZMMC4",
-            "tools": [],
-            "impactScope": "collector",
-            "sourceUrls": [],
-            "to": "/donnees-a-revoir",
-            "kind": "conflict",
-            "field": "Poids du pays Singapore",
-            "cause": "Valeur contradictoire pour la même période (2026-10-12) : Poids du pays Singapore. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Singapore:630657e8b950b3715e6c0f9a:2026-10-12).",
-            "id": "radar:310c2f94bb175ba688890b82",
-            "firstSeenAt": "2026-10-14T11:42:41.168472+00:00",
-            "lastSeenAt": "2026-10-14T19:11:55.324201+00:00",
-            "resolvedAt": "2026-10-14T19:12:42.647375+00:00"
-          },
-          {
-            "name": "IE000L6ZMMC4",
-            "tools": [],
-            "impactScope": "collector",
-            "sourceUrls": [],
-            "to": "/donnees-a-revoir",
-            "kind": "conflict",
-            "field": "Poids du pays Hong Kong",
-            "cause": "Valeur contradictoire pour la même période (2026-10-12) : Poids du pays Hong Kong. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Hong Kong:630657e8b950b3715e6c0f9a:2026-10-12).",
-            "id": "radar:2febc914557a54e05e2fb1ee",
-            "firstSeenAt": "2026-10-14T11:42:41.168472+00:00",
-            "lastSeenAt": "2026-10-14T19:11:55.324201+00:00",
-            "resolvedAt": "2026-10-14T19:12:42.647375+00:00"
-          },
-          {
-            "name": "IE000L6ZMMC4",
-            "tools": [],
-            "impactScope": "collector",
-            "sourceUrls": [],
-            "to": "/donnees-a-revoir",
-            "kind": "conflict",
-            "field": "Poids du pays Chile",
-            "cause": "Valeur contradictoire pour la même période (2026-10-12) : Poids du pays Chile. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Chile:630657e8b950b3715e6c0f9a:2026-10-12).",
-            "id": "radar:8047ce603afc90644bd76a99",
-            "firstSeenAt": "2026-10-14T11:42:41.168472+00:00",
-            "lastSeenAt": "2026-10-14T19:11:55.324201+00:00",
-            "resolvedAt": "2026-10-14T19:12:42.647375+00:00"
-          },
-          {
-            "name": "Xtrackers MSCI World ex USA UCITS ETF 1C",
-            "tools": [
-              "Comparatif ETF",
-              "Duels de portefeuilles",
-              "Générateur de portefeuilles",
-              "Impact des frais",
-              "Présentation ETF"
-            ],
-            "impactScope": "asset",
-            "sourceUrls": [
-              "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/historicaldata/download",
-              "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/pdpMetaTagsTealium",
-              "https://etf.dws.com/download/asset/82292b8e-bf9e-44f2-b20d-722c743110a3",
-              "https://etf.dws.com/fr-fr/AssetDownload/Index/410e8206-23cd-463b-b2a5-6018bfc1fd32/Factsheet.pdf",
-              "https://www.justetf.com/en/etf-profile.html?isin=IE0006WW1TQ4",
-              "https://www.msci.com/documents/10199/255599/msci-world-ex-usa-index-net.pdf",
-              "https://www.zonebourse.com/cours/etf/XTRACKERS-MSCI-WORLD-EX-U-169862014/"
-            ],
-            "to": "/bibliotheque-donnees?id=IE0006WW1TQ4",
-            "kind": "conflict",
-            "field": "Poids du pays Korea, Republic of",
-            "cause": "Valeur contradictoire pour la même période (2026-10-12) : Poids du pays Korea, Republic of. Dernière observation conservée ; propositions archivées (etf:IE0006WW1TQ4:countries:Korea, Republic of:896eb444159fd8c94545e70e:2026-10-12).",
-            "id": "radar:7cc7edddd64422a4575ead79",
-            "firstSeenAt": "2026-10-14T11:42:41.168472+00:00",
-            "lastSeenAt": "2026-10-14T19:11:55.324201+00:00",
-            "resolvedAt": "2026-10-14T19:12:42.647375+00:00"
-          }
-        ]
-      },
       {
         "revision": 17,
         "at": "2026-10-14T19:14:57.347737+00:00",
@@ -3534,6 +3008,14 @@
             "resolvedAt": "2026-10-16T12:52:48.432073+00:00"
           }
         ]
+      },
+      {
+        "revision": 46,
+        "at": "2026-10-16T14:43:25.592084+00:00",
+        "opened": [
+          "unobserved:update-exposure-expansion.yml"
+        ],
+        "resolved": []
       }
     ],
     "resolved": [
