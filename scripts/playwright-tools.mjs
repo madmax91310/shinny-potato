@@ -331,7 +331,15 @@ async function testPortfolioGenerator(page) {
   ]);
   const imageOk = firstImage?.startsWith('data:image/png;base64,') && newImage?.startsWith('data:image/png;base64,') && firstImage !== newImage && download.suggestedFilename() === 'repartition-portefeuille.png';
   const autoTweet = await page.locator(".pg-tweet-body").innerText();
-  const dataLabelsOk = await page.locator('.pg-confidence-badge').count() === 0 && await page.getByText('Sources et méthode', {exact:true}).count() === 1;
+  // Sources are conditional: a random allocation may contain no confidence notes.
+  const autoNames = await page.locator('.pg-alloc-name-text').allInnerTexts();
+  const autoAssets = autoNames.map(name => PORTFOLIO_ASSETS.find(asset => name.trim() === `${asset.emoji} ${asset.name}`));
+  const expectedSourceNotes = autoAssets.filter(asset => asset?.confidenceNote);
+  const sourcePanel = page.locator('details').filter({ has: page.locator('summary', { hasText: /^Sources et méthode$/ }) });
+  const dataLabelsOk = autoAssets.every(Boolean)
+    && await page.locator('.pg-confidence-badge').count() === 0
+    && await sourcePanel.count() === Number(expectedSourceNotes.length > 0)
+    && await sourcePanel.locator('li').count() === expectedSourceNotes.length;
   const { YEARS: portfolioYears, getAsset: portfolioAsset } = await import('../src/data/portfolio-assets.js');
   const { annualizedReturn, formatPerformance } = await import('../src/pages/portfolio-generator/performance.js');
   const autoPerformanceOk = portfolioYears.every(year => new RegExp(`${year} : [＋+−-]?[0-9]+,[0-9] %`).test(autoTweet))
@@ -468,7 +476,7 @@ async function testPortfolioGenerator(page) {
   await page.setViewportSize({ width: 390, height: 844 });
   manualEditorialOk &&= await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth);
   await page.setViewportSize({ width: 1280, height: 720 });
-  record("Générateur de portefeuilles", sumOk && hasContent && categoriesOk && imageOk && autoEditorialOk && manualEditorialOk && recipesOk, `somme des lignes: ${sum.toFixed(1)}%, catégories: ${categorySum.toFixed(1)}%, image actualisée et téléchargée: ${imageOk}, constructions disponibles et mobile: ${recipesOk}, accroches auto: ${autoEditorialOk}, intitulés manuels et rotation: ${manualEditorialOk}, étapes: ${JSON.stringify(manualStages)}`);
+  record("Générateur de portefeuilles", sumOk && hasContent && categoriesOk && imageOk && autoEditorialOk && manualEditorialOk && recipesOk, `somme des lignes: ${sum.toFixed(1)}%, catégories: ${categorySum.toFixed(1)}%, image actualisée et téléchargée: ${imageOk}, constructions disponibles et mobile: ${recipesOk}, accroches auto: ${autoEditorialOk} (performances: ${autoPerformanceOk}, sources: ${dataLabelsOk}, accroche: ${performanceHookOk(autoTweet)}), intitulés manuels et rotation: ${manualEditorialOk}, étapes: ${JSON.stringify(manualStages)}`);
 }
 
 async function testPortfolioDuels(page) {
