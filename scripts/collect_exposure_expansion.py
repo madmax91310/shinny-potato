@@ -95,6 +95,25 @@ def qualify(result, share):
         validated_rows(value['rows'])
 
 
+def qualify_refresh(result, share, previous, now):
+    retained = []
+    candidate = result
+    # The official PDF publishes only ten countries. Preserve independently
+    # sourced full HTML countries with their original dates; never re-date them.
+    if (share.get('parser') == 'wisdomtree-html' and not result.get('countries')
+            and any(item.startswith('countries: PDF publishes only ten countries;')
+                    for item in result.get('unavailable', []))):
+        countries = previous.get('countries', {})
+        age = (now.date() - dt.date.fromisoformat(countries.get('asOf', '1900-01-01'))).days
+        if not 0 <= age <= 90 or not countries.get('sourceUrl') or not countries.get('sha256'):
+            raise ValueError('Complete WisdomTree country observation unavailable or older than 90 days')
+        candidate = {**result, 'countries': countries}
+        retained.append({'field': 'countries', 'asOf': countries['asOf'],
+                         'reason': 'Official PDF publishes only top ten; complete HTML observation preserved'})
+    qualify(candidate, share)
+    return retained
+
+
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--apply', action='store_true')
@@ -108,9 +127,11 @@ def main():
     def one(share):
         try:
             result=collect(share, now)
-            qualify(result, share)
+            retained=qualify_refresh(result, share, current.get(share['isin'], {}), now)
+            for field in retained:
+                print(f"::warning::{share['isin']} {field['field']} retained at {field['asOf']}: {field['reason']}",flush=True)
             merged=merge_collection({'checkedAt': now.isoformat(), 'shares':[result]},current,{})
-            return {'isin':share['isin'],'status':'validated','record':merged[share['isin']], 'unavailable':result.get('unavailable',[]), 'collectionErrors':result.get('collectionErrors',[])}
+            return {'isin':share['isin'],'status':'validated','record':merged[share['isin']], 'retainedFields':retained, 'unavailable':result.get('unavailable',[]), 'collectionErrors':result.get('collectionErrors',[])}
         except Exception as error:
             return {'isin':share['isin'],'status':'failed','reason':str(error)}
     report=[]

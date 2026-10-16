@@ -3,7 +3,7 @@ import datetime as dt
 import json
 import unittest
 from pathlib import Path
-from collect_exposure_expansion import qualify
+from collect_exposure_expansion import qualify, qualify_refresh
 from collect_dws_etf import parse_holdings
 from collect_invesco_allocations import parse_allocations
 
@@ -14,6 +14,21 @@ class Expansion(unittest.TestCase):
         with self.assertRaises(ValueError):qualify(s,s)
         value={**s,'countries':{'asOf':'2026-09-30','rows':[{'name':'France','weightPct':20}]},'sectors':{'asOf':'2026-09-30','rows':[{'name':'Technology','weightPct':100}]}}
         with self.assertRaises(ValueError):qualify(value,s)
+    def test_partial_pdf_preserves_full_country_date_and_rejects_stale(self):
+        now=dt.datetime(2026,10,16,tzinfo=dt.timezone.utc)
+        share={'isin':'IE00BKLF1R75','parser':'wisdomtree-html'}
+        result={'isin':share['isin'],'sectors':{'asOf':'2026-08-31','rows':[{'name':'Industrials','weightPct':100}]},
+                'unavailable':['countries: PDF publishes only ten countries; complete previous allocation preserved']}
+        previous={'countries':{'asOf':'2026-10-15','rows':[{'name':'France','weightPct':100}],
+                              'sourceUrl':'https://www.wisdomtree.com/gb/products','sha256':'evidence'}}
+        before=copy.deepcopy(previous)
+        self.assertEqual(qualify_refresh(result,share,previous,now)[0]['asOf'],'2026-10-15')
+        self.assertEqual(previous,before)
+        self.assertNotIn('countries',result)
+        previous['countries']['asOf']='2025-10-15'
+        with self.assertRaises(ValueError):qualify_refresh(result,share,previous,now)
+        with self.assertRaises(ValueError):qualify_refresh(result,share,{},now)
+
     def test_invesco_wrong_document_rejected(self):
         with self.assertRaises(ValueError):
             parse_allocations('IE000L2SA8K5 Replication method Physical',{'isin':'IE000716YHJ7'},dt.datetime.now(dt.timezone.utc))
