@@ -2,7 +2,7 @@ import { readFileSync } from 'node:fs'
 import profiles from '../src/data/company-profiles.json' with {type:'json'}
 import { ASSETS } from '../src/data/market-history.js'
 import { COMPANY_HISTORY } from '../src/data/company-history.js'
-export const EQUITY_ALIASES={'air-liquide':'airliquide',totalenergies:'total','waste-management':'wasteManagement','bnp-paribas':'bnp','coca-cola':'cocacola',google:'alphabet','home-depot':'hd',mcdonalds:'mcd',abbvie:'abbv','thermo-fisher':'tmo',oracle:'orcl',qualcomm:'qcom','texas-instruments':'txn',micron:'mu','applied-materials':'amat',exxonmobil:'xom',chevron:'cvx',conocophillips:'cop'}
+export const EQUITY_ALIASES={'novo-nordisk':'novo','saint-gobain':'saintgobain',linde:'lin',moodys:'mco','air-liquide':'airliquide',totalenergies:'total','waste-management':'wasteManagement','bnp-paribas':'bnp','coca-cola':'cocacola',google:'alphabet','home-depot':'hd',mcdonalds:'mcd',abbvie:'abbv','thermo-fisher':'tmo',oracle:'orcl',qualcomm:'qcom','texas-instruments':'txn',micron:'mu','applied-materials':'amat',exxonmobil:'xom',chevron:'cvx',conocophillips:'cop'}
 export function equityUniverse(){
  const rows={}
  const put=(id,r)=>{id=EQUITY_ALIASES[id]||id;rows[id]={...rows[id],...r,id,aliases:Object.keys(EQUITY_ALIASES).filter(k=>EQUITY_ALIASES[k]===id)}}

@@ -205,5 +205,124 @@
   },
   "DE000A0H08K7": {
     "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251950&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+  },
+  "IE00BLNMYC90": {
+    "isin": "IE00BLNMYC90",
+    "name": "Xtrackers S&P 500 Equal Weight UCITS ETF 1C",
+    "currency": "USD",
+    "provider": "DWS",
+    "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/pdpMetaTagsTealium",
+    "parser": "dws",
+    "required": true,
+    "enabled": true
+  },
+  "IE00BM67HK77": {
+    "isin": "IE00BM67HK77",
+    "name": "Xtrackers MSCI World Health Care UCITS ETF",
+    "currency": "USD",
+    "provider": "DWS",
+    "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HK77/pdpMetaTagsTealium",
+    "parser": "dws",
+    "required": true,
+    "enabled": true
+  },
+  "IE00BM67HS53": {
+    "isin": "IE00BM67HS53",
+    "name": "Xtrackers MSCI World Materials UCITS ETF",
+    "currency": "USD",
+    "provider": "DWS",
+    "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HS53/pdpMetaTagsTealium",
+    "parser": "dws",
+    "required": true,
+    "enabled": true,
+    "collectIdentity": true
+  },
+  "IE00BM67HQ30": {
+    "isin": "IE00BM67HQ30",
+    "name": "Xtrackers MSCI World Utilities UCITS ETF",
+    "currency": "USD",
+    "provider": "DWS",
+    "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HQ30/pdpMetaTagsTealium",
+    "parser": "dws",
+    "collectIdentity": true,
+    "required": true,
+    "enabled": true,
+    "requiredFields": [
+      "aum",
+      "countries",
+      "sectors",
+      "holdings",
+      "performance",
+      "characteristics"
+    ]
+  },
+  "IE00B3YLTY66": {
+    "isin": "IE00B3YLTY66",
+    "name": "State Street SPDR MSCI All Country World Investable Market UCITS ETF (Acc)",
+    "sourceUrl": "https://www.ssga.com/lu/de/intermediary/etfs/state-street-spdr-msci-all-country-world-investable-market-ucits-etf-acc-spyi-gy",
+    "currency": "USD",
+    "provider": "State Street",
+    "collectComposition": true,
+    "parser": "ssga"
+  },
+  "IE0006WW1TQ4": {
+    "isin": "IE0006WW1TQ4",
+    "name": "Xtrackers MSCI World ex USA UCITS ETF 1C",
+    "currency": "USD",
+    "provider": "DWS",
+    "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/pdpMetaTagsTealium",
+    "parser": "dws",
+    "required": true,
+    "enabled": true
+  },
+  "IE000L6ZMMC4": {
+    "isin": "IE000L6ZMMC4",
+    "name": "Xtrackers FTSE All-World UCITS ETF 1C",
+    "currency": "USD",
+    "provider": "DWS",
+    "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE000L6ZMMC4/pdpMetaTagsTealium",
+    "parser": "dws",
+    "required": true,
+    "enabled": true
+  },
+  "IE00BGV5VN51": {
+    "isin": "IE00BGV5VN51",
+    "name": "Xtrackers Artificial Intelligence and Big Data UCITS ETF",
+    "currency": "USD",
+    "provider": "DWS",
+    "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BGV5VN51/pdpMetaTagsTealium",
+    "parser": "dws",
+    "required": true,
+    "enabled": true
+  },
+  "IE00BTJRMP35": {
+    "isin": "IE00BTJRMP35",
+    "name": "Xtrackers MSCI Emerging Markets UCITS ETF",
+    "currency": "USD",
+    "provider": "DWS",
+    "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BTJRMP35/pdpMetaTagsTealium",
+    "parser": "dws",
+    "required": true,
+    "enabled": true
+  },
+  "LU1875395870": {
+    "isin": "LU1875395870",
+    "name": "Xtrackers Nikkei 225 UCITS ETF",
+    "currency": "EUR",
+    "provider": "DWS",
+    "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU1875395870/pdpMetaTagsTealium",
+    "parser": "dws",
+    "required": true,
+    "enabled": true
+  },
+  "LU2196470426": {
+    "isin": "LU2196470426",
+    "name": "Xtrackers Nikkei 225 UCITS ETF 1C (Acc)",
+    "currency": "JPY",
+    "provider": "DWS",
+    "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU2196470426/pdpMetaTagsTealium",
+    "parser": "dws",
+    "required": true,
+    "enabled": true
   }
 }

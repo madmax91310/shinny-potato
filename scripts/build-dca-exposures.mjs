@@ -8,6 +8,8 @@ import { equityUniverse } from './dca-equity-universe.mjs'
 const readOptional=name=>{const url=new URL('../src/data/'+name,import.meta.url);return existsSync(url)?JSON.parse(readFileSync(url,'utf8')):{}}
 const fullHoldings=readOptional('dca-complete-holdings.json')
 const securities=readOptional('dca-security-classifications.json')
+const holdingStatus=readOptional('dca-holdings-status.json')
+const multiAsset=readOptional('lifestrategy.json')
 // Explicit example instruments, never silently assigned to a participant's generic ETF.
 const mapping = {equalweight:'IE00BLNMYC90',robotics:'IE00BYZK4552',ai:'IE00BGV5VN51',cloud:'IE00BJGWQN72',energy:'IE00BJ5JP105',staples:'IE00BJ5JP329',discretionary:'IE00BJ5JP212',emexchina:'IE00BMG6Z448',emsmall:'IE00B3F81G20',smallvalue:'IE00BSPLC298',minvol:'IE00B8FHGS14',multifactor:'IE00BZ0PKT83',world:'IE00B4L5Y983',sp500:'IE00B5BMR087',europe:'FR0011550193',emerging:'IE00BTJRMP35',allworld:'IE00BK5BQT80',acwi:'IE00B6R52259',small:'IE00BF4RFH31',quality:'IE00BP3QZ601',nasdaq:'IE00B53SZB19',value:'IE00BP3QZB59',momentum:'IE00BP3QZ825',dividend:'IE00B9CQXS71',reit:'LU1437018838',russell:'IE00BJ38QD84',cybersecurity:'IE00BG0J4C88',water:'FR0010527275',infrastructure:'IE00B1FZS467',healthcare:'IE00BJ5JNZ06',industrials:'IE00BJ5JP659',materials:'IE00BM67HS53',utilities:'IE00BM67HQ30',timber:'IE00B27YCF74',agribusiness:'IE00B6R52143',semiconductors:'IE000I8KRLL9',lifestrategy20:'IE00BMVB5K07',lifestrategy40:'IE00BMVB5M21',lifestrategy60:'IE00BMVB5P51',lifestrategy80:'IE00BMVB5R75'}
 const aliasesByIsin=Object.fromEntries(Object.entries(mapping).map(([asset,isin])=>[isin,asset]))
@@ -20,8 +22,11 @@ const records = Object.fromEntries(Object.entries(allMapping).map(([asset,isin])
  const outside=/physical.*gold|physical.*silver|physical.*platinum|physical.*palladium|physical.*bitcoin|ethereum|bitcoin etp/i.test(name)
  const record={isin,name,kind:/\bET[CP]\b/.test(name)?'etc':'etf',provider:source?.provider,pea:getInstrumentPeaStatus(isin),tickers:(INSTRUMENT_LISTINGS_BY_ISIN[isin]||[]).map(l=>l.ticker),synthetic}
  if(outside)record.outsideClassification=/gold/i.test(name)?'Or':/silver/i.test(name)?'Argent':/platinum/i.test(name)?'Platine':/palladium/i.test(name)?'Palladium':/bitcoin/i.test(name)?'Bitcoin':'Ethereum'
+ if(multiAsset[isin]?.assetAllocation)record.assetAllocation=multiAsset[isin].assetAllocation
  catalog[asset]={isin,name,kind:record.kind,pea:record.pea,tickers:record.tickers,provider:record.provider}
- const h=fullHoldings[isin]||source?.holdings
+ if(holdingStatus[isin])catalog[asset].holdingsStatus=holdingStatus[isin]
+ const complete=fullHoldings[isin],partial=source?.holdings
+ const h=partial&&(!complete||partial.asOf>complete.asOf)?partial:complete||partial
  if(h)catalog[asset].holdings={asOf:h.asOf,complete:h.complete===true,identifiedCoverage:h.rows.filter(r=>/^[A-Z]{2}[A-Z0-9]{9}[0-9]$/.test(r.isin||'')).reduce((s,r)=>s+r.weightPct,0)}
  if(h)holdings[asset]={asOf:h.asOf,basis:h.basis||'fund',sourceUrl:h.sourceUrl||source.sourceUrl,complete:h.complete===true,rows:h.rows.map(r=>({name:r.name,isin:r.isin,weightPct:r.weightPct})),synthetic}
 

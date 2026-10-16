@@ -10,8 +10,8 @@ const COMPACT_LABELS = {
 }
 
 export default function ToolCard({ to, title, group, publicationDay, icon, emoji = false, status = 'disponible' }) {
-  return <Link to={to} className="workspace-tool-card" data-group={group}>
+  return <Link to={to} className={`workspace-tool-card${to==='/le-dca-de'?' workspace-portfolio-card':''}`} data-group={group}>
     <span className="workspace-tool-icon" aria-hidden="true">{emoji ? icon : <ToolIcon to={to} />}</span>
-    <div><h2>{COMPACT_LABELS[to] ?? title}</h2>{publicationDay && <span className="workspace-publication-day">{publicationDay}</span>}{status === 'bientot' && <span className="workspace-card-status">Bientôt</span>}</div>
+    <div><h2>{COMPACT_LABELS[to] ?? title}</h2>{to==='/le-dca-de'&&<p className="workspace-portfolio-description">Expositions · Titres communs · Publications</p>}{publicationDay && <span className="workspace-publication-day">{publicationDay}</span>}{status === 'bientot' && <span className="workspace-card-status">Bientôt</span>}</div>
   </Link>
 }

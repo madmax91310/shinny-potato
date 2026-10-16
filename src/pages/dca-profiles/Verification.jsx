@@ -8,8 +8,9 @@ export default function Verification({profile,analysis}){
  const [query,setQuery]=useState(''),[onlyMissing,setOnlyMissing]=useState(false),[pairLimit,setPairLimit]=useState(20)
  const catalog=useMemo(()=>catalogCoverage(references),[])
  const [holdings,setHoldings]=useState({}),[loading,setLoading]=useState(true),[loadError,setLoadError]=useState(false)
+ const [retry,setRetry]=useState(0)
  const assets=profile.lines.map(l=>l.asset).sort().join('|')
- useEffect(()=>{let active=true;setLoading(true);setLoadError(false);loadHoldings(assets.split('|')).then(data=>{if(active)setHoldings(data)}).catch(()=>{if(active){setHoldings({});setLoadError(true)}}).finally(()=>{if(active)setLoading(false)});return ()=>{active=false}},[assets])
+ useEffect(()=>{let active=true;setLoading(true);setHoldings({});setLoadError(false);loadHoldings(assets.split('|')).then(data=>{if(active)setHoldings(data)}).catch(()=>{if(active){setHoldings({});setLoadError(true)}}).finally(()=>{if(active)setLoading(false)});return ()=>{active=false}},[assets,retry])
  const shared=useMemo(()=>sharedPositions(profile.lines,references,new Date(),holdings),[profile.lines,holdings])
  const complete=catalog.filter(r=>r.countries.coverage>=99.5&&r.sectors.coverage>=99.5).length
  const filtered=catalog.filter(r=>(!onlyMissing||r.countries.coverage<99.5||r.sectors.coverage<99.5)&&`${r.name} ${r.isin} ${r.tickers?.join(' ')}`.toLowerCase().includes(query.toLowerCase()))
@@ -27,7 +28,7 @@ export default function Verification({profile,analysis}){
  </section>)}</div>)}
  </details>
  <details><summary>Positions communes entre ETF et actions</summary>
- {loading&&<p role="status">Chargement des compositions complètes…</p>}{loadError&&<p role="alert">Impossible de charger les compositions. Réessaie après avoir rechargé la page.</p>}
+ {loading&&<p role="status">Chargement des compositions complètes…</p>}{loadError&&<p role="alert">Impossible de charger les compositions. <button onClick={()=>setRetry(n=>n+1)}>Réessayer</button></p>}
  <p>Comparaison par ISIN des titres publiés. Les listes de principales positions sont partielles : aucun taux global de chevauchement n’est calculé à partir d’un top 10. Les poids additionnés concernent uniquement les deux supports comparés.</p>
  {!shared.pairs.length&&<p>Aucune paire ne dispose actuellement de positions identifiées avec des dates et des périmètres compatibles.</p>}
  {shared.pairs.slice(0,pairLimit).map((pair,i)=><details key={i}><summary>{pair.left} / {pair.right} · {pair.common.length} positions communes</summary><h3>{pair.left} / {pair.right}</h3><p>Positions identifiées : {pair.identifiedCoverage.map(pct).join(' / ')} de chaque support.{pair.full?` Chevauchement des listes complètes : ${pct(pair.overlap)}.`:' Listes partielles : le reste du portefeuille n’est pas comparé.'}</p>
@@ -48,7 +49,7 @@ export default function Verification({profile,analysis}){
  <p>{complete} supports ont au moins 99,5 % de données exploitables dans chacun des deux champs, pris individuellement. Leur compatibilité dans un même graphique dépend aussi des méthodes et des dates. Les métaux et cryptomonnaies restent hors classification.</p>
  <label>Rechercher dans la couverture<input type="search" value={query} onChange={e=>setQuery(e.target.value)} placeholder="Nom, ticker ou ISIN"/></label>
  <label><input type="checkbox" checked={onlyMissing} onChange={e=>setOnlyMissing(e.target.checked)}/>Afficher seulement les couvertures incomplètes</label>
- <div className="dca-catalog-list">{filtered.map(r=><article key={r.asset}><b>{r.name}</b><p>{r.isin} · {r.kind==='equity'?'Action':r.kind.toUpperCase()}</p>{catalogue[r.asset]?.holdings&&<p>Positions : {catalogue[r.asset].holdings.complete?'composition complète publiée':'liste partielle'} · {pct(catalogue[r.asset].holdings.identifiedCoverage)} identifiés · {catalogue[r.asset].holdings.asOf}</p>}{['countries','sectors'].map(f=><p key={f}>{f==='countries'?'Pays':'Secteurs'} : {pct(r[f].coverage)} · {r[f].reason}{r[f].date&&` · ${r[f].date}`}</p>)}</article>)}</div>
+ <div className="dca-catalog-list">{filtered.map(r=><article key={r.asset}><b>{r.name}</b><p>{r.isin} · {r.kind==='equity'?'Action':r.kind.toUpperCase()}</p>{catalogue[r.asset]?.holdings&&<p>Positions : {catalogue[r.asset].holdings.complete?'composition complète publiée':'liste partielle'} · {pct(catalogue[r.asset].holdings.identifiedCoverage)} identifiés · {catalogue[r.asset].holdings.asOf}</p>}{catalogue[r.asset]?.holdingsStatus?.status==='failed'&&<p>Dernière collecte des positions en échec ; observation antérieure conservée avec sa date.</p>}{['countries','sectors'].map(f=><p key={f}>{f==='countries'?'Pays':'Secteurs'} : {pct(r[f].coverage)} · {r[f].reason}{r[f].date&&` · ${r[f].date}`}</p>)}</article>)}</div>
  </details>
  </section>
 }

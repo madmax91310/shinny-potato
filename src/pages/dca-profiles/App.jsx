@@ -9,8 +9,8 @@ import { buildTweetText, pickUnseenProfile } from './lib.js'
 import { MAX_POSITIONS, prepareProfile, analyzeProfile, PROFILE_SCOPES, references, pct, euro, publicationReady } from './engine.js'
 import { exposureDisplay } from './exposure.js'
 import { renderDcaImage } from './image.js'
-import { filterProfiles, searchAssets, readSaved, writeSaved, readUsed, USED_KEY } from './management.js'
-import Verification from './Verification.jsx'
+import { filterProfiles, searchAssets, migrateProfile, readSaved, writeSaved, readUsed, USED_KEY } from './management.js'
+import Analytics from './Analytics.jsx'
 import catalog from './catalog.json' with {type:'json'}
 import './dca-profiles.css'
 const profiles=PROFILES.map(prepareProfile)
@@ -46,13 +46,15 @@ export default function App(){
  async function copy(){try{await copyPublicationText(draft);setFeedback('Texte copié.')}catch{setFeedback('Copie impossible. Sélectionne le texte.')}}
  async function download(){try{const link=document.createElement('a');link.href=(await renderImage()).toDataURL('image/png');link.download=`dca-${profile.id}.png`;startPublicationDownload(link);setFeedback('Téléchargement lancé.')}catch{setFeedback('Impossible de préparer l’image.')}}
  function save(){try{localStorage.setItem('el-dca-draft-v1',JSON.stringify({profile,draft,field}));setFeedback('Brouillon enregistré sur cet appareil.')}catch{setFeedback('Le stockage local est indisponible.')}}
- function restore(){try{const saved=JSON.parse(localStorage.getItem('el-dca-draft-v1'));if(!saved?.profile||analyzeProfile(saved.profile).errors.length||typeof saved.draft!=='string')throw Error();setProfile({...saved.profile,approved:false});setDraft(saved.draft);setField(['countries','sectors','both','all'].includes(saved.field)?saved.field:'countries');setSavedId('');setSaveTitle(saved.profile.name);setFeedback('Brouillon restauré.')}catch{setFeedback('Aucun brouillon valide enregistré.')}}
+ function restore(){try{const saved=JSON.parse(localStorage.getItem('el-dca-draft-v1'));if(saved?.profile)saved.profile=migrateProfile(saved.profile);if(!saved?.profile||analyzeProfile(saved.profile).errors.length||typeof saved.draft!=='string')throw Error();setProfile({...saved.profile,approved:false});setDraft(saved.draft);setField(['countries','sectors','both','all','overlap'].includes(saved.field)?saved.field:'countries');setSavedId('');setSaveTitle(saved.profile.name);setFeedback('Brouillon restauré.')}catch{setFeedback('Aucun brouillon valide enregistré.')}}
  return <div className="dca-profiles-scope">
- <PageHeader title="Portefeuille & expositions" subtitle="Compose un portefeuille en pourcentages ou retrouve les profils DCA. Vérifie ses expositions, puis prépare ton visuel." />
+ <PageHeader title="Portefeuille & expositions" subtitle="Retrouve les titres derrière tes ETF. Comprends tes concentrations. Prépare une publication à ton image." />
+ <section className="dca-hero"><div><span className="dca-eyebrow">LE DCA DE… · L’ANALYSE DU PORTEFEUILLE</span><h2>Plusieurs placements.<br/>Une vue d’ensemble.</h2><p>Une action peut se retrouver dans plusieurs ETF. Explore tes expositions et les titres détenus en commun, puis partage une synthèse lisible.</p><div className="dca-buttons"><button onClick={compose}>Analyser mon portefeuille</button><button onClick={participate}>Préparer un DCA</button></div></div><div className="dca-hero-art" aria-hidden="true"><div className="dca-hero-ring"><span>Au-delà<br/>des ETF</span></div><div className="dca-hero-tags"><span>Géographie</span><span>Secteurs</span><span>Titres communs</span></div></div></section>
+ <nav className="dca-section-nav" aria-label="Parcours du portefeuille"><a href="#dca-compose">1. Composer</a><a href="#dca-analysis">2. Analyser</a><a href="#dca-draft">3. Publier</a></nav>
  <ToolWorkspace renderImage={renderImage} imageDisabled={!!a.errors.length} imageAlt={profile.imageOnly?'Expositions du portefeuille':`Portefeuille et versements de ${profile.name}`} actions={<>
  <Button onClick={copy} disabled={!ready||!draft.trim()}>Copier le texte</Button><Button variant="secondary" onClick={download} disabled={!ready}>Télécharger le PNG</Button>
  </>}>
- <section className="tool-settings">
+ <section className="tool-settings" id="dca-compose">
  <div className="dca-mode"><button aria-pressed={!!profile.imageOnly} onClick={compose}>Composer un portefeuille</button><button aria-pressed={profile.mode==='prepared'&&!profile.imageOnly} onClick={()=>select(profiles[0])}>Profils préparés</button><button aria-pressed={profile.mode==='participant'&&!profile.imageOnly} onClick={participate}>Créer une participation</button></div>
  {profile.mode==='prepared'&&<>
  <details className="dca-filters"><summary>Filtrer les profils · {filtered.length} résultat{filtered.length>1?'s':''}</summary>
@@ -67,7 +69,7 @@ export default function App(){
  </>}
  <div className="dca-buttons"><Button variant="secondary" disabled={!!a.errors.length} onClick={duplicate}>Dupliquer ce portefeuille</Button></div>
  <label><input type="checkbox" checked={!!profile.imageOnly} onChange={e=>{update({...profile,imageOnly:e.target.checked,approved:false});if(e.target.checked)setField('all')}}/>Répartition uniquement — sans nom ni montants</label>
- <label className="dca-visual-choice">Donut de l’image<ChoicePicker aria-label="Donut de l’image" value={field} onChange={e=>setExposure(e.target.value)}><option value="countries">Exposition géographique</option><option value="sectors">Exposition sectorielle</option><option value="both">Géographie et secteurs</option><option value="all">Répartition + géographie + secteurs</option></ChoicePicker></label>
+ <label className="dca-visual-choice">Donut de l’image<ChoicePicker aria-label="Donut de l’image" value={field} onChange={e=>setExposure(e.target.value)}><option value="countries">Exposition géographique</option><option value="sectors">Exposition sectorielle</option><option value="both">Géographie et secteurs</option><option value="all">Répartition + géographie + secteurs</option><option value="overlap">Recouvrement et concentration</option></ChoicePicker></label>
  {!a.errors.length&&['countries','sectors'].filter(f=>field==='both'||field==='all'||field===f).map(f=>{
   const shown=exposureDisplay(a[f])
   return shown.missing>=.5?<p className="dca-note" role="status" key={f}>
@@ -91,7 +93,6 @@ export default function App(){
  <Button variant="secondary" disabled={profile.lines.length>=MAX_POSITIONS} onClick={()=>{const asset=Object.keys(ASSETS).find(k=>!profile.lines.some(l=>l.asset===k));edit({lines:[...profile.lines,{asset,label:ASSETS[asset][1],emoji:ASSETS[asset][0],isin:'',weight:0,amount:0}]})}}>Ajouter une position</Button>
  <p className="dca-total">Total : {pct(profile.lines.reduce((s,l)=>s+(Number.isFinite(l.weight)?l.weight:0),0))}{!profile.imageOnly&&<> · {euro(profile.lines.reduce((s,l)=>s+(Number.isFinite(l.amount)?l.amount:0),0))} / mois</>}</p>
  {!!a.errors.length&&<div role="alert" className="dca-errors">{a.errors.map(e=><p key={e}>{e}</p>)}</div>}
- {!a.errors.length&&<Verification profile={profile} analysis={a}/> }
  {!a.errors.length&&<details className="dca-evidence"><summary>Expositions, couverture et sources</summary>
  <p>Synthèse indicative des dernières observations compatibles : 93 jours maximum, avec au plus 45 jours d’écart. Chaque source conserve sa date. Les pays désignent le rattachement des titres, pas leurs lieux de chiffre d’affaires. Les classifications différentes restent séparées.</p>
  {['countries','sectors'].map(f=><div key={f}><h3>{f==='countries'?'Pays':'Secteurs'} · données disponibles {pct(exposureDisplay(a[f]).coverage)} dans le graphique</h3>
@@ -113,5 +114,7 @@ export default function App(){
  <div className="dca-buttons"><Button variant="secondary" onClick={save}>Enregistrer le brouillon</Button><Button variant="secondary" onClick={restore}>Restaurer le brouillon</Button></div><p className="dca-note">Brouillon stocké uniquement sur cet appareil. Aucun formulaire ni envoi à un tiers.</p>
  </section>
  <section className="tool-preview"><label className="dca-label" htmlFor="dca-draft">Texte prêt à publier</label><textarea id="dca-draft" value={draft} onChange={e=>{setDraft(e.target.value);setProfile({...profile,approved:false})}}/><p className="dca-note">{Array.from(draft).length} caractères · Les modifications du portefeuille régénèrent le texte.</p><Button variant="secondary" disabled={!!a.errors.length} onClick={()=>{setDraft(buildTweetText(profile));setProfile({...profile,approved:false})}}>Rétablir le texte</Button><p role="status" aria-live="polite">{feedback}</p></section>
- </ToolWorkspace></div>
+ </ToolWorkspace>
+ {!a.errors.length&&<Analytics profile={profile} analysis={a}/>}
+ </div>
 }

@@ -70,3 +70,9 @@ for(const p of PROFILES){
  assert(crypto<=22,p.id)
  if(p.editorialGroup==='classic')assert(p.holdings[0]>=68,p.id)
 }
+
+// Newly qualified direct holdings receive the same concentration explanation.
+for(const id of ['ines','manon','sophie']) {
+ const p=PROFILES.find(p=>p.id===id)
+ assert(buildTweetText(p).includes('actions détenues en direct'),id)
+}

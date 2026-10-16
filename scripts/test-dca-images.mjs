@@ -9,7 +9,15 @@ try {
   for(let i=0;i<100;i++){try{if((await fetch(base)).ok)break}catch{} await new Promise(r=>setTimeout(r,100))}
   browser=await chromium.launch({headless:true, ...(process.env.CHROMIUM_PATH ? {executablePath:process.env.CHROMIUM_PATH,args:['--no-sandbox']} : {})})
   const page=await browser.newPage({viewport:{width:1440,height:1100}})
+  let failHoldings=true
+  await page.route(/\/holdings-\d+\.json/,route=>failHoldings&&!/[?&](import|url)([=&]|$)/.test(route.request().url())?route.abort():route.continue())
   await page.goto(base+'le-dca-de')
+  await page.getByRole('button',{name:'Relancer l’analyse',exact:true}).waitFor()
+  failHoldings=false
+  await page.getByRole('button',{name:'Relancer l’analyse',exact:true}).click()
+  await page.getByRole('button',{name:'Relancer l’analyse',exact:true}).waitFor({state:'hidden'})
+  await page.getByText('Chargement de l’analyse des détentions…',{exact:true}).waitFor({state:'hidden'})
+  assert.equal(await page.getByRole('button',{name:'Relancer l’analyse',exact:true}).count(),0)
   for(const scope of ['PEA','CTO','PEA + CTO','Ensemble des placements','Portefeuille investi']){
     const picker=page.getByRole('group',{name:'Périmètre du portefeuille',exact:true})
     await picker.locator(`[data-option][data-value="${scope}"]`).click()
@@ -168,6 +176,7 @@ try {
   await page.getByRole('checkbox',{name:'Je valide les expositions à publier.',exact:true}).check()
   assert(await page.getByRole('button',{name:'Télécharger le PNG',exact:true}).isEnabled())
   assert(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth+1))
+  await page.getByText('Sources, couverture du catalogue et détail des comparaisons',{exact:true}).click()
   await page.getByText('Positions communes entre ETF et actions',{exact:true}).click()
   await page.getByText('Chargement des compositions complètes…',{exact:true}).waitFor({state:'hidden'})
   assert.equal(await page.getByText('Impossible de charger les compositions.',{exact:false}).count(),0)

@@ -6,6 +6,7 @@ from html.parser import HTMLParser
 import io
 import json
 import os
+import re
 import pathlib
 import urllib.request
 from urllib.parse import urljoin, urlsplit
@@ -117,7 +118,7 @@ def xlsx_rows(body):
         return rows
 
 
-def parse_holdings(body, share, now):
+def parse_holdings(body, share, now, *, complete=False):
     rows=xlsx_rows(body);metadata={r[0]:r[1]for r in rows[:5]if len(r)>1 and r[0]}
     if metadata.get('ISIN:')!=share['isin']:reject('Wrong State Street holdings ISIN')
     stamp=date(metadata['Holdings As Of:'].replace('-',' '),now)
@@ -131,6 +132,11 @@ def parse_holdings(body, share, now):
         number(w,positive=False)
         weights.append(w);holdings.append({'name':row[columns.index('Security Name')],'isin':row[columns.index('ISIN')],'weightPct':w})
     if not holdings or not 99<=sum(weights)<=101:reject('Incomplete State Street holdings download')
+    if complete:
+        if any(not re.fullmatch(r'[A-Z]{2}[A-Z0-9]{9}[0-9]',r['isin']) for r in holdings):
+            reject('Unqualified complete State Street security identities')
+        if sum(weights)>100.5 or any(w<0 for w in weights):reject('Non-long-only complete State Street holdings')
+        return {'asOf':stamp,'basis':'fund','complete':True,'rows':sorted(holdings,key=lambda p:-p['weightPct'])}
     return {'asOf':stamp,'basis':'fund','rows':sorted(holdings,key=lambda p:-p['weightPct'])[:10]}
 
 

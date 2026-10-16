@@ -129,7 +129,7 @@ def parse_product(body, share, now):
     return result
 
 
-def parse_holdings(body, share, now, url):
+def parse_holdings(body, share, now, url, *, complete=False):
     tables = body.get('tables', [])
     if len(tables) != 1:
         reject('Missing/ambiguous DWS securities table')
@@ -196,6 +196,13 @@ def parse_holdings(body, share, now, url):
         result[field] = {'asOf': stamp, 'basis': 'fund', 'sourceUrl': url, 'sha256': digest, 'complete': True,
             'method': 'Full physical securities portfolio; registration country and industry; net cash/derivatives retained',
             'rows': sorted(rows, key=lambda r: -r['weightPct'])}
+    if complete:
+        if any(p.get('assetClass') == 'Mutual Fund' for p in holdings):
+            reject('Fund-of-funds look-through is not qualified')
+        if sum(p['weightPct'] for p in holdings) > 100.5:
+            reject('Non-long-only complete DWS portfolio')
+        result['completeHoldings'] = {'asOf': stamp, 'basis': 'fund', 'sourceUrl': url,
+            'sha256': digest, 'complete': True, 'rows': [dict(p) for p in holdings]}
     holdings = sorted(holdings, key=lambda r: -r['weightPct'])[:10]
     names = [p['name'] for p in holdings]
     for p in holdings:

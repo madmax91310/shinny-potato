@@ -67,9 +67,9 @@ jobs:
       - run: node scripts/test-broker-automation.mjs
       - run: node scripts/test-lifestrategy.mjs
       - run: node scripts/test-resource-selections.mjs
-      - run: node scripts/build-dca-exposures.mjs && npm run test:dca
+      - run: node scripts/build-dca-exposures.mjs && npm run test:dca && node scripts/audit-portfolio-routing.mjs
       - run: node scripts/test-exposure-classification.mjs
-      - run: python -m unittest discover -s scripts -p "test_dca_equities.py"
+      - run: python -m unittest discover -s scripts -p "test_dca*py"
       - run: node scripts/test-global-audit.mjs
       - run: node scripts/test-portfolio-roadmap.mjs
       - run: node scripts/test-exposure-observations.mjs
