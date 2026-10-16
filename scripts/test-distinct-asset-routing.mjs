@@ -57,5 +57,5 @@ for(const [isin,p] of Object.entries(projected)) {
  assert.deepEqual(p.years,monthlyCalendarReturns(r),isin)
 }
 for(const isin of ['IE000L2SA8K5','IE0003R87OG3','IE0008UEVOE0','IE000SNLFDR7','IE0007Y8Y157'])
- if((projected[isin]?.values.filter(Number.isFinite).length ?? 0)<3) assert(!CATALOG.some(a=>a.isin===isin),'Short history must stay out of duels: '+isin)
+ if((Object.values(projected[isin]?.years ?? {}).filter(Number.isFinite).length ?? 0)<3) assert(!CATALOG.some(a=>a.isin===isin),'Short history must stay out of duels: '+isin)
 console.log(`${DISTINCT_ASSET_SELECTIONS.length} selections: exact identities, automatic sources, shared years, gap rejection, manual portfolios and 2 duels verified.`)

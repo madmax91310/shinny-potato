@@ -10,6 +10,7 @@ import { COMPARATOR_RETURN_EVIDENCE } from './comparator-return-evidence.js'
 import { PORTFOLIO_RETURN_EVIDENCE } from './portfolio-return-evidence.js'
 import { getInstrumentName } from './instruments.js'
 import { DISTINCT_PORTFOLIO_CANDIDATES } from './distinct-portfolio-assets.js'
+import { latestCommonYears } from './annual-window.js'
 
 // Taux de fin d’année BCE déjà utilisés dans le duel, sans modification des valeurs.
 const historicalFx = { 2019: 1.1234, 2020: 1.2271, 2021: 1.1326, 2022: 1.0666, 2023: 1.1050, 2024: 1.0389, 2025: 1.1750 }
@@ -138,7 +139,11 @@ export const CATALOG = [...equityItems, ...routedFunds, ...expansionFunds, ...fu
   role: 'complement', label: 'STOXX Europe 600', exposure: 'europe', group: ROLES.complement,
   currency: stoxxEvidence.currency, values: [null, null, null, ...COMPARATOR_RETURNS_BY_ISIN[stoxxIsin]],
   source: stoxxEvidence.sourceUrls[0], note: 'Rendements de la part exacte, disponibles sur 2023–2025 seulement.',
-}].filter((item) => Number.isFinite(item.values.at(-1)) && item.values.filter(Number.isFinite).length >= 3)
+}].filter((item) => {
+  item.calendarReturns ??= getInstrumentCalendarReturns(item.isin, item.values)
+  const expiry=item.id.match(/^ibonds-euro-(\d{4})$/)?.[1]
+  return (!expiry || new Date().getUTCFullYear()<=Number(expiry)) && latestCommonYears([item.calendarReturns],{minimum:3}).length>=3
+})
 for (const item of CATALOG) item.calendarReturns ??= getInstrumentCalendarReturns(item.isin, item.values);
 export const ITEM_BY_ID = new Map(CATALOG.map((item) => [item.id, item]))
 
