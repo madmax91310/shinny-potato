@@ -69,8 +69,9 @@ if (process.argv.includes('--browser')) {
   await page.getByText('Évolution des photographies 13F archivées',{exact:true}).click()
   assert.match(await page.locator('.portfolio-exposure').first().innerText(),/photographie|total déclaré/)
   for(const route of ['/fiches-etf','/fiches-pratiques?fiche=etf-volatility','/simulateur-patrimoine','/impact-frais','/performance-depuis']) {
-   await page.goto(base+route,{waitUntil:'networkidle'});await page.locator('h1').waitFor()
-   if(route==='/performance-depuis') {await page.getByText('Ce que change la date de départ',{exact:true}).click();assert.match(await page.locator('.portfolio-exposure').innerText(),/fenêtres disponibles/)}
+   const href=route==='/performance-depuis'?route+'?asset=apple':route
+   await page.goto(base+href,{waitUntil:'networkidle'});await page.locator('h1').waitFor()
+   if(route==='/performance-depuis') {await page.getByText('Ce que change la date de départ',{exact:true}).click();await page.locator('.portfolio-exposure').getByText(/fenêtres disponibles/).waitFor();assert.match(await page.locator('.portfolio-exposure').innerText(),/fenêtres disponibles/)}
    await page.setViewportSize({width:390,height:844})
    assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),route)
    await page.setViewportSize({width:1280,height:900})

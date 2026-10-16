@@ -11,6 +11,7 @@ const base = 'http://localhost:4321/shinny-potato'
 const server = spawn('node', ['node_modules/vite/bin/vite.js', 'preview', '--port', '4321'], { stdio: 'ignore' })
 let browser
 async function showPreview(page) {
+  await page.locator('.workspace-tool-view').waitFor({state:'attached'})
   const button = page.locator('.workspace-view-switch').getByRole('button', { name: 'Aperçu', exact: true })
   if (await button.isVisible()) await button.click()
 }

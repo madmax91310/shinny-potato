@@ -1,3 +1,4 @@
+import {choose} from './card-selection.mjs'
 import assert from 'node:assert/strict'
 import {spawn} from 'node:child_process'
 import {chromium} from 'playwright'
@@ -21,7 +22,7 @@ try {
  const page=await browser.newPage()
  await page.goto(base+'/fiche-lexique')
  for(const id of ['pea','cto','ldds','assurance-vie','flat-tax','per','pee-perco','lmnp','rendement-locatif','plus-value-immobiliere']) {
-  await page.locator(`#subject-select [data-value="${id}"]`).click()
+  await choose(page.locator('#subject-select'),id)
   await page.getByRole('button',{name:'🔄 Générer',exact:true}).click()
   const expected=getFicheLexiqueText(id)
   await page.waitForFunction(expected=>Array.from(document.querySelectorAll('pre')).some(e=>e.textContent.trim()===expected.trim()),expected)
