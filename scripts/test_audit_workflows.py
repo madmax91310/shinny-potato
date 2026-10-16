@@ -53,8 +53,10 @@ class WorkflowContracts(unittest.TestCase):
     def test_deploy_requires_every_validation_job_and_same_built_commit(self):
         workflow = (ROOT/'.github/workflows/deploy-pages.yml').read_text()
         deploy = workflow.split('\n  deploy:\n')[1]
-        self.assertIn('needs: [build, python-checks, browser-checks]', deploy)
+        self.assertIn('needs: [build, python-checks, browser-checks, exposure-browser-check]', deploy)
         self.assertIn('ref: ${{ needs.build.outputs.commit_sha }}', deploy)
+        self.assertIn('  exposure-browser-check:', workflow)
+        self.assertIn('run: node scripts/playwright-exposure-scope.mjs', workflow.split('  exposure-browser-check:')[1])
         self.assertIn('ref: ${{ needs.build.outputs.commit_sha }}', workflow.split('  browser-checks:\n')[1])
         commands = json.loads((ROOT/'scripts/ci-browser-checks.json').read_text())
         self.assertEqual(len(commands),len(set(commands)))

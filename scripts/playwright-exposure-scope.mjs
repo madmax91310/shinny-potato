@@ -4,16 +4,16 @@ import {spawn} from 'node:child_process'
 import {mkdir,writeFile} from 'node:fs/promises'
 const base='http://127.0.0.1:4372/shinny-potato/'
 const server=spawn('node',['node_modules/vite/bin/vite.js','--host','127.0.0.1','--port','4372'],{stdio:'ignore'})
-let browser
+let browser,page
 try{
  for(let i=0;i<100;i++){try{if((await fetch(base)).ok)break}catch{}await new Promise(r=>setTimeout(r,100))}
  browser=await chromium.launch({headless:true,...(process.env.CHROMIUM_PATH?{executablePath:process.env.CHROMIUM_PATH,args:['--no-sandbox']}: {})})
- const page=await browser.newPage({viewport:{width:1440,height:1100}})
+ page=await browser.newPage({viewport:{width:1440,height:1100}})
  const errors=[];page.on('pageerror',e=>errors.push(e.message))
  await page.goto(base+'le-dca-de')
  const search=page.getByRole('searchbox',{name:'Ajouter un actif'})
- await search.fill('IE0002XZSHO1')
- await page.getByRole('button').filter({hasText:'IE0002XZSHO1'}).click()
+ await search.fill('IE00B4L5Y983')
+ await page.getByRole('button').filter({hasText:'IE00B4L5Y983'}).click()
  await page.getByRole('spinbutton').fill('80')
  await search.fill('Bitcoin')
  await page.locator('.dca-simple-results button').first().click()
@@ -23,7 +23,8 @@ try{
  await page.getByRole('group',{name:'Catégories par donut',exact:true}).locator('[data-value="6"]').click()
  await page.getByText('Tous les pays et secteurs',{exact:true}).click()
  await page.getByRole('table').first().waitFor()
- assert((await page.getByRole('table').first().locator('tbody tr').count())>6)
+ const countryRows=await page.getByRole('table').first().locator('tbody tr').count()
+ assert(countryRows>6,`Expected detailed physical World country table, received ${countryRows} rows`)
  assert((await page.locator('.dca-exposure-detail').innerText()).includes('80 % du portefeuille'))
  await page.getByRole('button',{name:'Générer l’image',exact:true}).click()
  await page.getByAltText('Répartition et expositions du portefeuille').waitFor()
@@ -58,4 +59,5 @@ try{
  await page.screenshot({path:'test-artifacts/exposure-scope/mobile.png',fullPage:true})
  assert.deepEqual(errors,[])
  console.log('Exposure UI: 80/15/5, complete detail, six categories, PNG, mobile and 36 canvas layouts verified.')
-}finally{await browser?.close();server.kill()}
+}catch(error){await mkdir('test-artifacts/exposure-scope',{recursive:true});if(page&&!page.isClosed())await page.screenshot({path:'test-artifacts/exposure-scope/failure.png',fullPage:true});throw error}
+finally{await browser?.close();server.kill()}
