@@ -11,7 +11,7 @@ import { resolveAnniversaryLevel } from '../src/data/anniversary-levels.js'
 const configs=JSON.parse(readFileSync('scripts/monthly-automation.json')).series.filter(s=>s.consumerScope==='equity')
 const records=JSON.parse(readFileSync('src/data/automated-monthly.json'))
 const levels=JSON.parse(readFileSync('src/data/anniversary-levels.json'))
-assert.equal(configs.length,50)
+assert.equal(configs.length,69)
 assert.equal(new Set(ASSET_ORDER).size,ASSET_ORDER.length)
 for (const config of configs) {
   const {id}=config, record=records[id]
@@ -35,7 +35,8 @@ for (const config of configs) {
 assert.equal(currencySymbol('KRW'),'₩')
 assert.equal(currencySymbol('EUR'),'€')
 assert.equal(currencySymbol('USD'),'$')
-console.log('50 equities: automatic records, 3 consumers, lump sum/DCA, raw anniversary prices and KRW validated.')
+for(const [code,symbol] of Object.entries({CHF:'CHF',DKK:'kr',JPY:'¥',HKD:'$'})) assert.equal(currencySymbol(code),symbol)
+console.log(`${configs.length} equities: automatic records, 3 consumers, lump sum/DCA, raw anniversary prices and currencies validated.`)
 const { compactHistory }=await import('./compact-history.mjs')
 for(const records of [ASSETS,{test:{points:[{date:'2025-01',price:1},{date:'2025-03',price:2}]}}]) {
   const decoded=(await import('data:text/javascript;base64,'+Buffer.from(compactHistory(records)).toString('base64'))).default
