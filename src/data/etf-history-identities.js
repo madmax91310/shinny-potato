@@ -1,6 +1,11 @@
 import config from '../../scripts/non-bond-expansion-sources.json' with { type: 'json' }
 const NON_BOND_HISTORY_IDENTITIES = Object.fromEntries(config.instruments.filter(r=>r.historyEnabled!==false).map(r=>[r.historyId,{icon:r.icon,scene:r.scene,title:r.title,ticker:r.preferredSymbol.split('.')[0],instrumentType:r.instrumentType||'ETF'}]))
 export const ETF_HISTORY_IDENTITIES = {
+ etfUsaSmallValue:{icon:'🌎',scene:'world',title:'USA SMALL CAP VALUE',ticker:'ZPRV'},
+ etfWorldMidEqual:{icon:'🌍',scene:'world',title:'WORLD MID CAP EQUAL WEIGHT',ticker:'IWSZ'},
+ etfEmValue:{icon:'🌏',scene:'world',title:'EMERGENTS VALUE',ticker:'EMVL'},
+ etfEuroUltrashort:{icon:'📅',scene:'world',title:'OBLIGATIONS EURO ULTRACOURTES',ticker:'ERNE'},
+ etfWorldMaterialsDws:{icon:'🪨',scene:'industry',title:'MATERIAUX MONDIAUX',ticker:'XDWM'},
  etfWorldTech:{icon:'💻',scene:'chip',title:'TECHNOLOGIE MONDIALE',ticker:'WITS'},
  etfAiBigData:{icon:'🧠',scene:'chip',title:'IA ET BIG DATA',ticker:'XAIX'},
  etfWorldExUs:{icon:'🌍',scene:'world',title:'WORLD HORS USA',ticker:'EXUS'},

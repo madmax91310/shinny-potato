@@ -139,6 +139,7 @@ jobs:
       - run: node scripts/test-portfolio-recipes.mjs
       - run: node scripts/test-generator-controls.mjs
       - run: node scripts/test-etf-routing-expansion.mjs
+      - run: node scripts/audit-asset-tool-routing.mjs
       - run: node scripts/test-publication-reliability.mjs
       - run: node scripts/test-historical-publications.mjs
       - run: npm run stress-test:portfolios
@@ -286,6 +287,8 @@ jobs:
           path: ~/.cache/ms-playwright
           key: chromium-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
       - run: npx playwright install --with-deps chromium
+      - run: node scripts/playwright-routing-additions.mjs
+        if: matrix.shard == 1
       - run: node scripts/run-browser-checks.mjs ${{ matrix.shard }} 4
       - run: node scripts/playwright-etf-completeness.mjs
         if: matrix.shard == 0
