@@ -24,6 +24,16 @@ class Qualification(unittest.TestCase):
         self.assertEqual(qualify([t.replace('USD Accumulating','USD Distributing') for t in TOKENS])['performance']['status'],'unqualified')
     def test_incomplete_page_does_not_prove_non_publication(self):
         self.assertTrue(all(q['status']=='unqualified' for q in qualify([]).values()))
+    def test_basket_weights_are_not_reference_index_conflicts(self):
+        tokens = [t.replace('9.20', '8.30') for t in TOKENS]
+        at = tokens.index('Holdings are subject to change.')
+        tokens[at:at] = ['Basket Constituents', '4.23', 'NVDA', 'NVIDIA CORP']
+        q = qualify(tokens)
+        self.assertEqual(q['holdings']['status'], 'unqualified')
+        self.assertNotIn('4.23', q['holdings']['evidence'])
+    def test_current_layout_without_options_heading(self):
+        tokens = [t.replace('Options Contract Detail', 'Trading Information') for t in TOKENS]
+        self.assertEqual(qualify(tokens)['performance']['status'], 'not-published')
     def test_qualification_persists_and_older_run_cannot_replace_it(self):
         share={**SHARE,'productId':SHARE['isin'],'currency':'USD','characteristics':{'terPct':.45},'fieldQualification':qualify(TOKENS)}
         report={'checkedAt':NOW.isoformat(),'shares':[share]}

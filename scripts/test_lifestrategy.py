@@ -3,7 +3,7 @@ import datetime as dt
 import json
 import unittest
 from unittest.mock import patch
-from collect_lifestrategy import parse_sources
+from collect_lifestrategy import parse_sources, french_date
 from data_automation import UTC
 
 class LifeStrategySources(unittest.TestCase):
@@ -43,6 +43,11 @@ Total 100%
         self.assertNotIn('sectors',r);self.assertNotIn('countries',r)
         self.assertEqual(r['fieldQualification']['countries']['status'], 'not-published')
         self.assertEqual(r['fieldQualification']['countries']['checkedAt'], '2026-10-13')
+    def test_official_abbreviated_allocation_date(self):
+        self.assertEqual(self.parse(allocation_date='30 sept. 2026')['assetAllocation']['asOf'], '2026-09-30')
+        self.assertEqual(french_date('Au 30\u00a0SEPT.\u00a02026', self.now), '2026-09-30')
+        for value in ['30 unknown 2026', '31 sept. 2026', '30 nov. 2026']:
+            with self.subTest(value=value), self.assertRaises(ValueError): french_date(value, self.now)
     def test_new_country_payload_requires_whole_fund_qualification(self):
         api=copy.deepcopy(self.api)
         api['data']['funds'][0]['marketAllocation']=[{'countryName':'United States','fundMktPercent':100}]

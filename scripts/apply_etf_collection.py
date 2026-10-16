@@ -3,7 +3,10 @@ import copy
 import datetime as dt
 import re
 import json
+from pathlib import Path
 from data_automation import reject, write_json_atomic
+
+RECENT_LAUNCHES = json.loads((Path(__file__).with_name('recent-calendar-evidence.json')).read_text())['shares']
 
 SECTORS = {
     # iShares EM Value, official product 297452, checked 2026-10-15.
@@ -116,6 +119,11 @@ def merge_collection(report, current, baseline):
                isinstance(v, bool) or not isinstance(v, (int, float)) or
                not math.isfinite(v) or not -100 < v < 1000 for y, v in years.items()):
             reject('Invalid or incomplete calendar observation')
+        if isin in RECENT_LAUNCHES:
+            launch = dt.date.fromisoformat(RECENT_LAUNCHES[isin]['launchDate'])
+            first_year = launch.year + ((launch.month, launch.day) != (1, 1))
+            if any(int(year) < first_year for year in years):
+                reject('Recent share calendar includes a partial launch year or a predecessor history')
         previous_performance = old.get('performance', {})
         if previous_performance and any(previous_performance.get(k) != performance.get(k)
                                         for k in ('currency', 'basis', 'method')):

@@ -27,8 +27,8 @@
       "applicable": 209,
       "notApplicable": 0,
       "waiting": 12,
-      "notPublished": 3,
-      "unresolved": 1
+      "notPublished": 4,
+      "unresolved": 0
     },
     "countries": {
       "label": "Pays",
@@ -37,8 +37,8 @@
       "applicable": 187,
       "notApplicable": 22,
       "waiting": 0,
-      "notPublished": 5,
-      "unresolved": 1
+      "notPublished": 6,
+      "unresolved": 0
     },
     "sectors": {
       "label": "Secteurs",
@@ -393,7 +393,7 @@
       "active": true
     }
   ],
-  "checkedAt": "2026-10-15",
+  "checkedAt": "2026-10-16",
   "method": "Inventaire des champs réellement présents dans les observations actives. Couverture distincte de disponibilité réseau et de fraîcheur. Les catégories sont issues des qualifications de sources ; elles ne certifient pas un téléchargement réussi aujourd’hui.",
   "instruments": 209,
   "covered": {
@@ -406,9 +406,9 @@
   },
   "summary": {
     "instrument:not-applicable": 66,
-    "instrument:not-published": 13,
+    "instrument:not-published": 15,
     "instrument:waiting-first-year": 12,
-    "instrument:unqualified": 3,
+    "instrument:unqualified": 1,
     "instrument:source-conflict": 1,
     "index:waiting-publication": 1,
     "index:not-applicable": 16
@@ -620,17 +620,17 @@
       "label": "Pays",
       "configured": true,
       "status": "not-published",
-      "checkedAt": "2026-10-14",
+      "checkedAt": "2026-10-16",
       "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9490/lifestrategy-20-equity-ucits-etf-eur-accumulating",
-      "sha256": "29f0434bc823b5bb8225e6d8fdaf6087bfba1389eab67fd788a3991bb9fdb897",
+      "sha256": "b35a4e2dae10f3de37272bc08b055ff5b43263880ff0f0d2dee75ecd6605081c",
       "reason": "Aucune répartition économique complète du fonds dans la page et les données qualifiées ; les fonds sous-jacents et la poche actions ne constituent pas une allocation pays/secteurs du fonds entier.",
       "evidence": {
         "headings": [],
         "marketAllocationRows": 0,
         "underlyingFunds": 9,
-        "holdingsAsOf": "2026-08-31",
-        "assetAllocationAsOf": "2026-08-31",
-        "documentSha256": "bc1de49e653133cea7a526def9939b051871d72390c701ec96fd31383e4c8abb"
+        "holdingsAsOf": "2026-09-30",
+        "assetAllocationAsOf": "2026-09-30",
+        "documentSha256": "239fd9eddccd07e95e56832459d1cce899b9b94a329bd8d4d8c3c760dcb423c2"
       }
     },
     {
@@ -641,17 +641,17 @@
       "label": "Secteurs",
       "configured": true,
       "status": "not-published",
-      "checkedAt": "2026-10-14",
+      "checkedAt": "2026-10-16",
       "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9490/lifestrategy-20-equity-ucits-etf-eur-accumulating",
-      "sha256": "29f0434bc823b5bb8225e6d8fdaf6087bfba1389eab67fd788a3991bb9fdb897",
+      "sha256": "b35a4e2dae10f3de37272bc08b055ff5b43263880ff0f0d2dee75ecd6605081c",
       "reason": "Aucune répartition économique complète du fonds dans la page et les données qualifiées ; les fonds sous-jacents et la poche actions ne constituent pas une allocation pays/secteurs du fonds entier.",
       "evidence": {
         "headings": [],
         "marketAllocationRows": null,
         "underlyingFunds": 9,
-        "holdingsAsOf": "2026-08-31",
-        "assetAllocationAsOf": "2026-08-31",
-        "documentSha256": "bc1de49e653133cea7a526def9939b051871d72390c701ec96fd31383e4c8abb"
+        "holdingsAsOf": "2026-09-30",
+        "assetAllocationAsOf": "2026-09-30",
+        "documentSha256": "239fd9eddccd07e95e56832459d1cce899b9b94a329bd8d4d8c3c760dcb423c2"
       }
     },
     {
@@ -662,17 +662,17 @@
       "label": "Pays",
       "configured": true,
       "status": "not-published",
-      "checkedAt": "2026-10-14",
+      "checkedAt": "2026-10-16",
       "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9492/lifestrategy-40-equity-ucits-etf-eur-accumulating",
-      "sha256": "3209d125312a45c5d81128d0b7c456594d39ee70672c8d5e1806c92ebe93a5f9",
+      "sha256": "336091faf7dfd08627e91795782e08a97eb8887c874e868fc40b8d0996dbda55",
       "reason": "Aucune répartition économique complète du fonds dans la page et les données qualifiées ; les fonds sous-jacents et la poche actions ne constituent pas une allocation pays/secteurs du fonds entier.",
       "evidence": {
         "headings": [],
         "marketAllocationRows": 0,
         "underlyingFunds": 9,
-        "holdingsAsOf": "2026-08-31",
-        "assetAllocationAsOf": "2026-08-31",
-        "documentSha256": "23f2f86e9f7437b5dd7985929011ae9cada49050246dcc2b2fafb673766d2326"
+        "holdingsAsOf": "2026-09-30",
+        "assetAllocationAsOf": "2026-09-30",
+        "documentSha256": "df9c2b063b219909ce20c40b0e966b137b3f4a6cf408b8de79d120239346c0f9"
       }
     },
     {
@@ -683,17 +683,17 @@
       "label": "Secteurs",
       "configured": true,
       "status": "not-published",
-      "checkedAt": "2026-10-14",
+      "checkedAt": "2026-10-16",
       "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9492/lifestrategy-40-equity-ucits-etf-eur-accumulating",
-      "sha256": "3209d125312a45c5d81128d0b7c456594d39ee70672c8d5e1806c92ebe93a5f9",
+      "sha256": "336091faf7dfd08627e91795782e08a97eb8887c874e868fc40b8d0996dbda55",
       "reason": "Aucune répartition économique complète du fonds dans la page et les données qualifiées ; les fonds sous-jacents et la poche actions ne constituent pas une allocation pays/secteurs du fonds entier.",
       "evidence": {
         "headings": [],
         "marketAllocationRows": null,
         "underlyingFunds": 9,
-        "holdingsAsOf": "2026-08-31",
-        "assetAllocationAsOf": "2026-08-31",
-        "documentSha256": "23f2f86e9f7437b5dd7985929011ae9cada49050246dcc2b2fafb673766d2326"
+        "holdingsAsOf": "2026-09-30",
+        "assetAllocationAsOf": "2026-09-30",
+        "documentSha256": "df9c2b063b219909ce20c40b0e966b137b3f4a6cf408b8de79d120239346c0f9"
       }
     },
     {
@@ -704,17 +704,17 @@
       "label": "Pays",
       "configured": true,
       "status": "not-published",
-      "checkedAt": "2026-10-14",
+      "checkedAt": "2026-10-16",
       "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9494/lifestrategy-60-equity-ucits-etf-eur-accumulating",
-      "sha256": "9b22e3a8e11318dce91628c25f72b6df849194265ba610e5c29765d025a1d73a",
+      "sha256": "322022e90b59e187cfcf96eb91b202392f8816eda59af26c90eece1e3c4ecaec",
       "reason": "Aucune répartition économique complète du fonds dans la page et les données qualifiées ; les fonds sous-jacents et la poche actions ne constituent pas une allocation pays/secteurs du fonds entier.",
       "evidence": {
         "headings": [],
         "marketAllocationRows": 0,
         "underlyingFunds": 13,
-        "holdingsAsOf": "2026-08-31",
-        "assetAllocationAsOf": "2026-08-31",
-        "documentSha256": "b5c98f8da6d4ed79138b0d0e848bfe80fa3989960c158650324b9bd160081209"
+        "holdingsAsOf": "2026-09-30",
+        "assetAllocationAsOf": "2026-09-30",
+        "documentSha256": "e187d1322fee381362fe78e7a20bc11a791e59cf8cdfccbba4fc46cc3e59fad1"
       }
     },
     {
@@ -725,17 +725,17 @@
       "label": "Secteurs",
       "configured": true,
       "status": "not-published",
-      "checkedAt": "2026-10-14",
+      "checkedAt": "2026-10-16",
       "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9494/lifestrategy-60-equity-ucits-etf-eur-accumulating",
-      "sha256": "9b22e3a8e11318dce91628c25f72b6df849194265ba610e5c29765d025a1d73a",
+      "sha256": "322022e90b59e187cfcf96eb91b202392f8816eda59af26c90eece1e3c4ecaec",
       "reason": "Aucune répartition économique complète du fonds dans la page et les données qualifiées ; les fonds sous-jacents et la poche actions ne constituent pas une allocation pays/secteurs du fonds entier.",
       "evidence": {
         "headings": [],
         "marketAllocationRows": null,
         "underlyingFunds": 13,
-        "holdingsAsOf": "2026-08-31",
-        "assetAllocationAsOf": "2026-08-31",
-        "documentSha256": "b5c98f8da6d4ed79138b0d0e848bfe80fa3989960c158650324b9bd160081209"
+        "holdingsAsOf": "2026-09-30",
+        "assetAllocationAsOf": "2026-09-30",
+        "documentSha256": "e187d1322fee381362fe78e7a20bc11a791e59cf8cdfccbba4fc46cc3e59fad1"
       }
     },
     {
@@ -746,17 +746,17 @@
       "label": "Pays",
       "configured": true,
       "status": "not-published",
-      "checkedAt": "2026-10-14",
+      "checkedAt": "2026-10-16",
       "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9496/lifestrategy-80-equity-ucits-etf-eur-accumulating",
-      "sha256": "b91f17950daff73a192a012b951ffb5623cf77e0c4d72e02adf92bdae9770259",
+      "sha256": "976bb2b84e3acb1ee3166702cbbdd0d6963bd3a3ddbf60b89a40c40e79a46a10",
       "reason": "Aucune répartition économique complète du fonds dans la page et les données qualifiées ; les fonds sous-jacents et la poche actions ne constituent pas une allocation pays/secteurs du fonds entier.",
       "evidence": {
         "headings": [],
         "marketAllocationRows": 0,
         "underlyingFunds": 14,
-        "holdingsAsOf": "2026-08-31",
-        "assetAllocationAsOf": "2026-08-31",
-        "documentSha256": "89aeef02a049fc51d5d22550dd8e63a58d54f2c29cf6791fcf6a4fadd22c75d9"
+        "holdingsAsOf": "2026-09-30",
+        "assetAllocationAsOf": "2026-09-30",
+        "documentSha256": "3de57fd5877b33310c140df947050d7a064320cdcd0cb11f1f9f4c89edd1aae6"
       }
     },
     {
@@ -767,17 +767,17 @@
       "label": "Secteurs",
       "configured": true,
       "status": "not-published",
-      "checkedAt": "2026-10-14",
+      "checkedAt": "2026-10-16",
       "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9496/lifestrategy-80-equity-ucits-etf-eur-accumulating",
-      "sha256": "b91f17950daff73a192a012b951ffb5623cf77e0c4d72e02adf92bdae9770259",
+      "sha256": "976bb2b84e3acb1ee3166702cbbdd0d6963bd3a3ddbf60b89a40c40e79a46a10",
       "reason": "Aucune répartition économique complète du fonds dans la page et les données qualifiées ; les fonds sous-jacents et la poche actions ne constituent pas une allocation pays/secteurs du fonds entier.",
       "evidence": {
         "headings": [],
         "marketAllocationRows": null,
         "underlyingFunds": 14,
-        "holdingsAsOf": "2026-08-31",
-        "assetAllocationAsOf": "2026-08-31",
-        "documentSha256": "89aeef02a049fc51d5d22550dd8e63a58d54f2c29cf6791fcf6a4fadd22c75d9"
+        "holdingsAsOf": "2026-09-30",
+        "assetAllocationAsOf": "2026-09-30",
+        "documentSha256": "3de57fd5877b33310c140df947050d7a064320cdcd0cb11f1f9f4c89edd1aae6"
       }
     },
     {
@@ -799,9 +799,9 @@
       "label": "Secteurs",
       "configured": true,
       "status": "not-published",
-      "checkedAt": "2026-10-15",
+      "checkedAt": "2026-10-16",
       "sourceUrl": "https://globalxetfs.eu/funds/silv/",
-      "sha256": "fe8d24a99051b8fef6ba0b35764e07c7a286aa662a94ba2fe0f460efa6e9ff96",
+      "sha256": "5bc5e1f06831dafc8551b930857cb743e620d9697bb5a5fefb31430a7e5071e7",
       "reason": "Aucun tableau sectoriel complet du fonds dans la page officielle contrôlée.",
       "evidence": {
         "datedCountryTable": true,
@@ -861,7 +861,7 @@
       "label": "Pays",
       "configured": true,
       "status": "not-published",
-      "checkedAt": "2026-10-15",
+      "checkedAt": "2026-10-16",
       "asOf": "2026-09-30",
       "sourceUrl": "https://res.americancentury.com/docs/avantis-global-small-cap-value-ucits-etf-fact-sheet.pdf",
       "sha256": "43ac17cfbd6ff218e06494094aa3b80b00c93549cf8f22fb1a5544afab9907e4",
@@ -1533,12 +1533,41 @@
       "field": "performance",
       "label": "Calendrier annuel",
       "configured": true,
-      "status": "unqualified",
+      "status": "not-published",
       "reason": "La section de performance ne fournit pas de calendrier annuel qualifié pour la part USD distribuante. Les rendements capitalisants ou glissants ne sont pas substitués.",
-      "checkedAt": "2026-10-15",
+      "checkedAt": "2026-10-16",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "5a78b3beb96c4182a127d6d0e328514d2d8a7912333387f84f63501c55d4b75d",
-      "evidence": []
+      "sha256": "6d681b4c2e225c2aa41ee9755fdc667d599bc82fb3deb06aebf3eba63ff3a8f9",
+      "evidence": [
+        "Performance History",
+        "USD Accumulating",
+        "Avg. Annualised %",
+        "Cumulative %",
+        "As of recent",
+        "Month End",
+        "&",
+        "Quarter End",
+        "(",
+        "30 Sep 2026",
+        ")",
+        "ETF",
+        "Index",
+        "Difference",
+        "1 Year",
+        "19.39%",
+        "19.89%",
+        "-0.50%",
+        "3 Years",
+        "15.40%",
+        "15.86%",
+        "-0.46%",
+        "Since Inception",
+        "15.29%",
+        "15.75%",
+        "-0.46%",
+        "Performance is based on the fund’s NAV and is shown on a total return basis (i.e., with gross income reinvested, where applicable). The fund’s NAV may differ from its market price and, as a result, individual shareholders may realize returns that are different from the NAV performance. Cumulative return is the aggregate amount that an investment has gained or lost over time. Annualised return is the average return gained or lost by an investment each year over a given time period.",
+        "The performance data quoted represents past performance. Past performance does not guarantee future results. The investment return and principal value of an investment will fluctuate so that an investor's shares, when sold or redeemed, may be worth more or less than their original cost and current performance may be lower or higher than the performance quoted. High short-term performance, when observed, is unusual and investors should not expect such performance to be repeated. The return of your investment may increase or decrease as a result of currency fluctuations if your investment is made in a currency other than that used in past performance calculations."
+      ]
     },
     {
       "type": "instrument",
@@ -1547,11 +1576,11 @@
       "field": "countries",
       "label": "Pays",
       "configured": true,
-      "status": "unqualified",
+      "status": "not-published",
       "reason": "Aucune allocation géographique économique complète qualifiée dans la page ; les pays de commercialisation et le panier de substitution sont exclus.",
-      "checkedAt": "2026-10-15",
+      "checkedAt": "2026-10-16",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "5a78b3beb96c4182a127d6d0e328514d2d8a7912333387f84f63501c55d4b75d",
+      "sha256": "6d681b4c2e225c2aa41ee9755fdc667d599bc82fb3deb06aebf3eba63ff3a8f9",
       "evidence": []
     },
     {
@@ -1563,9 +1592,9 @@
       "configured": true,
       "status": "unqualified",
       "reason": "Table sectorielle de référence à recouper avec l’indice exact avant utilisation ; aucune allocation du panier de substitution utilisée.",
-      "checkedAt": "2026-10-15",
+      "checkedAt": "2026-10-16",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "5a78b3beb96c4182a127d6d0e328514d2d8a7912333387f84f63501c55d4b75d",
+      "sha256": "6d681b4c2e225c2aa41ee9755fdc667d599bc82fb3deb06aebf3eba63ff3a8f9",
       "evidence": [
         "Reference Index Sector Breakdown",
         "As of 30 Sep 2026",
@@ -1604,9 +1633,9 @@
       "configured": true,
       "status": "source-conflict",
       "reason": "Poids différents pour les mêmes titres dans la section datée de l’indice : AAPL, AMZN, GOOG, GOOGL, META, MSFT, NVDA, TSLA.",
-      "checkedAt": "2026-10-15",
+      "checkedAt": "2026-10-16",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "5a78b3beb96c4182a127d6d0e328514d2d8a7912333387f84f63501c55d4b75d",
+      "sha256": "6d681b4c2e225c2aa41ee9755fdc667d599bc82fb3deb06aebf3eba63ff3a8f9",
       "evidence": [
         "Top 10 Reference Index Constituents",
         "As of 08 Oct 2026",

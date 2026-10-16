@@ -2,7 +2,7 @@ import copy
 import datetime as dt
 import unittest
 from issuer_calendar_capture import capture_year_end
-from apply_etf_collection import merge_collection
+from apply_etf_collection import merge_collection, RECENT_LAUNCHES
 
 NOW = dt.datetime(2027, 1, 15, tzinfo=dt.timezone.utc)
 
@@ -12,6 +12,27 @@ def performance(stamp='2026-12-31'):
                 observations=[dict(label=label, value=12.34, asOf=stamp) for label in ['Depuis janvier','1 an']])
 
 class CalendarCapture(unittest.TestCase):
+    def test_all_twelve_recent_shares_first_complete_year(self):
+        self.assertEqual(len(RECENT_LAUNCHES), 12)
+        for isin, evidence in RECENT_LAUNCHES.items():
+            launch = dt.date.fromisoformat(evidence['launchDate'])
+            year = launch.year + ((launch.month, launch.day) != (1, 1))
+            share = dict(isin=isin, productId=isin, currency='USD', exposureOnly=True,
+                         sourceUrl='https://issuer.example/exact-share', performance=performance(f'{year}-12-31'))
+            share['performance']['years'] = {str(year): 12.34}
+            report = {'checkedAt': f'{year+1}-01-15', 'shares': [share]}
+            with self.subTest(isin=isin):
+                result = merge_collection(report, {}, {})
+                self.assertEqual(result[isin]['performance']['years'], {str(year): 12.34})
+                partial = copy.deepcopy(report)
+                partial['shares'][0]['performance']['years'][str(year-1)] = 5
+                with self.assertRaisesRegex(ValueError, 'partial launch year'):
+                    merge_collection(partial, result, {})
+                # A failed attempt must not mutate the last valid calendar.
+                self.assertEqual(result[isin]['performance']['years'], {str(year): 12.34})
+                premature = copy.deepcopy(report)
+                premature['checkedAt'] = f'{year}-12-31'
+                with self.assertRaises(ValueError): merge_collection(premature, {}, {})
     def test_only_closed_complete_years(self):
         for stamp,launch,now in [('2026-09-30','2022-05-04',NOW),
                                 ('2026-12-31','2026-05-04',NOW),

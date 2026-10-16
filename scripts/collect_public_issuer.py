@@ -111,7 +111,14 @@ def qualify_qyld(page, share, now, digest):
         a = tokens.index(start)
         return tokens[a:tokens.index(end, a+1)]
     history = section('Performance History', 'Options Contract Detail')
+    if not history:
+        history = section('Performance History', 'Trading Information')
     holdings = section('Top 10 Reference Index Constituents', 'Holdings are subject to change.')
+    # Streaming pages can place basket/trading rows before the disclaimer.
+    # Their weights describe another economic scope, never an index conflict.
+    boundaries = [holdings.index(label) for label in ('Trading Information', 'Basket Constituents', 'Reference Index Sector Breakdown') if label in holdings]
+    if boundaries:
+        holdings = holdings[:min(boundaries)]
     sectors = section('Reference Index Sector Breakdown', 'Source: AltaVista Research, LLC')
     seen = {}; conflicts = []
     for i in range(len(holdings)-2):
