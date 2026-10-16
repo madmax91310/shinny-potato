@@ -9,6 +9,20 @@
 .home-heading { margin-bottom: 24px; }
 .home-heading p { margin: 0 0 5px; color: #597269; font-size: 14px; font-weight: 650; }
 .home-heading h1 { margin: 0; color: #152630; font-size: clamp(22px, 4vw, 30px); font-weight: 750; line-height: 1.2; letter-spacing: -.7px; }
+.home-quick-links { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
+.home-quick-links a { display: inline-flex; align-items: center; gap: 7px; min-height: 44px; padding: 8px 12px; border: 1px solid #d4ded2; border-radius: 10px; background: #eef3e9; color: #294b3c; font-size: 13px; font-weight: 650; text-decoration: none; }
+.home-quick-links a:hover { background: #e0eadb; }
+.home-search { margin-bottom: 18px; }
+.home-search label { display: block; margin-bottom: 7px; font-size: 13px; font-weight: 650; color: #445e52; }
+.home-search-field { display: flex; gap: 8px; }
+.home-search input { flex: 1; min-width: 0; width: 100%; min-height: 44px; padding: 10px 13px; border: 1px solid #bccbbb; border-radius: 10px; background: #fffefa; color: #152630; font: inherit; font-size: 16px; }
+.home-search input::placeholder { color: #65756c; }
+.home-search button { min-height: 44px; padding: 8px 12px; border: 1px solid #bccbbb; border-radius: 10px; background: #fffefa; color: #294b3c; cursor: pointer; }
+.home-quick-links a:focus-visible, .home-search input:focus-visible, .home-search button:focus-visible { outline: 3px solid #426959; outline-offset: 2px; }
+.home-search-count { margin: 0 0 12px; color: #445e52; font-size: 13px; }
+.home-search-count:empty { display: none; }
+.home-day.home-day--today { border-color: #78927a; box-shadow: 0 0 0 1px #78927a; }
+.home-today { padding: 4px 6px; border-radius: 5px; background: #fffefa; color: #294b3c; font-size: 10px; font-weight: 700; }
 .home-week { display: grid; gap: 10px; }
 .home-day { display: grid; grid-template-columns: 168px minmax(0, 1fr); border: 1px solid #deded4; border-radius: 16px; overflow: hidden; background: #fcfbf7; }
 .home-day-band { display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 10px; padding: 22px; background: var(--day-color); }
