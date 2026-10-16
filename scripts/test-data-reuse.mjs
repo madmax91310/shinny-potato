@@ -22,9 +22,12 @@ assert.equal(monthlyDrawdown([{ date: '2020-01', price: 100 }, { date: '2020-02'
 assert.throws(() => monthlyDrawdown([{date: '2020-01', price: 0}]))
 for (const fact of HISTORY_FACTS) {
   const text = factTweet(fact)
-  assert.match(text, /mensuel/)
-  assert.match(text, /(?:dividendes|revenus) (?:(?:non|nets|bruts) )?réinvestis/)
-  assert.match(text, /(?:Hors|hors) frais(?: du courtier)? et fiscalité/)
+  // Method details stay in the complete fact card; the tweet keeps its narrative format.
+  assert.equal(fact.note, fact.methodNote)
+  assert.match(fact.note, /mensuel/)
+  assert.match(fact.note, /(?:dividendes|revenus) (?:(?:non|nets|bruts) )?réinvestis/)
+  assert.match(fact.note, /(?:Hors|hors) frais(?: du courtier)? et fiscalité/)
+  assert(!text.includes(fact.methodNote))
   assert(!/NaN|undefined/.test(text))
 }
 assert.equal(HISTORY_FACTS.length, HISTORY_STATISTIC_IDS.length * 2)
