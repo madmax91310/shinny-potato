@@ -92,6 +92,7 @@ jobs:
       - run: node scripts/test-etf-completeness.mjs
       - run: node scripts/test-priority-issuer-consumers.mjs
       - run: npm run audit:portfolio-provenance
+      - run: node scripts/build-equity-duel-returns.mjs
       - run: npm run audit:portfolio-duels
       - run: node scripts/test-equity-duels.mjs
       - run: npm run audit:broker-evidence
