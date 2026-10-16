@@ -12,7 +12,7 @@ function stamp(date){
 }
 // Approximation from recent compatible observations; each source keeps its actual date.
 // This is intentionally local to DCA, not a relaxation of historical comparison rules.
-export function dcaExposure(lines,references,field,now=new Date()){
+export function dcaExposure(lines,references,field,now=new Date(),{synthesis=false}={}){
  const groups=new Map(),neutralRows=[],excluded=[]
  const today=Date.parse(new Date(now).toISOString().slice(0,10)+'T00:00:00Z')
  for(const l of lines.filter(l=>l.weight>0)){
@@ -30,7 +30,9 @@ export function dcaExposure(lines,references,field,now=new Date()){
   const sum=!reason?o.rows.reduce((s,row)=>s+row.weightPct,0):0
   if(!reason&&(sum<=0||sum>100.5))reason='Total de ventilation invalide'
   if(reason){excluded.push({asset:l.asset,label:l.label,weight:l.weight,reason});continue}
-  const key=o.compatibility
+  // A published overview combines issuer labels, not supposedly identical taxonomies.
+  // Strict comparisons retain their original contracts. Dates and all validity checks still apply.
+  const key=synthesis?`published-${field}`:o.compatibility
   if(!groups.has(key))groups.set(key,[])
   groups.get(key).push({line:l,o,sum})
  }
@@ -51,9 +53,9 @@ export function dcaExposure(lines,references,field,now=new Date()){
      if(!contributions.has(name))contributions.set(name,[])
      contributions.get(name).push({asset:l.asset,label:l.label,weight,withinAsset:row.weightPct*scale})
     }
-    observations.push({asset:l.asset,label:l.label,asOf:o.asOf,basis:o.basis,sourceUrl:o.sourceUrl,method:o.method||classification,weight:l.weight})
+    observations.push({asset:l.asset,label:l.label,asOf:o.asOf,basis:o.basis,sourceUrl:o.sourceUrl,method:o.method||o.compatibility,classification:o.compatibility,weight:l.weight})
    }
-   result.push({asOf:latest,oldest:cluster.at(-1).o.asOf,basis:[...new Set(observations.map(o=>o.basis))].join('+'),classification,coverage,observations,sources:[...new Set(observations.map(o=>o.sourceUrl))],rows:[...rows].map(([name,weight])=>({name,weight,contributions:contributions.get(name).sort((a,b)=>b.weight-a.weight)})).filter(r=>r.weight>0).sort((a,b)=>b.weight-a.weight)})
+   result.push({asOf:latest,oldest:cluster.at(-1).o.asOf,basis:[...new Set(observations.map(o=>o.basis))].join('+'),classification,indicative:synthesis,coverage,observations,sources:[...new Set(observations.map(o=>o.sourceUrl))],rows:[...rows].map(([name,weight])=>({name,weight,contributions:contributions.get(name).sort((a,b)=>b.weight-a.weight)})).filter(r=>r.weight>0).sort((a,b)=>b.weight-a.weight)})
   }
  }
  result.sort((a,b)=>b.coverage-a.coverage||a.classification.localeCompare(b.classification)||b.asOf.localeCompare(a.asOf))
@@ -67,4 +69,10 @@ export function exposureDisplay(exposure){
   ...o,reason:g.classification===group?.classification?'Dates trop éloignées pour ce graphique':'Méthode géographique ou sectorielle différente'
  })))]
  return {coverage:group?.coverage||0,missing:Math.max(0,100-(group?.coverage||0)-exposure.neutralWeight),omitted}
+}
+
+// Portfolio overview only: published country/sector labels, with source methods retained.
+// This does not assert GICS/ICB or country-of-risk/registration equivalence.
+export function publishedExposure(lines,references,field,now=new Date()){
+ return dcaExposure(lines,references,field,now,{synthesis:true})
 }

@@ -23,6 +23,7 @@ const records = Object.fromEntries(Object.entries(allMapping).map(([asset,isin])
  const synthetic=/swap|synthetic|leveraged|daily.*2x/i.test(name+' '+(source?.characteristics?.replicationMethod||''))
  const outside=/physical.*gold|physical.*silver|physical.*platinum|physical.*palladium|physical.*bitcoin|ethereum|bitcoin etp/i.test(name)
  const record={isin,name,kind:/\bET[CP]\b/.test(name)?'etc':'etf',provider:source?.provider,pea:getInstrumentPeaStatus(isin),tickers:(INSTRUMENT_LISTINGS_BY_ISIN[isin]||[]).map(l=>l.ticker),synthetic}
+ if(isin==='FR0013346681')record.outsideClassification='Monétaire'
  if(outside)record.outsideClassification=/gold/i.test(name)?'Or':/silver/i.test(name)?'Argent':/platinum/i.test(name)?'Platine':/palladium/i.test(name)?'Palladium':/bitcoin/i.test(name)?'Bitcoin':'Ethereum'
  if(!record.outsideClassification&&commodityIsins.has(isin))record.outsideClassification='Matières premières'
  if(multiAsset[isin]?.assetAllocation)record.assetAllocation=multiAsset[isin].assetAllocation

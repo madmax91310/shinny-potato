@@ -1,3 +1,4 @@
+import {AUTOMATED_ETF} from '../src/data/automated-etf.js';
 import assert from 'node:assert/strict';
 import {fieldState,buildAssetFieldReport} from './report-asset-fields.mjs';
 import {applyAutomatedCharacteristics} from '../src/data/automated-characteristics.js';
@@ -13,7 +14,7 @@ for(const [raw,expected] of [['Optimised','Physical (Optimised sampling)'],['Phy
  const facts=applyAutomatedCharacteristics(p,{sourceUrl:'https://issuer.test',characteristics:{replicationMethod:raw,checkedAt:'2026-10-16'}});
  assert.equal(facts.replicationMethod,expected);assert.equal(facts.currencyHedge,true);
 }
-const r=buildAssetFieldReport('2026-10-16');assert(r.rows.length>2000);assert.equal(r.summary.ter.total,209);
+const r=buildAssetFieldReport('2026-10-16');assert(r.rows.length>2000);assert.equal(r.summary.ter.total,Object.keys(AUTOMATED_ETF).length);
 assert(r.rows.some(x=>x.type==='equity'&&x.field==='monthly'));
 assert(r.rows.some(x=>x.id==='IE00BM8R0J59'&&x.field==='holdings'&&typeof x.state==='string'));
 for(const s of Object.values(r.summary))assert.equal(Object.values(s.states).reduce((a,b)=>a+b,0),s.total);

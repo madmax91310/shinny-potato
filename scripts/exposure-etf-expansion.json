@@ -1,0 +1,373 @@
+{
+  "instruments": [
+    {
+      "isin": "LU1681038672",
+      "name": "Amundi Russell 2000 UCITS ETF EUR Acc",
+      "provider": "Amundi",
+      "parser": "amundi-expansion",
+      "currency": "EUR",
+      "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+      "collectComposition": true,
+      "replication": "Indirect(Swap Based)",
+      "expectedIndex": "Russell 2000 Net 30% Total Ret"
+    },
+    {
+      "isin": "FR0011869304",
+      "name": "Amundi PEA Immobilier Europe UCITS ETF Acc",
+      "provider": "Amundi",
+      "parser": "amundi-expansion",
+      "currency": "EUR",
+      "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+      "collectComposition": true,
+      "replication": "Indirect(Swap Based)",
+      "expectedIndex": "FTSE EPRA/NAREIT Developed Europe Net Return Index"
+    },
+    {
+      "isin": "FR0013346681",
+      "name": "Amundi PEA Euro Court Terme UCITS ETF Acc",
+      "provider": "Amundi",
+      "parser": "amundi-expansion",
+      "currency": "EUR",
+      "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+      "collectComposition": true,
+      "replication": "Indirect(Swap Based)",
+      "expectedIndex": "Solactive ESTR Overnight Total Return Index"
+    },
+    {
+      "isin": "LU3180074463",
+      "name": "Amundi European Strategic Autonomy UCITS ETF Acc",
+      "provider": "Amundi",
+      "parser": "amundi-expansion",
+      "currency": "EUR",
+      "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+      "collectComposition": true,
+      "replication": "Direct(Physical)",
+      "expectedIndex": "Euronext European Strategic Autonomy NR"
+    },
+    {
+      "isin": "LU1829219390",
+      "name": "Amundi Euro Stoxx Banks UCITS ETF Acc",
+      "provider": "Amundi",
+      "parser": "amundi-expansion",
+      "currency": "EUR",
+      "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+      "collectComposition": true,
+      "replication": "Direct(Physical)",
+      "expectedIndex": "EURO STOXX Banks Net Return EUR"
+    },
+    {
+      "isin": "FR0007054358",
+      "name": "Amundi EURO STOXX 50 II UCITS ETF Acc",
+      "provider": "Amundi",
+      "parser": "amundi-expansion",
+      "currency": "EUR",
+      "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+      "collectComposition": true,
+      "replication": "Direct(Physical)",
+      "expectedIndex": "EURO STOXX 50 Net Return EUR"
+    },
+    {
+      "isin": "LU1681040223",
+      "name": "Amundi STOXX Europe 600 ESG UCITS ETF Acc",
+      "provider": "Amundi",
+      "parser": "amundi-expansion",
+      "currency": "EUR",
+      "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+      "collectComposition": true,
+      "replication": "Direct(Physical)",
+      "expectedIndex": "STOXX Europe 600 ESG+"
+    },
+    {
+      "isin": "IE0003XJA0J9",
+      "name": "Amundi Prime All Country World UCITS ETF Acc",
+      "provider": "Amundi",
+      "parser": "amundi-expansion",
+      "currency": "USD",
+      "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+      "collectComposition": true,
+      "replication": "Direct(Physical)",
+      "expectedIndex": "Solactive GBS Global Markets Large & Mid Cap USD Index NTR"
+    },
+    {
+      "isin": "IE0009HF1MK9",
+      "name": "Amundi Prime All Country World UCITS ETF Dist",
+      "provider": "Amundi",
+      "parser": "amundi-expansion",
+      "currency": "USD",
+      "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+      "collectComposition": true,
+      "replication": "Direct(Physical)",
+      "expectedIndex": "Solactive GBS Global Markets Large & Mid Cap USD Index NTR"
+    },
+    {
+      "isin": "LU0380865021",
+      "name": "Xtrackers EURO STOXX 50 UCITS ETF 1C",
+      "provider": "DWS",
+      "parser": "dws",
+      "currency": "EUR",
+      "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0380865021/pdpMetaTagsTealium"
+    },
+    {
+      "isin": "LU0328475792",
+      "name": "Xtrackers STOXX Europe 600 UCITS ETF 1C",
+      "provider": "DWS",
+      "parser": "dws",
+      "currency": "EUR",
+      "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0328475792/pdpMetaTagsTealium"
+    },
+    {
+      "isin": "LU0274209237",
+      "name": "Xtrackers MSCI Europe UCITS ETF 1C",
+      "provider": "DWS",
+      "parser": "dws",
+      "currency": "USD",
+      "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0274209237/pdpMetaTagsTealium"
+    },
+    {
+      "isin": "IE00BJ0KDQ92",
+      "name": "Xtrackers MSCI World UCITS ETF 1C",
+      "provider": "DWS",
+      "parser": "dws",
+      "currency": "USD",
+      "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BJ0KDQ92/pdpMetaTagsTealium"
+    },
+    {
+      "isin": "IE00BK1PV551",
+      "name": "Xtrackers MSCI World UCITS ETF 1D",
+      "provider": "DWS",
+      "parser": "dws",
+      "currency": "USD",
+      "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BK1PV551/pdpMetaTagsTealium"
+    },
+    {
+      "isin": "LU2903252349",
+      "name": "Xtrackers Scalable MSCI AC World UCITS ETF 1C",
+      "provider": "DWS",
+      "parser": "dws",
+      "currency": "USD",
+      "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU2903252349/pdpMetaTagsTealium"
+    },
+    {
+      "isin": "IE0008471009",
+      "name": "iShares Core EURO STOXX 50 UCITS ETF Dist",
+      "provider": "iShares",
+      "parser": "ishares",
+      "currency": "EUR",
+      "productId": 251781,
+      "distribution": "Distributing",
+      "requireFullHistory": false,
+      "collectHoldings": true,
+      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/251781/"
+    },
+    {
+      "isin": "IE0008470928",
+      "name": "iShares STOXX Europe 50 UCITS ETF Dist",
+      "provider": "iShares",
+      "parser": "ishares",
+      "currency": "EUR",
+      "productId": 251929,
+      "distribution": "Distributing",
+      "requireFullHistory": false,
+      "collectHoldings": true,
+      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/251929/"
+    },
+    {
+      "isin": "DE0002635307",
+      "name": "iShares STOXX Europe 600 UCITS ETF Dist",
+      "provider": "iShares",
+      "parser": "ishares",
+      "currency": "EUR",
+      "productId": 251931,
+      "distribution": "Distributing",
+      "requireFullHistory": false,
+      "collectHoldings": true,
+      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/251931/"
+    },
+    {
+      "isin": "IE00B1YZSC51",
+      "name": "iShares Core MSCI Europe UCITS ETF Dist",
+      "provider": "iShares",
+      "parser": "ishares",
+      "currency": "EUR",
+      "productId": 251860,
+      "distribution": "Distributing",
+      "requireFullHistory": false,
+      "collectHoldings": true,
+      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/251860/"
+    },
+    {
+      "isin": "IE00BK5BQX27",
+      "name": "Vanguard FTSE Developed Europe UCITS ETF Accumulating",
+      "provider": "Vanguard",
+      "parser": "vanguard",
+      "currency": "EUR",
+      "productCode": 9681,
+      "pageUrl": "https://www.vanguard.co.uk/professional/product/etf/equity/9681/ftse-developed-europe-ucits-etf-eur-accumulating",
+      "equity": true,
+      "distribution": "Accumulating",
+      "benchmark": "FTSE Developed Europe"
+    },
+    {
+      "isin": "IE00B945VV12",
+      "name": "Vanguard FTSE Developed Europe UCITS ETF Distributing",
+      "provider": "Vanguard",
+      "parser": "vanguard",
+      "currency": "EUR",
+      "productCode": 9520,
+      "pageUrl": "https://www.vanguard.co.uk/professional/product/etf/equity/9520/ftse-developed-europe-ucits-etf-eur-distributing",
+      "equity": true,
+      "distribution": "Distributing",
+      "benchmark": "FTSE Developed Europe"
+    },
+    {
+      "isin": "IE00B3RBWM25",
+      "name": "Vanguard FTSE All-World UCITS ETF Distributing",
+      "provider": "Vanguard",
+      "parser": "vanguard",
+      "currency": "USD",
+      "productCode": 9505,
+      "pageUrl": "https://www.vanguard.co.uk/professional/product/etf/equity/9505/ftse-all-world-ucits-etf-usd-distributing",
+      "equity": true,
+      "distribution": "Distributing",
+      "benchmark": "FTSE All-World"
+    },
+    {
+      "isin": "IE00BK5BQV03",
+      "name": "Vanguard FTSE Developed World UCITS ETF Accumulating",
+      "provider": "Vanguard",
+      "parser": "vanguard",
+      "currency": "USD",
+      "productCode": 9675,
+      "pageUrl": "https://www.vanguard.co.uk/professional/product/etf/equity/9675/ftse-developed-world-ucits-etf-usd-accumulating",
+      "equity": true,
+      "distribution": "Accumulating",
+      "benchmark": "FTSE Developed World"
+    },
+    {
+      "isin": "IE00BFMXXD54",
+      "name": "Vanguard S&P 500 UCITS ETF Accumulating",
+      "provider": "Vanguard",
+      "parser": "vanguard",
+      "currency": "USD",
+      "productCode": 9694,
+      "pageUrl": "https://www.vanguard.co.uk/professional/product/etf/equity/9694/sp-500-ucits-etf-usd-accumulating",
+      "equity": true,
+      "distribution": "Accumulating",
+      "benchmark": "S&P 500"
+    },
+    {
+      "isin": "IE00B3XXRP09",
+      "name": "Vanguard S&P 500 UCITS ETF Distributing",
+      "provider": "Vanguard",
+      "parser": "vanguard",
+      "currency": "USD",
+      "productCode": 9503,
+      "pageUrl": "https://www.vanguard.co.uk/professional/product/etf/equity/9503/sp-500-ucits-etf-usd-distributing",
+      "equity": true,
+      "distribution": "Distributing",
+      "benchmark": "S&P 500"
+    },
+    {
+      "isin": "IE00BKWQ0Q14",
+      "name": "State Street SPDR MSCI Europe UCITS ETF",
+      "provider": "State Street",
+      "parser": "ssga",
+      "currency": "EUR",
+      "sourceUrl": "https://www.ssga.com/fr/en_gb/institutional/etfs/state-street-spdr-msci-europe-ucits-etf-ero-fp",
+      "collectComposition": true
+    },
+    {
+      "isin": "IE00BFY0GT14",
+      "name": "State Street SPDR MSCI World UCITS ETF",
+      "provider": "State Street",
+      "parser": "ssga",
+      "currency": "USD",
+      "sourceUrl": "https://www.ssga.com/fr/en_gb/institutional/etfs/state-street-spdr-msci-world-ucits-etf-acc-sppw-gy",
+      "collectComposition": true
+    },
+    {
+      "isin": "IE000716YHJ7",
+      "name": "Invesco FTSE All-World UCITS ETF Accumulating",
+      "provider": "Invesco",
+      "parser": "invesco-expansion",
+      "currency": "USD",
+      "benchmark": "FTSE All-World",
+      "distribution": "Accumulating",
+      "sourceUrl": "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE000716YHJ7_factsheet_en.pdf"
+    },
+    {
+      "isin": "IE0000QLH0G6",
+      "name": "Invesco FTSE All-World UCITS ETF Distributing",
+      "provider": "Invesco",
+      "parser": "invesco-expansion",
+      "currency": "USD",
+      "benchmark": "FTSE All-World",
+      "distribution": "Distributing",
+      "sourceUrl": "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE0000QLH0G6_factsheet_en.pdf"
+    },
+    {
+      "isin": "IE00BMC38736",
+      "name": "VanEck Semiconductor UCITS ETF",
+      "provider": "VanEck",
+      "parser": "vaneck",
+      "currency": "USD",
+      "benchmark": "MarketVector US Listed Semiconductor 10% Capped Screened Index",
+      "sourceUrl": "https://www.vaneck.com/fr/en/library/fact-sheets/smh-fact-sheet.pdf",
+      "fallbackUrls": [
+        "https://www.vaneck.com/uk/en/library/fact-sheets/smh-fact-sheet.pdf"
+      ],
+      "pageUrl": "https://www.vaneck.com/uk/en/investments/semiconductor-etf/",
+      "ticker": "SMH",
+      "apiTicker": "UCTSMH"
+    },
+    {
+      "isin": "IE00BDVPNG13",
+      "name": "WisdomTree Artificial Intelligence UCITS ETF USD Acc",
+      "provider": "WisdomTree",
+      "parser": "wisdomtree-html",
+      "currency": "USD",
+      "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-artificial-intelligence-ucits-etf---usd-acc",
+      "factsheetUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13",
+      "documentType": "wisdomtree-ucits",
+      "documentName": "WisdomTree Artificial Intelligence UCITS ETF - USD Acc"
+    },
+    {
+      "isin": "IE00BKLF1R75",
+      "name": "WisdomTree Battery Solutions UCITS ETF USD Acc",
+      "provider": "WisdomTree",
+      "parser": "wisdomtree-html",
+      "currency": "USD",
+      "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-battery-solutions-ucits-etf---usd-acc",
+      "factsheetUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BKLF1R75",
+      "documentType": "wisdomtree-ucits",
+      "documentName": "WisdomTree Battery Solutions UCITS ETF - USD Acc"
+    },
+    {
+      "isin": "IE00BLCHJB90",
+      "name": "Global X Robotics & Artificial Intelligence UCITS ETF USD Acc",
+      "provider": "Global X",
+      "parser": "globalx-expansion",
+      "currency": "USD",
+      "sourceUrl": "https://globalxetfs.eu/funds/botz/",
+      "ticker": "BOTZ"
+    },
+    {
+      "isin": "IE000NDWFGA5",
+      "name": "Global X Uranium UCITS ETF USD Acc",
+      "provider": "Global X",
+      "parser": "globalx-expansion",
+      "currency": "USD",
+      "sourceUrl": "https://globalxetfs.eu/funds/urnu/",
+      "ticker": "URNU"
+    },
+    {
+      "isin": "IE00BMH5Y871",
+      "name": "Global X Cybersecurity UCITS ETF USD Acc",
+      "provider": "Global X",
+      "parser": "globalx-expansion",
+      "currency": "USD",
+      "sourceUrl": "https://globalxetfs.eu/funds/bug/",
+      "ticker": "BUG"
+    }
+  ]
+}

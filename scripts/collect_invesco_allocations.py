@@ -5,7 +5,7 @@ from data_automation import reject
 
 
 def parse_allocations(text, share, now):
-    if share['isin'] != 'IE000L2SA8K5' or share['isin'] not in text:
+    if share['isin'] not in ('IE000L2SA8K5', 'IE000716YHJ7', 'IE0000QLH0G6') or share['isin'] not in text:
         reject('Wrong Invesco allocation share')
     if not re.search(r'Replication method\s+Physical\b', text):
         reject('Invesco allocation requires the qualified physical ETF')

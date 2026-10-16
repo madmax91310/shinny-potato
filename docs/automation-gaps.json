@@ -2,9 +2,9 @@
   "fieldCoverage": {
     "ter": {
       "label": "Frais",
-      "present": 209,
-      "total": 209,
-      "applicable": 209,
+      "present": 244,
+      "total": 244,
+      "applicable": 244,
       "notApplicable": 0,
       "waiting": 0,
       "notPublished": 0,
@@ -12,9 +12,9 @@
     },
     "aum": {
       "label": "Encours",
-      "present": 209,
-      "total": 209,
-      "applicable": 209,
+      "present": 244,
+      "total": 244,
+      "applicable": 244,
       "notApplicable": 0,
       "waiting": 0,
       "notPublished": 0,
@@ -22,43 +22,43 @@
     },
     "performance": {
       "label": "Calendrier annuel",
-      "present": 193,
-      "total": 209,
-      "applicable": 209,
+      "present": 224,
+      "total": 244,
+      "applicable": 244,
       "notApplicable": 0,
       "waiting": 12,
       "notPublished": 4,
-      "unresolved": 0
+      "unresolved": 4
     },
     "countries": {
       "label": "Pays",
-      "present": 181,
-      "total": 209,
-      "applicable": 187,
+      "present": 215,
+      "total": 244,
+      "applicable": 222,
       "notApplicable": 22,
       "waiting": 0,
       "notPublished": 6,
-      "unresolved": 0
+      "unresolved": 1
     },
     "sectors": {
       "label": "Secteurs",
-      "present": 181,
-      "total": 209,
-      "applicable": 187,
+      "present": 215,
+      "total": 244,
+      "applicable": 222,
       "notApplicable": 22,
       "waiting": 0,
       "notPublished": 5,
-      "unresolved": 1
+      "unresolved": 2
     },
     "holdings": {
       "label": "Positions pondérées",
-      "present": 186,
-      "total": 209,
-      "applicable": 187,
+      "present": 218,
+      "total": 244,
+      "applicable": 222,
       "notApplicable": 22,
       "waiting": 0,
       "notPublished": 0,
-      "unresolved": 1
+      "unresolved": 4
     }
   },
   "recentCalendars": [
@@ -395,25 +395,124 @@
   ],
   "checkedAt": "2026-10-16",
   "method": "Inventaire des champs réellement présents dans les observations actives. Couverture distincte de disponibilité réseau et de fraîcheur. Les catégories sont issues des qualifications de sources ; elles ne certifient pas un téléchargement réussi aujourd’hui.",
-  "instruments": 209,
+  "instruments": 244,
   "covered": {
-    "ter": 209,
-    "aum": 209,
-    "performance": 193,
-    "countries": 181,
-    "sectors": 181,
-    "holdings": 186
+    "ter": 244,
+    "aum": 244,
+    "performance": 224,
+    "countries": 215,
+    "sectors": 215,
+    "holdings": 218
   },
   "summary": {
+    "instrument:unqualified": 10,
     "instrument:not-applicable": 66,
     "instrument:not-published": 15,
     "instrument:waiting-first-year": 12,
-    "instrument:unqualified": 1,
     "instrument:source-conflict": 1,
     "index:waiting-publication": 1,
     "index:not-applicable": 16
   },
   "gaps": [
+    {
+      "type": "instrument",
+      "id": "FR0013346681",
+      "name": "Amundi PEA Euro Court Terme UCITS ETF Acc",
+      "field": "countries",
+      "label": "Pays",
+      "configured": false,
+      "status": "unqualified",
+      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
+      "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+    },
+    {
+      "type": "instrument",
+      "id": "FR0013346681",
+      "name": "Amundi PEA Euro Court Terme UCITS ETF Acc",
+      "field": "sectors",
+      "label": "Secteurs",
+      "configured": false,
+      "status": "unqualified",
+      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
+      "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+    },
+    {
+      "type": "instrument",
+      "id": "FR0013346681",
+      "name": "Amundi PEA Euro Court Terme UCITS ETF Acc",
+      "field": "holdings",
+      "label": "Positions pondérées",
+      "configured": false,
+      "status": "unqualified",
+      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
+      "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+    },
+    {
+      "type": "instrument",
+      "id": "LU3180074463",
+      "name": "Amundi European Strategic Autonomy UCITS ETF Acc",
+      "field": "performance",
+      "label": "Calendrier annuel",
+      "configured": false,
+      "status": "unqualified",
+      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
+      "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+    },
+    {
+      "type": "instrument",
+      "id": "IE000716YHJ7",
+      "name": "Invesco FTSE All-World UCITS ETF Accumulating",
+      "field": "holdings",
+      "label": "Positions pondérées",
+      "configured": false,
+      "status": "unqualified",
+      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
+      "sourceUrl": "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE000716YHJ7_factsheet_en.pdf"
+    },
+    {
+      "type": "instrument",
+      "id": "IE0000QLH0G6",
+      "name": "Invesco FTSE All-World UCITS ETF Distributing",
+      "field": "holdings",
+      "label": "Positions pondérées",
+      "configured": false,
+      "status": "unqualified",
+      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
+      "sourceUrl": "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE0000QLH0G6_factsheet_en.pdf"
+    },
+    {
+      "type": "instrument",
+      "id": "IE00BLCHJB90",
+      "name": "Global X Robotics & Artificial Intelligence UCITS ETF USD Acc",
+      "field": "performance",
+      "label": "Calendrier annuel",
+      "configured": false,
+      "status": "unqualified",
+      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
+      "sourceUrl": "https://globalxetfs.eu/funds/botz/"
+    },
+    {
+      "type": "instrument",
+      "id": "IE000NDWFGA5",
+      "name": "Global X Uranium UCITS ETF USD Acc",
+      "field": "performance",
+      "label": "Calendrier annuel",
+      "configured": false,
+      "status": "unqualified",
+      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
+      "sourceUrl": "https://globalxetfs.eu/funds/urnu/"
+    },
+    {
+      "type": "instrument",
+      "id": "IE00BMH5Y871",
+      "name": "Global X Cybersecurity UCITS ETF USD Acc",
+      "field": "performance",
+      "label": "Calendrier annuel",
+      "configured": false,
+      "status": "unqualified",
+      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
+      "sourceUrl": "https://globalxetfs.eu/funds/bug/"
+    },
     {
       "type": "instrument",
       "id": "JE00B78CGV99",

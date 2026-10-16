@@ -1,4 +1,4 @@
-import { dcaExposure, exposureDisplay } from './exposure.js'
+import { publishedExposure, exposureDisplay } from './exposure.js'
 import { sharedPositions } from './verification.js'
 
 // Cash flows are analysed as a separate allocation, never as current holdings.
@@ -17,7 +17,7 @@ export function concentration(groups) {
 }
 export function portfolioAnalytics(lines,refs,holdings,now=new Date()) {
  const shared=sharedPositions(lines,refs,now,holdings)
- const exposures=Object.fromEntries(['countries','sectors'].map(field=>[field,dcaExposure(lines,refs,field,now)]))
+ const exposures=Object.fromEntries(['countries','sectors'].map(field=>[field,publishedExposure(lines,refs,field,now)]))
  return {...shared,groups:concentration(shared.totals),exposures}
 }
 export function compareExposures(before,after,field) {

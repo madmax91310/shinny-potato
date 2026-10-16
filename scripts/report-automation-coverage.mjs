@@ -13,7 +13,7 @@ const comparisons = auditComparisonAutomation();
 const qualified = {instruments:[...baseQualified.instruments,...nonBondQualified.instruments]};
 const read=path=>JSON.parse(readFileSync(path));
 const etf=AUTOMATED_ETF, indices=read('src/data/automated-indices.json'), monthly={...read('src/data/automated-monthly.json'),...read('src/data/non-bond-monthly-records.json')};
-const sources=['etf-pilot.json','amundi-etf.json','ssga-etf.json','additional-etf-sources.json','lifestrategy-sources.json'].flatMap(file=>read(`scripts/${file}`).instruments).concat(qualified.instruments,nonBondSources.instruments);
+const sources=['etf-pilot.json','amundi-etf.json','ssga-etf.json','additional-etf-sources.json','lifestrategy-sources.json','exposure-etf-expansion.json'].flatMap(file=>read(`scripts/${file}`).instruments).concat(qualified.instruments,nonBondSources.instruments);
 const configured=new Set(sources.filter(s=>s.enabled!==false).map(s=>s.isin));
 const instruments=DATA_CATALOG.filter(r=>r.type==='instrument');
 const uncovered=instruments.filter(r=>!configured.has(r.id)||!etf[r.id]);
