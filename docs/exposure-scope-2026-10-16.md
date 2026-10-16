@@ -2,7 +2,7 @@
 
 Les donuts géographiques et sectoriels décrivent la poche actions. Or, crypto, matières premières, monétaire et obligations identifiées restent dans l’allocation, sans devenir des pays ou des secteurs. Les LifeStrategy contribuent à hauteur de leur allocation actions publiée ; la poche actions est décomposée selon les fonds Vanguard réellement détenus. Les dates et sources de chaque étape restent conservées. Les allocations publiées arrondies sont pondérées à l’intérieur de la poche, sans inventer les pays manquants.
 
-Le détail repliable présente tous les pays/secteurs disponibles et leur part de la poche et du portefeuille total. L’image conserve une légende courte (3, 4 ou 6 catégories). Les données manquantes gardent leur poids gris. Un portefeuille sans actions affiche « Sans objet ».
+Le détail repliable présente tous les pays/secteurs disponibles et leur part de la poche et du portefeuille total. L’image conserve une légende courte (3, 4 ou 6 catégories) et un sous-titre précisant le poids de la poche actions. La suppression des dates, annotations de couverture et notes de bas d’image livrée par #695 reste appliquée. Les données manquantes gardent leur poids gris. Un portefeuille sans actions affiche « Sans objet ».
 
 ## Treize cas examinés
 

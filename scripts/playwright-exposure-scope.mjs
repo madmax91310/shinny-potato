@@ -46,6 +46,7 @@ try{
     const p={imageOnly:true,name:'',scope:'Portefeuille investi',exposureLimit:limit,lines:lines.map(([asset,weight])=>({asset,weight,label:references[asset]?.name||asset,isin:references[asset]?.isin||''}))}
     await renderDcaImage(p,field)
     if(!labels.some(t=>/Poche actions|Aucune poche actions/.test(t)))throw Error('Missing scope')
+    if(labels.some(t=>/couverture|ventilés|Synthèse indicative|Pourcentages arrondis|\d{4}-\d{2}-\d{2}/i.test(t)))throw Error('Technical annotation restored in image')
     out.push({limit,field})
    }
   }finally{CanvasRenderingContext2D.prototype.fillText=original}
