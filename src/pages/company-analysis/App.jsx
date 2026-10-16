@@ -2,7 +2,7 @@ import ValuationPanel from './ValuationPanel.jsx'
 import { companyCompleteness } from './completeness.js'
 import { notifyPublication, copyPublicationText, startPublicationDownload } from '../../design-system/publicationActions.js'
 import { useEffect, useState } from 'react'
-import ChoicePicker from '../../design-system/ChoicePicker.jsx'
+import AssetPicker from '../../design-system/AssetPicker.jsx'
 import PageHeader from '../../design-system/PageHeader'
 import ToolWorkspace from '../../design-system/ToolWorkspace'
 import Button from '../../design-system/Button'
@@ -24,9 +24,7 @@ export default function App() {
   },[id,attempt])
   return <div className="company-analysis">
     <PageHeader title="Analyse d’entreprise" subtitle="Des objectifs de cours à 1, 3 ou 5 ans, calculés à partir des données de l’entreprise." />
-    <div className="valuation-company-picker"><ChoicePicker aria-label="Choisir une entreprise" value={id} onChange={event=>setId(event.target.value)}>
-      {profiles.map(item=><option key={item.id} value={item.id}>{item.name} · {item.symbol}</option>)}
-    </ChoicePicker></div>
+    <div className="valuation-company-picker"><AssetPicker label="Choisir une entreprise" value={id} onChange={setId} items={profiles.map(item=>({id:item.id,label:item.name,search:item.symbol,detail:item.symbol,group:'Actions'}))}/></div>
     {error?<div role="alert"><p>Le dossier n’a pas pu être chargé.</p><Button onClick={()=>setAttempt(n=>n+1)}>Réessayer</Button></div>
       :loaded?.id!==id?<p role="status">Chargement du dossier…</p>:null}
     {loaded&&<div hidden={error||loaded.id!==id} data-loaded-company={loaded.id}><CompanyDossier company={loaded} drafts={drafts} setDrafts={setDrafts}/></div>}

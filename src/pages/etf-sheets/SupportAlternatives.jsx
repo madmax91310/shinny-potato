@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { ETFS } from '../../data/etf-cards.js'
+import { ETFS } from './records.js'
 import { instrumentOption, sameBenchmarkSupports } from '../../data/asset-selection.js'
 import { INSTRUMENT_FACTS_BY_ISIN } from '../../data/instrument-facts.js'
 import { ETF_TER_BY_ISIN } from '../../data/etf-ter.js'

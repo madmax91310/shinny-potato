@@ -209,6 +209,53 @@
     "responseSha256": "ab76c8f0045518e1a92bdf727c1857144c6b2207dfee48a11e801a0960ad5bcd",
     "note": "Cours de la part exacte en EUR, ajustés des distributions et divisions ; années civiles complètes uniquement. Ces rendements de marché diffèrent des rendements NAV de l’émetteur."
   },
+  "IE00B1FZS350": {
+    "isin": "IE00B1FZS350",
+    "currency": "EUR",
+    "years": {
+      "2016": 7.729459774670322,
+      "2017": -2.6210977162591353,
+      "2018": -1.0116505226280492,
+      "2019": 23.60223725259334,
+      "2020": -17.187107029580005,
+      "2021": 36.1093618437672,
+      "2022": -19.61029547402141,
+      "2023": 5.376514071070626,
+      "2024": 6.790946877469328,
+      "2025": -3.329301162271092
+    },
+    "calendarReturns": {
+      "2016": 7.729459774670322,
+      "2017": -2.6210977162591353,
+      "2018": -1.0116505226280492,
+      "2019": 23.60223725259334,
+      "2020": -17.187107029580005,
+      "2021": 36.1093618437672,
+      "2022": -19.61029547402141,
+      "2023": 5.376514071070626,
+      "2024": 6.790946877469328,
+      "2025": -3.329301162271092
+    },
+    "values": [
+      -17.187107029580005,
+      36.1093618437672,
+      -19.61029547402141,
+      5.376514071070626,
+      6.790946877469328,
+      -3.329301162271092
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/IWDP.AS?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "sourceUrls": [
+      "https://query2.finance.yahoo.com/v8/finance/chart/IWDP.AS?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+      "https://query2.finance.yahoo.com/v8/finance/chart/IWDP.AS?period1=1420070400&period2=1790812800&interval=1mo&events=div%2Csplits",
+      "https://query2.finance.yahoo.com/v8/finance/chart/IWDP.AS?period1=1451001600&period2=1451606400&interval=1d&events=div%2Csplits"
+    ],
+    "checkedAt": "2026-10-16",
+    "basis": "market-price",
+    "method": "Cours de la part exacte, ajustés des distributions et divisions ; dernière séance mensuelle recoupée avec la bougie mensuelle Yahoo",
+    "responseSha256": "380ac5b0e80f29dc9fb6847e53a6ece2d752ec37e069ac68c52b2ca56a3dcf31",
+    "note": "Cours de la part exacte en EUR, ajustés des distributions et divisions ; années civiles complètes uniquement. Ces rendements de marché diffèrent des rendements NAV de l’émetteur."
+  },
   "IE000L2SA8K5": {
     "isin": "IE000L2SA8K5",
     "currency": "USD",

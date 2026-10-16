@@ -19,6 +19,7 @@ def qualify(source, now, fetch=get_json, collect=collect_one):
     start=month_shift(dt.datetime(first.year,first.month,1,tzinfo=UTC),1)
     c['periodStart']=max('2015-01',start.strftime('%Y-%m'))
     if c['periodStart']>=now.strftime('%Y-%m'):raise ValueError('No completed historical month')
+    c['verifyMonthlyDisagreements']=True
     result=collect(c,now)
     from refresh_anniversary_levels import collect_one as collect_level
     result['qualifiedAnniversary']=collect_level({**c,'field':'close'},now)
@@ -52,7 +53,9 @@ def main():
         except Exception as e:return c,None,str(e)
     with ThreadPoolExecutor(max_workers=3)as pool:results=list(pool.map(one,candidates))
     valid=[]
+    successful={c['isin'] for c,result,error in results if result}
     for c,result,error in results:
+        if error and c['isin'] in successful:continue
         status[c['isin']]=dict(checkedAt=now.isoformat(),status='failed' if error else 'validated',reason=error)
         if result:valid.append(result)
     if a.apply:

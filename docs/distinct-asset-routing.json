@@ -18,16 +18,12 @@
       "generator": "missing",
       "dca": true,
       "countries": {
-        "status": "incomplete",
-        "coverage": 0,
-        "outside": 0,
-        "reason": "Ventilation absente"
+        "status": "not-applicable",
+        "reason": "Hors classification"
       },
       "sectors": {
-        "status": "incomplete",
-        "coverage": 0,
-        "outside": 0,
-        "reason": "Ventilation absente"
+        "status": "not-applicable",
+        "reason": "Hors classification"
       },
       "holdings": null,
       "monthly": [],
@@ -55,10 +51,11 @@
       "generator": "missing",
       "dca": true,
       "countries": {
-        "status": "incomplete",
-        "coverage": 0,
+        "status": "available",
+        "coverage": 99.93973483326536,
         "outside": 0,
-        "reason": "Ventilation absente"
+        "reason": "Disponible",
+        "date": "2026-10-15"
       },
       "sectors": {
         "status": "available",

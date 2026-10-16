@@ -4,7 +4,7 @@ export { ANNIVERSARY_INDEX_VARIANTS } from './indexVariants.js'
 import {
   ASSETS as SHARED_ASSETS, ASSET_ORDER, LIVRET_A, INFLATION, LATEST_YM, getAssetMinDate as sharedMinDate, SPARSE_MONTHLY_DATA_IDS,
 } from '../../../data/market-history.js';
-import { ymIndex, indexToYm, interpolatePrice, computeBenchmarkSeries, pct } from "../../investment-calculator/lib.js";
+import { ymIndex, indexToYm, interpolatePrice, computeBenchmarkSeries, pct } from "../../investment-calculator/math.js";
 
 import INDEX_HISTORY from '../../../data/anniversary-index-history.json' with { type: 'json' };
 const INDEX_ASSETS = Object.fromEntries(Object.entries(INDEX_HISTORY).map(([id, record]) => [id, {

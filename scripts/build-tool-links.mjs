@@ -8,7 +8,7 @@ import { getAnnualReturnStartYears, getValidYearsBackOptions } from '../src/page
 import simulationIds from '../src/data/simulation-links.json' with {type:'json'}
 import { TOPICS } from '../src/data/practical-sheet-topics.js'
 import { references } from '../src/pages/dca-profiles/engine.js'
-import { DISTINCT_ASSET_ISINS } from '../src/data/distinct-asset-selections.js'
+import { ASSETS as PORTFOLIO_ASSETS } from '../src/data/portfolio-assets.js'
 
 // Identity and availability only. Values remain in their canonical registries.
 const links = {}
@@ -20,8 +20,10 @@ const add = (isin, kind, label, href) => {
 for (const etf of ETFS) add(etf.isin,'sheet','Présentation ETF',`/fiches-etf?isin=${encodeURIComponent(etf.isin)}`)
 for (const topic of TOPICS) for (const isin of topic.products ?? [])
   add(isin,'practical',topic.title,`/fiches-pratiques?fiche=${encodeURIComponent(topic.id)}`)
-for (const asset of Object.values(references)) if (DISTINCT_ASSET_ISINS.includes(asset.isin))
-  add(asset.isin,'dca','Expositions et DCA manuel','/le-dca-de')
+for (const asset of Object.values(references)) if (asset.isin)
+  add(asset.isin,'dca','Actifs et expositions',`/le-dca-de?isin=${encodeURIComponent(asset.isin)}`)
+for(const asset of PORTFOLIO_ASSETS) add(asset.isin,'portfolio','Composition manuelle',`/generateur-portefeuilles?asset=${encodeURIComponent(asset.id)}`)
+for(const asset of CATALOG) add(asset.isin,'duel','Composer un duel',`/duels-portefeuilles?asset=${encodeURIComponent(asset.id)}`)
 for (const theme of DEFAULT_THEMES) for (const etf of theme.etfs)
   add(etf.isin,'comparison',theme.nom,`/comparatif-etf?subject=${encodeURIComponent(theme.id)}`)
 for (const definition of DUELS) {

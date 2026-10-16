@@ -139,6 +139,7 @@ async function testWorkspaceNavigation(page) {
   await etfPicker.getByRole('button', { name: 'Parcourir', exact: true }).click();
   await etfPicker.getByRole('button', { name: 'Monde', exact: true }).click();
   const worldOptions = ETFS.map(instrumentOption).filter(item => item.group === 'Monde');
+  await page.waitForFunction(ids=>ids.includes(document.querySelector('.asset-picker [data-selector]')?.dataset.value),worldOptions.map(item=>String(item.id)));
   checks.categoryClearsSearch = await etfPicker.getByRole('searchbox').count() === 0;
   const worldId = await etfPicker.locator('[data-selector]').getAttribute('data-value');
   checks.categorySelectsMatchingEtf = worldOptions.some(item => String(item.id) === worldId);
@@ -187,7 +188,7 @@ async function testCalculateur(page) {
   await page.evaluate(() => Object.defineProperty(navigator, 'clipboard', {
     configurable: true, value: { writeText: async text => { window.__investmentCopiedText = text; } },
   }));
-  await choose(page.locator("[data-selector].ic-control").first(), "bitcoin");
+  await choose(page.getByRole('group', {name:'Choisir un actif',exact:true}), "bitcoin");
   await page.getByRole('button', { name: /Copier le texte du post/ }).click();
   let conclusionsOk = /Tu aurais gardé ce placement jusqu’au bout/.test(await page.evaluate(() => window.__investmentCopiedText));
   conclusionsOk &&= !(await page.evaluate(() => window.__investmentCopiedText)).includes('Livret A');
@@ -207,7 +208,7 @@ async function testCalculateur(page) {
   ]);
   await monthlyPreview.getByRole('button', { name: 'Fermer l’aperçu' }).click();
 
-  await choose(page.locator("[data-selector].ic-control").first(), 'cac40');
+  await choose(page.getByRole('group', {name:'Choisir un actif',exact:true}), 'cac40');
   await imageButton.click();
   const annualPreview = page.getByRole('dialog', { name: 'Aperçu de l’image du placement' });
   const annualImage = (await annualPreview.locator('img').getAttribute('src'))?.startsWith('data:image/png;base64,');
@@ -217,7 +218,7 @@ async function testCalculateur(page) {
   ]);
   await annualPreview.getByRole('button', { name: 'Fermer l’aperçu' }).click();
 
-  await choose(page.locator("[data-selector].ic-control").first(), "ethereum");
+  await choose(page.getByRole('group', {name:'Choisir un actif',exact:true}), "ethereum");
   await page.locator('.ic-method-note').filter({ hasText: 'Série en USD' }).waitFor();
   const ethereumText = await page.locator("body").innerText();
   const ethereumDca = page.getByRole('button', { name: 'Mensuel (DCA)', exact: true });
@@ -233,7 +234,7 @@ async function testCalculateur(page) {
     && !/Le résultat porte sur l’ensemble des versements/.test(monthlyTweet)
     && !/sans versement supplémentaire/.test(monthlyTweet);
   septemberOk &&= monthlyTweet.includes('septembre 2026');
-  await choose(page.locator('[data-selector].ic-control').first(), 'sp500');
+  await choose(page.getByRole('group', {name:'Choisir un actif',exact:true}), 'sp500');
   const spDca = page.getByRole('button', { name: 'Mensuel (DCA)', exact: true });
   const spDcaOk = await spDca.isEnabled();
   await spDca.click();
@@ -241,7 +242,7 @@ async function testCalculateur(page) {
   const spTweet = await page.evaluate(() => window.__investmentCopiedText);
   septemberOk &&= spTweet.includes('septembre 2026') && !spTweet.includes('Indice théorique dividendes réinvestis, hors frais ; ce n’est pas la performance d’un ETF précis.')
     && (await page.locator('.ic-current-level').innerText()).includes('points');
-  await choose(page.locator('[data-selector].ic-control').first(), 'stoxx600');
+  await choose(page.getByRole('group', {name:'Choisir un actif',exact:true}), 'stoxx600');
   const stoxxDca = page.getByRole('button', { name: 'Mensuel (DCA)', exact: true });
   septemberOk &&= await stoxxDca.isEnabled();
   await stoxxDca.click();
@@ -250,7 +251,7 @@ async function testCalculateur(page) {
   septemberOk &&= stoxxTweet.includes('septembre 2026') && stoxxTweet.includes('sur les sommes versées')
     && (await page.locator('.ic-current-level').innerText()).includes('points')
     && (await page.locator('.ic-method-note').innerText()).includes('dividendes nets');
-  await choose(page.locator('[data-selector].ic-control').first(), 'msciWorld');
+  await choose(page.getByRole('group', {name:'Choisir un actif',exact:true}), 'msciWorld');
   const worldDca = page.getByRole('button', { name: 'Mensuel (DCA)', exact: true });
   septemberOk &&= await worldDca.isEnabled();
   await worldDca.click();
@@ -260,7 +261,7 @@ async function testCalculateur(page) {
     && (await page.locator('.ic-current-level').innerText()).includes('points')
     && (await page.locator('.ic-method-note').innerText()).includes('MSCI World Gross Return');
   for (const [id, name, variant] of [['msciEmerging', 'MSCI Emerging Markets', 'Gross Return'], ['msciWorldSmallCap', 'MSCI World Small Cap', 'Gross Return'], ['msciAcwiImi', 'MSCI ACWI IMI', 'Net Return'], ['msciAcwi', 'MSCI ACWI', 'Net Return'], ['msciWorldExUsa', 'MSCI World ex USA', 'Net Return']]) {
-    await choose(page.locator('[data-selector].ic-control').first(), id);
+    await choose(page.getByRole('group', {name:'Choisir un actif',exact:true}), id);
     const dca = page.getByRole('button', { name: 'Mensuel (DCA)', exact: true });
     septemberOk &&= await dca.isEnabled();
     await dca.click();
@@ -272,7 +273,7 @@ async function testCalculateur(page) {
       && (await page.locator('.ic-method-note').innerText()).includes(`${name} ${variant}`);
   }
   for (const id of ['etfWorldTech','etfAiBigData','etfWorldExUs','etfEmExChina']) {
-    await choose(page.locator('[data-selector].ic-control').first(), id);
+    await choose(page.getByRole('group', {name:'Choisir un actif',exact:true}), id);
     // A recent listing must reject the previous 2020 start rather than invent observations.
     await choose(page.getByRole('group',{name:'Année de départ',exact:true}), '2020');
     septemberOk &&= (await page.getByRole('button',{name:/Copier le texte du post|✓ Copié/}).count()) === 0;
@@ -286,11 +287,11 @@ async function testCalculateur(page) {
     septemberOk &&= post.includes('septembre 2026') && !/NaN|undefined/.test(post);
   }
   await choose(page.getByRole('group',{name:'Année de départ',exact:true}), '2020');
-  await choose(page.locator('[data-selector].ic-control').first(), 'or');
+  await choose(page.getByRole('group', {name:'Choisir un actif',exact:true}), 'or');
   septemberOk &&= (await page.locator('.ic-current-level').innerText()).includes('septembre 2026');
   await page.getByRole('button', { name: /Copier le texte du post|✓ Copié/ }).click();
   septemberOk &&= (await page.evaluate(() => window.__investmentCopiedText)).includes('En septembre 2026');
-  await choose(page.locator("[data-selector].ic-control").first(), "lvmh");
+  await choose(page.getByRole('group', {name:'Choisir un actif',exact:true}), "lvmh");
   await page.waitForTimeout(150);
   const text = await page.locator("body").innerText();
   const badgeOk = !/non vérifiées avant/.test(text);
@@ -298,7 +299,7 @@ async function testCalculateur(page) {
 
   let companiesOk = true;
   for (const id of ['mastercard','adobe','home-depot','etfEuropeBanks','etfEuropeInsurance','berkshire', 'asml', 'costco', 'mcdonalds', 'airliquide', 'schneider', 'hermes', 'loreal', 'intel', 'paypal', 'lvmh', 'nvidia', 'amazon', 'google', 'meta', 'nestle', 'sap', 'visa', 'netflix', 'cocacola', 'euroMoney', 'euroGovShort', 'euroGov13', 'globalBondEur', 'euroInflationBond', 'euroCorporateBond', 'euroHighYieldBond']) {
-    await choose(page.locator('[data-selector].ic-control').first(), id);
+    await choose(page.getByRole('group', {name:'Choisir un actif',exact:true}), id);
     await page.locator('.ic-method-note').filter({ hasText: 'Cours ajustés' }).waitFor();
     await page.getByRole('button', { name: /Copier le texte du post/ }).click();
     const post = await page.evaluate(() => window.__investmentCopiedText);
@@ -389,8 +390,8 @@ async function testPortfolioGenerator(page) {
   await page.setViewportSize({ width: 1280, height: 720 });
   await page.getByRole("button", { name: /Composition manuelle/ }).click();
   await choose(page.locator("#pg-manual-profile"), "crypto_curieux");
-  await page.locator("#pg-manual-search").fill("Fonds euros");
-  await page.locator(".pg-manual-asset-option").filter({ hasText: "Fonds euros (assurance-vie)" }).click();
+  await page.locator(".pg-manual-search").fill("Fonds euros");
+  await page.locator(".pg-manual-available [data-option]").filter({ hasText: "Fonds euros (assurance-vie)" }).click();
   await page.locator(".pg-manual-pct-input").fill("100");
   await page.getByRole("button", { name: "Générer le tweet", exact: true }).click();
   const manualTweet = await page.locator(".pg-tweet-body").innerText();
@@ -401,8 +402,8 @@ async function testPortfolioGenerator(page) {
   const manualStages = { single: manualEditorialOk };
   await page.getByRole('button', { name: /Modifier la composition/ }).click();
   await page.locator('.pg-manual-pct-input').fill('50');
-  await page.locator('#pg-manual-search').fill('Bitcoin');
-  await page.locator('.pg-manual-asset-option').first().click();
+  await page.locator('.pg-manual-search').fill('Bitcoin');
+  await page.locator('.pg-manual-available [data-option]').first().click();
   await page.locator('.pg-manual-pct-input').last().fill('50');
   await page.getByRole('button', { name: 'Générer le tweet', exact: true }).click();
   const cryptoTweet = await page.locator('.pg-tweet-body').innerText();
@@ -410,8 +411,8 @@ async function testPortfolioGenerator(page) {
   manualStages.crypto = manualEditorialOk;
   await page.getByRole('button', { name: /Modifier la composition/ }).click();
   await page.locator('.pg-manual-remove').first().click();
-  await page.locator('#pg-manual-search').fill('Amundi MSCI World UCITS ETF');
-  await page.locator('.pg-manual-asset-option').first().click();
+  await page.locator('.pg-manual-search').fill('Amundi MSCI World UCITS ETF');
+  await page.locator('.pg-manual-available [data-option]').first().click();
   await page.locator('.pg-manual-pct-input').last().fill('50');
   await page.getByRole('button', { name: 'Générer le tweet', exact: true }).click();
   const worldBitcoinTweet = await page.locator('.pg-tweet-body').innerText();
@@ -423,8 +424,8 @@ async function testPortfolioGenerator(page) {
   await page.getByRole('button', { name: /Modifier la composition/ }).click();
   await page.locator('.pg-manual-pct-input').first().fill('10');
   await page.locator('.pg-manual-pct-input').last().fill('30');
-  await page.locator('#pg-manual-search').fill('Fonds euros');
-  await page.locator('.pg-manual-asset-option').filter({ hasText: 'Fonds euros (assurance-vie)' }).click();
+  await page.locator('.pg-manual-search').fill('Fonds euros');
+  await page.locator('.pg-manual-available [data-option]').filter({ hasText: 'Fonds euros (assurance-vie)' }).click();
   await page.locator('.pg-manual-pct-input').last().fill('60');
   await page.getByRole('button', { name: 'Générer le tweet', exact: true }).click();
   const personalTweet = await page.locator('.pg-tweet-body').innerText();
@@ -445,8 +446,8 @@ async function testPortfolioGenerator(page) {
     while (await page.locator('.pg-manual-remove').count()) await page.locator('.pg-manual-remove').first().click();
     for (const [id,pct] of rows) {
       const asset = PORTFOLIO_ASSETS.find(a=>a.id===id);
-      await page.locator('#pg-manual-search').fill(asset.name);
-      await page.locator(`.pg-manual-asset-option[data-asset-id="${id}"]`).click();
+      await page.locator('.pg-manual-search').fill(asset.name);
+      await page.locator(`.pg-manual-available [data-option][data-asset-id="${id}"]`).click();
       await page.locator('.pg-manual-pct-input').last().fill(String(pct));
     }
     await page.getByRole('button', { name: 'Générer le tweet', exact: true }).click();
@@ -461,8 +462,8 @@ async function testPortfolioGenerator(page) {
     await page.getByRole('button', { name: /Modifier la composition/ }).click();
     while (await page.locator('.pg-manual-remove').count()) await page.locator('.pg-manual-remove').first().click();
     const asset = PORTFOLIO_ASSETS.find(a=>a.id===id);
-    await page.locator('#pg-manual-search').fill(asset.name);
-    await page.locator(`.pg-manual-asset-option[data-asset-id="${id}"]`).click();
+    await page.locator('.pg-manual-search').fill(asset.name);
+    await page.locator(`.pg-manual-available [data-option][data-asset-id="${id}"]`).click();
     await page.locator('.pg-manual-pct-input').fill('100');
     await page.getByRole('button', { name: 'Générer le tweet', exact: true }).click();
     const labels = await page.locator('.pg-data-label').allInnerTexts();
@@ -502,6 +503,7 @@ async function testPortfolioDuels(page) {
   await page.getByRole('button', { name: '🎲 Générer un autre duel' }).click();
   valid &&= (await page.locator('.pd-card').count()) === 2;
   await page.getByRole('button', { name: 'Composer A et B' }).click();
+  await page.locator('.pd-editor-side').nth(1).waitFor();
   valid &&= (await page.locator('.pd-editor-side').count()) === 2;
   valid &&= /10\s000 €/.test(await page.locator('#pd-tweet').inputValue());
   await page.getByRole('spinbutton', { name: 'Poids actif 1 du portefeuille A' }).fill('65');
@@ -552,11 +554,12 @@ async function testEtfSheets(page) {
   }));
   const select = page.locator("[data-selector]").first();
   const defaultEtf = await select.getAttribute('data-value');
+  while(await page.getByRole('button',{name:/^Afficher davantage/}).count()) await page.getByRole('button',{name:/^Afficher davantage/}).click();
   const count = await select.locator("[data-option]").count();
-  let badCount = 0;
+  let badCount = count === ETFS.length ? 0 : 1;
   for (let i = 0; i < count; i++) {
     await choose(select, { index: i });
-    await page.waitForTimeout(40);
+    await page.locator('.es-card').waitFor({state:'visible'});
     // textContent vérifie le contenu des rubriques sans la mise en capitales CSS des titres.
     const text = await page.locator(".es-card").textContent();
     if (/undefined|NaN/.test(text)) badCount++;
@@ -1225,6 +1228,7 @@ async function testAssetSelection(page) {
   await picker.getByRole('button', { name: 'Tout afficher', exact: true }).click();
   await picker.getByRole('button', { name: 'Parcourir', exact: true }).click();
   await picker.getByRole('button', { name: 'Émergents', exact: true }).click();
+  await page.waitForFunction(ids=>ids.includes(document.querySelector('.asset-picker [data-selector]')?.dataset.value),ETFS.map(instrumentOption).filter(item=>item.group==='Émergents').map(item=>String(item.id)));
   const emergingId = await picker.locator('[data-selector]').getAttribute('data-value');
   ok &&= ETFS.map(instrumentOption).some(item => item.id === emergingId && item.group === 'Émergents');
   await picker.getByRole('button', { name: 'Rechercher', exact: true }).click();
@@ -1233,8 +1237,10 @@ async function testAssetSelection(page) {
   await picker.getByRole('button', { name: 'Tout afficher', exact: true }).click();
   await choose(picker.locator('[data-selector]'), worldCard.id);
   const choices = picker.locator('[data-selector]');
+  const keyboardId=await choices.locator('[data-option]').nth(1).getAttribute('data-value');
   await choices.locator('[data-option]').nth(1).focus();
   await page.keyboard.press('Enter');
+  await page.waitForFunction(id=>document.querySelector('.asset-picker [data-selector]')?.dataset.value===id,keyboardId);
   ok &&= await choices.locator('[data-option]').nth(1).getAttribute('aria-pressed') === 'true';
   await picker.getByRole('button', { name: 'Éligibles PEA', exact: true }).click();
   const peaValues = await choices.locator('[data-option]').evaluateAll(nodes => nodes.map(node => node.dataset.value));
