@@ -108,6 +108,18 @@ async function testWorkspaceNavigation(page) {
   await page.setViewportSize({ width: 390, height: 844 });
   checks.allAccessibleOnPhone = await page.locator('.workspace-tool-card').evaluateAll(cards => cards.every(card => card.getBoundingClientRect().width > 0 && card.getBoundingClientRect().height >= 44));
   checks.noBrand = await page.locator('.workspace-brand').count() === 0;
+  checks.quickLinks = await page.locator('.home-quick-links a').count() === 4;
+  const today = new Intl.DateTimeFormat('fr-FR', { weekday: 'long', timeZone: 'Europe/Paris' }).format(new Date());
+  checks.today = (await page.locator('.home-day--today .home-day-band h2').textContent()).toLowerCase() === today;
+  const search = page.getByRole('searchbox', { name: 'Rechercher un outil', exact: true });
+  await search.fill('generateur');
+  checks.searchAccents = await page.locator('#home-search-results .workspace-tool-card[href$="/generateur-portefeuilles"]').count() === 1 && await page.locator('.workspace-tool-card').count() === 1;
+  await search.fill('recouvrement');
+  checks.searchDca = await page.locator('#home-search-results .workspace-tool-card[href$="/le-dca-de"]').count() === 1;
+  await search.fill('zzzzzz');
+  checks.emptySearch = await page.locator('.workspace-tool-card').count() === 0 && (await page.getByRole('status').textContent()).includes('0 outil');
+  await page.getByRole('button', { name: 'Effacer', exact: true }).click();
+  checks.resetSearch = await page.locator('.workspace-tool-card').count() === HOME_TOOLS.length;
   await mkdir('test-artifacts/weekly-home', { recursive: true });
   await page.screenshot({ path: 'test-artifacts/weekly-home/mobile.png', fullPage: true });
   await page.setViewportSize({ width: 1280, height: 900 });
