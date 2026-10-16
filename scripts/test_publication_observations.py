@@ -69,6 +69,15 @@ class PublicationTests(unittest.TestCase):
         unchanged,report=refresh(newer,NOW,xml)
         self.assertEqual(unchanged['prices'],newer['prices'])
         self.assertEqual(len(report['errors']),3)
+    def test_fred_xndx_completed_level_and_identity(self):
+        config=next(c for c in configurations() if c['id']=='nasdaq100')
+        body=b'observation_date,NASDAQXNDX\n2026-10-07,36000.25\n2026-10-08,40000\n'
+        r=collect_level(config,NOW,byte_fetch=lambda _:body)
+        self.assertEqual((r['symbol'],r['variant'],r['value'],r['asOf']),('XNDX','TOTAL',36000.25,'2026-10-07'))
+        for bad in [body.replace(b'NASDAQXNDX',b'NASDAQ100'),body.replace(b'36000.25',b'NaN'),body.replace(b'2026-10-07',b'2026-09-01')]:
+            with self.assertRaises(ValueError):collect_level(config,NOW,byte_fetch=lambda _:bad)
+        with self.assertRaises(ValueError):collect_level({**config,'symbol':'NDX'},NOW,byte_fetch=lambda _:body)
+
     def test_completed_session_and_preservation(self):
         self.assertEqual(completed([(dt.date(2026,10,7),100),(dt.date(2026,10,8),200)],NOW),('2026-10-07',100))
         with self.assertRaises(ValueError):completed([(dt.date(2026,9,20),100)],NOW)

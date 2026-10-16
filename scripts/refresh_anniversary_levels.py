@@ -48,6 +48,24 @@ def collect_one(config, now, json_fetch=None, byte_fetch=download):
             'period2':int(dt.datetime.combine(end,dt.time(),UTC).timestamp()),'interval':'1d','events':'splits'})
         body=json_fetch(url); rows, zone=yahoo_chart(body,config,'1d')
         asof,value=completed([(r[0],r[1]) for r in rows],now,zone)
+    elif parser == 'fred':
+        import csv
+        import io
+        if (config.get('seriesId'),config.get('symbol'),config.get('currency'),config.get('variant')) != ('NASDAQXNDX','XNDX','USD','TOTAL'):
+            reject('Wrong FRED index or return convention')
+        url='https://fred.stlouisfed.org/graph/fredgraph.csv?id=NASDAQXNDX&cosd='+start.isoformat()+'&coed='+(end-dt.timedelta(days=1)).isoformat()
+        body=byte_fetch(url).decode('utf-8-sig')
+        reader=csv.DictReader(io.StringIO(body))
+        if reader.fieldnames != ['observation_date','NASDAQXNDX']:reject('Wrong FRED CSV series')
+        rows=[];dates=[]
+        for row in reader:
+            day=dt.date.fromisoformat(row['observation_date']);dates.append(day)
+            if row['NASDAQXNDX'] not in ('','.'):
+                value=number(float(row['NASDAQXNDX']))
+                if value <= 0:reject('Invalid FRED level')
+                if start <= day < end:rows.append((day,value))
+        if dates != sorted(set(dates)):reject('Duplicate or unordered FRED dates')
+        asof,value=completed(rows,now,'America/New_York')
     elif parser == 'msci':
         url='https://app2.msci.com/products/service/index/indexmaster/getLevelDataForGraph?'+urlencode({
             'currency_symbol':config['currency'],'index_variant':config['variant'],'start_date':start.strftime('%Y%m%d'),

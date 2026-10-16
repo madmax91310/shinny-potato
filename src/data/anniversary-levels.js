@@ -10,6 +10,7 @@ export function resolveAnniversaryLevel(assetId, override, now = new Date(), lev
   }
   const record = levels[assetId]
   if (!record || !Number.isFinite(record.value) || record.value <= 0) return null
+  if (assetId === 'nasdaq100' && (record.symbol !== 'XNDX' || record.variant !== 'TOTAL' || record.currency !== 'USD')) return null
   const monthly = /^\d{4}-\d{2}$/.test(record.asOf)
   if (!monthly && !/^\d{4}-\d{2}-\d{2}$/.test(record.asOf)) return null
   const date = new Date(`${record.asOf}${monthly ? '-01' : ''}T00:00:00Z`)

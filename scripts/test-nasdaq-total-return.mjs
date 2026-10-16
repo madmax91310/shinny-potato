@@ -18,3 +18,11 @@ for(const [year,expected] of INDEX_COMPARISON_RETURN_ADDITIONS['nasdaq-pea']['20
 const result=derive({assetId:'nasdaq100',amountRaw:'100',startYear:2020,startMonth:1,mode:'lump',overridePriceRaw:''})
 assert(Math.abs(result.result.finalValue-100*record.points.at(-1)[1]/points['2020-01'])<1e-8)
 console.log('XNDX: full monthly series, independent annual returns, text convention and simulation verified.')
+const { resolveAnniversaryLevel }=await import('../src/data/anniversary-levels.js')
+const daily=JSON.parse(readFileSync('src/data/anniversary-levels.json')).nasdaq100
+assert.equal(daily.symbol,'XNDX')
+assert.equal(daily.variant,'TOTAL')
+const now=new Date(`${daily.asOf}T12:00:00Z`)
+assert.equal(resolveAnniversaryLevel('nasdaq100','',now).value,daily.value)
+assert.equal(resolveAnniversaryLevel('nasdaq100','',now,{nasdaq100:{...daily,symbol:'^NDX',variant:null}}),null)
+console.log('Nasdaq daily observation matches XNDX; legacy NDX observations rejected.')
