@@ -7,6 +7,7 @@ import { ETF_MONTHLY_HISTORIES } from '../src/data/etf-monthly-history.js';
 import { PRESENTATION_ETF_EXPANSION } from '../src/data/presentation-etf-expansion.js';
 import { PRESENTATION_ETF_ADDITIONS } from '../src/data/presentation-etf-additions.js';
 import { AUTOMATED_ETF } from '../src/data/automated-etf.js';
+import { replicationContradictsLocation } from '../src/data/automated-characteristics.js';
 // Vérifie que les outils consomment les registres communs par ISIN.
 import { EXPOSURE_ADDITIONS } from '../src/data/exposure-additions.js';
 import { readFileSync } from 'node:fs';
@@ -82,9 +83,7 @@ for (const [isin, facts] of Object.entries(INSTRUMENT_FACTS_BY_ISIN)) {
     console.error(`Caractéristiques : contradiction de distribution pour ${isin}`);
     errors++;
   }
-  if (facts.location.includes('intégrale') && !facts.replicationMethod.includes('Full') ||
-      facts.location.includes('optimisée') && !facts.replicationMethod.includes('sampling') ||
-      facts.location.includes('échantillonnage') && !/sampling|Sampled/i.test(facts.replicationMethod)) {
+  if (replicationContradictsLocation(facts.location, facts.replicationMethod)) {
     unresolved.push(isin);
   }
 }

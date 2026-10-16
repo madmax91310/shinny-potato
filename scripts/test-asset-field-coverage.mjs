@@ -1,7 +1,15 @@
 import {AUTOMATED_ETF} from '../src/data/automated-etf.js';
 import assert from 'node:assert/strict';
 import {fieldState,buildAssetFieldReport} from './report-asset-fields.mjs';
-import {applyAutomatedCharacteristics} from '../src/data/automated-characteristics.js';
+import {applyAutomatedCharacteristics,replicationContradictsLocation} from '../src/data/automated-characteristics.js';
+for (const location of ['France, réplication physique intégrale','France, réplication physique avec échantillonnage possible']) {
+ for (const method of ['Direct(Physical)','Direct Replication (physically)']) assert.equal(replicationContradictsLocation(location,method),false);
+ assert.equal(replicationContradictsLocation(location,'Synthetic (swap)'),true);
+}
+assert.equal(replicationContradictsLocation('réplication physique intégrale','Physical (Sampling)'),true);
+assert.equal(replicationContradictsLocation('réplication physique optimisée','Physical (Full replication)'),true);
+assert.equal(replicationContradictsLocation('réplication synthétique (swap)','Direct(Physical)'),true);
+assert.equal(replicationContradictsLocation("adossé à de l'or physique (pas de réplication synthétique)",'Physical Replication'),false);
 assert.equal(fieldState({checkedAt:'2026-10-16',asOf:'2026-01-01'},'2026-10-16'),'publication-old');
 assert.equal(fieldState({checkedAt:'2026-10-01',asOf:'2026-09-30'},'2026-10-16'),'check-overdue');
 assert.equal(fieldState({checkedAt:'2026-10-17'},'2026-10-16'),'invalid-date');

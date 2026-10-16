@@ -22,3 +22,14 @@ export function applyAutomatedCharacteristics(previous,record) {
  }
  return next;
 }
+// A generic physical statement does not contradict either full replication or
+// sampling in a separately sourced description. Only compare published detail.
+export function replicationContradictsLocation(location, method) {
+ location = location.replace(/\(pas[^)]*\)/gi, '');
+ const physical = /physical|physically|physique/i.test(method);
+ const synthetic = /synthetic|swap|indirect/i.test(method);
+ if (/physique/i.test(location) && synthetic || /synthétique|swap/i.test(location) && physical && !synthetic) return true;
+ const full = /full|replicated/i.test(method);
+ const sampled = /sampling|sampled|optimised|optimized/i.test(method);
+ return /intégrale/i.test(location) && sampled || /optimisée|échantillonnage/i.test(location) && full;
+}
