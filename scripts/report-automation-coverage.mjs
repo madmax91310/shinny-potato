@@ -1,3 +1,4 @@
+import { INVESTORS } from '../src/data/investor-roster.js';
 import nonBondSources from './non-bond-expansion-sources.json' with {type:'json'};
 import nonBondQualified from './non-bond-qualified-sources.json' with { type:'json' };
 import { AUTOMATED_ETF } from '../src/data/automated-etf.js';
@@ -34,7 +35,7 @@ const rows=[
  `| Pouvoir d’achat | Prix généraux, alimentation, énergie, IRL et SMIC INSEE ; périodes et qualité publiées | Vérification quotidienne |`,
  `| Anniversaires | ${Object.keys({...read('src/data/anniversary-levels.json'),...read('src/data/non-bond-levels.json')}).length} niveaux datés ; saisie manuelle facultative | Quotidienne ; or : dernière moyenne mensuelle |`,
  '| Inflation | INSEE, prolongement de la série mensuelle 2026+ | 1 et 16 du mois |',
- '| Portefeuilles d’investisseurs | 18 déclarants SEC 13F | Vérification quotidienne ; publication trimestrielle par les déclarants |',
+ `| Portefeuilles d’investisseurs | ${INVESTORS.length} profils SEC 13F | Vérification quotidienne ; publication trimestrielle par les déclarants |`,
  '| Suivi de fraîcheur | Rapport et rappels GitHub | Hebdomadaire ; ces rappels ne collectent pas les données manuelles |','',
  'Les mois incomplets sont exclus. Les cours ajustés, cours bruts, rendements NET/GROSS et devises restent distincts. Les clôtures Yahoo sont recoupées entre granularités ou fenêtres du même fournisseur ; ce ne sont pas deux fournisseurs indépendants. L’or reste une moyenne mensuelle Banque mondiale. Pour SI=F, Yahoo omet des bougies mensuelles : ces mois sont recoupés avec une seconde requête quotidienne de fin de mois. Les niveaux STOXX viennent de son tableau quotidien officiel.','',
  '## Disponibilité à fiabiliser','',

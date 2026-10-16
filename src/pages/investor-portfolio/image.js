@@ -1,5 +1,5 @@
 import { ATTRIBUTION, dateFR, holdingName, percentage } from './data.js'
-import { loadArtImage, loadEditorialFont } from '../tweet-midi/anniversaryArt.js'
+import { loadArtImage, loadEditorialFont } from '../../lib/art-resources.js'
 import { investorPortrait } from './portrait.js'
 
 const W = 1600, H = 1100, INK = '#f4f5ff', CYAN = '#9ee8ff', GOLD = '#ecd8b0'

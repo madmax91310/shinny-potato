@@ -1,3 +1,4 @@
+import { INVESTORS } from './data/investor-roster.js'
 // Registre central des outils : source unique pour le dashboard, la nav et les routes.
 // status: 'disponible' une fois l'outil migré et branché, 'bientot' tant qu'il affiche un écran d'attente.
 // Les couleurs historiques servent aux contenus exportés ; l’accueil emploie des icônes sobres.
@@ -23,7 +24,7 @@ export const TOOLS = [
   {
     to: '/portefeuilles-investisseurs', navLabel: 'Investisseurs', title: "Portefeuille d’investisseur",
     publicationDay: 'Dimanche midi', icon: '👤', accent: '#d5ad65',
-    description: 'Positions 13F de fonds connus : tweet, répartition et export PNG actualisés depuis Tracefour.', status: 'disponible',
+    description: `${INVESTORS.length} profils 13F : tweet, répartition et export PNG issus des déclarations SEC, via FolioFact et Tracefour.`, status: 'disponible',
   },
   {
     to: '/france-100-menages', navLabel: '100 ménages', title: 'La France en 100 ménages',
@@ -103,7 +104,7 @@ export const TOOLS = [
     to: '/il-y-a-x-ans', navLabel: 'Il y a X ans', title: 'Il y a X ans',
     format: 'anniversaire', bundle: '/tweet-midi/formats/anniversaire', publicationDay: 'Publication ponctuelle',
     icon: '🕐', accent: '#a78bfa',
-    description: 'Compare un prix historique au niveau actuel que tu renseignes.', status: 'disponible',
+    description: 'Compare un prix historique au dernier niveau automatique disponible, avec saisie manuelle facultative.', status: 'disponible',
   },
   {
     to: '/performance-depuis', navLabel: 'Performance depuis', title: 'Performance depuis',
@@ -178,7 +179,7 @@ const TOOL_SUMMARIES = {
   '/portefeuilles-investisseurs': 'Les positions déclarées de grands investisseurs.',
   '/fiche-lexique': 'Un terme financier expliqué avec un texte prêt à publier.',
   '/comparatif-etf': 'Compare les expositions, frais et performances de deux ETF.',
-  '/il-y-a-x-ans': 'Compare un prix historique au niveau actuel que tu renseignes.',
+  '/il-y-a-x-ans': 'Compare un prix historique au dernier niveau automatique disponible, avec saisie manuelle facultative.',
   '/performance-depuis': 'Les performances annuelles d’un actif sur la période choisie.',
   '/pouvoir-achat': 'Mesure l’évolution du pouvoir d’achat sur la période choisie.',
   '/dilemme': 'Deux choix de placement pour ouvrir la discussion.',

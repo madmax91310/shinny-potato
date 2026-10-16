@@ -1,3 +1,4 @@
+import * as tweetBank from '../src/pages/tweet-bank/data.js'
 import { compactHistory } from './compact-history.mjs'
 import { readFileSync } from 'node:fs'
 import { createHash } from 'node:crypto'
@@ -78,6 +79,8 @@ export function projectToolData() {
   }).join('\n')
   // These tools consume finished facts / annual series. Do not ship the raw
   // monthly histories and issuer parsers used to derive them at build time.
+  const bankId = 'virtual:tool-data:tweet-bank'
+  modules.set(bankId, compactLiteral(Object.fromEntries(Object.entries(tweetBank).filter(([,value]) => typeof value !== 'function'))))
   const factsId = 'virtual:tool-data:market-facts'
   modules.set(factsId, compactLiteral(marketFacts))
   const duelId = 'virtual:tool-data:duel-catalog'
@@ -107,6 +110,7 @@ export function projectToolData() {
     },
     transform(code, id) {
       const path = id.replaceAll('\\', '/').split('?')[0]
+      if (path.endsWith('/src/pages/tweet-bank/data.js')) return { code: `import data from '${bankId}'; export const {TWEETS,MONTHS,CATEGORIES,FORMATS,GOLD_CATEGORIES,COOLDOWN_DAYS}=data; export function getTweet(id) { return TWEETS.find(t => t.id === id); }`, map:null }
       if (path.endsWith('/src/pages/market-facts/data.js')) return { code: `import data from '${factsId}'; export const {FACTS,FAMILIES}=data;`, map:null }
       if (path.endsWith('/src/data/duel-assets.js')) return { code: `import data from '${duelId}'; export const {CATALOG,EUR_USD,FX_SOURCE,ROLES}=data; export const ITEM_BY_ID=new Map(CATALOG.map(item=>[item.id,item]));\n${euroReturnSource}`, map:null }
       if (path.endsWith('/src/data/market-history.js')) return { code: historyCode, map: null }

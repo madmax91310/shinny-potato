@@ -1,3 +1,5 @@
+import { INVESTORS } from '../src/data/investor-roster.js'
+import { TOOLS } from '../src/tools.js'
 import assert from 'node:assert/strict'
 import { projectToolData } from './project-tool-data.mjs'
 import * as facts from '../src/pages/market-facts/data.js'
@@ -58,3 +60,5 @@ for(const definition of DUELS) {
   }
 }
 console.log(`Roadmap: lossless fact/catalog projections, FX parity, ${Object.values(links).flat().length} exact-support destinations, ${DUELS.length} duel texts and weighting/China/history edge cases passed.`)
+
+assert(TOOLS.find(tool => tool.to === '/portefeuilles-investisseurs').description.includes(`${INVESTORS.length} profils 13F`))
