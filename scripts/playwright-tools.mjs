@@ -187,7 +187,7 @@ async function testCalculateur(page) {
   await page.evaluate(() => Object.defineProperty(navigator, 'clipboard', {
     configurable: true, value: { writeText: async text => { window.__investmentCopiedText = text; } },
   }));
-  await choose(page.locator("[data-selector].ic-control").first(), "bitcoin");
+  await choose(page.getByRole('group', {name:'Choisir un actif',exact:true}), "bitcoin");
   await page.getByRole('button', { name: /Copier le texte du post/ }).click();
   let conclusionsOk = /Tu aurais gardé ce placement jusqu’au bout/.test(await page.evaluate(() => window.__investmentCopiedText));
   conclusionsOk &&= !(await page.evaluate(() => window.__investmentCopiedText)).includes('Livret A');
@@ -207,7 +207,7 @@ async function testCalculateur(page) {
   ]);
   await monthlyPreview.getByRole('button', { name: 'Fermer l’aperçu' }).click();
 
-  await choose(page.locator("[data-selector].ic-control").first(), 'cac40');
+  await choose(page.getByRole('group', {name:'Choisir un actif',exact:true}), 'cac40');
   await imageButton.click();
   const annualPreview = page.getByRole('dialog', { name: 'Aperçu de l’image du placement' });
   const annualImage = (await annualPreview.locator('img').getAttribute('src'))?.startsWith('data:image/png;base64,');
@@ -217,7 +217,7 @@ async function testCalculateur(page) {
   ]);
   await annualPreview.getByRole('button', { name: 'Fermer l’aperçu' }).click();
 
-  await choose(page.locator("[data-selector].ic-control").first(), "ethereum");
+  await choose(page.getByRole('group', {name:'Choisir un actif',exact:true}), "ethereum");
   await page.locator('.ic-method-note').filter({ hasText: 'Série en USD' }).waitFor();
   const ethereumText = await page.locator("body").innerText();
   const ethereumDca = page.getByRole('button', { name: 'Mensuel (DCA)', exact: true });
@@ -233,7 +233,7 @@ async function testCalculateur(page) {
     && !/Le résultat porte sur l’ensemble des versements/.test(monthlyTweet)
     && !/sans versement supplémentaire/.test(monthlyTweet);
   septemberOk &&= monthlyTweet.includes('septembre 2026');
-  await choose(page.locator('[data-selector].ic-control').first(), 'sp500');
+  await choose(page.getByRole('group', {name:'Choisir un actif',exact:true}), 'sp500');
   const spDca = page.getByRole('button', { name: 'Mensuel (DCA)', exact: true });
   const spDcaOk = await spDca.isEnabled();
   await spDca.click();
@@ -241,7 +241,7 @@ async function testCalculateur(page) {
   const spTweet = await page.evaluate(() => window.__investmentCopiedText);
   septemberOk &&= spTweet.includes('septembre 2026') && !spTweet.includes('Indice théorique dividendes réinvestis, hors frais ; ce n’est pas la performance d’un ETF précis.')
     && (await page.locator('.ic-current-level').innerText()).includes('points');
-  await choose(page.locator('[data-selector].ic-control').first(), 'stoxx600');
+  await choose(page.getByRole('group', {name:'Choisir un actif',exact:true}), 'stoxx600');
   const stoxxDca = page.getByRole('button', { name: 'Mensuel (DCA)', exact: true });
   septemberOk &&= await stoxxDca.isEnabled();
   await stoxxDca.click();
@@ -250,7 +250,7 @@ async function testCalculateur(page) {
   septemberOk &&= stoxxTweet.includes('septembre 2026') && stoxxTweet.includes('sur les sommes versées')
     && (await page.locator('.ic-current-level').innerText()).includes('points')
     && (await page.locator('.ic-method-note').innerText()).includes('dividendes nets');
-  await choose(page.locator('[data-selector].ic-control').first(), 'msciWorld');
+  await choose(page.getByRole('group', {name:'Choisir un actif',exact:true}), 'msciWorld');
   const worldDca = page.getByRole('button', { name: 'Mensuel (DCA)', exact: true });
   septemberOk &&= await worldDca.isEnabled();
   await worldDca.click();
@@ -260,7 +260,7 @@ async function testCalculateur(page) {
     && (await page.locator('.ic-current-level').innerText()).includes('points')
     && (await page.locator('.ic-method-note').innerText()).includes('MSCI World Gross Return');
   for (const [id, name, variant] of [['msciEmerging', 'MSCI Emerging Markets', 'Gross Return'], ['msciWorldSmallCap', 'MSCI World Small Cap', 'Gross Return'], ['msciAcwiImi', 'MSCI ACWI IMI', 'Net Return'], ['msciAcwi', 'MSCI ACWI', 'Net Return'], ['msciWorldExUsa', 'MSCI World ex USA', 'Net Return']]) {
-    await choose(page.locator('[data-selector].ic-control').first(), id);
+    await choose(page.getByRole('group', {name:'Choisir un actif',exact:true}), id);
     const dca = page.getByRole('button', { name: 'Mensuel (DCA)', exact: true });
     septemberOk &&= await dca.isEnabled();
     await dca.click();
@@ -272,7 +272,7 @@ async function testCalculateur(page) {
       && (await page.locator('.ic-method-note').innerText()).includes(`${name} ${variant}`);
   }
   for (const id of ['etfWorldTech','etfAiBigData','etfWorldExUs','etfEmExChina']) {
-    await choose(page.locator('[data-selector].ic-control').first(), id);
+    await choose(page.getByRole('group', {name:'Choisir un actif',exact:true}), id);
     // A recent listing must reject the previous 2020 start rather than invent observations.
     await choose(page.getByRole('group',{name:'Année de départ',exact:true}), '2020');
     septemberOk &&= (await page.getByRole('button',{name:/Copier le texte du post|✓ Copié/}).count()) === 0;
@@ -286,11 +286,11 @@ async function testCalculateur(page) {
     septemberOk &&= post.includes('septembre 2026') && !/NaN|undefined/.test(post);
   }
   await choose(page.getByRole('group',{name:'Année de départ',exact:true}), '2020');
-  await choose(page.locator('[data-selector].ic-control').first(), 'or');
+  await choose(page.getByRole('group', {name:'Choisir un actif',exact:true}), 'or');
   septemberOk &&= (await page.locator('.ic-current-level').innerText()).includes('septembre 2026');
   await page.getByRole('button', { name: /Copier le texte du post|✓ Copié/ }).click();
   septemberOk &&= (await page.evaluate(() => window.__investmentCopiedText)).includes('En septembre 2026');
-  await choose(page.locator("[data-selector].ic-control").first(), "lvmh");
+  await choose(page.getByRole('group', {name:'Choisir un actif',exact:true}), "lvmh");
   await page.waitForTimeout(150);
   const text = await page.locator("body").innerText();
   const badgeOk = !/non vérifiées avant/.test(text);
@@ -298,7 +298,7 @@ async function testCalculateur(page) {
 
   let companiesOk = true;
   for (const id of ['mastercard','adobe','home-depot','etfEuropeBanks','etfEuropeInsurance','berkshire', 'asml', 'costco', 'mcdonalds', 'airliquide', 'schneider', 'hermes', 'loreal', 'intel', 'paypal', 'lvmh', 'nvidia', 'amazon', 'google', 'meta', 'nestle', 'sap', 'visa', 'netflix', 'cocacola', 'euroMoney', 'euroGovShort', 'euroGov13', 'globalBondEur', 'euroInflationBond', 'euroCorporateBond', 'euroHighYieldBond']) {
-    await choose(page.locator('[data-selector].ic-control').first(), id);
+    await choose(page.getByRole('group', {name:'Choisir un actif',exact:true}), id);
     await page.locator('.ic-method-note').filter({ hasText: 'Cours ajustés' }).waitFor();
     await page.getByRole('button', { name: /Copier le texte du post/ }).click();
     const post = await page.evaluate(() => window.__investmentCopiedText);
@@ -552,11 +552,12 @@ async function testEtfSheets(page) {
   }));
   const select = page.locator("[data-selector]").first();
   const defaultEtf = await select.getAttribute('data-value');
+  while(await page.getByRole('button',{name:/^Afficher davantage/}).count()) await page.getByRole('button',{name:/^Afficher davantage/}).click();
   const count = await select.locator("[data-option]").count();
-  let badCount = 0;
+  let badCount = count === ETFS.length ? 0 : 1;
   for (let i = 0; i < count; i++) {
     await choose(select, { index: i });
-    await page.waitForTimeout(40);
+    await page.locator('.es-card').waitFor({state:'visible'});
     // textContent vérifie le contenu des rubriques sans la mise en capitales CSS des titres.
     const text = await page.locator(".es-card").textContent();
     if (/undefined|NaN/.test(text)) badCount++;
