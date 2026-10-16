@@ -30,13 +30,14 @@ try {
  await page.locator('#secondary-select [data-option][data-value="2016"]').click()
  await page.getByRole('button',{name:'🔄 Générer',exact:true}).click()
  let previousImage
- for(const [currency,label,total] of [['USD','Dollars (USD)','+231,7 %'],['EUR','Euros (EUR)','+207,4 %']]) {
+ for(const [currency,label,total] of [['USD','Dollars (USD)','+231,7 %'],['EUR','Euros (EUR)','+206,8 %']]) {
   await page.getByRole('button',{name:label,exact:true}).click()
   assert.equal(await page.getByRole('button',{name:label,exact:true}).getAttribute('aria-pressed'),'true')
   const tweet=await page.locator('pre').innerText()
   assert.match(tweet,/de début 2016 à fin 2025/)
   assert(tweet.includes(`Gross Return · ${currency} · dividendes bruts réinvestis`),tweet)
   assert(tweet.includes(`Sur toute la période : ${total}`),tweet)
+  if(currency==='EUR'){assert.match(tweet,/série officielle/);assert.match(tweet,/2025 : \+7,2 %/);assert.doesNotMatch(tweet,/conversion BCE/)}
   await page.evaluate(()=>{window.__currencyPaint=[];const original=CanvasRenderingContext2D.prototype.fillText;CanvasRenderingContext2D.prototype.fillText=function(text,...args){window.__currencyPaint.push(String(text));return original.call(this,text,...args)}})
   await page.getByRole('tab',{name:'Image',exact:true}).click()
   await page.locator('.publication-image-stage img').waitFor({state:'visible',timeout:60000})
