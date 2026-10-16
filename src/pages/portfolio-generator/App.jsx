@@ -1,4 +1,6 @@
 import GeneratorControls from './GeneratorControls'
+import AllWeatherPanel from './AllWeatherPanel'
+import { buildAllWeatherPortfolio } from './allWeather.js'
 import PortfolioHistoryLinks from '../../design-system/PortfolioHistoryLinks.jsx'
 import { lazy, Suspense } from 'react'
 const PortfolioExposure = lazy(() => import('../../design-system/PortfolioExposure.jsx'))
@@ -134,7 +136,7 @@ function RiskGauge({ riskId, riskLabel, profileName, worst, bound }) {
 // Pas de gabarit RISK_ORDER pour une composition manuelle (aucun palier imposé) : affiche la pire
 // année réellement calculée, plus le palier le plus proche pour comparaison informative uniquement
 // (cf. closestRiskId/closestBound sur le portefeuille manuel, engine.js).
-function ManualRiskInfo({ worst, closestRiskLabel, closestBound }) {
+function ManualRiskInfo({ worst, closestRiskLabel, closestBound, preset = false }) {
   return (
     <div className="pg-riskgauge">
       <div className="pg-riskgauge-row">
@@ -144,7 +146,7 @@ function ManualRiskInfo({ worst, closestRiskLabel, closestBound }) {
         </span>
       </div>
       <p className="pg-riskgauge-detail">
-        Composition libre. La pire année civile n’est pas une perte maximale ; une baisse en cours d’année peut être plus forte.
+        {preset ? 'Allocation fixe.' : 'Composition libre.'} La pire année civile n’est pas une perte maximale ; une baisse en cours d’année peut être plus forte.
         {closestBound && (
           <span className="pg-riskgauge-bound">
             {' '}
@@ -264,7 +266,7 @@ function ManualComposer({
                   type="number"
                   min="0"
                   max="100"
-                  step="1"
+                  step="0.1"
                   className="pg-manual-pct-input"
                   value={s.pct}
                   onChange={(e) => onPctChange(s.id, Math.max(0, Math.min(100, Number(e.target.value) || 0)))}
@@ -327,7 +329,7 @@ function AllocationList({ selection }) {
               ))}
             </span>
             <span className="pg-alloc-cat">{CATEGORIES[s.cat].label}</span>
-            <span className="pg-alloc-pct">{s.pct}%</span>
+            <span className="pg-alloc-pct">{s.pct.toLocaleString('fr-FR')}%</span>
             <div className="pg-alloc-bar-track">
               <div className="pg-alloc-bar-fill" style={{ width: `${s.pct}%`, background: CATEGORIES[s.cat].color }} />
             </div>
@@ -431,6 +433,7 @@ export default function App() {
   const [manualSelection, setManualSelection] = useState([])
   const [manualSearch, setManualSearch] = useState('')
   const [manualEditing, setManualEditing] = useState(true)
+  const [allWeatherPreset, setAllWeatherPreset] = useState('euro')
 
   const current = history[history.length - 1]
   const [background, setBackground] = useState(null)
@@ -489,6 +492,26 @@ export default function App() {
     setLocked([])
     setGenerationError('')
     if (next === 'manual') setManualEditing(true)
+    if (next === 'all-weather') {
+      setHistory(h => [...h, buildAllWeatherPortfolio(allWeatherPreset, h)])
+      setCopyState('idle')
+    }
+  }, [allWeatherPreset])
+
+  const handleAllWeatherSelect = useCallback((presetId) => {
+    setAllWeatherPreset(presetId)
+    setHistory(h => [...h, buildAllWeatherPortfolio(presetId, h)])
+    setCopyState('idle')
+  }, [])
+
+  const handleAllWeatherEdit = useCallback((preset) => {
+    setManualSelection(preset.assets.map(({ id, pct }) => ({ id, pct })))
+    setManualProfile('generaliste')
+    setManualSearch('')
+    setManualEditing(true)
+    setMode('manual')
+    setLocked([])
+    setCopyState('idle')
   }, [])
 
   const handleManualAdd = useCallback((id) => {
@@ -570,6 +593,10 @@ export default function App() {
             >
               ✍️ Composition manuelle
             </button>
+            <button type="button" className={`pg-mode-btn${mode === 'all-weather' ? ' active' : ''}`}
+              aria-pressed={mode === 'all-weather'} onClick={() => handleModeChange('all-weather')}>
+              🌦️ All Weather
+            </button>
           </div>
 
           {mode === 'auto' ? (
@@ -580,6 +607,8 @@ export default function App() {
                 🔄 Générer un nouveau portefeuille
               </Button>
             </>
+          ) : mode === 'all-weather' ? (
+            <AllWeatherPanel selected={allWeatherPreset} onSelect={handleAllWeatherSelect} onEdit={handleAllWeatherEdit} />
           ) : manualEditing ? (
             <ManualComposer
               profile={manualProfile}
@@ -615,8 +644,8 @@ export default function App() {
           )}
 
           <div className="pg-panel">
-            {current.mode === 'manual' ? (
-              <ManualRiskInfo worst={current.worst} closestRiskLabel={current.closestRiskLabel} closestBound={current.closestBound} />
+            {current.mode !== 'auto' ? (
+              <ManualRiskInfo worst={current.worst} closestRiskLabel={current.closestRiskLabel} closestBound={current.closestBound} preset={current.mode === 'preset'} />
             ) : (
               <RiskGauge
                 riskId={current.riskId}

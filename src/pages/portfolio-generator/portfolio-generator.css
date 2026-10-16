@@ -238,9 +238,10 @@
 .pg-fine-print { font-size: 0.78rem; line-height: 1.55; color: var(--ink-faint); margin: 0; }
 
 /* ── Mode Auto / Composition manuelle ────────────────────────────────────── */
-.pg-mode-toggle { display: flex; gap: 8px; }
+.pg-mode-toggle { display: flex; flex-wrap: wrap; gap: 8px; }
 .pg-mode-btn {
   flex: 1;
+  min-width: 110px;
   background: var(--surface-hover);
   border: 1px solid var(--border);
   color: var(--ink-dim);
