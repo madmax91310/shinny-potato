@@ -1,5 +1,5 @@
 import { COLORS } from './data.js'
-import { annualColumns, basisLabel, formatMonth, formatPercent } from './engine.js'
+import { annualColumns, basisLabel, formatMonth, formatPercent, rebalanceLabel } from './engine.js'
 
 const INK = '#f5eddb', MUTED = '#acc0c9', GOLD = '#e7c879'
 function text(ctx, value, x, y, size, color = INK, align = 'left', serif = false) {
@@ -49,7 +49,12 @@ export function rankingImageLayout(assetCount, columnCount, regularity = false) 
 }
 export function renderRankingImage(result, _title, regularity) {
   const columns = annualColumns(result)
+  const notes = [
+    ...(result.assets.some(a => a.fxConverted) ? ['Conversion BCE de fin de mois · sans couverture de change'] : []),
+    ...result.assets.filter(a => a.portfolio).map(a => `${a.shortLabel} : ${a.portfolio.lines.map(l => `${l.pct} % ${l.asset.shortLabel ?? l.asset.label}`).join(' + ')} · ${rebalanceLabel(a.portfolio.rebalance)}`),
+  ]
   const l = rankingImageLayout(result.assets.length, columns.length, Boolean(regularity))
+  l.height += notes.length * 30 + (columns.some(c => c.partial) && notes.length ? 30 : 0)
   const { width, height, margin, labelWidth, cellWidth, rowHeight, tableY, headerHeight, tableBottom } = l
   const canvas = document.createElement('canvas'); canvas.width = width; canvas.height = height
   const ctx = canvas.getContext('2d')
@@ -99,8 +104,10 @@ export function renderRankingImage(result, _title, regularity) {
     const partials = columns.filter(c => c.partial).map(c => `${c.label} : ${c.detail}`).join(' · ')
     fit(ctx, `* Période partielle · clôtures ${partials}`, width / 2, footerY + 32, 18, width - 96, MUTED, 'center')
   }
+  const notesY = tableBottom + 80 + (columns.some(c => c.partial) ? 30 : 0)
+  notes.forEach((note, i) => fit(ctx, note, width / 2, notesY + i * 30, 18, width - 96, MUTED, 'center'))
   if (regularity) {
-    footerY += 90
+    footerY += 90 + notes.length * 30
     fit(ctx, `Première place sur ${regularity.count} périodes glissantes de ${regularity.months / 12} ans · égalités partagées`, width / 2, footerY, 21, width - 96, MUTED, 'center')
     const w = (width - margin * 2) / regularity.stats.length
     regularity.stats.forEach((s, i) => {

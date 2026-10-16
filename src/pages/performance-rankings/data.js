@@ -1,7 +1,16 @@
 import { ASSETS } from '../../data/market-history.js'
+import LONG from '../../data/ranking-histories.json' with { type: 'json' }
+import ANNUAL from '../../data/ranking-annual.json' with { type: 'json' }
+import INDEX_ANNUAL from '../../data/ranking-index-annual.json' with { type: 'json' }
+import FTSE from '../../data/ranking-ftse.json' with { type: 'json' }
 
-// Only references to the shared, automatically refreshed histories. No prices here.
+// References to shared histories and validated, automatically refreshed extensions. No hand-entered prices.
 export const CATEGORIES = [
+  { id: 'world-acwi-net', label: 'World et ACWI · vingt ans · indices nets', ids: ['world-net', 'msciAcwi'], currency: 'USD' },
+  { id: 'world-acwi-imi', label: 'World, ACWI et ACWI IMI · indices nets', ids: ['world-net', 'msciAcwi', 'msciAcwiImi'], currency: 'USD' },
+  { id: 'regions-indices', label: 'Grandes régions · indices nets', ids: ['world-net', 'msciUsa', 'msciEurope', 'japan-net', 'emerging-net'], currency: 'USD' },
+  { id: 'global-indices', label: 'World, ACWI, All-World · indices bruts', ids: ['msciWorld', 'acwi-gross', 'ftseAllWorld'], currency: 'USD' },
+  { id: 'multi-asset', label: 'Actions, or, obligations et Bitcoin', ids: ['world-net', 'gold-invesco-usd', 'euroGov13', 'bitcoin'], currency: 'EUR' },
   { id: 'world', label: 'Marchés mondiaux', ids: ['etfIE00B4L5Y983', 'etfIE00B6R52259', 'etfVwce', 'etfImie'] },
   { id: 'europe', label: 'Marchés européens', ids: ['etfFR0011550193', 'etfIE00B53L3W79', 'etfFR0013412038'] },
   { id: 'factors', label: 'Facteurs mondiaux', ids: ['etf_momentum', 'etf_quality', 'etf_value', 'etfMinVol'] },
@@ -44,16 +53,29 @@ export function comparisonBasis(id, asset) {
   if (id === 'cac40') return 'price-index'
   if (id === 'silver') return 'futures-price'
   if (['bitcoin', 'ethereum'].includes(id)) return 'spot-close'
-  return INDEX_BASIS[id] ?? (asset.priceMethod === 'adjusted' ? 'adjusted' : null)
+  return INDEX_BASIS[id] ?? (asset.priceUnit === 'points' && asset.variant ? (asset.variant === 'NETR' ? 'index-net' : asset.variant === 'GRTR' ? 'index-gross' : null) : asset.priceMethod === 'adjusted' ? 'adjusted' : null)
 }
 export function buildRankingAssets(histories) {
   return Object.fromEntries(Object.entries(histories).flatMap(([id, a]) => {
     const basis = comparisonBasis(id, a)
     if (!basis || !a.points?.length) return []
+    // Frozen listing prices cannot represent a genuine cross-asset return.
+    if (a.points.some((p, i) => i >= 2 && p.price === a.points[i - 1].price && p.price === a.points[i - 2].price)) return []
     return [[id, { ...a, id, basis, shortLabel: SHORT[id] ?? a.label.replace(/^Indice /, ''),
       group: GROUPS[id] ?? (a.isin ? 'Autres ETF et ETC' : a.priceUnit === 'points' ? 'Indices' : 'Actions et autres actifs'),
     }]]
   }))
 }
-export const RANKING_ASSETS = buildRankingAssets(ASSETS)
+const extended = Object.fromEntries(Object.values(LONG).map(record => [record.targetId ?? record.id, {
+  ...ASSETS[record.targetId], ...record, id: record.targetId ?? record.id,
+  ...(record.parser === 'msci' || record.id === 'long-sp500' ? { priceUnit: 'points', variant: record.variant ?? 'GRTR' } : { priceMethod: 'adjusted' }),
+  points: record.points.map(([date, price]) => ({ date, price })),
+}]))
+export const RANKING_ASSETS = buildRankingAssets({ ...ASSETS, ...extended, ftseAllWorld: { ...FTSE, priceUnit: 'points', points: FTSE.points.map(([date, price]) => ({ date, price })) } })
+export const ANNUAL_ASSETS = { ...ANNUAL, ...INDEX_ANNUAL }
+export const ANNUAL_CATEGORIES = [
+  { id: 'annual-world', label: 'World, ACWI, All-World · années officielles', frequency: 'annual', ids: ['annual-msciWorld', 'annual-acwi-gross', 'annual-ftseAllWorld'], currency: 'USD' },
+  { id: 'annual-pea', label: 'ETF PEA · calendriers NAV', frequency: 'annual', ids: Object.values(ANNUAL).filter(a => a.pea && a.currency === 'EUR' && [2023, 2024, 2025].every(y => Number.isFinite(a.years[y]))).slice(0, 6).map(a => a.id) },
+]
+export const ALL_CATEGORIES = [...CATEGORIES, ...ANNUAL_CATEGORIES]
 export const COLORS = ['#64dfc5', '#e9bd70', '#a9a1ff', '#77b4ef', '#f498a5', '#c2d981']
