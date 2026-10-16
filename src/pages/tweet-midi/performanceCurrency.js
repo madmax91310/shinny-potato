@@ -1,4 +1,14 @@
 import fx from '../../data/annual-fx.json' with { type: 'json' }
+import official from '../../data/official-performance-currencies.json' with { type: 'json' }
+
+// Registered exact indices only. Never substitute an index for an ETF/share.
+function officialReturns({ asset, returns }, currency) {
+  const record = official[asset.id]?.[currency]
+  if (!record || asset.currency !== 'USD' || asset.priceUnit !== 'points' || record.variant !== 'GRTR'
+    || record.currency !== currency || !record.sourceUrl || !record.asOf || !returns.length
+    || !returns.every(row => Number.isFinite(record.annualReturns[row.year]))) return null
+  return record
+}
 
 // ECB reference rates: USD for one EUR, at each completed calendar year end.
 function rate(year) {
@@ -8,7 +18,7 @@ function rate(year) {
 }
 export function canConvertPerformance(entries, currency) {
   return ['EUR', 'USD'].includes(currency) && entries.length > 0 && entries.every(({ asset, returns }) =>
-    asset.currency === currency || (['EUR', 'USD'].includes(asset.currency) && returns.length > 0
+    asset.currency === currency || officialReturns({ asset, returns }, currency) || (['EUR', 'USD'].includes(asset.currency) && returns.length > 0
       && returns.every(({ year }) => rate(year - 1) && rate(year))))
 }
 export function performanceCurrencies(entries) {
@@ -20,6 +30,13 @@ export function convertPerformanceEntries(entries, currency) {
   return entries.map(entry => {
     if (entry.asset.currency === currency) return entry
     const sourceCurrency = entry.asset.currency
+    const record = officialReturns(entry, currency)
+    if (record) return {
+      ...entry,
+      asset: { ...entry.asset, currency, sourceCurrency, currencyMethod: 'official',
+        sourceCredit: `MSCI · série officielle ${currency}`, sourceUrl: record.sourceUrl, asOf: record.asOf },
+      returns: entry.returns.map(row => ({ ...row, pct: record.annualReturns[row.year] })),
+    }
     return {
       ...entry,
       asset: { ...entry.asset, currency, sourceCurrency,
@@ -33,5 +50,6 @@ export function convertPerformanceEntries(entries, currency) {
 }
 export function performanceDisplayBasis(asset, basis) {
   if (!asset.sourceCurrency) return basis
-  return `${basis.replace(new RegExp(`\\b${asset.sourceCurrency}\\b`, 'g'), asset.currency)} · conversion BCE, sans couverture de change`
+  const converted = basis.replace(new RegExp(`\\b${asset.sourceCurrency}\\b`, 'g'), asset.currency)
+  return `${converted} · ${asset.currencyMethod === 'official' ? 'série officielle' : 'conversion BCE'}, sans couverture de change`
 }
