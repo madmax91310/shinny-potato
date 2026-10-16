@@ -33,24 +33,19 @@
     },
     "update-market-monthly.yml": {
       "name": "Historiques mensuels des marchés",
-      "runId": 38920056893,
+      "runId": 38921740989,
       "attempt": 1,
-      "completedAt": "2026-10-16T15:04:24Z",
-      "status": "failure",
-      "lastSuccessAt": "2026-10-16T13:18:12Z",
+      "completedAt": "2026-10-16T15:32:39Z",
+      "status": "success",
+      "lastSuccessAt": "2026-10-16T15:32:39Z",
       "collectionStatus": "success",
       "validationStatus": "success",
       "recordingStatus": "success",
-      "publicationStatus": "failure",
-      "lastCollectionSuccessAt": "2026-10-16T15:04:24Z",
-      "lastPublicationSuccessAt": "2026-10-16T13:18:09Z",
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38920056893",
-      "failures": [
-        {
-          "job": "deploy / build",
-          "step": "Run node scripts/build-dca-exposures.mjs && npm run test:dca && node scripts/audit-portfolio-routing.mjs"
-        }
-      ],
+      "publicationStatus": "success",
+      "lastCollectionSuccessAt": "2026-10-16T15:32:39Z",
+      "lastPublicationSuccessAt": "2026-10-16T15:32:37Z",
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38921740989",
+      "failures": [],
       "dataFailures": {}
     },
     "update-company-analysis.yml": {
@@ -415,11 +410,11 @@
       "dataFailures": {}
     }
   },
-  "updatedAt": "2026-10-16T15:08:39Z",
+  "updatedAt": "2026-10-16T15:32:39Z",
   "monitoring": {
     "schemaVersion": 1,
-    "checkedAt": "2026-10-16T15:08:59.786634+00:00",
-    "revision": 52,
+    "checkedAt": "2026-10-16T15:33:03.226056+00:00",
+    "revision": 53,
     "active": {
       "collection:update-practical-sheets.yml:practical:13f": {
         "name": "SEC · questions et réponses sur le formulaire 13F",
@@ -440,7 +435,7 @@
         "dataId": "practical:13f",
         "id": "collection:update-practical-sheets.yml:practical:13f",
         "firstSeenAt": "2026-10-14T21:07:26.171294+00:00",
-        "lastSeenAt": "2026-10-16T15:08:59.786634+00:00"
+        "lastSeenAt": "2026-10-16T15:33:03.226056+00:00"
       },
       "collection:update-publication-observations.yml:anniversary-nasdaq100": {
         "name": "anniversary-nasdaq100",
@@ -460,7 +455,7 @@
         "dataId": "anniversary-nasdaq100",
         "id": "collection:update-publication-observations.yml:anniversary-nasdaq100",
         "firstSeenAt": "2026-10-16T15:01:35.760482+00:00",
-        "lastSeenAt": "2026-10-16T15:08:59.786634+00:00"
+        "lastSeenAt": "2026-10-16T15:33:03.226056+00:00"
       },
       "publication:update-publication-observations.yml": {
         "name": "Pouvoir d’achat et niveaux des anniversaires",
@@ -477,7 +472,7 @@
         "cause": "deploy / build : Run node scripts/build-dca-exposures.mjs && npm run test:dca && node scripts/audit-portfolio-routing.mjs ; report-failures : Run echo 'Collecte partielle : dernières observations validées conservées. Voir publication-observations.' >> \"$GITHUB_STEP_SUMMARY\"",
         "id": "publication:update-publication-observations.yml",
         "firstSeenAt": "2026-10-16T15:01:35.760482+00:00",
-        "lastSeenAt": "2026-10-16T15:08:59.786634+00:00"
+        "lastSeenAt": "2026-10-16T15:33:03.226056+00:00"
       },
       "collection:update-insurance.yml:linxea-avenir-2": {
         "name": "Linxea Avenir 2",
@@ -496,7 +491,7 @@
         "dataId": "linxea-avenir-2",
         "id": "collection:update-insurance.yml:linxea-avenir-2",
         "firstSeenAt": "2026-10-14T13:08:27.203935+00:00",
-        "lastSeenAt": "2026-10-16T15:08:59.786634+00:00"
+        "lastSeenAt": "2026-10-16T15:33:03.226056+00:00"
       },
       "collection:update-scpi.yml:remake-live": {
         "name": "Remake Live",
@@ -519,7 +514,7 @@
         "dataId": "remake-live",
         "id": "collection:update-scpi.yml:remake-live",
         "firstSeenAt": "2026-10-15T13:02:43.499914+00:00",
-        "lastSeenAt": "2026-10-16T15:08:59.786634+00:00"
+        "lastSeenAt": "2026-10-16T15:33:03.226056+00:00"
       },
       "collection:update-regulatory-data.yml:broker-observation:caidf:profile:change": {
         "name": "caidf:profile:change",
@@ -539,7 +534,7 @@
         "dataId": "broker-observation:caidf:profile:change",
         "id": "collection:update-regulatory-data.yml:broker-observation:caidf:profile:change",
         "firstSeenAt": "2026-10-15T18:00:14.760687+00:00",
-        "lastSeenAt": "2026-10-16T15:08:59.786634+00:00"
+        "lastSeenAt": "2026-10-16T15:33:03.226056+00:00"
       },
       "workflow:collect-etf-pilot.yml": {
         "name": "ETF et compositions d’indices",
@@ -558,26 +553,7 @@
         "cause": "refresh : Validate observations: npm run build",
         "id": "workflow:collect-etf-pilot.yml",
         "firstSeenAt": "2026-10-16T15:08:17.143932+00:00",
-        "lastSeenAt": "2026-10-16T15:08:59.786634+00:00"
-      },
-      "publication:update-market-monthly.yml": {
-        "name": "Historiques mensuels des marchés",
-        "tools": [
-          "Et si tu avais investi",
-          "Performance depuis",
-          "Duel",
-          "Générateur"
-        ],
-        "impactScope": "collector",
-        "workflow": "update-market-monthly.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38920056893",
-        "to": "/donnees-a-revoir",
-        "kind": "publication",
-        "field": "Publication",
-        "cause": "deploy / build : Run node scripts/build-dca-exposures.mjs && npm run test:dca && node scripts/audit-portfolio-routing.mjs",
-        "id": "publication:update-market-monthly.yml",
-        "firstSeenAt": "2026-10-16T15:04:40.143027+00:00",
-        "lastSeenAt": "2026-10-16T15:08:59.786634+00:00"
+        "lastSeenAt": "2026-10-16T15:33:03.226056+00:00"
       },
       "publication:update-qualified-exposures.yml": {
         "name": "Expositions ETF qualifiées",
@@ -597,7 +573,7 @@
         "cause": "deploy / build : Run npm run test:radar",
         "id": "publication:update-qualified-exposures.yml",
         "firstSeenAt": "2026-10-16T12:48:21.924866+00:00",
-        "lastSeenAt": "2026-10-16T15:08:59.786634+00:00"
+        "lastSeenAt": "2026-10-16T15:33:03.226056+00:00"
       },
       "publication:update-exposure-expansion.yml": {
         "name": "35 ETF des allocations",
@@ -613,7 +589,7 @@
         "cause": "deploy / build : Run node scripts/build-dca-exposures.mjs && npm run test:dca && node scripts/audit-portfolio-routing.mjs",
         "id": "publication:update-exposure-expansion.yml",
         "firstSeenAt": "2026-10-16T15:06:10.074991+00:00",
-        "lastSeenAt": "2026-10-16T15:08:59.786634+00:00"
+        "lastSeenAt": "2026-10-16T15:33:03.226056+00:00"
       },
       "monitor:radar": {
         "kind": "unobserved",
@@ -626,78 +602,10 @@
         "to": "/donnees-a-revoir",
         "id": "monitor:radar",
         "firstSeenAt": "2026-10-15T18:53:46.175472+00:00",
-        "lastSeenAt": "2026-10-16T15:08:59.786634+00:00"
+        "lastSeenAt": "2026-10-16T15:33:03.226056+00:00"
       }
     },
     "events": [
-      {
-        "revision": 23,
-        "at": "2026-10-15T12:49:29.696670+00:00",
-        "opened": [
-          "radar:9b3991b6333477f8b8319328",
-          "radar:f5768b0191dbb559e4a6a839",
-          "radar:5d04335f99c8ff9a3b3d97d7",
-          "radar:ad0b26aa7ef1fe5069109f11",
-          "radar:7166571bda25a69c7c2f98c1",
-          "radar:15299251ff9915c1e371c813",
-          "radar:d4eb9fdf91e5a772926534d5",
-          "radar:61aa5b51be668ed72655e630",
-          "radar:0fab71ab4c13d8254ac241f7",
-          "radar:81b7ae452323b62fcdbe6abe",
-          "radar:da5680ed736153eb76f1d77b",
-          "radar:6e8af40e078a77571b038036",
-          "radar:515a4c90c70056319a2f02c5",
-          "radar:3a270cf85d2566acc91099fa",
-          "radar:a684b88fe476f718d02d4d79",
-          "radar:49644aea0b730c6733bea7ad",
-          "radar:fa5c99e074126e103d5679bc",
-          "radar:14b7ae5f7dd40911cc2d6392",
-          "radar:189f0b66704b54aa897c1b30",
-          "radar:78aed82283f9ca244383d149",
-          "radar:6a39a3e67423feb115c3ce10",
-          "radar:4f73a3df65c0fa70d95594b2",
-          "radar:d05354b28a708356e42c3495",
-          "radar:82786fa6b7c32b9436304d3a",
-          "radar:ab4bb271abe68267796b8db6",
-          "radar:65b3ae346f66ac4391805f0d",
-          "radar:a45dfd74218c90971534b75e",
-          "radar:745536af72c2010441cebb73",
-          "radar:6a3db4928445c75fa7d9b058",
-          "radar:7b57f35b4680c930edd4671d",
-          "radar:a2174a3991b56e2f2983ace2",
-          "radar:2997729fb15142ebb6579b07",
-          "radar:286485bdc39bbb2c990a90e0",
-          "radar:db14cc97412d2f9a866d721a",
-          "radar:904bc242273cd75e7261ccc1",
-          "radar:3c7344e46408f7e31e0db232",
-          "radar:cec755877d14c75d8f771a31",
-          "radar:eeb9973543ce22aec477c1d8",
-          "radar:6533061e028c830b59e6ed4f"
-        ],
-        "resolved": [
-          {
-            "name": "SPDR € Corp Bond UCITS ETF",
-            "tools": [
-              "Générateur de portefeuilles",
-              "Impact des frais",
-              "Présentation ETF"
-            ],
-            "impactScope": "asset",
-            "sourceUrls": [
-              "https://www.justetf.com/en/etf-profile.html?isin=IE00B3T9LM79",
-              "https://www.ssga.com/fr/fr/intermediary/etfs/state-street-spdr-bloomberg-euro-corporate-bond-ucits-etf-dist-sybc-gy"
-            ],
-            "to": "/bibliotheque-donnees?id=IE00B3T9LM79",
-            "kind": "conflict",
-            "field": "Poids des dix premières lignes",
-            "cause": "Valeur contradictoire pour la même période (2026-10-13) : Poids des dix premières lignes. Dernière observation conservée ; propositions archivées (etf:IE00B3T9LM79:top10:0261a38d6b954a5f4e504dab:2026-10-13).",
-            "id": "radar:44882f934eb114198158f55a",
-            "firstSeenAt": "2026-10-14T11:07:35.462638+00:00",
-            "lastSeenAt": "2026-10-15T12:46:08.330288+00:00",
-            "resolvedAt": "2026-10-15T12:49:29.696670+00:00"
-          }
-        ]
-      },
       {
         "revision": 24,
         "at": "2026-10-15T13:02:43.499914+00:00",
@@ -2341,9 +2249,56 @@
             "resolvedAt": "2026-10-16T15:08:17.143932+00:00"
           }
         ]
+      },
+      {
+        "revision": 53,
+        "at": "2026-10-16T15:33:03.226056+00:00",
+        "opened": [],
+        "resolved": [
+          {
+            "name": "Historiques mensuels des marchés",
+            "tools": [
+              "Et si tu avais investi",
+              "Performance depuis",
+              "Duel",
+              "Générateur"
+            ],
+            "impactScope": "collector",
+            "workflow": "update-market-monthly.yml",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38920056893",
+            "to": "/donnees-a-revoir",
+            "kind": "publication",
+            "field": "Publication",
+            "cause": "deploy / build : Run node scripts/build-dca-exposures.mjs && npm run test:dca && node scripts/audit-portfolio-routing.mjs",
+            "id": "publication:update-market-monthly.yml",
+            "firstSeenAt": "2026-10-16T15:04:40.143027+00:00",
+            "lastSeenAt": "2026-10-16T15:08:59.786634+00:00",
+            "resolvedAt": "2026-10-16T15:33:03.226056+00:00"
+          }
+        ]
       }
     ],
     "resolved": [
+      {
+        "name": "Historiques mensuels des marchés",
+        "tools": [
+          "Et si tu avais investi",
+          "Performance depuis",
+          "Duel",
+          "Générateur"
+        ],
+        "impactScope": "collector",
+        "workflow": "update-market-monthly.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38920056893",
+        "to": "/donnees-a-revoir",
+        "kind": "publication",
+        "field": "Publication",
+        "cause": "deploy / build : Run node scripts/build-dca-exposures.mjs && npm run test:dca && node scripts/audit-portfolio-routing.mjs",
+        "id": "publication:update-market-monthly.yml",
+        "firstSeenAt": "2026-10-16T15:04:40.143027+00:00",
+        "lastSeenAt": "2026-10-16T15:08:59.786634+00:00",
+        "resolvedAt": "2026-10-16T15:33:03.226056+00:00"
+      },
       {
         "name": "ETF et compositions d’indices",
         "tools": [
@@ -4544,33 +4499,6 @@
         "kind": "collection",
         "dataId": "etf-additional-observation-IE00BD6FTQ80",
         "id": "collection:collect-etf-pilot.yml:etf-additional-observation-IE00BD6FTQ80",
-        "firstSeenAt": "2026-10-14T19:14:57.347737+00:00",
-        "lastSeenAt": "2026-10-14T20:11:14.176320+00:00",
-        "resolvedAt": "2026-10-14T20:14:06.767352+00:00"
-      },
-      {
-        "name": "iShares Diversified Commodity Swap UCITS ETF",
-        "tools": [
-          "Générateur de portefeuilles",
-          "Impact des frais",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "workflow": "collect-etf-pilot.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38620226369",
-        "to": "/bibliotheque-donnees?id=IE00BDFL4P12",
-        "completedAt": "2026-10-14T19:14:38Z",
-        "cause": "Invalid commodity group weight",
-        "field": "commodityAllocation",
-        "sourceUrls": [
-          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns&locale=en_GB&portfolioId=287254&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE00BD6FTQ80_factsheet_en.pdf",
-          "https://www.ishares.com/gls-download/literature/fact-sheet/icom-ishares-diversified-commodity-swap-ucits-etf-fund-fact-sheet-en-gb.pdf",
-          "https://www.justetf.com/en/etf-profile.html?isin=IE00BDFL4P12"
-        ],
-        "kind": "collection",
-        "dataId": "etf-additional-observation-IE00BDFL4P12",
-        "id": "collection:collect-etf-pilot.yml:etf-additional-observation-IE00BDFL4P12",
         "firstSeenAt": "2026-10-14T19:14:57.347737+00:00",
         "lastSeenAt": "2026-10-14T20:11:14.176320+00:00",
         "resolvedAt": "2026-10-14T20:14:06.767352+00:00"
