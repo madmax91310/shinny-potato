@@ -91,7 +91,8 @@ function exposureReading(portfolio, includeBase = true) {
       ? ' Tu achètes des actions d’entreprises, pas directement de l’eau, des forêts ou des récoltes.' : ''
     parts.push(`Les ${theme.pct} % consacrés à ${theme.label.toLowerCase()} concentrent cette poche sur une activité.${directAsset} Ces entreprises peuvent aussi figurer dans la base : le poids du thème dans le portefeuille peut donc dépasser ${theme.pct} %.`)
   }
-  if (complement && !['em','em-ex-china','em-smallcap','europe','smallcap','nasdaq','japan','india',...Object.keys(factorReadings),...Object.keys(complements)].includes(complement.exposure)) {
+  if (complement?.instrumentType === 'EQUITY') parts.push(`Les ${complement.pct} % de ${complement.label} sont investis dans une seule entreprise. Si elle figure déjà dans la base ETF, son poids total est supérieur à cette poche.`)
+  if (complement && complement.instrumentType !== 'EQUITY' && !['em','em-ex-china','em-smallcap','europe','smallcap','nasdaq','japan','india',...Object.keys(factorReadings),...Object.keys(complements)].includes(complement.exposure)) {
     parts.push(`Les ${complement.pct} % de ${complement.label} ajoutent une sélection dédiée. ${complement.note ?? ''}`)
   }
   return parts.join(' ')

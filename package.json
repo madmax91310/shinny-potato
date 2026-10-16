@@ -4,8 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "predev": "node scripts/build-etf-completeness.mjs && node scripts/build-dca-exposures.mjs && node scripts/build-performance-links.mjs && node scripts/build-monthly-duel-returns.mjs && node scripts/build-tool-links.mjs",
-    "prebuild": "node scripts/build-etf-completeness.mjs && node scripts/build-dca-exposures.mjs && node scripts/build-performance-links.mjs && node scripts/build-monthly-duel-returns.mjs && node scripts/build-app-inventory.mjs && node scripts/build-tool-links.mjs",
+    "predev": "node scripts/build-etf-completeness.mjs && node scripts/build-dca-exposures.mjs && node scripts/build-performance-links.mjs && node scripts/build-monthly-duel-returns.mjs && node scripts/build-equity-duel-returns.mjs && node scripts/build-tool-links.mjs",
+    "prebuild": "node scripts/build-etf-completeness.mjs && node scripts/build-dca-exposures.mjs && node scripts/build-performance-links.mjs && node scripts/build-monthly-duel-returns.mjs && node scripts/build-equity-duel-returns.mjs && node scripts/build-app-inventory.mjs && node scripts/build-tool-links.mjs",
     "dev": "vite",
     "build": "vite build && node scripts/audit-route-bundles.mjs",
     "lint": "oxlint",

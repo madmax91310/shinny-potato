@@ -10,7 +10,7 @@ assert.equal(new Set(DUELS.map((duel) => duel.id)).size, DUELS.length)
 assert.ok(DUELS.length >= 9)
 const bases = CATALOG.filter((asset) => asset.role === 'base')
 assert.equal(new Set(bases.map((asset) => asset.exposure)).size, bases.length, 'Une seule part par exposition de base')
-assert.equal(new Set(CATALOG.map((asset) => asset.isin)).size, CATALOG.length)
+assert.equal(new Set(CATALOG.map((asset) => asset.isin ?? asset.id)).size, CATALOG.length)
 const inspect = (duel) => {
   assert.equal(duel.currency, 'EUR')
   assert.ok(duel.years.length >= 3)
@@ -97,7 +97,7 @@ for (let i = 0; i < 500; i++) {
   inspect(duel)
   previous = duel.id
 }
-console.log(`${DUELS.length} duels préparés, ${CATALOG.length} ETF, 500 générations : rôles, allocations de 2–3 lignes, historique commun, change, capitaux et textes vérifiés.`)
+console.log(`${DUELS.length} duels préparés, ${CATALOG.length} actifs, 500 générations : rôles, allocations de 2–3 lignes, historique commun, change, capitaux et textes vérifiés.`)
 
 // Accroches : enjeu financier explicite, période commune, sans révéler le gagnant.
 const cashDuel=buildCustomDuel({left:[{id:'msci_world_ishares',pct:80},{id:'msci_em',pct:20}],right:[{id:'msci_world_ishares',pct:60},{id:'monetaire_xeon',pct:40}]})
