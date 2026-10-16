@@ -13,7 +13,7 @@ for(const [asset,country,countryWeight,tech,total,date] of [
  ...references[asset][field],asOf:date,compatibility:`fixture-${asset}-${field}`,rows:field==='countries'
  ?[{name:country,weightPct:countryWeight},{name:'Other',weightPct:100-countryWeight}]
  :[{name:'Technology',weightPct:tech},{name:'Other',weightPct:total-tech}],
-} 
+}
 const lines=['IE0002XZSHO1','europe','FR0013412020'].map((asset,i)=>({asset,label:references[asset].name,isin:references[asset].isin,weight:[70,20,10][i]}))
 const profile={imageOnly:true,name:'',scope:'Portefeuille investi',lines}
 for(const field of ['countries','sectors']){
