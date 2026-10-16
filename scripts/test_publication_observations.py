@@ -69,6 +69,16 @@ class PublicationTests(unittest.TestCase):
         unchanged,report=refresh(newer,NOW,xml)
         self.assertEqual(unchanged['prices'],newer['prices'])
         self.assertEqual(len(report['errors']),3)
+    def test_xndx_daily_identity_and_finished_session(self):
+        config=next(c for c in configurations() if c['id']=='nasdaq100')
+        self.assertEqual((config['parser'],config['symbol'],config['variant']),('yahoo','^XNDX','TOTAL'))
+        stamp=int(dt.datetime(2026,10,7,20,tzinfo=UTC).timestamp())
+        body={'chart':{'error':None,'result':[{'meta':{'symbol':'^XNDX','currency':'USD','dataGranularity':'1d','exchangeTimezoneName':'America/New_York'},'timestamp':[stamp],'indicators':{'quote':[{'close':[36000.25]}]}}]}}
+        r=collect_level(config,NOW,json_fetch=lambda _:body)
+        self.assertEqual((r['symbol'],r['variant'],r['value'],r['asOf']),('^XNDX','TOTAL',36000.25,'2026-10-07'))
+        body['chart']['result'][0]['meta']['symbol']='^NDX'
+        with self.assertRaises(ValueError):collect_level(config,NOW,json_fetch=lambda _:body)
+
     def test_completed_session_and_preservation(self):
         self.assertEqual(completed([(dt.date(2026,10,7),100),(dt.date(2026,10,8),200)],NOW),('2026-10-07',100))
         with self.assertRaises(ValueError):completed([(dt.date(2026,9,20),100)],NOW)

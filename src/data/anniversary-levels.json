@@ -52,16 +52,16 @@
     "maxAgeDays": 7
   },
   "nasdaq100": {
-    "value": 29935.599609375,
+    "value": 36590.234375,
     "asOf": "2026-10-15",
     "currency": "USD",
     "parser": "yahoo",
-    "symbol": "^NDX",
+    "symbol": "^XNDX",
     "indexCode": null,
-    "variant": null,
-    "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/%5ENDX?period1=1790812800&period2=1792108800&interval=1d&events=splits",
-    "sha256": "fc20d64f8d510524faf0038288be36a6b224290912c991ba83e15f75de277f36",
-    "method": "Dernière séance terminée ; cours brut",
+    "variant": "TOTAL",
+    "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/%5EXNDX?period1=1790812800&period2=1792108800&interval=1d&events=splits",
+    "sha256": "453c1aed561ff12c6dd46d5d213545269e7c9d700a445f6ad83e84b42667e2b1",
+    "method": "Niveau XNDX Total Return USD de la dernière séance terminée, dividendes bruts réinvestis",
     "maxAgeDays": 7
   },
   "soxx": {

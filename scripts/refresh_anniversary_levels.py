@@ -21,6 +21,13 @@ def configurations():
     active = json.loads((ROOT/'src/data/automated-monthly.json').read_text())
     equities = [s for s in sources if s.get('consumerScope') == 'equity' and s['id'] in active]
     sources = [{**s, 'field': 'close'} for s in sources if s['id'] in IDS or s in etfs or s in equities]
+    # XNDX has only short daily coverage on Yahoo, sufficient for the current level.
+    # The full monthly XNDX history remains Nasdaq via FRED; never use ^NDX here.
+    for source in sources:
+        if source['id'] == 'nasdaq100':
+            if (source.get('symbol'),source.get('currency'),source.get('variant')) != ('XNDX','USD','TOTAL'):
+                reject('Nasdaq monthly/daily return convention differs')
+            source.update(parser='yahoo',symbol='^XNDX',timezone='America/New_York')
     sources += [{'id':'bitcoin','label':'Bitcoin','parser':'yahoo','symbol':'BTC-USD','currency':'USD','field':'close','timezone':'UTC'},
                 {'id':'cac40','label':'CAC 40','parser':'yahoo','symbol':'^FCHI','currency':'EUR','field':'close','timezone':'Europe/Paris'}]
     if {s['id'] for s in sources} != IDS | {'bitcoin','cac40'} | {s['id'] for s in etfs} | {s['id'] for s in equities}: reject('Configuration anniversaire incomplète')
@@ -87,7 +94,7 @@ def collect_one(config, now, json_fetch=None, byte_fetch=download):
     return {'value':value,'asOf':asof,'currency':config['currency'],'parser':parser,
             'symbol':config.get('symbol'),'indexCode':config.get('indexCode'),'variant':config.get('variant'),
             'sourceUrl':url,'sha256':hashlib.sha256(json.dumps(body,sort_keys=True,allow_nan=False).encode()).hexdigest(),
-            'method':'Dernière séance terminée ; cours brut' if parser=='yahoo' else ('Niveau officiel de fin de mois, Total Return USD' if parser=='ftse' else 'Niveau officiel de fin de séance, variante exacte'),
+            'method':('Niveau XNDX Total Return USD de la dernière séance terminée, dividendes bruts réinvestis' if config.get('symbol')=='^XNDX' else 'Dernière séance terminée ; cours brut') if parser=='yahoo' else ('Niveau officiel de fin de mois, Total Return USD' if parser=='ftse' else 'Niveau officiel de fin de séance, variante exacte'),
             'maxAgeDays':45 if parser=='ftse' else 7,
             **({key:config[key] for key in ('isin','ticker','mic','listingEvidenceId')} if config.get('consumerScope')=='catalog' else {})}
 
