@@ -83,11 +83,20 @@ def merge_collection(report, current, baseline):
             characteristics.update(share.get('characteristics') or {'terPct': share['terPct'], 'index': share['index'], 'distribution': share['distribution']})
             # Monthly document facts must not overwrite more recent page facts.
             facts_date = share.get('characteristics', {}).get('asOf')
-            active_facts_date = max(old.get('characteristics', {}).get('asOf', ''), old.get('characteristics', {}).get('checkedAt', ''))
+            active_facts_date = old.get('characteristics', {}).get('asOf') or old.get('characteristics', {}).get('checkedAt', '')
             if (checked >= old.get('characteristics', {}).get('checkedAt', '')
-                    and (not facts_date or not active_facts_date or facts_date >= active_facts_date
-                         or characteristics == {k: v for k, v in old.get('characteristics', {}).items() if k not in AUDIT_DATES})):
+                    and (not facts_date or not active_facts_date or facts_date > active_facts_date
+                         or (bool(old.get('characteristics')) and all(characteristics.get(k) == v for k,v in old.get('characteristics', {}).items() if k not in AUDIT_DATES | {'sha256','sourceUrl','asOf'})))):
                 record['characteristics'] = checked_observation(characteristics, old.get('characteristics', {}), checked)
+                provenance = copy.deepcopy(old.get('characteristicChecks', {}))
+                for key in old.get('characteristics', {}):
+                    if key not in AUDIT_DATES | {'sha256','sourceUrl','asOf'}:
+                        provenance.setdefault(key, {'checkedAt':old['characteristics'].get('checkedAt'), 'sourceUrl':old['characteristics'].get('sourceUrl',old.get('sourceUrl')), 'asOf':old['characteristics'].get('asOf')})
+                observed = share.get('characteristics') or {k:share[k] for k in ('terPct','index','distribution') if k in share}
+                for key in observed:
+                    if key not in AUDIT_DATES | {'sha256','sourceUrl','asOf'}:
+                        provenance[key] = {'checkedAt':checked, 'sourceUrl':observed.get('sourceUrl',share['sourceUrl']), 'asOf':observed.get('asOf')}
+                record['characteristicChecks'] = provenance
         if share.get('fieldQualification') and checked >= old.get('qualificationCheckedAt', ''):
             record['fieldQualification'] = copy.deepcopy(share['fieldQualification'])
             record['qualificationCheckedAt'] = checked
@@ -133,7 +142,9 @@ def merge_collection(report, current, baseline):
             if (year not in years or proof.get('asOf') != f'{year}-12-31'
                     or not proof.get('sourceUrl') or not re.fullmatch(r'[0-9a-f]{64}', proof.get('sha256', ''))):
                 reject('Invalid calendar-year evidence')
-        performance = {**performance, 'years': {**previous_performance.get('years', {}), **years}}
+        from issuer_monthly_capture import merge_monthly_returns
+        monthly = merge_monthly_returns(previous_performance, performance, checked)
+        performance = {**performance, **monthly, 'years': {**previous_performance.get('years', {}), **years}}
         preserved_evidence = {**previous_performance.get('yearEvidence', {})}
         # A replacement value cannot inherit proof of the old observation.
         for year in years:

@@ -1,6 +1,8 @@
+import automaticIdentities from './auto-history-identities.json' with {type:'json'}
 import config from '../../scripts/non-bond-expansion-sources.json' with { type: 'json' }
 const NON_BOND_HISTORY_IDENTITIES = Object.fromEntries(config.instruments.filter(r=>r.historyEnabled!==false).map(r=>[r.historyId,{icon:r.icon,scene:r.scene,title:r.title,ticker:r.preferredSymbol.split('.')[0],instrumentType:r.instrumentType||'ETF'}]))
 export const ETF_HISTORY_IDENTITIES = {
+ ...automaticIdentities,
  etfUsaSmallValue:{icon:'🌎',scene:'world',title:'USA SMALL CAP VALUE',ticker:'ZPRV'},
  etfWorldMidEqual:{icon:'🌍',scene:'world',title:'WORLD MID CAP EQUAL WEIGHT',ticker:'IWSZ'},
  etfEmValue:{icon:'🌏',scene:'world',title:'EMERGENTS VALUE',ticker:'EMVL'},

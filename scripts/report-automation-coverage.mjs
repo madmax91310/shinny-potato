@@ -1,3 +1,4 @@
+import {writeAssetFieldReport} from './report-asset-fields.mjs';
 import { INVESTORS } from '../src/data/investor-roster.js';
 import nonBondSources from './non-bond-expansion-sources.json' with {type:'json'};
 import nonBondQualified from './non-bond-qualified-sources.json' with { type:'json' };
@@ -94,6 +95,6 @@ const rows=[
  '', 'Régénération : `npm run report:automation`. Ce rapport décrit une couverture, pas une garantie de disponibilité permanente des émetteurs.',''
 ];
 const output=rows.join('\n');
-if(process.argv.includes('--write')) {mkdirSync('docs',{recursive:true});writeFileSync('docs/automation-coverage.md',output);writeGapInventory();}
+if(process.argv.includes('--write')) {mkdirSync('docs',{recursive:true});writeFileSync('docs/automation-coverage.md',output);writeGapInventory();writeAssetFieldReport();}
 else console.log(output);
 console.log(process.argv.includes('--write')?`Report written: ${Object.keys(etf).length} instruments; ${uncovered.length} uncovered.`:'');

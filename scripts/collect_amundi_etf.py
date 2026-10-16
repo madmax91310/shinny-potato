@@ -94,7 +94,8 @@ def parse_product(product, share, now):
     if replication != share['replication']:
         reject('Amundi replication method changed')
     result = {**share, 'productId': share['isin'], 'sourceUrl': API,
-        'terPct': ter, 'index': facts.get('BENCHMARK_NAME'), 'distribution': facts['DISTRIBUTION_POLICY']}
+        'terPct': ter, 'index': facts.get('BENCHMARK_NAME'), 'distribution': facts['DISTRIBUTION_POLICY'],
+        'characteristics': {'terPct': ter, 'index': facts.get('BENCHMARK_NAME'), 'distribution': facts['DISTRIBUTION_POLICY'], 'replicationMethod': replication}}
     historic = [h for h in product['historics'] if h['indicator'] == 'shareAumInMCcy']
     if len(historic) != 1 or not historic[0]['historicalData']:
         reject('Missing dated Amundi share AUM')

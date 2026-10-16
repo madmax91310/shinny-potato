@@ -13,6 +13,10 @@ on:
       - 'scripts/refresh_index_sources.py'
       - 'scripts/index-automation.json'
       - 'scripts/refresh_monthly_history.py'
+      - 'scripts/qualify_monthly_candidates.py'
+      - 'scripts/test_monthly_qualification.py'
+      - 'scripts/export-monthly-candidates.mjs'
+      - 'src/data/auto-history-identities.json'
       - 'scripts/monthly-automation.json'
       - 'scripts/data_automation.py'
   pull_request:
@@ -37,7 +41,7 @@ jobs:
       cancel-in-progress: false
       queue: max
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 40
     permissions:
       contents: write
     outputs:
@@ -56,9 +60,15 @@ jobs:
           node-version: 20
       - run: npm ci
       - run: python -m unittest discover -s scripts -p 'test_monthly_automation.py'
+      - run: python -m unittest discover -s scripts -p 'test_monthly_qualification.py'
       - run: python -m unittest discover -s scripts -p 'test_nasdaq_monthly.py'
       - run: node scripts/test-nasdaq-total-return.mjs
       - run: python -m unittest discover -s scripts -p 'test_data_automation.py'
+      - name: Qualify missing exact-share monthly histories
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        run: |
+          node scripts/export-monthly-candidates.mjs > "$RUNNER_TEMP/monthly-candidates.json"
+          python scripts/qualify_monthly_candidates.py --candidates "$RUNNER_TEMP/monthly-candidates.json" --limit 12 --apply
       - run: node scripts/export-monthly-baseline.mjs > "$RUNNER_TEMP/baseline.json"
       - name: "Collect observations: collect"
         id: collect
@@ -113,7 +123,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          bash scripts/commit-validated-data.sh 'Refresh validated monthly market histories' src/data/monthly-duel-returns.json src/data/automated-indices.json src/data/automated-monthly.json src/data/automated-etf-monthly.json scripts/source-snapshots/monthly-automated.json scripts/source-snapshots/monthly-collection-status.json
+          bash scripts/commit-validated-data.sh 'Refresh validated monthly market histories' src/data/monthly-duel-returns.json src/data/automated-indices.json src/data/automated-monthly.json src/data/automated-etf-monthly.json scripts/source-snapshots/monthly-automated.json scripts/source-snapshots/monthly-collection-status.json src/data/anniversary-levels.json scripts/monthly-automation.json scripts/source-snapshots/monthly-qualification-status.json src/data/auto-history-identities.json docs/asset-field-coverage.md public/data/asset-field-coverage.json
   deploy:
     needs: refresh
     if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'

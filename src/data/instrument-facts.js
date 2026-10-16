@@ -1,3 +1,5 @@
+import { AUTOMATED_ETF } from './automated-etf.js';
+import { applyAutomatedCharacteristics } from './automated-characteristics.js';
 import { PEA_SECTOR_COMPLETION } from './pea-sector-completion.js';
 import { NON_BOND_FACTS } from './non-bond-expansion.js';
 import { LIFESTRATEGY_FACTS } from './lifestrategy.js';
@@ -18,7 +20,7 @@ export { getInstrumentListings } from './instrument-listings.js';
 // pas la place de cotation. distribution/reviewedAt gardent leur revue historique.
 // PEA reste dans instruments.js : le statut ne se déduit ni du domicile ni de l'indice.
 // Les ETC et ETP gardent leur nature distincte des fonds ETF.
-export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
+const MANUAL_INSTRUMENT_FACTS = {
   ...Object.fromEntries(PEA_SECTOR_COMPLETION.map(r => [r.isin, r.facts])),
   ...NON_BOND_FACTS,
   ...LIFESTRATEGY_FACTS,
@@ -1996,7 +1998,8 @@ export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze({
     "checkedAt": "2026-10-03"
   }
 },
-});
+};
+export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze(Object.fromEntries(Object.entries(MANUAL_INSTRUMENT_FACTS).map(([isin,facts])=>[isin,applyAutomatedCharacteristics(facts,AUTOMATED_ETF[isin])])));
 
 export function getInstrumentFacts(isin) {
   const facts = INSTRUMENT_FACTS_BY_ISIN[isin];

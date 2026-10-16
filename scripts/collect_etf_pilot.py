@@ -91,6 +91,12 @@ def parse_share(body, share, now):
         reject('Unexpected share identity or currency')
     if value('useOfProfitsCode') != share.get('distribution', 'Accumulating'):
         reject('Unexpected distribution policy')
+    # Keep exact issuer characteristics in the shared record, not only in config.
+    identity = {'distribution': value('useOfProfitsCode'), 'index': None if share.get('physicalMetal') else value('indexSeriesName')}
+    for target, source in [('domicile','domicile'), ('replicationMethod','fundMethodologyTypeCode'), ('inceptionDate',share.get('inceptionField','inceptionDate'))]:
+        published = facts.get(source, {}).get('value')
+        if isinstance(published, (str, int)) and not isinstance(published, bool) and str(published).strip():
+            identity[target] = str(published)
     ter = number(value('emeaMgt'), positive=False)
     if ter > 5:
         reject('Invalid TER')
@@ -115,7 +121,7 @@ def parse_share(body, share, now):
     calendar = components.get('performance', {}).get('containersByNameMap', {}).get('returns', {}).get('subContainersByNameMap', {}).get('calendar', {}).get('dataPointsByNameMap', {})
     types = calendar.get('returnTypes', {}).get('value', [])
     if not types and not share.get('requireFullHistory', True):
-        return {**share, 'terPct': ter, 'index': None if share.get('physicalMetal') else value('indexSeriesName'), 'distribution': value('useOfProfitsCode'),
+        return {**share, 'characteristics': {**identity, 'terPct': ter}, 'terPct': ter, 'index': None if share.get('physicalMetal') else value('indexSeriesName'), 'distribution': value('useOfProfitsCode'),
             'aum': {'amount': number(aum['value']), 'currency': share['currency'], 'scope': share.get('aumScope','share-class'), 'asOf': source_date(aum['asOfDate'], now)},
             'countries': countries, 'sectors': sectors, 'rawComponents': components}
     if not isinstance(types, list) or types.count('annualNav') != 1:
@@ -145,7 +151,7 @@ def parse_share(body, share, now):
         returns[str(date.year)] = round(result, 2)
     if share.get('requireFullHistory', True) and not any(all(str(year) in returns for year in range(end-5,end+1)) for end in range(now.year-1,2019,-1)):
         reject('Missing six complete calendar years')
-    return {**share, 'terPct': ter, 'index': None if share.get('physicalMetal') else value('indexSeriesName'),
+    return {**share, 'characteristics': {**identity, 'terPct': ter}, 'terPct': ter, 'index': None if share.get('physicalMetal') else value('indexSeriesName'),
             'distribution': value('useOfProfitsCode'),
             'aum': {'amount': number(aum['value']), 'currency': share['currency'],
                     'scope': share.get('aumScope','share-class'), 'asOf': source_date(aum['asOfDate'], now)},

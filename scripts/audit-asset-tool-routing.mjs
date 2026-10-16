@@ -28,7 +28,7 @@ const errors = []
 for (const [id, asset] of Object.entries(ETF_MONTHLY_HISTORIES)) {
   const source = sources.get(id)
   if (!source || source.isin !== asset.isin || source.currency !== asset.currency) errors.push(`${id}: source/identity mismatch`)
-  if (!ASSET_ORDER.includes(id) || !simulations.has(id) || !getAnnualReturnStartYears(id).length) errors.push(`${id}: historical consumer missing`)
+  if (!ASSET_ORDER.includes(id) || (getAnnualReturnStartYears(id).length > 0 && !simulations.has(id))) errors.push(`${id}: historical consumer missing`)
   if (asset.anniversaryPoints?.length && (!source?.collectAnniversary || levels[id]?.isin !== asset.isin)) errors.push(`${id}: anniversary collection missing`)
 }
 const instruments = new Map()

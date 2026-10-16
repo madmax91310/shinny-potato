@@ -93,7 +93,7 @@ export function projectToolData() {
     const hash = createHash('sha256').update(content).digest('hex').slice(0,20)
     return { record, content, fileName: `data/catalog/${hash}.json` }
   })
-  const index = DATA_CATALOG.map(({ fields: _fields, ...record }) => record)
+  const index = DATA_CATALOG.map(({ id, name, type, aliases }) => ({ id, name, type, aliases }))
   let base = '/', build = false
   return { groups, plugin: {
     name: 'project-tool-data', enforce: 'pre',

@@ -32,6 +32,9 @@ on:
       - 'scripts/additional-etf-sources.json'
       - 'scripts/issuer_documents.py'
       - 'scripts/issuer_calendar_capture.py'
+      - 'scripts/issuer_monthly_capture.py'
+      - 'scripts/test_issuer_monthly_capture.py'
+      - 'scripts/report-asset-fields.mjs'
       - 'scripts/test_issuer_calendar_capture.py'
       - 'scripts/collect_presentation_etf.py'
       - 'scripts/data_automation.py'
@@ -91,6 +94,9 @@ on:
       - 'scripts/additional-etf-sources.json'
       - 'scripts/issuer_documents.py'
       - 'scripts/issuer_calendar_capture.py'
+      - 'scripts/issuer_monthly_capture.py'
+      - 'scripts/test_issuer_monthly_capture.py'
+      - 'scripts/report-asset-fields.mjs'
       - 'scripts/test_issuer_calendar_capture.py'
       - 'scripts/collect_presentation_etf.py'
       - 'scripts/data_automation.py'
@@ -176,6 +182,7 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_new_issuer_sources.py'
       - run: python -m unittest discover -s scripts -p 'test_priority_issuer_etf.py'
       - run: python -m unittest discover -s scripts -p 'test_issuer_calendar_capture.py'
+      - run: python -m unittest discover -s scripts -p 'test_issuer_monthly_capture.py'
       - run: python -m unittest discover -s scripts -p 'test_presentation_etf.py'
       - run: python -m unittest discover -s scripts -p 'test_presentation_performance.py'
       - run: node scripts/test-presentation-etf.mjs
@@ -223,6 +230,7 @@ jobs:
         id: indices
         continue-on-error: true
         run: python scripts/refresh_index_sources.py --output "$RUNNER_TEMP/index-observation.json" --apply
+      - run: node scripts/test-asset-field-coverage.mjs
       - run: node scripts/report-automation-coverage.mjs --write
       - name: "Validate observations: node scripts test-automation-gap-inventory.mjs"
         run: node scripts/test-automation-gap-inventory.mjs
@@ -273,7 +281,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          bash scripts/commit-validated-data.sh 'Refresh validated active ETF issuer data' src/data/annual-fx.json src/data/automated-etf.json src/data/automated-indices.json docs/automation-coverage.md docs/automation-gaps.md docs/automation-gaps.json docs/app-inventory.md
+          bash scripts/commit-validated-data.sh 'Refresh validated active ETF issuer data' src/data/annual-fx.json src/data/automated-etf.json src/data/automated-indices.json docs/automation-coverage.md docs/automation-gaps.md docs/automation-gaps.json docs/asset-field-coverage.md public/data/asset-field-coverage.json docs/app-inventory.md
   deploy:
     needs: refresh
     if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
