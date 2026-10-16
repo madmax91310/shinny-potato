@@ -36,3 +36,13 @@ for (const mutation of [
   { isin, listing: selected, ticker: selected.ticker },
 ]) assert.equal(validatePublishedListingSelection([mutation]).length, 1);
 console.log('Choix publié : 4 mutations place/devise/absence/copie refusées.');
+
+// A fresh official listing set can retire an exchange without deleting archive evidence.
+const {currentListingEvidence}=await import('./lib/current-listing-evidence.mjs')
+const archive={old:{isin:'managed'},manual:{isin:'manual'}}
+const fresh={new:{isin:'managed'},orphanNew:{isin:'managed'}}
+const evidence=currentListingEvidence(archive,fresh,{managed:[]},{managed:[{evidenceId:'new'}]})
+assert(!evidence.old)
+assert(evidence.manual,'Unmanaged archive still audited')
+assert(evidence.orphanNew,'New orphan evidence must still fail validation')
+assert(archive.old,'Historical evidence retained unchanged')
