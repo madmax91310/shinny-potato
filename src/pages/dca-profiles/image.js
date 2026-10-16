@@ -1,3 +1,4 @@
+import { exposureView } from './exposure.js'
 import { analyzeProfile, prepareProfile, euro, pct, references } from './engine.js'
 import { incomeLabel } from './lib.js'
 import { portfolioAnalytics } from './analytics.js'
@@ -26,40 +27,33 @@ export function integerPercentages(rows){
 }
 // Most-covered compatible synthesis, preserving the actual source date range.
 // Missing coverage keeps its true weight in grey; never renormalize known countries to 100%.
-export function donutData(analysis,field='countries'){
- const exposure=analysis[field]
- const neutral=exposure.neutralRows||[]
- const neutralWeight=neutral.reduce((s,r)=>s+r.weight,0)
- const group=[...exposure.groups].sort((a,b)=>b.coverage-a.coverage)[0]
- if(!group&&!neutralWeight)return {group:null,rows:[{name:'Non ventilé',weight:100,color:'#57718e'}]}
- if(!group)return {group:null,rows:[{name:neutral.length===1?neutral[0].name:'Hors classification',weight:neutralWeight,color:'#b79b6b'},...(neutralWeight<100?[{name:'Non ventilé ici',weight:100-neutralWeight,color:'#57718e'}]:[])]}
- const raw=group.rows.filter(r=>r.weight>0),total=raw.reduce((s,r)=>s+r.weight,0)
- // Source rounding can marginally exceed covered weight. Scale only that excess.
- const scale=total>group.coverage?group.coverage/total:1
- const known=raw.map(r=>({...r,weight:r.weight*scale})).sort((a,b)=>b.weight-a.weight)
+export function donutData(analysis,field='countries',limit=4){
+ const view=exposureView(analysis[field]),{group}=view
+ if(!view.eligible)return {...view,group:null,rows:[{name:'Sans objet',weight:100,color:'#57718e'}]}
+ const count=[3,4,6].includes(Number(limit))?Number(limit):4
+ const known=view.rows.filter(r=>r.weight>0)
  const named=known.filter(r=>!/^autres?$|^other$/i.test(r.name))
- const rows=named.slice(0,neutralWeight?3:4).map((r,i)=>({...r,color:colors[i]}))
+ const rows=named.slice(0,count).map((r,i)=>({...r,color:colors[i]}))
  const rest=known.reduce((s,r)=>s+r.weight,0)-rows.reduce((s,r)=>s+r.weight,0)
- if(rest>1e-9)rows.push({name:'Autres expositions',weight:rest,color:colors[4]})
- if(neutralWeight)rows.push({name:neutral.length===1?neutral[0].name:'Hors classification',weight:neutralWeight,color:'#b79b6b'})
+ if(rest>1e-9)rows.push({name:'Autres expositions',weight:rest,color:'#aec8df'})
  const missing=Math.max(0,100-rows.reduce((s,r)=>s+r.weight,0))
  if(missing>1e-9)rows.push({name:missing<.01?'Écart d’arrondi':'Non ventilé ici',weight:missing,color:'#57718e'})
- return {group,rows}
+ return {...view,group,rows}
 }
-function exposurePanel(ctx,a,field,x,y,width){
- const {rows}=donutData(a,field)
+function exposurePanel(ctx,a,field,x,y,width,limit){
+ const {rows,scope}=donutData(a,field,limit)
  text(ctx,field==='countries'?'Exposition géographique':'Exposition sectorielle',x,y,width,36,C.ivory,700,'DcaEditorial')
  const cx=x+width/2,cy=y+280,r=220,inner=150
  let angle=-Math.PI/2
  for(const row of rows){const end=angle+row.weight/100*Math.PI*2;ctx.beginPath();ctx.arc(cx,cy,r,angle,end);ctx.arc(cx,cy,inner,end,angle,true);ctx.closePath();ctx.fillStyle=row.color;ctx.fill();angle=end}
  const percentages=integerPercentages(rows)
  rows.forEach((row,i)=>{
-  const left=x+(i%2)*width/2,top=y+540+Math.floor(i/2)*65
+  const left=x+(i%2)*width/2,top=y+(rows.length>6?530:540)+Math.floor(i/2)*(rows.length>6?48:65)
   ctx.fillStyle=row.color;ctx.beginPath();ctx.arc(left+8,top-7,7,0,Math.PI*2);ctx.fill()
-  text(ctx,row.name,left+24,top,width/2-35,22,C.ivory,400)
-  text(ctx,exposurePercentage(row.weight,percentages[i]),left+24,top+28,width/2-35,25)
+  text(ctx,row.name,left+24,top,width/2-35,rows.length>6?18:22,C.ivory,400)
+  text(ctx,exposurePercentage(row.weight,percentages[i]),left+24,top+(rows.length>6?23:28),width/2-35,rows.length>6?20:25)
  })
-
+ text(ctx,scope,x,y+32,width,18,C.muted,400)
 }
 function ring(ctx,rows,cx,cy,r,inner){
  let angle=-Math.PI/2
@@ -96,20 +90,20 @@ function fullPortfolio(ctx,p,a){
   text(ctx,exposurePercentage(row.weight,percentages[i]),574,y,90,size+2)
  })
  for(const [field,y] of [['countries',125],['sectors',545]]){
-  const {rows}=donutData(a,field)
+  const {rows,scope}=donutData(a,field,p.exposureLimit)
   text(ctx,field==='countries'?'Exposition géographique':'Exposition sectorielle',755,y+59,780,37,C.ivory,700,'DcaEditorial')
   ring(ctx,rows,899,y+235,140,94)
   const rounded=integerPercentages(rows),lead=rows.findIndex(r=>!['Non ventilé','Non ventilé ici','Écart d’arrondi'].includes(r.name))
   if(lead>=0){centered(ctx,exposurePercentage(rows[lead].weight,rounded[lead]),899,y+231,173,41);centered(ctx,rows[lead].name,899,y+273,168,17,C.muted,400)}
   else centered(ctx,'Non ventilé',899,y+239,170,23,C.muted)
-  const gap=rows.length>5?39:49
+  const gap=rows.length>6?34:rows.length>5?37:49,legendSize=rows.length>6?24:27
   rows.forEach((row,i)=>{
    const top=y+137+i*gap
    ctx.fillStyle=row.color;ctx.beginPath();ctx.arc(1076,top-9,6,0,Math.PI*2);ctx.fill()
-   text(ctx,row.name,1095,top,322,27,C.ivory,400)
-   text(ctx,exposurePercentage(row.weight,rounded[i]),1454,top,85,27)
+   text(ctx,row.name,1095,top,322,legendSize,C.ivory,400)
+   text(ctx,exposurePercentage(row.weight,rounded[i]),1454,top,85,legendSize)
   })
-
+  text(ctx,scope,755,y+86,780,17,C.muted,400)
  }
 }
 async function overlapPortfolio(ctx,p){
@@ -170,9 +164,9 @@ export async function renderDcaImage(input,field='countries'){
   if(field==='all'){
    fullPortfolio(ctx,p,a)
   }else if(field==='both'){
-   exposurePanel(ctx,a,'countries',66,218,700)
-   exposurePanel(ctx,a,'sectors',834,218,700)
-  }else exposurePanel(ctx,a,field,450,218,700)
+   exposurePanel(ctx,a,'countries',66,218,700,p.exposureLimit)
+   exposurePanel(ctx,a,'sectors',834,218,700,p.exposureLimit)
+  }else exposurePanel(ctx,a,field,450,218,700,p.exposureLimit)
   rule(ctx,64,1013,1472)
   text(ctx,'Épargnant Libre',1205,1051,330,32,C.ivory,700,'DcaEditorial')
   return canvas
@@ -194,16 +188,19 @@ export async function renderDcaImage(input,field='countries'){
  })
  text(ctx,'Son portefeuille',865,112,670,65,C.ivory,700,'DcaEditorial')
  text(ctx,field==='sectors'?'Exposition sectorielle':'Exposition géographique',880,163,650,32,C.muted,400)
- const {rows}=donutData(a,field),cx=1197,cy=508,r=280,inner=195
+ const {rows,scope}=donutData(a,field,p.exposureLimit),cx=1197,cy=508,r=280,inner=195
  let angle=-Math.PI/2
  for(const row of rows){const span=row.weight/100*Math.PI*2;ctx.beginPath();ctx.arc(cx,cy,r,angle,angle+span);ctx.arc(cx,cy,inner,angle+span,angle,true);ctx.closePath();ctx.fillStyle=row.color;ctx.fill();angle+=span}
  const percentages=integerPercentages(rows)
  rows.forEach((row,i)=>{
-  const x=860+(i%3)*226,y=839+Math.floor(i/3)*73
+  const x=860+(i%3)*226,y=(rows.length>6?820:839)+Math.floor(i/3)*(rows.length>6?49:73)
   ctx.fillStyle=row.color;ctx.beginPath();ctx.arc(x+10,y-8,9,0,Math.PI*2);ctx.fill()
-  text(ctx,row.name,x+28,y,190,23,C.ivory,400)
-  text(ctx,exposurePercentage(row.weight,percentages[i]),x+28,y+32,190,29,C.ivory,700)
+  text(ctx,row.name,x+28,y,190,rows.length>6?18:23,C.ivory,400)
+  text(ctx,exposurePercentage(row.weight,percentages[i]),x+28,y+(rows.length>6?24:32),190,rows.length>6?23:29,C.ivory,700)
  })
+ text(ctx,scope,880,195,650,18,C.muted,400)
+
+
  rule(ctx,64,1013,1472)
  text(ctx,'Épargnant Libre',1205,1051,330,32,C.ivory,700,'DcaEditorial')
  return canvas
