@@ -128,7 +128,7 @@ for (const item of ALL_ITEMS) {
 
   if (!error && item.format === FORMATS.PERFORMANCE_DEPUIS) {
     const blocks = text.split(/\n\n(?=📈)/u);
-    const blockPattern = /^📈 Performance [^\n]+ depuis \d{4} 👇\n[^\n]*(?:USD|EUR|KRW)[^\n]*\n\n(?:[🟢🔴] \d{4} : [+-]?[\d\s.,]+ %\n)+\nSur toute la période : [+-]?[\d\s.,]+ %$/u;
+    const blockPattern = /^📈 Performance [^\n]+ depuis \d{4} 👇\n[^\n]*(?:USD|EUR|KRW|CHF|DKK|JPY|HKD)[^\n]*\n\n(?:[🟢🔴] \d{4} : [+-]?[\d\s.,]+ %\n)+\nSur toute la période : [+-]?[\d\s.,]+ %$/u;
     if (!blocks.every((block) => blockPattern.test(block))) {
       problems.push('format minimal de performance non respecté');
     }
