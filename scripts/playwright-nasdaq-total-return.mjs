@@ -44,7 +44,7 @@ try {
   const image=await page.locator('.publication-image-stage img').getAttribute('src')
   assert.notEqual(image,previousImage)
   previousImage=image
-  assert(await page.evaluate(currency=>window.__currencyPaint.includes(`EN ${currency}`),currency))
+  assert(await page.evaluate(currency=>window.__currencyPaint.some(label=>label.endsWith(`EN ${currency}`)),currency))
   assert(await page.evaluate(total=>window.__currencyPaint.includes(total),total))
   await page.getByRole('tab',{name:'Texte',exact:true}).click()
  }
