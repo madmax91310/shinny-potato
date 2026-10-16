@@ -94,6 +94,7 @@ jobs:
       - run: npm run audit:portfolio-provenance
       - run: npm run audit:portfolio-duels
       - run: node scripts/test-equity-duels.mjs
+      - run: node scripts/test-manual-equity-duels.mjs
       - run: npm run audit:broker-evidence
       - run: npm run audit:data-review
       - run: node scripts/test-data-review-reminder.mjs

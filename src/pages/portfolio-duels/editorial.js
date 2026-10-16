@@ -29,8 +29,10 @@ export function duelEditorial(duel) {
  }
  const label=asset=>hookLabels[asset.exposure] ?? asset.label
  const allocation=asset=>`${asset.pct} % ${/^[aeiouéèêîôœ]/i.test(label(asset)) ? 'd’' : 'de '}${label(asset)}`
- const describe=portfolio=>portfolio.assets.map(allocation).join(' et ')
- const sameBase=a.assets[0].id===b.assets[0].id && a.assets[0].pct===b.assets[0].pct
+ const describe=portfolio=>portfolio.assets.length > 3
+  ? portfolio.assets.every(asset=>asset.instrumentType==='EQUITY') ? `un portefeuille de ${portfolio.assets.length} actions` : `un portefeuille de ${portfolio.assets.length} actifs`
+  : portfolio.assets.map(allocation).join(' et ')
+ const sameBase=a.assets.length>1 && b.assets.length>1 && a.assets[0].role==='base' && b.assets[0].role==='base' && a.assets[0].id===b.assets[0].id && a.assets[0].pct===b.assets[0].pct
  const extra=portfolio=>portfolio.assets.slice(1).map(allocation).join(' et ')
  const hookQuestion=sameBase
   ? `Avec 10 000 € investis et ${allocation(a.assets[0])} dans les deux cas, aurais-tu gagné davantage avec ${extra(a)} ou ${extra(b)} ?`
@@ -55,7 +57,7 @@ export function duelEditorial(duel) {
   } else if (!equalAnnual) {
    conclusion+=` En ${year}, A ${move(a.annual[year])}, et B ${move(b.annual[year])}.`
   }
-  if (a.assets[0].exposure!==b.assets[0].exposure || a.assets[0].pct!==b.assets[0].pct) conclusion+=' Leur base ou son poids change aussi : cet écart porte sur les portefeuilles entiers, pas seulement sur leurs compléments.'
+  if (a.assets[0].role==='base' && b.assets[0].role==='base' && (a.assets[0].exposure!==b.assets[0].exposure || a.assets[0].pct!==b.assets[0].pct)) conclusion+=' Leur base ou son poids change aussi : cet écart porte sur les portefeuilles entiers, pas seulement sur leurs compléments.'
  }
 
  if (years.length < 6) conclusion+=` La comparaison couvre seulement ${years.length} années communes ; elle ne montre pas tous les épisodes de marché plus anciens.`

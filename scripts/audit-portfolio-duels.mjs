@@ -73,13 +73,12 @@ assert.ok(!/de plus pour|termine devant/.test(buildTweet(identical)))
 const reinforced = buildCustomDuel({ left: [{ id: 'msci_acwi_ishares', pct: 80 }, { id: 'msci_em', pct: 20 }], right: DUELS[0].right })
 assert.match(reinforced.readings[0], /renforcent une zone déjà présente/)
 const invalid = [
-  [], [{ id: 'msci_em', pct: 100 }],
-  [{ id: 'msci_world_ishares', pct: 50 }, { id: 'msci_acwi_ishares', pct: 50 }],
-  [{ id: 'msci_world_ishares', pct: 60 }, { id: 'msci_em', pct: 20 }, { id: 'msci_europe', pct: 20 }],
-  [{ id: 'msci_world_ishares', pct: 60 }, { id: 'sect_ai_lg', pct: 20 }, { id: 'sect_cyber_lg', pct: 20 }],
-  [{ id: 'msci_world_ishares', pct: 99 }], [{ id: 'msci_world_ishares', pct: 100.5 }],
-  [{ id: 'msci_world_ishares', pct: 101 }, { id: 'msci_em', pct: -1 }],
-  [{ id: 'action_visa', pct: 100 }], [{ id: 'spot_bitcoin', pct: 100 }],
+  [], [{id:'missing',pct:100}],
+  [{id:'msci_world_ishares',pct:99}],
+  [{id:'msci_world_ishares',pct:50},{id:'msci_world_ishares',pct:50}],
+  [{id:'msci_world_ishares',pct:100.5}],
+  [{id:'msci_world_ishares',pct:101},{id:'msci_em',pct:-1}],
+  CATALOG.slice(0,7).map((asset,i)=>({id:asset.id,pct:i?15:10})),
 ]
 for (const left of invalid) assert.throws(() => buildCustomDuel({ left, right: DUELS[0].right }))
 // Tous les types de construction et toutes les parts sont couverts, y compris les séries courtes.
@@ -123,7 +122,7 @@ for (const definition of DUELS) {
 const swapped={...cashDuel,a:cashDuel.b,b:cashDuel.a,id:'custom-swap'}
 assert.equal(Math.abs(swapped.b.final-swapped.a.final),Math.abs(cashDuel.b.final-cashDuel.a.final))
 assert.match(resultReading(identical),/même montant/)
-assert.throws(()=>buildCustomDuel({left:[{id:'msci_world_ishares',pct:100}],right:original.right}),/2 à 3/)
+assert.equal(buildCustomDuel({left:[{id:'msci_world_ishares',pct:100}],right:original.right}).a.assets.length,1)
 
 // Conclusions must be reachable with the supported multi-line portfolios.
 const nasdaqDuel=buildCustomDuel({

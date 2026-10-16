@@ -75,6 +75,13 @@ try {
         const right = [{ id: 'msci_world_ishares', pct: 80 }, { id: 'msci_em', pct: 20 }]
         await check(asset.id, buildCustomDuel({ left, right }), ['sect_robotique', 'immo_ishares_yield', 'sect_energie_propre'].includes(asset.id))
       }
+      const stockIds = ['apple', 'microsoft', 'broadcom', 'tesla', 'berkshire', 'asml']
+      for (const count of [1, 5, 6]) {
+        const left = [{id: 'msci_world_ishares', pct: 100}]
+        const right = stockIds.slice(0, count).map((id, i) => ({id: `equity-${id}`, pct: Math.floor(100 / count) + (i < 100 % count ? 1 : 0)}))
+        await check(`world-vs-${count}-stocks`, buildCustomDuel({left, right}), true)
+        await check(`${count}-stocks-vs-world`, buildCustomDuel({left:right, right:left}))
+      }
       const three = buildCustomDuel({ left: [{ id: 'msci_world_ishares', pct: 80 }, { id: 'oblig_global_agg_eur_hedged', pct: 10 }, { id: 'immo_ishares_yield', pct: 10 }], right: [{ id: 'msci_acwi_ishares', pct: 70 }, { id: 'stoxx600_bnp', pct: 20 }, { id: 'sect_robotique', pct: 10 }] })
       await check('three-assets-short-history', three, true)
       const same = buildCustomDuel({ left: [{ id: 'msci_world_ishares', pct: 80 }, { id: 'msci_em', pct: 20 }], right: [{ id: 'msci_world_ishares', pct: 80 }, { id: 'msci_em', pct: 20 }] })
@@ -99,7 +106,20 @@ try {
   assert.match(download.suggestedFilename(), /^duel-.*\.png$/)
   await page.getByRole('tab', { name: 'Image', exact: true }).click()
   await page.getByRole('img', { name: 'Duel de portefeuilles', exact: true }).waitFor()
+  await page.getByRole('button', {name: 'Composer A et B', exact:true}).click()
+  await page.getByRole('button', {name: 'Exemple : World vs 6 actions', exact:true}).click()
+  assert.equal(await page.locator('.pd-editor-side').nth(0).locator('.pd-editor-line').count(),1)
+  assert.equal(await page.locator('.pd-editor-side').nth(1).locator('.pd-editor-line').count(),6)
+  assert(await page.getByRole('button',{name:'Ajouter un actif à B',exact:true}).isDisabled())
+  assert.match(await page.locator('#pd-tweet').inputValue(), /portefeuille de 6 actions/)
+  await page.getByRole('button',{name:'Retirer actif 6 du portefeuille B',exact:true}).click()
+  await page.getByRole('button',{name:'Répartir à parts égales sur B',exact:true}).click()
+  assert.match(await page.locator('#pd-tweet').inputValue(), /portefeuille de 5 actions/)
+  const [manualDownload] = await Promise.all([page.waitForEvent('download'), page.getByRole('button', {name:/Télécharger l’image PNG/i}).click()])
+  assert.match(manualDownload.suggestedFilename(), /duel/)
+  await page.reload()
+  assert.equal(await page.locator('.pd-editor-side').nth(1).locator('.pd-editor-line').count(),5)
   await page.setViewportSize({ width: 390, height: 844 })
   assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true)
-  console.log(`${CATALOG.length} supports, ${DUELS.length} duels, 2–3 actifs par côté : illustrations effectivement dessinées, poids, dates communes, capitaux, performances, pertes, égalités, grands montants, textes sans chevauchement et téléchargement/reprise vérifiés dans Chromium.`)
+  console.log(`${CATALOG.length} supports, ${DUELS.length} duels, 1–6 actifs par côté : illustrations effectivement dessinées, poids, dates communes, capitaux, performances, pertes, égalités, grands montants, textes sans chevauchement et téléchargement/reprise vérifiés dans Chromium.`)
 } finally { await browser?.close(); server.kill('SIGTERM') }

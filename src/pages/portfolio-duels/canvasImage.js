@@ -40,20 +40,28 @@ function label(ctx, value, x, y, width, height = 73) {
 function rule(ctx, x, y, width, color = '#957e57') {
   ctx.strokeStyle = color; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x + width, y); ctx.stroke()
 }
-function portfolio(ctx, item, images, letter, x, currency, accent, dark) {
+function portfolio(ctx, item, images, letter, x, currency, accent, dark, dense = false) {
   ctx.save(); ctx.fillStyle=dark?'rgba(0,0,0,.05)':'rgba(0,0,0,.16)'; ctx.beginPath(); ctx.roundRect(x+15,CARD_Y+20,CARD_W-30,CARD_H-35,16); ctx.fill(); ctx.restore()
   text(ctx, letter, x + 30, CARD_Y + 24, 22, accent)
   const count = item.assets.length, galleryW = CARD_W - 80, gap = 8, cellW = (galleryW - (count - 1) * gap) / count
-  images.forEach((image, i) => drawDuelArt(ctx, image, x + 40 + i * (cellW + gap), 155, cellW, 215))
-  rule(ctx, x + 35, 375, CARD_W - 70)
-  const top = 396, rowHeight = 78
-  item.assets.forEach((asset, i) => {
-    const y = top + i * rowHeight
-    // Same ordered asset on the plate and in the gallery above it.
-    fitted(ctx, `${asset.pct} %`, x + CARD_W - 35, y + 5, 33, 110, accent, true, 'right')
-    label(ctx, asset.label, x + 35, y, CARD_W - 175, count === 3 ? 60 : 73)
-  })
-  const resultY = 485 + (count-1)*65
+  if (dense) {
+    item.assets.forEach((asset, i) => {
+      const y = 170 + i * 70
+      drawDuelArt(ctx, images[i], x + 25, y, 65, 65)
+      label(ctx, asset.label, x + 105, y + 4, CARD_W - 235, 60)
+      fitted(ctx, `${asset.pct} %`, x + CARD_W - 35, y + 16, 31, 100, accent, true, 'right')
+    })
+  } else {
+    images.forEach((image, i) => drawDuelArt(ctx, image, x + 40 + i * (cellW + gap), 155, cellW, 215))
+    rule(ctx, x + 35, 375, CARD_W - 70)
+    const top = 396, rowHeight = 78
+    item.assets.forEach((asset, i) => {
+      const y = top + i * rowHeight
+      fitted(ctx, `${asset.pct} %`, x + CARD_W - 35, y + 5, 33, 110, accent, true, 'right')
+      label(ctx, asset.label, x + 35, y, CARD_W - 175, count === 3 ? 60 : 73)
+    })
+  }
+  const resultY = dense ? 620 : 485 + (count-1)*65
   rule(ctx, x + 35, resultY, CARD_W - 70)
   text(ctx, 'Capital final', x + CARD_W / 2, resultY+18, 27, MUTED, true, 'center')
   fitted(ctx, formatCapital(item.final, currency), x + CARD_W / 2, resultY+62, 76, CARD_W - 75, GOLD, true, 'center')
@@ -77,8 +85,9 @@ export async function renderDuelImage(duel) {
   text(ctx, `10 000 ${symbol} au départ · Sans versement supplémentaire`, W / 2, 85, 27, MUTED, false, 'center')
   // Keep the studio plates below the two header lines, including their shadows.
   ctx.save(); ctx.translate(0, HEADER_SPACE)
-  portfolio(ctx, duel.a, aImages, 'A', 180, duel.currency, '#9dd9bb', false)
-  portfolio(ctx, duel.b, bImages, 'B', 890, duel.currency, GOLD, true)
+  const dense = Math.max(duel.a.assets.length, duel.b.assets.length) > 3
+  portfolio(ctx, duel.a, aImages, 'A', 180, duel.currency, '#9dd9bb', false, dense)
+  portfolio(ctx, duel.b, bImages, 'B', 890, duel.currency, GOLD, true, dense)
   text(ctx, 'VS', W / 2, 525, 44, GOLD, true, 'center')
   const difference = duel.b.final - duel.a.final
   const gap = Math.abs(difference) < .5 ? 'Même capital final à l’euro près'

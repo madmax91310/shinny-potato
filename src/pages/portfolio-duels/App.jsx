@@ -8,52 +8,50 @@ import { notifyPublication, copyPublicationText, startPublicationDownload } from
 import ChoicePicker from '../../design-system/ChoicePicker.jsx'
 import WorkspaceActions from '../../design-system/WorkspaceActions'
 import ToolWorkspace from '../../design-system/ToolWorkspace'
-import SettingsDetails from '../../design-system/SettingsDetails'
 import { useRef, useState } from 'react'
 import PageHeader from '../../design-system/PageHeader'
 import Button from '../../design-system/Button'
 import { DUELS } from './data.js'
-import { buildCustomDuel, buildDuel, buildTweet, CATALOG, ROLES, resultReading, formatCapital, formatPercent } from './lib.js'
+import { buildCustomDuel, buildDuel, buildTweet, CATALOG, resultReading, formatCapital, formatPercent } from './lib.js'
 const renderDuelImage = async duel => (await import('./canvasImage.js')).renderDuelImage(duel)
 import { YEARS } from '../../data/portfolio-assets.js'
 import { generateDuel } from './generate.js'
 import './portfolio-duels.css'
 
 const duels = DUELS.map(buildDuel)
-const validAllocation = rows => Array.isArray(rows) && rows.length >= 2 && rows.length <= 3 && rows.every(r => r && CATALOG.some(a => a.id === r.id) && (r.pct === '' || Number.isFinite(r.pct)))
+const validAllocation = rows => Array.isArray(rows) && rows.length >= 1 && rows.length <= 6 && rows.every(r => r && CATALOG.some(a => a.id === r.id) && (r.pct === '' || Number.isFinite(r.pct)))
 const initialLeft = [{ id: 'msci_world_ishares', pct: 80 }, { id: 'msci_em', pct: 20 }]
 const initialRight = [{ id: 'msci_acwi_ishares', pct: 80 }, { id: 'smallcap_monde', pct: 20 }]
 
 function AllocationEditor({ label, lines, onChange }) {
   const total = lines.reduce((sum, line) => sum + Number(line.pct || 0), 0)
-  function setRole(role, id) {
-    const current = lines.find((line) => CATALOG.find((item) => item.id === line.id)?.role === role)
-    const others = lines.filter((line) => CATALOG.find((item) => item.id === line.id)?.role !== role)
-    onChange([...others, ...(id ? [{ id, pct: current?.pct ?? 10 }] : [])])
+  const update = (index, patch) => onChange(lines.map((line, i) => i === index ? {...line, ...patch} : line))
+  function add() {
+    const next = CATALOG.find(item => item.instrumentType === 'EQUITY' && !lines.some(line => line.id === item.id))
+    if (next) onChange([...lines, {id: next.id, pct: Math.max(1, 100 - total)}])
   }
-  function setWeight(id, value) {
-    onChange(lines.map((line) => line.id === id ? { ...line, pct: value === '' ? '' : Number(value) } : line))
+  function equalize() {
+    const share = Math.floor(100 / lines.length), remainder = 100 % lines.length
+    onChange(lines.map((line, i) => ({...line, pct: share + (i < remainder ? 1 : 0)})))
   }
   return <section className="pd-editor-side">
     <h3>Portefeuille {label} <span className={total === 100 ? 'pd-total-ok' : 'pd-total-bad'}>{total} % / 100 %</span></h3>
-    {Object.entries(ROLES).map(([role, title]) => {
-      const line = lines.find((entry) => CATALOG.find((item) => item.id === entry.id)?.role === role)
-      const fields = <div className="pd-editor-line">
-        <label><span>{title}{role !== 'base' ? ' (facultatif)' : ' (obligatoire)'}</span>
-          <ChoicePicker aria-label={`${title} du portefeuille ${label}`} value={line?.id ?? ''} onChange={(event) => setRole(role, event.target.value)}>
-            {role !== 'base' && <option value="">Aucun</option>}
-            {CATALOG.filter((item) => item.role === role).map((item) => <option key={item.id} value={item.id}>{item.instrumentType === 'EQUITY' ? `Action · ${item.label}` : `${item.label} · ${item.name}`} </option>)}
-          </ChoicePicker>
-        </label>
-        <label className="pd-weight"><span>Poids (%)</span><input aria-label={`Poids ${title.toLowerCase()} du portefeuille ${label}`} type="number" min="1" max="100" step="1" disabled={!line} value={line?.pct ?? ''} onChange={(event) => setWeight(line.id, event.target.value)} /></label>
-      </div>
-      return role === 'base' ? <div key={role}>{fields}</div> : <SettingsDetails key={role}
-        title={`${title} du portefeuille ${label}`} defaultOpen={Boolean(line)}
-        summary={line ? `${CATALOG.find(item => item.id === line.id)?.label} · ${line.pct} %` : 'Aucun · facultatif'}>{fields}</SettingsDetails>
-    })}
+    {lines.map((line, index) => <div className="pd-editor-line" key={index}>
+      <label><span>Actif {index + 1}</span>
+        <ChoicePicker aria-label={`Actif ${index + 1} du portefeuille ${label}`} value={line.id} onChange={event => update(index, {id: event.target.value})}>
+          {CATALOG.filter(item => item.id === line.id || !lines.some(row => row.id === item.id)).map(item =>
+            <option key={item.id} value={item.id}>{item.instrumentType === 'EQUITY' ? `Action · ${item.label}` : `${item.label} · ${item.name}`}</option>)}
+        </ChoicePicker>
+      </label>
+      <label className="pd-weight"><span>Poids (%)</span><input aria-label={`Poids actif ${index + 1} du portefeuille ${label}`} type="number" min="1" max="100" step="1" value={line.pct} onChange={event => update(index, {pct: event.target.value === '' ? '' : Number(event.target.value)})} /></label>
+      <button type="button" aria-label={`Retirer actif ${index + 1} du portefeuille ${label}`} disabled={lines.length === 1} onClick={() => onChange(lines.filter((_, i) => i !== index))}>×</button>
+    </div>)}
+    <div className="pd-controls">
+      <button type="button" className="pd-add" disabled={lines.length >= 6} onClick={add}>Ajouter un actif à {label}</button>
+      <button type="button" className="pd-add" onClick={equalize}>Répartir à parts égales sur {label}</button>
+    </div>
   </section>
 }
-
 
 
 export default function App() {
@@ -128,7 +126,7 @@ function DuelWorkspace({ search }) {
 
   return (
     <div className="pd-scope">
-      <PageHeader title="Duel de portefeuilles" subtitle="Une base ETF, un complément (ETF ou action) et une thématique si tu le souhaites : compare deux constructions de portefeuille." />
+      <PageHeader title="Duel de portefeuilles" subtitle="Compare librement deux portefeuilles : un ETF seul, plusieurs actions ou une combinaison des deux." />
       <ToolWorkspace renderImage={() => renderDuelImage(duel)} imageDisabled={!duel} imageAlt="Duel de portefeuilles">
       <section className="tool-settings">
       <Button variant="secondary" onClick={() => { setIndex(0); setMode('prepared'); setLeft(initialLeft); setRight(initialRight) }}>Réinitialiser les réglages</Button>
@@ -145,8 +143,12 @@ function DuelWorkspace({ search }) {
       </div>}
       {mode === 'generated' && <div className="pd-controls"><p>Chaque portefeuille contient une base ETF et un complément, avec parfois une troisième ligne thématique.</p><Button type="button" onClick={regenerate}>🎲 Générer un autre duel</Button></div>}
       {mode === 'manual' && <>
+        <Button variant="secondary" onClick={() => {
+          setLeft([{id: 'msci_world_ishares', pct: 100}])
+          setRight(['apple', 'microsoft', 'broadcom', 'tesla', 'berkshire', 'asml'].map((id, i) => ({id: `equity-${id}`, pct: i < 4 ? 17 : 16})))
+        }}>Exemple : World vs 6 actions</Button>
         <div className="pd-editors"><AllocationEditor label="A" lines={left} onChange={setLeft} /><AllocationEditor label="B" lines={right} onChange={setRight} /></div>
-        <p className="pd-hint">2 à 3 lignes par portefeuille : une base ETF et au moins un complément ou une thématique · mêmes dates et calcul en euros · pondérations rétablies au début de chaque année.</p>
+        <p className="pd-hint">1 à 6 actifs par portefeuille, sans base ETF obligatoire · total de 100 % de chaque côté · mêmes dates et calcul en euros · pondérations rétablies au début de chaque année.</p>
         {error && <p className="pd-error" role="alert">{error}</p>}
       </>}
 
@@ -160,7 +162,7 @@ function DuelWorkspace({ search }) {
           {[duel.a, duel.b].map((portfolio, i) => (
             <section className={`pd-card pd-${i ? 'b' : 'a'}`} key={portfolio.name}>
               <h3>{i ? 'B' : 'A'} · {portfolio.name}</h3>
-              {portfolio.assets.map((asset) => <p key={asset.id}>{asset.pct} % {asset.label} <small>· {ROLES[asset.role]}</small></p>)}
+              {portfolio.assets.map((asset) => <p key={asset.id}>{asset.pct} % {asset.label}</p>)}
               <Suspense fallback={<p>Chargement des expositions…</p>}><PortfolioExposure lines={portfolio.assets} name={i ? "B" : "A"} /></Suspense>
               <strong>{formatCapital(portfolio.final, duel.currency)}</strong>
               <small>pour 10 000 {duel.currency === 'USD' ? '$' : '€'} au départ</small>

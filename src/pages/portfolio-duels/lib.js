@@ -14,18 +14,25 @@ export function formatCapital(value, currency = 'EUR') {
 }
 
 export function validateAllocation(lines, side) {
-  if (!Array.isArray(lines) || lines.length < 2 || lines.length > 3) throw new Error(`Le portefeuille ${side} doit avoir 2 à 3 lignes, dont une base ETF.`)
+  if (!Array.isArray(lines) || lines.length < 1 || lines.length > 6) throw new Error(`Le portefeuille ${side} doit avoir 1 à 6 actifs.`)
   if (lines.some((line) => !ITEM_BY_ID.has(line.id) || !Number.isInteger(line.pct) || line.pct < 1 || line.pct > 100)) {
     throw new Error(`Choix ou pondération invalide dans le portefeuille ${side}.`)
   }
-  const roles = lines.map((line) => ITEM_BY_ID.get(line.id).role)
-  if (roles.filter((role) => role === 'base').length !== 1 || new Set(roles).size !== roles.length) {
-    throw new Error(`Le portefeuille ${side} doit contenir une base, au plus un complément et une thématique.`)
-  }
+  if (new Set(lines.map(line => line.id)).size !== lines.length) throw new Error(`Un actif ne peut apparaître qu’une fois dans le portefeuille ${side}.`)
   if (lines.reduce((total, line) => total + line.pct, 0) !== 100) throw new Error(`Le portefeuille ${side} doit totaliser 100 %.`)
 }
 
 function exposureReading(portfolio, includeBase = true) {
+  const equities = portfolio.assets.filter(asset => asset.instrumentType === 'EQUITY')
+  const bases = portfolio.assets.filter(asset => asset.role === 'base')
+  const uniqueRoles = new Set(portfolio.assets.map(asset => asset.role)).size === portfolio.assets.length
+  if (bases.length !== 1 || !uniqueRoles || portfolio.assets.length > 3) {
+    if (equities.length === portfolio.assets.length) return equities.length === 1
+      ? `Tout le capital est investi dans ${equities[0].label}, une seule entreprise.`
+      : `Le portefeuille repose sur ${equities.length} entreprises choisies individuellement. Leurs poids sont rétablis au début de chaque année.`
+    const equityWeight = equities.reduce((sum, asset) => sum + asset.pct, 0)
+    return equities.length ? `${equityWeight} % sont investis directement dans ${equities.length} entreprise${equities.length > 1 ? 's' : ''}, le reste dans les autres supports sélectionnés. Certaines peuvent aussi être présentes dans les ETF.` : `Le capital est réparti entre ${portfolio.assets.length} supports. Leurs expositions peuvent se recouper.`
+  }
   const base = portfolio.assets.find((asset) => asset.role === 'base')
   const complement = portfolio.assets.find((asset) => asset.role === 'complement')
   const theme = portfolio.assets.find((asset) => asset.role === 'theme')
@@ -137,7 +144,7 @@ export function buildCustomDuel(definition) {
       ...(unique.some((asset) => asset.currency === 'USD') ? [{ name: 'Taux EUR/USD de fin d’année (BCE)', url: FX_SOURCE, note: 'Conversion annuelle des rendements USD vers EUR.' }] : [])],
   }
   // Avoid explaining the same base twice; make a changed weight explicit.
-  if (a.assets[0].id === b.assets[0].id) {
+  if (a.assets.length > 1 && b.assets.length > 1 && a.assets[0].role === 'base' && b.assets[0].role === 'base' && a.assets[0].id === b.assets[0].id && new Set(b.assets.map(asset => asset.role)).size === b.assets.length) {
     const baseChange = a.assets[0].pct === b.assets[0].pct
       ? `Même base ${baseB} à ${b.assets[0].pct} %.`
       : `La même base ${baseB} passe de ${a.assets[0].pct} % dans A à ${b.assets[0].pct} % dans B.`
