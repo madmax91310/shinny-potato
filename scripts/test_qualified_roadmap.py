@@ -42,4 +42,14 @@ class QualifiedRoadmap(unittest.TestCase):
   self.assertEqual([r['weightPct']for r in rows],[60,41,-1]);self.assertEqual(sum(r['weightPct']for r in rows),100)
   points['sectorName']['value'].pop()
   with self.assertRaises(ValueError):holdings_sectors(body,'2026-10-13')
+ def test_wholly_absent_country_table_uses_exact_dated_holdings(self):
+  p=self.body['componentsByNameMap']['exposureBreakdowns']['containersByNameMap']['geography']['subContainersByNameMap']['countries']['dataPointsByNameMap']
+  p['type']['value']=None;p['fund']['value']=None
+  r=self.collect()
+  self.assertTrue(r['countries']['rows'])
+  self.assertEqual(r['countries']['asOf'],r['holdings']['asOf'])
+  self.assertIn('Country of risk',r['countries']['method'])
+  self.assertIsNone(p['type']['value'],'Raw issuer evidence must remain unchanged')
+  p['type']['value']=['France']
+  with self.assertRaises(ValueError):self.collect()
 if __name__=='__main__':unittest.main()

@@ -2068,6 +2068,14 @@
     "collectHoldings": true,
     "requireFullHistory": false,
     "distribution": "Distributing",
+    "characteristics": {
+      "terPct": 0.75,
+      "index": "S&P LISTED PRIVATE EQUITY INDEX (NET) (USD)",
+      "distribution": "Distributing",
+      "domicile": "Ireland",
+      "replicationMethod": "Physical (Replicated)",
+      "inceptionDate": "20070316"
+    },
     "terPct": 0.75,
     "index": "S&P LISTED PRIVATE EQUITY INDEX (NET) (USD)",
     "aum": {
@@ -2077,69 +2085,93 @@
       "asOf": "2026-10-15"
     },
     "countries": {
-      "asOf": "2026-10-14",
+      "asOf": "2026-10-15",
+      "method": "Country of risk, all published holdings including cash/derivatives, no renormalisation",
       "rows": [
         {
           "name": "United States",
-          "weightPct": 45.34
+          "weightPct": 45.44392
         },
         {
           "name": "Canada",
-          "weightPct": 16.36
+          "weightPct": 16.57248
         },
         {
           "name": "United Kingdom",
-          "weightPct": 14.72
+          "weightPct": 14.8703
         },
         {
           "name": "Sweden",
-          "weightPct": 5.92
+          "weightPct": 5.89264
         },
         {
           "name": "Australia",
-          "weightPct": 4.6
+          "weightPct": 4.60291
         },
         {
           "name": "Switzerland",
-          "weightPct": 3.86
+          "weightPct": 3.87728
         },
         {
-          "name": "Guernsey, Channel Islands",
-          "weightPct": 3.34
+          "name": "Guernsey",
+          "weightPct": 3.31846
         },
         {
           "name": "France",
-          "weightPct": 2.07
+          "weightPct": 2.04996
         },
         {
-          "name": "Jersey, Channel Islands",
-          "weightPct": 1.37
+          "name": "Jersey",
+          "weightPct": 1.35786
+        },
+        {
+          "name": "Belgium",
+          "weightPct": 0.50146
+        },
+        {
+          "name": "Bermuda",
+          "weightPct": 0.44317
+        },
+        {
+          "name": "Japan",
+          "weightPct": 0.34855
+        },
+        {
+          "name": "Korea (South)",
+          "weightPct": 0.27792
+        },
+        {
+          "name": "Germany",
+          "weightPct": 0.19613
+        },
+        {
+          "name": "Brazil",
+          "weightPct": 0.11272
+        },
+        {
+          "name": "European Union",
+          "weightPct": 0.0813
+        },
+        {
+          "name": "Ireland",
+          "weightPct": 0.05295
+        },
+        {
+          "name": "Hong Kong",
+          "weightPct": 1e-05
         },
         {
           "name": "Other",
-          "weightPct": 1.9000000000000001
-        },
-        {
-          "name": "Cash and/or Derivatives",
-          "weightPct": 0.51
+          "weightPct": 0.0
         }
-      ],
-      "sourceComponent": "exposureBreakdowns.geography.countries"
+      ]
     },
     "sectors": {
-      "asOf": "2026-10-14",
+      "asOf": "2026-10-15",
       "rows": [
         {
-          "name": "Financials",
-          "weightPct": 99.09
-        },
-        {
           "name": "Cash and/or Derivatives",
-          "weightPct": 0.51
-        },
-        {
-          "name": "Other",
-          "weightPct": 0.39
+          "weightPct": 100.0
         }
       ],
       "sourceComponent": "exposureBreakdowns.sector"
@@ -2162,57 +2194,57 @@
       }
     },
     "holdings": {
-      "asOf": "2026-10-14",
+      "asOf": "2026-10-15",
       "basis": "fund",
       "rows": [
         {
           "name": "BROOKFIELD CLASS A",
-          "weightPct": 7.58831,
+          "weightPct": 7.6744,
           "isin": "CA11271J1075"
         },
         {
           "name": "3I GROUP FUND PLC",
-          "weightPct": 7.16132,
+          "weightPct": 7.21232,
           "isin": "GB00B1YW4409"
         },
         {
-          "name": "APOLLO GLOBAL MANAGEMENT",
-          "weightPct": 6.67411,
-          "isin": "US03769M1062"
-        },
-        {
           "name": "BROOKFIELD ASSET MANAGEMENT VOTING",
-          "weightPct": 6.60133,
+          "weightPct": 6.70534,
           "isin": "CA1130041058"
         },
         {
           "name": "BLACKSTONE",
-          "weightPct": 6.53553,
+          "weightPct": 6.60728,
           "isin": "US09260D1072"
         },
         {
+          "name": "APOLLO GLOBAL MANAGEMENT",
+          "weightPct": 6.47466,
+          "isin": "US03769M1062"
+        },
+        {
           "name": "WASHINGTON H SOUL PATTINSON & COMP",
-          "weightPct": 4.49578,
+          "weightPct": 4.43087,
           "isin": "AU000000SOL3"
         },
         {
           "name": "ARES CAPITAL CORP",
-          "weightPct": 4.16944,
+          "weightPct": 4.17258,
           "isin": "US04010L1035"
         },
         {
-          "name": "PARTNERS GROUP HOLDING AG",
-          "weightPct": 3.8628,
-          "isin": "CH0024608827"
-        },
-        {
           "name": "EQT",
-          "weightPct": 3.80147,
+          "weightPct": 3.87053,
           "isin": "SE0012853455"
         },
         {
+          "name": "PARTNERS GROUP HOLDING AG",
+          "weightPct": 3.86062,
+          "isin": "CH0024608827"
+        },
+        {
           "name": "KKR AND CO INC",
-          "weightPct": 3.61138,
+          "weightPct": 3.63527,
           "isin": "US48251W1045"
         }
       ]
@@ -2276,14 +2308,6 @@
         "evidenceId": "IE00B1TXHL60-XSWX-IPRV-USD"
       }
     ],
-    "characteristics": {
-      "terPct": 0.75,
-      "index": "S&P LISTED PRIVATE EQUITY INDEX (NET) (USD)",
-      "distribution": "Distributing",
-      "domicile": "Ireland",
-      "replicationMethod": "Physical (Replicated)",
-      "inceptionDate": "20070316"
-    },
     "metrics": {
       "twelveMonTrlYld": {
         "value": 4.061399,
@@ -2299,27 +2323,27 @@
         "value": 90.0,
         "label": "Nombre de positions hors liquidités et dérivés",
         "unit": "positions",
-        "asOf": "2026-10-14",
+        "asOf": "2026-10-15",
         "checkedAt": "2026-10-16",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251918&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The number of holdings in the fund excluding cash positions and derivatives exposures. Derivatives are contracts used by the fund to gain exposure to an investment without buying it directly.  They can be used in a number of ways. For example a &#39;currency forward&#39; derivative contract can be used to &#39;hedge&#39; or aim to mitigate the effects of changes in exchange rates.",
         "scope": "Fund portfolio"
       },
       "priceEarnings": {
-        "value": 12.0803,
+        "value": 12.00923,
         "label": "PER du portefeuille selon l’émetteur",
         "unit": "fois",
-        "asOf": "2026-10-14",
+        "asOf": "2026-10-15",
         "checkedAt": "2026-10-16",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251918&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The price to earnings ratio (P/E) is a fundamental measure used to determine if an investment is valued appropriately. Each holdings&#39; P/E is the latest closing price divided by the latest 12 months&#39; earnings per share. Negative earnings are excluded, extraordinary items are excluded, and P/E ratios over 60 are set to 60.",
         "scope": "Fund portfolio"
       },
       "priceBook": {
-        "value": 1.38776,
+        "value": 1.37798,
         "label": "Cours / actif net comptable selon l’émetteur",
         "unit": "fois",
-        "asOf": "2026-10-14",
+        "asOf": "2026-10-15",
         "checkedAt": "2026-10-16",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251918&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The price to book (P/B) value ratio is a fundamental measure used to determine if an investment is valued appropriately. The book value of a company is a measure of how much a company&#39;s assets are worth assuming the company&#39;s debts are paid off. Negative book values are excluded from this calculation and holding price to book ratios over 25 are set to 25.",
@@ -2336,8 +2360,8 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-10-16T12:45:21.993055+00:00",
-    "pageSha256": "fc1280d0bdd7b6c1382f7c9e66073e1d432f7e3bfd78a2e6a271ad87131e0bba",
+    "checkedAt": "2026-10-16T17:20:46.399967+00:00",
+    "pageSha256": "f1156d6f62cd8b74029eccf32ab4e3f7de53e42d15fc63ce18ee41db0cf0c7ba",
     "automatedRecord": {
       "currency": "USD",
       "productId": 251918,
@@ -2352,22 +2376,12 @@
         "modifiedAt": "2026-10-16"
       },
       "sectors": {
-        "asOf": "2026-10-14",
+        "asOf": "2026-10-15",
         "rows": [
           {
-            "name": "Financials",
-            "weightPct": 99.09,
-            "label": "Financials"
-          },
-          {
             "name": "Cash and/or Derivatives",
-            "weightPct": 0.51,
+            "weightPct": 100.0,
             "label": "Cash and/or Derivatives"
-          },
-          {
-            "name": "Other",
-            "weightPct": 0.39,
-            "label": "Autres"
           }
         ],
         "sourceComponent": "exposureBreakdowns.sector",
@@ -2375,109 +2389,141 @@
         "modifiedAt": "2026-10-16"
       },
       "countries": {
-        "asOf": "2026-10-14",
+        "asOf": "2026-10-15",
+        "method": "Country of risk, all published holdings including cash/derivatives, no renormalisation",
         "rows": [
           {
             "name": "United States",
-            "weightPct": 45.34
+            "weightPct": 45.44392
           },
           {
             "name": "Canada",
-            "weightPct": 16.36
+            "weightPct": 16.57248
           },
           {
             "name": "United Kingdom",
-            "weightPct": 14.72
+            "weightPct": 14.8703
           },
           {
             "name": "Sweden",
-            "weightPct": 5.92
+            "weightPct": 5.89264
           },
           {
             "name": "Australia",
-            "weightPct": 4.6
+            "weightPct": 4.60291
           },
           {
             "name": "Switzerland",
-            "weightPct": 3.86
+            "weightPct": 3.87728
           },
           {
-            "name": "Guernsey, Channel Islands",
-            "weightPct": 3.34
+            "name": "Guernsey",
+            "weightPct": 3.31846
           },
           {
             "name": "France",
-            "weightPct": 2.07
+            "weightPct": 2.04996
           },
           {
-            "name": "Jersey, Channel Islands",
-            "weightPct": 1.37
+            "name": "Jersey",
+            "weightPct": 1.35786
+          },
+          {
+            "name": "Belgium",
+            "weightPct": 0.50146
+          },
+          {
+            "name": "Bermuda",
+            "weightPct": 0.44317
+          },
+          {
+            "name": "Japan",
+            "weightPct": 0.34855
+          },
+          {
+            "name": "Korea (South)",
+            "weightPct": 0.27792
+          },
+          {
+            "name": "Germany",
+            "weightPct": 0.19613
+          },
+          {
+            "name": "Brazil",
+            "weightPct": 0.11272
+          },
+          {
+            "name": "European Union",
+            "weightPct": 0.0813
+          },
+          {
+            "name": "Ireland",
+            "weightPct": 0.05295
+          },
+          {
+            "name": "Hong Kong",
+            "weightPct": 1e-05
           },
           {
             "name": "Other",
-            "weightPct": 1.9000000000000001
-          },
-          {
-            "name": "Cash and/or Derivatives",
-            "weightPct": 0.51
+            "weightPct": 0.0
           }
         ],
-        "sourceComponent": "exposureBreakdowns.geography.countries",
         "checkedAt": "2026-10-16",
         "modifiedAt": "2026-10-16"
       },
       "holdings": {
-        "asOf": "2026-10-14",
+        "asOf": "2026-10-15",
         "basis": "fund",
         "rows": [
           {
             "name": "BROOKFIELD CLASS A",
-            "weightPct": 7.58831,
+            "weightPct": 7.6744,
             "isin": "CA11271J1075"
           },
           {
             "name": "3I GROUP FUND PLC",
-            "weightPct": 7.16132,
+            "weightPct": 7.21232,
             "isin": "GB00B1YW4409"
           },
           {
-            "name": "APOLLO GLOBAL MANAGEMENT",
-            "weightPct": 6.67411,
-            "isin": "US03769M1062"
-          },
-          {
             "name": "BROOKFIELD ASSET MANAGEMENT VOTING",
-            "weightPct": 6.60133,
+            "weightPct": 6.70534,
             "isin": "CA1130041058"
           },
           {
             "name": "BLACKSTONE",
-            "weightPct": 6.53553,
+            "weightPct": 6.60728,
             "isin": "US09260D1072"
           },
           {
+            "name": "APOLLO GLOBAL MANAGEMENT",
+            "weightPct": 6.47466,
+            "isin": "US03769M1062"
+          },
+          {
             "name": "WASHINGTON H SOUL PATTINSON & COMP",
-            "weightPct": 4.49578,
+            "weightPct": 4.43087,
             "isin": "AU000000SOL3"
           },
           {
             "name": "ARES CAPITAL CORP",
-            "weightPct": 4.16944,
+            "weightPct": 4.17258,
             "isin": "US04010L1035"
           },
           {
-            "name": "PARTNERS GROUP HOLDING AG",
-            "weightPct": 3.8628,
-            "isin": "CH0024608827"
-          },
-          {
             "name": "EQT",
-            "weightPct": 3.80147,
+            "weightPct": 3.87053,
             "isin": "SE0012853455"
           },
           {
+            "name": "PARTNERS GROUP HOLDING AG",
+            "weightPct": 3.86062,
+            "isin": "CH0024608827"
+          },
+          {
             "name": "KKR AND CO INC",
-            "weightPct": 3.61138,
+            "weightPct": 3.63527,
             "isin": "US48251W1045"
           }
         ],
@@ -2512,6 +2558,38 @@
         },
         "checkedAt": "2026-10-16",
         "modifiedAt": "2026-10-12"
+      },
+      "characteristicChecks": {
+        "terPct": {
+          "checkedAt": "2026-10-16",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251918&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "index": {
+          "checkedAt": "2026-10-16",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251918&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "distribution": {
+          "checkedAt": "2026-10-16",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251918&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "domicile": {
+          "checkedAt": "2026-10-16",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251918&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "replicationMethod": {
+          "checkedAt": "2026-10-16",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251918&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "inceptionDate": {
+          "checkedAt": "2026-10-16",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251918&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        }
       }
     }
   },

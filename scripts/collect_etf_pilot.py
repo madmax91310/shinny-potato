@@ -57,7 +57,7 @@ def source_date(value, now):
 def allocation(container, now):
     points = container['dataPointsByNameMap']
     labels, weights = points['type']['value'], points['fund']['value']
-    if not isinstance(labels, list) or not labels or len(labels) != len(weights) or len(set(labels)) != len(labels):
+    if not isinstance(labels, list) or not isinstance(weights, list) or not labels or len(labels) != len(weights) or len(set(labels)) != len(labels):
         reject('Invalid allocation labels')
     for label, weight in zip(labels, weights):
         # A net cash/derivative balance is signed, unlike a security exposure.

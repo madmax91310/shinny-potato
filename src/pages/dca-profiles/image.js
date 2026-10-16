@@ -96,7 +96,7 @@ function fullPortfolio(ctx,p,a){
   const rounded=integerPercentages(rows),lead=rows.findIndex(r=>!['Non ventilé','Non ventilé ici','Écart d’arrondi'].includes(r.name))
   if(lead>=0){centered(ctx,exposurePercentage(rows[lead].weight,rounded[lead]),899,y+231,173,41);centered(ctx,rows[lead].name,899,y+273,168,17,C.muted,400)}
   else centered(ctx,'Non ventilé',899,y+239,170,23,C.muted)
-  const gap=rows.length>7?27:rows.length>6?29:rows.length>5?36:49
+  const gap=rows.length>5?37:49
   rows.forEach((row,i)=>{
    const top=y+137+i*gap
    ctx.fillStyle=row.color;ctx.beginPath();ctx.arc(1076,top-9,6,0,Math.PI*2);ctx.fill()

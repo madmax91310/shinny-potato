@@ -31,6 +31,13 @@ def collect_one(config,now):
  # Hedged funds can publish gross exposure breakdowns. Use the complete signed
  # positions instead, without renormalising them or confusing exposure with NAV.
  parse_body=copy.deepcopy(body) if config.get('compositionFromHoldings') else body
+ # A wholly unpublished country table is absent data, not a malformed one.
+ # Preserve the raw response and use the exact dated holdings fallback below.
+ published=body.get('componentsByNameMap',{}).get('exposureBreakdowns',{}).get('containersByNameMap',{})
+ country_points=published.get('geography',{}).get('subContainersByNameMap',{}).get('countries',{}).get('dataPointsByNameMap',{})
+ if country_points and country_points.get('type',{}).get('value') is None and country_points.get('fund',{}).get('value') is None:
+  parse_body=copy.deepcopy(body)
+  parse_body['componentsByNameMap']['exposureBreakdowns']['containersByNameMap'].pop('geography',None)
  if config.get('compositionFromHoldings'):parse_body['componentsByNameMap'].pop('exposureBreakdowns',None)
  result=parse_share(parse_body,share,now)
  if not result.get('performance',{}).get('years'):raise ValueError('No complete annual NAV total return yet')
