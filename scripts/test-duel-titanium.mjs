@@ -108,6 +108,8 @@ try {
   await page.getByRole('img', { name: 'Duel de portefeuilles', exact: true }).waitFor()
   await page.getByRole('button', {name: 'Composer A et B', exact:true}).click()
   await page.getByRole('button', {name: 'Exemple : World vs 6 actions', exact:true}).click()
+  // AllocationEditor is lazy: wait for the six rendered rows before counting.
+  await page.locator('.pd-editor-side').nth(1).locator('.pd-editor-line').nth(5).waitFor()
   assert.equal(await page.locator('.pd-editor-side').nth(0).locator('.pd-editor-line').count(),1)
   assert.equal(await page.locator('.pd-editor-side').nth(1).locator('.pd-editor-line').count(),6)
   assert(await page.getByRole('button',{name:'Ajouter un actif à B',exact:true}).isDisabled())
