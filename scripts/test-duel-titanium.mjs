@@ -118,6 +118,7 @@ try {
   const [manualDownload] = await Promise.all([page.waitForEvent('download'), page.getByRole('button', {name:/Télécharger l’image PNG/i}).click()])
   assert.match(manualDownload.suggestedFilename(), /duel/)
   await page.reload()
+  await page.getByRole('group', {name: 'Actif 5 du portefeuille B', exact:true}).waitFor()
   assert.equal(await page.locator('.pd-editor-side').nth(1).locator('.pd-editor-line').count(),5)
   await page.setViewportSize({ width: 390, height: 844 })
   assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true)
