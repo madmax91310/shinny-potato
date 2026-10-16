@@ -1,3 +1,4 @@
+import AssetFieldCoverage from './AssetFieldCoverage.jsx'
 import { useEffect, useState } from 'react'
 import MonitoringIncidents from './MonitoringIncidents.jsx'
 import { AUTOMATION_STATUS_URL, automationFailures, automationOverview } from './automation.js'
@@ -60,5 +61,5 @@ export default function AutomationFailures() {
         <div className="dr-links"><a href={alert.runUrl} target="_blank" rel="noreferrer">Voir la cause et le suivi ↗</a></div>
       </article>)}</div></section>}
     {unavailable && <p className="dr-note" role="status">Le suivi des automatisations est momentanément indisponible. Les éventuelles alertes affichées n’ont pas pu être revérifiées.</p>}
-  </section><MonitoringIncidents monitor={monitor} /></>
+  </section><AssetFieldCoverage /><MonitoringIncidents monitor={monitor} /></>
 }

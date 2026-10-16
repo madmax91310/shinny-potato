@@ -1,4 +1,5 @@
 import { readFileSync } from 'node:fs';
+import { compactLiteral } from './project-tool-data.mjs';
 
 // Build-only partitioning: one source JSON stays authoritative for collection/QA.
 // The modules reconstruct the same object; each data chunk has a bounded payload.
@@ -18,7 +19,7 @@ export function splitEtfRecords() {
     plugin:{
       name:'partition-issuer-records',apply:'build',enforce:'post',
       resolveId(id){if(id.startsWith('virtual:etf-issuer-part:'))return prefix+id.split(':').at(-1);},
-      load(id){if(id.startsWith(prefix))return `export default ${JSON.stringify(parts[Number(id.slice(prefix.length))])}`;},
+      load(id){if(id.startsWith(prefix))return compactLiteral(parts[Number(id.slice(prefix.length))]);},
       transform(code,id){
         if(!id.replaceAll('\\','/').endsWith('/src/data/automated-etf.json'))return;
         return {code:parts.map((_,i)=>`import p${i} from 'virtual:etf-issuer-part:${i}';`).join('\n')+`\nexport default Object.assign({},${parts.map((_,i)=>`p${i}`).join(',')});`,map:null};

@@ -153,7 +153,11 @@
       "terPct": 0.2,
       "index": "MSCI World Index (Net)",
       "distribution": "Accumulating",
-      "checkedAt": "2026-10-16"
+      "domicile": "Ireland",
+      "replicationMethod": "Optimised",
+      "inceptionDate": "20090925",
+      "checkedAt": "2026-10-16",
+      "modifiedAt": "2026-10-16"
     },
     "provider": "iShares",
     "holdings": {
@@ -324,6 +328,38 @@
       "basis": "fund",
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-16"
+    },
+    "characteristicChecks": {
+      "terPct": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "index": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "distribution": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "domicile": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "replicationMethod": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "inceptionDate": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      }
     }
   },
   "IE00B5BMR087": {
@@ -428,7 +464,11 @@
       "terPct": 0.07,
       "index": "S&P 500 Index",
       "distribution": "Accumulating",
-      "checkedAt": "2026-10-16"
+      "domicile": "Ireland",
+      "replicationMethod": "Physical Replication",
+      "inceptionDate": "20100519",
+      "checkedAt": "2026-10-16",
+      "modifiedAt": "2026-10-16"
     },
     "provider": "iShares",
     "countries": {
@@ -548,6 +588,38 @@
       "basis": "fund",
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-16"
+    },
+    "characteristicChecks": {
+      "terPct": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=253743&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "index": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=253743&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "distribution": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=253743&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "domicile": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=253743&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "replicationMethod": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=253743&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "inceptionDate": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=253743&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      }
     }
   },
   "IE00BKM4GZ66": {
@@ -721,7 +793,11 @@
       "terPct": 0.18,
       "index": "MSCI Emerging Markets Investable Market Index (USD) (Net)",
       "distribution": "Accumulating",
-      "checkedAt": "2026-10-16"
+      "domicile": "Ireland",
+      "replicationMethod": "Replicated",
+      "inceptionDate": "20140530",
+      "checkedAt": "2026-10-16",
+      "modifiedAt": "2026-10-16"
     },
     "provider": "iShares",
     "holdings": {
@@ -932,6 +1008,38 @@
       "basis": "fund",
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-16"
+    },
+    "characteristicChecks": {
+      "terPct": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=264659&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "index": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=264659&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "distribution": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=264659&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "domicile": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=264659&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "replicationMethod": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=264659&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "inceptionDate": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=264659&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      }
     }
   },
   "IE00B4L5YX21": {
@@ -1036,7 +1144,11 @@
       "terPct": 0.12,
       "index": "MSCI Japan Investable Market Net Index (USD)",
       "distribution": "Accumulating",
-      "checkedAt": "2026-10-16"
+      "domicile": "Ireland",
+      "replicationMethod": "Optimised",
+      "inceptionDate": "20090925",
+      "checkedAt": "2026-10-16",
+      "modifiedAt": "2026-10-16"
     },
     "provider": "iShares",
     "countries": {
@@ -1164,6 +1276,38 @@
       "basis": "fund",
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-16"
+    },
+    "characteristicChecks": {
+      "terPct": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251867&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "index": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251867&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "distribution": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251867&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "domicile": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251867&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "replicationMethod": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251867&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "inceptionDate": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251867&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      }
     }
   },
   "FR0014017NX3": {
@@ -4967,7 +5111,19 @@
       "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR001400U5Q4/FRA/FRA/INSTITUTIONNEL/ETF",
       "sha256": "086a9e7e4eb1952a61cfe53c572963a0a3aaf847827d838d3a3bf8969d7a594f",
       "checkedAt": "2026-10-16",
-      "modifiedAt": "2026-10-12"
+      "modifiedAt": "2026-10-12",
+      "months": {
+        "2026-09": 1.04
+      },
+      "monthEvidence": {
+        "2026-09": {
+          "asOf": "2026-09-30",
+          "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR001400U5Q4/FRA/FRA/INSTITUTIONNEL/ETF",
+          "sha256": "086a9e7e4eb1952a61cfe53c572963a0a3aaf847827d838d3a3bf8969d7a594f",
+          "checkedAt": "2026-10-16",
+          "method": "Published exact-share one-month NAV total return at calendar month end"
+        }
+      }
     }
   },
   "LU0908500753": {
@@ -8023,7 +8179,19 @@
       "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU2970735911/FRA/FRA/INSTITUTIONNEL/ETF",
       "sha256": "d648e76d8d0b0d94d455a42251a189efc74aa554bb5fdeb47237a4d9d37130a5",
       "checkedAt": "2026-10-16",
-      "modifiedAt": "2026-10-12"
+      "modifiedAt": "2026-10-12",
+      "months": {
+        "2026-09": -1.43
+      },
+      "monthEvidence": {
+        "2026-09": {
+          "asOf": "2026-09-30",
+          "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU2970735911/FRA/FRA/INSTITUTIONNEL/ETF",
+          "sha256": "d648e76d8d0b0d94d455a42251a189efc74aa554bb5fdeb47237a4d9d37130a5",
+          "checkedAt": "2026-10-16",
+          "method": "Published exact-share one-month NAV total return at calendar month end"
+        }
+      }
     }
   },
   "LU3038520774": {
@@ -8240,7 +8408,11 @@
       "terPct": 0.07,
       "index": "BBG Euro Short Treasury Index (EUR)",
       "distribution": "Distributing",
-      "checkedAt": "2026-10-16"
+      "domicile": "Ireland",
+      "replicationMethod": "Sampled",
+      "inceptionDate": "20090306",
+      "checkedAt": "2026-10-16",
+      "modifiedAt": "2026-10-16"
     },
     "performance": {
       "currency": "EUR",
@@ -8414,6 +8586,38 @@
       "basis": "fund",
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-16"
+    },
+    "characteristicChecks": {
+      "terPct": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251741&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "index": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251741&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "distribution": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251741&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "domicile": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251741&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "replicationMethod": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251741&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "inceptionDate": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251741&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      }
     }
   },
   "IE00BDBRDM35": {
@@ -8501,7 +8705,11 @@
       "terPct": 0.1,
       "index": "Bloomberg Global Aggregate Bond Index",
       "distribution": "Accumulating",
-      "checkedAt": "2026-10-16"
+      "domicile": "Ireland",
+      "replicationMethod": "Sampled",
+      "inceptionDate": "20171121",
+      "checkedAt": "2026-10-16",
+      "modifiedAt": "2026-10-16"
     },
     "performance": {
       "currency": "EUR",
@@ -9115,6 +9323,38 @@
       "basis": "fund",
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-16"
+    },
+    "characteristicChecks": {
+      "terPct": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=291770&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "index": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=291770&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "distribution": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=291770&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "domicile": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=291770&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "replicationMethod": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=291770&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "inceptionDate": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=291770&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      }
     }
   },
   "IE00BZCQB185": {
@@ -9282,7 +9522,11 @@
       "terPct": 0.65,
       "index": "MSCI India Index (Net)",
       "distribution": "Accumulating",
-      "checkedAt": "2026-10-16"
+      "domicile": "Ireland",
+      "replicationMethod": "Replicated",
+      "inceptionDate": "20180524",
+      "checkedAt": "2026-10-16",
+      "modifiedAt": "2026-10-16"
     },
     "performance": {
       "currency": "USD",
@@ -9320,6 +9564,38 @@
       "basis": "fund",
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-15"
+    },
+    "characteristicChecks": {
+      "terPct": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=297617&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "index": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=297617&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "distribution": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=297617&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "domicile": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=297617&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "replicationMethod": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=297617&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "inceptionDate": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=297617&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      }
     }
   },
   "IE000I8KRLL9": {
@@ -9456,7 +9732,11 @@
       "terPct": 0.35,
       "index": "MSCI ACWI IMI Semiconductors & Semiconductor Equipment ESG Screened Capped",
       "distribution": "Accumulating",
-      "checkedAt": "2026-10-16"
+      "domicile": "Ireland",
+      "replicationMethod": "Replicated",
+      "inceptionDate": "20210803",
+      "checkedAt": "2026-10-16",
+      "modifiedAt": "2026-10-16"
     },
     "performance": {
       "currency": "USD",
@@ -9567,6 +9847,38 @@
       "basis": "fund",
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-16"
+    },
+    "characteristicChecks": {
+      "terPct": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=319084&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "index": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=319084&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "distribution": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=319084&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "domicile": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=319084&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "replicationMethod": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=319084&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "inceptionDate": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=319084&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      }
     }
   },
   "IE000RDRMSD1": {
@@ -9706,7 +10018,11 @@
       "terPct": 0.5,
       "index": "NYSE FactSet Global Blockchain Technologies Capped Index (USD)",
       "distribution": "Accumulating",
-      "checkedAt": "2026-10-16"
+      "domicile": "Ireland",
+      "replicationMethod": "Replicated",
+      "inceptionDate": "20220927",
+      "checkedAt": "2026-10-16",
+      "modifiedAt": "2026-10-16"
     },
     "performance": {
       "currency": "USD",
@@ -9784,6 +10100,38 @@
       "basis": "fund",
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-15"
+    },
+    "characteristicChecks": {
+      "terPct": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=328618&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "index": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=328618&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "distribution": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=328618&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "domicile": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=328618&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "replicationMethod": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=328618&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "inceptionDate": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=328618&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      }
     }
   },
   "IE00B0M62X26": {
@@ -9831,7 +10179,11 @@
       "terPct": 0.09,
       "index": "BBG Euro Government Inflation-Linked Bond Index (EUR)",
       "distribution": "Accumulating",
-      "checkedAt": "2026-10-16"
+      "domicile": "Ireland",
+      "replicationMethod": "Sampled",
+      "inceptionDate": "20051118",
+      "checkedAt": "2026-10-16",
+      "modifiedAt": "2026-10-16"
     },
     "performance": {
       "currency": "EUR",
@@ -9969,6 +10321,38 @@
       "basis": "fund",
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-16"
+    },
+    "characteristicChecks": {
+      "terPct": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251739&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "index": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251739&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "distribution": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251739&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "domicile": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251739&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "replicationMethod": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251739&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "inceptionDate": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251739&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      }
     }
   },
   "IE00B1FZS350": {
@@ -10170,7 +10554,11 @@
       "terPct": 0.59,
       "index": "FTSE EPRA Nareit Developed Dividend+ Net Index in USD",
       "distribution": "Distributing",
-      "checkedAt": "2026-10-16"
+      "domicile": "Ireland",
+      "replicationMethod": "Optimised",
+      "inceptionDate": "20061020",
+      "checkedAt": "2026-10-16",
+      "modifiedAt": "2026-10-16"
     },
     "performance": {
       "currency": "USD",
@@ -10299,6 +10687,38 @@
       "basis": "fund",
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-16"
+    },
+    "characteristicChecks": {
+      "terPct": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251801&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "index": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251801&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "distribution": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251801&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "domicile": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251801&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "replicationMethod": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251801&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "inceptionDate": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251801&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      }
     }
   },
   "IE00B3F81R35": {
@@ -10398,7 +10818,11 @@
       "terPct": 0.09,
       "index": "BBG Euro Corporate Index (EUR)",
       "distribution": "Distributing",
-      "checkedAt": "2026-10-16"
+      "domicile": "Ireland",
+      "replicationMethod": "Sampled",
+      "inceptionDate": "20090306",
+      "checkedAt": "2026-10-16",
+      "modifiedAt": "2026-10-16"
     },
     "performance": {
       "currency": "EUR",
@@ -10783,6 +11207,38 @@
       "basis": "fund",
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-16"
+    },
+    "characteristicChecks": {
+      "terPct": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251726&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "index": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251726&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "distribution": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251726&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "domicile": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251726&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "replicationMethod": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251726&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "inceptionDate": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251726&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      }
     }
   },
   "IE00B43HR379": {
@@ -10949,7 +11405,11 @@
       "terPct": 0.15,
       "index": "S&P 500 Capped 35/20 Health Care Index NTR (USD)",
       "distribution": "Accumulating",
-      "checkedAt": "2026-10-16"
+      "domicile": "Ireland",
+      "replicationMethod": "Replicated",
+      "inceptionDate": "20151120",
+      "checkedAt": "2026-10-16",
+      "modifiedAt": "2026-10-16"
     },
     "performance": {
       "currency": "USD",
@@ -10994,6 +11454,38 @@
       "basis": "fund",
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-15"
+    },
+    "characteristicChecks": {
+      "terPct": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=280507&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "index": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=280507&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "distribution": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=280507&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "domicile": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=280507&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "replicationMethod": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=280507&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "inceptionDate": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=280507&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      }
     }
   },
   "IE00B4JNQZ49": {
@@ -11175,7 +11667,11 @@
       "terPct": 0.15,
       "index": "S&P 500 Capped 35/20 Financials Index NTR",
       "distribution": "Accumulating",
-      "checkedAt": "2026-10-16"
+      "domicile": "Ireland",
+      "replicationMethod": "Replicated",
+      "inceptionDate": "20151120",
+      "checkedAt": "2026-10-16",
+      "modifiedAt": "2026-10-16"
     },
     "performance": {
       "currency": "USD",
@@ -11220,6 +11716,38 @@
       "basis": "fund",
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-15"
+    },
+    "characteristicChecks": {
+      "terPct": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=280523&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "index": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=280523&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "distribution": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=280523&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "domicile": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=280523&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "replicationMethod": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=280523&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "inceptionDate": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=280523&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      }
     }
   },
   "IE00B4WXJJ64": {
@@ -11299,7 +11827,11 @@
       "terPct": 0.07,
       "index": "Bloomberg Euro Treasury Bond Index",
       "distribution": "Distributing",
-      "checkedAt": "2026-10-16"
+      "domicile": "Ireland",
+      "replicationMethod": "Sampled",
+      "inceptionDate": "20090417",
+      "checkedAt": "2026-10-16",
+      "modifiedAt": "2026-10-16"
     },
     "performance": {
       "currency": "EUR",
@@ -11497,6 +12029,38 @@
       "basis": "fund",
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-15"
+    },
+    "characteristicChecks": {
+      "terPct": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251740&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "index": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251740&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "distribution": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251740&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "domicile": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251740&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "replicationMethod": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251740&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "inceptionDate": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251740&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      }
     }
   },
   "IE00B53SZB19": {
@@ -11679,7 +12243,11 @@
       "terPct": 0.3,
       "index": "NASDAQ 100 Index",
       "distribution": "Accumulating",
-      "checkedAt": "2026-10-16"
+      "domicile": "Ireland",
+      "replicationMethod": "Replicated",
+      "inceptionDate": "20100126",
+      "checkedAt": "2026-10-16",
+      "modifiedAt": "2026-10-16"
     },
     "performance": {
       "currency": "USD",
@@ -11740,6 +12308,38 @@
       "basis": "fund",
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-15"
+    },
+    "characteristicChecks": {
+      "terPct": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=253741&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "index": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=253741&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "distribution": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=253741&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "domicile": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=253741&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "replicationMethod": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=253741&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "inceptionDate": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=253741&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      }
     }
   },
   "IE00B66F4759": {
@@ -11827,7 +12427,11 @@
       "terPct": 0.5,
       "index": "iBoxx Euro Liquid High Yield Index (EUR)",
       "distribution": "Distributing",
-      "checkedAt": "2026-10-16"
+      "domicile": "Ireland",
+      "replicationMethod": "Sampled",
+      "inceptionDate": "20100903",
+      "checkedAt": "2026-10-16",
+      "modifiedAt": "2026-10-16"
     },
     "performance": {
       "currency": "EUR",
@@ -12173,6 +12777,38 @@
       "basis": "fund",
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-15"
+    },
+    "characteristicChecks": {
+      "terPct": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251843&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "index": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251843&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "distribution": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251843&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "domicile": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251843&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "replicationMethod": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251843&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "inceptionDate": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251843&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      }
     }
   },
   "IE00B6R52259": {
@@ -12387,7 +13023,11 @@
       "terPct": 0.2,
       "index": "MSCI All Country World Index (Net)",
       "distribution": "Accumulating",
-      "checkedAt": "2026-10-16"
+      "domicile": "Ireland",
+      "replicationMethod": "Optimised",
+      "inceptionDate": "20111021",
+      "checkedAt": "2026-10-16",
+      "modifiedAt": "2026-10-16"
     },
     "performance": {
       "currency": "USD",
@@ -12616,6 +13256,38 @@
       "basis": "fund",
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-16"
+    },
+    "characteristicChecks": {
+      "terPct": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251850&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "index": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251850&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "distribution": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251850&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "domicile": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251850&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "replicationMethod": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251850&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "inceptionDate": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251850&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      }
     }
   },
   "IE00B8FHGS14": {
@@ -12822,7 +13494,11 @@
       "terPct": 0.3,
       "index": "MSCI WORLD MINIMUM VOLATILITY (USD)",
       "distribution": "Accumulating",
-      "checkedAt": "2026-10-16"
+      "domicile": "Ireland",
+      "replicationMethod": "Optimised",
+      "inceptionDate": "20121130",
+      "checkedAt": "2026-10-16",
+      "modifiedAt": "2026-10-16"
     },
     "performance": {
       "currency": "USD",
@@ -12951,6 +13627,38 @@
       "basis": "fund",
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-15"
+    },
+    "characteristicChecks": {
+      "terPct": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251382&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "index": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251382&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "distribution": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251382&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "domicile": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251382&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "replicationMethod": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251382&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "inceptionDate": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251382&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      }
     }
   },
   "IE00BF3N7094": {
@@ -13038,7 +13746,11 @@
       "terPct": 0.5,
       "index": "iBoxx Euro Liquid High Yield Index (EUR)",
       "distribution": "Accumulating",
-      "checkedAt": "2026-10-16"
+      "domicile": "Ireland",
+      "replicationMethod": "Sampled",
+      "inceptionDate": "20170921",
+      "checkedAt": "2026-10-16",
+      "modifiedAt": "2026-10-16"
     },
     "performance": {
       "currency": "EUR",
@@ -13382,6 +14094,38 @@
       "basis": "fund",
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-15"
+    },
+    "characteristicChecks": {
+      "terPct": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=290618&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "index": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=290618&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "distribution": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=290618&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "domicile": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=290618&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "replicationMethod": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=290618&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "inceptionDate": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=290618&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      }
     }
   },
   "IE00BFZPF546": {
@@ -13485,7 +14229,11 @@
       "terPct": 0.5,
       "index": "J.P. Morgan GBI-EM Global Diversified Capped Net Index",
       "distribution": "Accumulating",
-      "checkedAt": "2026-10-16"
+      "domicile": "Ireland",
+      "replicationMethod": "Sampled",
+      "inceptionDate": "20180531",
+      "checkedAt": "2026-10-16",
+      "modifiedAt": "2026-10-16"
     },
     "performance": {
       "currency": "USD",
@@ -13701,6 +14449,38 @@
       "basis": "fund",
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-15"
+    },
+    "characteristicChecks": {
+      "terPct": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=297676&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "index": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=297676&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "distribution": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=297676&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "domicile": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=297676&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "replicationMethod": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=297676&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "inceptionDate": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=297676&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      }
     }
   },
   "IE00BJ5JNY98": {
@@ -13829,7 +14609,11 @@
       "terPct": 0.18,
       "index": "MSCI World Information Technology Advanced Select 20 35 Capped Index",
       "distribution": "Distributing",
-      "checkedAt": "2026-10-16"
+      "domicile": "Ireland",
+      "replicationMethod": "Replicated",
+      "inceptionDate": "20191016",
+      "checkedAt": "2026-10-16",
+      "modifiedAt": "2026-10-16"
     },
     "performance": {
       "currency": "USD",
@@ -13922,6 +14706,38 @@
       "basis": "fund",
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-16"
+    },
+    "characteristicChecks": {
+      "terPct": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=308858&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "index": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=308858&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "distribution": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=308858&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "domicile": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=308858&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "replicationMethod": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=308858&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "inceptionDate": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=308858&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      }
     }
   },
   "IE00BK95B138": {
@@ -13941,7 +14757,11 @@
       "terPct": 0.07,
       "index": "ICE U.S. Treasury Core Bond Index",
       "distribution": "Distributing",
-      "checkedAt": "2026-10-16"
+      "domicile": "Ireland",
+      "replicationMethod": "Sampled",
+      "inceptionDate": "20190828",
+      "checkedAt": "2026-10-16",
+      "modifiedAt": "2026-10-16"
     },
     "performance": {
       "currency": "USD",
@@ -14092,6 +14912,38 @@
       "basis": "fund",
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-16"
+    },
+    "characteristicChecks": {
+      "terPct": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=309947&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "index": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=309947&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "distribution": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=309947&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "domicile": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=309947&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "replicationMethod": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=309947&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "inceptionDate": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=309947&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      }
     }
   },
   "IE00BKPX3K41": {
@@ -14286,7 +15138,11 @@
       "terPct": 0.74,
       "index": "MSCI All Country World Far East Ex Japan USD Index (USD)",
       "distribution": "Accumulating",
-      "checkedAt": "2026-10-16"
+      "domicile": "Ireland",
+      "replicationMethod": "Replicated",
+      "inceptionDate": "20200401",
+      "checkedAt": "2026-10-16",
+      "modifiedAt": "2026-10-16"
     },
     "performance": {
       "currency": "USD",
@@ -14370,6 +15226,38 @@
       "basis": "fund",
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-15"
+    },
+    "characteristicChecks": {
+      "terPct": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=313316&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "index": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=313316&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "distribution": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=313316&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "domicile": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=313316&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "replicationMethod": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=313316&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "inceptionDate": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=313316&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      }
     }
   },
   "IE00BMG6Z448": {
@@ -14576,7 +15464,11 @@
       "terPct": 0.18,
       "index": "MSCI Emerging Markets ex China Index (Net)",
       "distribution": "Accumulating",
-      "checkedAt": "2026-10-16"
+      "domicile": "Ireland",
+      "replicationMethod": "Replicated",
+      "inceptionDate": "20210426",
+      "checkedAt": "2026-10-16",
+      "modifiedAt": "2026-10-16"
     },
     "performance": {
       "currency": "USD",
@@ -14715,6 +15607,38 @@
       "basis": "fund",
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-15"
+    },
+    "characteristicChecks": {
+      "terPct": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=315592&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "index": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=315592&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "distribution": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=315592&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "domicile": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=315592&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "replicationMethod": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=315592&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "inceptionDate": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=315592&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      }
     }
   },
   "IE00BMW42413": {
@@ -14855,7 +15779,11 @@
       "terPct": 0.18,
       "index": "MSCI Europe Information Technology 20/35 Capped Index (EUR)",
       "distribution": "Accumulating",
-      "checkedAt": "2026-10-16"
+      "domicile": "Ireland",
+      "replicationMethod": "Replicated",
+      "inceptionDate": "20201118",
+      "checkedAt": "2026-10-16",
+      "modifiedAt": "2026-10-16"
     },
     "performance": {
       "currency": "EUR",
@@ -14923,6 +15851,38 @@
       "basis": "fund",
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-16"
+    },
+    "characteristicChecks": {
+      "terPct": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=315818&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "index": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=315818&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "distribution": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=315818&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "domicile": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=315818&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "replicationMethod": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=315818&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "inceptionDate": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=315818&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      }
     }
   },
   "IE00BYXG2H39": {
@@ -15100,7 +16060,11 @@
       "terPct": 0.35,
       "index": "NASDAQ Biotechnology NET Index",
       "distribution": "Accumulating",
-      "checkedAt": "2026-10-16"
+      "domicile": "Ireland",
+      "replicationMethod": "Replicated",
+      "inceptionDate": "20171019",
+      "checkedAt": "2026-10-16",
+      "modifiedAt": "2026-10-16"
     },
     "performance": {
       "currency": "USD",
@@ -15199,6 +16163,38 @@
       "basis": "fund",
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-15"
+    },
+    "characteristicChecks": {
+      "terPct": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=291450&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "index": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=291450&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "distribution": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=291450&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "domicile": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=291450&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "replicationMethod": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=291450&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "inceptionDate": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=291450&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      }
     }
   },
   "IE00B4K48X80": {
@@ -15409,7 +16405,11 @@
       "terPct": 0.12,
       "index": "MSCI Europe Index",
       "distribution": "Accumulating",
-      "checkedAt": "2026-10-16"
+      "domicile": "Ireland",
+      "replicationMethod": "Optimised",
+      "inceptionDate": "20090925",
+      "checkedAt": "2026-10-16",
+      "modifiedAt": "2026-10-16"
     },
     "performance": {
       "currency": "EUR",
@@ -15510,6 +16510,38 @@
       "basis": "fund",
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-16"
+    },
+    "characteristicChecks": {
+      "terPct": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251861&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "index": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251861&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "distribution": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251861&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "domicile": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251861&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "replicationMethod": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251861&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "inceptionDate": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251861&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      }
     }
   },
   "IE00BYYHSQ67": {
@@ -15724,7 +16756,11 @@
       "terPct": 0.38,
       "index": "MSCI World High Dividend Yield Advanced Select Index USD",
       "distribution": "Distributing",
-      "checkedAt": "2026-10-16"
+      "domicile": "Ireland",
+      "replicationMethod": "Replicated",
+      "inceptionDate": "20170612",
+      "checkedAt": "2026-10-16",
+      "modifiedAt": "2026-10-16"
     },
     "performance": {
       "currency": "USD",
@@ -15847,6 +16883,38 @@
       "basis": "fund",
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-16"
+    },
+    "characteristicChecks": {
+      "terPct": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=288147&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "index": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=288147&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "distribution": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=288147&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "domicile": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=288147&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "replicationMethod": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=288147&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "inceptionDate": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=288147&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      }
     }
   },
   "IE000C6ITGC8": {
@@ -16007,7 +17075,11 @@
       "terPct": 0.5,
       "index": "STOXX Global Quantum Computing Index USD NR",
       "distribution": "Accumulating",
-      "checkedAt": "2026-10-16"
+      "domicile": "Ireland",
+      "replicationMethod": "Replicated",
+      "inceptionDate": "20251203",
+      "checkedAt": "2026-10-16",
+      "modifiedAt": "2026-10-16"
     },
     "countriesRisk": {
       "asOf": "2026-10-15",
@@ -16066,6 +17138,38 @@
       "basis": "fund",
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-16"
+    },
+    "characteristicChecks": {
+      "terPct": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=345953&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "index": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=345953&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "distribution": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=345953&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "domicile": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=345953&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "replicationMethod": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=345953&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "inceptionDate": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=345953&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      }
     }
   },
   "IE00BG0J4C88": {
@@ -16270,7 +17374,11 @@
       "terPct": 0.4,
       "index": "STOXX Global Digital Security Open Net Index in USD (USD)",
       "distribution": "Accumulating",
-      "checkedAt": "2026-10-16"
+      "domicile": "Ireland",
+      "replicationMethod": "Optimised",
+      "inceptionDate": "20180907",
+      "checkedAt": "2026-10-16",
+      "modifiedAt": "2026-10-16"
     },
     "performance": {
       "currency": "USD",
@@ -16380,6 +17488,38 @@
       "basis": "fund",
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-16"
+    },
+    "characteristicChecks": {
+      "terPct": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=297843&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "index": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=297843&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "distribution": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=297843&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "domicile": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=297843&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "replicationMethod": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=297843&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "inceptionDate": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=297843&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      }
     }
   },
   "IE0000N55FP4": {
@@ -16594,7 +17734,11 @@
       "terPct": 0.25,
       "index": "MSCI Europe Small Cap Index",
       "distribution": "Accumulating",
-      "checkedAt": "2026-10-16"
+      "domicile": "Ireland",
+      "replicationMethod": "Optimised",
+      "inceptionDate": "20260325",
+      "checkedAt": "2026-10-16",
+      "modifiedAt": "2026-10-16"
     },
     "countriesRisk": {
       "asOf": "2026-10-14",
@@ -16681,6 +17825,38 @@
       "basis": "fund",
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-15"
+    },
+    "characteristicChecks": {
+      "terPct": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=348766&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "index": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=348766&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "distribution": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=348766&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "domicile": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=348766&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "replicationMethod": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=348766&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "inceptionDate": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=348766&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      }
     }
   },
   "IE00B3YLTY66": {
@@ -23390,7 +24566,19 @@
       "sourceUrl": "https://www.vaneck.com/uk/en/library/fact-sheets/qntm-fact-sheet.pdf",
       "sha256": "ad79edad01320c9b15d06053db7b4f270233caaca9c02985c8787d51a674e056",
       "checkedAt": "2026-10-16",
-      "modifiedAt": "2026-10-16"
+      "modifiedAt": "2026-10-16",
+      "months": {
+        "2026-09": 0.55
+      },
+      "monthEvidence": {
+        "2026-09": {
+          "asOf": "2026-09-30",
+          "sourceUrl": "https://www.vaneck.com/uk/en/library/fact-sheets/qntm-fact-sheet.pdf",
+          "sha256": "ad79edad01320c9b15d06053db7b4f270233caaca9c02985c8787d51a674e056",
+          "checkedAt": "2026-10-16",
+          "method": "Published exact-share one-month NAV total return at calendar month end"
+        }
+      }
     }
   },
   "IE000M7V94E1": {
@@ -28981,11 +30169,15 @@
   "JE00B1VS3770": {
     "currency": "USD",
     "productId": "JE00B1VS3770",
-    "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/MSL/EU/EN-GB/JE00B1VS3770",
+    "sourceUrl": "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-physical-gold",
     "provider": "WisdomTree",
     "characteristics": {
       "terPct": 0.39,
-      "checkedAt": "2026-10-06"
+      "asOf": "2026-10-15",
+      "sourceUrl": "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-physical-gold",
+      "sha256": "d71a32b412e5b51cef93c77e4c3d912cd9d7ff027bc530e3cc716c433330582d",
+      "checkedAt": "2026-10-16",
+      "modifiedAt": "2026-10-16"
     },
     "performance": {
       "currency": "USD",
@@ -29009,23 +30201,35 @@
       "checkedAt": "2026-10-16"
     },
     "aum": {
-      "amount": 6939206140,
+      "amount": 6938136081.0,
       "currency": "USD",
       "scope": "fund",
-      "asOf": "2026-10-05",
+      "asOf": "2026-10-15",
       "sourceUrl": "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-physical-gold",
-      "sha256": "366a66c541406cf418beb88f4ee3a4e5476e8d8d2b0ef5b8cba8675c706da073",
-      "checkedAt": "2026-10-06"
+      "sha256": "d71a32b412e5b51cef93c77e4c3d912cd9d7ff027bc530e3cc716c433330582d",
+      "checkedAt": "2026-10-16",
+      "modifiedAt": "2026-10-16"
+    },
+    "characteristicChecks": {
+      "terPct": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-physical-gold",
+        "asOf": "2026-10-15"
+      }
     }
   },
   "GB00BJYDH287": {
     "currency": "USD",
     "productId": "GB00BJYDH287",
-    "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/WIXL/EU/EN-GB/GB00BJYDH287",
+    "sourceUrl": "https://www.wisdomtree.com/gb/products/digital-assets/wisdomtree-physical-bitcoin",
     "provider": "WisdomTree",
     "characteristics": {
       "terPct": 0.15,
-      "checkedAt": "2026-10-06"
+      "asOf": "2026-10-15",
+      "sourceUrl": "https://www.wisdomtree.com/gb/products/digital-assets/wisdomtree-physical-bitcoin",
+      "sha256": "34ce86f20bef69535dce5ebf7854c50d1b023cafb956bc15cd33db3d875db60d",
+      "checkedAt": "2026-10-16",
+      "modifiedAt": "2026-10-16"
     },
     "performance": {
       "currency": "USD",
@@ -29045,13 +30249,21 @@
       "checkedAt": "2026-10-16"
     },
     "aum": {
-      "amount": 1675239497,
+      "amount": 1585409881.0,
       "currency": "USD",
       "scope": "fund",
-      "asOf": "2026-10-05",
+      "asOf": "2026-10-15",
       "sourceUrl": "https://www.wisdomtree.com/gb/products/digital-assets/wisdomtree-physical-bitcoin",
-      "sha256": "01a0df722b400ddb9a5c09ad0b916b07e89e9a08f4db2066ea27903c6b0c113d",
-      "checkedAt": "2026-10-06"
+      "sha256": "34ce86f20bef69535dce5ebf7854c50d1b023cafb956bc15cd33db3d875db60d",
+      "checkedAt": "2026-10-16",
+      "modifiedAt": "2026-10-16"
+    },
+    "characteristicChecks": {
+      "terPct": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.wisdomtree.com/gb/products/digital-assets/wisdomtree-physical-bitcoin",
+        "asOf": "2026-10-15"
+      }
     }
   },
   "CH0454664001": {
@@ -29106,13 +30318,17 @@
       "scope": "fund",
       "asOf": "2026-10-13",
       "sourceUrl": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
-      "sha256": "3f24662cebc11585e658ad59af206eb67a06a786d5edcb70134856b501c33e63",
+      "sha256": "e632b2ebb9c4360377a49952988d84c726f4d5c26de12e6f34e1b4c9726a3822",
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-16"
     },
     "characteristics": {
       "terPct": 0.69,
-      "checkedAt": "2026-10-06"
+      "asOf": "2026-08-31",
+      "sourceUrl": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
+      "sha256": "e632b2ebb9c4360377a49952988d84c726f4d5c26de12e6f34e1b4c9726a3822",
+      "checkedAt": "2026-10-16",
+      "modifiedAt": "2026-10-16"
     },
     "sectors": {
       "rows": [
@@ -29229,6 +30445,13 @@
       "sha256": "3f24662cebc11585e658ad59af206eb67a06a786d5edcb70134856b501c33e63",
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-16"
+    },
+    "characteristicChecks": {
+      "terPct": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
+        "asOf": "2026-08-31"
+      }
     }
   },
   "IE00B4K6B022": {
@@ -29433,29 +30656,31 @@
   "IE0002XZSHO1": {
     "currency": "EUR",
     "productId": 335178,
-    "sourceUrl": "https://www.blackrock.com/fr/particuliers/literature/fact-sheet/wpea-ishares-msci-world-swap-pea-ucits-etf-fund-fact-sheet-fr-fr.pdf",
+    "sourceUrl": "https://www.ishares.com/ch/professionals/en/products/335178/",
     "provider": "iShares",
     "aum": {
-      "amount": 2306785517,
+      "amount": 2337365975.0,
       "currency": "EUR",
       "scope": "share-class",
-      "asOf": "2026-10-06",
+      "asOf": "2026-10-15",
       "sourceUrl": "https://www.ishares.com/ch/professionals/en/products/335178/",
-      "sha256": "c309d6e612fa1fc49ed665ab3820c816fd4e9e8def65fef37a92c1b71b44cc68",
-      "checkedAt": "2026-10-07"
+      "sha256": "a2d07f920cd7e7aa9659562fdec50804f5dd18b2dad1f22a272d42ea19334354",
+      "checkedAt": "2026-10-16",
+      "modifiedAt": "2026-10-16"
     },
     "characteristics": {
       "terPct": 0.2,
-      "asOf": "2026-10-07",
+      "asOf": "2026-10-16",
       "sourceUrl": "https://www.ishares.com/ch/professionals/en/products/335178/",
-      "sha256": "c309d6e612fa1fc49ed665ab3820c816fd4e9e8def65fef37a92c1b71b44cc68",
-      "checkedAt": "2026-10-07",
+      "sha256": "a2d07f920cd7e7aa9659562fdec50804f5dd18b2dad1f22a272d42ea19334354",
       "index": "MSCI World Index",
       "distribution": "Capitalisation",
       "detailsSource": {
         "url": "https://www.blackrock.com/fr/particuliers/literature/fact-sheet/wpea-ishares-msci-world-swap-pea-ucits-etf-fund-fact-sheet-fr-fr.pdf",
-        "checkedAt": "2026-10-10"
-      }
+        "checkedAt": "2026-10-16"
+      },
+      "checkedAt": "2026-10-16",
+      "modifiedAt": "2026-10-16"
     },
     "performance": {
       "currency": "EUR",
@@ -29623,28 +30848,58 @@
         }
       ],
       "checkedAt": "2026-10-16"
+    },
+    "characteristicChecks": {
+      "terPct": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.ishares.com/ch/professionals/en/products/335178/",
+        "asOf": "2026-10-16"
+      },
+      "index": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.ishares.com/ch/professionals/en/products/335178/",
+        "asOf": "2026-10-16"
+      },
+      "distribution": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.ishares.com/ch/professionals/en/products/335178/",
+        "asOf": "2026-10-16"
+      },
+      "detailsSource": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.ishares.com/ch/professionals/en/products/335178/",
+        "asOf": "2026-10-16"
+      }
     }
   },
   "IE000DQLYVB9": {
     "currency": "EUR",
     "productId": 342916,
-    "sourceUrl": "https://www.blackrock.com/fr/particuliers/literature/fact-sheet/spea-ishares-s-p-500-swap-pea-ucits-etf-fund-fact-sheet-fr-fr.pdf",
+    "sourceUrl": "https://www.ishares.com/ch/professionals/en/products/342916/",
     "provider": "iShares",
     "aum": {
-      "amount": 57671666,
+      "amount": 57410636.0,
       "currency": "EUR",
       "scope": "share-class",
-      "asOf": "2026-10-06",
+      "asOf": "2026-10-15",
       "sourceUrl": "https://www.ishares.com/ch/professionals/en/products/342916/",
-      "sha256": "4df20e83c22ecfbabb96637f3e70376b7f5a491449fb0a7946459d7b49d32ae2",
-      "checkedAt": "2026-10-07"
+      "sha256": "ee3c684afe20c2d322c7d87b7adc748242da97cfd40efb8dd3dc46d7893ee594",
+      "checkedAt": "2026-10-16",
+      "modifiedAt": "2026-10-16"
     },
     "characteristics": {
       "terPct": 0.1,
-      "asOf": "2026-10-07",
+      "asOf": "2026-10-16",
       "sourceUrl": "https://www.ishares.com/ch/professionals/en/products/342916/",
-      "sha256": "4df20e83c22ecfbabb96637f3e70376b7f5a491449fb0a7946459d7b49d32ae2",
-      "checkedAt": "2026-10-07"
+      "sha256": "ee3c684afe20c2d322c7d87b7adc748242da97cfd40efb8dd3dc46d7893ee594",
+      "index": "S&P 500 Net TR Index",
+      "distribution": "Capitalisation",
+      "detailsSource": {
+        "url": "https://www.blackrock.com/fr/particuliers/literature/fact-sheet/spea-ishares-s-p-500-swap-pea-ucits-etf-fund-fact-sheet-fr-fr.pdf",
+        "checkedAt": "2026-10-16"
+      },
+      "checkedAt": "2026-10-16",
+      "modifiedAt": "2026-10-16"
     },
     "sectors": {
       "asOf": "2026-09-30",
@@ -29816,7 +31071,41 @@
       "sourceUrl": "https://www.blackrock.com/fr/particuliers/literature/fact-sheet/spea-ishares-s-p-500-swap-pea-ucits-etf-fund-fact-sheet-fr-fr.pdf",
       "sha256": "5eceaf787220f001b9ce7398bf2c70bbb1f56d70c1bfeeade6a811ac645f64fa",
       "checkedAt": "2026-10-16",
-      "modifiedAt": "2026-10-12"
+      "modifiedAt": "2026-10-12",
+      "months": {
+        "2026-09": 1.88
+      },
+      "monthEvidence": {
+        "2026-09": {
+          "asOf": "2026-09-30",
+          "sourceUrl": "https://www.blackrock.com/fr/particuliers/literature/fact-sheet/spea-ishares-s-p-500-swap-pea-ucits-etf-fund-fact-sheet-fr-fr.pdf",
+          "sha256": "5eceaf787220f001b9ce7398bf2c70bbb1f56d70c1bfeeade6a811ac645f64fa",
+          "checkedAt": "2026-10-16",
+          "method": "Published exact-share one-month NAV total return at calendar month end"
+        }
+      }
+    },
+    "characteristicChecks": {
+      "terPct": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.ishares.com/ch/professionals/en/products/342916/",
+        "asOf": "2026-10-16"
+      },
+      "index": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.ishares.com/ch/professionals/en/products/342916/",
+        "asOf": "2026-10-16"
+      },
+      "distribution": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.ishares.com/ch/professionals/en/products/342916/",
+        "asOf": "2026-10-16"
+      },
+      "detailsSource": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.ishares.com/ch/professionals/en/products/342916/",
+        "asOf": "2026-10-16"
+      }
     }
   },
   "IE00BF0M2Z96": {
@@ -29830,7 +31119,7 @@
       "scope": "fund",
       "asOf": "2026-10-13",
       "sourceUrl": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
-      "sha256": "3f24662cebc11585e658ad59af206eb67a06a786d5edcb70134856b501c33e63",
+      "sha256": "e632b2ebb9c4360377a49952988d84c726f4d5c26de12e6f34e1b4c9726a3822",
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-16"
     },
@@ -29965,8 +31254,9 @@
       "terPct": 0.49,
       "asOf": "2026-08-31",
       "sourceUrl": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
-      "sha256": "a2cdd3a2a1eab856830e93fe144e9d9d4758fd4c8389ff8dcf037df39b70cb2b",
-      "checkedAt": "2026-10-06"
+      "sha256": "e632b2ebb9c4360377a49952988d84c726f4d5c26de12e6f34e1b4c9726a3822",
+      "checkedAt": "2026-10-16",
+      "modifiedAt": "2026-10-16"
     },
     "performance": {
       "currency": "USD",
@@ -29985,6 +31275,13 @@
       "sha256": "3f24662cebc11585e658ad59af206eb67a06a786d5edcb70134856b501c33e63",
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-16"
+    },
+    "characteristicChecks": {
+      "terPct": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
+        "asOf": "2026-08-31"
+      }
     }
   },
   "IE00BK5BCD43": {
@@ -29998,7 +31295,7 @@
       "scope": "fund",
       "asOf": "2026-10-13",
       "sourceUrl": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
-      "sha256": "3f24662cebc11585e658ad59af206eb67a06a786d5edcb70134856b501c33e63",
+      "sha256": "e632b2ebb9c4360377a49952988d84c726f4d5c26de12e6f34e1b4c9726a3822",
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-16"
     },
@@ -30143,8 +31440,9 @@
       "terPct": 0.49,
       "asOf": "2026-08-31",
       "sourceUrl": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
-      "sha256": "a2cdd3a2a1eab856830e93fe144e9d9d4758fd4c8389ff8dcf037df39b70cb2b",
-      "checkedAt": "2026-10-06"
+      "sha256": "e632b2ebb9c4360377a49952988d84c726f4d5c26de12e6f34e1b4c9726a3822",
+      "checkedAt": "2026-10-16",
+      "modifiedAt": "2026-10-16"
     },
     "performance": {
       "currency": "USD",
@@ -30163,6 +31461,13 @@
       "sha256": "3f24662cebc11585e658ad59af206eb67a06a786d5edcb70134856b501c33e63",
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-16"
+    },
+    "characteristicChecks": {
+      "terPct": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
+        "asOf": "2026-08-31"
+      }
     }
   },
   "IE00BK5BCH80": {
@@ -30176,7 +31481,7 @@
       "scope": "fund",
       "asOf": "2026-10-13",
       "sourceUrl": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
-      "sha256": "3f24662cebc11585e658ad59af206eb67a06a786d5edcb70134856b501c33e63",
+      "sha256": "e632b2ebb9c4360377a49952988d84c726f4d5c26de12e6f34e1b4c9726a3822",
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-16"
     },
@@ -30316,8 +31621,9 @@
       "terPct": 0.49,
       "asOf": "2026-08-31",
       "sourceUrl": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
-      "sha256": "a2cdd3a2a1eab856830e93fe144e9d9d4758fd4c8389ff8dcf037df39b70cb2b",
-      "checkedAt": "2026-10-06"
+      "sha256": "e632b2ebb9c4360377a49952988d84c726f4d5c26de12e6f34e1b4c9726a3822",
+      "checkedAt": "2026-10-16",
+      "modifiedAt": "2026-10-16"
     },
     "performance": {
       "currency": "USD",
@@ -30335,6 +31641,13 @@
       "sha256": "3f24662cebc11585e658ad59af206eb67a06a786d5edcb70134856b501c33e63",
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-16"
+    },
+    "characteristicChecks": {
+      "terPct": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
+        "asOf": "2026-08-31"
+      }
     }
   },
   "DE000A27Z304": {
@@ -30381,24 +31694,26 @@
   "GB00B15KXQ89": {
     "currency": "USD",
     "productId": "GB00B15KXQ89",
-    "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXQ89",
+    "sourceUrl": "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-copper",
     "provider": "WisdomTree",
     "aum": {
-      "amount": 1998160479,
+      "amount": 1994273766.0,
       "currency": "USD",
       "scope": "fund",
-      "asOf": "2026-10-05",
+      "asOf": "2026-10-15",
       "sourceUrl": "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-copper",
-      "sha256": "6619c97eda2bfca5b5a4e0ee9221b8433ebb378e7db22996e4a44982154fed78",
-      "checkedAt": "2026-10-06"
+      "sha256": "109fe2524e266cfe2aa3f993b27e6462f16a83ca5076f84968b8df299f2f3f0a",
+      "checkedAt": "2026-10-16",
+      "modifiedAt": "2026-10-16"
     },
     "characteristics": {
-      "asOf": "2026-10-05",
+      "asOf": "2026-10-15",
       "sourceUrl": "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-copper",
-      "sha256": "dac8025a1553e1053fc0566295ab0967e5a2a7084536b2b75609e148d05c7462",
+      "sha256": "109fe2524e266cfe2aa3f993b27e6462f16a83ca5076f84968b8df299f2f3f0a",
       "terPct": 0.49,
-      "checkedAt": "2026-10-06",
-      "annualSwapRatePct": 0.45
+      "annualSwapRatePct": 0.45,
+      "checkedAt": "2026-10-16",
+      "modifiedAt": "2026-10-16"
     },
     "performance": {
       "currency": "USD",
@@ -30420,21 +31735,34 @@
       "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXQ89",
       "sha256": "2cbea6c256ba71ec7037c4ca72709c4391ceac79bd7cbc682b3f3588dc33535a",
       "checkedAt": "2026-10-16"
+    },
+    "characteristicChecks": {
+      "terPct": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-copper",
+        "asOf": "2026-10-15"
+      },
+      "annualSwapRatePct": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-copper",
+        "asOf": "2026-10-15"
+      }
     }
   },
   "IE0002Y8CX98": {
     "currency": "EUR",
     "productId": "IE0002Y8CX98",
-    "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE0002Y8CX98",
+    "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-europe-defence-ucits-etf---eur-acc",
     "provider": "WisdomTree",
     "aum": {
-      "amount": 4924897713,
+      "amount": 4884418282.0,
       "currency": "USD",
       "scope": "fund",
-      "asOf": "2026-10-05",
+      "asOf": "2026-10-15",
       "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-europe-defence-ucits-etf---eur-acc",
-      "sha256": "035a1cd76f2b708652105f07fefbbb0ae49aa9ec239a07eae913a333e7f5d80d",
-      "checkedAt": "2026-10-06"
+      "sha256": "0b291c50770a9b95b2f4b5b45b378042cf363878dff74eed24450a71398ac113",
+      "checkedAt": "2026-10-16",
+      "modifiedAt": "2026-10-16"
     },
     "sectors": {
       "rows": [
@@ -30575,26 +31903,35 @@
       "checkedAt": "2026-10-06"
     },
     "characteristics": {
-      "asOf": "2026-10-05",
+      "asOf": "2026-10-15",
       "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-europe-defence-ucits-etf---eur-acc",
-      "sha256": "fb4c2c3ad0e0e4402c48efb57c47fdc88efd46b1be4817ea137c8675fdbb3722",
+      "sha256": "0b291c50770a9b95b2f4b5b45b378042cf363878dff74eed24450a71398ac113",
       "terPct": 0.4,
-      "checkedAt": "2026-10-06"
+      "checkedAt": "2026-10-16",
+      "modifiedAt": "2026-10-16"
+    },
+    "characteristicChecks": {
+      "terPct": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-europe-defence-ucits-etf---eur-acc",
+        "asOf": "2026-10-15"
+      }
     }
   },
   "IE000W8WMSL2": {
     "currency": "USD",
     "productId": "IE000W8WMSL2",
-    "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE000W8WMSL2",
+    "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-quantum-computing-ucits-etf---usd-acc",
     "provider": "WisdomTree",
     "aum": {
-      "amount": 364645070,
+      "amount": 328066660.0,
       "currency": "USD",
       "scope": "fund",
-      "asOf": "2026-10-05",
+      "asOf": "2026-10-15",
       "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-quantum-computing-ucits-etf---usd-acc",
-      "sha256": "6a8345a629474d4cdb4ea15de8f78c9d45245ad8e0ae1af3e7cb257df2d2423d",
-      "checkedAt": "2026-10-06"
+      "sha256": "37a39654669dd9f1c839b10687e7391671505b1eeabfa6731c4533d573224dc2",
+      "checkedAt": "2026-10-16",
+      "modifiedAt": "2026-10-16"
     },
     "sectors": {
       "rows": [
@@ -30736,26 +32073,35 @@
       "checkedAt": "2026-10-06"
     },
     "characteristics": {
-      "asOf": "2026-10-05",
+      "asOf": "2026-10-15",
       "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-quantum-computing-ucits-etf---usd-acc",
-      "sha256": "50c8adac82354fe80bde742d377b975058d379e9f7c99a6c5640a6a2ca1746e3",
+      "sha256": "37a39654669dd9f1c839b10687e7391671505b1eeabfa6731c4533d573224dc2",
       "terPct": 0.5,
-      "checkedAt": "2026-10-06"
+      "checkedAt": "2026-10-16",
+      "modifiedAt": "2026-10-16"
+    },
+    "characteristicChecks": {
+      "terPct": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-quantum-computing-ucits-etf---usd-acc",
+        "asOf": "2026-10-15"
+      }
     }
   },
   "IE00BZ56SW52": {
     "currency": "USD",
     "productId": "IE00BZ56SW52",
-    "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BZ56SW52",
+    "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-global-quality-dividend-growth-ucits-etf---usd-acc",
     "provider": "WisdomTree",
     "aum": {
-      "amount": 1645809873,
+      "amount": 1668929949.0,
       "currency": "USD",
       "scope": "fund",
-      "asOf": "2026-10-05",
+      "asOf": "2026-10-15",
       "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-global-quality-dividend-growth-ucits-etf---usd-acc",
-      "sha256": "4470dceb3e0cf7d301b281b420b68f919e4d05a14ac85f6f9456134198356dd9",
-      "checkedAt": "2026-10-06"
+      "sha256": "47d88c509b9f7a31d61d45034473c5927241474e465cd3a87efac0af523ae321",
+      "checkedAt": "2026-10-16",
+      "modifiedAt": "2026-10-16"
     },
     "sectors": {
       "rows": [
@@ -30988,11 +32334,12 @@
       "checkedAt": "2026-10-06"
     },
     "characteristics": {
-      "asOf": "2026-10-05",
+      "asOf": "2026-10-15",
       "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-global-quality-dividend-growth-ucits-etf---usd-acc",
-      "sha256": "57838dd8e88d44cf87409fe1cc05e7a775938a4752399eb537f26e54a1a877e9",
+      "sha256": "47d88c509b9f7a31d61d45034473c5927241474e465cd3a87efac0af523ae321",
       "terPct": 0.38,
-      "checkedAt": "2026-10-06"
+      "checkedAt": "2026-10-16",
+      "modifiedAt": "2026-10-16"
     },
     "performance": {
       "currency": "USD",
@@ -31013,6 +32360,13 @@
       "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BZ56SW52",
       "sha256": "171f55cecc8bd42fb6157b96626feff95eee8adab27fd29bbac5c12ed52d1b4b",
       "checkedAt": "2026-10-16"
+    },
+    "characteristicChecks": {
+      "terPct": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-global-quality-dividend-growth-ucits-etf---usd-acc",
+        "asOf": "2026-10-15"
+      }
     }
   },
   "IE00BM8R0J59": {
@@ -31026,14 +32380,14 @@
       "scope": "fund",
       "asOf": "2026-10-15",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "78872ca5695ea04407badf8553d947466326f560aee554e834d0a301c3e4ae00",
+      "sha256": "b0aa373ede8f0cb1457de6d5339f1deb99c049c864b5b822417d97763d3453c0",
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-16"
     },
     "characteristics": {
       "asOf": "2026-10-15",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "6d681b4c2e225c2aa41ee9755fdc667d599bc82fb3deb06aebf3eba63ff3a8f9",
+      "sha256": "b0aa373ede8f0cb1457de6d5339f1deb99c049c864b5b822417d97763d3453c0",
       "terPct": 0.45,
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-16"
@@ -31044,7 +32398,7 @@
         "reason": "La section de performance ne fournit pas de calendrier annuel qualifié pour la part USD distribuante. Les rendements capitalisants ou glissants ne sont pas substitués.",
         "checkedAt": "2026-10-16",
         "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-        "sha256": "78872ca5695ea04407badf8553d947466326f560aee554e834d0a301c3e4ae00",
+        "sha256": "b0aa373ede8f0cb1457de6d5339f1deb99c049c864b5b822417d97763d3453c0",
         "evidence": [
           "Performance History",
           "USD Accumulating",
@@ -31074,13 +32428,13 @@
           "-0.46%",
           "Performance is based on the fund’s NAV and is shown on a total return basis (i.e., with gross income reinvested, where applicable). The fund’s NAV may differ from its market price and, as a result, individual shareholders may realize returns that are different from the NAV performance. Cumulative return is the aggregate amount that an investment has gained or lost over time. Annualised return is the average return gained or lost by an investment each year over a given time period.",
           "The performance data quoted represents past performance. Past performance does not guarantee future results. The investment return and principal value of an investment will fluctuate so that an investor's shares, when sold or redeemed, may be worth more or less than their original cost and current performance may be lower or higher than the performance quoted. High short-term performance, when observed, is unusual and investors should not expect such performance to be repeated. The return of your investment may increase or decrease as a result of currency fluctuations if your investment is made in a currency other than that used in past performance calculations.",
-          "Top 10 Reference Index Constituents",
-          "As of 08 Oct 2026",
-          "Weight (%)",
+          "Basket Constituents",
+          "As of 15 Oct 2026",
+          "Full Basket List (.csv)",
+          "Holdings are subject to change. \"Cash\" means U.S. Dollar. The performance of the Basket is delivered to the swap counterparties in return for the exposure on the Index being received by the Fund, there is no remaining economic exposure in the Fund to the Basket.",
+          "Net Assets (%)",
           "Ticker",
-          "Name",
-          "8.30",
-          "NVDA"
+          "Name"
         ]
       },
       "countries": {
@@ -31088,15 +32442,15 @@
         "reason": "Aucune allocation géographique économique complète qualifiée dans la page ; les pays de commercialisation et le panier de substitution sont exclus.",
         "checkedAt": "2026-10-16",
         "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-        "sha256": "78872ca5695ea04407badf8553d947466326f560aee554e834d0a301c3e4ae00",
+        "sha256": "b0aa373ede8f0cb1457de6d5339f1deb99c049c864b5b822417d97763d3453c0",
         "evidence": []
       },
       "holdings": {
         "status": "source-conflict",
-        "reason": "Poids différents pour les mêmes titres dans la section datée de l’indice : AAPL, AMZN, GOOG, GOOGL, META, MSFT, NVDA, TSLA.",
+        "reason": "Poids différents pour les mêmes titres dans la section datée de l’indice : AAPL, AMZN, GOOG, GOOGL, MSFT, NVDA, TSLA.",
         "checkedAt": "2026-10-16",
         "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-        "sha256": "78872ca5695ea04407badf8553d947466326f560aee554e834d0a301c3e4ae00",
+        "sha256": "b0aa373ede8f0cb1457de6d5339f1deb99c049c864b5b822417d97763d3453c0",
         "evidence": [
           "Top 10 Reference Index Constituents",
           "As of 08 Oct 2026",
@@ -31122,6 +32476,62 @@
           "AMZN",
           "Amazon.com Inc",
           "3.20",
+          "Bolsa Mexicana De Valores",
+          "MXN",
+          "QYLUN MM",
+          "23 Jan 2025",
+          "BSPRXM4",
+          "--",
+          "--",
+          "--",
+          "London Stock Exchange",
+          "GBP",
+          "QYLP LN",
+          "23 Nov 2022",
+          "BMFQD96",
+          "--",
+          "--",
+          "--",
+          "Deutsche Börse Xetra",
+          "EUR",
+          "QYLE GY",
+          "23 Nov 2022",
+          "BMFQDC9",
+          "--",
+          "--",
+          "--",
+          "Borsa Italiana",
+          "EUR",
+          "QYLD IM",
+          "24 Nov 2022",
+          "BMFQDD0",
+          "--",
+          "--",
+          "--",
+          "Bolsa Mexicana De Valores",
+          "MXN",
+          "QYLDUN MM",
+          "31 Mar 2023",
+          "BLGV906",
+          "--",
+          "--",
+          "--",
+          "SIX Swiss Exchange",
+          "CHF",
+          "QYLD SW",
+          "12 Apr 2023",
+          "BMFQDF2",
+          "--",
+          "--",
+          "--",
+          "Cboe DXE Amsterdam",
+          "EUR",
+          "QYLDX I2",
+          "19 Jul 2023",
+          "BQQ8NG6",
+          "--",
+          "--",
+          "--",
           "META",
           "Meta Platforms Inc Class A",
           "3.10",
@@ -31170,7 +32580,7 @@
         "reason": "Table sectorielle de référence à recouper avec l’indice exact avant utilisation ; aucune allocation du panier de substitution utilisée.",
         "checkedAt": "2026-10-16",
         "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-        "sha256": "78872ca5695ea04407badf8553d947466326f560aee554e834d0a301c3e4ae00",
+        "sha256": "b0aa373ede8f0cb1457de6d5339f1deb99c049c864b5b822417d97763d3453c0",
         "evidence": [
           "Reference Index Sector Breakdown",
           "As of 30 Sep 2026",
@@ -31201,7 +32611,14 @@
         ]
       }
     },
-    "qualificationCheckedAt": "2026-10-16"
+    "qualificationCheckedAt": "2026-10-16",
+    "characteristicChecks": {
+      "terPct": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
+        "asOf": "2026-10-15"
+      }
+    }
   },
   "GB00BLD4ZL17": {
     "currency": "USD",
@@ -31459,10 +32876,11 @@
     },
     "characteristics": {
       "terPct": 0.06,
-      "asOf": "2026-08-31",
-      "sourceUrl": "https://swissfunddata.ch/sfdpub/docs/fsm-8522_03_03-20260831-en.pdf",
-      "sha256": "bf68618d0bd470081b3d4542ee098a4d1ad4a3ff77478bbe995da4e1007fa42f",
-      "checkedAt": "2026-10-06"
+      "asOf": "2026-09-30",
+      "sourceUrl": "https://swissfunddata.ch/sfdpub/docs/fsm-8522_03_03-20260930-en.pdf",
+      "sha256": "8bdbf7953d336b2f37608e4b97f7d2d7c12cae1c1009625721779ce975cda13e",
+      "checkedAt": "2026-10-16",
+      "modifiedAt": "2026-10-16"
     },
     "performance": {
       "currency": "USD",
@@ -31478,6 +32896,13 @@
         "2025": 21.31
       },
       "checkedAt": "2026-10-16"
+    },
+    "characteristicChecks": {
+      "terPct": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://swissfunddata.ch/sfdpub/docs/fsm-8522_03_03-20260930-en.pdf",
+        "asOf": "2026-09-30"
+      }
     }
   },
   "FR0007056841": {
@@ -31662,21 +33087,22 @@
     },
     "characteristics": {
       "terPct": 0.14,
-      "asOf": "2026-08-31",
+      "asOf": "2026-09-30",
       "feesAsOf": "2025-12-31",
-      "sourceUrl": "https://dokumenty.analizy.pl/pobierz/etf/E_SBNPEF002_C_EUR/KA/2026-08-31",
+      "sourceUrl": "https://dokumenty.analizy.pl/pobierz/etf/E_SBNPEF002_C_EUR/KA/2026-09-30",
       "discoveryUrl": "https://www.analizy.pl/etf/FR0011550185/bnp-paribas-easy-s-p-500-ucits-etf-c-acc-eur",
-      "sha256": "268d6a3d49522101d53cb7cd367f4c8f3229b6ae5a6b583dbd589a06ef763d66",
+      "sha256": "2fb8ae96b4861c9f5ef7c0f16c1e28cd266b28d7caf15b7de8d8078657fa5253",
       "sourceLabel": "Fiche BNP Paribas Asset Management · copie hébergée par Analizy",
       "publisher": "BNP Paribas Asset Management",
       "documentHost": "Analizy",
-      "checkedAt": "2026-10-07",
       "index": "S&P 500 Composite (NR)",
       "distribution": "Capitalisation",
       "detailsSource": {
         "url": "https://dokumenty.analizy.pl/pobierz/etf/E_SBNPEF002_C_EUR/KA/2026-09-30",
         "checkedAt": "2026-10-10"
-      }
+      },
+      "checkedAt": "2026-10-16",
+      "modifiedAt": "2026-10-16"
     },
     "performance": {
       "currency": "EUR",
@@ -31840,6 +33266,53 @@
       ],
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-11"
+    },
+    "characteristicChecks": {
+      "terPct": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://dokumenty.analizy.pl/pobierz/etf/E_SBNPEF002_C_EUR/KA/2026-09-30",
+        "asOf": "2026-09-30"
+      },
+      "feesAsOf": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://dokumenty.analizy.pl/pobierz/etf/E_SBNPEF002_C_EUR/KA/2026-09-30",
+        "asOf": "2026-09-30"
+      },
+      "discoveryUrl": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://dokumenty.analizy.pl/pobierz/etf/E_SBNPEF002_C_EUR/KA/2026-09-30",
+        "asOf": "2026-09-30"
+      },
+      "sourceLabel": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://dokumenty.analizy.pl/pobierz/etf/E_SBNPEF002_C_EUR/KA/2026-09-30",
+        "asOf": "2026-09-30"
+      },
+      "publisher": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://dokumenty.analizy.pl/pobierz/etf/E_SBNPEF002_C_EUR/KA/2026-09-30",
+        "asOf": "2026-09-30"
+      },
+      "documentHost": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://dokumenty.analizy.pl/pobierz/etf/E_SBNPEF002_C_EUR/KA/2026-09-30",
+        "asOf": "2026-09-30"
+      },
+      "index": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://dokumenty.analizy.pl/pobierz/etf/E_SBNPEF002_C_EUR/KA/2026-09-30",
+        "asOf": "2026-09-30"
+      },
+      "distribution": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://dokumenty.analizy.pl/pobierz/etf/E_SBNPEF002_C_EUR/KA/2026-09-30",
+        "asOf": "2026-09-30"
+      },
+      "detailsSource": {
+        "checkedAt": "2026-10-07",
+        "sourceUrl": "https://dokumenty.analizy.pl/pobierz/etf/E_SBNPEF002_C_EUR/KA/2026-08-31",
+        "asOf": "2026-08-31"
+      }
     }
   },
   "FR0011550193": {
@@ -33330,7 +34803,19 @@
       "note": "",
       "method": "cumulative exact-share NAV total return, gross income reinvested, net of fees",
       "checkedAt": "2026-10-16",
-      "modifiedAt": "2026-10-16"
+      "modifiedAt": "2026-10-16",
+      "months": {
+        "2026-09": -11.1
+      },
+      "monthEvidence": {
+        "2026-09": {
+          "asOf": "2026-09-30",
+          "sourceUrl": "https://globalxetfs.eu/funds/copx/",
+          "sha256": "389403e064cc6f966394728ce6ace0352f36703e1e25482593af701e67335955",
+          "checkedAt": "2026-10-16",
+          "method": "Published exact-share one-month NAV total return at calendar month end"
+        }
+      }
     }
   },
   "IE0003UVYC20": {
@@ -34132,14 +35617,14 @@
       "scope": "fund",
       "asOf": "2026-10-15",
       "sourceUrl": "https://globalxetfs.eu/funds/silv/",
-      "sha256": "b198cb302660d4b8e64ee6d4ff135597d7ecca31fa7ce9180e83f3a92f5e3d7a",
+      "sha256": "e3c96007561028f45693429ee57ca71b6d4aede6b50b28b2026b72f476ddfae9",
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-16"
     },
     "characteristics": {
       "asOf": "2026-10-15",
       "sourceUrl": "https://globalxetfs.eu/funds/silv/",
-      "sha256": "5bc5e1f06831dafc8551b930857cb743e620d9697bb5a5fefb31430a7e5071e7",
+      "sha256": "e3c96007561028f45693429ee57ca71b6d4aede6b50b28b2026b72f476ddfae9",
       "terPct": 0.65,
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-16"
@@ -34180,7 +35665,19 @@
         }
       ],
       "checkedAt": "2026-10-16",
-      "modifiedAt": "2026-10-16"
+      "modifiedAt": "2026-10-16",
+      "months": {
+        "2026-09": -13.49
+      },
+      "monthEvidence": {
+        "2026-09": {
+          "asOf": "2026-09-30",
+          "sourceUrl": "https://globalxetfs.eu/funds/silv/",
+          "sha256": "b198cb302660d4b8e64ee6d4ff135597d7ecca31fa7ce9180e83f3a92f5e3d7a",
+          "checkedAt": "2026-10-16",
+          "method": "Published exact-share one-month NAV total return at calendar month end"
+        }
+      }
     },
     "countries": {
       "rows": [
@@ -34279,7 +35776,7 @@
         "status": "not-published",
         "checkedAt": "2026-10-16",
         "sourceUrl": "https://globalxetfs.eu/funds/silv/",
-        "sha256": "b198cb302660d4b8e64ee6d4ff135597d7ecca31fa7ce9180e83f3a92f5e3d7a",
+        "sha256": "e3c96007561028f45693429ee57ca71b6d4aede6b50b28b2026b72f476ddfae9",
         "reason": "Aucun tableau sectoriel complet du fonds dans la page officielle contrôlée.",
         "evidence": {
           "datedCountryTable": true,
@@ -34288,7 +35785,14 @@
         }
       }
     },
-    "qualificationCheckedAt": "2026-10-16"
+    "qualificationCheckedAt": "2026-10-16",
+    "characteristicChecks": {
+      "terPct": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://globalxetfs.eu/funds/silv/",
+        "asOf": "2026-10-15"
+      }
+    }
   },
   "IE0003R87OG3": {
     "currency": "USD",
@@ -34494,7 +35998,14 @@
         }
       }
     },
-    "qualificationCheckedAt": "2026-10-16"
+    "qualificationCheckedAt": "2026-10-16",
+    "characteristicChecks": {
+      "terPct": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://res.americancentury.com/docs/avantis-global-small-cap-value-ucits-etf-fact-sheet.pdf",
+        "asOf": "2026-09-30"
+      }
+    }
   },
   "IE00BF4RFH31": {
     "currency": "USD",
@@ -34810,6 +36321,9 @@
       "terPct": 0.35,
       "index": "MSCI World Small Cap Index (Net)",
       "distribution": "Accumulating",
+      "domicile": "Ireland",
+      "replicationMethod": "Optimised",
+      "inceptionDate": "20180327",
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-16"
     },
@@ -34828,6 +36342,38 @@
       },
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-16"
+    },
+    "characteristicChecks": {
+      "terPct": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=296576&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "index": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=296576&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "distribution": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=296576&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "domicile": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=296576&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "replicationMethod": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=296576&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "inceptionDate": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=296576&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      }
     }
   },
   "IE00B1FZS467": {
@@ -35185,6 +36731,9 @@
       "terPct": 0.65,
       "index": "FTSE Global Core Infrastructure Index (USD)",
       "distribution": "Distributing",
+      "domicile": "Ireland",
+      "replicationMethod": "Replicated",
+      "inceptionDate": "20061020",
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-16"
     },
@@ -35206,6 +36755,38 @@
       },
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-16"
+    },
+    "characteristicChecks": {
+      "terPct": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251809&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "index": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251809&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "distribution": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251809&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "domicile": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251809&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "replicationMethod": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251809&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "inceptionDate": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251809&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      }
     }
   },
   "IE00BJ5JP097": {
@@ -35480,6 +37061,9 @@
       "terPct": 0.18,
       "index": "MSCI World Financials Advanced Select 20 35 Capped Index",
       "distribution": "Distributing",
+      "domicile": "Ireland",
+      "replicationMethod": "Replicated",
+      "inceptionDate": "20210518",
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-16"
     },
@@ -35495,6 +37079,38 @@
       },
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-16"
+    },
+    "characteristicChecks": {
+      "terPct": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=308836&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "index": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=308836&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "distribution": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=308836&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "domicile": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=308836&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "replicationMethod": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=308836&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "inceptionDate": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=308836&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      }
     }
   },
   "IE00BP3QZ601": {
@@ -35799,6 +37415,9 @@
       "terPct": 0.25,
       "index": "MSCI World Sector Neutral Quality Index (Net)",
       "distribution": "Accumulating",
+      "domicile": "Ireland",
+      "replicationMethod": "Optimised",
+      "inceptionDate": "20141003",
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-16"
     },
@@ -35820,6 +37439,38 @@
       },
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-16"
+    },
+    "characteristicChecks": {
+      "terPct": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=270054&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "index": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=270054&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "distribution": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=270054&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "domicile": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=270054&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "replicationMethod": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=270054&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "inceptionDate": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=270054&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      }
     }
   },
   "IE00BP3QZ825": {
@@ -36136,6 +37787,9 @@
       "terPct": 0.25,
       "index": "MSCI World Momentum index (Net)",
       "distribution": "Accumulating",
+      "domicile": "Ireland",
+      "replicationMethod": "Optimised",
+      "inceptionDate": "20141003",
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-16"
     },
@@ -36157,6 +37811,38 @@
       },
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-16"
+    },
+    "characteristicChecks": {
+      "terPct": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=270051&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "index": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=270051&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "distribution": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=270051&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "domicile": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=270051&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "replicationMethod": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=270051&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "inceptionDate": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=270051&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      }
     }
   },
   "IE00BP3QZB59": {
@@ -36465,6 +38151,9 @@
       "terPct": 0.25,
       "index": "MSCI World Enhanced Value index (Net)",
       "distribution": "Accumulating",
+      "domicile": "Ireland",
+      "replicationMethod": "Replicated",
+      "inceptionDate": "20141003",
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-16"
     },
@@ -36486,6 +38175,38 @@
       },
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-16"
+    },
+    "characteristicChecks": {
+      "terPct": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=270048&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "index": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=270048&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "distribution": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=270048&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "domicile": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=270048&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "replicationMethod": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=270048&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "inceptionDate": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=270048&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      }
     }
   },
   "IE00BYZK4552": {
@@ -36796,6 +38517,9 @@
       "terPct": 0.4,
       "index": "Stoxx Global Automation & Robotics Net USD Index",
       "distribution": "Accumulating",
+      "domicile": "Ireland",
+      "replicationMethod": "Optimised",
+      "inceptionDate": "20160908",
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-16"
     },
@@ -36816,6 +38540,38 @@
       },
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-16"
+    },
+    "characteristicChecks": {
+      "terPct": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=284219&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "index": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=284219&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "distribution": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=284219&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "domicile": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=284219&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "replicationMethod": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=284219&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "inceptionDate": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=284219&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      }
     }
   },
   "IE00BYZK4776": {
@@ -37101,6 +38857,9 @@
       "terPct": 0.4,
       "index": "STOXX GLOBAL BREAKTHROUGH HEALTHCARE (Net)",
       "distribution": "Accumulating",
+      "domicile": "Ireland",
+      "replicationMethod": "Optimised",
+      "inceptionDate": "20160908",
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-16"
     },
@@ -37121,6 +38880,38 @@
       },
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-16"
+    },
+    "characteristicChecks": {
+      "terPct": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=284216&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "index": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=284216&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "distribution": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=284216&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "domicile": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=284216&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "replicationMethod": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=284216&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "inceptionDate": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=284216&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      }
     }
   },
   "IE00B1XNHC34": {
@@ -37423,6 +39214,9 @@
       "terPct": 0.65,
       "index": "S&P Global Clean Energy Transition Index in USD (Net)",
       "distribution": "Distributing",
+      "domicile": "Ireland",
+      "replicationMethod": "Replicated",
+      "inceptionDate": "20070706",
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-16"
     },
@@ -37444,6 +39238,38 @@
       },
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-16"
+    },
+    "characteristicChecks": {
+      "terPct": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251911&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "index": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251911&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "distribution": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251911&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "domicile": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251911&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "replicationMethod": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251911&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "inceptionDate": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251911&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      }
     }
   },
   "IE00BJ5JP329": {
@@ -37686,6 +39512,9 @@
       "terPct": 0.18,
       "index": "MSCI World Consumer Staples Advanced Select 20 35 Capped Index",
       "distribution": "Distributing",
+      "domicile": "Ireland",
+      "replicationMethod": "Replicated",
+      "inceptionDate": "20191017",
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-16"
     },
@@ -37703,6 +39532,38 @@
       },
       "checkedAt": "2026-10-16",
       "modifiedAt": "2026-10-16"
+    },
+    "characteristicChecks": {
+      "terPct": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=308902&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "index": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=308902&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "distribution": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=308902&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "domicile": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=308902&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "replicationMethod": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=308902&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      },
+      "inceptionDate": {
+        "checkedAt": "2026-10-16",
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=308902&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": null
+      }
     }
   },
   "IE00BJ5JNZ06": {

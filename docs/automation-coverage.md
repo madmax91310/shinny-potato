@@ -8,14 +8,14 @@ Rapport fondé sur les collecteurs configurés et les données actives, pas sur 
 
 | Domaine | Couverture active | Fréquence |
 |---|---|---|
-| Historiques mensuels des simulateurs | 240/240 séries ; 150 collecteurs communs + Bitcoin et or | Marchés : 2, 4, 8 et 16 du mois ; Bitcoin : 2, 4 et 8 ; or : tentatives du 3 au 10 |
-| Parts ETF mensuelles raccordées | 80 parts exactes ; investissement et performance revenus réinvestis, anniversaire hors distributions | Même collecte mensuelle et reprise quotidienne des échecs |
+| Historiques mensuels des simulateurs | 306/306 séries ; 150 collecteurs communs + Bitcoin et or | Marchés : 2, 4, 8 et 16 du mois ; Bitcoin : 2, 4 et 8 ; or : tentatives du 3 au 10 |
+| Parts ETF mensuelles raccordées | 146 parts exactes ; investissement et performance revenus réinvestis, anniversaire hors distributions | Même collecte mensuelle et reprise quotidienne des échecs |
 | ETF/ETC/ETP | 244/244 instruments, au moins un champ | Quotidienne |
 | Comparatif ETF | 128/128 parts raccordées dans 83 blocs ; 120 calendriers actifs, 8 absences qualifiées | Quotidienne ; ajout de part contrôlé en CI |
 | Compositions d’indices | 52 indices | 3 et 16 du mois |
 | Rendements annuels d’indices | 56 indices | 3 et 16 du mois |
 | Pouvoir d’achat | Prix généraux, alimentation, énergie, IRL et SMIC INSEE ; périodes et qualité publiées | Vérification quotidienne |
-| Anniversaires | 230 niveaux datés ; saisie manuelle facultative | Quotidienne ; or : dernière moyenne mensuelle |
+| Anniversaires | 296 niveaux datés ; saisie manuelle facultative | Quotidienne ; or : dernière moyenne mensuelle |
 | Inflation | INSEE, prolongement de la série mensuelle 2026+ | 1 et 16 du mois |
 | Portefeuilles d’investisseurs | 28 profils SEC 13F | Vérification quotidienne ; publication trimestrielle par les déclarants |
 | Suivi de fraîcheur | Rapport et rappels GitHub | Hebdomadaire ; ces rappels ne collectent pas les données manuelles |
@@ -72,43 +72,10 @@ Les performances cumulées ou glissantes publiées par les émetteurs sont suivi
 
 ## Instruments entièrement hors collecte active
 
+Aucun instrument entièrement hors collecte : les 244 instruments ont au moins un champ actif. Les lacunes par champ restent détaillées ci-dessous.
+
 | ISIN | Instrument | Blocage actuel |
 |---|---|---|
-| LU1681038672 | Amundi Russell 2000 UCITS ETF EUR Acc | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
-| FR0011869304 | Amundi PEA Immobilier Europe UCITS ETF Acc | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
-| FR0013346681 | Amundi PEA Euro Court Terme UCITS ETF Acc | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
-| LU3180074463 | Amundi European Strategic Autonomy UCITS ETF Acc | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
-| LU1829219390 | Amundi Euro Stoxx Banks UCITS ETF Acc | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
-| FR0007054358 | Amundi EURO STOXX 50 II UCITS ETF Acc | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
-| LU1681040223 | Amundi STOXX Europe 600 ESG UCITS ETF Acc | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
-| IE0003XJA0J9 | Amundi Prime All Country World UCITS ETF Acc | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
-| IE0009HF1MK9 | Amundi Prime All Country World UCITS ETF Dist | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
-| LU0380865021 | Xtrackers EURO STOXX 50 UCITS ETF 1C | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
-| LU0328475792 | Xtrackers STOXX Europe 600 UCITS ETF 1C | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
-| LU0274209237 | Xtrackers MSCI Europe UCITS ETF 1C | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
-| IE00BJ0KDQ92 | Xtrackers MSCI World UCITS ETF 1C | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
-| IE00BK1PV551 | Xtrackers MSCI World UCITS ETF 1D | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
-| LU2903252349 | Xtrackers Scalable MSCI AC World UCITS ETF 1C | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
-| IE0008471009 | iShares Core EURO STOXX 50 UCITS ETF Dist | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
-| IE0008470928 | iShares STOXX Europe 50 UCITS ETF Dist | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
-| DE0002635307 | iShares STOXX Europe 600 UCITS ETF Dist | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
-| IE00B1YZSC51 | iShares Core MSCI Europe UCITS ETF Dist | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
-| IE00BK5BQX27 | Vanguard FTSE Developed Europe UCITS ETF Accumulating | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
-| IE00B945VV12 | Vanguard FTSE Developed Europe UCITS ETF Distributing | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
-| IE00B3RBWM25 | Vanguard FTSE All-World UCITS ETF Distributing | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
-| IE00BK5BQV03 | Vanguard FTSE Developed World UCITS ETF Accumulating | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
-| IE00BFMXXD54 | Vanguard S&P 500 UCITS ETF Accumulating | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
-| IE00B3XXRP09 | Vanguard S&P 500 UCITS ETF Distributing | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
-| IE00BKWQ0Q14 | State Street SPDR MSCI Europe UCITS ETF | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
-| IE00BFY0GT14 | State Street SPDR MSCI World UCITS ETF | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
-| IE000716YHJ7 | Invesco FTSE All-World UCITS ETF Accumulating | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
-| IE0000QLH0G6 | Invesco FTSE All-World UCITS ETF Distributing | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
-| IE00BMC38736 | VanEck Semiconductor UCITS ETF | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
-| IE00BDVPNG13 | WisdomTree Artificial Intelligence UCITS ETF USD Acc | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
-| IE00BKLF1R75 | WisdomTree Battery Solutions UCITS ETF USD Acc | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
-| IE00BLCHJB90 | Global X Robotics & Artificial Intelligence UCITS ETF USD Acc | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
-| IE000NDWFGA5 | Global X Uranium UCITS ETF USD Acc | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
-| IE00BMH5Y871 | Global X Cybersecurity UCITS ETF USD Acc | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
 
 ## Champs restant manuels sur les instruments partiellement couverts
 
@@ -387,7 +354,7 @@ Russell 2000 : composition automatisée depuis les tables explicitement consacr�
 
 Les lacunes ne se traitent pas toutes de la même manière : une donnée non applicable (pays actions d’un ETC or) doit rester absente ; un calendrier non encore publié attend sa première année complète ; une source exploitable mais non raccordée nécessite un connecteur.
 
-1. Compléter les champs des instruments partiellement raccordés et fiabiliser la disponibilité des pages WisdomTree et du miroir des fiches BNP. 35 instruments restent entièrement hors collecte. Les pays, secteurs et dix positions du Dow Jones Amundi sont raccordés à ses tableaux d’indice datés, en conservant les caractéristiques de la part. Les encours CoinShares sont raccordés aux widgets officiels, avec leur Rate Date réelle ; les pages WisdomTree accessibles fournissent leurs encours datés ; compléter les calendriers exacts et compositions restant listés ci-dessus. CoinShares : les fiches publient un rendement crypto de référence, qui ne remplace pas celui de la part après frais ou staking. Distinguer explicitement les données non applicables, non publiées et réellement à connecter.
+1. Compléter les champs des instruments partiellement raccordés et fiabiliser la disponibilité des pages WisdomTree et du miroir des fiches BNP. 0 instruments restent entièrement hors collecte. Les pays, secteurs et dix positions du Dow Jones Amundi sont raccordés à ses tableaux d’indice datés, en conservant les caractéristiques de la part. Les encours CoinShares sont raccordés aux widgets officiels, avec leur Rate Date réelle ; les pages WisdomTree accessibles fournissent leurs encours datés ; compléter les calendriers exacts et compositions restant listés ci-dessus. CoinShares : les fiches publient un rendement crypto de référence, qui ne remplace pas celui de la part après frais ou staking. Distinguer explicitement les données non applicables, non publiées et réellement à connecter.
 2. Compléter les poids du top dix Russell 1000 encore non publiés ; les deux Dividend Aristocrats utilisent désormais leurs fiches S&P exactes (tables natives et lecture concordante des légendes sectorielles à deux résolutions) en conservant exactement la variante de rendement et la devise existantes. Suivre le renouvellement annuel automatique ; les sources sans nouveau millésime gardent leur dernière période documentée.
 3. Étendre les sources renouvelables aux produits et paramètres encore hors des collectes économiques et réglementaires déjà qualifiées. Les caractéristiques (réplication, distribution, domicile, couverture de change, PEA) sont exclues des priorités à la demande de l’utilisateur.
 4. Fiabiliser la disponibilité des collecteurs ; conserver la distinction entre taux réglementaire effectif, moyenne de marché et rendement d’un produit individuel.

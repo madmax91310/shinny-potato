@@ -21,7 +21,7 @@ for (const [id, asset] of Object.entries(ETF_MONTHLY_HISTORIES)) {
   assert(ASSET_ORDER.includes(id))
   assert.equal(ANNIVERSAIRE_ELIGIBLE_ASSETS.some(a => a.id === id), Boolean(asset.anniversaryPoints?.length))
   assert(ANNIVERSARY_ART[id] && PERFORMANCE_ART[id] && INVESTMENT_ART[id])
-  assert.equal(getPerformanceAssetId(asset.isin), id)
+  assert.equal(getPerformanceAssetId(asset.isin), getAnnualReturnStartYears(id).length ? id : null)
   assert.match(performanceBasis(id), asset.instrumentType === 'ETC' ? /cours de l’ETC/ : /revenus réinvestis/)
   const start = asset.points[0].date
   for (const mode of ['lump', 'dca']) {
@@ -37,18 +37,21 @@ for (const [id, asset] of Object.entries(ETF_MONTHLY_HISTORIES)) {
     }
   }
   const years = getAnnualReturnStartYears(id)
-  assert(years.length)
+  if (years.length) {
   assert.equal(years[0], Number(start.slice(0, 4)) + 1)
   const rows = getAnnualReturns(id, years[0])
   assert(rows.every(r => r.startDate.endsWith('-12') && r.endDate.endsWith('-12')))
   const annual = buildPerformanceDepuisText({ format: FORMATS.PERFORMANCE_DEPUIS, mode: MODES.SIMPLE, assetId: id, year: years[0] })
   assert(annual.includes(asset.currency) && annual.includes(asset.instrumentType === 'ETC' ? 'cours de l’ETC' : 'revenus réinvestis'))
+  } else {
+    assert(asset.points[0].date > `${clock.getUTCFullYear()-2}-12`, `${id}: unexpected missing completed annual history`);
+  }
   if (!asset.anniversaryPoints?.length) {
     assert(!LEVELS[id], `${id}: anniversary collection must remain disabled`)
     continue
   }
   const options = getValidYearsBackOptions(id, clock)
-  assert(options.length)
+  if (!options.length) assert(asset.anniversaryPoints[0].date > `${clock.getUTCFullYear()-1}-09`, `${id}: unexpected missing anniversary history`)
   for (const back of options) {
     const ym = ymForYearsBack(back, clock)
     assert(ym >= start)

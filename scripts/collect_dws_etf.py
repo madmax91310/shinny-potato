@@ -81,6 +81,9 @@ def parse_product(body, share, now):
               'replication': facts.get('Investment methodology'),
               'unavailable': ['aum: no separately published valuation date/currency qualified',
                               'composition: physical securities portfolio not yet collected' if facts.get('Investment methodology') == 'Direct Replication (physically)' else 'composition: synthetic substitute basket excluded; tracked index exposure not qualified']}
+    result['characteristics'] = {'terPct':ter, 'index':index, 'distribution':facts['Income treatment']}
+    for field, key in [('domicile','Fund domicile'),('replicationMethod','Investment methodology'),('inceptionDate','Share class launch date')]:
+        if facts.get(key): result['characteristics'][field] = facts[key]
     if share.get('collectIdentity'):
         if facts.get('UCITS compliant') is not True or not facts.get('Fund domicile') or not index:
             reject('Incomplete DWS exact-share identity')

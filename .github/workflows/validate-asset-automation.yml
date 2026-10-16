@@ -1,0 +1,35 @@
+name: Validate asset field automation
+on:
+  pull_request:
+    paths:
+      - 'scripts/*asset-field*'
+      - 'scripts/*monthly*'
+      - 'scripts/apply_etf_collection.py'
+      - 'src/data/automated-*'
+      - 'src/data/auto-history-identities.json'
+      - 'src/data/instrument-facts.js'
+      - 'src/pages/data-review/**'
+      - '.github/workflows/validate-asset-automation.yml'
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-26.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 20
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: '3.12'
+      - run: npm ci
+      - run: python -m unittest discover -s scripts -p 'test_issuer_monthly_capture.py'
+      - run: python -m unittest discover -s scripts -p 'test_monthly_qualification.py'
+      - run: node scripts/test-asset-field-coverage.mjs
+      - run: npm run build
+      - run: node scripts/audit-automated-monthly.mjs && node scripts/test-etf-tool-connections.mjs && node scripts/audit-asset-tool-routing.mjs
+      - run: npx playwright install --with-deps chromium
+      - run: node scripts/test-asset-field-ui.mjs
+      - run: node scripts/test-stylized-formats.mjs
