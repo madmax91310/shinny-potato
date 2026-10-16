@@ -74,9 +74,14 @@ class PresentationSources(unittest.TestCase):
         r=globalx_physical((FIX/'copx.html').read_text(),share('IE0003Z9E2Y3'),NOW)
         report={'checkedAt':NOW.isoformat(),'shares':[r]}
         first=merge_collection(report,{},{});s=copy.deepcopy(r)
-        s['performance']['observations'][0]['value']=-10
+        s['performance']['observations'][0]['value']=-10.5
         newer=merge_collection({**report,'shares':[s]},first,{})
-        self.assertEqual(newer[s['isin']]['performance']['observations'][0]['value'],-10)
+        self.assertEqual(newer[s['isin']]['performance']['observations'][0]['value'],-10.5)
+        self.assertEqual(newer[s['isin']]['performance']['months']['2026-09'],-10.5)
+        s['performance']['observations'][0]['value']=-10
+        with self.assertRaisesRegex(ValueError,'Monthly NAV correction'):
+            merge_collection({**report,'shares':[s]},first,{})
+        self.assertEqual(first[s['isin']]['performance']['months']['2026-09'],-11.1)
         for bad in [dict(value=float('nan')),dict(asOf='2027-01-01'),dict(label='')]:
             s=copy.deepcopy(r);s['performance']['observations'][0].update(bad)
             with self.assertRaises(ValueError):merge_collection({**report,'shares':[s]},first,{})

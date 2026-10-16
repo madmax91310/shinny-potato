@@ -9,6 +9,10 @@ const p={distribution:'Distribuant',incomePolicy:'distributing',domicile:'Irelan
 assert.deepEqual(applyAutomatedCharacteristics(p,{}),p);
 const n=applyAutomatedCharacteristics(p,{sourceUrl:'https://issuer.test',characteristics:{distribution:'Accumulating',checkedAt:'2026-10-16'}});
 assert.equal(n.distribution,'Capitalisant');assert.equal(n.currencyHedge,true);assert.deepEqual(Object.keys(n.automatedFields),['distribution']);
+for(const [raw,expected] of [['Optimised','Physical (Optimised sampling)'],['Physical (Optimised)','Physical (Optimised sampling)'],['Replicated','Physical (Full replication)'],['Physical (Replicated)','Physical (Full replication)'],['Synthetic (swap)','Synthetic (swap)']]){
+ const facts=applyAutomatedCharacteristics(p,{sourceUrl:'https://issuer.test',characteristics:{replicationMethod:raw,checkedAt:'2026-10-16'}});
+ assert.equal(facts.replicationMethod,expected);assert.equal(facts.currencyHedge,true);
+}
 const r=buildAssetFieldReport('2026-10-16');assert(r.rows.length>2000);assert.equal(r.summary.ter.total,209);
 assert(r.rows.some(x=>x.type==='equity'&&x.field==='monthly'));
 assert(r.rows.some(x=>x.id==='IE00BM8R0J59'&&x.field==='holdings'&&typeof x.state==='string'));

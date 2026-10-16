@@ -14,6 +14,11 @@ export function applyAutomatedCharacteristics(previous,record) {
  if(policy){[next.incomePolicy,next.distribution]=policy;next.automatedFields.distribution=record.characteristicChecks?.distribution??source;}
  // Preserve the original location sentence; translated display of the structured
  // domicile/replication is handled separately, without losing hedge annotations.
- for(const field of ['domicile','replicationMethod'])if(typeof c[field]==='string'&&c[field].trim()) {next[field]=c[field];next.automatedFields[field]=record.characteristicChecks?.[field]??source;}
+ for(const field of ['domicile','replicationMethod'])if(typeof c[field]==='string'&&c[field].trim()) {
+  const value=c[field];
+  // Normalize the issuer's equivalent labels to the shared display vocabulary.
+  next[field]=field!=='replicationMethod'?value:/^(Physical \()?Optimised\)?$/i.test(value)?'Physical (Optimised sampling)':/^(Physical \()?Replicated\)?$/i.test(value)?'Physical (Full replication)':value;
+  next.automatedFields[field]=record.characteristicChecks?.[field]??source;
+ }
  return next;
 }
