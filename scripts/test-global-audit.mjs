@@ -60,6 +60,7 @@ if (process.argv.includes('--browser')) {
   assert.match(await page.locator('.portfolio-exposure').first().innerText(),/Couverture|composition qualifiée/)
   await page.goto(base+'/calculateur-investissement',{waitUntil:'networkidle'})
   await page.getByText('Ce que change la date de départ',{exact:true}).click()
+  await page.locator('.portfolio-exposure').getByText(/^\d+ fenêtres disponibles|^Historique mensuel continu insuffisant/).waitFor()
   assert.match(await page.locator('.portfolio-exposure').innerText(),/fenêtres|insuffisant/)
   await page.goto(base+'/donnees-a-revoir',{waitUntil:'networkidle'})
   await page.getByLabel('Vérifications regroupées par source').locator(':scope > summary').click()
@@ -70,7 +71,11 @@ if (process.argv.includes('--browser')) {
   assert.match(await page.locator('.portfolio-exposure').first().innerText(),/photographie|total déclaré/)
   for(const route of ['/fiches-etf','/fiches-pratiques?fiche=etf-volatility','/simulateur-patrimoine','/impact-frais','/performance-depuis']) {
    await page.goto(base+route,{waitUntil:'networkidle'});await page.locator('h1').waitFor()
-   if(route==='/performance-depuis') {await page.getByText('Ce que change la date de départ',{exact:true}).click();assert.match(await page.locator('.portfolio-exposure').innerText(),/fenêtres disponibles/)}
+   if(route==='/performance-depuis') {
+    await page.getByText('Ce que change la date de départ',{exact:true}).click()
+    await page.locator('.portfolio-exposure').getByText(/^\d+ fenêtres disponibles, recalculées/).waitFor()
+    assert.match(await page.locator('.portfolio-exposure').innerText(),/fenêtres disponibles/)
+   }
    await page.setViewportSize({width:390,height:844})
    assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),route)
    await page.setViewportSize({width:1280,height:900})
