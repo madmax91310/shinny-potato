@@ -69,6 +69,7 @@ jobs:
       - run: node scripts/test-resource-selections.mjs
       - run: node scripts/build-dca-exposures.mjs && npm run test:dca && node scripts/audit-portfolio-routing.mjs
       - run: node scripts/test-exposure-classification.mjs
+      - run: python -m unittest discover -s scripts -p "test_exposure_sleeves.py"
       - run: python -m unittest discover -s scripts -p "test_dca*py"
       - run: node scripts/test-global-audit.mjs
       - run: node scripts/test-portfolio-roadmap.mjs
@@ -291,6 +292,8 @@ jobs:
           key: chromium-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
       - run: npx playwright install --with-deps chromium
       - run: node scripts/playwright-routing-additions.mjs
+        if: matrix.shard == 1
+      - run: node scripts/playwright-exposure-scope.mjs
         if: matrix.shard == 1
       - run: node scripts/test-simple-exposure.mjs
         if: matrix.shard == 1

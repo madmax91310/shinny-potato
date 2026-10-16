@@ -10,9 +10,9 @@ const lines=[{asset:'world',isin:'one',weight:60,label:'World'},{asset:'acwi',is
 let result=dcaExposure(lines,{world:record('2026-10-13'),acwi:record('2026-09-30')},'countries',now)
 assert.equal(result.groups.length,1);assert.equal(result.groups[0].coverage,90);assert.equal(result.neutralWeight,10)
 assert.equal(result.groups[0].oldest,'2026-09-30');assert.equal(result.groups[0].observations.length,2)
-const donut=donutData({countries:result});assert(donut.rows.some(r=>r.name==='Or'&&r.weight===10));assert(!donut.rows.some(r=>r.color==='#57718e'))
+const donut=donutData({countries:result});assert(!donut.rows.some(r=>r.name==='Or'));assert.equal(donut.eligible,90);assert(!donut.rows.some(r=>r.color==='#57718e'))
 result=dcaExposure(lines,{world:record('2026-10-13'),acwi:record('2026-09-30','country-registration')},'countries',now)
-assert.equal(result.groups.length,2);assert.equal(donutData({countries:result}).rows.find(r=>r.name==='Non ventilé ici').weight,30)
+assert.equal(result.groups.length,2);assert(Math.abs(donutData({countries:result}).rows.find(r=>r.name==='Non ventilé ici').weight-100/3)<1e-8)
 for(const date of ['2026-06-01','2026-10-16','2026-02-31']){
  result=dcaExposure(lines,{world:record(date),acwi:record('2026-09-30')},'countries',now)
  assert.equal(result.excluded[0].asset,'world')

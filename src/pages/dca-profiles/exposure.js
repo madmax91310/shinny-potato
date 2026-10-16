@@ -15,10 +15,17 @@ function stamp(date){
 export function dcaExposure(lines,references,field,now=new Date(),{synthesis=false}={}){
  const groups=new Map(),neutralRows=[],excluded=[]
  const today=Date.parse(new Date(now).toISOString().slice(0,10)+'T00:00:00Z')
- for(const l of lines.filter(l=>l.weight>0)){
+ for(let l of lines.filter(l=>l.weight>0)){
   const outside=neutral[l.asset]||(l.isin===references[l.asset]?.isin&&references[l.asset]?.outsideClassification)
   if(outside){neutralRows.push({name:outside,weight:l.weight});continue}
   const r=references[l.asset],o=r?.[field]
+  if(r?.equitySleeve&&l.isin===r.isin){
+   const sleeve=r.equitySleeve,age=(today-stamp(sleeve.asOf))/day
+   if(Number.isFinite(age)&&age>=0&&age<=EXPOSURE_MAX_AGE_DAYS&&sleeve.sourceUrl&&Number.isFinite(sleeve.weightPct)&&sleeve.weightPct>=0&&sleeve.weightPct<=100){
+    neutralRows.push({name:'Obligations et liquidités · '+(l.label||r.name),weight:l.weight*(100-sleeve.weightPct)/100})
+    l={...l,weight:l.weight*sleeve.weightPct/100}
+   }else{excluded.push({asset:l.asset,label:l.label,weight:l.weight,reason:'Allocation actions trop ancienne ou non qualifiée'});continue}
+  }
   let reason=!l.isin?'Support non confirmé':r?.isin&&l.isin!==r.isin?'Support différent de la référence':!o?'Ventilation absente':null
   if(!reason){
    const date=stamp(o.asOf),age=(today-date)/day
@@ -53,9 +60,9 @@ export function dcaExposure(lines,references,field,now=new Date(),{synthesis=fal
      if(!contributions.has(name))contributions.set(name,[])
      contributions.get(name).push({asset:l.asset,label:l.label,weight,withinAsset:row.weightPct*scale})
     }
-    observations.push({asset:l.asset,label:l.label,asOf:o.asOf,basis:o.basis,sourceUrl:o.sourceUrl,method:o.method||o.compatibility,classification:o.compatibility,weight:l.weight})
+    observations.push({asset:l.asset,label:l.label,asOf:o.asOf,basis:o.basis,sourceUrl:o.sourceUrl,sourceUrls:o.sourceUrls||[o.sourceUrl],method:o.method||o.compatibility,classification:o.compatibility,weight:l.weight})
    }
-   result.push({asOf:latest,oldest:cluster.at(-1).o.asOf,basis:[...new Set(observations.map(o=>o.basis))].join('+'),classification,indicative:synthesis,coverage,observations,sources:[...new Set(observations.map(o=>o.sourceUrl))],rows:[...rows].map(([name,weight])=>({name,weight,contributions:contributions.get(name).sort((a,b)=>b.weight-a.weight)})).filter(r=>r.weight>0).sort((a,b)=>b.weight-a.weight)})
+   result.push({asOf:latest,oldest:cluster.at(-1).o.asOf,basis:[...new Set(observations.map(o=>o.basis))].join('+'),classification,indicative:synthesis,coverage,observations,sources:[...new Set(observations.flatMap(o=>o.sourceUrls))],rows:[...rows].map(([name,weight])=>({name,weight,contributions:contributions.get(name).sort((a,b)=>b.weight-a.weight)})).filter(r=>r.weight>0).sort((a,b)=>b.weight-a.weight)})
   }
  }
  result.sort((a,b)=>b.coverage-a.coverage||a.classification.localeCompare(b.classification)||b.asOf.localeCompare(a.asOf))
@@ -65,14 +72,28 @@ export function dcaExposure(lines,references,field,now=new Date(),{synthesis=fal
 // Coverage shown to the user must describe the same group as the donut.
 export function exposureDisplay(exposure){
  const group=exposure.groups[0]
- const omitted=[...exposure.excluded,...exposure.groups.slice(1).flatMap(g=>g.observations.map(o=>({
+ const omitted=[...(exposure.excluded||[]),...exposure.groups.slice(1).flatMap(g=>(g.observations||[]).map(o=>({
   ...o,reason:g.classification===group?.classification?'Dates trop éloignées pour ce graphique':'Méthode géographique ou sectorielle différente'
  })))]
- return {coverage:group?.coverage||0,missing:Math.max(0,100-(group?.coverage||0)-exposure.neutralWeight),omitted}
+ return {coverage:group?.coverage||0,missing:Math.max(0,100-(group?.coverage||0)-(exposure.neutralWeight||0)),omitted}
 }
 
 // Portfolio overview only: published country/sector labels, with source methods retained.
 // This does not assert GICS/ICB or country-of-risk/registration equivalence.
 export function publishedExposure(lines,references,field,now=new Date()){
  return dcaExposure(lines,references,field,now,{synthesis:true})
+}
+
+// Display scope excludes only explicitly classified non-geographic assets.
+// Missing/expired observations remain in the denominator and keep a grey slice.
+export function exposureView(exposure){
+ const display=exposureDisplay(exposure)
+ const eligible=Math.max(0,100-(exposure.neutralWeight||0))
+ const group=exposure.groups[0]
+ const scale=eligible>0?100/eligible:0
+ return {...display,eligible,group,excludedAssets:exposure.neutralRows||[],
+  rows:(group?.rows||[]).map(row=>({...row,portfolioWeight:row.weight,weight:row.weight*scale})),
+  missing:display.missing*scale,portfolioMissing:display.missing,
+  scope:eligible>0?`Poche actions · ${Number(eligible.toFixed(2)).toLocaleString('fr-FR')} % du portefeuille`:'Aucune poche actions',
+ }
 }
