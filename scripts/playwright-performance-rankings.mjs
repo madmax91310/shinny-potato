@@ -1,0 +1,68 @@
+import assert from 'node:assert/strict'
+import { mkdir, writeFile } from 'node:fs/promises'
+import { chromium } from 'playwright'
+import { spawn } from 'node:child_process'
+const port = 4372, base = process.env.TEST_BASE_URL || `http://127.0.0.1:${port}/shinny-potato`
+const server = process.env.TEST_BASE_URL ? null : spawn('node', ['node_modules/vite/bin/vite.js', 'preview', '--host', '127.0.0.1', '--port', String(port)], { stdio: 'ignore' })
+let browser, page
+try {
+  for (let i = 0; i < 100; i++) { try { if ((await fetch(base)).ok) break } catch {} await new Promise(r => setTimeout(r, 200)) }
+  browser = await chromium.launch({ headless: true, ...(process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH ? { executablePath: process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH } : {}) })
+  page = await browser.newPage({ viewport: { width: 1440, height: 1000 }, acceptDownloads: true })
+  const errors = []; page.on('pageerror', e => errors.push(e.message))
+  await page.goto(`${base}/classements-performances`, { waitUntil: 'networkidle' })
+  await page.getByRole('heading', { name: 'Qui a vraiment gagné ?', exact: true }).waitFor()
+  assert.equal(await page.getByRole('group', { name: 'Catégorie', exact: true }).locator('[data-option]').count(), 15)
+  await page.getByRole('group', { name: 'Catégorie', exact: true }).locator('[data-option][data-value="factors"]').click()
+  await page.getByRole('button', { name: 'Une année', exact: true }).click()
+  await page.getByRole('group', { name: 'Année', exact: true }).locator('[data-option][data-value="2022"]').click()
+  assert.match(await page.getByLabel('Texte à publier', { exact: true }).inputValue(), /En 2022 · USD/)
+  await page.getByRole('tab', { name: 'Image', exact: true }).click()
+  const img = page.locator('.publication-image-stage img')
+  await img.waitFor({ state: 'visible' })
+  assert((await img.getAttribute('src')).startsWith('data:image/png'))
+  await page.getByRole('button', { name: 'Période libre', exact: true }).click()
+  await page.getByLabel('Début, fin de mois', { exact: true }).fill('2020-12')
+  await page.getByLabel('Fin, fin de mois', { exact: true }).fill('2025-12')
+  await page.getByRole('tab', { name: 'Texte', exact: true }).click()
+  assert.match(await page.getByLabel('Texte à publier', { exact: true }).inputValue(), /Performance cumulée/)
+  await page.getByLabel('Afficher la performance annualisée').check()
+  assert.match(await page.getByLabel('Texte à publier', { exact: true }).inputValue(), /Performance annualisée/)
+  await page.getByText('Ajouter la régularité historique', { exact: true }).click()
+  await page.getByLabel('Montrer la fréquence de première place').check()
+  assert.match(await page.getByLabel('Texte à publier', { exact: true }).inputValue(), /81 périodes glissantes/)
+  await page.getByLabel('Début, fin de mois', { exact: true }).fill('2014-12')
+  await page.getByRole('alert').waitFor()
+  assert(await page.getByRole('button', { name: 'Télécharger l’image', exact: true }).isDisabled())
+  await page.getByLabel('Début, fin de mois', { exact: true }).fill('2020-12')
+  await page.getByRole('tab', { name: 'Image', exact: true }).click()
+  await img.waitFor({ state: 'visible' })
+  const downloadEvent = page.waitForEvent('download')
+  await page.getByRole('button', { name: 'Télécharger l’image', exact: true }).click()
+  assert((await downloadEvent).suggestedFilename().endsWith('.png'))
+  await mkdir('test-artifacts/performance-rankings', { recursive: true })
+  await page.screenshot({ path: 'test-artifacts/performance-rankings/desktop.png', fullPage: true })
+  await page.getByRole('group', { name: 'Catégorie', exact: true }).locator('[data-option][data-value="us-stocks"]').click()
+  await page.getByRole('button', { name: 'Personnaliser les actifs', exact: true }).click()
+  await page.getByRole('button', { name: 'Nouvelle sélection', exact: true }).click()
+  const search = page.getByRole('searchbox', { name: 'Rechercher : Actif du classement', exact: true })
+  await search.fill('Apple')
+  await page.locator('.rk-manual [data-option][data-value="apple"]').click()
+  await search.fill('Microsoft')
+  await page.locator('.rk-manual [data-option][data-value="microsoft"]').click()
+  assert.equal(await page.locator('.rk-selected>div').count(), 2)
+  await page.setViewportSize({ width: 390, height: 844 })
+  assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth))
+  await page.getByRole('button', { name: 'Aperçu', exact: true }).click()
+  await img.waitFor({ state: 'visible' })
+  await page.screenshot({ path: 'test-artifacts/performance-rankings/mobile.png', fullPage: true })
+  assert.deepEqual(errors, [])
+  console.log('Rankings: categories, calendar/custom modes, annualization, regularity, invalid dates, exact manual selections, PNG download, desktop and mobile passed.')
+} catch (error) {
+  if (page) {
+    await mkdir('test-artifacts/performance-rankings', { recursive: true })
+    await page.screenshot({ path: 'test-artifacts/performance-rankings/failure.png' }).catch(() => {})
+    await writeFile('test-artifacts/performance-rankings/failure.html', await page.content()).catch(() => {})
+  }
+  throw error
+} finally { await browser?.close(); server?.kill() }

@@ -12,6 +12,7 @@ const EditorialRadar = lazy(() => import('./pages/editorial-radar/App'))
 const WealthSimulator = lazy(() => import('./pages/wealth-simulator/App'))
 const PortfolioGenerator = lazy(() => import('./pages/portfolio-generator/App'))
 const PortfolioDuels = lazy(() => import('./pages/portfolio-duels/App'))
+const PerformanceRankings = lazy(() => import('./pages/performance-rankings/App'))
 const BrokerComparator = lazy(() => import('./pages/broker-comparator/App'))
 const InvestmentCalculator = lazy(() => import('./pages/investment-calculator/App'))
 const EtfSheets = lazy(() => import('./pages/etf-sheets/App'))
@@ -39,6 +40,7 @@ const FORMAT_COMPONENTS = {
 // Individual publication routes load their own engine and sources.
 // The old /tweet-midi URL remains available for saved links.
 const TOOL_ELEMENTS = {
+  '/classements-performances': <PerformanceRankings />,
   '/le-dca-de': <DcaProfiles />,
   '/fiches-pratiques': <PracticalSheets />,
   '/radar-editorial': <EditorialRadar />,
