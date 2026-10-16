@@ -1,5 +1,6 @@
 // Constructions : les rendements, noms et instruments restent dans la banque commune.
 // Deux nouvelles structures par couple, en complément de sa construction historique.
+import { routingRecipes } from './routingRecipes.js';
 import { expandedRecipes } from './expandedRecipes.js';
 import {
   PROFILES, GOLD_OPTIONS as GOLD, BITCOIN_OPTIONS as BTC,
@@ -190,6 +191,7 @@ export function getRecipes(profileId, riskId) {
   return [
     { ...base, id: 'historique', label: 'Construction historique', assets: protectSlots(assets, profileId) },
     ...expandedRecipes(profileId, riskId),
+    ...routingRecipes(profileId, riskId),
     ...[...additions[profileId][riskId], ...(profileId === 'generaliste' && ['dynamique','offensif'].includes(riskId) ? focusedWorldRecipes : []), ...(newConstructions[profileId]?.[riskId] ?? [])].map(r => ({ ...r, assets: protectSlots(r.assets, profileId) })),
   ];
 }

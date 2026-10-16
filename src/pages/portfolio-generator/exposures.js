@@ -1,6 +1,7 @@
 // Familles pour mesurer la variété de composition, pas le chevauchement des titres.
 // Certains indices voisins gardent des différences réelles de sociétés et de rendements.
 const FAMILIES = [
+  ['europe', ['msci_europe','europe_pea_amundi']],
   ['cybersecurity', ['sect_cybersecurite','sect_cyber_lg']],
   ['europe-technology', ['tech_europe','tech_europe_pea']],
   ['world', ['msci_world','msci_world_ishares','msci_world_amundi_pea']],
@@ -9,7 +10,7 @@ const FAMILIES = [
   ['gold', ['or','or_ishares','or_amundi','or_wisdomtree']],
   ['bitcoin', ['bitcoin','bitcoin_wisdomtree','bitcoin_etcgroup','bitcoin_21shares']],
   ['corp-ig', ['oblig_corp_ig','oblig_corp_amundi','oblig_corp_vanguard','oblig_corp_spdr']],
-  ['high-yield', ['oblig_hy','oblig_hy_amundi']],
+  ['high-yield', ['oblig_hy','oblig_hy_amundi','oblig_hy_ishares_acc']],
   ['dividends', ['strat_dividendes','strat_dividendes_dist','high_dividend','high_dividend_dist','quality_dividend','quality_dividend_dist','dividend_leaders','dividend_aristocrats_us_spdr']],
   ['property-listed', ['foncieres_etf','foncieres_etf_dist','immo_gpr','immo_ishares_yield']],
   ['sp500', ['sp500','sp500_ishares']], ['nasdaq', ['nasdaq100','nasdaq100_ishares']],

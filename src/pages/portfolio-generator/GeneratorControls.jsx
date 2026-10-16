@@ -1,3 +1,4 @@
+import { getRecipes } from './recipes.js'
 import SettingsDetails from '../../design-system/SettingsDetails'
 import { CONSTRUCTION_LIMITS, constructionMetrics, diversityReport, overlapNotes } from './controls.js'
 import { getAsset } from '../../data/portfolio-assets.js'
@@ -24,13 +25,18 @@ export default function GeneratorControls({ portfolio, history, locked, onLock }
     </SettingsDetails>
     <SettingsDetails title="Variété de cette session">
       <p>Fréquence de présence par profil et risque, depuis l’ouverture de la page. Changer uniquement d’émetteur ne crée pas une nouvelle famille d’exposition. Un socle est la plus grande ligne indicielle large, sans obligation qu’elle soit majoritaire.</p>
-      {reports.map(report=><div key={report.key}>
+      {reports.map(report=>{const recipes=getRecipes(report.profileId,report.riskId);
+        const eligible=[...new Set(recipes.flatMap(recipe=>recipe.assets.flatMap(slot=>slot.idOptions??[slot.id])))];
+        const unused=eligible.filter(id=>!report.assets[id]);
+        return <div key={report.key}>
         <strong>{report.key} · {report.count} tirages</strong>
         <p>{report.distinctAssets} supports, {report.distinctFamilies} familles, {report.distinctCores} socles. {report.nearRepeats} composition(s) proche(s) des 20 précédentes : moins de 10 points à déplacer entre familles.</p>
+        <p>{Object.keys(report.recipes).length} constructions utilisées sur {recipes.length} ; {eligible.length-unused.length} supports utilisés sur {eligible.length} possibles pour ce profil et ce risque. Les lignes conservées peuvent limiter cette couverture.</p>
+        {unused.length>0&&<details><summary>Supports encore absents des tirages ({unused.length})</summary><p>{unused.map(id=>getAsset(id).name).join(' · ')}</p></details>}
         <p>Socles — {frequency(report.cores,report.count)}</p>
         <p>Secteurs et thèmes — {frequency(report.sectorFamilies,report.count)||'Aucune ligne dédiée'}</p>
         <details><summary>Fréquence des supports</summary><p>{frequency(report.assets,report.count,true)}</p></details>
-      </div>)}
+      </div>})}
     </SettingsDetails>
   </>
 }

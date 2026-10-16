@@ -26,7 +26,7 @@ export function constructionMetrics(selection) {
     if(['bitcoin','ethereum'].includes(kind)||row.id==='blockchain_ishares')out.crypto+=pct;
     if(kind==='leverage')out.leverage+=pct;
     if(kind==='options')out.options+=pct;
-    if(['property','property-private'].includes(kind))out.property+=pct;
+    if(['property','property-private'].includes(kind)||row.id==='europe-property')out.property+=pct;
     if(kind==='high-yield')out.highYield+=pct;
     if(['gold','silver','commodities','commodity'].includes(kind))out.commodities+=pct;
     if(technologyIds.has(row.id))out.technology+=pct;
@@ -60,8 +60,9 @@ export function diversityReport(history) {
   const groups=new Map();
   for(const p of history.filter(p=>p.mode==='auto')) {
     const key=`${p.profileId}/${p.riskId}`;
-    const g=groups.get(key)??{key,profileId:p.profileId,riskId:p.riskId,count:0,assets:{},families:{},cores:{},sectorFamilies:{},nearRepeats:0,vectors:[]};
+    const g=groups.get(key)??{key,profileId:p.profileId,riskId:p.riskId,count:0,recipes:{},assets:{},families:{},cores:{},sectorFamilies:{},nearRepeats:0,vectors:[]};
     g.count++;
+    if(p.recipeId)g.recipes[p.recipeId]=(g.recipes[p.recipeId]??0)+1;
     for(const id of new Set(p.selection.map(s=>s.id)))g.assets[id]=(g.assets[id]??0)+1;
     for(const family of new Set(p.selection.map(s=>exposureFamily(s.id))))g.families[family]=(g.families[family]??0)+1;
     for(const family of new Set(p.selection.filter(s=>assetKind(s.id)==='theme'&&!factorIds.has(s.id)).map(s=>exposureFamily(s.id))))g.sectorFamilies[family]=(g.sectorFamilies[family]??0)+1;
