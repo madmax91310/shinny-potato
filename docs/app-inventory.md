@@ -54,7 +54,7 @@ Généré depuis les routes, le catalogue et les observations actives. Régéné
 |---|---:|
 | ter | 244/244 |
 | aum | 244/244 |
-| performance | 222/244 |
+| performance | 224/244 |
 | countries | 215/244 |
 | sectors | 215/244 |
 | holdings | 218/244 |

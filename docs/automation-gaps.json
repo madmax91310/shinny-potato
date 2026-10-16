@@ -2,9 +2,9 @@
   "fieldCoverage": {
     "ter": {
       "label": "Frais",
-      "present": 209,
-      "total": 209,
-      "applicable": 209,
+      "present": 244,
+      "total": 244,
+      "applicable": 244,
       "notApplicable": 0,
       "waiting": 0,
       "notPublished": 0,
@@ -12,9 +12,9 @@
     },
     "aum": {
       "label": "Encours",
-      "present": 209,
-      "total": 209,
-      "applicable": 209,
+      "present": 244,
+      "total": 244,
+      "applicable": 244,
       "notApplicable": 0,
       "waiting": 0,
       "notPublished": 0,
@@ -22,43 +22,43 @@
     },
     "performance": {
       "label": "Calendrier annuel",
-      "present": 193,
-      "total": 209,
-      "applicable": 209,
+      "present": 224,
+      "total": 244,
+      "applicable": 244,
       "notApplicable": 0,
       "waiting": 12,
       "notPublished": 4,
-      "unresolved": 0
+      "unresolved": 4
     },
     "countries": {
       "label": "Pays",
-      "present": 181,
-      "total": 209,
-      "applicable": 187,
+      "present": 215,
+      "total": 244,
+      "applicable": 222,
       "notApplicable": 22,
       "waiting": 0,
       "notPublished": 6,
-      "unresolved": 0
+      "unresolved": 1
     },
     "sectors": {
       "label": "Secteurs",
-      "present": 181,
-      "total": 209,
-      "applicable": 187,
+      "present": 215,
+      "total": 244,
+      "applicable": 222,
       "notApplicable": 22,
       "waiting": 0,
       "notPublished": 5,
-      "unresolved": 1
+      "unresolved": 2
     },
     "holdings": {
       "label": "Positions pondérées",
-      "present": 186,
-      "total": 209,
-      "applicable": 187,
+      "present": 218,
+      "total": 244,
+      "applicable": 222,
       "notApplicable": 22,
       "waiting": 0,
       "notPublished": 0,
-      "unresolved": 1
+      "unresolved": 4
     }
   },
   "recentCalendars": [
@@ -395,25 +395,124 @@
   ],
   "checkedAt": "2026-10-16",
   "method": "Inventaire des champs réellement présents dans les observations actives. Couverture distincte de disponibilité réseau et de fraîcheur. Les catégories sont issues des qualifications de sources ; elles ne certifient pas un téléchargement réussi aujourd’hui.",
-  "instruments": 209,
+  "instruments": 244,
   "covered": {
-    "ter": 209,
-    "aum": 209,
-    "performance": 193,
-    "countries": 181,
-    "sectors": 181,
-    "holdings": 186
+    "ter": 244,
+    "aum": 244,
+    "performance": 224,
+    "countries": 215,
+    "sectors": 215,
+    "holdings": 218
   },
   "summary": {
+    "instrument:unqualified": 10,
     "instrument:not-applicable": 66,
     "instrument:not-published": 15,
     "instrument:waiting-first-year": 12,
-    "instrument:unqualified": 1,
     "instrument:source-conflict": 1,
     "index:waiting-publication": 1,
     "index:not-applicable": 16
   },
   "gaps": [
+    {
+      "type": "instrument",
+      "id": "FR0013346681",
+      "name": "Amundi PEA Euro Court Terme UCITS ETF Acc",
+      "field": "countries",
+      "label": "Pays",
+      "configured": false,
+      "status": "unqualified",
+      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
+      "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+    },
+    {
+      "type": "instrument",
+      "id": "FR0013346681",
+      "name": "Amundi PEA Euro Court Terme UCITS ETF Acc",
+      "field": "sectors",
+      "label": "Secteurs",
+      "configured": false,
+      "status": "unqualified",
+      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
+      "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+    },
+    {
+      "type": "instrument",
+      "id": "FR0013346681",
+      "name": "Amundi PEA Euro Court Terme UCITS ETF Acc",
+      "field": "holdings",
+      "label": "Positions pondérées",
+      "configured": false,
+      "status": "unqualified",
+      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
+      "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+    },
+    {
+      "type": "instrument",
+      "id": "LU3180074463",
+      "name": "Amundi European Strategic Autonomy UCITS ETF Acc",
+      "field": "performance",
+      "label": "Calendrier annuel",
+      "configured": false,
+      "status": "unqualified",
+      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
+      "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+    },
+    {
+      "type": "instrument",
+      "id": "IE000716YHJ7",
+      "name": "Invesco FTSE All-World UCITS ETF Accumulating",
+      "field": "holdings",
+      "label": "Positions pondérées",
+      "configured": false,
+      "status": "unqualified",
+      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
+      "sourceUrl": "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE000716YHJ7_factsheet_en.pdf"
+    },
+    {
+      "type": "instrument",
+      "id": "IE0000QLH0G6",
+      "name": "Invesco FTSE All-World UCITS ETF Distributing",
+      "field": "holdings",
+      "label": "Positions pondérées",
+      "configured": false,
+      "status": "unqualified",
+      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
+      "sourceUrl": "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE0000QLH0G6_factsheet_en.pdf"
+    },
+    {
+      "type": "instrument",
+      "id": "IE00BLCHJB90",
+      "name": "Global X Robotics & Artificial Intelligence UCITS ETF USD Acc",
+      "field": "performance",
+      "label": "Calendrier annuel",
+      "configured": false,
+      "status": "unqualified",
+      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
+      "sourceUrl": "https://globalxetfs.eu/funds/botz/"
+    },
+    {
+      "type": "instrument",
+      "id": "IE000NDWFGA5",
+      "name": "Global X Uranium UCITS ETF USD Acc",
+      "field": "performance",
+      "label": "Calendrier annuel",
+      "configured": false,
+      "status": "unqualified",
+      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
+      "sourceUrl": "https://globalxetfs.eu/funds/urnu/"
+    },
+    {
+      "type": "instrument",
+      "id": "IE00BMH5Y871",
+      "name": "Global X Cybersecurity UCITS ETF USD Acc",
+      "field": "performance",
+      "label": "Calendrier annuel",
+      "configured": false,
+      "status": "unqualified",
+      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
+      "sourceUrl": "https://globalxetfs.eu/funds/bug/"
+    },
     {
       "type": "instrument",
       "id": "JE00B78CGV99",
@@ -801,7 +900,7 @@
       "status": "not-published",
       "checkedAt": "2026-10-16",
       "sourceUrl": "https://globalxetfs.eu/funds/silv/",
-      "sha256": "f7287ced9c936b6e10a7a01259f685c0b6400bbece898e76d05657ff530294f8",
+      "sha256": "b198cb302660d4b8e64ee6d4ff135597d7ecca31fa7ce9180e83f3a92f5e3d7a",
       "reason": "Aucun tableau sectoriel complet du fonds dans la page officielle contrôlée.",
       "evidence": {
         "datedCountryTable": true,
@@ -1537,7 +1636,7 @@
       "reason": "La section de performance ne fournit pas de calendrier annuel qualifié pour la part USD distribuante. Les rendements capitalisants ou glissants ne sont pas substitués.",
       "checkedAt": "2026-10-16",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "b676a0db0f2094c23ae020a8ae32519faaec3cf7f9b4d8194ce6d7ac3545ce3d",
+      "sha256": "78872ca5695ea04407badf8553d947466326f560aee554e834d0a301c3e4ae00",
       "evidence": [
         "Performance History",
         "USD Accumulating",
@@ -1566,7 +1665,14 @@
         "15.75%",
         "-0.46%",
         "Performance is based on the fund’s NAV and is shown on a total return basis (i.e., with gross income reinvested, where applicable). The fund’s NAV may differ from its market price and, as a result, individual shareholders may realize returns that are different from the NAV performance. Cumulative return is the aggregate amount that an investment has gained or lost over time. Annualised return is the average return gained or lost by an investment each year over a given time period.",
-        "The performance data quoted represents past performance. Past performance does not guarantee future results. The investment return and principal value of an investment will fluctuate so that an investor's shares, when sold or redeemed, may be worth more or less than their original cost and current performance may be lower or higher than the performance quoted. High short-term performance, when observed, is unusual and investors should not expect such performance to be repeated. The return of your investment may increase or decrease as a result of currency fluctuations if your investment is made in a currency other than that used in past performance calculations."
+        "The performance data quoted represents past performance. Past performance does not guarantee future results. The investment return and principal value of an investment will fluctuate so that an investor's shares, when sold or redeemed, may be worth more or less than their original cost and current performance may be lower or higher than the performance quoted. High short-term performance, when observed, is unusual and investors should not expect such performance to be repeated. The return of your investment may increase or decrease as a result of currency fluctuations if your investment is made in a currency other than that used in past performance calculations.",
+        "Top 10 Reference Index Constituents",
+        "As of 08 Oct 2026",
+        "Weight (%)",
+        "Ticker",
+        "Name",
+        "8.30",
+        "NVDA"
       ]
     },
     {
@@ -1580,7 +1686,7 @@
       "reason": "Aucune allocation géographique économique complète qualifiée dans la page ; les pays de commercialisation et le panier de substitution sont exclus.",
       "checkedAt": "2026-10-16",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "b676a0db0f2094c23ae020a8ae32519faaec3cf7f9b4d8194ce6d7ac3545ce3d",
+      "sha256": "78872ca5695ea04407badf8553d947466326f560aee554e834d0a301c3e4ae00",
       "evidence": []
     },
     {
@@ -1594,7 +1700,7 @@
       "reason": "Table sectorielle de référence à recouper avec l’indice exact avant utilisation ; aucune allocation du panier de substitution utilisée.",
       "checkedAt": "2026-10-16",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "b676a0db0f2094c23ae020a8ae32519faaec3cf7f9b4d8194ce6d7ac3545ce3d",
+      "sha256": "78872ca5695ea04407badf8553d947466326f560aee554e834d0a301c3e4ae00",
       "evidence": [
         "Reference Index Sector Breakdown",
         "As of 30 Sep 2026",
@@ -1635,7 +1741,7 @@
       "reason": "Poids différents pour les mêmes titres dans la section datée de l’indice : AAPL, AMZN, GOOG, GOOGL, META, MSFT, NVDA, TSLA.",
       "checkedAt": "2026-10-16",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "b676a0db0f2094c23ae020a8ae32519faaec3cf7f9b4d8194ce6d7ac3545ce3d",
+      "sha256": "78872ca5695ea04407badf8553d947466326f560aee554e834d0a301c3e4ae00",
       "evidence": [
         "Top 10 Reference Index Constituents",
         "As of 08 Oct 2026",

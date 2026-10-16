@@ -10,7 +10,7 @@ Rapport fondé sur les collecteurs configurés et les données actives, pas sur 
 |---|---|---|
 | Historiques mensuels des simulateurs | 240/240 séries ; 150 collecteurs communs + Bitcoin et or | Marchés : 2, 4, 8 et 16 du mois ; Bitcoin : 2, 4 et 8 ; or : tentatives du 3 au 10 |
 | Parts ETF mensuelles raccordées | 80 parts exactes ; investissement et performance revenus réinvestis, anniversaire hors distributions | Même collecte mensuelle et reprise quotidienne des échecs |
-| ETF/ETC/ETP | 209/209 instruments, au moins un champ | Quotidienne |
+| ETF/ETC/ETP | 244/244 instruments, au moins un champ | Quotidienne |
 | Comparatif ETF | 128/128 parts raccordées dans 83 blocs ; 120 calendriers actifs, 8 absences qualifiées | Quotidienne ; ajout de part contrôlé en CI |
 | Compositions d’indices | 52 indices | 3 et 16 du mois |
 | Rendements annuels d’indices | 56 indices | 3 et 16 du mois |
@@ -24,7 +24,7 @@ Les mois incomplets sont exclus. Les cours ajustés, cours bruts, rendements NET
 
 ## Disponibilité à fiabiliser
 
-WPEA (IE0002XZSHO1) : le calendrier EUR 2025 est raccordé à la fiche exacte de la part. UBS World (IE00BD4TXV59) : les calendriers USD 2022–2025 sont raccordés. SPEA (IE000DQLYVB9) ne publie pas encore d’année civile complète. Ces historiques courts ne remplacent pas une fenêtre de simulation complète. WPEA et SPEA : les pages officielles iShares peuvent renvoyer HTTP 403. Le repli vers les fiches officielles courantes est désormais contrôlé (ISIN, devise, dates) et a été validé en production. Une modification de schéma reste signalée et conserve les dernières valeurs fiables. Les 209 instruments décrivent donc une couverture configurée et validée au moins une fois, pas 209 accès réussis à chaque exécution.
+WPEA (IE0002XZSHO1) : le calendrier EUR 2025 est raccordé à la fiche exacte de la part. UBS World (IE00BD4TXV59) : les calendriers USD 2022–2025 sont raccordés. SPEA (IE000DQLYVB9) ne publie pas encore d’année civile complète. Ces historiques courts ne remplacent pas une fenêtre de simulation complète. WPEA et SPEA : les pages officielles iShares peuvent renvoyer HTTP 403. Le repli vers les fiches officielles courantes est désormais contrôlé (ISIN, devise, dates) et a été validé en production. Une modification de schéma reste signalée et conserve les dernières valeurs fiables. Les 244 instruments décrivent donc une couverture configurée et validée au moins une fois, pas 244 accès réussis à chaque exécution.
 
 Les pages HTML WisdomTree Gold/Bitcoin/Copper/Defence/Quantum/Dividend Growth publient des encours datés ; elles peuvent renvoyer HTTP 403 depuis GitHub. Les six pages ont été qualifiées en collecte réelle, avec ISIN, devise et date propres contrôlés. Le connecteur utilise alors les fiches officielles courantes Dataspan : frais et calendriers complets publiés peuvent être actualisés. Pour Defence, Quantum et Dividend Growth, les tableaux PDF raccordent aussi les secteurs et dix principales positions. Les dix pays ne remplacent la répartition complète que si leur somme atteint 99–101 % ; aucun résidu n’est inventé. Les encours absents du PDF restent à leur dernière date validée tant que les pages sont bloquées. Les encours CoinShares utilisent désormais les widgets officiels liés à la page produit : ISIN et devise USD contrôlés, Rate Date de valorisation (jamais la date de cache). Les documents PDF restent la preuve des frais ; leurs rendements crypto de référence ne sont pas assimilés à ceux de la part. VanEck Gaming : URL régionale officielle France, puis fiches Pays-Bas/Royaume-Uni en cas de problème de transport ; le même nom de document, ISIN, devise et date sont contrôlés avant application. UBS : découverte du dernier PDF mensuel publié, avec repli entre les deux adresses officielles Swiss Fund Data puis le mois précédent ; identité, devise et fraîcheur sont contrôlées. WisdomTree : une panne du PDF conserve les champs HTML validés indépendamment et reste signalée comme erreur de collecte.
 
@@ -59,12 +59,12 @@ Les frais collectés peuvent être ceux du dernier exercice publié : leur date 
 
 | Champ collecté et consommé | Instruments |
 |---|---:|
-| Frais annuels | 209 |
-| Encours daté | 209 |
-| Rendements calendaires de la part (au moins une année complète) | 193 |
-| Pays | 181 |
-| Secteurs ou sous-secteurs publiés | 181 |
-| Principales positions | 186 |
+| Frais annuels | 244 |
+| Encours daté | 244 |
+| Rendements calendaires de la part (au moins une année complète) | 224 |
+| Pays | 215 |
+| Secteurs ou sous-secteurs publiés | 215 |
+| Principales positions | 218 |
 
 Ces couvertures ne s’additionnent pas : plusieurs champs concernent le même instrument. Les 23 expositions Amundi à l’indice suivi recouvrent des parts déjà collectées ; elles ne sont pas 23 fonds supplémentaires. Les compositions d’indice, portefeuilles de fonds et paniers de substitution ne sont jamais assimilés. Les simulations choisissent automatiquement la dernière fenêtre complète commune : six ans pour le Générateur, trois à six ans pour les Duels. Les comparatifs alignent les années des produits. Une publication tardive ou un change BCE manquant conserve la dernière période commune ; aucun rendement n’est extrapolé. Les getters historiques et photographies archivées gardent leur période fixe.
 
@@ -72,10 +72,43 @@ Les performances cumulées ou glissantes publiées par les émetteurs sont suivi
 
 ## Instruments entièrement hors collecte active
 
-Aucun instrument entièrement hors collecte : les 209 instruments ont au moins un champ actif. Les lacunes par champ restent détaillées ci-dessous.
-
 | ISIN | Instrument | Blocage actuel |
 |---|---|---|
+| LU1681038672 | Amundi Russell 2000 UCITS ETF EUR Acc | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
+| FR0011869304 | Amundi PEA Immobilier Europe UCITS ETF Acc | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
+| FR0013346681 | Amundi PEA Euro Court Terme UCITS ETF Acc | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
+| LU3180074463 | Amundi European Strategic Autonomy UCITS ETF Acc | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
+| LU1829219390 | Amundi Euro Stoxx Banks UCITS ETF Acc | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
+| FR0007054358 | Amundi EURO STOXX 50 II UCITS ETF Acc | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
+| LU1681040223 | Amundi STOXX Europe 600 ESG UCITS ETF Acc | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
+| IE0003XJA0J9 | Amundi Prime All Country World UCITS ETF Acc | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
+| IE0009HF1MK9 | Amundi Prime All Country World UCITS ETF Dist | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
+| LU0380865021 | Xtrackers EURO STOXX 50 UCITS ETF 1C | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
+| LU0328475792 | Xtrackers STOXX Europe 600 UCITS ETF 1C | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
+| LU0274209237 | Xtrackers MSCI Europe UCITS ETF 1C | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
+| IE00BJ0KDQ92 | Xtrackers MSCI World UCITS ETF 1C | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
+| IE00BK1PV551 | Xtrackers MSCI World UCITS ETF 1D | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
+| LU2903252349 | Xtrackers Scalable MSCI AC World UCITS ETF 1C | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
+| IE0008471009 | iShares Core EURO STOXX 50 UCITS ETF Dist | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
+| IE0008470928 | iShares STOXX Europe 50 UCITS ETF Dist | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
+| DE0002635307 | iShares STOXX Europe 600 UCITS ETF Dist | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
+| IE00B1YZSC51 | iShares Core MSCI Europe UCITS ETF Dist | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
+| IE00BK5BQX27 | Vanguard FTSE Developed Europe UCITS ETF Accumulating | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
+| IE00B945VV12 | Vanguard FTSE Developed Europe UCITS ETF Distributing | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
+| IE00B3RBWM25 | Vanguard FTSE All-World UCITS ETF Distributing | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
+| IE00BK5BQV03 | Vanguard FTSE Developed World UCITS ETF Accumulating | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
+| IE00BFMXXD54 | Vanguard S&P 500 UCITS ETF Accumulating | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
+| IE00B3XXRP09 | Vanguard S&P 500 UCITS ETF Distributing | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
+| IE00BKWQ0Q14 | State Street SPDR MSCI Europe UCITS ETF | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
+| IE00BFY0GT14 | State Street SPDR MSCI World UCITS ETF | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
+| IE000716YHJ7 | Invesco FTSE All-World UCITS ETF Accumulating | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
+| IE0000QLH0G6 | Invesco FTSE All-World UCITS ETF Distributing | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
+| IE00BMC38736 | VanEck Semiconductor UCITS ETF | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
+| IE00BDVPNG13 | WisdomTree Artificial Intelligence UCITS ETF USD Acc | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
+| IE00BKLF1R75 | WisdomTree Battery Solutions UCITS ETF USD Acc | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
+| IE00BLCHJB90 | Global X Robotics & Artificial Intelligence UCITS ETF USD Acc | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
+| IE000NDWFGA5 | Global X Uranium UCITS ETF USD Acc | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
+| IE00BMH5Y871 | Global X Cybersecurity UCITS ETF USD Acc | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
 
 ## Champs restant manuels sur les instruments partiellement couverts
 
@@ -83,6 +116,41 @@ Les identités, domiciles, modes de réplication, couvertures de change, politiq
 
 | ISIN | Instrument | Champs courants hors collecte active |
 |---|---|---|
+| LU1681038672 | Amundi Russell 2000 UCITS ETF EUR Acc | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
+| FR0011869304 | Amundi PEA Immobilier Europe UCITS ETF Acc | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
+| FR0013346681 | Amundi PEA Euro Court Terme UCITS ETF Acc | Pays, Secteurs, Principales positions |
+| LU3180074463 | Amundi European Strategic Autonomy UCITS ETF Acc | Rendements calendaires |
+| LU1829219390 | Amundi Euro Stoxx Banks UCITS ETF Acc | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
+| FR0007054358 | Amundi EURO STOXX 50 II UCITS ETF Acc | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
+| LU1681040223 | Amundi STOXX Europe 600 ESG UCITS ETF Acc | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
+| IE0003XJA0J9 | Amundi Prime All Country World UCITS ETF Acc | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
+| IE0009HF1MK9 | Amundi Prime All Country World UCITS ETF Dist | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
+| LU0380865021 | Xtrackers EURO STOXX 50 UCITS ETF 1C | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
+| LU0328475792 | Xtrackers STOXX Europe 600 UCITS ETF 1C | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
+| LU0274209237 | Xtrackers MSCI Europe UCITS ETF 1C | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
+| IE00BJ0KDQ92 | Xtrackers MSCI World UCITS ETF 1C | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
+| IE00BK1PV551 | Xtrackers MSCI World UCITS ETF 1D | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
+| LU2903252349 | Xtrackers Scalable MSCI AC World UCITS ETF 1C | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
+| IE0008471009 | iShares Core EURO STOXX 50 UCITS ETF Dist | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
+| IE0008470928 | iShares STOXX Europe 50 UCITS ETF Dist | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
+| DE0002635307 | iShares STOXX Europe 600 UCITS ETF Dist | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
+| IE00B1YZSC51 | iShares Core MSCI Europe UCITS ETF Dist | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
+| IE00BK5BQX27 | Vanguard FTSE Developed Europe UCITS ETF Accumulating | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
+| IE00B945VV12 | Vanguard FTSE Developed Europe UCITS ETF Distributing | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
+| IE00B3RBWM25 | Vanguard FTSE All-World UCITS ETF Distributing | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
+| IE00BK5BQV03 | Vanguard FTSE Developed World UCITS ETF Accumulating | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
+| IE00BFMXXD54 | Vanguard S&P 500 UCITS ETF Accumulating | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
+| IE00B3XXRP09 | Vanguard S&P 500 UCITS ETF Distributing | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
+| IE00BKWQ0Q14 | State Street SPDR MSCI Europe UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
+| IE00BFY0GT14 | State Street SPDR MSCI World UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
+| IE000716YHJ7 | Invesco FTSE All-World UCITS ETF Accumulating | Principales positions |
+| IE0000QLH0G6 | Invesco FTSE All-World UCITS ETF Distributing | Principales positions |
+| IE00BMC38736 | VanEck Semiconductor UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
+| IE00BDVPNG13 | WisdomTree Artificial Intelligence UCITS ETF USD Acc | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
+| IE00BKLF1R75 | WisdomTree Battery Solutions UCITS ETF USD Acc | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
+| IE00BLCHJB90 | Global X Robotics & Artificial Intelligence UCITS ETF USD Acc | Rendements calendaires |
+| IE000NDWFGA5 | Global X Uranium UCITS ETF USD Acc | Rendements calendaires |
+| IE00BMH5Y871 | Global X Cybersecurity UCITS ETF USD Acc | Rendements calendaires |
 | IE000L2SA8K5 | Invesco NASDAQ-100 Equal Weight UCITS ETF Acc | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00BSPLC298 | State Street SPDR MSCI Europe Small Cap Value Weighted UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | JE00B78CGV99 | WisdomTree Brent Crude Oil | Pays, Secteurs, Principales positions |
@@ -319,7 +387,7 @@ Russell 2000 : composition automatisée depuis les tables explicitement consacr�
 
 Les lacunes ne se traitent pas toutes de la même manière : une donnée non applicable (pays actions d’un ETC or) doit rester absente ; un calendrier non encore publié attend sa première année complète ; une source exploitable mais non raccordée nécessite un connecteur.
 
-1. Compléter les champs des instruments partiellement raccordés et fiabiliser la disponibilité des pages WisdomTree et du miroir des fiches BNP. 0 instruments restent entièrement hors collecte. Les pays, secteurs et dix positions du Dow Jones Amundi sont raccordés à ses tableaux d’indice datés, en conservant les caractéristiques de la part. Les encours CoinShares sont raccordés aux widgets officiels, avec leur Rate Date réelle ; les pages WisdomTree accessibles fournissent leurs encours datés ; compléter les calendriers exacts et compositions restant listés ci-dessus. CoinShares : les fiches publient un rendement crypto de référence, qui ne remplace pas celui de la part après frais ou staking. Distinguer explicitement les données non applicables, non publiées et réellement à connecter.
+1. Compléter les champs des instruments partiellement raccordés et fiabiliser la disponibilité des pages WisdomTree et du miroir des fiches BNP. 35 instruments restent entièrement hors collecte. Les pays, secteurs et dix positions du Dow Jones Amundi sont raccordés à ses tableaux d’indice datés, en conservant les caractéristiques de la part. Les encours CoinShares sont raccordés aux widgets officiels, avec leur Rate Date réelle ; les pages WisdomTree accessibles fournissent leurs encours datés ; compléter les calendriers exacts et compositions restant listés ci-dessus. CoinShares : les fiches publient un rendement crypto de référence, qui ne remplace pas celui de la part après frais ou staking. Distinguer explicitement les données non applicables, non publiées et réellement à connecter.
 2. Compléter les poids du top dix Russell 1000 encore non publiés ; les deux Dividend Aristocrats utilisent désormais leurs fiches S&P exactes (tables natives et lecture concordante des légendes sectorielles à deux résolutions) en conservant exactement la variante de rendement et la devise existantes. Suivre le renouvellement annuel automatique ; les sources sans nouveau millésime gardent leur dernière période documentée.
 3. Étendre les sources renouvelables aux produits et paramètres encore hors des collectes économiques et réglementaires déjà qualifiées. Les caractéristiques (réplication, distribution, domicile, couverture de change, PEA) sont exclues des priorités à la demande de l’utilisateur.
 4. Fiabiliser la disponibilité des collecteurs ; conserver la distinction entre taux réglementaire effectif, moyenne de marché et rendement d’un produit individuel.
