@@ -8,7 +8,7 @@ import re
 from concurrent.futures import ThreadPoolExecutor
 from urllib.parse import quote, urlencode
 from zoneinfo import ZoneInfo
-from data_automation import UTC, get_json, number, reject, write_json_atomic
+from data_automation import UTC, get_json, get_text, number, reject, write_json_atomic
 from issuer_documents import download
 from refresh_monthly_history import yahoo_chart, msci_rows, get_msci_json
 
@@ -35,7 +35,7 @@ def completed(rows, now, timezone='UTC'):
     if (today - day).days > 7: reject('Dernière séance trop ancienne')
     return day.isoformat(), number(value)
 
-def collect_one(config, now, json_fetch=None, byte_fetch=download):
+def collect_one(config, now, json_fetch=None, byte_fetch=download, text_fetch=None):
     start, end = now.date()-dt.timedelta(days=15), now.date()
     parser = config['parser']
     # Daily levels need the same bounded transient recovery as monthly MSCI
@@ -54,7 +54,7 @@ def collect_one(config, now, json_fetch=None, byte_fetch=download):
         if (config.get('seriesId'),config.get('symbol'),config.get('currency'),config.get('variant')) != ('NASDAQXNDX','XNDX','USD','TOTAL'):
             reject('Wrong FRED index or return convention')
         url='https://fred.stlouisfed.org/graph/fredgraph.csv?id=NASDAQXNDX'
-        body=byte_fetch(url).decode('utf-8-sig')
+        body=(text_fetch or (lambda url: get_text(url, ('text/csv','application/csv','text/plain'))))(url)
         reader=csv.DictReader(io.StringIO(body))
         if reader.fieldnames != ['observation_date','NASDAQXNDX']:reject('Wrong FRED CSV series')
         rows=[];dates=[]

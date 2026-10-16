@@ -72,11 +72,11 @@ class PublicationTests(unittest.TestCase):
     def test_fred_xndx_completed_level_and_identity(self):
         config=next(c for c in configurations() if c['id']=='nasdaq100')
         body=b'observation_date,NASDAQXNDX\n2026-10-07,36000.25\n2026-10-08,40000\n'
-        r=collect_level(config,NOW,byte_fetch=lambda _:body)
+        r=collect_level(config,NOW,text_fetch=lambda _:body.decode())
         self.assertEqual((r['symbol'],r['variant'],r['value'],r['asOf']),('XNDX','TOTAL',36000.25,'2026-10-07'))
         for bad in [body.replace(b'NASDAQXNDX',b'NASDAQ100'),body.replace(b'36000.25',b'NaN'),body.replace(b'2026-10-07',b'2026-09-01')]:
-            with self.assertRaises(ValueError):collect_level(config,NOW,byte_fetch=lambda _:bad)
-        with self.assertRaises(ValueError):collect_level({**config,'symbol':'NDX'},NOW,byte_fetch=lambda _:body)
+            with self.assertRaises(ValueError):collect_level(config,NOW,text_fetch=lambda _:bad.decode())
+        with self.assertRaises(ValueError):collect_level({**config,'symbol':'NDX'},NOW,text_fetch=lambda _:body.decode())
 
     def test_completed_session_and_preservation(self):
         self.assertEqual(completed([(dt.date(2026,10,7),100),(dt.date(2026,10,8),200)],NOW),('2026-10-07',100))
