@@ -20,7 +20,8 @@ try {
     assert(!/NaN|undefined/.test(await page.locator('.ic-card').innerText()))
     await page.screenshot({path:`test-artifacts/round4/${id}.png`})
     const image=await page.evaluate(async id=>{
-      const {ASSETS}=await import('/shinny-potato/src/data/market-history.js')
+      const {ASSETS,ensureCalculatorAsset}=await import('/shinny-potato/src/data/calculator-history.js')
+      await ensureCalculatorAsset(id)
       const {derive}=await import('/shinny-potato/src/pages/investment-calculator/lib.js')
       const {renderInvestmentImage}=await import('/shinny-potato/src/pages/investment-calculator/imageExport.js')
       const {renderPerformanceImage}=await import('/shinny-potato/src/pages/tweet-midi/performanceImage.js')
