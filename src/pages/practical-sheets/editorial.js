@@ -1,8 +1,10 @@
 import { RESOURCE_COMPARISONS } from '../../data/resource-selections.js'
+import { DISTINCT_ASSET_SELECTIONS } from '../../data/distinct-asset-selections.js'
 // Copie éditoriale des tweets. Les chiffres, sources et images restent dans leurs registres.
 // Les comparatifs et simulations utilisent toujours les lignes calculées de buildSheet.
 const copy = (hook, sections, closing) => ({ hook, sections, closing })
 export const PRACTICAL_EDITORIAL = {
+ ...Object.fromEntries(DISTINCT_ASSET_SELECTIONS.map(c=>[c.id,copy(c.hook,null,c.cloture)])),
  "etf-pe": copy("Un ETF affiche un PER plus faible. Est-ce forcément une meilleure affaire ?", null, "Deux PER ne sont comparables que si les méthodes de calcul et les périmètres le sont aussi."),
  "etf-volatility": copy("Un ETF a moins bougé pendant trois ans. Que peux-tu vraiment en déduire ?", null, "La volatilité mesure les variations passées ; elle ne garantit pas le capital."),
  "sector-theme": copy("Deux ETF parlent de technologie sans acheter les mêmes entreprises. Comment les distinguer ?", null, "Deux ETF au nom proche peuvent détenir des entreprises très différentes. Leur composition permet de voir ce qu’on achète réellement."),

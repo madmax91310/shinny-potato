@@ -61,6 +61,8 @@ on:
       - 'scripts/collect_commodity_allocations.py'
       - 'scripts/test_commodity_allocations.py'
       - 'scripts/collect_annual_fx.py'
+      - 'scripts/collect_performance_currency.py'
+      - 'src/data/official-performance-currencies.json'
       - 'scripts/test_remaining_aum.py'
       - 'scripts/test-annual-rollover.mjs'
       - 'src/data/annual-*'
@@ -125,6 +127,8 @@ on:
       - 'scripts/collect_commodity_allocations.py'
       - 'scripts/test_commodity_allocations.py'
       - 'scripts/collect_annual_fx.py'
+      - 'scripts/collect_performance_currency.py'
+      - 'src/data/official-performance-currencies.json'
       - 'scripts/test_remaining_aum.py'
       - 'scripts/test-annual-rollover.mjs'
       - 'src/data/annual-*'
@@ -225,7 +229,9 @@ jobs:
       - name: "Collect observations: fx"
         id: fx
         continue-on-error: true
-        run: python scripts/collect_annual_fx.py --apply
+        run: |
+          python scripts/collect_annual_fx.py --apply
+          python scripts/collect_performance_currency.py --apply
       - name: "Collect observations: indices"
         id: indices
         continue-on-error: true
@@ -281,7 +287,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          bash scripts/commit-validated-data.sh 'Refresh validated active ETF issuer data' src/data/annual-fx.json src/data/automated-etf.json src/data/automated-indices.json docs/automation-coverage.md docs/automation-gaps.md docs/automation-gaps.json docs/asset-field-coverage.md public/data/asset-field-coverage.json docs/app-inventory.md
+          bash scripts/commit-validated-data.sh 'Refresh validated active ETF issuer data' src/data/annual-fx.json src/data/official-performance-currencies.json src/data/automated-etf.json src/data/automated-indices.json docs/automation-coverage.md docs/automation-gaps.md docs/automation-gaps.json docs/asset-field-coverage.md public/data/asset-field-coverage.json docs/app-inventory.md
   deploy:
     needs: refresh
     if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'

@@ -12,6 +12,8 @@ import { ASSETS } from '../src/data/market-history.js'
 import { getAnnualReturnStartYears, getValidYearsBackOptions } from '../src/pages/tweet-midi/data/marketHistory.js'
 import simulationIds from '../src/data/simulation-links.json' with {type:'json'}
 import links from '../src/data/tool-links.json' with {type:'json'}
+import { TOPICS } from '../src/data/practical-sheet-topics.js'
+import { references } from '../src/pages/dca-profiles/engine.js'
 
 const {plugin} = projectToolData()
 const toUrl = code => `data:text/javascript;base64,${Buffer.from(code).toString('base64')}`
@@ -33,6 +35,8 @@ for(const [isin,rows] of Object.entries(links)) for(const row of rows) {
   const url=new URL(row.href,'https://test.invalid')
   if(row.kind==='sheet') assert(ETFS.some(e=>e.isin===isin) && url.searchParams.get('isin')===isin)
   else if(row.kind==='comparison') assert(DEFAULT_THEMES.find(t=>t.id===url.searchParams.get('subject'))?.etfs.some(e=>e.isin===isin))
+  else if(row.kind==='practical') assert(TOPICS.find(t=>t.id===url.searchParams.get('fiche'))?.products?.includes(isin))
+  else if(row.kind==='dca') assert(url.pathname==='/le-dca-de' && Object.values(references).some(r=>r.isin===isin))
   else if(row.kind==='duel') {
     const d=buildDuel(DUELS.find(d=>d.id===url.searchParams.get('duel')))
     assert([...d.a.assets,...d.b.assets].some(a=>a.isin===isin))

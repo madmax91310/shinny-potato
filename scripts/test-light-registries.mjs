@@ -16,7 +16,7 @@ assert.deepEqual(reconstructed,JSON.parse(readFileSync(new URL('../src/data/auto
 
 // Execute the generated modules in isolation: any accidental dependency on a
 // non-exported helper or raw issuer module must fail here, before publication.
-const names = ['etf-cards','etf-publication-data','commodity-publication-data','portfolio-exposure-data','qualified-exposure-metrics','qualified-exposure-sheets', 'instruments', 'instrument-facts', 'instrument-listings', 'instrument-pea', 'etf-ter',
+const names = ['etf-cards','etf-publication-data','commodity-publication-data','portfolio-exposure-data','qualified-exposure-metrics','qualified-exposure-sheets', 'instruments', 'instrument-facts', 'instrument-listings', 'instrument-pea', 'etf-ter', 'etf-ter-evidence',
   'portfolio-assets', 'portfolio-currencies', 'practical-source-data', 'instrument-reference-evidence']
 const directory = await mkdtemp(join(tmpdir(), 'light-registries-'))
 try {

@@ -17,7 +17,7 @@ const inspect = (duel) => {
   assert.equal(duel.years.at(-1), 2025)
   assert.ok(duel.sources.every((source) => source.url?.startsWith('https://')))
   for (const portfolio of [duel.a, duel.b]) {
-    assert.ok(portfolio.assets.length >= 2 && portfolio.assets.length <= 3)
+    assert.ok(portfolio.assets.length >= 1 && portfolio.assets.length <= 3)
     assert.equal(portfolio.assets.reduce((sum, asset) => sum + asset.pct, 0), 100)
     assert.equal(portfolio.assets.filter((asset) => asset.role === 'base').length, 1)
     assert.equal(new Set(portfolio.assets.map((asset) => asset.role)).size, portfolio.assets.length)

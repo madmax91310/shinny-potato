@@ -74,6 +74,7 @@ jobs:
       - run: node scripts/test-global-audit.mjs
       - run: node scripts/test-portfolio-roadmap.mjs
       - run: node scripts/test-exposure-observations.mjs
+      - run: node scripts/build-monthly-duel-returns.mjs && node scripts/test-distinct-asset-routing.mjs
       - run: node scripts/test-presentation-etf.mjs
       - run: node scripts/test-scpi.mjs
       - run: node scripts/test-insurance.mjs
@@ -86,6 +87,8 @@ jobs:
       - run: node scripts/test-company-forecast-ledger.mjs
       - run: npm run test:radar
       - run: node scripts/test-wealth-simulator.mjs
+      - run: python -m unittest discover -s scripts -p "test_performance_currency.py"
+      - run: node scripts/test-performance-currency.mjs
       - run: node scripts/test-annual-rollover.mjs
       - run: node scripts/test-automated-indices.mjs
       - run: node scripts/test-automated-index-sheets.mjs
@@ -291,6 +294,8 @@ jobs:
           path: ~/.cache/ms-playwright
           key: chromium-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
       - run: npx playwright install --with-deps chromium
+      - run: node scripts/playwright-distinct-asset-routing.mjs
+        if: matrix.shard == 1
       - run: node scripts/playwright-routing-additions.mjs
         if: matrix.shard == 1
       - run: node scripts/test-simple-exposure.mjs

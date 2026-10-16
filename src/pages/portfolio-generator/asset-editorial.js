@@ -1,6 +1,7 @@
 // Rôles éditoriaux des supports de la banque commune. Les jumeaux d’exposition
 // partagent un rôle ; un indice, un facteur ou un mécanisme différent a son propre texte.
 // Aucun rendement, frais ou statut fiscal n’est recopié ici.
+import { ASSETS } from '../../data/portfolio-assets.js';
 const entries = {};
 add('euro-ultrashort-ishares','bond','les obligations euro ultracourtes','Cette poche détient des obligations très courtes en euros. Elle reste exposée au crédit des entreprises et ne bénéficie pas de la garantie d’un dépôt bancaire.');
 entries['euro-ultrashort-ishares'].description='Des obligations très courtes en euros, avec des revenus distribués.';
@@ -65,6 +66,7 @@ add('medical_innovation_ishares', 'theme', 'l’innovation médicale', 'On cible
 // Chaque nouvelle exposition a un rôle distinct, sans changer les explications existantes.
 
 function add(ids, kind, label, text) {
+  if(!ids)return;
 
   for (const id of ids.split(" ")) entries[id] = { kind, label, text };
 }
@@ -242,6 +244,10 @@ entries.health_world_dws.description='Secteur santé du MSCI World.';
 add('new_energy_amundi','theme','les nouvelles énergies','Ces actions des nouvelles énergies dépendent notamment des taux, du financement et des politiques publiques.');
 entries.new_energy_amundi.description='Actions des nouvelles énergies.';
 
+const available = ids=>ids.split(' ').filter(id=>ASSETS.some(a=>a.id===id)).join(' ');
+add(available('copper-miners-globalx defense-vaneck nuclear-vaneck quantum-vaneck'),'theme','une conviction thématique','Cette poche détient des actions d’entreprises et peut renforcer des titres déjà présents dans le socle mondial.');
+add(available('nasdaq-equal small-value-world-avantis'),'factor','une sélection ou pondération différente','Les règles de pondération ou de sélection modifient les entreprises détenues et leurs poids. Ces biais peuvent sous-performer longtemps.');
+add(available('ibonds-euro-2028 ibonds-euro-2029'),'bond','des obligations euro à échéance définie','Une fin définie ne garantit ni le capital ni le rendement. Une vente anticipée reste exposée au marché.');
 export const ASSET_EDITORIAL = Object.freeze(entries);
 export function assetEditorial(asset) {
   const entry = ASSET_EDITORIAL[asset.id];

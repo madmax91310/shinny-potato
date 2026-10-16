@@ -11,7 +11,7 @@ assert.deepEqual(Object.keys(PERFORMANCE_ART).sort(), [...ASSET_ORDER].sort())
 for (let count = 1; count <= 40; count++) {
   const layout = performanceLayout(count)
   assert.ok(layout.rows * layout.columns >= count)
-  assert.ok(690 + (layout.rows - 1) * 176 + 150 < layout.height)
+  assert.ok(layout.gridTop + (layout.rows - 1) * layout.rowStep + layout.cellHeight < layout.height)
 }
 for (const art of Object.values(PERFORMANCE_ART)) await readFile(`public/asset-art/${art.mark || art.scene}`)
 assert.equal(getComparisonPerformance('FR001400U5Q4'), null, 'No complete calendar year for this share class')
@@ -81,11 +81,12 @@ try {
         const words = await check(`performance-${id}`, () => renderPerformanceImage({ mode: 'simple', assetId: id, year }), ['msciWorld', 'or', 'apple', 'bitcoin', 'silver', 'msciEurope', 'msciIndia', 'msciWorldQuality', 'msciWorldValue', 'russell2000'].includes(id))
         const rows = getAnnualReturns(id, year)
         if (words.some(word => /PERFORMANCE DEPUIS|PERFORMANCE CUMULÉE|clôtures annuelles|SANS CONVERSION/.test(word))) throw new Error('Generic series heading returned')
-        if (!words.includes('Rendements annuels')) throw new Error('Annual observations must remain discrete')
+        if (!words.includes(`Cumul sur ${rows.length} an${rows.length > 1 ? 's' : ''}`)) throw new Error('Missing period summary')
+        if (words.some(word => /sources?\s*:|MSCI ·|BCE|Yahoo|Les performances passées/i.test(word))) throw new Error('Source/footer returned on performance image')
         const { performanceBasis } = await import('/shinny-potato/src/pages/tweet-midi/data/marketHistory.js')
         const currency = (await import('/shinny-potato/src/pages/tweet-midi/lib.js')).getMarketAsset(id).currency
         if (!words.includes(performanceBasis(id).replace(`${currency} · `, '').replace(` · ${currency}`, ''))) throw new Error('Missing return convention')
-        if (!words.includes(`de début ${rows[0].year} à fin ${rows.at(-1).year}`) || !words.includes(`EN ${(await import('/shinny-potato/src/pages/tweet-midi/lib.js')).getMarketAsset(id).currency}`)) throw new Error('Missing dates or currency')
+        if (!words.includes(`${rows[0].year} — ${rows.at(-1).year} · EN ${(await import('/shinny-potato/src/pages/tweet-midi/lib.js')).getMarketAsset(id).currency}`)) throw new Error('Missing dates or currency')
         const { formatPerformancePct } = await import('/shinny-potato/src/pages/tweet-midi/performanceFormat.js')
         for (const row of rows) {
           const annual = formatPerformancePct(row.pct)

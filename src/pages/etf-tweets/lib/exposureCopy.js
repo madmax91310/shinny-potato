@@ -11,6 +11,8 @@ const ACWI = 'Il couvre les grandes et moyennes entreprises des pays développé
 const EURO50 = 'Il suit 50 grandes entreprises de la zone euro. Il couvre moins de marchés que le MSCI Europe ou le STOXX Europe 600 : le Royaume-Uni et la Suisse n’en font pas partie.'
 const TECH_EUROPE = 'Il cible les entreprises technologiques du STOXX Europe 600. Tu investis dans un secteur européen précis, plutôt que dans l’ensemble du marché européen.'
 export const ETF_EXPOSURE_COPY = {
+ IE00BF0M2Z96:'Il cible des entreprises de la chaîne de valeur des batteries, des matériaux aux technologies de stockage. Tu détiens des actions ; leur résultat ne suit pas directement le prix d’un métal.',
+ IE000M7V94E1:'Il cible des entreprises liées à l’uranium et aux infrastructures de l’énergie nucléaire. Tu détiens des actions minières et industrielles, sans exposition directe au prix de l’uranium.',
  IE00BJ38QD84:'Il suit les petites entreprises américaines du Russell 2000. Leur poids dépend de leur capitalisation, sans le filtre de valorisation de la sélection value.',
  IE00B3F81R35:'Il détient des obligations d’entreprises investment grade libellées en euros. Les maturités sont variées ; la valeur dépend des taux et du risque de crédit.',
 
