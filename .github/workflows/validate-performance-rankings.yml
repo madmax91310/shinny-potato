@@ -1,0 +1,44 @@
+name: Validate performance rankings
+on:
+  pull_request:
+    paths:
+      - 'src/pages/performance-rankings/**'
+      - 'src/data/*history*'
+      - 'src/data/*monthly*'
+      - 'src/tools.js'
+      - 'scripts/*performance-rankings.mjs'
+      - 'scripts/test-weekly-publications.mjs'
+      - '.github/workflows/validate-performance-rankings.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: rankings-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  rankings:
+    runs-on: ubuntu-26.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: node scripts/test-performance-rankings.mjs
+      - run: npm run build
+      - uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: rankings-chromium-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+      - run: npx playwright install --with-deps chromium
+      - run: node scripts/playwright-performance-rankings.mjs
+      - run: node scripts/test-weekly-publications.mjs
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: rankings-browser-preview
+          path: test-artifacts/performance-rankings
+          if-no-files-found: ignore
+          retention-days: 7
