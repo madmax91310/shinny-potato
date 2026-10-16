@@ -3,6 +3,7 @@ import { getPresentationCopy } from '../src/pages/etf-sheets/editorial.js';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { INSTRUMENT_FACTS_BY_ISIN } from '../src/data/instrument-facts.js';
+import { applyAutomatedCharacteristics } from '../src/data/automated-characteristics.js';
 import { ETF_TER_BY_ISIN } from '../src/data/etf-ter.js';
 import { ASSETS } from '../src/data/portfolio-assets.js';
 import { ETFS } from '../src/data/etf-cards.js';
@@ -11,7 +12,7 @@ const capture = JSON.parse(readFileSync(new URL('./source-snapshots/instrument-s
 assert.equal(Object.keys(capture.records).length, 52);
 for (const [isin, record] of Object.entries(capture.records)) {
   const facts = INSTRUMENT_FACTS_BY_ISIN[isin], card = ETFS.find(c => c.isin === isin);
-  assert.deepEqual(facts, record.facts); assert(card);
+  assert.deepEqual(facts, applyAutomatedCharacteristics(record.facts, AUTOMATED_ETF[isin])); assert(card);
   assert.equal(ETF_TER_BY_ISIN[isin], AUTOMATED_ETF[isin]?.characteristics ? AUTOMATED_ETF[isin].characteristics.terPct.toFixed(2).replace('.', ',') : record.ter);
   assert.equal(new URL(record.sourceUrl).searchParams.get('isin'), isin);
   assert.match(record.htmlSha256, /^[a-f0-9]{64}$/);
@@ -19,7 +20,9 @@ for (const [isin, record] of Object.entries(capture.records)) {
   assert(basics.includes(`Index ${facts.benchmark} Investment focus`));
   assert(basics.includes(`Total expense ratio ${record.ter.replace(',', '.')}%`));
   assert(basics.includes(`Fund currency ${record.fundCurrency}`));
-  assert(basics.includes(`Distribution policy ${facts.incomePolicy === 'accumulating' ? 'Accumulating' : 'Distributing'}`));
+  // The retained 2026-10-03 document proves its own historical policy;
+  // current issuer observations are checked separately by the overlay above.
+  assert(basics.includes(`Distribution policy ${record.facts.incomePolicy === 'accumulating' ? 'Accumulating' : 'Distributing'}`));
   assert.equal(facts.positionsAsOf, null); assert(facts.positionsLabel.startsWith('Exposition suivie :'));
   assert(card.hook && card.whatIs && card.whyInteresting && card.whatToKnow && card.question);
   assert(buildText(card).startsWith(getPresentationCopy(card).hook + '\n'));
