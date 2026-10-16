@@ -70,7 +70,8 @@ if (process.argv.includes('--browser')) {
   await page.getByText('Évolution des photographies 13F archivées',{exact:true}).click()
   assert.match(await page.locator('.portfolio-exposure').first().innerText(),/photographie|total déclaré/)
   for(const route of ['/fiches-etf','/fiches-pratiques?fiche=etf-volatility','/simulateur-patrimoine','/impact-frais','/performance-depuis']) {
-   await page.goto(base+route,{waitUntil:'networkidle'});await page.locator('h1').waitFor()
+   const href=route==='/performance-depuis'?route+'?asset=apple':route
+   await page.goto(base+href,{waitUntil:'networkidle'});await page.locator('h1').waitFor()
    if(route==='/performance-depuis') {
     await page.getByText('Ce que change la date de départ',{exact:true}).click()
     await page.locator('.portfolio-exposure').getByText(/^\d+ fenêtres disponibles, recalculées/).waitFor()
