@@ -60,11 +60,11 @@ export default function SimpleExposure(){
     </ChoicePicker></label>
     {!analysis.errors.length&&<details className="dca-note">
      <summary>Données de l’image · pays {pct(exposureDisplay(analysis.countries).coverage)} · secteurs {pct(exposureDisplay(analysis.sectors).coverage)}</summary>
-     <p>Synthèse indicative des répartitions publiées. Les méthodes des émetteurs peuvent différer ; les ETF synthétiques utilisent leur indice suivi. Les donuts sont rapportés à la poche actions. Or, cryptos, matières premières et obligations et supports explicitement monétaires restent dans l’allocation. Les données manquantes gardent leur poids dans les donuts ; elles ne sont pas redistribuées.</p>
+     <p>Synthèse indicative des répartitions publiées. Les méthodes des émetteurs peuvent différer ; les ETF synthétiques utilisent une exposition d’indice documentée, sans leur panier de substitution. Les donuts sont rapportés à la poche actions. Or, cryptos, matières premières et obligations et supports explicitement monétaires restent dans l’allocation. Les données manquantes gardent leur poids dans les donuts ; elles ne sont pas redistribuées.</p>
      {['countries','sectors'].map(f=>{const e=analysis[f],d=exposureDisplay(e);return <div key={f}>
       <strong>{f==='countries'?'Géographie':'Secteurs'} : {pct(d.coverage)} ventilés{e.neutralWeight>0?` · ${pct(e.neutralWeight)} hors classification`:''}{d.missing>0.01?` · ${pct(d.missing)} non ventilés`:''}</strong>
       {d.omitted.map((o,i)=><p key={`${o.asset}-${i}`}>{o.label||o.asset} : {o.reason} ({pct(o.weight)}).</p>)}
-      {e.groups[0]?.observations.map(o=><p key={o.asset}><a href={o.sourceUrl} target="_blank" rel="noreferrer">{o.label||o.asset}</a> · {o.asOf} · {o.basis==='index'?'indice suivi':o.basis==='equity'?'action':'fonds'}</p>)}
+      {e.groups[0]?.observations.map(o=><p key={o.asset}><a href={o.sourceUrl} target="_blank" rel="noreferrer">{o.label||o.asset}</a> · {o.asOf} · {o.basis==='index'?'exposition d’indice':o.basis==='equity'?'action':'fonds'}</p>)}
      </div>})}
     </details>}
     {!analysis.errors.length&&<details className="dca-note dca-exposure-detail">
