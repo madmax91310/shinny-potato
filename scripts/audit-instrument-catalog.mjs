@@ -82,9 +82,9 @@ for (const [isin, facts] of Object.entries(INSTRUMENT_FACTS_BY_ISIN)) {
     console.error(`Caractéristiques : contradiction de distribution pour ${isin}`);
     errors++;
   }
-  if (facts.location.includes('intégrale') && !facts.replicationMethod.includes('Full') ||
-      facts.location.includes('optimisée') && !facts.replicationMethod.includes('sampling') ||
-      facts.location.includes('échantillonnage') && !/sampling|Sampled/i.test(facts.replicationMethod)) {
+  if (/réplication (?:physique )?intégrale/i.test(facts.location) && !/Full|Replicated/i.test(facts.replicationMethod) ||
+      /réplication (?:physique )?optimisée/i.test(facts.location) && !/sampling|Optimised/i.test(facts.replicationMethod) ||
+      /réplication (?:physique )?échantillonn(?:age|ée)/i.test(facts.location) && !/sampling|Sampled/i.test(facts.replicationMethod)) {
     unresolved.push(isin);
   }
 }

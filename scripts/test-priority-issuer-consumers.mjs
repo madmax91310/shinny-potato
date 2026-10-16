@@ -1,3 +1,4 @@
+import './test-automated-characteristics.mjs';
 import assert from 'node:assert/strict';
 import { AUTOMATED_ETF, AUTOMATED_PERFORMANCE } from '../src/data/automated-etf.js';
 import { DATA_CATALOG } from '../src/data/catalog.js';
