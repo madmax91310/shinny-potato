@@ -18,7 +18,7 @@ export const TOOLS = [
     description: 'Assurance-vie, SCPI et acteurs du non coté ou des actifs réels : texte et visuel personnalisés.', status: 'disponible' },
   {
     to: '/analyse-entreprise', navLabel: 'Entreprises', title: 'Analyse d’entreprise',
-    publicationDay: 'Mercredi midi', icon: '🏭', accent: '#7bd8bd',
+    publicationDay: 'Publication ponctuelle', icon: '🏭', accent: '#7bd8bd',
     description: 'Activité, résultats publiés et valorisation disponible : texte et image actualisés automatiquement.', status: 'disponible',
   },
   {
@@ -108,7 +108,7 @@ export const TOOLS = [
   },
   {
     to: '/performance-depuis', navLabel: 'Performance depuis', title: 'Performance depuis',
-    format: 'performance-depuis', bundle: '/tweet-midi/formats/performance', publicationDay: 'Publication ponctuelle',
+    format: 'performance-depuis', bundle: '/tweet-midi/formats/performance', publicationDay: 'Mercredi midi',
     icon: '🕐', accent: '#a78bfa',
     description: 'Les performances annuelles d’un actif sur la période choisie.', status: 'disponible',
   },
@@ -205,11 +205,11 @@ export const WEEKLY_ORDER = [
   '/radar-editorial', '/fiches-pratiques',
   '/comparatif-etf', '/fiche-lexique', '/tweets-factsheets',
   '/france-100-menages', '/generateur-portefeuilles',
-  '/analyse-entreprise', '/calculateur-investissement',
+  '/performance-depuis', '/calculateur-investissement',
   '/duels-portefeuilles', '/fiches-etf',
   '/presentations',
   '/portefeuilles-investisseurs', '/faits-marquants-marches',
-  '/il-y-a-x-ans', '/performance-depuis', '/pouvoir-achat',
+  '/il-y-a-x-ans', '/analyse-entreprise', '/pouvoir-achat',
   '/le-dca-de', '/comparatif-courtiers',
   '/simulateur-patrimoine', '/impact-frais', '/banque-tweets', '/bibliotheque-donnees', '/donnees-a-revoir',
 ]

@@ -12,6 +12,9 @@ export function equityUniverse(){
  for(const file of ['monthly-automation.json','non-bond-monthly-sources.json'])for(const r of JSON.parse(readFileSync(new URL(file,import.meta.url))).series){const id=EQUITY_ALIASES[r.id]||r.id;if(rows[id]&&r.symbol)rows[id].tickers=[...new Set([...(rows[id].tickers||[]),r.symbol])]}
  const ids={...JSON.parse(readFileSync(new URL('dca-equity-identities.json',import.meta.url))),...JSON.parse(readFileSync(new URL('dca-equity-extra-identities.json',import.meta.url)))}
  for(const [id,isin]of Object.entries(ids))put(id,{isin})
+ // Issuer harmonised the NYSE ordinary-share listing on 2 February 2026; the ADR programme closed.
+ // https://www.astrazeneca.com/media-centre/press-releases/2026/astrazeneca-begins-trading-on-NYSE.html
+ if(rows.astrazeneca)rows.astrazeneca.name='AstraZeneca (NYSE)'
  for(const r of Object.values(rows)){r.kind='equity';r.tickers||=[];r.name||=r.id;r.isin||=''}
  return rows
 }

@@ -117,3 +117,7 @@
 .dca-simple-preview{min-height:280px;place-items:center;text-align:center;background:#f4f7fa}
 .dca-simple-preview img{width:100%;height:auto;border-radius:12px}
 @media(max-width:760px){.dca-simple-grid{grid-template-columns:1fr}.dca-simple-card{padding:16px;gap:16px}.dca-simple-line{gap:8px;grid-template-columns:minmax(0,1fr) 90px 28px}}
+
+.dca-exposure-detail {overflow-x:auto}.dca-exposure-detail table{width:100%;border-collapse:collapse;font-size:.85rem}.dca-exposure-detail th,.dca-exposure-detail td{padding:.5rem;text-align:left;border-bottom:1px solid #9eb7d233}.dca-exposure-detail th{white-space:normal}.dca-exposure-detail td:not(:first-child){font-variant-numeric:tabular-nums}
+
+.dca-simple .dca-note{color:inherit}

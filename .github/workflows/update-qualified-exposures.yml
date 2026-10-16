@@ -8,6 +8,9 @@ on:
       - 'scripts/collect_qualified_exposures.py'
       - 'scripts/qualified-exposure-sources.json'
       - 'scripts/collect_dca_equities.py'
+      - 'scripts/collect_exposure_sleeves.py'
+      - 'scripts/collect_vanguard_sleeves.py'
+      - 'scripts/derive-exposure-sleeves.mjs'
       - 'scripts/dca-equity-identities.json'
       - 'scripts/collect_dca_complete_holdings.py'
       - 'scripts/collect_dws_etf.py'
@@ -30,7 +33,7 @@ jobs:
       contents: write
     outputs:
       commit_sha: ${{ steps.commit.outputs.commit_sha }}
-      collection_failed: ${{ steps.collect.outcome == 'failure' || steps.equities.outcome == 'failure' || steps.holdings.outcome == 'failure' }}
+      collection_failed: ${{ steps.collect.outcome == 'failure' || steps.equities.outcome == 'failure' || steps.holdings.outcome == 'failure' || steps.sleeves.outcome == 'failure' || steps.underliers.outcome == 'failure' }}
     steps:
       - uses: actions/checkout@v7.0.1
         with:
@@ -43,6 +46,7 @@ jobs:
           node-version: 20
       - run: pip install beautifulsoup4==4.15.0
       - run: npm ci
+      - run: sudo apt-get update && sudo apt-get install -y poppler-utils
       - name: "Collect observations: collect"
         id: collect
         continue-on-error: ${{ github.event_name != 'pull_request' }}
@@ -55,6 +59,15 @@ jobs:
         id: holdings
         continue-on-error: ${{ github.event_name != 'pull_request' }}
         run: python scripts/collect_dca_complete_holdings.py --apply --output "$RUNNER_TEMP/dca-complete-holdings.json"
+      - name: "Collect observations: sleeves"
+        id: sleeves
+        continue-on-error: ${{ github.event_name != 'pull_request' }}
+        run: python scripts/collect_exposure_sleeves.py --apply --output "$RUNNER_TEMP/exposure-sleeves.json"
+      - name: "Collect observations: underliers"
+        id: underliers
+        continue-on-error: ${{ github.event_name != 'pull_request' }}
+        run: python scripts/collect_vanguard_sleeves.py --apply --output "$RUNNER_TEMP/vanguard-sleeves.json"
+      - run: python -m unittest discover -s scripts -p "test_exposure_sleeves.py"
       - name: Validate complete DWS parser
         run: python -m unittest discover -s scripts -p "test_dca*py"
       - name: Validate DCA observations
@@ -73,6 +86,8 @@ jobs:
             ${{ runner.temp }}/qualified-exposures.json
             ${{ runner.temp }}/dca-equities.json
             ${{ runner.temp }}/dca-complete-holdings.json
+            ${{ runner.temp }}/exposure-sleeves.json
+            ${{ runner.temp }}/vanguard-sleeves.json
           retention-days: 35
       - name: Validate collected observations
         run: echo 'Mandatory observation checks passed'
@@ -82,7 +97,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          bash scripts/commit-validated-data.sh 'Refresh qualified exact-share exposure data' src/data/qualified-exposure-etfs.json src/data/automated-etf.json src/data/dca-equity-exposures.json src/pages/dca-profiles/exposures.json src/pages/dca-profiles/exposures-extra-0.json src/pages/dca-profiles/exposures-extra-1.json src/pages/dca-profiles/exposures-extra-2.json src/pages/dca-profiles/catalog.json src/pages/dca-profiles/holdings*.json src/data/dca-complete-holdings.json src/data/dca-security-classifications.json src/data/dca-holdings-status.json
+          bash scripts/commit-validated-data.sh 'Refresh qualified exact-share exposure data' src/data/exposure-sleeves.json src/data/vanguard-equity-underliers.json docs/exposure-coverage.json docs/exposure-coverage.md src/data/qualified-exposure-etfs.json src/data/automated-etf.json src/data/dca-equity-exposures.json src/pages/dca-profiles/exposures.json src/pages/dca-profiles/exposures-extra-0.json src/pages/dca-profiles/exposures-extra-1.json src/pages/dca-profiles/exposures-extra-2.json src/pages/dca-profiles/catalog.json src/pages/dca-profiles/holdings*.json src/data/dca-complete-holdings.json src/data/dca-security-classifications.json src/data/dca-holdings-status.json
   deploy:
     needs: refresh
     if: github.event_name != 'pull_request'

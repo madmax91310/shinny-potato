@@ -2,7 +2,8 @@
 import { NON_BOND_LISTING_EVIDENCE } from '../src/data/non-bond-expansion.js'
 import { LIFESTRATEGY_LISTING_EVIDENCE } from '../src/data/lifestrategy.js'
 import {ROUND3_LISTING_EVIDENCE} from '../src/data/round3-fund-sheets.js';
-import { QUALIFIED_LISTING_EVIDENCE } from '../src/data/qualified-exposure-sheets.js'
+import { currentListingEvidence } from './lib/current-listing-evidence.mjs'
+import { QUALIFIED_LISTINGS, QUALIFIED_LISTING_EVIDENCE } from '../src/data/qualified-exposure-sheets.js'
 import { readFileSync } from 'node:fs';
 import { pathToFileURL } from 'node:url';
 import { INSTRUMENTS_BY_ISIN } from '../src/data/instruments.js';
@@ -36,7 +37,7 @@ export function auditInstrumentListings() {
     }
     published[item.isin] = [...new Set([...(published[item.isin] ?? []), ...tickers])];
   }
-  return [...selectionErrors, ...validateListingEvidence({ published, listings: INSTRUMENT_LISTINGS_BY_ISIN, evidence: { ...snapshot.evidence, ...NON_BOND_LISTING_EVIDENCE, ...LIFESTRATEGY_LISTING_EVIDENCE, ...QUALIFIED_LISTING_EVIDENCE, ...ROUND3_LISTING_EVIDENCE } })];
+  return [...selectionErrors, ...validateListingEvidence({ published, listings: INSTRUMENT_LISTINGS_BY_ISIN, evidence: currentListingEvidence(snapshot.evidence,{ ...NON_BOND_LISTING_EVIDENCE, ...LIFESTRATEGY_LISTING_EVIDENCE, ...QUALIFIED_LISTING_EVIDENCE, ...ROUND3_LISTING_EVIDENCE },QUALIFIED_LISTINGS,INSTRUMENT_LISTINGS_BY_ISIN) })];
 }
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
 const errors = auditInstrumentListings();

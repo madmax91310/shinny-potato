@@ -69,6 +69,7 @@ jobs:
       - run: node scripts/test-resource-selections.mjs
       - run: node scripts/build-dca-exposures.mjs && npm run test:dca && node scripts/audit-portfolio-routing.mjs
       - run: node scripts/test-exposure-classification.mjs
+      - run: python -m unittest discover -s scripts -p "test_exposure_sleeves.py"
       - run: python -m unittest discover -s scripts -p "test_dca*py"
       - run: node scripts/test-global-audit.mjs
       - run: node scripts/test-portfolio-roadmap.mjs
@@ -318,8 +319,38 @@ jobs:
           if-no-files-found: ignore
           retention-days: 7
 
+  exposure-browser-check:
+    needs: current-snapshot
+    if: needs.current-snapshot.outputs.current == 'true'
+    runs-on: ubuntu-26.04
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          ref: ${{ inputs.ref || github.sha }}
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: node scripts/build-dca-exposures.mjs
+      - uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: chromium-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+      - run: npx playwright install --with-deps chromium
+      - run: node scripts/playwright-exposure-scope.mjs
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: exposure-scope-browser
+          path: test-artifacts/exposure-scope
+          if-no-files-found: ignore
+          retention-days: 7
+
   deploy:
-    needs: [build, python-checks, browser-checks]
+    needs: [build, python-checks, browser-checks, exposure-browser-check]
     if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
     # Explicitly validate the next ubuntu-latest image before its rollout.
     runs-on: ubuntu-26.04
