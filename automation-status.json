@@ -33,24 +33,19 @@
     },
     "update-market-monthly.yml": {
       "name": "Historiques mensuels des marchés",
-      "runId": 38805030053,
+      "runId": 38852245265,
       "attempt": 1,
-      "completedAt": "2026-10-15T20:58:32Z",
-      "status": "failure",
-      "lastSuccessAt": "2026-10-15T19:10:46Z",
+      "completedAt": "2026-10-16T05:04:31Z",
+      "status": "success",
+      "lastSuccessAt": "2026-10-16T05:04:31Z",
       "collectionStatus": "success",
       "validationStatus": "success",
       "recordingStatus": "success",
-      "publicationStatus": "failure",
-      "lastCollectionSuccessAt": "2026-10-15T20:58:32Z",
-      "lastPublicationSuccessAt": "2026-10-15T12:17:41Z",
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38805030053",
-      "failures": [
-        {
-          "job": "deploy / build",
-          "step": "Run node scripts/test-etf-routing-expansion.mjs"
-        }
-      ],
+      "publicationStatus": "success",
+      "lastCollectionSuccessAt": "2026-10-16T05:04:31Z",
+      "lastPublicationSuccessAt": "2026-10-16T05:04:29Z",
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38852245265",
+      "failures": [],
       "dataFailures": {}
     },
     "update-company-analysis.yml": {
@@ -393,11 +388,11 @@
       "dataFailures": {}
     }
   },
-  "updatedAt": "2026-10-16T05:00:16Z",
+  "updatedAt": "2026-10-16T05:04:31Z",
   "monitoring": {
     "schemaVersion": 1,
-    "checkedAt": "2026-10-16T05:04:13.933149+00:00",
-    "revision": 35,
+    "checkedAt": "2026-10-16T05:04:45.563875+00:00",
+    "revision": 36,
     "active": {
       "collection:update-practical-sheets.yml:practical:13f": {
         "name": "SEC · questions et réponses sur le formulaire 13F",
@@ -418,7 +413,7 @@
         "dataId": "practical:13f",
         "id": "collection:update-practical-sheets.yml:practical:13f",
         "firstSeenAt": "2026-10-14T21:07:26.171294+00:00",
-        "lastSeenAt": "2026-10-16T05:04:13.933149+00:00"
+        "lastSeenAt": "2026-10-16T05:04:45.563875+00:00"
       },
       "collection:update-insurance.yml:linxea-avenir-2": {
         "name": "Linxea Avenir 2",
@@ -437,7 +432,7 @@
         "dataId": "linxea-avenir-2",
         "id": "collection:update-insurance.yml:linxea-avenir-2",
         "firstSeenAt": "2026-10-14T13:08:27.203935+00:00",
-        "lastSeenAt": "2026-10-16T05:04:13.933149+00:00"
+        "lastSeenAt": "2026-10-16T05:04:45.563875+00:00"
       },
       "collection:update-scpi.yml:remake-live": {
         "name": "Remake Live",
@@ -460,7 +455,7 @@
         "dataId": "remake-live",
         "id": "collection:update-scpi.yml:remake-live",
         "firstSeenAt": "2026-10-15T13:02:43.499914+00:00",
-        "lastSeenAt": "2026-10-16T05:04:13.933149+00:00"
+        "lastSeenAt": "2026-10-16T05:04:45.563875+00:00"
       },
       "collection:update-regulatory-data.yml:broker-observation:caidf:profile:change": {
         "name": "caidf:profile:change",
@@ -480,26 +475,7 @@
         "dataId": "broker-observation:caidf:profile:change",
         "id": "collection:update-regulatory-data.yml:broker-observation:caidf:profile:change",
         "firstSeenAt": "2026-10-15T18:00:14.760687+00:00",
-        "lastSeenAt": "2026-10-16T05:04:13.933149+00:00"
-      },
-      "publication:update-market-monthly.yml": {
-        "name": "Historiques mensuels des marchés",
-        "tools": [
-          "Et si tu avais investi",
-          "Performance depuis",
-          "Duel",
-          "Générateur"
-        ],
-        "impactScope": "collector",
-        "workflow": "update-market-monthly.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38805030053",
-        "to": "/donnees-a-revoir",
-        "kind": "publication",
-        "field": "Publication",
-        "cause": "deploy / build : Run node scripts/test-etf-routing-expansion.mjs",
-        "id": "publication:update-market-monthly.yml",
-        "firstSeenAt": "2026-10-15T20:59:37.311807+00:00",
-        "lastSeenAt": "2026-10-16T05:04:13.933149+00:00"
+        "lastSeenAt": "2026-10-16T05:04:45.563875+00:00"
       },
       "collection:update-lifestrategy.yml:IE00BMVB5K07": {
         "name": "Vanguard LifeStrategy 20% Equity UCITS ETF (EUR) Accumulating",
@@ -526,7 +502,7 @@
         "dataId": "IE00BMVB5K07",
         "id": "collection:update-lifestrategy.yml:IE00BMVB5K07",
         "firstSeenAt": "2026-10-15T10:23:56.855354+00:00",
-        "lastSeenAt": "2026-10-16T05:04:13.933149+00:00"
+        "lastSeenAt": "2026-10-16T05:04:45.563875+00:00"
       },
       "collection:update-lifestrategy.yml:IE00BMVB5M21": {
         "name": "Vanguard LifeStrategy 40% Equity UCITS ETF (EUR) Accumulating",
@@ -553,7 +529,7 @@
         "dataId": "IE00BMVB5M21",
         "id": "collection:update-lifestrategy.yml:IE00BMVB5M21",
         "firstSeenAt": "2026-10-15T10:23:56.855354+00:00",
-        "lastSeenAt": "2026-10-16T05:04:13.933149+00:00"
+        "lastSeenAt": "2026-10-16T05:04:45.563875+00:00"
       },
       "collection:update-lifestrategy.yml:IE00BMVB5P51": {
         "name": "Vanguard LifeStrategy 60% Equity UCITS ETF (EUR) Accumulating",
@@ -580,7 +556,7 @@
         "dataId": "IE00BMVB5P51",
         "id": "collection:update-lifestrategy.yml:IE00BMVB5P51",
         "firstSeenAt": "2026-10-15T10:23:56.855354+00:00",
-        "lastSeenAt": "2026-10-16T05:04:13.933149+00:00"
+        "lastSeenAt": "2026-10-16T05:04:45.563875+00:00"
       },
       "collection:update-lifestrategy.yml:IE00BMVB5R75": {
         "name": "Vanguard LifeStrategy 80% Equity UCITS ETF (EUR) Accumulating",
@@ -607,7 +583,7 @@
         "dataId": "IE00BMVB5R75",
         "id": "collection:update-lifestrategy.yml:IE00BMVB5R75",
         "firstSeenAt": "2026-10-15T10:23:56.855354+00:00",
-        "lastSeenAt": "2026-10-16T05:04:13.933149+00:00"
+        "lastSeenAt": "2026-10-16T05:04:45.563875+00:00"
       },
       "monitor:radar": {
         "kind": "unobserved",
@@ -620,18 +596,10 @@
         "to": "/donnees-a-revoir",
         "id": "monitor:radar",
         "firstSeenAt": "2026-10-15T18:53:46.175472+00:00",
-        "lastSeenAt": "2026-10-16T05:04:13.933149+00:00"
+        "lastSeenAt": "2026-10-16T05:04:45.563875+00:00"
       }
     },
     "events": [
-      {
-        "revision": 6,
-        "at": "2026-10-14T11:07:35.462638+00:00",
-        "opened": [
-          "radar:44882f934eb114198158f55a"
-        ],
-        "resolved": []
-      },
       {
         "revision": 7,
         "at": "2026-10-14T11:42:41.168472+00:00",
@@ -3682,9 +3650,56 @@
             "resolvedAt": "2026-10-16T04:59:55.936499+00:00"
           }
         ]
+      },
+      {
+        "revision": 36,
+        "at": "2026-10-16T05:04:45.563875+00:00",
+        "opened": [],
+        "resolved": [
+          {
+            "name": "Historiques mensuels des marchés",
+            "tools": [
+              "Et si tu avais investi",
+              "Performance depuis",
+              "Duel",
+              "Générateur"
+            ],
+            "impactScope": "collector",
+            "workflow": "update-market-monthly.yml",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38805030053",
+            "to": "/donnees-a-revoir",
+            "kind": "publication",
+            "field": "Publication",
+            "cause": "deploy / build : Run node scripts/test-etf-routing-expansion.mjs",
+            "id": "publication:update-market-monthly.yml",
+            "firstSeenAt": "2026-10-15T20:59:37.311807+00:00",
+            "lastSeenAt": "2026-10-16T05:04:13.933149+00:00",
+            "resolvedAt": "2026-10-16T05:04:45.563875+00:00"
+          }
+        ]
       }
     ],
     "resolved": [
+      {
+        "name": "Historiques mensuels des marchés",
+        "tools": [
+          "Et si tu avais investi",
+          "Performance depuis",
+          "Duel",
+          "Générateur"
+        ],
+        "impactScope": "collector",
+        "workflow": "update-market-monthly.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38805030053",
+        "to": "/donnees-a-revoir",
+        "kind": "publication",
+        "field": "Publication",
+        "cause": "deploy / build : Run node scripts/test-etf-routing-expansion.mjs",
+        "id": "publication:update-market-monthly.yml",
+        "firstSeenAt": "2026-10-15T20:59:37.311807+00:00",
+        "lastSeenAt": "2026-10-16T05:04:13.933149+00:00",
+        "resolvedAt": "2026-10-16T05:04:45.563875+00:00"
+      },
       {
         "name": "Pouvoir d’achat et niveaux des anniversaires",
         "tools": [
@@ -5933,34 +5948,6 @@
         "field": "Poids du pays Netherlands",
         "cause": "Valeur contradictoire pour la même période (2026-10-12) : Poids du pays Netherlands. Dernière observation conservée ; propositions archivées (etf:IE0006WW1TQ4:countries:Netherlands:896eb444159fd8c94545e70e:2026-10-12).",
         "id": "radar:736c2dd317e4831b683d42c2",
-        "firstSeenAt": "2026-10-14T11:42:41.168472+00:00",
-        "lastSeenAt": "2026-10-14T19:11:55.324201+00:00",
-        "resolvedAt": "2026-10-14T19:12:42.647375+00:00"
-      },
-      {
-        "name": "Xtrackers MSCI World ex USA UCITS ETF 1C",
-        "tools": [
-          "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Impact des frais",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "sourceUrls": [
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/historicaldata/download",
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/pdpMetaTagsTealium",
-          "https://etf.dws.com/download/asset/82292b8e-bf9e-44f2-b20d-722c743110a3",
-          "https://etf.dws.com/fr-fr/AssetDownload/Index/410e8206-23cd-463b-b2a5-6018bfc1fd32/Factsheet.pdf",
-          "https://www.justetf.com/en/etf-profile.html?isin=IE0006WW1TQ4",
-          "https://www.msci.com/documents/10199/255599/msci-world-ex-usa-index-net.pdf",
-          "https://www.zonebourse.com/cours/etf/XTRACKERS-MSCI-WORLD-EX-U-169862014/"
-        ],
-        "to": "/bibliotheque-donnees?id=IE0006WW1TQ4",
-        "kind": "conflict",
-        "field": "Poids du pays Singapore",
-        "cause": "Valeur contradictoire pour la même période (2026-10-12) : Poids du pays Singapore. Dernière observation conservée ; propositions archivées (etf:IE0006WW1TQ4:countries:Singapore:896eb444159fd8c94545e70e:2026-10-12).",
-        "id": "radar:6743ee853fa8d7a286f6d9d9",
         "firstSeenAt": "2026-10-14T11:42:41.168472+00:00",
         "lastSeenAt": "2026-10-14T19:11:55.324201+00:00",
         "resolvedAt": "2026-10-14T19:12:42.647375+00:00"
