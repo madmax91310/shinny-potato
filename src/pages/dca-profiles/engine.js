@@ -4,7 +4,7 @@ import extra1 from './exposures-extra-1.json' with {type:'json'}
 import extra2 from './exposures-extra-2.json' with {type:'json'}
 const references={...legacyReferences,...extra0,...extra1,...extra2}
 import { ASSETS } from './data.js'
-import { dcaExposure } from './exposure.js'
+import { publishedExposure } from './exposure.js'
 export { references }
 export const MAX_POSITIONS=50
 export const PROFILE_SCOPES = ['Portefeuille investi','PEA + CTO','PEA','CTO','Ensemble des placements']
@@ -36,7 +36,7 @@ export function analyzeProfile(profile) {
   if(errors.length) return {errors}
   const monthly=profile.imageOnly?0:profile.lines.reduce((s,l)=>s+l.amount,0)
   const changes=profile.lines.map(l=>({...l,share:monthly?l.amount/monthly*100:0,delta:monthly?l.amount/monthly*100-l.weight:0})).sort((a,b)=>Math.abs(b.delta)-Math.abs(a.delta))
-  const fields=Object.fromEntries(['countries','sectors'].map(field=>[field,dcaExposure(profile.lines,references,field)]))
+  const fields=Object.fromEntries(['countries','sectors'].map(field=>[field,publishedExposure(profile.lines,references,field)]))
   return {errors:[],monthly,changes,...fields}
 }
 export function observation(profile,analysis=analyzeProfile(profile)) {
