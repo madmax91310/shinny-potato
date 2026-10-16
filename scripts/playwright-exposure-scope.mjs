@@ -35,15 +35,16 @@ try{
   const {renderDcaImage}=await import('/shinny-potato/src/pages/dca-profiles/image.js')
   const {references}=await import('/shinny-potato/src/pages/dca-profiles/engine.js')
   const out=[],original=CanvasRenderingContext2D.prototype.fillText
-  let boxes=[],labels=[]
+  let boxes=[],labels=[],activeField
   CanvasRenderingContext2D.prototype.fillText=function(value,x,y,...rest){const m=this.measureText(value),b={left:x-m.actualBoundingBoxLeft,right:x+m.actualBoundingBoxRight,top:y-m.actualBoundingBoxAscent,bottom:y+m.actualBoundingBoxDescent,value}
    if(b.left<0||b.right>1601||b.top<0||b.bottom>1068)throw Error('Clipped '+value)
+   if(activeField==='all'&&x>=1070&&y<950&&b.bottom>(y<545?512:932))throw Error('Legend outside its panel: '+value)
    for(const a of boxes)if(Math.min(a.right,b.right)-Math.max(a.left,b.left)>1&&Math.min(a.bottom,b.bottom)-Math.max(a.top,b.top)>1)throw Error('Overlap '+a.value+' / '+value)
    boxes.push(b);labels.push(String(value));return original.call(this,value,x,y,...rest)}
   try{
    for(const lines of [ [['world',80],['gold',15],['btc',5]], [['gold',50],['btc',50]], [['world',60],['lifestrategy20',20],['gold',20]] ])
    for(const limit of [3,4,6])for(const field of ['countries','sectors','both','all']){
-    boxes=[];labels=[]
+    boxes=[];labels=[];activeField=field
     const p={imageOnly:true,name:'',scope:'Portefeuille investi',exposureLimit:limit,lines:lines.map(([asset,weight])=>({asset,weight,label:references[asset]?.name||asset,isin:references[asset]?.isin||''}))}
     await renderDcaImage(p,field)
     if(!labels.some(t=>/Poche actions|Aucune poche actions/.test(t)))throw Error('Missing scope')

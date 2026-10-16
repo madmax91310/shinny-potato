@@ -96,12 +96,12 @@ function fullPortfolio(ctx,p,a){
   const rounded=integerPercentages(rows),lead=rows.findIndex(r=>!['Non ventilé','Non ventilé ici','Écart d’arrondi'].includes(r.name))
   if(lead>=0){centered(ctx,exposurePercentage(rows[lead].weight,rounded[lead]),899,y+231,173,41);centered(ctx,rows[lead].name,899,y+273,168,17,C.muted,400)}
   else centered(ctx,'Non ventilé',899,y+239,170,23,C.muted)
-  const gap=rows.length>5?37:49
+  const gap=rows.length>6?34:rows.length>5?37:49,legendSize=rows.length>6?24:27
   rows.forEach((row,i)=>{
    const top=y+137+i*gap
    ctx.fillStyle=row.color;ctx.beginPath();ctx.arc(1076,top-9,6,0,Math.PI*2);ctx.fill()
-   text(ctx,row.name,1095,top,322,27,C.ivory,400)
-   text(ctx,exposurePercentage(row.weight,rounded[i]),1454,top,85,27)
+   text(ctx,row.name,1095,top,322,legendSize,C.ivory,400)
+   text(ctx,exposurePercentage(row.weight,rounded[i]),1454,top,85,legendSize)
   })
   text(ctx,scope,755,y+86,780,17,C.muted,400)
  }
