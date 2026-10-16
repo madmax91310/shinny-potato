@@ -1,12 +1,12 @@
 import { ASSETS } from './market-history.js'
 // Reuse the reviewed sector illustrations; never invent company logos.
 const groups = {
- chip: ['oracle','salesforce','amd','qualcomm','texas-instruments','applied-materials','lam-research','micron','ibm','servicenow','intuit','palantir','dassault-systemes','infineon','samsung','sk-hynix'],
- finance: ['goldman-sachs','bank-of-america','morgan-stanley','blackrock','american-express','charles-schwab','allianz','munich-re','deutsche-boerse','axa','bnp-paribas','santander'],
- health: ['abbvie','merck','eli-lilly','abbott','thermo-fisher','essilorluxottica','bayer'],
- consumer: ['walmart','inditex','adidas','danone'],
+ chip: ['palo-alto-networks','tsmc','tencent','oracle','salesforce','amd','qualcomm','texas-instruments','applied-materials','lam-research','micron','ibm','servicenow','intuit','palantir','dassault-systemes','infineon','samsung','sk-hynix'],
+ finance: ['sp-global','moodys','goldman-sachs','bank-of-america','morgan-stanley','blackrock','american-express','charles-schwab','allianz','munich-re','deutsche-boerse','axa','bnp-paribas','santander'],
+ health: ['novo-nordisk','novartis','astrazeneca','intuitive-surgical','abbvie','merck','eli-lilly','abbott','thermo-fisher','essilorluxottica','bayer'],
+ consumer: ['sony','nintendo','toyota','walmart','inditex','adidas','danone'],
  energy: ['chevron','conocophillips'],
- infrastructure: ['ge-aerospace','honeywell','siemens','airbus','safran','deutsche-telekom'],
+ infrastructure: ['thales','legrand','saint-gobain','michelin','abb','deere','linde','ge-aerospace','honeywell','siemens','airbus','safran','deutsche-telekom'],
  luxury: ['ferrari','bmw'], utilities: ['iberdrola'],
 }
 export const EQUITY_HISTORY_IDENTITIES = Object.fromEntries(Object.entries(groups).flatMap(([scene, ids]) => ids.filter(id => ASSETS[id]?.instrumentType === 'EQUITY').map(id => [id, {
