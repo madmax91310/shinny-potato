@@ -1,3 +1,4 @@
+import { frenchCharacteristic } from './french-characteristics.js';
 const policies = new Map([
  ['Accumulating',['accumulating','Capitalisant']],['Capitalisation',['accumulating','Capitalisant']],
  ['Distributing',['distributing','Distribuant']],['Distribution',['distributing','Distribuant']],
@@ -12,13 +13,16 @@ export function applyAutomatedCharacteristics(previous,record) {
  const next={...previous,automatedFields:{}};
  const policy=policies.get(c.distribution);
  if(policy){[next.incomePolicy,next.distribution]=policy;next.automatedFields.distribution=record.characteristicChecks?.distribution??source;}
- // Preserve the original location sentence; translated display of the structured
- // domicile/replication is handled separately, without losing hedge annotations.
+ // Keep display wording aligned with the current structured observation.
  for(const field of ['domicile','replicationMethod'])if(typeof c[field]==='string'&&c[field].trim()) {
   const value=c[field];
   // Normalize the issuer's equivalent labels to the shared display vocabulary.
   next[field]=field!=='replicationMethod'?value:/^(Physical \()?Optimised\)?$/i.test(value)?'Physical (Optimised sampling)':/^(Physical \()?Replicated\)?$/i.test(value)?'Physical (Full replication)':value;
   next.automatedFields[field]=record.characteristicChecks?.[field]??source;
+ }
+ if((next.automatedFields.domicile || next.automatedFields.replicationMethod) && next.domicile && next.replicationMethod) {
+  const annotations=(previous.location??'').split(/,\s*/).slice(1).filter(part=>!/r[eé]plication|physical|physique|synthet|synth[eé]|sampling|optimis|[ée]chantill|sampled|swap|gestion active/i.test(part));
+  next.location=[frenchCharacteristic(next.domicile),frenchCharacteristic(next.replicationMethod),...annotations].filter(Boolean).join(', ');
  }
  return next;
 }
