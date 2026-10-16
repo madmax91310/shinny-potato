@@ -1,4 +1,5 @@
 import { INVESTORS } from '../src/data/investor-roster.js'
+import { ASSETS as PORTFOLIO_ASSETS } from '../src/data/portfolio-assets.js'
 import { TOOLS } from '../src/tools.js'
 import assert from 'node:assert/strict'
 import { projectToolData } from './project-tool-data.mjs'
@@ -38,9 +39,10 @@ for(const [isin,rows] of Object.entries(links)) for(const row of rows) {
   else if(row.kind==='practical') assert(TOPICS.find(t=>t.id===url.searchParams.get('fiche'))?.products?.includes(isin))
   else if(row.kind==='dca') assert(url.pathname==='/le-dca-de' && Object.values(references).some(r=>r.isin===isin))
   else if(row.kind==='duel') {
-    const d=buildDuel(DUELS.find(d=>d.id===url.searchParams.get('duel')))
-    assert([...d.a.assets,...d.b.assets].some(a=>a.isin===isin))
-  } else if(row.kind==='performance') assert(Object.entries(ASSETS).some(([id,a])=>a.isin===isin && getAnnualReturnStartYears(id).length))
+    if(url.searchParams.has('asset')) assert.equal(duel.ITEM_BY_ID.get(url.searchParams.get('asset'))?.isin,isin)
+    else {const d=buildDuel(DUELS.find(d=>d.id===url.searchParams.get('duel')));assert([...d.a.assets,...d.b.assets].some(a=>a.isin===isin))}
+  } else if(row.kind==='portfolio') assert.equal(PORTFOLIO_ASSETS.find(a=>a.id===url.searchParams.get('asset'))?.isin,isin)
+  else if(row.kind==='performance') assert(Object.entries(ASSETS).some(([id,a])=>a.isin===isin && getAnnualReturnStartYears(id).length))
   else {
     const id=url.searchParams.get('asset')
     assert.equal(ASSETS[id]?.isin,isin)

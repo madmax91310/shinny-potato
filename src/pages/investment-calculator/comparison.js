@@ -1,4 +1,4 @@
-import { ASSETS, MONTHS_FULL } from '../../data/market-history.js'
+import { ASSETS, MONTHS_FULL } from '../../data/calculator-history.js'
 import { fmtEUR, fmtPct, pct, monthsBetween } from './lib.js'
 import { computeComparativeSeries } from './videoExport.js'
 

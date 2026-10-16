@@ -1,4 +1,4 @@
-import { ETF_PUBLICATION_DATA } from '../../data/etf-publication-data.js'
+import { ETF_PUBLICATION_DATA } from './records.js'
 
 export function getAnnualPerformance(etf) {
   return ETF_PUBLICATION_DATA[etf.isin]?.performance ?? null

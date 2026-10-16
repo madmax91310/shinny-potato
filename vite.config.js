@@ -1,3 +1,4 @@
+import { projectSelectedData } from './scripts/project-selected-data.mjs'
 import { projectLightRegistries } from './scripts/project-light-registries.mjs'
 import { projectToolData } from './scripts/project-tool-data.mjs'
 import { projectFeeCatalog } from './scripts/project-fee-catalog.mjs'
@@ -32,5 +33,5 @@ export default defineConfig({
       { name: 'official-index-history', test: /anniversary-index-history\.json$/ },
     ] } } },
   },
-  plugins: [projectLightRegistries(), toolData.plugin, projectFeeCatalog(), react(), tailwindcss(), issuerParts.plugin, companyParts.plugin],
+  plugins: [projectSelectedData(), projectLightRegistries(), toolData.plugin, projectFeeCatalog(), react(), tailwindcss(), issuerParts.plugin, companyParts.plugin],
 })

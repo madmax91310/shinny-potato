@@ -1,4 +1,4 @@
-import { ASSETS, LATEST_YM, MONTHS_FULL, getAssetMinDate, SPARSE_MONTHLY_DATA_IDS, INCONSISTENT_MONTHLY_DATA_IDS } from '../../data/market-history.js'
+import { ASSETS, LATEST_YM, MONTHS_FULL, getAssetMinDate, SPARSE_MONTHLY_DATA_IDS, INCONSISTENT_MONTHLY_DATA_IDS } from '../../data/calculator-history.js'
 import { computeAssetSeries, monthsBetween, fmtEUR, fmtPct, pct } from './lib.js'
 
 // Fixed editorial dates, shared by every asset: never optimize the entry dates

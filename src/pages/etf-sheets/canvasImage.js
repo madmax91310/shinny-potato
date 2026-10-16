@@ -1,3 +1,4 @@
+import { ETFS, loadSheetRecord } from './records.js'
 import { loadArtImage, loadEditorialFont, drawTitaniumMark } from '../tweet-midi/anniversaryArt.js'
 import { getETFArt } from './visualIdentity.js'
 import { getAnnualPerformance, performanceEntries, performanceImageHeading } from './annualPerformance.js'
@@ -32,6 +33,7 @@ function rule(ctx, y) {
   ctx.beginPath(); ctx.moveTo(PAD, y); ctx.lineTo(W - PAD, y); ctx.stroke()
 }
 export async function renderETFImage(etf) {
+  if(ETFS.some(item=>item.id===etf.id)) await loadSheetRecord(etf.id)
   const art = getETFArt(etf.id)
   const [scene, mark] = await Promise.all([
     art.scene ? loadArtImage(art.scene) : null,

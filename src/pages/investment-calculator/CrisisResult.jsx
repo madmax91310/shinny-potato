@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { downloadImage } from '../../design-system/downloadImage.js'
-import { renderCrisisImage } from './crisisImage.js'
+const renderCrisisImage = async (...args) => (await import('./crisisImage.js')).renderCrisisImage(...args)
 import Button from '../../design-system/Button'
 import WorkspaceActions from '../../design-system/WorkspaceActions'
 import { fmtEUR, fmtPct, pct } from './lib.js'

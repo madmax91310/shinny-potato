@@ -9,14 +9,13 @@ import ActionMenu from '../../design-system/ActionMenu'
 import { downloadImage } from '../../design-system/downloadImage'
 import AssetPicker from '../../design-system/AssetPicker'
 import SupportAlternatives from './SupportAlternatives'
-import { instrumentOption } from '../../data/asset-selection.js'
 import ToolWorkspace from '../../design-system/ToolWorkspace'
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { CATEGORY_EMOJI, ETFS } from '../../data/etf-cards.js'
+import { CATEGORY_EMOJI, ETFS, OPTIONS, readSheetRecord } from './records.js'
 import { formatTweetPerformance, getAnnualPerformance } from './annualPerformance'
 import { accountLabel, buildText } from './lib'
 const renderETFImage = async etf => (await import('./canvasImage')).renderETFImage(etf)
-import { ETF_PUBLICATION_DATA } from '../../data/etf-publication-data.js'
+import { ETF_PUBLICATION_DATA } from './records.js'
 import { commodityAllocationLines } from '../../data/commodity-allocation'
 import PageHeader from '../../design-system/PageHeader'
 import Button from '../../design-system/Button'
@@ -215,10 +214,10 @@ function EtfWorkspace({ search }) {
   const selectedRef = useRef(currentId)
   selectedRef.current = currentId
   useEffect(() => { setLightbox(null) }, [currentId])
-  const currentEtf = byId[currentId]
+  const currentEtf = readSheetRecord(currentId)
   const performanceHref = getPerformanceHref(currentEtf.isin)
 
-  const options = useMemo(() => ETFS.map(instrumentOption), [])
+  const options = useMemo(() => OPTIONS, [])
 
   function selectETF(id) {
     setCurrentId(id)

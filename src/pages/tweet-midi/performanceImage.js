@@ -1,6 +1,6 @@
 import { formatPerformancePct } from './performanceFormat.js'
 import { startPublicationDownload } from '../../design-system/publicationActions.js'
-import { performanceBasis } from './data/marketHistory.js'
+import { performanceBasis } from './data/performanceHistory.js'
 import { getPerformanceEntries, MODES } from './engines/performance.js'
 import { loadPerformanceArt, drawPerformanceArt } from './performanceArt.js'
 

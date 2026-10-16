@@ -1,8 +1,10 @@
+import { useSelectedHistory } from '../../lib/useSelectedHistory.js'
 import { historyOptionLabel } from '../../data/history-selection.js'
 import { copyPublicationText, startPublicationDownload } from '../../design-system/publicationActions.js'
-import ChoicePicker from '../../design-system/ChoicePicker.jsx'
+import AssetPicker from '../../design-system/AssetPicker.jsx'
+import { exposureGroup } from '../../data/asset-labels.js'
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { ASSET_ORDER, ASSETS, SPARSE_MONTHLY_DATA_IDS } from '../../data/market-history.js'
+import { ASSET_ORDER, ASSETS, SPARSE_MONTHLY_DATA_IDS } from '../../data/calculator-history.js'
 import {
   isVideoExportSupported,
   renderResultVideo,
@@ -108,8 +110,9 @@ export default function VideoExport({ videoParams, filenameBase, comparativeInpu
   // bloqué comme les autres "issues", jamais silencieusement autorisé. Comparer le même actif reste
   // valide dès que les modes diffèrent (c'est justement le nouveau cas d'usage : DCA vs versement
   // unique sur un même actif).
+  const firstHistory=useSelectedHistory(compMode==='comparative'?asset1Id:'custom'),secondHistory=useSelectedHistory(compMode==='comparative'?asset2Id:'custom')
   const sameDuel = asset1Id === asset2Id && mode1 === mode2
-  const comparativeBlocked = Boolean(issue1 || issue2 || sameDuel)
+  const comparativeBlocked = Boolean(issue1 || issue2 || sameDuel || !firstHistory.ready || !secondHistory.ready)
 
   const comparison = useMemo(() => compMode === 'comparative' && comparativeInputs && !comparativeBlocked
     ? computeComparison(comparativeInputs, asset1Id, asset2Id, mode1, mode2) : null,
@@ -222,13 +225,7 @@ export default function VideoExport({ videoParams, filenameBase, comparativeInpu
         <div className="ic-video-comparative-fields">
           <div className="ic-row2">
             <div>
-              <ChoicePicker className="ic-control" value={asset1Id} onChange={(e) => changeAsset1(e.target.value)}>
-                {COMPARATIVE_ASSET_IDS.map((id) => (
-                  <option key={id} value={id}>
-                    {ASSETS[id].icon} {historyOptionLabel(id, ASSETS[id])}
-                  </option>
-                ))}
-              </ChoicePicker>
+              <AssetPicker compact label="Actif vidéo 1" className="ic-control" value={asset1Id} onChange={changeAsset1} items={COMPARATIVE_ASSET_IDS.map(id=>({id,isin:ASSETS[id].isin,label:historyOptionLabel(id,ASSETS[id]),group:exposureGroup(ASSETS[id])}))}/>
               <div className="ic-segmented ic-video-mode-toggle">
                 <button type="button" className={mode1 === 'lump' ? 'active' : ''} onClick={() => changeMode1('lump')}>
                   Versement unique
@@ -242,16 +239,11 @@ export default function VideoExport({ videoParams, filenameBase, comparativeInpu
                   Mensuel (DCA)
                 </button>
               </div>
+              {!firstHistory.ready&&<p role="status">{firstHistory.error?<button onClick={firstHistory.retry}>Réessayer l’historique</button>:'Chargement de l’historique…'}</p>}
               {issue1 && <p className="ic-field-error">{issue1}</p>}
             </div>
             <div>
-              <ChoicePicker className="ic-control" value={asset2Id} onChange={(e) => changeAsset2(e.target.value)}>
-                {COMPARATIVE_ASSET_IDS.map((id) => (
-                  <option key={id} value={id}>
-                    {ASSETS[id].icon} {historyOptionLabel(id, ASSETS[id])}
-                  </option>
-                ))}
-              </ChoicePicker>
+              <AssetPicker compact label="Actif vidéo 2" className="ic-control" value={asset2Id} onChange={changeAsset2} items={COMPARATIVE_ASSET_IDS.map(id=>({id,isin:ASSETS[id].isin,label:historyOptionLabel(id,ASSETS[id]),group:exposureGroup(ASSETS[id])}))}/>
               <div className="ic-segmented ic-video-mode-toggle">
                 <button type="button" className={mode2 === 'lump' ? 'active' : ''} onClick={() => changeMode2('lump')}>
                   Versement unique
@@ -265,6 +257,7 @@ export default function VideoExport({ videoParams, filenameBase, comparativeInpu
                   Mensuel (DCA)
                 </button>
               </div>
+              {!secondHistory.ready&&<p role="status">{secondHistory.error?<button onClick={secondHistory.retry}>Réessayer l’historique</button>:'Chargement de l’historique…'}</p>}
               {issue2 && <p className="ic-field-error">{issue2}</p>}
             </div>
           </div>

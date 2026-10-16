@@ -94,6 +94,13 @@ def collect_yahoo(config, now, fetch=get_json):
         reject('Incomplete/stale Yahoo history')
     windows={}
     window_months=set(config.get('dailyWindowMonths', []))
+    # A qualified exact-share candidate can verify a conflicting monthly candle
+    # against a second, bounded daily response. Never accept the conflict itself.
+    if config.get('verifyMonthlyDisagreements'):
+        if config.get('consumerScope') != 'catalog' or config.get('field') != 'adjclose':
+            reject('Monthly discrepancy verification requires an exact adjusted fund share')
+        window_months |= {key for key in expected if key in buckets and abs(final[key][1]-buckets[key]) > max(.02,final[key][1]*1e-7)}
+        config['dailyWindowMonths'] = sorted(window_months)
     sparse_ends=config.get('verifiedSparseMonthEnds', {})
     if sparse_ends and (config.get('consumerScope') != 'catalog' or config.get('field') != 'adjclose'
             or any(k not in expected or not isinstance(v,str) or not v.startswith(k+'-') for k,v in sparse_ends.items())):

@@ -1,3 +1,4 @@
+import { readPreference, writePreference } from '../../lib/publication-preferences.js'
 import { useEffect, useRef, useState } from 'react'
 import PageHeader from '../../design-system/PageHeader'
 import Button from '../../design-system/Button'
@@ -12,9 +13,13 @@ import { searchAssets } from './management.js'
 import { exposureDisplay, exposureView } from './exposure.js'
 import { renderDcaImage } from './image.js'
 
-export default function SimpleExposure(){
- const [lines,setLines]=useState([]),[field,setField]=useState('all')
- const [exposureLimit,setExposureLimit]=useState(4)
+const draftKey='simple-exposure-draft'
+const validDraft=d=>d&&Array.isArray(d.lines)&&d.lines.length<=MAX_POSITIONS&&d.lines.every(l=>l&&Object.hasOwn(ASSETS,l.asset)&&typeof l.label==='string'&&l.label.length<=250&&(l.weight===null||Number.isFinite(l.weight)))&&['all','both','countries','sectors'].includes(d.field)&&[3,4,6].includes(d.exposureLimit)
+export default function SimpleExposure({isin}){
+ const [saved]=useState(()=>{const asset=Object.keys(references).find(key=>references[key]?.isin===isin&&ASSETS[key]);return asset?{lines:[{asset,label:catalog[asset]?.name||ASSETS[asset][1],emoji:ASSETS[asset][0],isin,weight:100,amount:0}],field:'all',exposureLimit:4}:readPreference(draftKey,null,validDraft)})
+ const [lines,setLines]=useState(()=>saved?.lines.map(l=>({...l,weight:l.weight===null?NaN:l.weight}))||[]),[field,setField]=useState(saved?.field||'all')
+ const [exposureLimit,setExposureLimit]=useState(saved?.exposureLimit||4)
+ useEffect(()=>{writePreference(draftKey,{lines,field,exposureLimit})},[lines,field,exposureLimit])
  const [preview,setPreview]=useState(''),[busy,setBusy]=useState(false),[feedback,setFeedback]=useState('')
  const revision=useRef(0)
  useEffect(()=>()=>{revision.current++},[])

@@ -1,15 +1,15 @@
 {
-  "checkedAt": "2026-10-16T17:36:58.983Z",
+  "checkedAt": "2026-10-16T18:56:53.623Z",
   "summary": {
-    "instruments": 473,
+    "instruments": 475,
     "sheets": 174,
     "comparisons": 133,
     "practical": 21,
     "duels": 98,
     "generatorAutomatic": 138,
-    "dca": 473,
-    "fullExposure": 439,
-    "outsideExposure": 21,
+    "dca": 475,
+    "fullExposure": 430,
+    "outsideExposure": 41,
     "automaticHistories": 146,
     "historyCandidates": 1,
     "unused": 0
@@ -2780,6 +2780,36 @@
       "decision": "keep-used"
     },
     {
+      "isin": "GB0009895292",
+      "name": "AstraZeneca (NYSE)",
+      "kind": "equity",
+      "practical": [],
+      "duel": false,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "missing",
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
       "isin": "GB00B15KXQ89",
       "name": "WisdomTree Copper",
       "kind": "etf",
@@ -2794,16 +2824,12 @@
       "generator": "missing",
       "dca": true,
       "countries": {
-        "status": "incomplete",
-        "coverage": 0,
-        "outside": 0,
-        "reason": "Ventilation absente"
+        "status": "not-applicable",
+        "reason": "Hors classification"
       },
       "sectors": {
-        "status": "incomplete",
-        "coverage": 0,
-        "outside": 0,
-        "reason": "Ventilation absente"
+        "status": "not-applicable",
+        "reason": "Hors classification"
       },
       "holdings": null,
       "monthly": [],
@@ -3114,10 +3140,11 @@
       "generator": "missing",
       "dca": true,
       "countries": {
-        "status": "incomplete",
-        "coverage": 0,
+        "status": "available",
+        "coverage": 99.93973483326536,
         "outside": 0,
-        "reason": "Ventilation absente"
+        "reason": "Disponible",
+        "date": "2026-10-15"
       },
       "sectors": {
         "status": "available",
@@ -4069,10 +4096,11 @@
         "date": "2026-09-30"
       },
       "sectors": {
-        "status": "incomplete",
-        "coverage": 0,
+        "status": "available",
+        "coverage": 100,
         "outside": 0,
-        "reason": "Ventilation absente"
+        "reason": "Disponible",
+        "date": "2026-10-15"
       },
       "holdings": {
         "asOf": "2026-10-15",
@@ -4313,18 +4341,12 @@
       "generator": "automatic",
       "dca": true,
       "countries": {
-        "status": "available",
-        "coverage": 99.99,
-        "outside": 0,
-        "reason": "Disponible",
-        "date": "2026-10-14"
+        "status": "not-applicable",
+        "reason": "Hors classification"
       },
       "sectors": {
-        "status": "available",
-        "coverage": 100,
-        "outside": 0,
-        "reason": "Disponible",
-        "date": "2026-10-14"
+        "status": "not-applicable",
+        "reason": "Hors classification"
       },
       "holdings": {
         "asOf": "2026-10-15",
@@ -4442,18 +4464,12 @@
       "generator": "automatic",
       "dca": true,
       "countries": {
-        "status": "available",
-        "coverage": 100,
-        "outside": 0,
-        "reason": "Disponible",
-        "date": "2026-10-14"
+        "status": "not-applicable",
+        "reason": "Hors classification"
       },
       "sectors": {
-        "status": "available",
-        "coverage": 100,
-        "outside": 0,
-        "reason": "Disponible",
-        "date": "2026-10-14"
+        "status": "not-applicable",
+        "reason": "Hors classification"
       },
       "holdings": {
         "asOf": "2026-10-14",
@@ -4571,18 +4587,12 @@
       "generator": "automatic",
       "dca": true,
       "countries": {
-        "status": "available",
-        "coverage": 100,
-        "outside": 0,
-        "reason": "Disponible",
-        "date": "2026-10-15"
+        "status": "not-applicable",
+        "reason": "Hors classification"
       },
       "sectors": {
-        "status": "available",
-        "coverage": 100,
-        "outside": 0,
-        "reason": "Disponible",
-        "date": "2026-10-14"
+        "status": "not-applicable",
+        "reason": "Hors classification"
       },
       "holdings": {
         "asOf": "2026-10-15",
@@ -4607,17 +4617,17 @@
       "dca": true,
       "countries": {
         "status": "available",
-        "coverage": 99.99,
+        "coverage": 100,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-10-14"
+        "date": "2026-10-15"
       },
       "sectors": {
         "status": "available",
-        "coverage": 99.99,
+        "coverage": 100,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-10-14"
+        "date": "2026-10-15"
       },
       "holdings": {
         "asOf": "2026-10-14",
@@ -4875,18 +4885,12 @@
       "generator": "automatic",
       "dca": true,
       "countries": {
-        "status": "available",
-        "coverage": 100,
-        "outside": 0,
-        "reason": "Disponible",
-        "date": "2026-10-01"
+        "status": "not-applicable",
+        "reason": "Hors classification"
       },
       "sectors": {
-        "status": "incomplete",
-        "coverage": 0,
-        "outside": 0,
-        "reason": "Poids signés incompatibles avec un donut",
-        "date": "2026-10-14"
+        "status": "not-applicable",
+        "reason": "Hors classification"
       },
       "holdings": {
         "asOf": "2026-10-14",
@@ -4967,18 +4971,12 @@
       "generator": "automatic",
       "dca": true,
       "countries": {
-        "status": "available",
-        "coverage": 99.99,
-        "outside": 0,
-        "reason": "Disponible",
-        "date": "2026-10-01"
+        "status": "not-applicable",
+        "reason": "Hors classification"
       },
       "sectors": {
-        "status": "incomplete",
-        "coverage": 0,
-        "outside": 0,
-        "reason": "Poids signés incompatibles avec un donut",
-        "date": "2026-10-14"
+        "status": "not-applicable",
+        "reason": "Hors classification"
       },
       "holdings": {
         "asOf": "2026-10-15",
@@ -5013,18 +5011,12 @@
       "generator": "automatic",
       "dca": true,
       "countries": {
-        "status": "available",
-        "coverage": 100,
-        "outside": 0,
-        "reason": "Disponible",
-        "date": "2026-10-15"
+        "status": "not-applicable",
+        "reason": "Hors classification"
       },
       "sectors": {
-        "status": "available",
-        "coverage": 100,
-        "outside": 0,
-        "reason": "Disponible",
-        "date": "2026-10-14"
+        "status": "not-applicable",
+        "reason": "Hors classification"
       },
       "holdings": {
         "asOf": "2026-10-15",
@@ -5094,18 +5086,12 @@
       "generator": "automatic",
       "dca": true,
       "countries": {
-        "status": "available",
-        "coverage": 99.99999899999999,
-        "outside": 0,
-        "reason": "Disponible",
-        "date": "2026-10-15"
+        "status": "not-applicable",
+        "reason": "Hors classification"
       },
       "sectors": {
-        "status": "available",
-        "coverage": 100,
-        "outside": 0,
-        "reason": "Disponible",
-        "date": "2026-10-15"
+        "status": "not-applicable",
+        "reason": "Hors classification"
       },
       "holdings": {
         "asOf": "2026-10-15",
@@ -5440,18 +5426,18 @@
       "generator": "automatic",
       "dca": true,
       "countries": {
-        "status": "incomplete",
-        "coverage": 0,
+        "status": "available",
+        "coverage": 100,
         "outside": 0,
-        "reason": "Poids signés incompatibles avec un donut",
-        "date": "2026-10-14"
+        "reason": "Disponible",
+        "date": "2026-10-15"
       },
       "sectors": {
-        "status": "incomplete",
-        "coverage": 0,
+        "status": "available",
+        "coverage": 100,
         "outside": 0,
-        "reason": "Poids signés incompatibles avec un donut",
-        "date": "2026-10-14"
+        "reason": "Disponible",
+        "date": "2026-10-15"
       },
       "holdings": {
         "asOf": "2026-10-14",
@@ -5934,18 +5920,12 @@
       "generator": "automatic",
       "dca": true,
       "countries": {
-        "status": "available",
-        "coverage": 100,
-        "outside": 0,
-        "reason": "Disponible",
-        "date": "2026-10-14"
+        "status": "not-applicable",
+        "reason": "Hors classification"
       },
       "sectors": {
-        "status": "available",
-        "coverage": 100,
-        "outside": 0,
-        "reason": "Disponible",
-        "date": "2026-10-14"
+        "status": "not-applicable",
+        "reason": "Hors classification"
       },
       "holdings": {
         "asOf": "2026-10-14",
@@ -5980,18 +5960,12 @@
       "generator": "automatic",
       "dca": true,
       "countries": {
-        "status": "available",
-        "coverage": 100,
-        "outside": 0,
-        "reason": "Disponible",
-        "date": "2026-10-01"
+        "status": "not-applicable",
+        "reason": "Hors classification"
       },
       "sectors": {
-        "status": "available",
-        "coverage": 100,
-        "outside": 0,
-        "reason": "Disponible",
-        "date": "2026-10-14"
+        "status": "not-applicable",
+        "reason": "Hors classification"
       },
       "holdings": {
         "asOf": "2026-10-14",
@@ -6352,18 +6326,12 @@
       "generator": "automatic",
       "dca": true,
       "countries": {
-        "status": "available",
-        "coverage": 99.99998999999997,
-        "outside": 0,
-        "reason": "Disponible",
-        "date": "2026-10-14"
+        "status": "not-applicable",
+        "reason": "Hors classification"
       },
       "sectors": {
-        "status": "available",
-        "coverage": 99.99000000000002,
-        "outside": 0,
-        "reason": "Disponible",
-        "date": "2026-10-14"
+        "status": "not-applicable",
+        "reason": "Hors classification"
       },
       "holdings": {
         "asOf": "2026-10-14",
@@ -6741,18 +6709,12 @@
       "generator": "automatic",
       "dca": true,
       "countries": {
-        "status": "available",
-        "coverage": 99.98,
-        "outside": 0,
-        "reason": "Disponible",
-        "date": "2026-10-14"
+        "status": "not-applicable",
+        "reason": "Hors classification"
       },
       "sectors": {
-        "status": "available",
-        "coverage": 100,
-        "outside": 0,
-        "reason": "Disponible",
-        "date": "2026-10-14"
+        "status": "not-applicable",
+        "reason": "Hors classification"
       },
       "holdings": {
         "asOf": "2026-10-14",
@@ -6857,18 +6819,12 @@
       "generator": "automatic",
       "dca": true,
       "countries": {
-        "status": "available",
-        "coverage": 100,
-        "outside": 0,
-        "reason": "Disponible",
-        "date": "2026-10-15"
+        "status": "not-applicable",
+        "reason": "Hors classification"
       },
       "sectors": {
-        "status": "available",
-        "coverage": 99.99,
-        "outside": 0,
-        "reason": "Disponible",
-        "date": "2026-10-14"
+        "status": "not-applicable",
+        "reason": "Hors classification"
       },
       "holdings": {
         "asOf": "2026-10-15",
@@ -7067,18 +7023,12 @@
       "generator": "automatic",
       "dca": true,
       "countries": {
-        "status": "available",
-        "coverage": 99.99998999999997,
-        "outside": 0,
-        "reason": "Disponible",
-        "date": "2026-10-14"
+        "status": "not-applicable",
+        "reason": "Hors classification"
       },
       "sectors": {
-        "status": "available",
-        "coverage": 99.99000000000002,
-        "outside": 0,
-        "reason": "Disponible",
-        "date": "2026-10-14"
+        "status": "not-applicable",
+        "reason": "Hors classification"
       },
       "holdings": {
         "asOf": "2026-10-14",
@@ -7250,18 +7200,12 @@
       "generator": "automatic",
       "dca": true,
       "countries": {
-        "status": "available",
-        "coverage": 100,
-        "outside": 0,
-        "reason": "Disponible",
-        "date": "2026-10-14"
+        "status": "not-applicable",
+        "reason": "Hors classification"
       },
       "sectors": {
-        "status": "available",
-        "coverage": 99.99999999999999,
-        "outside": 0,
-        "reason": "Disponible",
-        "date": "2026-10-14"
+        "status": "not-applicable",
+        "reason": "Hors classification"
       },
       "holdings": {
         "asOf": "2026-10-14",
@@ -8336,18 +8280,12 @@
       "generator": "automatic",
       "dca": true,
       "countries": {
-        "status": "available",
-        "coverage": 100,
-        "outside": 0,
-        "reason": "Disponible",
-        "date": "2026-10-15"
+        "status": "not-applicable",
+        "reason": "Hors classification"
       },
       "sectors": {
-        "status": "available",
-        "coverage": 100,
-        "outside": 0,
-        "reason": "Disponible",
-        "date": "2026-10-14"
+        "status": "not-applicable",
+        "reason": "Hors classification"
       },
       "holdings": {
         "asOf": "2026-10-15",
@@ -8874,16 +8812,18 @@
       "generator": "automatic",
       "dca": true,
       "countries": {
-        "status": "incomplete",
-        "coverage": 0,
+        "status": "available",
+        "coverage": 100,
         "outside": 0,
-        "reason": "Ventilation absente"
+        "reason": "Disponible",
+        "date": "2026-09-30"
       },
       "sectors": {
-        "status": "incomplete",
-        "coverage": 0,
+        "status": "available",
+        "coverage": 100,
         "outside": 0,
-        "reason": "Ventilation absente"
+        "reason": "Disponible",
+        "date": "2026-09-30"
       },
       "holdings": null,
       "monthly": [
@@ -9030,15 +8970,17 @@
       "dca": true,
       "countries": {
         "status": "incomplete",
-        "coverage": 0,
-        "outside": 0,
-        "reason": "Ventilation absente"
+        "coverage": 20.359999999999992,
+        "outside": 79.64,
+        "reason": "Hors classification",
+        "date": "2026-09-30"
       },
       "sectors": {
         "status": "incomplete",
-        "coverage": 0,
-        "outside": 0,
-        "reason": "Ventilation absente"
+        "coverage": 20.32108532019704,
+        "outside": 79.64,
+        "reason": "Hors classification",
+        "date": "2026-09-30"
       },
       "holdings": {
         "asOf": "2026-09-30",
@@ -9074,15 +9016,17 @@
       "dca": true,
       "countries": {
         "status": "incomplete",
-        "coverage": 0,
-        "outside": 0,
-        "reason": "Ventilation absente"
+        "coverage": 40.22999999999999,
+        "outside": 59.77,
+        "reason": "Hors classification",
+        "date": "2026-09-30"
       },
       "sectors": {
         "status": "incomplete",
-        "coverage": 0,
-        "outside": 0,
-        "reason": "Ventilation absente"
+        "coverage": 40.190970895522376,
+        "outside": 59.77,
+        "reason": "Hors classification",
+        "date": "2026-09-30"
       },
       "holdings": {
         "asOf": "2026-09-30",
@@ -9118,15 +9062,17 @@
       "dca": true,
       "countries": {
         "status": "incomplete",
-        "coverage": 0,
-        "outside": 0,
-        "reason": "Ventilation absente"
+        "coverage": 60.29,
+        "outside": 39.71,
+        "reason": "Hors classification",
+        "date": "2026-09-30"
       },
       "sectors": {
         "status": "incomplete",
-        "coverage": 0,
-        "outside": 0,
-        "reason": "Ventilation absente"
+        "coverage": 60.235100165562905,
+        "outside": 39.71,
+        "reason": "Hors classification",
+        "date": "2026-09-30"
       },
       "holdings": {
         "asOf": "2026-09-30",
@@ -9162,15 +9108,17 @@
       "dca": true,
       "countries": {
         "status": "incomplete",
-        "coverage": 0,
-        "outside": 0,
-        "reason": "Ventilation absente"
+        "coverage": 80.37999999999997,
+        "outside": 19.620000000000005,
+        "reason": "Hors classification",
+        "date": "2026-09-30"
       },
       "sectors": {
         "status": "incomplete",
-        "coverage": 0,
-        "outside": 0,
-        "reason": "Ventilation absente"
+        "coverage": 80.30812846824406,
+        "outside": 19.620000000000005,
+        "reason": "Hors classification",
+        "date": "2026-09-30"
       },
       "holdings": {
         "asOf": "2026-09-30",
@@ -9481,18 +9429,18 @@
       "generator": "missing",
       "dca": true,
       "countries": {
-        "status": "incomplete",
-        "coverage": 0,
+        "status": "available",
+        "coverage": 99.99999999999996,
         "outside": 0,
-        "reason": "Poids signés incompatibles avec un donut",
-        "date": "2026-10-14"
+        "reason": "Disponible",
+        "date": "2026-10-15"
       },
       "sectors": {
         "status": "available",
         "coverage": 100,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-10-14"
+        "date": "2026-10-15"
       },
       "holdings": {
         "asOf": "2026-10-14",
@@ -10013,18 +9961,12 @@
       "generator": "automatic",
       "dca": true,
       "countries": {
-        "status": "available",
-        "coverage": 99.99999999999994,
-        "outside": 0,
-        "reason": "Disponible",
-        "date": "2026-09-30"
+        "status": "not-applicable",
+        "reason": "Hors classification"
       },
       "sectors": {
-        "status": "available",
-        "coverage": 99.9,
-        "outside": 0,
-        "reason": "Disponible",
-        "date": "2026-09-30"
+        "status": "not-applicable",
+        "reason": "Hors classification"
       },
       "holdings": {
         "asOf": "2026-09-30",
@@ -10565,16 +10507,12 @@
       "generator": "automatic",
       "dca": true,
       "countries": {
-        "status": "incomplete",
-        "coverage": 0,
-        "outside": 0,
-        "reason": "Ventilation absente"
+        "status": "not-applicable",
+        "reason": "Hors classification"
       },
       "sectors": {
-        "status": "incomplete",
-        "coverage": 0,
-        "outside": 0,
-        "reason": "Ventilation absente"
+        "status": "not-applicable",
+        "reason": "Hors classification"
       },
       "holdings": null,
       "monthly": [
@@ -11265,18 +11203,12 @@
       "generator": "automatic",
       "dca": true,
       "countries": {
-        "status": "available",
-        "coverage": 99.999999,
-        "outside": 0,
-        "reason": "Disponible",
-        "date": "2026-10-14"
+        "status": "not-applicable",
+        "reason": "Hors classification"
       },
       "sectors": {
-        "status": "available",
-        "coverage": 100,
-        "outside": 0,
-        "reason": "Disponible",
-        "date": "2026-10-14"
+        "status": "not-applicable",
+        "reason": "Hors classification"
       },
       "holdings": {
         "asOf": "2026-10-14",
@@ -11416,18 +11348,12 @@
       "generator": "automatic",
       "dca": true,
       "countries": {
-        "status": "available",
-        "coverage": 100,
-        "outside": 0,
-        "reason": "Disponible",
-        "date": "2026-10-14"
+        "status": "not-applicable",
+        "reason": "Hors classification"
       },
       "sectors": {
-        "status": "available",
-        "coverage": 99.99999900000003,
-        "outside": 0,
-        "reason": "Disponible",
-        "date": "2026-10-14"
+        "status": "not-applicable",
+        "reason": "Hors classification"
       },
       "holdings": {
         "asOf": "2026-10-14",
@@ -16185,6 +16111,36 @@
         "outside": 0,
         "reason": "Disponible",
         "date": "2026-10-14"
+      },
+      "holdings": null,
+      "monthly": [],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "US8740391003",
+      "name": "TSMC (ADR)",
+      "kind": "equity",
+      "practical": [],
+      "duel": false,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "missing",
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
       },
       "holdings": null,
       "monthly": [],
