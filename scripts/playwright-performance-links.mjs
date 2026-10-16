@@ -27,7 +27,19 @@ try {
     page.on('pageerror', error => errors.push(error.message))
     page.on('request', request => { if (request.resourceType() === 'script') scripts.push(request.url()) })
     await page.goto(`${base}/fiches-etf`, { waitUntil: 'networkidle' })
-    assert.equal(await page.getByRole('link', { name: 'Voir sa performance', exact: true }).count(), 0)
+    // Coverage grows automatically: validate the selected exact share instead of
+    // assuming the default ETF can never acquire a performance shortcut.
+    const initialId = await page.locator('#es-etf-select').getAttribute('data-value')
+    const initialETF = ETFS.find(etf => etf.id === initialId)
+    assert(initialETF, 'Initial selection must be a known ETF')
+    const initialHref = getPerformanceHref(initialETF.isin)
+    const initialLink = page.getByRole('link', { name: 'Voir sa performance', exact: true })
+    assert.equal(await initialLink.count(), initialHref ? 1 : 0)
+    if (initialHref) assert((await initialLink.getAttribute('href')).endsWith(initialHref))
+    const unlinkedETF = ETFS.find(etf => !getPerformanceHref(etf.isin))
+    assert(unlinkedETF, 'Keep a real share without a performance history in this check')
+    await choose(page.locator('#es-etf-select'), unlinkedETF.id)
+    assert.equal(await initialLink.count(), 0, 'An unlinked share must not open another share or index')
     assert(!scripts.some(url => url.includes('market-history-')), 'Presentations must not fetch monthly histories')
     for (const etf of ETFS.filter(etf => getPerformanceHref(etf.isin))) {
       await choose(page.locator('#es-etf-select'), etf.id)
