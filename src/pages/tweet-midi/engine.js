@@ -1,3 +1,4 @@
+import { formatPerformancePct, performancePeriod } from './performanceFormat.js'
 import { FORMATS, MODES, TODAY, SUBJECT_ALEATOIRE } from './constants.js'
 const unavailable = () => { throw new Error('Format dependency unavailable') }
 export function createFormatEngine({
@@ -451,20 +452,20 @@ function cumulatePct(returns) {
 }
 
 // Même bloc pour tous les actifs, sans conclusion ni comparaison annexe.
-function buildPerformanceBlock(asset, year, returns) {
+function buildPerformanceBlock(asset, returns) {
   return [
-    `📈 Performance ${dePhrase(asset.tweetPhrase)} depuis ${year} 👇`,
+    `📈 Performance ${dePhrase(asset.tweetPhrase)} ${performancePeriod(returns)} 👇`,
     performanceBasis(asset.id),
     "",
-    ...returns.map(({ year: annualYear, pct }) => `${pct >= 0 ? "🟢" : "🔴"} ${annualYear} : ${fmtPct(pct)}`),
+    ...returns.map(({ year: annualYear, pct }) => `${pct >= 0 ? "🟢" : "🔴"} ${annualYear} : ${formatPerformancePct(pct)}`),
     "",
-    `Sur toute la période : ${fmtPct(cumulatePct(returns))}`,
+    `Sur toute la période : ${formatPerformancePct(cumulatePct(returns))}`,
   ].join("\n");
 }
 
 function buildPerformanceDepuisText(item) {
   const [{ asset, returns }] = getPerformanceEntries(item);
-  return buildPerformanceBlock(asset, item.year, returns);
+  return buildPerformanceBlock(asset, returns);
 }
 
 // Both observations retain their own date and convention.
@@ -527,7 +528,7 @@ function getPerformanceEntries(item) {
 }
 
 function buildPerformanceDepuisComparatifText(item) {
-  return getPerformanceEntries(item).map(({ asset, returns }) => buildPerformanceBlock(asset, item.year, returns)).join("\n\n");
+  return getPerformanceEntries(item).map(({ asset, returns }) => buildPerformanceBlock(asset, returns)).join("\n\n");
 }
 
 function buildPouvoirAchatText(item) {
