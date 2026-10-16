@@ -359,6 +359,8 @@ async function testPortfolioGenerator(page) {
   recipesOk &&= await page.getByText(/Ces plafonds de construction s’ajoutent au filtre historique/).isVisible();
   await page.getByText('Variété de cette session', {exact:true}).click();
   recipesOk &&= await page.getByText(/composition\(s\) proche\(s\)/).count() > 0;
+  recipesOk &&= await page.getByText(/constructions utilisées sur/).count() > 0;
+  recipesOk &&= await page.getByText(/supports utilisés sur/).count() > 0;
   await page.getByRole('group', { name:'Choisir un niveau de risque cible' }).getByRole('button', {name:'Dynamique',exact:true}).click();
   recipesOk &&= await page.locator('.pg-locks input:checked').count() === 0;
   await page.setViewportSize({ width: 390, height: 844 });

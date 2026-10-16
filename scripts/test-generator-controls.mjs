@@ -29,12 +29,14 @@ try {
     const frozen=generatePortfolio(history,risk,profile.id,{locked:all});
     assert.deepEqual(frozen.selection.map(({id,pct})=>({id,pct})).sort((a,b)=>a.id.localeCompare(b.id)),all.sort((a,b)=>a.id.localeCompare(b.id)));
     const report=diversityReport(history)[0];
+    assert.equal(Object.values(report.recipes).reduce((a,b)=>a+b,0),24);
     assert.equal(report.count,24);assert.ok(report.distinctFamilies>0);
   }
   assert.throws(()=>generatePortfolio([],'equilibre','generaliste',{locked:[{id:'bitcoin',pct:100}]}),/Aucune composition/);
   assert.throws(()=>generatePortfolio([],'auto','auto',{locked:[{id:'msci_world',pct:30}]}),/profil et le risque/);
   assert.throws(()=>generatePortfolio([],'equilibre','generaliste',{locked:[{id:'msci_world',pct:NaN}]}),/poids entier/);
   assert.ok(constructionIssues([{id:'bitcoin',pct:20},{id:'ethereum',pct:15},{id:'msci_world',pct:65}],'dynamique').some(x=>x.key==='crypto'));
+  assert.equal(constructionMetrics([{id:'europe-property',pct:30}]).property,30);
   assert.equal(constructionMetrics([{id:'bitcoin',pct:20},{id:'lqq',pct:10},{id:'qyld_ucits',pct:40}]).speculative,70);
   assert.ok(overlapNotes([{id:'msci_world',pct:60},{id:'sect_tech',pct:20},{id:'sect_ai_lg',pct:20}]).length>=2);
   assert.ok(overlapNotes([{id:'bitcoin',pct:20},{id:'blockchain_ishares',pct:20}]).some(x=>x.includes('blockchain')));

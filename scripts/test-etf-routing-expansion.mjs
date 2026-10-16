@@ -26,5 +26,5 @@ const em=AUTOMATED_ETF.IE00BG0SKF03;
 assert(em.sectors.rows.some(row=>row.name==='Steel' && row.label==='Steel'));
 assert.equal(qualifyExposureClassification({...em.sectors,provider:em.provider},'sectors'),null,'Sub-industries must not silently become broad sectors');
 const used=new Set(PROFILES.flatMap(p=>Object.keys(p.riskCombos).flatMap(r=>getRecipes(p.id,r).flatMap(recipe=>recipe.assets.flatMap(slot=>slot.idOptions??[slot.id])))));
-for(const id of ['small-value-usa','em-value-ishares','euro-ultrashort-ishares','world-eur-hedged','world-midcap-equal','timber-ishares','agribusiness-ishares','europe-utilities','europe-telecom','europe-food','europe-media','europe-retail']) assert(used.has(id)&&!getAsset(id).manualOnly,id);
+for(const id of ['em_pea_amundi','europe_pea_amundi','euro-govt-5-7','europe-property','basic_resources_pea','oblig_em_local_ishares_acc','oblig_hy_ishares_acc','small-value-usa','em-value-ishares','euro-ultrashort-ishares','world-eur-hedged','world-midcap-equal','timber-ishares','agribusiness-ishares','europe-utilities','europe-telecom','europe-food','europe-media','europe-retail']) assert(used.has(id)&&!getAsset(id).manualOnly,id);
 console.log(`Routing checked for ${inventory.size} published ISINs, three new shares and twelve activated supports; source taxonomy preserved.`);
