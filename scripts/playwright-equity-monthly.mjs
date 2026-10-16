@@ -1,3 +1,4 @@
+import {choose} from './card-selection.mjs'
 import assert from 'node:assert/strict'
 import { chromium } from 'playwright'
 import { spawn } from 'node:child_process'
@@ -14,10 +15,13 @@ try {
   for (const route of ['calculateur-investissement','il-y-a-x-ans','performance-depuis']) {
     await page.goto(`${base}/${route}`,{waitUntil:'networkidle'})
     await page.evaluate(()=>{window.__painted=[];const original=CanvasRenderingContext2D.prototype.fillText;CanvasRenderingContext2D.prototype.fillText=function(text,...args){window.__painted.push(String(text));return original.call(this,text,...args)}})
-    await page.locator(`[data-option][data-value="${ids[0]}"]`).waitFor({state:'attached',timeout:60000})
-    for(const id of ids) assert.equal(await page.locator(`[data-option][data-value="${id}"]`).count(),1,`${route}: ${id} available`)
+    const picker=route==='calculateur-investissement'?page.getByRole('group',{name:'Choisir un actif',exact:true}):page.locator('#subject-select')
+    await picker.waitFor()
+    const more=picker.getByRole('button',{name:/^Afficher davantage/})
+    while(await more.count()) await more.click()
+    for(const id of ids) assert.equal(await picker.locator(`[data-option][data-value="${id}"]`).count(),1,`${route}: ${id} available`)
     for(const [id,symbol] of Object.entries(samples)) {
-      await page.locator(`[data-option][data-value="${id}"]`).click()
+      await choose(picker,id)
       if(route!=='calculateur-investissement') {
         await page.getByRole('button',{name:'🔄 Générer',exact:true}).click()
         const post=await page.locator('pre').innerText()

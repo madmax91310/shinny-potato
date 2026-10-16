@@ -1,3 +1,4 @@
+import {choose as chooseCard} from './card-selection.mjs'
 import assert from 'node:assert/strict'
 import { spawn } from 'node:child_process'
 import { chromium } from 'playwright'
@@ -51,7 +52,7 @@ try {
   await page.getByText('Consulter les comptes et indicateurs détaillés',{exact:true}).click()
   const chooser=page.getByRole('group',{name:'Choisir une entreprise',exact:true})
   async function choose(company) {
-    await chooser.getByRole('button',{name:`${company.name} · ${company.symbol}`,exact:true}).click()
+    await chooseCard(chooser,company.id)
     await page.locator(`[data-loaded-company="${company.id}"]:not([hidden])`).waitFor({state:'visible'})
   }
   for(const company of COMPANIES) {

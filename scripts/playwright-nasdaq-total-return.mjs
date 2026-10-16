@@ -1,3 +1,4 @@
+import {choose} from './card-selection.mjs'
 import assert from 'node:assert/strict'
 import { chromium } from 'playwright'
 import { spawn } from 'node:child_process'
@@ -10,7 +11,7 @@ try {
  const page=await browser.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message))
  for(const route of ['performance-depuis','calculateur-investissement','il-y-a-x-ans']){
   await page.goto(`${base}/${route}?asset=nasdaq100`,{waitUntil:'networkidle'})
-  await page.locator('[data-option][data-value="nasdaq100"]').click()
+  await choose(route==='calculateur-investissement'?page.getByRole('group',{name:'Choisir un actif',exact:true}):page.locator('#subject-select'),'nasdaq100')
   if(route!=='calculateur-investissement')await page.getByRole('button',{name:'🔄 Générer',exact:true}).click()
   const text=await page.locator(route==='calculateur-investissement' ? '[aria-label="Résultat de la simulation"]' : 'pre').innerText()
   assert.match(text,/dividendes bruts réinvestis/)

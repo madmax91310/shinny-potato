@@ -916,6 +916,8 @@ async function testFactsheetTweets(page) {
   await page.goto(`${BASE}/tweets-factsheets`, { waitUntil: 'networkidle' });
   const select = page.locator('#factsheet-subject');
   const draft = page.locator('#factsheet-draft');
+  const more=select.getByRole('button',{name:/^Afficher davantage/});
+  while(await more.count())await more.click();
   const count = await select.locator('[data-option]').count();
   let ok = count === SHEETS.length;
   await page.evaluate(() => Object.defineProperty(navigator, 'clipboard', {
