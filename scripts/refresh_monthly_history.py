@@ -211,9 +211,53 @@ def collect_msci(config, now, fetch=get_msci_json):
             **({'sourceAttempts':attempts} if attempts else {})}
 
 
+def collect_fred(config, now, fetch=lambda url: get_text(url, ('text/csv', 'application/csv', 'text/plain'))):
+    """Nasdaq XNDX distributed by FRED; exact daily month-end levels, never averages."""
+    import csv
+    import io
+    if (config.get('seriesId'), config.get('symbol'), config.get('currency'), config.get('variant')) != ('NASDAQXNDX', 'XNDX', 'USD', 'TOTAL'):
+        reject('Wrong FRED index or return convention')
+    end = dt.datetime(now.year, now.month, 1, tzinfo=UTC)
+    start = dt.date.fromisoformat(config['periodStart']+'-01')
+    base = 'https://fred.stlouisfed.org/graph/fredgraph.csv?id=NASDAQXNDX'
+    urls = [base, base+'&cosd='+start.isoformat()+'&coed='+(end.date()-dt.timedelta(days=1)).isoformat()]
+    raw = [fetch(url) for url in urls]
+    def parse(text):
+        reader = csv.DictReader(io.StringIO(text))
+        if reader.fieldnames != ['observation_date', 'NASDAQXNDX']:
+            reject('Wrong FRED CSV series')
+        rows = []
+        dates = []
+        for row in reader:
+            day = dt.date.fromisoformat(row['observation_date'])
+            dates.append(day)
+            if row['NASDAQXNDX'] not in ('', '.'):
+                value = number(float(row['NASDAQXNDX']))
+                if value <= 0: reject('Invalid FRED level')
+                if start <= day < end.date(): rows.append((day, value))
+        if dates != sorted(set(dates)): reject('Duplicate or unordered FRED dates')
+        return rows
+    daily, check = map(parse, raw)
+    if not daily or daily != check: reject('Independent FRED date window disagrees')
+    final = {}
+    for day, value in daily: final[day.strftime('%Y-%m')] = (day, value)
+    expected = list(months(config['periodStart'], end))
+    if set(final) != set(expected): reject('Incomplete/stale FRED monthly history')
+    points, proof = [], []
+    for key in expected:
+        day, value = final[key]
+        boundary = month_shift(dt.datetime.strptime(key,'%Y-%m').replace(tzinfo=UTC),1).date()
+        if (boundary-day).days > 4: reject('Missing FRED month-end sessions')
+        points.append([key, rounded(value, config['precision'])])
+        proof.append({'date':day.isoformat(), 'value':value, 'windowValue':value})
+    return {'points':points, 'sourceUrls':urls+['https://fred.stlouisfed.org/series/NASDAQXNDX', 'https://indexes.nasdaq.com/Index/Overview/XNDX'],
+            'proofRows':proof, 'rawResponse':raw}
+
+
 def collect_one(config, now):
     if config['parser'] == 'yahoo': result=collect_yahoo(config, now)
     elif config['parser'] == 'msci': result=collect_msci(config, now)
+    elif config['parser'] == 'fred': result=collect_fred(config,now)
     elif config['parser'] == 'stoxx': result=collect_stoxx(config,now)
     else: reject('Unknown monthly source')
     return {**config, **result, 'checkedAt':now.date().isoformat(),

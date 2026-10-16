@@ -184,7 +184,7 @@ export function performanceBasis(assetId) {
   if (asset.priceMethod === 'adjusted') return `${asset.currency} · revenus réinvestis`;
   if (assetId === 'or') return `${asset.currency} · moyennes mensuelles du prix de l’or`;
   if (assetId === 'silver') return `${asset.currency} · futures COMEX, hors frais et roulement`;
-  if (assetId === 'nasdaq100' || assetId === 'soxx') return `${asset.currency} · hors dividendes`;
+  if (assetId === 'soxx') return `${asset.currency} · hors dividendes`;
   return `${asset.currency} · variation du prix`;
 }
 const REBASED_INDEX_IDS = new Set(ASSET_ORDER.filter(id => ASSETS[id].priceUnit === 'points'));

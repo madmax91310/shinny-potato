@@ -54,13 +54,13 @@
       "label": "Nasdaq-100",
       "currency": "USD",
       "periodStart": "2016-08",
-      "method": "Clôture brute à la dernière séance mensuelle ; recoupement avec la clôture de la bougie mensuelle Yahoo",
-      "parser": "yahoo",
-      "symbol": "^NDX",
-      "field": "close",
+      "method": "Nasdaq-100 XNDX Total Return USD, dividendes bruts réinvestis ; dernière séance mensuelle FRED, recoupée avec une requête datée indépendante",
+      "parser": "fred",
+      "symbol": "XNDX",
       "precision": 2,
       "collectAnniversary": false,
-      "timezone": "America/New_York"
+      "seriesId": "NASDAQXNDX",
+      "variant": "TOTAL"
     },
     {
       "id": "soxx",

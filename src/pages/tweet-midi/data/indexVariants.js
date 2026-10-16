@@ -3,6 +3,7 @@ export const ANNIVERSARY_INDEX_VARIANTS = {
   msciAcwiImi: 'Net Return · USD · dividendes nets réinvestis',
   msciAcwi: 'Net Return · USD · dividendes nets réinvestis',
   msciWorldExUsa: 'Net Return · USD · dividendes nets réinvestis',
+  nasdaq100: 'Total Return · USD · dividendes bruts réinvestis',
   cac40: 'Prix · EUR · hors dividendes',
   sp500: 'Total Return · USD · dividendes bruts réinvestis',
   stoxx600: 'Net Return · EUR · dividendes nets réinvestis',

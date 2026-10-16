@@ -205,6 +205,8 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_russell_composition.py'
       - run: python -m unittest discover -s scripts -p 'test_sp_composition.py'
       - run: python -m unittest discover -s scripts -p 'test_monthly_automation.py'
+      - run: python -m unittest discover -s scripts -p 'test_nasdaq_monthly.py'
+      - run: node scripts/test-nasdaq-total-return.mjs
       - run: python -m unittest discover -s scripts -p 'test_roadmap_assets.py'
       - run: python -m unittest discover -s scripts -p 'test_qualified_roadmap.py'
       - run: python -m unittest discover -s scripts -p 'test_bnp_etf.py'
@@ -290,6 +292,8 @@ jobs:
       - run: node scripts/playwright-tool-links.mjs
         if: matrix.shard == 0
       - run: node scripts/playwright-equity-monthly.mjs
+        if: matrix.shard == 0
+      - run: node scripts/playwright-nasdaq-total-return.mjs
         if: matrix.shard == 0
       - uses: actions/upload-artifact@v7.0.1
         if: always()

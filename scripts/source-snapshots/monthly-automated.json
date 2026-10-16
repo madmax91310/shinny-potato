@@ -6310,754 +6310,634 @@
     "label": "Nasdaq-100",
     "currency": "USD",
     "periodStart": "2016-08",
-    "method": "Clôture brute à la dernière séance mensuelle ; recoupement avec la clôture de la bougie mensuelle Yahoo",
-    "parser": "yahoo",
-    "symbol": "^NDX",
-    "field": "close",
+    "method": "Nasdaq-100 XNDX Total Return USD, dividendes bruts réinvestis ; dernière séance mensuelle FRED, recoupée avec une requête datée indépendante",
+    "parser": "fred",
+    "symbol": "XNDX",
     "precision": 2,
+    "collectAnniversary": false,
+    "seriesId": "NASDAQXNDX",
+    "variant": "TOTAL",
     "sourceUrls": [
-      "https://query2.finance.yahoo.com/v8/finance/chart/%5ENDX?period1=1470009600&period2=1790812800&interval=1d&events=div%2Csplits",
-      "https://query2.finance.yahoo.com/v8/finance/chart/%5ENDX?period1=1470009600&period2=1790812800&interval=1mo&events=div%2Csplits"
+      "https://fred.stlouisfed.org/graph/fredgraph.csv?id=NASDAQXNDX",
+      "https://fred.stlouisfed.org/graph/fredgraph.csv?id=NASDAQXNDX&cosd=2016-08-01&coed=2026-09-30",
+      "https://fred.stlouisfed.org/series/NASDAQXNDX",
+      "https://indexes.nasdaq.com/Index/Overview/XNDX"
     ],
-    "timezone": "America/New_York",
     "proofRows": [
       {
         "date": "2016-08-31",
-        "close": 4771.0498046875,
-        "monthlyClose": 4771.0498046875,
-        "value": 4771.0498046875
+        "value": 5333.29,
+        "windowValue": 5333.29
       },
       {
         "date": "2016-09-30",
-        "close": 4875.7001953125,
-        "monthlyClose": 4875.7001953125,
-        "value": 4875.7001953125
+        "value": 5452.52,
+        "windowValue": 5452.52
       },
       {
         "date": "2016-10-31",
-        "close": 4801.27001953125,
-        "monthlyClose": 4801.27001953125,
-        "value": 4801.27001953125
+        "value": 5371.54,
+        "windowValue": 5371.54
       },
       {
         "date": "2016-11-30",
-        "close": 4810.81005859375,
-        "monthlyClose": 4810.81005859375,
-        "value": 4810.81005859375
+        "value": 5394.74,
+        "windowValue": 5394.74
       },
       {
         "date": "2016-12-30",
-        "close": 4863.6201171875,
-        "monthlyClose": 4863.6201171875,
-        "value": 4863.6201171875
+        "value": 5456.64,
+        "windowValue": 5456.64
       },
       {
         "date": "2017-01-31",
-        "close": 5116.77001953125,
-        "monthlyClose": 5116.77001953125,
-        "value": 5116.77001953125
+        "value": 5742.89,
+        "windowValue": 5742.89
       },
       {
         "date": "2017-02-28",
-        "close": 5330.31005859375,
-        "monthlyClose": 5330.31005859375,
-        "value": 5330.31005859375
+        "value": 5993.81,
+        "windowValue": 5993.81
       },
       {
         "date": "2017-03-31",
-        "close": 5436.22998046875,
-        "monthlyClose": 5436.22998046875,
-        "value": 5436.22998046875
+        "value": 6116.52,
+        "windowValue": 6116.52
       },
       {
         "date": "2017-04-28",
-        "close": 5583.52978515625,
-        "monthlyClose": 5583.52978515625,
-        "value": 5583.52978515625
+        "value": 6285.2,
+        "windowValue": 6285.2
       },
       {
         "date": "2017-05-31",
-        "close": 5788.7998046875,
-        "monthlyClose": 5788.7998046875,
-        "value": 5788.7998046875
+        "value": 6529.02,
+        "windowValue": 6529.02
       },
       {
         "date": "2017-06-30",
-        "close": 5646.919921875,
-        "monthlyClose": 5646.919921875,
-        "value": 5646.919921875
+        "value": 6372.5,
+        "windowValue": 6372.5
       },
       {
         "date": "2017-07-31",
-        "close": 5880.330078125,
-        "monthlyClose": 5880.330078125,
-        "value": 5880.330078125
+        "value": 6638.3,
+        "windowValue": 6638.3
       },
       {
         "date": "2017-08-31",
-        "close": 5988.60009765625,
-        "monthlyClose": 5988.60009765625,
-        "value": 5988.60009765625
+        "value": 6773.28,
+        "windowValue": 6773.28
       },
       {
         "date": "2017-09-29",
-        "close": 5979.2998046875,
-        "monthlyClose": 5979.2998046875,
-        "value": 5979.2998046875
+        "value": 6765.48,
+        "windowValue": 6765.48
       },
       {
         "date": "2017-10-31",
-        "close": 6248.56005859375,
-        "monthlyClose": 6248.56005859375,
-        "value": 6248.56005859375
+        "value": 7073.45,
+        "windowValue": 7073.45
       },
       {
         "date": "2017-11-30",
-        "close": 6365.56005859375,
-        "monthlyClose": 6365.56005859375,
-        "value": 6365.56005859375
+        "value": 7219.4,
+        "windowValue": 7219.4
       },
       {
         "date": "2017-12-29",
-        "close": 6396.419921875,
-        "monthlyClose": 6396.419921875,
-        "value": 6396.419921875
+        "value": 7256.87,
+        "windowValue": 7256.87
       },
       {
         "date": "2018-01-31",
-        "close": 6949.990234375,
-        "monthlyClose": 6949.990234375,
-        "value": 6949.990234375
+        "value": 7888.24,
+        "windowValue": 7888.24
       },
       {
         "date": "2018-02-28",
-        "close": 6854.419921875,
-        "monthlyClose": 6854.419921875,
-        "value": 6854.419921875
+        "value": 7792.34,
+        "windowValue": 7792.34
       },
       {
         "date": "2018-03-29",
-        "close": 6581.1298828125,
-        "monthlyClose": 6581.1298828125,
-        "value": 6581.1298828125
+        "value": 7485.68,
+        "windowValue": 7485.68
       },
       {
         "date": "2018-04-30",
-        "close": 6605.56982421875,
-        "monthlyClose": 6605.56982421875,
-        "value": 6605.56982421875
+        "value": 7516.39,
+        "windowValue": 7516.39
       },
       {
         "date": "2018-05-31",
-        "close": 6967.72998046875,
-        "monthlyClose": 6967.72998046875,
-        "value": 6967.72998046875
+        "value": 7943.13,
+        "windowValue": 7943.13
       },
       {
         "date": "2018-06-29",
-        "close": 7040.7998046875,
-        "monthlyClose": 7040.7998046875,
-        "value": 7040.7998046875
+        "value": 8029.89,
+        "windowValue": 8029.89
       },
       {
         "date": "2018-07-31",
-        "close": 7231.97998046875,
-        "monthlyClose": 7231.97998046875,
-        "value": 7231.97998046875
+        "value": 8251.51,
+        "windowValue": 8251.51
       },
       {
         "date": "2018-08-31",
-        "close": 7654.5498046875,
-        "monthlyClose": 7654.5498046875,
-        "value": 7654.5498046875
+        "value": 8746.93,
+        "windowValue": 8746.93
       },
       {
         "date": "2018-09-28",
-        "close": 7627.64990234375,
-        "monthlyClose": 7627.64990234375,
-        "value": 7627.64990234375
+        "value": 8721.55,
+        "windowValue": 8721.55
       },
       {
         "date": "2018-10-31",
-        "close": 6967.10009765625,
-        "monthlyClose": 6967.10009765625,
-        "value": 6967.10009765625
+        "value": 7969.75,
+        "windowValue": 7969.75
       },
       {
         "date": "2018-11-30",
-        "close": 6949.009765625,
-        "monthlyClose": 6949.009765625,
-        "value": 6949.009765625
+        "value": 7962.59,
+        "windowValue": 7962.59
       },
       {
         "date": "2018-12-31",
-        "close": 6329.97021484375,
-        "monthlyClose": 6329.97021484375,
-        "value": 6329.97021484375
+        "value": 7259.55,
+        "windowValue": 7259.55
       },
       {
         "date": "2019-01-31",
-        "close": 6906.83984375,
-        "monthlyClose": 6906.83984375,
-        "value": 6906.83984375
+        "value": 7924.35,
+        "windowValue": 7924.35
       },
       {
         "date": "2019-02-28",
-        "close": 7097.52978515625,
-        "monthlyClose": 7097.52978515625,
-        "value": 7097.52978515625
+        "value": 8156.98,
+        "windowValue": 8156.98
       },
       {
         "date": "2019-03-29",
-        "close": 7378.77001953125,
-        "monthlyClose": 7378.77001953125,
-        "value": 7378.77001953125
+        "value": 8485.66,
+        "windowValue": 8485.66
       },
       {
         "date": "2019-04-30",
-        "close": 7781.4599609375,
-        "monthlyClose": 7781.4599609375,
-        "value": 7781.4599609375
+        "value": 8952.14,
+        "windowValue": 8952.14
       },
       {
         "date": "2019-05-31",
-        "close": 7127.9599609375,
-        "monthlyClose": 7127.9599609375,
-        "value": 7127.9599609375
+        "value": 8213.95,
+        "windowValue": 8213.95
       },
       {
         "date": "2019-06-28",
-        "close": 7671.080078125,
-        "monthlyClose": 7671.080078125,
-        "value": 7671.080078125
+        "value": 8846.01,
+        "windowValue": 8846.01
       },
       {
         "date": "2019-07-31",
-        "close": 7848.77978515625,
-        "monthlyClose": 7848.77978515625,
-        "value": 7848.77978515625
+        "value": 9055.05,
+        "windowValue": 9055.05
       },
       {
         "date": "2019-08-30",
-        "close": 7691.0,
-        "monthlyClose": 7691.0,
-        "value": 7691.0
+        "value": 8886.5,
+        "windowValue": 8886.5
       },
       {
         "date": "2019-09-30",
-        "close": 7749.4501953125,
-        "monthlyClose": 7749.4501953125,
-        "value": 7749.4501953125
+        "value": 8960.03,
+        "windowValue": 8960.03
       },
       {
         "date": "2019-10-31",
-        "close": 8083.830078125,
-        "monthlyClose": 8083.830078125,
-        "value": 8083.830078125
+        "value": 9351.57,
+        "windowValue": 9351.57
       },
       {
         "date": "2019-11-29",
-        "close": 8403.6796875,
-        "monthlyClose": 8403.6796875,
-        "value": 8403.6796875
+        "value": 9735.23,
+        "windowValue": 9735.23
       },
       {
         "date": "2019-12-31",
-        "close": 8733.0703125,
-        "monthlyClose": 8733.0703125,
-        "value": 8733.0703125
+        "value": 10123.98,
+        "windowValue": 10123.98
       },
       {
         "date": "2020-01-31",
-        "close": 8991.509765625,
-        "monthlyClose": 8991.509765625,
-        "value": 8991.509765625
+        "value": 10428.25,
+        "windowValue": 10428.25
       },
       {
         "date": "2020-02-28",
-        "close": 8461.830078125,
-        "monthlyClose": 8461.830078125,
-        "value": 8461.830078125
+        "value": 9825.86,
+        "windowValue": 9825.86
       },
       {
         "date": "2020-03-31",
-        "close": 7813.5,
-        "monthlyClose": 7813.5,
-        "value": 7813.5
+        "value": 9081.82,
+        "windowValue": 9081.82
       },
       {
         "date": "2020-04-30",
-        "close": 9000.509765625,
-        "monthlyClose": 9000.509765625,
-        "value": 9000.509765625
+        "value": 10465.21,
+        "windowValue": 10465.21
       },
       {
         "date": "2020-05-29",
-        "close": 9555.5302734375,
-        "monthlyClose": 9555.5302734375,
-        "value": 9555.5302734375
+        "value": 11125.59,
+        "windowValue": 11125.59
       },
       {
         "date": "2020-06-30",
-        "close": 10156.849609375,
-        "monthlyClose": 10156.849609375,
-        "value": 10156.849609375
+        "value": 11834.05,
+        "windowValue": 11834.05
       },
       {
         "date": "2020-07-31",
-        "close": 10905.8798828125,
-        "monthlyClose": 10905.8798828125,
-        "value": 10905.8798828125
+        "value": 12710.65,
+        "windowValue": 12710.65
       },
       {
         "date": "2020-08-31",
-        "close": 12110.7001953125,
-        "monthlyClose": 12110.7001953125,
-        "value": 12110.7001953125
+        "value": 14129.18,
+        "windowValue": 14129.18
       },
       {
         "date": "2020-09-30",
-        "close": 11418.0595703125,
-        "monthlyClose": 11418.0595703125,
-        "value": 11418.0595703125
+        "value": 13328.02,
+        "windowValue": 13328.02
       },
       {
         "date": "2020-10-30",
-        "close": 11052.9501953125,
-        "monthlyClose": 11052.9501953125,
-        "value": 11052.9501953125
+        "value": 12906.66,
+        "windowValue": 12906.66
       },
       {
         "date": "2020-11-30",
-        "close": 12268.3203125,
-        "monthlyClose": 12268.3203125,
-        "value": 12268.3203125
+        "value": 14339.94,
+        "windowValue": 14339.94
       },
       {
         "date": "2020-12-31",
-        "close": 12888.2802734375,
-        "monthlyClose": 12888.2802734375,
-        "value": 12888.2802734375
+        "value": 15072.29,
+        "windowValue": 15072.29
       },
       {
         "date": "2021-01-29",
-        "close": 12925.3798828125,
-        "monthlyClose": 12925.3798828125,
-        "value": 12925.3798828125
+        "value": 15120.82,
+        "windowValue": 15120.82
       },
       {
         "date": "2021-02-26",
-        "close": 12909.4404296875,
-        "monthlyClose": 12909.4404296875,
-        "value": 12909.4404296875
+        "value": 15115.02,
+        "windowValue": 15115.02
       },
       {
         "date": "2021-03-31",
-        "close": 13091.4404296875,
-        "monthlyClose": 13091.4404296875,
-        "value": 13091.4404296875
+        "value": 15337.62,
+        "windowValue": 15337.62
       },
       {
         "date": "2021-04-30",
-        "close": 13860.759765625,
-        "monthlyClose": 13860.759765625,
-        "value": 13860.759765625
+        "value": 16244.98,
+        "windowValue": 16244.98
       },
       {
         "date": "2021-05-28",
-        "close": 13686.509765625,
-        "monthlyClose": 13686.509765625,
-        "value": 13686.509765625
+        "value": 16055.7,
+        "windowValue": 16055.7
       },
       {
         "date": "2021-06-30",
-        "close": 14554.7998046875,
-        "monthlyClose": 14554.7998046875,
-        "value": 14554.7998046875
+        "value": 17083.11,
+        "windowValue": 17083.11
       },
       {
         "date": "2021-07-30",
-        "close": 14959.900390625,
-        "monthlyClose": 14959.900390625,
-        "value": 14959.900390625
+        "value": 17564.35,
+        "windowValue": 17564.35
       },
       {
         "date": "2021-08-31",
-        "close": 15582.509765625,
-        "monthlyClose": 15582.509765625,
-        "value": 15582.509765625
+        "value": 18311.18,
+        "windowValue": 18311.18
       },
       {
         "date": "2021-09-30",
-        "close": 14689.6201171875,
-        "monthlyClose": 14689.6201171875,
-        "value": 14689.6201171875
+        "value": 17269.99,
+        "windowValue": 17269.99
       },
       {
         "date": "2021-10-29",
-        "close": 15850.4697265625,
-        "monthlyClose": 15850.4697265625,
-        "value": 15850.4697265625
+        "value": 18640.97,
+        "windowValue": 18640.97
       },
       {
         "date": "2021-11-30",
-        "close": 16135.919921875,
-        "monthlyClose": 16135.919921875,
-        "value": 16135.919921875
+        "value": 18992.07,
+        "windowValue": 18992.07
       },
       {
         "date": "2021-12-31",
-        "close": 16320.080078125,
-        "monthlyClose": 16320.080078125,
-        "value": 16320.080078125
+        "value": 19217.94,
+        "windowValue": 19217.94
       },
       {
         "date": "2022-01-31",
-        "close": 14930.0498046875,
-        "monthlyClose": 14930.0498046875,
-        "value": 14930.0498046875
+        "value": 17586.58,
+        "windowValue": 17586.58
       },
       {
         "date": "2022-02-28",
-        "close": 14237.8095703125,
-        "monthlyClose": 14237.8095703125,
-        "value": 14237.8095703125
+        "value": 16787.29,
+        "windowValue": 16787.29
       },
       {
         "date": "2022-03-31",
-        "close": 14838.490234375,
-        "monthlyClose": 14838.490234375,
-        "value": 14838.490234375
+        "value": 17506.12,
+        "windowValue": 17506.12
       },
       {
         "date": "2022-04-29",
-        "close": 12854.7998046875,
-        "monthlyClose": 12854.7998046875,
-        "value": 12854.7998046875
+        "value": 15170.44,
+        "windowValue": 15170.44
       },
       {
         "date": "2022-05-31",
-        "close": 12642.099609375,
-        "monthlyClose": 12642.099609375,
-        "value": 12642.099609375
+        "value": 14937.99,
+        "windowValue": 14937.99
       },
       {
         "date": "2022-06-30",
-        "close": 11503.7197265625,
-        "monthlyClose": 11503.7197265625,
-        "value": 11503.7197265625
+        "value": 13601.82,
+        "windowValue": 13601.82
       },
       {
         "date": "2022-07-29",
-        "close": 12947.9697265625,
-        "monthlyClose": 12947.9697265625,
-        "value": 12947.9697265625
+        "value": 15316.04,
+        "windowValue": 15316.04
       },
       {
         "date": "2022-08-31",
-        "close": 12272.0302734375,
-        "monthlyClose": 12272.0302734375,
-        "value": 12272.0302734375
+        "value": 14533.29,
+        "windowValue": 14533.29
       },
       {
         "date": "2022-09-30",
-        "close": 10971.2197265625,
-        "monthlyClose": 10971.2197265625,
-        "value": 10971.2197265625
+        "value": 13000.4,
+        "windowValue": 13000.4
       },
       {
         "date": "2022-10-31",
-        "close": 11405.5703125,
-        "monthlyClose": 11405.5703125,
-        "value": 11405.5703125
+        "value": 13521.31,
+        "windowValue": 13521.31
       },
       {
         "date": "2022-11-30",
-        "close": 12030.0595703125,
-        "monthlyClose": 12030.0595703125,
-        "value": 12030.0595703125
+        "value": 14280.64,
+        "windowValue": 14280.64
       },
       {
         "date": "2022-12-30",
-        "close": 10939.759765625,
-        "monthlyClose": 10939.759765625,
-        "value": 10939.759765625
+        "value": 12994.57,
+        "windowValue": 12994.57
       },
       {
         "date": "2023-01-31",
-        "close": 12101.9296875,
-        "monthlyClose": 12101.9296875,
-        "value": 12101.9296875
+        "value": 14380.74,
+        "windowValue": 14380.74
       },
       {
         "date": "2023-02-28",
-        "close": 12042.1201171875,
-        "monthlyClose": 12042.1201171875,
-        "value": 12042.1201171875
+        "value": 14327.21,
+        "windowValue": 14327.21
       },
       {
         "date": "2023-03-31",
-        "close": 13181.349609375,
-        "monthlyClose": 13181.349609375,
-        "value": 13181.349609375
+        "value": 15693.91,
+        "windowValue": 15693.91
       },
       {
         "date": "2023-04-28",
-        "close": 13245.990234375,
-        "monthlyClose": 13245.990234375,
-        "value": 13245.990234375
+        "value": 15775.36,
+        "windowValue": 15775.36
       },
       {
         "date": "2023-05-31",
-        "close": 14254.08984375,
-        "monthlyClose": 14254.08984375,
-        "value": 14254.08984375
+        "value": 16995.56,
+        "windowValue": 16995.56
       },
       {
         "date": "2023-06-30",
-        "close": 15179.2099609375,
-        "monthlyClose": 15179.2099609375,
-        "value": 15179.2099609375
+        "value": 18108.43,
+        "windowValue": 18108.43
       },
       {
         "date": "2023-07-31",
-        "close": 15757.0,
-        "monthlyClose": 15757.0,
-        "value": 15757.0
+        "value": 18803.74,
+        "windowValue": 18803.74
       },
       {
         "date": "2023-08-31",
-        "close": 15501.0703125,
-        "monthlyClose": 15501.0703125,
-        "value": 15501.0703125
+        "value": 18521.39,
+        "windowValue": 18521.39
       },
       {
         "date": "2023-09-29",
-        "close": 14715.240234375,
-        "monthlyClose": 14715.240234375,
-        "value": 14715.240234375
+        "value": 17590.93,
+        "windowValue": 17590.93
       },
       {
         "date": "2023-10-31",
-        "close": 14409.7802734375,
-        "monthlyClose": 14409.7802734375,
-        "value": 14409.7802734375
+        "value": 17232.75,
+        "windowValue": 17232.75
       },
       {
         "date": "2023-11-30",
-        "close": 15947.8701171875,
-        "monthlyClose": 15947.8701171875,
-        "value": 15947.8701171875
+        "value": 19097.15,
+        "windowValue": 19097.15
       },
       {
         "date": "2023-12-29",
-        "close": 16825.9296875,
-        "monthlyClose": 16825.9296875,
-        "value": 16825.9296875
+        "value": 20158.42,
+        "windowValue": 20158.42
       },
       {
         "date": "2024-01-31",
-        "close": 17137.240234375,
-        "monthlyClose": 17137.240234375,
-        "value": 17137.240234375
+        "value": 20539.36,
+        "windowValue": 20539.36
       },
       {
         "date": "2024-02-29",
-        "close": 18043.849609375,
-        "monthlyClose": 18043.849609375,
-        "value": 18043.849609375
+        "value": 21650.13,
+        "windowValue": 21650.13
       },
       {
         "date": "2024-03-28",
-        "close": 18254.689453125,
-        "monthlyClose": 18254.689453125,
-        "value": 18254.689453125
+        "value": 21916.49,
+        "windowValue": 21916.49
       },
       {
         "date": "2024-04-30",
-        "close": 17440.689453125,
-        "monthlyClose": 17440.689453125,
-        "value": 17440.689453125
+        "value": 20945.58,
+        "windowValue": 20945.58
       },
       {
         "date": "2024-05-31",
-        "close": 18536.650390625,
-        "monthlyClose": 18536.650390625,
-        "value": 18536.650390625
+        "value": 22284.09,
+        "windowValue": 22284.09
       },
       {
         "date": "2024-06-28",
-        "close": 19682.869140625,
-        "monthlyClose": 19682.869140625,
-        "value": 19682.869140625
+        "value": 23680.39,
+        "windowValue": 23680.39
       },
       {
         "date": "2024-07-31",
-        "close": 19362.4296875,
-        "monthlyClose": 19362.4296875,
-        "value": 19362.4296875
+        "value": 23303.25,
+        "windowValue": 23303.25
       },
       {
         "date": "2024-08-30",
-        "close": 19574.640625,
-        "monthlyClose": 19574.640625,
-        "value": 19574.640625
+        "value": 23578.13,
+        "windowValue": 23578.13
       },
       {
         "date": "2024-09-30",
-        "close": 20060.689453125,
-        "monthlyClose": 20060.689453125,
-        "value": 20060.689453125
+        "value": 24183.36,
+        "windowValue": 24183.36
       },
       {
         "date": "2024-10-31",
-        "close": 19890.419921875,
-        "monthlyClose": 19890.419921875,
-        "value": 19890.419921875
+        "value": 23986.05,
+        "windowValue": 23986.05
       },
       {
         "date": "2024-11-29",
-        "close": 20930.369140625,
-        "monthlyClose": 20930.369140625,
-        "value": 20930.369140625
+        "value": 25260.61,
+        "windowValue": 25260.61
       },
       {
         "date": "2024-12-31",
-        "close": 21012.169921875,
-        "monthlyClose": 21012.169921875,
-        "value": 21012.169921875
+        "value": 25376.22,
+        "windowValue": 25376.22
       },
       {
         "date": "2025-01-31",
-        "close": 21478.05078125,
-        "monthlyClose": 21478.05078125,
-        "value": 21478.05078125
+        "value": 25947.53,
+        "windowValue": 25947.53
       },
       {
         "date": "2025-02-28",
-        "close": 20884.41015625,
-        "monthlyClose": 20884.41015625,
-        "value": 20884.41015625
+        "value": 25249.73,
+        "windowValue": 25249.73
       },
       {
         "date": "2025-03-31",
-        "close": 19278.44921875,
-        "monthlyClose": 19278.44921875,
-        "value": 19278.44921875
+        "value": 23327.52,
+        "windowValue": 23327.52
       },
       {
         "date": "2025-04-30",
-        "close": 19571.01953125,
-        "monthlyClose": 19571.01953125,
-        "value": 19571.01953125
+        "value": 23689.81,
+        "windowValue": 23689.81
       },
       {
         "date": "2025-05-30",
-        "close": 21340.990234375,
-        "monthlyClose": 21340.990234375,
-        "value": 21340.990234375
+        "value": 25853.84,
+        "windowValue": 25853.84
       },
       {
         "date": "2025-06-30",
-        "close": 22679.009765625,
-        "monthlyClose": 22679.009765625,
-        "value": 22679.009765625
+        "value": 27494.05,
+        "windowValue": 27494.05
       },
       {
         "date": "2025-07-31",
-        "close": 23218.119140625,
-        "monthlyClose": 23218.119140625,
-        "value": 23218.119140625
+        "value": 28156.52,
+        "windowValue": 28156.52
       },
       {
         "date": "2025-08-29",
-        "close": 23415.419921875,
-        "monthlyClose": 23415.419921875,
-        "value": 23415.419921875
+        "value": 28416.58,
+        "windowValue": 28416.58
       },
       {
         "date": "2025-09-30",
-        "close": 24679.990234375,
-        "monthlyClose": 24679.990234375,
-        "value": 24679.990234375
+        "value": 29970.26,
+        "windowValue": 29970.26
       },
       {
         "date": "2025-10-31",
-        "close": 25858.130859375,
-        "monthlyClose": 25858.130859375,
-        "value": 25858.130859375
+        "value": 31410.39,
+        "windowValue": 31410.39
       },
       {
         "date": "2025-11-28",
-        "close": 25434.890625,
-        "monthlyClose": 25434.890625,
-        "value": 25434.890625
+        "value": 30918.77,
+        "windowValue": 30918.77
       },
       {
         "date": "2025-12-31",
-        "close": 25249.849609375,
-        "monthlyClose": 25249.849609375,
-        "value": 25249.849609375
+        "value": 30711.49,
+        "windowValue": 30711.49
       },
       {
         "date": "2026-01-30",
-        "close": 25552.390625,
-        "monthlyClose": 25552.390625,
-        "value": 25552.390625
+        "value": 31089.81,
+        "windowValue": 31089.81
       },
       {
         "date": "2026-02-27",
-        "close": 24960.0390625,
-        "monthlyClose": 24960.0390625,
-        "value": 24960.0390625
+        "value": 30387.08,
+        "windowValue": 30387.08
       },
       {
         "date": "2026-03-31",
-        "close": 23740.189453125,
-        "monthlyClose": 23740.189453125,
-        "value": 23740.189453125
+        "value": 28924.51,
+        "windowValue": 28924.51
       },
       {
         "date": "2026-04-30",
-        "close": 27452.119140625,
-        "monthlyClose": 27452.119140625,
-        "value": 27452.119140625
+        "value": 33454.16,
+        "windowValue": 33454.16
       },
       {
         "date": "2026-05-29",
-        "close": 30333.1796875,
-        "monthlyClose": 30333.1796875,
-        "value": 30333.1796875
+        "value": 36993.16,
+        "windowValue": 36993.16
       },
       {
         "date": "2026-06-30",
-        "close": 30276.349609375,
-        "monthlyClose": 30276.349609375,
-        "value": 30276.349609375
+        "value": 36947.81,
+        "windowValue": 36947.81
       },
       {
         "date": "2026-07-31",
-        "close": 28274.19921875,
-        "monthlyClose": 28274.19921875,
-        "value": 28274.19921875
+        "value": 34514.35,
+        "windowValue": 34514.35
       },
       {
         "date": "2026-08-31",
-        "close": 29456.970703125,
-        "monthlyClose": 29456.970703125,
-        "value": 29456.970703125
+        "value": 35976.94,
+        "windowValue": 35976.94
       },
       {
         "date": "2026-09-30",
-        "close": 30408.5,
-        "monthlyClose": 30408.5,
-        "value": 30408.5
+        "value": 37162.88,
+        "windowValue": 37162.88
       }
     ],
-    "checkedAt": "2026-10-06",
+    "checkedAt": "2026-10-16",
     "periodEnd": "2026-09",
-    "responseSha256": "c39b4b25fcdefc0aaad114eb6ab0b974389df87cffe2a3afdd1767659bd03bf9",
-    "collectAnniversary": false
+    "responseSha256": "0d1bef554705a6f421054c52f18567bf9234299b718e2611639427484de7f451"
   },
   "soxx": {
     "id": "soxx",
