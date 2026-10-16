@@ -1,6 +1,7 @@
 // Allocations supplémentaires : les séries restent celles de la banque commune.
 // Les limites de poids expriment le rôle économique des poches, indépendamment
 // de leur pire année passée. Aucune série courte n'est prolongée artificiellement.
+import { ASSETS } from '../../data/portfolio-assets.js';
 const GLOBAL = ['msci_acwi','msci_acwi_ishares','ftse_allworld_vanguard'];
 const DIV = ['strat_dividendes_dist','high_dividend_dist','quality_dividend_dist'];
 const BTC = ['bitcoin','bitcoin_wisdomtree','bitcoin_etcgroup','bitcoin_21shares'];
@@ -22,6 +23,11 @@ export function expandedRecipes(profile,risk) {
     const stable=[80,65,35,0,0][level];
     const satellite=[5,10,15,20,25][level];
     return [
+      ...ASSETS.filter(a=>a.distinctCandidate && !a.manualOnly && a.cat==='actions_larges' && level>=2).map(a=>make(`distinct-${a.id}`,`Monde et ${a.label.toLowerCase()}`,[[GLOBAL,100-stable-satellite],[a.id,satellite],['fonds_euros',stable]])),
+      ...(level>=2 ? [
+        make('global-cloud-robotics','Monde, cloud et robotique',[[GLOBAL,100-stable-2*satellite],['cloud-wisdomtree',satellite],['sect_robotique',satellite],['fonds_euros',stable]]),
+        make('global-timber-agriculture','Monde, bois et agro-industrie',[[GLOBAL,100-stable-2*satellite],['timber-ishares',satellite],['agribusiness-ishares',satellite],['fonds_euros',stable]]),
+      ] : []),
       ...[['small-value-usa','Monde et petites entreprises américaines value'],['em-value-ishares','Monde et émergents value'],['world-midcap-equal','Monde et moyennes entreprises équipondérées'],['world-eur-hedged','Monde et actions couvertes en euros'],['agribusiness-ishares','Monde et agro-industrie'],['timber-ishares','Monde et filière bois'],['world-staples','Monde et consommation de base'],['world-discretionary','Monde et consommation discrétionnaire'],['world-energy','Monde et énergie'],['water-ishares','Monde et entreprises de l’eau'],['world-multifactor','Monde et sélection multifactorielle']].map(([id,label])=>make(`global-${id}`,label,[[GLOBAL,100-stable-satellite],[id,satellite],['fonds_euros',stable]])),
       make('europe-minvol','Europe et volatilité mondiale réduite', [['msci_europe',100-stable-satellite],['world_minvol_ishares',satellite],['fonds_euros',stable]]),
       make('usa-equal-value','S&P 500 équipondéré et value mondiale', [['sp500_equal_weight',100-stable-satellite],['actions_value',satellite],['fonds_euros',stable]]),

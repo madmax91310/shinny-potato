@@ -1,0 +1,794 @@
+{
+  "summary": {
+    "assets": 16
+  },
+  "rows": [
+    {
+      "isin": "GB00B15KXQ89",
+      "name": "WisdomTree Copper",
+      "kind": "etf",
+      "practical": [
+        "copper-metal-miners-selection",
+        "copper-platinum-palladium"
+      ],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": true,
+      "generator": "missing",
+      "dca": true,
+      "countries": {
+        "status": "incomplete",
+        "coverage": 0,
+        "outside": 0,
+        "reason": "Ventilation absente"
+      },
+      "sectors": {
+        "status": "incomplete",
+        "coverage": 0,
+        "outside": 0,
+        "reason": "Ventilation absente"
+      },
+      "holdings": null,
+      "monthly": [],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "IE0003R87OG3",
+      "name": "Avantis Global Small Cap Value UCITS ETF USD Acc",
+      "kind": "etf",
+      "practical": [
+        "small-value-global-selection"
+      ],
+      "duel": false,
+      "qualification": {
+        "completeYears": [
+          2025
+        ],
+        "minimumDuel": 3,
+        "minimumGenerator": 6,
+        "reason": "Historique de la part trop court pour les duels et le générateur"
+      },
+      "sheet": true,
+      "comparison": true,
+      "generator": "missing",
+      "dca": true,
+      "countries": {
+        "status": "incomplete",
+        "coverage": 0,
+        "outside": 0,
+        "reason": "Ventilation absente"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-09-30"
+      },
+      "holdings": {
+        "asOf": "2026-09-30",
+        "complete": false,
+        "identifiedCoverage": 0,
+        "automatic": false
+      },
+      "monthly": [
+        {
+          "id": "etfAvantisSmallValue",
+          "automatic": true,
+          "first": "2024-10",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "IE0003Z9E2Y3",
+      "name": "Global X Copper Miners UCITS ETF USD Acc",
+      "kind": "etf",
+      "practical": [
+        "copper-metal-miners-selection"
+      ],
+      "duel": true,
+      "qualification": {
+        "completeYears": [
+          2023,
+          2024,
+          2025
+        ],
+        "minimumDuel": 3,
+        "minimumGenerator": 6,
+        "reason": "Historique utilisable en manuel ; six années communes requises en génération automatique"
+      },
+      "sheet": true,
+      "comparison": true,
+      "generator": "manual",
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-09-30"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-09-30"
+      },
+      "holdings": {
+        "asOf": "2026-10-15",
+        "complete": false,
+        "identifiedCoverage": 0,
+        "automatic": false
+      },
+      "monthly": [
+        {
+          "id": "etfCopperMiners",
+          "automatic": true,
+          "first": "2022-03",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "IE0007Y8Y157",
+      "name": "VanEck Quantum Computing UCITS ETF A",
+      "kind": "etf",
+      "practical": [
+        "defence-nuclear-quantum-selection"
+      ],
+      "duel": false,
+      "qualification": {
+        "completeYears": [],
+        "minimumDuel": 3,
+        "minimumGenerator": 6,
+        "reason": "Historique de la part trop court pour les duels et le générateur"
+      },
+      "sheet": true,
+      "comparison": true,
+      "generator": "missing",
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-09-30"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 99.9,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-09-30"
+      },
+      "holdings": {
+        "asOf": "2026-09-30",
+        "complete": false,
+        "identifiedCoverage": 0,
+        "automatic": false
+      },
+      "monthly": [
+        {
+          "id": "etfIE0007Y8Y157",
+          "automatic": true,
+          "first": "2025-06",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": false,
+          "simulation": false,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "IE0008UEVOE0",
+      "name": "iShares iBonds Dec 2028 Term € Corp UCITS ETF",
+      "kind": "etf",
+      "practical": [
+        "ibonds-2028-2029-selection"
+      ],
+      "duel": false,
+      "qualification": {
+        "completeYears": [
+          2024,
+          2025
+        ],
+        "minimumDuel": 3,
+        "minimumGenerator": 6,
+        "reason": "Historique de la part trop court pour les duels et le générateur"
+      },
+      "sheet": true,
+      "comparison": true,
+      "generator": "missing",
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 99.99999999999999,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-01"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-14"
+      },
+      "holdings": {
+        "asOf": "2026-10-14",
+        "complete": false,
+        "identifiedCoverage": 6.089630000000001,
+        "automatic": false
+      },
+      "monthly": [
+        {
+          "id": "etfIbondsEuro2028",
+          "automatic": true,
+          "first": "2023-10",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "IE000L2SA8K5",
+      "name": "Invesco NASDAQ-100 Equal Weight UCITS ETF Acc",
+      "kind": "etf",
+      "practical": [
+        "nasdaq-equal-selection"
+      ],
+      "duel": false,
+      "qualification": {
+        "completeYears": [
+          2024,
+          2025
+        ],
+        "minimumDuel": 3,
+        "minimumGenerator": 6,
+        "reason": "Historique de la part trop court pour les duels et le générateur"
+      },
+      "sheet": true,
+      "comparison": true,
+      "generator": "missing",
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-09-30"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-09-30"
+      },
+      "holdings": {
+        "asOf": "2026-10-15",
+        "complete": false,
+        "identifiedCoverage": 11.943800000000001,
+        "automatic": false
+      },
+      "monthly": [
+        {
+          "id": "etfNasdaqEqual",
+          "automatic": true,
+          "first": "2023-08",
+          "last": "2026-09",
+          "currency": "USD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "IE000M7V94E1",
+      "name": "VanEck Uranium and Nuclear Technologies UCITS ETF",
+      "kind": "etf",
+      "practical": [
+        "defence-nuclear-quantum-selection"
+      ],
+      "duel": false,
+      "qualification": {
+        "completeYears": [
+          2024,
+          2025
+        ],
+        "minimumDuel": 3,
+        "minimumGenerator": 6,
+        "reason": "Historique de la part trop court pour les duels et le générateur"
+      },
+      "sheet": true,
+      "comparison": true,
+      "generator": "missing",
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 99.99999999999999,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-09-30"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-09-30"
+      },
+      "holdings": {
+        "asOf": "2026-09-30",
+        "complete": false,
+        "identifiedCoverage": 0,
+        "automatic": false
+      },
+      "monthly": [
+        {
+          "id": "etfIE000M7V94E1",
+          "automatic": true,
+          "first": "2023-03",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "IE000SNLFDR7",
+      "name": "iShares iBonds Dec 2029 Term € Corp UCITS ETF",
+      "kind": "etf",
+      "practical": [
+        "ibonds-2028-2029-selection"
+      ],
+      "duel": false,
+      "qualification": {
+        "completeYears": [
+          2025
+        ],
+        "minimumDuel": 3,
+        "minimumGenerator": 6,
+        "reason": "Historique de la part trop court pour les duels et le générateur"
+      },
+      "sheet": true,
+      "comparison": true,
+      "generator": "missing",
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 99.97999999999998,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-08"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-14"
+      },
+      "holdings": {
+        "asOf": "2026-10-14",
+        "complete": false,
+        "identifiedCoverage": 5.2971699999999995,
+        "automatic": false
+      },
+      "monthly": [
+        {
+          "id": "etfIbondsEuro2029",
+          "automatic": true,
+          "first": "2024-09",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "IE000YYE6WK5",
+      "name": "VanEck Defense UCITS ETF",
+      "kind": "etf",
+      "practical": [
+        "defence-nuclear-quantum-selection"
+      ],
+      "duel": false,
+      "qualification": {
+        "completeYears": [
+          2025
+        ],
+        "minimumDuel": 3,
+        "minimumGenerator": 6,
+        "reason": "Historique de la part trop court pour les duels et le générateur"
+      },
+      "sheet": true,
+      "comparison": true,
+      "generator": "missing",
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-09-30"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-09-30"
+      },
+      "holdings": {
+        "asOf": "2026-09-30",
+        "complete": false,
+        "identifiedCoverage": 0,
+        "automatic": false
+      },
+      "monthly": [
+        {
+          "id": "etfIE000YYE6WK5",
+          "automatic": true,
+          "first": "2024-11",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "IE00B0M63284",
+      "name": "iShares European Property Yield UCITS ETF",
+      "kind": "etf",
+      "practical": [
+        "property-world-europe-selection"
+      ],
+      "duel": true,
+      "qualification": null,
+      "sheet": true,
+      "comparison": true,
+      "generator": "automatic",
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 99.99,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-14"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-14"
+      },
+      "holdings": {
+        "asOf": "2026-10-14",
+        "complete": true,
+        "identifiedCoverage": 99.20269000000008,
+        "automatic": true
+      },
+      "monthly": [
+        {
+          "id": "etfEuropeProperty",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "IE00B1FZS350",
+      "name": "iShares Developed Markets Property Yield UCITS ETF USD (Dist)",
+      "kind": "etf",
+      "practical": [
+        "property-world-europe-selection"
+      ],
+      "duel": true,
+      "qualification": null,
+      "sheet": true,
+      "comparison": true,
+      "generator": "automatic",
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 99.99992999999999,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-14"
+      },
+      "holdings": {
+        "asOf": "2026-10-14",
+        "complete": true,
+        "identifiedCoverage": 99.2658100000001,
+        "automatic": true
+      },
+      "monthly": [],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "IE00B53SZB19",
+      "name": "iShares Nasdaq 100 UCITS ETF",
+      "kind": "etf",
+      "practical": [
+        "nasdaq-equal-selection"
+      ],
+      "duel": false,
+      "qualification": null,
+      "sheet": true,
+      "comparison": true,
+      "generator": "automatic",
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-14"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-14"
+      },
+      "holdings": {
+        "asOf": "2026-10-14",
+        "complete": true,
+        "identifiedCoverage": 99.95394000000007,
+        "automatic": true
+      },
+      "monthly": [],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "IE00BF0M2Z96",
+      "name": "L&G Battery Value-Chain UCITS ETF",
+      "kind": "etf",
+      "practical": [
+        "cloud-robotics-batteries-selection"
+      ],
+      "duel": true,
+      "qualification": null,
+      "sheet": true,
+      "comparison": true,
+      "generator": "automatic",
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-08-31"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-08-31"
+      },
+      "holdings": {
+        "asOf": "2026-08-31",
+        "complete": false,
+        "identifiedCoverage": 0,
+        "automatic": false
+      },
+      "monthly": [
+        {
+          "id": "etfLgBattery",
+          "automatic": true,
+          "first": "2020-01",
+          "last": "2026-09",
+          "currency": "USD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "IE00BF4RFH31",
+      "name": "iShares MSCI World Small Cap UCITS ETF",
+      "kind": "etf",
+      "practical": [
+        "small-value-global-selection"
+      ],
+      "duel": true,
+      "qualification": null,
+      "sheet": true,
+      "comparison": true,
+      "generator": "automatic",
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 99.99,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-14"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-14"
+      },
+      "holdings": {
+        "asOf": "2026-10-14",
+        "complete": true,
+        "identifiedCoverage": 99.25183999999993,
+        "automatic": true
+      },
+      "monthly": [
+        {
+          "id": "etf_smallcap",
+          "automatic": true,
+          "first": "2018-04",
+          "last": "2026-09",
+          "currency": "USD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "IE00BJGWQN72",
+      "name": "WisdomTree Cloud Computing UCITS ETF USD Acc",
+      "kind": "etf",
+      "practical": [
+        "cloud-robotics-batteries-selection"
+      ],
+      "duel": true,
+      "qualification": null,
+      "sheet": true,
+      "comparison": true,
+      "generator": "automatic",
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-09"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-08"
+      },
+      "holdings": {
+        "asOf": "2026-10-08",
+        "complete": false,
+        "identifiedCoverage": 0,
+        "automatic": false
+      },
+      "monthly": [
+        {
+          "id": "etfCloudWisdomtree",
+          "automatic": true,
+          "first": "2019-10",
+          "last": "2026-09",
+          "currency": "USD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "IE00BYZK4552",
+      "name": "iShares Automation & Robotics UCITS ETF",
+      "kind": "etf",
+      "practical": [
+        "cloud-robotics-batteries-selection"
+      ],
+      "duel": true,
+      "qualification": null,
+      "sheet": true,
+      "comparison": true,
+      "generator": "automatic",
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-14"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-14"
+      },
+      "holdings": {
+        "asOf": "2026-10-14",
+        "complete": true,
+        "identifiedCoverage": 99.64701999999998,
+        "automatic": true
+      },
+      "monthly": [
+        {
+          "id": "etf_robotics",
+          "automatic": true,
+          "first": "2016-10",
+          "last": "2026-09",
+          "currency": "USD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    }
+  ]
+}

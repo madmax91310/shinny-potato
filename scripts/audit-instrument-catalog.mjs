@@ -22,6 +22,8 @@ import { ETFS } from '../src/data/etf-cards.js';
 import { DEFAULT_THEMES } from '../src/data/etf-themes.js';
 import { FAMILIES } from '../src/data/index-comparisons.js';
 import { ASSETS } from '../src/data/portfolio-assets.js';
+import monthly from '../src/data/monthly-duel-returns.json' with {type:'json'};
+const distinctCount=ASSETS.filter(a=>a.distinctCandidate).length;
 
 const exposureCatalog = JSON.parse(readFileSync(new URL('../src/pages/dca-profiles/catalog.json', import.meta.url)))
 const collections = [
@@ -93,7 +95,7 @@ for (const [context, file, items] of collections) {
   // Les nouveaux thèmes construisent les libellés par une fonction commune ;
   // chaque résultat est comparé au registre par ISIN dans la boucle ci-dessous.
   // Generated exposure JSON has no source calls; exact names are checked below.
-  if (!['tweet','exposure'].includes(context) && references.length + qualifiedCount + (source.includes('LIFESTRATEGY_SHEETS.map(') ? LIFESTRATEGY_SHEETS.length - 1 : 0) + (source.includes('EXPOSURE_ADDITIONS.map(') ? EXPOSURE_ADDITIONS.length - 1 : 0) + (source.includes('PRESENTATION_ETF_ADDITIONS.map(') ? PRESENTATION_ETF_ADDITIONS.length - 1 : 0) + (source.includes('PRESENTATION_ETF_EXPANSION.map(') ? PRESENTATION_ETF_EXPANSION.length - 1 : 0) + (source.includes('[...NON_BOND_SHEETS, ...QUALIFIED_EXPOSURE_SHEETS, ...ROUND3_FUND_SHEETS, ...LIFESTRATEGY_SHEETS].map(') ? QUALIFIED_EXPOSURE_SHEETS.length + ROUND3_FUND_SHEETS.length + LIFESTRATEGY_SHEETS.length + NON_BOND_SHEETS.length - 1 : source.includes('QUALIFIED_EXPOSURE_SHEETS.map(') ? QUALIFIED_EXPOSURE_SHEETS.length - 1 : 0) + (source.includes('NON_BOND_SHEETS.filter(') ? NON_BOND_SHEETS.filter(s => getInstrumentReturnValues(s.isin).every(Number.isFinite)).length : 0) + (context === 'index' ? 3 : 0) !== items.length) {
+  if (!['tweet','exposure'].includes(context) && references.length + qualifiedCount + (context==='portfolio' && source.includes('...DISTINCT_PORTFOLIO_ASSETS') ? distinctCount : 0) + (source.includes('LIFESTRATEGY_SHEETS.map(') ? LIFESTRATEGY_SHEETS.length - 1 : 0) + (source.includes('EXPOSURE_ADDITIONS.map(') ? EXPOSURE_ADDITIONS.length - 1 : 0) + (source.includes('PRESENTATION_ETF_ADDITIONS.map(') ? PRESENTATION_ETF_ADDITIONS.length - 1 : 0) + (source.includes('PRESENTATION_ETF_EXPANSION.map(') ? PRESENTATION_ETF_EXPANSION.length - 1 : 0) + (source.includes('[...NON_BOND_SHEETS, ...QUALIFIED_EXPOSURE_SHEETS, ...ROUND3_FUND_SHEETS, ...LIFESTRATEGY_SHEETS].map(') ? QUALIFIED_EXPOSURE_SHEETS.length + ROUND3_FUND_SHEETS.length + LIFESTRATEGY_SHEETS.length + NON_BOND_SHEETS.length - 1 : source.includes('QUALIFIED_EXPOSURE_SHEETS.map(') ? QUALIFIED_EXPOSURE_SHEETS.length - 1 : 0) + (source.includes('NON_BOND_SHEETS.filter(') ? NON_BOND_SHEETS.filter(s => getInstrumentReturnValues(s.isin).every(Number.isFinite)).length : 0) + (context === 'index' ? 3 : 0) !== items.length) {
     console.error(`${file} : ${references.length} références au catalogue pour ${items.length} produits.`);
     errors++;
   }
@@ -223,7 +225,8 @@ for (const family of FAMILIES) for (const group of family.etfGroups ?? []) {
   }
 }
 for (const asset of ASSETS.filter(item => item.isin)) {
-  if (asset.r !== getInstrumentReturnValues(asset.isin)) {
+  const expected=asset.distinctCandidate ? monthly[asset.isin]?.values : getInstrumentReturnValues(asset.isin);
+  if (asset.r !== expected) {
     console.error(`Générateur : série locale ou divergente pour ${asset.isin}`);
     errors++;
   }
@@ -239,7 +242,7 @@ for (const family of FAMILIES) for (const row of family.perfFunds ?? []) {
   }
 }
 const portfolioSource = readFileSync(new URL('../src/data/portfolio-assets.js', import.meta.url), 'utf8');
-if ((portfolioSource.match(/r:\s*getInstrumentReturnValues\(/g) ?? []).length + EXPOSURE_ADDITIONS.length + LIFESTRATEGY_SHEETS.length + NON_BOND_SHEETS.filter(s => getInstrumentReturnValues(s.isin).every(Number.isFinite)).length + QUALIFIED_EXPOSURE_SHEETS.filter(r=>r.portfolioCategory && getInstrumentReturnValues(r.isin).every(Number.isFinite)).length - 4 !== returnUsages) {
+if (distinctCount + (portfolioSource.match(/r:\s*getInstrumentReturnValues\(/g) ?? []).length + EXPOSURE_ADDITIONS.length + LIFESTRATEGY_SHEETS.length + NON_BOND_SHEETS.filter(s => getInstrumentReturnValues(s.isin).every(Number.isFinite)).length + QUALIFIED_EXPOSURE_SHEETS.filter(r=>r.portfolioCategory && getInstrumentReturnValues(r.isin).every(Number.isFinite)).length - 4 !== returnUsages) {
   console.error('Générateur : une série ISIN reste codée dans l’outil.');
   errors++;
 }

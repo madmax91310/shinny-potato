@@ -1,4 +1,100 @@
 {
+  "IE0003R87OG3": {
+    "isin": "IE0003R87OG3",
+    "currency": "EUR",
+    "years": {
+      "2025": 7.874187249313902
+    },
+    "calendarReturns": {
+      "2025": 7.874187249313902
+    },
+    "values": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      7.874187249313902
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/AVWS.DE?period1=1727740800&period2=1790812800&interval=1d&events=div%2Csplits",
+    "sourceUrls": [
+      "https://query2.finance.yahoo.com/v8/finance/chart/AVWS.DE?period1=1727740800&period2=1790812800&interval=1d&events=div%2Csplits",
+      "https://query2.finance.yahoo.com/v8/finance/chart/AVWS.DE?period1=1727740800&period2=1790812800&interval=1mo&events=div%2Csplits"
+    ],
+    "checkedAt": "2026-10-12",
+    "basis": "market-price",
+    "method": "Cours de la part ETF actif ajustés des distributions et divisions ; dernière séance mensuelle, recoupée avec la bougie mensuelle Yahoo ; frais du fonds inclus dans le cours",
+    "responseSha256": "88dc5006bbbc9347e4ce076729b233d24c2fd105604387725c33d6a462b64a87",
+    "note": "Cours de la part exacte en EUR, ajustés des distributions et divisions ; années civiles complètes uniquement. Ces rendements de marché diffèrent des rendements NAV de l’émetteur."
+  },
+  "IE00BJGWQN72": {
+    "isin": "IE00BJGWQN72",
+    "currency": "USD",
+    "years": {
+      "2020": 111.75768825226302,
+      "2021": -2.6681735688054653,
+      "2022": -53.214282880584605,
+      "2023": 44.17164249343335,
+      "2024": 6.854608095438142,
+      "2025": -7.030936307243508
+    },
+    "calendarReturns": {
+      "2020": 111.75768825226302,
+      "2021": -2.6681735688054653,
+      "2022": -53.214282880584605,
+      "2023": 44.17164249343335,
+      "2024": 6.854608095438142,
+      "2025": -7.030936307243508
+    },
+    "values": [
+      111.75768825226302,
+      -2.6681735688054653,
+      -53.214282880584605,
+      44.17164249343335,
+      6.854608095438142,
+      -7.030936307243508
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/WCLD.L?period1=1569888000&period2=1790812800&interval=1d&events=div%2Csplits",
+    "sourceUrls": [
+      "https://query2.finance.yahoo.com/v8/finance/chart/WCLD.L?period1=1569888000&period2=1790812800&interval=1d&events=div%2Csplits",
+      "https://query2.finance.yahoo.com/v8/finance/chart/WCLD.L?period1=1569888000&period2=1790812800&interval=1mo&events=div%2Csplits"
+    ],
+    "checkedAt": "2026-10-12",
+    "basis": "market-price",
+    "method": "Clôtures ajustées des distributions et divisions, dernière séance de chaque mois, recoupées avec la bougie mensuelle Yahoo ; part et cotation exactes",
+    "responseSha256": "6281cb8a6cbc4e554161027fff9efcb1e313183389d1d28d5b9ffeb9f8f37c1f",
+    "note": "Cours de la part exacte en USD, ajustés des distributions et divisions ; années civiles complètes uniquement. Ces rendements de marché diffèrent des rendements NAV de l’émetteur."
+  },
+  "IE0008UEVOE0": {
+    "isin": "IE0008UEVOE0",
+    "currency": "EUR",
+    "years": {
+      "2024": 3.857115713471404,
+      "2025": 3.2747896084888373
+    },
+    "calendarReturns": {
+      "2024": 3.857115713471404,
+      "2025": 3.2747896084888373
+    },
+    "values": [
+      null,
+      null,
+      null,
+      null,
+      3.857115713471404,
+      3.2747896084888373
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/B28A.PA?period1=1696118400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "sourceUrls": [
+      "https://query2.finance.yahoo.com/v8/finance/chart/B28A.PA?period1=1696118400&period2=1790812800&interval=1d&events=div%2Csplits",
+      "https://query2.finance.yahoo.com/v8/finance/chart/B28A.PA?period1=1696118400&period2=1790812800&interval=1mo&events=div%2Csplits"
+    ],
+    "checkedAt": "2026-10-12",
+    "basis": "market-price",
+    "method": "Clôtures ajustées des revenus et divisions de la part exacte, dernière séance de chaque mois, recoupées avec les bougies mensuelles Yahoo",
+    "responseSha256": "e0667581addfcc48eff8911053b5a4d7cc75c38268abbce21aec28b05cf517cb",
+    "note": "Cours de la part exacte en EUR, ajustés des distributions et divisions ; années civiles complètes uniquement. Ces rendements de marché diffèrent des rendements NAV de l’émetteur."
+  },
   "IE0003Z9E2Y3": {
     "isin": "IE0003Z9E2Y3",
     "currency": "EUR",
@@ -29,6 +125,146 @@
     "basis": "market-price",
     "method": "Cours de la part exacte, ajustés des distributions et divisions ; dernière séance mensuelle recoupée avec la bougie mensuelle Yahoo",
     "responseSha256": "b2b4b8352a0bbbd13cf8da0cdb89e0207a9598d6c33c66cda9f5488cebd4e529",
-    "note": "Cours de la part COPX à Milan en EUR, ajustés des distributions et divisions ; années civiles complètes uniquement. Ces rendements de marché diffèrent des rendements NAV de l’émetteur."
+    "note": "Cours de la part exacte en EUR, ajustés des distributions et divisions ; années civiles complètes uniquement. Ces rendements de marché diffèrent des rendements NAV de l’émetteur."
+  },
+  "IE0007Y8Y157": {
+    "isin": "IE0007Y8Y157",
+    "currency": "EUR",
+    "years": {},
+    "calendarReturns": {},
+    "values": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/QUTM.DE?period1=1748736000&period2=1790812800&interval=1d&events=div%2Csplits",
+    "sourceUrls": [
+      "https://query2.finance.yahoo.com/v8/finance/chart/QUTM.DE?period1=1748736000&period2=1790812800&interval=1d&events=div%2Csplits",
+      "https://query2.finance.yahoo.com/v8/finance/chart/QUTM.DE?period1=1748736000&period2=1790812800&interval=1mo&events=div%2Csplits"
+    ],
+    "checkedAt": "2026-10-16",
+    "basis": "market-price",
+    "method": "Cours de la part exacte, ajustés des distributions et divisions ; dernière séance mensuelle recoupée avec la bougie mensuelle Yahoo",
+    "responseSha256": "cba021b19b03e3333f5c1ca31b57c44f68ed6dece1be25d42957d739c41c955e",
+    "note": "Cours de la part exacte en EUR, ajustés des distributions et divisions ; années civiles complètes uniquement. Ces rendements de marché diffèrent des rendements NAV de l’émetteur."
+  },
+  "IE000M7V94E1": {
+    "isin": "IE000M7V94E1",
+    "currency": "EUR",
+    "years": {
+      "2024": 38.03227871054589,
+      "2025": 51.50186393895111
+    },
+    "calendarReturns": {
+      "2024": 38.03227871054589,
+      "2025": 51.50186393895111
+    },
+    "values": [
+      null,
+      null,
+      null,
+      null,
+      38.03227871054589,
+      51.50186393895111
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/NUKL.DE?period1=1677628800&period2=1790812800&interval=1d&events=div%2Csplits",
+    "sourceUrls": [
+      "https://query2.finance.yahoo.com/v8/finance/chart/NUKL.DE?period1=1677628800&period2=1790812800&interval=1d&events=div%2Csplits",
+      "https://query2.finance.yahoo.com/v8/finance/chart/NUKL.DE?period1=1677628800&period2=1790812800&interval=1mo&events=div%2Csplits"
+    ],
+    "checkedAt": "2026-10-16",
+    "basis": "market-price",
+    "method": "Cours de la part exacte, ajustés des distributions et divisions ; dernière séance mensuelle recoupée avec la bougie mensuelle Yahoo",
+    "responseSha256": "6ca63f180d8484c7c1728c0963e2c6fcfbd7dcb726e89255aba0b9c002d2fdd3",
+    "note": "Cours de la part exacte en EUR, ajustés des distributions et divisions ; années civiles complètes uniquement. Ces rendements de marché diffèrent des rendements NAV de l’émetteur."
+  },
+  "IE000YYE6WK5": {
+    "isin": "IE000YYE6WK5",
+    "currency": "EUR",
+    "years": {
+      "2025": 49.05455675723576
+    },
+    "calendarReturns": {
+      "2025": 49.05455675723576
+    },
+    "values": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      49.05455675723576
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/DFNS.PA?period1=1730419200&period2=1790812800&interval=1d&events=div%2Csplits",
+    "sourceUrls": [
+      "https://query2.finance.yahoo.com/v8/finance/chart/DFNS.PA?period1=1730419200&period2=1790812800&interval=1d&events=div%2Csplits",
+      "https://query2.finance.yahoo.com/v8/finance/chart/DFNS.PA?period1=1730419200&period2=1790812800&interval=1mo&events=div%2Csplits"
+    ],
+    "checkedAt": "2026-10-16",
+    "basis": "market-price",
+    "method": "Cours de la part exacte, ajustés des distributions et divisions ; dernière séance mensuelle recoupée avec la bougie mensuelle Yahoo",
+    "responseSha256": "ab76c8f0045518e1a92bdf727c1857144c6b2207dfee48a11e801a0960ad5bcd",
+    "note": "Cours de la part exacte en EUR, ajustés des distributions et divisions ; années civiles complètes uniquement. Ces rendements de marché diffèrent des rendements NAV de l’émetteur."
+  },
+  "IE000L2SA8K5": {
+    "isin": "IE000L2SA8K5",
+    "currency": "USD",
+    "years": {
+      "2024": 7.401852668725173,
+      "2025": 14.604895679316577
+    },
+    "calendarReturns": {
+      "2024": 7.401852668725173,
+      "2025": 14.604895679316577
+    },
+    "values": [
+      null,
+      null,
+      null,
+      null,
+      7.401852668725173,
+      14.604895679316577
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/IEWQ.L?period1=1690848000&period2=1790812800&interval=1d&events=div%2Csplits",
+    "sourceUrls": [
+      "https://query2.finance.yahoo.com/v8/finance/chart/IEWQ.L?period1=1690848000&period2=1790812800&interval=1d&events=div%2Csplits",
+      "https://query2.finance.yahoo.com/v8/finance/chart/IEWQ.L?period1=1690848000&period2=1790812800&interval=1mo&events=div%2Csplits"
+    ],
+    "checkedAt": "2026-10-13",
+    "basis": "market-price",
+    "method": "Cours de la part exacte, ajustés des distributions et divisions ; dernière séance mensuelle recoupée avec la bougie mensuelle Yahoo",
+    "responseSha256": "735dbca63ad0d0b78804635f2160765b081c99118eac207f0fee6e6686d40b85",
+    "note": "Cours de la part exacte en USD, ajustés des distributions et divisions ; années civiles complètes uniquement. Ces rendements de marché diffèrent des rendements NAV de l’émetteur."
+  },
+  "IE000SNLFDR7": {
+    "isin": "IE000SNLFDR7",
+    "currency": "EUR",
+    "years": {
+      "2025": 3.2012492680070226
+    },
+    "calendarReturns": {
+      "2025": 3.2012492680070226
+    },
+    "values": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      3.2012492680070226
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/29GA.MI?period1=1725148800&period2=1790812800&interval=1d&events=div%2Csplits",
+    "sourceUrls": [
+      "https://query2.finance.yahoo.com/v8/finance/chart/29GA.MI?period1=1725148800&period2=1790812800&interval=1d&events=div%2Csplits",
+      "https://query2.finance.yahoo.com/v8/finance/chart/29GA.MI?period1=1725148800&period2=1790812800&interval=1mo&events=div%2Csplits"
+    ],
+    "checkedAt": "2026-10-14",
+    "basis": "market-price",
+    "method": "Cours de la part exacte, ajustés des distributions et divisions ; dernière séance mensuelle recoupée avec la bougie mensuelle Yahoo",
+    "responseSha256": "ff074d9f023ee35469ae6a050eea403afa3b8a0afd79def3a51b50b0271125e4",
+    "note": "Cours de la part exacte en EUR, ajustés des distributions et divisions ; années civiles complètes uniquement. Ces rendements de marché diffèrent des rendements NAV de l’émetteur."
   }
 }

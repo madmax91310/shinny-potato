@@ -95,7 +95,7 @@ jobs:
       - name: "Validate observations: node scripts test-monthly-consumers.mjs"
         run: node scripts/test-monthly-consumers.mjs
       - name: "Validate observations: node scripts test-etf-tool-connections.mjs"
-        run: node scripts/build-performance-links.mjs && node scripts/test-etf-tool-connections.mjs && node scripts/audit-asset-tool-routing.mjs
+        run: node scripts/build-performance-links.mjs && node scripts/test-etf-tool-connections.mjs && node scripts/audit-asset-tool-routing.mjs --write && node scripts/test-distinct-asset-routing.mjs
       - name: "Validate observations: npm run audit:data-catalog"
         run: npm run audit:data-catalog
       - name: "Validate observations: npm run audit:data-provenance"
@@ -123,7 +123,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          bash scripts/commit-validated-data.sh 'Refresh validated monthly market histories' src/data/equity-duel-returns.json src/data/monthly-duel-returns.json src/data/automated-indices.json src/data/automated-monthly.json src/data/automated-etf-monthly.json scripts/source-snapshots/monthly-automated.json scripts/source-snapshots/monthly-collection-status.json src/data/anniversary-levels.json scripts/monthly-automation.json scripts/source-snapshots/monthly-qualification-status.json src/data/auto-history-identities.json docs/asset-field-coverage.md public/data/asset-field-coverage.json
+          bash scripts/commit-validated-data.sh 'Refresh validated monthly market histories' docs/asset-tool-routing.json docs/asset-tool-routing.md docs/distinct-asset-routing.json src/data/equity-duel-returns.json src/data/monthly-duel-returns.json src/data/automated-indices.json src/data/automated-monthly.json src/data/automated-etf-monthly.json scripts/source-snapshots/monthly-automated.json scripts/source-snapshots/monthly-collection-status.json src/data/anniversary-levels.json scripts/monthly-automation.json scripts/source-snapshots/monthly-qualification-status.json src/data/auto-history-identities.json docs/asset-field-coverage.md public/data/asset-field-coverage.json
   deploy:
     needs: refresh
     if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'

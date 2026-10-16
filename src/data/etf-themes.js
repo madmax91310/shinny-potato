@@ -1,3 +1,4 @@
+import { DISTINCT_ASSET_SELECTIONS } from './distinct-asset-selections.js'
 import { RESOURCE_COMPARISONS } from './resource-selections.js'
 import { QUALIFIED_ETF_COMPARISONS } from './qualified-etf-comparisons.js';
 import { QUALIFIED_EXPOSURE_SHEETS } from './qualified-exposure-sheets.js';
@@ -740,7 +741,7 @@ const reusedTheme = (id, nom, emoji, transition, products, cloture, question) =>
     nom: getInstrumentName(isin, 'tweet'), frais: formatEtfTer(isin), differenciateur, isCopperEtc: isin === 'GB00B15KXQ89' })),
 })
 const COMPARISON_THEMES = [...existingThemes,
- ...QUALIFIED_ETF_COMPARISONS.map(d=>({...reusedTheme(d.id,d.nom,d.emoji,d.hook,d.funds.map((isin,i)=>[isin,d.descriptions?.[i] ?? QUALIFIED_EXPOSURE_SHEETS.find(r=>r.isin===isin)?.whatIs ?? 'Grandes et moyennes entreprises des pays développés.']),d.cloture,d.question),...(RESOURCE_COMPARISONS.some(c=>c.id===d.id)?{hook:d.hook,comparisonNote:d.cloture,includeComparisonNote:true}:{})})),
+ ...QUALIFIED_ETF_COMPARISONS.map(d=>({...reusedTheme(d.id,d.nom,d.emoji,d.hook,d.funds.map((isin,i)=>[isin,d.descriptions?.[i] ?? QUALIFIED_EXPOSURE_SHEETS.find(r=>r.isin===isin)?.whatIs ?? 'Grandes et moyennes entreprises des pays développés.']),d.cloture,d.question),...([...RESOURCE_COMPARISONS,...DISTINCT_ASSET_SELECTIONS].some(c=>c.id===d.id)?{hook:d.hook,comparisonNote:d.cloture,includeComparisonNote:true}:{})})),
  reusedTheme('world-acwi-cto','MSCI World ou MSCI ACWI · CTO','🌍','Les pays développés seuls, ou les marchés émergents dans le même ETF ?',
   [['IE00B4L5Y983','MSCI World : grandes et moyennes entreprises des pays développés.'],['IE00B6R52259','MSCI ACWI : grandes et moyennes entreprises des pays développés et émergents.']],
   'L’ACWI ajoute les marchés émergents au périmètre du World. Les deux indices laissent les petites capitalisations à part et partagent de nombreuses entreprises.', 'Tu préfères intégrer les émergents dans un seul ETF ou les ajouter séparément ?'),

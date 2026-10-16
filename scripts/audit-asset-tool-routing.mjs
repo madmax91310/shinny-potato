@@ -11,6 +11,12 @@ import { references } from '../src/pages/dca-profiles/engine.js'
 import { catalogCoverage } from '../src/pages/dca-profiles/verification.js'
 import { INSTRUMENT_LISTINGS_BY_ISIN } from '../src/data/instrument-listings.js'
 import { ETF_MONTHLY_HISTORIES } from '../src/data/etf-monthly-history.js'
+import { TOPICS } from '../src/data/practical-sheet-topics.js'
+import { CATALOG as DUEL_CATALOG } from '../src/data/duel-assets.js'
+import { DISTINCT_ASSET_ISINS } from '../src/data/distinct-asset-selections.js'
+import { DISTINCT_PORTFOLIO_CANDIDATES } from '../src/data/distinct-portfolio-assets.js'
+import { latestCommonYears } from '../src/data/annual-window.js'
+import monthlyReturns from '../src/data/monthly-duel-returns.json' with {type:'json'}
 
 const read = path => JSON.parse(readFileSync(path, 'utf8'))
 const now = new Date()
@@ -44,7 +50,11 @@ const rows = [...instruments.values()].map(e => {
   const monthly = h.map(([id,a]) => ({id, automatic:sources.has(id), first:a.points[0]?.date, last:a.points.at(-1)?.date, currency:a.currency,
     performance:getAnnualReturnStartYears(id).length > 0, simulation:simulations.has(id), anniversary:Boolean(a.anniversaryPoints?.length && levels[id] && getValidYearsBackOptions(id,now).length)}))
   const holdings = refs.find(([,a]) => a.holdings)?.[1].holdings
-  return {...e, sheet:ETFS.some(a => a.isin === e.isin), comparison:DEFAULT_THEMES.some(t => t.etfs.some(a => a.isin === e.isin)),
+  const candidate = DISTINCT_PORTFOLIO_CANDIDATES.find(a=>a.isin===e.isin)
+  const qualifiedYears = candidate ? latestCommonYears([monthlyReturns[e.isin]?.years ?? {}],{minimum:1}) : []
+  return {...e, practical:TOPICS.filter(t=>t.products?.includes(e.isin)).map(t=>t.id), duel:DUEL_CATALOG.some(a=>a.isin===e.isin),
+    qualification:candidate ? {completeYears:qualifiedYears,minimumDuel:3,minimumGenerator:6,reason:qualifiedYears.length<3?'Historique de la part trop court pour les duels et le générateur':qualifiedYears.length<6?'Historique utilisable en manuel ; six années communes requises en génération automatique':'Historique suffisamment long ; contrôles de construction et de risque maintenus'} : null,
+    sheet:ETFS.some(a => a.isin === e.isin), comparison:DEFAULT_THEMES.some(t => t.etfs.some(a => a.isin === e.isin)),
     generator:portfolio.some(a => used.has(a.id) && !a.manualOnly) ? 'automatic' : portfolio.length ? 'manual' : 'missing',
     dca:refs.length > 0, countries:exposure('countries'), sectors:exposure('sectors'),
     holdings:holdings ? {...holdings, automatic:Boolean(fullSources[e.isin])} : null, monthly,
@@ -52,6 +62,7 @@ const rows = [...instruments.values()].map(e => {
     decision:refs.length || h.length || ETFS.some(a => a.isin === e.isin) || portfolio.length ? 'keep-used' : 'review-unused'}
 }).sort((a,b) => a.isin.localeCompare(b.isin))
 const summary = {instruments:rows.length, sheets:rows.filter(r=>r.sheet).length, comparisons:rows.filter(r=>r.comparison).length,
+  practical:rows.filter(r=>r.practical.length).length, duels:rows.filter(r=>r.duel).length,
   generatorAutomatic:rows.filter(r=>r.generator==='automatic').length, dca:rows.filter(r=>r.dca).length,
   fullExposure:rows.filter(r=>r.countries.status==='available' && r.sectors.status==='available').length,
   outsideExposure:rows.filter(r=>r.countries.status==='not-applicable' && r.sectors.status==='not-applicable').length,
@@ -59,6 +70,8 @@ const summary = {instruments:rows.length, sheets:rows.filter(r=>r.sheet).length,
   historyCandidates:rows.filter(r=>r.historyCandidate).length, unused:rows.filter(r=>r.decision==='review-unused').length}
 const report = {checkedAt:now.toISOString(), summary, errors, rows}
 if (process.argv.includes('--write')) {
+  const selected=rows.filter(r=>DISTINCT_ASSET_ISINS.includes(r.isin))
+  writeFileSync('docs/distinct-asset-routing.json',JSON.stringify({summary:{assets:selected.length},rows:selected},null,2)+'\n')
   writeFileSync('docs/asset-tool-routing.json', JSON.stringify(report,null,2)+'\n')
   const mark = v => v ? 'Oui' : '—'
   const exposureLabel = v => ({available:'Oui', 'not-applicable':'Sans objet', incomplete:'Partiel', missing:'Absent'}[v.status])

@@ -6,6 +6,9 @@ import { loadArtImage } from '../tweet-midi/anniversaryArt.js'
 // Each exposure reuses its reviewed ETF illustration. These are exposure scenes,
 // never fund-provider logos; names distinguish geographic/factor variants.
 const references = {
+ 'cloud-wisdomtree':'cloud-wisdomtree', 'small-value-world-avantis':'small-value-world-avantis',
+ 'ibonds-euro-2028':'ibonds-euro-2028','ibonds-euro-2029':'ibonds-euro-2029',
+ 'defense-vaneck':'defense','nuclear-vaneck':'nucleaire','quantum-vaneck':'quantique',
  'emerging-value':'em-value-ishares','euro-ultrashort':'euro-ultrashort-ishares',
  industrials:'world-industrials-xtrackers',staples:'world-staples',discretionary:'world-discretionary',
  'europe-food':'europe-food','europe-media':'europe-media','europe-retail':'europe-retail',
@@ -34,7 +37,7 @@ const references = {
   cleanenergy: 'support-sect_energie_propre', infrastructure: 'infrastructures', property: 'immobilier-reit',
   semiconductors: 'semiconducteurs', blockchain: 'blockchain',
 }
-export const DUEL_EXPOSURE_ART = Object.freeze({...Object.fromEntries(CATALOG.filter(asset => asset.art).map(asset => [asset.exposure, {kind: 'illustration', ...asset.art}])), ...Object.fromEntries(Object.entries(references).map(([exposure, id]) => [exposure, exposure === 'construction-europe' ? { kind: 'illustration', theme: 'construction', scene: 'duels/construction.webp' } : getETFArt(id)]))})
+export const DUEL_EXPOSURE_ART = Object.freeze({...Object.fromEntries(CATALOG.filter(asset => asset.art).map(asset => [asset.exposure, {kind: 'illustration', ...asset.art}])), ...Object.fromEntries(Object.entries(references).filter(([exposure])=>CATALOG.some(asset=>asset.exposure===exposure)).map(([exposure, id]) => [exposure, exposure === 'construction-europe' ? { kind: 'illustration', theme: 'construction', scene: 'duels/construction.webp' } : getETFArt(id)]))})
 export function getDuelArt(asset) {
   const art = DUEL_EXPOSURE_ART[asset.exposure]
   if (!art?.scene) throw new Error(`Illustration du duel non vérifiée : ${asset.id}`)

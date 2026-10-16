@@ -1,4 +1,5 @@
 import { QUALIFIED_EXPOSURE_SHEETS } from './qualified-exposure-sheets.js';
+import { DISTINCT_PORTFOLIO_ASSETS } from './distinct-portfolio-assets.js';
 import { NON_BOND_SHEETS } from './non-bond-expansion.js';
 import { LIFESTRATEGY_SHEETS } from './lifestrategy.js';
 import { SIMULATION_PROXIES } from './simulation-proxies.js';
@@ -76,6 +77,7 @@ export const CATEGORIES = {
 };
 
 export const ASSETS = [
+ ...DISTINCT_PORTFOLIO_ASSETS,
 // Parts automatisées : neuf supports à historique complet sont aussi raccordés
 // aux profils automatiques le 15/10/2026 (expandedRecipes.js).
   { id:"em_ex_china", isin:"IE00BMG6Z448", name:getInstrumentName("IE00BMG6Z448",'portfolio'), cat:"emergents", emoji:'🔎', manualOnly:true, r:getInstrumentReturnValues("IE00BMG6Z448"), desc:["Les actions émergentes en excluant la Chine.", "Cette poche modifie volontairement la répartition des émergents. La Chine est exclue, mais les autres risques des marchés émergents restent présents.", "Les données sont partagées avec les autres outils."], confidenceNote:'Rendements de la part exacte, revenus réinvestis lorsqu’ils existent ; période commune disponible uniquement. Série USD convertie en euros par le simulateur.' },
@@ -1514,7 +1516,7 @@ export const ASSETS = [
   },
 ];
 
-for (const asset of ASSETS) asset.calendarReturns = asset.isin ? getInstrumentCalendarReturns(asset.isin, asset.r) : economicCalendar(asset.id, asset.r);
+for (const asset of ASSETS) asset.calendarReturns ??= asset.isin ? getInstrumentCalendarReturns(asset.isin, asset.r) : economicCalendar(asset.id, asset.r);
 
 export function getAsset(id) {
   return ASSETS.find((a) => a.id === id);

@@ -22,7 +22,7 @@ import { INSTRUMENT_LISTINGS_BY_ISIN } from './instrument-listings.js';
 import { getInstrumentAnnualPerformance, getInstrumentReturnValues } from './instrument-returns.js';
 import { PORTFOLIO_RETURN_EVIDENCE } from './portfolio-return-evidence.js';
 import { INSTRUMENT_REFERENCE_EVIDENCE } from './instrument-reference-evidence.js';
-import { ETF_TER_EVIDENCE } from './etf-ter.js';
+import { ETF_TER_EVIDENCE } from './etf-ter-evidence.js';
 import { COMPARATOR_RETURNS_BY_ISIN } from './instrument-comparator-returns.js';
 import { COMPARATOR_RETURN_EVIDENCE } from './comparator-return-evidence.js';
 import { INDEX_RETURNS } from './index-returns.js';

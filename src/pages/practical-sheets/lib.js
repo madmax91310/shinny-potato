@@ -4,7 +4,8 @@ import { PRACTICAL_ETF as AUTOMATED_ETF, PRACTICAL_INDEX_FACTS } from '../../dat
 import { INSTRUMENT_FACTS_BY_ISIN } from '../../data/instrument-facts.js'
 import { INSTRUMENT_REFERENCE_EVIDENCE } from '../../data/instrument-reference-evidence.js'
 import { getInstrumentName, getInstrumentPeaStatus } from '../../data/instruments.js'
-import { formatEtfTer, ETF_TER_EVIDENCE } from '../../data/etf-ter.js'
+import { formatEtfTer } from '../../data/etf-ter.js';
+import { ETF_TER_EVIDENCE } from '../../data/etf-ter-evidence.js';
 import { getPreferredInstrumentListing } from '../../data/instrument-listings.js'
 import { REGULATORY as R, REGULATORY_OBSERVATIONS } from '../../data/regulatory-data.js'
 import { INSURANCE } from '../../data/insurance.js'
