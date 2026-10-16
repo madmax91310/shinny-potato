@@ -64,6 +64,7 @@ jobs:
       - run: node scripts/test-performance-rankings.mjs
       - run: node scripts/build-tool-links.mjs && node scripts/test-tools-roadmap.mjs
       - run: node scripts/test-selected-data.mjs
+      - run: node scripts/test-tool-projections.mjs
       - run: node scripts/test-light-registries.mjs
       - run: node scripts/test-browser-shards.mjs
       - run: node scripts/test-broker-automation.mjs
@@ -158,7 +159,6 @@ jobs:
       - run: node scripts/test-monitoring-context.mjs
       - run: node scripts/test-format-loading.mjs
       - run: node scripts/test-history-pool-initialization.mjs
-      - run: node scripts/test-tool-projections.mjs
       - run: npm run build
       - run: node scripts/build-app-inventory.mjs --check
       - run: node scripts/test-format-loading.mjs --built

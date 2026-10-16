@@ -1,4 +1,6 @@
 import assert from 'node:assert/strict'
+import {createHash} from 'node:crypto'
+import * as annualOriginal from '../src/pages/tweet-midi/data/marketHistory.js'
 import { createServer } from 'vite'
 import React from 'react'
 import { renderToString } from 'react-dom/server'
@@ -19,6 +21,26 @@ try {
   for (const tweet of bankOriginal.TWEETS) assert.equal(JSON.stringify(bank.getTweet(tweet.id)), JSON.stringify(tweet))
   const loaded = await server.ssrLoadModule('/src/data/market-history.js')
   assert.equal(JSON.stringify(loaded.ASSETS), JSON.stringify(original.ASSETS))
+  const calculator=await server.ssrLoadModule('/src/data/calculator-history.js')
+  const annual=await server.ssrLoadModule('/src/pages/tweet-midi/data/performanceHistory.js')
+  const records=new Map(Object.values(original.ASSETS).map(asset=>{const body=JSON.stringify(asset);return [createHash('sha256').update(body).digest('hex').slice(0,20),asset]}))
+  const previousFetch=globalThis.fetch
+  let requests=0
+  globalThis.fetch=async url=>{requests++;const hash=String(url).match(/\/data\/history\/([a-f0-9]+)\.json$/)?.[1];assert(records.has(hash),`Unknown selected history URL: ${url}`);return{ok:true,json:async()=>JSON.parse(JSON.stringify(records.get(hash)))}}
+  try {
+    for(const [id,asset] of Object.entries(original.ASSETS)){
+      assert.equal(calculator.ASSETS[id].historyPending,true)
+      assert.deepEqual(JSON.parse(JSON.stringify(calculator.ASSETS[id].points)),[asset.points[0],asset.points.at(-1)])
+      assert.equal(calculator.getAssetMinDate(id),original.getAssetMinDate(id))
+      assert.equal(annual.ASSETS[id].points,undefined)
+      for(const year of annualOriginal.getAnnualReturnStartYears(id)) assert.deepEqual(JSON.parse(JSON.stringify(annual.getAnnualReturns(id,year))),annualOriginal.getAnnualReturns(id,year))
+      await calculator.ensureCalculatorAsset(id)
+      assert.deepEqual(JSON.parse(JSON.stringify(calculator.ASSETS[id])),JSON.parse(JSON.stringify(asset)))
+    }
+    assert.equal(requests,Object.keys(original.ASSETS).length)
+    await calculator.ensureCalculatorAsset('apple')
+    assert.equal(requests,Object.keys(original.ASSETS).length,'Loaded history must stay cached')
+  } finally {globalThis.fetch=previousFetch}
   const review = await server.ssrLoadModule('/src/data/review-catalog.js')
   assert.equal(JSON.stringify(review.REVIEW_CATALOG), JSON.stringify(projectReviewCatalog(DATA_CATALOG)))
   assert.equal(describeDataField({ label: 'PER', value: { value: 22.5, unit: 'fois' } }), '22,5 fois')
@@ -27,8 +49,9 @@ try {
   for (const route of ['tweet-midi', ...['dilemme','lexique','comparatif','anniversaire','performance','pouvoir'].map(n => `tweet-midi/formats/${n}`), 'investment-calculator', 'data-review', 'data-search']) {
     const { default: App } = await server.ssrLoadModule(`/src/pages/${route}/App.jsx`)
     const html = renderToString(React.createElement(MemoryRouter, null, React.createElement(App)))
-    assert(html.length > 1000, `Empty ${route}`)
+    if(route==='investment-calculator'){assert.match(html,/role="status"/);assert.match(html,/Chargement de l’historique/)}
+    else assert(html.length > 1000, `Empty ${route}`)
     if (route === 'tweet-midi') assert(html.includes('Il y a X ans'), 'Legacy mixed format controls missing')
   }
-  console.log('Vite projections and all affected route components render with canonical histories.')
+  console.log('Vite projections: every selected history and annual window match canonical data; cache, loading state and affected routes verified.')
 } finally { await server.close() }
