@@ -33,24 +33,19 @@
     },
     "update-market-monthly.yml": {
       "name": "Historiques mensuels des marchés",
-      "runId": 38864357760,
+      "runId": 38890941920,
       "attempt": 1,
-      "completedAt": "2026-10-16T07:25:57Z",
-      "status": "failure",
-      "lastSuccessAt": "2026-10-16T05:04:31Z",
+      "completedAt": "2026-10-16T11:20:21Z",
+      "status": "success",
+      "lastSuccessAt": "2026-10-16T11:20:21Z",
       "collectionStatus": "success",
       "validationStatus": "success",
       "recordingStatus": "success",
-      "publicationStatus": "failure",
-      "lastCollectionSuccessAt": "2026-10-16T07:25:57Z",
+      "publicationStatus": "not-run",
+      "lastCollectionSuccessAt": "2026-10-16T11:20:21Z",
       "lastPublicationSuccessAt": "2026-10-16T05:04:29Z",
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38864357760",
-      "failures": [
-        {
-          "job": "deploy / browser-checks (0)",
-          "step": "Run node scripts/run-browser-checks.mjs 0 4"
-        }
-      ],
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38890941920",
+      "failures": [],
       "dataFailures": {}
     },
     "update-company-analysis.yml": {
@@ -375,11 +370,11 @@
       "dataFailures": {}
     }
   },
-  "updatedAt": "2026-10-16T11:17:09Z",
+  "updatedAt": "2026-10-16T11:20:21Z",
   "monitoring": {
     "schemaVersion": 1,
-    "checkedAt": "2026-10-16T11:17:44.221953+00:00",
-    "revision": 40,
+    "checkedAt": "2026-10-16T11:20:36.592053+00:00",
+    "revision": 41,
     "active": {
       "collection:update-practical-sheets.yml:practical:13f": {
         "name": "SEC · questions et réponses sur le formulaire 13F",
@@ -400,7 +395,7 @@
         "dataId": "practical:13f",
         "id": "collection:update-practical-sheets.yml:practical:13f",
         "firstSeenAt": "2026-10-14T21:07:26.171294+00:00",
-        "lastSeenAt": "2026-10-16T11:17:44.221953+00:00"
+        "lastSeenAt": "2026-10-16T11:20:36.592053+00:00"
       },
       "collection:update-publication-observations.yml:anniversary-nasdaq100": {
         "name": "anniversary-nasdaq100",
@@ -420,7 +415,7 @@
         "dataId": "anniversary-nasdaq100",
         "id": "collection:update-publication-observations.yml:anniversary-nasdaq100",
         "firstSeenAt": "2026-10-16T11:16:49.454190+00:00",
-        "lastSeenAt": "2026-10-16T11:17:44.221953+00:00"
+        "lastSeenAt": "2026-10-16T11:20:36.592053+00:00"
       },
       "collection:update-insurance.yml:linxea-avenir-2": {
         "name": "Linxea Avenir 2",
@@ -439,7 +434,7 @@
         "dataId": "linxea-avenir-2",
         "id": "collection:update-insurance.yml:linxea-avenir-2",
         "firstSeenAt": "2026-10-14T13:08:27.203935+00:00",
-        "lastSeenAt": "2026-10-16T11:17:44.221953+00:00"
+        "lastSeenAt": "2026-10-16T11:20:36.592053+00:00"
       },
       "collection:update-scpi.yml:remake-live": {
         "name": "Remake Live",
@@ -462,7 +457,7 @@
         "dataId": "remake-live",
         "id": "collection:update-scpi.yml:remake-live",
         "firstSeenAt": "2026-10-15T13:02:43.499914+00:00",
-        "lastSeenAt": "2026-10-16T11:17:44.221953+00:00"
+        "lastSeenAt": "2026-10-16T11:20:36.592053+00:00"
       },
       "collection:update-regulatory-data.yml:broker-observation:caidf:profile:change": {
         "name": "caidf:profile:change",
@@ -482,26 +477,7 @@
         "dataId": "broker-observation:caidf:profile:change",
         "id": "collection:update-regulatory-data.yml:broker-observation:caidf:profile:change",
         "firstSeenAt": "2026-10-15T18:00:14.760687+00:00",
-        "lastSeenAt": "2026-10-16T11:17:44.221953+00:00"
-      },
-      "publication:update-market-monthly.yml": {
-        "name": "Historiques mensuels des marchés",
-        "tools": [
-          "Et si tu avais investi",
-          "Performance depuis",
-          "Duel",
-          "Générateur"
-        ],
-        "impactScope": "collector",
-        "workflow": "update-market-monthly.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38864357760",
-        "to": "/donnees-a-revoir",
-        "kind": "publication",
-        "field": "Publication",
-        "cause": "deploy / browser-checks (0) : Run node scripts/run-browser-checks.mjs 0 4",
-        "id": "publication:update-market-monthly.yml",
-        "firstSeenAt": "2026-10-16T07:26:14.661381+00:00",
-        "lastSeenAt": "2026-10-16T11:17:44.221953+00:00"
+        "lastSeenAt": "2026-10-16T11:20:36.592053+00:00"
       },
       "monitor:radar": {
         "kind": "unobserved",
@@ -514,18 +490,10 @@
         "to": "/donnees-a-revoir",
         "id": "monitor:radar",
         "firstSeenAt": "2026-10-15T18:53:46.175472+00:00",
-        "lastSeenAt": "2026-10-16T11:17:44.221953+00:00"
+        "lastSeenAt": "2026-10-16T11:20:36.592053+00:00"
       }
     },
     "events": [
-      {
-        "revision": 11,
-        "at": "2026-10-14T14:50:03.471457+00:00",
-        "opened": [
-          "publication:update-company-analysis.yml"
-        ],
-        "resolved": []
-      },
       {
         "revision": 12,
         "at": "2026-10-14T16:08:58.885600+00:00",
@@ -3562,9 +3530,56 @@
           "collection:update-publication-observations.yml:anniversary-nasdaq100"
         ],
         "resolved": []
+      },
+      {
+        "revision": 41,
+        "at": "2026-10-16T11:20:36.592053+00:00",
+        "opened": [],
+        "resolved": [
+          {
+            "name": "Historiques mensuels des marchés",
+            "tools": [
+              "Et si tu avais investi",
+              "Performance depuis",
+              "Duel",
+              "Générateur"
+            ],
+            "impactScope": "collector",
+            "workflow": "update-market-monthly.yml",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38864357760",
+            "to": "/donnees-a-revoir",
+            "kind": "publication",
+            "field": "Publication",
+            "cause": "deploy / browser-checks (0) : Run node scripts/run-browser-checks.mjs 0 4",
+            "id": "publication:update-market-monthly.yml",
+            "firstSeenAt": "2026-10-16T07:26:14.661381+00:00",
+            "lastSeenAt": "2026-10-16T11:17:44.221953+00:00",
+            "resolvedAt": "2026-10-16T11:20:36.592053+00:00"
+          }
+        ]
       }
     ],
     "resolved": [
+      {
+        "name": "Historiques mensuels des marchés",
+        "tools": [
+          "Et si tu avais investi",
+          "Performance depuis",
+          "Duel",
+          "Générateur"
+        ],
+        "impactScope": "collector",
+        "workflow": "update-market-monthly.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38864357760",
+        "to": "/donnees-a-revoir",
+        "kind": "publication",
+        "field": "Publication",
+        "cause": "deploy / browser-checks (0) : Run node scripts/run-browser-checks.mjs 0 4",
+        "id": "publication:update-market-monthly.yml",
+        "firstSeenAt": "2026-10-16T07:26:14.661381+00:00",
+        "lastSeenAt": "2026-10-16T11:17:44.221953+00:00",
+        "resolvedAt": "2026-10-16T11:20:36.592053+00:00"
+      },
       {
         "name": "Vanguard LifeStrategy",
         "tools": [
@@ -5799,32 +5814,6 @@
         "field": "Poids du pays Singapore",
         "cause": "Valeur contradictoire pour la même période (2026-10-12) : Poids du pays Singapore. Dernière observation conservée ; propositions archivées (etf:IE00BLNMYC90:countries:Singapore:8abd3910625177898532bf9d:2026-10-12).",
         "id": "radar:7ecf824b7b5c50cea4ece3b2",
-        "firstSeenAt": "2026-10-14T11:42:41.168472+00:00",
-        "lastSeenAt": "2026-10-14T19:11:55.324201+00:00",
-        "resolvedAt": "2026-10-14T19:12:42.647375+00:00"
-      },
-      {
-        "name": "Xtrackers S&P 500 Equal Weight UCITS ETF 1C",
-        "tools": [
-          "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Impact des frais",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "sourceUrls": [
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/historicaldata/download",
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/pdpMetaTagsTealium",
-          "https://etf.dws.com/en-ch/IE00BLNMYC90-s-p-500-equal-weight-ucits-etf-1c/",
-          "https://www.borsaitaliana.it/borsa/etf/scheda/IE00BLNMYC90.html?lang=en",
-          "https://www.zonebourse.com/cours/etf/XTRACKERS-S-P-500-EQUAL-W-122801274/composition/"
-        ],
-        "to": "/bibliotheque-donnees?id=IE00BLNMYC90",
-        "kind": "conflict",
-        "field": "Poids du pays Switzerland",
-        "cause": "Valeur contradictoire pour la même période (2026-10-12) : Poids du pays Switzerland. Dernière observation conservée ; propositions archivées (etf:IE00BLNMYC90:countries:Switzerland:8abd3910625177898532bf9d:2026-10-12).",
-        "id": "radar:cdc877fda7404402abef4457",
         "firstSeenAt": "2026-10-14T11:42:41.168472+00:00",
         "lastSeenAt": "2026-10-14T19:11:55.324201+00:00",
         "resolvedAt": "2026-10-14T19:12:42.647375+00:00"
