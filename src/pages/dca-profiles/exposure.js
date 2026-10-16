@@ -24,6 +24,7 @@ export function dcaExposure(lines,references,field,now=new Date()){
    const date=stamp(o.asOf),age=(today-date)/day
    if(!Number.isFinite(date)||age<0||age>EXPOSURE_MAX_AGE_DAYS)reason='Observation trop ancienne ou date invalide'
    else if(!o.sourceUrl||!['fund','index','equity'].includes(o.basis)||!o.compatibility||!o.rows?.length)reason='Méthode ou source non qualifiée'
+   else if(o.rows.some(row=>Number.isFinite(row.weightPct)&&(row.weightPct<0||row.weightPct>100)))reason='Poids signés incompatibles avec un donut'
    else if(o.rows.some(row=>!row.name||!Number.isFinite(row.weightPct)||row.weightPct<0||row.weightPct>100)||new Set(o.rows.map(row=>row.name.toLowerCase())).size!==o.rows.length)reason='Ventilation invalide'
   }
   const sum=!reason?o.rows.reduce((s,row)=>s+row.weightPct,0):0

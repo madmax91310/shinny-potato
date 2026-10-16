@@ -12,6 +12,7 @@ try {
   let failHoldings=true
   await page.route(/\/holdings-\d+\.json/,route=>failHoldings&&!/[?&](import|url)([=&]|$)/.test(route.request().url())?route.abort():route.continue())
   await page.goto(base+'le-dca-de')
+  await page.getByRole('button',{name:'Le DCA de…',exact:true}).click()
   await page.getByRole('button',{name:'Relancer l’analyse',exact:true}).waitFor()
   failHoldings=false
   await page.getByRole('button',{name:'Relancer l’analyse',exact:true}).click()

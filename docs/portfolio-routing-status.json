@@ -1,10 +1,112 @@
 {
-  "checkedAt": "2026-10-16T06:23:57.303Z",
+  "checkedAt": "2026-10-16T11:44:18.768Z",
   "catalog": 440,
-  "completeCompositions": 80,
-  "completeConfigured": 80,
+  "completeCompositions": 85,
+  "completeConfigured": 85,
   "missingEquities": [],
   "exposureCoverage": 404,
+  "notApplicable": [
+    {
+      "id": "FR0013416716",
+      "name": "Amundi Physical Gold ETC",
+      "reason": "Hors classification pays/secteurs actions"
+    },
+    {
+      "id": "IE00B4NCWG09",
+      "name": "iShares Physical Silver ETC",
+      "reason": "Hors classification pays/secteurs actions"
+    },
+    {
+      "id": "JE00B1VS3770",
+      "name": "WisdomTree Physical Gold",
+      "reason": "Hors classification pays/secteurs actions"
+    },
+    {
+      "id": "GB00B15KXV33",
+      "name": "WisdomTree WTI Crude Oil",
+      "reason": "Hors classification pays/secteurs actions"
+    },
+    {
+      "id": "JE00B2QXZK10",
+      "name": "WisdomTree Cocoa",
+      "reason": "Hors classification pays/secteurs actions"
+    },
+    {
+      "id": "IE00B579F325",
+      "name": "Invesco Physical Gold ETC",
+      "reason": "Hors classification pays/secteurs actions"
+    },
+    {
+      "id": "IE00B4ND3602",
+      "name": "iShares Physical Gold ETC",
+      "reason": "Hors classification pays/secteurs actions"
+    },
+    {
+      "id": "IE00BDFL4P12",
+      "name": "iShares Diversified Commodity Swap UCITS ETF",
+      "reason": "Hors classification pays/secteurs actions"
+    },
+    {
+      "id": "GB00BJYDH287",
+      "name": "WisdomTree Physical Bitcoin",
+      "reason": "Hors classification pays/secteurs actions"
+    },
+    {
+      "id": "DE000A27Z304",
+      "name": "Bitwise Physical Bitcoin ETP",
+      "reason": "Hors classification pays/secteurs actions"
+    },
+    {
+      "id": "GB00BLD4ZL17",
+      "name": "CoinShares Physical Bitcoin ETP",
+      "reason": "Hors classification pays/secteurs actions"
+    },
+    {
+      "id": "IE00B4556L06",
+      "name": "iShares Physical Palladium ETC",
+      "reason": "Hors classification pays/secteurs actions"
+    },
+    {
+      "id": "JE00BN7KB334",
+      "name": "WisdomTree Natural Gas",
+      "reason": "Hors classification pays/secteurs actions"
+    },
+    {
+      "id": "JE00BN7KB664",
+      "name": "WisdomTree Wheat",
+      "reason": "Hors classification pays/secteurs actions"
+    },
+    {
+      "id": "IE00BD6FTQ80",
+      "name": "Invesco Bloomberg Commodity UCITS ETF",
+      "reason": "Hors classification pays/secteurs actions"
+    },
+    {
+      "id": "CH0454664001",
+      "name": "21Shares Bitcoin ETP",
+      "reason": "Hors classification pays/secteurs actions"
+    },
+    {
+      "id": "GB00BLD4ZM24",
+      "name": "CoinShares Ethereum Staking ETP",
+      "reason": "Hors classification pays/secteurs actions"
+    },
+    {
+      "id": "IE00B4LHWP62",
+      "name": "iShares Physical Platinum ETC",
+      "reason": "Hors classification pays/secteurs actions"
+    },
+    {
+      "id": "JE00B78CGV99",
+      "name": "WisdomTree Brent Crude Oil",
+      "reason": "Hors classification pays/secteurs actions"
+    },
+    {
+      "id": "JE00BN7KB557",
+      "name": "WisdomTree Coffee",
+      "reason": "Hors classification pays/secteurs actions"
+    }
+  ],
   "incomplete": [
     {
       "id": "lifestrategy20",
@@ -63,34 +165,6 @@
       }
     },
     {
-      "id": "FR0013416716",
-      "name": "Amundi Physical Gold ETC",
-      "countries": {
-        "coverage": 0,
-        "outside": 100,
-        "reason": "Hors classification"
-      },
-      "sectors": {
-        "coverage": 0,
-        "outside": 100,
-        "reason": "Hors classification"
-      }
-    },
-    {
-      "id": "IE00B4NCWG09",
-      "name": "iShares Physical Silver ETC",
-      "countries": {
-        "coverage": 0,
-        "outside": 100,
-        "reason": "Hors classification"
-      },
-      "sectors": {
-        "coverage": 0,
-        "outside": 100,
-        "reason": "Hors classification"
-      }
-    },
-    {
       "id": "IE00B2NPKV68",
       "name": "iShares J.P. Morgan $ EM Bond UCITS ETF USD (Dist)",
       "countries": {
@@ -102,22 +176,8 @@
       "sectors": {
         "coverage": 0,
         "outside": 0,
-        "reason": "Ventilation invalide",
+        "reason": "Poids signés incompatibles avec un donut",
         "date": "2026-10-14"
-      }
-    },
-    {
-      "id": "JE00B1VS3770",
-      "name": "WisdomTree Physical Gold",
-      "countries": {
-        "coverage": 0,
-        "outside": 100,
-        "reason": "Hors classification"
-      },
-      "sectors": {
-        "coverage": 0,
-        "outside": 100,
-        "reason": "Hors classification"
       }
     },
     {
@@ -150,89 +210,19 @@
       }
     },
     {
-      "id": "GB00B15KXV33",
-      "name": "WisdomTree WTI Crude Oil",
-      "countries": {
-        "coverage": 0,
-        "outside": 0,
-        "reason": "Ventilation absente"
-      },
-      "sectors": {
-        "coverage": 0,
-        "outside": 0,
-        "reason": "Ventilation absente"
-      }
-    },
-    {
-      "id": "JE00B2QXZK10",
-      "name": "WisdomTree Cocoa",
-      "countries": {
-        "coverage": 0,
-        "outside": 0,
-        "reason": "Ventilation absente"
-      },
-      "sectors": {
-        "coverage": 0,
-        "outside": 0,
-        "reason": "Ventilation absente"
-      }
-    },
-    {
       "id": "IE00B441G979",
       "name": "iShares MSCI World EUR Hedged UCITS ETF (Acc)",
       "countries": {
         "coverage": 0,
         "outside": 0,
-        "reason": "Ventilation invalide",
+        "reason": "Poids signés incompatibles avec un donut",
         "date": "2026-10-13"
       },
       "sectors": {
         "coverage": 0,
         "outside": 0,
-        "reason": "Ventilation invalide",
+        "reason": "Poids signés incompatibles avec un donut",
         "date": "2026-10-13"
-      }
-    },
-    {
-      "id": "IE00B579F325",
-      "name": "Invesco Physical Gold ETC",
-      "countries": {
-        "coverage": 0,
-        "outside": 100,
-        "reason": "Hors classification"
-      },
-      "sectors": {
-        "coverage": 0,
-        "outside": 100,
-        "reason": "Hors classification"
-      }
-    },
-    {
-      "id": "IE00B4ND3602",
-      "name": "iShares Physical Gold ETC",
-      "countries": {
-        "coverage": 0,
-        "outside": 100,
-        "reason": "Hors classification"
-      },
-      "sectors": {
-        "coverage": 0,
-        "outside": 100,
-        "reason": "Hors classification"
-      }
-    },
-    {
-      "id": "IE00BDFL4P12",
-      "name": "iShares Diversified Commodity Swap UCITS ETF",
-      "countries": {
-        "coverage": 0,
-        "outside": 0,
-        "reason": "Ventilation absente"
-      },
-      "sectors": {
-        "coverage": 0,
-        "outside": 0,
-        "reason": "Ventilation absente"
       }
     },
     {
@@ -241,7 +231,7 @@
       "countries": {
         "coverage": 0,
         "outside": 0,
-        "reason": "Ventilation invalide",
+        "reason": "Poids signés incompatibles avec un donut",
         "date": "2026-10-14"
       },
       "sectors": {
@@ -249,62 +239,6 @@
         "outside": 0,
         "reason": "Disponible",
         "date": "2026-10-14"
-      }
-    },
-    {
-      "id": "GB00BJYDH287",
-      "name": "WisdomTree Physical Bitcoin",
-      "countries": {
-        "coverage": 0,
-        "outside": 100,
-        "reason": "Hors classification"
-      },
-      "sectors": {
-        "coverage": 0,
-        "outside": 100,
-        "reason": "Hors classification"
-      }
-    },
-    {
-      "id": "DE000A27Z304",
-      "name": "Bitwise Physical Bitcoin ETP",
-      "countries": {
-        "coverage": 0,
-        "outside": 100,
-        "reason": "Hors classification"
-      },
-      "sectors": {
-        "coverage": 0,
-        "outside": 100,
-        "reason": "Hors classification"
-      }
-    },
-    {
-      "id": "GB00BLD4ZL17",
-      "name": "CoinShares Physical Bitcoin ETP",
-      "countries": {
-        "coverage": 0,
-        "outside": 100,
-        "reason": "Hors classification"
-      },
-      "sectors": {
-        "coverage": 0,
-        "outside": 100,
-        "reason": "Hors classification"
-      }
-    },
-    {
-      "id": "IE00B4556L06",
-      "name": "iShares Physical Palladium ETC",
-      "countries": {
-        "coverage": 0,
-        "outside": 100,
-        "reason": "Hors classification"
-      },
-      "sectors": {
-        "coverage": 0,
-        "outside": 100,
-        "reason": "Hors classification"
       }
     },
     {
@@ -323,34 +257,6 @@
       }
     },
     {
-      "id": "JE00BN7KB334",
-      "name": "WisdomTree Natural Gas",
-      "countries": {
-        "coverage": 0,
-        "outside": 0,
-        "reason": "Ventilation absente"
-      },
-      "sectors": {
-        "coverage": 0,
-        "outside": 0,
-        "reason": "Ventilation absente"
-      }
-    },
-    {
-      "id": "JE00BN7KB664",
-      "name": "WisdomTree Wheat",
-      "countries": {
-        "coverage": 0,
-        "outside": 0,
-        "reason": "Ventilation absente"
-      },
-      "sectors": {
-        "coverage": 0,
-        "outside": 0,
-        "reason": "Ventilation absente"
-      }
-    },
-    {
       "id": "IE000SNLFDR7",
       "name": "iShares iBonds Dec 2029 Term € Corp UCITS ETF",
       "countries": {
@@ -362,7 +268,7 @@
       "sectors": {
         "coverage": 0,
         "outside": 0,
-        "reason": "Ventilation invalide",
+        "reason": "Poids signés incompatibles avec un donut",
         "date": "2026-10-13"
       }
     },
@@ -392,7 +298,7 @@
       "sectors": {
         "coverage": 0,
         "outside": 0,
-        "reason": "Ventilation invalide",
+        "reason": "Poids signés incompatibles avec un donut",
         "date": "2026-10-14"
       }
     },
@@ -411,92 +317,8 @@
       }
     },
     {
-      "id": "IE00BD6FTQ80",
-      "name": "Invesco Bloomberg Commodity UCITS ETF",
-      "countries": {
-        "coverage": 0,
-        "outside": 0,
-        "reason": "Ventilation absente"
-      },
-      "sectors": {
-        "coverage": 0,
-        "outside": 0,
-        "reason": "Ventilation absente"
-      }
-    },
-    {
-      "id": "CH0454664001",
-      "name": "21Shares Bitcoin ETP",
-      "countries": {
-        "coverage": 0,
-        "outside": 100,
-        "reason": "Hors classification"
-      },
-      "sectors": {
-        "coverage": 0,
-        "outside": 100,
-        "reason": "Hors classification"
-      }
-    },
-    {
       "id": "GB00B15KXQ89",
       "name": "WisdomTree Copper",
-      "countries": {
-        "coverage": 0,
-        "outside": 0,
-        "reason": "Ventilation absente"
-      },
-      "sectors": {
-        "coverage": 0,
-        "outside": 0,
-        "reason": "Ventilation absente"
-      }
-    },
-    {
-      "id": "GB00BLD4ZM24",
-      "name": "CoinShares Ethereum Staking ETP",
-      "countries": {
-        "coverage": 0,
-        "outside": 100,
-        "reason": "Hors classification"
-      },
-      "sectors": {
-        "coverage": 0,
-        "outside": 100,
-        "reason": "Hors classification"
-      }
-    },
-    {
-      "id": "IE00B4LHWP62",
-      "name": "iShares Physical Platinum ETC",
-      "countries": {
-        "coverage": 0,
-        "outside": 100,
-        "reason": "Hors classification"
-      },
-      "sectors": {
-        "coverage": 0,
-        "outside": 100,
-        "reason": "Hors classification"
-      }
-    },
-    {
-      "id": "JE00B78CGV99",
-      "name": "WisdomTree Brent Crude Oil",
-      "countries": {
-        "coverage": 0,
-        "outside": 0,
-        "reason": "Ventilation absente"
-      },
-      "sectors": {
-        "coverage": 0,
-        "outside": 0,
-        "reason": "Ventilation absente"
-      }
-    },
-    {
-      "id": "JE00BN7KB557",
-      "name": "WisdomTree Coffee",
       "countries": {
         "coverage": 0,
         "outside": 0,
@@ -525,10 +347,726 @@
   ],
   "historical": [
     {
-      "id": "walmart",
-      "name": "Walmart",
+      "id": "etfImie",
+      "name": "SPDR ACWI IMI (IMIE)",
+      "kind": "catalog",
+      "first": "2011-11",
+      "last": "2026-09",
+      "sourceLast": "2026-09",
+      "automatic": true,
+      "tools": {
+        "calculator": true,
+        "performance": true,
+        "anniversary": true
+      }
+    },
+    {
+      "id": "etfVwce",
+      "name": "Vanguard FTSE All-World (VWCE)",
+      "kind": "catalog",
+      "first": "2019-08",
+      "last": "2026-09",
+      "sourceLast": "2026-09",
+      "automatic": true,
+      "tools": {
+        "calculator": true,
+        "performance": true,
+        "anniversary": true
+      }
+    },
+    {
+      "id": "etfEqualWeight",
+      "name": "Xtrackers S&P 500 Equal Weight",
+      "kind": "catalog",
+      "first": "2014-07",
+      "last": "2026-09",
+      "sourceLast": "2026-09",
+      "automatic": true,
+      "tools": {
+        "calculator": true,
+        "performance": true,
+        "anniversary": true
+      }
+    },
+    {
+      "id": "etfMinVol",
+      "name": "iShares World Minimum Volatility",
+      "kind": "catalog",
+      "first": "2012-12",
+      "last": "2026-09",
+      "sourceLast": "2026-09",
+      "automatic": true,
+      "tools": {
+        "calculator": true,
+        "performance": true,
+        "anniversary": true
+      }
+    },
+    {
+      "id": "etfWqdv",
+      "name": "iShares World Quality Dividend (WQDV)",
+      "kind": "catalog",
+      "first": "2017-07",
+      "last": "2026-09",
+      "sourceLast": "2026-09",
+      "automatic": true,
+      "tools": {
+        "calculator": true,
+        "performance": true,
+        "anniversary": true
+      }
+    },
+    {
+      "id": "etfTdiv",
+      "name": "VanEck Dividend Leaders (TDIV)",
+      "kind": "catalog",
+      "first": "2016-06",
+      "last": "2026-09",
+      "sourceLast": "2026-09",
+      "automatic": true,
+      "tools": {
+        "calculator": true,
+        "performance": true,
+        "anniversary": true
+      }
+    },
+    {
+      "id": "etfEpra",
+      "name": "Amundi immobilier mondial (EPRA)",
+      "kind": "catalog",
+      "first": "2016-12",
+      "last": "2026-09",
+      "sourceLast": "2026-09",
+      "automatic": true,
+      "tools": {
+        "calculator": true,
+        "performance": true,
+        "anniversary": true
+      }
+    },
+    {
+      "id": "etfCmod",
+      "name": "Invesco Bloomberg Commodity (CMOD)",
+      "kind": "catalog",
+      "first": "2017-02",
+      "last": "2026-09",
+      "sourceLast": "2026-09",
+      "automatic": true,
+      "tools": {
+        "calculator": true,
+        "performance": true,
+        "anniversary": true
+      }
+    },
+    {
+      "id": "etfSemi",
+      "name": "iShares Global Semiconductors",
+      "kind": "catalog",
+      "first": "2021-09",
+      "last": "2026-09",
+      "sourceLast": "2026-09",
+      "automatic": true,
+      "tools": {
+        "calculator": true,
+        "performance": true,
+        "anniversary": true
+      }
+    },
+    {
+      "id": "etfLock",
+      "name": "iShares Digital Security (LOCK)",
+      "kind": "catalog",
+      "first": "2018-10",
+      "last": "2026-09",
+      "sourceLast": "2026-09",
+      "automatic": true,
+      "tools": {
+        "calculator": true,
+        "performance": true,
+        "anniversary": true
+      }
+    },
+    {
+      "id": "etfAvantisSmallValue",
+      "name": "Avantis Global Small Cap Value (AVWS)",
+      "kind": "catalog",
+      "first": "2024-10",
+      "last": "2026-09",
+      "sourceLast": "2026-09",
+      "automatic": true,
+      "tools": {
+        "calculator": true,
+        "performance": true,
+        "anniversary": true
+      }
+    },
+    {
+      "id": "etcPlatinum",
+      "name": "iShares Physical Platinum (IPLT)",
+      "kind": "catalog",
+      "first": "2011-05",
+      "last": "2026-09",
+      "sourceLast": "2026-09",
+      "automatic": true,
+      "tools": {
+        "calculator": true,
+        "performance": true,
+        "anniversary": true
+      }
+    },
+    {
+      "id": "etcPalladium",
+      "name": "iShares Physical Palladium (IPDM)",
+      "kind": "catalog",
+      "first": "2011-05",
+      "last": "2026-09",
+      "sourceLast": "2026-09",
+      "automatic": true,
+      "tools": {
+        "calculator": true,
+        "performance": true,
+        "anniversary": true
+      }
+    },
+    {
+      "id": "etf_water_ishares",
+      "name": "iShares Global Water UCITS ETF",
+      "kind": "catalog",
       "first": "2015-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
+      "automatic": true,
+      "tools": {
+        "calculator": true,
+        "performance": true,
+        "anniversary": true
+      }
+    },
+    {
+      "id": "etf_agribusiness_ishares",
+      "name": "iShares Agribusiness UCITS ETF USD (Acc)",
+      "kind": "catalog",
+      "first": "2015-01",
+      "last": "2026-09",
+      "sourceLast": "2026-09",
+      "automatic": true,
+      "tools": {
+        "calculator": true,
+        "performance": true,
+        "anniversary": true
+      }
+    },
+    {
+      "id": "etf_world_staples",
+      "name": "iShares MSCI World Consumer Staples Sector Advanced UCITS ETF",
+      "kind": "catalog",
+      "first": "2019-11",
+      "last": "2026-09",
+      "sourceLast": "2026-09",
+      "automatic": true,
+      "tools": {
+        "calculator": true,
+        "performance": true,
+        "anniversary": true
+      }
+    },
+    {
+      "id": "etf_world_discretionary",
+      "name": "iShares MSCI World Consumer Discretionary Sector Advanced UCITS ETF",
+      "kind": "catalog",
+      "first": "2019-11",
+      "last": "2026-09",
+      "sourceLast": "2026-09",
+      "automatic": true,
+      "tools": {
+        "calculator": true,
+        "performance": true,
+        "anniversary": true
+      }
+    },
+    {
+      "id": "etf_world_energy",
+      "name": "iShares MSCI World Energy Sector UCITS ETF",
+      "kind": "catalog",
+      "first": "2019-11",
+      "last": "2026-09",
+      "sourceLast": "2026-09",
+      "automatic": true,
+      "tools": {
+        "calculator": true,
+        "performance": true,
+        "anniversary": true
+      }
+    },
+    {
+      "id": "etf_world_communication",
+      "name": "iShares MSCI World Communication Services Sector Advanced UCITS ETF",
+      "kind": "catalog",
+      "first": "2022-05",
+      "last": "2026-09",
+      "sourceLast": "2026-09",
+      "automatic": true,
+      "tools": {
+        "calculator": true,
+        "performance": true,
+        "anniversary": true
+      }
+    },
+    {
+      "id": "etf_private_equity_ishares",
+      "name": "iShares Listed Private Equity UCITS ETF",
+      "kind": "catalog",
+      "first": "2015-01",
+      "last": "2026-09",
+      "sourceLast": "2026-09",
+      "automatic": true,
+      "tools": {
+        "calculator": true,
+        "performance": true,
+        "anniversary": true
+      }
+    },
+    {
+      "id": "etf_timber_ishares",
+      "name": "iShares Global Timber & Forestry UCITS ETF",
+      "kind": "catalog",
+      "first": "2016-01",
+      "last": "2026-09",
+      "sourceLast": "2026-09",
+      "automatic": true,
+      "tools": {
+        "calculator": true,
+        "performance": true,
+        "anniversary": true
+      }
+    },
+    {
+      "id": "etfIndustrials",
+      "name": "Xtrackers World Industrials",
+      "kind": "catalog",
+      "first": "2016-04",
+      "last": "2026-09",
+      "sourceLast": "2026-09",
+      "automatic": true,
+      "tools": {
+        "calculator": true,
+        "performance": true,
+        "anniversary": true
+      }
+    },
+    {
+      "id": "etf_clean_energy",
+      "name": "iShares Global Clean Energy Transition UCITS ETF",
+      "kind": "catalog",
+      "first": "2015-01",
+      "last": "2026-09",
+      "sourceLast": "2026-09",
+      "automatic": true,
+      "tools": {
+        "calculator": true,
+        "performance": true,
+        "anniversary": true
+      }
+    },
+    {
+      "id": "etf_financials",
+      "name": "iShares MSCI World Financials Sector Advanced UCITS ETF",
+      "kind": "catalog",
+      "first": "2021-05",
+      "last": "2026-09",
+      "sourceLast": "2026-09",
+      "automatic": true,
+      "tools": {
+        "calculator": true,
+        "performance": true,
+        "anniversary": true
+      }
+    },
+    {
+      "id": "etf_gold_miners",
+      "name": "VanEck Gold Miners UCITS ETF",
+      "kind": "catalog",
+      "first": "2017-05",
+      "last": "2026-09",
+      "sourceLast": "2026-09",
+      "automatic": true,
+      "tools": {
+        "calculator": true,
+        "performance": true,
+        "anniversary": true
+      }
+    },
+    {
+      "id": "etf_health",
+      "name": "iShares MSCI World Health Care Sector Advanced UCITS ETF",
+      "kind": "catalog",
+      "first": "2019-11",
+      "last": "2026-09",
+      "sourceLast": "2026-09",
+      "automatic": true,
+      "tools": {
+        "calculator": true,
+        "performance": true,
+        "anniversary": true
+      }
+    },
+    {
+      "id": "etf_infrastructure",
+      "name": "iShares Global Infrastructure UCITS ETF",
+      "kind": "catalog",
+      "first": "2015-01",
+      "last": "2026-09",
+      "sourceLast": "2026-09",
+      "automatic": true,
+      "tools": {
+        "calculator": true,
+        "performance": true,
+        "anniversary": true
+      }
+    },
+    {
+      "id": "etf_momentum",
+      "name": "iShares Edge MSCI World Momentum Factor UCITS ETF",
+      "kind": "catalog",
+      "first": "2015-01",
+      "last": "2026-09",
+      "sourceLast": "2026-09",
+      "automatic": true,
+      "tools": {
+        "calculator": true,
+        "performance": true,
+        "anniversary": true
+      }
+    },
+    {
+      "id": "etf_quality",
+      "name": "iShares Edge MSCI World Quality Factor UCITS ETF",
+      "kind": "catalog",
+      "first": "2015-01",
+      "last": "2026-09",
+      "sourceLast": "2026-09",
+      "automatic": true,
+      "tools": {
+        "calculator": true,
+        "performance": true,
+        "anniversary": true
+      }
+    },
+    {
+      "id": "etf_robotics",
+      "name": "iShares Automation & Robotics UCITS ETF",
+      "kind": "catalog",
+      "first": "2016-10",
+      "last": "2026-09",
+      "sourceLast": "2026-09",
+      "automatic": true,
+      "tools": {
+        "calculator": true,
+        "performance": true,
+        "anniversary": true
+      }
+    },
+    {
+      "id": "etf_smallcap",
+      "name": "iShares MSCI World Small Cap UCITS ETF",
+      "kind": "catalog",
+      "first": "2018-04",
+      "last": "2026-09",
+      "sourceLast": "2026-09",
+      "automatic": true,
+      "tools": {
+        "calculator": true,
+        "performance": true,
+        "anniversary": true
+      }
+    },
+    {
+      "id": "etf_value",
+      "name": "iShares Edge MSCI World Value Factor UCITS ETF",
+      "kind": "catalog",
+      "first": "2015-01",
+      "last": "2026-09",
+      "sourceLast": "2026-09",
+      "automatic": true,
+      "tools": {
+        "calculator": true,
+        "performance": true,
+        "anniversary": true
+      }
+    },
+    {
+      "id": "etfWorldMaterials",
+      "name": "iShares MSCI World Materials Sector Advanced UCITS ETF",
+      "kind": "catalog",
+      "first": "2022-05",
+      "last": "2026-09",
+      "sourceLast": "2026-09",
+      "automatic": true,
+      "tools": {
+        "calculator": true,
+        "performance": true,
+        "anniversary": true
+      }
+    },
+    {
+      "id": "etfHealthcareInnovation",
+      "name": "iShares Healthcare Innovation UCITS ETF USD (Acc)",
+      "kind": "catalog",
+      "first": "2016-10",
+      "last": "2026-09",
+      "sourceLast": "2026-09",
+      "automatic": true,
+      "tools": {
+        "calculator": true,
+        "performance": true,
+        "anniversary": true
+      }
+    },
+    {
+      "id": "etfWorldUtilities",
+      "name": "Xtrackers MSCI World Utilities UCITS ETF",
+      "kind": "catalog",
+      "first": "2016-06",
+      "last": "2026-09",
+      "sourceLast": "2026-09",
+      "automatic": true,
+      "tools": {
+        "calculator": true,
+        "performance": true,
+        "anniversary": true
+      }
+    },
+    {
+      "id": "etfCloudWisdomtree",
+      "name": "WisdomTree Cloud Computing UCITS ETF USD Acc",
+      "kind": "catalog",
+      "first": "2019-10",
+      "last": "2026-09",
+      "sourceLast": "2026-09",
+      "automatic": true,
+      "tools": {
+        "calculator": true,
+        "performance": true,
+        "anniversary": true
+      }
+    },
+    {
+      "id": "etfWorldMultifactor",
+      "name": "iShares STOXX World Equity Multifactor UCITS ETF",
+      "kind": "catalog",
+      "first": "2015-10",
+      "last": "2026-09",
+      "sourceLast": "2026-09",
+      "automatic": true,
+      "tools": {
+        "calculator": true,
+        "performance": true,
+        "anniversary": true
+      }
+    },
+    {
+      "id": "etfIbondsEuro2028",
+      "name": "iShares iBonds Dec 2028 Term € Corp UCITS ETF EUR (Acc)",
+      "kind": "catalog",
+      "first": "2023-10",
+      "last": "2026-09",
+      "sourceLast": "2026-09",
+      "automatic": true,
+      "tools": {
+        "calculator": true,
+        "performance": true,
+        "anniversary": true
+      }
+    },
+    {
+      "id": "etcSilverPhysical",
+      "name": "iShares Physical Silver ETC",
+      "kind": "catalog",
+      "first": "2015-01",
+      "last": "2026-09",
+      "sourceLast": "2026-09",
+      "automatic": true,
+      "tools": {
+        "calculator": true,
+        "performance": true,
+        "anniversary": true
+      }
+    },
+    {
+      "id": "etfSilverMiners",
+      "name": "Global X Silver Miners UCITS ETF USD Accumulating",
+      "kind": "catalog",
+      "first": "2022-06",
+      "last": "2026-09",
+      "sourceLast": "2026-09",
+      "automatic": true,
+      "tools": {
+        "calculator": true,
+        "performance": true,
+        "anniversary": true
+      }
+    },
+    {
+      "id": "etfLifeStrategy20",
+      "name": "Vanguard LifeStrategy 20/80",
+      "kind": "catalog",
+      "first": "2021-01",
+      "last": "2026-09",
+      "sourceLast": "2026-09",
+      "automatic": true,
+      "tools": {
+        "calculator": true,
+        "performance": true,
+        "anniversary": null
+      }
+    },
+    {
+      "id": "etfLifeStrategy40",
+      "name": "Vanguard LifeStrategy 40/60",
+      "kind": "catalog",
+      "first": "2021-01",
+      "last": "2026-09",
+      "sourceLast": "2026-09",
+      "automatic": true,
+      "tools": {
+        "calculator": true,
+        "performance": true,
+        "anniversary": null
+      }
+    },
+    {
+      "id": "etfLifeStrategy60",
+      "name": "Vanguard LifeStrategy 60/40",
+      "kind": "catalog",
+      "first": "2021-01",
+      "last": "2026-09",
+      "sourceLast": "2026-09",
+      "automatic": true,
+      "tools": {
+        "calculator": true,
+        "performance": true,
+        "anniversary": null
+      }
+    },
+    {
+      "id": "etfLifeStrategy80",
+      "name": "Vanguard LifeStrategy 80/20",
+      "kind": "catalog",
+      "first": "2021-01",
+      "last": "2026-09",
+      "sourceLast": "2026-09",
+      "automatic": true,
+      "tools": {
+        "calculator": true,
+        "performance": true,
+        "anniversary": null
+      }
+    },
+    {
+      "id": "etfEmSmallCap",
+      "name": "iShares MSCI EM Small Cap UCITS ETF USD (Dist)",
+      "kind": "catalog",
+      "first": "2012-01",
+      "last": "2026-09",
+      "sourceLast": "2026-09",
+      "automatic": true,
+      "tools": {
+        "calculator": true,
+        "performance": true,
+        "anniversary": true
+      }
+    },
+    {
+      "id": "etfCopperMiners",
+      "name": "Global X Copper Miners UCITS ETF USD Acc",
+      "kind": "catalog",
+      "first": "2022-03",
+      "last": "2026-09",
+      "sourceLast": "2026-09",
+      "automatic": true,
+      "tools": {
+        "calculator": true,
+        "performance": true,
+        "anniversary": true
+      }
+    },
+    {
+      "id": "etfEuropeConstruction",
+      "name": "iShares STOXX Europe 600 Construction & Materials UCITS ETF (DE)",
+      "kind": "catalog",
+      "first": "2010-01",
+      "last": "2026-09",
+      "sourceLast": "2026-09",
+      "automatic": true,
+      "tools": {
+        "calculator": true,
+        "performance": true,
+        "anniversary": true
+      }
+    },
+    {
+      "id": "etfWorldTech",
+      "name": "iShares MSCI World Information Technology (WITS)",
+      "kind": "catalog",
+      "first": "2023-03",
+      "last": "2026-09",
+      "sourceLast": "2026-09",
+      "automatic": true,
+      "tools": {
+        "calculator": true,
+        "performance": true,
+        "anniversary": true
+      }
+    },
+    {
+      "id": "etfAiBigData",
+      "name": "Xtrackers Artificial Intelligence & Big Data (XAIX)",
+      "kind": "catalog",
+      "first": "2021-05",
+      "last": "2026-09",
+      "sourceLast": "2026-09",
+      "automatic": true,
+      "tools": {
+        "calculator": true,
+        "performance": true,
+        "anniversary": true
+      }
+    },
+    {
+      "id": "etfWorldExUs",
+      "name": "Xtrackers MSCI World ex USA (EXUS)",
+      "kind": "catalog",
+      "first": "2024-03",
+      "last": "2026-09",
+      "sourceLast": "2026-09",
+      "automatic": true,
+      "tools": {
+        "calculator": true,
+        "performance": true,
+        "anniversary": true
+      }
+    },
+    {
+      "id": "etfEmExChina",
+      "name": "iShares MSCI EM ex-China (EXCH)",
+      "kind": "catalog",
+      "first": "2024-10",
+      "last": "2026-09",
+      "sourceLast": "2026-09",
+      "automatic": true,
+      "tools": {
+        "calculator": true,
+        "performance": true,
+        "anniversary": true
+      }
+    },
+    {
+      "id": "walmart",
+      "name": "Walmart",
+      "kind": "equity",
+      "first": "2015-01",
+      "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -539,8 +1077,10 @@
     {
       "id": "oracle",
       "name": "Oracle",
+      "kind": "equity",
       "first": "2015-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -551,8 +1091,10 @@
     {
       "id": "salesforce",
       "name": "Salesforce",
+      "kind": "equity",
       "first": "2015-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -563,8 +1105,10 @@
     {
       "id": "amd",
       "name": "AMD",
+      "kind": "equity",
       "first": "2015-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -575,8 +1119,10 @@
     {
       "id": "qualcomm",
       "name": "Qualcomm",
+      "kind": "equity",
       "first": "2015-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -587,8 +1133,10 @@
     {
       "id": "texas-instruments",
       "name": "Texas Instruments",
+      "kind": "equity",
       "first": "2015-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -599,8 +1147,10 @@
     {
       "id": "applied-materials",
       "name": "Applied Materials",
+      "kind": "equity",
       "first": "2015-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -611,8 +1161,10 @@
     {
       "id": "lam-research",
       "name": "Lam Research",
+      "kind": "equity",
       "first": "2015-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -623,8 +1175,10 @@
     {
       "id": "micron",
       "name": "Micron Technology",
+      "kind": "equity",
       "first": "2015-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -635,8 +1189,10 @@
     {
       "id": "ibm",
       "name": "IBM",
+      "kind": "equity",
       "first": "2015-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -647,8 +1203,10 @@
     {
       "id": "servicenow",
       "name": "ServiceNow",
+      "kind": "equity",
       "first": "2015-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -659,8 +1217,10 @@
     {
       "id": "intuit",
       "name": "Intuit",
+      "kind": "equity",
       "first": "2015-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -671,8 +1231,10 @@
     {
       "id": "palantir",
       "name": "Palantir",
+      "kind": "equity",
       "first": "2020-10",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -683,8 +1245,10 @@
     {
       "id": "goldman-sachs",
       "name": "Goldman Sachs",
+      "kind": "equity",
       "first": "2015-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -695,8 +1259,10 @@
     {
       "id": "bank-of-america",
       "name": "Bank of America",
+      "kind": "equity",
       "first": "2015-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -707,8 +1273,10 @@
     {
       "id": "morgan-stanley",
       "name": "Morgan Stanley",
+      "kind": "equity",
       "first": "2015-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -719,8 +1287,10 @@
     {
       "id": "blackrock",
       "name": "BlackRock",
+      "kind": "equity",
       "first": "2015-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -731,8 +1301,10 @@
     {
       "id": "american-express",
       "name": "American Express",
+      "kind": "equity",
       "first": "2015-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -743,8 +1315,10 @@
     {
       "id": "charles-schwab",
       "name": "Charles Schwab",
+      "kind": "equity",
       "first": "2015-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -755,8 +1329,10 @@
     {
       "id": "chevron",
       "name": "Chevron",
+      "kind": "equity",
       "first": "2015-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -767,8 +1343,10 @@
     {
       "id": "conocophillips",
       "name": "ConocoPhillips",
+      "kind": "equity",
       "first": "2015-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -779,8 +1357,10 @@
     {
       "id": "abbvie",
       "name": "AbbVie",
+      "kind": "equity",
       "first": "2015-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -791,8 +1371,10 @@
     {
       "id": "merck",
       "name": "Merck & Co.",
+      "kind": "equity",
       "first": "2015-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -803,8 +1385,10 @@
     {
       "id": "eli-lilly",
       "name": "Eli Lilly",
+      "kind": "equity",
       "first": "2015-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -815,8 +1399,10 @@
     {
       "id": "abbott",
       "name": "Abbott Laboratories",
+      "kind": "equity",
       "first": "2015-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -827,8 +1413,10 @@
     {
       "id": "thermo-fisher",
       "name": "Thermo Fisher Scientific",
+      "kind": "equity",
       "first": "2015-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -839,8 +1427,10 @@
     {
       "id": "ge-aerospace",
       "name": "GE Aerospace",
+      "kind": "equity",
       "first": "2015-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -851,8 +1441,10 @@
     {
       "id": "honeywell",
       "name": "Honeywell",
+      "kind": "equity",
       "first": "2015-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -863,8 +1455,10 @@
     {
       "id": "siemens",
       "name": "Siemens",
+      "kind": "equity",
       "first": "2015-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -875,8 +1469,10 @@
     {
       "id": "allianz",
       "name": "Allianz",
+      "kind": "equity",
       "first": "2015-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -887,8 +1483,10 @@
     {
       "id": "munich-re",
       "name": "Munich Re",
+      "kind": "equity",
       "first": "2015-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -899,8 +1497,10 @@
     {
       "id": "deutsche-telekom",
       "name": "Deutsche Telekom",
+      "kind": "equity",
       "first": "2015-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -911,8 +1511,10 @@
     {
       "id": "deutsche-boerse",
       "name": "Deutsche Börse",
+      "kind": "equity",
       "first": "2015-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -923,8 +1525,10 @@
     {
       "id": "airbus",
       "name": "Airbus",
+      "kind": "equity",
       "first": "2016-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -935,8 +1539,10 @@
     {
       "id": "safran",
       "name": "Safran",
+      "kind": "equity",
       "first": "2016-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -947,8 +1553,10 @@
     {
       "id": "dassault-systemes",
       "name": "Dassault Systèmes",
+      "kind": "equity",
       "first": "2016-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -959,8 +1567,10 @@
     {
       "id": "essilorluxottica",
       "name": "EssilorLuxottica",
+      "kind": "equity",
       "first": "2016-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -971,8 +1581,10 @@
     {
       "id": "axa",
       "name": "AXA",
+      "kind": "equity",
       "first": "2016-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -983,8 +1595,10 @@
     {
       "id": "bnp-paribas",
       "name": "BNP Paribas",
+      "kind": "equity",
       "first": "2016-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -995,8 +1609,10 @@
     {
       "id": "santander",
       "name": "Banco Santander",
+      "kind": "equity",
       "first": "2015-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -1007,8 +1623,10 @@
     {
       "id": "iberdrola",
       "name": "Iberdrola",
+      "kind": "equity",
       "first": "2015-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -1019,8 +1637,10 @@
     {
       "id": "inditex",
       "name": "Inditex",
+      "kind": "equity",
       "first": "2015-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -1031,8 +1651,10 @@
     {
       "id": "ferrari",
       "name": "Ferrari",
+      "kind": "equity",
       "first": "2016-02",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -1043,8 +1665,10 @@
     {
       "id": "infineon",
       "name": "Infineon",
+      "kind": "equity",
       "first": "2015-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -1055,8 +1679,10 @@
     {
       "id": "adidas",
       "name": "Adidas",
+      "kind": "equity",
       "first": "2015-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -1067,8 +1693,10 @@
     {
       "id": "bmw",
       "name": "BMW",
+      "kind": "equity",
       "first": "2015-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -1079,8 +1707,10 @@
     {
       "id": "bayer",
       "name": "Bayer",
+      "kind": "equity",
       "first": "2015-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -1091,8 +1721,10 @@
     {
       "id": "danone",
       "name": "Danone",
+      "kind": "equity",
       "first": "2016-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -1103,8 +1735,10 @@
     {
       "id": "samsung",
       "name": "Samsung Electronics",
+      "kind": "equity",
       "first": "2015-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -1115,8 +1749,10 @@
     {
       "id": "sk-hynix",
       "name": "SK hynix",
+      "kind": "equity",
       "first": "2015-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -1127,8 +1763,10 @@
     {
       "id": "thales",
       "name": "Thales",
+      "kind": "equity",
       "first": "2016-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -1139,8 +1777,10 @@
     {
       "id": "legrand",
       "name": "Legrand",
+      "kind": "equity",
       "first": "2016-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -1151,8 +1791,10 @@
     {
       "id": "saint-gobain",
       "name": "Saint-Gobain",
+      "kind": "equity",
       "first": "2016-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -1163,8 +1805,10 @@
     {
       "id": "michelin",
       "name": "Michelin",
+      "kind": "equity",
       "first": "2016-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -1175,8 +1819,10 @@
     {
       "id": "novo-nordisk",
       "name": "Novo Nordisk",
+      "kind": "equity",
       "first": "2015-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -1187,8 +1833,10 @@
     {
       "id": "novartis",
       "name": "Novartis",
+      "kind": "equity",
       "first": "2015-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -1199,8 +1847,10 @@
     {
       "id": "astrazeneca",
       "name": "AstraZeneca (ADR)",
+      "kind": "equity",
       "first": "2015-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -1211,8 +1861,10 @@
     {
       "id": "abb",
       "name": "ABB",
+      "kind": "equity",
       "first": "2015-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -1223,8 +1875,10 @@
     {
       "id": "sp-global",
       "name": "S&P Global",
+      "kind": "equity",
       "first": "2015-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -1235,8 +1889,10 @@
     {
       "id": "moodys",
       "name": "Moody’s",
+      "kind": "equity",
       "first": "2015-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -1247,8 +1903,10 @@
     {
       "id": "intuitive-surgical",
       "name": "Intuitive Surgical",
+      "kind": "equity",
       "first": "2015-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -1259,8 +1917,10 @@
     {
       "id": "deere",
       "name": "Deere",
+      "kind": "equity",
       "first": "2015-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -1271,8 +1931,10 @@
     {
       "id": "palo-alto-networks",
       "name": "Palo Alto Networks",
+      "kind": "equity",
       "first": "2015-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -1283,8 +1945,10 @@
     {
       "id": "linde",
       "name": "Linde",
+      "kind": "equity",
       "first": "2015-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -1295,8 +1959,10 @@
     {
       "id": "tsmc",
       "name": "TSMC (ADR)",
+      "kind": "equity",
       "first": "2015-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -1307,8 +1973,10 @@
     {
       "id": "sony",
       "name": "Sony",
+      "kind": "equity",
       "first": "2015-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -1319,8 +1987,10 @@
     {
       "id": "toyota",
       "name": "Toyota",
+      "kind": "equity",
       "first": "2015-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -1331,8 +2001,10 @@
     {
       "id": "nintendo",
       "name": "Nintendo",
+      "kind": "equity",
       "first": "2015-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -1343,8 +2015,10 @@
     {
       "id": "tencent",
       "name": "Tencent",
+      "kind": "equity",
       "first": "2015-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -1355,8 +2029,10 @@
     {
       "id": "hd",
       "name": "Home Depot",
+      "kind": "equity",
       "first": "2015-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -1367,8 +2043,10 @@
     {
       "id": "low",
       "name": "Lowe's",
+      "kind": "equity",
       "first": "2015-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -1379,8 +2057,10 @@
     {
       "id": "sbux",
       "name": "Starbucks",
+      "kind": "equity",
       "first": "2015-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -1391,8 +2071,10 @@
     {
       "id": "cl",
       "name": "Colgate-Palmolive",
+      "kind": "equity",
       "first": "2015-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -1403,8 +2085,10 @@
     {
       "id": "mdlz",
       "name": "Mondelez",
+      "kind": "equity",
       "first": "2015-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -1415,8 +2099,10 @@
     {
       "id": "syk",
       "name": "Stryker",
+      "kind": "equity",
       "first": "2015-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -1427,8 +2113,10 @@
     {
       "id": "unp",
       "name": "Union Pacific",
+      "kind": "equity",
       "first": "2015-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -1439,8 +2127,10 @@
     {
       "id": "lmt",
       "name": "Lockheed Martin",
+      "kind": "equity",
       "first": "2015-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -1451,8 +2141,10 @@
     {
       "id": "rsg",
       "name": "Republic Services",
+      "kind": "equity",
       "first": "2015-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -1463,8 +2155,10 @@
     {
       "id": "adp",
       "name": "Automatic Data Processing",
+      "kind": "equity",
       "first": "2015-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -1475,8 +2169,10 @@
     {
       "id": "adi",
       "name": "Analog Devices",
+      "kind": "equity",
       "first": "2015-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -1487,8 +2183,10 @@
     {
       "id": "nem",
       "name": "Newmont",
+      "kind": "equity",
       "first": "2015-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -1499,8 +2197,10 @@
     {
       "id": "etn",
       "name": "Eaton",
+      "kind": "equity",
       "first": "2015-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -1511,8 +2211,10 @@
     {
       "id": "tt",
       "name": "Trane Technologies",
+      "kind": "equity",
       "first": "2015-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -1523,8 +2225,10 @@
     {
       "id": "regn",
       "name": "Regeneron",
+      "kind": "equity",
       "first": "2015-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -1535,8 +2239,10 @@
     {
       "id": "vrtx",
       "name": "Vertex",
+      "kind": "equity",
       "first": "2015-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -1547,8 +2253,10 @@
     {
       "id": "zts",
       "name": "Zoetis",
+      "kind": "equity",
       "first": "2015-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -1559,8 +2267,10 @@
     {
       "id": "msci",
       "name": "MSCI",
+      "kind": "equity",
       "first": "2015-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -1571,8 +2281,10 @@
     {
       "id": "fds",
       "name": "FactSet",
+      "kind": "equity",
       "first": "2015-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,
@@ -1583,8 +2295,346 @@
     {
       "id": "cdns",
       "name": "Cadence",
+      "kind": "equity",
       "first": "2015-01",
       "last": "2026-09",
+      "sourceLast": "2026-09",
+      "automatic": true,
+      "tools": {
+        "calculator": true,
+        "performance": true,
+        "anniversary": true
+      }
+    },
+    {
+      "id": "etfAmundiWater",
+      "name": "Amundi MSCI Water UCITS ETF (Dist)",
+      "kind": "catalog",
+      "first": "2020-01",
+      "last": "2026-09",
+      "sourceLast": "2026-09",
+      "automatic": true,
+      "tools": {
+        "calculator": true,
+        "performance": true,
+        "anniversary": true
+      }
+    },
+    {
+      "id": "etfAmundiLuxury",
+      "name": "Amundi S&P Global Luxury UCITS ETF",
+      "kind": "catalog",
+      "first": "2020-01",
+      "last": "2026-09",
+      "sourceLast": "2026-09",
+      "automatic": true,
+      "tools": {
+        "calculator": true,
+        "performance": true,
+        "anniversary": true
+      }
+    },
+    {
+      "id": "etfLgArtificialIntelligence",
+      "name": "L&G Artificial Intelligence UCITS ETF",
+      "kind": "catalog",
+      "first": "2020-01",
+      "last": "2026-09",
+      "sourceLast": "2026-09",
+      "automatic": true,
+      "tools": {
+        "calculator": true,
+        "performance": true,
+        "anniversary": true
+      }
+    },
+    {
+      "id": "etfLgBattery",
+      "name": "L&G Battery Value-Chain UCITS ETF",
+      "kind": "catalog",
+      "first": "2020-01",
+      "last": "2026-09",
+      "sourceLast": "2026-09",
+      "automatic": true,
+      "tools": {
+        "calculator": true,
+        "performance": true,
+        "anniversary": true
+      }
+    },
+    {
+      "id": "etfNasdaqEqual",
+      "name": "Invesco NASDAQ-100 Equal Weight UCITS ETF Acc",
+      "kind": "catalog",
+      "first": "2023-08",
+      "last": "2026-09",
+      "sourceLast": "2026-09",
+      "automatic": true,
+      "tools": {
+        "calculator": true,
+        "performance": true,
+        "anniversary": true
+      }
+    },
+    {
+      "id": "etfSmallValueEurope",
+      "name": "State Street SPDR MSCI Europe Small Cap Value Weighted UCITS ETF",
+      "kind": "catalog",
+      "first": "2016-01",
+      "last": "2026-09",
+      "sourceLast": "2026-09",
+      "automatic": true,
+      "tools": {
+        "calculator": true,
+        "performance": true,
+        "anniversary": true
+      }
+    },
+    {
+      "id": "etc_brent_crude_oil",
+      "name": "WisdomTree Brent Crude Oil",
+      "kind": "catalog",
+      "first": "2020-01",
+      "last": "2026-09",
+      "sourceLast": "2026-09",
+      "automatic": true,
+      "tools": {
+        "calculator": true,
+        "performance": true,
+        "anniversary": true
+      }
+    },
+    {
+      "id": "etc_wti_crude_oil",
+      "name": "WisdomTree WTI Crude Oil",
+      "kind": "catalog",
+      "first": "2020-01",
+      "last": "2026-09",
+      "sourceLast": "2026-09",
+      "automatic": true,
+      "tools": {
+        "calculator": true,
+        "performance": true,
+        "anniversary": true
+      }
+    },
+    {
+      "id": "etc_natural_gas",
+      "name": "WisdomTree Natural Gas",
+      "kind": "catalog",
+      "first": "2020-01",
+      "last": "2026-09",
+      "sourceLast": "2026-09",
+      "automatic": true,
+      "tools": {
+        "calculator": true,
+        "performance": true,
+        "anniversary": true
+      }
+    },
+    {
+      "id": "etc_coffee",
+      "name": "WisdomTree Coffee",
+      "kind": "catalog",
+      "first": "2020-01",
+      "last": "2026-09",
+      "sourceLast": "2026-09",
+      "automatic": true,
+      "tools": {
+        "calculator": true,
+        "performance": true,
+        "anniversary": true
+      }
+    },
+    {
+      "id": "etc_cocoa",
+      "name": "WisdomTree Cocoa",
+      "kind": "catalog",
+      "first": "2020-01",
+      "last": "2026-09",
+      "sourceLast": "2026-09",
+      "automatic": true,
+      "tools": {
+        "calculator": true,
+        "performance": true,
+        "anniversary": true
+      }
+    },
+    {
+      "id": "etc_wheat",
+      "name": "WisdomTree Wheat",
+      "kind": "catalog",
+      "first": "2020-01",
+      "last": "2026-09",
+      "sourceLast": "2026-09",
+      "automatic": true,
+      "tools": {
+        "calculator": true,
+        "performance": true,
+        "anniversary": true
+      }
+    },
+    {
+      "id": "etfWorldIslamic",
+      "name": "iShares MSCI World Islamic UCITS ETF",
+      "kind": "catalog",
+      "first": "2015-01",
+      "last": "2026-09",
+      "sourceLast": "2026-09",
+      "automatic": true,
+      "tools": {
+        "calculator": true,
+        "performance": true,
+        "anniversary": true
+      }
+    },
+    {
+      "id": "etfEuropeBanks",
+      "name": "iShares STOXX Europe 600 Banks UCITS ETF (DE)",
+      "kind": "catalog",
+      "first": "2015-01",
+      "last": "2026-09",
+      "sourceLast": "2026-09",
+      "automatic": true,
+      "tools": {
+        "calculator": true,
+        "performance": true,
+        "anniversary": true
+      }
+    },
+    {
+      "id": "etfEuropeInsurance",
+      "name": "iShares STOXX Europe 600 Insurance UCITS ETF (DE)",
+      "kind": "catalog",
+      "first": "2015-01",
+      "last": "2026-09",
+      "sourceLast": "2026-09",
+      "automatic": true,
+      "tools": {
+        "calculator": true,
+        "performance": true,
+        "anniversary": true
+      }
+    },
+    {
+      "id": "etfWorldEurHedged",
+      "name": "iShares MSCI World EUR Hedged UCITS ETF (Acc)",
+      "kind": "catalog",
+      "first": "2015-01",
+      "last": "2026-09",
+      "sourceLast": "2026-09",
+      "automatic": true,
+      "tools": {
+        "calculator": true,
+        "performance": true,
+        "anniversary": true
+      }
+    },
+    {
+      "id": "etfEuroGovt57",
+      "name": "iShares € Govt Bond 5-7yr UCITS ETF EUR (Dist)",
+      "kind": "catalog",
+      "first": "2015-01",
+      "last": "2026-09",
+      "sourceLast": "2026-09",
+      "automatic": true,
+      "tools": {
+        "calculator": true,
+        "performance": true,
+        "anniversary": true
+      }
+    },
+    {
+      "id": "etfEuropeProperty",
+      "name": "iShares European Property Yield UCITS ETF",
+      "kind": "catalog",
+      "first": "2015-01",
+      "last": "2026-09",
+      "sourceLast": "2026-09",
+      "automatic": true,
+      "tools": {
+        "calculator": true,
+        "performance": true,
+        "anniversary": true
+      }
+    },
+    {
+      "id": "etfIbondsEuro2029",
+      "name": "iShares iBonds Dec 2029 Term € Corp UCITS ETF",
+      "kind": "catalog",
+      "first": "2024-09",
+      "last": "2026-09",
+      "sourceLast": "2026-09",
+      "automatic": true,
+      "tools": {
+        "calculator": true,
+        "performance": true,
+        "anniversary": true
+      }
+    },
+    {
+      "id": "etfEuropeUtilities",
+      "name": "iShares STOXX Europe 600 Utilities UCITS ETF (DE)",
+      "kind": "catalog",
+      "first": "2015-01",
+      "last": "2026-09",
+      "sourceLast": "2026-09",
+      "automatic": true,
+      "tools": {
+        "calculator": true,
+        "performance": true,
+        "anniversary": true
+      }
+    },
+    {
+      "id": "etfEuropeTelecom",
+      "name": "iShares STOXX Europe 600 Telecommunications UCITS ETF (DE)",
+      "kind": "catalog",
+      "first": "2015-01",
+      "last": "2026-09",
+      "sourceLast": "2026-09",
+      "automatic": true,
+      "tools": {
+        "calculator": true,
+        "performance": true,
+        "anniversary": true
+      }
+    },
+    {
+      "id": "etfEuropeFood",
+      "name": "iShares STOXX Europe 600 Food & Beverage UCITS ETF (DE)",
+      "kind": "catalog",
+      "first": "2015-01",
+      "last": "2026-09",
+      "sourceLast": "2026-09",
+      "automatic": true,
+      "tools": {
+        "calculator": true,
+        "performance": true,
+        "anniversary": true
+      }
+    },
+    {
+      "id": "etfEuropeMedia",
+      "name": "iShares STOXX Europe 600 Media UCITS ETF (DE)",
+      "kind": "catalog",
+      "first": "2015-01",
+      "last": "2026-09",
+      "sourceLast": "2026-09",
+      "automatic": true,
+      "tools": {
+        "calculator": true,
+        "performance": true,
+        "anniversary": true
+      }
+    },
+    {
+      "id": "etfEuropeRetail",
+      "name": "iShares STOXX Europe 600 Retail UCITS ETF (DE)",
+      "kind": "catalog",
+      "first": "2015-01",
+      "last": "2026-09",
+      "sourceLast": "2026-09",
       "automatic": true,
       "tools": {
         "calculator": true,

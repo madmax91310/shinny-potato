@@ -1,0 +1,478 @@
+{
+  "method": {
+    "seeds": [
+      20261003,
+      123456,
+      987654
+    ],
+    "drawsPerPairPerSeed": 100,
+    "historyWindow": "entire-session",
+    "nearThreshold": 10,
+    "recentWindow": 20,
+    "baselineRef": "68007abb"
+  },
+  "summary": {
+    "exact": {
+      "before": 0,
+      "after": 0
+    },
+    "near": {
+      "before": 0.0042359074617139125,
+      "after": 0.006082328662973824
+    },
+    "recentNear": {
+      "before": 0.15097208645595742,
+      "after": 0.1460845009232106
+    },
+    "unique": {
+      "before": 100,
+      "after": 100
+    },
+    "structures": {
+      "before": 18.591397849462364,
+      "after": 18.666666666666664
+    }
+  },
+  "pairs": [
+    {
+      "profile": "generaliste",
+      "risk": "prudent",
+      "before": {
+        "structures": 25.333333333333332,
+        "recentNear": 0.11784511784511785,
+        "unusedAssets": []
+      },
+      "after": {
+        "structures": 24.333333333333332,
+        "recentNear": 0.09427609427609428,
+        "unusedAssets": []
+      }
+    },
+    {
+      "profile": "generaliste",
+      "risk": "defensif",
+      "before": {
+        "structures": 24.333333333333332,
+        "recentNear": 0.006734006734006734,
+        "unusedAssets": []
+      },
+      "after": {
+        "structures": 24.666666666666668,
+        "recentNear": 0,
+        "unusedAssets": []
+      }
+    },
+    {
+      "profile": "generaliste",
+      "risk": "equilibre",
+      "before": {
+        "structures": 34.666666666666664,
+        "recentNear": 0.003367003367003367,
+        "unusedAssets": []
+      },
+      "after": {
+        "structures": 36.666666666666664,
+        "recentNear": 0,
+        "unusedAssets": []
+      }
+    },
+    {
+      "profile": "generaliste",
+      "risk": "dynamique",
+      "before": {
+        "structures": 40.333333333333336,
+        "recentNear": 0,
+        "unusedAssets": [
+          "sect_robotique",
+          "oblig_corp_ig"
+        ]
+      },
+      "after": {
+        "structures": 41,
+        "recentNear": 0,
+        "unusedAssets": []
+      }
+    },
+    {
+      "profile": "generaliste",
+      "risk": "offensif",
+      "before": {
+        "structures": 39.666666666666664,
+        "recentNear": 0.003367003367003367,
+        "unusedAssets": []
+      },
+      "after": {
+        "structures": 39.666666666666664,
+        "recentNear": 0,
+        "unusedAssets": [
+          "ia-big-data-xtrackers",
+          "monetaire_xeon"
+        ]
+      }
+    },
+    {
+      "profile": "rentier",
+      "risk": "prudent",
+      "before": {
+        "structures": 10,
+        "recentNear": 0.48484848484848486,
+        "unusedAssets": []
+      },
+      "after": {
+        "structures": 10,
+        "recentNear": 0.48484848484848486,
+        "unusedAssets": []
+      }
+    },
+    {
+      "profile": "rentier",
+      "risk": "defensif",
+      "before": {
+        "structures": 10,
+        "recentNear": 0.1919191919191919,
+        "unusedAssets": []
+      },
+      "after": {
+        "structures": 10,
+        "recentNear": 0.2255892255892256,
+        "unusedAssets": []
+      }
+    },
+    {
+      "profile": "rentier",
+      "risk": "equilibre",
+      "before": {
+        "structures": 12,
+        "recentNear": 0.020202020202020204,
+        "unusedAssets": []
+      },
+      "after": {
+        "structures": 12,
+        "recentNear": 0.010101010101010102,
+        "unusedAssets": []
+      }
+    },
+    {
+      "profile": "rentier",
+      "risk": "dynamique",
+      "before": {
+        "structures": 12,
+        "recentNear": 0.030303030303030304,
+        "unusedAssets": []
+      },
+      "after": {
+        "structures": 12,
+        "recentNear": 0.04040404040404041,
+        "unusedAssets": []
+      }
+    },
+    {
+      "profile": "rentier",
+      "risk": "offensif",
+      "before": {
+        "structures": 11,
+        "recentNear": 0.25252525252525254,
+        "unusedAssets": []
+      },
+      "after": {
+        "structures": 11,
+        "recentNear": 0.2558922558922559,
+        "unusedAssets": []
+      }
+    },
+    {
+      "profile": "pro_europe",
+      "risk": "prudent",
+      "before": {
+        "structures": 13,
+        "recentNear": 0.37037037037037035,
+        "unusedAssets": []
+      },
+      "after": {
+        "structures": 13,
+        "recentNear": 0.40404040404040403,
+        "unusedAssets": []
+      }
+    },
+    {
+      "profile": "pro_europe",
+      "risk": "defensif",
+      "before": {
+        "structures": 13,
+        "recentNear": 0.09764309764309764,
+        "unusedAssets": []
+      },
+      "after": {
+        "structures": 13,
+        "recentNear": 0.04713804713804714,
+        "unusedAssets": []
+      }
+    },
+    {
+      "profile": "pro_europe",
+      "risk": "equilibre",
+      "before": {
+        "structures": 16,
+        "recentNear": 0.003367003367003367,
+        "unusedAssets": []
+      },
+      "after": {
+        "structures": 16,
+        "recentNear": 0.003367003367003367,
+        "unusedAssets": []
+      }
+    },
+    {
+      "profile": "pro_europe",
+      "risk": "dynamique",
+      "before": {
+        "structures": 16,
+        "recentNear": 0.003367003367003367,
+        "unusedAssets": []
+      },
+      "after": {
+        "structures": 16,
+        "recentNear": 0,
+        "unusedAssets": []
+      }
+    },
+    {
+      "profile": "pro_europe",
+      "risk": "offensif",
+      "before": {
+        "structures": 16,
+        "recentNear": 0.037037037037037035,
+        "unusedAssets": []
+      },
+      "after": {
+        "structures": 16,
+        "recentNear": 0.003367003367003367,
+        "unusedAssets": []
+      }
+    },
+    {
+      "profile": "anti_inflation",
+      "risk": "prudent",
+      "before": {
+        "structures": 8,
+        "recentNear": 0.2828282828282828,
+        "unusedAssets": []
+      },
+      "after": {
+        "structures": 8,
+        "recentNear": 0.30303030303030304,
+        "unusedAssets": []
+      }
+    },
+    {
+      "profile": "anti_inflation",
+      "risk": "defensif",
+      "before": {
+        "structures": 8,
+        "recentNear": 0.19528619528619529,
+        "unusedAssets": []
+      },
+      "after": {
+        "structures": 8,
+        "recentNear": 0.23905723905723905,
+        "unusedAssets": []
+      }
+    },
+    {
+      "profile": "anti_inflation",
+      "risk": "equilibre",
+      "before": {
+        "structures": 9,
+        "recentNear": 0.13131313131313133,
+        "unusedAssets": []
+      },
+      "after": {
+        "structures": 9,
+        "recentNear": 0.15824915824915825,
+        "unusedAssets": []
+      }
+    },
+    {
+      "profile": "anti_inflation",
+      "risk": "dynamique",
+      "before": {
+        "structures": 9,
+        "recentNear": 0.11784511784511785,
+        "unusedAssets": []
+      },
+      "after": {
+        "structures": 9,
+        "recentNear": 0.07744107744107744,
+        "unusedAssets": []
+      }
+    },
+    {
+      "profile": "anti_inflation",
+      "risk": "offensif",
+      "before": {
+        "structures": 10,
+        "recentNear": 0.11784511784511785,
+        "unusedAssets": []
+      },
+      "after": {
+        "structures": 10,
+        "recentNear": 0.05723905723905724,
+        "unusedAssets": []
+      }
+    },
+    {
+      "profile": "bouclier",
+      "risk": "prudent",
+      "before": {
+        "structures": 13,
+        "recentNear": 0.1447811447811448,
+        "unusedAssets": []
+      },
+      "after": {
+        "structures": 13,
+        "recentNear": 0.12457912457912458,
+        "unusedAssets": []
+      }
+    },
+    {
+      "profile": "bouclier",
+      "risk": "defensif",
+      "before": {
+        "structures": 13,
+        "recentNear": 0.05723905723905724,
+        "unusedAssets": []
+      },
+      "after": {
+        "structures": 13,
+        "recentNear": 0.026936026936026935,
+        "unusedAssets": []
+      }
+    },
+    {
+      "profile": "bouclier",
+      "risk": "equilibre",
+      "before": {
+        "structures": 13,
+        "recentNear": 0.04040404040404041,
+        "unusedAssets": []
+      },
+      "after": {
+        "structures": 13,
+        "recentNear": 0.010101010101010102,
+        "unusedAssets": []
+      }
+    },
+    {
+      "profile": "crypto_curieux",
+      "risk": "defensif",
+      "before": {
+        "structures": 11,
+        "recentNear": 0.4006734006734007,
+        "unusedAssets": []
+      },
+      "after": {
+        "structures": 11,
+        "recentNear": 0.43434343434343436,
+        "unusedAssets": []
+      }
+    },
+    {
+      "profile": "crypto_curieux",
+      "risk": "equilibre",
+      "before": {
+        "structures": 12,
+        "recentNear": 0.38047138047138046,
+        "unusedAssets": []
+      },
+      "after": {
+        "structures": 12,
+        "recentNear": 0.37037037037037035,
+        "unusedAssets": []
+      }
+    },
+    {
+      "profile": "crypto_curieux",
+      "risk": "dynamique",
+      "before": {
+        "structures": 12,
+        "recentNear": 0.3872053872053872,
+        "unusedAssets": []
+      },
+      "after": {
+        "structures": 12,
+        "recentNear": 0.3939393939393939,
+        "unusedAssets": []
+      }
+    },
+    {
+      "profile": "crypto_curieux",
+      "risk": "offensif",
+      "before": {
+        "structures": 12,
+        "recentNear": 0.4208754208754209,
+        "unusedAssets": []
+      },
+      "after": {
+        "structures": 12,
+        "recentNear": 0.4074074074074074,
+        "unusedAssets": []
+      }
+    },
+    {
+      "profile": "thematique",
+      "risk": "defensif",
+      "before": {
+        "structures": 27.333333333333332,
+        "recentNear": 0.006734006734006734,
+        "unusedAssets": []
+      },
+      "after": {
+        "structures": 27.666666666666668,
+        "recentNear": 0,
+        "unusedAssets": []
+      }
+    },
+    {
+      "profile": "thematique",
+      "risk": "equilibre",
+      "before": {
+        "structures": 48,
+        "recentNear": 0,
+        "unusedAssets": []
+      },
+      "after": {
+        "structures": 49.333333333333336,
+        "recentNear": 0,
+        "unusedAssets": []
+      }
+    },
+    {
+      "profile": "thematique",
+      "risk": "dynamique",
+      "before": {
+        "structures": 46.666666666666664,
+        "recentNear": 0,
+        "unusedAssets": []
+      },
+      "after": {
+        "structures": 45,
+        "recentNear": 0,
+        "unusedAssets": []
+      }
+    },
+    {
+      "profile": "thematique",
+      "risk": "offensif",
+      "before": {
+        "structures": 31,
+        "recentNear": 0.37373737373737376,
+        "unusedAssets": []
+      },
+      "after": {
+        "structures": 31.333333333333332,
+        "recentNear": 0.3569023569023569,
+        "unusedAssets": []
+      }
+    }
+  ]
+}

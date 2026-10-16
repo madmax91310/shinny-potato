@@ -1,0 +1,63 @@
+import { useEffect, useRef, useState } from 'react'
+import PageHeader from '../../design-system/PageHeader'
+import Button from '../../design-system/Button'
+import { startPublicationDownload } from '../../design-system/publicationActions.js'
+import { ASSETS } from './data.js'
+import catalog from './catalog.json' with {type:'json'}
+import { MAX_POSITIONS, analyzeProfile, references, pct } from './engine.js'
+import { searchAssets } from './management.js'
+import { renderDcaImage } from './image.js'
+
+export default function SimpleExposure(){
+ const [lines,setLines]=useState([]),[query,setQuery]=useState(''),[field,setField]=useState('all')
+ const [preview,setPreview]=useState(''),[busy,setBusy]=useState(false),[feedback,setFeedback]=useState('')
+ const revision=useRef(0)
+ useEffect(()=>()=>{revision.current++},[])
+ const profile={id:'expositions',name:'',scope:'Portefeuille investi',imageOnly:true,lines}
+ const analysis=analyzeProfile(profile)
+ const total=lines.reduce((sum,line)=>sum+(Number.isFinite(line.weight)?line.weight:0),0)
+ const results=searchAssets(query,'').filter(key=>!lines.some(line=>line.asset===key)).slice(0,30)
+ function invalidate(){revision.current++;setPreview('');setFeedback('');setBusy(false)}
+ function add(asset){
+  invalidate()
+  setLines([...lines,{asset,label:catalog[asset]?.name||ASSETS[asset][1],emoji:ASSETS[asset][0],isin:references[asset]?.isin||'',weight:Math.max(0,100-total),amount:0}])
+  setQuery('')
+ }
+ async function generate(){
+  const version=++revision.current
+  setBusy(true);setFeedback('')
+  try{const canvas=await renderDcaImage(profile,field);if(version===revision.current)setPreview(canvas.toDataURL('image/png'))}
+  catch{if(version===revision.current)setFeedback('Impossible de générer l’image. Réessaie.')}
+  finally{if(version===revision.current)setBusy(false)}
+ }
+ function download(){const link=document.createElement('a');link.href=preview;link.download='epargnant-libre-expositions.png';startPublicationDownload(link);setFeedback('Téléchargement lancé.')}
+ return <div className="dca-profiles-scope dca-simple">
+  <PageHeader title="Actifs & expositions" subtitle="Ajoute tes actifs, indique leurs pourcentages et choisis les donuts de ton image."/>
+  <div className="dca-simple-grid">
+   <section className="dca-simple-card" aria-label="Composer les expositions">
+    <h2>Mes actifs</h2>
+    <label>Ajouter un actif<input type="search" value={query} onChange={e=>setQuery(e.target.value)} placeholder="Nom, ticker ou ISIN"/></label>
+    {query.trim()&&<div className="dca-simple-results" aria-label="Résultats de recherche">{results.length?results.map(key=><button key={key} disabled={lines.length>=MAX_POSITIONS} onClick={()=>add(key)}><span>{catalog[key]?.name||ASSETS[key][1]}</span><small>{references[key]?.isin||key}</small></button>):<p>Aucun nouvel actif trouvé.</p>}</div>}
+    {!lines.length&&<p className="dca-note">Recherche ton premier actif pour commencer.</p>}
+    {lines.map((line,index)=><div className="dca-simple-line" key={line.asset}>
+     <div><strong>{line.label}</strong><small>{line.isin}</small></div>
+     <label><span className="sr-only">Poids de {line.label}</span><input aria-label={`Poids de ${line.label}`} type="number" min="0" max="100" step="0.01" value={Number.isFinite(line.weight)?line.weight:''} onChange={e=>{invalidate();setLines(lines.map((item,i)=>i===index?{...item,weight:e.target.value===''?NaN:Number(e.target.value)}:item))}}/><span>%</span></label>
+     <button aria-label={`Retirer ${line.label}`} onClick={()=>{invalidate();setLines(lines.filter((_,i)=>i!==index))}}>×</button>
+    </div>)}
+    <p className="dca-total">Total : {pct(total)} / 100 %</p>
+    {!!lines.length&&!!analysis.errors.length&&<div role="status" className="dca-note">{analysis.errors.map(error=><p key={error}>{error}</p>)}</div>}
+    <label>Donuts de l’image<select value={field} onChange={e=>{invalidate();setField(e.target.value)}}>
+     <option value="all">Répartition + géographie + secteurs</option>
+     <option value="both">Géographie + secteurs</option>
+     <option value="countries">Géographie uniquement</option>
+     <option value="sectors">Secteurs uniquement</option>
+    </select></label>
+    <Button disabled={!!analysis.errors.length||busy} onClick={generate}>{busy?'Génération…':'Générer l’image'}</Button>
+   </section>
+   <section className="dca-simple-card dca-simple-preview" aria-label="Image des expositions" aria-busy={busy}>
+    {preview?<><img src={preview} alt="Répartition et expositions du portefeuille"/><Button onClick={download}>Télécharger le PNG</Button></>:<p>Ton image apparaîtra ici.</p>}
+    <p role="status" aria-live="polite">{feedback}</p>
+   </section>
+  </div>
+ </div>
+}

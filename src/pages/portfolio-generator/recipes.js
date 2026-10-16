@@ -86,11 +86,11 @@ const additions = {
     ],
     dynamique: [
       R('europe-tailles', 'Europe sans biais sectoriel', 'Le marché européen large et ses petites entreprises portent la conviction, sans poche technologique dédiée.', 'Un portefeuille européen dynamique a-t-il besoin d’un pari technologique ?', A(['msci_europe',50],['smallcap_europe',25],[GOLD,25])),
-      R('europe-tech', 'Europe et conviction technologique', 'La technologie européenne complète le marché large, avec dette courte et or.', 'La tech européenne mérite-t-elle sa propre ligne ?', A(['msci_europe',40],['tech_europe',30],['oblig_etat_eur_short',15],[GOLD,15])),
+      R('europe-tech', 'Europe et conviction technologique', 'La technologie européenne complète le marché large, avec dette courte et or.', 'La tech européenne mérite-t-elle sa propre ligne ?', A(['msci_europe',40],[['tech_europe','tech_europe_pea'],30],['oblig_etat_eur_short',15],[GOLD,15])),
     ],
     offensif: [
       R('europe-actions', 'Europe entièrement en actions', 'Le marché européen large et les petites capitalisations portent toute l’allocation.', 'Tout en actions européennes : jusqu’où assumer cette conviction ?', A(['msci_europe',60],['smallcap_europe',40])),
-      R('europe-tech-large', 'Technologie et grandes entreprises européennes', 'La technologie européenne constitue une conviction importante aux côtés des grandes entreprises.', 'Une conviction européenne peut-elle devenir trop dépendante de la tech ?', A([EURO,45],['tech_europe',40],['smallcap_europe',15])),
+      R('europe-tech-large', 'Technologie et grandes entreprises européennes', 'La technologie européenne constitue une conviction importante aux côtés des grandes entreprises.', 'Une conviction européenne peut-elle devenir trop dépendante de la tech ?', A([EURO,45],[['tech_europe','tech_europe_pea'],40],['smallcap_europe',15])),
     ],
   },
   anti_inflation: {}, bouclier: {}, crypto_curieux: {}, thematique: {},
