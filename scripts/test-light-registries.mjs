@@ -4,6 +4,15 @@ import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { pathToFileURL } from 'node:url'
 import { projectLightRegistries } from './project-light-registries.mjs'
+import { splitEtfRecords } from './split-etf-records.mjs'
+import { readFileSync } from 'node:fs'
+
+const issuerParts=splitEtfRecords(), reconstructed={}
+for(let i=0;i<issuerParts.groups.length;i++){
+ const code=issuerParts.plugin.load(issuerParts.plugin.resolveId(`virtual:etf-issuer-part:${i}`))
+ Object.assign(reconstructed,(await import('data:text/javascript;base64,'+Buffer.from(code).toString('base64'))).default)
+}
+assert.deepEqual(reconstructed,JSON.parse(readFileSync(new URL('../src/data/automated-etf.json',import.meta.url))))
 
 // Execute the generated modules in isolation: any accidental dependency on a
 // non-exported helper or raw issuer module must fail here, before publication.
