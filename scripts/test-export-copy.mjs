@@ -88,7 +88,9 @@ try {
     await check('anniversary', () => renderAnniversaryImage({mode:'simple',assetId:'bitcoin',yearsBack:5}, '123456'), (words,text) => !text.includes('ÉVOLUTION DU COURS') && words.filter(word => word.includes('123')).length === 1)
     const { renderInvestmentImage } = await module('pages/investment-calculator/imageExport.js')
     const { derive } = await module('pages/investment-calculator/lib.js')
+    const {ensureCalculatorAsset}=await module('data/calculator-history.js')
     for (const assetId of ['bitcoin', 'cac40']) {
+      await ensureCalculatorAsset(assetId)
       const state = {assetId, mode:'lump', amountRaw:'1000', startYear:2020,startMonth:1,overridePriceRaw:''}
       await check(`investment-${assetId}`, () => renderInvestmentImage(state,derive(state)), (_,text) => !/ET SI TU AVAIS INVESTI|Clôture de décembre à clôture de décembre|Évolution historique ·/.test(text) && text.includes('Pas un conseil financier'))
     }
