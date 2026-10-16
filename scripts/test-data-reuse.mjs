@@ -23,8 +23,9 @@ assert.throws(() => monthlyDrawdown([{date: '2020-01', price: 0}]))
 for (const fact of HISTORY_FACTS) {
   const text = factTweet(fact)
   assert.match(text, /mensuel/)
-  assert.match(text, /(?:dividendes|revenus) (?:(?:non|nets|bruts) )?réinvestis/)
-  assert.match(text, /(?:Hors|hors) frais(?: du courtier)? et fiscalité/)
+  // The approved story keeps methodology in the source card rather than the tweet.
+  assert.match(fact.note, /(?:dividendes|revenus) (?:(?:non|nets|bruts) )?réinvestis/)
+  assert.match(fact.note, /(?:Hors|hors) frais(?: du courtier)? et fiscalité/)
   assert(!/NaN|undefined/.test(text))
 }
 assert.equal(HISTORY_FACTS.length, HISTORY_STATISTIC_IDS.length * 2)
