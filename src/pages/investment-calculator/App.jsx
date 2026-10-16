@@ -2,7 +2,7 @@ import HistoricalContext from '../../design-system/HistoricalContext.jsx'
 import { readPreference, writePreference } from '../../lib/publication-preferences.js'
 import CrisisResult from './CrisisResult.jsx'
 import { CRISES, compareCrisis, buildCrisisTweet } from './crisis.js'
-import { renderCrisisImage } from './crisisImage.js'
+const renderCrisisImage = async (...args) => (await import('./crisisImage.js')).renderCrisisImage(...args)
 import { historyOptionLabel } from '../../data/history-selection.js'
 import { copyPublicationText } from '../../design-system/publicationActions.js'
 import ChoicePicker from '../../design-system/ChoicePicker.jsx'
@@ -22,7 +22,7 @@ import {
 import { derive, fmtEUR, fmtPct, pct, buildTweetText, ymIndex, sparseAssetSeries, applyPriceOverride, currencySymbol } from './lib'
 import Sparkline from './Sparkline'
 import VideoExport from './VideoExport.jsx'
-import { renderInvestmentImage } from './imageExport'
+const renderInvestmentImage = async (...args) => (await import('./imageExport.js')).renderInvestmentImage(...args)
 import PageHeader from '../../design-system/PageHeader'
 import Button from '../../design-system/Button'
 import './investment-calculator.css'

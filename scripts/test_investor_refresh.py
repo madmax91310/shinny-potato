@@ -99,7 +99,7 @@ class RefreshTests(unittest.TestCase):
 
     def test_ui_and_collector_track_the_same_managers(self):
         import re
-        ui = (module.ROOT / 'src/pages/investor-portfolio/data.js').read_text().split('export const ATTRIBUTION')[0]
+        ui = (module.ROOT / 'src/data/investor-roster.js').read_text()
         self.assertEqual(set(module.MANAGERS), set(re.findall(r"\['([^']+)',", ui)))
 
     def test_ackman_uses_fresher_validated_alternate(self):

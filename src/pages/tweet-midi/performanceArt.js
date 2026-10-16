@@ -1,6 +1,6 @@
 import { EQUITY_HISTORY_IDENTITIES } from '../../data/equity-history-identities.js'
 import { loadArtImage, ANNIVERSARY_ART } from './anniversaryArt.js'
-import { ETF_HISTORY_IDENTITIES } from '../../data/etf-monthly-history.js'
+import { ETF_HISTORY_IDENTITIES } from '../../data/etf-history-identities.js'
 
 // Explicit market identities. Index illustrations depict geography, never an ETF issuer.
 const groups = {

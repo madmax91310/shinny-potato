@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react'
 import { normalizePortfolio, percentage, portfolioCompanies } from './data.js'
 export default function History({portfolio}) {
+  const [opened,setOpened]=useState(false)
   const [rows,setRows]=useState([portfolio]),[error,setError]=useState('')
   useEffect(()=>{
+    if (!opened) return
     const controller=new AbortController();setRows([portfolio]);setError('')
     const slug=portfolio.identity.slug
     const archives=portfolio.filingHistory.filter(r=>r.snapshotUrl===`data/investors/archive/${slug}/${r.periodEnd}.json` && /^\d{4}-(03-31|06-30|09-30|12-31)$/.test(r.periodEnd) && r.periodEnd<portfolio.snapshot.periodEnd).slice(0,7)
@@ -14,8 +16,8 @@ export default function History({portfolio}) {
       return p
     })).then(previous=>{if(!controller.signal.aborted)setRows([portfolio,...previous].sort((a,b)=>b.snapshot.periodEnd.localeCompare(a.snapshot.periodEnd)))}).catch(e=>{if(e.name!=='AbortError')setError(e.message)})
     return ()=>controller.abort()
-  },[portfolio])
-  return <details className="portfolio-exposure"><summary>Évolution des photographies 13F archivées</summary>
+  },[portfolio,opened])
+  return <details className="portfolio-exposure" onToggle={event => { if (event.currentTarget.open) setOpened(true) }}><summary>Évolution des photographies 13F archivées</summary>
     <p>La collecte conserve automatiquement les anciens trimestres. Les poids restent rapportés au total déclaré, options incluses dans le dénominateur ; les cinq premières entreprises ci-dessous excluent les options.</p>
     {error&&<p role="alert">{error} La photographie actuelle reste disponible.</p>}
     {rows.map(p=><p key={p.snapshot.periodEnd}>{p.snapshot.periodEnd} : {portfolioCompanies(p.holdings).length} entreprises ou fonds hors options ; cinq premières positions regroupées : {percentage(portfolioCompanies(p.holdings).slice(0,5).reduce((s,r)=>s+r.weight,0))}. <a href={p.sourceUrl} target="_blank" rel="noreferrer">Source ↗</a></p>)}

@@ -1,6 +1,6 @@
 import { EQUITY_HISTORY_IDENTITIES } from '../../data/equity-history-identities.js'
 import { ANNIVERSARY_INDEX_VARIANTS } from './data/indexVariants.js'
-import { ETF_HISTORY_IDENTITIES } from '../../data/etf-monthly-history.js'
+import { ETF_HISTORY_IDENTITIES } from '../../data/etf-history-identities.js'
 // Explicit identities: an issuer logo is never substituted for an index or fund.
 // Sources and visual review: public/asset-art/README.md.
 export const ANNIVERSARY_ART = Object.freeze({
@@ -47,29 +47,7 @@ export const ANNIVERSARY_ART = Object.freeze({
   asml: { title: 'ASML', subtitle: 'Amsterdam · EUR', mark: 'asml.svg', kind: 'logo' },
 })
 
-const imageCache = new Map()
-let fontReady
-const assetUrl = file => `${import.meta.env.BASE_URL}asset-art/${file}`
-export function loadArtImage(file) {
-  if (!imageCache.has(file)) {
-    const pending = new Promise((resolve, reject) => {
-      const image = new Image()
-      image.onload = () => resolve(image)
-      image.onerror = () => reject(new Error(`Le visuel ${file} n’a pas pu être chargé. Réessayer l’export.`))
-      image.src = assetUrl(file)
-    }).catch(error => { imageCache.delete(file); throw error })
-    imageCache.set(file, pending)
-  }
-  return imageCache.get(file)
-}
-export function loadEditorialFont() {
-  if (!fontReady) {
-    fontReady = new FontFace('ExportEditorial', `url("${assetUrl('editorial.woff2')}")`, { weight: '500' }).load()
-      .then(font => { document.fonts.add(font) })
-      .catch(error => { fontReady = undefined; throw error })
-  }
-  return fontReady
-}
+export { loadArtImage, loadEditorialFont } from '../../lib/art-resources.js'
 
 // The downloaded SVG silhouette remains unchanged. Only the surface is shaded;
 // reflections and extrusion are drawn from that same alpha mask.
