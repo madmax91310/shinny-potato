@@ -203,20 +203,36 @@
     },
     "update-publication-observations.yml": {
       "name": "Pouvoir d’achat et niveaux des anniversaires",
-      "runId": 38904430825,
+      "runId": 38920056829,
       "attempt": 1,
-      "completedAt": "2026-10-16T13:15:52Z",
-      "status": "success",
+      "completedAt": "2026-10-16T15:01:01Z",
+      "status": "failure",
       "lastSuccessAt": "2026-10-16T13:15:52Z",
-      "collectionStatus": "success",
+      "collectionStatus": "failure",
       "validationStatus": "success",
       "recordingStatus": "success",
-      "publicationStatus": "not-run",
+      "publicationStatus": "failure",
       "lastCollectionSuccessAt": "2026-10-16T13:15:52Z",
       "lastPublicationSuccessAt": "2026-10-11T14:35:58Z",
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38904430825",
-      "failures": [],
-      "dataFailures": {}
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38920056829",
+      "failures": [
+        {
+          "job": "deploy / build",
+          "step": "Run node scripts/build-dca-exposures.mjs && npm run test:dca && node scripts/audit-portfolio-routing.mjs"
+        },
+        {
+          "job": "report-failures",
+          "step": "Run echo 'Collecte partielle : dernières observations validées conservées. Voir publication-observations.' >> \"$GITHUB_STEP_SUMMARY\""
+        }
+      ],
+      "dataFailures": {
+        "anniversary-nasdaq100": {
+          "name": "anniversary-nasdaq100",
+          "completedAt": "2026-10-16T15:01:01Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38920056829",
+          "cause": "'timestamp'"
+        }
+      }
     },
     "update-editorial-radar.yml": {
       "name": "Radar éditorial quotidien",
@@ -389,11 +405,11 @@
       "dataFailures": {}
     }
   },
-  "updatedAt": "2026-10-16T15:00:46Z",
+  "updatedAt": "2026-10-16T15:01:01Z",
   "monitoring": {
     "schemaVersion": 1,
-    "checkedAt": "2026-10-16T15:01:17.340644+00:00",
-    "revision": 48,
+    "checkedAt": "2026-10-16T15:01:35.760482+00:00",
+    "revision": 49,
     "active": {
       "collection:update-practical-sheets.yml:practical:13f": {
         "name": "SEC · questions et réponses sur le formulaire 13F",
@@ -414,7 +430,44 @@
         "dataId": "practical:13f",
         "id": "collection:update-practical-sheets.yml:practical:13f",
         "firstSeenAt": "2026-10-14T21:07:26.171294+00:00",
-        "lastSeenAt": "2026-10-16T15:01:17.340644+00:00"
+        "lastSeenAt": "2026-10-16T15:01:35.760482+00:00"
+      },
+      "collection:update-publication-observations.yml:anniversary-nasdaq100": {
+        "name": "anniversary-nasdaq100",
+        "tools": [
+          "Pouvoir d’achat",
+          "Il y a X ans"
+        ],
+        "impactScope": "collector",
+        "workflow": "update-publication-observations.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38920056829",
+        "to": "/donnees-a-revoir",
+        "completedAt": "2026-10-16T15:01:01Z",
+        "cause": "'timestamp'",
+        "sourceUrls": [],
+        "kind": "collection",
+        "field": "Champs du collecteur",
+        "dataId": "anniversary-nasdaq100",
+        "id": "collection:update-publication-observations.yml:anniversary-nasdaq100",
+        "firstSeenAt": "2026-10-16T15:01:35.760482+00:00",
+        "lastSeenAt": "2026-10-16T15:01:35.760482+00:00"
+      },
+      "publication:update-publication-observations.yml": {
+        "name": "Pouvoir d’achat et niveaux des anniversaires",
+        "tools": [
+          "Pouvoir d’achat",
+          "Il y a X ans"
+        ],
+        "impactScope": "collector",
+        "workflow": "update-publication-observations.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38920056829",
+        "to": "/donnees-a-revoir",
+        "kind": "publication",
+        "field": "Publication",
+        "cause": "deploy / build : Run node scripts/build-dca-exposures.mjs && npm run test:dca && node scripts/audit-portfolio-routing.mjs ; report-failures : Run echo 'Collecte partielle : dernières observations validées conservées. Voir publication-observations.' >> \"$GITHUB_STEP_SUMMARY\"",
+        "id": "publication:update-publication-observations.yml",
+        "firstSeenAt": "2026-10-16T15:01:35.760482+00:00",
+        "lastSeenAt": "2026-10-16T15:01:35.760482+00:00"
       },
       "collection:update-insurance.yml:linxea-avenir-2": {
         "name": "Linxea Avenir 2",
@@ -433,7 +486,7 @@
         "dataId": "linxea-avenir-2",
         "id": "collection:update-insurance.yml:linxea-avenir-2",
         "firstSeenAt": "2026-10-14T13:08:27.203935+00:00",
-        "lastSeenAt": "2026-10-16T15:01:17.340644+00:00"
+        "lastSeenAt": "2026-10-16T15:01:35.760482+00:00"
       },
       "collection:update-scpi.yml:remake-live": {
         "name": "Remake Live",
@@ -456,7 +509,7 @@
         "dataId": "remake-live",
         "id": "collection:update-scpi.yml:remake-live",
         "firstSeenAt": "2026-10-15T13:02:43.499914+00:00",
-        "lastSeenAt": "2026-10-16T15:01:17.340644+00:00"
+        "lastSeenAt": "2026-10-16T15:01:35.760482+00:00"
       },
       "collection:update-regulatory-data.yml:broker-observation:caidf:profile:change": {
         "name": "caidf:profile:change",
@@ -476,7 +529,7 @@
         "dataId": "broker-observation:caidf:profile:change",
         "id": "collection:update-regulatory-data.yml:broker-observation:caidf:profile:change",
         "firstSeenAt": "2026-10-15T18:00:14.760687+00:00",
-        "lastSeenAt": "2026-10-16T15:01:17.340644+00:00"
+        "lastSeenAt": "2026-10-16T15:01:35.760482+00:00"
       },
       "publication:collect-etf-pilot.yml": {
         "name": "ETF et compositions d’indices",
@@ -495,7 +548,7 @@
         "cause": "deploy / build : Run node scripts/build-dca-exposures.mjs && npm run test:dca && node scripts/audit-portfolio-routing.mjs",
         "id": "publication:collect-etf-pilot.yml",
         "firstSeenAt": "2026-10-16T14:55:12.305304+00:00",
-        "lastSeenAt": "2026-10-16T15:01:17.340644+00:00"
+        "lastSeenAt": "2026-10-16T15:01:35.760482+00:00"
       },
       "publication:update-qualified-exposures.yml": {
         "name": "Expositions ETF qualifiées",
@@ -515,7 +568,7 @@
         "cause": "deploy / build : Run npm run test:radar",
         "id": "publication:update-qualified-exposures.yml",
         "firstSeenAt": "2026-10-16T12:48:21.924866+00:00",
-        "lastSeenAt": "2026-10-16T15:01:17.340644+00:00"
+        "lastSeenAt": "2026-10-16T15:01:35.760482+00:00"
       },
       "monitor:radar": {
         "kind": "unobserved",
@@ -528,18 +581,10 @@
         "to": "/donnees-a-revoir",
         "id": "monitor:radar",
         "firstSeenAt": "2026-10-15T18:53:46.175472+00:00",
-        "lastSeenAt": "2026-10-16T15:01:17.340644+00:00"
+        "lastSeenAt": "2026-10-16T15:01:35.760482+00:00"
       }
     },
     "events": [
-      {
-        "revision": 19,
-        "at": "2026-10-14T21:07:26.171294+00:00",
-        "opened": [
-          "collection:update-practical-sheets.yml:practical:13f"
-        ],
-        "resolved": []
-      },
       {
         "revision": 20,
         "at": "2026-10-15T00:31:06.137308+00:00",
@@ -2970,6 +3015,15 @@
             "resolvedAt": "2026-10-16T15:01:17.340644+00:00"
           }
         ]
+      },
+      {
+        "revision": 49,
+        "at": "2026-10-16T15:01:35.760482+00:00",
+        "opened": [
+          "collection:update-publication-observations.yml:anniversary-nasdaq100",
+          "publication:update-publication-observations.yml"
+        ],
+        "resolved": []
       }
     ],
     "resolved": [
