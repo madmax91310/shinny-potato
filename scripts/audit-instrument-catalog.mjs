@@ -23,7 +23,9 @@ import { DEFAULT_THEMES } from '../src/data/etf-themes.js';
 import { FAMILIES } from '../src/data/index-comparisons.js';
 import { ASSETS } from '../src/data/portfolio-assets.js';
 
+const exposureCatalog = JSON.parse(readFileSync(new URL('../src/pages/dca-profiles/catalog.json', import.meta.url)))
 const collections = [
+  ['exposure', 'src/pages/dca-profiles/catalog.json', Object.values(exposureCatalog).filter(r=>r.kind!=='equity').map(r=>({...r,displayName:r.name}))],
   ['sheet', 'src/data/etf-cards.js', ETFS.map(item => ({ ...item, displayName: item.name }))],
   ['tweet', 'src/data/etf-themes.js', DEFAULT_THEMES.flatMap(theme => theme.etfs.map(item => ({ ...item, displayName: item.nom })))],
   ['index', 'src/data/index-comparisons.js', FAMILIES.flatMap(family => (family.etfGroups ?? []).flatMap(group => (group.funds ?? []).map(item => ({ ...item, displayName: item.name }))))],
@@ -90,7 +92,8 @@ for (const [context, file, items] of collections) {
   const references = source.match(/name:\s*getInstrumentName\(|nom:\s*getInstrumentName\(/g) ?? [];
   // Les nouveaux thèmes construisent les libellés par une fonction commune ;
   // chaque résultat est comparé au registre par ISIN dans la boucle ci-dessous.
-  if (context !== 'tweet' && references.length + qualifiedCount + (source.includes('LIFESTRATEGY_SHEETS.map(') ? LIFESTRATEGY_SHEETS.length - 1 : 0) + (source.includes('EXPOSURE_ADDITIONS.map(') ? EXPOSURE_ADDITIONS.length - 1 : 0) + (source.includes('PRESENTATION_ETF_ADDITIONS.map(') ? PRESENTATION_ETF_ADDITIONS.length - 1 : 0) + (source.includes('PRESENTATION_ETF_EXPANSION.map(') ? PRESENTATION_ETF_EXPANSION.length - 1 : 0) + (source.includes('[...NON_BOND_SHEETS, ...QUALIFIED_EXPOSURE_SHEETS, ...ROUND3_FUND_SHEETS, ...LIFESTRATEGY_SHEETS].map(') ? QUALIFIED_EXPOSURE_SHEETS.length + ROUND3_FUND_SHEETS.length + LIFESTRATEGY_SHEETS.length + NON_BOND_SHEETS.length - 1 : source.includes('QUALIFIED_EXPOSURE_SHEETS.map(') ? QUALIFIED_EXPOSURE_SHEETS.length - 1 : 0) + (source.includes('NON_BOND_SHEETS.filter(') ? NON_BOND_SHEETS.filter(s => getInstrumentReturnValues(s.isin).every(Number.isFinite)).length : 0) + (context === 'index' ? 3 : 0) !== items.length) {
+  // Generated exposure JSON has no source calls; exact names are checked below.
+  if (!['tweet','exposure'].includes(context) && references.length + qualifiedCount + (source.includes('LIFESTRATEGY_SHEETS.map(') ? LIFESTRATEGY_SHEETS.length - 1 : 0) + (source.includes('EXPOSURE_ADDITIONS.map(') ? EXPOSURE_ADDITIONS.length - 1 : 0) + (source.includes('PRESENTATION_ETF_ADDITIONS.map(') ? PRESENTATION_ETF_ADDITIONS.length - 1 : 0) + (source.includes('PRESENTATION_ETF_EXPANSION.map(') ? PRESENTATION_ETF_EXPANSION.length - 1 : 0) + (source.includes('[...NON_BOND_SHEETS, ...QUALIFIED_EXPOSURE_SHEETS, ...ROUND3_FUND_SHEETS, ...LIFESTRATEGY_SHEETS].map(') ? QUALIFIED_EXPOSURE_SHEETS.length + ROUND3_FUND_SHEETS.length + LIFESTRATEGY_SHEETS.length + NON_BOND_SHEETS.length - 1 : source.includes('QUALIFIED_EXPOSURE_SHEETS.map(') ? QUALIFIED_EXPOSURE_SHEETS.length - 1 : 0) + (source.includes('NON_BOND_SHEETS.filter(') ? NON_BOND_SHEETS.filter(s => getInstrumentReturnValues(s.isin).every(Number.isFinite)).length : 0) + (context === 'index' ? 3 : 0) !== items.length) {
     console.error(`${file} : ${references.length} références au catalogue pour ${items.length} produits.`);
     errors++;
   }

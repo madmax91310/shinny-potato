@@ -1,3 +1,4 @@
+import { EXPANSION_INSTRUMENTS } from './exposure-etf-expansion.js';
 import { NON_BOND_INSTRUMENTS } from './non-bond-expansion.js';
 import { LIFESTRATEGY_INSTRUMENTS } from './lifestrategy.js';
 import { ROUND3_INSTRUMENTS } from './round3-fund-sheets.js';
@@ -11,6 +12,7 @@ import { EXPOSURE_ADDITIONS } from './exposure-additions.js';
 // preuves émetteurs/places et devises de négociation contrôlées le 30/09/2026.
 import { PEA_REVIEWS_BY_ISIN } from './instrument-pea.js';
 export const INSTRUMENTS_BY_ISIN = Object.freeze({
+  ...EXPANSION_INSTRUMENTS,
   ...NON_BOND_INSTRUMENTS,
   ...LIFESTRATEGY_INSTRUMENTS,
   ...QUALIFIED_INSTRUMENTS,

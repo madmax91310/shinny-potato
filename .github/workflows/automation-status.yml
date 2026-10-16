@@ -20,6 +20,7 @@ on:
       - Update Vanguard LifeStrategy data
       - Update non-bond expansion
       - Update qualified exposure ETF data
+      - Refresh 35 portfolio exposure ETFs
       - Refresh fully automated index sheets
     types: [completed]
   workflow_dispatch:

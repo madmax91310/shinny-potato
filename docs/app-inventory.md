@@ -41,7 +41,7 @@ Généré depuis les routes, le catalogue et les observations actives. Régéné
 | company | 157 |
 | household | 29 |
 | index | 52 |
-| instrument | 209 |
+| instrument | 244 |
 | insurance | 7 |
 | lexicon | 44 |
 | reference | 11 |
@@ -52,12 +52,12 @@ Généré depuis les routes, le catalogue et les observations actives. Régéné
 
 | Champ | Présents / instruments |
 |---|---:|
-| ter | 209/209 |
-| aum | 209/209 |
-| performance | 193/209 |
-| countries | 181/209 |
-| sectors | 181/209 |
-| holdings | 186/209 |
+| ter | 244/244 |
+| aum | 244/244 |
+| performance | 222/244 |
+| countries | 215/244 |
+| sectors | 215/244 |
+| holdings | 218/244 |
 
 Les raisons des absences figurent dans [l’inventaire des lacunes](automation-gaps.md).
 

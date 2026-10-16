@@ -165,8 +165,8 @@ def parse_holdings(body, share, now, url, *, complete=False):
         elif asset in ('Cash', 'Future', 'FX Forward'):
             # Keep the net cash/derivative allocation; never renormalise equities.
             sector = country = 'Cash and/or Derivatives'
-        elif asset == 'Mutual Fund':
-            # A fund share is a security, not an equity in its underlying sector.
+        elif asset in ('Mutual Fund', 'Warrants'):
+            # Fund shares and warrants are securities, not direct equity holdings.
             # Preserve the published registration country and mark its sector
             # unassigned; no look-through exposure or cash equivalence is inferred.
             isin = p['header']['value']

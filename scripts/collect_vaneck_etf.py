@@ -13,8 +13,8 @@ def parse_document(body,share,now):
     if share['isin']not in text:reject('Wrong VanEck UCITS share identity')
     stamp=document_date(re.search(r'\b\d{1,2} [A-Za-z]+ 20\d{2}\b',text)[0],now)
     if re.search(r'Base Currency\s+(USD|EUR|GBP)',text)[1]!=share['currency']:reject('VanEck base currency mismatch')
-    assets=re.search(r'Net Assets\s+(USD |EUR |€)([\d,.]+)([MB])',text)
-    if not assets or assets[1].strip().replace('€','EUR')!=share['currency']:reject('VanEck asset currency mismatch')
+    assets=re.search(r'Net Assets\s+(USD |EUR |€|\$)([\d,.]+)([MB])',text)
+    if not assets or assets[1].strip().replace('€','EUR').replace('$','USD')!=share['currency']:reject('VanEck asset currency mismatch')
     ter=float(re.search(r'Total Expense Ratio\s+(\d+\.\d+)%',text)[1])
     if not 0<=ter<=5:reject('Invalid VanEck TER')
     result={**share,'productId':share['isin'],'terPct':ter,'index':share['benchmark'],'distribution':share.get('distribution'),

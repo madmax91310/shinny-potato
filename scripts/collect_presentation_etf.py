@@ -12,7 +12,8 @@ from data_automation import reject
 def globalx_physical(text, share, now):
     page = Page(text)
     block = '\n'.join(page.tokens)
-    if share['isin'] != 'IE0003Z9E2Y3' or share['currency'] != 'USD':
+    qualified = {'IE0003Z9E2Y3':'COPX', 'IE00BLCHJB90':'BOTZ', 'IE000NDWFGA5':'URNU', 'IE00BMH5Y871':'BUG'}
+    if share['isin'] not in qualified or share['currency'] != 'USD':
         reject('Unsupported Global X exact accumulating share')
     if f'Primary ISIN\n{share["isin"]}\n' not in block or 'USD Accumulating' not in block:
         reject('Wrong Global X share/income policy')
@@ -48,7 +49,7 @@ def globalx_physical(text, share, now):
         value, _ = json.JSONDecoder().raw_decode(rsc[match.end():])
         if 'PERFORMANCE_HISTORY' in value: candidates.append(value)
     performance = only(candidates, 'Global X public performance')
-    if performance['ETF_TICKER'] != 'COPX': reject('Wrong Global X performance product')
+    if performance['ETF_TICKER'] != qualified[share['isin']]: reject('Wrong Global X performance product')
     document_date(performance['AS_OF_DATE'], now)
     history = performance['PERFORMANCE_HISTORY']
     date = document_date(history['month_end_date'], now)
