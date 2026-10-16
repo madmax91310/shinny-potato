@@ -1,3 +1,4 @@
+import {choose} from './card-selection.mjs'
 import assert from 'node:assert/strict'
 import { chromium } from 'playwright'
 import { spawn } from 'node:child_process'
@@ -31,11 +32,12 @@ try {
     },id)
     await writeFile(`test-artifacts/round4/${id}-export.png`,Buffer.from(image.split(',')[1],'base64'))
     await page.goto(`${base}/performance-depuis?asset=${id}`)
-    await page.locator(`[data-option][data-value="${id}"][aria-pressed="true"]`).waitFor()
+    await page.locator('#subject-select').waitFor()
+    assert.equal(await page.locator('#subject-select').getAttribute('data-value'),id)
   }
   await page.goto(`${base}/fiches-etf`)
   for(const [id,isin]of [['world-multifactor','IE00BZ0PKT83'],['ibonds-euro-2028','IE0008UEVOE0']]){
-    await page.locator(`#es-etf-select [data-option][data-value="${id}"]`).click()
+    await choose(page.locator('#es-etf-select'),id)
     assert((await page.locator('.es-card').innerText()).includes(isin))
     await page.getByRole('tab',{name:'Image',exact:true}).click()
     await page.getByRole('tabpanel').locator('img').waitFor()

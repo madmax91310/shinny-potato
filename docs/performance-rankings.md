@@ -1,35 +1,40 @@
 # Qui a vraiment gagné ?
 
-Route : `/classements-performances`. Outil ponctuel visible sur l’accueil et dans Comparer et simuler.
+Route : `/classements-performances`. Accès depuis l’accueil et Comparer et simuler.
 
 ## Fonctionnement livré
 
-- Quinze catégories définies par référence aux actifs partagés, sans duplication des prix : marchés mondiaux et européens, facteurs, secteurs européens et mondiaux, thématiques USD et EUR, dividendes, obligations, Small Cap Value, LifeStrategy, actions américaines et françaises, cryptomonnaies et matières premières via ETC.
-- De deux à six actifs, présélections et recherche/parcours manuel. Les noms courts du visuel renvoient à des produits précis, identifiés dans les détails par leur nom complet, ISIN et cotation lorsqu’ils sont disponibles. Un ETF n’est pas présenté comme un indice.
-- Une année civile, une grille de dix années maximum ou une période libre entre deux clôtures mensuelles. Rendement cumulé par défaut ; annualisation facultative sur la période libre.
-- Texte modifiable, aperçu et export PNG issus du même résultat. Une modification de paramètres remplace un ancien brouillon pour éviter de publier un texte correspondant à un autre calcul.
-- Fréquence de première place sur toutes les fenêtres communes de 12, 36, 60 ou 120 mois, avec nombre de fenêtres, bornes et avertissement sur leur chevauchement. Deux fenêtres au minimum. Toutes les premières places ex æquo sont comptées.
-- Mises à jour héritées des collectes existantes : les dates, années disponibles et fenêtres glissantes sont dérivées des observations actives à chaque construction du site. Aucun nouveau collecteur ni prix saisi à la main.
+- 22 catégories, de 2 à 6 actifs ou portefeuilles. Recherche manuelle dans les historiques mensuels ou les calendriers annuels officiels, en banques distinctes.
+- Année civile, grille de dix années maximum, ou période libre entre deux clôtures mensuelles. Rendement cumulé ou annualisé. Les calendriers annuels exigent décembre à décembre et toutes les années intermédiaires.
+- Texte éditable et PNG issus du même calcul. Fréquences de première place sur fenêtres de 12, 36, 60 ou 120 mois lorsque des cotations mensuelles existent.
+- 23 extensions mensuelles validées : plusieurs indices et actions couvrent décembre 2005 à septembre 2026, soit vingt années civiles complètes. L’historique d’un fonds exact commence après sa cotation effective ; aucun prix d’indice n’est ajouté avant sa création. Meta commence après son introduction.
+- 165 parts avec calendriers NAV officiels, dont 14 éligibles PEA. Les projections sont reconstruites avant chaque build depuis les sources partagées. Les années partielles et rendements glissants ne deviennent jamais des années civiles.
+- Régions en MSCI Net Return cohérent (World, USA, Europe, Japon, émergents), World/ACWI sur vingt ans, World/ACWI/IMI, et World/ACWI/FTSE All-World en Gross Return. Les variantes nettes et brutes ne sont pas mélangées.
+- Devise d’origine, EUR ou USD, via les références BCE mensuelles depuis janvier 1999. Conversion disponible aussi pour les calendriers annuels sur leurs bornes de décembre. Conversion sans couverture de change ; absence de change = erreur explicite.
+- Comparaison actions/or/obligations/Bitcoin en devise commune. L’or est un ETC précis, distinct de la moyenne mensuelle historique non comparable.
+- De deux à six allocations personnalisées, chacune de une à six lignes ; poids positifs totalisant exactement 100 %. Sans flux, rééquilibrage absent, en décembre, ou à chaque clôture mensuelle. Une grille annuelle garde la dérive des poids depuis son début. Chaque fenêtre glissante repart des poids cibles.
 
-## Règles de calcul
+## Sources et limites de couverture
 
-Une année Y exige décembre Y−1 et décembre Y. Les valeurs sont des rendements de clôture à clôture, sans interpolation, extrapolation, remplissage de mois manquants ni substitution d’un autre actif.
+`collect_ranking_sources.py` reprend les validations quotidiennes/mensuelles de `refresh_monthly_history.py` : identité du titre, devise, ajustement, fréquence, concordance des clôtures et absence de trous. Les réponses validées ont leurs preuves et empreintes dans `scripts/source-snapshots/ranking-histories.json`. Une collecte ne peut raccourcir la couverture ni changer une convention. Une source échouée conserve ses données antérieures.
 
-Une sélection doit partager devise et convention : cours ajustés avec revenus réinvestis, indices Net Return, indices Gross Return ou crypto au comptant. Les moyennes mensuelles d’or, le CAC 40 hors dividendes et les prix de futures non comparables sont exclus du sélecteur. Les ETC de matières premières restent identifiés comme produits dérivés des prix de leurs contrats, pas comme cours spot.
+La cotation SGLD Amsterdam présente 31 clôtures mensuelles figées et est exclue de ce classement. La cotation londonienne SGLD.L, USD, du même ISIN IE00B579F325 est identifiée séparément par sa place, sa devise et sa source émetteur. Les historiques avec trois clôtures mensuelles identiques successives exigent une revue et ne sont pas activés automatiquement. L’obligataire euro 1–3 ans commence après une telle séquence ancienne, en mai 2011.
 
-La devise est celle de la série réellement utilisée ; aucune conversion mensuelle n’est simulée. Les cours des ETF incluent les frais du fonds. Frais du courtier et fiscalité exclus. Les indicateurs décrivent les historiques sélectionnés, sans prédire de performance.
+L’ETF corporate euro a une divergence fournisseur en décembre 2010 : cette observation n’est pas publiée ; la série validée commence en janvier 2011. Les autres fonds gardent leurs dates réelles. Le FTSE All-World officiel dispose ici de cinq années civiles 2021–2025 et d’une série mensuelle plus courte (octobre 2024–septembre 2026) ; on ne reconstitue pas vingt ans à partir d’un proxy. Les indices peuvent intégrer des périodes rétropolées avant leur lancement, explicitement signalées dans la méthode.
 
-## Validation
+Le collecteur vérifie l’enveloppe XML BCE, les observations dupliquées/futures, les taux positifs, la continuité des mois et la proximité de la dernière observation avec la clôture. Aucune interpolation. Les cotations des fonds incluent leurs frais ; courtage, coûts de rééquilibrage et fiscalité ne sont pas simulés. Les performances passées ne sont pas des probabilités futures.
 
-- `node scripts/test-performance-rankings.mjs` : toutes les années complètes de toutes les catégories, bornes exactes, devise/convention, séries discontinues, annualisation, égalités, fenêtres glissantes et propagation d’un nouveau mois.
-- `node scripts/playwright-performance-rankings.mjs` : catégories, temporalités, saisie manuelle, invalidation, export PNG et interfaces ordinateur/mobile. Intégré aux vérifications navigateur du déploiement.
-- Compilation et budgets de chargement : route chargée à la demande ; les historiques ne sont pas ajoutés au chargement initial de l’accueil.
+## Actualisation et validation
 
-## Roadmap restante
+La collecte est raccordée au workflow mensuel les 2, 4, 8 et 16, avec reprises quotidiennes des sources échouées ou en retard. Les projections annuelles sont régénérées avant `dev` et `build`. Les fichiers actifs, preuves et états sont publiés par la procédure existante de commit des données validées.
 
-1. **Plus de profondeur** : compléter les clôtures antérieures au premier mois des séries existantes, puis étendre les historiques exacts vers 15–20 ans. Raccorder les calendriers annuels officiels sans série mensuelle, dans un mode annuel explicitement distinct des cotations.
-2. **Grandes régions et indices mondiaux** : harmoniser les variantes de dividendes et raccorder les historiques exacts World/ACWI/All-World, Japon et émergents. Aucun mélange de NR/GR ou proxy implicite.
-3. **EUR/USD pour les périodes libres** : collecter les changes de fin de mois, avec tests des bornes ; distinguer conversion en euros et couverture de change.
-4. **Confrontations entre classes d’actifs** : actions, or, obligations et Bitcoin après raccordement de clôtures comparables et d’une devise commune.
-5. **Allocations personnalisées** : portefeuilles pondérés avec règle explicite de rééquilibrage, puis comparaison entre allocations. Les LifeStrategy actuels restent des ETF réels.
-6. **Confort éditorial** : sauvegarde de sélections et variantes de visuels, historique des sujets déjà générés et liens depuis les autres outils.
+- `python -m unittest discover -s scripts -p test_ranking_sources.py` : change BCE, mois complets, taux invalides, doublons, identité et régression.
+- `node scripts/test-performance-rankings.mjs` : toutes les années des catégories, change exact, conventions net/brut, calendriers NAV, poids et rééquilibrage, dérive sur plusieurs années, fenêtres glissantes.
+- `node scripts/playwright-performance-rankings.mjs` : sélection, calendriers, conversions, allocations, erreurs de poids, PNG et vues ordinateur/mobile.
+- Build et budgets : accueil toujours sous 300 kB JS, route chargée à la demande. Budget total de la route relevé à 1,85 Mo pour les séries longues, calendriers et changes ; chaque fichier reste sous 500 kB.
+
+## Roadmap suivante
+
+1. Approfondir FTSE uniquement si une source officielle complète permet de qualifier davantage d’années et de clôtures mensuelles.
+2. Sauvegarder les sélections et les allocations réutilisées, avec leur règle de rééquilibrage.
+3. Ajouter des variantes de visuels et un historique des sujets déjà publiés.
