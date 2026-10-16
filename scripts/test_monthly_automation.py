@@ -90,6 +90,20 @@ class Monthly(unittest.TestCase):
         def fetch(url):return chart('1mo',close=15) if 'interval=1mo' in url else chart()
         with self.assertRaises(ValueError):collect_yahoo(CONFIG,NOW,fetch)
 
+    def test_candidate_discovers_and_verifies_daily_windows_without_accepting_conflict(self):
+        config={**CONFIG,'consumerScope':'catalog','verifyMonthlyDisagreements':True}
+        def fetch(url):return chart('1mo',close=15) if 'interval=1mo' in url else chart()
+        result=collect_yahoo(config,NOW,fetch)
+        self.assertEqual(config['dailyWindowMonths'],['2026-01'])
+        self.assertEqual(result['points'],[['2026-01',10]])
+        self.assertEqual(result['proofRows'][0]['rejectedMonthlyClose'],15)
+        end=int(dt.datetime(2026,2,1,tzinfo=UTC).timestamp())
+        def inconsistent(url):
+            if f'period1={end-7*86400}' in url:return chart(close=13)
+            return fetch(url)
+        with self.assertRaises(ValueError):collect_yahoo(config,NOW,inconsistent)
+        with self.assertRaises(ValueError):collect_yahoo({**CONFIG,'verifyMonthlyDisagreements':True},NOW,fetch)
+
     def test_registered_etf_candle_recouped_by_exact_daily_window(self):
         config={**CONFIG,'consumerScope':'catalog','dailyWindowMonths':['2026-01']}
         def fetch(url):return chart('1mo',close=15) if 'interval=1mo' in url else chart()

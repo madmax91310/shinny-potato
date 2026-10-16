@@ -99,8 +99,8 @@ export function projectToolData() {
   return { groups, plugin: {
     name: 'project-tool-data', enforce: 'pre',
     configResolved(config) { base = config.base; build = config.command === 'build' },
-    resolveId(id) { if (modules.has(id)) return '\0' + id },
-    load(id) { return modules.get(id.replace(/^\0/, '')) },
+    resolveId(id) { if (modules.has(id)) return {id:'\0' + id,moduleSideEffects:false} },
+    load(id) { id=typeof id==='string'?id:id.id;return modules.get(id.replace(/^\0/, '')) },
     configureServer(server) {
       const files = new Map(records.map(r => [base + r.fileName, r.content]))
       server.middlewares.use((req,res,next) => {

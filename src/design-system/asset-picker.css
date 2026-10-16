@@ -33,3 +33,5 @@
 .asset-picker-modes button{flex:1;min-height:44px;padding:9px;border:0;border-radius:8px;background:none;color:var(--ui-muted,#626a7a);font:inherit;font-size:13px;cursor:pointer}
 .asset-picker-modes button[aria-pressed=true]{background:var(--ui-surface,#fff);color:var(--ui-ink,#222636);box-shadow:0 1px 4px #00000012;font-weight:650}
 .asset-picker .asset-option:disabled,.asset-picker-groups button:disabled{opacity:.5;cursor:default}
+.asset-picker-panel{display:grid;gap:12px;min-width:0}.asset-picker-panel[hidden]{display:none}.asset-picker-open{justify-self:start;min-height:40px;padding:8px 14px;border:1px solid var(--ui-line,#e2e5ed);border-radius:9px;background:var(--ui-surface,#fff);color:inherit;font:inherit;font-size:12px;cursor:pointer}
+.asset-picker-shell{display:grid;gap:12px;min-width:0}

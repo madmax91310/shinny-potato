@@ -1,3 +1,5 @@
+import { useLocation } from 'react-router-dom'
+import AssetPicker from '../../design-system/AssetPicker.jsx'
 import GeneratorControls from './GeneratorControls'
 import AllWeatherPanel from './AllWeatherPanel'
 import { buildAllWeatherPortfolio } from './allWeather.js'
@@ -8,7 +10,7 @@ import { copyPublicationText } from '../../design-system/publicationActions.js'
 import { performanceYears, performanceNotes, formatPerformance } from './performance.js'
 import ChoicePicker from '../../design-system/ChoicePicker.jsx'
 import { dataLabels } from './compact.js'
-import { instrumentOption, normalizeSearch } from '../../data/asset-selection.js'
+import { instrumentOption } from '../../data/asset-selection.js'
 import ReplacementPanel from './ReplacementPanel'
 import ToolWorkspace from '../../design-system/ToolWorkspace'
 import SettingsDetails from '../../design-system/SettingsDetails'
@@ -165,36 +167,9 @@ function ManualComposer({
   onAdd,
   onRemove,
   onPctChange,
-  search,
-  onSearchChange,
   onGenerate,
 }) {
   const selectedIds = useMemo(() => new Set(selection.map((s) => s.id)), [selection])
-  const [category, setCategory] = useState('Tous')
-  const query = normalizeSearch(search.trim())
-  const available = useMemo(
-    () =>
-      ASSETS.filter(
-        (a) =>
-          !selectedIds.has(a.id) &&
-          (category === 'Tous' || category === a.cat) &&
-          normalizeSearch(`${instrumentOption(a).search} ${CATEGORIES[a.cat].label}`).includes(query)
-      ),
-    [selectedIds, query, category]
-  )
-  // Regroupé par grande catégorie (même code couleur que AllocationList/CategorySummary plus bas)
-  // — demande utilisateur du 25/09/2026 : 71 actifs en liste plate, sans distinction visuelle,
-  // rendaient la sélection manuelle illisible ("tout est mélangé").
-  const groupedAvailable = useMemo(() => {
-    const byCat = new Map()
-    for (const a of available) {
-      if (!byCat.has(a.cat)) byCat.set(a.cat, [])
-      byCat.get(a.cat).push(a)
-    }
-    return Object.keys(CATEGORIES)
-      .filter((cat) => byCat.has(cat))
-      .map((cat) => ({ cat, items: byCat.get(cat) }))
-  }, [available])
   const total = selection.reduce((sum, s) => sum + s.pct, 0)
   const maxPct = selection.reduce((max, s) => Math.max(max, s.pct), 0)
   const lineCount = selection.length
@@ -220,38 +195,8 @@ function ManualComposer({
         ))}
       </ChoicePicker>
 
-      <label className="pg-manual-label" htmlFor="pg-manual-search">
-        Ajouter un actif ({ASSETS.length} disponibles)
-      </label>
-      <input
-        id="pg-manual-search"
-        type="text"
-        className="pg-manual-search"
-        placeholder="Nom, catégorie, indice, ticker ou ISIN…"
-        value={search}
-        onChange={(e) => onSearchChange(e.target.value)}
-      />
-      <div className="asset-picker-groups" role="group" aria-label="Catégories des actifs">
-        <button type="button" aria-pressed={category === 'Tous'} onClick={() => setCategory('Tous')}>Tous</button>
-        {Object.entries(CATEGORIES).map(([cat, info]) => <button key={cat} type="button" aria-pressed={category === cat} onClick={() => setCategory(cat)}>{info.label}</button>)}
-      </div>
-      <div className="pg-manual-asset-list">
-        {groupedAvailable.map(({ cat, items }) => (
-          <div key={cat} className="pg-manual-asset-group">
-            <p className="pg-manual-asset-group-title">
-              <span className="pg-manual-asset-group-swatch" style={{ background: CATEGORIES[cat].color }} aria-hidden="true" />
-              {CATEGORIES[cat].label}
-            </p>
-            {items.map((a) => (
-              <button key={a.id} type="button" className="pg-manual-asset-option" data-asset-id={a.id} title={a.name} onClick={() => onAdd(a.id)}>
-                <strong>{a.emoji} {instrumentOption(a).label}</strong>
-                <small className="pg-asset-description">{instrumentOption(a).detail || CATEGORIES[a.cat].label}{instrumentOption(a).badges.length ? ` · ${instrumentOption(a).badges.join(' · ')}` : ''}</small>
-              </button>
-            ))}
-          </div>
-        ))}
-        {available.length === 0 && <p className="pg-manual-empty">Aucun actif ne correspond, ou tous sont déjà ajoutés.</p>}
-      </div>
+      <AssetPicker label="Ajouter un actif" value="" onChange={onAdd} hideIdleResults clearSearchOnSelect inputClassName="pg-manual-search" optionsClassName="pg-manual-available"
+        items={ASSETS.filter(a=>!selectedIds.has(a.id)).map(instrumentOption)}/>
 
       {selection.length > 0 && (
         <ul className="pg-manual-selection-list">
@@ -416,8 +361,10 @@ function TweetCard({ portfolio }) {
   )
 }
 
-export default function App() {
-  const [mode, setMode] = useState('auto')
+export default function App(){const {search}=useLocation();return <GeneratorWorkspace key={search} search={search}/>}
+function GeneratorWorkspace({search}) {
+  const requested=ASSETS.find(a=>a.id===new URLSearchParams(search).get('asset'))
+  const [mode, setMode] = useState(requested?'manual':'auto')
   const [selectedRisk, setSelectedRisk] = useState('auto')
   const [selectedProfile, setSelectedProfile] = useState('auto')
   const [history, setHistory] = useState(() => [generatePortfolio([], 'auto', 'auto')])
@@ -430,7 +377,7 @@ export default function App() {
   // Composition manuelle : état séparé du tirage auto, jamais mélangé (cf. engine.js,
   // buildManualPortfolio/pickManualHookPair scopés sur riskId === "manuel").
   const [manualProfile, setManualProfile] = useState(PROFILES[0].id)
-  const [manualSelection, setManualSelection] = useState([])
+  const [manualSelection, setManualSelection] = useState(()=>requested?[{id:requested.id,pct:100}]:[])
   const [manualSearch, setManualSearch] = useState('')
   const [manualEditing, setManualEditing] = useState(true)
   const [allWeatherPreset, setAllWeatherPreset] = useState('euro')

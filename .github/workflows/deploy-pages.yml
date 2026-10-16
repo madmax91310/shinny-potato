@@ -64,6 +64,7 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_ranking_sources.py'
       - run: node scripts/test-performance-rankings.mjs
       - run: node scripts/build-tool-links.mjs && node scripts/test-tools-roadmap.mjs
+      - run: node scripts/test-selected-data.mjs
       - run: node scripts/test-light-registries.mjs
       - run: node scripts/test-browser-shards.mjs
       - run: node scripts/test-broker-automation.mjs

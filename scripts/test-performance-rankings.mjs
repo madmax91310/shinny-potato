@@ -96,3 +96,11 @@ for (const id of ['world-net', 'msciAcwi', 'japan-net', 'msciEurope', 'msciUsa',
   assert(commonCoverage([RANKING_ASSETS[id], { ...RANKING_ASSETS[id], id: 'copy' }]).years.includes(2006))
 }
 console.log('Annual NAV, ECB conversion, cross-asset conventions, portfolio weights, rebalancing and multi-year drift passed.')
+
+assert(!RANKING_ASSETS.etfIE00B579F325, 'Stale Amsterdam gold listing must stay excluded')
+for (const asset of Object.values(RANKING_ASSETS).filter(a => a.symbol === 'SGLD.L' || a.id === 'euroGov13')) {
+  for (let i = 2; i < asset.points.length; i++) assert(!(asset.points[i].price === asset.points[i - 1].price && asset.points[i].price === asset.points[i - 2].price), asset.id)
+}
+const annualFX = { months: { '2019-12': { rates: { EUR: 1, USD: 2 } }, '2020-12': { rates: { EUR: 1, USD: 4 } } } }
+const annualUSD = convertAsset({ ...annual, years: { 2020: 10 } }, 'USD', annualFX)
+assert(Math.abs(annualUSD.years[2020] - 120) < 1e-10)

@@ -23,35 +23,7 @@ const validAllocation = rows => Array.isArray(rows) && rows.length >= 1 && rows.
 const initialLeft = [{ id: 'msci_world_ishares', pct: 80 }, { id: 'msci_em', pct: 20 }]
 const initialRight = [{ id: 'msci_acwi_ishares', pct: 80 }, { id: 'smallcap_monde', pct: 20 }]
 
-function AllocationEditor({ label, lines, onChange }) {
-  const total = lines.reduce((sum, line) => sum + Number(line.pct || 0), 0)
-  const update = (index, patch) => onChange(lines.map((line, i) => i === index ? {...line, ...patch} : line))
-  function add() {
-    const next = CATALOG.find(item => item.instrumentType === 'EQUITY' && !lines.some(line => line.id === item.id))
-    if (next) onChange([...lines, {id: next.id, pct: Math.max(1, 100 - total)}])
-  }
-  function equalize() {
-    const share = Math.floor(100 / lines.length), remainder = 100 % lines.length
-    onChange(lines.map((line, i) => ({...line, pct: share + (i < remainder ? 1 : 0)})))
-  }
-  return <section className="pd-editor-side">
-    <h3>Portefeuille {label} <span className={total === 100 ? 'pd-total-ok' : 'pd-total-bad'}>{total} % / 100 %</span></h3>
-    {lines.map((line, index) => <div className="pd-editor-line" key={index}>
-      <label><span>Actif {index + 1}</span>
-        <ChoicePicker aria-label={`Actif ${index + 1} du portefeuille ${label}`} value={line.id} onChange={event => update(index, {id: event.target.value})}>
-          {CATALOG.filter(item => item.id === line.id || !lines.some(row => row.id === item.id)).map(item =>
-            <option key={item.id} value={item.id}>{item.instrumentType === 'EQUITY' ? `Action · ${item.label}` : `${item.label} · ${item.name}`}</option>)}
-        </ChoicePicker>
-      </label>
-      <label className="pd-weight"><span>Poids (%)</span><input aria-label={`Poids actif ${index + 1} du portefeuille ${label}`} type="number" min="1" max="100" step="1" value={line.pct} onChange={event => update(index, {pct: event.target.value === '' ? '' : Number(event.target.value)})} /></label>
-      <button type="button" aria-label={`Retirer actif ${index + 1} du portefeuille ${label}`} disabled={lines.length === 1} onClick={() => onChange(lines.filter((_, i) => i !== index))}>×</button>
-    </div>)}
-    <div className="pd-controls">
-      <button type="button" className="pd-add" disabled={lines.length >= 6} onClick={add}>Ajouter un actif à {label}</button>
-      <button type="button" className="pd-add" onClick={equalize}>Répartir à parts égales sur {label}</button>
-    </div>
-  </section>
-}
+const AllocationEditor = lazy(() => import('./AllocationEditor.jsx'))
 
 
 export default function App() {
@@ -61,6 +33,7 @@ export default function App() {
 
 function DuelWorkspace({ search }) {
   const requested = duels.find(d => d.id === new URLSearchParams(search).get('duel'))
+  const requestedAsset=CATALOG.find(a=>a.id===new URLSearchParams(search).get('asset'))
   const [linkedId, setLinkedId] = useState(requested?.id ?? null)
   const [savedId, setSavedId] = usePublicationPreference('duel-selected', duels[0].id, id => duels.some(d => d.id === id))
   const selectedId = linkedId ?? savedId
@@ -68,11 +41,16 @@ function DuelWorkspace({ search }) {
   const index = duels.findIndex(d => d.id === selectedId)
   const setIndex = next => setSelectedId(duels[next].id)
   const [savedMode, setSavedMode] = usePublicationPreference('duel-mode', 'prepared', mode => ['prepared', 'manual'].includes(mode))
-  const [linkedMode, setLinkedMode] = useState(requested ? 'prepared' : null)
+  const [linkedMode, setLinkedMode] = useState(requestedAsset?'manual':requested?'prepared':null)
   const mode = linkedMode ?? savedMode
   const setMode = value => { setLinkedMode(null); setSavedMode(value) }
-  const [left, setLeft] = usePublicationPreference('duel-left', initialLeft, validAllocation)
-  const [right, setRight] = usePublicationPreference('duel-right', initialRight, validAllocation)
+  const [savedLeft, setSavedLeft] = usePublicationPreference('duel-left', initialLeft, validAllocation)
+  const [savedRight, setSavedRight] = usePublicationPreference('duel-right', initialRight, validAllocation)
+  const [linkedLeft,setLinkedLeft]=useState(()=>requestedAsset?[{id:requestedAsset.id,pct:100}]:null)
+  const [linkedRight,setLinkedRight]=useState(()=>requestedAsset?[{id:'msci_world_ishares',pct:100}]:null)
+  const left=linkedLeft??savedLeft,right=linkedRight??savedRight
+  const setLeft=value=>{setLinkedLeft(null);setSavedLeft(value)}
+  const setRight=value=>{setLinkedRight(null);setSavedRight(value)}
   const [generated, setGenerated] = useState(() => generateDuel())
   const [copyStatus, setCopyStatus] = useState('')
   const [imageStatus, setImageStatus] = useState('')
@@ -147,7 +125,7 @@ function DuelWorkspace({ search }) {
           setLeft([{id: 'msci_world_ishares', pct: 100}])
           setRight(['apple', 'microsoft', 'broadcom', 'tesla', 'berkshire', 'asml'].map((id, i) => ({id: `equity-${id}`, pct: i < 4 ? 17 : 16})))
         }}>Exemple : World vs 6 actions</Button>
-        <div className="pd-editors"><AllocationEditor label="A" lines={left} onChange={setLeft} /><AllocationEditor label="B" lines={right} onChange={setRight} /></div>
+        <div className="pd-editors"><Suspense fallback={<p role="status">Chargement des actifs…</p>}><AllocationEditor label="A" lines={left} onChange={setLeft} /></Suspense><Suspense fallback={<p role="status">Chargement des actifs…</p>}><AllocationEditor label="B" lines={right} onChange={setRight} /></Suspense></div>
         <p className="pd-hint">1 à 6 actifs par portefeuille, sans base ETF obligatoire · total de 100 % de chaque côté · mêmes dates et calcul en euros · pondérations rétablies au début de chaque année.</p>
         {error && <p className="pd-error" role="alert">{error}</p>}
       </>}

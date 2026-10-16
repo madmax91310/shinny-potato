@@ -1,4 +1,5 @@
-import { ASSETS, INCONSISTENT_MONTHLY_DATA_IDS, MONTHS_FULL, SPARSE_MONTHLY_DATA_IDS } from '../../data/market-history.js'
+import { ensureCalculatorAsset } from '../../data/calculator-history.js'
+import { ASSETS, INCONSISTENT_MONTHLY_DATA_IDS, MONTHS_FULL, SPARSE_MONTHLY_DATA_IDS } from '../../data/calculator-history.js'
 import { fmtEUR, fmtPct, pct, ymIndex } from './lib.js'
 
 const W = 1600, INK = '#f3e3dc', MUTED = '#c6abba', GREEN = '#e8b18c', RED = '#ff9caa', GOLD = '#f2be91', GRID = '#563548'
@@ -115,6 +116,7 @@ function chart(ctx, state, d, currency, kind) {
   }
 }
 export async function renderInvestmentImage(state, d) {
+  if(state.assetId!=='custom') await ensureCalculatorAsset(state.assetId)
   const asset = d.isCustom ? null : ASSETS[state.assetId], currency = asset?.currency ?? 'EUR'
   await document.fonts.ready
   const credits = (asset?.sourceCredit || '').replace(' · Calculs Épargnant Libre', '').split('\n').filter(Boolean)

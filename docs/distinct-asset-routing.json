@@ -18,16 +18,12 @@
       "generator": "missing",
       "dca": true,
       "countries": {
-        "status": "incomplete",
-        "coverage": 0,
-        "outside": 0,
-        "reason": "Ventilation absente"
+        "status": "not-applicable",
+        "reason": "Hors classification"
       },
       "sectors": {
-        "status": "incomplete",
-        "coverage": 0,
-        "outside": 0,
-        "reason": "Ventilation absente"
+        "status": "not-applicable",
+        "reason": "Hors classification"
       },
       "holdings": null,
       "monthly": [],
@@ -55,10 +51,11 @@
       "generator": "missing",
       "dca": true,
       "countries": {
-        "status": "incomplete",
-        "coverage": 0,
+        "status": "available",
+        "coverage": 99.93973483326536,
         "outside": 0,
-        "reason": "Ventilation absente"
+        "reason": "Disponible",
+        "date": "2026-10-15"
       },
       "sectors": {
         "status": "available",
@@ -549,7 +546,7 @@
         "coverage": 100,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-10-14"
+        "date": "2026-10-15"
       },
       "holdings": {
         "asOf": "2026-10-14",
@@ -557,7 +554,18 @@
         "identifiedCoverage": 99.2658100000001,
         "automatic": true
       },
-      "monthly": [],
+      "monthly": [
+        {
+          "id": "etfIE00B1FZS350",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
       "historyCandidate": false,
       "decision": "keep-used"
     },
@@ -579,14 +587,14 @@
         "coverage": 100,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-10-14"
+        "date": "2026-10-15"
       },
       "sectors": {
         "status": "available",
         "coverage": 100,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-10-14"
+        "date": "2026-10-15"
       },
       "holdings": {
         "asOf": "2026-10-14",

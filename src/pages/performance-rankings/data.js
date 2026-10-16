@@ -10,7 +10,7 @@ export const CATEGORIES = [
   { id: 'world-acwi-imi', label: 'World, ACWI et ACWI IMI · indices nets', ids: ['world-net', 'msciAcwi', 'msciAcwiImi'], currency: 'USD' },
   { id: 'regions-indices', label: 'Grandes régions · indices nets', ids: ['world-net', 'msciUsa', 'msciEurope', 'japan-net', 'emerging-net'], currency: 'USD' },
   { id: 'global-indices', label: 'World, ACWI, All-World · indices bruts', ids: ['msciWorld', 'acwi-gross', 'ftseAllWorld'], currency: 'USD' },
-  { id: 'multi-asset', label: 'Actions, or, obligations et Bitcoin', ids: ['world-net', 'etfIE00B579F325', 'euroGov13', 'bitcoin'], currency: 'EUR' },
+  { id: 'multi-asset', label: 'Actions, or, obligations et Bitcoin', ids: ['world-net', 'gold-invesco-usd', 'euroGov13', 'bitcoin'], currency: 'EUR' },
   { id: 'world', label: 'Marchés mondiaux', ids: ['etfIE00B4L5Y983', 'etfIE00B6R52259', 'etfVwce', 'etfImie'] },
   { id: 'europe', label: 'Marchés européens', ids: ['etfFR0011550193', 'etfIE00B53L3W79', 'etfFR0013412038'] },
   { id: 'factors', label: 'Facteurs mondiaux', ids: ['etf_momentum', 'etf_quality', 'etf_value', 'etfMinVol'] },
@@ -59,6 +59,8 @@ export function buildRankingAssets(histories) {
   return Object.fromEntries(Object.entries(histories).flatMap(([id, a]) => {
     const basis = comparisonBasis(id, a)
     if (!basis || !a.points?.length) return []
+    // Frozen listing prices cannot represent a genuine cross-asset return.
+    if (a.points.some((p, i) => i >= 2 && p.price === a.points[i - 1].price && p.price === a.points[i - 2].price)) return []
     return [[id, { ...a, id, basis, shortLabel: SHORT[id] ?? a.label.replace(/^Indice /, ''),
       group: GROUPS[id] ?? (a.isin ? 'Autres ETF et ETC' : a.priceUnit === 'points' ? 'Indices' : 'Actions et autres actifs'),
     }]]
@@ -66,7 +68,6 @@ export function buildRankingAssets(histories) {
 }
 const extended = Object.fromEntries(Object.values(LONG).map(record => [record.targetId ?? record.id, {
   ...ASSETS[record.targetId], ...record, id: record.targetId ?? record.id,
-  ...(record.targetId === 'etfIE00B579F325' ? { instrumentType: 'ETC' } : {}),
   ...(record.parser === 'msci' || record.id === 'long-sp500' ? { priceUnit: 'points', variant: record.variant ?? 'GRTR' } : { priceMethod: 'adjusted' }),
   points: record.points.map(([date, price]) => ({ date, price })),
 }]))

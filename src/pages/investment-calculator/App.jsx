@@ -1,3 +1,4 @@
+import { useSelectedHistory } from '../../lib/useSelectedHistory.js'
 import HistoricalContext from '../../design-system/HistoricalContext.jsx'
 import { readPreference, writePreference } from '../../lib/publication-preferences.js'
 import CrisisResult from './CrisisResult.jsx'
@@ -18,7 +19,7 @@ import {
   ASSETS, ASSET_ORDER, MONTHS_FULL, MONTHS_SHORT, YEARS, AMOUNT_PRESETS, DATE_PRESETS,
   getAssetMinDate, SPARSE_MONTHLY_DATA_IDS, INCONSISTENT_MONTHLY_DATA_IDS,
   REDUCED_CONFIDENCE_LAST_POINT, LATEST_YM,
-} from '../../data/market-history.js'
+} from '../../data/calculator-history.js'
 import { derive, fmtEUR, fmtPct, pct, buildTweetText, ymIndex, sparseAssetSeries, applyPriceOverride, currencySymbol } from './lib'
 import Sparkline from './Sparkline'
 import VideoExport from './VideoExport.jsx'
@@ -273,6 +274,11 @@ function InvestmentWorkspace({ search }) {
     return { ...INITIAL_STATE, assetId, startYear: Number(date.slice(0, 4)), startMonth: Number(date.slice(5)) }
   })
   useEffect(() => { writePreference('investment-settings', state) }, [state])
+  const history=useSelectedHistory(state.assetId)
+  if(!history.ready)return <section className="ic-history-loading" aria-busy={!history.error}><p role="status">{history.error?'L’historique n’a pas pu être chargé.':'Chargement de l’historique…'}</p>{history.error&&<><Button onClick={history.retry}>Réessayer</Button><AssetPicker label="Choisir un actif" value={state.assetId} onChange={assetId=>setState({...state,assetId})} items={ASSET_ORDER.map(id=>({id,label:historyOptionLabel(id,ASSETS[id]),isin:ASSETS[id].isin,group:exposureGroup(ASSETS[id])}))}/></>}</section>
+  return <InvestmentEditor state={state} setState={setState}/>
+}
+function InvestmentEditor({state,setState}){
   const [copied, setCopied] = useState('idle')
 
   const crisisMode = state.scenario === 'crisis'
@@ -378,7 +384,7 @@ function InvestmentWorkspace({ search }) {
             <div className="ic-field">
               <div className="ic-select-wrap">
                 <AssetPicker className="ic-control" label="Choisir un actif" value={state.assetId}
-                  items={ASSET_ORDER.map(id => ({ id, label: historyOptionLabel(id, ASSETS[id]), group: exposureGroup(ASSETS[id]) }))}
+                  items={ASSET_ORDER.map(id => ({ id, isin:ASSETS[id].isin, search:ASSETS[id].ticker??'', label: historyOptionLabel(id, ASSETS[id]), group: exposureGroup(ASSETS[id]) }))}
                   emptyOption={{ id: 'custom', label: 'Autre (saisie manuelle)' }}
                   onChange={(id) => {
                     set({

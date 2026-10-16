@@ -65,6 +65,8 @@ def validate_record(record, old=None):
         reject('Ranking history gap/duplicate')
     if any(not 0 < float(p[1]) < float('inf') for p in points):
         reject('Invalid ranking level')
+    if record.get('parser') == 'yahoo' and any(points[i - 2][1] == points[i - 1][1] == points[i][1] for i in range(2, len(points))):
+        reject('Three identical month-end prices: stale listing requires review')
     if old:
         for field in ['currency', 'parser', 'symbol', 'indexCode', 'variant', 'field', 'isin', 'targetId']:
             if old.get(field) != record.get(field):
@@ -81,7 +83,7 @@ def collect_source(source, now):
         meta = get_json(meta_url)['chart']['result'][0]['meta']
         if meta['symbol'] != source['symbol'] or meta['currency'] != source['currency']:
             reject('Long-history listing identity mismatch')
-        if source.get('isin') and meta.get('instrumentType') not in ('ETF', 'MUTUALFUND'):
+        if source.get('isin') and meta.get('instrumentType') not in (('ETF', 'MUTUALFUND', 'EQUITY') if source.get('instrumentType') == 'ETC' and source.get('listingSourceUrl', '').startswith('https://www.invesco.com/') else ('ETF', 'MUTUALFUND')):
             reject('Expected exact fund listing')
         first = dt.datetime.fromtimestamp(meta['firstTradeDate'], UTC)
         first_complete = month_shift(first.replace(day=1), 1).strftime('%Y-%m')

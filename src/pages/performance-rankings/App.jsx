@@ -104,7 +104,7 @@ export default function App() {
   async function copy() { try { await copyPublicationText(text); setStatus('Texte copié.') } catch (e) { setStatus(e.message) } }
   function dateField(name, value) { setDates(d => ({ ...d, [name]: value })); setStatus('') }
   return <div className="rankings-tool">
-    <PageHeader title="Qui a vraiment gagné ?" subtitle="Classe des actifs par année ou sur une période commune. Les calculs utilisent les clôtures mensuelles partagées, sans interpolation. Les choix suivent la profondeur réelle des historiques." />
+    <PageHeader title="Qui a vraiment gagné ?" subtitle="Classe des actifs par année ou sur une période commune. Les calculs utilisent les historiques mensuels ou les calendriers annuels officiels, sans interpolation. Les choix suivent la profondeur réelle des historiques." />
     <ToolWorkspace renderImage={renderImage} imageDisabled={!result} imageAlt={`Classement : ${title}`} actions={<>
       <button type="button" onClick={copy} disabled={!result}>Copier le texte</button>
       <button type="button" onClick={download} disabled={!result || busy}>{busy ? 'Préparation…' : 'Télécharger l’image'}</button>
@@ -164,7 +164,7 @@ export default function App() {
         </details>
         <details className="rk-method"><summary>Supports et méthode</summary><p>Les indices, les ETF et les actions conservent leur identité. Les ETF sont comparés via leurs cotations exactes, frais du fonds inclus et revenus réinvestis. Les cotations mensuelles désignent des clôtures de fin de mois. Les indices officiels historiques peuvent contenir des périodes rétropolées avant leur lancement, distinctes d’un rendement de fonds réel. Une année civile va de décembre précédent à décembre de l’année choisie. Aucune année partielle n’est présentée comme complète.</p>
           <p>La devise d’origine ou une conversion BCE peut être choisie. La conversion ne constitue pas une couverture de change. Les calendriers annuels utilisent les rendements NAV officiels ; aucune valeur mensuelle n’en est déduite. Hors frais du courtier et fiscalité. Les portefeuilles LifeStrategy sont les ETF réels.</p>
-          {assets.map(a => <p key={a.id}><strong>{a.shortLabel}</strong> — {a.label}{a.isin ? ` · ${a.isin}` : ''}{a.ticker ? ` · ${a.ticker}` : ''} · {a.currency}<br /><Link to={`/bibliotheque-donnees?q=${encodeURIComponent(a.isin ?? a.label)}`}>Consulter les données et leurs sources</Link></p>)}
+          {[...new Map(assets.flatMap(a => a.portfolio ? a.portfolio.lines.map(l => l.asset) : [a]).map(a => [a.id, a])).values()].map(a => <p key={a.id}><strong>{a.shortLabel}</strong> — {a.label}{a.isin ? ` · ${a.isin}` : ''}{a.ticker ? ` · ${a.ticker}` : ''} · {a.currency}<br /><Link to={`/bibliotheque-donnees?q=${encodeURIComponent(a.isin ?? a.label)}`}>Consulter les données et leurs sources</Link>{a.sourceUrls?.[0] && <> · <a href={a.sourceUrls[0]} target="_blank" rel="noreferrer">Source de cet historique</a></>}</p>)}
         </details>
       </section>
       <section className="tool-preview rk-preview">

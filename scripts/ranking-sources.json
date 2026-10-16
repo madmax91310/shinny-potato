@@ -174,7 +174,7 @@
       "id": "long-euroGov13",
       "label": "État euro 1–3 ans (iShares)",
       "currency": "EUR",
-      "periodStart": "2005-12",
+      "periodStart": "2011-05",
       "method": "Clôture quotidienne ajustée des dividendes et divisions à la dernière séance mensuelle ; recoupement avec la clôture de la bougie mensuelle Yahoo",
       "parser": "yahoo",
       "symbol": "IBGS.MI",
@@ -183,7 +183,8 @@
       "collectAnniversary": false,
       "timezone": "Europe/Rome",
       "targetId": "euroGov13",
-      "discoverStart": true
+      "discoverStart": false,
+      "historyNote": "Earlier listing observations contain unchanged month-end quotes across February–April 2011; ranking history begins after that stale sequence."
     },
     {
       "id": "long-euroCorporateBond",
@@ -232,24 +233,25 @@
       "discoverStart": true
     },
     {
-      "id": "long-etfIE00B579F325",
-      "label": "Invesco Physical Gold ETC",
+      "id": "gold-invesco-usd",
+      "label": "Invesco Physical Gold ETC · Londres USD",
       "isin": "IE00B579F325",
       "ticker": "SGLD",
-      "mic": "XAMS",
-      "currency": "EUR",
+      "mic": "XLON",
+      "currency": "USD",
       "parser": "yahoo",
-      "symbol": "SGLD.AS",
+      "symbol": "SGLD.L",
       "field": "adjclose",
       "precision": 6,
       "consumerScope": "catalog",
-      "listingEvidenceId": "IE00B579F325-XAMS-SGLD-EUR",
-      "instrumentType": "ETF",
-      "method": "Cours de la part exacte, ajustés des distributions et divisions ; dernière séance mensuelle recoupée avec la bougie mensuelle Yahoo",
+      "listingEvidenceId": "IE00B579F325-XLON-SGLD-USD",
+      "instrumentType": "ETC",
+      "method": "Cotation exacte SGLD.L (Londres, USD, ISIN IE00B579F325), cours ajustés ; clôtures mensuelles recoupées avec les séances quotidiennes. Toute bougie mensuelle divergente est rejetée au profit de la clôture quotidienne uniquement après confirmation par une requête indépendante sur la fin du mois.",
       "collectAnniversary": false,
       "periodStart": "2005-12",
-      "targetId": "etfIE00B579F325",
-      "discoverStart": true
+      "discoverStart": true,
+      "listingSourceUrl": "https://www.invesco.com/uk/en/financial-products/etfs/invesco-physical-gold-etc.html",
+      "verifyMonthlyDisagreements": true
     },
     {
       "id": "long-msciEurope",

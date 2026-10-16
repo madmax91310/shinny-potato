@@ -27,7 +27,7 @@ class RankingSourcesTest(unittest.TestCase):
     def test_history_identity_continuity_and_regression(self):
         record = {'currency': 'EUR', 'symbol': 'EXACT', 'parser': 'yahoo', 'field': 'adjclose', 'periodStart': '2020-01', 'periodEnd': '2020-03', 'points': [['2020-01', 100], ['2020-02', 110], ['2020-03', 120]]}
         validate_record(record, record)
-        for mutate in [lambda x: x.update(currency='USD'), lambda x: x['points'].pop(1), lambda x: x['points'][1].__setitem__(1, 0), lambda x: x.update(periodStart='2020-02', points=x['points'][1:])]:
+        for mutate in [lambda x: x.update(currency='USD'), lambda x: x.update(points=[['2020-01', 100], ['2020-02', 100], ['2020-03', 100]]), lambda x: x['points'].pop(1), lambda x: x['points'][1].__setitem__(1, 0), lambda x: x.update(periodStart='2020-02', points=x['points'][1:])]:
             changed = copy.deepcopy(record)
             mutate(changed)
             with self.assertRaises(Exception):
