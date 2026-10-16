@@ -476,7 +476,7 @@ export function renderTweetText(p) {
     ? '📈 Quelles performances pour ce portefeuille ? 👀'
     : `📈 ${formatPerformance(annualized)} par an sur la période ${years[0]}–${years.at(-1)} : ${questions[index]} 👀`;
   const blocks = [`${hook}\n\nVoici sa répartition et le détail des performances simulées 👇`, '💼 La répartition'];
-  if (p.strategyLabel) blocks.splice(1, 0, `🌦️ ${p.strategyLabel}`);
+  if (p.strategyLabel) blocks.splice(1, 0, `${p.strategyEmoji ?? '🌦️'} ${p.strategyLabel}`);
   // Sort a copy: recipe slots and replacements still rely on the stored order.
   const ordered = [...p.selection].filter(s => s.pct > 0).sort((a, b) => b.pct - a.pct);
   blocks.push(ordered.map(s => `${s.emoji} ${s.pct.toLocaleString('fr-FR')}% ${portfolioPostName(s)}`).join("\n"));

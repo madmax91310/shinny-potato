@@ -1,6 +1,6 @@
 # All Weather dans le générateur
 
-Le mode **All Weather** propose trois allocations fixes et modifiables. Il ne passe
+La famille **All Weather**, dans **Portefeuilles modèles**, propose trois allocations fixes et modifiables. Elle ne passe
 pas par le tirage aléatoire ni par les seuils historiques du mode Auto.
 
 | Poche | Adaptation euro | Obligations indexées | Durée obligataire réduite |
@@ -29,4 +29,5 @@ Le préréglage refuse de générer si cette période ne permet pas une annualis
 modifiée, elle ne conserve pas le libellé All Weather prédéfini. Les pondérations
 décimales sont conservées dans la saisie, les calculs et l’image.
 
-Validation : `node scripts/test-all-weather.mjs`, tests du générateur et build Vite.
+Validation : `node scripts/test-all-weather.mjs`, `node scripts/test-model-portfolios.mjs`,
+`node scripts/playwright-model-portfolios.mjs`, tests du générateur et build Vite.

@@ -77,7 +77,7 @@ jobs:
       - run: python -m unittest discover -s scripts -p "test_dca*py"
       - run: node scripts/test-global-audit.mjs
       - run: node scripts/test-portfolio-roadmap.mjs
-      - run: node scripts/test-all-weather.mjs
+      - run: node scripts/test-all-weather.mjs && node scripts/test-model-portfolios.mjs
       - run: node scripts/test-exposure-observations.mjs
       - run: node scripts/build-monthly-duel-returns.mjs && node scripts/test-distinct-asset-routing.mjs
       - run: node scripts/test-presentation-etf.mjs
@@ -302,7 +302,7 @@ jobs:
         if: matrix.shard == 1
       - run: node scripts/playwright-routing-additions.mjs
         if: matrix.shard == 1
-      - run: node scripts/playwright-all-weather.mjs
+      - run: node scripts/playwright-model-portfolios.mjs
         if: matrix.shard == 1
       - run: node scripts/test-simple-exposure.mjs
         if: matrix.shard == 1
