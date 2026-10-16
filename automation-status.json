@@ -220,18 +220,18 @@
     },
     "update-editorial-radar.yml": {
       "name": "Radar éditorial quotidien",
-      "runId": 38866665561,
+      "runId": 38870285615,
       "attempt": 1,
-      "completedAt": "2026-10-16T07:21:39Z",
+      "completedAt": "2026-10-16T07:56:13Z",
       "status": "success",
-      "lastSuccessAt": "2026-10-16T07:21:39Z",
+      "lastSuccessAt": "2026-10-16T07:56:13Z",
       "collectionStatus": "success",
       "validationStatus": "unknown",
       "recordingStatus": "not-run",
       "publicationStatus": "not-run",
-      "lastCollectionSuccessAt": "2026-10-16T07:21:39Z",
+      "lastCollectionSuccessAt": "2026-10-16T07:56:13Z",
       "lastPublicationSuccessAt": null,
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38866665561",
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38870285615",
       "failures": [],
       "dataFailures": {}
     },
@@ -368,10 +368,10 @@
       "dataFailures": {}
     }
   },
-  "updatedAt": "2026-10-16T07:25:57Z",
+  "updatedAt": "2026-10-16T07:56:13Z",
   "monitoring": {
     "schemaVersion": 1,
-    "checkedAt": "2026-10-16T07:46:53.530185+00:00",
+    "checkedAt": "2026-10-16T07:56:25.425186+00:00",
     "revision": 38,
     "active": {
       "collection:update-practical-sheets.yml:practical:13f": {
@@ -393,7 +393,7 @@
         "dataId": "practical:13f",
         "id": "collection:update-practical-sheets.yml:practical:13f",
         "firstSeenAt": "2026-10-14T21:07:26.171294+00:00",
-        "lastSeenAt": "2026-10-16T07:46:53.530185+00:00"
+        "lastSeenAt": "2026-10-16T07:56:25.425186+00:00"
       },
       "collection:update-insurance.yml:linxea-avenir-2": {
         "name": "Linxea Avenir 2",
@@ -412,7 +412,7 @@
         "dataId": "linxea-avenir-2",
         "id": "collection:update-insurance.yml:linxea-avenir-2",
         "firstSeenAt": "2026-10-14T13:08:27.203935+00:00",
-        "lastSeenAt": "2026-10-16T07:46:53.530185+00:00"
+        "lastSeenAt": "2026-10-16T07:56:25.425186+00:00"
       },
       "collection:update-scpi.yml:remake-live": {
         "name": "Remake Live",
@@ -435,7 +435,7 @@
         "dataId": "remake-live",
         "id": "collection:update-scpi.yml:remake-live",
         "firstSeenAt": "2026-10-15T13:02:43.499914+00:00",
-        "lastSeenAt": "2026-10-16T07:46:53.530185+00:00"
+        "lastSeenAt": "2026-10-16T07:56:25.425186+00:00"
       },
       "collection:update-regulatory-data.yml:broker-observation:caidf:profile:change": {
         "name": "caidf:profile:change",
@@ -455,7 +455,7 @@
         "dataId": "broker-observation:caidf:profile:change",
         "id": "collection:update-regulatory-data.yml:broker-observation:caidf:profile:change",
         "firstSeenAt": "2026-10-15T18:00:14.760687+00:00",
-        "lastSeenAt": "2026-10-16T07:46:53.530185+00:00"
+        "lastSeenAt": "2026-10-16T07:56:25.425186+00:00"
       },
       "publication:update-market-monthly.yml": {
         "name": "Historiques mensuels des marchés",
@@ -474,7 +474,7 @@
         "cause": "deploy / browser-checks (0) : Run node scripts/run-browser-checks.mjs 0 4",
         "id": "publication:update-market-monthly.yml",
         "firstSeenAt": "2026-10-16T07:26:14.661381+00:00",
-        "lastSeenAt": "2026-10-16T07:46:53.530185+00:00"
+        "lastSeenAt": "2026-10-16T07:56:25.425186+00:00"
       },
       "publication:update-lifestrategy.yml": {
         "name": "Vanguard LifeStrategy",
@@ -493,7 +493,7 @@
         "cause": "deploy / browser-checks (0) : Run node scripts/run-browser-checks.mjs 0 4",
         "id": "publication:update-lifestrategy.yml",
         "firstSeenAt": "2026-10-16T05:28:13.543341+00:00",
-        "lastSeenAt": "2026-10-16T07:46:53.530185+00:00"
+        "lastSeenAt": "2026-10-16T07:56:25.425186+00:00"
       },
       "monitor:radar": {
         "kind": "unobserved",
@@ -506,7 +506,7 @@
         "to": "/donnees-a-revoir",
         "id": "monitor:radar",
         "firstSeenAt": "2026-10-15T18:53:46.175472+00:00",
-        "lastSeenAt": "2026-10-16T07:46:53.530185+00:00"
+        "lastSeenAt": "2026-10-16T07:56:25.425186+00:00"
       }
     },
     "events": [
