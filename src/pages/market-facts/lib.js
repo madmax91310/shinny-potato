@@ -8,7 +8,6 @@ export function buildTweetText(fact) {
     fact.context,
     "",
     ...(fact.twist ? [fact.twist, ""] : []),
-    ...(fact.methodNote ? ["", fact.methodNote] : []),
     ...(fact.question ? ["", fact.question] : []),
   ];
   return lines.join("\n").replace(/\n{3,}/g, "\n\n").trim();
