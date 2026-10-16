@@ -39,7 +39,7 @@ export default function Layout() {
         <Navigation />
       </details>
       <main id="workspace-main" tabIndex={-1} className={`workspace-main ${pathname === '/' ? 'workspace-main--home' : ''}`}>
-        <Suspense fallback={<p role="status" className="workspace-loading">Chargement de l’outil…</p>}>
+        <Suspense key={pathname} fallback={<p role="status" className="workspace-loading">Chargement de l’outil…</p>}>
           <ToolErrorBoundary key={pathname}><Outlet /></ToolErrorBoundary>
         </Suspense>
       </main>

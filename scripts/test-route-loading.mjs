@@ -36,9 +36,9 @@ try {
   await page.locator('.workspace-tool-card[href$="/impact-frais"]').click()
   try {
     await started
-    // Router transitions keep the previous content while a lazy route loads.
-    assert(await page.getByRole('heading', { name: 'Mes outils de la semaine' }).isVisible())
-    assert.equal(await page.locator('.workspace-tool-card').count(), TOOLS.filter(t=>!t.hidden).length, 'Previous home stays usable during loading')
+    // A click must visibly acknowledge navigation even while the module waits.
+    await page.getByRole('status').filter({ hasText: 'Chargement de l’outil' }).waitFor()
+    assert(await page.getByRole('link', { name: '← Accueil', exact: true }).isVisible())
   } finally { release() }
   await page.getByText('Utiliser les frais d’un ETF', { exact: true }).waitFor()
   await page.unroute('**/assets/*.js')
@@ -137,6 +137,23 @@ try {
     await direct.locator('main h1').first().waitFor()
   }
   assert.deepEqual(errors, [], 'Browser JavaScript errors')
+  for (const width of [1280, 390]) {
+    for (const tool of TOOLS.filter(tool => !tool.hidden && tool.status === 'disponible')) {
+      const opening = await browser.newPage({ viewport: { width, height: 900 } })
+      opening.on('pageerror', error => errors.push(`${tool.to}: ${error.message}`))
+      await opening.goto(`${base}/`, { waitUntil: 'networkidle' })
+      await opening.locator(`.workspace-tool-card[href$="${tool.to}"]`).click()
+      await opening.locator('.workspace-home').waitFor({ state: 'detached' })
+      await opening.locator('main h1').first().waitFor()
+      await opening.waitForLoadState('networkidle')
+      assert.equal(await opening.locator('.workspace-error').count(), 0, `${tool.to}: tool failed to open`)
+      const generate = opening.getByRole('button', { name: /^(🔄 )?Générer$/ })
+      if (await generate.count() === 1 && await generate.isVisible() && await generate.isEnabled()) await generate.click()
+      assert.deepEqual(errors, [], `${tool.to}: browser errors`)
+      console.log(`Opened ${tool.to} at ${width}px`)
+      await opening.close()
+    }
+  }
   console.log('Route loading: cold home network, delayed navigation, shell, browser back, all Pages direct links and reloads with query/hash OK.')
 } finally {
   await browser?.close()

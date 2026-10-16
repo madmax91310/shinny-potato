@@ -146,6 +146,7 @@ jobs:
       - run: node scripts/test-automation-overview.mjs
       - run: node scripts/test-monitoring-context.mjs
       - run: node scripts/test-format-loading.mjs
+      - run: node scripts/test-history-pool-initialization.mjs
       - run: node scripts/test-tool-projections.mjs
       - run: npm run build
       - run: node scripts/build-app-inventory.mjs --check
