@@ -1,8 +1,8 @@
 import { useLocation } from 'react-router-dom'
 import AssetPicker from '../../design-system/AssetPicker.jsx'
 import GeneratorControls from './GeneratorControls'
-import AllWeatherPanel from './AllWeatherPanel'
-import { buildAllWeatherPortfolio } from './allWeather.js'
+import ModelPortfolioPanel from './ModelPortfolioPanel'
+import { buildModelPortfolio } from './modelPortfolios.js'
 import PortfolioHistoryLinks from '../../design-system/PortfolioHistoryLinks.jsx'
 import { lazy, Suspense } from 'react'
 const PortfolioExposure = lazy(() => import('../../design-system/PortfolioExposure.jsx'))
@@ -380,7 +380,8 @@ function GeneratorWorkspace({search}) {
   const [manualSelection, setManualSelection] = useState(()=>requested?[{id:requested.id,pct:100}]:[])
   const [manualSearch, setManualSearch] = useState('')
   const [manualEditing, setManualEditing] = useState(true)
-  const [allWeatherPreset, setAllWeatherPreset] = useState('euro')
+  const [modelFamily, setModelFamily] = useState('all-weather')
+  const [modelPreset, setModelPreset] = useState('euro')
 
   const current = history[history.length - 1]
   const [background, setBackground] = useState(null)
@@ -435,23 +436,33 @@ function GeneratorWorkspace({search}) {
   )
 
   const handleModeChange = useCallback((next) => {
-    setMode(next)
-    setLocked([])
-    setGenerationError('')
-    if (next === 'manual') setManualEditing(true)
-    if (next === 'all-weather') {
-      setHistory(h => [...h, buildAllWeatherPortfolio(allWeatherPreset, h)])
+    try {
+      if (next === 'models') {
+        const portfolio = buildModelPortfolio(modelFamily, modelPreset, history)
+        setHistory(h => [...h, portfolio])
+      }
+      setMode(next)
+      setLocked([])
+      setGenerationError('')
+      setReplacementNotice('')
       setCopyState('idle')
-    }
-  }, [allWeatherPreset])
+      if (next === 'manual') setManualEditing(true)
+    } catch (error) { setGenerationError(error.message) }
+  }, [modelFamily, modelPreset, history])
 
-  const handleAllWeatherSelect = useCallback((presetId) => {
-    setAllWeatherPreset(presetId)
-    setHistory(h => [...h, buildAllWeatherPortfolio(presetId, h)])
-    setCopyState('idle')
-  }, [])
+  const handleModelSelect = useCallback((familyId, presetId) => {
+    try {
+      const portfolio = buildModelPortfolio(familyId, presetId, history)
+      setHistory(h => [...h, portfolio])
+      setModelFamily(familyId)
+      setModelPreset(presetId)
+      setGenerationError('')
+      setReplacementNotice('')
+      setCopyState('idle')
+    } catch (error) { setGenerationError(error.message) }
+  }, [history])
 
-  const handleAllWeatherEdit = useCallback((preset) => {
+  const handleModelEdit = useCallback((preset) => {
     setManualSelection(preset.assets.map(({ id, pct }) => ({ id, pct })))
     setManualProfile('generaliste')
     setManualSearch('')
@@ -540,9 +551,9 @@ function GeneratorWorkspace({search}) {
             >
               ✍️ Composition manuelle
             </button>
-            <button type="button" className={`pg-mode-btn${mode === 'all-weather' ? ' active' : ''}`}
-              aria-pressed={mode === 'all-weather'} onClick={() => handleModeChange('all-weather')}>
-              🌦️ All Weather
+            <button type="button" className={`pg-mode-btn${mode === 'models' ? ' active' : ''}`}
+              aria-pressed={mode === 'models'} onClick={() => handleModeChange('models')}>
+              📚 Portefeuilles modèles
             </button>
           </div>
 
@@ -554,8 +565,8 @@ function GeneratorWorkspace({search}) {
                 🔄 Générer un nouveau portefeuille
               </Button>
             </>
-          ) : mode === 'all-weather' ? (
-            <AllWeatherPanel selected={allWeatherPreset} onSelect={handleAllWeatherSelect} onEdit={handleAllWeatherEdit} />
+          ) : mode === 'models' ? (
+            <ModelPortfolioPanel familyId={modelFamily} presetId={modelPreset} onSelect={handleModelSelect} onEdit={handleModelEdit} />
           ) : manualEditing ? (
             <ManualComposer
               profile={manualProfile}
