@@ -136,9 +136,10 @@ async function testWorkspaceNavigation(page) {
   checks.mobileEtf = await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth);
   const etfPicker = page.locator('.asset-picker').first();
   await etfPicker.getByRole('searchbox').fill('S&P');
+  await etfPicker.getByRole('button', { name: 'Parcourir', exact: true }).click();
   await etfPicker.getByRole('button', { name: 'Monde', exact: true }).click();
   const worldOptions = ETFS.map(instrumentOption).filter(item => item.group === 'Monde');
-  checks.categoryClearsSearch = await etfPicker.getByRole('searchbox').inputValue() === '';
+  checks.categoryClearsSearch = await etfPicker.getByRole('searchbox').count() === 0;
   const worldId = await etfPicker.locator('[data-selector]').getAttribute('data-value');
   checks.categorySelectsMatchingEtf = worldOptions.some(item => String(item.id) === worldId);
   checks.categoryOptionsMatch = await etfPicker.locator('[data-option]').count() === worldOptions.length;
@@ -1222,9 +1223,11 @@ async function testAssetSelection(page) {
   await choose(picker.locator('[data-selector]'), worldCard.id);
   let ok = (await picker.locator('.asset-picker-results').innerText()).includes('1 résultat');
   await picker.getByRole('button', { name: 'Tout afficher', exact: true }).click();
+  await picker.getByRole('button', { name: 'Parcourir', exact: true }).click();
   await picker.getByRole('button', { name: 'Émergents', exact: true }).click();
   const emergingId = await picker.locator('[data-selector]').getAttribute('data-value');
   ok &&= ETFS.map(instrumentOption).some(item => item.id === emergingId && item.group === 'Émergents');
+  await picker.getByRole('button', { name: 'Rechercher', exact: true }).click();
   await picker.getByRole('searchbox').fill('introuvable-xyz');
   ok &&= (await picker.locator('.asset-picker-results').innerText()).includes('Aucun résultat');
   await picker.getByRole('button', { name: 'Tout afficher', exact: true }).click();

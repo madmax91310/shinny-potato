@@ -302,6 +302,8 @@ jobs:
       - run: node scripts/run-browser-checks.mjs ${{ matrix.shard }} 4
       - run: node scripts/playwright-etf-completeness.mjs
         if: matrix.shard == 0
+      - run: node scripts/test-asset-picker-preferences.mjs && node scripts/playwright-asset-picker-modes.mjs
+        if: matrix.shard == 0
       - run: node scripts/playwright-tool-links.mjs
         if: matrix.shard == 0
       - run: node scripts/playwright-equity-monthly.mjs

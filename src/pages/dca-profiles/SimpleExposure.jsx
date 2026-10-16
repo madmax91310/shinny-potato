@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 import PageHeader from '../../design-system/PageHeader'
 import Button from '../../design-system/Button'
+import AssetPicker from '../../design-system/AssetPicker.jsx'
+import { exposureGroup } from '../../data/asset-labels.js'
 import ChoicePicker from '../../design-system/ChoicePicker.jsx'
 import { startPublicationDownload } from '../../design-system/publicationActions.js'
 import { ASSETS } from './data.js'
@@ -11,19 +13,18 @@ import { exposureDisplay } from './exposure.js'
 import { renderDcaImage } from './image.js'
 
 export default function SimpleExposure(){
- const [lines,setLines]=useState([]),[query,setQuery]=useState(''),[field,setField]=useState('all')
+ const [lines,setLines]=useState([]),[field,setField]=useState('all')
  const [preview,setPreview]=useState(''),[busy,setBusy]=useState(false),[feedback,setFeedback]=useState('')
  const revision=useRef(0)
  useEffect(()=>()=>{revision.current++},[])
  const profile={id:'expositions',name:'',scope:'Portefeuille investi',imageOnly:true,lines}
  const analysis=analyzeProfile(profile)
  const total=lines.reduce((sum,line)=>sum+(Number.isFinite(line.weight)?line.weight:0),0)
- const results=searchAssets(query,'').filter(key=>!lines.some(line=>line.asset===key)).slice(0,30)
+ const options=searchAssets('','').filter(key=>!lines.some(line=>line.asset===key)).map(key=>({id:key,label:catalog[key]?.name||ASSETS[key][1],isin:references[key]?.isin,search:[...(references[key]?.aliases||[]),...(references[key]?.tickers||[])].join(' '),group:references[key]?.kind==='equity'?'Actions':exposureGroup({name:catalog[key]?.name||ASSETS[key][1]}),badges:references[key]?.pea===true?['PEA']:[]}))
  function invalidate(){revision.current++;setPreview('');setFeedback('');setBusy(false)}
  function add(asset){
   invalidate()
   setLines([...lines,{asset,label:catalog[asset]?.name||ASSETS[asset][1],emoji:ASSETS[asset][0],isin:references[asset]?.isin||'',weight:Math.max(0,100-total),amount:0}])
-  setQuery('')
  }
  async function generate(){
   const version=++revision.current
@@ -38,8 +39,7 @@ export default function SimpleExposure(){
   <div className="dca-simple-grid">
    <section className="dca-simple-card" aria-label="Composer les expositions">
     <h2>Mes actifs</h2>
-    <label>Ajouter un actif<input type="search" value={query} onChange={e=>setQuery(e.target.value)} placeholder="Nom, ticker ou ISIN"/></label>
-    {query.trim()&&<div className="dca-simple-results" aria-label="Résultats de recherche">{results.length?results.map(key=><button key={key} disabled={lines.length>=MAX_POSITIONS} onClick={()=>add(key)}><span>{catalog[key]?.name||ASSETS[key][1]}</span><small>{references[key]?.isin||key}</small></button>):<p>Aucun nouvel actif trouvé.</p>}</div>}
+    <AssetPicker label="Ajouter un actif" items={options} value="" onChange={add} hideIdleResults clearSearchOnSelect searchPlaceholder="Nom, ticker ou ISIN" optionsClassName="dca-simple-results" disabled={lines.length>=MAX_POSITIONS}/>
     {!lines.length&&<p className="dca-note">Recherche ton premier actif pour commencer.</p>}
     {lines.map((line,index)=><div className="dca-simple-line" key={line.asset}>
      <div><strong>{line.label}</strong><small>{line.isin}</small></div>
