@@ -109,14 +109,14 @@ function DcaApp(){
  <p className="dca-total">Total : {pct(profile.lines.reduce((s,l)=>s+(Number.isFinite(l.weight)?l.weight:0),0))}{!profile.imageOnly&&<> · {euro(profile.lines.reduce((s,l)=>s+(Number.isFinite(l.amount)?l.amount:0),0))} / mois</>}</p>
  {!!a.errors.length&&<div role="alert" className="dca-errors">{a.errors.map(e=><p key={e}>{e}</p>)}</div>}
  {!a.errors.length&&<details className="dca-evidence"><summary>Expositions, couverture et sources</summary>
- <p>Synthèse indicative des dernières observations compatibles : 93 jours maximum, avec au plus 45 jours d’écart. Chaque source conserve sa date. Les pays désignent le rattachement des titres, pas leurs lieux de chiffre d’affaires. Les classifications différentes restent séparées.</p>
+ <p>Synthèse indicative des dernières observations compatibles : 93 jours maximum, avec au plus 45 jours d’écart. Chaque source conserve sa date. Les pays désignent le rattachement des titres, pas leurs lieux de chiffre d’affaires. Les répartitions publiées sont regroupées à titre indicatif ; les méthodes des émetteurs peuvent différer.</p>
  {['countries','sectors'].map(f=><div key={f}><h3>{f==='countries'?'Pays':'Secteurs'} · données disponibles {pct(exposureDisplay(a[f]).coverage)} dans le graphique</h3>
- {a[f].groups.map((g,i)=><section key={i}><p>{i===0?'Utilisé dans le donut':'Autre classification'} · {g.oldest} → {g.asOf} · {g.classification} · {pct(g.coverage)} du portefeuille</p>
+ {a[f].groups.map((g,i)=><section key={i}><p>{i===0?'Utilisé dans le donut':'Autre période'} · {g.oldest} → {g.asOf} · {g.classification} · {pct(g.coverage)} du portefeuille</p>
  {g.rows.map(r=><div className="dca-exposure" key={r.name}><span>{r.name}</span><b>{pct(r.weight)}</b></div>)}
  {g.observations.map(o=><p key={o.asset}><a href={o.sourceUrl} target="_blank" rel="noreferrer">{o.label} ↗</a> · {o.asOf} · {o.basis==='equity'?'Action':o.basis==='fund'?'Fonds':'Indice suivi'} · {o.method}</p>)}</section>)}
  {!!a[f].neutralWeight&&<p>Hors classification {f==='countries'?'géographique':'sectorielle'} : {a[f].neutralRows.map(r=>`${r.name} ${pct(r.weight)}`).join(' · ')}.</p>}
  {a[f].excluded.map(x=><p key={x.asset}>{x.label} : {x.reason} ({pct(x.weight)}).</p>)}
- <p>Part grise du donut : {pct(Math.max(0,100-(a[f].groups[0]?.coverage||0)-a[f].neutralWeight))}. Elle comprend les données absentes, anciennes ou incompatibles avec la classification principale.</p>
+ <p>Part grise du donut : {pct(Math.max(0,100-(a[f].groups[0]?.coverage||0)-a[f].neutralWeight))}. Elle comprend les données absentes, invalides ou trop éloignées dans le temps.</p>
  </div>)}</details>}
  {profile.scope==='PEA'&&profile.lines.some(l=>references[l.asset]?.pea!==true)&&<p className="dca-note" role="status">Ce portefeuille contient des supports dont l’éligibilité PEA n’est pas établie : {profile.lines.filter(l=>references[l.asset]?.pea!==true).map(l=>l.label).join(' · ')}. Vérifie le périmètre choisi.</p>}
 

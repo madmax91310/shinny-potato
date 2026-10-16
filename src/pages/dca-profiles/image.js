@@ -43,7 +43,7 @@ export function donutData(analysis,field='countries'){
  if(rest>1e-9)rows.push({name:'Autres expositions',weight:rest,color:colors[4]})
  if(neutralWeight)rows.push({name:neutral.length===1?neutral[0].name:'Hors classification',weight:neutralWeight,color:'#b79b6b'})
  const missing=Math.max(0,100-rows.reduce((s,r)=>s+r.weight,0))
- if(missing>.000001)rows.push({name:missing<.01?'Écart d’arrondi':'Non ventilé ici',weight:missing,color:'#57718e'})
+ if(missing>1e-9)rows.push({name:missing<.01?'Écart d’arrondi':'Non ventilé ici',weight:missing,color:'#57718e'})
  return {group,rows}
 }
 function exposurePanel(ctx,a,field,x,y,width){
@@ -61,6 +61,7 @@ function exposurePanel(ctx,a,field,x,y,width){
  })
  const source=group?`${group.oldest!==group.asOf?group.oldest+' → ':''}${group.asOf} · couverture ${Math.round(group.coverage)} %`:'Aucune ventilation qualifiée'
  text(ctx,source,x,y+735,width,18,C.muted,400)
+ if(group?.indicative)text(ctx,'Synthèse indicative · méthodes des émetteurs',x,y+757,width,16,C.muted,400)
  if(group?.classification==='country-registration')text(ctx,'Pays d’enregistrement',x,y+757,width,16,C.muted,400)
 }
 function ring(ctx,rows,cx,cy,r,inner){
@@ -115,7 +116,7 @@ function fullPortfolio(ctx,p,a){
   const source=group?`${group.oldest!==group.asOf?group.oldest+' → ':''}${group.asOf}`:'Aucune ventilation qualifiée'
   text(ctx,`${source} · ${Math.round(coverage)} % ventilés`,1070,y+375,460,16,C.muted,400)
  }
- centered(ctx,'Pourcentages arrondis · Les parts non ventilées restent visibles',800,978,1480,18,C.muted,400)
+ centered(ctx,'Synthèse indicative des répartitions publiées · Pourcentages arrondis',800,978,1480,18,C.muted,400)
 }
 async function overlapPortfolio(ctx,p){
  const {loadHoldings}=await import('./holdings-loader.js')
@@ -212,6 +213,7 @@ export async function renderDcaImage(input,field='countries'){
  })
  const source=group?`${group.oldest&&group.oldest!==group.asOf?group.oldest+' → ':''}${group.asOf} · couverture ${Math.round(group.coverage)} %`:(a[field].neutralWeight===100?'Actifs hors classification':'Aucune ventilation qualifiée')
  text(ctx,source,860,982,670,18,C.muted,400)
+ if(group?.indicative)text(ctx,'Synthèse indicative · méthodes des émetteurs',860,1004,670,16,C.muted,400)
  if(group?.classification==='country-registration')text(ctx,'Pays d’enregistrement',860,1004,670,16,C.muted,400)
  rule(ctx,64,1013,1472)
  text(ctx,p.scope,64,1050,1000,20,C.muted,400)

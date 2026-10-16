@@ -7,6 +7,7 @@ import { ASSETS } from './data.js'
 import catalog from './catalog.json' with {type:'json'}
 import { MAX_POSITIONS, analyzeProfile, references, pct } from './engine.js'
 import { searchAssets } from './management.js'
+import { exposureDisplay } from './exposure.js'
 import { renderDcaImage } from './image.js'
 
 export default function SimpleExposure(){
@@ -53,6 +54,15 @@ export default function SimpleExposure(){
      <option value="countries">Géographie uniquement</option>
      <option value="sectors">Secteurs uniquement</option>
     </ChoicePicker></label>
+    {!analysis.errors.length&&<details className="dca-note">
+     <summary>Données de l’image · pays {pct(exposureDisplay(analysis.countries).coverage)} · secteurs {pct(exposureDisplay(analysis.sectors).coverage)}</summary>
+     <p>Synthèse indicative des répartitions publiées. Les méthodes des émetteurs peuvent différer ; les ETF synthétiques utilisent leur indice suivi. Les poids manquants ne sont pas redistribués.</p>
+     {['countries','sectors'].map(f=>{const e=analysis[f],d=exposureDisplay(e);return <div key={f}>
+      <strong>{f==='countries'?'Géographie':'Secteurs'} : {pct(d.coverage)} ventilés{e.neutralWeight>0?` · ${pct(e.neutralWeight)} hors classification`:''}{d.missing>0.01?` · ${pct(d.missing)} non ventilés`:''}</strong>
+      {d.omitted.map((o,i)=><p key={`${o.asset}-${i}`}>{o.label||o.asset} : {o.reason} ({pct(o.weight)}).</p>)}
+      {e.groups[0]?.observations.map(o=><p key={o.asset}><a href={o.sourceUrl} target="_blank" rel="noreferrer">{o.label||o.asset}</a> · {o.asOf} · {o.basis==='index'?'indice suivi':o.basis==='equity'?'action':'fonds'}</p>)}
+     </div>})}
+    </details>}
     <Button disabled={!!analysis.errors.length||busy} onClick={generate}>{busy?'Génération…':'Générer l’image'}</Button>
    </section>
    <section className="dca-simple-card dca-simple-preview" aria-label="Image des expositions" aria-busy={busy}>
