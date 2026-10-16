@@ -49,11 +49,23 @@ export function rankingImageLayout(assetCount, columnCount, regularity = false) 
 }
 export function renderRankingImage(result, _title, regularity) {
   const columns = annualColumns(result)
-  const notes = [
+  const descriptions = [
     ...(result.assets.some(a => a.fxConverted) ? ['Conversion BCE de fin de mois · sans couverture de change'] : []),
     ...result.assets.filter(a => a.portfolio).map(a => `${a.shortLabel} : ${a.portfolio.lines.map(l => `${l.pct} % ${l.asset.shortLabel ?? l.asset.label}`).join(' + ')} · ${rebalanceLabel(a.portfolio.rebalance)}`),
   ]
   const l = rankingImageLayout(result.assets.length, columns.length, Boolean(regularity))
+  const measure = document.createElement('canvas').getContext('2d')
+  measure.font = '600 18px Arial, sans-serif'
+  const notes = []
+  for (const description of descriptions) {
+    let line = ''
+    for (const word of description.split(' ')) {
+      const next = line ? `${line} ${word}` : word
+      if (line && measure.measureText(next).width > l.width - 120) { notes.push(line); line = word } else line = next
+    }
+    if (line) notes.push(line)
+  }
+  if (result.assets.some(a => a.portfolio)) notes.push('Sans flux · frais des fonds inclus · hors courtage, coûts de rééquilibrage et fiscalité')
   l.height += notes.length * 30 + (columns.some(c => c.partial) && notes.length ? 30 : 0)
   const { width, height, margin, labelWidth, cellWidth, rowHeight, tableY, headerHeight, tableBottom } = l
   const canvas = document.createElement('canvas'); canvas.width = width; canvas.height = height
