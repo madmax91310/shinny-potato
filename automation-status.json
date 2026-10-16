@@ -373,20 +373,27 @@
     },
     "update-exposure-expansion.yml": {
       "name": "35 ETF des allocations",
-      "status": "unknown",
-      "collectionStatus": "unknown",
-      "validationStatus": "unknown",
-      "recordingStatus": "not-run",
+      "runId": 38918047402,
+      "attempt": 1,
+      "completedAt": "2026-10-16T15:00:46Z",
+      "status": "success",
+      "lastSuccessAt": "2026-10-16T15:00:46Z",
+      "collectionStatus": "success",
+      "validationStatus": "success",
+      "recordingStatus": "success",
       "publicationStatus": "not-run",
-      "dataFailures": {},
-      "failures": []
+      "lastCollectionSuccessAt": "2026-10-16T15:00:46Z",
+      "lastPublicationSuccessAt": null,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38918047402",
+      "failures": [],
+      "dataFailures": {}
     }
   },
-  "updatedAt": "2026-10-16T14:59:56Z",
+  "updatedAt": "2026-10-16T15:00:46Z",
   "monitoring": {
     "schemaVersion": 1,
-    "checkedAt": "2026-10-16T15:00:45.505971+00:00",
-    "revision": 47,
+    "checkedAt": "2026-10-16T15:01:17.340644+00:00",
+    "revision": 48,
     "active": {
       "collection:update-practical-sheets.yml:practical:13f": {
         "name": "SEC · questions et réponses sur le formulaire 13F",
@@ -407,7 +414,7 @@
         "dataId": "practical:13f",
         "id": "collection:update-practical-sheets.yml:practical:13f",
         "firstSeenAt": "2026-10-14T21:07:26.171294+00:00",
-        "lastSeenAt": "2026-10-16T15:00:45.505971+00:00"
+        "lastSeenAt": "2026-10-16T15:01:17.340644+00:00"
       },
       "collection:update-insurance.yml:linxea-avenir-2": {
         "name": "Linxea Avenir 2",
@@ -426,7 +433,7 @@
         "dataId": "linxea-avenir-2",
         "id": "collection:update-insurance.yml:linxea-avenir-2",
         "firstSeenAt": "2026-10-14T13:08:27.203935+00:00",
-        "lastSeenAt": "2026-10-16T15:00:45.505971+00:00"
+        "lastSeenAt": "2026-10-16T15:01:17.340644+00:00"
       },
       "collection:update-scpi.yml:remake-live": {
         "name": "Remake Live",
@@ -449,7 +456,7 @@
         "dataId": "remake-live",
         "id": "collection:update-scpi.yml:remake-live",
         "firstSeenAt": "2026-10-15T13:02:43.499914+00:00",
-        "lastSeenAt": "2026-10-16T15:00:45.505971+00:00"
+        "lastSeenAt": "2026-10-16T15:01:17.340644+00:00"
       },
       "collection:update-regulatory-data.yml:broker-observation:caidf:profile:change": {
         "name": "caidf:profile:change",
@@ -469,7 +476,7 @@
         "dataId": "broker-observation:caidf:profile:change",
         "id": "collection:update-regulatory-data.yml:broker-observation:caidf:profile:change",
         "firstSeenAt": "2026-10-15T18:00:14.760687+00:00",
-        "lastSeenAt": "2026-10-16T15:00:45.505971+00:00"
+        "lastSeenAt": "2026-10-16T15:01:17.340644+00:00"
       },
       "publication:collect-etf-pilot.yml": {
         "name": "ETF et compositions d’indices",
@@ -488,7 +495,7 @@
         "cause": "deploy / build : Run node scripts/build-dca-exposures.mjs && npm run test:dca && node scripts/audit-portfolio-routing.mjs",
         "id": "publication:collect-etf-pilot.yml",
         "firstSeenAt": "2026-10-16T14:55:12.305304+00:00",
-        "lastSeenAt": "2026-10-16T15:00:45.505971+00:00"
+        "lastSeenAt": "2026-10-16T15:01:17.340644+00:00"
       },
       "publication:update-qualified-exposures.yml": {
         "name": "Expositions ETF qualifiées",
@@ -508,23 +515,7 @@
         "cause": "deploy / build : Run npm run test:radar",
         "id": "publication:update-qualified-exposures.yml",
         "firstSeenAt": "2026-10-16T12:48:21.924866+00:00",
-        "lastSeenAt": "2026-10-16T15:00:45.505971+00:00"
-      },
-      "unobserved:update-exposure-expansion.yml": {
-        "name": "35 ETF des allocations",
-        "tools": [
-          "Portefeuille / DCA"
-        ],
-        "impactScope": "collector",
-        "workflow": "update-exposure-expansion.yml",
-        "runUrl": null,
-        "to": "/donnees-a-revoir",
-        "kind": "unobserved",
-        "field": "Exécution",
-        "cause": "Aucune exécution terminée avec une date exploitable.",
-        "id": "unobserved:update-exposure-expansion.yml",
-        "firstSeenAt": "2026-10-16T14:43:25.592084+00:00",
-        "lastSeenAt": "2026-10-16T15:00:45.505971+00:00"
+        "lastSeenAt": "2026-10-16T15:01:17.340644+00:00"
       },
       "monitor:radar": {
         "kind": "unobserved",
@@ -537,69 +528,10 @@
         "to": "/donnees-a-revoir",
         "id": "monitor:radar",
         "firstSeenAt": "2026-10-15T18:53:46.175472+00:00",
-        "lastSeenAt": "2026-10-16T15:00:45.505971+00:00"
+        "lastSeenAt": "2026-10-16T15:01:17.340644+00:00"
       }
     },
     "events": [
-      {
-        "revision": 18,
-        "at": "2026-10-14T20:14:06.767352+00:00",
-        "opened": [],
-        "resolved": [
-          {
-            "name": "Invesco Bloomberg Commodity UCITS ETF",
-            "tools": [
-              "Générateur de portefeuilles",
-              "Impact des frais",
-              "Présentation ETF"
-            ],
-            "impactScope": "asset",
-            "workflow": "collect-etf-pilot.yml",
-            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38620226369",
-            "to": "/bibliotheque-donnees?id=IE00BD6FTQ80",
-            "completedAt": "2026-10-14T19:14:38Z",
-            "cause": "Invalid commodity group weight",
-            "field": "commodityAllocation",
-            "sourceUrls": [
-              "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE00BD6FTQ80_factsheet_en.pdf",
-              "https://www.justetf.com/en/etf-profile.html?isin=IE00BD6FTQ80"
-            ],
-            "kind": "collection",
-            "dataId": "etf-additional-observation-IE00BD6FTQ80",
-            "id": "collection:collect-etf-pilot.yml:etf-additional-observation-IE00BD6FTQ80",
-            "firstSeenAt": "2026-10-14T19:14:57.347737+00:00",
-            "lastSeenAt": "2026-10-14T20:11:14.176320+00:00",
-            "resolvedAt": "2026-10-14T20:14:06.767352+00:00"
-          },
-          {
-            "name": "iShares Diversified Commodity Swap UCITS ETF",
-            "tools": [
-              "Générateur de portefeuilles",
-              "Impact des frais",
-              "Présentation ETF"
-            ],
-            "impactScope": "asset",
-            "workflow": "collect-etf-pilot.yml",
-            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38620226369",
-            "to": "/bibliotheque-donnees?id=IE00BDFL4P12",
-            "completedAt": "2026-10-14T19:14:38Z",
-            "cause": "Invalid commodity group weight",
-            "field": "commodityAllocation",
-            "sourceUrls": [
-              "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns&locale=en_GB&portfolioId=287254&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-              "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE00BD6FTQ80_factsheet_en.pdf",
-              "https://www.ishares.com/gls-download/literature/fact-sheet/icom-ishares-diversified-commodity-swap-ucits-etf-fund-fact-sheet-en-gb.pdf",
-              "https://www.justetf.com/en/etf-profile.html?isin=IE00BDFL4P12"
-            ],
-            "kind": "collection",
-            "dataId": "etf-additional-observation-IE00BDFL4P12",
-            "id": "collection:collect-etf-pilot.yml:etf-additional-observation-IE00BDFL4P12",
-            "firstSeenAt": "2026-10-14T19:14:57.347737+00:00",
-            "lastSeenAt": "2026-10-14T20:11:14.176320+00:00",
-            "resolvedAt": "2026-10-14T20:14:06.767352+00:00"
-          }
-        ]
-      },
       {
         "revision": 19,
         "at": "2026-10-14T21:07:26.171294+00:00",
@@ -3014,9 +2946,50 @@
           "publication:collect-etf-pilot.yml"
         ],
         "resolved": []
+      },
+      {
+        "revision": 48,
+        "at": "2026-10-16T15:01:17.340644+00:00",
+        "opened": [],
+        "resolved": [
+          {
+            "name": "35 ETF des allocations",
+            "tools": [
+              "Portefeuille / DCA"
+            ],
+            "impactScope": "collector",
+            "workflow": "update-exposure-expansion.yml",
+            "runUrl": null,
+            "to": "/donnees-a-revoir",
+            "kind": "unobserved",
+            "field": "Exécution",
+            "cause": "Aucune exécution terminée avec une date exploitable.",
+            "id": "unobserved:update-exposure-expansion.yml",
+            "firstSeenAt": "2026-10-16T14:43:25.592084+00:00",
+            "lastSeenAt": "2026-10-16T15:00:45.505971+00:00",
+            "resolvedAt": "2026-10-16T15:01:17.340644+00:00"
+          }
+        ]
       }
     ],
     "resolved": [
+      {
+        "name": "35 ETF des allocations",
+        "tools": [
+          "Portefeuille / DCA"
+        ],
+        "impactScope": "collector",
+        "workflow": "update-exposure-expansion.yml",
+        "runUrl": null,
+        "to": "/donnees-a-revoir",
+        "kind": "unobserved",
+        "field": "Exécution",
+        "cause": "Aucune exécution terminée avec une date exploitable.",
+        "id": "unobserved:update-exposure-expansion.yml",
+        "firstSeenAt": "2026-10-16T14:43:25.592084+00:00",
+        "lastSeenAt": "2026-10-16T15:00:45.505971+00:00",
+        "resolvedAt": "2026-10-16T15:01:17.340644+00:00"
+      },
       {
         "name": "Radar éditorial quotidien",
         "tools": [
@@ -5234,32 +5207,6 @@
         "firstSeenAt": "2026-10-14T13:03:42.701964+00:00",
         "lastSeenAt": "2026-10-14T19:12:42.647375+00:00",
         "resolvedAt": "2026-10-14T19:14:57.347737+00:00"
-      },
-      {
-        "name": "Xtrackers S&P 500 Equal Weight UCITS ETF 1C",
-        "tools": [
-          "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Impact des frais",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "sourceUrls": [
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/historicaldata/download",
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/pdpMetaTagsTealium",
-          "https://etf.dws.com/en-ch/IE00BLNMYC90-s-p-500-equal-weight-ucits-etf-1c/",
-          "https://www.borsaitaliana.it/borsa/etf/scheda/IE00BLNMYC90.html?lang=en",
-          "https://www.zonebourse.com/cours/etf/XTRACKERS-S-P-500-EQUAL-W-122801274/composition/"
-        ],
-        "to": "/bibliotheque-donnees?id=IE00BLNMYC90",
-        "kind": "conflict",
-        "field": "Poids du pays United States",
-        "cause": "Valeur contradictoire pour la même période (2026-10-12) : Poids du pays United States. Dernière observation conservée ; propositions archivées (etf:IE00BLNMYC90:countries:United States:8abd3910625177898532bf9d:2026-10-12).",
-        "id": "radar:6264e6c6f5fc93e131495b77",
-        "firstSeenAt": "2026-10-14T11:42:41.168472+00:00",
-        "lastSeenAt": "2026-10-14T19:11:55.324201+00:00",
-        "resolvedAt": "2026-10-14T19:12:42.647375+00:00"
       }
     ]
   }
