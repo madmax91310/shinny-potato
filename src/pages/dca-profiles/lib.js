@@ -1,4 +1,4 @@
-import { analyzeProfile, prepareProfile, pct } from './engine.js'
+import { analyzeProfile, prepareProfile, references, pct } from './engine.js'
 export const compactEuro = n => `${n.toLocaleString('fr-FR', {useGrouping:false, maximumFractionDigits:2})}€`
 export function incomeLabel(profile) {
   if (/retrait/i.test(profile.job || '')) return 'Retraite'
@@ -22,7 +22,7 @@ export function portfolioComment(profile) {
   if(core && weight('value')>=20)return 'Le complément Value donne plus de poids aux actions jugées moins chères selon les critères de l’indice.'
   const themes=['cybersecurity','healthcare','water','infrastructure','industrials','semiconductors']
   if(core && held.some(l=>themes.includes(l.asset)&&l.weight>=20))return 'Une conviction sectorielle occupe une place importante à côté de son ETF principal. Elle rend le portefeuille plus concentré sur ce thème.'
-  const direct=held.filter(l=>['airliquide','total','nvidia','microsoft','apple','airbus','asml','novo','nintendo','schneider'].includes(l.asset))
+  const direct=held.filter(l=>references[l.asset]?.kind==='equity')
   if(core && direct.reduce((s,l)=>s+l.weight,0)>=18)return `Les actions détenues en direct représentent ${pct(direct.reduce((s,l)=>s+l.weight,0))} du portefeuille. Le résultat dépend donc davantage de ces entreprises.`
   if (assets.has('world') && assets.has('europe') && assets.has('emerging') && held.length===3 && held[0].asset==='world') {
     return 'Le World reste son placement principal. Son ETF Europe renforce une région déjà présente dans le World, tandis que les émergents ajoutent des marchés qui en sont absents.'

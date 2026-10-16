@@ -1,5 +1,6 @@
-import { analyzeProfile, prepareProfile, euro } from './engine.js'
+import { analyzeProfile, prepareProfile, euro, pct, references } from './engine.js'
 import { incomeLabel } from './lib.js'
+import { portfolioAnalytics } from './analytics.js'
 const C={navy:'#071d36',ivory:'#fff4df',yellow:'#ffd342',muted:'#9eb7d2',panel:'#0d263e'}
 const colors=['#ffd342','#3899ff','#63dfbd','#bd9eff','#ff9b70','#b7ce6e','#ec99cd','#aec8df']
 export function allocationRows(lines){
@@ -116,6 +117,45 @@ function fullPortfolio(ctx,p,a){
  }
  centered(ctx,'Pourcentages arrondis · Les parts non ventilées restent visibles',800,978,1480,18,C.muted,400)
 }
+async function overlapPortfolio(ctx,p){
+ const {loadHoldings}=await import('./holdings-loader.js')
+ const holdings=await loadHoldings(p.lines.map(l=>l.asset))
+ const result=portfolioAnalytics(p.lines,references,holdings)
+ const groups=[...result.groups].sort((a,b)=>b.coverage-a.coverage)
+ const g=groups[0]
+ centered(ctx,'Épargnant Libre',800,80,1480,49)
+ panel(ctx,35,125,485,815);panel(ctx,545,125,1020,815)
+ text(ctx,'Sous les ETF',70,190,415,44,C.ivory,700,'DcaEditorial')
+ text(ctx,p.imageOnly?'Le portefeuille en détail':`Le portefeuille de ${p.name}`,70,238,415,25,C.muted,400)
+ text(ctx,'PART IDENTIFIÉE',70,320,415,21,C.muted)
+ text(ctx,pct(g?.coverage||0),65,413,425,85,C.yellow,700,'DcaEditorial')
+ text(ctx,`${g?.identified||0} titres identifiés`,70,458,415,26,C.ivory,400)
+ rule(ctx,70,500,415)
+ text(ctx,'Les 5 premiers titres',70,548,415,26,C.muted,400)
+ text(ctx,pct(g?.top5||0),70,613,415,53,C.ivory,700,'DcaEditorial')
+ text(ctx,'Les 10 premiers titres',70,674,415,26,C.muted,400)
+ text(ctx,pct(g?.top10||0),70,739,415,53,C.ivory,700,'DcaEditorial')
+ wrappedLabel(ctx,g?.complete?'Titres entièrement identifiés':'Poids observés sur une couverture partielle',70,809,415,23)
+ text(ctx,g?`${g.oldest===g.asOf?g.asOf:g.oldest+' → '+g.asOf}`:'Aucune liste compatible',70,895,415,19,C.muted,400)
+ text(ctx,'Les principales détentions cumulées',580,192,950,40,C.ivory,700,'DcaEditorial')
+ text(ctx,'Actions en direct + positions détenues via les fonds',580,235,950,24,C.muted,400)
+ const top=(g?.rows||[]).slice(0,7),max=Math.max(1,...top.map(r=>r.weight))
+ top.forEach((r,i)=>{
+  const y=300+i*79
+  text(ctx,r.name,580,y,745,27,C.ivory,700)
+  text(ctx,pct(r.weight),1390,y,140,29,C.yellow)
+  ctx.fillStyle='#213c53';ctx.beginPath();ctx.roundRect(580,y+15,950,9,4);ctx.fill()
+  const width=950*r.weight/max,direct=width*r.direct/r.weight
+  if(direct>0){ctx.fillStyle=C.yellow;ctx.fillRect(580,y+15,direct,9)}
+  ctx.fillStyle='#63dfbd';ctx.fillRect(580+direct,y+15,width-direct,9)
+  text(ctx,`${r.contributions.length} support${r.contributions.length>1?'s':''} · ${r.isin}`,580,y+48,950,16,C.muted,400)
+ })
+ if(!top.length)wrappedLabel(ctx,'Les compositions disponibles ne permettent pas de calculer les détentions cumulées.',580,400,950,30)
+ text(ctx,'En direct',580,900,170,21,C.yellow)
+ text(ctx,'Via les fonds',780,900,220,21,'#63dfbd')
+ text(ctx,g?.scope==='index'?'Périmètre : indices suivis':'Périmètre : positions publiées',1090,900,440,18,C.muted,400)
+ centered(ctx,groups.length>1?'Synthèse du périmètre le mieux couvert · Autres périmètres séparés dans l’outil':'Poids dans le portefeuille entier · ADR et classes de titres distincts · Données datées',800,978,1480,18,C.muted,400)
+}
 let fontReady
 async function loadDcaFont(){
  if(!fontReady)fontReady=new FontFace('DcaEditorial',`url("${import.meta.env.BASE_URL}asset-art/editorial.woff2")`,{weight:'500'}).load().then(font=>document.fonts.add(font)).catch(error=>{fontReady=undefined;throw error})
@@ -125,8 +165,9 @@ export async function renderDcaImage(input,field='countries'){
  await loadDcaFont()
  const p=input.lines.every(l=>Number.isFinite(l.weight))?input:prepareProfile(input),a=analyzeProfile(p)
  if(a.errors.length)throw Error(a.errors.join(' '))
- const canvas=document.createElement('canvas');canvas.width=1600;canvas.height=field==='all'?1000:1067;const ctx=canvas.getContext('2d')
+ const canvas=document.createElement('canvas');canvas.width=1600;canvas.height=['all','overlap'].includes(field)?1000:1067;const ctx=canvas.getContext('2d')
  const bg=ctx.createLinearGradient(0,0,1600,1067);bg.addColorStop(0,'#071b36');bg.addColorStop(.5,'#03152c');bg.addColorStop(1,'#092952');ctx.fillStyle=bg;ctx.fillRect(0,0,1600,1067)
+ if(field==='overlap'){await overlapPortfolio(ctx,p);return canvas}
  if(field==='all'){fullPortfolio(ctx,p,a);return canvas}
  if(p.imageOnly||field==='both'){
   text(ctx,p.imageOnly?'Expositions du portefeuille':`Le DCA de ${p.name}`,64,100,1472,65,C.ivory,700,'DcaEditorial')

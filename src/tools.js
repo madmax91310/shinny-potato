@@ -2,9 +2,9 @@
 // status: 'disponible' une fois l'outil migré et branché, 'bientot' tant qu'il affiche un écran d'attente.
 // Les couleurs historiques servent aux contenus exportés ; l’accueil emploie des icônes sobres.
 export const TOOLS = [
-  { to: '/le-dca-de', navLabel: 'Le DCA de…', title: 'Le DCA de…',
+  { to: '/le-dca-de', navLabel: 'Le DCA de…', title: 'Portefeuille & DCA',
     publicationDay: 'Publication ponctuelle', icon: '👥', accent: '#65d5b0',
-    description: 'Compose un portefeuille en pourcentages, vérifie ses expositions géographiques et sectorielles, ou retrouve les 100 profils DCA.', status: 'disponible' },
+    description: 'Analyse les expositions, les titres communs et la concentration de ton portefeuille. Prépare un DCA ou une image à publier.', status: 'disponible' },
   {to:'/fiches-pratiques',navLabel:'Fiches pratiques',title:'Fiches pratiques',publicationDay:'Publication ponctuelle',icon:'📑',accent:'#267863',description:'Enveloppes, ETF, indices et démarches : une question, un texte et une image à garder.',status:'disponible'},
   { to: '/radar-editorial', navLabel: 'Radar', title: 'Radar éditorial',
     publicationDay: 'Actualisé chaque jour', icon: '📡', accent: '#65d5b0',

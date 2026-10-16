@@ -1,5 +1,7 @@
 import { ASSETS } from './data.js'
 import { validateProfile, references } from './engine.js'
+const legacyAliases={'novo-nordisk':'novo','saint-gobain':'saintgobain',linde:'lin',moodys:'mco'}
+export function migrateProfile(profile){return profile&&Array.isArray(profile.lines)?{...profile,lines:profile.lines.map(line=>({...line,asset:legacyAliases[line.asset]||line.asset}))}:profile}
 export const SAVED_KEY='el-dca-portfolios-v2'
 export const USED_KEY='el-dca-used-v1'
 const thematic=new Set(['timber','agribusiness','materials','utilities','healthcare','industrials','semiconductors','water','cybersecurity','infrastructure','reit'])
@@ -14,12 +16,13 @@ export function filterProfiles(profiles,filters,used=[]){return profiles.filter(
  && (!filters.unused || !used.includes(p.id))
 })}
 export function validSaved(record){
- try{return record&&typeof record.id==='string'&&record.id.length<=100&&typeof record.title==='string'&&record.title.length<=80&&typeof record.draft==='string'&&record.draft.length<=20000&&['countries','sectors','both','all'].includes(record.field)&&!validateProfile(record.profile).length}catch{return false}
+ try{return record&&typeof record.id==='string'&&record.id.length<=100&&typeof record.title==='string'&&record.title.length<=80&&typeof record.draft==='string'&&record.draft.length<=20000&&['countries','sectors','both','all','overlap'].includes(record.field)&&!validateProfile(record.profile).length}catch{return false}
 }
 export function readSaved(storage){
  const raw=storage.getItem(SAVED_KEY)
  if(!raw)return []
  const parsed=JSON.parse(raw)
+ if(Array.isArray(parsed?.items))parsed.items=parsed.items.map(record=>({...record,profile:migrateProfile(record.profile)}))
  if(parsed.version!==2||!Array.isArray(parsed.items)||parsed.items.length>50||!parsed.items.every(validSaved)||new Set(parsed.items.map(x=>x.id)).size!==parsed.items.length)throw Error('Sauvegarde illisible ou incompatible.')
  return parsed.items
 }

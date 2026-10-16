@@ -6,7 +6,7 @@ Généré depuis les routes, le catalogue et les observations actives. Régéné
 
 | Outil | Route |
 |---|---|
-| Le DCA de… | /le-dca-de |
+| Portefeuille & DCA | /le-dca-de |
 | Fiches pratiques | /fiches-pratiques |
 | Radar éditorial | /radar-editorial |
 | Simulateur de patrimoine | /simulateur-patrimoine |
@@ -46,7 +46,7 @@ Généré depuis les routes, le catalogue et les observations actives. Régéné
 | lexicon | 44 |
 | reference | 11 |
 | scpi | 8 |
-| series | 218 |
+| series | 238 |
 
 ## Champs des instruments
 
