@@ -45,7 +45,7 @@ if(process.argv.includes('--browser')) {
   await page.getByRole('button',{name:/Composition manuelle/}).click()
   for(const id of ['em_pea_amundi','europe_pea_amundi','health_europe_pea','tech_europe_pea','industry_world_dws','em_small_ishares']) {
    const a=ASSETS.find(a=>a.id===id)
-   await page.locator('#pg-manual-search').fill(a.isin)
+   await page.locator('.pg-manual-search').fill(a.isin)
    await page.locator(`[data-asset-id="${id}"]`).click()
    assert.ok(!/NaN|undefined/.test(await page.locator('body').innerText()))
   }

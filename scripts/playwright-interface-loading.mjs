@@ -40,7 +40,12 @@ for(const width of [390,1440]){
   assert.equal(requests.filter(r=>r.includes('/data/history/')).length,1)
   const loaded=await page.evaluate(async url=>(await fetch(url)).json(),requests.find(r=>r.includes('/data/history/')))
   assert.deepEqual(loaded.points,ASSETS.apple.points)
+  await choose(page.getByRole('group',{name:'Année de départ',exact:true}),'2020')
   if(width<1024)await page.getByRole('button',{name:'Aperçu',exact:true}).click();assert(await page.locator('.ic-card').first().isVisible())
+  await page.locator('.ic-video-export').getByRole('button',{name:'Comparatif',exact:true}).click()
+  await choose(page.getByRole('group',{name:'Actif vidéo 2',exact:true}),'microsoft')
+  await page.locator('#ic-comparison-text').waitFor()
+  assert((await page.locator('#ic-comparison-text').inputValue()).includes('Microsoft'))
   let failed=false
   const failOnce=async route=>{if(!failed){failed=true;await route.fulfill({status:503,body:''})}else await route.fallback()}
   await context.route('**/data/history/*.json',failOnce)

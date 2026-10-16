@@ -390,8 +390,8 @@ async function testPortfolioGenerator(page) {
   await page.setViewportSize({ width: 1280, height: 720 });
   await page.getByRole("button", { name: /Composition manuelle/ }).click();
   await choose(page.locator("#pg-manual-profile"), "crypto_curieux");
-  await page.locator("#pg-manual-search").fill("Fonds euros");
-  await page.locator(".pg-manual-asset-option").filter({ hasText: "Fonds euros (assurance-vie)" }).click();
+  await page.locator(".pg-manual-search").fill("Fonds euros");
+  await page.locator(".pg-manual-available [data-option]").filter({ hasText: "Fonds euros (assurance-vie)" }).click();
   await page.locator(".pg-manual-pct-input").fill("100");
   await page.getByRole("button", { name: "Générer le tweet", exact: true }).click();
   const manualTweet = await page.locator(".pg-tweet-body").innerText();
@@ -402,8 +402,8 @@ async function testPortfolioGenerator(page) {
   const manualStages = { single: manualEditorialOk };
   await page.getByRole('button', { name: /Modifier la composition/ }).click();
   await page.locator('.pg-manual-pct-input').fill('50');
-  await page.locator('#pg-manual-search').fill('Bitcoin');
-  await page.locator('.pg-manual-asset-option').first().click();
+  await page.locator('.pg-manual-search').fill('Bitcoin');
+  await page.locator('.pg-manual-available [data-option]').first().click();
   await page.locator('.pg-manual-pct-input').last().fill('50');
   await page.getByRole('button', { name: 'Générer le tweet', exact: true }).click();
   const cryptoTweet = await page.locator('.pg-tweet-body').innerText();
@@ -411,8 +411,8 @@ async function testPortfolioGenerator(page) {
   manualStages.crypto = manualEditorialOk;
   await page.getByRole('button', { name: /Modifier la composition/ }).click();
   await page.locator('.pg-manual-remove').first().click();
-  await page.locator('#pg-manual-search').fill('Amundi MSCI World UCITS ETF');
-  await page.locator('.pg-manual-asset-option').first().click();
+  await page.locator('.pg-manual-search').fill('Amundi MSCI World UCITS ETF');
+  await page.locator('.pg-manual-available [data-option]').first().click();
   await page.locator('.pg-manual-pct-input').last().fill('50');
   await page.getByRole('button', { name: 'Générer le tweet', exact: true }).click();
   const worldBitcoinTweet = await page.locator('.pg-tweet-body').innerText();
@@ -424,8 +424,8 @@ async function testPortfolioGenerator(page) {
   await page.getByRole('button', { name: /Modifier la composition/ }).click();
   await page.locator('.pg-manual-pct-input').first().fill('10');
   await page.locator('.pg-manual-pct-input').last().fill('30');
-  await page.locator('#pg-manual-search').fill('Fonds euros');
-  await page.locator('.pg-manual-asset-option').filter({ hasText: 'Fonds euros (assurance-vie)' }).click();
+  await page.locator('.pg-manual-search').fill('Fonds euros');
+  await page.locator('.pg-manual-available [data-option]').filter({ hasText: 'Fonds euros (assurance-vie)' }).click();
   await page.locator('.pg-manual-pct-input').last().fill('60');
   await page.getByRole('button', { name: 'Générer le tweet', exact: true }).click();
   const personalTweet = await page.locator('.pg-tweet-body').innerText();
@@ -446,8 +446,8 @@ async function testPortfolioGenerator(page) {
     while (await page.locator('.pg-manual-remove').count()) await page.locator('.pg-manual-remove').first().click();
     for (const [id,pct] of rows) {
       const asset = PORTFOLIO_ASSETS.find(a=>a.id===id);
-      await page.locator('#pg-manual-search').fill(asset.name);
-      await page.locator(`.pg-manual-asset-option[data-asset-id="${id}"]`).click();
+      await page.locator('.pg-manual-search').fill(asset.name);
+      await page.locator(`.pg-manual-available [data-option][data-asset-id="${id}"]`).click();
       await page.locator('.pg-manual-pct-input').last().fill(String(pct));
     }
     await page.getByRole('button', { name: 'Générer le tweet', exact: true }).click();
@@ -462,8 +462,8 @@ async function testPortfolioGenerator(page) {
     await page.getByRole('button', { name: /Modifier la composition/ }).click();
     while (await page.locator('.pg-manual-remove').count()) await page.locator('.pg-manual-remove').first().click();
     const asset = PORTFOLIO_ASSETS.find(a=>a.id===id);
-    await page.locator('#pg-manual-search').fill(asset.name);
-    await page.locator(`.pg-manual-asset-option[data-asset-id="${id}"]`).click();
+    await page.locator('.pg-manual-search').fill(asset.name);
+    await page.locator(`.pg-manual-available [data-option][data-asset-id="${id}"]`).click();
     await page.locator('.pg-manual-pct-input').fill('100');
     await page.getByRole('button', { name: 'Générer le tweet', exact: true }).click();
     const labels = await page.locator('.pg-data-label').allInnerTexts();
@@ -503,6 +503,7 @@ async function testPortfolioDuels(page) {
   await page.getByRole('button', { name: '🎲 Générer un autre duel' }).click();
   valid &&= (await page.locator('.pd-card').count()) === 2;
   await page.getByRole('button', { name: 'Composer A et B' }).click();
+  await page.locator('.pd-editor-side').nth(1).waitFor();
   valid &&= (await page.locator('.pd-editor-side').count()) === 2;
   valid &&= /10\s000 €/.test(await page.locator('#pd-tweet').inputValue());
   await page.getByRole('spinbutton', { name: 'Poids actif 1 du portefeuille A' }).fill('65');
