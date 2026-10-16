@@ -6,6 +6,9 @@ import { loadArtImage } from '../tweet-midi/anniversaryArt.js'
 // Each exposure reuses its reviewed ETF illustration. These are exposure scenes,
 // never fund-provider logos; names distinguish geographic/factor variants.
 const references = {
+ 'cloud-wisdomtree':'cloud-wisdomtree', 'small-value-world-avantis':'small-value-world-avantis',
+ 'ibonds-euro-2028':'ibonds-euro-2028','ibonds-euro-2029':'ibonds-euro-2029',
+ 'defense-vaneck':'defense','nuclear-vaneck':'nucleaire','quantum-vaneck':'quantique',
  'emerging-value':'em-value-ishares','euro-ultrashort':'euro-ultrashort-ishares',
  industrials:'world-industrials-xtrackers',staples:'world-staples',discretionary:'world-discretionary',
  'europe-food':'europe-food','europe-media':'europe-media','europe-retail':'europe-retail',

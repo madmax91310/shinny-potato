@@ -73,6 +73,7 @@ jobs:
       - run: node scripts/test-global-audit.mjs
       - run: node scripts/test-portfolio-roadmap.mjs
       - run: node scripts/test-exposure-observations.mjs
+      - run: node scripts/build-monthly-duel-returns.mjs && node scripts/test-distinct-asset-routing.mjs
       - run: node scripts/test-presentation-etf.mjs
       - run: node scripts/test-scpi.mjs
       - run: node scripts/test-insurance.mjs
@@ -290,6 +291,7 @@ jobs:
           path: ~/.cache/ms-playwright
           key: chromium-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
       - run: npx playwright install --with-deps chromium
+      - run: node scripts/playwright-distinct-asset-routing.mjs
       - run: node scripts/playwright-routing-additions.mjs
         if: matrix.shard == 1
       - run: node scripts/test-simple-exposure.mjs

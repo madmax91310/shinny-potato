@@ -242,6 +242,9 @@ entries.health_world_dws.description='Secteur santé du MSCI World.';
 add('new_energy_amundi','theme','les nouvelles énergies','Ces actions des nouvelles énergies dépendent notamment des taux, du financement et des politiques publiques.');
 entries.new_energy_amundi.description='Actions des nouvelles énergies.';
 
+add('copper-miners-globalx defense-vaneck nuclear-vaneck quantum-vaneck','theme','une conviction thématique','Cette poche détient des actions d’entreprises et peut renforcer des titres déjà présents dans le socle mondial.');
+add('nasdaq-equal small-value-world-avantis','factor','une sélection ou pondération différente','Les règles de pondération ou de sélection modifient les entreprises détenues et leurs poids. Ces biais peuvent sous-performer longtemps.');
+add('ibonds-euro-2028 ibonds-euro-2029','bond','des obligations euro à échéance définie','Une fin définie ne garantit ni le capital ni le rendement. Une vente anticipée reste exposée au marché.');
 export const ASSET_EDITORIAL = Object.freeze(entries);
 export function assetEditorial(asset) {
   const entry = ASSET_EDITORIAL[asset.id];

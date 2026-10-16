@@ -9,7 +9,7 @@ import { dataLabels } from './compact.js'
 const historicalCurrencies = { fonds_euros: 'EUR', scpi: 'EUR', msci_world_amundi_pea: 'EUR', smallcap_europe: 'EUR', qyld_ucits: 'USD', oblig_hy_amundi: 'EUR' }
 export function returnCurrency(asset) {
   const isin = asset.isin ?? getAsset(asset.id)?.isin
-  return historicalCurrencies[asset.id] ?? PORTFOLIO_CURRENCIES[isin] ?? asset.returnCurrency ?? null
+  return asset.returnCurrency ?? historicalCurrencies[asset.id] ?? PORTFOLIO_CURRENCIES[isin] ?? null
 }
 export function assetReturn(asset, year) {
   const original = (asset.calendarReturns ?? calendarMap(asset.r))[year]

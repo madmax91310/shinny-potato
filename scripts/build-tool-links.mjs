@@ -6,6 +6,9 @@ import { buildDuel, CATALOG } from '../src/pages/portfolio-duels/lib.js'
 import { ASSETS } from '../src/data/market-history.js'
 import { getAnnualReturnStartYears, getValidYearsBackOptions } from '../src/pages/tweet-midi/data/marketHistory.js'
 import simulationIds from '../src/data/simulation-links.json' with {type:'json'}
+import { TOPICS } from '../src/data/practical-sheet-topics.js'
+import { references } from '../src/pages/dca-profiles/engine.js'
+import { DISTINCT_ASSET_ISINS } from '../src/data/distinct-asset-selections.js'
 
 // Identity and availability only. Values remain in their canonical registries.
 const links = {}
@@ -15,6 +18,10 @@ const add = (isin, kind, label, href) => {
   if (!rows.some(row => row.href === href)) rows.push({kind,label,href})
 }
 for (const etf of ETFS) add(etf.isin,'sheet','Présentation ETF',`/fiches-etf?isin=${encodeURIComponent(etf.isin)}`)
+for (const topic of TOPICS) for (const isin of topic.products ?? [])
+  add(isin,'practical',topic.title,`/fiches-pratiques?fiche=${encodeURIComponent(topic.id)}`)
+for (const asset of Object.values(references)) if (DISTINCT_ASSET_ISINS.includes(asset.isin))
+  add(asset.isin,'dca','Expositions et DCA manuel','/le-dca-de')
 for (const theme of DEFAULT_THEMES) for (const etf of theme.etfs)
   add(etf.isin,'comparison',theme.nom,`/comparatif-etf?subject=${encodeURIComponent(theme.id)}`)
 for (const definition of DUELS) {
