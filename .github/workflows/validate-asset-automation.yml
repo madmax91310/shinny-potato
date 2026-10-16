@@ -32,3 +32,4 @@ jobs:
       - run: node scripts/audit-automated-monthly.mjs && node scripts/test-etf-tool-connections.mjs && node scripts/audit-asset-tool-routing.mjs
       - run: npx playwright install --with-deps chromium
       - run: node scripts/test-asset-field-ui.mjs
+      - run: node scripts/test-stylized-formats.mjs

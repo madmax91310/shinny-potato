@@ -70,6 +70,14 @@ try {
       }
       for (const id of ASSET_ORDER) {
         const years = getAnnualReturnStartYears(id), year = years[0]
+        if (!years.length) {
+          if (getAnnualReturns(id, 2000).length) throw new Error(`Annual window unexpectedly absent: ${id}`)
+          let refused = false
+          try { await renderPerformanceImage({ mode: 'simple', assetId: id, year: 2000 }) }
+          catch (error) { if (!error.message.includes('Actif ou performances annuelles absents')) throw error; refused = true }
+          if (!refused) throw new Error(`Incomplete annual history rendered: ${id}`)
+          continue
+        }
         const words = await check(`performance-${id}`, () => renderPerformanceImage({ mode: 'simple', assetId: id, year }), ['msciWorld', 'or', 'apple', 'bitcoin', 'silver', 'msciEurope', 'msciIndia', 'msciWorldQuality', 'msciWorldValue', 'russell2000'].includes(id))
         const rows = getAnnualReturns(id, year)
         if (words.some(word => /PERFORMANCE DEPUIS|PERFORMANCE CUMULÉE|clôtures annuelles|SANS CONVERSION/.test(word))) throw new Error('Generic series heading returned')
