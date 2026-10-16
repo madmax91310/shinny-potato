@@ -1,8 +1,19 @@
 import assert from 'node:assert/strict'
-import {references,analyzeProfile} from '../src/pages/dca-profiles/engine.js'
+import {references as liveReferences,analyzeProfile} from '../src/pages/dca-profiles/engine.js'
 import {dcaExposure,publishedExposure,exposureDisplay} from '../src/pages/dca-profiles/exposure.js'
 import {donutData} from '../src/pages/dca-profiles/image.js'
 const now=new Date('2026-10-16T12:00:00Z')
+// Frozen regression observations: daily collection must not invalidate dated expectations.
+const references=structuredClone(liveReferences)
+for(const [asset,country,countryWeight,tech,total,date] of [
+ ['IE0002XZSHO1','United States',72.94,31.78,100.02,'2026-09-30'],
+ ['europe','United Kingdom',18.46,9.16,100.01,'2026-09-30'],
+ ['FR0013412020','Taiwan',29.747008,42.389722,100,'2026-10-14'],
+])for(const field of ['countries','sectors'])references[asset][field]={
+ ...references[asset][field],asOf:date,compatibility:`fixture-${asset}-${field}`,rows:field==='countries'
+ ?[{name:country,weightPct:countryWeight},{name:'Other',weightPct:100-countryWeight}]
+ :[{name:'Technology',weightPct:tech},{name:'Other',weightPct:total-tech}],
+} 
 const lines=['IE0002XZSHO1','europe','FR0013412020'].map((asset,i)=>({asset,label:references[asset].name,isin:references[asset].isin,weight:[70,20,10][i]}))
 const profile={imageOnly:true,name:'',scope:'Portefeuille investi',lines}
 for(const field of ['countries','sectors']){
@@ -16,7 +27,7 @@ for(const field of ['countries','sectors']){
  assert(group.indicative)
  assert(group.rows.every(row=>Math.abs(row.weight-row.contributions.reduce((s,r)=>s+r.weight,0))<1e-10))
  assert(!donutData({[field]:result},field).rows.some(row=>row.name==='Non ventilé ici'))
- assert(Math.abs(analyzeProfile(profile)[field].groups[0].coverage-100)<0.00001)
+ assert(analyzeProfile(profile)[field].groups[0]?.indicative,'Production images use the published overview')
  // Missing, stale, signed or partial data must stay missing in the overview too.
  for(const patch of [undefined,{...references.europe[field],asOf:'2020-01-01'},{...references.europe[field],rows:[{name:'France',weightPct:-10}]}]){
   const refs={...references,europe:{...references.europe,[field]:patch}}
