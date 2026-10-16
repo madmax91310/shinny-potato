@@ -315,24 +315,19 @@
     },
     "update-lifestrategy.yml": {
       "name": "Vanguard LifeStrategy",
-      "runId": 38854059260,
+      "runId": 38884682801,
       "attempt": 1,
-      "completedAt": "2026-10-16T05:26:53Z",
-      "status": "failure",
-      "lastSuccessAt": "2026-10-14T11:38:46Z",
+      "completedAt": "2026-10-16T10:19:19Z",
+      "status": "success",
+      "lastSuccessAt": "2026-10-16T10:19:19Z",
       "collectionStatus": "success",
       "validationStatus": "success",
       "recordingStatus": "success",
-      "publicationStatus": "failure",
-      "lastCollectionSuccessAt": "2026-10-16T05:26:53Z",
-      "lastPublicationSuccessAt": "2026-10-15T10:23:30Z",
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38854059260",
-      "failures": [
-        {
-          "job": "deploy / browser-checks (0)",
-          "step": "Run node scripts/run-browser-checks.mjs 0 4"
-        }
-      ],
+      "publicationStatus": "success",
+      "lastCollectionSuccessAt": "2026-10-16T10:19:19Z",
+      "lastPublicationSuccessAt": "2026-10-16T10:19:16Z",
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38884682801",
+      "failures": [],
       "dataFailures": {}
     },
     "update-non-bond-expansion.yml": {
@@ -368,11 +363,11 @@
       "dataFailures": {}
     }
   },
-  "updatedAt": "2026-10-16T07:56:13Z",
+  "updatedAt": "2026-10-16T10:19:19Z",
   "monitoring": {
     "schemaVersion": 1,
-    "checkedAt": "2026-10-16T09:56:16.051182+00:00",
-    "revision": 38,
+    "checkedAt": "2026-10-16T10:19:36.023973+00:00",
+    "revision": 39,
     "active": {
       "collection:update-practical-sheets.yml:practical:13f": {
         "name": "SEC · questions et réponses sur le formulaire 13F",
@@ -393,7 +388,7 @@
         "dataId": "practical:13f",
         "id": "collection:update-practical-sheets.yml:practical:13f",
         "firstSeenAt": "2026-10-14T21:07:26.171294+00:00",
-        "lastSeenAt": "2026-10-16T09:56:16.051182+00:00"
+        "lastSeenAt": "2026-10-16T10:19:36.023973+00:00"
       },
       "collection:update-insurance.yml:linxea-avenir-2": {
         "name": "Linxea Avenir 2",
@@ -412,7 +407,7 @@
         "dataId": "linxea-avenir-2",
         "id": "collection:update-insurance.yml:linxea-avenir-2",
         "firstSeenAt": "2026-10-14T13:08:27.203935+00:00",
-        "lastSeenAt": "2026-10-16T09:56:16.051182+00:00"
+        "lastSeenAt": "2026-10-16T10:19:36.023973+00:00"
       },
       "collection:update-scpi.yml:remake-live": {
         "name": "Remake Live",
@@ -435,7 +430,7 @@
         "dataId": "remake-live",
         "id": "collection:update-scpi.yml:remake-live",
         "firstSeenAt": "2026-10-15T13:02:43.499914+00:00",
-        "lastSeenAt": "2026-10-16T09:56:16.051182+00:00"
+        "lastSeenAt": "2026-10-16T10:19:36.023973+00:00"
       },
       "collection:update-regulatory-data.yml:broker-observation:caidf:profile:change": {
         "name": "caidf:profile:change",
@@ -455,7 +450,7 @@
         "dataId": "broker-observation:caidf:profile:change",
         "id": "collection:update-regulatory-data.yml:broker-observation:caidf:profile:change",
         "firstSeenAt": "2026-10-15T18:00:14.760687+00:00",
-        "lastSeenAt": "2026-10-16T09:56:16.051182+00:00"
+        "lastSeenAt": "2026-10-16T10:19:36.023973+00:00"
       },
       "publication:update-market-monthly.yml": {
         "name": "Historiques mensuels des marchés",
@@ -474,26 +469,7 @@
         "cause": "deploy / browser-checks (0) : Run node scripts/run-browser-checks.mjs 0 4",
         "id": "publication:update-market-monthly.yml",
         "firstSeenAt": "2026-10-16T07:26:14.661381+00:00",
-        "lastSeenAt": "2026-10-16T09:56:16.051182+00:00"
-      },
-      "publication:update-lifestrategy.yml": {
-        "name": "Vanguard LifeStrategy",
-        "tools": [
-          "Présentation ETF",
-          "Comparatif ETF",
-          "Duel",
-          "Générateur"
-        ],
-        "impactScope": "collector",
-        "workflow": "update-lifestrategy.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38854059260",
-        "to": "/donnees-a-revoir",
-        "kind": "publication",
-        "field": "Publication",
-        "cause": "deploy / browser-checks (0) : Run node scripts/run-browser-checks.mjs 0 4",
-        "id": "publication:update-lifestrategy.yml",
-        "firstSeenAt": "2026-10-16T05:28:13.543341+00:00",
-        "lastSeenAt": "2026-10-16T09:56:16.051182+00:00"
+        "lastSeenAt": "2026-10-16T10:19:36.023973+00:00"
       },
       "monitor:radar": {
         "kind": "unobserved",
@@ -506,153 +482,10 @@
         "to": "/donnees-a-revoir",
         "id": "monitor:radar",
         "firstSeenAt": "2026-10-15T18:53:46.175472+00:00",
-        "lastSeenAt": "2026-10-16T09:56:16.051182+00:00"
+        "lastSeenAt": "2026-10-16T10:19:36.023973+00:00"
       }
     },
     "events": [
-      {
-        "revision": 9,
-        "at": "2026-10-14T13:04:21.223129+00:00",
-        "opened": [],
-        "resolved": [
-          {
-            "name": "Xtrackers MSCI World Health Care UCITS ETF",
-            "tools": [
-              "Comparatif ETF"
-            ],
-            "impactScope": "asset",
-            "sourceUrls": [
-              "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HK77/historicaldata/download",
-              "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HK77/pdpMetaTagsTealium",
-              "https://www.justetf.com/en/etf-profile.html?isin=IE00BM67HK77"
-            ],
-            "to": "/bibliotheque-donnees?id=IE00BM67HK77",
-            "kind": "conflict",
-            "field": "Poids du pays United Kingdom",
-            "cause": "Valeur contradictoire pour la même période (2026-10-12) : Poids du pays United Kingdom. Dernière observation conservée ; propositions archivées (etf:IE00BM67HK77:countries:United Kingdom:e02e00a632cb2b9e9ddccd1e:2026-10-12).",
-            "id": "radar:2f6523c4c22cf146e4da0e6e",
-            "firstSeenAt": "2026-10-14T11:42:41.168472+00:00",
-            "lastSeenAt": "2026-10-14T13:03:42.701964+00:00",
-            "resolvedAt": "2026-10-14T13:04:21.223129+00:00"
-          },
-          {
-            "name": "Xtrackers MSCI World Materials UCITS ETF",
-            "tools": [
-              "Comparatif ETF",
-              "Duels de portefeuilles",
-              "Générateur de portefeuilles",
-              "Impact des frais",
-              "Présentation ETF"
-            ],
-            "impactScope": "asset",
-            "sourceUrls": [
-              "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HS53/historicaldata/download",
-              "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HS53/pdpMetaTagsTealium",
-              "https://www.justetf.com/en/etf-profile.html?isin=IE00BM67HS53"
-            ],
-            "to": "/bibliotheque-donnees?id=IE00BM67HS53",
-            "kind": "conflict",
-            "field": "Poids du pays United Kingdom",
-            "cause": "Valeur contradictoire pour la même période (2026-10-12) : Poids du pays United Kingdom. Dernière observation conservée ; propositions archivées (etf:IE00BM67HS53:countries:United Kingdom:9e8222db7f15caa14c54cb45:2026-10-12).",
-            "id": "radar:7709e58191a040c0db578329",
-            "firstSeenAt": "2026-10-14T11:42:41.168472+00:00",
-            "lastSeenAt": "2026-10-14T13:03:42.701964+00:00",
-            "resolvedAt": "2026-10-14T13:04:21.223129+00:00"
-          },
-          {
-            "name": "Xtrackers MSCI World Materials UCITS ETF",
-            "tools": [
-              "Comparatif ETF",
-              "Duels de portefeuilles",
-              "Générateur de portefeuilles",
-              "Impact des frais",
-              "Présentation ETF"
-            ],
-            "impactScope": "asset",
-            "sourceUrls": [
-              "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HS53/historicaldata/download",
-              "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HS53/pdpMetaTagsTealium",
-              "https://www.justetf.com/en/etf-profile.html?isin=IE00BM67HS53"
-            ],
-            "to": "/bibliotheque-donnees?id=IE00BM67HS53",
-            "kind": "conflict",
-            "field": "Poids du pays Switzerland",
-            "cause": "Valeur contradictoire pour la même période (2026-10-12) : Poids du pays Switzerland. Dernière observation conservée ; propositions archivées (etf:IE00BM67HS53:countries:Switzerland:9e8222db7f15caa14c54cb45:2026-10-12).",
-            "id": "radar:780e87053efa0616b94f8659",
-            "firstSeenAt": "2026-10-14T11:42:41.168472+00:00",
-            "lastSeenAt": "2026-10-14T13:03:42.701964+00:00",
-            "resolvedAt": "2026-10-14T13:04:21.223129+00:00"
-          },
-          {
-            "name": "Xtrackers MSCI World Health Care UCITS ETF",
-            "tools": [
-              "Comparatif ETF"
-            ],
-            "impactScope": "asset",
-            "sourceUrls": [
-              "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HK77/historicaldata/download",
-              "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HK77/pdpMetaTagsTealium",
-              "https://www.justetf.com/en/etf-profile.html?isin=IE00BM67HK77"
-            ],
-            "to": "/bibliotheque-donnees?id=IE00BM67HK77",
-            "kind": "conflict",
-            "field": "Poids du pays Switzerland",
-            "cause": "Valeur contradictoire pour la même période (2026-10-12) : Poids du pays Switzerland. Dernière observation conservée ; propositions archivées (etf:IE00BM67HK77:countries:Switzerland:e02e00a632cb2b9e9ddccd1e:2026-10-12).",
-            "id": "radar:7d09b09b3d05f0d1e19cc7b2",
-            "firstSeenAt": "2026-10-14T11:42:41.168472+00:00",
-            "lastSeenAt": "2026-10-14T13:03:42.701964+00:00",
-            "resolvedAt": "2026-10-14T13:04:21.223129+00:00"
-          },
-          {
-            "name": "Xtrackers MSCI World Materials UCITS ETF",
-            "tools": [
-              "Comparatif ETF",
-              "Duels de portefeuilles",
-              "Générateur de portefeuilles",
-              "Impact des frais",
-              "Présentation ETF"
-            ],
-            "impactScope": "asset",
-            "sourceUrls": [
-              "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HS53/historicaldata/download",
-              "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HS53/pdpMetaTagsTealium",
-              "https://www.justetf.com/en/etf-profile.html?isin=IE00BM67HS53"
-            ],
-            "to": "/bibliotheque-donnees?id=IE00BM67HS53",
-            "kind": "conflict",
-            "field": "Poids du pays Australia",
-            "cause": "Valeur contradictoire pour la même période (2026-10-12) : Poids du pays Australia. Dernière observation conservée ; propositions archivées (etf:IE00BM67HS53:countries:Australia:9e8222db7f15caa14c54cb45:2026-10-12).",
-            "id": "radar:17753b6c72de650479e7dd5b",
-            "firstSeenAt": "2026-10-14T11:42:41.168472+00:00",
-            "lastSeenAt": "2026-10-14T13:03:42.701964+00:00",
-            "resolvedAt": "2026-10-14T13:04:21.223129+00:00"
-          },
-          {
-            "name": "Xtrackers MSCI World Materials UCITS ETF",
-            "tools": [
-              "Comparatif ETF",
-              "Duels de portefeuilles",
-              "Générateur de portefeuilles",
-              "Impact des frais",
-              "Présentation ETF"
-            ],
-            "impactScope": "asset",
-            "sourceUrls": [
-              "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HS53/historicaldata/download",
-              "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HS53/pdpMetaTagsTealium",
-              "https://www.justetf.com/en/etf-profile.html?isin=IE00BM67HS53"
-            ],
-            "to": "/bibliotheque-donnees?id=IE00BM67HS53",
-            "kind": "conflict",
-            "field": "Poids du pays Chile",
-            "cause": "Valeur contradictoire pour la même période (2026-10-12) : Poids du pays Chile. Dernière observation conservée ; propositions archivées (etf:IE00BM67HS53:countries:Chile:9e8222db7f15caa14c54cb45:2026-10-12).",
-            "id": "radar:fc2c94c44da9ea38f53f4514",
-            "firstSeenAt": "2026-10-14T11:42:41.168472+00:00",
-            "lastSeenAt": "2026-10-14T13:03:42.701964+00:00",
-            "resolvedAt": "2026-10-14T13:04:21.223129+00:00"
-          }
-        ]
-      },
       {
         "revision": 10,
         "at": "2026-10-14T13:08:27.203935+00:00",
@@ -3671,9 +3504,56 @@
           "publication:update-market-monthly.yml"
         ],
         "resolved": []
+      },
+      {
+        "revision": 39,
+        "at": "2026-10-16T10:19:36.023973+00:00",
+        "opened": [],
+        "resolved": [
+          {
+            "name": "Vanguard LifeStrategy",
+            "tools": [
+              "Présentation ETF",
+              "Comparatif ETF",
+              "Duel",
+              "Générateur"
+            ],
+            "impactScope": "collector",
+            "workflow": "update-lifestrategy.yml",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38854059260",
+            "to": "/donnees-a-revoir",
+            "kind": "publication",
+            "field": "Publication",
+            "cause": "deploy / browser-checks (0) : Run node scripts/run-browser-checks.mjs 0 4",
+            "id": "publication:update-lifestrategy.yml",
+            "firstSeenAt": "2026-10-16T05:28:13.543341+00:00",
+            "lastSeenAt": "2026-10-16T09:56:16.051182+00:00",
+            "resolvedAt": "2026-10-16T10:19:36.023973+00:00"
+          }
+        ]
       }
     ],
     "resolved": [
+      {
+        "name": "Vanguard LifeStrategy",
+        "tools": [
+          "Présentation ETF",
+          "Comparatif ETF",
+          "Duel",
+          "Générateur"
+        ],
+        "impactScope": "collector",
+        "workflow": "update-lifestrategy.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38854059260",
+        "to": "/donnees-a-revoir",
+        "kind": "publication",
+        "field": "Publication",
+        "cause": "deploy / browser-checks (0) : Run node scripts/run-browser-checks.mjs 0 4",
+        "id": "publication:update-lifestrategy.yml",
+        "firstSeenAt": "2026-10-16T05:28:13.543341+00:00",
+        "lastSeenAt": "2026-10-16T09:56:16.051182+00:00",
+        "resolvedAt": "2026-10-16T10:19:36.023973+00:00"
+      },
       {
         "name": "Vanguard LifeStrategy 20% Equity UCITS ETF (EUR) Accumulating",
         "tools": [
@@ -5914,34 +5794,6 @@
         "field": "Poids du pays Switzerland",
         "cause": "Valeur contradictoire pour la même période (2026-10-12) : Poids du pays Switzerland. Dernière observation conservée ; propositions archivées (etf:IE00BLNMYC90:countries:Switzerland:8abd3910625177898532bf9d:2026-10-12).",
         "id": "radar:cdc877fda7404402abef4457",
-        "firstSeenAt": "2026-10-14T11:42:41.168472+00:00",
-        "lastSeenAt": "2026-10-14T19:11:55.324201+00:00",
-        "resolvedAt": "2026-10-14T19:12:42.647375+00:00"
-      },
-      {
-        "name": "Xtrackers MSCI World ex USA UCITS ETF 1C",
-        "tools": [
-          "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Impact des frais",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "sourceUrls": [
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/historicaldata/download",
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/pdpMetaTagsTealium",
-          "https://etf.dws.com/download/asset/82292b8e-bf9e-44f2-b20d-722c743110a3",
-          "https://etf.dws.com/fr-fr/AssetDownload/Index/410e8206-23cd-463b-b2a5-6018bfc1fd32/Factsheet.pdf",
-          "https://www.justetf.com/en/etf-profile.html?isin=IE0006WW1TQ4",
-          "https://www.msci.com/documents/10199/255599/msci-world-ex-usa-index-net.pdf",
-          "https://www.zonebourse.com/cours/etf/XTRACKERS-MSCI-WORLD-EX-U-169862014/"
-        ],
-        "to": "/bibliotheque-donnees?id=IE0006WW1TQ4",
-        "kind": "conflict",
-        "field": "Poids du pays United Kingdom",
-        "cause": "Valeur contradictoire pour la même période (2026-10-12) : Poids du pays United Kingdom. Dernière observation conservée ; propositions archivées (etf:IE0006WW1TQ4:countries:United Kingdom:896eb444159fd8c94545e70e:2026-10-12).",
-        "id": "radar:efba37ffd0046e945c026629",
         "firstSeenAt": "2026-10-14T11:42:41.168472+00:00",
         "lastSeenAt": "2026-10-14T19:11:55.324201+00:00",
         "resolvedAt": "2026-10-14T19:12:42.647375+00:00"
