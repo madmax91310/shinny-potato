@@ -1,3 +1,6 @@
+import FX from '../src/data/monthly-fx.json' with { type: 'json' }
+import { convertAsset, buildPortfolio } from '../src/pages/performance-rankings/series.js'
+import { ANNUAL_ASSETS, ANNUAL_CATEGORIES } from '../src/pages/performance-rankings/data.js'
 import assert from 'node:assert/strict'
 import { CATEGORIES, RANKING_ASSETS, buildRankingAssets } from '../src/pages/performance-rankings/data.js'
 import { buildRanking, buildTweet, commonCoverage, monthAt, monthIndex, periodReturn, rankRows, rollingRegularity } from '../src/pages/performance-rankings/engine.js'
@@ -11,7 +14,7 @@ const partial = make('partial', .01, '2020-01', 24)
 assert.deepEqual(commonCoverage([a, partial]).years, [2021])
 assert.throws(() => buildRanking([a, partial], { mode: 'year', startYear: 2020 }), /entièrement couvertes/)
 assert.throws(() => commonCoverage([a, { ...b, currency: 'USD' }]), /même devise/)
-assert.throws(() => commonCoverage([a, { ...b, basis: 'index-net' }]), /conventions/)
+assert.throws(() => commonCoverage([{ ...a, basis: 'index-gross' }, { ...b, basis: 'index-net' }]), /conventions/)
 assert.throws(() => commonCoverage([a, a]), /une seule fois/)
 assert.throws(() => commonCoverage([a, { ...b, points: b.points.filter((_, i) => i !== 2) }]), /discontinu/)
 assert.throws(() => commonCoverage([a, { ...b, points: [{ date: '2019-12', price: 0 }] }]), /invalide/)
@@ -28,13 +31,13 @@ assert(!buildRankingAssets({ mystery: { label: 'Unknown', points: a.points, curr
 
 for (const category of CATEGORIES) {
   assert(category.ids.length >= 2 && category.ids.length <= 6)
-  const assets = category.ids.map(id => { assert(RANKING_ASSETS[id], id); return RANKING_ASSETS[id] })
+  const assets = category.ids.map(id => { assert(RANKING_ASSETS[id], id); return convertAsset(RANKING_ASSETS[id], category.currency, FX) })
   const c = commonCoverage(assets)
   for (const year of c.years) {
     const result = buildRanking(assets, { mode: 'year', startYear: year })
     assert.equal(result.columns[0].rows.length, assets.length)
     for (const row of result.columns[0].rows) {
-      const asset = RANKING_ASSETS[row.id]
+      const asset = assets.find(a => a.id === row.id)
       const dec = asset.points.find(p => p.date === `${year}-12`).price
       const prev = asset.points.find(p => p.date === `${year - 1}-12`).price
       assert(Math.abs(row.value - (dec / prev - 1) * 100) < 1e-10)
@@ -53,3 +56,43 @@ assert.equal(commonCoverage(next).end, '2027-01')
 assert.equal(rollingRegularity(next, 60).count, 26)
 assert.equal(buildRanking(next, { mode: 'period', start: '2026-12', end: '2027-01' }).columns[0].rows[0].rank, 1)
 console.log(`${CATEGORIES.length} categories: all complete calendar years, custom returns, annualization, shared boundaries, currency/basis validation, ties, rolling counts and automatic month propagation passed.`)
+
+// Currency changes alter returns using the same month-end reference convention.
+const toyFX = { sourceUrl: 'https://www.ecb.europa.eu/', months: {
+  '2019-12': { rates: { EUR: 1, USD: 2 } }, '2020-01': { rates: { EUR: 1, USD: 4 } }, '2020-02': { rates: { EUR: 1, USD: 2 } },
+} }
+const toy = (id, prices) => ({ id, label: id, shortLabel: id, currency: 'EUR', basis: 'adjusted', points: prices.map((price, i) => ({ date: monthAt(monthIndex('2019-12') + i), price })) })
+const flat = toy('flat', [100, 100, 100]), zig = toy('zig', [100, 200, 100])
+assert.equal(periodReturn(convertAsset(flat, 'USD', toyFX), '2019-12', '2020-01'), 100)
+assert.equal(periodReturn(convertAsset(flat, 'USD', toyFX), '2019-12', '2020-02'), 0)
+assert.throws(() => convertAsset(flat, 'GBP', toyFX), /Change BCE absent/)
+const definition = { id: 'p', label: '50/50', lines: [{ id: 'flat', pct: 50 }, { id: 'zig', pct: 50 }] }
+const portfolio = rebalance => buildPortfolio({ ...definition, rebalance }, { flat, zig }, 'EUR', toyFX)
+assert.equal(periodReturn(portfolio('none'), '2019-12', '2020-02'), 0)
+assert.equal(periodReturn(portfolio('annual'), '2019-12', '2020-02'), 0)
+assert(Math.abs(periodReturn(portfolio('monthly'), '2019-12', '2020-02') - 12.5) < 1e-10)
+assert.throws(() => buildPortfolio({ ...definition, lines: [{ id: 'flat', pct: 99 }] }, { flat }, 'EUR', toyFX), /100 %/)
+assert.throws(() => buildPortfolio({ ...definition, lines: [{ id: 'flat', pct: 50 }, { id: 'flat', pct: 50 }] }, { flat }, 'EUR', toyFX), /distincts/)
+// Drift must carry through annual columns rather than resetting weights each January.
+const slow = make('slow', 0, '2019-12', 25), fast = make('fast', .05, '2019-12', 25)
+const drift = buildPortfolio({ ...definition, rebalance: 'none', lines: [{ id: 'slow', pct: 50 }, { id: 'fast', pct: 50 }] }, { slow, fast }, 'EUR', FX)
+const reset = { ...drift, id: 'reset', portfolio: { ...drift.portfolio, rebalance: 'annual' } }
+const grid = buildRanking([drift, reset], { mode: 'years', startYear: 2020, endYear: 2021 })
+assert(grid.columns[1].rows.find(r => r.id === 'p').value > grid.columns[0].rows.find(r => r.id === 'p').value)
+assert(Math.abs(grid.columns[1].rows.find(r => r.id === 'reset').value - grid.columns[0].rows.find(r => r.id === 'reset').value) < 1e-10)
+const annual = { id: 'annual', label: 'NAV', currency: 'EUR', basis: 'fund-nav', frequency: 'annual', years: { 2020: 10, 2021: -10 } }
+assert(Math.abs(periodReturn(annual, '2019-12', '2021-12') + 1) < 1e-10)
+assert.throws(() => periodReturn(annual, '2020-01', '2021-12'), /décembre/)
+assert.throws(() => periodReturn(annual, '2018-12', '2021-12'), /absente/)
+assert.throws(() => commonCoverage([annual, flat]), /sélections distinctes/)
+assert.equal(rollingRegularity([annual, { ...annual, id: 'other' }], 12), null)
+for (const c of ANNUAL_CATEGORIES) {
+  const members = c.ids.map(id => convertAsset(ANNUAL_ASSETS[id], c.currency, FX))
+  const coverage = commonCoverage(members)
+  for (const year of coverage.years) assert(buildRanking(members, { mode: 'year', startYear: year }).columns[0].rows.every(r => Number.isFinite(r.value)))
+}
+for (const id of ['world-net', 'msciAcwi', 'japan-net', 'msciEurope', 'msciUsa', 'msciWorld', 'apple', 'microsoft']) {
+  assert.equal(RANKING_ASSETS[id].points[0].date, '2005-12')
+  assert(commonCoverage([RANKING_ASSETS[id], { ...RANKING_ASSETS[id], id: 'copy' }]).years.includes(2006))
+}
+console.log('Annual NAV, ECB conversion, cross-asset conventions, portfolio weights, rebalancing and multi-year drift passed.')

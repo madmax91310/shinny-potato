@@ -32,7 +32,8 @@ function lines(ctx, value, x, y, width, size, color, maxLines = 3) {
 export function renderRankingImage(result, title, regularity) {
   const columns = result.columns, single = columns.length === 1
   const width = single ? 1440 : Math.max(1500, columns.length * 225 + 100)
-  const height = single ? 310 + result.assets.length * 110 + (regularity ? 150 : 0) : 380 + result.assets.length * 145 + (regularity ? 170 : 0)
+  const detailLines = (result.assets.some(a => a.fxConverted) ? 1 : 0) + (result.assets.some(a => a.portfolio) ? 1 : 0)
+  const height = (single ? 310 + result.assets.length * 110 + (regularity ? 150 : 0) : 380 + result.assets.length * 145 + (regularity ? 170 : 0)) + detailLines * 28
   const canvas = document.createElement('canvas'); canvas.width = width; canvas.height = height
   const ctx = canvas.getContext('2d')
   const bg = ctx.createLinearGradient(0, 0, width, height); bg.addColorStop(0, '#102a2a'); bg.addColorStop(.55, '#111f29'); bg.addColorStop(1, '#1b192b'); ctx.fillStyle = bg; ctx.fillRect(0, 0, width, height)
@@ -65,7 +66,7 @@ export function renderRankingImage(result, title, regularity) {
     })
   }
   if (regularity) {
-    const y = height - 215
+    const y = height - 215 - detailLines * 28
     text(ctx, `Première place sur ${regularity.count} périodes glissantes de ${regularity.months / 12} an${regularity.months > 12 ? 's' : ''}`, 60, y, 23, '#d9e4df')
     const w = (width - 120) / regularity.stats.length
     regularity.stats.forEach((s, i) => {
@@ -74,6 +75,9 @@ export function renderRankingImage(result, title, regularity) {
     })
     text(ctx, `Historique ${regularity.start} → ${regularity.end} · périodes qui se chevauchent · égalités partagées`, 60, y + 112, 18, '#a7bcba')
   }
+  let extraY = height - 73 - detailLines * 28
+  if (result.assets.some(a => a.fxConverted)) { fit(ctx, 'Conversion aux références BCE de fin de mois · sans couverture de change', width / 2, extraY, 19, width - 100, '#a7bcba', 'center'); extraY += 28 }
+  if (result.assets.some(a => a.portfolio)) fit(ctx, result.assets.filter(a => a.portfolio).map(a => `${a.shortLabel} : ${a.portfolio.rebalance === 'annual' ? 'rééquilibrage en décembre' : a.portfolio.rebalance === 'monthly' ? 'rééquilibrage mensuel' : 'sans rééquilibrage'}`).join(' · '), width / 2, extraY, 19, width - 100, '#a7bcba', 'center')
   fit(ctx, `${supportLabel(result.assets)} · ${basisLabel(result.coverage.basis)}${result.assets.some(a => a.isin) ? ' · Frais des fonds inclus' : ''}`, width / 2, height - 73, 21, width - 100, '#a7bcba', 'center')
   text(ctx, 'Performances passées · Pas un conseil financier', width / 2, height - 39, 18, '#819b98', 'center')
   return canvas

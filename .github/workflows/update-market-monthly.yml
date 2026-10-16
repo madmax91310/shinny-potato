@@ -46,7 +46,7 @@ jobs:
       contents: write
     outputs:
       commit_sha: ${{ steps.commit.outputs.commit_sha }}
-      collection_failed: ${{ steps.collect.outcome == 'failure' }}
+      collection_failed: ${{ steps.collect.outcome == 'failure' || steps.rankings.outcome == 'failure' }}
     steps:
       - uses: actions/checkout@v7.0.1
         with:
@@ -62,6 +62,7 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_monthly_automation.py'
       - run: python -m unittest discover -s scripts -p 'test_monthly_qualification.py'
       - run: python -m unittest discover -s scripts -p 'test_nasdaq_monthly.py'
+      - run: python -m unittest discover -s scripts -p 'test_ranking_sources.py'
       - run: node scripts/test-nasdaq-total-return.mjs
       - run: python -m unittest discover -s scripts -p 'test_data_automation.py'
       - name: Qualify missing exact-share monthly histories
@@ -79,6 +80,17 @@ jobs:
           args=()
           if [ "$RETRY_FAILED" = 'true' ]; then args+=(--retry-failed); fi
           python scripts/refresh_monthly_history.py --baseline "$RUNNER_TEMP/baseline.json" --output "$RUNNER_TEMP/monthly-observation.json" --apply "${args[@]}"
+      - name: Refresh exact ranking histories and ECB conversion
+        id: rankings
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        continue-on-error: true
+        env:
+          RETRY_FAILED: ${{ github.event_name == 'schedule' && github.event.schedule == '45 6 * * *' }}
+        run: |
+          args=()
+          if [ "$RETRY_FAILED" = 'true' ]; then args+=(--retry-failed); fi
+          python scripts/collect_ranking_sources.py --apply "${args[@]}"
+      - run: node scripts/build-ranking-annual.mjs && node scripts/test-performance-rankings.mjs
       - run: node scripts/build-monthly-duel-returns.mjs && node scripts/build-equity-duel-returns.mjs
       - name: "Collect observations: python scripts refresh_index_sources.py --only-derived --output RUNNER_TEMP derived-index-observation.json --apply"
         run: python scripts/refresh_index_sources.py --only-derived --output "$RUNNER_TEMP/derived-index-observation.json" --apply
@@ -123,7 +135,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          bash scripts/commit-validated-data.sh 'Refresh validated monthly market histories' docs/asset-tool-routing.json docs/asset-tool-routing.md docs/distinct-asset-routing.json src/data/equity-duel-returns.json src/data/monthly-duel-returns.json src/data/automated-indices.json src/data/automated-monthly.json src/data/automated-etf-monthly.json scripts/source-snapshots/monthly-automated.json scripts/source-snapshots/monthly-collection-status.json src/data/anniversary-levels.json scripts/monthly-automation.json scripts/source-snapshots/monthly-qualification-status.json src/data/auto-history-identities.json docs/asset-field-coverage.md public/data/asset-field-coverage.json
+          bash scripts/commit-validated-data.sh 'Refresh validated monthly market histories' docs/asset-tool-routing.json docs/asset-tool-routing.md docs/distinct-asset-routing.json src/data/equity-duel-returns.json src/data/monthly-duel-returns.json src/data/automated-indices.json src/data/automated-monthly.json src/data/automated-etf-monthly.json scripts/source-snapshots/monthly-automated.json scripts/source-snapshots/monthly-collection-status.json src/data/anniversary-levels.json scripts/monthly-automation.json scripts/source-snapshots/monthly-qualification-status.json src/data/auto-history-identities.json src/data/ranking-histories.json src/data/monthly-fx.json src/data/ranking-annual.json src/data/ranking-index-annual.json src/data/ranking-ftse.json scripts/source-snapshots/ranking-histories.json scripts/source-snapshots/ranking-collection-status.json docs/asset-field-coverage.md public/data/asset-field-coverage.json
   deploy:
     needs: refresh
     if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
