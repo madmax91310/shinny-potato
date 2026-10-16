@@ -53,7 +53,7 @@ def collect_one(config, now, json_fetch=None, byte_fetch=download):
         import io
         if (config.get('seriesId'),config.get('symbol'),config.get('currency'),config.get('variant')) != ('NASDAQXNDX','XNDX','USD','TOTAL'):
             reject('Wrong FRED index or return convention')
-        url='https://fred.stlouisfed.org/graph/fredgraph.csv?id=NASDAQXNDX&cosd='+start.isoformat()+'&coed='+(end-dt.timedelta(days=1)).isoformat()
+        url='https://fred.stlouisfed.org/graph/fredgraph.csv?id=NASDAQXNDX'
         body=byte_fetch(url).decode('utf-8-sig')
         reader=csv.DictReader(io.StringIO(body))
         if reader.fieldnames != ['observation_date','NASDAQXNDX']:reject('Wrong FRED CSV series')
