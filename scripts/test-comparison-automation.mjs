@@ -3,6 +3,9 @@ import { auditComparisonAutomation } from './audit-comparison-automation.mjs';
 import { AUTOMATED_ETF } from '../src/data/automated-etf.js';
 
 const report = auditComparisonAutomation();
+const active='IE0003R87OG3',activeThemes=[{etfs:[{isin:active}]}],activeRecord=AUTOMATED_ETF[active];
+assert.throws(()=>auditComparisonAutomation({themes:activeThemes,records:{[active]:{...activeRecord,fieldQualification:{}}}}),/absence sans preuve officielle/);
+assert.throws(()=>auditComparisonAutomation({themes:activeThemes,records:{[active]:{...activeRecord,performance:{...activeRecord.performance,observations:[]}}}}),/calendrier absent sans motif/);
 assert(report.instruments > 0 && report.calendars > 0);
 assert(report.waiting.every(fund => ['waiting-first-year', 'waiting-publication', 'source-conflict', 'not-published'].includes(fund.status)));
 assert.throws(() => auditComparisonAutomation({ configs: [] }), /sans collecteur actif/);

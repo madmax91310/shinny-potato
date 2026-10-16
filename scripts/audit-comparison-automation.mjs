@@ -31,7 +31,9 @@ export function auditComparisonAutomation({ themes = DEFAULT_THEMES, configs = s
       const gap=classifyInstrumentGap(isin, field, now);
       if (gap.status === 'not-applicable') continue;
       if (gap.status === 'not-published') {
-        assert(gap.sourceUrl && record.holdings?.basis==='index' && record.holdings.sourceUrl===gap.sourceUrl && /^[a-f0-9]{64}$/.test(record.holdings.sha256), `${isin}: absence sans preuve d’indice qualifiée`);
+        const q=record.fieldQualification?.[field];
+        const officialAbsence=q?.status==='not-published' && q.sourceUrl===record.sourceUrl && q.asOf && q.checkedAt && q.reason && /^[a-f0-9]{64}$/.test(q.sha256 ?? '');
+        assert(officialAbsence || (gap.sourceUrl && record.holdings?.basis==='index' && record.holdings.sourceUrl===gap.sourceUrl && /^[a-f0-9]{64}$/.test(record.holdings.sha256)), `${isin}: absence sans preuve officielle qualifiée`);
         waiting.push({isin,name:fund.nom,field,...gap});
         continue;
       }
@@ -42,7 +44,9 @@ export function auditComparisonAutomation({ themes = DEFAULT_THEMES, configs = s
       calendars++;
     } else {
       const gap = classifyInstrumentGap(isin, 'performance', now);
-      assert(['waiting-first-year', 'waiting-publication', 'source-conflict'].includes(gap.status), `${isin}: calendrier absent sans motif qualifié`);
+      const p=record.performance;
+      const cumulativeOnly=gap.status==='not-published' && p?.basis==='fund' && p.sourceUrl && p.asOf && p.checkedAt && /^[a-f0-9]{64}$/.test(p.sha256 ?? '') && p.observations?.length>0 && p.observations.every(o=>Number.isFinite(o.value));
+      assert(cumulativeOnly || ['waiting-first-year', 'waiting-publication', 'source-conflict'].includes(gap.status), `${isin}: calendrier absent sans motif qualifié`);
       waiting.push({ isin, name: fund.nom, ...gap });
     }
   }

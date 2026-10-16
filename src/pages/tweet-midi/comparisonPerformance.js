@@ -23,6 +23,8 @@ export function getComparisonPerformance(isin, selectedYears) {
 }
 
 export function getComparisonYears(isins) {
-  const maps = isins.map(isin => getComparisonPerformance(isin)).filter(Boolean).map(series => series.calendarReturns);
+  // A missing fund must stay in the intersection: otherwise the other funds'
+  // years would be presented as a common comparison period.
+  const maps = isins.map(isin => getComparisonPerformance(isin)?.calendarReturns ?? {});
   return latestCommonYears(maps, { length: 3, minimum: 1 }).reverse();
 }

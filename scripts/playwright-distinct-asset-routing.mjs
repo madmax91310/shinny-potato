@@ -35,7 +35,7 @@ try {
    const {DUELS}=await import('/shinny-potato/src/pages/portfolio-duels/data.js')
    const {buildDuel}=await import('/shinny-potato/src/pages/portfolio-duels/lib.js')
    const {renderDuelImage}=await import('/shinny-potato/src/pages/portfolio-duels/canvasImage.js')
-   return (await renderDuelImage(buildDuel(DUELS.find(d=>d.id===id)))).toDataURL('image/png')
+   return await renderDuelImage(buildDuel(DUELS.find(d=>d.id===id)))
   },id)
   await writeFile(`${dir}/${id}.png`,Buffer.from(png.split(',')[1],'base64'))
  }
