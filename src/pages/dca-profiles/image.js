@@ -213,7 +213,7 @@ export async function renderDcaImage(input,field='countries'){
  })
  const source=group?`${group.oldest&&group.oldest!==group.asOf?group.oldest+' → ':''}${group.asOf} · couverture ${Math.round(group.coverage)} %`:(a[field].neutralWeight===100?'Actifs hors classification':'Aucune ventilation qualifiée')
  text(ctx,source,860,982,670,18,C.muted,400)
- if(group?.indicative)text(ctx,'Synthèse indicative · méthodes des émetteurs',x,y+757,width,16,C.muted,400)
+ if(group?.indicative)text(ctx,'Synthèse indicative · méthodes des émetteurs',860,1004,670,16,C.muted,400)
  if(group?.classification==='country-registration')text(ctx,'Pays d’enregistrement',860,1004,670,16,C.muted,400)
  rule(ctx,64,1013,1472)
  text(ctx,p.scope,64,1050,1000,20,C.muted,400)
