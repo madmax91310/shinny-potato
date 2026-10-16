@@ -45,10 +45,11 @@ export function computeYearlyPerf(selection) {
   const years = latestCommonYears(maps, { minimum: hasInternalGap ? 6 : 3 })
   // No mixed periods: retain the explicitly dated archive if a live window is unavailable.
   const selectedYears = years.length ? years : HISTORICAL_YEARS
+  // Canonical summation keeps display sorting from changing a rounding boundary.
   selectedYears.forEach(year => {
     perf[year] = !validAllocation || selection.some((asset) => !Number.isFinite(assetReturn(asset, year)))
       ? null
-      : selection.reduce((sum, asset) => sum + assetReturn(asset, year) * asset.pct / 100, 0)
+      : selection.map(asset => assetReturn(asset, year) * asset.pct / 100).sort((a, b) => Math.abs(a) - Math.abs(b) || a - b).reduce((sum, value) => sum + value, 0)
   })
   return perf
 }
