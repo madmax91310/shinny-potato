@@ -1,85 +1,86 @@
-// Récits factuels : expliquer chaque épisode sans inventer de réaction personnelle.
-// Phrases complètes et enchaînements naturels : pas de fragments coupés pour dramatiser.
-// Une conclusion simple est possible si elle découle de cette histoire.
-// Les statistiques restent celles de data.js. Pas de scènes, dialogues ou motivations inventés.
-// Le lundi noir et Newton sont les deux références éditoriales validées par l'utilisateur.
+// Ton validé le 16/10/2026 : raconter une histoire avec des phrases reliées,
+// des paragraphes naturels et quelques emojis. Pas de fragments dramatiques.
+// Les précisions techniques restent dans la fiche, en dehors du tweet.
+// Conserver les faits sourcés, sans inventer de scènes ni de vécu personnel.
 export const EDITORIAL = {
-  'corrections-27-bear-markets': {
-    hook: 'Une baisse de 20 % peut mettre à l’épreuve les choix faits quand les marchés montaient 🫠',
-    context: 'Pourtant, ce genre de baisse revient régulièrement dans l’histoire des marchés. Hartford Funds a recensé 27 épisodes de ce type sur le S&P 500 depuis 1928.\n\nOn les appelle des « bear markets » : l’indice perd au moins 20 % entre un sommet et le creux qui suit.',
-    twist: 'Savoir que ces baisses font partie de l’histoire de la Bourse ne les rend pas faciles à traverser. Avec ses économies investies, une perte de 20 % a des conséquences concrètes.\n\nLes épisodes précédents ne permettent pas de connaître la durée ni la profondeur du suivant.',
+  "corrections-27-bear-markets": {
+    "hook": "Quand les marchés montent, une baisse de 20 % peut sembler supportable, jusqu’au jour où elle touche tes économies. 🫠",
+    "context": "Depuis 1928, Hartford Funds a recensé 27 épisodes de ce type sur le S&P 500, qu’on appelle des « bear markets ». L’indice perd alors au moins 20 % entre un sommet et le creux qui suit.\n\nCes baisses reviennent dans l’histoire des marchés, mais quand tu es en plein dedans, tu ne sais pas encore combien de temps elles vont durer. 📉",
+    "twist": "💡 C’est ce qui me frappe dans ces chiffres, on peut connaître l’histoire de la Bourse et avoir quand même du mal à la vivre avec son propre argent."
   },
-  'corrections-48-depuis-guerre': {
-    hook: 'À moins 10 %, impossible de savoir si la correction va s’arrêter ou devenir une baisse beaucoup plus forte.',
-    context: 'Depuis la Seconde Guerre mondiale, Carson Group a recensé 48 corrections de cette ampleur sur le S&P 500. Douze ont fini par atteindre une baisse d’au moins 20 %.\n\nLes autres se sont donc arrêtées avant ce seuil, même si, sur le moment, les investisseurs ne pouvaient pas connaître la suite.',
-    twist: 'Avec le recul, on peut ranger chaque épisode dans une catégorie. Sur le moment, rien n’est encore joué : tu regardes ton placement baisser et tu dois décider quoi faire sans connaître la suite.\n\nCes décomptes décrivent le passé, pas les chances de rebond de la prochaine correction.',
+  "corrections-48-depuis-guerre": {
+    "hook": "Quand ton placement a déjà perdu 10 %, tu aimerais savoir si le plus dur est passé, mais le marché ne te donne pas la réponse. 👇",
+    "context": "Depuis la Seconde Guerre mondiale, Carson Group a recensé 48 corrections d’au moins 10 % sur le S&P 500, dont douze ont fini par atteindre une baisse de 20 % ou plus. 📉\n\nAvec le recul, on connaît celles qui se sont arrêtées avant ce seuil, mais les investisseurs qui les traversaient ne connaissaient pas la suite.",
+    "twist": "💡 C’est là que les graphiques peuvent nous tromper, ils montrent une histoire terminée alors que, sur le moment, tu dois décider quoi faire avec tes économies sans connaître la fin."
   },
-  'records-1987-pire-seance': {
-    hook: 'Perdre plus de 20 % en une seule journée : c’est ce qui est arrivé au Dow Jones en octobre 1987 🫠',
-    context: 'C’est ce qu’ont vécu les investisseurs exposés au Dow Jones le 19 octobre 1987 : l’indice termine la séance à −22,6 %.\n\nPourtant, fin août, il affichait encore une hausse de 44 % depuis le début de l’année. De quoi se sentir plutôt à l’aise avec ses placements.\n\nMais en octobre, les marchés commencent à reculer. Le lundi, les ordres de vente s’accumulent et les acheteurs ne suivent plus.\n\nCertaines stratégies censées protéger les portefeuilles aggravent même la chute : elles vendent à mesure que les cours baissent, ce qui entraîne de nouvelles ventes.',
-    twist: 'Quelques semaines auparavant, les marchés montaient encore. Puis les investisseurs voient leurs économies chuter, sans savoir où la baisse s’arrêtera.',
+  "records-1987-pire-seance": {
+    "hook": "En août 1987, le Dow Jones gagne encore 44 % depuis le début de l’année, puis quelques semaines plus tard, il perd plus de 20 % en une journée. 🫠",
+    "context": "Le 19 octobre, l’indice termine la séance à −22,6 %, alors que les marchés ont commencé à reculer et que les ordres de vente s’accumulent sans trouver assez d’acheteurs. 📉\n\nCertaines stratégies censées protéger les portefeuilles aggravent même la chute, parce qu’elles vendent à mesure que les cours baissent, ce qui entraîne de nouvelles ventes.",
+    "twist": "Ce qui me marque, c’est la vitesse à laquelle tout a basculé, les investisseurs passaient d’une année de forte hausse à une chute historique, sans savoir où elle allait s’arrêter."
   },
-  'records-1933-meilleure-seance-dow': {
-    hook: 'En mars 1933, les Américains ne peuvent même plus aller retirer leur argent à la banque.',
-    context: 'En pleine crise bancaire, Roosevelt a fait fermer temporairement les banques du pays. Elles commencent ensuite à rouvrir.\n\nLe 15 mars, le Dow Jones gagne 15,34 % en une séance, sa plus forte hausse historique.',
-    twist: 'La meilleure journée du Dow Jones arrive donc pendant une crise bancaire, juste après une interruption de l’accès aux banques.\n\nLa hausse d’une séance ne résume pas la situation économique dans laquelle elle se produit.',
+  "records-1933-meilleure-seance-dow": {
+    "hook": "En mars 1933, les banques américaines ferment temporairement sur décision de Roosevelt, en pleine crise bancaire. 🏦",
+    "context": "Quand elles commencent à rouvrir, les investisseurs sont encore au milieu de cette crise, mais le 15 mars, le Dow Jones gagne 15,34 % en une séance, sa plus forte hausse historique. 📈",
+    "twist": "C’est ce que je trouve étonnant dans cet épisode, la meilleure journée de l’indice arrive à un moment où l’accès même à son argent vient d’être interrompu. Une journée de Bourse ne raconte pas toute la situation économique."
   },
-  'records-2001-nasdaq': {
-    hook: 'Le 3 janvier 2001, les investisseurs du Nasdaq voient leur indice remonter de 14,2 % en une journée 😳',
-    context: 'La bulle internet a pourtant déjà éclaté et les valeurs technologiques traversent une période difficile. Mais ce jour-là, la Fed annonce une baisse surprise de ses taux et le marché rebondit brutalement.',
-    twist: 'Ce rebond de 14,2 % ne marque pas la fin de la baisse : celle du Nasdaq se poursuivra jusqu’en 2002.\n\nUne forte hausse sur une journée peut donc se produire au milieu d’un marché encore durablement orienté à la baisse.',
+  "records-2001-nasdaq": {
+    "hook": "Le 3 janvier 2001, le Nasdaq Composite remonte de 14,2 % en une journée, alors que la bulle Internet a déjà éclaté. 😳",
+    "context": "Ce jour-là, la Fed annonce une baisse surprise de ses taux et le marché rebondit brutalement, au milieu d’une période difficile pour les valeurs technologiques. 📈\n\nEn regardant seulement cette séance, on pourrait croire que le pire est passé, pourtant la baisse du Nasdaq va se poursuivre jusqu’en 2002.",
+    "twist": "💡 Quand je regarde cet épisode, je me rappelle qu’un rebond spectaculaire peut arriver au milieu d’une baisse, sans en annoncer la fin."
   },
-  'crash-1929': {
-    hook: 'Après le krach de 1929, il a fallu attendre 1954 pour revoir le Dow Jones à son ancien sommet.',
-    context: 'Au départ, l’indice perd 25 % en quatre séances, entre le 24 et le 29 octobre. Mais la baisse ne s’arrête pas là : elle se poursuit jusqu’à l’été 1932 et atteint près de 89 % depuis le pic.\n\nLe retour au sommet n’arrive qu’en novembre 1954, vingt-cinq ans après.',
-    twist: 'Vingt-cinq ans dépassent l’horizon de nombreux projets financés avec cette épargne. On peut accepter d’investir longtemps sans pour autant pouvoir repousser tous ses projets aussi longtemps.\n\nCe chiffre concerne toutefois le niveau nominal de l’indice, sans les dividendes reçus ni l’inflation. Ce n’est pas le bilan complet d’un investisseur.',
+  "crash-1929": {
+    "hook": "Après le krach de 1929, le Dow Jones ne retrouve son ancien sommet qu’en novembre 1954, vingt-cinq ans plus tard. ⏳",
+    "context": "Entre le 24 et le 29 octobre 1929, l’indice perd déjà 25 % en quatre séances, mais la baisse continue jusqu’à l’été 1932 et atteint près de 89 % depuis son pic. 📉\n\nSi tu avais investi au sommet, tu aurais donc vu passer vingt-cinq ans avant de revoir l’indice à ce niveau.",
+    "twist": "💡 Ce qui me frappe, c’est ce que cette attente représente dans une vie, parce qu’on peut investir pour longtemps sans pouvoir repousser un achat immobilier ou tous ses autres projets pendant vingt-cinq ans."
   },
-  'crash-2000-2002': {
-    hook: 'Internet allait changer le monde. Ça n’a pas empêché le Nasdaq de perdre 78 % après son sommet de mars 2000.',
-    context: 'La bulle éclate et la baisse se poursuit jusqu’en octobre 2002. Le S&P 500 recule lui aussi d’environ 49 à 50 % sur la période.\n\nPour le Nasdaq, le retour à son ancien sommet n’arrive que le 23 avril 2015, quinze ans plus tard.',
-    twist: 'Internet a bien changé nos vies. Les investisseurs pouvaient donc avoir raison sur la technologie et perdre énormément d’argent sur les actions.\n\nLe prix payé compte autant que les perspectives d’une entreprise.\n\nCe délai concerne le niveau nominal de l’indice, sans dividendes ni correction de l’inflation.',
+  "crash-2000-2002": {
+    "hook": "En 2000, Internet allait changer le monde, et ceux qui y croyaient avaient raison. Mais en Bourse, ça ne suffisait pas. 👇",
+    "context": "Après son sommet de mars 2000, le Nasdaq Composite perd environ 78 % jusqu’en octobre 2002, avec l’éclatement de la bulle Internet. 📉\n\nSi tu avais investi au plus haut, tu aurais dû attendre le 23 avril 2015 pour que l’indice retrouve son record de clôture, soit un peu plus de quinze ans.\n\nPendant toutes ces années, Internet avait pourtant continué à se développer, jusqu’à devenir indispensable dans nos vies.",
+    "twist": "C’est ce que je trouve marquant dans cette histoire, tu pouvais avoir vu juste sur l’avenir d’une technologie et quand même perdre une grande partie de ton argent en achetant les actions trop cher.\n\n💡 Quand j’entends qu’un secteur représente l’avenir, je repense à cette période, parce que les perspectives ne suffisent pas, le prix payé compte aussi."
   },
-  'crash-2008': {
-    hook: 'En 2008, la baisse ne se résume pas à quelques journées de panique.',
-    context: 'Entre le sommet du 9 octobre 2007 et le creux du 9 mars 2009, le S&P 500 perd environ 57 %. La chute s’étale sur dix-sept mois.\n\nDix-sept mois pendant lesquels un investisseur peut voir son placement remonter par moments, puis repartir à la baisse.',
-    twist: 'L’indice ne retrouve son niveau de clôture d’avant-crise qu’en avril 2013.\n\nPendant ces dix-sept mois de chute, les rebonds intermédiaires n’annonçaient pas tous la fin de la crise. Le point bas n’est identifiable qu’avec le recul.\n\nCe retour au sommet concerne l’indice de prix, sans dividendes réinvestis ni inflation.',
+  "crash-2008": {
+    "hook": "Quand on parle de la crise de 2008, on pense aux journées de panique, mais pour les investisseurs, la baisse a duré dix-sept mois. ⏳",
+    "context": "Entre le sommet du 9 octobre 2007 et le creux du 9 mars 2009, le S&P 500 perd environ 57 %, avec des rebonds intermédiaires qui ne mettent pas fin à la chute. 📉\n\nL’indice ne retrouve son niveau de clôture d’avant-crise qu’en avril 2013, plusieurs années après son point bas.",
+    "twist": "Ce qui me marque, c’est qu’il fallait traverser ces mois avec son argent investi, en voyant parfois les cours remonter avant de repartir à la baisse. Le point bas paraît évident sur le graphique, mais seulement quand on connaît la suite."
   },
-  'crash-2020': {
-    hook: 'Le 19 février 2020, le S&P 500 est à un sommet. Un peu plus d’un mois après, il a perdu environ un tiers de sa valeur.',
-    context: 'Avec le choc du Covid, l’indice recule de 33,9 % en 33 jours calendaires, jusqu’au 23 mars.\n\nLes investisseurs voient leurs placements chuter alors que la crise sanitaire bouleverse aussi leur quotidien.',
-    twist: 'Puis le marché repart et retrouve son niveau d’avant-krach dès août.\n\nLe retour au sommet paraît rapide avec le recul. En mars, les investisseurs faisaient pourtant face à la baisse et à l’incertitude sanitaire sans connaître la date du rebond.',
+  "crash-2020": {
+    "hook": "Le 19 février 2020, le S&P 500 est à un sommet, puis en un peu plus d’un mois, il perd environ un tiers de sa valeur. 📉",
+    "context": "Avec le choc du Covid, l’indice recule de 33,9 % en 33 jours calendaires, jusqu’au 23 mars, alors que la crise sanitaire bouleverse aussi le quotidien des investisseurs.\n\nLe marché finit pourtant par repartir et retrouve son niveau d’avant-krach dès août 2020. 📈",
+    "twist": "Avec le recul, le rebond paraît rapide, mais en mars, tu voyais ton placement chuter au milieu d’une crise sanitaire, sans savoir que l’indice retrouverait son sommet quelques mois plus tard. C’est toute la différence entre regarder cette histoire et la traverser."
   },
-  'series-9-annees-positives': {
-    hook: 'De 1991 à 1999, le S&P 500 termine chaque année dans le vert, dividendes réinvestis.',
-    context: 'Neuf années positives à la suite, c’est long quand tu attends une mauvaise année pour te décider à investir.\n\nIl y a bien eu des baisses en cours d’année, mais aucune de ces neuf années civiles ne s’est terminée sur une perte. Une autre série de neuf années positives se produira entre 2009 et 2017.',
-    twist: 'Attendre une baisse suffisante demande de définir à quel niveau acheter. Une longue série de hausses peut repousser cette décision pendant des années.\n\nParce qu’attendre est une chose ; se décider à acheter quand tout devient inquiétant en est une autre.',
+  "series-9-annees-positives": {
+    "hook": "Si tu avais attendu une année de baisse pour investir dans le S&P 500 à partir de 1991, tu aurais pu attendre longtemps. ⏳",
+    "context": "De 1991 à 1999, l’indice termine neuf années de suite dans le vert, dividendes réinvestis, même s’il connaît des baisses en cours d’année. 📈\n\nCe n’est d’ailleurs pas la seule fois, puisqu’une autre série de neuf années positives se produit entre 2009 et 2017.",
+    "twist": "💡 Quand je regarde ces séries, je pense à la difficulté d’attendre le bon moment, parce que les hausses peuvent te faire hésiter pendant des années et qu’une fois la baisse arrivée, acheter peut devenir tout aussi difficile."
   },
-  'series-annees-20-pourcent': {
-    hook: 'Entre 1995 et 1999, le S&P 500 gagne au moins 20 % chaque année, dividendes réinvestis 😳',
-    context: 'Cinq années de suite à ce rythme, c’est un enchaînement exceptionnel dans la série étudiée depuis 1929 par Carson Group.\n\nUne telle série peut faire paraître ordinaires des rendements pourtant exceptionnels.',
-    twist: 'La suite sera beaucoup moins agréable : la bulle internet éclate en 2000.\n\nCommencer à investir au milieu de cette série donne une expérience très différente de celle des années suivantes. Ces gains répétés ne constituent pas une base fiable pour prévoir les rendements futurs.',
+  "series-annees-20-pourcent": {
+    "hook": "Entre 1995 et 1999, le S&P 500 gagne au moins 20 % chaque année, dividendes réinvestis, pendant cinq années de suite. 😳",
+    "context": "Dans la série étudiée depuis 1929 par Carson Group, cet enchaînement est exceptionnel, mais quelqu’un qui découvre la Bourse à cette période peut finir par trouver ces rendements ordinaires. 📈\n\nPuis la bulle Internet éclate en 2000, et les années qui suivent offrent une tout autre expérience aux investisseurs.",
+    "twist": "💡 C’est ce que cette histoire me rappelle, nos premières années en Bourse peuvent façonner nos attentes, même quand on commence au milieu d’une période exceptionnelle."
   },
-  'cac40-record-21-ans': {
-    hook: 'Le CAC 40 a attendu vingt et un ans pour dépasser son record de septembre 2000.',
-    context: 'L’indice avait atteint 6 944,77 points le 4 septembre 2000. Il ne dépasse ce sommet qu’en novembre 2021.\n\nVu comme ça, on pourrait croire qu’un investisseur a passé vingt et un ans sans rien gagner.',
-    twist: 'Le CAC 40 qu’on voit le plus souvent ne compte pas les dividendes. Pendant ces années, les entreprises ont aussi versé de l’argent à leurs actionnaires.\n\nAvant d’en conclure que la Bourse française n’a rien rapporté pendant vingt et un ans, il faut donc vérifier ce qui est inclus dans le graphique.',
+  "cac40-record-21-ans": {
+    "hook": "Le CAC 40 a mis vingt et un ans à dépasser son record de septembre 2000, mais ce chiffre ne raconte pas tout ce qu’un investisseur a reçu pendant ces années. 👇",
+    "context": "Après avoir atteint 6 944,77 points le 4 septembre 2000, l’indice ne dépasse ce sommet qu’en novembre 2021, de quoi donner l’impression que la Bourse française n’a rien rapporté pendant vingt et un ans. ⏳",
+    "twist": "Pourtant, le CAC 40 qu’on voit le plus souvent ne compte pas les dividendes, alors que les entreprises ont continué à en verser à leurs actionnaires.\n\n💡 Avant de tirer une conclusion d’un graphique, je regarde donc ce qu’il mesure, parce que suivre le niveau d’un indice et compter tout ce qu’un placement a rapporté peut raconter deux histoires différentes."
   },
-  'cac40-pire-seance-2020': {
-    hook: 'Le 12 mars 2020, le CAC 40 perd 12,28 % en une seule journée.',
-    context: 'C’est sa pire séance dans les données citées, au moment où le choc du Covid frappe les marchés.\n\nMême en sachant qu’investir comporte des risques, voir une baisse pareille sur une journée a de quoi secouer.',
-    twist: 'Les investisseurs doivent gérer cette chute alors que la crise sanitaire bouleverse aussi leur quotidien.\n\nLa décision de garder ou de vendre se prend avec ces incertitudes, sans connaître la suite des cours. Le graphique rétrospectif ne restitue pas toutes ces contraintes.',
-  },
+  "cac40-pire-seance-2020": {
+    "hook": "Le 12 mars 2020, le CAC 40 perd 12,28 % en une seule journée, au moment où le choc du Covid frappe les marchés. 📉",
+    "context": "C’est sa pire séance dans les données citées, et les investisseurs voient leurs placements chuter alors que la crise sanitaire bouleverse déjà leur quotidien.\n\nTu peux savoir que la Bourse comporte des risques et être quand même secoué en voyant une baisse pareille sur une seule journée. 🫠",
+    "twist": "C’est ce que les graphiques montrent difficilement, derrière une courbe qui baisse, il y a aussi des décisions à prendre avec ses économies, au milieu des inquiétudes du moment et sans connaître la suite."
+  }
 };
 
-// Transactions reconstituées à partir d'archives par Andrew Odlyzko, Physics Today,
-// 01/07/2020, vérifiées le 10/10/2026. Aucun montant de perte ni motif précis attribué à Newton.
 export const NEWTON_STORY = {
-  id: 'newton-south-sea-1720', family: 'histoires', category: 'Newton et la bulle de 1720',
-  indices: ['South Sea Company'],
-  hook: 'Newton aussi s’est planté en Bourse, et assez sévèrement 🫠',
-  context: 'En 1720, il investit dans la South Sea Company. Il vend ses actions en avril, puis en rachète quelques semaines plus tard, alors que le cours a continué à monter.\n\nIl vend donc avant de revenir à l’achat à des cours plus élevés.\n\nOn ne sait pas précisément pourquoi Newton a racheté. Ce qu’on sait, c’est qu’il remet beaucoup d’argent et continue à acheter lorsque le cours commence à baisser.',
-  twist: 'Quand la bulle éclate en septembre, il perd énormément d’argent.\n\nComme quoi, même les plus grands génies font des erreurs en Bourse 🫠',
-  fact: 'Newton donne des instructions de vente en avril 1720, puis rachète des titres à partir de juin et continue à investir avant l’effondrement de septembre. Le motif précis de ses achats n’est pas documenté ici.',
-  source: 'Andrew Odlyzko, « Isaac Newton and the perils of the financial South Sea », Physics Today, 1er juillet 2020 · https://physicstoday.aip.org/features/isaac-newton-and-the-perils-of-the-financial-south-sea',
-  note: null,
+  "id": "newton-south-sea-1720",
+  "family": "histoires",
+  "category": "Newton et la bulle de 1720",
+  "indices": [
+    "South Sea Company"
+  ],
+  "hook": "Newton aussi s’est planté en Bourse, et assez sévèrement 🫠",
+  "context": "En 1720, il investit dans la South Sea Company, puis vend ses actions en avril avant d’en racheter quelques semaines plus tard, alors que le cours a continué à monter. 📈\n\nIl revient donc à l’achat à des prix plus élevés et continue à investir lorsque le cours commence à baisser, même si les archives ne permettent pas de savoir précisément pourquoi il a racheté.",
+  "twist": "Quand la bulle éclate en septembre, il perd énormément d’argent, malgré ses connaissances et son intelligence.\n\nComme quoi, même les plus grands génies peuvent se planter en Bourse. 🫠",
+  "fact": "Newton donne des instructions de vente en avril 1720, puis rachète des titres à partir de juin et continue à investir avant l’effondrement de septembre. Le motif précis de ses achats n’est pas documenté ici.",
+  "source": "Andrew Odlyzko, « Isaac Newton and the perils of the financial South Sea », Physics Today, 1er juillet 2020 · https://physicstoday.aip.org/features/isaac-newton-and-the-perils-of-the-financial-south-sea",
+  "note": null
 };
