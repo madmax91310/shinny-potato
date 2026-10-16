@@ -67,18 +67,18 @@
     },
     "collect-etf-pilot.yml": {
       "name": "ETF et compositions d’indices",
-      "runId": 38810138644,
+      "runId": 38854059236,
       "attempt": 1,
-      "completedAt": "2026-10-15T21:47:08Z",
+      "completedAt": "2026-10-16T05:26:07Z",
       "status": "success",
-      "lastSuccessAt": "2026-10-15T21:47:08Z",
+      "lastSuccessAt": "2026-10-16T05:26:07Z",
       "collectionStatus": "success",
       "validationStatus": "success",
       "recordingStatus": "success",
-      "publicationStatus": "success",
-      "lastCollectionSuccessAt": "2026-10-15T21:47:08Z",
+      "publicationStatus": "not-run",
+      "lastCollectionSuccessAt": "2026-10-16T05:26:07Z",
       "lastPublicationSuccessAt": "2026-10-15T21:47:05Z",
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38810138644",
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38854059236",
       "failures": [],
       "dataFailures": {}
     },
@@ -388,10 +388,10 @@
       "dataFailures": {}
     }
   },
-  "updatedAt": "2026-10-16T05:07:21Z",
+  "updatedAt": "2026-10-16T05:26:07Z",
   "monitoring": {
     "schemaVersion": 1,
-    "checkedAt": "2026-10-16T05:27:34.329933+00:00",
+    "checkedAt": "2026-10-16T05:27:56.437994+00:00",
     "revision": 36,
     "active": {
       "collection:update-practical-sheets.yml:practical:13f": {
@@ -413,7 +413,7 @@
         "dataId": "practical:13f",
         "id": "collection:update-practical-sheets.yml:practical:13f",
         "firstSeenAt": "2026-10-14T21:07:26.171294+00:00",
-        "lastSeenAt": "2026-10-16T05:27:34.329933+00:00"
+        "lastSeenAt": "2026-10-16T05:27:56.437994+00:00"
       },
       "collection:update-insurance.yml:linxea-avenir-2": {
         "name": "Linxea Avenir 2",
@@ -432,7 +432,7 @@
         "dataId": "linxea-avenir-2",
         "id": "collection:update-insurance.yml:linxea-avenir-2",
         "firstSeenAt": "2026-10-14T13:08:27.203935+00:00",
-        "lastSeenAt": "2026-10-16T05:27:34.329933+00:00"
+        "lastSeenAt": "2026-10-16T05:27:56.437994+00:00"
       },
       "collection:update-scpi.yml:remake-live": {
         "name": "Remake Live",
@@ -455,7 +455,7 @@
         "dataId": "remake-live",
         "id": "collection:update-scpi.yml:remake-live",
         "firstSeenAt": "2026-10-15T13:02:43.499914+00:00",
-        "lastSeenAt": "2026-10-16T05:27:34.329933+00:00"
+        "lastSeenAt": "2026-10-16T05:27:56.437994+00:00"
       },
       "collection:update-regulatory-data.yml:broker-observation:caidf:profile:change": {
         "name": "caidf:profile:change",
@@ -475,7 +475,7 @@
         "dataId": "broker-observation:caidf:profile:change",
         "id": "collection:update-regulatory-data.yml:broker-observation:caidf:profile:change",
         "firstSeenAt": "2026-10-15T18:00:14.760687+00:00",
-        "lastSeenAt": "2026-10-16T05:27:34.329933+00:00"
+        "lastSeenAt": "2026-10-16T05:27:56.437994+00:00"
       },
       "collection:update-lifestrategy.yml:IE00BMVB5K07": {
         "name": "Vanguard LifeStrategy 20% Equity UCITS ETF (EUR) Accumulating",
@@ -502,7 +502,7 @@
         "dataId": "IE00BMVB5K07",
         "id": "collection:update-lifestrategy.yml:IE00BMVB5K07",
         "firstSeenAt": "2026-10-15T10:23:56.855354+00:00",
-        "lastSeenAt": "2026-10-16T05:27:34.329933+00:00"
+        "lastSeenAt": "2026-10-16T05:27:56.437994+00:00"
       },
       "collection:update-lifestrategy.yml:IE00BMVB5M21": {
         "name": "Vanguard LifeStrategy 40% Equity UCITS ETF (EUR) Accumulating",
@@ -529,7 +529,7 @@
         "dataId": "IE00BMVB5M21",
         "id": "collection:update-lifestrategy.yml:IE00BMVB5M21",
         "firstSeenAt": "2026-10-15T10:23:56.855354+00:00",
-        "lastSeenAt": "2026-10-16T05:27:34.329933+00:00"
+        "lastSeenAt": "2026-10-16T05:27:56.437994+00:00"
       },
       "collection:update-lifestrategy.yml:IE00BMVB5P51": {
         "name": "Vanguard LifeStrategy 60% Equity UCITS ETF (EUR) Accumulating",
@@ -556,7 +556,7 @@
         "dataId": "IE00BMVB5P51",
         "id": "collection:update-lifestrategy.yml:IE00BMVB5P51",
         "firstSeenAt": "2026-10-15T10:23:56.855354+00:00",
-        "lastSeenAt": "2026-10-16T05:27:34.329933+00:00"
+        "lastSeenAt": "2026-10-16T05:27:56.437994+00:00"
       },
       "collection:update-lifestrategy.yml:IE00BMVB5R75": {
         "name": "Vanguard LifeStrategy 80% Equity UCITS ETF (EUR) Accumulating",
@@ -583,7 +583,7 @@
         "dataId": "IE00BMVB5R75",
         "id": "collection:update-lifestrategy.yml:IE00BMVB5R75",
         "firstSeenAt": "2026-10-15T10:23:56.855354+00:00",
-        "lastSeenAt": "2026-10-16T05:27:34.329933+00:00"
+        "lastSeenAt": "2026-10-16T05:27:56.437994+00:00"
       },
       "monitor:radar": {
         "kind": "unobserved",
@@ -596,7 +596,7 @@
         "to": "/donnees-a-revoir",
         "id": "monitor:radar",
         "firstSeenAt": "2026-10-15T18:53:46.175472+00:00",
-        "lastSeenAt": "2026-10-16T05:27:34.329933+00:00"
+        "lastSeenAt": "2026-10-16T05:27:56.437994+00:00"
       }
     },
     "events": [
