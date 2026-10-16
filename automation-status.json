@@ -310,50 +310,25 @@
     },
     "update-lifestrategy.yml": {
       "name": "Vanguard LifeStrategy",
-      "runId": 38780015265,
+      "runId": 38854059260,
       "attempt": 1,
-      "completedAt": "2026-10-15T17:57:18Z",
+      "completedAt": "2026-10-16T05:26:53Z",
       "status": "failure",
       "lastSuccessAt": "2026-10-14T11:38:46Z",
-      "collectionStatus": "failure",
+      "collectionStatus": "success",
       "validationStatus": "success",
       "recordingStatus": "success",
-      "publicationStatus": "not-run",
-      "lastCollectionSuccessAt": "2026-10-14T11:38:46Z",
+      "publicationStatus": "failure",
+      "lastCollectionSuccessAt": "2026-10-16T05:26:53Z",
       "lastPublicationSuccessAt": "2026-10-15T10:23:30Z",
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38780015265",
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38854059260",
       "failures": [
         {
-          "job": "report-failures",
-          "step": "Run echo 'Collecte partielle : dernières valeurs fiables conservées ; données validées publiées si les contrôles réussissent.' >> \"$GITHUB_STEP_SUMMARY\""
+          "job": "deploy / browser-checks (0)",
+          "step": "Run node scripts/run-browser-checks.mjs 0 4"
         }
       ],
-      "dataFailures": {
-        "IE00BMVB5K07": {
-          "name": "IE00BMVB5K07",
-          "completedAt": "2026-10-15T17:57:18Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38780015265",
-          "cause": "Missing French observation date"
-        },
-        "IE00BMVB5M21": {
-          "name": "IE00BMVB5M21",
-          "completedAt": "2026-10-15T17:57:18Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38780015265",
-          "cause": "Missing French observation date"
-        },
-        "IE00BMVB5P51": {
-          "name": "IE00BMVB5P51",
-          "completedAt": "2026-10-15T17:57:18Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38780015265",
-          "cause": "Missing French observation date"
-        },
-        "IE00BMVB5R75": {
-          "name": "IE00BMVB5R75",
-          "completedAt": "2026-10-15T17:57:18Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38780015265",
-          "cause": "Missing French observation date"
-        }
-      }
+      "dataFailures": {}
     },
     "update-non-bond-expansion.yml": {
       "name": "Nouveaux actifs et historiques",
@@ -388,11 +363,11 @@
       "dataFailures": {}
     }
   },
-  "updatedAt": "2026-10-16T05:26:07Z",
+  "updatedAt": "2026-10-16T05:26:53Z",
   "monitoring": {
     "schemaVersion": 1,
-    "checkedAt": "2026-10-16T05:27:56.437994+00:00",
-    "revision": 36,
+    "checkedAt": "2026-10-16T05:28:13.543341+00:00",
+    "revision": 37,
     "active": {
       "collection:update-practical-sheets.yml:practical:13f": {
         "name": "SEC · questions et réponses sur le formulaire 13F",
@@ -413,7 +388,7 @@
         "dataId": "practical:13f",
         "id": "collection:update-practical-sheets.yml:practical:13f",
         "firstSeenAt": "2026-10-14T21:07:26.171294+00:00",
-        "lastSeenAt": "2026-10-16T05:27:56.437994+00:00"
+        "lastSeenAt": "2026-10-16T05:28:13.543341+00:00"
       },
       "collection:update-insurance.yml:linxea-avenir-2": {
         "name": "Linxea Avenir 2",
@@ -432,7 +407,7 @@
         "dataId": "linxea-avenir-2",
         "id": "collection:update-insurance.yml:linxea-avenir-2",
         "firstSeenAt": "2026-10-14T13:08:27.203935+00:00",
-        "lastSeenAt": "2026-10-16T05:27:56.437994+00:00"
+        "lastSeenAt": "2026-10-16T05:28:13.543341+00:00"
       },
       "collection:update-scpi.yml:remake-live": {
         "name": "Remake Live",
@@ -455,7 +430,7 @@
         "dataId": "remake-live",
         "id": "collection:update-scpi.yml:remake-live",
         "firstSeenAt": "2026-10-15T13:02:43.499914+00:00",
-        "lastSeenAt": "2026-10-16T05:27:56.437994+00:00"
+        "lastSeenAt": "2026-10-16T05:28:13.543341+00:00"
       },
       "collection:update-regulatory-data.yml:broker-observation:caidf:profile:change": {
         "name": "caidf:profile:change",
@@ -475,115 +450,26 @@
         "dataId": "broker-observation:caidf:profile:change",
         "id": "collection:update-regulatory-data.yml:broker-observation:caidf:profile:change",
         "firstSeenAt": "2026-10-15T18:00:14.760687+00:00",
-        "lastSeenAt": "2026-10-16T05:27:56.437994+00:00"
+        "lastSeenAt": "2026-10-16T05:28:13.543341+00:00"
       },
-      "collection:update-lifestrategy.yml:IE00BMVB5K07": {
-        "name": "Vanguard LifeStrategy 20% Equity UCITS ETF (EUR) Accumulating",
+      "publication:update-lifestrategy.yml": {
+        "name": "Vanguard LifeStrategy",
         "tools": [
+          "Présentation ETF",
           "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Impact des frais",
-          "Présentation ETF"
+          "Duel",
+          "Générateur"
         ],
-        "impactScope": "asset",
+        "impactScope": "collector",
         "workflow": "update-lifestrategy.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38780015265",
-        "to": "/bibliotheque-donnees?id=IE00BMVB5K07",
-        "completedAt": "2026-10-15T17:57:18Z",
-        "cause": "Missing French observation date",
-        "sourceUrls": [
-          "https://fund-docs.vanguard.com/LifeStrategy_20_Equity_UCITS_ETF_EUR_Accumulating_9490_FR_INT_FR.pdf",
-          "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9490/lifestrategy-20-equity-ucits-etf-eur-accumulating",
-          "https://www.vanguard.co.uk/gpx/graphql"
-        ],
-        "kind": "collection",
-        "field": "Champs du collecteur",
-        "dataId": "IE00BMVB5K07",
-        "id": "collection:update-lifestrategy.yml:IE00BMVB5K07",
-        "firstSeenAt": "2026-10-15T10:23:56.855354+00:00",
-        "lastSeenAt": "2026-10-16T05:27:56.437994+00:00"
-      },
-      "collection:update-lifestrategy.yml:IE00BMVB5M21": {
-        "name": "Vanguard LifeStrategy 40% Equity UCITS ETF (EUR) Accumulating",
-        "tools": [
-          "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Impact des frais",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "workflow": "update-lifestrategy.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38780015265",
-        "to": "/bibliotheque-donnees?id=IE00BMVB5M21",
-        "completedAt": "2026-10-15T17:57:18Z",
-        "cause": "Missing French observation date",
-        "sourceUrls": [
-          "https://fund-docs.vanguard.com/LifeStrategy_40_Equity_UCITS_ETF_EUR_Accumulating_9492_FR_INT_FR.pdf",
-          "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9492/lifestrategy-40-equity-ucits-etf-eur-accumulating",
-          "https://www.vanguard.co.uk/gpx/graphql"
-        ],
-        "kind": "collection",
-        "field": "Champs du collecteur",
-        "dataId": "IE00BMVB5M21",
-        "id": "collection:update-lifestrategy.yml:IE00BMVB5M21",
-        "firstSeenAt": "2026-10-15T10:23:56.855354+00:00",
-        "lastSeenAt": "2026-10-16T05:27:56.437994+00:00"
-      },
-      "collection:update-lifestrategy.yml:IE00BMVB5P51": {
-        "name": "Vanguard LifeStrategy 60% Equity UCITS ETF (EUR) Accumulating",
-        "tools": [
-          "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Impact des frais",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "workflow": "update-lifestrategy.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38780015265",
-        "to": "/bibliotheque-donnees?id=IE00BMVB5P51",
-        "completedAt": "2026-10-15T17:57:18Z",
-        "cause": "Missing French observation date",
-        "sourceUrls": [
-          "https://fund-docs.vanguard.com/LifeStrategy_60_Equity_UCITS_ETF_EUR_Accumulating_9494_FR_INT_FR.pdf",
-          "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9494/lifestrategy-60-equity-ucits-etf-eur-accumulating",
-          "https://www.vanguard.co.uk/gpx/graphql"
-        ],
-        "kind": "collection",
-        "field": "Champs du collecteur",
-        "dataId": "IE00BMVB5P51",
-        "id": "collection:update-lifestrategy.yml:IE00BMVB5P51",
-        "firstSeenAt": "2026-10-15T10:23:56.855354+00:00",
-        "lastSeenAt": "2026-10-16T05:27:56.437994+00:00"
-      },
-      "collection:update-lifestrategy.yml:IE00BMVB5R75": {
-        "name": "Vanguard LifeStrategy 80% Equity UCITS ETF (EUR) Accumulating",
-        "tools": [
-          "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Impact des frais",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "workflow": "update-lifestrategy.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38780015265",
-        "to": "/bibliotheque-donnees?id=IE00BMVB5R75",
-        "completedAt": "2026-10-15T17:57:18Z",
-        "cause": "Missing French observation date",
-        "sourceUrls": [
-          "https://fund-docs.vanguard.com/LifeStrategy_80_Equity_UCITS_ETF_EUR_Accumulating_9496_FR_INT_FR.pdf",
-          "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9496/lifestrategy-80-equity-ucits-etf-eur-accumulating",
-          "https://www.vanguard.co.uk/gpx/graphql"
-        ],
-        "kind": "collection",
-        "field": "Champs du collecteur",
-        "dataId": "IE00BMVB5R75",
-        "id": "collection:update-lifestrategy.yml:IE00BMVB5R75",
-        "firstSeenAt": "2026-10-15T10:23:56.855354+00:00",
-        "lastSeenAt": "2026-10-16T05:27:56.437994+00:00"
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38854059260",
+        "to": "/donnees-a-revoir",
+        "kind": "publication",
+        "field": "Publication",
+        "cause": "deploy / browser-checks (0) : Run node scripts/run-browser-checks.mjs 0 4",
+        "id": "publication:update-lifestrategy.yml",
+        "firstSeenAt": "2026-10-16T05:28:13.543341+00:00",
+        "lastSeenAt": "2026-10-16T05:28:13.543341+00:00"
       },
       "monitor:radar": {
         "kind": "unobserved",
@@ -596,47 +482,10 @@
         "to": "/donnees-a-revoir",
         "id": "monitor:radar",
         "firstSeenAt": "2026-10-15T18:53:46.175472+00:00",
-        "lastSeenAt": "2026-10-16T05:27:56.437994+00:00"
+        "lastSeenAt": "2026-10-16T05:28:13.543341+00:00"
       }
     },
     "events": [
-      {
-        "revision": 7,
-        "at": "2026-10-14T11:42:41.168472+00:00",
-        "opened": [
-          "radar:2f6523c4c22cf146e4da0e6e",
-          "radar:7709e58191a040c0db578329",
-          "radar:780e87053efa0616b94f8659",
-          "radar:7d09b09b3d05f0d1e19cc7b2",
-          "radar:17753b6c72de650479e7dd5b",
-          "radar:fc2c94c44da9ea38f53f4514",
-          "radar:6264e6c6f5fc93e131495b77",
-          "radar:552c63c21929594ba3d43c71",
-          "radar:7ecf824b7b5c50cea4ece3b2",
-          "radar:cdc877fda7404402abef4457",
-          "radar:efba37ffd0046e945c026629",
-          "radar:c012c99b66733df597a789d5",
-          "radar:93ae9c0ee7de7e1a0d37d4fc",
-          "radar:385b050d47dc049398569aad",
-          "radar:736c2dd317e4831b683d42c2",
-          "radar:6743ee853fa8d7a286f6d9d9",
-          "radar:95e0381ac8bfe2bb40baa599",
-          "radar:f2a6cdac8e58486984fa0fda",
-          "radar:e8595e9308c68b3f57e4de2a",
-          "radar:a813486f0ea80fa564912507",
-          "radar:cbb2a798d2de39e8e1e21157",
-          "radar:02121a347ce5f784d26783d8",
-          "radar:c660e2b8aee99c1fa7daa4fd",
-          "radar:b788c8941eb2526d61b2bc78",
-          "radar:208a1c02ef484c837c2debb0",
-          "radar:b681f25e737f267d05d5a0c6",
-          "radar:310c2f94bb175ba688890b82",
-          "radar:2febc914557a54e05e2fb1ee",
-          "radar:8047ce603afc90644bd76a99",
-          "radar:7cc7edddd64422a4575ead79"
-        ],
-        "resolved": []
-      },
       {
         "revision": 8,
         "at": "2026-10-14T13:03:42.701964+00:00",
@@ -3677,9 +3526,242 @@
             "resolvedAt": "2026-10-16T05:04:45.563875+00:00"
           }
         ]
+      },
+      {
+        "revision": 37,
+        "at": "2026-10-16T05:28:13.543341+00:00",
+        "opened": [
+          "publication:update-lifestrategy.yml"
+        ],
+        "resolved": [
+          {
+            "name": "Vanguard LifeStrategy 20% Equity UCITS ETF (EUR) Accumulating",
+            "tools": [
+              "Comparatif ETF",
+              "Duels de portefeuilles",
+              "Générateur de portefeuilles",
+              "Impact des frais",
+              "Présentation ETF"
+            ],
+            "impactScope": "asset",
+            "workflow": "update-lifestrategy.yml",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38780015265",
+            "to": "/bibliotheque-donnees?id=IE00BMVB5K07",
+            "completedAt": "2026-10-15T17:57:18Z",
+            "cause": "Missing French observation date",
+            "sourceUrls": [
+              "https://fund-docs.vanguard.com/LifeStrategy_20_Equity_UCITS_ETF_EUR_Accumulating_9490_FR_INT_FR.pdf",
+              "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9490/lifestrategy-20-equity-ucits-etf-eur-accumulating",
+              "https://www.vanguard.co.uk/gpx/graphql"
+            ],
+            "kind": "collection",
+            "field": "Champs du collecteur",
+            "dataId": "IE00BMVB5K07",
+            "id": "collection:update-lifestrategy.yml:IE00BMVB5K07",
+            "firstSeenAt": "2026-10-15T10:23:56.855354+00:00",
+            "lastSeenAt": "2026-10-16T05:27:56.437994+00:00",
+            "resolvedAt": "2026-10-16T05:28:13.543341+00:00"
+          },
+          {
+            "name": "Vanguard LifeStrategy 40% Equity UCITS ETF (EUR) Accumulating",
+            "tools": [
+              "Comparatif ETF",
+              "Duels de portefeuilles",
+              "Générateur de portefeuilles",
+              "Impact des frais",
+              "Présentation ETF"
+            ],
+            "impactScope": "asset",
+            "workflow": "update-lifestrategy.yml",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38780015265",
+            "to": "/bibliotheque-donnees?id=IE00BMVB5M21",
+            "completedAt": "2026-10-15T17:57:18Z",
+            "cause": "Missing French observation date",
+            "sourceUrls": [
+              "https://fund-docs.vanguard.com/LifeStrategy_40_Equity_UCITS_ETF_EUR_Accumulating_9492_FR_INT_FR.pdf",
+              "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9492/lifestrategy-40-equity-ucits-etf-eur-accumulating",
+              "https://www.vanguard.co.uk/gpx/graphql"
+            ],
+            "kind": "collection",
+            "field": "Champs du collecteur",
+            "dataId": "IE00BMVB5M21",
+            "id": "collection:update-lifestrategy.yml:IE00BMVB5M21",
+            "firstSeenAt": "2026-10-15T10:23:56.855354+00:00",
+            "lastSeenAt": "2026-10-16T05:27:56.437994+00:00",
+            "resolvedAt": "2026-10-16T05:28:13.543341+00:00"
+          },
+          {
+            "name": "Vanguard LifeStrategy 60% Equity UCITS ETF (EUR) Accumulating",
+            "tools": [
+              "Comparatif ETF",
+              "Duels de portefeuilles",
+              "Générateur de portefeuilles",
+              "Impact des frais",
+              "Présentation ETF"
+            ],
+            "impactScope": "asset",
+            "workflow": "update-lifestrategy.yml",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38780015265",
+            "to": "/bibliotheque-donnees?id=IE00BMVB5P51",
+            "completedAt": "2026-10-15T17:57:18Z",
+            "cause": "Missing French observation date",
+            "sourceUrls": [
+              "https://fund-docs.vanguard.com/LifeStrategy_60_Equity_UCITS_ETF_EUR_Accumulating_9494_FR_INT_FR.pdf",
+              "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9494/lifestrategy-60-equity-ucits-etf-eur-accumulating",
+              "https://www.vanguard.co.uk/gpx/graphql"
+            ],
+            "kind": "collection",
+            "field": "Champs du collecteur",
+            "dataId": "IE00BMVB5P51",
+            "id": "collection:update-lifestrategy.yml:IE00BMVB5P51",
+            "firstSeenAt": "2026-10-15T10:23:56.855354+00:00",
+            "lastSeenAt": "2026-10-16T05:27:56.437994+00:00",
+            "resolvedAt": "2026-10-16T05:28:13.543341+00:00"
+          },
+          {
+            "name": "Vanguard LifeStrategy 80% Equity UCITS ETF (EUR) Accumulating",
+            "tools": [
+              "Comparatif ETF",
+              "Duels de portefeuilles",
+              "Générateur de portefeuilles",
+              "Impact des frais",
+              "Présentation ETF"
+            ],
+            "impactScope": "asset",
+            "workflow": "update-lifestrategy.yml",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38780015265",
+            "to": "/bibliotheque-donnees?id=IE00BMVB5R75",
+            "completedAt": "2026-10-15T17:57:18Z",
+            "cause": "Missing French observation date",
+            "sourceUrls": [
+              "https://fund-docs.vanguard.com/LifeStrategy_80_Equity_UCITS_ETF_EUR_Accumulating_9496_FR_INT_FR.pdf",
+              "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9496/lifestrategy-80-equity-ucits-etf-eur-accumulating",
+              "https://www.vanguard.co.uk/gpx/graphql"
+            ],
+            "kind": "collection",
+            "field": "Champs du collecteur",
+            "dataId": "IE00BMVB5R75",
+            "id": "collection:update-lifestrategy.yml:IE00BMVB5R75",
+            "firstSeenAt": "2026-10-15T10:23:56.855354+00:00",
+            "lastSeenAt": "2026-10-16T05:27:56.437994+00:00",
+            "resolvedAt": "2026-10-16T05:28:13.543341+00:00"
+          }
+        ]
       }
     ],
     "resolved": [
+      {
+        "name": "Vanguard LifeStrategy 20% Equity UCITS ETF (EUR) Accumulating",
+        "tools": [
+          "Comparatif ETF",
+          "Duels de portefeuilles",
+          "Générateur de portefeuilles",
+          "Impact des frais",
+          "Présentation ETF"
+        ],
+        "impactScope": "asset",
+        "workflow": "update-lifestrategy.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38780015265",
+        "to": "/bibliotheque-donnees?id=IE00BMVB5K07",
+        "completedAt": "2026-10-15T17:57:18Z",
+        "cause": "Missing French observation date",
+        "sourceUrls": [
+          "https://fund-docs.vanguard.com/LifeStrategy_20_Equity_UCITS_ETF_EUR_Accumulating_9490_FR_INT_FR.pdf",
+          "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9490/lifestrategy-20-equity-ucits-etf-eur-accumulating",
+          "https://www.vanguard.co.uk/gpx/graphql"
+        ],
+        "kind": "collection",
+        "field": "Champs du collecteur",
+        "dataId": "IE00BMVB5K07",
+        "id": "collection:update-lifestrategy.yml:IE00BMVB5K07",
+        "firstSeenAt": "2026-10-15T10:23:56.855354+00:00",
+        "lastSeenAt": "2026-10-16T05:27:56.437994+00:00",
+        "resolvedAt": "2026-10-16T05:28:13.543341+00:00"
+      },
+      {
+        "name": "Vanguard LifeStrategy 40% Equity UCITS ETF (EUR) Accumulating",
+        "tools": [
+          "Comparatif ETF",
+          "Duels de portefeuilles",
+          "Générateur de portefeuilles",
+          "Impact des frais",
+          "Présentation ETF"
+        ],
+        "impactScope": "asset",
+        "workflow": "update-lifestrategy.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38780015265",
+        "to": "/bibliotheque-donnees?id=IE00BMVB5M21",
+        "completedAt": "2026-10-15T17:57:18Z",
+        "cause": "Missing French observation date",
+        "sourceUrls": [
+          "https://fund-docs.vanguard.com/LifeStrategy_40_Equity_UCITS_ETF_EUR_Accumulating_9492_FR_INT_FR.pdf",
+          "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9492/lifestrategy-40-equity-ucits-etf-eur-accumulating",
+          "https://www.vanguard.co.uk/gpx/graphql"
+        ],
+        "kind": "collection",
+        "field": "Champs du collecteur",
+        "dataId": "IE00BMVB5M21",
+        "id": "collection:update-lifestrategy.yml:IE00BMVB5M21",
+        "firstSeenAt": "2026-10-15T10:23:56.855354+00:00",
+        "lastSeenAt": "2026-10-16T05:27:56.437994+00:00",
+        "resolvedAt": "2026-10-16T05:28:13.543341+00:00"
+      },
+      {
+        "name": "Vanguard LifeStrategy 60% Equity UCITS ETF (EUR) Accumulating",
+        "tools": [
+          "Comparatif ETF",
+          "Duels de portefeuilles",
+          "Générateur de portefeuilles",
+          "Impact des frais",
+          "Présentation ETF"
+        ],
+        "impactScope": "asset",
+        "workflow": "update-lifestrategy.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38780015265",
+        "to": "/bibliotheque-donnees?id=IE00BMVB5P51",
+        "completedAt": "2026-10-15T17:57:18Z",
+        "cause": "Missing French observation date",
+        "sourceUrls": [
+          "https://fund-docs.vanguard.com/LifeStrategy_60_Equity_UCITS_ETF_EUR_Accumulating_9494_FR_INT_FR.pdf",
+          "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9494/lifestrategy-60-equity-ucits-etf-eur-accumulating",
+          "https://www.vanguard.co.uk/gpx/graphql"
+        ],
+        "kind": "collection",
+        "field": "Champs du collecteur",
+        "dataId": "IE00BMVB5P51",
+        "id": "collection:update-lifestrategy.yml:IE00BMVB5P51",
+        "firstSeenAt": "2026-10-15T10:23:56.855354+00:00",
+        "lastSeenAt": "2026-10-16T05:27:56.437994+00:00",
+        "resolvedAt": "2026-10-16T05:28:13.543341+00:00"
+      },
+      {
+        "name": "Vanguard LifeStrategy 80% Equity UCITS ETF (EUR) Accumulating",
+        "tools": [
+          "Comparatif ETF",
+          "Duels de portefeuilles",
+          "Générateur de portefeuilles",
+          "Impact des frais",
+          "Présentation ETF"
+        ],
+        "impactScope": "asset",
+        "workflow": "update-lifestrategy.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38780015265",
+        "to": "/bibliotheque-donnees?id=IE00BMVB5R75",
+        "completedAt": "2026-10-15T17:57:18Z",
+        "cause": "Missing French observation date",
+        "sourceUrls": [
+          "https://fund-docs.vanguard.com/LifeStrategy_80_Equity_UCITS_ETF_EUR_Accumulating_9496_FR_INT_FR.pdf",
+          "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9496/lifestrategy-80-equity-ucits-etf-eur-accumulating",
+          "https://www.vanguard.co.uk/gpx/graphql"
+        ],
+        "kind": "collection",
+        "field": "Champs du collecteur",
+        "dataId": "IE00BMVB5R75",
+        "id": "collection:update-lifestrategy.yml:IE00BMVB5R75",
+        "firstSeenAt": "2026-10-15T10:23:56.855354+00:00",
+        "lastSeenAt": "2026-10-16T05:27:56.437994+00:00",
+        "resolvedAt": "2026-10-16T05:28:13.543341+00:00"
+      },
       {
         "name": "Historiques mensuels des marchés",
         "tools": [
@@ -5836,118 +5918,6 @@
         "field": "Poids du pays United Kingdom",
         "cause": "Valeur contradictoire pour la même période (2026-10-12) : Poids du pays United Kingdom. Dernière observation conservée ; propositions archivées (etf:IE0006WW1TQ4:countries:United Kingdom:896eb444159fd8c94545e70e:2026-10-12).",
         "id": "radar:efba37ffd0046e945c026629",
-        "firstSeenAt": "2026-10-14T11:42:41.168472+00:00",
-        "lastSeenAt": "2026-10-14T19:11:55.324201+00:00",
-        "resolvedAt": "2026-10-14T19:12:42.647375+00:00"
-      },
-      {
-        "name": "Xtrackers MSCI World ex USA UCITS ETF 1C",
-        "tools": [
-          "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Impact des frais",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "sourceUrls": [
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/historicaldata/download",
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/pdpMetaTagsTealium",
-          "https://etf.dws.com/download/asset/82292b8e-bf9e-44f2-b20d-722c743110a3",
-          "https://etf.dws.com/fr-fr/AssetDownload/Index/410e8206-23cd-463b-b2a5-6018bfc1fd32/Factsheet.pdf",
-          "https://www.justetf.com/en/etf-profile.html?isin=IE0006WW1TQ4",
-          "https://www.msci.com/documents/10199/255599/msci-world-ex-usa-index-net.pdf",
-          "https://www.zonebourse.com/cours/etf/XTRACKERS-MSCI-WORLD-EX-U-169862014/"
-        ],
-        "to": "/bibliotheque-donnees?id=IE0006WW1TQ4",
-        "kind": "conflict",
-        "field": "Poids du pays Switzerland",
-        "cause": "Valeur contradictoire pour la même période (2026-10-12) : Poids du pays Switzerland. Dernière observation conservée ; propositions archivées (etf:IE0006WW1TQ4:countries:Switzerland:896eb444159fd8c94545e70e:2026-10-12).",
-        "id": "radar:c012c99b66733df597a789d5",
-        "firstSeenAt": "2026-10-14T11:42:41.168472+00:00",
-        "lastSeenAt": "2026-10-14T19:11:55.324201+00:00",
-        "resolvedAt": "2026-10-14T19:12:42.647375+00:00"
-      },
-      {
-        "name": "Xtrackers MSCI World ex USA UCITS ETF 1C",
-        "tools": [
-          "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Impact des frais",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "sourceUrls": [
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/historicaldata/download",
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/pdpMetaTagsTealium",
-          "https://etf.dws.com/download/asset/82292b8e-bf9e-44f2-b20d-722c743110a3",
-          "https://etf.dws.com/fr-fr/AssetDownload/Index/410e8206-23cd-463b-b2a5-6018bfc1fd32/Factsheet.pdf",
-          "https://www.justetf.com/en/etf-profile.html?isin=IE0006WW1TQ4",
-          "https://www.msci.com/documents/10199/255599/msci-world-ex-usa-index-net.pdf",
-          "https://www.zonebourse.com/cours/etf/XTRACKERS-MSCI-WORLD-EX-U-169862014/"
-        ],
-        "to": "/bibliotheque-donnees?id=IE0006WW1TQ4",
-        "kind": "conflict",
-        "field": "Poids du pays Germany",
-        "cause": "Valeur contradictoire pour la même période (2026-10-12) : Poids du pays Germany. Dernière observation conservée ; propositions archivées (etf:IE0006WW1TQ4:countries:Germany:896eb444159fd8c94545e70e:2026-10-12).",
-        "id": "radar:93ae9c0ee7de7e1a0d37d4fc",
-        "firstSeenAt": "2026-10-14T11:42:41.168472+00:00",
-        "lastSeenAt": "2026-10-14T19:11:55.324201+00:00",
-        "resolvedAt": "2026-10-14T19:12:42.647375+00:00"
-      },
-      {
-        "name": "Xtrackers MSCI World ex USA UCITS ETF 1C",
-        "tools": [
-          "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Impact des frais",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "sourceUrls": [
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/historicaldata/download",
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/pdpMetaTagsTealium",
-          "https://etf.dws.com/download/asset/82292b8e-bf9e-44f2-b20d-722c743110a3",
-          "https://etf.dws.com/fr-fr/AssetDownload/Index/410e8206-23cd-463b-b2a5-6018bfc1fd32/Factsheet.pdf",
-          "https://www.justetf.com/en/etf-profile.html?isin=IE0006WW1TQ4",
-          "https://www.msci.com/documents/10199/255599/msci-world-ex-usa-index-net.pdf",
-          "https://www.zonebourse.com/cours/etf/XTRACKERS-MSCI-WORLD-EX-U-169862014/"
-        ],
-        "to": "/bibliotheque-donnees?id=IE0006WW1TQ4",
-        "kind": "conflict",
-        "field": "Poids du pays Australia",
-        "cause": "Valeur contradictoire pour la même période (2026-10-12) : Poids du pays Australia. Dernière observation conservée ; propositions archivées (etf:IE0006WW1TQ4:countries:Australia:896eb444159fd8c94545e70e:2026-10-12).",
-        "id": "radar:385b050d47dc049398569aad",
-        "firstSeenAt": "2026-10-14T11:42:41.168472+00:00",
-        "lastSeenAt": "2026-10-14T19:11:55.324201+00:00",
-        "resolvedAt": "2026-10-14T19:12:42.647375+00:00"
-      },
-      {
-        "name": "Xtrackers MSCI World ex USA UCITS ETF 1C",
-        "tools": [
-          "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Impact des frais",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "sourceUrls": [
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/historicaldata/download",
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/pdpMetaTagsTealium",
-          "https://etf.dws.com/download/asset/82292b8e-bf9e-44f2-b20d-722c743110a3",
-          "https://etf.dws.com/fr-fr/AssetDownload/Index/410e8206-23cd-463b-b2a5-6018bfc1fd32/Factsheet.pdf",
-          "https://www.justetf.com/en/etf-profile.html?isin=IE0006WW1TQ4",
-          "https://www.msci.com/documents/10199/255599/msci-world-ex-usa-index-net.pdf",
-          "https://www.zonebourse.com/cours/etf/XTRACKERS-MSCI-WORLD-EX-U-169862014/"
-        ],
-        "to": "/bibliotheque-donnees?id=IE0006WW1TQ4",
-        "kind": "conflict",
-        "field": "Poids du pays Netherlands",
-        "cause": "Valeur contradictoire pour la même période (2026-10-12) : Poids du pays Netherlands. Dernière observation conservée ; propositions archivées (etf:IE0006WW1TQ4:countries:Netherlands:896eb444159fd8c94545e70e:2026-10-12).",
-        "id": "radar:736c2dd317e4831b683d42c2",
         "firstSeenAt": "2026-10-14T11:42:41.168472+00:00",
         "lastSeenAt": "2026-10-14T19:11:55.324201+00:00",
         "resolvedAt": "2026-10-14T19:12:42.647375+00:00"
