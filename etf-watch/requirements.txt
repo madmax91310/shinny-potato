@@ -1,0 +1,13 @@
+requests>=2.31
+beautifulsoup4>=4.12
+lxml>=5.0
+pdfplumber>=0.11
+
+# Optional: only needed for the iShares / Invesco / AMF (experimental)
+# JS-rendering fallback. Install with:
+#   pip install playwright
+#   playwright install chromium
+# playwright>=1.44
+
+# Dev / testing only
+pytest>=8.0

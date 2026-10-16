@@ -1,0 +1,8 @@
+# Example crontab entry for etf-watch.
+# Install with: crontab -e   (then paste a line like the one below,
+# adjusted to your actual install path and Python interpreter)
+#
+# Runs once a day at 07:15, logs stdout/stderr in case something above
+# the tool's own logging goes wrong (e.g. venv activation failing).
+
+15 7 * * * cd /path/to/etf-watch && /path/to/etf-watch/.venv/bin/python -m etf_watch.main >> data/cron_stdout.log 2>&1
