@@ -2,6 +2,12 @@ import { analyzeProfile, prepareProfile, euro } from './engine.js'
 import { incomeLabel } from './lib.js'
 const C={navy:'#071d36',ivory:'#fff4df',yellow:'#ffd342',muted:'#9eb7d2',panel:'#0d263e'}
 const colors=['#ffd342','#3899ff','#63dfbd','#bd9eff','#ff9b70','#b7ce6e','#ec99cd','#aec8df']
+export function allocationRows(lines){
+ const ordered=lines.filter(l=>l.weight>0).map(l=>({name:l.label,weight:l.weight}))
+ if(ordered.length<=8)return ordered.map((r,i)=>({...r,color:colors[i]}))
+ ordered.sort((a,b)=>b.weight-a.weight)
+ return [...ordered.slice(0,7),{name:`${ordered.length-7} autres positions`,weight:ordered.slice(7).reduce((s,l)=>s+l.weight,0)}].map((r,i)=>({...r,color:colors[i]}))
+}
 function text(ctx,value,x,y,width,size,color=C.ivory,weight=700,family='Arial'){
  value=String(value);ctx.font=`${weight} ${size}px ${family}`
  while(ctx.measureText(value).width>width && size>10)ctx.font=`${weight} ${--size}px ${family}`
@@ -75,7 +81,7 @@ function fullPortfolio(ctx,p,a){
  panel(ctx,35,125,665,815)
  panel(ctx,725,125,840,395);panel(ctx,725,545,840,395)
  text(ctx,'Répartition des actifs',70,190,595,40,C.ivory,700,'DcaEditorial')
- const holdings=p.lines.filter(l=>l.weight>0).map((l,i)=>({name:l.label,weight:l.weight,color:colors[i]}))
+ const holdings=allocationRows(p.lines)
  const crowded=holdings.length>4
  if(!p.imageOnly){text(ctx,`Le DCA de ${p.name}`,70,245,595,28,C.ivory,700,'DcaEditorial');text(ctx,`${euro(a.monthly)} investis par mois`,70,282,595,25,C.yellow)}
  const cy=crowded?435:p.imageOnly?469:490,r=crowded?120:p.imageOnly?230:185
@@ -143,8 +149,9 @@ export async function renderDcaImage(input,field='countries'){
  text(ctx,'CHAQUE MOIS',66,341,710,26,C.muted)
  text(ctx,euro(a.monthly),56,495,720,160,C.yellow,700,'DcaEditorial')
  text(ctx,'investis par mois',66,552,710,40,C.ivory,700,'DcaEditorial')
- const rowHeight=Math.min(112,366/p.lines.length),top=597
- p.lines.forEach((l,i)=>{
+ const displayLines=p.lines.length>8?[...p.lines.slice(0,7),{label:`${p.lines.length-7} autres positions`,amount:p.lines.slice(7).reduce((s,l)=>s+l.amount,0),weight:p.lines.slice(7).reduce((s,l)=>s+l.weight,0)}]:p.lines
+ const rowHeight=Math.min(112,366/displayLines.length),top=597
+ displayLines.forEach((l,i)=>{
   const y=top+i*rowHeight
   rule(ctx,66,y,710)
   text(ctx,euro(l.amount),66,y+rowHeight*.66,220,Math.min(49,rowHeight*.55),C.yellow,700,'DcaEditorial')

@@ -9,6 +9,9 @@ on:
       - 'scripts/qualified-exposure-sources.json'
       - 'scripts/collect_dca_equities.py'
       - 'scripts/dca-equity-identities.json'
+      - 'scripts/collect_dca_complete_holdings.py'
+      - 'scripts/dca-complete-holdings-sources.json'
+      - 'scripts/dca-equity-extra-identities.json'
       - 'src/data/qualified-exposure*'
       - '.github/workflows/update-qualified-exposures.yml'
 permissions:
@@ -24,7 +27,7 @@ jobs:
       contents: write
     outputs:
       commit_sha: ${{ steps.commit.outputs.commit_sha }}
-      collection_failed: ${{ steps.collect.outcome == 'failure' || steps.equities.outcome == 'failure' }}
+      collection_failed: ${{ steps.collect.outcome == 'failure' || steps.equities.outcome == 'failure' || steps.holdings.outcome == 'failure' }}
     steps:
       - uses: actions/checkout@v7.0.1
         with:
@@ -45,6 +48,10 @@ jobs:
         id: equities
         continue-on-error: ${{ github.event_name != 'pull_request' }}
         run: python scripts/collect_dca_equities.py --apply --output "$RUNNER_TEMP/dca-equities.json"
+      - name: "Collect observations: holdings"
+        id: holdings
+        continue-on-error: ${{ github.event_name != 'pull_request' }}
+        run: python scripts/collect_dca_complete_holdings.py --apply --output "$RUNNER_TEMP/dca-complete-holdings.json"
       - name: Validate DCA observations
         run: node scripts/build-dca-exposures.mjs && npm run test:dca
       - name: "Validate observations: node scripts test-qualified-exposures.mjs"
@@ -60,6 +67,7 @@ jobs:
           path: |
             ${{ runner.temp }}/qualified-exposures.json
             ${{ runner.temp }}/dca-equities.json
+            ${{ runner.temp }}/dca-complete-holdings.json
           retention-days: 35
       - name: Validate collected observations
         run: echo 'Mandatory observation checks passed'
@@ -69,7 +77,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          bash scripts/commit-validated-data.sh 'Refresh qualified exact-share exposure data' src/data/qualified-exposure-etfs.json src/data/automated-etf.json src/data/dca-equity-exposures.json src/pages/dca-profiles/exposures.json src/pages/dca-profiles/exposures-extra-0.json src/pages/dca-profiles/exposures-extra-1.json src/pages/dca-profiles/exposures-extra-2.json src/pages/dca-profiles/catalog.json src/pages/dca-profiles/holdings.json
+          bash scripts/commit-validated-data.sh 'Refresh qualified exact-share exposure data' src/data/qualified-exposure-etfs.json src/data/automated-etf.json src/data/dca-equity-exposures.json src/pages/dca-profiles/exposures.json src/pages/dca-profiles/exposures-extra-0.json src/pages/dca-profiles/exposures-extra-1.json src/pages/dca-profiles/exposures-extra-2.json src/pages/dca-profiles/catalog.json src/pages/dca-profiles/holdings*.json src/data/dca-complete-holdings.json src/data/dca-security-classifications.json
   deploy:
     needs: refresh
     if: github.event_name != 'pull_request'

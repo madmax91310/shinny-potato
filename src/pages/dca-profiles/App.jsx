@@ -6,7 +6,7 @@ import Button from '../../design-system/Button'
 import { copyPublicationText, startPublicationDownload } from '../../design-system/publicationActions.js'
 import { PROFILES, ASSETS } from './data.js'
 import { buildTweetText, pickUnseenProfile } from './lib.js'
-import { prepareProfile, analyzeProfile, PROFILE_SCOPES, references, pct, euro, publicationReady } from './engine.js'
+import { MAX_POSITIONS, prepareProfile, analyzeProfile, PROFILE_SCOPES, references, pct, euro, publicationReady } from './engine.js'
 import { exposureDisplay } from './exposure.js'
 import { renderDcaImage } from './image.js'
 import { filterProfiles, searchAssets, readSaved, writeSaved, readUsed, USED_KEY } from './management.js'
@@ -30,7 +30,8 @@ export default function App(){
  function edit(patch){update({...profile,...patch,approved:false})}
  function lineEdit(index,patch){edit({lines:profile.lines.map((l,i)=>i===index?{...l,...patch}:l)})}
  function select(next){if(!next)return;update(structuredClone(next));seen.current.add(next.id);setSavedId('');setSaveTitle(next.name);setQueries({})}
- function compose(){setSavedId('');setSaveTitle('Mon portefeuille');setQueries({});setField('all');update({id:crypto.randomUUID(),name:'',scope:'Portefeuille investi',mode:'participant',imageOnly:true,approved:false,lines:[{asset:'world',label:catalog.world.name,emoji:'📊',isin:references.world.isin,weight:100,amount:0}]})}
+ function compose(){setField('all');update({...profile,mode:'participant',imageOnly:true,approved:false})}
+ function participate(){update({...profile,mode:'participant',imageOnly:false,approved:false})}
  function duplicate(){setProfile({...structuredClone(profile),id:crypto.randomUUID(),mode:'participant',approved:false});setSavedId('');setSaveTitle(profile.name+' — copie');setFeedback('Copie créée. Tu peux la modifier et l’enregistrer séparément.')}
  function toggleUsed(){try{const next=used.includes(profile.id)?used.filter(id=>id!==profile.id):[...used,profile.id];localStorage.setItem(USED_KEY,JSON.stringify(next));setUsed(next);setFeedback(next.includes(profile.id)?'Profil marqué comme utilisé.':'Profil marqué comme non utilisé.')}catch{setFeedback('Le suivi ne peut pas être enregistré sur cet appareil.')}}
  function savePortfolio(){try{
@@ -52,7 +53,7 @@ export default function App(){
  <Button onClick={copy} disabled={!ready||!draft.trim()}>Copier le texte</Button><Button variant="secondary" onClick={download} disabled={!ready}>Télécharger le PNG</Button>
  </>}>
  <section className="tool-settings">
- <div className="dca-mode"><button aria-pressed={!!profile.imageOnly} onClick={compose}>Composer un portefeuille</button><button aria-pressed={profile.mode==='prepared'&&!profile.imageOnly} onClick={()=>select(profiles[0])}>Profils préparés</button><button aria-pressed={profile.mode==='participant'&&!profile.imageOnly} onClick={()=>{setSavedId('');setSaveTitle('Nouveau portefeuille');setQueries({});update({id:'personnalise',name:'',scope:'PEA + CTO',mode:'participant',approved:false,lines:[{asset:'world',label:ASSETS.world[1],emoji:ASSETS.world[0],isin:'',weight:100,amount:0}]})}}>Créer une participation</button></div>
+ <div className="dca-mode"><button aria-pressed={!!profile.imageOnly} onClick={compose}>Composer un portefeuille</button><button aria-pressed={profile.mode==='prepared'&&!profile.imageOnly} onClick={()=>select(profiles[0])}>Profils préparés</button><button aria-pressed={profile.mode==='participant'&&!profile.imageOnly} onClick={participate}>Créer une participation</button></div>
  {profile.mode==='prepared'&&<>
  <details className="dca-filters"><summary>Filtrer les profils · {filtered.length} résultat{filtered.length>1?'s':''}</summary>
  <div className="dca-fields"><label>Budget mensuel<ChoicePicker aria-label="Budget mensuel" value={filters.budget} onChange={e=>setFilter('budget',e.target.value)}><option value="">Tous les budgets</option><option value="small">Jusqu’à 200 €</option><option value="medium">Plus de 200 à 500 €</option><option value="large">Plus de 500 à 1 000 €</option><option value="high">Plus de 1 000 €</option></ChoicePicker></label>
@@ -83,11 +84,11 @@ export default function App(){
  <label>Rechercher par nom, ticker ou ISIN<input type="search" aria-label={`Rechercher position ${i+1}`} value={queries[i]||''} onChange={e=>setQueries({...queries,[i]:e.target.value})} placeholder="World, Air Liquide, IE00…"/></label>
  <label>Actif<ChoicePicker aria-label={`Actif position ${i+1}`} value={l.asset} onChange={e=>{const asset=e.target.value;lineEdit(i,{asset,emoji:ASSETS[asset][0],label:catalog[asset]?.name||ASSETS[asset][1],isin:references[asset]?.isin||''})}}>{[...new Set([l.asset,...searchAssets(queries[i]||'',assetFilter)])].map(key=><option key={key} value={key}>{catalog[key]?.name||ASSETS[key][1]}</option>)}</ChoicePicker></label>
  {queries[i]&&!searchAssets(queries[i],assetFilter).length&&<p className="dca-note">Aucun résultat dans le catalogue. La position actuelle reste sélectionnée.</p>}
- {references[l.asset]&&<p className="dca-note">{references[l.asset].isin} · {references[l.asset].kind==='equity'?'Action':references[l.asset].kind.toUpperCase()} · {references[l.asset].pea===true?'Éligibilité PEA documentée':references[l.asset].pea===false?'Non éligible PEA':'Éligibilité PEA non documentée'}{references[l.asset].synthetic?' · Pour ce support synthétique, seules les données de l’indice suivi sont utilisées.':''}</p>}
+ {references[l.asset]&&<p className="dca-note">{references[l.asset].isin||'ISIN non qualifié'} · {references[l.asset].kind==='equity'?'Action':references[l.asset].kind.toUpperCase()} · {references[l.asset].pea===true?'Éligibilité PEA documentée':references[l.asset].pea===false?'Non éligible PEA':'Éligibilité PEA non documentée'}{references[l.asset].synthetic?' · Pour ce support synthétique, seules les données de l’indice suivi sont utilisées.':''}</p>}
  <div className="dca-fields"><label>Poids actuel (%)<input aria-label={`Poids position ${i+1}`} type="number" min="0" max="100" step="0.01" value={Number.isFinite(l.weight)?l.weight:''} onChange={e=>lineEdit(i,{weight:e.target.value===''?NaN:Number(e.target.value)})}/></label>{!profile.imageOnly&&<label>DCA (€/mois)<input aria-label={`DCA position ${i+1}`} type="number" min="0" max="1000000" step="0.01" value={Number.isFinite(l.amount)?l.amount:''} onChange={e=>lineEdit(i,{amount:e.target.value===''?NaN:Number(e.target.value)})}/></label>}</div>
- {references[l.asset]&&<label className="dca-reference">Support exact pour les expositions<ChoicePicker aria-label={`Support position ${i+1}`} value={l.isin||''} onChange={e=>lineEdit(i,{isin:e.target.value})}><option value="">Aucun support confirmé</option><option value={references[l.asset].isin}>{references[l.asset].name} · {references[l.asset].isin}</option></ChoicePicker></label>}
+ {references[l.asset]?.isin&&<label className="dca-reference">Support exact pour les expositions<ChoicePicker aria-label={`Support position ${i+1}`} value={l.isin||''} onChange={e=>lineEdit(i,{isin:e.target.value})}><option value="">Aucun support confirmé</option><option value={references[l.asset].isin}>{references[l.asset].name} · {references[l.asset].isin}</option></ChoicePicker></label>}
  <button className="dca-remove" onClick={()=>edit({lines:profile.lines.filter((_,j)=>j!==i)})}>Retirer la position {i+1}</button></fieldset>)}
- <Button variant="secondary" disabled={profile.lines.length>=8} onClick={()=>{const asset=Object.keys(ASSETS).find(k=>!profile.lines.some(l=>l.asset===k));edit({lines:[...profile.lines,{asset,label:ASSETS[asset][1],emoji:ASSETS[asset][0],isin:'',weight:0,amount:0}]})}}>Ajouter une position</Button>
+ <Button variant="secondary" disabled={profile.lines.length>=MAX_POSITIONS} onClick={()=>{const asset=Object.keys(ASSETS).find(k=>!profile.lines.some(l=>l.asset===k));edit({lines:[...profile.lines,{asset,label:ASSETS[asset][1],emoji:ASSETS[asset][0],isin:'',weight:0,amount:0}]})}}>Ajouter une position</Button>
  <p className="dca-total">Total : {pct(profile.lines.reduce((s,l)=>s+(Number.isFinite(l.weight)?l.weight:0),0))}{!profile.imageOnly&&<> · {euro(profile.lines.reduce((s,l)=>s+(Number.isFinite(l.amount)?l.amount:0),0))} / mois</>}</p>
  {!!a.errors.length&&<div role="alert" className="dca-errors">{a.errors.map(e=><p key={e}>{e}</p>)}</div>}
  {!a.errors.length&&<Verification profile={profile} analysis={a}/> }

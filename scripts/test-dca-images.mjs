@@ -33,6 +33,7 @@ try {
     }
     const output=[]
     const cases=[...PROFILES,
+      {...prepareProfile(PROFILES[0]),id:'fifty-lines',name:'Portefeuille complet',lines:Object.entries(references).slice(0,50).map(([asset,r])=>({asset,label:r.name,emoji:'📊',weight:2,amount:10,isin:r.isin}))},
       {...prepareProfile(PROFILES[0]),id:'eight-lines',name:'Pseudonyme long pour vérifier le rendu mobile',lines:Object.keys(ASSETS).slice(0,8).map((asset,i)=>({asset,label:ASSETS[asset][1],emoji:ASSETS[asset][0],weight:12.5,amount:i?1000000:0,isin:''}))},
       {...prepareProfile(PROFILES[0]),id:'zero-dca',lines:prepareProfile(PROFILES[0]).lines.map(l=>({...l,amount:0}))},
       {...prepareProfile(PROFILES[0]),id:'karim-approved',name:'Karim',age:32,job:'informaticien',location:'',income:2500,variable:false,lines:[['world',70,350],['europe',20,100],['emerging',10,50]].map(([asset,weight,amount])=>({asset,label:ASSETS[asset][1],emoji:ASSETS[asset][0],weight,amount,isin:references[asset].isin}))}
@@ -44,8 +45,8 @@ try {
       if(field==='all'&&!labels.includes('Répartition des actifs'))throw Error('Missing allocation donut')
       if(labels.some(l=>/fictif|undefined|\bNaN\b/i.test(l)))throw Error(profile.id+' unwanted text')
       if(!labels.includes(['both','all'].includes(field)?`Le DCA de ${profile.name}`:profile.name)||labels.filter(l=>l==='Épargnant Libre').length!==1)throw Error('Identity: '+profile.id)
-      for(const line of profile.lines)if(field!=='both'&&!labels.join(' ').includes(line.label))throw Error('Allocation missing: '+profile.id)
-      output.push({id:profile.id+'-'+field,labels:[...labels],png:['julien','alexandre','patrick','arthur','laurent','helene','eight-lines','zero-dca','karim-approved'].includes(profile.id)?canvas.toDataURL():null})
+      for(const line of profile.lines)if(profile.lines.length<=8&&field!=='both'&&!labels.join(' ').includes(line.label))throw Error('Allocation missing: '+profile.id)
+      output.push({id:profile.id+'-'+field,labels:[...labels],png:['julien','alexandre','patrick','arthur','laurent','helene','eight-lines','fifty-lines','zero-dca','karim-approved'].includes(profile.id)?canvas.toDataURL():null})
     }
     for(const field of ['countries','sectors','both','all']){
       labels=[];boxes=[]
@@ -59,10 +60,13 @@ try {
     CanvasRenderingContext2D.prototype.fillText=original
     return output
   })
-  assert.equal(records.length,416)
+  assert.equal(records.length,420)
   await mkdir('test-artifacts/dca',{recursive:true})
   for(const record of records.filter(r=>r.png))await writeFile(`test-artifacts/dca/${record.id}.png`,Buffer.from(record.png.split(',')[1],'base64'))
+  const originalWeight=await page.getByLabel('Poids position 1',{exact:true}).inputValue()
+  const originalCount=await page.locator('.dca-position').count()
   await page.getByRole('button',{name:'Créer une participation',exact:true}).click()
+  assert.equal(await page.locator('.dca-position').count(),originalCount)
   await page.getByLabel('Pseudonyme',{exact:true}).fill('Test participation')
   await page.getByLabel('DCA position 1',{exact:true}).fill('300')
   assert(await page.getByRole('button',{name:'Télécharger le PNG',exact:true}).isDisabled())
@@ -72,7 +76,7 @@ try {
   await page.getByLabel('Poids position 1',{exact:true}).fill('90')
   assert(await page.getByRole('button',{name:'Télécharger le PNG',exact:true}).isDisabled())
   await page.getByRole('alert').waitFor()
-  await page.getByLabel('Poids position 1',{exact:true}).fill('100')
+  await page.getByLabel('Poids position 1',{exact:true}).fill(originalWeight)
   await page.getByRole('button',{name:'Enregistrer le brouillon',exact:true}).click()
   await page.getByLabel('Pseudonyme',{exact:true}).fill('Changement')
   await page.getByRole('button',{name:'Restaurer le brouillon',exact:true}).click()
@@ -129,6 +133,13 @@ try {
   assert(await page.getByRole('button',{name:'Autre profil aléatoire',exact:true}).isDisabled())
   await page.getByRole('button',{name:'Effacer les filtres',exact:true}).click()
   await page.getByRole('button',{name:'Créer une participation',exact:true}).click()
+  // This export scenario uses one position; participation now preserves the
+  // previously saved random portfolio (including possible zero-weight lines).
+  while(await page.locator('.dca-position').count()>1){
+    const count=await page.locator('.dca-position').count()
+    await page.getByRole('button',{name:`Retirer la position ${count}`,exact:true}).click()
+  }
+  await page.getByLabel('Poids position 1',{exact:true}).fill('100')
   await page.getByLabel('Rechercher position 1',{exact:true}).fill('FR0000120073')
   await page.getByRole('group',{name:'Actif position 1',exact:true}).locator('[data-option][data-value="airliquide"]').click()
   await page.getByRole('group',{name:'Support position 1',exact:true}).locator('[data-option][data-value="FR0000120073"]').click()
@@ -157,5 +168,8 @@ try {
   await page.getByRole('checkbox',{name:'Je valide les expositions à publier.',exact:true}).check()
   assert(await page.getByRole('button',{name:'Télécharger le PNG',exact:true}).isEnabled())
   assert(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth+1))
-  console.log('416 images DCA : données, texte sans mention fictive, aucun chevauchement ni dépassement, aperçu, changement de profil, téléchargement et mobile validés.')
+  await page.getByText('Positions communes entre ETF et actions',{exact:true}).click()
+  await page.getByText('Chargement des compositions complètes…',{exact:true}).waitFor({state:'hidden'})
+  assert.equal(await page.getByText('Impossible de charger les compositions.',{exact:false}).count(),0)
+  console.log('420 images DCA : données, texte sans mention fictive, aucun chevauchement ni dépassement, aperçu, changement de profil, téléchargement et mobile validés.')
 } finally {await browser?.close();server.kill('SIGTERM')}
