@@ -10,10 +10,11 @@ import {references} from '../src/pages/dca-profiles/engine.js'
 import {CATALOG} from '../src/data/duel-assets.js'
 import {DUELS} from '../src/pages/portfolio-duels/data.js'
 import {buildDuel} from '../src/pages/portfolio-duels/lib.js'
-import {getDuelArt} from '../src/pages/portfolio-duels/visualIdentity.js'
+import {getDuelArt,DUEL_EXPOSURE_ART} from '../src/pages/portfolio-duels/visualIdentity.js'
 import {ASSETS} from '../src/data/portfolio-assets.js'
 import {computeYearlyPerf} from '../src/pages/portfolio-generator/performance.js'
 import {getComparisonYears} from '../src/pages/tweet-midi/comparisonPerformance.js'
+assert.deepEqual(Object.keys(DUEL_EXPOSURE_ART).sort(),[...new Set(CATALOG.map(a=>a.exposure))].sort())
 const read=p=>JSON.parse(readFileSync(p))
 const sources=[...read('scripts/monthly-automation.json').series,...read('scripts/non-bond-monthly-sources.json').series]
 assert.deepEqual(getComparisonYears(['IE00BF4RFH31','UNKNOWN']),[],'A missing fund must not be dropped from the common period')
