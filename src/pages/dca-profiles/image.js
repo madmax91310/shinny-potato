@@ -47,7 +47,7 @@ export function donutData(analysis,field='countries'){
  return {group,rows}
 }
 function exposurePanel(ctx,a,field,x,y,width){
- const {group,rows}=donutData(a,field)
+ const {rows}=donutData(a,field)
  text(ctx,field==='countries'?'Exposition géographique':'Exposition sectorielle',x,y,width,36,C.ivory,700,'DcaEditorial')
  const cx=x+width/2,cy=y+280,r=220,inner=150
  let angle=-Math.PI/2
@@ -59,10 +59,7 @@ function exposurePanel(ctx,a,field,x,y,width){
   text(ctx,row.name,left+24,top,width/2-35,22,C.ivory,400)
   text(ctx,exposurePercentage(row.weight,percentages[i]),left+24,top+28,width/2-35,25)
  })
- const source=group?`${group.oldest!==group.asOf?group.oldest+' → ':''}${group.asOf} · couverture ${Math.round(group.coverage)} %`:'Aucune ventilation qualifiée'
- text(ctx,source,x,y+735,width,18,C.muted,400)
- if(group?.indicative)text(ctx,'Synthèse indicative · méthodes des émetteurs',x,y+757,width,16,C.muted,400)
- if(group?.classification==='country-registration')text(ctx,'Pays d’enregistrement',x,y+757,width,16,C.muted,400)
+
 }
 function ring(ctx,rows,cx,cy,r,inner){
  let angle=-Math.PI/2
@@ -99,7 +96,7 @@ function fullPortfolio(ctx,p,a){
   text(ctx,exposurePercentage(row.weight,percentages[i]),574,y,90,size+2)
  })
  for(const [field,y] of [['countries',125],['sectors',545]]){
-  const {group,rows}=donutData(a,field)
+  const {rows}=donutData(a,field)
   text(ctx,field==='countries'?'Exposition géographique':'Exposition sectorielle',755,y+59,780,37,C.ivory,700,'DcaEditorial')
   ring(ctx,rows,899,y+235,140,94)
   const rounded=integerPercentages(rows),lead=rows.findIndex(r=>!['Non ventilé','Non ventilé ici','Écart d’arrondi'].includes(r.name))
@@ -112,11 +109,8 @@ function fullPortfolio(ctx,p,a){
    text(ctx,row.name,1095,top,322,27,C.ivory,400)
    text(ctx,exposurePercentage(row.weight,rounded[i]),1454,top,85,27)
   })
-  const coverage=group?.coverage||0
-  const source=group?`${group.oldest!==group.asOf?group.oldest+' → ':''}${group.asOf}`:'Aucune ventilation qualifiée'
-  text(ctx,`${source} · ${Math.round(coverage)} % ventilés`,1070,y+375,460,16,C.muted,400)
+
  }
- centered(ctx,'Synthèse indicative des répartitions publiées · Pourcentages arrondis',800,978,1480,18,C.muted,400)
 }
 async function overlapPortfolio(ctx,p){
  const {loadHoldings}=await import('./holdings-loader.js')
@@ -180,7 +174,6 @@ export async function renderDcaImage(input,field='countries'){
    exposurePanel(ctx,a,'sectors',834,218,700)
   }else exposurePanel(ctx,a,field,450,218,700)
   rule(ctx,64,1013,1472)
-  text(ctx,p.scope,64,1050,1000,20,C.muted,400)
   text(ctx,'Épargnant Libre',1205,1051,330,32,C.ivory,700,'DcaEditorial')
   return canvas
  }
@@ -201,7 +194,7 @@ export async function renderDcaImage(input,field='countries'){
  })
  text(ctx,'Son portefeuille',865,112,670,65,C.ivory,700,'DcaEditorial')
  text(ctx,field==='sectors'?'Exposition sectorielle':'Exposition géographique',880,163,650,32,C.muted,400)
- const {group,rows}=donutData(a,field),cx=1197,cy=508,r=280,inner=195
+ const {rows}=donutData(a,field),cx=1197,cy=508,r=280,inner=195
  let angle=-Math.PI/2
  for(const row of rows){const span=row.weight/100*Math.PI*2;ctx.beginPath();ctx.arc(cx,cy,r,angle,angle+span);ctx.arc(cx,cy,inner,angle+span,angle,true);ctx.closePath();ctx.fillStyle=row.color;ctx.fill();angle+=span}
  const percentages=integerPercentages(rows)
@@ -211,12 +204,7 @@ export async function renderDcaImage(input,field='countries'){
   text(ctx,row.name,x+28,y,190,23,C.ivory,400)
   text(ctx,exposurePercentage(row.weight,percentages[i]),x+28,y+32,190,29,C.ivory,700)
  })
- const source=group?`${group.oldest&&group.oldest!==group.asOf?group.oldest+' → ':''}${group.asOf} · couverture ${Math.round(group.coverage)} %`:(a[field].neutralWeight===100?'Actifs hors classification':'Aucune ventilation qualifiée')
- text(ctx,source,860,982,670,18,C.muted,400)
- if(group?.indicative)text(ctx,'Synthèse indicative · méthodes des émetteurs',860,1004,670,16,C.muted,400)
- if(group?.classification==='country-registration')text(ctx,'Pays d’enregistrement',860,1004,670,16,C.muted,400)
  rule(ctx,64,1013,1472)
- text(ctx,p.scope,64,1050,1000,20,C.muted,400)
  text(ctx,'Épargnant Libre',1205,1051,330,32,C.ivory,700,'DcaEditorial')
  return canvas
 }
