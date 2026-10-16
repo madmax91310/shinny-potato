@@ -16,7 +16,7 @@ assert(Object.values(recentPerf).every(Number.isFinite))
 assert.match(buildDuel(DUELS.find(d=>d.id==='sp500-equal-europe')).readings[1],/Europe ajoutent une autre zone/)
 let compared=0
 for(const asset of ASSETS) {
-  const duel=CATALOG.find(d=>d.isin===asset.isin)
+  const duel=asset.isin ? CATALOG.find(d=>d.isin===asset.isin) : null
   if(!duel)continue
   for(const year of Object.keys(duel.calendarReturns).map(Number)) {
     const a=assetReturn(asset,year),b=euroReturn(duel,year)
