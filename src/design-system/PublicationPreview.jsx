@@ -3,8 +3,9 @@ import { useEffect, useId, useRef, useState } from 'react'
 import ImageZoom from './ImageZoom'
 
 // Keep editors mounted so switching views never discards a draft or canvas.
-export default function PublicationPreview({ children, renderImage, imageContent, imageAlt = 'Visuel prêt à publier', imageDisabled = false }) {
-  const [tab, setTab] = useState('text')
+export default function PublicationPreview({ children, renderImage, imageContent, imageAlt = 'Visuel prêt à publier', imageDisabled = false, tab: controlledTab, onTabChange }) {
+  const [localTab, setLocalTab] = useState('text')
+  const tab = controlledTab ?? localTab
   const [image, setImage] = useState({ status: 'idle', url: '' })
   const id = useId()
   const stage = useRef(null)
@@ -50,7 +51,7 @@ export default function PublicationPreview({ children, renderImage, imageContent
     link.href = image.url; link.download = 'publication.png'
     document.body.append(link); startPublicationDownload(link); link.remove()
   }
-  function select(next) { setTab(next) }
+  function select(next) { setLocalTab(next); onTabChange?.(next) }
   function keydown(event) {
     if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return
     event.preventDefault()

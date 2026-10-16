@@ -85,3 +85,14 @@
 .dca-profiles-scope .dca-analysis a{color:#267863;text-decoration:underline}
 .dca-profiles-scope .dca-analysis .dca-concentration>div{border-color:#267863}
 .dca-profiles-scope .dca-analysis .dca-weight-bar{background:linear-gradient(to right,#267863 var(--weight),#52607120 var(--weight))}
+
+/* Keep the composition controls within reach on a phone. */
+@media(max-width:650px){
+ .dca-profiles-scope .dca-hero{padding:16px;margin:8px 0 16px;border-radius:16px}
+ .dca-profiles-scope .dca-hero h2{font-size:1.4rem;margin:10px 0}
+ .dca-profiles-scope .dca-hero p{font-size:.85rem;line-height:1.5;margin:8px 0}
+ .dca-profiles-scope .dca-hero .dca-buttons{margin-top:12px;gap:8px}
+ .dca-profiles-scope .dca-hero button{padding:10px 12px;font-size:.8rem}
+ .dca-profiles-scope .dca-section-nav{gap:6px;margin-bottom:14px}
+ .dca-profiles-scope .dca-section-nav a{flex:1;text-align:center;padding:10px 6px}
+}
