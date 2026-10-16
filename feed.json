@@ -5,7 +5,7 @@
         "id": "service-public",
         "name": "Service Public",
         "url": "https://www.service-public.gouv.fr/abonnements/rss/actu-actualites-particuliers.rss",
-        "checkedAt": "2026-10-16T07:19:43.217Z",
+        "checkedAt": "2026-10-16T07:55:50.259Z",
         "status": "ok",
         "articles": 10,
         "relevant": 5
@@ -14,16 +14,16 @@
         "id": "bercy",
         "name": "Ministère de l’Économie",
         "url": "https://www.economie.gouv.fr/rss/toutesactualites",
-        "checkedAt": "2026-10-16T07:19:43.217Z",
+        "checkedAt": "2026-10-16T07:55:50.259Z",
         "status": "ok",
         "articles": 10,
-        "relevant": 1
+        "relevant": 2
       },
       {
         "id": "vie-publique-actualites",
         "name": "Vie publique · actualités",
         "url": "https://www.vie-publique.fr/actualites-feeds.xml",
-        "checkedAt": "2026-10-16T07:19:43.217Z",
+        "checkedAt": "2026-10-16T07:55:50.259Z",
         "status": "ok",
         "articles": 10,
         "relevant": 0
@@ -32,7 +32,7 @@
         "id": "vie-publique-lois",
         "name": "Vie publique · lois",
         "url": "https://www.vie-publique.fr/lois-feeds.xml",
-        "checkedAt": "2026-10-16T07:19:43.217Z",
+        "checkedAt": "2026-10-16T07:55:50.259Z",
         "status": "ok",
         "articles": 100,
         "relevant": 0
@@ -41,7 +41,7 @@
         "id": "banque-france-credit",
         "name": "Banque de France · crédits aux particuliers",
         "url": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166",
-        "checkedAt": "2026-10-16T07:19:43.217Z",
+        "checkedAt": "2026-10-16T07:55:50.259Z",
         "status": "ok",
         "articles": 12,
         "relevant": 2
@@ -50,13 +50,69 @@
         "id": "cre-prix",
         "name": "CRE · prix de l’énergie",
         "url": "https://www.cre.fr/documents/communiques-de-presse.html",
-        "checkedAt": "2026-10-16T07:19:43.217Z",
+        "checkedAt": "2026-10-16T07:55:50.259Z",
         "status": "ok",
         "articles": 7,
         "relevant": 1
       }
     ],
     "items": [
+      {
+        "family": "pouvoir-achat",
+        "entity": "purchasing-news-61f849bf8d411192fdc0",
+        "label": "[Vidéo] Les dernières mesures d’aide et de soutien face à la hausse des prix des carburants",
+        "field": "announcement",
+        "fieldLabel": "Actualité officielle",
+        "value": {
+          "title": "[Vidéo] Les dernières mesures d’aide et de soutien face à la hausse des prix des carburants",
+          "summary": "Pour faire face à la hausse des prix des carburants, les aides ciblées évoluent pour accompagner les ménages et les entreprises les plus exposés. Présentation.",
+          "status": "À préciser"
+        },
+        "period": "2026-10-16",
+        "checkedAt": "2026-10-16T07:55:50.259Z",
+        "sourceUrl": "https://www.economie.gouv.fr/actualites/video-les-dernieres-mesures-daide-et-de-soutien-face-la-hausse-des-prix-des-carburants",
+        "scope": "Actualité officielle · particuliers",
+        "tool": "/pouvoir-achat",
+        "rule": "announcement",
+        "discovery": true,
+        "priority": "normal",
+        "topic": "depenses",
+        "topicLabel": "Dépenses courantes",
+        "publisher": "Ministère de l’Économie",
+        "status": "À préciser",
+        "statusEvidence": "",
+        "summary": "Pour faire face à la hausse des prix des carburants, les aides ciblées évoluent pour accompagner les ménages et les entreprises les plus exposés. Présentation.",
+        "angle": "Qui paiera davantage ou moins, et à quelle date ?",
+        "reason": "Titre, résumé et date récupérés automatiquement dans le flux officiel. Le statut repose sur une formulation explicite ; aucun impact individuel n’est inventé."
+      },
+      {
+        "family": "pouvoir-achat",
+        "entity": "purchasing-news-3ef9faac13b6c4963df6",
+        "label": "Carburant : l'aide pour les travailleurs « grands rouleurs »",
+        "field": "announcement",
+        "fieldLabel": "Actualité officielle",
+        "value": {
+          "title": "Carburant : l'aide pour les travailleurs « grands rouleurs »",
+          "summary": "Face à la hausse des coûts de carburant résultant du conflit au Moyen-Orient, le Gouvernement met en place une aide pour les travailleurs « grands rouleurs », sous conditions. Les demandes pour obtenir cette aide peuvent être effectuées sur le site impôts.gouv.fr.",
+          "status": "À préciser"
+        },
+        "period": "2026-10-16",
+        "checkedAt": "2026-10-16T07:55:50.259Z",
+        "sourceUrl": "https://www.economie.gouv.fr/actualites/carburant-laide-pour-les-travailleurs-grands-rouleurs",
+        "scope": "Actualité officielle · particuliers",
+        "tool": "/pouvoir-achat",
+        "rule": "announcement",
+        "discovery": true,
+        "priority": "normal",
+        "topic": "depenses",
+        "topicLabel": "Dépenses courantes",
+        "publisher": "Ministère de l’Économie",
+        "status": "À préciser",
+        "statusEvidence": "",
+        "summary": "Face à la hausse des coûts de carburant résultant du conflit au Moyen-Orient, le Gouvernement met en place une aide pour les travailleurs « grands rouleurs », sous conditions. Les demandes pour obtenir cette aide peuvent être effectuées sur le site impôts.gouv.fr.",
+        "angle": "Qui paiera davantage ou moins, et à quelle date ?",
+        "reason": "Titre, résumé et date récupérés automatiquement dans le flux officiel. Le statut repose sur une formulation explicite ; aucun impact individuel n’est inventé."
+      },
       {
         "family": "pouvoir-achat",
         "entity": "purchasing-news-053153302f7f2651de28",
@@ -69,7 +125,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-15",
-        "checkedAt": "2026-10-16T07:19:43.217Z",
+        "checkedAt": "2026-10-16T07:55:50.259Z",
         "sourceUrl": "https://www.service-public.gouv.fr/particuliers/actualites/A17342",
         "scope": "Actualité officielle · particuliers",
         "tool": "/pouvoir-achat",
@@ -97,7 +153,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-15",
-        "checkedAt": "2026-10-16T07:19:43.217Z",
+        "checkedAt": "2026-10-16T07:55:50.259Z",
         "sourceUrl": "https://www.service-public.gouv.fr/particuliers/actualites/A17790",
         "scope": "Actualité officielle · particuliers",
         "tool": "/pouvoir-achat",
@@ -125,7 +181,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-14",
-        "checkedAt": "2026-10-16T07:19:43.217Z",
+        "checkedAt": "2026-10-16T07:55:50.259Z",
         "sourceUrl": "https://www.service-public.gouv.fr/particuliers/actualites/A19094",
         "scope": "Actualité officielle · particuliers",
         "tool": "/pouvoir-achat",
@@ -153,7 +209,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-14",
-        "checkedAt": "2026-10-16T07:19:43.217Z",
+        "checkedAt": "2026-10-16T07:55:50.259Z",
         "sourceUrl": "https://www.service-public.gouv.fr/particuliers/actualites/A19057",
         "scope": "Actualité officielle · particuliers",
         "tool": "/pouvoir-achat",
@@ -181,7 +237,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-12",
-        "checkedAt": "2026-10-16T07:19:43.217Z",
+        "checkedAt": "2026-10-16T07:55:50.259Z",
         "sourceUrl": "https://www.service-public.gouv.fr/particuliers/actualites/A17956",
         "scope": "Actualité officielle · particuliers",
         "tool": "/pouvoir-achat",
@@ -405,7 +461,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-06",
-        "checkedAt": "2026-10-16T07:19:43.217Z",
+        "checkedAt": "2026-10-16T07:55:50.259Z",
         "sourceUrl": "https://www.banque-france.fr/fr/statistiques/credit/credits-aux-particuliers-2026-08",
         "scope": "Actualité officielle · particuliers",
         "tool": "/pouvoir-achat",
@@ -451,62 +507,6 @@
       },
       {
         "family": "pouvoir-achat",
-        "entity": "purchasing-news-61f849bf8d411192fdc0",
-        "label": "[Vidéo] Les dernières mesures d’aide et de soutien face à la hausse des prix des carburants",
-        "field": "announcement",
-        "fieldLabel": "Actualité officielle",
-        "value": {
-          "title": "[Vidéo] Les dernières mesures d’aide et de soutien face à la hausse des prix des carburants",
-          "summary": "Pour faire face à la hausse des prix des carburants, les aides ciblées évoluent pour accompagner les ménages et les entreprises les plus exposés. Présentation.",
-          "status": "À préciser"
-        },
-        "period": "2026-10-05",
-        "checkedAt": "2026-10-15T07:22:50.145Z",
-        "sourceUrl": "https://www.economie.gouv.fr/actualites/video-les-dernieres-mesures-daide-et-de-soutien-face-la-hausse-des-prix-des-carburants",
-        "scope": "Actualité officielle · particuliers",
-        "tool": "/pouvoir-achat",
-        "rule": "announcement",
-        "discovery": true,
-        "priority": "normal",
-        "topic": "depenses",
-        "topicLabel": "Dépenses courantes",
-        "publisher": "Ministère de l’Économie",
-        "status": "À préciser",
-        "statusEvidence": "",
-        "summary": "Pour faire face à la hausse des prix des carburants, les aides ciblées évoluent pour accompagner les ménages et les entreprises les plus exposés. Présentation.",
-        "angle": "Qui paiera davantage ou moins, et à quelle date ?",
-        "reason": "Titre, résumé et date récupérés automatiquement dans le flux officiel. Le statut repose sur une formulation explicite ; aucun impact individuel n’est inventé."
-      },
-      {
-        "family": "pouvoir-achat",
-        "entity": "purchasing-news-3ef9faac13b6c4963df6",
-        "label": "Carburant : l'aide pour les travailleurs « grands rouleurs »",
-        "field": "announcement",
-        "fieldLabel": "Actualité officielle",
-        "value": {
-          "title": "Carburant : l'aide pour les travailleurs « grands rouleurs »",
-          "summary": "Face à la hausse des coûts de carburant résultant du conflit au Moyen-Orient, le Gouvernement met en place une aide pour les travailleurs « grands rouleurs », sous conditions. Les demandes pour obtenir cette aide peuvent être effectuées sur le site impôts.gouv.fr.",
-          "status": "À préciser"
-        },
-        "period": "2026-10-02",
-        "checkedAt": "2026-10-13T08:22:51.250Z",
-        "sourceUrl": "https://www.economie.gouv.fr/actualites/carburant-laide-pour-les-travailleurs-grands-rouleurs",
-        "scope": "Actualité officielle · particuliers",
-        "tool": "/pouvoir-achat",
-        "rule": "announcement",
-        "discovery": true,
-        "priority": "normal",
-        "topic": "depenses",
-        "topicLabel": "Dépenses courantes",
-        "publisher": "Ministère de l’Économie",
-        "status": "À préciser",
-        "statusEvidence": "",
-        "summary": "Face à la hausse des coûts de carburant résultant du conflit au Moyen-Orient, le Gouvernement met en place une aide pour les travailleurs « grands rouleurs », sous conditions. Les demandes pour obtenir cette aide peuvent être effectuées sur le site impôts.gouv.fr.",
-        "angle": "Qui paiera davantage ou moins, et à quelle date ?",
-        "reason": "Titre, résumé et date récupérés automatiquement dans le flux officiel. Le statut repose sur une formulation explicite ; aucun impact individuel n’est inventé."
-      },
-      {
-        "family": "pouvoir-achat",
         "entity": "purchasing-news-4479d81dfc5e29b6d467",
         "label": "Impôt : vos échéances du mois",
         "field": "announcement",
@@ -545,7 +545,7 @@
           "status": "À préciser"
         },
         "period": "2026-09-10",
-        "checkedAt": "2026-10-16T07:19:43.217Z",
+        "checkedAt": "2026-10-16T07:55:50.259Z",
         "sourceUrl": "https://www.cre.fr/documents/communiques-de-presse/le-prix-repere-de-vente-de-gaz-augmente-de-63-ttc-au-1er-octobre-2026.html",
         "scope": "Actualité officielle · particuliers",
         "tool": "/pouvoir-achat",
@@ -573,7 +573,7 @@
           "status": "À préciser"
         },
         "period": "2026-09-07",
-        "checkedAt": "2026-10-16T07:19:43.217Z",
+        "checkedAt": "2026-10-16T07:55:50.259Z",
         "sourceUrl": "https://www.banque-france.fr/fr/statistiques/credit/credits-aux-particuliers-2026-07",
         "scope": "Actualité officielle · particuliers",
         "tool": "/pouvoir-achat",
@@ -593,9 +593,9 @@
   },
   "schemaVersion": 1,
   "initializedAt": "2026-10-09T04:46:31.490Z",
-  "checkedAt": "2026-10-16T07:19:51.245Z",
-  "sourceRevision": "1b1c233d1917c998800e7fdfeb0793f434942a62",
-  "observationCount": 6451,
+  "checkedAt": "2026-10-16T07:55:57.580Z",
+  "sourceRevision": "41225fc991f5b23772debd507e092cefdc0add66",
+  "observationCount": 6458,
   "coverage": {
     "etf": 213,
     "indices": 52,
@@ -603,13 +603,1105 @@
     "epargne": 16,
     "scpi": 8,
     "assurance": 7,
-    "investisseurs": 22,
+    "investisseurs": 28,
     "economie": 32,
-    "pouvoir-achat": 9
+    "pouvoir-achat": 10
   },
-  "newSignalCount": 0,
+  "newSignalCount": 6,
   "errors": [],
   "events": [
+    {
+      "id": "294a24c5e31d1fafbced0d59",
+      "family": "investisseurs",
+      "entity": "vinall",
+      "label": "Robert Vinall",
+      "field": "filing",
+      "fieldLabel": "Positions et mouvements déclarés",
+      "title": "Robert Vinall : nouvelle donnée suivie",
+      "kind": "new",
+      "priority": "high",
+      "detectedAt": "2026-10-16T07:55:57.580Z",
+      "before": null,
+      "after": {
+        "positions": [
+          {
+            "ticker": "CACC",
+            "changePct": -12.8,
+            "isNew": false
+          },
+          {
+            "ticker": "CRM",
+            "changePct": null,
+            "isNew": false
+          },
+          {
+            "ticker": "CVNA",
+            "changePct": 367.3,
+            "isNew": false
+          },
+          {
+            "ticker": "DE",
+            "changePct": null,
+            "isNew": false
+          },
+          {
+            "ticker": "GOOG(L)",
+            "changePct": null,
+            "isNew": false
+          },
+          {
+            "ticker": "HTHT",
+            "changePct": -8.1,
+            "isNew": false
+          },
+          {
+            "ticker": "IBKR",
+            "changePct": -26,
+            "isNew": false
+          },
+          {
+            "ticker": "META",
+            "changePct": -4.5,
+            "isNew": false
+          },
+          {
+            "ticker": "MORN",
+            "changePct": null,
+            "isNew": false
+          },
+          {
+            "ticker": "MSFT",
+            "changePct": 31.2,
+            "isNew": false
+          },
+          {
+            "ticker": "PAYC",
+            "changePct": null,
+            "isNew": false
+          },
+          {
+            "ticker": "SPOT",
+            "changePct": null,
+            "isNew": false
+          },
+          {
+            "ticker": "YUMC",
+            "changePct": -5.6,
+            "isNew": false
+          }
+        ],
+        "exits": []
+      },
+      "beforeText": "Pas encore suivi",
+      "afterText": "13 positions · CACC (-12,8 % d’actions) · CRM · CVNA (367,3 % d’actions) · DE · GOOG(L) · HTHT (-8,1 % d’actions) · IBKR (-26 % d’actions) · META (-4,5 % d’actions) · MORN · MSFT (31,2 % d’actions)",
+      "beforePeriod": null,
+      "period": "2026-06-30",
+      "scope": "Déclaration 13F · positions longues publiées, hors options · publication différée",
+      "unit": "",
+      "sourceUrl": "https://foliofact.com/funds/rv-capital",
+      "previousSourceUrl": null,
+      "checkedAt": "2026-10-16T07:08:27.209574+00:00",
+      "tool": "/portefeuilles-investisseurs",
+      "angle": "Quelles nouvelles positions, sorties et variations du nombre d’actions sont déclarées ? Un changement de poids ne prouve pas un achat ou une vente.",
+      "draft": "Une nouvelle donnée sourcée est disponible : 13 positions · CACC (-12,8 % d’actions) · CRM · CVNA (367,3 % d’actions) · DE · GOOG(L) · HTHT (-8,1 % d’actions) · IBKR (-26 % d’actions) · META (-4,5 % d’actions) · MORN · MSFT (31,2 % d’actions).\n\nRobert Vinall\nPérimètre : Déclaration 13F · positions longues publiées, hors options · publication différée\nObservation actuelle : 2026-06-30\n\nQuelles nouvelles positions, sorties et variations du nombre d’actions sont déclarées ? Un changement de poids ne prouve pas un achat ou une vente.",
+      "reason": "Changement d’une donnée publiée, à périmètre comparable."
+    },
+    {
+      "id": "3abf800114e805e669ff570f",
+      "family": "investisseurs",
+      "entity": "dorsey",
+      "label": "Pat Dorsey",
+      "field": "filing",
+      "fieldLabel": "Positions et mouvements déclarés",
+      "title": "Pat Dorsey : nouvelle donnée suivie",
+      "kind": "new",
+      "priority": "high",
+      "detectedAt": "2026-10-16T07:55:57.580Z",
+      "before": null,
+      "after": {
+        "positions": [
+          {
+            "ticker": "AER",
+            "changePct": -31.7,
+            "isNew": false
+          },
+          {
+            "ticker": "APP",
+            "changePct": 38.6,
+            "isNew": false
+          },
+          {
+            "ticker": "ASML",
+            "changePct": -7.1,
+            "isNew": false
+          },
+          {
+            "ticker": "BKNG",
+            "changePct": 4409.2,
+            "isNew": false
+          },
+          {
+            "ticker": "DHR",
+            "changePct": 7.9,
+            "isNew": false
+          },
+          {
+            "ticker": "LYV",
+            "changePct": 7.9,
+            "isNew": false
+          },
+          {
+            "ticker": "META",
+            "changePct": 23.6,
+            "isNew": false
+          },
+          {
+            "ticker": "RPRX",
+            "changePct": 7.9,
+            "isNew": false
+          },
+          {
+            "ticker": "SPGI",
+            "changePct": 42.1,
+            "isNew": false
+          },
+          {
+            "ticker": "SUNB",
+            "changePct": -47.8,
+            "isNew": false
+          },
+          {
+            "ticker": "UBER",
+            "changePct": 61.6,
+            "isNew": false
+          }
+        ],
+        "exits": []
+      },
+      "beforeText": "Pas encore suivi",
+      "afterText": "11 positions · AER (-31,7 % d’actions) · APP (38,6 % d’actions) · ASML (-7,1 % d’actions) · BKNG (4 409,2 % d’actions) · DHR (7,9 % d’actions) · LYV (7,9 % d’actions) · META (23,6 % d’actions) · RPRX (7,9 % d’actions) · SPGI (42,1 % d’actions) · SUNB (-47,8 % d’actions)",
+      "beforePeriod": null,
+      "period": "2026-06-30",
+      "scope": "Déclaration 13F · positions longues publiées, hors options · publication différée",
+      "unit": "",
+      "sourceUrl": "https://foliofact.com/funds/dorsey-asset-management",
+      "previousSourceUrl": null,
+      "checkedAt": "2026-10-16T07:08:13.933727+00:00",
+      "tool": "/portefeuilles-investisseurs",
+      "angle": "Quelles nouvelles positions, sorties et variations du nombre d’actions sont déclarées ? Un changement de poids ne prouve pas un achat ou une vente.",
+      "draft": "Une nouvelle donnée sourcée est disponible : 11 positions · AER (-31,7 % d’actions) · APP (38,6 % d’actions) · ASML (-7,1 % d’actions) · BKNG (4 409,2 % d’actions) · DHR (7,9 % d’actions) · LYV (7,9 % d’actions) · META (23,6 % d’actions) · RPRX (7,9 % d’actions) · SPGI (42,1 % d’actions) · SUNB (-47,8 % d’actions).\n\nPat Dorsey\nPérimètre : Déclaration 13F · positions longues publiées, hors options · publication différée\nObservation actuelle : 2026-06-30\n\nQuelles nouvelles positions, sorties et variations du nombre d’actions sont déclarées ? Un changement de poids ne prouve pas un achat ou une vente.",
+      "reason": "Changement d’une donnée publiée, à périmètre comparable."
+    },
+    {
+      "id": "74068cb0be357dd5db1a179f",
+      "family": "investisseurs",
+      "entity": "gavin-baker",
+      "label": "Gavin Baker",
+      "field": "filing",
+      "fieldLabel": "Positions et mouvements déclarés",
+      "title": "Gavin Baker : nouvelle donnée suivie",
+      "kind": "new",
+      "priority": "high",
+      "detectedAt": "2026-10-16T07:55:57.580Z",
+      "before": null,
+      "after": {
+        "positions": [
+          {
+            "ticker": "ACVA",
+            "changePct": 1.7,
+            "isNew": false
+          },
+          {
+            "ticker": "AFRM",
+            "changePct": 6.6,
+            "isNew": false
+          },
+          {
+            "ticker": "AKAM",
+            "changePct": 33.4,
+            "isNew": false
+          },
+          {
+            "ticker": "ALAB",
+            "changePct": -63.8,
+            "isNew": false
+          },
+          {
+            "ticker": "AMBQ",
+            "changePct": 1.7,
+            "isNew": false
+          },
+          {
+            "ticker": "AMZN",
+            "changePct": 1.7,
+            "isNew": false
+          },
+          {
+            "ticker": "APH",
+            "changePct": null,
+            "isNew": true
+          },
+          {
+            "ticker": "BTGO",
+            "changePct": 1.7,
+            "isNew": false
+          },
+          {
+            "ticker": "CBRS",
+            "changePct": null,
+            "isNew": true
+          },
+          {
+            "ticker": "CIEN",
+            "changePct": 1.7,
+            "isNew": false
+          },
+          {
+            "ticker": "CIFR",
+            "changePct": null,
+            "isNew": true
+          },
+          {
+            "ticker": "COHR",
+            "changePct": 1.7,
+            "isNew": false
+          },
+          {
+            "ticker": "COMP",
+            "changePct": 1.7,
+            "isNew": false
+          },
+          {
+            "ticker": "CRDO",
+            "changePct": 3.5,
+            "isNew": false
+          },
+          {
+            "ticker": "CRWV",
+            "changePct": 162.2,
+            "isNew": false
+          },
+          {
+            "ticker": "DKS",
+            "changePct": -17.1,
+            "isNew": false
+          },
+          {
+            "ticker": "EQPT",
+            "changePct": 1.7,
+            "isNew": false
+          },
+          {
+            "ticker": "FERG",
+            "changePct": 1,
+            "isNew": false
+          },
+          {
+            "ticker": "FRVO",
+            "changePct": null,
+            "isNew": true
+          },
+          {
+            "ticker": "GOOG(L)",
+            "changePct": -12,
+            "isNew": false
+          },
+          {
+            "ticker": "GTLB",
+            "changePct": null,
+            "isNew": true
+          },
+          {
+            "ticker": "INIO",
+            "changePct": null,
+            "isNew": true
+          },
+          {
+            "ticker": "INTC",
+            "changePct": 1.5,
+            "isNew": false
+          },
+          {
+            "ticker": "IOT",
+            "changePct": null,
+            "isNew": true
+          },
+          {
+            "ticker": "MA",
+            "changePct": 88.8,
+            "isNew": false
+          },
+          {
+            "ticker": "META",
+            "changePct": null,
+            "isNew": true
+          },
+          {
+            "ticker": "MU",
+            "changePct": -6.5,
+            "isNew": false
+          },
+          {
+            "ticker": "NBIS",
+            "changePct": 1.7,
+            "isNew": false
+          },
+          {
+            "ticker": "NOK",
+            "changePct": 1.7,
+            "isNew": false
+          },
+          {
+            "ticker": "NTRA",
+            "changePct": null,
+            "isNew": true
+          },
+          {
+            "ticker": "NVDA",
+            "changePct": 0.1,
+            "isNew": false
+          },
+          {
+            "ticker": "PANW",
+            "changePct": 56.1,
+            "isNew": false
+          },
+          {
+            "ticker": "PDFS",
+            "changePct": null,
+            "isNew": true
+          },
+          {
+            "ticker": "QNT",
+            "changePct": null,
+            "isNew": true
+          },
+          {
+            "ticker": "ROG",
+            "changePct": 1.7,
+            "isNew": false
+          },
+          {
+            "ticker": "SMTC",
+            "changePct": 1.7,
+            "isNew": false
+          },
+          {
+            "ticker": "SPCX",
+            "changePct": null,
+            "isNew": true
+          },
+          {
+            "ticker": "TBLA",
+            "changePct": 1.7,
+            "isNew": false
+          },
+          {
+            "ticker": "TSLA",
+            "changePct": 1.7,
+            "isNew": false
+          },
+          {
+            "ticker": "TTAN",
+            "changePct": null,
+            "isNew": true
+          },
+          {
+            "ticker": "TWLO",
+            "changePct": -21.8,
+            "isNew": false
+          },
+          {
+            "ticker": "U",
+            "changePct": -17.3,
+            "isNew": false
+          },
+          {
+            "ticker": "VECO",
+            "changePct": 1.7,
+            "isNew": false
+          },
+          {
+            "ticker": "W",
+            "changePct": -41,
+            "isNew": false
+          },
+          {
+            "ticker": "WIX",
+            "changePct": 124.2,
+            "isNew": false
+          },
+          {
+            "ticker": "WRBY",
+            "changePct": 1.7,
+            "isNew": false
+          }
+        ],
+        "exits": [
+          "AVAV",
+          "AXON",
+          "CHYM",
+          "ECHO",
+          "FROG",
+          "GFS",
+          "HUBS",
+          "LITE",
+          "RBLX",
+          "RBRK",
+          "RKT",
+          "RL",
+          "SNOW",
+          "SNPS",
+          "V",
+          "VST",
+          "WING",
+          "ZM"
+        ]
+      },
+      "beforeText": "Pas encore suivi",
+      "afterText": "46 positions · ACVA (1,7 % d’actions) · AFRM (6,6 % d’actions) · AKAM (33,4 % d’actions) · ALAB (-63,8 % d’actions) · AMBQ (1,7 % d’actions) · AMZN (1,7 % d’actions) · APH · BTGO (1,7 % d’actions) · CBRS · CIEN (1,7 % d’actions) · Sorties : AVAV, AXON, CHYM, ECHO, FROG, GFS, HUBS, LITE, RBLX, RBRK, RKT, RL, SNOW, SNPS, V, VST, WING, ZM",
+      "beforePeriod": null,
+      "period": "2026-06-30",
+      "scope": "Déclaration 13F · positions longues publiées, hors options · publication différée",
+      "unit": "",
+      "sourceUrl": "https://foliofact.com/funds/atreides-management",
+      "previousSourceUrl": null,
+      "checkedAt": "2026-10-16T07:09:09.167129+00:00",
+      "tool": "/portefeuilles-investisseurs",
+      "angle": "Quelles nouvelles positions, sorties et variations du nombre d’actions sont déclarées ? Un changement de poids ne prouve pas un achat ou une vente.",
+      "draft": "Une nouvelle donnée sourcée est disponible : 46 positions · ACVA (1,7 % d’actions) · AFRM (6,6 % d’actions) · AKAM (33,4 % d’actions) · ALAB (-63,8 % d’actions) · AMBQ (1,7 % d’actions) · AMZN (1,7 % d’actions) · APH · BTGO (1,7 % d’actions) · CBRS · CIEN (1,7 % d’actions) · Sorties : AVAV, AXON, CHYM, ECHO, FROG, GFS, HUBS, LITE, RBLX, RBRK, RKT, RL, SNOW, SNPS, V, VST, WING, ZM.\n\nGavin Baker\nPérimètre : Déclaration 13F · positions longues publiées, hors options · publication différée\nObservation actuelle : 2026-06-30\n\nQuelles nouvelles positions, sorties et variations du nombre d’actions sont déclarées ? Un changement de poids ne prouve pas un achat ou une vente.",
+      "reason": "Changement d’une donnée publiée, à périmètre comparable."
+    },
+    {
+      "id": "7c0d1a44c83f4117ffe1355e",
+      "family": "investisseurs",
+      "entity": "morfit",
+      "label": "Mason Morfit",
+      "field": "filing",
+      "fieldLabel": "Positions et mouvements déclarés",
+      "title": "Mason Morfit : nouvelle donnée suivie",
+      "kind": "new",
+      "priority": "high",
+      "detectedAt": "2026-10-16T07:55:57.580Z",
+      "before": null,
+      "after": {
+        "positions": [
+          {
+            "ticker": "AMZN",
+            "changePct": 2,
+            "isNew": false
+          },
+          {
+            "ticker": "BLK",
+            "changePct": 6.5,
+            "isNew": false
+          },
+          {
+            "ticker": "CBRE",
+            "changePct": 323,
+            "isNew": false
+          },
+          {
+            "ticker": "CRM",
+            "changePct": null,
+            "isNew": false
+          },
+          {
+            "ticker": "KKR",
+            "changePct": 8.5,
+            "isNew": false
+          },
+          {
+            "ticker": "LLYV.{A,K}",
+            "changePct": null,
+            "isNew": false
+          },
+          {
+            "ticker": "LYV",
+            "changePct": -51.6,
+            "isNew": false
+          },
+          {
+            "ticker": "MDB",
+            "changePct": -84,
+            "isNew": false
+          },
+          {
+            "ticker": "META",
+            "changePct": null,
+            "isNew": false
+          },
+          {
+            "ticker": "PAYP",
+            "changePct": null,
+            "isNew": true
+          },
+          {
+            "ticker": "RBLX",
+            "changePct": -46.2,
+            "isNew": false
+          },
+          {
+            "ticker": "RKT",
+            "changePct": 47.7,
+            "isNew": false
+          },
+          {
+            "ticker": "SPOT",
+            "changePct": 46.9,
+            "isNew": false
+          },
+          {
+            "ticker": "SSD",
+            "changePct": -40.6,
+            "isNew": false
+          },
+          {
+            "ticker": "TOST",
+            "changePct": 9.6,
+            "isNew": false
+          },
+          {
+            "ticker": "V",
+            "changePct": null,
+            "isNew": false
+          },
+          {
+            "ticker": "WIX",
+            "changePct": null,
+            "isNew": false
+          }
+        ],
+        "exits": [
+          "DIS"
+        ]
+      },
+      "beforeText": "Pas encore suivi",
+      "afterText": "17 positions · AMZN (2 % d’actions) · BLK (6,5 % d’actions) · CBRE (323 % d’actions) · CRM · KKR (8,5 % d’actions) · LLYV.{A,K} · LYV (-51,6 % d’actions) · MDB (-84 % d’actions) · META · PAYP · Sorties : DIS",
+      "beforePeriod": null,
+      "period": "2026-06-30",
+      "scope": "Déclaration 13F · positions longues publiées, hors options · publication différée",
+      "unit": "",
+      "sourceUrl": "https://foliofact.com/funds/valueact-capital",
+      "previousSourceUrl": null,
+      "checkedAt": "2026-10-16T07:08:01.426754+00:00",
+      "tool": "/portefeuilles-investisseurs",
+      "angle": "Quelles nouvelles positions, sorties et variations du nombre d’actions sont déclarées ? Un changement de poids ne prouve pas un achat ou une vente.",
+      "draft": "Une nouvelle donnée sourcée est disponible : 17 positions · AMZN (2 % d’actions) · BLK (6,5 % d’actions) · CBRE (323 % d’actions) · CRM · KKR (8,5 % d’actions) · LLYV.{A,K} · LYV (-51,6 % d’actions) · MDB (-84 % d’actions) · META · PAYP · Sorties : DIS.\n\nMason Morfit\nPérimètre : Déclaration 13F · positions longues publiées, hors options · publication différée\nObservation actuelle : 2026-06-30\n\nQuelles nouvelles positions, sorties et variations du nombre d’actions sont déclarées ? Un changement de poids ne prouve pas un achat ou une vente.",
+      "reason": "Changement d’une donnée publiée, à périmètre comparable."
+    },
+    {
+      "id": "b01def0bea88d2f60f8cfa81",
+      "family": "investisseurs",
+      "entity": "marks",
+      "label": "Howard Marks",
+      "field": "filing",
+      "fieldLabel": "Positions et mouvements déclarés",
+      "title": "Howard Marks : nouvelle donnée suivie",
+      "kind": "new",
+      "priority": "high",
+      "detectedAt": "2026-10-16T07:55:57.580Z",
+      "before": null,
+      "after": {
+        "positions": [
+          {
+            "ticker": "AD",
+            "changePct": -3.8,
+            "isNew": false
+          },
+          {
+            "ticker": "AERO",
+            "changePct": null,
+            "isNew": false
+          },
+          {
+            "ticker": "ALVO",
+            "changePct": -59.2,
+            "isNew": false
+          },
+          {
+            "ticker": "ALVOW",
+            "changePct": null,
+            "isNew": false
+          },
+          {
+            "ticker": "AU",
+            "changePct": -1.4,
+            "isNew": false
+          },
+          {
+            "ticker": "B",
+            "changePct": 22.1,
+            "isNew": false
+          },
+          {
+            "ticker": "BATL",
+            "changePct": null,
+            "isNew": false
+          },
+          {
+            "ticker": "BLCO",
+            "changePct": 1.7,
+            "isNew": false
+          },
+          {
+            "ticker": "BMM",
+            "changePct": null,
+            "isNew": false
+          },
+          {
+            "ticker": "BTAI",
+            "changePct": 472.3,
+            "isNew": false
+          },
+          {
+            "ticker": "CORZ",
+            "changePct": -46.6,
+            "isNew": false
+          },
+          {
+            "ticker": "CX",
+            "changePct": -96.4,
+            "isNew": false
+          },
+          {
+            "ticker": "DPC",
+            "changePct": null,
+            "isNew": true
+          },
+          {
+            "ticker": "EMBJ",
+            "changePct": -1.8,
+            "isNew": false
+          },
+          {
+            "ticker": "EXE",
+            "changePct": null,
+            "isNew": false
+          },
+          {
+            "ticker": "FCX",
+            "changePct": -1.6,
+            "isNew": false
+          },
+          {
+            "ticker": "GTX",
+            "changePct": -48,
+            "isNew": false
+          },
+          {
+            "ticker": "INDV",
+            "changePct": -12.3,
+            "isNew": false
+          },
+          {
+            "ticker": "ITUB",
+            "changePct": -1.7,
+            "isNew": false
+          },
+          {
+            "ticker": "KRC",
+            "changePct": null,
+            "isNew": false
+          },
+          {
+            "ticker": "KRSP",
+            "changePct": null,
+            "isNew": false
+          },
+          {
+            "ticker": "LBTYA",
+            "changePct": null,
+            "isNew": false
+          },
+          {
+            "ticker": "LILA",
+            "changePct": null,
+            "isNew": false
+          },
+          {
+            "ticker": "LILAK",
+            "changePct": 31.5,
+            "isNew": false
+          },
+          {
+            "ticker": "MATW",
+            "changePct": null,
+            "isNew": true
+          },
+          {
+            "ticker": "MINE",
+            "changePct": null,
+            "isNew": false
+          },
+          {
+            "ticker": "MMYT",
+            "changePct": null,
+            "isNew": true
+          },
+          {
+            "ticker": "MX",
+            "changePct": -47.4,
+            "isNew": false
+          },
+          {
+            "ticker": "NNBR",
+            "changePct": null,
+            "isNew": true
+          },
+          {
+            "ticker": "OCSL",
+            "changePct": 325,
+            "isNew": false
+          },
+          {
+            "ticker": "OPI",
+            "changePct": null,
+            "isNew": true
+          },
+          {
+            "ticker": "QMCO",
+            "changePct": null,
+            "isNew": true
+          },
+          {
+            "ticker": "RWAY",
+            "changePct": null,
+            "isNew": false
+          },
+          {
+            "ticker": "SE",
+            "changePct": null,
+            "isNew": true
+          },
+          {
+            "ticker": "SGRY",
+            "changePct": null,
+            "isNew": true
+          },
+          {
+            "ticker": "SHAZ",
+            "changePct": -71.1,
+            "isNew": false
+          },
+          {
+            "ticker": "SMPL",
+            "changePct": 6.6,
+            "isNew": false
+          },
+          {
+            "ticker": "SMRT",
+            "changePct": null,
+            "isNew": false
+          },
+          {
+            "ticker": "STKL",
+            "changePct": -99.6,
+            "isNew": false
+          },
+          {
+            "ticker": "TAC",
+            "changePct": -53.2,
+            "isNew": false
+          },
+          {
+            "ticker": "TDS",
+            "changePct": 23.1,
+            "isNew": false
+          },
+          {
+            "ticker": "TEO",
+            "changePct": -92.8,
+            "isNew": false
+          },
+          {
+            "ticker": "TLN",
+            "changePct": null,
+            "isNew": false
+          },
+          {
+            "ticker": "TRMD",
+            "changePct": -14.7,
+            "isNew": false
+          },
+          {
+            "ticker": "TX",
+            "changePct": -1.8,
+            "isNew": false
+          },
+          {
+            "ticker": "VNOM",
+            "changePct": null,
+            "isNew": false
+          },
+          {
+            "ticker": "VSAT",
+            "changePct": null,
+            "isNew": true
+          },
+          {
+            "ticker": "XP",
+            "changePct": -1.7,
+            "isNew": false
+          },
+          {
+            "ticker": "YPF",
+            "changePct": 11.8,
+            "isNew": false
+          }
+        ],
+        "exits": [
+          "BKLN",
+          "CBL",
+          "CRDO",
+          "ECVT",
+          "HDB",
+          "ILLUU",
+          "NOK",
+          "NRG",
+          "OPTU",
+          "PBR",
+          "PDD",
+          "Unmapped CUSIP",
+          "Unmapped CUSIP",
+          "Unmapped CUSIP",
+          "Unmapped CUSIP",
+          "Unmapped CUSIP",
+          "Unmapped CUSIP",
+          "Unmapped CUSIP",
+          "Unmapped CUSIP",
+          "Unmapped CUSIP",
+          "Unmapped CUSIP",
+          "Unmapped CUSIP",
+          "Unmapped CUSIP",
+          "Unmapped CUSIP",
+          "Unmapped CUSIP",
+          "Unmapped CUSIP",
+          "Unmapped CUSIP",
+          "Unmapped CUSIP",
+          "Unmapped CUSIP",
+          "Unmapped CUSIP",
+          "Unmapped CUSIP",
+          "Unmapped CUSIP",
+          "Unmapped CUSIP",
+          "Unmapped CUSIP",
+          "Unmapped CUSIP",
+          "Unmapped CUSIP",
+          "Unmapped CUSIP",
+          "Unmapped CUSIP",
+          "Unmapped CUSIP",
+          "Unmapped CUSIP"
+        ]
+      },
+      "beforeText": "Pas encore suivi",
+      "afterText": "49 positions · AD (-3,8 % d’actions) · AERO · ALVO (-59,2 % d’actions) · ALVOW · AU (-1,4 % d’actions) · B (22,1 % d’actions) · BATL · BLCO (1,7 % d’actions) · BMM · BTAI (472,3 % d’actions) · Sorties : BKLN, CBL, CRDO, ECVT, HDB, ILLUU, NOK, NRG, OPTU, PBR, PDD, Unmapped CUSIP, Unmapped CUSIP, Unmapped CUSIP, Unmapped CUSIP, Unmapped CUSIP, Unmapped CUSIP, Unmapped CUSIP, Unmapped CUSIP, Unmapped CUSIP, Unmapped CUSIP, Unmapped CUSIP, Unmapped CUSIP, Unmapped CUSIP, Unmapped CUSIP, Unmapped CUSIP, Unmapped CUSIP, Unmapped CUSIP, Unmapped CUSIP, Unmapped CUSIP, Unmapped CUSIP, Unmapped CUSIP, Unmapped CUSIP, Unmapped CUSIP, Unmapped CUSIP, Unmapped CUSIP, Unmapped CUSIP, Unmapped CUSIP, Unmapped CUSIP, Unmapped CUSIP",
+      "beforePeriod": null,
+      "period": "2026-06-30",
+      "scope": "Déclaration 13F · positions longues publiées, hors options · publication différée",
+      "unit": "",
+      "sourceUrl": "https://foliofact.com/funds/oaktree-capital-management",
+      "previousSourceUrl": null,
+      "checkedAt": "2026-10-16T07:08:44.568953+00:00",
+      "tool": "/portefeuilles-investisseurs",
+      "angle": "Quelles nouvelles positions, sorties et variations du nombre d’actions sont déclarées ? Un changement de poids ne prouve pas un achat ou une vente.",
+      "draft": "Une nouvelle donnée sourcée est disponible : 49 positions · AD (-3,8 % d’actions) · AERO · ALVO (-59,2 % d’actions) · ALVOW · AU (-1,4 % d’actions) · B (22,1 % d’actions) · BATL · BLCO (1,7 % d’actions) · BMM · BTAI (472,3 % d’actions) · Sorties : BKLN, CBL, CRDO, ECVT, HDB, ILLUU, NOK, NRG, OPTU, PBR, PDD, Unmapped CUSIP, Unmapped CUSIP, Unmapped CUSIP, Unmapped CUSIP, Unmapped CUSIP, Unmapped CUSIP, Unmapped CUSIP, Unmapped CUSIP, Unmapped CUSIP, Unmapped CUSIP, Unmapped CUSIP, Unmapped CUSIP, Unmapped CUSIP, Unmapped CUSIP, Unmapped CUSIP, Unmapped CUSIP, Unmapped CUSIP, Unmapped CUSIP, Unmapped CUSIP, Unmapped CUSIP, Unmapped CUSIP, Unmapped CUSIP, Unmapped CUSIP, Unmapped CUSIP, Unmapped CUSIP, Unmapped CUSIP, Unmapped CUSIP, Unmapped CUSIP, Unmapped CUSIP.\n\nHoward Marks\nPérimètre : Déclaration 13F · positions longues publiées, hors options · publication différée\nObservation actuelle : 2026-06-30\n\nQuelles nouvelles positions, sorties et variations du nombre d’actions sont déclarées ? Un changement de poids ne prouve pas un achat ou une vente.",
+      "reason": "Changement d’une donnée publiée, à périmètre comparable."
+    },
+    {
+      "id": "b2c5eea3f1bbafb57eaf0c75",
+      "family": "investisseurs",
+      "entity": "watsa",
+      "label": "Prem Watsa",
+      "field": "filing",
+      "fieldLabel": "Positions et mouvements déclarés",
+      "title": "Prem Watsa : nouvelle donnée suivie",
+      "kind": "new",
+      "priority": "high",
+      "detectedAt": "2026-10-16T07:55:57.580Z",
+      "before": null,
+      "after": {
+        "positions": [
+          {
+            "ticker": "ATS",
+            "changePct": null,
+            "isNew": false
+          },
+          {
+            "ticker": "BNS",
+            "changePct": null,
+            "isNew": false
+          },
+          {
+            "ticker": "BRK.{A,B}",
+            "changePct": null,
+            "isNew": false
+          },
+          {
+            "ticker": "BRSL",
+            "changePct": null,
+            "isNew": false
+          },
+          {
+            "ticker": "CIGI",
+            "changePct": null,
+            "isNew": false
+          },
+          {
+            "ticker": "CLF",
+            "changePct": null,
+            "isNew": false
+          },
+          {
+            "ticker": "CNI",
+            "changePct": null,
+            "isNew": false
+          },
+          {
+            "ticker": "CPAC",
+            "changePct": null,
+            "isNew": true
+          },
+          {
+            "ticker": "CPRI",
+            "changePct": null,
+            "isNew": false
+          },
+          {
+            "ticker": "CVS",
+            "changePct": null,
+            "isNew": false
+          },
+          {
+            "ticker": "DPZ",
+            "changePct": null,
+            "isNew": true
+          },
+          {
+            "ticker": "EA",
+            "changePct": null,
+            "isNew": true
+          },
+          {
+            "ticker": "EGO",
+            "changePct": null,
+            "isNew": true
+          },
+          {
+            "ticker": "GM",
+            "changePct": null,
+            "isNew": false
+          },
+          {
+            "ticker": "GTX",
+            "changePct": -44.3,
+            "isNew": false
+          },
+          {
+            "ticker": "HP",
+            "changePct": null,
+            "isNew": false
+          },
+          {
+            "ticker": "JNJ",
+            "changePct": null,
+            "isNew": false
+          },
+          {
+            "ticker": "KHC",
+            "changePct": 171.6,
+            "isNew": false
+          },
+          {
+            "ticker": "KSPI",
+            "changePct": null,
+            "isNew": true
+          },
+          {
+            "ticker": "LULU",
+            "changePct": null,
+            "isNew": false
+          },
+          {
+            "ticker": "MRK",
+            "changePct": null,
+            "isNew": false
+          },
+          {
+            "ticker": "MX",
+            "changePct": -50,
+            "isNew": false
+          },
+          {
+            "ticker": "ORLA",
+            "changePct": 83.5,
+            "isNew": false
+          },
+          {
+            "ticker": "PENN",
+            "changePct": null,
+            "isNew": false
+          },
+          {
+            "ticker": "PFE",
+            "changePct": 5.3,
+            "isNew": false
+          },
+          {
+            "ticker": "RCI",
+            "changePct": null,
+            "isNew": true
+          },
+          {
+            "ticker": "TAP",
+            "changePct": 38.7,
+            "isNew": false
+          },
+          {
+            "ticker": "TSM",
+            "changePct": null,
+            "isNew": false
+          },
+          {
+            "ticker": "UA",
+            "changePct": null,
+            "isNew": false
+          },
+          {
+            "ticker": "UAA",
+            "changePct": 5.5,
+            "isNew": false
+          },
+          {
+            "ticker": "WBD",
+            "changePct": 41.5,
+            "isNew": false
+          },
+          {
+            "ticker": "WEN",
+            "changePct": 144.9,
+            "isNew": false
+          }
+        ],
+        "exits": [
+          "BB",
+          "KW",
+          "PRTH"
+        ]
+      },
+      "beforeText": "Pas encore suivi",
+      "afterText": "32 positions · ATS · BNS · BRK.{A,B} · BRSL · CIGI · CLF · CNI · CPAC · CPRI · CVS · Sorties : BB, KW, PRTH",
+      "beforePeriod": null,
+      "period": "2026-06-30",
+      "scope": "Déclaration 13F · positions longues publiées, hors options · publication différée",
+      "unit": "",
+      "sourceUrl": "https://foliofact.com/funds/fairfax-financial-holdings",
+      "previousSourceUrl": null,
+      "checkedAt": "2026-10-16T07:08:57.073261+00:00",
+      "tool": "/portefeuilles-investisseurs",
+      "angle": "Quelles nouvelles positions, sorties et variations du nombre d’actions sont déclarées ? Un changement de poids ne prouve pas un achat ou une vente.",
+      "draft": "Une nouvelle donnée sourcée est disponible : 32 positions · ATS · BNS · BRK.{A,B} · BRSL · CIGI · CLF · CNI · CPAC · CPRI · CVS · Sorties : BB, KW, PRTH.\n\nPrem Watsa\nPérimètre : Déclaration 13F · positions longues publiées, hors options · publication différée\nObservation actuelle : 2026-06-30\n\nQuelles nouvelles positions, sorties et variations du nombre d’actions sont déclarées ? Un changement de poids ne prouve pas un achat ou une vente.",
+      "reason": "Changement d’une donnée publiée, à périmètre comparable."
+    },
     {
       "id": "2977858756299317a8dd6ec7",
       "family": "etf",
