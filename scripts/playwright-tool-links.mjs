@@ -5,6 +5,7 @@ import { mkdir } from 'node:fs/promises'
 import { instrumentOption } from '../src/data/asset-selection.js'
 import { ETFS } from '../src/data/etf-cards.js'
 import { DUELS } from '../src/pages/portfolio-duels/data.js'
+import { CATALOG } from '../src/data/duel-assets.js'
 import { ASSETS } from '../src/data/market-history.js'
 import links from '../src/data/tool-links.json' with {type:'json'}
 
@@ -39,15 +40,31 @@ try {
       const link=links[isin].find(l=>l.kind===kind)
       await page.goto(base+link.href)
       if(kind==='duel') {
-        const id=new URL(link.href,'https://test.invalid').searchParams.get('duel')
+        const params=new URL(link.href,'https://test.invalid').searchParams
         await page.locator('#pd-tweet').waitFor({state:'attached'})
-        assert.equal(await page.locator('#pd-select').getAttribute('data-value'),String(DUELS.findIndex(d=>d.id===id)))
+        if(params.has('asset')) {
+          const asset=CATALOG.find(a=>a.id===params.get('asset'))
+          assert.equal(asset?.isin,isin,'The composition link must retain the exact share')
+          assert.equal(await page.getByRole('button',{name:'Composer A et B',exact:true}).getAttribute('aria-pressed'),'true')
+          assert.equal(await page.getByRole('group',{name:'Actif 1 du portefeuille A',exact:true}).getAttribute('data-value'),asset.id)
+          assert.equal(await page.getByLabel('Poids actif 1 du portefeuille A',{exact:true}).inputValue(),'100')
+        } else {
+          const id=params.get('duel')
+          assert.equal(await page.locator('#pd-select').getAttribute('data-value'),String(DUELS.findIndex(d=>d.id===id)))
+        }
         assert((await page.locator('#pd-tweet').inputValue()).includes(card.name))
         const previewToggle = page.getByRole('button',{name:'Aperçu',exact:true})
         if (await previewToggle.isVisible()) await previewToggle.click()
         await page.getByRole('tab',{name:'Image',exact:true}).click()
         await page.locator('.publication-preview img').first().waitFor({timeout:30000})
         await page.screenshot({path:`test-artifacts/tool-links/duel-${width}.png`,fullPage:true})
+        const prepared=links[isin].find(l=>l.kind==='duel'&&new URL(l.href,'https://test.invalid').searchParams.has('duel'))
+        if(prepared) {
+          await page.goto(base+prepared.href)
+          const id=new URL(prepared.href,'https://test.invalid').searchParams.get('duel')
+          assert.equal(await page.locator('#pd-select').getAttribute('data-value'),String(DUELS.findIndex(d=>d.id===id)))
+          assert((await page.locator('#pd-tweet').inputValue()).includes(card.name))
+        }
       } else if(kind==='comparison') {
         await page.locator('pre').waitFor({state:'attached'})
         assert((await page.locator('pre').textContent()).includes(isin))
