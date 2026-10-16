@@ -15,9 +15,10 @@ ROOT = Path(__file__).resolve().parents[1]
 CONFIG = [(r['equityPct'], r['productCode'], r['isin']) for r in json.loads((ROOT/'scripts/lifestrategy-sources.json').read_text())['instruments'] if r.get('enabled', True)]
 MONTHS = {'janvier': 1, 'février': 2, 'mars': 3, 'avril': 4, 'mai': 5, 'juin': 6,
           'juillet': 7, 'août': 8, 'septembre': 9, 'octobre': 10, 'novembre': 11, 'décembre': 12}
+MONTHS.update({'janv': 1, 'févr': 2, 'avr': 4, 'juil': 7, 'sept': 9, 'oct': 10, 'nov': 11, 'déc': 12})
 
 def french_date(value, now):
-    m = re.search(r'(\d{1,2}) (\w+) (\d{4})', value)
+    m = re.search(r'\b(\d{1,2})\s+(\w+)\.?\s+(\d{4})\b', value.casefold())
     if not m or m[2] not in MONTHS:
         raise ValueError('Missing French observation date')
     return document_date(dt.date(int(m[3]), MONTHS[m[2]], int(m[1])).isoformat(), now)
