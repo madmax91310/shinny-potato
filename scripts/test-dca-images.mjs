@@ -133,6 +133,13 @@ try {
   assert(await page.getByRole('button',{name:'Autre profil aléatoire',exact:true}).isDisabled())
   await page.getByRole('button',{name:'Effacer les filtres',exact:true}).click()
   await page.getByRole('button',{name:'Créer une participation',exact:true}).click()
+  // This export scenario uses one position; participation now preserves the
+  // previously saved random portfolio (including possible zero-weight lines).
+  while(await page.locator('.dca-position').count()>1){
+    const count=await page.locator('.dca-position').count()
+    await page.getByRole('button',{name:`Retirer la position ${count}`,exact:true}).click()
+  }
+  await page.getByLabel('Poids position 1',{exact:true}).fill('100')
   await page.getByLabel('Rechercher position 1',{exact:true}).fill('FR0000120073')
   await page.getByRole('group',{name:'Actif position 1',exact:true}).locator('[data-option][data-value="airliquide"]').click()
   await page.getByRole('group',{name:'Support position 1',exact:true}).locator('[data-option][data-value="FR0000120073"]').click()
