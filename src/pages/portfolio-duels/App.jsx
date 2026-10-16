@@ -42,7 +42,7 @@ function AllocationEditor({ label, lines, onChange }) {
         <label><span>{title}{role !== 'base' ? ' (facultatif)' : ' (obligatoire)'}</span>
           <ChoicePicker aria-label={`${title} du portefeuille ${label}`} value={line?.id ?? ''} onChange={(event) => setRole(role, event.target.value)}>
             {role !== 'base' && <option value="">Aucun</option>}
-            {CATALOG.filter((item) => item.role === role).map((item) => <option key={item.id} value={item.id}>{item.label} · {item.name}</option>)}
+            {CATALOG.filter((item) => item.role === role).map((item) => <option key={item.id} value={item.id}>{item.instrumentType === 'EQUITY' ? `Action · ${item.label}` : `${item.label} · ${item.name}`} </option>)}
           </ChoicePicker>
         </label>
         <label className="pd-weight"><span>Poids (%)</span><input aria-label={`Poids ${title.toLowerCase()} du portefeuille ${label}`} type="number" min="1" max="100" step="1" disabled={!line} value={line?.pct ?? ''} onChange={(event) => setWeight(line.id, event.target.value)} /></label>
@@ -128,7 +128,7 @@ function DuelWorkspace({ search }) {
 
   return (
     <div className="pd-scope">
-      <PageHeader title="Duel de portefeuilles" subtitle="Une base ETF, un complément et une thématique si tu le souhaites : compare deux constructions de portefeuille." />
+      <PageHeader title="Duel de portefeuilles" subtitle="Une base ETF, un complément (ETF ou action) et une thématique si tu le souhaites : compare deux constructions de portefeuille." />
       <ToolWorkspace renderImage={() => renderDuelImage(duel)} imageDisabled={!duel} imageAlt="Duel de portefeuilles">
       <section className="tool-settings">
       <Button variant="secondary" onClick={() => { setIndex(0); setMode('prepared'); setLeft(initialLeft); setRight(initialRight) }}>Réinitialiser les réglages</Button>

@@ -1,3 +1,4 @@
+import EQUITY_DUEL_RETURNS from './equity-duel-returns.json' with {type:'json'};
 import MONTHLY_DUEL_RETURNS from './monthly-duel-returns.json' with {type:'json'};
 import { RESOURCE_DUEL_CHOICES } from './resource-selections.js'
 import { NON_BOND_SHEETS } from './non-bond-expansion.js';
@@ -123,7 +124,8 @@ const extraFunds = [
 const stoxxIsin = 'FR0011550193'
 const stoxxEvidence = COMPARATOR_RETURN_EVIDENCE[stoxxIsin]
 const expansionFunds=[...NON_BOND_SHEETS.map(r=>({id:r.id,isin:r.isin,label:r.title,exposure:r.id,role:'complement',group:ROLES.complement,name:r.name,...getInstrumentDuelSeries(r.isin),note:r.whatToKnow})),{id:'world-islamic',isin:'IE00B27YCN58',label:'World Islamic',exposure:'world-islamic',role:'complement',group:ROLES.complement,name:getInstrumentName('IE00B27YCN58'),...getInstrumentDuelSeries('IE00B27YCN58'),note:'Rendements NAV de la part exacte, revenus réinvestis ; critères sectoriels et financiers de finance islamique.'}];
-export const CATALOG = [...expansionFunds, ...fundItems, ...extraFunds, {
+const equityItems = EQUITY_DUEL_RETURNS.map(item => ({...item, name: item.label, instrumentType: 'EQUITY', role: 'complement', group: 'Actions individuelles', exposure: item.id, basis: 'adjusted-price', note: 'Cours ajustés des dividendes et divisions ; rendements calculés entre clôtures de décembre, sur années complètes uniquement.'}))
+export const CATALOG = [...equityItems, ...expansionFunds, ...fundItems, ...extraFunds, {
   id: 'stoxx600_bnp', isin: stoxxIsin, name: getInstrumentName(stoxxIsin),
   role: 'complement', label: 'STOXX Europe 600', exposure: 'europe', group: ROLES.complement,
   currency: stoxxEvidence.currency, values: [null, null, null, ...COMPARATOR_RETURNS_BY_ISIN[stoxxIsin]],
