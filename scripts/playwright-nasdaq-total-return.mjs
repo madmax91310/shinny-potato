@@ -12,7 +12,7 @@ try {
   await page.goto(`${base}/${route}?asset=nasdaq100`,{waitUntil:'networkidle'})
   await page.locator('[data-option][data-value="nasdaq100"]').click()
   if(route!=='calculateur-investissement')await page.getByRole('button',{name:'🔄 Générer',exact:true}).click()
-  const text=await page.locator('pre').innerText()
+  const text=await page.locator(route==='calculateur-investissement' ? '[aria-label="Résultat de la simulation"]' : 'pre').innerText()
   assert.match(text,/dividendes bruts réinvestis/)
   assert(!/hors dividendes|NaN|undefined/.test(text),text)
   await page.evaluate(()=>{window.__painted=[];const original=CanvasRenderingContext2D.prototype.fillText;CanvasRenderingContext2D.prototype.fillText=function(text,...args){window.__painted.push(String(text));return original.call(this,text,...args)}})
