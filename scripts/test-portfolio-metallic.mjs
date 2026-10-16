@@ -69,6 +69,16 @@ try {
       const example = buildManualPortfolio([{id:'msci_world',pct:55},{id:'ftse_em_vanguard',pct:6},{id:'oblig_corp_vanguard',pct:39}], 'generaliste', [])
       check('selected-example', example, true)
       for (const asset of ASSETS) check(`single-${asset.id}`, buildManualPortfolio([{id:asset.id,pct:100}], 'generaliste', []))
+      // 3.05 and 3.0499999999999994 must not produce different labels after sorting.
+      const boundary = [27.95, 6.75, -9.13].map((value, index) => ({
+        ...ASSETS.find(a => a.id === 'fonds_euros'), name: `Arrondi ${index + 1}`,
+        pct: [20, 30, 50][index], calendarReturns: Object.fromEntries(YEARS.map(year => [year, value])),
+      }))
+      const reference = computeYearlyPerf(boundary)
+      for (const ordered of [boundary, boundary.slice().reverse(), [boundary[1], boundary[0], boundary[2]]]) {
+        if (JSON.stringify(computeYearlyPerf(ordered)) !== JSON.stringify(reference)) throw new Error('Order changed annual returns')
+        check('rounding-boundary', { ...example, selection: ordered })
+      }
       for (let i=0;i<30;i++) check(`auto-${i}`, generatePortfolio([], 'auto', 'auto'), i===0)
       const many = buildManualPortfolio(ASSETS.slice(0,12).map((a,i)=>({id:a.id,pct:i===11?12:8})), 'generaliste', [])
       check('twelve-holdings',many,true)
