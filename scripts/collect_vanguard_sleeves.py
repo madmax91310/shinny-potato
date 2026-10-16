@@ -25,7 +25,7 @@ def collect(c,now):
   'sectors':{'asOf':stamp,'basis':'fund','sourceUrl':url,'rows':rows},'note':'Fund-level underlying allocation; North America PDF uses the distributing class of the same unhedged physical fund.'}
 def main():
  ap=argparse.ArgumentParser();ap.add_argument('--apply',action='store_true');ap.add_argument('--output',type=Path,required=True);args=ap.parse_args();now=dt.datetime.now(UTC)
- path=ROOT/'src/data/vanguard-equity-underliers.json';old=json.loads(path.read_text()) if path.exists() else {};errors=[]
+ path=ROOT/'src/data/vanguard-equity-underliers.json';old=json.loads(path.read_text()) if path.exists() else {};errors=[];updated=[]
  def one(c):
   try:return collect(c,now),None
   except Exception as e:return None,{'isin':c[1],'error':str(e)}
@@ -34,8 +34,9 @@ def main():
    if error:errors.append(error);continue
    isin,r=value
    if any(r[f]['asOf']<old.get(isin,{}).get(f,{}).get('asOf','') for f in ['countries','sectors']):raise ValueError('Date regression')
-   old[isin]=r
+   old[isin]=r;updated.append(isin)
  if args.apply:write_json_atomic(path,old)
- write_json_atomic(args.output,{'updated':list(old),'errors':errors});print(json.dumps({'updated':list(old),'errors':errors}))
+ report={'updated':updated,'successes':[{'id':'vanguard-underlier:'+isin} for isin in updated],'errors':[{'id':'vanguard-underlier:'+e['isin'],'field':'Pays/secteurs du fonds sous-jacent',**e} for e in errors]}
+ write_json_atomic(args.output,report);print(json.dumps(report))
  if errors:raise SystemExit(1)
 if __name__=='__main__':main()

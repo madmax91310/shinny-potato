@@ -126,7 +126,8 @@ def main():
             if r[f]['asOf']<previous.get(isin,{}).get(f,{}).get('asOf',''):raise ValueError('Date regression '+isin)
         previous[isin]={**previous.get(isin,{}),**r}
     if args.apply:write_json_atomic(path,previous)
-    report={'checkedAt':now.isoformat(),'updated':list(fresh),'errors':errors}
+    report={'checkedAt':now.isoformat(),'updated':list(fresh),'successes':[{'id':'exposure-sleeve:'+isin} for isin in fresh],
+            'errors':[{'id':'exposure-sleeve:'+e.get('isin',e.get('source','unknown')),'field':'Pays/secteurs de la poche actions',**e} for e in errors]}
     write_json_atomic(args.output,report);print(json.dumps(report))
     if errors:raise SystemExit(1)
 if __name__=='__main__':main()

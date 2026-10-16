@@ -59,11 +59,11 @@ jobs:
         id: holdings
         continue-on-error: ${{ github.event_name != 'pull_request' }}
         run: python scripts/collect_dca_complete_holdings.py --apply --output "$RUNNER_TEMP/dca-complete-holdings.json"
-      - name: Collect exact equity sleeves and classifications
+      - name: "Collect observations: sleeves"
         id: sleeves
         continue-on-error: ${{ github.event_name != 'pull_request' }}
         run: python scripts/collect_exposure_sleeves.py --apply --output "$RUNNER_TEMP/exposure-sleeves.json"
-      - name: Collect Vanguard equity underliers
+      - name: "Collect observations: underliers"
         id: underliers
         continue-on-error: ${{ github.event_name != 'pull_request' }}
         run: python scripts/collect_vanguard_sleeves.py --apply --output "$RUNNER_TEMP/vanguard-sleeves.json"
