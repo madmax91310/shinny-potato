@@ -329,7 +329,9 @@ async function testPortfolioGenerator(page) {
     return Boolean(result && text.startsWith(`📈 ${result[1]} par an sur la période `)
       && text.includes('Voici sa répartition et le détail des performances simulées 👇'));
   };
-  const autoEditorialOk = autoPerformanceOk && dataLabelsOk && performanceHookOk(autoTweet) && !/La logique de l’ensemble|💡/.test(autoTweet);
+  // Utilities legitimately uses 💡 on its weighted asset line. Only reject
+  // the removed editorial heading, not the icon of a randomly selected ETF.
+  const autoEditorialOk = autoPerformanceOk && dataLabelsOk && performanceHookOk(autoTweet) && !/La logique de l’ensemble|^💡(?! \d+% )/m.test(autoTweet);
   // Un profil/palier fixé doit faire tourner toutes les constructions disponibles.
   await page.getByRole('group', { name: "Choisir un profil d'investisseur" }).getByRole('button', { name: 'Le Généraliste', exact: true }).click();
   await page.getByRole('group', { name: 'Choisir un niveau de risque cible' }).getByRole('button', { name: 'Équilibré', exact: true }).click();
