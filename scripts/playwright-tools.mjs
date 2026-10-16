@@ -139,6 +139,7 @@ async function testWorkspaceNavigation(page) {
   await etfPicker.getByRole('button', { name: 'Parcourir', exact: true }).click();
   await etfPicker.getByRole('button', { name: 'Monde', exact: true }).click();
   const worldOptions = ETFS.map(instrumentOption).filter(item => item.group === 'Monde');
+  await page.waitForFunction(ids=>ids.includes(document.querySelector('.asset-picker [data-selector]')?.dataset.value),worldOptions.map(item=>String(item.id)));
   checks.categoryClearsSearch = await etfPicker.getByRole('searchbox').count() === 0;
   const worldId = await etfPicker.locator('[data-selector]').getAttribute('data-value');
   checks.categorySelectsMatchingEtf = worldOptions.some(item => String(item.id) === worldId);
@@ -1226,6 +1227,7 @@ async function testAssetSelection(page) {
   await picker.getByRole('button', { name: 'Tout afficher', exact: true }).click();
   await picker.getByRole('button', { name: 'Parcourir', exact: true }).click();
   await picker.getByRole('button', { name: 'Émergents', exact: true }).click();
+  await page.waitForFunction(ids=>ids.includes(document.querySelector('.asset-picker [data-selector]')?.dataset.value),ETFS.map(instrumentOption).filter(item=>item.group==='Émergents').map(item=>String(item.id)));
   const emergingId = await picker.locator('[data-selector]').getAttribute('data-value');
   ok &&= ETFS.map(instrumentOption).some(item => item.id === emergingId && item.group === 'Émergents');
   await picker.getByRole('button', { name: 'Rechercher', exact: true }).click();
@@ -1234,8 +1236,10 @@ async function testAssetSelection(page) {
   await picker.getByRole('button', { name: 'Tout afficher', exact: true }).click();
   await choose(picker.locator('[data-selector]'), worldCard.id);
   const choices = picker.locator('[data-selector]');
+  const keyboardId=await choices.locator('[data-option]').nth(1).getAttribute('data-value');
   await choices.locator('[data-option]').nth(1).focus();
   await page.keyboard.press('Enter');
+  await page.waitForFunction(id=>document.querySelector('.asset-picker [data-selector]')?.dataset.value===id,keyboardId);
   ok &&= await choices.locator('[data-option]').nth(1).getAttribute('aria-pressed') === 'true';
   await picker.getByRole('button', { name: 'Éligibles PEA', exact: true }).click();
   const peaValues = await choices.locator('[data-option]').evaluateAll(nodes => nodes.map(node => node.dataset.value));

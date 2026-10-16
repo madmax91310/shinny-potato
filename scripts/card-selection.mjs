@@ -13,4 +13,5 @@ export async function choose(picker, choice) {
     await more.click()
   }
   await target.click()
+  await picker.waitFor({state:'visible'})
 }
