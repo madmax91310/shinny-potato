@@ -503,21 +503,23 @@ async function testPortfolioDuels(page) {
   await page.getByRole('button', { name: 'Composer A et B' }).click();
   valid &&= (await page.locator('.pd-editor-side').count()) === 2;
   valid &&= /10\s000 €/.test(await page.locator('#pd-tweet').inputValue());
-  await page.getByRole('spinbutton', { name: 'Poids base du portefeuille A' }).fill('65');
+  await page.getByRole('spinbutton', { name: 'Poids actif 1 du portefeuille A' }).fill('65');
   valid &&= await page.getByRole('alert').isVisible();
   valid &&= (await page.locator('.pd-card').count()) === 0;
-  await page.getByRole('spinbutton', { name: 'Poids base du portefeuille A' }).fill('80');
+  await page.getByRole('spinbutton', { name: 'Poids actif 1 du portefeuille A' }).fill('80');
   valid &&= (await page.locator('.pd-card').count()) === 2;
-  await choose(page.getByRole('group', { name: 'Complément du portefeuille A', exact: true }), '');
-  await page.getByRole('spinbutton', { name: 'Poids base du portefeuille A' }).fill('100');
-  valid &&= await page.getByRole('alert').isVisible();
-  valid &&= (await page.locator('.pd-card').count()) === 0;
-  await page.locator('summary').filter({ hasText: 'Thématique du portefeuille A' }).click();
-  await choose(page.getByRole('group', { name: 'Thématique du portefeuille A', exact: true }), 'sect_cyber_lg');
-  await page.getByRole('spinbutton', { name: 'Poids base du portefeuille A' }).fill('90');
+  await page.getByRole('button', { name: 'Retirer actif 2 du portefeuille A', exact: true }).click();
+  await page.getByRole('spinbutton', { name: 'Poids actif 1 du portefeuille A' }).fill('100');
+  valid &&= (await page.locator('.pd-card').count()) === 2;
+  await page.getByRole('button', { name: 'Ajouter un actif à A', exact: true }).click();
+  await choose(page.getByRole('group', { name: 'Actif 2 du portefeuille A', exact: true }), 'sect_cyber_lg');
+  await page.getByRole('spinbutton', { name: 'Poids actif 2 du portefeuille A' }).fill('10');
+  await page.getByRole('spinbutton', { name: 'Poids actif 1 du portefeuille A' }).fill('90');
   valid &&= /cybersécurité/i.test(await page.locator('#pd-tweet').inputValue());
-  await choose(page.getByRole('group', { name: 'Complément du portefeuille A', exact: true }), 'stoxx600_bnp');
-  await page.getByRole('spinbutton', { name: 'Poids base du portefeuille A' }).fill('80');
+  await page.getByRole('button', { name: 'Ajouter un actif à A', exact: true }).click();
+  await choose(page.getByRole('group', { name: 'Actif 3 du portefeuille A', exact: true }), 'stoxx600_bnp');
+  await page.getByRole('spinbutton', { name: 'Poids actif 3 du portefeuille A' }).fill('10');
+  await page.getByRole('spinbutton', { name: 'Poids actif 1 du portefeuille A' }).fill('80');
   const customExpected = buildCustomDuel({
     left: [{ id: 'msci_world_ishares', pct: 80 }, { id: 'stoxx600_bnp', pct: 10 }, { id: 'sect_cyber_lg', pct: 10 }],
     right: [{ id: 'msci_acwi_ishares', pct: 80 }, { id: 'smallcap_monde', pct: 20 }],
@@ -1190,7 +1192,7 @@ async function testDataReuse(page) {
   await page.goto(`${BASE}/duels-portefeuilles`, { waitUntil: 'networkidle' });
   // Reuse the saved three-line allocation and replace its complement with XEON.
   await page.getByRole('button', { name: 'Composer A et B', exact: true }).click();
-  await choose(page.getByRole('group', { name: 'Complément du portefeuille A', exact: true }), 'monetaire_xeon');
+  await choose(page.getByRole('group', { name: 'Actif 3 du portefeuille A', exact: true }), 'monetaire_xeon');
   ok &&= (await page.locator('#pd-tweet').inputValue()).includes('XEON');
   await page.getByRole('button', { name: 'Duels préparés', exact: true }).click();
   const blockchainDuel = DUELS.findIndex(duel => duel.id === 'semiconducteurs_monde-contre-blockchain_ishares');
