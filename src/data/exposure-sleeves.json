@@ -277,66 +277,57 @@
   "IE000UL6CLP7": {
     "sectors": {
       "asOf": "2026-10-15",
-      "holdingsAsOf": "2026-10-15",
       "checkedAt": "2026-10-16",
-      "sourceUrl": "https://globalxetfs.eu/api/funds/silv/topholdingscsv",
-      "sourceUrls": [
-        "https://globalxetfs.eu/api/funds/silv/topholdingscsv",
-        "https://www.avantisinvestors.com/avantis-investments/en-us/total-holdings/120/?type=etf",
-        "https://www.blackrock.com/varnish-api/blk-one01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_US&portfolioId=239656&targetSite=us-ishares&userType=individual&excludeContent=true&includeConfig=true",
-        "https://www.blackrock.com/varnish-api/blk-one01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_US&portfolioId=239710&targetSite=us-ishares&userType=individual&excludeContent=true&includeConfig=true",
-        "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=264659&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-        "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=296576&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
-      ],
+      "sourceUrl": "https://lt.morningstar.com/1c6qh1t6k9/snapshotpdf/default.aspx?1=1&BaseCurrencyId=USD&ClientFund=0&Id=0P0001OWZV&InvestmentType=FO&LanguageId=en-GB&SecurityToken=0P0001OWZV%5D22%5D0%5DETEXG%24XLON",
+      "sha256": "2d1ae9c26c94de861104ea0f671d0c729ff0a257ef97c2f0dae2d915b1a1cf10",
       "basis": "fund",
-      "compatibility": "exact-isin-lookthrough-sectors",
-      "method": "Official complete equity holdings joined by exact ISIN to dated issuer security classifications; unknown positions remain unallocated",
+      "compatibility": "morningstar-equity-sectors",
+      "classificationLabel": "Secteurs actions Morningstar",
+      "method": "Morningstar equity-sector classification, percentage of equity holdings excluding cash; exact UCITS share and portfolio date verified",
       "rows": [
         {
-          "name": "Materials",
-          "weightPct": 96.13238676132387
-        }
-      ],
-      "unclassified": [
-        {
-          "isin": "KR7010130003",
-          "weightPct": 2.2117788221177883
+          "name": "Basic Materials",
+          "weightPct": 99.89
         },
         {
-          "isin": "CA80280U2056",
-          "weightPct": 0.488951104889511
+          "name": "Consumer Cyclical",
+          "weightPct": 0
         },
         {
-          "isin": "CA45826T5098",
-          "weightPct": 0.290970902909709
+          "name": "Financial Services",
+          "weightPct": 0
         },
         {
-          "isin": "CA82831T1093",
-          "weightPct": 0.200979902009799
+          "name": "Real Estate",
+          "weightPct": 0
         },
         {
-          "isin": "AU0000269821",
-          "weightPct": 0.134986501349865
+          "name": "Communication Services",
+          "weightPct": 0
         },
         {
-          "isin": "CA09261Q1072",
-          "weightPct": 0.130986901309869
+          "name": "Energy",
+          "weightPct": 0
         },
         {
-          "isin": "AU0000343253",
-          "weightPct": 0.121987801219878
+          "name": "Industrials",
+          "weightPct": 0
         },
         {
-          "isin": "CA40066W1068",
-          "weightPct": 0.11598840115988401
+          "name": "Technology",
+          "weightPct": 0
         },
         {
-          "isin": "AU000000SVL8",
-          "weightPct": 0.105989401059894
+          "name": "Consumer Defensive",
+          "weightPct": 0.11
         },
         {
-          "isin": "CA00831V2057",
-          "weightPct": 0.064993500649935
+          "name": "Healthcare",
+          "weightPct": 0
+        },
+        {
+          "name": "Utilities",
+          "weightPct": 0
         }
       ]
     }
@@ -570,7 +561,7 @@
     "underlierEvidence": {
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
       "checkedAt": "2026-10-16",
-      "sha256": "26ec5a7fec76173b9d97ca7f96c084689209334d7756e4d765dec810c6e2bfe5",
+      "sha256": "9488fa7c1879482ab0fa31ab35de84b961eafae6d17ea6ef5ae7226e828f0595",
       "underlier": "Nasdaq-100"
     }
   },

@@ -1,5 +1,5 @@
 import datetime as dt,unittest,copy,json
-from collect_exposure_sleeves import equity_rows,parse_avantis,joined,issuer_classifications
+from collect_exposure_sleeves import equity_rows,parse_avantis,joined,issuer_classifications,silver_sector_report
 NOW=dt.datetime(2026,10,16,tzinfo=dt.timezone.utc)
 class EquitySleeves(unittest.TestCase):
  def body(self):
@@ -32,4 +32,18 @@ class EquitySleeves(unittest.TestCase):
   got=issuer_classifications(prefix+json.dumps(rows),'Avantis International Small Cap Value ETF','AVDV',NOW)
   self.assertEqual(got[0]['countryOfRisk'],'Japan');self.assertEqual(got[0]['asOf'],'2026-10-15')
   with self.assertRaises(ValueError):issuer_classifications(prefix+json.dumps(rows),'WRONG','AVDV',NOW)
+ def test_dated_complete_silver_sector_report_and_identity(self):
+  from unittest.mock import patch
+  header='Report as of 16 Oct 2026\nGlobal X Silver Miners UCITS ETF USD Acc\nISIN IE000UL6CLP7\nPortfolio 15 Oct 2026\nStocks 99.96 0.00 99.96'
+  labels=['Basic Materials','Consumer Cyclical','Financial Services','Real Estate','Communication Services','Energy','Industrials','Technology','Consumer Defensive','Healthcare','Utilities']
+  column='Sector Weightings % Equity\n'+'\n'.join(label+' '+('99.89' if i==0 else '0.11' if label=='Consumer Defensive' else '-') for i,label in enumerate(labels))
+  with patch('collect_exposure_sleeves.pdf_text',side_effect=[header,column]):
+   r=silver_sector_report(b'pdf fixture',NOW)
+   self.assertEqual(r['asOf'],'2026-10-15');self.assertEqual(sum(x['weightPct'] for x in r['rows']),100)
+  for bad in [header.replace('IE000UL6CLP7','WRONG'),header.replace('15 Oct 2026','15 Jan 2026'),header.replace('0.00','1.00')]:
+   with patch('collect_exposure_sleeves.pdf_text',return_value=bad):
+    with self.assertRaises(ValueError):silver_sector_report(b'pdf fixture',NOW)
+  for bad in [column.replace('% Equity','% Net'),column.replace('99.89','89.89'),column.replace('Utilities -','')]:
+   with patch('collect_exposure_sleeves.pdf_text',side_effect=[header,bad]):
+    with self.assertRaises(ValueError):silver_sector_report(b'pdf fixture',NOW)
 if __name__=='__main__':unittest.main()

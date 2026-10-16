@@ -2,7 +2,7 @@ import { frenchCharacteristic } from '../../data/french-characteristics.js'
 export const EXPOSURE_MAX_AGE_DAYS=93
 export const EXPOSURE_MAX_SPREAD_DAYS=45
 const day=86400000
-const aliases={'korea':'Corée du Sud','korea, republic of':'Corée du Sud','republic of korea':'Corée du Sud','etats-unis':'États-Unis','communication':'Communication','unassigned':'Non classé','basic materials':'Matériaux'}
+const aliases={'korea':'Corée du Sud','korea, republic of':'Corée du Sud','republic of korea':'Corée du Sud','etats-unis':'États-Unis','communication':'Communication','unassigned':'Non classé','basic materials':'Matériaux','consumer defensive':'Consommation de base','consumer cyclical':'Consommation cyclique','financial services':'Services financiers'}
 const nameOf = name => aliases[name.toLowerCase()] || frenchCharacteristic(name)
 const neutral={gold:'Or',silver:'Argent',btc:'Bitcoin',eth:'Ethereum'}
 function stamp(date){

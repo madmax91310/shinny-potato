@@ -3,11 +3,38 @@ import argparse, datetime as dt, hashlib, json, re, csv, io
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor
 from data_automation import UTC, write_json_atomic
-from issuer_documents import public_page, document_date
+from issuer_documents import public_page, document_date, download, pdf_text, validated_rows
 ROOT=Path(__file__).resolve().parents[1]
 API='https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId={}&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true'
 US_FUNDS=['239656','239710','239716']
 FUNDS={'251882':'IE00B4L5Y983','264659':'IE00BKM4GZ66','296576':'IE00BF4RFH31','251891':'IE00B441G979','273192':'IE00BQT3WG13'}
+
+SILVER_REPORT='https://lt.morningstar.com/1c6qh1t6k9/snapshotpdf/default.aspx?1=1&BaseCurrencyId=USD&ClientFund=0&Id=0P0001OWZV&InvestmentType=FO&LanguageId=en-GB&SecurityToken=0P0001OWZV%5D22%5D0%5DETEXG%24XLON'
+
+def silver_sector_report(body,now):
+    text=pdf_text(body)
+    if not re.search(r'ISIN\s+IE000UL6CLP7\b',text) or 'Global X Silver Miners UCITS ETF USD Acc' not in text:raise ValueError('Wrong Morningstar exact share')
+    dates=set(re.findall(r'Report as of (\d+ [A-Za-z]+ \d{4})',text))
+    if len(dates)!=1:raise ValueError('Ambiguous report date')
+    document_date(dates.pop(),now)
+    dates=set(re.findall(r'Portfolio (\d+ [A-Za-z]+ \d{4})',text))
+    if len(dates)!=1:raise ValueError('Ambiguous portfolio date')
+    stamp=document_date(dates.pop(),now)
+    stock=re.search(r'^Stocks\s+([\d.]+)\s+([\d.]+)\s+([\d.]+)',text,re.M)
+    if not stock or float(stock[2])!=0 or not 95<=float(stock[3])<=100:raise ValueError('Not a long-only equity portfolio')
+    column=pdf_text(body,(200,195)).split('Sector Weightings',1)[1].split('Currency',1)[0]
+    if not re.match(r'\s+% Equity',column):raise ValueError('Wrong sector denominator')
+    labels=['Basic Materials','Consumer Cyclical','Financial Services','Real Estate','Communication Services','Energy','Industrials','Technology','Consumer Defensive','Healthcare','Utilities']
+    rows=[]
+    for label in labels:
+        values=re.findall(r'\b'+re.escape(label)+r'\s+(-|\d+\.\d+)\s*$',column,re.M)
+        if len(values)!=1:raise ValueError('Missing or duplicate sector '+label)
+        rows.append({'name':label,'weightPct':0 if values[0]=='-' else float(values[0])})
+    validated_rows(rows)
+    return {'asOf':stamp,'checkedAt':now.date().isoformat(),'sourceUrl':SILVER_REPORT,'sha256':hashlib.sha256(body).hexdigest(),
+            'basis':'fund','compatibility':'morningstar-equity-sectors','classificationLabel':'Secteurs actions Morningstar',
+            'method':'Morningstar equity-sector classification, percentage of equity holdings excluding cash; exact UCITS share and portfolio date verified',
+            'rows':rows}
 
 def equity_rows(body, isin, url, now):
     facts=body['componentsByNameMap']['keyFundFacts']['containersByNameMap']['default']['dataPointsByNameMap']
@@ -135,6 +162,12 @@ def main():
         if not 99<=sum(r['weightPct'] for r in rows)<=101:raise ValueError('Incomplete Silver Miners portfolio')
         fresh['IE000UL6CLP7']={'sectors':joined(rows,stamp,url,index,now,'sectors')}
     except Exception as e:errors.append({'isin':'IE000UL6CLP7','error':str(e)})
+    try:
+        cached=args.cache/'silv-morningstar.pdf' if args.cache else None
+        body=cached.read_bytes() if cached and cached.exists() else download(SILVER_REPORT)
+        fresh.setdefault('IE000UL6CLP7',{})['sectors']=silver_sector_report(body,now)
+        successful.add('morningstar-SILV')
+    except Exception as e:errors.append({'source':'morningstar-SILV','error':str(e)})
     try:
         url='https://www.avantisinvestors.com/ucitsetf/en-de/total-holdings/295032351307042/'
         rows,stamp=parse_avantis(get(url,'avantis-holdings.html'),now)
