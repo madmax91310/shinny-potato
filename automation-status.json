@@ -39,19 +39,24 @@
     },
     "update-market-monthly.yml": {
       "name": "Historiques mensuels des marchés",
-      "runId": 38921740989,
+      "runId": 38940473067,
       "attempt": 1,
-      "completedAt": "2026-10-16T15:32:39Z",
-      "status": "success",
+      "completedAt": "2026-10-16T17:43:38Z",
+      "status": "failure",
       "lastSuccessAt": "2026-10-16T15:32:39Z",
       "collectionStatus": "success",
       "validationStatus": "success",
       "recordingStatus": "success",
-      "publicationStatus": "success",
-      "lastCollectionSuccessAt": "2026-10-16T15:32:39Z",
+      "publicationStatus": "failure",
+      "lastCollectionSuccessAt": "2026-10-16T17:43:38Z",
       "lastPublicationSuccessAt": "2026-10-16T15:32:37Z",
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38921740989",
-      "failures": [],
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38940473067",
+      "failures": [
+        {
+          "job": "deploy / build",
+          "step": "Run npm run audit:instrument-catalog"
+        }
+      ],
       "dataFailures": {}
     },
     "update-company-analysis.yml": {
@@ -416,11 +421,11 @@
       "dataFailures": {}
     }
   },
-  "updatedAt": "2026-10-16T17:37:28Z",
+  "updatedAt": "2026-10-16T17:43:38Z",
   "monitoring": {
     "schemaVersion": 1,
-    "checkedAt": "2026-10-16T17:43:56.052550+00:00",
-    "revision": 55,
+    "checkedAt": "2026-10-16T17:44:15.317185+00:00",
+    "revision": 56,
     "active": {
       "collection:update-practical-sheets.yml:practical:13f": {
         "name": "SEC · questions et réponses sur le formulaire 13F",
@@ -441,7 +446,7 @@
         "dataId": "practical:13f",
         "id": "collection:update-practical-sheets.yml:practical:13f",
         "firstSeenAt": "2026-10-14T21:07:26.171294+00:00",
-        "lastSeenAt": "2026-10-16T17:43:56.052550+00:00"
+        "lastSeenAt": "2026-10-16T17:44:15.317185+00:00"
       },
       "collection:update-publication-observations.yml:anniversary-nasdaq100": {
         "name": "anniversary-nasdaq100",
@@ -461,7 +466,7 @@
         "dataId": "anniversary-nasdaq100",
         "id": "collection:update-publication-observations.yml:anniversary-nasdaq100",
         "firstSeenAt": "2026-10-16T15:01:35.760482+00:00",
-        "lastSeenAt": "2026-10-16T17:43:56.052550+00:00"
+        "lastSeenAt": "2026-10-16T17:44:15.317185+00:00"
       },
       "publication:update-publication-observations.yml": {
         "name": "Pouvoir d’achat et niveaux des anniversaires",
@@ -478,7 +483,7 @@
         "cause": "deploy / build : Run node scripts/build-dca-exposures.mjs && npm run test:dca && node scripts/audit-portfolio-routing.mjs ; report-failures : Run echo 'Collecte partielle : dernières observations validées conservées. Voir publication-observations.' >> \"$GITHUB_STEP_SUMMARY\"",
         "id": "publication:update-publication-observations.yml",
         "firstSeenAt": "2026-10-16T15:01:35.760482+00:00",
-        "lastSeenAt": "2026-10-16T17:43:56.052550+00:00"
+        "lastSeenAt": "2026-10-16T17:44:15.317185+00:00"
       },
       "collection:update-insurance.yml:linxea-avenir-2": {
         "name": "Linxea Avenir 2",
@@ -497,7 +502,7 @@
         "dataId": "linxea-avenir-2",
         "id": "collection:update-insurance.yml:linxea-avenir-2",
         "firstSeenAt": "2026-10-14T13:08:27.203935+00:00",
-        "lastSeenAt": "2026-10-16T17:43:56.052550+00:00"
+        "lastSeenAt": "2026-10-16T17:44:15.317185+00:00"
       },
       "collection:update-scpi.yml:remake-live": {
         "name": "Remake Live",
@@ -520,7 +525,7 @@
         "dataId": "remake-live",
         "id": "collection:update-scpi.yml:remake-live",
         "firstSeenAt": "2026-10-15T13:02:43.499914+00:00",
-        "lastSeenAt": "2026-10-16T17:43:56.052550+00:00"
+        "lastSeenAt": "2026-10-16T17:44:15.317185+00:00"
       },
       "collection:update-regulatory-data.yml:broker-observation:caidf:profile:change": {
         "name": "caidf:profile:change",
@@ -540,7 +545,7 @@
         "dataId": "broker-observation:caidf:profile:change",
         "id": "collection:update-regulatory-data.yml:broker-observation:caidf:profile:change",
         "firstSeenAt": "2026-10-15T18:00:14.760687+00:00",
-        "lastSeenAt": "2026-10-16T17:43:56.052550+00:00"
+        "lastSeenAt": "2026-10-16T17:44:15.317185+00:00"
       },
       "publication:collect-etf-pilot.yml": {
         "name": "ETF et compositions d’indices",
@@ -559,7 +564,26 @@
         "cause": "deploy / build : Run npm run audit:instrument-catalog",
         "id": "publication:collect-etf-pilot.yml",
         "firstSeenAt": "2026-10-16T17:37:00.967388+00:00",
-        "lastSeenAt": "2026-10-16T17:43:56.052550+00:00"
+        "lastSeenAt": "2026-10-16T17:44:15.317185+00:00"
+      },
+      "publication:update-market-monthly.yml": {
+        "name": "Historiques mensuels des marchés",
+        "tools": [
+          "Et si tu avais investi",
+          "Performance depuis",
+          "Duel",
+          "Générateur"
+        ],
+        "impactScope": "collector",
+        "workflow": "update-market-monthly.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38940473067",
+        "to": "/donnees-a-revoir",
+        "kind": "publication",
+        "field": "Publication",
+        "cause": "deploy / build : Run npm run audit:instrument-catalog",
+        "id": "publication:update-market-monthly.yml",
+        "firstSeenAt": "2026-10-16T17:44:15.317185+00:00",
+        "lastSeenAt": "2026-10-16T17:44:15.317185+00:00"
       },
       "publication:update-investor-13f.yml": {
         "name": "Portefeuilles des investisseurs",
@@ -575,7 +599,7 @@
         "cause": "deploy / browser-checks (0) : Run node scripts/playwright-nasdaq-total-return.mjs",
         "id": "publication:update-investor-13f.yml",
         "firstSeenAt": "2026-10-16T17:10:15.533090+00:00",
-        "lastSeenAt": "2026-10-16T17:43:56.052550+00:00"
+        "lastSeenAt": "2026-10-16T17:44:15.317185+00:00"
       },
       "publication:update-qualified-exposures.yml": {
         "name": "Expositions ETF qualifiées",
@@ -595,7 +619,7 @@
         "cause": "deploy / build : Run npm run test:radar",
         "id": "publication:update-qualified-exposures.yml",
         "firstSeenAt": "2026-10-16T12:48:21.924866+00:00",
-        "lastSeenAt": "2026-10-16T17:43:56.052550+00:00"
+        "lastSeenAt": "2026-10-16T17:44:15.317185+00:00"
       },
       "publication:update-exposure-expansion.yml": {
         "name": "35 ETF des allocations",
@@ -611,7 +635,7 @@
         "cause": "deploy / build : Run node scripts/build-dca-exposures.mjs && npm run test:dca && node scripts/audit-portfolio-routing.mjs",
         "id": "publication:update-exposure-expansion.yml",
         "firstSeenAt": "2026-10-16T15:06:10.074991+00:00",
-        "lastSeenAt": "2026-10-16T17:43:56.052550+00:00"
+        "lastSeenAt": "2026-10-16T17:44:15.317185+00:00"
       },
       "monitor:radar": {
         "kind": "unobserved",
@@ -624,34 +648,10 @@
         "to": "/donnees-a-revoir",
         "id": "monitor:radar",
         "firstSeenAt": "2026-10-15T18:53:46.175472+00:00",
-        "lastSeenAt": "2026-10-16T17:43:56.052550+00:00"
+        "lastSeenAt": "2026-10-16T17:44:15.317185+00:00"
       }
     },
     "events": [
-      {
-        "revision": 26,
-        "at": "2026-10-15T17:07:10.701189+00:00",
-        "opened": [],
-        "resolved": [
-          {
-            "name": "Analyses d’entreprises",
-            "tools": [
-              "Analyse d’entreprise"
-            ],
-            "impactScope": "collector",
-            "workflow": "update-company-analysis.yml",
-            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38737882543",
-            "to": "/donnees-a-revoir",
-            "kind": "collection",
-            "field": "Exécution du collecteur",
-            "cause": "refresh : Commit validated observations",
-            "id": "workflow:update-company-analysis.yml",
-            "firstSeenAt": "2026-10-15T09:32:33.902751+00:00",
-            "lastSeenAt": "2026-10-15T17:04:01.143786+00:00",
-            "resolvedAt": "2026-10-15T17:07:10.701189+00:00"
-          }
-        ]
-      },
       {
         "revision": 27,
         "at": "2026-10-15T17:54:54.798451+00:00",
@@ -2319,6 +2319,14 @@
             "resolvedAt": "2026-10-16T17:37:00.967388+00:00"
           }
         ]
+      },
+      {
+        "revision": 56,
+        "at": "2026-10-16T17:44:15.317185+00:00",
+        "opened": [
+          "publication:update-market-monthly.yml"
+        ],
+        "resolved": []
       }
     ],
     "resolved": [
