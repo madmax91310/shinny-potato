@@ -5,6 +5,7 @@ import {references,validateProfile} from '../src/pages/dca-profiles/engine.js'
 import {sharedPositions} from '../src/pages/dca-profiles/verification.js'
 import {allocationRows} from '../src/pages/dca-profiles/image.js'
 import {searchAssets} from '../src/pages/dca-profiles/management.js'
+import {selectHoldingsObservation} from '../src/pages/dca-profiles/exposure.js'
 const universe=equityUniverse()
 for(const [asset,r] of Object.entries(universe)){
  assert.equal(references[asset].kind,'equity')
@@ -16,6 +17,13 @@ assert(validateProfile({imageOnly:true,scope:'Portefeuille investi',lines:[...li
 const visible=allocationRows(lines);assert.equal(visible.length,8);assert.equal(visible.reduce((s,r)=>s+r.weight,0),100);assert.equal(visible.at(-1).weight,86)
 const now=new Date('2026-10-16'),a='US0378331005',b='US5949181045'
 const o={asOf:'2026-10-14',sourceUrl:'https://example.com/full',basis:'fund',complete:true,rows:[{name:'Apple',isin:a,weightPct:50},{name:'Microsoft',isin:b,weightPct:50}]}
+const partial={...o,complete:false,asOf:'2026-10-15',rows:o.rows.slice(0,1)}
+assert.equal(selectHoldingsObservation(o,partial,now),o)
+assert.equal(selectHoldingsObservation({...o,asOf:'2026-01-01'},partial,now),partial)
+assert.equal(selectHoldingsObservation({...o,asOf:'2026-10-17'},partial,now),partial)
+assert.equal(selectHoldingsObservation({...o,asOf:'2026-02-30'},partial,now),partial)
+assert.equal(selectHoldingsObservation(undefined,partial,now),partial)
+assert.equal(o.asOf,'2026-10-14')
 const refs={x:{isin:'IE00B4L5Y983'},y:{isin:'IE00B5BMR087'},z:{isin:a,name:'Apple',kind:'equity',countries:o}}
 const positions=[{asset:'x',isin:refs.x.isin,label:'ETF X',weight:40},{asset:'y',isin:refs.y.isin,label:'ETF Y',weight:40},{asset:'z',isin:a,label:'Apple',weight:20}]
 const result=sharedPositions(positions,refs,now,{x:o,y:o})

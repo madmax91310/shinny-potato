@@ -6,6 +6,7 @@ import { INSTRUMENT_LISTINGS_BY_ISIN } from '../src/data/instrument-listings.js'
 import { getInstrumentPeaStatus, getInstrumentName } from '../src/data/instruments.js'
 import { ASSETS as PORTFOLIO_ASSETS } from '../src/data/portfolio-assets.js'
 import { equityUniverse } from './dca-equity-universe.mjs'
+import { selectHoldingsObservation } from '../src/pages/dca-profiles/exposure.js'
 const readOptional=name=>{const url=new URL('../src/data/'+name,import.meta.url);return existsSync(url)?JSON.parse(readFileSync(url,'utf8')):{}}
 const fullHoldings=readOptional('dca-complete-holdings.json')
 const securities=readOptional('dca-security-classifications.json')
@@ -30,7 +31,7 @@ const records = Object.fromEntries(Object.entries(allMapping).map(([asset,isin])
  catalog[asset]={isin,name,kind:record.kind,pea:record.pea,tickers:record.tickers,provider:record.provider}
  if(holdingStatus[isin])catalog[asset].holdingsStatus=holdingStatus[isin]
  const complete=fullHoldings[isin],partial=source?.holdings
- const h=partial&&(!complete||partial.asOf>complete.asOf)?partial:complete||partial
+ const h=selectHoldingsObservation(complete,partial)
  if(h)catalog[asset].holdings={asOf:h.asOf,complete:h.complete===true,identifiedCoverage:h.rows.filter(r=>/^[A-Z]{2}[A-Z0-9]{9}[0-9]$/.test(r.isin||'')).reduce((s,r)=>s+r.weightPct,0)}
  if(h)holdings[asset]={asOf:h.asOf,basis:h.basis||'fund',sourceUrl:h.sourceUrl||source.sourceUrl,complete:h.complete===true,rows:h.rows.map(r=>({name:r.name,isin:r.isin,weightPct:r.weightPct})),synthetic}
 

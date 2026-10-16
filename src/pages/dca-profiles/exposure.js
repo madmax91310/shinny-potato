@@ -1,6 +1,15 @@
 import { frenchCharacteristic } from '../../data/french-characteristics.js'
 export const EXPOSURE_MAX_AGE_DAYS=93
 export const EXPOSURE_MAX_SPREAD_DAYS=45
+// A newer editorial top ten does not replace a still-current complete portfolio.
+// Keep the full portfolio's own date; never borrow the partial snapshot's date.
+export function selectHoldingsObservation(complete,partial,now=new Date()) {
+ const stamp=complete?.asOf,date=Date.parse(stamp),today=Date.parse(new Date(now).toISOString().slice(0,10))
+ const validDate=/^\d{4}-\d{2}-\d{2}$/.test(stamp??'')&&Number.isFinite(date)&&new Date(date).toISOString().slice(0,10)===stamp
+ const age=(today-date)/86400000
+ if(complete?.complete===true&&complete.rows?.length&&validDate&&age>=0&&age<=EXPOSURE_MAX_AGE_DAYS)return complete
+ return partial||complete
+}
 const day=86400000
 const aliases={'korea':'Corée du Sud','korea, republic of':'Corée du Sud','republic of korea':'Corée du Sud','etats-unis':'États-Unis','communication':'Communication','unassigned':'Non classé','basic materials':'Matériaux'}
 const nameOf = name => aliases[name.toLowerCase()] || frenchCharacteristic(name)
