@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict'
+import holdings from '../src/pages/dca-profiles/holdings.json' with {type:'json'}
 import {AUTOMATED_ETF} from '../src/data/automated-etf.js'
 import {ASSETS} from '../src/pages/dca-profiles/data.js'
 import {references,analyzeProfile,validateProfile} from '../src/pages/dca-profiles/engine.js'
@@ -9,7 +10,7 @@ import {donutData} from '../src/pages/dca-profiles/image.js'
 const now=new Date('2026-10-15T12:00:00Z'),liveNow=new Date()
 const line=(asset,weight)=>({asset,label:references[asset].name,isin:references[asset].isin,weight})
 const all=catalogCoverage(references,liveNow)
-assert.equal(new Set(Object.values(references).map(r=>r.isin)).size,Object.keys(references).length)
+assert.equal(new Set(Object.values(references).filter(r=>r.isin).map(r=>r.isin)).size,Object.values(references).filter(r=>r.isin).length)
 for(const isin of Object.keys(AUTOMATED_ETF)){
  const [asset,r]=Object.entries(references).find(([,r])=>r.isin===isin)||[]
  assert(r,`Not connected: ${isin}`);assert(ASSETS[asset]);assert(searchAssets(isin).includes(asset))
@@ -33,7 +34,7 @@ for(const field of ['countries','sectors']){
  assert.deepEqual(sorted(a),sorted(b))
  assert(exposureDisplay(a).coverage>99.5)
 }
-const pairs=sharedPositions(trio,references,liveNow)
+const pairs=sharedPositions(trio,references,liveNow,holdings)
 assert(pairs.pairs.some(p=>p.common.some(r=>r.isin==='US67066G1040')))
 assert(pairs.pairs.every(p=>!p.full&&p.overlap===null),'Top ten is not complete holdings')
 const obs=(rows,extra={})=>({asOf:'2026-10-14',sourceUrl:'https://example.com/holdings',basis:'fund',rows,...extra})

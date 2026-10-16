@@ -19,7 +19,7 @@ export function dcaExposure(lines,references,field,now=new Date()){
   const outside=neutral[l.asset]||(l.isin===references[l.asset]?.isin&&references[l.asset]?.outsideClassification)
   if(outside){neutralRows.push({name:outside,weight:l.weight});continue}
   const r=references[l.asset],o=r?.[field]
-  let reason=!l.isin?'Support non confirmé':!o?'Ventilation absente':null
+  let reason=!l.isin?'Support non confirmé':r?.isin&&l.isin!==r.isin?'Support différent de la référence':!o?'Ventilation absente':null
   if(!reason){
    const date=stamp(o.asOf),age=(today-date)/day
    if(!Number.isFinite(date)||age<0||age>EXPOSURE_MAX_AGE_DAYS)reason='Observation trop ancienne ou date invalide'

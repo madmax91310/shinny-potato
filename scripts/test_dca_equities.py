@@ -16,3 +16,18 @@ class DcaEquities(unittest.TestCase):
         records,missing=parse(b,{'apple':'US0378331005'},dt.datetime(2026,10,15,tzinfo=dt.timezone.utc))
         self.assertEqual(records,{});self.assertEqual(missing,['apple'])
 if __name__=='__main__':unittest.main()
+
+class CompleteHoldings(unittest.TestCase):
+    def test_identity_and_partial_security_list(self):
+        from collect_dca_complete_holdings import parse_complete
+        b=DcaEquities().body()
+        facts=b['componentsByNameMap']['keyFundFacts']['containersByNameMap']['default']['dataPointsByNameMap']
+        facts.update(productStructure={'value':'Physical'},assetClass={'value':'Equity'})
+        p=b['componentsByNameMap']['holdings']['containersByNameMap']['all']['dataPointsByNameMap']
+        for k,v in {'ticker':['AAPL','MSFT'],'marketCurrencyCode':['USD','USD'],'exchange':['NASDAQ','NASDAQ']}.items():p[k]={'value':v}
+        url='https://www.blackrock.com/product-data/api/v2/get-product-data?portfolioId=251882'
+        h,securities=parse_complete(b,'IE00B4L5Y983',url,dt.datetime(2026,10,15,tzinfo=dt.timezone.utc))
+        self.assertTrue(h['complete']);self.assertEqual(len(securities),2)
+        with self.assertRaises(ValueError):parse_complete(b,'IE00B5BMR087',url,dt.datetime(2026,10,15,tzinfo=dt.timezone.utc))
+        facts['productStructure']['value']='Synthetic'
+        with self.assertRaises(ValueError):parse_complete(b,'IE00B4L5Y983',url,dt.datetime(2026,10,15,tzinfo=dt.timezone.utc))
