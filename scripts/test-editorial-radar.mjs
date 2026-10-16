@@ -249,8 +249,11 @@ console.log(`Radar : seuils cumulés, périmètres, dates, bootstrap, publicatio
 {
 for(const isin of ['IE00B441G979','IE00B4WXJG34','IE00B0M63284','IE000SNLFDR7','DE000A0Q4R02','DE000A0H08R2'])assert(actual.observations.some(o=>o.entity===isin&&o.field==='ter'))
 assert.equal(new Set(actual.observations.map(observationKey)).size,actual.observations.length)
-const metric=actual.observations.find(o=>o.entity==='IE00B4WXJG34'&&o.field==='metric:modelOad');assert(metric)
-const now=new Date(),state=advanceRadar(null,[metric],{now}).state
+const collectedMetric=actual.observations.find(o=>o.entity==='IE00B4WXJG34'&&o.field==='metric:modelOad');assert(collectedMetric)
+// Freeze the scenario's dates: a refreshed source can already be newer than
+// the synthetic next-period observation, which must then correctly be ignored.
+const metric={...collectedMetric,period:'2026-10-13',checkedAt:'2026-10-14'}
+const now=new Date('2026-10-14T15:00:00Z'),state=advanceRadar(null,[metric],{now}).state
 assert.equal(advanceRadar(state,[{...metric,value:metric.value+.1,period:'2026-10-14'}],{now}).newEvents.length,0)
 assert.equal(advanceRadar(state,[{...metric,value:metric.value+.3,period:'2026-10-14'}],{now}).newEvents.length,1)
 const conflict=advanceRadar(state,[{...metric,value:metric.value+.3}],{now});assert.equal(conflict.newEvents.length,0);assert.equal(Object.keys(conflict.state.conflicts).length,1)
