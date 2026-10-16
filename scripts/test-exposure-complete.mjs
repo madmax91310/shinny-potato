@@ -27,7 +27,24 @@ assert.equal(sharedPositions(positions,refs,now,{x:{...o,complete:false},y:o}).p
 assert.equal(sharedPositions(positions,refs,now,{x:{...o,synthetic:true},y:o}).unavailable.length,1)
 const manifest=JSON.parse(readFileSync('src/pages/dca-profiles/holdings-manifest.json'))
 const observations=Object.assign({},...[...new Set(Object.values(manifest))].map(n=>JSON.parse(readFileSync(`src/pages/dca-profiles/holdings-${n}.json`))))
-const live=sharedPositions([{asset:'world',isin:references.world.isin,label:'World',weight:50},{asset:'sp500',isin:references.sp500.isin,label:'S&P 500',weight:50}],references,new Date(),observations)
-assert(live.pairs[0].common.length>10,'Full positions must exceed editorial top ten')
-assert(live.totals[0].coverage>95)
+const liveLines=[{asset:'world',isin:references.world.isin,label:'World',weight:50},{asset:'sp500',isin:references.sp500.isin,label:'S&P 500',weight:50}]
+const live=sharedPositions(liveLines,references,new Date(),observations)
+// A newer top-ten publication legitimately supersedes an older full snapshot.
+// Never require a complete overlap from that partial publication.
+if (observations.world.complete && observations.sp500.complete) {
+ assert(live.pairs[0].common.length>10,'Full positions must exceed editorial top ten')
+ assert(live.totals[0].coverage>95)
+} else {
+ assert.equal(live.pairs[0].overlap,null,'Partial publications must not claim a complete overlap')
+ assert.equal(live.pairs[0].full,false)
+}
+// Independently exercise the complete, sourced snapshots even after a newer
+// partial publication arrives; this preserves the full-position regression.
+const full=JSON.parse(readFileSync('src/data/dca-complete-holdings.json'))
+const completeObservations=Object.fromEntries(liveLines.map(line=>[line.asset,full[line.isin]]))
+assert(Object.values(completeObservations).every(o=>o?.complete && o.rows.length>10))
+const snapshotDate=new Date(Object.values(completeObservations).map(o=>o.asOf).sort().at(-1))
+const completeResult=sharedPositions(liveLines,references,snapshotDate,completeObservations)
+assert(completeResult.pairs[0].common.length>10,'Full positions must exceed editorial top ten')
+assert(completeResult.totals[0].coverage>95)
 console.log(`Complete exposures: ${Object.keys(universe).length} equity entries, 50 positions, complete holdings, direct/indirect totals and missing-data guards verified.`)
