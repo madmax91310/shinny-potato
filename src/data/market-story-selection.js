@@ -43,6 +43,7 @@ export function selectMonthlyMarketStories(facts) {
     return [{
       ...fact,
       ...MONTHLY_STORY_ANGLES[id],
+      methodInDetails: true,
       context: `${measuredDecline} 📉\n\n${fact.context}`,
     }];
   });
