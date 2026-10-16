@@ -85,6 +85,9 @@ export const formatMonth = (value, short = false) => new Date(`${value}-01T00:00
 export function basisLabel(basis) {
   return ({ adjusted: 'Cours ajustés · revenus réinvestis', 'index-net': 'Indices · dividendes nets réinvestis', 'index-gross': 'Indices · dividendes bruts réinvestis', 'spot-close': 'Cours de clôture' })[basis] ?? basis
 }
+export function supportLabel(assets) {
+  return [...new Set(assets.map(a => a.isin ? a.instrumentType ?? 'ETF' : a.priceUnit === 'points' ? 'Indices' : a.basis === 'adjusted' ? 'Actions' : 'Actifs au comptant'))].join(' / ')
+}
 export function buildTweet(result, title, regularity) {
   const { columns, coverage } = result
   const intro = result.mode === 'period' ? `De ${formatMonth(result.start)} à ${formatMonth(result.end)}` : columns.length === 1 ? `En ${columns[0].label}` : `De ${columns[0].label} à ${columns.at(-1).label}`
@@ -92,5 +95,5 @@ export function buildTweet(result, title, regularity) {
     : columns.map(c => `${c.label} : ${c.rows.filter(r => r.rank === 1).map(r => `${r.label} (${formatPercent(r.value)})`).join(' / ')}`)
   const regularityText = regularity ? `\n\nSur ${regularity.count} périodes glissantes de ${regularity.months / 12} an${regularity.months > 12 ? 's' : ''}, entre ${regularity.start} et ${regularity.end} :\n${regularity.stats.map(s => `${s.label} : premier dans ${(100 * s.wins / regularity.count).toLocaleString('fr-FR', { maximumFractionDigits: 1 })} % des périodes`).join('\n')}\nPériodes mensuelles qui se chevauchent ; victoires partagées en cas d’égalité. Ce ne sont pas des probabilités futures.` : ''
   const fundNote = result.assets.some(a => a.isin) ? '\nPerformances des produits sélectionnés, frais des fonds inclus ; hors frais du courtier et fiscalité.' : '\nHors frais et fiscalité.'
-  return `📊 ${title}\n\n${intro} · ${coverage.currency}\n${basisLabel(coverage.basis)}\n${result.annualized ? 'Performance annualisée' : result.mode === 'period' ? 'Performance cumulée' : 'Performances par année civile'}\n\n${lines.join('\n')}${fundNote}${regularityText}\n\nLes performances passées ne préjugent pas des performances futures.\nPas un conseil financier.`
+  return `📊 ${title}\n\n${intro} · ${coverage.currency}\n${supportLabel(result.assets)} · ${basisLabel(coverage.basis)}\n${result.annualized ? 'Performance annualisée' : result.mode === 'period' ? 'Performance cumulée' : 'Performances par année civile'}\n\n${lines.join('\n')}${fundNote}${regularityText}\n\nLes performances passées ne préjugent pas des performances futures.\nPas un conseil financier.`
 }

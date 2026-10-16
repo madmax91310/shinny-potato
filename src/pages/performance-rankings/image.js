@@ -1,5 +1,5 @@
 import { COLORS } from './data.js'
-import { basisLabel, formatMonth, formatPercent } from './engine.js'
+import { basisLabel, formatMonth, formatPercent, supportLabel } from './engine.js'
 
 function text(ctx, value, x, y, size, color = '#f2f5f3', align = 'left', weight = 600) {
   ctx.font = `${weight} ${size}px Arial, sans-serif`; ctx.fillStyle = color; ctx.textAlign = align; ctx.textBaseline = 'top'; ctx.fillText(value, x, y)
@@ -32,7 +32,7 @@ function lines(ctx, value, x, y, width, size, color, maxLines = 3) {
 export function renderRankingImage(result, title, regularity) {
   const columns = result.columns, single = columns.length === 1
   const width = single ? 1440 : Math.max(1500, columns.length * 225 + 100)
-  const height = single ? 970 + (regularity ? 150 : 0) : 380 + result.assets.length * 145 + (regularity ? 170 : 0)
+  const height = single ? 310 + result.assets.length * 110 + (regularity ? 150 : 0) : 380 + result.assets.length * 145 + (regularity ? 170 : 0)
   const canvas = document.createElement('canvas'); canvas.width = width; canvas.height = height
   const ctx = canvas.getContext('2d')
   const bg = ctx.createLinearGradient(0, 0, width, height); bg.addColorStop(0, '#102a2a'); bg.addColorStop(.55, '#111f29'); bg.addColorStop(1, '#1b192b'); ctx.fillStyle = bg; ctx.fillRect(0, 0, width, height)
@@ -43,13 +43,11 @@ export function renderRankingImage(result, title, regularity) {
   text(ctx, `${period}   ·   ${result.coverage.currency}   ·   ${result.annualized ? 'Performance annualisée' : result.mode === 'period' ? 'Performance cumulée' : 'Performances annuelles'}`, width / 2, 154, 24, '#afc4c3', 'center')
   const color = id => COLORS[result.assets.findIndex(a => a.id === id) % COLORS.length]
   if (single) {
-    const max = Math.max(...columns[0].rows.map(r => Math.abs(r.value)), 1)
     columns[0].rows.forEach((row, i) => {
       const y = 215 + i * 110, accent = color(row.id)
       card(ctx, 65, y, width - 130, 94, accent)
       text(ctx, String(row.rank).padStart(2, '0'), 88, y + 26, 34, accent)
       fit(ctx, row.label, 170, y + 22, 32, width - 550, '#f5f4ec')
-      ctx.fillStyle = accent; ctx.globalAlpha = .4; ctx.beginPath(); ctx.roundRect(170, y + 65, Math.max(4, Math.abs(row.value) / max * (width - 550)), 5, 3); ctx.fill(); ctx.globalAlpha = 1
       fit(ctx, formatPercent(row.value), width - 92, y + 26, 38, 230, accent, 'right')
     })
   } else {
@@ -76,7 +74,7 @@ export function renderRankingImage(result, title, regularity) {
     })
     text(ctx, `Historique ${regularity.start} → ${regularity.end} · périodes qui se chevauchent · égalités partagées`, 60, y + 112, 18, '#a7bcba')
   }
-  fit(ctx, `${basisLabel(result.coverage.basis)}${result.assets.some(a => a.isin) ? ' · Produits réels, frais des fonds inclus' : ''}`, width / 2, height - 73, 21, width - 100, '#a7bcba', 'center')
+  fit(ctx, `${supportLabel(result.assets)} · ${basisLabel(result.coverage.basis)}${result.assets.some(a => a.isin) ? ' · Frais des fonds inclus' : ''}`, width / 2, height - 73, 21, width - 100, '#a7bcba', 'center')
   text(ctx, 'Performances passées · Pas un conseil financier', width / 2, height - 39, 18, '#819b98', 'center')
   return canvas
 }
