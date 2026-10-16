@@ -63,7 +63,7 @@ def joined(rows, stamp, url, index, now, field):
 
 def main():
     ap=argparse.ArgumentParser();ap.add_argument('--apply',action='store_true');ap.add_argument('--cache',type=Path);ap.add_argument('--output',type=Path,required=True);args=ap.parse_args()
-    now=dt.datetime.now(UTC);path=ROOT/'src/data/exposure-sleeves.json';previous=json.loads(path.read_text()) if path.exists() else {};fresh={};errors=[];index={}
+    now=dt.datetime.now(UTC);path=ROOT/'src/data/exposure-sleeves.json';previous=json.loads(path.read_text()) if path.exists() else {};fresh={};errors=[];index={};successful=set()
     def get(url,name):
         p=args.cache/name if args.cache else None
         if p and p.exists():return p.read_text()
@@ -77,6 +77,7 @@ def main():
     with ThreadPoolExecutor(max_workers=5) as pool:
         for isin,record,rows,stamp,url,error in pool.map(one,FUNDS.items()):
             if error:errors.append({'isin':isin,'error':error});continue
+            successful.add(isin)
             if isin in ['IE00B441G979','IE00BQT3WG13']:fresh[isin]=record
             for r in rows:
                 if r['isin'] not in index or stamp>=index[r['isin']]['asOf']:index[r['isin']]={**r,'asOf':stamp,'sourceUrl':url}
@@ -87,6 +88,7 @@ def main():
             body=json.loads(get(url,'br-us-'+code+'.json'))
             if str(body['productId'])!=code:raise ValueError('Classification source product mismatch')
             _,rows,stamp=equity_rows(body,None,url,now)
+            successful.add(code)
             for r in rows:
                 if r['isin'] not in index or stamp>=index[r['isin']]['asOf']:index[r['isin']]={**r,'asOf':stamp,'sourceUrl':url}
         except Exception as e:errors.append({'source':code,'error':str(e)})
@@ -126,7 +128,7 @@ def main():
             if r[f]['asOf']<previous.get(isin,{}).get(f,{}).get('asOf',''):raise ValueError('Date regression '+isin)
         previous[isin]={**previous.get(isin,{}),**r}
     if args.apply:write_json_atomic(path,previous)
-    report={'checkedAt':now.isoformat(),'updated':list(fresh),'successes':[{'id':'exposure-sleeve:'+isin} for isin in fresh],
+    report={'checkedAt':now.isoformat(),'updated':list(fresh),'successes':[{'id':'exposure-sleeve:'+isin} for isin in sorted(set(fresh)|successful)],
             'errors':[{'id':'exposure-sleeve:'+e.get('isin',e.get('source','unknown')),'field':'Pays/secteurs de la poche actions',**e} for e in errors]}
     write_json_atomic(args.output,report);print(json.dumps(report))
     if errors:raise SystemExit(1)
