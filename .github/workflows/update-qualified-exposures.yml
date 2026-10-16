@@ -48,7 +48,7 @@ jobs:
         id: equities
         continue-on-error: ${{ github.event_name != 'pull_request' }}
         run: python scripts/collect_dca_equities.py --apply --output "$RUNNER_TEMP/dca-equities.json"
-      - name: Collect complete equity holdings
+      - name: "Collect observations: holdings"
         id: holdings
         continue-on-error: ${{ github.event_name != 'pull_request' }}
         run: python scripts/collect_dca_complete_holdings.py --apply --output "$RUNNER_TEMP/dca-complete-holdings.json"
