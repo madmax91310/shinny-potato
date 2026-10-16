@@ -1,5 +1,7 @@
 // Exercise the visible buttons, including scrollable result lists.
 export async function choose(picker, choice) {
+  // A partial label can also match its search input; operate on the picker root.
+  picker=picker.locator('xpath=self::*[@data-selector] | .//*[@data-selector]')
   await picker.waitFor({state:'attached'})
   const target = typeof choice === 'object' && 'index' in choice
     ? picker.locator('[data-option]').nth(choice.index)
