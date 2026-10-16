@@ -1,12 +1,14 @@
 import { firstGrapheme } from '../lib/first-grapheme.js'
-import { usePublicationPreference } from '../lib/usePublicationPreference.js'
+import { useAssetPickerPreferences } from '../lib/useAssetPickerPreferences.js'
+import { assetPreferenceKey, filterAssetOptions } from '../lib/asset-picker-preferences.js'
 import { useId, useMemo, useState } from 'react'
-import { normalizeSearch } from '../data/search-text.js'
 import './asset-picker.css'
 
-export default function AssetPicker({ items, value, onChange, label, id, className = '', emptyOption, selectOnGroupChange = false }) {
-  const [favorites, setFavorites] = usePublicationPreference(`favorites:${globalThis.location?.pathname ?? ''}:${id ?? label ?? 'assets'}`, [], value => Array.isArray(value) && value.length <= 200 && value.every(id => typeof id === 'string'))
-  const favoriteItems = items.filter(item => favorites.includes(String(item.id)))
+export default function AssetPicker({ items, value, onChange, label, id, className = '', emptyOption, selectOnGroupChange = false, hideIdleResults = false, clearSearchOnSelect = false, searchPlaceholder = 'Nom, indice, ticker ou ISIN…', optionsClassName = '', disabled = false }) {
+  const { favorites, recents, toggleFavorite, remember } = useAssetPickerPreferences(items, `favorites:${globalThis.location?.pathname ?? ''}:${id ?? label ?? 'assets'}`)
+  const favoriteItems = items.filter(item => favorites.includes(assetPreferenceKey(item)))
+  const recentItems = recents.flatMap(key => { const item = items.find(item => assetPreferenceKey(item) === key); return item ? [item] : [] })
+  const [mode, setMode] = useState('search')
   const uniqueId = useId()
   const selectId = id ?? uniqueId
   const [query, setQuery] = useState('')
@@ -18,44 +20,58 @@ export default function AssetPicker({ items, value, onChange, label, id, classNa
   const orderedGroups = [...priority.filter(name => groups.includes(name)), ...groups.filter(name => !priority.includes(name))]
   const displayedGroups = showAllGroups ? orderedGroups : orderedGroups.slice(0, 5)
   const current = items.find(item => String(item.id) === String(value))
-  const filtered = items.filter(item => (!peaOnly || item.badges?.includes('PEA')) && (group === 'Tous' || item.group === group) &&
-    normalizeSearch(`${item.label} ${item.search ?? ''} ${item.detail ?? ''} ${item.isin ?? ''}`).includes(normalizeSearch(query)))
+  const filtered = filterAssetOptions(items, { query: mode === 'search' ? query : '', group: mode === 'browse' ? group : 'Tous', peaOnly })
+  function select(id) {
+    const item = items.find(item => String(item.id) === String(id))
+    if (item) remember(item)
+    if (clearSearchOnSelect) setQuery('')
+    onChange(String(id))
+  }
   return <div className="asset-picker">
     {label && <span className="asset-picker-label">{label}</span>}
     {(current || (emptyOption && String(value) === String(emptyOption.id))) && <p className="picker-selection"><span aria-hidden="true">✓</span><span><small>Sélection actuelle</small><strong>{current?.label ?? emptyOption.label}</strong></span></p>}
-    {current && <button type="button" className="asset-picker-more" aria-pressed={favorites.includes(String(current.id))}
-      onClick={() => setFavorites(all => all.includes(String(current.id)) ? all.filter(id => id !== String(current.id)) : [...all, String(current.id)].slice(-200))}>
-      {favorites.includes(String(current.id)) ? '★ Retirer des favoris' : '☆ Ajouter aux favoris'}
+    {current && <button type="button" className="asset-picker-more" aria-pressed={favorites.includes(assetPreferenceKey(current))}
+      onClick={() => toggleFavorite(current)}>
+      {favorites.includes(assetPreferenceKey(current)) ? '★ Retirer des favoris' : '☆ Ajouter aux favoris'}
     </button>}
     {favoriteItems.length > 0 && <div className="asset-picker-groups" role="group" aria-label={`Favoris : ${label ?? 'actif'}`}>
-      {favoriteItems.map(item => <button type="button" key={item.id} aria-pressed={String(item.id) === String(value)}
-        onClick={() => { setQuery(''); setGroup('Tous'); setPeaOnly(false); onChange(String(item.id)) }}>{item.label}</button>)}
+      {favoriteItems.map(item => <button type="button" key={item.id} disabled={disabled} aria-pressed={String(item.id) === String(value)}
+        onClick={() => { setQuery(''); setGroup('Tous'); setPeaOnly(false); select(item.id) }}>{item.label}</button>)}
     </div>}
-    <input type="search" value={query} onChange={event => setQuery(event.target.value)}
-      aria-label={`Rechercher : ${label ?? 'actif'}`} placeholder="Nom, indice, ticker ou ISIN…" />
-    <div className="asset-picker-groups" role="group" aria-label={`Expositions : ${label ?? 'actif'}`}>
+    {recentItems.length > 0 && <details className="asset-picker-details"><summary>Derniers actifs utilisés</summary>
+      <div className="asset-picker-groups" role="group" aria-label={`Récents : ${label ?? 'actif'}`}>
+        {recentItems.map(item => <button type="button" key={item.id} disabled={disabled} onClick={() => { setPeaOnly(false); setQuery(''); setGroup('Tous'); select(item.id) }}>{item.label}</button>)}
+      </div>
+    </details>}
+    <div className="asset-picker-modes" role="group" aria-label={`Mode de sélection : ${label ?? 'actif'}`}>
+      <button type="button" aria-pressed={mode === 'search'} onClick={() => setMode('search')}>Rechercher</button>
+      <button type="button" aria-pressed={mode === 'browse'} onClick={() => { setMode('browse'); setQuery('') }}>Parcourir</button>
+    </div>
+    {mode === 'search' && <input type="search" value={query} onChange={event => setQuery(event.target.value)}
+      aria-label={`Rechercher : ${label ?? 'actif'}`} placeholder={searchPlaceholder} />}
+    {mode === 'browse' && <div className="asset-picker-groups" role="group" aria-label={`Expositions : ${label ?? 'actif'}`}>
       {['Tous', ...displayedGroups].map(name => <button type="button" key={name} aria-pressed={group === name}
         onClick={() => {
           setGroup(name)
           if (selectOnGroupChange) {
             setQuery('')
             const matches = items.filter(item => (!peaOnly || item.badges?.includes('PEA')) && (name === 'Tous' || (item.group ?? 'Autres actifs') === name))
-            if (!matches.includes(current) && matches.length) onChange(String(matches[0].id))
+            if (!matches.includes(current) && matches.length) select(matches[0].id)
           }
         }}>{name}</button>)}
-    </div>
-    {groups.length > 5 && <button type="button" className="asset-picker-more" aria-expanded={showAllGroups}
+    </div>}
+    {mode === 'browse' && groups.length > 5 && <button type="button" className="asset-picker-more" aria-expanded={showAllGroups}
       onClick={() => setShowAllGroups(!showAllGroups)}>{showAllGroups ? 'Moins d’expositions' : `Toutes les expositions (${groups.length})`}</button>}
     {items.some(item => item.badges?.includes('PEA')) && <div className="asset-picker-eligibility" role="group" aria-label="Éligibilité des supports">
       <button type="button" aria-pressed={!peaOnly} onClick={() => setPeaOnly(false)}>Tous les supports</button>
       <button type="button" aria-pressed={peaOnly} onClick={() => setPeaOnly(true)}>Éligibles PEA</button>
     </div>}
     <div id={selectId} role="group" aria-label={label} data-selector data-value={String(value ?? '')}
-      className={`asset-picker-options ${className}`}>
+      className={`asset-picker-options ${className} ${optionsClassName}`}>
       {emptyOption && <button type="button" className="asset-option" data-option data-value={emptyOption.id}
         aria-pressed={String(value) === String(emptyOption.id)} onClick={() => onChange(String(emptyOption.id))}>{emptyOption.label}</button>}
-      {filtered.map(item => <button type="button" className="asset-option" data-option data-value={String(item.id)} key={item.id}
-        aria-pressed={String(item.id) === String(value)} onClick={() => onChange(String(item.id))}>
+      {(!hideIdleResults || mode === 'browse' || query.trim()) && filtered.map(item => <button disabled={disabled} type="button" className="asset-option" data-option data-value={String(item.id)} key={item.id}
+        aria-pressed={String(item.id) === String(value)} onClick={() => select(item.id)}>
         <span className="asset-option-icon" aria-hidden="true">{firstGrapheme(item.name ?? item.label)}</span>
         <span className="asset-option-copy"><strong>{item.label}</strong>
           {item.detail && <small>{item.detail}</small>}
@@ -65,7 +81,7 @@ export default function AssetPicker({ items, value, onChange, label, id, classNa
       </button>)}
     </div>
     {current && !filtered.includes(current) && <p className="asset-picker-detail">Sélection actuelle : <strong>{current.label}</strong></p>}
-    {(query || group !== 'Tous' || peaOnly) && <div className="asset-picker-results" aria-live="polite">
+    {(query || (mode === 'browse' && group !== 'Tous') || peaOnly) && <div className="asset-picker-results" aria-live="polite">
       {filtered.length ? `${filtered.length} résultat${filtered.length > 1 ? 's' : ''}` : 'Aucun résultat. La sélection actuelle est conservée.'}
       <button type="button" onClick={() => { setQuery(''); setGroup('Tous'); setPeaOnly(false) }}>Tout afficher</button>
     </div>}
