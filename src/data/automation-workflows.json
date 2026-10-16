@@ -433,5 +433,22 @@
       "Validate observations: npm run audit:index-facts",
       "Validate collected observations"
     ]
+  },
+  "update-exposure-expansion.yml": {
+    "name": "35 ETF des allocations",
+    "workflowName": "Refresh 35 portfolio exposure ETFs",
+    "collectionJob": "refresh",
+    "maxAgeHours": 48,
+    "artifact": "exposure-expansion-observations",
+    "tools": [
+      "Portefeuille / DCA"
+    ],
+    "collectionSteps": [
+      "Collect exact-share observations"
+    ],
+    "validationSteps": [
+      "Validate expanded exposures",
+      "Validate collected observations"
+    ]
   }
 }

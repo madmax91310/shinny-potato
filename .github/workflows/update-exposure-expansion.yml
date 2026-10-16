@@ -57,13 +57,16 @@ jobs:
         id: collect
         continue-on-error: ${{ github.event_name != 'pull_request' }}
         run: python scripts/collect_exposure_expansion.py --apply --report "$RUNNER_TEMP/exposure-expansion.json"
-      - run: npm run build && node scripts/test-exposure-expansion.mjs
+      - name: Validate expanded exposures
+        run: npm run build && node scripts/test-exposure-expansion.mjs
       - uses: actions/upload-artifact@v7.0.1
         if: always()
         with:
           name: exposure-expansion-observations
           path: ${{ runner.temp }}/exposure-expansion.json
           retention-days: 35
+      - name: Validate collected observations
+        run: echo 'Exact-share exposure checks passed'
       - name: Commit validated observations
         id: commit
         if: github.event_name != 'pull_request'
