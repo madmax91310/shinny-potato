@@ -292,6 +292,7 @@ jobs:
           key: chromium-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
       - run: npx playwright install --with-deps chromium
       - run: node scripts/playwright-distinct-asset-routing.mjs
+        if: matrix.shard == 1
       - run: node scripts/playwright-routing-additions.mjs
         if: matrix.shard == 1
       - run: node scripts/test-simple-exposure.mjs
