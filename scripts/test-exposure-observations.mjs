@@ -27,7 +27,7 @@ for(const etf of ETFS){
  const observation=concentrationCopy(AUTOMATED_ETF[etf.isin]);if(observation)assert.ok(text.includes(observation))
 }
 for(const id of ['etf-pe','etf-volatility','sector-theme','em-small']) {const sheet=buildSheet(id);assert.equal(sheet.blocked,false);assert.ok(buildTweet(sheet).includes('🔖 Sauvegarde ce tweet'))}
-for(const id of ['em_pea_amundi','europe_pea_amundi','health_europe_pea','tech_europe_pea','industry_world_dws','em_small_ishares']) {const asset=ASSETS.find(a=>a.id===id);assert.ok(asset);assert.equal(asset.manualOnly,!['health_europe_pea','industry_world_dws','em_small_ishares'].includes(id));assert.equal(asset.r.length,6);assert.ok(asset.r.every(Number.isFinite))}
+for(const id of ['em_pea_amundi','europe_pea_amundi','health_europe_pea','tech_europe_pea','industry_world_dws','em_small_ishares']) {const asset=ASSETS.find(a=>a.id===id);assert.ok(asset);assert.equal(asset.manualOnly,!['em_pea_amundi','europe_pea_amundi','health_europe_pea','industry_world_dws','em_small_ishares'].includes(id));assert.equal(asset.r.length,6);assert.ok(asset.r.every(Number.isFinite))}
 for(const id of ['europe-food-retail','europe-media-telecom','em-large-small']) assert.equal(QUALIFIED_ETF_COMPARISONS.find(c=>c.id===id)?.funds.length,2)
 console.log(`${ETFS.length} publications ; concentration datée, périmètres, six supports et quatre fiches vérifiés.`)
 
