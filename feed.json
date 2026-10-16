@@ -5,7 +5,7 @@
         "id": "service-public",
         "name": "Service Public",
         "url": "https://www.service-public.gouv.fr/abonnements/rss/actu-actualites-particuliers.rss",
-        "checkedAt": "2026-10-16T07:55:50.259Z",
+        "checkedAt": "2026-10-16T10:19:50.960Z",
         "status": "ok",
         "articles": 10,
         "relevant": 5
@@ -14,7 +14,7 @@
         "id": "bercy",
         "name": "Ministère de l’Économie",
         "url": "https://www.economie.gouv.fr/rss/toutesactualites",
-        "checkedAt": "2026-10-16T07:55:50.259Z",
+        "checkedAt": "2026-10-16T10:19:50.960Z",
         "status": "ok",
         "articles": 10,
         "relevant": 2
@@ -23,16 +23,16 @@
         "id": "vie-publique-actualites",
         "name": "Vie publique · actualités",
         "url": "https://www.vie-publique.fr/actualites-feeds.xml",
-        "checkedAt": "2026-10-16T07:55:50.259Z",
+        "checkedAt": "2026-10-16T10:19:50.960Z",
         "status": "ok",
         "articles": 10,
-        "relevant": 0
+        "relevant": 1
       },
       {
         "id": "vie-publique-lois",
         "name": "Vie publique · lois",
         "url": "https://www.vie-publique.fr/lois-feeds.xml",
-        "checkedAt": "2026-10-16T07:55:50.259Z",
+        "checkedAt": "2026-10-16T10:19:50.960Z",
         "status": "ok",
         "articles": 100,
         "relevant": 0
@@ -41,7 +41,7 @@
         "id": "banque-france-credit",
         "name": "Banque de France · crédits aux particuliers",
         "url": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166",
-        "checkedAt": "2026-10-16T07:55:50.259Z",
+        "checkedAt": "2026-10-16T10:19:50.960Z",
         "status": "ok",
         "articles": 12,
         "relevant": 2
@@ -50,7 +50,7 @@
         "id": "cre-prix",
         "name": "CRE · prix de l’énergie",
         "url": "https://www.cre.fr/documents/communiques-de-presse.html",
-        "checkedAt": "2026-10-16T07:55:50.259Z",
+        "checkedAt": "2026-10-16T10:19:50.960Z",
         "status": "ok",
         "articles": 7,
         "relevant": 1
@@ -69,7 +69,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-16",
-        "checkedAt": "2026-10-16T07:55:50.259Z",
+        "checkedAt": "2026-10-16T10:19:50.960Z",
         "sourceUrl": "https://www.economie.gouv.fr/actualites/video-les-dernieres-mesures-daide-et-de-soutien-face-la-hausse-des-prix-des-carburants",
         "scope": "Actualité officielle · particuliers",
         "tool": "/pouvoir-achat",
@@ -97,7 +97,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-16",
-        "checkedAt": "2026-10-16T07:55:50.259Z",
+        "checkedAt": "2026-10-16T10:19:50.960Z",
         "sourceUrl": "https://www.economie.gouv.fr/actualites/carburant-laide-pour-les-travailleurs-grands-rouleurs",
         "scope": "Actualité officielle · particuliers",
         "tool": "/pouvoir-achat",
@@ -115,6 +115,34 @@
       },
       {
         "family": "pouvoir-achat",
+        "entity": "purchasing-news-ede07461774a16dcb210",
+        "label": "Gaz : quels sont les niveaux des stocks en Europe pour l'hiver 2026-2027 ?",
+        "field": "announcement",
+        "fieldLabel": "Actualité officielle",
+        "value": {
+          "title": "Gaz : quels sont les niveaux des stocks en Europe pour l'hiver 2026-2027 ?",
+          "summary": "",
+          "status": "À préciser"
+        },
+        "period": "2026-10-15",
+        "checkedAt": "2026-10-16T10:19:50.960Z",
+        "sourceUrl": "https://www.vie-publique.fr/en-bref/304972-gaz-quels-sont-les-niveaux-des-stocks-en-europe-pour-lhiver-2026",
+        "scope": "Actualité officielle · particuliers",
+        "tool": "/pouvoir-achat",
+        "rule": "announcement",
+        "discovery": true,
+        "priority": "normal",
+        "topic": "depenses",
+        "topicLabel": "Dépenses courantes",
+        "publisher": "Vie publique · actualités",
+        "status": "À préciser",
+        "statusEvidence": "",
+        "summary": "",
+        "angle": "Qui paiera davantage ou moins, et à quelle date ?",
+        "reason": "Titre, résumé et date récupérés automatiquement dans le flux officiel. Le statut repose sur une formulation explicite ; aucun impact individuel n’est inventé."
+      },
+      {
+        "family": "pouvoir-achat",
         "entity": "purchasing-news-053153302f7f2651de28",
         "label": "Le nouvel indice de référence des loyers vient de paraître",
         "field": "announcement",
@@ -125,7 +153,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-15",
-        "checkedAt": "2026-10-16T07:55:50.259Z",
+        "checkedAt": "2026-10-16T10:19:50.960Z",
         "sourceUrl": "https://www.service-public.gouv.fr/particuliers/actualites/A17342",
         "scope": "Actualité officielle · particuliers",
         "tool": "/pouvoir-achat",
@@ -153,7 +181,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-15",
-        "checkedAt": "2026-10-16T07:55:50.259Z",
+        "checkedAt": "2026-10-16T10:19:50.960Z",
         "sourceUrl": "https://www.service-public.gouv.fr/particuliers/actualites/A17790",
         "scope": "Actualité officielle · particuliers",
         "tool": "/pouvoir-achat",
@@ -181,7 +209,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-14",
-        "checkedAt": "2026-10-16T07:55:50.259Z",
+        "checkedAt": "2026-10-16T10:19:50.960Z",
         "sourceUrl": "https://www.service-public.gouv.fr/particuliers/actualites/A19094",
         "scope": "Actualité officielle · particuliers",
         "tool": "/pouvoir-achat",
@@ -209,7 +237,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-14",
-        "checkedAt": "2026-10-16T07:55:50.259Z",
+        "checkedAt": "2026-10-16T10:19:50.960Z",
         "sourceUrl": "https://www.service-public.gouv.fr/particuliers/actualites/A19057",
         "scope": "Actualité officielle · particuliers",
         "tool": "/pouvoir-achat",
@@ -237,7 +265,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-12",
-        "checkedAt": "2026-10-16T07:55:50.259Z",
+        "checkedAt": "2026-10-16T10:19:50.960Z",
         "sourceUrl": "https://www.service-public.gouv.fr/particuliers/actualites/A17956",
         "scope": "Actualité officielle · particuliers",
         "tool": "/pouvoir-achat",
@@ -461,7 +489,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-06",
-        "checkedAt": "2026-10-16T07:55:50.259Z",
+        "checkedAt": "2026-10-16T10:19:50.960Z",
         "sourceUrl": "https://www.banque-france.fr/fr/statistiques/credit/credits-aux-particuliers-2026-08",
         "scope": "Actualité officielle · particuliers",
         "tool": "/pouvoir-achat",
@@ -545,7 +573,7 @@
           "status": "À préciser"
         },
         "period": "2026-09-10",
-        "checkedAt": "2026-10-16T07:55:50.259Z",
+        "checkedAt": "2026-10-16T10:19:50.960Z",
         "sourceUrl": "https://www.cre.fr/documents/communiques-de-presse/le-prix-repere-de-vente-de-gaz-augmente-de-63-ttc-au-1er-octobre-2026.html",
         "scope": "Actualité officielle · particuliers",
         "tool": "/pouvoir-achat",
@@ -573,7 +601,7 @@
           "status": "À préciser"
         },
         "period": "2026-09-07",
-        "checkedAt": "2026-10-16T07:55:50.259Z",
+        "checkedAt": "2026-10-16T10:19:50.960Z",
         "sourceUrl": "https://www.banque-france.fr/fr/statistiques/credit/credits-aux-particuliers-2026-07",
         "scope": "Actualité officielle · particuliers",
         "tool": "/pouvoir-achat",
@@ -593,9 +621,9 @@
   },
   "schemaVersion": 1,
   "initializedAt": "2026-10-09T04:46:31.490Z",
-  "checkedAt": "2026-10-16T07:55:57.580Z",
-  "sourceRevision": "41225fc991f5b23772debd507e092cefdc0add66",
-  "observationCount": 6458,
+  "checkedAt": "2026-10-16T10:19:58.953Z",
+  "sourceRevision": "80f0cb01374d036832312024bdb7452b589c804c",
+  "observationCount": 6459,
   "coverage": {
     "etf": 213,
     "indices": 52,
@@ -605,11 +633,48 @@
     "assurance": 7,
     "investisseurs": 28,
     "economie": 32,
-    "pouvoir-achat": 10
+    "pouvoir-achat": 11
   },
-  "newSignalCount": 6,
+  "newSignalCount": 1,
   "errors": [],
   "events": [
+    {
+      "topic": "depenses",
+      "topicLabel": "Dépenses courantes",
+      "publisher": "Vie publique · actualités",
+      "status": "À préciser",
+      "statusEvidence": "",
+      "summary": "",
+      "id": "0560d836c6c71729ea3f92e3",
+      "family": "pouvoir-achat",
+      "entity": "purchasing-news-ede07461774a16dcb210",
+      "label": "Gaz : quels sont les niveaux des stocks en Europe pour l'hiver 2026-2027 ?",
+      "field": "announcement",
+      "fieldLabel": "Actualité officielle",
+      "title": "Pouvoir d’achat : Gaz : quels sont les niveaux des stocks en Europe pour l'hiver 2026-2027 ?",
+      "kind": "new",
+      "priority": "normal",
+      "detectedAt": "2026-10-16T10:19:58.953Z",
+      "before": null,
+      "after": {
+        "title": "Gaz : quels sont les niveaux des stocks en Europe pour l'hiver 2026-2027 ?",
+        "summary": "",
+        "status": "À préciser"
+      },
+      "beforeText": "Pas encore suivi",
+      "afterText": "title : Gaz : quels sont les niveaux des stocks en Europe pour l'hiver 2026-2027 ? · summary :  · status : À préciser",
+      "beforePeriod": null,
+      "period": "2026-10-15",
+      "scope": "Actualité officielle · particuliers",
+      "unit": "",
+      "sourceUrl": "https://www.vie-publique.fr/en-bref/304972-gaz-quels-sont-les-niveaux-des-stocks-en-europe-pour-lhiver-2026",
+      "previousSourceUrl": null,
+      "checkedAt": "2026-10-16T10:19:50.960Z",
+      "tool": "/pouvoir-achat",
+      "angle": "Qui paiera davantage ou moins, et à quelle date ?",
+      "draft": "🔖 Sauvegarde ce tweet\n\nGaz : quels sont les niveaux des stocks en Europe pour l'hiver 2026-2027 ?\n\n\n\n📌 À préciser\n\nQui paiera davantage ou moins, et à quelle date ?\n\nSource : https://www.vie-publique.fr/en-bref/304972-gaz-quels-sont-les-niveaux-des-stocks-en-europe-pour-lhiver-2026",
+      "reason": "Titre, résumé et date récupérés automatiquement dans le flux officiel. Le statut repose sur une formulation explicite ; aucun impact individuel n’est inventé."
+    },
     {
       "id": "294a24c5e31d1fafbced0d59",
       "family": "investisseurs",
