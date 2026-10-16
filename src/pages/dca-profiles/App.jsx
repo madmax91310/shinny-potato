@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import PageHeader from '../../design-system/PageHeader'
 import ToolWorkspace from '../../design-system/ToolWorkspace'
 import ChoicePicker from '../../design-system/ChoicePicker.jsx'
@@ -20,6 +20,16 @@ export default function App(){
  const [used,setUsed]=useState(()=>{try{return readUsed(localStorage)}catch{return []}}),[queries,setQueries]=useState({})
  const [savedState,setSavedState]=useState(()=>{try{return {items:readSaved(localStorage),error:''}}catch{return {items:[],error:'Impossible de lire les portefeuilles enregistrés. Le stockage existant a été conservé.'}}})
  const [savedId,setSavedId]=useState(''),[saveTitle,setSaveTitle]=useState(profiles[0].name)
+ const [view,setView]=useState('settings'),[publicationTab,setPublicationTab]=useState('text'),[destination,setDestination]=useState(null)
+ function navigate(step){
+  if(step==='publish'){setView('preview');setPublicationTab('text')}else setView('settings')
+  setDestination({id:step==='publish'?'dca-draft':step==='analyze'?'dca-analysis':'dca-compose'})
+ }
+ useEffect(()=>{
+  if(!destination)return
+  const target=document.getElementById(destination.id)
+  target?.focus({preventScroll:true});target?.scrollIntoView({block:'start'})
+ },[destination])
  const seen=useRef(new Set([profiles[0].id]))
  const a=analyzeProfile(profile),ready=publicationReady(profile)
  const renderImage=useCallback(()=>renderDcaImage(profile,field),[profile,field])
@@ -48,13 +58,13 @@ export default function App(){
  function save(){try{localStorage.setItem('el-dca-draft-v1',JSON.stringify({profile,draft,field}));setFeedback('Brouillon enregistré sur cet appareil.')}catch{setFeedback('Le stockage local est indisponible.')}}
  function restore(){try{const saved=JSON.parse(localStorage.getItem('el-dca-draft-v1'));if(saved?.profile)saved.profile=migrateProfile(saved.profile);if(!saved?.profile||analyzeProfile(saved.profile).errors.length||typeof saved.draft!=='string')throw Error();setProfile({...saved.profile,approved:false});setDraft(saved.draft);setField(['countries','sectors','both','all','overlap'].includes(saved.field)?saved.field:'countries');setSavedId('');setSaveTitle(saved.profile.name);setFeedback('Brouillon restauré.')}catch{setFeedback('Aucun brouillon valide enregistré.')}}
  return <div className="dca-profiles-scope">
- <PageHeader title="Portefeuille & expositions" subtitle="Retrouve les titres derrière tes ETF. Comprends tes concentrations. Prépare une publication à ton image." />
- <section className="dca-hero"><div><span className="dca-eyebrow">LE DCA DE… · L’ANALYSE DU PORTEFEUILLE</span><h2>Plusieurs placements.<br/>Une vue d’ensemble.</h2><p>Une action peut se retrouver dans plusieurs ETF. Explore tes expositions et les titres détenus en commun, puis partage une synthèse lisible.</p><div className="dca-buttons"><button onClick={compose}>Analyser mon portefeuille</button><button onClick={participate}>Préparer un DCA</button></div></div><div className="dca-hero-art" aria-hidden="true"><div className="dca-hero-ring"><span>Au-delà<br/>des ETF</span></div><div className="dca-hero-tags"><span>Géographie</span><span>Secteurs</span><span>Titres communs</span></div></div></section>
- <nav className="dca-section-nav" aria-label="Parcours du portefeuille"><a href="#dca-compose">1. Composer</a><a href="#dca-analysis">2. Analyser</a><a href="#dca-draft">3. Publier</a></nav>
- <ToolWorkspace renderImage={renderImage} imageDisabled={!!a.errors.length} imageAlt={profile.imageOnly?'Expositions du portefeuille':`Portefeuille et versements de ${profile.name}`} actions={<>
+ <PageHeader title="Portefeuille & DCA" subtitle="Retrouve les titres derrière tes ETF. Comprends tes concentrations. Prépare une publication à ton image." />
+ <section className="dca-hero"><div><span className="dca-eyebrow">EXPOSITIONS · RECOUVREMENT · LE DCA DE…</span><h2>Plusieurs placements.<br/>Une vue d’ensemble.</h2><p>Une action peut se retrouver dans plusieurs ETF. Explore tes expositions et les titres détenus en commun, puis partage une synthèse lisible.</p><div className="dca-buttons"><button onClick={()=>{compose();navigate('compose')}}>Analyser mon portefeuille</button><button onClick={()=>{participate();navigate('compose')}}>Préparer un DCA</button></div></div><div className="dca-hero-art" aria-hidden="true"><div className="dca-hero-ring"><span>Au-delà<br/>des ETF</span></div><div className="dca-hero-tags"><span>Géographie</span><span>Secteurs</span><span>Titres communs</span></div></div></section>
+ <nav className="dca-section-nav" aria-label="Parcours du portefeuille"><a href="#dca-compose" onClick={e=>{e.preventDefault();navigate('compose')}}>1. Composer</a><a href="#dca-analysis" onClick={e=>{e.preventDefault();navigate('analyze')}}>2. Analyser</a><a href="#dca-draft" onClick={e=>{e.preventDefault();navigate('publish')}}>3. Publier</a></nav>
+ <ToolWorkspace view={view} onViewChange={setView} publicationTab={publicationTab} onPublicationTabChange={setPublicationTab} renderImage={renderImage} imageDisabled={!!a.errors.length} imageAlt={profile.imageOnly?'Expositions du portefeuille':`Portefeuille et versements de ${profile.name}`} actions={<>
  <Button onClick={copy} disabled={!ready||!draft.trim()}>Copier le texte</Button><Button variant="secondary" onClick={download} disabled={!ready}>Télécharger le PNG</Button>
  </>}>
- <section className="tool-settings" id="dca-compose">
+ <section className="tool-settings" id="dca-compose" tabIndex={-1}>
  <div className="dca-mode"><button aria-pressed={!!profile.imageOnly} onClick={compose}>Composer un portefeuille</button><button aria-pressed={profile.mode==='prepared'&&!profile.imageOnly} onClick={()=>select(profiles[0])}>Profils préparés</button><button aria-pressed={profile.mode==='participant'&&!profile.imageOnly} onClick={participate}>Créer une participation</button></div>
  {profile.mode==='prepared'&&<>
  <details className="dca-filters"><summary>Filtrer les profils · {filtered.length} résultat{filtered.length>1?'s':''}</summary>
@@ -104,7 +114,7 @@ export default function App(){
  <p>Part grise du donut : {pct(Math.max(0,100-(a[f].groups[0]?.coverage||0)-a[f].neutralWeight))}. Elle comprend les données absentes, anciennes ou incompatibles avec la classification principale.</p>
  </div>)}</details>}
  {profile.scope==='PEA'&&profile.lines.some(l=>references[l.asset]?.pea!==true)&&<p className="dca-note" role="status">Ce portefeuille contient des supports dont l’éligibilité PEA n’est pas établie : {profile.lines.filter(l=>references[l.asset]?.pea!==true).map(l=>l.label).join(' · ')}. Vérifie le périmètre choisi.</p>}
- {profile.mode==='participant'&&<label className="dca-consent"><input type="checkbox" checked={profile.approved} onChange={e=>setProfile({...profile,approved:e.target.checked})}/>{profile.imageOnly?'Je valide les expositions à publier.':'La personne a validé le texte, le visuel et les informations à publier.'}</label>}
+
  <details className="dca-saved"><summary>Mes portefeuilles · {savedState.items.length}/50</summary>
  <label>Nom de la sauvegarde<input maxLength={80} value={saveTitle} onChange={e=>setSaveTitle(e.target.value)}/></label>
  <Button variant="secondary" disabled={!!a.errors.length||!!savedState.error} onClick={savePortfolio}>{savedId?'Mettre à jour la sauvegarde':'Enregistrer ce portefeuille'}</Button>
@@ -113,8 +123,8 @@ export default function App(){
  <p className="dca-note">Sauvegardés uniquement sur cet appareil. La suppression des données du navigateur efface ces sauvegardes.</p></details>
  <div className="dca-buttons"><Button variant="secondary" onClick={save}>Enregistrer le brouillon</Button><Button variant="secondary" onClick={restore}>Restaurer le brouillon</Button></div><p className="dca-note">Brouillon stocké uniquement sur cet appareil. Aucun formulaire ni envoi à un tiers.</p>
  </section>
- <section className="tool-preview"><label className="dca-label" htmlFor="dca-draft">Texte prêt à publier</label><textarea id="dca-draft" value={draft} onChange={e=>{setDraft(e.target.value);setProfile({...profile,approved:false})}}/><p className="dca-note">{Array.from(draft).length} caractères · Les modifications du portefeuille régénèrent le texte.</p><Button variant="secondary" disabled={!!a.errors.length} onClick={()=>{setDraft(buildTweetText(profile));setProfile({...profile,approved:false})}}>Rétablir le texte</Button><p role="status" aria-live="polite">{feedback}</p></section>
+ <section className="tool-preview"> {profile.mode==='participant'&&<label className="dca-consent"><input type="checkbox" checked={profile.approved} onChange={e=>setProfile({...profile,approved:e.target.checked})}/>{profile.imageOnly?'Je valide les expositions à publier.':'La personne a validé le texte, le visuel et les informations à publier.'}</label>}<label className="dca-label" htmlFor="dca-draft">Texte prêt à publier</label><textarea id="dca-draft" value={draft} onChange={e=>{setDraft(e.target.value);setProfile({...profile,approved:false})}}/><p className="dca-note">{Array.from(draft).length} caractères · Les modifications du portefeuille régénèrent le texte.</p><Button variant="secondary" disabled={!!a.errors.length} onClick={()=>{setDraft(buildTweetText(profile));setProfile({...profile,approved:false})}}>Rétablir le texte</Button><p role="status" aria-live="polite">{feedback}</p></section>
  </ToolWorkspace>
- {!a.errors.length&&<Analytics profile={profile} analysis={a}/>}
+ {!a.errors.length?<Analytics profile={profile} analysis={a}/>:<section id="dca-analysis" className="dca-analysis" tabIndex={-1} aria-label="Analyse du portefeuille"><h2>Complète ton allocation pour l’analyser</h2>{a.errors.map(error=><p key={error}>{error}</p>)}<Button variant="secondary" onClick={()=>navigate('compose')}>Revenir aux réglages</Button></section>}
  </div>
 }
