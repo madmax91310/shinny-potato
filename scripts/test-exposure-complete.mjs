@@ -18,6 +18,12 @@ const universe=equityUniverse()
 for(const [asset,r] of Object.entries(universe)){
  assert.equal(references[asset].kind,'equity')
  for(const ticker of r.tickers)assert(searchAssets(ticker).includes(asset))
+ // The overlap tool needs a dated, sourced sector and country for every individual stock.
+ for(const field of ['countries','sectors']){
+  const observation=references[asset][field]
+  assert(observation?.rows?.length&&observation.rows.every(row=>row.name&&row.weightPct>0),`${asset} (${r.isin}): missing ${field} for the overlap tool`)
+  assert(/^\d{4}-\d{2}-\d{2}$/.test(observation.asOf)&&observation.sourceUrl&&observation.method,`${asset}: ${field} without date, source or method`)
+ }
 }
 const lines=Object.entries(references).slice(0,50).map(([asset,r])=>({asset,isin:r.isin,label:r.name,weight:2,amount:0}))
 assert.deepEqual(validateProfile({imageOnly:true,scope:'Portefeuille investi',lines}),[])
