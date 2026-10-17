@@ -2,56 +2,6 @@
  "method": "Candidats curatés : identité ISIN, cotation attendue et devise. Une ligne n’entre dans src/data/global-equities.json qu’après classification officielle (positions complètes BlackRock) et qualification réelle de l’historique Yahoo par scripts/qualify_monthly_candidates.py ; scripts/sync-global-equities.mjs effectue ce transfert. Un symbole null signifie que la cotation détenue par l’émetteur est acceptée telle quelle.",
  "candidates": [
   {
-   "id": "bp",
-   "label": "BP",
-   "symbol": "BP.L",
-   "currency": "GBp",
-   "region": "Europe",
-   "scene": "energy",
-   "isin": "GB0007980591",
-   "timezone": "Europe/London"
-  },
-  {
-   "id": "national-grid",
-   "label": "National Grid",
-   "symbol": "NG.L",
-   "currency": "GBp",
-   "region": "Europe",
-   "scene": "utilities",
-   "isin": "GB00BDR05C01",
-   "timezone": "Europe/London"
-  },
-  {
-   "id": "ab-inbev",
-   "label": "AB InBev",
-   "symbol": "ABI.BR",
-   "currency": "EUR",
-   "region": "Europe",
-   "scene": "consumer",
-   "isin": "BE0974293251",
-   "timezone": "Europe/Brussels"
-  },
-  {
-   "id": "bajaj-finance",
-   "label": "Bajaj Finance",
-   "symbol": "BAJFINANCE.NS",
-   "currency": "INR",
-   "region": "Asie",
-   "scene": "finance",
-   "isin": "INE296A01032",
-   "timezone": "Asia/Kolkata"
-  },
-  {
-   "id": "kotak-mahindra",
-   "label": "Kotak Mahindra Bank",
-   "symbol": "KOTAKBANK.NS",
-   "currency": "INR",
-   "region": "Asie",
-   "scene": "finance",
-   "isin": "INE237A01036",
-   "timezone": "Asia/Kolkata"
-  },
-  {
    "id": "bhp",
    "label": "BHP",
    "symbol": "BHP.AX",
@@ -61,7 +11,7 @@
    "isin": "AU000000BHP4",
    "timezone": "Australia/Sydney",
    "lastAttempt": {
-    "checkedAt": "2026-10-17T23:24:31.480755+00:00",
+    "checkedAt": "2026-10-17T23:43:17.212648+00:00",
     "status": "failed",
     "error": null
    }
@@ -76,7 +26,7 @@
    "isin": "AU000000CSL8",
    "timezone": "Australia/Sydney",
    "lastAttempt": {
-    "checkedAt": "2026-10-17T23:24:31.480755+00:00",
+    "checkedAt": "2026-10-17T23:43:17.212648+00:00",
     "status": "failed",
     "error": null
    }
@@ -91,7 +41,7 @@
    "isin": "AU000000CBA7",
    "timezone": "Australia/Sydney",
    "lastAttempt": {
-    "checkedAt": "2026-10-17T23:24:31.480755+00:00",
+    "checkedAt": "2026-10-17T23:43:17.212648+00:00",
     "status": "failed",
     "error": null
    }
@@ -106,20 +56,10 @@
    "isin": "AU000000MQG1",
    "timezone": "Australia/Sydney",
    "lastAttempt": {
-    "checkedAt": "2026-10-17T23:24:31.480755+00:00",
+    "checkedAt": "2026-10-17T23:43:17.212648+00:00",
     "status": "failed",
     "error": null
    }
-  },
-  {
-   "id": "fdx",
-   "label": "FedEx",
-   "symbol": "FDX",
-   "currency": "USD",
-   "region": "États-Unis",
-   "scene": "infrastructure",
-   "isin": "US31428X1063",
-   "timezone": "America/New_York"
   }
  ],
  "excluded": [

@@ -13019,6 +13019,227 @@
       "yahooInstrumentType": "ETF",
       "periodStart": "2016-10",
       "verifyMonthlyDisagreements": true
+    },
+    {
+      "id": "ab-inbev",
+      "isin": "BE0974293251",
+      "label": "AB InBev",
+      "ticker": "ABI",
+      "symbol": "ABI.BR",
+      "currency": "EUR",
+      "timezone": "Europe/Brussels",
+      "parser": "yahoo",
+      "field": "adjclose",
+      "precision": 6,
+      "instrumentType": "EQUITY",
+      "consumerScope": "equity",
+      "collectAnniversary": true,
+      "icon": "📈",
+      "tweetPhrase": "AB InBev",
+      "listingEvidenceId": "BE0974293251:Nyse Euronext - Euronext Brussels:ABI:EUR",
+      "listingEvidence": {
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": "2026-10-15",
+        "isin": "BE0974293251",
+        "ticker": "ABI",
+        "exchange": "Nyse Euronext - Euronext Brussels",
+        "currency": "EUR"
+      },
+      "method": "Cours de la cotation identifiée par ISIN dans les positions émetteur, ajustés des distributions et divisions ; dernières clôtures quotidiennes recoupées avec les clôtures mensuelles Yahoo.",
+      "yahooInstrumentType": "EQUITY",
+      "periodStart": "2016-01",
+      "qualificationCoverage": {
+        "requestedStart": "2015-01",
+        "retainedStart": "2016-01",
+        "excluded": [
+          {
+            "through": "2015-12",
+            "reason": "Monthly close differs from final daily session: 2015-12, session 2015-12-30, daily 115.80000305175781, check 114.4000015258789"
+          }
+        ],
+        "method": "Latest continuous suffix of independently verified full months; no missing month filled"
+      }
+    },
+    {
+      "id": "bp",
+      "isin": "GB0007980591",
+      "label": "BP",
+      "ticker": "BP.",
+      "symbol": "BP.L",
+      "currency": "GBp",
+      "timezone": "Europe/London",
+      "parser": "yahoo",
+      "field": "adjclose",
+      "precision": 6,
+      "instrumentType": "EQUITY",
+      "consumerScope": "equity",
+      "collectAnniversary": true,
+      "icon": "📈",
+      "tweetPhrase": "BP",
+      "listingEvidenceId": "GB0007980591:London Stock Exchange:BP.:GBP",
+      "listingEvidence": {
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": "2026-10-15",
+        "isin": "GB0007980591",
+        "ticker": "BP.",
+        "exchange": "London Stock Exchange",
+        "currency": "GBP"
+      },
+      "method": "Cours de la cotation identifiée par ISIN dans les positions émetteur, ajustés des distributions et divisions ; dernières clôtures quotidiennes recoupées avec les clôtures mensuelles Yahoo.",
+      "quoteUnitEvidence": {
+        "provider": "Yahoo chart metadata",
+        "currency": "GBp",
+        "sourceCurrency": "GBP",
+        "unitsPerCurrency": 100,
+        "symbol": "BP.L"
+      },
+      "yahooInstrumentType": "EQUITY",
+      "periodStart": "2015-01"
+    },
+    {
+      "id": "national-grid",
+      "isin": "GB00BDR05C01",
+      "label": "National Grid",
+      "ticker": "NG.",
+      "symbol": "NG.L",
+      "currency": "GBp",
+      "timezone": "Europe/London",
+      "parser": "yahoo",
+      "field": "adjclose",
+      "precision": 6,
+      "instrumentType": "EQUITY",
+      "consumerScope": "equity",
+      "collectAnniversary": true,
+      "icon": "📈",
+      "tweetPhrase": "National Grid",
+      "listingEvidenceId": "GB00BDR05C01:London Stock Exchange:NG.:GBP",
+      "listingEvidence": {
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": "2026-10-15",
+        "isin": "GB00BDR05C01",
+        "ticker": "NG.",
+        "exchange": "London Stock Exchange",
+        "currency": "GBP"
+      },
+      "method": "Cours de la cotation identifiée par ISIN dans les positions émetteur, ajustés des distributions et divisions ; dernières clôtures quotidiennes recoupées avec les clôtures mensuelles Yahoo.",
+      "quoteUnitEvidence": {
+        "provider": "Yahoo chart metadata",
+        "currency": "GBp",
+        "sourceCurrency": "GBP",
+        "unitsPerCurrency": 100,
+        "symbol": "NG.L"
+      },
+      "yahooInstrumentType": "EQUITY",
+      "periodStart": "2015-01"
+    },
+    {
+      "id": "kotak-mahindra",
+      "isin": "INE237A01036",
+      "label": "Kotak Mahindra Bank",
+      "ticker": "KOTAKBANK",
+      "symbol": "KOTAKBANK.NS",
+      "currency": "INR",
+      "timezone": "Asia/Kolkata",
+      "parser": "yahoo",
+      "field": "adjclose",
+      "precision": 6,
+      "instrumentType": "EQUITY",
+      "consumerScope": "equity",
+      "collectAnniversary": true,
+      "icon": "📈",
+      "tweetPhrase": "Kotak Mahindra Bank",
+      "listingEvidenceId": "INE237A01036:National Stock Exchange Of India:KOTAKBANK:INR",
+      "listingEvidence": {
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=264659&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": "2026-10-15",
+        "isin": "INE237A01036",
+        "ticker": "KOTAKBANK",
+        "exchange": "National Stock Exchange Of India",
+        "currency": "INR"
+      },
+      "method": "Cours de la cotation identifiée par ISIN dans les positions émetteur, ajustés des distributions et divisions ; dernières clôtures quotidiennes recoupées avec les clôtures mensuelles Yahoo.",
+      "yahooInstrumentType": "EQUITY",
+      "periodStart": "2019-04",
+      "qualificationCoverage": {
+        "requestedStart": "2015-01",
+        "retainedStart": "2019-04",
+        "excluded": [
+          {
+            "through": "2019-03",
+            "reason": "Monthly close differs from final daily session: 2019-03, session 2019-03-28, daily 268.1499938964844, check 266.8999938964844"
+          }
+        ],
+        "method": "Latest continuous suffix of independently verified full months; no missing month filled"
+      }
+    },
+    {
+      "id": "bajaj-finance",
+      "isin": "INE296A01032",
+      "label": "Bajaj Finance",
+      "ticker": "BAJFINANCE",
+      "symbol": "BAJFINANCE.NS",
+      "currency": "INR",
+      "timezone": "Asia/Kolkata",
+      "parser": "yahoo",
+      "field": "adjclose",
+      "precision": 6,
+      "instrumentType": "EQUITY",
+      "consumerScope": "equity",
+      "collectAnniversary": true,
+      "icon": "📈",
+      "tweetPhrase": "Bajaj Finance",
+      "listingEvidenceId": "INE296A01032:National Stock Exchange Of India:BAJFINANCE:INR",
+      "listingEvidence": {
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=264659&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": "2026-10-15",
+        "isin": "INE296A01032",
+        "ticker": "BAJFINANCE",
+        "exchange": "National Stock Exchange Of India",
+        "currency": "INR"
+      },
+      "method": "Cours de la cotation identifiée par ISIN dans les positions émetteur, ajustés des distributions et divisions ; dernières clôtures quotidiennes recoupées avec les clôtures mensuelles Yahoo.",
+      "yahooInstrumentType": "EQUITY",
+      "periodStart": "2019-04",
+      "qualificationCoverage": {
+        "requestedStart": "2015-01",
+        "retainedStart": "2019-04",
+        "excluded": [
+          {
+            "through": "2019-03",
+            "reason": "Monthly close differs from final daily session: 2019-03, session 2019-03-28, daily 299.5849914550781, check 302.5"
+          }
+        ],
+        "method": "Latest continuous suffix of independently verified full months; no missing month filled"
+      }
+    },
+    {
+      "id": "fdx",
+      "isin": "US31428X1063",
+      "label": "FedEx",
+      "ticker": "FDX",
+      "symbol": "FDX",
+      "currency": "USD",
+      "timezone": "America/New_York",
+      "parser": "yahoo",
+      "field": "adjclose",
+      "precision": 6,
+      "instrumentType": "EQUITY",
+      "consumerScope": "equity",
+      "collectAnniversary": true,
+      "icon": "📈",
+      "tweetPhrase": "FedEx",
+      "listingEvidenceId": "US31428X1063:New York Stock Exchange Inc.:FDX:USD",
+      "listingEvidence": {
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": "2026-10-15",
+        "isin": "US31428X1063",
+        "ticker": "FDX",
+        "exchange": "New York Stock Exchange Inc.",
+        "currency": "USD"
+      },
+      "method": "Cours de la cotation identifiée par ISIN dans les positions émetteur, ajustés des distributions et divisions ; dernières clôtures quotidiennes recoupées avec les clôtures mensuelles Yahoo.",
+      "yahooInstrumentType": "EQUITY",
+      "periodStart": "2015-01"
     }
   ]
 }

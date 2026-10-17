@@ -74,6 +74,43 @@
     }
   },
   {
+    "id": "equity-ab-inbev",
+    "historyId": "ab-inbev",
+    "label": "AB InBev",
+    "isin": "BE0974293251",
+    "currency": "EUR",
+    "calendarReturns": {
+      "2020": -20.81167171931504,
+      "2021": -5.940706012218433,
+      "2022": 6.8253696122747565,
+      "2023": 5.173876868749527,
+      "2024": -16.180625643920465,
+      "2025": 16.089681746217256
+    },
+    "euroCalendarReturns": {
+      "2020": -20.81167171931504,
+      "2021": -5.940706012218433,
+      "2022": 6.8253696122747565,
+      "2023": 5.173876868749527,
+      "2024": -16.180625643920465,
+      "2025": 16.089681746217256
+    },
+    "fxSource": null,
+    "values": [
+      -20.81167171931504,
+      -5.940706012218433,
+      6.8253696122747565,
+      5.173876868749527,
+      -16.180625643920465,
+      16.089681746217256
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/ABI.BR?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/consumer.webp"
+    }
+  },
+  {
     "id": "equity-abb",
     "historyId": "abb",
     "label": "ABB",
@@ -1508,6 +1545,43 @@
     }
   },
   {
+    "id": "equity-bajaj-finance",
+    "historyId": "bajaj-finance",
+    "label": "Bajaj Finance",
+    "isin": "INE296A01032",
+    "currency": "INR",
+    "calendarReturns": {
+      "2020": 25.32901441648905,
+      "2021": 31.979416582517885,
+      "2022": -5.419853168046995,
+      "2023": 11.918843424208415,
+      "2024": -6.420777223874863,
+      "2025": 45.5209014841323
+    },
+    "euroCalendarReturns": {
+      "2020": 12.086790493193856,
+      "2021": 40.489764600599834,
+      "2022": -9.648182468862377,
+      "2023": 7.372286923446403,
+      "2024": -3.294577638028484,
+      "2025": 22.557879211328768
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      25.32901441648905,
+      31.979416582517885,
+      -5.419853168046995,
+      11.918843424208415,
+      -6.420777223874863,
+      45.5209014841323
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/BAJFINANCE.NS?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/finance.webp"
+    }
+  },
+  {
     "id": "equity-santander",
     "historyId": "santander",
     "label": "Banco Santander",
@@ -2060,6 +2134,43 @@
     "checkedAt": "2026-10-17",
     "art": {
       "scene": "etf-night/infrastructure.webp"
+    }
+  },
+  {
+    "id": "equity-bp",
+    "historyId": "bp",
+    "label": "BP",
+    "isin": "GB0007980591",
+    "currency": "GBp",
+    "calendarReturns": {
+      "2020": -45.93034534303676,
+      "2021": 29.773882526802776,
+      "2022": 43.753454756780144,
+      "2023": -1.7988083192148396,
+      "2024": -15.647257040702245,
+      "2025": 10.189970722718321
+    },
+    "euroCalendarReturns": {
+      "2020": -48.83100432450049,
+      "2021": 38.84730519359201,
+      "2022": 36.1924311535603,
+      "2023": 0.2216016770482554,
+      "2024": -11.591269363976808,
+      "2025": 4.706990515543885
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      -45.93034534303676,
+      29.773882526802776,
+      43.753454756780144,
+      -1.7988083192148396,
+      -15.647257040702245,
+      10.189970722718321
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/BP.L?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/energy.webp"
     }
   },
   {
@@ -4688,6 +4799,43 @@
     }
   },
   {
+    "id": "equity-fdx",
+    "historyId": "fdx",
+    "label": "FedEx",
+    "isin": "US31428X1063",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 74.27160149576744,
+      "2021": 0.7203711679942604,
+      "2022": -31.638443772333336,
+      "2023": 49.12849758067148,
+      "2024": 13.493664886152533,
+      "2025": 5.106011587461801
+    },
+    "euroCalendarReturns": {
+      "2020": 59.54422387771585,
+      "2021": 9.124110418723074,
+      "2022": -27.408308097266765,
+      "2023": 43.9461135923477,
+      "2024": 20.71469794898311,
+      "2025": -7.068395371732716
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      74.27160149576744,
+      0.7203711679942604,
+      -31.638443772333336,
+      49.12849758067148,
+      13.493664886152533,
+      5.106011587461801
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/FDX?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/infrastructure.webp"
+    }
+  },
+  {
     "id": "equity-ferrari",
     "historyId": "ferrari",
     "label": "Ferrari",
@@ -7054,6 +7202,43 @@
     }
   },
   {
+    "id": "equity-kotak-mahindra",
+    "historyId": "kotak-mahindra",
+    "label": "Kotak Mahindra Bank",
+    "isin": "INE237A01036",
+    "currency": "INR",
+    "calendarReturns": {
+      "2020": 18.47893974848782,
+      "2021": -9.952307020025097,
+      "2022": 1.7955579916472342,
+      "2023": 4.51066617389273,
+      "2024": -6.293828123601541,
+      "2025": 23.380525977769008
+    },
+    "euroCalendarReturns": {
+      "2020": 5.960492542557683,
+      "2021": -4.14581669502928,
+      "2022": -2.7553457124218528,
+      "2023": 0.26505717585425526,
+      "2024": -3.1633875512100285,
+      "2025": 3.9112281850621766
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      18.47893974848782,
+      -9.952307020025097,
+      1.7955579916472342,
+      4.51066617389273,
+      -6.293828123601541,
+      23.380525977769008
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/KOTAKBANK.NS?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/finance.webp"
+    }
+  },
+  {
     "id": "equity-kweichow-moutai",
     "historyId": "kweichow-moutai",
     "label": "Kweichow Moutai",
@@ -8566,6 +8751,43 @@
     "checkedAt": "2026-10-17",
     "art": {
       "scene": "etf-night/chip.webp"
+    }
+  },
+  {
+    "id": "equity-national-grid",
+    "historyId": "national-grid",
+    "label": "National Grid",
+    "isin": "GB00BDR05C01",
+    "currency": "GBp",
+    "calendarReturns": {
+      "2020": -8.354818848490842,
+      "2021": 22.57718037810996,
+      "2022": -5.847975187857523,
+      "2023": 6.127269910600663,
+      "2024": -10.15447891426373,
+      "2025": 20.209523126069897
+    },
+    "euroCalendarReturns": {
+      "2020": -13.27128113221585,
+      "2021": 31.147429993968913,
+      "2022": -10.800104394769505,
+      "2023": 8.310752547965073,
+      "2024": -5.83437842258725,
+      "2025": 14.227976605173765
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      -8.354818848490842,
+      22.57718037810996,
+      -5.847975187857523,
+      6.127269910600663,
+      -10.15447891426373,
+      20.209523126069897
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/NG.L?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/utilities.webp"
     }
   },
   {

@@ -1,14 +1,14 @@
 {
-  "checkedAt": "2026-10-17T23:42:06.100Z",
+  "checkedAt": "2026-10-17T23:43:43.271Z",
   "summary": {
-    "instruments": 644,
+    "instruments": 647,
     "sheets": 258,
     "comparisons": 148,
     "practical": 21,
-    "duels": 565,
+    "duels": 571,
     "generatorAutomatic": 138,
-    "dca": 644,
-    "fullExposure": 599,
+    "dca": 647,
+    "fullExposure": 602,
     "outsideExposure": 41,
     "automaticHistories": 200,
     "historyCandidates": 0,
@@ -182,11 +182,11 @@
       "name": "AB InBev",
       "kind": "equity",
       "practical": [],
-      "duel": false,
+      "duel": true,
       "qualification": null,
       "sheet": false,
       "comparison": false,
-      "generator": "missing",
+      "generator": "manual",
       "dca": true,
       "countries": {
         "status": "available",
@@ -203,7 +203,18 @@
         "date": "2026-10-15"
       },
       "holdings": null,
-      "monthly": [],
+      "monthly": [
+        {
+          "id": "ab-inbev",
+          "automatic": true,
+          "first": "2016-01",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
       "historyCandidate": false,
       "decision": "keep-used"
     },
@@ -5452,11 +5463,11 @@
       "name": "BP",
       "kind": "equity",
       "practical": [],
-      "duel": false,
+      "duel": true,
       "qualification": null,
       "sheet": false,
       "comparison": false,
-      "generator": "missing",
+      "generator": "manual",
       "dca": true,
       "countries": {
         "status": "available",
@@ -5473,7 +5484,18 @@
         "date": "2026-10-15"
       },
       "holdings": null,
-      "monthly": [],
+      "monthly": [
+        {
+          "id": "bp",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "GBp",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
       "historyCandidate": false,
       "decision": "keep-used"
     },
@@ -5708,11 +5730,11 @@
       "name": "National Grid",
       "kind": "equity",
       "practical": [],
-      "duel": false,
+      "duel": true,
       "qualification": null,
       "sheet": false,
       "comparison": false,
-      "generator": "missing",
+      "generator": "manual",
       "dca": true,
       "countries": {
         "status": "available",
@@ -5729,7 +5751,18 @@
         "date": "2026-10-15"
       },
       "holdings": null,
-      "monthly": [],
+      "monthly": [
+        {
+          "id": "national-grid",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "GBp",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
       "historyCandidate": false,
       "decision": "keep-used"
     },
@@ -7229,8 +7262,8 @@
       },
       "holdings": {
         "asOf": "2026-10-15",
-        "complete": false,
-        "identifiedCoverage": 57.75219,
+        "complete": true,
+        "identifiedCoverage": 99.8454500000001,
         "automatic": false
       },
       "monthly": [
@@ -7538,8 +7571,8 @@
       },
       "holdings": {
         "asOf": "2026-10-15",
-        "complete": false,
-        "identifiedCoverage": 45.11741999999999,
+        "complete": true,
+        "identifiedCoverage": 99.31887,
         "automatic": false
       },
       "monthly": [
@@ -8212,8 +8245,8 @@
       },
       "holdings": {
         "asOf": "2026-10-15",
-        "complete": false,
-        "identifiedCoverage": 5.11086,
+        "complete": true,
+        "identifiedCoverage": 99.56647000000002,
         "automatic": false
       },
       "monthly": [
@@ -8494,8 +8527,8 @@
       },
       "holdings": {
         "asOf": "2026-10-15",
-        "complete": false,
-        "identifiedCoverage": 11.633220000000001,
+        "complete": true,
+        "identifiedCoverage": 99.21129000000003,
         "automatic": false
       },
       "monthly": [
@@ -9613,8 +9646,8 @@
       },
       "holdings": {
         "asOf": "2026-10-15",
-        "complete": false,
-        "identifiedCoverage": 30.48469,
+        "complete": true,
+        "identifiedCoverage": 99.60348,
         "automatic": false
       },
       "monthly": [
@@ -10314,8 +10347,8 @@
       },
       "holdings": {
         "asOf": "2026-10-15",
-        "complete": false,
-        "identifiedCoverage": 45.14004,
+        "complete": true,
+        "identifiedCoverage": 99.84599000000006,
         "automatic": false
       },
       "monthly": [
@@ -10360,8 +10393,8 @@
       },
       "holdings": {
         "asOf": "2026-10-15",
-        "complete": false,
-        "identifiedCoverage": 43.3743,
+        "complete": true,
+        "identifiedCoverage": 99.49003999999998,
         "automatic": false
       },
       "monthly": [
@@ -10406,8 +10439,8 @@
       },
       "holdings": {
         "asOf": "2026-10-15",
-        "complete": false,
-        "identifiedCoverage": 38.65044,
+        "complete": true,
+        "identifiedCoverage": 99.72199999999995,
         "automatic": false
       },
       "monthly": [
@@ -11057,8 +11090,8 @@
       },
       "holdings": {
         "asOf": "2026-10-15",
-        "complete": false,
-        "identifiedCoverage": 47.52239,
+        "complete": true,
+        "identifiedCoverage": 99.65645999999994,
         "automatic": false
       },
       "monthly": [
@@ -13198,8 +13231,8 @@
       },
       "holdings": {
         "asOf": "2026-10-15",
-        "complete": false,
-        "identifiedCoverage": 38.11514,
+        "complete": true,
+        "identifiedCoverage": 99.25938999999994,
         "automatic": false
       },
       "monthly": [
@@ -13244,8 +13277,8 @@
       },
       "holdings": {
         "asOf": "2026-10-15",
-        "complete": false,
-        "identifiedCoverage": 41.96588999999999,
+        "complete": true,
+        "identifiedCoverage": 99.11910999999995,
         "automatic": false
       },
       "monthly": [
@@ -13290,8 +13323,8 @@
       },
       "holdings": {
         "asOf": "2026-10-15",
-        "complete": false,
-        "identifiedCoverage": 29.576980000000002,
+        "complete": true,
+        "identifiedCoverage": 99.63462000000007,
         "automatic": false
       },
       "monthly": [
@@ -13734,8 +13767,8 @@
       },
       "holdings": {
         "asOf": "2026-10-15",
-        "complete": false,
-        "identifiedCoverage": 31.21796,
+        "complete": true,
+        "identifiedCoverage": 99.61023000000002,
         "automatic": false
       },
       "monthly": [
@@ -13920,8 +13953,8 @@
       },
       "holdings": {
         "asOf": "2026-10-15",
-        "complete": false,
-        "identifiedCoverage": 6.8956599999999995,
+        "complete": true,
+        "identifiedCoverage": 99.02553000000007,
         "automatic": false
       },
       "monthly": [
@@ -14533,6 +14566,47 @@
       "decision": "keep-used"
     },
     {
+      "isin": "INE237A01036",
+      "name": "Kotak Mahindra Bank",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "kotak-mahindra",
+          "automatic": true,
+          "first": "2019-04",
+          "last": "2026-09",
+          "currency": "INR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
       "isin": "INE238A01034",
       "name": "Axis Bank",
       "kind": "equity",
@@ -14561,6 +14635,47 @@
       "monthly": [
         {
           "id": "axis-bank",
+          "automatic": true,
+          "first": "2019-04",
+          "last": "2026-09",
+          "currency": "INR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "INE296A01032",
+      "name": "Bajaj Finance",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "bajaj-finance",
           "automatic": true,
           "first": "2019-04",
           "last": "2026-09",
@@ -21376,6 +21491,47 @@
       "monthly": [
         {
           "id": "stockUS3032501047",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "USD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "US31428X1063",
+      "name": "FedEx",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "fdx",
           "automatic": true,
           "first": "2015-01",
           "last": "2026-09",
