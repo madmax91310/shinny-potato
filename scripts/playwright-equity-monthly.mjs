@@ -29,6 +29,8 @@ try {
           const text=document.querySelector('pre')?.textContent??''
           return text.includes(label)&&(!symbol||text.includes(symbol))
         },{label:ASSETS[id].label,symbol:route==='il-y-a-x-ans'?symbol:null})
+        // Selected histories load asynchronously; wait for the generated text before checking its currency.
+        await page.waitForFunction(()=>Boolean(document.querySelector('pre')?.textContent.trim()),{},{timeout:60000})
         const post=await page.locator('pre').innerText()
         assert(!/NaN|undefined|\[à saisir\]/.test(post),post)
         if(route==='il-y-a-x-ans') assert(post.includes(symbol),`${id}: currency in text`)
