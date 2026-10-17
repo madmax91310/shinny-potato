@@ -28,6 +28,9 @@ export function performanceNotes(selection, { includeMethod = true } = {}) {
   const proxies = selection.filter(asset => dataLabels(asset).includes('Historique reconstitué') || ['fonds_euros', 'scpi'].includes(asset.id))
   if (proxies.length) notes.push('Historiques indicatifs : ' + proxies.map(asset => `${asset.name} — ${asset.confidenceNote ?? 'historique reconstitué'}`).join(' ; '))
   if (selection.some(asset => !returnCurrency(asset))) notes.push('Performance indisponible : devise historique non documentée pour une ligne.')
+  // A short common window (recent share) is stated as such: its worst year is not comparable to a six-year worst year.
+  const years = performanceYears(computeYearlyPerf(selection))
+  if (years.length && years.length < 6) notes.push(`Fenêtre courte : ${years.length} années communes (${years[0]}–${years.at(-1)}) ; la pire année observée n’est pas comparable à celle d’une fenêtre de six ans.`)
   return notes.join('\n')
 }
 

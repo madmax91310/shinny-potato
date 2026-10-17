@@ -76,16 +76,16 @@ Actifs présentés sans historique automatique (Sans cotation : 52 · Collecte e
 | Amundi MSCI USA Daily (2x) Leveraged UCITS ETF Acc | FR0010755611 | Oui | Oui | automatic | Oui / Oui | Partielle | Oui / Oui / Oui | — |
 | Amundi PEA Emergent EMEA (MSCI Emerging EMEA) ESG Transition UCITS ETF | FR0011440478 | Oui | Oui | manual | Oui / Oui | Partielle | Oui / Oui / Oui | — |
 | BNP Paribas Easy S&P 500 UCITS ETF (Acc) | FR0011550185 | Oui | Oui | missing | Oui / Oui | Partielle | — / — / — | Sans cotation — Cotations candidates déclarées, en attente du document émetteur |
-| BNP Paribas Easy STOXX Europe 600 UCITS ETF | FR0011550193 | Oui | Oui | manual | Oui / Oui | Partielle | Oui / Oui / Oui | — |
+| BNP Paribas Easy STOXX Europe 600 UCITS ETF | FR0011550193 | Oui | Oui | automatic | Oui / Oui | Partielle | Oui / Oui / Oui | — |
 | Amundi PEA Immobilier Europe UCITS ETF Acc | FR0011869304 | Oui | Oui | missing | Oui / Oui | Partielle | — / — / — | Sans cotation — Aucune cotation documentée ni candidate · www.amundietf.fr : HTTP Error 405: Method Not Allowed |
-| Amundi PEA Inde (MSCI India) UCITS ETF | FR0011869320 | Oui | Oui | manual | Oui / Oui | Partielle | Oui / Oui / Oui | — |
+| Amundi PEA Inde (MSCI India) UCITS ETF | FR0011869320 | Oui | Oui | automatic | Oui / Oui | Partielle | Oui / Oui / Oui | — |
 | Amundi PEA Chine (MSCI China) Screened UCITS ETF | FR0011871078 | Oui | Oui | missing | Oui / Oui | Partielle | — / — / — | Sans cotation — Aucune cotation documentée ni candidate · www.amundietf.fr : HTTP Error 405: Method Not Allowed |
 | Amundi PEA Nasdaq-100 UCITS ETF | FR0011871110 | Oui | Oui | automatic | Oui / Oui | Partielle | Oui / Oui / Oui | — |
 | Amundi PEA S&P 500 UCITS ETF | FR0011871128 | Oui | Oui | automatic | Oui / Oui | Partielle | Oui / Oui / Oui | — |
 | Amundi PEA Euro Court Terme UCITS ETF Acc | FR0013346681 | Oui | — | missing | Sans objet / Sans objet | — | — / — / — | Sans cotation — Aucune cotation documentée ni candidate · www.amundietf.fr : HTTP Error 405: Method Not Allowed |
 | Amundi CAC 40 UCITS ETF | FR0013380607 | Oui | Oui | automatic | Oui / Oui | Partielle | Oui / Oui / Oui | — |
 | Amundi PEA Japan (TOPIX) UCITS ETF | FR0013411980 | Oui | Oui | missing | Oui / Oui | Partielle | — / — / — | Sans cotation — Aucune cotation documentée ni candidate · www.amundietf.fr : HTTP Error 405: Method Not Allowed |
-| Amundi PEA Japon (TOPIX) UCITS ETF EUR Hedged Acc | FR0013411998 | Oui | Oui | manual | Oui / Oui | Partielle | Oui / Oui / Oui | — |
+| Amundi PEA Japon (TOPIX) UCITS ETF EUR Hedged Acc | FR0013411998 | Oui | Oui | automatic | Oui / Oui | Partielle | Oui / Oui / Oui | — |
 | Amundi PEA Amérique Latine (MSCI Emerging Latin America Selection) UCITS ETF | FR0013412004 | Oui | Oui | manual | Oui / Oui | Partielle | Oui / Oui / Oui | — |
 | Amundi PEA Asie Emergente (MSCI Emerging Asia) Screened UCITS ETF | FR0013412012 | Oui | Oui | manual | Oui / Oui | Partielle | Oui / Oui / Oui | — |
 | Amundi PEA Emergent (MSCI Emerging) ESG Transition UCITS ETF | FR0013412020 | Oui | Oui | automatic | Oui / Oui | Partielle | Oui / Oui / Oui | — |
@@ -121,7 +121,7 @@ Actifs présentés sans historique automatique (Sans cotation : 52 · Collecte e
 | Invesco FTSE All-World UCITS ETF Accumulating | IE000716YHJ7 | Oui | — | missing | Oui / Oui | — | — / — / — | Sans cotation — Cotations candidates déclarées, en attente du document émetteur |
 | VanEck Quantum Computing UCITS ETF A | IE0007Y8Y157 | Oui | Oui | missing | Oui / Oui | Partielle | — / — / Oui | Historique court — 0 année(s) complète(s) ; 6 requises en génération automatique |
 | iShares STOXX Europe 50 UCITS ETF Dist | IE0008470928 | Oui | Oui | missing | Oui / Oui | Complète | — / — / — | Collecte en attente — Cotation documentée ; série en attente de la prochaine collecte mensuelle |
-| iShares Core EURO STOXX 50 UCITS ETF Dist | IE0008471009 | Oui | Oui | manual | Oui / Oui | Complète | Oui / Oui / Oui | — |
+| iShares Core EURO STOXX 50 UCITS ETF Dist | IE0008471009 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | iShares iBonds Dec 2028 Term € Corp UCITS ETF | IE0008UEVOE0 | Oui | Oui | missing | Oui / Oui | Partielle | Oui / Oui / Oui | Historique court — 2 année(s) complète(s) ; 6 requises en génération automatique |
 | Amundi Prime All Country World UCITS ETF Dist | IE0009HF1MK9 | Oui | Oui | missing | Oui / Oui | Partielle | — / — / — | Sans cotation — Aucune cotation documentée ni candidate · www.amundietf.fr : HTTP Error 405: Method Not Allowed |
 | iShares Quantum Computing UCITS ETF | IE000C6ITGC8 | Oui | Oui | missing | Oui / Oui | Complète | — / — / — | Collecte en attente — Cotation documentée ; série en attente de la prochaine collecte mensuelle |
@@ -182,7 +182,7 @@ Actifs présentés sans historique automatique (Sans cotation : 52 · Collecte e
 | iShares Physical Gold ETC | IE00B4ND3602 | Oui | Oui | automatic | Sans objet / Sans objet | — | Oui / Oui / Oui | — |
 | iShares € Govt Bond 5-7yr UCITS ETF EUR (Dist) | IE00B4WXJG34 | Oui | Oui | automatic | Sans objet / Sans objet | Partielle | Oui / Oui / Oui | — |
 | iShares Core Euro Government Bond UCITS ETF (Dist) | IE00B4WXJJ64 | Oui | Oui | automatic | Sans objet / Sans objet | Partielle | Oui / Oui / Oui | — |
-| iShares Core MSCI Pacific ex-Japan UCITS ETF USD (Acc) | IE00B52MJY50 | Oui | Oui | manual | Oui / Oui | Complète | Oui / Oui / Oui | — |
+| iShares Core MSCI Pacific ex-Japan UCITS ETF USD (Acc) | IE00B52MJY50 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | iShares MSCI USA UCITS ETF (Acc) | IE00B52SFT06 | Oui | Oui | missing | Oui / Oui | Complète | — / — / — | Collecte en attente — Cotation documentée ; série en attente de la prochaine collecte mensuelle |
 | iShares Core EURO STOXX 50 UCITS ETF | IE00B53L3W79 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | iShares Nasdaq 100 UCITS ETF | IE00B53SZB19 | Oui | Oui | automatic | Oui / Oui | Complète | — / — / — | — |

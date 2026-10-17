@@ -116,7 +116,8 @@ export const ASSETS = [
   // Parts de fiches désormais documentées sur 2020–2025, proposées en manuel.
   {
     id: 'topix_pea_hedged', isin: 'FR0013411998', name: getInstrumentName('FR0013411998', 'portfolio'),
-    cat: 'actions_larges', emoji: '🟢', manualOnly: true, r: getInstrumentReturnValues('FR0013411998'),
+    // 18/10/2026 : six années complètes documentées, entre dans le satellite Asie (ASIA_OPTIONS).
+    cat: 'actions_larges', emoji: '🟢', manualOnly: false, r: getInstrumentReturnValues('FR0013411998'),
     desc: ['actions japonaises TOPIX', 'part couverte en euros', 'rendements EUR de la part exacte, source Amundi'],
   },
   {

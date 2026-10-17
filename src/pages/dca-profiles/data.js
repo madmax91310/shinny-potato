@@ -31,7 +31,7 @@ export const ASSETS = {
   momentum: ['📈', 'ETF MSCI World Momentum'], dividend: ['💸', 'ETF actions mondiales à dividendes'],
   reit: ['🏢', 'ETF immobilier coté mondial'], russell: ['🔎', 'ETF Russell 2000'],
   airbus: ['✈️', 'Airbus'], safran: ['🛫', 'Safran'], bnp: ['🏦', 'BNP Paribas'],
-  orange: ['📡', 'Orange'], engie: ['💡', 'Engie'], siemens: ['⚙️', 'Siemens'],
+  siemens: ['⚙️', 'Siemens'],
   allianz: ['🛡️', 'Allianz'], unilever: ['🧴', 'Unilever'], nestle: ['☕', 'Nestlé'],
   visa: ['💳', 'Visa'], berkshire: ['🏛️', 'Berkshire Hathaway'], novo: ['💊', 'Novo Nordisk'],
 
@@ -43,7 +43,7 @@ export const ASSETS = {
   legrand: ['🔌', 'Legrand'], airliquide: ['🧪', 'Air Liquide'], schneider: ['⚡', 'Schneider Electric'],
   lvmh: ['👜', 'LVMH'], loreal: ['💄', 'L’Oréal'], sanofi: ['💊', 'Sanofi'],
   danone: ['🥛', 'Danone'], axa: ['🛡️', 'AXA'], michelin: ['🛞', 'Michelin'],
-  veolia: ['💧', 'Veolia'], sap: ['🖥️', 'SAP'], asml: ['🔬', 'ASML'],
+  sap: ['🖥️', 'SAP'], asml: ['🔬', 'ASML'],
   microsoft: ['🖥️', 'Microsoft'], apple: ['📱', 'Apple'], alphabet: ['🔍', 'Alphabet'],
   amazon: ['📦', 'Amazon'], nvidia: ['🧠', 'Nvidia'], btc: ['₿', 'Bitcoin'], gold: ['🪙', 'ETC sur l’or physique'],
 }
