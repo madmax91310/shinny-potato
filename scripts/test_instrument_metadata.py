@@ -50,14 +50,25 @@ class MetadataTests(unittest.TestCase):
         import collect_instrument_metadata as module
         def consent(url):raise ValueError('Expected official PDF at '+url+'; received VanEck France | ETF Provider')
         calls=[]
+        # US runners are sent to the US site by the French gate; the Dutch gate succeeds.
         def run(cmd,**kwargs):
-            calls.append(cmd[-1]);return subprocess.CompletedProcess(cmd,0,stdout=b'%PDF-1.7 fixture',stderr=b'')
+            calls.append(cmd[-1])
+            if '/nl/en/' in cmd[-1]:return subprocess.CompletedProcess(cmd,0,stdout=b'%PDF-1.7 fixture',stderr=b'')
+            return subprocess.CompletedProcess(cmd,1,stdout=b'',stderr=b'Error: Official VanEck regional gate still active')
         official='https://www.vaneck.com/fr/en/library/fact-sheets/smh-fact-sheet.pdf'
+        dutch='https://www.vaneck.com/nl/en/library/fact-sheets/smh-fact-sheet.pdf'
         with patch.object(module,'download',consent),patch.object(module.subprocess,'run',run):
-            self.assertEqual(module.fetch_document(official,module.download),b'%PDF-1.7 fixture')
+            self.assertEqual(module.fetch_document(official,module.download),(b'%PDF-1.7 fixture',dutch))
             with self.assertRaisesRegex(ValueError,'Expected official PDF'):
                 module.fetch_document('https://www.vaneck.com/fr/en/other.pdf',module.download)
-        self.assertEqual(calls,[official])
+        self.assertEqual(calls,[official,dutch])
+        calls.clear()
+        def blocked(cmd,**kwargs):
+            calls.append(cmd[-1]);return subprocess.CompletedProcess(cmd,1,stdout=b'',stderr=b'Error: gate')
+        with patch.object(module,'download',consent),patch.object(module.subprocess,'run',blocked):
+            with self.assertRaisesRegex(ValueError,'browser initialisation failed.*uk/en'):
+                module.fetch_document(official,module.download)
+        self.assertEqual(len(calls),3)
         with self.assertRaisesRegex(ValueError,'Expected official PDF'):
             module.fetch_document(official,consent)  # injected fetchers are never escalated to a browser
 if __name__=='__main__':unittest.main()
