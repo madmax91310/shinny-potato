@@ -9,6 +9,8 @@ on:
       - '.github/workflows/update-instrument-metadata.yml'
       - 'scripts/collect_instrument_metadata.py'
       - 'scripts/build-automation-targets.mjs'
+      - 'scripts/split-etf-records.mjs'
+      - 'vite.config.js'
   pull_request:
     paths:
       - '*full-auto*'
@@ -88,7 +90,10 @@ jobs:
         if: always()
         with:
           name: instrument-metadata-observations
-          path: ${{ runner.temp }}/instrument-metadata.json
+          path: |
+            ${{ runner.temp }}/instrument-metadata.json
+            src/data/automated-instrument-metadata.json
+            src/data/instrument-metadata-status.json
           retention-days: 35
       - name: Validate collected observations
         run: echo 'Mandatory observation checks passed'

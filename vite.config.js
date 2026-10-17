@@ -5,9 +5,10 @@ import { projectFeeCatalog } from './scripts/project-fee-catalog.mjs'
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
-import {splitEtfRecords} from './scripts/split-etf-records.mjs'
+import {splitEtfRecords,splitInstrumentMetadataRecords} from './scripts/split-etf-records.mjs'
 import {splitCompanyRecords} from './scripts/split-company-records.mjs'
 const issuerParts=splitEtfRecords()
+const metadataParts=splitInstrumentMetadataRecords()
 const companyParts=splitCompanyRecords()
 const toolData = projectToolData()
 
@@ -25,6 +26,7 @@ export default defineConfig({
       { name: 'ranking-calculations', test: /performance-rankings\/(?:engine|series)\.js$/, priority: 135 },
       ...['exposures','exposures-extra-0','exposures-extra-1','exposures-extra-2','holdings','catalog'].map(name=>({name:'dca-'+name,test:new RegExp('dca-profiles/'+name+'\\.json$'),priority:135})),
       ...issuerParts.groups,
+      ...metadataParts.groups,
       ...companyParts.groups,
       ...toolData.groups,
       { name: 'company-observations', test: /company-analysis\.json$/, priority: 100 },
@@ -37,5 +39,5 @@ export default defineConfig({
       { name: 'official-index-history', test: /anniversary-index-history\.json$/ },
     ] } } },
   },
-  plugins: [projectSelectedData(), projectLightRegistries(), toolData.plugin, projectFeeCatalog(), react(), tailwindcss(), issuerParts.plugin, companyParts.plugin],
+  plugins: [projectSelectedData(), projectLightRegistries(), toolData.plugin, projectFeeCatalog(), react(), tailwindcss(), issuerParts.plugin, metadataParts.plugin, companyParts.plugin],
 })

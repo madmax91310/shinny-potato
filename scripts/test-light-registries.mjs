@@ -5,7 +5,7 @@ import { join } from 'node:path'
 import { pathToFileURL } from 'node:url'
 import { projectLightRegistries } from './project-light-registries.mjs'
 import { projectSelectedData } from './project-selected-data.mjs'
-import { splitEtfRecords } from './split-etf-records.mjs'
+import { splitEtfRecords,splitInstrumentMetadataRecords } from './split-etf-records.mjs'
 import { readFileSync } from 'node:fs'
 
 const issuerParts=splitEtfRecords(), reconstructed={}
@@ -14,6 +14,22 @@ for(let i=0;i<issuerParts.groups.length;i++){
  Object.assign(reconstructed,(await import('data:text/javascript;base64,'+Buffer.from(code).toString('base64'))).default)
 }
 assert.deepEqual(reconstructed,JSON.parse(readFileSync(new URL('../src/data/automated-etf.json',import.meta.url))))
+const metadataParts=splitInstrumentMetadataRecords(),metadata={}
+for(let i=0;i<metadataParts.groups.length;i++) {
+ const code=metadataParts.plugin.load(metadataParts.plugin.resolveId(`virtual:instrument-metadata-part:${i}`))
+ Object.assign(metadata,(await import('data:text/javascript;base64,'+Buffer.from(code).toString('base64'))).default)
+}
+assert.deepEqual(metadata,JSON.parse(readFileSync(new URL('../src/data/automated-instrument-metadata.json',import.meta.url))))
+// Future successful observations must grow into more bounded chunks, not one oversized file.
+const expandedMetadata=Object.fromEntries(Array.from({length:8},(_,i)=>Object.entries(metadata).map(([isin,record])=>[`${i}:${isin}`,record])).flat())
+const expandedParts=splitInstrumentMetadataRecords(expandedMetadata),expandedDecoded={}
+assert(expandedParts.groups.length>metadataParts.groups.length)
+for(let i=0;i<expandedParts.groups.length;i++) {
+ const code=expandedParts.plugin.load(expandedParts.plugin.resolveId(`virtual:instrument-metadata-part:${i}`))
+ assert(Buffer.byteLength(code)<450_000)
+ Object.assign(expandedDecoded,(await import('data:text/javascript;base64,'+Buffer.from(code).toString('base64'))).default)
+}
+assert.deepEqual(expandedDecoded,expandedMetadata)
 
 // Execute the generated modules in isolation: any accidental dependency on a
 // non-exported helper or raw issuer module must fail here, before publication.
