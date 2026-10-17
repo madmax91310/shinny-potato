@@ -16,6 +16,10 @@
       "sheet": true,
       "comparison": true,
       "generator": "missing",
+      "blocker": {
+        "code": "no-listing",
+        "detail": "Cotations candidates déclarées, en attente du document émetteur"
+      },
       "dca": true,
       "countries": {
         "status": "not-applicable",
@@ -49,6 +53,10 @@
       "sheet": true,
       "comparison": true,
       "generator": "missing",
+      "blocker": {
+        "code": "history-short",
+        "detail": "1 année(s) complète(s) ; 6 requises en génération automatique"
+      },
       "dca": true,
       "countries": {
         "status": "available",
@@ -106,6 +114,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -159,6 +168,10 @@
       "sheet": true,
       "comparison": true,
       "generator": "missing",
+      "blocker": {
+        "code": "history-short",
+        "detail": "0 année(s) complète(s) ; 6 requises en génération automatique"
+      },
       "dca": true,
       "countries": {
         "status": "available",
@@ -215,6 +228,10 @@
       "sheet": true,
       "comparison": true,
       "generator": "missing",
+      "blocker": {
+        "code": "history-short",
+        "detail": "2 année(s) complète(s) ; 6 requises en génération automatique"
+      },
       "dca": true,
       "countries": {
         "status": "available",
@@ -271,6 +288,10 @@
       "sheet": true,
       "comparison": true,
       "generator": "missing",
+      "blocker": {
+        "code": "history-short",
+        "detail": "2 année(s) complète(s) ; 6 requises en génération automatique"
+      },
       "dca": true,
       "countries": {
         "status": "available",
@@ -327,6 +348,10 @@
       "sheet": true,
       "comparison": true,
       "generator": "missing",
+      "blocker": {
+        "code": "history-short",
+        "detail": "2 année(s) complète(s) ; 6 requises en génération automatique"
+      },
       "dca": true,
       "countries": {
         "status": "available",
@@ -382,6 +407,10 @@
       "sheet": true,
       "comparison": true,
       "generator": "missing",
+      "blocker": {
+        "code": "history-short",
+        "detail": "1 année(s) complète(s) ; 6 requises en génération automatique"
+      },
       "dca": true,
       "countries": {
         "status": "available",
@@ -437,6 +466,10 @@
       "sheet": true,
       "comparison": true,
       "generator": "missing",
+      "blocker": {
+        "code": "history-short",
+        "detail": "1 année(s) complète(s) ; 6 requises en génération automatique"
+      },
       "dca": true,
       "countries": {
         "status": "available",
@@ -485,6 +518,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -533,6 +567,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -581,6 +616,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -629,6 +665,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -677,6 +714,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -725,6 +763,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -773,6 +812,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",

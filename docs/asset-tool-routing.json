@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-17T12:24:40.809Z",
+  "checkedAt": "2026-10-17T22:21:02.573Z",
   "summary": {
     "instruments": 519,
     "sheets": 244,
@@ -12,7 +12,14 @@
     "outsideExposure": 41,
     "automaticHistories": 175,
     "historyCandidates": 11,
-    "unused": 0
+    "unused": 0,
+    "blockers": {
+      "no-listing": 52,
+      "listing-not-collectable": 0,
+      "qualification-failed": 0,
+      "collection-pending": 9,
+      "history-short": 16
+    }
   },
   "errors": [],
   "rows": [
@@ -26,6 +33,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -67,6 +75,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -108,6 +117,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -149,6 +159,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -190,6 +201,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -231,6 +243,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -272,6 +285,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -313,6 +327,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -354,6 +369,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -395,6 +411,7 @@
       "sheet": true,
       "comparison": false,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "not-applicable",
@@ -430,6 +447,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -471,6 +489,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -512,25 +531,29 @@
       "sheet": true,
       "comparison": false,
       "generator": "missing",
+      "blocker": {
+        "code": "collection-pending",
+        "detail": "Cotation documentée ; série en attente de la prochaine collecte mensuelle"
+      },
       "dca": true,
       "countries": {
         "status": "available",
-        "coverage": 100,
+        "coverage": 99.99986000000001,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-10-14"
+        "date": "2026-10-15"
       },
       "sectors": {
         "status": "available",
         "coverage": 100,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-10-14"
+        "date": "2026-10-15"
       },
       "holdings": {
-        "asOf": "2026-10-14",
+        "asOf": "2026-10-15",
         "complete": false,
-        "identifiedCoverage": 20.217769999999998,
+        "identifiedCoverage": 20.17879,
         "automatic": false
       },
       "monthly": [],
@@ -547,6 +570,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -588,6 +612,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -629,6 +654,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -670,6 +696,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -711,6 +738,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -752,6 +780,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -793,6 +822,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -834,6 +864,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -875,6 +906,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -916,6 +948,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -957,6 +990,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -1003,6 +1037,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -1049,6 +1084,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -1095,6 +1131,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -1141,6 +1178,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -1187,6 +1225,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -1233,6 +1272,10 @@
       "sheet": true,
       "comparison": true,
       "generator": "missing",
+      "blocker": {
+        "code": "collection-pending",
+        "detail": "Cotation documentée ; série en attente de la prochaine collecte mensuelle"
+      },
       "dca": true,
       "countries": {
         "status": "available",
@@ -1268,6 +1311,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -1314,6 +1358,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -1360,6 +1405,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -1401,6 +1447,7 @@
       "sheet": true,
       "comparison": false,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "not-applicable",
@@ -1436,6 +1483,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -1477,6 +1525,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -1518,6 +1567,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -1559,6 +1609,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -1600,6 +1651,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -1641,6 +1693,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -1682,6 +1735,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -1723,6 +1777,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -1764,6 +1819,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -1805,6 +1861,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -1846,6 +1903,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -1887,6 +1945,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -1928,6 +1987,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -1969,6 +2029,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -2010,6 +2071,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -2051,6 +2113,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -2092,6 +2155,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -2133,6 +2197,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -2174,6 +2239,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -2215,6 +2281,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -2256,6 +2323,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -2297,6 +2365,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -2338,6 +2407,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -2379,6 +2449,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -2420,6 +2491,10 @@
       "sheet": true,
       "comparison": false,
       "generator": "missing",
+      "blocker": {
+        "code": "no-listing",
+        "detail": "Aucune cotation documentée ni candidate · www.amundietf.fr : HTTP Error 405: Method Not Allowed"
+      },
       "dca": true,
       "countries": {
         "status": "available",
@@ -2455,6 +2530,10 @@
       "sheet": true,
       "comparison": true,
       "generator": "missing",
+      "blocker": {
+        "code": "no-listing",
+        "detail": "Aucune cotation documentée ni candidate · www.amundietf.fr : HTTP Error 405: Method Not Allowed"
+      },
       "dca": true,
       "countries": {
         "status": "available",
@@ -2490,6 +2569,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -2531,6 +2611,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -2572,6 +2653,7 @@
       "sheet": true,
       "comparison": false,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -2618,6 +2700,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -2664,6 +2747,7 @@
       "sheet": true,
       "comparison": false,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -2710,6 +2794,7 @@
       "sheet": true,
       "comparison": false,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -2756,6 +2841,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -2802,6 +2888,10 @@
       "sheet": true,
       "comparison": false,
       "generator": "missing",
+      "blocker": {
+        "code": "no-listing",
+        "detail": "Cotations candidates déclarées, en attente du document émetteur"
+      },
       "dca": true,
       "countries": {
         "status": "available",
@@ -2837,6 +2927,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -2883,6 +2974,10 @@
       "sheet": true,
       "comparison": false,
       "generator": "missing",
+      "blocker": {
+        "code": "no-listing",
+        "detail": "Aucune cotation documentée ni candidate · www.amundietf.fr : HTTP Error 405: Method Not Allowed"
+      },
       "dca": true,
       "countries": {
         "status": "available",
@@ -2918,6 +3013,7 @@
       "sheet": true,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -2964,6 +3060,10 @@
       "sheet": true,
       "comparison": false,
       "generator": "missing",
+      "blocker": {
+        "code": "no-listing",
+        "detail": "Aucune cotation documentée ni candidate · www.amundietf.fr : HTTP Error 405: Method Not Allowed"
+      },
       "dca": true,
       "countries": {
         "status": "available",
@@ -2999,6 +3099,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -3045,6 +3146,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -3091,6 +3193,10 @@
       "sheet": true,
       "comparison": false,
       "generator": "missing",
+      "blocker": {
+        "code": "no-listing",
+        "detail": "Aucune cotation documentée ni candidate · www.amundietf.fr : HTTP Error 405: Method Not Allowed"
+      },
       "dca": true,
       "countries": {
         "status": "not-applicable",
@@ -3115,6 +3221,7 @@
       "sheet": true,
       "comparison": false,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -3161,6 +3268,10 @@
       "sheet": true,
       "comparison": true,
       "generator": "missing",
+      "blocker": {
+        "code": "no-listing",
+        "detail": "Aucune cotation documentée ni candidate · www.amundietf.fr : HTTP Error 405: Method Not Allowed"
+      },
       "dca": true,
       "countries": {
         "status": "available",
@@ -3196,6 +3307,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -3242,6 +3354,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -3288,6 +3401,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -3334,6 +3448,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -3380,6 +3495,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -3426,6 +3542,7 @@
       "sheet": true,
       "comparison": false,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "not-applicable",
@@ -3461,6 +3578,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -3502,6 +3620,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -3543,6 +3662,10 @@
       "sheet": true,
       "comparison": true,
       "generator": "missing",
+      "blocker": {
+        "code": "history-short",
+        "detail": "0 année(s) complète(s) ; 6 requises en génération automatique"
+      },
       "dca": true,
       "countries": {
         "status": "available",
@@ -3589,6 +3712,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -3635,6 +3759,10 @@
       "sheet": true,
       "comparison": false,
       "generator": "missing",
+      "blocker": {
+        "code": "history-short",
+        "detail": "0 année(s) complète(s) ; 6 requises en génération automatique"
+      },
       "dca": true,
       "countries": {
         "status": "available",
@@ -3681,6 +3809,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -3727,6 +3856,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -3768,6 +3898,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -3809,6 +3940,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -3850,6 +3982,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -3894,6 +4027,10 @@
       "sheet": true,
       "comparison": true,
       "generator": "missing",
+      "blocker": {
+        "code": "no-listing",
+        "detail": "Cotations candidates déclarées, en attente du document émetteur"
+      },
       "dca": true,
       "countries": {
         "status": "not-applicable",
@@ -3918,6 +4055,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "not-applicable",
@@ -3953,6 +4091,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -3994,6 +4133,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -4035,6 +4175,7 @@
       "sheet": true,
       "comparison": false,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "not-applicable",
@@ -4070,6 +4211,7 @@
       "sheet": true,
       "comparison": false,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "not-applicable",
@@ -4105,6 +4247,7 @@
       "sheet": true,
       "comparison": false,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "not-applicable",
@@ -4140,6 +4283,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -4181,6 +4325,7 @@
       "sheet": true,
       "comparison": false,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -4227,6 +4372,10 @@
       "sheet": true,
       "comparison": false,
       "generator": "missing",
+      "blocker": {
+        "code": "no-listing",
+        "detail": "Cotations candidates déclarées, en attente du document émetteur"
+      },
       "dca": true,
       "countries": {
         "status": "available",
@@ -4257,6 +4406,10 @@
       "sheet": true,
       "comparison": true,
       "generator": "missing",
+      "blocker": {
+        "code": "history-short",
+        "detail": "0 année(s) complète(s) ; 6 requises en génération automatique"
+      },
       "dca": true,
       "countries": {
         "status": "available",
@@ -4303,6 +4456,10 @@
       "sheet": true,
       "comparison": true,
       "generator": "missing",
+      "blocker": {
+        "code": "no-listing",
+        "detail": "Cotations candidates déclarées, en attente du document émetteur · www.wisdomtree.eu : HTTP Error 403: Forbidden"
+      },
       "dca": true,
       "countries": {
         "status": "available",
@@ -4347,6 +4504,10 @@
       "sheet": true,
       "comparison": true,
       "generator": "missing",
+      "blocker": {
+        "code": "history-short",
+        "detail": "1 année(s) complète(s) ; 6 requises en génération automatique"
+      },
       "dca": true,
       "countries": {
         "status": "available",
@@ -4393,6 +4554,10 @@
       "sheet": true,
       "comparison": false,
       "generator": "missing",
+      "blocker": {
+        "code": "history-short",
+        "detail": "0 année(s) complète(s) ; 6 requises en génération automatique"
+      },
       "dca": true,
       "countries": {
         "status": "available",
@@ -4439,6 +4604,10 @@
       "sheet": true,
       "comparison": false,
       "generator": "missing",
+      "blocker": {
+        "code": "no-listing",
+        "detail": "Aucune cotation documentée ni candidate · www.amundietf.fr : HTTP Error 405: Method Not Allowed"
+      },
       "dca": true,
       "countries": {
         "status": "available",
@@ -4485,6 +4654,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -4531,6 +4701,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -4577,6 +4748,10 @@
       "sheet": true,
       "comparison": false,
       "generator": "missing",
+      "blocker": {
+        "code": "no-listing",
+        "detail": "Cotations candidates déclarées, en attente du document émetteur"
+      },
       "dca": true,
       "countries": {
         "status": "available",
@@ -4614,6 +4789,10 @@
       "sheet": true,
       "comparison": true,
       "generator": "missing",
+      "blocker": {
+        "code": "history-short",
+        "detail": "0 année(s) complète(s) ; 6 requises en génération automatique"
+      },
       "dca": true,
       "countries": {
         "status": "available",
@@ -4660,20 +4839,24 @@
       "sheet": true,
       "comparison": false,
       "generator": "missing",
+      "blocker": {
+        "code": "collection-pending",
+        "detail": "Cotation documentée ; série en attente de la prochaine collecte mensuelle"
+      },
       "dca": true,
       "countries": {
         "status": "available",
-        "coverage": 99.99996000000002,
+        "coverage": 99.99999,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-10-14"
+        "date": "2026-10-15"
       },
       "sectors": {
         "status": "available",
         "coverage": 99.99,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-10-14"
+        "date": "2026-10-15"
       },
       "holdings": {
         "asOf": "2026-10-15",
@@ -4695,6 +4878,7 @@
       "sheet": true,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -4708,7 +4892,7 @@
         "coverage": 100,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-10-14"
+        "date": "2026-10-15"
       },
       "holdings": {
         "asOf": "2026-10-15",
@@ -4751,6 +4935,10 @@
       "sheet": true,
       "comparison": true,
       "generator": "missing",
+      "blocker": {
+        "code": "history-short",
+        "detail": "2 année(s) complète(s) ; 6 requises en génération automatique"
+      },
       "dca": true,
       "countries": {
         "status": "available",
@@ -4797,6 +4985,10 @@
       "sheet": true,
       "comparison": false,
       "generator": "missing",
+      "blocker": {
+        "code": "no-listing",
+        "detail": "Aucune cotation documentée ni candidate · www.amundietf.fr : HTTP Error 405: Method Not Allowed"
+      },
       "dca": true,
       "countries": {
         "status": "available",
@@ -4832,6 +5024,10 @@
       "sheet": true,
       "comparison": true,
       "generator": "missing",
+      "blocker": {
+        "code": "collection-pending",
+        "detail": "Cotation documentée ; série en attente de la prochaine collecte mensuelle"
+      },
       "dca": true,
       "countries": {
         "status": "available",
@@ -4867,6 +5063,10 @@
       "sheet": true,
       "comparison": true,
       "generator": "missing",
+      "blocker": {
+        "code": "history-short",
+        "detail": "0 année(s) complète(s) ; 6 requises en génération automatique"
+      },
       "dca": true,
       "countries": {
         "status": "available",
@@ -4913,6 +5113,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -4969,6 +5170,10 @@
       "sheet": true,
       "comparison": true,
       "generator": "missing",
+      "blocker": {
+        "code": "history-short",
+        "detail": "2 année(s) complète(s) ; 6 requises en génération automatique"
+      },
       "dca": true,
       "countries": {
         "status": "available",
@@ -5015,6 +5220,10 @@
       "sheet": true,
       "comparison": false,
       "generator": "missing",
+      "blocker": {
+        "code": "no-listing",
+        "detail": "Aucune cotation documentée ni candidate · etf.dws.com : No qualified structured metadata parser for this endpoint"
+      },
       "dca": true,
       "countries": {
         "status": "available",
@@ -5060,6 +5269,10 @@
       "sheet": true,
       "comparison": true,
       "generator": "missing",
+      "blocker": {
+        "code": "history-short",
+        "detail": "2 année(s) complète(s) ; 6 requises en génération automatique"
+      },
       "dca": true,
       "countries": {
         "status": "available",
@@ -5106,6 +5319,10 @@
       "sheet": true,
       "comparison": false,
       "generator": "missing",
+      "blocker": {
+        "code": "no-listing",
+        "detail": "Cotations candidates déclarées, en attente du document émetteur · globalxetfs.eu : Missing or multiple exact-share identities in metadata document"
+      },
       "dca": true,
       "countries": {
         "status": "available",
@@ -5122,7 +5339,7 @@
         "date": "2026-09-30"
       },
       "holdings": {
-        "asOf": "2026-10-15",
+        "asOf": "2026-10-16",
         "complete": false,
         "identifiedCoverage": 0,
         "automatic": false
@@ -5141,6 +5358,10 @@
       "sheet": true,
       "comparison": false,
       "generator": "missing",
+      "blocker": {
+        "code": "no-listing",
+        "detail": "Cotations candidates déclarées, en attente du document émetteur · dokumenty.analizy.pl : No explicit supported metadata fields"
+      },
       "dca": true,
       "countries": {
         "status": "available",
@@ -5176,6 +5397,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -5222,6 +5444,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -5272,6 +5495,10 @@
       "sheet": true,
       "comparison": true,
       "generator": "missing",
+      "blocker": {
+        "code": "history-short",
+        "detail": "1 année(s) complète(s) ; 6 requises en génération automatique"
+      },
       "dca": true,
       "countries": {
         "status": "available",
@@ -5318,6 +5545,7 @@
       "sheet": true,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -5364,6 +5592,10 @@
       "sheet": true,
       "comparison": true,
       "generator": "missing",
+      "blocker": {
+        "code": "no-listing",
+        "detail": "Cotations candidates déclarées, en attente du document émetteur"
+      },
       "dca": true,
       "countries": {
         "status": "available",
@@ -5399,6 +5631,10 @@
       "sheet": true,
       "comparison": false,
       "generator": "missing",
+      "blocker": {
+        "code": "no-listing",
+        "detail": "Cotations candidates déclarées, en attente du document émetteur"
+      },
       "dca": true,
       "countries": {
         "status": "available",
@@ -5434,6 +5670,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -5489,6 +5726,10 @@
       "sheet": true,
       "comparison": true,
       "generator": "missing",
+      "blocker": {
+        "code": "history-short",
+        "detail": "1 année(s) complète(s) ; 6 requises en génération automatique"
+      },
       "dca": true,
       "countries": {
         "status": "available",
@@ -5535,6 +5776,10 @@
       "sheet": true,
       "comparison": false,
       "generator": "missing",
+      "blocker": {
+        "code": "collection-pending",
+        "detail": "Cotation documentée ; série en attente de la prochaine collecte mensuelle"
+      },
       "dca": true,
       "countries": {
         "status": "available",
@@ -5570,6 +5815,7 @@
       "sheet": true,
       "comparison": false,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "not-applicable",
@@ -5612,6 +5858,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -5658,6 +5905,7 @@
       "sheet": true,
       "comparison": false,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -5693,6 +5941,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "not-applicable",
@@ -5735,6 +5984,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -5781,6 +6031,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -5827,6 +6078,7 @@
       "sheet": true,
       "comparison": false,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "not-applicable",
@@ -5867,6 +6119,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -5915,6 +6168,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -5961,6 +6215,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -6007,6 +6262,10 @@
       "sheet": true,
       "comparison": false,
       "generator": "missing",
+      "blocker": {
+        "code": "collection-pending",
+        "detail": "Cotation documentée ; série en attente de la prochaine collecte mensuelle"
+      },
       "dca": true,
       "countries": {
         "status": "available",
@@ -6017,10 +6276,10 @@
       },
       "sectors": {
         "status": "available",
-        "coverage": 99.99999999999996,
+        "coverage": 100,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-10-14"
+        "date": "2026-10-15"
       },
       "holdings": {
         "asOf": "2026-10-15",
@@ -6044,6 +6303,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -6090,6 +6350,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -6136,6 +6397,7 @@
       "sheet": true,
       "comparison": false,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "not-applicable",
@@ -6176,6 +6438,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -6222,6 +6485,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "not-applicable",
@@ -6262,6 +6526,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "not-applicable",
@@ -6302,6 +6567,10 @@
       "sheet": true,
       "comparison": false,
       "generator": "missing",
+      "blocker": {
+        "code": "no-listing",
+        "detail": "Cotations candidates déclarées, en attente du document émetteur · fund-docs.vanguard.com : No explicit supported metadata fields"
+      },
       "dca": true,
       "countries": {
         "status": "available",
@@ -6337,6 +6606,7 @@
       "sheet": true,
       "comparison": false,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "not-applicable",
@@ -6377,6 +6647,10 @@
       "sheet": true,
       "comparison": false,
       "generator": "missing",
+      "blocker": {
+        "code": "no-listing",
+        "detail": "Cotations candidates déclarées, en attente du document émetteur · fund-docs.vanguard.com : No explicit supported metadata fields"
+      },
       "dca": true,
       "countries": {
         "status": "available",
@@ -6412,6 +6686,7 @@
       "sheet": true,
       "comparison": false,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -6458,6 +6733,10 @@
       "sheet": true,
       "comparison": false,
       "generator": "missing",
+      "blocker": {
+        "code": "no-listing",
+        "detail": "Cotations candidates déclarées, en attente du document émetteur · fund-docs.vanguard.com : No explicit supported metadata fields"
+      },
       "dca": true,
       "countries": {
         "status": "available",
@@ -6493,6 +6772,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -6539,6 +6819,7 @@
       "sheet": true,
       "comparison": false,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -6585,6 +6866,7 @@
       "sheet": true,
       "comparison": false,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -6631,6 +6913,7 @@
       "sheet": true,
       "comparison": false,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -6677,6 +6960,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -6723,6 +7007,7 @@
       "sheet": true,
       "comparison": false,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -6772,6 +7057,10 @@
       "sheet": true,
       "comparison": true,
       "generator": "missing",
+      "blocker": {
+        "code": "history-short",
+        "detail": "0 année(s) complète(s) ; 6 requises en génération automatique"
+      },
       "dca": true,
       "countries": {
         "status": "not-applicable",
@@ -6807,6 +7096,7 @@
       "sheet": true,
       "comparison": false,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -6853,6 +7143,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -6899,6 +7190,7 @@
       "sheet": true,
       "comparison": false,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -6934,6 +7226,10 @@
       "sheet": true,
       "comparison": false,
       "generator": "missing",
+      "blocker": {
+        "code": "no-listing",
+        "detail": "Cotations candidates déclarées, en attente du document émetteur"
+      },
       "dca": true,
       "countries": {
         "status": "available",
@@ -6969,6 +7265,7 @@
       "sheet": true,
       "comparison": false,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -7015,6 +7312,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -7061,6 +7359,7 @@
       "sheet": true,
       "comparison": false,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -7110,6 +7409,10 @@
       "sheet": true,
       "comparison": true,
       "generator": "missing",
+      "blocker": {
+        "code": "history-short",
+        "detail": "0 année(s) complète(s) ; 6 requises en génération automatique"
+      },
       "dca": true,
       "countries": {
         "status": "not-applicable",
@@ -7145,6 +7448,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "not-applicable",
@@ -7180,6 +7484,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "not-applicable",
@@ -7215,6 +7520,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "not-applicable",
@@ -7255,6 +7561,7 @@
       "sheet": true,
       "comparison": false,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "not-applicable",
@@ -7295,6 +7602,7 @@
       "sheet": true,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -7341,6 +7649,10 @@
       "sheet": true,
       "comparison": false,
       "generator": "missing",
+      "blocker": {
+        "code": "collection-pending",
+        "detail": "Cotation documentée ; série en attente de la prochaine collecte mensuelle"
+      },
       "dca": true,
       "countries": {
         "status": "available",
@@ -7376,6 +7688,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -7424,6 +7737,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -7470,6 +7784,7 @@
       "sheet": true,
       "comparison": false,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "not-applicable",
@@ -7505,6 +7820,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -7551,6 +7867,7 @@
       "sheet": true,
       "comparison": false,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -7597,6 +7914,7 @@
       "sheet": true,
       "comparison": false,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -7643,6 +7961,7 @@
       "sheet": true,
       "comparison": false,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "not-applicable",
@@ -7685,6 +8004,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -7731,6 +8051,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -7777,6 +8098,7 @@
       "sheet": true,
       "comparison": false,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -7823,6 +8145,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -7869,6 +8192,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -7915,6 +8239,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -7956,6 +8281,10 @@
       "sheet": true,
       "comparison": false,
       "generator": "missing",
+      "blocker": {
+        "code": "no-listing",
+        "detail": "Cotations candidates déclarées, en attente du document émetteur · fund-docs.vanguard.com : No explicit supported metadata fields"
+      },
       "dca": true,
       "countries": {
         "status": "available",
@@ -7991,6 +8320,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -8037,6 +8367,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "not-applicable",
@@ -8077,6 +8408,10 @@
       "sheet": true,
       "comparison": false,
       "generator": "missing",
+      "blocker": {
+        "code": "no-listing",
+        "detail": "Cotations candidates déclarées, en attente du document émetteur · swissfunddata.ch : HTTP Error 500: Internal Server Error"
+      },
       "dca": true,
       "countries": {
         "status": "available",
@@ -8112,6 +8447,7 @@
       "sheet": true,
       "comparison": false,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "not-applicable",
@@ -8147,6 +8483,7 @@
       "sheet": true,
       "comparison": false,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "not-applicable",
@@ -8187,6 +8524,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -8233,6 +8571,7 @@
       "sheet": true,
       "comparison": false,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "not-applicable",
@@ -8268,6 +8607,10 @@
       "sheet": true,
       "comparison": false,
       "generator": "missing",
+      "blocker": {
+        "code": "no-listing",
+        "detail": "Cotations candidates déclarées, en attente du document émetteur"
+      },
       "dca": true,
       "countries": {
         "status": "available",
@@ -8305,6 +8648,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -8351,6 +8695,7 @@
       "sheet": true,
       "comparison": false,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "not-applicable",
@@ -8393,6 +8738,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -8439,6 +8785,10 @@
       "sheet": true,
       "comparison": false,
       "generator": "missing",
+      "blocker": {
+        "code": "no-listing",
+        "detail": "Cotations candidates déclarées, en attente du document émetteur · fund-docs.vanguard.com : No explicit supported metadata fields"
+      },
       "dca": true,
       "countries": {
         "status": "available",
@@ -8474,6 +8824,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -8515,6 +8866,10 @@
       "sheet": true,
       "comparison": false,
       "generator": "missing",
+      "blocker": {
+        "code": "no-listing",
+        "detail": "Cotations candidates déclarées, en attente du document émetteur"
+      },
       "dca": true,
       "countries": {
         "status": "available",
@@ -8550,6 +8905,7 @@
       "sheet": true,
       "comparison": false,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "not-applicable",
@@ -8590,6 +8946,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -8636,6 +8993,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -8682,6 +9040,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -8728,10 +9087,14 @@
       "sheet": true,
       "comparison": false,
       "generator": "missing",
+      "blocker": {
+        "code": "no-listing",
+        "detail": "Aucune cotation documentée ni candidate · etf.dws.com : No qualified structured metadata parser for this endpoint"
+      },
       "dca": true,
       "countries": {
         "status": "available",
-        "coverage": 99.99999599999997,
+        "coverage": 99.99999700000001,
         "outside": 0,
         "reason": "Disponible",
         "date": "2026-10-15"
@@ -8763,6 +9126,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -8809,6 +9173,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -8855,6 +9220,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -8901,6 +9267,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -8947,6 +9314,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -8993,6 +9361,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -9039,6 +9408,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -9085,6 +9455,7 @@
       "sheet": true,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -9131,6 +9502,10 @@
       "sheet": true,
       "comparison": false,
       "generator": "missing",
+      "blocker": {
+        "code": "history-short",
+        "detail": "0 année(s) complète(s) ; 6 requises en génération automatique"
+      },
       "dca": true,
       "countries": {
         "status": "available",
@@ -9177,6 +9552,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -9223,6 +9599,10 @@
       "sheet": true,
       "comparison": false,
       "generator": "missing",
+      "blocker": {
+        "code": "collection-pending",
+        "detail": "Cotation documentée ; série en attente de la prochaine collecte mensuelle"
+      },
       "dca": true,
       "countries": {
         "status": "available",
@@ -9260,6 +9640,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -9306,6 +9687,10 @@
       "sheet": true,
       "comparison": false,
       "generator": "missing",
+      "blocker": {
+        "code": "no-listing",
+        "detail": "Aucune cotation documentée ni candidate · etf.dws.com : No qualified structured metadata parser for this endpoint"
+      },
       "dca": true,
       "countries": {
         "status": "available",
@@ -9341,6 +9726,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -9387,6 +9773,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -9433,6 +9820,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -9479,6 +9867,10 @@
       "sheet": true,
       "comparison": false,
       "generator": "missing",
+      "blocker": {
+        "code": "no-listing",
+        "detail": "Cotations candidates déclarées, en attente du document émetteur · fund-docs.vanguard.com : No explicit supported metadata fields"
+      },
       "dca": true,
       "countries": {
         "status": "available",
@@ -9514,6 +9906,10 @@
       "sheet": true,
       "comparison": false,
       "generator": "missing",
+      "blocker": {
+        "code": "no-listing",
+        "detail": "Cotations candidates déclarées, en attente du document émetteur · fund-docs.vanguard.com : No explicit supported metadata fields"
+      },
       "dca": true,
       "countries": {
         "status": "available",
@@ -9549,6 +9945,7 @@
       "sheet": true,
       "comparison": false,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -9595,6 +9992,7 @@
       "sheet": true,
       "comparison": false,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -9641,6 +10039,7 @@
       "sheet": true,
       "comparison": false,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "not-applicable",
@@ -9681,6 +10080,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -9722,6 +10122,10 @@
       "sheet": true,
       "comparison": false,
       "generator": "missing",
+      "blocker": {
+        "code": "no-listing",
+        "detail": "Cotations candidates déclarées, en attente du document émetteur"
+      },
       "dca": true,
       "countries": {
         "status": "available",
@@ -9757,6 +10161,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -9803,6 +10208,7 @@
       "sheet": true,
       "comparison": false,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -9849,6 +10255,7 @@
       "sheet": true,
       "comparison": false,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -9895,6 +10302,10 @@
       "sheet": true,
       "comparison": false,
       "generator": "missing",
+      "blocker": {
+        "code": "no-listing",
+        "detail": "Cotations candidates déclarées, en attente du document émetteur"
+      },
       "dca": true,
       "countries": {
         "status": "available",
@@ -9930,6 +10341,10 @@
       "sheet": true,
       "comparison": false,
       "generator": "missing",
+      "blocker": {
+        "code": "no-listing",
+        "detail": "Cotations candidates déclarées, en attente du document émetteur · globalxetfs.eu : Missing or multiple exact-share identities in metadata document"
+      },
       "dca": true,
       "countries": {
         "status": "available",
@@ -9946,7 +10361,7 @@
         "date": "2026-09-30"
       },
       "holdings": {
-        "asOf": "2026-10-15",
+        "asOf": "2026-10-16",
         "complete": false,
         "identifiedCoverage": 0,
         "automatic": false
@@ -9965,6 +10380,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -10011,6 +10427,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -10057,6 +10474,7 @@
       "sheet": true,
       "comparison": false,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -10103,6 +10521,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -10149,6 +10568,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -10195,6 +10615,7 @@
       "sheet": true,
       "comparison": false,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -10236,6 +10657,10 @@
       "sheet": true,
       "comparison": false,
       "generator": "missing",
+      "blocker": {
+        "code": "no-listing",
+        "detail": "Cotations candidates déclarées, en attente du document émetteur"
+      },
       "dca": true,
       "countries": {
         "status": "available",
@@ -10271,6 +10696,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -10317,6 +10743,10 @@
       "sheet": true,
       "comparison": false,
       "generator": "missing",
+      "blocker": {
+        "code": "no-listing",
+        "detail": "Cotations candidates déclarées, en attente du document émetteur · globalxetfs.eu : Missing or multiple exact-share identities in metadata document"
+      },
       "dca": true,
       "countries": {
         "status": "available",
@@ -10333,7 +10763,7 @@
         "date": "2026-09-30"
       },
       "holdings": {
-        "asOf": "2026-10-15",
+        "asOf": "2026-10-16",
         "complete": false,
         "identifiedCoverage": 0,
         "automatic": false
@@ -10352,6 +10782,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "incomplete",
@@ -10398,6 +10829,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "incomplete",
@@ -10444,6 +10876,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "incomplete",
@@ -10490,6 +10923,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "incomplete",
@@ -10536,6 +10970,7 @@
       "sheet": true,
       "comparison": false,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -10582,6 +11017,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -10628,6 +11064,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -10674,6 +11111,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -10720,6 +11158,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -10766,6 +11205,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -10812,6 +11252,10 @@
       "sheet": true,
       "comparison": false,
       "generator": "missing",
+      "blocker": {
+        "code": "collection-pending",
+        "detail": "Cotation documentée ; série en attente de la prochaine collecte mensuelle"
+      },
       "dca": true,
       "countries": {
         "status": "available",
@@ -10847,6 +11291,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -10893,6 +11338,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -10939,6 +11385,10 @@
       "sheet": true,
       "comparison": true,
       "generator": "missing",
+      "blocker": {
+        "code": "no-listing",
+        "detail": "Aucune cotation documentée ni candidate · etf.dws.com : No qualified structured metadata parser for this endpoint"
+      },
       "dca": true,
       "countries": {
         "status": "available",
@@ -10974,6 +11424,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -11020,6 +11471,7 @@
       "sheet": true,
       "comparison": false,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -11066,6 +11518,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -11112,6 +11565,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -11158,6 +11612,7 @@
       "sheet": true,
       "comparison": false,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -11206,6 +11661,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -11252,6 +11708,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -11298,6 +11755,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -11344,6 +11802,7 @@
       "sheet": true,
       "comparison": false,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "not-applicable",
@@ -11384,6 +11843,10 @@
       "sheet": true,
       "comparison": true,
       "generator": "missing",
+      "blocker": {
+        "code": "history-short",
+        "detail": "2 année(s) complète(s) ; 6 requises en génération automatique"
+      },
       "dca": true,
       "countries": {
         "status": "available",
@@ -11430,6 +11893,7 @@
       "sheet": true,
       "comparison": false,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -11476,6 +11940,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -11517,6 +11982,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -11558,6 +12024,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -11599,6 +12066,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -11640,6 +12108,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -11681,6 +12150,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -11722,6 +12192,7 @@
       "sheet": true,
       "comparison": false,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "not-applicable",
@@ -11757,6 +12228,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "not-applicable",
@@ -11792,6 +12264,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "not-applicable",
@@ -11827,6 +12300,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "not-applicable",
@@ -11862,6 +12336,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "not-applicable",
@@ -11897,6 +12372,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "not-applicable",
@@ -11932,6 +12408,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -11973,6 +12450,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -12014,6 +12492,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -12055,6 +12534,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -12096,6 +12576,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -12137,6 +12618,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -12178,6 +12660,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -12219,6 +12702,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -12260,6 +12744,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -12301,6 +12786,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -12342,6 +12828,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -12383,6 +12870,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -12424,6 +12912,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -12465,6 +12954,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -12506,6 +12996,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -12547,6 +13038,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -12588,6 +13080,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -12629,6 +13122,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -12670,6 +13164,10 @@
       "sheet": true,
       "comparison": false,
       "generator": "missing",
+      "blocker": {
+        "code": "no-listing",
+        "detail": "Aucune cotation documentée ni candidate · etf.dws.com : No qualified structured metadata parser for this endpoint"
+      },
       "dca": true,
       "countries": {
         "status": "available",
@@ -12705,6 +13203,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "not-applicable",
@@ -12740,10 +13239,14 @@
       "sheet": true,
       "comparison": false,
       "generator": "missing",
+      "blocker": {
+        "code": "no-listing",
+        "detail": "Aucune cotation documentée ni candidate · etf.dws.com : No qualified structured metadata parser for this endpoint"
+      },
       "dca": true,
       "countries": {
         "status": "available",
-        "coverage": 99.999996,
+        "coverage": 99.999995,
         "outside": 0,
         "reason": "Disponible",
         "date": "2026-10-09"
@@ -12775,10 +13278,14 @@
       "sheet": true,
       "comparison": false,
       "generator": "missing",
+      "blocker": {
+        "code": "no-listing",
+        "detail": "Aucune cotation documentée ni candidate · etf.dws.com : No qualified structured metadata parser for this endpoint"
+      },
       "dca": true,
       "countries": {
         "status": "available",
-        "coverage": 99.99999799999998,
+        "coverage": 99.99999799999999,
         "outside": 0,
         "reason": "Disponible",
         "date": "2026-10-09"
@@ -12810,6 +13317,10 @@
       "sheet": true,
       "comparison": false,
       "generator": "missing",
+      "blocker": {
+        "code": "no-listing",
+        "detail": "Aucune cotation documentée ni candidate · www.amundietf.fr : HTTP Error 405: Method Not Allowed"
+      },
       "dca": true,
       "countries": {
         "status": "available",
@@ -12845,6 +13356,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -12891,6 +13403,10 @@
       "sheet": true,
       "comparison": false,
       "generator": "missing",
+      "blocker": {
+        "code": "no-listing",
+        "detail": "Aucune cotation documentée ni candidate · www.amundietf.fr : HTTP Error 405: Method Not Allowed"
+      },
       "dca": true,
       "countries": {
         "status": "available",
@@ -12926,6 +13442,10 @@
       "sheet": true,
       "comparison": false,
       "generator": "missing",
+      "blocker": {
+        "code": "no-listing",
+        "detail": "Aucune cotation documentée ni candidate · www.amundietf.fr : HTTP Error 405: Method Not Allowed"
+      },
       "dca": true,
       "countries": {
         "status": "available",
@@ -12961,6 +13481,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -13007,6 +13528,7 @@
       "sheet": true,
       "comparison": false,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -13053,6 +13575,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -13099,6 +13622,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -13145,6 +13669,7 @@
       "sheet": true,
       "comparison": false,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -13191,6 +13716,10 @@
       "sheet": true,
       "comparison": false,
       "generator": "missing",
+      "blocker": {
+        "code": "no-listing",
+        "detail": "Aucune cotation documentée ni candidate · www.amundietf.fr : HTTP Error 405: Method Not Allowed"
+      },
       "dca": true,
       "countries": {
         "status": "available",
@@ -13226,6 +13755,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -13272,6 +13802,10 @@
       "sheet": true,
       "comparison": true,
       "generator": "missing",
+      "blocker": {
+        "code": "no-listing",
+        "detail": "Aucune cotation documentée ni candidate · www.amundietf.fr : HTTP Error 405: Method Not Allowed"
+      },
       "dca": true,
       "countries": {
         "status": "available",
@@ -13307,6 +13841,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -13353,6 +13888,7 @@
       "sheet": true,
       "comparison": true,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -13399,6 +13935,10 @@
       "sheet": true,
       "comparison": true,
       "generator": "missing",
+      "blocker": {
+        "code": "no-listing",
+        "detail": "Aucune cotation documentée ni candidate · etf.dws.com : No qualified structured metadata parser for this endpoint"
+      },
       "dca": true,
       "countries": {
         "status": "available",
@@ -13434,6 +13974,7 @@
       "sheet": true,
       "comparison": false,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "not-applicable",
@@ -13474,6 +14015,10 @@
       "sheet": true,
       "comparison": true,
       "generator": "missing",
+      "blocker": {
+        "code": "no-listing",
+        "detail": "Aucune cotation documentée ni candidate · www.amundietf.fr : HTTP Error 405: Method Not Allowed"
+      },
       "dca": true,
       "countries": {
         "status": "available",
@@ -13509,6 +14054,10 @@
       "sheet": true,
       "comparison": false,
       "generator": "missing",
+      "blocker": {
+        "code": "no-listing",
+        "detail": "Aucune cotation documentée ni candidate · etf.dws.com : No qualified structured metadata parser for this endpoint"
+      },
       "dca": true,
       "countries": {
         "status": "available",
@@ -13544,6 +14093,10 @@
       "sheet": true,
       "comparison": false,
       "generator": "missing",
+      "blocker": {
+        "code": "no-listing",
+        "detail": "Aucune cotation documentée ni candidate · etf.dws.com : No qualified structured metadata parser for this endpoint"
+      },
       "dca": true,
       "countries": {
         "status": "available",
@@ -13579,6 +14132,7 @@
       "sheet": true,
       "comparison": false,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "not-applicable",
@@ -13619,6 +14173,10 @@
       "sheet": true,
       "comparison": true,
       "generator": "missing",
+      "blocker": {
+        "code": "no-listing",
+        "detail": "Aucune cotation documentée ni candidate · www.amundietf.fr : HTTP Error 405: Method Not Allowed · www.ca-sicavetfcp.fr : No explicit supported metadata fields"
+      },
       "dca": true,
       "countries": {
         "status": "available",
@@ -13654,6 +14212,10 @@
       "sheet": true,
       "comparison": false,
       "generator": "missing",
+      "blocker": {
+        "code": "no-listing",
+        "detail": "Aucune cotation documentée ni candidate · www.amundietf.fr : HTTP Error 405: Method Not Allowed"
+      },
       "dca": true,
       "countries": {
         "status": "available",
@@ -13689,6 +14251,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -13730,6 +14293,7 @@
       "sheet": true,
       "comparison": false,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -13776,6 +14340,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -13817,6 +14382,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -13858,6 +14424,7 @@
       "sheet": true,
       "comparison": false,
       "generator": "automatic",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -13904,6 +14471,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -13945,6 +14513,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -13986,6 +14555,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -14027,6 +14597,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -14068,6 +14639,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -14109,6 +14681,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -14150,6 +14723,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -14191,6 +14765,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -14232,6 +14807,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -14273,6 +14849,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -14314,6 +14891,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -14355,6 +14933,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -14396,6 +14975,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -14437,6 +15017,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -14478,6 +15059,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -14519,6 +15101,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -14560,6 +15143,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -14601,6 +15185,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -14642,6 +15227,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -14683,6 +15269,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -14724,6 +15311,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -14765,6 +15353,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -14806,6 +15395,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -14847,6 +15437,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -14888,6 +15479,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -14929,6 +15521,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -14970,6 +15563,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -15011,6 +15605,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -15052,6 +15647,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -15093,6 +15689,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -15134,6 +15731,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -15175,6 +15773,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -15216,6 +15815,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -15257,6 +15857,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -15298,6 +15899,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -15339,6 +15941,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -15380,6 +15983,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -15421,6 +16025,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -15462,6 +16067,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -15503,6 +16109,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -15544,6 +16151,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -15585,6 +16193,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -15626,6 +16235,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -15667,6 +16277,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -15708,6 +16319,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -15749,6 +16361,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -15790,6 +16403,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -15831,6 +16445,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -15872,6 +16487,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -15913,6 +16529,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -15954,6 +16571,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -15995,6 +16613,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -16036,6 +16655,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -16077,6 +16697,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -16118,6 +16739,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -16159,6 +16781,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -16200,6 +16823,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -16241,6 +16865,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -16282,6 +16907,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -16323,6 +16949,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -16364,6 +16991,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -16405,6 +17033,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -16446,6 +17075,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -16487,6 +17117,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -16528,6 +17159,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -16569,6 +17201,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -16610,6 +17243,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -16651,6 +17285,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -16692,6 +17327,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -16733,6 +17369,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -16774,6 +17411,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -16815,6 +17453,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -16856,6 +17495,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -16897,6 +17537,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -16938,6 +17579,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -16979,6 +17621,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -17020,6 +17663,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -17061,6 +17705,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -17102,6 +17747,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -17143,6 +17789,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -17184,6 +17831,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -17225,6 +17873,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -17266,6 +17915,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -17307,6 +17957,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -17348,6 +17999,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -17389,6 +18041,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -17430,6 +18083,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -17471,6 +18125,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -17512,6 +18167,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -17553,6 +18209,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -17594,6 +18251,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -17635,6 +18293,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -17676,6 +18335,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -17717,6 +18377,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -17758,6 +18419,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -17799,6 +18461,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -17840,6 +18503,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -17881,6 +18545,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -17922,6 +18587,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -17963,6 +18629,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -18004,6 +18671,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -18045,6 +18713,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -18086,6 +18755,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -18127,6 +18797,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -18168,6 +18839,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -18209,6 +18881,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -18250,6 +18923,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -18291,6 +18965,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -18332,6 +19007,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -18373,6 +19049,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -18414,6 +19091,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -18455,6 +19133,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -18496,6 +19175,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -18537,6 +19217,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -18578,6 +19259,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -18619,6 +19301,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -18660,6 +19343,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -18701,6 +19385,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -18742,6 +19427,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -18783,6 +19469,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -18824,6 +19511,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -18865,6 +19553,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -18906,6 +19595,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -18947,6 +19637,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -18988,6 +19679,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -19029,6 +19721,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -19070,6 +19763,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -19111,6 +19805,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -19152,6 +19847,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -19193,6 +19889,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -19234,6 +19931,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -19275,6 +19973,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -19316,6 +20015,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -19357,6 +20057,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -19398,6 +20099,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -19439,6 +20141,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -19480,6 +20183,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -19521,6 +20225,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -19562,6 +20267,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -19603,6 +20309,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -19644,6 +20351,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -19685,6 +20393,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -19726,6 +20435,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -19767,6 +20477,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -19808,6 +20519,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -19849,6 +20561,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -19890,6 +20603,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -19931,6 +20645,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -19972,6 +20687,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -20013,6 +20729,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -20054,6 +20771,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -20095,6 +20813,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -20136,6 +20855,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -20177,6 +20897,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -20218,6 +20939,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -20259,6 +20981,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -20300,6 +21023,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -20341,6 +21065,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -20382,6 +21107,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -20423,6 +21149,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -20464,6 +21191,10 @@
       "sheet": false,
       "comparison": false,
       "generator": "missing",
+      "blocker": {
+        "code": "no-listing",
+        "detail": "Aucune cotation documentée ni candidate"
+      },
       "dca": true,
       "countries": {
         "status": "available",
@@ -20494,6 +21225,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -20535,6 +21267,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -20576,6 +21309,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -20617,6 +21351,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -20658,6 +21393,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -20699,6 +21435,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -20740,6 +21477,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -20781,6 +21519,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -20822,6 +21561,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -20863,6 +21603,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -20904,6 +21645,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -20945,6 +21687,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -20986,6 +21729,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -21027,6 +21771,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -21068,6 +21813,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -21109,6 +21855,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -21150,6 +21897,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -21191,6 +21939,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -21232,6 +21981,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -21273,6 +22023,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -21314,6 +22065,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -21355,6 +22107,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -21396,6 +22149,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -21437,6 +22191,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -21478,6 +22233,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -21519,6 +22275,7 @@
       "sheet": false,
       "comparison": false,
       "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
