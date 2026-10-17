@@ -127,7 +127,18 @@ assert(Math.abs(table.reduce((ratio, c) => ratio * (1 + c.rows.find(r => r.id ==
 const tied = buildRanking([a, { ...a, id: 'tie' }], { mode: 'year', startYear: 2020 })
 assert.equal(buildTweet(tied, 'Ma sélection').split('🥇').length - 1, 2)
 const { rankingImageLayout } = await import('../src/pages/performance-rankings/image.js')
-assert(rankingImageLayout(3, 6).height < rankingImageLayout(5, 6).height)
+for (let assets = 2; assets <= 6; assets++) {
+  for (let years = 1; years <= 10; years++) {
+    const layout = rankingImageLayout(assets, years)
+    assert.equal(layout.width, 1200)
+    assert(layout.height >= 550 && layout.height <= 1230)
+    assert(layout.cellWidth >= 160)
+    assert.equal(layout.gridRows * layout.gridColumns, assets * years)
+  }
+}
+assert.equal(rankingImageLayout(2, 3).transposed, false)
+assert.equal(rankingImageLayout(3, 7).transposed, true)
+assert.equal(rankingImageLayout(6, 5).transposed, true)
 assert.equal(rankingImageLayout(3, 6).tableBottom + 94, rankingImageLayout(3, 6).height)
 console.log('Publication: exact compound annualization, single-year returns, tied medals, partial boundaries and compact three-asset canvas passed.')
 
