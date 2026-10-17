@@ -1,9 +1,21 @@
 """Exact issuer identity, dated metrics and signed hedge holdings."""
 import copy,datetime as dt,json,pathlib,unittest
 from unittest.mock import patch
-from collect_qualified_exposures import collect_one,holdings_sectors
+from collect_qualified_exposures import collect_one,holdings_sectors,retain_listing_evidence
 ROOT=pathlib.Path(__file__).resolve().parents[1]
 class QualifiedRoadmap(unittest.TestCase):
+ def test_partial_listing_refresh_preserves_prior_quote_proof_and_date(self):
+  row=dict(mic='XLON',ticker='HEAL',currency='USD',symbol='HEAL.L',sourceUrl='https://issuer.test/share',checkedAt='2026-10-16',evidenceId='IE00BYZK4776-XLON-HEAL-USD')
+  previous=dict(isin='IE00BYZK4776',pageSha256='a'*64,listings=[row])
+  current=dict(isin=previous['isin'],pageSha256='b'*64,listings=[dict(row,mic='XPAR',currency='EUR',symbol='HEALI.PA',checkedAt='2026-10-17',evidenceId='IE00BYZK4776-XPAR-HEAL-EUR')])
+  archive=retain_listing_evidence({},[previous,current])
+  self.assertEqual(len(archive[previous['isin']]),2)
+  self.assertEqual(archive[previous['isin']][0],dict(row,sha256='a'*64))
+  self.assertEqual(retain_listing_evidence(archive,[previous]),archive)
+  self.assertEqual(retain_listing_evidence({},[previous,current],{row['evidenceId']}),{previous['isin']:[dict(row,sha256='a'*64)]})
+  with self.assertRaises(ValueError):retain_listing_evidence({},[dict(previous,isin='IE00B4L5Y983')])
+  with self.assertRaises(ValueError):retain_listing_evidence({},[dict(previous,pageSha256=None)])
+
  def setUp(self):
   self.body=json.loads((ROOT/'scripts/fixtures/official-documents/roadmap-govt-5-7.json').read_text())
   self.config=next(c for c in json.loads((ROOT/'scripts/qualified-exposure-sources.json').read_text())['instruments']if c['id']=='euro-govt-5-7')

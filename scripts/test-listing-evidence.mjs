@@ -6,6 +6,12 @@ const fixture = {
   evidence: { a: { isin: 'FR001400U5Q4', identityEvidence: 'ISIN FR001400U5Q4', sourceUrl: 'https://www.amundietf.fr/example', checkedAt: '2026-09-30', excerpt: 'Euronext Paris EUR DCAM FP' } },
 };
 assert.deepEqual(validateListingEvidence(fixture), []);
+const multiToken=structuredClone(fixture);
+multiToken.published.FR001400U5Q4=['PPFB GY'];multiToken.listings.FR001400U5Q4[0].ticker='PPFB GY';multiToken.evidence.a.excerpt='Euronext Paris EUR PPFB GY';
+assert.deepEqual(validateListingEvidence(multiToken),[]);
+for(const excerpt of ['Euronext Paris EUR XPPFB GY','Euronext Paris EUR PPFBGY','Euronext Paris EUR PPFB GYX']) {
+ const bad=structuredClone(multiToken);bad.evidence.a.excerpt=excerpt;assert(validateListingEvidence(bad).some(error=>error.includes('ticker absent')));
+}
 for (const mutate of [
   x => { x.listings = {}; },
   x => { x.evidence = {}; },

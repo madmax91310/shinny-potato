@@ -1,6 +1,6 @@
 import { INSTRUMENT_FACTS_BY_ISIN } from './instrument-facts.js'
 import { INSTRUMENTS_BY_ISIN, getInstrumentName, getInstrumentPeaStatus } from './instruments.js'
-import { getPreferredInstrumentListing } from './instrument-listings.js'
+import { getPreferredInstrumentTicker } from './preferred-instrument-tickers.js'
 import { ETF_TER_BY_ISIN } from './etf-ter.js'
 
 export { normalizeSearch } from './search-text.js'
@@ -8,14 +8,14 @@ import { shortAssetName, exposureGroup } from './asset-labels.js'
 export { shortAssetName, exposureGroup } from './asset-labels.js'
 export function instrumentOption(asset) {
   const facts = INSTRUMENT_FACTS_BY_ISIN[asset.isin] ?? {}
-  const listing = getPreferredInstrumentListing(asset.isin)
+  const ticker = getPreferredInstrumentTicker(asset.isin)
   const pea = INSTRUMENTS_BY_ISIN[asset.isin] ? getInstrumentPeaStatus(asset.isin) : null
   const name = asset.name ?? asset.label ?? (INSTRUMENTS_BY_ISIN[asset.isin] ? getInstrumentName(asset.isin) : '')
   return {
     ...asset, id: asset.id ?? asset.isin, name, label: shortAssetName(name),
     group: exposureGroup({ ...asset, name, benchmark: facts.benchmark }),
     detail: facts.benchmark ?? '',
-    search: `${name} ${asset.isin ?? ''} ${asset.listing?.ticker ?? listing?.ticker ?? ''} ${facts.benchmark ?? ''}`,
+    search: `${name} ${asset.isin ?? ''} ${asset.listing?.ticker ?? ticker ?? ''} ${facts.benchmark ?? ''}`,
     badges: [pea === true ? 'PEA' : pea === false ? 'CTO · hors PEA' : null,
       facts.distribution, ETF_TER_BY_ISIN[asset.isin] ? `${ETF_TER_BY_ISIN[asset.isin]} %` : null].filter(Boolean),
   }

@@ -1,7 +1,7 @@
 // Contrôle hors réseau : les preuves conservées viennent d'une revue des sources,
 // Trois profils justETF sont recoupés avec les documents primaires ;
 // pas d'une inférence sur le domicile ou la devise du fonds.
-const SOURCE_HOSTS = new Set(['fundcentres.landg.com', 'res.avantisinvestors.com', 'www.blackrock.com', 'www.ishares.com', 'www.invesco.com', 'dng-api.invesco.com', 'www.wisdomtree.com', 'www.amundietf.fr', 'www.amundietf.com',
+const SOURCE_HOSTS = new Set(['fundcentres.landg.com', 'res.avantisinvestors.com', 'res.americancentury.com', 'www.blackrock.com', 'www.ishares.com', 'www.invesco.com', 'dng-api.invesco.com', 'www.wisdomtree.com', 'www.amundietf.fr', 'www.amundietf.com',
   'www.vaneck.com', 'www.ssga.com', 'www.vanguard.co.uk', 'fund-docs.vanguard.com', 'coinshares.com',
   'globalxetfs.eu', 'am.jpmorgan.com', 'dataspanapi.wisdomtree.com', 'bitwiseinvestments.eu', 'cdn.21shares.com', 'www.justetf.com', 'etf.dws.com', 'www.borsaitaliana.it', 'live.euronext.com']);
 const MARKETS = {
@@ -55,7 +55,7 @@ export function validateListingEvidence({ published, listings, evidence, today =
       if (proof.asOf && (!validDate(proof.asOf) || proof.asOf > proof.checkedAt)) fail(isin, `date documentaire invalide : ${key}`);
       const market = MARKETS[row.mic];
       if (!market || market[0] !== row.exchange || !market[1].test(proof.excerpt ?? '')) fail(isin, `place sans preuve : ${key}`);
-      const hasToken = (text, token) => typeof text === 'string' && text.split(/[^A-Za-z0-9]+/).includes(token);
+      const hasToken = (text, token) => typeof text === 'string' && typeof token==='string' && token.length>0 && new RegExp(`(?<![A-Za-z0-9])${token.replace(/[.*+?^${}()|[\]\\]/g,'\\$&').replace(/\s+/g,'\\s+')}(?![A-Za-z0-9])`).test(text);
       if (!hasToken(proof.excerpt, row.ticker)) fail(isin, `ticker absent de la preuve : ${key}`);
       if (!/^[A-Z]{3}$/.test(row.currency) || !hasToken(proof.currencyExcerpt ?? proof.excerpt, row.currency) ||
           proof.currencyExcerpt && !proof.currencySourceUrl) fail(isin, `devise sans preuve : ${key}`);

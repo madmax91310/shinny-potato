@@ -1,5 +1,6 @@
 import { readFileSync } from 'node:fs';
 import { compactLiteral } from './project-tool-data.mjs';
+import { characteristicMetadata } from '../src/data/instrument-characteristic-metadata.js';
 
 // Build-only partitioning: one source JSON stays authoritative for collection/QA.
 // The modules reconstruct the same object; each data chunk has a bounded payload.
@@ -29,3 +30,7 @@ function splitRecords(filename, name, sourceRecords) {
 }
 export function splitEtfRecords() { return splitRecords('automated-etf.json','etf-issuer-part') }
 export function splitInstrumentMetadataRecords(records) { return splitRecords('automated-instrument-metadata.json','instrument-metadata-part',records) }
+export function splitCharacteristicMetadataRecords() {
+ const records=JSON.parse(readFileSync(new URL('../src/data/automated-instrument-metadata.json',import.meta.url),'utf8'));
+ return splitRecords('instrument-characteristic-metadata.js','characteristic-metadata-part',characteristicMetadata(records));
+}
