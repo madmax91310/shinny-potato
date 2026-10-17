@@ -1,5 +1,6 @@
 import { NON_BOND_SHEETS } from '../../data/non-bond-expansion.js'
 import { CATALOG } from '../../data/duel-assets.js'
+import { ETFS } from '../../data/etf-cards.js'
 import { getETFArt } from '../etf-sheets/visualIdentity.js'
 import { loadArtImage } from '../tweet-midi/anniversaryArt.js'
 
@@ -37,7 +38,12 @@ const references = {
   cleanenergy: 'support-sect_energie_propre', infrastructure: 'infrastructures', property: 'immobilier-reit',
   semiconductors: 'semiconducteurs', blockchain: 'blockchain',
 }
-export const DUEL_EXPOSURE_ART = Object.freeze({...Object.fromEntries(CATALOG.filter(asset => asset.art).map(asset => [asset.exposure, {kind: 'illustration', ...asset.art}])), ...Object.fromEntries(Object.entries(references).filter(([exposure])=>CATALOG.some(asset=>asset.exposure===exposure)).map(([exposure, id]) => [exposure, exposure === 'construction-europe' ? { kind: 'illustration', theme: 'construction', scene: 'duels/construction.webp' } : getETFArt(id)]))})
+const automaticArt = Object.fromEntries(CATALOG.filter(asset=>asset.id.startsWith('manual-')).map(asset=>{
+ const card=ETFS.find(card=>card.isin===asset.isin)
+ const art=getETFArt(card?.id)
+ return [asset.exposure,art.scene?art:{...art,scene:art.mark}]
+}))
+export const DUEL_EXPOSURE_ART = Object.freeze({...automaticArt,...Object.fromEntries(CATALOG.filter(asset => asset.art).map(asset => [asset.exposure, {kind: 'illustration', ...asset.art}])), ...Object.fromEntries(Object.entries(references).filter(([exposure])=>CATALOG.some(asset=>asset.exposure===exposure)).map(([exposure, id]) => [exposure, exposure === 'construction-europe' ? { kind: 'illustration', theme: 'construction', scene: 'duels/construction.webp' } : getETFArt(id)]))})
 export function getDuelArt(asset) {
   const art = DUEL_EXPOSURE_ART[asset.exposure]
   if (!art?.scene) throw new Error(`Illustration du duel non vérifiée : ${asset.id}`)

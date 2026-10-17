@@ -119,7 +119,9 @@ const extraFunds = [
   ['blockchain_ishares', 'IE000RDRMSD1', 'Blockchain', 'blockchain'],
 ].map(([id, isin, label, exposure, role = 'theme']) => {
   const market = MONTHLY_DUEL_RETURNS[isin]
-  const series = market && latestCommonYears([market.years],{minimum:3}).length>=3 ? market : getInstrumentDuelSeries(isin)
+  const official = getInstrumentDuelSeries(isin)
+  const officialYears=official?.years ?? Object.fromEntries((official?.values ?? []).map((v,i)=>[2020+i,v]))
+  const series = latestCommonYears([officialYears],{minimum:3}).length>=3 ? official : market && latestCommonYears([market.years],{minimum:3}).length>=3 ? market : official
   if (!series?.source) throw new Error(`Historique de part absent : ${isin}`)
   return { id, isin, label, exposure, name: getInstrumentName(isin), role, group: ROLES[role],
     ...series, note: series.note ?? (['copper','platinum','palladium'].includes(exposure) ? 'Rendements NAV de l’ETC exact, frais inclus, en USD. '+(exposure==='copper'?'Contrats à terme via swap ; renouvellement des contrats et frais de swap distincts.':'Adossé à du métal physique ; sans revenu distribué.') : exposure === 'multifactor' ? 'Rendements NAV de la part exacte, revenus réinvestis. Le fonds a changé d’indice : cet historique ne décrit pas uniquement la stratégie STOXX actuelle.' : exposure === 'gold' ? 'Rendements de l’ETC adossé à de l’or physique, sans revenu distribué ; années complètes communes.' : 'Rendements de la part exacte, revenus réinvestis ; seules les années complètes disponibles sont comparées.') }
@@ -135,7 +137,14 @@ const routedFunds = [...DISTINCT_PORTFOLIO_CANDIDATES, {id:'cloud-wisdomtree',is
   role:'complement',group:ROLES.complement,note:[c.note,s.note].filter(Boolean).join(' ')}]
 })
 const equityItems = EQUITY_DUEL_RETURNS.map(item => ({...item, name: item.label, instrumentType: 'EQUITY', role: 'complement', group: 'Actions individuelles', exposure: item.id, basis: 'adjusted-price', note: 'Cours ajustés des dividendes et divisions ; rendements calculés entre clôtures de décembre, sur années complètes uniquement.'}))
-const allAutomatedFunds = Object.values(MONTHLY_DUEL_RETURNS).filter(s=>![...routedFunds,...expansionFunds,...fundItems,...extraFunds].some(a=>a.isin===s.isin) && s.isin!==stoxxIsin).map(s=>({...s,id:`manual-${s.isin}`,name:getInstrumentName(s.isin),label:getInstrumentName(s.isin),exposure:s.isin,role:'complement',group:ROLES.complement}));
+const allAutomatedFunds = Object.values(MONTHLY_DUEL_RETURNS).filter(s=>![...routedFunds,...expansionFunds,...fundItems,...extraFunds].some(a=>a.isin===s.isin) && s.isin!==stoxxIsin).flatMap(s=>{
+ const asset=ASSETS.find(a=>a.isin===s.isin)
+ const official=asset&&!asset.distinctCandidate?getInstrumentDuelSeries(s.isin):null
+ // A legacy mixed/proxy portfolio history cannot silently become exact-share market returns.
+ if(asset&&!asset.distinctCandidate&&!official?.source)return []
+ const series=official?{...official,source:official.source??PORTFOLIO_RETURN_EVIDENCE[s.isin]?.sourceUrls[0],values:asset.r,currency:asset.returnCurrency??official.currency,calendarReturns:asset.calendarReturns}:s
+ return [{...series,isin:s.isin,id:`manual-${s.isin}`,name:getInstrumentName(s.isin),label:getInstrumentName(s.isin),exposure:s.isin,role:'complement',group:ROLES.complement}]
+});
 export const CATALOG = [...allAutomatedFunds, ...equityItems, ...routedFunds, ...expansionFunds, ...fundItems, ...extraFunds, {
   id: 'stoxx600_bnp', isin: stoxxIsin, name: getInstrumentName(stoxxIsin),
   role: 'complement', label: 'STOXX Europe 600', exposure: 'europe', group: ROLES.complement,

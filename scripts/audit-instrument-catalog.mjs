@@ -25,7 +25,7 @@ import { FAMILIES } from '../src/data/index-comparisons.js';
 import { ASSETS } from '../src/data/portfolio-assets.js';
 import monthly from '../src/data/monthly-duel-returns.json' with {type:'json'};
 const automatedManualCount=ASSETS.filter(a=>a.automatedManual).length;
-const distinctCount=ASSETS.filter(a=>a.distinctCandidate).length;
+const distinctCount=ASSETS.filter(a=>a.distinctCandidate&&!a.automatedManual).length;
 
 const exposureCatalog = JSON.parse(readFileSync(new URL('../src/pages/dca-profiles/catalog.json', import.meta.url)))
 const collections = [

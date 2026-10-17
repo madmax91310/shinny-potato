@@ -22,6 +22,19 @@ def xml(key):
     return ET.tostring(node,encoding='unicode')
 
 class PublicationTests(unittest.TestCase):
+    def test_anniversary_identity_enrichment_preserves_quote_convention(self):
+        old={'value':100,'asOf':'2026-10-07','currency':'EUR','parser':'yahoo','symbol':'EXAMPLE.PA'}
+        enriched={**old,'isin':'FR0011550193','ticker':'EXAMPLE','mic':'XPAR'}
+        current,report=refresh_levels({'example':old},NOW,lambda *_:enriched,selected=[{'id':'example'}])
+        self.assertEqual(current['example'],enriched)
+        self.assertFalse(report['errors'])
+        for bad in [{**enriched,'isin':'FR0013412012'},{k:v for k,v in enriched.items() if k!='isin'},
+                    {**enriched,'symbol':'OTHER.PA'},{**enriched,'currency':'USD'},
+                    {**enriched,'asOf':'2026-10-06'}]:
+            retained,report=refresh_levels({'example':enriched},NOW,lambda *_:bad,selected=[{'id':'example'}])
+            self.assertEqual(retained['example'],enriched)
+            self.assertEqual(len(report['errors']),1)
+
     def test_msci_daily_recovery_and_exact_completed_window(self):
         config={'id':'test','parser':'msci','indexCode':'123','currency':'USD','variant':'GRTR'}
         body={'msci_index_code':'123','ISO_currency_symbol':'USD','index_variant_type':'GRTR',

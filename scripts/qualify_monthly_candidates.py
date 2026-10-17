@@ -59,7 +59,8 @@ def apply_qualified(rows):
         target=equities if source.get('consumerScope')=='equity' else records
         target[source['id']]={k:v for k,v in result.items() if k not in ['proofRows','rawResponse','qualifiedAnniversary']}
         evidence[source['id']]={k:v for k,v in result.items() if k not in ['rawResponse','points','anniversaryPoints','qualifiedAnniversary']}
-        identities[source['id']]=dict(icon='📊',scene='world',title=source['ticker'],ticker=source['ticker'],instrumentType=source.get('instrumentType','ETF'))
+        if source.get('consumerScope')!='equity':
+            identities[source['id']]=dict(icon='📊',scene='world',title=source['ticker'],ticker=source['ticker'],instrumentType=source.get('instrumentType','ETF'))
     for path,data in [('src/data/automated-monthly.json',equities),('scripts/monthly-automation.json',config),('src/data/automated-etf-monthly.json',records),('scripts/source-snapshots/monthly-automated.json',evidence),('src/data/auto-history-identities.json',identities),('src/data/anniversary-levels.json',levels)]:write_json_atomic(ROOT/path,data)
 
 def main():

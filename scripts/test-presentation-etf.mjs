@@ -64,7 +64,7 @@ for (const r of PRESENTATION_ETF_ADDITIONS.filter(r=>r.reviewedAt)) {
  assert.equal(card.presentationOnly, !r.portfolioEnabled);
  assert(card.listing && getETFArt(card.id));
  if(r.portfolioEnabled) assert(ASSETS.find(a=>a.isin===r.isin)?.r.every(Number.isFinite));
- else assert(!ASSETS.some(a=>a.isin===r.isin));
+ else {const asset=ASSETS.find(a=>a.isin===r.isin);if(asset){assert(asset.distinctCandidate && asset.manualOnly);assert(Object.values(asset.calendarReturns).filter(Number.isFinite).length>=3);assert.match(asset.confidenceNote,/marché/);}}
  assert.equal(card.lastVerified,'15/10/2026');
  assert.equal(card.distribution,r.distribution);
  const series=getAnnualPerformance(card);

@@ -4,6 +4,7 @@ import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { pathToFileURL } from 'node:url'
 import { projectLightRegistries } from './project-light-registries.mjs'
+import { projectSelectedData } from './project-selected-data.mjs'
 import { splitEtfRecords } from './split-etf-records.mjs'
 import { readFileSync } from 'node:fs'
 
@@ -19,6 +20,17 @@ assert.deepEqual(reconstructed,JSON.parse(readFileSync(new URL('../src/data/auto
 const names = ['etf-cards','etf-publication-data','commodity-publication-data','portfolio-exposure-data','qualified-exposure-metrics','qualified-exposure-sheets', 'instruments', 'instrument-facts', 'instrument-listings', 'instrument-pea', 'etf-ter', 'etf-ter-evidence',
   'portfolio-assets', 'portfolio-currencies', 'practical-source-data', 'instrument-reference-evidence']
 const directory = await mkdtemp(join(tmpdir(), 'light-registries-'))
+const selectedRecords = new Map()
+projectSelectedData().generateBundle.call({emitFile:({fileName,source})=>{
+ if(fileName.startsWith('data/portfolio/')) {const record=JSON.parse(source);selectedRecords.set(record.id,record)}
+}})
+const restoreAssets = assets=>assets.map(asset=>{
+ if(!asset.historyPending)return asset
+ const record=selectedRecords.get(asset.id)
+ assert(record,`Selected portfolio data missing: ${asset.id}`)
+ for(const [key,value] of Object.entries(asset))if(key!=='historyPending')assert.deepEqual(value,record[key],`${asset.id}.${key}`)
+ return record
+})
 try {
   const plugin = projectLightRegistries()
   await writeFile(join(directory, 'package.json'), '{"type":"module"}')
@@ -34,7 +46,8 @@ try {
     projected[name] = actual; canonical[name] = expected
     assert.deepEqual(Object.keys(actual), Object.keys(expected))
     for (const [key, value] of Object.entries(expected)) if (typeof value !== 'function') {
-      assert.deepEqual(JSON.parse(JSON.stringify(actual[key])), JSON.parse(JSON.stringify(value)), `${name}.${key}`)
+      const restored=name==='portfolio-assets'&&key==='ASSETS'?restoreAssets(actual[key]):actual[key]
+      assert.deepEqual(JSON.parse(JSON.stringify(restored)), JSON.parse(JSON.stringify(value)), `${name}.${key}`)
     }
   }
   for (const isin of Object.keys(canonical.instruments.INSTRUMENTS_BY_ISIN)) {
@@ -50,6 +63,6 @@ try {
       }
     }
   }
-  for (const asset of canonical['portfolio-assets'].ASSETS) assert.deepEqual(projected['portfolio-assets'].getAsset(asset.id), asset)
+  for (const asset of canonical['portfolio-assets'].ASSETS) assert.deepEqual(restoreAssets([projected['portfolio-assets'].getAsset(asset.id)])[0], asset)
   console.log('Light registries: all exported values and per-ISIN helpers match the canonical modules.')
 } finally { await rm(directory, {recursive:true, force:true}) }
