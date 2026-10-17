@@ -231,4 +231,18 @@ class NewCollectorStatusTests(unittest.TestCase):
   path.read_text.return_value='{"indices":[{"id":"world","facts":{},"returns":{"values":[1]},"errors":[{"field":"composition","reason":"Missing weights"}]}]}'
   self.assertEqual(read_report(path,'refresh-automated-index-sheets.yml')['errors'][0]['id'],'index-world-composition')
 
+ def test_radar_feed_above_one_megabyte_is_read_from_its_blob(self):
+  import base64,json
+  from publish_automation_status import read_large_file
+  body=base64.b64encode(json.dumps({'schemaVersion':1,'errors':[]}).encode()).decode()
+  calls=[]
+  def api(path):
+   calls.append(path)
+   return {'encoding':'none','content':'','sha':'abc'} if path.startswith('/contents/') else {'content':body,'encoding':'base64'}
+  self.assertEqual(read_large_file(api,'feed.json','radar-data'),{'schemaVersion':1,'errors':[]})
+  self.assertEqual(calls,['/contents/feed.json?ref=radar-data','/git/blobs/abc'])
+  calls.clear()
+  self.assertEqual(read_large_file(lambda path:calls.append(path) or {'encoding':'base64','content':body,'sha':'abc'},'feed.json','radar-data')['schemaVersion'],1)
+  self.assertEqual(len(calls),1)
+
 if __name__ == '__main__': unittest.main()
