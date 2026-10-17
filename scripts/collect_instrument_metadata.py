@@ -18,15 +18,23 @@ RENEWAL_GRACE_DAYS=7
 VANECK_FACTSHEET=re.compile(r'https://www\.vaneck\.com/(?:ucits|[a-z]{2}/en)/library/fact-sheets/[a-z0-9]+-fact-sheet\.pdf')
 
 def fetch_document(url,fetch=download):
+    """Returns (body, url actually read)."""
     try:
-        return fetch(url)
+        return fetch(url),url
     except ValueError as error:
-        # VanEck now answers its factsheet URLs with a regional consent page; the shared
-        # browser downloader (also used by collect_vaneck_etf.py) completes that gate.
+        # VanEck answers its factsheet URLs with a regional consent page. Like
+        # collect_vaneck_etf.py, complete the gate in a browser, then try the same
+        # factsheet on the Dutch and UK gates, which US-based runners can pass.
         if fetch is not download or 'Expected official PDF' not in str(error) or not VANECK_FACTSHEET.fullmatch(url):raise
-        result=subprocess.run(['node',str(Path(__file__).with_name('download-vaneck-document.mjs')),url],capture_output=True,timeout=120)
-        if result.returncode:raise ValueError(f"{error}; browser initialisation failed: {result.stderr.decode('utf-8',errors='replace')[-500:]}")
-        return result.stdout
+        name=url.rsplit('/',1)[1]
+        candidates=list(dict.fromkeys([url,*(f'https://www.vaneck.com/{region}/en/library/fact-sheets/{name}' for region in ('nl','uk'))]))
+        failures=[]
+        for candidate in candidates:
+            try:result=subprocess.run(['node',str(Path(__file__).with_name('download-vaneck-document.mjs')),candidate],capture_output=True,timeout=120)
+            except subprocess.TimeoutExpired:failures.append(f'{candidate}: timeout');continue
+            if not result.returncode:return result.stdout,candidate
+            failures.append(f"{candidate}: {result.stderr.decode('utf-8',errors='replace').strip().splitlines()[-1:]}")
+        raise ValueError(f"{error}; browser initialisation failed: {' | '.join(failures)[-700:]}")
 
 def renewal_overdue(field_record,now):
     try:return (now.date()-dt.date.fromisoformat(field_record.get('checkedAt','')[:10])).days>RENEWAL_GRACE_DAYS
@@ -107,7 +115,7 @@ def collect(source,now,fetch=download):
     values={};errors=[];conflicts=set();checked=now.date().isoformat()
     for url in source['urls']:
         try:
-            body=fetch_document(url,fetch)
+            body,url=fetch_document(url,fetch)
             fields=parse_json(body,source['isin']) if body.lstrip().startswith(b'{') else parse_text(text_of(body),source['isin'])
             listing_rows=parse_listings(body,source,url,checked)
             if listing_rows:fields['listings']=listing_rows
