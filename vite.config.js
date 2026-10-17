@@ -19,6 +19,8 @@ export default defineConfig({
     rolldownOptions: { output: { codeSplitting: { groups: [
       { name: 'etf-card-metadata', test: /src\/data\/etf-cards\.js$/, priority: 130 },
       { name: 'etf-publication-data', test: /src\/data\/etf-publication-data\.js$/, priority: 130 },
+      // Historical data grows independently of ranking UI and calculation code.
+      { name: 'ranking-long-histories', test: /src\/data\/ranking-histories\.json$/, priority: 135 },
       { name: 'ranking-calculations', test: /performance-rankings\/(?:engine|series)\.js$/, priority: 135 },
       ...['exposures','exposures-extra-0','exposures-extra-1','exposures-extra-2','holdings','catalog'].map(name=>({name:'dca-'+name,test:new RegExp('dca-profiles/'+name+'\\.json$'),priority:135})),
       ...issuerParts.groups,
