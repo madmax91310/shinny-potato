@@ -10,6 +10,7 @@ import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
 import { INSTRUMENT_FACTS_BY_ISIN } from '../src/data/instrument-facts.js'
 import { INSTRUMENT_AUM_BY_ISIN } from '../src/data/instrument-aum.js'
+import { getPreferredInstrumentListing } from '../src/data/instrument-listings.js'
 import { ETFS } from '../src/data/etf-cards.js'
 import { ASSETS } from '../src/data/portfolio-assets.js'
 import { getAnnualPerformance } from '../src/pages/etf-sheets/annualPerformance.js'
@@ -79,8 +80,7 @@ for (const product of snapshot.products) {
   assert.equal(card.ter, (AUTOMATED_ETF[product.isin]?.characteristics?.terPct.toFixed(2).replace('.', ',') ?? product.ter) + '%')
   assert.equal(card.pea, false)
   assert.equal(card.positions, product.positions)
-  assert.equal(card.listing.ticker, product.ticker)
-  assert.equal(card.listing.exchange, product.exchange)
+  assert.equal(card.listing,getPreferredInstrumentListing(product.isin),'Current exact-share listing follows the verified registry, independently of the archived preferred venue')
   const facts = INSTRUMENT_FACTS_BY_ISIN[product.isin]
   assert.equal(facts.benchmark, product.benchmark)
   assert.equal(facts.incomePolicy, product.income)
