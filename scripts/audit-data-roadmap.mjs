@@ -8,6 +8,7 @@ import { ASSETS as CALCULATOR } from '../src/data/market-history.js'
 import { INSTRUMENT_AUM_BY_ISIN } from '../src/data/instrument-aum.js'
 import { PEA_REVIEWS_BY_ISIN } from '../src/data/instrument-pea.js'
 import { ETFS } from '../src/data/etf-cards.js'
+import { latestCommonYears } from '../src/data/annual-window.js'
 
 import { LEXICON_SOURCES as sources } from './lexicon-sources.mjs'
 const fiscal = new Set(`pea cto assurance-vie per livret-a ldds pee-perco flat-tax abattement-pea prelevements-sociaux plus-value-imposable plus-value-immobiliere`.split(' '))
@@ -36,10 +37,12 @@ const sourcedAum = Object.entries(INSTRUMENT_AUM_BY_ISIN).filter(([, value]) => 
 const absentPortfolioUrls = gaps.filter(x => x.tool === 'portefeuilles' && !x.sourceUrls.length)
 if (absentPortfolioUrls.length) { console.error(`Supports sans URL : ${absentPortfolioUrls.map(x => x.name).join(', ')}`); errors += absentPortfolioUrls.length }
 for (const a of PORTFOLIO) {
-  if (!Array.isArray(a.r) || a.r.length !== 6 || a.r.some(n => !Number.isFinite(n))) { console.error(`Années 2020-2025 incomplètes : ${a.id}`); errors++ }
+  const qualifiedManual = a.manualOnly && latestCommonYears([a.calendarReturns], {minimum:3}).length >= 3
+    && a.r?.length === 6 && a.r.every(n => n === null || Number.isFinite(n))
+  if ((!Array.isArray(a.r) || a.r.length !== 6 || a.r.some(n => !Number.isFinite(n))) && !qualifiedManual) { console.error(`Historique annuel incomplet : ${a.id}`); errors++ }
 }
 for (const [id, a] of Object.entries(CALCULATOR)) {
-  if (!['EUR', 'USD', 'KRW', 'CHF', 'DKK', 'JPY', 'HKD'].includes(a.currency)) { console.error(`Devise inconnue : ${id}`); errors++ }
+  if (!['EUR', 'USD', 'KRW', 'CHF', 'DKK', 'JPY', 'HKD', 'GBp', 'CNY', 'INR', 'SGD'].includes(a.currency)) { console.error(`Devise inconnue : ${id}`); errors++ }
   if (!a.points.every((p, i, arr) => /^\d{4}-\d{2}$/.test(p.date) && Number.isFinite(p.price) && p.price > 0 && (i === 0 || p.date > arr[i - 1].date))) { console.error(`Points mensuels invalides : ${id}`); errors++ }
 }
 // La continuité des six séries est contrôlée ici. audit:calculator-series
