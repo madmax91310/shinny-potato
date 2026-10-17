@@ -3,7 +3,7 @@ import annualFx from '../src/data/annual-fx.json' with { type: 'json' };
 import { computeBrut, computePoste, fmtEUR as fmtPowerEUR } from '../src/pages/purchasing-power/lib.js';
 import { PRICE_OBSERVATION } from '../src/data/purchasing-power.js';
 import { BROKERS as COMPARISON_BROKERS, DUELS as BROKER_DUELS, buildTweet as buildBrokerPost } from '../src/pages/broker-comparator/data.js';
-import { buildReview } from '../src/pages/data-review/lib.js';
+import { buildReview, reviewCalendar } from '../src/pages/data-review/lib.js';
 import { MARKET_HISTORY_REVIEW } from '../src/data/market-history-review.js';
 import { choose } from './card-selection.mjs'
 import { TOPICS as PRACTICAL_TOPICS } from '../src/data/practical-sheet-topics.js'
@@ -1202,38 +1202,39 @@ async function testDataReuse(page) {
   await page.getByText('Utiliser les frais d’un ETF', { exact: true }).click();
   await choose(page.getByLabel('ETF du scénario 1', { exact: true }), 'FR001400U5Q4');
   await choose(page.getByLabel('ETF du scénario 2', { exact: true }), 'IE00BP3QZ601');
-  let ok = (await page.locator('.fi-preview-text').innerText()).includes('FR001400U5Q4')
+  const checks = {};
+  checks.preview = (await page.locator('.fi-preview-text').innerText()).includes('FR001400U5Q4')
     && (await page.locator('.fi-preview-text').innerText()).includes('sans comparer leurs performances réelles');
   await page.evaluate(() => Object.defineProperty(navigator, 'clipboard', { configurable: true, value: { writeText: async text => { window.__reuseCopied = text; } } }));
   await page.getByRole('button', { name: 'Copier le texte', exact: true }).click();
-  ok &&= (await page.evaluate(() => window.__reuseCopied)).includes('IE00BP3QZ601');
+  checks.clipboard = (await page.evaluate(() => window.__reuseCopied)).includes('IE00BP3QZ601');
   await page.setViewportSize({ width: 390, height: 844 });
-  ok &&= await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth);
+  checks.mobile = await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth);
   await page.setViewportSize({ width: 1280, height: 720 });
   await page.goto(`${BASE}/duels-portefeuilles`, { waitUntil: 'networkidle' });
   // Reuse the saved three-line allocation and replace its complement with XEON.
   await page.getByRole('button', { name: 'Composer A et B', exact: true }).click();
   await choose(page.getByRole('group', { name: 'Actif 3 du portefeuille A', exact: true }), 'monetaire_xeon');
-  ok &&= (await page.locator('#pd-tweet').inputValue()).includes('XEON');
+  checks.manualReuse = (await page.locator('#pd-tweet').inputValue()).includes('XEON');
   await page.getByRole('button', { name: 'Duels préparés', exact: true }).click();
   const blockchainDuel = DUELS.findIndex(duel => duel.id === 'semiconducteurs_monde-contre-blockchain_ishares');
   if (blockchainDuel < 0) throw new Error('Missing prepared blockchain allocation');
   await choose(page.locator('#pd-select'), String(blockchainDuel));
-  ok &&= (await page.locator('.pd-table tbody th').allTextContents()).join(',') === '2023,2024,2025';
+  checks.commonYears = (await page.locator('.pd-table tbody th').allTextContents()).join(',') === '2023,2024,2025';
   await page.goto(`${BASE}/faits-marquants-marches`, { waitUntil: 'networkidle' });
   await choose(page.getByLabel('Choisir un fait'), 'monthly-drawdown-paypal');
-  ok &&= (await page.locator('.mf-fact-text').innerText()) === buildMarketStory(MARKET_FACTS.find(fact=>fact.id==='monthly-drawdown-paypal'));
+  checks.monthlyStory = (await page.locator('.mf-fact-text').innerText()) === buildMarketStory(MARKET_FACTS.find(fact=>fact.id==='monthly-drawdown-paypal'));
   await page.locator('.mf-details summary').click();
-  ok &&= (await page.locator('.mf-details').innerText()).includes('clôtures mensuelles ajustées');
-  ok &&= (await page.getByLabel('Choisir un fait').locator('[data-option][data-value="monthly-dca-costco"]').count()) === 0;
+  checks.monthlyMethod = (await page.locator('.mf-details').innerText()).includes(MARKET_FACTS.find(fact => fact.id === 'monthly-drawdown-paypal').note);
+  checks.excludedFact = (await page.getByLabel('Choisir un fait').locator('[data-option][data-value="monthly-dca-costco"]').count()) === 0;
   await choose(page.getByLabel('Choisir un fait'), 'monthly-drawdown-nvidia');
-  ok &&= (await page.locator('.mf-fact-text').innerText()) === buildMarketStory(MARKET_FACTS.find(fact => fact.id === 'monthly-drawdown-nvidia'));
+  checks.secondMonthlyStory = (await page.locator('.mf-fact-text').innerText()) === buildMarketStory(MARKET_FACTS.find(fact => fact.id === 'monthly-drawdown-nvidia'));
   await page.goto(`${BASE}/bibliotheque-donnees?id=IE00B4JNQZ49&q=IE00B4JNQZ49`, { waitUntil: 'networkidle' });
-  ok &&= (await page.locator('.ds-detail').innerText()).includes('Duels de portefeuilles');
+  checks.catalogConsumers = (await page.locator('.ds-detail').innerText()).includes('Duels de portefeuilles');
   await page.goto(`${BASE}/banque-tweets`, { waitUntil: 'networkidle' });
   await page.getByRole('button', {name:'Pédagogie',exact:true}).click();
-  ok &&= (await page.locator('.tb-tweet-text').allTextContents()).includes(CASES.find(item => item.id === 'world-europe-chiffre').text);
-  record('Réutilisation des données', ok, 'ETF et copie frais, mobile, nouvelles périodes des duels, faits mensuels, banque et cas chiffré');
+  checks.editorialCase = (await page.locator('.tb-tweet-text').allTextContents()).includes(CASES.find(item => item.id === 'world-europe-chiffre').text);
+  record('Réutilisation des données', Object.values(checks).every(Boolean), JSON.stringify(checks) + ' · ' + 'ETF et copie frais, mobile, nouvelles périodes des duels, faits mensuels, banque et cas chiffré');
 }
 
 async function testAssetSelection(page) {
@@ -1326,7 +1327,10 @@ try {
     : {});
   const page = await browser.newPage();
 
-  if (process.argv.includes('--navigation')) {
+  if (process.argv.includes('--data-reuse')) {
+    await testPortfolioDuels(page);
+    await testDataReuse(page);
+  } else if (process.argv.includes('--navigation')) {
     await testWorkspaceNavigation(page);
   } else if (process.argv.includes('--practical-sheets')) {
     await testPracticalSheets(page);
@@ -1392,8 +1396,13 @@ try {
   reviewChecks.deadlines = (await page.locator('.data-review > .dr-list > .dr-item').count()) === 3;
   reviewChecks.sources = (await page.locator('.data-review > .dr-list').getByRole('link', { name: 'Source ↗', exact: true }).count()) === 3;
   await page.goto(`${BASE}/donnees-a-revoir?view=calendar&q=FR001400U5Q4`, { waitUntil: 'networkidle' });
-  reviewChecks.maintenance = (await page.locator('.dr-item .maintenance-links a').filter({ hasText: 'Rechercher la nouvelle publication' }).count()) > 0;
-  reviewChecks.historicalEvidence = (await page.locator('.dr-links a[href*="20260331"]').count()) > 0;
+  const reviewRows = reviewCalendar(buildReview()).filter(item => [item.name, item.field, ...item.tools, ...item.aliases ?? []].join(' ').includes('FR001400U5Q4'));
+  const expectedMaintenance = reviewRows.flatMap(item => item.maintenanceRecord ? maintenanceLinks(item.maintenanceRecord, item.maintenanceField).map(link => link.url) : []);
+  const actualMaintenance = await page.locator('.data-review > .dr-list .maintenance-links a').evaluateAll(nodes => nodes.map(node => node.href));
+  reviewChecks.maintenance = expectedMaintenance.length > 0 && JSON.stringify(actualMaintenance.sort()) === JSON.stringify(expectedMaintenance.sort());
+  const expectedEvidence = reviewRows.flatMap(item => item.urls);
+  const actualEvidence = await page.locator('.data-review > .dr-list .dr-links a[target="_blank"]').evaluateAll(nodes => nodes.map(node => node.href));
+  reviewChecks.historicalEvidence = expectedEvidence.length > 0 && JSON.stringify(actualEvidence.sort()) === JSON.stringify(expectedEvidence.sort());
   await page.setViewportSize({ width: 390, height: 844 });
   reviewChecks.mobile = await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth);
   await page.setViewportSize({ width: 1280, height: 720 });
