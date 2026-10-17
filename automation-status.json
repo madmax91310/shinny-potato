@@ -401,20 +401,114 @@
     },
     "update-instrument-metadata.yml": {
       "name": "Caractéristiques et statut PEA par ISIN",
-      "status": "unknown",
-      "collectionStatus": "unknown",
-      "validationStatus": "unknown",
+      "runId": 39028621733,
+      "attempt": 1,
+      "completedAt": "2026-10-17T11:48:06Z",
+      "status": "failure",
+      "lastSuccessAt": null,
+      "collectionStatus": "failure",
+      "validationStatus": "not-run",
       "recordingStatus": "not-run",
       "publicationStatus": "not-run",
-      "dataFailures": {},
-      "failures": []
+      "lastCollectionSuccessAt": null,
+      "lastPublicationSuccessAt": null,
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39028621733",
+      "failures": [
+        {
+          "job": "refresh",
+          "step": "Run npm run build && node scripts/test-full-auto-routing.mjs"
+        },
+        {
+          "job": "report-failures",
+          "step": "Run exit 1"
+        }
+      ],
+      "dataFailures": {
+        "IE00BMC38736:domicile": {
+          "name": "IE00BMC38736:domicile",
+          "completedAt": "2026-10-17T11:48:06Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39028621733",
+          "cause": "Previously automated metadata was not observed; original evidence retained.",
+          "field": "domicile"
+        },
+        "IE00BDBRDM35:replicationMethod": {
+          "name": "IE00BDBRDM35:replicationMethod",
+          "completedAt": "2026-10-17T11:48:06Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39028621733",
+          "cause": "Previously automated metadata was not observed; original evidence retained.",
+          "field": "replicationMethod"
+        },
+        "IE0006WW1TQ4:replicationMethod": {
+          "name": "IE0006WW1TQ4:replicationMethod",
+          "completedAt": "2026-10-17T11:48:06Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39028621733",
+          "cause": "Previously automated metadata was not observed; original evidence retained.",
+          "field": "replicationMethod"
+        },
+        "IE00BYWQWR46:domicile": {
+          "name": "IE00BYWQWR46:domicile",
+          "completedAt": "2026-10-17T11:48:06Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39028621733",
+          "cause": "Previously automated metadata was not observed; original evidence retained.",
+          "field": "domicile"
+        },
+        "IE00BDFBTQ78:domicile": {
+          "name": "IE00BDFBTQ78:domicile",
+          "completedAt": "2026-10-17T11:48:06Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39028621733",
+          "cause": "Previously automated metadata was not observed; original evidence retained.",
+          "field": "domicile"
+        },
+        "IE0002Y8CX98:distribution": {
+          "name": "IE0002Y8CX98:distribution",
+          "completedAt": "2026-10-17T11:48:06Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39028621733",
+          "cause": "Previously automated metadata was not observed; original evidence retained.",
+          "field": "distribution"
+        },
+        "IE0002Y8CX98:replicationMethod": {
+          "name": "IE0002Y8CX98:replicationMethod",
+          "completedAt": "2026-10-17T11:48:06Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39028621733",
+          "cause": "Previously automated metadata was not observed; original evidence retained.",
+          "field": "replicationMethod"
+        },
+        "IE0002Y8CX98:domicile": {
+          "name": "IE0002Y8CX98:domicile",
+          "completedAt": "2026-10-17T11:48:06Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39028621733",
+          "cause": "Previously automated metadata was not observed; original evidence retained.",
+          "field": "domicile"
+        },
+        "IE000W8WMSL2:distribution": {
+          "name": "IE000W8WMSL2:distribution",
+          "completedAt": "2026-10-17T11:48:06Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39028621733",
+          "cause": "Previously automated metadata was not observed; original evidence retained.",
+          "field": "distribution"
+        },
+        "IE000W8WMSL2:replicationMethod": {
+          "name": "IE000W8WMSL2:replicationMethod",
+          "completedAt": "2026-10-17T11:48:06Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39028621733",
+          "cause": "Previously automated metadata was not observed; original evidence retained.",
+          "field": "replicationMethod"
+        },
+        "IE00BQQP9F84:domicile": {
+          "name": "IE00BQQP9F84:domicile",
+          "completedAt": "2026-10-17T11:48:06Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39028621733",
+          "cause": "Previously automated metadata was not observed; original evidence retained.",
+          "field": "domicile"
+        }
+      }
     }
   },
-  "updatedAt": "2026-10-17T11:46:49Z",
+  "updatedAt": "2026-10-17T11:48:06Z",
   "monitoring": {
     "schemaVersion": 1,
-    "checkedAt": "2026-10-17T11:47:01.975135+00:00",
-    "revision": 65,
+    "checkedAt": "2026-10-17T11:48:18.107199+00:00",
+    "revision": 66,
     "active": {
       "collection:update-practical-sheets.yml:practical:13f": {
         "name": "SEC · questions et réponses sur le formulaire 13F",
@@ -435,7 +529,7 @@
         "dataId": "practical:13f",
         "id": "collection:update-practical-sheets.yml:practical:13f",
         "firstSeenAt": "2026-10-14T21:07:26.171294+00:00",
-        "lastSeenAt": "2026-10-17T11:47:01.975135+00:00"
+        "lastSeenAt": "2026-10-17T11:48:18.107199+00:00"
       },
       "collection:update-insurance.yml:linxea-avenir-2": {
         "name": "Linxea Avenir 2",
@@ -454,7 +548,7 @@
         "dataId": "linxea-avenir-2",
         "id": "collection:update-insurance.yml:linxea-avenir-2",
         "firstSeenAt": "2026-10-14T13:08:27.203935+00:00",
-        "lastSeenAt": "2026-10-17T11:47:01.975135+00:00"
+        "lastSeenAt": "2026-10-17T11:48:18.107199+00:00"
       },
       "collection:update-scpi.yml:remake-live": {
         "name": "Remake Live",
@@ -477,7 +571,7 @@
         "dataId": "remake-live",
         "id": "collection:update-scpi.yml:remake-live",
         "firstSeenAt": "2026-10-15T13:02:43.499914+00:00",
-        "lastSeenAt": "2026-10-17T11:47:01.975135+00:00"
+        "lastSeenAt": "2026-10-17T11:48:18.107199+00:00"
       },
       "collection:update-regulatory-data.yml:broker-observation:caidf:profile:change": {
         "name": "caidf:profile:change",
@@ -497,7 +591,7 @@
         "dataId": "broker-observation:caidf:profile:change",
         "id": "collection:update-regulatory-data.yml:broker-observation:caidf:profile:change",
         "firstSeenAt": "2026-10-15T18:00:14.760687+00:00",
-        "lastSeenAt": "2026-10-17T11:47:01.975135+00:00"
+        "lastSeenAt": "2026-10-17T11:48:18.107199+00:00"
       },
       "publication:update-investor-13f.yml": {
         "name": "Portefeuilles des investisseurs",
@@ -513,7 +607,7 @@
         "cause": "deploy / browser-checks (0) : Run node scripts/playwright-nasdaq-total-return.mjs",
         "id": "publication:update-investor-13f.yml",
         "firstSeenAt": "2026-10-16T17:10:15.533090+00:00",
-        "lastSeenAt": "2026-10-17T11:47:01.975135+00:00"
+        "lastSeenAt": "2026-10-17T11:48:18.107199+00:00"
       },
       "publication:update-lifestrategy.yml": {
         "name": "Vanguard LifeStrategy",
@@ -532,7 +626,7 @@
         "cause": "deploy / browser-checks (3) : Run node scripts/run-browser-checks.mjs 3 4",
         "id": "publication:update-lifestrategy.yml",
         "firstSeenAt": "2026-10-17T10:03:28.054539+00:00",
-        "lastSeenAt": "2026-10-17T11:47:01.975135+00:00"
+        "lastSeenAt": "2026-10-17T11:48:18.107199+00:00"
       },
       "publication:update-qualified-exposures.yml": {
         "name": "Expositions ETF qualifiées",
@@ -552,7 +646,7 @@
         "cause": "deploy / build : Run npm run test:radar",
         "id": "publication:update-qualified-exposures.yml",
         "firstSeenAt": "2026-10-16T12:48:21.924866+00:00",
-        "lastSeenAt": "2026-10-17T11:47:01.975135+00:00"
+        "lastSeenAt": "2026-10-17T11:48:18.107199+00:00"
       },
       "publication:update-exposure-expansion.yml": {
         "name": "35 ETF des allocations",
@@ -568,26 +662,287 @@
         "cause": "deploy / build : Run node scripts/build-dca-exposures.mjs && npm run test:dca && node scripts/audit-portfolio-routing.mjs",
         "id": "publication:update-exposure-expansion.yml",
         "firstSeenAt": "2026-10-16T15:06:10.074991+00:00",
-        "lastSeenAt": "2026-10-17T11:47:01.975135+00:00"
+        "lastSeenAt": "2026-10-17T11:48:18.107199+00:00"
       },
-      "unobserved:update-instrument-metadata.yml": {
-        "name": "Caractéristiques et statut PEA par ISIN",
+      "collection:update-instrument-metadata.yml:IE00BMC38736:domicile": {
+        "name": "VanEck Semiconductor UCITS ETF",
         "tools": [
-          "Présentation ETF",
-          "Comparatif ETF",
-          "Générateur",
-          "Portefeuille / DCA"
+          "Impact des frais",
+          "Présentation ETF"
         ],
-        "impactScope": "collector",
+        "impactScope": "asset",
         "workflow": "update-instrument-metadata.yml",
-        "runUrl": null,
-        "to": "/donnees-a-revoir",
-        "kind": "unobserved",
-        "field": "Exécution",
-        "cause": "Aucune exécution terminée avec une date exploitable.",
-        "id": "unobserved:update-instrument-metadata.yml",
-        "firstSeenAt": "2026-10-17T11:34:14.058607+00:00",
-        "lastSeenAt": "2026-10-17T11:47:01.975135+00:00"
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39028621733",
+        "to": "/bibliotheque-donnees?id=IE00BMC38736",
+        "completedAt": "2026-10-17T11:48:06Z",
+        "cause": "Previously automated metadata was not observed; original evidence retained.",
+        "field": "domicile",
+        "sourceUrls": [
+          "https://www.vaneck.com/fr/en/library/fact-sheets/smh-fact-sheet.pdf"
+        ],
+        "kind": "collection",
+        "dataId": "IE00BMC38736:domicile",
+        "id": "collection:update-instrument-metadata.yml:IE00BMC38736:domicile",
+        "firstSeenAt": "2026-10-17T11:48:18.107199+00:00",
+        "lastSeenAt": "2026-10-17T11:48:18.107199+00:00"
+      },
+      "collection:update-instrument-metadata.yml:IE00BDBRDM35:replicationMethod": {
+        "name": "iShares Core Global Aggregate Bond UCITS ETF EUR Hedged (Acc)",
+        "tools": [
+          "Duels de portefeuilles",
+          "Générateur de portefeuilles",
+          "Impact des frais",
+          "Présentation ETF"
+        ],
+        "impactScope": "asset",
+        "workflow": "update-instrument-metadata.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39028621733",
+        "to": "/bibliotheque-donnees?id=IE00BDBRDM35",
+        "completedAt": "2026-10-17T11:48:06Z",
+        "cause": "Previously automated metadata was not observed; original evidence retained.",
+        "field": "replicationMethod",
+        "sourceUrls": [
+          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=291770&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "https://www.ishares.com/uk/individual/en/products/291770/ishares-global-aggregate-bond-ucits-etf-eur-hedged-%28acc%29-fund?siteEntryPassthrough=true",
+          "https://www.zonebourse.com/cours/etf/ISHARES-CORE-GLOBAL-AGGRE-67015255/actualite/"
+        ],
+        "kind": "collection",
+        "dataId": "IE00BDBRDM35:replicationMethod",
+        "id": "collection:update-instrument-metadata.yml:IE00BDBRDM35:replicationMethod",
+        "firstSeenAt": "2026-10-17T11:48:18.107199+00:00",
+        "lastSeenAt": "2026-10-17T11:48:18.107199+00:00"
+      },
+      "collection:update-instrument-metadata.yml:IE0006WW1TQ4:replicationMethod": {
+        "name": "Xtrackers MSCI World ex USA UCITS ETF 1C",
+        "tools": [
+          "Comparatif ETF",
+          "Duels de portefeuilles",
+          "Générateur de portefeuilles",
+          "Impact des frais",
+          "Présentation ETF"
+        ],
+        "impactScope": "asset",
+        "workflow": "update-instrument-metadata.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39028621733",
+        "to": "/bibliotheque-donnees?id=IE0006WW1TQ4",
+        "completedAt": "2026-10-17T11:48:06Z",
+        "cause": "Previously automated metadata was not observed; original evidence retained.",
+        "field": "replicationMethod",
+        "sourceUrls": [
+          "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/historicaldata/download",
+          "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/pdpMetaTagsTealium",
+          "https://etf.dws.com/download/asset/82292b8e-bf9e-44f2-b20d-722c743110a3",
+          "https://etf.dws.com/fr-fr/AssetDownload/Index/410e8206-23cd-463b-b2a5-6018bfc1fd32/Factsheet.pdf",
+          "https://www.justetf.com/en/etf-profile.html?isin=IE0006WW1TQ4",
+          "https://www.msci.com/documents/10199/255599/msci-world-ex-usa-index-net.pdf",
+          "https://www.zonebourse.com/cours/etf/XTRACKERS-MSCI-WORLD-EX-U-169862014/"
+        ],
+        "kind": "collection",
+        "dataId": "IE0006WW1TQ4:replicationMethod",
+        "id": "collection:update-instrument-metadata.yml:IE0006WW1TQ4:replicationMethod",
+        "firstSeenAt": "2026-10-17T11:48:18.107199+00:00",
+        "lastSeenAt": "2026-10-17T11:48:18.107199+00:00"
+      },
+      "collection:update-instrument-metadata.yml:IE00BYWQWR46:domicile": {
+        "name": "VanEck Video Gaming and eSports UCITS ETF",
+        "tools": [
+          "Comparatif ETF",
+          "Duels de portefeuilles",
+          "Générateur de portefeuilles",
+          "Impact des frais",
+          "Présentation ETF"
+        ],
+        "impactScope": "asset",
+        "workflow": "update-instrument-metadata.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39028621733",
+        "to": "/bibliotheque-donnees?id=IE00BYWQWR46",
+        "completedAt": "2026-10-17T11:48:06Z",
+        "cause": "Previously automated metadata was not observed; original evidence retained.",
+        "field": "domicile",
+        "sourceUrls": [
+          "https://www.vaneck.com/fr/en/library/fact-sheets/espo-fact-sheet.pdf",
+          "https://www.vaneck.com/fr/fr/library/fact-sheets/espo-fact-sheet.pdf"
+        ],
+        "kind": "collection",
+        "dataId": "IE00BYWQWR46:domicile",
+        "id": "collection:update-instrument-metadata.yml:IE00BYWQWR46:domicile",
+        "firstSeenAt": "2026-10-17T11:48:18.107199+00:00",
+        "lastSeenAt": "2026-10-17T11:48:18.107199+00:00"
+      },
+      "collection:update-instrument-metadata.yml:IE00BDFBTQ78:domicile": {
+        "name": "VanEck S&P Global Mining UCITS ETF",
+        "tools": [
+          "Comparatif ETF",
+          "Duels de portefeuilles",
+          "Générateur de portefeuilles",
+          "Impact des frais",
+          "Présentation ETF"
+        ],
+        "impactScope": "asset",
+        "workflow": "update-instrument-metadata.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39028621733",
+        "to": "/bibliotheque-donnees?id=IE00BDFBTQ78",
+        "completedAt": "2026-10-17T11:48:06Z",
+        "cause": "Previously automated metadata was not observed; original evidence retained.",
+        "field": "domicile",
+        "sourceUrls": [
+          "https://www.justetf.com/en/etf-profile.html?isin=IE00BDFBTQ78",
+          "https://www.vaneck.com/fr/en/library/fact-sheets/gdig-fact-sheet.pdf",
+          "https://www.vaneck.com/ucits/library/fact-sheets/gdig-fact-sheet.pdf"
+        ],
+        "kind": "collection",
+        "dataId": "IE00BDFBTQ78:domicile",
+        "id": "collection:update-instrument-metadata.yml:IE00BDFBTQ78:domicile",
+        "firstSeenAt": "2026-10-17T11:48:18.107199+00:00",
+        "lastSeenAt": "2026-10-17T11:48:18.107199+00:00"
+      },
+      "collection:update-instrument-metadata.yml:IE0002Y8CX98:distribution": {
+        "name": "WisdomTree Europe Defence UCITS ETF",
+        "tools": [
+          "Comparatif ETF",
+          "Impact des frais",
+          "Présentation ETF"
+        ],
+        "impactScope": "asset",
+        "workflow": "update-instrument-metadata.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39028621733",
+        "to": "/bibliotheque-donnees?id=IE0002Y8CX98",
+        "completedAt": "2026-10-17T11:48:06Z",
+        "cause": "Previously automated metadata was not observed; original evidence retained.",
+        "field": "distribution",
+        "sourceUrls": [
+          "https://www.justetf.com/en/etf-profile.html?isin=IE0002Y8CX98",
+          "https://www.wisdomtree.com/gb/products/equities/wisdomtree-europe-defence-ucits-etf---eur-acc",
+          "https://www.wisdomtree.eu/en-ie/etfs/thematic/wdef---wisdomtree-europe-defence-ucits-etf---eur-acc"
+        ],
+        "kind": "collection",
+        "dataId": "IE0002Y8CX98:distribution",
+        "id": "collection:update-instrument-metadata.yml:IE0002Y8CX98:distribution",
+        "firstSeenAt": "2026-10-17T11:48:18.107199+00:00",
+        "lastSeenAt": "2026-10-17T11:48:18.107199+00:00"
+      },
+      "collection:update-instrument-metadata.yml:IE0002Y8CX98:replicationMethod": {
+        "name": "WisdomTree Europe Defence UCITS ETF",
+        "tools": [
+          "Comparatif ETF",
+          "Impact des frais",
+          "Présentation ETF"
+        ],
+        "impactScope": "asset",
+        "workflow": "update-instrument-metadata.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39028621733",
+        "to": "/bibliotheque-donnees?id=IE0002Y8CX98",
+        "completedAt": "2026-10-17T11:48:06Z",
+        "cause": "Previously automated metadata was not observed; original evidence retained.",
+        "field": "replicationMethod",
+        "sourceUrls": [
+          "https://www.justetf.com/en/etf-profile.html?isin=IE0002Y8CX98",
+          "https://www.wisdomtree.com/gb/products/equities/wisdomtree-europe-defence-ucits-etf---eur-acc",
+          "https://www.wisdomtree.eu/en-ie/etfs/thematic/wdef---wisdomtree-europe-defence-ucits-etf---eur-acc"
+        ],
+        "kind": "collection",
+        "dataId": "IE0002Y8CX98:replicationMethod",
+        "id": "collection:update-instrument-metadata.yml:IE0002Y8CX98:replicationMethod",
+        "firstSeenAt": "2026-10-17T11:48:18.107199+00:00",
+        "lastSeenAt": "2026-10-17T11:48:18.107199+00:00"
+      },
+      "collection:update-instrument-metadata.yml:IE0002Y8CX98:domicile": {
+        "name": "WisdomTree Europe Defence UCITS ETF",
+        "tools": [
+          "Comparatif ETF",
+          "Impact des frais",
+          "Présentation ETF"
+        ],
+        "impactScope": "asset",
+        "workflow": "update-instrument-metadata.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39028621733",
+        "to": "/bibliotheque-donnees?id=IE0002Y8CX98",
+        "completedAt": "2026-10-17T11:48:06Z",
+        "cause": "Previously automated metadata was not observed; original evidence retained.",
+        "field": "domicile",
+        "sourceUrls": [
+          "https://www.justetf.com/en/etf-profile.html?isin=IE0002Y8CX98",
+          "https://www.wisdomtree.com/gb/products/equities/wisdomtree-europe-defence-ucits-etf---eur-acc",
+          "https://www.wisdomtree.eu/en-ie/etfs/thematic/wdef---wisdomtree-europe-defence-ucits-etf---eur-acc"
+        ],
+        "kind": "collection",
+        "dataId": "IE0002Y8CX98:domicile",
+        "id": "collection:update-instrument-metadata.yml:IE0002Y8CX98:domicile",
+        "firstSeenAt": "2026-10-17T11:48:18.107199+00:00",
+        "lastSeenAt": "2026-10-17T11:48:18.107199+00:00"
+      },
+      "collection:update-instrument-metadata.yml:IE000W8WMSL2:distribution": {
+        "name": "WisdomTree Quantum Computing UCITS ETF",
+        "tools": [
+          "Comparatif ETF",
+          "Impact des frais",
+          "Présentation ETF"
+        ],
+        "impactScope": "asset",
+        "workflow": "update-instrument-metadata.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39028621733",
+        "to": "/bibliotheque-donnees?id=IE000W8WMSL2",
+        "completedAt": "2026-10-17T11:48:06Z",
+        "cause": "Previously automated metadata was not observed; original evidence retained.",
+        "field": "distribution",
+        "sourceUrls": [
+          "https://www.justetf.com/en/etf-profile.html?isin=IE000W8WMSL2",
+          "https://www.wisdomtree.com/gb/products/equities/wisdomtree-quantum-computing-ucits-etf---usd-acc"
+        ],
+        "kind": "collection",
+        "dataId": "IE000W8WMSL2:distribution",
+        "id": "collection:update-instrument-metadata.yml:IE000W8WMSL2:distribution",
+        "firstSeenAt": "2026-10-17T11:48:18.107199+00:00",
+        "lastSeenAt": "2026-10-17T11:48:18.107199+00:00"
+      },
+      "collection:update-instrument-metadata.yml:IE000W8WMSL2:replicationMethod": {
+        "name": "WisdomTree Quantum Computing UCITS ETF",
+        "tools": [
+          "Comparatif ETF",
+          "Impact des frais",
+          "Présentation ETF"
+        ],
+        "impactScope": "asset",
+        "workflow": "update-instrument-metadata.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39028621733",
+        "to": "/bibliotheque-donnees?id=IE000W8WMSL2",
+        "completedAt": "2026-10-17T11:48:06Z",
+        "cause": "Previously automated metadata was not observed; original evidence retained.",
+        "field": "replicationMethod",
+        "sourceUrls": [
+          "https://www.justetf.com/en/etf-profile.html?isin=IE000W8WMSL2",
+          "https://www.wisdomtree.com/gb/products/equities/wisdomtree-quantum-computing-ucits-etf---usd-acc"
+        ],
+        "kind": "collection",
+        "dataId": "IE000W8WMSL2:replicationMethod",
+        "id": "collection:update-instrument-metadata.yml:IE000W8WMSL2:replicationMethod",
+        "firstSeenAt": "2026-10-17T11:48:18.107199+00:00",
+        "lastSeenAt": "2026-10-17T11:48:18.107199+00:00"
+      },
+      "collection:update-instrument-metadata.yml:IE00BQQP9F84:domicile": {
+        "name": "VanEck Gold Miners UCITS ETF",
+        "tools": [
+          "Comparatif ETF",
+          "Duels de portefeuilles",
+          "Générateur de portefeuilles",
+          "Impact des frais",
+          "Présentation ETF"
+        ],
+        "impactScope": "asset",
+        "workflow": "update-instrument-metadata.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39028621733",
+        "to": "/bibliotheque-donnees?id=IE00BQQP9F84",
+        "completedAt": "2026-10-17T11:48:06Z",
+        "cause": "Previously automated metadata was not observed; original evidence retained.",
+        "field": "domicile",
+        "sourceUrls": [
+          "https://www.vaneck.com/nl/en/library/fact-sheets/gdx-fact-sheet.pdf"
+        ],
+        "kind": "collection",
+        "dataId": "IE00BQQP9F84:domicile",
+        "id": "collection:update-instrument-metadata.yml:IE00BQQP9F84:domicile",
+        "firstSeenAt": "2026-10-17T11:48:18.107199+00:00",
+        "lastSeenAt": "2026-10-17T11:48:18.107199+00:00"
       },
       "monitor:radar": {
         "kind": "unobserved",
@@ -600,37 +955,10 @@
         "to": "/donnees-a-revoir",
         "id": "monitor:radar",
         "firstSeenAt": "2026-10-15T18:53:46.175472+00:00",
-        "lastSeenAt": "2026-10-17T11:47:01.975135+00:00"
+        "lastSeenAt": "2026-10-17T11:48:18.107199+00:00"
       }
     },
     "events": [
-      {
-        "revision": 36,
-        "at": "2026-10-16T05:04:45.563875+00:00",
-        "opened": [],
-        "resolved": [
-          {
-            "name": "Historiques mensuels des marchés",
-            "tools": [
-              "Et si tu avais investi",
-              "Performance depuis",
-              "Duel",
-              "Générateur"
-            ],
-            "impactScope": "collector",
-            "workflow": "update-market-monthly.yml",
-            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38805030053",
-            "to": "/donnees-a-revoir",
-            "kind": "publication",
-            "field": "Publication",
-            "cause": "deploy / build : Run node scripts/test-etf-routing-expansion.mjs",
-            "id": "publication:update-market-monthly.yml",
-            "firstSeenAt": "2026-10-15T20:59:37.311807+00:00",
-            "lastSeenAt": "2026-10-16T05:04:13.933149+00:00",
-            "resolvedAt": "2026-10-16T05:04:45.563875+00:00"
-          }
-        ]
-      },
       {
         "revision": 37,
         "at": "2026-10-16T05:28:13.543341+00:00",
@@ -1259,9 +1587,68 @@
             "resolvedAt": "2026-10-17T11:40:35.505895+00:00"
           }
         ]
+      },
+      {
+        "revision": 66,
+        "at": "2026-10-17T11:48:18.107199+00:00",
+        "opened": [
+          "collection:update-instrument-metadata.yml:IE00BMC38736:domicile",
+          "collection:update-instrument-metadata.yml:IE00BDBRDM35:replicationMethod",
+          "collection:update-instrument-metadata.yml:IE0006WW1TQ4:replicationMethod",
+          "collection:update-instrument-metadata.yml:IE00BYWQWR46:domicile",
+          "collection:update-instrument-metadata.yml:IE00BDFBTQ78:domicile",
+          "collection:update-instrument-metadata.yml:IE0002Y8CX98:distribution",
+          "collection:update-instrument-metadata.yml:IE0002Y8CX98:replicationMethod",
+          "collection:update-instrument-metadata.yml:IE0002Y8CX98:domicile",
+          "collection:update-instrument-metadata.yml:IE000W8WMSL2:distribution",
+          "collection:update-instrument-metadata.yml:IE000W8WMSL2:replicationMethod",
+          "collection:update-instrument-metadata.yml:IE00BQQP9F84:domicile"
+        ],
+        "resolved": [
+          {
+            "name": "Caractéristiques et statut PEA par ISIN",
+            "tools": [
+              "Présentation ETF",
+              "Comparatif ETF",
+              "Générateur",
+              "Portefeuille / DCA"
+            ],
+            "impactScope": "collector",
+            "workflow": "update-instrument-metadata.yml",
+            "runUrl": null,
+            "to": "/donnees-a-revoir",
+            "kind": "unobserved",
+            "field": "Exécution",
+            "cause": "Aucune exécution terminée avec une date exploitable.",
+            "id": "unobserved:update-instrument-metadata.yml",
+            "firstSeenAt": "2026-10-17T11:34:14.058607+00:00",
+            "lastSeenAt": "2026-10-17T11:47:01.975135+00:00",
+            "resolvedAt": "2026-10-17T11:48:18.107199+00:00"
+          }
+        ]
       }
     ],
     "resolved": [
+      {
+        "name": "Caractéristiques et statut PEA par ISIN",
+        "tools": [
+          "Présentation ETF",
+          "Comparatif ETF",
+          "Générateur",
+          "Portefeuille / DCA"
+        ],
+        "impactScope": "collector",
+        "workflow": "update-instrument-metadata.yml",
+        "runUrl": null,
+        "to": "/donnees-a-revoir",
+        "kind": "unobserved",
+        "field": "Exécution",
+        "cause": "Aucune exécution terminée avec une date exploitable.",
+        "id": "unobserved:update-instrument-metadata.yml",
+        "firstSeenAt": "2026-10-17T11:34:14.058607+00:00",
+        "lastSeenAt": "2026-10-17T11:47:01.975135+00:00",
+        "resolvedAt": "2026-10-17T11:48:18.107199+00:00"
+      },
       {
         "name": "Analyses d’entreprises",
         "tools": [
@@ -3435,27 +3822,6 @@
         "field": "Poids du pays Netherlands",
         "cause": "Valeur contradictoire pour la même période (2026-10-13) : Poids du pays Netherlands. Dernière observation conservée ; propositions archivées (etf:IE00BM67HV82:countries:Netherlands:f5d10aa5ac6de524b51ebc86:2026-10-13).",
         "id": "radar:299976fcd22b9bda7e4a553e",
-        "firstSeenAt": "2026-10-14T19:12:42.647375+00:00",
-        "lastSeenAt": "2026-10-14T21:48:33.143199+00:00",
-        "resolvedAt": "2026-10-15T00:31:06.137308+00:00"
-      },
-      {
-        "name": "Xtrackers MSCI World Industrials UCITS ETF 1C",
-        "tools": [
-          "Comparatif ETF",
-          "Impact des frais",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "sourceUrls": [
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HV82/historicaldata/download",
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HV82/pdpMetaTagsTealium"
-        ],
-        "to": "/bibliotheque-donnees?id=IE00BM67HV82",
-        "kind": "conflict",
-        "field": "Poids du pays Hong Kong",
-        "cause": "Valeur contradictoire pour la même période (2026-10-13) : Poids du pays Hong Kong. Dernière observation conservée ; propositions archivées (etf:IE00BM67HV82:countries:Hong Kong:f5d10aa5ac6de524b51ebc86:2026-10-13).",
-        "id": "radar:971d03d09c328a73885bb586",
         "firstSeenAt": "2026-10-14T19:12:42.647375+00:00",
         "lastSeenAt": "2026-10-14T21:48:33.143199+00:00",
         "resolvedAt": "2026-10-15T00:31:06.137308+00:00"
