@@ -32,6 +32,8 @@ try {
       assert.equal(result.width,1600)
       for(const c of result.calls)assert(c.left>=55 && c.right<=1545 && c.top>=45 && c.bottom<result.height-15,`${record.id}: overflowing text ${c.value}`)
       for(const c of result.calls.filter(c=>/^[≤>]?[ \d ,]+(?:%|€)/.test(c.value)))assert(parseFloat(c.font.match(/([\d.]+)px/)[1])>=56,`${record.id}: figures too small ${c.value}`)
+      // Qualitative values may wrap above their labels; keep both lines clear.
+      for(const c of result.calls.filter(c=>c.top>=640 && c.top<797)) assert(c.bottom<797,`${record.id}: metric value overlaps label`)
       // Two-line metric labels and conditions must not overlap each other or the footer.
       for(const c of result.calls.filter(c=>c.top>=797 && c.top<875)) assert(c.bottom<875,`${record.id}: metric label overlaps conditions`)
       for(const c of result.calls.filter(c=>c.top>=875 && c.top<952)) assert(c.bottom<952,`${record.id}: conditions overlap footer`)
