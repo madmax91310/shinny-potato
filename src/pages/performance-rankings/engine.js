@@ -155,7 +155,11 @@ export function buildTweet(result, title) {
   const period = fullYears ? firstYear === lastYear ? `en ${lastYear}` : `entre ${firstYear} et ${lastYear}` : `entre fin ${formatMonth(result.start)} et fin ${formatMonth(result.end)}`
   const badges = ['🥇', '🥈', '🥉', '4️⃣', '5️⃣', '6️⃣']
   const lines = rows.map(r => `${badges[r.rank - 1]} ${r.label} : ${formatPercent(r.value)}${annualized ? '/an' : ''}`)
-  return `Parmi ${tweetUniverse(result, title)}, lequel a le mieux performé ${period} ? 👇\n\n${lines.join('\n')}\n\nLe détail année par année dans l’image 👇\n\n💬 Tu es exposé à l’un d’entre eux ?\n\nPas un conseil financier.`
+  const benchmark = result.assets.find(a => a.benchmark)
+  const hook = benchmark
+    ? `Parmi ces cinq actions, lesquelles ont battu l’${benchmark.shortLabel.replace(/ \(réf\.\)$/, '')} ${period} ? 👇`
+    : `Parmi ${tweetUniverse(result, title)}, lequel a le mieux performé ${period} ? 👇`
+  return `${hook}\n\n${lines.join('\n')}\n\nLe détail année par année dans l’image 👇\n\n💬 Tu es exposé à l’un d’entre eux ?\n\nPas un conseil financier.`
 }
 
 export function rebalanceLabel(value) { return ({ none: 'Sans rééquilibrage', annual: 'Rééquilibrage en décembre', monthly: 'Rééquilibrage chaque mois' })[value] }

@@ -29,6 +29,13 @@ export const CATEGORIES = [
   { id: 'health-stocks', label: 'Grandes actions de la santé', ids: ['eli-lilly', 'novo-nordisk', 'johnson-johnson', 'abbvie', 'merck', 'astrazeneca'], currency: 'EUR' },
   { id: 'europe-industry', label: 'Industrie européenne', ids: ['schneider', 'siemens', 'abb', 'airbus', 'safran', 'legrand'], currency: 'EUR' },
   { id: 'us-consumer', label: 'Consommation américaine', ids: ['costco', 'walmart', 'amazon', 'home-depot', 'nike', 'mcdonalds'] },
+  // L'Oréal spans four beauty divisions, not luxury alone (reviewed 2026-10-17):
+  // https://www.loreal.com/fr/our-global-brands-portfolio/
+  { id: 'luxury-stocks', label: 'Luxe · Hermès et LVMH', ids: ['hermes', 'lvmh'] },
+  { id: 'aerospace-defense', label: 'Aéronautique et défense', ids: ['airbus', 'safran', 'thales', 'ge-aerospace', 'lmt'], currency: 'EUR' },
+  { id: 'everyday-brands', label: 'Marques du quotidien', ids: ['cocacola', 'pepsico', 'mcdonalds', 'sbux', 'costco', 'walmart'] },
+  { id: 'ai-infrastructure', label: 'Infrastructure de l’IA', ids: ['nvidia', 'broadcom', 'tsmc', 'asml', 'applied-materials', 'lam-research'], currency: 'EUR' },
+  { id: 'europe-finance', label: 'Finance européenne', ids: ['bnp-paribas', 'axa', 'allianz', 'santander', 'munich-re'] },
   { id: 'us-equity-etfs', label: 'ETF américains · classiques et équipondérés', ids: ['etfFR0011871110', 'etfFR0011871128', 'etfNasdaqEqual', 'etfEqualWeight'], currency: 'EUR' },
   { id: 'technology-etfs', label: 'ETF tech · États-Unis, monde et semi-conducteurs', ids: ['etfIE00B3WJKG14', 'etfWorldTech', 'etfSemi'], currency: 'EUR' },
   { id: 'small-cap-regions', label: 'ETF petites capitalisations · États-Unis et Europe', ids: ['etfIE00BJ38QD84', 'etfIE0000N55FP4'], currency: 'EUR' },
@@ -47,7 +54,7 @@ const SHORT = {
   etfAiBigData: 'IA et Big Data', etfIE00BYPLS672: 'Cybersécurité L&G', etfIE00BYWQWR46: 'Jeux vidéo',
   etfTdiv: 'Dividend Leaders', etfIE00B8GKDB10: 'All-World High Dividend', etfIE00B9CQXS71: 'Global Dividend Aristocrats', etfIE00B6YX5D40: 'US Dividend Aristocrats', etfIE00B5M1WJ87: 'Euro Dividend Aristocrats',
   euroGov13: 'États euro 1–3 ans', etfEuroGovt57: 'États euro 5–7 ans', euroCorporateBond: 'Entreprises euro IG', euroHighYieldBond: 'Entreprises euro HY', euroInflationBond: 'Obligations inflation', globalBondEur: 'Obligations mondiales',
-  etfFR0011871110: 'Nasdaq-100', etfFR0011871128: 'S&P 500', etfNasdaqEqual: 'Nasdaq-100 équipondéré', etfEqualWeight: 'S&P 500 équipondéré',
+  etfIE00B5BMR087: 'S&P 500', etfFR0011871110: 'Nasdaq-100', etfFR0011871128: 'S&P 500', etfNasdaqEqual: 'Nasdaq-100 équipondéré', etfEqualWeight: 'S&P 500 équipondéré',
   etfIE00B3WJKG14: 'Tech américaine', etfWorldTech: 'Tech mondiale', etfSemi: 'Semi-conducteurs',
   etfIE00BJ38QD84: 'Russell 2000', etfIE0000N55FP4: 'Europe Small Cap',
   etfUsaSmallValue: 'USA Small Cap Value', etfSmallValueEurope: 'Europe Small Cap Value',
@@ -89,5 +96,20 @@ export const ANNUAL_CATEGORIES = [
   { id: 'annual-world', label: 'World, ACWI, All-World · années officielles', frequency: 'annual', ids: ['annual-msciWorld', 'annual-acwi-gross', 'annual-ftseAllWorld'], currency: 'USD' },
   { id: 'annual-pea', label: 'ETF PEA · calendriers NAV', frequency: 'annual', ids: Object.values(ANNUAL).filter(a => a.pea && a.currency === 'EUR' && [2023, 2024, 2025].every(y => Number.isFinite(a.years[y]))).slice(0, 6).map(a => a.id) },
 ]
-export const ALL_CATEGORIES = [...CATEGORIES, ...ANNUAL_CATEGORIES]
+// Prepared selections deliberately reserve the sixth slot for a real fund,
+// never an index. Prices and dividends continue to come from shared collectors.
+const BENCHMARK_GROUPS = [
+  ['us-stocks', 'etfIE00B5BMR087'], ['us-semiconductors', 'etfIE00B5BMR087'],
+  ['us-software', 'etfIE00B5BMR087'], ['payments-finance', 'etfIE00B5BMR087'],
+  ['us-consumer', 'etfIE00B5BMR087'], ['everyday-brands', 'etfIE00B5BMR087'],
+  ['health-stocks', 'etfIE00B4L5Y983'], ['europe-industry', 'etfIE00B4L5Y983'],
+  ['fr-stocks', 'etfIE00B4L5Y983'], ['aerospace-defense', 'etfIE00B4L5Y983'],
+  ['ai-infrastructure', 'etfIE00B4L5Y983'], ['europe-finance', 'etfIE00B4L5Y983'],
+]
+export const BENCHMARK_CATEGORIES = BENCHMARK_GROUPS.map(([sourceId, benchmarkId]) => {
+  const source = CATEGORIES.find(c => c.id === sourceId)
+  return { id: `${sourceId}-benchmark`, label: `${source.label} · face à un ETF ${SHORT[benchmarkId] ?? 'S&P 500'}`,
+    ids: [...source.ids.slice(0, 5), benchmarkId], benchmarkId, currency: 'EUR' }
+})
+export const ALL_CATEGORIES = [...CATEGORIES, ...BENCHMARK_CATEGORIES, ...ANNUAL_CATEGORIES]
 export const COLORS = ['#64dfc5', '#e9bd70', '#a9a1ff', '#77b4ef', '#f498a5', '#c2d981']
