@@ -11,52 +11,60 @@
     "collectHoldings": true,
     "requireFullHistory": false,
     "distribution": "Distributing",
+    "characteristics": {
+      "terPct": 0.3,
+      "index": "MSCI Developed World Islamic Index (NET) (USD)",
+      "distribution": "Distributing",
+      "domicile": "Ireland",
+      "replicationMethod": "Physical (Replicated)",
+      "inceptionDate": "20071207"
+    },
     "terPct": 0.3,
     "index": "MSCI Developed World Islamic Index (NET) (USD)",
     "aum": {
-      "amount": 1708672414.38,
+      "amount": 1693039524.57,
       "currency": "USD",
       "scope": "share-class",
-      "asOf": "2026-10-15"
+      "asOf": "2026-10-16"
     },
     "countries": {
-      "asOf": "2026-10-14",
+      "asOf": "2026-10-15",
       "rows": [
         {
           "name": "United States",
-          "weightPct": 68.49
+          "weightPct": 68.6
         },
         {
           "name": "Japan",
-          "weightPct": 6.98
+          "weightPct": 6.75
         },
         {
           "name": "United Kingdom",
-          "weightPct": 4.0
+          "weightPct": 4.05
         },
         {
           "name": "Canada",
-          "weightPct": 3.67
+          "weightPct": 3.75
         },
         {
           "name": "France",
-          "weightPct": 3.49
+          "weightPct": 3.53
         },
         {
           "name": "Netherlands",
-          "weightPct": 2.81
+          "weightPct": 2.72
         },
         {
           "name": "Germany",
-          "weightPct": 2.55
-        },
-        {
-          "name": "Australia",
-          "weightPct": 1.61
+          "weightPct": 2.57
         },
         {
           "name": "Switzerland",
-          "weightPct": 1.58
+          "weightPct": 1.6
+        },
+        {
+          "name": "Australia",
+          "weightPct": 1.55
         },
         {
           "name": "Sweden",
@@ -64,7 +72,7 @@
         },
         {
           "name": "Other",
-          "weightPct": 3.41
+          "weightPct": 3.4299999999999997
         },
         {
           "name": "Cash and/or Derivatives",
@@ -74,27 +82,27 @@
       "sourceComponent": "exposureBreakdowns.geography.countries"
     },
     "sectors": {
-      "asOf": "2026-10-14",
+      "asOf": "2026-10-15",
       "rows": [
         {
           "name": "Information Technology",
-          "weightPct": 44.41
+          "weightPct": 44.29
         },
         {
           "name": "Industrials",
-          "weightPct": 12.81
+          "weightPct": 12.67
         },
         {
           "name": "Energy",
-          "weightPct": 12.31
+          "weightPct": 12.24
         },
         {
           "name": "Health Care",
-          "weightPct": 10.08
+          "weightPct": 10.3
         },
         {
           "name": "Materials",
-          "weightPct": 8.49
+          "weightPct": 8.54
         },
         {
           "name": "Consumer Discretionary",
@@ -102,15 +110,15 @@
         },
         {
           "name": "Consumer Staples",
-          "weightPct": 3.1
-        },
-        {
-          "name": "Utilities",
-          "weightPct": 0.82
+          "weightPct": 3.15
         },
         {
           "name": "Real Estate",
-          "weightPct": 0.82
+          "weightPct": 0.83
+        },
+        {
+          "name": "Utilities",
+          "weightPct": 0.81
         },
         {
           "name": "Communication",
@@ -206,7 +214,7 @@
       "currency": "USD",
       "symbol": "ISDW.L",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251394&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "checkedAt": "2026-10-16",
+      "checkedAt": "2026-10-17",
       "evidenceId": "IE00B27YCN58-XLON-ISDW-USD"
     },
     "listings": [
@@ -218,7 +226,7 @@
         "currency": "EUR",
         "symbol": "IUSD.DE",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251394&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-        "checkedAt": "2026-10-16",
+        "checkedAt": "2026-10-17",
         "evidenceId": "IE00B27YCN58-XETR-IUSD-EUR"
       },
       {
@@ -229,7 +237,7 @@
         "currency": "USD",
         "symbol": "ISDW.L",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251394&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-        "checkedAt": "2026-10-16",
+        "checkedAt": "2026-10-17",
         "evidenceId": "IE00B27YCN58-XLON-ISDW-USD"
       },
       {
@@ -240,25 +248,17 @@
         "currency": "USD",
         "symbol": "ISWD.S",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251394&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-        "checkedAt": "2026-10-16",
+        "checkedAt": "2026-10-17",
         "evidenceId": "IE00B27YCN58-XSWX-ISWD-USD"
       }
     ],
-    "characteristics": {
-      "terPct": 0.3,
-      "index": "MSCI Developed World Islamic Index (NET) (USD)",
-      "distribution": "Distributing",
-      "domicile": "Ireland",
-      "replicationMethod": "Physical (Replicated)",
-      "inceptionDate": "20071207"
-    },
     "metrics": {
       "twelveMonTrlYld": {
         "value": 0.934562,
         "label": "Rendement des distributions sur 12 mois",
         "unit": "%",
         "asOf": "2026-10-15",
-        "checkedAt": "2026-10-16",
+        "checkedAt": "2026-10-17",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251394&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The yield an investor would have received if they had held the fund over the last twelve months assuming the most recent NAV. The 12-Month yield is calculated by assuming any income distributions over the past twelve months and dividing by the sum of the most recent NAV and any capital gain distributions made over the past twelve months. This yield calculation does not take into account any dividends received and held by the fund, but are awaiting the next distribution date. This can cause deviation with index level yield values.",
         "scope": "Exact share, trailing 12 months"
@@ -268,27 +268,27 @@
         "label": "Nombre de positions hors liquidités et dérivés",
         "unit": "positions",
         "asOf": "2026-10-15",
-        "checkedAt": "2026-10-16",
+        "checkedAt": "2026-10-17",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251394&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The number of holdings in the fund excluding cash positions and derivatives exposures. Derivatives are contracts used by the fund to gain exposure to an investment without buying it directly.  They can be used in a number of ways. For example a &#39;currency forward&#39; derivative contract can be used to &#39;hedge&#39; or aim to mitigate the effects of changes in exchange rates.",
         "scope": "Fund portfolio"
       },
       "priceEarnings": {
-        "value": 28.69122,
+        "value": 28.28948,
         "label": "PER du portefeuille selon l’émetteur",
         "unit": "fois",
-        "asOf": "2026-10-14",
-        "checkedAt": "2026-10-16",
+        "asOf": "2026-10-15",
+        "checkedAt": "2026-10-17",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251394&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The price to earnings ratio (P/E) is a fundamental measure used to determine if an investment is valued appropriately. Each holdings&#39; P/E is the latest closing price divided by the latest 12 months&#39; earnings per share. Negative earnings are excluded, extraordinary items are excluded, and P/E ratios over 60 are set to 60.",
         "scope": "Fund portfolio"
       },
       "priceBook": {
-        "value": 4.32804,
+        "value": 4.28588,
         "label": "Cours / actif net comptable selon l’émetteur",
         "unit": "fois",
-        "asOf": "2026-10-14",
-        "checkedAt": "2026-10-16",
+        "asOf": "2026-10-15",
+        "checkedAt": "2026-10-17",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251394&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The price to book (P/B) value ratio is a fundamental measure used to determine if an investment is valued appropriately. The book value of a company is a measure of how much a company&#39;s assets are worth assuming the company&#39;s debts are paid off. Negative book values are excluded from this calculation and holding price to book ratios over 25 are set to 25.",
         "scope": "Fund portfolio"
@@ -298,53 +298,53 @@
         "label": "Volatilité annualisée sur 3 ans",
         "unit": "%",
         "asOf": "2026-09-30",
-        "checkedAt": "2026-10-16",
+        "checkedAt": "2026-10-17",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251394&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "Standard deviation measures how dispersed returns are around the average. A higher standard deviation indicates that returns are spread out over a larger range of values and thus, more volatile.",
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-10-16T14:43:48.507175+00:00",
-    "pageSha256": "5e6e19b97ac0ce3471199c2392d82f7c058cb46a3c76ec40c00db93c4fa8660a",
+    "checkedAt": "2026-10-17T11:34:35.939904+00:00",
+    "pageSha256": "aeb7c6f6852e5bf5ee0294da53c322bff628235c4ec764605304841c6f42ab89",
     "automatedRecord": {
       "currency": "USD",
       "productId": 251394,
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251394&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "provider": "iShares",
       "aum": {
-        "amount": 1708672414.38,
+        "amount": 1693039524.57,
         "currency": "USD",
         "scope": "share-class",
-        "asOf": "2026-10-15",
-        "checkedAt": "2026-10-16",
-        "modifiedAt": "2026-10-16"
+        "asOf": "2026-10-16",
+        "checkedAt": "2026-10-17",
+        "modifiedAt": "2026-10-17"
       },
       "sectors": {
-        "asOf": "2026-10-14",
+        "asOf": "2026-10-15",
         "rows": [
           {
             "name": "Information Technology",
-            "weightPct": 44.41,
+            "weightPct": 44.29,
             "label": "Information Technology"
           },
           {
             "name": "Industrials",
-            "weightPct": 12.81,
+            "weightPct": 12.67,
             "label": "Industrials"
           },
           {
             "name": "Energy",
-            "weightPct": 12.31,
+            "weightPct": 12.24,
             "label": "Energy"
           },
           {
             "name": "Health Care",
-            "weightPct": 10.08,
+            "weightPct": 10.3,
             "label": "Health Care"
           },
           {
             "name": "Materials",
-            "weightPct": 8.49,
+            "weightPct": 8.54,
             "label": "Materials"
           },
           {
@@ -354,18 +354,18 @@
           },
           {
             "name": "Consumer Staples",
-            "weightPct": 3.1,
+            "weightPct": 3.15,
             "label": "Consumer Staples"
           },
           {
-            "name": "Utilities",
-            "weightPct": 0.82,
-            "label": "Utilities"
+            "name": "Real Estate",
+            "weightPct": 0.83,
+            "label": "Immobilier"
           },
           {
-            "name": "Real Estate",
-            "weightPct": 0.82,
-            "label": "Immobilier"
+            "name": "Utilities",
+            "weightPct": 0.81,
+            "label": "Utilities"
           },
           {
             "name": "Communication",
@@ -379,47 +379,47 @@
           }
         ],
         "sourceComponent": "exposureBreakdowns.sector",
-        "checkedAt": "2026-10-16",
-        "modifiedAt": "2026-10-15"
+        "checkedAt": "2026-10-17",
+        "modifiedAt": "2026-10-17"
       },
       "countries": {
-        "asOf": "2026-10-14",
+        "asOf": "2026-10-15",
         "rows": [
           {
             "name": "United States",
-            "weightPct": 68.49
+            "weightPct": 68.6
           },
           {
             "name": "Japan",
-            "weightPct": 6.98
+            "weightPct": 6.75
           },
           {
             "name": "United Kingdom",
-            "weightPct": 4.0
+            "weightPct": 4.05
           },
           {
             "name": "Canada",
-            "weightPct": 3.67
+            "weightPct": 3.75
           },
           {
             "name": "France",
-            "weightPct": 3.49
+            "weightPct": 3.53
           },
           {
             "name": "Netherlands",
-            "weightPct": 2.81
+            "weightPct": 2.72
           },
           {
             "name": "Germany",
-            "weightPct": 2.55
-          },
-          {
-            "name": "Australia",
-            "weightPct": 1.61
+            "weightPct": 2.57
           },
           {
             "name": "Switzerland",
-            "weightPct": 1.58
+            "weightPct": 1.6
+          },
+          {
+            "name": "Australia",
+            "weightPct": 1.55
           },
           {
             "name": "Sweden",
@@ -427,7 +427,7 @@
           },
           {
             "name": "Other",
-            "weightPct": 3.41
+            "weightPct": 3.4299999999999997
           },
           {
             "name": "Cash and/or Derivatives",
@@ -435,8 +435,8 @@
           }
         ],
         "sourceComponent": "exposureBreakdowns.geography.countries",
-        "checkedAt": "2026-10-16",
-        "modifiedAt": "2026-10-15"
+        "checkedAt": "2026-10-17",
+        "modifiedAt": "2026-10-17"
       },
       "holdings": {
         "asOf": "2026-10-15",
@@ -493,7 +493,7 @@
             "isin": "US1667641005"
           }
         ],
-        "checkedAt": "2026-10-16",
+        "checkedAt": "2026-10-17",
         "modifiedAt": "2026-10-16"
       },
       "characteristics": {
@@ -503,7 +503,7 @@
         "domicile": "Ireland",
         "replicationMethod": "Physical (Replicated)",
         "inceptionDate": "20071207",
-        "checkedAt": "2026-10-16",
+        "checkedAt": "2026-10-17",
         "modifiedAt": "2026-10-13"
       },
       "performance": {
@@ -522,8 +522,40 @@
           "2024": 5.26,
           "2025": 19.53
         },
-        "checkedAt": "2026-10-16",
+        "checkedAt": "2026-10-17",
         "modifiedAt": "2026-10-13"
+      },
+      "characteristicChecks": {
+        "terPct": {
+          "checkedAt": "2026-10-17",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251394&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "index": {
+          "checkedAt": "2026-10-17",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251394&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "distribution": {
+          "checkedAt": "2026-10-17",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251394&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "domicile": {
+          "checkedAt": "2026-10-17",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251394&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "replicationMethod": {
+          "checkedAt": "2026-10-17",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251394&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "inceptionDate": {
+          "checkedAt": "2026-10-17",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251394&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        }
       }
     }
   },
@@ -539,64 +571,72 @@
     "collectHoldings": true,
     "requireFullHistory": false,
     "distribution": "Distributing",
+    "characteristics": {
+      "terPct": 0.46,
+      "index": "STOXX Europe 600 Banks (Capped) NET",
+      "distribution": "Distributing",
+      "domicile": "Germany",
+      "replicationMethod": "Physical (Replicated)",
+      "inceptionDate": "20010425"
+    },
     "terPct": 0.46,
     "index": "STOXX Europe 600 Banks (Capped) NET",
     "aum": {
-      "amount": 2928803221.55,
+      "amount": 2950072833.77,
       "currency": "EUR",
       "scope": "share-class",
-      "asOf": "2026-10-15"
+      "asOf": "2026-10-16"
     },
     "countries": {
-      "asOf": "2026-10-14",
+      "asOf": "2026-10-15",
       "rows": [
         {
           "name": "United Kingdom",
-          "weightPct": 26.89
+          "weightPct": 27.2
         },
         {
           "name": "Spain",
-          "weightPct": 18.77
+          "weightPct": 18.78
         },
         {
           "name": "Italy",
-          "weightPct": 14.01
+          "weightPct": 13.92
         },
         {
           "name": "France",
-          "weightPct": 7.76
+          "weightPct": 7.8
         },
         {
           "name": "Netherlands",
-          "weightPct": 5.52
+          "weightPct": 5.48
         },
         {
           "name": "Sweden",
-          "weightPct": 4.34
+          "weightPct": 4.32
         },
         {
           "name": "Germany",
-          "weightPct": 3.5
+          "weightPct": 3.48
         },
         {
           "name": "Finland",
-          "weightPct": 2.83
+          "weightPct": 2.63
         },
         {
           "name": "Austria",
-          "weightPct": 2.61
+          "weightPct": 2.59
         },
         {
           "name": "Poland",
-          "weightPct": 2.5
+          "weightPct": 2.53
         },
         {
           "name": "Denmark",
-          "weightPct": 2.36
+          "weightPct": 2.37
         },
         {
           "name": "Greece",
-          "weightPct": 2.01
+          "weightPct": 1.99
         },
         {
           "name": "Ireland",
@@ -612,7 +652,7 @@
         },
         {
           "name": "Other",
-          "weightPct": 1.06
+          "weightPct": 1.0699999999999998
         },
         {
           "name": "Cash and/or Derivatives",
@@ -622,7 +662,7 @@
       "sourceComponent": "exposureBreakdowns.geography.countries"
     },
     "sectors": {
-      "asOf": "2026-10-14",
+      "asOf": "2026-10-15",
       "rows": [
         {
           "name": "Banks",
@@ -718,7 +758,7 @@
       "currency": "EUR",
       "symbol": "SX7PEX.DE",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251934&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "checkedAt": "2026-10-16",
+      "checkedAt": "2026-10-17",
       "evidenceId": "DE000A0F5UJ7-XETR-EXV1-EUR"
     },
     "listings": [
@@ -730,7 +770,7 @@
         "currency": "EUR",
         "symbol": "SX7PEX.DE",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251934&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-        "checkedAt": "2026-10-16",
+        "checkedAt": "2026-10-17",
         "evidenceId": "DE000A0F5UJ7-XETR-EXV1-EUR"
       },
       {
@@ -741,25 +781,17 @@
         "currency": "EUR",
         "symbol": "EXV1.S",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251934&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-        "checkedAt": "2026-10-16",
+        "checkedAt": "2026-10-17",
         "evidenceId": "DE000A0F5UJ7-XSWX-EXV1-EUR"
       }
     ],
-    "characteristics": {
-      "terPct": 0.46,
-      "index": "STOXX Europe 600 Banks (Capped) NET",
-      "distribution": "Distributing",
-      "domicile": "Germany",
-      "replicationMethod": "Physical (Replicated)",
-      "inceptionDate": "20010425"
-    },
     "metrics": {
       "twelveMonTrlYld": {
         "value": 3.843988,
         "label": "Rendement des distributions sur 12 mois",
         "unit": "%",
         "asOf": "2026-10-15",
-        "checkedAt": "2026-10-16",
+        "checkedAt": "2026-10-17",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251934&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The yield an investor would have received if they had held the fund over the last twelve months assuming the most recent NAV. The 12-Month yield is calculated by assuming any income distributions over the past twelve months and dividing by the sum of the most recent NAV and any capital gain distributions made over the past twelve months. This yield calculation does not take into account any dividends received and held by the fund, but are awaiting the next distribution date. This can cause deviation with index level yield values.",
         "scope": "Exact share, trailing 12 months"
@@ -769,27 +801,27 @@
         "label": "Nombre de positions hors liquidités et dérivés",
         "unit": "positions",
         "asOf": "2026-10-15",
-        "checkedAt": "2026-10-16",
+        "checkedAt": "2026-10-17",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251934&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The number of holdings in the fund excluding cash positions and derivatives exposures. Derivatives are contracts used by the fund to gain exposure to an investment without buying it directly.  They can be used in a number of ways. For example a &#39;currency forward&#39; derivative contract can be used to &#39;hedge&#39; or aim to mitigate the effects of changes in exchange rates.",
         "scope": "Fund portfolio"
       },
       "priceEarnings": {
-        "value": 12.37342,
+        "value": 12.31028,
         "label": "PER du portefeuille selon l’émetteur",
         "unit": "fois",
-        "asOf": "2026-10-14",
-        "checkedAt": "2026-10-16",
+        "asOf": "2026-10-15",
+        "checkedAt": "2026-10-17",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251934&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The price to earnings ratio (P/E) is a fundamental measure used to determine if an investment is valued appropriately. Each holdings&#39; P/E is the latest closing price divided by the latest 12 months&#39; earnings per share. Negative earnings are excluded, extraordinary items are excluded, and P/E ratios over 60 are set to 60.",
         "scope": "Fund portfolio"
       },
       "priceBook": {
-        "value": 1.54137,
+        "value": 1.53183,
         "label": "Cours / actif net comptable selon l’émetteur",
         "unit": "fois",
-        "asOf": "2026-10-14",
-        "checkedAt": "2026-10-16",
+        "asOf": "2026-10-15",
+        "checkedAt": "2026-10-17",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251934&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The price to book (P/B) value ratio is a fundamental measure used to determine if an investment is valued appropriately. The book value of a company is a measure of how much a company&#39;s assets are worth assuming the company&#39;s debts are paid off. Negative book values are excluded from this calculation and holding price to book ratios over 25 are set to 25.",
         "scope": "Fund portfolio"
@@ -799,29 +831,29 @@
         "label": "Volatilité annualisée sur 3 ans",
         "unit": "%",
         "asOf": "2026-09-30",
-        "checkedAt": "2026-10-16",
+        "checkedAt": "2026-10-17",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251934&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "Standard deviation measures how dispersed returns are around the average. A higher standard deviation indicates that returns are spread out over a larger range of values and thus, more volatile.",
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-10-16T14:43:48.507175+00:00",
-    "pageSha256": "b6e07386d73ffcedd55c47c15c223852a59a289997a091bf288be625e61de6ac",
+    "checkedAt": "2026-10-17T11:34:35.939904+00:00",
+    "pageSha256": "08b68419950fef7baa43638443740d8f3c3c8f7975fa3f6df5375a79d96bdb37",
     "automatedRecord": {
       "currency": "EUR",
       "productId": 251934,
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251934&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "provider": "iShares",
       "aum": {
-        "amount": 2928803221.55,
+        "amount": 2950072833.77,
         "currency": "EUR",
         "scope": "share-class",
-        "asOf": "2026-10-15",
-        "checkedAt": "2026-10-16",
-        "modifiedAt": "2026-10-15"
+        "asOf": "2026-10-16",
+        "checkedAt": "2026-10-17",
+        "modifiedAt": "2026-10-17"
       },
       "sectors": {
-        "asOf": "2026-10-14",
+        "asOf": "2026-10-15",
         "rows": [
           {
             "name": "Banks",
@@ -835,59 +867,59 @@
           }
         ],
         "sourceComponent": "exposureBreakdowns.sector",
-        "checkedAt": "2026-10-16",
-        "modifiedAt": "2026-10-15"
+        "checkedAt": "2026-10-17",
+        "modifiedAt": "2026-10-17"
       },
       "countries": {
-        "asOf": "2026-10-14",
+        "asOf": "2026-10-15",
         "rows": [
           {
             "name": "United Kingdom",
-            "weightPct": 26.89
+            "weightPct": 27.2
           },
           {
             "name": "Spain",
-            "weightPct": 18.77
+            "weightPct": 18.78
           },
           {
             "name": "Italy",
-            "weightPct": 14.01
+            "weightPct": 13.92
           },
           {
             "name": "France",
-            "weightPct": 7.76
+            "weightPct": 7.8
           },
           {
             "name": "Netherlands",
-            "weightPct": 5.52
+            "weightPct": 5.48
           },
           {
             "name": "Sweden",
-            "weightPct": 4.34
+            "weightPct": 4.32
           },
           {
             "name": "Germany",
-            "weightPct": 3.5
+            "weightPct": 3.48
           },
           {
             "name": "Finland",
-            "weightPct": 2.83
+            "weightPct": 2.63
           },
           {
             "name": "Austria",
-            "weightPct": 2.61
+            "weightPct": 2.59
           },
           {
             "name": "Poland",
-            "weightPct": 2.5
+            "weightPct": 2.53
           },
           {
             "name": "Denmark",
-            "weightPct": 2.36
+            "weightPct": 2.37
           },
           {
             "name": "Greece",
-            "weightPct": 2.01
+            "weightPct": 1.99
           },
           {
             "name": "Ireland",
@@ -903,7 +935,7 @@
           },
           {
             "name": "Other",
-            "weightPct": 1.06
+            "weightPct": 1.0699999999999998
           },
           {
             "name": "Cash and/or Derivatives",
@@ -911,8 +943,8 @@
           }
         ],
         "sourceComponent": "exposureBreakdowns.geography.countries",
-        "checkedAt": "2026-10-16",
-        "modifiedAt": "2026-10-15"
+        "checkedAt": "2026-10-17",
+        "modifiedAt": "2026-10-17"
       },
       "holdings": {
         "asOf": "2026-10-15",
@@ -969,7 +1001,7 @@
             "isin": "GB00BM8PJY71"
           }
         ],
-        "checkedAt": "2026-10-16",
+        "checkedAt": "2026-10-17",
         "modifiedAt": "2026-10-16"
       },
       "characteristics": {
@@ -979,7 +1011,7 @@
         "domicile": "Germany",
         "replicationMethod": "Physical (Replicated)",
         "inceptionDate": "20010425",
-        "checkedAt": "2026-10-16",
+        "checkedAt": "2026-10-17",
         "modifiedAt": "2026-10-13"
       },
       "performance": {
@@ -998,8 +1030,40 @@
           "2024": 33.74,
           "2025": 75.32
         },
-        "checkedAt": "2026-10-16",
+        "checkedAt": "2026-10-17",
         "modifiedAt": "2026-10-13"
+      },
+      "characteristicChecks": {
+        "terPct": {
+          "checkedAt": "2026-10-17",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251934&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "index": {
+          "checkedAt": "2026-10-17",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251934&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "distribution": {
+          "checkedAt": "2026-10-17",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251934&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "domicile": {
+          "checkedAt": "2026-10-17",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251934&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "replicationMethod": {
+          "checkedAt": "2026-10-17",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251934&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "inceptionDate": {
+          "checkedAt": "2026-10-17",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251934&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        }
       }
     }
   },
@@ -1019,44 +1083,52 @@
     "collectHoldings": true,
     "requireFullHistory": false,
     "distribution": "Distributing",
+    "characteristics": {
+      "terPct": 0.46,
+      "index": "STOXX Europe 600 Insurance (Capped) TR",
+      "distribution": "Distributing",
+      "domicile": "Germany",
+      "replicationMethod": "Physical (Replicated)",
+      "inceptionDate": "20020708"
+    },
     "terPct": 0.46,
     "index": "STOXX Europe 600 Insurance (Capped) TR",
     "aum": {
-      "amount": 622785723.81,
+      "amount": 628552754.44,
       "currency": "EUR",
       "scope": "fund",
-      "asOf": "2026-10-15"
+      "asOf": "2026-10-16"
     },
     "countries": {
-      "asOf": "2026-10-14",
+      "asOf": "2026-10-15",
       "rows": [
         {
           "name": "Germany",
-          "weightPct": 32.38
+          "weightPct": 32.34
         },
         {
           "name": "Switzerland",
-          "weightPct": 23.92
+          "weightPct": 24.24
         },
         {
           "name": "United Kingdom",
-          "weightPct": 12.28
+          "weightPct": 12.25
         },
         {
           "name": "France",
-          "weightPct": 10.25
+          "weightPct": 10.21
         },
         {
           "name": "Italy",
-          "weightPct": 7.14
+          "weightPct": 7.07
         },
         {
           "name": "Netherlands",
-          "weightPct": 5.02
+          "weightPct": 4.94
         },
         {
           "name": "Finland",
-          "weightPct": 2.85
+          "weightPct": 2.83
         },
         {
           "name": "Norway",
@@ -1064,7 +1136,7 @@
         },
         {
           "name": "Belgium",
-          "weightPct": 1.44
+          "weightPct": 1.42
         },
         {
           "name": "Poland",
@@ -1076,21 +1148,21 @@
         },
         {
           "name": "Cash and/or Derivatives",
-          "weightPct": 0.66
+          "weightPct": 0.65
         }
       ],
       "sourceComponent": "exposureBreakdowns.geography.countries"
     },
     "sectors": {
-      "asOf": "2026-10-14",
+      "asOf": "2026-10-15",
       "rows": [
         {
           "name": "Insurance",
-          "weightPct": 99.34
+          "weightPct": 99.35
         },
         {
           "name": "Cash and/or Derivatives",
-          "weightPct": 0.66
+          "weightPct": 0.65
         }
       ],
       "sourceComponent": "exposureBreakdowns.sector"
@@ -1178,7 +1250,7 @@
       "currency": "EUR",
       "symbol": "SXIPEX.DE",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251950&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-      "checkedAt": "2026-10-16",
+      "checkedAt": "2026-10-17",
       "evidenceId": "DE000A0H08K7-XETR-EXH5-EUR"
     },
     "listings": [
@@ -1190,25 +1262,17 @@
         "currency": "EUR",
         "symbol": "SXIPEX.DE",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251950&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-        "checkedAt": "2026-10-16",
+        "checkedAt": "2026-10-17",
         "evidenceId": "DE000A0H08K7-XETR-EXH5-EUR"
       }
     ],
-    "characteristics": {
-      "terPct": 0.46,
-      "index": "STOXX Europe 600 Insurance (Capped) TR",
-      "distribution": "Distributing",
-      "domicile": "Germany",
-      "replicationMethod": "Physical (Replicated)",
-      "inceptionDate": "20020708"
-    },
     "metrics": {
       "twelveMonTrlYld": {
         "value": 3.437404,
         "label": "Rendement des distributions sur 12 mois",
         "unit": "%",
         "asOf": "2026-10-15",
-        "checkedAt": "2026-10-16",
+        "checkedAt": "2026-10-17",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251950&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The yield an investor would have received if they had held the fund over the last twelve months assuming the most recent NAV. The 12-Month yield is calculated by assuming any income distributions over the past twelve months and dividing by the sum of the most recent NAV and any capital gain distributions made over the past twelve months. This yield calculation does not take into account any dividends received and held by the fund, but are awaiting the next distribution date. This can cause deviation with index level yield values.",
         "scope": "Exact share, trailing 12 months"
@@ -1218,27 +1282,27 @@
         "label": "Nombre de positions hors liquidités et dérivés",
         "unit": "positions",
         "asOf": "2026-10-15",
-        "checkedAt": "2026-10-16",
+        "checkedAt": "2026-10-17",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251950&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The number of holdings in the fund excluding cash positions and derivatives exposures. Derivatives are contracts used by the fund to gain exposure to an investment without buying it directly.  They can be used in a number of ways. For example a &#39;currency forward&#39; derivative contract can be used to &#39;hedge&#39; or aim to mitigate the effects of changes in exchange rates.",
         "scope": "Fund portfolio"
       },
       "priceEarnings": {
-        "value": 13.25617,
+        "value": 13.31365,
         "label": "PER du portefeuille selon l’émetteur",
         "unit": "fois",
-        "asOf": "2026-10-14",
-        "checkedAt": "2026-10-16",
+        "asOf": "2026-10-15",
+        "checkedAt": "2026-10-17",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251950&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The price to earnings ratio (P/E) is a fundamental measure used to determine if an investment is valued appropriately. Each holdings&#39; P/E is the latest closing price divided by the latest 12 months&#39; earnings per share. Negative earnings are excluded, extraordinary items are excluded, and P/E ratios over 60 are set to 60.",
         "scope": "Fund portfolio"
       },
       "priceBook": {
-        "value": 2.05626,
+        "value": 2.06789,
         "label": "Cours / actif net comptable selon l’émetteur",
         "unit": "fois",
-        "asOf": "2026-10-14",
-        "checkedAt": "2026-10-16",
+        "asOf": "2026-10-15",
+        "checkedAt": "2026-10-17",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251950&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The price to book (P/B) value ratio is a fundamental measure used to determine if an investment is valued appropriately. The book value of a company is a measure of how much a company&#39;s assets are worth assuming the company&#39;s debts are paid off. Negative book values are excluded from this calculation and holding price to book ratios over 25 are set to 25.",
         "scope": "Fund portfolio"
@@ -1248,75 +1312,75 @@
         "label": "Volatilité annualisée sur 3 ans",
         "unit": "%",
         "asOf": "2026-09-30",
-        "checkedAt": "2026-10-16",
+        "checkedAt": "2026-10-17",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251950&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "Standard deviation measures how dispersed returns are around the average. A higher standard deviation indicates that returns are spread out over a larger range of values and thus, more volatile.",
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-10-16T14:43:48.507175+00:00",
-    "pageSha256": "7c3bd06f74d4d3dd1b7ec77af2110d61e270d7824c50a805b213bd23026110cc",
+    "checkedAt": "2026-10-17T11:34:35.939904+00:00",
+    "pageSha256": "936520773dd552077f85653464d59c9f4d47a47971033082080c9c5f4b2bccb4",
     "automatedRecord": {
       "currency": "EUR",
       "productId": 251950,
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251950&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "provider": "iShares",
       "aum": {
-        "amount": 622785723.81,
+        "amount": 628552754.44,
         "currency": "EUR",
         "scope": "fund",
-        "asOf": "2026-10-15",
-        "checkedAt": "2026-10-16",
-        "modifiedAt": "2026-10-15"
+        "asOf": "2026-10-16",
+        "checkedAt": "2026-10-17",
+        "modifiedAt": "2026-10-17"
       },
       "sectors": {
-        "asOf": "2026-10-14",
+        "asOf": "2026-10-15",
         "rows": [
           {
             "name": "Insurance",
-            "weightPct": 99.34,
+            "weightPct": 99.35,
             "label": "Insurance"
           },
           {
             "name": "Cash and/or Derivatives",
-            "weightPct": 0.66,
+            "weightPct": 0.65,
             "label": "Cash and/or Derivatives"
           }
         ],
         "sourceComponent": "exposureBreakdowns.sector",
-        "checkedAt": "2026-10-16",
-        "modifiedAt": "2026-10-15"
+        "checkedAt": "2026-10-17",
+        "modifiedAt": "2026-10-17"
       },
       "countries": {
-        "asOf": "2026-10-14",
+        "asOf": "2026-10-15",
         "rows": [
           {
             "name": "Germany",
-            "weightPct": 32.38
+            "weightPct": 32.34
           },
           {
             "name": "Switzerland",
-            "weightPct": 23.92
+            "weightPct": 24.24
           },
           {
             "name": "United Kingdom",
-            "weightPct": 12.28
+            "weightPct": 12.25
           },
           {
             "name": "France",
-            "weightPct": 10.25
+            "weightPct": 10.21
           },
           {
             "name": "Italy",
-            "weightPct": 7.14
+            "weightPct": 7.07
           },
           {
             "name": "Netherlands",
-            "weightPct": 5.02
+            "weightPct": 4.94
           },
           {
             "name": "Finland",
-            "weightPct": 2.85
+            "weightPct": 2.83
           },
           {
             "name": "Norway",
@@ -1324,7 +1388,7 @@
           },
           {
             "name": "Belgium",
-            "weightPct": 1.44
+            "weightPct": 1.42
           },
           {
             "name": "Poland",
@@ -1336,12 +1400,12 @@
           },
           {
             "name": "Cash and/or Derivatives",
-            "weightPct": 0.66
+            "weightPct": 0.65
           }
         ],
         "sourceComponent": "exposureBreakdowns.geography.countries",
-        "checkedAt": "2026-10-16",
-        "modifiedAt": "2026-10-15"
+        "checkedAt": "2026-10-17",
+        "modifiedAt": "2026-10-17"
       },
       "holdings": {
         "asOf": "2026-10-15",
@@ -1398,7 +1462,7 @@
             "isin": "FI4000552500"
           }
         ],
-        "checkedAt": "2026-10-16",
+        "checkedAt": "2026-10-17",
         "modifiedAt": "2026-10-16"
       },
       "characteristics": {
@@ -1408,7 +1472,7 @@
         "domicile": "Germany",
         "replicationMethod": "Physical (Replicated)",
         "inceptionDate": "20020708",
-        "checkedAt": "2026-10-16",
+        "checkedAt": "2026-10-17",
         "modifiedAt": "2026-10-13"
       },
       "performance": {
@@ -1427,8 +1491,40 @@
           "2024": 23.05,
           "2025": 29.03
         },
-        "checkedAt": "2026-10-16",
+        "checkedAt": "2026-10-17",
         "modifiedAt": "2026-10-13"
+      },
+      "characteristicChecks": {
+        "terPct": {
+          "checkedAt": "2026-10-17",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251950&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "index": {
+          "checkedAt": "2026-10-17",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251950&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "distribution": {
+          "checkedAt": "2026-10-17",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251950&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "domicile": {
+          "checkedAt": "2026-10-17",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251950&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "replicationMethod": {
+          "checkedAt": "2026-10-17",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251950&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        },
+        "inceptionDate": {
+          "checkedAt": "2026-10-17",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251950&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "asOf": null
+        }
       }
     }
   }
