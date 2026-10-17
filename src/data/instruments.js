@@ -1,4 +1,5 @@
 import { EXPANSION_INSTRUMENTS } from './exposure-etf-expansion.js';
+import GLOBAL_EQUITIES from './global-equities.json' with { type: 'json' };
 import { NON_BOND_INSTRUMENTS } from './non-bond-expansion.js';
 import { LIFESTRATEGY_INSTRUMENTS } from './lifestrategy.js';
 import { ROUND3_INSTRUMENTS } from './round3-fund-sheets.js';
@@ -12,6 +13,7 @@ import { EXPOSURE_ADDITIONS } from './exposure-additions.js';
 // preuves émetteurs/places et devises de négociation contrôlées le 30/09/2026.
 import { PEA_REVIEWS_BY_ISIN } from './instrument-pea.js';
 export const INSTRUMENTS_BY_ISIN = Object.freeze({
+  ...Object.fromEntries(GLOBAL_EQUITIES.map(r => [r.isin, Object.freeze({name:r.label,instrumentType:'EQUITY'})])),
   ...EXPANSION_INSTRUMENTS,
   ...NON_BOND_INSTRUMENTS,
   ...LIFESTRATEGY_INSTRUMENTS,

@@ -1,6 +1,6 @@
 // No interpolation, partial years, raw prices, or unverified currency conversion.
 export function annualEquityReturns(record) {
-  if (record.field !== 'adjclose' || !['EUR','USD'].includes(record.currency) || !record.sourceUrls?.length || !record.responseSha256) return {}
+  if (record.field !== 'adjclose' || !record.currency || !record.sourceUrls?.length || !record.responseSha256) return {}
   const points = new Map(record.points)
   if (points.size !== record.points.length) return {}
   const returns = {}

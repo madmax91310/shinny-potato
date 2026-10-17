@@ -93,8 +93,11 @@ def collect_yahoo(config, now, fetch=get_json):
     points, proof_rows, anniversary = [], [], []
     expected = list(months(config['periodStart'], end))
     qualifying_suffix = config.get('qualifyContiguousSuffix') is True
-    if qualifying_suffix and (config.get('consumerScope') != 'catalog' or config.get('field') != 'adjclose'):
-        reject('Contiguous suffix qualification requires an exact fund share')
+    exact_equity = (config.get('consumerScope') == 'equity' and config.get('instrumentType') == 'EQUITY'
+                    and re.fullmatch(r'[A-Z]{2}[A-Z0-9]{9}[0-9]', config.get('isin', ''))
+                    and config.get('symbol') and config.get('timezone'))
+    if qualifying_suffix and (config.get('consumerScope') != 'catalog' and not exact_equity or config.get('field') != 'adjclose'):
+        reject('Contiguous suffix qualification requires an exact adjusted security')
     missing = [key for key in expected if key not in final or (key not in buckets and not config.get('allowMissingMonthly'))]
     excluded = []
     if missing and qualifying_suffix:

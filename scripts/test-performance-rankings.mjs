@@ -2,6 +2,7 @@ import FX from '../src/data/monthly-fx.json' with { type: 'json' }
 import { convertAsset, buildPortfolio } from '../src/pages/performance-rankings/series.js'
 import { ANNUAL_ASSETS, ANNUAL_CATEGORIES } from '../src/pages/performance-rankings/data.js'
 import assert from 'node:assert/strict'
+import { isStock } from '../src/lib/is-stock.js'
 import { CATEGORIES, RANKING_ASSETS, buildRankingAssets } from '../src/pages/performance-rankings/data.js'
 import { annualColumns, buildRanking, buildTweet, commonCoverage, monthAt, monthIndex, periodReturn, publicationRanking, rankRows, rollingRegularity } from '../src/pages/performance-rankings/engine.js'
 
@@ -156,10 +157,10 @@ const { markBenchmark, randomSuggestion, suggestionPool } = await import('../src
 assert.deepEqual(CATEGORIES.find(c => c.id === 'luxury-stocks').ids, ['hermes', 'lvmh'])
 for (const category of BENCHMARK_CATEGORIES) {
   const assets = markBenchmark(category.ids.map(id => convertAsset(RANKING_ASSETS[id], category.currency, FX)), category.benchmarkId)
-  assert.equal(assets.filter(a => !a.isin).length, 5)
+  assert.equal(assets.filter(isStock).length, 5)
   assert.equal(assets.filter(a => a.benchmark && a.isin).length, 1)
   const coverage = commonCoverage(assets)
-  const result = buildRanking(assets, { mode: 'years', startYear: coverage.years.at(-5), endYear: coverage.years.at(-1) })
+  const result = buildRanking(assets, { mode: 'years', startYear: coverage.years.at(-Math.min(5, coverage.years.length)), endYear: coverage.years.at(-1) })
   const tweet = buildTweet(result, category.label)
   assert.match(tweet, /^Parmi ces cinq actions, lesquelles ont battu l’ETF (MSCI World|S&P 500)/)
   assert.match(tweet, /\(réf\.\)/)

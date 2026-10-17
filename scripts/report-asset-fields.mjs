@@ -21,7 +21,7 @@ export function buildAssetFieldReport(now=new Date().toISOString().slice(0,10)) 
  const names={ter:'Frais',aum:'Encours',performance:'Performances annuelles',monthly:'Historique mensuel',countries:'Pays',sectors:'Secteurs',holdings:'Principales positions',distribution:'Distribution',domicile:'Domicile',replicationMethod:'Réplication',listings:'Cotations',pea:'Éligibilité PEA',currencyHedge:'Couverture de change'};
  const rows=[];
  const qualification=read('scripts/source-snapshots/monthly-qualification-status.json');
- for(const item of DATA_CATALOG.filter(r=>r.type==='instrument')) {
+ for(const item of DATA_CATALOG.filter(r=>r.type==='instrument' && r.fields.find(f=>f.label==='Identité')?.value?.instrumentType!=='EQUITY')) {
   const record=AUTOMATED_ETF[item.id]??{};
   for(const field of Object.keys(names)) {
    const meta=['distribution','domicile','replicationMethod','listings','pea','currencyHedge'].includes(field);
@@ -42,7 +42,7 @@ export function buildAssetFieldReport(now=new Date().toISOString().slice(0,10)) 
   const value=r[field];if(!value)continue;
   rows.push({id,type:'index',name:r.name??id,field,label:field==='facts'?'Composition indice':'Performances indice',present:true,state:fieldState({...value,checkedAt:value.checkedAt??r.checkedAt},now,{checkDays:40,dataDays:field==='returns'?550:120}),checkedAt:value.checkedAt??r.checkedAt??null,asOf:value.asOf??null,sourceUrl:value.sourceUrl??r.sourceUrl??null});
  }
- for(const [id,r] of Object.entries(monthly).filter(([,r])=>r.consumerScope!=='catalog'))rows.push({id,type:r.consumerScope==='equity'?'equity':'series',name:r.label??id,field:'monthly',label:'Historique mensuel',present:true,state:fieldState(r,now,{checkDays:40}),checkedAt:r.checkedAt,asOf:r.periodEnd,sourceUrl:r.sourceUrls?.[0],currency:r.currency});
+ for(const [id,r] of Object.entries(monthly).filter(([,r])=>r.consumerScope!=='catalog'))rows.push({id,type:r.consumerScope==='equity'||ASSETS[id]?.instrumentType==='EQUITY'?'equity':'series',name:r.label??id,field:'monthly',label:'Historique mensuel',present:true,state:fieldState(r,now,{checkDays:40}),checkedAt:r.checkedAt,asOf:r.periodEnd,sourceUrl:r.sourceUrls?.[0],currency:r.currency});
  for(const type of ['scpi','insurance'])for(const r of read(`src/data/automated-${type}.json`).records)for(const field of (type==='scpi'?['annual','price','conditions','snapshot','portfolio']:['fees','access','euroFunds'])) {
   const value=r[field];rows.push({id:r.id,type,name:r.name,field,label:field,present:!!value,state:value?fieldState({...value,checkedAt:value.checkedAt??r.checkedAt},now,{dataDays:field==='annual'||field==='euroFunds'?550:120}):'missing',checkedAt:value?.checkedAt??r.checkedAt,asOf:value?.asOf??null,sourceUrl:value?.sourceUrl??r.sourceUrl});
  }

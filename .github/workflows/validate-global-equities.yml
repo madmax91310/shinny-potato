@@ -1,0 +1,39 @@
+name: Validate global equity connections
+on:
+  pull_request:
+    paths:
+      - 'src/data/global-equities.json'
+      - 'src/data/portfolio-equities.js'
+      - 'src/data/calendar-fx*'
+      - 'src/data/automated-equity-history.js'
+      - 'src/lib/fx-rate.js'
+      - 'src/lib/is-stock.js'
+      - 'src/pages/tweet-midi/performanceCurrency.js'
+      - 'scripts/*global-equit*'
+      - '.github/workflows/validate-global-equities.yml'
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 20
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: '3.12'
+      - run: npm ci
+      - run: npm run build
+      - run: node scripts/test-global-equities.mjs && node scripts/test-equity-duels.mjs && node scripts/test-performance-currency.mjs && node scripts/test-performance-rankings.mjs
+      - run: python -m unittest discover -s scripts -p 'test_monthly_automation.py'
+      - run: npx playwright install --with-deps chromium
+      - run: node scripts/playwright-equity-monthly.mjs && node scripts/playwright-global-equities.mjs
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: global-equities-browser
+          path: test-artifacts/global-equities
+          if-no-files-found: ignore

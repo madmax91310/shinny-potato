@@ -8,6 +8,8 @@ import { getInstrumentAnnualPerformance, getInstrumentReturnValues } from '../sr
 // Inventaire des bases de performances du Générateur. Un accord entre outils ne vérifie pas
 // une source primaire : seuls les fonds recoupés avec l'émetteur sont marqués « confirmé ».
 import { ASSETS } from '../src/data/portfolio-assets.js'
+import EQUITY_RETURNS from '../src/data/equity-duel-returns.json' with {type:'json'}
+import { PORTFOLIO_EQUITIES } from '../src/data/portfolio-equities.js'
 import { VERIFIED_RETURNS } from '../src/data/verified-returns.js'
 import { HISTORICAL_AUTOMATED_PERFORMANCE } from '../src/data/automated-etf.js'
 import monthly from '../src/data/monthly-duel-returns.json' with {type:'json'}
@@ -30,6 +32,7 @@ for (const r of EXPOSURE_ADDITIONS) {
 // Exact-share issuer NAV returns, with the same verified annual-performance checks below.
 groups['Fonds confirmé chez l’émetteur'] += ' health_world_dws new_energy_amundi em_pea_amundi europe_pea_amundi health_europe_pea tech_europe_pea industry_world_dws em_small_ishares utilities_world_dws health_world_ishares materials_world_dws';
 groups['Fonds confirmé chez l’émetteur'] += ' ' + [...roadmapIds].join(' ')
+groups['Actions individuelles · cours ajustés et change BCE'] = PORTFOLIO_EQUITIES.map(a=>a.id).join(' ')
 const tagged = new Map()
 let errors = 0
 for (const [basis, list] of Object.entries(groups)) {
@@ -256,6 +259,11 @@ for (const asset of ASSETS) {
   }
   if (requiredDisclosures.has(asset.id) && !requiredDisclosures.get(asset.id).test(asset.confidenceNote ?? '')) {
     console.error(`Limite spécifique de l'historique mixte non visible : ${asset.id}`); errors++
+  }
+  if (asset.instrumentType === 'EQUITY') {
+    const record=EQUITY_RETURNS.find(r=>r.id===asset.id)
+    if (!asset.manualOnly || asset.returnCurrency!=='EUR' || !record?.source?.startsWith('https://') || !record.checkedAt || JSON.stringify(asset.calendarReturns)!==JSON.stringify(record.euroCalendarReturns) || !asset.r.every((v,i)=>v===(record.euroCalendarReturns[2020+i]??null)) || asset.r.filter(Number.isFinite).length<3) { console.error(`Source action divergente : ${asset.id}`); errors++ }
+    continue
   }
   const official = getInstrumentAnnualPerformance(asset.isin)
   const market = asset.distinctCandidate ? monthly[asset.isin] : null

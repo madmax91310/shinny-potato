@@ -7,6 +7,7 @@ import { applyAutomatedCharacteristics } from '../src/data/automated-characteris
 import { ETF_TER_BY_ISIN } from '../src/data/etf-ter.js';
 import { ASSETS } from '../src/data/portfolio-assets.js';
 import { ETFS } from '../src/data/etf-cards.js';
+import EQUITY_RETURNS from '../src/data/equity-duel-returns.json' with {type:'json'};
 import { buildText } from '../src/pages/etf-sheets/lib.js';
 const capture = JSON.parse(readFileSync(new URL('./source-snapshots/instrument-supports-2026-10-03.json', import.meta.url)));
 assert.equal(Object.keys(capture.records).length, 52);
@@ -28,7 +29,13 @@ for (const [isin, record] of Object.entries(capture.records)) {
   assert(buildText(card).startsWith(getPresentationCopy(card).hook + '\n'));
   assert(!/undefined|NaN/.test(buildText(card)));
 }
-for (const asset of ASSETS.filter(a => a.isin)) assert(ETFS.some(c => c.isin === asset.isin), `Fiche manquante : ${asset.id}`);
+for (const asset of ASSETS.filter(a => a.isin)) {
+  if (asset.instrumentType === 'EQUITY') {
+    const source=EQUITY_RETURNS.find(r=>r.id===asset.id && r.isin===asset.isin);
+    assert(source?.source?.startsWith('https://') && source.checkedAt && asset.manualOnly && asset.returnCurrency==='EUR',`Source action manquante : ${asset.id}`);
+    assert.deepEqual(asset.calendarReturns,source.euroCalendarReturns);
+  } else assert(ETFS.some(c => c.isin === asset.isin), `Fiche manquante : ${asset.id}`);
+}
 assert.equal(new Set(ETFS.map(c => c.isin)).size, ETFS.length);
 assert.equal(new Set(ETFS.map(c => c.hook)).size, ETFS.length);
 console.log('52 fiches ajoutées : profils ISIN rejoués, TER et caractéristiques concordants ; tous les supports du générateur couverts.');

@@ -3,6 +3,7 @@ export const shortAssetName = name => String(name ?? '').replace(/\s+UCITS\s+ETF
 
 // Navigation only: labels derive from the existing identity, never from returns.
 export function exposureGroup(asset) {
+  if (asset.instrumentType === 'EQUITY' || asset.kind === 'equity') return 'Actions individuelles'
   if (asset.cat === 'multi_actifs' || asset.category === 'Multi-actifs' || /lifestrategy/i.test(asset.name ?? asset.label ?? '')) return 'Multi-actifs'
   const text = normalizeSearch(`${asset.name ?? asset.label ?? asset.title ?? ''} ${asset.benchmark ?? ''}`)
   if (asset.cat === 'obligataire' || /bond|treasury|oblig|€str|overnight|fonds euros/.test(text)) return 'Obligations et monétaire'

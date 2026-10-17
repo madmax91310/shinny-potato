@@ -2,9 +2,10 @@ import { BENCHMARK_CATEGORIES, CATEGORIES, RANKING_ASSETS } from './data.js'
 import FX from '../../data/monthly-fx.json' with { type: 'json' }
 import { commonCoverage } from './engine.js'
 import { convertAsset } from './series.js'
+import { isStock } from '../../lib/is-stock.js'
 
 export function markBenchmark(assets, benchmarkId) {
-  const valid = assets.length === 6 && assets.filter(a => !a.isin && a.basis === 'adjusted').length === 5
+  const valid = assets.length === 6 && assets.filter(isStock).length === 5
   return assets.map(a => valid && a.id === benchmarkId
     ? { ...a, benchmark: true, shortLabel: `ETF ${a.shortLabel} (réf.)` } : a)
 }
@@ -14,7 +15,8 @@ export const EQUITY_GROUPS = new Set(['world', 'europe', 'factors', 'europe-sect
   'themes', 'themes-eur', 'dividends', 'small-value', 'us-stocks', 'us-semiconductors',
   'us-software', 'payments-finance', 'health-stocks', 'europe-industry', 'us-consumer',
   'fr-stocks', 'luxury-stocks', 'aerospace-defense', 'everyday-brands', 'ai-infrastructure',
-  'europe-finance', 'us-equity-etfs', 'technology-etfs', 'small-cap-regions'])
+  'europe-finance', 'us-equity-etfs', 'technology-etfs', 'small-cap-regions',
+  ...CATEGORIES.filter(c => c.ids.every(id => isStock(RANKING_ASSETS[id]))).map(c => c.id)])
 
 export function suggestionPool(categories = [...CATEGORIES, ...BENCHMARK_CATEGORIES], assets = RANKING_ASSETS, fx = FX) {
   return categories.flatMap(category => {

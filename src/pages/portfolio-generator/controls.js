@@ -11,7 +11,7 @@ export const CONSTRUCTION_LIMITS = {
   dynamique: { equity:100,sectors:55, crypto:30, leverage:10,options:45,speculative:50, property:65, highYield:50, commodities:75, technology:75 },
   offensif:  { equity:100,sectors:70, crypto:60, leverage:15,options:65,speculative:75, property:80, highYield:70, commodities:85, technology:90 },
 };
-const equities = new Set(['world-developed','world-all','world-imi','world-ex-us','us','us-equal','us-small','nasdaq','europe','country','region','small','factor','theme','emerging','dividend','property','options','leverage']);
+const equities = new Set(['single-stock','world-developed','world-all','world-imi','world-ex-us','us','us-equal','us-small','nasdaq','europe','country','region','small','factor','theme','emerging','dividend','property','options','leverage']);
 const factorIds = new Set(['world-multifactor','world-midcap-equal']);
 const technologyIds = new Set(['sect_tech','sect_tech_world_ishares','tech_europe','tech_europe_pea','sect_robotique','sect_cybersecurite','sect_cyber_lg','sect_ai_lg','ia-big-data-xtrackers','cloud-wisdomtree','semiconducteurs_monde','nasdaq100','nasdaq100_ishares','lqq']);
 const financeIds = new Set(['sect_financieres','financieres_monde','europe-banks','europe-insurance']);

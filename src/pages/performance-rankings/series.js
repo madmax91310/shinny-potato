@@ -1,11 +1,13 @@
 import { commonCoverage, monthAt, monthIndex, portfolioReturn, validateSeries } from './engine.js'
+import { fxRate } from '../../lib/fx-rate.js'
 
 export function convertAsset(asset, currency, fx) {
   if (!currency || currency === 'original' || currency === asset.currency) return asset
   const factor = date => {
     const rates = fx.months[date]?.rates
-    if (!rates?.[currency] || !rates?.[asset.currency]) throw new Error(`Change BCE absent pour ${asset.currency}/${currency} en ${date}.`)
-    return rates[currency] / rates[asset.currency]
+    const target = fxRate(rates, currency), source = fxRate(rates, asset.currency)
+    if (!target || !source) throw new Error(`Change BCE absent pour ${asset.currency}/${currency} en ${date}.`)
+    return target / source
   }
   const common = { ...asset, currency, originalCurrency: asset.currency, fxConverted: true, fxSourceUrl: fx.sourceUrl }
   if (asset.frequency === 'annual') {

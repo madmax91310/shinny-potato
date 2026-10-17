@@ -13,7 +13,7 @@ export default function SelectionGrid({ ids, currency, assets, onChange }) {
   const [limit, setLimit] = useState(30)
   const selectedGroup = GROUPS.find(c => c.id === group)
   const choices = useMemo(() => Object.values(assets).filter(a =>
-    (group === 'stocks' ? isStock(a) : group === 'etfs' ? a.isin && ETF_IDS.has(a.id) : selectedGroup?.ids.includes(a.id)) &&
+    (group === 'stocks' ? isStock(a) : group === 'etfs' ? a.isin && !isStock(a) && ETF_IDS.has(a.id) : selectedGroup?.ids.includes(a.id)) &&
     normalizeSearch(`${a.label} ${a.shortLabel} ${a.ticker ?? ''} ${a.isin ?? ''}`).includes(normalizeSearch(query)))
     .sort((a, b) => a.label.localeCompare(b.label, 'fr')), [assets, group, query, selectedGroup])
   function toggle(id) {

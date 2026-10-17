@@ -3,7 +3,8 @@ import FX from '../../data/monthly-fx.json' with { type: 'json' }
 import { buildRanking, commonCoverage } from './engine.js'
 import { convertAsset } from './series.js'
 
-export const isStock = asset => asset?.basis === 'adjusted' && !asset.isin && !asset.priceUnit
+import { isStock } from '../../lib/is-stock.js'
+export { isStock }
 export function selectionCurrency(ids, currency, assets = RANKING_ASSETS) {
   return currency === 'original' && new Set(ids.map(id => assets[id]?.currency)).size > 1 ? 'EUR' : currency
 }

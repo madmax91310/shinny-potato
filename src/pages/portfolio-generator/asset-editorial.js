@@ -248,6 +248,10 @@ const available = ids=>ids.split(' ').filter(id=>ASSETS.some(a=>a.id===id)).join
 add(available('copper-miners-globalx defense-vaneck nuclear-vaneck quantum-vaneck'),'theme','une conviction thématique','Cette poche détient des actions d’entreprises et peut renforcer des titres déjà présents dans le socle mondial.');
 add(available('nasdaq-equal small-value-world-avantis'),'factor','une sélection ou pondération différente','Les règles de pondération ou de sélection modifient les entreprises détenues et leurs poids. Ces biais peuvent sous-performer longtemps.');
 add(available('ibonds-euro-2028 ibonds-euro-2029'),'bond','des obligations euro à échéance définie','Une fin définie ne garantit ni le capital ni le rendement. Une vente anticipée reste exposée au marché.');
+for (const asset of ASSETS.filter(a => a.instrumentType === 'EQUITY')) {
+ add(asset.id, 'single-stock', asset.name, asset.desc.join(' '));
+ entries[asset.id].description = asset.desc[0];
+}
 export const ASSET_EDITORIAL = Object.freeze(entries);
 export function assetEditorial(asset) {
   const entry = ASSET_EDITORIAL[asset.id];

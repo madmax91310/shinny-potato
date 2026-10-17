@@ -6,6 +6,24 @@ import FTSE from '../../data/ranking-ftse.json' with { type: 'json' }
 
 // References to shared histories and validated, automatically refreshed extensions. No hand-entered prices.
 export const CATEGORIES = [
+  {id:'swiss-finance',label:'Banques et assurances suisses',ids:['ubs','zurich','swiss-re'],currency:'EUR'},
+  {id:'europe-health-expanded',label:'Santé européenne',ids:['roche','novartis','novo-nordisk','sanofi','astrazeneca'],currency:'EUR'},
+  {id:'europe-banks-expanded',label:'Banques européennes',ids:['ubs','bbva','bnp-paribas','santander'],currency:'EUR'},
+  {id:'europe-groups-expanded',label:'Grands groupes européens',ids:['unilever','dhl','basf','enel','relx'],currency:'EUR'},
+  {id:'uk-stocks',label:'Grandes actions britanniques',ids:['diageo','relx','lseg','rolls-royce','bae-systems'],currency:'EUR'},
+  {id:'europe-defense-expanded',label:'Aéronautique et défense européennes',ids:['airbus','safran','thales','rolls-royce','bae-systems','rheinmetall'],currency:'EUR'},
+  {id:'china-platforms',label:'Plateformes et technologie chinoises',ids:['alibaba','jd','meituan','tencent','xiaomi'],currency:'EUR'},
+  {id:'ev-batteries',label:'Automobile et batteries',ids:['tesla','byd','toyota','catl'],currency:'EUR'},
+  {id:'japan-technology',label:'Industrie et technologie japonaises',ids:['keyence','hitachi','mitsubishi-electric','tokyo-electron','advantest'],currency:'EUR'},
+  {id:'japan-groups',label:'Grands groupes japonais',ids:['mitsubishi-corp','softbank-group','recruit','sony','nintendo','toyota'],currency:'EUR'},
+  {id:'india-stocks',label:'Grandes actions indiennes',ids:['reliance','hdfc-bank','icici-bank','infosys','tcs'],currency:'EUR'},
+  {id:'asia-banks',label:'Banques asiatiques',ids:['hdfc-bank','icici-bank','dbs'],currency:'EUR'},
+  {id:'cyber-stocks',label:'Actions de la cybersécurité',ids:['palo-alto-networks','crowdstrike','fortinet'],currency:'EUR'},
+  {id:'chip-equipment-design',label:'Équipements et conception de puces',ids:['asml','applied-materials','lam-research','klac','snps','cdns'],currency:'EUR'},
+  {id:'network-infrastructure',label:'Réseaux et infrastructures informatiques',ids:['csco','arista','dell','broadcom'],currency:'EUR'},
+  {id:'us-platforms',label:'Grandes plateformes américaines',ids:['netflix','uber','airbnb','amazon','booking','meta'],currency:'EUR'},
+  {id:'market-operators',label:'Bourses et données financières',ids:['cme','ice','sp-global','moodys','msci','fds'],currency:'EUR'},
+  {id:'us-pharma',label:'Pharmacie américaine',ids:['pfe','amgn','gilead','eli-lilly','merck','abbvie'],currency:'EUR'},
   { id: 'world-acwi-net', label: 'World et ACWI · vingt ans · indices nets', ids: ['world-net', 'msciAcwi'], currency: 'USD' },
   { id: 'world-acwi-imi', label: 'World, ACWI et ACWI IMI · indices nets', ids: ['world-net', 'msciAcwi', 'msciAcwiImi'], currency: 'USD' },
   { id: 'regions-indices', label: 'Grandes régions · indices nets', ids: ['world-net', 'msciUsa', 'msciEurope', 'japan-net', 'emerging-net'], currency: 'USD' },
@@ -81,7 +99,7 @@ export function buildRankingAssets(histories) {
     // Frozen listing prices cannot represent a genuine cross-asset return.
     if (a.points.some((p, i) => i >= 2 && p.price === a.points[i - 1].price && p.price === a.points[i - 2].price)) return []
     return [[id, { ...a, id, basis, shortLabel: SHORT[id] ?? a.label.replace(/^Indice /, ''),
-      group: GROUPS[id] ?? (a.isin ? 'Autres ETF et ETC' : a.priceUnit === 'points' ? 'Indices' : 'Actions et autres actifs'),
+      group: GROUPS[id] ?? (a.instrumentType === 'EQUITY' ? 'Actions individuelles' : a.isin ? 'Autres ETF et ETC' : a.priceUnit === 'points' ? 'Indices' : 'Actions et autres actifs'),
     }]]
   }))
 }
@@ -99,6 +117,7 @@ export const ANNUAL_CATEGORIES = [
 // Prepared selections deliberately reserve the sixth slot for a real fund,
 // never an index. Prices and dividends continue to come from shared collectors.
 const BENCHMARK_GROUPS = [
+  ...['swiss-finance','europe-health-expanded','europe-banks-expanded','europe-groups-expanded','uk-stocks','europe-defense-expanded','china-platforms','ev-batteries','japan-technology','japan-groups','india-stocks','asia-banks','cyber-stocks','chip-equipment-design','network-infrastructure','us-platforms','market-operators','us-pharma'].filter(id=>CATEGORIES.find(c=>c.id===id).ids.length>=5).map(id=>[id,'etfIE00B4L5Y983']),
   ['us-stocks', 'etfIE00B5BMR087'], ['us-semiconductors', 'etfIE00B5BMR087'],
   ['us-software', 'etfIE00B5BMR087'], ['payments-finance', 'etfIE00B5BMR087'],
   ['us-consumer', 'etfIE00B5BMR087'], ['everyday-brands', 'etfIE00B5BMR087'],

@@ -148,6 +148,7 @@ for (const item of CATALOG) item.calendarReturns ??= getInstrumentCalendarReturn
 export const ITEM_BY_ID = new Map(CATALOG.map((item) => [item.id, item]))
 
 export function euroReturn(item, year) {
+  if (item.euroCalendarReturns) return item.euroCalendarReturns[year] ?? null
   const original = item.calendarReturns?.[year] ?? item.values[year - 2020]
   if (!Number.isFinite(original)) return null
   if (item.currency === 'EUR') return original

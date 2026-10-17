@@ -141,7 +141,7 @@ export function buildCustomDuel(definition) {
     currency: 'EUR', years, a, b,
     readings: [exposureReading(a), exposureReading(b)],
     sources: [...unique.map((asset) => ({ name: asset.name, isin: asset.isin, url: asset.source, note: asset.note })),
-      ...(unique.some((asset) => asset.currency === 'USD') ? [{ name: 'Taux EUR/USD de fin d’année (BCE)', url: FX_SOURCE, note: 'Conversion annuelle des rendements USD vers EUR.' }] : [])],
+      ...(unique.some((asset) => asset.currency !== 'EUR') ? [{ name: 'Taux de change de fin d’année (BCE)', url: FX_SOURCE, note: 'Conversion des rendements en euros, sans couverture de change.' }] : [])],
   }
   // Avoid explaining the same base twice; make a changed weight explicit.
   if (a.assets.length > 1 && b.assets.length > 1 && a.assets[0].role === 'base' && b.assets[0].role === 'base' && a.assets[0].id === b.assets[0].id && new Set(b.assets.map(asset => asset.role)).size === b.assets.length) {

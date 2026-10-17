@@ -42,12 +42,12 @@ Généré depuis les routes, le catalogue et les observations actives. Régéné
 | company | 157 |
 | household | 29 |
 | index | 52 |
-| instrument | 244 |
+| instrument | 294 |
 | insurance | 7 |
 | lexicon | 44 |
 | reference | 11 |
 | scpi | 8 |
-| series | 341 |
+| series | 390 |
 
 ## Champs des instruments
 
