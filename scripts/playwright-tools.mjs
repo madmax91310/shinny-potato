@@ -45,6 +45,7 @@ import { chromium } from "playwright";
 import { spawn } from "node:child_process";
 import { stat, readFile, mkdir, writeFile } from "node:fs/promises";
 import { DATA_CATALOG } from '../src/data/catalog.js';
+import { maintenanceLinks } from '../src/data/maintenance-links.js';
 import { buildCustomDuel, buildDuel, buildTweet } from '../src/pages/portfolio-duels/lib.js';
 import { getRecipes } from '../src/pages/portfolio-generator/recipes.js';
 import { DUELS } from "../src/pages/portfolio-duels/data.js";
@@ -1010,8 +1011,11 @@ async function testDataSearch(page) {
   await search.fill('DCAM');
   // Le changement de paramètres est une navigation React ; attendre la fiche correspondante.
   await page.locator('.ds-detail').filter({ hasText: 'FR001400U5Q4' }).waitFor();
-  const maintenanceSearch = page.locator('.ds-field').filter({ has: page.getByRole('heading', { name: 'Éligibilité PEA', exact: true }) }).locator('.maintenance-links a').filter({ hasText: 'Rechercher la nouvelle publication' });
-  checks.maintenance = new URL(await maintenanceSearch.getAttribute('href')).searchParams.get('q') === 'site:www.amundietf.fr FR001400U5Q4 fiche mensuelle';
+  const instrumentRecord=DATA_CATALOG.find(record=>record.id==='FR001400U5Q4');
+  const peaField=instrumentRecord.fields.find(field=>field.label==='Éligibilité PEA');
+  const expectedMaintenance=maintenanceLinks(instrumentRecord,peaField);
+  const maintenance=page.locator('.ds-field').filter({ has: page.getByRole('heading', { name: 'Éligibilité PEA', exact: true }) }).locator('.maintenance-links a');
+  checks.maintenance=expectedMaintenance.length>0 && JSON.stringify(await maintenance.evaluateAll(links=>links.map(link=>link.href)))===JSON.stringify(expectedMaintenance.map(link=>link.url));
   const instrumentText = await page.locator('.ds-detail').innerText();
   checks.instrument = instrumentText.includes('FR001400U5Q4') && instrumentText.includes('Euronext Paris') && instrumentText.includes('2026-09-30');
   const aum = page.locator('.ds-field').filter({ has: page.getByRole('heading', { name: 'Encours', exact: true }) });

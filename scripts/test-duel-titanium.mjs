@@ -9,7 +9,8 @@ import { DUEL_EXPOSURE_ART, getDuelArt } from '../src/pages/portfolio-duels/visu
 assert.deepEqual(Object.keys(DUEL_EXPOSURE_ART).sort(), [...new Set(CATALOG.map(a => a.exposure))].sort())
 for (const asset of CATALOG) {
   const art = getDuelArt(asset)
-  assert.equal(art.kind, 'illustration')
+  assert(['illustration','asset-symbol'].includes(art.kind))
+  if(art.kind==='asset-symbol') {assert(['bitcoin.svg','ethereum.svg'].includes(art.mark));assert.equal(art.scene,art.mark)}
   await readFile(`public/asset-art/${art.scene}`)
 }
 assert.equal(getDuelArt(CATALOG.find(a => a.id === 'stoxx600_bnp')).theme, 'europe')

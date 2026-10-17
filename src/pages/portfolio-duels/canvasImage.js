@@ -21,8 +21,9 @@ function fitted(ctx, value, x, y, size, width, color = INK, editorial = false, a
   text(ctx, value, x, y, size, color, editorial, align)
 }
 function label(ctx, value, x, y, width, height = 73) {
-  // Up to two lines, without ellipses: all selected assets remain identifiable.
-  for (let size = 37; size >= 26; size--) {
+  // Preserve exact fund names, including long automatically qualified shares.
+  // A third line fits inside the same row; short names keep their existing size.
+  for (let size = 37; size >= 17; size--) {
     ctx.font = `500 ${size}px Georgia, serif`
     const lines = ['']
     for (const word of value.split(' ')) {
@@ -30,7 +31,7 @@ function label(ctx, value, x, y, width, height = 73) {
       if (lines[i] && ctx.measureText(next).width > width) lines.push(word)
       else lines[i] = next
     }
-    if (lines.length <= 2 && lines.length * size + (lines.length - 1) * 5 <= height && lines.every(line => ctx.measureText(line).width <= width)) {
+    if (lines.length <= 3 && lines.length * size + (lines.length - 1) * 5 <= height && lines.every(line => ctx.measureText(line).width <= width)) {
       lines.forEach((line, i) => text(ctx, line, x, y + i * (size + 5), size, INK, true))
       return
     }
