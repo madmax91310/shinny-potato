@@ -10,7 +10,7 @@ export function markBenchmark(assets, benchmarkId) {
 }
 
 // Curated equity universes only. No return or winning asset influences the draw.
-const EQUITY_GROUPS = new Set(['world', 'europe', 'factors', 'europe-sectors', 'world-sectors',
+export const EQUITY_GROUPS = new Set(['world', 'europe', 'factors', 'europe-sectors', 'world-sectors',
   'themes', 'themes-eur', 'dividends', 'small-value', 'us-stocks', 'us-semiconductors',
   'us-software', 'payments-finance', 'health-stocks', 'europe-industry', 'us-consumer',
   'fr-stocks', 'luxury-stocks', 'aerospace-defense', 'everyday-brands', 'ai-infrastructure',
