@@ -4,6 +4,11 @@ name: Onboard new assets
 # exposures, Yahoo monthly histories and dated closes. Only validated observations are
 # committed back to the same branch; failures keep the previous data and stay listed.
 on:
+  pull_request:
+    paths:
+      - '.github/workflows/onboard-assets.yml'
+      - 'scripts/global-equity-candidates.json'
+      - 'scripts/qualified-exposure-sources.json'
   workflow_dispatch:
     inputs:
       equity_limit:
@@ -13,7 +18,7 @@ on:
         description: Maximum number of ETF listings to qualify in this run
         default: '40'
       qualified_only:
-        description: Space-separated ids of qualified-exposure-sources.json to collect (empty = skip)
+        description: Space-separated ids of qualified-exposure-sources.json to collect (empty = every configured share without a record)
         default: ''
       push:
         description: Commit and push validated observations to the dispatched branch
@@ -27,10 +32,17 @@ jobs:
     permissions:
       contents: write
     concurrency:
-      group: onboard-assets-${{ github.ref }}
+      group: onboard-assets-${{ github.head_ref || github.ref }}
       cancel-in-progress: false
+    env:
+      EQUITY_LIMIT: ${{ inputs.equity_limit || '200' }}
+      ETF_LIMIT: ${{ inputs.etf_limit || '40' }}
+      PUSH: ${{ inputs.push || 'true' }}
+      TARGET_BRANCH: ${{ github.head_ref || github.ref_name }}
     steps:
       - uses: actions/checkout@v7.0.1
+        with:
+          ref: ${{ github.head_ref || github.ref }}
       - uses: actions/setup-python@v7.0.0
         with:
           python-version: '3.12'
@@ -42,9 +54,17 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_monthly_qualification.py'
       - name: Collect qualified iShares exposures
         id: qualified
-        if: inputs.qualified_only != ''
         continue-on-error: true
-        run: python scripts/collect_qualified_exposures.py --apply --output "$RUNNER_TEMP/qualified-exposures.json" --only ${{ inputs.qualified_only }}
+        env:
+          QUALIFIED_ONLY: ${{ inputs.qualified_only }}
+        run: |
+          if [ -z "$QUALIFIED_ONLY" ]; then
+            QUALIFIED_ONLY=$(node -e "const c=require('./scripts/qualified-exposure-sources.json').instruments,r=require('./src/data/qualified-exposure-etfs.json');console.log(c.filter(i=>!r[i.id]).map(i=>i.id).join(' '))")
+          fi
+          if [ -z "$QUALIFIED_ONLY" ]; then echo 'Every configured qualified share already has a record'; exit 0; fi
+          echo "Collecting: $QUALIFIED_ONLY"
+          # shellcheck disable=SC2086
+          python scripts/collect_qualified_exposures.py --apply --output "$RUNNER_TEMP/qualified-exposures.json" --only $QUALIFIED_ONLY
       - name: Classify exact stocks from official complete holdings
         id: classify
         continue-on-error: true
@@ -55,13 +75,13 @@ jobs:
         continue-on-error: true
         run: |
           node scripts/export-equity-candidates.mjs > "$RUNNER_TEMP/equity-candidates.json" 2> "$RUNNER_TEMP/equity-skipped.json" || true
-          python scripts/qualify_monthly_candidates.py --candidates "$RUNNER_TEMP/equity-candidates.json" --limit ${{ inputs.equity_limit }} --apply
+          python scripts/qualify_monthly_candidates.py --candidates "$RUNNER_TEMP/equity-candidates.json" --limit "$EQUITY_LIMIT" --apply
       - name: Qualify exact-share ETF histories
         id: etfs
         continue-on-error: true
         run: |
           node scripts/export-monthly-candidates.mjs > "$RUNNER_TEMP/monthly-candidates.json"
-          python scripts/qualify_monthly_candidates.py --candidates "$RUNNER_TEMP/monthly-candidates.json" --limit ${{ inputs.etf_limit }} --apply
+          python scripts/qualify_monthly_candidates.py --candidates "$RUNNER_TEMP/monthly-candidates.json" --limit "$ETF_LIMIT" --apply
       - name: Promote qualified curated equities
         run: node scripts/sync-global-equities.mjs
       - name: Rebuild derived registries
@@ -89,14 +109,14 @@ jobs:
           if-no-files-found: ignore
           retention-days: 35
       - name: Commit validated observations to the branch
-        if: inputs.push == 'true'
+        if: env.PUSH == 'true'
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add src/data src/pages/dca-profiles scripts/source-snapshots scripts/monthly-automation.json scripts/global-equity-candidates.json scripts/generated-holdings-sources.json scripts/instrument-metadata-sources.json docs public/data
           if git diff --cached --quiet; then echo 'No validated observation to commit'; exit 0; fi
           git commit -m 'Collect validated observations for newly configured assets'
-          git push origin "HEAD:${GITHUB_REF_NAME}"
+          git push origin "HEAD:${TARGET_BRANCH}"
       - name: Report collection outcome
         run: |
           {
