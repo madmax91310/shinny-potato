@@ -73,6 +73,17 @@ class ScpiTests(unittest.TestCase):
         old=copy.deepcopy(previous['records'][0]);old['price']['asOf']='2026-03-31'
         self.assertEqual(refresh(previous,{'remake-live':lambda today:old},TODAY)[0],previous)
 
+    def test_missing_bulletin_waits_until_next_edition_is_due(self):
+        from collect_scpi import AwaitingPublication, next_bulletin_due
+        self.assertEqual(next_bulletin_due('2026-06-30'),dt.date(2026,11,14))
+        self.assertEqual(next_bulletin_due('2026-12-31'),dt.date(2027,5,15))
+        previous={'records':[self.remake()]};previous['records'][0]['snapshot']['asOf']='2026-06-30'
+        def missing(today): raise AwaitingPublication('Missing current official bulletin')
+        result,report=refresh(previous,{'remake-live':missing},dt.date(2026,10,17))
+        self.assertEqual(result,previous);self.assertEqual(report[0]['status'],'waiting');self.assertIn('2026-11-14',report[0]['reason'])
+        self.assertEqual(refresh(previous,{'remake-live':missing},dt.date(2026,11,15))[1][0]['status'],'failure')
+        self.assertEqual(refresh({'records':[]},{'remake-live':missing},dt.date(2026,10,17))[1][0]['status'],'failure')
+
     def test_changed_conditions_fail_closed(self):
         text=(FIXTURES/'iroko-conditions.txt').read_text().replace('six (6) ans','sept (7) ans')
         with self.assertRaises(ValueError): parse_iroko_conditions(text,'Ticket d’entrée Dès 5 000 € Versement des revenus potentiels Mensuel')

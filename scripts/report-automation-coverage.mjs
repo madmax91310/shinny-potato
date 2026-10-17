@@ -16,11 +16,19 @@ const etf=AUTOMATED_ETF, indices=read('src/data/automated-indices.json'), monthl
 const sources=['etf-pilot.json','amundi-etf.json','ssga-etf.json','additional-etf-sources.json','lifestrategy-sources.json','exposure-etf-expansion.json'].flatMap(file=>read(`scripts/${file}`).instruments).concat(qualified.instruments,nonBondSources.instruments);
 const configured=new Set(sources.filter(s=>s.enabled!==false).map(s=>s.isin));
 const instruments=DATA_CATALOG.filter(r=>r.type==='instrument');
-const uncovered=instruments.filter(r=>!configured.has(r.id)||!etf[r.id]);
+// Individual equities are not funds: their sector and country of risk come from the complete
+// iShares holdings collected daily (collect_dca_complete_holdings.py), not from an issuer factsheet.
+const classifications=read('src/data/dca-security-classifications.json');
+const equities=instruments.filter(r=>classifications[r.id]);
+const classified=equities.filter(r=>classifications[r.id].country&&classifications[r.id].sector);
+const classificationAsOf=[...new Set(classified.map(r=>classifications[r.id].asOf))].sort();
+const staleClassifications=classified.filter(r=>(Date.now()-Date.parse(classifications[r.id].asOf))/864e5>45);
+const uncovered=instruments.filter(r=>!classifications[r.id]&&(!configured.has(r.id)||!etf[r.id]));
 const expected=['Frais','Encours','Rendements calendaires','Pays','Secteurs','Principales positions'];
 function fields(r={},id='') { return [Number.isFinite(r.characteristics?.terPct),r.aum?.amount,completeCalendarYears(id,r.performance?.years,new Date().toISOString().slice(0,10)).length,r.countries?.rows?.length,r.sectors?.rows?.length,r.holdings?.rows?.length].map((v,i)=>v?expected[i]:null).filter(Boolean); }
 const today=new Date().toISOString().slice(0,10);
-const count=field=>instruments.filter(({id})=>{const r=etf[id]??{};return field==='ter'?Number.isFinite(r.characteristics?.terPct):field==='performance'?completeCalendarYears(id,r.performance?.years,today).length>0:field==='aum'?Number.isFinite(r.aum?.amount):r[field]?.rows?.length>0;}).length;
+const funds=instruments.filter(r=>!classifications[r.id]);
+const count=field=>funds.filter(({id})=>{const r=etf[id]??{};return field==='ter'?Number.isFinite(r.characteristics?.terPct):field==='performance'?completeCalendarYears(id,r.performance?.years,today).length>0:field==='aum'?Number.isFinite(r.aum?.amount):r[field]?.rows?.length>0;}).length;
 const rows=[
  `# Automatisation des données — état du ${new Date().toISOString().slice(0,10)}`,'',
  'Inventaire courant par champ et motif : [détail des lacunes](automation-gaps.md), avec [version JSON](automation-gaps.json).','',
@@ -29,7 +37,8 @@ const rows=[
  '| Domaine | Couverture active | Fréquence |','|---|---|---|',
  `| Historiques mensuels des simulateurs | ${Object.keys(ASSETS).length}/${Object.keys(ASSETS).length} séries ; ${Object.values(monthly).filter(record => record.consumerScope !== 'catalog').length} collecteurs communs + Bitcoin et or | Marchés : 2, 4, 8 et 16 du mois ; Bitcoin : 2, 4 et 8 ; or : tentatives du 3 au 10 |`,
  `| Parts ETF mensuelles raccordées | ${Object.keys({...read('src/data/automated-etf-monthly.json'),...Object.fromEntries(Object.entries(read('src/data/non-bond-monthly-records.json')).filter(([,r])=>r.consumerScope==='catalog'))}).length} parts exactes ; investissement et performance revenus réinvestis, anniversaire hors distributions | Même collecte mensuelle et reprise quotidienne des échecs |`,
- `| ETF/ETC/ETP | ${Object.keys(etf).length}/${instruments.length} instruments, au moins un champ | Quotidienne |`,
+ `| ETF/ETC/ETP | ${funds.filter(r=>etf[r.id]).length}/${funds.length} instruments, au moins un champ | Quotidienne |`,
+ `| Actions individuelles (secteur et pays) | ${classified.length}/${equities.length} actions ; secteur GICS et pays de risque issus des compositions complètes iShares ; données du ${classificationAsOf[0]}${classificationAsOf.length>1?` au ${classificationAsOf.at(-1)}`:''}${staleClassifications.length?` ; ${staleClassifications.length} classifications de plus de 45 jours (action sortie des fonds sources) : ${staleClassifications.map(r=>r.name).join(', ')}`:''} | Quotidienne ; une action sortie des fonds sources garde sa dernière classification datée |`,
  `| Comparatif ETF | ${comparisons.instruments}/${comparisons.instruments} parts raccordées dans ${comparisons.themes} blocs ; ${comparisons.calendars} calendriers actifs, ${comparisons.waiting.length} absences qualifiées | Quotidienne ; ajout de part contrôlé en CI |`,
  `| Compositions d’indices | ${Object.values(indices).filter(r=>r.facts).length} indices | 3 et 16 du mois |`,
  `| Rendements annuels d’indices | ${Object.values(indices).filter(r=>r.returns).length} indices | 3 et 16 du mois |`,
@@ -64,8 +73,8 @@ const rows=[
  'Ces couvertures ne s’additionnent pas : plusieurs champs concernent le même instrument. Les 23 expositions Amundi à l’indice suivi recouvrent des parts déjà collectées ; elles ne sont pas 23 fonds supplémentaires. Les compositions d’indice, portefeuilles de fonds et paniers de substitution ne sont jamais assimilés. Les simulations choisissent automatiquement la dernière fenêtre complète commune : six ans pour le Générateur, trois à six ans pour les Duels. Les comparatifs alignent les années des produits. Une publication tardive ou un change BCE manquant conserve la dernière période commune ; aucun rendement n’est extrapolé. Les getters historiques et photographies archivées gardent leur période fixe.','',
  'Les performances cumulées ou glissantes publiées par les émetteurs sont suivies séparément des calendriers annuels : elles ne deviennent jamais des années civiles. Les historiques mensuels de cotation gardent leur devise, leur source et leur convention, indépendamment des rendements NAV.','',
  '## Instruments entièrement hors collecte active','',
- ...(uncovered.length ? [] : [`Aucun instrument entièrement hors collecte : les ${instruments.length} instruments ont au moins un champ actif. Les lacunes par champ restent détaillées ci-dessous.`,'']),
- '| ISIN | Instrument | Blocage actuel |','|---|---|---|',
+ ...(uncovered.length ? [] : [`Aucun instrument entièrement hors collecte : les ${funds.length} fonds et ${equities.length} actions ont au moins un champ actif. Les lacunes par champ restent détaillées ci-dessous.`]),
+ ...(uncovered.length ? ['| ISIN | Instrument | Blocage actuel |','|---|---|---|'] : []),
  ...uncovered.map(r=>`| ${r.id} | ${r.name} | ${sources.find(s=>s.isin===r.id)?.qualificationIssue ?? 'Connecteur officiel exact à qualifier ; les données existantes restent manuelles'} |`),'',
  '## Champs restant manuels sur les instruments partiellement couverts','',
  'Les identités, domiciles, modes de réplication, couvertures de change, politiques de distribution, nombres de positions, statuts PEA et cotations ne sont pas raccordés à une actualisation automatique. Les données intermédiaires d’indice/distribution récupérées par certains collecteurs ne suffisent pas : elles ne remplacent pas encore ces registres dans l’application.','',
@@ -88,7 +97,7 @@ const rows=[
  '- Réparation des connecteurs si un émetteur change son schéma, bloque l’accès ou retire une publication : les tâches réessaient et signalent l’échec, mais ne réécrivent pas seules le code.','',
  '## Priorités suivantes','',
  'Les lacunes ne se traitent pas toutes de la même manière : une donnée non applicable (pays actions d’un ETC or) doit rester absente ; un calendrier non encore publié attend sa première année complète ; une source exploitable mais non raccordée nécessite un connecteur.','',
- `1. Compléter les champs des instruments partiellement raccordés et fiabiliser la disponibilité des pages WisdomTree et du miroir des fiches BNP. ${uncovered.length} instruments restent entièrement hors collecte. Les pays, secteurs et dix positions du Dow Jones Amundi sont raccordés à ses tableaux d’indice datés, en conservant les caractéristiques de la part. Les encours CoinShares sont raccordés aux widgets officiels, avec leur Rate Date réelle ; les pages WisdomTree accessibles fournissent leurs encours datés ; compléter les calendriers exacts et compositions restant listés ci-dessus. CoinShares : les fiches publient un rendement crypto de référence, qui ne remplace pas celui de la part après frais ou staking. Distinguer explicitement les données non applicables, non publiées et réellement à connecter.`,
+ `1. Compléter les champs des instruments partiellement raccordés et fiabiliser la disponibilité des pages WisdomTree et du miroir des fiches BNP. ${uncovered.length ? `${uncovered.length} instruments restent entièrement hors collecte. ` : ''}Les pays, secteurs et dix positions du Dow Jones Amundi sont raccordés à ses tableaux d’indice datés, en conservant les caractéristiques de la part. Les encours CoinShares sont raccordés aux widgets officiels, avec leur Rate Date réelle ; les pages WisdomTree accessibles fournissent leurs encours datés ; compléter les calendriers exacts et compositions restant listés ci-dessus. CoinShares : les fiches publient un rendement crypto de référence, qui ne remplace pas celui de la part après frais ou staking. Distinguer explicitement les données non applicables, non publiées et réellement à connecter.`,
  '2. Compléter les poids du top dix Russell 1000 encore non publiés ; les deux Dividend Aristocrats utilisent désormais leurs fiches S&P exactes (tables natives et lecture concordante des légendes sectorielles à deux résolutions) en conservant exactement la variante de rendement et la devise existantes. Suivre le renouvellement annuel automatique ; les sources sans nouveau millésime gardent leur dernière période documentée.',
  '3. Étendre les sources renouvelables aux produits et paramètres encore hors des collectes économiques et réglementaires déjà qualifiées. Les caractéristiques (réplication, distribution, domicile, couverture de change, PEA) sont exclues des priorités à la demande de l’utilisateur.',
  '4. Fiabiliser la disponibilité des collecteurs ; conserver la distinction entre taux réglementaire effectif, moyenne de marché et rendement d’un produit individuel.',

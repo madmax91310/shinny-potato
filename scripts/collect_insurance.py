@@ -87,7 +87,11 @@ def check_contract_identity(soup, id_, today):
             'checkedAt': today.isoformat(), 'sourceUrl': contract_url(id_),
             'statement': 'Linxea Avenir 2+ — Successeur de Linxea Avenir 2',
             'sha256': hashlib.sha256(str(soup).encode()).hexdigest()})
-    raise ValueError('Wrong contract identity')
+    # Evidence for the reviewer: what the official page now declares instead of the name.
+    hero_text = ' '.join(hero.get_text(' ', strip=True).split())[:160] if hero else ''
+    raise ValueError(f"Wrong contract identity | attendu : « {config['name']} » ; titre actuel : « {actual[:80] or 'absent'} »"
+                     f" ; canonique : {canonical.get('href') if canonical else 'absente'}"
+                     + (f' ; en-tête : « {hero_text} »' if hero_text else ''))
 
 
 def parse_contract(html, id_, today):

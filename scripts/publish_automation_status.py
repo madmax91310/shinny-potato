@@ -259,6 +259,16 @@ def update_status(state, run, jobs, reports=None):
     return result
 
 
+def read_large_file(api, path, ref):
+    """The contents API leaves `content` empty above 1 MB (the radar feed is larger):
+    read the blob by its sha in that case, which works up to 100 MB."""
+    file = api(f'/contents/{path}?ref={ref}')
+    content = file.get('content') if file.get('encoding') == 'base64' else None
+    if not content:
+        content = api(f"/git/blobs/{file['sha']}")['content']
+    return json.loads(base64.b64decode(content))
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--event', type=pathlib.Path)
@@ -344,8 +354,7 @@ def main():
     context = json.loads(subprocess.run(['node', 'scripts/build-monitoring-context.mjs'], check=True, capture_output=True, text=True, timeout=120).stdout)
     radar = None
     try:
-        feed = api('/contents/feed.json?ref=radar-data')
-        candidate = json.loads(base64.b64decode(feed['content']))
+        candidate = read_large_file(api, 'feed.json', 'radar-data')
         checked = timestamp(candidate.get('checkedAt'))
         age = (dt.datetime.now(dt.timezone.utc) - checked).total_seconds() if checked else -1
         if candidate.get('schemaVersion') == 1 and isinstance(candidate.get('errors'), list) and 0 <= age <= 18 * 3600:

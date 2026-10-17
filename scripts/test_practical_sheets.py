@@ -57,5 +57,15 @@ class CollectionTests(unittest.TestCase):
         config={**self.config(),'kind':'discourse','author':'Official'}
         raw=json.dumps({'post_stream':{'posts':[{'username':'Someone','admin':False,'cooked':'ETF indice '*100}]}}).encode()
         with self.assertRaises(ValueError): c.parse(raw,config)
+    def test_sec_requests_declare_a_contact_user_agent(self):
+        agent=c.user_agent('https://www.sec.gov/divisions/investment/13ffaq')
+        self.assertNotIn('Mozilla',agent);self.assertRegex(agent,r'\S+@\S+\.\w+')
+        self.assertEqual(c.user_agent('https://data.sec.gov/x'),agent)
+        self.assertIn('Mozilla',c.user_agent('https://www.amf-france.org/x'))
+        self.assertIn('Mozilla',c.user_agent('https://notsec.gov.example/x'))
+        with patch('urllib.request.urlopen') as fetch:
+            fetch.return_value.__enter__.return_value.read.return_value=self.document()
+            c.collect('test',{**self.config(),'url':'https://www.sec.gov/x'},{},'2026-10-17')
+        self.assertEqual(fetch.call_args[0][0].get_header('User-agent'),agent)
 
 if __name__=='__main__': unittest.main()

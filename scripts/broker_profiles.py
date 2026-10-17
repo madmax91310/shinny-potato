@@ -31,9 +31,29 @@ def clean(raw):
         raw = soup.get_text(' ', strip=True)
     return re.sub(r'\s+', ' ', raw.replace('\u200b',' ').replace('\xa0',' ').replace('\x07','')).strip()
 
+def closest_passage(pattern, text, limit=260):
+    """Best word-level approximation of a missing clause, so a reviewer sees what the
+    document says now without downloading it. Evidence only: never used as a value."""
+    import difflib
+    wanted = re.sub(r'\\[sdwSDW][+*?]?|\(\?[:!=]|[()\[\]?*+|^${}\\]|\.\*', ' ', pattern).lower().split()
+    words = text.split()
+    if len(wanted) < 3 or not words: return None
+    size, step = len(wanted), max(1, len(wanted)//4)
+    best, at = 0, 0
+    for start in range(0, max(1, len(words)-size+1), step):
+        matcher = difflib.SequenceMatcher(None, wanted, [w.lower() for w in words[start:start+size]], autojunk=False)
+        if matcher.quick_ratio() > best and (ratio := matcher.ratio()) > best: best, at = ratio, start
+    for start in range(max(0, at-step), min(len(words), at+step+1)):
+        ratio = difflib.SequenceMatcher(None, wanted, [w.lower() for w in words[start:start+size]], autojunk=False).ratio()
+        if ratio > best: best, at = ratio, start
+    if best < .4: return None
+    return ' '.join(words[at:at+size+8])[:limit]
+
 def find(pattern, text):
     match = re.search(pattern, text, re.I)
-    if not match: raise ValueError('Clause officielle absente ou modifiée : '+pattern)
+    if not match:
+        near = closest_passage(pattern, text)
+        raise ValueError('Clause officielle absente ou modifiée : '+pattern+(f' | Passage actuel le plus proche : « {near} »' if near else ' | Aucun passage proche dans le document actuel'))
     return match
 
 def amount(value): return float(value.replace(' ','').replace(',','.'))
