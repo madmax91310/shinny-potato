@@ -19,10 +19,11 @@ for (const id of ['etfImie','etfVwce','etfEqualWeight','etfMinVol','etfWqdv','et
 for (const [id, asset] of Object.entries(ETF_MONTHLY_HISTORIES)) {
   assert.equal(ASSETS[id], asset)
   assert(ASSET_ORDER.includes(id))
-  assert.equal(ANNIVERSAIRE_ELIGIBLE_ASSETS.some(a => a.id === id), Boolean(asset.anniversaryPoints?.length))
+  assert.equal(ANNIVERSAIRE_ELIGIBLE_ASSETS.some(a => a.id === id), Boolean(asset.anniversaryPoints?.length && getValidYearsBackOptions(id,new Date()).length), id)
   assert(ANNIVERSARY_ART[id] && PERFORMANCE_ART[id] && INVESTMENT_ART[id])
   assert.equal(getPerformanceAssetId(asset.isin), getAnnualReturnStartYears(id).length ? id : null)
-  assert.match(performanceBasis(id), asset.instrumentType === 'ETC' ? /cours de l’ETC/ : /revenus réinvestis/)
+  const priceInstrument = ['ETC','ETN','ETP'].includes(asset.instrumentType)
+  assert.match(performanceBasis(id), priceInstrument ? new RegExp(`cours de l’${asset.instrumentType}`) : /revenus réinvestis/)
   const start = asset.points[0].date
   for (const mode of ['lump', 'dca']) {
     const expected = (mode === 'lump' ? 100 / asset.points[0].price : asset.points.reduce((n, p) => n + 100 / p.price, 0)) * asset.points.at(-1).price
@@ -42,7 +43,7 @@ for (const [id, asset] of Object.entries(ETF_MONTHLY_HISTORIES)) {
   const rows = getAnnualReturns(id, years[0])
   assert(rows.every(r => r.startDate.endsWith('-12') && r.endDate.endsWith('-12')))
   const annual = buildPerformanceDepuisText({ format: FORMATS.PERFORMANCE_DEPUIS, mode: MODES.SIMPLE, assetId: id, year: years[0] })
-  assert(annual.includes(asset.currency) && annual.includes(asset.instrumentType === 'ETC' ? 'cours de l’ETC' : 'revenus réinvestis'))
+  assert(annual.includes(asset.currency) && annual.includes(priceInstrument ? `cours de l’${asset.instrumentType}` : 'revenus réinvestis'))
   } else {
     assert(asset.points[0].date > `${clock.getUTCFullYear()-2}-12`, `${id}: unexpected missing completed annual history`);
   }
@@ -65,6 +66,7 @@ for (const [id, asset] of Object.entries(ETF_MONTHLY_HISTORIES)) {
   assert.equal(latest.currency, asset.currency)
   assert.match(latest.method, /cours brut/)
   assert.equal(resolveAnniversaryLevel(id, '', new Date(`${latest.asOf}T12:00:00Z`)).value, latest.value)
+  if (!getValidYearsBackOptions(id,new Date()).length) continue
   const text = buildAnniversaireText({ format: FORMATS.ANNIVERSAIRE, mode: MODES.SIMPLE, assetId: id, yearsBack: 1 }, '100')
   assert(text.includes(asset.label))
   assert(!text.includes('[à saisir]'))

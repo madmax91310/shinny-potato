@@ -1,3 +1,4 @@
+import { compactLiteral } from './project-tool-data.mjs'
 import { FEE_COMPARISON_ASSETS } from '../src/data/fee-comparison-assets.js'
 
 // Pure projection of the authoritative registries at build/dev startup.
@@ -8,7 +9,7 @@ export function projectFeeCatalog() {
     name: 'project-fee-catalog', enforce: 'pre',
     transform(code, id) {
       if (!id.replaceAll('\\', '/').endsWith('/src/data/fee-comparison-assets.js')) return
-      return { code: `export const FEE_COMPARISON_ASSETS = ${JSON.stringify(FEE_COMPARISON_ASSETS)};`, map: null }
+      return { code: compactLiteral(FEE_COMPARISON_ASSETS).replace('export default ', 'export const FEE_COMPARISON_ASSETS = '), map: null }
     },
   }
 }

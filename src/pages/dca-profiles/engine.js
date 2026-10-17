@@ -1,8 +1,4 @@
-import legacyReferences from './exposures.json' with {type:'json'}
-import extra0 from './exposures-extra-0.json' with {type:'json'}
-import extra1 from './exposures-extra-1.json' with {type:'json'}
-import extra2 from './exposures-extra-2.json' with {type:'json'}
-const references={...legacyReferences,...extra0,...extra1,...extra2}
+import { references, exposureRecords } from './records.js'
 import { ASSETS } from './data.js'
 import { publishedExposure } from './exposure.js'
 export { references }
@@ -34,6 +30,7 @@ export function validateProfile(profile) {
 export function analyzeProfile(profile) {
   const errors=validateProfile(profile)
   if(errors.length) return {errors}
+  if(!profile.lines.every(line=>exposureRecords.isReady(line.asset))) return {errors:['Chargement des expositions…']}
   const monthly=profile.imageOnly?0:profile.lines.reduce((s,l)=>s+l.amount,0)
   const changes=profile.lines.map(l=>({...l,share:monthly?l.amount/monthly*100:0,delta:monthly?l.amount/monthly*100-l.weight:0})).sort((a,b)=>Math.abs(b.delta)-Math.abs(a.delta))
   const fields=Object.fromEntries(['countries','sectors'].map(field=>[field,publishedExposure(profile.lines,references,field)]))

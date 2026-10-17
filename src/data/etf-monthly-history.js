@@ -15,6 +15,7 @@ export function buildEtfMonthlyHistories(records = RECORDS) {
       mic: record.mic, currency: record.currency, priceMethod: 'adjusted',
       periodStart: record.periodStart, periodEnd: record.periodEnd,
       checkedAt: record.checkedAt, method: record.method, sourceUrls: record.sourceUrls,
+      ...(record.qualificationCoverage ? {methodNote:`Historique continu qualifié depuis ${record.periodStart}. Les mois antérieurs non vérifiés ne sont ni interpolés ni remplacés.`,qualificationCoverage:record.qualificationCoverage} : {}),
       points: record.points.map(([date, price]) => ({ date, price })),
       ...(record.anniversaryPoints?.length ? { anniversaryPoints: record.anniversaryPoints.map(([date, price]) => ({ date, price })) } : {}),
     }]))

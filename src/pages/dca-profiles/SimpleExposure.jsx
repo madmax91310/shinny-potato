@@ -1,3 +1,5 @@
+import { useSelectedRecords } from '../../lib/use-selected-records.js'
+import { exposureRecords } from './records.js'
 import { readPreference, writePreference } from '../../lib/publication-preferences.js'
 import { useEffect, useRef, useState } from 'react'
 import PageHeader from '../../design-system/PageHeader'
@@ -24,6 +26,7 @@ export default function SimpleExposure({isin}){
  const revision=useRef(0)
  useEffect(()=>()=>{revision.current++},[])
  const profile={id:'expositions',name:'',scope:'Portefeuille investi',imageOnly:true,lines,exposureLimit}
+ const records = useSelectedRecords(lines.map(line=>line.asset), exposureRecords)
  const analysis=analyzeProfile(profile)
  const total=lines.reduce((sum,line)=>sum+(Number.isFinite(line.weight)?line.weight:0),0)
  const options=searchAssets('','').filter(key=>!lines.some(line=>line.asset===key)).map(key=>({id:key,label:catalog[key]?.name||ASSETS[key][1],isin:references[key]?.isin,search:[...(references[key]?.aliases||[]),...(references[key]?.tickers||[])].join(' '),group:references[key]?.kind==='equity'?'Actions':exposureGroup({name:catalog[key]?.name||ASSETS[key][1]}),badges:references[key]?.pea===true?['PEA']:[]}))
@@ -41,6 +44,7 @@ export default function SimpleExposure({isin}){
  }
  function download(){const link=document.createElement('a');link.href=preview;link.download='epargnant-libre-expositions.png';startPublicationDownload(link);setFeedback('Téléchargement lancé.')}
  return <div className="dca-profiles-scope dca-simple">
+ {!records.ready&&<p role="status">{records.error?<>Les expositions n’ont pas pu être chargées. <button onClick={records.retry}>Réessayer</button></>:"Chargement des expositions…"}</p>}
   <PageHeader title="Actifs & expositions" subtitle="Ajoute tes actifs, indique leurs pourcentages et choisis les donuts de ton image."/>
   <div className="dca-simple-grid">
    <section className="dca-simple-card" aria-label="Composer les expositions">

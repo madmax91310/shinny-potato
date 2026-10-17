@@ -35,6 +35,20 @@ entries.push(...'gold-miners-vaneck or support-or support-or_wisdomtree support-
 entries.push(['support-argent', { theme: 'silver', scene: 'etf-night/silver.webp', kind: 'illustration' }])
 entries.push(...'bitcoin support-bitcoin_wisdomtree support-bitcoin_etcgroup support-bitcoin_21shares'.split(' ').map(id => [id, { theme: 'bitcoin', mark: 'bitcoin.svg', kind: 'asset-symbol' }]))
 entries.push(['support-ethereum', { theme: 'ethereum', mark: 'ethereum.svg', kind: 'asset-symbol' }])
+// Exact-share presentations reuse the reviewed exposure scenes.
+const routingScenes = {
+ america: 'LU1681038672 IE00B3XXRP09 IE00BFMXXD54 IE000XZSV718 FR0011550185 FR0013412004 IE00B52SFT06 FR0007056841 IE000QDFFK00',
+ europe: 'LU3180074463 FR0007054358 LU0380865021 IE0008471009 IE00B4K6B022 LU1681040223 LU0328475792 DE0002635307 LU0908500753 FR0011550193 IE0008470928 IE00B1YZSC51 IE00BKWQ0Q14 LU0274209237 IE00BK5BQX27 IE00B945VV12',
+ world: 'IE0003XJA0J9 IE0009HF1MK9 IE00BFY0GT14 IE00BJ0KDQ92 IE00BK1PV551 IE0002XZSHO1 IE00BD4TXV59 IE000716YHJ7 IE0000QLH0G6 IE00B3RBWM25 IE000L6ZMMC4 IE00BK5BQV03 LU2903252349 FR0011440478 IE00BTJRMP35 IE00B3VVMM84 FR001400ZGO4',
+ asia: 'FR0011871078 FR0013411980 FR0013412012 LU2089238385 LU1875395870 LU2196470426 IE00B02KXK85 IE00BJ5JPG56 IE00BQT3WG13',
+ property: 'FR0011869304', bonds: 'FR0013346681', finance: 'LU1829219390',
+ chip: 'IE00BDVPNG13 IE00BMC38736 IE000C6ITGC8 IE000W8WMSL2 DE000A0H08Q4',
+ batteries: 'IE00BKLF1R75', robotics: 'IE00BLCHJB90', nuclear: 'IE000NDWFGA5', security: 'IE00BMH5Y871',
+ resources: 'LU1834983634 IE000UL6CLP7', defense: 'LU3038520774 IE0002Y8CX98',
+ commodities: 'GB00B15KXQ89 IE00B4556L06 IE00B4LHWP62',
+}
+for (const [theme, isins] of Object.entries(routingScenes))
+ entries.push(...isins.split(' ').map(isin => [`presentation-${isin.toLowerCase()}`, {theme,scene:`etf-night/${theme}.webp`,kind:'illustration'}]))
 if (new Set(entries.map(([id]) => id)).size !== entries.length) throw new Error('Identité ETF dupliquée')
 export const ETF_ART = Object.freeze(Object.fromEntries([...entries, ...ROUND3_FUND_SHEETS.map(r=>[r.id,{theme:r.scene,scene:`etf-night/${r.scene}.webp`,kind:'illustration'}]), ...[...QUALIFIED_EXPOSURE_SHEETS, ...LIFESTRATEGY_SHEETS, ...NON_BOND_SHEETS].map(r=>[r.id,{theme:r.scene,scene:`etf-night/${r.scene}.webp`,kind:'illustration'}])]))
 export function getETFArt(id) {

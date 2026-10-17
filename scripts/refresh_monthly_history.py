@@ -38,6 +38,8 @@ def yahoo_chart(body, config, interval):
     data = chart['result'][0]; meta = data['meta']
     if meta['symbol'] != config['symbol'] or meta['currency'] != config['currency'] or meta['dataGranularity'] != interval:
         reject('Wrong Yahoo identity/currency/interval')
+    if config.get('yahooInstrumentType') and meta.get('instrumentType') != config['yahooInstrumentType']:
+        reject('Qualified listing instrument type changed')
     zone = meta['exchangeTimezoneName']
     if config.get('timezone') and zone != config['timezone']:
         reject('Yahoo exchange timezone changed')
@@ -90,8 +92,19 @@ def collect_yahoo(config, now, fetch=get_json):
             buckets[key] = close
     points, proof_rows, anniversary = [], [], []
     expected = list(months(config['periodStart'], end))
-    if set(final) != set(expected) or (set(buckets) != set(expected) and not config.get('allowMissingMonthly')):
+    qualifying_suffix = config.get('qualifyContiguousSuffix') is True
+    if qualifying_suffix and (config.get('consumerScope') != 'catalog' or config.get('field') != 'adjclose'):
+        reject('Contiguous suffix qualification requires an exact fund share')
+    missing = [key for key in expected if key not in final or (key not in buckets and not config.get('allowMissingMonthly'))]
+    excluded = []
+    if missing and qualifying_suffix:
+        last_missing = max(missing)
+        excluded.append({'through':last_missing,'reason':'Incomplete daily/monthly coverage before the retained continuous window'})
+        expected = [key for key in expected if key > last_missing]
+    elif set(final) != set(expected) or (set(buckets) != set(expected) and not config.get('allowMissingMonthly')):
         reject('Incomplete/stale Yahoo history')
+    if not expected:
+        reject('No complete continuous month remains')
     windows={}
     window_months=set(config.get('dailyWindowMonths', []))
     # A qualified exact-share candidate can verify a conflicting monthly candle
@@ -100,7 +113,7 @@ def collect_yahoo(config, now, fetch=get_json):
         if config.get('consumerScope') != 'catalog' or config.get('field') != 'adjclose':
             reject('Monthly discrepancy verification requires an exact adjusted fund share')
         window_months |= {key for key in expected if key in buckets and abs(final[key][1]-buckets[key]) > max(.02,final[key][1]*1e-7)}
-        config['dailyWindowMonths'] = sorted(window_months)
+        # Generated verification windows are evidence, not a mutation of the registered source.
     sparse_ends=config.get('verifiedSparseMonthEnds', {})
     if sparse_ends and (config.get('consumerScope') != 'catalog' or config.get('field') != 'adjclose'
             or any(k not in expected or not isinstance(v,str) or not v.startswith(k+'-') for k,v in sparse_ends.items())):
@@ -129,7 +142,12 @@ def collect_yahoo(config, now, fetch=get_json):
             and key in buckets and key in windows and (boundary-date).days <= 10
             and abs(close-buckets[key]) <= max(.02, close * 1e-7))
         if ((boundary-date).days > 7 and not sparse_verified) or abs(close-checked_close) > max(.02, close * 1e-7):
-            reject(f'Monthly close differs from final daily session: {key}, session {date}, daily {close}, check {checked_close}')
+            reason = f'Monthly close differs from final daily session: {key}, session {date}, daily {close}, check {checked_close}'
+            if not qualifying_suffix:
+                reject(reason)
+            excluded.append({'through':key,'reason':reason})
+            points.clear(); proof_rows.clear(); anniversary.clear()
+            continue
         if config['symbol'] == 'ETH-USD':
             days = [r[0] for r in daily if r[0].strftime('%Y-%m') == key]
             if len(days) != (boundary - dt.date.fromisoformat(key+'-01')).days:
@@ -141,7 +159,13 @@ def collect_yahoo(config, now, fetch=get_json):
                            **({'rejectedMonthlyClose':buckets.get(key), 'verificationReason':'Registered historical candle discrepancy; exact daily month-end window agrees'} if key in window_months else {}),
                            **({'sparseMonthEndSession':date.isoformat(),'verificationReason':'Registered sparse quoted session agrees with monthly candle and independent daily window'} if sparse_verified else {}),
                            **({'windowClose':windows[key]['close'],'windowUrl':windows[key]['url']} if key in windows else {})})
-    return {'points': points, 'anniversaryPoints': anniversary, 'sourceUrls': list(urls.values())+[v['url'] for v in windows.values()],
+    if not points:
+        reject('No verified continuous month remains')
+    qualification = ({'periodStart':points[0][0], 'qualificationCoverage':{
+        'requestedStart':config['periodStart'],'retainedStart':points[0][0], 'excluded':excluded,
+        'method':'Latest continuous suffix of independently verified full months; no missing month filled',
+    }} if excluded else {})
+    return {**qualification, **({'verifiedDailyWindowMonths':sorted(window_months)} if window_months else {}), 'points': points, 'anniversaryPoints': anniversary, 'sourceUrls': list(urls.values())+[v['url'] for v in windows.values()],
             'timezone': zone, 'proofRows': proof_rows, 'rawResponse': raw}
 
 

@@ -180,7 +180,7 @@ export function getBenchmarkPerformance(startYm, endYm) {
 export function performanceBasis(assetId) {
   const asset = ASSETS[assetId];
   if (ANNIVERSARY_INDEX_VARIANTS[assetId]) return ANNIVERSARY_INDEX_VARIANTS[assetId];
-  if (asset.instrumentType === 'ETC') return `${asset.currency} · cours de l’ETC`;
+  if (['ETC','ETN','ETP'].includes(asset.instrumentType)) return `${asset.currency} · cours de l’${asset.instrumentType}`;
   if (asset.priceMethod === 'adjusted') return `${asset.currency} · revenus réinvestis`;
   if (assetId === 'or') return `${asset.currency} · moyennes mensuelles du prix de l’or`;
   if (assetId === 'silver') return `${asset.currency} · futures COMEX, hors frais et roulement`;
@@ -232,9 +232,9 @@ export const ANNIVERSAIRE_ELIGIBLE_ASSETS = [
     currency: asset.currency, sourceCredit: asset.sourceCredit, priceUnit: 'points',
     anniversaryVariant: ANNIVERSARY_INDEX_VARIANTS[id],
   })),
-];
+].filter(asset => getValidYearsBackOptions(asset.id, new Date()).length > 0);
 
 export { indexToYm };
 
 // La liste explique les absences dans l’interface, sans supprimer les actifs de la base.
-export const ANNIVERSAIRE_EXCLUDED_ASSETS = MARKET_ASSETS.filter(a => ANNIVERSAIRE_EXCLUDED_IDS.has(a.id));
+export const ANNIVERSAIRE_EXCLUDED_ASSETS = MARKET_ASSETS.filter(a => !ANNIVERSAIRE_ELIGIBLE_ASSETS.some(eligible=>eligible.id===a.id));

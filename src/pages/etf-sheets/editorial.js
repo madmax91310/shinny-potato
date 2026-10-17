@@ -363,7 +363,7 @@ export function getPresentationCopy(etf) {
         ? 'Dans tes ETF obligataires, tu regardes surtout la durée ou la qualité des emprunteurs ?'
         : 'Tu détiens déjà cette exposition dans ton portefeuille ?'
     : copy.question
-  return { ...copy, question, location: frenchLocation(copy.location), aum: copy.aum.replace(/^(?:Part|Fonds)\s*:\s*/, '') }
+  return { ...copy, question, location: copy.location ? frenchLocation(copy.location) : null, aum: copy.aum.replace(/^(?:Part|Fonds)\s*:\s*/, '') }
 }
 
 export function presentationTicker(etf) {

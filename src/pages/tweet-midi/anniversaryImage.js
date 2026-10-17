@@ -1,8 +1,8 @@
 import { currencySymbol } from '../investment-calculator/math.js'
 import { startPublicationDownload } from '../../design-system/publicationActions.js'
 import { resolveAnniversaryLevel } from '../../data/anniversary-levels.js'
-import { MONTHS_FULL } from '../../data/market-history.js'
-import { getHistoricalPrice, ymForYearsBack, fmtYm } from './data/marketHistory.js'
+import { MONTHS_FULL } from '../../data/history-parameters.js'
+import { getHistoricalPrice, ymForYearsBack, fmtYm, anniversaryRecords } from './data/anniversaryHistory.js'
 import { getMarketAsset, MODES, TODAY } from './engines/anniversaire.js'
 import { ANNIVERSARY_ART, loadArtImage, loadEditorialFont, drawTitaniumMark } from './anniversaryArt.js'
 
@@ -74,6 +74,7 @@ function panel(ctx, snap, images, { x = 0, scale = 1, period = true, yearsBack }
 
 export async function renderAnniversaryImage(item, currentRaw, currentRawB = '') {
   const comparative = item.mode === MODES.COMPARATIF
+  await Promise.all((comparative ? [item.assetIdA,item.assetIdB] : [item.assetId]).map(id=>anniversaryRecords.load(id)))
   const snapshots = [snapshot(item,currentRaw,comparative ? item.assetIdA : item.assetId)]
   if (comparative) snapshots.push(snapshot(item,currentRawB,item.assetIdB))
   const images = await Promise.all(snapshots.map(async snap => ({

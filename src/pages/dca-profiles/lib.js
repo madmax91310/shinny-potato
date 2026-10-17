@@ -1,4 +1,4 @@
-import { analyzeProfile, prepareProfile, references, pct } from './engine.js'
+import { validateProfile, prepareProfile, references, pct } from './engine.js'
 export const compactEuro = n => `${n.toLocaleString('fr-FR', {useGrouping:false, maximumFractionDigits:2})}€`
 export function incomeLabel(profile) {
   if (/retrait/i.test(profile.job || '')) return 'Retraite'
@@ -36,7 +36,7 @@ export function portfolioComment(profile) {
 }
 export function buildTweetText(input) {
   const profile = input.lines.every(l => Number.isFinite(l.weight)) ? input : prepareProfile(input)
-  const a = analyzeProfile(profile)
+  const a = {errors:validateProfile(profile),monthly:profile.imageOnly?0:profile.lines.reduce((sum,line)=>sum+line.amount,0)}
   if (a.errors.length) return ''
   const intro = `${profile.emoji || '👤'} ${[profile.name,profile.age && `${profile.age} ans`,profile.job].filter(Boolean).join(', ')}`
   const income = profile.income ? `💸 ${incomeLabel(profile)} : ${compactEuro(profile.income)}/mois` : ''

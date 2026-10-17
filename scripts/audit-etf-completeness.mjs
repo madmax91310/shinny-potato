@@ -5,17 +5,39 @@ import { ETFS } from '../src/data/etf-cards.js';
 import { REVIEWED_PERFORMANCE_META } from '../src/data/instrument-performance-review.js';
 import { getAnnualPerformance, performanceEntries, formatAnnualPerformance, performanceImageHeading } from '../src/pages/etf-sheets/annualPerformance.js';
 import { DATA_CATALOG } from '../src/data/catalog.js';
+import { ROUTING_PRESENTATION_FACTS } from '../src/data/routing-presentation-facts.js';
+import { getPreferredInstrumentListing } from '../src/data/instrument-listings.js';
+import { getInstrumentFacts } from '../src/data/instrument-facts.js';
 const capture = JSON.parse(readFileSync(new URL('./source-snapshots/etf-completeness-2026-10-04.json', import.meta.url)));
 const today = new Date().toISOString().slice(0, 10);
 const unpublished = new Set(capture.unpublished);
 // A newly qualified exact-share calendar resolves the archived absence/conflict.
 // Its values, currency, URL and verification date are checked against the active record below.
 const sourceConflicts = new Set(capture.sourceConflicts.filter(isin => !AUTOMATED_ETF[isin]?.performance));
-let annual = 0, other = 0;
+let annual = 0, other = 0, withoutPublishedPerformance = 0;
 for (const etf of ETFS) {
-  assert(etf.listing?.ticker && etf.listing.exchange && etf.listing.currency, `${etf.isin}: cotation manquante`);
-  for (const key of ['positions', 'distribution', 'location', 'aum', 'ter']) assert(etf[key] && !/non document|inconnu|\bundefined\b|\bNaN\b/i.test(etf[key]), `${etf.isin}: ${key} absent`);
+  const observed = ROUTING_PRESENTATION_FACTS[etf.isin];
+  const facts = observed && getInstrumentFacts(etf.isin);
+  // Routing-only presentations can omit unobserved structure/listings. Existing
+  // complete cards keep their strict contract; missing facts must never be inferred.
+  if (!observed || etf.listing) assert(etf.listing?.ticker && etf.listing.exchange && etf.listing.currency, `${etf.isin}: cotation manquante`);
+  if (observed) {
+    assert(etf.presentationOnly, `${etf.isin}: incomplete structure cannot enter automatic portfolios`);
+    assert.deepEqual(etf.listing, getPreferredInstrumentListing(etf.isin));
+    assert.equal(etf.distribution, facts.distribution);
+    assert.equal(etf.location, facts.location);
+    assert(observed.characteristicsSource.url && observed.characteristicsSource.checkedAt <= today);
+  }
+  for (const key of ['positions', 'distribution', 'location', 'aum', 'ter']) {
+    if (observed && ['distribution','location'].includes(key) && facts[key] === null) continue;
+    assert(etf[key] && !/non document|inconnu|\bundefined\b|\bNaN\b/i.test(etf[key]), `${etf.isin}: ${key} absent`);
+  }
   const series = getAnnualPerformance(etf);
+  if (observed && !series) {
+    assert(!AUTOMATED_ETF[etf.isin]?.performance && !capture.performances[etf.isin], `${etf.isin}: observed performance must not be dropped`);
+    withoutPublishedPerformance++;
+    continue;
+  }
   assert(series, `${etf.isin}: bloc de performance absent`);
   assert.equal(series.values.length, 6);
   assert(series.values.every(v => v === null || Number.isFinite(v)));
@@ -57,4 +79,4 @@ const stoxx = ETFS.find(e => e.isin === 'IE00B53L3W79');
 assert.deepEqual(getAnnualPerformance(stoxx).values, [-2.89, 23.98, -9.04, 22.78, 11.54, 21.78]);
 for (const isin of ['FR001400U5Q4', 'IE0000N55FP4', 'FR0014017NX3', 'IE00BM8R0J59', ...sourceConflicts]) assert(getAnnualPerformance(ETFS.find(e => e.isin === isin)).values.every(v => v === null));
 for (const isin of ['IE00BKPSFC54', 'IE00BMW42413', 'IE00BKPX3K41', 'DE000A27Z304']) assert.equal(getAnnualPerformance(ETFS.find(e => e.isin === isin)).values[0], null, `${isin}: année 2020 incomplète publiée`);
-console.log(`${ETFS.length} cotations ; ${annual} historiques annuels, ${other} performances sur périodes datées, ${unpublished.size} parts sans historique publié et ${sourceConflicts.size} conflits de sources explicitement signalés.`);
+console.log(`${ETFS.length} présentations ; ${annual} historiques annuels, ${other} performances sur périodes datées, ${withoutPublishedPerformance} nouvelles fiches sans performance publiée, ${unpublished.size} parts sans historique publié et ${sourceConflicts.size} conflits de sources explicitement signalés.`);

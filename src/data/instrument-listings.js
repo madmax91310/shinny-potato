@@ -1,3 +1,4 @@
+import { REFRESHED_LISTINGS } from './qualified-listings.js';
 import { PEA_SECTOR_COMPLETION } from './pea-sector-completion.js';
 import { NON_BOND_LISTINGS } from './non-bond-expansion.js';
 import { LIFESTRATEGY_LISTINGS } from './lifestrategy.js';
@@ -8,7 +9,7 @@ import { EXPOSURE_ADDITIONS } from './exposure-additions.js';
 // Cotations contrôlées le 30/09/2026 auprès des émetteurs et des places.
 // Sous-ensemble documenté, pas une liste exhaustive des marchés disponibles.
 // currency est la devise de négociation, jamais celle du fonds par déduction.
-export const INSTRUMENT_LISTINGS_BY_ISIN = Object.freeze({
+const BASE_LISTINGS = Object.freeze({
   ...Object.fromEntries(PEA_SECTOR_COMPLETION.map(r => [r.isin, [r.listing]])),
   ...NON_BOND_LISTINGS,
   ...LIFESTRATEGY_LISTINGS,
@@ -2054,6 +2055,11 @@ export const INSTRUMENT_LISTINGS_BY_ISIN = Object.freeze({
   ...ROUND3_LISTINGS
 });
 
+// Current issuer rows renew matching listings and add independently documented venues.
+export const INSTRUMENT_LISTINGS_BY_ISIN = Object.freeze(Object.fromEntries([...new Set([...Object.keys(BASE_LISTINGS),...Object.keys(REFRESHED_LISTINGS)])].map(isin=>{
+ const key = row => `${row.mic}/${row.ticker}/${row.currency}`
+ return [isin,[...new Map([...(BASE_LISTINGS[isin]??[]),...(REFRESHED_LISTINGS[isin]??[])].map(row=>[key(row),row])).values()]]
+})))
 // Les outils partagent ces objets : empêcher une modification locale du catalogue.
 for (const listings of Object.values(INSTRUMENT_LISTINGS_BY_ISIN)) {
   listings.forEach(Object.freeze);

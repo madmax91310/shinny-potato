@@ -1,0 +1,61 @@
+import assert from 'node:assert/strict'
+import {mkdir,writeFile} from 'node:fs/promises'
+import {staticBrowser,staticBase as base} from './static-browser.mjs'
+const reports=[]
+for(const width of [390,1440]){
+ const {browser,page,context}=await staticBrowser(width),errors=[],requests=[]
+ page.on('pageerror',e=>errors.push(e.message));page.on('request',r=>requests.push(r.url()))
+ // Browser measurements are reproducible CI observations, not real-device claims.
+ await page.addInitScript(()=>{window.__paint=[];new PerformanceObserver(list=>window.__paint.push(...list.getEntries().map(e=>({name:e.name,startTime:e.startTime,duration:e.duration})))).observe({type:'largest-contentful-paint',buffered:true})})
+ try{
+  await page.goto(base+'il-y-a-x-ans?asset=apple')
+  await page.waitForFunction(()=>document.querySelector('.tool-preview pre')?.textContent.includes('Apple'))
+  assert.equal(requests.filter(r=>r.includes('/data/history/')).length,1)
+  assert(!requests.some(r=>/market-monthly-records|history-assets|company-history-expansion/.test(r)))
+  reports.push({width,route:'anniversary',...await page.evaluate(()=>({paints:window.__paint,resources:performance.getEntriesByType('resource').filter(e=>/\.js$|\/data\//.test(e.name)).map(e=>({name:e.name,duration:e.duration,bytes:e.encodedBodySize}))}))})
+  if(width<1024)await page.getByRole('button',{name:'Aperçu',exact:true}).click()
+  await page.getByRole('button',{name:'Télécharger l’image PNG',exact:true}).click()
+  await page.waitForFunction(()=>!document.body.textContent.includes('Création du PNG…'))
+  assert.equal(requests.filter(r=>r.includes('/data/history/')).length,1,'image uses the loaded history')
+  await context.route('**/data/history/*.json',route=>route.fulfill({status:503,body:''}))
+  await page.goto(base+'il-y-a-x-ans?asset=microsoft')
+  if(width<1024)await page.getByRole('button',{name:'Aperçu',exact:true}).click()
+  await page.getByText('L’historique n’a pas pu être chargé.',{exact:false}).waitFor()
+  await context.unroute('**/data/history/*.json')
+  await page.getByRole('button',{name:'Réessayer',exact:true}).click()
+  await page.waitForFunction(()=>document.querySelector('.tool-preview pre')?.textContent.includes('Microsoft'))
+  requests.length=0
+  await page.goto(base+'le-dca-de')
+  await page.locator('.dca-simple').waitFor()
+  assert.equal(requests.filter(r=>r.includes('/data/exposures/')).length,0,'empty allocation has no exposure fetch')
+  const add=page.locator('.dca-simple .asset-picker')
+  await context.route('**/data/exposures/*.json',route=>route.fulfill({status:503,body:''}))
+  await add.getByRole('searchbox').fill('FR001400U5Q4');await add.locator('[data-option]').first().click()
+  await page.getByText('Les expositions n’ont pas pu être chargées.',{exact:false}).waitFor()
+  assert.equal(await page.locator('.dca-simple-line input').inputValue(),'100')
+  await context.unroute('**/data/exposures/*.json')
+  await page.getByRole('button',{name:'Réessayer',exact:true}).click()
+  await page.getByRole('button',{name:'Générer l’image',exact:true}).click()
+  await page.locator('.dca-simple-preview img').waitFor()
+  assert.equal(await page.locator('.dca-simple-line input').inputValue(),'100')
+  const before=requests.filter(r=>r.includes('/data/exposures/')).length
+  await page.locator('.dca-simple-line button').click()
+  await add.getByRole('searchbox').fill('FR001400U5Q4');await add.locator('[data-option]').first().click()
+  await page.getByRole('button',{name:'Générer l’image',exact:true}).click()
+  await page.locator('.dca-simple-preview img').waitFor()
+  assert.equal(requests.filter(r=>r.includes('/data/exposures/')).length,before,'cached exact exposure')
+  assert(!requests.some(r=>r.includes('/data/exposure-catalog/')))
+  await page.getByRole('button',{name:'Le DCA de…',exact:true}).click()
+  await page.getByRole('heading',{name:'Ce que tu détiens vraiment',exact:true}).waitFor()
+  await page.getByText('Sources, couverture du catalogue et détail des comparaisons',{exact:true}).click()
+  await page.locator('summary').filter({hasText:/^Couverture du catalogue/}).click()
+  await page.waitForFunction(()=>document.querySelector('.dca-verification')?.textContent.includes('supports ont au moins'))
+  await page.waitForFunction(()=>[...document.querySelectorAll('.dca-verification summary')].some(e=>/Couverture du catalogue · \d+ supports/.test(e.textContent)))
+  assert.equal(requests.filter(r=>r.includes('/data/exposure-catalog/')).length,1)
+  assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth))
+  assert.deepEqual(errors,[])
+ }finally{await browser.close()}
+}
+await mkdir('test-artifacts/selected-records',{recursive:true})
+await writeFile('test-artifacts/selected-records/mobile-and-desktop-loading.json',JSON.stringify(reports,null,2))
+console.log('Selected records: exact histories/exposures only, cached image, retry with preserved selection and deferred full catalogue on mobile/desktop.')

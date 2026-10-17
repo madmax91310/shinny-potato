@@ -17,6 +17,9 @@ on:
       - 'scripts/test_monthly_qualification.py'
       - 'scripts/export-monthly-candidates.mjs'
       - 'src/data/auto-history-identities.json'
+      - 'src/data/qualified-listing-records.json'
+      - 'scripts/qualified-listing-sources.json'
+      - 'scripts/refresh_qualified_listings.py'
       - 'scripts/monthly-automation.json'
       - 'scripts/data_automation.py'
   pull_request:
@@ -65,6 +68,11 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_ranking_sources.py'
       - run: node scripts/test-nasdaq-total-return.mjs
       - run: python -m unittest discover -s scripts -p 'test_data_automation.py'
+      - run: python -m unittest discover -s scripts -p 'test_qualified_listings.py'
+      - name: Refresh exact issuer listing tables
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        continue-on-error: true
+        run: python scripts/refresh_qualified_listings.py --apply
       - name: Qualify missing exact-share monthly histories
         if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
         run: |
@@ -135,7 +143,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          bash scripts/commit-validated-data.sh 'Refresh validated monthly market histories' docs/asset-tool-routing.json docs/asset-tool-routing.md docs/distinct-asset-routing.json src/data/equity-duel-returns.json src/data/monthly-duel-returns.json src/data/automated-indices.json src/data/automated-monthly.json src/data/automated-etf-monthly.json scripts/source-snapshots/monthly-automated.json scripts/source-snapshots/monthly-collection-status.json src/data/anniversary-levels.json scripts/monthly-automation.json scripts/source-snapshots/monthly-qualification-status.json src/data/auto-history-identities.json src/data/ranking-histories.json src/data/monthly-fx.json src/data/ranking-annual.json src/data/ranking-index-annual.json src/data/ranking-ftse.json scripts/source-snapshots/ranking-histories.json scripts/source-snapshots/ranking-collection-status.json docs/asset-field-coverage.md public/data/asset-field-coverage.json
+          bash scripts/commit-validated-data.sh 'Refresh validated monthly market histories' docs/asset-tool-routing.json docs/asset-tool-routing.md docs/distinct-asset-routing.json src/data/equity-duel-returns.json src/data/monthly-duel-returns.json src/data/automated-indices.json src/data/automated-monthly.json src/data/automated-etf-monthly.json scripts/source-snapshots/monthly-automated.json scripts/source-snapshots/monthly-collection-status.json src/data/anniversary-levels.json scripts/monthly-automation.json scripts/source-snapshots/monthly-qualification-status.json src/data/auto-history-identities.json src/data/qualified-listing-records.json src/data/ranking-histories.json src/data/monthly-fx.json src/data/ranking-annual.json src/data/ranking-index-annual.json src/data/ranking-ftse.json scripts/source-snapshots/ranking-histories.json scripts/source-snapshots/ranking-collection-status.json docs/asset-field-coverage.md public/data/asset-field-coverage.json
   deploy:
     needs: refresh
     if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'

@@ -2,6 +2,7 @@ import { ETFS, loadSheetRecord } from './records.js'
 import { loadArtImage, loadEditorialFont, drawTitaniumMark } from '../tweet-midi/anniversaryArt.js'
 import { getETFArt } from './visualIdentity.js'
 import { getAnnualPerformance, performanceEntries, performanceImageHeading } from './annualPerformance.js'
+import { frenchCharacteristic } from '../../data/french-characteristics.js'
 
 const W = 1600, H = 2000, PAD = 100, INK = '#fff4da', MUTED = '#bdc8cf', PAPER = '#061522', GOLD = '#e6bf79'
 const sans = size => `${size}px Arial, sans-serif`
@@ -66,14 +67,14 @@ export async function renderETFImage(etf) {
   block(ctx, etf.ter, 970, 667, 530, 85, { size: 70, weight: 600, color: GOLD })
   rule(ctx, 775)
   const accounts = [etf.pea === true ? 'PEA' : null, etf.cto ? 'CTO' : 'CTO indisponible'].filter(Boolean).join(' · ')
-  const comma = etf.location.indexOf(',')
-  const domicile = comma < 0 ? etf.location : etf.location.slice(0, comma)
-  const replication = comma < 0 ? 'Non documentée' : etf.location.slice(comma + 1).trim().replace(/^réplication\s+/i, '')
+  const location = etf.location ?? '', comma = location.indexOf(',')
+  const domicile = 'domicile' in etf ? etf.domicile && frenchCharacteristic(etf.domicile) : comma < 0 ? location : location.slice(0, comma)
+  const replication = 'replicationMethod' in etf ? etf.replicationMethod && frenchCharacteristic(etf.replicationMethod).replace(/^réplication\s+/i, '') : comma < 0 ? null : location.slice(comma + 1).trim().replace(/^réplication\s+/i, '')
   const fields = [
     ['Enveloppes', accounts], ['Réplication / adossement', replication],
     [String(etf.positions).startsWith('Exposition suivie') ? 'Exposition' : 'Positions', String(etf.positions).replace(/^Exposition suivie\s*:\s*/, '')], ['Domicile', domicile],
-    ['Distribution', etf.distribution], ['Cotation', etf.listing ? `${etf.listing.exchange} · ${etf.listing.currency}` : 'Non documentée'],
-  ]
+    ['Distribution', etf.distribution], ['Cotation', etf.listing ? `${etf.listing.exchange} · ${etf.listing.currency}` : null],
+  ].filter(([,value]) => value)
   fields.forEach(([label, value], index) => {
     const x = index % 2 ? 850 : PAD, y = 805 + Math.floor(index / 2) * 175
     block(ctx, label, x, y, 640, 45, { size: 30, color: MUTED })
@@ -102,7 +103,7 @@ export async function renderETFImage(etf) {
       block(ctx, performance, x + cellWidth / 2, y + 50, cellWidth - 44, 78, { size: 68, min: 58, weight: 700, color: value > 0 ? '#9bebb4' : value < 0 ? '#ff998b' : INK })
       ctx.textAlign = 'left'
     })
-    if (!annual.values.some(Number.isFinite)) block(ctx, annual.note, PAD, entries.length ? 1780 : 1640, 1400, entries.length ? 95 : 220, { size: 32, min: 30, color: MUTED })
+    if (!annual.values.some(Number.isFinite) && annual.note) block(ctx, annual.note, PAD, entries.length ? 1780 : 1640, 1400, entries.length ? 95 : 220, { size: 32, min: 30, color: MUTED })
   }
   rule(ctx, 1895)
   ctx.textAlign = 'center'; block(ctx, 'Pas un conseil financier', W / 2, 1920, 1400, 40, { size: 30, color: MUTED })

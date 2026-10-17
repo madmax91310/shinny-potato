@@ -1,6 +1,9 @@
 import { readFileSync } from 'node:fs'
 import { createHash } from 'node:crypto'
 import * as history from '../src/data/market-history.js'
+import * as anniversary from '../src/pages/tweet-midi/data/marketHistory.js'
+import { references as exposureReferences } from '../src/pages/dca-profiles/records.js'
+import INDEX_HISTORY from '../src/data/anniversary-index-history.json' with {type:'json'}
 import { MARKET_ASSETS, getAnnualReturnStartYears, getAnnualReturns, performanceBasis } from '../src/pages/tweet-midi/data/marketHistory.js'
 import { ETFS, CATEGORY_EMOJI } from '../src/data/etf-cards.js'
 import { ETF_PUBLICATION_DATA } from '../src/data/etf-publication-data.js'
@@ -14,14 +17,29 @@ export function annualProjection() {
  const basis=Object.fromEntries(MARKET_ASSETS.map(a=>[a.id,performanceBasis(a.id)]))
  return {assets,market,years,returns,basis,latestYear:Number(history.LATEST_YM.slice(0,4))}
 }
+export function anniversaryProjection() {
+ const strip = ({points:_points,anniversaryPoints:_raw,...asset}) => asset
+ const all = [...anniversary.MARKET_ASSETS, ...anniversary.ANNIVERSAIRE_ELIGIBLE_ASSETS]
+ const assets = Object.fromEntries(all.map(asset => [asset.id, {...strip(asset), historyId:asset.id}]))
+ const bounds = Object.fromEntries(all.map(asset => [asset.id, [anniversary.getAssetMinDate(asset.id),anniversary.getAssetMaxDate(asset.id)]]))
+ return { assets, bounds, eligible:anniversary.ANNIVERSAIRE_ELIGIBLE_ASSETS.map(a=>assets[a.id]), excluded:anniversary.ANNIVERSAIRE_EXCLUDED_ASSETS.map(a=>assets[a.id]) }
+}
 export function projectSelectedData(){
  let base='/'
  const records=[]
  function add(folder,id,data){const content=JSON.stringify(data),hash=createHash('sha256').update(content).digest('hex').slice(0,20),fileName=`data/${folder}/${hash}.json`;records.push({id,content,fileName});return fileName}
  const historyUrls=Object.fromEntries(Object.entries(history.ASSETS).map(([id,asset])=>[id,add('history',id,asset)]))
+ for(const [id,record] of Object.entries(INDEX_HISTORY)) {
+  if(!historyUrls[id]) historyUrls[id]=add('history',id,{...record,points:record.points.map(([date,price])=>({date,price}))})
+ }
+ const exposureUrls=Object.fromEntries(Object.entries(exposureReferences).map(([id,record])=>[id,add('exposures',id,record)]))
+ const exposureCatalogUrl=add('exposure-catalog','catalog',exposureReferences)
+ const exposureIndex=Object.fromEntries(Object.entries(exposureReferences).map(([id,{countries:_c,sectors:_s,equitySleeve:_e,...record}])=>[id,record]))
+ const anniversaryData=anniversaryProjection()
  const sheetUrls=Object.fromEntries(ETFS.map(etf=>[etf.id,add('etf-sheets',etf.id,{etf,publication:ETF_PUBLICATION_DATA[etf.isin]??null})]))
  const projection=annualProjection()
  const index=Object.fromEntries(Object.entries(history.ASSETS).map(([id,{points,anniversaryPoints:_anniversaryPoints,...asset}])=>[id,{...asset,historyPending:true,points:[points[0],points.at(-1)]}]))
+ const anniversarySource=readFileSync(new URL('../src/pages/tweet-midi/data/marketHistory.js',import.meta.url),'utf8')
  const source=readFileSync(new URL('../src/data/market-history.js',import.meta.url),'utf8')
  const calculatorCode=Object.entries(history).filter(([key])=>key!=='BASELINE_ASSETS').map(([key,value])=>{
   if(key==='ASSETS')return `export const ASSETS=${JSON.stringify(index)};`
@@ -35,6 +53,12 @@ export function projectSelectedData(){
   configureServer(server){server.middlewares.use((req,res,next)=>{const r=records.find(r=>base+r.fileName===req.url?.split('?')[0]);if(!r)return next();res.setHeader('Content-Type','application/json; charset=utf-8');res.end(r.content)})},
   generateBundle(){for(const r of records)this.emitFile({type:'asset',fileName:r.fileName,source:r.content})},
   transform(code,id){const path=id.replaceAll('\\','/').split('?')[0]
+   if(path.endsWith('/src/pages/dca-profiles/records.js')) return {code:loader({...exposureUrls,__catalog:exposureCatalogUrl})+`
+export const references=${JSON.stringify(exposureIndex)};export async function loadExposureCatalog(){return loadRecord('__catalog')};const ready=new Set();export const exposureRecords={isReady:id=>!references[id]||ready.has(id),load:async id=>{if(!references[id])return;const record=await loadRecord(id);Object.assign(references[id],record);ready.add(id);return record}};`,map:null}
+   if(path.endsWith('/src/pages/tweet-midi/data/anniversaryHistory.js')) {
+    const functions=['getValidYearsBackOptions','ymForYearsBack','fmtYm'].map(key=>anniversarySource.match(new RegExp('export function '+key+'\\([\\s\\S]*?\\n}'))[0]).join('\n')
+    return {code:`import {interpolatePrice,ymIndex} from '../../investment-calculator/math.js';import {loadHistoryRecord} from '../../../data/history-browser.js';const data=${JSON.stringify(anniversaryData)},loaded=new Map();export const ASSETS=data.assets,ANNIVERSAIRE_ELIGIBLE_ASSETS=data.eligible,ANNIVERSAIRE_EXCLUDED_ASSETS=data.excluded,MONTHS_FULL=${JSON.stringify(history.MONTHS_FULL)};const getAssetMinDate=id=>data.bounds[id][0],getAssetMaxDate=id=>data.bounds[id][1];export const anniversaryRecords={isReady:id=>loaded.has(id),load:async id=>{const record=await loadHistoryRecord(id);loaded.set(id,record);return record}};export function getHistoricalPrice(id,ym){const record=loaded.get(id);if(!record)throw Error('Historique non chargé');return interpolatePrice(record.anniversaryPoints??record.points,ymIndex(ym)<ymIndex(getAssetMinDate(id))?getAssetMinDate(id):ym)};${functions}`,map:null}
+   }
    if(path.endsWith('/src/data/history-parameters.js'))return {code:Object.entries(history).filter(([key])=>['LIVRET_A','INFLATION','LATEST_YM','MONTHS_FULL','MONTHS_SHORT','INCONSISTENT_MONTHLY_DATA_IDS'].includes(key)).map(([key,value])=>`export const ${key}=${value instanceof Set?`new Set(${JSON.stringify([...value])})`:JSON.stringify(value)};`).join('\n'),map:null}
    if(path.endsWith('/src/data/calculator-history.js'))return {code:calculatorCode,map:null}
    if(path.endsWith('/src/pages/tweet-midi/data/performanceHistory.js'))return {code:annualCode,map:null}
