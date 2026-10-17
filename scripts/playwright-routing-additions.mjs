@@ -2,6 +2,7 @@ import {choose} from './card-selection.mjs'
 import assert from 'node:assert/strict'
 import { chromium } from 'playwright'
 import { spawn } from 'node:child_process'
+import { ASSETS } from '../src/data/market-history.js'
 const port=4361,base=`http://127.0.0.1:${port}/shinny-potato`
 const samples={etfUsaSmallValue:'€',etfWorldMidEqual:'$',etfEmValue:'$',etfEuroUltrashort:'€',etfWorldMaterialsDws:'$'}
 const ids=Object.keys(samples)
@@ -23,7 +24,12 @@ try {
       await choose(picker,id)
       if(route!=='calculateur-investissement') {
         await page.getByRole('button',{name:'🔄 Générer',exact:true}).click()
-        await page.waitForFunction(()=>!document.querySelector('.tool-preview > p[role="status"]'))
+        // Wait for this exact publication, not the previous selection before
+        // React commits the new item and starts its selected-history request.
+        await page.waitForFunction(({label,symbol})=>{
+          const text=document.querySelector('pre')?.textContent??''
+          return text.includes(label)&&(!symbol||text.includes(symbol))
+        },{label:ASSETS[id].label,symbol:route==='il-y-a-x-ans'?symbol:null})
         const post=await page.locator('pre').innerText()
         assert(!/NaN|undefined|\[à saisir\]/.test(post),post)
         if(route==='il-y-a-x-ans') assert(post.includes(symbol),`${id}: currency in text`)
