@@ -1,3 +1,5 @@
+import { useSelectedRecords } from '../../lib/use-selected-records.js'
+import { exposureRecords } from './records.js'
 import AssetPicker from '../../design-system/AssetPicker.jsx'
 import { exposureGroup } from '../../data/asset-labels.js'
 import { useCallback, useEffect, useRef, useState } from 'react'
@@ -8,7 +10,7 @@ import Button from '../../design-system/Button'
 import { copyPublicationText, startPublicationDownload } from '../../design-system/publicationActions.js'
 import { PROFILES, ASSETS } from './data.js'
 import { buildTweetText, pickUnseenProfile } from './lib.js'
-import { MAX_POSITIONS, prepareProfile, analyzeProfile, PROFILE_SCOPES, references, pct, euro, publicationReady } from './engine.js'
+import { MAX_POSITIONS, prepareProfile, analyzeProfile, validateProfile, PROFILE_SCOPES, references, pct, euro, publicationReady } from './engine.js'
 import { exposureDisplay } from './exposure.js'
 import { renderDcaImage } from './image.js'
 import { filterProfiles, searchAssets, migrateProfile, readSaved, writeSaved, readUsed, USED_KEY } from './management.js'
@@ -33,7 +35,8 @@ export default function DcaApp(){
   target?.focus({preventScroll:true});target?.scrollIntoView({block:'start'})
  },[destination])
  const seen=useRef(new Set([profiles[0].id]))
- const a=analyzeProfile(profile),ready=publicationReady(profile)
+ const records = useSelectedRecords(profile.lines.map(line=>line.asset), exposureRecords)
+ const a=analyzeProfile(profile),ready=records.ready&&publicationReady(profile)
  const renderImage=useCallback(()=>renderDcaImage(profile,field),[profile,field])
  const filtered=filterProfiles(profiles,filters,used)
  const setFilter=(key,value)=>setFilters({...filters,[key]:value})
@@ -58,11 +61,12 @@ export default function DcaApp(){
  async function copy(){try{await copyPublicationText(draft);setFeedback('Texte copié.')}catch{setFeedback('Copie impossible. Sélectionne le texte.')}}
  async function download(){try{const link=document.createElement('a');link.href=(await renderImage()).toDataURL('image/png');link.download=`dca-${profile.id}.png`;startPublicationDownload(link);setFeedback('Téléchargement lancé.')}catch{setFeedback('Impossible de préparer l’image.')}}
  function save(){try{localStorage.setItem('el-dca-draft-v1',JSON.stringify({profile,draft,field}));setFeedback('Brouillon enregistré sur cet appareil.')}catch{setFeedback('Le stockage local est indisponible.')}}
- function restore(){try{const saved=JSON.parse(localStorage.getItem('el-dca-draft-v1'));if(saved?.profile)saved.profile=migrateProfile(saved.profile);if(!saved?.profile||analyzeProfile(saved.profile).errors.length||typeof saved.draft!=='string')throw Error();setProfile({...saved.profile,approved:false});setDraft(saved.draft);setField(['countries','sectors','both','all','overlap'].includes(saved.field)?saved.field:'countries');setSavedId('');setSaveTitle(saved.profile.name);setFeedback('Brouillon restauré.')}catch{setFeedback('Aucun brouillon valide enregistré.')}}
+ function restore(){try{const saved=JSON.parse(localStorage.getItem('el-dca-draft-v1'));if(saved?.profile)saved.profile=migrateProfile(saved.profile);if(!saved?.profile||validateProfile(saved.profile).length||typeof saved.draft!=='string')throw Error();setProfile({...saved.profile,approved:false});setDraft(saved.draft);setField(['countries','sectors','both','all','overlap'].includes(saved.field)?saved.field:'countries');setSavedId('');setSaveTitle(saved.profile.name);setFeedback('Brouillon restauré.')}catch{setFeedback('Aucun brouillon valide enregistré.')}}
  return <div className="dca-profiles-scope">
  <PageHeader title="Portefeuille & DCA" subtitle="Retrouve les titres derrière tes ETF. Comprends tes concentrations. Prépare une publication à ton image." />
  <section className="dca-hero"><div><span className="dca-eyebrow">EXPOSITIONS · RECOUVREMENT · LE DCA DE…</span><h2>Plusieurs placements.<br/>Une vue d’ensemble.</h2><p>Une action peut se retrouver dans plusieurs ETF. Explore tes expositions et les titres détenus en commun, puis partage une synthèse lisible.</p><div className="dca-buttons"><button onClick={()=>{compose();navigate('compose')}}>Analyser mon portefeuille</button><button onClick={()=>{participate();navigate('compose')}}>Préparer un DCA</button></div></div><div className="dca-hero-art" aria-hidden="true"><div className="dca-hero-ring"><span>Au-delà<br/>des ETF</span></div><div className="dca-hero-tags"><span>Géographie</span><span>Secteurs</span><span>Titres communs</span></div></div></section>
  <nav className="dca-section-nav" aria-label="Parcours du portefeuille"><a href="#dca-compose" onClick={e=>{e.preventDefault();navigate('compose')}}>1. Composer</a><a href="#dca-analysis" onClick={e=>{e.preventDefault();navigate('analyze')}}>2. Analyser</a><a href="#dca-draft" onClick={e=>{e.preventDefault();navigate('publish')}}>3. Publier</a></nav>
+ {!records.ready&&<p role="status">{records.error?<>Les expositions n’ont pas pu être chargées. <button onClick={records.retry}>Réessayer</button></>:"Chargement des expositions…"}</p>}
  <ToolWorkspace view={view} onViewChange={setView} publicationTab={publicationTab} onPublicationTabChange={setPublicationTab} renderImage={renderImage} imageDisabled={!!a.errors.length} imageAlt={profile.imageOnly?'Expositions du portefeuille':`Portefeuille et versements de ${profile.name}`} actions={<>
  <Button onClick={copy} disabled={!ready||!draft.trim()}>Copier le texte</Button><Button variant="secondary" onClick={download} disabled={!ready}>Télécharger le PNG</Button>
  </>}>

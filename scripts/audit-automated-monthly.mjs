@@ -27,7 +27,8 @@ for (const [id, record] of Object.entries(records)) {
     if (source.collectAnniversary) assert.equal(record.anniversaryPoints.length, record.points.length);
     else assert.equal(record.anniversaryPoints?.length ?? 0, 0);
     const suffix = { XPAR: '.PA', XAMS: '.AS', XSWX: '.SW', XETR: '.DE', XLON: '.L', ETFP: '.MI' }[record.mic];
-    assert.equal(record.symbol, record.ticker + suffix);
+    const listing=INSTRUMENT_LISTINGS_BY_ISIN[record.isin]?.find(l=>l.evidenceId===record.listingEvidenceId);
+    assert([record.ticker+suffix,listing?.symbol].includes(record.symbol),`${id}: documented listing symbol`);
     assert(INSTRUMENT_LISTINGS_BY_ISIN[record.isin]?.some(listing =>
       listing.evidenceId === record.listingEvidenceId && listing.ticker === record.ticker &&
       listing.mic === record.mic && listing.currency === record.currency), `${id}: exact documented listing`);
@@ -50,7 +51,7 @@ for (const [id, record] of Object.entries(records)) {
     assert.equal(price, Math.round(row.value*10**record.precision)/10**record.precision);
     if (record.parser === 'yahoo') {
       if (row.monthlyClose === null) {
-        assert(record.allowMissingMonthly || record.dailyWindowMonths?.includes(date) || record.verifiedSparseMonthEnds?.[date]);
+        assert(record.allowMissingMonthly || record.dailyWindowMonths?.includes(date) || record.verifiedDailyWindowMonths?.includes(date) || record.verifiedSparseMonthEnds?.[date]);
         assert(record.sourceUrls.includes(row.windowUrl));
       }
       assert(Math.abs(row.close-(row.monthlyClose ?? row.windowClose))<=Math.max(.02,row.close*1e-7));

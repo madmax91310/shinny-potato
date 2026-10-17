@@ -1,3 +1,5 @@
+import { ROUTING_PRESENTATION_FACTS as ROUTING_FACTS } from './routing-presentation-facts.js';
+export const ROUTING_PRESENTATION_FACTS = ROUTING_FACTS;
 import { AUTOMATED_ETF } from './automated-etf.js';
 import { applyAutomatedCharacteristics } from './automated-characteristics.js';
 import { PEA_SECTOR_COMPLETION } from './pea-sector-completion.js';
@@ -2002,7 +2004,7 @@ const MANUAL_INSTRUMENT_FACTS = {
 export const INSTRUMENT_FACTS_BY_ISIN = Object.freeze(Object.fromEntries(Object.entries(MANUAL_INSTRUMENT_FACTS).map(([isin,facts])=>[isin,applyAutomatedCharacteristics(facts,AUTOMATED_ETF[isin])])));
 
 export function getInstrumentFacts(isin) {
-  const facts = INSTRUMENT_FACTS_BY_ISIN[isin];
+  const facts = INSTRUMENT_FACTS_BY_ISIN[isin] ?? ROUTING_PRESENTATION_FACTS[isin];
   if (!facts) throw new Error(`Caractéristiques absentes pour ${isin}`);
   return facts;
 }
@@ -2021,7 +2023,7 @@ export function getInstrumentLocation(isin) {
 
 // Libellés datés de positions, distincts des dates d’encours.
 export function getInstrumentPositions(isin) {
-  const label = INSTRUMENT_FACTS_BY_ISIN[isin]?.positionsLabel;
+  const label = INSTRUMENT_FACTS_BY_ISIN[isin]?.positionsLabel ?? ROUTING_PRESENTATION_FACTS[isin]?.positionsLabel;
   if (!label) throw new Error(`Positions absentes pour ${isin}`);
   return label;
 }

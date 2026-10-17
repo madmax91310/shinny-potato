@@ -1,3 +1,4 @@
+import { useSelectedRecords } from '../../lib/use-selected-records.js'
 import { lazy, Suspense } from 'react'
 const HistoricalContext = lazy(() => import('../../design-system/HistoricalContext.jsx'))
 import { notifyPublication, copyPublicationText } from '../../design-system/publicationActions.js'
@@ -209,11 +210,12 @@ function TweetMidiWorkspace({ search, initialFormat, title, description, runtime
   const observationB = resolveAnniversaryLevel(current.assetIdB, niveauActuelB);
   const niveauActuelValide = !!observationA;
   const niveauActuelBValide = !!observationB;
-  const copyDisabled =
+  const records = useSelectedRecords(isAnniversaire ? [current.assetId, current.assetIdA, current.assetIdB] : [], runtime.records);
+  const copyDisabled = !records.ready ||
     (isAnniversaire && !isComparatifCurrent && !niveauActuelValide) ||
     (isAnniversaire && isComparatifCurrent && !(niveauActuelValide && niveauActuelBValide));
 
-  const text = buildTweetText(publicationItem, { niveauActuel, niveauActuelB });
+  const text = records.ready ? buildTweetText(publicationItem, { niveauActuel, niveauActuelB }) : '';
   const status = getLengthStatus(text.length);
   const isLongFormat = current.format === FORMATS.FICHE_LEXIQUE || current.format === FORMATS.COMPARATIF_ETF;
   // Les fiches lexique et comparatifs ETF dépassent 280 caractères par nature : le palier
@@ -556,6 +558,7 @@ function TweetMidiWorkspace({ search, initialFormat, title, description, runtime
         </div>
 
         <div className="tool-preview">
+          {!records.ready && <p role="status">{records.error ? <>L’historique n’a pas pu être chargé. <button onClick={records.retry}>Réessayer</button></> : 'Chargement de l’historique…'}</p>}
           {isMarketFormat && current && <Suspense fallback={null}><HistoricalContext asset={isComparatifCurrent ? currentAssetA : getMarketAsset(current.assetId)} /></Suspense>}
           <div className="flex flex-col gap-3 lg:sticky lg:top-4 lg:h-fit">
             <div className="publication-text-heading flex items-center justify-between">
@@ -657,11 +660,11 @@ function TweetMidiWorkspace({ search, initialFormat, title, description, runtime
 
             <WorkspaceActions>
             <Button type="button" onClick={handleCopy} disabled={copyDisabled} className="self-start">
-              {copied ? "Copié ✓" : copyDisabled ? "Renseigne le(s) niveau(x) actuel(s) pour copier" : "Copier le texte"}
+              {copied ? "Copié ✓" : !records.ready ? "Chargement de l’historique…" : copyDisabled ? "Renseigne le(s) niveau(x) actuel(s) pour copier" : "Copier le texte"}
             </Button>
             {(current.format === FORMATS.FICHE_LEXIQUE || current.format === FORMATS.COMPARATIF_ETF || current.format === FORMATS.PERFORMANCE_DEPUIS || isAnniversaire || current.format === FORMATS.POUVOIR_ACHAT) && (
               <Button type="button" variant="secondary" onClick={handleImageDownload} disabled={imageState === 'loading' || copyDisabled} className="self-start">
-                {copyDisabled ? 'Renseigne le(s) niveau(x) actuel(s) pour télécharger' : imageState === 'loading' ? 'Création du PNG…' : imageState === 'error' ? 'Réessayer le PNG' : 'Télécharger l’image PNG'}
+                {!records.ready ? 'Chargement de l’historique…' : copyDisabled ? 'Renseigne le(s) niveau(x) actuel(s) pour télécharger' : imageState === 'loading' ? 'Création du PNG…' : imageState === 'error' ? 'Réessayer le PNG' : 'Télécharger l’image PNG'}
               </Button>
             )}
             </WorkspaceActions>

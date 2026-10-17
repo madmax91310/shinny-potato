@@ -13,7 +13,7 @@
       ],
       "duel": true,
       "qualification": null,
-      "sheet": false,
+      "sheet": true,
       "comparison": true,
       "generator": "missing",
       "dca": true,
@@ -602,7 +602,18 @@
         "identifiedCoverage": 99.95394000000007,
         "automatic": true
       },
-      "monthly": [],
+      "monthly": [
+        {
+          "id": "etfIE00B53SZB19",
+          "automatic": true,
+          "first": "2026-01",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": false,
+          "simulation": false,
+          "anniversary": false
+        }
+      ],
       "historyCandidate": false,
       "decision": "keep-used"
     },

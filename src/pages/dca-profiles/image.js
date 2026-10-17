@@ -1,3 +1,4 @@
+import { exposureRecords } from './records.js'
 import { exposureView } from './exposure.js'
 import { analyzeProfile, prepareProfile, euro, pct, references } from './engine.js'
 import { incomeLabel } from './lib.js'
@@ -152,7 +153,9 @@ async function loadDcaFont(){
 }
 export async function renderDcaImage(input,field='countries'){
  await loadDcaFont()
- const p=input.lines.every(l=>Number.isFinite(l.weight))?input:prepareProfile(input),a=analyzeProfile(p)
+ const p=input.lines.every(l=>Number.isFinite(l.weight))?input:prepareProfile(input)
+ await Promise.all([...new Set(p.lines.map(line=>line.asset))].map(id=>exposureRecords.load(id)))
+ const a=analyzeProfile(p)
  if(a.errors.length)throw Error(a.errors.join(' '))
  const canvas=document.createElement('canvas');canvas.width=1600;canvas.height=['all','overlap'].includes(field)?1000:1067;const ctx=canvas.getContext('2d')
  const bg=ctx.createLinearGradient(0,0,1600,1067);bg.addColorStop(0,'#071b36');bg.addColorStop(.5,'#03152c');bg.addColorStop(1,'#092952');ctx.fillStyle=bg;ctx.fillRect(0,0,1600,1067)

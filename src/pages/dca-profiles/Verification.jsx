@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
+import { loadExposureCatalog } from './records.js'
 import { references, pct } from './engine.js'
 import { exposureDisplay } from './exposure.js'
 import catalogue from './catalog.json' with {type:'json'}
@@ -6,7 +7,8 @@ import { loadHoldings } from './holdings-loader.js'
 import { catalogCoverage, sharedPositions } from './verification.js'
 export default function Verification({profile,analysis}){
  const [query,setQuery]=useState(''),[onlyMissing,setOnlyMissing]=useState(false),[pairLimit,setPairLimit]=useState(20)
- const catalog=useMemo(()=>catalogCoverage(references),[])
+ const [catalogOpen,setCatalogOpen]=useState(false),[catalog,setCatalog]=useState([]),[catalogError,setCatalogError]=useState(false),[catalogRetry,setCatalogRetry]=useState(0)
+ useEffect(()=>{if(!catalogOpen)return;let active=true;setCatalogError(false);loadExposureCatalog().then(refs=>{if(active)setCatalog(catalogCoverage(refs))}).catch(()=>{if(active)setCatalogError(true)});return()=>{active=false}},[catalogOpen,catalogRetry])
  const [holdings,setHoldings]=useState({}),[loading,setLoading]=useState(true),[loadError,setLoadError]=useState(false)
  const [retry,setRetry]=useState(0)
  const assets=profile.lines.map(l=>l.asset).sort().join('|')
@@ -45,7 +47,8 @@ export default function Verification({profile,analysis}){
  {group.rows.slice(0,30).map(row=><details key={row.isin}><summary>{row.name} · {row.isin} : {pct(row.weight)} du portefeuille</summary><p>En direct : {pct(row.direct)} · Via les ETF : {pct(row.indirect)}</p>{row.contributions.map(c=><p key={c.asset}>{c.label} : {pct(c.weight)} · <a href={c.sourceUrl} target="_blank" rel="noreferrer">{c.asOf} ↗</a></p>)}</details>)}
  {group.rows.length>30&&<p>Les 30 titres les plus pondérés sont affichés sur {group.rows.length} titres identifiés. Le calcul utilise toutes les lignes.</p>}</section>)}
  </details>
- <details><summary>Couverture du catalogue · {catalog.length} supports</summary>
+ <details onToggle={e=>setCatalogOpen(e.currentTarget.open)}><summary>Couverture du catalogue{catalog.length?` · ${catalog.length} supports`:''}</summary>
+ {!catalog.length&&<p role="status">{catalogError?<>Le catalogue n’a pas pu être chargé. <button onClick={()=>setCatalogRetry(n=>n+1)}>Réessayer</button></>:'Chargement du catalogue…'}</p>}
  <p>{complete} supports ont au moins 99,5 % de données exploitables dans chacun des deux champs, pris individuellement. Leur compatibilité dans un même graphique dépend aussi des méthodes et des dates. Les métaux et cryptomonnaies restent hors classification.</p>
  <label>Rechercher dans la couverture<input type="search" value={query} onChange={e=>setQuery(e.target.value)} placeholder="Nom, ticker ou ISIN"/></label>
  <label><input type="checkbox" checked={onlyMissing} onChange={e=>setOnlyMissing(e.target.checked)}/>Afficher seulement les couvertures incomplètes</label>

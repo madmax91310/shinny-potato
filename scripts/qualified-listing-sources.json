@@ -1,0 +1,114 @@
+{
+  "sources": [
+    {
+      "isin": "FR0010524777",
+      "url": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0010524777/FRA/FRA/RETAIL/ETF",
+      "rows": [
+        {
+          "pattern": "^\\s*Euronext Paris\\s+EUR\\s+NRJ\\s+FP\\s+ENERIV\\s+(LYNRJ\\.PA)\\s",
+          "ticker": "NRJ",
+          "mic": "XPAR",
+          "exchange": "Euronext Paris",
+          "currency": "EUR"
+        },
+        {
+          "pattern": "^\\s*LSE\\s+USD\\s+NRJU\\s+LN\\s+NRJUIV\\s+(NRJU\\.L)\\s",
+          "ticker": "NRJU",
+          "mic": "XLON",
+          "exchange": "London Stock Exchange",
+          "currency": "USD"
+        }
+      ]
+    },
+    {
+      "isin": "JE00B1VS3770",
+      "url": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/MSL/EU/EN-GB/JE00B1VS3770",
+      "rows": [
+        {
+          "pattern": "^\\s*LSE\\s+USD\\s+PHAU\\s+PHAU LN\\s+(PHAU\\.L)\\s.*JE00B1VS3770",
+          "ticker": "PHAU",
+          "mic": "XLON",
+          "exchange": "London Stock Exchange",
+          "currency": "USD"
+        },
+        {
+          "pattern": "^\\s*Xetra\\s+EUR\\s+VZLD\\s+VZLD GY\\s+(VZLD\\.DE)\\s.*JE00B1VS3770",
+          "ticker": "VZLD",
+          "mic": "XETR",
+          "exchange": "Xetra",
+          "currency": "EUR"
+        }
+      ]
+    },
+    {
+      "isin": "GB00BJYDH287",
+      "url": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/WIXL/EU/EN-GB/GB00BJYDH287",
+      "rows": [
+        {
+          "pattern": "^\\s*LSE\\s+USD\\s+BTCW\\s+BTCW LN\\s+(BTCW\\.L)\\s.*GB00BJYDH287",
+          "ticker": "BTCW",
+          "mic": "XLON",
+          "exchange": "London Stock Exchange",
+          "currency": "USD"
+        },
+        {
+          "pattern": "^\\s*Euronext\\(FR\\)\\s+EUR\\s+WBTC\\s+WBTC FP\\s+(BTCW\\.PA)\\s.*GB00BJYDH287",
+          "ticker": "WBTC",
+          "mic": "XPAR",
+          "exchange": "Euronext Paris",
+          "currency": "EUR"
+        }
+      ]
+    },
+    {
+      "isin": "GB00BLD4ZM24",
+      "url": "https://coinshares.com/en/d/etp/factsheet/physical-ethereum/",
+      "rows": [
+        {
+          "pattern": "^LSE\\s+USD\\s+ETHE LN Equity\\s+BTKTC69\\s+14/01/2024",
+          "ticker": "ETHE",
+          "mic": "XLON",
+          "exchange": "London Stock Exchange",
+          "currency": "USD",
+          "symbol": "ETHE.L"
+        },
+        {
+          "pattern": "^Börse Xetra\\s+EUR\\s+CETH GY Equity\\s+BKPKL67\\s+7/6/2021",
+          "ticker": "CETH",
+          "mic": "XETR",
+          "exchange": "Xetra",
+          "currency": "EUR",
+          "symbol": "CETH.DE"
+        }
+      ]
+    },
+    {
+      "isin": "FR0013416716",
+      "url": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+      "format": "amundi-api",
+      "rows": [
+        {
+          "pattern": "^Euronext Paris EUR GOLD FP (AMGOLD\\.PA) FR0013416716$",
+          "ticker": "GOLD",
+          "mic": "XPAR",
+          "exchange": "Euronext Paris",
+          "currency": "EUR"
+        },
+        {
+          "pattern": "^Xetra EUR GLDA GY (GLDA\\.DE) FR0013416716$",
+          "ticker": "GLDA",
+          "mic": "XETR",
+          "exchange": "Xetra",
+          "currency": "EUR"
+        },
+        {
+          "pattern": "^LSE USD GLDD LN (GLDD\\.L) FR0013416716$",
+          "ticker": "GLDD",
+          "mic": "XLON",
+          "exchange": "London Stock Exchange",
+          "currency": "USD"
+        }
+      ]
+    }
+  ]
+}

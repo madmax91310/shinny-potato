@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { REFRESHED_LISTING_EVIDENCE } from '../src/data/qualified-listings.js'
 import { NON_BOND_LISTING_EVIDENCE } from '../src/data/non-bond-expansion.js'
 import { LIFESTRATEGY_LISTING_EVIDENCE } from '../src/data/lifestrategy.js'
 import {ROUND3_LISTING_EVIDENCE} from '../src/data/round3-fund-sheets.js';
@@ -37,7 +38,7 @@ export function auditInstrumentListings() {
     }
     published[item.isin] = [...new Set([...(published[item.isin] ?? []), ...tickers])];
   }
-  return [...selectionErrors, ...validateListingEvidence({ published, listings: INSTRUMENT_LISTINGS_BY_ISIN, evidence: currentListingEvidence(snapshot.evidence,{ ...NON_BOND_LISTING_EVIDENCE, ...LIFESTRATEGY_LISTING_EVIDENCE, ...QUALIFIED_LISTING_EVIDENCE, ...ROUND3_LISTING_EVIDENCE },QUALIFIED_LISTINGS,INSTRUMENT_LISTINGS_BY_ISIN) })];
+  return [...selectionErrors, ...validateListingEvidence({ published, listings: INSTRUMENT_LISTINGS_BY_ISIN, evidence: currentListingEvidence(snapshot.evidence,{ ...NON_BOND_LISTING_EVIDENCE, ...LIFESTRATEGY_LISTING_EVIDENCE, ...QUALIFIED_LISTING_EVIDENCE, ...ROUND3_LISTING_EVIDENCE,...REFRESHED_LISTING_EVIDENCE },QUALIFIED_LISTINGS,INSTRUMENT_LISTINGS_BY_ISIN) })];
 }
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
 const errors = auditInstrumentListings();

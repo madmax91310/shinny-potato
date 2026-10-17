@@ -36,9 +36,9 @@ export function buildText(sourceEtf) {
     '💸 Frais annuels : ' + etf.ter + '\n' +
     '📦 ' + etf.positions + '\n' +
     '💰 Encours : ' + etf.aum + '\n' +
-    '🔄 ' + etf.distribution + '\n' +
+    (etf.distribution ? '🔄 ' + etf.distribution + '\n' : '') +
     '🏦 ' + accountLabel(etf) + '\n' +
-    '📍 ' + etf.location + '\n' +
+    (etf.location ? '📍 ' + etf.location + '\n' : '') +
     (annual ? '\n' + formatTweetPerformance(annual) + '\n' : '') +
     (commodities.length ? '\n' + commodities.join('\n') + '\n' : '') +
     '\n' +
@@ -65,9 +65,9 @@ export function buildFactRows(etf) {
     { icon: '💸', text: 'Frais : ' + etf.ter },
     { icon: '📦', text: etf.positions },
     { icon: '💰', text: 'Encours : ' + getPresentationCopy(etf).aum },
-    { icon: '🔄', text: etf.distribution },
+    ...(etf.distribution ? [{ icon: '🔄', text: etf.distribution }] : []),
     { icon: '🏦', text: accountLabel(etf, '   |   ') },
-    { icon: '📍', text: getPresentationCopy(etf).location },
+    ...(etf.location ? [{ icon: '📍', text: getPresentationCopy(etf).location }] : []),
     ...(annual ? [{ icon: '📈', text: annualPerformanceRange(annual) + ' (' + annual.currency + ') : ' + formatAnnualPerformance(annual) }] : []),
   ]
 }

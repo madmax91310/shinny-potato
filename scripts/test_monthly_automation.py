@@ -16,6 +16,23 @@ def chart(interval='1d',close=12,adjusted=10):
         'timestamp':[int(date.timestamp())],'indicators':{'quote':[{'close':[close]}],'adjclose':[{'adjclose':[adjusted]}]}}]}}
 
 class Monthly(unittest.TestCase):
+    def test_candidate_suffix_never_fills_a_gap_or_relaxes_active_history(self):
+        config={**CONFIG,'consumerScope':'catalog','periodStart':'2025-12'}
+        def fetch(url):
+            interval='1mo' if 'interval=1mo' in url else '1d'
+            body=chart(interval)
+            data=body['chart']['result'][0]
+            dates=[dt.datetime(2025,12,1 if interval=='1mo' else 24,16,tzinfo=UTC),dt.datetime(2026,1,1 if interval=='1mo' else 30,16,tzinfo=UTC)]
+            data['timestamp']=[int(d.timestamp()) for d in dates]
+            data['indicators']={'quote':[{'close':[11,12]}],'adjclose':[{'adjclose':[10,11]}]}
+            return body
+        with self.assertRaisesRegex(ValueError,'Monthly close'):collect_yahoo(config,NOW,fetch)
+        result=collect_yahoo({**config,'qualifyContiguousSuffix':True},NOW,fetch)
+        self.assertEqual(result['periodStart'],'2026-01')
+        self.assertEqual(result['points'],[['2026-01',11]])
+        self.assertEqual(len(result['proofRows']),1)
+        self.assertEqual(result['qualificationCoverage']['excluded'][0]['through'],'2025-12')
+        with self.assertRaises(ValueError):collect_yahoo({**config,'consumerScope':'equity','qualifyContiguousSuffix':True},NOW,fetch)
     def test_equity_bootstrap_requires_adjustments_and_identity(self):
         source={**CONFIG, 'consumerScope':'equity', 'instrumentType':'EQUITY',
                 'label':'Test equity', 'timezone':'America/New_York', 'collectAnniversary':True}
@@ -94,7 +111,8 @@ class Monthly(unittest.TestCase):
         config={**CONFIG,'consumerScope':'catalog','verifyMonthlyDisagreements':True}
         def fetch(url):return chart('1mo',close=15) if 'interval=1mo' in url else chart()
         result=collect_yahoo(config,NOW,fetch)
-        self.assertEqual(config['dailyWindowMonths'],['2026-01'])
+        self.assertNotIn('dailyWindowMonths',config)
+        self.assertEqual(result['verifiedDailyWindowMonths'],['2026-01'])
         self.assertEqual(result['points'],[['2026-01',10]])
         self.assertEqual(result['proofRows'][0]['rejectedMonthlyClose'],15)
         end=int(dt.datetime(2026,2,1,tzinfo=UTC).timestamp())
