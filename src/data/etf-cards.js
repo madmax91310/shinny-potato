@@ -69,6 +69,7 @@ export const CATEGORY_EMOJI = {
 
 export const ETFS = [
   ...ROUTING_PRESENTATIONS.map(r => ({...r, presentationOnly:true, isNew:true,
+    hook:`${getInstrumentName(r.isin,'sheet')} : ${r.hook.charAt(0).toLocaleLowerCase('fr-FR')}${r.hook.slice(1)}`,
     name:getInstrumentName(r.isin,'sheet'), listing:getPreferredInstrumentListing(r.isin),
     ter:formatEtfTer(r.isin,'sheet'), positions:getInstrumentFacts(r.isin).positionsLabel || (getInstrumentFacts(r.isin).benchmark ? `Exposition suivie : ${getInstrumentFacts(r.isin).benchmark}` : r.verdict),aum:getInstrumentAum(r.isin,'sheet'),
     distribution:getInstrumentDistribution(r.isin),pea:getInstrumentPea(r.isin),cto:true,location:getInstrumentLocation(r.isin),
