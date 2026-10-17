@@ -263,18 +263,18 @@
     },
     "update-editorial-radar.yml": {
       "name": "Radar éditorial quotidien",
-      "runId": 38986320386,
+      "runId": 39010585064,
       "attempt": 1,
-      "completedAt": "2026-10-17T00:26:23Z",
+      "completedAt": "2026-10-17T06:37:52Z",
       "status": "success",
-      "lastSuccessAt": "2026-10-17T00:26:23Z",
+      "lastSuccessAt": "2026-10-17T06:37:52Z",
       "collectionStatus": "success",
       "validationStatus": "unknown",
       "recordingStatus": "not-run",
       "publicationStatus": "not-run",
-      "lastCollectionSuccessAt": "2026-10-17T00:26:23Z",
+      "lastCollectionSuccessAt": "2026-10-17T06:37:52Z",
       "lastPublicationSuccessAt": null,
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38986320386",
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39010585064",
       "failures": [],
       "dataFailures": {}
     },
@@ -437,10 +437,10 @@
       "dataFailures": {}
     }
   },
-  "updatedAt": "2026-10-17T06:37:11Z",
+  "updatedAt": "2026-10-17T06:37:52Z",
   "monitoring": {
     "schemaVersion": 1,
-    "checkedAt": "2026-10-17T06:37:30.194306+00:00",
+    "checkedAt": "2026-10-17T06:38:08.489246+00:00",
     "revision": 58,
     "active": {
       "collection:update-practical-sheets.yml:practical:13f": {
@@ -462,7 +462,7 @@
         "dataId": "practical:13f",
         "id": "collection:update-practical-sheets.yml:practical:13f",
         "firstSeenAt": "2026-10-14T21:07:26.171294+00:00",
-        "lastSeenAt": "2026-10-17T06:37:30.194306+00:00"
+        "lastSeenAt": "2026-10-17T06:38:08.489246+00:00"
       },
       "collection:update-publication-observations.yml:anniversary-nasdaq100": {
         "name": "anniversary-nasdaq100",
@@ -482,7 +482,7 @@
         "dataId": "anniversary-nasdaq100",
         "id": "collection:update-publication-observations.yml:anniversary-nasdaq100",
         "firstSeenAt": "2026-10-16T15:01:35.760482+00:00",
-        "lastSeenAt": "2026-10-17T06:37:30.194306+00:00"
+        "lastSeenAt": "2026-10-17T06:38:08.489246+00:00"
       },
       "publication:update-publication-observations.yml": {
         "name": "Pouvoir d’achat et niveaux des anniversaires",
@@ -499,7 +499,7 @@
         "cause": "deploy / build : Run node scripts/test-tool-projections.mjs ; report-failures : Run echo 'Collecte partielle : dernières observations validées conservées. Voir publication-observations.' >> \"$GITHUB_STEP_SUMMARY\"",
         "id": "publication:update-publication-observations.yml",
         "firstSeenAt": "2026-10-16T15:01:35.760482+00:00",
-        "lastSeenAt": "2026-10-17T06:37:30.194306+00:00"
+        "lastSeenAt": "2026-10-17T06:38:08.489246+00:00"
       },
       "collection:update-insurance.yml:linxea-avenir-2": {
         "name": "Linxea Avenir 2",
@@ -518,7 +518,7 @@
         "dataId": "linxea-avenir-2",
         "id": "collection:update-insurance.yml:linxea-avenir-2",
         "firstSeenAt": "2026-10-14T13:08:27.203935+00:00",
-        "lastSeenAt": "2026-10-17T06:37:30.194306+00:00"
+        "lastSeenAt": "2026-10-17T06:38:08.489246+00:00"
       },
       "collection:update-scpi.yml:remake-live": {
         "name": "Remake Live",
@@ -541,7 +541,7 @@
         "dataId": "remake-live",
         "id": "collection:update-scpi.yml:remake-live",
         "firstSeenAt": "2026-10-15T13:02:43.499914+00:00",
-        "lastSeenAt": "2026-10-17T06:37:30.194306+00:00"
+        "lastSeenAt": "2026-10-17T06:38:08.489246+00:00"
       },
       "collection:update-regulatory-data.yml:broker-observation:caidf:profile:change": {
         "name": "caidf:profile:change",
@@ -561,7 +561,7 @@
         "dataId": "broker-observation:caidf:profile:change",
         "id": "collection:update-regulatory-data.yml:broker-observation:caidf:profile:change",
         "firstSeenAt": "2026-10-15T18:00:14.760687+00:00",
-        "lastSeenAt": "2026-10-17T06:37:30.194306+00:00"
+        "lastSeenAt": "2026-10-17T06:38:08.489246+00:00"
       },
       "publication:update-market-monthly.yml": {
         "name": "Historiques mensuels des marchés",
@@ -580,7 +580,7 @@
         "cause": "deploy / browser-checks (2) : Run node scripts/run-browser-checks.mjs 2 4 ; deploy / browser-checks (0) : Run node scripts/run-browser-checks.mjs 0 4 ; deploy / browser-checks (1) : Run node scripts/run-browser-checks.mjs 1 4",
         "id": "publication:update-market-monthly.yml",
         "firstSeenAt": "2026-10-16T17:44:15.317185+00:00",
-        "lastSeenAt": "2026-10-17T06:37:30.194306+00:00"
+        "lastSeenAt": "2026-10-17T06:38:08.489246+00:00"
       },
       "publication:update-investor-13f.yml": {
         "name": "Portefeuilles des investisseurs",
@@ -596,7 +596,7 @@
         "cause": "deploy / browser-checks (0) : Run node scripts/playwright-nasdaq-total-return.mjs",
         "id": "publication:update-investor-13f.yml",
         "firstSeenAt": "2026-10-16T17:10:15.533090+00:00",
-        "lastSeenAt": "2026-10-17T06:37:30.194306+00:00"
+        "lastSeenAt": "2026-10-17T06:38:08.489246+00:00"
       },
       "publication:update-company-analysis.yml": {
         "name": "Analyses d’entreprises",
@@ -612,7 +612,7 @@
         "cause": "deploy / browser-checks (1) : Run node scripts/playwright-all-weather.mjs ; deploy / browser-checks (2) : Run node scripts/run-browser-checks.mjs 2 4 ; deploy / browser-checks (0) : Run node scripts/run-browser-checks.mjs 0 4",
         "id": "publication:update-company-analysis.yml",
         "firstSeenAt": "2026-10-16T20:37:26.947807+00:00",
-        "lastSeenAt": "2026-10-17T06:37:30.194306+00:00"
+        "lastSeenAt": "2026-10-17T06:38:08.489246+00:00"
       },
       "publication:update-qualified-exposures.yml": {
         "name": "Expositions ETF qualifiées",
@@ -632,7 +632,7 @@
         "cause": "deploy / build : Run npm run test:radar",
         "id": "publication:update-qualified-exposures.yml",
         "firstSeenAt": "2026-10-16T12:48:21.924866+00:00",
-        "lastSeenAt": "2026-10-17T06:37:30.194306+00:00"
+        "lastSeenAt": "2026-10-17T06:38:08.489246+00:00"
       },
       "publication:update-exposure-expansion.yml": {
         "name": "35 ETF des allocations",
@@ -648,7 +648,7 @@
         "cause": "deploy / build : Run node scripts/build-dca-exposures.mjs && npm run test:dca && node scripts/audit-portfolio-routing.mjs",
         "id": "publication:update-exposure-expansion.yml",
         "firstSeenAt": "2026-10-16T15:06:10.074991+00:00",
-        "lastSeenAt": "2026-10-17T06:37:30.194306+00:00"
+        "lastSeenAt": "2026-10-17T06:38:08.489246+00:00"
       },
       "monitor:radar": {
         "kind": "unobserved",
@@ -661,7 +661,7 @@
         "to": "/donnees-a-revoir",
         "id": "monitor:radar",
         "firstSeenAt": "2026-10-15T18:53:46.175472+00:00",
-        "lastSeenAt": "2026-10-17T06:37:30.194306+00:00"
+        "lastSeenAt": "2026-10-17T06:38:08.489246+00:00"
       }
     },
     "events": [
