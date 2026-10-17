@@ -9,8 +9,10 @@ from concurrent.futures import ThreadPoolExecutor
 import datetime as dt
 import hashlib
 import json
+import os
 import pathlib
 import re
+import urllib.parse
 import urllib.request
 import xml.etree.ElementTree as ET
 from bs4 import BeautifulSoup
@@ -110,9 +112,20 @@ def parse(raw, config):
         result['scope'] = 'Liste publique des ETF des contrats Spirica chez Linxea ; absence de la liste ne prouve pas une inéligibilité générale.'
     return result
 
+# SEC fair-access policy: automated requests must declare who is collecting and how to
+# reach them; browser-like agents are refused with HTTP 403 (observed from 2026-10-15).
+SEC_USER_AGENT = os.environ.get('SEC_USER_AGENT') or 'EpargnantLibre-Data madmax91310@users.noreply.github.com'
+
+def user_agent(url):
+    host = urllib.parse.urlsplit(url).hostname or ''
+    if host == 'sec.gov' or host.endswith('.sec.gov'):
+        return SEC_USER_AGENT
+    return 'Mozilla/5.0 (public financial reference collection)'
+
 def collect(key, config, previous, today):
     try:
-        request = urllib.request.Request(config.get('downloadUrl', config['url']), headers={'User-Agent':'Mozilla/5.0 (public financial reference collection)'})
+        url = config.get('downloadUrl', config['url'])
+        request = urllib.request.Request(url, headers={'User-Agent':user_agent(url)})
         with urllib.request.urlopen(request, timeout=35) as response:
             raw = response.read(10_000_001)
         parsed = parse(raw, config)
