@@ -2,9 +2,9 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import ToolCard from '../design-system/ToolCard'
 import { HOME_TOOLS } from '../tools'
+import { EDITORIAL_WEEK } from '../data/editorial-calendar'
 import './home.css'
 
-const DAYS = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche']
 const DAY_ICONS = ['🌿', '🎯', '💡', '📊', '🛡️', '📝', '⭐']
 const QUICK_PATHS = ['/radar-editorial', '/le-dca-de', '/generateur-portefeuilles', '/banque-tweets']
 const normalize = value => value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim()
@@ -22,11 +22,11 @@ export default function Home() {
     return terms.every(term => text.includes(term))
   })
   const today = new Intl.DateTimeFormat('fr-FR', { weekday: 'long', timeZone: 'Europe/Paris' }).format(new Date())
-  const scheduled = HOME_TOOLS.filter(tool => DAYS.some(day => tool.publicationDay?.startsWith(day)))
+  const scheduled = HOME_TOOLS.filter(tool => EDITORIAL_WEEK.some(({ morning, evening }) => [...morning, ...evening].some(entry => entry.path === tool.to)))
   const occasional = HOME_TOOLS.filter(tool => tool.publicationDay === 'Publication ponctuelle')
   const shortcuts = HOME_TOOLS.filter(tool => !scheduled.includes(tool) && !occasional.includes(tool))
   return <div className="workspace-home">
-    <header className="home-heading"><h1>Mes outils de la semaine</h1></header>
+    <header className="home-heading"><h1>Mes outils de la semaine</h1><p className="home-calendar-intro">Récap tôt, puis le format du matin. Le midi reste libre pour tes tweets personnels.</p></header>
     <nav className="home-quick-links" aria-label="Outils favoris">
       {QUICK_PATHS.map(path => {
         const tool = HOME_TOOLS.find(item => item.to === path)
@@ -46,12 +46,17 @@ export default function Home() {
     </div>
     {!searching && <>
     <div className="home-week">
-      {DAYS.map((day, index) => {
-        const tools = scheduled.filter(tool => tool.publicationDay.startsWith(day))
+      {EDITORIAL_WEEK.map(({ day, morning, evening, morningNote }, index) => {
         const isToday = day.toLowerCase() === today
         return <section className={`home-day${isToday ? ' home-day--today' : ''}`} data-day={index} key={day} aria-labelledby={`home-day-${index}`}>
           <div className="home-day-band"><h2 id={`home-day-${index}`}>{day}</h2>{isToday && <small className="home-today">Aujourd’hui</small>}<span aria-hidden="true">{DAY_ICONS[index]}</span></div>
-          <div className="home-day-content">{tools.length ? <ToolList tools={tools} /> : <p className="home-day-note">Bilan de la semaine · publication libre</p>}</div>
+          <div className="home-day-content">
+            {[['morning', 'Matin · après le récap', morning], ['evening', 'Soir', evening]].map(([period, label, entries]) => <div className="home-period" data-period={period} key={period}>
+              <h3>{label}</h3>
+              {period === 'morning' && morningNote && <p className="home-day-note">{morningNote}</p>}
+              <ToolList tools={entries.map(entry => ({ ...HOME_TOOLS.find(tool => tool.to === entry.path), ...(entry.title ? { title: entry.title } : {}), publicationDay: entry.note || `${day} ${label.toLowerCase()}` }))} />
+            </div>)}
+          </div>
         </section>
       })}
     </div>

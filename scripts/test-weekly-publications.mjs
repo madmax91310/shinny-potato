@@ -3,6 +3,7 @@ import { spawn } from 'node:child_process'
 import { mkdir } from 'node:fs/promises'
 import { chromium } from 'playwright'
 import { TOOLS } from '../src/tools.js'
+import { EDITORIAL_WEEK } from '../src/data/editorial-calendar.js'
 
 const base = 'http://127.0.0.1:4324/shinny-potato'
 const server = spawn('node', ['node_modules/vite/bin/vite.js', 'preview', '--host', '127.0.0.1', '--port', '4324', '--strictPort'], { stdio: 'ignore' })
@@ -25,21 +26,28 @@ try {
   const errors = []
   page.on('pageerror', error => errors.push(error.message))
   await page.goto(`${base}/`, { waitUntil: 'networkidle' })
-  assert.equal(await page.locator('.workspace-tool-card').count(), TOOLS.filter(t=>!t.hidden).length)
+  const scheduledEntries = EDITORIAL_WEEK.flatMap(day => [...day.morning, ...day.evening])
+  const scheduledPaths = new Set(scheduledEntries.map(entry => entry.path))
+  assert.equal(await page.locator('.workspace-tool-card').count(), scheduledEntries.length + TOOLS.filter(t => !t.hidden && !scheduledPaths.has(t.to)).length)
   assert.equal(await page.getByRole('link', {name:/Vrai ou faux|Cas concrets|Comparateur indices|Dilemme/}).count(), 0)
   assert.equal(await page.locator('.workspace-tool-card[href$="/tweet-midi"]').count(), 0)
-  for (const [path, day] of [
-    ['/comparatif-etf', 'Lundi midi · alternance'], ['/fiche-lexique', 'Lundi midi · alternance'],
-    ['/tweets-factsheets', 'Lundi soir'],
-    ['/france-100-menages', 'Mardi midi'], ['/generateur-portefeuilles', 'Mardi soir'],
-    ['/performance-depuis', 'Mercredi midi'], ['/calculateur-investissement', 'Mercredi soir'],
-    ['/duels-portefeuilles', 'Jeudi midi'], ['/fiches-etf', 'Jeudi soir'],
-    ['/presentations', 'Vendredi midi · alternance'],
-    ['/portefeuilles-investisseurs', 'Dimanche midi'], ['/faits-marquants-marches', 'Dimanche soir'],
-    ['/il-y-a-x-ans', 'Publication ponctuelle'], ['/analyse-entreprise', 'Publication ponctuelle'],
-    ['/pouvoir-achat', 'Publication ponctuelle'],
-    ['/comparatif-courtiers', 'Publication ponctuelle'], ['/impact-frais', 'Publication ponctuelle'],
-  ]) assert.equal(await page.locator(`.workspace-tool-card[href$="${path}"] .workspace-publication-day`).innerText(), day)
+  for (const [index, morning, evening] of [
+    [0, ['/classements-performances'], ['/comparatif-etf']],
+    [1, ['/calculateur-investissement'], ['/le-dca-de']],
+    [2, ['/france-100-menages', '/pouvoir-achat'], ['/comparatif-courtiers']],
+    [3, ['/classements-performances'], ['/fiches-etf', '/tweets-factsheets']],
+    [4, ['/calculateur-investissement'], ['/duels-portefeuilles', '/generateur-portefeuilles']],
+    [5, [], ['/performance-depuis', '/presentations']],
+    [6, ['/classements-performances', '/fiches-pratiques', '/faits-marquants-marches', '/il-y-a-x-ans'], ['/portefeuilles-investisseurs']],
+  ]) {
+    for (const [period, paths] of [['morning', morning], ['evening', evening]]) {
+      const actual = await page.locator(`[data-day="${index}"] [data-period="${period}"] .workspace-tool-card`).evaluateAll(cards => cards.map(card => '/' + new URL(card.href).pathname.split('/').at(-1)))
+      assert.deepEqual(actual, paths, `${index}: ${period}`)
+    }
+  }
+  assert.equal(await page.locator('[data-period="evening"] a[href$="/classements-performances"]').count(), 0)
+  assert.equal(await page.locator('[data-day="6"] a[href$="/classements-performances"] .workspace-publication-day').innerText(), 'Facultatif')
+  assert.equal(await page.locator('.home-calendar-intro').innerText(), 'Récap tôt, puis le format du matin. Le midi reste libre pour tes tweets personnels.')
   for (const width of [320, 390]) {
     await page.setViewportSize({ width, height: 844 })
     assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), `${width}: horizontal overflow`)
@@ -52,10 +60,6 @@ try {
     assert.deepEqual(problems, [], `${width}: cards cropped or title/day overlap`)
   }
   assert.deepEqual(await page.locator('.home-day-band h2').allTextContents(), ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'])
-  for (const tool of TOOLS.filter(tool => /^(Lundi|Mardi|Mercredi|Jeudi|Vendredi|Samedi|Dimanche)/.test(tool.publicationDay ?? ''))) {
-    const row = page.locator('.home-day').filter({ has: page.locator(`.workspace-tool-card[href$="${tool.to}"]`) })
-    assert.equal(await row.locator('.home-day-band h2').textContent(), tool.publicationDay.split(' ')[0])
-  }
   assert.equal(new Set(await page.locator('.workspace-tool-card').evaluateAll(cards => cards.map(card => card.getAttribute('href')))).size, TOOLS.filter(t=>!t.hidden).length)
   // Short screens and enlarged text must grow cards instead of overlapping labels.
   for (const [width, height, enlarged] of [[320, 568, false], [360, 640, false], [390, 700, false], [390, 844, true]]) {
