@@ -171,7 +171,7 @@ function DuelWorkspace({ search }) {
       <details><summary>Explorer les supports de ce duel</summary>{[...new Map([...duel.a.assets, ...duel.b.assets].map(asset => [asset.isin,asset])).values()].map(asset => <section key={asset.isin}><h3>{asset.name}</h3><AssetToolLinks isin={asset.isin} exclude="duel" /></section>)}</details>
       <details className="pd-sources">
         <summary>Sources et calcul</summary>
-        <p>Calcul en euros sur les années complètes disponibles pour les deux portefeuilles. Rendements USD convertis chaque année avec les taux EUR/USD de fin d’année de la BCE. Revenus réinvestis, pondérations rétablies au début de chaque année. Résultats indicatifs hors courtage, frais de rééquilibrage et fiscalité. Les frais courants des fonds sont déjà intégrés à leurs rendements publiés.</p>
+        <p>Calcul en euros sur les années complètes disponibles pour les deux portefeuilles. Rendements en devises convertis en euros avec les taux de référence BCE de fin d’année, sans couverture de change. Revenus réinvestis, pondérations rétablies au début de chaque année. Résultats indicatifs hors courtage, frais de rééquilibrage et fiscalité. Les frais courants des fonds sont déjà intégrés à leurs rendements publiés.</p>
         <ul>{duel.sources.map((source, i) => <li key={`${source.name}-${i}`}>{source.url ? <a href={source.url} target="_blank" rel="noreferrer">{source.name}</a> : source.name}{source.isin ? ` · ${source.isin}` : ''}{source.note ? ` · ${source.note}` : ''}</li>)}</ul>
       </details>
       </>}

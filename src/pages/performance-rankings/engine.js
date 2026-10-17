@@ -119,7 +119,7 @@ export function basisLabel(basis) {
   return ({ adjusted: 'Cours ajustés · revenus réinvestis', 'fund-nav': 'Calendriers NAV officiels · revenus réinvestis', 'mixed-total': 'Rendements totaux et clôtures des actifs sans revenus', portfolio: 'Allocations pondérées · revenus réinvestis', 'index-net': 'Indices · dividendes nets réinvestis', 'index-gross': 'Indices · dividendes bruts réinvestis', 'spot-close': 'Cours de clôture' })[basis] ?? basis
 }
 export function supportLabel(assets) {
-  return [...new Set(assets.map(a => a.portfolio ? 'Portefeuilles' : a.isin ? a.instrumentType ?? 'ETF' : a.priceUnit === 'points' ? 'Indices' : a.basis === 'adjusted' ? 'Actions' : 'Actifs au comptant'))].join(' / ')
+  return [...new Set(assets.map(a => a.portfolio ? 'Portefeuilles' : a.instrumentType === 'EQUITY' ? 'Actions' : a.isin ? a.instrumentType ?? 'ETF' : a.priceUnit === 'points' ? 'Indices' : a.basis === 'adjusted' ? 'Actions' : 'Actifs au comptant'))].join(' / ')
 }
 // Export fixed asset rows for all modes, splitting custom periods at calendar boundaries.
 export function annualColumns(result) {
@@ -143,7 +143,7 @@ export function publicationRanking(result) {
 }
 function tweetUniverse(result, title) {
   const etfs = result.assets.every(a => a.isin && (!a.instrumentType || a.instrumentType === 'ETF'))
-  const kinds = result.assets.every(a => a.portfolio) ? 'ces portefeuilles' : etfs ? 'ces ETF' : result.assets.every(a => !a.isin && a.basis === 'adjusted') ? 'ces actions' : result.assets.every(a => a.priceUnit === 'points') ? 'ces indices' : 'ces actifs'
+  const kinds = result.assets.every(a => a.portfolio) ? 'ces portefeuilles' : etfs ? 'ces ETF' : result.assets.every(a => a.instrumentType === 'EQUITY' || (!a.isin && a.basis === 'adjusted')) ? 'ces actions' : result.assets.every(a => a.priceUnit === 'points') ? 'ces indices' : 'ces actifs'
   const qualifiers = { 'Marchés mondiaux': 'mondiaux', 'Marchés européens': 'européens', 'Facteurs mondiaux': 'factoriels mondiaux', 'Secteurs européens': 'sectoriels européens', 'Secteurs mondiaux': 'sectoriels mondiaux', 'Thématiques': 'thématiques', 'Stratégies dividendes': 'à dividendes', 'Obligations': 'obligataires' }
   return `${kinds}${qualifiers[title] ? ` ${qualifiers[title]}` : ''}`
 }

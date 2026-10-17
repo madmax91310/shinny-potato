@@ -193,7 +193,7 @@ function ResultCard({ state, d, copied, onCopy }) {
         {asset && <>Série en {currency} : {observedMonths} points présents dans le code sur {simulatedMonths} mois de simulation. {observedMonths < simulatedMonths ? 'Les mois sans point sont interpolés entre les points connus. ' : ''}{state.overridePriceRaw !== '' ? 'Le dernier prix a été saisi manuellement. ' : ''}</>}
         Le versement unique achète au prix de départ ; en DCA, chaque versement mensuel achète au prix du mois. Le pourcentage rapporte le gain ou la perte à la somme versée, sans annualisation. Le panier de dépenses illustre la hausse des prix : ce n'est pas un placement. Le Livret A suit les taux en vigueur, avec versements en fin de mois et capitalisation annuelle, sans plafond. L’inflation suit les variations mensuelles INSEE publiées depuis 2017 (arrondies), et les moyennes annuelles avant 2017.
         {asset?.methodNote ? ` ${asset.methodNote}` : asset?.priceUnit === 'points' ? (state.assetId === 'stoxx600' ? ' Indice STOXX Europe 600 Net Return en euros, dividendes nets réinvestis, hors frais ; ce n’est pas la performance d’un ETF précis.' : state.assetId === 'msciWorld' ? ' Indice MSCI World Gross Return en dollars, dividendes bruts réinvestis, hors frais ; ce n’est pas la performance d’un ETF précis.' : ' Indice S&P 500 Total Return en dollars, dividendes bruts réinvestis, hors frais ; ce n’est pas la performance d’un ETF précis.') : ''}
-        {asset?.priceMethod === 'adjusted' && <> {asset.instrumentType === 'ETC' ? 'Cours de l’ETC, frais du produit déjà reflétés dans son cours ; hors frais du courtier et fiscalité.' : asset.isin ? 'Cours ajustés de l’ETF : revenus réinvestis, frais du fonds déjà inclus ; hors frais du courtier et fiscalité.' : 'Cours ajustés des dividendes et des divisions d’actions : simulation théorique de réinvestissement, hors frais et fiscalité.'} {asset.returnNote}</>}
+        {asset?.priceMethod === 'adjusted' && <> {asset.instrumentType === 'ETC' ? 'Cours de l’ETC, frais du produit déjà reflétés dans son cours ; hors frais du courtier et fiscalité.' : asset.isin && asset.instrumentType !== 'EQUITY' ? 'Cours ajustés de l’ETF : revenus réinvestis, frais du fonds déjà inclus ; hors frais du courtier et fiscalité.' : 'Cours ajustés des dividendes et des divisions d’actions : simulation théorique de réinvestissement, hors frais et fiscalité.'} {asset.returnNote}</>}
         {monthlyIndex ? ' Pour cet indice, la simulation part d’une clôture de décembre et relie uniquement les points annuels vérifiés ; elle ne représente pas la performance nette d’un ETF précis.' : ''}
       </p>
 
@@ -387,10 +387,15 @@ function InvestmentEditor({state,setState}){
                   items={ASSET_ORDER.map(id => ({ id, isin:ASSETS[id].isin, search:ASSETS[id].ticker??'', label: historyOptionLabel(id, ASSETS[id]), group: exposureGroup(ASSETS[id]) }))}
                   emptyOption={{ id: 'custom', label: 'Autre (saisie manuelle)' }}
                   onChange={(id) => {
+                    const requestedStart = `${state.startYear}-${String(state.startMonth).padStart(2, '0')}`
+                    const min = id === 'custom' ? requestedStart : getAssetMinDate(id)
+                    const max = id === 'custom' ? requestedStart : ASSETS[id].points.at(-1).date
+                    const start = requestedStart < min ? min : requestedStart > max ? max : requestedStart
                     set({
                       assetId: id,
                       overridePriceRaw: '',
-                      startMonth: INCONSISTENT_MONTHLY_DATA_IDS.has(id) ? 12 : state.startMonth,
+                      startYear: Number(start.slice(0, 4)),
+                      startMonth: INCONSISTENT_MONTHLY_DATA_IDS.has(id) ? 12 : Number(start.slice(5)),
                       mode: id !== 'custom' && (SPARSE_MONTHLY_DATA_IDS.has(id) || INCONSISTENT_MONTHLY_DATA_IDS.has(id)) ? 'lump' : state.mode,
                     })
                   }} />

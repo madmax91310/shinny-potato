@@ -1,6 +1,6 @@
 import { assetEditorial } from './asset-editorial.js'
 
-const equityKinds = new Set(['world-developed','world-all','world-imi','world-ex-us','us','us-equal','us-small','nasdaq','europe','country','region','small','factor','theme','emerging','dividend','property','options','leverage'])
+const equityKinds = new Set(['single-stock','world-developed','world-all','world-imi','world-ex-us','us','us-equal','us-small','nasdaq','europe','country','region','small','factor','theme','emerging','dividend','property','options','leverage'])
 const total = (selection, kinds) => selection.filter(s => kinds.includes(assetEditorial(s).kind)).reduce((sum,s) => sum+s.pct,0)
 const pct = value => `${new Intl.NumberFormat('fr-FR', {maximumFractionDigits:2}).format(value)} %`
 const label = asset => assetEditorial(asset).label

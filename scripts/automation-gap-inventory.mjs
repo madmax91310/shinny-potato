@@ -41,7 +41,7 @@ export function buildGapInventory({etf=AUTOMATED_ETF,indices=read('src/data/auto
   const sources=['etf-pilot.json','amundi-etf.json','ssga-etf.json','additional-etf-sources.json','lifestrategy-sources.json'].flatMap(f=>read('scripts/'+f).instruments).concat(qualified.instruments,nonBondSources.instruments);
   const configured=new Map(sources.filter(s=>s.enabled!==false).map(s=>[s.isin,s]));
   const names={ter:'Frais',aum:'Encours',performance:'Calendrier annuel',countries:'Pays',sectors:'Secteurs',holdings:'Positions pondérées'};
-  const counts=Object.fromEntries(Object.keys(names).map(k=>[k,0]));const gaps=[];const rows=DATA_CATALOG.filter(r=>r.type==='instrument');
+  const counts=Object.fromEntries(Object.keys(names).map(k=>[k,0]));const gaps=[];const rows=DATA_CATALOG.filter(r=>r.type==='instrument' && r.fields.find(f=>f.label==='Identité')?.value?.instrumentType!=='EQUITY');
   for(const row of rows) {
     const data=etf[row.id]??{};const source=configured.get(row.id);
     for(const field of Object.keys(names)) {

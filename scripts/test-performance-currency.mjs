@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict'
 import fx from '../src/data/annual-fx.json' with { type: 'json' }
+import { CALENDAR_FX_YEARS as calendarYears } from '../src/data/calendar-fx.js'
 import official from '../src/data/official-performance-currencies.json' with { type: 'json' }
 import engine from '../src/pages/tweet-midi/engines/performance.js'
 import { convertPerformanceEntries } from '../src/pages/tweet-midi/performanceCurrency.js'
@@ -31,12 +32,12 @@ assert.doesNotMatch(tweet, /conversion BCE/)
 assert.match(tweet, /2025 : \+7,2 %/)
 assert.equal(eur.asset.currency, 'EUR')
 assert.equal(native.asset.currency, 'USD')
-const missing = fx.years[2018]
+const missing = calendarYears[2018]
 try {
-  delete fx.years[2018]
+  delete calendarYears[2018]
   assert.deepEqual(engine.getPerformanceCurrencies(item), ['EUR', 'USD'])
   assert.throws(() => engine.getPerformanceEntries({ assetId: 'sp500', year: 2016, currency: 'EUR' }), /change incomplet/)
-} finally { fx.years[2018] = missing }
+} finally { calendarYears[2018] = missing }
 // No mixing of official/BCE years within one history if official coverage is incomplete.
 const saved = official.msciWorld.EUR.annualReturns[2018]
 try {
@@ -45,7 +46,9 @@ try {
   assert.notEqual(entry.asset.currencyMethod, 'official')
   assert.ok(Math.abs(compound(entry.returns) - compound(native.returns) * fx.years[2015].value / fx.years[2025].value) < 1e-12)
 } finally { official.msciWorld.EUR.annualReturns[2018] = saved }
-assert.throws(() => convertPerformanceEntries([{asset:{currency:'JPY'},returns:[{year:2025,pct:10}]}], 'EUR'), /change incomplet/)
+const [yen] = convertPerformanceEntries([{asset:{currency:'JPY'},returns:[{year:2025,pct:10}]}], 'EUR')
+assert.ok(Math.abs(yen.returns[0].pct - ((1.1 * calendarYears[2024].rates.JPY / calendarYears[2025].rates.JPY - 1) * 100)) < 1e-12)
+assert.throws(() => convertPerformanceEntries([{asset:{currency:'ZZZ'},returns:[{year:2025,pct:10}]}], 'EUR'), /change incomplet/)
 const pair = engine.getPerformanceEntries({ mode: 'comparatif', assetIdA: 'msciWorld', assetIdB: 'stoxx600', year: 2016, currency: 'USD' })
 assert.equal(pair.length, 2)
 assert.ok(pair.every(entry => entry.asset.currency === 'USD'))

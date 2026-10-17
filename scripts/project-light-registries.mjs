@@ -11,6 +11,7 @@ import * as ter from '../src/data/etf-ter.js'
 import * as terEvidence from '../src/data/etf-ter-evidence.js'
 import * as portfolio from '../src/data/portfolio-assets.js'
 import * as currencies from '../src/data/portfolio-currencies.js'
+import * as calendarFx from '../src/data/calendar-fx.js'
 import * as reference from '../src/data/instrument-reference-evidence.js'
 import * as metrics from '../src/data/qualified-exposure-metrics.js'
 import * as qualified from '../src/data/qualified-exposure-sheets.js'
@@ -21,6 +22,7 @@ import * as practical from '../src/data/practical-source-data.js'
 // Canonical function bodies retain runtime validation and formatting behaviour.
 export function projectLightRegistries() {
   const definitions = [
+    ['calendar-fx', calendarFx, "import { fxRate } from '../lib/fx-rate.js';"],
     ['commodity-publication-data', commodities, ''], ['portfolio-exposure-data', exposures, ''], ['etf-cards', cards, ''], ['etf-publication-data', publication, ''],
     ['qualified-exposure-sheets', qualified, ''],
     ['qualified-exposure-metrics', metrics, ''],

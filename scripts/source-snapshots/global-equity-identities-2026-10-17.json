@@ -1,0 +1,1155 @@
+{
+  "roche": {
+    "yahoo": {
+      "currency": "CHF",
+      "symbol": "RO.SW",
+      "exchangeName": "EBS",
+      "fullExchangeName": "Swiss",
+      "instrumentType": "EQUITY",
+      "firstTradeDate": 796892400,
+      "regularMarketTime": 1792164701,
+      "hasPrePostMarketData": false,
+      "gmtoffset": 7200,
+      "timezone": "CEST",
+      "exchangeTimezoneName": "Europe/Zurich",
+      "regularMarketPrice": 384.6,
+      "regularMarketChangePercent": -0.414,
+      "fulldayPrice": 384.6,
+      "fulldayChange": -1.6,
+      "fulldayChangePercent": -0.414,
+      "fiftyTwoWeekHigh": 387.0,
+      "fiftyTwoWeekLow": 270.8,
+      "regularMarketDayHigh": 385.4,
+      "regularMarketDayLow": 380.8,
+      "regularMarketVolume": 25130,
+      "longName": "Roche Holding AG",
+      "shortName": "ROCHE I",
+      "chartPreviousClose": 369.8,
+      "priceHint": 2,
+      "currentTradingPeriod": {
+        "pre": {
+          "timezone": "CEST",
+          "end": 1792134000,
+          "start": 1792134000,
+          "gmtoffset": 7200
+        },
+        "regular": {
+          "timezone": "CEST",
+          "end": 1792164600,
+          "start": 1792134000,
+          "gmtoffset": 7200
+        },
+        "post": {
+          "timezone": "CEST",
+          "end": 1792164600,
+          "start": 1792164600,
+          "gmtoffset": 7200
+        }
+      },
+      "dataGranularity": "1d",
+      "range": "1mo",
+      "validRanges": [
+        "1d",
+        "5d",
+        "1mo",
+        "3mo",
+        "6mo",
+        "1y",
+        "2y",
+        "5y",
+        "10y",
+        "ytd",
+        "max"
+      ]
+    },
+    "holding": {
+      "isin": "CH0012032113",
+      "issueName": "ROCHE HOLDING AG",
+      "countryOfRisk": "Switzerland",
+      "sectorName": "Health Care",
+      "ticker": "RO",
+      "marketCurrencyCode": "CHF",
+      "exchange": "SIX Swiss Exchange"
+    },
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "checkedAt": "2026-10-17"
+  },
+  "ubs": {
+    "yahoo": {
+      "symbol": "UBSG.SW",
+      "shortName": "UBS GROUP N",
+      "longName": "UBS Group AG",
+      "currency": "CHF",
+      "exchangeTimezoneName": "Europe/Zurich",
+      "firstTradeDate": 807433200,
+      "instrumentType": "EQUITY"
+    },
+    "holding": {
+      "isin": "CH0244767585",
+      "issueName": "UBS GROUP AG",
+      "countryOfRisk": "Switzerland",
+      "sectorName": "Financials",
+      "ticker": "UBSG",
+      "marketCurrencyCode": "CHF",
+      "exchange": "SIX Swiss Exchange"
+    },
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "checkedAt": "2026-10-17"
+  },
+  "zurich": {
+    "yahoo": {
+      "symbol": "ZURN.SW",
+      "shortName": "ZURICH INSURANCE N",
+      "longName": "Zurich Insurance Group AG",
+      "currency": "CHF",
+      "exchangeTimezoneName": "Europe/Zurich",
+      "firstTradeDate": 907657200,
+      "instrumentType": "EQUITY"
+    },
+    "holding": {
+      "isin": "CH0011075394",
+      "issueName": "ZURICH INSURANCE GROUP AG",
+      "countryOfRisk": "Switzerland",
+      "sectorName": "Financials",
+      "ticker": "ZURN",
+      "marketCurrencyCode": "CHF",
+      "exchange": "SIX Swiss Exchange"
+    },
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "checkedAt": "2026-10-17"
+  },
+  "swiss-re": {
+    "yahoo": {
+      "symbol": "SREN.SW",
+      "shortName": "SWISS RE N",
+      "longName": "Swiss Re AG",
+      "currency": "CHF",
+      "exchangeTimezoneName": "Europe/Zurich",
+      "firstTradeDate": 796892400,
+      "instrumentType": "EQUITY"
+    },
+    "holding": {
+      "isin": "CH0126881561",
+      "issueName": "SWISS RE AG",
+      "countryOfRisk": "Switzerland",
+      "sectorName": "Financials",
+      "ticker": "SREN",
+      "marketCurrencyCode": "CHF",
+      "exchange": "SIX Swiss Exchange"
+    },
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "checkedAt": "2026-10-17"
+  },
+  "bbva": {
+    "yahoo": {
+      "symbol": "BBVA.MC",
+      "shortName": "BANCO BILBAO VIZCAYA ARGENTARIA",
+      "longName": "Banco Bilbao Vizcaya Argentaria, S.A.",
+      "currency": "EUR",
+      "exchangeTimezoneName": "Europe/Madrid",
+      "firstTradeDate": 946886400,
+      "instrumentType": "EQUITY"
+    },
+    "holding": {
+      "isin": "ES0113211835",
+      "issueName": "BANCO BILBAO VIZCAYA ARGENTARIA SA",
+      "countryOfRisk": "Spain",
+      "sectorName": "Financials",
+      "ticker": "BBVA",
+      "marketCurrencyCode": "EUR",
+      "exchange": "Bolsa De Madrid"
+    },
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "checkedAt": "2026-10-17"
+  },
+  "unilever": {
+    "yahoo": {
+      "symbol": "UNA.AS",
+      "shortName": "UNILEVER PLC",
+      "longName": "Unilever PLC",
+      "currency": "EUR",
+      "exchangeTimezoneName": "Europe/Amsterdam",
+      "firstTradeDate": 1607068800,
+      "instrumentType": "EQUITY"
+    },
+    "holding": {
+      "isin": "GB00BVZK7T90",
+      "issueName": "UNILEVER PLC",
+      "countryOfRisk": "United Kingdom",
+      "sectorName": "Consumer Staples",
+      "ticker": "ULVR",
+      "marketCurrencyCode": "GBP",
+      "exchange": "London Stock Exchange"
+    },
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "checkedAt": "2026-10-17"
+  },
+  "diageo": {
+    "yahoo": {
+      "symbol": "DGE.L",
+      "shortName": "DIAGEO PLC ORD 28 101/108P",
+      "longName": "Diageo plc",
+      "currency": "GBp",
+      "exchangeTimezoneName": "Europe/London",
+      "firstTradeDate": 578646000,
+      "instrumentType": "EQUITY"
+    },
+    "holding": {
+      "isin": "GB0002374006",
+      "issueName": "DIAGEO PLC",
+      "countryOfRisk": "United Kingdom",
+      "sectorName": "Consumer Staples",
+      "ticker": "DGE",
+      "marketCurrencyCode": "GBP",
+      "exchange": "London Stock Exchange"
+    },
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "checkedAt": "2026-10-17"
+  },
+  "relx": {
+    "yahoo": {
+      "symbol": "REL.L",
+      "shortName": "RELX PLC ORD 14 51/116P",
+      "longName": "RELX PLC",
+      "currency": "GBp",
+      "exchangeTimezoneName": "Europe/London",
+      "firstTradeDate": 583743600,
+      "instrumentType": "EQUITY"
+    },
+    "holding": {
+      "isin": "GB00B2B0DG97",
+      "issueName": "RELX PLC",
+      "countryOfRisk": "United Kingdom",
+      "sectorName": "Industrials",
+      "ticker": "REL",
+      "marketCurrencyCode": "GBP",
+      "exchange": "London Stock Exchange"
+    },
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "checkedAt": "2026-10-17"
+  },
+  "lseg": {
+    "yahoo": {
+      "symbol": "LSEG.L",
+      "shortName": "LONDON STOCK EXCHANGE GROUP PLC",
+      "longName": "London Stock Exchange Group plc",
+      "currency": "GBp",
+      "exchangeTimezoneName": "Europe/London",
+      "firstTradeDate": 995612400,
+      "instrumentType": "EQUITY"
+    },
+    "holding": {
+      "isin": "GB00B0SWJX34",
+      "issueName": "LONDON STOCK EXCHANGE GROUP PLC",
+      "countryOfRisk": "United Kingdom",
+      "sectorName": "Financials",
+      "ticker": "LSEG",
+      "marketCurrencyCode": "GBP",
+      "exchange": "London Stock Exchange"
+    },
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "checkedAt": "2026-10-17"
+  },
+  "rolls-royce": {
+    "yahoo": {
+      "symbol": "RR.L",
+      "shortName": "ROLLS-ROYCE HOLDINGS PLC ORD SH",
+      "longName": "Rolls-Royce Holdings plc",
+      "currency": "GBp",
+      "exchangeTimezoneName": "Europe/London",
+      "firstTradeDate": 583743600,
+      "instrumentType": "EQUITY"
+    },
+    "holding": {
+      "isin": "GB00B63H8491",
+      "issueName": "ROLLS-ROYCE HOLDINGS PLC",
+      "countryOfRisk": "United Kingdom",
+      "sectorName": "Industrials",
+      "ticker": "RR.",
+      "marketCurrencyCode": "GBP",
+      "exchange": "London Stock Exchange"
+    },
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "checkedAt": "2026-10-17"
+  },
+  "bae-systems": {
+    "yahoo": {
+      "symbol": "BA.L",
+      "shortName": "BAE SYSTEMS PLC ORD 2.5P",
+      "longName": "BAE Systems plc",
+      "currency": "GBp",
+      "exchangeTimezoneName": "Europe/London",
+      "firstTradeDate": 583743600,
+      "instrumentType": "EQUITY"
+    },
+    "holding": {
+      "isin": "GB0002634946",
+      "issueName": "BAE SYSTEMS PLC",
+      "countryOfRisk": "United Kingdom",
+      "sectorName": "Industrials",
+      "ticker": "BA.",
+      "marketCurrencyCode": "GBP",
+      "exchange": "London Stock Exchange"
+    },
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "checkedAt": "2026-10-17"
+  },
+  "rheinmetall": {
+    "yahoo": {
+      "symbol": "RHM.DE",
+      "shortName": "RHEINMETALL AG                I",
+      "longName": "Rheinmetall AG",
+      "currency": "EUR",
+      "exchangeTimezoneName": "Europe/Berlin",
+      "firstTradeDate": 902300400,
+      "instrumentType": "EQUITY"
+    },
+    "holding": {
+      "isin": "DE0007030009",
+      "issueName": "RHEINMETALL AG",
+      "countryOfRisk": "Germany",
+      "sectorName": "Industrials",
+      "ticker": "RHM",
+      "marketCurrencyCode": "EUR",
+      "exchange": "Xetra"
+    },
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "checkedAt": "2026-10-17"
+  },
+  "dhl": {
+    "yahoo": {
+      "symbol": "DHL.DE",
+      "shortName": "DHL AG                        N",
+      "longName": "DHL AG",
+      "currency": "EUR",
+      "exchangeTimezoneName": "Europe/Berlin",
+      "firstTradeDate": 974707200,
+      "instrumentType": "EQUITY"
+    },
+    "holding": {
+      "isin": "DE0005552004",
+      "issueName": "DHL AG",
+      "countryOfRisk": "Germany",
+      "sectorName": "Industrials",
+      "ticker": "DHL",
+      "marketCurrencyCode": "EUR",
+      "exchange": "Xetra"
+    },
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "checkedAt": "2026-10-17"
+  },
+  "basf": {
+    "yahoo": {
+      "symbol": "BAS.DE",
+      "shortName": "BASF SE                       N",
+      "longName": "BASF SE",
+      "currency": "EUR",
+      "exchangeTimezoneName": "Europe/Berlin",
+      "firstTradeDate": 850723200,
+      "instrumentType": "EQUITY"
+    },
+    "holding": {
+      "isin": "DE000BASF111",
+      "issueName": "BASF N",
+      "countryOfRisk": "Germany",
+      "sectorName": "Materials",
+      "ticker": "BAS",
+      "marketCurrencyCode": "EUR",
+      "exchange": "Xetra"
+    },
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "checkedAt": "2026-10-17"
+  },
+  "enel": {
+    "yahoo": {
+      "symbol": "ENEL.MI",
+      "shortName": "ENEL",
+      "longName": "Enel SpA",
+      "currency": "EUR",
+      "exchangeTimezoneName": "Europe/Rome",
+      "firstTradeDate": 941529600,
+      "instrumentType": "EQUITY"
+    },
+    "holding": {
+      "isin": "IT0003128367",
+      "issueName": "ENEL",
+      "countryOfRisk": "Italy",
+      "sectorName": "Utilities",
+      "ticker": "ENEL",
+      "marketCurrencyCode": "EUR",
+      "exchange": "Borsa Italiana"
+    },
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "checkedAt": "2026-10-17"
+  },
+  "alibaba": {
+    "yahoo": {
+      "symbol": "9988.HK",
+      "shortName": "BABA-W",
+      "longName": "Alibaba Group Holding Limited",
+      "currency": "HKD",
+      "exchangeTimezoneName": "Asia/Hong_Kong",
+      "firstTradeDate": 1574731800,
+      "instrumentType": "EQUITY"
+    },
+    "holding": {
+      "isin": "KYG017191142",
+      "issueName": "ALIBABA GROUP HOLDING",
+      "countryOfRisk": "China",
+      "sectorName": "Consumer Discretionary",
+      "ticker": "9988",
+      "marketCurrencyCode": "HKD",
+      "exchange": "Hong Kong Exchanges And Clearing Ltd"
+    },
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=264659&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "checkedAt": "2026-10-17"
+  },
+  "jd": {
+    "yahoo": {
+      "symbol": "9618.HK",
+      "shortName": "JD-SW",
+      "longName": "JD.com, Inc.",
+      "currency": "HKD",
+      "exchangeTimezoneName": "Asia/Hong_Kong",
+      "firstTradeDate": 1592443800,
+      "instrumentType": "EQUITY"
+    },
+    "holding": {
+      "isin": "KYG8208B1014",
+      "issueName": "JD.COM CLASS A",
+      "countryOfRisk": "China",
+      "sectorName": "Consumer Discretionary",
+      "ticker": "9618",
+      "marketCurrencyCode": "HKD",
+      "exchange": "Hong Kong Exchanges And Clearing Ltd"
+    },
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=264659&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "checkedAt": "2026-10-17"
+  },
+  "meituan": {
+    "yahoo": {
+      "symbol": "3690.HK",
+      "shortName": "MEITUAN-W",
+      "longName": "Meituan",
+      "currency": "HKD",
+      "exchangeTimezoneName": "Asia/Hong_Kong",
+      "firstTradeDate": 1537407000,
+      "instrumentType": "EQUITY"
+    },
+    "holding": {
+      "isin": "KYG596691041",
+      "issueName": "MEITUAN",
+      "countryOfRisk": "China",
+      "sectorName": "Consumer Discretionary",
+      "ticker": "3690",
+      "marketCurrencyCode": "HKD",
+      "exchange": "Hong Kong Exchanges And Clearing Ltd"
+    },
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=264659&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "checkedAt": "2026-10-17"
+  },
+  "xiaomi": {
+    "yahoo": {
+      "symbol": "1810.HK",
+      "shortName": "XIAOMI-W",
+      "longName": "Xiaomi Corporation",
+      "currency": "HKD",
+      "exchangeTimezoneName": "Asia/Hong_Kong",
+      "firstTradeDate": 1531099800,
+      "instrumentType": "EQUITY"
+    },
+    "holding": {
+      "isin": "KYG9830T1067",
+      "issueName": "XIAOMI",
+      "countryOfRisk": "China",
+      "sectorName": "Information Technology",
+      "ticker": "1810",
+      "marketCurrencyCode": "HKD",
+      "exchange": "Hong Kong Exchanges And Clearing Ltd"
+    },
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=264659&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "checkedAt": "2026-10-17"
+  },
+  "byd": {
+    "yahoo": {
+      "symbol": "1211.HK",
+      "shortName": "BYD COMPANY",
+      "longName": "BYD Company Limited",
+      "currency": "HKD",
+      "exchangeTimezoneName": "Asia/Hong_Kong",
+      "firstTradeDate": 1028079000,
+      "instrumentType": "EQUITY"
+    },
+    "holding": {
+      "isin": "CNE100000296",
+      "issueName": "BYD H",
+      "countryOfRisk": "China",
+      "sectorName": "Consumer Discretionary",
+      "ticker": "1211",
+      "marketCurrencyCode": "HKD",
+      "exchange": "Hong Kong Exchanges And Clearing Ltd"
+    },
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=264659&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "checkedAt": "2026-10-17"
+  },
+  "catl": {
+    "yahoo": {
+      "symbol": "300750.SZ",
+      "shortName": "CATL",
+      "longName": "Contemporary Amperex Technology Co., Limited",
+      "currency": "CNY",
+      "exchangeTimezoneName": "Asia/Shanghai",
+      "firstTradeDate": 1528680600,
+      "instrumentType": "EQUITY"
+    },
+    "holding": {
+      "isin": "CNE100003662",
+      "issueName": "CONTEMPORARY AMPEREX TECHNOLOGY A",
+      "countryOfRisk": "China",
+      "sectorName": "Industrials",
+      "ticker": "300750",
+      "marketCurrencyCode": "CNY",
+      "exchange": "Shenzhen Stock Exchange"
+    },
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=264659&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "checkedAt": "2026-10-17"
+  },
+  "keyence": {
+    "yahoo": {
+      "symbol": "6861.T",
+      "shortName": "KEYENCE CORP",
+      "longName": "Keyence Corporation",
+      "currency": "JPY",
+      "exchangeTimezoneName": "Asia/Tokyo",
+      "firstTradeDate": 978307200,
+      "instrumentType": "EQUITY"
+    },
+    "holding": {
+      "isin": "JP3236200006",
+      "issueName": "KEYENCE",
+      "countryOfRisk": "Japan",
+      "sectorName": "Information Technology",
+      "ticker": "6861",
+      "marketCurrencyCode": "JPY",
+      "exchange": "Tokyo Stock Exchange"
+    },
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "checkedAt": "2026-10-17"
+  },
+  "hitachi": {
+    "yahoo": {
+      "symbol": "6501.T",
+      "shortName": "HITACHI",
+      "longName": "Hitachi, Ltd.",
+      "currency": "JPY",
+      "exchangeTimezoneName": "Asia/Tokyo",
+      "firstTradeDate": 946944000,
+      "instrumentType": "EQUITY"
+    },
+    "holding": {
+      "isin": "JP3788600009",
+      "issueName": "HITACHI",
+      "countryOfRisk": "Japan",
+      "sectorName": "Industrials",
+      "ticker": "6501",
+      "marketCurrencyCode": "JPY",
+      "exchange": "Tokyo Stock Exchange"
+    },
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "checkedAt": "2026-10-17"
+  },
+  "mitsubishi-electric": {
+    "yahoo": {
+      "symbol": "6503.T",
+      "shortName": "MITSUBISHI ELECTRIC CORP",
+      "longName": "Mitsubishi Electric Corporation",
+      "currency": "JPY",
+      "exchangeTimezoneName": "Asia/Tokyo",
+      "firstTradeDate": 946944000,
+      "instrumentType": "EQUITY"
+    },
+    "holding": {
+      "isin": "JP3902400005",
+      "issueName": "MITSUBISHI ELECTRIC",
+      "countryOfRisk": "Japan",
+      "sectorName": "Industrials",
+      "ticker": "6503",
+      "marketCurrencyCode": "JPY",
+      "exchange": "Tokyo Stock Exchange"
+    },
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "checkedAt": "2026-10-17"
+  },
+  "tokyo-electron": {
+    "yahoo": {
+      "symbol": "8035.T",
+      "shortName": "TOKYO ELECTRON",
+      "longName": "Tokyo Electron Limited",
+      "currency": "JPY",
+      "exchangeTimezoneName": "Asia/Tokyo",
+      "firstTradeDate": 946944000,
+      "instrumentType": "EQUITY"
+    },
+    "holding": {
+      "isin": "JP3571400005",
+      "issueName": "TOKYO ELECTRON",
+      "countryOfRisk": "Japan",
+      "sectorName": "Information Technology",
+      "ticker": "8035",
+      "marketCurrencyCode": "JPY",
+      "exchange": "Tokyo Stock Exchange"
+    },
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "checkedAt": "2026-10-17"
+  },
+  "advantest": {
+    "yahoo": {
+      "symbol": "6857.T",
+      "shortName": "ADVANTEST CORP",
+      "longName": "Advantest Corporation",
+      "currency": "JPY",
+      "exchangeTimezoneName": "Asia/Tokyo",
+      "firstTradeDate": 946944000,
+      "instrumentType": "EQUITY"
+    },
+    "holding": {
+      "isin": "JP3122400009",
+      "issueName": "ADVANTEST",
+      "countryOfRisk": "Japan",
+      "sectorName": "Information Technology",
+      "ticker": "6857",
+      "marketCurrencyCode": "JPY",
+      "exchange": "Tokyo Stock Exchange"
+    },
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "checkedAt": "2026-10-17"
+  },
+  "mitsubishi-corp": {
+    "yahoo": {
+      "symbol": "8058.T",
+      "shortName": "MITSUBISHI CORP",
+      "longName": "Mitsubishi Corporation",
+      "currency": "JPY",
+      "exchangeTimezoneName": "Asia/Tokyo",
+      "firstTradeDate": 946944000,
+      "instrumentType": "EQUITY"
+    },
+    "holding": {
+      "isin": "JP3898400001",
+      "issueName": "MITSUBISHI",
+      "countryOfRisk": "Japan",
+      "sectorName": "Industrials",
+      "ticker": "8058",
+      "marketCurrencyCode": "JPY",
+      "exchange": "Tokyo Stock Exchange"
+    },
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "checkedAt": "2026-10-17"
+  },
+  "softbank-group": {
+    "yahoo": {
+      "symbol": "9984.T",
+      "shortName": "SOFTBANK GROUP CORP",
+      "longName": "SoftBank Group Corp.",
+      "currency": "JPY",
+      "exchangeTimezoneName": "Asia/Tokyo",
+      "firstTradeDate": 946944000,
+      "instrumentType": "EQUITY"
+    },
+    "holding": {
+      "isin": "JP3436100006",
+      "issueName": "SOFTBANK GROUP CORP",
+      "countryOfRisk": "Japan",
+      "sectorName": "Communication",
+      "ticker": "9984",
+      "marketCurrencyCode": "JPY",
+      "exchange": "Tokyo Stock Exchange"
+    },
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "checkedAt": "2026-10-17"
+  },
+  "recruit": {
+    "yahoo": {
+      "symbol": "6098.T",
+      "shortName": "RECRUIT HOLDINGS CO LTD",
+      "longName": "Recruit Holdings Co., Ltd.",
+      "currency": "JPY",
+      "exchangeTimezoneName": "Asia/Tokyo",
+      "firstTradeDate": 1413417600,
+      "instrumentType": "EQUITY"
+    },
+    "holding": {
+      "isin": "JP3970300004",
+      "issueName": "RECRUIT HOLDINGS LTD",
+      "countryOfRisk": "Japan",
+      "sectorName": "Industrials",
+      "ticker": "6098",
+      "marketCurrencyCode": "JPY",
+      "exchange": "Tokyo Stock Exchange"
+    },
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "checkedAt": "2026-10-17"
+  },
+  "reliance": {
+    "yahoo": {
+      "symbol": "RELIANCE.NS",
+      "shortName": "RELIANCE INDUSTRIES LTD",
+      "longName": "Reliance Industries Limited",
+      "currency": "INR",
+      "exchangeTimezoneName": "Asia/Kolkata",
+      "firstTradeDate": 820467900,
+      "instrumentType": "EQUITY"
+    },
+    "holding": {
+      "isin": "INE002A01018",
+      "issueName": "RELIANCE INDUSTRIES LTD",
+      "countryOfRisk": "India",
+      "sectorName": "Energy",
+      "ticker": "RELIANCE",
+      "marketCurrencyCode": "INR",
+      "exchange": "National Stock Exchange Of India"
+    },
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=264659&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "checkedAt": "2026-10-17"
+  },
+  "hdfc-bank": {
+    "yahoo": {
+      "symbol": "HDFCBANK.NS",
+      "shortName": "HDFC BANK LTD",
+      "longName": "HDFC Bank Limited",
+      "currency": "INR",
+      "exchangeTimezoneName": "Asia/Kolkata",
+      "firstTradeDate": 820467900,
+      "instrumentType": "EQUITY"
+    },
+    "holding": {
+      "isin": "INE040A01034",
+      "issueName": "HDFC BANK",
+      "countryOfRisk": "India",
+      "sectorName": "Financials",
+      "ticker": "HDFCBANK",
+      "marketCurrencyCode": "INR",
+      "exchange": "National Stock Exchange Of India"
+    },
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=264659&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "checkedAt": "2026-10-17"
+  },
+  "icici-bank": {
+    "yahoo": {
+      "symbol": "ICICIBANK.NS",
+      "shortName": "ICICI BANK LTD.",
+      "longName": "ICICI Bank Limited",
+      "currency": "INR",
+      "exchangeTimezoneName": "Asia/Kolkata",
+      "firstTradeDate": 1025495100,
+      "instrumentType": "EQUITY"
+    },
+    "holding": {
+      "isin": "INE090A01021",
+      "issueName": "ICICI BANK",
+      "countryOfRisk": "India",
+      "sectorName": "Financials",
+      "ticker": "ICICIBANK",
+      "marketCurrencyCode": "INR",
+      "exchange": "National Stock Exchange Of India"
+    },
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=264659&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "checkedAt": "2026-10-17"
+  },
+  "infosys": {
+    "yahoo": {
+      "symbol": "INFY.NS",
+      "shortName": "INFOSYS LIMITED",
+      "longName": "Infosys Limited",
+      "currency": "INR",
+      "exchangeTimezoneName": "Asia/Kolkata",
+      "firstTradeDate": 820467900,
+      "instrumentType": "EQUITY"
+    },
+    "holding": {
+      "isin": "INE009A01021",
+      "issueName": "INFOSYS",
+      "countryOfRisk": "India",
+      "sectorName": "Information Technology",
+      "ticker": "INFY",
+      "marketCurrencyCode": "INR",
+      "exchange": "National Stock Exchange Of India"
+    },
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=264659&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "checkedAt": "2026-10-17"
+  },
+  "tcs": {
+    "yahoo": {
+      "symbol": "TCS.NS",
+      "shortName": "TATA CONSULTANCY SERV LT",
+      "longName": "Tata Consultancy Services Limited",
+      "currency": "INR",
+      "exchangeTimezoneName": "Asia/Kolkata",
+      "firstTradeDate": 1029123900,
+      "instrumentType": "EQUITY"
+    },
+    "holding": {
+      "isin": "INE467B01029",
+      "issueName": "TATA CONSULTANCY SERVICES LTD",
+      "countryOfRisk": "India",
+      "sectorName": "Information Technology",
+      "ticker": "TCS",
+      "marketCurrencyCode": "INR",
+      "exchange": "National Stock Exchange Of India"
+    },
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=264659&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "checkedAt": "2026-10-17"
+  },
+  "dbs": {
+    "yahoo": {
+      "symbol": "D05.SI",
+      "shortName": "DBS",
+      "longName": "DBS Group Holdings Ltd",
+      "currency": "SGD",
+      "exchangeTimezoneName": "Asia/Singapore",
+      "firstTradeDate": 946861200,
+      "instrumentType": "EQUITY"
+    },
+    "holding": {
+      "isin": "SG1L01001701",
+      "issueName": "DBS GROUP HOLDINGS LTD",
+      "countryOfRisk": "Singapore",
+      "sectorName": "Financials",
+      "ticker": "D05",
+      "marketCurrencyCode": "SGD",
+      "exchange": "Singapore Exchange"
+    },
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "checkedAt": "2026-10-17"
+  },
+  "netflix": {
+    "yahoo": {
+      "symbol": "NFLX",
+      "shortName": "Netflix, Inc.",
+      "longName": "Netflix, Inc.",
+      "currency": "USD",
+      "exchangeTimezoneName": "America/New_York",
+      "firstTradeDate": 1022160600,
+      "instrumentType": "EQUITY"
+    },
+    "holding": {
+      "isin": "US64110L1061",
+      "issueName": "NETFLIX",
+      "countryOfRisk": "United States",
+      "sectorName": "Communication",
+      "ticker": "NFLX",
+      "marketCurrencyCode": "USD",
+      "exchange": "NASDAQ"
+    },
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "checkedAt": "2026-10-17"
+  },
+  "csco": {
+    "yahoo": {
+      "symbol": "CSCO",
+      "shortName": "Cisco Systems, Inc.",
+      "longName": "Cisco Systems, Inc.",
+      "currency": "USD",
+      "exchangeTimezoneName": "America/New_York",
+      "firstTradeDate": 635178600,
+      "instrumentType": "EQUITY"
+    },
+    "holding": {
+      "isin": "US17275R1023",
+      "issueName": "CISCO SYSTEMS INC",
+      "countryOfRisk": "United States",
+      "sectorName": "Information Technology",
+      "ticker": "CSCO",
+      "marketCurrencyCode": "USD",
+      "exchange": "NASDAQ"
+    },
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "checkedAt": "2026-10-17"
+  },
+  "arista": {
+    "yahoo": {
+      "symbol": "ANET",
+      "shortName": "Arista Networks, Inc.",
+      "longName": "Arista Networks, Inc.",
+      "currency": "USD",
+      "exchangeTimezoneName": "America/New_York",
+      "firstTradeDate": 1402061400,
+      "instrumentType": "EQUITY"
+    },
+    "holding": {
+      "isin": "US0404132054",
+      "issueName": "ARISTA NETWORKS",
+      "countryOfRisk": "United States",
+      "sectorName": "Information Technology",
+      "ticker": "ANET",
+      "marketCurrencyCode": "USD",
+      "exchange": "New York Stock Exchange Inc."
+    },
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "checkedAt": "2026-10-17"
+  },
+  "dell": {
+    "yahoo": {
+      "symbol": "DELL",
+      "shortName": "Dell Technologies Inc.",
+      "longName": "Dell Technologies Inc.",
+      "currency": "USD",
+      "exchangeTimezoneName": "America/New_York",
+      "firstTradeDate": 1471440600,
+      "instrumentType": "EQUITY"
+    },
+    "holding": {
+      "isin": "US24703L2025",
+      "issueName": "DELL TECHNOLOGIES INC CLASS C",
+      "countryOfRisk": "United States",
+      "sectorName": "Information Technology",
+      "ticker": "DELL",
+      "marketCurrencyCode": "USD",
+      "exchange": "New York Stock Exchange Inc."
+    },
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "checkedAt": "2026-10-17"
+  },
+  "crowdstrike": {
+    "yahoo": {
+      "symbol": "CRWD",
+      "shortName": "CrowdStrike Holdings, Inc.",
+      "longName": "CrowdStrike Holdings, Inc.",
+      "currency": "USD",
+      "exchangeTimezoneName": "America/New_York",
+      "firstTradeDate": 1560346200,
+      "instrumentType": "EQUITY"
+    },
+    "holding": {
+      "isin": "US22788C1053",
+      "issueName": "CROWDSTRIKE HOLDINGS CLASS A",
+      "countryOfRisk": "United States",
+      "sectorName": "Information Technology",
+      "ticker": "CRWD",
+      "marketCurrencyCode": "USD",
+      "exchange": "NASDAQ"
+    },
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "checkedAt": "2026-10-17"
+  },
+  "fortinet": {
+    "yahoo": {
+      "symbol": "FTNT",
+      "shortName": "Fortinet, Inc.",
+      "longName": "Fortinet, Inc.",
+      "currency": "USD",
+      "exchangeTimezoneName": "America/New_York",
+      "firstTradeDate": 1258554600,
+      "instrumentType": "EQUITY"
+    },
+    "holding": {
+      "isin": "US34959E1091",
+      "issueName": "FORTINET",
+      "countryOfRisk": "United States",
+      "sectorName": "Information Technology",
+      "ticker": "FTNT",
+      "marketCurrencyCode": "USD",
+      "exchange": "NASDAQ"
+    },
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "checkedAt": "2026-10-17"
+  },
+  "snps": {
+    "yahoo": {
+      "symbol": "SNPS",
+      "shortName": "Synopsys, Inc.",
+      "longName": "Synopsys, Inc.",
+      "currency": "USD",
+      "exchangeTimezoneName": "America/New_York",
+      "firstTradeDate": 699114600,
+      "instrumentType": "EQUITY"
+    },
+    "holding": {
+      "isin": "US8716071076",
+      "issueName": "SYNOPSYS",
+      "countryOfRisk": "United States",
+      "sectorName": "Information Technology",
+      "ticker": "SNPS",
+      "marketCurrencyCode": "USD",
+      "exchange": "NASDAQ"
+    },
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "checkedAt": "2026-10-17"
+  },
+  "klac": {
+    "yahoo": {
+      "symbol": "KLAC",
+      "shortName": "KLA Corporation",
+      "longName": "KLA Corporation",
+      "currency": "USD",
+      "exchangeTimezoneName": "America/New_York",
+      "firstTradeDate": 339859800,
+      "instrumentType": "EQUITY"
+    },
+    "holding": {
+      "isin": "US4824801009",
+      "issueName": "KLA",
+      "countryOfRisk": "United States",
+      "sectorName": "Information Technology",
+      "ticker": "KLAC",
+      "marketCurrencyCode": "USD",
+      "exchange": "NASDAQ"
+    },
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "checkedAt": "2026-10-17"
+  },
+  "uber": {
+    "yahoo": {
+      "symbol": "UBER",
+      "shortName": "Uber Technologies, Inc.",
+      "longName": "Uber Technologies, Inc.",
+      "currency": "USD",
+      "exchangeTimezoneName": "America/New_York",
+      "firstTradeDate": 1557495000,
+      "instrumentType": "EQUITY"
+    },
+    "holding": {
+      "isin": "US90353T1007",
+      "issueName": "UBER TECHNOLOGIES",
+      "countryOfRisk": "United States",
+      "sectorName": "Industrials",
+      "ticker": "UBER",
+      "marketCurrencyCode": "USD",
+      "exchange": "New York Stock Exchange Inc."
+    },
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "checkedAt": "2026-10-17"
+  },
+  "airbnb": {
+    "yahoo": {
+      "symbol": "ABNB",
+      "shortName": "Airbnb, Inc.",
+      "longName": "Airbnb, Inc.",
+      "currency": "USD",
+      "exchangeTimezoneName": "America/New_York",
+      "firstTradeDate": 1607610600,
+      "instrumentType": "EQUITY"
+    },
+    "holding": {
+      "isin": "US0090661010",
+      "issueName": "AIRBNB CLASS A",
+      "countryOfRisk": "United States",
+      "sectorName": "Consumer Discretionary",
+      "ticker": "ABNB",
+      "marketCurrencyCode": "USD",
+      "exchange": "NASDAQ"
+    },
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "checkedAt": "2026-10-17"
+  },
+  "cme": {
+    "yahoo": {
+      "symbol": "CME",
+      "shortName": "CME Group Inc.",
+      "longName": "CME Group Inc.",
+      "currency": "USD",
+      "exchangeTimezoneName": "America/New_York",
+      "firstTradeDate": 1039185000,
+      "instrumentType": "EQUITY"
+    },
+    "holding": {
+      "isin": "US12572Q1058",
+      "issueName": "CME GROUP CLASS A",
+      "countryOfRisk": "United States",
+      "sectorName": "Financials",
+      "ticker": "CME",
+      "marketCurrencyCode": "USD",
+      "exchange": "NASDAQ"
+    },
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "checkedAt": "2026-10-17"
+  },
+  "ice": {
+    "yahoo": {
+      "symbol": "ICE",
+      "shortName": "Intercontinental Exchange Inc.",
+      "longName": "Intercontinental Exchange, Inc.",
+      "currency": "USD",
+      "exchangeTimezoneName": "America/New_York",
+      "firstTradeDate": 1132151400,
+      "instrumentType": "EQUITY"
+    },
+    "holding": {
+      "isin": "US45866F1049",
+      "issueName": "INTERCONTINENTAL EXCHANGE INC",
+      "countryOfRisk": "United States",
+      "sectorName": "Financials",
+      "ticker": "ICE",
+      "marketCurrencyCode": "USD",
+      "exchange": "New York Stock Exchange Inc."
+    },
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "checkedAt": "2026-10-17"
+  },
+  "pfe": {
+    "yahoo": {
+      "symbol": "PFE",
+      "shortName": "Pfizer, Inc.",
+      "longName": "Pfizer Inc.",
+      "currency": "USD",
+      "exchangeTimezoneName": "America/New_York",
+      "firstTradeDate": 76253400,
+      "instrumentType": "EQUITY"
+    },
+    "holding": {
+      "isin": "US7170811035",
+      "issueName": "PFIZER",
+      "countryOfRisk": "United States",
+      "sectorName": "Health Care",
+      "ticker": "PFE",
+      "marketCurrencyCode": "USD",
+      "exchange": "New York Stock Exchange Inc."
+    },
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "checkedAt": "2026-10-17"
+  },
+  "amgn": {
+    "yahoo": {
+      "symbol": "AMGN",
+      "shortName": "Amgen Inc.",
+      "longName": "Amgen Inc.",
+      "currency": "USD",
+      "exchangeTimezoneName": "America/New_York",
+      "firstTradeDate": 424704600,
+      "instrumentType": "EQUITY"
+    },
+    "holding": {
+      "isin": "US0311621009",
+      "issueName": "AMGEN INC",
+      "countryOfRisk": "United States",
+      "sectorName": "Health Care",
+      "ticker": "AMGN",
+      "marketCurrencyCode": "USD",
+      "exchange": "NASDAQ"
+    },
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "checkedAt": "2026-10-17"
+  },
+  "gilead": {
+    "yahoo": {
+      "symbol": "GILD",
+      "shortName": "Gilead Sciences, Inc.",
+      "longName": "Gilead Sciences, Inc.",
+      "currency": "USD",
+      "exchangeTimezoneName": "America/New_York",
+      "firstTradeDate": 696090600,
+      "instrumentType": "EQUITY"
+    },
+    "holding": {
+      "isin": "US3755581036",
+      "issueName": "GILEAD SCIENCES",
+      "countryOfRisk": "United States",
+      "sectorName": "Health Care",
+      "ticker": "GILD",
+      "marketCurrencyCode": "USD",
+      "exchange": "NASDAQ"
+    },
+    "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "checkedAt": "2026-10-17"
+  }
+}

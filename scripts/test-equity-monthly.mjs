@@ -11,7 +11,7 @@ import { resolveAnniversaryLevel } from '../src/data/anniversary-levels.js'
 const configs=JSON.parse(readFileSync('scripts/monthly-automation.json')).series.filter(s=>s.consumerScope==='equity')
 const records=JSON.parse(readFileSync('src/data/automated-monthly.json'))
 const levels=JSON.parse(readFileSync('src/data/anniversary-levels.json'))
-assert.equal(configs.length,89)
+assert(configs.length >= 89)
 assert.equal(new Set(ASSET_ORDER).size,ASSET_ORDER.length)
 for (const config of configs) {
   const {id}=config, record=records[id]

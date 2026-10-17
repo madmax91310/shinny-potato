@@ -33,6 +33,17 @@ class Monthly(unittest.TestCase):
         self.assertEqual(len(result['proofRows']),1)
         self.assertEqual(result['qualificationCoverage']['excluded'][0]['through'],'2025-12')
         with self.assertRaises(ValueError):collect_yahoo({**config,'consumerScope':'equity','qualifyContiguousSuffix':True},NOW,fetch)
+        # A newly identified equity may explicitly retain a verified continuous suffix.
+        # Its ordinary refresh still rejects the same disagreement.
+        equity={**config,'consumerScope':'equity','instrumentType':'EQUITY','isin':'US0378331005','timezone':'America/New_York'}
+        def equity_fetch(url):
+            body=fetch(url)
+            body['chart']['result'][0]['meta']['instrumentType']='EQUITY'
+            return body
+        with self.assertRaisesRegex(ValueError,'Monthly close'):collect_yahoo(equity,NOW,equity_fetch)
+        result=collect_yahoo({**equity,'qualifyContiguousSuffix':True},NOW,equity_fetch)
+        self.assertEqual(result['points'],[['2026-01',11]])
+        self.assertEqual(result['periodStart'],'2026-01')
     def test_equity_bootstrap_requires_adjustments_and_identity(self):
         source={**CONFIG, 'consumerScope':'equity', 'instrumentType':'EQUITY',
                 'label':'Test equity', 'timezone':'America/New_York', 'collectAnniversary':True}

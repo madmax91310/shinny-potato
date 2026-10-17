@@ -1,4 +1,5 @@
 import { ASSETS } from './market-history.js'
+import GLOBAL from './global-equities.json' with { type: 'json' }
 // Reuse the reviewed sector illustrations; never invent company logos.
 const groups = {
  chip: ['adi','cdns','palo-alto-networks','tsmc','tencent','oracle','salesforce','amd','qualcomm','texas-instruments','applied-materials','lam-research','micron','ibm','servicenow','intuit','palantir','dassault-systemes','infineon','samsung','sk-hynix'],
@@ -9,6 +10,8 @@ const groups = {
  infrastructure: ['unp','lmt','rsg','adp','etn','tt','thales','legrand','saint-gobain','michelin','abb','deere','linde','ge-aerospace','honeywell','siemens','airbus','safran','deutsche-telekom'],
  luxury: ['ferrari','bmw'], utilities: ['iberdrola'],
 }
-export const EQUITY_HISTORY_IDENTITIES = Object.fromEntries(Object.entries(groups).flatMap(([scene, ids]) => ids.filter(id => ASSETS[id]?.instrumentType === 'EQUITY').map(id => [id, {
+export const EQUITY_HISTORY_IDENTITIES = Object.fromEntries([...Object.entries(groups).flatMap(([scene, ids]) => ids.filter(id => ASSETS[id]?.instrumentType === 'EQUITY').map(id => [id, {
  title: ASSETS[id].label.toUpperCase(), scene, currency: ASSETS[id].currency,
-}])))
+}])), ...GLOBAL.filter(a => ASSETS[a.id]?.instrumentType === 'EQUITY').map(a => [a.id, {
+ title: a.label.toUpperCase(), scene: a.scene, currency: a.currency,
+}])])

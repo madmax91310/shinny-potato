@@ -5,7 +5,7 @@ import { shortAssetName } from '../../data/asset-selection.js'
 export const portfolioPostName = asset => shortAssetName(asset.name)
 
 const percent = value => `${new Intl.NumberFormat('fr-FR', { maximumFractionDigits: 2 }).format(value)} %`
-const equityKinds = new Set(['world-developed', 'world-all', 'world-imi', 'world-ex-us', 'us', 'us-equal', 'us-small', 'nasdaq', 'europe', 'country', 'region', 'small', 'factor', 'theme', 'emerging', 'dividend', 'property', 'options', 'leverage'])
+const equityKinds = new Set(['single-stock','world-developed', 'world-all', 'world-imi', 'world-ex-us', 'us', 'us-equal', 'us-small', 'nasdaq', 'europe', 'country', 'region', 'small', 'factor', 'theme', 'emerging', 'dividend', 'property', 'options', 'leverage'])
 const kind = asset => assetEditorial(asset).kind
 const total = (rows, kinds) => rows.filter(row => kinds.includes(kind(row))).reduce((sum, row) => sum + row.pct, 0)
 const label = asset => assetEditorial(asset).label

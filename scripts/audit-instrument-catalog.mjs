@@ -32,13 +32,13 @@ const collections = [
   ['sheet', 'src/data/etf-cards.js', ETFS.map(item => ({ ...item, displayName: item.name }))],
   ['tweet', 'src/data/etf-themes.js', DEFAULT_THEMES.flatMap(theme => theme.etfs.map(item => ({ ...item, displayName: item.nom })))],
   ['index', 'src/data/index-comparisons.js', FAMILIES.flatMap(family => (family.etfGroups ?? []).flatMap(group => (group.funds ?? []).map(item => ({ ...item, displayName: item.name }))))],
-  ['portfolio', 'src/data/portfolio-assets.js', ASSETS.filter(item => item.isin).map(item => ({ ...item, displayName: item.name }))],
+  ['portfolio', 'src/data/portfolio-assets.js', ASSETS.filter(item => item.isin && item.instrumentType !== 'EQUITY').map(item => ({ ...item, displayName: item.name }))],
 ];
 const aumSnapshot = JSON.parse(readFileSync(new URL('./source-snapshots/etf-aum-2026-09-29.json', import.meta.url), 'utf8'));
 const reviewSnapshot = JSON.parse(readFileSync(new URL('./source-snapshots/etf-review-2026-10-02.json', import.meta.url), 'utf8'));
 const reviewedAum = new Map(reviewSnapshot.products.map(p => [p.isin, p.aum]));
 
-const seen = new Set();
+const seen = new Set(Object.values(exposureCatalog).filter(r => r.kind === 'equity' && INSTRUMENTS_BY_ISIN[r.isin]?.instrumentType === 'EQUITY').map(r => r.isin));
 const listingErrors = auditInstrumentListings();
 for (const error of listingErrors) console.error(error);
 let errors = listingErrors.length;
@@ -225,7 +225,7 @@ for (const family of FAMILIES) for (const group of family.etfGroups ?? []) {
     }
   }
 }
-for (const asset of ASSETS.filter(item => item.isin)) {
+for (const asset of ASSETS.filter(item => item.isin && item.instrumentType !== 'EQUITY')) {
   const expected=asset.distinctCandidate ? monthly[asset.isin]?.values : getInstrumentReturnValues(asset.isin);
   if (asset.r !== expected) {
     console.error(`Générateur : série locale ou divergente pour ${asset.isin}`);

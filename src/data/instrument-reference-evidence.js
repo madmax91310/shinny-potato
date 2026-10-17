@@ -1,4 +1,5 @@
 import expansionRecords from './exposure-etf-expansion-records.json' with {type:'json'};
+import GLOBAL_EQUITIES from './global-equities.json' with {type:'json'};
 import { NON_BOND_REFERENCE_EVIDENCE } from './non-bond-expansion.js';
 import { LIFESTRATEGY_RECORDS } from './lifestrategy.js';
 import {ROUND3_FUND_SHEETS} from './round3-fund-sheets.js';
@@ -7,6 +8,7 @@ import { EXPOSURE_ADDITIONS } from './exposure-additions.js';
 import { PRESENTATION_ETF_ADDITIONS } from './presentation-etf-additions.js';
 // Profils individuels consultés le 30/09/2026. Les preuves chiffrées sont figées dans scripts/source-snapshots/instrument-profiles-2026-09-30.json.
 export const INSTRUMENT_REFERENCE_EVIDENCE = {
+ ...Object.fromEntries(GLOBAL_EQUITIES.map(r=>[r.isin,{sourceUrls:[r.identitySourceUrl],checkedAt:r.checkedAt,dateStatus:'not-applicable',scope:`Action exacte ${r.isin}`,method:'Identité ISIN, pays de risque et secteur publiés dans les positions BlackRock ; cotation et devise recoupées avec les métadonnées Yahoo',note:'Classes de titres conservées séparément ; aucune équivalence ADR ou action A/H supposée.'}])),
  ...Object.fromEntries(Object.entries(expansionRecords).map(([isin,r])=>[isin,{sourceUrls:[r.sourceUrl],checkedAt:r.characteristics.checkedAt,dateStatus:'not-applicable',scope:`Part exacte ${isin}`,method:'Collecte automatisée des sources officielles, identité et ventilation datée contrôlées'}])),
   ...NON_BOND_REFERENCE_EVIDENCE,
  ...Object.values(LIFESTRATEGY_RECORDS).reduce((o,r)=>({...o,[r.isin]:{sourceUrls:[r.sourceUrl,r.characteristics.sourceUrl],checkedAt:r.checkedAt,dateStatus:'not-applicable',scope:`Part exacte ${r.isin}`,method:'Fiche Vanguard et API GPX officielles, collecte automatisée',note:'Encours arrondi au million ; rendements calendaires à partir de 2021.'}}),{}),

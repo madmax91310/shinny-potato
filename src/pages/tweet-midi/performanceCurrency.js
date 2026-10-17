@@ -1,4 +1,4 @@
-import fx from '../../data/annual-fx.json' with { type: 'json' }
+import { calendarRate, convertCalendarReturn } from '../../data/calendar-fx.js'
 import official from '../../data/official-performance-currencies.json' with { type: 'json' }
 
 // Registered exact indices only. Never substitute an index for an ETF/share.
@@ -10,16 +10,9 @@ function officialReturns({ asset, returns }, currency) {
   return record
 }
 
-// ECB reference rates: USD for one EUR, at each completed calendar year end.
-function rate(year) {
-  const row = fx.years[year]
-  return fx.currency === 'USD per EUR' && row?.asOf?.startsWith(`${year}-12-`)
-    && Number.isFinite(row.value) && row.value > 0 ? row.value : null
-}
 export function canConvertPerformance(entries, currency) {
   return ['EUR', 'USD'].includes(currency) && entries.length > 0 && entries.every(({ asset, returns }) =>
-    asset.currency === currency || officialReturns({ asset, returns }, currency) || (['EUR', 'USD'].includes(asset.currency) && returns.length > 0
-      && returns.every(({ year }) => rate(year - 1) && rate(year))))
+    asset.currency === currency || officialReturns({ asset, returns }, currency) || (returns.length > 0 && returns.every(({ year }) => calendarRate(year - 1, asset.currency) && calendarRate(year, asset.currency) && calendarRate(year - 1, currency) && calendarRate(year, currency))))
 }
 export function performanceCurrencies(entries) {
   return ['EUR', 'USD'].filter(currency => canConvertPerformance(entries, currency))
@@ -42,8 +35,7 @@ export function convertPerformanceEntries(entries, currency) {
       asset: { ...entry.asset, currency, sourceCurrency,
         sourceCredit: `${entry.asset.sourceCredit || ''}${entry.asset.sourceCredit ? ' · ' : ''}Conversion : taux de référence BCE de fin d’année` },
       returns: entry.returns.map(row => ({ ...row,
-        pct: ((1 + row.pct / 100) * (sourceCurrency === 'USD'
-          ? rate(row.year - 1) / rate(row.year) : rate(row.year) / rate(row.year - 1)) - 1) * 100,
+        pct: convertCalendarReturn(row.pct, row.year, sourceCurrency, currency),
       })),
     }
   })

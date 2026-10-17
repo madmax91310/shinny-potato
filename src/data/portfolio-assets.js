@@ -1,4 +1,5 @@
 import { QUALIFIED_EXPOSURE_SHEETS } from './qualified-exposure-sheets.js';
+import { PORTFOLIO_EQUITIES } from './portfolio-equities.js';
 import { DISTINCT_PORTFOLIO_ASSETS } from './distinct-portfolio-assets.js';
 import { NON_BOND_SHEETS } from './non-bond-expansion.js';
 import { LIFESTRATEGY_SHEETS } from './lifestrategy.js';
@@ -66,6 +67,7 @@ export const YEARS = [2020, 2021, 2022, 2023, 2024, 2025];
 // L'émoji affiché dans le texte du tweet est porté par chaque actif individuellement (cf. plus bas),
 // car la nomenclature demandée classe par "rôle" plutôt que par catégorie de fonds.
 export const CATEGORIES = {
+  actions_individuelles: {label:"Actions individuelles",color:"#a68be8"},
   multi_actifs: {label:'Actions et obligations',color:'#687ca0'},
   obligataire: { label: "Obligataire / fonds euros", color: "#3987e5" },
   actions_larges: { label: "Actions développées", color: "#199e70" },
@@ -77,6 +79,7 @@ export const CATEGORIES = {
 };
 
 export const ASSETS = [
+ ...PORTFOLIO_EQUITIES,
  ...DISTINCT_PORTFOLIO_ASSETS,
 // Parts automatisées : neuf supports à historique complet sont aussi raccordés
 // aux profils automatiques le 15/10/2026 (expandedRecipes.js).

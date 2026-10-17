@@ -601,7 +601,7 @@ export const BASELINE_ASSETS = {
 
 export const ASSETS = { ...applyMonthlyAutomation(BASELINE_ASSETS), ...ETF_MONTHLY_HISTORIES, ...AUTOMATED_EQUITY_HISTORY }
 
-export const ASSET_ORDER = [
+export const ASSET_ORDER = [...new Set([
   'bitcoin', 'ethereum', 'cac40', 'stoxx600', 'sp500', 'msciWorld', ...Object.keys(MSCI_HISTORY), ...Object.keys(DIVERSIFICATION_HISTORY), ...Object.keys(SHARED_INDEX_HISTORY), 'nasdaq100', 'soxx',
   'or', 'silver', 'lvmh', 'apple', 'microsoft', 'broadcom', 'tesla',
   'nvidia', 'amazon', 'google', 'meta', 'nestle', 'sap', 'visa', 'netflix', 'cocacola',
@@ -609,7 +609,7 @@ export const ASSET_ORDER = [
   'euroMoney', 'euroGovShort', 'euroGov13', 'globalBondEur', 'euroInflationBond', 'euroCorporateBond', 'euroHighYieldBond',
   ...Object.keys(ETF_MONTHLY_HISTORIES),
   ...Object.keys(AUTOMATED_EQUITY_HISTORY),
-]
+])]
 
 // Les anciennes séries espacées ont été remplacées par des observations mensuelles.
 // Le premier mois utilisable vient de la série sourcée elle-même.

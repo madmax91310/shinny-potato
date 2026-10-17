@@ -165,6 +165,7 @@ export function computeCustomSeries(startYm, endYm, amount, customStart, customE
 // Symbole nu (pas de formatage de montant) — utilisé pour le suffixe du champ de saisie, où
 // afficher "1000 $US" via fmtEUR serait redondant avec le chiffre déjà tapé par l'utilisateur.
 export function currencySymbol(currency) {
+  if (currency === 'GBp') return 'GBp'
   return new Intl.NumberFormat('fr-FR', { style: 'currency', currency, currencyDisplay: 'narrowSymbol' }).formatToParts(0).find(part => part.type === 'currency').value
 }
 
