@@ -45,6 +45,7 @@ import { chromium } from "playwright";
 import { spawn } from "node:child_process";
 import { stat, readFile, mkdir, writeFile } from "node:fs/promises";
 import { DATA_CATALOG } from '../src/data/catalog.js';
+import { describeDataField } from '../src/pages/data-search/lib.js';
 import { maintenanceLinks } from '../src/data/maintenance-links.js';
 import { buildCustomDuel, buildDuel, buildTweet } from '../src/pages/portfolio-duels/lib.js';
 import { getRecipes } from '../src/pages/portfolio-generator/recipes.js';
@@ -1017,15 +1018,18 @@ async function testDataSearch(page) {
   const maintenance=page.locator('.ds-field').filter({ has: page.getByRole('heading', { name: 'Éligibilité PEA', exact: true }) }).locator('.maintenance-links a');
   checks.maintenance=expectedMaintenance.length>0 && JSON.stringify(await maintenance.evaluateAll(links=>links.map(link=>link.href)))===JSON.stringify(expectedMaintenance.map(link=>link.url));
   const instrumentText = await page.locator('.ds-detail').innerText();
-  checks.instrument = instrumentText.includes('FR001400U5Q4') && instrumentText.includes('Euronext Paris') && instrumentText.includes('2026-09-30');
+  const identityCheckedAt = instrumentRecord.fields.find(field => field.label === 'Identité')?.metadata.checkedAt;
+  checks.instrument = Boolean(identityCheckedAt) && instrumentText.includes('FR001400U5Q4') && instrumentText.includes('Euronext Paris') && instrumentText.includes(identityCheckedAt);
   const aum = page.locator('.ds-field').filter({ has: page.getByRole('heading', { name: 'Encours', exact: true }) });
   const expectedAum = DATA_CATALOG.find(record => record.id === 'FR001400U5Q4').fields.find(field => field.label === 'Encours');
   checks.dates = (await aum.locator('dd').first().innerText()) === (expectedAum.metadata.asOf ?? 'Date de valeur non publiée par la source')
     && (await aum.innerText()).includes(expectedAum.metadata.checkedAt);
 
   const officialAum = page.locator('.ds-field').filter({ has: page.getByRole('heading', { name: 'Encours daté publié par l’émetteur', exact: true }) });
-  checks.officialAum = (await officialAum.locator('dd').first().innerText()) === '2026-08-31'
-    && (await officialAum.innerText()).includes('1 407,36 millions EUR');
+  // The monthly issuer refresh replaces this amount and date: expect the catalogue's current values.
+  const expectedOfficialAum = instrumentRecord.fields.find(field => field.label === 'Encours daté publié par l’émetteur');
+  checks.officialAum = Boolean(expectedOfficialAum?.value?.asOf) && (await officialAum.locator('dd').first().innerText()) === expectedOfficialAum.value.asOf
+    && (await officialAum.innerText()).includes(describeDataField(expectedOfficialAum));
   const [download] = await Promise.all([page.waitForEvent('download'), page.getByRole('button', { name: 'Exporter la fiche JSON' }).click()]);
   const exported = JSON.parse(await (await import('node:fs/promises')).readFile(await download.path(), 'utf8'));
   const exportedAum = exported.fields.find(field => field.label === 'Encours');
