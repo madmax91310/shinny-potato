@@ -4,6 +4,7 @@ import { chromium } from 'playwright'
 import { spawn } from 'node:child_process'
 import { ALL_CATEGORIES, CATEGORIES, RANKING_ASSETS } from '../src/pages/performance-rankings/data.js'
 import { commonCoverage, monthIndex } from '../src/pages/performance-rankings/engine.js'
+import { ANNUAL_PEA_CATEGORIES } from '../src/pages/performance-rankings/data.js'
 const port = 4372, base = process.env.TEST_BASE_URL || `http://127.0.0.1:${port}/shinny-potato`
 const server = process.env.TEST_BASE_URL ? null : spawn('node', ['node_modules/vite/bin/vite.js', 'preview', '--host', '127.0.0.1', '--port', String(port)], { stdio: 'ignore' })
 let browser, page
@@ -78,7 +79,7 @@ try {
   assert.match(await page.locator('.rk-coverage').innerText(), /2005-12/)
   await page.getByRole('group', { name: 'Devise du classement', exact: true }).locator('[data-option][data-value="EUR"]').click()
   assert.match(await page.locator('.rk-coverage').innerText(), /EUR/)
-  await category('annual-pea')
+  await category(ANNUAL_PEA_CATEGORIES[0].id)
   assert.match(await page.locator('.rk-coverage').innerText(), /NAV officiels/)
   await category('multi-asset')
   assert.equal(await page.getByRole('alert').count(), 0)

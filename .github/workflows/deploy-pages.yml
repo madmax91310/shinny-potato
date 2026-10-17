@@ -157,6 +157,7 @@ jobs:
       - run: node scripts/test-publication-consumers.mjs
       - run: node scripts/test-household-benchmarks.mjs
       - run: npm run audit:publishable-content
+      - run: node scripts/test-etf-themes-coverage.mjs
       - run: npm run audit:source-inventory
       - run: node scripts/test-comparison-etf-details.mjs
       - run: npm run verify:tweet-midi

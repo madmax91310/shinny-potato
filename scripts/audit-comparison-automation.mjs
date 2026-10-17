@@ -10,7 +10,8 @@ import { AUTOMATED_ETF } from '../src/data/automated-etf.js';
 import { classifyInstrumentGap } from './automation-gap-inventory.mjs';
 
 const qualifiedConfig = {instruments:[...baseQualified.instruments,...nonBondQualified.instruments]};
-const sources = ['etf-pilot.json', 'amundi-etf.json', 'ssga-etf.json', 'additional-etf-sources.json']
+// exposure-etf-expansion.json : collecteur update-exposure-expansion.yml, dont les 35 parts alimentent AUTOMATED_ETF.
+const sources = ['etf-pilot.json', 'amundi-etf.json', 'ssga-etf.json', 'additional-etf-sources.json', 'exposure-etf-expansion.json']
   .flatMap(file => JSON.parse(readFileSync(new URL(file, import.meta.url))).instruments).concat(lifestrategyConfig.instruments,nonBondSources.instruments);
 
 // Check the actual selection, including reused themes and PEA blocks.

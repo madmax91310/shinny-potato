@@ -38,7 +38,7 @@ export function classifyInstrumentGap(id,field,now=new Date().toISOString().slic
   return {status:'unqualified',reason:'Champ absent des observations actives ; source ou connecteur à qualifier.'};
 }
 export function buildGapInventory({etf=AUTOMATED_ETF,indices=read('src/data/automated-indices.json'),insurance=read('src/data/automated-insurance.json').records,now=new Date().toISOString().slice(0,10)}={}) {
-  const sources=['etf-pilot.json','amundi-etf.json','ssga-etf.json','additional-etf-sources.json','lifestrategy-sources.json'].flatMap(f=>read('scripts/'+f).instruments).concat(qualified.instruments,nonBondSources.instruments);
+  const sources=['etf-pilot.json','amundi-etf.json','ssga-etf.json','additional-etf-sources.json','exposure-etf-expansion.json','lifestrategy-sources.json'].flatMap(f=>read('scripts/'+f).instruments).concat(qualified.instruments,nonBondSources.instruments);
   const configured=new Map(sources.filter(s=>s.enabled!==false).map(s=>[s.isin,s]));
   const names={ter:'Frais',aum:'Encours',performance:'Calendrier annuel',countries:'Pays',sectors:'Secteurs',holdings:'Positions pondérées'};
   const counts=Object.fromEntries(Object.keys(names).map(k=>[k,0]));const gaps=[];const rows=DATA_CATALOG.filter(r=>r.type==='instrument' && r.fields.find(f=>f.label==='Identité')?.value?.instrumentType!=='EQUITY');

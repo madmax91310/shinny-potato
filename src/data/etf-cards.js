@@ -53,11 +53,14 @@ export const CATEGORY_ORDER = [
     "Spatial",
     "Stratégiques",
     "Matières premières & Crypto",
-    "Obligataires"
+    "Matières premières",
+    "Obligataires",
+    "Multi-actifs"
   ];
 
 export const CATEGORY_EMOJI = {
   'Multi-actifs': '⚖️',
+  'Matières premières': '🛢️',
     "Cœur de portefeuille": "🔵",
     "Sectoriels classiques": "🟢",
     "Thématiques émergentes": "🟠",
