@@ -15,6 +15,7 @@ import { getPresentationCopy } from '../src/pages/etf-sheets/editorial.js';
 import { buildFactsheetTweet } from '../src/pages/factsheet-tweets/lib.js';
 import { sortedRows, sectorLabel } from '../src/pages/factsheet-tweets/editorial.js';
 import { TOOLS, HOME_TOOLS } from '../src/tools.js';
+import { EDITORIAL_WEEK } from '../src/data/editorial-calendar.js';
 import { ETFS } from '../src/data/etf-cards.js';
 import { instrumentOption } from '../src/data/asset-selection.js';
 import { ASSETS as PORTFOLIO_ASSETS } from '../src/data/portfolio-assets.js';
@@ -97,10 +98,20 @@ async function testPracticalSheets(page) {
 
 async function testWorkspaceNavigation(page) {
   await page.goto(`${BASE}/`, { waitUntil: 'networkidle' });
-  const checks = { allTools: await page.locator('.workspace-tool-card').count() === TOOLS.filter(t=>!t.hidden).length };
-  checks.publicationDays = (await page.locator('.workspace-publication-day').allTextContents()).sort().join('|') === TOOLS.filter(tool => !tool.hidden && tool.publicationDay).map(tool => tool.publicationDay).sort().join('|');
+  const entries = EDITORIAL_WEEK.flatMap(({ day, morning, evening }) =>
+    [['Matin · après le récap', morning], ['Soir', evening]].flatMap(([label, slots]) =>
+      slots.map(slot => ({ path: slot.path, label: slot.note || `${day} ${label.toLowerCase()}` }))));
+  const otherTools = HOME_TOOLS.filter(tool => !entries.some(entry => entry.path === tool.to));
+  const expectedPaths = [...entries.map(entry => entry.path), ...otherTools.filter(tool => tool.publicationDay === 'Publication ponctuelle').map(tool => tool.to), ...otherTools.filter(tool => tool.publicationDay !== 'Publication ponctuelle').map(tool => tool.to)];
+  const expectedLabels = [...entries.map(entry => entry.label), ...otherTools.filter(tool => tool.publicationDay).map(tool => tool.publicationDay)];
+  const checks = { allTools: await page.locator('.workspace-tool-card').count() === expectedPaths.length };
+  checks.publicationDays = (await page.locator('.workspace-publication-day').allTextContents()).sort().join('|') === expectedLabels.sort().join('|');
   checks.onlyTools = await page.locator('.workspace-search,.workspace-filters,.workspace-brand').count() === 0;
-  checks.weeklyOrder = (await page.locator('.workspace-tool-card').evaluateAll(cards => cards.map(card => new URL(card.href).pathname.split('/').at(-1)))).join('|') === [...HOME_TOOLS.filter(tool => /^(Lundi|Mardi|Mercredi|Jeudi|Vendredi|Samedi|Dimanche)/.test(tool.publicationDay ?? '')), ...HOME_TOOLS.filter(tool => tool.publicationDay === 'Publication ponctuelle'), ...HOME_TOOLS.filter(tool => !/^(Lundi|Mardi|Mercredi|Jeudi|Vendredi|Samedi|Dimanche)/.test(tool.publicationDay ?? '') && tool.publicationDay !== 'Publication ponctuelle')].map(tool => tool.to.slice(1)).join('|');
+  checks.weeklyOrder = (await page.locator('.workspace-tool-card').evaluateAll(cards => cards.map(card => new URL(card.href).pathname.split('/').at(-1)))).join('|') === expectedPaths.map(path => path.slice(1)).join('|');
+  checks.rankingsMorningOnly = await page.locator('[data-period="morning"] a[href$="/classements-performances"]').count() === 3 && await page.locator('[data-period="evening"] a[href$="/classements-performances"]').count() === 0;
+  checks.investmentTwice = await page.locator('[data-period="morning"] a[href$="/calculateur-investissement"]').count() === 2;
+  checks.brokersWednesday = await page.locator('[data-day="2"] [data-period="evening"] a[href$="/comparatif-courtiers"]').count() === 1;
+  checks.sundayOptional = (await page.locator('[data-day="6"] a[href$="/classements-performances"]').textContent()).includes('Facultatif');
   for (const width of [320, 390, 768, 1280]) {
     await page.setViewportSize({ width, height: 844 });
     checks[`overflow${width}`] = await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth);
@@ -119,7 +130,7 @@ async function testWorkspaceNavigation(page) {
   await search.fill('zzzzzz');
   checks.emptySearch = await page.locator('.workspace-tool-card').count() === 0 && (await page.getByRole('status').textContent()).includes('0 outil');
   await page.getByRole('button', { name: 'Effacer', exact: true }).click();
-  checks.resetSearch = await page.locator('.workspace-tool-card').count() === HOME_TOOLS.length;
+  checks.resetSearch = await page.locator('.workspace-tool-card').count() === expectedPaths.length;
   await mkdir('test-artifacts/weekly-home', { recursive: true });
   await page.screenshot({ path: 'test-artifacts/weekly-home/mobile.png', fullPage: true });
   await page.setViewportSize({ width: 1280, height: 900 });

@@ -1,3 +1,4 @@
+import { publicationLabel } from './data/editorial-calendar.js'
 import { INVESTORS } from './data/investor-roster.js'
 // Registre central des outils : source unique pour le dashboard, la nav et les routes.
 // status: 'disponible' une fois l'outil migré et branché, 'bientot' tant qu'il affiche un écran d'attente.
@@ -141,7 +142,7 @@ export const TOOLS = [
     to: '/faits-marquants-marches',
     navLabel: 'Faits marquants',
     title: 'Faits marquants des marchés',
-    publicationDay: 'Dimanche soir',
+    publicationDay: 'Publication ponctuelle',
     icon: '📚',
     accent: '#34d399',
     description: "Statistiques historiques sourcées sur les indices et calculs de baisse, récupération et versements sur huit actions sur les chocs, corrections et séquences des marchés, prêtes à publier en format \"le saviez-vous\".",
@@ -165,7 +166,7 @@ export const TOOLS = [
     description: 'Des indices et ETF décortiqués à partir de leurs fiches officielles, avec un texte modifiable avant publication.',
     status: 'disponible',
   },
-]
+].map(tool => ({ ...tool, publicationDay: publicationLabel(tool.to) || tool.publicationDay }))
 
 const TOOL_SUMMARIES = {
   '/classements-performances': 'Les gagnants par année ou sur une période commune, avec une image à publier.',
