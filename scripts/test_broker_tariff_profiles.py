@@ -221,4 +221,15 @@ class BrokerProfilesTests(unittest.TestCase):
         self.assertEqual(count,1);self.assertNotIn('saxo:profile:jeune',failures)
         self.assertEqual(baseline['brokers']['saxo']['profile']['jeune']['checkedAt'],TODAY)
 
+class ClauseEvidenceTests(unittest.TestCase):
+    def test_missing_clause_reports_closest_current_passage(self):
+        from broker_profiles import find
+        text='Préambule. Pour les opérations en devises, le compte du Client sera débité de la contre-valeur en euros. Fin.'
+        with self.assertRaisesRegex(ValueError,'Passage actuel le plus proche : « Pour les opérations en devises, le compte du Client sera débité'):
+            find(r'Pour les opérations en devises, le compte du Client enregistrera la contre-valeur en euros',text)
+        with self.assertRaisesRegex(ValueError,'Aucun passage proche'):
+            find(r'Frais\s+de garde gratuits sur le PEA jeunes',text)
+        self.assertTrue(find(r'contre-valeur\s+en euros',text))
+
+
 if __name__=='__main__':unittest.main()

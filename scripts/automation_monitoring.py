@@ -26,6 +26,9 @@ def incident_context(identifier, context, fallback):
             'to': matches[0].get('to') if matches else '/donnees-a-revoir'}
 
 
+SOURCE_CHANGE_MARKERS = ('Clause officielle absente ou modifiée', 'Wrong contract identity')
+
+
 def evaluate_monitoring(state, context, registry, now, radar=None):
     if context.get('schemaVersion') != 1 or not isinstance(context.get('alerts'), list) or not isinstance(context.get('entities'), list):
         raise ValueError('Calendrier de surveillance incomplet')
@@ -50,7 +53,10 @@ def evaluate_monitoring(state, context, registry, now, radar=None):
             details = incident_context(identifier, context, failure.get('name', identifier))
             if not details['tools']:
                 details['tools'] = tools
-            add(f'collection:{workflow}:{identifier}', {**base, **failure, **details, 'tools': details['tools'], 'kind': 'collection',
+            # An official document that changed wording or identity is not a broken collector:
+            # the previous value is kept and a person must compare old and new text.
+            review = any(marker in str(failure.get('cause', '')) for marker in SOURCE_CHANGE_MARKERS)
+            add(f'collection:{workflow}:{identifier}', {**base, **failure, **details, 'tools': details['tools'], 'kind': 'review' if review else 'collection',
                 'field': failure.get('field') or ('Composition' if identifier.endswith('-composition') else 'Performances' if identifier.endswith('-returns') else 'Champs du collecteur'),
                 'dataId': identifier})
         if row.get('status') == 'failure' and (not row.get('dataFailures') or row.get('publicationStatus') == 'failure'):

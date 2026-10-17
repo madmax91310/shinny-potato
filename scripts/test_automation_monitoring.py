@@ -32,6 +32,17 @@ class MonitoringTests(unittest.TestCase):
         state['monitoring'] = resolved
         self.assertEqual(evaluate(state)['revision'], 2)
 
+    def test_changed_official_document_is_a_review_not_a_broken_collector(self):
+        state = copy.deepcopy(STATE)
+        state['workflows']['x.yml']['dataFailures'] = {
+            'clause': {'name': 'Clause', 'cause': 'Clause officielle absente ou modifiée : X | Passage actuel le plus proche : « Y »'},
+            'identity': {'name': 'Contrat', 'cause': 'Wrong contract identity | attendu : « A » ; titre actuel : « B »'},
+            'network': {'name': 'Réseau', 'cause': 'HTTP Error 403: Forbidden'}}
+        active = evaluate(state)['active']
+        self.assertEqual(active['collection:x.yml:clause']['kind'], 'review')
+        self.assertEqual(active['collection:x.yml:identity']['kind'], 'review')
+        self.assertEqual(active['collection:x.yml:network']['kind'], 'collection')
+
     def test_published_data_with_failed_advisory_check_is_not_a_publication_failure(self):
         state = copy.deepcopy(STATE)
         row = state['workflows']['x.yml']
