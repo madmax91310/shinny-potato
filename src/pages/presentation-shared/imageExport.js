@@ -218,7 +218,7 @@ function sculpture(ctx,img,x,y,width,height,brand) {
 function fittedText(ctx,value,x,y,width,size,min,color,weight=400,family=SANS,maxLines=1) {
   while(size>min){font(ctx,size,weight,family);if(wrap(ctx,value,width).length<=maxLines)break;size-=2}
   font(ctx,size,weight,family)
-  if(wrap(ctx,value,width).length>maxLines)throw new Error('Texte trop long pour le visuel de ce placement.')
+  if(wrap(ctx,value,width).length>maxLines)throw new Error(`Texte trop long pour le visuel de ce placement : ${value}`)
   return text(ctx,value,x,y,width,size,color,weight,family)
 }
 export async function renderPresentationImage(record,kind) {
@@ -254,7 +254,10 @@ export async function renderPresentationImage(record,kind) {
   for(let i=0;i<model.highlights.length;i++) {
     const r=model.highlights[i],x=80+i*500
     ctx.textAlign='left'
-    fittedText(ctx,r.value,x,688,metricWidth,90,56,'#ffffff',600,SERIF)
+    // Long qualitative values keep their complete wording above the label.
+    font(ctx,56,600,SERIF)
+    const twoLines=wrap(ctx,r.value,metricWidth).length>1
+    fittedText(ctx,r.value,x,twoLines?640:688,metricWidth,twoLines?56:90,56,'#ffffff',600,SERIF,twoLines?2:1)
     fittedText(ctx,r.label,x,797,metricWidth,30,26,'#dbe9ef',400,SANS,2)
     if(i<2){ctx.fillStyle=model.brand.light+'60';ctx.fillRect(x+470,706,1,105)}
   }
