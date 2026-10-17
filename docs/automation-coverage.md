@@ -8,14 +8,14 @@ Rapport fondé sur les collecteurs configurés et les données actives, pas sur 
 
 | Domaine | Couverture active | Fréquence |
 |---|---|---|
-| Historiques mensuels des simulateurs | 322/322 séries ; 150 collecteurs communs + Bitcoin et or | Marchés : 2, 4, 8 et 16 du mois ; Bitcoin : 2, 4 et 8 ; or : tentatives du 3 au 10 |
-| Parts ETF mensuelles raccordées | 162 parts exactes ; investissement et performance revenus réinvestis, anniversaire hors distributions | Même collecte mensuelle et reprise quotidienne des échecs |
-| ETF/ETC/ETP | 244/244 instruments, au moins un champ | Quotidienne |
+| Historiques mensuels des simulateurs | 383/383 séries ; 199 collecteurs communs + Bitcoin et or | Marchés : 2, 4, 8 et 16 du mois ; Bitcoin : 2, 4 et 8 ; or : tentatives du 3 au 10 |
+| Parts ETF mensuelles raccordées | 174 parts exactes ; investissement et performance revenus réinvestis, anniversaire hors distributions | Même collecte mensuelle et reprise quotidienne des échecs |
+| ETF/ETC/ETP | 244/294 instruments, au moins un champ | Quotidienne |
 | Comparatif ETF | 133/133 parts raccordées dans 90 blocs ; 123 calendriers actifs, 11 absences qualifiées | Quotidienne ; ajout de part contrôlé en CI |
 | Compositions d’indices | 52 indices | 3 et 16 du mois |
 | Rendements annuels d’indices | 56 indices | 3 et 16 du mois |
 | Pouvoir d’achat | Prix généraux, alimentation, énergie, IRL et SMIC INSEE ; périodes et qualité publiées | Vérification quotidienne |
-| Anniversaires | 312 niveaux datés ; saisie manuelle facultative | Quotidienne ; or : dernière moyenne mensuelle |
+| Anniversaires | 373 niveaux datés ; saisie manuelle facultative | Quotidienne ; or : dernière moyenne mensuelle |
 | Inflation | INSEE, prolongement de la série mensuelle 2026+ | 1 et 16 du mois |
 | Portefeuilles d’investisseurs | 28 profils SEC 13F | Vérification quotidienne ; publication trimestrielle par les déclarants |
 | Suivi de fraîcheur | Rapport et rappels GitHub | Hebdomadaire ; ces rappels ne collectent pas les données manuelles |
@@ -72,10 +72,58 @@ Les performances cumulées ou glissantes publiées par les émetteurs sont suivi
 
 ## Instruments entièrement hors collecte active
 
-Aucun instrument entièrement hors collecte : les 244 instruments ont au moins un champ actif. Les lacunes par champ restent détaillées ci-dessous.
-
 | ISIN | Instrument | Blocage actuel |
 |---|---|---|
+| CH0012032113 | Roche | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
+| CH0244767585 | UBS | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
+| CH0011075394 | Zurich Insurance | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
+| CH0126881561 | Swiss Re | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
+| ES0113211835 | BBVA | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
+| GB00BVZK7T90 | Unilever | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
+| GB0002374006 | Diageo | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
+| GB00B2B0DG97 | RELX | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
+| GB00B0SWJX34 | London Stock Exchange Group | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
+| GB00B63H8491 | Rolls-Royce | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
+| GB0002634946 | BAE Systems | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
+| DE0007030009 | Rheinmetall | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
+| DE0005552004 | DHL Group | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
+| DE000BASF111 | BASF | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
+| IT0003128367 | Enel | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
+| KYG017191142 | Alibaba | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
+| KYG8208B1014 | JD.com | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
+| KYG596691041 | Meituan | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
+| KYG9830T1067 | Xiaomi | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
+| CNE100000296 | BYD | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
+| CNE100003662 | CATL | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
+| JP3236200006 | Keyence | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
+| JP3788600009 | Hitachi | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
+| JP3902400005 | Mitsubishi Electric | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
+| JP3571400005 | Tokyo Electron | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
+| JP3122400009 | Advantest | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
+| JP3898400001 | Mitsubishi Corporation | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
+| JP3436100006 | SoftBank Group | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
+| JP3970300004 | Recruit Holdings | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
+| INE002A01018 | Reliance Industries | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
+| INE040A01034 | HDFC Bank | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
+| INE090A01021 | ICICI Bank | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
+| INE009A01021 | Infosys | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
+| INE467B01029 | Tata Consultancy Services | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
+| SG1L01001701 | DBS Group | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
+| US64110L1061 | Netflix | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
+| US17275R1023 | Cisco | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
+| US0404132054 | Arista Networks | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
+| US24703L2025 | Dell Technologies | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
+| US22788C1053 | CrowdStrike | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
+| US34959E1091 | Fortinet | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
+| US8716071076 | Synopsys | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
+| US4824801009 | KLA | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
+| US90353T1007 | Uber | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
+| US0090661010 | Airbnb | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
+| US12572Q1058 | CME Group | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
+| US45866F1049 | Intercontinental Exchange | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
+| US7170811035 | Pfizer | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
+| US0311621009 | Amgen | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
+| US3755581036 | Gilead Sciences | Connecteur officiel exact à qualifier ; les données existantes restent manuelles |
 
 ## Champs restant manuels sur les instruments partiellement couverts
 
@@ -354,7 +402,7 @@ Russell 2000 : composition automatisée depuis les tables explicitement consacr�
 
 Les lacunes ne se traitent pas toutes de la même manière : une donnée non applicable (pays actions d’un ETC or) doit rester absente ; un calendrier non encore publié attend sa première année complète ; une source exploitable mais non raccordée nécessite un connecteur.
 
-1. Compléter les champs des instruments partiellement raccordés et fiabiliser la disponibilité des pages WisdomTree et du miroir des fiches BNP. 0 instruments restent entièrement hors collecte. Les pays, secteurs et dix positions du Dow Jones Amundi sont raccordés à ses tableaux d’indice datés, en conservant les caractéristiques de la part. Les encours CoinShares sont raccordés aux widgets officiels, avec leur Rate Date réelle ; les pages WisdomTree accessibles fournissent leurs encours datés ; compléter les calendriers exacts et compositions restant listés ci-dessus. CoinShares : les fiches publient un rendement crypto de référence, qui ne remplace pas celui de la part après frais ou staking. Distinguer explicitement les données non applicables, non publiées et réellement à connecter.
+1. Compléter les champs des instruments partiellement raccordés et fiabiliser la disponibilité des pages WisdomTree et du miroir des fiches BNP. 50 instruments restent entièrement hors collecte. Les pays, secteurs et dix positions du Dow Jones Amundi sont raccordés à ses tableaux d’indice datés, en conservant les caractéristiques de la part. Les encours CoinShares sont raccordés aux widgets officiels, avec leur Rate Date réelle ; les pages WisdomTree accessibles fournissent leurs encours datés ; compléter les calendriers exacts et compositions restant listés ci-dessus. CoinShares : les fiches publient un rendement crypto de référence, qui ne remplace pas celui de la part après frais ou staking. Distinguer explicitement les données non applicables, non publiées et réellement à connecter.
 2. Compléter les poids du top dix Russell 1000 encore non publiés ; les deux Dividend Aristocrats utilisent désormais leurs fiches S&P exactes (tables natives et lecture concordante des légendes sectorielles à deux résolutions) en conservant exactement la variante de rendement et la devise existantes. Suivre le renouvellement annuel automatique ; les sources sans nouveau millésime gardent leur dernière période documentée.
 3. Étendre les sources renouvelables aux produits et paramètres encore hors des collectes économiques et réglementaires déjà qualifiées. Les caractéristiques (réplication, distribution, domicile, couverture de change, PEA) sont exclues des priorités à la demande de l’utilisateur.
 4. Fiabiliser la disponibilité des collecteurs ; conserver la distinction entre taux réglementaire effectif, moyenne de marché et rendement d’un produit individuel.
