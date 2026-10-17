@@ -38,6 +38,13 @@ try{
  }
  const exposure=await import(uri(plugin.transform('',resolve('src/pages/dca-profiles/records.js')).code))
  assert(!Object.values(exposure.references).some(r=>r.countries||r.sectors||r.equitySleeve))
+ const beforeNonEquity=requests.length
+ for(const id of ['gold','btc']){
+  assert(!references[id],`${id} has no equity exposure record`)
+  assert(exposure.exposureRecords.isReady(id))
+  await exposure.exposureRecords.load(id)
+ }
+ assert.equal(requests.length,beforeNonEquity,'gold and Bitcoin require no equity exposure fetch')
  const ids=Object.keys(references)
  fail=true
  await assert.rejects(exposure.exposureRecords.load(ids[0]))
