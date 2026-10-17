@@ -204,19 +204,28 @@
     },
     "update-publication-observations.yml": {
       "name": "Pouvoir d’achat et niveaux des anniversaires",
-      "runId": 39019018666,
+      "runId": 39028621737,
       "attempt": 1,
-      "completedAt": "2026-10-17T09:20:00Z",
-      "status": "success",
+      "completedAt": "2026-10-17T12:01:11Z",
+      "status": "failure",
       "lastSuccessAt": "2026-10-17T09:20:00Z",
       "collectionStatus": "success",
       "validationStatus": "success",
       "recordingStatus": "success",
-      "publicationStatus": "not-run",
-      "lastCollectionSuccessAt": "2026-10-17T09:20:00Z",
+      "publicationStatus": "failure",
+      "lastCollectionSuccessAt": "2026-10-17T12:01:11Z",
       "lastPublicationSuccessAt": "2026-10-11T14:35:58Z",
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39019018666",
-      "failures": [],
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39028621737",
+      "failures": [
+        {
+          "job": "deploy / browser-checks (2)",
+          "step": "Run node scripts/run-browser-checks.mjs 2 4"
+        },
+        {
+          "job": "deploy / browser-checks (0)",
+          "step": "Run node scripts/run-browser-checks.mjs 0 4"
+        }
+      ],
       "dataFailures": {}
     },
     "update-editorial-radar.yml": {
@@ -504,11 +513,11 @@
       }
     }
   },
-  "updatedAt": "2026-10-17T11:52:24Z",
+  "updatedAt": "2026-10-17T12:01:11Z",
   "monitoring": {
     "schemaVersion": 1,
-    "checkedAt": "2026-10-17T11:59:29.506075+00:00",
-    "revision": 66,
+    "checkedAt": "2026-10-17T12:01:32.035485+00:00",
+    "revision": 67,
     "active": {
       "collection:update-practical-sheets.yml:practical:13f": {
         "name": "SEC · questions et réponses sur le formulaire 13F",
@@ -529,7 +538,24 @@
         "dataId": "practical:13f",
         "id": "collection:update-practical-sheets.yml:practical:13f",
         "firstSeenAt": "2026-10-14T21:07:26.171294+00:00",
-        "lastSeenAt": "2026-10-17T11:59:29.506075+00:00"
+        "lastSeenAt": "2026-10-17T12:01:32.035485+00:00"
+      },
+      "publication:update-publication-observations.yml": {
+        "name": "Pouvoir d’achat et niveaux des anniversaires",
+        "tools": [
+          "Pouvoir d’achat",
+          "Il y a X ans"
+        ],
+        "impactScope": "collector",
+        "workflow": "update-publication-observations.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39028621737",
+        "to": "/donnees-a-revoir",
+        "kind": "publication",
+        "field": "Publication",
+        "cause": "deploy / browser-checks (2) : Run node scripts/run-browser-checks.mjs 2 4 ; deploy / browser-checks (0) : Run node scripts/run-browser-checks.mjs 0 4",
+        "id": "publication:update-publication-observations.yml",
+        "firstSeenAt": "2026-10-17T12:01:32.035485+00:00",
+        "lastSeenAt": "2026-10-17T12:01:32.035485+00:00"
       },
       "collection:update-insurance.yml:linxea-avenir-2": {
         "name": "Linxea Avenir 2",
@@ -548,7 +574,7 @@
         "dataId": "linxea-avenir-2",
         "id": "collection:update-insurance.yml:linxea-avenir-2",
         "firstSeenAt": "2026-10-14T13:08:27.203935+00:00",
-        "lastSeenAt": "2026-10-17T11:59:29.506075+00:00"
+        "lastSeenAt": "2026-10-17T12:01:32.035485+00:00"
       },
       "collection:update-scpi.yml:remake-live": {
         "name": "Remake Live",
@@ -571,7 +597,7 @@
         "dataId": "remake-live",
         "id": "collection:update-scpi.yml:remake-live",
         "firstSeenAt": "2026-10-15T13:02:43.499914+00:00",
-        "lastSeenAt": "2026-10-17T11:59:29.506075+00:00"
+        "lastSeenAt": "2026-10-17T12:01:32.035485+00:00"
       },
       "collection:update-regulatory-data.yml:broker-observation:caidf:profile:change": {
         "name": "caidf:profile:change",
@@ -591,7 +617,7 @@
         "dataId": "broker-observation:caidf:profile:change",
         "id": "collection:update-regulatory-data.yml:broker-observation:caidf:profile:change",
         "firstSeenAt": "2026-10-15T18:00:14.760687+00:00",
-        "lastSeenAt": "2026-10-17T11:59:29.506075+00:00"
+        "lastSeenAt": "2026-10-17T12:01:32.035485+00:00"
       },
       "publication:update-investor-13f.yml": {
         "name": "Portefeuilles des investisseurs",
@@ -607,7 +633,7 @@
         "cause": "deploy / browser-checks (0) : Run node scripts/playwright-nasdaq-total-return.mjs",
         "id": "publication:update-investor-13f.yml",
         "firstSeenAt": "2026-10-16T17:10:15.533090+00:00",
-        "lastSeenAt": "2026-10-17T11:59:29.506075+00:00"
+        "lastSeenAt": "2026-10-17T12:01:32.035485+00:00"
       },
       "publication:update-lifestrategy.yml": {
         "name": "Vanguard LifeStrategy",
@@ -626,7 +652,7 @@
         "cause": "deploy / browser-checks (3) : Run node scripts/run-browser-checks.mjs 3 4",
         "id": "publication:update-lifestrategy.yml",
         "firstSeenAt": "2026-10-17T10:03:28.054539+00:00",
-        "lastSeenAt": "2026-10-17T11:59:29.506075+00:00"
+        "lastSeenAt": "2026-10-17T12:01:32.035485+00:00"
       },
       "publication:update-qualified-exposures.yml": {
         "name": "Expositions ETF qualifiées",
@@ -646,7 +672,7 @@
         "cause": "deploy / build : Run npm run audit:calculator-series",
         "id": "publication:update-qualified-exposures.yml",
         "firstSeenAt": "2026-10-16T12:48:21.924866+00:00",
-        "lastSeenAt": "2026-10-17T11:59:29.506075+00:00"
+        "lastSeenAt": "2026-10-17T12:01:32.035485+00:00"
       },
       "publication:update-exposure-expansion.yml": {
         "name": "35 ETF des allocations",
@@ -662,7 +688,7 @@
         "cause": "deploy / build : Run node scripts/build-dca-exposures.mjs && npm run test:dca && node scripts/audit-portfolio-routing.mjs",
         "id": "publication:update-exposure-expansion.yml",
         "firstSeenAt": "2026-10-16T15:06:10.074991+00:00",
-        "lastSeenAt": "2026-10-17T11:59:29.506075+00:00"
+        "lastSeenAt": "2026-10-17T12:01:32.035485+00:00"
       },
       "collection:update-instrument-metadata.yml:IE00BMC38736:domicile": {
         "name": "VanEck Semiconductor UCITS ETF",
@@ -684,7 +710,7 @@
         "dataId": "IE00BMC38736:domicile",
         "id": "collection:update-instrument-metadata.yml:IE00BMC38736:domicile",
         "firstSeenAt": "2026-10-17T11:48:18.107199+00:00",
-        "lastSeenAt": "2026-10-17T11:59:29.506075+00:00"
+        "lastSeenAt": "2026-10-17T12:01:32.035485+00:00"
       },
       "collection:update-instrument-metadata.yml:IE00BDBRDM35:replicationMethod": {
         "name": "iShares Core Global Aggregate Bond UCITS ETF EUR Hedged (Acc)",
@@ -710,7 +736,7 @@
         "dataId": "IE00BDBRDM35:replicationMethod",
         "id": "collection:update-instrument-metadata.yml:IE00BDBRDM35:replicationMethod",
         "firstSeenAt": "2026-10-17T11:48:18.107199+00:00",
-        "lastSeenAt": "2026-10-17T11:59:29.506075+00:00"
+        "lastSeenAt": "2026-10-17T12:01:32.035485+00:00"
       },
       "collection:update-instrument-metadata.yml:IE0006WW1TQ4:replicationMethod": {
         "name": "Xtrackers MSCI World ex USA UCITS ETF 1C",
@@ -741,7 +767,7 @@
         "dataId": "IE0006WW1TQ4:replicationMethod",
         "id": "collection:update-instrument-metadata.yml:IE0006WW1TQ4:replicationMethod",
         "firstSeenAt": "2026-10-17T11:48:18.107199+00:00",
-        "lastSeenAt": "2026-10-17T11:59:29.506075+00:00"
+        "lastSeenAt": "2026-10-17T12:01:32.035485+00:00"
       },
       "collection:update-instrument-metadata.yml:IE00BYWQWR46:domicile": {
         "name": "VanEck Video Gaming and eSports UCITS ETF",
@@ -767,7 +793,7 @@
         "dataId": "IE00BYWQWR46:domicile",
         "id": "collection:update-instrument-metadata.yml:IE00BYWQWR46:domicile",
         "firstSeenAt": "2026-10-17T11:48:18.107199+00:00",
-        "lastSeenAt": "2026-10-17T11:59:29.506075+00:00"
+        "lastSeenAt": "2026-10-17T12:01:32.035485+00:00"
       },
       "collection:update-instrument-metadata.yml:IE00BDFBTQ78:domicile": {
         "name": "VanEck S&P Global Mining UCITS ETF",
@@ -794,7 +820,7 @@
         "dataId": "IE00BDFBTQ78:domicile",
         "id": "collection:update-instrument-metadata.yml:IE00BDFBTQ78:domicile",
         "firstSeenAt": "2026-10-17T11:48:18.107199+00:00",
-        "lastSeenAt": "2026-10-17T11:59:29.506075+00:00"
+        "lastSeenAt": "2026-10-17T12:01:32.035485+00:00"
       },
       "collection:update-instrument-metadata.yml:IE0002Y8CX98:distribution": {
         "name": "WisdomTree Europe Defence UCITS ETF",
@@ -819,7 +845,7 @@
         "dataId": "IE0002Y8CX98:distribution",
         "id": "collection:update-instrument-metadata.yml:IE0002Y8CX98:distribution",
         "firstSeenAt": "2026-10-17T11:48:18.107199+00:00",
-        "lastSeenAt": "2026-10-17T11:59:29.506075+00:00"
+        "lastSeenAt": "2026-10-17T12:01:32.035485+00:00"
       },
       "collection:update-instrument-metadata.yml:IE0002Y8CX98:replicationMethod": {
         "name": "WisdomTree Europe Defence UCITS ETF",
@@ -844,7 +870,7 @@
         "dataId": "IE0002Y8CX98:replicationMethod",
         "id": "collection:update-instrument-metadata.yml:IE0002Y8CX98:replicationMethod",
         "firstSeenAt": "2026-10-17T11:48:18.107199+00:00",
-        "lastSeenAt": "2026-10-17T11:59:29.506075+00:00"
+        "lastSeenAt": "2026-10-17T12:01:32.035485+00:00"
       },
       "collection:update-instrument-metadata.yml:IE0002Y8CX98:domicile": {
         "name": "WisdomTree Europe Defence UCITS ETF",
@@ -869,7 +895,7 @@
         "dataId": "IE0002Y8CX98:domicile",
         "id": "collection:update-instrument-metadata.yml:IE0002Y8CX98:domicile",
         "firstSeenAt": "2026-10-17T11:48:18.107199+00:00",
-        "lastSeenAt": "2026-10-17T11:59:29.506075+00:00"
+        "lastSeenAt": "2026-10-17T12:01:32.035485+00:00"
       },
       "collection:update-instrument-metadata.yml:IE000W8WMSL2:distribution": {
         "name": "WisdomTree Quantum Computing UCITS ETF",
@@ -893,7 +919,7 @@
         "dataId": "IE000W8WMSL2:distribution",
         "id": "collection:update-instrument-metadata.yml:IE000W8WMSL2:distribution",
         "firstSeenAt": "2026-10-17T11:48:18.107199+00:00",
-        "lastSeenAt": "2026-10-17T11:59:29.506075+00:00"
+        "lastSeenAt": "2026-10-17T12:01:32.035485+00:00"
       },
       "collection:update-instrument-metadata.yml:IE000W8WMSL2:replicationMethod": {
         "name": "WisdomTree Quantum Computing UCITS ETF",
@@ -917,7 +943,7 @@
         "dataId": "IE000W8WMSL2:replicationMethod",
         "id": "collection:update-instrument-metadata.yml:IE000W8WMSL2:replicationMethod",
         "firstSeenAt": "2026-10-17T11:48:18.107199+00:00",
-        "lastSeenAt": "2026-10-17T11:59:29.506075+00:00"
+        "lastSeenAt": "2026-10-17T12:01:32.035485+00:00"
       },
       "collection:update-instrument-metadata.yml:IE00BQQP9F84:domicile": {
         "name": "VanEck Gold Miners UCITS ETF",
@@ -942,7 +968,7 @@
         "dataId": "IE00BQQP9F84:domicile",
         "id": "collection:update-instrument-metadata.yml:IE00BQQP9F84:domicile",
         "firstSeenAt": "2026-10-17T11:48:18.107199+00:00",
-        "lastSeenAt": "2026-10-17T11:59:29.506075+00:00"
+        "lastSeenAt": "2026-10-17T12:01:32.035485+00:00"
       },
       "monitor:radar": {
         "kind": "unobserved",
@@ -955,131 +981,10 @@
         "to": "/donnees-a-revoir",
         "id": "monitor:radar",
         "firstSeenAt": "2026-10-15T18:53:46.175472+00:00",
-        "lastSeenAt": "2026-10-17T11:59:29.506075+00:00"
+        "lastSeenAt": "2026-10-17T12:01:32.035485+00:00"
       }
     },
     "events": [
-      {
-        "revision": 37,
-        "at": "2026-10-16T05:28:13.543341+00:00",
-        "opened": [
-          "publication:update-lifestrategy.yml"
-        ],
-        "resolved": [
-          {
-            "name": "Vanguard LifeStrategy 20% Equity UCITS ETF (EUR) Accumulating",
-            "tools": [
-              "Comparatif ETF",
-              "Duels de portefeuilles",
-              "Générateur de portefeuilles",
-              "Impact des frais",
-              "Présentation ETF"
-            ],
-            "impactScope": "asset",
-            "workflow": "update-lifestrategy.yml",
-            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38780015265",
-            "to": "/bibliotheque-donnees?id=IE00BMVB5K07",
-            "completedAt": "2026-10-15T17:57:18Z",
-            "cause": "Missing French observation date",
-            "sourceUrls": [
-              "https://fund-docs.vanguard.com/LifeStrategy_20_Equity_UCITS_ETF_EUR_Accumulating_9490_FR_INT_FR.pdf",
-              "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9490/lifestrategy-20-equity-ucits-etf-eur-accumulating",
-              "https://www.vanguard.co.uk/gpx/graphql"
-            ],
-            "kind": "collection",
-            "field": "Champs du collecteur",
-            "dataId": "IE00BMVB5K07",
-            "id": "collection:update-lifestrategy.yml:IE00BMVB5K07",
-            "firstSeenAt": "2026-10-15T10:23:56.855354+00:00",
-            "lastSeenAt": "2026-10-16T05:27:56.437994+00:00",
-            "resolvedAt": "2026-10-16T05:28:13.543341+00:00"
-          },
-          {
-            "name": "Vanguard LifeStrategy 40% Equity UCITS ETF (EUR) Accumulating",
-            "tools": [
-              "Comparatif ETF",
-              "Duels de portefeuilles",
-              "Générateur de portefeuilles",
-              "Impact des frais",
-              "Présentation ETF"
-            ],
-            "impactScope": "asset",
-            "workflow": "update-lifestrategy.yml",
-            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38780015265",
-            "to": "/bibliotheque-donnees?id=IE00BMVB5M21",
-            "completedAt": "2026-10-15T17:57:18Z",
-            "cause": "Missing French observation date",
-            "sourceUrls": [
-              "https://fund-docs.vanguard.com/LifeStrategy_40_Equity_UCITS_ETF_EUR_Accumulating_9492_FR_INT_FR.pdf",
-              "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9492/lifestrategy-40-equity-ucits-etf-eur-accumulating",
-              "https://www.vanguard.co.uk/gpx/graphql"
-            ],
-            "kind": "collection",
-            "field": "Champs du collecteur",
-            "dataId": "IE00BMVB5M21",
-            "id": "collection:update-lifestrategy.yml:IE00BMVB5M21",
-            "firstSeenAt": "2026-10-15T10:23:56.855354+00:00",
-            "lastSeenAt": "2026-10-16T05:27:56.437994+00:00",
-            "resolvedAt": "2026-10-16T05:28:13.543341+00:00"
-          },
-          {
-            "name": "Vanguard LifeStrategy 60% Equity UCITS ETF (EUR) Accumulating",
-            "tools": [
-              "Comparatif ETF",
-              "Duels de portefeuilles",
-              "Générateur de portefeuilles",
-              "Impact des frais",
-              "Présentation ETF"
-            ],
-            "impactScope": "asset",
-            "workflow": "update-lifestrategy.yml",
-            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38780015265",
-            "to": "/bibliotheque-donnees?id=IE00BMVB5P51",
-            "completedAt": "2026-10-15T17:57:18Z",
-            "cause": "Missing French observation date",
-            "sourceUrls": [
-              "https://fund-docs.vanguard.com/LifeStrategy_60_Equity_UCITS_ETF_EUR_Accumulating_9494_FR_INT_FR.pdf",
-              "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9494/lifestrategy-60-equity-ucits-etf-eur-accumulating",
-              "https://www.vanguard.co.uk/gpx/graphql"
-            ],
-            "kind": "collection",
-            "field": "Champs du collecteur",
-            "dataId": "IE00BMVB5P51",
-            "id": "collection:update-lifestrategy.yml:IE00BMVB5P51",
-            "firstSeenAt": "2026-10-15T10:23:56.855354+00:00",
-            "lastSeenAt": "2026-10-16T05:27:56.437994+00:00",
-            "resolvedAt": "2026-10-16T05:28:13.543341+00:00"
-          },
-          {
-            "name": "Vanguard LifeStrategy 80% Equity UCITS ETF (EUR) Accumulating",
-            "tools": [
-              "Comparatif ETF",
-              "Duels de portefeuilles",
-              "Générateur de portefeuilles",
-              "Impact des frais",
-              "Présentation ETF"
-            ],
-            "impactScope": "asset",
-            "workflow": "update-lifestrategy.yml",
-            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38780015265",
-            "to": "/bibliotheque-donnees?id=IE00BMVB5R75",
-            "completedAt": "2026-10-15T17:57:18Z",
-            "cause": "Missing French observation date",
-            "sourceUrls": [
-              "https://fund-docs.vanguard.com/LifeStrategy_80_Equity_UCITS_ETF_EUR_Accumulating_9496_FR_INT_FR.pdf",
-              "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9496/lifestrategy-80-equity-ucits-etf-eur-accumulating",
-              "https://www.vanguard.co.uk/gpx/graphql"
-            ],
-            "kind": "collection",
-            "field": "Champs du collecteur",
-            "dataId": "IE00BMVB5R75",
-            "id": "collection:update-lifestrategy.yml:IE00BMVB5R75",
-            "firstSeenAt": "2026-10-15T10:23:56.855354+00:00",
-            "lastSeenAt": "2026-10-16T05:27:56.437994+00:00",
-            "resolvedAt": "2026-10-16T05:28:13.543341+00:00"
-          }
-        ]
-      },
       {
         "revision": 38,
         "at": "2026-10-16T07:26:14.661381+00:00",
@@ -1626,6 +1531,14 @@
             "resolvedAt": "2026-10-17T11:48:18.107199+00:00"
           }
         ]
+      },
+      {
+        "revision": 67,
+        "at": "2026-10-17T12:01:32.035485+00:00",
+        "opened": [
+          "publication:update-publication-observations.yml"
+        ],
+        "resolved": []
       }
     ],
     "resolved": [
