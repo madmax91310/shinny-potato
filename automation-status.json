@@ -256,18 +256,18 @@
     },
     "update-editorial-radar.yml": {
       "name": "Radar éditorial quotidien",
-      "runId": 39037632562,
+      "runId": 39049412338,
       "attempt": 1,
-      "completedAt": "2026-10-17T13:42:43Z",
+      "completedAt": "2026-10-17T16:27:16Z",
       "status": "success",
-      "lastSuccessAt": "2026-10-17T13:42:43Z",
+      "lastSuccessAt": "2026-10-17T16:27:16Z",
       "collectionStatus": "success",
       "validationStatus": "unknown",
       "recordingStatus": "not-run",
       "publicationStatus": "not-run",
-      "lastCollectionSuccessAt": "2026-10-17T13:42:43Z",
+      "lastCollectionSuccessAt": "2026-10-17T16:27:16Z",
       "lastPublicationSuccessAt": null,
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39037632562",
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39049412338",
       "failures": [],
       "dataFailures": {}
     },
@@ -569,10 +569,10 @@
       }
     }
   },
-  "updatedAt": "2026-10-17T16:26:28Z",
+  "updatedAt": "2026-10-17T16:27:16Z",
   "monitoring": {
     "schemaVersion": 1,
-    "checkedAt": "2026-10-17T16:26:43.249479+00:00",
+    "checkedAt": "2026-10-17T16:27:31.996827+00:00",
     "revision": 76,
     "active": {
       "collection:update-practical-sheets.yml:practical:13f": {
@@ -594,7 +594,7 @@
         "dataId": "practical:13f",
         "id": "collection:update-practical-sheets.yml:practical:13f",
         "firstSeenAt": "2026-10-14T21:07:26.171294+00:00",
-        "lastSeenAt": "2026-10-17T16:26:43.249479+00:00"
+        "lastSeenAt": "2026-10-17T16:27:31.996827+00:00"
       },
       "publication:update-practical-sheets.yml": {
         "name": "Sources des fiches pratiques",
@@ -610,7 +610,7 @@
         "cause": "deploy / browser-checks (2) : Run node scripts/run-browser-checks.mjs 2 4 ; deploy / browser-checks (0) : Run node scripts/run-browser-checks.mjs 0 4 ; report-failures : Run echo 'Documents modifiés ou collecte partielle. Consulter practical-observations et Données à revoir.' >> \"$GITHUB_STEP_SUMMARY\"",
         "id": "publication:update-practical-sheets.yml",
         "firstSeenAt": "2026-10-17T13:31:25.454039+00:00",
-        "lastSeenAt": "2026-10-17T16:26:43.249479+00:00"
+        "lastSeenAt": "2026-10-17T16:27:31.996827+00:00"
       },
       "publication:update-publication-observations.yml": {
         "name": "Pouvoir d’achat et niveaux des anniversaires",
@@ -627,7 +627,7 @@
         "cause": "deploy / browser-checks (0) : Run node scripts/run-browser-checks.mjs 0 4 ; deploy / browser-checks (2) : Run node scripts/run-browser-checks.mjs 2 4",
         "id": "publication:update-publication-observations.yml",
         "firstSeenAt": "2026-10-17T12:01:32.035485+00:00",
-        "lastSeenAt": "2026-10-17T16:26:43.249479+00:00"
+        "lastSeenAt": "2026-10-17T16:27:31.996827+00:00"
       },
       "collection:update-insurance.yml:linxea-avenir-2": {
         "name": "Linxea Avenir 2",
@@ -646,7 +646,7 @@
         "dataId": "linxea-avenir-2",
         "id": "collection:update-insurance.yml:linxea-avenir-2",
         "firstSeenAt": "2026-10-14T13:08:27.203935+00:00",
-        "lastSeenAt": "2026-10-17T16:26:43.249479+00:00"
+        "lastSeenAt": "2026-10-17T16:27:31.996827+00:00"
       },
       "publication:update-insurance.yml": {
         "name": "Présentations d’assurance-vie",
@@ -662,7 +662,7 @@
         "cause": "deploy / browser-checks (2) : Run node scripts/run-browser-checks.mjs 2 4 ; deploy / browser-checks (0) : Run node scripts/run-browser-checks.mjs 0 4",
         "id": "publication:update-insurance.yml",
         "firstSeenAt": "2026-10-17T12:16:02.203428+00:00",
-        "lastSeenAt": "2026-10-17T16:26:43.249479+00:00"
+        "lastSeenAt": "2026-10-17T16:27:31.996827+00:00"
       },
       "collection:update-scpi.yml:remake-live": {
         "name": "Remake Live",
@@ -685,7 +685,7 @@
         "dataId": "remake-live",
         "id": "collection:update-scpi.yml:remake-live",
         "firstSeenAt": "2026-10-15T13:02:43.499914+00:00",
-        "lastSeenAt": "2026-10-17T16:26:43.249479+00:00"
+        "lastSeenAt": "2026-10-17T16:27:31.996827+00:00"
       },
       "publication:update-scpi.yml": {
         "name": "Présentations de SCPI",
@@ -701,7 +701,7 @@
         "cause": "deploy / browser-checks (2) : Run node scripts/run-browser-checks.mjs 2 4 ; deploy / browser-checks (0) : Run node scripts/run-browser-checks.mjs 0 4 ; report-failures : Run echo 'Collecte SCPI partielle : les dernières fiches validées sont conservées. Voir scpi-observations.' >> \"$GITHUB_STEP_SUMMARY\"",
         "id": "publication:update-scpi.yml",
         "firstSeenAt": "2026-10-17T12:17:16.852334+00:00",
-        "lastSeenAt": "2026-10-17T16:26:43.249479+00:00"
+        "lastSeenAt": "2026-10-17T16:27:31.996827+00:00"
       },
       "publication:update-presentation-actors.yml": {
         "name": "Présentations des acteurs et offres",
@@ -717,7 +717,7 @@
         "cause": "deploy / browser-checks (2) : Run node scripts/run-browser-checks.mjs 2 4 ; deploy / browser-checks (0) : Run node scripts/run-browser-checks.mjs 0 4",
         "id": "publication:update-presentation-actors.yml",
         "firstSeenAt": "2026-10-17T12:13:02.100146+00:00",
-        "lastSeenAt": "2026-10-17T16:26:43.249479+00:00"
+        "lastSeenAt": "2026-10-17T16:27:31.996827+00:00"
       },
       "collection:update-regulatory-data.yml:broker-observation:caidf:profile:change": {
         "name": "caidf:profile:change",
@@ -737,7 +737,7 @@
         "dataId": "broker-observation:caidf:profile:change",
         "id": "collection:update-regulatory-data.yml:broker-observation:caidf:profile:change",
         "firstSeenAt": "2026-10-15T18:00:14.760687+00:00",
-        "lastSeenAt": "2026-10-17T16:26:43.249479+00:00"
+        "lastSeenAt": "2026-10-17T16:27:31.996827+00:00"
       },
       "publication:update-market-monthly.yml": {
         "name": "Historiques mensuels des marchés",
@@ -756,7 +756,7 @@
         "cause": "deploy / browser-checks (2) : Run node scripts/run-browser-checks.mjs 2 4 ; deploy / browser-checks (0) : Run node scripts/run-browser-checks.mjs 0 4",
         "id": "publication:update-market-monthly.yml",
         "firstSeenAt": "2026-10-17T12:19:18.394776+00:00",
-        "lastSeenAt": "2026-10-17T16:26:43.249479+00:00"
+        "lastSeenAt": "2026-10-17T16:27:31.996827+00:00"
       },
       "publication:update-economic-data.yml": {
         "name": "Taux d’épargne, ménages, SCPI et fonds euros",
@@ -773,7 +773,7 @@
         "cause": "deploy / build : Run npm run audit:etf-annual-performance",
         "id": "publication:update-economic-data.yml",
         "firstSeenAt": "2026-10-17T12:18:32.387705+00:00",
-        "lastSeenAt": "2026-10-17T16:26:43.249479+00:00"
+        "lastSeenAt": "2026-10-17T16:27:31.996827+00:00"
       },
       "publication:update-lifestrategy.yml": {
         "name": "Vanguard LifeStrategy",
@@ -792,7 +792,7 @@
         "cause": "deploy / browser-checks (3) : Run node scripts/run-browser-checks.mjs 3 4",
         "id": "publication:update-lifestrategy.yml",
         "firstSeenAt": "2026-10-17T10:03:28.054539+00:00",
-        "lastSeenAt": "2026-10-17T16:26:43.249479+00:00"
+        "lastSeenAt": "2026-10-17T16:27:31.996827+00:00"
       },
       "publication:update-non-bond-expansion.yml": {
         "name": "Nouveaux actifs et historiques",
@@ -811,7 +811,7 @@
         "cause": "deploy / browser-checks (0) : Run node scripts/run-browser-checks.mjs 0 4 ; deploy / browser-checks (2) : Run node scripts/run-browser-checks.mjs 2 4",
         "id": "publication:update-non-bond-expansion.yml",
         "firstSeenAt": "2026-10-17T12:08:19.175286+00:00",
-        "lastSeenAt": "2026-10-17T16:26:43.249479+00:00"
+        "lastSeenAt": "2026-10-17T16:27:31.996827+00:00"
       },
       "publication:update-qualified-exposures.yml": {
         "name": "Expositions ETF qualifiées",
@@ -831,7 +831,7 @@
         "cause": "deploy / build : Run npm run audit:calculator-series",
         "id": "publication:update-qualified-exposures.yml",
         "firstSeenAt": "2026-10-16T12:48:21.924866+00:00",
-        "lastSeenAt": "2026-10-17T16:26:43.249479+00:00"
+        "lastSeenAt": "2026-10-17T16:27:31.996827+00:00"
       },
       "publication:update-exposure-expansion.yml": {
         "name": "35 ETF des allocations",
@@ -847,7 +847,7 @@
         "cause": "deploy / build : Run node scripts/build-dca-exposures.mjs && npm run test:dca && node scripts/audit-portfolio-routing.mjs",
         "id": "publication:update-exposure-expansion.yml",
         "firstSeenAt": "2026-10-16T15:06:10.074991+00:00",
-        "lastSeenAt": "2026-10-17T16:26:43.249479+00:00"
+        "lastSeenAt": "2026-10-17T16:27:31.996827+00:00"
       },
       "collection:update-instrument-metadata.yml:IE00BMC38736:domicile": {
         "name": "VanEck Semiconductor UCITS ETF",
@@ -869,7 +869,7 @@
         "dataId": "IE00BMC38736:domicile",
         "id": "collection:update-instrument-metadata.yml:IE00BMC38736:domicile",
         "firstSeenAt": "2026-10-17T11:48:18.107199+00:00",
-        "lastSeenAt": "2026-10-17T16:26:43.249479+00:00"
+        "lastSeenAt": "2026-10-17T16:27:31.996827+00:00"
       },
       "collection:update-instrument-metadata.yml:IE00BDBRDM35:replicationMethod": {
         "name": "iShares Core Global Aggregate Bond UCITS ETF EUR Hedged (Acc)",
@@ -895,7 +895,7 @@
         "dataId": "IE00BDBRDM35:replicationMethod",
         "id": "collection:update-instrument-metadata.yml:IE00BDBRDM35:replicationMethod",
         "firstSeenAt": "2026-10-17T11:48:18.107199+00:00",
-        "lastSeenAt": "2026-10-17T16:26:43.249479+00:00"
+        "lastSeenAt": "2026-10-17T16:27:31.996827+00:00"
       },
       "collection:update-instrument-metadata.yml:IE0006WW1TQ4:replicationMethod": {
         "name": "Xtrackers MSCI World ex USA UCITS ETF 1C",
@@ -926,7 +926,7 @@
         "dataId": "IE0006WW1TQ4:replicationMethod",
         "id": "collection:update-instrument-metadata.yml:IE0006WW1TQ4:replicationMethod",
         "firstSeenAt": "2026-10-17T11:48:18.107199+00:00",
-        "lastSeenAt": "2026-10-17T16:26:43.249479+00:00"
+        "lastSeenAt": "2026-10-17T16:27:31.996827+00:00"
       },
       "collection:update-instrument-metadata.yml:IE00BYWQWR46:domicile": {
         "name": "VanEck Video Gaming and eSports UCITS ETF",
@@ -952,7 +952,7 @@
         "dataId": "IE00BYWQWR46:domicile",
         "id": "collection:update-instrument-metadata.yml:IE00BYWQWR46:domicile",
         "firstSeenAt": "2026-10-17T11:48:18.107199+00:00",
-        "lastSeenAt": "2026-10-17T16:26:43.249479+00:00"
+        "lastSeenAt": "2026-10-17T16:27:31.996827+00:00"
       },
       "collection:update-instrument-metadata.yml:IE00BDFBTQ78:domicile": {
         "name": "VanEck S&P Global Mining UCITS ETF",
@@ -979,7 +979,7 @@
         "dataId": "IE00BDFBTQ78:domicile",
         "id": "collection:update-instrument-metadata.yml:IE00BDFBTQ78:domicile",
         "firstSeenAt": "2026-10-17T11:48:18.107199+00:00",
-        "lastSeenAt": "2026-10-17T16:26:43.249479+00:00"
+        "lastSeenAt": "2026-10-17T16:27:31.996827+00:00"
       },
       "collection:update-instrument-metadata.yml:IE0002Y8CX98:distribution": {
         "name": "WisdomTree Europe Defence UCITS ETF",
@@ -1004,7 +1004,7 @@
         "dataId": "IE0002Y8CX98:distribution",
         "id": "collection:update-instrument-metadata.yml:IE0002Y8CX98:distribution",
         "firstSeenAt": "2026-10-17T11:48:18.107199+00:00",
-        "lastSeenAt": "2026-10-17T16:26:43.249479+00:00"
+        "lastSeenAt": "2026-10-17T16:27:31.996827+00:00"
       },
       "collection:update-instrument-metadata.yml:IE0002Y8CX98:replicationMethod": {
         "name": "WisdomTree Europe Defence UCITS ETF",
@@ -1029,7 +1029,7 @@
         "dataId": "IE0002Y8CX98:replicationMethod",
         "id": "collection:update-instrument-metadata.yml:IE0002Y8CX98:replicationMethod",
         "firstSeenAt": "2026-10-17T11:48:18.107199+00:00",
-        "lastSeenAt": "2026-10-17T16:26:43.249479+00:00"
+        "lastSeenAt": "2026-10-17T16:27:31.996827+00:00"
       },
       "collection:update-instrument-metadata.yml:IE0002Y8CX98:domicile": {
         "name": "WisdomTree Europe Defence UCITS ETF",
@@ -1054,7 +1054,7 @@
         "dataId": "IE0002Y8CX98:domicile",
         "id": "collection:update-instrument-metadata.yml:IE0002Y8CX98:domicile",
         "firstSeenAt": "2026-10-17T11:48:18.107199+00:00",
-        "lastSeenAt": "2026-10-17T16:26:43.249479+00:00"
+        "lastSeenAt": "2026-10-17T16:27:31.996827+00:00"
       },
       "collection:update-instrument-metadata.yml:IE000W8WMSL2:distribution": {
         "name": "WisdomTree Quantum Computing UCITS ETF",
@@ -1078,7 +1078,7 @@
         "dataId": "IE000W8WMSL2:distribution",
         "id": "collection:update-instrument-metadata.yml:IE000W8WMSL2:distribution",
         "firstSeenAt": "2026-10-17T11:48:18.107199+00:00",
-        "lastSeenAt": "2026-10-17T16:26:43.249479+00:00"
+        "lastSeenAt": "2026-10-17T16:27:31.996827+00:00"
       },
       "collection:update-instrument-metadata.yml:IE000W8WMSL2:replicationMethod": {
         "name": "WisdomTree Quantum Computing UCITS ETF",
@@ -1102,7 +1102,7 @@
         "dataId": "IE000W8WMSL2:replicationMethod",
         "id": "collection:update-instrument-metadata.yml:IE000W8WMSL2:replicationMethod",
         "firstSeenAt": "2026-10-17T11:48:18.107199+00:00",
-        "lastSeenAt": "2026-10-17T16:26:43.249479+00:00"
+        "lastSeenAt": "2026-10-17T16:27:31.996827+00:00"
       },
       "collection:update-instrument-metadata.yml:IE00BQQP9F84:domicile": {
         "name": "VanEck Gold Miners UCITS ETF",
@@ -1127,7 +1127,7 @@
         "dataId": "IE00BQQP9F84:domicile",
         "id": "collection:update-instrument-metadata.yml:IE00BQQP9F84:domicile",
         "firstSeenAt": "2026-10-17T11:48:18.107199+00:00",
-        "lastSeenAt": "2026-10-17T16:26:43.249479+00:00"
+        "lastSeenAt": "2026-10-17T16:27:31.996827+00:00"
       },
       "publication:update-instrument-metadata.yml": {
         "name": "Caractéristiques et statut PEA par ISIN",
@@ -1146,7 +1146,7 @@
         "cause": "deploy / browser-checks (2) : Run node scripts/run-browser-checks.mjs 2 4 ; deploy / browser-checks (0) : Run node scripts/run-browser-checks.mjs 0 4 ; report-failures : Run exit 1",
         "id": "publication:update-instrument-metadata.yml",
         "firstSeenAt": "2026-10-17T12:52:22.886766+00:00",
-        "lastSeenAt": "2026-10-17T16:26:43.249479+00:00"
+        "lastSeenAt": "2026-10-17T16:27:31.996827+00:00"
       },
       "monitor:radar": {
         "kind": "unobserved",
@@ -1159,7 +1159,7 @@
         "to": "/donnees-a-revoir",
         "id": "monitor:radar",
         "firstSeenAt": "2026-10-15T18:53:46.175472+00:00",
-        "lastSeenAt": "2026-10-17T16:26:43.249479+00:00"
+        "lastSeenAt": "2026-10-17T16:27:31.996827+00:00"
       }
     },
     "events": [
