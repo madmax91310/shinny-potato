@@ -43,7 +43,8 @@ for (const category of CATEGORIES) {
       assert(Math.abs(row.value - (dec / prev - 1) * 100) < 1e-10)
     }
   }
-  for (const mode of ['years', 'period']) {
+  // Recent funds remain usable for their exact common period, before a full calendar year exists.
+  for (const mode of c.years.length ? ['years', 'period'] : ['period']) {
     const result = buildRanking(assets, { mode, startYear: c.years.at(-6) ?? c.years[0], endYear: c.years.at(-1), start: c.start, end: c.end })
     const text = buildTweet(result, category.label, rollingRegularity(assets, 60))
     assert(!/undefined|NaN|Infinity/.test(text), text)
