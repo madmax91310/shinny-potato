@@ -578,7 +578,7 @@ async function testEtfSheets(page) {
     const sectionPositions = sectionLabels.map(label => copied?.indexOf(label) ?? -1);
     if (copied !== buildText(card) || !copied?.startsWith(card.hook + "\n\n") || !copied.includes(card.name)
       || !copied.includes(card.isin) || !copied.includes(card.ter) || !copied.includes(card.hook)
-      || (copied.includes('PEA') !== (card.pea === true))
+      || (copied.includes('🏦 PEA : ✅') !== (card.pea === true))
       || !explanations.every(value => copied.includes(value))
       || !sectionPositions.every((position, index) => position >= 0 && (index === 0 || position > sectionPositions[index - 1]))
       || !copied.endsWith('💬 ' + card.question)

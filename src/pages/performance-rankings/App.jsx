@@ -5,11 +5,8 @@ import ToolWorkspace from '../../design-system/ToolWorkspace.jsx'
 import AssetPicker from '../../design-system/AssetPicker.jsx'
 import ChoicePicker from '../../design-system/ChoicePicker.jsx'
 import { copyPublicationText, notifyPublication, startPublicationDownload } from '../../design-system/publicationActions.js'
-import { ALL_CATEGORIES, ANNUAL_ASSETS, BENCHMARK_CATEGORIES, BENCHMARK_OPTIONS, COLORS, RANKING_ASSETS } from './data.js'
+import { ALL_CATEGORIES, ANNUAL_ASSETS, BENCHMARK_CATEGORIES, COLORS, RANKING_ASSETS } from './data.js'
 import { markBenchmark, randomSuggestion } from './suggestions.js'
-import { isStock, replaceBenchmark } from './selection.js'
-import SelectionGrid from './SelectionGrid.jsx'
-import Favorites from './Favorites.jsx'
 import FX from '../../data/monthly-fx.json' with { type: 'json' }
 import { convertAsset, buildPortfolio } from './series.js'
 import PortfolioEditor from './PortfolioEditor.jsx'
@@ -35,8 +32,6 @@ export default function App() {
   const [months, setMonths] = useState(60)
   const [slot, setSlot] = useState(0)
   const [manual, setManual] = useState(false)
-  const [manualMode, setManualMode] = useState('batch')
-  const [benchmarkId, setBenchmarkId] = useState('')
   const [draft, setDraft] = useState(null)
   const [status, setStatus] = useState('')
   const [busy, setBusy] = useState(false)
@@ -49,9 +44,10 @@ export default function App() {
       const assets = comparison === 'portfolios'
         ? portfolios.map(d => buildPortfolio(d, RANKING_ASSETS, currency === 'original' ? 'EUR' : currency, FX))
         : ids.map(id => convertAsset(SOURCES[id], currency, FX))
+      const benchmarkId = ALL_CATEGORIES.find(c => c.id === categoryId)?.benchmarkId
       return { assets: markBenchmark(assets, benchmarkId) }
     } catch (e) { return { assets: [], error: e.message } }
-  }, [ids, currency, comparison, portfolios, benchmarkId])
+  }, [ids, currency, comparison, portfolios, categoryId])
   const assets = prepared.assets
   const computed = useMemo(() => {
     try {
@@ -78,7 +74,6 @@ export default function App() {
 
   function applyIds(next, nextCurrency = currency) {
     setIds(next); setStatus('')
-    if (benchmarkId && !next.includes(benchmarkId)) setBenchmarkId('')
     if (next.length >= 2) {
       try {
         const nextDates = defaultDates(next.map(id => convertAsset(SOURCES[id], nextCurrency, FX)))
@@ -92,40 +87,17 @@ export default function App() {
     const nextCurrency = c.currency ?? 'original'
     setCurrency(nextCurrency); setComparison('assets'); setBank(c.frequency ?? 'monthly')
     setCategoryId(id); applyIds(c.ids, nextCurrency); setTitle(c.label); setSlot(0); setManual(false)
-    setBenchmarkId(c.benchmarkId ?? '')
     if (c.frequency === 'annual') setMode('years')
   }
   function suggest() {
     try {
       const suggestion = randomSuggestion(categoryId)
       const c = suggestion.category
-      setCategoryId(c.id); setIds(c.ids); setTitle(c.label); setBenchmarkId(c.benchmarkId ?? '')
+      setCategoryId(c.id); setIds(c.ids); setTitle(c.label)
       setCurrency(suggestion.currency); setDates(suggestion.dates); setMode(suggestion.mode)
       setComparison('assets'); setBank('monthly'); setSlot(0); setManual(false); setShowRegularity(false)
       setStatus(`Sélection proposée : ${c.label}, de ${suggestion.dates.startYear} à ${suggestion.dates.endYear}.`)
     } catch (e) { setStatus(e.message) }
-  }
-  function changeBenchmark(nextId, selectedIds = ids, previousId = benchmarkId) {
-    try {
-      const next = replaceBenchmark({ ids: selectedIds, benchmarkId: previousId, currency, dates, mode }, nextId)
-      setIds(next.ids); setBenchmarkId(next.benchmarkId); setCurrency(next.currency); setDates(next.dates); setMode(next.mode)
-      const label = BENCHMARK_OPTIONS.find(option => option.id === nextId).label
-      setTitle(`${title.replace(/ · face à un ETF.*$/, '')} · face à un ETF ${label}`.slice(0, 85))
-      setStatus(next.adjusted ? 'Période adaptée à l’historique commun de la nouvelle référence.' : 'ETF de référence remplacé ; période conservée.')
-    } catch (e) { setStatus(e.message) }
-  }
-  function startBenchmark() {
-    if (comparison === 'assets' && bank === 'monthly' && ids.length === 5 && ids.every(id => isStock(SOURCES[id]))) {
-      const ref = BENCHMARK_OPTIONS[0].id
-      changeBenchmark(ref, [...ids, ref], ref)
-      return
-    }
-    chooseCategory((BENCHMARK_CATEGORIES.find(c => c.id === categoryId || c.id === `${categoryId}-benchmark`) ?? BENCHMARK_CATEGORIES[0]).id)
-  }
-  function restoreFavorite(saved) {
-    setIds(saved.ids); setCurrency(saved.currency); setDates(saved.dates); setMode(saved.mode)
-    setTitle(saved.title); setBank(saved.bank); setCategoryId(saved.categoryId); setBenchmarkId(saved.benchmarkId)
-    setComparison('assets'); setManual(true); setManualMode('batch'); setSlot(0); setShowRegularity(false); setDraft(null); setStatus('Favori restauré.')
   }
   const otherIds = ids.filter((_, i) => i !== slot)
   const reference = SOURCES[otherIds[0]]
@@ -154,7 +126,7 @@ export default function App() {
         <div className="rk-intro"><span>LES MARCHÉS EN PERSPECTIVE</span><h2>Un classement.<br />Plusieurs façons de le lire.</h2><p>Choisis un univers, puis la période qui t’intéresse.</p></div>
         <div className="rk-inline rk-suggestions">
           <button type="button" onClick={suggest}>Sélection aléatoire</button>
-          <button type="button" onClick={startBenchmark}>5 actions face à un ETF</button>
+          <button type="button" onClick={() => chooseCategory((BENCHMARK_CATEGORIES.find(c => c.id === `${categoryId}-benchmark`) ?? BENCHMARK_CATEGORIES[0]).id)}>5 actions face à un ETF</button>
         </div>
         <label className="rk-field">Catégorie<ChoicePicker aria-label="Catégorie" value={categoryId} onChange={e => chooseCategory(e.target.value)}>
           <optgroup label="Univers de comparaison">{ALL_CATEGORIES.filter(c => !c.benchmarkId).map(c => <option key={c.id} value={c.id}>{c.label}</option>)}</optgroup>
@@ -166,9 +138,7 @@ export default function App() {
             setCurrency('EUR'); setTitle('Comparaison de portefeuilles')
             try { setDates(defaultDates(portfolios.map(d => buildPortfolio(d, RANKING_ASSETS, 'EUR', FX)))) } catch { /* Shown below. */ }
           } else {
-            const base = ALL_CATEGORIES.find(c => c.id === categoryId)?.label ?? 'Ma sélection'
-            const ref = BENCHMARK_OPTIONS.find(option => option.id === benchmarkId)
-            setTitle(ref ? `${base.replace(/ · face à un ETF.*$/, '')} · face à un ETF ${ref.label}` : base)
+            setTitle(ALL_CATEGORIES.find(c => c.id === categoryId)?.label ?? 'Ma sélection')
             applyIds(ids)
           }
         }}>{label}</button>)}</fieldset>
@@ -179,29 +149,18 @@ export default function App() {
           try { setDates(defaultDates(next.map(d => buildPortfolio(d, RANKING_ASSETS, currency === 'original' ? 'EUR' : currency, FX)))) } catch { /* Incomplete weights remain editable. */ }
         }} />}
         {comparison === 'assets' && <>
-        {assets.some(a => a.benchmark) && <label className="rk-field">ETF de référence<ChoicePicker aria-label="ETF de référence" value={benchmarkId} onChange={e => changeBenchmark(e.target.value)}>
-          {BENCHMARK_OPTIONS.map(option => <option key={option.id} value={option.id}>{option.label}</option>)}
-        </ChoicePicker></label>}
         <div className="rk-selected" aria-label="Actifs sélectionnés">{assets.map((a, i) => <div key={a.id} style={{ '--rk-color': COLORS[i] }}>
           <span className="rk-dot" /><span><strong>{a.shortLabel}</strong><small>{a.currency} · {a.isin ? a.instrumentType ?? 'ETF' : a.priceUnit === 'points' ? 'Indice' : a.priceMethod === 'adjusted' ? 'Action' : 'Actif'}</small></span>
-          {manual && <><button type="button" aria-label={`Modifier ${a.shortLabel}`} onClick={() => { setSlot(i); setManualMode('single') }}>Modifier</button><button type="button" aria-label={`Retirer ${a.shortLabel}`} onClick={() => { applyIds(ids.filter((_, j) => i !== j)); setSlot(0) }}>×</button></>}
+          {manual && <><button type="button" aria-label={`Modifier ${a.shortLabel}`} onClick={() => setSlot(i)}>Modifier</button><button type="button" aria-label={`Retirer ${a.shortLabel}`} onClick={() => { applyIds(ids.filter((_, j) => i !== j)); setSlot(0) }}>×</button></>}
         </div>)}</div>
         <button type="button" className="rk-text-button" aria-expanded={manual} onClick={() => setManual(!manual)}>{manual ? 'Fermer la sélection manuelle' : 'Personnaliser les actifs'}</button>
         {manual && <div className="rk-manual">
           <label className="rk-field">Historique disponible<ChoicePicker aria-label="Historique disponible" value={bank} onChange={e => { setBank(e.target.value); applyIds([]); setSlot(0); setMode('years') }}><option value="monthly">Cotations mensuelles</option><option value="annual">Calendriers annuels officiels</option></ChoicePicker></label>
-          <div className="rk-inline"><button type="button" onClick={() => { applyIds([]); setSlot(0); setTitle('Ma sélection') }}>Nouvelle sélection</button><button type="button" disabled={ids.length >= 6} onClick={() => { setSlot(ids.length); setManualMode('single') }}>Ajouter un actif</button></div>
-          {bank === 'monthly' && <fieldset className="rk-modes"><legend>Sélection manuelle</legend>
-            <button type="button" aria-pressed={manualMode === 'batch'} onClick={() => setManualMode('batch')}>Cocher les actifs</button>
-            <button type="button" aria-pressed={manualMode === 'single'} onClick={() => setManualMode('single')}>Un par un</button>
-          </fieldset>}
-          {bank === 'monthly' && manualMode === 'batch' ? <SelectionGrid ids={ids} currency={currency} assets={RANKING_ASSETS} onChange={next => {
-            setCurrency(next.currency); applyIds(next.ids, next.currency); setSlot(0); setTitle('Ma sélection')
-          }} /> : <>
+          <div className="rk-inline"><button type="button" onClick={() => { applyIds([]); setSlot(0); setTitle('Ma sélection') }}>Nouvelle sélection</button><button type="button" disabled={ids.length >= 6} onClick={() => setSlot(ids.length)}>Ajouter un actif</button></div>
           <p>{slot >= ids.length ? 'Ajouter un actif' : `Remplacer l’actif ${slot + 1}`} · de 2 à 6 actifs</p>
           <AssetPicker label="Actif du classement" items={options} value={ids[slot] ?? ''} hideIdleResults clearSearchOnSelect onChange={id => {
             const next = [...ids]; next[Math.min(slot, ids.length)] = id; applyIds(next); setSlot(Math.min(next.length, 5)); setTitle('Ma sélection')
           }} />
-          </>}
           <p className="rk-note">Les indices nets et bruts restent distincts. Choisis EUR ou USD pour comparer des devises différentes. Les calendriers annuels sont séparés des cotations mensuelles. « Nouvelle sélection » permet de repartir sur une autre base.</p>
         </div>}
         </>}
@@ -216,7 +175,6 @@ export default function App() {
         {coverage && <p className="rk-coverage"><strong>{coverage.currency} · {basisLabel(coverage.basis)}</strong><br />Historique commun : {coverage.start} → {coverage.end}{coverage.years.length ? ` · ${coverage.years.length} années civiles complètes` : ' · aucune année civile complète'}</p>}
         {error && <p className="rk-error" role="alert">{error}</p>}
         <label className="rk-field">Univers du tweet<input maxLength={85} value={title} onChange={e => setTitle(e.target.value)} /></label>
-        {comparison === 'assets' && <Favorites disabled={!result} selection={{ ids, currency, dates, mode, title, bank, categoryId, benchmarkId: assets.some(a => a.benchmark) ? benchmarkId : '' }} onRestore={restoreFavorite} />}
         <details className="rk-regularity"><summary>Ajouter la régularité historique</summary>
           <label className="rk-check"><input type="checkbox" checked={showRegularity} onChange={e => setShowRegularity(e.target.checked)} /> Montrer la fréquence de première place</label>
           <label className="rk-field">Durée de chaque période<ChoicePicker aria-label="Durée de chaque période" value={months} onChange={e => setMonths(Number(e.target.value))}>{[12, 36, 60, 120].map(m => <option key={m} value={m}>{m / 12} an{m > 12 ? 's' : ''}</option>)}</ChoicePicker></label>
