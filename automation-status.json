@@ -419,25 +419,33 @@
     },
     "update-exposure-expansion.yml": {
       "name": "35 ETF des allocations",
-      "runId": 38920056871,
+      "runId": 39067245851,
       "attempt": 1,
-      "completedAt": "2026-10-16T15:05:53Z",
+      "completedAt": "2026-10-17T20:35:15Z",
       "status": "failure",
       "lastSuccessAt": "2026-10-16T15:00:46Z",
-      "collectionStatus": "success",
+      "collectionStatus": "failure",
       "validationStatus": "success",
       "recordingStatus": "success",
-      "publicationStatus": "failure",
+      "publicationStatus": "not-run",
       "lastCollectionSuccessAt": "2026-10-16T15:05:53Z",
       "lastPublicationSuccessAt": null,
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38920056871",
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39067245851",
       "failures": [
         {
-          "job": "deploy / build",
-          "step": "Run node scripts/build-dca-exposures.mjs && npm run test:dca && node scripts/audit-portfolio-routing.mjs"
+          "job": "report-failures",
+          "step": "Run echo 'ETF exposure collection incomplete; previous validated observations preserved.' >> \"$GITHUB_STEP_SUMMARY\""
         }
       ],
-      "dataFailures": {}
+      "dataFailures": {
+        "etf-exposure-expansion-IE00BK1PV551": {
+          "name": "ETF IE00BK1PV551",
+          "completedAt": "2026-10-17T20:35:15Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39067245851",
+          "cause": "Suspicious ETF change; previous record preserved: aum: 6369611991.07679 -> 31105311562.7068 USD, ratio 4.883 in 0 days",
+          "field": "Collecte ETF"
+        }
+      }
     },
     "update-instrument-metadata.yml": {
       "name": "Caractéristiques et statut PEA par ISIN",
@@ -535,11 +543,11 @@
       }
     }
   },
-  "updatedAt": "2026-10-17T20:35:01Z",
+  "updatedAt": "2026-10-17T20:35:15Z",
   "monitoring": {
     "schemaVersion": 1,
-    "checkedAt": "2026-10-17T20:42:25.096124+00:00",
-    "revision": 80,
+    "checkedAt": "2026-10-17T20:42:44.184725+00:00",
+    "revision": 81,
     "active": {
       "collection:update-practical-sheets.yml:practical:13f": {
         "name": "SEC · questions et réponses sur le formulaire 13F",
@@ -560,7 +568,7 @@
         "dataId": "practical:13f",
         "id": "collection:update-practical-sheets.yml:practical:13f",
         "firstSeenAt": "2026-10-14T21:07:26.171294+00:00",
-        "lastSeenAt": "2026-10-17T20:42:25.096124+00:00"
+        "lastSeenAt": "2026-10-17T20:42:44.184725+00:00"
       },
       "publication:update-publication-observations.yml": {
         "name": "Pouvoir d’achat et niveaux des anniversaires",
@@ -577,7 +585,7 @@
         "cause": "deploy / browser-checks (0) : Run node scripts/run-browser-checks.mjs 0 4 ; deploy / browser-checks (2) : Run node scripts/run-browser-checks.mjs 2 4",
         "id": "publication:update-publication-observations.yml",
         "firstSeenAt": "2026-10-17T12:01:32.035485+00:00",
-        "lastSeenAt": "2026-10-17T20:42:25.096124+00:00"
+        "lastSeenAt": "2026-10-17T20:42:44.184725+00:00"
       },
       "collection:update-insurance.yml:linxea-avenir-2": {
         "name": "Linxea Avenir 2",
@@ -596,7 +604,7 @@
         "dataId": "linxea-avenir-2",
         "id": "collection:update-insurance.yml:linxea-avenir-2",
         "firstSeenAt": "2026-10-14T13:08:27.203935+00:00",
-        "lastSeenAt": "2026-10-17T20:42:25.096124+00:00"
+        "lastSeenAt": "2026-10-17T20:42:44.184725+00:00"
       },
       "publication:update-insurance.yml": {
         "name": "Présentations d’assurance-vie",
@@ -612,7 +620,7 @@
         "cause": "deploy / browser-checks (2) : Run node scripts/run-browser-checks.mjs 2 4 ; deploy / browser-checks (0) : Run node scripts/run-browser-checks.mjs 0 4",
         "id": "publication:update-insurance.yml",
         "firstSeenAt": "2026-10-17T12:16:02.203428+00:00",
-        "lastSeenAt": "2026-10-17T20:42:25.096124+00:00"
+        "lastSeenAt": "2026-10-17T20:42:44.184725+00:00"
       },
       "collection:update-scpi.yml:remake-live": {
         "name": "Remake Live",
@@ -635,7 +643,7 @@
         "dataId": "remake-live",
         "id": "collection:update-scpi.yml:remake-live",
         "firstSeenAt": "2026-10-15T13:02:43.499914+00:00",
-        "lastSeenAt": "2026-10-17T20:42:25.096124+00:00"
+        "lastSeenAt": "2026-10-17T20:42:44.184725+00:00"
       },
       "publication:update-presentation-actors.yml": {
         "name": "Présentations des acteurs et offres",
@@ -651,7 +659,7 @@
         "cause": "deploy / browser-checks (2) : Run node scripts/run-browser-checks.mjs 2 4 ; deploy / browser-checks (0) : Run node scripts/run-browser-checks.mjs 0 4",
         "id": "publication:update-presentation-actors.yml",
         "firstSeenAt": "2026-10-17T12:13:02.100146+00:00",
-        "lastSeenAt": "2026-10-17T20:42:25.096124+00:00"
+        "lastSeenAt": "2026-10-17T20:42:44.184725+00:00"
       },
       "collection:update-regulatory-data.yml:broker-observation:caidf:profile:change": {
         "name": "caidf:profile:change",
@@ -671,7 +679,7 @@
         "dataId": "broker-observation:caidf:profile:change",
         "id": "collection:update-regulatory-data.yml:broker-observation:caidf:profile:change",
         "firstSeenAt": "2026-10-15T18:00:14.760687+00:00",
-        "lastSeenAt": "2026-10-17T20:42:25.096124+00:00"
+        "lastSeenAt": "2026-10-17T20:42:44.184725+00:00"
       },
       "publication:update-market-monthly.yml": {
         "name": "Historiques mensuels des marchés",
@@ -690,7 +698,7 @@
         "cause": "deploy / browser-checks (2) : Run node scripts/run-browser-checks.mjs 2 4 ; deploy / browser-checks (0) : Run node scripts/run-browser-checks.mjs 0 4",
         "id": "publication:update-market-monthly.yml",
         "firstSeenAt": "2026-10-17T12:19:18.394776+00:00",
-        "lastSeenAt": "2026-10-17T20:42:25.096124+00:00"
+        "lastSeenAt": "2026-10-17T20:42:44.184725+00:00"
       },
       "publication:update-economic-data.yml": {
         "name": "Taux d’épargne, ménages, SCPI et fonds euros",
@@ -707,7 +715,7 @@
         "cause": "deploy / build : Run npm run audit:etf-annual-performance",
         "id": "publication:update-economic-data.yml",
         "firstSeenAt": "2026-10-17T12:18:32.387705+00:00",
-        "lastSeenAt": "2026-10-17T20:42:25.096124+00:00"
+        "lastSeenAt": "2026-10-17T20:42:44.184725+00:00"
       },
       "publication:update-lifestrategy.yml": {
         "name": "Vanguard LifeStrategy",
@@ -726,7 +734,7 @@
         "cause": "deploy / browser-checks (3) : Run node scripts/run-browser-checks.mjs 3 4",
         "id": "publication:update-lifestrategy.yml",
         "firstSeenAt": "2026-10-17T10:03:28.054539+00:00",
-        "lastSeenAt": "2026-10-17T20:42:25.096124+00:00"
+        "lastSeenAt": "2026-10-17T20:42:44.184725+00:00"
       },
       "publication:update-non-bond-expansion.yml": {
         "name": "Nouveaux actifs et historiques",
@@ -745,7 +753,7 @@
         "cause": "deploy / browser-checks (0) : Run node scripts/run-browser-checks.mjs 0 4 ; deploy / browser-checks (2) : Run node scripts/run-browser-checks.mjs 2 4",
         "id": "publication:update-non-bond-expansion.yml",
         "firstSeenAt": "2026-10-17T12:08:19.175286+00:00",
-        "lastSeenAt": "2026-10-17T20:42:25.096124+00:00"
+        "lastSeenAt": "2026-10-17T20:42:44.184725+00:00"
       },
       "publication:update-qualified-exposures.yml": {
         "name": "Expositions ETF qualifiées",
@@ -765,23 +773,30 @@
         "cause": "deploy / build : Run npm run audit:calculator-series",
         "id": "publication:update-qualified-exposures.yml",
         "firstSeenAt": "2026-10-16T12:48:21.924866+00:00",
-        "lastSeenAt": "2026-10-17T20:42:25.096124+00:00"
+        "lastSeenAt": "2026-10-17T20:42:44.184725+00:00"
       },
-      "publication:update-exposure-expansion.yml": {
-        "name": "35 ETF des allocations",
+      "collection:update-exposure-expansion.yml:etf-exposure-expansion-IE00BK1PV551": {
+        "name": "Xtrackers MSCI World UCITS ETF 1D",
         "tools": [
-          "Portefeuille / DCA"
+          "Impact des frais",
+          "Présentation ETF"
         ],
-        "impactScope": "collector",
+        "impactScope": "asset",
         "workflow": "update-exposure-expansion.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38920056871",
-        "to": "/donnees-a-revoir",
-        "kind": "publication",
-        "field": "Publication",
-        "cause": "deploy / build : Run node scripts/build-dca-exposures.mjs && npm run test:dca && node scripts/audit-portfolio-routing.mjs",
-        "id": "publication:update-exposure-expansion.yml",
-        "firstSeenAt": "2026-10-16T15:06:10.074991+00:00",
-        "lastSeenAt": "2026-10-17T20:42:25.096124+00:00"
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39067245851",
+        "to": "/bibliotheque-donnees?id=IE00BK1PV551",
+        "completedAt": "2026-10-17T20:35:15Z",
+        "cause": "Suspicious ETF change; previous record preserved: aum: 6369611991.07679 -> 31105311562.7068 USD, ratio 4.883 in 0 days",
+        "field": "Collecte ETF",
+        "sourceUrls": [
+          "https://etf.dws.com/api/pdp/en-gb/etf/IE00BK1PV551/historicaldata/download",
+          "https://etf.dws.com/api/pdp/en-gb/etf/IE00BK1PV551/pdpMetaTagsTealium"
+        ],
+        "kind": "collection",
+        "dataId": "etf-exposure-expansion-IE00BK1PV551",
+        "id": "collection:update-exposure-expansion.yml:etf-exposure-expansion-IE00BK1PV551",
+        "firstSeenAt": "2026-10-17T20:42:44.184725+00:00",
+        "lastSeenAt": "2026-10-17T20:42:44.184725+00:00"
       },
       "collection:update-instrument-metadata.yml:IE00BMC38736:domicile": {
         "name": "VanEck Semiconductor UCITS ETF",
@@ -803,7 +818,7 @@
         "dataId": "IE00BMC38736:domicile",
         "id": "collection:update-instrument-metadata.yml:IE00BMC38736:domicile",
         "firstSeenAt": "2026-10-17T11:48:18.107199+00:00",
-        "lastSeenAt": "2026-10-17T20:42:25.096124+00:00"
+        "lastSeenAt": "2026-10-17T20:42:44.184725+00:00"
       },
       "collection:update-instrument-metadata.yml:IE00BDBRDM35:replicationMethod": {
         "name": "iShares Core Global Aggregate Bond UCITS ETF EUR Hedged (Acc)",
@@ -830,7 +845,7 @@
         "dataId": "IE00BDBRDM35:replicationMethod",
         "id": "collection:update-instrument-metadata.yml:IE00BDBRDM35:replicationMethod",
         "firstSeenAt": "2026-10-17T11:48:18.107199+00:00",
-        "lastSeenAt": "2026-10-17T20:42:25.096124+00:00"
+        "lastSeenAt": "2026-10-17T20:42:44.184725+00:00"
       },
       "collection:update-instrument-metadata.yml:IE0006WW1TQ4:replicationMethod": {
         "name": "Xtrackers MSCI World ex USA UCITS ETF 1C",
@@ -861,7 +876,7 @@
         "dataId": "IE0006WW1TQ4:replicationMethod",
         "id": "collection:update-instrument-metadata.yml:IE0006WW1TQ4:replicationMethod",
         "firstSeenAt": "2026-10-17T11:48:18.107199+00:00",
-        "lastSeenAt": "2026-10-17T20:42:25.096124+00:00"
+        "lastSeenAt": "2026-10-17T20:42:44.184725+00:00"
       },
       "collection:update-instrument-metadata.yml:IE00BYWQWR46:domicile": {
         "name": "VanEck Video Gaming and eSports UCITS ETF",
@@ -887,7 +902,7 @@
         "dataId": "IE00BYWQWR46:domicile",
         "id": "collection:update-instrument-metadata.yml:IE00BYWQWR46:domicile",
         "firstSeenAt": "2026-10-17T11:48:18.107199+00:00",
-        "lastSeenAt": "2026-10-17T20:42:25.096124+00:00"
+        "lastSeenAt": "2026-10-17T20:42:44.184725+00:00"
       },
       "collection:update-instrument-metadata.yml:IE00BDFBTQ78:domicile": {
         "name": "VanEck S&P Global Mining UCITS ETF",
@@ -914,7 +929,7 @@
         "dataId": "IE00BDFBTQ78:domicile",
         "id": "collection:update-instrument-metadata.yml:IE00BDFBTQ78:domicile",
         "firstSeenAt": "2026-10-17T11:48:18.107199+00:00",
-        "lastSeenAt": "2026-10-17T20:42:25.096124+00:00"
+        "lastSeenAt": "2026-10-17T20:42:44.184725+00:00"
       },
       "collection:update-instrument-metadata.yml:IE0002Y8CX98:distribution": {
         "name": "WisdomTree Europe Defence UCITS ETF",
@@ -940,7 +955,7 @@
         "dataId": "IE0002Y8CX98:distribution",
         "id": "collection:update-instrument-metadata.yml:IE0002Y8CX98:distribution",
         "firstSeenAt": "2026-10-17T11:48:18.107199+00:00",
-        "lastSeenAt": "2026-10-17T20:42:25.096124+00:00"
+        "lastSeenAt": "2026-10-17T20:42:44.184725+00:00"
       },
       "collection:update-instrument-metadata.yml:IE0002Y8CX98:replicationMethod": {
         "name": "WisdomTree Europe Defence UCITS ETF",
@@ -966,7 +981,7 @@
         "dataId": "IE0002Y8CX98:replicationMethod",
         "id": "collection:update-instrument-metadata.yml:IE0002Y8CX98:replicationMethod",
         "firstSeenAt": "2026-10-17T11:48:18.107199+00:00",
-        "lastSeenAt": "2026-10-17T20:42:25.096124+00:00"
+        "lastSeenAt": "2026-10-17T20:42:44.184725+00:00"
       },
       "collection:update-instrument-metadata.yml:IE0002Y8CX98:domicile": {
         "name": "WisdomTree Europe Defence UCITS ETF",
@@ -992,7 +1007,7 @@
         "dataId": "IE0002Y8CX98:domicile",
         "id": "collection:update-instrument-metadata.yml:IE0002Y8CX98:domicile",
         "firstSeenAt": "2026-10-17T11:48:18.107199+00:00",
-        "lastSeenAt": "2026-10-17T20:42:25.096124+00:00"
+        "lastSeenAt": "2026-10-17T20:42:44.184725+00:00"
       },
       "collection:update-instrument-metadata.yml:IE000W8WMSL2:distribution": {
         "name": "WisdomTree Quantum Computing UCITS ETF",
@@ -1017,7 +1032,7 @@
         "dataId": "IE000W8WMSL2:distribution",
         "id": "collection:update-instrument-metadata.yml:IE000W8WMSL2:distribution",
         "firstSeenAt": "2026-10-17T11:48:18.107199+00:00",
-        "lastSeenAt": "2026-10-17T20:42:25.096124+00:00"
+        "lastSeenAt": "2026-10-17T20:42:44.184725+00:00"
       },
       "collection:update-instrument-metadata.yml:IE000W8WMSL2:replicationMethod": {
         "name": "WisdomTree Quantum Computing UCITS ETF",
@@ -1042,7 +1057,7 @@
         "dataId": "IE000W8WMSL2:replicationMethod",
         "id": "collection:update-instrument-metadata.yml:IE000W8WMSL2:replicationMethod",
         "firstSeenAt": "2026-10-17T11:48:18.107199+00:00",
-        "lastSeenAt": "2026-10-17T20:42:25.096124+00:00"
+        "lastSeenAt": "2026-10-17T20:42:44.184725+00:00"
       },
       "collection:update-instrument-metadata.yml:IE00BQQP9F84:domicile": {
         "name": "VanEck Gold Miners UCITS ETF",
@@ -1067,7 +1082,7 @@
         "dataId": "IE00BQQP9F84:domicile",
         "id": "collection:update-instrument-metadata.yml:IE00BQQP9F84:domicile",
         "firstSeenAt": "2026-10-17T11:48:18.107199+00:00",
-        "lastSeenAt": "2026-10-17T20:42:25.096124+00:00"
+        "lastSeenAt": "2026-10-17T20:42:44.184725+00:00"
       },
       "radar:2d430d016b85864c0efc7f9a": {
         "name": "Bitwise Physical Bitcoin ETP",
@@ -1089,18 +1104,10 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-17) : Encours. Dernière observation conservée ; propositions archivées (etf:DE000A27Z304:aum:7ee6ce84bc97ae28c68471dd:2026-10-17).",
         "id": "radar:2d430d016b85864c0efc7f9a",
         "firstSeenAt": "2026-10-17T20:32:40.441529+00:00",
-        "lastSeenAt": "2026-10-17T20:42:25.096124+00:00"
+        "lastSeenAt": "2026-10-17T20:42:44.184725+00:00"
       }
     },
     "events": [
-      {
-        "revision": 51,
-        "at": "2026-10-16T15:06:10.074991+00:00",
-        "opened": [
-          "publication:update-exposure-expansion.yml"
-        ],
-        "resolved": []
-      },
       {
         "revision": 52,
         "at": "2026-10-16T15:08:17.143932+00:00",
@@ -1638,9 +1645,52 @@
             "resolvedAt": "2026-10-17T20:42:25.096124+00:00"
           }
         ]
+      },
+      {
+        "revision": 81,
+        "at": "2026-10-17T20:42:44.184725+00:00",
+        "opened": [
+          "collection:update-exposure-expansion.yml:etf-exposure-expansion-IE00BK1PV551"
+        ],
+        "resolved": [
+          {
+            "name": "35 ETF des allocations",
+            "tools": [
+              "Portefeuille / DCA"
+            ],
+            "impactScope": "collector",
+            "workflow": "update-exposure-expansion.yml",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38920056871",
+            "to": "/donnees-a-revoir",
+            "kind": "publication",
+            "field": "Publication",
+            "cause": "deploy / build : Run node scripts/build-dca-exposures.mjs && npm run test:dca && node scripts/audit-portfolio-routing.mjs",
+            "id": "publication:update-exposure-expansion.yml",
+            "firstSeenAt": "2026-10-16T15:06:10.074991+00:00",
+            "lastSeenAt": "2026-10-17T20:42:25.096124+00:00",
+            "resolvedAt": "2026-10-17T20:42:44.184725+00:00"
+          }
+        ]
       }
     ],
     "resolved": [
+      {
+        "name": "35 ETF des allocations",
+        "tools": [
+          "Portefeuille / DCA"
+        ],
+        "impactScope": "collector",
+        "workflow": "update-exposure-expansion.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38920056871",
+        "to": "/donnees-a-revoir",
+        "kind": "publication",
+        "field": "Publication",
+        "cause": "deploy / build : Run node scripts/build-dca-exposures.mjs && npm run test:dca && node scripts/audit-portfolio-routing.mjs",
+        "id": "publication:update-exposure-expansion.yml",
+        "firstSeenAt": "2026-10-16T15:06:10.074991+00:00",
+        "lastSeenAt": "2026-10-17T20:42:25.096124+00:00",
+        "resolvedAt": "2026-10-17T20:42:44.184725+00:00"
+      },
       {
         "name": "Sources des fiches pratiques",
         "tools": [
@@ -3793,27 +3843,6 @@
         "field": "Poids du pays United States",
         "cause": "Valeur contradictoire pour la même période (2026-10-13) : Poids du pays United States. Dernière observation conservée ; propositions archivées (etf:IE00BM67HV82:countries:United States:f5d10aa5ac6de524b51ebc86:2026-10-13).",
         "id": "radar:0fab71ab4c13d8254ac241f7",
-        "firstSeenAt": "2026-10-14T19:12:42.647375+00:00",
-        "lastSeenAt": "2026-10-14T21:48:33.143199+00:00",
-        "resolvedAt": "2026-10-15T00:31:06.137308+00:00"
-      },
-      {
-        "name": "Xtrackers MSCI World Industrials UCITS ETF 1C",
-        "tools": [
-          "Comparatif ETF",
-          "Impact des frais",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "sourceUrls": [
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HV82/historicaldata/download",
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HV82/pdpMetaTagsTealium"
-        ],
-        "to": "/bibliotheque-donnees?id=IE00BM67HV82",
-        "kind": "conflict",
-        "field": "Poids du pays France",
-        "cause": "Valeur contradictoire pour la même période (2026-10-13) : Poids du pays France. Dernière observation conservée ; propositions archivées (etf:IE00BM67HV82:countries:France:f5d10aa5ac6de524b51ebc86:2026-10-13).",
-        "id": "radar:4266e36be9d36af092006428",
         "firstSeenAt": "2026-10-14T19:12:42.647375+00:00",
         "lastSeenAt": "2026-10-14T21:48:33.143199+00:00",
         "resolvedAt": "2026-10-15T00:31:06.137308+00:00"
