@@ -112,4 +112,10 @@ export const BENCHMARK_CATEGORIES = BENCHMARK_GROUPS.map(([sourceId, benchmarkId
     ids: [...source.ids.slice(0, 5), benchmarkId], benchmarkId, currency: 'EUR' }
 })
 export const ALL_CATEGORIES = [...CATEGORIES, ...BENCHMARK_CATEGORIES, ...ANNUAL_CATEGORIES]
+export const BENCHMARK_OPTIONS = [
+  { id: 'etfIE00B4L5Y983', label: 'MSCI World' },
+  { id: 'etfIE00B5BMR087', label: 'S&P 500' },
+  { id: 'etfFR0011871110', label: 'Nasdaq-100' },
+  { id: 'etfFR0011550193', label: 'Europe · STOXX Europe 600' },
+]
 export const COLORS = ['#64dfc5', '#e9bd70', '#a9a1ff', '#77b4ef', '#f498a5', '#c2d981']
