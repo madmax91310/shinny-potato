@@ -76,9 +76,9 @@ Actifs présentés sans historique automatique (Sans cotation : 52 · Collecte e
 | Amundi MSCI USA Daily (2x) Leveraged UCITS ETF Acc | FR0010755611 | Oui | Oui | automatic | Oui / Oui | Partielle | Oui / Oui / Oui | — |
 | Amundi PEA Emergent EMEA (MSCI Emerging EMEA) ESG Transition UCITS ETF | FR0011440478 | Oui | Oui | manual | Oui / Oui | Partielle | Oui / Oui / Oui | — |
 | BNP Paribas Easy S&P 500 UCITS ETF (Acc) | FR0011550185 | Oui | Oui | missing | Oui / Oui | Partielle | — / — / — | Sans cotation — Cotations candidates déclarées, en attente du document émetteur |
-| BNP Paribas Easy STOXX Europe 600 UCITS ETF | FR0011550193 | Oui | Oui | automatic | Oui / Oui | Partielle | Oui / Oui / Oui | — |
+| BNP Paribas Easy STOXX Europe 600 UCITS ETF | FR0011550193 | Oui | Oui | manual | Oui / Oui | Partielle | Oui / Oui / Oui | — |
 | Amundi PEA Immobilier Europe UCITS ETF Acc | FR0011869304 | Oui | Oui | missing | Oui / Oui | Partielle | — / — / — | Sans cotation — Aucune cotation documentée ni candidate · www.amundietf.fr : HTTP Error 405: Method Not Allowed |
-| Amundi PEA Inde (MSCI India) UCITS ETF | FR0011869320 | Oui | Oui | automatic | Oui / Oui | Partielle | Oui / Oui / Oui | — |
+| Amundi PEA Inde (MSCI India) UCITS ETF | FR0011869320 | Oui | Oui | manual | Oui / Oui | Partielle | Oui / Oui / Oui | — |
 | Amundi PEA Chine (MSCI China) Screened UCITS ETF | FR0011871078 | Oui | Oui | missing | Oui / Oui | Partielle | — / — / — | Sans cotation — Aucune cotation documentée ni candidate · www.amundietf.fr : HTTP Error 405: Method Not Allowed |
 | Amundi PEA Nasdaq-100 UCITS ETF | FR0011871110 | Oui | Oui | automatic | Oui / Oui | Partielle | Oui / Oui / Oui | — |
 | Amundi PEA S&P 500 UCITS ETF | FR0011871128 | Oui | Oui | automatic | Oui / Oui | Partielle | Oui / Oui / Oui | — |

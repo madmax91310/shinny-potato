@@ -896,7 +896,8 @@ export const EXPOSURE_THEMES = [...byGroup].sort(([a], [b]) => a.localeCompare(b
   return chunks.map((chunk, i) => {
     const transition = chunk.length > 1 ? `${chunk.length} ETF « ${group} » de nos fiches, classés par frais croissants :` : `Un ETF « ${group} » de nos fiches, à découvrir :`
     return createTheme({ id: `selection-${slug(group)}${chunks.length > 1 ? `-${i + 1}` : ''}`, nom: `${group} · sélection${chunks.length > 1 ? ` ${i + 1}` : ''}`, emoji: GROUP_EMOJI[group] ?? '📊', derived: 'exposure', group,
-      hook: `${GROUP_EMOJI[group] ?? '📊'} ${chunk.length > 1 ? `Quel ETF « ${group} » choisir ?` : `Un ETF « ${group} » à connaître`}`, transition, cloture, comparisonNote: `${transition.replace(/ :$/, '.')} ${cloture}`,
+      // Every theme needs a distinct question: the selection rank is part of it when a group spans several themes.
+      hook: `${GROUP_EMOJI[group] ?? '📊'} ${chunk.length > 1 ? `Quel ETF « ${group} » choisir${chunks.length > 1 ? ` parmi la sélection ${i + 1}` : ''} ?` : `Connais-tu cet ETF « ${group} » ?`}`, transition, cloture, comparisonNote: `${transition.replace(/ :$/, '.')} ${cloture}`,
       etfs: chunk.map(card => derivedEtf(card.isin, [getInstrumentFacts(card.isin).benchmark ? `indice suivi : ${getInstrumentFacts(card.isin).benchmark}` : card.verdict || card.whatIs, peaWording(card.isin)].filter(Boolean).join(' ; '))),
       ctaEngagement: 'Lequel correspond à ta stratégie ?' })
   })

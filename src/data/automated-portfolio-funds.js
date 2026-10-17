@@ -5,7 +5,7 @@ import { latestCommonYears } from './annual-window.js'
 // Existing editorial recipes keep their own asset IDs and return conventions.
 // 18/10/2026 : parts documentées sur six années complètes et admises dans un groupe d'options du
 // Générateur (theses.js) ; elles perdent le statut « manuel seulement ». Toute autre part reste manuelle.
-export const AUTOMATIC_RECIPE_ISINS = new Set(['IE0008471009', 'FR0011550193', 'FR0011869320', 'IE00B52MJY50'])
+export const AUTOMATIC_RECIPE_ISINS = new Set(['IE0008471009', 'IE00B52MJY50'])
 export const AUTOMATED_PORTFOLIO_FUNDS = Object.values(RETURNS).flatMap(record => {
   const identity=INSTRUMENTS_BY_ISIN[record.isin]
   if (!identity || record.basis!=='market-price' || !record.source?.startsWith('https://') || !record.checkedAt || !['EUR','USD'].includes(record.currency) || latestCommonYears([record.years],{minimum:3}).length<3) return []

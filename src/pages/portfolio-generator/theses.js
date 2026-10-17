@@ -6,7 +6,7 @@
 // — voir aussi le tableau de compatibilité exposé par `isCompatible()` en bas de fichier).
 
 // Bloc Europe reconnu par le moteur et les intitulés éditoriaux.
-export const PRO_EUROPE_CORE_IDS = ["tech_europe_pea","europe_pea_amundi","euro-govt-5-7","europe-property","basic_resources_pea","europe-utilities","europe-telecom","europe-food","europe-media","europe-retail","small-value-europe", "health_europe_pea", "europe-insurance", "europe-banks", "euro-dividend-aristocrats", "eurostoxx50", "eurostoxx50_ishares", "manual-IE0008471009", "manual-FR0011550193", "cac40", "tech_europe", "smallcap_europe", "oblig_etat_eur_short", "msci_europe"];
+export const PRO_EUROPE_CORE_IDS = ["tech_europe_pea","europe_pea_amundi","euro-govt-5-7","europe-property","basic_resources_pea","europe-utilities","europe-telecom","europe-food","europe-media","europe-retail","small-value-europe", "health_europe_pea", "europe-insurance", "europe-banks", "euro-dividend-aristocrats", "eurostoxx50", "eurostoxx50_ishares", "manual-IE0008471009", "cac40", "tech_europe", "smallcap_europe", "oblig_etat_eur_short", "msci_europe"];
 
 export const RISK_ORDER = ["prudent", "defensif", "equilibre", "dynamique", "offensif"];
 
@@ -77,9 +77,7 @@ export const NASDAQ100_OPTIONS = ["nasdaq100", "nasdaq100_ishares"];
 // 18/10/2026 : part distribuante iShares Core EURO STOXX 50 (IE0008471009), même indice, six années
 // complètes documentées ; revalidée en mode combo sur les combos Pro-Européen qui l'utilisent.
 export const EUROSTOXX50_OPTIONS = ["eurostoxx50", "eurostoxx50_ishares", "manual-IE0008471009"];
-// Socle Europe large des constructions Pro-Européen : MSCI Europe (Amundi PEA Europe) ou
-// STOXX Europe 600 (BNP Paribas Easy, FR0011550193, PEA). Ajouté le 18/10/2026.
-export const EUROPE_OPTIONS = ["europe_pea_amundi", "manual-FR0011550193"];
+
 export const COMMODITY_OPTIONS = ["mp_large", "mp_large_icom"];
 // Immobilier coté : foncieres_etf (FTSE EPRA Nareit Global Developed) et immo_gpr (GPR Global 100,
 // ajouté lors de l'audit "enrichissement sectoriel") suivent des indices différents mais proches
@@ -138,10 +136,12 @@ export const LEVERAGE_OPTIONS = ["lqq", "cl2"];
 // uniques, très volatils, portés par les semi-conducteurs), Asie-Pacifique hors Japon (le plus
 // diversifié des quatre, Chine/Taïwan/Corée/Inde/Asean réunis). Chaque option revalidée sur les
 // bornes de pire année du combo qui l'utilise, comme tous les autres groupes ci-dessus.
-// 18/10/2026 : trois parts documentées sur six années complètes rejoignent le satellite — Inde PEA
-// (Amundi, FR0011869320), Japon TOPIX couvert en euros (Amundi PEA, FR0013411998) et Pacifique hors
-// Japon (iShares Core, IE00B52MJY50) ; revalidées sur la borne du combo Thématique Équilibré.
-export const ASIA_OPTIONS = ["actions_india_ishares", "actions_japon", "actions_coree", "actions_taiwan", "actions_asie_ex_japon", "manual-FR0011869320", "topix_pea_hedged", "manual-IE00B52MJY50"];
+// 18/10/2026 : deux parts documentées sur six années complètes rejoignent le satellite — Japon TOPIX
+// couvert en euros (Amundi PEA, FR0013411998) et Pacifique hors Japon (iShares Core, IE00B52MJY50) ;
+// revalidées sur la borne du combo Thématique Équilibré. Amundi PEA Inde reste manuelle : son
+// calendrier NAV (Comparateur) et sa série de marché (Générateur) divergent au-delà de la tolérance
+// de l'audit de cohérence des performances.
+export const ASIA_OPTIONS = ["actions_india_ishares", "actions_japon", "actions_coree", "actions_taiwan", "actions_asie_ex_japon", "topix_pea_hedged", "manual-IE00B52MJY50"];
 
 // Plafond de fréquence par groupe : au-delà de ce ratio d'apparition dans l'historique de la
 // session, un membre du groupe est exclu des tirages tant qu'une autre option reste disponible

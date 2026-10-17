@@ -9,25 +9,26 @@ ETC et ETP exacts sont collectés ; trois clés mortes (Orange, Engie, Veolia) ;
 
 ## Générateur
 
-- **Cinq parts entrent dans les groupes d’options automatiques**, chacune dans le groupe dont elle suit
+- **Trois parts entrent dans les groupes d’options automatiques**, chacune dans le groupe dont elle suit
   l’exposition, jamais ailleurs :
   - `EUROSTOXX50_OPTIONS` : iShares Core EURO STOXX 50 Dist (IE0008471009) ;
-  - `EUROPE_OPTIONS` (nouveau, socle Europe des constructions Pro-Européen) : Amundi PEA Europe (MSCI
-    Europe) ou BNP Paribas Easy STOXX Europe 600 (FR0011550193) ; les deux comptent dans l’invariante
-    « ≥ 70 % Europe » ;
-  - `ASIA_OPTIONS` : Amundi PEA Inde (FR0011869320), Amundi PEA Japon TOPIX couvert en euros
-    (FR0013411998) et iShares Core MSCI Pacific ex-Japan (IE00B52MJY50).
-  Les quatre parts issues des historiques mensuels qualifiés perdent le statut « manuel seulement »
+  - `ASIA_OPTIONS` : Amundi PEA Japon TOPIX couvert en euros (FR0013411998) et iShares Core MSCI
+    Pacific ex-Japan (IE00B52MJY50).
+  Les deux parts issues des historiques mensuels qualifiés perdent le statut « manuel seulement »
   via `AUTOMATIC_RECIPE_ISINS` (`automated-portfolio-funds.js`) ; le test de routage l’exige part par
-  part. Résultat : 425 constructions (407 auparavant), 14 099 combinaisons exhaustives et 2 790
-  générations déterministes sans violation ; stress test de régression et mode combo sur les combos
+  part. Deux promotions envisagées ont été retirées avant fusion : BNP Paribas Easy STOXX Europe 600
+  (FR0011550193) et Amundi PEA Inde (FR0011869320), dont le calendrier NAV du Comparateur d’indices et
+  la série de marché du Générateur divergent de 0,5 à 1,5 point sur 2023-2025 ; l’audit de cohérence
+  des performances n’accepte cet écart que pour une part restée manuelle, où la note de méthode le
+  signale. Elles restent manuelles. Résultat : stress test de régression et mode combo sur les combos
   touchés (Thématique Équilibré, Pro-Européen) passés.
-- **Onze parts restent manuelles, par choix documenté** : World Islamic (indice filtré, pas un
+- **Treize parts restent manuelles, par choix documenté** : World Islamic (indice filtré, pas un
   substitut du World) ; les six ETC mono-matière WisdomTree (pétrole Brent et WTI, gaz, café, cacao,
   blé : un contrat à terme unique ne remplace pas un panier diversifié dans la poche « matières
   premières ») ; les trois régions émergentes PEA (Asie émergente, Amérique latine, EMEA : une région
   seule ne tient pas le rôle « émergents » d’une recette) ; VanEck Global Mining (producteurs, distinct
-  des matières premières physiques ; aucun groupe « producteurs mondiaux » n’existe).
+  des matières premières physiques ; aucun groupe « producteurs mondiaux » n’existe) ; BNP Paribas Easy
+  STOXX Europe 600 et Amundi PEA Inde (écart NAV / marché non toléré hors du mode manuel, voir ci-dessus).
 - **Fenêtre courte** : la note de méthode signale désormais toute fenêtre de moins de six années
   communes (« Fenêtre courte : 3 années communes (2023–2025) ; la pire année observée n’est pas
   comparable… »), dans l’outil comme dans le texte. Le mode automatique conserve l’exigence de six
