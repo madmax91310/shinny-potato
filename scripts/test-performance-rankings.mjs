@@ -138,3 +138,39 @@ assert(driftColumns[1].rows.find(r => r.id === 'p').value > driftColumns[0].rows
 const annualGrid = buildRanking([annual, { ...annual, id: 'copy' }], { mode: 'period', start: '2019-12', end: '2021-12' })
 assert.equal(annualColumns(annualGrid).length, 2)
 assert(Number.isFinite(publicationRanking(annualGrid).rows[0].value))
+
+// Curated suggestions must remain publishable as data and FX coverage evolve.
+const { BENCHMARK_CATEGORIES } = await import('../src/pages/performance-rankings/data.js')
+const { markBenchmark, randomSuggestion, suggestionPool } = await import('../src/pages/performance-rankings/suggestions.js')
+assert.deepEqual(CATEGORIES.find(c => c.id === 'luxury-stocks').ids, ['hermes', 'lvmh'])
+for (const category of BENCHMARK_CATEGORIES) {
+  const assets = markBenchmark(category.ids.map(id => convertAsset(RANKING_ASSETS[id], category.currency, FX)), category.benchmarkId)
+  assert.equal(assets.filter(a => !a.isin).length, 5)
+  assert.equal(assets.filter(a => a.benchmark && a.isin).length, 1)
+  const coverage = commonCoverage(assets)
+  const result = buildRanking(assets, { mode: 'years', startYear: coverage.years.at(-5), endYear: coverage.years.at(-1) })
+  const tweet = buildTweet(result, category.label)
+  assert.match(tweet, /^Parmi ces cinq actions, lesquelles ont battu l’ETF (MSCI World|S&P 500)/)
+  assert.match(tweet, /\(réf\.\)/)
+  assert.equal(publicationRanking(result).rows.length, 6)
+  assert.equal(markBenchmark(assets.filter(a => !a.benchmark), category.benchmarkId).filter(a => a.benchmark).length, 0)
+}
+const pool = suggestionPool()
+assert(pool.length > 10)
+assert(!pool.some(s => ['bonds', 'lifestrategy', 'multi-asset', 'crypto', 'commodities', 'small-cap-regions', 'technology-etfs'].includes(s.category.id)))
+assert.equal(suggestionPool([{id:'world', ids:['not-collected', 'apple']}]).length, 0)
+for (let i = 0; i < pool.length; i++) {
+  for (const random of [0, .5, .999999]) {
+    const proposal = randomSuggestion('world', (() => { let first = true; return () => { if (first) { first = false; return i / pool.length } return random } })(), pool)
+    assert.notEqual(proposal.category.id, 'world')
+    const assets = proposal.category.ids.map(id => convertAsset(RANKING_ASSETS[id], proposal.currency, FX))
+    const coverage = commonCoverage(assets)
+    assert(coverage.years.length >= 3)
+    assert(proposal.dates.startYear >= coverage.years[0])
+    assert(proposal.dates.endYear <= coverage.years.at(-1))
+    assert([3, 5, 10].includes(proposal.dates.endYear - proposal.dates.startYear + 1))
+    const result = buildRanking(assets, { ...proposal.dates, mode: proposal.mode })
+    assert(!/undefined|NaN|Infinity/.test(buildTweet(result, proposal.category.label)))
+  }
+}
+console.log(`${BENCHMARK_CATEGORIES.length} five-stock/fund selections and ${pool.length} coherent equity draws: common years, EUR conversion, reference labels and tweet hooks passed.`)

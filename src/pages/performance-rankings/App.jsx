@@ -5,7 +5,8 @@ import ToolWorkspace from '../../design-system/ToolWorkspace.jsx'
 import AssetPicker from '../../design-system/AssetPicker.jsx'
 import ChoicePicker from '../../design-system/ChoicePicker.jsx'
 import { copyPublicationText, notifyPublication, startPublicationDownload } from '../../design-system/publicationActions.js'
-import { ALL_CATEGORIES, ANNUAL_ASSETS, COLORS, RANKING_ASSETS } from './data.js'
+import { ALL_CATEGORIES, ANNUAL_ASSETS, BENCHMARK_CATEGORIES, COLORS, RANKING_ASSETS } from './data.js'
+import { markBenchmark, randomSuggestion } from './suggestions.js'
 import FX from '../../data/monthly-fx.json' with { type: 'json' }
 import { convertAsset, buildPortfolio } from './series.js'
 import PortfolioEditor from './PortfolioEditor.jsx'
@@ -43,9 +44,10 @@ export default function App() {
       const assets = comparison === 'portfolios'
         ? portfolios.map(d => buildPortfolio(d, RANKING_ASSETS, currency === 'original' ? 'EUR' : currency, FX))
         : ids.map(id => convertAsset(SOURCES[id], currency, FX))
-      return { assets }
+      const benchmarkId = ALL_CATEGORIES.find(c => c.id === categoryId)?.benchmarkId
+      return { assets: markBenchmark(assets, benchmarkId) }
     } catch (e) { return { assets: [], error: e.message } }
-  }, [ids, currency, comparison, portfolios])
+  }, [ids, currency, comparison, portfolios, categoryId])
   const assets = prepared.assets
   const computed = useMemo(() => {
     try {
@@ -87,6 +89,16 @@ export default function App() {
     setCategoryId(id); applyIds(c.ids, nextCurrency); setTitle(c.label); setSlot(0); setManual(false)
     if (c.frequency === 'annual') setMode('years')
   }
+  function suggest() {
+    try {
+      const suggestion = randomSuggestion(categoryId)
+      const c = suggestion.category
+      setCategoryId(c.id); setIds(c.ids); setTitle(c.label)
+      setCurrency(suggestion.currency); setDates(suggestion.dates); setMode(suggestion.mode)
+      setComparison('assets'); setBank('monthly'); setSlot(0); setManual(false); setShowRegularity(false)
+      setStatus(`Sélection proposée : ${c.label}, de ${suggestion.dates.startYear} à ${suggestion.dates.endYear}.`)
+    } catch (e) { setStatus(e.message) }
+  }
   const otherIds = ids.filter((_, i) => i !== slot)
   const reference = SOURCES[otherIds[0]]
   const universe = bank === 'annual' ? Object.values(ANNUAL_ASSETS) : ELIGIBLE
@@ -112,7 +124,14 @@ export default function App() {
     </>}>
       <section className="tool-settings rk-settings" aria-label="Réglages du classement">
         <div className="rk-intro"><span>LES MARCHÉS EN PERSPECTIVE</span><h2>Un classement.<br />Plusieurs façons de le lire.</h2><p>Choisis un univers, puis la période qui t’intéresse.</p></div>
-        <label className="rk-field">Catégorie<ChoicePicker aria-label="Catégorie" value={categoryId} onChange={e => chooseCategory(e.target.value)}>{ALL_CATEGORIES.map(c => <option key={c.id} value={c.id}>{c.label}</option>)}</ChoicePicker></label>
+        <div className="rk-inline rk-suggestions">
+          <button type="button" onClick={suggest}>Sélection aléatoire</button>
+          <button type="button" onClick={() => chooseCategory((BENCHMARK_CATEGORIES.find(c => c.id === `${categoryId}-benchmark`) ?? BENCHMARK_CATEGORIES[0]).id)}>5 actions face à un ETF</button>
+        </div>
+        <label className="rk-field">Catégorie<ChoicePicker aria-label="Catégorie" value={categoryId} onChange={e => chooseCategory(e.target.value)}>
+          <optgroup label="Univers de comparaison">{ALL_CATEGORIES.filter(c => !c.benchmarkId).map(c => <option key={c.id} value={c.id}>{c.label}</option>)}</optgroup>
+          <optgroup label="5 actions face à un ETF">{BENCHMARK_CATEGORIES.map(c => <option key={c.id} value={c.id}>{c.label}</option>)}</optgroup>
+        </ChoicePicker></label>
         <fieldset className="rk-modes"><legend>Comparer</legend>{[['assets', 'Actifs'], ['portfolios', 'Portefeuilles']].map(([value, label]) => <button type="button" key={value} aria-pressed={comparison === value} onClick={() => {
           setComparison(value)
           if (value === 'portfolios') {

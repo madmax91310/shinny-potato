@@ -110,6 +110,40 @@ try {
       }
     }
   }
+  for (const width of [1440, 390]) {
+    await page.setViewportSize({ width, height: 1000 })
+    for (const id of ['luxury-stocks', 'aerospace-defense', 'everyday-brands', 'ai-infrastructure', 'europe-finance']) {
+      await category(id)
+      assert.equal(await page.getByRole('alert').count(), 0, id)
+      assert(await page.getByRole('button', { name: 'Télécharger l’image', exact: true }).isEnabled(), id)
+      if (id === 'luxury-stocks') {
+        const labels = await page.locator('.rk-selected').innerText()
+        assert.match(labels, /Hermès/)
+        assert.match(labels, /LVMH/)
+        assert.doesNotMatch(labels, /Ferrari|Oréal/)
+        assert.equal(await page.locator('.rk-selected>div').count(), 2)
+      }
+    }
+    await page.getByRole('button', { name: '5 actions face à un ETF', exact: true }).click()
+    assert.equal(await page.getByRole('group', { name: 'Catégorie', exact: true }).getAttribute('data-value'), 'europe-finance-benchmark')
+    for (const c of ALL_CATEGORIES.filter(c => c.benchmarkId)) {
+      await category(c.id)
+      assert.equal(await page.locator('.rk-selected>div').count(), 6)
+      assert.match(await page.locator('.rk-selected').innerText(), /ETF .*réf/)
+      assert.equal(await page.getByRole('alert').count(), 0, c.id)
+      assert.match(await page.getByLabel('Texte à publier', { exact: true }).inputValue(), /^Parmi ces cinq actions, lesquelles ont battu l’ETF/)
+    }
+    for (let i = 0; i < 4; i++) {
+      const before = await page.getByRole('group', { name: 'Catégorie', exact: true }).getAttribute('data-value')
+      await page.getByRole('button', { name: 'Sélection aléatoire', exact: true }).click()
+      const after = await page.getByRole('group', { name: 'Catégorie', exact: true }).getAttribute('data-value')
+      assert.notEqual(after, before)
+      assert.equal(await page.getByRole('alert').count(), 0)
+      assert(await page.getByRole('button', { name: 'Télécharger l’image', exact: true }).isEnabled())
+      assert.equal(await page.getByRole('button', { name: 'Année par année', exact: true }).getAttribute('aria-pressed'), 'true')
+    }
+    assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth))
+  }
   await page.setViewportSize({ width: 390, height: 844 })
   assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth))
   await page.getByRole('button', { name: 'Aperçu', exact: true }).click()
