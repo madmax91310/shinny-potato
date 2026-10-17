@@ -8,7 +8,7 @@
     "indexCode": null,
     "variant": null,
     "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/ETH-USD?period1=1790899200&period2=1792195200&interval=1d&events=splits",
-    "sha256": "8f3d06f36d340dcf85ac294c805248839bbd959223fe710b8e88f8f9ef2f3aee",
+    "sha256": "0bc55a73b7b9156ce02e2d21b0d2c64a6ba9ab36bf13567e446a4791aa88c5fe",
     "method": "Dernière séance terminée ; cours brut",
     "maxAgeDays": 7
   },
@@ -23,7 +23,8 @@
     "sourceUrl": "https://stoxx.com/index/sxxr/",
     "sha256": "e6a884e6aec8523877b88a9431c6933060ffe5915859a63a4f1c3c9336f36afe",
     "method": "Niveau officiel de fin de séance, variante exacte",
-    "maxAgeDays": 7
+    "maxAgeDays": 7,
+    "isin": "EU0009658210"
   },
   "sp500": {
     "value": 17186.01953125,
@@ -251,7 +252,7 @@
     "indexCode": null,
     "variant": null,
     "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/BTC-USD?period1=1790899200&period2=1792195200&interval=1d&events=splits",
-    "sha256": "27de406af2384c0a80d3429d42546c3a83ef470e0fd63990e4b9ae0fcaf12c30",
+    "sha256": "767f1cbe19969cb7384b130476c22290920f6c999a8e2bc0806a8ed23f56a4a5",
     "method": "Dernière séance terminée ; cours brut",
     "maxAgeDays": 7
   },
@@ -1856,7 +1857,7 @@
     "indexCode": null,
     "variant": null,
     "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/SAN.MC?period1=1790899200&period2=1792195200&interval=1d&events=splits",
-    "sha256": "234696fb7b5075c56717da0aaf9d28742e0b63b83f02f52308ab7ea98646be93",
+    "sha256": "eee332f439399bfb5c7175e8b49d1035e6b4c57be6f0273e692a6bc87d81cf78",
     "method": "Dernière séance terminée ; cours brut",
     "maxAgeDays": 7
   },
@@ -4337,7 +4338,8 @@
     "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/RO.SW?period1=1790899200&period2=1792195200&interval=1d&events=splits",
     "sha256": "aeaa90984f20d0ac4f922e4b3bdac091b2c7066eea435f74bad99bc1cace5d64",
     "method": "Dernière séance terminée ; cours brut",
-    "maxAgeDays": 7
+    "maxAgeDays": 7,
+    "isin": "CH0012032113"
   },
   "ubs": {
     "value": 39.630001068115234,
@@ -4350,7 +4352,8 @@
     "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/UBSG.SW?period1=1790899200&period2=1792195200&interval=1d&events=splits",
     "sha256": "f4122d91447e03e65d85f084c167ab57c36616b85c9985f3b62e3d58e88bbb35",
     "method": "Dernière séance terminée ; cours brut",
-    "maxAgeDays": 7
+    "maxAgeDays": 7,
+    "isin": "CH0244767585"
   },
   "zurich": {
     "value": 613.4000244140625,
@@ -4363,7 +4366,8 @@
     "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/ZURN.SW?period1=1790899200&period2=1792195200&interval=1d&events=splits",
     "sha256": "476d8e106f5dc0a255bdc34785efa3cabb82bac700a99e562cf3036c9616e108",
     "method": "Dernière séance terminée ; cours brut",
-    "maxAgeDays": 7
+    "maxAgeDays": 7,
+    "isin": "CH0011075394"
   },
   "swiss-re": {
     "value": 150.0,
@@ -4376,7 +4380,8 @@
     "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/SREN.SW?period1=1790899200&period2=1792195200&interval=1d&events=splits",
     "sha256": "36fdf274c0e8fc4d71ef76a8bd950f1b85210148aebf58d257f48cb5b246a861",
     "method": "Dernière séance terminée ; cours brut",
-    "maxAgeDays": 7
+    "maxAgeDays": 7,
+    "isin": "CH0126881561"
   },
   "bbva": {
     "value": 23.18000030517578,
@@ -4389,7 +4394,8 @@
     "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/BBVA.MC?period1=1790899200&period2=1792195200&interval=1d&events=splits",
     "sha256": "48218460e37cf0971a5b8dfa290e476d3ed2adae3b4d9aeb124531bfb81c373a",
     "method": "Dernière séance terminée ; cours brut",
-    "maxAgeDays": 7
+    "maxAgeDays": 7,
+    "isin": "ES0113211835"
   },
   "unilever": {
     "value": 58.95000076293945,
@@ -4402,7 +4408,8 @@
     "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/UNA.AS?period1=1790899200&period2=1792195200&interval=1d&events=splits",
     "sha256": "1590fb60f1c0d745ff2fb3c944907f7ea0ed562e24f36646aab4ba62a0ba33c3",
     "method": "Dernière séance terminée ; cours brut",
-    "maxAgeDays": 7
+    "maxAgeDays": 7,
+    "isin": "GB00BVZK7T90"
   },
   "diageo": {
     "value": 1790.0,
@@ -4415,7 +4422,8 @@
     "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/DGE.L?period1=1790899200&period2=1792195200&interval=1d&events=splits",
     "sha256": "721258737e2f63618b4f884458ba40778e3ffa2170b99862e7f81511b98fceb7",
     "method": "Dernière séance terminée ; cours brut",
-    "maxAgeDays": 7
+    "maxAgeDays": 7,
+    "isin": "GB0002374006"
   },
   "relx": {
     "value": 2914.0,
@@ -4428,7 +4436,8 @@
     "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/REL.L?period1=1790899200&period2=1792195200&interval=1d&events=splits",
     "sha256": "1fc30777cb05ac4725f682ef1e03497b6ccb05de714a3b1a147d47ee4cb17474",
     "method": "Dernière séance terminée ; cours brut",
-    "maxAgeDays": 7
+    "maxAgeDays": 7,
+    "isin": "GB00B2B0DG97"
   },
   "lseg": {
     "value": 8768.0,
@@ -4441,7 +4450,8 @@
     "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/LSEG.L?period1=1790899200&period2=1792195200&interval=1d&events=splits",
     "sha256": "2ded7ce4c1e96b46db818b578e7a55b73d6990021d7df1df5eb9fcbab35ee504",
     "method": "Dernière séance terminée ; cours brut",
-    "maxAgeDays": 7
+    "maxAgeDays": 7,
+    "isin": "GB00B0SWJX34"
   },
   "rolls-royce": {
     "value": 1350.5999755859375,
@@ -4454,7 +4464,8 @@
     "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/RR.L?period1=1790899200&period2=1792195200&interval=1d&events=splits",
     "sha256": "0d86454663cb59d98348e70ccd479cc52915268597c748e9165a830f47122a8f",
     "method": "Dernière séance terminée ; cours brut",
-    "maxAgeDays": 7
+    "maxAgeDays": 7,
+    "isin": "GB00B63H8491"
   },
   "bae-systems": {
     "value": 1983.5,
@@ -4467,7 +4478,8 @@
     "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/BA.L?period1=1790899200&period2=1792195200&interval=1d&events=splits",
     "sha256": "887deda71a0f53de6a5d4656a5e371f117694e1239abb15cdadc6d2620ff2489",
     "method": "Dernière séance terminée ; cours brut",
-    "maxAgeDays": 7
+    "maxAgeDays": 7,
+    "isin": "GB0002634946"
   },
   "rheinmetall": {
     "value": 1090.199951171875,
@@ -4480,7 +4492,8 @@
     "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/RHM.DE?period1=1790899200&period2=1792195200&interval=1d&events=splits",
     "sha256": "7594c3713cea496d1673b4b355fbc1806aa139621057ca9213ff722cdc63e471",
     "method": "Dernière séance terminée ; cours brut",
-    "maxAgeDays": 7
+    "maxAgeDays": 7,
+    "isin": "DE0007030009"
   },
   "dhl": {
     "value": 58.220001220703125,
@@ -4493,7 +4506,8 @@
     "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/DHL.DE?period1=1790899200&period2=1792195200&interval=1d&events=splits",
     "sha256": "56216ecbd1c7f3da00968434c8042834c1dfbdaa84ab813c40a039456d3221da",
     "method": "Dernière séance terminée ; cours brut",
-    "maxAgeDays": 7
+    "maxAgeDays": 7,
+    "isin": "DE0005552004"
   },
   "basf": {
     "value": 53.22999954223633,
@@ -4506,7 +4520,8 @@
     "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/BAS.DE?period1=1790899200&period2=1792195200&interval=1d&events=splits",
     "sha256": "a5302896ab9af737cff9afcc9d199f4dbe9ffae8db84ea8770fa081bb709d180",
     "method": "Dernière séance terminée ; cours brut",
-    "maxAgeDays": 7
+    "maxAgeDays": 7,
+    "isin": "DE000BASF111"
   },
   "enel": {
     "value": 9.187000274658203,
@@ -4519,7 +4534,8 @@
     "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/ENEL.MI?period1=1790899200&period2=1792195200&interval=1d&events=splits",
     "sha256": "92510dca4f3111e78f9c6f7df4df49d4f4dc4b6917dceec3b5620dc3a2d42d77",
     "method": "Dernière séance terminée ; cours brut",
-    "maxAgeDays": 7
+    "maxAgeDays": 7,
+    "isin": "IT0003128367"
   },
   "alibaba": {
     "value": 108.80000305175781,
@@ -4532,7 +4548,8 @@
     "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/9988.HK?period1=1790899200&period2=1792195200&interval=1d&events=splits",
     "sha256": "a077a7b9941200989945555eed1c1c8ae05d245c83e817534c11101578d58343",
     "method": "Dernière séance terminée ; cours brut",
-    "maxAgeDays": 7
+    "maxAgeDays": 7,
+    "isin": "KYG017191142"
   },
   "jd": {
     "value": 106.0999984741211,
@@ -4545,7 +4562,8 @@
     "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/9618.HK?period1=1790899200&period2=1792195200&interval=1d&events=splits",
     "sha256": "7d7aeedc36daabcfa0281c2061d5e433715a49717dda173d48259d94db3aefda",
     "method": "Dernière séance terminée ; cours brut",
-    "maxAgeDays": 7
+    "maxAgeDays": 7,
+    "isin": "KYG8208B1014"
   },
   "meituan": {
     "value": 75.69999694824219,
@@ -4558,7 +4576,8 @@
     "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/3690.HK?period1=1790899200&period2=1792195200&interval=1d&events=splits",
     "sha256": "7bec4c49139507df13de56c3177a1d5202133d6f72e8372a03c124f74e3706a9",
     "method": "Dernière séance terminée ; cours brut",
-    "maxAgeDays": 7
+    "maxAgeDays": 7,
+    "isin": "KYG596691041"
   },
   "xiaomi": {
     "value": 26.65999984741211,
@@ -4571,7 +4590,8 @@
     "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/1810.HK?period1=1790899200&period2=1792195200&interval=1d&events=splits",
     "sha256": "a9770fa083e4eb0c99a34f5d701420f648844412207766892019c41d7c7b5ecb",
     "method": "Dernière séance terminée ; cours brut",
-    "maxAgeDays": 7
+    "maxAgeDays": 7,
+    "isin": "KYG9830T1067"
   },
   "byd": {
     "value": 73.75,
@@ -4584,7 +4604,8 @@
     "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/1211.HK?period1=1790899200&period2=1792195200&interval=1d&events=splits",
     "sha256": "2cd8a620b65813ac03f8d1981c0967fa6219bc5a9687d69cdbdd5acb99564d97",
     "method": "Dernière séance terminée ; cours brut",
-    "maxAgeDays": 7
+    "maxAgeDays": 7,
+    "isin": "CNE100000296"
   },
   "keyence": {
     "value": 80760.0,
@@ -4597,7 +4618,8 @@
     "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/6861.T?period1=1790899200&period2=1792195200&interval=1d&events=splits",
     "sha256": "791b4eb1b13c872660f33b19e5fec330ca7b64dd355eca0fc377b0161bfa1444",
     "method": "Dernière séance terminée ; cours brut",
-    "maxAgeDays": 7
+    "maxAgeDays": 7,
+    "isin": "JP3236200006"
   },
   "hitachi": {
     "value": 5770.0,
@@ -4610,7 +4632,8 @@
     "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/6501.T?period1=1790899200&period2=1792195200&interval=1d&events=splits",
     "sha256": "ef92d7cc617c3e6bc8257187d84186e2c96ac5319ca482ff6826e74ee21c101a",
     "method": "Dernière séance terminée ; cours brut",
-    "maxAgeDays": 7
+    "maxAgeDays": 7,
+    "isin": "JP3788600009"
   },
   "mitsubishi-electric": {
     "value": 5005.0,
@@ -4623,7 +4646,8 @@
     "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/6503.T?period1=1790899200&period2=1792195200&interval=1d&events=splits",
     "sha256": "415f766725408edf92a9f02bc81b646072ddf4d59c5e5cb4194f5a7faf372629",
     "method": "Dernière séance terminée ; cours brut",
-    "maxAgeDays": 7
+    "maxAgeDays": 7,
+    "isin": "JP3902400005"
   },
   "tokyo-electron": {
     "value": 10630.0,
@@ -4636,7 +4660,8 @@
     "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/8035.T?period1=1790899200&period2=1792195200&interval=1d&events=splits",
     "sha256": "f534a3dbfc7090330a00e58d45f999329ee19ee6e125d4581c520e5e983401cb",
     "method": "Dernière séance terminée ; cours brut",
-    "maxAgeDays": 7
+    "maxAgeDays": 7,
+    "isin": "JP3571400005"
   },
   "advantest": {
     "value": 34530.0,
@@ -4649,7 +4674,8 @@
     "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/6857.T?period1=1790899200&period2=1792195200&interval=1d&events=splits",
     "sha256": "634618269b5ae84095753031d1c18f59ca5ceb4d6133dfdd5a582d1ccec5fcbf",
     "method": "Dernière séance terminée ; cours brut",
-    "maxAgeDays": 7
+    "maxAgeDays": 7,
+    "isin": "JP3122400009"
   },
   "mitsubishi-corp": {
     "value": 4726.0,
@@ -4662,7 +4688,8 @@
     "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/8058.T?period1=1790899200&period2=1792195200&interval=1d&events=splits",
     "sha256": "5370e541aca5de94a30d7cf6f2e39bb38ae85ff8782178322d46e85ec5cf855d",
     "method": "Dernière séance terminée ; cours brut",
-    "maxAgeDays": 7
+    "maxAgeDays": 7,
+    "isin": "JP3898400001"
   },
   "softbank-group": {
     "value": 4944.0,
@@ -4675,7 +4702,8 @@
     "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/9984.T?period1=1790899200&period2=1792195200&interval=1d&events=splits",
     "sha256": "c396d9372514a47af026f08cba4b0c5fe250c16cdab8ceb484b28d15a10cfef6",
     "method": "Dernière séance terminée ; cours brut",
-    "maxAgeDays": 7
+    "maxAgeDays": 7,
+    "isin": "JP3436100006"
   },
   "recruit": {
     "value": 18420.0,
@@ -4688,7 +4716,8 @@
     "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/6098.T?period1=1790899200&period2=1792195200&interval=1d&events=splits",
     "sha256": "e6cb82fe3dfec73569644fce4fdf08cd0476f096553ffd24020d897271d2c95d",
     "method": "Dernière séance terminée ; cours brut",
-    "maxAgeDays": 7
+    "maxAgeDays": 7,
+    "isin": "JP3970300004"
   },
   "dbs": {
     "value": 74.11000061035156,
@@ -4701,7 +4730,8 @@
     "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/D05.SI?period1=1790899200&period2=1792195200&interval=1d&events=splits",
     "sha256": "00c5daf700eeb27ee7438a4fd9c407ff6e3688d3e2a79d1a4e77d003c18c2754",
     "method": "Dernière séance terminée ; cours brut",
-    "maxAgeDays": 7
+    "maxAgeDays": 7,
+    "isin": "SG1L01001701"
   },
   "csco": {
     "value": 107.38999938964844,
@@ -4714,7 +4744,8 @@
     "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/CSCO?period1=1790899200&period2=1792195200&interval=1d&events=splits",
     "sha256": "983b2f5b6abfd7e7877ef52e84bd59b89f8c8f334f9165726a48ce71358d19e5",
     "method": "Dernière séance terminée ; cours brut",
-    "maxAgeDays": 7
+    "maxAgeDays": 7,
+    "isin": "US17275R1023"
   },
   "arista": {
     "value": 176.97999572753906,
@@ -4727,7 +4758,8 @@
     "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/ANET?period1=1790899200&period2=1792195200&interval=1d&events=splits",
     "sha256": "a3ac725c329a2b8e17f66ae6694ff029feadb29f0d63510e0a3a3c514fca53ee",
     "method": "Dernière séance terminée ; cours brut",
-    "maxAgeDays": 7
+    "maxAgeDays": 7,
+    "isin": "US0404132054"
   },
   "dell": {
     "value": 451.7099914550781,
@@ -4740,7 +4772,8 @@
     "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/DELL?period1=1790899200&period2=1792195200&interval=1d&events=splits",
     "sha256": "2fa2e123272a96f39c1cbf78bbfa29b955af33594e1d9832bbb231b34e619d8f",
     "method": "Dernière séance terminée ; cours brut",
-    "maxAgeDays": 7
+    "maxAgeDays": 7,
+    "isin": "US24703L2025"
   },
   "crowdstrike": {
     "value": 227.38999938964844,
@@ -4753,7 +4786,8 @@
     "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/CRWD?period1=1790899200&period2=1792195200&interval=1d&events=splits",
     "sha256": "9afcc607f528cd40be5a6e85bea1a36815f9a9ddcc7445a1e32f96f7b1c9623c",
     "method": "Dernière séance terminée ; cours brut",
-    "maxAgeDays": 7
+    "maxAgeDays": 7,
+    "isin": "US22788C1053"
   },
   "fortinet": {
     "value": 169.1300048828125,
@@ -4766,7 +4800,8 @@
     "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/FTNT?period1=1790899200&period2=1792195200&interval=1d&events=splits",
     "sha256": "546bbff21b42d4a6dfbe499b404579357ef77157ceaa66c94365aacb29334f2d",
     "method": "Dernière séance terminée ; cours brut",
-    "maxAgeDays": 7
+    "maxAgeDays": 7,
+    "isin": "US34959E1091"
   },
   "snps": {
     "value": 454.6300048828125,
@@ -4779,7 +4814,8 @@
     "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/SNPS?period1=1790899200&period2=1792195200&interval=1d&events=splits",
     "sha256": "04416dc31d0f8c7a19431e3b474cc5710500b25537ac2f84d1de65a06febdfa1",
     "method": "Dernière séance terminée ; cours brut",
-    "maxAgeDays": 7
+    "maxAgeDays": 7,
+    "isin": "US8716071076"
   },
   "klac": {
     "value": 165.74000549316406,
@@ -4792,7 +4828,8 @@
     "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/KLAC?period1=1790899200&period2=1792195200&interval=1d&events=splits",
     "sha256": "5703cfdf83059555eb9b5b7d6ba0b4aabc4c1222ed2ba3d82181e78c8322153b",
     "method": "Dernière séance terminée ; cours brut",
-    "maxAgeDays": 7
+    "maxAgeDays": 7,
+    "isin": "US4824801009"
   },
   "uber": {
     "value": 70.3499984741211,
@@ -4805,7 +4842,8 @@
     "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/UBER?period1=1790899200&period2=1792195200&interval=1d&events=splits",
     "sha256": "93bb5433bae5adb266477938904057f16aee1b1abef3e8c27d491830479a1457",
     "method": "Dernière séance terminée ; cours brut",
-    "maxAgeDays": 7
+    "maxAgeDays": 7,
+    "isin": "US90353T1007"
   },
   "airbnb": {
     "value": 173.6999969482422,
@@ -4818,7 +4856,8 @@
     "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/ABNB?period1=1790899200&period2=1792195200&interval=1d&events=splits",
     "sha256": "731e1f2819aed27ca36d9048f2a14aaab2512270b5c4c643bbb2a0210e065c29",
     "method": "Dernière séance terminée ; cours brut",
-    "maxAgeDays": 7
+    "maxAgeDays": 7,
+    "isin": "US0090661010"
   },
   "cme": {
     "value": 293.8699951171875,
@@ -4831,7 +4870,8 @@
     "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/CME?period1=1790899200&period2=1792195200&interval=1d&events=splits",
     "sha256": "e7258c9a6fabba0e1e202b6f2963607d323a4453b226474671ca9444dc0d3a12",
     "method": "Dernière séance terminée ; cours brut",
-    "maxAgeDays": 7
+    "maxAgeDays": 7,
+    "isin": "US12572Q1058"
   },
   "ice": {
     "value": 161.55999755859375,
@@ -4844,7 +4884,8 @@
     "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/ICE?period1=1790899200&period2=1792195200&interval=1d&events=splits",
     "sha256": "292b3915e1665bbf06cc89f41bad859f07c0723611a47d71c153f0efd40358b1",
     "method": "Dernière séance terminée ; cours brut",
-    "maxAgeDays": 7
+    "maxAgeDays": 7,
+    "isin": "US45866F1049"
   },
   "pfe": {
     "value": 29.579999923706055,
@@ -4857,7 +4898,8 @@
     "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/PFE?period1=1790899200&period2=1792195200&interval=1d&events=splits",
     "sha256": "eddcd6c38f8330c49a50f90a9628a343cfcd27923007cc193e047472e543eb89",
     "method": "Dernière séance terminée ; cours brut",
-    "maxAgeDays": 7
+    "maxAgeDays": 7,
+    "isin": "US7170811035"
   },
   "amgn": {
     "value": 432.489990234375,
@@ -4870,7 +4912,8 @@
     "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/AMGN?period1=1790899200&period2=1792195200&interval=1d&events=splits",
     "sha256": "ff21910158fe6815741e82a8dc07387327c9d7b9e6954ac8e23f234934bd7794",
     "method": "Dernière séance terminée ; cours brut",
-    "maxAgeDays": 7
+    "maxAgeDays": 7,
+    "isin": "US0311621009"
   },
   "gilead": {
     "value": 156.19000244140625,
@@ -4883,7 +4926,8 @@
     "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/GILD?period1=1790899200&period2=1792195200&interval=1d&events=splits",
     "sha256": "b73591950a9c1664727cb7a3fd151c3503ef902c96a1f46819fb8d3dc233178b",
     "method": "Dernière séance terminée ; cours brut",
-    "maxAgeDays": 7
+    "maxAgeDays": 7,
+    "isin": "US3755581036"
   },
   "catl": {
     "value": 277.0,
@@ -4896,7 +4940,8 @@
     "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/300750.SZ?period1=1790899200&period2=1792195200&interval=1d&events=splits",
     "sha256": "c18404fcf4e4fa1e805f8589e22332ae0cf95bd5d810480218a0fd9b085e8651",
     "method": "Dernière séance terminée ; cours brut",
-    "maxAgeDays": 7
+    "maxAgeDays": 7,
+    "isin": "CNE100003662"
   },
   "reliance": {
     "value": 1211.199951171875,
@@ -4909,7 +4954,8 @@
     "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/RELIANCE.NS?period1=1790899200&period2=1792195200&interval=1d&events=splits",
     "sha256": "a014b9b505012299361e81b596dd8dc655855d0498bea5c03ca180ea75579996",
     "method": "Dernière séance terminée ; cours brut",
-    "maxAgeDays": 7
+    "maxAgeDays": 7,
+    "isin": "INE002A01018"
   },
   "hdfc-bank": {
     "value": 728.8499755859375,
@@ -4922,7 +4968,8 @@
     "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/HDFCBANK.NS?period1=1790899200&period2=1792195200&interval=1d&events=splits",
     "sha256": "0af689c30d9a8c1bd90a394bac821ccd38e08f7c76c019e4efdd3fc4f4de5d9f",
     "method": "Dernière séance terminée ; cours brut",
-    "maxAgeDays": 7
+    "maxAgeDays": 7,
+    "isin": "INE040A01034"
   },
   "icici-bank": {
     "value": 1397.0,
@@ -4935,7 +4982,8 @@
     "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/ICICIBANK.NS?period1=1790899200&period2=1792195200&interval=1d&events=splits",
     "sha256": "4df7861ecb91f6b215b9f0f27aa68299598c7ef26817846f5c1350198c1d7288",
     "method": "Dernière séance terminée ; cours brut",
-    "maxAgeDays": 7
+    "maxAgeDays": 7,
+    "isin": "INE090A01021"
   },
   "infosys": {
     "value": 1161.199951171875,
@@ -4948,7 +4996,8 @@
     "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/INFY.NS?period1=1790899200&period2=1792195200&interval=1d&events=splits",
     "sha256": "fbed8b349930042ac1e95cc0a0522fe89860d730b924526f2199382c52bb95dd",
     "method": "Dernière séance terminée ; cours brut",
-    "maxAgeDays": 7
+    "maxAgeDays": 7,
+    "isin": "INE009A01021"
   },
   "tcs": {
     "value": 2465.0,
@@ -4961,7 +5010,8 @@
     "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/TCS.NS?period1=1790899200&period2=1792195200&interval=1d&events=splits",
     "sha256": "af1da589c7cdd102b4505c3fc4d732752e0e92259e36bffdd6c9dd6b4894b4b5",
     "method": "Dernière séance terminée ; cours brut",
-    "maxAgeDays": 7
+    "maxAgeDays": 7,
+    "isin": "INE467B01029"
   },
   "stockAN8068571086": {
     "value": 49.5,
@@ -5005,7 +5055,7 @@
     "indexCode": null,
     "variant": null,
     "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/NESN.SW?period1=1790899200&period2=1792195200&interval=1d&events=splits",
-    "sha256": "3b78d35ba92724c4e4b8248573680201dff4c97c21d6cf7baf35df8c7ebebff4",
+    "sha256": "d3cf537cf20aaf23e23bca80e96ca2e4701d6184a4752ff5ab8cc2bbbaee988a",
     "method": "Dernière séance terminée ; cours brut",
     "maxAgeDays": 7,
     "isin": "CH0038863350",
