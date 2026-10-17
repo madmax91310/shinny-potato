@@ -70,6 +70,7 @@ for (const id of ASSET_ORDER) {
   assert.equal(choices.find(choice => choice.id === id).label,
     `${ASSETS[id].icon} ${historyOptionLabel(id, ASSETS[id])}`)
   if (['ETC','ETN','ETP'].includes(ASSETS[id].instrumentType)) assert(historyOptionLabel(id, ASSETS[id]).startsWith(`${ASSETS[id].instrumentType} · `))
+  else if (ASSETS[id].instrumentType === 'EQUITY') assert.equal(historyOptionLabel(id, ASSETS[id]), `${ASSETS[id].label} · ${ASSETS[id].currency}`)
   else if (ASSETS[id].isin) assert.match(historyOptionLabel(id, ASSETS[id]), /^ETF · /)
 }
 assert.match(historyOptionLabel('msciWorldMomentum', ASSETS.msciWorldMomentum), /^Indice · MSCI World Momentum/)
