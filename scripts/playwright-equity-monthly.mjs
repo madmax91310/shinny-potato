@@ -3,6 +3,7 @@ import assert from 'node:assert/strict'
 import { chromium } from 'playwright'
 import { spawn } from 'node:child_process'
 import { readFileSync } from 'node:fs'
+import { ASSETS } from '../src/data/market-history.js'
 const port=4359,base=`http://127.0.0.1:${port}/shinny-potato`
 const ids=JSON.parse(readFileSync('scripts/monthly-automation.json')).series.filter(s=>s.consumerScope==='equity').map(s=>s.id)
 const samples={walmart:'$',airbus:'€',samsung:'₩','sk-hynix':'₩',thales:'€',tsmc:'$',novartis:'CHF','novo-nordisk':'kr',nintendo:'¥',tencent:'$'}
@@ -24,6 +25,10 @@ try {
       await choose(picker,id)
       if(route!=='calculateur-investissement') {
         await page.getByRole('button',{name:'🔄 Générer',exact:true}).click()
+        await page.waitForFunction(({label,symbol})=>{
+          const text=document.querySelector('pre')?.textContent??''
+          return text.includes(label)&&(!symbol||text.includes(symbol))
+        },{label:ASSETS[id].label,symbol:route==='il-y-a-x-ans'?symbol:null})
         const post=await page.locator('pre').innerText()
         assert(!/NaN|undefined|\[à saisir\]/.test(post),post)
         if(route==='il-y-a-x-ans') assert(post.includes(symbol),`${id}: currency in text`)
