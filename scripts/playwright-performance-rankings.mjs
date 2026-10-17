@@ -92,6 +92,24 @@ try {
   await page.screenshot({ path: 'test-artifacts/performance-rankings/portfolios.png', fullPage: true })
   await page.getByRole('button', { name: 'Actifs', exact: true }).click()
   assert.equal(await page.getByRole('alert').count(), 0)
+  // Exercise every new equity selection, including mixed listing currencies and
+  // the recent Europe Small Cap fund with no complete calendar year yet.
+  const equityCategories = ['us-semiconductors', 'us-software', 'payments-finance', 'health-stocks', 'europe-industry', 'us-consumer', 'us-equity-etfs', 'technology-etfs', 'small-cap-regions']
+  for (const width of [1440, 390]) {
+    await page.setViewportSize({ width, height: 1000 })
+    for (const id of equityCategories) {
+      await category(id)
+      const definition = CATEGORIES.find(c => c.id === id)
+      assert.equal(await page.locator('.rk-selected>div').count(), definition.ids.length)
+      assert.equal(await page.getByRole('alert').count(), 0, id)
+      assert(await page.getByRole('button', { name: 'Télécharger l’image', exact: true }).isEnabled(), id)
+      assert(!/undefined|NaN|Infinity/.test(await page.getByLabel('Texte à publier', { exact: true }).inputValue()), id)
+      if (id === 'small-cap-regions') {
+        assert.equal(await page.getByRole('button', { name: 'Période libre', exact: true }).getAttribute('aria-pressed'), 'true')
+        assert.match(await page.locator('.rk-coverage').innerText(), /2026-04/)
+      }
+    }
+  }
   await page.setViewportSize({ width: 390, height: 844 })
   assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth))
   await page.getByRole('button', { name: 'Aperçu', exact: true }).click()
