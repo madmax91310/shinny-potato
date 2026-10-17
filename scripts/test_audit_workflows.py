@@ -53,7 +53,21 @@ class WorkflowContracts(unittest.TestCase):
     def test_deploy_requires_every_validation_job_and_same_built_commit(self):
         workflow = (ROOT/'.github/workflows/deploy-pages.yml').read_text()
         deploy = workflow.split('\n  deploy:\n')[1]
-        self.assertIn('needs: [build, python-checks, browser-checks, exposure-browser-check]', deploy)
+        self.assertIn('needs: [scope, build, python-checks, browser-checks, exposure-browser-check, smoke]', deploy)
+        condition = deploy.split('if: >-\n')[1].split('\n    runs-on:')[0]
+        # Build, Python and smoke checks block every publication; editorial browser
+        # checks may only be bypassed for an automation data-only snapshot.
+        for blocking in ["needs.build.result == 'success'", "needs.python-checks.result == 'success'", "needs.smoke.result == 'success'",
+                         "github.event_name != 'pull_request'"]:
+            self.assertIn(blocking, condition)
+        self.assertIn("((needs.browser-checks.result == 'success' && needs.exposure-browser-check.result == 'success')\n          || needs.scope.outputs.data_only == 'true')", condition)
+        scope = workflow.split('\n  scope:\n')[1].split('\n  build:\n')[0]
+        self.assertIn("if: github.event_name != 'pull_request'", scope)
+        self.assertIn('fetch-depth: 0', scope)
+        self.assertIn('scripts/classify-deploy-scope.mjs', scope)
+        self.assertIn('run: node scripts/smoke-data-routes.mjs', workflow.split('\n  smoke:\n')[1])
+        self.assertIn('dist/build-info.json', workflow.split('\n  build:\n')[1].split('\n  python-checks:\n')[0])
+        self.assertIn('exit 1', workflow.split('\n  advisory-checks:\n')[1])
         self.assertIn('ref: ${{ needs.build.outputs.commit_sha }}', deploy)
         self.assertIn('  exposure-browser-check:', workflow)
         self.assertIn('run: node scripts/playwright-exposure-scope.mjs', workflow.split('  exposure-browser-check:')[1])

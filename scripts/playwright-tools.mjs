@@ -45,12 +45,21 @@ import { chromium } from "playwright";
 import { spawn } from "node:child_process";
 import { stat, readFile, mkdir, writeFile } from "node:fs/promises";
 import { DATA_CATALOG } from '../src/data/catalog.js';
+import { describeDataField } from '../src/pages/data-search/lib.js';
 import { maintenanceLinks } from '../src/data/maintenance-links.js';
 import { buildCustomDuel, buildDuel, buildTweet } from '../src/pages/portfolio-duels/lib.js';
 import { getRecipes } from '../src/pages/portfolio-generator/recipes.js';
 import { DUELS } from "../src/pages/portfolio-duels/data.js";
 import { SHEETS } from "../src/data/index-factsheets.js";
-import { ASSETS as HISTORY } from '../src/data/market-history.js';
+import { ASSETS as HISTORY, LATEST_YM as LATEST_HISTORY_YM } from '../src/data/market-history.js';
+// Last collected month of an asset as the tools write it ("septembre 2026"); it advances
+// with every monthly refresh, so it is never pinned in the expectations.
+// The year of the latest collected month is never complete in the annual tables.
+const INCOMPLETE_YEAR = Number(LATEST_HISTORY_YM.slice(0, 4));
+const latestMonth = id => {
+  const [year, month] = HISTORY[id].points.at(-1).date.split('-').map(Number);
+  return new Date(Date.UTC(year, month - 1, 1)).toLocaleDateString('fr-FR', { month: 'long', year: 'numeric', timeZone: 'UTC' });
+};
 import { fmtEUR as fmtHistoryPrice, fmtPct as fmtHistoryPct } from '../src/pages/investment-calculator/lib.js';
 import { TWEETS } from '../src/pages/tweet-bank/data.js';
 import { EDITORIAL_CASES as CASES } from "../src/data/editorial-cases.js";
@@ -207,7 +216,7 @@ async function testCalculateur(page) {
   await page.waitForTimeout(150);
   const hero = await page.locator(".ic-hero-number").innerText();
   const heroOk = /\d/.test(hero);
-  let septemberOk = (await page.evaluate(() => window.__investmentCopiedText)).includes('septembre 2026');
+  let septemberOk = (await page.evaluate(() => window.__investmentCopiedText)).includes(latestMonth('bitcoin'));
   const priceContextOk = /Série en USD : \d+ points présents dans le code sur \d+ mois/.test(await page.locator('.ic-method-note').innerText());
 
   const imageButton = page.getByRole('button', { name: '📊 Télécharger une image' });
@@ -245,14 +254,14 @@ async function testCalculateur(page) {
   conclusionsOk &&= /Gain sur les sommes versées/.test(monthlyTweet)
     && !/Le résultat porte sur l’ensemble des versements/.test(monthlyTweet)
     && !/sans versement supplémentaire/.test(monthlyTweet);
-  septemberOk &&= monthlyTweet.includes('septembre 2026');
+  septemberOk &&= monthlyTweet.includes(latestMonth('ethereum'));
   await choose(page.getByRole('group', {name:'Choisir un actif',exact:true}), 'sp500');
   const spDca = page.getByRole('button', { name: 'Mensuel (DCA)', exact: true });
   const spDcaOk = await spDca.isEnabled();
   await spDca.click();
   await page.getByRole('button', { name: /Copier le texte du post|✓ Copié/ }).click();
   const spTweet = await page.evaluate(() => window.__investmentCopiedText);
-  septemberOk &&= spTweet.includes('septembre 2026') && !spTweet.includes('Indice théorique dividendes réinvestis, hors frais ; ce n’est pas la performance d’un ETF précis.')
+  septemberOk &&= spTweet.includes(latestMonth('sp500')) && !spTweet.includes('Indice théorique dividendes réinvestis, hors frais ; ce n’est pas la performance d’un ETF précis.')
     && (await page.locator('.ic-current-level').innerText()).includes('points');
   await choose(page.getByRole('group', {name:'Choisir un actif',exact:true}), 'stoxx600');
   const stoxxDca = page.getByRole('button', { name: 'Mensuel (DCA)', exact: true });
@@ -260,7 +269,7 @@ async function testCalculateur(page) {
   await stoxxDca.click();
   await page.getByRole('button', { name: /Copier le texte du post|✓ Copié/ }).click();
   const stoxxTweet = await page.evaluate(() => window.__investmentCopiedText);
-  septemberOk &&= stoxxTweet.includes('septembre 2026') && stoxxTweet.includes('sur les sommes versées')
+  septemberOk &&= stoxxTweet.includes(latestMonth('stoxx600')) && stoxxTweet.includes('sur les sommes versées')
     && (await page.locator('.ic-current-level').innerText()).includes('points')
     && (await page.locator('.ic-method-note').innerText()).includes('dividendes nets');
   await choose(page.getByRole('group', {name:'Choisir un actif',exact:true}), 'msciWorld');
@@ -269,7 +278,7 @@ async function testCalculateur(page) {
   await worldDca.click();
   await page.getByRole('button', { name: /Copier le texte du post|✓ Copié/ }).click();
   const worldTweet = await page.evaluate(() => window.__investmentCopiedText);
-  septemberOk &&= worldTweet.includes('septembre 2026') && worldTweet.includes('sur les sommes versées')
+  septemberOk &&= worldTweet.includes(latestMonth('msciWorld')) && worldTweet.includes('sur les sommes versées')
     && (await page.locator('.ic-current-level').innerText()).includes('points')
     && (await page.locator('.ic-method-note').innerText()).includes('MSCI World Gross Return');
   for (const [id, name, variant] of [['msciEmerging', 'MSCI Emerging Markets', 'Gross Return'], ['msciWorldSmallCap', 'MSCI World Small Cap', 'Gross Return'], ['msciAcwiImi', 'MSCI ACWI IMI', 'Net Return'], ['msciAcwi', 'MSCI ACWI', 'Net Return'], ['msciWorldExUsa', 'MSCI World ex USA', 'Net Return']]) {
@@ -279,7 +288,7 @@ async function testCalculateur(page) {
     await dca.click();
     await page.getByRole('button', { name: /Copier le texte du post|✓ Copié/ }).click();
     const post = await page.evaluate(() => window.__investmentCopiedText);
-    septemberOk &&= post.includes(name) && post.includes('septembre 2026') && post.includes(variant)
+    septemberOk &&= post.includes(name) && post.includes(latestMonth(id)) && post.includes(variant)
       && post.includes('sur les sommes versées') && !/NaN|undefined/.test(post)
       && (await page.locator('.ic-current-level').innerText()).includes('points')
       && (await page.locator('.ic-method-note').innerText()).includes(`${name} ${variant}`);
@@ -296,13 +305,13 @@ async function testCalculateur(page) {
     await dca.click();
     await page.getByRole('button',{name:/Copier le texte du post|✓ Copié/}).click();
     const post=await page.evaluate(()=>window.__investmentCopiedText);
-    septemberOk &&= post.includes('septembre 2026') && !/NaN|undefined/.test(post);
+    septemberOk &&= post.includes(latestMonth(id)) && !/NaN|undefined/.test(post);
   }
   await choose(page.getByRole('group',{name:'Année de départ',exact:true}), '2020');
   await choose(page.getByRole('group', {name:'Choisir un actif',exact:true}), 'or');
-  septemberOk &&= (await page.locator('.ic-current-level').innerText()).includes('septembre 2026');
+  septemberOk &&= (await page.locator('.ic-current-level').innerText()).includes(latestMonth('or'));
   await page.getByRole('button', { name: /Copier le texte du post|✓ Copié/ }).click();
-  septemberOk &&= (await page.evaluate(() => window.__investmentCopiedText)).includes('En septembre 2026');
+  septemberOk &&= (await page.evaluate(() => window.__investmentCopiedText)).includes(`En ${latestMonth('or')}`);
   await choose(page.getByRole('group', {name:'Choisir un actif',exact:true}), "lvmh");
   await page.waitForTimeout(150);
   const text = await page.locator("body").innerText();
@@ -315,7 +324,7 @@ async function testCalculateur(page) {
     await page.locator('.ic-method-note').filter({ hasText: 'Cours ajustés' }).waitFor();
     await page.getByRole('button', { name: /Copier le texte du post/ }).click();
     const post = await page.evaluate(() => window.__investmentCopiedText);
-    companiesOk &&= !post.includes('Cours ajustés') && post.includes('Capital final :') && post.includes('septembre 2026') && !/NaN|undefined/.test(post);
+    companiesOk &&= !post.includes('Cours ajustés') && post.includes('Capital final :') && post.includes(latestMonth(id)) && !/NaN|undefined/.test(post);
     if (id === 'airliquide') companiesOk &&= (await page.locator('.ic-method-note').innerText()).includes('Prime de fidélité exclue');
     companiesOk &&= !(await page.locator('body').innerText()).includes('DCA non disponible pour');
   }
@@ -736,7 +745,9 @@ async function testTweetMidi(page) {
   await choose(page.locator('#secondary-select'), '2016');
   await page.getByRole("button", { name: "🔄 Générer", exact: true }).click();
   const performance = await page.locator('pre').innerText();
-  const minimal = /^📈 Performance du S&P 500 de début 2016 à fin 2025 👇\nTotal Return · USD · dividendes bruts réinvestis\n\n/u.test(performance)
+  // The final year advances every January with the collected December close.
+  const lastSp500Year = Number(LATEST_HISTORY_YM.slice(0, 4)) - 1;
+  const minimal = performance.startsWith(`📈 Performance du S&P 500 de début 2016 à fin ${lastSp500Year} 👇\nTotal Return · USD · dividendes bruts réinvestis\n\n`)
     && performance.split('\n').at(-1).startsWith('Sur toute la période : ')
     && !/💬|Livret A|Cours en dollars/u.test(performance)
     && (await page.getByRole('checkbox').count()) === 0;
@@ -746,7 +757,7 @@ async function testTweetMidi(page) {
     await choose(page.locator('#secondary-select'), '2025');
     await page.getByRole('button',{name:'🔄 Générer',exact:true}).click();
     const post=await page.locator('pre').innerText();
-    if(!post.includes('2025 :') || /2024 :|2026 :|NaN|undefined/.test(post)) failed.push(`${id}: années complètes de la part`);
+    if(!post.includes('2025 :') || post.includes('2024 :') || post.includes(`${INCOMPLETE_YEAR} :`) || /NaN|undefined/.test(post)) failed.push(`${id}: années complètes de la part`);
   }
   await choose(page.locator('#subject-select'), 'stoxx600');
   await page.getByRole('button', { name: '🔄 Générer', exact: true }).click();
@@ -754,7 +765,7 @@ async function testTweetMidi(page) {
   const stoxxAnnual = (HISTORY.stoxx600.points.find(p => p.date === '2025-12').price
     / HISTORY.stoxx600.points.find(p => p.date === '2024-12').price - 1) * 100;
   if (!stoxxPerformance.includes(`2025 : ${fmtHistoryPct(stoxxAnnual)}`)
-      || stoxxPerformance.includes('2026 :')) failed.push('Performance depuis : historique officiel STOXX');
+      || stoxxPerformance.includes(`${INCOMPLETE_YEAR} :`)) failed.push('Performance depuis : historique officiel STOXX');
   await page.getByRole("button", { name: "Comparatif (2 actifs)", exact: true }).click();
   await choose(page.locator('#subject-select-a'), 'sp500');
   await choose(page.locator('#subject-select-b'), 'bitcoin');
@@ -769,7 +780,7 @@ async function testTweetMidi(page) {
     await choose(page.locator('#secondary-select'), '2020');
     await page.getByRole('button', { name: '🔄 Générer', exact: true }).click();
     const post = await page.locator('pre').innerText();
-    if (!post.includes('2025 :') || post.includes('2026 :') || /NaN|undefined/.test(post)) failed.push(`Nouvelle entreprise ${id}`);
+    if (!post.includes('2025 :') || post.includes(`${INCOMPLETE_YEAR} :`) || /NaN|undefined/.test(post)) failed.push(`Nouvelle entreprise ${id}`);
   }
   await page.getByRole('button', { name: "Pouvoir d'achat", exact: true }).click();
   await choose(page.locator('[data-selector]'), '2025');
@@ -1017,15 +1028,18 @@ async function testDataSearch(page) {
   const maintenance=page.locator('.ds-field').filter({ has: page.getByRole('heading', { name: 'Éligibilité PEA', exact: true }) }).locator('.maintenance-links a');
   checks.maintenance=expectedMaintenance.length>0 && JSON.stringify(await maintenance.evaluateAll(links=>links.map(link=>link.href)))===JSON.stringify(expectedMaintenance.map(link=>link.url));
   const instrumentText = await page.locator('.ds-detail').innerText();
-  checks.instrument = instrumentText.includes('FR001400U5Q4') && instrumentText.includes('Euronext Paris') && instrumentText.includes('2026-09-30');
+  const identityCheckedAt = instrumentRecord.fields.find(field => field.label === 'Identité')?.metadata.checkedAt;
+  checks.instrument = Boolean(identityCheckedAt) && instrumentText.includes('FR001400U5Q4') && instrumentText.includes('Euronext Paris') && instrumentText.includes(identityCheckedAt);
   const aum = page.locator('.ds-field').filter({ has: page.getByRole('heading', { name: 'Encours', exact: true }) });
   const expectedAum = DATA_CATALOG.find(record => record.id === 'FR001400U5Q4').fields.find(field => field.label === 'Encours');
   checks.dates = (await aum.locator('dd').first().innerText()) === (expectedAum.metadata.asOf ?? 'Date de valeur non publiée par la source')
     && (await aum.innerText()).includes(expectedAum.metadata.checkedAt);
 
   const officialAum = page.locator('.ds-field').filter({ has: page.getByRole('heading', { name: 'Encours daté publié par l’émetteur', exact: true }) });
-  checks.officialAum = (await officialAum.locator('dd').first().innerText()) === '2026-08-31'
-    && (await officialAum.innerText()).includes('1 407,36 millions EUR');
+  // The monthly issuer refresh replaces this amount and date: expect the catalogue's current values.
+  const expectedOfficialAum = instrumentRecord.fields.find(field => field.label === 'Encours daté publié par l’émetteur');
+  checks.officialAum = Boolean(expectedOfficialAum?.value?.asOf) && (await officialAum.locator('dd').first().innerText()) === expectedOfficialAum.value.asOf
+    && (await officialAum.innerText()).includes(describeDataField(expectedOfficialAum));
   const [download] = await Promise.all([page.waitForEvent('download'), page.getByRole('button', { name: 'Exporter la fiche JSON' }).click()]);
   const exported = JSON.parse(await (await import('node:fs/promises')).readFile(await download.path(), 'utf8'));
   const exportedAum = exported.fields.find(field => field.label === 'Encours');

@@ -35,4 +35,29 @@ class MetadataTests(unittest.TestCase):
         def doc(isin):return json.dumps({'componentsByNameMap':{'keyFundFacts':{'containersByNameMap':{'default':{'dataPointsByNameMap':{'isin':{'value':isin},'domicile':{'value':'Ireland'}}}}}}}).encode()
         self.assertEqual(parse_json(doc(self.ISIN),self.ISIN),{'domicile':'Ireland'})
         with self.assertRaises(ValueError):parse_json(doc('IE00BP3QZ601'),self.ISIN)
+    def test_renewal_grace_matches_active_field_freshness(self):
+        import collect_instrument_metadata as module
+        now=dt.datetime(2026,10,17,tzinfo=dt.timezone.utc)
+        self.assertFalse(module.renewal_overdue({'checkedAt':'2026-10-10'},now))
+        self.assertTrue(module.renewal_overdue({'checkedAt':'2026-10-09'},now))
+        for broken in [{},{'checkedAt':None},{'checkedAt':'unknown'}]:
+            self.assertTrue(module.renewal_overdue(broken,now))
+        freshness=(module.ROOT/'scripts/report-asset-fields.mjs').read_text()
+        self.assertIn(f'plus de {module.RENEWAL_GRACE_DAYS} jours pour les champs ETF',freshness)
+    def test_vaneck_consent_page_uses_browser_download_only_for_official_factsheets(self):
+        from unittest.mock import patch
+        import subprocess
+        import collect_instrument_metadata as module
+        def consent(url):raise ValueError('Expected official PDF at '+url+'; received VanEck France | ETF Provider')
+        calls=[]
+        def run(cmd,**kwargs):
+            calls.append(cmd[-1]);return subprocess.CompletedProcess(cmd,0,stdout=b'%PDF-1.7 fixture',stderr=b'')
+        official='https://www.vaneck.com/fr/en/library/fact-sheets/smh-fact-sheet.pdf'
+        with patch.object(module,'download',consent),patch.object(module.subprocess,'run',run):
+            self.assertEqual(module.fetch_document(official,module.download),b'%PDF-1.7 fixture')
+            with self.assertRaisesRegex(ValueError,'Expected official PDF'):
+                module.fetch_document('https://www.vaneck.com/fr/en/other.pdf',module.download)
+        self.assertEqual(calls,[official])
+        with self.assertRaisesRegex(ValueError,'Expected official PDF'):
+            module.fetch_document(official,consent)  # injected fetchers are never escalated to a browser
 if __name__=='__main__':unittest.main()

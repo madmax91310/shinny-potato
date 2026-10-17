@@ -1,6 +1,5 @@
 import assert from 'node:assert/strict'
-import fx from '../src/data/annual-fx.json' with { type: 'json' }
-import { CALENDAR_FX_YEARS as calendarYears } from '../src/data/calendar-fx.js'
+import { CALENDAR_FX_YEARS as calendarYears, calendarRate } from '../src/data/calendar-fx.js'
 import official from '../src/data/official-performance-currencies.json' with { type: 'json' }
 import engine from '../src/pages/tweet-midi/engines/performance.js'
 import { convertPerformanceEntries } from '../src/pages/tweet-midi/performanceCurrency.js'
@@ -9,33 +8,55 @@ const item = { assetId: 'msciWorld', year: 2016 }
 const [native] = engine.getPerformanceEntries(item)
 const [eur] = engine.getPerformanceEntries({ ...item, currency: 'EUR' })
 const compound = rows => rows.reduce((n, row) => n * (1 + row.pct / 100), 1)
+// Year-end ECB rates as the engine reads them (December rows of the monthly series).
+const usdPerEur = year => calendarRate(year, 'USD')
+// Expectations follow the collected data: the last complete year moves every January and
+// the official EUR series is used only once it covers the whole displayed period.
+const years = native.returns.map(row => row.year)
+const LAST = years.at(-1)
+const officialFor = (assetId, period) => period.every(year => Number.isFinite(official[assetId]?.EUR?.annualReturns[year]))
+const worldOfficial = officialFor('msciWorld', years)
 assert.deepEqual(engine.getPerformanceCurrencies(item), ['EUR', 'USD'])
 assert.deepEqual(engine.getPerformanceEntries({ ...item, currency: 'USD' })[0], native)
-assert.deepEqual(eur.returns.map(row => row.pct), [11.39, 8.10, -3.58, 30.76, 6.88, 31.64, -12.34, 20.20, 27.15, 7.21])
-assert.ok(Math.abs((compound(eur.returns) - 1) * 100 - 206.80035) < 0.00001)
+assert.deepEqual(eur.returns.map(row => row.year), years)
+if (worldOfficial) {
+  assert.equal(eur.asset.currencyMethod, 'official')
+  assert.deepEqual(eur.returns.map(row => row.pct), years.map(year => official.msciWorld.EUR.annualReturns[year]))
+  assert.ok(Math.abs(compound(eur.returns) - years.reduce((n, year) => n * (1 + official.msciWorld.EUR.annualReturns[year] / 100), 1)) < 1e-12)
+} else {
+  assert.notEqual(eur.asset.currencyMethod, 'official')
+  assert.ok(Math.abs(compound(eur.returns) - compound(native.returns) * usdPerEur(2015) / usdPerEur(LAST)) < 1e-12)
+}
 for (const assetId of ['msciEmerging', 'msciAcwi']) {
   const [entry] = engine.getPerformanceEntries({ assetId, year: 2016, currency: 'EUR' })
-  assert.equal(entry.asset.currencyMethod, 'official')
-  assert.equal(entry.returns.at(-1).pct, official[assetId].EUR.annualReturns[2025])
+  const period = entry.returns.map(row => row.year)
+  if (officialFor(assetId, period)) {
+    assert.equal(entry.asset.currencyMethod, 'official')
+    assert.equal(entry.returns.at(-1).pct, official[assetId].EUR.annualReturns[period.at(-1)])
+  } else assert.notEqual(entry.asset.currencyMethod, 'official')
 }
 // Unregistered series still use BCE, without altering their return convention.
 const [fallback] = engine.getPerformanceEntries({ assetId: 'sp500', year: 2016, currency: 'EUR' })
 const [fallbackNative] = engine.getPerformanceEntries({ assetId: 'sp500', year: 2016 })
-assert.ok(Math.abs(compound(fallback.returns) - compound(fallbackNative.returns) * fx.years[2015].value / fx.years[2025].value) < 1e-12)
+const fallbackLast = fallbackNative.returns.at(-1).year
+assert.ok(Math.abs(compound(fallback.returns) - compound(fallbackNative.returns) * usdPerEur(2015) / usdPerEur(fallbackLast)) < 1e-12)
 const roundtrip = convertPerformanceEntries([fallback], 'USD')[0]
 assert.ok(Math.abs(compound(roundtrip.returns) - compound(fallbackNative.returns)) < 1e-12)
 const tweet = engine.buildPerformanceDepuisText({ ...item, currency: 'EUR' })
-assert.match(tweet, /de début 2016 à fin 2025/)
+assert.ok(tweet.includes(`de début 2016 à fin ${LAST}`), tweet)
 assert.match(tweet, /Gross Return · EUR · dividendes bruts réinvestis/)
-assert.match(tweet, /série officielle, sans couverture de change/)
-assert.doesNotMatch(tweet, /conversion BCE/)
-assert.match(tweet, /2025 : \+7,2 %/)
+if (worldOfficial) {
+  assert.match(tweet, /série officielle, sans couverture de change/)
+  assert.doesNotMatch(tweet, /conversion BCE/)
+  assert.ok(tweet.includes(`${LAST} : ${formatPerformancePct(official.msciWorld.EUR.annualReturns[LAST])}`), tweet)
+} else assert.match(tweet, /conversion BCE, sans couverture de change/)
 assert.equal(eur.asset.currency, 'EUR')
 assert.equal(native.asset.currency, 'USD')
 const missing = calendarYears[2018]
 try {
   delete calendarYears[2018]
-  assert.deepEqual(engine.getPerformanceCurrencies(item), ['EUR', 'USD'])
+  // The official series bridges the BCE gap only while it covers the whole period.
+  assert.deepEqual(engine.getPerformanceCurrencies(item), worldOfficial ? ['EUR', 'USD'] : ['USD'])
   assert.throws(() => engine.getPerformanceEntries({ assetId: 'sp500', year: 2016, currency: 'EUR' }), /change incomplet/)
 } finally { calendarYears[2018] = missing }
 // No mixing of official/BCE years within one history if official coverage is incomplete.
@@ -44,7 +65,7 @@ try {
   delete official.msciWorld.EUR.annualReturns[2018]
   const [entry] = engine.getPerformanceEntries({ ...item, currency: 'EUR' })
   assert.notEqual(entry.asset.currencyMethod, 'official')
-  assert.ok(Math.abs(compound(entry.returns) - compound(native.returns) * fx.years[2015].value / fx.years[2025].value) < 1e-12)
+  assert.ok(Math.abs(compound(entry.returns) - compound(native.returns) * usdPerEur(2015) / usdPerEur(LAST)) < 1e-12)
 } finally { official.msciWorld.EUR.annualReturns[2018] = saved }
 const [yen] = convertPerformanceEntries([{asset:{currency:'JPY'},returns:[{year:2025,pct:10}]}], 'EUR')
 assert.ok(Math.abs(yen.returns[0].pct - ((1.1 * calendarYears[2024].rates.JPY / calendarYears[2025].rates.JPY - 1) * 100)) < 1e-12)

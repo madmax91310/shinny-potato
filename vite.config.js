@@ -7,6 +7,7 @@ import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import {splitEtfRecords,splitInstrumentMetadataRecords,splitCharacteristicMetadataRecords} from './scripts/split-etf-records.mjs'
 import {splitCompanyRecords} from './scripts/split-company-records.mjs'
+import { dataBytesReport, withDataMarks } from './scripts/data-bytes-plugin.mjs'
 const issuerParts=splitEtfRecords()
 const metadataParts=splitInstrumentMetadataRecords()
 const characteristicParts=splitCharacteristicMetadataRecords()
@@ -41,5 +42,7 @@ export default defineConfig({
       { name: 'official-index-history', test: /anniversary-index-history\.json$/ },
     ] } } },
   },
-  plugins: [projectSelectedData(), projectLightRegistries(), toolData.plugin, projectFeeCatalog(), react(), tailwindcss(), issuerParts.plugin, metadataParts.plugin, characteristicParts.plugin, companyParts.plugin],
+  // Data projections are marked so route budgets measure code, not monthly data growth.
+  plugins: [...[projectSelectedData(), projectLightRegistries(), toolData.plugin, projectFeeCatalog()].map(withDataMarks), react(), tailwindcss(),
+    ...[issuerParts.plugin, metadataParts.plugin, characteristicParts.plugin, companyParts.plugin].map(withDataMarks), dataBytesReport()],
 })

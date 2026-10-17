@@ -9,14 +9,19 @@ export function convertAsset(asset, currency, fx) {
     if (!target || !source) throw new Error(`Change BCE absent pour ${asset.currency}/${currency} en ${date}.`)
     return target / source
   }
+  // Prices and ECB rates are collected separately: a price month newer than the latest
+  // rate shortens the converted period instead of disabling the asset. A gap inside the
+  // rate history still fails.
+  const latestRate = Object.keys(fx.months).sort().at(-1)
+  const covered = date => date <= latestRate
   const common = { ...asset, currency, originalCurrency: asset.currency, fxConverted: true, fxSourceUrl: fx.sourceUrl }
   if (asset.frequency === 'annual') {
-    const years = Object.fromEntries(Object.entries(asset.years).map(([year, value]) => [year,
+    const years = Object.fromEntries(Object.entries(asset.years).filter(([year]) => covered(`${year}-12`)).map(([year, value]) => [year,
       ((1 + value / 100) * factor(`${year}-12`) / factor(`${Number(year) - 1}-12`) - 1) * 100]))
     return { ...common, years }
   }
   if (asset.portfolio) throw new Error('Convertis les lignes du portefeuille avant de le calculer.')
-  const converted = { ...common, points: asset.points.map(p => ({ date: p.date, price: p.price * factor(p.date) })) }
+  const converted = { ...common, points: asset.points.filter(p => covered(p.date)).map(p => ({ date: p.date, price: p.price * factor(p.date) })) }
   validateSeries(converted)
   return converted
 }

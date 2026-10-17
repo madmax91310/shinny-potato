@@ -30,6 +30,20 @@ assert.deepEqual(rollingRegularity([a, { ...a, id: 'tie' }], 60).stats.map(s => 
 assert.throws(() => rollingRegularity([a, b], 24), /Durée/)
 assert(!buildRankingAssets({ mystery: { label: 'Unknown', points: a.points, currency: 'EUR' } }).mystery)
 
+// A price month collected before its ECB rate shortens the converted period; an interior gap still fails.
+{
+  const fxMonths = Object.keys(FX.months).sort()
+  const latest = fxMonths.at(-1)
+  const chf = { ...make('chf', .01, fxMonths.at(-25), 26), currency: 'CHF' }
+  assert.equal(chf.points.at(-1).date, monthAt(monthIndex(latest) + 1))
+  const converted = convertAsset(chf, 'EUR', FX)
+  assert.equal(converted.points.at(-1).date, latest)
+  assert.equal(converted.points.length, 25)
+  const gap = { ...FX, months: { ...FX.months } }
+  delete gap.months[fxMonths.at(-5)]
+  assert.throws(() => convertAsset(chf, 'EUR', gap), /Change BCE absent/)
+}
+
 for (const category of CATEGORIES) {
   assert(category.ids.length >= 2 && category.ids.length <= 6)
   const assets = category.ids.map(id => { assert(RANKING_ASSETS[id], id); return convertAsset(RANKING_ASSETS[id], category.currency, FX) })

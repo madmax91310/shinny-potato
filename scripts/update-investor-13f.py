@@ -264,8 +264,9 @@ def prepare_update(destination, portfolio):
 
 
 def refresh(directory, fetch_portfolio=make_portfolio, report_path=None):
-    # Validate all responses before changing any snapshot. A provider failure keeps
-    # the last successful set intact and fails the workflow visibly.
+    # Each manager is validated independently: a validated filing is saved even if
+    # another provider fails, and a failed manager keeps its last validated filing.
+    # Failures still end the run in error so they stay visible in monitoring.
     pending = []
     reviews = []
     checks = []
@@ -280,6 +281,13 @@ def refresh(directory, fetch_portfolio=make_portfolio, report_path=None):
             failures.append(f'{slug}: {error}')
             checks.append({'slug': slug, 'status': 'failed', 'reason': str(error)})
             print(f'{slug}: failed — {error}', flush=True)
+            if destination.exists():
+                stored = json.loads(destination.read_text())
+                reviews.append({'as_of': stored.get('as_of'), 'data': {
+                    'identity': stored['data'].get('identity', {'slug': slug, 'displayName': display}),
+                    'snapshot': {'periodEnd': stored['data']['snapshot']['periodEnd']},
+                    'sourceUrl': stored['data'].get('sourceUrl', f'https://foliofact.com/funds/{source_slug}'),
+                }})
             continue
         checks.append({'slug': slug, 'status': 'validated', 'periodEnd': portfolio['data']['snapshot']['periodEnd'], 'changed': content is not None})
         if content is not None:
@@ -304,8 +312,9 @@ def refresh(directory, fetch_portfolio=make_portfolio, report_path=None):
         }})
         print(slug, portfolio['data']['snapshot']['periodEnd'], 'changed' if content else 'unchanged')
         time.sleep(.2)
+    validated = len(checks) - len(failures)
     report = {'checkedAt': dt.datetime.now(dt.timezone.utc).isoformat(),
-              'status': 'failed' if failures else 'validated', 'readyToApply': not failures,
+              'status': ('failed' if not validated else 'partial') if failures else 'validated', 'readyToApply': validated > 0,
               'managers': checks}
     if report_path:
         report_path.parent.mkdir(parents=True, exist_ok=True)
@@ -313,11 +322,10 @@ def refresh(directory, fetch_portfolio=make_portfolio, report_path=None):
     if os.environ.get('GITHUB_STEP_SUMMARY'):
         with open(os.environ['GITHUB_STEP_SUMMARY'], 'a') as summary:
             summary.write(f'\n## Contrôle des {len(MANAGERS)} investisseurs\n\n')
-            summary.write('Derniers fichiers conservés : échec de validation.\n' if failures else 'Tous les relevés sont validés.\n')
+            summary.write(f'{len(failures)} investisseur(s) conservé(s) à leur dernier relevé validé ; les {validated} autres sont enregistrés.\n'
+                          if failures else 'Tous les relevés sont validés.\n')
             for check in checks:
                 summary.write(f"- {check['slug']} : {check['status']} — {check.get('periodEnd', check.get('reason'))}\n")
-    if failures:
-        raise RuntimeError('Investor refresh failed; all stored filings preserved: ' + '; '.join(failures))
     review_file = directory / 'review-metadata.json'
     review_content = json.dumps(reviews, ensure_ascii=False, indent=2) + '\n'
     if not review_file.exists() or review_file.read_text() != review_content:
@@ -328,6 +336,8 @@ def refresh(directory, fetch_portfolio=make_portfolio, report_path=None):
         temporary = destination.with_suffix('.json.tmp')
         temporary.write_text(content, encoding='utf-8')
         os.replace(temporary, destination)
+    if failures:
+        raise RuntimeError(f'Investor refresh partial; {len(failures)} manager(s) kept at their last validated filing: ' + '; '.join(failures))
 
 
 def main():

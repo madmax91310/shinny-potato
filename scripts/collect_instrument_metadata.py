@@ -5,12 +5,32 @@ import hashlib
 import html
 import json
 import re
+import subprocess
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from data_automation import UTC, write_json_atomic
 from issuer_documents import download, pdf_text
 ROOT=Path(__file__).resolve().parents[1]
 FIELDS=('distribution','domicile','replicationMethod','pea','currencyHedge','listings')
+# Same threshold as the active-field freshness check (report-asset-fields.mjs): a static
+# characteristic missed by one transient source failure is not an incident before then.
+RENEWAL_GRACE_DAYS=7
+VANECK_FACTSHEET=re.compile(r'https://www\.vaneck\.com/(?:ucits|[a-z]{2}/en)/library/fact-sheets/[a-z0-9]+-fact-sheet\.pdf')
+
+def fetch_document(url,fetch=download):
+    try:
+        return fetch(url)
+    except ValueError as error:
+        # VanEck now answers its factsheet URLs with a regional consent page; the shared
+        # browser downloader (also used by collect_vaneck_etf.py) completes that gate.
+        if fetch is not download or 'Expected official PDF' not in str(error) or not VANECK_FACTSHEET.fullmatch(url):raise
+        result=subprocess.run(['node',str(Path(__file__).with_name('download-vaneck-document.mjs')),url],capture_output=True,timeout=120)
+        if result.returncode:raise ValueError(f"{error}; browser initialisation failed: {result.stderr.decode('utf-8',errors='replace')[-500:]}")
+        return result.stdout
+
+def renewal_overdue(field_record,now):
+    try:return (now.date()-dt.date.fromisoformat(field_record.get('checkedAt','')[:10])).days>RENEWAL_GRACE_DAYS
+    except (TypeError,ValueError):return True
 
 def text_of(body):
     if body.startswith(b'%PDF-'):return pdf_text(body)
@@ -87,7 +107,7 @@ def collect(source,now,fetch=download):
     values={};errors=[];conflicts=set();checked=now.date().isoformat()
     for url in source['urls']:
         try:
-            body=fetch(url)
+            body=fetch_document(url,fetch)
             fields=parse_json(body,source['isin']) if body.lstrip().startswith(b'{') else parse_text(text_of(body),source['isin'])
             listing_rows=parse_listings(body,source,url,checked)
             if listing_rows:fields['listings']=listing_rows
@@ -122,9 +142,9 @@ def main():
             status[isin]={'checkedAt':now.isoformat(),'observed':list(values),'pending':missing,'errors':failures}
             if values:updated.append(isin)
             successes.extend({'id':f'{isin}:{field}'} for field in values)
-            # Fail when previously automatic values cannot be renewed; absent publications stay explicit pending fields.
+            # Fail when previously automatic values stay unrenewed beyond the grace period; absent publications stay explicit pending fields.
             for field in old:
-                if field not in values:errors.append({'id':f'{isin}:{field}','field':field,'error':'Previously automated metadata was not observed; original evidence retained.'})
+                if field not in values and renewal_overdue(old[field],now):errors.append({'id':f'{isin}:{field}','field':field,'error':f'Previously automated metadata not renewed for more than {RENEWAL_GRACE_DAYS} days; original evidence retained.'})
     if a.apply:
         write_json_atomic(path,records);write_json_atomic(status_path,status)
     write_json_atomic(a.output,{'checkedAt':now.isoformat(),'updated':updated,'successes':successes,'errors':errors,'pending':{isin:s['pending'] for isin,s in status.items() if s['pending']}})

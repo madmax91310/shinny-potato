@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { prioritizeIncidents } from './incident-priority.js'
-const labels = { collection: 'Collecte échouée', publication: 'Publication échouée', overdue: 'Collecte en retard', unobserved: 'Contrôle indisponible', freshness: 'Donnée à revérifier', conflict: 'Sources contradictoires' }
+const labels = { collection: 'Collecte échouée', publication: 'Publication échouée', overdue: 'Collecte en retard', unobserved: 'Contrôle indisponible', freshness: 'Donnée à revérifier', conflict: 'Sources contradictoires', checks: 'Publiée, contrôle à réparer' }
 const date = value => value && Number.isFinite(Date.parse(value)) ? new Intl.DateTimeFormat('fr-FR', { dateStyle: 'short', timeStyle: 'short', timeZone: 'Europe/Paris' }).format(new Date(value)) : 'Non documenté'
 const safeLink = value => typeof value === 'string' && /^https:\/\/github\.com\/[^/]+\/[^/]+\/actions\/runs\/\d+$/.test(value)
 export default function MonitoringIncidents({ monitor }) {

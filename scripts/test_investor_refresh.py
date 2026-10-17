@@ -72,14 +72,34 @@ class RefreshTests(unittest.TestCase):
                 if slug in ('tepper', 'hohn'): raise ValueError('Provider unavailable')
                 return portfolio('2026-09-30', slug=slug)
             report = pathlib.Path(folder) / 'report.json'
-            with patch.object(module.time, 'sleep'), self.assertRaises(RuntimeError):
+            with patch.object(module.time, 'sleep'), self.assertRaisesRegex(RuntimeError, '2 manager'):
                 module.refresh(directory, fetch, report)
             self.assertEqual(set(attempted), set(module.MANAGERS))
-            self.assertEqual(before, {p.name: p.read_bytes() for p in directory.iterdir()})
+            for slug in module.MANAGERS:
+                period = json.loads((directory / f'{slug}.json').read_text())['data']['snapshot']['periodEnd']
+                self.assertEqual(period, '2026-06-30' if slug in ('tepper', 'hohn') else '2026-09-30', slug)
+            self.assertEqual(before['tepper.json'], (directory / 'tepper.json').read_bytes())
             result = json.loads(report.read_text())
-            self.assertFalse(result['readyToApply'])
+            self.assertEqual((result['status'], result['readyToApply']), ('partial', True))
             self.assertEqual(len(result['managers']), len(module.MANAGERS))
             self.assertEqual(sum(c['status'] == 'failed' for c in result['managers']), 2)
+            reviews = {row['data']['identity']['slug']: row['data']['snapshot']['periodEnd'] for row in json.loads((directory / 'review-metadata.json').read_text())}
+            self.assertEqual(set(reviews), set(module.MANAGERS))
+            self.assertEqual((reviews['tepper'], reviews['berkshire']), ('2026-06-30', '2026-09-30'))
+
+    def test_every_provider_failing_changes_nothing(self):
+        with tempfile.TemporaryDirectory() as folder:
+            directory = pathlib.Path(folder)
+            for slug in module.MANAGERS:
+                (directory / f'{slug}.json').write_text(json.dumps(portfolio('2026-06-30', slug=slug)))
+            before = {p.name: p.read_bytes() for p in directory.iterdir()}
+            report = pathlib.Path(folder) / 'report.json'
+            def down(*args): raise RuntimeError('provider unavailable')
+            with patch.object(module.time, 'sleep'), self.assertRaises(RuntimeError):
+                module.refresh(directory, down, report)
+            after = {p.name: p.read_bytes() for p in directory.iterdir() if p.name not in ('report.json', 'review-metadata.json')}
+            self.assertEqual({k: v for k, v in before.items()}, after)
+            self.assertEqual(json.loads(report.read_text())['status'], 'failed')
 
     def test_all_existing_investors_are_tracked(self):
         self.assertEqual(set(module.MANAGERS), {'morfit', 'dorsey', 'vinall', 'marks', 'watsa', 'gavin-baker', 'einhorn', 'halvorsen', 'gerstner', 'gayner', 'tepper', 'ackman', 'berkshire', 'cathie-wood', 'thiel',
@@ -183,7 +203,7 @@ class RefreshTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, 'older report'):
                 module.prepare_update(path, portfolio('2026-03-31'))
 
-    def test_provider_failure_leaves_all_files_intact(self):
+    def test_provider_failure_only_holds_back_that_manager(self):
         with tempfile.TemporaryDirectory() as folder:
             directory = pathlib.Path(folder)
             for slug in module.MANAGERS:
@@ -195,7 +215,11 @@ class RefreshTests(unittest.TestCase):
                 return portfolio('2026-09-30', slug=slug)
             with patch.object(module.time, 'sleep'), self.assertRaises(RuntimeError):
                 module.refresh(directory, failing_fetch)
-            self.assertEqual(before, {p.name: p.read_bytes() for p in directory.iterdir()})
+            self.assertEqual(before['gates-trust.json'], (directory / 'gates-trust.json').read_bytes())
+            self.assertFalse((directory / 'archive' / 'gates-trust').exists())
+            for slug in set(module.MANAGERS) - {'gates-trust'}:
+                self.assertEqual(json.loads((directory / f'{slug}.json').read_text())['data']['snapshot']['periodEnd'], '2026-09-30')
+                self.assertTrue((directory / 'archive' / slug / '2026-06-30.json').exists(), slug)
 
     def test_new_quarter_and_amendment_are_saved(self):
         with tempfile.TemporaryDirectory() as folder:
@@ -296,14 +320,15 @@ class RateLimitTests(unittest.TestCase):
             directory = pathlib.Path(folder)
             for slug in module.MANAGERS:
                 (directory / f'{slug}.json').write_text(json.dumps(portfolio('2026-06-30')))
-            before = {p.relative_to(directory): p.read_bytes() for p in directory.rglob('*') if p.is_file()}
+            before = (directory / 'loeb.json').read_bytes()
             def fetch(slug, *args):
                 if slug == 'loeb':
                     module.get_json(self.url)
                 return portfolio('2026-09-30', slug=slug)
-            with self.fetch([self.error() for _ in range(4)]), redirect_stderr(io.StringIO()), self.assertRaisesRegex(RuntimeError, 'all stored filings preserved'):
+            with self.fetch([self.error() for _ in range(4)]), redirect_stderr(io.StringIO()), self.assertRaisesRegex(RuntimeError, 'kept at their last validated filing'):
                 module.refresh(directory, fetch)
-            self.assertEqual(before, {p.relative_to(directory): p.read_bytes() for p in directory.rglob('*') if p.is_file()})
+            self.assertEqual(before, (directory / 'loeb.json').read_bytes())
+            self.assertFalse((directory / 'archive' / 'loeb').exists())
 
 if __name__ == '__main__':
     unittest.main()

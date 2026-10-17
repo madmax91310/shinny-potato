@@ -122,3 +122,21 @@ d'être committée — jamais un ajustement au jugé. Voir `scripts/README.md`.
 Le travail se committe et se pousse librement sur la branche de travail. Le déploiement en
 production (push sur `master`, qui déclenche `deploy-pages.yml`) demande toujours une
 confirmation explicite et séparée — jamais déduit d'une simple approbation du changement.
+
+## Automatisations et portail de déploiement
+
+Les collecteurs programmés (`.github/workflows/update-*.yml`) committent leurs données validées
+via `scripts/commit-validated-data.sh`, puis appellent `deploy-pages.yml`. Pour que l'appli
+s'alimente seule sans qu'un test sans rapport retienne les données :
+- **Voie « données »** : `scripts/classify-deploy-scope.mjs` compare le commit au commit en ligne
+  (lu dans `build-info.json` publié avec le site). Si seuls des chemins de données
+  d'automatisation ont changé, le code est celui d'un instantané déjà validé : les contrôles
+  navigateur éditoriaux deviennent consultatifs (job `advisory-checks`, incident « Publiée,
+  contrôle à réparer »). Build, tests Python et `smoke-data-routes.mjs` restent bloquants.
+  Code modifié, PR ou doute : portail complet.
+- **Un test ne fige jamais une donnée actualisée par un collecteur** (performance, encours,
+  date de dernière observation, année de fin de période) : il lit sa valeur attendue dans le
+  registre de données. Sinon chaque collecte légitime casse le portail.
+- **Un collecteur isole ses échecs** : une source en panne garde sa dernière valeur validée,
+  les autres sont enregistrées et publiées, et l'échec reste visible (`report-failures`,
+  issue « Fiabilité des données », écran « Données à revoir »).
