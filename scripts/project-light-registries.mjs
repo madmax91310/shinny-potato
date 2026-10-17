@@ -33,19 +33,28 @@ export function projectLightRegistries() {
     ['portfolio-assets', portfolio, ''], ['portfolio-currencies', currencies, ''], ['practical-source-data', practical, ''],
   ]
   const projections = new Map(definitions.map(([name, exports, imports]) => {
+    if(name==='portfolio-assets') exports={...exports,ASSETS:exports.ASSETS.map(asset=>asset.manualOnly && /^(?:equity-|manual-)/.test(asset.id)?Object.fromEntries([...['id','isin','name','instrumentType','cat','emoji','manualOnly','returnCurrency'].filter(k=>asset[k]!==undefined).map(k=>[k,asset[k]]),['historyPending',true]]):asset)}
     const source = readFileSync(new URL(`../src/data/${name}.js`, import.meta.url), 'utf8')
-    const counts = new Map()
+    const counts = new Map(),shapeCounts=new Map()
+    const keysFor=value=>Object.keys(value).filter(k=>value[k]!==undefined)
     function visit(value) {
       if (typeof value === 'string' && value.length > 40) counts.set(value, (counts.get(value) ?? 0) + 1)
       else if (Array.isArray(value)) value.forEach(visit)
-      else if (value && typeof value === 'object') Object.values(value).forEach(visit)
+      else if (value && typeof value === 'object') {
+        const key=JSON.stringify(keysFor(value));shapeCounts.set(key,(shapeCounts.get(key)??0)+1)
+        Object.values(value).forEach(visit)
+      }
     }
     Object.values(exports).filter(value => typeof value !== 'function').forEach(visit)
     const texts = [...counts].filter(([, count]) => count > 1).map(([value]) => value)
     const indexes = new Map(texts.map((value, i) => [value, i]))
+    const shapes=[...shapeCounts].filter(([key,n])=>n>=4&&key.length>50).map(([key])=>JSON.parse(key))
+    const shapeIds=new Map(shapes.map((keys,i)=>[JSON.stringify(keys),i]))
+    const factories=shapes.map((keys,i)=>`const __registryShape${i}=v=>({${keys.map((key,j)=>JSON.stringify(key)+':v['+j+']').join(',')}});`).join('\n')
     function serialize(value) {
       if (typeof value === 'string' && indexes.has(value)) return `__registryText${indexes.get(value)}`
       if (Array.isArray(value)) return '[' + value.map(v => serialize(v) ?? 'null').join(',') + ']'
+      if (value && typeof value === 'object' && shapeIds.has(JSON.stringify(keysFor(value)))) return `/* @__PURE__ */ __registryShape${shapeIds.get(JSON.stringify(keysFor(value)))}([${keysFor(value).map(k=>serialize(value[k])??'null').join(',')}])`
       if (value && typeof value === 'object') return '{' + Object.entries(value).filter(([, v]) => v !== undefined).map(([k, v]) => JSON.stringify(k) + ':' + serialize(v)).join(',') + '}'
       return JSON.stringify(value)
     }
@@ -57,7 +66,7 @@ export function projectLightRegistries() {
       if (!declaration) throw new Error(`Missing canonical registry function: ${name}.${key}`)
       return declaration
     }).join('\n')
-    return [`/src/data/${name}.js`, imports + '\n' + declarations + '\n' + code]
+    return [`/src/data/${name}.js`, imports + '\n' + factories + '\n' + declarations + '\n' + code]
   }))
   return {
     name: 'project-light-registries', enforce: 'pre',

@@ -7,7 +7,7 @@ import {buildGapInventory,completeCalendarYears} from './automation-gap-inventor
 const read=p=>JSON.parse(readFileSync(new URL('../'+p,import.meta.url)));
 export function fieldState(value,now,{checkDays=7,dataDays=65}={}) {
  if(!value)return 'missing';
- const age=d=>(Date.parse(now)-Date.parse(d))/86400000;
+ const age=d=>(Date.parse(String(now).slice(0,10))-Date.parse(String(d).slice(0,10)))/86400000;
  if(!value.checkedAt||!Number.isFinite(age(value.checkedAt)))return 'undated-check';
  if(age(value.checkedAt)<0 || value.asOf && age(value.asOf)<0)return 'invalid-date';
  if(age(value.checkedAt)>checkDays)return 'check-overdue';
@@ -18,7 +18,9 @@ export function buildAssetFieldReport(now=new Date().toISOString().slice(0,10)) 
  const gaps=buildGapInventory({now}), gapMap=new Map(gaps.gaps.map(r=>[`${r.id}:${r.field}`,r]));
  const monthly={...read('src/data/automated-monthly.json'),...read('src/data/automated-etf-monthly.json'),...read('src/data/non-bond-monthly-records.json')};
  for(const [id,r] of Object.entries(monthly))if(!r.isin&&ASSETS[id]?.isin)monthly[id]={...r,isin:ASSETS[id].isin};
- const names={ter:'Frais',aum:'Encours',performance:'Performances annuelles',monthly:'Historique mensuel',countries:'Pays',sectors:'Secteurs',holdings:'Principales positions',distribution:'Distribution',domicile:'Domicile',replicationMethod:'Réplication',listings:'Cotations',pea:'Éligibilité PEA',currencyHedge:'Couverture de change'};
+ const completeHoldings=read('src/data/dca-complete-holdings.json'),holdingsStatus=read('src/data/dca-holdings-status.json'),metadataStatus=read('src/data/instrument-metadata-status.json');
+ const holdingsSources={...read('scripts/dca-complete-holdings-sources.json'),...read('scripts/generated-holdings-sources.json')};
+ const names={completeHoldings:'Positions intégrales',ter:'Frais',aum:'Encours',performance:'Performances annuelles',monthly:'Historique mensuel',countries:'Pays',sectors:'Secteurs',holdings:'Principales positions',distribution:'Distribution',domicile:'Domicile',replicationMethod:'Réplication',listings:'Cotations',pea:'Éligibilité PEA',currencyHedge:'Couverture de change'};
  const rows=[];
  const qualification=read('scripts/source-snapshots/monthly-qualification-status.json');
  for(const item of DATA_CATALOG.filter(r=>r.type==='instrument' && r.fields.find(f=>f.label==='Identité')?.value?.instrumentType!=='EQUITY')) {
@@ -27,12 +29,14 @@ export function buildAssetFieldReport(now=new Date().toISOString().slice(0,10)) 
    const meta=['distribution','domicile','replicationMethod','listings','pea','currencyHedge'].includes(field);
    let value=field==='ter'||meta?record.characteristics:record[field];
    if((field==='ter'||meta)&&value)value={...value,...record.characteristicChecks?.[field==='ter'?'terPct':field]};
+   if(field==='completeHoldings')value=completeHoldings[item.id]?.complete?{...completeHoldings[item.id],checkedAt:holdingsStatus[item.id]?.status==='validated'?holdingsStatus[item.id].checkedAt:null}:null;
    if(field==='monthly')value=Object.values(monthly).find(r=>r.isin===item.id);
-   const present=field==='monthly'?!!value?.points?.length:field==='performance'?completeCalendarYears(item.id,value?.years,now).length>0:field==='ter'?Number.isFinite(value?.terPct):meta?(typeof value?.[field]==='boolean'||!!value?.[field]?.length):field==='aum'?Number.isFinite(value?.amount):!!value?.rows?.length;
+   const present=field==='completeHoldings'?!!value?.rows?.length:field==='monthly'?!!value?.points?.length:field==='performance'?completeCalendarYears(item.id,value?.years,now).length>0:field==='ter'?Number.isFinite(value?.terPct):meta?(typeof value?.[field]==='boolean'||!!value?.[field]?.length):field==='aum'?Number.isFinite(value?.amount):!!value?.rows?.length;
    const gap=gapMap.get(`${item.id}:${field}`);
    const state=present?fieldState(value,now,{checkDays:field==='monthly'?40:7,dataDays:field==='ter'||meta?400:field==='performance'?550:65}):gap?.status??(meta?'manual':'missing');
    const observed=field==='monthly'?value?.periodEnd:field==='performance'?completeCalendarYears(item.id,value?.years,now).at(-1)?.toString():value?.asOf;
-   rows.push({id:item.id,name:item.name,type:'instrument',field,label:names[field],state,present,checkedAt:present?value.checkedAt??null:null,asOf:observed??null,sourceUrl:present?(value.sourceUrl??value.sourceUrls?.[0]??record.sourceUrl):gap?.sourceUrl??null,reason:gap?.reason??(field==='monthly'&&!present?(qualification[item.id]?.reason??'Cotation exacte et historique mensuel complet à qualifier automatiquement lorsqu’une cotation documentée est disponible.'):null),
+   const configured=field==='completeHoldings'?!!holdingsSources[item.id]:meta?true:field==='monthly'?!!value:true;
+   rows.push({automationConfigured:configured,...(meta?{lastAttempt:metadataStatus[item.id]?.checkedAt??null}:{}),id:item.id,name:item.name,type:'instrument',field,label:names[field],state,present,checkedAt:present?value.checkedAt??null:null,asOf:observed??null,sourceUrl:present?(value.sourceUrl??value.sourceUrls?.[0]??record.sourceUrl):gap?.sourceUrl??null,reason:gap?.reason??(field==='monthly'&&!present?(qualification[item.id]?.reason??'Cotation exacte et historique mensuel complet à qualifier automatiquement lorsqu’une cotation documentée est disponible.'):null),
      ...(field==='monthly'&&value?{currency:value.currency,periodStart:value.periodStart,periodEnd:value.periodEnd,method:value.method}:{}),
      ...(field==='performance'&&record.performance?.months?{archivedMonthlyReturns:Object.keys(record.performance.months).length}:{})});
   }
@@ -40,11 +44,11 @@ export function buildAssetFieldReport(now=new Date().toISOString().slice(0,10)) 
  const indices=read('src/data/automated-indices.json');
  for(const [id,r] of Object.entries(indices))for(const field of ['facts','returns']) {
   const value=r[field];if(!value)continue;
-  rows.push({id,type:'index',name:r.name??id,field,label:field==='facts'?'Composition indice':'Performances indice',present:true,state:fieldState({...value,checkedAt:value.checkedAt??r.checkedAt},now,{checkDays:40,dataDays:field==='returns'?550:120}),checkedAt:value.checkedAt??r.checkedAt??null,asOf:value.asOf??null,sourceUrl:value.sourceUrl??r.sourceUrl??null});
+  rows.push({id,type:'index',name:r.name??id,field,label:field==='facts'?'Composition indice':'Performances indice',present:true,state:fieldState({...value,checkedAt:value.checkedAt??value.source?.checkedAt??r.checkedAt},now,{checkDays:40,dataDays:field==='returns'?550:120}),checkedAt:value.checkedAt??value.source?.checkedAt??r.checkedAt??null,asOf:value.asOf??null,sourceUrl:value.sourceUrl??value.source?.url??r.sourceUrl??null});
  }
  for(const [id,r] of Object.entries(monthly).filter(([,r])=>r.consumerScope!=='catalog'))rows.push({id,type:r.consumerScope==='equity'||ASSETS[id]?.instrumentType==='EQUITY'?'equity':'series',name:r.label??id,field:'monthly',label:'Historique mensuel',present:true,state:fieldState(r,now,{checkDays:40}),checkedAt:r.checkedAt,asOf:r.periodEnd,sourceUrl:r.sourceUrls?.[0],currency:r.currency});
  for(const type of ['scpi','insurance'])for(const r of read(`src/data/automated-${type}.json`).records)for(const field of (type==='scpi'?['annual','price','conditions','snapshot','portfolio']:['fees','access','euroFunds'])) {
-  const value=r[field];rows.push({id:r.id,type,name:r.name,field,label:field,present:!!value,state:value?fieldState({...value,checkedAt:value.checkedAt??r.checkedAt},now,{dataDays:field==='annual'||field==='euroFunds'?550:120}):'missing',checkedAt:value?.checkedAt??r.checkedAt,asOf:value?.asOf??null,sourceUrl:value?.sourceUrl??r.sourceUrl});
+  const value=r[field];rows.push({id:r.id,type,name:r.name,field,label:field,present:!!value,state:value?fieldState({...value,checkedAt:value.checkedAt??value.source?.checkedAt??r.checkedAt},now,{dataDays:field==='annual'||field==='euroFunds'?550:120}):'missing',checkedAt:value?.checkedAt??r.checkedAt,asOf:value?.asOf??null,sourceUrl:value?.sourceUrl??r.sourceUrl});
  }
  const summary=Object.fromEntries(Object.keys(names).map(field=>{const values=rows.filter(r=>r.type==='instrument'&&r.field===field);return [field,{label:names[field],total:values.length,present:values.filter(r=>r.present).length,states:values.reduce((a,r)=>(a[r.state]=(a[r.state]??0)+1,a),{})}]}));
  return {checkedAt:now,summary,rows};

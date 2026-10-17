@@ -29,7 +29,7 @@ def parse_complete(body,isin,url,now,fund_asset_class="Equity"):
 
 def main():
     ap=argparse.ArgumentParser();ap.add_argument('--apply',action='store_true');ap.add_argument('--only',nargs='+');ap.add_argument('--output',type=Path,required=True);args=ap.parse_args()
-    config=json.loads((ROOT/'scripts/dca-complete-holdings-sources.json').read_text());now=dt.datetime.now(UTC)
+    config={**json.loads((ROOT/'scripts/dca-complete-holdings-sources.json').read_text()),**json.loads((ROOT/'scripts/generated-holdings-sources.json').read_text())};now=dt.datetime.now(UTC)
     path=ROOT/'src/data/dca-complete-holdings.json';previous=json.loads(path.read_text()) if path.exists() else {}
     if args.only:
         if set(args.only)-set(config):raise ValueError('Unknown complete holdings selection')
@@ -72,7 +72,7 @@ def main():
             fresh[isin]=h
             for r in securities:
                 if r['isin'] not in wanted:continue
-                if r['isin'] not in evidence or evidence[r['isin']]['asOf']<h['asOf']:evidence[r['isin']]={**r,'asOf':h['asOf'],'sourceUrl':h['sourceUrl']}
+                if r['isin'] not in evidence or evidence[r['isin']]['asOf']<h['asOf']:evidence[r['isin']]={**r,'asOf':h['asOf'],'checkedAt':now.isoformat(),'sourceUrl':h['sourceUrl']}
     if args.apply:
         write_json_atomic(path,{**previous,**fresh})
         ep=ROOT/'src/data/dca-security-classifications.json';old=json.loads(ep.read_text()) if ep.exists() else {}

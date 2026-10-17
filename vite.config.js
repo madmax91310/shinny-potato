@@ -17,6 +17,7 @@ export default defineConfig({
   build: {
     manifest: true,
     rolldownOptions: { output: { codeSplitting: { groups: [
+      ...['market','bounds','returns'].map(name=>({name:'selected-annual-'+name,test:new RegExp('virtual:selected-annual-'+name+'$'),priority:140})),
       { name: 'etf-card-metadata', test: /src\/data\/etf-cards\.js$/, priority: 130 },
       { name: 'etf-publication-data', test: /src\/data\/etf-publication-data\.js$/, priority: 130 },
       // Historical data grows independently of ranking UI and calculation code.

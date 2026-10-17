@@ -2058,7 +2058,7 @@ const BASE_LISTINGS = Object.freeze({
 // Current issuer rows renew matching listings and add independently documented venues.
 export const INSTRUMENT_LISTINGS_BY_ISIN = Object.freeze(Object.fromEntries([...new Set([...Object.keys(BASE_LISTINGS),...Object.keys(REFRESHED_LISTINGS)])].map(isin=>{
  const key = row => `${row.mic}/${row.ticker}/${row.currency}`
- return [isin,[...new Map([...(BASE_LISTINGS[isin]??[]),...(REFRESHED_LISTINGS[isin]??[])].map(row=>[key(row),row])).values()]]
+ return [isin,[...[...(BASE_LISTINGS[isin]??[]),...(REFRESHED_LISTINGS[isin]??[])].reduce((map,row)=>{const id=key(row);if(!map.has(id)||row.checkedAt>=map.get(id).checkedAt)map.set(id,row);return map},new Map()).values()]]
 })))
 // Les outils partagent ces objets : empêcher une modification locale du catalogue.
 for (const listings of Object.values(INSTRUMENT_LISTINGS_BY_ISIN)) {

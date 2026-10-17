@@ -4,11 +4,12 @@
 import { FAMILIES } from '../src/data/index-comparisons.js'
 import { ASSETS } from '../src/data/portfolio-assets.js'
 import { readFileSync } from 'node:fs'
+import monthly from '../src/data/monthly-duel-returns.json' with {type:'json'}
 
 const MAX_UNEXPLAINED_GAP = 0.1 // point de pourcentage : seuls les arrondis d'affichage restent tolérés
 // Les perfFunds n'ont pas de champ ISIN : rattachement explicite à la part citée dans le tweet.
 // Chaque clé est validée ci-dessous contre les fonds réellement affichés.
-import { COMPARATOR_ISIN_BY_FAMILY_KEY as FUND_ISINS } from '../src/data/instrument-comparator-returns.js'
+import { COMPARATOR_ISIN_BY_FAMILY_KEY as FUND_ISINS, getInstrumentComparatorReturns } from '../src/data/instrument-comparator-returns.js'
 
 // Comparer des séries différentes d'un même ISIN exige une explication dans les deux outils.
 const DIFFERENT_BASIS = {}
@@ -70,6 +71,19 @@ for (const family of FAMILIES) {
         continue
       }
       const basis = DIFFERENT_BASIS[isin]
+      const market=monthly[isin]
+      const issuer=getInstrumentComparatorReturns(isin)
+      const documentedMarket=asset.manualOnly && asset.distinctCandidate && market?.basis==='market-price' &&
+        market.source?.startsWith('https://') && market.checkedAt && market.responseSha256 && market.currency===asset.returnCurrency &&
+        JSON.stringify(asset.r)===JSON.stringify(market.values) && JSON.stringify(asset.calendarReturns)===JSON.stringify(market.years) &&
+        [2023,2024,2025].every(year=>perf['y'+year]===issuer['y'+year]) &&
+        /cours.*ajustés/i.test(asset.confidenceNote??'') && /NAV/.test(asset.confidenceNote??'') &&
+        /NAV/.test(family.perfMethodNote??'') && /cours de Bourse ajustés/.test(family.perfMethodNote??'')
+      if(documentedMarket) {
+        documented++
+        console.log('[NAV / MARCHÉ DOCUMENTÉS] '+isin+' ('+family.id+'/'+asset.id+')')
+        continue
+      }
       const visibleUSD = /en \$|en dollars/i.test(family.perfMethodNote ?? '')
       const visibleEURProxy = /indice.*euros|euros.*indice/i.test(asset.confidenceNote ?? '')
       if (basis && visibleUSD && visibleEURProxy) {
@@ -93,5 +107,5 @@ if (unmatchedFunds.length) {
   console.log('Parts du comparateur sans série indépendante dans le Générateur (source émetteur datée en commentaire) :')
   for (const fund of unmatchedFunds) console.log(`  ${fund.family}/${fund.key} · ${fund.isin} · 2023–2025 ${fund.years.join(' / ')}`)
 }
-console.log(smallGaps + ' écart(s) inférieur(s) à 0,1 point à surveiller ; ' + documented + ' proxy(s) explicités dans les deux outils ; ' + failures + ' échec(s).')
+console.log(smallGaps + ' écart(s) inférieur(s) à 0,1 point à surveiller ; ' + documented + ' différence(s) de base explicitées dans les deux outils ; ' + failures + ' échec(s).')
 if (failures) process.exitCode = 1

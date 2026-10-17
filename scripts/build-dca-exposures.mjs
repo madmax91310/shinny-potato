@@ -71,7 +71,7 @@ for(const [asset,equity] of Object.entries(equityUniverse())){
  if(chartSleeves[r.isin])Object.assign(r,chartSleeves[r.isin])
  if(security){
   const fields={countries:[security.country,'ishares-risk-net:fund','Country of risk'],sectors:[security.sector,'gics','GICS sector according to BlackRock']}
-  for(const [field,[name,compatibility,method]] of Object.entries(fields))if(name&&name!=='-'&&(field==='countries'||['Information Technology','Financials','Industrials','Health Care','Consumer Discretionary','Consumer Staples','Communication','Communication Services','Energy','Materials','Utilities','Real Estate'].includes(name))&&security.asOf>=(r[field]?.asOf||''))r[field]={asOf:security.asOf,basis:'equity',sourceUrl:security.sourceUrl,compatibility,method,rows:[{name,weightPct:100}]}
+  for(const [field,[name,compatibility,method]] of Object.entries(fields))if(name&&name!=='-'&&(field==='countries'||['Information Technology','Financials','Industrials','Health Care','Consumer Discretionary','Consumer Staples','Communication','Communication Services','Energy','Materials','Utilities','Real Estate'].includes(name))&&security.asOf>=(r[field]?.asOf||''))r[field]={asOf:security.asOf,checkedAt:security.checkedAt,basis:'equity',sourceUrl:security.sourceUrl,compatibility,method,rows:[{name,weightPct:100}]}
  }
  records[asset]=r;catalog[asset]={name:r.name,isin:r.isin,kind:'equity',tickers:r.tickers,aliases:r.aliases}
 }

@@ -39,6 +39,21 @@ class Qualification(unittest.TestCase):
   self.assertEqual(c['periodStart'],'2026-01')
   self.assertNotIn('qualifyContiguousSuffix',c)
   self.assertNotIn('qualifyContiguousSuffix',result)
+ def test_equity_requires_exact_listing_evidence(self):
+  source=dict(symbol='TEST',currency='USD',isin='US0378331005',id='test',instrumentType='EQUITY',consumerScope='equity',listingEvidence={'isin':'US0378331005'})
+  meta=dict(symbol='TEST',currency='USD',instrumentType='EQUITY',firstTradeDate=1609459200)
+  with patch('refresh_anniversary_levels.collect_one',return_value={'isin':source['isin']}):
+   config,_=qualify(source,dt.datetime(2026,10,17),lambda u:{'chart':{'result':[{'meta':meta}]}},lambda c,n:{'ok':True})
+  self.assertNotIn('verifyMonthlyDisagreements',config)
+  source.pop('listingEvidence')
+  with self.assertRaises(ValueError):qualify(source,dt.datetime(2026,10,17),lambda u:{'chart':{'result':[{'meta':meta}]}},lambda c,n:{})
+ def test_london_pence_unit_is_verified_without_changing_identity(self):
+  source=dict(symbol='AZN.L',currency='GBP',isin='GB0009895292',id='test',instrumentType='EQUITY',consumerScope='equity',listingEvidence={'isin':'GB0009895292','exchange':'London Stock Exchange'})
+  meta=dict(symbol='AZN.L',currency='GBp',instrumentType='EQUITY',firstTradeDate=1609459200)
+  with patch('refresh_anniversary_levels.collect_one',return_value={'isin':source['isin']}):
+   config,_=qualify(source,dt.datetime(2026,10,17),lambda u:{'chart':{'result':[{'meta':meta}]}},lambda c,n:{'ok':True})
+  self.assertEqual(config['currency'],'GBp');self.assertEqual(source['currency'],'GBP')
+  self.assertEqual(config['quoteUnitEvidence']['unitsPerCurrency'],100)
  def test_failed_collection_does_not_publish(self):
   source=dict(symbol='X',currency='EUR')
   def fail(c,n):raise ValueError('cross-check mismatch')

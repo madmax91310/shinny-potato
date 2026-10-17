@@ -14,6 +14,8 @@ on:
       - 'scripts/index-automation.json'
       - 'scripts/refresh_monthly_history.py'
       - 'scripts/qualify_monthly_candidates.py'
+      - 'scripts/build-equity-history-links.mjs'
+      - 'scripts/export-equity-candidates.mjs'
       - 'scripts/test_monthly_qualification.py'
       - 'scripts/export-monthly-candidates.mjs'
       - 'src/data/auto-history-identities.json'
@@ -44,7 +46,7 @@ jobs:
       cancel-in-progress: false
       queue: max
     runs-on: ubuntu-latest
-    timeout-minutes: 40
+    timeout-minutes: 60
     permissions:
       contents: write
     outputs:
@@ -73,6 +75,13 @@ jobs:
         if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
         continue-on-error: true
         run: python scripts/refresh_qualified_listings.py --apply
+      - run: node scripts/build-equity-history-links.mjs
+      - name: Qualify missing equity histories
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        run: |
+          node scripts/export-equity-candidates.mjs > "$RUNNER_TEMP/equity-candidates.json"
+          python scripts/qualify_monthly_candidates.py --candidates "$RUNNER_TEMP/equity-candidates.json" --limit 12 --apply
+          node scripts/build-equity-history-links.mjs
       - name: Qualify missing exact-share monthly histories
         if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
         run: |
@@ -98,6 +107,7 @@ jobs:
           args=()
           if [ "$RETRY_FAILED" = 'true' ]; then args+=(--retry-failed); fi
           python scripts/collect_ranking_sources.py --apply "${args[@]}"
+      - run: node scripts/build-equity-history-links.mjs
       - run: node scripts/build-ranking-annual.mjs && node scripts/test-performance-rankings.mjs
       - run: node scripts/build-monthly-duel-returns.mjs && node scripts/build-equity-duel-returns.mjs
       - name: "Collect observations: python scripts refresh_index_sources.py --only-derived --output RUNNER_TEMP derived-index-observation.json --apply"
@@ -143,7 +153,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          bash scripts/commit-validated-data.sh 'Refresh validated monthly market histories' docs/asset-tool-routing.json docs/asset-tool-routing.md docs/distinct-asset-routing.json src/data/equity-duel-returns.json src/data/monthly-duel-returns.json src/data/automated-indices.json src/data/automated-monthly.json src/data/automated-etf-monthly.json scripts/source-snapshots/monthly-automated.json scripts/source-snapshots/monthly-collection-status.json src/data/anniversary-levels.json scripts/monthly-automation.json scripts/source-snapshots/monthly-qualification-status.json src/data/auto-history-identities.json src/data/qualified-listing-records.json src/data/ranking-histories.json src/data/monthly-fx.json src/data/ranking-annual.json src/data/ranking-index-annual.json src/data/ranking-ftse.json scripts/source-snapshots/ranking-histories.json scripts/source-snapshots/ranking-collection-status.json docs/asset-field-coverage.md public/data/asset-field-coverage.json
+          bash scripts/commit-validated-data.sh 'Refresh validated monthly market histories' src/data/equity-history-links.json docs/equity-identity-gaps.json src/data/performance-links.json src/data/simulation-links.json src/data/tool-links.json docs/asset-tool-routing.json docs/asset-tool-routing.md docs/distinct-asset-routing.json src/data/equity-duel-returns.json src/data/monthly-duel-returns.json src/data/automated-indices.json src/data/automated-monthly.json src/data/automated-etf-monthly.json scripts/source-snapshots/monthly-automated.json scripts/source-snapshots/monthly-collection-status.json src/data/anniversary-levels.json scripts/monthly-automation.json scripts/source-snapshots/monthly-qualification-status.json src/data/auto-history-identities.json src/data/qualified-listing-records.json src/data/ranking-histories.json src/data/monthly-fx.json src/data/ranking-annual.json src/data/ranking-index-annual.json src/data/ranking-ftse.json scripts/source-snapshots/ranking-histories.json scripts/source-snapshots/ranking-collection-status.json docs/asset-field-coverage.md public/data/asset-field-coverage.json
   deploy:
     needs: refresh
     if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'

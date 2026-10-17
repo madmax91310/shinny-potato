@@ -1,5 +1,6 @@
 import { readFileSync } from 'node:fs'
 import { createHash } from 'node:crypto'
+import {ASSETS as PORTFOLIO_ASSETS} from '../src/data/portfolio-assets.js'
 import * as history from '../src/data/market-history.js'
 import * as anniversary from '../src/pages/tweet-midi/data/marketHistory.js'
 import { references as exposureReferences } from '../src/pages/dca-profiles/records.js'
@@ -28,6 +29,7 @@ export function projectSelectedData(){
  let base='/'
  const records=[]
  function add(folder,id,data){const content=JSON.stringify(data),hash=createHash('sha256').update(content).digest('hex').slice(0,20),fileName=`data/${folder}/${hash}.json`;records.push({id,content,fileName});return fileName}
+ const portfolioUrls=Object.fromEntries(PORTFOLIO_ASSETS.filter(a=>a.manualOnly && /^(?:equity-|manual-)/.test(a.id)).map(asset=>[asset.id,add('portfolio',asset.id,asset)]))
  const historyUrls=Object.fromEntries(Object.entries(history.ASSETS).map(([id,asset])=>[id,add('history',id,asset)]))
  for(const [id,record] of Object.entries(INDEX_HISTORY)) {
   if(!historyUrls[id]) historyUrls[id]=add('history',id,{...record,points:record.points.map(([date,price])=>({date,price}))})
@@ -47,12 +49,14 @@ export function projectSelectedData(){
   return `export const ${key}=${value instanceof Set?`new Set(${JSON.stringify([...value])})`:JSON.stringify(value)};`
  }).join('\n')+`\nimport {loadHistoryRecord} from './history-browser.js';export async function ensureCalculatorAsset(id){const asset=ASSETS[id];if(!asset)throw Error('Historique introuvable');if(asset.historyPending){const record=await loadHistoryRecord(id);Object.assign(asset,record);delete asset.historyPending}return asset}`
 
- const annualCode=`const data=${JSON.stringify({...projection,assets:undefined})};export const MARKET_ASSETS=data.market,ASSETS=Object.fromEntries(data.market.map(a=>[a.id,a])),MONTHS_FULL=${JSON.stringify(history.MONTHS_FULL)};export const getAnnualReturnStartYears=id=>[...data.years[id]];export function getAnnualReturns(id,start){const out=[];for(let y=start;y<data.latestYear;y++){const r=data.returns[id]?.[y];if(!r)break;out.push({...r})}return out}export const performanceBasis=id=>data.basis[id];`
+ const annualModules=new Map([['market',projection.market],['bounds',{years:projection.years,basis:projection.basis,latestYear:projection.latestYear}],['returns',projection.returns]].map(([id,data])=>['virtual:selected-annual-'+id,'export default '+JSON.stringify(data)+';']))
+ const annualCode=`import market from 'virtual:selected-annual-market';import bounds from 'virtual:selected-annual-bounds';import returns from 'virtual:selected-annual-returns';const data={market,returns,...bounds};export const MARKET_ASSETS=data.market,ASSETS=Object.fromEntries(data.market.map(a=>[a.id,a])),MONTHS_FULL=${JSON.stringify(history.MONTHS_FULL)};export const getAnnualReturnStartYears=id=>[...data.years[id]];export function getAnnualReturns(id,start){const out=[];for(let y=start;y<data.latestYear;y++){const r=data.returns[id]?.[y];if(!r)break;out.push({...r})}return out}export const performanceBasis=id=>data.basis[id];`
  function loader(urls){return `const urls=${JSON.stringify(urls)},cache=new Map();export function loadRecord(id){if(!urls[id])return Promise.reject(Error('Données introuvables'));if(!cache.has(id))cache.set(id,fetch(${JSON.stringify(base)}+urls[id]).then(r=>{if(!r.ok)throw Error('Chargement impossible');return r.json()}).catch(e=>{cache.delete(id);throw e}));return cache.get(id)}`}
- return {name:'project-selected-data',enforce:'pre',configResolved(c){base=c.base},
+ return {name:'project-selected-data',enforce:'pre',resolveId(id){if(annualModules.has(id))return {id:'\0'+id,moduleSideEffects:false}},load(id){id=typeof id==='string'?id:id.id;return annualModules.get(id.replace(/^\0/,''))},configResolved(c){base=c.base},
   configureServer(server){server.middlewares.use((req,res,next)=>{const r=records.find(r=>base+r.fileName===req.url?.split('?')[0]);if(!r)return next();res.setHeader('Content-Type','application/json; charset=utf-8');res.end(r.content)})},
   generateBundle(){for(const r of records)this.emitFile({type:'asset',fileName:r.fileName,source:r.content})},
   transform(code,id){const path=id.replaceAll('\\','/').split('?')[0]
+   if(path.endsWith('/src/data/portfolio-asset-loader.js')) return {code:loader(portfolioUrls)+`\nimport {getAsset} from './portfolio-assets.js';export async function ensurePortfolioAssets(ids){return Promise.all(ids.map(async id=>{const asset=getAsset(id);if(!asset)throw Error('Actif introuvable');if(asset.historyPending){const record=await loadRecord(id);if(record.id!==id || record.isin!==asset.isin)throw Error('Identité de l’actif incorrecte');Object.assign(asset,record);delete asset.historyPending}return asset}))}`,map:null}
    if(path.endsWith('/src/pages/dca-profiles/records.js')) return {code:loader({...exposureUrls,__catalog:exposureCatalogUrl})+`
 export const references=${JSON.stringify(exposureIndex)};export async function loadExposureCatalog(){return loadRecord('__catalog')};const ready=new Set();export const exposureRecords={isReady:id=>!references[id]||ready.has(id),load:async id=>{if(!references[id])return;const record=await loadRecord(id);Object.assign(references[id],record);ready.add(id);return record}};`,map:null}
    if(path.endsWith('/src/pages/tweet-midi/data/anniversaryHistory.js')) {

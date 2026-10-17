@@ -96,7 +96,7 @@ def collect_one(config, now, json_fetch=None, byte_fetch=download):
             'sourceUrl':url,'sha256':hashlib.sha256(json.dumps(body,sort_keys=True,allow_nan=False).encode()).hexdigest(),
             'method':('Niveau XNDX Total Return USD de la dernière séance terminée, dividendes bruts réinvestis' if config.get('symbol')=='^XNDX' else 'Dernière séance terminée ; cours brut') if parser=='yahoo' else ('Niveau officiel de fin de mois, Total Return USD' if parser=='ftse' else 'Niveau officiel de fin de séance, variante exacte'),
             'maxAgeDays':45 if parser=='ftse' else 7,
-            **({key:config[key] for key in ('isin','ticker','mic','listingEvidenceId')} if config.get('consumerScope')=='catalog' else {})}
+            **({key:config[key] for key in ('isin','ticker','mic','listingEvidenceId') if key in config} if config.get('isin') else {})}
 
 def refresh(current, now, collect=collect_one, selected=None):
     merged=current.copy();successes=[];errors=[]
@@ -107,7 +107,12 @@ def refresh(current, now, collect=collect_one, selected=None):
         for id_,record,error in pool.map(one,configurations() if selected is None else selected):
             if error:errors.append({'id':'anniversary-'+id_,'error':error});continue
             old=merged.get(id_)
-            if old and (record['asOf'] < old['asOf'] or any(record.get(k)!=old.get(k) for k in ['currency','parser','symbol','indexCode','variant','isin','ticker','mic','listingEvidenceId'])):
+            # Older equity/index observations predate exact-identity metadata.
+            # Enrich absent identifiers while preserving the same quote convention;
+            # an existing identifier must never change or disappear.
+            convention_changed = old and (any(record.get(k)!=old.get(k) for k in ['currency','parser','symbol','indexCode','variant']) or
+                any(old.get(k) is not None and record.get(k)!=old[k] for k in ['isin','ticker','mic','listingEvidenceId']))
+            if old and (record['asOf'] < old['asOf'] or convention_changed):
                 errors.append({'id':'anniversary-'+id_,'error':'Régression de date ou changement de convention'});continue
             merged[id_]=record;successes.append({'id':'anniversary-'+id_})
     # Gold retains its World Bank monthly average convention, never gold futures/spot.

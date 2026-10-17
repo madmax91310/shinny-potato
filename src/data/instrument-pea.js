@@ -1,9 +1,10 @@
+import METADATA from './automated-instrument-metadata.json' with {type:'json'};
 import { EXPOSURE_ADDITIONS } from './exposure-additions.js';
 // Contrôles PEA sur une part exacte (ISIN), distincts des revues historiques
 // des Fiches ETF. null signifie que la recherche n'a pas permis de trancher.
 // Ne jamais déduire l'éligibilité du domicile, de l'indice ou du nom commercial.
 const exposurePeaSources = {"IE00BLNMYC90": "https://www.zonebourse.com/cours/etf/XTRACKERS-S-P-500-EQUAL-W-122801274/composition/", "IE00B2NPKV68": "https://www.zonebourse.com/cours/etf/ISHARES-J-P-MORGAN-EM-BON-17138508/composition/", "IE00B1FZS913": "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/ishares-eur-govt-bond-15-30yr-IE00B1FZS913-IBGL-EUR-XAMS/seance", "IE0006WW1TQ4": "https://www.zonebourse.com/cours/etf/XTRACKERS-MSCI-WORLD-EX-U-169862014/"};
-export const PEA_REVIEWS_BY_ISIN = Object.freeze({
+const MANUAL_PEA_REVIEWS = {
   IE00BJGWQN72: { eligible: false, checkedAt: "2026-10-11", sourceUrl: "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BJGWQN72" },
   IE00BZ56SW52: { eligible: false, checkedAt: "2026-10-11", sourceUrl: "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BZ56SW52" },
   FR001400ZGO4: {eligible: true, checkedAt: '2026-10-09', sourceUrl: 'https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR001400ZGO4/FRA/FRA/RETAIL/ETF/20260831', note: 'Fiche Amundi : investissement permanent du panier au minimum à 75 % en titres éligibles PEA.'},
@@ -53,4 +54,7 @@ export const PEA_REVIEWS_BY_ISIN = Object.freeze({
   // HSBC ne mentionne pas le PEA dans la fiche émetteur retrouvée ; des
   // fiches secondaires divergent également. Ne pas utiliser comme option PEA.
   IE00B4K6B022: { eligible: null, checkedAt: '2026-09-29', sourceUrl: 'https://www.assetmanagement.hsbc.co.uk/api/v1/download/document/ie00b4k6b022/gb/en/factsheet', note: 'PEA non établi ; fiches secondaires contradictoires' },
-});
+
+};
+
+export const PEA_REVIEWS_BY_ISIN = Object.freeze({...MANUAL_PEA_REVIEWS,...Object.fromEntries(Object.entries(METADATA).filter(([isin,r])=>typeof r.pea?.value==='boolean' && r.pea?.sourceUrl && r.pea?.sha256 && r.pea.checkedAt >= (MANUAL_PEA_REVIEWS[isin]?.checkedAt??'')).map(([isin,r])=>[isin,{eligible:r.pea.value,checkedAt:r.pea.checkedAt,sourceUrl:r.pea.sourceUrl,sha256:r.pea.sha256,method:'Explicit exact-share PEA statement collected automatically.'}]))});
