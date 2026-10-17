@@ -65,11 +65,17 @@ jobs:
           echo "Collecting: $QUALIFIED_ONLY"
           # shellcheck disable=SC2086
           python scripts/collect_qualified_exposures.py --apply --output "$RUNNER_TEMP/qualified-exposures.json" --only $QUALIFIED_ONLY
-      - name: Classify exact stocks from official complete holdings
+      - run: node scripts/build-automation-targets.mjs
+      - name: Classify exact stocks and collect missing complete holdings
         id: classify
         continue-on-error: true
-        run: python scripts/collect_dca_complete_holdings.py --apply --output "$RUNNER_TEMP/dca-complete-holdings.json" --only IE00B4L5Y983 IE00BKM4GZ66 IE00B5BMR087 IE00BF4RFH31
-      - run: node scripts/build-automation-targets.mjs && node scripts/build-dca-exposures.mjs
+        # The four classification funds plus every newly generated physical-fund source
+        # that has no complete composition yet (new qualified shares).
+        run: |
+          MISSING=$(node -e "const s={...require('./scripts/dca-complete-holdings-sources.json'),...require('./scripts/generated-holdings-sources.json')},h=require('./src/data/dca-complete-holdings.json');console.log(Object.keys(s).filter(i=>!h[i]).join(' '))")
+          # shellcheck disable=SC2086
+          python scripts/collect_dca_complete_holdings.py --apply --output "$RUNNER_TEMP/dca-complete-holdings.json" --only IE00B4L5Y983 IE00BKM4GZ66 IE00B5BMR087 IE00BF4RFH31 $MISSING
+      - run: node scripts/build-dca-exposures.mjs
       - name: Qualify equity histories
         id: equities
         continue-on-error: true

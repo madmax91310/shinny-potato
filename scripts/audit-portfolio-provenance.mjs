@@ -24,7 +24,9 @@ const groups = {
   'Hypothèse non liée à un titre précis': `fonds_euros scpi`,
 }
 groups['Fonds confirmé chez l’émetteur'] += ' world-islamic ' + NON_BOND_SHEETS.filter(r=>getInstrumentReturnValues(r.isin).every(Number.isFinite)).map(r=>r.id).join(' ');
-groups['Fonds confirmé chez l’émetteur'] += ' europe-banks europe-insurance europe-construction ' + QUALIFIED_EXPOSURE_SHEETS.filter(r=>r.portfolioCategory).map(r=>r.id).join(' ');
+// A qualified sheet only becomes a generator support once its six calendar years are published (portfolio-assets.js).
+const selectableQualified = QUALIFIED_EXPOSURE_SHEETS.filter(r=>r.portfolioCategory && getInstrumentReturnValues(r.isin).every(Number.isFinite))
+groups['Fonds confirmé chez l’émetteur'] += ' europe-banks europe-insurance europe-construction ' + selectableQualified.map(r=>r.id).join(' ');
 for (const r of EXPOSURE_ADDITIONS) {
   const basis = r.id === 'world_ex_usa' ? 'Indice ou cours du sous-jacent' : r.id === 'pea_global_amundi' ? 'Autre fonds ou historique mixte' : 'Fonds confirmé chez l’émetteur';
   groups[basis] += ' ' + r.id;
@@ -68,7 +70,7 @@ const partialOrSyntheticYears = new Map(Object.entries({
 const issuerSources = {
  ...Object.fromEntries(ASSETS.filter(a=>roadmapIds.has(a.id)).map(a=>[a.id,getInstrumentAnnualPerformance(a.isin)?.source])),
  ...Object.fromEntries(ASSETS.filter(a=>['health_world_dws','new_energy_amundi','em_pea_amundi','europe_pea_amundi','health_europe_pea','tech_europe_pea','industry_world_dws','em_small_ishares'].includes(a.id)).map(a=>[a.id,getInstrumentAnnualPerformance(a.isin).source])),
- ...Object.fromEntries(QUALIFIED_EXPOSURE_SHEETS.filter(r=>r.portfolioCategory || ['europe-banks','europe-insurance','europe-construction'].includes(r.id)).map(r=>[r.id,getInstrumentAnnualPerformance(r.isin).source])),
+ ...Object.fromEntries([...selectableQualified, ...QUALIFIED_EXPOSURE_SHEETS.filter(r=>['europe-banks','europe-insurance','europe-construction'].includes(r.id))].map(r=>[r.id,getInstrumentAnnualPerformance(r.isin).source])),
  ...Object.fromEntries(NON_BOND_SHEETS.filter(r=>getInstrumentReturnValues(r.isin).every(Number.isFinite)).map(r=>[r.id,getInstrumentAnnualPerformance(r.isin).source])),
  'world-islamic':getInstrumentAnnualPerformance('IE00B27YCN58').source,
  ...Object.fromEntries(Object.values(LIFESTRATEGY_RECORDS).map(r=>[r.id,r.performance.sourceUrl])),

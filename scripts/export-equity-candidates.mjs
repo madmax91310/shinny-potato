@@ -18,7 +18,7 @@ export const exchanges={
  'Omx Nordic Exchange Copenhagen A/S':['.CO','Europe/Copenhagen'],
  'National Stock Exchange Of India':['.NS','Asia/Kolkata'],'Singapore Exchange':['.SI','Asia/Singapore'],
  'Shenzhen Stock Exchange':['.SZ','Asia/Shanghai'],'Shanghai Stock Exchange':['.SS','Asia/Shanghai'],
- 'Euronext Brussels':['.BR','Europe/Brussels'],'Oslo Bors Asa':['.OL','Europe/Oslo'],
+ 'Euronext Brussels':['.BR','Europe/Brussels'],'Nyse Euronext - Euronext Brussels':['.BR','Europe/Brussels'],'Oslo Bors Asa':['.OL','Europe/Oslo'],
  'Nasdaq Omx Helsinki Ltd.':['.HE','Europe/Helsinki'],'Nasdaq Omx Nordic':['.ST','Europe/Stockholm'],'Nasdaq Omx Stockholm':['.ST','Europe/Stockholm'],
  'Toronto Stock Exchange':['.TO','America/Toronto'],'Asx - All Markets':['.AX','Australia/Sydney'],
 }
@@ -31,7 +31,8 @@ export function buildCandidates(){
   if(!r){if(expected)skipped.push({id:expected.id,isin:item.isin,reason:'No classification in the official complete holdings yet'});continue}
   if(!market||!r.ticker||!r.currency||!r.sourceUrl||!r.asOf){skipped.push({id:expected?.id??item.isin,isin:item.isin,reason:`Unsupported or incomplete listing evidence: ${r.exchange??'no exchange'}`});continue}
   const [suffix,timezone]=market
-  let ticker=r.ticker.replace(/\s+/g,'-')
+  // Yahoo writes London tickers without their trailing dot (BP. → BP.L, NG. → NG.L).
+  let ticker=r.ticker.replace(/\s+/g,'-').replace(/\.+$/,'')
   if(suffix==='.HK')ticker=ticker.padStart(4,'0')
   const symbol=ticker+suffix
   if(expected?.symbol&&expected.symbol!==symbol){skipped.push({id:expected.id,isin:item.isin,reason:`Expected listing ${expected.symbol} differs from the issuer-held listing ${symbol}; no substitution`});continue}

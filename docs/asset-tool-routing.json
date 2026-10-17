@@ -1,13 +1,13 @@
 {
-  "checkedAt": "2026-10-17T23:25:26.369Z",
+  "checkedAt": "2026-10-17T23:42:06.100Z",
   "summary": {
-    "instruments": 649,
+    "instruments": 644,
     "sheets": 258,
-    "comparisons": 133,
+    "comparisons": 148,
     "practical": 21,
     "duels": 565,
     "generatorAutomatic": 138,
-    "dca": 649,
+    "dca": 644,
     "fullExposure": 599,
     "outsideExposure": 41,
     "automaticHistories": 200,
@@ -6044,62 +6044,6 @@
       "decision": "keep-used"
     },
     {
-      "isin": "HK0883013259",
-      "name": "CNOOC",
-      "kind": "equity",
-      "practical": [],
-      "duel": false,
-      "qualification": null,
-      "sheet": false,
-      "comparison": false,
-      "generator": "missing",
-      "dca": true,
-      "countries": {
-        "status": "incomplete",
-        "coverage": 0,
-        "outside": 0,
-        "reason": "Ventilation absente"
-      },
-      "sectors": {
-        "status": "incomplete",
-        "coverage": 0,
-        "outside": 0,
-        "reason": "Ventilation absente"
-      },
-      "holdings": null,
-      "monthly": [],
-      "historyCandidate": false,
-      "decision": "keep-used"
-    },
-    {
-      "isin": "HK0941009539",
-      "name": "China Mobile",
-      "kind": "equity",
-      "practical": [],
-      "duel": false,
-      "qualification": null,
-      "sheet": false,
-      "comparison": false,
-      "generator": "missing",
-      "dca": true,
-      "countries": {
-        "status": "incomplete",
-        "coverage": 0,
-        "outside": 0,
-        "reason": "Ventilation absente"
-      },
-      "sectors": {
-        "status": "incomplete",
-        "coverage": 0,
-        "outside": 0,
-        "reason": "Ventilation absente"
-      },
-      "holdings": null,
-      "monthly": [],
-      "historyCandidate": false,
-      "decision": "keep-used"
-    },
-    {
       "isin": "IE0000N55FP4",
       "name": "iShares MSCI Europe Small Cap UCITS ETF",
       "kind": "etf",
@@ -7266,7 +7210,7 @@
       "duel": false,
       "qualification": null,
       "sheet": true,
-      "comparison": false,
+      "comparison": true,
       "generator": "missing",
       "dca": true,
       "countries": {
@@ -7575,7 +7519,7 @@
       "duel": true,
       "qualification": null,
       "sheet": true,
-      "comparison": false,
+      "comparison": true,
       "generator": "manual",
       "dca": true,
       "countries": {
@@ -8249,7 +8193,7 @@
       "duel": true,
       "qualification": null,
       "sheet": true,
-      "comparison": false,
+      "comparison": true,
       "generator": "manual",
       "dca": true,
       "countries": {
@@ -8531,7 +8475,7 @@
       "duel": true,
       "qualification": null,
       "sheet": true,
-      "comparison": false,
+      "comparison": true,
       "generator": "manual",
       "dca": true,
       "countries": {
@@ -9650,7 +9594,7 @@
       "duel": true,
       "qualification": null,
       "sheet": true,
-      "comparison": false,
+      "comparison": true,
       "generator": "manual",
       "dca": true,
       "countries": {
@@ -9825,7 +9769,7 @@
       "duel": true,
       "qualification": null,
       "sheet": true,
-      "comparison": false,
+      "comparison": true,
       "generator": "automatic",
       "dca": true,
       "countries": {
@@ -10351,7 +10295,7 @@
       "duel": true,
       "qualification": null,
       "sheet": true,
-      "comparison": false,
+      "comparison": true,
       "generator": "manual",
       "dca": true,
       "countries": {
@@ -10397,7 +10341,7 @@
       "duel": true,
       "qualification": null,
       "sheet": true,
-      "comparison": false,
+      "comparison": true,
       "generator": "manual",
       "dca": true,
       "countries": {
@@ -10443,7 +10387,7 @@
       "duel": true,
       "qualification": null,
       "sheet": true,
-      "comparison": false,
+      "comparison": true,
       "generator": "manual",
       "dca": true,
       "countries": {
@@ -11094,7 +11038,7 @@
       "duel": true,
       "qualification": null,
       "sheet": true,
-      "comparison": false,
+      "comparison": true,
       "generator": "manual",
       "dca": true,
       "countries": {
@@ -13235,7 +13179,7 @@
       "duel": true,
       "qualification": null,
       "sheet": true,
-      "comparison": false,
+      "comparison": true,
       "generator": "manual",
       "dca": true,
       "countries": {
@@ -13281,7 +13225,7 @@
       "duel": true,
       "qualification": null,
       "sheet": true,
-      "comparison": false,
+      "comparison": true,
       "generator": "manual",
       "dca": true,
       "countries": {
@@ -13327,7 +13271,7 @@
       "duel": true,
       "qualification": null,
       "sheet": true,
-      "comparison": false,
+      "comparison": true,
       "generator": "manual",
       "dca": true,
       "countries": {
@@ -13771,7 +13715,7 @@
       "duel": true,
       "qualification": null,
       "sheet": true,
-      "comparison": false,
+      "comparison": true,
       "generator": "manual",
       "dca": true,
       "countries": {
@@ -13957,7 +13901,7 @@
       "duel": true,
       "qualification": null,
       "sheet": true,
-      "comparison": false,
+      "comparison": true,
       "generator": "manual",
       "dca": true,
       "countries": {
@@ -14589,34 +14533,6 @@
       "decision": "keep-used"
     },
     {
-      "isin": "INE237A01028",
-      "name": "Kotak Mahindra Bank",
-      "kind": "equity",
-      "practical": [],
-      "duel": false,
-      "qualification": null,
-      "sheet": false,
-      "comparison": false,
-      "generator": "missing",
-      "dca": true,
-      "countries": {
-        "status": "incomplete",
-        "coverage": 0,
-        "outside": 0,
-        "reason": "Ventilation absente"
-      },
-      "sectors": {
-        "status": "incomplete",
-        "coverage": 0,
-        "outside": 0,
-        "reason": "Ventilation absente"
-      },
-      "holdings": null,
-      "monthly": [],
-      "historyCandidate": false,
-      "decision": "keep-used"
-    },
-    {
       "isin": "INE238A01034",
       "name": "Axis Bank",
       "kind": "equity",
@@ -14654,34 +14570,6 @@
           "anniversary": true
         }
       ],
-      "historyCandidate": false,
-      "decision": "keep-used"
-    },
-    {
-      "isin": "INE296A01024",
-      "name": "Bajaj Finance",
-      "kind": "equity",
-      "practical": [],
-      "duel": false,
-      "qualification": null,
-      "sheet": false,
-      "comparison": false,
-      "generator": "missing",
-      "dca": true,
-      "countries": {
-        "status": "incomplete",
-        "coverage": 0,
-        "outside": 0,
-        "reason": "Ventilation absente"
-      },
-      "sectors": {
-        "status": "incomplete",
-        "coverage": 0,
-        "outside": 0,
-        "reason": "Ventilation absente"
-      },
-      "holdings": null,
-      "monthly": [],
       "historyCandidate": false,
       "decision": "keep-used"
     },
@@ -21497,34 +21385,6 @@
           "anniversary": true
         }
       ],
-      "historyCandidate": false,
-      "decision": "keep-used"
-    },
-    {
-      "isin": "US31428X1061",
-      "name": "FedEx",
-      "kind": "equity",
-      "practical": [],
-      "duel": false,
-      "qualification": null,
-      "sheet": false,
-      "comparison": false,
-      "generator": "missing",
-      "dca": true,
-      "countries": {
-        "status": "incomplete",
-        "coverage": 0,
-        "outside": 0,
-        "reason": "Ventilation absente"
-      },
-      "sectors": {
-        "status": "incomplete",
-        "coverage": 0,
-        "outside": 0,
-        "reason": "Ventilation absente"
-      },
-      "holdings": null,
-      "monthly": [],
       "historyCandidate": false,
       "decision": "keep-used"
     },

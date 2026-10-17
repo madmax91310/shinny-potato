@@ -154,8 +154,6 @@ Généré le 2026-10-17 par `node scripts/audit-asset-tool-routing.mjs --write`.
 | Unilever | GB00BVZK7T90 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui |
 | AIA Group | HK0000069689 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui |
 | HKEX | HK0388045442 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui |
-| CNOOC | HK0883013259 | — | — | missing | Partiel / Partiel | — | — / — / — |
-| China Mobile | HK0941009539 | — | — | missing | Partiel / Partiel | — | — / — / — |
 | iShares MSCI Europe Small Cap UCITS ETF | IE0000N55FP4 | Oui | — | automatic | Oui / Oui | Complète | — / — / — |
 | Invesco FTSE All-World UCITS ETF Distributing | IE0000QLH0G6 | Oui | — | missing | Oui / Oui | — | — / — / — |
 | iShares MSCI World Swap PEA UCITS ETF (Acc) | IE0002XZSHO1 | Oui | Oui | missing | Oui / Oui | Partielle | — / — / — |
@@ -182,14 +180,14 @@ Généré le 2026-10-17 par `node scripts/audit-asset-tool-routing.mjs --write`.
 | iShares Blockchain Technology UCITS ETF | IE000RDRMSD1 | Oui | Oui | manual | Oui / Oui | Complète | Oui / Oui / Oui |
 | Linde | IE000S9YS762 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui |
 | iShares iBonds Dec 2029 Term € Corp UCITS ETF | IE000SNLFDR7 | Oui | Oui | missing | Oui / Oui | Partielle | Oui / Oui / Oui |
-| iShares Global Aerospace & Defence UCITS ETF | IE000U9ODG19 | Oui | — | missing | Oui / Oui | Partielle | Oui / Oui / Oui |
+| iShares Global Aerospace & Defence UCITS ETF | IE000U9ODG19 | Oui | Oui | missing | Oui / Oui | Partielle | Oui / Oui / Oui |
 | Global X Silver Miners UCITS ETF USD Accumulating | IE000UL6CLP7 | Oui | — | manual | Oui / Oui | Partielle | Oui / Oui / Oui |
 | WisdomTree Quantum Computing UCITS ETF | IE000W8WMSL2 | Oui | Oui | missing | Oui / Oui | Partielle | — / — / — |
 | SPDR S&P 500 UCITS ETF Acc | IE000XZSV718 | Oui | — | missing | Oui / Oui | Complète | — / — / — |
 | VanEck Space Innovators UCITS ETF | IE000YU9K6K2 | Oui | Oui | manual | Oui / Oui | Partielle | Oui / Oui / Oui |
 | VanEck Defense UCITS ETF | IE000YYE6WK5 | Oui | Oui | missing | Oui / Oui | Partielle | Oui / Oui / Oui |
 | iShares China Large Cap UCITS ETF (Dist) | IE00B02KXK85 | Oui | — | manual | Oui / Oui | Complète | Oui / Oui / Oui |
-| iShares Euro Dividend UCITS ETF | IE00B0M62S72 | Oui | — | manual | Oui / Oui | Partielle | Oui / Oui / Oui |
+| iShares Euro Dividend UCITS ETF | IE00B0M62S72 | Oui | Oui | manual | Oui / Oui | Partielle | Oui / Oui / Oui |
 | iShares € Inflation Linked Govt Bond UCITS ETF | IE00B0M62X26 | Oui | — | automatic | Sans objet / Sans objet | Partielle | Oui / Oui / — |
 | iShares European Property Yield UCITS ETF | IE00B0M63284 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui |
 | iShares MSCI Taiwan UCITS ETF | IE00B0M63623 | Oui | — | automatic | Oui / Oui | Complète | Oui / Oui / Oui |
@@ -204,14 +202,14 @@ Généré le 2026-10-17 par `node scripts/audit-asset-tool-routing.mjs --write`.
 | iShares Global Timber & Forestry UCITS ETF | IE00B27YCF74 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui |
 | iShares MSCI World Islamic UCITS ETF | IE00B27YCN58 | Oui | Oui | manual | Oui / Oui | Complète | Oui / Oui / Oui |
 | iShares J.P. Morgan $ EM Bond UCITS ETF USD (Dist) | IE00B2NPKV68 | Oui | — | automatic | Sans objet / Sans objet | Partielle | Oui / Oui / Oui |
-| iShares S&P SmallCap 600 UCITS ETF | IE00B2QWCY14 | Oui | — | manual | Oui / Oui | Partielle | Oui / Oui / Oui |
+| iShares S&P SmallCap 600 UCITS ETF | IE00B2QWCY14 | Oui | Oui | manual | Oui / Oui | Partielle | Oui / Oui / Oui |
 | iShares MSCI EM Small Cap UCITS ETF USD (Dist) | IE00B3F81G20 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui |
 | iShares Core € Corp Bond UCITS ETF (Dist) | IE00B3F81R35 | Oui | Oui | automatic | Sans objet / Sans objet | Partielle | Oui / Oui / — |
 | iShares € Govt Bond 0-1yr UCITS ETF EUR (Dist) | IE00B3FH7618 | Oui | Oui | automatic | Sans objet / Sans objet | Partielle | Oui / Oui / — |
 | Vanguard FTSE All-World UCITS ETF Distributing | IE00B3RBWM25 | Oui | — | missing | Oui / Oui | Partielle | — / — / — |
 | SPDR € Corp Bond UCITS ETF | IE00B3T9LM79 | Oui | — | automatic | Sans objet / Sans objet | Partielle | Oui / Oui / Oui |
 | Vanguard FTSE Emerging Markets UCITS ETF (Dist) | IE00B3VVMM84 | Oui | — | missing | Oui / Oui | Partielle | — / — / — |
-| iShares MSCI EMU Small Cap UCITS ETF | IE00B3VWMM18 | Oui | — | manual | Oui / Oui | Partielle | Oui / Oui / Oui |
+| iShares MSCI EMU Small Cap UCITS ETF | IE00B3VWMM18 | Oui | Oui | manual | Oui / Oui | Partielle | Oui / Oui / Oui |
 | iShares S&P 500 Information Technology Sector UCITS ETF | IE00B3WJKG14 | Oui | — | automatic | Oui / Oui | Complète | Oui / Oui / Oui |
 | Vanguard S&P 500 UCITS ETF Distributing | IE00B3XXRP09 | Oui | — | missing | Oui / Oui | Partielle | — / — / — |
 | State Street SPDR MSCI All Country World Investable Market UCITS ETF (Acc) | IE00B3YLTY66 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui |
@@ -237,11 +235,11 @@ Généré le 2026-10-17 par `node scripts/audit-asset-tool-routing.mjs --write`.
 | iShares Core MSCI Pacific ex-Japan UCITS ETF USD (Acc) | IE00B52MJY50 | Oui | — | manual | Oui / Oui | Complète | Oui / Oui / Oui |
 | iShares MSCI USA UCITS ETF (Acc) | IE00B52SFT06 | Oui | — | manual | Oui / Oui | Complète | Oui / Oui / Oui |
 | iShares Core EURO STOXX 50 UCITS ETF | IE00B53L3W79 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui |
-| iShares Core MSCI EMU UCITS ETF | IE00B53QG562 | Oui | — | manual | Oui / Oui | Partielle | Oui / Oui / Oui |
+| iShares Core MSCI EMU UCITS ETF | IE00B53QG562 | Oui | Oui | manual | Oui / Oui | Partielle | Oui / Oui / Oui |
 | iShares Nasdaq 100 UCITS ETF | IE00B53SZB19 | Oui | Oui | automatic | Oui / Oui | Complète | — / — / — |
 | Invesco Physical Gold ETC | IE00B579F325 | Oui | — | automatic | Sans objet / Sans objet | — | Oui / Oui / Oui |
 | iShares Core S&P 500 UCITS ETF | IE00B5BMR087 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui |
-| SPDR S&P Euro Dividend Aristocrats UCITS ETF (Dist) | IE00B5M1WJ87 | Oui | — | automatic | Oui / Oui | Partielle | Oui / Oui / Oui |
+| SPDR S&P Euro Dividend Aristocrats UCITS ETF (Dist) | IE00B5M1WJ87 | Oui | Oui | automatic | Oui / Oui | Partielle | Oui / Oui / Oui |
 | iShares MSCI Korea UCITS ETF | IE00B5W4TY14 | Oui | — | automatic | Oui / Oui | Complète | Oui / Oui / Oui |
 | iShares Euro High Yield Corporate Bond UCITS ETF (Dist) | IE00B66F4759 | Oui | — | automatic | Sans objet / Sans objet | Partielle | Oui / Oui / — |
 | iShares Agribusiness UCITS ETF USD (Acc) | IE00B6R52143 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui |
@@ -253,9 +251,9 @@ Généré le 2026-10-17 par `node scripts/audit-asset-tool-routing.mjs --write`.
 | Vanguard FTSE Developed Europe UCITS ETF Distributing | IE00B945VV12 | Oui | — | missing | Oui / Oui | Partielle | — / — / — |
 | SPDR S&P Global Dividend Aristocrats UCITS ETF | IE00B9CQXS71 | Oui | Oui | automatic | Oui / Oui | Partielle | Oui / Oui / Oui |
 | iShares € Ultrashort Bond UCITS ETF | IE00BCRY6557 | Oui | Oui | automatic | Sans objet / Sans objet | Partielle | Oui / Oui / Oui |
-| iShares Edge MSCI USA Quality Factor UCITS ETF | IE00BD1F4L37 | Oui | — | manual | Oui / Oui | Partielle | Oui / Oui / Oui |
-| iShares Edge MSCI USA Value Factor UCITS ETF | IE00BD1F4M44 | Oui | — | manual | Oui / Oui | Partielle | Oui / Oui / Oui |
-| iShares Edge MSCI USA Momentum Factor UCITS ETF | IE00BD1F4N50 | Oui | — | manual | Oui / Oui | Partielle | Oui / Oui / Oui |
+| iShares Edge MSCI USA Quality Factor UCITS ETF | IE00BD1F4L37 | Oui | Oui | manual | Oui / Oui | Partielle | Oui / Oui / Oui |
+| iShares Edge MSCI USA Value Factor UCITS ETF | IE00BD1F4M44 | Oui | Oui | manual | Oui / Oui | Partielle | Oui / Oui / Oui |
+| iShares Edge MSCI USA Momentum Factor UCITS ETF | IE00BD1F4N50 | Oui | Oui | manual | Oui / Oui | Partielle | Oui / Oui / Oui |
 | UBS Core MSCI World UCITS ETF | IE00BD4TXV59 | Oui | — | missing | Oui / Oui | Partielle | — / — / — |
 | Invesco Bloomberg Commodity UCITS ETF | IE00BD6FTQ80 | Oui | — | automatic | Sans objet / Sans objet | — | Oui / Oui / Oui |
 | iShares Core Global Aggregate Bond UCITS ETF EUR Hedged (Acc) | IE00BDBRDM35 | Oui | — | automatic | Sans objet / Sans objet | Partielle | Oui / Oui / — |
@@ -271,7 +269,7 @@ Généré le 2026-10-17 par `node scripts/audit-asset-tool-routing.mjs --write`.
 | iShares J.P. Morgan EM Local Govt Bond UCITS ETF (Acc) | IE00BFZPF546 | Oui | — | automatic | Sans objet / Sans objet | Partielle | — / — / — |
 | iShares Digital Security UCITS ETF | IE00BG0J4C88 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui |
 | iShares Edge MSCI EM Value Factor UCITS ETF | IE00BG0SKF03 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui |
-| iShares Electric Vehicles and Driving Technology UCITS ETF | IE00BGL86Z12 | Oui | — | manual | Oui / Oui | Partielle | Oui / Oui / Oui |
+| iShares Electric Vehicles and Driving Technology UCITS ETF | IE00BGL86Z12 | Oui | Oui | manual | Oui / Oui | Partielle | Oui / Oui / Oui |
 | Xtrackers Artificial Intelligence and Big Data UCITS ETF | IE00BGV5VN51 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui |
 | Xtrackers MSCI World UCITS ETF 1C | IE00BJ0KDQ92 | Oui | — | missing | Oui / Oui | Partielle | — / — / — |
 | State Street SPDR Russell 2000 U.S. Small Cap UCITS ETF (Acc) | IE00BJ38QD84 | Oui | Oui | automatic | Oui / Oui | Partielle | Oui / Oui / Oui |
@@ -320,9 +318,9 @@ Généré le 2026-10-17 par `node scripts/audit-asset-tool-routing.mjs --write`.
 | iShares Edge MSCI World Momentum Factor UCITS ETF (Acc) | IE00BP3QZ825 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui |
 | iShares Edge MSCI World Value Factor UCITS ETF | IE00BP3QZB59 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui |
 | iShares MSCI World Mid-Cap Equal Weight UCITS ETF | IE00BP3QZD73 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui |
-| iShares Edge MSCI Europe Quality Factor UCITS ETF | IE00BQN1K562 | Oui | — | manual | Oui / Oui | Partielle | Oui / Oui / Oui |
-| iShares Edge MSCI Europe Momentum Factor UCITS ETF | IE00BQN1K786 | Oui | — | manual | Oui / Oui | Partielle | Oui / Oui / Oui |
-| iShares Edge MSCI Europe Value Factor UCITS ETF | IE00BQN1K901 | Oui | — | manual | Oui / Oui | Partielle | Oui / Oui / Oui |
+| iShares Edge MSCI Europe Quality Factor UCITS ETF | IE00BQN1K562 | Oui | Oui | manual | Oui / Oui | Partielle | Oui / Oui / Oui |
+| iShares Edge MSCI Europe Momentum Factor UCITS ETF | IE00BQN1K786 | Oui | Oui | manual | Oui / Oui | Partielle | Oui / Oui / Oui |
+| iShares Edge MSCI Europe Value Factor UCITS ETF | IE00BQN1K901 | Oui | Oui | manual | Oui / Oui | Partielle | Oui / Oui / Oui |
 | VanEck Gold Miners UCITS ETF | IE00BQQP9F84 | Oui | Oui | automatic | Oui / Oui | Partielle | Oui / Oui / Oui |
 | iShares MSCI China A UCITS ETF (Acc) | IE00BQT3WG13 | Oui | — | manual | Oui / Oui | Complète | Oui / Oui / Oui |
 | State Street SPDR MSCI Europe Small Cap Value Weighted UCITS ETF | IE00BSPLC298 | Oui | Oui | automatic | Oui / Oui | Partielle | Oui / Oui / Oui |
@@ -332,11 +330,11 @@ Généré le 2026-10-17 par `node scripts/audit-asset-tool-routing.mjs --write`.
 | L&G Cyber Security UCITS ETF | IE00BYPLS672 | Oui | Oui | automatic | Oui / Oui | Partielle | Oui / Oui / Oui |
 | SPDR MSCI World Energy UCITS ETF | IE00BYTRR863 | Oui | — | automatic | Oui / Oui | Partielle | Oui / Oui / Oui |
 | VanEck Video Gaming and eSports UCITS ETF | IE00BYWQWR46 | Oui | Oui | automatic | Oui / Oui | Partielle | Oui / Oui / Oui |
-| iShares MSCI World SRI UCITS ETF | IE00BYX2JD69 | Oui | — | manual | Oui / Oui | Partielle | Oui / Oui / Oui |
+| iShares MSCI World SRI UCITS ETF | IE00BYX2JD69 | Oui | Oui | manual | Oui / Oui | Partielle | Oui / Oui / Oui |
 | iShares Nasdaq US Biotechnology UCITS ETF | IE00BYXG2H39 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui |
 | iShares MSCI World Quality Dividend Advanced UCITS ETF (Dist) | IE00BYYHSQ67 | Oui | — | automatic | Oui / Oui | Complète | Oui / Oui / Oui |
 | iShares Automation & Robotics UCITS ETF | IE00BYZK4552 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui |
-| iShares Ageing Population UCITS ETF | IE00BYZK4669 | Oui | — | manual | Oui / Oui | Partielle | Oui / Oui / Oui |
+| iShares Ageing Population UCITS ETF | IE00BYZK4669 | Oui | Oui | manual | Oui / Oui | Partielle | Oui / Oui / Oui |
 | iShares Healthcare Innovation UCITS ETF USD (Acc) | IE00BYZK4776 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui |
 | iShares STOXX World Equity Multifactor UCITS ETF | IE00BZ0PKT83 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui |
 | Vanguard € Corp Bond UCITS ETF | IE00BZ163G84 | Oui | — | automatic | Sans objet / Sans objet | Partielle | Oui / Oui / Oui |
@@ -351,9 +349,7 @@ Généré le 2026-10-17 par `node scripts/audit-asset-tool-routing.mjs --write`.
 | State Bank of India | INE062A01020 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui |
 | ICICI Bank | INE090A01021 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui |
 | ITC | INE154A01025 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui |
-| Kotak Mahindra Bank | INE237A01028 | — | — | missing | Partiel / Partiel | — | — / — / — |
 | Axis Bank | INE238A01034 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui |
-| Bajaj Finance | INE296A01024 | — | — | missing | Partiel / Partiel | — | — / — / — |
 | Bharti Airtel | INE397D01024 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui |
 | Tata Consultancy Services | INE467B01029 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui |
 | Generali | IT0000062072 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui |
@@ -522,7 +518,6 @@ Généré le 2026-10-17 par `node scripts/audit-asset-tool-routing.mjs --write`.
 | Meta | US30303M1027 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui |
 | FactSet | US3030751057 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui |
 | Fair Isaac | US3032501047 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui |
-| FedEx | US31428X1061 | — | — | missing | Partiel / Partiel | — | — / — / — |
 | F5 | US3156161024 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui |
 | Fortinet | US34959E1091 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui |
 | Freeport-McMoRan | US35671D8570 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui |

@@ -32,33 +32,13 @@
    "timezone": "Europe/Brussels"
   },
   {
-   "id": "cnooc",
-   "label": "CNOOC",
-   "symbol": "0883.HK",
-   "currency": "HKD",
-   "region": "Asie",
-   "scene": "energy",
-   "isin": "HK0883013259",
-   "timezone": "Asia/Hong_Kong"
-  },
-  {
-   "id": "china-mobile",
-   "label": "China Mobile",
-   "symbol": "0941.HK",
-   "currency": "HKD",
-   "region": "Asie",
-   "scene": "infrastructure",
-   "isin": "HK0941009539",
-   "timezone": "Asia/Hong_Kong"
-  },
-  {
    "id": "bajaj-finance",
    "label": "Bajaj Finance",
    "symbol": "BAJFINANCE.NS",
    "currency": "INR",
    "region": "Asie",
    "scene": "finance",
-   "isin": "INE296A01024",
+   "isin": "INE296A01032",
    "timezone": "Asia/Kolkata"
   },
   {
@@ -68,7 +48,7 @@
    "currency": "INR",
    "region": "Asie",
    "scene": "finance",
-   "isin": "INE237A01028",
+   "isin": "INE237A01036",
    "timezone": "Asia/Kolkata"
   },
   {
@@ -138,8 +118,20 @@
    "currency": "USD",
    "region": "États-Unis",
    "scene": "infrastructure",
-   "isin": "US31428X1061",
+   "isin": "US31428X1063",
    "timezone": "America/New_York"
+  }
+ ],
+ "excluded": [
+  {
+   "id": "cnooc",
+   "reason": "Non détenu par les fonds iShares World, S&P 500, EM IMI et World Small Cap : BlackRock exclut cette société visée par les sanctions américaines (liste NS-CMIC) ; aucune classification officielle possible.",
+   "checkedAt": "2026-10-18"
+  },
+  {
+   "id": "china-mobile",
+   "reason": "Non détenu par les fonds iShares World, S&P 500, EM IMI et World Small Cap : BlackRock exclut cette société visée par les sanctions américaines (liste NS-CMIC) ; aucune classification officielle possible.",
+   "checkedAt": "2026-10-18"
   }
  ]
 }
