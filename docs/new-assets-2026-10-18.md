@@ -1,6 +1,6 @@
 # Nouveaux actifs automatisés — 18 octobre 2026
 
-Lot « nouveaux actifs » : 104 actions internationales et 14 ETF iShares entrent dans le catalogue avec des données qui se maintiennent seules. Les chiffres régénérés de `asset-tool-routing.md`, `asset-field-coverage.md` et `exposure-coverage.md` priment sur ceux de cette page.
+Lot « nouveaux actifs » : 110 actions internationales et 14 ETF iShares entrent dans le catalogue avec des données qui se maintiennent seules. Les chiffres régénérés de `asset-tool-routing.md`, `asset-field-coverage.md` et `exposure-coverage.md` priment sur ceux de cette page.
 
 ## Chaîne d’intégration
 
@@ -14,9 +14,9 @@ Nouvelles places prises en charge par les exporteurs : Bruxelles, Oslo, Helsinki
 
 ## Actions ajoutées
 
-Europe 61 (+46), Asie 55 (+35), États-Unis 32 (+17), Canada 6 (+6) : voir `src/data/global-equities.json` (entrées datées du 2026-10-17 et suivantes). Chaque action conserve sa devise de cotation (GBp distinct de GBP) ; les conversions en euros utilisent les taux BCE de fin d’année déjà collectés.
+Europe 64 (+49), Asie 57 (+37), États-Unis 33 (+18), Canada 6 (+6) : voir `src/data/global-equities.json` (entrées datées du 2026-10-17 et suivantes). Chaque action conserve sa devise de cotation (GBp distinct de GBP) ; les conversions en euros utilisent les taux BCE de fin d’année déjà collectés.
 
-Outils raccordés pour chacune : Et si tu avais investi (versement unique et DCA), Performance depuis, Il y a X ans (clôtures brutes distinctes), Qui a vraiment gagné ? (recherche manuelle et 32 nouvelles sélections préparées, dont 11 avec ETF de référence), Duel de portefeuilles et Générateur en composition manuelle (années civiles communes en euros, trois au minimum), Portefeuille & DCA (pays, secteur et recouvrement par ISIN avec les positions complètes des ETF), Bibliothèque de données. Faits marquants et Analyse d’entreprise gardent leurs périmètres propres.
+Outils raccordés pour chacune : Et si tu avais investi (versement unique et DCA), Performance depuis, Il y a X ans (clôtures brutes distinctes), Qui a vraiment gagné ? (recherche manuelle et 34 nouvelles sélections préparées, dont 13 avec ETF de référence), Duel de portefeuilles et Générateur en composition manuelle (années civiles communes en euros, trois au minimum), Portefeuille & DCA (pays, secteur et recouvrement par ISIN avec les positions complètes des ETF), Bibliothèque de données. Faits marquants et Analyse d’entreprise gardent leurs périmètres propres.
 
 ## ETF ajoutés (pipeline des expositions qualifiées iShares)
 
@@ -35,7 +35,7 @@ Outils raccordés pour chacune : Et si tu avais investi (versement unique et DCA
 
 Champs collectés par le connecteur iShares existant : nom officiel, cotations officielles avec preuve, frais, encours de la part, calendrier NAV complet, pays, secteurs, positions intégrales et top dix, domicile, réplication, distribution et métriques. L’historique mensuel Yahoo de la cotation exacte a été qualifié pour les 14 parts.
 
-Outils raccordés : Présentation d’ETF, Comparatif ETF (12 nouvelles paires), Et si tu avais investi, Performance depuis, Il y a X ans, Qui a vraiment gagné ? (lignes annuelles NAV et mensuelles), Duel de portefeuilles et Générateur en composition manuelle lorsque trois années civiles communes existent, Portefeuille & DCA (compositions complètes), Bibliothèque de données. Aéronautique et défense (lancée en février 2024) ne dispose que de l’année 2025 : elle reste hors duels et Générateur jusqu’à trois années complètes, sans prolongement artificiel.
+Outils raccordés : Présentation d’ETF, Comparatif ETF (12 nouvelles paires), Et si tu avais investi, Performance depuis, Il y a X ans, Qui a vraiment gagné ? (lignes annuelles NAV et mensuelles), Duel de portefeuilles et Générateur en composition manuelle lorsque trois années civiles communes existent, Portefeuille & DCA (compositions complètes collectées pour les 14 parts), Bibliothèque de données. Aéronautique et défense (lancée en février 2024) ne dispose que de l’année 2025 : elle reste hors duels et Générateur jusqu’à trois années complètes, sans prolongement artificiel.
 
 Statut PEA : l’éligibilité de la part MSCI EMU est documentée par deux sources secondaires indépendantes ; les parts EMU Small Cap et Euro Dividend restent non documentées (aucune déduction à partir du domicile ou de l’indice).
 
