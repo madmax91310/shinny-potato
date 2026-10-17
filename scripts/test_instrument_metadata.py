@@ -42,8 +42,15 @@ class MetadataTests(unittest.TestCase):
         self.assertTrue(module.renewal_overdue({'checkedAt':'2026-10-09'},now))
         for broken in [{},{'checkedAt':None},{'checkedAt':'unknown'}]:
             self.assertTrue(module.renewal_overdue(broken,now))
+        # Static legal characteristics tolerate a long issuer outage, but not forever.
+        self.assertFalse(module.renewal_overdue({'checkedAt':'2026-01-01'},now,'domicile'))
+        self.assertTrue(module.renewal_overdue({'checkedAt':'2025-10-16'},now,'replicationMethod'))
+        self.assertTrue(module.renewal_overdue({'checkedAt':'2026-10-09'},now,'pea'))
+        self.assertTrue(module.renewal_overdue({},now,'domicile'))
         freshness=(module.ROOT/'scripts/report-asset-fields.mjs').read_text()
         self.assertIn(f'plus de {module.RENEWAL_GRACE_DAYS} jours pour les champs ETF',freshness)
+        self.assertIn(f"['domicile','replicationMethod'].includes(field)?{module.STATIC_RENEWAL_DAYS['domicile']}:",freshness)
+        self.assertEqual(set(module.STATIC_RENEWAL_DAYS),{'domicile','replicationMethod'})
     def test_vaneck_consent_page_uses_browser_download_only_for_official_factsheets(self):
         from unittest.mock import patch
         import subprocess
