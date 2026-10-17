@@ -16,6 +16,7 @@ import * as reference from '../src/data/instrument-reference-evidence.js'
 import * as metrics from '../src/data/qualified-exposure-metrics.js'
 import * as qualified from '../src/data/qualified-exposure-sheets.js'
 import * as practical from '../src/data/practical-source-data.js'
+import * as preferredTickers from '../src/data/preferred-instrument-tickers.js'
 
 // Build-derived projections, never a second hand-maintained set of figures.
 // The browser receives resolved metadata without importing all issuer holdings.
@@ -30,7 +31,7 @@ export function projectLightRegistries() {
     ['instruments', instruments, "import { PEA_REVIEWS_BY_ISIN } from './instrument-pea.js';"],
     ['instrument-facts', facts, "import { getInstrumentListings } from './instrument-listings.js'; export { getInstrumentListings };"],
     ['instrument-listings', listings, ''], ['instrument-pea', pea, ''], ['etf-ter', ter, ''], ['etf-ter-evidence', terEvidence, ''],
-    ['portfolio-assets', portfolio, ''], ['portfolio-currencies', currencies, ''], ['practical-source-data', practical, ''],
+    ['portfolio-assets', portfolio, ''], ['portfolio-currencies', currencies, ''], ['practical-source-data', practical, ''], ['preferred-instrument-tickers',preferredTickers,''],
   ]
   const projections = new Map(definitions.map(([name, exports, imports]) => {
     if(name==='portfolio-assets') exports={...exports,ASSETS:exports.ASSETS.map(asset=>asset.manualOnly && /^(?:equity-|manual-)/.test(asset.id)?Object.fromEntries([...['id','isin','name','instrumentType','cat','emoji','manualOnly','returnCurrency'].filter(k=>asset[k]!==undefined).map(k=>[k,asset[k]]),['historyPending',true]]):asset)}

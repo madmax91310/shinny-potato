@@ -1,4 +1,4 @@
-import METADATA from './automated-instrument-metadata.json' with {type:'json'}
+import METADATA from './instrument-characteristic-metadata.js'
 // Per-field evidence prevents a successful TER check from redating a PEA or domicile value.
 export function withInstrumentMetadata(isin,record) {
  const fields=METADATA[isin]

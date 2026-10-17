@@ -5,7 +5,8 @@ import { join } from 'node:path'
 import { pathToFileURL } from 'node:url'
 import { projectLightRegistries } from './project-light-registries.mjs'
 import { projectSelectedData } from './project-selected-data.mjs'
-import { splitEtfRecords,splitInstrumentMetadataRecords } from './split-etf-records.mjs'
+import { splitEtfRecords,splitInstrumentMetadataRecords,splitCharacteristicMetadataRecords } from './split-etf-records.mjs'
+import characteristicMetadata from '../src/data/instrument-characteristic-metadata.js'
 import { readFileSync } from 'node:fs'
 
 const issuerParts=splitEtfRecords(), reconstructed={}
@@ -30,11 +31,18 @@ for(let i=0;i<expandedParts.groups.length;i++) {
  Object.assign(expandedDecoded,(await import('data:text/javascript;base64,'+Buffer.from(code).toString('base64'))).default)
 }
 assert.deepEqual(expandedDecoded,expandedMetadata)
+const characteristicParts=splitCharacteristicMetadataRecords(),characteristics={}
+for(let i=0;i<characteristicParts.groups.length;i++) {
+ const code=characteristicParts.plugin.load(characteristicParts.plugin.resolveId(`virtual:characteristic-metadata-part:${i}`))
+ Object.assign(characteristics,(await import('data:text/javascript;base64,'+Buffer.from(code).toString('base64'))).default)
+}
+assert.deepEqual(characteristics,characteristicMetadata)
+for(const observations of Object.values(characteristics))assert(Object.keys(observations).every(field=>['distribution','domicile','replicationMethod','currencyHedge'].includes(field)))
 
 // Execute the generated modules in isolation: any accidental dependency on a
 // non-exported helper or raw issuer module must fail here, before publication.
 const names = ['etf-cards','etf-publication-data','commodity-publication-data','portfolio-exposure-data','qualified-exposure-metrics','qualified-exposure-sheets', 'instruments', 'instrument-facts', 'instrument-listings', 'instrument-pea', 'etf-ter', 'etf-ter-evidence',
-  'portfolio-assets', 'portfolio-currencies', 'practical-source-data', 'instrument-reference-evidence']
+  'portfolio-assets', 'portfolio-currencies', 'practical-source-data', 'instrument-reference-evidence','preferred-instrument-tickers']
 const directory = await mkdtemp(join(tmpdir(), 'light-registries-'))
 const selectedRecords = new Map()
 projectSelectedData().generateBundle.call({emitFile:({fileName,source})=>{
@@ -67,7 +75,7 @@ try {
     }
   }
   for (const isin of Object.keys(canonical.instruments.INSTRUMENTS_BY_ISIN)) {
-    for (const name of ['instruments', 'instrument-facts', 'instrument-listings', 'etf-ter']) {
+    for (const name of ['instruments', 'instrument-facts', 'instrument-listings', 'etf-ter','preferred-instrument-tickers']) {
       for (const [key, fn] of Object.entries(canonical[name])) {
         if (typeof fn !== 'function' || ['affirmInstrumentPea', 'formatInstrumentListing'].includes(key)) continue
         let expected

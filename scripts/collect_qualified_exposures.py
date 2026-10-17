@@ -1,6 +1,6 @@
 """Collect complete exact-share issuer records; no assisted or cached source handoff."""
 import copy
-import argparse, datetime as dt, hashlib, json
+import argparse, datetime as dt, hashlib, json, re
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from collect_etf_pilot import product_data_url, parse_share, source_date
@@ -80,6 +80,21 @@ def collect_one(config,now):
  result['checkedAt']=now.isoformat();result['pageSha256']=hashlib.sha256(raw.encode()).hexdigest();result.pop('rawComponents',None)
  return result
 
+def retain_listing_evidence(archive, records, required_ids=None):
+ result={isin:[dict(row) for row in rows] for isin,rows in archive.items()}
+ for record in records:
+  if not record:continue
+  isin=record['isin'];rows={(row['mic'],row['ticker'],row['currency']):row for row in result.get(isin,[])}
+  for listing in record.get('listings',[]):
+   if required_ids is not None and listing.get('evidenceId') not in required_ids:continue
+   row=dict(listing);row['sha256']=row.get('sha256') or record.get('pageSha256')
+   if not row.get('sourceUrl','').startswith('https://') or not re.fullmatch('[a-f0-9]{64}',row.get('sha256') or '') or not row.get('checkedAt') or not row.get('evidenceId','').startswith(isin+'-'):
+    raise ValueError('Listing archive requires exact dated issuer evidence')
+   key=(row['mic'],row['ticker'],row['currency'])
+   if key not in rows or row['checkedAt']>=rows[key]['checkedAt']:rows[key]=row
+  result[isin]=list(rows.values())
+ return result
+
 def main():
  p=argparse.ArgumentParser();p.add_argument('--apply',action='store_true');p.add_argument('--output',type=Path,required=True);p.add_argument('--only',nargs='+');args=p.parse_args()
  configs=json.loads((ROOT/'scripts/qualified-exposure-sources.json').read_text())['instruments'];now=dt.datetime.now(UTC)
@@ -91,6 +106,9 @@ def main():
  report={'checkedAt':now.isoformat(),'records':[x['record']for x in rows if 'record'in x],'excluded':[x for x in rows if 'record'not in x]}
  if args.apply:
   path=ROOT/'src/data/qualified-exposure-etfs.json';old=json.loads(path.read_text())if path.exists()else{}
+  listing_path=ROOT/'src/data/qualified-listing-records.json';listing_archive=json.loads(listing_path.read_text())if listing_path.exists()else{}
+  history_sources=json.loads((ROOT/'scripts/monthly-automation.json').read_text())['series']+json.loads((ROOT/'scripts/non-bond-monthly-sources.json').read_text())['series']
+  required_listing_ids={source['listingEvidenceId'] for source in history_sources if source.get('listingEvidenceId')}
   current=json.loads((ROOT/'src/data/automated-etf.json').read_text());current.update({r['isin']:r['automatedRecord']for r in old.values()});valid=[]
   for r in report['records']:
    previous=old.get(r['id']);
@@ -99,10 +117,13 @@ def main():
     merged=merge_collection({'checkedAt':now.isoformat(),'shares':[r]},current,{})
     if previous and any(r[field]['asOf']<previous[field]['asOf']for field in ['countries','sectors','holdings','aum']):raise ValueError('Observation date regressed')
     if previous and any(k not in r.get('metrics',{}) or r['metrics'][k]['asOf']<v['asOf']for k,v in previous.get('metrics',{}).items()):raise ValueError('Issuer metric missing or observation date regressed')
+    # A partial current list cannot erase the dated proof of an active history.
+    listing_archive=retain_listing_evidence(listing_archive,[previous,r],required_listing_ids)
     current=merged;r['automatedRecord']=merged[r['isin']];old[r['id']]=r;valid.append(r)
    except (ValueError,KeyError,TypeError)as e:report['excluded'].append({'id':r['id'],'isin':r['isin'],'error':str(e)})
   report['records']=valid
   write_json_atomic(path,old)
+  write_json_atomic(listing_path,listing_archive)
   write_json_atomic(ROOT/'src/data/automated-etf.json',{k:v for k,v in current.items()if k not in {r['isin']for r in old.values()}})
  active=json.loads((ROOT/'src/data/qualified-exposure-etfs.json').read_text())if (ROOT/'src/data/qualified-exposure-etfs.json').exists()else{}
  for row in report['excluded']:row['active']=row['id']in active
