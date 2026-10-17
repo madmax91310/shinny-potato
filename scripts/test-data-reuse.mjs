@@ -27,6 +27,12 @@ for (const fact of HISTORY_FACTS) {
   assert.match(text, /(?:Hors|hors) frais(?: du courtier)? et fiscalité/)
   assert(!/NaN|undefined/.test(text))
 }
+for (const id of ['paypal', 'nvidia']) {
+  const fact = HISTORY_FACTS.find(item => item.id === `monthly-drawdown-${id}`)
+  assert.equal(fact.family, 'actions-historiques')
+  assert.match(fact.note, /dividendes réinvestis et divisions d’actions/)
+  assert(!/ETF|Frais du fonds|EQUITY/.test(`${fact.note} ${fact.hook}`))
+}
 assert.equal(HISTORY_FACTS.length, HISTORY_STATISTIC_IDS.length * 2)
 for (const item of ALLOCATION_CASES) {
   assert.equal(item.sources.length, 2)

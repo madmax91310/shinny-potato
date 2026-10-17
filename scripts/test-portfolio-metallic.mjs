@@ -11,6 +11,8 @@ try {
   const page = await browser.newPage(); await page.goto(base)
   const result = await page.evaluate(async () => {
     const { ASSETS, YEARS } = await import('/shinny-potato/src/data/portfolio-assets.js')
+    const { ensurePortfolioAssets } = await import('/shinny-potato/src/data/portfolio-asset-loader.js')
+    await ensurePortfolioAssets(ASSETS.map(asset => asset.id))
     const { buildManualPortfolio, generatePortfolio } = await import('/shinny-potato/src/pages/portfolio-generator/engine.js')
     const { computeYearlyPerf, returnCurrency } = await import('/shinny-potato/src/pages/portfolio-generator/performance.js')
     const { renderPortfolioImage } = await import('/shinny-potato/src/pages/portfolio-generator/canvasImage.js')
