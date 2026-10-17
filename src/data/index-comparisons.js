@@ -110,6 +110,7 @@ export const FAMILIES = [
       // https://www.ishares.com/gls-download/literature/fact-sheet/cssx5e-ishares-core-euro-stoxx-50-ucits-etf-fund-fact-sheet-en-gb.pdf
       { key: 'eurostoxx50', label: 'iShares EURO STOXX 50 (SXRT)', ...getInstrumentComparatorReturns('IE00B53L3W79') },
     ],
+    perfMethodNote: 'Performances du fonds publiées par l’émetteur (NAV), en euros, revenus réinvestis. Les choix manuels du Générateur peuvent utiliser les cours de Bourse ajustés de la même part ; ces deux bases peuvent différer.',
     verdictTitle: '✅ LE VERDICT',
     verdict: [
       { q: '💳 Exposition la plus large, en PEA ?', a: 'ETZ (BNP STOXX 600)' },
@@ -380,6 +381,7 @@ export const FAMILIES = [
       // https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011440478/FRA/FRA/RETAIL/ETF/20251231
       { key: 'plem', label: 'Amundi PEA Emergent EMEA (PLEM)', ...getInstrumentComparatorReturns('FR0011440478') },
     ],
+    perfMethodNote: 'Performances du fonds publiées par l’émetteur (NAV), en euros, revenus réinvestis. Les choix manuels du Générateur peuvent utiliser les cours de Bourse ajustés de la même part ; ces deux bases peuvent différer.',
     verdictTitle: '✅ LE VERDICT',
     verdict: [
       { q: '💳 Tu veux un fonds PEA généraliste sur les émergents ?', a: 'PAEEM — indice ESG sur 23 pays émergents, Égypte exclue.' },
