@@ -22,7 +22,14 @@ function rounded(ctx, x, y, w, h, fill, stroke, radius = 14) {
 function label(ctx, value, x, y, maxWidth, size = 33, align = 'left') {
   ctx.font = `700 ${size}px Arial, sans-serif`
   const words = value.split(' '), rows = []; let line = ''
-  for (const word of words) {
+  for (let word of words) {
+    // Wrap long single-word names too, rather than shrinking them to a tiny label.
+    if (ctx.measureText(word).width > maxWidth && line) { rows.push(line); line = '' }
+    while (ctx.measureText(word).width > maxWidth && word.length > 1) {
+      let cut = word.length - 1
+      while (cut > 1 && ctx.measureText(`${word.slice(0, cut)}-`).width > maxWidth) cut--
+      rows.push(`${word.slice(0, cut)}-`); word = word.slice(cut)
+    }
     const next = line ? `${line} ${word}` : word
     if (ctx.measureText(next).width > maxWidth && line) { rows.push(line); line = word } else line = next
   }
