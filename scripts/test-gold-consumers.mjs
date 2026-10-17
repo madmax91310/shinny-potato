@@ -26,7 +26,10 @@ try {
   const { derive, buildTweetText } = await load('pages/investment-calculator/lib.js')
   const { getAssetMaxDate } = await load('pages/tweet-midi/data/marketHistory.js')
   assert.equal(ASSETS.or.points.at(-1).date, next)
-  assert.equal(LATEST_YM, next)
+  // Gold is collected separately and may trail the market series: the shared latest
+  // month includes it without assuming gold is the most recent series.
+  assert.equal(LATEST_YM, Object.values(ASSETS).map(asset => asset.points.at(-1).date).sort().at(-1))
+  assert(LATEST_YM >= next)
   assert.equal(MARKET_HISTORY_REVIEW['history:or'].periodEnd, next)
   assert.equal(getAssetMaxDate('or'), next)
   const state = { assetId: 'or', amountRaw: '1000', mode: 'dca', startYear: 2020, startMonth: 1, overridePriceRaw: '' }

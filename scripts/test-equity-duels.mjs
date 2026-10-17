@@ -28,5 +28,8 @@ assert.deepEqual(annualEquityReturns({...sample,currency:null}),{})
 assert.deepEqual(annualEquityReturns({...sample,responseSha256:null}),{})
 const missing=annualEquityReturns({...sample,points:sample.points.filter(([m])=>m!=='2023-06')})
 assert.equal(missing[2023],undefined)
-assert.equal(annualEquityReturns(sample)[2026],undefined)
+// An incomplete calendar year never yields an annual return, whatever the current year.
+const lastMonth=sample.points.at(-1)[0]
+if (!lastMonth.endsWith('-12')) assert.equal(annualEquityReturns(sample)[Number(lastMonth.slice(0,4))],undefined)
+assert.equal(annualEquityReturns({...sample,points:sample.points.filter(([m])=>m<='2025-06')})[2025],undefined)
 console.log(`${items.length} equity duels: adjusted returns, FX, complete years, sources, art and copy verified.`)

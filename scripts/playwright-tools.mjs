@@ -51,7 +51,7 @@ import { buildCustomDuel, buildDuel, buildTweet } from '../src/pages/portfolio-d
 import { getRecipes } from '../src/pages/portfolio-generator/recipes.js';
 import { DUELS } from "../src/pages/portfolio-duels/data.js";
 import { SHEETS } from "../src/data/index-factsheets.js";
-import { ASSETS as HISTORY } from '../src/data/market-history.js';
+import { ASSETS as HISTORY, LATEST_YM as LATEST_HISTORY_YM } from '../src/data/market-history.js';
 import { fmtEUR as fmtHistoryPrice, fmtPct as fmtHistoryPct } from '../src/pages/investment-calculator/lib.js';
 import { TWEETS } from '../src/pages/tweet-bank/data.js';
 import { EDITORIAL_CASES as CASES } from "../src/data/editorial-cases.js";
@@ -737,7 +737,9 @@ async function testTweetMidi(page) {
   await choose(page.locator('#secondary-select'), '2016');
   await page.getByRole("button", { name: "🔄 Générer", exact: true }).click();
   const performance = await page.locator('pre').innerText();
-  const minimal = /^📈 Performance du S&P 500 de début 2016 à fin 2025 👇\nTotal Return · USD · dividendes bruts réinvestis\n\n/u.test(performance)
+  // The final year advances every January with the collected December close.
+  const lastSp500Year = Number(LATEST_HISTORY_YM.slice(0, 4)) - 1;
+  const minimal = performance.startsWith(`📈 Performance du S&P 500 de début 2016 à fin ${lastSp500Year} 👇\nTotal Return · USD · dividendes bruts réinvestis\n\n`)
     && performance.split('\n').at(-1).startsWith('Sur toute la période : ')
     && !/💬|Livret A|Cours en dollars/u.test(performance)
     && (await page.getByRole('checkbox').count()) === 0;
