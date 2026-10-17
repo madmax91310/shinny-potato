@@ -55,8 +55,12 @@ def evaluate_monitoring(state, context, registry, now, radar=None):
                 'dataId': identifier})
         if row.get('status') == 'failure' and (not row.get('dataFailures') or row.get('publicationStatus') == 'failure'):
             publishing = row.get('publicationStatus') == 'failure'
-            add(('publication:' if publishing else 'workflow:') + workflow, {**base, 'kind': 'publication' if publishing else 'collection',
-                'field': 'Publication' if publishing else 'Exécution du collecteur',
+            # Data-only lane: the data reached the site; only a check after publication needs repair.
+            checks_only = (not publishing and row.get('publicationStatus') == 'success' and row.get('failures')
+                           and all(f['job'].startswith('deploy /') for f in row['failures']))
+            kind = 'publication' if publishing else 'checks' if checks_only else 'collection'
+            add(f"{'workflow' if kind == 'collection' else kind}:{workflow}", {**base, 'kind': kind,
+                'field': {'publication': 'Publication', 'checks': 'Contrôle après publication'}.get(kind, 'Exécution du collecteur'),
                 'cause': ' ; '.join(f"{f['job']} : {f['step']}" for f in row.get('failures', [])) or 'Exécution en échec ; consulter le journal.'})
     for row in context['alerts']:
         add('calendar:' + row['id'], {**row, 'kind': 'freshness', 'cause': ('Date future à vérifier.' if row['category'] == 'future-date' else 'Échéance de vérification atteinte ; contrôler la période disponible.'), 'lastSuccessAt': row.get('checkedAt')})

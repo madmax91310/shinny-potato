@@ -234,6 +234,21 @@ absence de performance 2020 pour les deux ETP CoinShares, suppression de moyenne
 sur les bear markets. Le script ne prétend pas vérifier l'exactitude des autres chiffres ;
 ceux-ci restent soumis aux documents des émetteurs et aux audits dédiés.
 
+## `classify-deploy-scope.mjs` et `smoke-data-routes.mjs`
+
+`deploy-pages.yml` classe chaque instantané avant publication. `classify-deploy-scope.mjs`
+lit le commit en ligne dans `build-info.json` et liste les fichiers modifiés depuis : si tous
+sont des chemins que les collecteurs passent à `commit-validated-data.sh`, le code est celui
+d'un instantané déjà validé et la voie « données » s'applique (contrôles navigateur
+éditoriaux consultatifs). Toute autre différence, ou un commit en ligne inconnu, garde le
+portail complet. `test-deploy-scope.mjs` couvre les deux cas.
+
+`smoke-data-routes.mjs` ouvre chaque outil routé (et quelques liens profonds vers les outils
+de performance) sur le site construit et échoue sur une erreur de page, un écran d'erreur,
+un outil vide ou une valeur `NaN`/`undefined`/`Infinity`. Il ne vérifie aucun chiffre :
+une collecte légitime ne peut pas le casser, une donnée corrompue si. Il bloque toutes les
+publications.
+
 ## `playwright-tools.mjs`
 
 Le duel de portefeuilles compare deux constructions indépendantes : une base ETF obligatoire,

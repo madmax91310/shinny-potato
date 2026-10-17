@@ -42,6 +42,32 @@ jobs:
           else
             bash scripts/check-pages-head.sh
           fi
+  # Data-only lane: when every file changed since the published commit is an
+  # automation data path, the code already passed the full gate. Editorial and
+  # visual browser checks then become advisory, so refreshed data is never held
+  # back by an unrelated check; the build, Python and smoke checks still block.
+  # Pull requests, code changes and any uncertainty keep the full gate.
+  scope:
+    needs: current-snapshot
+    if: needs.current-snapshot.outputs.current == 'true'
+    runs-on: ubuntu-26.04
+    permissions:
+      contents: read
+    outputs:
+      data_only: ${{ steps.scope.outputs.data_only }}
+      published: ${{ steps.scope.outputs.published }}
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          ref: ${{ inputs.ref || github.sha }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 20
+      - id: scope
+        if: github.event_name != 'pull_request'
+        run: node scripts/classify-deploy-scope.mjs --published-url "https://${GITHUB_REPOSITORY_OWNER}.github.io/${GITHUB_REPOSITORY#*/}/build-info.json"
+
   build:
     needs: current-snapshot
     if: needs.current-snapshot.outputs.current == 'true'
@@ -166,6 +192,9 @@ jobs:
       - run: node scripts/test-format-loading.mjs --built
       - run: node scripts/test-practical-sheets.mjs
       - run: node scripts/test-performance-links.mjs
+      - run: node scripts/test-deploy-scope.mjs
+      - name: Record the published commit for the data-only lane
+        run: printf '{"sha":"%s","builtAt":"%s"}\n' "$(git rev-parse HEAD)" "$(date -u +%Y-%m-%dT%H:%M:%SZ)" > dist/build-info.json
       - uses: actions/upload-artifact@v7.0.1
         with:
           name: validated-site
@@ -356,9 +385,55 @@ jobs:
           if-no-files-found: ignore
           retention-days: 7
 
+  # Blocking in every lane: each tool must render the refreshed data without a
+  # crash or an invalid value. It asserts no figures, so data updates cannot break it.
+  smoke:
+    needs: build
+    runs-on: ubuntu-26.04
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          ref: ${{ needs.build.outputs.commit_sha }}
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - uses: actions/download-artifact@v4
+        with:
+          name: validated-generated-data
+          path: src/data
+      - uses: actions/download-artifact@v4
+        with:
+          name: validated-site
+          path: dist
+      - uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: chromium-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+      - run: npx playwright install --with-deps chromium
+      - run: node scripts/smoke-data-routes.mjs
+
+  # Data-only snapshots are published even if an advisory browser check failed;
+  # this job keeps the failure visible in the run and in the monitoring issue.
+  advisory-checks:
+    needs: [scope, browser-checks, exposure-browser-check, deploy]
+    if: always() && needs.scope.outputs.data_only == 'true' && (needs.browser-checks.result == 'failure' || needs.exposure-browser-check.result == 'failure')
+    runs-on: ubuntu-26.04
+    steps:
+      - run: |
+          echo "Données publiées (voie données : publication ${{ needs.deploy.result }}). Un contrôle navigateur éditorial a échoué et doit être réparé ; il ne bloque plus les données." >> "$GITHUB_STEP_SUMMARY"
+          exit 1
+
   deploy:
-    needs: [build, python-checks, browser-checks, exposure-browser-check]
-    if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
+    needs: [scope, build, python-checks, browser-checks, exposure-browser-check, smoke]
+    if: >-
+      always() && github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
+      && needs.build.result == 'success' && needs.python-checks.result == 'success' && needs.smoke.result == 'success'
+      && ((needs.browser-checks.result == 'success' && needs.exposure-browser-check.result == 'success')
+          || needs.scope.outputs.data_only == 'true')
     # Explicitly validate the next ubuntu-latest image before its rollout.
     runs-on: ubuntu-26.04
     # Serialize actual publications, without interrupting an active publication

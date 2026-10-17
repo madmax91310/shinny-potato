@@ -32,6 +32,21 @@ class MonitoringTests(unittest.TestCase):
         state['monitoring'] = resolved
         self.assertEqual(evaluate(state)['revision'], 2)
 
+    def test_published_data_with_failed_advisory_check_is_not_a_publication_failure(self):
+        state = copy.deepcopy(STATE)
+        row = state['workflows']['x.yml']
+        row.update({'status': 'failure', 'publicationStatus': 'success',
+                    'failures': [{'job': 'deploy / browser-checks (2)', 'step': 'Run node scripts/run-browser-checks.mjs 2 4'},
+                                 {'job': 'deploy / advisory-checks', 'step': 'Run echo'}]})
+        incident = evaluate(state)['active']['checks:x.yml']
+        self.assertEqual((incident['kind'], incident['field']), ('checks', 'Contrôle après publication'))
+        self.assertIn('browser-checks (2)', incident['cause'])
+        row['publicationStatus'] = 'failure'
+        self.assertEqual(evaluate(state)['active']['publication:x.yml']['kind'], 'publication')
+        # A failed collector step is never relabelled as a mere check, even when publication succeeded.
+        row.update({'publicationStatus': 'success', 'failures': [{'job': 'refresh', 'step': 'Collect observations'}]})
+        self.assertEqual(evaluate(state)['active']['workflow:x.yml']['kind'], 'collection')
+
     def test_silent_collector_and_data_deadline_independent_of_success(self):
         state = copy.deepcopy(STATE)
         state['workflows']['x.yml']['completedAt'] = '2026-10-11T08:00:00Z'
