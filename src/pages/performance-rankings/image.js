@@ -31,7 +31,7 @@ function label(ctx, value, x, y, maxWidth, size = 33, align = 'left') {
     // Wrap long single-word names too, rather than shrinking them to a tiny label.
     if (ctx.measureText(word).width > maxWidth && line) { rows.push(line); line = '' }
     while (ctx.measureText(word).width > maxWidth && word.length > 1) {
-      let cut = word.length - 1
+      let cut = Math.ceil(word.length / 2)
       while (cut > 1 && ctx.measureText(`${word.slice(0, cut)}-`).width > maxWidth) cut--
       rows.push(`${word.slice(0, cut)}-`); word = word.slice(cut)
     }
