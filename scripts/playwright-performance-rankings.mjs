@@ -58,8 +58,10 @@ try {
     await writeFile(`test-artifacts/performance-rankings/export-${count}.png`, Buffer.from(png.split(',')[1], 'base64'))
     dimensions[count] = await img.evaluate(img => ({ width: img.naturalWidth, height: img.naturalHeight }))
   }
-  assert(dimensions[3].height < dimensions[5].height)
-  assert(dimensions[5].height < dimensions[6].height)
+  for (const { width, height } of Object.values(dimensions)) {
+    assert.equal(width, 1200)
+    assert(height <= 1230)
+  }
   await page.getByRole('group', { name: 'Catégorie', exact: true }).locator('[data-option][data-value="us-stocks"]').click()
   await page.getByRole('button', { name: 'Personnaliser les actifs', exact: true }).click()
   await page.getByRole('button', { name: 'Nouvelle sélection', exact: true }).click()
