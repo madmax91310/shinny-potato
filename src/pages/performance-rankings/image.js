@@ -20,8 +20,13 @@ function rounded(ctx, x, y, w, h, fill, stroke, radius = 14) {
   if (stroke) { ctx.strokeStyle = stroke; ctx.lineWidth = 1.5; ctx.stroke() }
 }
 function label(ctx, value, x, y, maxWidth, size = 33, align = 'left') {
-  ctx.font = `700 ${size}px Arial, sans-serif`
   const words = value.split(' '), rows = []; let line = ''
+  // Prefer a modest size adjustment before splitting a single long word.
+  do {
+    ctx.font = `700 ${size}px Arial, sans-serif`
+    if (words.every(word => ctx.measureText(word).width <= maxWidth) || size <= 24) break
+    size--
+  } while (size > 23)
   for (let word of words) {
     // Wrap long single-word names too, rather than shrinking them to a tiny label.
     if (ctx.measureText(word).width > maxWidth && line) { rows.push(line); line = '' }
