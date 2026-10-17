@@ -14,8 +14,20 @@ export function automationOverview(status, now = new Date()) {
     const overdue = validCompleted && maxAge && now.getTime() - completed > maxAge * 3600000
     const state = value.status === 'failure' || failures ? 'failure'
       : overdue ? 'overdue' : validCompleted && value.collectionStatus === 'success' ? 'success' : 'unknown'
-    return { ...value, id, state, failureCount: failures, maxAgeHours: maxAge }
+    const cause = [...(value.failures ?? []).map(failure => `${failure.job} : ${failure.step}`), ...Object.values(value.dataFailures ?? {}).map(data => data.cause).filter(Boolean)]
+    return { ...value, id, state, failureCount: failures, maxAgeHours: maxAge, paths: registry[id]?.paths ?? [], age: relativeAge(value.completedAt, now), cause: [...new Set(cause)].join(' ; ') || null }
   }).sort((a, b) => a.name.localeCompare(b.name, 'fr'))
+}
+
+// Age of the latest finished run, for a reader who should not compute it from a date.
+export function relativeAge(value, now = new Date()) {
+  const stamp = Date.parse(value)
+  if (!Number.isFinite(stamp) || stamp > now.getTime()) return null
+  const minutes = Math.floor((now.getTime() - stamp) / 60000)
+  if (minutes < 60) return `il y a ${minutes} min`
+  const hours = Math.floor(minutes / 60)
+  if (hours < 48) return `il y a ${hours} h`
+  return `il y a ${Math.floor(hours / 24)} j`
 }
 
 export function automationFailures(status) {

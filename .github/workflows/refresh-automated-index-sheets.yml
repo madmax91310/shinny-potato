@@ -27,9 +27,11 @@ jobs:
     concurrency:
       group: active-market-data-${{ github.event_name == 'pull_request' && format('{0}-{1}', github.workflow, github.ref) || 'production' }}
       cancel-in-progress: false
+      queue: max
     permissions:
       contents: write
     outputs:
+      failed: ${{ steps.partial.outputs.failed }}
       commit_sha: ${{ steps.commit.outputs.commit_sha }}
     steps:
       - uses: actions/checkout@v7.0.1
@@ -66,6 +68,10 @@ jobs:
           name: complete-index-sheet-observations
           path: ${{ runner.temp }}/selected-index-observations.json
           retention-days: 35
+      - name: Detect partial failures
+        id: partial
+        if: always()
+        run: python scripts/report_partial_failures.py "$RUNNER_TEMP/selected-index-observations.json"
       - name: Validate collected observations
         run: echo 'Mandatory observation checks passed'
       - name: Commit validated observations
@@ -85,3 +91,11 @@ jobs:
     uses: ./.github/workflows/deploy-pages.yml
     with:
       ref: ${{ needs.collect.outputs.commit_sha }}
+  report-failures:
+    needs: [collect, deploy]
+    if: always() && needs.collect.outputs.failed == 'true'
+    runs-on: ubuntu-24.04
+    steps:
+      - run: |
+          echo 'Collecte partielle des fiches d’indices : les dernières valeurs validées sont conservées. Voir complete-index-sheet-observations.' >> "$GITHUB_STEP_SUMMARY"
+          exit 1

@@ -30,3 +30,30 @@ for (const completedAt of [undefined, 'invalid', '2026-10-14T00:00:00Z']) {
   assert.equal(automationOverview(bad, now).find(r => r.id === 'incomplete').state, 'unknown')
 }
 assert(automationFailures(status).some(row => row.id === 'partial:one'), 'Un échec de champ doit apparaître même si le workflow global réussit')
+
+// Every production collector is supervised, with its phases and the exact tool routes it feeds.
+{
+  const { readdirSync } = await import('node:fs')
+  const { TOOLS } = await import('../src/tools.js')
+  const { relativeAge } = await import('../src/pages/data-review/automation.js')
+  const routes = new Set(TOOLS.map(tool => tool.to))
+  // Diagnostics that commit nothing are not collectors; list them here with their reason.
+  const diagnostics = { 'probe-bitcoin-monthly.yml': 'Pilote Coinbase : diagnostic indépendant, aucune donnée active' }
+  const collectors = readdirSync(new URL('../.github/workflows/', import.meta.url)).filter(name => /^(update|collect|refresh)-.*\.yml$/.test(name) && !(name in diagnostics))
+  for (const name of collectors) assert(registry[name], `Collecteur hors surveillance : ${name}`)
+  for (const [id, entry] of Object.entries(registry)) {
+    assert(Array.isArray(entry.paths) && entry.paths.length, `Routes absentes : ${id}`)
+    for (const path of entry.paths) assert(routes.has(path), `Route inconnue pour ${id} : ${path}`)
+    assert(Array.isArray(entry.collectionSteps) && entry.collectionSteps.length, `Étapes de collecte absentes : ${id}`)
+    assert(entry.tools.every(tool => typeof tool === 'string' && tool.length), `Libellés d’outils invalides : ${id}`)
+  }
+  const withPaths = automationOverview(status, now).find(r => r.id === 'update-investor-13f.yml')
+  assert.deepEqual(withPaths.paths, ['/portefeuilles-investisseurs'])
+  assert.equal(withPaths.age, 'il y a 10 h')
+  assert.equal(relativeAge('2026-10-13T19:45:00Z', now), 'il y a 15 min')
+  assert.equal(relativeAge('2026-10-10T10:00:00Z', now), 'il y a 3 j')
+  assert.equal(relativeAge('invalid', now), null)
+  const withCause = automationOverview({ schemaVersion: 1, workflows: { x: { name: 'X', status: 'failure', failures: [{ job: 'deploy / build', step: 'Run npm run audit:etf-annual-performance' }], dataFailures: { a: { cause: 'HTTP 403' } } } } }, now).find(r => r.id === 'x')
+  assert.equal(withCause.cause, 'deploy / build : Run npm run audit:etf-annual-performance ; HTTP 403')
+  console.log(`Automation manifest: ${collectors.length} collectors supervised, routes, phases, age and causes verified.`)
+}

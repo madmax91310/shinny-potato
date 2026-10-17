@@ -44,3 +44,20 @@ for (const amount of AMOUNT_PRESETS) for (const years of DURATION_PRESETS) for (
   }
 }
 console.log(`Impact des frais : ${count} variantes, calculs indépendants, égalités, frais inversés, ETF sourcés et textes validés.`)
+
+// Envelope fees collected from the insurance registry add to the support fee.
+{
+  const { ENVELOPE_FEES, envelopeFeeOption } = await import('../src/data/envelope-fees.js')
+  const { effectiveFees } = await import('../src/pages/fee-impact/lib.js')
+  const contract = ENVELOPE_FEES.find(option => option.fee > 0)
+  assert(contract && contract.sourceUrl.startsWith('https://') && contract.checkedAt, 'Au moins un contrat avec frais sur UC sourcés')
+  assert.equal(envelopeFeeOption('').fee, 0); assert.equal(envelopeFeeOption('inconnu').fee, 0)
+  const withEnvelope = { ...base, envelope2: contract.id }
+  assert.deepEqual(effectiveFees(withEnvelope), { fee1: base.fee1, fee2: Math.round((base.fee2 + contract.fee) * 1000) / 1000 })
+  assert.equal(computeComparison(withEnvelope).capital2, computeComparison({ ...base, fee2: base.fee2 + contract.fee }).capital2)
+  const envelopeText = buildTweetText(withEnvelope)
+  assert.match(envelopeText, /frais d’enveloppe/)
+  assert(envelopeText.includes(contract.contract) && envelopeText.includes(contract.sourceUrl))
+  assert.doesNotMatch(buildTweetText(base), /enveloppe/)
+  console.log(`Impact des frais : ${ENVELOPE_FEES.length - 1} contrats d’assurance-vie proposés comme frais d’enveloppe.`)
+}

@@ -4,12 +4,16 @@ import ToolWorkspace from '../../design-system/ToolWorkspace'
 import { useState, useEffect, useRef, Fragment } from 'react'
 import { BROKERS, ROWS, DUELS, MAX_SELECT, byId, rankRow, buildTweet, documentedForAll } from './data'
 import { BROKER_EVIDENCE, EVIDENCE_FIELDS, OFFICIAL_SOURCES, SECONDARY_SOURCES } from './evidence'
+import { tariffDates } from './lib'
 import PageHeader from '../../design-system/PageHeader'
 import Button from '../../design-system/Button'
 import BrokerVersusCard from './BrokerVersusCard'
 import './broker-comparator.css'
 
-const fmtDate = new Intl.DateTimeFormat('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date())
+const longDate = new Intl.DateTimeFormat('fr-FR', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'Europe/Paris' })
+const fmtDay = value => value ? longDate.format(new Date(`${value}T12:00:00Z`)) : null
+const fmtDate = longDate.format(new Date())
+
 
 function PeaPill({ val, label }) {
   const cls = val === null ? 'nc' : val ? 'yes' : 'no'
@@ -134,12 +138,13 @@ function ComparisonCard({ selected }) {
   const gridStyle = { gridTemplateColumns: `repeat(${n}, 1fr)` }
   const shown = (field) => documentedForAll(selected, field)
   const envelopes = [['pea', 'PEA'], ['pme', 'PME'], ['jeune', 'Jeune']].filter(([field]) => shown(field))
+  const dates = tariffDates(selected)
 
   return (
     <div className="bc-card">
       <div className="bc-eyebrow">
-        <span>Comparatif courtiers · 2026</span>
-        <span className="bc-handle">{fmtDate}</span>
+        <span>Comparatif courtiers · {(dates.checkedAt ?? '').slice(0, 4) || new Date().getFullYear()}</span>
+        <span className="bc-handle">{dates.checkedAt ? `Tarifs contrôlés le ${fmtDay(dates.checkedAt)}` : fmtDate}</span>
       </div>
       <h1 className="bc-title">
         {brokers.map((b, i) => (
@@ -193,7 +198,7 @@ function ComparisonCard({ selected }) {
 
       <div className="bc-footer">
         <span className="bc-disclaimer">
-          Carte générée le {fmtDate}. Les dates de revue des fiches ne valident pas chaque donnée. Vérifie les tarifs avant publication — ceci ne constitue pas un
+          {dates.checkedAt ? `Grilles tarifaires officielles contrôlées le ${fmtDay(dates.checkedAt)}${dates.asOf ? `, dernière grille datée du ${fmtDay(dates.asOf)}` : ''} ; carte générée le ${fmtDate}.` : `Carte générée le ${fmtDate}.`} Les dates de revue des fiches ne valident pas chaque donnée. Vérifie les tarifs avant publication — ceci ne constitue pas un
           conseil en investissement.
         </span>
         <span className="bc-datestamp">📊 Éducation financière</span>

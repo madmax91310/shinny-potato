@@ -56,6 +56,11 @@ import { ASSETS as HISTORY, LATEST_YM as LATEST_HISTORY_YM } from '../src/data/m
 // with every monthly refresh, so it is never pinned in the expectations.
 // The year of the latest collected month is never complete in the annual tables.
 const INCOMPLETE_YEAR = Number(LATEST_HISTORY_YM.slice(0, 4));
+// Last calendar year an asset closes with a collected December point: the final line of
+// its annual table. It advances per asset when January brings the December close.
+const lastCompleteYear = id => Math.max(...HISTORY[id].points.filter(p => p.date.endsWith('-12') && Number(p.date.slice(0, 4)) < INCOMPLETE_YEAR).map(p => Number(p.date.slice(0, 4))));
+// Latest year of a sheet's official annual returns (sheet.returns is newest first).
+const latestSheetYear = sheet => String(Math.max(...(sheet.returns ?? []).map(([year]) => Number(year))));
 const latestMonth = id => {
   const [year, month] = HISTORY[id].points.at(-1).date.split('-').map(Number);
   return new Date(Date.UTC(year, month - 1, 1)).toLocaleDateString('fr-FR', { month: 'long', year: 'numeric', timeZone: 'UTC' });
@@ -754,17 +759,19 @@ async function testTweetMidi(page) {
   if (!minimal) failed.push('Performance depuis : format minimal');
   for (const id of ['etfWorldTech','etfAiBigData','etfWorldExUs','etfEmExChina']) {
     await choose(page.locator('#subject-select'), id);
-    await choose(page.locator('#secondary-select'), '2025');
+    const lastYear = lastCompleteYear(id);
+    await choose(page.locator('#secondary-select'), String(lastYear));
     await page.getByRole('button',{name:'🔄 Générer',exact:true}).click();
     const post=await page.locator('pre').innerText();
-    if(!post.includes('2025 :') || post.includes('2024 :') || post.includes(`${INCOMPLETE_YEAR} :`) || /NaN|undefined/.test(post)) failed.push(`${id}: années complètes de la part`);
+    if(!post.includes(`${lastYear} :`) || post.includes(`${lastYear - 1} :`) || post.includes(`${INCOMPLETE_YEAR} :`) || /NaN|undefined/.test(post)) failed.push(`${id}: années complètes de la part`);
   }
   await choose(page.locator('#subject-select'), 'stoxx600');
   await page.getByRole('button', { name: '🔄 Générer', exact: true }).click();
   const stoxxPerformance = await page.locator('pre').innerText();
-  const stoxxAnnual = (HISTORY.stoxx600.points.find(p => p.date === '2025-12').price
-    / HISTORY.stoxx600.points.find(p => p.date === '2024-12').price - 1) * 100;
-  if (!stoxxPerformance.includes(`2025 : ${fmtHistoryPct(stoxxAnnual)}`)
+  const stoxxYear = lastCompleteYear('stoxx600');
+  const stoxxAnnual = (HISTORY.stoxx600.points.find(p => p.date === `${stoxxYear}-12`).price
+    / HISTORY.stoxx600.points.find(p => p.date === `${stoxxYear - 1}-12`).price - 1) * 100;
+  if (!stoxxPerformance.includes(`${stoxxYear} : ${fmtHistoryPct(stoxxAnnual)}`)
       || stoxxPerformance.includes(`${INCOMPLETE_YEAR} :`)) failed.push('Performance depuis : historique officiel STOXX');
   await page.getByRole("button", { name: "Comparatif (2 actifs)", exact: true }).click();
   await choose(page.locator('#subject-select-a'), 'sp500');
@@ -780,7 +787,7 @@ async function testTweetMidi(page) {
     await choose(page.locator('#secondary-select'), '2020');
     await page.getByRole('button', { name: '🔄 Générer', exact: true }).click();
     const post = await page.locator('pre').innerText();
-    if (!post.includes('2025 :') || post.includes(`${INCOMPLETE_YEAR} :`) || /NaN|undefined/.test(post)) failed.push(`Nouvelle entreprise ${id}`);
+    if (!post.includes(`${lastCompleteYear(id)} :`) || post.includes(`${INCOMPLETE_YEAR} :`) || /NaN|undefined/.test(post)) failed.push(`Nouvelle entreprise ${id}`);
   }
   await page.getByRole('button', { name: "Pouvoir d'achat", exact: true }).click();
   await choose(page.locator('[data-selector]'), '2025');
@@ -951,7 +958,7 @@ async function testFactsheetTweets(page) {
     const tweet = await draft.inputValue();
     const checks = {
       constituents: tweet.includes((SHEETS[index].constituents ?? SHEETS[index].indexFacts.targetConstituents).toLocaleString('fr-FR')),
-      annualReturns: tweet.includes('2025'),
+      annualReturns: tweet.includes(latestSheetYear(SHEETS[index])),
       sectors: SHEETS[index].sectors.length === 0 || (tweet.includes('🧩 Les principaux secteurs') && sortedRows(SHEETS[index].sectors).slice(0, 3).every(([name, value]) => tweet.includes(`${sectorLabel(name)} : ${value.toLocaleString('fr-FR', { minimumFractionDigits: value % 1 === 0 ? 0 : 2, maximumFractionDigits: value % 1 === 0 ? 0 : 2 })} %`))),
       validText: !/undefined|NaN/.test(tweet),
       sources: (await page.locator('.fs-sources a').count()) >= 1,
@@ -967,7 +974,7 @@ async function testFactsheetTweets(page) {
   await draft.fill('Texte corrigé avant publication');
   await page.locator('.workspace-action-menu summary').click();
   await page.getByRole('button', { name: /Rétablir le modèle/ }).click();
-  ok &&= (await draft.inputValue()).includes('2025');
+  ok &&= (await draft.inputValue()).includes(latestSheetYear(SHEETS.at(-1)));
   await page.locator('.workspace-action-menu summary').click();
   await page.getByRole('button', { name: /Prévisualiser l’image PNG/ }).click();
   const preview = page.getByRole('dialog', { name: 'Aperçu de la fiche PNG' });

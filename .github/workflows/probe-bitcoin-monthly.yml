@@ -19,6 +19,7 @@ permissions:
 concurrency:
   group: bitcoin-pilot-${{ github.event_name == 'pull_request' && github.ref || 'scheduled' }}
   cancel-in-progress: false
+  queue: max
 
 jobs:
   observe:

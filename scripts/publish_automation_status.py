@@ -62,6 +62,19 @@ def normalize_report(report):
                 'errors': [{'id': row.get('isin', row.get('id')), 'name': row.get('isin', row.get('id')),
                             'error': row.get('error', 'Collecte échouée')} for row in failures],
                 'inactive': [{'id': row.get('isin', row.get('id'))} for row in excluded if row['active'] is False]}
+    if report.get('_collector') == 'feed' and isinstance(report.get('errors'), list) and isinstance(report.get('coverage'), dict):
+        # Radar feed: a family whose local sources could not be read keeps its previous
+        # signals and is reported as a partial failure. Same-period contradictions are
+        # review signals handled by the monitoring step, never collection failures.
+        failing = {}
+        for error in report['errors']:
+            reason = str(error.get('reason', 'Source indisponible'))
+            if 'Valeur contradictoire pour la même période' in reason:
+                continue
+            failing.setdefault('radar:' + str(error.get('family') or 'radar'), []).append(reason)
+        return {'successes': [{'id': 'radar:' + family} for family in report['coverage'] if 'radar:' + family not in failing],
+                'errors': [{'id': key, 'name': 'Radar · ' + key.split(':', 1)[1], 'field': 'Sources du radar',
+                            'error': ' ; '.join(sorted(set(reasons)))[:500]} for key, reasons in failing.items()]}
     if report.get('seriesId') == '011814631' and report.get('rates') and report.get('checkedAt'):
         return {'successes':[{'id':'inflation:011814631'}], 'errors':[]}
     if isinstance(report.get('sources'), dict) and 'failed' in report and 'changed' in report:

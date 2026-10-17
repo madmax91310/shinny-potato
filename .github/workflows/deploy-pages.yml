@@ -122,6 +122,8 @@ jobs:
       - run: python -m unittest discover -s scripts -p "test_performance_currency.py"
       - run: node scripts/test-performance-currency.mjs
       - run: node scripts/test-annual-rollover.mjs
+      - run: node scripts/test-inflation-consistency.mjs
+      - run: node scripts/test-fx-consistency.mjs
       - run: node scripts/test-automated-indices.mjs
       - run: node scripts/test-automated-index-sheets.mjs
       - run: node scripts/test-automation-gap-inventory.mjs
@@ -347,8 +349,10 @@ jobs:
         if: matrix.shard == 0
       - run: node scripts/playwright-nasdaq-total-return.mjs
         if: matrix.shard == 0
+      # Visual exports are diagnostics: a green shard needs none, a red shard keeps
+      # them a week (one shard can produce 2 GB of PNG exports).
       - uses: actions/upload-artifact@v7.0.1
-        if: always()
+        if: failure()
         with:
           name: tool-visual-checks-${{ matrix.shard }}
           path: test-artifacts
@@ -378,7 +382,7 @@ jobs:
       - run: npx playwright install --with-deps chromium
       - run: node scripts/playwright-exposure-scope.mjs
       - uses: actions/upload-artifact@v7.0.1
-        if: always()
+        if: failure()
         with:
           name: exposure-scope-browser
           path: test-artifacts/exposure-scope

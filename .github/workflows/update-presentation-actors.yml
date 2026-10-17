@@ -17,6 +17,7 @@ jobs:
     concurrency:
       group: actor-${{ github.event_name == 'pull_request' && github.ref || 'production' }}
       cancel-in-progress: false
+      queue: max
     permissions:
       contents: write
     outputs:

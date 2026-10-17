@@ -28,6 +28,7 @@ jobs:
     permissions:
       contents: write
     outputs:
+      failed: ${{ steps.partial.outputs.failed }}
       commit_sha: ${{ steps.commit.outputs.commit_sha }}
     steps:
       - uses: actions/checkout@v7.0.1
@@ -74,6 +75,10 @@ jobs:
             ${{ runner.temp }}/derived-index-observation.json
           if-no-files-found: ignore
           retention-days: 35
+      - name: Detect partial failures
+        id: partial
+        if: always()
+        run: python scripts/report_partial_failures.py "$RUNNER_TEMP/derived-index-observation.json"
       - name: Validate collected observations
         run: echo 'Mandatory observation checks passed'
       - name: Commit validated observations
@@ -93,3 +98,11 @@ jobs:
     uses: ./.github/workflows/deploy-pages.yml
     with:
       ref: ${{ needs.refresh.outputs.commit_sha }}
+  report-failures:
+    needs: [refresh, deploy]
+    if: always() && needs.refresh.outputs.failed == 'true'
+    runs-on: ubuntu-24.04
+    steps:
+      - run: |
+          echo 'Collecte partielle des indices dérivés du Bitcoin : les dernières valeurs validées sont conservées. Voir active-bitcoin-observation.' >> "$GITHUB_STEP_SUMMARY"
+          exit 1

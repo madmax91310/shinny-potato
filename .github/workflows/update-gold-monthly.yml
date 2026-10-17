@@ -19,6 +19,7 @@ permissions:
 concurrency:
   group: gold-refresh-${{ github.event_name == 'pull_request' && github.ref || 'master' }}
   cancel-in-progress: false
+  queue: max
 
 jobs:
   update:

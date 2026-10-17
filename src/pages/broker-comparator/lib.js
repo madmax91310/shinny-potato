@@ -1,4 +1,5 @@
 import { brokerShortCopy } from './shortCopy.js';
+import { BROKER_TARIFFS } from '../../data/broker-tariffs.js';
 
 export function buildBrokerTweet(brokers, observations, today) {
   if (brokers.length !== 2 || brokers.some(b => !b)) return '';
@@ -26,4 +27,12 @@ export function buildBrokerTweet(brokers, observations, today) {
     '💬 Tu choisirais lequel pour ton PEA ?',
     brokers.some(x => x.id === 'xtb') && '🤝 Je suis affilié à XTB. Ce comparatif est réalisé de ma propre initiative, sans rémunération pour ce post ni lien affilié.',
   ].filter(Boolean).join('\n\n');
+}
+
+// The card shows the dates of the tariff observations it is built from, never the day it is generated:
+// latest control date and latest official grid date among the selected brokers.
+export function tariffDates(ids, observations = BROKER_TARIFFS) {
+  const rows = ids.map(id => observations[id]).filter(Boolean);
+  const latest = key => rows.map(row => row[key]).filter(Boolean).sort().at(-1) ?? null;
+  return { checkedAt: latest('checkedAt'), asOf: latest('asOf') };
 }

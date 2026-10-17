@@ -79,3 +79,25 @@ const simulate = (portfolio,plan) => project(portfolio,{...plan,scenario:'centra
  close(result.final.cash,2400-deposited)
 }
 console.log('Simulateur : 15 groupes de vérification validés (capitalisation, flux, frais, plafonds, inflation, fiscalité simplifiée, comparaison et import).')
+
+// Regulated rates and ceilings come from the registries, never from a typed constant.
+{
+ const { newPocket: pocket, regulatedRate, ENVELOPES } = await import('../src/pages/wealth-simulator/data.js')
+ const { REGULATORY } = await import('../src/data/regulatory-data.js')
+ const { pelRateFor, PEL_CEILING, PEL_GENERATION_OPTIONS } = await import('../src/data/pel-rates.js')
+ assert.equal(pocket('ldds').rates.central, REGULATORY.lddsRate)
+ assert.ok(REGULATORY.lddsRate > 0 && REGULATORY.lddsRate < 10)
+ assert.equal(ENVELOPES.find(e => e.id === 'pea').ceiling, REGULATORY.peaCeiling)
+ assert.equal(ENVELOPES.find(e => e.id === 'pel').ceiling, PEL_CEILING)
+ assert.equal(pelRateFor('2024-06-01'), 2.25); assert.equal(pelRateFor('2025'), 1.75); assert.equal(pelRateFor('2026-03-01'), 2)
+ assert.equal(pelRateFor('2020'), 1); assert.equal(pelRateFor('2016-03-01'), 1.5); assert.equal(pelRateFor('2010'), 2.5); assert.equal(pelRateFor('1999'), null)
+ assert.equal(pelRateFor('2026', '2026-10-17'), 2, 'Une année en cours prend la génération actuelle')
+ assert.equal(regulatedRate('pel', '2023-05-05'), 2)
+ assert.equal(pocket('pel').rates.central, pelRateFor(new Date().toISOString().slice(0, 10)))
+ assert.ok(PEL_GENERATION_OPTIONS.every(o => /\d %$/.test(o.label)))
+ const {plan,p,portfolio}=base();p.envelope='pea';p.initial=149000;p.monthly=1000
+ const r=project(portfolio,{...plan,ceilings:{pea:150000}})
+ close(r.final.pockets[2].capital,150000);assert.ok(r.warnings.some(w=>w.includes('plafond légal')));assert.ok(!r.warnings.some(w=>w.includes('ne sont pas modélisés')))
+ const withoutCeiling=project(portfolio,{...plan,ceilings:{}});assert.ok(withoutCeiling.warnings.some(w=>w.includes('ne sont pas modélisés')))
+ assert.throws(()=>validatePlan({...emptyPlan(),portfolios:{...emptyPlan().portfolios,a:{...emptyPlan().portfolios.a,pockets:[{...pocket('pel'),opened:'hier'}]}}}),/ouverture/)
+}

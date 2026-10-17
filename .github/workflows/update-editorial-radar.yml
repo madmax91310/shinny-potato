@@ -99,6 +99,8 @@ jobs:
     permissions:
       contents: write
       issues: write
+    outputs:
+      failed: ${{ steps.partial.outputs.failed }}
     steps:
       # Execute only trusted master code, never code from a triggering PR.
       - uses: actions/checkout@v7.0.1
@@ -128,3 +130,15 @@ jobs:
           path: ${{ runner.temp }}/editorial-radar/feed.json
           retention-days: 35
           if-no-files-found: ignore
+      - name: Detect partial failures
+        id: partial
+        if: always()
+        run: python scripts/report_partial_failures.py "$RUNNER_TEMP/editorial-radar/feed.json"
+  report-failures:
+    needs: [update]
+    if: always() && needs.update.outputs.failed == 'true'
+    runs-on: ubuntu-26.04
+    steps:
+      - run: |
+          echo 'Radar partiel : une famille de sources locales est illisible ; ses signaux précédents sont conservés. Voir editorial-radar-observations.' >> "$GITHUB_STEP_SUMMARY"
+          exit 1

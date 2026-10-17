@@ -58,6 +58,11 @@ contradictoire ou non documenté. Les groupes d'indices peuvent contenir à la f
 une part PEA et d'autres parts dont le statut est inconnu.
 Les performances et encours gardent leur propre part, devise, méthode, date et source dans
 les données de l'outil : un rendement d'indice ne remplace pas celui d'un fonds.
+Les libellés de convention (devise, dividendes, conversion, période, note de méthode d'un indice)
+se composent via `src/lib/performance-conventions.js`, jamais en texte libre dans un outil.
+Les paramètres réglementaires viennent de `automated-regulatory.json` et `automated-economic.json` ;
+le taux du PEL par génération d'ouverture reste une table sourcée dans `src/data/pel-rates.js`
+tant que le collecteur réglementaire ne lit pas la fiche F16140.
 
 Quand un outil a besoin d'une donnée qu'un autre outil possède déjà et a déjà vérifiée, il
 l'importe directement plutôt que de la recopier. Exemples : 3 des 6 formats de Tweet Midi
