@@ -1,4 +1,4 @@
-# Couverture et fraîcheur des actifs — 2026-10-16
+# Couverture et fraîcheur des actifs — 2026-10-17
 
 Les états décrivent les observations enregistrées, pas une garantie réseau. Contrôle en retard : plus de 7 jours pour les champs ETF, 40 pour les historiques mensuels. Publication ancienne : seuil distinct, adapté au champ. Les caractéristiques manuelles ne sont pas comptées comme automatiques. Les principales positions ne constituent pas un portefeuille complet.
 
