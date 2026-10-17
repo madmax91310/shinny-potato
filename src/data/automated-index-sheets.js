@@ -52,9 +52,10 @@ export function completeAutomatedRecord(record, now = new Date()) {
 export const AUTOMATED_SHEET_DEFINITIONS = EDITORIAL_SHEET_DEFINITIONS
 // Complete records that neither an editorial definition nor an archive sheet covers get a sheet
 // titled by the canonical index name (18/10/2026); the caller passes the ids it already covers.
+// A derived sheet also needs the registry's index scope (markets): without it the sheet is not built.
 export function derivedSheetDefinitions(coveredIds, observations = records, now = new Date()) {
-  return Object.entries(observations).filter(([id, record]) => !coveredIds.includes(id) && completeAutomatedRecord(record, now))
-    .sort(([a], [b]) => a.localeCompare(b)).map(([id, record]) => ({ id, title: getCurrentIndexFacts(id, record.facts.asOf)?.index ?? id, derived: true }))
+  return Object.entries(observations).filter(([id, record]) => !coveredIds.includes(id) && completeAutomatedRecord(record, now) && typeof getCurrentIndexFacts(id, record.facts.asOf)?.markets === 'string')
+    .sort(([a], [b]) => a.localeCompare(b)).map(([id, record]) => ({ id, title: getCurrentIndexFacts(id, record.facts.asOf).index ?? id, derived: true }))
 }
 
 export function buildAutomatedIndexSheets(observations = records, now = new Date(), definitions = AUTOMATED_SHEET_DEFINITIONS) {
