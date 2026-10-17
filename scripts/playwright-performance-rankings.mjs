@@ -126,7 +126,9 @@ try {
       }
     }
     await page.getByRole('button', { name: '5 actions face à un ETF', exact: true }).click()
-    assert.equal(await page.getByRole('group', { name: 'Catégorie', exact: true }).getAttribute('data-value'), 'europe-finance-benchmark')
+    // Adding a reference preserves the five selected shares and their category.
+    assert.equal(await page.getByRole('group', { name: 'Catégorie', exact: true }).getAttribute('data-value'), 'europe-finance')
+    assert.equal(await page.locator('.rk-selected>div').count(), 6)
     for (const c of ALL_CATEGORIES.filter(c => c.benchmarkId)) {
       await category(c.id)
       assert.equal(await page.locator('.rk-selected>div').count(), 6)
