@@ -110,7 +110,7 @@ for (const record of DATA_CATALOG) for (const field of record.fields) {
 }
 const dcam = DATA_CATALOG.find(r => r.id === 'FR001400U5Q4');
 const peaField = dcam.fields.find(f => f.label === 'Éligibilité PEA');
-const dcamLinks = maintenanceLinks(dcam, peaField);
+const dcamLinks = maintenanceLinks(dcam, { ...peaField, metadata: { ...peaField.metadata, sourceUrls: ['https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR001400U5Q4/FRA/FRA/INSTITUTIONNEL/ETF/20260331'] } });
 const searchLink = dcamLinks.find(x => x.kind === 'search');
 assert(searchLink, 'Le PDF Amundi daté doit proposer une recherche explicite');
 assert.equal(new URL(searchLink.url).searchParams.get('q'), 'site:www.amundietf.fr FR001400U5Q4 fiche mensuelle');

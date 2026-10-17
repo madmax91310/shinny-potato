@@ -2,6 +2,7 @@
 import argparse
 import datetime as dt
 import json
+import sys
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor
 from urllib.parse import quote
@@ -13,7 +14,11 @@ def qualify(source, now, fetch=get_json, collect=collect_one):
     c=dict(source)
     url='https://query2.finance.yahoo.com/v8/finance/chart/'+quote(c['symbol'])+'?range=1mo&interval=1mo'
     meta=fetch(url)['chart']['result'][0]['meta']
-    expected_types = {'ETF','EQUITY'} if c.get('instrumentType') in ('ETC','ETN','ETP') and c.get('listingEvidenceId') and c.get('isin') else {'ETF'}
+    expected_types = {'ETF','EQUITY'} if c.get('instrumentType') in ('ETC','ETN','ETP') and c.get('listingEvidenceId') and c.get('isin') else {'EQUITY'} if c.get('instrumentType')=='EQUITY' and c.get('consumerScope')=='equity' and c.get('listingEvidence',{}).get('isin')==c.get('isin') else {'ETF'}
+    if (c.get('consumerScope')=='equity' and c.get('currency')=='GBP' and meta.get('currency')=='GBp'
+            and c.get('listingEvidence',{}).get('exchange')=='London Stock Exchange'):
+        c['currency']='GBp'
+        c['quoteUnitEvidence']={'provider':'Yahoo chart metadata','currency':'GBp','sourceCurrency':'GBP','unitsPerCurrency':100,'symbol':meta.get('symbol')}
     if meta['symbol']!=c['symbol'] or meta['currency']!=c['currency'] or meta['instrumentType'] not in expected_types:
         raise ValueError('Listing identity/type/currency mismatch; no replacement guessed')
     c['yahooInstrumentType'] = meta['instrumentType']
@@ -24,7 +29,7 @@ def qualify(source, now, fetch=get_json, collect=collect_one):
     start=month_shift(dt.datetime(first.year,first.month,1,tzinfo=UTC),1)
     c['periodStart']=max('2015-01',start.strftime('%Y-%m'))
     if c['periodStart']>=now.strftime('%Y-%m'):raise ValueError('No completed historical month')
-    c['verifyMonthlyDisagreements']=True
+    if c.get('consumerScope')!='equity':c['verifyMonthlyDisagreements']=True
     result=collect({**c,'qualifyContiguousSuffix':True},now)
     if result.get('qualificationCoverage'):
         c['periodStart']=result['periodStart']
@@ -39,6 +44,7 @@ def qualify(source, now, fetch=get_json, collect=collect_one):
 
 def apply_qualified(rows):
     def read(path):return json.loads((ROOT/path).read_text())
+    equities=read('src/data/automated-monthly.json')
     config=read('scripts/monthly-automation.json');records=read('src/data/automated-etf-monthly.json');evidence=read('scripts/source-snapshots/monthly-automated.json')
     identities=read('src/data/auto-history-identities.json')
     levels=read('src/data/anniversary-levels.json')
@@ -50,10 +56,11 @@ def apply_qualified(rows):
         if not level or level.get('isin')!=source['isin']:raise ValueError('Missing qualified daily anniversary close')
         levels[source['id']]=level
         config['series'].append(source)
-        records[source['id']]={k:v for k,v in result.items() if k not in ['proofRows','rawResponse','qualifiedAnniversary']}
+        target=equities if source.get('consumerScope')=='equity' else records
+        target[source['id']]={k:v for k,v in result.items() if k not in ['proofRows','rawResponse','qualifiedAnniversary']}
         evidence[source['id']]={k:v for k,v in result.items() if k not in ['rawResponse','points','anniversaryPoints','qualifiedAnniversary']}
         identities[source['id']]=dict(icon='📊',scene='world',title=source['ticker'],ticker=source['ticker'],instrumentType=source.get('instrumentType','ETF'))
-    for path,data in [('scripts/monthly-automation.json',config),('src/data/automated-etf-monthly.json',records),('scripts/source-snapshots/monthly-automated.json',evidence),('src/data/auto-history-identities.json',identities),('src/data/anniversary-levels.json',levels)]:write_json_atomic(ROOT/path,data)
+    for path,data in [('src/data/automated-monthly.json',equities),('scripts/monthly-automation.json',config),('src/data/automated-etf-monthly.json',records),('scripts/source-snapshots/monthly-automated.json',evidence),('src/data/auto-history-identities.json',identities),('src/data/anniversary-levels.json',levels)]:write_json_atomic(ROOT/path,data)
 
 def main():
     p=argparse.ArgumentParser();p.add_argument('--candidates',type=Path,required=True);p.add_argument('--limit',type=int,default=12);p.add_argument('--apply',action='store_true');a=p.parse_args()
@@ -67,7 +74,11 @@ def main():
     def one(c):
         try:return c,qualify(c,now),None
         except Exception as e:return c,None,str(e)
-    with ThreadPoolExecutor(max_workers=3)as pool:results=list(pool.map(one,candidates))
+    results=[]
+    with ThreadPoolExecutor(max_workers=3)as pool:
+        for index,row in enumerate(pool.map(one,candidates),1):
+            results.append(row)
+            if index%10==0 or index==len(candidates):print(f'Qualification progress: {index}/{len(candidates)}; {sum(result is not None for _,result,_ in results)} validated',file=sys.stderr,flush=True)
     valid=[]
     successful={c['isin'] for c,result,error in results if result}
     for c,result,error in results:

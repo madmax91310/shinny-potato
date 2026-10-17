@@ -96,7 +96,7 @@ def collect_one(config, now, json_fetch=None, byte_fetch=download):
             'sourceUrl':url,'sha256':hashlib.sha256(json.dumps(body,sort_keys=True,allow_nan=False).encode()).hexdigest(),
             'method':('Niveau XNDX Total Return USD de la dernière séance terminée, dividendes bruts réinvestis' if config.get('symbol')=='^XNDX' else 'Dernière séance terminée ; cours brut') if parser=='yahoo' else ('Niveau officiel de fin de mois, Total Return USD' if parser=='ftse' else 'Niveau officiel de fin de séance, variante exacte'),
             'maxAgeDays':45 if parser=='ftse' else 7,
-            **({key:config[key] for key in ('isin','ticker','mic','listingEvidenceId')} if config.get('consumerScope')=='catalog' else {})}
+            **({key:config[key] for key in ('isin','ticker','mic','listingEvidenceId') if key in config} if config.get('isin') else {})}
 
 def refresh(current, now, collect=collect_one, selected=None):
     merged=current.copy();successes=[];errors=[]

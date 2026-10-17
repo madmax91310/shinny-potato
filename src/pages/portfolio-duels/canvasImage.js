@@ -1,4 +1,4 @@
-import { YEARS } from '../../data/portfolio-assets.js'
+import { HISTORICAL_YEARS as YEARS } from '../../data/annual-window.js'
 import { formatCapital, formatPercent } from './lib.js'
 import { loadEditorialFont, loadArtImage } from '../tweet-midi/anniversaryArt.js'
 import { loadDuelArt, drawDuelArt } from './visualIdentity.js'

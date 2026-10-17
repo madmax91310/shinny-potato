@@ -452,5 +452,25 @@
       "Validate expanded exposures",
       "Validate collected observations"
     ]
+  },
+  "update-instrument-metadata.yml": {
+    "name": "Caractéristiques et statut PEA par ISIN",
+    "workflowName": "Update exact instrument metadata",
+    "collectionJob": "refresh",
+    "maxAgeHours": 48,
+    "artifact": "instrument-metadata-observations",
+    "tools": [
+      "Présentation ETF",
+      "Comparatif ETF",
+      "Générateur",
+      "Portefeuille / DCA"
+    ],
+    "collectionSteps": [
+      "Collect exact metadata observations"
+    ],
+    "validationSteps": [
+      "Validate metadata observations",
+      "Validate collected observations"
+    ]
   }
 }

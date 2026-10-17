@@ -6,6 +6,7 @@ import { PERFORMANCE_ART } from '../src/pages/tweet-midi/performanceArt.js'
 import { annualEquityReturns } from './lib/equity-duel-returns.mjs'
 import MONTHLY_FX from '../src/data/monthly-fx.json' with { type: 'json' }
 import GLOBAL from '../src/data/global-equities.json' with { type: 'json' }
+import LINKS from '../src/data/equity-history-links.json' with { type: 'json' }
 import { fxRate } from '../src/lib/fx-rate.js'
 // One build-derived year-end view of the ECB collector, shared by publication tools.
 const fx = Object.fromEntries(Object.entries(MONTHLY_FX.months).filter(([month]) => month.endsWith('-12')).map(([month, row]) => [month.slice(0, 4), row]))
@@ -17,7 +18,7 @@ function inEuros(value, year, currency) {
 const legacy = new Set(['apple','microsoft','broadcom','tesla','berkshire','asml', ...Object.keys(COMPANY_HISTORY)])
 const items = []
 for (const [id, record] of Object.entries(RECORDS)) {
-  if (!(record.consumerScope === 'equity' || legacy.has(id) || GLOBAL.some(a => a.id === id))) continue
+  if (!(LINKS[id] || record.consumerScope === 'equity' || legacy.has(id) || GLOBAL.some(a => a.id === id))) continue
   const allReturns = annualEquityReturns(record)
   // Duels use at most the six latest full calendar years.
   const lastYear = Math.max(...Object.keys(allReturns).map(Number))

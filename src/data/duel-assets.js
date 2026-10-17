@@ -118,7 +118,8 @@ const extraFunds = [
   ['financieres_monde', 'IE00BJ5JP097', 'Financières mondiales', 'financials'],
   ['blockchain_ishares', 'IE000RDRMSD1', 'Blockchain', 'blockchain'],
 ].map(([id, isin, label, exposure, role = 'theme']) => {
-  const series = MONTHLY_DUEL_RETURNS[isin] ?? getInstrumentDuelSeries(isin)
+  const market = MONTHLY_DUEL_RETURNS[isin]
+  const series = market && latestCommonYears([market.years],{minimum:3}).length>=3 ? market : getInstrumentDuelSeries(isin)
   if (!series?.source) throw new Error(`Historique de part absent : ${isin}`)
   return { id, isin, label, exposure, name: getInstrumentName(isin), role, group: ROLES[role],
     ...series, note: series.note ?? (['copper','platinum','palladium'].includes(exposure) ? 'Rendements NAV de l’ETC exact, frais inclus, en USD. '+(exposure==='copper'?'Contrats à terme via swap ; renouvellement des contrats et frais de swap distincts.':'Adossé à du métal physique ; sans revenu distribué.') : exposure === 'multifactor' ? 'Rendements NAV de la part exacte, revenus réinvestis. Le fonds a changé d’indice : cet historique ne décrit pas uniquement la stratégie STOXX actuelle.' : exposure === 'gold' ? 'Rendements de l’ETC adossé à de l’or physique, sans revenu distribué ; années complètes communes.' : 'Rendements de la part exacte, revenus réinvestis ; seules les années complètes disponibles sont comparées.') }
@@ -134,11 +135,13 @@ const routedFunds = [...DISTINCT_PORTFOLIO_CANDIDATES, {id:'cloud-wisdomtree',is
   role:'complement',group:ROLES.complement,note:[c.note,s.note].filter(Boolean).join(' ')}]
 })
 const equityItems = EQUITY_DUEL_RETURNS.map(item => ({...item, name: item.label, instrumentType: 'EQUITY', role: 'complement', group: 'Actions individuelles', exposure: item.id, basis: 'adjusted-price', note: 'Cours ajustés des dividendes et divisions ; rendements calculés entre clôtures de décembre, sur années complètes uniquement.'}))
-export const CATALOG = [...equityItems, ...routedFunds, ...expansionFunds, ...fundItems, ...extraFunds, {
+const allAutomatedFunds = Object.values(MONTHLY_DUEL_RETURNS).filter(s=>![...routedFunds,...expansionFunds,...fundItems,...extraFunds].some(a=>a.isin===s.isin) && s.isin!==stoxxIsin).map(s=>({...s,id:`manual-${s.isin}`,name:getInstrumentName(s.isin),label:getInstrumentName(s.isin),exposure:s.isin,role:'complement',group:ROLES.complement}));
+export const CATALOG = [...allAutomatedFunds, ...equityItems, ...routedFunds, ...expansionFunds, ...fundItems, ...extraFunds, {
   id: 'stoxx600_bnp', isin: stoxxIsin, name: getInstrumentName(stoxxIsin),
   role: 'complement', label: 'STOXX Europe 600', exposure: 'europe', group: ROLES.complement,
   currency: stoxxEvidence.currency, values: [null, null, null, ...COMPARATOR_RETURNS_BY_ISIN[stoxxIsin]],
   source: stoxxEvidence.sourceUrls[0], note: 'Rendements de la part exacte, disponibles sur 2023–2025 seulement.',
+  ...(MONTHLY_DUEL_RETURNS[stoxxIsin] ?? {}),
 }].filter((item) => {
   item.calendarReturns ??= getInstrumentCalendarReturns(item.isin, item.values)
   const expiry=item.id.match(/^ibonds-euro-(\d{4})$/)?.[1]

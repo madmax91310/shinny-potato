@@ -1,4 +1,5 @@
 import { AUTOMATED_EQUITY_HISTORY } from './automated-equity-history.js'
+import EQUITY_LINKS from './equity-history-links.json' with { type: 'json' }
 import { applyMonthlyAutomation } from './monthly-automation.js'
 import { savingsRates } from './economic-data.js'
 import BITCOIN_MONTHLY from './bitcoin-yahoo-monthly.json' with { type: 'json' }
@@ -599,7 +600,9 @@ export const BASELINE_ASSETS = {
   ...MONTHLY_HISTORY_ADDITIONS,
 }
 
-export const ASSETS = { ...applyMonthlyAutomation(BASELINE_ASSETS), ...ETF_MONTHLY_HISTORIES, ...AUTOMATED_EQUITY_HISTORY }
+export const ASSETS = Object.fromEntries(Object.entries({ ...applyMonthlyAutomation(BASELINE_ASSETS), ...ETF_MONTHLY_HISTORIES, ...AUTOMATED_EQUITY_HISTORY }).map(([id, asset]) => [id,
+  EQUITY_LINKS[id] ? { ...asset, isin: EQUITY_LINKS[id].isin, instrumentType: 'EQUITY' } : asset,
+]))
 
 export const ASSET_ORDER = [...new Set([
   'bitcoin', 'ethereum', 'cac40', 'stoxx600', 'sp500', 'msciWorld', ...Object.keys(MSCI_HISTORY), ...Object.keys(DIVERSIFICATION_HISTORY), ...Object.keys(SHARED_INDEX_HISTORY), 'nasdaq100', 'soxx',

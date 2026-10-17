@@ -1,10 +1,10 @@
 import RETURNS from './equity-duel-returns.json' with { type: 'json' }
-import GLOBAL from './global-equities.json' with { type: 'json' }
+import LINKS from './equity-history-links.json' with { type: 'json' }
 
 // Manual composition only. The same validated EUR calendar feeds portfolio duels.
-export const PORTFOLIO_EQUITIES = GLOBAL.flatMap(identity => {
-  const record = RETURNS.find(r => r.historyId === identity.id)
-  if (!record || Object.keys(record.euroCalendarReturns ?? {}).length < 3) return []
+export const PORTFOLIO_EQUITIES = RETURNS.flatMap(record => {
+  const identity = LINKS[record.historyId]
+  if (!identity || Object.keys(record.euroCalendarReturns ?? {}).length < 3) return []
   return [{ id: record.id, isin: identity.isin, name: identity.label, instrumentType: 'EQUITY',
     cat: 'actions_individuelles', emoji: '🏢', manualOnly: true, returnCurrency: 'EUR',
     calendarReturns: record.euroCalendarReturns,

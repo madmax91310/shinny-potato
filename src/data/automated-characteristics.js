@@ -24,5 +24,6 @@ export function applyAutomatedCharacteristics(previous,record) {
   const annotations=(previous.location??'').split(/,\s*/).slice(1).filter(part=>!/r[eé]plication|physical|physique|synthet|synth[eé]|sampling|optimis|[ée]chantill|sampled|swap|gestion active/i.test(part));
   next.location=[frenchCharacteristic(next.domicile),frenchCharacteristic(next.replicationMethod),...annotations].filter(Boolean).join(', ');
  }
+ if(typeof c.currencyHedge==='boolean'){next.currencyHedge=c.currencyHedge;next.automatedFields.currencyHedge=record.characteristicChecks?.currencyHedge??source;}
  return next;
 }

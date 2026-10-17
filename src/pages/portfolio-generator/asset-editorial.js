@@ -249,12 +249,13 @@ add(available('copper-miners-globalx defense-vaneck nuclear-vaneck quantum-vanec
 add(available('nasdaq-equal small-value-world-avantis'),'factor','une sélection ou pondération différente','Les règles de pondération ou de sélection modifient les entreprises détenues et leurs poids. Ces biais peuvent sous-performer longtemps.');
 add(available('ibonds-euro-2028 ibonds-euro-2029'),'bond','des obligations euro à échéance définie','Une fin définie ne garantit ni le capital ni le rendement. Une vente anticipée reste exposée au marché.');
 for (const asset of ASSETS.filter(a => a.instrumentType === 'EQUITY')) {
- add(asset.id, 'single-stock', asset.name, asset.desc.join(' '));
- entries[asset.id].description = asset.desc[0];
+ add(asset.id, 'single-stock', asset.name, `On détient ici des actions de ${asset.name}. Le résultat dépend d’une seule entreprise, qui peut déjà être présente dans les ETF du portefeuille.`);
+ entries[asset.id].description = `Actions de ${asset.name}.`;
 }
 export const ASSET_EDITORIAL = Object.freeze(entries);
 export function assetEditorial(asset) {
   const entry = ASSET_EDITORIAL[asset.id];
+  if (!entry && asset.manualOnly && asset.id.startsWith('manual-')) return {kind:'fund',label:asset.name,description:asset.name,text:'Cette ligne suit la sélection et les règles propres au fonds. Sa place dans le portefeuille dépend de ses entreprises et de ses expositions, qui peuvent recouper les autres lignes.'};
   if (!entry) throw new Error(`Explication de portefeuille manquante pour ${asset.id}`);
   return entry;
 }

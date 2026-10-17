@@ -14,7 +14,7 @@ import Button from '../../design-system/Button'
 import { DUELS } from './data.js'
 import { buildCustomDuel, buildDuel, buildTweet, CATALOG, resultReading, formatCapital, formatPercent } from './lib.js'
 const renderDuelImage = async duel => (await import('./canvasImage.js')).renderDuelImage(duel)
-import { YEARS } from '../../data/portfolio-assets.js'
+import { HISTORICAL_YEARS as YEARS } from '../../data/annual-window.js'
 import { generateDuel } from './generate.js'
 import './portfolio-duels.css'
 

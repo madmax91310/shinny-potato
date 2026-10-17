@@ -1,10 +1,11 @@
+import {withInstrumentMetadata} from './instrument-metadata.js';
 import expansionRecords from './exposure-etf-expansion-records.json' with { type:'json' };
 import nonBondRecords from './non-bond-etf-records.json' with { type:'json' };
 import { LIFESTRATEGY_RECORDS } from './lifestrategy.js';
 import { latestCommonYears } from './annual-window.js';
 import baseRecords from './automated-etf.json' with { type: 'json' };
 import { QUALIFIED_AUTOMATED_RECORDS } from './qualified-exposure-sheets.js';
-const records = { ...expansionRecords, ...baseRecords, ...nonBondRecords, ...QUALIFIED_AUTOMATED_RECORDS, ...LIFESTRATEGY_RECORDS };
+const records = Object.fromEntries(Object.entries({ ...expansionRecords, ...baseRecords, ...nonBondRecords, ...QUALIFIED_AUTOMATED_RECORDS, ...LIFESTRATEGY_RECORDS }).map(([isin,record])=>[isin,withInstrumentMetadata(isin,record)]));
 export const AUTOMATED_ETF = records;
 export const AUTOMATED_AUM = Object.fromEntries(Object.entries(records).filter(([, r]) => r.aum).map(([isin, r]) => {
   const a = r.aum;

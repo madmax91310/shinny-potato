@@ -26,6 +26,7 @@ import {
   PROFILES,
   isCompatible,
 } from './engine.js'
+import {ensurePortfolioAssets} from '../../data/portfolio-asset-loader.js'
 import { CATEGORIES, ASSETS, getAsset } from '../../data/portfolio-assets.js'
 import { renderPortfolioImage } from './canvasImage.js'
 import { loadPortfolioBackground } from './background.js'
@@ -168,15 +169,16 @@ function ManualComposer({
   onRemove,
   onPctChange,
   onGenerate,
+  busy,
 }) {
   const selectedIds = useMemo(() => new Set(selection.map((s) => s.id)), [selection])
   const total = selection.reduce((sum, s) => sum + s.pct, 0)
   const maxPct = selection.reduce((max, s) => Math.max(max, s.pct), 0)
   const lineCount = selection.length
-  const canGenerate = total === 100 && lineCount > 0
+  const canGenerate = !busy && total === 100 && lineCount > 0
 
   return (
-    <div className="pg-panel">
+    <div className="pg-panel" inert={busy || undefined} aria-busy={busy}>
       <div className="pg-panel-title">Composition manuelle</div>
 
       <label className="pg-manual-label" htmlFor="pg-manual-profile">
@@ -249,7 +251,7 @@ function ManualComposer({
       )}
 
       <Button type="button" className="w-full text-base" disabled={!canGenerate} onClick={onGenerate}>
-        Générer le tweet
+        {busy ? 'Chargement des données…' : 'Générer le tweet'}
       </Button>
     </div>
   )
@@ -380,6 +382,7 @@ function GeneratorWorkspace({search}) {
   const [manualSelection, setManualSelection] = useState(()=>requested?[{id:requested.id,pct:100}]:[])
   const [manualSearch, setManualSearch] = useState('')
   const [manualEditing, setManualEditing] = useState(true)
+  const [manualLoading,setManualLoading]=useState(false)
   const [modelFamily, setModelFamily] = useState('all-weather')
   const [modelPreset, setModelPreset] = useState('euro')
 
@@ -481,11 +484,16 @@ function GeneratorWorkspace({search}) {
   const handleManualPctChange = useCallback((id, pct) => {
     setManualSelection((sel) => sel.map((s) => (s.id === id ? { ...s, pct } : s)))
   }, [])
-  const handleManualGenerate = useCallback(() => {
-    setHistory((h) => [...h, buildManualPortfolio(manualSelection, manualProfile, h)])
-    setCopyState('idle')
-    setManualEditing(false)
-  }, [manualSelection, manualProfile])
+  const handleManualGenerate = useCallback(async () => {
+    if(manualLoading)return
+    setManualLoading(true);setGenerationError('')
+    try {
+      await ensurePortfolioAssets(manualSelection.map(s=>s.id))
+      setHistory((h) => [...h, buildManualPortfolio(manualSelection, manualProfile, h)])
+      setCopyState('idle');setManualEditing(false)
+    } catch(error) {setGenerationError(error.message+' — réessayez pour recharger les données.')}
+    finally {setManualLoading(false)}
+  }, [manualSelection, manualProfile,manualLoading])
 
   const handleCopy = useCallback(async () => {
     const text = renderTweetText(current)
@@ -577,6 +585,7 @@ function GeneratorWorkspace({search}) {
               onPctChange={handleManualPctChange}
               search={manualSearch}
               onSearchChange={setManualSearch}
+              busy={manualLoading}
               onGenerate={handleManualGenerate}
             />
           ) : (

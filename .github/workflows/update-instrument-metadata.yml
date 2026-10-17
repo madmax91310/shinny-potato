@@ -1,0 +1,116 @@
+name: Update exact instrument metadata
+on:
+  schedule:
+    - cron: '20 9 * * *'
+  workflow_dispatch:
+  push:
+    branches: [master]
+    paths:
+      - '.github/workflows/update-instrument-metadata.yml'
+      - 'scripts/collect_instrument_metadata.py'
+      - 'scripts/build-automation-targets.mjs'
+  pull_request:
+    paths:
+      - '*full-auto*'
+      - 'scripts/*metadata*'
+      - 'scripts/*equity*'
+      - 'scripts/build-automation-targets.mjs'
+      - 'scripts/build-monthly-duel-returns.mjs'
+      - 'src/data/*metadata*'
+      - 'src/data/*portfolio*'
+      - 'src/data/equity-history-links.json'
+      - '.github/workflows/update-instrument-metadata.yml'
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 24
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: '3.12'
+      - run: npm ci
+      - run: python -m unittest discover -s scripts -p 'test_instrument_metadata.py'
+      - run: python -m unittest discover -s scripts -p 'test_monthly_qualification.py'
+      - run: npm run build
+      - run: node scripts/test-full-auto-routing.mjs
+      - run: npx playwright install --with-deps chromium
+      - run: node scripts/playwright-full-auto-routing.mjs
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: full-auto-browser-check
+          path: test-artifacts/full-auto
+          if-no-files-found: ignore
+          retention-days: 14
+  refresh:
+    needs: verify
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    concurrency:
+      group: active-market-data-production
+      cancel-in-progress: false
+    permissions:
+      contents: write
+    outputs:
+      commit_sha: ${{ steps.commit.outputs.commit_sha }}
+      collection_failed: ${{ steps.collect.outcome == 'failure' || steps.freshness.outcome == 'failure' }}
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          ref: master
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 24
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: '3.12'
+      - run: npm ci
+      - run: sudo apt-get update && sudo apt-get install -y poppler-utils
+      - run: node scripts/build-automation-targets.mjs
+      - name: Collect exact metadata observations
+        id: collect
+        continue-on-error: true
+        run: python scripts/collect_instrument_metadata.py --apply --output "$RUNNER_TEMP/instrument-metadata.json"
+      - name: Check active field freshness
+        id: freshness
+        continue-on-error: true
+        run: node scripts/check-active-data-freshness.mjs "$RUNNER_TEMP/instrument-metadata.json"
+      - name: Validate metadata observations
+        run: python -m unittest discover -s scripts -p 'test_instrument_metadata.py'
+      - run: npm run build && node scripts/test-full-auto-routing.mjs
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: instrument-metadata-observations
+          path: ${{ runner.temp }}/instrument-metadata.json
+          retention-days: 35
+      - name: Validate collected observations
+        run: echo 'Mandatory observation checks passed'
+      - name: Commit validated observations
+        id: commit
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          bash scripts/commit-validated-data.sh 'Refresh exact instrument metadata' src/data/automated-instrument-metadata.json src/data/instrument-metadata-status.json scripts/instrument-metadata-sources.json scripts/generated-holdings-sources.json docs/asset-field-coverage.md public/data/asset-field-coverage.json
+  deploy:
+    needs: refresh
+    if: github.event_name != 'pull_request'
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    uses: ./.github/workflows/deploy-pages.yml
+    with:
+      ref: ${{ needs.refresh.outputs.commit_sha }}
+  report-failures:
+    needs: [refresh, deploy]
+    if: always() && needs.refresh.outputs.collection_failed == 'true'
+    runs-on: ubuntu-24.04
+    steps:
+      - run: exit 1

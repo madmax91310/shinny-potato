@@ -1,4 +1,5 @@
 import expansionRecords from './exposure-etf-expansion-records.json' with {type:'json'};
+import EQUITY_LINKS from './equity-history-links.json' with {type:'json'};
 import GLOBAL_EQUITIES from './global-equities.json' with {type:'json'};
 import { NON_BOND_REFERENCE_EVIDENCE } from './non-bond-expansion.js';
 import { LIFESTRATEGY_RECORDS } from './lifestrategy.js';
@@ -8,6 +9,7 @@ import { EXPOSURE_ADDITIONS } from './exposure-additions.js';
 import { PRESENTATION_ETF_ADDITIONS } from './presentation-etf-additions.js';
 // Profils individuels consultés le 30/09/2026. Les preuves chiffrées sont figées dans scripts/source-snapshots/instrument-profiles-2026-09-30.json.
 export const INSTRUMENT_REFERENCE_EVIDENCE = {
+ ...Object.fromEntries(Object.values(EQUITY_LINKS).map(r=>[r.isin,{sourceUrls:[r.sourceUrl].filter(Boolean),checkedAt:r.checkedAt,dateStatus:'not-applicable',scope:`Action exacte ${r.isin}`,method:'Identité ISIN et cotation rapprochées des positions BlackRock ; aucune équivalence entre ADR et action ordinaire.'}])),
  ...Object.fromEntries(GLOBAL_EQUITIES.map(r=>[r.isin,{sourceUrls:[r.identitySourceUrl],checkedAt:r.checkedAt,dateStatus:'not-applicable',scope:`Action exacte ${r.isin}`,method:'Identité ISIN, pays de risque et secteur publiés dans les positions BlackRock ; cotation et devise recoupées avec les métadonnées Yahoo',note:'Classes de titres conservées séparément ; aucune équivalence ADR ou action A/H supposée.'}])),
  ...Object.fromEntries(Object.entries(expansionRecords).map(([isin,r])=>[isin,{sourceUrls:[r.sourceUrl],checkedAt:r.characteristics.checkedAt,dateStatus:'not-applicable',scope:`Part exacte ${isin}`,method:'Collecte automatisée des sources officielles, identité et ventilation datée contrôlées'}])),
   ...NON_BOND_REFERENCE_EVIDENCE,

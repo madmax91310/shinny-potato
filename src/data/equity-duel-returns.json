@@ -1,8 +1,46 @@
 [
   {
+    "id": "equity-stockUS8318652091",
+    "historyId": "stockUS8318652091",
+    "label": "A. O. Smith",
+    "isin": "US8318652091",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 17.46171335794362,
+      "2021": 59.27824878604711,
+      "2022": -32.07425721067886,
+      "2023": 46.67732056641412,
+      "2024": -15.924811226280955,
+      "2025": 0.06828230753579412
+    },
+    "euroCalendarReturns": {
+      "2020": 7.535236562883085,
+      "2021": 72.56784309143424,
+      "2022": -27.87108917758754,
+      "2023": 41.58011775216044,
+      "2024": -10.575528352142117,
+      "2025": -11.522605541022191
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      17.46171335794362,
+      59.27824878604711,
+      -32.07425721067886,
+      46.67732056641412,
+      -15.924811226280955,
+      0.06828230753579412
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/AOS?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
     "id": "equity-abb",
     "historyId": "abb",
     "label": "ABB",
+    "isin": "CH0012221716",
     "currency": "CHF",
     "calendarReturns": {
       "2020": 10.974249683218652,
@@ -39,6 +77,7 @@
     "id": "equity-abbott",
     "historyId": "abbott",
     "label": "Abbott Laboratories",
+    "isin": "US0028241000",
     "currency": "USD",
     "calendarReturns": {
       "2020": 28.04073876986546,
@@ -75,6 +114,7 @@
     "id": "equity-abbvie",
     "historyId": "abbvie",
     "label": "AbbVie",
+    "isin": "US00287Y1091",
     "currency": "USD",
     "calendarReturns": {
       "2020": 27.71829040933018,
@@ -111,6 +151,7 @@
     "id": "equity-adidas",
     "historyId": "adidas",
     "label": "Adidas",
+    "isin": "DE000A1EWWW0",
     "currency": "EUR",
     "calendarReturns": {
       "2020": 2.7950271887285716,
@@ -141,6 +182,43 @@
     "checkedAt": "2026-10-17",
     "art": {
       "scene": "etf-night/consumer.webp"
+    }
+  },
+  {
+    "id": "equity-stockUS00724F1012",
+    "historyId": "stockUS00724F1012",
+    "label": "Adobe",
+    "isin": "US00724F1012",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 51.63882175579164,
+      "2021": 13.384788384635549,
+      "2022": -40.6535463289724,
+      "2023": 77.27987928945379,
+      "2024": -25.46429586178863,
+      "2025": -21.293965208819287
+    },
+    "euroCalendarReturns": {
+      "2020": 38.82409938917475,
+      "2021": 22.84520027086905,
+      "2022": -36.98125498986887,
+      "2023": 71.11920294129538,
+      "2024": -20.721962582805308,
+      "2025": -30.41046847271691
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      51.63882175579164,
+      13.384788384635549,
+      -40.6535463289724,
+      77.27987928945379,
+      -25.46429586178863,
+      -21.293965208819287
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/ADBE?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
     }
   },
   {
@@ -181,9 +259,47 @@
     }
   },
   {
+    "id": "equity-stockUS00846U1016",
+    "historyId": "stockUS00846U1016",
+    "label": "Agilent",
+    "isin": "US00846U1016",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 39.790932420847305,
+      "2021": 35.509599343855115,
+      "2022": -5.522699033256739,
+      "2023": -6.421523033232424,
+      "2024": -2.7029225233036303,
+      "2025": 1.9209971678495918
+    },
+    "euroCalendarReturns": {
+      "2020": 27.97745373773928,
+      "2021": 46.81602450542523,
+      "2022": 0.32344934833434813,
+      "2023": -9.673480965833214,
+      "2024": 3.487602860476935,
+      "2025": -9.884490248783894
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      39.790932420847305,
+      35.509599343855115,
+      -5.522699033256739,
+      -6.421523033232424,
+      -2.7029225233036303,
+      1.9209971678495918
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/A?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
     "id": "equity-airliquide",
     "historyId": "airliquide",
     "label": "Air Liquide",
+    "isin": "FR0000120073",
     "currency": "EUR",
     "calendarReturns": {
       "2020": 8.829467827993076,
@@ -253,6 +369,7 @@
     "id": "equity-airbus",
     "historyId": "airbus",
     "label": "Airbus",
+    "isin": "NL0000235190",
     "currency": "EUR",
     "calendarReturns": {
       "2020": -31.192518575281845,
@@ -283,6 +400,43 @@
     "checkedAt": "2026-10-17",
     "art": {
       "scene": "etf-night/infrastructure.webp"
+    }
+  },
+  {
+    "id": "equity-stockUS00971T1016",
+    "historyId": "stockUS00971T1016",
+    "label": "Akamai",
+    "isin": "US00971T1016",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 21.54434087326953,
+      "2021": 11.477286626865158,
+      "2022": -27.973340499202493,
+      "2023": 40.391451706116776,
+      "2024": -19.18039407148955,
+      "2025": -8.782019680459596
+    },
+    "euroCalendarReturns": {
+      "2020": 11.272848616274933,
+      "2021": 20.778543545670345,
+      "2022": -23.516412384583475,
+      "2023": 35.51268994546983,
+      "2024": -14.038247616706078,
+      "2025": -19.347778932791048
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      21.54434087326953,
+      11.477286626865158,
+      -27.973340499202493,
+      40.391451706116776,
+      -19.18039407148955,
+      -8.782019680459596
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/AKAM?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
     }
   },
   {
@@ -323,9 +477,47 @@
     }
   },
   {
+    "id": "equity-stockIE00BFRT3W74",
+    "historyId": "stockIE00BFRT3W74",
+    "label": "Allegion",
+    "isin": "IE00BFRT3W74",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": -5.4097863499133485,
+      "2021": 15.056047907371228,
+      "2022": -19.257903571154454,
+      "2023": 22.315936903425815,
+      "2024": 4.655934650998184,
+      "2025": 22.790403700107873
+    },
+    "euroCalendarReturns": {
+      "2020": -13.403434101126777,
+      "2021": 24.65590357331382,
+      "2022": -14.261674090277076,
+      "2023": 18.065319729587316,
+      "2024": 11.31466723395227,
+      "2025": 8.567617365142176
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      -5.4097863499133485,
+      15.056047907371228,
+      -19.257903571154454,
+      22.315936903425815,
+      4.655934650998184,
+      22.790403700107873
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/ALLE?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
     "id": "equity-allianz",
     "historyId": "allianz",
     "label": "Allianz",
+    "isin": "DE0008404005",
     "currency": "EUR",
     "calendarReturns": {
       "2020": -2.293582087535706,
@@ -359,9 +551,47 @@
     }
   },
   {
+    "id": "equity-amazon",
+    "historyId": "amazon",
+    "label": "Amazon",
+    "isin": "US0231351067",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 76.25606169919608,
+      "2021": 2.376776947188497,
+      "2022": -49.61521469361897,
+      "2023": 80.88095476190476,
+      "2024": 44.392520805679595,
+      "2025": 5.209903847987163
+    },
+    "euroCalendarReturns": {
+      "2020": 61.36098094114322,
+      "2021": 10.918720635612766,
+      "2022": -46.49746124319598,
+      "2023": 74.59513696746389,
+      "2024": 53.57949320461637,
+      "2025": -6.976536929639265
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      76.25606169919608,
+      2.376776947188497,
+      -49.61521469361897,
+      80.88095476190476,
+      44.392520805679595,
+      5.209903847987163
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/AMZN?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-11",
+    "art": {
+      "scene": "etf-night/consumer.webp"
+    }
+  },
+  {
     "id": "equity-amd",
     "historyId": "amd",
     "label": "AMD",
+    "isin": "US0079031078",
     "currency": "USD",
     "calendarReturns": {
       "2020": 99.97818796384239,
@@ -398,6 +628,7 @@
     "id": "equity-american-express",
     "historyId": "american-express",
     "label": "American Express",
+    "isin": "US0258161092",
     "currency": "USD",
     "calendarReturns": {
       "2020": -1.141832857146008,
@@ -428,6 +659,43 @@
     "checkedAt": "2026-10-17",
     "art": {
       "scene": "etf-night/finance.webp"
+    }
+  },
+  {
+    "id": "equity-stockUS0311001004",
+    "historyId": "stockUS0311001004",
+    "label": "AMETEK",
+    "isin": "US0311001004",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 22.189823617877956,
+      "2021": 22.32164008748827,
+      "2022": -4.329553432400202,
+      "2023": 18.806736759386776,
+      "2024": 10.01034931525,
+      "2025": 14.663315601759685
+    },
+    "euroCalendarReturns": {
+      "2020": 11.863782782433452,
+      "2021": 32.52771018131455,
+      "2022": 1.5904254476500457,
+      "2023": 14.678068260237055,
+      "2024": 17.009756466793014,
+      "2025": 1.381888152057975
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      22.189823617877956,
+      22.32164008748827,
+      -4.329553432400202,
+      18.806736759386776,
+      10.01034931525,
+      14.663315601759685
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/AME?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
     }
   },
   {
@@ -471,6 +739,7 @@
     "id": "equity-adi",
     "historyId": "adi",
     "label": "Analog Devices",
+    "isin": "US0326541051",
     "currency": "USD",
     "calendarReturns": {
       "2020": 26.873197148905923,
@@ -507,6 +776,7 @@
     "id": "equity-apple",
     "historyId": "apple",
     "label": "Apple",
+    "isin": "US0378331005",
     "currency": "USD",
     "calendarReturns": {
       "2020": 82.30666130479112,
@@ -543,6 +813,7 @@
     "id": "equity-applied-materials",
     "historyId": "applied-materials",
     "label": "Applied Materials",
+    "isin": "US0382221051",
     "currency": "USD",
     "calendarReturns": {
       "2020": 43.29000011431698,
@@ -616,6 +887,7 @@
     "id": "equity-asml",
     "historyId": "asml",
     "label": "ASML (Amsterdam)",
+    "isin": "NL0010273215",
     "currency": "EUR",
     "calendarReturns": {
       "2020": 52.101969937440806,
@@ -685,9 +957,84 @@
     }
   },
   {
+    "id": "equity-stockGB0009895292",
+    "historyId": "stockGB0009895292",
+    "label": "AstraZeneca (Londres)",
+    "isin": "GB0009895292",
+    "currency": "GBp",
+    "calendarReturns": {
+      "2020": -3.693518226626713,
+      "2021": 18.519437773638025,
+      "2022": 29.299383433481708,
+      "2023": -5.489566090244569,
+      "2024": -1.2239860214138143,
+      "2025": 31.762885808661
+    },
+    "euroCalendarReturns": {
+      "2020": -8.860043944266616,
+      "2021": 26.805981508108957,
+      "2022": 22.498602946665503,
+      "2023": -3.545090446373178,
+      "2024": 3.5255251550813105,
+      "2025": 25.20645158701069
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      -3.693518226626713,
+      18.519437773638025,
+      29.299383433481708,
+      -5.489566090244569,
+      -1.2239860214138143,
+      31.762885808661
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/AZN.L?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
+    "id": "equity-stockUS0527691069",
+    "historyId": "stockUS0527691069",
+    "label": "Autodesk",
+    "isin": "US0527691069",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 66.43409154563042,
+      "2021": -7.909214094572792,
+      "2022": -33.54315812409291,
+      "2023": 30.29378847042834,
+      "2024": 21.39395919819218,
+      "2025": 0.1488659165610251
+    },
+    "euroCalendarReturns": {
+      "2020": 52.36904770789765,
+      "2021": -0.22549586389746246,
+      "2022": -29.430884015889404,
+      "2023": 25.765931929917517,
+      "2024": 29.117648391570295,
+      "2025": -11.4513559142849
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      66.43409154563042,
+      -7.909214094572792,
+      -33.54315812409291,
+      30.29378847042834,
+      21.39395919819218,
+      0.1488659165610251
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/ADSK?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
     "id": "equity-adp",
     "historyId": "adp",
     "label": "Automatic Data Processing",
+    "isin": "US0530151036",
     "currency": "USD",
     "calendarReturns": {
       "2020": 5.856741667781362,
@@ -721,9 +1068,47 @@
     }
   },
   {
+    "id": "equity-stockUS0536111091",
+    "historyId": "stockUS0536111091",
+    "label": "Avery Dennison",
+    "isin": "US0536111091",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 20.86489376431406,
+      "2021": 41.412761201865166,
+      "2022": -15.061437512413722,
+      "2023": 13.658885494416895,
+      "2024": -5.947525167575174,
+      "2025": -0.727836551585459
+    },
+    "euroCalendarReturns": {
+      "2020": 10.650820352726264,
+      "2021": 53.21172459015428,
+      "2022": -9.805535464616334,
+      "2023": 9.709110650086018,
+      "2024": 0.036562412002538736,
+      "2025": -12.226510122078416
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      20.86489376431406,
+      41.412761201865166,
+      -15.061437512413722,
+      13.658885494416895,
+      -5.947525167575174,
+      -0.727836551585459
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/AVY?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
     "id": "equity-axa",
     "historyId": "axa",
     "label": "AXA",
+    "isin": "FR0000120628",
     "currency": "EUR",
     "calendarReturns": {
       "2020": -19.226338711453494,
@@ -797,6 +1182,7 @@
     "id": "equity-santander",
     "historyId": "santander",
     "label": "Banco Santander",
+    "isin": "ES0113900J37",
     "currency": "EUR",
     "calendarReturns": {
       "2020": -28.998711745432782,
@@ -833,6 +1219,7 @@
     "id": "equity-bank-of-america",
     "historyId": "bank-of-america",
     "label": "Bank of America",
+    "isin": "US0605051046",
     "currency": "USD",
     "calendarReturns": {
       "2020": -11.632965184190947,
@@ -906,6 +1293,7 @@
     "id": "equity-bayer",
     "historyId": "bayer",
     "label": "Bayer",
+    "isin": "DE000BAY0017",
     "currency": "EUR",
     "calendarReturns": {
       "2020": -30.786952762383237,
@@ -979,6 +1367,7 @@
     "id": "equity-berkshire",
     "historyId": "berkshire",
     "label": "Berkshire Hathaway (classe B)",
+    "isin": "US0846707026",
     "currency": "USD",
     "calendarReturns": {
       "2020": 2.3708587196467956,
@@ -1012,9 +1401,47 @@
     }
   },
   {
+    "id": "equity-stockUS0865161014",
+    "historyId": "stockUS0865161014",
+    "label": "Best Buy",
+    "isin": "US0865161014",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 16.714197379779794,
+      "2021": 4.439326779196828,
+      "2022": -17.493534264032494,
+      "2023": 2.512074472074244,
+      "2024": 14.351891114924653,
+      "2025": -17.799040100715303
+    },
+    "euroCalendarReturns": {
+      "2020": 6.850891807061044,
+      "2021": 13.15336207906801,
+      "2022": -12.388127608703547,
+      "2023": -1.050336079715486,
+      "2024": 21.627528811234708,
+      "2025": -27.320359796283523
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      16.714197379779794,
+      4.439326779196828,
+      -17.493534264032494,
+      2.512074472074244,
+      14.351891114924653,
+      -17.799040100715303
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/BBY?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
     "id": "equity-blackrock",
     "historyId": "blackrock",
     "label": "BlackRock",
+    "isin": "US09290D1019",
     "currency": "USD",
     "calendarReturns": {
       "2020": 47.205117674425054,
@@ -1051,6 +1478,7 @@
     "id": "equity-bmw",
     "historyId": "bmw",
     "label": "BMW",
+    "isin": "DE0005190003",
     "currency": "EUR",
     "calendarReturns": {
       "2020": 4.293946917162961,
@@ -1087,6 +1515,7 @@
     "id": "equity-bnp-paribas",
     "historyId": "bnp-paribas",
     "label": "BNP Paribas",
+    "isin": "FR0000131104",
     "currency": "EUR",
     "calendarReturns": {
       "2020": -18.408101176269554,
@@ -1120,9 +1549,121 @@
     }
   },
   {
+    "id": "equity-stockUS09857L1089",
+    "historyId": "stockUS09857L1089",
+    "label": "Booking Holdings",
+    "isin": "US09857L1089",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 8.44999184452253,
+      "2021": 7.7206544288594525,
+      "2022": -16.00305282495913,
+      "2023": 76.0162517428406,
+      "2024": 41.30706624564664,
+      "2025": 8.588256839415331
+    },
+    "euroCalendarReturns": {
+      "2020": -0.714920676280173,
+      "2021": 16.70847170197196,
+      "2022": -10.805416866256056,
+      "2023": 69.89948788136995,
+      "2024": 50.29772663532539,
+      "2025": -3.9894978464097175
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      8.44999184452253,
+      7.7206544288594525,
+      -16.00305282495913,
+      76.0162517428406,
+      41.30706624564664,
+      8.588256839415331
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/BKNG?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
+    "id": "equity-stockUS1011371077",
+    "historyId": "stockUS1011371077",
+    "label": "Boston Scientific",
+    "isin": "US1011371077",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": -20.49977840557766,
+      "2021": 18.164113542027426,
+      "2022": 8.921845574387955,
+      "2023": 24.940568402852815,
+      "2024": 54.506138133434725,
+      "2025": 6.751005373936425
+    },
+    "euroCalendarReturns": {
+      "2020": -27.218198240425362,
+      "2021": 28.023294832616852,
+      "2022": 15.66180601683087,
+      "2023": 20.598742315369066,
+      "2024": 64.3365893131633,
+      "2025": -5.613940865546763
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      -20.49977840557766,
+      18.164113542027426,
+      8.921845574387955,
+      24.940568402852815,
+      54.506138133434725,
+      6.751005373936425
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/BSX?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
+    "id": "equity-stockUS1101221083",
+    "historyId": "stockUS1101221083",
+    "label": "Bristol Myers Squibb",
+    "isin": "US1101221083",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 0.4094480929968558,
+      "2021": 2.8798318133069323,
+      "2022": 18.98100239761773,
+      "2023": -26.144909684970806,
+      "2024": 15.805626629469094,
+      "2025": 0.10821483459368952
+    },
+    "euroCalendarReturns": {
+      "2020": -8.07597262841444,
+      "2021": 11.463748559163832,
+      "2022": 26.343412071574956,
+      "2023": -28.711457619900337,
+      "2024": 23.173758230400775,
+      "2025": -11.487298390077116
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      0.4094480929968558,
+      2.8798318133069323,
+      18.98100239761773,
+      -26.144909684970806,
+      15.805626629469094,
+      0.10821483459368952
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/BMY?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
     "id": "equity-broadcom",
     "historyId": "broadcom",
     "label": "Broadcom",
+    "isin": "US11135F1012",
     "currency": "USD",
     "calendarReturns": {
       "2020": 44.88000988515679,
@@ -1153,6 +1694,43 @@
     "checkedAt": "2026-10-17",
     "art": {
       "scene": "broadcom.svg"
+    }
+  },
+  {
+    "id": "equity-stockUS11133T1034",
+    "historyId": "stockUS11133T1034",
+    "label": "Broadridge",
+    "isin": "US11133T1034",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 26.283108286332222,
+      "2021": 21.121472196510993,
+      "2022": -25.26281386565539,
+      "2023": 56.23118827065785,
+      "2024": 11.652143745255405,
+      "2025": 0.27029493668480065
+    },
+    "euroCalendarReturns": {
+      "2020": 15.611151372231769,
+      "2021": 31.22740467273408,
+      "2022": -20.63816143281575,
+      "2023": 50.80197774613906,
+      "2024": 18.756010047653504,
+      "2025": -11.3439919917261
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      26.283108286332222,
+      21.121472196510993,
+      -25.26281386565539,
+      56.23118827065785,
+      11.652143745255405,
+      0.27029493668480065
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/BR?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
     }
   },
   {
@@ -1193,9 +1771,47 @@
     }
   },
   {
+    "id": "equity-stockUS12541W2098",
+    "historyId": "stockUS12541W2098",
+    "label": "C.H. Robinson",
+    "isin": "US12541W2098",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 22.951686599996602,
+      "2021": 17.190282258582947,
+      "2022": -13.094710445437553,
+      "2023": -3.102751552793037,
+      "2024": 22.88825960704606,
+      "2025": 59.00872278516693
+    },
+    "euroCalendarReturns": {
+      "2020": 12.561262102873583,
+      "2021": 26.968210629972745,
+      "2022": -7.717109554193302,
+      "2023": -6.470040548605471,
+      "2024": 30.70702364595812,
+      "2025": 40.59077625660419
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      22.951686599996602,
+      17.190282258582947,
+      -13.094710445437553,
+      -3.102751552793037,
+      22.88825960704606,
+      59.00872278516693
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/CHRW?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
     "id": "equity-cdns",
     "historyId": "cdns",
     "label": "Cadence",
+    "isin": "US1273871087",
     "currency": "USD",
     "calendarReturns": {
       "2020": 96.6983723082703,
@@ -1226,6 +1842,43 @@
     "checkedAt": "2026-10-16",
     "art": {
       "scene": "etf-night/chip.webp"
+    }
+  },
+  {
+    "id": "equity-stockUS1491231015",
+    "historyId": "stockUS1491231015",
+    "label": "Caterpillar",
+    "isin": "US1491231015",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 26.965946360126747,
+      "2021": 15.953676808327533,
+      "2022": 18.59883070143664,
+      "2023": 25.948767617065883,
+      "2024": 24.658657512391557,
+      "2025": 60.304597723753275
+    },
+    "euroCalendarReturns": {
+      "2020": 16.236284036318448,
+      "2021": 25.628427345487115,
+      "2022": 25.937592023670696,
+      "2023": 21.571905466391385,
+      "2024": 32.59006309672987,
+      "2025": 41.73655027677212
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      26.965946360126747,
+      15.953676808327533,
+      18.59883070143664,
+      25.948767617065883,
+      24.658657512391557,
+      60.304597723753275
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/CAT?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
     }
   },
   {
@@ -1264,9 +1917,47 @@
     }
   },
   {
+    "id": "equity-stockUS12514G1085",
+    "historyId": "stockUS12514G1085",
+    "label": "CDW",
+    "isin": "US12514G1085",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": -6.546919075852154,
+      "2021": 56.869268802843884,
+      "2022": -11.74938013977399,
+      "2023": 28.84485441982907,
+      "2024": -22.565488089346008,
+      "2025": -20.562110387315112
+    },
+    "euroCalendarReturns": {
+      "2020": -14.444469798559457,
+      "2021": 69.95786663250021,
+      "2022": -6.288531732897074,
+      "2023": 24.36734997664225,
+      "2024": -17.63871820071935,
+      "2025": -29.763384239473766
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      -6.546919075852154,
+      56.869268802843884,
+      -11.74938013977399,
+      28.84485441982907,
+      -22.565488089346008,
+      -20.562110387315112
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/CDW?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
     "id": "equity-charles-schwab",
     "historyId": "charles-schwab",
     "label": "Charles Schwab",
+    "isin": "US8085131055",
     "currency": "USD",
     "calendarReturns": {
       "2020": 13.567418977367351,
@@ -1303,6 +1994,7 @@
     "id": "equity-chevron",
     "historyId": "chevron",
     "label": "Chevron",
+    "isin": "US1667641005",
     "currency": "USD",
     "calendarReturns": {
       "2020": -25.95210254902015,
@@ -1333,6 +2025,43 @@
     "checkedAt": "2026-10-17",
     "art": {
       "scene": "etf-night/energy.webp"
+    }
+  },
+  {
+    "id": "equity-stockUS1713401024",
+    "historyId": "stockUS1713401024",
+    "label": "Church & Dwight",
+    "isin": "US1713401024",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 25.457322272299198,
+      "2021": 18.897029291783983,
+      "2022": -20.412180844235685,
+      "2023": 18.718192491706432,
+      "2024": 11.96167388812157,
+      "2025": -18.907241534690687
+    },
+    "euroCalendarReturns": {
+      "2020": 14.85515103960633,
+      "2021": 28.81736239091306,
+      "2022": -15.487376733715852,
+      "2023": 14.592601006021798,
+      "2024": 19.08523404213527,
+      "2025": -28.30019849394907
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      25.457322272299198,
+      18.897029291783983,
+      -20.412180844235685,
+      18.718192491706432,
+      11.96167388812157,
+      -18.907241534690687
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/CHD?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
     }
   },
   {
@@ -1410,9 +2139,84 @@
     }
   },
   {
+    "id": "equity-cocacola",
+    "historyId": "cocacola",
+    "label": "Coca-Cola",
+    "isin": "US1912161007",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 2.469137442463598,
+      "2021": 11.372463720800985,
+      "2022": 10.609571358384429,
+      "2023": -4.434527172269109,
+      "2024": 8.877510564737513,
+      "2025": 15.600037394970357
+    },
+    "euroCalendarReturns": {
+      "2020": -6.1903438979190035,
+      "2021": 20.664974599854236,
+      "2022": 17.45396636087213,
+      "2023": -7.755535458771257,
+      "2024": 15.804840864409432,
+      "2025": 2.2101096592635594
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      2.469137442463598,
+      11.372463720800985,
+      10.609571358384429,
+      -4.434527172269109,
+      8.877510564737513,
+      15.600037394970357
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/KO?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/consumer.webp"
+    }
+  },
+  {
+    "id": "equity-stockUS1924461023",
+    "historyId": "stockUS1924461023",
+    "label": "Cognizant",
+    "isin": "US1924461023",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 33.92665361389735,
+      "2021": 9.639200033171335,
+      "2022": -34.541189715542,
+      "2023": 34.37957000708691,
+      "2024": 3.455282026607298,
+      "2025": 9.677709169263737
+    },
+    "euroCalendarReturns": {
+      "2020": 22.60875451866373,
+      "2021": 18.78709373185994,
+      "2022": -30.490672671875927,
+      "2023": 29.709727936252417,
+      "2024": 10.03762310078069,
+      "2025": -3.0262365481292908
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      33.92665361389735,
+      9.639200033171335,
+      -34.541189715542,
+      34.37957000708691,
+      3.455282026607298,
+      9.677709169263737
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/CTSH?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
     "id": "equity-cl",
     "historyId": "cl",
     "label": "Colgate-Palmolive",
+    "isin": "US1941621039",
     "currency": "USD",
     "calendarReturns": {
       "2020": 27.16871588742724,
@@ -1446,9 +2250,47 @@
     }
   },
   {
+    "id": "equity-stockUS1999081045",
+    "historyId": "stockUS1999081045",
+    "label": "Comfort Systems USA",
+    "isin": "US1999081045",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 6.726340623643323,
+      "2021": 88.98285020766433,
+      "2022": 16.97683999392079,
+      "2023": 79.6156919211537,
+      "2024": 106.88769782556817,
+      "2025": 120.86383021046655
+    },
+    "euroCalendarReturns": {
+      "2020": -2.2929092522199435,
+      "2021": 104.75088777134461,
+      "2022": 24.215234368193038,
+      "2023": 73.37384344172176,
+      "2024": 120.05092511045609,
+      "2025": 95.28121974949248
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      6.726340623643323,
+      88.98285020766433,
+      16.97683999392079,
+      79.6156919211537,
+      106.88769782556817,
+      120.86383021046655
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/FIX?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
     "id": "equity-conocophillips",
     "historyId": "conocophillips",
     "label": "ConocoPhillips",
+    "isin": "US20825C1045",
     "currency": "USD",
     "calendarReturns": {
       "2020": -36.035683767387724,
@@ -1485,6 +2327,7 @@
     "id": "equity-costco",
     "historyId": "costco",
     "label": "Costco",
+    "isin": "US22160K1051",
     "currency": "USD",
     "calendarReturns": {
       "2020": 32.666335726000554,
@@ -1555,9 +2398,84 @@
     }
   },
   {
+    "id": "equity-stockUS2310211063",
+    "historyId": "stockUS2310211063",
+    "label": "Cummins",
+    "isin": "US2310211063",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 30.503544927647464,
+      "2021": -1.6791286842037678,
+      "2022": 14.085980323107595,
+      "2023": 1.7191825468610755,
+      "2024": 48.92443487473819,
+      "2025": 49.3587156599421
+    },
+    "euroCalendarReturns": {
+      "2020": 19.474926551804362,
+      "2021": 6.5244050782390595,
+      "2022": 21.14549157505312,
+      "2023": -1.815674113590937,
+      "2024": 58.399750251791026,
+      "2025": 32.058527403501124
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      30.503544927647464,
+      -1.6791286842037678,
+      14.085980323107595,
+      1.7191825468610755,
+      48.92443487473819,
+      49.3587156599421
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/CMI?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
+    "id": "equity-stockUS23331A1097",
+    "historyId": "stockUS23331A1097",
+    "label": "D.R. Horton",
+    "isin": "US23331A1097",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 32.233279324730525,
+      "2021": 58.73370637960698,
+      "2022": -16.83198107312236,
+      "2023": 72.07209541102327,
+      "2024": -7.2424158216395025,
+      "2025": 4.235716946598056
+    },
+    "euroCalendarReturns": {
+      "2020": 21.058484225737306,
+      "2021": 71.97786605899323,
+      "2022": -11.685638255595709,
+      "2023": 66.09239544379857,
+      "2024": -1.3407156443465573,
+      "2025": -7.837883969514281
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      32.233279324730525,
+      58.73370637960698,
+      -16.83198107312236,
+      72.07209541102327,
+      -7.2424158216395025,
+      4.235716946598056
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/DHI?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
     "id": "equity-danone",
     "historyId": "danone",
     "label": "Danone",
+    "isin": "FR0000120644",
     "currency": "EUR",
     "calendarReturns": {
       "2020": -24.678577691888435,
@@ -1594,6 +2512,7 @@
     "id": "equity-dassault-systemes",
     "historyId": "dassault-systemes",
     "label": "Dassault Systèmes",
+    "isin": "FR0014003TT8",
     "currency": "EUR",
     "calendarReturns": {
       "2020": 13.9167145594143,
@@ -1667,6 +2586,7 @@
     "id": "equity-deere",
     "historyId": "deere",
     "label": "Deere",
+    "isin": "US2441991054",
     "currency": "USD",
     "calendarReturns": {
       "2020": 57.9575366996165,
@@ -1740,6 +2660,7 @@
     "id": "equity-deutsche-boerse",
     "historyId": "deutsche-boerse",
     "label": "Deutsche Börse",
+    "isin": "DE0005810055",
     "currency": "EUR",
     "calendarReturns": {
       "2020": 1.280059594557792,
@@ -1776,6 +2697,7 @@
     "id": "equity-deutsche-telekom",
     "historyId": "deutsche-telekom",
     "label": "Deutsche Telekom",
+    "isin": "DE0005557508",
     "currency": "EUR",
     "calendarReturns": {
       "2020": 6.816273508372683,
@@ -1883,9 +2805,121 @@
     }
   },
   {
+    "id": "equity-stockUS2566771059",
+    "historyId": "stockUS2566771059",
+    "label": "Dollar General",
+    "isin": "US2566771059",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 35.89274219624361,
+      "2021": 13.010032990672137,
+      "2022": 5.570742453752797,
+      "2023": -44.1347249921966,
+      "2024": -43.123999408781124,
+      "2025": 79.60937266577388
+    },
+    "euroCalendarReturns": {
+      "2020": 24.408692513454522,
+      "2021": 22.439176658002637,
+      "2022": 12.103340430452313,
+      "2023": -46.076106494730205,
+      "2024": -39.5052645554944,
+      "2025": 58.80525724465742
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      35.89274219624361,
+      13.010032990672137,
+      5.570742453752797,
+      -44.1347249921966,
+      -43.123999408781124,
+      79.60937266577388
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/DG?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
+    "id": "equity-stockUS25754A2015",
+    "historyId": "stockUS25754A2015",
+    "label": "Domino’s Pizza",
+    "isin": "US25754A2015",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 31.627563007698978,
+      "2021": 48.39383952308023,
+      "2022": -37.88056397387422,
+      "2023": 20.69244905991514,
+      "2024": 3.1779925026438782,
+      "2025": 0.8838150156670999
+    },
+    "euroCalendarReturns": {
+      "2020": 20.503955898336756,
+      "2021": 60.77527854385638,
+      "2022": -34.036683627236016,
+      "2023": 16.498249925163357,
+      "2024": 9.742691034191452,
+      "2025": -10.801535812956132
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      31.627563007698978,
+      48.39383952308023,
+      -37.88056397387422,
+      20.69244905991514,
+      3.1779925026438782,
+      0.8838150156670999
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/DPZ?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
+    "id": "equity-stockUS2600031080",
+    "historyId": "stockUS2600031080",
+    "label": "Dover",
+    "isin": "US2600031080",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 11.527764603285773,
+      "2021": 45.734516524487525,
+      "2022": -24.33911254354132,
+      "2023": 15.21662088055622,
+      "2024": 23.34729520899281,
+      "2025": 5.240346245519456
+    },
+    "euroCalendarReturns": {
+      "2020": 2.102755077280749,
+      "2021": 57.89407136429334,
+      "2022": -19.657302519046404,
+      "2023": 11.212712969412909,
+      "2024": 31.195265382555636,
+      "2025": -6.949620668536038
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      11.527764603285773,
+      45.734516524487525,
+      -24.33911254354132,
+      15.21662088055622,
+      23.34729520899281,
+      5.240346245519456
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/DOV?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
     "id": "equity-etn",
     "historyId": "etn",
     "label": "Eaton",
+    "isin": "IE00B8KQN827",
     "currency": "USD",
     "calendarReturns": {
       "2020": 29.878151309199154,
@@ -1919,9 +2953,121 @@
     }
   },
   {
+    "id": "equity-stockUS2786421030",
+    "historyId": "stockUS2786421030",
+    "label": "eBay",
+    "isin": "US2786421030",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 41.15874551463048,
+      "2021": 33.81167309888078,
+      "2022": -36.46498939980951,
+      "2023": 7.651652982496571,
+      "2024": 44.77958085540927,
+      "2025": 42.74641150003031
+    },
+    "euroCalendarReturns": {
+      "2020": 29.229675422651667,
+      "2021": 44.976429507007424,
+      "2022": -32.533514901766594,
+      "2023": 3.910636263466838,
+      "2024": 53.99117994535303,
+      "2025": 26.2121250275587
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      41.15874551463048,
+      33.81167309888078,
+      -36.46498939980951,
+      7.651652982496571,
+      44.77958085540927,
+      42.74641150003031
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/EBAY?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
+    "id": "equity-stockUS2788651006",
+    "historyId": "stockUS2788651006",
+    "label": "Ecolab",
+    "isin": "US2788651006",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 13.168484387675505,
+      "2021": 9.384856268626528,
+      "2022": -37.09853070137119,
+      "2023": 37.943732608025236,
+      "2024": 19.290626026118595,
+      "2025": 13.187243219733102
+    },
+    "euroCalendarReturns": {
+      "2020": 3.604820602326342,
+      "2021": 18.51152845420414,
+      "2022": -33.20625902153854,
+      "2023": 33.15003185494998,
+      "2024": 26.880490671730726,
+      "2025": 0.07678891998359472
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      13.168484387675505,
+      9.384856268626528,
+      -37.09853070137119,
+      37.943732608025236,
+      19.290626026118595,
+      13.187243219733102
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/ECL?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
+    "id": "equity-stockUS28176E1082",
+    "historyId": "stockUS28176E1082",
+    "label": "Edwards Lifesciences",
+    "isin": "US28176E1082",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 17.317501656564737,
+      "2021": 42.00372546299271,
+      "2022": -42.40833711134688,
+      "2023": 2.1980954001059594,
+      "2024": -2.911476721311468,
+      "2025": 15.156019386141018
+    },
+    "euroCalendarReturns": {
+      "2020": 7.403211931370546,
+      "2021": 53.85199674698777,
+      "2022": -38.84463023843191,
+      "2023": -1.3534040237529243,
+      "2024": 3.2657794041301758,
+      "2025": 1.8175221619250115
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      17.317501656564737,
+      42.00372546299271,
+      -42.40833711134688,
+      2.1980954001059594,
+      -2.911476721311468,
+      15.156019386141018
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/EW?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
     "id": "equity-eli-lilly",
     "historyId": "eli-lilly",
     "label": "Eli Lilly",
+    "isin": "US5324571083",
     "currency": "USD",
     "calendarReturns": {
       "2020": 31.03988077628643,
@@ -1992,9 +3138,121 @@
     }
   },
   {
+    "id": "equity-stockFR0010208488",
+    "historyId": "stockFR0010208488",
+    "label": "engie",
+    "isin": "FR0010208488",
+    "currency": "EUR",
+    "calendarReturns": {
+      "2020": -13.055524799700857,
+      "2021": 8.313127997778214,
+      "2022": 10.661746646557235,
+      "2023": 30.78050421508156,
+      "2024": 5.448484284223176,
+      "2025": 58.95168183560324
+    },
+    "euroCalendarReturns": {
+      "2020": -13.055524799700857,
+      "2021": 8.313127997778214,
+      "2022": 10.661746646557235,
+      "2023": 30.78050421508156,
+      "2024": 5.448484284223176,
+      "2025": 58.95168183560324
+    },
+    "fxSource": null,
+    "values": [
+      -13.055524799700857,
+      8.313127997778214,
+      10.661746646557235,
+      30.78050421508156,
+      5.448484284223176,
+      58.95168183560324
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/ENGI.PA?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
+    "id": "equity-stockUS26875P1012",
+    "historyId": "stockUS26875P1012",
+    "label": "EOG Resources",
+    "isin": "US26875P1012",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": -38.63554870197946,
+      "2021": 88.62107906588564,
+      "2022": 56.88383156790107,
+      "2023": -2.0260079752565052,
+      "2024": 4.302183005974314,
+      "2025": -11.370978600289906
+    },
+    "euroCalendarReturns": {
+      "2020": -43.82134741406873,
+      "2021": 104.35893176915792,
+      "2022": 66.59162538327843,
+      "2023": -5.430715028424061,
+      "2024": 10.938408144770072,
+      "2025": -21.636859291779732
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      -38.63554870197946,
+      88.62107906588564,
+      56.88383156790107,
+      -2.0260079752565052,
+      4.302183005974314,
+      -11.370978600289906
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/EOG?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
+    "id": "equity-stockUS29414B1044",
+    "historyId": "stockUS29414B1044",
+    "label": "EPAM Systems",
+    "isin": "US29414B1044",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 68.905542629986,
+      "2021": 86.5355102017216,
+      "2022": -50.970157211995094,
+      "2023": -9.275643780913034,
+      "2024": -21.36274630204811,
+      "2025": -12.377042654010351
+    },
+    "euroCalendarReturns": {
+      "2020": 54.63164093433808,
+      "2021": 102.09935066972679,
+      "2022": -47.93624607004091,
+      "2023": -12.428417788888545,
+      "2024": -16.359451981675967,
+      "2025": -22.526391160213933
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      68.905542629986,
+      86.5355102017216,
+      -50.970157211995094,
+      -9.275643780913034,
+      -21.36274630204811,
+      -12.377042654010351
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/EPAM?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
     "id": "equity-essilorluxottica",
     "historyId": "essilorluxottica",
     "label": "EssilorLuxottica",
+    "isin": "FR0000121667",
     "currency": "EUR",
     "calendarReturns": {
       "2020": -5.207498455339444,
@@ -2028,9 +3286,121 @@
     }
   },
   {
+    "id": "equity-stockUS3021301094",
+    "historyId": "stockUS3021301094",
+    "label": "Expeditors",
+    "isin": "US3021301094",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 23.4700166137481,
+      "2021": 42.50429159670674,
+      "2022": -21.68172376666059,
+      "2023": 23.85508025357663,
+      "2024": -11.858697712854216,
+      "2025": 36.160853172844945
+    },
+    "euroCalendarReturns": {
+      "2020": 13.03578898531872,
+      "2021": 54.39432828740849,
+      "2022": -16.835477534333187,
+      "2023": 19.550976107207994,
+      "2024": -6.250708415346907,
+      "2025": 20.3893705202286
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      23.4700166137481,
+      42.50429159670674,
+      -21.68172376666059,
+      23.85508025357663,
+      -11.858697712854216,
+      36.160853172844945
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/EXPD?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
+    "id": "equity-stockUS30233Q1085",
+    "historyId": "stockUS30233Q1085",
+    "label": "ExxonMobil",
+    "isin": "US30233Q1085",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": -36.211022231242374,
+      "2021": 57.57552801141246,
+      "2022": 87.40910064065784,
+      "2023": -6.26153515533524,
+      "2024": 11.261605134913367,
+      "2025": 15.97715792106058
+    },
+    "euroCalendarReturns": {
+      "2020": -41.60171328708149,
+      "2021": 70.72305352534367,
+      "2022": 99.0057635342294,
+      "2023": -9.519052847674715,
+      "2024": 18.340623422927393,
+      "2025": 2.543548395055173
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      -36.211022231242374,
+      57.57552801141246,
+      87.40910064065784,
+      -6.26153515533524,
+      11.261605134913367,
+      15.97715792106058
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/XOM?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
+    "id": "equity-stockUS3156161024",
+    "historyId": "stockUS3156161024",
+    "label": "F5",
+    "isin": "US3156161024",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 25.98640140292452,
+      "2021": 39.087191211922345,
+      "2022": -41.35507707292084,
+      "2023": 24.716049220125736,
+      "2024": 40.50173573587519,
+      "2025": 1.5071356364292576
+    },
+    "euroCalendarReturns": {
+      "2020": 15.339518650513728,
+      "2021": 50.69211754913465,
+      "2022": -37.72619566171962,
+      "2023": 20.38202542822272,
+      "2024": 49.441156981559416,
+      "2025": -10.250414287075449
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      25.98640140292452,
+      39.087191211922345,
+      -41.35507707292084,
+      24.716049220125736,
+      40.50173573587519,
+      1.5071356364292576
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/FFIV?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
     "id": "equity-fds",
     "historyId": "fds",
     "label": "FactSet",
+    "isin": "US3030751057",
     "currency": "USD",
     "calendarReturns": {
       "2020": 25.126434372668815,
@@ -2064,9 +3434,47 @@
     }
   },
   {
+    "id": "equity-stockUS3032501047",
+    "historyId": "stockUS3032501047",
+    "label": "Fair Isaac",
+    "isin": "US3032501047",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 36.393727593562744,
+      "2021": -15.139714041449936,
+      "2022": 38.02660987768136,
+      "2023": 94.46188929491109,
+      "2024": 71.04062996846565,
+      "2025": -15.083908065812945
+    },
+    "euroCalendarReturns": {
+      "2020": 24.867340541608975,
+      "2021": -8.059282271113554,
+      "2022": 46.56754017200628,
+      "2023": 87.70411866240015,
+      "2024": 81.9230879922558,
+      "2025": -24.91972092729624
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      36.393727593562744,
+      -15.139714041449936,
+      38.02660987768136,
+      94.46188929491109,
+      71.04062996846565,
+      -15.083908065812945
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/FICO?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
     "id": "equity-ferrari",
     "historyId": "ferrari",
     "label": "Ferrari",
+    "isin": "NL0011585146",
     "currency": "EUR",
     "calendarReturns": {
       "2020": 28.52978082482478,
@@ -2137,9 +3545,121 @@
     }
   },
   {
+    "id": "equity-stockUS35671D8570",
+    "historyId": "stockUS35671D8570",
+    "label": "Freeport-McMoRan",
+    "isin": "US35671D8570",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 99.05882360706019,
+      "2021": 61.410058437688896,
+      "2022": -7.3436329636340165,
+      "2023": 13.685981815729509,
+      "2024": -9.412805085202514,
+      "2025": 35.41074726339679
+    },
+    "euroCalendarReturns": {
+      "2020": 82.23672271222509,
+      "2021": 74.8775231404627,
+      "2022": -1.6101619113180865,
+      "2023": 9.73526534358109,
+      "2024": -3.649195898689739,
+      "2025": 19.726149218674816
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      99.05882360706019,
+      61.410058437688896,
+      -7.3436329636340165,
+      13.685981815729509,
+      -9.412805085202514,
+      35.41074726339679
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/FCX?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
+    "id": "equity-stockCH0114405324",
+    "historyId": "stockCH0114405324",
+    "label": "Garmin",
+    "isin": "CH0114405324",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 25.858875843918373,
+      "2021": 15.9029759438992,
+      "2022": -30.195503051852178,
+      "2023": 43.11706847361627,
+      "2024": 63.25341700835292,
+      "2025": -0.05837913189071786
+    },
+    "euroCalendarReturns": {
+      "2020": 15.22277004568322,
+      "2021": 25.57349618643714,
+      "2022": -25.876079839234745,
+      "2023": 38.143588447021834,
+      "2024": 73.64041370125129,
+      "2025": -11.634595812869165
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      25.858875843918373,
+      15.9029759438992,
+      -30.195503051852178,
+      43.11706847361627,
+      63.25341700835292,
+      -0.05837913189071786
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/GRMN?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
+    "id": "equity-stockUS3666511072",
+    "historyId": "stockUS3666511072",
+    "label": "Gartner",
+    "isin": "US3666511072",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 3.951976484673203,
+      "2021": 108.70216794179201,
+      "2022": 0.5443909912337563,
+      "2023": 34.20300019918783,
+      "2024": 7.395095898841619,
+      "2025": -47.92660051617933
+    },
+    "euroCalendarReturns": {
+      "2020": -4.832816899289494,
+      "2021": 126.11551322741744,
+      "2022": 6.765964032131411,
+      "2023": 29.539294128917405,
+      "2024": 14.228107583232275,
+      "2025": -53.95825129894358
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      3.951976484673203,
+      108.70216794179201,
+      0.5443909912337563,
+      34.20300019918783,
+      7.395095898841619,
+      -47.92660051617933
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/IT?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
     "id": "equity-ge-aerospace",
     "historyId": "ge-aerospace",
     "label": "GE Aerospace",
+    "isin": "US3696043013",
     "currency": "USD",
     "calendarReturns": {
       "2020": -2.7347144459194173,
@@ -2170,6 +3690,80 @@
     "checkedAt": "2026-10-17",
     "art": {
       "scene": "etf-night/infrastructure.webp"
+    }
+  },
+  {
+    "id": "equity-stockUS3695501086",
+    "historyId": "stockUS3695501086",
+    "label": "General Dynamics",
+    "isin": "US3695501086",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": -13.140084870810142,
+      "2021": 43.77498929162202,
+      "2022": 21.68816354719876,
+      "2023": 7.1258698165341805,
+      "2024": 3.5217207782800353,
+      "2025": 30.39396978422022
+    },
+    "euroCalendarReturns": {
+      "2020": -20.480459085541625,
+      "2021": 55.77104834871038,
+      "2022": 29.21808928704044,
+      "2023": 3.4031246572989726,
+      "2024": 10.108289017229222,
+      "2025": 15.290464007511817
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      -13.140084870810142,
+      43.77498929162202,
+      21.68816354719876,
+      7.1258698165341805,
+      3.5217207782800353,
+      30.39396978422022
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/GD?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
+    "id": "equity-stockUS3724601055",
+    "historyId": "stockUS3724601055",
+    "label": "Genuine Parts",
+    "isin": "US3724601055",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": -2.1940617278318753,
+      "2021": 43.38967157121285,
+      "2022": 26.822013920475875,
+      "2023": -18.12453590619828,
+      "2024": -13.223528232662929,
+      "2025": 8.697899872395087
+    },
+    "euroCalendarReturns": {
+      "2020": -10.459464546529496,
+      "2021": 55.353581127525416,
+      "2022": 34.66961650696698,
+      "2023": -20.96980090276116,
+      "2024": -7.702376260556864,
+      "2025": -3.892554742611709
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      -2.1940617278318753,
+      43.38967157121285,
+      26.822013920475875,
+      -18.12453590619828,
+      -13.223528232662929,
+      8.697899872395087
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/GPC?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
     }
   },
   {
@@ -2213,6 +3807,7 @@
     "id": "equity-goldman-sachs",
     "historyId": "goldman-sachs",
     "label": "Goldman Sachs",
+    "isin": "US38141G1040",
     "currency": "USD",
     "calendarReturns": {
       "2020": 17.453706000617196,
@@ -2243,6 +3838,80 @@
     "checkedAt": "2026-10-17",
     "art": {
       "scene": "etf-night/finance.webp"
+    }
+  },
+  {
+    "id": "equity-google",
+    "historyId": "google",
+    "label": "Google (Alphabet)",
+    "isin": "US02079K3059",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 30.853609295223716,
+      "2021": 65.29580380080711,
+      "2022": -39.089567838468376,
+      "2023": 58.32485395774918,
+      "2024": 36.00558506626832,
+      "2025": 65.99360417962174
+    },
+    "euroCalendarReturns": {
+      "2020": 19.795407613278716,
+      "2021": 79.08748087936644,
+      "2022": -35.32049928168881,
+      "2023": 52.82288618220385,
+      "2024": 44.658938779696314,
+      "2025": 46.76660032528426
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      30.853609295223716,
+      65.29580380080711,
+      -39.089567838468376,
+      58.32485395774918,
+      36.00558506626832,
+      65.99360417962174
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/GOOGL?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/chip.webp"
+    }
+  },
+  {
+    "id": "equity-stockUS3841091040",
+    "historyId": "stockUS3841091040",
+    "label": "Graco",
+    "isin": "US3841091040",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 40.96836271406481,
+      "2021": 12.567294960800869,
+      "2022": -15.48397795123475,
+      "2023": 30.61656650562505,
+      "2024": -1.6843577187598102,
+      "2025": -1.4586831554955215
+    },
+    "euroCalendarReturns": {
+      "2020": 29.05538152797684,
+      "2021": 21.959498186825655,
+      "2022": -10.254222227234644,
+      "2023": 26.07749306325764,
+      "2024": 4.570973838454528,
+      "2025": -12.87270291935686
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      40.96836271406481,
+      12.567294960800869,
+      -15.48397795123475,
+      30.61656650562505,
+      -1.6843577187598102,
+      -1.4586831554955215
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/GGG?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
     }
   },
   {
@@ -2283,9 +3952,47 @@
     }
   },
   {
+    "id": "equity-stockUS8064071025",
+    "historyId": "stockUS8064071025",
+    "label": "Henry Schein",
+    "isin": "US8064071025",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 0.20983213114760257,
+      "2021": 15.95871648281908,
+      "2022": 3.0181917066708586,
+      "2023": -5.208468566102342,
+      "2024": -8.59860267598207,
+      "2025": 9.21966080432055
+    },
+    "euroCalendarReturns": {
+      "2020": -8.258719406624394,
+      "2021": 25.633887511978905,
+      "2022": 9.392840734085329,
+      "2023": -8.50258151366946,
+      "2024": -2.783189870979097,
+      "2025": -3.431229268418212
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      0.20983213114760257,
+      15.95871648281908,
+      3.0181917066708586,
+      -5.208468566102342,
+      -8.59860267598207,
+      9.21966080432055
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/HSIC?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
     "id": "equity-hermes",
     "historyId": "hermes",
     "label": "Hermès",
+    "isin": "FR0000052292",
     "currency": "EUR",
     "calendarReturns": {
       "2020": 32.93651322010176,
@@ -2316,6 +4023,80 @@
     "checkedAt": "2026-10-17",
     "art": {
       "scene": "etf-night/luxury.webp"
+    }
+  },
+  {
+    "id": "equity-stockUS4278661081",
+    "historyId": "stockUS4278661081",
+    "label": "Hershey",
+    "isin": "US4278661081",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 5.896989786395346,
+      "2021": 29.582669117370152,
+      "2022": 21.8623716315173,
+      "2023": -17.878131119292785,
+      "2024": -6.505912631008359,
+      "2025": 10.98149660216976
+    },
+    "euroCalendarReturns": {
+      "2020": -3.0521731513026507,
+      "2021": 40.39457290652033,
+      "2022": 29.40307717031361,
+      "2023": -20.731958960939078,
+      "2024": -0.5573524470730784,
+      "2025": -1.8734665361751945
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      5.896989786395346,
+      29.582669117370152,
+      21.8623716315173,
+      -17.878131119292785,
+      -6.505912631008359,
+      10.98149660216976
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/HSY?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
+    "id": "equity-stockUS43300A2033",
+    "historyId": "stockUS43300A2033",
+    "label": "Hilton",
+    "isin": "US43300A2033",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 0.4695133404729601,
+      "2021": 40.20313973566925,
+      "2022": -18.717914819183324,
+      "2023": 44.67953798263715,
+      "2024": 36.11333947749842,
+      "2025": 16.485459579283535
+    },
+    "euroCalendarReturns": {
+      "2020": -8.020983386286929,
+      "2021": 51.901176734628066,
+      "2022": -13.68827144590945,
+      "2023": 39.651760373104786,
+      "2024": 44.773549064044424,
+      "2025": 2.9929735803554625
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      0.4695133404729601,
+      40.20313973566925,
+      -18.717914819183324,
+      44.67953798263715,
+      36.11333947749842,
+      16.485459579283535
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/HLT?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
     }
   },
   {
@@ -2359,6 +4140,7 @@
     "id": "equity-hd",
     "historyId": "hd",
     "label": "Home Depot",
+    "isin": "US4370761029",
     "currency": "USD",
     "calendarReturns": {
       "2020": 24.50168389242402,
@@ -2395,6 +4177,7 @@
     "id": "equity-honeywell",
     "historyId": "honeywell",
     "label": "Honeywell",
+    "isin": "US4385162056",
     "currency": "USD",
     "calendarReturns": {
       "2020": 22.97271476646521,
@@ -2428,9 +4211,47 @@
     }
   },
   {
+    "id": "equity-stockUS4404521001",
+    "historyId": "stockUS4404521001",
+    "label": "Hormel Foods",
+    "isin": "US4404521001",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 5.389100399206548,
+      "2021": 6.990424824482844,
+      "2022": -4.6741902926694,
+      "2023": -27.490230013592786,
+      "2024": 1.2118293556369286,
+      "2025": -21.26830972966126
+    },
+    "euroCalendarReturns": {
+      "2020": -3.517141725638806,
+      "2021": 15.917314411198035,
+      "2022": 1.2244628487930287,
+      "2023": -30.010026545247115,
+      "2024": 7.651430780612967,
+      "2025": -30.38778466225114
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      5.389100399206548,
+      6.990424824482844,
+      -4.6741902926694,
+      -27.490230013592786,
+      1.2118293556369286,
+      -21.26830972966126
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/HRL?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
     "id": "equity-iberdrola",
     "historyId": "iberdrola",
     "label": "Iberdrola",
+    "isin": "ES0144580Y14",
     "currency": "EUR",
     "calendarReturns": {
       "2020": 32.72155223720825,
@@ -2467,6 +4288,7 @@
     "id": "equity-ibm",
     "historyId": "ibm",
     "label": "IBM",
+    "isin": "US4592001014",
     "currency": "USD",
     "calendarReturns": {
       "2020": -1.1626199553230188,
@@ -2537,9 +4359,84 @@
     }
   },
   {
+    "id": "equity-stockUS45168D1046",
+    "historyId": "stockUS45168D1046",
+    "label": "IDEXX",
+    "isin": "US45168D1046",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 91.42572106947267,
+      "2021": 31.726254543443822,
+      "2022": -38.04331662218971,
+      "2023": 36.05500545272833,
+      "2024": -25.513014874617024,
+      "2025": 63.63439089766645
+    },
+    "euroCalendarReturns": {
+      "2020": 75.2486798544907,
+      "2021": 42.71701125751362,
+      "2022": -34.209507225100374,
+      "2023": 31.326940104868804,
+      "2024": -20.773781342238728,
+      "2025": 44.68065421581757
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      91.42572106947267,
+      31.726254543443822,
+      -38.04331662218971,
+      36.05500545272833,
+      -25.513014874617024,
+      63.63439089766645
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/IDXX?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
+    "id": "equity-stockUS4523081093",
+    "historyId": "stockUS4523081093",
+    "label": "Illinois Tool Works",
+    "isin": "US4523081093",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 16.42424614445641,
+      "2021": 23.595640649154227,
+      "2022": -8.45739902744408,
+      "2023": 21.564179176368327,
+      "2024": -0.9663504622175578,
+      "2025": -0.42529492286070836
+    },
+    "euroCalendarReturns": {
+      "2020": 6.585443825835169,
+      "2021": 33.90800868848416,
+      "2022": -2.792846557737816,
+      "2023": 17.33968643394974,
+      "2024": 5.334664298055247,
+      "2025": -11.959011825838296
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      16.42424614445641,
+      23.595640649154227,
+      -8.45739902744408,
+      21.564179176368327,
+      -0.9663504622175578,
+      -0.42529492286070836
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/ITW?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
     "id": "equity-inditex",
     "historyId": "inditex",
     "label": "Inditex",
+    "isin": "ES0148396007",
     "currency": "EUR",
     "calendarReturns": {
       "2020": -14.458942088697723,
@@ -2576,6 +4473,7 @@
     "id": "equity-infineon",
     "historyId": "infineon",
     "label": "Infineon",
+    "isin": "DE0006231004",
     "currency": "EUR",
     "calendarReturns": {
       "2020": 56.49939955534939,
@@ -2649,6 +4547,7 @@
     "id": "equity-intel",
     "historyId": "intel",
     "label": "Intel",
+    "isin": "US4581401001",
     "currency": "USD",
     "calendarReturns": {
       "2020": -14.688739210492873,
@@ -2722,6 +4621,7 @@
     "id": "equity-intuit",
     "historyId": "intuit",
     "label": "Intuit",
+    "isin": "US4612021034",
     "currency": "USD",
     "calendarReturns": {
       "2020": 46.122202364870255,
@@ -2758,6 +4658,7 @@
     "id": "equity-intuitive-surgical",
     "historyId": "intuitive-surgical",
     "label": "Intuitive Surgical",
+    "isin": "US46120E6023",
     "currency": "USD",
     "calendarReturns": {
       "2020": 38.39127523382986,
@@ -2788,6 +4689,117 @@
     "checkedAt": "2026-10-16",
     "art": {
       "scene": "etf-night/health.webp"
+    }
+  },
+  {
+    "id": "equity-stockUS45073V1089",
+    "historyId": "stockUS45073V1089",
+    "label": "ITT",
+    "isin": "US45073V1089",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 5.469365582163066,
+      "2021": 33.952078502003566,
+      "2022": -19.5027063169527,
+      "2023": 48.91331169918196,
+      "2024": 20.859095769792745,
+      "2025": 22.515106570493828
+    },
+    "euroCalendarReturns": {
+      "2020": -3.443659608017291,
+      "2021": 45.128549823246146,
+      "2022": -14.521624952728873,
+      "2023": 43.738405663662896,
+      "2024": 28.548754283974386,
+      "2025": 8.32420784347747
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      5.469365582163066,
+      33.952078502003566,
+      -19.5027063169527,
+      48.91331169918196,
+      20.859095769792745,
+      22.515106570493828
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/ITT?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
+    "id": "equity-stockUS4456581077",
+    "historyId": "stockUS4456581077",
+    "label": "J.B. Hunt",
+    "isin": "US4456581077",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 18.110122488604286,
+      "2021": 50.64085437891044,
+      "2022": -13.922195066250588,
+      "2023": 15.587371726267762,
+      "2024": -13.751055389200395,
+      "2025": 15.199462126638341
+    },
+    "euroCalendarReturns": {
+      "2020": 8.128849811505212,
+      "2021": 63.209776097793565,
+      "2022": -8.595797986157338,
+      "2023": 11.57057980383458,
+      "2024": -8.263467326081841,
+      "2025": 1.8559329390336776
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      18.110122488604286,
+      50.64085437891044,
+      -13.922195066250588,
+      15.587371726267762,
+      -13.751055389200395,
+      15.199462126638341
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/JBHT?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
+    "id": "equity-stockUS4262811015",
+    "historyId": "stockUS4262811015",
+    "label": "Jack Henry",
+    "isin": "US4262811015",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 12.373218144058118,
+      "2021": 4.315197773560486,
+      "2022": 6.236218867014642,
+      "2023": -5.660022982498159,
+      "2024": 8.651599272057542,
+      "2025": 5.498565966120039
+    },
+    "euroCalendarReturns": {
+      "2020": 2.8767608695581925,
+      "2021": 13.0188762033693,
+      "2022": 12.80999577046764,
+      "2023": -8.938443903287352,
+      "2024": 15.564555968450854,
+      "2025": -6.721310483232257
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      12.373218144058118,
+      4.315197773560486,
+      6.236218867014642,
+      -5.660022982498159,
+      8.651599272057542,
+      5.498565966120039
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/JKHY?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
     }
   },
   {
@@ -2826,6 +4838,80 @@
     }
   },
   {
+    "id": "equity-stockUS4781601046",
+    "historyId": "stockUS4781601046",
+    "label": "Johnson & Johnson",
+    "isin": "US4781601046",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 10.823693446663917,
+      "2021": 11.438097632518417,
+      "2022": 5.974885589132906,
+      "2023": -8.578405038397518,
+      "2024": -4.811438800939694,
+      "2025": 47.47952503017019
+    },
+    "euroCalendarReturns": {
+      "2020": 1.4581836997654918,
+      "2021": 20.736084765021488,
+      "2022": 12.532491485329022,
+      "2023": -11.755408881407059,
+      "2024": 1.2449322600458501,
+      "2025": 30.397003024547907
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      10.823693446663917,
+      11.438097632518417,
+      5.974885589132906,
+      -8.578405038397518,
+      -4.811438800939694,
+      47.47952503017019
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/JNJ?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
+    "id": "equity-stockUS46625H1005",
+    "historyId": "stockUS46625H1005",
+    "label": "JPMorgan Chase",
+    "isin": "US46625H1005",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": -5.534783801500664,
+      "2021": 27.74575013576841,
+      "2022": -12.641229416225253,
+      "2023": 30.626733093861723,
+      "2024": 44.288115853322665,
+      "2025": 37.26629313793626
+    },
+    "euroCalendarReturns": {
+      "2020": -13.517868244320653,
+      "2021": 38.40438812608282,
+      "2022": -7.235567632492701,
+      "2023": 26.08730635105241,
+      "2024": 53.468445488421956,
+      "2025": 21.366767609363357
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      -5.534783801500664,
+      27.74575013576841,
+      -12.641229416225253,
+      30.626733093861723,
+      44.288115853322665,
+      37.26629313793626
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/JPM?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
     "id": "equity-keyence",
     "historyId": "keyence",
     "label": "Keyence",
@@ -2860,6 +4946,80 @@
     "checkedAt": "2026-10-17",
     "art": {
       "scene": "etf-night/infrastructure.webp"
+    }
+  },
+  {
+    "id": "equity-stockUS49338L1035",
+    "historyId": "stockUS49338L1035",
+    "label": "Keysight Technologies",
+    "isin": "US49338L1035",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 28.705056865586776,
+      "2021": 56.340374936494044,
+      "2022": -17.161391147193626,
+      "2023": -7.002987379313074,
+      "2024": 0.9680112129740737,
+      "2025": 26.495670594046228
+    },
+    "euroCalendarReturns": {
+      "2020": 17.828425460679796,
+      "2021": 69.38484379707917,
+      "2022": -12.03543185197028,
+      "2023": -10.234738768122465,
+      "2024": 7.39209971155681,
+      "2025": 11.843703983110299
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      28.705056865586776,
+      56.340374936494044,
+      -17.161391147193626,
+      -7.002987379313074,
+      0.9680112129740737,
+      26.495670594046228
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/KEYS?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
+    "id": "equity-stockUS4943681035",
+    "historyId": "stockUS4943681035",
+    "label": "Kimberly-Clark",
+    "isin": "US4943681035",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 0.9523224907256322,
+      "2021": 9.664163447422247,
+      "2022": -1.5795087917412909,
+      "2023": -7.078360331995204,
+      "2024": 11.78629503455646,
+      "2025": -19.85609812815926
+    },
+    "euroCalendarReturns": {
+      "2020": -7.578975563457613,
+      "2021": 18.81414000205883,
+      "2022": 4.510639736052702,
+      "2023": -10.307492425435372,
+      "2024": 18.898696711122255,
+      "2025": -29.139149230080562
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      0.9523224907256322,
+      9.664163447422247,
+      -1.5795087917412909,
+      -7.078360331995204,
+      11.78629503455646,
+      -19.85609812815926
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/KMB?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
     }
   },
   {
@@ -2903,6 +5063,7 @@
     "id": "equity-loreal",
     "historyId": "loreal",
     "label": "L’Oréal",
+    "isin": "FR0000120321",
     "currency": "EUR",
     "calendarReturns": {
       "2020": 19.274981631760667,
@@ -2939,6 +5100,7 @@
     "id": "equity-lam-research",
     "historyId": "lam-research",
     "label": "Lam Research",
+    "isin": "US5128073062",
     "currency": "USD",
     "calendarReturns": {
       "2020": 64.18036288994129,
@@ -2975,6 +5137,7 @@
     "id": "equity-legrand",
     "historyId": "legrand",
     "label": "Legrand",
+    "isin": "FR0010307819",
     "currency": "EUR",
     "calendarReturns": {
       "2020": 2.741485674131394,
@@ -3008,9 +5171,84 @@
     }
   },
   {
+    "id": "equity-stockUS5261071071",
+    "historyId": "stockUS5261071071",
+    "label": "Lennox",
+    "isin": "US5261071071",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 13.79192733440524,
+      "2021": 19.70547377368326,
+      "2022": -24.944491224767262,
+      "2023": 89.54826453077236,
+      "2024": 37.26778436597977,
+      "2025": -19.53806857675161
+    },
+    "euroCalendarReturns": {
+      "2020": 4.175577514033768,
+      "2021": 29.693260522414565,
+      "2022": -20.300141347432398,
+      "2023": 82.96124791721431,
+      "2024": 46.001445494665184,
+      "2025": -28.857956973946607
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      13.79192733440524,
+      19.70547377368326,
+      -24.944491224767262,
+      89.54826453077236,
+      37.26778436597977,
+      -19.53806857675161
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/LII?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
+    "id": "equity-stockUS5339001068",
+    "historyId": "stockUS5339001068",
+    "label": "Lincoln Electric",
+    "isin": "US5339001068",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 22.969066879384403,
+      "2021": 21.89248741414056,
+      "2022": 5.417647558134364,
+      "2023": 52.611840129569586,
+      "2024": -12.550956025169057,
+      "2025": 29.629948159020202
+    },
+    "euroCalendarReturns": {
+      "2020": 12.577173606307902,
+      "2021": 32.06275057910284,
+      "2022": 11.940772196083804,
+      "2023": 47.30840604723885,
+      "2024": -6.987011654453557,
+      "2025": 14.6149388446009
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      22.969066879384403,
+      21.89248741414056,
+      5.417647558134364,
+      52.611840129569586,
+      -12.550956025169057,
+      29.629948159020202
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/LECO?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
     "id": "equity-linde",
     "historyId": "linde",
     "label": "Linde",
+    "isin": "IE000S9YS762",
     "currency": "USD",
     "calendarReturns": {
       "2020": 25.878966209409437,
@@ -3044,9 +5282,47 @@
     }
   },
   {
+    "id": "equity-stockUS5018892084",
+    "historyId": "stockUS5018892084",
+    "label": "LKQ",
+    "isin": "US5018892084",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": -1.2885183765750208,
+      "2021": 71.08969260770846,
+      "2022": -9.241095894701212,
+      "2023": -8.560338547667268,
+      "2024": -20.915398571630572,
+      "2025": -14.986605704511845
+    },
+    "euroCalendarReturns": {
+      "2020": -9.63044702489152,
+      "2021": 85.36479056941467,
+      "2022": -3.625037699548639,
+      "2023": -11.737970221666894,
+      "2024": -15.883641757293077,
+      "2025": -24.833689077802013
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      -1.2885183765750208,
+      71.08969260770846,
+      -9.241095894701212,
+      -8.560338547667268,
+      -20.915398571630572,
+      -14.986605704511845
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/LKQ?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
     "id": "equity-lmt",
     "historyId": "lmt",
     "label": "Lockheed Martin",
+    "isin": "US5398301094",
     "currency": "USD",
     "calendarReturns": {
       "2020": -6.49334518528889,
@@ -3120,6 +5396,7 @@
     "id": "equity-low",
     "historyId": "low",
     "label": "Lowe's",
+    "isin": "US5486611073",
     "currency": "USD",
     "calendarReturns": {
       "2020": 36.40058479689863,
@@ -3153,9 +5430,232 @@
     }
   },
   {
+    "id": "equity-stockUS5500211090",
+    "historyId": "stockUS5500211090",
+    "label": "Lululemon",
+    "isin": "US5500211090",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 50.22661630963539,
+      "2021": 12.475939753687747,
+      "2022": -18.15557665636246,
+      "2023": 59.588613839992924,
+      "2024": -25.20683031770331,
+      "2025": -45.65780292714309
+    },
+    "euroCalendarReturns": {
+      "2020": 37.53123686923998,
+      "2021": 21.86052063548494,
+      "2022": -13.091136434461015,
+      "2023": 54.04272897894702,
+      "2024": -20.448115796575372,
+      "2025": -51.95224805192251
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      50.22661630963539,
+      12.475939753687747,
+      -18.15557665636246,
+      59.588613839992924,
+      -25.20683031770331,
+      -45.65780292714309
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/LULU?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
+    "id": "equity-lvmh",
+    "historyId": "lvmh",
+    "label": "LVMH",
+    "isin": "FR0000121014",
+    "currency": "EUR",
+    "calendarReturns": {
+      "2020": 24.661441959943197,
+      "2021": 43.83351735960947,
+      "2022": -4.757109481283539,
+      "2023": 9.60428398622184,
+      "2024": -11.729887818954754,
+      "2025": 3.9289416697661173
+    },
+    "euroCalendarReturns": {
+      "2020": 24.661441959943197,
+      "2021": 43.83351735960947,
+      "2022": -4.757109481283539,
+      "2023": 9.60428398622184,
+      "2024": -11.729887818954754,
+      "2025": 3.9289416697661173
+    },
+    "fxSource": null,
+    "values": [
+      24.661441959943197,
+      43.83351735960947,
+      -4.757109481283539,
+      9.60428398622184,
+      -11.729887818954754,
+      3.9289416697661173
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/MC.PA?period1=1451606400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/luxury.webp"
+    }
+  },
+  {
+    "id": "equity-stockUS5719032022",
+    "historyId": "stockUS5719032022",
+    "label": "Marriott International",
+    "isin": "US5719032022",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": -12.534538904014825,
+      "2021": 25.25774060340751,
+      "2022": -9.33980479023251,
+      "2023": 53.05741767283898,
+      "2024": 24.924639852882603,
+      "2025": 12.306761441694935
+    },
+    "euroCalendarReturns": {
+      "2020": -19.926086712387146,
+      "2021": 35.70878818156573,
+      "2022": -3.729854589740611,
+      "2023": 47.738499266832626,
+      "2024": 32.87296856043438,
+      "2025": -0.7017068410409832
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      -12.534538904014825,
+      25.25774060340751,
+      -9.33980479023251,
+      53.05741767283898,
+      24.924639852882603,
+      12.306761441694935
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/MAR?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
+    "id": "equity-stockUS5732841060",
+    "historyId": "stockUS5732841060",
+    "label": "Martin Marietta",
+    "isin": "US5732841060",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 2.5723430824964977,
+      "2021": 56.107700930618364,
+      "2022": -22.733307687245784,
+      "2023": 48.61749282085257,
+      "2024": 4.083516858477365,
+      "2025": 21.250142507342918
+    },
+    "euroCalendarReturns": {
+      "2020": -6.095859979727358,
+      "2021": 69.1327563234697,
+      "2022": -17.952132276930975,
+      "2023": 43.45286682599217,
+      "2024": 10.705829366269604,
+      "2025": 7.205764298620032
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      2.5723430824964977,
+      56.107700930618364,
+      -22.733307687245784,
+      48.61749282085257,
+      4.083516858477365,
+      21.250142507342918
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/MLM?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
+    "id": "equity-stockUS5745991068",
+    "historyId": "stockUS5745991068",
+    "label": "Masco",
+    "isin": "US5745991068",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 15.781828194826652,
+      "2021": 29.60824043038506,
+      "2022": -32.09089011472365,
+      "2023": 46.560150375939855,
+      "2024": 10.0445596563582,
+      "2025": -10.919253579959298
+    },
+    "euroCalendarReturns": {
+      "2020": 5.9973154543788265,
+      "2021": 40.4222777963319,
+      "2022": -27.888751306896676,
+      "2023": 41.46701935835062,
+      "2024": 17.046143440442595,
+      "2025": -21.237457484442324
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      15.781828194826652,
+      29.60824043038506,
+      -32.09089011472365,
+      46.560150375939855,
+      10.0445596563582,
+      -10.919253579959298
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/MAS?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
+    "id": "equity-stockUS57636Q1040",
+    "historyId": "stockUS57636Q1040",
+    "label": "Mastercard",
+    "isin": "US57636Q1040",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 20.186369358559485,
+      "2021": 1.160567947116209,
+      "2022": -2.6585369181826524,
+      "2023": 23.40389685071582,
+      "2024": 24.174333165258144,
+      "2025": 9.037740238836477
+    },
+    "euroCalendarReturns": {
+      "2020": 10.029636816401034,
+      "2021": 9.601035606486242,
+      "2022": 3.3648425712228702,
+      "2023": 19.115471837985055,
+      "2024": 32.07492361883748,
+      "2025": -3.5920780135087704
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      20.186369358559485,
+      1.160567947116209,
+      -2.6585369181826524,
+      23.40389685071582,
+      24.174333165258144,
+      9.037740238836477
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/MA?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
     "id": "equity-mcdonalds",
     "historyId": "mcdonalds",
     "label": "McDonald’s",
+    "isin": "US5801351017",
     "currency": "USD",
     "calendarReturns": {
       "2020": 11.296769871941681,
@@ -3229,6 +5729,7 @@
     "id": "equity-merck",
     "historyId": "merck",
     "label": "Merck & Co.",
+    "isin": "US58933Y1055",
     "currency": "USD",
     "calendarReturns": {
       "2020": -7.2047864579096625,
@@ -3262,9 +5763,84 @@
     }
   },
   {
+    "id": "equity-meta",
+    "historyId": "meta",
+    "label": "Meta",
+    "isin": "US30303M1027",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 33.08647365431656,
+      "2021": 23.13298380415563,
+      "2022": -64.22179607216454,
+      "2023": 194.133285352803,
+      "2024": 66.04887644400907,
+      "2025": 13.09312956423787
+    },
+    "euroCalendarReturns": {
+      "2020": 21.839576646776294,
+      "2021": 33.40674944912534,
+      "2022": -62.00788133445862,
+      "2023": 183.91182095683232,
+      "2024": 76.61373420986624,
+      "2025": -0.006423570819824587
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      33.08647365431656,
+      23.13298380415563,
+      -64.22179607216454,
+      194.133285352803,
+      66.04887644400907,
+      13.09312956423787
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/META?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/chip.webp"
+    }
+  },
+  {
+    "id": "equity-stockUS5926881054",
+    "historyId": "stockUS5926881054",
+    "label": "Mettler-Toledo",
+    "isin": "US5926881054",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 43.66680268462928,
+      "2021": 48.9198617667481,
+      "2022": -14.833757507035983,
+      "2023": -16.084264269347926,
+      "2024": 0.883796114025226,
+      "2025": 13.934188633918865
+    },
+    "euroCalendarReturns": {
+      "2020": 31.525781220693094,
+      "2021": 61.345190158905694,
+      "2022": -9.56376687836954,
+      "2023": -19.000431013290953,
+      "2024": 7.302526427950595,
+      "2025": 0.7372158057687539
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      43.66680268462928,
+      48.9198617667481,
+      -14.833757507035983,
+      -16.084264269347926,
+      0.883796114025226,
+      13.934188633918865
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/MTD?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
     "id": "equity-michelin",
     "historyId": "michelin",
     "label": "Michelin",
+    "isin": "FR001400AJ45",
     "currency": "EUR",
     "calendarReturns": {
       "2020": -1.6742128940653522,
@@ -3301,6 +5877,7 @@
     "id": "equity-micron",
     "historyId": "micron",
     "label": "Micron Technology",
+    "isin": "US5951121038",
     "currency": "USD",
     "calendarReturns": {
       "2020": 39.791811561416736,
@@ -3337,6 +5914,7 @@
     "id": "equity-microsoft",
     "historyId": "microsoft",
     "label": "Microsoft",
+    "isin": "US5949181045",
     "currency": "USD",
     "calendarReturns": {
       "2020": 42.53405870460718,
@@ -3447,6 +6025,7 @@
     "id": "equity-mdlz",
     "historyId": "mdlz",
     "label": "Mondelez",
+    "isin": "US6092071058",
     "currency": "USD",
     "calendarReturns": {
       "2020": 8.583312185877068,
@@ -3480,9 +6059,47 @@
     }
   },
   {
+    "id": "equity-stockUS6098391054",
+    "historyId": "stockUS6098391054",
+    "label": "Monolithic Power Systems",
+    "isin": "US6098391054",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 107.49067722749639,
+      "2021": 35.48806875585171,
+      "2022": -27.779223448534086,
+      "2023": 79.77597018180151,
+      "2024": -5.551151328112591,
+      "2025": 54.4504667681603
+    },
+    "euroCalendarReturns": {
+      "2020": 89.95601564450284,
+      "2021": 46.792697483935754,
+      "2022": -23.31028359067101,
+      "2023": 73.52855185150182,
+      "2024": 0.4581555322317854,
+      "2025": 36.560502064205714
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      107.49067722749639,
+      35.48806875585171,
+      -27.779223448534086,
+      79.77597018180151,
+      -5.551151328112591,
+      54.4504667681603
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/MPWR?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
     "id": "equity-moodys",
     "historyId": "moodys",
     "label": "Moody’s",
+    "isin": "US6153691059",
     "currency": "USD",
     "calendarReturns": {
       "2020": 23.262705969236876,
@@ -3519,6 +6136,7 @@
     "id": "equity-morgan-stanley",
     "historyId": "morgan-stanley",
     "label": "Morgan Stanley",
+    "isin": "US6174464486",
     "currency": "USD",
     "calendarReturns": {
       "2020": 38.08849605658353,
@@ -3555,6 +6173,7 @@
     "id": "equity-msci",
     "historyId": "msci",
     "label": "MSCI",
+    "isin": "US55354G1004",
     "currency": "USD",
     "calendarReturns": {
       "2020": 74.3849532149399,
@@ -3591,6 +6210,7 @@
     "id": "equity-munich-re",
     "historyId": "munich-re",
     "label": "Munich Re",
+    "isin": "DE0008430026",
     "currency": "EUR",
     "calendarReturns": {
       "2020": -3.3907588864298677,
@@ -3621,6 +6241,80 @@
     "checkedAt": "2026-10-17",
     "art": {
       "scene": "etf-night/finance.webp"
+    }
+  },
+  {
+    "id": "equity-stockCH0038863350",
+    "historyId": "stockCH0038863350",
+    "label": "Nestlé",
+    "isin": "CH0038863350",
+    "currency": "CHF",
+    "calendarReturns": {
+      "2020": 2.090481769649477,
+      "2021": 25.405519839975675,
+      "2022": -13.9948113463638,
+      "2023": -6.619603055166968,
+      "2024": -20.71030715165686,
+      "2025": 8.93122398940669
+    },
+    "euroCalendarReturns": {
+      "2020": 2.58193752340079,
+      "2021": 31.122875356830647,
+      "2022": -9.767482077717526,
+      "2023": -0.7001329680592971,
+      "2024": -21.99080367874442,
+      "2025": 10.077376013345042
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      2.090481769649477,
+      25.405519839975675,
+      -13.9948113463638,
+      -6.619603055166968,
+      -20.71030715165686,
+      8.93122398940669
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/NESN.SW?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
+    "id": "equity-stockUS64110D1046",
+    "historyId": "stockUS64110D1046",
+    "label": "NetApp",
+    "isin": "US64110D1046",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 10.93658706078131,
+      "2021": 42.46938214819262,
+      "2022": -32.91731771353417,
+      "2023": 51.14886176711968,
+      "2024": 34.163575635101594,
+      "2025": -5.8741722944759545
+    },
+    "euroCalendarReturns": {
+      "2020": 1.5615368788865602,
+      "2021": 54.35650612223837,
+      "2022": -28.76631730953384,
+      "2023": 45.89626783783698,
+      "2024": 42.6997315206346,
+      "2025": -16.77674689083496
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      10.93658706078131,
+      42.46938214819262,
+      -32.91731771353417,
+      51.14886176711968,
+      34.163575635101594,
+      -5.8741722944759545
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/NTAP?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
     }
   },
   {
@@ -3664,6 +6358,7 @@
     "id": "equity-nem",
     "historyId": "nem",
     "label": "Newmont",
+    "isin": "US6516391066",
     "currency": "USD",
     "calendarReturns": {
       "2020": 40.28448627531698,
@@ -3697,9 +6392,47 @@
     }
   },
   {
+    "id": "equity-stockUS6541061031",
+    "historyId": "stockUS6541061031",
+    "label": "Nike",
+    "isin": "US6541061031",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 40.971469924040036,
+      "2021": 18.69887639602037,
+      "2022": -29.04112333258396,
+      "2023": -6.0137165711742995,
+      "2024": -29.107465908414053,
+      "2025": -13.827629319534573
+    },
+    "euroCalendarReturns": {
+      "2020": 29.05822615326099,
+      "2021": 28.60267634253628,
+      "2022": -24.650268410354947,
+      "2023": -9.279846239651135,
+      "2024": -24.596929279812805,
+      "2025": -23.808956680905936
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      40.971469924040036,
+      18.69887639602037,
+      -29.04112333258396,
+      -6.0137165711742995,
+      -29.107465908414053,
+      -13.827629319534573
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/NKE?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
     "id": "equity-nintendo",
     "historyId": "nintendo",
     "label": "Nintendo",
+    "isin": "JP3756600007",
     "currency": "JPY",
     "calendarReturns": {
       "2020": 54.90521079575448,
@@ -3733,9 +6466,121 @@
     }
   },
   {
+    "id": "equity-stockUS6556631025",
+    "historyId": "stockUS6556631025",
+    "label": "Nordson",
+    "isin": "US6556631025",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 24.454397120829306,
+      "2021": 28.088362251244114,
+      "2022": -5.92678373375689,
+      "2023": 12.386872168629592,
+      "2024": -20.14573148486819,
+      "2025": 17.02589904223981
+    },
+    "euroCalendarReturns": {
+      "2020": 13.936981277434302,
+      "2021": 38.775586542911576,
+      "2022": -0.10563965577822243,
+      "2023": 8.481301226298932,
+      "2024": -15.065004611396038,
+      "2025": 3.470814055304605
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      24.454397120829306,
+      28.088362251244114,
+      -5.92678373375689,
+      12.386872168629592,
+      -20.14573148486819,
+      17.02589904223981
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/NDSN?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
+    "id": "equity-stockUS6558441084",
+    "historyId": "stockUS6558441084",
+    "label": "Norfolk Southern",
+    "isin": "US6558441084",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 24.764852489400234,
+      "2021": 27.260067009859167,
+      "2022": -15.589526393276376,
+      "2023": -1.6342807241238266,
+      "2024": 1.5511651728980613,
+      "2025": 25.646585143145394
+    },
+    "euroCalendarReturns": {
+      "2020": 14.22120062471861,
+      "2021": 37.87818137718364,
+      "2022": -10.366301887328733,
+      "2023": -5.052600742398616,
+      "2024": 8.012356835164457,
+      "2025": 11.092967919330832
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      24.764852489400234,
+      27.260067009859167,
+      -15.589526393276376,
+      -1.6342807241238266,
+      1.5511651728980613,
+      25.646585143145394
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/NSC?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
+    "id": "equity-stockUS6668071029",
+    "historyId": "stockUS6668071029",
+    "label": "Northrop Grumman",
+    "isin": "US6668071029",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": -9.919187512495597,
+      "2021": 29.293939053692064,
+      "2022": 43.01885583596115,
+      "2023": -12.791120636260732,
+      "2024": 1.931736125003769,
+      "2025": 23.614700422156787
+    },
+    "euroCalendarReturns": {
+      "2020": -17.531753933287895,
+      "2021": 40.08175226274548,
+      "2022": 51.86870065611251,
+      "2023": -15.82172784672914,
+      "2024": 8.417141609518875,
+      "2025": 9.296435973258443
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      -9.919187512495597,
+      29.293939053692064,
+      43.01885583596115,
+      -12.791120636260732,
+      1.931736125003769,
+      23.614700422156787
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/NOC?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
     "id": "equity-novartis",
     "historyId": "novartis",
     "label": "Novartis",
+    "isin": "CH0012005267",
     "currency": "CHF",
     "calendarReturns": {
       "2020": -5.385856570305347,
@@ -3772,6 +6617,7 @@
     "id": "equity-novo-nordisk",
     "historyId": "novo-nordisk",
     "label": "Novo Nordisk",
+    "isin": "DK0062498333",
     "currency": "DKK",
     "calendarReturns": {
       "2020": 12.773674910998523,
@@ -3805,9 +6651,84 @@
     }
   },
   {
+    "id": "equity-stockUS6703461052",
+    "historyId": "stockUS6703461052",
+    "label": "Nucor",
+    "isin": "US6703461052",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": -1.7627568347326927,
+      "2021": 118.44654963874137,
+      "2022": 17.387760622396222,
+      "2023": 33.75276282476462,
+      "2024": -31.952149765749795,
+      "2025": 42.03454148566086
+    },
+    "euroCalendarReturns": {
+      "2020": -10.064608449302181,
+      "2021": 136.6729304800455,
+      "2022": 24.65158229976183,
+      "2023": 29.104703012573708,
+      "2024": -27.62260611334443,
+      "2025": 25.582710765491967
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      -1.7627568347326927,
+      118.44654963874137,
+      17.387760622396222,
+      33.75276282476462,
+      -31.952149765749795,
+      42.03454148566086
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/NUE?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
+    "id": "equity-nvidia",
+    "historyId": "nvidia",
+    "label": "Nvidia",
+    "isin": "US67066G1040",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 122.29559812476114,
+      "2021": 125.48214520546507,
+      "2022": -50.26464531456607,
+      "2023": 239.01718350795727,
+      "2024": 171.24929727041197,
+      "2025": 38.91652496439353
+    },
+    "euroCalendarReturns": {
+      "2020": 103.50979947303122,
+      "2021": 144.29555039875171,
+      "2022": -47.187077895441156,
+      "2023": 227.23595287745448,
+      "2024": 188.50753054558217,
+      "2025": 22.825853434475253
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      122.29559812476114,
+      125.48214520546507,
+      -50.26464531456607,
+      239.01718350795727,
+      171.24929727041197,
+      38.91652496439353
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/NVDA?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/chip.webp"
+    }
+  },
+  {
     "id": "equity-oracle",
     "historyId": "oracle",
     "label": "Oracle",
+    "isin": "US68389X1054",
     "currency": "USD",
     "calendarReturns": {
       "2020": 24.25085232407802,
@@ -3841,9 +6762,82 @@
     }
   },
   {
+    "id": "equity-stockFR0000133308",
+    "historyId": "stockFR0000133308",
+    "label": "orange",
+    "isin": "FR0000133308",
+    "currency": "EUR",
+    "calendarReturns": {
+      "2020": -21.459818304899635,
+      "2021": 4.975518038309379,
+      "2022": 5.431547660955238,
+      "2023": 18.318803610004643,
+      "2024": 0.18278277261363218,
+      "2025": 55.99841042763079
+    },
+    "euroCalendarReturns": {
+      "2020": -21.459818304899635,
+      "2021": 4.975518038309379,
+      "2022": 5.431547660955238,
+      "2023": 18.318803610004643,
+      "2024": 0.18278277261363218,
+      "2025": 55.99841042763079
+    },
+    "fxSource": null,
+    "values": [
+      -21.459818304899635,
+      4.975518038309379,
+      5.431547660955238,
+      18.318803610004643,
+      0.18278277261363218,
+      55.99841042763079
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/ORA.PA?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
+    "id": "equity-stockUS68902V1070",
+    "historyId": "stockUS68902V1070",
+    "label": "Otis",
+    "isin": "US68902V1070",
+    "currency": "USD",
+    "calendarReturns": {
+      "2021": 30.40543768709916,
+      "2022": -8.757909666293306,
+      "2023": 16.044254388989465,
+      "2024": 5.166358148193351,
+      "2025": -3.9911674684671827
+    },
+    "euroCalendarReturns": {
+      "2021": 41.285990275330555,
+      "2022": -3.1119524545694666,
+      "2023": 12.011585277191106,
+      "2024": 11.857566420015054,
+      "2025": -15.111850113183467
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      null,
+      30.40543768709916,
+      -8.757909666293306,
+      16.044254388989465,
+      5.166358148193351,
+      -3.9911674684671827
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/OTIS?period1=1585699200&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
     "id": "equity-palantir",
     "historyId": "palantir",
     "label": "Palantir",
+    "isin": "US69608A1088",
     "currency": "USD",
     "calendarReturns": {
       "2021": -22.675160198520604,
@@ -3878,6 +6872,7 @@
     "id": "equity-palo-alto-networks",
     "historyId": "palo-alto-networks",
     "label": "Palo Alto Networks",
+    "isin": "US6974351057",
     "currency": "USD",
     "calendarReturns": {
       "2020": 53.68215771045508,
@@ -3911,9 +6906,121 @@
     }
   },
   {
+    "id": "equity-stockUS7010941042",
+    "historyId": "stockUS7010941042",
+    "label": "Parker-Hannifin",
+    "isin": "US7010941042",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 34.78371298066758,
+      "2021": 18.30323791397681,
+      "2022": -6.91158397752043,
+      "2023": 60.81129620626311,
+      "2024": 39.57818618475572,
+      "2025": 39.54214905715992
+    },
+    "euroCalendarReturns": {
+      "2020": 23.393385349590034,
+      "2021": 28.17402723312814,
+      "2022": -1.15137822326985,
+      "2023": 55.222921749864454,
+      "2024": 48.45884660136208,
+      "2025": 23.37901162168803
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      34.78371298066758,
+      18.30323791397681,
+      -6.91158397752043,
+      60.81129620626311,
+      39.57818618475572,
+      39.54214905715992
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/PH?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
+    "id": "equity-stockUS7043261079",
+    "historyId": "stockUS7043261079",
+    "label": "Paychex",
+    "isin": "US7043261079",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 13.254709515430285,
+      "2021": 50.16400054943937,
+      "2022": -13.158133597091181,
+      "2023": 6.2117672080569175,
+      "2024": 21.306126815055926,
+      "2025": -17.488358561884176
+    },
+    "euroCalendarReturns": {
+      "2020": 3.683759000598452,
+      "2021": 62.693135329522384,
+      "2022": -7.7844572586400425,
+      "2023": 2.5207881485190153,
+      "2024": 29.024227674113767,
+      "2025": -27.045664433992755
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      13.254709515430285,
+      50.16400054943937,
+      -13.158133597091181,
+      6.2117672080569175,
+      21.306126815055926,
+      -17.488358561884176
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/PAYX?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
+    "id": "equity-stockUS70432V1026",
+    "historyId": "stockUS70432V1026",
+    "label": "Paycom",
+    "isin": "US70432V1026",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 70.81509395097459,
+      "2021": -8.194599730784125,
+      "2022": -25.26073264487013,
+      "2023": -33.06364658890182,
+      "2024": -0.03617137689689853,
+      "2025": -21.695158765972767
+    },
+    "euroCalendarReturns": {
+      "2020": 56.37981952939845,
+      "2021": -0.5346930334144462,
+      "2022": -20.63595142844544,
+      "2023": -35.389760589794285,
+      "2024": 6.324026016487561,
+      "2025": -30.765191865505624
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      70.81509395097459,
+      -8.194599730784125,
+      -25.26073264487013,
+      -33.06364658890182,
+      -0.03617137689689853,
+      -21.695158765972767
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/PAYC?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
     "id": "equity-paypal",
     "historyId": "paypal",
     "label": "PayPal",
+    "isin": "US70450Y1038",
     "currency": "USD",
     "calendarReturns": {
       "2020": 116.51103431059786,
@@ -3944,6 +7051,43 @@
     "checkedAt": "2026-10-17",
     "art": {
       "scene": "etf-night/finance.webp"
+    }
+  },
+  {
+    "id": "equity-stockUS7134481081",
+    "historyId": "stockUS7134481081",
+    "label": "PepsiCo",
+    "isin": "US7134481081",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 11.671748939997673,
+      "2021": 20.556433089591252,
+      "2022": 6.783462088374903,
+      "2023": -3.29037241481529,
+      "2024": -7.601596261281795,
+      "2025": -1.8444859442038442
+    },
+    "euroCalendarReturns": {
+      "2020": 2.2345715583028003,
+      "2021": 30.615220770119578,
+      "2022": 13.391101782573989,
+      "2023": -6.651141373431657,
+      "2024": -1.722748935139462,
+      "2025": -13.21381825313479
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      11.671748939997673,
+      20.556433089591252,
+      6.783462088374903,
+      -3.29037241481529,
+      -7.601596261281795,
+      -1.8444859442038442
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/PEP?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
     }
   },
   {
@@ -3984,9 +7128,158 @@
     }
   },
   {
+    "id": "equity-stockUS73278L1052",
+    "historyId": "stockUS73278L1052",
+    "label": "Pool Corporation",
+    "isin": "US73278L1052",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 76.9545231624398,
+      "2021": 52.97660427730442,
+      "2022": -46.03323722896354,
+      "2023": 33.511596627772256,
+      "2024": -13.390330895915126,
+      "2025": -31.805792131318476
+    },
+    "euroCalendarReturns": {
+      "2020": 62.00041669031444,
+      "2021": 65.74041242157891,
+      "2022": -42.69383506987072,
+      "2023": 28.871917613739264,
+      "2024": -7.8797917412515295,
+      "2025": -39.70471271934194
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      76.9545231624398,
+      52.97660427730442,
+      -46.03323722896354,
+      33.511596627772256,
+      -13.390330895915126,
+      -31.805792131318476
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/POOL?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
+    "id": "equity-stockUS6935061076",
+    "historyId": "stockUS6935061076",
+    "label": "PPG Industries",
+    "isin": "US6935061076",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 10.07659648499879,
+      "2021": 21.277404443831237,
+      "2022": -25.707275127129204,
+      "2023": 21.19284186552848,
+      "2024": -18.45920551764125,
+      "2025": -11.956842898880648
+    },
+    "euroCalendarReturns": {
+      "2020": 0.7742225501162325,
+      "2021": 31.396347336239906,
+      "2022": -21.11012545376574,
+      "2023": 16.98125351472641,
+      "2024": -13.271173449796503,
+      "2025": -22.1548630533167
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      10.07659648499879,
+      21.277404443831237,
+      -25.707275127129204,
+      21.19284186552848,
+      -18.45920551764125,
+      -11.956842898880648
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/PPG?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
+    "id": "equity-stockUS7427181091",
+    "historyId": "stockUS7427181091",
+    "label": "Procter & Gamble",
+    "isin": "US7427181091",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 14.152545747747425,
+      "2021": 20.522013921885485,
+      "2022": -5.047946515221513,
+      "2023": -0.8577039630746963,
+      "2024": 17.253825942003907,
+      "2025": -12.259905373260771
+    },
+    "euroCalendarReturns": {
+      "2020": 4.505720717968753,
+      "2021": 30.577929792994606,
+      "2022": 0.8275790144947504,
+      "2023": -4.303010902276439,
+      "2024": 24.714099206770925,
+      "2025": -22.422821865770736
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      14.152545747747425,
+      20.522013921885485,
+      -5.047946515221513,
+      -0.8577039630746963,
+      17.253825942003907,
+      -12.259905373260771
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/PG?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
+    "id": "equity-stockUS7458671010",
+    "historyId": "stockUS7458671010",
+    "label": "PulteGroup",
+    "isin": "US7458671010",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 12.552545625789735,
+      "2021": 34.029260328637,
+      "2022": -19.224758539896257,
+      "2023": 128.7619747747402,
+      "2024": 6.223910308688829,
+      "2025": 8.537331160864259
+    },
+    "euroCalendarReturns": {
+      "2020": 3.040933710383964,
+      "2021": 45.212171419098055,
+      "2022": -14.22647808202372,
+      "2023": 120.81223737080356,
+      "2024": 12.982405323997636,
+      "2025": -4.034524814449469
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      12.552545625789735,
+      34.029260328637,
+      -19.224758539896257,
+      128.7619747747402,
+      6.223910308688829,
+      8.537331160864259
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/PHM?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
     "id": "equity-qualcomm",
     "historyId": "qualcomm",
     "label": "Qualcomm",
+    "isin": "US7475251036",
     "currency": "USD",
     "calendarReturns": {
       "2020": 77.0831819068742,
@@ -4017,6 +7310,80 @@
     "checkedAt": "2026-10-17",
     "art": {
       "scene": "etf-night/chip.webp"
+    }
+  },
+  {
+    "id": "equity-stockUS74762E1029",
+    "historyId": "stockUS74762E1029",
+    "label": "Quanta Services",
+    "isin": "US74762E1029",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 77.74227642280474,
+      "2021": 59.50105743093586,
+      "2022": 24.633014653876973,
+      "2023": 51.70388038248495,
+      "2024": 46.60132000973296,
+      "2025": 33.70254752130659
+    },
+    "euroCalendarReturns": {
+      "2020": 62.72159834844659,
+      "2021": 72.80924207443174,
+      "2022": 32.34516444494757,
+      "2023": 46.431998928469184,
+      "2024": 55.92882723145147,
+      "2025": 18.21580988926419
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      77.74227642280474,
+      59.50105743093586,
+      24.633014653876973,
+      51.70388038248495,
+      46.60132000973296,
+      33.70254752130659
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/PWR?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
+    "id": "equity-stockUS74834L1008",
+    "historyId": "stockUS74834L1008",
+    "label": "Quest Diagnostics",
+    "isin": "US74834L1008",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 14.110447410816995,
+      "2021": 47.858243000408216,
+      "2022": -7.795212393900119,
+      "2023": -10.050441969193125,
+      "2024": 11.767014949687837,
+      "2025": 17.201790722541844
+    },
+    "euroCalendarReturns": {
+      "2020": 4.46718003529607,
+      "2021": 60.19499380699358,
+      "2022": -2.0896845652833895,
+      "2023": -13.17629086365737,
+      "2024": 18.87818993108583,
+      "2025": 3.6263322397010134
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      14.110447410816995,
+      47.858243000408216,
+      -7.795212393900119,
+      -10.050441969193125,
+      11.767014949687837,
+      17.201790722541844
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/DGX?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
     }
   },
   {
@@ -4060,6 +7427,7 @@
     "id": "equity-regn",
     "historyId": "regn",
     "label": "Regeneron",
+    "isin": "US75886F1075",
     "currency": "USD",
     "calendarReturns": {
       "2020": 28.66464826993034,
@@ -4170,6 +7538,7 @@
     "id": "equity-rsg",
     "historyId": "rsg",
     "label": "Republic Services",
+    "isin": "US7607591002",
     "currency": "USD",
     "calendarReturns": {
       "2020": 9.534418157861268,
@@ -4200,6 +7569,43 @@
     "checkedAt": "2026-10-17",
     "art": {
       "scene": "etf-night/infrastructure.webp"
+    }
+  },
+  {
+    "id": "equity-stockUS7611521078",
+    "historyId": "stockUS7611521078",
+    "label": "ResMed",
+    "isin": "US7611521078",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 38.32984153394627,
+      "2021": 23.411235522273888,
+      "2022": -19.46975603819938,
+      "2023": -16.545066387104267,
+      "2024": 34.18479146311695,
+      "2025": 6.264376939932426
+    },
+    "euroCalendarReturns": {
+      "2020": 26.639836997176445,
+      "2021": 33.70821747252541,
+      "2022": -14.48663574804483,
+      "2023": -19.44521973618589,
+      "2024": 42.72229720545215,
+      "2025": -6.044203231578049
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      38.32984153394627,
+      23.411235522273888,
+      -19.46975603819938,
+      -16.545066387104267,
+      34.18479146311695,
+      6.264376939932426
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/RMD?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
     }
   },
   {
@@ -4240,6 +7646,43 @@
     }
   },
   {
+    "id": "equity-stockUS7703231032",
+    "historyId": "stockUS7703231032",
+    "label": "Robert Half",
+    "isin": "US7703231032",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 1.3592293737408445,
+      "2021": 81.3458657561959,
+      "2022": -32.4802487961124,
+      "2023": 22.136744516976158,
+      "2024": -17.398775591572324,
+      "2025": -59.06246069151172
+    },
+    "euroCalendarReturns": {
+      "2020": -7.2064556446414745,
+      "2021": 96.4767012797351,
+      "2022": -28.3022030625135,
+      "2023": 17.89235448127311,
+      "2024": -12.14327368244048,
+      "2025": -63.80424715949917
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      1.3592293737408445,
+      81.3458657561959,
+      -32.4802487961124,
+      22.136744516976158,
+      -17.398775591572324,
+      -59.06246069151172
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/RHI?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
     "id": "equity-roche",
     "historyId": "roche",
     "label": "Roche",
@@ -4274,6 +7717,43 @@
     "checkedAt": "2026-10-17",
     "art": {
       "scene": "etf-night/health.webp"
+    }
+  },
+  {
+    "id": "equity-stockUS7757111049",
+    "historyId": "stockUS7757111049",
+    "label": "Rollins",
+    "isin": "US7757111049",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 78.4742922278023,
+      "2021": -11.429677225316725,
+      "2022": 8.09895978393429,
+      "2023": 21.19221375190272,
+      "2024": 7.555194817148725,
+      "2025": 31.065729459284476
+    },
+    "euroCalendarReturns": {
+      "2020": 63.391752822682015,
+      "2021": -4.039693557466151,
+      "2022": 14.788000985640327,
+      "2023": 16.980647228759672,
+      "2024": 14.398392793290359,
+      "2025": 15.884413902340944
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      78.4742922278023,
+      -11.429677225316725,
+      8.09895978393429,
+      21.19221375190272,
+      7.555194817148725,
+      31.065729459284476
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/ROL?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
     }
   },
   {
@@ -4314,9 +7794,84 @@
     }
   },
   {
+    "id": "equity-stockUS7782961038",
+    "historyId": "stockUS7782961038",
+    "label": "Ross Stores",
+    "isin": "US7782961038",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 5.813612735701867,
+      "2021": -6.0344589832192375,
+      "2022": 2.9375284385950273,
+      "2023": 20.640373281517466,
+      "2024": 10.389271063435368,
+      "2025": 20.406484412417925
+    },
+    "euroCalendarReturns": {
+      "2020": -3.12850415835102,
+      "2021": 1.8056819545220426,
+      "2022": 9.307186114337828,
+      "2023": 16.447983838974235,
+      "2024": 17.41278710664751,
+      "2025": 6.459826941328473
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      5.813612735701867,
+      -6.0344589832192375,
+      2.9375284385950273,
+      20.640373281517466,
+      10.389271063435368,
+      20.406484412417925
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/ROST?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
+    "id": "equity-stockUS75513E1010",
+    "historyId": "stockUS75513E1010",
+    "label": "RTX",
+    "isin": "US75513E1010",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": -21.953846826964085,
+      "2021": 23.266445065878184,
+      "2022": 20.013903675472132,
+      "2023": -14.438291690764682,
+      "2024": 40.761933343232414,
+      "2025": 61.44078984524046
+    },
+    "euroCalendarReturns": {
+      "2020": -28.549385971323815,
+      "2021": 33.5513462302129,
+      "2022": 27.440228110669175,
+      "2023": -17.411657843773398,
+      "2024": 49.71790965855407,
+      "2025": 42.74113750657047
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      -21.953846826964085,
+      23.266445065878184,
+      20.013903675472132,
+      -14.438291690764682,
+      40.761933343232414,
+      61.44078984524046
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/RTX?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
     "id": "equity-sp-global",
     "historyId": "sp-global",
     "label": "S&P Global",
+    "isin": "US78409V1044",
     "currency": "USD",
     "calendarReturns": {
       "2020": 21.396336381367398,
@@ -4353,6 +7908,7 @@
     "id": "equity-safran",
     "historyId": "safran",
     "label": "Safran",
+    "isin": "FR0000073272",
     "currency": "EUR",
     "calendarReturns": {
       "2020": -15.764620575113552,
@@ -4389,6 +7945,7 @@
     "id": "equity-saint-gobain",
     "historyId": "saint-gobain",
     "label": "Saint-Gobain",
+    "isin": "FR0000125007",
     "currency": "EUR",
     "calendarReturns": {
       "2020": 2.7397261605327516,
@@ -4425,6 +7982,7 @@
     "id": "equity-salesforce",
     "historyId": "salesforce",
     "label": "Salesforce",
+    "isin": "US79466L3024",
     "currency": "USD",
     "calendarReturns": {
       "2020": 36.823643603469236,
@@ -4461,6 +8019,7 @@
     "id": "equity-samsung",
     "historyId": "samsung",
     "label": "Samsung Electronics",
+    "isin": "KR7005930003",
     "currency": "KRW",
     "calendarReturns": {
       "2020": 51.843951916760766,
@@ -4494,9 +8053,84 @@
     }
   },
   {
+    "id": "equity-stockFR0000120578",
+    "historyId": "stockFR0000120578",
+    "label": "Sanofi",
+    "isin": "FR0000120578",
+    "currency": "EUR",
+    "calendarReturns": {
+      "2020": -8.951575212337016,
+      "2021": 16.884142574758833,
+      "2022": 5.508411970098348,
+      "2023": 3.6396858653055864,
+      "2024": 8.769612078385624,
+      "2025": -7.869209496252505
+    },
+    "euroCalendarReturns": {
+      "2020": -8.951575212337016,
+      "2021": 16.884142574758833,
+      "2022": 5.508411970098348,
+      "2023": 3.6396858653055864,
+      "2024": 8.769612078385624,
+      "2025": -7.869209496252505
+    },
+    "fxSource": null,
+    "values": [
+      -8.951575212337016,
+      16.884142574758833,
+      5.508411970098348,
+      3.6396858653055864,
+      8.769612078385624,
+      -7.869209496252505
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/SAN.PA?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
+    "id": "equity-stockDE0007164600",
+    "historyId": "stockDE0007164600",
+    "label": "SAP",
+    "isin": "DE0007164600",
+    "currency": "EUR",
+    "calendarReturns": {
+      "2020": -9.591387322477718,
+      "2021": 18.43604344265075,
+      "2022": -20.703008905171295,
+      "2023": 47.170702418389766,
+      "2024": 71.55821434263336,
+      "2025": -11.031244502498694
+    },
+    "euroCalendarReturns": {
+      "2020": -9.591387322477718,
+      "2021": 18.43604344265075,
+      "2022": -20.703008905171295,
+      "2023": 47.170702418389766,
+      "2024": 71.55821434263336,
+      "2025": -11.031244502498694
+    },
+    "fxSource": null,
+    "values": [
+      -9.591387322477718,
+      18.43604344265075,
+      -20.703008905171295,
+      47.170702418389766,
+      71.55821434263336,
+      -11.031244502498694
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/SAP.DE?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
     "id": "equity-schneider",
     "historyId": "schneider",
     "label": "Schneider Electric",
+    "isin": "FR0000121972",
     "currency": "EUR",
     "calendarReturns": {
       "2020": 33.51691595417352,
@@ -4533,6 +8167,7 @@
     "id": "equity-servicenow",
     "historyId": "servicenow",
     "label": "ServiceNow",
+    "isin": "US81762P1021",
     "currency": "USD",
     "calendarReturns": {
       "2020": 94.96669922487426,
@@ -4569,6 +8204,7 @@
     "id": "equity-siemens",
     "historyId": "siemens",
     "label": "Siemens",
+    "isin": "DE0007236101",
     "currency": "EUR",
     "calendarReturns": {
       "2020": 16.288050117539555,
@@ -4605,6 +8241,7 @@
     "id": "equity-sk-hynix",
     "historyId": "sk-hynix",
     "label": "SK hynix",
+    "isin": "KR7000660001",
     "currency": "KRW",
     "calendarReturns": {
       "2020": 27.21859095752974,
@@ -4635,6 +8272,117 @@
     "checkedAt": "2026-10-17",
     "art": {
       "scene": "etf-night/chip.webp"
+    }
+  },
+  {
+    "id": "equity-stockUS83088M1027",
+    "historyId": "stockUS83088M1027",
+    "label": "Skyworks",
+    "isin": "US83088M1027",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 28.359989972952306,
+      "2021": 2.726790138450763,
+      "2022": -39.946225306747074,
+      "2023": 26.546352164717703,
+      "2024": -18.861603662471772,
+      "2025": -25.487724357882847
+    },
+    "euroCalendarReturns": {
+      "2020": 17.512519546585125,
+      "2021": 11.29793764691236,
+      "2022": -36.23016574387936,
+      "2023": 22.148723275011672,
+      "2024": -13.699174171750217,
+      "2025": -34.11846539183361
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      28.359989972952306,
+      2.726790138450763,
+      -39.946225306747074,
+      26.546352164717703,
+      -18.861603662471772,
+      -25.487724357882847
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/SWKS?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
+    "id": "equity-stockAN8068571086",
+    "historyId": "stockAN8068571086",
+    "label": "SLB",
+    "isin": "AN8068571086",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": -43.81304937422461,
+      "2021": 39.59524865682595,
+      "2022": 81.15246174216739,
+      "2023": -0.7763421416669969,
+      "2024": -24.469922298348035,
+      "2025": 3.273521047191541
+    },
+    "euroCalendarReturns": {
+      "2020": -48.56130687556347,
+      "2021": 51.2425654483411,
+      "2022": 92.36197090678682,
+      "2023": -4.224476496200924,
+      "2024": -19.66432201335506,
+      "2025": -8.688628922615083
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      -43.81304937422461,
+      39.59524865682595,
+      81.15246174216739,
+      -0.7763421416669969,
+      -24.469922298348035,
+      3.273521047191541
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/SLB?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
+    "id": "equity-stockUS8330341012",
+    "historyId": "stockUS8330341012",
+    "label": "Snap-on",
+    "isin": "US8330341012",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 4.029835095542267,
+      "2021": 28.83289539748093,
+      "2022": 8.912098431853611,
+      "2023": 29.704248978828108,
+      "2024": 20.673828905277645,
+      "2025": 4.27553374711358
+    },
+    "euroCalendarReturns": {
+      "2020": -4.761537978704133,
+      "2021": 39.582240810744175,
+      "2022": 15.651455732155828,
+      "2023": 25.196879602550283,
+      "2024": 28.35169981743364,
+      "2025": -7.802679140530822
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      4.029835095542267,
+      28.83289539748093,
+      8.912098431853611,
+      29.704248978828108,
+      20.673828905277645,
+      4.27553374711358
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/SNA?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
     }
   },
   {
@@ -4678,6 +8426,7 @@
     "id": "equity-sony",
     "historyId": "sony",
     "label": "Sony",
+    "isin": "JP3435000009",
     "currency": "JPY",
     "calendarReturns": {
       "2020": 39.91679772864669,
@@ -4711,9 +8460,47 @@
     }
   },
   {
+    "id": "equity-stockUS8545021011",
+    "historyId": "stockUS8545021011",
+    "label": "Stanley Black & Decker",
+    "isin": "US8545021011",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 9.72504008042252,
+      "2021": 7.281604621289017,
+      "2022": -58.921060644000534,
+      "2023": 35.552469736910844,
+      "2024": -15.18824522076544,
+      "2025": -3.1676407780772298
+    },
+    "euroCalendarReturns": {
+      "2020": 0.45237554098822574,
+      "2021": 16.23278918486999,
+      "2022": -56.379142401457905,
+      "2023": 30.8418680736553,
+      "2024": -9.792098343388012,
+      "2025": -14.383712344122923
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      9.72504008042252,
+      7.281604621289017,
+      -58.921060644000534,
+      35.552469736910844,
+      -15.18824522076544,
+      -3.1676407780772298
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/SWK?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
     "id": "equity-sbux",
     "historyId": "sbux",
     "label": "Starbucks",
+    "isin": "US8552441094",
     "currency": "USD",
     "calendarReturns": {
       "2020": 24.188382671152443,
@@ -4750,6 +8537,7 @@
     "id": "equity-syk",
     "historyId": "syk",
     "label": "Stryker",
+    "isin": "US8636671013",
     "currency": "USD",
     "calendarReturns": {
       "2020": 18.16711434839555,
@@ -4857,6 +8645,43 @@
     }
   },
   {
+    "id": "equity-stockUS87612E1064",
+    "historyId": "stockUS87612E1064",
+    "label": "Target",
+    "isin": "US87612E1064",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 40.47198586634833,
+      "2021": 32.90548597897542,
+      "2022": -34.240561292930785,
+      "2023": -1.3502597535402838,
+      "2024": -2.2676869819743484,
+      "2025": -24.49883211285013
+    },
+    "euroCalendarReturns": {
+      "2020": 28.600952589239427,
+      "2021": 43.99463344940911,
+      "2022": -30.171441702956503,
+      "2023": -4.7784498218335525,
+      "2024": 3.950530257886564,
+      "2025": -33.244116325140425
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      40.47198586634833,
+      32.90548597897542,
+      -34.240561292930785,
+      -1.3502597535402838,
+      -2.2676869819743484,
+      -24.49883211285013
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/TGT?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
     "id": "equity-tcs",
     "historyId": "tcs",
     "label": "Tata Consultancy Services",
@@ -4897,6 +8722,7 @@
     "id": "equity-tencent",
     "historyId": "tencent",
     "label": "Tencent",
+    "isin": "KYG875721634",
     "currency": "HKD",
     "calendarReturns": {
       "2020": 51.14915106049664,
@@ -4930,9 +8756,47 @@
     }
   },
   {
+    "id": "equity-stockUS8807701029",
+    "historyId": "stockUS8807701029",
+    "label": "Teradyne",
+    "isin": "US8807701029",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 76.72764382980843,
+      "2021": 36.80756051950824,
+      "2022": -46.34810646493024,
+      "2023": 24.778150131605003,
+      "2024": 16.510551114942796,
+      "2025": 54.38609451638086
+    },
+    "euroCalendarReturns": {
+      "2020": 61.7927105194416,
+      "2021": 48.22228281254508,
+      "2022": -43.02818805754733,
+      "2023": 20.441968262778175,
+      "2024": 23.923533527781117,
+      "2025": 36.503586036653644
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      76.72764382980843,
+      36.80756051950824,
+      -46.34810646493024,
+      24.778150131605003,
+      16.510551114942796,
+      54.38609451638086
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/TER?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
     "id": "equity-tesla",
     "historyId": "tesla",
     "label": "Tesla",
+    "isin": "US88160R1014",
     "currency": "USD",
     "calendarReturns": {
       "2020": 743.4370005363469,
@@ -4969,6 +8833,7 @@
     "id": "equity-texas-instruments",
     "historyId": "texas-instruments",
     "label": "Texas Instruments",
+    "isin": "US8825081040",
     "currency": "USD",
     "calendarReturns": {
       "2020": 31.701304723789004,
@@ -5005,6 +8870,7 @@
     "id": "equity-thales",
     "historyId": "thales",
     "label": "Thales",
+    "isin": "FR0000121329",
     "currency": "EUR",
     "calendarReturns": {
       "2020": -18.62211476672151,
@@ -5041,6 +8907,7 @@
     "id": "equity-thermo-fisher",
     "historyId": "thermo-fisher",
     "label": "Thermo Fisher Scientific",
+    "isin": "US8835561023",
     "currency": "USD",
     "calendarReturns": {
       "2020": 43.71956581725633,
@@ -5071,6 +8938,43 @@
     "checkedAt": "2026-10-17",
     "art": {
       "scene": "etf-night/health.webp"
+    }
+  },
+  {
+    "id": "equity-stockUS8725401090",
+    "historyId": "stockUS8725401090",
+    "label": "TJX Companies",
+    "isin": "US8725401090",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 12.254194556077525,
+      "2021": 12.826646764772299,
+      "2022": 6.731495251452535,
+      "2023": 19.689796113443194,
+      "2024": 30.56365188938397,
+      "2025": 28.726176084092756
+    },
+    "euroCalendarReturns": {
+      "2020": 2.767795749570112,
+      "2021": 22.2404893563942,
+      "2022": 13.335919296638998,
+      "2023": 15.530440302804083,
+      "2024": 38.87076266990981,
+      "2025": 13.815850496820392
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      12.254194556077525,
+      12.826646764772299,
+      6.731495251452535,
+      19.689796113443194,
+      30.56365188938397,
+      28.726176084092756
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/TJX?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
     }
   },
   {
@@ -5111,9 +9015,47 @@
     }
   },
   {
+    "id": "equity-stockFR0000120271",
+    "historyId": "stockFR0000120271",
+    "label": "TotalEnergies",
+    "isin": "FR0000120271",
+    "currency": "EUR",
+    "calendarReturns": {
+      "2020": -22.506306798653476,
+      "2021": 35.55700943859308,
+      "2022": 41.51127588937613,
+      "2023": 10.440987964787162,
+      "2024": -9.010404133105643,
+      "2025": 12.357045943596457
+    },
+    "euroCalendarReturns": {
+      "2020": -22.506306798653476,
+      "2021": 35.55700943859308,
+      "2022": 41.51127588937613,
+      "2023": 10.440987964787162,
+      "2024": -9.010404133105643,
+      "2025": 12.357045943596457
+    },
+    "fxSource": null,
+    "values": [
+      -22.506306798653476,
+      35.55700943859308,
+      41.51127588937613,
+      10.440987964787162,
+      -9.010404133105643,
+      12.357045943596457
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/TTE.PA?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
     "id": "equity-toyota",
     "historyId": "toyota",
     "label": "Toyota",
+    "isin": "JP3633400001",
     "currency": "JPY",
     "calendarReturns": {
       "2020": 6.499354853725037,
@@ -5150,6 +9092,7 @@
     "id": "equity-tt",
     "historyId": "tt",
     "label": "Trane Technologies",
+    "isin": "IE00BK9ZQ967",
     "currency": "USD",
     "calendarReturns": {
       "2020": 43.4153465183313,
@@ -5216,6 +9159,43 @@
     "checkedAt": "2026-10-17",
     "art": {
       "scene": "etf-night/chip.webp"
+    }
+  },
+  {
+    "id": "equity-stockUS9022521051",
+    "historyId": "stockUS9022521051",
+    "label": "Tyler Technologies",
+    "isin": "US9022521051",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 45.49696853698637,
+      "2021": 23.236054603675903,
+      "2022": -40.06692131089682,
+      "2023": 29.68580063042956,
+      "2024": 37.9125662239616,
+      "2025": -21.276706404081224
+    },
+    "euroCalendarReturns": {
+      "2020": 33.20128306939163,
+      "2021": 33.51842009903825,
+      "2022": -36.358330280069126,
+      "2023": 25.17907235512775,
+      "2024": 46.6872515906031,
+      "2025": -30.395208751659563
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      45.49696853698637,
+      23.236054603675903,
+      -40.06692131089682,
+      29.68580063042956,
+      37.9125662239616,
+      -21.276706404081224
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/TYL?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
     }
   },
   {
@@ -5293,6 +9273,43 @@
     }
   },
   {
+    "id": "equity-stockUS90384S3031",
+    "historyId": "stockUS90384S3031",
+    "label": "Ulta Beauty",
+    "isin": "US90384S3031",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 13.439205631031093,
+      "2021": 43.59241894982002,
+      "2022": 13.758066534976642,
+      "2023": 4.4598850252218325,
+      "2024": -11.236963636746932,
+      "2025": 39.10514789445665
+    },
+    "euroCalendarReturns": {
+      "2020": 3.852663683400137,
+      "2021": 55.57324500558376,
+      "2022": 20.797286853098207,
+      "2023": 0.829785853304621,
+      "2024": -5.589416516127987,
+      "2025": 22.99262821068171
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      13.439205631031093,
+      43.59241894982002,
+      13.758066534976642,
+      4.4598850252218325,
+      -11.236963636746932,
+      39.10514789445665
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/ULTA?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
     "id": "equity-unilever",
     "historyId": "unilever",
     "label": "Unilever",
@@ -5329,6 +9346,7 @@
     "id": "equity-unp",
     "historyId": "unp",
     "label": "Union Pacific",
+    "isin": "US9078181081",
     "currency": "USD",
     "calendarReturns": {
       "2020": 17.635024596633777,
@@ -5362,9 +9380,232 @@
     }
   },
   {
+    "id": "equity-stockUS91324P1021",
+    "historyId": "stockUS91324P1021",
+    "label": "UnitedHealth Group",
+    "isin": "US91324P1021",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 21.25019340772227,
+      "2021": 45.203647731211994,
+      "2022": 6.936281653735588,
+      "2023": 0.7952295952559751,
+      "2024": -2.410371183434823,
+      "2025": -33.13574092826615
+    },
+    "euroCalendarReturns": {
+      "2020": 11.003559020646382,
+      "2021": 57.318908821269865,
+      "2022": 13.553377649560217,
+      "2023": -2.707518654932095,
+      "2024": 3.7987677758249516,
+      "2025": -40.88061383010698
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      21.25019340772227,
+      45.203647731211994,
+      6.936281653735588,
+      0.7952295952559751,
+      -2.410371183434823,
+      -33.13574092826615
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/UNH?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
+    "id": "equity-stockUS9113121068",
+    "historyId": "stockUS9113121068",
+    "label": "UPS",
+    "isin": "US9113121068",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 48.64321710502815,
+      "2021": 30.019006086128552,
+      "2022": -16.211100242546138,
+      "2023": -5.9580795143542975,
+      "2024": -15.9306587159867,
+      "2025": -15.93364982546166
+    },
+    "euroCalendarReturns": {
+      "2020": 36.081647865527344,
+      "2021": 40.86731623546562,
+      "2022": -11.026338022414917,
+      "2023": -9.226142633493472,
+      "2024": -10.581747888310044,
+      "2025": -25.671037279720966
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      48.64321710502815,
+      30.019006086128552,
+      -16.211100242546138,
+      -5.9580795143542975,
+      -15.9306587159867,
+      -15.93364982546166
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/UPS?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
+    "id": "equity-stockFR0000124141",
+    "historyId": "stockFR0000124141",
+    "label": "veolia",
+    "isin": "FR0000124141",
+    "currency": "EUR",
+    "calendarReturns": {
+      "2020": -13.350463593843088,
+      "2021": 71.78064656818898,
+      "2022": -22.302387782061118,
+      "2023": 23.9090062287997,
+      "2024": -0.9499390939915697,
+      "2025": 14.662821250227708
+    },
+    "euroCalendarReturns": {
+      "2020": -13.350463593843088,
+      "2021": 71.78064656818898,
+      "2022": -22.302387782061118,
+      "2023": 23.9090062287997,
+      "2024": -0.9499390939915697,
+      "2025": 14.662821250227708
+    },
+    "fxSource": null,
+    "values": [
+      -13.350463593843088,
+      71.78064656818898,
+      -22.302387782061118,
+      23.9090062287997,
+      -0.9499390939915697,
+      14.662821250227708
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/VIE.PA?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
+    "id": "equity-stockUS92343E1029",
+    "historyId": "stockUS92343E1029",
+    "label": "Verisign",
+    "isin": "US92343E1029",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 12.310559724199411,
+      "2021": 17.292057019416273,
+      "2022": -19.060749493701646,
+      "2023": 0.2531211779714271,
+      "2024": 0.4855260958455343,
+      "2025": 18.41399725702544
+    },
+    "euroCalendarReturns": {
+      "2020": 2.8193975993526132,
+      "2021": 27.078477104472643,
+      "2022": -14.052320341802439,
+      "2023": -3.230788191471201,
+      "2024": 6.8789164846561945,
+      "2025": 4.698129149211683
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      12.310559724199411,
+      17.292057019416273,
+      -19.060749493701646,
+      0.2531211779714271,
+      0.4855260958455343,
+      18.41399725702544
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/VRSN?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
+    "id": "equity-stockUS92345Y1064",
+    "historyId": "stockUS92345Y1064",
+    "label": "Verisk",
+    "isin": "US92345Y1064",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 39.88666379191255,
+      "2021": 10.851497577172807,
+      "2022": -22.330324972074255,
+      "2023": 36.236152889298936,
+      "2024": 15.999185122384564,
+      "2025": -18.23246021288035
+    },
+    "euroCalendarReturns": {
+      "2020": 28.065095023905574,
+      "2021": 20.10054094733247,
+      "2022": -17.52421344775107,
+      "2023": 31.501792463100674,
+      "2024": 23.379631880099105,
+      "2025": -27.70357694907354
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      39.88666379191255,
+      10.851497577172807,
+      -22.330324972074255,
+      36.236152889298936,
+      15.999185122384564,
+      -18.23246021288035
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/VRSK?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
+    "id": "equity-stockUS92343V1044",
+    "historyId": "stockUS92343V1044",
+    "label": "Verizon",
+    "isin": "US92343V1044",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": -0.1309074615711836,
+      "2021": -7.548871908608945,
+      "2022": -20.02163028574907,
+      "2023": 2.713239607355722,
+      "2024": 13.142570459228754,
+      "2025": 8.862782196817932
+    },
+    "euroCalendarReturns": {
+      "2020": -8.570663713087024,
+      "2021": 0.16491195562948757,
+      "2022": -15.072659348996243,
+      "2023": -0.8561616604473965,
+      "2024": 20.34126514337067,
+      "2025": -3.746770702745428
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      -0.1309074615711836,
+      -7.548871908608945,
+      -20.02163028574907,
+      2.713239607355722,
+      13.142570459228754,
+      8.862782196817932
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/VZ?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
     "id": "equity-vrtx",
     "historyId": "vrtx",
     "label": "Vertex",
+    "isin": "US92532F1003",
     "currency": "USD",
     "calendarReturns": {
       "2020": 7.942452266852507,
@@ -5398,9 +9639,158 @@
     }
   },
   {
+    "id": "equity-stockFR0000125486",
+    "historyId": "stockFR0000125486",
+    "label": "Vinci",
+    "isin": "FR0000125486",
+    "currency": "EUR",
+    "calendarReturns": {
+      "2020": -16.598001374031035,
+      "2021": 17.591174941625543,
+      "2022": 3.961390487170857,
+      "2023": 26.50121357465469,
+      "2024": -8.635081015159706,
+      "2025": 25.313893951333544
+    },
+    "euroCalendarReturns": {
+      "2020": -16.598001374031035,
+      "2021": 17.591174941625543,
+      "2022": 3.961390487170857,
+      "2023": 26.50121357465469,
+      "2024": -8.635081015159706,
+      "2025": 25.313893951333544
+    },
+    "fxSource": null,
+    "values": [
+      -16.598001374031035,
+      17.591174941625543,
+      3.961390487170857,
+      26.50121357465469,
+      -8.635081015159706,
+      25.313893951333544
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/DG.PA?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
+    "id": "equity-visa",
+    "historyId": "visa",
+    "label": "Visa",
+    "isin": "US92826C8394",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 17.124207919279755,
+      "2021": -0.3149105809929553,
+      "2022": -3.4047531025070965,
+      "2023": 26.307988780733503,
+      "2024": 22.318324501534438,
+      "2025": 11.758295049335254
+    },
+    "euroCalendarReturns": {
+      "2020": 7.2262530979698925,
+      "2021": 8.002448548528651,
+      "2022": 2.5724513745550848,
+      "2023": 21.918643288262786,
+      "2024": 30.100826426215765,
+      "2025": -1.1866444878686044
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      17.124207919279755,
+      -0.3149105809929553,
+      -3.4047531025070965,
+      26.307988780733503,
+      22.318324501534438,
+      11.758295049335254
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/V?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/finance.webp"
+    }
+  },
+  {
+    "id": "equity-stockUS9291601097",
+    "historyId": "stockUS9291601097",
+    "label": "Vulcan Materials",
+    "isin": "US9291601097",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 4.145279795673629,
+      "2021": 41.09033062021214,
+      "2022": -14.86556312140821,
+      "2023": 30.753667921961238,
+      "2024": 14.119375760378627,
+      "2025": 11.703948652022799
+    },
+    "euroCalendarReturns": {
+      "2020": -4.655849301230763,
+      "2021": 52.86239158048942,
+      "2022": -9.59754058813701,
+      "2023": 26.209830050284033,
+      "2024": 21.3802196700533,
+      "2025": -1.2346959535434299
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      4.145279795673629,
+      41.09033062021214,
+      -14.86556312140821,
+      30.753667921961238,
+      14.119375760378627,
+      11.703948652022799
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/VMC?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
+    "id": "equity-stockUS9297401088",
+    "historyId": "stockUS9297401088",
+    "label": "Wabtec",
+    "isin": "US9297401088",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": -5.229923094201771,
+      "2021": 26.52793218402756,
+      "2022": 9.067108016525571,
+      "2023": 27.96400937161836,
+      "2024": 50.140467397431834,
+      "2025": 13.154716250601073
+    },
+    "euroCalendarReturns": {
+      "2020": -13.238770763610363,
+      "2021": 37.084959900247426,
+      "2022": 15.816057134367977,
+      "2023": 23.517115290287904,
+      "2024": 59.693152829109806,
+      "2025": 0.04802954276548199
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      -5.229923094201771,
+      26.52793218402756,
+      9.067108016525571,
+      27.96400937161836,
+      50.140467397431834,
+      13.154716250601073
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/WAB?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
     "id": "equity-walmart",
     "historyId": "walmart",
     "label": "Walmart",
+    "isin": "US9311421039",
     "currency": "USD",
     "calendarReturns": {
       "2020": 23.322412616758868,
@@ -5431,6 +9821,154 @@
     "checkedAt": "2026-10-17",
     "art": {
       "scene": "etf-night/consumer.webp"
+    }
+  },
+  {
+    "id": "equity-stockUS2546871060",
+    "historyId": "stockUS2546871060",
+    "label": "Walt Disney",
+    "isin": "US2546871060",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 25.271355345342883,
+      "2021": -14.510428221064508,
+      "2022": -43.90858119861778,
+      "2023": 4.26365248410705,
+      "2024": 24.44278965380593,
+      "2025": 3.3032805117670927
+    },
+    "euroCalendarReturns": {
+      "2020": 14.684899841054655,
+      "2021": -7.377491144330084,
+      "2022": -40.437707730690505,
+      "2023": 0.6403726149760924,
+      "2024": 32.360460648239076,
+      "2025": -8.662316490489507
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      25.271355345342883,
+      -14.510428221064508,
+      -43.90858119861778,
+      4.26365248410705,
+      24.44278965380593,
+      3.3032805117670927
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/DIS?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
+    "id": "equity-stockUS94106L1098",
+    "historyId": "stockUS94106L1098",
+    "label": "Waste Management",
+    "isin": "US94106L1098",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 5.463202707213188,
+      "2021": 43.822254183875685,
+      "2022": -4.493500534366824,
+      "2023": 16.195840562212616,
+      "2024": 14.28469805021706,
+      "2025": 10.501048130037605
+    },
+    "euroCalendarReturns": {
+      "2020": -3.4493016695597123,
+      "2021": 55.82225685063911,
+      "2022": 1.4163334846954312,
+      "2023": 12.15790365941718,
+      "2024": 21.55606058859356,
+      "2025": -2.298264764003355
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      5.463202707213188,
+      43.822254183875685,
+      -4.493500534366824,
+      16.195840562212616,
+      14.28469805021706,
+      10.501048130037605
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/WM?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
+    "id": "equity-stockUS9418481035",
+    "historyId": "stockUS9418481035",
+    "label": "Waters",
+    "isin": "US9418481035",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 5.893432207834759,
+      "2021": 50.59413507876596,
+      "2022": -8.056902446748747,
+      "2023": -3.8968931363757786,
+      "2024": 12.681103971411645,
+      "2025": 2.3855668061856905
+    },
+    "euroCalendarReturns": {
+      "2020": -3.055430085338151,
+      "2021": 63.159158710183405,
+      "2022": -2.367567702219786,
+      "2023": -7.236584813808511,
+      "2024": 19.850437855818527,
+      "2025": -9.473731612811653
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      5.893432207834759,
+      50.59413507876596,
+      -8.056902446748747,
+      -3.8968931363757786,
+      12.681103971411645,
+      2.3855668061856905
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/WAT?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
+    "id": "equity-stockUS95082P1057",
+    "historyId": "stockUS95082P1057",
+    "label": "WESCO",
+    "isin": "US95082P1057",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 32.177127199185286,
+      "2021": 67.63055941739819,
+      "2022": -4.855995502379384,
+      "2023": 40.189620360938584,
+      "2024": 5.086562034682052,
+      "2025": 36.43130504797683
+    },
+    "euroCalendarReturns": {
+      "2020": 21.00707741468888,
+      "2021": 81.6170399621131,
+      "2022": 1.0314077386134546,
+      "2023": 35.31787246785258,
+      "2024": 11.77269327974173,
+      "2025": 20.62849601220691
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      32.177127199185286,
+      67.63055941739819,
+      -4.855995502379384,
+      40.189620360938584,
+      5.086562034682052,
+      36.43130504797683
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/WCC?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
     }
   },
   {
@@ -5471,9 +10009,121 @@
     }
   },
   {
+    "id": "equity-stockUS98419M1009",
+    "historyId": "stockUS98419M1009",
+    "label": "Xylem",
+    "isin": "US98419M1009",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 30.90033020958387,
+      "2021": 18.93539293119819,
+      "2022": -6.597402987383472,
+      "2023": 4.772854894743639,
+      "2024": 2.571172494243945,
+      "2025": 18.77893355091922
+    },
+    "euroCalendarReturns": {
+      "2020": 19.838180227729207,
+      "2021": 28.85892695203365,
+      "2022": -0.81775606929545,
+      "2023": 1.1318796658222219,
+      "2024": 9.09726211005828,
+      "2025": 5.020794949829743
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      30.90033020958387,
+      18.93539293119819,
+      -6.597402987383472,
+      4.772854894743639,
+      2.571172494243945,
+      18.77893355091922
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/XYL?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
+    "id": "equity-stockUS9884981013",
+    "historyId": "stockUS9884981013",
+    "label": "Yum! Brands",
+    "isin": "US9884981013",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 9.84701825416774,
+      "2021": 30.0549297816022,
+      "2022": -5.990293227120125,
+      "2023": 3.9338362167195218,
+      "2024": 4.722091910125936,
+      "2025": 14.943879287069905
+    },
+    "euroCalendarReturns": {
+      "2020": 0.5640455600456562,
+      "2021": 40.90623727265059,
+      "2022": -0.1730790446617836,
+      "2023": 0.3220178359756076,
+      "2024": 11.385033747896012,
+      "2025": 1.6299542053931138
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      9.84701825416774,
+      30.0549297816022,
+      -5.990293227120125,
+      3.9338362167195218,
+      4.722091910125936,
+      14.943879287069905
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/YUM?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
+    "id": "equity-stockUS9892071054",
+    "historyId": "stockUS9892071054",
+    "label": "Zebra Technologies",
+    "isin": "US9892071054",
+    "currency": "USD",
+    "calendarReturns": {
+      "2020": 50.45802693033177,
+      "2021": 54.86691960885164,
+      "2022": -56.92036309972386,
+      "2023": 6.5987998658585845,
+      "2024": 41.301730278134464,
+      "2025": -37.12909575597044
+    },
+    "euroCalendarReturns": {
+      "2020": 37.743091397224916,
+      "2021": 67.78844874803272,
+      "2022": -54.25464395907298,
+      "2023": 2.8943709836423137,
+      "2024": 50.29205116694444,
+      "2025": -44.41141921776824
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      50.45802693033177,
+      54.86691960885164,
+      -56.92036309972386,
+      6.5987998658585845,
+      41.301730278134464,
+      -37.12909575597044
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/ZBRA?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-17",
+    "art": {
+      "scene": "etf-night/world.webp"
+    }
+  },
+  {
     "id": "equity-zts",
     "historyId": "zts",
     "label": "Zoetis",
+    "isin": "US98978V1035",
     "currency": "USD",
     "calendarReturns": {
       "2020": 25.763622516325803,

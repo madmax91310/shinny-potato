@@ -4,18 +4,19 @@ Les états décrivent les observations enregistrées, pas une garantie réseau. 
 
 | Champ ETF/ETP | Présent | Contrôle récent | Contrôle en retard | Publication ancienne |
 |---|---:|---:|---:|---:|
+| Positions intégrales | 88/244 | 88 | 0 | 0 |
 | Frais | 244/244 | 244 | 0 | 0 |
 | Encours | 244/244 | 244 | 0 | 0 |
 | Performances annuelles | 224/244 | 224 | 0 | 0 |
-| Historique mensuel | 181/244 | 181 | 0 | 0 |
-| Pays | 215/244 | 212 | 3 | 0 |
-| Secteurs | 215/244 | 212 | 3 | 0 |
-| Principales positions | 218/244 | 215 | 3 | 0 |
-| Distribution | 206/244 | 206 | 0 | 0 |
-| Domicile | 128/244 | 128 | 0 | 0 |
-| Réplication | 174/244 | 174 | 0 | 0 |
-| Cotations | 16/244 | 16 | 0 | 0 |
-| Éligibilité PEA | 0/244 | 0 | 0 | 0 |
-| Couverture de change | 6/244 | 6 | 0 | 0 |
+| Historique mensuel | 182/244 | 182 | 0 | 0 |
+| Pays | 215/244 | 215 | 0 | 0 |
+| Secteurs | 215/244 | 215 | 0 | 0 |
+| Principales positions | 218/244 | 218 | 0 | 0 |
+| Distribution | 229/244 | 229 | 0 | 0 |
+| Domicile | 191/244 | 191 | 0 | 0 |
+| Réplication | 213/244 | 213 | 0 | 0 |
+| Cotations | 19/244 | 19 | 0 | 0 |
+| Éligibilité PEA | 8/244 | 8 | 0 | 0 |
+| Couverture de change | 14/244 | 14 | 0 | 0 |
 
 Le rapport JSON détaillé est publié à `data/asset-field-coverage.json` et accessible depuis Données à revoir. Il contient chaque actif, champ, source, date de contrôle, date de publication et motif de lacune.

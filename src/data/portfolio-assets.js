@@ -1,4 +1,5 @@
 import { QUALIFIED_EXPOSURE_SHEETS } from './qualified-exposure-sheets.js';
+import { AUTOMATED_PORTFOLIO_FUNDS } from './automated-portfolio-funds.js';
 import { PORTFOLIO_EQUITIES } from './portfolio-equities.js';
 import { DISTINCT_PORTFOLIO_ASSETS } from './distinct-portfolio-assets.js';
 import { NON_BOND_SHEETS } from './non-bond-expansion.js';
@@ -1518,6 +1519,9 @@ export const ASSETS = [
     desc: ['obligations souveraines émergentes en devises locales.', 'exposition au crédit des États et à leurs monnaies.', 'la valeur peut varier fortement avec les taux et les changes.'],
   },
 ];
+
+const editorialIsins = new Set(ASSETS.map(asset=>asset.isin).filter(Boolean));
+ASSETS.push(...AUTOMATED_PORTFOLIO_FUNDS.filter(asset=>!editorialIsins.has(asset.isin)));
 
 for (const asset of ASSETS) asset.calendarReturns ??= asset.isin ? getInstrumentCalendarReturns(asset.isin, asset.r) : economicCalendar(asset.id, asset.r);
 
