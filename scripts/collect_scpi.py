@@ -190,7 +190,7 @@ def collect_remake(today):
         return dt.date(int(year), int(month), int(day))
     links = [url for url in links if publication_date(url) <= today]
     if not links:
-        raise ValueError('Missing current official bulletin')
+        raise AwaitingPublication('Missing current official bulletin')
     url = max(links, key=publication_date)
     from collect_corum import bbox_pages
     data = fetch(url)
@@ -262,6 +262,24 @@ def validate(record, today):
     return record
 
 
+class AwaitingPublication(ValueError):
+    """The source currently lists no bulletin: normal between two quarterly editions."""
+
+
+# Quarterly bulletins describe the quarter just ended and are published about a month
+# later. While the next edition is not yet due, a missing link is a wait, not a failure.
+BULLETIN_GRACE_DAYS = 45
+
+
+def next_bulletin_due(snapshot_as_of):
+    quarter_end = dt.date.fromisoformat(snapshot_as_of)
+    month = quarter_end.month + 3
+    year = quarter_end.year + (month - 1) // 12
+    month = (month - 1) % 12 + 1
+    next_end = dt.date(year, month + 1, 1) - dt.timedelta(days=1) if month < 12 else dt.date(year, 12, 31)
+    return next_end + dt.timedelta(days=BULLETIN_GRACE_DAYS)
+
+
 def refresh(previous, adapters, today):
     records = {r['id']: r for r in previous.get('records', [])}
     observations = []
@@ -284,6 +302,15 @@ def refresh(previous, adapters, today):
                     if not any(all(new[k]==action[k] for k in ['asOf','ratio','oldPrice','newPrice']) for new in record.get('priceHistory',{}).get('corporateActions',[])):raise ValueError('Share split evidence disappeared or changed')
             records[id] = record
             observations.append({'id': id, 'name':record['name'], 'status': 'success'})
+        except AwaitingPublication as error:
+            old = records.get(id)
+            due = old and old.get('snapshot', {}).get('asOf') and next_bulletin_due(old['snapshot']['asOf'])
+            if due and today <= due:
+                observations.append({'id': id, 'name': old['name'], 'status': 'waiting',
+                                     'reason': f'{error}; next quarterly edition expected by {due.isoformat()}, last validated data kept.'})
+            else:
+                observations.append({'id': id, 'name': records.get(id, {}).get('name', id), 'status': 'failure',
+                                     'reason': f'{error}; next quarterly edition was due by {due.isoformat()}.' if due else str(error)[:250]})
         except Exception as error:
             observations.append({'id': id, 'name':records.get(id,{}).get('name',id), 'status': 'failure', 'reason': str(error)[:250]})
     return {'records': list(records.values())}, observations
