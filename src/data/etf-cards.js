@@ -74,6 +74,7 @@ export const ETFS = [
     ter:formatEtfTer(r.isin,'sheet'), positions:getInstrumentFacts(r.isin).positionsLabel || (getInstrumentFacts(r.isin).benchmark ? `Exposition suivie : ${getInstrumentFacts(r.isin).benchmark}` : r.verdict),aum:getInstrumentAum(r.isin,'sheet'),
     distribution:getInstrumentDistribution(r.isin),pea:getInstrumentPea(r.isin),cto:true,location:getInstrumentLocation(r.isin),
     source:getInstrumentFacts(r.isin)?.characteristicsSource?.url,
+    domicile:getInstrumentFacts(r.isin).domicile ?? null, replicationMethod:getInstrumentFacts(r.isin).replicationMethod ?? null,
     lastVerified:getInstrumentFacts(r.isin)?.reviewedAt,
   })),
   ...[...NON_BOND_SHEETS, ...QUALIFIED_EXPOSURE_SHEETS, ...ROUND3_FUND_SHEETS, ...LIFESTRATEGY_SHEETS].map(r => ({ ...r, name: getInstrumentName(r.isin, 'sheet'), listing: getPreferredInstrumentListing(r.isin), ter: formatEtfTer(r.isin, 'sheet'), positions: getInstrumentPositions(r.isin), aum: getInstrumentAum(r.isin, 'sheet'), distribution: getInstrumentDistribution(r.isin), pea: null, cto: true, location: getInstrumentLocation(r.isin), lastVerified: r.checkedAt.split('-').reverse().join('/') })),

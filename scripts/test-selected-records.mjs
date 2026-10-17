@@ -9,6 +9,10 @@ import {ROUTING_PRESENTATION_FACTS} from '../src/data/routing-presentation-facts
 import {AUTOMATED_ETF} from '../src/data/automated-etf.js'
 import {ETFS,CATEGORY_ORDER} from '../src/data/etf-cards.js'
 import {buildText,buildFactRows} from '../src/pages/etf-sheets/lib.js'
+import {getETFArt,ETF_ART} from '../src/pages/etf-sheets/visualIdentity.js'
+import {existsSync} from 'node:fs'
+assert.deepEqual(Object.keys(ETF_ART).sort(),ETFS.map(e=>e.id).sort())
+for(const row of ROUTING_PRESENTATIONS){const art=getETFArt(row.id);assert(existsSync(`public/asset-art/${art.scene}`),row.id)}
 const plugin=projectSelectedData(),files=new Map(),requests=[]
 plugin.configResolved({base:'/shinny-potato/'})
 plugin.generateBundle.call({emitFile:r=>files.set('/shinny-potato/'+r.fileName,JSON.parse(r.source))})

@@ -23,6 +23,7 @@ try {
       await choose(picker,id)
       if(route!=='calculateur-investissement') {
         await page.getByRole('button',{name:'🔄 Générer',exact:true}).click()
+        await page.waitForFunction(()=>!document.querySelector('.tool-preview > p[role="status"]'))
         const post=await page.locator('pre').innerText()
         assert(!/NaN|undefined|\[à saisir\]/.test(post),post)
         if(route==='il-y-a-x-ans') assert(post.includes(symbol),`${id}: currency in text`)
