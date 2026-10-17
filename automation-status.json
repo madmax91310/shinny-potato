@@ -56,32 +56,19 @@
     },
     "update-company-analysis.yml": {
       "name": "Analyses d’entreprises",
-      "runId": 38959885936,
+      "runId": 39027217464,
       "attempt": 1,
-      "completedAt": "2026-10-16T20:37:09Z",
-      "status": "failure",
-      "lastSuccessAt": "2026-10-16T12:11:40Z",
+      "completedAt": "2026-10-17T11:40:20Z",
+      "status": "success",
+      "lastSuccessAt": "2026-10-17T11:40:20Z",
       "collectionStatus": "success",
       "validationStatus": "success",
       "recordingStatus": "success",
-      "publicationStatus": "failure",
-      "lastCollectionSuccessAt": "2026-10-16T20:37:09Z",
+      "publicationStatus": "not-run",
+      "lastCollectionSuccessAt": "2026-10-17T11:40:20Z",
       "lastPublicationSuccessAt": "2026-10-16T12:11:37Z",
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38959885936",
-      "failures": [
-        {
-          "job": "deploy / browser-checks (1)",
-          "step": "Run node scripts/playwright-all-weather.mjs"
-        },
-        {
-          "job": "deploy / browser-checks (2)",
-          "step": "Run node scripts/run-browser-checks.mjs 2 4"
-        },
-        {
-          "job": "deploy / browser-checks (0)",
-          "step": "Run node scripts/run-browser-checks.mjs 0 4"
-        }
-      ],
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39027217464",
+      "failures": [],
       "dataFailures": {}
     },
     "collect-etf-pilot.yml": {
@@ -423,11 +410,11 @@
       "failures": []
     }
   },
-  "updatedAt": "2026-10-17T11:38:35Z",
+  "updatedAt": "2026-10-17T11:40:20Z",
   "monitoring": {
     "schemaVersion": 1,
-    "checkedAt": "2026-10-17T11:38:51.447860+00:00",
-    "revision": 64,
+    "checkedAt": "2026-10-17T11:40:35.505895+00:00",
+    "revision": 65,
     "active": {
       "collection:update-practical-sheets.yml:practical:13f": {
         "name": "SEC · questions et réponses sur le formulaire 13F",
@@ -448,7 +435,7 @@
         "dataId": "practical:13f",
         "id": "collection:update-practical-sheets.yml:practical:13f",
         "firstSeenAt": "2026-10-14T21:07:26.171294+00:00",
-        "lastSeenAt": "2026-10-17T11:38:51.447860+00:00"
+        "lastSeenAt": "2026-10-17T11:40:35.505895+00:00"
       },
       "collection:update-insurance.yml:linxea-avenir-2": {
         "name": "Linxea Avenir 2",
@@ -467,7 +454,7 @@
         "dataId": "linxea-avenir-2",
         "id": "collection:update-insurance.yml:linxea-avenir-2",
         "firstSeenAt": "2026-10-14T13:08:27.203935+00:00",
-        "lastSeenAt": "2026-10-17T11:38:51.447860+00:00"
+        "lastSeenAt": "2026-10-17T11:40:35.505895+00:00"
       },
       "collection:update-scpi.yml:remake-live": {
         "name": "Remake Live",
@@ -490,7 +477,7 @@
         "dataId": "remake-live",
         "id": "collection:update-scpi.yml:remake-live",
         "firstSeenAt": "2026-10-15T13:02:43.499914+00:00",
-        "lastSeenAt": "2026-10-17T11:38:51.447860+00:00"
+        "lastSeenAt": "2026-10-17T11:40:35.505895+00:00"
       },
       "collection:update-regulatory-data.yml:broker-observation:caidf:profile:change": {
         "name": "caidf:profile:change",
@@ -510,7 +497,7 @@
         "dataId": "broker-observation:caidf:profile:change",
         "id": "collection:update-regulatory-data.yml:broker-observation:caidf:profile:change",
         "firstSeenAt": "2026-10-15T18:00:14.760687+00:00",
-        "lastSeenAt": "2026-10-17T11:38:51.447860+00:00"
+        "lastSeenAt": "2026-10-17T11:40:35.505895+00:00"
       },
       "publication:update-investor-13f.yml": {
         "name": "Portefeuilles des investisseurs",
@@ -526,23 +513,7 @@
         "cause": "deploy / browser-checks (0) : Run node scripts/playwright-nasdaq-total-return.mjs",
         "id": "publication:update-investor-13f.yml",
         "firstSeenAt": "2026-10-16T17:10:15.533090+00:00",
-        "lastSeenAt": "2026-10-17T11:38:51.447860+00:00"
-      },
-      "publication:update-company-analysis.yml": {
-        "name": "Analyses d’entreprises",
-        "tools": [
-          "Analyse d’entreprise"
-        ],
-        "impactScope": "collector",
-        "workflow": "update-company-analysis.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38959885936",
-        "to": "/donnees-a-revoir",
-        "kind": "publication",
-        "field": "Publication",
-        "cause": "deploy / browser-checks (1) : Run node scripts/playwright-all-weather.mjs ; deploy / browser-checks (2) : Run node scripts/run-browser-checks.mjs 2 4 ; deploy / browser-checks (0) : Run node scripts/run-browser-checks.mjs 0 4",
-        "id": "publication:update-company-analysis.yml",
-        "firstSeenAt": "2026-10-16T20:37:26.947807+00:00",
-        "lastSeenAt": "2026-10-17T11:38:51.447860+00:00"
+        "lastSeenAt": "2026-10-17T11:40:35.505895+00:00"
       },
       "publication:update-lifestrategy.yml": {
         "name": "Vanguard LifeStrategy",
@@ -561,7 +532,7 @@
         "cause": "deploy / browser-checks (3) : Run node scripts/run-browser-checks.mjs 3 4",
         "id": "publication:update-lifestrategy.yml",
         "firstSeenAt": "2026-10-17T10:03:28.054539+00:00",
-        "lastSeenAt": "2026-10-17T11:38:51.447860+00:00"
+        "lastSeenAt": "2026-10-17T11:40:35.505895+00:00"
       },
       "publication:update-qualified-exposures.yml": {
         "name": "Expositions ETF qualifiées",
@@ -581,7 +552,7 @@
         "cause": "deploy / build : Run npm run test:radar",
         "id": "publication:update-qualified-exposures.yml",
         "firstSeenAt": "2026-10-16T12:48:21.924866+00:00",
-        "lastSeenAt": "2026-10-17T11:38:51.447860+00:00"
+        "lastSeenAt": "2026-10-17T11:40:35.505895+00:00"
       },
       "publication:update-exposure-expansion.yml": {
         "name": "35 ETF des allocations",
@@ -597,7 +568,7 @@
         "cause": "deploy / build : Run node scripts/build-dca-exposures.mjs && npm run test:dca && node scripts/audit-portfolio-routing.mjs",
         "id": "publication:update-exposure-expansion.yml",
         "firstSeenAt": "2026-10-16T15:06:10.074991+00:00",
-        "lastSeenAt": "2026-10-17T11:38:51.447860+00:00"
+        "lastSeenAt": "2026-10-17T11:40:35.505895+00:00"
       },
       "unobserved:update-instrument-metadata.yml": {
         "name": "Caractéristiques et statut PEA par ISIN",
@@ -616,7 +587,7 @@
         "cause": "Aucune exécution terminée avec une date exploitable.",
         "id": "unobserved:update-instrument-metadata.yml",
         "firstSeenAt": "2026-10-17T11:34:14.058607+00:00",
-        "lastSeenAt": "2026-10-17T11:38:51.447860+00:00"
+        "lastSeenAt": "2026-10-17T11:40:35.505895+00:00"
       },
       "monitor:radar": {
         "kind": "unobserved",
@@ -629,35 +600,10 @@
         "to": "/donnees-a-revoir",
         "id": "monitor:radar",
         "firstSeenAt": "2026-10-15T18:53:46.175472+00:00",
-        "lastSeenAt": "2026-10-17T11:38:51.447860+00:00"
+        "lastSeenAt": "2026-10-17T11:40:35.505895+00:00"
       }
     },
     "events": [
-      {
-        "revision": 35,
-        "at": "2026-10-16T04:59:55.936499+00:00",
-        "opened": [],
-        "resolved": [
-          {
-            "name": "Pouvoir d’achat et niveaux des anniversaires",
-            "tools": [
-              "Pouvoir d’achat",
-              "Il y a X ans"
-            ],
-            "impactScope": "collector",
-            "workflow": "update-publication-observations.yml",
-            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38805030022",
-            "to": "/donnees-a-revoir",
-            "kind": "publication",
-            "field": "Publication",
-            "cause": "deploy / build : Run node scripts/test-etf-routing-expansion.mjs",
-            "id": "publication:update-publication-observations.yml",
-            "firstSeenAt": "2026-10-15T20:57:15.425381+00:00",
-            "lastSeenAt": "2026-10-16T04:58:36.715803+00:00",
-            "resolvedAt": "2026-10-16T04:59:55.936499+00:00"
-          }
-        ]
-      },
       {
         "revision": 36,
         "at": "2026-10-16T05:04:45.563875+00:00",
@@ -1289,9 +1235,50 @@
           "unobserved:update-instrument-metadata.yml"
         ],
         "resolved": []
+      },
+      {
+        "revision": 65,
+        "at": "2026-10-17T11:40:35.505895+00:00",
+        "opened": [],
+        "resolved": [
+          {
+            "name": "Analyses d’entreprises",
+            "tools": [
+              "Analyse d’entreprise"
+            ],
+            "impactScope": "collector",
+            "workflow": "update-company-analysis.yml",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38959885936",
+            "to": "/donnees-a-revoir",
+            "kind": "publication",
+            "field": "Publication",
+            "cause": "deploy / browser-checks (1) : Run node scripts/playwright-all-weather.mjs ; deploy / browser-checks (2) : Run node scripts/run-browser-checks.mjs 2 4 ; deploy / browser-checks (0) : Run node scripts/run-browser-checks.mjs 0 4",
+            "id": "publication:update-company-analysis.yml",
+            "firstSeenAt": "2026-10-16T20:37:26.947807+00:00",
+            "lastSeenAt": "2026-10-17T11:38:51.447860+00:00",
+            "resolvedAt": "2026-10-17T11:40:35.505895+00:00"
+          }
+        ]
       }
     ],
     "resolved": [
+      {
+        "name": "Analyses d’entreprises",
+        "tools": [
+          "Analyse d’entreprise"
+        ],
+        "impactScope": "collector",
+        "workflow": "update-company-analysis.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38959885936",
+        "to": "/donnees-a-revoir",
+        "kind": "publication",
+        "field": "Publication",
+        "cause": "deploy / browser-checks (1) : Run node scripts/playwright-all-weather.mjs ; deploy / browser-checks (2) : Run node scripts/run-browser-checks.mjs 2 4 ; deploy / browser-checks (0) : Run node scripts/run-browser-checks.mjs 0 4",
+        "id": "publication:update-company-analysis.yml",
+        "firstSeenAt": "2026-10-16T20:37:26.947807+00:00",
+        "lastSeenAt": "2026-10-17T11:38:51.447860+00:00",
+        "resolvedAt": "2026-10-17T11:40:35.505895+00:00"
+      },
       {
         "name": "Historiques mensuels des marchés",
         "tools": [
@@ -3469,27 +3456,6 @@
         "field": "Poids du pays Hong Kong",
         "cause": "Valeur contradictoire pour la même période (2026-10-13) : Poids du pays Hong Kong. Dernière observation conservée ; propositions archivées (etf:IE00BM67HV82:countries:Hong Kong:f5d10aa5ac6de524b51ebc86:2026-10-13).",
         "id": "radar:971d03d09c328a73885bb586",
-        "firstSeenAt": "2026-10-14T19:12:42.647375+00:00",
-        "lastSeenAt": "2026-10-14T21:48:33.143199+00:00",
-        "resolvedAt": "2026-10-15T00:31:06.137308+00:00"
-      },
-      {
-        "name": "Xtrackers MSCI World Industrials UCITS ETF 1C",
-        "tools": [
-          "Comparatif ETF",
-          "Impact des frais",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "sourceUrls": [
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HV82/historicaldata/download",
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HV82/pdpMetaTagsTealium"
-        ],
-        "to": "/bibliotheque-donnees?id=IE00BM67HV82",
-        "kind": "conflict",
-        "field": "Poids du pays China",
-        "cause": "Valeur contradictoire pour la même période (2026-10-13) : Poids du pays China. Dernière observation conservée ; propositions archivées (etf:IE00BM67HV82:countries:China:f5d10aa5ac6de524b51ebc86:2026-10-13).",
-        "id": "radar:577cfcc3e8d12b0517b5aa41",
         "firstSeenAt": "2026-10-14T19:12:42.647375+00:00",
         "lastSeenAt": "2026-10-14T21:48:33.143199+00:00",
         "resolvedAt": "2026-10-15T00:31:06.137308+00:00"
