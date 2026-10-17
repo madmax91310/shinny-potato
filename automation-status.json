@@ -416,7 +416,7 @@
   "updatedAt": "2026-10-17T10:03:57Z",
   "monitoring": {
     "schemaVersion": 1,
-    "checkedAt": "2026-10-17T10:39:25.258196+00:00",
+    "checkedAt": "2026-10-17T10:47:42.007317+00:00",
     "revision": 63,
     "active": {
       "collection:update-practical-sheets.yml:practical:13f": {
@@ -438,7 +438,7 @@
         "dataId": "practical:13f",
         "id": "collection:update-practical-sheets.yml:practical:13f",
         "firstSeenAt": "2026-10-14T21:07:26.171294+00:00",
-        "lastSeenAt": "2026-10-17T10:39:25.258196+00:00"
+        "lastSeenAt": "2026-10-17T10:47:42.007317+00:00"
       },
       "collection:update-insurance.yml:linxea-avenir-2": {
         "name": "Linxea Avenir 2",
@@ -457,7 +457,7 @@
         "dataId": "linxea-avenir-2",
         "id": "collection:update-insurance.yml:linxea-avenir-2",
         "firstSeenAt": "2026-10-14T13:08:27.203935+00:00",
-        "lastSeenAt": "2026-10-17T10:39:25.258196+00:00"
+        "lastSeenAt": "2026-10-17T10:47:42.007317+00:00"
       },
       "collection:update-scpi.yml:remake-live": {
         "name": "Remake Live",
@@ -480,7 +480,7 @@
         "dataId": "remake-live",
         "id": "collection:update-scpi.yml:remake-live",
         "firstSeenAt": "2026-10-15T13:02:43.499914+00:00",
-        "lastSeenAt": "2026-10-17T10:39:25.258196+00:00"
+        "lastSeenAt": "2026-10-17T10:47:42.007317+00:00"
       },
       "collection:update-regulatory-data.yml:broker-observation:caidf:profile:change": {
         "name": "caidf:profile:change",
@@ -500,7 +500,7 @@
         "dataId": "broker-observation:caidf:profile:change",
         "id": "collection:update-regulatory-data.yml:broker-observation:caidf:profile:change",
         "firstSeenAt": "2026-10-15T18:00:14.760687+00:00",
-        "lastSeenAt": "2026-10-17T10:39:25.258196+00:00"
+        "lastSeenAt": "2026-10-17T10:47:42.007317+00:00"
       },
       "publication:update-investor-13f.yml": {
         "name": "Portefeuilles des investisseurs",
@@ -516,7 +516,7 @@
         "cause": "deploy / browser-checks (0) : Run node scripts/playwright-nasdaq-total-return.mjs",
         "id": "publication:update-investor-13f.yml",
         "firstSeenAt": "2026-10-16T17:10:15.533090+00:00",
-        "lastSeenAt": "2026-10-17T10:39:25.258196+00:00"
+        "lastSeenAt": "2026-10-17T10:47:42.007317+00:00"
       },
       "publication:update-company-analysis.yml": {
         "name": "Analyses d’entreprises",
@@ -532,7 +532,7 @@
         "cause": "deploy / browser-checks (1) : Run node scripts/playwright-all-weather.mjs ; deploy / browser-checks (2) : Run node scripts/run-browser-checks.mjs 2 4 ; deploy / browser-checks (0) : Run node scripts/run-browser-checks.mjs 0 4",
         "id": "publication:update-company-analysis.yml",
         "firstSeenAt": "2026-10-16T20:37:26.947807+00:00",
-        "lastSeenAt": "2026-10-17T10:39:25.258196+00:00"
+        "lastSeenAt": "2026-10-17T10:47:42.007317+00:00"
       },
       "publication:update-lifestrategy.yml": {
         "name": "Vanguard LifeStrategy",
@@ -551,7 +551,7 @@
         "cause": "deploy / browser-checks (3) : Run node scripts/run-browser-checks.mjs 3 4",
         "id": "publication:update-lifestrategy.yml",
         "firstSeenAt": "2026-10-17T10:03:28.054539+00:00",
-        "lastSeenAt": "2026-10-17T10:39:25.258196+00:00"
+        "lastSeenAt": "2026-10-17T10:47:42.007317+00:00"
       },
       "publication:update-qualified-exposures.yml": {
         "name": "Expositions ETF qualifiées",
@@ -571,7 +571,7 @@
         "cause": "deploy / build : Run npm run test:radar",
         "id": "publication:update-qualified-exposures.yml",
         "firstSeenAt": "2026-10-16T12:48:21.924866+00:00",
-        "lastSeenAt": "2026-10-17T10:39:25.258196+00:00"
+        "lastSeenAt": "2026-10-17T10:47:42.007317+00:00"
       },
       "publication:update-exposure-expansion.yml": {
         "name": "35 ETF des allocations",
@@ -587,7 +587,7 @@
         "cause": "deploy / build : Run node scripts/build-dca-exposures.mjs && npm run test:dca && node scripts/audit-portfolio-routing.mjs",
         "id": "publication:update-exposure-expansion.yml",
         "firstSeenAt": "2026-10-16T15:06:10.074991+00:00",
-        "lastSeenAt": "2026-10-17T10:39:25.258196+00:00"
+        "lastSeenAt": "2026-10-17T10:47:42.007317+00:00"
       },
       "monitor:radar": {
         "kind": "unobserved",
@@ -600,7 +600,7 @@
         "to": "/donnees-a-revoir",
         "id": "monitor:radar",
         "firstSeenAt": "2026-10-15T18:53:46.175472+00:00",
-        "lastSeenAt": "2026-10-17T10:39:25.258196+00:00"
+        "lastSeenAt": "2026-10-17T10:47:42.007317+00:00"
       }
     },
     "events": [
