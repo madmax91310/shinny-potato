@@ -94,7 +94,8 @@ export function companyLabel(name) {
 
 // Les accroches chiffrées suivent la composition reçue, y compris après actualisation.
 export function indexHook(sheet) {
-  let hook = INDEX_HOOKS[sheet.id] ?? sheet.intro
+  // Derived sheets have no written intro: the hook names the index and announces its composition.
+  let hook = INDEX_HOOKS[sheet.id] ?? sheet.intro ?? `Que contient vraiment le ${sheet.index} ? Ses pays, ses secteurs et ses principales lignes racontent où va l’argent investi.`
   if (sheet.id === 'acwi') {
     const usa = sortedRows(sheet.countries).find(([name]) => /États-Unis|United States/i.test(name))?.[1]
     if (usa > 50) {

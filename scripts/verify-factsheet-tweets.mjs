@@ -2,8 +2,13 @@ import { SHEETS } from '../src/data/index-factsheets.js'
 import { buildFactsheetTweet } from '../src/pages/factsheet-tweets/lib.js'
 import assert from 'node:assert/strict'
 import { indexObservation } from '../src/pages/factsheet-tweets/editorial.js'
+import { completeAutomatedRecord } from '../src/data/automated-index-sheets.js'
+import AUTOMATED_INDEX_RECORDS from '../src/data/automated-indices.json' with { type: 'json' }
 
-assert.equal(SHEETS.length, 40, 'Quarante sujets, consommation discrétionnaire et communication mondiales incluses')
+// Every complete automated index has a sheet; the count follows the registry instead of a frozen figure.
+assert.ok(SHEETS.length >= 40, 'au moins les quarante sujets historiques')
+for (const [id, record] of Object.entries(AUTOMATED_INDEX_RECORDS)) if (completeAutomatedRecord(record)) assert.ok(SHEETS.some(sheet => sheet.id === id), `${id} : indice complet sans fiche`)
+for (const id of ['msci-world-consumer-discretionary', 'msci-world-communication-services']) assert.ok(SHEETS.some(sheet => sheet.id === id), id)
 assert.equal(new Set(SHEETS.map(sheet => sheet.id)).size, SHEETS.length, 'Identifiants de fiches uniques')
 assert(SHEETS.some(sheet => sheet.id === 'world-islamic'), 'Indice World Islamic raccordé')
 for (const sheet of SHEETS) {

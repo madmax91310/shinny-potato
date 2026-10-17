@@ -145,7 +145,8 @@ export function buildSheet(id,settings={}) {
  const unique=sources.filter((s,i)=>sources.findIndex(t=>t.url===s.url && t.label===s.label)===i)
  const warnings=unique.filter(s=>s.status==='error'||s.reviewRequired).map(s=>`${s.label} : ${s.reviewRequired?'source modifiée, explication à vérifier':'dernier contrôle en échec, dernière observation conservée'}`)
  if(table.rows.every(row=>row.length===2)) table={...table,columns:[table.columns[1]],rowLabel:table.columns[0]}
- return {...topic,...table,sources:unique,warnings,blocked:unique.some(s=>s.reviewRequired || !s.url || !s.checkedAt),notes:[...table.notes],takeaway:topic.takeaway}
+ // Missing evidence (no URL or no control date) blocks publication; a changed source only warns, the text stays publishable with its notice.
+ return {...topic,...table,sources:unique,warnings,blocked:unique.some(s=>!s.url || !s.checkedAt),notes:[...table.notes],takeaway:topic.takeaway}
 }
 export function buildTweet(sheet) {
  if(sheet.mode==='resources') return [sheet.hook+' 👇','🔖 Sauvegarde ce tweet',...sheet.columns.map((name,i)=>[name,...sheet.rows.map(row=>row[0]+' : '+row[i+1])].join('\n')),sheet.takeaway,...sheet.notes,'💬 '+sheet.question].join('\n\n')

@@ -23,6 +23,7 @@ export const FAMILIES = [
   { id: 'histoires', label: '📚 Histoires de marché', emoji: '📚' },
   { id: 'obligations-historiques', label: '📊 Historiques obligataires', emoji: '📊' },
   { id: 'actions-historiques', label: '📉 Historiques des actions', emoji: '📉' },
+  { id: 'indices-historiques', label: '🌐 Historiques des indices', emoji: '🌐' },
   { id: "chocs", label: "⚡ Chocs et corrections", emoji: "⚡" },
   { id: "continuite", label: "📈 Continuité et séquences", emoji: "📈" },
   { id: "cac40", label: "🇫🇷 CAC 40", emoji: "🇫🇷" },

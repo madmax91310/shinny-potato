@@ -12,8 +12,19 @@ assert(!FACTS.some(fact => fact.id === 'monthly-drawdown-cac40' || fact.id === '
 assert(FACTS.every(fact => FAMILIES.some(family => family.id === fact.family)));
 
 const stories = selectMonthlyMarketStories(HISTORY_FACTS);
-assert.equal(stories.length, 6);
-assert.equal(new Set(stories.map(story => story.twist)).size, stories.length);
+// Six hand-written angles come first with distinct twists; every other measured decline on a
+// total-return series gets a templated angle whose twist follows the recovery state.
+const written = stories.filter(story => !story.derived), derived = stories.filter(story => story.derived);
+assert.equal(written.length, 6);
+assert.equal(new Set(written.map(story => story.twist)).size, written.length);
+assert.deepEqual(stories.slice(0, 6).map(story => story.derived), [undefined, undefined, undefined, undefined, undefined, undefined]);
+assert.equal(stories.length, HISTORY_FACTS.filter(fact => fact.id.startsWith('monthly-drawdown-') && fact.hook.includes(' a perdu ') && /réinvestis/.test(fact.methodNote) && !/non réinvestis/.test(fact.methodNote)).length);
+assert(derived.length >= 30, 'les baisses mesurées sans angle écrit reçoivent un angle gabarit');
+for (const story of derived) {
+  const recovered = /pour retrouver le niveau/.test(HISTORY_FACTS.find(fact => fact.id === story.id).context);
+  assert.equal(/pas encore/.test(story.twist), !recovered, `${story.id} : la chute doit correspondre à l’état de récupération`);
+  assert(story.category && story.hook.length > 40 && !/undefined/.test(story.hook + story.twist + story.category), story.id);
+}
 for (const story of stories) {
   const original = HISTORY_FACTS.find(fact => fact.id === story.id);
   assert(story.context.includes(original.context), 'Dates et récupération doivent suivre les calculs');
