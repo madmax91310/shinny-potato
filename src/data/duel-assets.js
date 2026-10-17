@@ -13,8 +13,8 @@ import { DISTINCT_PORTFOLIO_CANDIDATES } from './distinct-portfolio-assets.js'
 import { latestCommonYears } from './annual-window.js'
 
 // Taux de fin d’année BCE déjà utilisés dans le duel, sans modification des valeurs.
-const historicalFx = { 2019: 1.1234, 2020: 1.2271, 2021: 1.1326, 2022: 1.0666, 2023: 1.1050, 2024: 1.0389, 2025: 1.1750 }
-export const EUR_USD = { ...historicalFx, ...Object.fromEntries(Object.entries(annualFx.years).map(([year, row]) => [year, row.value])) }
+// Clôtures BCE de fin d’année (USD par EUR) : un seul registre, collecté avec les données ETF.
+export const EUR_USD = Object.fromEntries(Object.entries(annualFx.years).map(([year, row]) => [year, row.value]))
 export const FX_SOURCE = annualFx.sourceUrl
 export const ROLES = { base: 'Base', complement: 'Complément', theme: 'Thématique' }
 

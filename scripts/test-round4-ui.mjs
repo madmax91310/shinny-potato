@@ -9,7 +9,7 @@ const server = spawn('node',['node_modules/vite/bin/vite.js','--host','127.0.0.1
 let browser
 try {
   for(let i=0;i<100;i++) { try { if((await fetch(base+'/')).ok)break }catch{} await new Promise(r=>setTimeout(r,200)) }
-  browser = await chromium.launch({headless:true})
+  browser = await chromium.launch({headless:true,...(process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH?{executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH}:{})})
   const page = await browser.newPage({viewport:{width:1280,height:900}})
   const errors=[];page.on('pageerror',e=>errors.push(e.message))
   await mkdir('test-artifacts/round4',{recursive:true})

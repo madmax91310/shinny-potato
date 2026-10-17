@@ -8,7 +8,7 @@ const server=spawn('node',['node_modules/vite/bin/vite.js','preview','--host','1
 let browser
 try {
   for(let i=0;;i++){try{if((await fetch(`${base}/`)).ok)break}catch{}assert(i<100);await new Promise(r=>setTimeout(r,100))}
-  browser=await chromium.launch()
+  browser=await chromium.launch({headless:true,...(process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH?{executablePath:process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH}:{})})
   const page=await browser.newPage({viewport:{width:1440,height:1000},permissions:['clipboard-read','clipboard-write'],acceptDownloads:true})
   const errors=[];page.on('pageerror',e=>errors.push(e.message))
   await page.goto(`${base}/presentations`,{waitUntil:'networkidle'})

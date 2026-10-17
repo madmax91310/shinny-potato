@@ -15,6 +15,9 @@
       "Validate observations: npm run audit:data-catalog",
       "Validate observations: npm run build",
       "Validate collected observations"
+    ],
+    "paths": [
+      "/fiches-pratiques"
     ]
   },
   "update-editorial-radar.yml": {
@@ -24,7 +27,15 @@
     "maxAgeHours": 18,
     "tools": [
       "Radar éditorial"
-    ]
+    ],
+    "paths": [
+      "/radar-editorial"
+    ],
+    "artifact": "editorial-radar-observations",
+    "collectionSteps": [
+      "Publish comparable observations and new signals"
+    ],
+    "validationSteps": []
   },
   "update-publication-observations.yml": {
     "name": "Pouvoir d’achat et niveaux des anniversaires",
@@ -49,6 +60,10 @@
       "Validate observations: npm run build",
       "Validate observations: node scripts playwright-publication.mjs",
       "Validate collected observations"
+    ],
+    "paths": [
+      "/pouvoir-achat",
+      "/il-y-a-x-ans"
     ]
   },
   "update-insurance.yml": {
@@ -68,6 +83,10 @@
       "Validate observations: npm run audit:data-catalog",
       "Validate observations: npm run build",
       "Validate collected observations"
+    ],
+    "paths": [
+      "/presentations",
+      "/fiches-pratiques"
     ]
   },
   "update-scpi.yml": {
@@ -87,6 +106,9 @@
       "Validate observations: npm run audit:data-catalog",
       "Validate observations: npm run build",
       "Validate collected observations"
+    ],
+    "paths": [
+      "/presentations"
     ]
   },
   "update-presentation-actors.yml": {
@@ -106,6 +128,9 @@
       "Validate observations: npm run audit:data-catalog",
       "Validate observations: npm run build",
       "Validate collected observations"
+    ],
+    "paths": [
+      "/presentations"
     ]
   },
   "update-regulatory-data.yml": {
@@ -130,6 +155,12 @@
       "Validate observations: npm run audit:broker-evidence",
       "Validate observations: npm run build",
       "Validate collected observations"
+    ],
+    "paths": [
+      "/comparatif-courtiers",
+      "/fiches-pratiques",
+      "/fiche-lexique",
+      "/simulateur-patrimoine"
     ]
   },
   "collect-etf-pilot.yml": {
@@ -141,8 +172,7 @@
     "tools": [
       "Présentation ETF",
       "Comparatif ETF",
-      "Coulisses des indices",
-      "Comparateur indices"
+      "Coulisses des indices"
     ],
     "collectionSteps": [
       "Collect observations: ishares",
@@ -169,6 +199,16 @@
       "Validate observations: node scripts test-comparison-etf-details.mjs",
       "Validate observations: npm run build",
       "Validate collected observations"
+    ],
+    "paths": [
+      "/fiches-etf",
+      "/comparatif-etf",
+      "/tweets-factsheets",
+      "/impact-frais",
+      "/classements-performances",
+      "/duels-portefeuilles",
+      "/generateur-portefeuilles",
+      "/bibliotheque-donnees"
     ]
   },
   "update-market-monthly.yml": {
@@ -199,6 +239,15 @@
       "Validate observations: npm run verify:tweet-midi",
       "Validate observations: npm run build",
       "Validate collected observations"
+    ],
+    "paths": [
+      "/calculateur-investissement",
+      "/performance-depuis",
+      "/il-y-a-x-ans",
+      "/duels-portefeuilles",
+      "/generateur-portefeuilles",
+      "/classements-performances",
+      "/faits-marquants-marches"
     ]
   },
   "update-bitcoin-monthly.yml": {
@@ -226,6 +275,14 @@
       "Validate observations: node scripts test-comparison-etf-details.mjs",
       "Validate observations: npm run build",
       "Validate collected observations"
+    ],
+    "paths": [
+      "/calculateur-investissement",
+      "/performance-depuis",
+      "/il-y-a-x-ans",
+      "/duels-portefeuilles",
+      "/classements-performances",
+      "/faits-marquants-marches"
     ]
   },
   "update-gold-monthly.yml": {
@@ -245,6 +302,14 @@
       "Validate gold observations",
       "Validate collected observations",
       "Commit validated observations"
+    ],
+    "paths": [
+      "/calculateur-investissement",
+      "/performance-depuis",
+      "/il-y-a-x-ans",
+      "/duels-portefeuilles",
+      "/classements-performances",
+      "/faits-marquants-marches"
     ]
   },
   "update-inflation.yml": {
@@ -260,7 +325,12 @@
       "Collect observations: python scripts update_inflation.py --baseline  RUNNER_TEMP inflation-baseline.json  --output  RUNNER_TEMP inflation-observation.json  --apply"
     ],
     "validationSteps": [
+      "Validate observations: node scripts test-inflation-consistency.mjs",
       "Validate collected observations"
+    ],
+    "paths": [
+      "/calculateur-investissement",
+      "/pouvoir-achat"
     ]
   },
   "update-investor-13f.yml": {
@@ -277,6 +347,9 @@
     ],
     "validationSteps": [
       "Validate collected observations"
+    ],
+    "paths": [
+      "/portefeuilles-investisseurs"
     ]
   },
   "update-company-analysis.yml": {
@@ -310,6 +383,9 @@
       "Validate observations: npm run build",
       "Verify company UI in Chromium",
       "Validate collected observations"
+    ],
+    "paths": [
+      "/analyse-entreprise"
     ]
   },
   "update-economic-data.yml": {
@@ -336,6 +412,14 @@
       "Validate observations: node scripts test-economic-consumers.mjs",
       "Validate observations: npm run build",
       "Validate collected observations"
+    ],
+    "paths": [
+      "/france-100-menages",
+      "/simulateur-patrimoine",
+      "/calculateur-investissement",
+      "/generateur-portefeuilles",
+      "/fiches-pratiques",
+      "/fiche-lexique"
     ]
   },
   "update-lifestrategy.yml": {
@@ -361,6 +445,13 @@
       "Validate observations: node scripts test-duel-titanium.mjs",
       "Validate observations: node scripts test-portfolio-metallic.mjs",
       "Validate collected observations"
+    ],
+    "paths": [
+      "/fiches-etf",
+      "/comparatif-etf",
+      "/duels-portefeuilles",
+      "/generateur-portefeuilles",
+      "/le-dca-de"
     ]
   },
   "update-non-bond-expansion.yml": {
@@ -386,6 +477,14 @@
       "Validate observations: npm run audit:instrument-catalog",
       "Validate observations: npm run build",
       "Validate collected observations"
+    ],
+    "paths": [
+      "/fiches-etf",
+      "/comparatif-etf",
+      "/calculateur-investissement",
+      "/il-y-a-x-ans",
+      "/performance-depuis",
+      "/classements-performances"
     ]
   },
   "update-qualified-exposures.yml": {
@@ -414,6 +513,13 @@
       "Validate observations: npm run audit:instrument-catalog",
       "Validate observations: npm run build",
       "Validate collected observations"
+    ],
+    "paths": [
+      "/fiches-etf",
+      "/comparatif-etf",
+      "/duels-portefeuilles",
+      "/generateur-portefeuilles",
+      "/le-dca-de"
     ]
   },
   "refresh-automated-index-sheets.yml": {
@@ -423,8 +529,7 @@
     "maxAgeHours": 48,
     "artifact": "complete-index-sheet-observations",
     "tools": [
-      "Coulisses des indices",
-      "Comparateur indices"
+      "Coulisses des indices"
     ],
     "collectionSteps": [
       "Collect selected indices directly and require every displayed field"
@@ -434,6 +539,9 @@
       "Validate observations: node scripts test-automated-indices.mjs",
       "Validate observations: npm run audit:index-facts",
       "Validate collected observations"
+    ],
+    "paths": [
+      "/tweets-factsheets"
     ]
   },
   "update-exposure-expansion.yml": {
@@ -451,6 +559,9 @@
     "validationSteps": [
       "Validate expanded exposures",
       "Validate collected observations"
+    ],
+    "paths": [
+      "/le-dca-de"
     ]
   },
   "update-instrument-metadata.yml": {
@@ -471,6 +582,13 @@
     "validationSteps": [
       "Validate metadata observations",
       "Validate collected observations"
+    ],
+    "paths": [
+      "/fiches-etf",
+      "/comparatif-etf",
+      "/generateur-portefeuilles",
+      "/le-dca-de",
+      "/bibliotheque-donnees"
     ]
   }
 }

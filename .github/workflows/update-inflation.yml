@@ -26,6 +26,7 @@ permissions:
 concurrency:
   group: insee-inflation-${{ github.event_name == 'pull_request' && github.ref || 'production' }}
   cancel-in-progress: false
+  queue: max
 jobs:
   validate:
     if: github.event_name == 'pull_request'
@@ -80,6 +81,9 @@ jobs:
           path: ${{ runner.temp }}/inflation-observation.json
           retention-days: 35
           if-no-files-found: error
+      - run: npm ci
+      - name: "Validate observations: node scripts test-inflation-consistency.mjs"
+        run: node scripts/test-inflation-consistency.mjs
       - name: Validate collected observations
         run: echo 'Mandatory observation checks passed'
       - name: Commit validated observations

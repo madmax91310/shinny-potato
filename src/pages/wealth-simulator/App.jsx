@@ -5,7 +5,9 @@ import ToolWorkspace from '../../design-system/ToolWorkspace'
 import Button from '../../design-system/Button'
 import ChoicePicker from '../../design-system/ChoicePicker'
 import { downloadImage } from '../../design-system/downloadImage.js'
-import { ENVELOPES, SCENARIOS, HORIZONS, SAVINGS, emptyPlan, examplePlan, newPocket } from './data.js'
+import { ENVELOPES, SCENARIOS, HORIZONS, SAVINGS, emptyPlan, examplePlan, newPocket, regulatedRate } from './data.js'
+import { PEL_GENERATION_OPTIONS, PEL_CHECKED_AT, PEL_SOURCE_URL, pelRateFor } from '../../data/pel-rates.js'
+import { REGULATORY, REGULATORY_OBSERVATIONS } from '../../data/regulatory-data.js'
 import { validatePlan, project, envelopeAllocation, money, percent, buildTweet } from './lib.js'
 import { renderProjectionImage } from './image.js'
 import './style.css'
@@ -91,7 +93,10 @@ export default function App() {
           <label className="wealth-field"><span>Nom de la poche</span><input maxLength={100} value={p.name} onChange={e=>patchPocket(p.id,'name',e.target.value)}/></label>
           <div className="wealth-fields"><NumberField label="Capital actuel (€)" value={p.initial} onChange={v=>patchPocket(p.id,'initial',v)}/><NumberField label="Versement mensuel (€)" value={p.monthly} max={1e7} onChange={v=>patchPocket(p.id,'monthly',v)}/></div>
           <div className="wealth-rates">{SCENARIOS.map(s=><NumberField key={s.id} label={`${s.label} (%/an)`} value={p.rates[s.id]} min={-99} max={100} step={0.1} onChange={v=>patchPocket(p.id,'rates',{...p.rates,[s.id]:v})}/>)}</div>
-          {['livret-a','ldds'].includes(p.envelope) && <p className="wealth-note">Taux prérempli : {SAVINGS ? <a href={SAVINGS.sourceUrl} target="_blank" rel="noreferrer">{percent(SAVINGS.rate)} depuis le {SAVINGS.effectiveAt}</a> : 'non disponible'}. Ce taux peut changer ; la projection le maintient constant. Plafond : {money(CEILINGS[p.envelope] ?? 0)}, partagé entre les poches de cette enveloppe.</p>}
+          {p.envelope==='livret-a' && <p className="wealth-note">Taux prérempli : {SAVINGS ? <a href={SAVINGS.sourceUrl} target="_blank" rel="noreferrer">{percent(SAVINGS.rate)} depuis le {SAVINGS.effectiveAt}</a> : 'non disponible'}. Ce taux peut changer ; la projection le maintient constant. Plafond : {money(CEILINGS[p.envelope] ?? 0)}, partagé entre les poches de cette enveloppe.</p>}
+          {p.envelope==='ldds' && <p className="wealth-note">Taux prérempli : {REGULATORY.lddsRate != null ? <a href={REGULATORY_OBSERVATIONS.ldds?.sourceUrl} target="_blank" rel="noreferrer">{percent(REGULATORY.lddsRate)} (service-public, contrôle du {REGULATORY_OBSERVATIONS.ldds?.checkedAt})</a> : 'non disponible'}. Ce taux peut changer ; la projection le maintient constant. Plafond : {money(ENVELOPES.find(e=>e.id==='ldds').ceiling)}.</p>}
+          {p.envelope==='pel' && <div className="wealth-note"><ChoicePicker aria-label={`Génération du PEL ${p.name}`} value={PEL_GENERATION_OPTIONS.find(o=>pelRateFor(o.value)===pelRateFor(p.opened) && (p.opened==null || String(p.opened)>=o.value))?.value ?? PEL_GENERATION_OPTIONS[0].value} onChange={e=>{const rate=regulatedRate('pel',e.target.value);change(next=>{const pocket=next.portfolios[next.active].pockets.find(x=>x.id===p.id);pocket.opened=e.target.value;pocket.rates={low:rate,central:rate,high:rate}})}}>{PEL_GENERATION_OPTIONS.map(o=><option key={o.value} value={o.value}>{o.label}</option>)}</ChoicePicker><p>Taux brut fixé à l’ouverture du plan (<a href={PEL_SOURCE_URL} target="_blank" rel="noreferrer">service-public, contrôle du {PEL_CHECKED_AT}</a>), avant prélèvement forfaitaire. Plafond de versement : {money(ENVELOPES.find(e=>e.id==='pel').ceiling)}.</p></div>}
+          {p.envelope==='pea' && ENVELOPES.find(e=>e.id==='pea').ceiling && <p className="wealth-note">Plafond légal de versement appliqué : <a href={ENVELOPES.find(e=>e.id==='pea').source} target="_blank" rel="noreferrer">{money(ENVELOPES.find(e=>e.id==='pea').ceiling)}</a> (service-public). Le rendement reste une hypothèse à saisir.</p>}
           <details><summary>Frais, fiscalité et hausse des versements</summary>
             <ChoicePicker aria-label={`Convention de rendement ${p.name}`} value={p.rateMode} onChange={e=>patchPocket(p.id,'rateMode',e.target.value)}><option value="net">Rendement déjà net de frais</option><option value="gross">Rendement avant frais</option></ChoicePicker>
             {p.rateMode==='gross' && <NumberField label="Frais annuels (%)" value={p.fee} max={30} step={0.01} onChange={v=>patchPocket(p.id,'fee',v)}/>}

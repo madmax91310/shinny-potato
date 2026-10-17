@@ -1,3 +1,4 @@
+import { conversionNote } from '../../lib/performance-conventions.js'
 import { calendarRate, convertCalendarReturn } from '../../data/calendar-fx.js'
 import official from '../../data/official-performance-currencies.json' with { type: 'json' }
 
@@ -43,5 +44,5 @@ export function convertPerformanceEntries(entries, currency) {
 export function performanceDisplayBasis(asset, basis) {
   if (!asset.sourceCurrency) return basis
   const converted = basis.replace(new RegExp(`\\b${asset.sourceCurrency}\\b`, 'g'), asset.currency)
-  return `${converted} · ${asset.currencyMethod === 'official' ? 'série officielle' : 'conversion BCE'}, sans couverture de change`
+  return `${converted} · ${conversionNote({ method: asset.currencyMethod })}`
 }

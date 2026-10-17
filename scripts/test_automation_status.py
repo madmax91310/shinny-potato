@@ -86,6 +86,19 @@ class StatusTests(unittest.TestCase):
   self.assertEqual(recovered['workflows'][workflow]['dataFailures'],{})
   self.assertEqual(recovered['workflows'][workflow]['collectionStatus'],'success')
 
+ def test_radar_feed_reports_unreadable_families_not_contradictions(self):
+  feed={'_collector':'feed','schemaVersion':1,'coverage':{'etf':120,'investisseurs':0,'indices':50},'events':[],
+        'errors':[{'family':'investisseurs','entity':'','reason':'Déclarations 13F indisponibles.'},
+                  {'family':'indices','entity':'world','reason':'Valeur contradictoire pour la même période (2026-09) : Secteurs. Dernière observation conservée.'}]}
+  report=normalize_report(feed)
+  self.assertEqual([e['id'] for e in report['errors']],['radar:investisseurs'])
+  self.assertEqual(report['errors'][0]['error'],'Déclarations 13F indisponibles.')
+  self.assertEqual({s['id'] for s in report['successes']},{'radar:etf','radar:indices'})
+  failed=update_status({},run(1,'success','update-editorial-radar.yml'),[],[feed])
+  self.assertIn('radar:investisseurs',failed['workflows']['update-editorial-radar.yml']['dataFailures'])
+  recovered=update_status(failed,run(2,'success','update-editorial-radar.yml'),[],[{**feed,'coverage':{**feed['coverage'],'investisseurs':28},'errors':[]}])
+  self.assertEqual(recovered['workflows']['update-editorial-radar.yml']['dataFailures'],{})
+
  def test_inflation_report_marks_exact_series_as_collected(self):
   self.assertEqual(normalize_report({'seriesId':'011814631','rates':{'2026-09':-.3},'checkedAt':'2026-10-11'})['successes'],[{'id':'inflation:011814631'}])
  def test_regulatory_reports_keep_retained_failure_and_clear_only_checked_sources(self):

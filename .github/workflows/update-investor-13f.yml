@@ -17,6 +17,7 @@ permissions:
 concurrency:
   group: investor-13f-refresh
   cancel-in-progress: false
+  queue: max
 jobs:
   validate:
     if: github.event_name == 'pull_request'

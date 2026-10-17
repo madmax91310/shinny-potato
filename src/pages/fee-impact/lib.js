@@ -1,5 +1,6 @@
 import { annualAfterFees, monthlyEffective } from '../../lib/simulation-rates.js'
 import { FEE_COMPARISON_ASSETS } from '../../data/fee-comparison-assets.js'
+import { envelopeFeeOption } from '../../data/envelope-fees.js'
 import { fmtEUR } from '../../lib/format-currency.js'
 import { AMOUNT_PRESETS, DURATION_PRESETS, RETURN_PRESETS, FEE_LEVELS } from './data.js'
 
@@ -29,7 +30,14 @@ for (let i = 0; i < FEE_LEVELS.length; i++) {
 }
 
 export function feeLabel(value) {
-  return FEE_LEVELS.find((f) => f.value === value)?.label ?? `${value} %`
+  return FEE_LEVELS.find((f) => f.value === value)?.label ?? `${value.toLocaleString('fr-FR', { maximumFractionDigits: 2 })} %`
+}
+
+// Frais annuels réellement prélevés dans chaque scénario : frais du support plus, le cas échéant,
+// frais d’enveloppe d’un contrat d’assurance-vie relevés par le collecteur.
+export function effectiveFees(state) {
+  const total = (fee, envelope) => Math.round((fee + envelopeFeeOption(envelope).fee) * 1000) / 1000
+  return { fee1: total(state.fee1, state.envelope1), fee2: total(state.fee2, state.envelope2) }
 }
 
 // Même convention que le Simulateur de patrimoine : taux effectif, frais proportionnels, fin de mois.
@@ -52,7 +60,8 @@ export function simulateCapitalSeries(monthlyAmount, years, grossReturnPct, feeP
 }
 
 export function computeComparison(state) {
-  const { amount, years, returnRate, fee1, fee2 } = state
+  const { amount, years, returnRate } = state
+  const { fee1, fee2 } = effectiveFees(state)
   const capital1 = simulateCapital(amount, years, returnRate, fee1)
   const capital2 = simulateCapital(amount, years, returnRate, fee2)
   const higher = Math.max(capital1, capital2)
@@ -64,7 +73,9 @@ export function computeComparison(state) {
 }
 
 export function buildTweetText(state) {
-  const { amount, years, returnRate, fee1, fee2, punchline } = state
+  const { amount, years, returnRate, punchline } = state
+  const { fee1, fee2 } = effectiveFees(state)
+  const envelopes = [envelopeFeeOption(state.envelope1), envelopeFeeOption(state.envelope2)]
   const d = computeComparison(state)
   const yearsLabel = `${years} an${years > 1 ? 's' : ''}`
   const sameFees = fee1 === fee2
@@ -79,7 +90,7 @@ export function buildTweetText(state) {
     ? `💸 ${feeLabel(fee1)} de frais dans les deux cas : avec ${fmtEUR(amount)} investis chaque mois pendant ${yearsLabel}, les capitaux simulés sont identiques.`
     : `💸 ${feeLabel(lowFee)} ou ${feeLabel(highFee)} de frais : après ${yearsLabel}, l’écart simulé reste inférieur à 1 € avec ${fmtEUR(amount)} investis chaque mois.`
   const selectedFunds = [state.isin1, state.isin2].map(isin => FEE_COMPARISON_ASSETS.find(asset => asset.isin === isin))
-  const scenario = (fee, capital, fund) => `${sameFees ? '⚪' : fee === Math.min(fee1, fee2) ? '🟢' : '🔴'} ${fund ? `${fund.name} (${fund.isin}), avec` : 'Avec'} ${feeLabel(fee)} de frais annuels : ${fmtEUR(capital)}`
+  const scenario = (fee, capital, fund, envelope, productFee) => `${sameFees ? '⚪' : fee === Math.min(fee1, fee2) ? '🟢' : '🔴'} ${fund ? `${fund.name} (${fund.isin}), avec` : 'Avec'} ${envelope.fee ? `${feeLabel(productFee)} de frais du support + ${feeLabel(envelope.fee)} de frais d’enveloppe (${envelope.contract}), soit ${feeLabel(fee)} par an` : `${feeLabel(fee)} de frais annuels`} : ${fmtEUR(capital)}`
   const returnLabel = returnRate.toLocaleString('fr-FR')
 
   return [
@@ -90,8 +101,8 @@ export function buildTweetText(state) {
     ``,
     `📊 Avec un rendement supposé de ${returnLabel} % par an avant frais :`,
     ``,
-    scenario(fee1, d.capital1, selectedFunds[0]),
-    scenario(fee2, d.capital2, selectedFunds[1]),
+    scenario(fee1, d.capital1, selectedFunds[0], envelopes[0], state.fee1),
+    scenario(fee2, d.capital2, selectedFunds[1], envelopes[1], state.fee2),
     ``,
     `Dans les deux cas, tu as versé ${fmtEUR(d.totalInvested)}.`,
     ``,
@@ -103,6 +114,7 @@ export function buildTweetText(state) {
     '💬 Tu connais le montant des frais annuels de tes placements ?',
     ``,
     ...(selectedFunds.some(Boolean) ? ['Frais des produits relevés dans la banque de données ; même rendement brut supposé, sans comparer leurs performances réelles.', ...selectedFunds.filter(Boolean).map(fund => `Source frais ${fund.isin} : ${fund.evidence.sourceUrls[0]}`), ''] : []),
+    ...[...new Map(envelopes.filter(envelope => envelope.fee).map(envelope => [envelope.id, envelope])).values()].map(envelope => `Frais d’enveloppe ${envelope.contract} : ${envelope.sourceUrl} (contrôle du ${envelope.checkedAt}) ; ${envelope.scope ?? 'hors frais des supports'}`),
     'Hypothèse de rendement constant, versements en fin de mois. Hors fiscalité et inflation.',
   ].join('\n')
 }

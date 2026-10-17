@@ -1,6 +1,7 @@
 import { ANNIVERSARY_INDEX_VARIANTS } from './indexVariants.js'
 export { ANNIVERSARY_INDEX_VARIANTS } from './indexVariants.js'
 // Shared calculator series plus exact official indices dedicated to anniversaries.
+import { performanceBasisLabel } from '../../../lib/performance-conventions.js';
 import {
   ASSETS as SHARED_ASSETS, ASSET_ORDER, LIVRET_A, INFLATION, LATEST_YM, getAssetMinDate as sharedMinDate, SPARSE_MONTHLY_DATA_IDS,
 } from '../../../data/market-history.js';
@@ -181,11 +182,11 @@ export function performanceBasis(assetId) {
   const asset = ASSETS[assetId];
   if (ANNIVERSARY_INDEX_VARIANTS[assetId]) return ANNIVERSARY_INDEX_VARIANTS[assetId];
   if (['ETC','ETN','ETP'].includes(asset.instrumentType)) return `${asset.currency} · cours de l’${asset.instrumentType}`;
-  if (asset.priceMethod === 'adjusted') return `${asset.currency} · revenus réinvestis`;
-  if (assetId === 'or') return `${asset.currency} · moyennes mensuelles du prix de l’or`;
-  if (assetId === 'silver') return `${asset.currency} · futures COMEX, hors frais et roulement`;
-  if (assetId === 'soxx') return `${asset.currency} · hors dividendes`;
-  return `${asset.currency} · variation du prix`;
+  if (asset.priceMethod === 'adjusted') return performanceBasisLabel({ currency: asset.currency, income: 'reinvested' });
+  if (assetId === 'or') return performanceBasisLabel({ currency: asset.currency, detail: 'moyennes mensuelles du prix de l’or' });
+  if (assetId === 'silver') return performanceBasisLabel({ currency: asset.currency, detail: 'futures COMEX, hors frais et roulement' });
+  if (assetId === 'soxx') return performanceBasisLabel({ currency: asset.currency, income: 'price' });
+  return performanceBasisLabel({ currency: asset.currency, detail: 'variation du prix' });
 }
 const REBASED_INDEX_IDS = new Set(ASSET_ORDER.filter(id => ASSETS[id].priceUnit === 'points'));
 

@@ -79,4 +79,15 @@ class WorkflowContracts(unittest.TestCase):
         for critical in ['node scripts/test-route-loading.mjs','node scripts/playwright-tools.mjs','node scripts/test-automation-failures-ui.mjs']:
             self.assertIn(critical, commands)
 
+    def test_production_collectors_queue_instead_of_replacing_pending_runs(self):
+        # GitHub keeps one pending job per concurrency group: without a queue, each new
+        # arrival cancels the waiting one. Three ETF collectors cancelled each other on
+        # 2026-10-17 in active-market-data-production for that reason.
+        for path in sorted((ROOT/'.github/workflows').glob('*.yml')):
+            for block in re.findall(r'^( *)concurrency:\n((?:\1 +.*\n|\s*#.*\n)+)', path.read_text(), re.M):
+                body = block[1]
+                if not re.search(r'cancel-in-progress:\s*false\s*$', body, re.M):
+                    continue
+                self.assertRegex(body, r'(?m)^\s*queue:\s*max\s*$', (path.name, body))
+
 if __name__ == '__main__': unittest.main()

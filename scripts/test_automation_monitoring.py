@@ -92,8 +92,9 @@ class MonitoringTests(unittest.TestCase):
         self.assertEqual(fixed['workflows']['update-investor-13f.yml']['dataFailures'], {})
 
 class FakeAPI:
-    def __init__(self):
+    def __init__(self, created_at=None):
         self.issue = None
+        self.created_at = created_at
         self.comments = []
         self.writes = []
         self.fail_after_comment = False
@@ -111,7 +112,7 @@ class FakeAPI:
                 self.fail_after_patch = False
                 raise TimeoutError('Response lost after issue update')
             return self.issue
-        self.comments.append({**body, 'user': {'login': 'github-actions[bot]'}})
+        self.comments.append({**body, 'user': {'login': 'github-actions[bot]'}, **({'created_at': self.created_at} if self.created_at else {})})
         if self.fail_after_comment:
             self.fail_after_comment = False
             raise TimeoutError('Response lost after GitHub accepted comment')
@@ -147,6 +148,47 @@ class NotificationTests(unittest.TestCase):
         sync_monitoring_issue(resolved, api, 'test/repo')
         self.assertIn('0 nouveau(x)', api.comments[0]['body'])
         self.assertEqual(len(api.comments), 1)
+
+    def test_flapping_checks_update_the_body_without_a_new_comment(self):
+        # Comments posted within the quiet period: a check that fails again, then a
+        # recovery, only rewrite the body and record their receipts there.
+        api = FakeAPI(created_at=NOW)
+        state = copy.deepcopy(STATE)
+        state['workflows']['x.yml'].update({'status': 'failure', 'publicationStatus': 'success', 'failures': [{'job': 'deploy / browser-checks (0)', 'step': 'Run node scripts/run-browser-checks.mjs 0 4'}]})
+        first = evaluate(state)
+        sync_monitoring_issue(first, api, 'test/repo')
+        self.assertEqual(len(api.comments), 0, 'La création de l’issue suffit')
+        state['workflows']['x.yml'].update({'status': 'success', 'failures': []})
+        partial = evaluate({**state, 'monitoring': first}, now='2026-10-14T09:00:00Z')
+        partial['active']['keep'] = {'id': 'keep', 'kind': 'checks', 'name': 'Autre', 'field': 'Contrôle', 'cause': 'x', 'tools': []}
+        sync_monitoring_issue(partial, api, 'test/repo')
+        self.assertEqual(len(api.comments), 0)
+        self.assertIn(f"<!-- monitor-notified:{partial['revision']} -->", api.issue['body'])
+        again = evaluate({**state, 'monitoring': partial}, now='2026-10-14T10:00:00Z')
+        again['active']['keep'] = partial['active']['keep']
+        again['active']['flap'] = {'id': 'flap', 'kind': 'checks', 'name': 'Autre', 'field': 'Contrôle', 'cause': 'y', 'tools': []}
+        again['revision'] += 1; again['events'].append({'revision': again['revision'], 'at': '2026-10-14T10:00:00Z', 'opened': ['flap'], 'resolved': []})
+        api.created_at = '2026-10-14T10:00:00Z'
+        sync_monitoring_issue(again, api, 'test/repo')
+        self.assertEqual(len(api.comments), 1, 'Premier contrôle en échec après une période sans commentaire')
+        flap = evaluate({**state, 'monitoring': again}, now='2026-10-14T10:15:00Z')
+        flap['active'].update({'keep': again['active']['keep'], 'flap2': {'id': 'flap2', 'kind': 'checks', 'name': 'Autre', 'field': 'Contrôle', 'cause': 'y2', 'tools': []}})
+        flap['revision'] += 1; flap['events'].append({'revision': flap['revision'], 'at': '2026-10-14T10:15:00Z', 'opened': ['flap2'], 'resolved': []})
+        sync_monitoring_issue(flap, api, 'test/repo')
+        self.assertEqual(len(api.comments), 1, 'Un contrôle qui rechute pendant la période calme ne commente pas')
+        self.assertIn(f"<!-- monitor-notified:{flap['revision']} -->", api.issue['body'])
+        # A data incident is always worth a comment, whatever the spacing.
+        state['workflows']['x.yml']['dataFailures'] = {'index-world-composition': {'cause': 'Missing weights'}}
+        data = evaluate({**state, 'monitoring': flap}, now='2026-10-14T10:30:00Z')
+        sync_monitoring_issue(data, api, 'test/repo')
+        self.assertEqual(len(api.comments), 2)
+        self.assertIn('Nouveau : MSCI World', api.comments[1]['body'])
+        # After the quiet period, a check incident is reported again.
+        late = evaluate({**state, 'monitoring': data}, now='2026-10-14T20:00:00Z')
+        late['active']['late'] = {'id': 'late', 'kind': 'checks', 'name': 'Tardif', 'field': 'Contrôle', 'cause': 'z', 'tools': []}
+        late['revision'] += 1; late['events'].append({'revision': late['revision'], 'at': '2026-10-14T20:00:00Z', 'opened': ['late'], 'resolved': []})
+        sync_monitoring_issue(late, api, 'test/repo')
+        self.assertEqual(len(api.comments), 3)
 
     def test_healthy_first_pass_does_not_notify(self):
         api = FakeAPI()

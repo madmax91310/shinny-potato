@@ -1,4 +1,6 @@
 import { AUTOMATED_EQUITY_HISTORY } from './automated-equity-history.js'
+import { INFLATION_MONTHLY } from './inflation-monthly.js'
+import { indexMethodNote } from '../lib/performance-conventions.js'
 import EQUITY_LINKS from './equity-history-links.json' with { type: 'json' }
 import { applyMonthlyAutomation } from './monthly-automation.js'
 import { savingsRates } from './economic-data.js'
@@ -85,6 +87,7 @@ export const BASELINE_ASSETS = {
     // Les résultats historiques changent ; le DCA est maintenant possible sur cette série homogène.
     // Septembre 1622,67 recoupé avec Investing STOXXR ; août officiel 1662,91 concordant.
     label: 'Indice STOXX Europe 600', tweetPhrase: "l'indice STOXX Europe 600", icon: '🇪🇺', currency: 'EUR', priceUnit: 'points',
+    methodNote: indexMethodNote({ name: 'STOXX Europe 600', variant: 'Net Return', currency: 'EUR', income: 'net' }),
     points: P([
       '2015-01', 689.89, '2015-02', 738.07, '2015-03', 750.44, '2015-04', 751.19,
       '2015-05', 763.73, '2015-06', 729.46, '2015-07', 758.74, '2015-08', 696.30,
@@ -134,6 +137,7 @@ export const BASELINE_ASSETS = {
     // Remplace la série composite rebasée ; rendements 2016–2025 recoupés avec les valeurs annuelles vérifiées.
     // Ce rendement d’indice est hors frais et ne représente pas un ETF précis.
     label: 'S&P 500', tweetPhrase: 'le S&P 500', icon: '🇺🇸', currency: 'USD', priceUnit: 'points',
+    methodNote: indexMethodNote({ name: 'S&P 500', variant: 'Total Return', currency: 'USD', income: 'gross' }),
     points: P([
       '2015-01', 3656.28, '2015-02', 3866.42, '2015-03', 3805.27, '2015-04', 3841.78,
       '2015-05', 3891.18, '2015-06', 3815.85, '2015-07', 3895.80, '2015-08', 3660.75,
@@ -182,6 +186,7 @@ export const BASELINE_ASSETS = {
     // Capture : scripts/source-snapshots/calculator-msci-world-2026-10-02.json.
     // Les dix rendements annuels 2016–2025 concordent avec la fiche MSCI USD Gross.
     label: 'Indice MSCI World', tweetPhrase: "l'indice MSCI World", icon: '🌍', currency: 'USD', priceUnit: 'points',
+    methodNote: indexMethodNote({ name: 'MSCI World', variant: 'Gross Return', currency: 'USD', income: 'gross' }),
     points: P([
       '2015-01', 6266.93, '2015-02', 6637.22, '2015-03', 6537.62, '2015-04', 6694.31,
       '2015-05', 6723.06, '2015-06', 6569.47, '2015-07', 6689.58, '2015-08', 6249.65,
@@ -657,7 +662,25 @@ export const LIVRET_A = savingsRates({
 // 2012 : « Entre 2011 et 2012, les prix ont augmenté de 2,0 % en moyenne » (insee.fr/fr/statistiques/1563699)
 // 2013 : « Entre 2012 et 2013, les prix ont augmenté de 0,9 % en moyenne » (insee.fr/fr/statistiques/1563562)
 // 2014 : « Hausse des prix à la consommation de 0,5 % en moyenne en 2014 » (insee.fr/fr/statistiques/1564994)
-export const INFLATION = { 2010: 1.5, 2011: 2.1, 2012: 2.0, 2013: 0.9, 2014: 0.5, 2015: 0.0, 2016: 0.2, 2017: 1.0, 2018: 1.8, 2019: 1.1, 2020: 0.5, 2021: 1.6, 2022: 5.2, 2023: 4.9, 2024: 2.0, 2025: 0.9 }
+export const INFLATION_PUBLISHED = { 2010: 1.5, 2011: 2.1, 2012: 2.0, 2013: 0.9, 2014: 0.5, 2015: 0.0, 2016: 0.2, 2017: 1.0, 2018: 1.8, 2019: 1.1, 2020: 0.5, 2021: 1.6, 2022: 5.2, 2023: 4.9, 2024: 2.0, 2025: 0.9 }
+// Moyenne annuelle reconstituée à partir des variations mensuelles INSEE collectées (indice
+// recomposé, moyenne des douze niveaux rapportée à l’année précédente). Les variations publiées
+// sont arrondies au dixième : l’écart avec le chiffre annuel officiel atteint 0,1 point
+// (scripts/test-inflation-consistency.mjs le borne). Elle ne sert qu’aux années complètes dont
+// l’INSEE n’a pas encore publié la moyenne annuelle, pour que janvier ne laisse aucun trou.
+export function derivedAnnualInflation(monthly = INFLATION_MONTHLY) {
+  const months = Object.keys(monthly).sort()
+  let level = 100
+  const levels = Object.fromEntries(months.map(month => [month, level *= 1 + monthly[month] / 100]))
+  const average = year => { const values = months.filter(month => month.startsWith(year)).map(month => levels[month]); return values.length === 12 ? values.reduce((a, b) => a + b, 0) / 12 : null }
+  const result = {}
+  for (const year of new Set(months.map(month => month.slice(0, 4)))) {
+    const current = average(year), previous = average(String(Number(year) - 1))
+    if (current && previous) result[year] = Math.round((current / previous - 1) * 1000) / 10
+  }
+  return result
+}
+export const INFLATION = { ...derivedAnnualInflation(), ...INFLATION_PUBLISHED }
 
 export const LATEST_YM = Object.values(ASSETS).map(asset => asset.points.at(-1).date).sort().at(-1) // Chaque outil borne ensuite sa période à l’actif choisi.
 export const MONTHS_FULL = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre']

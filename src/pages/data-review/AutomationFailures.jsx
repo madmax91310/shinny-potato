@@ -1,7 +1,10 @@
 import AssetFieldCoverage from './AssetFieldCoverage.jsx'
 import { useEffect, useState } from 'react'
 import MonitoringIncidents from './MonitoringIncidents.jsx'
+import { Link } from 'react-router-dom'
+import { TOOLS } from '../../tools.js'
 import { AUTOMATION_STATUS_URL, automationFailures, automationOverview } from './automation.js'
+const toolTitle = path => TOOLS.find(tool => tool.to === path)?.navLabel ?? path
 
 const publicationLabel = value => ({ success: 'Réussie', failure: 'En échec', 'not-run': 'Non exécutée' }[value] ?? 'Non documentée')
 const date = value => value && Number.isFinite(Date.parse(value)) ? new Intl.DateTimeFormat('fr-FR', {dateStyle: 'short', timeStyle: 'short', timeZone: 'Europe/Paris'}).format(new Date(value)) : 'Non documenté'
@@ -46,7 +49,9 @@ export default function AutomationFailures() {
         {row.recordingStatus === 'failure' && <p>L’enregistrement des données validées a échoué. Les données validées n’ont pas été enregistrées ; leur publication reste à reprendre.</p>}
         {row.publicationStatus === 'failure' && <p>La publication de l’application a échoué.{row.collectionStatus === 'success' && ' La collecte a réussi ; son déploiement reste à reprendre.'}</p>}
         {row.state === 'failure' && <p>Les dernières données validées sont conservées.{row.failureCount > 0 && ` ${row.failureCount} donnée(s) en échec documentée(s).`}</p>}
-        <dl><dt>Dernière exécution</dt><dd>{date(row.completedAt)}</dd><dt>Dernier contrôle de collecte réussi</dt><dd>{date(row.lastCollectionSuccessAt)}</dd><dt>Collecte de cette exécution</dt><dd>{publicationLabel(row.collectionStatus)}</dd><dt>Validation de cette exécution</dt><dd>{publicationLabel(row.validationStatus)}</dd><dt>Enregistrement de cette exécution</dt><dd>{publicationLabel(row.recordingStatus)}</dd><dt>Publication de cette exécution</dt><dd>{publicationLabel(row.publicationStatus)}</dd><dt>Dernière publication réussie</dt><dd>{date(row.lastPublicationSuccessAt)}</dd><dt>Dernier succès complet</dt><dd>{date(row.lastSuccessAt)}</dd></dl>
+        {row.state === 'failure' && row.cause && <p className="dr-cause">Cause relevée : {row.cause}</p>}
+        <dl><dt>Dernière exécution</dt><dd>{date(row.completedAt)}{row.age && ` · ${row.age}`}</dd><dt>Dernier contrôle de collecte réussi</dt><dd>{date(row.lastCollectionSuccessAt)}</dd><dt>Collecte de cette exécution</dt><dd>{publicationLabel(row.collectionStatus)}</dd><dt>Validation de cette exécution</dt><dd>{publicationLabel(row.validationStatus)}</dd><dt>Enregistrement de cette exécution</dt><dd>{publicationLabel(row.recordingStatus)}</dd><dt>Publication de cette exécution</dt><dd>{publicationLabel(row.publicationStatus)}</dd><dt>Dernière publication réussie</dt><dd>{date(row.lastPublicationSuccessAt)}</dd><dt>Dernier succès complet</dt><dd>{date(row.lastSuccessAt)}</dd></dl>
+        {row.paths.length > 0 && <p className="dr-tools">Outils alimentés : {row.paths.map((path, index) => <span key={path}>{index > 0 && ', '}<Link to={path}>{toolTitle(path)}</Link></span>)}</p>}
         {row.runUrl && <div className="dr-links"><a href={row.runUrl} target="_blank" rel="noreferrer">Voir l’exécution ↗</a></div>}
       </article>)}</div>
       {!rows.length && <p className="dr-note">Aucune collecte pour cette sélection.</p>}

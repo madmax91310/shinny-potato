@@ -5,6 +5,7 @@ import json
 import re
 
 MARKER = '<!-- data-reliability-monitor:v1 -->'
+QUIET_HOURS = 6  # minimum spacing between comments that only report checks or recoveries
 
 def timestamp(value):
     try:
@@ -69,7 +70,7 @@ def evaluate_monitoring(state, context, registry, now, radar=None):
                 'field': {'publication': 'Publication', 'checks': 'Contrôle après publication'}.get(kind, 'Exécution du collecteur'),
                 'cause': ' ; '.join(f"{f['job']} : {f['step']}" for f in row.get('failures', [])) or 'Exécution en échec ; consulter le journal.'})
     for row in context['alerts']:
-        add('calendar:' + row['id'], {**row, 'kind': 'freshness', 'cause': ('Date future à vérifier.' if row['category'] == 'future-date' else 'Échéance de vérification atteinte ; contrôler la période disponible.'), 'lastSuccessAt': row.get('checkedAt')})
+        add('calendar:' + row['id'], {**row, 'kind': 'freshness', 'cause': ('Date future à vérifier.' if row['category'] == 'future-date' else row.get('reason', 'Repli sur une valeur manuelle.') if row['category'] == 'manual-fallback' else 'Échéance de vérification atteinte ; contrôler la période disponible.'), 'lastSuccessAt': row.get('checkedAt')})
     # Radar contradictions are review signals, never confirmed market movements.
     # A missing feed retains prior alerts and cannot claim a recovery.
     if radar is None:
@@ -150,12 +151,29 @@ def sync_monitoring_issue(monitor, api, repo):
              for match in re.findall(r'<!-- monitor-notified:(\d+) -->', text)}
     if monitor['revision'] in known:
         return
-    # Reconcile open/closed state and body before the notification receipt.
-    api(f"/issues/{issue['number']}", 'PATCH', {'title': title, 'body': body + '\n' + '\n'.join(f'<!-- monitor-notified:{revision} -->' for revision in sorted(known)[-30:]), 'state': 'open' if monitor['active'] else 'closed'})
     changes = [e for e in monitor.get('events', []) if e['revision'] > max(known, default=-1)]
     recovered = [r for event in changes for r in event['resolved']]
-    opened = sum(len(e['opened']) for e in changes)
+    opened_ids = [id_ for e in changes for id_ in e['opened']]
+    opened_rows = [monitor['active'][id_] for id_ in opened_ids if id_ in monitor['active']]
+    # A comment pings the assignee. It is only worth one when a data incident opens
+    # (collection, contradiction, publication, deadline) or when the quiet period has
+    # passed; flapping checks and plain recoveries only update the body, and the
+    # receipt then lives in the body so the same revision is never retried.
+    material = any(row.get('kind') in ('collection', 'conflict', 'publication', 'freshness') for row in opened_rows)
+    now = timestamp(monitor.get('checkedAt'))
+    last_comment = max([stamp for c in comments if c.get('user', {}).get('login') == 'github-actions[bot]'
+                        and (stamp := timestamp(c.get('created_at')))], default=None)
+    quiet = bool(now and last_comment and (now - last_comment).total_seconds() < QUIET_HOURS * 3600)
+    closing = not monitor['active']
+    comment = bool(opened_ids) and (material or not quiet) or closing
+    receipts = sorted(known | ({monitor['revision']} if not comment else set()))[-30:]
+    # Reconcile open/closed state and body before the notification receipt.
+    api(f"/issues/{issue['number']}", 'PATCH', {'title': title, 'body': body + '\n' + '\n'.join(f'<!-- monitor-notified:{revision} -->' for revision in receipts), 'state': 'open' if monitor['active'] else 'closed'})
+    if not comment:
+        return
+    opened = len(opened_ids)
     summary = [receipt, f"{opened} nouveau(x) point(s) ; {len(recovered)} retour(s) à la normale ; {len(monitor['active'])} point(s) encore actif(s)."]
+    summary += [f"- Nouveau : {safe(r['name'])} · {safe(r.get('field'))} · {safe(r.get('cause'))}" for r in opened_rows[:40]]
     summary += [f"- Résolu : {safe(r['name'])} · {safe(r.get('field'))}." for r in recovered[:40]]
     summary.append('Le détail regroupé figure dans le corps de cette issue et dans « Données à revoir ».')
     api(f"/issues/{issue['number']}/comments", 'POST', {'body': '\n\n'.join(summary)})

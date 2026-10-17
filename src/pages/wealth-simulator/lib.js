@@ -20,6 +20,7 @@ export function validatePlan(plan) {
       ids.add(p.id)
       if (p.taxBasis != null) finite(p.taxBasis, 'Base fiscale saisie', 0, 1e9)
       if (p.depositRoom != null) finite(p.depositRoom, 'Versements futurs autorisés saisis', 0, 1e9)
+      if (p.opened != null && !/^\d{4}(-\d{2}-\d{2})?$/.test(String(p.opened))) throw new Error('Date d’ouverture invalide.')
       finite(p.initial, 'Capital', 0, 1e9); finite(p.monthly, 'Versement', 0, 1e7)
       finite(p.fee, 'Frais', 0, 30); finite(p.tax, 'Taxe hypothétique', 0, 100)
       finite(p.contributionGrowth, 'Hausse annuelle des versements', -100, 100)
@@ -47,7 +48,9 @@ export function project(portfolio, { years, inflation, scenario = 'central', cei
   const states = portfolio.pockets.map(p => ({ pocket: p, capital: p.initial, paid: p.initial, withdrawals: 0, basis: p.taxBasis ?? p.initial, remaining: p.depositRoom ?? Infinity, monthly: p.monthly, monthlyRate: monthlyEffective(annualNetRate(p, scenario)) }))
   let cash = 0, externalPaid = states.reduce((s, p) => s + p.capital, 0), withdrawn = 0, unmet = 0
   const warnings = new Set()
-  if (portfolio.pockets.some(p => (p.envelope === 'pea' || p.envelope === 'pel') && p.depositRoom == null)) warnings.add('Les plafonds et conditions de versement du PEA et du PEL ne sont pas modélisés automatiquement ; renseigne ta capacité de versement restante si nécessaire. Les conditions d’ouverture et de retrait restent à vérifier.')
+  // Known legal ceilings cap deposits below; only the envelopes without one need a typed capacity.
+  if (portfolio.pockets.some(p => (p.envelope === 'pea' || p.envelope === 'pel') && p.depositRoom == null && ceilings[p.envelope] == null)) warnings.add('Les plafonds et conditions de versement du PEA et du PEL ne sont pas modélisés automatiquement ; renseigne ta capacité de versement restante si nécessaire. Les conditions d’ouverture et de retrait restent à vérifier.')
+  if (portfolio.pockets.some(p => (p.envelope === 'pea' || p.envelope === 'pel') && ceilings[p.envelope] != null)) warnings.add('Le plafond légal de versement du PEA et du PEL est appliqué ; les conditions d’ouverture, de durée et de retrait de ces enveloppes ne sont pas simulées.')
   const snapshot = month => {
     const pockets = states.map(s => {
       const tax = Math.max(0, s.capital - s.basis) * s.pocket.tax / 100

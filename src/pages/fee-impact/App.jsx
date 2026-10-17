@@ -7,7 +7,9 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import PageHeader from '../../design-system/PageHeader'
 import { getLengthStatus } from '../../lib/publication-length.js'
 import { AMOUNT_PRESETS, DURATION_PRESETS, RETURN_PRESETS, FEE_LEVELS, DEFAULT_FEE_LOW, DEFAULT_FEE_HIGH } from './data.js'
-import { buildTweetText, computeComparison, pickRandomState, simulateCapitalSeries } from './lib.js'
+import { buildTweetText, computeComparison, effectiveFees, pickRandomState, simulateCapitalSeries } from './lib.js'
+import ChoicePicker from '../../design-system/ChoicePicker.jsx'
+import { ENVELOPE_FEES, envelopeFeeOption } from '../../data/envelope-fees.js'
 import { drawFeeImpactImage } from './imageExport.js'
 import { FEE_COMPARISON_ASSETS } from '../../data/fee-comparison-assets.js'
 import './fee-impact.css'
@@ -24,24 +26,28 @@ export default function App() {
   const [isin2, setIsin2] = useState('')
   const [fee1, setFee1] = useState(DEFAULT_FEE_LOW)
   const [fee2, setFee2] = useState(DEFAULT_FEE_HIGH)
+  const [envelope1, setEnvelope1] = useState('')
+  const [envelope2, setEnvelope2] = useState('')
   const [punchline, setPunchline] = useState('')
   const [history, setHistory] = useState([])
   const [copied, setCopied] = useState(false)
   const imageRef = useRef(null)
 
   // Une phrase rédigée pour un écart précis ne suit pas un changement de scénario.
-  useEffect(() => setPunchline(''), [amount, years, returnRate, fee1, fee2, isin1, isin2])
-  const state = useMemo(() => ({ amount, years, returnRate, fee1, fee2, punchline, isin1, isin2 }), [amount, years, returnRate, fee1, fee2, punchline, isin1, isin2])
+  useEffect(() => setPunchline(''), [amount, years, returnRate, fee1, fee2, isin1, isin2, envelope1, envelope2])
+  const state = useMemo(() => ({ amount, years, returnRate, fee1, fee2, punchline, isin1, isin2, envelope1, envelope2 }), [amount, years, returnRate, fee1, fee2, punchline, isin1, isin2, envelope1, envelope2])
+  const effective = useMemo(() => effectiveFees(state), [state])
   const text = useMemo(() => buildTweetText(state), [state])
   const status = getLengthStatus(text.length)
   const comparison = useMemo(() => computeComparison(state), [state])
-  const first = useMemo(() => simulateCapitalSeries(amount, years, returnRate, fee1), [amount, years, returnRate, fee1])
-  const second = useMemo(() => simulateCapitalSeries(amount, years, returnRate, fee2), [amount, years, returnRate, fee2])
+  const first = useMemo(() => simulateCapitalSeries(amount, years, returnRate, effective.fee1), [amount, years, returnRate, effective.fee1])
+  const second = useMemo(() => simulateCapitalSeries(amount, years, returnRate, effective.fee2), [amount, years, returnRate, effective.fee2])
 
   useEffect(() => {
     const canvas = imageRef.current
-    if (canvas) drawFeeImpactImage(canvas.getContext('2d'), state, first, second, comparison)
-  }, [state, first, second, comparison])
+    // The image shows the fees actually charged: support plus envelope.
+    if (canvas) drawFeeImpactImage(canvas.getContext('2d'), { ...state, fee1: effective.fee1, fee2: effective.fee2 }, first, second, comparison)
+  }, [state, effective, first, second, comparison])
 
   function handleDownloadImage() {
     imageRef.current?.toBlob((blob) => {
@@ -91,6 +97,8 @@ export default function App() {
     setReturnRate(picked.returnRate)
     setIsin1('')
     setIsin2('')
+    setEnvelope1('')
+    setEnvelope2('')
     setFee1(picked.fee1)
     setFee2(picked.fee2)
     setCopied(false)
@@ -175,7 +183,19 @@ export default function App() {
               </div>
             })}
             </SettingsDetails>
-            <p className="fi-hint">Les frais des ETF sont ceux du registre commun. Le rendement brut reste une même hypothèse pour les deux scénarios : ce calcul ne compare pas leurs performances réelles.</p>
+            <SettingsDetails title="Ajouter les frais d’une enveloppe" summary={envelope1 || envelope2 ? `${envelopeFeeOption(envelope1).fee.toLocaleString('fr-FR')} % / ${envelopeFeeOption(envelope2).fee.toLocaleString('fr-FR')} %` : 'Facultatif · frais sur unités de compte'}>
+            {[1, 2].map(side => {
+              const value = side === 1 ? envelope1 : envelope2
+              const option = envelopeFeeOption(value)
+              return <div key={side}>
+                <label className="fi-field">Enveloppe du scénario {side}<ChoicePicker className="fi-control" aria-label={`Enveloppe du scénario ${side}`} value={value} onChange={event => { (side === 1 ? setEnvelope1 : setEnvelope2)(event.target.value); setCopied(false) }}>
+                  {ENVELOPE_FEES.map(item => <option key={item.id} value={item.id}>{item.name}</option>)}
+                </ChoicePicker></label>
+                {option.fee > 0 && <small>Frais de gestion du contrat relevés le {option.checkedAt} · <a href={option.sourceUrl} target="_blank" rel="noreferrer">Source</a>{option.scope ? ` · ${option.scope}` : ''}</small>}
+              </div>
+            })}
+            </SettingsDetails>
+            <p className="fi-hint">Les frais des ETF et des contrats sont ceux du registre commun ; les frais d’enveloppe s’ajoutent à ceux du support{effective.fee1 !== fee1 || effective.fee2 !== fee2 ? ` (total : ${effective.fee1.toLocaleString('fr-FR')} % et ${effective.fee2.toLocaleString('fr-FR')} %)` : ''}. Le rendement brut reste une même hypothèse pour les deux scénarios : ce calcul ne compare pas leurs performances réelles.</p>
             <div className="fi-chip-row">
               {FEE_LEVELS.map((f) => (
                 <button key={f.value} type="button" className={`fi-chip ${fee1 === f.value ? 'active' : ''}`} onClick={() => { setIsin1(''); setFee1(f.value) }}>
