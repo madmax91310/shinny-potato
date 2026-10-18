@@ -114,6 +114,20 @@ def qualify_refresh(result, share, previous, now):
     return retained
 
 
+def fund_siblings(share, config, fund_aum):
+    """Fund AUM from other share classes declared as the same fund.
+
+    Only an explicit shared `fund` key in the configuration links two shares
+    (e.g. Xtrackers MSCI World 1C/1D); an identical amount published by an
+    unrelated share never corroborates a stored-value correction.
+    """
+    fund = share.get('fund')
+    if not fund:
+        return []
+    related = {s['isin'] for s in config if s.get('fund') == fund and s['isin'] != share['isin']}
+    return [aum for isin, aum in fund_aum if isin in related]
+
+
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--apply', action='store_true')
@@ -133,8 +147,6 @@ def main():
             return share, None, [], error
     with ThreadPoolExecutor(max_workers=6) as pool:
         gathered=list(pool.map(gather,config))
-    # Fund-level AUM published identically by another share class in this same run
-    # corroborates a correction of a stored value (e.g. Xtrackers MSCI World 1C/1D).
     fund_aum=[(r['isin'],r['aum']) for _,r,_,e in gathered if not e and r.get('aum')]
     def one(share, result, retained, error):
         if error:
@@ -142,7 +154,7 @@ def main():
         try:
             for field in retained:
                 print(f"::warning::{share['isin']} {field['field']} retained at {field['asOf']}: {field['reason']}",flush=True)
-            siblings={share['isin']:[aum for isin,aum in fund_aum if isin!=share['isin']]}
+            siblings={share['isin']:fund_siblings(share, config, fund_aum)}
             merged=merge_collection({'checkedAt': now.isoformat(), 'shares':[result]},current,{},siblings)
             return {'isin':share['isin'],'status':'validated','record':merged[share['isin']], 'retainedFields':retained, 'unavailable':result.get('unavailable',[]), 'collectionErrors':result.get('collectionErrors',[])}
         except Exception as error:

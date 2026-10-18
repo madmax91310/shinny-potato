@@ -4,6 +4,8 @@ import unittest
 
 from apply_etf_collection import merge_collection
 from etf_anomalies import anomalies
+from collect_exposure_expansion import CONFIG, fund_siblings
+import json
 
 # Real case (issue #583): Xtrackers MSCI World 1D kept 6.37 bn while the 1C
 # workbook published 31,105,311,562.7068 USD for the same fund on 2026-10-15.
@@ -30,6 +32,26 @@ class SiblingCorroborationTests(unittest.TestCase):
         for change in [{'amount': FUND['amount'] + 1}, {'asOf': '2026-10-14'}, {'currency': 'EUR'}, {'scope': 'share'}]:
             with self.subTest(change=change):
                 self.assertTrue(anomalies(old, new, [{**FUND, **change}]))
+
+    def test_only_shares_declared_as_same_fund_are_siblings(self):
+        config = [{'isin': ISIN, 'fund': 'world'}, {'isin': 'IE00BJ0KDQ92', 'fund': 'world'},
+                  {'isin': 'UNRELATED1', 'fund': 'other'}, {'isin': 'UNRELATED2'}]
+        run = [('IE00BJ0KDQ92', dict(FUND)), ('UNRELATED1', dict(FUND)), ('UNRELATED2', dict(FUND))]
+        self.assertEqual(fund_siblings(config[0], config, run), [FUND])
+        # An unrelated share publishing the exact same total must not corroborate.
+        self.assertEqual(fund_siblings(config[2], config, run), [])
+        self.assertEqual(fund_siblings(config[3], config, run), [])
+        unrelated_only = fund_siblings(config[0], config, run[1:])
+        with self.assertRaisesRegex(ValueError, 'Suspicious ETF change'):
+            merge_collection(copy.deepcopy(REPORT), OLD, {}, {ISIN: unrelated_only})
+
+    def test_real_configuration_links_only_xtrackers_world_shares(self):
+        config = json.loads(CONFIG.read_text())['instruments']
+        groups = {}
+        for share in config:
+            if share.get('fund'):
+                groups.setdefault(share['fund'], set()).add(share['isin'])
+        self.assertEqual(list(groups.values()), [{'IE00BJ0KDQ92', ISIN}])
 
 
 if __name__ == '__main__':
