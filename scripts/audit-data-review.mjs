@@ -9,6 +9,7 @@ import { DATA_CATALOG } from '../src/data/catalog.js'
 import { INDEX_RETURNS, getCurrentIndexReturnSeries } from '../src/data/index-returns.js'
 import { buildReview, dayNumber, expiry, freshness, parisToday, addMonths, scheduledReview, reviewCalendar, summarizeCadences } from '../src/pages/data-review/lib.js'
 import { BROKER_EVIDENCE, EVIDENCE_FIELDS, OFFICIAL_SOURCES, SECONDARY_SOURCES } from '../src/pages/broker-comparator/evidence.js'
+import { BROKER_TARIFFS } from '../src/data/broker-tariffs.js'
 
 assert.equal(dayNumber('2026-02-30'), null)
 assert.equal(dayNumber('date absente'), null)
@@ -41,11 +42,13 @@ const expectedReserves = Object.entries(BROKER_EVIDENCE).flatMap(([id, fields]) 
 })).concat(DATA_CATALOG.flatMap(record=>record.fields.flatMap((field,index)=>field.qualificationMissing ? [`qualification:${record.id}:${index}`] : []))).concat(Object.entries(practicalReferences.sources).filter(([,source])=>source.status==='error'||source.reviewRequired).map(([key])=>`practical-source:${key}`)).sort()
 assert.deepEqual(current.items.filter(x => x.category === 'reserve').map(x => x.id).sort(), expectedReserves)
 assert(current.items.some(x => x.id === 'broker:tr:garde' && x.category === 'reserve'), 'La gratuité du CTO ne clôture pas la réserve de garde PEA')
-assert.equal(current.items.filter(x => x.until).length, 3, 'Les offres réutilisées dans plusieurs cellules sont dédoublonnées')
+const datedOffers = Object.values(BROKER_TARIFFS).flatMap(broker => Object.values(broker.fields ?? {}).filter(field => field.until));
+const offerKeys = records => [...new Set(records.map(record => `${record.sourceUrl}|${record.until}`))].sort();
+assert.deepEqual(current.items.filter(x => x.until).map(x => `${x.urls[0]}|${x.until}`).sort(), offerKeys(datedOffers), 'Chaque offre du registre figure une seule fois, même réutilisée dans plusieurs cellules')
 assert.equal(current.archives, 16)
 assert.equal(new Set(current.items.map(x => x.id)).size, current.items.length)
 assert(current.items.every(x => x.to.startsWith('/') && x.reason && x.name && x.field))
-assert.equal(buildReview('2027-01-01').items.filter(x => x.category === 'expired').length, 3)
+assert.equal(buildReview('2027-01-01').items.filter(x => x.category === 'expired').length, offerKeys(datedOffers.filter(offer => offer.until < '2027-01-01')).length)
 // Rejouer les observations de la revue, y compris les proxys conservés : le catalogue
 // et les consommateurs doivent exposer les valeurs effectivement lues dans la source.
 const closure = JSON.parse(readFileSync(new URL('./source-snapshots/data-review-2026-10-02.json', import.meta.url)))
@@ -89,7 +92,7 @@ for (const id of ['stoxx600', 'eurostoxx50']) {
 }
 assert.deepEqual(remaining.items.filter(x => x.category === 'reserve').map(x => x.id).sort(), expectedReserves, 'Toutes les preuves non résolues restent visibles')
 assert.equal(remaining.archives, 16, 'La recherche ne doit pas masquer un reliquat en archive')
-console.log(`Revue au ${current.today} : ${current.items.length} éléments, ${expectedReserves.length} réserves, 3 échéances ; archives séparées : ${current.archives}. Cas limites de dates validés.`)
+console.log(`Revue au ${current.today} : ${current.items.length} éléments, ${expectedReserves.length} réserves, ${offerKeys(datedOffers).length} échéances ; archives séparées : ${current.archives}. Cas limites de dates validés.`)
 console.log(`Revue du ${closure.checkedAt} : ${closure.records.length} contrôles clôturés, ${expectedUndated.length} contrôles non datés et ${expectedReserves.length} réserves conservés ; conventions Price/NET séparées.`)
 
 assert.equal(addMonths('2026-01-31', 1), '2026-02-28')
@@ -114,7 +117,7 @@ assert(groups.every(group => group.due === 0), 'Les contrôles de cette semaine 
 assert.equal(groups.find(group => group.id === 'monthly').nextReviewAt, '2026-11-01')
 assert(groups.find(group => group.id === 'quarterly').types.includes('Portefeuilles trimestriels'))
 assert.equal(calendar.filter(item => item.id.startsWith('investor:') && item.cadence === 'quarterly').length, INVESTORS.length)
-assert.equal(groups.find(group => group.id === 'event').total, 3)
+assert.equal(groups.find(group => group.id === 'event').total, offerKeys(datedOffers).length)
 assert.equal(groups.find(group => group.id === 'annual').nextReviewAt, '2027-01-01')
 const groupFixture = summarizeCadences([
   { cadence: 'monthly', nextReviewAt: '2026-09-01', category: 'stale', dataType: 'Cours mensuels' },
