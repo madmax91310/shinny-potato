@@ -28,97 +28,97 @@
       "asOf": "2026-10-16"
     },
     "countries": {
-      "asOf": "2026-10-15",
+      "asOf": "2026-10-16",
       "rows": [
         {
           "name": "United States",
-          "weightPct": 68.6
+          "weightPct": 67.92
         },
         {
           "name": "Japan",
-          "weightPct": 6.75
+          "weightPct": 6.93
         },
         {
           "name": "United Kingdom",
-          "weightPct": 4.05
+          "weightPct": 4.12
         },
         {
           "name": "Canada",
-          "weightPct": 3.75
+          "weightPct": 3.83
         },
         {
           "name": "France",
-          "weightPct": 3.53
+          "weightPct": 3.58
         },
         {
           "name": "Netherlands",
-          "weightPct": 2.72
+          "weightPct": 2.78
         },
         {
           "name": "Germany",
-          "weightPct": 2.57
+          "weightPct": 2.62
         },
         {
           "name": "Switzerland",
-          "weightPct": 1.6
+          "weightPct": 1.63
         },
         {
           "name": "Australia",
-          "weightPct": 1.55
+          "weightPct": 1.61
         },
         {
           "name": "Sweden",
-          "weightPct": 1.13
+          "weightPct": 1.16
         },
         {
           "name": "Other",
-          "weightPct": 3.4299999999999997
+          "weightPct": 3.52
         },
         {
           "name": "Cash and/or Derivatives",
-          "weightPct": 0.29
+          "weightPct": 0.31
         }
       ],
       "sourceComponent": "exposureBreakdowns.geography.countries"
     },
     "sectors": {
-      "asOf": "2026-10-15",
+      "asOf": "2026-10-16",
       "rows": [
         {
           "name": "Information Technology",
-          "weightPct": 44.29
+          "weightPct": 43.35
         },
         {
           "name": "Industrials",
-          "weightPct": 12.67
+          "weightPct": 12.82
         },
         {
           "name": "Energy",
-          "weightPct": 12.24
+          "weightPct": 12.62
         },
         {
           "name": "Health Care",
-          "weightPct": 10.3
+          "weightPct": 10.42
         },
         {
           "name": "Materials",
-          "weightPct": 8.54
+          "weightPct": 8.74
         },
         {
           "name": "Consumer Discretionary",
-          "weightPct": 6.73
+          "weightPct": 6.71
         },
         {
           "name": "Consumer Staples",
-          "weightPct": 3.15
+          "weightPct": 3.21
         },
         {
           "name": "Real Estate",
-          "weightPct": 0.83
+          "weightPct": 0.84
         },
         {
           "name": "Utilities",
-          "weightPct": 0.81
+          "weightPct": 0.82
         },
         {
           "name": "Communication",
@@ -126,7 +126,7 @@
         },
         {
           "name": "Cash and/or Derivatives",
-          "weightPct": 0.29
+          "weightPct": 0.31
         }
       ],
       "sourceComponent": "exposureBreakdowns.sector"
@@ -274,20 +274,20 @@
         "scope": "Fund portfolio"
       },
       "priceEarnings": {
-        "value": 28.28948,
+        "value": 28.18753,
         "label": "PER du portefeuille selon l’émetteur",
         "unit": "fois",
-        "asOf": "2026-10-15",
+        "asOf": "2026-10-16",
         "checkedAt": "2026-10-18",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251394&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The price to earnings ratio (P/E) is a fundamental measure used to determine if an investment is valued appropriately. Each holdings&#39; P/E is the latest closing price divided by the latest 12 months&#39; earnings per share. Negative earnings are excluded, extraordinary items are excluded, and P/E ratios over 60 are set to 60.",
         "scope": "Fund portfolio"
       },
       "priceBook": {
-        "value": 4.28588,
+        "value": 4.23696,
         "label": "Cours / actif net comptable selon l’émetteur",
         "unit": "fois",
-        "asOf": "2026-10-15",
+        "asOf": "2026-10-16",
         "checkedAt": "2026-10-18",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251394&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The price to book (P/B) value ratio is a fundamental measure used to determine if an investment is valued appropriately. The book value of a company is a measure of how much a company&#39;s assets are worth assuming the company&#39;s debts are paid off. Negative book values are excluded from this calculation and holding price to book ratios over 25 are set to 25.",
@@ -304,8 +304,8 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-10-18T13:47:02.800119+00:00",
-    "pageSha256": "aeb7c6f6852e5bf5ee0294da53c322bff628235c4ec764605304841c6f42ab89",
+    "checkedAt": "2026-10-18T20:32:16.046706+00:00",
+    "pageSha256": "ddb58ecf7f4f75199b647d3cedaff3423ca75cf82093cc8334c3921aed97a64b",
     "automatedRecord": {
       "currency": "USD",
       "productId": 251394,
@@ -320,51 +320,51 @@
         "modifiedAt": "2026-10-17"
       },
       "sectors": {
-        "asOf": "2026-10-15",
+        "asOf": "2026-10-16",
         "rows": [
           {
             "name": "Information Technology",
-            "weightPct": 44.29,
+            "weightPct": 43.35,
             "label": "Information Technology"
           },
           {
             "name": "Industrials",
-            "weightPct": 12.67,
+            "weightPct": 12.82,
             "label": "Industrials"
           },
           {
             "name": "Energy",
-            "weightPct": 12.24,
+            "weightPct": 12.62,
             "label": "Energy"
           },
           {
             "name": "Health Care",
-            "weightPct": 10.3,
+            "weightPct": 10.42,
             "label": "Health Care"
           },
           {
             "name": "Materials",
-            "weightPct": 8.54,
+            "weightPct": 8.74,
             "label": "Materials"
           },
           {
             "name": "Consumer Discretionary",
-            "weightPct": 6.73,
+            "weightPct": 6.71,
             "label": "Consumer Discretionary"
           },
           {
             "name": "Consumer Staples",
-            "weightPct": 3.15,
+            "weightPct": 3.21,
             "label": "Consumer Staples"
           },
           {
             "name": "Real Estate",
-            "weightPct": 0.83,
+            "weightPct": 0.84,
             "label": "Immobilier"
           },
           {
             "name": "Utilities",
-            "weightPct": 0.81,
+            "weightPct": 0.82,
             "label": "Utilities"
           },
           {
@@ -374,69 +374,69 @@
           },
           {
             "name": "Cash and/or Derivatives",
-            "weightPct": 0.29,
+            "weightPct": 0.31,
             "label": "Cash and/or Derivatives"
           }
         ],
         "sourceComponent": "exposureBreakdowns.sector",
         "checkedAt": "2026-10-18",
-        "modifiedAt": "2026-10-17"
+        "modifiedAt": "2026-10-18"
       },
       "countries": {
-        "asOf": "2026-10-15",
+        "asOf": "2026-10-16",
         "rows": [
           {
             "name": "United States",
-            "weightPct": 68.6
+            "weightPct": 67.92
           },
           {
             "name": "Japan",
-            "weightPct": 6.75
+            "weightPct": 6.93
           },
           {
             "name": "United Kingdom",
-            "weightPct": 4.05
+            "weightPct": 4.12
           },
           {
             "name": "Canada",
-            "weightPct": 3.75
+            "weightPct": 3.83
           },
           {
             "name": "France",
-            "weightPct": 3.53
+            "weightPct": 3.58
           },
           {
             "name": "Netherlands",
-            "weightPct": 2.72
+            "weightPct": 2.78
           },
           {
             "name": "Germany",
-            "weightPct": 2.57
+            "weightPct": 2.62
           },
           {
             "name": "Switzerland",
-            "weightPct": 1.6
+            "weightPct": 1.63
           },
           {
             "name": "Australia",
-            "weightPct": 1.55
+            "weightPct": 1.61
           },
           {
             "name": "Sweden",
-            "weightPct": 1.13
+            "weightPct": 1.16
           },
           {
             "name": "Other",
-            "weightPct": 3.4299999999999997
+            "weightPct": 3.52
           },
           {
             "name": "Cash and/or Derivatives",
-            "weightPct": 0.29
+            "weightPct": 0.31
           }
         ],
         "sourceComponent": "exposureBreakdowns.geography.countries",
         "checkedAt": "2026-10-18",
-        "modifiedAt": "2026-10-17"
+        "modifiedAt": "2026-10-18"
       },
       "holdings": {
         "asOf": "2026-10-15",
@@ -588,31 +588,31 @@
       "asOf": "2026-10-16"
     },
     "countries": {
-      "asOf": "2026-10-15",
+      "asOf": "2026-10-16",
       "rows": [
         {
           "name": "United Kingdom",
-          "weightPct": 27.2
+          "weightPct": 27.09
         },
         {
           "name": "Spain",
-          "weightPct": 18.78
+          "weightPct": 18.75
         },
         {
           "name": "Italy",
-          "weightPct": 13.92
+          "weightPct": 13.96
         },
         {
           "name": "France",
-          "weightPct": 7.8
+          "weightPct": 7.77
         },
         {
           "name": "Netherlands",
-          "weightPct": 5.48
+          "weightPct": 5.53
         },
         {
           "name": "Sweden",
-          "weightPct": 4.32
+          "weightPct": 4.34
         },
         {
           "name": "Germany",
@@ -620,27 +620,27 @@
         },
         {
           "name": "Finland",
-          "weightPct": 2.63
+          "weightPct": 2.62
         },
         {
           "name": "Austria",
-          "weightPct": 2.59
+          "weightPct": 2.6
         },
         {
           "name": "Poland",
-          "weightPct": 2.53
+          "weightPct": 2.54
         },
         {
           "name": "Denmark",
-          "weightPct": 2.37
+          "weightPct": 2.38
         },
         {
           "name": "Greece",
-          "weightPct": 1.99
+          "weightPct": 2.02
         },
         {
           "name": "Ireland",
-          "weightPct": 1.95
+          "weightPct": 1.98
         },
         {
           "name": "Norway",
@@ -656,21 +656,21 @@
         },
         {
           "name": "Cash and/or Derivatives",
-          "weightPct": 0.88
+          "weightPct": 0.87
         }
       ],
       "sourceComponent": "exposureBreakdowns.geography.countries"
     },
     "sectors": {
-      "asOf": "2026-10-15",
+      "asOf": "2026-10-16",
       "rows": [
         {
           "name": "Banks",
-          "weightPct": 99.12
+          "weightPct": 99.13
         },
         {
           "name": "Cash and/or Derivatives",
-          "weightPct": 0.88
+          "weightPct": 0.87
         }
       ],
       "sourceComponent": "exposureBreakdowns.sector"
@@ -807,20 +807,20 @@
         "scope": "Fund portfolio"
       },
       "priceEarnings": {
-        "value": 12.31028,
+        "value": 12.19813,
         "label": "PER du portefeuille selon l’émetteur",
         "unit": "fois",
-        "asOf": "2026-10-15",
+        "asOf": "2026-10-16",
         "checkedAt": "2026-10-18",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251934&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The price to earnings ratio (P/E) is a fundamental measure used to determine if an investment is valued appropriately. Each holdings&#39; P/E is the latest closing price divided by the latest 12 months&#39; earnings per share. Negative earnings are excluded, extraordinary items are excluded, and P/E ratios over 60 are set to 60.",
         "scope": "Fund portfolio"
       },
       "priceBook": {
-        "value": 1.53183,
+        "value": 1.5196,
         "label": "Cours / actif net comptable selon l’émetteur",
         "unit": "fois",
-        "asOf": "2026-10-15",
+        "asOf": "2026-10-16",
         "checkedAt": "2026-10-18",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251934&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The price to book (P/B) value ratio is a fundamental measure used to determine if an investment is valued appropriately. The book value of a company is a measure of how much a company&#39;s assets are worth assuming the company&#39;s debts are paid off. Negative book values are excluded from this calculation and holding price to book ratios over 25 are set to 25.",
@@ -837,8 +837,8 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-10-18T13:47:02.800119+00:00",
-    "pageSha256": "b94e0bac403942a93a40929c3d797f947a7853d8dcc675e0a00de21681d5a4db",
+    "checkedAt": "2026-10-18T20:32:16.046706+00:00",
+    "pageSha256": "2b24dc7859ed6b0a58dbda40c12d3d3355435495c767b7a7f23290dc704189ec",
     "automatedRecord": {
       "currency": "EUR",
       "productId": 251934,
@@ -853,49 +853,49 @@
         "modifiedAt": "2026-10-17"
       },
       "sectors": {
-        "asOf": "2026-10-15",
+        "asOf": "2026-10-16",
         "rows": [
           {
             "name": "Banks",
-            "weightPct": 99.12,
+            "weightPct": 99.13,
             "label": "Banques"
           },
           {
             "name": "Cash and/or Derivatives",
-            "weightPct": 0.88,
+            "weightPct": 0.87,
             "label": "Cash and/or Derivatives"
           }
         ],
         "sourceComponent": "exposureBreakdowns.sector",
         "checkedAt": "2026-10-18",
-        "modifiedAt": "2026-10-17"
+        "modifiedAt": "2026-10-18"
       },
       "countries": {
-        "asOf": "2026-10-15",
+        "asOf": "2026-10-16",
         "rows": [
           {
             "name": "United Kingdom",
-            "weightPct": 27.2
+            "weightPct": 27.09
           },
           {
             "name": "Spain",
-            "weightPct": 18.78
+            "weightPct": 18.75
           },
           {
             "name": "Italy",
-            "weightPct": 13.92
+            "weightPct": 13.96
           },
           {
             "name": "France",
-            "weightPct": 7.8
+            "weightPct": 7.77
           },
           {
             "name": "Netherlands",
-            "weightPct": 5.48
+            "weightPct": 5.53
           },
           {
             "name": "Sweden",
-            "weightPct": 4.32
+            "weightPct": 4.34
           },
           {
             "name": "Germany",
@@ -903,27 +903,27 @@
           },
           {
             "name": "Finland",
-            "weightPct": 2.63
+            "weightPct": 2.62
           },
           {
             "name": "Austria",
-            "weightPct": 2.59
+            "weightPct": 2.6
           },
           {
             "name": "Poland",
-            "weightPct": 2.53
+            "weightPct": 2.54
           },
           {
             "name": "Denmark",
-            "weightPct": 2.37
+            "weightPct": 2.38
           },
           {
             "name": "Greece",
-            "weightPct": 1.99
+            "weightPct": 2.02
           },
           {
             "name": "Ireland",
-            "weightPct": 1.95
+            "weightPct": 1.98
           },
           {
             "name": "Norway",
@@ -939,12 +939,12 @@
           },
           {
             "name": "Cash and/or Derivatives",
-            "weightPct": 0.88
+            "weightPct": 0.87
           }
         ],
         "sourceComponent": "exposureBreakdowns.geography.countries",
         "checkedAt": "2026-10-18",
-        "modifiedAt": "2026-10-17"
+        "modifiedAt": "2026-10-18"
       },
       "holdings": {
         "asOf": "2026-10-15",
@@ -1100,27 +1100,27 @@
       "asOf": "2026-10-16"
     },
     "countries": {
-      "asOf": "2026-10-15",
+      "asOf": "2026-10-16",
       "rows": [
         {
           "name": "Germany",
-          "weightPct": 32.34
+          "weightPct": 32.3
         },
         {
           "name": "Switzerland",
-          "weightPct": 24.24
+          "weightPct": 24.25
         },
         {
           "name": "United Kingdom",
-          "weightPct": 12.25
+          "weightPct": 12.3
         },
         {
           "name": "France",
-          "weightPct": 10.21
+          "weightPct": 10.15
         },
         {
           "name": "Italy",
-          "weightPct": 7.07
+          "weightPct": 7.11
         },
         {
           "name": "Netherlands",
@@ -1154,7 +1154,7 @@
       "sourceComponent": "exposureBreakdowns.geography.countries"
     },
     "sectors": {
-      "asOf": "2026-10-15",
+      "asOf": "2026-10-16",
       "rows": [
         {
           "name": "Insurance",
@@ -1288,20 +1288,20 @@
         "scope": "Fund portfolio"
       },
       "priceEarnings": {
-        "value": 13.31365,
+        "value": 13.47882,
         "label": "PER du portefeuille selon l’émetteur",
         "unit": "fois",
-        "asOf": "2026-10-15",
+        "asOf": "2026-10-16",
         "checkedAt": "2026-10-18",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251950&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The price to earnings ratio (P/E) is a fundamental measure used to determine if an investment is valued appropriately. Each holdings&#39; P/E is the latest closing price divided by the latest 12 months&#39; earnings per share. Negative earnings are excluded, extraordinary items are excluded, and P/E ratios over 60 are set to 60.",
         "scope": "Fund portfolio"
       },
       "priceBook": {
-        "value": 2.06789,
+        "value": 2.09142,
         "label": "Cours / actif net comptable selon l’émetteur",
         "unit": "fois",
-        "asOf": "2026-10-15",
+        "asOf": "2026-10-16",
         "checkedAt": "2026-10-18",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251950&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The price to book (P/B) value ratio is a fundamental measure used to determine if an investment is valued appropriately. The book value of a company is a measure of how much a company&#39;s assets are worth assuming the company&#39;s debts are paid off. Negative book values are excluded from this calculation and holding price to book ratios over 25 are set to 25.",
@@ -1318,8 +1318,8 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-10-18T13:47:02.800119+00:00",
-    "pageSha256": "4773cd70804841207609fb3c8b52dca3788a7e5e73174b48741bbcf162141f7d",
+    "checkedAt": "2026-10-18T20:32:16.046706+00:00",
+    "pageSha256": "c37c8be8f5410e15c7c1fbbcdb2ea3464f5a5ada3512ad3df91f8a73bd18e7e7",
     "automatedRecord": {
       "currency": "EUR",
       "productId": 251950,
@@ -1334,7 +1334,7 @@
         "modifiedAt": "2026-10-17"
       },
       "sectors": {
-        "asOf": "2026-10-15",
+        "asOf": "2026-10-16",
         "rows": [
           {
             "name": "Insurance",
@@ -1349,30 +1349,30 @@
         ],
         "sourceComponent": "exposureBreakdowns.sector",
         "checkedAt": "2026-10-18",
-        "modifiedAt": "2026-10-17"
+        "modifiedAt": "2026-10-18"
       },
       "countries": {
-        "asOf": "2026-10-15",
+        "asOf": "2026-10-16",
         "rows": [
           {
             "name": "Germany",
-            "weightPct": 32.34
+            "weightPct": 32.3
           },
           {
             "name": "Switzerland",
-            "weightPct": 24.24
+            "weightPct": 24.25
           },
           {
             "name": "United Kingdom",
-            "weightPct": 12.25
+            "weightPct": 12.3
           },
           {
             "name": "France",
-            "weightPct": 10.21
+            "weightPct": 10.15
           },
           {
             "name": "Italy",
-            "weightPct": 7.07
+            "weightPct": 7.11
           },
           {
             "name": "Netherlands",
@@ -1405,7 +1405,7 @@
         ],
         "sourceComponent": "exposureBreakdowns.geography.countries",
         "checkedAt": "2026-10-18",
-        "modifiedAt": "2026-10-17"
+        "modifiedAt": "2026-10-18"
       },
       "holdings": {
         "asOf": "2026-10-15",
