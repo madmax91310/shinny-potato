@@ -20,6 +20,8 @@ const generalIds = new Set([2, 20, 28, 34, 39, 44])
 const personalIds = new Set(['story:profil-monsieur-tout-le-monde', 'story:bitcoin-3500-reflexions-proches', 'bilan:dca-septembre-530', 'story:pea-investir-pas-casino', 'bilan:pea-presque-10000-octobre-2026', 1, 3, 6, 7, 8, 9, 11, 14, 16, 18, 19, 22, 25, 29, 30, 33, 38, 40, 42, 43, 45, 46, 47])
 const marketIds = new Set([10, 15, 17, 21, 24, 27, 32, 37])
 export function reviewPolicy(tweet) {
+  // Frais et fiscalité contrôlés le 18/10/2026 ; sources conservées dans l’entrée.
+  if (tweet.id === 'simulation:world-pea-cto-30-ans') return { kind: 'reviewed', checkedAt: '2026-10-18', maxAge: 30 }
   // Récit validé par l’auteur, sans données chiffrées ou caractéristiques de produits à actualiser.
   if (tweet.id === 'story:parler-investissement-proches') return { kind: 'general', maxAge: null }
   // Guide ETF actifs : ISIN, frais et stratégies vérifiés le 13/10/2026 ; sources dans l’entrée.

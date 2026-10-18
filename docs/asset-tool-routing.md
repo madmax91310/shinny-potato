@@ -256,7 +256,7 @@ Actifs présentés sans historique automatique (Sans cotation : 52 · Qualificat
 | iShares Edge MSCI USA Quality Factor UCITS ETF | IE00BD1F4L37 | Oui | Oui | manual | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | iShares Edge MSCI USA Value Factor UCITS ETF | IE00BD1F4M44 | Oui | Oui | manual | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | iShares Edge MSCI USA Momentum Factor UCITS ETF | IE00BD1F4N50 | Oui | Oui | manual | Oui / Oui | Complète | Oui / Oui / Oui | — |
-| UBS Core MSCI World UCITS ETF | IE00BD4TXV59 | Oui | Oui | missing | Oui / Oui | Partielle | — / — / — | Sans cotation — Cotations candidates déclarées, en attente du document émetteur · swissfunddata.ch : HTTP Error 500: Internal Server Error |
+| UBS Core MSCI World UCITS ETF | IE00BD4TXV59 | Oui | Oui | missing | Oui / Oui | Partielle | — / — / — | Sans cotation — Cotations candidates déclarées, en attente du document émetteur |
 | Invesco Bloomberg Commodity UCITS ETF | IE00BD6FTQ80 | Oui | — | automatic | Sans objet / Sans objet | — | Oui / Oui / Oui | — |
 | iShares Core Global Aggregate Bond UCITS ETF EUR Hedged (Acc) | IE00BDBRDM35 | Oui | Oui | automatic | Sans objet / Sans objet | Partielle | Oui / Oui / — | — |
 | VanEck S&P Global Mining UCITS ETF | IE00BDFBTQ78 | Oui | Oui | manual | Oui / Oui | Partielle | Oui / Oui / Oui | — |

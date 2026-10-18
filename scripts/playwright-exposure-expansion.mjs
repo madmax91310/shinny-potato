@@ -15,7 +15,7 @@ try{
   const s=config.instruments.find(s=>s.isin===isin)
   await page.getByRole('searchbox',{name:'Ajouter un actif'}).fill(isin)
   await page.getByRole('button',{name:new RegExp(isin)}).click()
-  await page.getByRole('button',{name:'Générer l’image',exact:true}).click()
+  await page.locator('.dca-simple-preview img').waitFor()
   await page.getByAltText('Répartition et expositions du portefeuille').waitFor()
   assert(await page.getByAltText('Répartition et expositions du portefeuille').evaluate(el=>el.naturalWidth>1000))
   await page.getByRole('button',{name:'Retirer '+s.name,exact:true}).click()
@@ -23,7 +23,7 @@ try{
  await page.setViewportSize({width:390,height:844})
  await page.getByRole('searchbox',{name:'Ajouter un actif'}).fill('IE00BKLF1R75')
  await page.getByRole('button',{name:/IE00BKLF1R75/}).click()
- await page.getByRole('button',{name:'Générer l’image',exact:true}).click()
+ await page.locator('.dca-simple-preview img').waitFor()
  await page.getByAltText('Répartition et expositions du portefeuille').waitFor()
  assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1))
  const results=await page.evaluate(async(config)=>{
