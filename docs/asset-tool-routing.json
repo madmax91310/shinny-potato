@@ -1,24 +1,24 @@
 {
-  "checkedAt": "2026-10-18T14:16:55.938Z",
+  "checkedAt": "2026-10-18T15:01:34.342Z",
   "summary": {
     "instruments": 647,
     "sheets": 258,
     "comparisons": 243,
     "practical": 21,
-    "duels": 581,
+    "duels": 590,
     "generatorAutomatic": 141,
     "dca": 647,
     "fullExposure": 602,
     "outsideExposure": 41,
-    "automaticHistories": 212,
-    "historyCandidates": 13,
+    "automaticHistories": 224,
+    "historyCandidates": 1,
     "unused": 0,
     "blockers": {
       "no-listing": 27,
       "listing-not-collectable": 0,
       "qualification-failed": 0,
-      "collection-pending": 13,
-      "history-short": 24
+      "collection-pending": 1,
+      "history-short": 27
     }
   },
   "errors": [],
@@ -11192,15 +11192,12 @@
       "name": "WisdomTree Artificial Intelligence UCITS ETF USD Acc",
       "kind": "etf",
       "practical": [],
-      "duel": false,
+      "duel": true,
       "qualification": null,
       "sheet": true,
       "comparison": true,
-      "generator": "missing",
-      "blocker": {
-        "code": "collection-pending",
-        "detail": "Cotation documentée ; série en attente de la prochaine collecte mensuelle"
-      },
+      "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -11222,8 +11219,19 @@
         "identifiedCoverage": 0,
         "automatic": false
       },
-      "monthly": [],
-      "historyCandidate": true,
+      "monthly": [
+        {
+          "id": "etfIE00BDVPNG13",
+          "automatic": true,
+          "first": "2018-12",
+          "last": "2026-09",
+          "currency": "USD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
       "decision": "keep-used"
     },
     {
@@ -11451,15 +11459,12 @@
       "name": "State Street SPDR MSCI World UCITS ETF",
       "kind": "etf",
       "practical": [],
-      "duel": false,
+      "duel": true,
       "qualification": null,
       "sheet": true,
       "comparison": true,
-      "generator": "missing",
-      "blocker": {
-        "code": "collection-pending",
-        "detail": "Cotation documentée ; série en attente de la prochaine collecte mensuelle"
-      },
+      "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -11481,8 +11486,19 @@
         "identifiedCoverage": 27.708844,
         "automatic": false
       },
-      "monthly": [],
-      "historyCandidate": true,
+      "monthly": [
+        {
+          "id": "etfIE00BFY0GT14",
+          "automatic": true,
+          "first": "2019-04",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
       "decision": "keep-used"
     },
     {
@@ -12339,7 +12355,7 @@
       "dca": true,
       "countries": {
         "status": "available",
-        "coverage": 99.99999599999997,
+        "coverage": 99.99999700000001,
         "outside": 0,
         "reason": "Disponible",
         "date": "2026-10-15"
@@ -12762,15 +12778,12 @@
       "name": "WisdomTree Battery Solutions UCITS ETF USD Acc",
       "kind": "etf",
       "practical": [],
-      "duel": false,
+      "duel": true,
       "qualification": null,
       "sheet": true,
       "comparison": true,
-      "generator": "missing",
-      "blocker": {
-        "code": "collection-pending",
-        "detail": "Cotation documentée ; série en attente de la prochaine collecte mensuelle"
-      },
+      "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -12792,8 +12805,19 @@
         "identifiedCoverage": 0,
         "automatic": false
       },
-      "monthly": [],
-      "historyCandidate": true,
+      "monthly": [
+        {
+          "id": "etfIE00BKLF1R75",
+          "automatic": true,
+          "first": "2020-04",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
       "decision": "keep-used"
     },
     {
@@ -12942,15 +12966,12 @@
       "name": "State Street SPDR MSCI Europe UCITS ETF",
       "kind": "etf",
       "practical": [],
-      "duel": false,
+      "duel": true,
       "qualification": null,
       "sheet": true,
       "comparison": true,
-      "generator": "missing",
-      "blocker": {
-        "code": "collection-pending",
-        "detail": "Cotation documentée ; série en attente de la prochaine collecte mensuelle"
-      },
+      "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -12972,8 +12993,19 @@
         "identifiedCoverage": 22.106298,
         "automatic": false
       },
-      "monthly": [],
-      "historyCandidate": true,
+      "monthly": [
+        {
+          "id": "etfIE00BKWQ0Q14",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
       "decision": "keep-used"
     },
     {
@@ -13297,15 +13329,12 @@
       "name": "VanEck Semiconductor UCITS ETF",
       "kind": "etf",
       "practical": [],
-      "duel": false,
+      "duel": true,
       "qualification": null,
       "sheet": true,
       "comparison": true,
-      "generator": "missing",
-      "blocker": {
-        "code": "collection-pending",
-        "detail": "Cotation documentée ; série en attente de la prochaine collecte mensuelle"
-      },
+      "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -13327,8 +13356,19 @@
         "identifiedCoverage": 0,
         "automatic": false
       },
-      "monthly": [],
-      "historyCandidate": true,
+      "monthly": [
+        {
+          "id": "etfIE00BMC38736",
+          "automatic": true,
+          "first": "2021-01",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
       "decision": "keep-used"
     },
     {
@@ -17676,8 +17716,8 @@
       "comparison": true,
       "generator": "missing",
       "blocker": {
-        "code": "collection-pending",
-        "detail": "Cotation documentée ; série en attente de la prochaine collecte mensuelle"
+        "code": "history-short",
+        "detail": "1 année(s) complète(s) ; 6 requises en génération automatique"
       },
       "dca": true,
       "countries": {
@@ -17700,8 +17740,19 @@
         "identifiedCoverage": 20.25594,
         "automatic": false
       },
-      "monthly": [],
-      "historyCandidate": true,
+      "monthly": [
+        {
+          "id": "etfLU0908500753",
+          "automatic": true,
+          "first": "2024-03",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
       "decision": "keep-used"
     },
     {
@@ -17756,15 +17807,12 @@
       "name": "Amundi Russell 2000 UCITS ETF EUR Acc",
       "kind": "etf",
       "practical": [],
-      "duel": false,
+      "duel": true,
       "qualification": null,
       "sheet": true,
       "comparison": true,
-      "generator": "missing",
-      "blocker": {
-        "code": "collection-pending",
-        "detail": "Cotation documentée ; série en attente de la prochaine collecte mensuelle"
-      },
+      "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -17786,8 +17834,19 @@
         "identifiedCoverage": 3.338553,
         "automatic": false
       },
-      "monthly": [],
-      "historyCandidate": true,
+      "monthly": [
+        {
+          "id": "etfLU1681038672",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
       "decision": "keep-used"
     },
     {
@@ -17795,15 +17854,12 @@
       "name": "Amundi STOXX Europe 600 ESG UCITS ETF Acc",
       "kind": "etf",
       "practical": [],
-      "duel": false,
+      "duel": true,
       "qualification": null,
       "sheet": true,
       "comparison": true,
-      "generator": "missing",
-      "blocker": {
-        "code": "collection-pending",
-        "detail": "Cotation documentée ; série en attente de la prochaine collecte mensuelle"
-      },
+      "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -17825,8 +17881,19 @@
         "identifiedCoverage": 23.637505,
         "automatic": false
       },
-      "monthly": [],
-      "historyCandidate": true,
+      "monthly": [
+        {
+          "id": "etfLU1681040223",
+          "automatic": true,
+          "first": "2018-05",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
       "decision": "keep-used"
     },
     {
@@ -18069,15 +18136,12 @@
       "name": "Amundi Euro Stoxx Banks UCITS ETF Acc",
       "kind": "etf",
       "practical": [],
-      "duel": false,
+      "duel": true,
       "qualification": null,
       "sheet": true,
       "comparison": true,
-      "generator": "missing",
-      "blocker": {
-        "code": "collection-pending",
-        "detail": "Cotation documentée ; série en attente de la prochaine collecte mensuelle"
-      },
+      "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -18099,8 +18163,19 @@
         "identifiedCoverage": 72.533995,
         "automatic": false
       },
-      "monthly": [],
-      "historyCandidate": true,
+      "monthly": [
+        {
+          "id": "etfLU1829219390",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
       "decision": "keep-used"
     },
     {
@@ -18161,8 +18236,8 @@
       "comparison": true,
       "generator": "missing",
       "blocker": {
-        "code": "collection-pending",
-        "detail": "Cotation documentée ; série en attente de la prochaine collecte mensuelle"
+        "code": "history-short",
+        "detail": "1 année(s) complète(s) ; 6 requises en génération automatique"
       },
       "dca": true,
       "countries": {
@@ -18185,8 +18260,19 @@
         "identifiedCoverage": 72.58411199999999,
         "automatic": false
       },
-      "monthly": [],
-      "historyCandidate": true,
+      "monthly": [
+        {
+          "id": "etfLU1834983634",
+          "automatic": true,
+          "first": "2024-07",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
       "decision": "keep-used"
     },
     {
@@ -18368,15 +18454,12 @@
       "name": "Amundi Prime Japan UCITS ETF",
       "kind": "etf",
       "practical": [],
-      "duel": false,
+      "duel": true,
       "qualification": null,
       "sheet": true,
       "comparison": true,
-      "generator": "missing",
-      "blocker": {
-        "code": "collection-pending",
-        "detail": "Cotation documentée ; série en attente de la prochaine collecte mensuelle"
-      },
+      "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -18398,8 +18481,19 @@
         "identifiedCoverage": 26.845415,
         "automatic": false
       },
-      "monthly": [],
-      "historyCandidate": true,
+      "monthly": [
+        {
+          "id": "etfLU2089238385",
+          "automatic": true,
+          "first": "2020-02",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
       "decision": "keep-used"
     },
     {
@@ -18532,8 +18626,8 @@
       "comparison": true,
       "generator": "missing",
       "blocker": {
-        "code": "collection-pending",
-        "detail": "Cotation documentée ; série en attente de la prochaine collecte mensuelle"
+        "code": "history-short",
+        "detail": "0 année(s) complète(s) ; 6 requises en génération automatique"
       },
       "dca": true,
       "countries": {
@@ -18556,8 +18650,19 @@
         "identifiedCoverage": 87.15002300000002,
         "automatic": false
       },
-      "monthly": [],
-      "historyCandidate": true,
+      "monthly": [
+        {
+          "id": "etfLU3038520774",
+          "automatic": true,
+          "first": "2025-06",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": false,
+          "simulation": false,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
       "decision": "keep-used"
     },
     {

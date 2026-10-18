@@ -4,7 +4,7 @@ Généré le 2026-10-18 par `node scripts/audit-asset-tool-routing.mjs --write`.
 
 « Sans objet » ne signifie pas donnée manquante. « Complète » décrit la table collectée, pas la possibilité de calculer un recouvrement intégral : identification, fraîcheur et compatibilité restent contrôlées par le moteur. Un candidat historique possède une cotation documentée, mais sa série doit encore passer la collecte et les contrôles. Les actifs utilisés sont conservés.
 
-Actifs présentés sans historique automatique (Sans cotation : 27 · Collecte en attente : 13 · Historique court : 24) : la colonne « Blocage » donne la cause relevée et ce qui est attendu.
+Actifs présentés sans historique automatique (Sans cotation : 27 · Collecte en attente : 1 · Historique court : 27) : la colonne « Blocage » donne la cause relevée et ce qui est attendu.
 
 | Actif | ISIN | Fiche | Comparatif | Générateur | Pays / secteurs | Positions | Performance / Simulation / Anniversaire | Blocage |
 |---|---|---|---|---|---|---|---|---|
@@ -261,13 +261,13 @@ Actifs présentés sans historique automatique (Sans cotation : 27 · Collecte e
 | iShares Core Global Aggregate Bond UCITS ETF EUR Hedged (Acc) | IE00BDBRDM35 | Oui | Oui | automatic | Sans objet / Sans objet | Partielle | Oui / Oui / — | — |
 | VanEck S&P Global Mining UCITS ETF | IE00BDFBTQ78 | Oui | Oui | manual | Oui / Oui | Partielle | Oui / Oui / Oui | — |
 | iShares Diversified Commodity Swap UCITS ETF | IE00BDFL4P12 | Oui | — | automatic | Sans objet / Sans objet | — | Oui / Oui / Oui | — |
-| WisdomTree Artificial Intelligence UCITS ETF USD Acc | IE00BDVPNG13 | Oui | Oui | missing | Oui / Oui | Partielle | — / — / — | Collecte en attente — Cotation documentée ; série en attente de la prochaine collecte mensuelle |
+| WisdomTree Artificial Intelligence UCITS ETF USD Acc | IE00BDVPNG13 | Oui | Oui | manual | Oui / Oui | Partielle | Oui / Oui / Oui | — |
 | L&G Battery Value-Chain UCITS ETF | IE00BF0M2Z96 | Oui | Oui | automatic | Oui / Oui | Partielle | Oui / Oui / Oui | — |
 | iShares € High Yield Corp Bond UCITS ETF (Acc) | IE00BF3N7094 | Oui | Oui | automatic | Sans objet / Sans objet | Partielle | Oui / Oui / Oui | — |
 | iShares MSCI World Small Cap UCITS ETF | IE00BF4RFH31 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | Vanguard S&P 500 UCITS ETF Accumulating | IE00BFMXXD54 | Oui | Oui | missing | Oui / Oui | Partielle | — / — / — | Sans cotation — Cotations candidates déclarées, en attente du document émetteur · fund-docs.vanguard.com : No explicit supported metadata fields |
 | Allegion | IE00BFRT3W74 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
-| State Street SPDR MSCI World UCITS ETF | IE00BFY0GT14 | Oui | Oui | missing | Oui / Oui | Partielle | — / — / — | Collecte en attente — Cotation documentée ; série en attente de la prochaine collecte mensuelle |
+| State Street SPDR MSCI World UCITS ETF | IE00BFY0GT14 | Oui | Oui | manual | Oui / Oui | Partielle | Oui / Oui / Oui | — |
 | iShares J.P. Morgan EM Local Govt Bond UCITS ETF (Acc) | IE00BFZPF546 | Oui | Oui | automatic | Sans objet / Sans objet | Partielle | — / — / — | — |
 | iShares Digital Security UCITS ETF | IE00BG0J4C88 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | iShares Edge MSCI EM Value Factor UCITS ETF | IE00BG0SKF03 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
@@ -296,11 +296,11 @@ Actifs présentés sans historique automatique (Sans cotation : 27 · Collecte e
 | Vanguard FTSE Emerging Markets UCITS ETF (Acc) | IE00BK5BR733 | Oui | Oui | automatic | Oui / Oui | Partielle | Oui / Oui / Oui | — |
 | iShares $ Treasury Bond UCITS ETF | IE00BK95B138 | Oui | Oui | automatic | Sans objet / Sans objet | Partielle | Oui / Oui / Oui | — |
 | Trane Technologies | IE00BK9ZQ967 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
-| WisdomTree Battery Solutions UCITS ETF USD Acc | IE00BKLF1R75 | Oui | Oui | missing | Oui / Oui | Partielle | — / — / — | Collecte en attente — Cotation documentée ; série en attente de la prochaine collecte mensuelle |
+| WisdomTree Battery Solutions UCITS ETF USD Acc | IE00BKLF1R75 | Oui | Oui | manual | Oui / Oui | Partielle | Oui / Oui / Oui | — |
 | iShares Core MSCI EM IMI UCITS ETF | IE00BKM4GZ66 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | iShares MSCI World Quality Dividend Advanced UCITS ETF | IE00BKPSFC54 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | iShares MSCI AC Far East ex-Japan UCITS ETF | IE00BKPX3K41 | Oui | Oui | automatic | Oui / Oui | Complète | — / — / — | — |
-| State Street SPDR MSCI Europe UCITS ETF | IE00BKWQ0Q14 | Oui | Oui | missing | Oui / Oui | Partielle | — / — / — | Collecte en attente — Cotation documentée ; série en attente de la prochaine collecte mensuelle |
+| State Street SPDR MSCI Europe UCITS ETF | IE00BKWQ0Q14 | Oui | Oui | manual | Oui / Oui | Partielle | Oui / Oui / Oui | — |
 | Global X Robotics & Artificial Intelligence UCITS ETF USD Acc | IE00BLCHJB90 | Oui | — | missing | Oui / Oui | Partielle | — / — / — | Sans cotation — Cotations candidates déclarées, en attente du document émetteur · globalxetfs.eu : Missing or multiple exact-share identities in metadata document |
 | Xtrackers S&P 500 Equal Weight UCITS ETF 1C | IE00BLNMYC90 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | Xtrackers MSCI World Health Care UCITS ETF | IE00BM67HK77 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
@@ -308,7 +308,7 @@ Actifs présentés sans historique automatique (Sans cotation : 27 · Collecte e
 | Xtrackers MSCI World Materials UCITS ETF | IE00BM67HS53 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | Xtrackers MSCI World Industrials UCITS ETF 1C | IE00BM67HV82 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | Global X Nasdaq 100 Covered Call UCITS ETF | IE00BM8R0J59 | Oui | — | automatic | Oui / Oui | — | Oui / Oui / Oui | — |
-| VanEck Semiconductor UCITS ETF | IE00BMC38736 | Oui | Oui | missing | Oui / Oui | Partielle | — / — / — | Collecte en attente — Cotation documentée ; série en attente de la prochaine collecte mensuelle |
+| VanEck Semiconductor UCITS ETF | IE00BMC38736 | Oui | Oui | manual | Oui / Oui | Partielle | Oui / Oui / Oui | — |
 | iShares MSCI EM ex-China UCITS ETF (Acc) | IE00BMG6Z448 | Oui | Oui | manual | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | Global X Cybersecurity UCITS ETF USD Acc | IE00BMH5Y871 | Oui | — | missing | Oui / Oui | Partielle | — / — / — | Sans cotation — Cotations candidates déclarées, en attente du document émetteur · globalxetfs.eu : Missing or multiple exact-share identities in metadata document |
 | Vanguard LifeStrategy 20% Equity UCITS ETF (EUR) Accumulating | IE00BMVB5K07 | Oui | Oui | manual | Partiel / Partiel | Partielle | Oui / Oui / — | — |
@@ -410,27 +410,27 @@ Actifs présentés sans historique automatique (Sans cotation : 27 · Collecte e
 | Xtrackers II EUR Overnight Rate Swap UCITS ETF 1C | LU0290358497 | Oui | Oui | automatic | Sans objet / Sans objet | — | Oui / Oui / — | — |
 | Xtrackers STOXX Europe 600 UCITS ETF 1C | LU0328475792 | Oui | Oui | missing | Oui / Oui | Partielle | — / — / — | Sans cotation — Aucune cotation documentée ni candidate · etf.dws.com : Ambiguous listing document identity |
 | Xtrackers EURO STOXX 50 UCITS ETF 1C | LU0380865021 | Oui | Oui | missing | Oui / Oui | Partielle | — / — / — | Sans cotation — Aucune cotation documentée ni candidate · etf.dws.com : Ambiguous listing document identity |
-| Amundi Core STOXX Europe 600 UCITS ETF | LU0908500753 | Oui | Oui | missing | Oui / Oui | Partielle | — / — / — | Collecte en attente — Cotation documentée ; série en attente de la prochaine collecte mensuelle |
+| Amundi Core STOXX Europe 600 UCITS ETF | LU0908500753 | Oui | Oui | missing | Oui / Oui | Partielle | Oui / Oui / Oui | Historique court — 1 année(s) complète(s) ; 6 requises en génération automatique |
 | Amundi FTSE EPRA NAREIT Global UCITS ETF | LU1437018838 | Oui | Oui | automatic | Oui / Oui | Partielle | Oui / Oui / Oui | — |
-| Amundi Russell 2000 UCITS ETF EUR Acc | LU1681038672 | Oui | Oui | missing | Oui / Oui | Partielle | — / — / — | Collecte en attente — Cotation documentée ; série en attente de la prochaine collecte mensuelle |
-| Amundi STOXX Europe 600 ESG UCITS ETF Acc | LU1681040223 | Oui | Oui | missing | Oui / Oui | Partielle | — / — / — | Collecte en attente — Cotation documentée ; série en attente de la prochaine collecte mensuelle |
+| Amundi Russell 2000 UCITS ETF EUR Acc | LU1681038672 | Oui | Oui | manual | Oui / Oui | Partielle | Oui / Oui / Oui | — |
+| Amundi STOXX Europe 600 ESG UCITS ETF Acc | LU1681040223 | Oui | Oui | manual | Oui / Oui | Partielle | Oui / Oui / Oui | — |
 | Amundi MSCI World Swap UCITS ETF (Acc) | LU1681043599 | Oui | Oui | automatic | Oui / Oui | Partielle | Oui / Oui / Oui | — |
 | Amundi MSCI Emerging Markets UCITS ETF | LU1681045370 | Oui | Oui | automatic | Oui / Oui | Partielle | Oui / Oui / Oui | — |
 | Amundi Core EURO STOXX 50 UCITS ETF | LU1681047236 | Oui | Oui | automatic | Oui / Oui | Partielle | Oui / Oui / Oui | — |
 | Amundi S&P Global Luxury UCITS ETF | LU1681048630 | Oui | Oui | automatic | Oui / Oui | Partielle | Oui / Oui / Oui | — |
 | Amundi FTSE EPRA NAREIT Global UCITS ETF Dist | LU1737652823 | Oui | Oui | automatic | Oui / Oui | Partielle | Oui / Oui / Oui | — |
-| Amundi Euro Stoxx Banks UCITS ETF Acc | LU1829219390 | Oui | Oui | missing | Oui / Oui | Partielle | — / — / — | Collecte en attente — Cotation documentée ; série en attente de la prochaine collecte mensuelle |
+| Amundi Euro Stoxx Banks UCITS ETF Acc | LU1829219390 | Oui | Oui | manual | Oui / Oui | Partielle | Oui / Oui / Oui | — |
 | Amundi STOXX Europe 600 Basic Resources UCITS ETF | LU1834983550 | Oui | Oui | automatic | Oui / Oui | Partielle | Oui / Oui / Oui | — |
-| Amundi STOXX Europe 600 Basic Materials UCITS ETF | LU1834983634 | Oui | Oui | missing | Oui / Oui | Partielle | — / — / — | Collecte en attente — Cotation documentée ; série en attente de la prochaine collecte mensuelle |
+| Amundi STOXX Europe 600 Basic Materials UCITS ETF | LU1834983634 | Oui | Oui | missing | Oui / Oui | Partielle | Oui / Oui / Oui | Historique court — 1 année(s) complète(s) ; 6 requises en génération automatique |
 | Amundi STOXX Europe 600 Healthcare UCITS ETF | LU1834986900 | Oui | Oui | automatic | Oui / Oui | Partielle | Oui / Oui / Oui | — |
 | Amundi STOXX Europe 600 Technology UCITS ETF | LU1834988518 | Oui | Oui | automatic | Oui / Oui | Partielle | Oui / Oui / Oui | — |
 | Xtrackers Nikkei 225 UCITS ETF | LU1875395870 | Oui | Oui | missing | Oui / Oui | Complète | — / — / — | Sans cotation — Aucune cotation documentée ni candidate · etf.dws.com : Ambiguous listing document identity |
 | Amundi Core EUR Corporate Bond UCITS ETF | LU1931975079 | Oui | Oui | automatic | Sans objet / Sans objet | Partielle | Oui / Oui / Oui | — |
-| Amundi Prime Japan UCITS ETF | LU2089238385 | Oui | Oui | missing | Oui / Oui | Partielle | — / — / — | Collecte en attente — Cotation documentée ; série en attente de la prochaine collecte mensuelle |
+| Amundi Prime Japan UCITS ETF | LU2089238385 | Oui | Oui | manual | Oui / Oui | Partielle | Oui / Oui / Oui | — |
 | Xtrackers Nikkei 225 UCITS ETF 1C (Acc) | LU2196470426 | Oui | Oui | missing | Oui / Oui | Complète | — / — / — | Sans cotation — Aucune cotation documentée ni candidate · etf.dws.com : Ambiguous listing document identity |
 | Xtrackers Scalable MSCI AC World UCITS ETF 1C | LU2903252349 | Oui | Oui | missing | Oui / Oui | Partielle | — / — / — | Sans cotation — Aucune cotation documentée ni candidate · etf.dws.com : Ambiguous listing document identity |
 | Amundi Core EUR High Yield Bond UCITS ETF | LU2970735911 | Oui | — | automatic | Sans objet / Sans objet | Partielle | — / — / Oui | — |
-| Amundi STOXX Europe Defense UCITS ETF | LU3038520774 | Oui | Oui | missing | Oui / Oui | Partielle | — / — / — | Collecte en attente — Cotation documentée ; série en attente de la prochaine collecte mensuelle |
+| Amundi STOXX Europe Defense UCITS ETF | LU3038520774 | Oui | Oui | missing | Oui / Oui | Partielle | — / — / Oui | Historique court — 0 année(s) complète(s) ; 6 requises en génération automatique |
 | Amundi European Strategic Autonomy UCITS ETF Acc | LU3180074463 | Oui | — | missing | Oui / Oui | Partielle | — / — / — | Collecte en attente — Cotation documentée ; série en attente de la prochaine collecte mensuelle |
 | Heineken | NL0000009165 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Philips | NL0000009538 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
