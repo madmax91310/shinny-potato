@@ -113,7 +113,7 @@ export function projectToolData() {
       const path = id.replaceAll('\\', '/').split('?')[0]
       if (path.endsWith('/src/pages/tweet-bank/data.js')) return { code: `import data from '${bankId}'; export const {TWEETS,MONTHS,CATEGORIES,FORMATS,GOLD_CATEGORIES,COOLDOWN_DAYS}=data; export function getTweet(id) { return TWEETS.find(t => t.id === id); }`, map:null }
       if (path.endsWith('/src/pages/market-facts/data.js')) return { code: `import data from '${factsId}'; export const {FACTS,FAMILIES}=data;`, map:null }
-      if (path.endsWith('/src/data/duel-assets.js')) return { code: `import data from '${duelId}'; export const {CATALOG,EUR_USD,FX_SOURCE,ROLES}=data; export const ITEM_BY_ID=new Map(CATALOG.map(item=>[item.id,item]));\n${euroReturnSource}`, map:null }
+      if (path.endsWith('/src/data/duel-assets.js')) return { code: `import { convertCalendarReturn } from './calendar-fx.js'; import data from '${duelId}'; export const {CATALOG,EUR_USD,FX_SOURCE,ROLES}=data; export const ITEM_BY_ID=new Map(CATALOG.map(item=>[item.id,item]));\n${euroReturnSource}`, map:null }
       if (path.endsWith('/src/data/market-history.js')) return { code: historyCode, map: null }
       if (path.endsWith('/src/data/review-catalog.js')) return { code: `export { default as REVIEW_CATALOG } from '${reviewId}';`, map: null }
       if (path.endsWith('/src/data/catalog-browser.js')) {

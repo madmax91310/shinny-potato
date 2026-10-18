@@ -48,6 +48,9 @@ try {
  await page.screenshot({path:'/tmp/currency-calculator.png',fullPage:true})
  await go('classements-performances')
  await page.locator('main').waitFor()
+ await go('duels-portefeuilles?asset=equity-rolls-royce')
+ assert.match(await page.locator('#pd-tweet').inputValue(),/Rolls-Royce/)
+ assert.doesNotMatch(await page.locator('#pd-tweet').inputValue(),/NaN|undefined/)
  assert.deepEqual(errors,[])
- console.log('Browser: EUR ACWI, explicit net/gross, ETF/comparison EUR, calculator EUR and three PNG downloads passed.')
+ console.log('Browser: EUR ACWI, explicit net/gross, ETF/comparison EUR, calculator EUR, compiled duel and three PNG downloads passed.')
 } finally {await browser?.close();server.kill()}
