@@ -23,6 +23,7 @@ on:
       - Update qualified exposure ETF data
       - Refresh 35 portfolio exposure ETFs
       - Refresh fully automated index sheets
+      - Onboard new assets
     types: [completed]
   workflow_dispatch:
   schedule:

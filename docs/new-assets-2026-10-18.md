@@ -37,13 +37,13 @@ Champs collectés par le connecteur iShares existant : nom officiel, cotations o
 
 Outils raccordés : Présentation d’ETF, Comparatif ETF (12 nouvelles paires), Et si tu avais investi, Performance depuis, Il y a X ans, Qui a vraiment gagné ? (lignes annuelles NAV et mensuelles), Duel de portefeuilles et Générateur en composition manuelle lorsque trois années civiles communes existent, Portefeuille & DCA (compositions complètes collectées pour les 14 parts), Bibliothèque de données. Aéronautique et défense (lancée en février 2024) ne dispose que de l’année 2025 : elle reste hors duels et Générateur jusqu’à trois années complètes, sans prolongement artificiel.
 
-Statut PEA : l’éligibilité de la part MSCI EMU est documentée par deux sources secondaires indépendantes ; les parts EMU Small Cap et Euro Dividend restent non documentées (aucune déduction à partir du domicile ou de l’indice).
+Statut PEA : l’éligibilité de la part MSCI EMU est documentée par deux sources secondaires indépendantes. Pour les treize autres parts, le collecteur de métadonnées lit le champ « Régime fiscal PEA » de la page produit BlackRock France (Oui/Non ; un tiret reste non documenté) ; aucune déduction à partir du domicile ou de l’indice.
 
 ## Candidats écartés ou en attente
 
 - CNOOC et China Mobile : absents des positions des fonds iShares utilisés pour la classification (sociétés visées par les sanctions américaines) ; aucune classification officielle possible.
-- Taïwan (TSMC, MediaTek, Hon Hai) : la BCE ne publie pas de taux de référence TWD ; les conversions en euros des duels, du Générateur et des classements seraient impossibles.
-- BHP, CSL, Commonwealth Bank, Macquarie : la qualification Yahoo de la cotation ASX a été rejetée (dates locales dupliquées dans la réponse). Elles restent candidates et seront réessayées par le workflow mensuel sans relâcher les contrôles.
+- Taïwan (TSMC, MediaTek, Hon Hai) : la BCE ne publie pas de taux de référence TWD. Le collecteur de change croise désormais la série H.10 de la Réserve fédérale (FRED DEXTAUS, TWD par USD) avec le taux USD de la BCE du dernier jour commun de chaque mois ; les trois actions entrent en candidature dès la première collecte réelle de ce taux sur `master`.
+- BHP, CSL, Commonwealth Bank, Macquarie : d’abord rejetées (« Duplicate Yahoo local date »), le diagnostic réel du 18/10 a montré que Yahoo répète la dernière séance de Sydney en deux barres (10:00 et 16:10 locales) aux prix identiques. Une séance identique est désormais conservée une fois, toute date répétée avec des prix différents reste refusée ; les quatre actions ont été qualifiées et promues le 18/10 (Océanie, période depuis 2015-01) avec la sélection « Grandes valeurs australiennes ».
 - FedEx, Bajaj Finance, Kotak Mahindra : ISIN initialement obsolètes ou erronés, corrigés d’après les positions BlackRock (US31428X1063, INE296A01032, INE237A01036) et requalifiés dans un second passage ; BP, National Grid et AB InBev de même après normalisation des tickers et de la place de Bruxelles.
 - Spotify : écarté pour éviter la confusion entre société européenne et cotation américaine.
 

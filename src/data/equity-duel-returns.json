@@ -1878,6 +1878,43 @@
     }
   },
   {
+    "id": "equity-bhp",
+    "historyId": "bhp",
+    "label": "BHP",
+    "isin": "AU000000BHP4",
+    "currency": "AUD",
+    "calendarReturns": {
+      "2020": 15.296106056865355,
+      "2021": 8.040858858356126,
+      "2022": 38.494648889168936,
+      "2023": 16.903143430496883,
+      "2024": -17.219315773430466,
+      "2025": 19.9746219943393
+    },
+    "euroCalendarReturns": {
+      "2020": 16.01416811647971,
+      "2021": 9.985109984785701,
+      "2022": 37.806279385992035,
+      "2023": 12.805818720702655,
+      "2024": -19.731560483144506,
+      "2025": 14.453919577331131
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      15.296106056865355,
+      8.040858858356126,
+      38.494648889168936,
+      16.903143430496883,
+      -17.219315773430466,
+      19.9746219943393
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/BHP.AX?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-18",
+    "art": {
+      "scene": "etf-night/infrastructure.webp"
+    }
+  },
+  {
     "id": "equity-blackrock",
     "historyId": "blackrock",
     "label": "BlackRock",
@@ -3171,6 +3208,43 @@
     }
   },
   {
+    "id": "equity-commonwealth-bank",
+    "historyId": "commonwealth-bank",
+    "label": "Commonwealth Bank",
+    "isin": "AU000000CBA7",
+    "currency": "AUD",
+    "calendarReturns": {
+      "2020": 6.5765752209461015,
+      "2021": 27.66419611161568,
+      "2022": 5.5884240597593005,
+      "2023": 13.909642478934249,
+      "2024": 42.18868455259393,
+      "2025": 7.886612833957618
+    },
+    "euroCalendarReturns": {
+      "2020": 7.240332200492761,
+      "2021": 29.961579339752966,
+      "2022": 5.06361063487808,
+      "2023": 9.91723663665467,
+      "2024": 37.87351400422341,
+      "2025": 2.92214723002886
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      6.5765752209461015,
+      27.66419611161568,
+      5.5884240597593005,
+      13.909642478934249,
+      42.18868455259393,
+      7.886612833957618
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/CBA.AX?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-18",
+    "art": {
+      "scene": "etf-night/finance.webp"
+    }
+  },
+  {
     "id": "equity-conocophillips",
     "historyId": "conocophillips",
     "label": "ConocoPhillips",
@@ -3316,6 +3390,43 @@
     "checkedAt": "2026-10-17",
     "art": {
       "scene": "etf-night/chip.webp"
+    }
+  },
+  {
+    "id": "equity-csl",
+    "historyId": "csl",
+    "label": "CSL",
+    "isin": "AU000000CSL8",
+    "currency": "AUD",
+    "calendarReturns": {
+      "2020": 3.7245596470129483,
+      "2021": 3.7173865183054655,
+      "2022": 0.12733749146887074,
+      "2023": 0.9089491732751087,
+      "2024": -0.4335290393286284,
+      "2025": -37.47370218082507
+    },
+    "euroCalendarReturns": {
+      "2020": 4.370554325237297,
+      "2021": 5.583834524174414,
+      "2022": -0.3703323182765228,
+      "2023": -2.627796877808153,
+      "2024": -3.4551921515979966,
+      "2025": -40.35088635326761
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      3.7245596470129483,
+      3.7173865183054655,
+      0.12733749146887074,
+      0.9089491732751087,
+      -0.4335290393286284,
+      -37.47370218082507
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/CSL.AX?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-18",
+    "art": {
+      "scene": "etf-night/health.webp"
     }
   },
   {
@@ -7789,6 +7900,43 @@
     "checkedAt": "2026-10-18",
     "art": {
       "scene": "etf-night/luxury.webp"
+    }
+  },
+  {
+    "id": "equity-macquarie",
+    "historyId": "macquarie",
+    "label": "Macquarie",
+    "isin": "AU000000MQG1",
+    "currency": "AUD",
+    "calendarReturns": {
+      "2020": 3.1946392151063208,
+      "2021": 53.594524340177216,
+      "2022": -15.645343136236878,
+      "2023": 14.615203334863459,
+      "2024": 24.575317381700913,
+      "2025": -5.277336188912085
+    },
+    "euroCalendarReturns": {
+      "2020": 3.837333558481726,
+      "2021": 56.35853723416311,
+      "2022": -16.06461690386406,
+      "2023": 10.598068372010827,
+      "2024": 20.79468081198439,
+      "2025": -9.636054977557219
+    },
+    "fxSource": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml",
+    "values": [
+      3.1946392151063208,
+      53.594524340177216,
+      -15.645343136236878,
+      14.615203334863459,
+      24.575317381700913,
+      -5.277336188912085
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/MQG.AX?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+    "checkedAt": "2026-10-18",
+    "art": {
+      "scene": "etf-night/finance.webp"
     }
   },
   {

@@ -1,23 +1,23 @@
 {
-  "checkedAt": "2026-10-18T10:18:38.540Z",
+  "checkedAt": "2026-10-18T10:57:21.995Z",
   "summary": {
     "instruments": 647,
     "sheets": 258,
     "comparisons": 243,
     "practical": 21,
-    "duels": 571,
+    "duels": 575,
     "generatorAutomatic": 141,
     "dca": 647,
     "fullExposure": 602,
     "outsideExposure": 41,
     "automaticHistories": 200,
-    "historyCandidates": 0,
+    "historyCandidates": 27,
     "unused": 0,
     "blockers": {
-      "no-listing": 52,
+      "no-listing": 25,
       "listing-not-collectable": 0,
-      "qualification-failed": 4,
-      "collection-pending": 0,
+      "qualification-failed": 0,
+      "collection-pending": 27,
       "history-short": 19
     }
   },
@@ -70,15 +70,12 @@
       "name": "BHP",
       "kind": "equity",
       "practical": [],
-      "duel": false,
+      "duel": true,
       "qualification": null,
       "sheet": false,
       "comparison": false,
-      "generator": "missing",
-      "blocker": {
-        "code": "qualification-failed",
-        "detail": "Duplicate Yahoo local date"
-      },
+      "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -95,7 +92,18 @@
         "date": "2026-10-15"
       },
       "holdings": null,
-      "monthly": [],
+      "monthly": [
+        {
+          "id": "bhp",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "AUD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
       "historyCandidate": false,
       "decision": "keep-used"
     },
@@ -104,15 +112,12 @@
       "name": "Commonwealth Bank",
       "kind": "equity",
       "practical": [],
-      "duel": false,
+      "duel": true,
       "qualification": null,
       "sheet": false,
       "comparison": false,
-      "generator": "missing",
-      "blocker": {
-        "code": "qualification-failed",
-        "detail": "Duplicate Yahoo local date"
-      },
+      "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -129,7 +134,18 @@
         "date": "2026-10-15"
       },
       "holdings": null,
-      "monthly": [],
+      "monthly": [
+        {
+          "id": "commonwealth-bank",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "AUD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
       "historyCandidate": false,
       "decision": "keep-used"
     },
@@ -138,15 +154,12 @@
       "name": "CSL",
       "kind": "equity",
       "practical": [],
-      "duel": false,
+      "duel": true,
       "qualification": null,
       "sheet": false,
       "comparison": false,
-      "generator": "missing",
-      "blocker": {
-        "code": "qualification-failed",
-        "detail": "Duplicate Yahoo local date"
-      },
+      "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -163,7 +176,18 @@
         "date": "2026-10-15"
       },
       "holdings": null,
-      "monthly": [],
+      "monthly": [
+        {
+          "id": "csl",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "AUD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
       "historyCandidate": false,
       "decision": "keep-used"
     },
@@ -172,15 +196,12 @@
       "name": "Macquarie",
       "kind": "equity",
       "practical": [],
-      "duel": false,
+      "duel": true,
       "qualification": null,
       "sheet": false,
       "comparison": false,
-      "generator": "missing",
-      "blocker": {
-        "code": "qualification-failed",
-        "detail": "Duplicate Yahoo local date"
-      },
+      "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -197,7 +218,18 @@
         "date": "2026-10-15"
       },
       "holdings": null,
-      "monthly": [],
+      "monthly": [
+        {
+          "id": "macquarie",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "AUD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
       "historyCandidate": false,
       "decision": "keep-used"
     },
@@ -4072,8 +4104,8 @@
       "comparison": true,
       "generator": "missing",
       "blocker": {
-        "code": "no-listing",
-        "detail": "Aucune cotation documentée ni candidate · www.amundietf.fr : HTTP Error 405: Method Not Allowed"
+        "code": "collection-pending",
+        "detail": "Cotation documentée ; série en attente de la prochaine collecte mensuelle"
       },
       "dca": true,
       "countries": {
@@ -4097,7 +4129,7 @@
         "automatic": false
       },
       "monthly": [],
-      "historyCandidate": false,
+      "historyCandidate": true,
       "decision": "keep-used"
     },
     {
@@ -4111,8 +4143,8 @@
       "comparison": true,
       "generator": "missing",
       "blocker": {
-        "code": "no-listing",
-        "detail": "Aucune cotation documentée ni candidate · www.amundietf.fr : HTTP Error 405: Method Not Allowed"
+        "code": "collection-pending",
+        "detail": "Cotation documentée ; série en attente de la prochaine collecte mensuelle"
       },
       "dca": true,
       "countries": {
@@ -4136,7 +4168,7 @@
         "automatic": false
       },
       "monthly": [],
-      "historyCandidate": false,
+      "historyCandidate": true,
       "decision": "keep-used"
     },
     {
@@ -4555,8 +4587,8 @@
       "comparison": true,
       "generator": "missing",
       "blocker": {
-        "code": "no-listing",
-        "detail": "Aucune cotation documentée ni candidate · www.amundietf.fr : HTTP Error 405: Method Not Allowed"
+        "code": "collection-pending",
+        "detail": "Cotation documentée ; série en attente de la prochaine collecte mensuelle"
       },
       "dca": true,
       "countries": {
@@ -4580,7 +4612,7 @@
         "automatic": false
       },
       "monthly": [],
-      "historyCandidate": false,
+      "historyCandidate": true,
       "decision": "keep-used"
     },
     {
@@ -4641,8 +4673,8 @@
       "comparison": true,
       "generator": "missing",
       "blocker": {
-        "code": "no-listing",
-        "detail": "Aucune cotation documentée ni candidate · www.amundietf.fr : HTTP Error 405: Method Not Allowed"
+        "code": "collection-pending",
+        "detail": "Cotation documentée ; série en attente de la prochaine collecte mensuelle"
       },
       "dca": true,
       "countries": {
@@ -4666,7 +4698,7 @@
         "automatic": false
       },
       "monthly": [],
-      "historyCandidate": false,
+      "historyCandidate": true,
       "decision": "keep-used"
     },
     {
@@ -4774,8 +4806,8 @@
       "comparison": false,
       "generator": "missing",
       "blocker": {
-        "code": "no-listing",
-        "detail": "Aucune cotation documentée ni candidate · www.amundietf.fr : HTTP Error 405: Method Not Allowed"
+        "code": "collection-pending",
+        "detail": "Cotation documentée ; série en attente de la prochaine collecte mensuelle"
       },
       "dca": true,
       "countries": {
@@ -4788,7 +4820,7 @@
       },
       "holdings": null,
       "monthly": [],
-      "historyCandidate": false,
+      "historyCandidate": true,
       "decision": "keep-used"
     },
     {
@@ -4849,8 +4881,8 @@
       "comparison": true,
       "generator": "missing",
       "blocker": {
-        "code": "no-listing",
-        "detail": "Aucune cotation documentée ni candidate · www.amundietf.fr : HTTP Error 405: Method Not Allowed"
+        "code": "collection-pending",
+        "detail": "Cotation documentée ; série en attente de la prochaine collecte mensuelle"
       },
       "dca": true,
       "countries": {
@@ -4874,7 +4906,7 @@
         "automatic": false
       },
       "monthly": [],
-      "historyCandidate": false,
+      "historyCandidate": true,
       "decision": "keep-used"
     },
     {
@@ -5776,8 +5808,8 @@
       "comparison": true,
       "generator": "missing",
       "blocker": {
-        "code": "no-listing",
-        "detail": "Cotations candidates déclarées, en attente du document émetteur"
+        "code": "collection-pending",
+        "detail": "Cotation documentée ; série en attente de la prochaine collecte mensuelle"
       },
       "dca": true,
       "countries": {
@@ -5790,7 +5822,7 @@
       },
       "holdings": null,
       "monthly": [],
-      "historyCandidate": false,
+      "historyCandidate": true,
       "decision": "keep-used"
     },
     {
@@ -6415,8 +6447,8 @@
       "comparison": true,
       "generator": "missing",
       "blocker": {
-        "code": "no-listing",
-        "detail": "Cotations candidates déclarées, en attente du document émetteur · www.wisdomtree.eu : HTTP Error 403: Forbidden"
+        "code": "collection-pending",
+        "detail": "Cotation documentée ; série en attente de la prochaine collecte mensuelle"
       },
       "dca": true,
       "countries": {
@@ -6440,7 +6472,7 @@
         "automatic": false
       },
       "monthly": [],
-      "historyCandidate": false,
+      "historyCandidate": true,
       "decision": "keep-used"
     },
     {
@@ -6563,8 +6595,8 @@
       "comparison": true,
       "generator": "missing",
       "blocker": {
-        "code": "no-listing",
-        "detail": "Aucune cotation documentée ni candidate · www.amundietf.fr : HTTP Error 405: Method Not Allowed"
+        "code": "collection-pending",
+        "detail": "Cotation documentée ; série en attente de la prochaine collecte mensuelle"
       },
       "dca": true,
       "countries": {
@@ -6588,7 +6620,7 @@
         "automatic": false
       },
       "monthly": [],
-      "historyCandidate": false,
+      "historyCandidate": true,
       "decision": "keep-used"
     },
     {
@@ -6955,8 +6987,8 @@
       "comparison": true,
       "generator": "missing",
       "blocker": {
-        "code": "no-listing",
-        "detail": "Aucune cotation documentée ni candidate · www.amundietf.fr : HTTP Error 405: Method Not Allowed"
+        "code": "collection-pending",
+        "detail": "Cotation documentée ; série en attente de la prochaine collecte mensuelle"
       },
       "dca": true,
       "countries": {
@@ -6980,7 +7012,7 @@
         "automatic": false
       },
       "monthly": [],
-      "historyCandidate": false,
+      "historyCandidate": true,
       "decision": "keep-used"
     },
     {
@@ -7202,7 +7234,7 @@
       "generator": "missing",
       "blocker": {
         "code": "no-listing",
-        "detail": "Aucune cotation documentée ni candidate · etf.dws.com : No qualified structured metadata parser for this endpoint"
+        "detail": "Aucune cotation documentée ni candidate · etf.dws.com : Ambiguous listing document identity"
       },
       "dca": true,
       "countries": {
@@ -7339,8 +7371,8 @@
       "comparison": true,
       "generator": "missing",
       "blocker": {
-        "code": "no-listing",
-        "detail": "Cotations candidates déclarées, en attente du document émetteur · dokumenty.analizy.pl : No explicit supported metadata fields"
+        "code": "collection-pending",
+        "detail": "Cotation documentée ; série en attente de la prochaine collecte mensuelle"
       },
       "dca": true,
       "countries": {
@@ -7364,7 +7396,7 @@
         "automatic": false
       },
       "monthly": [],
-      "historyCandidate": false,
+      "historyCandidate": true,
       "decision": "keep-used"
     },
     {
@@ -7623,8 +7655,8 @@
       "comparison": true,
       "generator": "missing",
       "blocker": {
-        "code": "no-listing",
-        "detail": "Cotations candidates déclarées, en attente du document émetteur"
+        "code": "collection-pending",
+        "detail": "Cotation documentée ; série en attente de la prochaine collecte mensuelle"
       },
       "dca": true,
       "countries": {
@@ -7648,7 +7680,7 @@
         "automatic": false
       },
       "monthly": [],
-      "historyCandidate": false,
+      "historyCandidate": true,
       "decision": "keep-used"
     },
     {
@@ -7662,8 +7694,8 @@
       "comparison": true,
       "generator": "missing",
       "blocker": {
-        "code": "no-listing",
-        "detail": "Cotations candidates déclarées, en attente du document émetteur"
+        "code": "collection-pending",
+        "detail": "Cotation documentée ; série en attente de la prochaine collecte mensuelle"
       },
       "dca": true,
       "countries": {
@@ -7687,7 +7719,7 @@
         "automatic": true
       },
       "monthly": [],
-      "historyCandidate": false,
+      "historyCandidate": true,
       "decision": "keep-used"
     },
     {
@@ -10856,8 +10888,8 @@
       "comparison": true,
       "generator": "missing",
       "blocker": {
-        "code": "no-listing",
-        "detail": "Cotations candidates déclarées, en attente du document émetteur"
+        "code": "collection-pending",
+        "detail": "Cotation documentée ; série en attente de la prochaine collecte mensuelle"
       },
       "dca": true,
       "countries": {
@@ -10881,7 +10913,7 @@
         "automatic": false
       },
       "monthly": [],
-      "historyCandidate": false,
+      "historyCandidate": true,
       "decision": "keep-used"
     },
     {
@@ -11055,8 +11087,8 @@
       "comparison": true,
       "generator": "missing",
       "blocker": {
-        "code": "no-listing",
-        "detail": "Cotations candidates déclarées, en attente du document émetteur"
+        "code": "collection-pending",
+        "detail": "Cotation documentée ; série en attente de la prochaine collecte mensuelle"
       },
       "dca": true,
       "countries": {
@@ -11080,7 +11112,7 @@
         "automatic": false
       },
       "monthly": [],
-      "historyCandidate": false,
+      "historyCandidate": true,
       "decision": "keep-used"
     },
     {
@@ -11314,8 +11346,8 @@
       "comparison": true,
       "generator": "missing",
       "blocker": {
-        "code": "no-listing",
-        "detail": "Cotations candidates déclarées, en attente du document émetteur"
+        "code": "collection-pending",
+        "detail": "Cotation documentée ; série en attente de la prochaine collecte mensuelle"
       },
       "dca": true,
       "countries": {
@@ -11339,7 +11371,7 @@
         "automatic": false
       },
       "monthly": [],
-      "historyCandidate": false,
+      "historyCandidate": true,
       "decision": "keep-used"
     },
     {
@@ -11583,7 +11615,7 @@
       "generator": "missing",
       "blocker": {
         "code": "no-listing",
-        "detail": "Aucune cotation documentée ni candidate · etf.dws.com : No qualified structured metadata parser for this endpoint"
+        "detail": "Aucune cotation documentée ni candidate · etf.dws.com : Ambiguous listing document identity"
       },
       "dca": true,
       "countries": {
@@ -12191,7 +12223,7 @@
       "generator": "missing",
       "blocker": {
         "code": "no-listing",
-        "detail": "Aucune cotation documentée ni candidate · etf.dws.com : No qualified structured metadata parser for this endpoint"
+        "detail": "Aucune cotation documentée ni candidate · etf.dws.com : Ambiguous listing document identity"
       },
       "dca": true,
       "countries": {
@@ -12625,8 +12657,8 @@
       "comparison": true,
       "generator": "missing",
       "blocker": {
-        "code": "no-listing",
-        "detail": "Cotations candidates déclarées, en attente du document émetteur"
+        "code": "collection-pending",
+        "detail": "Cotation documentée ; série en attente de la prochaine collecte mensuelle"
       },
       "dca": true,
       "countries": {
@@ -12650,7 +12682,7 @@
         "automatic": false
       },
       "monthly": [],
-      "historyCandidate": false,
+      "historyCandidate": true,
       "decision": "keep-used"
     },
     {
@@ -12805,8 +12837,8 @@
       "comparison": true,
       "generator": "missing",
       "blocker": {
-        "code": "no-listing",
-        "detail": "Cotations candidates déclarées, en attente du document émetteur"
+        "code": "collection-pending",
+        "detail": "Cotation documentée ; série en attente de la prochaine collecte mensuelle"
       },
       "dca": true,
       "countries": {
@@ -12830,7 +12862,7 @@
         "automatic": false
       },
       "monthly": [],
-      "historyCandidate": false,
+      "historyCandidate": true,
       "decision": "keep-used"
     },
     {
@@ -13160,8 +13192,8 @@
       "comparison": true,
       "generator": "missing",
       "blocker": {
-        "code": "no-listing",
-        "detail": "Cotations candidates déclarées, en attente du document émetteur"
+        "code": "collection-pending",
+        "detail": "Cotation documentée ; série en attente de la prochaine collecte mensuelle"
       },
       "dca": true,
       "countries": {
@@ -13185,7 +13217,7 @@
         "automatic": false
       },
       "monthly": [],
-      "historyCandidate": false,
+      "historyCandidate": true,
       "decision": "keep-used"
     },
     {
@@ -14038,7 +14070,7 @@
       "generator": "missing",
       "blocker": {
         "code": "no-listing",
-        "detail": "Aucune cotation documentée ni candidate · etf.dws.com : No qualified structured metadata parser for this endpoint"
+        "detail": "Aucune cotation documentée ni candidate · etf.dws.com : Ambiguous listing document identity"
       },
       "dca": true,
       "countries": {
@@ -17381,7 +17413,7 @@
       "generator": "missing",
       "blocker": {
         "code": "no-listing",
-        "detail": "Aucune cotation documentée ni candidate · etf.dws.com : No qualified structured metadata parser for this endpoint"
+        "detail": "Aucune cotation documentée ni candidate · etf.dws.com : Ambiguous listing document identity"
       },
       "dca": true,
       "countries": {
@@ -17456,7 +17488,7 @@
       "generator": "missing",
       "blocker": {
         "code": "no-listing",
-        "detail": "Aucune cotation documentée ni candidate · etf.dws.com : No qualified structured metadata parser for this endpoint"
+        "detail": "Aucune cotation documentée ni candidate · etf.dws.com : Ambiguous listing document identity"
       },
       "dca": true,
       "countries": {
@@ -17495,7 +17527,7 @@
       "generator": "missing",
       "blocker": {
         "code": "no-listing",
-        "detail": "Aucune cotation documentée ni candidate · etf.dws.com : No qualified structured metadata parser for this endpoint"
+        "detail": "Aucune cotation documentée ni candidate · etf.dws.com : Ambiguous listing document identity"
       },
       "dca": true,
       "countries": {
@@ -17533,8 +17565,8 @@
       "comparison": true,
       "generator": "missing",
       "blocker": {
-        "code": "no-listing",
-        "detail": "Aucune cotation documentée ni candidate · www.amundietf.fr : HTTP Error 405: Method Not Allowed"
+        "code": "collection-pending",
+        "detail": "Cotation documentée ; série en attente de la prochaine collecte mensuelle"
       },
       "dca": true,
       "countries": {
@@ -17558,7 +17590,7 @@
         "automatic": false
       },
       "monthly": [],
-      "historyCandidate": false,
+      "historyCandidate": true,
       "decision": "keep-used"
     },
     {
@@ -17619,8 +17651,8 @@
       "comparison": true,
       "generator": "missing",
       "blocker": {
-        "code": "no-listing",
-        "detail": "Aucune cotation documentée ni candidate · www.amundietf.fr : HTTP Error 405: Method Not Allowed"
+        "code": "collection-pending",
+        "detail": "Cotation documentée ; série en attente de la prochaine collecte mensuelle"
       },
       "dca": true,
       "countries": {
@@ -17644,7 +17676,7 @@
         "automatic": false
       },
       "monthly": [],
-      "historyCandidate": false,
+      "historyCandidate": true,
       "decision": "keep-used"
     },
     {
@@ -17658,8 +17690,8 @@
       "comparison": true,
       "generator": "missing",
       "blocker": {
-        "code": "no-listing",
-        "detail": "Aucune cotation documentée ni candidate · www.amundietf.fr : HTTP Error 405: Method Not Allowed"
+        "code": "collection-pending",
+        "detail": "Cotation documentée ; série en attente de la prochaine collecte mensuelle"
       },
       "dca": true,
       "countries": {
@@ -17683,7 +17715,7 @@
         "automatic": false
       },
       "monthly": [],
-      "historyCandidate": false,
+      "historyCandidate": true,
       "decision": "keep-used"
     },
     {
@@ -17932,8 +17964,8 @@
       "comparison": true,
       "generator": "missing",
       "blocker": {
-        "code": "no-listing",
-        "detail": "Aucune cotation documentée ni candidate · www.amundietf.fr : HTTP Error 405: Method Not Allowed"
+        "code": "collection-pending",
+        "detail": "Cotation documentée ; série en attente de la prochaine collecte mensuelle"
       },
       "dca": true,
       "countries": {
@@ -17957,7 +17989,7 @@
         "automatic": false
       },
       "monthly": [],
-      "historyCandidate": false,
+      "historyCandidate": true,
       "decision": "keep-used"
     },
     {
@@ -18018,8 +18050,8 @@
       "comparison": true,
       "generator": "missing",
       "blocker": {
-        "code": "no-listing",
-        "detail": "Aucune cotation documentée ni candidate · www.amundietf.fr : HTTP Error 405: Method Not Allowed"
+        "code": "collection-pending",
+        "detail": "Cotation documentée ; série en attente de la prochaine collecte mensuelle"
       },
       "dca": true,
       "countries": {
@@ -18043,7 +18075,7 @@
         "automatic": false
       },
       "monthly": [],
-      "historyCandidate": false,
+      "historyCandidate": true,
       "decision": "keep-used"
     },
     {
@@ -18152,7 +18184,7 @@
       "generator": "missing",
       "blocker": {
         "code": "no-listing",
-        "detail": "Aucune cotation documentée ni candidate · etf.dws.com : No qualified structured metadata parser for this endpoint"
+        "detail": "Aucune cotation documentée ni candidate · etf.dws.com : Ambiguous listing document identity"
       },
       "dca": true,
       "countries": {
@@ -18231,8 +18263,8 @@
       "comparison": true,
       "generator": "missing",
       "blocker": {
-        "code": "no-listing",
-        "detail": "Aucune cotation documentée ni candidate · www.amundietf.fr : HTTP Error 405: Method Not Allowed"
+        "code": "collection-pending",
+        "detail": "Cotation documentée ; série en attente de la prochaine collecte mensuelle"
       },
       "dca": true,
       "countries": {
@@ -18256,7 +18288,7 @@
         "automatic": false
       },
       "monthly": [],
-      "historyCandidate": false,
+      "historyCandidate": true,
       "decision": "keep-used"
     },
     {
@@ -18271,7 +18303,7 @@
       "generator": "missing",
       "blocker": {
         "code": "no-listing",
-        "detail": "Aucune cotation documentée ni candidate · etf.dws.com : No qualified structured metadata parser for this endpoint"
+        "detail": "Aucune cotation documentée ni candidate · etf.dws.com : Ambiguous listing document identity"
       },
       "dca": true,
       "countries": {
@@ -18310,7 +18342,7 @@
       "generator": "missing",
       "blocker": {
         "code": "no-listing",
-        "detail": "Aucune cotation documentée ni candidate · etf.dws.com : No qualified structured metadata parser for this endpoint"
+        "detail": "Aucune cotation documentée ni candidate · etf.dws.com : Ambiguous listing document identity"
       },
       "dca": true,
       "countries": {
@@ -18389,8 +18421,8 @@
       "comparison": true,
       "generator": "missing",
       "blocker": {
-        "code": "no-listing",
-        "detail": "Aucune cotation documentée ni candidate · www.amundietf.fr : HTTP Error 405: Method Not Allowed · www.ca-sicavetfcp.fr : No explicit supported metadata fields"
+        "code": "collection-pending",
+        "detail": "Cotation documentée ; série en attente de la prochaine collecte mensuelle"
       },
       "dca": true,
       "countries": {
@@ -18414,7 +18446,7 @@
         "automatic": false
       },
       "monthly": [],
-      "historyCandidate": false,
+      "historyCandidate": true,
       "decision": "keep-used"
     },
     {
@@ -18428,8 +18460,8 @@
       "comparison": false,
       "generator": "missing",
       "blocker": {
-        "code": "no-listing",
-        "detail": "Aucune cotation documentée ni candidate · www.amundietf.fr : HTTP Error 405: Method Not Allowed"
+        "code": "collection-pending",
+        "detail": "Cotation documentée ; série en attente de la prochaine collecte mensuelle"
       },
       "dca": true,
       "countries": {
@@ -18453,7 +18485,7 @@
         "automatic": false
       },
       "monthly": [],
-      "historyCandidate": false,
+      "historyCandidate": true,
       "decision": "keep-used"
     },
     {

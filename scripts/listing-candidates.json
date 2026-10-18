@@ -33,17 +33,11 @@
     {"isin": "IE000XZSV718", "basis": "SPDR S&P 500 Acc (SPYL)", "rows": [
       {"ticker": "SPYL", "mic": "XETR", "exchange": "Xetra", "currency": "EUR", "symbol": "SPYL.DE"},
       {"ticker": "SPYL", "mic": "ETFP", "exchange": "Borsa Italiana", "currency": "EUR", "symbol": "SPYL.MI"},
-      {"ticker": "SPYL", "mic": "XPAR", "exchange": "Euronext Paris", "currency": "EUR", "symbol": "SPYL.PA"},
-      {"ticker": "SPYL", "mic": "XLON", "exchange": "London Stock Exchange", "currency": "USD", "symbol": "SPYL.L"}]},
+      {"ticker": "SPYL", "mic": "XPAR", "exchange": "Euronext Paris", "currency": "EUR", "symbol": "SPYL.PA"}]},
     {"isin": "IE00BFY0GT14", "basis": "SPDR MSCI World : Xetra SPPW (cotation principale), SWRD Milan/Amsterdam/Londres", "rows": [
-      {"ticker": "SPPW", "mic": "XETR", "exchange": "Xetra", "currency": "EUR", "symbol": "SPPW.DE"},
-      {"ticker": "SWRD", "mic": "ETFP", "exchange": "Borsa Italiana", "currency": "EUR", "symbol": "SWRD.MI"},
-      {"ticker": "SWRD", "mic": "XAMS", "exchange": "Euronext Amsterdam", "currency": "EUR", "symbol": "SWRD.AS"},
-      {"ticker": "SWRD", "mic": "XLON", "exchange": "London Stock Exchange", "currency": "USD", "symbol": "SWRD.L"}]},
+      {"ticker": "SPPW", "mic": "XETR", "exchange": "Xetra", "currency": "EUR", "symbol": "SPPW.DE"}]},
     {"isin": "IE00BKWQ0Q14", "basis": "SPDR MSCI Europe : ERO Paris, SPYE Xetra, EROX Milan", "rows": [
-      {"ticker": "ERO", "mic": "XPAR", "exchange": "Euronext Paris", "currency": "EUR", "symbol": "ERO.PA"},
-      {"ticker": "SPYE", "mic": "XETR", "exchange": "Xetra", "currency": "EUR", "symbol": "SPYE.DE"},
-      {"ticker": "EROX", "mic": "ETFP", "exchange": "Borsa Italiana", "currency": "EUR", "symbol": "EROX.MI"}]},
+      {"ticker": "SPYE", "mic": "XETR", "exchange": "Xetra", "currency": "EUR", "symbol": "SPYE.DE"}]},
     {"isin": "IE0000QLH0G6", "basis": "Invesco FTSE All-World Dist : FTWD Londres USD et Xetra", "rows": [
       {"ticker": "FTWD", "mic": "XLON", "exchange": "London Stock Exchange", "currency": "USD", "symbol": "FTWD.L"},
       {"ticker": "FTWD", "mic": "XETR", "exchange": "Xetra", "currency": "EUR", "symbol": "FTWD.DE"}]},
@@ -51,26 +45,11 @@
       {"ticker": "FWRA", "mic": "XLON", "exchange": "London Stock Exchange", "currency": "USD", "symbol": "FWRA.L"},
       {"ticker": "FWRA", "mic": "XETR", "exchange": "Xetra", "currency": "EUR", "symbol": "FWRA.DE"},
       {"ticker": "FWRA", "mic": "ETFP", "exchange": "Borsa Italiana", "currency": "EUR", "symbol": "FWRA.MI"}]},
-    {"isin": "IE00BDVPNG13", "basis": "WisdomTree Artificial Intelligence : WTAI Londres/Milan, WTI2 Xetra", "rows": [
-      {"ticker": "WTAI", "mic": "XLON", "exchange": "London Stock Exchange", "currency": "USD", "symbol": "WTAI.L"},
-      {"ticker": "WTI2", "mic": "XETR", "exchange": "Xetra", "currency": "EUR", "symbol": "WTI2.DE"},
-      {"ticker": "WTAI", "mic": "ETFP", "exchange": "Borsa Italiana", "currency": "EUR", "symbol": "WTAI.MI"}]},
     {"isin": "IE00BKLF1R75", "basis": "WisdomTree Battery Solutions : W1TA Xetra, VOLT Milan/Londres/Paris (fiche WisdomTree)", "rows": [
-      {"ticker": "W1TA", "mic": "XETR", "exchange": "Xetra", "currency": "EUR", "symbol": "W1TA.DE"},
-      {"ticker": "VOLT", "mic": "ETFP", "exchange": "Borsa Italiana", "currency": "EUR", "symbol": "VOLT.MI"},
-      {"ticker": "VOLT", "mic": "XLON", "exchange": "London Stock Exchange", "currency": "USD", "symbol": "VOLT.L"},
       {"ticker": "VOLT", "mic": "XPAR", "exchange": "Euronext Paris", "currency": "EUR", "symbol": "VOLT.PA"}]},
-    {"isin": "IE000W8WMSL2", "basis": "WisdomTree Quantum Computing : WQTM (communiqué de lancement, Deutsche Börse 02/09/2025)", "rows": [
-      {"ticker": "WQTM", "mic": "XETR", "exchange": "Xetra", "currency": "EUR", "symbol": "WQTM.DE"},
-      {"ticker": "WQTM", "mic": "ETFP", "exchange": "Borsa Italiana", "currency": "EUR", "symbol": "WQTM.MI"},
-      {"ticker": "WQTM", "mic": "XLON", "exchange": "London Stock Exchange", "currency": "USD", "symbol": "WQTM.L"}]},
     {"isin": "IE0002Y8CX98", "basis": "WisdomTree Europe Defence : WDEF Milan/Paris/Londres, EUDF Xetra (page produit WisdomTree)", "rows": [
-      {"ticker": "EUDF", "mic": "XETR", "exchange": "Xetra", "currency": "EUR", "symbol": "EUDF.DE"},
-      {"ticker": "WDEF", "mic": "ETFP", "exchange": "Borsa Italiana", "currency": "EUR", "symbol": "WDEF.MI"},
       {"ticker": "WDEF", "mic": "XPAR", "exchange": "Euronext Paris", "currency": "EUR", "symbol": "WDEF.PA"},
       {"ticker": "WDEF", "mic": "XLON", "exchange": "London Stock Exchange", "currency": "USD", "symbol": "WDEF.L"}]},
-    {"isin": "GB00B15KXQ89", "basis": "WisdomTree Copper : COPA Londres USD", "rows": [
-      {"ticker": "COPA", "mic": "XLON", "exchange": "London Stock Exchange", "currency": "USD", "symbol": "COPA.L"}]},
     {"isin": "IE00BLCHJB90", "basis": "Global X Robotics & AI : BOTZ Londres USD, XB0T Xetra (Deutsche Börse)", "rows": [
       {"ticker": "BOTZ", "mic": "XLON", "exchange": "London Stock Exchange", "currency": "USD", "symbol": "BOTZ.L"},
       {"ticker": "XB0T", "mic": "XETR", "exchange": "Xetra", "currency": "EUR", "symbol": "XB0T.DE"}]},
@@ -80,9 +59,7 @@
       {"ticker": "URNU", "mic": "XLON", "exchange": "London Stock Exchange", "currency": "USD", "symbol": "URNU.L"}]},
     {"isin": "IE00BMC38736", "basis": "VanEck Semiconductor : SMH Londres USD/Milan/Paris, VVSM Xetra (fiche VanEck)", "rows": [
       {"ticker": "SMH", "mic": "XLON", "exchange": "London Stock Exchange", "currency": "USD", "symbol": "SMH.L"},
-      {"ticker": "VVSM", "mic": "XETR", "exchange": "Xetra", "currency": "EUR", "symbol": "VVSM.DE"},
-      {"ticker": "SMH", "mic": "ETFP", "exchange": "Borsa Italiana", "currency": "EUR", "symbol": "SMH.MI"},
-      {"ticker": "SMH", "mic": "XPAR", "exchange": "Euronext Paris", "currency": "EUR", "symbol": "SMH.PA"}]},
+      {"ticker": "VVSM", "mic": "XETR", "exchange": "Xetra", "currency": "EUR", "symbol": "VVSM.DE"}]},
     {"isin": "IE00BD4TXV59", "basis": "UBS Core MSCI World : UETW Xetra, WRDUSW SIX USD, WRDA Milan, WRDB Londres USD (fiche UBS 06/2026)", "rows": [
       {"ticker": "UETW", "mic": "XETR", "exchange": "Xetra", "currency": "EUR", "symbol": "UETW.DE"},
       {"ticker": "WRDUSW", "mic": "XSWX", "exchange": "SIX Swiss Exchange", "currency": "USD", "symbol": "WRDUSW.SW"},

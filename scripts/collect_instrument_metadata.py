@@ -97,7 +97,7 @@ def parse_text(text,isin):
       'distribution':r'(?:Use of (?:Income|Profits)|Income Treatment|Distribution Policy|Affectation des r[ée]sultats|Politique de distribution)\s*[:\n]?\s*(Accumulating|Distributing|Capitalisation|Distribution)\b',
       'domicile':r'(?:Fund Domicile|Domicile|Domiciliation|Domicile du fonds)\s*[:\n]?\s*(Ireland|Irlande|Luxembourg|Germany|Allemagne|France|Jersey)\b',
       'replicationMethod':r'(?:Replication (?:Method|methodology)|M[ée]thode de r[ée]plication|Replication|R[ée]plication)\s*[:\n]?\s*(Physical(?:\s*\((?:Full replication|Optimised sampling)\))?|Synthetic|Physique|Synth[ée]tique|Direct Replication|Indirect\s*\(Swap Based\))\b',
-      'pea':r'(?:PEA eligibility|Eligible PEA|[ÉE]ligibilit[ée] (?:au )?PEA|[ÉE]ligible (?:au )?PEA)\s*[:\n]?\s*(Yes|No|Oui|Non)\b',
+      'pea':r'(?:PEA eligibility|Eligible PEA|[ÉE]ligibilit[ée] (?:au )?PEA|[ÉE]ligible (?:au )?PEA|R[ée]gime fiscal PEA)\s*[:\n]?\s*(Yes|No|Oui|Non)\b',
       'currencyHedge':r'(?:Currency Hedged|Currency Hedge|Couverture de change|Couvert contre le risque de change)\s*[:\n]?\s*(Yes|No|Oui|Non)\b',
     }
     result={}
@@ -132,8 +132,13 @@ def parse_json(body,isin):
     mapping={'useOfProfitsCode':'distribution','domicile':'domicile','productStructure':'replicationMethod'}
     return {field:points[key]['value'] for key,field in mapping.items() if isinstance(points.get(key,{}).get('value'),str) and points[key]['value']}
 
+LISTING_HOSTS=set(json.loads((ROOT/'scripts/listing-source-hosts.json').read_text())['hosts'])
+
 def parse_listings(body,source,url,checked):
     if 'www.justetf.com/' in url:return []  # Listings require an issuer or exchange row, not a specialist profile alone.
+    # Mirrors (fund-data platforms, document aggregators) may describe a fund but are not listing evidence.
+    from urllib.parse import urlsplit
+    if urlsplit(url).scheme!='https' or urlsplit(url).hostname not in LISTING_HOSTS:return []
     isin=source['isin'];digest=hashlib.sha256(body).hexdigest();rows=[]
     markets=EXCHANGE_MICS
     if body.lstrip().startswith(b'{'):
