@@ -9,7 +9,7 @@ Inventaire des champs réellement présents dans les observations actives. Couve
 | Calendrier annuel | 238/258 | 0 | 13 | 7 | 0 |
 | Pays | 229/235 | 23 | 0 | 6 | 0 |
 | Secteurs | 229/235 | 23 | 0 | 5 | 1 |
-| Positions pondérées | 232/235 | 23 | 0 | 0 | 3 |
+| Positions pondérées | 234/235 | 23 | 0 | 0 | 1 |
 
 ## Premiers calendriers des 13 parts récentes
 
@@ -41,8 +41,6 @@ Les caractéristiques statiques et cotations sont exclues de ce chantier conform
 | instrument | Amundi PEA Euro Court Terme UCITS ETF Acc (FR0013346681) | Secteurs | Non applicable | ETF monétaire €STR à réplication synthétique : pas de pays, secteurs ou positions actions ; le panier de collatéral du swap ne décrit pas l’exposition. |
 | instrument | Amundi PEA Euro Court Terme UCITS ETF Acc (FR0013346681) | Positions pondérées | Non applicable | ETF monétaire €STR à réplication synthétique : pas de pays, secteurs ou positions actions ; le panier de collatéral du swap ne décrit pas l’exposition. |
 | instrument | Amundi European Strategic Autonomy UCITS ETF Acc (LU3180074463) | Calendrier annuel | Première année complète en cours ou à venir | Première année civile complète : 2026. Publication possible à partir du 2027-01-01, selon l’émetteur ; aucun calendrier complet ne peut encore être collecté. |
-| instrument | Invesco FTSE All-World UCITS ETF Accumulating (IE000716YHJ7) | Positions pondérées | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
-| instrument | Invesco FTSE All-World UCITS ETF Distributing (IE0000QLH0G6) | Positions pondérées | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
 | instrument | Global X Robotics & Artificial Intelligence UCITS ETF USD Acc (IE00BLCHJB90) | Calendrier annuel | Non publié | La source officielle actuelle publie des performances glissantes et cumulées, collectées séparément, sans calendrier annuel complet. Les historiques mensuels restent automatisés. Le rendement NAV depuis janvier sera intégré comme année civile uniquement sur une observation au 31 décembre, après clôture et hors année de lancement partielle, avec sa preuve conservée. |
 | instrument | Global X Uranium UCITS ETF USD Acc (IE000NDWFGA5) | Calendrier annuel | Non publié | La source officielle actuelle publie des performances glissantes et cumulées, collectées séparément, sans calendrier annuel complet. Les historiques mensuels restent automatisés. Le rendement NAV depuis janvier sera intégré comme année civile uniquement sur une observation au 31 décembre, après clôture et hors année de lancement partielle, avec sa preuve conservée. |
 | instrument | Global X Cybersecurity UCITS ETF USD Acc (IE00BMH5Y871) | Calendrier annuel | Non publié | La source officielle actuelle publie des performances glissantes et cumulées, collectées séparément, sans calendrier annuel complet. Les historiques mensuels restent automatisés. Le rendement NAV depuis janvier sera intégré comme année civile uniquement sur une observation au 31 décembre, après clôture et hors année de lancement partielle, avec sa preuve conservée. |

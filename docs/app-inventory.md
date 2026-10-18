@@ -47,7 +47,7 @@ Généré depuis les routes, le catalogue et les observations actives. Régéné
 | lexicon | 44 |
 | reference | 11 |
 | scpi | 8 |
-| series | 671 |
+| series | 681 |
 
 ## Champs des instruments
 
@@ -58,7 +58,7 @@ Généré depuis les routes, le catalogue et les observations actives. Régéné
 | performance | 238/258 |
 | countries | 229/258 |
 | sectors | 229/258 |
-| holdings | 232/258 |
+| holdings | 234/258 |
 
 Les raisons des absences figurent dans [l’inventaire des lacunes](automation-gaps.md).
 
