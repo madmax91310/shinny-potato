@@ -215,20 +215,33 @@
     },
     "update-editorial-radar.yml": {
       "name": "Radar éditorial quotidien",
-      "runId": 39139397579,
+      "runId": 39139621779,
       "attempt": 1,
-      "completedAt": "2026-10-18T15:14:39Z",
-      "status": "success",
+      "completedAt": "2026-10-18T15:15:54Z",
+      "status": "failure",
       "lastSuccessAt": "2026-10-18T15:14:39Z",
-      "collectionStatus": "success",
+      "collectionStatus": "failure",
       "validationStatus": "unknown",
       "recordingStatus": "not-run",
       "publicationStatus": "not-run",
       "lastCollectionSuccessAt": "2026-10-18T15:14:39Z",
       "lastPublicationSuccessAt": null,
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39139397579",
-      "failures": [],
-      "dataFailures": {}
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39139621779",
+      "failures": [
+        {
+          "job": "report-failures",
+          "step": "Run echo 'Radar partiel : une famille de sources locales est illisible ; ses signaux précédents sont conservés. Voir editorial-radar-observations.' >> \"$GITHUB_STEP_SUMMARY\""
+        }
+      ],
+      "dataFailures": {
+        "radar:etf": {
+          "name": "Radar · etf",
+          "completedAt": "2026-10-18T15:15:54Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39139621779",
+          "cause": "La page de communiqués Vanguard a changé de format.",
+          "field": "Sources du radar"
+        }
+      }
     },
     "update-presentation-actors.yml": {
       "name": "Présentations des acteurs et offres",
@@ -444,11 +457,11 @@
       "failures": []
     }
   },
-  "updatedAt": "2026-10-18T15:15:01Z",
+  "updatedAt": "2026-10-18T15:15:54Z",
   "monitoring": {
     "schemaVersion": 1,
-    "checkedAt": "2026-10-18T15:15:22.981293+00:00",
-    "revision": 118,
+    "checkedAt": "2026-10-18T15:16:12.214134+00:00",
+    "revision": 119,
     "active": {
       "publication:update-practical-sheets.yml": {
         "name": "Sources des fiches pratiques",
@@ -464,7 +477,26 @@
         "cause": "deploy / build : Run node scripts/test-portfolio-roadmap.mjs",
         "id": "publication:update-practical-sheets.yml",
         "firstSeenAt": "2026-10-18T11:43:59.694981+00:00",
-        "lastSeenAt": "2026-10-18T15:15:22.981293+00:00"
+        "lastSeenAt": "2026-10-18T15:16:12.214134+00:00"
+      },
+      "collection:update-editorial-radar.yml:radar:etf": {
+        "name": "Radar · etf",
+        "tools": [
+          "Radar éditorial"
+        ],
+        "impactScope": "collector",
+        "workflow": "update-editorial-radar.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39139621779",
+        "to": "/donnees-a-revoir",
+        "completedAt": "2026-10-18T15:15:54Z",
+        "cause": "La page de communiqués Vanguard a changé de format.",
+        "field": "Sources du radar",
+        "sourceUrls": [],
+        "kind": "collection",
+        "dataId": "radar:etf",
+        "id": "collection:update-editorial-radar.yml:radar:etf",
+        "firstSeenAt": "2026-10-18T15:16:12.214134+00:00",
+        "lastSeenAt": "2026-10-18T15:16:12.214134+00:00"
       },
       "publication:update-publication-observations.yml": {
         "name": "Pouvoir d’achat et niveaux des anniversaires",
@@ -481,7 +513,7 @@
         "cause": "deploy / build : Run node scripts/test-portfolio-roadmap.mjs",
         "id": "publication:update-publication-observations.yml",
         "firstSeenAt": "2026-10-18T12:52:04.191577+00:00",
-        "lastSeenAt": "2026-10-18T15:15:22.981293+00:00"
+        "lastSeenAt": "2026-10-18T15:16:12.214134+00:00"
       },
       "publication:update-insurance.yml": {
         "name": "Présentations d’assurance-vie",
@@ -497,7 +529,7 @@
         "cause": "deploy / build : Run node scripts/test-portfolio-roadmap.mjs",
         "id": "publication:update-insurance.yml",
         "firstSeenAt": "2026-10-18T12:59:38.607258+00:00",
-        "lastSeenAt": "2026-10-18T15:15:22.981293+00:00"
+        "lastSeenAt": "2026-10-18T15:16:12.214134+00:00"
       },
       "publication:update-scpi.yml": {
         "name": "Présentations de SCPI",
@@ -513,7 +545,7 @@
         "cause": "deploy / build : Run node scripts/test-portfolio-roadmap.mjs",
         "id": "publication:update-scpi.yml",
         "firstSeenAt": "2026-10-18T13:01:05.329643+00:00",
-        "lastSeenAt": "2026-10-18T15:15:22.981293+00:00"
+        "lastSeenAt": "2026-10-18T15:16:12.214134+00:00"
       },
       "publication:update-presentation-actors.yml": {
         "name": "Présentations des acteurs et offres",
@@ -529,7 +561,7 @@
         "cause": "deploy / build : Run node scripts/test-portfolio-roadmap.mjs",
         "id": "publication:update-presentation-actors.yml",
         "firstSeenAt": "2026-10-18T12:56:03.999172+00:00",
-        "lastSeenAt": "2026-10-18T15:15:22.981293+00:00"
+        "lastSeenAt": "2026-10-18T15:16:12.214134+00:00"
       },
       "publication:update-regulatory-data.yml": {
         "name": "Paramètres fiscaux, LDDS et tarifs de courtiers",
@@ -546,7 +578,7 @@
         "cause": "deploy / build : Run node scripts/test-portfolio-roadmap.mjs",
         "id": "publication:update-regulatory-data.yml",
         "firstSeenAt": "2026-10-18T12:59:15.049897+00:00",
-        "lastSeenAt": "2026-10-18T15:15:22.981293+00:00"
+        "lastSeenAt": "2026-10-18T15:16:12.214134+00:00"
       },
       "workflow:update-company-analysis.yml": {
         "name": "Analyses d’entreprises",
@@ -562,7 +594,7 @@
         "cause": "report-failures : Run echo 'Some sources failed. Previous observations were retained independently; stale ratios are omitted by the publication engine.' >> \"$GITHUB_STEP_SUMMARY\"",
         "id": "workflow:update-company-analysis.yml",
         "firstSeenAt": "2026-10-18T14:47:12.930226+00:00",
-        "lastSeenAt": "2026-10-18T15:15:22.981293+00:00"
+        "lastSeenAt": "2026-10-18T15:16:12.214134+00:00"
       },
       "publication:update-economic-data.yml": {
         "name": "Taux d’épargne, ménages, SCPI et fonds euros",
@@ -579,7 +611,7 @@
         "cause": "deploy / build : Run node scripts/test-portfolio-roadmap.mjs",
         "id": "publication:update-economic-data.yml",
         "firstSeenAt": "2026-10-17T12:18:32.387705+00:00",
-        "lastSeenAt": "2026-10-18T15:15:22.981293+00:00"
+        "lastSeenAt": "2026-10-18T15:16:12.214134+00:00"
       },
       "publication:update-non-bond-expansion.yml": {
         "name": "Nouveaux actifs et historiques",
@@ -598,7 +630,7 @@
         "cause": "deploy / build : Run node scripts/test-portfolio-roadmap.mjs",
         "id": "publication:update-non-bond-expansion.yml",
         "firstSeenAt": "2026-10-18T12:58:02.935819+00:00",
-        "lastSeenAt": "2026-10-18T15:15:22.981293+00:00"
+        "lastSeenAt": "2026-10-18T15:16:12.214134+00:00"
       },
       "publication:update-qualified-exposures.yml": {
         "name": "Expositions ETF qualifiées",
@@ -618,7 +650,7 @@
         "cause": "deploy / build : Run node scripts/test-portfolio-roadmap.mjs ; deploy / fallback-build : Run npm run build",
         "id": "publication:update-qualified-exposures.yml",
         "firstSeenAt": "2026-10-16T12:48:21.924866+00:00",
-        "lastSeenAt": "2026-10-18T15:15:22.981293+00:00"
+        "lastSeenAt": "2026-10-18T15:16:12.214134+00:00"
       },
       "collection:update-exposure-expansion.yml:etf-exposure-expansion-IE00BK1PV551": {
         "name": "Xtrackers MSCI World UCITS ETF 1D",
@@ -642,7 +674,7 @@
         "dataId": "etf-exposure-expansion-IE00BK1PV551",
         "id": "collection:update-exposure-expansion.yml:etf-exposure-expansion-IE00BK1PV551",
         "firstSeenAt": "2026-10-17T20:42:44.184725+00:00",
-        "lastSeenAt": "2026-10-18T15:15:22.981293+00:00"
+        "lastSeenAt": "2026-10-18T15:16:12.214134+00:00"
       },
       "publication:update-exposure-expansion.yml": {
         "name": "35 ETF des allocations",
@@ -658,7 +690,7 @@
         "cause": "deploy / build : Run node scripts/test-portfolio-roadmap.mjs ; deploy / fallback-build : Run npm run build ; report-failures : Run echo 'ETF exposure collection incomplete; previous validated observations preserved.' >> \"$GITHUB_STEP_SUMMARY\"",
         "id": "publication:update-exposure-expansion.yml",
         "firstSeenAt": "2026-10-18T13:05:53.785879+00:00",
-        "lastSeenAt": "2026-10-18T15:15:22.981293+00:00"
+        "lastSeenAt": "2026-10-18T15:16:12.214134+00:00"
       },
       "workflow:update-instrument-metadata.yml": {
         "name": "Caractéristiques et statut PEA par ISIN",
@@ -677,7 +709,7 @@
         "cause": "verify : Run node scripts/test-full-auto-routing.mjs",
         "id": "workflow:update-instrument-metadata.yml",
         "firstSeenAt": "2026-10-18T12:57:39.234539+00:00",
-        "lastSeenAt": "2026-10-18T15:15:22.981293+00:00"
+        "lastSeenAt": "2026-10-18T15:16:12.214134+00:00"
       },
       "unobserved:onboard-assets.yml": {
         "name": "Intégration des nouveaux actifs",
@@ -700,40 +732,10 @@
         "cause": "Aucune exécution terminée avec une date exploitable.",
         "id": "unobserved:onboard-assets.yml",
         "firstSeenAt": "2026-10-18T12:02:38.068054+00:00",
-        "lastSeenAt": "2026-10-18T15:15:22.981293+00:00"
+        "lastSeenAt": "2026-10-18T15:16:12.214134+00:00"
       }
     },
     "events": [
-      {
-        "revision": 89,
-        "at": "2026-10-18T07:35:09.542393+00:00",
-        "opened": [],
-        "resolved": [
-          {
-            "name": "Bitwise Physical Bitcoin ETP",
-            "tools": [
-              "Duels de portefeuilles",
-              "Générateur de portefeuilles",
-              "Présentation ETF"
-            ],
-            "impactScope": "asset",
-            "sourceUrls": [
-              "https://bitwiseinvestments.eu/de/products/bitwise-physical-bitcoin-etp/",
-              "https://bitwiseinvestments.eu/products/bitwise-physical-bitcoin-etp/",
-              "https://www.justetf.com/en/etf-profile.html?isin=DE000A27Z304",
-              "https://www.slickcharts.com/currency/BTC/returns"
-            ],
-            "to": "/bibliotheque-donnees?id=DE000A27Z304",
-            "kind": "conflict",
-            "field": "Encours",
-            "cause": "Valeur contradictoire pour la même période (2026-10-17) : Encours. Dernière observation conservée ; propositions archivées (etf:DE000A27Z304:aum:7ee6ce84bc97ae28c68471dd:2026-10-17).",
-            "id": "radar:2d430d016b85864c0efc7f9a",
-            "firstSeenAt": "2026-10-17T20:32:40.441529+00:00",
-            "lastSeenAt": "2026-10-18T07:34:00.622079+00:00",
-            "resolvedAt": "2026-10-18T07:35:09.542393+00:00"
-          }
-        ]
-      },
       {
         "revision": 90,
         "at": "2026-10-18T07:52:38.079329+00:00",
@@ -1579,6 +1581,14 @@
             "resolvedAt": "2026-10-18T15:15:22.981293+00:00"
           }
         ]
+      },
+      {
+        "revision": 119,
+        "at": "2026-10-18T15:16:12.214134+00:00",
+        "opened": [
+          "collection:update-editorial-radar.yml:radar:etf"
+        ],
+        "resolved": []
       }
     ],
     "resolved": [
