@@ -40,6 +40,9 @@ jobs:
       - uses: actions/setup-node@v7.0.0
         with:
           node-version: 24
+      - name: TEMPORARY SEC access probe
+        if: github.event_name == 'pull_request'
+        run: python scripts/probe_sec_access.py
       - run: pip install beautifulsoup4==4.15.0
       - run: sudo apt-get update && sudo apt-get install -y poppler-utils
       - run: npm ci
