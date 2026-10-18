@@ -281,3 +281,33 @@ class NewCollectorStatusTests(unittest.TestCase):
   self.assertEqual(failure['checks'],['node scripts/playwright-tools.mjs — strict mode violation'])
 
 if __name__ == '__main__': unittest.main()
+
+class AuditRegressionTests(unittest.TestCase):
+ def test_older_run_finishing_later_cannot_restore_obsolete_failure(self):
+  latest=run(2,'success',updated_at='2026-10-18T15:20:00Z')
+  old=run(1,'failure',updated_at='2026-10-18T15:23:00Z',run_attempt=3)
+  state=update_status({},latest,[],[{'successes':[{'id':'exact-share'}]}])
+  self.assertEqual(update_status(state,old,[],[{'errors':[{'id':'exact-share','error':'Old parser'}]}]),state)
+ def test_continue_on_error_does_not_hide_collection_failure(self):
+  jobs=[{'name':'refresh','conclusion':'success','steps':[{'name':'Collect observations: collect','conclusion':'success'}]},
+        {'name':'report-failures','conclusion':'failure','steps':[]}]
+  row=update_status({},run(workflow='update-market-monthly.yml'),jobs)['workflows']['update-market-monthly.yml']
+  self.assertEqual(row['collectionStatus'],'failure')
+ def test_per_source_reports_and_independent_company_fields(self):
+  report=normalize_report({'series':[],'fxFailed':False,'crossFxFailed':True})
+  self.assertEqual(report['errors'][0]['id'],'history:fx:TWD')
+  report=normalize_report({'validated':['one'],'failed':[{'isin':'two','reason':'PDF missing'}]})
+  self.assertEqual(report['errors'][0]['id'],'listing:two')
+  report=normalize_report({'_collector':'universe','companies':{'TER':{'quote':'updated','forecast':'stale','primarySource':'403','accounts':'updated'}}})
+  self.assertEqual([x['id'] for x in report['errors']],['universe:TER:forecast'])
+ def test_publication_requires_built_files_or_complete_snapshot_ancestry(self):
+  from publish_automation_status import reconcile_publication
+  state={'workflows':{'monthly':{'publicationStatus':'failure','dataFailures':{'fx':'timeout'},'publicationReceipt':{'commit':'new','files':{'src/data/monthly.json':'blob'}}}}}
+  build={'sha':'code','dataSha':'new','builtAt':'2026-10-18T21:00:00Z'}
+  missing={'schemaVersion':1,'files':{}}
+  self.assertEqual(reconcile_publication(state,build,missing,lambda *_:'ahead'),state,'Fallback may exclude files')
+  exact={'schemaVersion':1,'files':{'src/data/monthly.json':'blob'}}
+  row=reconcile_publication(state,build,exact,lambda *_:'behind')['workflows']['monthly']
+  self.assertEqual(row['publicationStatus'],'success');self.assertEqual(row['dataFailures'],{'fx':'timeout'})
+  del build['dataSha']
+  self.assertEqual(reconcile_publication(state,build,missing,lambda *_:'ahead')['workflows']['monthly']['publicationStatus'],'success')

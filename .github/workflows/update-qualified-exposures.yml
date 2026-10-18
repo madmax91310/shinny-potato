@@ -100,6 +100,14 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           bash scripts/commit-validated-data.sh 'Refresh qualified exact-share exposure data' scripts/generated-holdings-sources.json scripts/instrument-metadata-sources.json src/data/qualified-listing-records.json src/data/exposure-sleeves.json src/data/vanguard-equity-underliers.json docs/exposure-coverage.json docs/exposure-coverage.md src/data/qualified-exposure-etfs.json src/data/automated-etf.json src/data/dca-equity-exposures.json src/pages/dca-profiles/exposures.json src/pages/dca-profiles/exposures-extra-0.json src/pages/dca-profiles/exposures-extra-1.json src/pages/dca-profiles/exposures-extra-2.json src/pages/dca-profiles/catalog.json src/pages/dca-profiles/holdings*.json src/data/dca-complete-holdings.json src/data/dca-security-classifications.json src/data/dca-holdings-status.json
+      - name: Preserve data publication receipt
+        if: always()
+        uses: actions/upload-artifact@v7.0.1
+        with:
+          name: data-publication-receipt
+          path: ${{ runner.temp }}/data-publication-receipt.json
+          if-no-files-found: ignore
+          retention-days: 35
   deploy:
     needs: refresh
     if: github.event_name != 'pull_request'

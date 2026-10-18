@@ -179,9 +179,55 @@ def collect_source(source, now):
     return result
 
 
+def refresh_fx(old_fx, previous_status, now, retry=False, selected=True):
+    """Retry each failed/missing FX source; a skipped source cannot clear its incident."""
+    latest = month_shift(now.replace(day=1), -1).strftime('%Y-%m')
+    reports = copy.deepcopy(previous_status.get('fxSources', {}))
+    for key, failed in [('ECB', previous_status.get('fxFailed')),
+                        *[(c, previous_status.get('crossFxFailed')) for c in CROSS_SERIES]]:
+        if key not in reports and failed:
+            reports[key] = {'id': 'fx:' + key, 'status': 'failed', 'reason': 'Previous attempt failed; awaiting retry'}
+    if not selected:
+        return old_fx, reports
+    due = [c for c in CROSS_SERIES if not retry or reports.get(c, {}).get('status') == 'failed'
+           or latest not in old_fx.get('derived', {}).get(c, {}).get('observations', {})]
+    ecb_due = not retry or reports.get('ECB', {}).get('status') == 'failed' or latest not in old_fx.get('months', {})
+    if not ecb_due and not due:
+        return old_fx, reports
+    fx = copy.deepcopy(old_fx)
+    checked = now.isoformat()
+    try:
+        body = download(ECB, max_bytes=12_000_000)
+        candidate = parse_fx(body, now)
+        if old_fx and not set(old_fx.get('months', {})).issubset(candidate['months']):
+            reject('ECB coverage would regress')
+        fx = candidate
+        reports['ECB'] = {'id': 'fx:ECB', 'status': 'validated', 'checkedAt': checked}
+    except Exception as error:
+        for key in ['ECB', *due]:
+            reports[key] = {'id': 'fx:' + key, 'status': 'failed', 'checkedAt': checked,
+                            'reason': str(error) if key == 'ECB' else 'ECB dependency unavailable: ' + str(error)}
+        print('ECB FX failed:', error, flush=True)
+        return old_fx, reports
+    derived = copy.deepcopy(old_fx.get('derived', {}))
+    for currency in due:
+        try:
+            cross = parse_cross_fx(download(CROSS_SERIES[currency], max_bytes=4_000_000), body, now, currency)
+            if not set(derived.get(currency, {}).get('observations', {})).issubset(cross['observations']):
+                reject(f'{currency} cross-rate coverage would regress')
+            derived[currency] = cross
+            reports[currency] = {'id': 'fx:' + currency, 'status': 'validated', 'checkedAt': checked}
+            print(currency, 'cross FX:', len(cross['observations']), 'months', flush=True)
+        except Exception as error:
+            reports[currency] = {'id': 'fx:' + currency, 'status': 'failed', 'checkedAt': checked, 'reason': str(error)}
+            print(currency, 'cross FX failed:', error, flush=True)
+    return apply_cross_rates(fx, derived), reports
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--apply', action='store_true')
+    parser.add_argument('--output', type=pathlib.Path)
     parser.add_argument('--only', nargs='+')
     parser.add_argument('--retry-failed', action='store_true')
     args = parser.parse_args()
@@ -190,41 +236,20 @@ def main():
     active_path = ROOT / 'src/data/ranking-histories.json'
     active = json.loads(active_path.read_text()) if active_path.exists() else {}
     status_path = ROOT / 'scripts/source-snapshots/ranking-collection-status.json'
-    previous = json.loads(status_path.read_text()).get('series', []) if status_path.exists() else []
+    previous_status = json.loads(status_path.read_text()) if status_path.exists() else {}
+    previous = previous_status.get('series', [])
     reports = {item['id']: item for item in previous}
     latest = month_shift(now.replace(day=1), -1).strftime('%Y-%m')
     if args.only and set(args.only) - {'fx', *(s['id'] for s in config)}:
         parser.error('Unknown source id')
     fx_path = ROOT / 'src/data/monthly-fx.json'
     old_fx = json.loads(fx_path.read_text()) if fx_path.exists() else {}
-    fx_failed = False
-    cross_failed = False
-    if (not args.only or 'fx' in args.only) and (not args.retry_failed or latest not in old_fx.get('months', {})):
-        try:
-            ecb_body = download(ECB, max_bytes=12_000_000)
-            fx = parse_fx(ecb_body, now)
-            if old_fx and not set(old_fx['months']).issubset(fx['months']):
-                reject('ECB coverage would regress')
-            # A failed cross source keeps its last validated observations, visibly.
-            derived = dict(old_fx.get('derived', {}))
-            for currency, url in CROSS_SERIES.items():
-                try:
-                    cross = parse_cross_fx(download(url, max_bytes=4_000_000), ecb_body, now, currency)
-                    previous = derived.get(currency, {}).get('observations', {})
-                    if not set(previous).issubset(cross['observations']):
-                        reject(f'{currency} cross-rate coverage would regress')
-                    derived[currency] = cross
-                    print(f'{currency} cross FX:', len(cross['observations']), 'months')
-                except Exception as error:
-                    print(f'{currency} cross FX failed:', error, flush=True)
-                    cross_failed = True
-            apply_cross_rates(fx, derived)
-            if args.apply:
-                write_json_atomic(fx_path, fx)
-            print('ECB monthly FX:', len(fx['months']), 'months')
-        except Exception as error:
-            print('ECB FX failed:', error, flush=True)
-            fx_failed = True
+    fx, fx_reports = refresh_fx(old_fx, previous_status, now, args.retry_failed,
+                                not args.only or 'fx' in args.only)
+    fx_failed = fx_reports.get('ECB', {}).get('status') == 'failed'
+    cross_failed = any(fx_reports.get(c, {}).get('status') == 'failed' for c in CROSS_SERIES)
+    if args.apply and fx != old_fx:
+        write_json_atomic(fx_path, fx)
     selected = [s for s in config if (not args.only or s['id'] in args.only) and
                 (not args.retry_failed or reports.get(s['id'], {}).get('status') == 'failed' or active.get(s['id'], {}).get('periodEnd', '') < latest)]
     def one(source):
@@ -245,10 +270,13 @@ def main():
             if item['status'] == 'validated':
                 active[item['id']] = item['record']
                 proofs[item['id']] = item['proof']
+    status = {'checkedAt': now.isoformat(), 'fxFailed': fx_failed, 'crossFxFailed': cross_failed, 'fxSources': fx_reports, 'series': sorted(reports.values(), key=lambda s: s['id'])}
+    if args.output:
+        write_json_atomic(args.output, status)
     if args.apply:
         write_json_atomic(active_path, active)
         write_json_atomic(proof_path, proofs)
-        write_json_atomic(status_path, {'checkedAt': now.isoformat(), 'fxFailed': fx_failed, 'crossFxFailed': cross_failed, 'series': sorted(reports.values(), key=lambda s: s['id'])})
+        write_json_atomic(status_path, status)
     if fx_failed or cross_failed or any(item['status'] == 'failed' for item in reports.values()):
         raise SystemExit(1)
 

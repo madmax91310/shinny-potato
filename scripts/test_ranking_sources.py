@@ -73,3 +73,31 @@ class RankingSourcesTest(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
+class RankingRetryTest(unittest.TestCase):
+    def test_cross_retry_is_independent_and_failure_preserves_original_dates(self):
+        from unittest.mock import patch
+        from collect_ranking_sources import refresh_fx, ECB
+        now = dt.datetime(1999, 3, 12, tzinfo=UTC)
+        ecb = document([('1999-01-29', 1.2), ('1999-02-26', 1.35)])
+        old = parse_fx(ecb, dt.datetime(1999, 3, 3, tzinfo=UTC))
+        previous = {'fxFailed': False, 'crossFxFailed': True}
+        def fetch(url, **kwargs):
+            return ecb if url == ECB else fred([('1999-01-29', 32), ('1999-02-26', 33)])
+        with patch('collect_ranking_sources.download', side_effect=fetch) as download:
+            new, report = refresh_fx(old, previous, now, retry=True)
+        self.assertEqual(download.call_count, 2)
+        self.assertEqual(report['TWD']['status'], 'validated')
+        self.assertEqual(new['months']['1999-02']['rates']['TWD'], 44.55)
+        original = copy.deepcopy(new)
+        def broken(url, **kwargs):
+            if url == ECB: return ecb
+            raise TimeoutError('TWD timeout')
+        with patch('collect_ranking_sources.download', side_effect=broken):
+            failed, report = refresh_fx(new, {'fxSources':report}, now)
+        self.assertEqual(failed['derived'], original['derived'])
+        self.assertEqual(report['TWD']['status'], 'failed')
+        with patch('collect_ranking_sources.download') as download:
+            _, skipped = refresh_fx(failed, {'fxSources':report}, now, selected=False)
+        download.assert_not_called()
+        self.assertEqual(skipped['TWD']['status'], 'failed')

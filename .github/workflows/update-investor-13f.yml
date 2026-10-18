@@ -77,6 +77,14 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           bash scripts/commit-validated-data.sh 'Update SEC 13F portfolios and preserve prior quarters' public/data/investors
+      - name: Preserve data publication receipt
+        if: always()
+        uses: actions/upload-artifact@v7.0.1
+        with:
+          name: data-publication-receipt
+          path: ${{ runner.temp }}/data-publication-receipt.json
+          if-no-files-found: ignore
+          retention-days: 35
   # GITHUB_TOKEN pushes do not trigger the usual push workflow. Explicitly reuse
   # the same checked build and Pages deployment for the newly committed snapshot.
   deploy:

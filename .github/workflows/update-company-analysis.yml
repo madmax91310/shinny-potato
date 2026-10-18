@@ -160,7 +160,10 @@ jobs:
         if: always()
         with:
           name: company-analysis-observation
-          path: ${{ runner.temp }}/company-observation.json
+          path: |
+            ${{ runner.temp }}/company-observation.json
+            ${{ runner.temp }}/company-universe-observation.json
+            ${{ runner.temp }}/company-depth-observation.json
           if-no-files-found: ignore
           retention-days: 35
       - uses: actions/upload-artifact@v7.0.1
@@ -178,6 +181,14 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           bash scripts/commit-validated-data.sh 'Refresh company accounts and valuation observations' src/data/company-analysis.json src/data/company-forecast-evaluation.json src/data/company-profiles.json
+      - name: Preserve data publication receipt
+        if: always()
+        uses: actions/upload-artifact@v7.0.1
+        with:
+          name: data-publication-receipt
+          path: ${{ runner.temp }}/data-publication-receipt.json
+          if-no-files-found: ignore
+          retention-days: 35
       - name: Report optional valuation access
         if: github.event_name != 'pull_request'
         env:

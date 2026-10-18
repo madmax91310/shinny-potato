@@ -58,6 +58,14 @@ jobs:
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           VALIDATED_DATA_CHECK='node scripts/audit-calculator-series.mjs' \
           bash scripts/commit-validated-data.sh 'Update World Bank monthly gold history' src/data/worldbank-gold-monthly.json
+      - name: Preserve data publication receipt
+        if: always()
+        uses: actions/upload-artifact@v7.0.1
+        with:
+          name: data-publication-receipt
+          path: ${{ runner.temp }}/data-publication-receipt.json
+          if-no-files-found: ignore
+          retention-days: 35
       - name: Collection summary
         run: |
           node --input-type=module -e "import fs from 'node:fs'; const d = JSON.parse(fs.readFileSync('src/data/worldbank-gold-monthly.json')); fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, 'Or : ' + d.points.length + ' mois, jusqu’à ' + d.points.at(-1)[0] + '. Source Banque mondiale, CC BY 4.0.\n');"

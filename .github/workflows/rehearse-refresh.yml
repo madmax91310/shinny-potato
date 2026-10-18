@@ -6,6 +6,9 @@ name: Rehearse future data refreshes
 on:
   schedule:
     - cron: '17 4 20 * *'
+  push:
+    branches: [master]
+    paths: ['.github/workflows/rehearse-refresh.yml', 'scripts/simulate-refresh.mjs']
   workflow_dispatch:
   pull_request:
     paths: ['.github/workflows/rehearse-refresh.yml', 'scripts/simulate-refresh.mjs']
@@ -44,6 +47,8 @@ jobs:
       - run: node scripts/test-equity-duels.mjs
       - run: node scripts/test-gold-consumers.mjs
       - run: node scripts/playwright-tools.mjs
+      - name: Validate collected observations
+        run: echo 'Rehearsal checks passed'
       - if: failure()
         run: |
           echo "Répétition ${{ matrix.scenario }} en échec : une future collecte serait bloquée par ce contrôle. À corriger avant la vraie collecte." >> "$GITHUB_STEP_SUMMARY"

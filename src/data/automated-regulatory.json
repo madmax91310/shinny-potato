@@ -196,6 +196,61 @@
       "sha256": "feaede3a764b9048beb98b24b2a14cf90aea99ee069ab28857456dad9c3900da",
       "scope": "Résident fiscal français ; régime général, hors exceptions historiques",
       "method": "Champ ou tableau identifié dans la publication XML DILA ; date de publication distincte de la date d’effet juridique"
+    },
+    "pel": {
+      "generations": [
+        {
+          "from": "2026-01-01",
+          "to": null,
+          "rate": 2.0
+        },
+        {
+          "from": "2025-01-01",
+          "to": "2025-12-31",
+          "rate": 1.75
+        },
+        {
+          "from": "2024-01-01",
+          "to": "2024-12-31",
+          "rate": 2.25
+        },
+        {
+          "from": "2023-01-01",
+          "to": "2023-12-31",
+          "rate": 2.0
+        },
+        {
+          "from": "2016-08-01",
+          "to": "2022-12-31",
+          "rate": 1.0
+        },
+        {
+          "from": "2016-02-01",
+          "to": "2016-07-31",
+          "rate": 1.5
+        },
+        {
+          "from": "2015-02-01",
+          "to": "2016-01-31",
+          "rate": 2.0
+        },
+        {
+          "from": "2003-08-01",
+          "to": "2015-01-31",
+          "rate": 2.5
+        }
+      ],
+      "values": {
+        "pelCeiling": 61200.0
+      },
+      "publishedAt": "2026-10-09",
+      "checkedAt": "2026-10-18",
+      "sourceUrl": "https://www.service-public.gouv.fr/particuliers/vosdroits/F16140",
+      "downloadUrl": "https://lecomarquage.service-public.gouv.fr/vdd/3.5/part/xml/F16140.xml",
+      "title": "Plan épargne logement (PEL)",
+      "sha256": "c6290665e1fa1dc7d021eb1bb81f56077d6f49ed8b4c409bcc40f33bf4ab2958",
+      "scope": "Résident fiscal français ; régime général, hors exceptions historiques",
+      "method": "Champ ou tableau identifié dans la publication XML DILA ; date de publication distincte de la date d’effet juridique"
     }
   }
 }

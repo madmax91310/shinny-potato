@@ -27,6 +27,37 @@ DATA_LABELS = {'purchasing-general': 'Prix à la consommation', 'purchasing-alim
 
 def normalize_report(report):
     """Adapt issuer/index reports without turning preserved values into recovered sources."""
+    if isinstance(report.get('series'), list):
+        rows = report['series'] + list(report.get('fxSources', {}).values())
+        # Legacy booleans still represent an unresolved source, not a successful retry.
+        if not report.get('fxSources'):
+            rows += [{'id': 'fx:' + key, 'status': 'failed', 'reason': 'Source de change en échec'}
+                     for key, failed in [('ECB', report.get('fxFailed')), ('TWD', report.get('crossFxFailed'))] if failed]
+        return {'successes': [{'id': 'history:' + r['id']} for r in rows if r.get('status') == 'validated'],
+                'errors': [{'id': 'history:' + r['id'], 'field': 'Change' if r['id'].startswith('fx:') else 'Historique mensuel',
+                            'error': r.get('reason', 'Collecte échouée')} for r in rows if r.get('status') == 'failed']}
+    if isinstance(report.get('validated'), list) and isinstance(report.get('failed'), list):
+        return {'successes': [{'id': 'listing:' + isin} for isin in report['validated']],
+                'errors': [{'id': 'listing:' + r['isin'], 'field': 'Cotation', 'error': r.get('reason', 'Collecte échouée')}
+                           for r in report['failed']]}
+    if isinstance(report.get('companies'), dict):
+        result = {'successes': [], 'errors': []}
+        # Isolate every producer and field: a quote cannot repair an earnings forecast.
+        fields = {'accounts','quote','forecast','cashBasis','cashReference','depth','history','quarter',
+                  'publication','decision','solidity','estimates','historySupplement','valuationShareBasis',
+                  'targetForecast','targetCashReference'}
+        for company, observations in report['companies'].items():
+            if not isinstance(observations, dict):
+                continue
+            for field in fields & observations.keys():
+                value = observations[field]
+                identifier = report.get('_collector', 'company') + ':' + company + ':' + field
+                if value in ('updated', 'qualified'):
+                    result['successes'].append({'id': identifier})
+                elif isinstance(value, str) and value != 'cached-with-original-observation-date':
+                    result['errors'].append({'id': identifier, 'name': company, 'field': field,
+                        'error': observations.get(field + 'Detail', value)})
+        return result
     if report.get('_collector') == 'dca-equities':
         return {'successes': [{'id': 'dca-equity:' + asset} for asset in report.get('updated', [])],
                 'errors': [{'id': 'dca-equity:' + asset, 'field': 'Classification pays/secteur',
@@ -156,8 +187,7 @@ def report_files(directory):
     root. Snapshots of src/data are evidence, never reports, and stay unread.
     """
     root = pathlib.Path(directory)
-    top = sorted(root.glob('*.json'))
-    return top or sorted(root.glob('_temp/**/*.json'))
+    return sorted(root.glob('*.json')) + sorted(root.glob('_temp/**/*.json'))
 
 
 def read_report(path, workflow):
@@ -217,8 +247,10 @@ def update_status(state, run, jobs, reports=None):
         return result
     entries = result.get('workflows', {})
     previous = entries.get(workflow, {})
-    stamp = (run['updated_at'], run['id'], run.get('run_attempt', 1))
-    old_stamp = (previous.get('completedAt', ''), previous.get('runId', 0), previous.get('attempt', 1))
+    # Run IDs follow creation order. An older queued snapshot finishing later must
+    # never replace a recovery collected by a newer run (nor on a later retry).
+    stamp = (run['id'], run.get('run_attempt', 1))
+    old_stamp = (previous.get('runId', 0), previous.get('attempt', 1))
     inactive = {row['id'] for report in reports or [] for row in normalize_report(report).get('inactive', [])}
     retires_legacy_alert = bool(inactive & previous.get('dataFailures', {}).keys())
     if stamp < old_stamp or (stamp == old_stamp and not retires_legacy_alert) or run['conclusion'] in ('cancelled', 'skipped', 'neutral'):
@@ -246,7 +278,7 @@ def update_status(state, run, jobs, reports=None):
         for step in job.get('steps', []):
             if step.get('conclusion') in ('failure', 'timed_out'):
                 failures.append({'job': job['name'], 'step': step['name'], **({'checks': named[:3]} if named else {})})
-    refresh_jobs = [job for job in jobs if job['name'] == REGISTRY[workflow]['collectionJob']]
+    refresh_jobs = [job for job in jobs if (job['name'] == REGISTRY[workflow]['collectionJob'] or job['name'].startswith(REGISTRY[workflow]['collectionJob'] + ' ('))]
     steps = [step for job in refresh_jobs for step in job.get('steps', [])]
     def phase_status(names):
         selected = [step for step in steps if step.get('name') in names]
@@ -267,7 +299,7 @@ def update_status(state, run, jobs, reports=None):
     recording_status = phase_status(['Commit validated observations'])
     if recording_status == 'unknown':
         recording_status = 'not-run'
-    if data_failures:
+    if data_failures or any(j['name'] == 'report-failures' and j.get('conclusion') == 'failure' for j in jobs):
         collection_status = 'failure'
     elif not any(step.get('name') in collection_names for step in steps):
         # Older runs have no phase metadata. Keep their historical evidence,
@@ -282,6 +314,7 @@ def update_status(state, run, jobs, reports=None):
     failed = failed or any(value == 'failure' for value in (collection_status, validation_status, recording_status, publication_status))
     result['workflows'] = entries
     entries[workflow] = {'name': WORKFLOWS[workflow], 'runId': run['id'], 'attempt': run.get('run_attempt', 1),
+        'headSha': run.get('head_sha'), 'createdAt': run.get('created_at'),
         'completedAt': run['updated_at'], 'status': 'failure' if failed or data_failures else 'success',
         'lastSuccessAt': previous.get('lastSuccessAt') if failed or data_failures else run['updated_at'],
         'collectionStatus': collection_status, 'validationStatus': validation_status, 'recordingStatus': recording_status, 'publicationStatus': publication_status,
@@ -290,6 +323,32 @@ def update_status(state, run, jobs, reports=None):
         'runUrl': run['html_url'], 'failures': failures, 'dataFailures': data_failures}
     result['schemaVersion'] = 1
     result['updatedAt'] = run['updated_at']
+    return result
+
+
+def reconcile_publication(state, build, manifest, compare):
+    """Clear a publication block only with matching built bytes or full-snapshot ancestry.
+
+    Fallback may exclude unknown assets: dataSha alone never certifies their publication.
+    Collection incidents and failed checks remain visible after successful publication.
+    """
+    result = json.loads(json.dumps(state))
+    if manifest.get('schemaVersion') != 1 or not build.get('sha') or not build.get('builtAt'):
+        return result
+    for row in result.get('workflows', {}).values():
+        receipt = row.get('publicationReceipt', {})
+        files = receipt.get('files', {})
+        if not files or not receipt.get('commit'):
+            continue
+        exact = all(manifest.get('files', {}).get(name) == sha for name, sha in files.items())
+        included = exact
+        if not included and not build.get('dataSha'):
+            included = compare(receipt['commit'], build['sha']) in ('ahead', 'identical')
+        if included:
+            row['publicationStatus'] = 'success'
+            row['lastPublicationSuccessAt'] = build['builtAt']
+            row['publishedCodeSha'] = build['sha']
+            row['publishedDataSha'] = build.get('dataSha', build['sha'])
     return result
 
 
@@ -342,16 +401,16 @@ def main():
                 runs.extend(candidates)
                 continue
             if candidates:
-                latest = max(candidates, key=lambda r: r['updated_at'])
-                successful = [r for r in candidates if r['conclusion'] == 'success' and r['updated_at'] < latest['updated_at']]
+                latest = max(candidates, key=lambda r: (r['id'], r.get('run_attempt', 1)))
+                successful = [r for r in candidates if r['conclusion'] == 'success' and r['id'] < latest['id']]
                 if successful:
-                    runs.append(max(successful, key=lambda r: r['updated_at']))
+                    runs.append(max(successful, key=lambda r: r['id']))
                 runs.append(latest)
     elif not args.monitor_only:
         require_event = json.loads(args.event.read_text())
         runs = [require_event['workflow_run']]
     publication_history = []
-    for run in sorted(runs, key=lambda r: (r['updated_at'], r['id'])):
+    for run in sorted(runs, key=lambda r: (r['id'], r.get('run_attempt', 1))):
         jobs = []
         page = 1
         while True:
@@ -381,6 +440,18 @@ def main():
                     for path in report_files(directory):
                         reports.append(read_report(path, run['path'].split('/')[-1]))
         state = update_status(state, run, jobs, reports)
+        workflow = run['path'].split('/')[-1]
+        row = state.get('workflows', {}).get(workflow, {})
+        if row.get('runId') == run['id']:
+            receipts = api(f'/actions/runs/{run["id"]}/artifacts?per_page=100')['artifacts']
+            if any(a['name'] == 'data-publication-receipt' and not a['expired'] for a in receipts):
+                with tempfile.TemporaryDirectory() as directory:
+                    subprocess.run(['gh', 'run', 'download', str(run['id']), '--repo', repo,
+                                    '--name', 'data-publication-receipt', '--dir', directory],
+                                   check=True, capture_output=True, timeout=45)
+                    receipt = json.loads((pathlib.Path(directory) / 'data-publication-receipt.json').read_text())
+                    if receipt.get('schemaVersion') == 1 and isinstance(receipt.get('files'), dict):
+                        row['publicationReceipt'] = receipt
         publication_history.append((run, jobs))
     if args.backfill:
         state = repair_publication_history(state, publication_history)
@@ -393,6 +464,22 @@ def main():
             head = api('/git/ref/heads/master')['object']['sha']
             api('/git/refs', 'POST', {'ref': f'refs/heads/{BRANCH}', 'sha': head})
     state = include_configured_workflows(state)
+    try:
+        owner, project = repo.split('/')
+        public = f'https://{owner}.github.io/{project}/'
+        def published(path):
+            with urllib.request.urlopen(public + path, timeout=20) as response:
+                return json.load(response)
+        comparisons = {}
+        def compare(base, head):
+            key = (base, head)
+            if key not in comparisons:
+                comparisons[key] = api(f'/compare/{base}...{head}')['status']
+            return comparisons[key]
+        state = reconcile_publication(state, published('build-info.json'),
+                                      published('data/publication-manifest.json'), compare)
+    except (urllib.error.HTTPError, urllib.error.URLError, ValueError, KeyError, TimeoutError):
+        print('Publication non vérifiable ; incidents précédents conservés.')
     context = json.loads(subprocess.run(['node', 'scripts/build-monitoring-context.mjs'], check=True, capture_output=True, text=True, timeout=120).stdout)
     radar = None
     try:
