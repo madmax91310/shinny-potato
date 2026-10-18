@@ -50,7 +50,7 @@ def checked_observation(incoming, previous, checked):
     return {**values, 'checkedAt': checked, 'modifiedAt': checked}
 
 
-def merge_collection(report, current, baseline):
+def merge_collection(report, current, baseline, sibling_aum=None):
     next_records = copy.deepcopy(current)
     checked = report['checkedAt'][:10]
     for share in report['shares']:
@@ -59,7 +59,7 @@ def merge_collection(report, current, baseline):
         if old and (old['currency'] != share['currency'] or old['productId'] != share['productId']):
             reject('Active automated share identity changed')
         from etf_anomalies import anomalies
-        issues = anomalies(old, share)
+        issues = anomalies(old, share, (sibling_aum or {}).get(isin, ()))
         if issues:
             reject('Suspicious ETF change; previous record preserved: ' + ' ; '.join(issues))
         record = {**old, 'currency': share['currency'], 'productId': share['productId'], 'sourceUrl': old.get('sourceUrl', share['sourceUrl']) if share.get('exposureOnly') else share['sourceUrl'], 'provider': share.get('provider', 'iShares')}
