@@ -133,7 +133,7 @@
       "recordingStatus": "success",
       "publicationStatus": "success",
       "lastCollectionSuccessAt": "2026-10-18T21:19:08Z",
-      "lastPublicationSuccessAt": "2026-10-18T20:50:01Z",
+      "lastPublicationSuccessAt": "2026-10-18T20:47:59Z",
       "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39163451851",
       "failures": [],
       "dataFailures": {},
@@ -400,8 +400,8 @@
         },
         "schemaVersion": 1
       },
-      "publishedCodeSha": "410124f0bb1d8d061c363221cfe1080e9bdc81f0",
-      "publishedDataSha": "410124f0bb1d8d061c363221cfe1080e9bdc81f0"
+      "publishedCodeSha": "87ca0724a145641aca964e07f237e1037303659d",
+      "publishedDataSha": "87ca0724a145641aca964e07f237e1037303659d"
     },
     "update-scpi.yml": {
       "name": "Présentations de SCPI",
@@ -485,20 +485,20 @@
     "update-editorial-radar.yml": {
       "monitorVersion": 2,
       "name": "Radar éditorial quotidien",
-      "runId": 39167300221,
+      "runId": 39167330694,
       "attempt": 1,
       "headSha": "ef9632a2a044621c5f7d23de52e832f510a72f51",
-      "createdAt": "2026-10-18T21:19:10Z",
-      "completedAt": "2026-10-18T21:19:54Z",
+      "createdAt": "2026-10-18T21:19:37Z",
+      "completedAt": "2026-10-18T21:20:46Z",
       "status": "success",
-      "lastSuccessAt": "2026-10-18T21:19:54Z",
+      "lastSuccessAt": "2026-10-18T21:20:46Z",
       "collectionStatus": "success",
       "validationStatus": "unknown",
       "recordingStatus": "not-run",
       "publicationStatus": "not-run",
-      "lastCollectionSuccessAt": "2026-10-18T21:19:54Z",
+      "lastCollectionSuccessAt": "2026-10-18T21:20:46Z",
       "lastPublicationSuccessAt": null,
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39167300221",
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39167330694",
       "failures": [],
       "dataFailures": {}
     },
@@ -986,10 +986,10 @@
       "dataFailures": {}
     }
   },
-  "updatedAt": "2026-10-18T21:19:54Z",
+  "updatedAt": "2026-10-18T21:20:46Z",
   "monitoring": {
     "schemaVersion": 1,
-    "checkedAt": "2026-10-18T21:20:23.587833+00:00",
+    "checkedAt": "2026-10-18T21:21:05.613158+00:00",
     "revision": 133,
     "active": {
       "publication:update-practical-sheets.yml": {
@@ -1007,7 +1007,7 @@
         "cause": "deploy / build : Run node scripts/test-portfolio-roadmap.mjs",
         "id": "publication:update-practical-sheets.yml",
         "firstSeenAt": "2026-10-18T11:43:59.694981+00:00",
-        "lastSeenAt": "2026-10-18T21:20:23.587833+00:00"
+        "lastSeenAt": "2026-10-18T21:21:05.613158+00:00"
       },
       "publication:update-insurance.yml": {
         "name": "Présentations d’assurance-vie",
@@ -1024,7 +1024,7 @@
         "cause": "deploy / build : Run node scripts/test-portfolio-roadmap.mjs",
         "id": "publication:update-insurance.yml",
         "firstSeenAt": "2026-10-18T12:59:38.607258+00:00",
-        "lastSeenAt": "2026-10-18T21:20:23.587833+00:00"
+        "lastSeenAt": "2026-10-18T21:21:05.613158+00:00"
       },
       "publication:update-scpi.yml": {
         "name": "Présentations de SCPI",
@@ -1041,7 +1041,7 @@
         "cause": "deploy / build : Run node scripts/test-portfolio-roadmap.mjs",
         "id": "publication:update-scpi.yml",
         "firstSeenAt": "2026-10-18T13:01:05.329643+00:00",
-        "lastSeenAt": "2026-10-18T21:20:23.587833+00:00"
+        "lastSeenAt": "2026-10-18T21:21:05.613158+00:00"
       },
       "publication:update-presentation-actors.yml": {
         "name": "Présentations des acteurs et offres",
@@ -1058,7 +1058,7 @@
         "cause": "deploy / build : Run node scripts/test-portfolio-roadmap.mjs",
         "id": "publication:update-presentation-actors.yml",
         "firstSeenAt": "2026-10-18T12:56:03.999172+00:00",
-        "lastSeenAt": "2026-10-18T21:20:23.587833+00:00"
+        "lastSeenAt": "2026-10-18T21:21:05.613158+00:00"
       },
       "workflow:update-market-monthly.yml": {
         "name": "Historiques mensuels des marchés",
@@ -1078,7 +1078,7 @@
         "cause": "report-failures : Run echo 'Une source mensuelle a échoué : historique précédent conservé. Les autres mises à jour validées ont été publiées si les audits et le déploiement ont réussi.' >> \"$GITHUB_STEP_SUMMARY\"",
         "id": "workflow:update-market-monthly.yml",
         "firstSeenAt": "2026-10-18T16:00:58.550580+00:00",
-        "lastSeenAt": "2026-10-18T21:20:23.587833+00:00"
+        "lastSeenAt": "2026-10-18T21:21:05.613158+00:00"
       },
       "workflow:update-company-analysis.yml": {
         "name": "Analyses d’entreprises",
@@ -1095,7 +1095,7 @@
         "cause": "report-failures : Run echo 'Some sources failed. Previous observations were retained independently; stale ratios are omitted by the publication engine.' >> \"$GITHUB_STEP_SUMMARY\"",
         "id": "workflow:update-company-analysis.yml",
         "firstSeenAt": "2026-10-18T14:47:12.930226+00:00",
-        "lastSeenAt": "2026-10-18T21:20:23.587833+00:00"
+        "lastSeenAt": "2026-10-18T21:21:05.613158+00:00"
       },
       "publication:update-economic-data.yml": {
         "name": "Taux d’épargne, ménages, SCPI et fonds euros",
@@ -1113,7 +1113,7 @@
         "cause": "deploy / build : Run node scripts/test-portfolio-roadmap.mjs",
         "id": "publication:update-economic-data.yml",
         "firstSeenAt": "2026-10-17T12:18:32.387705+00:00",
-        "lastSeenAt": "2026-10-18T21:20:23.587833+00:00"
+        "lastSeenAt": "2026-10-18T21:21:05.613158+00:00"
       },
       "publication:update-qualified-exposures.yml": {
         "name": "Expositions ETF qualifiées",
@@ -1134,7 +1134,7 @@
         "cause": "deploy / build : Run node scripts/test-portfolio-roadmap.mjs ; deploy / fallback-build : Run npm run build",
         "id": "publication:update-qualified-exposures.yml",
         "firstSeenAt": "2026-10-16T12:48:21.924866+00:00",
-        "lastSeenAt": "2026-10-18T21:20:23.587833+00:00"
+        "lastSeenAt": "2026-10-18T21:21:05.613158+00:00"
       },
       "collection:update-exposure-expansion.yml:etf-exposure-expansion-IE00BK1PV551": {
         "name": "Xtrackers MSCI World UCITS ETF 1D",
@@ -1161,7 +1161,7 @@
         "dataId": "etf-exposure-expansion-IE00BK1PV551",
         "id": "collection:update-exposure-expansion.yml:etf-exposure-expansion-IE00BK1PV551",
         "firstSeenAt": "2026-10-18T15:23:28.234259+00:00",
-        "lastSeenAt": "2026-10-18T21:20:23.587833+00:00"
+        "lastSeenAt": "2026-10-18T21:21:05.613158+00:00"
       },
       "unobserved:onboard-assets.yml": {
         "name": "Intégration des nouveaux actifs",
@@ -1185,7 +1185,7 @@
         "cause": "Aucune exécution terminée avec une date exploitable.",
         "id": "unobserved:onboard-assets.yml",
         "firstSeenAt": "2026-10-18T12:02:38.068054+00:00",
-        "lastSeenAt": "2026-10-18T21:20:23.587833+00:00"
+        "lastSeenAt": "2026-10-18T21:21:05.613158+00:00"
       }
     },
     "events": [
