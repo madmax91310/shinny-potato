@@ -69,7 +69,9 @@ def normalize_report(report):
         failing = {}
         for error in report['errors']:
             reason = str(error.get('reason', 'Source indisponible'))
-            if 'Valeur contradictoire pour la même période' in reason:
+            # An older observation set aside by the date-regression guard is that guard working,
+            # not an unreadable source: the newer value stays published.
+            if 'Valeur contradictoire pour la même période' in reason or reason.startswith('Observation plus ancienne ignorée'):
                 continue
             failing.setdefault('radar:' + str(error.get('family') or 'radar'), []).append(reason)
         return {'successes': [{'id': 'radar:' + family} for family in report['coverage'] if 'radar:' + family not in failing],
@@ -103,8 +105,11 @@ def normalize_report(report):
                 'errors':[{'id':prefix + key,'name':records.get(key, {}).get('title', key),'error':cause}
                           for key,cause in failures.items()]}
     if 'observations' in report and 'indices' not in report and 'shares' not in report:
+        # 'waiting': the next scheduled edition is not due yet. The alert is retired without
+        # claiming a recovery; it reopens as a failure once the edition is overdue.
         return {'successes':[{'id':o['id']} for o in report['observations'] if o['status']=='success'],
-                'errors':[{'id':o['id'],'name':o.get('name',o['id']),'error':o.get('reason','Collecte échouée')} for o in report['observations'] if o['status']=='failure']}
+                'errors':[{'id':o['id'],'name':o.get('name',o['id']),'error':o.get('reason','Collecte échouée')} for o in report['observations'] if o['status']=='failure'],
+                'inactive':[{'id':o['id']} for o in report['observations'] if o['status']=='waiting']}
     if 'indices' in report:
         successes, errors = [], []
         for item in report['indices']:

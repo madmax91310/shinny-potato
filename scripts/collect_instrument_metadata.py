@@ -145,7 +145,7 @@ def main():
     path=ROOT/'src/data/automated-instrument-metadata.json';records=json.loads(path.read_text())
     status_path=ROOT/'src/data/instrument-metadata-status.json';status=json.loads(status_path.read_text());now=dt.datetime.now(UTC)
     def one(s):return s['isin'],*collect(s,now)
-    errors=[];updated=[];successes=[]
+    errors=[];updated=[];successes=[];within_grace=[]
     with ThreadPoolExecutor(max_workers=6) as pool:
         for isin,values,failures in pool.map(one,sources):
             old=records.get(isin,{})
@@ -158,10 +158,11 @@ def main():
             successes.extend({'id':f'{isin}:{field}'} for field in values)
             # Fail when previously automatic values stay unrenewed beyond the grace period; absent publications stay explicit pending fields.
             for field in old:
+                if field not in values and not renewal_overdue(old[field],now,field):within_grace.append({'id':f'{isin}:{field}'})
                 if field not in values and renewal_overdue(old[field],now,field):errors.append({'id':f'{isin}:{field}','field':field,'error':f'Previously automated metadata not renewed for more than {renewal_days(field)} days; original evidence retained.'})
     if a.apply:
         write_json_atomic(path,records);write_json_atomic(status_path,status)
-    write_json_atomic(a.output,{'checkedAt':now.isoformat(),'updated':updated,'successes':successes,'errors':errors,'pending':{isin:s['pending'] for isin,s in status.items() if s['pending']}})
+    write_json_atomic(a.output,{'checkedAt':now.isoformat(),'updated':updated,'successes':successes,'errors':errors,'inactive':within_grace,'pending':{isin:s['pending'] for isin,s in status.items() if s['pending']}})
     print(f'Metadata: {len(updated)}/{len(sources)} observed instruments; {len(errors)} failed renewals.')
     if errors:raise SystemExit(1)
 if __name__=='__main__':main()
