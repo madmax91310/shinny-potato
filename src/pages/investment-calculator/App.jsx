@@ -385,7 +385,7 @@ function InvestmentEditor({state,setState}){
             </ChoicePicker>
             <p className="ic-hint">Compare trois départs : avant, pendant et après la crise.</p>
           </div>}
-          {!isCustom && !crisisMode && <label>Devise de l’investissement <select aria-label="Devise de l’investissement" value={state.currency ?? 'native'} onChange={e => set({ currency: e.target.value })}><option value="native">Devise d’origine</option>{['EUR','USD'].map(c => <option key={c} value={c} disabled={!currencyOptions.includes(c)}>{c === 'EUR' ? 'Euros (EUR)' : 'Dollars (USD)'}</option>)}</select></label>}
+          {!isCustom && !crisisMode && <label>Devise de l’investissement <ChoicePicker aria-label="Devise de l’investissement" value={state.currency ?? 'native'} onChange={e => set({ currency: e.target.value })}><option value="native">Devise d’origine</option>{['EUR','USD'].map(c => <option key={c} value={c} disabled={!currencyOptions.includes(c)}>{c === 'EUR' ? 'Euros (EUR)' : 'Dollars (USD)'}</option>)}</ChoicePicker></label>}
           {calculation.error && <p role="alert">{calculation.error}</p>}
           <div>
             <p className="ic-eyebrow">Actif</p>
