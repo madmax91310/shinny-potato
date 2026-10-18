@@ -60,7 +60,19 @@ Its PNGs are saved under the existing `tool-visual-checks` workflow artifact.
 
 `mineral-scpi.webp` et `mineral-insurance.webp` : illustrations décoratives générées pour le style minéral clair choisi le 8 octobre 2026. Elles ne contiennent aucune donnée produit ; tous les noms, chiffres et conditions sont composés par `src/pages/presentation-shared/imageExport.js`. Le WebP conserve la transparence du PNG source.
 
-## Carte du comparatif World / ACWI
+## Comparatifs papier ETF et indices
+
+`comparison-paper-card.webp` : fond papier ivoire vierge, généré à partir de la
+direction validée le 18 octobre 2026 (coin replié vert, aucun paysage).
+Il ne contient aucun texte, chiffre, drapeau ou pictogramme. Le moteur commun
+`src/design-system/comparisonPaper.js` compose les informations des registres
+à chaque export. Les adaptateurs préservent les parts, les statuts PEA inconnus,
+le périmètre fonds/indice et la date de chaque composition. Les répartitions
+sont arrondies à une décimale pour la lecture ; les registres restent inchangés.
+Les performances et explications détaillées restent dans le texte de publication.
+`node scripts/test-index-ceramic.mjs` vérifie les deux exports en navigateur.
+
+## Ancienne carte World / ACWI
 
 `comparison-world-map.svg` : silhouette géographique issue des terres Natural Earth
 à l’échelle 1:110 millions (domaine public), récupérée le 10 octobre 2026 :
