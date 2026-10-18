@@ -1015,20 +1015,20 @@
     "update-editorial-radar.yml": {
       "monitorVersion": 2,
       "name": "Radar éditorial quotidien",
-      "runId": 39167533034,
+      "runId": 39167973361,
       "attempt": 1,
       "headSha": "ef9632a2a044621c5f7d23de52e832f510a72f51",
-      "createdAt": "2026-10-18T21:22:17Z",
-      "completedAt": "2026-10-18T21:23:06Z",
+      "createdAt": "2026-10-18T21:28:16Z",
+      "completedAt": "2026-10-18T21:28:55Z",
       "status": "success",
-      "lastSuccessAt": "2026-10-18T21:23:06Z",
+      "lastSuccessAt": "2026-10-18T21:28:55Z",
       "collectionStatus": "success",
       "validationStatus": "unknown",
       "recordingStatus": "not-run",
       "publicationStatus": "not-run",
-      "lastCollectionSuccessAt": "2026-10-18T21:23:06Z",
+      "lastCollectionSuccessAt": "2026-10-18T21:28:55Z",
       "lastPublicationSuccessAt": null,
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39167533034",
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39167973361",
       "failures": [],
       "dataFailures": {}
     },
@@ -1771,10 +1771,10 @@
       "dataFailures": {}
     }
   },
-  "updatedAt": "2026-10-18T21:28:15Z",
+  "updatedAt": "2026-10-18T21:28:55Z",
   "monitoring": {
     "schemaVersion": 1,
-    "checkedAt": "2026-10-18T21:29:04.193399+00:00",
+    "checkedAt": "2026-10-18T21:29:29.027100+00:00",
     "revision": 134,
     "active": {
       "publication:update-practical-sheets.yml": {
@@ -1792,7 +1792,7 @@
         "cause": "deploy / build : Run node scripts/test-portfolio-roadmap.mjs",
         "id": "publication:update-practical-sheets.yml",
         "firstSeenAt": "2026-10-18T11:43:59.694981+00:00",
-        "lastSeenAt": "2026-10-18T21:29:04.193399+00:00"
+        "lastSeenAt": "2026-10-18T21:29:29.027100+00:00"
       },
       "publication:update-insurance.yml": {
         "name": "Présentations d’assurance-vie",
@@ -1809,7 +1809,7 @@
         "cause": "deploy / build : Run node scripts/test-portfolio-roadmap.mjs",
         "id": "publication:update-insurance.yml",
         "firstSeenAt": "2026-10-18T12:59:38.607258+00:00",
-        "lastSeenAt": "2026-10-18T21:29:04.193399+00:00"
+        "lastSeenAt": "2026-10-18T21:29:29.027100+00:00"
       },
       "publication:update-scpi.yml": {
         "name": "Présentations de SCPI",
@@ -1826,7 +1826,7 @@
         "cause": "deploy / build : Run node scripts/test-portfolio-roadmap.mjs",
         "id": "publication:update-scpi.yml",
         "firstSeenAt": "2026-10-18T13:01:05.329643+00:00",
-        "lastSeenAt": "2026-10-18T21:29:04.193399+00:00"
+        "lastSeenAt": "2026-10-18T21:29:29.027100+00:00"
       },
       "publication:update-presentation-actors.yml": {
         "name": "Présentations des acteurs et offres",
@@ -1843,7 +1843,7 @@
         "cause": "deploy / build : Run node scripts/test-portfolio-roadmap.mjs",
         "id": "publication:update-presentation-actors.yml",
         "firstSeenAt": "2026-10-18T12:56:03.999172+00:00",
-        "lastSeenAt": "2026-10-18T21:29:04.193399+00:00"
+        "lastSeenAt": "2026-10-18T21:29:29.027100+00:00"
       },
       "workflow:update-market-monthly.yml": {
         "name": "Historiques mensuels des marchés",
@@ -1863,7 +1863,7 @@
         "cause": "report-failures : Run echo 'Une source mensuelle a échoué : historique précédent conservé. Les autres mises à jour validées ont été publiées si les audits et le déploiement ont réussi.' >> \"$GITHUB_STEP_SUMMARY\"",
         "id": "workflow:update-market-monthly.yml",
         "firstSeenAt": "2026-10-18T16:00:58.550580+00:00",
-        "lastSeenAt": "2026-10-18T21:29:04.193399+00:00"
+        "lastSeenAt": "2026-10-18T21:29:29.027100+00:00"
       },
       "workflow:update-company-analysis.yml": {
         "name": "Analyses d’entreprises",
@@ -1880,7 +1880,7 @@
         "cause": "report-failures : Run echo 'Some sources failed. Previous observations were retained independently; stale ratios are omitted by the publication engine.' >> \"$GITHUB_STEP_SUMMARY\"",
         "id": "workflow:update-company-analysis.yml",
         "firstSeenAt": "2026-10-18T14:47:12.930226+00:00",
-        "lastSeenAt": "2026-10-18T21:29:04.193399+00:00"
+        "lastSeenAt": "2026-10-18T21:29:29.027100+00:00"
       },
       "publication:update-economic-data.yml": {
         "name": "Taux d’épargne, ménages, SCPI et fonds euros",
@@ -1898,7 +1898,7 @@
         "cause": "deploy / build : Run node scripts/test-portfolio-roadmap.mjs",
         "id": "publication:update-economic-data.yml",
         "firstSeenAt": "2026-10-17T12:18:32.387705+00:00",
-        "lastSeenAt": "2026-10-18T21:29:04.193399+00:00"
+        "lastSeenAt": "2026-10-18T21:29:29.027100+00:00"
       },
       "publication:update-qualified-exposures.yml": {
         "name": "Expositions ETF qualifiées",
@@ -1919,7 +1919,7 @@
         "cause": "deploy / build : Run node scripts/test-portfolio-roadmap.mjs ; deploy / fallback-build : Run npm run build",
         "id": "publication:update-qualified-exposures.yml",
         "firstSeenAt": "2026-10-16T12:48:21.924866+00:00",
-        "lastSeenAt": "2026-10-18T21:29:04.193399+00:00"
+        "lastSeenAt": "2026-10-18T21:29:29.027100+00:00"
       },
       "unobserved:onboard-assets.yml": {
         "name": "Intégration des nouveaux actifs",
@@ -1943,7 +1943,7 @@
         "cause": "Aucune exécution terminée avec une date exploitable.",
         "id": "unobserved:onboard-assets.yml",
         "firstSeenAt": "2026-10-18T12:02:38.068054+00:00",
-        "lastSeenAt": "2026-10-18T21:29:04.193399+00:00"
+        "lastSeenAt": "2026-10-18T21:29:29.027100+00:00"
       }
     },
     "events": [
