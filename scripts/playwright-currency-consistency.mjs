@@ -53,7 +53,7 @@ try {
  assert.doesNotMatch(await page.locator('#pd-tweet').inputValue(),/NaN|undefined/)
  await go('tweet-midi')
  await page.getByRole('button',{name:'Comparatif ETF',exact:true}).click()
- await choose(page.getByLabel(/Sujet/),'monde')
+ await choose(page.getByLabel(/Sujet/),'usa')
  await page.getByRole('button',{name:'🔄 Générer',exact:true}).click()
  await page.getByRole('button',{name:'Euros (EUR)',exact:true}).click()
  assert.match(await page.locator('.tool-preview').innerText(),/Performances annuelles en euros/)
