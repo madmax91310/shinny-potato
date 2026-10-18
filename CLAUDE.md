@@ -5,6 +5,16 @@ financier pédagogique prêt à publier (texte + parfois image/vidéo), pour un 
 l'investissement. Déployé sur GitHub Pages (`.github/workflows/deploy-pages.yml`, push sur
 `master`), live sur `https://madmax91310.github.io/shinny-potato/`.
 
+## Référence d'audit obligatoire (18/10/2026)
+
+Avant toute modification, appliquer la référence de travail fournie par l'utilisateur :
+contrat de chaque outil, règles de données, règles éditoriales et visuelles, calendrier,
+recette avant livraison. Elle est chargée automatiquement ci-dessous. En cas de contradiction,
+une nouvelle instruction de l'utilisateur prime, puis le code actuel ; requalifier l'état
+courant avant d'affirmer qu'un constat de l'audit est toujours vrai.
+
+@docs/claude/audit-application-2026-10-18.md
+
 ## Architecture
 
 Chaque outil vit dans `src/pages/<outil>/` avec le même découpage :
@@ -145,3 +155,15 @@ s'alimente seule sans qu'un test sans rapport retienne les données :
 - **Un collecteur isole ses échecs** : une source en panne garde sa dernière valeur validée,
   les autres sont enregistrées et publiées, et l'échec reste visible (`report-failures`,
   issue « Fiabilité des données », écran « Données à revoir »).
+- **Voie de secours** : si le portail complet échoue sur un instantané dont le code a changé,
+  `fallback-build` recompose le dernier code publié + les nouvelles données
+  (`scripts/compose-fallback-snapshot.mjs`), rebuild, smoke test, puis publie
+  (`build-info.json` porte `sha` du code et `dataSha` des données). Les contrôles en échec restent rouges.
+- **Règles de fraîcheur** : un seul registre, `src/data/freshness-policy.json` (seuils par
+  famille de champs et calendriers de sources). Ne jamais réécrire un seuil en dur.
+- **Voies d'accès émetteurs** : `scripts/issuer-access-routes.json` (portails VanEck, API
+  WisdomTree, composants BlackRock, miroir BNP), lu par les collecteurs.
+- **Répétition mensuelle** : `rehearse-refresh.yml` rejoue le mois suivant, une panne BCE et le
+  passage d'année (`scripts/simulate-refresh.mjs`) ; un échec y annonce une collecte future bloquée.
+- **Textes officiels modifiés** : la surveillance ouvre une PR qui ajoute le nouveau texte à
+  `scripts/accepted-source-wording.json` ; la fusionner vaut validation humaine.

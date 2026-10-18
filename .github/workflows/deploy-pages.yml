@@ -195,6 +195,9 @@ jobs:
       - run: node scripts/test-practical-sheets.mjs
       - run: node scripts/test-performance-links.mjs
       - run: node scripts/test-deploy-scope.mjs
+      - run: node scripts/test-fallback-snapshot.mjs
+      - run: node scripts/test-browser-check-error.mjs
+      - run: node scripts/test-freshness-policy.mjs
       - name: Record the published commit for the data-only lane
         run: printf '{"sha":"%s","builtAt":"%s"}\n' "$(git rev-parse HEAD)" "$(date -u +%Y-%m-%dT%H:%M:%SZ)" > dist/build-info.json
       - uses: actions/upload-artifact@v7.0.1
@@ -459,3 +462,72 @@ jobs:
       - id: deployment
         if: steps.current.outputs.current == 'true'
         uses: actions/deploy-pages@v5.0.1
+
+  # Fallback lane: the full gate failed on a snapshot whose code changed since the
+  # published commit. Refreshed data must not wait for a human to repair the code:
+  # rebuild the published (already validated) code with the new automation data,
+  # and publish it if the build and the data smoke test pass. The failed checks
+  # stay red in this run and in the monitoring issue.
+  fallback-build:
+    needs: [scope, build, python-checks, browser-checks, exposure-browser-check, smoke]
+    if: >-
+      always() && github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
+      && needs.scope.result == 'success' && needs.scope.outputs.data_only != 'true' && needs.scope.outputs.published != ''
+      && !(needs.build.result == 'success' && needs.python-checks.result == 'success' && needs.smoke.result == 'success'
+           && needs.browser-checks.result == 'success' && needs.exposure-browser-check.result == 'success')
+    runs-on: ubuntu-26.04
+    permissions:
+      contents: read
+    outputs:
+      data_sha: ${{ steps.compose.outputs.data_sha }}
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          ref: ${{ inputs.ref || github.sha }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 20
+      - id: compose
+        run: node scripts/compose-fallback-snapshot.mjs --published "${{ needs.scope.outputs.published }}"
+      - run: npm ci
+      - run: npm run build
+      - name: Record the published code and the data snapshot
+        run: printf '{"sha":"%s","dataSha":"%s","lane":"fallback","builtAt":"%s"}\n' "${{ steps.compose.outputs.code_sha }}" "${{ steps.compose.outputs.data_sha }}" "$(date -u +%Y-%m-%dT%H:%M:%SZ)" > dist/build-info.json
+      - uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: chromium-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+      - run: npx playwright install --with-deps chromium
+      - run: node scripts/smoke-data-routes.mjs
+      - uses: actions/configure-pages@v6.0.0
+      - uses: actions/upload-pages-artifact@v5.0.0
+        with:
+          name: github-pages-fallback
+          path: dist
+
+  deploy-fallback:
+    needs: fallback-build
+    if: always() && needs.fallback-build.result == 'success'
+    runs-on: ubuntu-26.04
+    concurrency:
+      group: pages-production
+      cancel-in-progress: false
+      queue: max
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          ref: ${{ needs.fallback-build.outputs.data_sha }}
+      - name: Skip superseded production snapshots
+        id: current
+        run: bash scripts/check-pages-head.sh
+      - id: deployment
+        if: steps.current.outputs.current == 'true'
+        uses: actions/deploy-pages@v5.0.1
+        with:
+          artifact_name: github-pages-fallback
+      - if: steps.current.outputs.current == 'true'
+        run: echo "Données publiées avec le dernier code validé (voie de secours). Le code de master reste à réparer." >> "$GITHUB_STEP_SUMMARY"

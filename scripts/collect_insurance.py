@@ -1,4 +1,5 @@
 """Collect named life-insurance contracts from public distributor publications."""
+from accepted_wording import accepted_title
 import argparse
 import hashlib
 import datetime as dt
@@ -73,7 +74,7 @@ def check_contract_identity(soup, id_, today):
     config = PRODUCTS[id_]
     heading = soup.select_one('h1')
     actual = heading.get_text(' ', strip=True) if heading else ''
-    if actual == config['name']:
+    if actual == config['name'] or accepted_title(id_, actual):
         return
     # Avenir 2+ is explicitly a successor, NOT a spelling variant of Avenir 2.
     # The previous figures remain archived and are never refreshed from 2+.

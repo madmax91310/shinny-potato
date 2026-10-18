@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "description": "Known access routes per issuer, shared by every collector. When an issuer blocks or redirects automated clients, the working route is recorded here once instead of being rediscovered in each collector.",
+  "vaneck": {
+    "factsheet": "https://www.vaneck.com/{region}/en/library/fact-sheets/{name}",
+    "factsheetRegions": [
+      "nl",
+      "uk"
+    ],
+    "note": "The French gate redirects US-based runners to the US site; the Dutch then UK gates serve UCITS factsheets (Dutch gate confirmed in production 2026-10-17)."
+  },
+  "wisdomtree": {
+    "ucitsFactsheet": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/{isin}",
+    "appliesToIsinPrefix": "IE",
+    "note": "Product pages answer HTTP 403 to automated clients; the official Dataspan document API does not."
+  },
+  "blackrock": {
+    "characteristicsComponents": "keyFundFacts%2Clistings",
+    "note": "Full holdings components exceed the characteristics download limit; request only fund facts and listings."
+  },
+  "bnp": {
+    "discoveryHost": "www.analizy.pl",
+    "documentHost": "dokumenty.analizy.pl",
+    "note": "BNP-authored exact-share factsheets are discovered from a public document mirror (analizy.pl); the mirror is disclosed in every field's provenance and its page metrics are never used (see collect_bnp_etf.py)."
+  }
+}

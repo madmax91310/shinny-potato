@@ -1,4 +1,5 @@
 import {readFileSync,writeFileSync} from 'node:fs'
+import { wisdomtreeFactsheet, blackrockCharacteristicsEndpoint } from './issuer-routes.mjs'
 import {AUTOMATED_ETF} from '../src/data/automated-etf.js'
 import {INSTRUMENTS_BY_ISIN} from '../src/data/instruments.js'
 import {getInstrumentListings} from '../src/data/instrument-listings.js'
@@ -10,9 +11,9 @@ const currentDocument=url=>url?.replace(/(\/pdfDocuments\/(?:monthly-factsheet|k
 for(const [isin,r] of Object.entries(AUTOMATED_ETF)) {
  const facts=getInstrumentFacts(isin),listings=getInstrumentListings(isin),urls=[r.sourceUrl,facts.characteristicsSource?.url,PEA_REVIEWS_BY_ISIN[isin]?.sourceUrl,...(PEA_REVIEWS_BY_ISIN[isin]?.eligible===true?['https://www.justetf.com/fr/etf-profile.html?isin='+isin]:[]),...listings.map(l=>l.sourceUrl)]
  // Characteristics only need the fund facts and listings; full holdings exceed the download limit.
- const endpoint=url=>url.includes('blackrock.com/varnish-api/')?url.replace(/component=[^&]+/,'component=keyFundFacts%2Clistings'):url
+ const endpoint=blackrockCharacteristicsEndpoint
  // WisdomTree product pages answer 403 to automated clients; its official factsheet API does not.
- const issuerDocuments=urls.some(url=>url?.includes('wisdomtree.com/'))&&/^IE/.test(isin)?['https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/'+isin]:[]
+ const issuerDocuments=urls.some(url=>url?.includes('wisdomtree.com/'))&&wisdomtreeFactsheet(isin)?[wisdomtreeFactsheet(isin)]:[]
  metadata.push({isin,listings,urls:[...new Set([...urls.filter(Boolean),...issuerDocuments].map(currentDocument).map(endpoint))]})
  if(existing[isin])continue
  const name=INSTRUMENTS_BY_ISIN[isin]?.name??''

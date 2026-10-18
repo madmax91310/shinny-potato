@@ -1,0 +1,49 @@
+name: Rehearse future data refreshes
+# Monthly rehearsal: replays the next routine collections on synthetic data
+# (next month, ECB outage, year rollover) so that a check or a page frozen on
+# today's data fails here, weeks before the real collection would be held back.
+# It never commits or publishes anything.
+on:
+  schedule:
+    - cron: '17 4 20 * *'
+  workflow_dispatch:
+  pull_request:
+    paths: ['.github/workflows/rehearse-refresh.yml', 'scripts/simulate-refresh.mjs']
+permissions:
+  contents: read
+jobs:
+  rehearse:
+    runs-on: ubuntu-26.04
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix:
+        scenario: [next-month, ecb-outage, year-rollover]
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          ref: ${{ github.event_name == 'pull_request' && github.ref || 'master' }}
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: node scripts/test-simulate-refresh.mjs
+      - name: Simulate the collection
+        run: node scripts/simulate-refresh.mjs --scenario ${{ matrix.scenario }} | tee -a "$GITHUB_STEP_SUMMARY"
+      - run: npm run build
+      - uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: chromium-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+      - run: npx playwright install --with-deps chromium
+      - run: node scripts/smoke-data-routes.mjs
+      - run: node scripts/playwright-nasdaq-total-return.mjs
+      - run: node scripts/test-performance-currency.mjs
+      - run: node scripts/test-performance-rankings.mjs
+      - run: node scripts/test-equity-duels.mjs
+      - run: node scripts/test-gold-consumers.mjs
+      - run: node scripts/playwright-tools.mjs
+      - if: failure()
+        run: |
+          echo "Répétition ${{ matrix.scenario }} en échec : une future collecte serait bloquée par ce contrôle. À corriger avant la vraie collecte." >> "$GITHUB_STEP_SUMMARY"
