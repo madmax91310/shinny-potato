@@ -1414,7 +1414,11 @@ try {
   reviewChecks.peaCustody = (await page.locator('.data-review > .dr-list > .dr-item').filter({hasText: 'Trade Republic'}).filter({hasText: 'garde'}).count()) === 1;
   await choose(page.getByLabel('Afficher', { exact: true }), 'deadlines');
   const deadlineItems = buildReview().items.filter(item => item.until);
-  await page.waitForFunction(count => new URLSearchParams(location.search).get('view') === 'deadlines' && document.querySelectorAll('.data-review > .dr-list > .dr-item').length === count, deadlineItems.length);
+  // A large review catalogue can delay the filtered DOM on a shared CI runner.
+  await page.waitForFunction(count => new URLSearchParams(location.search).get('view') === 'deadlines' && document.querySelectorAll('.data-review > .dr-list > .dr-item').length === count, deadlineItems.length, { timeout: 60000 }).catch(async error => {
+    console.error('Deadline filter mismatch', { expected: deadlineItems.map(item => item.id), actual: await page.locator('.data-review > .dr-list > .dr-item h2').allTextContents(), url: page.url() });
+    throw error;
+  });
   reviewChecks.deadlines = (await page.locator('.data-review > .dr-list > .dr-item').count()) === deadlineItems.length;
   reviewChecks.sources = (await page.locator('.data-review > .dr-list').getByRole('link', { name: 'Source ↗', exact: true }).count()) === deadlineItems.flatMap(item => item.urls).length;
   await page.goto(`${BASE}/donnees-a-revoir?view=calendar&q=FR001400U5Q4`, { waitUntil: 'networkidle' });
