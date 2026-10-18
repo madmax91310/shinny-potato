@@ -1416,7 +1416,11 @@ try {
   // Offer deadlines come from the broker registry: derive the expected cards, never a fixed count.
   const deadlineGroups = groupReviews(buildReview().items.filter(item => item.until));
   await choose(page.getByLabel('Afficher', { exact: true }), 'deadlines');
-  await page.waitForFunction(count => new URLSearchParams(location.search).get('view') === 'deadlines' && document.querySelectorAll('.data-review > .dr-list > .dr-item').length === count, deadlineGroups.length);
+  // Grouped cards (as rendered): a large review catalogue can delay the filtered DOM on a shared CI runner.
+  await page.waitForFunction(count => new URLSearchParams(location.search).get('view') === 'deadlines' && document.querySelectorAll('.data-review > .dr-list > .dr-item').length === count, deadlineGroups.length, { timeout: 60000 }).catch(async error => {
+    console.error('Deadline filter mismatch', { expected: deadlineGroups.map(group => group.name), actual: await page.locator('.data-review > .dr-list > .dr-item h2').allTextContents(), url: page.url() });
+    throw error;
+  });
   reviewChecks.deadlines = deadlineGroups.length > 0 && (await page.locator('.data-review > .dr-list > .dr-item').count()) === deadlineGroups.length;
   reviewChecks.sources = (await page.locator('.data-review > .dr-list').getByRole('link', { name: 'Source ↗', exact: true }).count()) === deadlineGroups.filter(group => group.urls.length === 1).length;
   await page.goto(`${BASE}/donnees-a-revoir?view=calendar&q=FR001400U5Q4`, { waitUntil: 'networkidle' });

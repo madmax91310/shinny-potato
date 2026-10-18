@@ -69,7 +69,7 @@ if(process.argv.includes('--browser')) {
   await page.goto(base+'duels-portefeuilles')
   for(const d of newDuels) {await page.locator(`#pd-select [data-option][data-value="${DUELS.indexOf(d)}"]`).click();assert((await page.locator('#pd-tweet').inputValue()).length>100)}
   for(const id of ['thomas','audrey','lucie','alice']) {
-   await page.goto(base+'le-dca-de');await page.getByRole('button',{name:'Le DCA de…',exact:true}).click();await page.getByRole('group',{name:'Choisir un profil DCA',exact:true}).locator(`[data-option][data-value="${id}"]`).click()
+   await page.goto(base+'le-dca-de');await page.getByRole('button',{name:'Le DCA de…',exact:true}).click();await page.locator('.dca-prepared summary').first().click();await page.getByRole('group',{name:'Choisir un profil DCA',exact:true}).locator(`[data-option][data-value="${id}"]`).click()
    assert((await page.locator('#dca-draft').inputValue()).includes(PROFILES.find(p=>p.id===id).lines.find(l=>['timber','agribusiness'].includes(l.asset)).label))
   }
   assert.deepEqual(errors,[])
