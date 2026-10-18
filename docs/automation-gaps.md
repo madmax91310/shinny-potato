@@ -6,12 +6,12 @@ Inventaire des champs réellement présents dans les observations actives. Couve
 |---|---:|---:|---:|---:|---:|
 | Frais | 258/258 | 0 | 0 | 0 | 0 |
 | Encours | 258/258 | 0 | 0 | 0 | 0 |
-| Calendrier annuel | 238/258 | 0 | 12 | 4 | 4 |
-| Pays | 229/236 | 22 | 0 | 6 | 1 |
-| Secteurs | 229/236 | 22 | 0 | 5 | 2 |
-| Positions pondérées | 232/236 | 22 | 0 | 0 | 4 |
+| Calendrier annuel | 238/258 | 0 | 13 | 7 | 0 |
+| Pays | 229/235 | 23 | 0 | 6 | 0 |
+| Secteurs | 229/235 | 23 | 0 | 5 | 1 |
+| Positions pondérées | 232/235 | 23 | 0 | 0 | 3 |
 
-## Premiers calendriers des 12 parts récentes
+## Premiers calendriers des 13 parts récentes
 
 Contrôle quotidien par le workflow existant. Une première année complète validée est intégrée au registre actif ; le proxy de simulation reste soumis à sa propre fenêtre minimale. Une erreur de transport ou de validation conserve les observations précédentes et déclenche le signal de collecte.
 
@@ -31,20 +31,21 @@ Les échéances ci-dessous sont des dates minimales de disponibilité, pas des p
 | Amundi Core EUR High Yield Bond UCITS ETF (LU2970735911) | Oui | Première année complète en cours ou à venir | 2026 | 2027-01-01 | — |
 | Amundi STOXX Europe Defense UCITS ETF (LU3038520774) | Oui | Première année complète en cours ou à venir | 2026 | 2027-01-01 | — |
 | Amundi PEA Emergent (MSCI Emerging) ESG Transition UCITS ETF S - Acc (FR001400ZGO4) | Oui | Première année complète en cours ou à venir | 2026 | 2027-01-01 | — |
+| Amundi European Strategic Autonomy UCITS ETF Acc (LU3180074463) | Oui | Première année complète en cours ou à venir | 2026 | 2027-01-01 | — |
 
 Les caractéristiques statiques et cotations sont exclues de ce chantier conformément au périmètre demandé.
 
 | Type | Instrument / indice | Champ absent | Motif | Action |
 |---|---|---|---|---|
-| instrument | Amundi PEA Euro Court Terme UCITS ETF Acc (FR0013346681) | Pays | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
-| instrument | Amundi PEA Euro Court Terme UCITS ETF Acc (FR0013346681) | Secteurs | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
-| instrument | Amundi PEA Euro Court Terme UCITS ETF Acc (FR0013346681) | Positions pondérées | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
-| instrument | Amundi European Strategic Autonomy UCITS ETF Acc (LU3180074463) | Calendrier annuel | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
+| instrument | Amundi PEA Euro Court Terme UCITS ETF Acc (FR0013346681) | Pays | Non applicable | ETF monétaire €STR à réplication synthétique : pas de pays, secteurs ou positions actions ; le panier de collatéral du swap ne décrit pas l’exposition. |
+| instrument | Amundi PEA Euro Court Terme UCITS ETF Acc (FR0013346681) | Secteurs | Non applicable | ETF monétaire €STR à réplication synthétique : pas de pays, secteurs ou positions actions ; le panier de collatéral du swap ne décrit pas l’exposition. |
+| instrument | Amundi PEA Euro Court Terme UCITS ETF Acc (FR0013346681) | Positions pondérées | Non applicable | ETF monétaire €STR à réplication synthétique : pas de pays, secteurs ou positions actions ; le panier de collatéral du swap ne décrit pas l’exposition. |
+| instrument | Amundi European Strategic Autonomy UCITS ETF Acc (LU3180074463) | Calendrier annuel | Première année complète en cours ou à venir | Première année civile complète : 2026. Publication possible à partir du 2027-01-01, selon l’émetteur ; aucun calendrier complet ne peut encore être collecté. |
 | instrument | Invesco FTSE All-World UCITS ETF Accumulating (IE000716YHJ7) | Positions pondérées | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
 | instrument | Invesco FTSE All-World UCITS ETF Distributing (IE0000QLH0G6) | Positions pondérées | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
-| instrument | Global X Robotics & Artificial Intelligence UCITS ETF USD Acc (IE00BLCHJB90) | Calendrier annuel | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
-| instrument | Global X Uranium UCITS ETF USD Acc (IE000NDWFGA5) | Calendrier annuel | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
-| instrument | Global X Cybersecurity UCITS ETF USD Acc (IE00BMH5Y871) | Calendrier annuel | À qualifier | Champ absent des observations actives ; source ou connecteur à qualifier. |
+| instrument | Global X Robotics & Artificial Intelligence UCITS ETF USD Acc (IE00BLCHJB90) | Calendrier annuel | Non publié | La source officielle actuelle publie des performances glissantes et cumulées, collectées séparément, sans calendrier annuel complet. Les historiques mensuels restent automatisés. Le rendement NAV depuis janvier sera intégré comme année civile uniquement sur une observation au 31 décembre, après clôture et hors année de lancement partielle, avec sa preuve conservée. |
+| instrument | Global X Uranium UCITS ETF USD Acc (IE000NDWFGA5) | Calendrier annuel | Non publié | La source officielle actuelle publie des performances glissantes et cumulées, collectées séparément, sans calendrier annuel complet. Les historiques mensuels restent automatisés. Le rendement NAV depuis janvier sera intégré comme année civile uniquement sur une observation au 31 décembre, après clôture et hors année de lancement partielle, avec sa preuve conservée. |
+| instrument | Global X Cybersecurity UCITS ETF USD Acc (IE00BMH5Y871) | Calendrier annuel | Non publié | La source officielle actuelle publie des performances glissantes et cumulées, collectées séparément, sans calendrier annuel complet. Les historiques mensuels restent automatisés. Le rendement NAV depuis janvier sera intégré comme année civile uniquement sur une observation au 31 décembre, après clôture et hors année de lancement partielle, avec sa preuve conservée. |
 | instrument | WisdomTree Brent Crude Oil (JE00B78CGV99) | Pays | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |
 | instrument | WisdomTree Brent Crude Oil (JE00B78CGV99) | Secteurs | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |
 | instrument | WisdomTree Brent Crude Oil (JE00B78CGV99) | Positions pondérées | Non applicable | Pas de répartition ou de positions actions pertinente ; les allocations matières premières sont suivies séparément. |
