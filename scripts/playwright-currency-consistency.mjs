@@ -2,10 +2,16 @@ import assert from 'node:assert/strict'
 import { spawn } from 'node:child_process'
 import { chromium } from 'playwright'
 import { choose } from './card-selection.mjs'
-const server=spawn(process.execPath,['node_modules/vite/bin/vite.js','preview','--host','127.0.0.1','--port','4387'],{stdio:['ignore','pipe','pipe']})
-await new Promise((resolve,reject)=>{server.once('exit',code=>reject(Error(`Preview exited ${code}`)));server.stdout.on('data',c=>{if(c.toString().includes('Local:'))resolve()})})
+const server=spawn(process.execPath,['node_modules/vite/bin/vite.js','preview','--host','127.0.0.1','--port','4387','--strictPort'],{stdio:'ignore'})
 let browser
 try {
+ let ready=false
+ for(let i=0;i<100;i++){
+  if(server.exitCode!==null)throw Error(`Preview exited ${server.exitCode}`)
+  try{if((await fetch('http://127.0.0.1:4387/shinny-potato/',{signal:AbortSignal.timeout(1000)})).ok){ready=true;break}}catch{}
+  await new Promise(resolve=>setTimeout(resolve,100))
+ }
+ assert(ready,'Preview did not become available')
  browser=await chromium.launch({headless:true,...(process.env.CHROMIUM_PATH?{executablePath:process.env.CHROMIUM_PATH}:{}),args:['--no-sandbox']})
  const page=await browser.newPage({viewport:{width:1280,height:900}}),errors=[]
  page.on('pageerror',e=>errors.push(e.message))
@@ -27,7 +33,7 @@ try {
  await page.getByLabel('Devise des performances',{exact:true}).selectOption('EUR')
  assert.match(await page.locator('.es-card').innerText(),/Performances annuelles \(EUR\)/)
  await download(page.getByRole('button',{name:'Télécharger l’image',exact:true}))
- await go('comparatif-etf')
+ await go('comparatif-etf?subject=usa')
  const euro=page.getByRole('button',{name:'Euros (EUR)',exact:true})
  await euro.click()
  assert.match(await page.locator('.tool-preview').innerText(),/Performances annuelles en euros/)
