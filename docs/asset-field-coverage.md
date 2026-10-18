@@ -12,7 +12,7 @@ Les états décrivent les observations enregistrées, pas une garantie réseau. 
 | Pays | 229/258 | 229 | 0 | 0 |
 | Secteurs | 229/258 | 229 | 0 | 0 |
 | Principales positions | 232/258 | 232 | 0 | 0 |
-| Distribution | 235/258 | 235 | 0 | 0 |
+| Distribution | 243/258 | 243 | 0 | 0 |
 | Domicile | 206/258 | 206 | 0 | 0 |
 | Réplication | 229/258 | 229 | 0 | 0 |
 | Cotations | 16/258 | 16 | 0 | 0 |
