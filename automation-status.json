@@ -94,19 +94,28 @@
     },
     "collect-etf-pilot.yml": {
       "name": "ETF et compositions d’indices",
-      "runId": 39117281580,
+      "runId": 39125578470,
       "attempt": 1,
-      "completedAt": "2026-10-18T11:13:05Z",
-      "status": "success",
+      "completedAt": "2026-10-18T13:02:36Z",
+      "status": "failure",
       "lastSuccessAt": "2026-10-18T11:13:05Z",
       "collectionStatus": "success",
       "validationStatus": "success",
       "recordingStatus": "success",
-      "publicationStatus": "not-run",
-      "lastCollectionSuccessAt": "2026-10-18T11:13:05Z",
+      "publicationStatus": "failure",
+      "lastCollectionSuccessAt": "2026-10-18T13:02:36Z",
       "lastPublicationSuccessAt": "2026-10-17T09:32:32Z",
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39117281580",
-      "failures": [],
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39125578470",
+      "failures": [
+        {
+          "job": "deploy / build",
+          "step": "Run node scripts/test-portfolio-roadmap.mjs"
+        },
+        {
+          "job": "deploy / fallback-build",
+          "step": "Run npm run build"
+        }
+      ],
       "dataFailures": {}
     },
     "update-economic-data.yml": {
@@ -503,11 +512,11 @@
       "failures": []
     }
   },
-  "updatedAt": "2026-10-18T13:00:29Z",
+  "updatedAt": "2026-10-18T13:02:36Z",
   "monitoring": {
     "schemaVersion": 1,
-    "checkedAt": "2026-10-18T13:01:27.684668+00:00",
-    "revision": 112,
+    "checkedAt": "2026-10-18T13:02:54.031473+00:00",
+    "revision": 113,
     "active": {
       "publication:update-practical-sheets.yml": {
         "name": "Sources des fiches pratiques",
@@ -523,7 +532,7 @@
         "cause": "deploy / build : Run npm run audit:instrument-listings ; deploy / fallback-build : Run npm run build",
         "id": "publication:update-practical-sheets.yml",
         "firstSeenAt": "2026-10-18T11:43:59.694981+00:00",
-        "lastSeenAt": "2026-10-18T13:01:27.684668+00:00"
+        "lastSeenAt": "2026-10-18T13:02:54.031473+00:00"
       },
       "publication:update-publication-observations.yml": {
         "name": "Pouvoir d’achat et niveaux des anniversaires",
@@ -540,7 +549,7 @@
         "cause": "deploy / browser-checks (0) : node scripts/playwright-tools.mjs — Échec sans message ; deploy / fallback-build : Run npm run build",
         "id": "publication:update-publication-observations.yml",
         "firstSeenAt": "2026-10-18T12:52:04.191577+00:00",
-        "lastSeenAt": "2026-10-18T13:01:27.684668+00:00"
+        "lastSeenAt": "2026-10-18T13:02:54.031473+00:00"
       },
       "collection:update-insurance.yml:linxea-avenir-2": {
         "name": "Linxea Avenir 2",
@@ -559,7 +568,7 @@
         "dataId": "linxea-avenir-2",
         "id": "collection:update-insurance.yml:linxea-avenir-2",
         "firstSeenAt": "2026-10-14T13:08:27.203935+00:00",
-        "lastSeenAt": "2026-10-18T13:01:27.684668+00:00"
+        "lastSeenAt": "2026-10-18T13:02:54.031473+00:00"
       },
       "publication:update-insurance.yml": {
         "name": "Présentations d’assurance-vie",
@@ -575,7 +584,7 @@
         "cause": "deploy / browser-checks (0) : node scripts/playwright-tools.mjs — Échec sans message ; deploy / fallback-build : Run npm run build",
         "id": "publication:update-insurance.yml",
         "firstSeenAt": "2026-10-18T12:59:38.607258+00:00",
-        "lastSeenAt": "2026-10-18T13:01:27.684668+00:00"
+        "lastSeenAt": "2026-10-18T13:02:54.031473+00:00"
       },
       "publication:update-scpi.yml": {
         "name": "Présentations de SCPI",
@@ -591,7 +600,7 @@
         "cause": "deploy / browser-checks (0) : node scripts/playwright-tools.mjs — Échec sans message ; deploy / fallback-build : Run npm run build",
         "id": "publication:update-scpi.yml",
         "firstSeenAt": "2026-10-18T13:01:05.329643+00:00",
-        "lastSeenAt": "2026-10-18T13:01:27.684668+00:00"
+        "lastSeenAt": "2026-10-18T13:02:54.031473+00:00"
       },
       "publication:update-presentation-actors.yml": {
         "name": "Présentations des acteurs et offres",
@@ -607,7 +616,7 @@
         "cause": "deploy / browser-checks (0) : node scripts/playwright-tools.mjs — Échec sans message ; deploy / fallback-build : Run npm run build",
         "id": "publication:update-presentation-actors.yml",
         "firstSeenAt": "2026-10-18T12:56:03.999172+00:00",
-        "lastSeenAt": "2026-10-18T13:01:27.684668+00:00"
+        "lastSeenAt": "2026-10-18T13:02:54.031473+00:00"
       },
       "publication:update-regulatory-data.yml": {
         "name": "Paramètres fiscaux, LDDS et tarifs de courtiers",
@@ -624,7 +633,25 @@
         "cause": "deploy / build : Run node scripts/test-portfolio-roadmap.mjs ; deploy / fallback-build : Run npm run build",
         "id": "publication:update-regulatory-data.yml",
         "firstSeenAt": "2026-10-18T12:59:15.049897+00:00",
-        "lastSeenAt": "2026-10-18T13:01:27.684668+00:00"
+        "lastSeenAt": "2026-10-18T13:02:54.031473+00:00"
+      },
+      "publication:collect-etf-pilot.yml": {
+        "name": "ETF et compositions d’indices",
+        "tools": [
+          "Présentation ETF",
+          "Comparatif ETF",
+          "Coulisses des indices"
+        ],
+        "impactScope": "collector",
+        "workflow": "collect-etf-pilot.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39125578470",
+        "to": "/donnees-a-revoir",
+        "kind": "publication",
+        "field": "Publication",
+        "cause": "deploy / build : Run node scripts/test-portfolio-roadmap.mjs ; deploy / fallback-build : Run npm run build",
+        "id": "publication:collect-etf-pilot.yml",
+        "firstSeenAt": "2026-10-18T13:02:54.031473+00:00",
+        "lastSeenAt": "2026-10-18T13:02:54.031473+00:00"
       },
       "publication:update-market-monthly.yml": {
         "name": "Historiques mensuels des marchés",
@@ -643,7 +670,7 @@
         "cause": "deploy / build : Run node scripts/test-portfolio-roadmap.mjs ; deploy / fallback-build : Run npm run build ; report-failures : Run echo 'Une source mensuelle a échoué : historique précédent conservé. Les autres mises à jour validées ont été publiées si les audits et le déploiement ont réussi.' >> \"$GITHUB_STEP_SUMMARY\"",
         "id": "publication:update-market-monthly.yml",
         "firstSeenAt": "2026-10-18T12:59:58.752108+00:00",
-        "lastSeenAt": "2026-10-18T13:01:27.684668+00:00"
+        "lastSeenAt": "2026-10-18T13:02:54.031473+00:00"
       },
       "publication:update-company-analysis.yml": {
         "name": "Analyses d’entreprises",
@@ -659,7 +686,7 @@
         "cause": "deploy / build : Run npm run audit:instrument-listings ; deploy / fallback-build : Run npm run build ; report-failures : Run echo 'Some sources failed. Previous observations were retained independently; stale ratios are omitted by the publication engine.' >> \"$GITHUB_STEP_SUMMARY\"",
         "id": "publication:update-company-analysis.yml",
         "firstSeenAt": "2026-10-18T11:47:02.423295+00:00",
-        "lastSeenAt": "2026-10-18T13:01:27.684668+00:00"
+        "lastSeenAt": "2026-10-18T13:02:54.031473+00:00"
       },
       "publication:update-economic-data.yml": {
         "name": "Taux d’épargne, ménages, SCPI et fonds euros",
@@ -676,7 +703,7 @@
         "cause": "deploy / build : Run npm run audit:etf-annual-performance",
         "id": "publication:update-economic-data.yml",
         "firstSeenAt": "2026-10-17T12:18:32.387705+00:00",
-        "lastSeenAt": "2026-10-18T13:01:27.684668+00:00"
+        "lastSeenAt": "2026-10-18T13:02:54.031473+00:00"
       },
       "publication:update-non-bond-expansion.yml": {
         "name": "Nouveaux actifs et historiques",
@@ -695,7 +722,7 @@
         "cause": "deploy / browser-checks (0) : node scripts/playwright-tools.mjs — Échec sans message ; deploy / fallback-build : Run npm run build",
         "id": "publication:update-non-bond-expansion.yml",
         "firstSeenAt": "2026-10-18T12:58:02.935819+00:00",
-        "lastSeenAt": "2026-10-18T13:01:27.684668+00:00"
+        "lastSeenAt": "2026-10-18T13:02:54.031473+00:00"
       },
       "publication:update-qualified-exposures.yml": {
         "name": "Expositions ETF qualifiées",
@@ -715,7 +742,7 @@
         "cause": "deploy / build : Run npm run audit:calculator-series",
         "id": "publication:update-qualified-exposures.yml",
         "firstSeenAt": "2026-10-16T12:48:21.924866+00:00",
-        "lastSeenAt": "2026-10-18T13:01:27.684668+00:00"
+        "lastSeenAt": "2026-10-18T13:02:54.031473+00:00"
       },
       "collection:update-exposure-expansion.yml:etf-exposure-expansion-IE00BK1PV551": {
         "name": "Xtrackers MSCI World UCITS ETF 1D",
@@ -739,7 +766,7 @@
         "dataId": "etf-exposure-expansion-IE00BK1PV551",
         "id": "collection:update-exposure-expansion.yml:etf-exposure-expansion-IE00BK1PV551",
         "firstSeenAt": "2026-10-17T20:42:44.184725+00:00",
-        "lastSeenAt": "2026-10-18T13:01:27.684668+00:00"
+        "lastSeenAt": "2026-10-18T13:02:54.031473+00:00"
       },
       "workflow:update-instrument-metadata.yml": {
         "name": "Caractéristiques et statut PEA par ISIN",
@@ -758,7 +785,7 @@
         "cause": "refresh : Run npm run build && node scripts/test-full-auto-routing.mjs",
         "id": "workflow:update-instrument-metadata.yml",
         "firstSeenAt": "2026-10-18T12:57:39.234539+00:00",
-        "lastSeenAt": "2026-10-18T13:01:27.684668+00:00"
+        "lastSeenAt": "2026-10-18T13:02:54.031473+00:00"
       },
       "unobserved:onboard-assets.yml": {
         "name": "Intégration des nouveaux actifs",
@@ -781,18 +808,10 @@
         "cause": "Aucune exécution terminée avec une date exploitable.",
         "id": "unobserved:onboard-assets.yml",
         "firstSeenAt": "2026-10-18T12:02:38.068054+00:00",
-        "lastSeenAt": "2026-10-18T13:01:27.684668+00:00"
+        "lastSeenAt": "2026-10-18T13:02:54.031473+00:00"
       }
     },
     "events": [
-      {
-        "revision": 83,
-        "at": "2026-10-17T20:51:12.413498+00:00",
-        "opened": [
-          "publication:collect-etf-pilot.yml"
-        ],
-        "resolved": []
-      },
       {
         "revision": 84,
         "at": "2026-10-17T20:53:51.936055+00:00",
@@ -1654,6 +1673,14 @@
             "resolvedAt": "2026-10-18T13:01:05.329643+00:00"
           }
         ]
+      },
+      {
+        "revision": 113,
+        "at": "2026-10-18T13:02:54.031473+00:00",
+        "opened": [
+          "publication:collect-etf-pilot.yml"
+        ],
+        "resolved": []
       }
     ],
     "resolved": [
