@@ -62,7 +62,15 @@ def yahoo_chart(body, config, interval):
         price = number(adjusted[i]) if config['field'] == 'adjclose' and interval == '1d' else number(close)
         rows.append((date, number(close), price))
     if len({r[0] for r in rows}) != len(rows):
-        reject('Duplicate Yahoo local date')
+        # Name the duplicated sessions so the failure can be diagnosed from the status file.
+        duplicates = {}
+        for i, (stamp, close) in enumerate(zip(stamps, closes)):
+            if close is None:
+                continue
+            duplicates.setdefault(dt.datetime.fromtimestamp(number(stamp), UTC).astimezone(tz).date().isoformat(), []).append(
+                dt.datetime.fromtimestamp(number(stamp), UTC).astimezone(tz).strftime('%H:%M%z') + '=' + str(close))
+        detail = '; '.join(f'{date} {" & ".join(bars)}' for date, bars in sorted(duplicates.items()) if len(bars) > 1)
+        reject(f'Duplicate Yahoo local date ({interval}, {zone}): {detail[:300]}')
     return rows, zone
 
 
