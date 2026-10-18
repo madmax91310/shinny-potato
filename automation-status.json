@@ -213,25 +213,23 @@
       "lastCollectionSuccessAt": "2026-10-08T14:09:35Z"
     },
     "update-publication-observations.yml": {
+      "monitorVersion": 2,
       "name": "Pouvoir d’achat et niveaux des anniversaires",
-      "runId": 39132915081,
+      "runId": 39159973343,
       "attempt": 1,
-      "completedAt": "2026-10-18T13:51:29Z",
-      "status": "failure",
-      "lastSuccessAt": "2026-10-18T06:55:19Z",
+      "headSha": "4bfd5a019f9c0eba9fbfd0a9b6b77765e057b180",
+      "createdAt": "2026-10-18T19:42:11Z",
+      "completedAt": "2026-10-18T20:33:25Z",
+      "status": "success",
+      "lastSuccessAt": "2026-10-18T20:33:25Z",
       "collectionStatus": "success",
       "validationStatus": "success",
       "recordingStatus": "success",
-      "publicationStatus": "failure",
-      "lastCollectionSuccessAt": "2026-10-18T13:51:29Z",
-      "lastPublicationSuccessAt": "2026-10-11T14:35:58Z",
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39132915081",
-      "failures": [
-        {
-          "job": "deploy / build",
-          "step": "Run node scripts/test-portfolio-roadmap.mjs"
-        }
-      ],
+      "publicationStatus": "success",
+      "lastCollectionSuccessAt": "2026-10-18T20:33:25Z",
+      "lastPublicationSuccessAt": "2026-10-18T20:33:22Z",
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39159973343",
+      "failures": [],
       "dataFailures": {}
     },
     "update-editorial-radar.yml": {
@@ -462,11 +460,11 @@
       "failures": []
     }
   },
-  "updatedAt": "2026-10-18T19:42:52Z",
+  "updatedAt": "2026-10-18T20:33:25Z",
   "monitoring": {
     "schemaVersion": 1,
-    "checkedAt": "2026-10-18T20:45:59.450937+00:00",
-    "revision": 127,
+    "checkedAt": "2026-10-18T20:50:32.511175+00:00",
+    "revision": 128,
     "active": {
       "publication:update-practical-sheets.yml": {
         "name": "Sources des fiches pratiques",
@@ -483,25 +481,7 @@
         "cause": "deploy / build : Run node scripts/test-portfolio-roadmap.mjs",
         "id": "publication:update-practical-sheets.yml",
         "firstSeenAt": "2026-10-18T11:43:59.694981+00:00",
-        "lastSeenAt": "2026-10-18T20:45:59.450937+00:00"
-      },
-      "publication:update-publication-observations.yml": {
-        "name": "Pouvoir d’achat et niveaux des anniversaires",
-        "tools": [
-          "Pouvoir d’achat",
-          "Il y a X ans"
-        ],
-        "impactScope": "collector",
-        "workflow": "update-publication-observations.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39132915081",
-        "to": "/donnees-a-revoir",
-        "lastSuccessAt": "2026-10-18T13:51:29Z",
-        "kind": "publication",
-        "field": "Publication",
-        "cause": "deploy / build : Run node scripts/test-portfolio-roadmap.mjs",
-        "id": "publication:update-publication-observations.yml",
-        "firstSeenAt": "2026-10-18T12:52:04.191577+00:00",
-        "lastSeenAt": "2026-10-18T20:45:59.450937+00:00"
+        "lastSeenAt": "2026-10-18T20:50:32.511175+00:00"
       },
       "publication:update-insurance.yml": {
         "name": "Présentations d’assurance-vie",
@@ -518,7 +498,7 @@
         "cause": "deploy / build : Run node scripts/test-portfolio-roadmap.mjs",
         "id": "publication:update-insurance.yml",
         "firstSeenAt": "2026-10-18T12:59:38.607258+00:00",
-        "lastSeenAt": "2026-10-18T20:45:59.450937+00:00"
+        "lastSeenAt": "2026-10-18T20:50:32.511175+00:00"
       },
       "publication:update-scpi.yml": {
         "name": "Présentations de SCPI",
@@ -535,7 +515,7 @@
         "cause": "deploy / build : Run node scripts/test-portfolio-roadmap.mjs",
         "id": "publication:update-scpi.yml",
         "firstSeenAt": "2026-10-18T13:01:05.329643+00:00",
-        "lastSeenAt": "2026-10-18T20:45:59.450937+00:00"
+        "lastSeenAt": "2026-10-18T20:50:32.511175+00:00"
       },
       "publication:update-presentation-actors.yml": {
         "name": "Présentations des acteurs et offres",
@@ -552,7 +532,7 @@
         "cause": "deploy / build : Run node scripts/test-portfolio-roadmap.mjs",
         "id": "publication:update-presentation-actors.yml",
         "firstSeenAt": "2026-10-18T12:56:03.999172+00:00",
-        "lastSeenAt": "2026-10-18T20:45:59.450937+00:00"
+        "lastSeenAt": "2026-10-18T20:50:32.511175+00:00"
       },
       "publication:update-regulatory-data.yml": {
         "name": "Paramètres fiscaux, LDDS et tarifs de courtiers",
@@ -570,7 +550,7 @@
         "cause": "deploy / build : Run node scripts/test-portfolio-roadmap.mjs",
         "id": "publication:update-regulatory-data.yml",
         "firstSeenAt": "2026-10-18T12:59:15.049897+00:00",
-        "lastSeenAt": "2026-10-18T20:45:59.450937+00:00"
+        "lastSeenAt": "2026-10-18T20:50:32.511175+00:00"
       },
       "collection:collect-etf-pilot.yml:etf-observation-IE00B5BMR087": {
         "name": "iShares Core S&P 500 UCITS ETF",
@@ -598,7 +578,7 @@
         "dataId": "etf-observation-IE00B5BMR087",
         "id": "collection:collect-etf-pilot.yml:etf-observation-IE00B5BMR087",
         "firstSeenAt": "2026-10-18T16:38:05.962322+00:00",
-        "lastSeenAt": "2026-10-18T20:45:59.450937+00:00"
+        "lastSeenAt": "2026-10-18T20:50:32.511175+00:00"
       },
       "workflow:update-market-monthly.yml": {
         "name": "Historiques mensuels des marchés",
@@ -618,7 +598,7 @@
         "cause": "report-failures : Run echo 'Une source mensuelle a échoué : historique précédent conservé. Les autres mises à jour validées ont été publiées si les audits et le déploiement ont réussi.' >> \"$GITHUB_STEP_SUMMARY\"",
         "id": "workflow:update-market-monthly.yml",
         "firstSeenAt": "2026-10-18T16:00:58.550580+00:00",
-        "lastSeenAt": "2026-10-18T20:45:59.450937+00:00"
+        "lastSeenAt": "2026-10-18T20:50:32.511175+00:00"
       },
       "workflow:update-company-analysis.yml": {
         "name": "Analyses d’entreprises",
@@ -635,7 +615,7 @@
         "cause": "report-failures : Run echo 'Some sources failed. Previous observations were retained independently; stale ratios are omitted by the publication engine.' >> \"$GITHUB_STEP_SUMMARY\"",
         "id": "workflow:update-company-analysis.yml",
         "firstSeenAt": "2026-10-18T14:47:12.930226+00:00",
-        "lastSeenAt": "2026-10-18T20:45:59.450937+00:00"
+        "lastSeenAt": "2026-10-18T20:50:32.511175+00:00"
       },
       "publication:update-economic-data.yml": {
         "name": "Taux d’épargne, ménages, SCPI et fonds euros",
@@ -653,7 +633,7 @@
         "cause": "deploy / build : Run node scripts/test-portfolio-roadmap.mjs",
         "id": "publication:update-economic-data.yml",
         "firstSeenAt": "2026-10-17T12:18:32.387705+00:00",
-        "lastSeenAt": "2026-10-18T20:45:59.450937+00:00"
+        "lastSeenAt": "2026-10-18T20:50:32.511175+00:00"
       },
       "publication:update-non-bond-expansion.yml": {
         "name": "Nouveaux actifs et historiques",
@@ -673,7 +653,7 @@
         "cause": "deploy / build : Run node scripts/test-portfolio-roadmap.mjs",
         "id": "publication:update-non-bond-expansion.yml",
         "firstSeenAt": "2026-10-18T12:58:02.935819+00:00",
-        "lastSeenAt": "2026-10-18T20:45:59.450937+00:00"
+        "lastSeenAt": "2026-10-18T20:50:32.511175+00:00"
       },
       "publication:update-qualified-exposures.yml": {
         "name": "Expositions ETF qualifiées",
@@ -694,7 +674,7 @@
         "cause": "deploy / build : Run node scripts/test-portfolio-roadmap.mjs ; deploy / fallback-build : Run npm run build",
         "id": "publication:update-qualified-exposures.yml",
         "firstSeenAt": "2026-10-16T12:48:21.924866+00:00",
-        "lastSeenAt": "2026-10-18T20:45:59.450937+00:00"
+        "lastSeenAt": "2026-10-18T20:50:32.511175+00:00"
       },
       "collection:update-exposure-expansion.yml:etf-exposure-expansion-IE00BK1PV551": {
         "name": "Xtrackers MSCI World UCITS ETF 1D",
@@ -719,7 +699,7 @@
         "dataId": "etf-exposure-expansion-IE00BK1PV551",
         "id": "collection:update-exposure-expansion.yml:etf-exposure-expansion-IE00BK1PV551",
         "firstSeenAt": "2026-10-18T15:23:28.234259+00:00",
-        "lastSeenAt": "2026-10-18T20:45:59.450937+00:00"
+        "lastSeenAt": "2026-10-18T20:50:32.511175+00:00"
       },
       "unobserved:onboard-assets.yml": {
         "name": "Intégration des nouveaux actifs",
@@ -743,7 +723,7 @@
         "cause": "Aucune exécution terminée avec une date exploitable.",
         "id": "unobserved:onboard-assets.yml",
         "firstSeenAt": "2026-10-18T12:02:38.068054+00:00",
-        "lastSeenAt": "2026-10-18T20:45:59.450937+00:00"
+        "lastSeenAt": "2026-10-18T20:50:32.511175+00:00"
       },
       "unobserved:rehearse-refresh.yml": {
         "name": "Répétition des futures collectes",
@@ -760,18 +740,10 @@
         "cause": "Aucune exécution terminée avec une date exploitable.",
         "id": "unobserved:rehearse-refresh.yml",
         "firstSeenAt": "2026-10-18T20:30:38.308209+00:00",
-        "lastSeenAt": "2026-10-18T20:45:59.450937+00:00"
+        "lastSeenAt": "2026-10-18T20:50:32.511175+00:00"
       }
     },
     "events": [
-      {
-        "revision": 98,
-        "at": "2026-10-18T10:33:45.298860+00:00",
-        "opened": [
-          "publication:update-instrument-metadata.yml"
-        ],
-        "resolved": []
-      },
       {
         "revision": 99,
         "at": "2026-10-18T10:40:34.931301+00:00",
@@ -1285,9 +1257,55 @@
         ],
         "resolved": [],
         "escalated": []
+      },
+      {
+        "revision": 128,
+        "at": "2026-10-18T20:50:32.511175+00:00",
+        "opened": [],
+        "resolved": [
+          {
+            "name": "Pouvoir d’achat et niveaux des anniversaires",
+            "tools": [
+              "Pouvoir d’achat",
+              "Il y a X ans"
+            ],
+            "impactScope": "collector",
+            "workflow": "update-publication-observations.yml",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39132915081",
+            "to": "/donnees-a-revoir",
+            "lastSuccessAt": "2026-10-18T13:51:29Z",
+            "kind": "publication",
+            "field": "Publication",
+            "cause": "deploy / build : Run node scripts/test-portfolio-roadmap.mjs",
+            "id": "publication:update-publication-observations.yml",
+            "firstSeenAt": "2026-10-18T12:52:04.191577+00:00",
+            "lastSeenAt": "2026-10-18T20:45:59.450937+00:00",
+            "resolvedAt": "2026-10-18T20:50:32.511175+00:00"
+          }
+        ],
+        "escalated": []
       }
     ],
     "resolved": [
+      {
+        "name": "Pouvoir d’achat et niveaux des anniversaires",
+        "tools": [
+          "Pouvoir d’achat",
+          "Il y a X ans"
+        ],
+        "impactScope": "collector",
+        "workflow": "update-publication-observations.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39132915081",
+        "to": "/donnees-a-revoir",
+        "lastSuccessAt": "2026-10-18T13:51:29Z",
+        "kind": "publication",
+        "field": "Publication",
+        "cause": "deploy / build : Run node scripts/test-portfolio-roadmap.mjs",
+        "id": "publication:update-publication-observations.yml",
+        "firstSeenAt": "2026-10-18T12:52:04.191577+00:00",
+        "lastSeenAt": "2026-10-18T20:45:59.450937+00:00",
+        "resolvedAt": "2026-10-18T20:50:32.511175+00:00"
+      },
       {
         "name": "Caractéristiques et statut PEA par ISIN",
         "tools": [
@@ -3528,34 +3546,6 @@
         "field": "Poids du pays Ireland",
         "cause": "Valeur contradictoire pour la même période (2026-10-13) : Poids du pays Ireland. Dernière observation conservée ; propositions archivées (etf:IE0006WW1TQ4:countries:Ireland:896eb444159fd8c94545e70e:2026-10-13).",
         "id": "radar:ab4bb271abe68267796b8db6",
-        "firstSeenAt": "2026-10-15T12:49:29.696670+00:00",
-        "lastSeenAt": "2026-10-15T17:57:53.913128+00:00",
-        "resolvedAt": "2026-10-15T17:58:10.525626+00:00"
-      },
-      {
-        "name": "Xtrackers MSCI World ex USA UCITS ETF 1C",
-        "tools": [
-          "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Impact des frais",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "sourceUrls": [
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/historicaldata/download",
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/pdpMetaTagsTealium",
-          "https://etf.dws.com/download/asset/82292b8e-bf9e-44f2-b20d-722c743110a3",
-          "https://etf.dws.com/fr-fr/AssetDownload/Index/410e8206-23cd-463b-b2a5-6018bfc1fd32/Factsheet.pdf",
-          "https://www.justetf.com/en/etf-profile.html?isin=IE0006WW1TQ4",
-          "https://www.msci.com/documents/10199/255599/msci-world-ex-usa-index-net.pdf",
-          "https://www.zonebourse.com/cours/etf/XTRACKERS-MSCI-WORLD-EX-U-169862014/"
-        ],
-        "to": "/bibliotheque-donnees?id=IE0006WW1TQ4",
-        "kind": "conflict",
-        "field": "Poids du pays Chile",
-        "cause": "Valeur contradictoire pour la même période (2026-10-13) : Poids du pays Chile. Dernière observation conservée ; propositions archivées (etf:IE0006WW1TQ4:countries:Chile:896eb444159fd8c94545e70e:2026-10-13).",
-        "id": "radar:65b3ae346f66ac4391805f0d",
         "firstSeenAt": "2026-10-15T12:49:29.696670+00:00",
         "lastSeenAt": "2026-10-15T17:57:53.913128+00:00",
         "resolvedAt": "2026-10-15T17:58:10.525626+00:00"
