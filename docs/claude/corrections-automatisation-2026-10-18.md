@@ -22,6 +22,8 @@ Périmètre : collecte → validation → enregistrement → génération des re
 
 ## Vérifications
 
+- Reprise du blocage CI du collecteur non obligataire : les raccourcis de performance sont régénérés avant leur import par le contrôle des raccordements ETF. Le scénario est rejoué avec la projection enregistrée dans Git, antérieure aux nouveaux historiques ; toutes les assertions de raccordement restent actives.
+
 - Construction complète et contrôles des registres communs, des cotations, des devises, des expositions et des consommateurs mensuels.
 - Contrôles ciblés des pannes, reprises, dates, identités de parts, frontières annuelles et preuves de publication.
 - 774 tests Python lors de la première campagne ; les trois erreurs locales concernaient uniquement le dictionnaire OCR français absent de l’environnement, installé avant relance des tests concernés.
