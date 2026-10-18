@@ -51,6 +51,12 @@ try {
  await go('duels-portefeuilles?asset=equity-rolls-royce')
  assert.match(await page.locator('#pd-tweet').inputValue(),/Rolls-Royce/)
  assert.doesNotMatch(await page.locator('#pd-tweet').inputValue(),/NaN|undefined/)
+ await go('tweet-midi')
+ await page.getByRole('button',{name:'Comparatif ETF',exact:true}).click()
+ await choose(page.getByLabel(/Sujet/),'usa')
+ await page.getByRole('button',{name:'🔄 Générer',exact:true}).click()
+ await page.getByRole('button',{name:'Euros (EUR)',exact:true}).click()
+ assert.match(await page.locator('.tool-preview').innerText(),/Performances annuelles en euros/)
  assert.deepEqual(errors,[])
  console.log('Browser: EUR ACWI, explicit net/gross, ETF/comparison EUR, calculator EUR, compiled duel and three PNG downloads passed.')
 } finally {await browser?.close();server.kill()}

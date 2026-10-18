@@ -46,6 +46,13 @@ try {
   assert.equal(describeDataField({ label: 'PER', value: { value: 22.5, unit: 'fois' } }), '22,5 fois')
   assert.match(describeDataField({ label: 'Statistique de ménages', value: { value: 100, unit: 'EUR', referencePeriod: '2025', metricLabel: 'Médiane' } }), /100 € · 2025 · Médiane/)
   for (const id of Object.keys(original.ASSETS)) assert.equal(loaded.getAssetMinDate(id), original.getAssetMinDate(id))
+  const {default:mixed} = await server.ssrLoadModule('/src/pages/tweet-midi/lib.js')
+  const {default:comparison} = await server.ssrLoadModule('/src/pages/tweet-midi/engines/comparatif.js')
+  for(const item of comparison.ALL_ITEMS) {
+    assert.deepEqual(mixed.getPerformanceCurrencies(item),comparison.getPerformanceCurrencies(item),'Mixed-format currency selection must use the ETF comparator')
+    for(const currency of comparison.getPerformanceCurrencies(item))
+      assert.equal(mixed.buildTweetText({...item,currency}),comparison.buildTweetText({...item,currency}))
+  }
   for (const route of ['tweet-midi', ...['dilemme','lexique','comparatif','anniversaire','performance','pouvoir'].map(n => `tweet-midi/formats/${n}`), 'investment-calculator', 'data-review', 'data-search']) {
     const { default: App } = await server.ssrLoadModule(`/src/pages/${route}/App.jsx`)
     const html = renderToString(React.createElement(MemoryRouter, null, React.createElement(App)))
