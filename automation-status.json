@@ -233,19 +233,22 @@
       "dataFailures": {}
     },
     "update-editorial-radar.yml": {
+      "monitorVersion": 2,
       "name": "Radar éditorial quotidien",
-      "runId": 39159973314,
+      "runId": 39163451809,
       "attempt": 1,
-      "completedAt": "2026-10-18T19:42:52Z",
+      "headSha": "ee496304cf8f3791887e09ffa65a205a8131ea38",
+      "createdAt": "2026-10-18T20:28:24Z",
+      "completedAt": "2026-10-18T20:33:31Z",
       "status": "success",
-      "lastSuccessAt": "2026-10-18T19:42:52Z",
+      "lastSuccessAt": "2026-10-18T20:33:31Z",
       "collectionStatus": "success",
       "validationStatus": "unknown",
       "recordingStatus": "not-run",
       "publicationStatus": "not-run",
-      "lastCollectionSuccessAt": "2026-10-18T19:42:52Z",
+      "lastCollectionSuccessAt": "2026-10-18T20:33:31Z",
       "lastPublicationSuccessAt": null,
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39159973314",
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39163451809",
       "failures": [],
       "dataFailures": {}
     },
@@ -460,10 +463,10 @@
       "failures": []
     }
   },
-  "updatedAt": "2026-10-18T20:33:25Z",
+  "updatedAt": "2026-10-18T20:33:31Z",
   "monitoring": {
     "schemaVersion": 1,
-    "checkedAt": "2026-10-18T20:50:32.511175+00:00",
+    "checkedAt": "2026-10-18T20:51:23.283401+00:00",
     "revision": 128,
     "active": {
       "publication:update-practical-sheets.yml": {
@@ -481,7 +484,7 @@
         "cause": "deploy / build : Run node scripts/test-portfolio-roadmap.mjs",
         "id": "publication:update-practical-sheets.yml",
         "firstSeenAt": "2026-10-18T11:43:59.694981+00:00",
-        "lastSeenAt": "2026-10-18T20:50:32.511175+00:00"
+        "lastSeenAt": "2026-10-18T20:51:23.283401+00:00"
       },
       "publication:update-insurance.yml": {
         "name": "Présentations d’assurance-vie",
@@ -498,7 +501,7 @@
         "cause": "deploy / build : Run node scripts/test-portfolio-roadmap.mjs",
         "id": "publication:update-insurance.yml",
         "firstSeenAt": "2026-10-18T12:59:38.607258+00:00",
-        "lastSeenAt": "2026-10-18T20:50:32.511175+00:00"
+        "lastSeenAt": "2026-10-18T20:51:23.283401+00:00"
       },
       "publication:update-scpi.yml": {
         "name": "Présentations de SCPI",
@@ -515,7 +518,7 @@
         "cause": "deploy / build : Run node scripts/test-portfolio-roadmap.mjs",
         "id": "publication:update-scpi.yml",
         "firstSeenAt": "2026-10-18T13:01:05.329643+00:00",
-        "lastSeenAt": "2026-10-18T20:50:32.511175+00:00"
+        "lastSeenAt": "2026-10-18T20:51:23.283401+00:00"
       },
       "publication:update-presentation-actors.yml": {
         "name": "Présentations des acteurs et offres",
@@ -532,7 +535,7 @@
         "cause": "deploy / build : Run node scripts/test-portfolio-roadmap.mjs",
         "id": "publication:update-presentation-actors.yml",
         "firstSeenAt": "2026-10-18T12:56:03.999172+00:00",
-        "lastSeenAt": "2026-10-18T20:50:32.511175+00:00"
+        "lastSeenAt": "2026-10-18T20:51:23.283401+00:00"
       },
       "publication:update-regulatory-data.yml": {
         "name": "Paramètres fiscaux, LDDS et tarifs de courtiers",
@@ -550,7 +553,7 @@
         "cause": "deploy / build : Run node scripts/test-portfolio-roadmap.mjs",
         "id": "publication:update-regulatory-data.yml",
         "firstSeenAt": "2026-10-18T12:59:15.049897+00:00",
-        "lastSeenAt": "2026-10-18T20:50:32.511175+00:00"
+        "lastSeenAt": "2026-10-18T20:51:23.283401+00:00"
       },
       "collection:collect-etf-pilot.yml:etf-observation-IE00B5BMR087": {
         "name": "iShares Core S&P 500 UCITS ETF",
@@ -578,7 +581,7 @@
         "dataId": "etf-observation-IE00B5BMR087",
         "id": "collection:collect-etf-pilot.yml:etf-observation-IE00B5BMR087",
         "firstSeenAt": "2026-10-18T16:38:05.962322+00:00",
-        "lastSeenAt": "2026-10-18T20:50:32.511175+00:00"
+        "lastSeenAt": "2026-10-18T20:51:23.283401+00:00"
       },
       "workflow:update-market-monthly.yml": {
         "name": "Historiques mensuels des marchés",
@@ -598,7 +601,7 @@
         "cause": "report-failures : Run echo 'Une source mensuelle a échoué : historique précédent conservé. Les autres mises à jour validées ont été publiées si les audits et le déploiement ont réussi.' >> \"$GITHUB_STEP_SUMMARY\"",
         "id": "workflow:update-market-monthly.yml",
         "firstSeenAt": "2026-10-18T16:00:58.550580+00:00",
-        "lastSeenAt": "2026-10-18T20:50:32.511175+00:00"
+        "lastSeenAt": "2026-10-18T20:51:23.283401+00:00"
       },
       "workflow:update-company-analysis.yml": {
         "name": "Analyses d’entreprises",
@@ -615,7 +618,7 @@
         "cause": "report-failures : Run echo 'Some sources failed. Previous observations were retained independently; stale ratios are omitted by the publication engine.' >> \"$GITHUB_STEP_SUMMARY\"",
         "id": "workflow:update-company-analysis.yml",
         "firstSeenAt": "2026-10-18T14:47:12.930226+00:00",
-        "lastSeenAt": "2026-10-18T20:50:32.511175+00:00"
+        "lastSeenAt": "2026-10-18T20:51:23.283401+00:00"
       },
       "publication:update-economic-data.yml": {
         "name": "Taux d’épargne, ménages, SCPI et fonds euros",
@@ -633,7 +636,7 @@
         "cause": "deploy / build : Run node scripts/test-portfolio-roadmap.mjs",
         "id": "publication:update-economic-data.yml",
         "firstSeenAt": "2026-10-17T12:18:32.387705+00:00",
-        "lastSeenAt": "2026-10-18T20:50:32.511175+00:00"
+        "lastSeenAt": "2026-10-18T20:51:23.283401+00:00"
       },
       "publication:update-non-bond-expansion.yml": {
         "name": "Nouveaux actifs et historiques",
@@ -653,7 +656,7 @@
         "cause": "deploy / build : Run node scripts/test-portfolio-roadmap.mjs",
         "id": "publication:update-non-bond-expansion.yml",
         "firstSeenAt": "2026-10-18T12:58:02.935819+00:00",
-        "lastSeenAt": "2026-10-18T20:50:32.511175+00:00"
+        "lastSeenAt": "2026-10-18T20:51:23.283401+00:00"
       },
       "publication:update-qualified-exposures.yml": {
         "name": "Expositions ETF qualifiées",
@@ -674,7 +677,7 @@
         "cause": "deploy / build : Run node scripts/test-portfolio-roadmap.mjs ; deploy / fallback-build : Run npm run build",
         "id": "publication:update-qualified-exposures.yml",
         "firstSeenAt": "2026-10-16T12:48:21.924866+00:00",
-        "lastSeenAt": "2026-10-18T20:50:32.511175+00:00"
+        "lastSeenAt": "2026-10-18T20:51:23.283401+00:00"
       },
       "collection:update-exposure-expansion.yml:etf-exposure-expansion-IE00BK1PV551": {
         "name": "Xtrackers MSCI World UCITS ETF 1D",
@@ -699,7 +702,7 @@
         "dataId": "etf-exposure-expansion-IE00BK1PV551",
         "id": "collection:update-exposure-expansion.yml:etf-exposure-expansion-IE00BK1PV551",
         "firstSeenAt": "2026-10-18T15:23:28.234259+00:00",
-        "lastSeenAt": "2026-10-18T20:50:32.511175+00:00"
+        "lastSeenAt": "2026-10-18T20:51:23.283401+00:00"
       },
       "unobserved:onboard-assets.yml": {
         "name": "Intégration des nouveaux actifs",
@@ -723,7 +726,7 @@
         "cause": "Aucune exécution terminée avec une date exploitable.",
         "id": "unobserved:onboard-assets.yml",
         "firstSeenAt": "2026-10-18T12:02:38.068054+00:00",
-        "lastSeenAt": "2026-10-18T20:50:32.511175+00:00"
+        "lastSeenAt": "2026-10-18T20:51:23.283401+00:00"
       },
       "unobserved:rehearse-refresh.yml": {
         "name": "Répétition des futures collectes",
@@ -740,7 +743,7 @@
         "cause": "Aucune exécution terminée avec une date exploitable.",
         "id": "unobserved:rehearse-refresh.yml",
         "firstSeenAt": "2026-10-18T20:30:38.308209+00:00",
-        "lastSeenAt": "2026-10-18T20:50:32.511175+00:00"
+        "lastSeenAt": "2026-10-18T20:51:23.283401+00:00"
       }
     },
     "events": [
