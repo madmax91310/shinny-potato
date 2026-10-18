@@ -202,18 +202,18 @@
     },
     "update-editorial-radar.yml": {
       "name": "Radar éditorial quotidien",
-      "runId": 39118351779,
+      "runId": 39118426649,
       "attempt": 1,
-      "completedAt": "2026-10-18T10:13:29Z",
+      "completedAt": "2026-10-18T10:14:39Z",
       "status": "success",
-      "lastSuccessAt": "2026-10-18T10:13:29Z",
+      "lastSuccessAt": "2026-10-18T10:14:39Z",
       "collectionStatus": "success",
       "validationStatus": "unknown",
       "recordingStatus": "not-run",
       "publicationStatus": "not-run",
-      "lastCollectionSuccessAt": "2026-10-18T10:13:29Z",
+      "lastCollectionSuccessAt": "2026-10-18T10:14:39Z",
       "lastPublicationSuccessAt": null,
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39118351779",
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39118426649",
       "failures": [],
       "dataFailures": {}
     },
@@ -484,10 +484,10 @@
       }
     }
   },
-  "updatedAt": "2026-10-18T10:13:53Z",
+  "updatedAt": "2026-10-18T10:14:39Z",
   "monitoring": {
     "schemaVersion": 1,
-    "checkedAt": "2026-10-18T10:14:12.587522+00:00",
+    "checkedAt": "2026-10-18T10:14:53.823898+00:00",
     "revision": 95,
     "active": {
       "collection:update-practical-sheets.yml:practical:13f": {
@@ -509,7 +509,7 @@
         "dataId": "practical:13f",
         "id": "collection:update-practical-sheets.yml:practical:13f",
         "firstSeenAt": "2026-10-14T21:07:26.171294+00:00",
-        "lastSeenAt": "2026-10-18T10:14:12.587522+00:00"
+        "lastSeenAt": "2026-10-18T10:14:53.823898+00:00"
       },
       "collection:update-insurance.yml:linxea-avenir-2": {
         "name": "Linxea Avenir 2",
@@ -528,7 +528,7 @@
         "dataId": "linxea-avenir-2",
         "id": "collection:update-insurance.yml:linxea-avenir-2",
         "firstSeenAt": "2026-10-14T13:08:27.203935+00:00",
-        "lastSeenAt": "2026-10-18T10:14:12.587522+00:00"
+        "lastSeenAt": "2026-10-18T10:14:53.823898+00:00"
       },
       "publication:update-market-monthly.yml": {
         "name": "Historiques mensuels des marchés",
@@ -547,7 +547,7 @@
         "cause": "deploy / browser-checks (2) : Run node scripts/run-browser-checks.mjs 2 4",
         "id": "publication:update-market-monthly.yml",
         "firstSeenAt": "2026-10-17T12:19:18.394776+00:00",
-        "lastSeenAt": "2026-10-18T10:14:12.587522+00:00"
+        "lastSeenAt": "2026-10-18T10:14:53.823898+00:00"
       },
       "publication:update-economic-data.yml": {
         "name": "Taux d’épargne, ménages, SCPI et fonds euros",
@@ -564,7 +564,7 @@
         "cause": "deploy / build : Run npm run audit:etf-annual-performance",
         "id": "publication:update-economic-data.yml",
         "firstSeenAt": "2026-10-17T12:18:32.387705+00:00",
-        "lastSeenAt": "2026-10-18T10:14:12.587522+00:00"
+        "lastSeenAt": "2026-10-18T10:14:53.823898+00:00"
       },
       "publication:update-lifestrategy.yml": {
         "name": "Vanguard LifeStrategy",
@@ -583,7 +583,7 @@
         "cause": "deploy / browser-checks (3) : Run node scripts/run-browser-checks.mjs 3 4",
         "id": "publication:update-lifestrategy.yml",
         "firstSeenAt": "2026-10-17T10:03:28.054539+00:00",
-        "lastSeenAt": "2026-10-18T10:14:12.587522+00:00"
+        "lastSeenAt": "2026-10-18T10:14:53.823898+00:00"
       },
       "publication:update-qualified-exposures.yml": {
         "name": "Expositions ETF qualifiées",
@@ -603,7 +603,7 @@
         "cause": "deploy / build : Run npm run audit:calculator-series",
         "id": "publication:update-qualified-exposures.yml",
         "firstSeenAt": "2026-10-16T12:48:21.924866+00:00",
-        "lastSeenAt": "2026-10-18T10:14:12.587522+00:00"
+        "lastSeenAt": "2026-10-18T10:14:53.823898+00:00"
       },
       "collection:update-exposure-expansion.yml:etf-exposure-expansion-IE00BK1PV551": {
         "name": "Xtrackers MSCI World UCITS ETF 1D",
@@ -627,7 +627,7 @@
         "dataId": "etf-exposure-expansion-IE00BK1PV551",
         "id": "collection:update-exposure-expansion.yml:etf-exposure-expansion-IE00BK1PV551",
         "firstSeenAt": "2026-10-17T20:42:44.184725+00:00",
-        "lastSeenAt": "2026-10-18T10:14:12.587522+00:00"
+        "lastSeenAt": "2026-10-18T10:14:53.823898+00:00"
       },
       "collection:update-instrument-metadata.yml:IE00BMC38736:domicile": {
         "name": "VanEck Semiconductor UCITS ETF",
@@ -650,7 +650,7 @@
         "dataId": "IE00BMC38736:domicile",
         "id": "collection:update-instrument-metadata.yml:IE00BMC38736:domicile",
         "firstSeenAt": "2026-10-17T11:48:18.107199+00:00",
-        "lastSeenAt": "2026-10-18T10:14:12.587522+00:00"
+        "lastSeenAt": "2026-10-18T10:14:53.823898+00:00"
       },
       "collection:update-instrument-metadata.yml:IE00BDBRDM35:replicationMethod": {
         "name": "iShares Core Global Aggregate Bond UCITS ETF EUR Hedged (Acc)",
@@ -678,7 +678,7 @@
         "dataId": "IE00BDBRDM35:replicationMethod",
         "id": "collection:update-instrument-metadata.yml:IE00BDBRDM35:replicationMethod",
         "firstSeenAt": "2026-10-17T11:48:18.107199+00:00",
-        "lastSeenAt": "2026-10-18T10:14:12.587522+00:00"
+        "lastSeenAt": "2026-10-18T10:14:53.823898+00:00"
       },
       "collection:update-instrument-metadata.yml:IE0006WW1TQ4:replicationMethod": {
         "name": "Xtrackers MSCI World ex USA UCITS ETF 1C",
@@ -709,7 +709,7 @@
         "dataId": "IE0006WW1TQ4:replicationMethod",
         "id": "collection:update-instrument-metadata.yml:IE0006WW1TQ4:replicationMethod",
         "firstSeenAt": "2026-10-17T11:48:18.107199+00:00",
-        "lastSeenAt": "2026-10-18T10:14:12.587522+00:00"
+        "lastSeenAt": "2026-10-18T10:14:53.823898+00:00"
       },
       "collection:update-instrument-metadata.yml:IE00BYWQWR46:domicile": {
         "name": "VanEck Video Gaming and eSports UCITS ETF",
@@ -735,7 +735,7 @@
         "dataId": "IE00BYWQWR46:domicile",
         "id": "collection:update-instrument-metadata.yml:IE00BYWQWR46:domicile",
         "firstSeenAt": "2026-10-17T11:48:18.107199+00:00",
-        "lastSeenAt": "2026-10-18T10:14:12.587522+00:00"
+        "lastSeenAt": "2026-10-18T10:14:53.823898+00:00"
       },
       "collection:update-instrument-metadata.yml:IE00BDFBTQ78:domicile": {
         "name": "VanEck S&P Global Mining UCITS ETF",
@@ -762,7 +762,7 @@
         "dataId": "IE00BDFBTQ78:domicile",
         "id": "collection:update-instrument-metadata.yml:IE00BDFBTQ78:domicile",
         "firstSeenAt": "2026-10-17T11:48:18.107199+00:00",
-        "lastSeenAt": "2026-10-18T10:14:12.587522+00:00"
+        "lastSeenAt": "2026-10-18T10:14:53.823898+00:00"
       },
       "collection:update-instrument-metadata.yml:IE0002Y8CX98:distribution": {
         "name": "WisdomTree Europe Defence UCITS ETF",
@@ -788,7 +788,7 @@
         "dataId": "IE0002Y8CX98:distribution",
         "id": "collection:update-instrument-metadata.yml:IE0002Y8CX98:distribution",
         "firstSeenAt": "2026-10-17T11:48:18.107199+00:00",
-        "lastSeenAt": "2026-10-18T10:14:12.587522+00:00"
+        "lastSeenAt": "2026-10-18T10:14:53.823898+00:00"
       },
       "collection:update-instrument-metadata.yml:IE0002Y8CX98:replicationMethod": {
         "name": "WisdomTree Europe Defence UCITS ETF",
@@ -814,7 +814,7 @@
         "dataId": "IE0002Y8CX98:replicationMethod",
         "id": "collection:update-instrument-metadata.yml:IE0002Y8CX98:replicationMethod",
         "firstSeenAt": "2026-10-17T11:48:18.107199+00:00",
-        "lastSeenAt": "2026-10-18T10:14:12.587522+00:00"
+        "lastSeenAt": "2026-10-18T10:14:53.823898+00:00"
       },
       "collection:update-instrument-metadata.yml:IE0002Y8CX98:domicile": {
         "name": "WisdomTree Europe Defence UCITS ETF",
@@ -840,7 +840,7 @@
         "dataId": "IE0002Y8CX98:domicile",
         "id": "collection:update-instrument-metadata.yml:IE0002Y8CX98:domicile",
         "firstSeenAt": "2026-10-17T11:48:18.107199+00:00",
-        "lastSeenAt": "2026-10-18T10:14:12.587522+00:00"
+        "lastSeenAt": "2026-10-18T10:14:53.823898+00:00"
       },
       "collection:update-instrument-metadata.yml:IE000W8WMSL2:distribution": {
         "name": "WisdomTree Quantum Computing UCITS ETF",
@@ -865,7 +865,7 @@
         "dataId": "IE000W8WMSL2:distribution",
         "id": "collection:update-instrument-metadata.yml:IE000W8WMSL2:distribution",
         "firstSeenAt": "2026-10-17T11:48:18.107199+00:00",
-        "lastSeenAt": "2026-10-18T10:14:12.587522+00:00"
+        "lastSeenAt": "2026-10-18T10:14:53.823898+00:00"
       },
       "collection:update-instrument-metadata.yml:IE000W8WMSL2:replicationMethod": {
         "name": "WisdomTree Quantum Computing UCITS ETF",
@@ -890,7 +890,7 @@
         "dataId": "IE000W8WMSL2:replicationMethod",
         "id": "collection:update-instrument-metadata.yml:IE000W8WMSL2:replicationMethod",
         "firstSeenAt": "2026-10-17T11:48:18.107199+00:00",
-        "lastSeenAt": "2026-10-18T10:14:12.587522+00:00"
+        "lastSeenAt": "2026-10-18T10:14:53.823898+00:00"
       },
       "collection:update-instrument-metadata.yml:IE00BQQP9F84:domicile": {
         "name": "VanEck Gold Miners UCITS ETF",
@@ -915,7 +915,7 @@
         "dataId": "IE00BQQP9F84:domicile",
         "id": "collection:update-instrument-metadata.yml:IE00BQQP9F84:domicile",
         "firstSeenAt": "2026-10-17T11:48:18.107199+00:00",
-        "lastSeenAt": "2026-10-18T10:14:12.587522+00:00"
+        "lastSeenAt": "2026-10-18T10:14:53.823898+00:00"
       }
     },
     "events": [
