@@ -47,7 +47,21 @@ def amundi_product(doc,isin):
     return product
 
 def dws_identity(body,isin):
-    if set(re.findall(rb'\b[A-Z]{2}[A-Z0-9]{9}\d\b',body))!={isin.encode()}:raise ValueError('Ambiguous listing document identity')
+    # Product pages also contain holdings, collateral and suggested funds. Their ISINs
+    # are not identities of this share. Bind the exchange table to its own key facts.
+    doc=json.loads(body);page=doc.get('pdpResult',{})
+    facts=page.get('pageSections',{}).get('keyFacts',{})
+    basic=[item for item in facts.get('accordionItems',[]) if item.get('id')=='fundinformation-basicinformation']
+    if len(basic)!=1:raise ValueError('Missing or multiple DWS product identity sections')
+    identities=[item.get('value') for bundle in basic[0].get('listBundle',[]) for item in bundle.get('items',[]) if item.get('key')=='ISIN']
+    if not identities or any(value!=isin for value in identities):raise ValueError('Ambiguous listing document identity')
+    header=page.get('pageFrame',{}).get('productHeader',{}).get('identifier')
+    if header is not None:
+        header_ids=[item.get('value') for item in header if item.get('key')=='ISIN']
+        if not header_ids or any(value!=isin for value in header_ids):raise ValueError('Conflicting DWS product header identity')
+    product_id=doc.get('tealium',{}).get('attributes',{}).get('product_id')
+    if product_id is not None and product_id!=isin:raise ValueError('Conflicting DWS product identity')
+    return facts
 
 def dws_tables(node):
     # Every table of the product page whose columns name a stock exchange; nothing is read from headings.
@@ -159,8 +173,10 @@ def parse_listings(body,source,url,checked):
                 rows.append(dict(ticker=bloomberg[0],mic=mic,exchange=CANONICAL_EXCHANGES[mic],currency=currency,symbol=symbol,excerpt=' | '.join([isin,row['exchangePlace'],row['ticker'],currency,symbol])))
             return [r|{'sourceUrl':url,'checkedAt':checked,'sha256':digest,'evidenceId':f"{isin}-{r['mic']}-{r['ticker']}-{r['currency']}"} for r in rows]
         if isinstance(doc,dict) and 'pdpResult' in doc:
-            dws_identity(body,isin)
-            for values in dws_tables(doc):
+            facts=dws_identity(body,isin)
+            trading=[item for item in facts.get('accordionItems',[]) if item.get('id')=='fundinformation-tradinginformation']
+            if len(trading)!=1:raise ValueError('Missing or multiple DWS product trading sections')
+            for values in dws_tables(trading[0]):
                 for row in values:
                     cell=lambda key:(row.get(key) or {}).get('value') if isinstance(row.get(key),dict) else None
                     mic=markets.get(cell('StockExchange'));currency=cell('Currency');bloomberg=str(cell('BloombergTicker') or '').split();symbol=cell('ReutersRic')

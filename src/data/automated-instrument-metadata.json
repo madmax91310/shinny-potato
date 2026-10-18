@@ -732,8 +732,96 @@
       "sha256": "62cc772c0bfb7ebba370608cbb0d4f15762b2ac74824f7bd405a24fa9ccf6b94"
     }
   },
-  "LU0380865021": {},
-  "LU0328475792": {},
+  "LU0380865021": {
+    "listings": {
+      "value": [
+        {
+          "ticker": "XESC",
+          "mic": "XETR",
+          "exchange": "Xetra",
+          "currency": "EUR",
+          "symbol": "XESC.DE",
+          "excerpt": "LU0380865021 | XETRA | XESC GY | EUR | XESC.DE",
+          "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0380865021/pdpMetaTagsTealium",
+          "checkedAt": "2026-10-18",
+          "sha256": "d671e620d245ec01dd9cb0758da467579e268543b64116d9cdd434aeed8db671",
+          "evidenceId": "LU0380865021-XETR-XESC-EUR"
+        },
+        {
+          "ticker": "XESC",
+          "mic": "ETFP",
+          "exchange": "Borsa Italiana",
+          "currency": "EUR",
+          "symbol": "XESC.MI",
+          "excerpt": "LU0380865021 | Borsa Italiana | XESC IM | EUR | XESC.MI",
+          "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0380865021/pdpMetaTagsTealium",
+          "checkedAt": "2026-10-18",
+          "sha256": "d671e620d245ec01dd9cb0758da467579e268543b64116d9cdd434aeed8db671",
+          "evidenceId": "LU0380865021-ETFP-XESC-EUR"
+        },
+        {
+          "ticker": "XESC",
+          "mic": "XLON",
+          "exchange": "London Stock Exchange",
+          "currency": "GBX",
+          "symbol": "XESC.L",
+          "excerpt": "LU0380865021 | London Stock Exchange | XESC LN | GBX | XESC.L",
+          "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0380865021/pdpMetaTagsTealium",
+          "checkedAt": "2026-10-18",
+          "sha256": "d671e620d245ec01dd9cb0758da467579e268543b64116d9cdd434aeed8db671",
+          "evidenceId": "LU0380865021-XLON-XESC-GBX"
+        }
+      ],
+      "checkedAt": "2026-10-18",
+      "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0380865021/pdpMetaTagsTealium",
+      "sha256": "d671e620d245ec01dd9cb0758da467579e268543b64116d9cdd434aeed8db671"
+    }
+  },
+  "LU0328475792": {
+    "listings": {
+      "value": [
+        {
+          "ticker": "XSX6",
+          "mic": "XETR",
+          "exchange": "Xetra",
+          "currency": "EUR",
+          "symbol": "XSX6.DE",
+          "excerpt": "LU0328475792 | XETRA | XSX6 GY | EUR | XSX6.DE",
+          "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0328475792/pdpMetaTagsTealium",
+          "checkedAt": "2026-10-18",
+          "sha256": "f4f71304bde57a353fa857ea25552329ecead351bd5668bcbf3681a3f3d99abd",
+          "evidenceId": "LU0328475792-XETR-XSX6-EUR"
+        },
+        {
+          "ticker": "XSX6",
+          "mic": "XLON",
+          "exchange": "London Stock Exchange",
+          "currency": "GBX",
+          "symbol": "XSX6.L",
+          "excerpt": "LU0328475792 | London Stock Exchange | XSX6 LN | GBX | XSX6.L",
+          "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0328475792/pdpMetaTagsTealium",
+          "checkedAt": "2026-10-18",
+          "sha256": "f4f71304bde57a353fa857ea25552329ecead351bd5668bcbf3681a3f3d99abd",
+          "evidenceId": "LU0328475792-XLON-XSX6-GBX"
+        },
+        {
+          "ticker": "XSX6",
+          "mic": "ETFP",
+          "exchange": "Borsa Italiana",
+          "currency": "EUR",
+          "symbol": "XSX6.MI",
+          "excerpt": "LU0328475792 | Borsa Italiana | XSX6 IM | EUR | XSX6.MI",
+          "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0328475792/pdpMetaTagsTealium",
+          "checkedAt": "2026-10-18",
+          "sha256": "f4f71304bde57a353fa857ea25552329ecead351bd5668bcbf3681a3f3d99abd",
+          "evidenceId": "LU0328475792-ETFP-XSX6-EUR"
+        }
+      ],
+      "checkedAt": "2026-10-18",
+      "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0328475792/pdpMetaTagsTealium",
+      "sha256": "f4f71304bde57a353fa857ea25552329ecead351bd5668bcbf3681a3f3d99abd"
+    }
+  },
   "IE0008471009": {
     "distribution": {
       "value": "Distributing",
@@ -1267,7 +1355,63 @@
   "IE00BLCHJB90": {},
   "IE000NDWFGA5": {},
   "IE00BMH5Y871": {},
-  "LU0274209237": {},
+  "LU0274209237": {
+    "listings": {
+      "value": [
+        {
+          "ticker": "XMEU",
+          "mic": "XETR",
+          "exchange": "Xetra",
+          "currency": "EUR",
+          "symbol": "XMEU.DE",
+          "excerpt": "LU0274209237 | XETRA | XMEU GY | EUR | XMEU.DE",
+          "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0274209237/pdpMetaTagsTealium",
+          "checkedAt": "2026-10-18",
+          "sha256": "35ef3222cc6e48518dda4b390d6920aee775de624dea70b7f2f7594440810de8",
+          "evidenceId": "LU0274209237-XETR-XMEU-EUR"
+        },
+        {
+          "ticker": "XMED",
+          "mic": "XLON",
+          "exchange": "London Stock Exchange",
+          "currency": "USD",
+          "symbol": "XMED.L",
+          "excerpt": "LU0274209237 | London Stock Exchange | XMED LN | USD | XMED.L",
+          "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0274209237/pdpMetaTagsTealium",
+          "checkedAt": "2026-10-18",
+          "sha256": "35ef3222cc6e48518dda4b390d6920aee775de624dea70b7f2f7594440810de8",
+          "evidenceId": "LU0274209237-XLON-XMED-USD"
+        },
+        {
+          "ticker": "XMEU",
+          "mic": "ETFP",
+          "exchange": "Borsa Italiana",
+          "currency": "EUR",
+          "symbol": "XMEU.MI",
+          "excerpt": "LU0274209237 | Borsa Italiana | XMEU IM | EUR | XMEU.MI",
+          "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0274209237/pdpMetaTagsTealium",
+          "checkedAt": "2026-10-18",
+          "sha256": "35ef3222cc6e48518dda4b390d6920aee775de624dea70b7f2f7594440810de8",
+          "evidenceId": "LU0274209237-ETFP-XMEU-EUR"
+        },
+        {
+          "ticker": "XMEU",
+          "mic": "XLON",
+          "exchange": "London Stock Exchange",
+          "currency": "GBX",
+          "symbol": "XMEU.L",
+          "excerpt": "LU0274209237 | London Stock Exchange | XMEU LN | GBX | XMEU.L",
+          "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0274209237/pdpMetaTagsTealium",
+          "checkedAt": "2026-10-18",
+          "sha256": "35ef3222cc6e48518dda4b390d6920aee775de624dea70b7f2f7594440810de8",
+          "evidenceId": "LU0274209237-XLON-XMEU-GBX"
+        }
+      ],
+      "checkedAt": "2026-10-18",
+      "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0274209237/pdpMetaTagsTealium",
+      "sha256": "35ef3222cc6e48518dda4b390d6920aee775de624dea70b7f2f7594440810de8"
+    }
+  },
   "IE00BK5BQX27": {},
   "IE00B945VV12": {},
   "IE00B3RBWM25": {},
@@ -1348,9 +1492,177 @@
       "sha256": "7d3151dddd7654238708ee27fb1003069008b6316392d19d71e5aecf32dd8ce3"
     }
   },
-  "IE00BJ0KDQ92": {},
-  "IE00BK1PV551": {},
-  "LU2903252349": {},
+  "IE00BJ0KDQ92": {
+    "listings": {
+      "value": [
+        {
+          "ticker": "XDWD",
+          "mic": "XETR",
+          "exchange": "Xetra",
+          "currency": "EUR",
+          "symbol": "XDWD.DE",
+          "excerpt": "IE00BJ0KDQ92 | XETRA | XDWD GY | EUR | XDWD.DE",
+          "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BJ0KDQ92/pdpMetaTagsTealium",
+          "checkedAt": "2026-10-18",
+          "sha256": "280c4bb72d464c8f377259c52f71bea0a8b64024c0c91ee388ae77dc69d61379",
+          "evidenceId": "IE00BJ0KDQ92-XETR-XDWD-EUR"
+        },
+        {
+          "ticker": "XDWD",
+          "mic": "ETFP",
+          "exchange": "Borsa Italiana",
+          "currency": "EUR",
+          "symbol": "XDWD.MI",
+          "excerpt": "IE00BJ0KDQ92 | Borsa Italiana | XDWD IM | EUR | XDWD.MI",
+          "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BJ0KDQ92/pdpMetaTagsTealium",
+          "checkedAt": "2026-10-18",
+          "sha256": "280c4bb72d464c8f377259c52f71bea0a8b64024c0c91ee388ae77dc69d61379",
+          "evidenceId": "IE00BJ0KDQ92-ETFP-XDWD-EUR"
+        },
+        {
+          "ticker": "XDWD",
+          "mic": "XLON",
+          "exchange": "London Stock Exchange",
+          "currency": "USD",
+          "symbol": "XDWD.L",
+          "excerpt": "IE00BJ0KDQ92 | London Stock Exchange | XDWD LN | USD | XDWD.L",
+          "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BJ0KDQ92/pdpMetaTagsTealium",
+          "checkedAt": "2026-10-18",
+          "sha256": "280c4bb72d464c8f377259c52f71bea0a8b64024c0c91ee388ae77dc69d61379",
+          "evidenceId": "IE00BJ0KDQ92-XLON-XDWD-USD"
+        },
+        {
+          "ticker": "XWLD",
+          "mic": "XLON",
+          "exchange": "London Stock Exchange",
+          "currency": "GBX",
+          "symbol": "XWLD.L",
+          "excerpt": "IE00BJ0KDQ92 | London Stock Exchange | XWLD LN | GBX | XWLD.L",
+          "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BJ0KDQ92/pdpMetaTagsTealium",
+          "checkedAt": "2026-10-18",
+          "sha256": "280c4bb72d464c8f377259c52f71bea0a8b64024c0c91ee388ae77dc69d61379",
+          "evidenceId": "IE00BJ0KDQ92-XLON-XWLD-GBX"
+        }
+      ],
+      "checkedAt": "2026-10-18",
+      "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BJ0KDQ92/pdpMetaTagsTealium",
+      "sha256": "280c4bb72d464c8f377259c52f71bea0a8b64024c0c91ee388ae77dc69d61379"
+    }
+  },
+  "IE00BK1PV551": {
+    "listings": {
+      "value": [
+        {
+          "ticker": "XDWL",
+          "mic": "XETR",
+          "exchange": "Xetra",
+          "currency": "EUR",
+          "symbol": "XDWL.DE",
+          "excerpt": "IE00BK1PV551 | XETRA | XDWL GY | EUR | XDWL.DE",
+          "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BK1PV551/pdpMetaTagsTealium",
+          "checkedAt": "2026-10-18",
+          "sha256": "0aecf93fd5a4872e1814f896c4ece1aed169e234487470911132304ae3865a05",
+          "evidenceId": "IE00BK1PV551-XETR-XDWL-EUR"
+        },
+        {
+          "ticker": "XDWL",
+          "mic": "XLON",
+          "exchange": "London Stock Exchange",
+          "currency": "USD",
+          "symbol": "XDWL.L",
+          "excerpt": "IE00BK1PV551 | London Stock Exchange | XDWL LN | USD | XDWL.L",
+          "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BK1PV551/pdpMetaTagsTealium",
+          "checkedAt": "2026-10-18",
+          "sha256": "0aecf93fd5a4872e1814f896c4ece1aed169e234487470911132304ae3865a05",
+          "evidenceId": "IE00BK1PV551-XLON-XDWL-USD"
+        },
+        {
+          "ticker": "XDWK",
+          "mic": "XLON",
+          "exchange": "London Stock Exchange",
+          "currency": "HKD",
+          "symbol": "XDWK.L",
+          "excerpt": "IE00BK1PV551 | London Stock Exchange | XDWK LN | HKD | XDWK.L",
+          "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BK1PV551/pdpMetaTagsTealium",
+          "checkedAt": "2026-10-18",
+          "sha256": "0aecf93fd5a4872e1814f896c4ece1aed169e234487470911132304ae3865a05",
+          "evidenceId": "IE00BK1PV551-XLON-XDWK-HKD"
+        },
+        {
+          "ticker": "XDWP",
+          "mic": "XLON",
+          "exchange": "London Stock Exchange",
+          "currency": "GBP",
+          "symbol": "XDWP.L",
+          "excerpt": "IE00BK1PV551 | London Stock Exchange | XDWP LN | GBP | XDWP.L",
+          "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BK1PV551/pdpMetaTagsTealium",
+          "checkedAt": "2026-10-18",
+          "sha256": "0aecf93fd5a4872e1814f896c4ece1aed169e234487470911132304ae3865a05",
+          "evidenceId": "IE00BK1PV551-XLON-XDWP-GBP"
+        }
+      ],
+      "checkedAt": "2026-10-18",
+      "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BK1PV551/pdpMetaTagsTealium",
+      "sha256": "0aecf93fd5a4872e1814f896c4ece1aed169e234487470911132304ae3865a05"
+    }
+  },
+  "LU2903252349": {
+    "listings": {
+      "value": [
+        {
+          "ticker": "SCWX",
+          "mic": "ETFP",
+          "exchange": "Borsa Italiana",
+          "currency": "EUR",
+          "symbol": "SCWX.MI",
+          "excerpt": "LU2903252349 | Borsa Italiana | SCWX IM | EUR | SCWX.MI",
+          "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU2903252349/pdpMetaTagsTealium",
+          "checkedAt": "2026-10-18",
+          "sha256": "4a2e449220b4ff4b18873129d4b34b09b91b2fa3255525452fd421a8bbf42dca",
+          "evidenceId": "LU2903252349-ETFP-SCWX-EUR"
+        },
+        {
+          "ticker": "SCWX",
+          "mic": "XLON",
+          "exchange": "London Stock Exchange",
+          "currency": "USD",
+          "symbol": "SCWX.L",
+          "excerpt": "LU2903252349 | London Stock Exchange | SCWX LN | USD | SCWX.L",
+          "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU2903252349/pdpMetaTagsTealium",
+          "checkedAt": "2026-10-18",
+          "sha256": "4a2e449220b4ff4b18873129d4b34b09b91b2fa3255525452fd421a8bbf42dca",
+          "evidenceId": "LU2903252349-XLON-SCWX-USD"
+        },
+        {
+          "ticker": "SCXW",
+          "mic": "XLON",
+          "exchange": "London Stock Exchange",
+          "currency": "GBP",
+          "symbol": "SCXW.L",
+          "excerpt": "LU2903252349 | London Stock Exchange | SCXW LN | GBP | SCXW.L",
+          "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU2903252349/pdpMetaTagsTealium",
+          "checkedAt": "2026-10-18",
+          "sha256": "4a2e449220b4ff4b18873129d4b34b09b91b2fa3255525452fd421a8bbf42dca",
+          "evidenceId": "LU2903252349-XLON-SCXW-GBP"
+        },
+        {
+          "ticker": "SCWX",
+          "mic": "XETR",
+          "exchange": "Xetra",
+          "currency": "EUR",
+          "symbol": "SCWX.DE",
+          "excerpt": "LU2903252349 | XETRA | SCWX GY | EUR | SCWX.DE",
+          "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU2903252349/pdpMetaTagsTealium",
+          "checkedAt": "2026-10-18",
+          "sha256": "4a2e449220b4ff4b18873129d4b34b09b91b2fa3255525452fd421a8bbf42dca",
+          "evidenceId": "LU2903252349-XETR-SCWX-EUR"
+        }
+      ],
+      "checkedAt": "2026-10-18",
+      "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU2903252349/pdpMetaTagsTealium",
+      "sha256": "4a2e449220b4ff4b18873129d4b34b09b91b2fa3255525452fd421a8bbf42dca"
+    }
+  },
   "DE0002635307": {
     "distribution": {
       "value": "ausschüttend",
@@ -6295,13 +6607,177 @@
       "sha256": "1a8f5cf6c1b889e8b7aaccee8d0d03f91addccf39da78ea003fe456ccc1a5573"
     }
   },
-  "IE000L6ZMMC4": {},
+  "IE000L6ZMMC4": {
+    "listings": {
+      "value": [
+        {
+          "ticker": "ALLG",
+          "mic": "XLON",
+          "exchange": "London Stock Exchange",
+          "currency": "GBP",
+          "symbol": "ALLG.L",
+          "excerpt": "IE000L6ZMMC4 | London Stock Exchange | ALLG LN | GBP | ALLG.L",
+          "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE000L6ZMMC4/pdpMetaTagsTealium",
+          "checkedAt": "2026-10-18",
+          "sha256": "193571f73fd2e4876e7d2b34b2d074acfd45e27b7743b625400b52bd4b8935dc",
+          "evidenceId": "IE000L6ZMMC4-XLON-ALLG-GBP"
+        },
+        {
+          "ticker": "ALLW",
+          "mic": "ETFP",
+          "exchange": "Borsa Italiana",
+          "currency": "EUR",
+          "symbol": "ALLW.MI",
+          "excerpt": "IE000L6ZMMC4 | Borsa Italiana | ALLW IM | EUR | ALLW.MI",
+          "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE000L6ZMMC4/pdpMetaTagsTealium",
+          "checkedAt": "2026-10-18",
+          "sha256": "193571f73fd2e4876e7d2b34b2d074acfd45e27b7743b625400b52bd4b8935dc",
+          "evidenceId": "IE000L6ZMMC4-ETFP-ALLW-EUR"
+        },
+        {
+          "ticker": "ALLW",
+          "mic": "XLON",
+          "exchange": "London Stock Exchange",
+          "currency": "USD",
+          "symbol": "ALLW.L",
+          "excerpt": "IE000L6ZMMC4 | London Stock Exchange | ALLW LN | USD | ALLW.L",
+          "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE000L6ZMMC4/pdpMetaTagsTealium",
+          "checkedAt": "2026-10-18",
+          "sha256": "193571f73fd2e4876e7d2b34b2d074acfd45e27b7743b625400b52bd4b8935dc",
+          "evidenceId": "IE000L6ZMMC4-XLON-ALLW-USD"
+        },
+        {
+          "ticker": "ALLW",
+          "mic": "XETR",
+          "exchange": "Xetra",
+          "currency": "EUR",
+          "symbol": "ALLW.DE",
+          "excerpt": "IE000L6ZMMC4 | XETRA | ALLW GY | EUR | ALLW.DE",
+          "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE000L6ZMMC4/pdpMetaTagsTealium",
+          "checkedAt": "2026-10-18",
+          "sha256": "193571f73fd2e4876e7d2b34b2d074acfd45e27b7743b625400b52bd4b8935dc",
+          "evidenceId": "IE000L6ZMMC4-XETR-ALLW-EUR"
+        }
+      ],
+      "checkedAt": "2026-10-18",
+      "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE000L6ZMMC4/pdpMetaTagsTealium",
+      "sha256": "193571f73fd2e4876e7d2b34b2d074acfd45e27b7743b625400b52bd4b8935dc"
+    }
+  },
   "IE00BGV5VN51": {},
   "IE00BM67HK77": {},
   "IE00BM67HS53": {},
-  "IE00BTJRMP35": {},
-  "LU1875395870": {},
-  "LU2196470426": {},
+  "IE00BTJRMP35": {
+    "listings": {
+      "value": [
+        {
+          "ticker": "XMME",
+          "mic": "XETR",
+          "exchange": "Xetra",
+          "currency": "EUR",
+          "symbol": "XMME.DE",
+          "excerpt": "IE00BTJRMP35 | XETRA | XMME GY | EUR | XMME.DE",
+          "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BTJRMP35/pdpMetaTagsTealium",
+          "checkedAt": "2026-10-18",
+          "sha256": "c9e94ede351221557e0d138cd439db9ce7fa0d14284e5a919892b349b66a43f3",
+          "evidenceId": "IE00BTJRMP35-XETR-XMME-EUR"
+        },
+        {
+          "ticker": "XMME",
+          "mic": "ETFP",
+          "exchange": "Borsa Italiana",
+          "currency": "EUR",
+          "symbol": "XMME.MI",
+          "excerpt": "IE00BTJRMP35 | Borsa Italiana | XMME IM | EUR | XMME.MI",
+          "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BTJRMP35/pdpMetaTagsTealium",
+          "checkedAt": "2026-10-18",
+          "sha256": "c9e94ede351221557e0d138cd439db9ce7fa0d14284e5a919892b349b66a43f3",
+          "evidenceId": "IE00BTJRMP35-ETFP-XMME-EUR"
+        },
+        {
+          "ticker": "XMMS",
+          "mic": "XLON",
+          "exchange": "London Stock Exchange",
+          "currency": "GBX",
+          "symbol": "XMMS.L",
+          "excerpt": "IE00BTJRMP35 | London Stock Exchange | XMMS LN | GBX | XMMS.L",
+          "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BTJRMP35/pdpMetaTagsTealium",
+          "checkedAt": "2026-10-18",
+          "sha256": "c9e94ede351221557e0d138cd439db9ce7fa0d14284e5a919892b349b66a43f3",
+          "evidenceId": "IE00BTJRMP35-XLON-XMMS-GBX"
+        },
+        {
+          "ticker": "XMME",
+          "mic": "XLON",
+          "exchange": "London Stock Exchange",
+          "currency": "USD",
+          "symbol": "XMME.L",
+          "excerpt": "IE00BTJRMP35 | London Stock Exchange | XMME LN | USD | XMME.L",
+          "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BTJRMP35/pdpMetaTagsTealium",
+          "checkedAt": "2026-10-18",
+          "sha256": "c9e94ede351221557e0d138cd439db9ce7fa0d14284e5a919892b349b66a43f3",
+          "evidenceId": "IE00BTJRMP35-XLON-XMME-USD"
+        }
+      ],
+      "checkedAt": "2026-10-18",
+      "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BTJRMP35/pdpMetaTagsTealium",
+      "sha256": "c9e94ede351221557e0d138cd439db9ce7fa0d14284e5a919892b349b66a43f3"
+    }
+  },
+  "LU1875395870": {
+    "listings": {
+      "value": [
+        {
+          "ticker": "XDJE",
+          "mic": "XETR",
+          "exchange": "Xetra",
+          "currency": "EUR",
+          "symbol": "XDJE.DE",
+          "excerpt": "LU1875395870 | XETRA | XDJE GY | EUR | XDJE.DE",
+          "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU1875395870/pdpMetaTagsTealium",
+          "checkedAt": "2026-10-18",
+          "sha256": "57268702fbda43f3db78322fb6001c34ea5ad82c0a503e071d0c457a527fc6c6",
+          "evidenceId": "LU1875395870-XETR-XDJE-EUR"
+        },
+        {
+          "ticker": "XDJE",
+          "mic": "ETFP",
+          "exchange": "Borsa Italiana",
+          "currency": "EUR",
+          "symbol": "XDJE.MI",
+          "excerpt": "LU1875395870 | Borsa Italiana | XDJE IM | EUR | XDJE.MI",
+          "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU1875395870/pdpMetaTagsTealium",
+          "checkedAt": "2026-10-18",
+          "sha256": "57268702fbda43f3db78322fb6001c34ea5ad82c0a503e071d0c457a527fc6c6",
+          "evidenceId": "LU1875395870-ETFP-XDJE-EUR"
+        }
+      ],
+      "checkedAt": "2026-10-18",
+      "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU1875395870/pdpMetaTagsTealium",
+      "sha256": "57268702fbda43f3db78322fb6001c34ea5ad82c0a503e071d0c457a527fc6c6"
+    }
+  },
+  "LU2196470426": {
+    "listings": {
+      "value": [
+        {
+          "ticker": "XNKY",
+          "mic": "XETR",
+          "exchange": "Xetra",
+          "currency": "EUR",
+          "symbol": "XNKY.DE",
+          "excerpt": "LU2196470426 | XETRA | XNKY GY | EUR | XNKY.DE",
+          "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU2196470426/pdpMetaTagsTealium",
+          "checkedAt": "2026-10-18",
+          "sha256": "b2378c414f134d896d964dd02c7501fef3711adc6f59adc63751180a0d0eea11",
+          "evidenceId": "LU2196470426-XETR-XNKY-EUR"
+        }
+      ],
+      "checkedAt": "2026-10-18",
+      "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU2196470426/pdpMetaTagsTealium",
+      "sha256": "b2378c414f134d896d964dd02c7501fef3711adc6f59adc63751180a0d0eea11"
+    }
+  },
   "IE00BK5BQT80": {
     "distribution": {
       "value": "Accumulating",
