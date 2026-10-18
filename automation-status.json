@@ -77,37 +77,24 @@
       "dataFailures": {}
     },
     "collect-etf-pilot.yml": {
+      "monitorVersion": 2,
       "name": "ETF et compositions d’indices",
-      "runId": 39144658790,
+      "runId": 39159973412,
       "attempt": 1,
-      "completedAt": "2026-10-18T16:36:48Z",
-      "status": "failure",
-      "lastSuccessAt": "2026-10-18T16:19:21Z",
-      "collectionStatus": "failure",
+      "headSha": "4bfd5a019f9c0eba9fbfd0a9b6b77765e057b180",
+      "createdAt": "2026-10-18T19:42:11Z",
+      "completedAt": "2026-10-18T20:47:08Z",
+      "status": "success",
+      "lastSuccessAt": "2026-10-18T20:47:08Z",
+      "collectionStatus": "success",
       "validationStatus": "success",
       "recordingStatus": "success",
       "publicationStatus": "success",
-      "lastCollectionSuccessAt": "2026-10-18T16:19:21Z",
-      "lastPublicationSuccessAt": "2026-10-18T16:36:21Z",
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39144658790",
-      "failures": [
-        {
-          "job": "deploy / build",
-          "step": "Run node scripts/build-dca-exposures.mjs && npm run test:dca && node scripts/audit-portfolio-routing.mjs"
-        },
-        {
-          "job": "report-failures",
-          "step": "Run echo 'Une source ETF ou indice a échoué. Ses dernières données fiables sont conservées ; les autres collectes validées ont été publiées si les audits et le déploiement ont réussi.' >> \"$GITHUB_STEP_SUMMARY\""
-        }
-      ],
-      "dataFailures": {
-        "etf-observation-IE00B5BMR087": {
-          "name": "ETF IE00B5BMR087",
-          "completedAt": "2026-10-18T16:36:48Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39144658790",
-          "cause": "HTTP Error 403: Forbidden"
-        }
-      }
+      "lastCollectionSuccessAt": "2026-10-18T20:47:08Z",
+      "lastPublicationSuccessAt": "2026-10-18T20:47:05Z",
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39159973412",
+      "failures": [],
+      "dataFailures": {}
     },
     "update-economic-data.yml": {
       "name": "Taux d’épargne, ménages, SCPI et fonds euros",
@@ -473,11 +460,11 @@
       "dataFailures": {}
     }
   },
-  "updatedAt": "2026-10-18T20:41:14Z",
+  "updatedAt": "2026-10-18T20:47:08Z",
   "monitoring": {
     "schemaVersion": 1,
-    "checkedAt": "2026-10-18T20:57:22.648790+00:00",
-    "revision": 129,
+    "checkedAt": "2026-10-18T20:57:48.024516+00:00",
+    "revision": 130,
     "active": {
       "publication:update-practical-sheets.yml": {
         "name": "Sources des fiches pratiques",
@@ -494,7 +481,7 @@
         "cause": "deploy / build : Run node scripts/test-portfolio-roadmap.mjs",
         "id": "publication:update-practical-sheets.yml",
         "firstSeenAt": "2026-10-18T11:43:59.694981+00:00",
-        "lastSeenAt": "2026-10-18T20:57:22.648790+00:00"
+        "lastSeenAt": "2026-10-18T20:57:48.024516+00:00"
       },
       "publication:update-insurance.yml": {
         "name": "Présentations d’assurance-vie",
@@ -511,7 +498,7 @@
         "cause": "deploy / build : Run node scripts/test-portfolio-roadmap.mjs",
         "id": "publication:update-insurance.yml",
         "firstSeenAt": "2026-10-18T12:59:38.607258+00:00",
-        "lastSeenAt": "2026-10-18T20:57:22.648790+00:00"
+        "lastSeenAt": "2026-10-18T20:57:48.024516+00:00"
       },
       "publication:update-scpi.yml": {
         "name": "Présentations de SCPI",
@@ -528,7 +515,7 @@
         "cause": "deploy / build : Run node scripts/test-portfolio-roadmap.mjs",
         "id": "publication:update-scpi.yml",
         "firstSeenAt": "2026-10-18T13:01:05.329643+00:00",
-        "lastSeenAt": "2026-10-18T20:57:22.648790+00:00"
+        "lastSeenAt": "2026-10-18T20:57:48.024516+00:00"
       },
       "publication:update-presentation-actors.yml": {
         "name": "Présentations des acteurs et offres",
@@ -545,7 +532,7 @@
         "cause": "deploy / build : Run node scripts/test-portfolio-roadmap.mjs",
         "id": "publication:update-presentation-actors.yml",
         "firstSeenAt": "2026-10-18T12:56:03.999172+00:00",
-        "lastSeenAt": "2026-10-18T20:57:22.648790+00:00"
+        "lastSeenAt": "2026-10-18T20:57:48.024516+00:00"
       },
       "publication:update-regulatory-data.yml": {
         "name": "Paramètres fiscaux, LDDS et tarifs de courtiers",
@@ -563,35 +550,7 @@
         "cause": "deploy / build : Run node scripts/test-portfolio-roadmap.mjs",
         "id": "publication:update-regulatory-data.yml",
         "firstSeenAt": "2026-10-18T12:59:15.049897+00:00",
-        "lastSeenAt": "2026-10-18T20:57:22.648790+00:00"
-      },
-      "collection:collect-etf-pilot.yml:etf-observation-IE00B5BMR087": {
-        "name": "iShares Core S&P 500 UCITS ETF",
-        "tools": [
-          "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Impact des frais",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "workflow": "collect-etf-pilot.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39144658790",
-        "to": "/bibliotheque-donnees?id=IE00B5BMR087",
-        "lastSuccessAt": "2026-10-18T16:19:21Z",
-        "completedAt": "2026-10-18T16:36:48Z",
-        "cause": "HTTP Error 403: Forbidden",
-        "sourceUrls": [
-          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=253743&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=253743&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "https://www.justetf.com/en/etf-profile.html?isin=IE00B5BMR087"
-        ],
-        "kind": "collection",
-        "field": "Champs du collecteur",
-        "dataId": "etf-observation-IE00B5BMR087",
-        "id": "collection:collect-etf-pilot.yml:etf-observation-IE00B5BMR087",
-        "firstSeenAt": "2026-10-18T16:38:05.962322+00:00",
-        "lastSeenAt": "2026-10-18T20:57:22.648790+00:00"
+        "lastSeenAt": "2026-10-18T20:57:48.024516+00:00"
       },
       "workflow:update-market-monthly.yml": {
         "name": "Historiques mensuels des marchés",
@@ -611,7 +570,7 @@
         "cause": "report-failures : Run echo 'Une source mensuelle a échoué : historique précédent conservé. Les autres mises à jour validées ont été publiées si les audits et le déploiement ont réussi.' >> \"$GITHUB_STEP_SUMMARY\"",
         "id": "workflow:update-market-monthly.yml",
         "firstSeenAt": "2026-10-18T16:00:58.550580+00:00",
-        "lastSeenAt": "2026-10-18T20:57:22.648790+00:00"
+        "lastSeenAt": "2026-10-18T20:57:48.024516+00:00"
       },
       "workflow:update-company-analysis.yml": {
         "name": "Analyses d’entreprises",
@@ -628,7 +587,7 @@
         "cause": "report-failures : Run echo 'Some sources failed. Previous observations were retained independently; stale ratios are omitted by the publication engine.' >> \"$GITHUB_STEP_SUMMARY\"",
         "id": "workflow:update-company-analysis.yml",
         "firstSeenAt": "2026-10-18T14:47:12.930226+00:00",
-        "lastSeenAt": "2026-10-18T20:57:22.648790+00:00"
+        "lastSeenAt": "2026-10-18T20:57:48.024516+00:00"
       },
       "publication:update-economic-data.yml": {
         "name": "Taux d’épargne, ménages, SCPI et fonds euros",
@@ -646,7 +605,7 @@
         "cause": "deploy / build : Run node scripts/test-portfolio-roadmap.mjs",
         "id": "publication:update-economic-data.yml",
         "firstSeenAt": "2026-10-17T12:18:32.387705+00:00",
-        "lastSeenAt": "2026-10-18T20:57:22.648790+00:00"
+        "lastSeenAt": "2026-10-18T20:57:48.024516+00:00"
       },
       "publication:update-non-bond-expansion.yml": {
         "name": "Nouveaux actifs et historiques",
@@ -666,7 +625,7 @@
         "cause": "deploy / build : Run node scripts/test-portfolio-roadmap.mjs",
         "id": "publication:update-non-bond-expansion.yml",
         "firstSeenAt": "2026-10-18T12:58:02.935819+00:00",
-        "lastSeenAt": "2026-10-18T20:57:22.648790+00:00"
+        "lastSeenAt": "2026-10-18T20:57:48.024516+00:00"
       },
       "publication:update-qualified-exposures.yml": {
         "name": "Expositions ETF qualifiées",
@@ -687,7 +646,7 @@
         "cause": "deploy / build : Run node scripts/test-portfolio-roadmap.mjs ; deploy / fallback-build : Run npm run build",
         "id": "publication:update-qualified-exposures.yml",
         "firstSeenAt": "2026-10-16T12:48:21.924866+00:00",
-        "lastSeenAt": "2026-10-18T20:57:22.648790+00:00"
+        "lastSeenAt": "2026-10-18T20:57:48.024516+00:00"
       },
       "collection:update-exposure-expansion.yml:etf-exposure-expansion-IE00BK1PV551": {
         "name": "Xtrackers MSCI World UCITS ETF 1D",
@@ -712,7 +671,7 @@
         "dataId": "etf-exposure-expansion-IE00BK1PV551",
         "id": "collection:update-exposure-expansion.yml:etf-exposure-expansion-IE00BK1PV551",
         "firstSeenAt": "2026-10-18T15:23:28.234259+00:00",
-        "lastSeenAt": "2026-10-18T20:57:22.648790+00:00"
+        "lastSeenAt": "2026-10-18T20:57:48.024516+00:00"
       },
       "unobserved:onboard-assets.yml": {
         "name": "Intégration des nouveaux actifs",
@@ -736,37 +695,10 @@
         "cause": "Aucune exécution terminée avec une date exploitable.",
         "id": "unobserved:onboard-assets.yml",
         "firstSeenAt": "2026-10-18T12:02:38.068054+00:00",
-        "lastSeenAt": "2026-10-18T20:57:22.648790+00:00"
+        "lastSeenAt": "2026-10-18T20:57:48.024516+00:00"
       }
     },
     "events": [
-      {
-        "revision": 100,
-        "at": "2026-10-18T10:52:15.666233+00:00",
-        "opened": [],
-        "resolved": [
-          {
-            "name": "Historiques mensuels des marchés",
-            "tools": [
-              "Et si tu avais investi",
-              "Performance depuis",
-              "Duel",
-              "Générateur"
-            ],
-            "impactScope": "collector",
-            "workflow": "update-market-monthly.yml",
-            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39105596502",
-            "to": "/donnees-a-revoir",
-            "kind": "publication",
-            "field": "Publication",
-            "cause": "deploy / browser-checks (2) : Run node scripts/run-browser-checks.mjs 2 4",
-            "id": "publication:update-market-monthly.yml",
-            "firstSeenAt": "2026-10-17T12:19:18.394776+00:00",
-            "lastSeenAt": "2026-10-18T10:50:48.847323+00:00",
-            "resolvedAt": "2026-10-18T10:52:15.666233+00:00"
-          }
-        ]
-      },
       {
         "revision": 101,
         "at": "2026-10-18T11:43:35.606108+00:00",
@@ -1279,9 +1211,75 @@
           }
         ],
         "escalated": []
+      },
+      {
+        "revision": 130,
+        "at": "2026-10-18T20:57:48.024516+00:00",
+        "opened": [],
+        "resolved": [
+          {
+            "name": "iShares Core S&P 500 UCITS ETF",
+            "tools": [
+              "Comparatif ETF",
+              "Duels de portefeuilles",
+              "Générateur de portefeuilles",
+              "Impact des frais",
+              "Présentation ETF"
+            ],
+            "impactScope": "asset",
+            "workflow": "collect-etf-pilot.yml",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39144658790",
+            "to": "/bibliotheque-donnees?id=IE00B5BMR087",
+            "lastSuccessAt": "2026-10-18T16:19:21Z",
+            "completedAt": "2026-10-18T16:36:48Z",
+            "cause": "HTTP Error 403: Forbidden",
+            "sourceUrls": [
+              "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=253743&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+              "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=253743&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+              "https://www.justetf.com/en/etf-profile.html?isin=IE00B5BMR087"
+            ],
+            "kind": "collection",
+            "field": "Champs du collecteur",
+            "dataId": "etf-observation-IE00B5BMR087",
+            "id": "collection:collect-etf-pilot.yml:etf-observation-IE00B5BMR087",
+            "firstSeenAt": "2026-10-18T16:38:05.962322+00:00",
+            "lastSeenAt": "2026-10-18T20:57:22.648790+00:00",
+            "resolvedAt": "2026-10-18T20:57:48.024516+00:00"
+          }
+        ],
+        "escalated": []
       }
     ],
     "resolved": [
+      {
+        "name": "iShares Core S&P 500 UCITS ETF",
+        "tools": [
+          "Comparatif ETF",
+          "Duels de portefeuilles",
+          "Générateur de portefeuilles",
+          "Impact des frais",
+          "Présentation ETF"
+        ],
+        "impactScope": "asset",
+        "workflow": "collect-etf-pilot.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39144658790",
+        "to": "/bibliotheque-donnees?id=IE00B5BMR087",
+        "lastSuccessAt": "2026-10-18T16:19:21Z",
+        "completedAt": "2026-10-18T16:36:48Z",
+        "cause": "HTTP Error 403: Forbidden",
+        "sourceUrls": [
+          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=253743&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=253743&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "https://www.justetf.com/en/etf-profile.html?isin=IE00B5BMR087"
+        ],
+        "kind": "collection",
+        "field": "Champs du collecteur",
+        "dataId": "etf-observation-IE00B5BMR087",
+        "id": "collection:collect-etf-pilot.yml:etf-observation-IE00B5BMR087",
+        "firstSeenAt": "2026-10-18T16:38:05.962322+00:00",
+        "lastSeenAt": "2026-10-18T20:57:22.648790+00:00",
+        "resolvedAt": "2026-10-18T20:57:48.024516+00:00"
+      },
       {
         "name": "Répétition des futures collectes",
         "tools": [
@@ -3503,34 +3501,6 @@
         "field": "Poids du pays Singapore",
         "cause": "Valeur contradictoire pour la même période (2026-10-13) : Poids du pays Singapore. Dernière observation conservée ; propositions archivées (etf:IE0006WW1TQ4:countries:Singapore:896eb444159fd8c94545e70e:2026-10-13).",
         "id": "radar:d05354b28a708356e42c3495",
-        "firstSeenAt": "2026-10-15T12:49:29.696670+00:00",
-        "lastSeenAt": "2026-10-15T17:57:53.913128+00:00",
-        "resolvedAt": "2026-10-15T17:58:10.525626+00:00"
-      },
-      {
-        "name": "Xtrackers MSCI World ex USA UCITS ETF 1C",
-        "tools": [
-          "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Impact des frais",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "sourceUrls": [
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/historicaldata/download",
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/pdpMetaTagsTealium",
-          "https://etf.dws.com/download/asset/82292b8e-bf9e-44f2-b20d-722c743110a3",
-          "https://etf.dws.com/fr-fr/AssetDownload/Index/410e8206-23cd-463b-b2a5-6018bfc1fd32/Factsheet.pdf",
-          "https://www.justetf.com/en/etf-profile.html?isin=IE0006WW1TQ4",
-          "https://www.msci.com/documents/10199/255599/msci-world-ex-usa-index-net.pdf",
-          "https://www.zonebourse.com/cours/etf/XTRACKERS-MSCI-WORLD-EX-U-169862014/"
-        ],
-        "to": "/bibliotheque-donnees?id=IE0006WW1TQ4",
-        "kind": "conflict",
-        "field": "Poids du pays Hong Kong",
-        "cause": "Valeur contradictoire pour la même période (2026-10-13) : Poids du pays Hong Kong. Dernière observation conservée ; propositions archivées (etf:IE0006WW1TQ4:countries:Hong Kong:896eb444159fd8c94545e70e:2026-10-13).",
-        "id": "radar:82786fa6b7c32b9436304d3a",
         "firstSeenAt": "2026-10-15T12:49:29.696670+00:00",
         "lastSeenAt": "2026-10-15T17:57:53.913128+00:00",
         "resolvedAt": "2026-10-15T17:58:10.525626+00:00"
