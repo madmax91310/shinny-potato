@@ -56,19 +56,32 @@
     },
     "update-company-analysis.yml": {
       "name": "Analyses d’entreprises",
-      "runId": 39027217464,
+      "runId": 39123781152,
       "attempt": 1,
-      "completedAt": "2026-10-17T11:40:20Z",
-      "status": "success",
+      "completedAt": "2026-10-18T11:46:47Z",
+      "status": "failure",
       "lastSuccessAt": "2026-10-17T11:40:20Z",
       "collectionStatus": "success",
       "validationStatus": "success",
       "recordingStatus": "success",
-      "publicationStatus": "not-run",
-      "lastCollectionSuccessAt": "2026-10-17T11:40:20Z",
+      "publicationStatus": "failure",
+      "lastCollectionSuccessAt": "2026-10-18T11:46:47Z",
       "lastPublicationSuccessAt": "2026-10-16T12:11:37Z",
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39027217464",
-      "failures": [],
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39123781152",
+      "failures": [
+        {
+          "job": "deploy / build",
+          "step": "Run npm run audit:instrument-listings"
+        },
+        {
+          "job": "deploy / fallback-build",
+          "step": "Run npm run build"
+        },
+        {
+          "job": "report-failures",
+          "step": "Run echo 'Some sources failed. Previous observations were retained independently; stale ratios are omitted by the publication engine.' >> \"$GITHUB_STEP_SUMMARY\""
+        }
+      ],
       "dataFailures": {}
     },
     "collect-etf-pilot.yml": {
@@ -419,11 +432,11 @@
       "dataFailures": {}
     }
   },
-  "updatedAt": "2026-10-18T11:43:30Z",
+  "updatedAt": "2026-10-18T11:46:47Z",
   "monitoring": {
     "schemaVersion": 1,
-    "checkedAt": "2026-10-18T11:43:59.694981+00:00",
-    "revision": 102,
+    "checkedAt": "2026-10-18T11:47:02.423295+00:00",
+    "revision": 103,
     "active": {
       "publication:update-practical-sheets.yml": {
         "name": "Sources des fiches pratiques",
@@ -439,7 +452,7 @@
         "cause": "deploy / build : Run npm run audit:instrument-listings ; deploy / fallback-build : Run npm run build",
         "id": "publication:update-practical-sheets.yml",
         "firstSeenAt": "2026-10-18T11:43:59.694981+00:00",
-        "lastSeenAt": "2026-10-18T11:43:59.694981+00:00"
+        "lastSeenAt": "2026-10-18T11:47:02.423295+00:00"
       },
       "collection:update-insurance.yml:linxea-avenir-2": {
         "name": "Linxea Avenir 2",
@@ -458,7 +471,7 @@
         "dataId": "linxea-avenir-2",
         "id": "collection:update-insurance.yml:linxea-avenir-2",
         "firstSeenAt": "2026-10-14T13:08:27.203935+00:00",
-        "lastSeenAt": "2026-10-18T11:43:59.694981+00:00"
+        "lastSeenAt": "2026-10-18T11:47:02.423295+00:00"
       },
       "collection:update-scpi.yml:transitions-europe": {
         "name": "Transitions Europe",
@@ -480,7 +493,7 @@
         "dataId": "transitions-europe",
         "id": "collection:update-scpi.yml:transitions-europe",
         "firstSeenAt": "2026-10-18T10:29:36.524873+00:00",
-        "lastSeenAt": "2026-10-18T11:43:59.694981+00:00"
+        "lastSeenAt": "2026-10-18T11:47:02.423295+00:00"
       },
       "workflow:update-market-monthly.yml": {
         "name": "Historiques mensuels des marchés",
@@ -499,7 +512,23 @@
         "cause": "refresh : Validate observations: node scripts test-etf-tool-connections.mjs",
         "id": "workflow:update-market-monthly.yml",
         "firstSeenAt": "2026-10-18T11:43:35.606108+00:00",
-        "lastSeenAt": "2026-10-18T11:43:59.694981+00:00"
+        "lastSeenAt": "2026-10-18T11:47:02.423295+00:00"
+      },
+      "publication:update-company-analysis.yml": {
+        "name": "Analyses d’entreprises",
+        "tools": [
+          "Analyse d’entreprise"
+        ],
+        "impactScope": "collector",
+        "workflow": "update-company-analysis.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39123781152",
+        "to": "/donnees-a-revoir",
+        "kind": "publication",
+        "field": "Publication",
+        "cause": "deploy / build : Run npm run audit:instrument-listings ; deploy / fallback-build : Run npm run build ; report-failures : Run echo 'Some sources failed. Previous observations were retained independently; stale ratios are omitted by the publication engine.' >> \"$GITHUB_STEP_SUMMARY\"",
+        "id": "publication:update-company-analysis.yml",
+        "firstSeenAt": "2026-10-18T11:47:02.423295+00:00",
+        "lastSeenAt": "2026-10-18T11:47:02.423295+00:00"
       },
       "publication:update-economic-data.yml": {
         "name": "Taux d’épargne, ménages, SCPI et fonds euros",
@@ -516,7 +545,7 @@
         "cause": "deploy / build : Run npm run audit:etf-annual-performance",
         "id": "publication:update-economic-data.yml",
         "firstSeenAt": "2026-10-17T12:18:32.387705+00:00",
-        "lastSeenAt": "2026-10-18T11:43:59.694981+00:00"
+        "lastSeenAt": "2026-10-18T11:47:02.423295+00:00"
       },
       "publication:update-qualified-exposures.yml": {
         "name": "Expositions ETF qualifiées",
@@ -536,7 +565,7 @@
         "cause": "deploy / build : Run npm run audit:calculator-series",
         "id": "publication:update-qualified-exposures.yml",
         "firstSeenAt": "2026-10-16T12:48:21.924866+00:00",
-        "lastSeenAt": "2026-10-18T11:43:59.694981+00:00"
+        "lastSeenAt": "2026-10-18T11:47:02.423295+00:00"
       },
       "collection:update-exposure-expansion.yml:etf-exposure-expansion-IE00BK1PV551": {
         "name": "Xtrackers MSCI World UCITS ETF 1D",
@@ -560,7 +589,7 @@
         "dataId": "etf-exposure-expansion-IE00BK1PV551",
         "id": "collection:update-exposure-expansion.yml:etf-exposure-expansion-IE00BK1PV551",
         "firstSeenAt": "2026-10-17T20:42:44.184725+00:00",
-        "lastSeenAt": "2026-10-18T11:43:59.694981+00:00"
+        "lastSeenAt": "2026-10-18T11:47:02.423295+00:00"
       },
       "publication:update-instrument-metadata.yml": {
         "name": "Caractéristiques et statut PEA par ISIN",
@@ -579,18 +608,10 @@
         "cause": "deploy / build : Run npm run audit:instrument-listings ; deploy / fallback-build : Run npm run build",
         "id": "publication:update-instrument-metadata.yml",
         "firstSeenAt": "2026-10-18T10:33:45.298860+00:00",
-        "lastSeenAt": "2026-10-18T11:43:59.694981+00:00"
+        "lastSeenAt": "2026-10-18T11:47:02.423295+00:00"
       }
     },
     "events": [
-      {
-        "revision": 73,
-        "at": "2026-10-17T12:19:18.394776+00:00",
-        "opened": [
-          "publication:update-market-monthly.yml"
-        ],
-        "resolved": []
-      },
       {
         "revision": 74,
         "at": "2026-10-17T12:52:22.886766+00:00",
@@ -1486,6 +1507,14 @@
             "resolvedAt": "2026-10-18T11:43:59.694981+00:00"
           }
         ]
+      },
+      {
+        "revision": 103,
+        "at": "2026-10-18T11:47:02.423295+00:00",
+        "opened": [
+          "publication:update-company-analysis.yml"
+        ],
+        "resolved": []
       }
     ],
     "resolved": [
