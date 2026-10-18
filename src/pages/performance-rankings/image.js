@@ -93,7 +93,8 @@ export function renderRankingImage(result, _title, regularity) {
   text(ctx, transposed ? 'Année' : 'Actif', margin + 20, tableY + headerHeight / 2, 25)
   const drawAsset = (asset, index, x, y, maxWidth, centered = false) => {
     ctx.fillStyle = COLORS[index]; ctx.beginPath(); ctx.arc(x, y, 6, 0, Math.PI * 2); ctx.fill()
-    label(ctx, asset.shortLabel ?? asset.label, centered ? x : x + 22, centered ? y + 35 : y, maxWidth, transposed ? 31 : 33, centered ? 'center' : 'left')
+    // Reserve a full row for the marker above two-line column names.
+    label(ctx, asset.shortLabel ?? asset.label, centered ? x : x + 22, centered ? y + 55 : y, maxWidth, transposed ? 31 : 33, centered ? 'center' : 'left')
   }
   if (transposed) {
     result.assets.forEach((asset, i) => drawAsset(asset, i, margin + labelWidth + (i + .5) * cellWidth, tableY + 22, cellWidth - 20, true))

@@ -9,6 +9,7 @@ import { DATA_CATALOG } from '../src/data/catalog.js'
 import { INDEX_RETURNS, getCurrentIndexReturnSeries } from '../src/data/index-returns.js'
 import { buildReview, dayNumber, expiry, freshness, parisToday, addMonths, scheduledReview, reviewCalendar, summarizeCadences } from '../src/pages/data-review/lib.js'
 import { BROKER_EVIDENCE, EVIDENCE_FIELDS, OFFICIAL_SOURCES, SECONDARY_SOURCES } from '../src/pages/broker-comparator/evidence.js'
+import { BROKERS } from '../src/pages/broker-comparator/data.js'
 
 assert.equal(dayNumber('2026-02-30'), null)
 assert.equal(dayNumber('date absente'), null)
@@ -31,6 +32,29 @@ assert.deepEqual(result.items.map(x => x.field), ['Sans contrôle'], 'Ni photogr
 const separateSources = buildReview('2026-09-30', [], [{ id: 'test', nom: 'Test' }], { test: { frais: { status: 'confirmé', refs: [{ document: 'old' }, { document: 'new' }] } } }, { old: { title: 'Ancien contrôle', checked: '01/01/2026', url: 'https://example.org/old' }, new: { title: 'Récent', checked: '29/09/2026', url: 'https://example.org/new' } })
 assert.equal(separateSources.items.length, 1, 'Un contrôle récent ne masque pas un autre contrôle ancien')
 assert.equal(separateSources.items[0].field, 'Ancien contrôle')
+// Stable examples exercise deduplication and expiry without freezing the live offer roster.
+const offerSources = {
+  shared: { title: 'Offre commune', checked: '01/10/2026', reviewUntil: '2026-10-10', url: 'https://example.org/shared' },
+  later: { title: 'Offre suivante', checked: '01/10/2026', reviewUntil: '2026-12-31', url: 'https://example.org/later' },
+  added: { title: 'Nouvelle offre', checked: '01/10/2026', reviewUntil: '2027-03-31', url: 'https://example.org/added' },
+}
+const offerBrokers = [{ id: 'a', nom: 'A' }, { id: 'b', nom: 'B' }]
+const offerEvidence = {
+  a: {
+    frais: { status: 'confirmé', refs: [{ document: 'shared' }, { document: 'shared' }] },
+    dca: { status: 'confirmé', refs: [{ document: 'shared' }] },
+    transfert: { status: 'confirmé', refs: [{ document: 'later' }] },
+  },
+  b: { frais: { status: 'confirmé', refs: [{ document: 'shared' }] } },
+}
+const offerRows = (date, evidence = offerEvidence) => buildReview(date, [], offerBrokers, evidence, offerSources).items.filter(item => item.until)
+assert.deepEqual(offerRows('2026-10-02').map(item => item.id).sort(), ['offer:a:later', 'offer:a:shared', 'offer:b:shared'], 'Une offre réutilisée dans plusieurs cellules est unique par courtier')
+const expandedOffers = structuredClone(offerEvidence)
+expandedOffers.a.transfert.refs.push({ document: 'added' })
+assert.equal(offerRows('2026-10-02', expandedOffers).length, 4, 'Une nouvelle offre conserve les anciennes échéances')
+const expiredOffers = offerRows('2027-01-01', expandedOffers)
+assert.equal(expiredOffers.filter(item => item.category === 'expired').length, 3)
+assert.equal(expiredOffers.find(item => item.id === 'offer:a:added').category, 'scheduled')
 for (const source of Object.values({ ...OFFICIAL_SOURCES, ...SECONDARY_SOURCES })) {
   if (source.reviewUntil) assert.notEqual(dayNumber(source.reviewUntil), null, 'Échéance enregistrée invalide')
 }
@@ -41,11 +65,18 @@ const expectedReserves = Object.entries(BROKER_EVIDENCE).flatMap(([id, fields]) 
 })).concat(DATA_CATALOG.flatMap(record=>record.fields.flatMap((field,index)=>field.qualificationMissing ? [`qualification:${record.id}:${index}`] : []))).concat(Object.entries(practicalReferences.sources).filter(([,source])=>source.status==='error'||source.reviewRequired).map(([key])=>`practical-source:${key}`)).sort()
 assert.deepEqual(current.items.filter(x => x.category === 'reserve').map(x => x.id).sort(), expectedReserves)
 assert(current.items.some(x => x.id === 'broker:tr:garde' && x.category === 'reserve'), 'La gratuité du CTO ne clôture pas la réserve de garde PEA')
-assert.equal(current.items.filter(x => x.until).length, 3, 'Les offres réutilisées dans plusieurs cellules sont dédoublonnées')
+const reviewSources = { ...OFFICIAL_SOURCES, ...SECONDARY_SOURCES }
+const expectedOffers = new Map(BROKERS.flatMap(broker => EVIDENCE_FIELDS.flatMap(([key]) => {
+  const item = BROKER_EVIDENCE[broker.id]?.[key]
+  if (!item || (item.status === 'non établi' && /sans objet/i.test(item.summary))) return []
+  return (item.refs ?? []).flatMap(ref => reviewSources[ref.document]?.reviewUntil
+    ? [[`offer:${broker.id}:${ref.document}`, reviewSources[ref.document].reviewUntil]] : [])
+})))
+assert.deepEqual(new Map(current.items.filter(x => x.until).map(item => [item.id, item.until])), expectedOffers, 'Toutes les offres sourcées sont présentes une fois par courtier, avec leur échéance exacte')
 assert.equal(current.archives, 16)
 assert.equal(new Set(current.items.map(x => x.id)).size, current.items.length)
 assert(current.items.every(x => x.to.startsWith('/') && x.reason && x.name && x.field))
-assert.equal(buildReview('2027-01-01').items.filter(x => x.category === 'expired').length, 3)
+assert.deepEqual(buildReview('2027-01-01').items.filter(x => x.category === 'expired').map(item => item.id).sort(), [...expectedOffers].filter(([, until]) => until < '2027-01-01').map(([id]) => id).sort())
 // Rejouer les observations de la revue, y compris les proxys conservés : le catalogue
 // et les consommateurs doivent exposer les valeurs effectivement lues dans la source.
 const closure = JSON.parse(readFileSync(new URL('./source-snapshots/data-review-2026-10-02.json', import.meta.url)))
@@ -89,7 +120,7 @@ for (const id of ['stoxx600', 'eurostoxx50']) {
 }
 assert.deepEqual(remaining.items.filter(x => x.category === 'reserve').map(x => x.id).sort(), expectedReserves, 'Toutes les preuves non résolues restent visibles')
 assert.equal(remaining.archives, 16, 'La recherche ne doit pas masquer un reliquat en archive')
-console.log(`Revue au ${current.today} : ${current.items.length} éléments, ${expectedReserves.length} réserves, 3 échéances ; archives séparées : ${current.archives}. Cas limites de dates validés.`)
+console.log(`Revue au ${current.today} : ${current.items.length} éléments, ${expectedReserves.length} réserves, ${expectedOffers.size} échéances ; archives séparées : ${current.archives}. Cas limites de dates validés.`)
 console.log(`Revue du ${closure.checkedAt} : ${closure.records.length} contrôles clôturés, ${expectedUndated.length} contrôles non datés et ${expectedReserves.length} réserves conservés ; conventions Price/NET séparées.`)
 
 assert.equal(addMonths('2026-01-31', 1), '2026-02-28')
@@ -114,7 +145,7 @@ assert(groups.every(group => group.due === 0), 'Les contrôles de cette semaine 
 assert.equal(groups.find(group => group.id === 'monthly').nextReviewAt, '2026-11-01')
 assert(groups.find(group => group.id === 'quarterly').types.includes('Portefeuilles trimestriels'))
 assert.equal(calendar.filter(item => item.id.startsWith('investor:') && item.cadence === 'quarterly').length, INVESTORS.length)
-assert.equal(groups.find(group => group.id === 'event').total, 3)
+assert.equal(groups.find(group => group.id === 'event').total, expectedOffers.size)
 assert.equal(groups.find(group => group.id === 'annual').nextReviewAt, '2027-01-01')
 const groupFixture = summarizeCadences([
   { cadence: 'monthly', nextReviewAt: '2026-09-01', category: 'stale', dataType: 'Cours mensuels' },
