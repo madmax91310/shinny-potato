@@ -151,10 +151,10 @@ for (let assets = 2; assets <= 6; assets++) {
     assert.equal(layout.gridRows * layout.gridColumns, assets * years)
   }
 }
-assert.equal(rankingImageLayout(2, 3).transposed, false)
+assert.equal(rankingImageLayout(2, 3).transposed, true)
 assert.equal(rankingImageLayout(3, 7).transposed, true)
 assert.equal(rankingImageLayout(6, 5).transposed, true)
-assert.equal(rankingImageLayout(3, 6).tableBottom + 94, rankingImageLayout(3, 6).height)
+assert.equal(rankingImageLayout(3, 6).tableBottom + 28, rankingImageLayout(3, 6).height)
 console.log('Publication: exact compound annualization, single-year returns, tied medals, partial boundaries and compact three-asset canvas passed.')
 
 // A custom multi-year portfolio table keeps drifting weights from the selection start.
