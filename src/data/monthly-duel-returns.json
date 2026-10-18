@@ -7917,6 +7917,30 @@
     "responseSha256": "91b455eb46f9968c6f890b367c9a5de87b76976db5d8a1df3baed4b5d96c70a6",
     "note": "Cours de la part exacte en EUR, ajustés des distributions et divisions ; années civiles complètes uniquement. Ces rendements de marché diffèrent des rendements NAV de l’émetteur."
   },
+  "LU3180074463": {
+    "isin": "LU3180074463",
+    "currency": "EUR",
+    "years": {},
+    "calendarReturns": {},
+    "values": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "source": "https://query2.finance.yahoo.com/v8/finance/chart/INDEP.PA?period1=1764547200&period2=1790812800&interval=1d&events=div%2Csplits",
+    "sourceUrls": [
+      "https://query2.finance.yahoo.com/v8/finance/chart/INDEP.PA?period1=1764547200&period2=1790812800&interval=1d&events=div%2Csplits",
+      "https://query2.finance.yahoo.com/v8/finance/chart/INDEP.PA?period1=1764547200&period2=1790812800&interval=1mo&events=div%2Csplits"
+    ],
+    "checkedAt": "2026-10-18",
+    "basis": "market-price",
+    "method": "Cours de la part exacte, ajustés des distributions et divisions ; dernière séance mensuelle recoupée avec la bougie mensuelle Yahoo",
+    "responseSha256": "ce2c9ff70fb67eb9bce427c482025c5186b2702f42cdfaf42f8326bb721e970a",
+    "note": "Cours de la part exacte en EUR, ajustés des distributions et divisions ; années civiles complètes uniquement. Ces rendements de marché diffèrent des rendements NAV de l’émetteur."
+  },
   "IE000L2SA8K5": {
     "isin": "IE000L2SA8K5",
     "currency": "USD",

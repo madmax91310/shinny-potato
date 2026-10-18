@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-18T15:01:34.342Z",
+  "checkedAt": "2026-10-18T16:05:06.144Z",
   "summary": {
     "instruments": 647,
     "sheets": 258,
@@ -10,15 +10,16 @@
     "dca": 647,
     "fullExposure": 602,
     "outsideExposure": 41,
-    "automaticHistories": 224,
-    "historyCandidates": 1,
+    "automaticHistories": 225,
+    "historyCandidates": 0,
     "unused": 0,
     "blockers": {
       "no-listing": 27,
       "listing-not-collectable": 0,
       "qualification-failed": 0,
-      "collection-pending": 1,
-      "history-short": 27
+      "qualification-pending": 0,
+      "collection-pending": 0,
+      "history-short": 28
     }
   },
   "errors": [],
@@ -4518,7 +4519,15 @@
       "generator": "missing",
       "blocker": {
         "code": "no-listing",
-        "detail": "Cotations candidates déclarées, en attente du document émetteur"
+        "detail": "Cotations candidates déclarées, en attente du document émetteur",
+        "field": "monthly",
+        "tools": [
+          "portfolio-generator",
+          "performance-rankings",
+          "tweet-midi",
+          "investment-calculator"
+        ],
+        "checkedAt": "2026-10-18T15:33:48.575784+00:00"
       },
       "dca": true,
       "countries": {
@@ -5324,7 +5333,15 @@
       "generator": "missing",
       "blocker": {
         "code": "history-short",
-        "detail": "0 année(s) complète(s) ; 6 requises en génération automatique"
+        "detail": "0 année(s) complète(s) ; 6 requises en génération automatique",
+        "field": "monthly",
+        "tools": [
+          "portfolio-generator",
+          "performance-rankings",
+          "tweet-midi",
+          "investment-calculator"
+        ],
+        "checkedAt": "2026-10-16T13:57:42.343078+00:00"
       },
       "dca": true,
       "countries": {
@@ -5421,7 +5438,15 @@
       "generator": "missing",
       "blocker": {
         "code": "history-short",
-        "detail": "0 année(s) complète(s) ; 6 requises en génération automatique"
+        "detail": "0 année(s) complète(s) ; 6 requises en génération automatique",
+        "field": "monthly",
+        "tools": [
+          "portfolio-generator",
+          "performance-rankings",
+          "tweet-midi",
+          "investment-calculator"
+        ],
+        "checkedAt": "2026-10-16T13:57:42.343127+00:00"
       },
       "dca": true,
       "countries": {
@@ -6420,7 +6445,15 @@
       "generator": "missing",
       "blocker": {
         "code": "no-listing",
-        "detail": "Cotations candidates déclarées, en attente du document émetteur"
+        "detail": "Cotations candidates déclarées, en attente du document émetteur",
+        "field": "monthly",
+        "tools": [
+          "portfolio-generator",
+          "performance-rankings",
+          "tweet-midi",
+          "investment-calculator"
+        ],
+        "checkedAt": "2026-10-18T15:33:48.575784+00:00"
       },
       "dca": true,
       "countries": {
@@ -6454,7 +6487,15 @@
       "generator": "missing",
       "blocker": {
         "code": "history-short",
-        "detail": "0 année(s) complète(s) ; 6 requises en génération automatique"
+        "detail": "0 année(s) complète(s) ; 6 requises en génération automatique",
+        "field": "monthly",
+        "tools": [
+          "portfolio-generator",
+          "performance-rankings",
+          "tweet-midi",
+          "investment-calculator"
+        ],
+        "checkedAt": "2026-10-17T05:29:16.934732+00:00"
       },
       "dca": true,
       "countries": {
@@ -6504,7 +6545,15 @@
       "generator": "missing",
       "blocker": {
         "code": "history-short",
-        "detail": "0 année(s) complète(s) ; 6 requises en génération automatique"
+        "detail": "0 année(s) complète(s) ; 6 requises en génération automatique",
+        "field": "monthly",
+        "tools": [
+          "portfolio-generator",
+          "performance-rankings",
+          "tweet-midi",
+          "investment-calculator"
+        ],
+        "checkedAt": "2026-10-18T12:25:21.472285+00:00"
       },
       "dca": true,
       "countries": {
@@ -6563,7 +6612,12 @@
       "generator": "missing",
       "blocker": {
         "code": "history-short",
-        "detail": "1 année(s) complète(s) ; 6 requises en génération automatique"
+        "detail": "1 année(s) complète(s) ; 6 requises en génération automatique",
+        "field": "monthly",
+        "tools": [
+          "portfolio-generator"
+        ],
+        "checkedAt": "2026-10-18T15:33:48.575784+00:00"
       },
       "dca": true,
       "countries": {
@@ -6613,7 +6667,15 @@
       "generator": "missing",
       "blocker": {
         "code": "history-short",
-        "detail": "0 année(s) complète(s) ; 6 requises en génération automatique"
+        "detail": "0 année(s) complète(s) ; 6 requises en génération automatique",
+        "field": "monthly",
+        "tools": [
+          "portfolio-generator",
+          "performance-rankings",
+          "tweet-midi",
+          "investment-calculator"
+        ],
+        "checkedAt": "2026-10-16T13:57:42.343099+00:00"
       },
       "dca": true,
       "countries": {
@@ -6663,7 +6725,12 @@
       "generator": "missing",
       "blocker": {
         "code": "history-short",
-        "detail": "1 année(s) complète(s) ; 6 requises en génération automatique"
+        "detail": "1 année(s) complète(s) ; 6 requises en génération automatique",
+        "field": "monthly",
+        "tools": [
+          "portfolio-generator"
+        ],
+        "checkedAt": "2026-10-18T12:25:21.472285+00:00"
       },
       "dca": true,
       "countries": {
@@ -6818,7 +6885,15 @@
       "generator": "missing",
       "blocker": {
         "code": "no-listing",
-        "detail": "Cotations candidates déclarées, en attente du document émetteur"
+        "detail": "Cotations candidates déclarées, en attente du document émetteur",
+        "field": "monthly",
+        "tools": [
+          "portfolio-generator",
+          "performance-rankings",
+          "tweet-midi",
+          "investment-calculator"
+        ],
+        "checkedAt": "2026-10-18T15:33:48.575784+00:00"
       },
       "dca": true,
       "countries": {
@@ -6859,7 +6934,15 @@
       "generator": "missing",
       "blocker": {
         "code": "history-short",
-        "detail": "0 année(s) complète(s) ; 6 requises en génération automatique"
+        "detail": "0 année(s) complète(s) ; 6 requises en génération automatique",
+        "field": "monthly",
+        "tools": [
+          "portfolio-generator",
+          "performance-rankings",
+          "tweet-midi",
+          "investment-calculator"
+        ],
+        "checkedAt": "2026-10-16T13:57:42.343067+00:00"
       },
       "dca": true,
       "countries": {
@@ -6909,7 +6992,15 @@
       "generator": "missing",
       "blocker": {
         "code": "history-short",
-        "detail": "0 année(s) complète(s) ; 6 requises en génération automatique"
+        "detail": "0 année(s) complète(s) ; 6 requises en génération automatique",
+        "field": "monthly",
+        "tools": [
+          "portfolio-generator",
+          "performance-rankings",
+          "tweet-midi",
+          "investment-calculator"
+        ],
+        "checkedAt": "2026-10-17T23:24:51.183365+00:00"
       },
       "dca": true,
       "countries": {
@@ -6930,7 +7021,7 @@
         "asOf": "2026-10-15",
         "complete": true,
         "identifiedCoverage": 99.48306,
-        "automatic": false
+        "automatic": true
       },
       "monthly": [
         {
@@ -6977,7 +7068,7 @@
         "asOf": "2026-10-15",
         "complete": true,
         "identifiedCoverage": 99.54911999999999,
-        "automatic": false
+        "automatic": true
       },
       "monthly": [
         {
@@ -7016,7 +7107,12 @@
       "generator": "missing",
       "blocker": {
         "code": "history-short",
-        "detail": "2 année(s) complète(s) ; 6 requises en génération automatique"
+        "detail": "2 année(s) complète(s) ; 6 requises en génération automatique",
+        "field": "monthly",
+        "tools": [
+          "portfolio-generator"
+        ],
+        "checkedAt": "2026-10-18T15:33:48.575784+00:00"
       },
       "dca": true,
       "countries": {
@@ -7066,7 +7162,12 @@
       "generator": "missing",
       "blocker": {
         "code": "history-short",
-        "detail": "1 année(s) complète(s) ; 6 requises en génération automatique"
+        "detail": "1 année(s) complète(s) ; 6 requises en génération automatique",
+        "field": "monthly",
+        "tools": [
+          "portfolio-generator"
+        ],
+        "checkedAt": "2026-10-18T12:25:21.472285+00:00"
       },
       "dca": true,
       "countries": {
@@ -7116,7 +7217,15 @@
       "generator": "missing",
       "blocker": {
         "code": "history-short",
-        "detail": "0 année(s) complète(s) ; 6 requises en génération automatique"
+        "detail": "0 année(s) complète(s) ; 6 requises en génération automatique",
+        "field": "monthly",
+        "tools": [
+          "portfolio-generator",
+          "performance-rankings",
+          "tweet-midi",
+          "investment-calculator"
+        ],
+        "checkedAt": "2026-10-17T23:24:51.183365+00:00"
       },
       "dca": true,
       "countries": {
@@ -7166,7 +7275,15 @@
       "generator": "missing",
       "blocker": {
         "code": "history-short",
-        "detail": "0 année(s) complète(s) ; 6 requises en génération automatique"
+        "detail": "0 année(s) complète(s) ; 6 requises en génération automatique",
+        "field": "monthly",
+        "tools": [
+          "portfolio-generator",
+          "performance-rankings",
+          "tweet-midi",
+          "investment-calculator"
+        ],
+        "checkedAt": "2026-10-16T13:57:42.343091+00:00"
       },
       "dca": true,
       "countries": {
@@ -7273,7 +7390,12 @@
       "generator": "missing",
       "blocker": {
         "code": "history-short",
-        "detail": "2 année(s) complète(s) ; 6 requises en génération automatique"
+        "detail": "2 année(s) complète(s) ; 6 requises en génération automatique",
+        "field": "monthly",
+        "tools": [
+          "portfolio-generator"
+        ],
+        "checkedAt": "2026-10-18T15:33:48.575784+00:00"
       },
       "dca": true,
       "countries": {
@@ -7323,7 +7445,15 @@
       "generator": "missing",
       "blocker": {
         "code": "no-listing",
-        "detail": "Aucune cotation documentée ni candidate · etf.dws.com : Ambiguous listing document identity"
+        "detail": "Aucune cotation documentée ni candidate · etf.dws.com : Ambiguous listing document identity",
+        "field": "monthly",
+        "tools": [
+          "portfolio-generator",
+          "performance-rankings",
+          "tweet-midi",
+          "investment-calculator"
+        ],
+        "checkedAt": "2026-10-18T15:33:48.575784+00:00"
       },
       "dca": true,
       "countries": {
@@ -7372,7 +7502,12 @@
       "generator": "missing",
       "blocker": {
         "code": "history-short",
-        "detail": "2 année(s) complète(s) ; 6 requises en génération automatique"
+        "detail": "2 année(s) complète(s) ; 6 requises en génération automatique",
+        "field": "monthly",
+        "tools": [
+          "portfolio-generator"
+        ],
+        "checkedAt": "2026-10-16T13:57:42.343106+00:00"
       },
       "dca": true,
       "countries": {
@@ -7422,7 +7557,15 @@
       "generator": "missing",
       "blocker": {
         "code": "no-listing",
-        "detail": "Cotations candidates déclarées, en attente du document émetteur · globalxetfs.eu : Missing or multiple exact-share identities in metadata document"
+        "detail": "Cotations candidates déclarées, en attente du document émetteur · globalxetfs.eu : Missing or multiple exact-share identities in metadata document",
+        "field": "monthly",
+        "tools": [
+          "portfolio-generator",
+          "performance-rankings",
+          "tweet-midi",
+          "investment-calculator"
+        ],
+        "checkedAt": "2026-10-18T15:33:48.575784+00:00"
       },
       "dca": true,
       "countries": {
@@ -7461,7 +7604,15 @@
       "generator": "missing",
       "blocker": {
         "code": "no-listing",
-        "detail": "Cotations candidates déclarées, en attente du document émetteur"
+        "detail": "Cotations candidates déclarées, en attente du document émetteur · dokumenty.analizy.pl : No explicit supported metadata fields",
+        "field": "monthly",
+        "tools": [
+          "portfolio-generator",
+          "performance-rankings",
+          "tweet-midi",
+          "investment-calculator"
+        ],
+        "checkedAt": "2026-10-18T15:33:48.575784+00:00"
       },
       "dca": true,
       "countries": {
@@ -7598,7 +7749,12 @@
       "generator": "missing",
       "blocker": {
         "code": "history-short",
-        "detail": "1 année(s) complète(s) ; 6 requises en génération automatique"
+        "detail": "1 année(s) complète(s) ; 6 requises en génération automatique",
+        "field": "monthly",
+        "tools": [
+          "portfolio-generator"
+        ],
+        "checkedAt": "2026-10-18T15:33:48.575784+00:00"
       },
       "dca": true,
       "countries": {
@@ -7648,7 +7804,12 @@
       "generator": "missing",
       "blocker": {
         "code": "history-short",
-        "detail": "1 année(s) complète(s) ; 6 requises en génération automatique"
+        "detail": "1 année(s) complète(s) ; 6 requises en génération automatique",
+        "field": "monthly",
+        "tools": [
+          "portfolio-generator"
+        ],
+        "checkedAt": "2026-10-17T23:24:51.183365+00:00"
       },
       "dca": true,
       "countries": {
@@ -7669,7 +7830,7 @@
         "asOf": "2026-10-15",
         "complete": true,
         "identifiedCoverage": 99.8454500000001,
-        "automatic": false
+        "automatic": true
       },
       "monthly": [
         {
@@ -7745,7 +7906,15 @@
       "generator": "missing",
       "blocker": {
         "code": "history-short",
-        "detail": "0 année(s) complète(s) ; 6 requises en génération automatique"
+        "detail": "0 année(s) complète(s) ; 6 requises en génération automatique",
+        "field": "monthly",
+        "tools": [
+          "portfolio-generator",
+          "performance-rankings",
+          "tweet-midi",
+          "investment-calculator"
+        ],
+        "checkedAt": "2026-10-18T12:25:21.472285+00:00"
       },
       "dca": true,
       "countries": {
@@ -7795,7 +7964,12 @@
       "generator": "missing",
       "blocker": {
         "code": "history-short",
-        "detail": "2 année(s) complète(s) ; 6 requises en génération automatique"
+        "detail": "2 année(s) complète(s) ; 6 requises en génération automatique",
+        "field": "monthly",
+        "tools": [
+          "portfolio-generator"
+        ],
+        "checkedAt": "2026-10-18T12:25:21.472285+00:00"
       },
       "dca": true,
       "countries": {
@@ -7901,7 +8075,12 @@
       "generator": "missing",
       "blocker": {
         "code": "history-short",
-        "detail": "1 année(s) complète(s) ; 6 requises en génération automatique"
+        "detail": "1 année(s) complète(s) ; 6 requises en génération automatique",
+        "field": "monthly",
+        "tools": [
+          "portfolio-generator"
+        ],
+        "checkedAt": "2026-10-16T13:57:42.343134+00:00"
       },
       "dca": true,
       "countries": {
@@ -8016,7 +8195,7 @@
         "asOf": "2026-10-15",
         "complete": true,
         "identifiedCoverage": 99.31887,
-        "automatic": false
+        "automatic": true
       },
       "monthly": [
         {
@@ -8521,7 +8700,7 @@
         "asOf": "2026-10-15",
         "complete": true,
         "identifiedCoverage": 99.46494000000001,
-        "automatic": false
+        "automatic": true
       },
       "monthly": [
         {
@@ -8705,7 +8884,7 @@
         "asOf": "2026-10-15",
         "complete": true,
         "identifiedCoverage": 99.56647000000002,
-        "automatic": false
+        "automatic": true
       },
       "monthly": [
         {
@@ -8863,7 +9042,15 @@
       "generator": "missing",
       "blocker": {
         "code": "no-listing",
-        "detail": "Cotations candidates déclarées, en attente du document émetteur · fund-docs.vanguard.com : No explicit supported metadata fields"
+        "detail": "Cotations candidates déclarées, en attente du document émetteur · fund-docs.vanguard.com : No explicit supported metadata fields",
+        "field": "monthly",
+        "tools": [
+          "portfolio-generator",
+          "performance-rankings",
+          "tweet-midi",
+          "investment-calculator"
+        ],
+        "checkedAt": "2026-10-18T16:04:20.346657+00:00"
       },
       "dca": true,
       "countries": {
@@ -8943,7 +9130,15 @@
       "generator": "missing",
       "blocker": {
         "code": "no-listing",
-        "detail": "Cotations candidates déclarées, en attente du document émetteur · fund-docs.vanguard.com : No explicit supported metadata fields"
+        "detail": "Cotations candidates déclarées, en attente du document émetteur · fund-docs.vanguard.com : No explicit supported metadata fields",
+        "field": "monthly",
+        "tools": [
+          "portfolio-generator",
+          "performance-rankings",
+          "tweet-midi",
+          "investment-calculator"
+        ],
+        "checkedAt": "2026-10-18T15:33:48.575784+00:00"
       },
       "dca": true,
       "countries": {
@@ -9000,7 +9195,7 @@
         "asOf": "2026-10-15",
         "complete": true,
         "identifiedCoverage": 99.21129000000003,
-        "automatic": false
+        "automatic": true
       },
       "monthly": [
         {
@@ -9076,7 +9271,15 @@
       "generator": "missing",
       "blocker": {
         "code": "no-listing",
-        "detail": "Cotations candidates déclarées, en attente du document émetteur · fund-docs.vanguard.com : No explicit supported metadata fields"
+        "detail": "Cotations candidates déclarées, en attente du document émetteur · fund-docs.vanguard.com : No explicit supported metadata fields",
+        "field": "monthly",
+        "tools": [
+          "portfolio-generator",
+          "performance-rankings",
+          "tweet-midi",
+          "investment-calculator"
+        ],
+        "checkedAt": "2026-10-18T15:33:48.575784+00:00"
       },
       "dca": true,
       "countries": {
@@ -9321,7 +9524,7 @@
         "asOf": "2026-10-15",
         "complete": true,
         "identifiedCoverage": 100.15253000000006,
-        "automatic": false
+        "automatic": true
       },
       "monthly": [
         {
@@ -9400,7 +9603,12 @@
       "generator": "missing",
       "blocker": {
         "code": "history-short",
-        "detail": "0 année(s) complète(s) ; 6 requises en génération automatique"
+        "detail": "0 année(s) complète(s) ; 6 requises en génération automatique",
+        "field": "monthly",
+        "tools": [
+          "portfolio-generator"
+        ],
+        "checkedAt": "2026-10-18T15:33:48.575784+00:00"
       },
       "dca": true,
       "countries": {
@@ -9622,7 +9830,15 @@
       "generator": "missing",
       "blocker": {
         "code": "no-listing",
-        "detail": "Cotations candidates déclarées, en attente du document émetteur"
+        "detail": "Cotations candidates déclarées, en attente du document émetteur",
+        "field": "monthly",
+        "tools": [
+          "portfolio-generator",
+          "performance-rankings",
+          "tweet-midi",
+          "investment-calculator"
+        ],
+        "checkedAt": "2026-10-18T15:33:48.575784+00:00"
       },
       "dca": true,
       "countries": {
@@ -9805,7 +10021,12 @@
       "generator": "missing",
       "blocker": {
         "code": "history-short",
-        "detail": "0 année(s) complète(s) ; 6 requises en génération automatique"
+        "detail": "0 année(s) complète(s) ; 6 requises en génération automatique",
+        "field": "monthly",
+        "tools": [
+          "portfolio-generator"
+        ],
+        "checkedAt": "2026-10-18T15:33:48.575784+00:00"
       },
       "dca": true,
       "countries": {
@@ -10157,7 +10378,7 @@
         "asOf": "2026-10-15",
         "complete": true,
         "identifiedCoverage": 99.60348,
-        "automatic": false
+        "automatic": true
       },
       "monthly": [
         {
@@ -10732,7 +10953,15 @@
       "generator": "missing",
       "blocker": {
         "code": "no-listing",
-        "detail": "Cotations candidates déclarées, en attente du document émetteur · fund-docs.vanguard.com : No explicit supported metadata fields"
+        "detail": "Cotations candidates déclarées, en attente du document émetteur · fund-docs.vanguard.com : No explicit supported metadata fields",
+        "field": "monthly",
+        "tools": [
+          "portfolio-generator",
+          "performance-rankings",
+          "tweet-midi",
+          "investment-calculator"
+        ],
+        "checkedAt": "2026-10-18T15:33:48.575784+00:00"
       },
       "dca": true,
       "countries": {
@@ -10877,7 +11106,7 @@
         "asOf": "2026-10-15",
         "complete": true,
         "identifiedCoverage": 99.84599000000006,
-        "automatic": false
+        "automatic": true
       },
       "monthly": [
         {
@@ -10924,7 +11153,7 @@
         "asOf": "2026-10-15",
         "complete": true,
         "identifiedCoverage": 99.49003999999998,
-        "automatic": false
+        "automatic": true
       },
       "monthly": [
         {
@@ -10971,7 +11200,7 @@
         "asOf": "2026-10-15",
         "complete": true,
         "identifiedCoverage": 99.72199999999995,
-        "automatic": false
+        "automatic": true
       },
       "monthly": [
         {
@@ -11000,7 +11229,15 @@
       "generator": "missing",
       "blocker": {
         "code": "no-listing",
-        "detail": "Cotations candidates déclarées, en attente du document émetteur"
+        "detail": "Cotations candidates déclarées, en attente du document émetteur",
+        "field": "monthly",
+        "tools": [
+          "portfolio-generator",
+          "performance-rankings",
+          "tweet-midi",
+          "investment-calculator"
+        ],
+        "checkedAt": "2026-10-18T15:33:48.575784+00:00"
       },
       "dca": true,
       "countries": {
@@ -11385,7 +11622,15 @@
       "generator": "missing",
       "blocker": {
         "code": "no-listing",
-        "detail": "Cotations candidates déclarées, en attente du document émetteur · fund-docs.vanguard.com : No explicit supported metadata fields"
+        "detail": "Cotations candidates déclarées, en attente du document émetteur · fund-docs.vanguard.com : No explicit supported metadata fields",
+        "field": "monthly",
+        "tools": [
+          "portfolio-generator",
+          "performance-rankings",
+          "tweet-midi",
+          "investment-calculator"
+        ],
+        "checkedAt": "2026-10-18T15:33:48.575784+00:00"
       },
       "dca": true,
       "countries": {
@@ -11666,7 +11911,7 @@
         "asOf": "2026-10-15",
         "complete": true,
         "identifiedCoverage": 99.65645999999994,
-        "automatic": false
+        "automatic": true
       },
       "monthly": [
         {
@@ -11742,7 +11987,15 @@
       "generator": "missing",
       "blocker": {
         "code": "no-listing",
-        "detail": "Aucune cotation documentée ni candidate · etf.dws.com : Ambiguous listing document identity"
+        "detail": "Aucune cotation documentée ni candidate · etf.dws.com : Ambiguous listing document identity",
+        "field": "monthly",
+        "tools": [
+          "portfolio-generator",
+          "performance-rankings",
+          "tweet-midi",
+          "investment-calculator"
+        ],
+        "checkedAt": "2026-10-18T15:33:48.575784+00:00"
       },
       "dca": true,
       "countries": {
@@ -12157,7 +12410,15 @@
       "generator": "missing",
       "blocker": {
         "code": "history-short",
-        "detail": "0 année(s) complète(s) ; 6 requises en génération automatique"
+        "detail": "0 année(s) complète(s) ; 6 requises en génération automatique",
+        "field": "monthly",
+        "tools": [
+          "portfolio-generator",
+          "performance-rankings",
+          "tweet-midi",
+          "investment-calculator"
+        ],
+        "checkedAt": "2026-10-17T05:29:16.934732+00:00"
       },
       "dca": true,
       "countries": {
@@ -12350,7 +12611,15 @@
       "generator": "missing",
       "blocker": {
         "code": "no-listing",
-        "detail": "Aucune cotation documentée ni candidate · etf.dws.com : Ambiguous listing document identity"
+        "detail": "Aucune cotation documentée ni candidate · etf.dws.com : Ambiguous listing document identity",
+        "field": "monthly",
+        "tools": [
+          "portfolio-generator",
+          "performance-rankings",
+          "tweet-midi",
+          "investment-calculator"
+        ],
+        "checkedAt": "2026-10-18T15:33:48.575784+00:00"
       },
       "dca": true,
       "countries": {
@@ -12530,7 +12799,15 @@
       "generator": "missing",
       "blocker": {
         "code": "no-listing",
-        "detail": "Cotations candidates déclarées, en attente du document émetteur · fund-docs.vanguard.com : No explicit supported metadata fields"
+        "detail": "Cotations candidates déclarées, en attente du document émetteur · fund-docs.vanguard.com : No explicit supported metadata fields",
+        "field": "monthly",
+        "tools": [
+          "portfolio-generator",
+          "performance-rankings",
+          "tweet-midi",
+          "investment-calculator"
+        ],
+        "checkedAt": "2026-10-18T15:33:48.575784+00:00"
       },
       "dca": true,
       "countries": {
@@ -12569,7 +12846,15 @@
       "generator": "missing",
       "blocker": {
         "code": "no-listing",
-        "detail": "Cotations candidates déclarées, en attente du document émetteur · fund-docs.vanguard.com : No explicit supported metadata fields"
+        "detail": "Cotations candidates déclarées, en attente du document émetteur · fund-docs.vanguard.com : No explicit supported metadata fields",
+        "field": "monthly",
+        "tools": [
+          "portfolio-generator",
+          "performance-rankings",
+          "tweet-midi",
+          "investment-calculator"
+        ],
+        "checkedAt": "2026-10-18T15:33:48.575784+00:00"
       },
       "dca": true,
       "countries": {
@@ -13020,7 +13305,15 @@
       "generator": "missing",
       "blocker": {
         "code": "no-listing",
-        "detail": "Cotations candidates déclarées, en attente du document émetteur · globalxetfs.eu : Missing or multiple exact-share identities in metadata document"
+        "detail": "Cotations candidates déclarées, en attente du document émetteur · globalxetfs.eu : Missing or multiple exact-share identities in metadata document",
+        "field": "monthly",
+        "tools": [
+          "portfolio-generator",
+          "performance-rankings",
+          "tweet-midi",
+          "investment-calculator"
+        ],
+        "checkedAt": "2026-10-18T15:33:48.575784+00:00"
       },
       "dca": true,
       "countries": {
@@ -13430,7 +13723,15 @@
       "generator": "missing",
       "blocker": {
         "code": "no-listing",
-        "detail": "Cotations candidates déclarées, en attente du document émetteur · globalxetfs.eu : Missing or multiple exact-share identities in metadata document"
+        "detail": "Cotations candidates déclarées, en attente du document émetteur · globalxetfs.eu : Missing or multiple exact-share identities in metadata document",
+        "field": "monthly",
+        "tools": [
+          "portfolio-generator",
+          "performance-rankings",
+          "tweet-midi",
+          "investment-calculator"
+        ],
+        "checkedAt": "2026-10-18T15:33:48.575784+00:00"
       },
       "dca": true,
       "countries": {
@@ -13910,7 +14211,7 @@
         "asOf": "2026-10-15",
         "complete": true,
         "identifiedCoverage": 99.25938999999994,
-        "automatic": false
+        "automatic": true
       },
       "monthly": [
         {
@@ -13957,7 +14258,7 @@
         "asOf": "2026-10-15",
         "complete": true,
         "identifiedCoverage": 99.11910999999995,
-        "automatic": false
+        "automatic": true
       },
       "monthly": [
         {
@@ -14004,7 +14305,7 @@
         "asOf": "2026-10-15",
         "complete": true,
         "identifiedCoverage": 99.63462000000007,
-        "automatic": false
+        "automatic": true
       },
       "monthly": [
         {
@@ -14221,7 +14522,15 @@
       "generator": "missing",
       "blocker": {
         "code": "no-listing",
-        "detail": "Aucune cotation documentée ni candidate · etf.dws.com : Ambiguous listing document identity"
+        "detail": "Aucune cotation documentée ni candidate · etf.dws.com : Ambiguous listing document identity",
+        "field": "monthly",
+        "tools": [
+          "portfolio-generator",
+          "performance-rankings",
+          "tweet-midi",
+          "investment-calculator"
+        ],
+        "checkedAt": "2026-10-18T15:33:48.575784+00:00"
       },
       "dca": true,
       "countries": {
@@ -14461,7 +14770,7 @@
         "asOf": "2026-10-15",
         "complete": true,
         "identifiedCoverage": 99.61023000000002,
-        "automatic": false
+        "automatic": true
       },
       "monthly": [
         {
@@ -14651,7 +14960,7 @@
         "asOf": "2026-10-15",
         "complete": true,
         "identifiedCoverage": 99.02553000000007,
-        "automatic": false
+        "automatic": true
       },
       "monthly": [
         {
@@ -14815,7 +15124,12 @@
       "generator": "missing",
       "blocker": {
         "code": "history-short",
-        "detail": "2 année(s) complète(s) ; 6 requises en génération automatique"
+        "detail": "2 année(s) complète(s) ; 6 requises en génération automatique",
+        "field": "monthly",
+        "tools": [
+          "portfolio-generator"
+        ],
+        "checkedAt": "2026-10-16T13:57:42.343132+00:00"
       },
       "dca": true,
       "countries": {
@@ -17564,7 +17878,15 @@
       "generator": "missing",
       "blocker": {
         "code": "no-listing",
-        "detail": "Aucune cotation documentée ni candidate · etf.dws.com : Ambiguous listing document identity"
+        "detail": "Aucune cotation documentée ni candidate · etf.dws.com : Ambiguous listing document identity",
+        "field": "monthly",
+        "tools": [
+          "portfolio-generator",
+          "performance-rankings",
+          "tweet-midi",
+          "investment-calculator"
+        ],
+        "checkedAt": "2026-10-18T15:33:48.575784+00:00"
       },
       "dca": true,
       "countries": {
@@ -17639,7 +17961,15 @@
       "generator": "missing",
       "blocker": {
         "code": "no-listing",
-        "detail": "Aucune cotation documentée ni candidate · etf.dws.com : Ambiguous listing document identity"
+        "detail": "Aucune cotation documentée ni candidate · etf.dws.com : Ambiguous listing document identity",
+        "field": "monthly",
+        "tools": [
+          "portfolio-generator",
+          "performance-rankings",
+          "tweet-midi",
+          "investment-calculator"
+        ],
+        "checkedAt": "2026-10-18T15:33:48.575784+00:00"
       },
       "dca": true,
       "countries": {
@@ -17678,7 +18008,15 @@
       "generator": "missing",
       "blocker": {
         "code": "no-listing",
-        "detail": "Aucune cotation documentée ni candidate · etf.dws.com : Ambiguous listing document identity"
+        "detail": "Aucune cotation documentée ni candidate · etf.dws.com : Ambiguous listing document identity",
+        "field": "monthly",
+        "tools": [
+          "portfolio-generator",
+          "performance-rankings",
+          "tweet-midi",
+          "investment-calculator"
+        ],
+        "checkedAt": "2026-10-18T15:33:48.575784+00:00"
       },
       "dca": true,
       "countries": {
@@ -17717,7 +18055,12 @@
       "generator": "missing",
       "blocker": {
         "code": "history-short",
-        "detail": "1 année(s) complète(s) ; 6 requises en génération automatique"
+        "detail": "1 année(s) complète(s) ; 6 requises en génération automatique",
+        "field": "monthly",
+        "tools": [
+          "portfolio-generator"
+        ],
+        "checkedAt": "2026-10-18T14:42:34.534512+00:00"
       },
       "dca": true,
       "countries": {
@@ -18237,7 +18580,12 @@
       "generator": "missing",
       "blocker": {
         "code": "history-short",
-        "detail": "1 année(s) complète(s) ; 6 requises en génération automatique"
+        "detail": "1 année(s) complète(s) ; 6 requises en génération automatique",
+        "field": "monthly",
+        "tools": [
+          "portfolio-generator"
+        ],
+        "checkedAt": "2026-10-18T14:42:34.534512+00:00"
       },
       "dca": true,
       "countries": {
@@ -18381,7 +18729,15 @@
       "generator": "missing",
       "blocker": {
         "code": "no-listing",
-        "detail": "Aucune cotation documentée ni candidate · etf.dws.com : Ambiguous listing document identity"
+        "detail": "Aucune cotation documentée ni candidate · etf.dws.com : Ambiguous listing document identity",
+        "field": "monthly",
+        "tools": [
+          "portfolio-generator",
+          "performance-rankings",
+          "tweet-midi",
+          "investment-calculator"
+        ],
+        "checkedAt": "2026-10-18T15:33:48.575784+00:00"
       },
       "dca": true,
       "countries": {
@@ -18508,7 +18864,15 @@
       "generator": "missing",
       "blocker": {
         "code": "no-listing",
-        "detail": "Aucune cotation documentée ni candidate · etf.dws.com : Ambiguous listing document identity"
+        "detail": "Aucune cotation documentée ni candidate · etf.dws.com : Ambiguous listing document identity",
+        "field": "monthly",
+        "tools": [
+          "portfolio-generator",
+          "performance-rankings",
+          "tweet-midi",
+          "investment-calculator"
+        ],
+        "checkedAt": "2026-10-18T15:33:48.575784+00:00"
       },
       "dca": true,
       "countries": {
@@ -18547,7 +18911,15 @@
       "generator": "missing",
       "blocker": {
         "code": "no-listing",
-        "detail": "Aucune cotation documentée ni candidate · etf.dws.com : Ambiguous listing document identity"
+        "detail": "Aucune cotation documentée ni candidate · etf.dws.com : Ambiguous listing document identity",
+        "field": "monthly",
+        "tools": [
+          "portfolio-generator",
+          "performance-rankings",
+          "tweet-midi",
+          "investment-calculator"
+        ],
+        "checkedAt": "2026-10-18T15:33:48.575784+00:00"
       },
       "dca": true,
       "countries": {
@@ -18627,7 +18999,15 @@
       "generator": "missing",
       "blocker": {
         "code": "history-short",
-        "detail": "0 année(s) complète(s) ; 6 requises en génération automatique"
+        "detail": "0 année(s) complète(s) ; 6 requises en génération automatique",
+        "field": "monthly",
+        "tools": [
+          "portfolio-generator",
+          "performance-rankings",
+          "tweet-midi",
+          "investment-calculator"
+        ],
+        "checkedAt": "2026-10-18T14:42:34.534512+00:00"
       },
       "dca": true,
       "countries": {
@@ -18676,8 +19056,16 @@
       "comparison": false,
       "generator": "missing",
       "blocker": {
-        "code": "collection-pending",
-        "detail": "Cotation documentée ; série en attente de la prochaine collecte mensuelle"
+        "code": "history-short",
+        "detail": "0 année(s) complète(s) ; 6 requises en génération automatique",
+        "field": "monthly",
+        "tools": [
+          "portfolio-generator",
+          "performance-rankings",
+          "tweet-midi",
+          "investment-calculator"
+        ],
+        "checkedAt": "2026-10-18T16:03:18.069998+00:00"
       },
       "dca": true,
       "countries": {
@@ -18700,8 +19088,19 @@
         "identifiedCoverage": 42.192492,
         "automatic": false
       },
-      "monthly": [],
-      "historyCandidate": true,
+      "monthly": [
+        {
+          "id": "etfLU3180074463",
+          "automatic": true,
+          "first": "2025-12",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": false,
+          "simulation": false,
+          "anniversary": false
+        }
+      ],
+      "historyCandidate": false,
       "decision": "keep-used"
     },
     {
@@ -26874,7 +27273,15 @@
       "generator": "missing",
       "blocker": {
         "code": "no-listing",
-        "detail": "Aucune cotation documentée ni candidate"
+        "detail": "Aucune cotation documentée ni candidate",
+        "field": "monthly",
+        "tools": [
+          "portfolio-generator",
+          "performance-rankings",
+          "tweet-midi",
+          "investment-calculator"
+        ],
+        "checkedAt": null
       },
       "dca": true,
       "countries": {

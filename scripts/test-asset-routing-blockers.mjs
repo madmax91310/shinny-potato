@@ -10,7 +10,7 @@ const read = path => JSON.parse(readFileSync(path, 'utf8'))
 // CI regenerates this report from the current data just before the test (audit-asset-tool-routing.mjs --write).
 const routing = read('docs/asset-tool-routing.json')
 const candidates = read('scripts/listing-candidates.json').candidates
-const CODES = ['no-listing', 'listing-not-collectable', 'qualification-failed', 'collection-pending', 'history-short']
+const CODES = ['no-listing', 'listing-not-collectable', 'qualification-failed', 'qualification-pending', 'collection-pending', 'history-short']
 const SUFFIX = { XPAR:'.PA', XAMS:'.AS', XETR:'.DE', XLON:'.L', ETFP:'.MI', XSWX:'.SW' }
 const EXCHANGES = { XPAR:'Euronext Paris', XAMS:'Euronext Amsterdam', XETR:'Xetra', XLON:'London Stock Exchange', ETFP:'Borsa Italiana', XSWX:'SIX Swiss Exchange' }
 
@@ -19,6 +19,8 @@ assert.ok(presented.length > 0, 'the audit lists presented assets without automa
 for (const row of presented) {
   assert.ok(row.blocker, `${row.isin} : cause de blocage absente`)
   assert.ok(CODES.includes(row.blocker.code), `${row.isin} : code inconnu ${row.blocker.code}`)
+  assert.equal(row.blocker.field, 'monthly')
+  assert.ok(row.blocker.tools.includes('portfolio-generator'))
   assert.ok(row.blocker.detail?.length > 0, `${row.isin} : détail vide`)
   if (row.blocker.code === 'no-listing') assert.equal((INSTRUMENT_LISTINGS_BY_ISIN[row.isin] ?? []).length, 0, `${row.isin} : cotation présente mais déclarée absente`)
   if (row.blocker.code === 'history-short') assert.ok(row.monthly.length > 0, `${row.isin} : historique court sans série`)

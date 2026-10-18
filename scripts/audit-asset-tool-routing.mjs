@@ -25,7 +25,7 @@ const sources = new Map(configs.map(s => [s.id, s]))
 const levels = {...read('src/data/anniversary-levels.json'), ...read('src/data/non-bond-levels.json')}
 const simulations = new Set(read('src/data/simulation-links.json'))
 const catalog = read('src/pages/dca-profiles/catalog.json')
-const fullSources = read('scripts/dca-complete-holdings-sources.json')
+const fullSources = {...read('scripts/dca-complete-holdings-sources.json'), ...read('scripts/generated-holdings-sources.json')}
 // Why an asset shown in a sheet, a comparison or a DCA profile still has no automatic history.
 const qualification = read('scripts/source-snapshots/monthly-qualification-status.json')
 const metadataStatus = read('src/data/instrument-metadata-status.json')
@@ -36,7 +36,8 @@ function historyBlocker(isin, histories, completeYears) {
   if (histories.length) return completeYears < GENERATOR_YEARS ? {code:'history-short', detail:`${completeYears} année(s) complète(s) ; ${GENERATOR_YEARS} requises en génération automatique`} : null
   const listings = INSTRUMENT_LISTINGS_BY_ISIN[isin] ?? []
   const status = qualification[isin]
-  if (status?.status === 'failed' || status?.status === 'pending') return {code:'qualification-failed', detail:status.reason ?? 'Qualification non aboutie'}
+  if (status?.status === 'pending') return {code:'qualification-pending', detail:status.reason ?? 'Qualification en attente'}
+  if (status?.status === 'failed') return {code:'qualification-failed', detail:status.reason ?? 'Qualification non aboutie'}
   if (!listings.length) {
     const errors = metadataStatus[isin]?.errors ?? []
     return {code:'no-listing', detail:[listingCandidates.has(isin) ? 'Cotations candidates déclarées, en attente du document émetteur' : 'Aucune cotation documentée ni candidate', ...errors.map(e => `${new URL(e.sourceUrl).host} : ${e.error}`)].join(' · ')}
@@ -76,7 +77,7 @@ const rows = [...instruments.values()].map(e => {
   return {...e, practical:TOPICS.filter(t=>t.products?.includes(e.isin)).map(t=>t.id), duel:DUEL_CATALOG.some(a=>a.isin===e.isin),
     qualification:candidate ? {completeYears:qualifiedYears,minimumDuel:3,minimumGenerator:6,reason:qualifiedYears.length<3?'Historique de la part trop court pour les duels et le générateur':qualifiedYears.length<6?'Historique utilisable en manuel ; six années communes requises en génération automatique':'Historique suffisamment long ; contrôles de construction et de risque maintenus'} : null,
     sheet:ETFS.some(a => a.isin === e.isin), comparison:DEFAULT_THEMES.some(t => t.etfs.some(a => a.isin === e.isin)),
-    generator, blocker,
+    generator, blocker: blocker ? {...blocker, field:'monthly', tools:['portfolio-generator', ...(!monthly.some(h=>h.performance)?['performance-rankings','tweet-midi']:[]), ...(!monthly.some(h=>h.simulation)?['investment-calculator']:[])], checkedAt:qualification[e.isin]?.checkedAt ?? metadataStatus[e.isin]?.checkedAt ?? null} : null,
     dca:refs.length > 0, countries:exposure('countries'), sectors:exposure('sectors'),
     holdings:holdings ? {...holdings, automatic:Boolean(fullSources[e.isin])} : null, monthly,
     historyCandidate:!h.length && (INSTRUMENT_LISTINGS_BY_ISIN[e.isin] ?? []).some(l => l.symbol && l.evidenceId),
@@ -89,14 +90,14 @@ const summary = {instruments:rows.length, sheets:rows.filter(r=>r.sheet).length,
   outsideExposure:rows.filter(r=>r.countries.status==='not-applicable' && r.sectors.status==='not-applicable').length,
   automaticHistories:Object.keys(ETF_MONTHLY_HISTORIES).length,
   historyCandidates:rows.filter(r=>r.historyCandidate).length, unused:rows.filter(r=>r.decision==='review-unused').length,
-  blockers:Object.fromEntries(['no-listing','listing-not-collectable','qualification-failed','collection-pending','history-short'].map(code => [code, rows.filter(r => r.blocker?.code === code).length]))}
+  blockers:Object.fromEntries(['no-listing','listing-not-collectable','qualification-failed','qualification-pending','collection-pending','history-short'].map(code => [code, rows.filter(r => r.blocker?.code === code).length]))}
 const report = {checkedAt:now.toISOString(), summary, errors, rows}
 if (process.argv.includes('--write')) {
   const selected=rows.filter(r=>DISTINCT_ASSET_ISINS.includes(r.isin))
   writeFileSync('docs/distinct-asset-routing.json',JSON.stringify({summary:{assets:selected.length},rows:selected},null,2)+'\n')
   writeFileSync('docs/asset-tool-routing.json', JSON.stringify(report,null,2)+'\n')
   const mark = v => v ? 'Oui' : '—'
-  const BLOCKER_LABELS = {'no-listing':'Sans cotation', 'listing-not-collectable':'Cotation non collectable', 'qualification-failed':'Qualification échouée', 'collection-pending':'Collecte en attente', 'history-short':'Historique court'}
+  const BLOCKER_LABELS = {'no-listing':'Sans cotation', 'listing-not-collectable':'Cotation non collectable', 'qualification-failed':'Qualification échouée', 'qualification-pending':'Qualification en attente', 'collection-pending':'Collecte en attente', 'history-short':'Historique court'}
   const blocked = Object.entries(summary.blockers).filter(([,n]) => n).map(([code,n]) => `${BLOCKER_LABELS[code]} : ${n}`).join(' · ') || 'aucun'
   const exposureLabel = v => ({available:'Oui', 'not-applicable':'Sans objet', incomplete:'Partiel', missing:'Absent'}[v.status])
   const table = rows.map(r => `| ${r.name.replaceAll('|','/')} | ${r.isin} | ${mark(r.sheet)} | ${mark(r.comparison)} | ${r.generator} | ${exposureLabel(r.countries)} / ${exposureLabel(r.sectors)} | ${r.holdings?.complete ? 'Complète' : r.holdings ? 'Partielle' : '—'} | ${mark(r.monthly.some(h=>h.performance))} / ${mark(r.monthly.some(h=>h.simulation))} / ${mark(r.monthly.some(h=>h.anniversary))} | ${r.blocker ? `${BLOCKER_LABELS[r.blocker.code]} — ${r.blocker.detail.replaceAll('|','/')}` : '—'} |`).join('\n')
