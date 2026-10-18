@@ -239,18 +239,18 @@
     },
     "update-editorial-radar.yml": {
       "name": "Radar éditorial quotidien",
-      "runId": 39129018981,
+      "runId": 39129401619,
       "attempt": 1,
-      "completedAt": "2026-10-18T12:51:48Z",
+      "completedAt": "2026-10-18T12:57:24Z",
       "status": "success",
-      "lastSuccessAt": "2026-10-18T12:51:48Z",
+      "lastSuccessAt": "2026-10-18T12:57:24Z",
       "collectionStatus": "success",
       "validationStatus": "unknown",
       "recordingStatus": "not-run",
       "publicationStatus": "not-run",
-      "lastCollectionSuccessAt": "2026-10-18T12:51:48Z",
+      "lastCollectionSuccessAt": "2026-10-18T12:57:24Z",
       "lastPublicationSuccessAt": null,
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39129018981",
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39129401619",
       "failures": [],
       "dataFailures": {}
     },
@@ -474,10 +474,10 @@
       "failures": []
     }
   },
-  "updatedAt": "2026-10-18T12:56:37Z",
+  "updatedAt": "2026-10-18T12:57:24Z",
   "monitoring": {
     "schemaVersion": 1,
-    "checkedAt": "2026-10-18T12:58:02.935819+00:00",
+    "checkedAt": "2026-10-18T12:58:33.266320+00:00",
     "revision": 108,
     "active": {
       "publication:update-practical-sheets.yml": {
@@ -494,7 +494,7 @@
         "cause": "deploy / build : Run npm run audit:instrument-listings ; deploy / fallback-build : Run npm run build",
         "id": "publication:update-practical-sheets.yml",
         "firstSeenAt": "2026-10-18T11:43:59.694981+00:00",
-        "lastSeenAt": "2026-10-18T12:58:02.935819+00:00"
+        "lastSeenAt": "2026-10-18T12:58:33.266320+00:00"
       },
       "publication:update-publication-observations.yml": {
         "name": "Pouvoir d’achat et niveaux des anniversaires",
@@ -511,7 +511,7 @@
         "cause": "deploy / browser-checks (0) : node scripts/playwright-tools.mjs — Échec sans message ; deploy / fallback-build : Run npm run build",
         "id": "publication:update-publication-observations.yml",
         "firstSeenAt": "2026-10-18T12:52:04.191577+00:00",
-        "lastSeenAt": "2026-10-18T12:58:02.935819+00:00"
+        "lastSeenAt": "2026-10-18T12:58:33.266320+00:00"
       },
       "collection:update-insurance.yml:linxea-avenir-2": {
         "name": "Linxea Avenir 2",
@@ -530,7 +530,7 @@
         "dataId": "linxea-avenir-2",
         "id": "collection:update-insurance.yml:linxea-avenir-2",
         "firstSeenAt": "2026-10-14T13:08:27.203935+00:00",
-        "lastSeenAt": "2026-10-18T12:58:02.935819+00:00"
+        "lastSeenAt": "2026-10-18T12:58:33.266320+00:00"
       },
       "collection:update-scpi.yml:transitions-europe": {
         "name": "Transitions Europe",
@@ -552,7 +552,7 @@
         "dataId": "transitions-europe",
         "id": "collection:update-scpi.yml:transitions-europe",
         "firstSeenAt": "2026-10-18T10:29:36.524873+00:00",
-        "lastSeenAt": "2026-10-18T12:58:02.935819+00:00"
+        "lastSeenAt": "2026-10-18T12:58:33.266320+00:00"
       },
       "publication:update-presentation-actors.yml": {
         "name": "Présentations des acteurs et offres",
@@ -568,7 +568,7 @@
         "cause": "deploy / browser-checks (0) : node scripts/playwright-tools.mjs — Échec sans message ; deploy / fallback-build : Run npm run build",
         "id": "publication:update-presentation-actors.yml",
         "firstSeenAt": "2026-10-18T12:56:03.999172+00:00",
-        "lastSeenAt": "2026-10-18T12:58:02.935819+00:00"
+        "lastSeenAt": "2026-10-18T12:58:33.266320+00:00"
       },
       "workflow:update-market-monthly.yml": {
         "name": "Historiques mensuels des marchés",
@@ -587,7 +587,7 @@
         "cause": "refresh : Validate observations: node scripts test-etf-tool-connections.mjs",
         "id": "workflow:update-market-monthly.yml",
         "firstSeenAt": "2026-10-18T11:43:35.606108+00:00",
-        "lastSeenAt": "2026-10-18T12:58:02.935819+00:00"
+        "lastSeenAt": "2026-10-18T12:58:33.266320+00:00"
       },
       "publication:update-company-analysis.yml": {
         "name": "Analyses d’entreprises",
@@ -603,7 +603,7 @@
         "cause": "deploy / build : Run npm run audit:instrument-listings ; deploy / fallback-build : Run npm run build ; report-failures : Run echo 'Some sources failed. Previous observations were retained independently; stale ratios are omitted by the publication engine.' >> \"$GITHUB_STEP_SUMMARY\"",
         "id": "publication:update-company-analysis.yml",
         "firstSeenAt": "2026-10-18T11:47:02.423295+00:00",
-        "lastSeenAt": "2026-10-18T12:58:02.935819+00:00"
+        "lastSeenAt": "2026-10-18T12:58:33.266320+00:00"
       },
       "publication:update-economic-data.yml": {
         "name": "Taux d’épargne, ménages, SCPI et fonds euros",
@@ -620,7 +620,7 @@
         "cause": "deploy / build : Run npm run audit:etf-annual-performance",
         "id": "publication:update-economic-data.yml",
         "firstSeenAt": "2026-10-17T12:18:32.387705+00:00",
-        "lastSeenAt": "2026-10-18T12:58:02.935819+00:00"
+        "lastSeenAt": "2026-10-18T12:58:33.266320+00:00"
       },
       "publication:update-non-bond-expansion.yml": {
         "name": "Nouveaux actifs et historiques",
@@ -639,7 +639,7 @@
         "cause": "deploy / browser-checks (0) : node scripts/playwright-tools.mjs — Échec sans message ; deploy / fallback-build : Run npm run build",
         "id": "publication:update-non-bond-expansion.yml",
         "firstSeenAt": "2026-10-18T12:58:02.935819+00:00",
-        "lastSeenAt": "2026-10-18T12:58:02.935819+00:00"
+        "lastSeenAt": "2026-10-18T12:58:33.266320+00:00"
       },
       "publication:update-qualified-exposures.yml": {
         "name": "Expositions ETF qualifiées",
@@ -659,7 +659,7 @@
         "cause": "deploy / build : Run npm run audit:calculator-series",
         "id": "publication:update-qualified-exposures.yml",
         "firstSeenAt": "2026-10-16T12:48:21.924866+00:00",
-        "lastSeenAt": "2026-10-18T12:58:02.935819+00:00"
+        "lastSeenAt": "2026-10-18T12:58:33.266320+00:00"
       },
       "collection:update-exposure-expansion.yml:etf-exposure-expansion-IE00BK1PV551": {
         "name": "Xtrackers MSCI World UCITS ETF 1D",
@@ -683,7 +683,7 @@
         "dataId": "etf-exposure-expansion-IE00BK1PV551",
         "id": "collection:update-exposure-expansion.yml:etf-exposure-expansion-IE00BK1PV551",
         "firstSeenAt": "2026-10-17T20:42:44.184725+00:00",
-        "lastSeenAt": "2026-10-18T12:58:02.935819+00:00"
+        "lastSeenAt": "2026-10-18T12:58:33.266320+00:00"
       },
       "workflow:update-instrument-metadata.yml": {
         "name": "Caractéristiques et statut PEA par ISIN",
@@ -702,7 +702,7 @@
         "cause": "refresh : Run npm run build && node scripts/test-full-auto-routing.mjs",
         "id": "workflow:update-instrument-metadata.yml",
         "firstSeenAt": "2026-10-18T12:57:39.234539+00:00",
-        "lastSeenAt": "2026-10-18T12:58:02.935819+00:00"
+        "lastSeenAt": "2026-10-18T12:58:33.266320+00:00"
       },
       "unobserved:onboard-assets.yml": {
         "name": "Intégration des nouveaux actifs",
@@ -725,7 +725,7 @@
         "cause": "Aucune exécution terminée avec une date exploitable.",
         "id": "unobserved:onboard-assets.yml",
         "firstSeenAt": "2026-10-18T12:02:38.068054+00:00",
-        "lastSeenAt": "2026-10-18T12:58:02.935819+00:00"
+        "lastSeenAt": "2026-10-18T12:58:33.266320+00:00"
       }
     },
     "events": [
