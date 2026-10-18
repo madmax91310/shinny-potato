@@ -951,6 +951,7 @@ async function testFactsheetTweets(page) {
   while(await more.count())await more.click();
   const count = await select.locator('[data-option]').count();
   let ok = count === SHEETS.length;
+  let failedStep = ok ? '' : `nombre de fiches ${count} au lieu de ${SHEETS.length}`;
   await page.evaluate(() => Object.defineProperty(navigator, 'clipboard', {
     configurable: true, value: { writeText: async text => { window.__factsheetCopied = text; } },
   }));
@@ -969,28 +970,34 @@ async function testFactsheetTweets(page) {
     };
     if (Object.values(checks).some(value => !value)) console.log(`    Fiche ${SHEETS[index].id}: ${JSON.stringify(checks)}`);
     ok &&= Object.values(checks).every(Boolean);
+    if (!ok && !failedStep) failedStep = 'texte d’une fiche';
     await page.getByRole('button', { name: /📋 Copier le texte|✅ Copié/ }).click();
     ok &&= (await page.evaluate(() => window.__factsheetCopied)) === tweet;
+    if (!ok && !failedStep) failedStep = 'copie du texte';
   }
   await draft.fill('Texte corrigé avant publication');
   await page.locator('.workspace-action-menu summary').click();
   await page.getByRole('button', { name: /Rétablir le modèle/ }).click();
   ok &&= (await draft.inputValue()).includes(latestSheetYear(SHEETS.at(-1)));
+  if (!ok && !failedStep) failedStep = 'rétablissement du modèle';
   await page.locator('.workspace-action-menu summary').click();
   await page.getByRole('button', { name: /Prévisualiser l’image PNG/ }).click();
   const preview = page.getByRole('dialog', { name: 'Aperçu de la fiche PNG' });
   await preview.waitFor({ state: 'visible' });
   ok &&= await preview.isVisible();
+  if (!ok && !failedStep) failedStep = 'aperçu PNG';
   const dimensions = await preview.locator('img').evaluate(async (img) => {
     await img.decode();
     return [img.naturalWidth, img.naturalHeight];
   });
   ok &&= dimensions[0] === 1600 && dimensions[1] === 2000;
+  if (!ok && !failedStep) failedStep = 'dimensions du PNG';
   const [download] = await Promise.all([
     page.waitForEvent('download'),
     preview.getByRole('link', { name: /Télécharger le PNG/ }).click(),
   ]);
   ok &&= download.suggestedFilename().endsWith('.png');
+  if (!ok && !failedStep) failedStep = 'téléchargement du PNG';
   await page.getByRole('button', { name: 'Fermer l’aperçu' }).click();
   for (const id of ['sp500-equal-weight', 'russell-2000', 'em-standard', 'topix', 'nikkei225', 'acwi', 'em-esg', 'stoxx600']) {
     await choose(select, id);
@@ -1011,8 +1018,10 @@ async function testFactsheetTweets(page) {
   await choose(select, 'sp500-equal-weight');
   await page.setViewportSize({ width: 390, height: 844 });
   ok &&= await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth);
+  if (!ok && !failedStep) failedStep = 'aperçus PNG des indices ou largeur mobile';
   await page.screenshot({ path: 'test-artifacts/coulisses-mobile.png', fullPage: true });
   await page.setViewportSize({ width: 1280, height: 720 });
+  if (failedStep) console.log(`    Coulisses des indices : premier contrôle en échec — ${failedStep}`);
   record('Dans les coulisses des indices', ok, `${count} fiches, modification et réinitialisation vérifiées`);
 }
 
