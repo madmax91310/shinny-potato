@@ -52,3 +52,14 @@ assert(!evidence.old)
 assert(evidence.manual,'Unmanaged archive still audited')
 assert(evidence.orphanNew,'New orphan evidence must still fail validation')
 assert(archive.old,'Historical evidence retained unchanged')
+
+const newerProof = { isin: 'FR001400U5Q4', checkedAt: '2026-10-18', excerpt: 'new issuer proof' };
+const olderProof = { ...newerProof, checkedAt: '2026-10-17', excerpt: 'older collector proof' };
+for (const sources of [
+  [{ a: newerProof }, { a: olderProof }],
+  [{ a: olderProof }, { a: newerProof }],
+]) assert.equal(currentListingEvidence({}, sources, {}, {}).a, newerProof);
+assert.equal(currentListingEvidence({ a: newerProof }, { a: olderProof }, {}, {}).a, newerProof);
+assert.deepEqual(currentListingEvidence({ retired: olderProof }, [], { FR001400U5Q4: [] }, {}), {});
+assert.equal(currentListingEvidence({}, { a: olderProof }, {}, {}).a, olderProof);
+console.log('Listing evidence keeps the newest observation regardless of collector order.');
