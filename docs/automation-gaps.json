@@ -26,39 +26,39 @@
       "total": 258,
       "applicable": 258,
       "notApplicable": 0,
-      "waiting": 12,
-      "notPublished": 4,
-      "unresolved": 4
+      "waiting": 13,
+      "notPublished": 7,
+      "unresolved": 0
     },
     "countries": {
       "label": "Pays",
       "present": 229,
       "total": 258,
-      "applicable": 236,
-      "notApplicable": 22,
+      "applicable": 235,
+      "notApplicable": 23,
       "waiting": 0,
       "notPublished": 6,
-      "unresolved": 1
+      "unresolved": 0
     },
     "sectors": {
       "label": "Secteurs",
       "present": 229,
       "total": 258,
-      "applicable": 236,
-      "notApplicable": 22,
+      "applicable": 235,
+      "notApplicable": 23,
       "waiting": 0,
       "notPublished": 5,
-      "unresolved": 2
+      "unresolved": 1
     },
     "holdings": {
       "label": "Positions pondérées",
       "present": 232,
       "total": 258,
-      "applicable": 236,
-      "notApplicable": 22,
+      "applicable": 235,
+      "notApplicable": 23,
       "waiting": 0,
       "notPublished": 0,
-      "unresolved": 4
+      "unresolved": 3
     }
   },
   "recentCalendars": [
@@ -222,6 +222,20 @@
       "configured": true,
       "launchDate": "2025-06-03",
       "launchSourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR001400ZGO4/FRA/FRA/RETAIL/ETF/20251231",
+      "evidenceCheckedAt": "2026-10-10",
+      "firstCompleteYear": 2026,
+      "earliestPublicationDate": "2027-01-01",
+      "status": "waiting-first-year",
+      "firstYear": null,
+      "years": [],
+      "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+    },
+    {
+      "id": "LU3180074463",
+      "name": "Amundi European Strategic Autonomy UCITS ETF Acc",
+      "configured": true,
+      "launchDate": "2025-11-06",
+      "launchSourceUrl": "https://www.amundietf.fr/pdfDocuments/download/e3e43b3e-e365-4578-9576-04775eae4eec/MonthlyFactsheet_4534518_CL215517_FRA_FRA_ETF_INSTITUTIONNEL_20260630.pdf",
       "evidenceCheckedAt": "2026-10-10",
       "firstCompleteYear": 2026,
       "earliestPublicationDate": "2027-01-01",
@@ -405,10 +419,10 @@
     "holdings": 232
   },
   "summary": {
-    "instrument:unqualified": 10,
-    "instrument:not-applicable": 66,
-    "instrument:not-published": 15,
-    "instrument:waiting-first-year": 12,
+    "instrument:not-applicable": 69,
+    "instrument:waiting-first-year": 13,
+    "instrument:unqualified": 3,
+    "instrument:not-published": 18,
     "instrument:source-conflict": 1,
     "index:waiting-publication": 1,
     "index:not-applicable": 16
@@ -421,8 +435,8 @@
       "field": "countries",
       "label": "Pays",
       "configured": true,
-      "status": "unqualified",
-      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
+      "status": "not-applicable",
+      "reason": "ETF monétaire €STR à réplication synthétique : pas de pays, secteurs ou positions actions ; le panier de collatéral du swap ne décrit pas l’exposition.",
       "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
     },
     {
@@ -432,8 +446,8 @@
       "field": "sectors",
       "label": "Secteurs",
       "configured": true,
-      "status": "unqualified",
-      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
+      "status": "not-applicable",
+      "reason": "ETF monétaire €STR à réplication synthétique : pas de pays, secteurs ou positions actions ; le panier de collatéral du swap ne décrit pas l’exposition.",
       "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
     },
     {
@@ -443,8 +457,8 @@
       "field": "holdings",
       "label": "Positions pondérées",
       "configured": true,
-      "status": "unqualified",
-      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
+      "status": "not-applicable",
+      "reason": "ETF monétaire €STR à réplication synthétique : pas de pays, secteurs ou positions actions ; le panier de collatéral du swap ne décrit pas l’exposition.",
       "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
     },
     {
@@ -454,8 +468,13 @@
       "field": "performance",
       "label": "Calendrier annuel",
       "configured": true,
-      "status": "unqualified",
-      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
+      "launchDate": "2025-11-06",
+      "launchSourceUrl": "https://www.amundietf.fr/pdfDocuments/download/e3e43b3e-e365-4578-9576-04775eae4eec/MonthlyFactsheet_4534518_CL215517_FRA_FRA_ETF_INSTITUTIONNEL_20260630.pdf",
+      "evidenceCheckedAt": "2026-10-10",
+      "firstCompleteYear": 2026,
+      "earliestPublicationDate": "2027-01-01",
+      "status": "waiting-first-year",
+      "reason": "Première année civile complète : 2026. Publication possible à partir du 2027-01-01, selon l’émetteur ; aucun calendrier complet ne peut encore être collecté.",
       "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
     },
     {
@@ -487,8 +506,8 @@
       "field": "performance",
       "label": "Calendrier annuel",
       "configured": true,
-      "status": "unqualified",
-      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
+      "status": "not-published",
+      "reason": "La source officielle actuelle publie des performances glissantes et cumulées, collectées séparément, sans calendrier annuel complet. Les historiques mensuels restent automatisés. Le rendement NAV depuis janvier sera intégré comme année civile uniquement sur une observation au 31 décembre, après clôture et hors année de lancement partielle, avec sa preuve conservée.",
       "sourceUrl": "https://globalxetfs.eu/funds/botz/"
     },
     {
@@ -498,8 +517,8 @@
       "field": "performance",
       "label": "Calendrier annuel",
       "configured": true,
-      "status": "unqualified",
-      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
+      "status": "not-published",
+      "reason": "La source officielle actuelle publie des performances glissantes et cumulées, collectées séparément, sans calendrier annuel complet. Les historiques mensuels restent automatisés. Le rendement NAV depuis janvier sera intégré comme année civile uniquement sur une observation au 31 décembre, après clôture et hors année de lancement partielle, avec sa preuve conservée.",
       "sourceUrl": "https://globalxetfs.eu/funds/urnu/"
     },
     {
@@ -509,8 +528,8 @@
       "field": "performance",
       "label": "Calendrier annuel",
       "configured": true,
-      "status": "unqualified",
-      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
+      "status": "not-published",
+      "reason": "La source officielle actuelle publie des performances glissantes et cumulées, collectées séparément, sans calendrier annuel complet. Les historiques mensuels restent automatisés. Le rendement NAV depuis janvier sera intégré comme année civile uniquement sur une observation au 31 décembre, après clôture et hors année de lancement partielle, avec sa preuve conservée.",
       "sourceUrl": "https://globalxetfs.eu/funds/bug/"
     },
     {
