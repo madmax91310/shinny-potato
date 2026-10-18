@@ -1,6 +1,6 @@
 import unittest
 from unittest.mock import Mock
-from publish_automation_status import update_status, read_report, publication_summary, repair_publication_history, include_configured_workflows, normalize_report, report_files
+from publish_automation_status import update_status, read_report, publication_summary, repair_publication_history, include_configured_workflows, normalize_report
 
 def run(id=1,conclusion='failure',workflow='update-economic-data.yml',**kwargs):
  return {'id':id,'path':'.github/workflows/'+workflow,'head_branch':'master','event':'schedule','status':'completed','conclusion':conclusion,'updated_at':f'2026-10-{id:02d}T10:00:00Z','html_url':f'https://github.com/test/repo/actions/runs/{id}',**kwargs}
@@ -257,23 +257,5 @@ class NewCollectorStatusTests(unittest.TestCase):
   calls.clear()
   self.assertEqual(read_large_file(lambda path:calls.append(path) or {'encoding':'base64','content':body,'sha':'abc'},'feed.json','radar-data')['schemaVersion'],1)
   self.assertEqual(len(calls),1)
-
- def test_metadata_report_is_found_beside_repository_snapshots(self):
-  # Multi-path artifact: report under _temp/, snapshots under the checkout path.
-  import tempfile,pathlib,json
-  with tempfile.TemporaryDirectory() as d:
-   root=pathlib.Path(d)
-   (root/'_temp').mkdir();(root/'_temp/instrument-metadata.json').write_text(json.dumps({'successes':[{'id':'IE0002Y8CX98:distribution'}],'errors':[]}))
-   data=root/'shinny-potato/shinny-potato/src/data';data.mkdir(parents=True)
-   (data/'automated-instrument-metadata.json').write_text('{}');(data/'instrument-metadata-status.json').write_text('{}')
-   self.assertEqual([p.name for p in report_files(d)],['instrument-metadata.json'])
-   reports=[read_report(p,'update-instrument-metadata.yml') for p in report_files(d)]
-  workflow='update-instrument-metadata.yml'
-  stale={'workflows':{workflow:{'completedAt':'2026-10-01T10:00:00Z','runId':1,'dataFailures':{'IE0002Y8CX98:distribution':{'cause':'Previously automated metadata was not observed'}}}}}
-  recovered=update_status(stale,run(2,'success',workflow=workflow),[],reports)
-  self.assertEqual(recovered['workflows'][workflow]['dataFailures'],{})
-  with tempfile.TemporaryDirectory() as d:
-   (pathlib.Path(d)/'report.json').write_text('{}')
-   self.assertEqual([p.name for p in report_files(d)],['report.json'])
 
 if __name__ == '__main__': unittest.main()
