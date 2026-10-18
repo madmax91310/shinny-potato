@@ -17,8 +17,8 @@
       "comparison": true,
       "generator": "missing",
       "blocker": {
-        "code": "no-listing",
-        "detail": "Cotations candidates déclarées, en attente du document émetteur"
+        "code": "collection-pending",
+        "detail": "Cotation documentée ; série en attente de la prochaine collecte mensuelle"
       },
       "dca": true,
       "countries": {
@@ -31,7 +31,7 @@
       },
       "holdings": null,
       "monthly": [],
-      "historyCandidate": false,
+      "historyCandidate": true,
       "decision": "keep-used"
     },
     {

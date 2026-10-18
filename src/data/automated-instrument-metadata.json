@@ -8726,49 +8726,6 @@
       "checkedAt": "2026-10-18",
       "sourceUrl": "https://swissfunddata.ch/sfdpub/docs/fsm-8522_03_03-20260930-en.pdf",
       "sha256": "8bdbf7953d336b2f37608e4b97f7d2d7c12cae1c1009625721779ce975cda13e"
-    },
-    "listings": {
-      "value": [
-        {
-          "ticker": "UETW",
-          "mic": "XETR",
-          "exchange": "Xetra",
-          "currency": "EUR",
-          "symbol": "UETW.DE",
-          "excerpt": "IE00BD4TXV59 | Deutsche Börse (XETRA) EUR 09:00am - 05:30pm CET UETW GY UETW.DE UETWEUIV",
-          "sourceUrl": "https://swissfunddata.ch/sfdpub/docs/fsm-8522_03_03-20260930-en.pdf",
-          "checkedAt": "2026-10-18",
-          "sha256": "8bdbf7953d336b2f37608e4b97f7d2d7c12cae1c1009625721779ce975cda13e",
-          "evidenceId": "IE00BD4TXV59-XETR-UETW-EUR"
-        },
-        {
-          "ticker": "WRDUSW",
-          "mic": "XSWX",
-          "exchange": "SIX Swiss Exchange",
-          "currency": "USD",
-          "symbol": "WRDUSW.SW",
-          "excerpt": "IE00BD4TXV59 | SIX Swiss Exchange USD 09:00am - 05:30pm CET WRDUSW SW WRDUSW.S WRDUUSIV",
-          "sourceUrl": "https://swissfunddata.ch/sfdpub/docs/fsm-8522_03_03-20260930-en.pdf",
-          "checkedAt": "2026-10-18",
-          "sha256": "8bdbf7953d336b2f37608e4b97f7d2d7c12cae1c1009625721779ce975cda13e",
-          "evidenceId": "IE00BD4TXV59-XSWX-WRDUSW-USD"
-        },
-        {
-          "ticker": "WRDB",
-          "mic": "XLON",
-          "exchange": "London Stock Exchange",
-          "currency": "USD",
-          "symbol": "WRDB.L",
-          "excerpt": "IE00BD4TXV59 | London Stock Exchange USD 09:00am - 05:30pm CET WRDB LN WRDB.L WRDUUSIV",
-          "sourceUrl": "https://swissfunddata.ch/sfdpub/docs/fsm-8522_03_03-20260930-en.pdf",
-          "checkedAt": "2026-10-18",
-          "sha256": "8bdbf7953d336b2f37608e4b97f7d2d7c12cae1c1009625721779ce975cda13e",
-          "evidenceId": "IE00BD4TXV59-XLON-WRDB-USD"
-        }
-      ],
-      "checkedAt": "2026-10-18",
-      "sourceUrl": "https://swissfunddata.ch/sfdpub/docs/fsm-8522_03_03-20260930-en.pdf",
-      "sha256": "8bdbf7953d336b2f37608e4b97f7d2d7c12cae1c1009625721779ce975cda13e"
     }
   },
   "FR0007056841": {
@@ -8866,51 +8823,7 @@
       "sha256": "4059ec129690fef59be5fcc2156f27bc23d1c6e54e6e06ae5ca8fc8471343913"
     }
   },
-  "IE000QDFFK00": {
-    "listings": {
-      "value": [
-        {
-          "ticker": "ANAU",
-          "mic": "XPAR",
-          "exchange": "Euronext Paris",
-          "currency": "EUR",
-          "symbol": "ANAU.PA",
-          "excerpt": "IE000QDFFK00 | EURONEXT P EUR ANAU FP",
-          "sourceUrl": "https://dokumenty.analizy.pl/pobierz/etf/E_AXAIC001_A_USD/KA/2026-09-30",
-          "checkedAt": "2026-10-18",
-          "sha256": "c6cc58c21971229076a6d705950d8f969fa3501c45aff6d3e44389e3cc33f20d",
-          "evidenceId": "IE000QDFFK00-XPAR-ANAU-EUR"
-        },
-        {
-          "ticker": "ANAU",
-          "mic": "XETR",
-          "exchange": "Xetra",
-          "currency": "USD",
-          "symbol": "ANAU.DE",
-          "excerpt": "IE000QDFFK00 | XETRA USD ANAU GY",
-          "sourceUrl": "https://dokumenty.analizy.pl/pobierz/etf/E_AXAIC001_A_USD/KA/2026-09-30",
-          "checkedAt": "2026-10-18",
-          "sha256": "c6cc58c21971229076a6d705950d8f969fa3501c45aff6d3e44389e3cc33f20d",
-          "evidenceId": "IE000QDFFK00-XETR-ANAU-USD"
-        },
-        {
-          "ticker": "ANAU",
-          "mic": "ETFP",
-          "exchange": "Borsa Italiana",
-          "currency": "EUR",
-          "symbol": "ANAU.MI",
-          "excerpt": "IE000QDFFK00 | All definitions of risks indicators are available in the section 'Glossary' below Borsa Italiana S.P.A. EUR ANAU IM",
-          "sourceUrl": "https://dokumenty.analizy.pl/pobierz/etf/E_AXAIC001_A_USD/KA/2026-09-30",
-          "checkedAt": "2026-10-18",
-          "sha256": "c6cc58c21971229076a6d705950d8f969fa3501c45aff6d3e44389e3cc33f20d",
-          "evidenceId": "IE000QDFFK00-ETFP-ANAU-EUR"
-        }
-      ],
-      "checkedAt": "2026-10-18",
-      "sourceUrl": "https://dokumenty.analizy.pl/pobierz/etf/E_AXAIC001_A_USD/KA/2026-09-30",
-      "sha256": "c6cc58c21971229076a6d705950d8f969fa3501c45aff6d3e44389e3cc33f20d"
-    }
-  },
+  "IE000QDFFK00": {},
   "FR001400ZGO4": {
     "replicationMethod": {
       "value": "Indirect(Swap Based)",

@@ -143,6 +143,9 @@ def parse_json(body,isin):
 
 def parse_listings(body,source,url,checked):
     if 'www.justetf.com/' in url:return []  # Listings require an issuer or exchange row, not a specialist profile alone.
+    # Document mirrors (UBS factsheets on swissfunddata.ch, BNP factsheets on analizy.pl) may evidence fund fields,
+    # but audit-instrument-listings only accepts a listing proven on the issuer's or the exchange's own host.
+    if re.match(r'https://(?:swissfunddata\.ch|dokumenty\.analizy\.pl)/',url):return []
     isin=source['isin'];digest=hashlib.sha256(body).hexdigest();rows=[]
     markets=EXCHANGE_MICS
     if body.lstrip().startswith(b'{'):

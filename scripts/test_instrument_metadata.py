@@ -139,4 +139,10 @@ class MetadataTests(unittest.TestCase):
         url='https://www.vaneck.com/fr/en/library/fact-sheets/smh-fact-sheet.pdf'
         self.assertEqual(vaneck_factsheet_candidates(url),[url]+[f'https://www.vaneck.com/{r}/en/library/fact-sheets/smh-fact-sheet.pdf' for r in ROUTES['vaneck']['factsheetRegions']])
         self.assertEqual(len(vaneck_factsheet_candidates('https://www.vaneck.com/nl/en/library/fact-sheets/smh-fact-sheet.pdf')),2)
+    def test_document_mirrors_never_evidence_listings(self):
+        src={'isin':self.ISIN,'listings':[{'ticker':'TEST','mic':'XLON','exchange':'London Stock Exchange','currency':'USD'}]}
+        body=(self.ISIN+'<table><tr><td>London Stock Exchange</td><td>TEST</td><td>USD</td></tr></table>').encode()
+        for url in ['https://swissfunddata.ch/sfdpub/docs/x.pdf','https://dokumenty.analizy.pl/pobierz/etf/X/KA/2026-09-30']:
+            self.assertEqual(parse_listings(body,src,url,'2026-10-18'),[])
+        self.assertEqual(len(parse_listings(body,src,'https://www.vaneck.com/x','2026-10-18')),1)
 if __name__=='__main__':unittest.main()

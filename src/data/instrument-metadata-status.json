@@ -2865,13 +2865,13 @@
     "checkedAt": "2026-10-18T10:22:16.905029+00:00",
     "observed": [
       "domicile",
-      "replicationMethod",
-      "listings"
+      "replicationMethod"
     ],
     "pending": [
       "distribution",
       "pea",
-      "currencyHedge"
+      "currencyHedge",
+      "listings"
     ],
     "errors": []
   },
@@ -2905,15 +2905,14 @@
   },
   "IE000QDFFK00": {
     "checkedAt": "2026-10-18T10:22:16.905029+00:00",
-    "observed": [
-      "listings"
-    ],
+    "observed": [],
     "pending": [
       "distribution",
       "domicile",
       "replicationMethod",
       "pea",
-      "currencyHedge"
+      "currencyHedge",
+      "listings"
     ],
     "errors": []
   },
