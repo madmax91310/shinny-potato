@@ -48,9 +48,9 @@ class MetadataTests(unittest.TestCase):
         self.assertTrue(module.renewal_overdue({'checkedAt':'2026-10-09'},now,'pea'))
         self.assertTrue(module.renewal_overdue({},now,'domicile'))
         freshness=(module.ROOT/'scripts/report-asset-fields.mjs').read_text()
-        self.assertIn(f'plus de {module.RENEWAL_GRACE_DAYS} jours pour les champs ETF',freshness)
-        self.assertIn(f"['domicile','replicationMethod'].includes(field)?{module.STATIC_RENEWAL_DAYS['domicile']}:",freshness)
-        self.assertEqual(set(module.STATIC_RENEWAL_DAYS),{'domicile','replicationMethod'})
+        self.assertEqual(module.RENEWAL_GRACE_DAYS,7)
+        self.assertIn('freshness(etfFreshnessKey(field))',freshness)
+        self.assertEqual(module.STATIC_RENEWAL_DAYS,{'domicile':365,'replicationMethod':365})
     def test_vaneck_consent_page_uses_browser_download_only_for_official_factsheets(self):
         from unittest.mock import patch
         import subprocess

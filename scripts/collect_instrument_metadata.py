@@ -12,13 +12,14 @@ from data_automation import UTC, write_json_atomic
 from issuer_documents import download, pdf_text
 ROOT=Path(__file__).resolve().parents[1]
 FIELDS=('distribution','domicile','replicationMethod','pea','currencyHedge','listings')
-# Same threshold as the active-field freshness check (report-asset-fields.mjs): a static
-# characteristic missed by one transient source failure is not an incident before then.
-RENEWAL_GRACE_DAYS=7
+# Thresholds come from the single freshness policy (src/data/freshness-policy.json),
+# shared with the field freshness report (report-asset-fields.mjs).
+POLICY=json.loads((ROOT/'src/data/freshness-policy.json').read_text())['fields']
+RENEWAL_GRACE_DAYS=POLICY['etf.default']['checkDays']
 # Legal domicile and replication method only change through a prospectus amendment or a
 # fund merger: one unavailable issuer page must not raise a daily incident. They are
 # still re-read daily, published as soon as observed, and must be renewed within a year.
-STATIC_RENEWAL_DAYS={'domicile':365,'replicationMethod':365}
+STATIC_RENEWAL_DAYS={field:POLICY['etf.staticCharacteristic']['checkDays'] for field in POLICY['etf.staticCharacteristic']['fields']}
 VANECK_FACTSHEET=re.compile(r'https://www\.vaneck\.com/(?:ucits|[a-z]{2}/en)/library/fact-sheets/[a-z0-9]+-fact-sheet\.pdf')
 
 def fetch_document(url,fetch=download):
