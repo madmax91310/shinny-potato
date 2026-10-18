@@ -375,20 +375,33 @@
     },
     "update-exposure-expansion.yml": {
       "name": "35 ETF des allocations",
-      "runId": 39136586282,
+      "runId": 39132915207,
       "attempt": 1,
-      "completedAt": "2026-10-18T15:20:50Z",
-      "status": "success",
+      "completedAt": "2026-10-18T15:23:06Z",
+      "status": "failure",
       "lastSuccessAt": "2026-10-18T15:20:50Z",
-      "collectionStatus": "success",
+      "collectionStatus": "failure",
       "validationStatus": "success",
       "recordingStatus": "success",
       "publicationStatus": "not-run",
       "lastCollectionSuccessAt": "2026-10-18T15:20:50Z",
       "lastPublicationSuccessAt": null,
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39136586282",
-      "failures": [],
-      "dataFailures": {}
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39132915207",
+      "failures": [
+        {
+          "job": "report-failures",
+          "step": "Run echo 'ETF exposure collection incomplete; previous validated observations preserved.' >> \"$GITHUB_STEP_SUMMARY\""
+        }
+      ],
+      "dataFailures": {
+        "etf-exposure-expansion-IE00BK1PV551": {
+          "name": "ETF IE00BK1PV551",
+          "completedAt": "2026-10-18T15:23:06Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39132915207",
+          "cause": "Suspicious ETF change; previous record preserved: aum: 6369611991.07679 -> 31105311562.7068 USD, ratio 4.883 in 0 days",
+          "field": "Collecte ETF"
+        }
+      }
     },
     "update-instrument-metadata.yml": {
       "name": "Caractéristiques et statut PEA par ISIN",
@@ -423,11 +436,11 @@
       "failures": []
     }
   },
-  "updatedAt": "2026-10-18T15:22:55Z",
+  "updatedAt": "2026-10-18T15:23:06Z",
   "monitoring": {
     "schemaVersion": 1,
-    "checkedAt": "2026-10-18T15:23:09.476126+00:00",
-    "revision": 121,
+    "checkedAt": "2026-10-18T15:23:28.234259+00:00",
+    "revision": 122,
     "active": {
       "publication:update-practical-sheets.yml": {
         "name": "Sources des fiches pratiques",
@@ -443,7 +456,7 @@
         "cause": "deploy / build : Run node scripts/test-portfolio-roadmap.mjs",
         "id": "publication:update-practical-sheets.yml",
         "firstSeenAt": "2026-10-18T11:43:59.694981+00:00",
-        "lastSeenAt": "2026-10-18T15:23:09.476126+00:00"
+        "lastSeenAt": "2026-10-18T15:23:28.234259+00:00"
       },
       "publication:update-publication-observations.yml": {
         "name": "Pouvoir d’achat et niveaux des anniversaires",
@@ -460,7 +473,7 @@
         "cause": "deploy / build : Run node scripts/test-portfolio-roadmap.mjs",
         "id": "publication:update-publication-observations.yml",
         "firstSeenAt": "2026-10-18T12:52:04.191577+00:00",
-        "lastSeenAt": "2026-10-18T15:23:09.476126+00:00"
+        "lastSeenAt": "2026-10-18T15:23:28.234259+00:00"
       },
       "publication:update-insurance.yml": {
         "name": "Présentations d’assurance-vie",
@@ -476,7 +489,7 @@
         "cause": "deploy / build : Run node scripts/test-portfolio-roadmap.mjs",
         "id": "publication:update-insurance.yml",
         "firstSeenAt": "2026-10-18T12:59:38.607258+00:00",
-        "lastSeenAt": "2026-10-18T15:23:09.476126+00:00"
+        "lastSeenAt": "2026-10-18T15:23:28.234259+00:00"
       },
       "publication:update-scpi.yml": {
         "name": "Présentations de SCPI",
@@ -492,7 +505,7 @@
         "cause": "deploy / build : Run node scripts/test-portfolio-roadmap.mjs",
         "id": "publication:update-scpi.yml",
         "firstSeenAt": "2026-10-18T13:01:05.329643+00:00",
-        "lastSeenAt": "2026-10-18T15:23:09.476126+00:00"
+        "lastSeenAt": "2026-10-18T15:23:28.234259+00:00"
       },
       "publication:update-presentation-actors.yml": {
         "name": "Présentations des acteurs et offres",
@@ -508,7 +521,7 @@
         "cause": "deploy / build : Run node scripts/test-portfolio-roadmap.mjs",
         "id": "publication:update-presentation-actors.yml",
         "firstSeenAt": "2026-10-18T12:56:03.999172+00:00",
-        "lastSeenAt": "2026-10-18T15:23:09.476126+00:00"
+        "lastSeenAt": "2026-10-18T15:23:28.234259+00:00"
       },
       "publication:update-regulatory-data.yml": {
         "name": "Paramètres fiscaux, LDDS et tarifs de courtiers",
@@ -525,7 +538,7 @@
         "cause": "deploy / build : Run node scripts/test-portfolio-roadmap.mjs",
         "id": "publication:update-regulatory-data.yml",
         "firstSeenAt": "2026-10-18T12:59:15.049897+00:00",
-        "lastSeenAt": "2026-10-18T15:23:09.476126+00:00"
+        "lastSeenAt": "2026-10-18T15:23:28.234259+00:00"
       },
       "workflow:update-company-analysis.yml": {
         "name": "Analyses d’entreprises",
@@ -541,7 +554,7 @@
         "cause": "report-failures : Run echo 'Some sources failed. Previous observations were retained independently; stale ratios are omitted by the publication engine.' >> \"$GITHUB_STEP_SUMMARY\"",
         "id": "workflow:update-company-analysis.yml",
         "firstSeenAt": "2026-10-18T14:47:12.930226+00:00",
-        "lastSeenAt": "2026-10-18T15:23:09.476126+00:00"
+        "lastSeenAt": "2026-10-18T15:23:28.234259+00:00"
       },
       "publication:update-economic-data.yml": {
         "name": "Taux d’épargne, ménages, SCPI et fonds euros",
@@ -558,7 +571,7 @@
         "cause": "deploy / build : Run node scripts/test-portfolio-roadmap.mjs",
         "id": "publication:update-economic-data.yml",
         "firstSeenAt": "2026-10-17T12:18:32.387705+00:00",
-        "lastSeenAt": "2026-10-18T15:23:09.476126+00:00"
+        "lastSeenAt": "2026-10-18T15:23:28.234259+00:00"
       },
       "publication:update-non-bond-expansion.yml": {
         "name": "Nouveaux actifs et historiques",
@@ -577,7 +590,7 @@
         "cause": "deploy / build : Run node scripts/test-portfolio-roadmap.mjs",
         "id": "publication:update-non-bond-expansion.yml",
         "firstSeenAt": "2026-10-18T12:58:02.935819+00:00",
-        "lastSeenAt": "2026-10-18T15:23:09.476126+00:00"
+        "lastSeenAt": "2026-10-18T15:23:28.234259+00:00"
       },
       "publication:update-qualified-exposures.yml": {
         "name": "Expositions ETF qualifiées",
@@ -597,7 +610,31 @@
         "cause": "deploy / build : Run node scripts/test-portfolio-roadmap.mjs ; deploy / fallback-build : Run npm run build",
         "id": "publication:update-qualified-exposures.yml",
         "firstSeenAt": "2026-10-16T12:48:21.924866+00:00",
-        "lastSeenAt": "2026-10-18T15:23:09.476126+00:00"
+        "lastSeenAt": "2026-10-18T15:23:28.234259+00:00"
+      },
+      "collection:update-exposure-expansion.yml:etf-exposure-expansion-IE00BK1PV551": {
+        "name": "Xtrackers MSCI World UCITS ETF 1D",
+        "tools": [
+          "Comparatif ETF",
+          "Impact des frais",
+          "Présentation ETF"
+        ],
+        "impactScope": "asset",
+        "workflow": "update-exposure-expansion.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39132915207",
+        "to": "/bibliotheque-donnees?id=IE00BK1PV551",
+        "completedAt": "2026-10-18T15:23:06Z",
+        "cause": "Suspicious ETF change; previous record preserved: aum: 6369611991.07679 -> 31105311562.7068 USD, ratio 4.883 in 0 days",
+        "field": "Collecte ETF",
+        "sourceUrls": [
+          "https://etf.dws.com/api/pdp/en-gb/etf/IE00BK1PV551/historicaldata/download",
+          "https://etf.dws.com/api/pdp/en-gb/etf/IE00BK1PV551/pdpMetaTagsTealium"
+        ],
+        "kind": "collection",
+        "dataId": "etf-exposure-expansion-IE00BK1PV551",
+        "id": "collection:update-exposure-expansion.yml:etf-exposure-expansion-IE00BK1PV551",
+        "firstSeenAt": "2026-10-18T15:23:28.234259+00:00",
+        "lastSeenAt": "2026-10-18T15:23:28.234259+00:00"
       },
       "workflow:update-instrument-metadata.yml": {
         "name": "Caractéristiques et statut PEA par ISIN",
@@ -616,7 +653,7 @@
         "cause": "verify : Run node scripts/test-full-auto-routing.mjs",
         "id": "workflow:update-instrument-metadata.yml",
         "firstSeenAt": "2026-10-18T12:57:39.234539+00:00",
-        "lastSeenAt": "2026-10-18T15:23:09.476126+00:00"
+        "lastSeenAt": "2026-10-18T15:23:28.234259+00:00"
       },
       "unobserved:onboard-assets.yml": {
         "name": "Intégration des nouveaux actifs",
@@ -639,36 +676,10 @@
         "cause": "Aucune exécution terminée avec une date exploitable.",
         "id": "unobserved:onboard-assets.yml",
         "firstSeenAt": "2026-10-18T12:02:38.068054+00:00",
-        "lastSeenAt": "2026-10-18T15:23:09.476126+00:00"
+        "lastSeenAt": "2026-10-18T15:23:28.234259+00:00"
       }
     },
     "events": [
-      {
-        "revision": 92,
-        "at": "2026-10-18T10:12:38.025789+00:00",
-        "opened": [],
-        "resolved": [
-          {
-            "name": "ETF et compositions d’indices",
-            "tools": [
-              "Présentation ETF",
-              "Comparatif ETF",
-              "Coulisses des indices"
-            ],
-            "impactScope": "collector",
-            "workflow": "collect-etf-pilot.yml",
-            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39105740570",
-            "to": "/donnees-a-revoir",
-            "kind": "publication",
-            "field": "Publication",
-            "cause": "deploy / build : Run npm run audit:instrument-listings",
-            "id": "publication:collect-etf-pilot.yml",
-            "firstSeenAt": "2026-10-17T20:51:12.413498+00:00",
-            "lastSeenAt": "2026-10-18T09:53:44.543182+00:00",
-            "resolvedAt": "2026-10-18T10:12:38.025789+00:00"
-          }
-        ]
-      },
       {
         "revision": 93,
         "at": "2026-10-18T10:13:00.155438+00:00",
@@ -1511,6 +1522,14 @@
             "resolvedAt": "2026-10-18T15:23:09.476126+00:00"
           }
         ]
+      },
+      {
+        "revision": 122,
+        "at": "2026-10-18T15:23:28.234259+00:00",
+        "opened": [
+          "collection:update-exposure-expansion.yml:etf-exposure-expansion-IE00BK1PV551"
+        ],
+        "resolved": []
       }
     ],
     "resolved": [
