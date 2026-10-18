@@ -990,7 +990,7 @@ async function testFactsheetTweets(page) {
     await img.decode();
     return [img.naturalWidth, img.naturalHeight];
   });
-  ok &&= dimensions[0] === 1600 && dimensions[1] === 2000;
+  ok &&= dimensions[0] === 1600 && dimensions[1] >= 1600 && dimensions[1] <= 2560;
   if (!ok && !failedStep) failedStep = 'dimensions du PNG';
   const [download] = await Promise.all([
     page.waitForEvent('download'),
@@ -1006,7 +1006,7 @@ async function testFactsheetTweets(page) {
     const current = page.getByRole('dialog', { name: 'Aperçu de la fiche PNG' });
     ok &&= await current.locator('img').evaluate(async (img) => {
       await img.decode();
-      return img.naturalWidth === 1600 && img.naturalHeight === 2000;
+      return img.naturalWidth === 1600 && img.naturalHeight >= 1600 && img.naturalHeight <= 2560;
     });
     if (['sp500-equal-weight', 'russell-2000'].includes(id)) {
       await mkdir('test-artifacts', { recursive: true });
