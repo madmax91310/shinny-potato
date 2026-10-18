@@ -420,7 +420,7 @@
   "updatedAt": "2026-10-18T10:52:01Z",
   "monitoring": {
     "schemaVersion": 1,
-    "checkedAt": "2026-10-18T10:54:10.228033+00:00",
+    "checkedAt": "2026-10-18T10:56:59.391505+00:00",
     "revision": 100,
     "active": {
       "collection:update-practical-sheets.yml:practical:13f": {
@@ -442,7 +442,7 @@
         "dataId": "practical:13f",
         "id": "collection:update-practical-sheets.yml:practical:13f",
         "firstSeenAt": "2026-10-14T21:07:26.171294+00:00",
-        "lastSeenAt": "2026-10-18T10:54:10.228033+00:00"
+        "lastSeenAt": "2026-10-18T10:56:59.391505+00:00"
       },
       "collection:update-insurance.yml:linxea-avenir-2": {
         "name": "Linxea Avenir 2",
@@ -461,7 +461,7 @@
         "dataId": "linxea-avenir-2",
         "id": "collection:update-insurance.yml:linxea-avenir-2",
         "firstSeenAt": "2026-10-14T13:08:27.203935+00:00",
-        "lastSeenAt": "2026-10-18T10:54:10.228033+00:00"
+        "lastSeenAt": "2026-10-18T10:56:59.391505+00:00"
       },
       "collection:update-scpi.yml:transitions-europe": {
         "name": "Transitions Europe",
@@ -483,7 +483,7 @@
         "dataId": "transitions-europe",
         "id": "collection:update-scpi.yml:transitions-europe",
         "firstSeenAt": "2026-10-18T10:29:36.524873+00:00",
-        "lastSeenAt": "2026-10-18T10:54:10.228033+00:00"
+        "lastSeenAt": "2026-10-18T10:56:59.391505+00:00"
       },
       "publication:update-economic-data.yml": {
         "name": "Taux d’épargne, ménages, SCPI et fonds euros",
@@ -500,7 +500,7 @@
         "cause": "deploy / build : Run npm run audit:etf-annual-performance",
         "id": "publication:update-economic-data.yml",
         "firstSeenAt": "2026-10-17T12:18:32.387705+00:00",
-        "lastSeenAt": "2026-10-18T10:54:10.228033+00:00"
+        "lastSeenAt": "2026-10-18T10:56:59.391505+00:00"
       },
       "publication:update-qualified-exposures.yml": {
         "name": "Expositions ETF qualifiées",
@@ -520,7 +520,7 @@
         "cause": "deploy / build : Run npm run audit:calculator-series",
         "id": "publication:update-qualified-exposures.yml",
         "firstSeenAt": "2026-10-16T12:48:21.924866+00:00",
-        "lastSeenAt": "2026-10-18T10:54:10.228033+00:00"
+        "lastSeenAt": "2026-10-18T10:56:59.391505+00:00"
       },
       "collection:update-exposure-expansion.yml:etf-exposure-expansion-IE00BK1PV551": {
         "name": "Xtrackers MSCI World UCITS ETF 1D",
@@ -544,7 +544,7 @@
         "dataId": "etf-exposure-expansion-IE00BK1PV551",
         "id": "collection:update-exposure-expansion.yml:etf-exposure-expansion-IE00BK1PV551",
         "firstSeenAt": "2026-10-17T20:42:44.184725+00:00",
-        "lastSeenAt": "2026-10-18T10:54:10.228033+00:00"
+        "lastSeenAt": "2026-10-18T10:56:59.391505+00:00"
       },
       "publication:update-instrument-metadata.yml": {
         "name": "Caractéristiques et statut PEA par ISIN",
@@ -563,7 +563,7 @@
         "cause": "deploy / build : Run npm run audit:instrument-listings ; deploy / fallback-build : Run npm run build",
         "id": "publication:update-instrument-metadata.yml",
         "firstSeenAt": "2026-10-18T10:33:45.298860+00:00",
-        "lastSeenAt": "2026-10-18T10:54:10.228033+00:00"
+        "lastSeenAt": "2026-10-18T10:56:59.391505+00:00"
       }
     },
     "events": [
