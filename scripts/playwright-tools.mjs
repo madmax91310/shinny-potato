@@ -1301,7 +1301,7 @@ async function testAssetSelection(page) {
   await page.goto(`${BASE}/generateur-portefeuilles`, { waitUntil: 'networkidle' });
   let selected=false;
   for(let i=0;i<20&&!selected;i++) {
-    await page.locator('.pg-replacement summary').click();
+    await page.locator('.pg-replacement > summary').click();
     const lines=await page.locator('#pg-replacement-line [data-option]').evaluateAll(nodes=>nodes.map(n=>n.dataset.value));
     for(const line of lines) {
       await choose(page.locator('#pg-replacement-line'), line);
