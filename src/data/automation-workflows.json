@@ -590,5 +590,42 @@
       "/le-dca-de",
       "/bibliotheque-donnees"
     ]
+  },
+  "onboard-assets.yml": {
+    "name": "Intégration des nouveaux actifs",
+    "workflowName": "Onboard new assets",
+    "collectionJob": "onboard",
+    "maxAgeHours": 840,
+    "tools": [
+      "Et si tu avais investi",
+      "Performance depuis",
+      "Il y a X ans",
+      "Qui a vraiment gagné ?",
+      "Duel",
+      "Générateur",
+      "Portefeuille / DCA",
+      "Présentation ETF"
+    ],
+    "collectionSteps": [
+      "Collect observations: qualified",
+      "Collect observations: classify",
+      "Collect observations: equities",
+      "Collect observations: etfs"
+    ],
+    "validationSteps": [
+      "Validate observations: audit",
+      "Validate observations: npm run build",
+      "Validate collected observations"
+    ],
+    "paths": [
+      "/calculateur-investissement",
+      "/performance-depuis",
+      "/il-y-a-x-ans",
+      "/classements-performances",
+      "/duels-portefeuilles",
+      "/generateur-portefeuilles",
+      "/le-dca-de",
+      "/fiches-etf"
+    ]
   }
 }

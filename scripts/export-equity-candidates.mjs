@@ -21,6 +21,7 @@ export const exchanges={
  'Euronext Brussels':['.BR','Europe/Brussels'],'Nyse Euronext - Euronext Brussels':['.BR','Europe/Brussels'],'Oslo Bors Asa':['.OL','Europe/Oslo'],
  'Nasdaq Omx Helsinki Ltd.':['.HE','Europe/Helsinki'],'Nasdaq Omx Nordic':['.ST','Europe/Stockholm'],'Nasdaq Omx Stockholm':['.ST','Europe/Stockholm'],
  'Toronto Stock Exchange':['.TO','America/Toronto'],'Asx - All Markets':['.AX','Australia/Sydney'],
+ 'Taiwan Stock Exchange':['.TW','Asia/Taipei'],
 }
 const normal=value=>String(value).toUpperCase().replace(/[-\s]/g,'').replace(/^0+(?=\d)/,'')
 export function buildCandidates(){

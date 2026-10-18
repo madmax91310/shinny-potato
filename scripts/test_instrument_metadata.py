@@ -21,6 +21,11 @@ class MetadataTests(unittest.TestCase):
     def test_disagreeing_sources_do_not_publish_pea(self):
         values,_=collect({'isin':self.ISIN,'urls':['one','two']},dt.datetime(2026,10,17,tzinfo=dt.timezone.utc),lambda u:(self.ISIN+'\nEligible PEA: '+('Yes' if u=='one' else 'No')).encode())
         self.assertNotIn('pea',values)
+    def test_french_issuer_page_pea_field(self):
+        # BlackRock France product pages: « Régime fiscal PEA » followed by Oui, or a dash when undocumented.
+        self.assertTrue(parse_text(self.ISIN+'\nRégime fiscal PEA\nOui\n',self.ISIN)['pea'])
+        self.assertFalse(parse_text(self.ISIN+'\nRégime fiscal PEA : Non\n',self.ISIN)['pea'])
+        self.assertNotIn('pea',parse_text(self.ISIN+'\nRégime fiscal PEA\n-\n',self.ISIN))
     def test_explicit_pea_badge_is_distinct_from_name(self):
         self.assertTrue(parse_text(self.ISIN+'\nÉligible au PEA\n',self.ISIN)['pea'])
         self.assertNotIn('pea',parse_text(self.ISIN+' PEA World',self.ISIN))
