@@ -32,12 +32,16 @@ console.log('Insurance: shared records, changed fees/returns/conditions and cont
 
 const vie=INSURANCE.find(row => row.id === 'linxea-vie')
 assert(!buildTweet(vie).includes('2023 :'))
-assert(buildTweet(vie).includes('31/12/2026') && buildTweet(vie).includes('Plafond annuel à vérifier'))
+assert(buildTweet(vie).includes('31/12/2026') && buildTweet(vie).includes('Plafond annuel fixé par l’assureur'))
 assert.equal(vie.euroFunds.find(fund => fund.name === 'Eurossima').guarantee, 99.25)
 assert(!buildTweet(vie).includes('Minimum annuel calculé'))
 const missingGuarantee = structuredClone(vie)
 missingGuarantee.euroFunds.find(fund => fund.name === 'Eurossima').guarantee = null
-assert(buildTweet(missingGuarantee).includes('Garantie du capital à vérifier'))
+// An unknown guarantee is omitted from the tweet; the UI keeps the reserve (fundGuarantee).
+const guaranteeLines = text => text.split('\n').filter(line => line.startsWith('Garantie annuelle')).length
+assert(!buildTweet(missingGuarantee).includes('à vérifier') && guaranteeLines(buildTweet(missingGuarantee)) === guaranteeLines(buildTweet(vie)) - 1)
+// Final tweets state established facts only: no 'à confirmer' / 'à vérifier' / 'non chiffré' reserve.
+for (const record of [...INSURANCE, ...ARCHIVED_INSURANCE]) assert(!/à confirmer|à vérifier|pas chiffrée|indisponible/.test(buildTweet(record)), `${record.id}: reserve wording in tweet`)
 const zen=INSURANCE.find(row => row.id === 'linxea-zen')
 assert(buildTweet(zen).includes('2 % de pénalité') && buildTweet(zen).includes('rachat total'))
 
