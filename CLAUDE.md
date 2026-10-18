@@ -159,6 +159,8 @@ s'alimente seule sans qu'un test sans rapport retienne les données :
   `fallback-build` recompose le dernier code publié + les nouvelles données
   (`scripts/compose-fallback-snapshot.mjs`), rebuild, smoke test, puis publie
   (`build-info.json` porte `sha` du code et `dataSha` des données). Les contrôles en échec restent rouges.
+  Un fichier de données qui nomme un actif inconnu du code publié (ISIN valide ou clé absente
+  de tout l'arbre publié) garde sa version publiée : ces actifs attendent le nouveau code.
 - **Règles de fraîcheur** : un seul registre, `src/data/freshness-policy.json` (seuils par
   famille de champs et calendriers de sources). Ne jamais réécrire un seuil en dur.
 - **Voies d'accès émetteurs** : `scripts/issuer-access-routes.json` (portails VanEck, API
