@@ -34,19 +34,24 @@
     },
     "update-market-monthly.yml": {
       "name": "Historiques mensuels des marchés",
-      "runId": 39117281545,
+      "runId": 39124304898,
       "attempt": 1,
-      "completedAt": "2026-10-18T10:52:01Z",
-      "status": "success",
+      "completedAt": "2026-10-18T11:43:14Z",
+      "status": "failure",
       "lastSuccessAt": "2026-10-18T10:52:01Z",
       "collectionStatus": "success",
-      "validationStatus": "success",
-      "recordingStatus": "success",
+      "validationStatus": "failure",
+      "recordingStatus": "not-run",
       "publicationStatus": "not-run",
-      "lastCollectionSuccessAt": "2026-10-18T10:52:01Z",
+      "lastCollectionSuccessAt": "2026-10-18T11:43:14Z",
       "lastPublicationSuccessAt": "2026-10-16T15:32:37Z",
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39117281545",
-      "failures": [],
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39124304898",
+      "failures": [
+        {
+          "job": "refresh",
+          "step": "Validate observations: node scripts test-etf-tool-connections.mjs"
+        }
+      ],
       "dataFailures": {}
     },
     "update-company-analysis.yml": {
@@ -417,11 +422,11 @@
       "dataFailures": {}
     }
   },
-  "updatedAt": "2026-10-18T11:40:37Z",
+  "updatedAt": "2026-10-18T11:43:14Z",
   "monitoring": {
     "schemaVersion": 1,
-    "checkedAt": "2026-10-18T11:40:52.372946+00:00",
-    "revision": 100,
+    "checkedAt": "2026-10-18T11:43:35.606108+00:00",
+    "revision": 101,
     "active": {
       "collection:update-practical-sheets.yml:practical:13f": {
         "name": "SEC · questions et réponses sur le formulaire 13F",
@@ -442,7 +447,7 @@
         "dataId": "practical:13f",
         "id": "collection:update-practical-sheets.yml:practical:13f",
         "firstSeenAt": "2026-10-14T21:07:26.171294+00:00",
-        "lastSeenAt": "2026-10-18T11:40:52.372946+00:00"
+        "lastSeenAt": "2026-10-18T11:43:35.606108+00:00"
       },
       "collection:update-insurance.yml:linxea-avenir-2": {
         "name": "Linxea Avenir 2",
@@ -461,7 +466,7 @@
         "dataId": "linxea-avenir-2",
         "id": "collection:update-insurance.yml:linxea-avenir-2",
         "firstSeenAt": "2026-10-14T13:08:27.203935+00:00",
-        "lastSeenAt": "2026-10-18T11:40:52.372946+00:00"
+        "lastSeenAt": "2026-10-18T11:43:35.606108+00:00"
       },
       "collection:update-scpi.yml:transitions-europe": {
         "name": "Transitions Europe",
@@ -483,7 +488,26 @@
         "dataId": "transitions-europe",
         "id": "collection:update-scpi.yml:transitions-europe",
         "firstSeenAt": "2026-10-18T10:29:36.524873+00:00",
-        "lastSeenAt": "2026-10-18T11:40:52.372946+00:00"
+        "lastSeenAt": "2026-10-18T11:43:35.606108+00:00"
+      },
+      "workflow:update-market-monthly.yml": {
+        "name": "Historiques mensuels des marchés",
+        "tools": [
+          "Et si tu avais investi",
+          "Performance depuis",
+          "Duel",
+          "Générateur"
+        ],
+        "impactScope": "collector",
+        "workflow": "update-market-monthly.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39124304898",
+        "to": "/donnees-a-revoir",
+        "kind": "collection",
+        "field": "Exécution du collecteur",
+        "cause": "refresh : Validate observations: node scripts test-etf-tool-connections.mjs",
+        "id": "workflow:update-market-monthly.yml",
+        "firstSeenAt": "2026-10-18T11:43:35.606108+00:00",
+        "lastSeenAt": "2026-10-18T11:43:35.606108+00:00"
       },
       "publication:update-economic-data.yml": {
         "name": "Taux d’épargne, ménages, SCPI et fonds euros",
@@ -500,7 +524,7 @@
         "cause": "deploy / build : Run npm run audit:etf-annual-performance",
         "id": "publication:update-economic-data.yml",
         "firstSeenAt": "2026-10-17T12:18:32.387705+00:00",
-        "lastSeenAt": "2026-10-18T11:40:52.372946+00:00"
+        "lastSeenAt": "2026-10-18T11:43:35.606108+00:00"
       },
       "publication:update-qualified-exposures.yml": {
         "name": "Expositions ETF qualifiées",
@@ -520,7 +544,7 @@
         "cause": "deploy / build : Run npm run audit:calculator-series",
         "id": "publication:update-qualified-exposures.yml",
         "firstSeenAt": "2026-10-16T12:48:21.924866+00:00",
-        "lastSeenAt": "2026-10-18T11:40:52.372946+00:00"
+        "lastSeenAt": "2026-10-18T11:43:35.606108+00:00"
       },
       "collection:update-exposure-expansion.yml:etf-exposure-expansion-IE00BK1PV551": {
         "name": "Xtrackers MSCI World UCITS ETF 1D",
@@ -544,7 +568,7 @@
         "dataId": "etf-exposure-expansion-IE00BK1PV551",
         "id": "collection:update-exposure-expansion.yml:etf-exposure-expansion-IE00BK1PV551",
         "firstSeenAt": "2026-10-17T20:42:44.184725+00:00",
-        "lastSeenAt": "2026-10-18T11:40:52.372946+00:00"
+        "lastSeenAt": "2026-10-18T11:43:35.606108+00:00"
       },
       "publication:update-instrument-metadata.yml": {
         "name": "Caractéristiques et statut PEA par ISIN",
@@ -563,18 +587,10 @@
         "cause": "deploy / build : Run npm run audit:instrument-listings ; deploy / fallback-build : Run npm run build",
         "id": "publication:update-instrument-metadata.yml",
         "firstSeenAt": "2026-10-18T10:33:45.298860+00:00",
-        "lastSeenAt": "2026-10-18T11:40:52.372946+00:00"
+        "lastSeenAt": "2026-10-18T11:43:35.606108+00:00"
       }
     },
     "events": [
-      {
-        "revision": 71,
-        "at": "2026-10-17T12:17:16.852334+00:00",
-        "opened": [
-          "publication:update-scpi.yml"
-        ],
-        "resolved": []
-      },
       {
         "revision": 72,
         "at": "2026-10-17T12:18:32.387705+00:00",
@@ -1447,6 +1463,14 @@
             "resolvedAt": "2026-10-18T10:52:15.666233+00:00"
           }
         ]
+      },
+      {
+        "revision": 101,
+        "at": "2026-10-18T11:43:35.606108+00:00",
+        "opened": [
+          "workflow:update-market-monthly.yml"
+        ],
+        "resolved": []
       }
     ],
     "resolved": [
