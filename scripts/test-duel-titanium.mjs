@@ -36,7 +36,6 @@ try {
     const { DUELS } = await import('/shinny-potato/src/pages/portfolio-duels/data.js')
     const { buildDuel, buildCustomDuel, buildTweet, formatCapital, formatPercent } = await import('/shinny-potato/src/pages/portfolio-duels/lib.js')
     const { renderDuelImage } = await import('/shinny-potato/src/pages/portfolio-duels/canvasImage.js')
-    const { getDuelArt } = await import('/shinny-potato/src/pages/portfolio-duels/visualIdentity.js')
     const originalText = CanvasRenderingContext2D.prototype.fillText, originalImage = CanvasRenderingContext2D.prototype.drawImage
     let boxes = [], labels = [], scenes = [], current
     CanvasRenderingContext2D.prototype.fillText = function(value, x, y, ...rest) {
@@ -53,9 +52,9 @@ try {
       boxes = []; labels = []; scenes = []; current = name
       const before = JSON.stringify(duel), tweet = buildTweet(duel), png = await renderDuelImage(duel)
       if (JSON.stringify(duel) !== before || buildTweet(duel) !== tweet) throw new Error('Calculation or tweet changed')
-      const expectedScenes = [...duel.a.assets, ...duel.b.assets].map(asset => getDuelArt(asset).scene)
-      if (scenes[0] !== 'approved/duel-studio.webp') throw new Error('Approved plate studio missing')
-      if (JSON.stringify(scenes.slice(1)) !== JSON.stringify(expectedScenes)) throw new Error(`Wrong/missing scene in ${name}`)
+      if (JSON.stringify(scenes) !== JSON.stringify(['duel-paper/ivory-corners.webp'])) throw new Error(`Wrong paper background in ${name}`)
+      const image = new Image(); image.src = png; await image.decode()
+      if (image.naturalWidth !== 1600 || image.naturalHeight !== 1600) throw new Error('Duel must stay square')
       for (const item of [duel.a, duel.b]) {
         for (const asset of item.assets) {
           if (!labels.join(' ').includes(asset.label) || !labels.includes(`${asset.pct} %`)) throw new Error(`Lost asset/weight: ${asset.id}`)
@@ -70,7 +69,7 @@ try {
       return png
     }
     try {
-      for (const definition of DUELS) await check(definition.id, buildDuel(definition), ['sp500-equal-europe', 'oblig-courtes-longues', 'usa-europe-sante-ou-acwi-tech', 'oblig-0-1-ou-1-3', 'oblig-etat-ou-entreprises', 'oblig-ig-ou-high-yield', 'oblig-etat-ou-inflation'].includes(definition.id))
+      for (const definition of DUELS) await check(definition.id, buildDuel(definition), ['world-quality-momentum', 'sp500-equal-europe', 'oblig-courtes-longues', 'usa-europe-sante-ou-acwi-tech', 'oblig-0-1-ou-1-3', 'oblig-etat-ou-entreprises', 'oblig-ig-ou-high-yield', 'oblig-etat-ou-inflation'].includes(definition.id))
       for (const asset of CATALOG) {
         const left = asset.role === 'base' ? [{ id: asset.id, pct: 80 }, { id: 'msci_em', pct: 20 }] : [{ id: 'msci_world_ishares', pct: 80 }, { id: asset.id, pct: 20 }]
         const right = [{ id: 'msci_world_ishares', pct: 80 }, { id: 'msci_em', pct: 20 }]
@@ -95,14 +94,14 @@ try {
     } finally { CanvasRenderingContext2D.prototype.fillText = originalText; CanvasRenderingContext2D.prototype.drawImage = originalImage }
   })
   // Real UI: failed art does not silently substitute a different asset, and retry works.
-  await page.route('**/asset-art/etf-night/america.webp', route => route.abort())
+  await page.route('**/asset-art/duel-paper/ivory-corners.webp', route => route.abort())
   await page.goto(`${base}duels-portefeuilles`)
   const failureDuel = DUELS.findIndex(duel => duel.id === 'sp500-equal-europe')
   assert(failureDuel >= 0, 'An American exposure is required for the failed-art/retry test')
   await choose(page.locator('#pd-select'), String(failureDuel))
   await page.getByRole('button', { name: /Télécharger l’image PNG/i }).click()
   await page.getByRole('alert').filter({ hasText: 'n’a pas pu être chargé' }).waitFor()
-  await page.unroute('**/asset-art/etf-night/america.webp')
+  await page.unroute('**/asset-art/duel-paper/ivory-corners.webp')
   const [download] = await Promise.all([page.waitForEvent('download'), page.getByRole('button', { name: /Télécharger l’image PNG/i }).click()])
   assert.match(download.suggestedFilename(), /^duel-.*\.png$/)
   await page.getByRole('tab', { name: 'Image', exact: true }).click()
@@ -125,5 +124,5 @@ try {
   assert.equal(await page.locator('.pd-editor-side').nth(1).locator('.pd-editor-line').count(),5)
   await page.setViewportSize({ width: 390, height: 844 })
   assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true)
-  console.log(`${CATALOG.length} supports, ${DUELS.length} duels, 1–6 actifs par côté : illustrations effectivement dessinées, poids, dates communes, capitaux, performances, pertes, égalités, grands montants, textes sans chevauchement et téléchargement/reprise vérifiés dans Chromium.`)
+  console.log(`${CATALOG.length} supports, ${DUELS.length} duels, 1–6 actifs par côté : fond papier text-free et format carré effectivement dessinés, poids, dates communes, capitaux, performances, pertes, égalités, grands montants, textes sans chevauchement et téléchargement/reprise vérifiés dans Chromium.`)
 } finally { await browser?.close(); server.kill('SIGTERM') }
