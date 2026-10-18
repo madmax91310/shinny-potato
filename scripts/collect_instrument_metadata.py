@@ -145,8 +145,16 @@ def parse_json(body,isin):
         mapping={'DISTRIBUTION_POLICY':'distribution','FUND_REPLICATION_METHODOLOGY':'replicationMethod'}
         return {field:facts[key] for key,field in mapping.items() if isinstance(facts.get(key),str) and facts[key]}
     if isinstance(doc,dict) and 'pdpResult' in doc:
-        # The DWS product page exposes no explicit characteristic fields: only its exchange table is read.
-        dws_identity(body,isin);return {}
+        from collect_dws_etf import items
+        section=dws_identity(body,isin)
+        facts={}
+        for item in items(section):
+            key=re.sub('<[^>]+>','',str(item['key']))
+            if key in ('ISIN','Income treatment','Fund domicile','Investment methodology'):
+                if key in facts:raise ValueError('Duplicate DWS exact-share characteristic')
+                facts[key]=item['value']
+        mapping={'Income treatment':'distribution','Fund domicile':'domicile','Investment methodology':'replicationMethod'}
+        return {field:facts[key] for key,field in mapping.items() if isinstance(facts.get(key),str) and facts[key]}
     try:
         points=doc['componentsByNameMap']['keyFundFacts']['containersByNameMap']['default']['dataPointsByNameMap']
         if points['isin']['value']!=isin:raise ValueError('Wrong exact-share metadata')
@@ -244,7 +252,13 @@ def main():
                 if value['checkedAt']>=old.get(field,{}).get('checkedAt',''):old[field]=value
             records[isin]=old
             missing=[field for field in FIELDS if field not in values]
-            status[isin]={'checkedAt':now.isoformat(),'observed':list(values),'pending':missing,'errors':failures}
+            prior=status.get(isin,{})
+            first_pending={field:prior.get('firstPendingAt',{}).get(field,prior.get('checkedAt',now.isoformat()) if field in prior.get('pending',[]) else now.isoformat()) for field in missing}
+            status[isin]={'checkedAt':now.isoformat(),'observed':list(values),'pending':missing,'firstPendingAt':first_pending,'errors':failures}
+            for field in missing:
+                if field not in old and renewal_overdue({'checkedAt':first_pending[field]},now):
+                    errors.append({'id':f'{isin}:{field}:qualification','field':field,'error':'Qualification de publication requise : champ jamais observé ; vérifier la source exacte ou documenter explicitement sa non-publication.'})
+            successes.extend({'id':f'{isin}:{field}:qualification'} for field in values)
             if values:updated.append(isin)
             successes.extend({'id':f'{isin}:{field}'} for field in values)
             # Fail when previously automatic values stay unrenewed beyond the grace period; absent publications stay explicit pending fields.

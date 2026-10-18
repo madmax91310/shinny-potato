@@ -65,6 +65,15 @@ jobs:
       - uses: actions/setup-node@v7.0.0
         with:
           node-version: 20
+      - name: Record the data snapshot requested for publication
+        if: github.event_name != 'pull_request'
+        run: python3 scripts/data_publication.py receipt --commit "$(git rev-parse HEAD)" --output "$RUNNER_TEMP/data-publication-receipt.json" -- src/data scripts/source-snapshots
+      - uses: actions/upload-artifact@v7.0.1
+        if: github.event_name != 'pull_request'
+        with:
+          name: data-publication-receipt
+          path: ${{ runner.temp }}/data-publication-receipt.json
+          retention-days: 35
       - id: scope
         if: github.event_name != 'pull_request'
         run: node scripts/classify-deploy-scope.mjs --published-url "https://${GITHUB_REPOSITORY_OWNER}.github.io/${GITHUB_REPOSITORY#*/}/build-info.json"

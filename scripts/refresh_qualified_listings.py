@@ -35,7 +35,7 @@ def parse(source,body,checked):
  return rows
 
 def main():
- p=argparse.ArgumentParser();p.add_argument('--apply',action='store_true');args=p.parse_args()
+ p=argparse.ArgumentParser();p.add_argument('--apply',action='store_true');p.add_argument('--output',type=Path);args=p.parse_args()
  sources=json.loads((ROOT/'scripts/qualified-listing-sources.json').read_text())['sources'];path=ROOT/'src/data/qualified-listing-records.json'
  records=json.loads(path.read_text()) if path.exists() else {};checked=dt.datetime.now(UTC).date().isoformat()
  def one(s):
@@ -51,6 +51,8 @@ def main():
  for isin,rows,error in results:
   if rows:records[isin]=rows
  if args.apply:write_json_atomic(path,records)
- print(json.dumps({'validated':[isin for isin,rows,error in results if rows],'failed':[{'isin':isin,'reason':error} for isin,rows,error in results if error]}))
+ report={'checkedAt':checked,'validated':[isin for isin,rows,error in results if rows],'failed':[{'isin':isin,'reason':error} for isin,rows,error in results if error]}
+ if args.output:write_json_atomic(args.output,report)
+ print(json.dumps(report))
  if any(error for _,_,error in results):raise SystemExit(1)
 if __name__=='__main__':main()

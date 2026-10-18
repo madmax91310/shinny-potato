@@ -24,13 +24,21 @@ const expected = ((1.1) * EUR_USD[2023] / EUR_USD[2024] - 1) * 100
 assert.ok(Math.abs(euroReturn(item, 2024) - expected) < 1e-9)
 // Cross rates (currencies without an ECB reference) are derived from two official series and
 // must stay recomputable from the stored observations; the ECB month-end itself is untouched.
+// Exact decimal arithmetic makes the contract independent of Python/JS binary ties.
+function crossValue(a,b) {
+ const decimal=n=>{const [whole,fraction='']=String(n).split('.');return [BigInt(whole+fraction),10n**BigInt(fraction.length)]}
+ const [x,sx]=decimal(a),[y,sy]=decimal(b),den=sx*sy,num=x*y*10000n
+ return Number((2n*num+den)/(2n*den))/10000
+}
+assert.equal(crossValue(33.06,1.3275),43.8872)
 let crossMonths = 0
 for (const [currency, info] of Object.entries(monthlyFx.derived ?? {})) {
   assert.ok(/^https:\/\/(fred\.stlouisfed\.org|www\.federalreserve\.gov)\//.test(info.sourceUrl), `${currency} : source du taux croisé non officielle`)
   assert.equal(info.secondarySourceUrl, monthlyFx.sourceUrl)
   for (const [month, row] of Object.entries(info.observations)) {
     assert.ok(row.asOf.startsWith(month), `${currency} ${month} : observation hors du mois`)
-    assert.equal(monthlyFx.months[month]?.rates?.[currency], Math.round(row.perUsd * row.usdPerEur * 1e4) / 1e4, `${currency} ${month} : taux publié ≠ produit des deux séries`)
+    assert.equal(monthlyFx.months[month]?.rates?.[currency], crossValue(row.perUsd,row.usdPerEur), `${currency} ${month} : taux publié ≠ produit des deux séries`)
+    assert.equal(row.value,monthlyFx.months[month]?.rates?.[currency])
     assert.ok(row.asOf <= monthlyFx.months[month].asOf, `${currency} ${month} : le jour commun ne peut pas dépasser le dernier jour BCE`)
     crossMonths++
   }

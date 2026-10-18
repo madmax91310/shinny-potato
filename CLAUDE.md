@@ -71,8 +71,9 @@ les données de l'outil : un rendement d'indice ne remplace pas celui d'un fonds
 Les libellés de convention (devise, dividendes, conversion, période, note de méthode d'un indice)
 se composent via `src/lib/performance-conventions.js`, jamais en texte libre dans un outil.
 Les paramètres réglementaires viennent de `automated-regulatory.json` et `automated-economic.json` ;
-le taux du PEL par génération d'ouverture reste une table sourcée dans `src/data/pel-rates.js`
-tant que le collecteur réglementaire ne lit pas la fiche F16140.
+les taux du PEL par génération d'ouverture sont collectés dans la fiche DILA F16140, stockés dans
+`automated-regulatory.json` et exposés par `src/data/pel-rates.js`. Le taux d'épargne et le taux
+du prêt ne sont jamais interchangeables ; une ouverture future reste non qualifiée.
 
 Quand un outil a besoin d'une donnée qu'un autre outil possède déjà et a déjà vérifiée, il
 l'importe directement plutôt que de la recopier. Exemples : 3 des 6 formats de Tweet Midi

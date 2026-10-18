@@ -32,7 +32,8 @@ jobs:
       contents: write
     outputs:
       commit_sha: ${{ steps.commit.outputs.commit_sha }}
-      collection_failed: ${{ steps.collect.outcome == 'failure' || steps.universe.outcome == 'failure' || steps.coverage.outcome == 'failure' || steps.depth.outcome == 'failure' }}
+      validation_failed: ${{ steps.coverage.outcome == 'failure' }}
+      collection_failed: ${{ steps.collect.outcome == 'failure' || steps.universe.outcome == 'failure' || steps.depth.outcome == 'failure' }}
     steps:
       - uses: actions/checkout@v7.0.1
         with:
@@ -160,7 +161,10 @@ jobs:
         if: always()
         with:
           name: company-analysis-observation
-          path: ${{ runner.temp }}/company-observation.json
+          path: |
+            ${{ runner.temp }}/company-observation.json
+            ${{ runner.temp }}/company-universe-observation.json
+            ${{ runner.temp }}/company-depth-observation.json
           if-no-files-found: ignore
           retention-days: 35
       - uses: actions/upload-artifact@v7.0.1
@@ -206,3 +210,11 @@ jobs:
           echo 'Some sources failed. Previous observations were retained independently; stale ratios are omitted by the publication engine.' >> "$GITHUB_STEP_SUMMARY"
           exit 1
 
+  report-validation-failures:
+    needs: [refresh, deploy]
+    if: always() && needs.refresh.outputs.validation_failed == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo 'Le contrat de couverture entreprises a échoué ; consulter company-final-acceptance.' >> "$GITHUB_STEP_SUMMARY"
+          exit 1

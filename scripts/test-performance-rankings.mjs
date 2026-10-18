@@ -184,7 +184,9 @@ for (const category of BENCHMARK_CATEGORIES) {
 }
 const pool = suggestionPool()
 assert(pool.length > 10)
-assert(!pool.some(s => ['bonds', 'lifestrategy', 'multi-asset', 'crypto', 'commodities', 'small-cap-regions', 'technology-etfs'].includes(s.category.id)))
+assert(!pool.some(s => ['bonds', 'lifestrategy', 'multi-asset', 'crypto', 'commodities'].includes(s.category.id)))
+// Equity categories such as technology and small caps become eligible once three
+// common calendar years are collected; the coverage assertions below govern them.
 assert.equal(suggestionPool([{id:'world', ids:['not-collected', 'apple']}]).length, 0)
 for (let i = 0; i < pool.length; i++) {
   for (const random of [0, .5, .999999]) {

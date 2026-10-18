@@ -66,3 +66,10 @@ if (!process.argv.includes('--child')) {
  } finally {paths.forEach((p,i)=>writeFileSync(p,originals[i]))}
 }
 console.log('Regulatory consumers: exact scopes, recalculated examples, changed rates/fees and shared catalogue OK')
+
+const {pelRateFor,PEL_CHECKED_AT,PEL_GENERATIONS}=await import('../src/data/pel-rates.js')
+assert.equal(pelRateFor('2027-01-01','2026-10-18'),null,'An unknown future generation cannot inherit today’s rate')
+assert.equal(pelRateFor('2026-02-30','2026-10-18'),null)
+assert.equal(pelRateFor('2016-07-31','2026-10-18'),1.5)
+assert.equal(pelRateFor('2016-08-01','2026-10-18'),1)
+assert.equal(PEL_CHECKED_AT,JSON.parse(readFileSync(new URL('../src/data/automated-regulatory.json',import.meta.url))).sources.pel.checkedAt)

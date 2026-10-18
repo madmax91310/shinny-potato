@@ -5,7 +5,7 @@ from collect_regulatory_data import SOURCES, BASE, parse, collect
 from collect_broker_tariffs import parse as tariff
 from publish_automation_status import update_status
 FIX = pathlib.Path(__file__).parent/'fixtures'
-TODAY='2026-10-07'
+TODAY='2026-10-18'
 class RegulatoryTests(unittest.TestCase):
  def test_current_av_wording_keeps_general_scope_and_rejects_missing_or_ambiguous_rates(self):
   raw=(FIX/'regulatory'/'av-2026-10-10.xml').read_bytes()
@@ -36,11 +36,11 @@ class RegulatoryTests(unittest.TestCase):
   urls={BASE+id_+'.xml':self.raw(name) for name,(id_,_,_) in SOURCES.items()}
   base,errors=collect({'schemaVersion':1,'sources':{}},lambda url:urls[url],TODAY);self.assertFalse(errors)
   broken=urls.copy();broken[BASE+'F22414.xml']=b'<invalid/>'
-  changed,errors=collect(base,lambda url:broken[url],'2026-10-08')
+  changed,errors=collect(base,lambda url:broken[url],'2026-10-19')
   self.assertEqual(changed['sources']['av'],base['sources']['av']);self.assertIn('av',errors)
-  self.assertEqual(changed['sources']['cto']['checkedAt'],'2026-10-08')
-  fixed,errors=collect(changed,lambda url:urls[url],'2026-10-09');self.assertFalse(errors)
-  self.assertEqual(fixed['sources']['av']['checkedAt'],'2026-10-09')
+  self.assertEqual(changed['sources']['cto']['checkedAt'],'2026-10-19')
+  fixed,errors=collect(changed,lambda url:urls[url],'2026-10-20');self.assertFalse(errors)
+  self.assertEqual(fixed['sources']['av']['checkedAt'],'2026-10-20')
  def test_tariff_table_context_and_future_fee(self):
   for name in ['bourso','fortuneo']:
    content=(FIX/'broker-tariffs'/f'{name}.txt').read_text()
@@ -56,3 +56,12 @@ class RegulatoryTests(unittest.TestCase):
   run.update(id=2,conclusion='success',updated_at='2026-10-08T10:00:00Z')
   self.assertEqual(update_status(failed,run,[])['workflows']['update-regulatory-data.yml']['status'],'success')
 if __name__=='__main__':unittest.main()
+
+class PelGenerationTests(unittest.TestCase):
+ def test_savings_rates_are_distinct_from_loan_rates_and_gaps_are_rejected(self):
+  raw=(FIX/'regulatory'/'pel.xml').read_bytes()
+  data=parse('pel',raw,'2026-10-18')
+  self.assertEqual(data['generations'][0],{'from':'2026-01-01','to':None,'rate':2})
+  self.assertEqual(data['values']['pelCeiling'],61200)
+  self.assertEqual(len(data['generations']),8)
+  with self.assertRaises(ValueError):parse('pel',raw.replace(b'janvier 2025',b'janvier 2024'),'2026-10-18')

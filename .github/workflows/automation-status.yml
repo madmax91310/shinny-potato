@@ -24,6 +24,8 @@ on:
       - Refresh 35 portfolio exposure ETFs
       - Refresh fully automated index sheets
       - Onboard new assets
+      - Rehearse future data refreshes
+      - Deploy to GitHub Pages
     types: [completed]
   workflow_dispatch:
   schedule:

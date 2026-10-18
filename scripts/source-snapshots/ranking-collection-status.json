@@ -1,7 +1,19 @@
 {
-  "checkedAt": "2026-10-18T14:44:25.522981+00:00",
+  "checkedAt": "2026-10-18T19:24:40.869098+00:00",
   "fxFailed": false,
-  "crossFxFailed": true,
+  "crossFxFailed": false,
+  "fxSources": {
+    "TWD": {
+      "id": "fx:TWD",
+      "status": "validated",
+      "checkedAt": "2026-10-18T19:24:40.869098+00:00"
+    },
+    "ECB": {
+      "id": "fx:ECB",
+      "status": "validated",
+      "checkedAt": "2026-10-18T19:24:40.869098+00:00"
+    }
+  },
   "series": [
     {
       "id": "acwi-gross",

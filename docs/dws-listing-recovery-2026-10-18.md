@@ -38,3 +38,11 @@ Les 24 cotations candidates EUR/USD des dix parts ont ensuite passé le qualific
 Après génération : 235 historiques ETF/ETC automatisés au lieu de 225 ; 17 instruments restent sans cotation documentée au lieu de 27. Trente historiques sont trop courts pour la génération automatique, contre 28 auparavant : les deux nouveaux fonds récents restent correctement limités. Huit supports supplémentaires sont accessibles manuellement ; les conditions de profondeur et de périodes communes du Générateur et des Duels restent inchangées.
 
 Vérification de cette intégration : compilation et budgets, 664 historiques avec preuves, 235 raccordements ETF/ETC, raisons de blocage et 432 choix manuels contrôlés. Les fichiers dérivés produits par la compilation restent exclus du commit.
+
+## Intégration avec l’audit #798
+
+Les deux chantiers avaient qualifié les mêmes dix parts. Les registres sont rapprochés par identifiant : les configurations et cours bruts sont identiques, leur ordre seul différait. Les observations mensuelles et leurs preuves de #799 restent ensemble ; les caractéristiques plus complètes et les diagnostics de #798 sont conservés. Aucune série ni preuve n’est assemblée point par point.
+
+Le collecteur conserve les contrôles d’identité et la table de cotation strictement délimitée de #799, ainsi que la lecture des caractéristiques et le rejet des champs dupliqués de #798. Les régressions des deux branches restent testées. Une nouvelle collecte de contrôle des dix parts réussit sans renouvellement en échec.
+
+Le portail Pages régénère désormais les raccourcis de performance avant le test des raccordements ETF. Le défaut a été reproduit sur un checkout propre : le test lisait l’ancienne projection avant la compilation. Aucun contrôle ni critère financier n’est supprimé. Compilation et budgets, 235 historiques ETF/ETC, 664 preuves historiques, 605 liens de performance, 649 liens de simulation, change BCE et 55 tests de suivi/workflows réussissent sur l’intégration.

@@ -50,10 +50,14 @@ class MetadataTests(unittest.TestCase):
     def test_dws_product_page_exchange_table(self):
         from pathlib import Path
         body=Path(__file__).with_name('fixtures').joinpath('official-documents','dws-exact-share.json').read_bytes()
-        self.assertEqual(parse_json(body,'IE00BLNMYC90'),{})
+        self.assertEqual(parse_json(body,'IE00BLNMYC90'),{'distribution':'Capitalizing','domicile':'Ireland','replicationMethod':'Direct Replication (physically)'})
         rows=parse_listings(body,{'isin':'IE00BLNMYC90'},'https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/pdpMetaTagsTealium','2026-10-18')
         self.assertIn(('ETFP','XDEW','EUR','XDEW.MI'),[(r['mic'],r['ticker'],r['currency'],r['symbol']) for r in rows])
         self.assertTrue(all(r['evidenceId'].startswith('IE00BLNMYC90-') for r in rows))
+        # An unrelated NAV link is not product identity; exact facts remain mandatory.
+        changed=body.replace(b'IE00BLNMYC90',b'IE00B4L5Y983',1)
+        self.assertEqual(parse_listings(changed,{'isin':'IE00BLNMYC90'},'https://etf.dws.com','2026-10-18'),[{**r,'sha256':__import__('hashlib').sha256(changed).hexdigest(),'sourceUrl':'https://etf.dws.com'} for r in rows])
+        with self.assertRaises(ValueError):parse_listings(body.replace(b'IE00BLNMYC90',b'IE00B4L5Y983'),{'isin':'IE00BLNMYC90'},'https://etf.dws.com','2026-10-18')
         wrong=json.loads(body)
         wrong['pdpResult']['pageSections']['keyFacts']['accordionItems'][0]['listBundle'][0]['items'][0]['value']=self.ISIN
         with self.assertRaises(ValueError):parse_listings(json.dumps(wrong).encode(),{'isin':'IE00BLNMYC90'},'https://etf.dws.com','2026-10-18')
@@ -70,7 +74,7 @@ class MetadataTests(unittest.TestCase):
         sections['securityKeyFacts']={'isin':self.ISIN,'table':unrelated['table']}
         sections['topProducts']={'cards':[{'isin':'IE00BP3QZ601','table':unrelated['table']}]}
         self.assertEqual([(r['mic'],r['ticker'],r['currency'],r['symbol']) for r in parse(doc)],expected)
-        self.assertEqual(parse_json(json.dumps(doc).encode(),isin),{})
+        self.assertEqual(parse_json(json.dumps(doc).encode(),isin),{'distribution':'Capitalizing','domicile':'Ireland','replicationMethod':'Direct Replication (physically)'})
         doc['pdpResult']['pageFrame']={'productHeader':{'identifier':[{'key':'ISIN','value':self.ISIN}]}}
         with self.assertRaisesRegex(ValueError,'header identity'):parse(doc)
         doc['pdpResult']['pageFrame']['productHeader']['identifier'][0]['value']=isin

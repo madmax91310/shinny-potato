@@ -8,14 +8,14 @@ Les états décrivent les observations enregistrées, pas une garantie réseau. 
 | Frais | 258/258 | 258 | 0 | 0 |
 | Encours | 258/258 | 258 | 0 | 0 |
 | Performances annuelles | 238/258 | 238 | 0 | 0 |
-| Historique mensuel | 232/258 | 232 | 0 | 0 |
+| Historique mensuel | 242/258 | 242 | 0 | 0 |
 | Pays | 229/258 | 229 | 0 | 0 |
 | Secteurs | 229/258 | 229 | 0 | 0 |
-| Principales positions | 232/258 | 232 | 0 | 0 |
+| Principales positions | 234/258 | 234 | 0 | 0 |
 | Distribution | 246/258 | 246 | 0 | 0 |
 | Domicile | 208/258 | 208 | 0 | 0 |
 | Réplication | 233/258 | 233 | 0 | 0 |
-| Cotations | 232/258 | 207 | 25 | 0 |
+| Cotations | 242/258 | 218 | 24 | 0 |
 | Éligibilité PEA | 51/258 | 34 | 17 | 0 |
 | Couverture de change | 14/258 | 14 | 0 | 0 |
 
