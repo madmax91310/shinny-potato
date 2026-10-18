@@ -129,20 +129,32 @@
     },
     "update-scpi.yml": {
       "name": "Présentations de SCPI",
-      "runId": 39067245837,
+      "runId": 39115175774,
       "attempt": 1,
-      "completedAt": "2026-10-17T20:36:40Z",
-      "status": "success",
+      "completedAt": "2026-10-18T10:29:15Z",
+      "status": "failure",
       "lastSuccessAt": "2026-10-17T20:36:40Z",
-      "collectionStatus": "success",
+      "collectionStatus": "failure",
       "validationStatus": "success",
       "recordingStatus": "success",
       "publicationStatus": "not-run",
       "lastCollectionSuccessAt": "2026-10-17T20:36:40Z",
       "lastPublicationSuccessAt": "2026-10-11T15:48:19Z",
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39067245837",
-      "failures": [],
-      "dataFailures": {}
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39115175774",
+      "failures": [
+        {
+          "job": "report-failures",
+          "step": "Run echo 'Collecte SCPI partielle : les dernières fiches validées sont conservées. Voir scpi-observations.' >> \"$GITHUB_STEP_SUMMARY\""
+        }
+      ],
+      "dataFailures": {
+        "transitions-europe": {
+          "name": "Transitions Europe",
+          "completedAt": "2026-10-18T10:29:15Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39115175774",
+          "cause": "<urlopen error timed out>"
+        }
+      }
     },
     "update-insurance.yml": {
       "name": "Présentations d’assurance-vie",
@@ -406,11 +418,11 @@
       "dataFailures": {}
     }
   },
-  "updatedAt": "2026-10-18T10:21:14Z",
+  "updatedAt": "2026-10-18T10:29:15Z",
   "monitoring": {
     "schemaVersion": 1,
-    "checkedAt": "2026-10-18T10:21:30.436755+00:00",
-    "revision": 96,
+    "checkedAt": "2026-10-18T10:29:36.524873+00:00",
+    "revision": 97,
     "active": {
       "collection:update-practical-sheets.yml:practical:13f": {
         "name": "SEC · questions et réponses sur le formulaire 13F",
@@ -431,7 +443,7 @@
         "dataId": "practical:13f",
         "id": "collection:update-practical-sheets.yml:practical:13f",
         "firstSeenAt": "2026-10-14T21:07:26.171294+00:00",
-        "lastSeenAt": "2026-10-18T10:21:30.436755+00:00"
+        "lastSeenAt": "2026-10-18T10:29:36.524873+00:00"
       },
       "collection:update-insurance.yml:linxea-avenir-2": {
         "name": "Linxea Avenir 2",
@@ -450,7 +462,29 @@
         "dataId": "linxea-avenir-2",
         "id": "collection:update-insurance.yml:linxea-avenir-2",
         "firstSeenAt": "2026-10-14T13:08:27.203935+00:00",
-        "lastSeenAt": "2026-10-18T10:21:30.436755+00:00"
+        "lastSeenAt": "2026-10-18T10:29:36.524873+00:00"
+      },
+      "collection:update-scpi.yml:transitions-europe": {
+        "name": "Transitions Europe",
+        "tools": [
+          "Présentation de SCPI"
+        ],
+        "impactScope": "asset",
+        "workflow": "update-scpi.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39115175774",
+        "to": "/bibliotheque-donnees?id=scpi%3Atransitions-europe",
+        "completedAt": "2026-10-18T10:29:15Z",
+        "cause": "<urlopen error timed out>",
+        "sourceUrls": [
+          "https://www.arkea-reim.com/upload/docs/application/pdf/2022-12/scpi_transitions_europe_-_note_d_information.pdf",
+          "https://www.arkea-reim.com/upload/docs/application/pdf/2026-07/te_s1-2026.pdf"
+        ],
+        "kind": "collection",
+        "field": "Champs du collecteur",
+        "dataId": "transitions-europe",
+        "id": "collection:update-scpi.yml:transitions-europe",
+        "firstSeenAt": "2026-10-18T10:29:36.524873+00:00",
+        "lastSeenAt": "2026-10-18T10:29:36.524873+00:00"
       },
       "publication:update-market-monthly.yml": {
         "name": "Historiques mensuels des marchés",
@@ -469,7 +503,7 @@
         "cause": "deploy / browser-checks (2) : Run node scripts/run-browser-checks.mjs 2 4",
         "id": "publication:update-market-monthly.yml",
         "firstSeenAt": "2026-10-17T12:19:18.394776+00:00",
-        "lastSeenAt": "2026-10-18T10:21:30.436755+00:00"
+        "lastSeenAt": "2026-10-18T10:29:36.524873+00:00"
       },
       "publication:update-economic-data.yml": {
         "name": "Taux d’épargne, ménages, SCPI et fonds euros",
@@ -486,7 +520,7 @@
         "cause": "deploy / build : Run npm run audit:etf-annual-performance",
         "id": "publication:update-economic-data.yml",
         "firstSeenAt": "2026-10-17T12:18:32.387705+00:00",
-        "lastSeenAt": "2026-10-18T10:21:30.436755+00:00"
+        "lastSeenAt": "2026-10-18T10:29:36.524873+00:00"
       },
       "publication:update-lifestrategy.yml": {
         "name": "Vanguard LifeStrategy",
@@ -505,7 +539,7 @@
         "cause": "deploy / browser-checks (3) : Run node scripts/run-browser-checks.mjs 3 4",
         "id": "publication:update-lifestrategy.yml",
         "firstSeenAt": "2026-10-17T10:03:28.054539+00:00",
-        "lastSeenAt": "2026-10-18T10:21:30.436755+00:00"
+        "lastSeenAt": "2026-10-18T10:29:36.524873+00:00"
       },
       "publication:update-qualified-exposures.yml": {
         "name": "Expositions ETF qualifiées",
@@ -525,7 +559,7 @@
         "cause": "deploy / build : Run npm run audit:calculator-series",
         "id": "publication:update-qualified-exposures.yml",
         "firstSeenAt": "2026-10-16T12:48:21.924866+00:00",
-        "lastSeenAt": "2026-10-18T10:21:30.436755+00:00"
+        "lastSeenAt": "2026-10-18T10:29:36.524873+00:00"
       },
       "collection:update-exposure-expansion.yml:etf-exposure-expansion-IE00BK1PV551": {
         "name": "Xtrackers MSCI World UCITS ETF 1D",
@@ -549,18 +583,10 @@
         "dataId": "etf-exposure-expansion-IE00BK1PV551",
         "id": "collection:update-exposure-expansion.yml:etf-exposure-expansion-IE00BK1PV551",
         "firstSeenAt": "2026-10-17T20:42:44.184725+00:00",
-        "lastSeenAt": "2026-10-18T10:21:30.436755+00:00"
+        "lastSeenAt": "2026-10-18T10:29:36.524873+00:00"
       }
     },
     "events": [
-      {
-        "revision": 67,
-        "at": "2026-10-17T12:01:32.035485+00:00",
-        "opened": [
-          "publication:update-publication-observations.yml"
-        ],
-        "resolved": []
-      },
       {
         "revision": 68,
         "at": "2026-10-17T12:08:19.175286+00:00",
@@ -1395,6 +1421,14 @@
             "resolvedAt": "2026-10-18T10:21:30.436755+00:00"
           }
         ]
+      },
+      {
+        "revision": 97,
+        "at": "2026-10-18T10:29:36.524873+00:00",
+        "opened": [
+          "collection:update-scpi.yml:transitions-europe"
+        ],
+        "resolved": []
       }
     ],
     "resolved": [
