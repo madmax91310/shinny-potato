@@ -10,28 +10,65 @@ from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from data_automation import UTC, write_json_atomic
 from issuer_documents import download, pdf_text
+from issuer_routes import vaneck_factsheet_candidates
 ROOT=Path(__file__).resolve().parents[1]
 FIELDS=('distribution','domicile','replicationMethod','pea','currencyHedge','listings')
-# Same threshold as the active-field freshness check (report-asset-fields.mjs): a static
-# characteristic missed by one transient source failure is not an incident before then.
-RENEWAL_GRACE_DAYS=7
+# Thresholds come from the single freshness policy (src/data/freshness-policy.json),
+# shared with the field freshness report (report-asset-fields.mjs).
+POLICY=json.loads((ROOT/'src/data/freshness-policy.json').read_text())['fields']
+RENEWAL_GRACE_DAYS=POLICY['etf.default']['checkDays']
 # Legal domicile and replication method only change through a prospectus amendment or a
 # fund merger: one unavailable issuer page must not raise a daily incident. They are
 # still re-read daily, published as soon as observed, and must be renewed within a year.
-STATIC_RENEWAL_DAYS={'domicile':365,'replicationMethod':365}
-VANECK_FACTSHEET=re.compile(r'https://www\.vaneck\.com/(?:ucits|[a-z]{2}/en)/library/fact-sheets/[a-z0-9]+-fact-sheet\.pdf')
+STATIC_RENEWAL_DAYS={field:POLICY['etf.staticCharacteristic']['checkDays'] for field in POLICY['etf.staticCharacteristic']['fields']}
+# Any language of a regional factsheet (fr/en, fr/fr...) or the UCITS one; see issuer_routes.
+VANECK_FACTSHEET=re.compile(r'https://www\.vaneck\.com/(?:ucits|[a-z]{2}/[a-z]{2})/library/fact-sheets/[a-z0-9]+-fact-sheet\.pdf')
+# Amundi publishes exact-share characteristics and listings through a POST API only: a GET on this
+# URL answers 405 and had left every Amundi instrument without metadata or listing evidence.
+AMUNDI_API='https://www.amundietf.fr/mapi/ProductAPI/getProductsData'
+AMUNDI_CHARACTERISTICS=['ISIN','DISTRIBUTION_POLICY','FUND_REPLICATION_METHODOLOGY','LISTINGS','MAIN_LISTINGS']
+# Exchange labels as the issuers print them, mapped to the MIC used across the registries.
+EXCHANGE_MICS={'London Stock Exchange':'XLON','LSE':'XLON','Deutsche Boerse Xetra':'XETR','Xetra':'XETR','XETRA':'XETR',
+  'Euronext Amsterdam':'XAMS','Nyse Euronext - Euronext Paris':'XPAR','Euronext Paris':'XPAR','Borsa Italiana':'ETFP','SIX Swiss Exchange':'XSWX'}
+CANONICAL_EXCHANGES={'XLON':'London Stock Exchange','XETR':'Xetra','XAMS':'Euronext Amsterdam','XPAR':'Euronext Paris','ETFP':'Borsa Italiana','XSWX':'SIX Swiss Exchange'}
+SYMBOL=re.compile(r'[A-Za-z0-9]+\.[A-Za-z]+')
 
-def fetch_document(url,fetch=download):
+def fetch_amundi(isin):
+    from collect_amundi_etf import fetch_api,request_payload
+    payload=request_payload([{'isin':isin}],dt.datetime.now(UTC))
+    payload.update(characteristics=AMUNDI_CHARACTERISTICS,breakDown={'aggregationFields':[]},metrics=[],historics=[])
+    return json.dumps(fetch_api(payload),ensure_ascii=False,sort_keys=True).encode()
+
+def amundi_product(doc,isin):
+    products=doc.get('products')
+    if not isinstance(products,list) or len(products)!=1:raise ValueError('Missing or multiple Amundi products')
+    product=products[0]
+    if product.get('productId')!=isin or product.get('characteristics',{}).get('ISIN')!=isin:raise ValueError('Wrong exact-share metadata')
+    return product
+
+def dws_identity(body,isin):
+    if set(re.findall(rb'\b[A-Z]{2}[A-Z0-9]{9}\d\b',body))!={isin.encode()}:raise ValueError('Ambiguous listing document identity')
+
+def dws_tables(node):
+    # Every table of the product page whose columns name a stock exchange; nothing is read from headings.
+    if isinstance(node,dict):
+        columns=node.get('columns');values=node.get('values')
+        if isinstance(columns,list) and isinstance(values,list) and any(isinstance(c,dict) and c.get('key')=='StockExchange' for c in columns):yield values
+        for child in node.values():yield from dws_tables(child)
+    elif isinstance(node,list):
+        for child in node:yield from dws_tables(child)
+
+def fetch_document(url,fetch=download,isin=None):
     """Returns (body, url actually read)."""
     try:
+        if url==AMUNDI_API and fetch is download:return fetch_amundi(isin),url
         return fetch(url),url
     except ValueError as error:
         # VanEck answers its factsheet URLs with a regional consent page. Like
         # collect_vaneck_etf.py, complete the gate in a browser, then try the same
-        # factsheet on the Dutch and UK gates, which US-based runners can pass.
+        # factsheet on the gates listed in issuer-access-routes.json.
         if fetch is not download or 'Expected official PDF' not in str(error) or not VANECK_FACTSHEET.fullmatch(url):raise
-        name=url.rsplit('/',1)[1]
-        candidates=list(dict.fromkeys([url,*(f'https://www.vaneck.com/{region}/en/library/fact-sheets/{name}' for region in ('nl','uk'))]))
+        candidates=vaneck_factsheet_candidates(url)
         failures=[]
         for candidate in candidates:
             try:result=subprocess.run(['node',str(Path(__file__).with_name('download-vaneck-document.mjs')),candidate],capture_output=True,timeout=120)
@@ -58,10 +95,10 @@ def parse_text(text,isin):
     if identities!={isin}:raise ValueError('Missing or multiple exact-share identities in metadata document')
     text=re.sub(r'[ \t\r]+',' ',text)
     patterns={
-      'distribution':r'(?:Use of (?:Income|Profits)|Income Treatment|Distribution Policy|Affectation des r[ée]sultats|Politique de distribution)\s*[:\n]?\s*(Accumulating|Distributing|Capitalisation|Distribution)\b',
-      'domicile':r'(?:Fund Domicile|Domicile|Domiciliation|Domicile du fonds)\s*[:\n]?\s*(Ireland|Irlande|Luxembourg|Germany|Allemagne|France|Jersey)\b',
+      'distribution':r'(?:Use of (?:Income|Profits)|Income Treatment|Distribution Policy|Affectation des r[ée]sultats|Politique de distribution)\s*[:\n]?\s*(Accumulating|Distributing|Capitalisation|Distribution|Reinvestment)\b',
+      'domicile':r'(?:Fund Domicile|Domicile|Domiciliation|Domicile du fonds)\s*[:\n]?\s*(Ireland|Irlande|Luxembourg|Germany|Allemagne|France|Jersey|(?:The )?Netherlands)\b',
       'replicationMethod':r'(?:Replication (?:Method|methodology)|M[ée]thode de r[ée]plication|Replication|R[ée]plication)\s*[:\n]?\s*(Physical(?:\s*\((?:Full replication|Optimised sampling)\))?|Synthetic|Physique|Synth[ée]tique|Direct Replication|Indirect\s*\(Swap Based\))\b',
-      'pea':r'(?:PEA eligibility|Eligible PEA|[ÉE]ligibilit[ée] (?:au )?PEA|[ÉE]ligible (?:au )?PEA)\s*[:\n]?\s*(Yes|No|Oui|Non)\b',
+      'pea':r'(?:PEA eligibility|Eligible PEA|[ÉE]ligibilit[ée] (?:au )?PEA|[ÉE]ligible (?:au )?PEA|R[ée]gime fiscal PEA)\s*[:\n]?\s*(Yes|No|Oui|Non)\b',
       'currencyHedge':r'(?:Currency Hedged|Currency Hedge|Couverture de change|Couvert contre le risque de change)\s*[:\n]?\s*(Yes|No|Oui|Non)\b',
     }
     result={}
@@ -70,7 +107,15 @@ def parse_text(text,isin):
         if len(found)>1:raise ValueError('Conflicting explicit metadata: '+field)
         if found:
             value=found.pop()
+            # VanEck factsheets: "Income Treatment Reinvestment" and "Domicile The Netherlands".
+            value={'Reinvestment':'Accumulating','The Netherlands':'Netherlands'}.get(value,value)
             result[field]=value.lower() in ('yes','oui') if field in ('pea','currencyHedge') else value
+    # VanEck factsheets print "Product Structure Physical (Full" and wrap "Replication)" onto
+    # the next line, after text from the description column.
+    if 'replicationMethod' not in result:
+        found={(kind+(f' ({scope} {method.lower()})' if scope else '')) for kind,scope,method in re.findall(r'^Product Structure (Physical|Synthetic)(?: \((Full|Optimi[sz]ed)\b[^\n]*\n\s*(Replication|Sampling)\))?',text,re.M)}
+        if len(found)>1:raise ValueError('Conflicting explicit metadata: replicationMethod')
+        if found:result['replicationMethod']=found.pop()
     if 'pea' not in result:
         badges={line.strip().lower() for line in text.splitlines()}
         positive=bool(badges & {'éligible au pea','eligible au pea'})
@@ -81,6 +126,13 @@ def parse_text(text,isin):
 
 def parse_json(body,isin):
     doc=json.loads(body)
+    if isinstance(doc,dict) and 'products' in doc:
+        facts=amundi_product(doc,isin)['characteristics']
+        mapping={'DISTRIBUTION_POLICY':'distribution','FUND_REPLICATION_METHODOLOGY':'replicationMethod'}
+        return {field:facts[key] for key,field in mapping.items() if isinstance(facts.get(key),str) and facts[key]}
+    if isinstance(doc,dict) and 'pdpResult' in doc:
+        # The DWS product page exposes no explicit characteristic fields: only its exchange table is read.
+        dws_identity(body,isin);return {}
     try:
         points=doc['componentsByNameMap']['keyFundFacts']['containersByNameMap']['default']['dataPointsByNameMap']
         if points['isin']['value']!=isin:raise ValueError('Wrong exact-share metadata')
@@ -89,12 +141,32 @@ def parse_json(body,isin):
     mapping={'useOfProfitsCode':'distribution','domicile':'domicile','productStructure':'replicationMethod'}
     return {field:points[key]['value'] for key,field in mapping.items() if isinstance(points.get(key,{}).get('value'),str) and points[key]['value']}
 
+LISTING_HOSTS=set(json.loads((ROOT/'scripts/listing-source-hosts.json').read_text())['hosts'])
+
 def parse_listings(body,source,url,checked):
     if 'www.justetf.com/' in url:return []  # Listings require an issuer or exchange row, not a specialist profile alone.
+    # Mirrors (fund-data platforms, document aggregators) may describe a fund but are not listing evidence.
+    from urllib.parse import urlsplit
+    if urlsplit(url).scheme!='https' or urlsplit(url).hostname not in LISTING_HOSTS:return []
     isin=source['isin'];digest=hashlib.sha256(body).hexdigest();rows=[]
-    markets={'London Stock Exchange':'XLON','Deutsche Boerse Xetra':'XETR','Xetra':'XETR','Euronext Amsterdam':'XAMS','Nyse Euronext - Euronext Paris':'XPAR','Euronext Paris':'XPAR','Borsa Italiana':'ETFP','SIX Swiss Exchange':'XSWX'}
+    markets=EXCHANGE_MICS
     if body.lstrip().startswith(b'{'):
         doc=json.loads(body)
+        if isinstance(doc,dict) and 'products' in doc:
+            for row in amundi_product(doc,isin)['characteristics'].get('LISTINGS') or []:
+                mic=markets.get(row.get('exchangePlace'));currency=row.get('tradingCurrency');bloomberg=str(row.get('ticker') or '').split();symbol=row.get('ric')
+                if not mic or not re.fullmatch(r'[A-Z]{3}',currency or '') or not bloomberg or not isinstance(symbol,str) or not SYMBOL.fullmatch(symbol):continue
+                rows.append(dict(ticker=bloomberg[0],mic=mic,exchange=CANONICAL_EXCHANGES[mic],currency=currency,symbol=symbol,excerpt=' | '.join([isin,row['exchangePlace'],row['ticker'],currency,symbol])))
+            return [r|{'sourceUrl':url,'checkedAt':checked,'sha256':digest,'evidenceId':f"{isin}-{r['mic']}-{r['ticker']}-{r['currency']}"} for r in rows]
+        if isinstance(doc,dict) and 'pdpResult' in doc:
+            dws_identity(body,isin)
+            for values in dws_tables(doc):
+                for row in values:
+                    cell=lambda key:(row.get(key) or {}).get('value') if isinstance(row.get(key),dict) else None
+                    mic=markets.get(cell('StockExchange'));currency=cell('Currency');bloomberg=str(cell('BloombergTicker') or '').split();symbol=cell('ReutersRic')
+                    if not mic or not re.fullmatch(r'[A-Z]{3}',currency or '') or not bloomberg or not isinstance(symbol,str) or not SYMBOL.fullmatch(symbol):continue
+                    rows.append(dict(ticker=bloomberg[0],mic=mic,exchange=CANONICAL_EXCHANGES[mic],currency=currency,symbol=symbol,excerpt=' | '.join([isin,cell('StockExchange'),cell('BloombergTicker'),currency,symbol])))
+            return [r|{'sourceUrl':url,'checkedAt':checked,'sha256':digest,'evidenceId':f"{isin}-{r['mic']}-{r['ticker']}-{r['currency']}"} for r in rows]
         points=doc['componentsByNameMap']['keyFundFacts']['containersByNameMap']['default']['dataPointsByNameMap']
         if points['isin']['value']!=isin:raise ValueError('Wrong listing share')
         data=doc['componentsByNameMap'].get('listings',{}).get('containersByNameMap',{}).get('default',{}).get('dataPointsByNameMap',{})
@@ -109,7 +181,10 @@ def parse_listings(body,source,url,checked):
         if set(re.findall(r'\b[A-Z]{2}[A-Z0-9]{9}\d\b',text))!={isin}:raise ValueError('Ambiguous listing document identity')
         if body.startswith(b'%PDF-'):blocks=text.splitlines()
         else:blocks=[html.unescape(re.sub('<[^>]+>',' ',r)) for r in re.findall(r'<tr\b[^>]*>(.*?)</tr>',body.decode(),re.S|re.I)]
-        aliases={'XLON':['London Stock Exchange','LSE'],'XPAR':['Euronext Paris'],'XAMS':['Euronext Amsterdam'],'ETFP':['Borsa Italiana'],'XETR':['Xetra'],'XSWX':['SIX Swiss Exchange','SIX Swiss']}
+        # Issuer factsheets abbreviate or capitalise the venues (BNP: « EURONEXT P », « SIX SWISS » ; DWS: « XETRA » ;
+        # VanEck: « LONDON STOCK EXCHANGE », and Xetra as « DEUTSCHE BÖRSE », Bloomberg suffix GY). Exact labels only:
+        # a case-insensitive « LSE » would match « else » or « false ».
+        aliases={'XLON':['London Stock Exchange','LONDON STOCK EXCHANGE','LSE'],'XPAR':['Euronext Paris','EURONEXT P','Euronext (FR)'],'XAMS':['Euronext Amsterdam','EURONEXT A'],'ETFP':['Borsa Italiana','BORSA ITALIANA'],'XETR':['Xetra','XETRA','Deutsche Börse','DEUTSCHE BÖRSE'],'XSWX':['SIX Swiss Exchange','SIX Swiss','SIX SWISS']}
         for listing in source.get('listings',[]):
             for block in blocks:
                 if re.search(r'(?<![A-Za-z0-9])'+re.escape(listing['ticker'])+r'(?![A-Za-z0-9])',block) and re.search(r'\b'+re.escape(listing['currency'])+r'\b',block) and any(m in block for m in aliases.get(listing['mic'],[listing['exchange']])):
@@ -121,7 +196,7 @@ def collect(source,now,fetch=download):
     values={};errors=[];conflicts=set();checked=now.date().isoformat()
     for url in source['urls']:
         try:
-            body,url=fetch_document(url,fetch)
+            body,url=fetch_document(url,fetch,source['isin'])
             fields=parse_json(body,source['isin']) if body.lstrip().startswith(b'{') else parse_text(text_of(body),source['isin'])
             listing_rows=parse_listings(body,source,url,checked)
             if listing_rows:fields['listings']=listing_rows
@@ -145,7 +220,7 @@ def main():
     path=ROOT/'src/data/automated-instrument-metadata.json';records=json.loads(path.read_text())
     status_path=ROOT/'src/data/instrument-metadata-status.json';status=json.loads(status_path.read_text());now=dt.datetime.now(UTC)
     def one(s):return s['isin'],*collect(s,now)
-    errors=[];updated=[];successes=[]
+    errors=[];updated=[];successes=[];within_grace=[]
     with ThreadPoolExecutor(max_workers=6) as pool:
         for isin,values,failures in pool.map(one,sources):
             old=records.get(isin,{})
@@ -158,10 +233,11 @@ def main():
             successes.extend({'id':f'{isin}:{field}'} for field in values)
             # Fail when previously automatic values stay unrenewed beyond the grace period; absent publications stay explicit pending fields.
             for field in old:
+                if field not in values and not renewal_overdue(old[field],now,field):within_grace.append({'id':f'{isin}:{field}'})
                 if field not in values and renewal_overdue(old[field],now,field):errors.append({'id':f'{isin}:{field}','field':field,'error':f'Previously automated metadata not renewed for more than {renewal_days(field)} days; original evidence retained.'})
     if a.apply:
         write_json_atomic(path,records);write_json_atomic(status_path,status)
-    write_json_atomic(a.output,{'checkedAt':now.isoformat(),'updated':updated,'successes':successes,'errors':errors,'pending':{isin:s['pending'] for isin,s in status.items() if s['pending']}})
+    write_json_atomic(a.output,{'checkedAt':now.isoformat(),'updated':updated,'successes':successes,'errors':errors,'inactive':within_grace,'pending':{isin:s['pending'] for isin,s in status.items() if s['pending']}})
     print(f'Metadata: {len(updated)}/{len(sources)} observed instruments; {len(errors)} failed renewals.')
     if errors:raise SystemExit(1)
 if __name__=='__main__':main()

@@ -844,7 +844,7 @@ export const FAMILIES = [
       { key: 'topix', label: 'Amundi PEA Japon (TOPIX)', ...getInstrumentComparatorReturns('FR0013411980') },
       { key: 'msci_japan', label: 'iShares Core MSCI Japan IMI', y2023: null, y2024: null, y2025: null, perfNote: 'Historique absent du tableau : devise différente des séries présentées.' },
     ],
-    perfMethodNote: 'ℹ️ Xtrackers Nikkei 225 est présenté en yens (part JPY) et Amundi TOPIX en euros. Ces rendements ne se comparent pas directement sans tenir compte du change.',
+    perfMethodNote: 'ℹ️ Xtrackers Nikkei 225 est présenté en yens (part JPY) et Amundi TOPIX en euros. Ces rendements ne se comparent pas directement sans tenir compte du change. Performances des fonds publiées par l’émetteur (NAV) ; les choix manuels du Générateur peuvent utiliser les cours de Bourse ajustés de la même part, et ces deux bases peuvent différer.',
     verdictTitle: '✅ LE VERDICT POUR UN PEA',
     verdict: [
       { q: '💳 Tu veux rester en PEA ?', a: 'Amundi PEA Japon suit le TOPIX : deux parts, avec ou sans couverture du yen (pas Nikkei).' },

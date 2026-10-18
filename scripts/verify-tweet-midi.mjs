@@ -5,7 +5,7 @@
 //
 // Usage : node scripts/verify-tweet-midi.mjs   (ou npm run verify:tweet-midi)
 //
-// Ce que ça vérifie, sur les ~2000 entrées de ALL_ITEMS (6 formats confondus) :
+// Ce que ça vérifie, sur toutes les entrées de ALL_ITEMS (6 formats confondus) :
 //   1. buildTweetText() ne lève jamais d'exception et ne renvoie jamais une chaîne vide/trop
 //      courte pour être un vrai tweet.
 //   2. Aucun placeholder de gabarit non résolu ne fuit dans le texte final (ex. "{yearsPhrase}",
@@ -26,6 +26,7 @@ import { ALL_ITEMS, FORMATS, FORMAT_LABELS, MODES, buildTweetText } from "../src
 import { getAnnualReturns } from "../src/pages/tweet-midi/data/marketHistory.js";
 
 import assert from 'node:assert/strict';
+import { shardIndices } from './tweet-midi-shards.mjs';
 import './test-anniversary-editorial.mjs';
 import './test-lexicon-editorial.mjs';
 import { DEFAULT_THEMES } from '../src/data/etf-themes.js';
@@ -94,8 +95,13 @@ function record(format, ok) {
   byFormat.set(format, entry);
 }
 
-for (const item of ALL_ITEMS) {
+const shardIndex = Number(process.env.TWEET_MIDI_SHARD_INDEX ?? 0);
+const shardCount = Number(process.env.TWEET_MIDI_SHARD_COUNT ?? 1);
+const started = Date.now();
+for (const index of shardIndices(ALL_ITEMS.length, shardIndex, shardCount)) {
+  const item = ALL_ITEMS[index];
   totalChecked++;
+  if (totalChecked % 100000 === 0) console.log(`Tweet Midi ${shardIndex + 1}/${shardCount}: ${totalChecked} entrées vérifiées (${Math.round((Date.now() - started) / 1000)} s).`);
   let text = "";
   let error = null;
   try {
@@ -128,7 +134,7 @@ for (const item of ALL_ITEMS) {
 
   if (!error && item.format === FORMATS.PERFORMANCE_DEPUIS) {
     const blocks = text.split(/\n\n(?=📈)/u);
-    const blockPattern = /^📈 Performance [^\n]+ de début \d{4} à fin \d{4} 👇\n[^\n]*(?:USD|EUR|KRW|CHF|DKK|JPY|HKD|GBp|CNY|INR|SGD|NOK|SEK|CAD|AUD)[^\n]*\n\n(?:[🟢🔴] \d{4} : [+−-]?(?:< )?[\d\s.,]+ %\n)+\nSur toute la période : [+−-]?(?:< )?[\d\s.,]+ %$/u;
+    const blockPattern = /^📈 Performance [^\n]+ de début \d{4} à fin \d{4} 👇\n[^\n]*(?:USD|EUR|KRW|CHF|DKK|JPY|HKD|GBp|CNY|INR|SGD|NOK|SEK|CAD|AUD|TWD)[^\n]*\n\n(?:[🟢🔴] \d{4} : [+−-]?(?:< )?[\d\s.,]+ %\n)+\nSur toute la période : [+−-]?(?:< )?[\d\s.,]+ %$/u;
     if (!blocks.every((block) => blockPattern.test(block))) {
       problems.push('format minimal de performance non respecté');
     }
@@ -138,7 +144,7 @@ for (const item of ALL_ITEMS) {
   if (problems.length) failures.push({ id: item.id, format: item.format, problems });
 }
 
-console.log(`${totalChecked} entrées vérifiées (ALL_ITEMS, tous formats confondus).\n`);
+console.log(`${totalChecked} entrées vérifiées (partition ${shardIndex + 1}/${shardCount}, pool complet : ${ALL_ITEMS.length}).\n`);
 for (const [format, entry] of byFormat) {
   const label = FORMAT_LABELS[format] ?? format;
   const status = entry.fail === 0 ? "OK" : "ÉCHEC";
@@ -153,5 +159,5 @@ if (failures.length) {
   console.log("\nÉCHEC — voir le détail ci-dessus avant de déployer.");
   process.exitCode = 1;
 } else {
-  console.log("\nOK — aucun problème trouvé sur l'ensemble du pool.");
+  console.log(`\nOK — aucun problème trouvé sur ${shardCount === 1 ? "l'ensemble du pool" : "la partition exhaustive"}.`);
 }

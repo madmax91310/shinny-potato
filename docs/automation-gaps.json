@@ -2,9 +2,9 @@
   "fieldCoverage": {
     "ter": {
       "label": "Frais",
-      "present": 244,
-      "total": 244,
-      "applicable": 244,
+      "present": 258,
+      "total": 258,
+      "applicable": 258,
       "notApplicable": 0,
       "waiting": 0,
       "notPublished": 0,
@@ -12,9 +12,9 @@
     },
     "aum": {
       "label": "Encours",
-      "present": 244,
-      "total": 244,
-      "applicable": 244,
+      "present": 258,
+      "total": 258,
+      "applicable": 258,
       "notApplicable": 0,
       "waiting": 0,
       "notPublished": 0,
@@ -22,43 +22,43 @@
     },
     "performance": {
       "label": "Calendrier annuel",
-      "present": 224,
-      "total": 244,
-      "applicable": 244,
+      "present": 238,
+      "total": 258,
+      "applicable": 258,
       "notApplicable": 0,
-      "waiting": 12,
-      "notPublished": 4,
-      "unresolved": 4
+      "waiting": 13,
+      "notPublished": 7,
+      "unresolved": 0
     },
     "countries": {
       "label": "Pays",
-      "present": 215,
-      "total": 244,
-      "applicable": 222,
-      "notApplicable": 22,
+      "present": 229,
+      "total": 258,
+      "applicable": 235,
+      "notApplicable": 23,
       "waiting": 0,
       "notPublished": 6,
-      "unresolved": 1
+      "unresolved": 0
     },
     "sectors": {
       "label": "Secteurs",
-      "present": 215,
-      "total": 244,
-      "applicable": 222,
-      "notApplicable": 22,
+      "present": 229,
+      "total": 258,
+      "applicable": 235,
+      "notApplicable": 23,
       "waiting": 0,
       "notPublished": 5,
-      "unresolved": 2
+      "unresolved": 1
     },
     "holdings": {
       "label": "Positions pondérées",
-      "present": 218,
-      "total": 244,
-      "applicable": 222,
-      "notApplicable": 22,
+      "present": 232,
+      "total": 258,
+      "applicable": 235,
+      "notApplicable": 23,
       "waiting": 0,
       "notPublished": 0,
-      "unresolved": 4
+      "unresolved": 3
     }
   },
   "recentCalendars": [
@@ -229,6 +229,20 @@
       "firstYear": null,
       "years": [],
       "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
+    },
+    {
+      "id": "LU3180074463",
+      "name": "Amundi European Strategic Autonomy UCITS ETF Acc",
+      "configured": true,
+      "launchDate": "2025-11-06",
+      "launchSourceUrl": "https://www.amundietf.fr/pdfDocuments/download/e3e43b3e-e365-4578-9576-04775eae4eec/MonthlyFactsheet_4534518_CL215517_FRA_FRA_ETF_INSTITUTIONNEL_20260630.pdf",
+      "evidenceCheckedAt": "2026-10-10",
+      "firstCompleteYear": 2026,
+      "earliestPublicationDate": "2027-01-01",
+      "status": "waiting-first-year",
+      "firstYear": null,
+      "years": [],
+      "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
     }
   ],
   "insuranceGaps": [
@@ -238,7 +252,7 @@
       "fund": "Fonds général",
       "field": "ceiling",
       "status": "unqualified",
-      "checkedAt": "2026-10-17",
+      "checkedAt": "2026-10-18",
       "sourceUrls": [
         "https://lucya.com/assurance-vie/lucya-cardif/",
         "https://lucya.com/app/uploads/2026/02/notice-lucya-cardif.pdf",
@@ -253,7 +267,7 @@
       "fund": "Euro Private Strategies",
       "field": "ceiling",
       "status": "unqualified",
-      "checkedAt": "2026-10-17",
+      "checkedAt": "2026-10-18",
       "sourceUrls": [
         "https://lucya.com/assurance-vie/lucya-cardif/",
         "https://lucya.com/app/uploads/2026/02/notice-lucya-cardif.pdf",
@@ -267,7 +281,7 @@
       "fund": "Actif général SwissLife",
       "field": "maxAllocation",
       "status": "not-published",
-      "checkedAt": "2026-10-17",
+      "checkedAt": "2026-10-18",
       "sourceUrls": [
         "https://www.placement-direct.fr/assurance-vie/placement-direct-vie",
         "https://static.placement-direct.fr/documents/dispositions-generales-du-contrat-placement-direct-vie.pdf",
@@ -281,7 +295,7 @@
       "fund": "Actif général SwissLife",
       "field": "ceiling",
       "status": "unqualified",
-      "checkedAt": "2026-10-17",
+      "checkedAt": "2026-10-18",
       "sourceUrls": [
         "https://www.placement-direct.fr/assurance-vie/placement-direct-vie",
         "https://static.placement-direct.fr/documents/dispositions-generales-du-contrat-placement-direct-vie.pdf",
@@ -321,11 +335,11 @@
       "name": "Linxea Zen",
       "fund": "Apicil Euroflex",
       "status": "unlimited",
-      "checkedAt": "2026-10-17",
+      "checkedAt": "2026-10-18",
       "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-zen/supports-disponibles-sur-linxea-zen/fonds-euro/",
       "statement": "Ce fonds en euros est accessible sans limite de montant et sans conditions d’unités de compte",
       "scope": "Souscriptions, versements complémentaires et programmés",
-      "sha256": "aa0c18551dd36405fe01a98fe0a3b9fce87b38d1caa111c9a9507072aa15bda5",
+      "sha256": "84667625cb0c838a219b56b48ab87b569ab3497ab58c6dac3191da0ecdbc9256",
       "active": true
     },
     {
@@ -333,11 +347,11 @@
       "name": "Linxea Zen",
       "fund": "Apicil Euro Garanti",
       "status": "unlimited",
-      "checkedAt": "2026-10-17",
+      "checkedAt": "2026-10-18",
       "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-zen/supports-disponibles-sur-linxea-zen/fonds-euro/",
       "statement": "Ce fonds en euros est accessible sans limite de montant et sans conditions d’unités de compte",
       "scope": "Souscriptions, versements complémentaires et programmés",
-      "sha256": "aa0c18551dd36405fe01a98fe0a3b9fce87b38d1caa111c9a9507072aa15bda5",
+      "sha256": "84667625cb0c838a219b56b48ab87b569ab3497ab58c6dac3191da0ecdbc9256",
       "active": true
     },
     {
@@ -345,12 +359,12 @@
       "name": "Linxea Vie",
       "fund": "Netissima",
       "status": "unlimited",
-      "checkedAt": "2026-10-17",
+      "checkedAt": "2026-10-18",
       "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-vie/supports-disponibles-sur-linxea-vie/fonds-euro/",
       "statement": "ce fonds en euros est accessible sans limite de montant et sans conditions d’unités de compte jusqu’au 31/12/2026",
       "validUntil": "2026-12-31",
       "scope": "Souscriptions, versements libres et programmés",
-      "sha256": "89f6afffb1437bfbd5456efd906c56f09596a37509296afcca28a77cb0cb9126",
+      "sha256": "d92e95302b1ba6ea994893c3cb8832065fc1755ef52004c377fdf1926132e392",
       "active": true
     },
     {
@@ -358,13 +372,13 @@
       "name": "Linxea Vie",
       "fund": "Eurossima",
       "status": "insurer-defined",
-      "checkedAt": "2026-10-17",
+      "checkedAt": "2026-10-18",
       "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-vie/supports-disponibles-sur-linxea-vie/fonds-euro/",
       "statement": "Le montant que vous pourrez investir à 100 % sur le fonds en euros Eurossima s’élèvera entre 0 et 50 000 euros l’année civile de votre souscription puis entre 0 et 25 000 euros par année civile les années suivantes, quel que soit le type d’investissement réalisé (versement initial, versement libre ou versement libre programmé). L’Assureur communiquera par tout moyen ce montant maximum d’investissement annuel sur le fonds en euros Eurossima.",
       "scope": "Versements initiaux, libres et programmés ; année civile",
       "openingYearUpperBound": 50000,
       "followingYearUpperBound": 25000,
-      "sha256": "89f6afffb1437bfbd5456efd906c56f09596a37509296afcca28a77cb0cb9126",
+      "sha256": "d92e95302b1ba6ea994893c3cb8832065fc1755ef52004c377fdf1926132e392",
       "active": true
     },
     {
@@ -372,11 +386,11 @@
       "name": "Linxea Avenir 2+",
       "fund": "Suravenir Opportunités 2",
       "status": "unlimited",
-      "checkedAt": "2026-10-17",
+      "checkedAt": "2026-10-18",
       "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-avenir-2/supports-disponibles-sur-linxea-avenir-2/fonds-euro/",
       "statement": "Ce fonds en euros est accessible sans limite de montant et sans conditions d’unités de compte",
       "scope": "Souscriptions, versements complémentaires et programmés",
-      "sha256": "52619715d338fd133c04479f1760e098f57cd618d1e4cbb57f7be3d859d4dbcb",
+      "sha256": "3c19aed2c4a5a1afa9531f7d2eb6ddd4693d72c06b575733e924f901c9844770",
       "active": true
     },
     {
@@ -384,31 +398,31 @@
       "name": "Linxea Avenir 2+",
       "fund": "Suravenir Rendement 2",
       "status": "unlimited",
-      "checkedAt": "2026-10-17",
+      "checkedAt": "2026-10-18",
       "sourceUrl": "https://www.linxea.com/assurance-vie/linxea-avenir-2/supports-disponibles-sur-linxea-avenir-2/fonds-euro/",
       "statement": "Ce fonds en euros est accessible sans limite de montant avec un minimum de 30 % en unités de compte qui présentent un risque de perte en capital",
       "scope": "Souscriptions, versements complémentaires et programmés",
       "minimumUnits": 30,
-      "sha256": "52619715d338fd133c04479f1760e098f57cd618d1e4cbb57f7be3d859d4dbcb",
+      "sha256": "3c19aed2c4a5a1afa9531f7d2eb6ddd4693d72c06b575733e924f901c9844770",
       "active": true
     }
   ],
-  "checkedAt": "2026-10-17",
+  "checkedAt": "2026-10-18",
   "method": "Inventaire des champs réellement présents dans les observations actives. Couverture distincte de disponibilité réseau et de fraîcheur. Les catégories sont issues des qualifications de sources ; elles ne certifient pas un téléchargement réussi aujourd’hui.",
-  "instruments": 244,
+  "instruments": 258,
   "covered": {
-    "ter": 244,
-    "aum": 244,
-    "performance": 224,
-    "countries": 215,
-    "sectors": 215,
-    "holdings": 218
+    "ter": 258,
+    "aum": 258,
+    "performance": 238,
+    "countries": 229,
+    "sectors": 229,
+    "holdings": 232
   },
   "summary": {
-    "instrument:unqualified": 10,
-    "instrument:not-applicable": 66,
-    "instrument:not-published": 15,
-    "instrument:waiting-first-year": 12,
+    "instrument:not-applicable": 69,
+    "instrument:waiting-first-year": 13,
+    "instrument:unqualified": 3,
+    "instrument:not-published": 18,
     "instrument:source-conflict": 1,
     "index:waiting-publication": 1,
     "index:not-applicable": 16
@@ -420,9 +434,9 @@
       "name": "Amundi PEA Euro Court Terme UCITS ETF Acc",
       "field": "countries",
       "label": "Pays",
-      "configured": false,
-      "status": "unqualified",
-      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
+      "configured": true,
+      "status": "not-applicable",
+      "reason": "ETF monétaire €STR à réplication synthétique : pas de pays, secteurs ou positions actions ; le panier de collatéral du swap ne décrit pas l’exposition.",
       "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
     },
     {
@@ -431,9 +445,9 @@
       "name": "Amundi PEA Euro Court Terme UCITS ETF Acc",
       "field": "sectors",
       "label": "Secteurs",
-      "configured": false,
-      "status": "unqualified",
-      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
+      "configured": true,
+      "status": "not-applicable",
+      "reason": "ETF monétaire €STR à réplication synthétique : pas de pays, secteurs ou positions actions ; le panier de collatéral du swap ne décrit pas l’exposition.",
       "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
     },
     {
@@ -442,9 +456,9 @@
       "name": "Amundi PEA Euro Court Terme UCITS ETF Acc",
       "field": "holdings",
       "label": "Positions pondérées",
-      "configured": false,
-      "status": "unqualified",
-      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
+      "configured": true,
+      "status": "not-applicable",
+      "reason": "ETF monétaire €STR à réplication synthétique : pas de pays, secteurs ou positions actions ; le panier de collatéral du swap ne décrit pas l’exposition.",
       "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
     },
     {
@@ -453,9 +467,14 @@
       "name": "Amundi European Strategic Autonomy UCITS ETF Acc",
       "field": "performance",
       "label": "Calendrier annuel",
-      "configured": false,
-      "status": "unqualified",
-      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
+      "configured": true,
+      "launchDate": "2025-11-06",
+      "launchSourceUrl": "https://www.amundietf.fr/pdfDocuments/download/e3e43b3e-e365-4578-9576-04775eae4eec/MonthlyFactsheet_4534518_CL215517_FRA_FRA_ETF_INSTITUTIONNEL_20260630.pdf",
+      "evidenceCheckedAt": "2026-10-10",
+      "firstCompleteYear": 2026,
+      "earliestPublicationDate": "2027-01-01",
+      "status": "waiting-first-year",
+      "reason": "Première année civile complète : 2026. Publication possible à partir du 2027-01-01, selon l’émetteur ; aucun calendrier complet ne peut encore être collecté.",
       "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
     },
     {
@@ -464,7 +483,7 @@
       "name": "Invesco FTSE All-World UCITS ETF Accumulating",
       "field": "holdings",
       "label": "Positions pondérées",
-      "configured": false,
+      "configured": true,
       "status": "unqualified",
       "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
       "sourceUrl": "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE000716YHJ7_factsheet_en.pdf"
@@ -475,7 +494,7 @@
       "name": "Invesco FTSE All-World UCITS ETF Distributing",
       "field": "holdings",
       "label": "Positions pondérées",
-      "configured": false,
+      "configured": true,
       "status": "unqualified",
       "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
       "sourceUrl": "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE0000QLH0G6_factsheet_en.pdf"
@@ -486,9 +505,9 @@
       "name": "Global X Robotics & Artificial Intelligence UCITS ETF USD Acc",
       "field": "performance",
       "label": "Calendrier annuel",
-      "configured": false,
-      "status": "unqualified",
-      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
+      "configured": true,
+      "status": "not-published",
+      "reason": "La source officielle actuelle publie des performances glissantes et cumulées, collectées séparément, sans calendrier annuel complet. Les historiques mensuels restent automatisés. Le rendement NAV depuis janvier sera intégré comme année civile uniquement sur une observation au 31 décembre, après clôture et hors année de lancement partielle, avec sa preuve conservée.",
       "sourceUrl": "https://globalxetfs.eu/funds/botz/"
     },
     {
@@ -497,9 +516,9 @@
       "name": "Global X Uranium UCITS ETF USD Acc",
       "field": "performance",
       "label": "Calendrier annuel",
-      "configured": false,
-      "status": "unqualified",
-      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
+      "configured": true,
+      "status": "not-published",
+      "reason": "La source officielle actuelle publie des performances glissantes et cumulées, collectées séparément, sans calendrier annuel complet. Les historiques mensuels restent automatisés. Le rendement NAV depuis janvier sera intégré comme année civile uniquement sur une observation au 31 décembre, après clôture et hors année de lancement partielle, avec sa preuve conservée.",
       "sourceUrl": "https://globalxetfs.eu/funds/urnu/"
     },
     {
@@ -508,9 +527,9 @@
       "name": "Global X Cybersecurity UCITS ETF USD Acc",
       "field": "performance",
       "label": "Calendrier annuel",
-      "configured": false,
-      "status": "unqualified",
-      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
+      "configured": true,
+      "status": "not-published",
+      "reason": "La source officielle actuelle publie des performances glissantes et cumulées, collectées séparément, sans calendrier annuel complet. Les historiques mensuels restent automatisés. Le rendement NAV depuis janvier sera intégré comme année civile uniquement sur une observation au 31 décembre, après clôture et hors année de lancement partielle, avec sa preuve conservée.",
       "sourceUrl": "https://globalxetfs.eu/funds/bug/"
     },
     {
@@ -719,9 +738,9 @@
       "label": "Pays",
       "configured": true,
       "status": "not-published",
-      "checkedAt": "2026-10-17",
+      "checkedAt": "2026-10-18",
       "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9490/lifestrategy-20-equity-ucits-etf-eur-accumulating",
-      "sha256": "b31668b0fa408b05dc3387d3cd77f764823d75d63f39fb19779b6c4082427723",
+      "sha256": "9b3265247246ef26b41272795df534707de9bb9675f9038894fee86d1c7f1666",
       "reason": "Aucune répartition économique complète du fonds dans la page et les données qualifiées ; les fonds sous-jacents et la poche actions ne constituent pas une allocation pays/secteurs du fonds entier.",
       "evidence": {
         "headings": [],
@@ -740,9 +759,9 @@
       "label": "Secteurs",
       "configured": true,
       "status": "not-published",
-      "checkedAt": "2026-10-17",
+      "checkedAt": "2026-10-18",
       "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9490/lifestrategy-20-equity-ucits-etf-eur-accumulating",
-      "sha256": "b31668b0fa408b05dc3387d3cd77f764823d75d63f39fb19779b6c4082427723",
+      "sha256": "9b3265247246ef26b41272795df534707de9bb9675f9038894fee86d1c7f1666",
       "reason": "Aucune répartition économique complète du fonds dans la page et les données qualifiées ; les fonds sous-jacents et la poche actions ne constituent pas une allocation pays/secteurs du fonds entier.",
       "evidence": {
         "headings": [],
@@ -761,9 +780,9 @@
       "label": "Pays",
       "configured": true,
       "status": "not-published",
-      "checkedAt": "2026-10-17",
+      "checkedAt": "2026-10-18",
       "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9492/lifestrategy-40-equity-ucits-etf-eur-accumulating",
-      "sha256": "001d54b1f5d8c193485a8f02b7af65c550d27e03b68d61eb0ab08f67362c3fad",
+      "sha256": "1014eb4e0eb077d71b311e4cfb8fb2b3ba48d8eda9ad2b5f5f296476671738d3",
       "reason": "Aucune répartition économique complète du fonds dans la page et les données qualifiées ; les fonds sous-jacents et la poche actions ne constituent pas une allocation pays/secteurs du fonds entier.",
       "evidence": {
         "headings": [],
@@ -782,9 +801,9 @@
       "label": "Secteurs",
       "configured": true,
       "status": "not-published",
-      "checkedAt": "2026-10-17",
+      "checkedAt": "2026-10-18",
       "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9492/lifestrategy-40-equity-ucits-etf-eur-accumulating",
-      "sha256": "001d54b1f5d8c193485a8f02b7af65c550d27e03b68d61eb0ab08f67362c3fad",
+      "sha256": "1014eb4e0eb077d71b311e4cfb8fb2b3ba48d8eda9ad2b5f5f296476671738d3",
       "reason": "Aucune répartition économique complète du fonds dans la page et les données qualifiées ; les fonds sous-jacents et la poche actions ne constituent pas une allocation pays/secteurs du fonds entier.",
       "evidence": {
         "headings": [],
@@ -803,9 +822,9 @@
       "label": "Pays",
       "configured": true,
       "status": "not-published",
-      "checkedAt": "2026-10-17",
+      "checkedAt": "2026-10-18",
       "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9494/lifestrategy-60-equity-ucits-etf-eur-accumulating",
-      "sha256": "ea87dd4557c0cafe02810b77756a190790787708041d900c92b7471506e48ff9",
+      "sha256": "876c8bec12fee6788fb8760169e7e102503dbe608032806627e365b78cf2e6c2",
       "reason": "Aucune répartition économique complète du fonds dans la page et les données qualifiées ; les fonds sous-jacents et la poche actions ne constituent pas une allocation pays/secteurs du fonds entier.",
       "evidence": {
         "headings": [],
@@ -824,9 +843,9 @@
       "label": "Secteurs",
       "configured": true,
       "status": "not-published",
-      "checkedAt": "2026-10-17",
+      "checkedAt": "2026-10-18",
       "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9494/lifestrategy-60-equity-ucits-etf-eur-accumulating",
-      "sha256": "ea87dd4557c0cafe02810b77756a190790787708041d900c92b7471506e48ff9",
+      "sha256": "876c8bec12fee6788fb8760169e7e102503dbe608032806627e365b78cf2e6c2",
       "reason": "Aucune répartition économique complète du fonds dans la page et les données qualifiées ; les fonds sous-jacents et la poche actions ne constituent pas une allocation pays/secteurs du fonds entier.",
       "evidence": {
         "headings": [],
@@ -845,9 +864,9 @@
       "label": "Pays",
       "configured": true,
       "status": "not-published",
-      "checkedAt": "2026-10-17",
+      "checkedAt": "2026-10-18",
       "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9496/lifestrategy-80-equity-ucits-etf-eur-accumulating",
-      "sha256": "7f4b6b5a10c19d6399d055d4bf1e379da2adec0782eb6359041497f3ace3a37f",
+      "sha256": "4f17f375b7124bfa1d54a51583b57824e9c72eae0bab78da8855e10b040158bb",
       "reason": "Aucune répartition économique complète du fonds dans la page et les données qualifiées ; les fonds sous-jacents et la poche actions ne constituent pas une allocation pays/secteurs du fonds entier.",
       "evidence": {
         "headings": [],
@@ -866,9 +885,9 @@
       "label": "Secteurs",
       "configured": true,
       "status": "not-published",
-      "checkedAt": "2026-10-17",
+      "checkedAt": "2026-10-18",
       "sourceUrl": "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9496/lifestrategy-80-equity-ucits-etf-eur-accumulating",
-      "sha256": "7f4b6b5a10c19d6399d055d4bf1e379da2adec0782eb6359041497f3ace3a37f",
+      "sha256": "4f17f375b7124bfa1d54a51583b57824e9c72eae0bab78da8855e10b040158bb",
       "reason": "Aucune répartition économique complète du fonds dans la page et les données qualifiées ; les fonds sous-jacents et la poche actions ne constituent pas une allocation pays/secteurs du fonds entier.",
       "evidence": {
         "headings": [],
@@ -898,9 +917,9 @@
       "label": "Secteurs",
       "configured": true,
       "status": "not-published",
-      "checkedAt": "2026-10-17",
+      "checkedAt": "2026-10-18",
       "sourceUrl": "https://globalxetfs.eu/funds/silv/",
-      "sha256": "8090352be7847c7e513cd9e90101fd13b3685070c02ea51b5dc70d44b58730d0",
+      "sha256": "e1c6c7035755e648142f0fbfba2257b085d8c40472fbb56f19ac6efaab7a0c13",
       "reason": "Aucun tableau sectoriel complet du fonds dans la page officielle contrôlée.",
       "evidence": {
         "datedCountryTable": true,
@@ -960,7 +979,7 @@
       "label": "Pays",
       "configured": true,
       "status": "not-published",
-      "checkedAt": "2026-10-17",
+      "checkedAt": "2026-10-18",
       "asOf": "2026-09-30",
       "sourceUrl": "https://res.americancentury.com/docs/avantis-global-small-cap-value-ucits-etf-fact-sheet.pdf",
       "sha256": "43ac17cfbd6ff218e06494094aa3b80b00c93549cf8f22fb1a5544afab9907e4",
@@ -1634,9 +1653,9 @@
       "configured": true,
       "status": "not-published",
       "reason": "La section de performance ne fournit pas de calendrier annuel qualifié pour la part USD distribuante. Les rendements capitalisants ou glissants ne sont pas substitués.",
-      "checkedAt": "2026-10-17",
+      "checkedAt": "2026-10-18",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "80bd8192e58e18d83153b599102721f1b08e9cb105f21d20a6e3a00c9f87c76f",
+      "sha256": "26d305445ff7a5710decb7576487252e90333890b89f879cb54ee725bac890d4",
       "evidence": [
         "Performance History",
         "USD Accumulating",
@@ -1665,7 +1684,14 @@
         "15.75%",
         "-0.46%",
         "Performance is based on the fund’s NAV and is shown on a total return basis (i.e., with gross income reinvested, where applicable). The fund’s NAV may differ from its market price and, as a result, individual shareholders may realize returns that are different from the NAV performance. Cumulative return is the aggregate amount that an investment has gained or lost over time. Annualised return is the average return gained or lost by an investment each year over a given time period.",
-        "The performance data quoted represents past performance. Past performance does not guarantee future results. The investment return and principal value of an investment will fluctuate so that an investor's shares, when sold or redeemed, may be worth more or less than their original cost and current performance may be lower or higher than the performance quoted. High short-term performance, when observed, is unusual and investors should not expect such performance to be repeated. The return of your investment may increase or decrease as a result of currency fluctuations if your investment is made in a currency other than that used in past performance calculations."
+        "The performance data quoted represents past performance. Past performance does not guarantee future results. The investment return and principal value of an investment will fluctuate so that an investor's shares, when sold or redeemed, may be worth more or less than their original cost and current performance may be lower or higher than the performance quoted. High short-term performance, when observed, is unusual and investors should not expect such performance to be repeated. The return of your investment may increase or decrease as a result of currency fluctuations if your investment is made in a currency other than that used in past performance calculations.",
+        "Top 10 Reference Index Constituents",
+        "As of 08 Oct 2026",
+        "Weight (%)",
+        "Ticker",
+        "Name",
+        "8.30",
+        "NVDA"
       ]
     },
     {
@@ -1677,9 +1703,9 @@
       "configured": true,
       "status": "not-published",
       "reason": "Aucune allocation géographique économique complète qualifiée dans la page ; les pays de commercialisation et le panier de substitution sont exclus.",
-      "checkedAt": "2026-10-17",
+      "checkedAt": "2026-10-18",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "80bd8192e58e18d83153b599102721f1b08e9cb105f21d20a6e3a00c9f87c76f",
+      "sha256": "26d305445ff7a5710decb7576487252e90333890b89f879cb54ee725bac890d4",
       "evidence": []
     },
     {
@@ -1691,9 +1717,9 @@
       "configured": true,
       "status": "unqualified",
       "reason": "Table sectorielle de référence à recouper avec l’indice exact avant utilisation ; aucune allocation du panier de substitution utilisée.",
-      "checkedAt": "2026-10-17",
+      "checkedAt": "2026-10-18",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "80bd8192e58e18d83153b599102721f1b08e9cb105f21d20a6e3a00c9f87c76f",
+      "sha256": "26d305445ff7a5710decb7576487252e90333890b89f879cb54ee725bac890d4",
       "evidence": [
         "Reference Index Sector Breakdown",
         "As of 30 Sep 2026",
@@ -1732,9 +1758,9 @@
       "configured": true,
       "status": "source-conflict",
       "reason": "Poids différents pour les mêmes titres dans la section datée de l’indice : AAPL, AMZN, GOOG, GOOGL, META, MSFT, NVDA, TSLA.",
-      "checkedAt": "2026-10-17",
+      "checkedAt": "2026-10-18",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "80bd8192e58e18d83153b599102721f1b08e9cb105f21d20a6e3a00c9f87c76f",
+      "sha256": "26d305445ff7a5710decb7576487252e90333890b89f879cb54ee725bac890d4",
       "evidence": [
         "Top 10 Reference Index Constituents",
         "As of 08 Oct 2026",

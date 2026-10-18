@@ -1,7 +1,7 @@
 import copy
 import datetime as dt
 import unittest
-from collect_ranking_sources import parse_fx, validate_record
+from collect_ranking_sources import parse_fx, parse_cross_fx, apply_cross_rates, validate_record
 from data_automation import UTC
 
 
@@ -10,7 +10,44 @@ def document(rows):
         f'<Cube time="{day}"><Cube currency="USD" rate="{rate}"/></Cube>' for day, rate in rows) + '</Cube></Envelope>').encode()
 
 
+def fred(rows, header='observation_date,DEXTAUS'):
+    return (header + '\n' + ''.join(f'{day},{value}\n' for day, value in rows)).encode()
+
+
 class RankingSourcesTest(unittest.TestCase):
+    def test_cross_rate_uses_latest_common_day_and_keeps_provenance(self):
+        now = dt.datetime(1999, 3, 3, tzinfo=UTC)
+        ecb = document([('1999-01-28', 1.1), ('1999-01-29', 1.2), ('1999-02-25', 1.3), ('1999-02-26', 1.35), ('1999-03-01', 1.4)])
+        # 29 January is a FRED holiday ('.'): the January rate uses the 28th; February uses the 26th.
+        cross = parse_cross_fx(fred([('1999-01-28', 32.0), ('1999-01-29', '.'), ('1999-02-25', 33.0), ('1999-02-26', 33.5), ('1999-03-01', 34.0)]), ecb, now)
+        self.assertEqual(cross['observations']['1999-01'], {'asOf': '1999-01-28', 'usdPerEur': 1.1, 'perUsd': 32.0, 'value': 35.2})
+        self.assertEqual(cross['observations']['1999-02']['asOf'], '1999-02-26')
+        self.assertEqual(cross['observations']['1999-02']['value'], round(33.5 * 1.35, 4))
+        self.assertNotIn('1999-03', cross['observations'])
+        self.assertEqual(cross['sourceUrl'], 'https://fred.stlouisfed.org/graph/fredgraph.csv?id=DEXTAUS')
+        self.assertEqual(len(cross['sha256']), 64)
+        fx = apply_cross_rates(parse_fx(ecb, now), {'TWD': cross})
+        self.assertEqual(fx['months']['1999-01']['rates']['TWD'], 35.2)
+        self.assertEqual(fx['months']['1999-01']['rates']['USD'], 1.2, 'ECB month-end stays the final ECB day')
+        self.assertEqual(fx['derived']['TWD']['observations']['1999-02']['value'], round(33.5 * 1.35, 4))
+
+    def test_cross_rate_rejects_stale_missing_duplicate_and_foreign_documents(self):
+        now = dt.datetime(1999, 3, 3, tzinfo=UTC)
+        ecb = document([('1999-01-29', 1.2), ('1999-02-26', 1.35)])
+        for rows, header in [([('1999-01-15', 32.0), ('1999-02-26', 33.5)], 'observation_date,DEXTAUS'),   # stale January
+                             ([('1999-02-26', 33.5)], 'observation_date,DEXTAUS'),   # missing January
+                             ([('1999-01-29', 32.0), ('1999-01-29', 32.1), ('1999-02-26', 33.5)], 'observation_date,DEXTAUS'),
+                             ([('1999-01-29', 32.0), ('1999-02-26', 33.5)], 'observation_date,DEXJPUS'),
+                             ([('1999-01-29', -1), ('1999-02-26', 33.5)], 'observation_date,DEXTAUS')]:
+            with self.assertRaises(ValueError):
+                parse_cross_fx(fred(rows, header), ecb, now)
+        self.assertEqual(parse_cross_fx(fred([('1999-01-29', 32.0), ('1999-02-26', 33.5)], 'DATE,DEXTAUS'), ecb, now)['observations']['1999-02']['value'], round(33.5 * 1.35, 4))
+        # Weekly H.10 publication: a month that ended less than eight days ago may still be absent.
+        lagging = parse_cross_fx(fred([('1999-01-29', 32.0)]), ecb, dt.datetime(1999, 3, 3, tzinfo=UTC))
+        self.assertEqual(list(lagging['observations']), ['1999-01'])
+        with self.assertRaises(ValueError):
+            parse_cross_fx(fred([('1999-01-29', 32.0)]), ecb, dt.datetime(1999, 3, 9, tzinfo=UTC))
+
     def test_ecb_exact_final_observation(self):
         fx = parse_fx(document([('1999-01-28', 1.1), ('1999-01-29', 1.2), ('1999-02-26', 1.3), ('1999-03-01', 1.4)]), dt.datetime(1999, 3, 3, tzinfo=UTC))
         self.assertEqual(list(fx['months']), ['1999-01', '1999-02'])

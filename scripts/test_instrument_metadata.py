@@ -21,16 +21,45 @@ class MetadataTests(unittest.TestCase):
     def test_disagreeing_sources_do_not_publish_pea(self):
         values,_=collect({'isin':self.ISIN,'urls':['one','two']},dt.datetime(2026,10,17,tzinfo=dt.timezone.utc),lambda u:(self.ISIN+'\nEligible PEA: '+('Yes' if u=='one' else 'No')).encode())
         self.assertNotIn('pea',values)
+    def test_french_issuer_page_pea_field(self):
+        # BlackRock France product pages: « Régime fiscal PEA » followed by Oui, or a dash when undocumented.
+        self.assertTrue(parse_text(self.ISIN+'\nRégime fiscal PEA\nOui\n',self.ISIN)['pea'])
+        self.assertFalse(parse_text(self.ISIN+'\nRégime fiscal PEA : Non\n',self.ISIN)['pea'])
+        self.assertNotIn('pea',parse_text(self.ISIN+'\nRégime fiscal PEA\n-\n',self.ISIN))
     def test_explicit_pea_badge_is_distinct_from_name(self):
         self.assertTrue(parse_text(self.ISIN+'\nÉligible au PEA\n',self.ISIN)['pea'])
         self.assertNotIn('pea',parse_text(self.ISIN+' PEA World',self.ISIN))
     def test_listing_tokens_must_share_a_table_row(self):
         src={'isin':self.ISIN,'listings':[{'ticker':'TEST','mic':'XLON','exchange':'London Stock Exchange','currency':'USD'}]}
         valid=(self.ISIN+'<table><tr><td>London Stock Exchange</td><td>TEST</td><td>USD</td></tr></table>').encode()
-        rows=parse_listings(valid,src,'https://issuer.test','2026-10-17')
+        rows=parse_listings(valid,src,'https://www.ishares.com/doc','2026-10-17')
         self.assertEqual(rows[0]['evidenceId'],self.ISIN+'-XLON-TEST-USD')
         invalid=(self.ISIN+'<table><tr><td>London Stock Exchange TEST</td></tr><tr><td>USD</td></tr></table>').encode()
-        self.assertEqual(parse_listings(invalid,src,'https://issuer.test','2026-10-17'),[])
+        self.assertEqual(parse_listings(invalid,src,'https://www.ishares.com/doc','2026-10-17'),[])
+    def test_amundi_api_metadata_and_listings_are_exact(self):
+        payload={'products':[{'productId':self.ISIN,'characteristics':{'ISIN':self.ISIN,'DISTRIBUTION_POLICY':'Capitalisation','FUND_REPLICATION_METHODOLOGY':'Indirect (Swap Based)',
+            'LISTINGS':[{'exchangePlace':'Euronext Paris','tradingCurrency':'EUR','ticker':'PAASI FP','ric':'PAASI.PA'},{'exchangePlace':'LSE','tradingCurrency':'USD','ticker':'PAAS LN','ric':'PAAS.L'},{'exchangePlace':'Bolsa Mexicana','tradingCurrency':'MXN','ticker':'PAASIN MM','ric':'PAASIN.MX'}]}}]}
+        body=json.dumps(payload).encode()
+        self.assertEqual(parse_json(body,self.ISIN),{'distribution':'Capitalisation','replicationMethod':'Indirect (Swap Based)'})
+        rows=parse_listings(body,{'isin':self.ISIN},'https://www.amundietf.fr/mapi/ProductAPI/getProductsData','2026-10-18')
+        self.assertEqual([(r['mic'],r['ticker'],r['currency'],r['symbol']) for r in rows],[('XPAR','PAASI','EUR','PAASI.PA'),('XLON','PAAS','USD','PAAS.L')])
+        self.assertEqual(rows[0]['evidenceId'],self.ISIN+'-XPAR-PAASI-EUR');self.assertEqual(rows[0]['exchange'],'Euronext Paris')
+        payload['products'][0]['characteristics']['ISIN']='IE00BP3QZ601'
+        with self.assertRaises(ValueError):parse_json(json.dumps(payload).encode(),self.ISIN)
+        with self.assertRaises(ValueError):parse_listings(json.dumps(payload).encode(),{'isin':self.ISIN},'https://www.amundietf.fr/mapi/ProductAPI/getProductsData','2026-10-18')
+    def test_dws_product_page_exchange_table(self):
+        from pathlib import Path
+        body=Path(__file__).with_name('fixtures').joinpath('official-documents','dws-exact-share.json').read_bytes()
+        self.assertEqual(parse_json(body,'IE00BLNMYC90'),{})
+        rows=parse_listings(body,{'isin':'IE00BLNMYC90'},'https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/pdpMetaTagsTealium','2026-10-18')
+        self.assertIn(('ETFP','XDEW','EUR','XDEW.MI'),[(r['mic'],r['ticker'],r['currency'],r['symbol']) for r in rows])
+        self.assertTrue(all(r['evidenceId'].startswith('IE00BLNMYC90-') for r in rows))
+        with self.assertRaises(ValueError):parse_listings(body.replace(b'IE00BLNMYC90',b'IE00B4L5Y983',1),{'isin':'IE00BLNMYC90'},'https://etf.dws.com','2026-10-18')
+    def test_factsheet_venue_abbreviations_share_the_row(self):
+        src={'isin':self.ISIN,'listings':[{'ticker':'ANAU','mic':'XPAR','exchange':'Euronext Paris','currency':'EUR','symbol':'ANAU.PA'}]}
+        body=(self.ISIN+'<table><tr><td>EURONEXT P</td><td>EUR</td><td>ANAU FP</td></tr></table>').encode()
+        rows=parse_listings(body,src,'https://www.ishares.com/doc','2026-10-18')
+        self.assertEqual((rows[0]['evidenceId'],rows[0]['symbol']),(self.ISIN+'-XPAR-ANAU-EUR','ANAU.PA'))
     def test_structured_identity(self):
         def doc(isin):return json.dumps({'componentsByNameMap':{'keyFundFacts':{'containersByNameMap':{'default':{'dataPointsByNameMap':{'isin':{'value':isin},'domicile':{'value':'Ireland'}}}}}}}).encode()
         self.assertEqual(parse_json(doc(self.ISIN),self.ISIN),{'domicile':'Ireland'})
@@ -48,9 +77,9 @@ class MetadataTests(unittest.TestCase):
         self.assertTrue(module.renewal_overdue({'checkedAt':'2026-10-09'},now,'pea'))
         self.assertTrue(module.renewal_overdue({},now,'domicile'))
         freshness=(module.ROOT/'scripts/report-asset-fields.mjs').read_text()
-        self.assertIn(f'plus de {module.RENEWAL_GRACE_DAYS} jours pour les champs ETF',freshness)
-        self.assertIn(f"['domicile','replicationMethod'].includes(field)?{module.STATIC_RENEWAL_DAYS['domicile']}:",freshness)
-        self.assertEqual(set(module.STATIC_RENEWAL_DAYS),{'domicile','replicationMethod'})
+        self.assertEqual(module.RENEWAL_GRACE_DAYS,7)
+        self.assertIn('freshness(etfFreshnessKey(field))',freshness)
+        self.assertEqual(module.STATIC_RENEWAL_DAYS,{'domicile':365,'replicationMethod':365})
     def test_vaneck_consent_page_uses_browser_download_only_for_official_factsheets(self):
         from unittest.mock import patch
         import subprocess
@@ -78,4 +107,47 @@ class MetadataTests(unittest.TestCase):
         self.assertEqual(len(calls),3)
         with self.assertRaisesRegex(ValueError,'Expected official PDF'):
             module.fetch_document(official,consent)  # injected fetchers are never escalated to a browser
+    def test_french_language_vaneck_factsheet_is_read_through_english_gates(self):
+        from unittest.mock import patch
+        import subprocess
+        import collect_instrument_metadata as module
+        def consent(url):raise ValueError('Expected official PDF at '+url+'; received VanEck France')
+        calls=[]
+        def run(cmd,**kwargs):
+            calls.append(cmd[-1])
+            if '/nl/en/' in cmd[-1]:return subprocess.CompletedProcess(cmd,0,stdout=b'%PDF-1.7 fixture',stderr=b'')
+            return subprocess.CompletedProcess(cmd,1,stdout=b'',stderr=b'Error: Official VanEck regional gate still active')
+        french='https://www.vaneck.com/fr/fr/library/fact-sheets/nucl-fact-sheet.pdf'
+        with patch.object(module,'download',consent),patch.object(module.subprocess,'run',run):
+            self.assertEqual(module.fetch_document(french,module.download),(b'%PDF-1.7 fixture','https://www.vaneck.com/nl/en/library/fact-sheets/nucl-fact-sheet.pdf'))
+        # The browser helper only accepts English regional documents: /fr/fr/ is never passed to it.
+        self.assertEqual(calls,['https://www.vaneck.com/fr/en/library/fact-sheets/nucl-fact-sheet.pdf','https://www.vaneck.com/nl/en/library/fact-sheets/nucl-fact-sheet.pdf'])
+    def test_vaneck_factsheet_layout(self):
+        import re
+        import collect_instrument_metadata as module
+        fixtures=module.ROOT/'scripts/fixtures'
+        cases={'official-documents/presentation-six/gdx-full.txt':('IE00BQQP9F84','Accumulating','Ireland'),
+               'presentation-performance/qntm.txt':('IE0007Y8Y157','Accumulating','Ireland'),
+               'official-documents/vaneck-tdiv-facts.txt':('NL0011683594','Distributing','Netherlands')}
+        for path,(isin,distribution,domicile) in cases.items():
+            with self.subTest(path=path):
+                self.assertEqual(parse_text((fixtures/path).read_text(),isin),{'distribution':distribution,'domicile':domicile,'replicationMethod':'Physical (Full replication)'})
+        text=(fixtures/'official-documents/presentation-six/gdx-full.txt').read_text()
+        src={'isin':'IE00BQQP9F84','listings':[{'ticker':'G2X','mic':'XETR','exchange':'Xetra','currency':'EUR'},{'ticker':'GDX','mic':'XLON','exchange':'London Stock Exchange','currency':'USD'},{'ticker':'GDX','mic':'XETR','exchange':'Xetra','currency':'EUR'}]}
+        from unittest.mock import patch
+        with patch.object(module,'text_of',lambda body:text):
+            rows=parse_listings(b'%PDF-fixture',src,'https://www.vaneck.com/nl/en/library/fact-sheets/gdx-fact-sheet.pdf','2026-10-18')
+        # GDX trades on Xetra as G2X: the Xetra row is not attributed to the GDX ticker.
+        self.assertEqual([r['evidenceId'] for r in rows],['IE00BQQP9F84-XETR-G2X-EUR','IE00BQQP9F84-XLON-GDX-USD'])
+    def test_issuer_routes_come_from_the_shared_registry(self):
+        from issuer_routes import vaneck_factsheet_candidates, ROUTES
+        url='https://www.vaneck.com/fr/en/library/fact-sheets/smh-fact-sheet.pdf'
+        self.assertEqual(vaneck_factsheet_candidates(url),[url]+[f'https://www.vaneck.com/{r}/en/library/fact-sheets/smh-fact-sheet.pdf' for r in ROUTES['vaneck']['factsheetRegions']])
+        self.assertEqual(len(vaneck_factsheet_candidates('https://www.vaneck.com/nl/en/library/fact-sheets/smh-fact-sheet.pdf')),2)
+    def test_mirror_documents_never_produce_listings(self):
+        src={'isin':self.ISIN,'listings':[{'ticker':'TEST','mic':'XLON','exchange':'London Stock Exchange','currency':'USD'}]}
+        body=(self.ISIN+'<table><tr><td>London Stock Exchange</td><td>TEST</td><td>USD</td></tr></table>').encode()
+        self.assertEqual(parse_listings(body,src,'https://swissfunddata.ch/sfdpub/docs/x.pdf','2026-10-18'),[])
+        self.assertEqual(parse_listings(body,src,'https://dokumenty.analizy.pl/pobierz/etf/X/KA/2026-09-30','2026-10-18'),[])
+        self.assertEqual(len(parse_listings(body,src,'https://www.ishares.com/doc','2026-10-18')),1)
 if __name__=='__main__':unittest.main()

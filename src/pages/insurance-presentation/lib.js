@@ -8,11 +8,11 @@ function presentationHook({ name }) {
 }
 // Keep contractual detail in the data and UI; publish only decision-relevant conditions.
 function shortFundAccess(fund) {
-  const allocation = fundAllocation(fund)
-  if (accessExpired(fund, todayIso())) return allocation
+  // The tweet states only established conditions; unknown or expired terms stay in the UI.
+  if (accessExpired(fund, todayIso())) return ''
   const deadline = fund.accessValidUntil ? ` jusqu’au ${fund.accessValidUntil.split('-').reverse().join('/')}` : ''
-  const conditions = [allocation.replace(/\.$/, '') + (deadline ? ` (conditions valables${deadline})` : '') + '.']
-  if (fund.ceilingEvidence?.status === 'insurer-defined') conditions.push('Plafond annuel à vérifier avant de verser.')
+  const conditions = fund.maxAllocation == null ? [] : [fundAllocation(fund).replace(/\.$/, '') + (deadline ? ` (conditions valables${deadline})` : '') + '.']
+  if (fund.ceilingEvidence?.status === 'insurer-defined') conditions.push('Plafond annuel fixé par l’assureur.')
   if (fund.ceilingEvidence?.minimumUnits != null) conditions.push(`Au moins ${format(fund.ceilingEvidence.minimumUnits)} % en unités de compte.`)
   if (fund.operations?.includes('Versements uniquement')) conditions.push('Accessible par versement uniquement, pas par arbitrage entrant.')
   if (fund.operations?.includes('2 % de pénalité')) conditions.push('2 % de pénalité pour un arbitrage vers Apicil Euro Garanti.')
@@ -40,7 +40,7 @@ export function buildTweet(record) {
     const latest = fund.years.at(-1)
     return [
       `• ${fund.name} : ${latest.year} → ${fundReturn(latest)}`,
-      fund.guarantee != null ? `Garantie annuelle : ${format(fund.guarantee)} % du capital, après frais de gestion.` : 'Garantie du capital à vérifier dans les conditions du fonds.',
+      fund.guarantee != null ? `Garantie annuelle : ${format(fund.guarantee)} % du capital, après frais de gestion.` : '',
       shortFundAccess(fund),
       annualPublicationNote(fund.publication),
     ].filter(Boolean).join('\n')

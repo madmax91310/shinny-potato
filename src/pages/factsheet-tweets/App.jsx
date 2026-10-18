@@ -1,3 +1,4 @@
+import ChoicePicker from '../../design-system/ChoicePicker.jsx'
 import { usePublicationPreference } from '../../lib/usePublicationPreference.js'
 import { notifyPublication, copyPublicationText } from '../../design-system/publicationActions.js'
 import ActionMenu from '../../design-system/ActionMenu'
@@ -12,18 +13,29 @@ import Button from '../../design-system/Button'
 import { SHEETS } from './data.js'
 import { buildFactsheetTweet } from './lib.js'
 import { renderFactsheetImage } from './canvasImage.js'
+import { factsheetCurrencies, factsheetCurrency, factsheetInCurrency, factsheetVariants, factsheetInVariant } from './performanceCurrency.js'
 import './factsheet-tweets.css'
 
 export default function App() {
   const [selected, setSelected] = usePublicationPreference('index-sheet', SHEETS[0].id, id => SHEETS.some(s => s.id === id))
+  const [currency, setCurrency] = usePublicationPreference('index-sheet-currency', 'native', value => ['native', 'EUR', 'USD'].includes(value))
   const [drafts, setDrafts] = useState({})
   const [copied, setCopied] = useState(false)
   const [image, setImage] = useState(null)
-  const selectedRef = useRef(selected)
-  selectedRef.current = selected
-  useEffect(() => { setImage(null) }, [selected])
-  const sheet = SHEETS.find((entry) => entry.id === selected)
-  const text = drafts[selected] ?? buildFactsheetTweet(sheet)
+  const base = SHEETS.find((entry) => entry.id === selected)
+  const [variant, setVariant] = usePublicationPreference('index-sheet-variant', 'native', value => ['native','NETR','GRTR'].includes(value))
+  const variants = factsheetVariants(base)
+  const effectiveVariant = variants.includes(variant) ? variant : 'native'
+  const original = factsheetInVariant(base, effectiveVariant)
+  const currencies = factsheetCurrencies(original)
+  const effectiveCurrency = currencies.includes(currency) ? currency : 'native'
+  const draftKey = `${selected}:${effectiveCurrency}:${effectiveVariant}`
+  const selectedRef = useRef(draftKey)
+  selectedRef.current = draftKey
+  useEffect(() => { setImage(null) }, [draftKey])
+  const sheet = factsheetInCurrency(original, effectiveCurrency)
+  const imageFilename = `${sheet.id}-${factsheetCurrency(sheet) ?? 'native'}-dans-les-coulisses.png`
+  const text = drafts[draftKey] ?? buildFactsheetTweet(sheet)
 
   async function copy() {
     try {
@@ -39,7 +51,7 @@ export default function App() {
   async function previewImage() {
     try {
       const canvas = await renderFactsheetImage(sheet)
-      if (selectedRef.current === sheet.id) setImage({ url: canvas.toDataURL('image/png'), filename: `${sheet.id}-dans-les-coulisses.png` })
+      if (selectedRef.current === draftKey) setImage({ url: canvas.toDataURL('image/png'), filename: imageFilename })
     } catch { notifyPublication('Impossible de préparer l’image. Réessaie.', 'error') }
   }
 
@@ -50,10 +62,17 @@ export default function App() {
       <AssetPicker id="factsheet-subject" label="Choisir un indice" value={selected}
         items={SHEETS.map(entry => ({ id: entry.id, label: entry.title, group: exposureGroup(entry), detail: entry.index }))}
         onChange={value => { setSelected(value); setCopied(false) }} />
+      {variants.length > 1 && <label className="fs-label">Dividendes réinvestis <ChoicePicker aria-label="Dividendes réinvestis" value={effectiveVariant} onChange={e => { setVariant(e.target.value); setCopied(false) }}><option value="native">Convention d’origine</option>{variants.map(v => <option key={v} value={v}>{v === 'NETR' ? 'Nets' : 'Bruts'}</option>)}</ChoicePicker></label>}
+      <label className="fs-label" htmlFor="factsheet-currency">Devise des performances</label>
+      <ChoicePicker id="factsheet-currency" value={effectiveCurrency} onChange={event => { setCurrency(event.target.value); setCopied(false) }}>
+        <option value="native">Devise d’origine{factsheetCurrency(original) ? ` (${factsheetCurrency(original)})` : ''}</option>
+        {currencies.map(c => <option key={c} value={c}>{c === 'EUR' ? 'Euros (EUR)' : 'Dollars (USD)'}</option>)}
+      </ChoicePicker>
       <div className="fs-meta">
         <span>📅 Composition : {sheet.snapshot}</span>
         <span>📈 Performances : {sheet.performance.kind === 'ETF' ? `ETF ${sheet.isin}` : 'indice'} · {sheet.performance.date}</span>
       </div>
+      <p className="fs-warning">{sheet.performance.detail}{sheet.performance.currencyNote ? ` · ${sheet.performance.currencyNote}` : ''}</p>
       <div className="fs-sources"><strong>Fiches officielles</strong>
         {sheet.source.map((src) => <a key={src.url} target="_blank" rel="noopener noreferrer" href={src.url}>{src.label} ↗</a>)}
       </div>
@@ -61,8 +80,8 @@ export default function App() {
     </div>
     <div className="fs-panel fs-editor tool-preview">
       <div className="fs-editor-top"><label className="fs-label" htmlFor="factsheet-draft">Publication modifiable</label><span>{text.length.toLocaleString('fr-FR')} caractères</span></div>
-      <textarea id="factsheet-draft" spellCheck="true" value={text} onChange={(event) => { setDrafts((current) => ({ ...current, [selected]: event.target.value })); setCopied(false) }} />
-      <WorkspaceActions><Button onClick={copy}>{copied ? '✅ Copié' : '📋 Copier le texte'}</Button><Button variant="secondary" onClick={async () => { try { const canvas = await renderFactsheetImage(sheet); if (selectedRef.current === sheet.id) downloadImage(canvas, `${sheet.id}-dans-les-coulisses.png`) } catch { notifyPublication('Impossible de préparer l’image. Réessaie.', 'error') } }}>Télécharger l’image</Button><ActionMenu><Button variant="secondary" onClick={previewImage}>🖼️ Prévisualiser l’image PNG</Button><Button variant="secondary" onClick={() => { setDrafts((current) => { const next = { ...current }; delete next[selected]; return next }); notifyPublication('Texte d’origine rétabli.') }}>↩️ Rétablir le modèle</Button></ActionMenu></WorkspaceActions>
+      <textarea id="factsheet-draft" spellCheck="true" value={text} onChange={(event) => { setDrafts((current) => ({ ...current, [draftKey]: event.target.value })); setCopied(false) }} />
+      <WorkspaceActions><Button onClick={copy}>{copied ? '✅ Copié' : '📋 Copier le texte'}</Button><Button variant="secondary" onClick={async () => { try { const canvas = await renderFactsheetImage(sheet); if (selectedRef.current === draftKey) downloadImage(canvas, imageFilename) } catch { notifyPublication('Impossible de préparer l’image. Réessaie.', 'error') } }}>Télécharger l’image</Button><ActionMenu><Button variant="secondary" onClick={previewImage}>🖼️ Prévisualiser l’image PNG</Button><Button variant="secondary" onClick={() => { setDrafts((current) => { const next = { ...current }; delete next[draftKey]; return next }); notifyPublication('Texte d’origine rétabli.') }}>↩️ Rétablir le modèle</Button></ActionMenu></WorkspaceActions>
     </div>
     </ToolWorkspace>
     {image && <div className="fs-image-overlay" role="presentation" onClick={() => setImage(null)}>

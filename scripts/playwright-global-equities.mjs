@@ -3,7 +3,6 @@ import { chromium } from 'playwright'
 import { spawn } from 'node:child_process'
 import { mkdir } from 'node:fs/promises'
 import GLOBAL from '../src/data/global-equities.json' with {type:'json'}
-import { choose } from './card-selection.mjs'
 const base=process.env.TEST_BASE_URL || 'http://127.0.0.1:4361/shinny-potato'
 const server=process.env.TEST_BASE_URL ? null : spawn('node',['node_modules/vite/bin/vite.js','preview','--host','127.0.0.1','--port','4361'],{stdio:'ignore'})
 const samples=GLOBAL.filter(a=>['rolls-royce','catl','hdfc-bank','roche','netflix'].includes(a.id))
@@ -16,16 +15,19 @@ try {
   await mkdir('test-artifacts/global-equities',{recursive:true})
   for(const asset of samples){
     await page.goto(`${base}/le-dca-de?isin=${asset.isin}`,{waitUntil:'networkidle'})
-    await page.getByRole('button',{name:'Générer l’image',exact:true}).click()
+    await page.locator('.dca-simple-preview img').waitFor()
     const exposure=page.getByAltText('Répartition et expositions du portefeuille')
     await exposure.waitFor({state:'visible'})
     assert(await exposure.evaluate(img=>img.naturalWidth>=1000))
     assert(!(await page.locator('body').innerText()).includes('non ventilés'))
     await page.screenshot({path:`test-artifacts/global-equities/exposure-${asset.id}.png`,fullPage:true})
     await page.getByRole('button',{name:'Le DCA de…',exact:true}).click()
-    await choose(page.getByRole('group',{name:'Actif position 1',exact:true}),asset.id)
-    await page.getByRole('tab',{name:'Image',exact:true}).click()
-    await page.locator('.publication-image-stage img').waitFor({state:'visible'})
+    const dca=page.locator('.dca-profiles-scope:visible')
+    await dca.getByLabel('Pseudonyme',{exact:true}).waitFor()
+    while(await dca.locator('.dca-simple-line').count())await dca.locator('.dca-simple-line > button').first().click()
+    await dca.getByRole('searchbox',{name:'Rechercher : Ajouter un actif',exact:true}).fill(asset.isin)
+    await dca.locator(`[data-option][data-value="${asset.id}"]`).click()
+    await dca.locator('.dca-simple-preview img').evaluate(async img=>img.decode())
 
     await page.goto(`${base}/generateur-portefeuilles?asset=equity-${asset.id}`,{waitUntil:'networkidle'})
     await page.getByRole('button',{name:'Générer le tweet',exact:true}).click()

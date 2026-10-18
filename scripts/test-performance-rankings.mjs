@@ -3,7 +3,8 @@ import { convertAsset, buildPortfolio } from '../src/pages/performance-rankings/
 import { ANNUAL_ASSETS, ANNUAL_CATEGORIES } from '../src/pages/performance-rankings/data.js'
 import assert from 'node:assert/strict'
 import { isStock } from '../src/lib/is-stock.js'
-import { CATEGORIES, RANKING_ASSETS, buildRankingAssets } from '../src/pages/performance-rankings/data.js'
+import { CATEGORIES, EXPOSURE_CATEGORIES, ANNUAL_PEA_CATEGORIES, RANKING_ASSETS, buildRankingAssets, derivedGroup } from '../src/pages/performance-rankings/data.js'
+import { lastCompleteYear } from '../src/data/annual-window.js'
 import { annualColumns, buildRanking, buildTweet, commonCoverage, monthAt, monthIndex, periodReturn, publicationRanking, rankRows, rollingRegularity } from '../src/pages/performance-rankings/engine.js'
 
 const make = (id, rate = .01, start = '2019-12', count = 85) => ({ id, label: id, currency: 'EUR', basis: 'adjusted', points: Array.from({ length: count }, (_, i) => ({ date: monthAt(monthIndex(start) + i), price: 100 * (1 + rate) ** i })) })
@@ -151,10 +152,10 @@ for (let assets = 2; assets <= 6; assets++) {
     assert.equal(layout.gridRows * layout.gridColumns, assets * years)
   }
 }
-assert.equal(rankingImageLayout(2, 3).transposed, false)
+assert.equal(rankingImageLayout(2, 3).transposed, true)
 assert.equal(rankingImageLayout(3, 7).transposed, true)
 assert.equal(rankingImageLayout(6, 5).transposed, true)
-assert.equal(rankingImageLayout(3, 6).tableBottom + 94, rankingImageLayout(3, 6).height)
+assert.equal(rankingImageLayout(3, 6).tableBottom + 28, rankingImageLayout(3, 6).height)
 console.log('Publication: exact compound annualization, single-year returns, tied medals, partial boundaries and compact three-asset canvas passed.')
 
 // A custom multi-year portfolio table keeps drifting weights from the selection start.
@@ -248,3 +249,31 @@ assert.throws(()=>saveFavorite(storage,'Ne pas écraser',selection))
 assert.equal(storage.getItem(FAVORITES_KEY),damaged)
 assert.throws(()=>saveFavorite({getItem:()=>null,setItem:()=>{throw Error('quota')}},'Quota',selection), /quota/)
 console.log('Checkbox limits, mixed currencies, four replaceable ETF references, exact saved settings, updates, deletion and non-destructive storage failures passed.')
+
+// Registry-derived universes: every ETF and ETC outside the editorial categories is filed under an
+// exposure group, each group ranking holds two to six members with a common coverage, and the PEA
+// calendars are selected by rule (EUR, PEA, three latest complete years) rather than by position.
+for (const asset of Object.values(RANKING_ASSETS)) {
+  if (asset.isin && !isStock(asset)) assert.notEqual(asset.group, 'Autres ETF et ETC', asset.id)
+  assert.equal(derivedGroup({ instrumentType: 'EQUITY' }), 'Actions individuelles')
+}
+assert(EXPOSURE_CATEGORIES.length >= 5)
+for (const category of EXPOSURE_CATEGORIES) {
+  assert(category.derived && category.ids.length >= 2 && category.ids.length <= 6 && category.universe >= category.ids.length, category.id)
+  const members = category.ids.map(id => { assert(RANKING_ASSETS[id], id); assert.equal(RANKING_ASSETS[id].group, category.group, id); return convertAsset(RANKING_ASSETS[id], 'EUR', FX) })
+  assert(commonCoverage(members).years.length >= 1, `${category.id} : aucune année commune`)
+  const starts = category.ids.map(id => RANKING_ASSETS[id].points[0].date)
+  assert.deepEqual(starts, [...starts].sort(), `${category.id} : les historiques les plus longs d’abord`)
+}
+const recent = [2, 1, 0].map(offset => lastCompleteYear() - offset)
+assert(ANNUAL_PEA_CATEGORIES.length >= 2)
+for (const category of ANNUAL_PEA_CATEGORIES) {
+  assert(category.ids.length >= 2 && category.ids.length <= 6 && category.frequency === 'annual', category.id)
+  for (const id of category.ids) {
+    const record = ANNUAL_ASSETS[id]
+    assert(record?.pea === true && record.currency === 'EUR', id)
+    for (const year of recent) assert(Number.isFinite(record.years[year]), `${id} : année ${year} absente`)
+  }
+}
+console.log(`${EXPOSURE_CATEGORIES.length} exposure universes and ${ANNUAL_PEA_CATEGORIES.length} PEA calendar universes derived from the registries.`)
+

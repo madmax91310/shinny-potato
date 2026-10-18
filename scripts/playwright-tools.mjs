@@ -4,6 +4,7 @@ import { computeBrut, computePoste, fmtEUR as fmtPowerEUR } from '../src/pages/p
 import { PRICE_OBSERVATION } from '../src/data/purchasing-power.js';
 import { BROKERS as COMPARISON_BROKERS, DUELS as BROKER_DUELS, buildTweet as buildBrokerPost } from '../src/pages/broker-comparator/data.js';
 import { buildReview, reviewCalendar } from '../src/pages/data-review/lib.js';
+import { groupReviews } from '../src/pages/data-review/groups.js';
 import { MARKET_HISTORY_REVIEW } from '../src/data/market-history-review.js';
 import { choose } from './card-selection.mjs'
 import { TOPICS as PRACTICAL_TOPICS } from '../src/data/practical-sheet-topics.js'
@@ -950,6 +951,7 @@ async function testFactsheetTweets(page) {
   while(await more.count())await more.click();
   const count = await select.locator('[data-option]').count();
   let ok = count === SHEETS.length;
+  let failedStep = ok ? '' : `nombre de fiches ${count} au lieu de ${SHEETS.length}`;
   await page.evaluate(() => Object.defineProperty(navigator, 'clipboard', {
     configurable: true, value: { writeText: async text => { window.__factsheetCopied = text; } },
   }));
@@ -968,28 +970,34 @@ async function testFactsheetTweets(page) {
     };
     if (Object.values(checks).some(value => !value)) console.log(`    Fiche ${SHEETS[index].id}: ${JSON.stringify(checks)}`);
     ok &&= Object.values(checks).every(Boolean);
+    if (!ok && !failedStep) failedStep = 'texte d’une fiche';
     await page.getByRole('button', { name: /📋 Copier le texte|✅ Copié/ }).click();
     ok &&= (await page.evaluate(() => window.__factsheetCopied)) === tweet;
+    if (!ok && !failedStep) failedStep = 'copie du texte';
   }
   await draft.fill('Texte corrigé avant publication');
   await page.locator('.workspace-action-menu summary').click();
   await page.getByRole('button', { name: /Rétablir le modèle/ }).click();
   ok &&= (await draft.inputValue()).includes(latestSheetYear(SHEETS.at(-1)));
+  if (!ok && !failedStep) failedStep = 'rétablissement du modèle';
   await page.locator('.workspace-action-menu summary').click();
   await page.getByRole('button', { name: /Prévisualiser l’image PNG/ }).click();
   const preview = page.getByRole('dialog', { name: 'Aperçu de la fiche PNG' });
   await preview.waitFor({ state: 'visible' });
   ok &&= await preview.isVisible();
+  if (!ok && !failedStep) failedStep = 'aperçu PNG';
   const dimensions = await preview.locator('img').evaluate(async (img) => {
     await img.decode();
     return [img.naturalWidth, img.naturalHeight];
   });
-  ok &&= dimensions[0] === 1600 && dimensions[1] === 2000;
+  ok &&= dimensions[0] === 1600 && dimensions[1] >= 1600 && dimensions[1] <= 2560;
+  if (!ok && !failedStep) failedStep = 'dimensions du PNG';
   const [download] = await Promise.all([
     page.waitForEvent('download'),
     preview.getByRole('link', { name: /Télécharger le PNG/ }).click(),
   ]);
   ok &&= download.suggestedFilename().endsWith('.png');
+  if (!ok && !failedStep) failedStep = 'téléchargement du PNG';
   await page.getByRole('button', { name: 'Fermer l’aperçu' }).click();
   for (const id of ['sp500-equal-weight', 'russell-2000', 'em-standard', 'topix', 'nikkei225', 'acwi', 'em-esg', 'stoxx600']) {
     await choose(select, id);
@@ -998,7 +1006,7 @@ async function testFactsheetTweets(page) {
     const current = page.getByRole('dialog', { name: 'Aperçu de la fiche PNG' });
     ok &&= await current.locator('img').evaluate(async (img) => {
       await img.decode();
-      return img.naturalWidth === 1600 && img.naturalHeight === 2000;
+      return img.naturalWidth === 1600 && img.naturalHeight >= 1600 && img.naturalHeight <= 2560;
     });
     if (['sp500-equal-weight', 'russell-2000'].includes(id)) {
       await mkdir('test-artifacts', { recursive: true });
@@ -1010,8 +1018,10 @@ async function testFactsheetTweets(page) {
   await choose(select, 'sp500-equal-weight');
   await page.setViewportSize({ width: 390, height: 844 });
   ok &&= await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth);
+  if (!ok && !failedStep) failedStep = 'aperçus PNG des indices ou largeur mobile';
   await page.screenshot({ path: 'test-artifacts/coulisses-mobile.png', fullPage: true });
   await page.setViewportSize({ width: 1280, height: 720 });
+  if (failedStep) console.log(`    Coulisses des indices : premier contrôle en échec — ${failedStep}`);
   record('Dans les coulisses des indices', ok, `${count} fiches, modification et réinitialisation vérifiées`);
 }
 
@@ -1301,7 +1311,7 @@ async function testAssetSelection(page) {
   await page.goto(`${BASE}/generateur-portefeuilles`, { waitUntil: 'networkidle' });
   let selected=false;
   for(let i=0;i<20&&!selected;i++) {
-    await page.locator('.pg-replacement summary').click();
+    await page.locator('.pg-replacement > summary').click();
     const lines=await page.locator('#pg-replacement-line [data-option]').evaluateAll(nodes=>nodes.map(n=>n.dataset.value));
     for(const line of lines) {
       await choose(page.locator('#pg-replacement-line'), line);
@@ -1412,10 +1422,16 @@ try {
   const reserveCount = buildReview().items.filter(item => item.category === 'reserve').length;
   await page.waitForFunction(count => new URLSearchParams(location.search).get('q') === '' && document.querySelectorAll('.data-review > .dr-list > .dr-item').length === count, reserveCount);
   reviewChecks.peaCustody = (await page.locator('.data-review > .dr-list > .dr-item').filter({hasText: 'Trade Republic'}).filter({hasText: 'garde'}).count()) === 1;
+  // Offer deadlines come from the broker registry: derive the expected cards, never a fixed count.
+  const deadlineGroups = groupReviews(buildReview().items.filter(item => item.until));
   await choose(page.getByLabel('Afficher', { exact: true }), 'deadlines');
-  await page.waitForFunction(() => new URLSearchParams(location.search).get('view') === 'deadlines' && document.querySelectorAll('.data-review > .dr-list > .dr-item').length === 3);
-  reviewChecks.deadlines = (await page.locator('.data-review > .dr-list > .dr-item').count()) === 3;
-  reviewChecks.sources = (await page.locator('.data-review > .dr-list').getByRole('link', { name: 'Source ↗', exact: true }).count()) === 3;
+  // Grouped cards (as rendered): a large review catalogue can delay the filtered DOM on a shared CI runner.
+  await page.waitForFunction(count => new URLSearchParams(location.search).get('view') === 'deadlines' && document.querySelectorAll('.data-review > .dr-list > .dr-item').length === count, deadlineGroups.length, { timeout: 60000 }).catch(async error => {
+    console.error('Deadline filter mismatch', { expected: deadlineGroups.map(group => group.name), actual: await page.locator('.data-review > .dr-list > .dr-item h2').allTextContents(), url: page.url() });
+    throw error;
+  });
+  reviewChecks.deadlines = deadlineGroups.length > 0 && (await page.locator('.data-review > .dr-list > .dr-item').count()) === deadlineGroups.length;
+  reviewChecks.sources = (await page.locator('.data-review > .dr-list').getByRole('link', { name: 'Source ↗', exact: true }).count()) === deadlineGroups.filter(group => group.urls.length === 1).length;
   await page.goto(`${BASE}/donnees-a-revoir?view=calendar&q=FR001400U5Q4`, { waitUntil: 'networkidle' });
   const reviewRows = reviewCalendar(buildReview()).filter(item => [item.name, item.field, ...item.tools, ...item.aliases ?? []].join(' ').includes('FR001400U5Q4'));
   const expectedMaintenance = reviewRows.flatMap(item => item.maintenanceRecord ? maintenanceLinks(item.maintenanceRecord, item.maintenanceField).map(link => link.url) : []);

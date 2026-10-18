@@ -1,3 +1,4 @@
+import { compatibleIndexReturns } from '../../lib/return-convention.js'
 import { convertPerformanceEntries, performanceCurrencies, performanceDisplayBasis } from './performanceCurrency.js'
 import { formatPerformancePct, performancePeriod } from './performanceFormat.js'
 import { FORMATS, MODES, TODAY, SUBJECT_ALEATOIRE } from './constants.js'
@@ -113,6 +114,7 @@ for (let i = 0; i < MARKET_ASSETS.length; i++) {
   for (let j = i + 1; j < MARKET_ASSETS.length; j++) {
     const a = MARKET_ASSETS[i];
     const b = MARKET_ASSETS[j];
+    if (!compatibleIndexReturns([a, b])) continue;
     performanceYears.get(b.id).forEach((year) => {
       if (yearsA.has(year)) {
         POOL_PERFORMANCE_DEPUIS_COMPARATIF.push({
@@ -323,6 +325,7 @@ function pickForSelection({ format, mode = MODES.SIMPLE, subjectId, subjectIdB, 
       return { item, addToHistory: true };
     }
     const pool = poolForFormat(format, mode);
+    if (format === FORMATS.PERFORMANCE_DEPUIS && hasA && hasB && !compatibleIndexReturns([findAsset(subjectId), findAsset(subjectIdB)])) throw new Error('Choisis deux indices avec la même convention de dividendes : nets ou bruts.');
     const byPair = pool.filter((item) => matchesPair(item, subjectId, subjectIdB));
     const bySecondary = hasSecondary ? byPair.filter((item) => matchesSecondary(item, secondaryId)) : byPair;
     const candidates = bySecondary.length > 0 ? bySecondary : byPair.length > 0 ? byPair : pool;
@@ -519,6 +522,7 @@ function buildAnniversaireComparatifText(item, rawNiveauActuelA, rawNiveauActuel
 function getPerformanceEntries(item) {
   const ids = item.mode === MODES.COMPARATIF ? [item.assetIdA, item.assetIdB] : [item.assetId];
   let entries = ids.map(id => ({ asset: findAsset(id), returns: getAnnualReturns(id, item.year) }));
+  if (!compatibleIndexReturns(entries.map(entry => entry.asset).filter(Boolean))) throw new Error('Les indices doivent utiliser la même convention : dividendes nets ou bruts réinvestis.');
   if (entries.some(entry => !entry.asset || !entry.returns.length)) throw new Error('Actif ou performances annuelles absents');
   const sharedLastYear = Math.min(...entries.map(entry => entry.returns.at(-1).year));
   entries.forEach(entry => { entry.returns = entry.returns.filter(row => row.year <= sharedLastYear); });
@@ -546,7 +550,7 @@ function buildTweetText(item, extra = {}) {
   const { niveauActuel, niveauActuelB } = extra;
   if (item.format === FORMATS.DILEMME) return buildDilemmeText(item);
   if (item.format === FORMATS.FICHE_LEXIQUE) return getFicheLexiqueText(item.termeId);
-  if (item.format === FORMATS.COMPARATIF_ETF) return getComparatifEtfText(item.themeId);
+  if (item.format === FORMATS.COMPARATIF_ETF) return getComparatifEtfText(item.themeId, item.currency);
   if (item.format === FORMATS.ANNIVERSAIRE && item.mode === MODES.COMPARATIF) {
     return buildAnniversaireComparatifText(item, niveauActuel ?? "", niveauActuelB ?? "");
   }

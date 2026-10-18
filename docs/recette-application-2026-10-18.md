@@ -1,5 +1,11 @@
 # Recette fonctionnelle de l’application du 18 octobre 2026
 
+## Actualisation après #789 et #796
+
+Master `523d0cb6` intégré. L’ancien décalage des pastilles n’est plus applicable : le visuel approuvé a supprimé ces pastilles et amélioré les en-têtes. Ce rendu est conservé exactement ; le test vérifie désormais son absence de pastilles et le confinement des noms longs dans les colonnes sur 50 dispositions (2–6 actifs, 1–10 années). Les PNG à trois et six actifs ont été inspectés.
+
+La régression de dédoublonnage/expiration reste ajoutée. Le calendrier utilise déjà sur master le nombre réel d’offres ; une attente explicite du panneau asynchrone est ajoutée avant de compter l’alerte simulée. Compilation, budgets, audit de revue, partition des tests, 50 dispositions et parcours calendrier mobile réussis. Les projections régénérées sans modification de leur générateur sont exclues du commit. La CI distante et le déploiement de cette intégration restent à confirmer.
+
 ## Résultat et périmètre
 
 Recette effectuée à partir de `master` au commit `b248801239679885200173e7db3570b5c622378d`, également identifié par le `build-info.json` du site publié au relevé. Les données générées par les builds ne sont pas incluses dans les corrections de cette branche.

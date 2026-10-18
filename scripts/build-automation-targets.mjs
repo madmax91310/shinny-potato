@@ -1,18 +1,28 @@
 import {readFileSync,writeFileSync} from 'node:fs'
+import { wisdomtreeFactsheet, blackrockCharacteristicsEndpoint } from './issuer-routes.mjs'
 import {AUTOMATED_ETF} from '../src/data/automated-etf.js'
 import {INSTRUMENTS_BY_ISIN} from '../src/data/instruments.js'
 import {getInstrumentListings} from '../src/data/instrument-listings.js'
 import {getInstrumentFacts} from '../src/data/instrument-facts.js'
 import {PEA_REVIEWS_BY_ISIN} from '../src/data/instrument-pea.js'
 const existing=JSON.parse(readFileSync('scripts/dca-complete-holdings-sources.json'))
+// Candidate rows the metadata collector must find in the issuer's own document before any
+// registry learns them: a verified row for the same venue, ticker and currency takes precedence.
+const candidates=Object.fromEntries(JSON.parse(readFileSync('scripts/listing-candidates.json')).candidates.map(c=>[c.isin,c.rows]))
+const withCandidates=(isin,listings)=>[...listings,...(candidates[isin]??[]).filter(c=>!listings.some(l=>l.mic===c.mic&&l.ticker===c.ticker&&l.currency===c.currency)).map(({ticker,mic,exchange,currency,symbol})=>({ticker,mic,exchange,currency,symbol}))]
 const holdings={},metadata=[]
-const currentDocument=url=>url?.replace(/(\/pdfDocuments\/(?:monthly-factsheet|kid-priips|prospectus)\/[^?]+)\/\d{8}(?=$|\?)/,'$1')
+// Qualified iShares shares flagged peaIssuerPage whose PEA status is still undocumented: the
+// French issuer page states « Régime fiscal PEA » itself; a dash there keeps the status unknown.
+const peaIssuerPages=new Set(JSON.parse(readFileSync('scripts/qualified-exposure-sources.json')).instruments.filter(i=>i.peaIssuerPage).map(i=>i.isin))
+const frenchIssuerPage=(isin,r)=>{const id=/[?&]portfolioId=(\d+)/.exec(r.sourceUrl??'')?.[1];return id&&peaIssuerPages.has(isin)&&PEA_REVIEWS_BY_ISIN[isin]?.eligible==null?[`https://www.blackrock.com/fr/particuliers/products/${id}`]:[]}
+// A VanEck factsheet page (no .pdf) is an HTML shell without the share's ISIN; read the PDF it serves.
+const currentDocument=url=>url?.replace(/(\/pdfDocuments\/(?:monthly-factsheet|kid-priips|prospectus)\/[^?]+)\/\d{8}(?=$|\?)/,'$1').replace(/^(https:\/\/www\.vaneck\.com\/(?:ucits|[a-z]{2}\/[a-z]{2})\/library\/fact-sheets\/[a-z0-9]+-fact-sheet)$/,'$1.pdf')
 for(const [isin,r] of Object.entries(AUTOMATED_ETF)) {
- const facts=getInstrumentFacts(isin),listings=getInstrumentListings(isin),urls=[r.sourceUrl,facts.characteristicsSource?.url,PEA_REVIEWS_BY_ISIN[isin]?.sourceUrl,...(PEA_REVIEWS_BY_ISIN[isin]?.eligible===true?['https://www.justetf.com/fr/etf-profile.html?isin='+isin]:[]),...listings.map(l=>l.sourceUrl)]
+ const facts=getInstrumentFacts(isin),listings=withCandidates(isin,getInstrumentListings(isin)),urls=[r.sourceUrl,facts.characteristicsSource?.url,PEA_REVIEWS_BY_ISIN[isin]?.sourceUrl,...(PEA_REVIEWS_BY_ISIN[isin]?.eligible===true?['https://www.justetf.com/fr/etf-profile.html?isin='+isin]:[]),...listings.map(l=>l.sourceUrl),...frenchIssuerPage(isin,r)]
  // Characteristics only need the fund facts and listings; full holdings exceed the download limit.
- const endpoint=url=>url.includes('blackrock.com/varnish-api/')?url.replace(/component=[^&]+/,'component=keyFundFacts%2Clistings'):url
+ const endpoint=blackrockCharacteristicsEndpoint
  // WisdomTree product pages answer 403 to automated clients; its official factsheet API does not.
- const issuerDocuments=urls.some(url=>url?.includes('wisdomtree.com/'))&&/^IE/.test(isin)?['https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/'+isin]:[]
+ const issuerDocuments=urls.some(url=>url?.includes('wisdomtree.com/'))&&wisdomtreeFactsheet(isin)?[wisdomtreeFactsheet(isin)]:[]
  metadata.push({isin,listings,urls:[...new Set([...urls.filter(Boolean),...issuerDocuments].map(currentDocument).map(endpoint))]})
  if(existing[isin])continue
  const name=INSTRUMENTS_BY_ISIN[isin]?.name??''

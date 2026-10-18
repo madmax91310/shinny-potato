@@ -3,7 +3,7 @@ import { mkdir, writeFile } from 'node:fs/promises'
 import { spawn } from 'node:child_process'
 import { chromium } from 'playwright'
 
-// The coloured markers must remain separate from two-line asset names in transposed exports.
+// Preserve the approved marker-free headers and keep long names inside their cells.
 const port = 4393
 const base = `http://127.0.0.1:${port}/shinny-potato`
 const server = spawn('node', ['node_modules/vite/bin/vite.js', '--host', '127.0.0.1', '--port', String(port), '--strictPort'], { stdio: 'pipe' })
@@ -29,7 +29,7 @@ try {
     let boxes = [], markers = []
     CanvasRenderingContext2D.prototype.fillText = function (value, x, y, ...rest) {
       const measure = this.measureText(value)
-      boxes.push({ value, left: x - measure.actualBoundingBoxLeft, right: x + measure.actualBoundingBoxRight,
+      boxes.push({ value, centerY: y, left: x - measure.actualBoundingBoxLeft, right: x + measure.actualBoundingBoxRight,
         top: y - measure.actualBoundingBoxAscent, bottom: y + measure.actualBoundingBoxDescent })
       return originals.text.call(this, value, x, y, ...rest)
     }
@@ -55,8 +55,17 @@ try {
             throw new Error(`${count} actifs / ${years} années : la pastille chevauche « ${box.value} »`)
           }
         }
-        if (layout.transposed) for (const box of boxes.filter(box => box.top > layout.tableY && box.top < headerBottom)) {
-          if (box.bottom >= headerBottom) throw new Error(`Le libellé « ${box.value} » dépasse l’en-tête`)
+        if (markers.some(marker => marker.y < headerBottom)) throw new Error('Les anciennes pastilles ne doivent pas revenir dans les en-têtes approuvés')
+        const headers = boxes.filter(box => box.centerY >= layout.tableY && box.centerY < headerBottom)
+        if (layout.transposed) {
+          if (headers.length < count + 1) throw new Error('Un nom d’actif manque dans les en-têtes')
+          for (const box of headers) {
+            if (box.top < layout.tableY || box.bottom >= headerBottom) throw new Error(`Le libellé « ${box.value} » dépasse l’en-tête`)
+            if (box.value === 'Année') continue
+            const column = Math.floor(((box.left + box.right) / 2 - layout.margin - layout.labelWidth) / layout.cellWidth)
+            const left = layout.margin + layout.labelWidth + column * layout.cellWidth
+            if (column < 0 || column >= count || box.left < left || box.right > left + layout.cellWidth) throw new Error(`Le libellé « ${box.value} » dépasse sa colonne`)
+          }
         }
         if ((count === 3 || count === 6) && years === 6) output.push({ count, png: canvas.toDataURL('image/png') })
       }
@@ -68,7 +77,7 @@ try {
   })
   await mkdir('test-artifacts/ranking-header', { recursive: true })
   for (const image of images) await writeFile(`test-artifacts/ranking-header/${image.count}-assets.png`, Buffer.from(image.png.split(',')[1], 'base64'))
-  console.log('50 formats de classement : pastilles séparées des libellés longs, en-têtes sans débordement, 2–6 actifs et 1–10 années vérifiés.')
+  console.log('50 formats de classement : visuel approuvé sans pastilles, noms longs contenus dans leurs colonnes, 2–6 actifs et 1–10 années vérifiés.')
 } finally {
   await browser?.close()
   server.kill('SIGTERM')

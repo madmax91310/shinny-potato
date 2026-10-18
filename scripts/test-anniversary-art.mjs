@@ -43,6 +43,7 @@ try {
     const { ANNIVERSARY_ART }=await import('/shinny-potato/src/pages/tweet-midi/anniversaryArt.js')
     const { ANNIVERSAIRE_ELIGIBLE_ASSETS,getHistoricalPrice,ymForYearsBack,getValidYearsBackOptions }=await import('/shinny-potato/src/pages/tweet-midi/data/marketHistory.js')
     const { TODAY }=await import('/shinny-potato/src/pages/tweet-midi/lib.js')
+    const { getMarketAsset }=await import('/shinny-potato/src/pages/tweet-midi/engines/anniversaire.js')
     const records=[];let labels=[], bounds=[]
     const original=CanvasRenderingContext2D.prototype.fillText
     CanvasRenderingContext2D.prototype.fillText=function(value,x,y,...rest){
@@ -67,7 +68,10 @@ try {
       if(!labels.includes('+50,0 %'))throw new Error(`${asset.id}: ratio changed`)
       if(labels.filter(v=>v==='ÉPARGNANT LIBRE').length!==1)throw new Error(`${asset.id}: signature count`)
       if(!labels.includes(ANNIVERSARY_ART[asset.id].title))throw new Error(`${asset.id}: mismatched title`)
-      const expectedUnit=ANNIVERSARY_ART[asset.id].unit || ({USD:'$',EUR:'€',KRW:'₩',CHF:'CHF',DKK:'kr',JPY:'¥',HKD:'$',GBp:'GBp',CNY:'¥',INR:'₹',SGD:'$'})[asset.currency]
+      if(getMarketAsset(asset.id).currency!==asset.currency)throw new Error(`${asset.id}: displayed currency differs from history`)
+      // CLDR versions differ on narrow symbols (for example $ versus $CA).
+      // Assert the history currency and the browser's exact localized unit.
+      const expectedUnit=ANNIVERSARY_ART[asset.id].unit || (asset.currency==='GBp'?'GBp':new Intl.NumberFormat('fr-FR',{style:'currency',currency:asset.currency,currencyDisplay:'narrowSymbol'}).formatToParts(0).find(part=>part.type==='currency').value)
       if(!expectedUnit || !labels.some(v=>v.endsWith(expectedUnit)))throw new Error(`${asset.id}: wrong unit for ${asset.currency}`)
       if(asset.id==='or'&&!labels.some(v=>v.includes('CC BY 4.0')))throw new Error('Gold attribution lost')
       if(canvas.width!==1600||canvas.height!==2000)throw new Error('Incorrect single aspect ratio')

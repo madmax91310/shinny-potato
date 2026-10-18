@@ -5,7 +5,7 @@ import { getCurrentIndexFacts, buildAutomatedIndexSnapshot } from './index-facts
 
 // These sheets have no numerical archive fallback: every displayed observation
 // comes from the validated records maintained by the daily issuer workflow.
-export const AUTOMATED_SHEET_DEFINITIONS = [
+export const EDITORIAL_SHEET_DEFINITIONS = [
 {"id": "msci-world-consumer-discretionary", "title": "MSCI World Consumer Discretionary", "intro": "Quand les ménages repoussent certains achats, quelles entreprises sont concernées en Bourse ? 🛍️", "takeaway": "Les achats discrétionnaires restent sensibles aux revenus et au crédit. Cet indice classique diffère des variantes filtrées de certains ETF."},
 {"id": "msci-world-communication-services", "title": "MSCI World Communication Services", "intro": "Les services de communication regroupent bien plus que les opérateurs téléphoniques. Regardons les entreprises de cet indice 📡", "takeaway": "Les plateformes, les médias et les télécoms ont des modèles différents. Cet indice classique ne se confond pas avec les variantes filtrées et plafonnées des ETF."},
   { id: 'msci-world-health-care', title: 'MSCI World Health Care',
@@ -37,17 +37,31 @@ export const AUTOMATED_SHEET_DEFINITIONS = [
   { id: 'msci-world-enhanced-value', title: 'World Enhanced Value' },
 ]
 
-export function buildAutomatedIndexSheets(observations = records, now = new Date()) {
-  return AUTOMATED_SHEET_DEFINITIONS.map(definition => {
+// A record is complete when composition, returns and both dated, hashed sources are present.
+export function completeAutomatedFacts({ facts, returns } = {}) {
+  return Boolean(facts?.asOf && Number.isInteger(facts.constituents) && facts.constituents > 0 &&
+    ['countries', 'sectors', 'holdings'].every(field => facts[field]?.length &&
+      facts[field].every(([label, value]) => label && Number.isFinite(value) && value >= 0 && value <= 100)) &&
+    returns?.asOf && ['NET', 'GROSS', 'TOTAL'].includes(returns.variant) &&
+    returns.performance?.kind === 'indice' && /dividendes.*réinvestis/.test(returns.performance.detail) &&
+    [facts.source, returns.source].every(source => source?.url?.startsWith('https://') && source.checkedAt && /^[a-f0-9]{64}$/.test(source.sha256)))
+}
+export function completeAutomatedRecord(record, now = new Date()) {
+  return completeAutomatedFacts(record) && latestCommonYears([Object.fromEntries(record.returns.values)], { length: 5, now }).length === 5
+}
+export const AUTOMATED_SHEET_DEFINITIONS = EDITORIAL_SHEET_DEFINITIONS
+// Complete records that neither an editorial definition nor an archive sheet covers get a sheet
+// titled by the canonical index name (18/10/2026); the caller passes the ids it already covers.
+// A derived sheet also needs the registry's index scope (markets): without it the sheet is not built.
+export function derivedSheetDefinitions(coveredIds, observations = records, now = new Date()) {
+  return Object.entries(observations).filter(([id, record]) => !coveredIds.includes(id) && completeAutomatedRecord(record, now) && typeof getCurrentIndexFacts(id, record.facts.asOf)?.markets === 'string')
+    .sort(([a], [b]) => a.localeCompare(b)).map(([id, record]) => ({ id, title: getCurrentIndexFacts(id, record.facts.asOf).index ?? id, derived: true }))
+}
+
+export function buildAutomatedIndexSheets(observations = records, now = new Date(), definitions = AUTOMATED_SHEET_DEFINITIONS) {
+  return definitions.map(definition => {
     const { facts, returns } = observations[definition.id] ?? {}
-    if (!facts?.asOf || !Number.isInteger(facts.constituents) || facts.constituents <= 0 ||
-        !['countries', 'sectors', 'holdings'].every(field => facts[field]?.length &&
-          facts[field].every(([label, value]) => label && Number.isFinite(value) && value >= 0 && value <= 100)) ||
-        !returns?.asOf || !['NET', 'GROSS', 'TOTAL'].includes(returns.variant) ||
-        returns.performance?.kind !== 'indice' || !/dividendes.*réinvestis/.test(returns.performance.detail) ||
-        ![facts.source, returns.source].every(source => source?.url?.startsWith('https://') && source.checkedAt && /^[a-f0-9]{64}$/.test(source.sha256))) {
-      throw new Error(`Données automatisées complètes exigées : ${definition.id}`)
-    }
+    if (!completeAutomatedFacts({ facts, returns })) throw new Error(`Données automatisées complètes exigées : ${definition.id}`)
     const years = latestCommonYears([Object.fromEntries(returns.values)], { length: 5, now })
     if (years.length !== 5) throw new Error(`Cinq années complètes exigées : ${definition.id}`)
     const values = returns.values.filter(([year]) => years.includes(year)).sort((a, b) => b[0] - a[0])

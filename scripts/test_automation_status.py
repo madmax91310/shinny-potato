@@ -258,4 +258,26 @@ class NewCollectorStatusTests(unittest.TestCase):
   self.assertEqual(read_large_file(lambda path:calls.append(path) or {'encoding':'base64','content':body,'sha':'abc'},'feed.json','radar-data')['schemaVersion'],1)
   self.assertEqual(len(calls),1)
 
+ def test_waiting_or_in_grace_items_retire_their_previous_alert(self):
+  state=update_status({},run(1,workflow='update-scpi.yml'),[],[{'observations':[{'id':'remake-live','name':'Remake','status':'failure','reason':'Missing current official bulletin'}]}])
+  self.assertIn('remake-live',state['workflows']['update-scpi.yml']['dataFailures'])
+  state=update_status(state,run(2,conclusion='success',workflow='update-scpi.yml'),[],[{'observations':[{'id':'remake-live','name':'Remake','status':'waiting','reason':'next edition expected by 2026-11-14'}]}])
+  self.assertNotIn('remake-live',state['workflows']['update-scpi.yml']['dataFailures'])
+  state=update_status({},run(1,workflow='update-instrument-metadata.yml'),[],[{'successes':[],'errors':[{'id':'IE1:domicile','error':'not observed'}]}])
+  state=update_status(state,run(2,conclusion='success',workflow='update-instrument-metadata.yml'),[],[{'successes':[],'errors':[],'inactive':[{'id':'IE1:domicile'}]}])
+  self.assertEqual(state['workflows']['update-instrument-metadata.yml']['dataFailures'],{})
+
+ def test_radar_regression_guard_is_not_a_source_failure(self):
+  report={'_collector':'feed','coverage':{'etf':1},'errors':[{'family':'etf','entity':'IE1','reason':'Observation plus ancienne ignorée : Frais annuels.'}]}
+  self.assertEqual(normalize_report(report),{'successes':[{'id':'radar:etf'}],'errors':[]})
+  report['errors'].append({'family':'etf','reason':'Source illisible'})
+  self.assertEqual(normalize_report(report)['errors'][0]['error'],'Source illisible')
+
+ def test_failed_browser_check_keeps_its_annotated_name(self):
+  jobs=[{'name':'deploy / browser-checks (0)','conclusion':'failure','steps':[{'name':'Run node scripts/run-browser-checks.mjs 0 4','conclusion':'failure'}],
+         'annotations':[{'title':'Échec node scripts/playwright-tools.mjs','message':'strict mode violation'},{'title':'Node.js 20 is deprecated','message':'x'}]}]
+  state=update_status({},run(1),jobs,[])
+  failure=state['workflows']['update-economic-data.yml']['failures'][0]
+  self.assertEqual(failure['checks'],['node scripts/playwright-tools.mjs — strict mode violation'])
+
 if __name__ == '__main__': unittest.main()

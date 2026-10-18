@@ -3,6 +3,13 @@ import LONG from '../../data/ranking-histories.json' with { type: 'json' }
 import ANNUAL from '../../data/ranking-annual.json' with { type: 'json' }
 import INDEX_ANNUAL from '../../data/ranking-index-annual.json' with { type: 'json' }
 import FTSE from '../../data/ranking-ftse.json' with { type: 'json' }
+import { exposureGroup } from '../../data/asset-labels.js'
+import { getInstrumentFacts } from '../../data/instrument-facts.js'
+import { lastCompleteYear } from '../../data/annual-window.js'
+import { isStock } from '../../lib/is-stock.js'
+import { commonCoverage } from './engine.js'
+import { convertAsset } from './series.js'
+import FX from '../../data/monthly-fx.json' with { type: 'json' }
 
 // References to shared histories and validated, automatically refreshed extensions. No hand-entered prices.
 export const CATEGORIES = [
@@ -58,6 +65,7 @@ export const CATEGORIES = [
   {id:'defensive-consumer-global',label:'Consommation défensive internationale',ids:['philip-morris','bat','pernod-ricard','heineken','ab-inbev','carrefour'],currency:'EUR'},
   {id:'transport-logistics',label:'Transport et logistique',ids:['fdx','csx','unp','canadian-national-railway','dsv'],currency:'EUR'},
   {id:'canada-leaders',label:'Grandes valeurs canadiennes',ids:['royal-bank-of-canada','shopify','canadian-national-railway','enbridge','toronto-dominion','brookfield'],currency:'EUR'},
+  {id:'australia-leaders',label:'Grandes valeurs australiennes',ids:['bhp','commonwealth-bank','csl','macquarie'],currency:'EUR'},
   { id: 'world-acwi-net', label: 'World et ACWI · vingt ans · indices nets', ids: ['world-net', 'msciAcwi'], currency: 'USD' },
   { id: 'world-acwi-imi', label: 'World, ACWI et ACWI IMI · indices nets', ids: ['world-net', 'msciAcwi', 'msciAcwiImi'], currency: 'USD' },
   { id: 'regions-indices', label: 'Grandes régions · indices nets', ids: ['world-net', 'msciUsa', 'msciEurope', 'japan-net', 'emerging-net'], currency: 'USD' },
@@ -126,6 +134,24 @@ export function comparisonBasis(id, asset) {
   if (['bitcoin', 'ethereum'].includes(id)) return 'spot-close'
   return INDEX_BASIS[id] ?? (asset.priceUnit === 'points' && asset.variant ? (asset.variant === 'NETR' ? 'index-net' : asset.variant === 'GRTR' ? 'index-gross' : null) : asset.priceMethod === 'adjusted' ? 'adjusted' : null)
 }
+// Navigation only: an ETF or ETC outside the editorial categories is filed under its exposure
+// group (identity and benchmark from the registries), never under a catch-all label.
+export function derivedGroup(asset) {
+  if (isStock(asset)) return 'Actions individuelles'
+  if (asset.priceUnit === 'points') return 'Indices'
+  return exposureGroup({ ...asset, name: asset.label, benchmark: asset.isin ? getInstrumentFacts(asset.isin)?.benchmark : undefined })
+}
+// Longest histories first; a member is kept only while the selection still shares a full year.
+function coveredSelection(list, currency) {
+  const selected = []
+  for (const asset of [...list].sort((x, y) => x.points[0].date.localeCompare(y.points[0].date) || x.id.localeCompare(y.id))) {
+    if (selected.length === 6) break
+    if (!selected.length) { selected.push(asset); continue }
+    try { if (commonCoverage([...selected, asset].map(a => convertAsset(a, currency, FX))).years.length) selected.push(asset) } catch { /* no shared complete year with the longer histories */ }
+  }
+  return selected.length >= 2 ? selected.map(a => a.id) : []
+}
+export const slugify = text => String(text).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
 export function buildRankingAssets(histories) {
   return Object.fromEntries(Object.entries(histories).flatMap(([id, a]) => {
     const basis = comparisonBasis(id, a)
@@ -133,7 +159,7 @@ export function buildRankingAssets(histories) {
     // Frozen listing prices cannot represent a genuine cross-asset return.
     if (a.points.some((p, i) => i >= 2 && p.price === a.points[i - 1].price && p.price === a.points[i - 2].price)) return []
     return [[id, { ...a, id, basis, shortLabel: SHORT[id] ?? a.label.replace(/^Indice /, ''),
-      group: GROUPS[id] ?? (a.instrumentType === 'EQUITY' ? 'Actions individuelles' : a.isin ? 'Autres ETF et ETC' : a.priceUnit === 'points' ? 'Indices' : 'Actions et autres actifs'),
+      group: GROUPS[id] ?? derivedGroup({ ...a, basis }),
     }]]
   }))
 }
@@ -143,10 +169,36 @@ const extended = Object.fromEntries(Object.values(LONG).map(record => [record.ta
   points: record.points.map(([date, price]) => ({ date, price })),
 }]))
 export const RANKING_ASSETS = buildRankingAssets({ ...ASSETS, ...extended, ftseAllWorld: { ...FTSE, priceUnit: 'points', points: FTSE.points.map(([date, price]) => ({ date, price })) } })
+// Universes derived from the registry: one ranking per exposure group among the ETF and ETC that
+// no editorial category lists. Fixed rule, no hand-picked line: at most six, the longest histories
+// first, then the identifier. The checkbox grid still offers the whole group.
+export const EXPOSURE_CATEGORIES = (() => {
+  const byGroup = new Map()
+  for (const a of Object.values(RANKING_ASSETS)) if (a.isin && a.instrumentType !== 'EQUITY' && !GROUPS[a.id]) byGroup.set(a.group, [...(byGroup.get(a.group) ?? []), a])
+  return [...byGroup].filter(([, list]) => list.length >= 2).sort(([a], [b]) => a.localeCompare(b, 'fr')).map(([group, list]) => ({
+    id: `exposure-${slugify(group)}`, label: `${group} · ETF et ETC du registre`, group, universe: list.length, derived: true, currency: 'EUR',
+    ids: coveredSelection(list, 'EUR'),
+  })).filter(c => c.ids.length >= 2)
+})()
 export const ANNUAL_ASSETS = { ...ANNUAL, ...INDEX_ANNUAL }
+// PEA calendars: every EUR share flagged PEA with the three latest complete years, grouped by
+// exposure; at most six per group, the longest calendars first. The clock bounds the years.
+const RECENT_YEARS = [2, 1, 0].map(offset => lastCompleteYear() - offset)
+export const ANNUAL_PEA_CATEGORIES = (() => {
+  const byGroup = new Map()
+  for (const a of Object.values(ANNUAL)) {
+    if (!(a.pea && a.currency === 'EUR' && RECENT_YEARS.every(y => Number.isFinite(a.years[y])))) continue
+    const group = exposureGroup({ ...a, name: a.label, benchmark: getInstrumentFacts(a.isin)?.benchmark })
+    byGroup.set(group, [...(byGroup.get(group) ?? []), a])
+  }
+  return [...byGroup].sort(([a], [b]) => a.localeCompare(b, 'fr')).map(([group, list]) => ({
+    id: `annual-pea-${slugify(group)}`, label: `ETF PEA · ${group} · calendriers NAV`, frequency: 'annual', group, universe: list.length, derived: true,
+    ids: [...list].sort((x, y) => Object.keys(y.years).length - Object.keys(x.years).length || x.isin.localeCompare(y.isin)).slice(0, 6).map(a => a.id),
+  })).filter(c => c.ids.length >= 2)
+})()
 export const ANNUAL_CATEGORIES = [
   { id: 'annual-world', label: 'World, ACWI, All-World · années officielles', frequency: 'annual', ids: ['annual-msciWorld', 'annual-acwi-gross', 'annual-ftseAllWorld'], currency: 'USD' },
-  { id: 'annual-pea', label: 'ETF PEA · calendriers NAV', frequency: 'annual', ids: Object.values(ANNUAL).filter(a => a.pea && a.currency === 'EUR' && [2023, 2024, 2025].every(y => Number.isFinite(a.years[y]))).slice(0, 6).map(a => a.id) },
+  ...ANNUAL_PEA_CATEGORIES,
 ]
 // Prepared selections deliberately reserve the sixth slot for a real fund,
 // never an index. Prices and dividends continue to come from shared collectors.
@@ -164,7 +216,7 @@ export const BENCHMARK_CATEGORIES = BENCHMARK_GROUPS.map(([sourceId, benchmarkId
   return { id: `${sourceId}-benchmark`, label: `${source.label} · face à un ETF ${SHORT[benchmarkId] ?? 'S&P 500'}`,
     ids: [...source.ids.slice(0, 5), benchmarkId], benchmarkId, currency: 'EUR' }
 })
-export const ALL_CATEGORIES = [...CATEGORIES, ...BENCHMARK_CATEGORIES, ...ANNUAL_CATEGORIES]
+export const ALL_CATEGORIES = [...CATEGORIES, ...EXPOSURE_CATEGORIES, ...BENCHMARK_CATEGORIES, ...ANNUAL_CATEGORIES]
 export const BENCHMARK_OPTIONS = [
   { id: 'etfIE00B4L5Y983', label: 'MSCI World' },
   { id: 'etfIE00B5BMR087', label: 'S&P 500' },

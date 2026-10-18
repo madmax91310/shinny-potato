@@ -2,6 +2,7 @@ import EQUITY_DUEL_RETURNS from './equity-duel-returns.json' with {type:'json'};
 import MONTHLY_DUEL_RETURNS from './monthly-duel-returns.json' with {type:'json'};
 import { RESOURCE_DUEL_CHOICES } from './resource-selections.js'
 import { NON_BOND_SHEETS } from './non-bond-expansion.js';
+import { convertCalendarReturn } from './calendar-fx.js';
 import annualFx from './annual-fx.json' with { type: 'json' };
 import { ASSETS } from './portfolio-assets.js'
 import { getInstrumentDuelSeries, getInstrumentCalendarReturns } from './instrument-returns.js'
@@ -121,7 +122,11 @@ const extraFunds = [
   const market = MONTHLY_DUEL_RETURNS[isin]
   const official = getInstrumentDuelSeries(isin)
   const officialYears=official?.years ?? Object.fromEntries((official?.values ?? []).map((v,i)=>[2020+i,v]))
-  const series = latestCommonYears([officialYears],{minimum:3}).length>=3 ? official : market && latestCommonYears([market.years],{minimum:3}).length>=3 ? market : official
+  // When the same share is also a manual Générateur asset (market-price calendar), both tools
+  // must show one number: use that same market series here.
+  const sharedManual = market && ASSETS.some(a => a.id === `manual-${isin}` && a.automatedManual)
+  const series = sharedManual && latestCommonYears([market.years],{minimum:3}).length>=3 ? market
+    : latestCommonYears([officialYears],{minimum:3}).length>=3 ? official : market && latestCommonYears([market.years],{minimum:3}).length>=3 ? market : official
   if (!series?.source) throw new Error(`Historique de part absent : ${isin}`)
   return { id, isin, label, exposure, name: getInstrumentName(isin), role, group: ROLES[role],
     ...series, note: series.note ?? (['copper','platinum','palladium'].includes(exposure) ? 'Rendements NAV de l’ETC exact, frais inclus, en USD. '+(exposure==='copper'?'Contrats à terme via swap ; renouvellement des contrats et frais de swap distincts.':'Adossé à du métal physique ; sans revenu distribué.') : exposure === 'multifactor' ? 'Rendements NAV de la part exacte, revenus réinvestis. Le fonds a changé d’indice : cet historique ne décrit pas uniquement la stratégie STOXX actuelle.' : exposure === 'gold' ? 'Rendements de l’ETC adossé à de l’or physique, sans revenu distribué ; années complètes communes.' : 'Rendements de la part exacte, revenus réinvestis ; seules les années complètes disponibles sont comparées.') }
@@ -163,8 +168,5 @@ export function euroReturn(item, year) {
   if (item.euroCalendarReturns) return item.euroCalendarReturns[year] ?? null
   const original = item.calendarReturns?.[year] ?? item.values[year - 2020]
   if (!Number.isFinite(original)) return null
-  if (item.currency === 'EUR') return original
-  const start = EUR_USD[year - 1]
-  const end = EUR_USD[year]
-  return start && end ? ((1 + original / 100) * start / end - 1) * 100 : null
+  return convertCalendarReturn(original, year, item.currency, 'EUR')
 }

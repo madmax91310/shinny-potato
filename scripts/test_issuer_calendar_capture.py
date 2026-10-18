@@ -12,8 +12,9 @@ def performance(stamp='2026-12-31'):
                 observations=[dict(label=label, value=12.34, asOf=stamp) for label in ['Depuis janvier','1 an']])
 
 class CalendarCapture(unittest.TestCase):
-    def test_all_twelve_recent_shares_first_complete_year(self):
-        self.assertEqual(len(RECENT_LAUNCHES), 12)
+    def test_every_recent_share_first_complete_year(self):
+        # Every share in the dated launch registry, however many are added.
+        self.assertGreaterEqual(len(RECENT_LAUNCHES), 12)
         for isin, evidence in RECENT_LAUNCHES.items():
             launch = dt.date.fromisoformat(evidence['launchDate'])
             year = launch.year + ((launch.month, launch.day) != (1, 1))

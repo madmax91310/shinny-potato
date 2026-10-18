@@ -2,8 +2,13 @@ import { SHEETS } from '../src/data/index-factsheets.js'
 import { buildFactsheetTweet } from '../src/pages/factsheet-tweets/lib.js'
 import assert from 'node:assert/strict'
 import { indexObservation } from '../src/pages/factsheet-tweets/editorial.js'
+import { completeAutomatedRecord } from '../src/data/automated-index-sheets.js'
+import AUTOMATED_INDEX_RECORDS from '../src/data/automated-indices.json' with { type: 'json' }
 
-assert.equal(SHEETS.length, 40, 'Quarante sujets, consommation discrétionnaire et communication mondiales incluses')
+// Every complete automated index has a sheet; the count follows the registry instead of a frozen figure.
+assert.ok(SHEETS.length >= 40, 'au moins les quarante sujets historiques')
+for (const [id, record] of Object.entries(AUTOMATED_INDEX_RECORDS)) if (completeAutomatedRecord(record)) assert.ok(SHEETS.some(sheet => sheet.id === id), `${id} : indice complet sans fiche`)
+for (const id of ['msci-world-consumer-discretionary', 'msci-world-communication-services']) assert.ok(SHEETS.some(sheet => sheet.id === id), id)
 assert.equal(new Set(SHEETS.map(sheet => sheet.id)).size, SHEETS.length, 'Identifiants de fiches uniques')
 assert(SHEETS.some(sheet => sheet.id === 'world-islamic'), 'Indice World Islamic raccordé')
 for (const sheet of SHEETS) {
@@ -65,3 +70,25 @@ const stoxx = SHEETS.find(s => s.id === 'stoxx600')
 assert.match(stoxx.performance.detail, /EUR, dividendes nets réinvestis/)
 assert.doesNotMatch(buildFactsheetTweet(stoxx), /hors dividendes|Price Return|Les dividendes ne sont pas comptés/)
 assert.equal(new Map(stoxx.returns).get(2025), 19.8)
+
+// EUR must match Performance depuis's official ACWI series, without changing composition.
+const { factsheetInCurrency, canUseEuros } = await import('../src/pages/factsheet-tweets/performanceCurrency.js')
+const officialCurrencies = (await import('../src/data/official-performance-currencies.json', { with: { type: 'json' } })).default
+const euroAcwi = factsheetInCurrency(acwi, 'EUR')
+assert.equal(canUseEuros(acwi), true)
+for (const [year, value] of euroAcwi.returns) assert.equal(value, officialCurrencies.msciAcwi.EUR.annualReturns[year])
+assert.strictEqual(euroAcwi.countries, acwi.countries)
+assert.strictEqual(euroAcwi.holdings, acwi.holdings)
+assert.strictEqual(factsheetInCurrency(acwi), acwi)
+assert.equal(euroAcwi.performance.tenYear, undefined)
+assert.match(buildFactsheetTweet(euroAcwi), /EUR, dividendes bruts réinvestis/)
+assert.doesNotMatch(buildFactsheetTweet(euroAcwi), /en dollars|rendements nets|Sur dix ans/)
+const unknownCurrency = { ...acwi, id: 'unknown', performance: { ...acwi.performance, detail: 'Devise inconnue' } }
+assert.equal(canUseEuros(unknownCurrency), false)
+assert.throws(() => factsheetInCurrency(unknownCurrency, 'EUR'))
+const { convertCalendarReturn } = await import('../src/data/calendar-fx.js')
+const converted = factsheetInCurrency({ ...acwi, id: 'conversion-test' }, 'EUR')
+for (const [year, value] of converted.returns) assert.equal(value, convertCalendarReturn(new Map(acwi.returns).get(year), year, 'USD', 'EUR'))
+assert.equal(converted.performance.detail, acwi.performance.detail.replace(/USD|dollars/g, 'EUR'))
+assert.match(converted.performance.currencyNote, /BCE/)
+console.log('EUR : ACWI officiel identique à Performance depuis, composition conservée, conversion BCE et historique incomplet vérifiés.')

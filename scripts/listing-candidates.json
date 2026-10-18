@@ -1,0 +1,78 @@
+{
+  "note": "Cotations candidates à vérifier par collect_instrument_metadata.py dans le document officiel de l’émetteur (même ligne : place, devise, ticker). Une ligne non retrouvée reste absente du registre : rien ici n’est une preuve. Relevés du 18/10/2026 sur les pages émetteurs, Deutsche Börse et communiqués de cotation ; symbole Yahoo = ticker + suffixe de place.",
+  "candidates": [
+    {"isin": "IE00B3RBWM25", "basis": "Vanguard FTSE All-World Dist : lignes Amsterdam/Xetra/Milan EUR et Londres USD (VWRD)", "rows": [
+      {"ticker": "VWRL", "mic": "XAMS", "exchange": "Euronext Amsterdam", "currency": "EUR", "symbol": "VWRL.AS"},
+      {"ticker": "VGWL", "mic": "XETR", "exchange": "Xetra", "currency": "EUR", "symbol": "VGWL.DE"},
+      {"ticker": "VWRL", "mic": "ETFP", "exchange": "Borsa Italiana", "currency": "EUR", "symbol": "VWRL.MI"},
+      {"ticker": "VWRD", "mic": "XLON", "exchange": "London Stock Exchange", "currency": "USD", "symbol": "VWRD.L"}]},
+    {"isin": "IE00BK5BQV03", "basis": "Vanguard FTSE Developed World Acc : Xetra VGVF (Deutsche Börse), Londres USD VHVE", "rows": [
+      {"ticker": "VGVF", "mic": "XETR", "exchange": "Xetra", "currency": "EUR", "symbol": "VGVF.DE"},
+      {"ticker": "VHVE", "mic": "XLON", "exchange": "London Stock Exchange", "currency": "USD", "symbol": "VHVE.L"}]},
+    {"isin": "IE00B3VVMM84", "basis": "Vanguard FTSE Emerging Markets Dist", "rows": [
+      {"ticker": "VFEM", "mic": "XAMS", "exchange": "Euronext Amsterdam", "currency": "EUR", "symbol": "VFEM.AS"},
+      {"ticker": "VFEM", "mic": "XETR", "exchange": "Xetra", "currency": "EUR", "symbol": "VFEM.DE"},
+      {"ticker": "VFEM", "mic": "ETFP", "exchange": "Borsa Italiana", "currency": "EUR", "symbol": "VFEM.MI"},
+      {"ticker": "VDEM", "mic": "XLON", "exchange": "London Stock Exchange", "currency": "USD", "symbol": "VDEM.L"}]},
+    {"isin": "IE00B3XXRP09", "basis": "Vanguard S&P 500 Dist", "rows": [
+      {"ticker": "VUSA", "mic": "XAMS", "exchange": "Euronext Amsterdam", "currency": "EUR", "symbol": "VUSA.AS"},
+      {"ticker": "VUSA", "mic": "XETR", "exchange": "Xetra", "currency": "EUR", "symbol": "VUSA.DE"},
+      {"ticker": "VUSA", "mic": "ETFP", "exchange": "Borsa Italiana", "currency": "EUR", "symbol": "VUSA.MI"},
+      {"ticker": "VUSD", "mic": "XLON", "exchange": "London Stock Exchange", "currency": "USD", "symbol": "VUSD.L"}]},
+    {"isin": "IE00BFMXXD54", "basis": "Vanguard S&P 500 Acc", "rows": [
+      {"ticker": "VUAA", "mic": "XETR", "exchange": "Xetra", "currency": "EUR", "symbol": "VUAA.DE"},
+      {"ticker": "VUAA", "mic": "ETFP", "exchange": "Borsa Italiana", "currency": "EUR", "symbol": "VUAA.MI"},
+      {"ticker": "VUAA", "mic": "XLON", "exchange": "London Stock Exchange", "currency": "USD", "symbol": "VUAA.L"}]},
+    {"isin": "IE00B945VV12", "basis": "Vanguard FTSE Developed Europe Dist", "rows": [
+      {"ticker": "VEUR", "mic": "XAMS", "exchange": "Euronext Amsterdam", "currency": "EUR", "symbol": "VEUR.AS"},
+      {"ticker": "VEUR", "mic": "XETR", "exchange": "Xetra", "currency": "EUR", "symbol": "VEUR.DE"},
+      {"ticker": "VEUR", "mic": "ETFP", "exchange": "Borsa Italiana", "currency": "EUR", "symbol": "VEUR.MI"},
+      {"ticker": "VEUD", "mic": "XLON", "exchange": "London Stock Exchange", "currency": "USD", "symbol": "VEUD.L"}]},
+    {"isin": "IE00BK5BQX27", "basis": "Vanguard FTSE Developed Europe Acc : Xetra VWCG (Deutsche Börse)", "rows": [
+      {"ticker": "VWCG", "mic": "XETR", "exchange": "Xetra", "currency": "EUR", "symbol": "VWCG.DE"}]},
+    {"isin": "IE000XZSV718", "basis": "SPDR S&P 500 Acc (SPYL)", "rows": [
+      {"ticker": "SPYL", "mic": "XETR", "exchange": "Xetra", "currency": "EUR", "symbol": "SPYL.DE"},
+      {"ticker": "SPYL", "mic": "ETFP", "exchange": "Borsa Italiana", "currency": "EUR", "symbol": "SPYL.MI"},
+      {"ticker": "SPYL", "mic": "XPAR", "exchange": "Euronext Paris", "currency": "EUR", "symbol": "SPYL.PA"}]},
+    {"isin": "IE00BFY0GT14", "basis": "SPDR MSCI World : Xetra SPPW (cotation principale), SWRD Milan/Amsterdam/Londres", "rows": [
+      {"ticker": "SPPW", "mic": "XETR", "exchange": "Xetra", "currency": "EUR", "symbol": "SPPW.DE"}]},
+    {"isin": "IE00BKWQ0Q14", "basis": "SPDR MSCI Europe : ERO Paris, SPYE Xetra, EROX Milan", "rows": [
+      {"ticker": "SPYE", "mic": "XETR", "exchange": "Xetra", "currency": "EUR", "symbol": "SPYE.DE"}]},
+    {"isin": "IE0000QLH0G6", "basis": "Invesco FTSE All-World Dist : FTWD Londres USD et Xetra", "rows": [
+      {"ticker": "FTWD", "mic": "XLON", "exchange": "London Stock Exchange", "currency": "USD", "symbol": "FTWD.L"},
+      {"ticker": "FTWD", "mic": "XETR", "exchange": "Xetra", "currency": "EUR", "symbol": "FTWD.DE"}]},
+    {"isin": "IE000716YHJ7", "basis": "Invesco FTSE All-World Acc : FWRA", "rows": [
+      {"ticker": "FWRA", "mic": "XLON", "exchange": "London Stock Exchange", "currency": "USD", "symbol": "FWRA.L"},
+      {"ticker": "FWRA", "mic": "XETR", "exchange": "Xetra", "currency": "EUR", "symbol": "FWRA.DE"},
+      {"ticker": "FWRA", "mic": "ETFP", "exchange": "Borsa Italiana", "currency": "EUR", "symbol": "FWRA.MI"}]},
+    {"isin": "IE00BKLF1R75", "basis": "WisdomTree Battery Solutions : W1TA Xetra, VOLT Milan/Londres/Paris (fiche WisdomTree)", "rows": [
+      {"ticker": "VOLT", "mic": "XPAR", "exchange": "Euronext Paris", "currency": "EUR", "symbol": "VOLT.PA"}]},
+    {"isin": "IE0002Y8CX98", "basis": "WisdomTree Europe Defence : WDEF Milan/Paris/Londres, EUDF Xetra (page produit WisdomTree)", "rows": [
+      {"ticker": "WDEF", "mic": "XPAR", "exchange": "Euronext Paris", "currency": "EUR", "symbol": "WDEF.PA"},
+      {"ticker": "WDEF", "mic": "XLON", "exchange": "London Stock Exchange", "currency": "USD", "symbol": "WDEF.L"}]},
+    {"isin": "IE00BLCHJB90", "basis": "Global X Robotics & AI : BOTZ Londres USD, XB0T Xetra (Deutsche Börse)", "rows": [
+      {"ticker": "BOTZ", "mic": "XLON", "exchange": "London Stock Exchange", "currency": "USD", "symbol": "BOTZ.L"},
+      {"ticker": "XB0T", "mic": "XETR", "exchange": "Xetra", "currency": "EUR", "symbol": "XB0T.DE"}]},
+    {"isin": "IE00BMH5Y871", "basis": "Global X Cybersecurity : BUG Londres USD", "rows": [
+      {"ticker": "BUG", "mic": "XLON", "exchange": "London Stock Exchange", "currency": "USD", "symbol": "BUG.L"}]},
+    {"isin": "IE000NDWFGA5", "basis": "Global X Uranium : URNU Londres USD", "rows": [
+      {"ticker": "URNU", "mic": "XLON", "exchange": "London Stock Exchange", "currency": "USD", "symbol": "URNU.L"}]},
+    {"isin": "IE00BMC38736", "basis": "VanEck Semiconductor : SMH Londres USD/Milan/Paris, VVSM Xetra (fiche VanEck)", "rows": [
+      {"ticker": "SMH", "mic": "XLON", "exchange": "London Stock Exchange", "currency": "USD", "symbol": "SMH.L"},
+      {"ticker": "VVSM", "mic": "XETR", "exchange": "Xetra", "currency": "EUR", "symbol": "VVSM.DE"}]},
+    {"isin": "IE00BD4TXV59", "basis": "UBS Core MSCI World : UETW Xetra, WRDUSW SIX USD, WRDA Milan, WRDB Londres USD (fiche UBS 06/2026)", "rows": [
+      {"ticker": "UETW", "mic": "XETR", "exchange": "Xetra", "currency": "EUR", "symbol": "UETW.DE"},
+      {"ticker": "WRDUSW", "mic": "XSWX", "exchange": "SIX Swiss Exchange", "currency": "USD", "symbol": "WRDUSW.SW"},
+      {"ticker": "WRDA", "mic": "ETFP", "exchange": "Borsa Italiana", "currency": "EUR", "symbol": "WRDA.MI"},
+      {"ticker": "WRDB", "mic": "XLON", "exchange": "London Stock Exchange", "currency": "USD", "symbol": "WRDB.L"}]},
+    {"isin": "IE00B4K6B022", "basis": "HSBC EURO STOXX 50 : H50E Londres et Paris EUR ; la fiche HSBC ne porte pas la place sur la ligne du ticker, ligne attendue d’un autre document", "rows": [
+      {"ticker": "H50E", "mic": "XLON", "exchange": "London Stock Exchange", "currency": "EUR", "symbol": "H50E.L"},
+      {"ticker": "H50E", "mic": "XPAR", "exchange": "Euronext Paris", "currency": "EUR", "symbol": "H50E.PA"}]},
+    {"isin": "FR0011550185", "basis": "BNP Paribas Easy S&P 500 Acc : ESE Euronext Paris ; la fiche BNP sépare devise et place, ligne attendue d’un autre document", "rows": [
+      {"ticker": "ESE", "mic": "XPAR", "exchange": "Euronext Paris", "currency": "EUR", "symbol": "ESE.PA"}]},
+    {"isin": "IE000QDFFK00", "basis": "BNP Paribas Easy II Nasdaq 100 Acc : table « Exchange / Currency / Ticker » de la fiche (EURONEXT P EUR ANAU FP, XETRA USD ANAU GY, Borsa Italiana EUR ANAU IM)", "rows": [
+      {"ticker": "ANAU", "mic": "XPAR", "exchange": "Euronext Paris", "currency": "EUR", "symbol": "ANAU.PA"},
+      {"ticker": "ANAU", "mic": "XETR", "exchange": "Xetra", "currency": "USD", "symbol": "ANAU.DE"},
+      {"ticker": "ANAU", "mic": "ETFP", "exchange": "Borsa Italiana", "currency": "EUR", "symbol": "ANAU.MI"}]}
+  ]
+}

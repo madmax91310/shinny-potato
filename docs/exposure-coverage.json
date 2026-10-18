@@ -1,92 +1,102 @@
 {
-  "checkedAt": "2026-10-18T06:23:10.832Z",
-  "total": 654,
-  "outside": 45,
+  "checkedAt": "2026-10-18T13:10:47.041Z",
+  "total": 647,
+  "outside": 41,
   "complete": 606,
-  "gaps": [
-    {
-      "asset": "engie",
-      "isin": null,
-      "name": "Engie",
-      "kind": null,
-      "provider": null,
-      "countries": {
-        "coverage": 0,
-        "eligible": 100,
-        "outside": false,
-        "missing": 100,
-        "reasons": [
-          "Support non confirmé"
-        ],
-        "asOf": null
-      },
-      "sectors": {
-        "coverage": 0,
-        "eligible": 100,
-        "outside": false,
-        "missing": 100,
-        "reasons": [
-          "Support non confirmé"
-        ],
-        "asOf": null
-      }
-    },
-    {
-      "asset": "orange",
-      "isin": null,
-      "name": "Orange",
-      "kind": null,
-      "provider": null,
-      "countries": {
-        "coverage": 0,
-        "eligible": 100,
-        "outside": false,
-        "missing": 100,
-        "reasons": [
-          "Support non confirmé"
-        ],
-        "asOf": null
-      },
-      "sectors": {
-        "coverage": 0,
-        "eligible": 100,
-        "outside": false,
-        "missing": 100,
-        "reasons": [
-          "Support non confirmé"
-        ],
-        "asOf": null
-      }
-    },
-    {
-      "asset": "veolia",
-      "isin": null,
-      "name": "Veolia",
-      "kind": null,
-      "provider": null,
-      "countries": {
-        "coverage": 0,
-        "eligible": 100,
-        "outside": false,
-        "missing": 100,
-        "reasons": [
-          "Support non confirmé"
-        ],
-        "asOf": null
-      },
-      "sectors": {
-        "coverage": 0,
-        "eligible": 100,
-        "outside": false,
-        "missing": 100,
-        "reasons": [
-          "Support non confirmé"
-        ],
-        "asOf": null
-      }
-    }
-  ],
+  "gaps": [],
   "outsideAssets": [
+    {
+      "asset": "gold",
+      "isin": "IE00B4ND3602",
+      "name": "iShares Physical Gold ETC",
+      "kind": "etc",
+      "provider": "iShares",
+      "countries": {
+        "coverage": 0,
+        "eligible": 0,
+        "outside": true,
+        "missing": 0,
+        "reasons": [],
+        "asOf": null
+      },
+      "sectors": {
+        "coverage": 0,
+        "eligible": 0,
+        "outside": true,
+        "missing": 0,
+        "reasons": [],
+        "asOf": null
+      }
+    },
+    {
+      "asset": "silver",
+      "isin": "IE00B4NCWG09",
+      "name": "iShares Physical Silver ETC",
+      "kind": "etc",
+      "provider": "iShares",
+      "countries": {
+        "coverage": 0,
+        "eligible": 0,
+        "outside": true,
+        "missing": 0,
+        "reasons": [],
+        "asOf": null
+      },
+      "sectors": {
+        "coverage": 0,
+        "eligible": 0,
+        "outside": true,
+        "missing": 0,
+        "reasons": [],
+        "asOf": null
+      }
+    },
+    {
+      "asset": "btc",
+      "isin": "GB00BLD4ZL17",
+      "name": "CoinShares Physical Bitcoin ETP",
+      "kind": "etc",
+      "provider": "CoinShares",
+      "countries": {
+        "coverage": 0,
+        "eligible": 0,
+        "outside": true,
+        "missing": 0,
+        "reasons": [],
+        "asOf": null
+      },
+      "sectors": {
+        "coverage": 0,
+        "eligible": 0,
+        "outside": true,
+        "missing": 0,
+        "reasons": [],
+        "asOf": null
+      }
+    },
+    {
+      "asset": "eth",
+      "isin": "GB00BLD4ZM24",
+      "name": "CoinShares Ethereum Staking ETP",
+      "kind": "etc",
+      "provider": "CoinShares",
+      "countries": {
+        "coverage": 0,
+        "eligible": 0,
+        "outside": true,
+        "missing": 0,
+        "reasons": [],
+        "asOf": null
+      },
+      "sectors": {
+        "coverage": 0,
+        "eligible": 0,
+        "outside": true,
+        "missing": 0,
+        "reasons": [],
+        "asOf": null
+      }
+    },
     {
       "asset": "FR0013346681",
       "isin": "FR0013346681",
@@ -502,52 +512,6 @@
       }
     },
     {
-      "asset": "IE00B4NCWG09",
-      "isin": "IE00B4NCWG09",
-      "name": "iShares Physical Silver ETC",
-      "kind": "etc",
-      "provider": "iShares",
-      "countries": {
-        "coverage": 0,
-        "eligible": 0,
-        "outside": true,
-        "missing": 0,
-        "reasons": [],
-        "asOf": null
-      },
-      "sectors": {
-        "coverage": 0,
-        "eligible": 0,
-        "outside": true,
-        "missing": 0,
-        "reasons": [],
-        "asOf": null
-      }
-    },
-    {
-      "asset": "IE00B4ND3602",
-      "isin": "IE00B4ND3602",
-      "name": "iShares Physical Gold ETC",
-      "kind": "etc",
-      "provider": "iShares",
-      "countries": {
-        "coverage": 0,
-        "eligible": 0,
-        "outside": true,
-        "missing": 0,
-        "reasons": [],
-        "asOf": null
-      },
-      "sectors": {
-        "coverage": 0,
-        "eligible": 0,
-        "outside": true,
-        "missing": 0,
-        "reasons": [],
-        "asOf": null
-      }
-    },
-    {
       "asset": "IE00BDFL4P12",
       "isin": "IE00BDFL4P12",
       "name": "iShares Diversified Commodity Swap UCITS ETF",
@@ -737,52 +701,6 @@
       "name": "WisdomTree Copper",
       "kind": "etf",
       "provider": "WisdomTree",
-      "countries": {
-        "coverage": 0,
-        "eligible": 0,
-        "outside": true,
-        "missing": 0,
-        "reasons": [],
-        "asOf": null
-      },
-      "sectors": {
-        "coverage": 0,
-        "eligible": 0,
-        "outside": true,
-        "missing": 0,
-        "reasons": [],
-        "asOf": null
-      }
-    },
-    {
-      "asset": "GB00BLD4ZL17",
-      "isin": "GB00BLD4ZL17",
-      "name": "CoinShares Physical Bitcoin ETP",
-      "kind": "etc",
-      "provider": "CoinShares",
-      "countries": {
-        "coverage": 0,
-        "eligible": 0,
-        "outside": true,
-        "missing": 0,
-        "reasons": [],
-        "asOf": null
-      },
-      "sectors": {
-        "coverage": 0,
-        "eligible": 0,
-        "outside": true,
-        "missing": 0,
-        "reasons": [],
-        "asOf": null
-      }
-    },
-    {
-      "asset": "GB00BLD4ZM24",
-      "isin": "GB00BLD4ZM24",
-      "name": "CoinShares Ethereum Staking ETP",
-      "kind": "etc",
-      "provider": "CoinShares",
       "countries": {
         "coverage": 0,
         "eligible": 0,
@@ -1013,98 +931,6 @@
       "name": "iShares € Ultrashort Bond UCITS ETF",
       "kind": "etf",
       "provider": "iShares",
-      "countries": {
-        "coverage": 0,
-        "eligible": 0,
-        "outside": true,
-        "missing": 0,
-        "reasons": [],
-        "asOf": null
-      },
-      "sectors": {
-        "coverage": 0,
-        "eligible": 0,
-        "outside": true,
-        "missing": 0,
-        "reasons": [],
-        "asOf": null
-      }
-    },
-    {
-      "asset": "silver",
-      "isin": null,
-      "name": "ETC sur l’argent physique",
-      "kind": null,
-      "provider": null,
-      "countries": {
-        "coverage": 0,
-        "eligible": 0,
-        "outside": true,
-        "missing": 0,
-        "reasons": [],
-        "asOf": null
-      },
-      "sectors": {
-        "coverage": 0,
-        "eligible": 0,
-        "outside": true,
-        "missing": 0,
-        "reasons": [],
-        "asOf": null
-      }
-    },
-    {
-      "asset": "eth",
-      "isin": null,
-      "name": "Ethereum",
-      "kind": null,
-      "provider": null,
-      "countries": {
-        "coverage": 0,
-        "eligible": 0,
-        "outside": true,
-        "missing": 0,
-        "reasons": [],
-        "asOf": null
-      },
-      "sectors": {
-        "coverage": 0,
-        "eligible": 0,
-        "outside": true,
-        "missing": 0,
-        "reasons": [],
-        "asOf": null
-      }
-    },
-    {
-      "asset": "btc",
-      "isin": null,
-      "name": "Bitcoin",
-      "kind": null,
-      "provider": null,
-      "countries": {
-        "coverage": 0,
-        "eligible": 0,
-        "outside": true,
-        "missing": 0,
-        "reasons": [],
-        "asOf": null
-      },
-      "sectors": {
-        "coverage": 0,
-        "eligible": 0,
-        "outside": true,
-        "missing": 0,
-        "reasons": [],
-        "asOf": null
-      }
-    },
-    {
-      "asset": "gold",
-      "isin": null,
-      "name": "ETC sur l’or physique",
-      "kind": null,
-      "provider": null,
       "countries": {
         "coverage": 0,
         "eligible": 0,

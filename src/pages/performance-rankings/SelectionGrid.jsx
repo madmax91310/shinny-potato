@@ -1,11 +1,13 @@
 import { useMemo, useState } from 'react'
-import { CATEGORIES } from './data.js'
+import { CATEGORIES, EXPOSURE_CATEGORIES } from './data.js'
 import { EQUITY_GROUPS } from './suggestions.js'
 import { isStock, toggleAsset } from './selection.js'
 import { normalizeSearch } from '../../data/search-text.js'
 
 const GROUPS = CATEGORIES.filter(c => EQUITY_GROUPS.has(c.id))
 const ETF_IDS = new Set(GROUPS.flatMap(c => c.ids))
+// Registry exposure groups list every ETF and ETC of the group, not only the six of the prepared ranking.
+const EXPOSURE = new Map(EXPOSURE_CATEGORIES.map(c => [c.id, c]))
 export default function SelectionGrid({ ids, currency, assets, onChange }) {
   const [group, setGroup] = useState('stocks')
   const [query, setQuery] = useState('')
@@ -13,7 +15,7 @@ export default function SelectionGrid({ ids, currency, assets, onChange }) {
   const [limit, setLimit] = useState(30)
   const selectedGroup = GROUPS.find(c => c.id === group)
   const choices = useMemo(() => Object.values(assets).filter(a =>
-    (group === 'stocks' ? isStock(a) : group === 'etfs' ? a.isin && !isStock(a) && ETF_IDS.has(a.id) : selectedGroup?.ids.includes(a.id)) &&
+    (group === 'stocks' ? isStock(a) : group === 'etfs' ? a.isin && !isStock(a) && ETF_IDS.has(a.id) : EXPOSURE.has(group) ? a.isin && a.group === EXPOSURE.get(group).group : selectedGroup?.ids.includes(a.id)) &&
     normalizeSearch(`${a.label} ${a.shortLabel} ${a.ticker ?? ''} ${a.isin ?? ''}`).includes(normalizeSearch(query)))
     .sort((a, b) => a.label.localeCompare(b.label, 'fr')), [assets, group, query, selectedGroup])
   function toggle(id) {
@@ -24,7 +26,8 @@ export default function SelectionGrid({ ids, currency, assets, onChange }) {
     <p aria-live="polite"><strong>{ids.length}/6 sélectionnés</strong> · de deux à six actifs</p>
     <label className="rk-field">Univers à cocher<select aria-label="Univers à cocher" value={group} onChange={e => { setGroup(e.target.value); setLimit(30) }}>
       <option value="stocks">Toutes les actions</option><option value="etfs">ETF actions</option>
-      {GROUPS.map(c => <option key={c.id} value={c.id}>{c.label}</option>)}
+      <optgroup label="Univers éditoriaux">{GROUPS.map(c => <option key={c.id} value={c.id}>{c.label}</option>)}</optgroup>
+      <optgroup label="Par exposition (registre)">{EXPOSURE_CATEGORIES.map(c => <option key={c.id} value={c.id}>{c.group} · {c.universe} ETF et ETC</option>)}</optgroup>
     </select></label>
     <label className="rk-field">Rechercher dans l’univers<input type="search" value={query} onChange={e => { setQuery(e.target.value); setLimit(30) }} placeholder="Nom, ticker ou ISIN…" /></label>
     <div className="rk-checkbox-list">{choices.slice(0, limit).map(a => <label key={a.id}>

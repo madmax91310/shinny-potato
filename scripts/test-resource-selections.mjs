@@ -6,6 +6,8 @@ import assert from 'node:assert/strict'
 import { RESOURCE_COMPARISONS, RESOURCE_DUEL_CHOICES } from '../src/data/resource-selections.js'
 import { DEFAULT_THEMES } from '../src/data/etf-themes.js'
 import { AUTOMATED_ETF } from '../src/data/automated-etf.js'
+import { ASSETS } from '../src/data/portfolio-assets.js'
+import MONTHLY_DUEL_RETURNS from '../src/data/monthly-duel-returns.json' with { type: 'json' }
 import { buildTweetText } from '../src/pages/etf-tweets/lib/tweetFormat.js'
 import { getComparisonYears } from '../src/pages/tweet-midi/comparisonPerformance.js'
 import { buildSheet, buildTweet } from '../src/pages/practical-sheets/lib.js'
@@ -30,7 +32,11 @@ for(const d of newDuels) {const result=buildDuel(d);assert(result.years.length>=
 for(const [id,isin] of RESOURCE_DUEL_CHOICES) {
  const item=CATALOG.find(a=>a.id===id);assert.equal(item.isin,isin)
  const art=getDuelArt(item);assert(art.scene);assert(existsSync('public/asset-art/'+art.scene),id)
- assert.equal(item.calendarReturns[2025],AUTOMATED_ETF[isin].performance.years[2025])
+ // An ETC the Générateur already serves through its automated market-price history shares that
+ // exact-share series with the duel; every other resource duel keeps the issuer NAV performance.
+ const sharedManual=ASSETS.some(a=>a.id===`manual-${isin}`&&a.automatedManual)
+ assert.equal(item.basis==='market-price',sharedManual,id)
+ assert.equal(item.calendarReturns[2025],sharedManual?MONTHLY_DUEL_RETURNS[isin].years[2025]:AUTOMATED_ETF[isin].performance.years[2025])
  assert.notEqual(euroReturn(item,2025),item.calendarReturns[2025],'USD must use verified FX')
 }
 for(const key of ['water','timber','agribusiness'])assert(PROFILES.some(p=>p.lines.some(l=>l.asset===key)))
@@ -69,7 +75,7 @@ if(process.argv.includes('--browser')) {
   await page.goto(base+'duels-portefeuilles')
   for(const d of newDuels) {await page.locator(`#pd-select [data-option][data-value="${DUELS.indexOf(d)}"]`).click();assert((await page.locator('#pd-tweet').inputValue()).length>100)}
   for(const id of ['thomas','audrey','lucie','alice']) {
-   await page.goto(base+'le-dca-de');await page.getByRole('button',{name:'Le DCA de…',exact:true}).click();await page.getByRole('group',{name:'Choisir un profil DCA',exact:true}).locator(`[data-option][data-value="${id}"]`).click()
+   await page.goto(base+'le-dca-de');await page.getByRole('button',{name:'Le DCA de…',exact:true}).click();await page.locator('.dca-prepared summary').first().click();await page.getByRole('group',{name:'Choisir un profil DCA',exact:true}).locator(`[data-option][data-value="${id}"]`).click()
    assert((await page.locator('#dca-draft').inputValue()).includes(PROFILES.find(p=>p.id===id).lines.find(l=>['timber','agribusiness'].includes(l.asset)).label))
   }
   assert.deepEqual(errors,[])

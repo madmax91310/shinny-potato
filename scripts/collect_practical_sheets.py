@@ -12,6 +12,8 @@ import json
 import os
 import pathlib
 import re
+import sys
+import urllib.error
 import urllib.parse
 import urllib.request
 import xml.etree.ElementTree as ET
@@ -112,15 +114,36 @@ def parse(raw, config):
         result['scope'] = 'Liste publique des ETF des contrats Spirica chez Linxea ; absence de la liste ne prouve pas une inéligibilité générale.'
     return result
 
-# SEC fair-access policy: automated requests must declare who is collecting and how to
-# reach them; browser-like agents are refused with HTTP 403 (observed from 2026-10-15).
-SEC_USER_AGENT = os.environ.get('SEC_USER_AGENT') or 'EpargnantLibre-Data madmax91310@users.noreply.github.com'
+# SEC fair-access policy: automated requests must name the collector and give a contact
+# address. Observed from a GitHub runner on 18/10/2026 (PR #775): with a
+# @users.noreply.github.com address (or no address) every www.sec.gov page answers 403
+# "Request Rate Threshold Exceeded" and data.sec.gov answers 403 "Undeclared Automated
+# Tool", from the very first request; the same requests with a contact address on an
+# ordinary mail domain answer 200. Public contact address chosen by the account owner
+# (18/10/2026); the SEC_USER_AGENT environment variable can override it.
+SEC_CONTACT_USER_AGENT = 'EpargnantLibre lepargnantlibre@gmail.com'
+
+def sec_user_agent():
+    agent = (os.environ.get('SEC_USER_AGENT') or SEC_CONTACT_USER_AGENT).strip()
+    if not re.search(r'\S+@\S+\.\w+', agent) or 'noreply' in agent.casefold():
+        raise ValueError('SEC_USER_AGENT absent ou sans adresse de contact joignable '
+                         '(secret du dépôt, ex. « Nom du projet contact@domaine.fr ») : la SEC refuse la requête')
+    return agent
 
 def user_agent(url):
     host = urllib.parse.urlsplit(url).hostname or ''
     if host == 'sec.gov' or host.endswith('.sec.gov'):
-        return SEC_USER_AGENT
+        return sec_user_agent()
     return 'Mozilla/5.0 (public financial reference collection)'
+
+def http_error_reason(error):
+    """Keep the refusal page title (e.g. SEC "Request Rate Threshold Exceeded") in the error."""
+    try:
+        title = re.search(rb'<title>(.*?)</title>', error.read(20_000), re.S | re.I)
+    except Exception:
+        title = None
+    reason = ' '.join(title.group(1).decode('utf-8', 'replace').split()) if title else ''
+    return f'HTTP Error {error.code}: {error.reason}' + (f' ({reason})' if reason else '')
 
 def collect(key, config, previous, today):
     try:
@@ -136,6 +159,8 @@ def collect(key, config, previous, today):
                      'changedAt':today if changed else previous.get('changedAt'),
                      'reviewRequired':changed or previous.get('reviewRequired',False)}, None
     except Exception as error:
+        if isinstance(error, urllib.error.HTTPError):
+            error = ValueError(http_error_reason(error))
         return key, {**previous, 'label':config['label'],'sourceUrl':config['url'],
                      'lastAttemptAt':today,'status':'error','error':str(error)[:250]}, str(error)
 
@@ -159,6 +184,10 @@ def main():
     report = {'failed':failed,'changed':changed,'sources':snapshot['sources']}
     if args.output:
         pathlib.Path(args.output).write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
+    for key,_,error in results:
+        if error:
+            # The reason (HTTP status, identity check...) must be readable in the run log.
+            print(f'{key}: {error}', file=sys.stderr)
     print(json.dumps({'collected':len(results)-len(failed),'failed':failed,'changed':changed},ensure_ascii=False))
     return 1 if failed or changed else 0
 

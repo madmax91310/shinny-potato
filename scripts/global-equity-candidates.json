@@ -1,67 +1,6 @@
 {
  "method": "Candidats curatés : identité ISIN, cotation attendue et devise. Une ligne n’entre dans src/data/global-equities.json qu’après classification officielle (positions complètes BlackRock) et qualification réelle de l’historique Yahoo par scripts/qualify_monthly_candidates.py ; scripts/sync-global-equities.mjs effectue ce transfert. Un symbole null signifie que la cotation détenue par l’émetteur est acceptée telle quelle.",
- "candidates": [
-  {
-   "id": "bhp",
-   "label": "BHP",
-   "symbol": "BHP.AX",
-   "currency": "AUD",
-   "region": "Océanie",
-   "scene": "infrastructure",
-   "isin": "AU000000BHP4",
-   "timezone": "Australia/Sydney",
-   "lastAttempt": {
-    "checkedAt": "2026-10-18T06:22:49.059321+00:00",
-    "status": "failed",
-    "error": null
-   }
-  },
-  {
-   "id": "csl",
-   "label": "CSL",
-   "symbol": "CSL.AX",
-   "currency": "AUD",
-   "region": "Océanie",
-   "scene": "health",
-   "isin": "AU000000CSL8",
-   "timezone": "Australia/Sydney",
-   "lastAttempt": {
-    "checkedAt": "2026-10-18T06:22:49.059321+00:00",
-    "status": "failed",
-    "error": null
-   }
-  },
-  {
-   "id": "commonwealth-bank",
-   "label": "Commonwealth Bank",
-   "symbol": "CBA.AX",
-   "currency": "AUD",
-   "region": "Océanie",
-   "scene": "finance",
-   "isin": "AU000000CBA7",
-   "timezone": "Australia/Sydney",
-   "lastAttempt": {
-    "checkedAt": "2026-10-18T06:22:49.059321+00:00",
-    "status": "failed",
-    "error": null
-   }
-  },
-  {
-   "id": "macquarie",
-   "label": "Macquarie",
-   "symbol": "MQG.AX",
-   "currency": "AUD",
-   "region": "Océanie",
-   "scene": "finance",
-   "isin": "AU000000MQG1",
-   "timezone": "Australia/Sydney",
-   "lastAttempt": {
-    "checkedAt": "2026-10-18T06:22:49.059321+00:00",
-    "status": "failed",
-    "error": null
-   }
-  }
- ],
+ "candidates": [],
  "excluded": [
   {
    "id": "cnooc",

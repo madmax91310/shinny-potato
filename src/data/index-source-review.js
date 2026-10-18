@@ -194,6 +194,9 @@ export const REVIEWED_INDEX_SNAPSHOTS = {
       "index": "MSCI Emerging Markets Latin America",
       "asOf": "2026-08-31",
       "snapshot": "31 août 2026",
+      "markets": "5 pays émergents d’Amérique latine, grandes et moyennes capitalisations",
+      "marketCount": 5,
+      "scopeProvenance": "Périmètre ajouté le 18/10/2026 : cinq pays (Brésil, Chili, Colombie, Mexique, Pérou), table pays de la fiche MSCI collectée au 30/09/2026 (automated-indices.json) ; confiance élevée.",
       "constituents": 83,
       "source": {
         "label": "Composition officielle au 31/08/2026, consultée le 30/09/2026",

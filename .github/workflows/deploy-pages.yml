@@ -15,6 +15,7 @@ on:
 permissions:
   contents: read
   pages: write
+  deployments: read
   id-token: write
 
 concurrency:
@@ -40,7 +41,7 @@ jobs:
           if [[ "$PR_EVENT" == true || "$MASTER_REF" != true ]]; then
             echo 'current=true' >> "$GITHUB_OUTPUT"
           else
-            bash scripts/check-pages-head.sh
+            bash scripts/check-pages-head.sh --validation
           fi
   # Data-only lane: when every file changed since the published commit is an
   # automation data path, the code already passed the full gate. Editorial and
@@ -121,6 +122,7 @@ jobs:
       - run: node scripts/test-wealth-simulator.mjs
       - run: python -m unittest discover -s scripts -p "test_performance_currency.py"
       - run: node scripts/test-performance-currency.mjs
+      - run: node scripts/test-cross-tool-currency.mjs
       - run: node scripts/test-annual-rollover.mjs
       - run: node scripts/test-inflation-consistency.mjs
       - run: node scripts/test-fx-consistency.mjs
@@ -157,9 +159,14 @@ jobs:
       - run: node scripts/test-publication-consumers.mjs
       - run: node scripts/test-household-benchmarks.mjs
       - run: npm run audit:publishable-content
+      - run: node scripts/test-etf-themes-coverage.mjs
+      - run: node scripts/test-tweet-bank-validity.mjs
       - run: npm run audit:source-inventory
       - run: node scripts/test-comparison-etf-details.mjs
-      - run: npm run verify:tweet-midi
+      - run: node scripts/test-tweet-midi-shards.mjs
+      # Freeze the verifier and all its input data at the same point as before.
+      # Execution moves to four exhaustive partitions, alongside browser checks.
+      - run: node scripts/build-tweet-midi-verifier.mjs
       - run: npm run audit:investor-profiles
       - run: npm run audit:household-statistics
       - run: node scripts/test-diversification-lot-one.mjs
@@ -180,7 +187,8 @@ jobs:
       - run: node scripts/test-portfolio-recipes.mjs
       - run: node scripts/test-generator-controls.mjs
       - run: node scripts/test-etf-routing-expansion.mjs
-      - run: node scripts/audit-asset-tool-routing.mjs
+      - run: node scripts/audit-asset-tool-routing.mjs --write
+      - run: node scripts/test-asset-routing-blockers.mjs
       - run: node scripts/test-publication-reliability.mjs
       - run: node scripts/test-historical-publications.mjs
       - run: npm run stress-test:portfolios
@@ -195,6 +203,10 @@ jobs:
       - run: node scripts/test-practical-sheets.mjs
       - run: node scripts/test-performance-links.mjs
       - run: node scripts/test-deploy-scope.mjs
+      - run: node scripts/test-fallback-snapshot.mjs
+      - run: node scripts/test-browser-check-error.mjs
+      - run: node scripts/test-freshness-policy.mjs
+      - run: node scripts/test-benchmark-changes.mjs
       - name: Record the published commit for the data-only lane
         run: printf '{"sha":"%s","builtAt":"%s"}\n' "$(git rev-parse HEAD)" "$(date -u +%Y-%m-%dT%H:%M:%SZ)" > dist/build-info.json
       - uses: actions/upload-artifact@v7.0.1
@@ -213,12 +225,41 @@ jobs:
             src/data/monthly-duel-returns.json
           if-no-files-found: error
           retention-days: 2
+      - uses: actions/upload-artifact@v7.0.1
+        with:
+          name: tweet-midi-verifier
+          path: test-artifacts/tweet-midi-verifier.mjs
+          if-no-files-found: error
+          retention-days: 2
       - uses: actions/configure-pages@v6.0.0
         if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
       - uses: actions/upload-pages-artifact@v5.0.0
         if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
         with:
           path: dist
+
+  tweet-midi-checks:
+    needs: build
+    runs-on: ubuntu-26.04
+    permissions:
+      contents: read
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1, 2, 3]
+    steps:
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 20
+      - uses: actions/download-artifact@v4
+        with:
+          name: tweet-midi-verifier
+          path: test-artifacts
+      - name: Verify every entry in this partition
+        env:
+          TWEET_MIDI_SHARD_INDEX: ${{ matrix.shard }}
+          TWEET_MIDI_SHARD_COUNT: 4
+        run: node test-artifacts/tweet-midi-verifier.mjs
 
   python-checks:
     needs: current-snapshot
@@ -330,6 +371,8 @@ jobs:
           path: ~/.cache/ms-playwright
           key: chromium-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
       - run: npx playwright install --with-deps chromium
+      - run: node scripts/playwright-currency-consistency.mjs
+        if: matrix.shard == 0
       - run: node scripts/playwright-distinct-asset-routing.mjs
         if: matrix.shard == 1
       - run: node scripts/playwright-routing-additions.mjs
@@ -432,10 +475,10 @@ jobs:
           exit 1
 
   deploy:
-    needs: [scope, build, python-checks, browser-checks, exposure-browser-check, smoke]
+    needs: [scope, build, tweet-midi-checks, python-checks, browser-checks, exposure-browser-check, smoke]
     if: >-
       always() && github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
-      && needs.build.result == 'success' && needs.python-checks.result == 'success' && needs.smoke.result == 'success'
+      && needs.build.result == 'success' && needs.tweet-midi-checks.result == 'success' && needs.python-checks.result == 'success' && needs.smoke.result == 'success'
       && ((needs.browser-checks.result == 'success' && needs.exposure-browser-check.result == 'success')
           || needs.scope.outputs.data_only == 'true')
     # Explicitly validate the next ubuntu-latest image before its rollout.
@@ -455,7 +498,81 @@ jobs:
           ref: ${{ needs.build.outputs.commit_sha }}
       - name: Skip superseded production snapshots
         id: current
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
         run: bash scripts/check-pages-head.sh
       - id: deployment
         if: steps.current.outputs.current == 'true'
         uses: actions/deploy-pages@v5.0.1
+
+  # Fallback lane: the full gate failed on a snapshot whose code changed since the
+  # published commit. Refreshed data must not wait for a human to repair the code:
+  # rebuild the published (already validated) code with the new automation data,
+  # and publish it if the build and the data smoke test pass. The failed checks
+  # stay red in this run and in the monitoring issue.
+  fallback-build:
+    needs: [scope, build, tweet-midi-checks, python-checks, browser-checks, exposure-browser-check, smoke]
+    if: >-
+      always() && github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
+      && needs.scope.result == 'success' && needs.scope.outputs.data_only != 'true' && needs.scope.outputs.published != ''
+      && !(needs.build.result == 'success' && needs.tweet-midi-checks.result == 'success' && needs.python-checks.result == 'success' && needs.smoke.result == 'success'
+           && needs.browser-checks.result == 'success' && needs.exposure-browser-check.result == 'success')
+    runs-on: ubuntu-26.04
+    permissions:
+      contents: read
+    outputs:
+      data_sha: ${{ steps.compose.outputs.data_sha }}
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          ref: ${{ inputs.ref || github.sha }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 20
+      - id: compose
+        run: node scripts/compose-fallback-snapshot.mjs --published "${{ needs.scope.outputs.published }}"
+      - run: npm ci
+      - run: npm run build
+      - name: Record the published code and the data snapshot
+        run: printf '{"sha":"%s","dataSha":"%s","lane":"fallback","builtAt":"%s"}\n' "${{ steps.compose.outputs.code_sha }}" "${{ steps.compose.outputs.data_sha }}" "$(date -u +%Y-%m-%dT%H:%M:%SZ)" > dist/build-info.json
+      - uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: chromium-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+      - run: npx playwright install --with-deps chromium
+      - run: node scripts/smoke-data-routes.mjs
+      - uses: actions/configure-pages@v6.0.0
+      - uses: actions/upload-pages-artifact@v5.0.0
+        with:
+          name: github-pages-fallback
+          path: dist
+
+  deploy-fallback:
+    needs: fallback-build
+    if: always() && needs.fallback-build.result == 'success'
+    runs-on: ubuntu-26.04
+    concurrency:
+      group: pages-production
+      cancel-in-progress: false
+      queue: max
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          ref: ${{ needs.fallback-build.outputs.data_sha }}
+      - name: Skip superseded production snapshots
+        id: current
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          PAGES_CODE_SHA: ${{ needs.scope.outputs.published }}
+        run: bash scripts/check-pages-head.sh
+      - id: deployment
+        if: steps.current.outputs.current == 'true'
+        uses: actions/deploy-pages@v5.0.1
+        with:
+          artifact_name: github-pages-fallback
+      - if: steps.current.outputs.current == 'true'
+        run: echo "Données publiées avec le dernier code validé (voie de secours). Le code de master reste à réparer." >> "$GITHUB_STEP_SUMMARY"

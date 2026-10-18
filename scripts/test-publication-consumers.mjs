@@ -29,7 +29,7 @@ assert.equal(resolveAnniversaryLevel('bitcoin','',clock,{bitcoin:{...fixture.bit
 for(const [id,record] of Object.entries(LEVELS)) {
   assert.ok(record.sourceUrl.startsWith('https://'))
   assert.ok(record.value>0)
-  assert.ok(['EUR','USD','KRW','CHF','DKK','JPY','HKD','GBp','CNY','INR','SGD','NOK','SEK','CAD','AUD'].includes(record.currency))
+  assert.ok(['EUR','USD','KRW','CHF','DKK','JPY','HKD','GBp','CNY','INR','SGD','NOK','SEK','CAD','AUD','TWD'].includes(record.currency))
   if (ASSETS[id]) assert.equal(record.currency, ASSETS[id].currency, `${id}: quote/history currency mismatch`)
   const at=new Date(`${record.asOf}${record.asOf.length===7?'-28':''}T12:00:00Z`)
   assert.equal(resolveAnniversaryLevel(id,'',at)?.value,record.value)

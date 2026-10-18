@@ -11,7 +11,7 @@ try {
  const page=await browser.newPage({viewport:{width:1440,height:1000}}),errors=[],requests=[]
  page.on('pageerror',e=>errors.push(e.message));page.on('request',r=>{if(r.url().includes('/data/portfolio/'))requests.push(r.url())})
  await mkdir('test-artifacts/full-auto',{recursive:true})
- for(const [id,name] of [['equity-apple','Apple'],['equity-abb','ABB'],['equity-stockUS57636Q1040','Mastercard'],['equity-stockGB0009895292','AstraZeneca'],['manual-FR0011550193','BNP Paribas Easy STOXX Europe 600']]) {
+ for(const [id,name] of [['equity-apple','Apple'],['equity-abb','ABB'],['equity-stockUS57636Q1040','Mastercard'],['equity-stockGB0009895292','AstraZeneca'],['manual-FR0013412012','Amundi PEA Asie Emergente']]) {
   const start=requests.length
   await page.goto(`${base}/generateur-portefeuilles?asset=${id}`,{waitUntil:'networkidle'})
   assert.equal(requests.length,start,'Manual calendars are not loaded on opening the route')
@@ -36,7 +36,7 @@ try {
  await page.goto(`${base}/duels-portefeuilles?asset=equity-apple`,{waitUntil:'networkidle'})
  assert((await page.locator('#pd-tweet').inputValue()).includes('Apple'))
  await page.goto(`${base}/le-dca-de?isin=US0378331005`,{waitUntil:'networkidle'})
- await page.getByRole('button',{name:'Générer l’image',exact:true}).click()
+ await page.locator('.dca-simple-preview img').waitFor()
  await page.getByAltText('Répartition et expositions du portefeuille').waitFor()
  await page.goto(`${base}/performance-depuis?isin=US0378331005`,{waitUntil:'networkidle'})
  await page.getByRole('button',{name:'🔄 Générer',exact:true}).click()

@@ -125,7 +125,7 @@ jobs:
       - name: "Validate observations: node scripts test-monthly-consumers.mjs"
         run: node scripts/test-monthly-consumers.mjs
       - name: "Validate observations: node scripts test-etf-tool-connections.mjs"
-        run: node scripts/build-performance-links.mjs && node scripts/test-etf-tool-connections.mjs && node scripts/audit-asset-tool-routing.mjs --write && node scripts/test-distinct-asset-routing.mjs
+        run: node scripts/build-performance-links.mjs && node scripts/test-etf-tool-connections.mjs && node scripts/audit-asset-tool-routing.mjs --write && node scripts/test-asset-routing-blockers.mjs && node scripts/test-distinct-asset-routing.mjs
       - name: "Validate observations: npm run audit:data-catalog"
         run: npm run audit:data-catalog
       - name: "Validate observations: npm run audit:data-provenance"
@@ -160,6 +160,7 @@ jobs:
     permissions:
       contents: read
       pages: write
+      deployments: read
       id-token: write
     uses: ./.github/workflows/deploy-pages.yml
     with:

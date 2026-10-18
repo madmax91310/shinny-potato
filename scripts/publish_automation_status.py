@@ -69,7 +69,9 @@ def normalize_report(report):
         failing = {}
         for error in report['errors']:
             reason = str(error.get('reason', 'Source indisponible'))
-            if 'Valeur contradictoire pour la même période' in reason:
+            # An older observation set aside by the date-regression guard is that guard working,
+            # not an unreadable source: the newer value stays published.
+            if 'Valeur contradictoire pour la même période' in reason or reason.startswith('Observation plus ancienne ignorée'):
                 continue
             failing.setdefault('radar:' + str(error.get('family') or 'radar'), []).append(reason)
         return {'successes': [{'id': 'radar:' + family} for family in report['coverage'] if 'radar:' + family not in failing],
@@ -103,8 +105,13 @@ def normalize_report(report):
                 'errors':[{'id':prefix + key,'name':records.get(key, {}).get('title', key),'error':cause}
                           for key,cause in failures.items()]}
     if 'observations' in report and 'indices' not in report and 'shares' not in report:
+        # 'waiting': the next scheduled edition is not due yet. The alert is retired without
+        # claiming a recovery; it reopens as a failure once the edition is overdue.
+        # 'superseded': the official page declares a successor (Linxea Avenir 2 -> 2+); the
+        # contract is archived with that evidence and its old identity alert is retired.
         return {'successes':[{'id':o['id']} for o in report['observations'] if o['status']=='success'],
-                'errors':[{'id':o['id'],'name':o.get('name',o['id']),'error':o.get('reason','Collecte échouée')} for o in report['observations'] if o['status']=='failure']}
+                'errors':[{'id':o['id'],'name':o.get('name',o['id']),'error':o.get('reason','Collecte échouée')} for o in report['observations'] if o['status']=='failure'],
+                'inactive':[{'id':o['id']} for o in report['observations'] if o['status'] in ('waiting', 'superseded')]}
     if 'indices' in report:
         successes, errors = [], []
         for item in report['indices']:
@@ -139,6 +146,18 @@ def include_configured_workflows(state):
         entries.setdefault(workflow, {'name':name, 'status':'unknown', 'collectionStatus':'unknown',
             'validationStatus':'unknown', 'recordingStatus':'not-run', 'publicationStatus':'not-run', 'dataFailures':{}, 'failures':[]})
     return result
+
+
+def report_files(directory):
+    """Collector reports inside a downloaded artifact.
+
+    upload-artifact roots a multi-path artifact at the paths' common ancestor: a report
+    written to $RUNNER_TEMP next to repository snapshots lands under `_temp/`, not at the
+    root. Snapshots of src/data are evidence, never reports, and stay unread.
+    """
+    root = pathlib.Path(directory)
+    top = sorted(root.glob('*.json'))
+    return top or sorted(root.glob('_temp/**/*.json'))
 
 
 def read_report(path, workflow):
@@ -222,9 +241,11 @@ def update_status(state, run, jobs, reports=None):
     for job in jobs:
         if job.get('conclusion') not in ('failure', 'timed_out'):
             continue
+        named = [a.get('title', '')[len('Échec '):] + ' — ' + str(a.get('message', ''))[:200]
+                 for a in job.get('annotations', []) if str(a.get('title', '')).startswith('Échec ')]
         for step in job.get('steps', []):
             if step.get('conclusion') in ('failure', 'timed_out'):
-                failures.append({'job': job['name'], 'step': step['name']})
+                failures.append({'job': job['name'], 'step': step['name'], **({'checks': named[:3]} if named else {})})
     refresh_jobs = [job for job in jobs if job['name'] == REGISTRY[workflow]['collectionJob']]
     steps = [step for job in refresh_jobs for step in job.get('steps', [])]
     def phase_status(names):
@@ -339,6 +360,14 @@ def main():
             if len(batch) < 100:
                 break
             page += 1
+        for job in jobs:
+            # Browser checks annotate the exact failed check ('Échec ...'): keep it so
+            # the incident names the test, not only the shard.
+            if job.get('conclusion') in ('failure', 'timed_out') and job['name'].startswith('deploy /'):
+                try:
+                    job['annotations'] = api(f"/check-runs/{job['id']}/annotations?per_page=50")
+                except (urllib.error.HTTPError, urllib.error.URLError, ValueError):
+                    job['annotations'] = []
         reports = []
         if run['path'].split('/')[-1] in REPORT_ARTIFACTS:
             artifact_name = REPORT_ARTIFACTS[run['path'].split('/')[-1]]
@@ -349,7 +378,7 @@ def main():
                     subprocess.run(['gh', 'run', 'download', str(run['id']), '--repo', repo,
                                     '--name', artifact_name, '--dir', directory],
                                    check=True, capture_output=True, timeout=90)
-                    for path in pathlib.Path(directory).glob('*.json'):
+                    for path in report_files(directory):
                         reports.append(read_report(path, run['path'].split('/')[-1]))
         state = update_status(state, run, jobs, reports)
         publication_history.append((run, jobs))

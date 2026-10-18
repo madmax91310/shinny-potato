@@ -29,15 +29,16 @@ const server = spawn('node', ['node_modules/vite/bin/vite.js', '--host', '127.0.
 let browser
 try {
   for (let i = 0; i < 100; i++) { try { if ((await fetch(base)).ok) break } catch {} await new Promise(resolve => setTimeout(resolve, 200)) }
-  browser = await chromium.launch({ headless: true, ...(process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH ? { executablePath: process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH } : {}) })
+  browser = await chromium.launch({ headless: true, args:['--disable-gpu','--disable-software-rasterizer','--disable-dev-shm-usage'], ...(process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH ? { executablePath: process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH } : {}) })
   const page = await browser.newPage(); await page.goto(base)
+  page.on('console', message => { if (message.text().startsWith('Checked exports:')) console.log(message.text()) })
   const result = await page.evaluate(async () => {
     const { DEFAULT_THEMES } = await import('/shinny-potato/src/data/etf-themes.js')
     const { getInstrumentPeaStatus } = await import('/shinny-potato/src/data/instruments.js')
     const { ASSET_ORDER } = await import('/shinny-potato/src/data/market-history.js')
     const { getAnnualReturnStartYears, getAnnualReturns } = await import('/shinny-potato/src/pages/tweet-midi/data/marketHistory.js')
     const { getComparisonComposition, compositionEvidenceLabel } = await import('/shinny-potato/src/pages/etf-tweets/lib/comparisonComposition.js')
-    const { renderComparatifEtfImage } = await import('/shinny-potato/src/pages/tweet-midi/comparatifEtfImage.js')
+    const { renderComparatifEtfImage, getComparisonPaperCards } = await import('/shinny-potato/src/pages/tweet-midi/comparatifEtfImage.js')
     const { renderPerformanceImage, cumulativePerformance } = await import('/shinny-potato/src/pages/tweet-midi/performanceImage.js')
     const original = CanvasRenderingContext2D.prototype.fillText
     let boxes = [], labels = [], current
@@ -49,24 +50,35 @@ try {
       boxes.push(box); labels.push(String(value)); return original.call(this, value, x, y, ...rest)
     }
     const samples = []
-    const check = async (name, render, keep) => {
+    let checked = 0
+    const check = async (name, render, keep, expectedHeight) => {
       boxes = []; labels = []; current = name
       const canvas = await render()
+      if (name.startsWith('performance-') && canvas.width !== 1600) throw new Error('Performance width changed')
+      if (expectedHeight && canvas.height !== expectedHeight) throw new Error('Ten-year single export must be square')
       if (labels.filter(label => /[ée]pargnant.?libre/i.test(label)).length !== 1) throw new Error('Missing signature')
       if (keep) samples.push({ name, png: canvas.toDataURL(), labels })
+      // Release backing pixels between hundreds of exports in constrained Chromium.
+      canvas.width = 1; canvas.height = 1
+      if (++checked % 100 === 0) console.log(`Checked exports: ${checked}`)
       return labels
     }
     try {
       for (const theme of DEFAULT_THEMES) {
         const words = await check(`compare-${theme.id}`, () => renderComparatifEtfImage(theme), ['ia-robotique', 'sante', 'ressources-naturelles', 'materials-classic-advanced', 'industrie-infrastructures', 'sp500-equal-weight', 'monde', 'usa', 'etc-metaux', 'semiconducteurs-tech', 'quantique', 'emergents-pea', 'world-pea', 'monetaire-obligations-courtes', 'world-meme-indice-pea', 'sp500-meme-indice-pea'].includes(theme.id))
-        for (const fund of theme.etfs) if (!words.includes(fund.isin) || !words.includes(`${fund.frais.replace(/\s*%$/, '')} %`)) throw new Error('Lost fund fact')
+        const all=words.join(' ').replace(/\s+/g,'')
+        const cards=getComparisonPaperCards(theme)
+        for (const [i,fund] of theme.etfs.entries()) {
+          if (!all.includes(cards[i].name.replace(/\s+/g,'')) || !words.includes(`${fund.frais.replace(/\s*%$/, '')} %`)) throw new Error('Lost fund fact')
+          const status=getInstrumentPeaStatus(fund.isin)
+          if(cards[i].badge!==(status===null?null:status?'PEA':'CTO'))throw new Error('Incorrect qualified PEA badge')
+          if(cards[i].badge&&!words.includes(cards[i].badge))throw new Error('Missing envelope')
+        }
         for (const fund of theme.etfs) {
           const composition = getComparisonComposition(fund.isin, 'countries')
-          if (composition.classification && !words.join(' ').includes(compositionEvidenceLabel(composition))) throw new Error(`Missing dated DWS classification: ${fund.isin}`)
+          if (composition.classification && !all.includes(compositionEvidenceLabel(composition).replace(/\s+/g,''))) throw new Error(`Missing dated DWS classification: ${fund.isin}`)
         }
-        const peaInNames = theme.etfs.reduce((count, fund) => count + (fund.nom.match(/\bPEA\b/g)?.length ?? 0), 0)
-        const peaOnImage = words.join(' ').match(/\bPEA\b/g)?.length ?? 0
-        if (peaOnImage !== peaInNames + (theme.nom.match(/\bPEA\b/g)?.length ?? 0) + theme.etfs.filter(fund => getInstrumentPeaStatus(fund.isin) === true).length + (theme.cloture?.match(/\bPEA\b/g)?.length ?? 0)) throw new Error('Incorrect qualified PEA badges')
+        if(words.some(word=>/Historique annuel non disponible|PERFORMANCES ANNUELLES/.test(word)))throw new Error('Unapproved history panel')
       }
       for (const id of ASSET_ORDER) {
         const years = getAnnualReturnStartYears(id), year = years[0]
@@ -85,7 +97,7 @@ try {
         if (words.some(word => /sources?\s*:|MSCI ·|BCE|Yahoo|Les performances passées/i.test(word))) throw new Error('Source/footer returned on performance image')
         const { performanceBasis } = await import('/shinny-potato/src/pages/tweet-midi/data/marketHistory.js')
         const currency = (await import('/shinny-potato/src/pages/tweet-midi/lib.js')).getMarketAsset(id).currency
-        if (!words.includes(performanceBasis(id).replace(`${currency} · `, '').replace(` · ${currency}`, ''))) throw new Error('Missing return convention')
+        if (!words.join(' ').includes(performanceBasis(id).replace(`${currency} · `, '').replace(` · ${currency}`, ''))) throw new Error('Missing return convention')
         if (!words.includes(`${rows[0].year} — ${rows.at(-1).year} · EN ${(await import('/shinny-potato/src/pages/tweet-midi/lib.js')).getMarketAsset(id).currency}`)) throw new Error('Missing dates or currency')
         const { formatPerformancePct } = await import('/shinny-potato/src/pages/tweet-midi/performanceFormat.js')
         for (const row of rows) {
@@ -96,7 +108,45 @@ try {
         const percent = formatPerformancePct(total)
         if (!words.includes(percent)) throw new Error('Changed performance calculation')
       }
-      await check('performance-duel', () => renderPerformanceImage({ mode: 'comparatif', assetIdA: 'msciWorld', assetIdB: 'or', year: 2020 }), true)
+      const { getPerformanceEntries } = await import('/shinny-potato/src/pages/tweet-midi/engines/performance.js')
+      const { performanceBasis } = await import('/shinny-potato/src/pages/tweet-midi/data/performanceHistory.js')
+      const { performanceDisplayBasis } = await import('/shinny-potato/src/pages/tweet-midi/performanceCurrency.js')
+      const { formatPerformancePct } = await import('/shinny-potato/src/pages/tweet-midi/performanceFormat.js')
+      const worldYears = getAnnualReturnStartYears('msciWorld')
+      const sampleYear = worldYears[Math.max(0,worldYears.length - 10)]
+      const longId = ASSET_ORDER.find(id => getAnnualReturnStartYears(id).length > 10)
+      const commonYear = (a,b) => getAnnualReturnStartYears(a).find(year => getAnnualReturnStartYears(b).includes(year))
+      for (const netId of ['msciAcwi','stoxx600']) {
+        let rejected = false
+        try { getPerformanceEntries({mode:'comparatif',assetIdA:'msciWorld',assetIdB:netId,year:commonYear('msciWorld',netId)}) }
+        catch (error) { rejected = /même convention/.test(error.message) }
+        if (!rejected) throw new Error('Mixed net/gross comparison must be rejected')
+      }
+      for (const item of [
+        ...[1,2,5,6,10].filter(count => count <= worldYears.length).map(count => ({mode:'simple',assetId:'msciWorld',year:worldYears.at(-count)})),
+        ...(longId ? [{mode:'simple',assetId:longId,year:getAnnualReturnStartYears(longId)[0]}] : []),
+        ...['EUR','USD'].map(currency => ({mode:'simple',assetId:'msciWorld',year:sampleYear,currency})),
+        {mode:'simple',assetId:'sp500',year:getAnnualReturnStartYears('sp500')[0],currency:'EUR'},
+        {mode:'comparatif',assetIdA:'msciWorld',assetIdB:'or',year:commonYear('msciWorld','or')},
+        {mode:'comparatif',assetIdA:'msciAcwi',assetIdB:'stoxx600',year:commonYear('msciAcwi','stoxx600'),currency:'USD'},
+        {mode:'comparatif',assetIdA:'msciWorld',assetIdB:'sp500',year:commonYear('msciWorld','sp500'),currency:'EUR'},
+        {mode:'comparatif',assetIdA:'msciAcwi',assetIdB:'or',year:commonYear('msciAcwi','or'),currency:'EUR'},
+      ]) {
+        const entries = getPerformanceEntries(item)
+        const name = `performance-cobalt-${item.assetId || item.assetIdA}-${item.year}-${item.currency || 'native'}-${item.mode}`
+        const before = JSON.stringify(item)
+        const words = await check(name, () => renderPerformanceImage(item), true, item.assetId === 'msciWorld' && entries[0].returns.length === 10 && !item.currency ? 1600 : undefined)
+        if (before !== JSON.stringify(item)) throw new Error('Selection mutated by renderer')
+        for (const {asset,returns} of entries) {
+          if (!words.includes(`${returns[0].year} — ${returns.at(-1).year} · EN ${asset.currency}`)) throw new Error('Wrong displayed currency/period')
+          if (!words.includes(formatPerformancePct(cumulativePerformance(returns)))) throw new Error('Wrong converted total')
+          for (const row of returns) if (!words.includes(String(row.year)) || !words.includes(formatPerformancePct(row.pct))) throw new Error('Wrong annual value')
+          const basis = performanceDisplayBasis(asset,performanceBasis(asset.id)).split(' · ').filter(part=>![asset.currency,asset.sourceCurrency].includes(part)).join(' · ')
+          if (!words.join(' ').includes(basis)) throw new Error('Lost official/converted return convention')
+        }
+        // Long share identities remain exact, with wrapping rather than ellipsis.
+        for (const {asset} of entries) if (!words.join(' ').includes((asset.label || asset.tweetPhrase).replace(/^Indice\s+/i,''))) throw new Error('Asset name truncated')
+      }
     } finally { CanvasRenderingContext2D.prototype.fillText = original }
     return samples
   })

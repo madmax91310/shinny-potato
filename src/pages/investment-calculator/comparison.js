@@ -1,3 +1,4 @@
+import { historyInCurrency } from '../../data/history-currency.js'
 import { ASSETS, MONTHS_FULL } from '../../data/calculator-history.js'
 import { fmtEUR, fmtPct, pct, monthsBetween } from './lib.js'
 import { computeComparativeSeries } from './videoExport.js'
@@ -8,9 +9,9 @@ export function computeComparison(inputs, asset1Id, asset2Id, mode1, mode2) {
   const n = monthsBetween(startYm, endYm).length
   const total = inputs.mode === 'dca' ? amount * n : amount
   const side = (assetId, mode, override) => ({
-    asset: ASSETS[assetId], mode, amount: mode === 'dca' ? total / n : total,
+    asset: historyInCurrency(ASSETS[assetId], inputs.currency, startYm, endYm), mode, amount: mode === 'dca' ? total / n : total,
     override: Boolean(override),
-    result: computeComparativeSeries(assetId, startYm, endYm, mode === 'dca' ? total / n : total, mode, override),
+    result: computeComparativeSeries(assetId, startYm, endYm, mode === 'dca' ? total / n : total, mode, override, inputs.currency),
   })
   return {
     startYm, endYm,
