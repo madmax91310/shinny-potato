@@ -125,19 +125,28 @@
     },
     "update-regulatory-data.yml": {
       "name": "Paramètres fiscaux, LDDS et tarifs de courtiers",
-      "runId": 39115175797,
+      "runId": 39128774908,
       "attempt": 1,
-      "completedAt": "2026-10-18T10:13:53Z",
-      "status": "success",
+      "completedAt": "2026-10-18T12:58:00Z",
+      "status": "failure",
       "lastSuccessAt": "2026-10-18T10:13:53Z",
       "collectionStatus": "success",
       "validationStatus": "success",
       "recordingStatus": "success",
-      "publicationStatus": "not-run",
-      "lastCollectionSuccessAt": "2026-10-18T10:13:53Z",
+      "publicationStatus": "failure",
+      "lastCollectionSuccessAt": "2026-10-18T12:58:00Z",
       "lastPublicationSuccessAt": "2026-10-16T13:49:08Z",
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39115175797",
-      "failures": [],
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39128774908",
+      "failures": [
+        {
+          "job": "deploy / build",
+          "step": "Run node scripts/test-portfolio-roadmap.mjs"
+        },
+        {
+          "job": "deploy / fallback-build",
+          "step": "Run npm run build"
+        }
+      ],
       "dataFailures": {}
     },
     "update-scpi.yml": {
@@ -474,11 +483,11 @@
       "failures": []
     }
   },
-  "updatedAt": "2026-10-18T12:57:31Z",
+  "updatedAt": "2026-10-18T12:58:00Z",
   "monitoring": {
     "schemaVersion": 1,
-    "checkedAt": "2026-10-18T12:58:53.167581+00:00",
-    "revision": 108,
+    "checkedAt": "2026-10-18T12:59:15.049897+00:00",
+    "revision": 109,
     "active": {
       "publication:update-practical-sheets.yml": {
         "name": "Sources des fiches pratiques",
@@ -494,7 +503,7 @@
         "cause": "deploy / build : Run npm run audit:instrument-listings ; deploy / fallback-build : Run npm run build",
         "id": "publication:update-practical-sheets.yml",
         "firstSeenAt": "2026-10-18T11:43:59.694981+00:00",
-        "lastSeenAt": "2026-10-18T12:58:53.167581+00:00"
+        "lastSeenAt": "2026-10-18T12:59:15.049897+00:00"
       },
       "publication:update-publication-observations.yml": {
         "name": "Pouvoir d’achat et niveaux des anniversaires",
@@ -511,7 +520,7 @@
         "cause": "deploy / browser-checks (0) : node scripts/playwright-tools.mjs — Échec sans message ; deploy / fallback-build : Run npm run build",
         "id": "publication:update-publication-observations.yml",
         "firstSeenAt": "2026-10-18T12:52:04.191577+00:00",
-        "lastSeenAt": "2026-10-18T12:58:53.167581+00:00"
+        "lastSeenAt": "2026-10-18T12:59:15.049897+00:00"
       },
       "collection:update-insurance.yml:linxea-avenir-2": {
         "name": "Linxea Avenir 2",
@@ -530,7 +539,7 @@
         "dataId": "linxea-avenir-2",
         "id": "collection:update-insurance.yml:linxea-avenir-2",
         "firstSeenAt": "2026-10-14T13:08:27.203935+00:00",
-        "lastSeenAt": "2026-10-18T12:58:53.167581+00:00"
+        "lastSeenAt": "2026-10-18T12:59:15.049897+00:00"
       },
       "collection:update-scpi.yml:transitions-europe": {
         "name": "Transitions Europe",
@@ -552,7 +561,7 @@
         "dataId": "transitions-europe",
         "id": "collection:update-scpi.yml:transitions-europe",
         "firstSeenAt": "2026-10-18T10:29:36.524873+00:00",
-        "lastSeenAt": "2026-10-18T12:58:53.167581+00:00"
+        "lastSeenAt": "2026-10-18T12:59:15.049897+00:00"
       },
       "publication:update-presentation-actors.yml": {
         "name": "Présentations des acteurs et offres",
@@ -568,7 +577,24 @@
         "cause": "deploy / browser-checks (0) : node scripts/playwright-tools.mjs — Échec sans message ; deploy / fallback-build : Run npm run build",
         "id": "publication:update-presentation-actors.yml",
         "firstSeenAt": "2026-10-18T12:56:03.999172+00:00",
-        "lastSeenAt": "2026-10-18T12:58:53.167581+00:00"
+        "lastSeenAt": "2026-10-18T12:59:15.049897+00:00"
+      },
+      "publication:update-regulatory-data.yml": {
+        "name": "Paramètres fiscaux, LDDS et tarifs de courtiers",
+        "tools": [
+          "Comparatif courtiers",
+          "Fiches pratiques"
+        ],
+        "impactScope": "collector",
+        "workflow": "update-regulatory-data.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39128774908",
+        "to": "/donnees-a-revoir",
+        "kind": "publication",
+        "field": "Publication",
+        "cause": "deploy / build : Run node scripts/test-portfolio-roadmap.mjs ; deploy / fallback-build : Run npm run build",
+        "id": "publication:update-regulatory-data.yml",
+        "firstSeenAt": "2026-10-18T12:59:15.049897+00:00",
+        "lastSeenAt": "2026-10-18T12:59:15.049897+00:00"
       },
       "workflow:update-market-monthly.yml": {
         "name": "Historiques mensuels des marchés",
@@ -587,7 +613,7 @@
         "cause": "refresh : Validate observations: node scripts test-etf-tool-connections.mjs",
         "id": "workflow:update-market-monthly.yml",
         "firstSeenAt": "2026-10-18T11:43:35.606108+00:00",
-        "lastSeenAt": "2026-10-18T12:58:53.167581+00:00"
+        "lastSeenAt": "2026-10-18T12:59:15.049897+00:00"
       },
       "publication:update-company-analysis.yml": {
         "name": "Analyses d’entreprises",
@@ -603,7 +629,7 @@
         "cause": "deploy / build : Run npm run audit:instrument-listings ; deploy / fallback-build : Run npm run build ; report-failures : Run echo 'Some sources failed. Previous observations were retained independently; stale ratios are omitted by the publication engine.' >> \"$GITHUB_STEP_SUMMARY\"",
         "id": "publication:update-company-analysis.yml",
         "firstSeenAt": "2026-10-18T11:47:02.423295+00:00",
-        "lastSeenAt": "2026-10-18T12:58:53.167581+00:00"
+        "lastSeenAt": "2026-10-18T12:59:15.049897+00:00"
       },
       "publication:update-economic-data.yml": {
         "name": "Taux d’épargne, ménages, SCPI et fonds euros",
@@ -620,7 +646,7 @@
         "cause": "deploy / build : Run npm run audit:etf-annual-performance",
         "id": "publication:update-economic-data.yml",
         "firstSeenAt": "2026-10-17T12:18:32.387705+00:00",
-        "lastSeenAt": "2026-10-18T12:58:53.167581+00:00"
+        "lastSeenAt": "2026-10-18T12:59:15.049897+00:00"
       },
       "publication:update-non-bond-expansion.yml": {
         "name": "Nouveaux actifs et historiques",
@@ -639,7 +665,7 @@
         "cause": "deploy / browser-checks (0) : node scripts/playwright-tools.mjs — Échec sans message ; deploy / fallback-build : Run npm run build",
         "id": "publication:update-non-bond-expansion.yml",
         "firstSeenAt": "2026-10-18T12:58:02.935819+00:00",
-        "lastSeenAt": "2026-10-18T12:58:53.167581+00:00"
+        "lastSeenAt": "2026-10-18T12:59:15.049897+00:00"
       },
       "publication:update-qualified-exposures.yml": {
         "name": "Expositions ETF qualifiées",
@@ -659,7 +685,7 @@
         "cause": "deploy / build : Run npm run audit:calculator-series",
         "id": "publication:update-qualified-exposures.yml",
         "firstSeenAt": "2026-10-16T12:48:21.924866+00:00",
-        "lastSeenAt": "2026-10-18T12:58:53.167581+00:00"
+        "lastSeenAt": "2026-10-18T12:59:15.049897+00:00"
       },
       "collection:update-exposure-expansion.yml:etf-exposure-expansion-IE00BK1PV551": {
         "name": "Xtrackers MSCI World UCITS ETF 1D",
@@ -683,7 +709,7 @@
         "dataId": "etf-exposure-expansion-IE00BK1PV551",
         "id": "collection:update-exposure-expansion.yml:etf-exposure-expansion-IE00BK1PV551",
         "firstSeenAt": "2026-10-17T20:42:44.184725+00:00",
-        "lastSeenAt": "2026-10-18T12:58:53.167581+00:00"
+        "lastSeenAt": "2026-10-18T12:59:15.049897+00:00"
       },
       "workflow:update-instrument-metadata.yml": {
         "name": "Caractéristiques et statut PEA par ISIN",
@@ -702,7 +728,7 @@
         "cause": "refresh : Run npm run build && node scripts/test-full-auto-routing.mjs",
         "id": "workflow:update-instrument-metadata.yml",
         "firstSeenAt": "2026-10-18T12:57:39.234539+00:00",
-        "lastSeenAt": "2026-10-18T12:58:53.167581+00:00"
+        "lastSeenAt": "2026-10-18T12:59:15.049897+00:00"
       },
       "unobserved:onboard-assets.yml": {
         "name": "Intégration des nouveaux actifs",
@@ -725,36 +751,10 @@
         "cause": "Aucune exécution terminée avec une date exploitable.",
         "id": "unobserved:onboard-assets.yml",
         "firstSeenAt": "2026-10-18T12:02:38.068054+00:00",
-        "lastSeenAt": "2026-10-18T12:58:53.167581+00:00"
+        "lastSeenAt": "2026-10-18T12:59:15.049897+00:00"
       }
     },
     "events": [
-      {
-        "revision": 79,
-        "at": "2026-10-17T20:32:40.441529+00:00",
-        "opened": [
-          "radar:2d430d016b85864c0efc7f9a"
-        ],
-        "resolved": [
-          {
-            "name": "Présentations de SCPI",
-            "tools": [
-              "Présentations SCPI"
-            ],
-            "impactScope": "collector",
-            "workflow": "update-scpi.yml",
-            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39029586514",
-            "to": "/donnees-a-revoir",
-            "kind": "publication",
-            "field": "Publication",
-            "cause": "deploy / browser-checks (2) : Run node scripts/run-browser-checks.mjs 2 4 ; deploy / browser-checks (0) : Run node scripts/run-browser-checks.mjs 0 4 ; report-failures : Run echo 'Collecte SCPI partielle : les dernières fiches validées sont conservées. Voir scpi-observations.' >> \"$GITHUB_STEP_SUMMARY\"",
-            "id": "publication:update-scpi.yml",
-            "firstSeenAt": "2026-10-17T12:17:16.852334+00:00",
-            "lastSeenAt": "2026-10-17T20:32:19.770529+00:00",
-            "resolvedAt": "2026-10-17T20:32:40.441529+00:00"
-          }
-        ]
-      },
       {
         "revision": 80,
         "at": "2026-10-17T20:42:25.096124+00:00",
@@ -1603,6 +1603,14 @@
         "at": "2026-10-18T12:58:02.935819+00:00",
         "opened": [
           "publication:update-non-bond-expansion.yml"
+        ],
+        "resolved": []
+      },
+      {
+        "revision": 109,
+        "at": "2026-10-18T12:59:15.049897+00:00",
+        "opened": [
+          "publication:update-regulatory-data.yml"
         ],
         "resolved": []
       }
