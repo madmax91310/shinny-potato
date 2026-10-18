@@ -10,7 +10,7 @@ const read = path => JSON.parse(readFileSync(path, 'utf8'))
 // CI regenerates this report from the current data just before the test (audit-asset-tool-routing.mjs --write).
 const routing = read('docs/asset-tool-routing.json')
 const candidates = read('scripts/listing-candidates.json').candidates
-const CODES = ['no-listing', 'listing-not-collectable', 'qualification-failed', 'collection-pending', 'history-short']
+const CODES = ['no-listing', 'listing-not-collectable', 'qualification-failed', 'collection-pending', 'history-short', 'curated-duel']
 const SUFFIX = { XPAR:'.PA', XAMS:'.AS', XETR:'.DE', XLON:'.L', ETFP:'.MI', XSWX:'.SW' }
 const EXCHANGES = { XPAR:'Euronext Paris', XAMS:'Euronext Amsterdam', XETR:'Xetra', XLON:'London Stock Exchange', ETFP:'Borsa Italiana', XSWX:'SIX Swiss Exchange' }
 
