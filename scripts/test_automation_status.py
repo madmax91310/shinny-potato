@@ -273,4 +273,11 @@ class NewCollectorStatusTests(unittest.TestCase):
   report['errors'].append({'family':'etf','reason':'Source illisible'})
   self.assertEqual(normalize_report(report)['errors'][0]['error'],'Source illisible')
 
+ def test_failed_browser_check_keeps_its_annotated_name(self):
+  jobs=[{'name':'deploy / browser-checks (0)','conclusion':'failure','steps':[{'name':'Run node scripts/run-browser-checks.mjs 0 4','conclusion':'failure'}],
+         'annotations':[{'title':'Échec node scripts/playwright-tools.mjs','message':'strict mode violation'},{'title':'Node.js 20 is deprecated','message':'x'}]}]
+  state=update_status({},run(1),jobs,[])
+  failure=state['workflows']['update-economic-data.yml']['failures'][0]
+  self.assertEqual(failure['checks'],['node scripts/playwright-tools.mjs — strict mode violation'])
+
 if __name__ == '__main__': unittest.main()

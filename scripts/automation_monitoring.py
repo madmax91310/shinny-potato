@@ -68,7 +68,7 @@ def evaluate_monitoring(state, context, registry, now, radar=None):
             kind = 'publication' if publishing else 'checks' if checks_only else 'collection'
             add(f"{'workflow' if kind == 'collection' else kind}:{workflow}", {**base, 'kind': kind,
                 'field': {'publication': 'Publication', 'checks': 'Contrôle après publication'}.get(kind, 'Exécution du collecteur'),
-                'cause': ' ; '.join(f"{f['job']} : {f['step']}" for f in row.get('failures', [])) or 'Exécution en échec ; consulter le journal.'})
+                'cause': ' ; '.join(f"{f['job']} : {' / '.join(f['checks']) if f.get('checks') else f['step']}" for f in row.get('failures', [])) or 'Exécution en échec ; consulter le journal.'})
     for row in context['alerts']:
         add('calendar:' + row['id'], {**row, 'kind': 'freshness', 'cause': ('Date future à vérifier.' if row['category'] == 'future-date' else row.get('reason', 'Repli sur une valeur manuelle.') if row['category'] == 'manual-fallback' else 'Échéance de vérification atteinte ; contrôler la période disponible.'), 'lastSuccessAt': row.get('checkedAt')})
     # Radar contradictions are review signals, never confirmed market movements.

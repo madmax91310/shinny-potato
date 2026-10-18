@@ -196,6 +196,7 @@ jobs:
       - run: node scripts/test-performance-links.mjs
       - run: node scripts/test-deploy-scope.mjs
       - run: node scripts/test-fallback-snapshot.mjs
+      - run: node scripts/test-browser-check-error.mjs
       - name: Record the published commit for the data-only lane
         run: printf '{"sha":"%s","builtAt":"%s"}\n' "$(git rev-parse HEAD)" "$(date -u +%Y-%m-%dT%H:%M:%SZ)" > dist/build-info.json
       - uses: actions/upload-artifact@v7.0.1

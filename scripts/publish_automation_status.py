@@ -227,9 +227,11 @@ def update_status(state, run, jobs, reports=None):
     for job in jobs:
         if job.get('conclusion') not in ('failure', 'timed_out'):
             continue
+        named = [a.get('title', '')[len('Échec '):] + ' — ' + str(a.get('message', ''))[:200]
+                 for a in job.get('annotations', []) if str(a.get('title', '')).startswith('Échec ')]
         for step in job.get('steps', []):
             if step.get('conclusion') in ('failure', 'timed_out'):
-                failures.append({'job': job['name'], 'step': step['name']})
+                failures.append({'job': job['name'], 'step': step['name'], **({'checks': named[:3]} if named else {})})
     refresh_jobs = [job for job in jobs if job['name'] == REGISTRY[workflow]['collectionJob']]
     steps = [step for job in refresh_jobs for step in job.get('steps', [])]
     def phase_status(names):
@@ -344,6 +346,14 @@ def main():
             if len(batch) < 100:
                 break
             page += 1
+        for job in jobs:
+            # Browser checks annotate the exact failed check ('Échec ...'): keep it so
+            # the incident names the test, not only the shard.
+            if job.get('conclusion') in ('failure', 'timed_out') and job['name'].startswith('deploy /'):
+                try:
+                    job['annotations'] = api(f"/check-runs/{job['id']}/annotations?per_page=50")
+                except (urllib.error.HTTPError, urllib.error.URLError, ValueError):
+                    job['annotations'] = []
         reports = []
         if run['path'].split('/')[-1] in REPORT_ARTIFACTS:
             artifact_name = REPORT_ARTIFACTS[run['path'].split('/')[-1]]
