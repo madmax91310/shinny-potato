@@ -29,7 +29,7 @@ const server = spawn('node', ['node_modules/vite/bin/vite.js', '--host', '127.0.
 let browser
 try {
   for (let i = 0; i < 100; i++) { try { if ((await fetch(base)).ok) break } catch {} await new Promise(resolve => setTimeout(resolve, 200)) }
-  browser = await chromium.launch({ headless: true, ...(process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH ? { executablePath: process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH } : {}) })
+  browser = await chromium.launch({ headless: true, args:['--disable-gpu','--disable-software-rasterizer'], ...(process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH ? { executablePath: process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH } : {}) })
   const page = await browser.newPage(); await page.goto(base)
   const result = await page.evaluate(async () => {
     const { DEFAULT_THEMES } = await import('/shinny-potato/src/data/etf-themes.js')
@@ -37,7 +37,7 @@ try {
     const { ASSET_ORDER } = await import('/shinny-potato/src/data/market-history.js')
     const { getAnnualReturnStartYears, getAnnualReturns } = await import('/shinny-potato/src/pages/tweet-midi/data/marketHistory.js')
     const { getComparisonComposition, compositionEvidenceLabel } = await import('/shinny-potato/src/pages/etf-tweets/lib/comparisonComposition.js')
-    const { renderComparatifEtfImage } = await import('/shinny-potato/src/pages/tweet-midi/comparatifEtfImage.js')
+    const { renderComparatifEtfImage, getComparisonPaperCards } = await import('/shinny-potato/src/pages/tweet-midi/comparatifEtfImage.js')
     const { renderPerformanceImage, cumulativePerformance } = await import('/shinny-potato/src/pages/tweet-midi/performanceImage.js')
     const original = CanvasRenderingContext2D.prototype.fillText
     let boxes = [], labels = [], current
@@ -59,14 +59,19 @@ try {
     try {
       for (const theme of DEFAULT_THEMES) {
         const words = await check(`compare-${theme.id}`, () => renderComparatifEtfImage(theme), ['ia-robotique', 'sante', 'ressources-naturelles', 'materials-classic-advanced', 'industrie-infrastructures', 'sp500-equal-weight', 'monde', 'usa', 'etc-metaux', 'semiconducteurs-tech', 'quantique', 'emergents-pea', 'world-pea', 'monetaire-obligations-courtes', 'world-meme-indice-pea', 'sp500-meme-indice-pea'].includes(theme.id))
-        for (const fund of theme.etfs) if (!words.includes(fund.isin) || !words.includes(`${fund.frais.replace(/\s*%$/, '')} %`)) throw new Error('Lost fund fact')
+        const all=words.join(' ').replace(/\s+/g,'')
+        const cards=getComparisonPaperCards(theme)
+        for (const [i,fund] of theme.etfs.entries()) {
+          if (!all.includes(cards[i].name.replace(/\s+/g,'')) || !words.includes(`${fund.frais.replace(/\s*%$/, '')} %`)) throw new Error('Lost fund fact')
+          const status=getInstrumentPeaStatus(fund.isin)
+          if(cards[i].badge!==(status===null?null:status?'PEA':'CTO'))throw new Error('Incorrect qualified PEA badge')
+          if(cards[i].badge&&!words.includes(cards[i].badge))throw new Error('Missing envelope')
+        }
         for (const fund of theme.etfs) {
           const composition = getComparisonComposition(fund.isin, 'countries')
-          if (composition.classification && !words.join(' ').includes(compositionEvidenceLabel(composition))) throw new Error(`Missing dated DWS classification: ${fund.isin}`)
+          if (composition.classification && !all.includes(compositionEvidenceLabel(composition).replace(/\s+/g,''))) throw new Error(`Missing dated DWS classification: ${fund.isin}`)
         }
-        const peaInNames = theme.etfs.reduce((count, fund) => count + (fund.nom.match(/\bPEA\b/g)?.length ?? 0), 0)
-        const peaOnImage = words.join(' ').match(/\bPEA\b/g)?.length ?? 0
-        if (peaOnImage !== peaInNames + (theme.nom.match(/\bPEA\b/g)?.length ?? 0) + theme.etfs.filter(fund => getInstrumentPeaStatus(fund.isin) === true).length + (theme.cloture?.match(/\bPEA\b/g)?.length ?? 0)) throw new Error('Incorrect qualified PEA badges')
+        if(words.some(word=>/Historique annuel non disponible|PERFORMANCES ANNUELLES/.test(word)))throw new Error('Unapproved history panel')
       }
       for (const id of ASSET_ORDER) {
         const years = getAnnualReturnStartYears(id), year = years[0]
