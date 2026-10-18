@@ -1,6 +1,37 @@
 {
  "method": "Candidats curatés : identité ISIN, cotation attendue et devise. Une ligne n’entre dans src/data/global-equities.json qu’après classification officielle (positions complètes BlackRock) et qualification réelle de l’historique Yahoo par scripts/qualify_monthly_candidates.py ; scripts/sync-global-equities.mjs effectue ce transfert. Un symbole null signifie que la cotation détenue par l’émetteur est acceptée telle quelle.",
- "candidates": [],
+ "candidates": [
+  {
+   "id": "tsmc",
+   "label": "TSMC",
+   "symbol": "2330.TW",
+   "currency": "TWD",
+   "region": "Asie",
+   "scene": "chip",
+   "isin": "TW0002330008",
+   "timezone": "Asia/Taipei"
+  },
+  {
+   "id": "mediatek",
+   "label": "MediaTek",
+   "symbol": "2454.TW",
+   "currency": "TWD",
+   "region": "Asie",
+   "scene": "chip",
+   "isin": "TW0002454006",
+   "timezone": "Asia/Taipei"
+  },
+  {
+   "id": "hon-hai",
+   "label": "Hon Hai (Foxconn)",
+   "symbol": "2317.TW",
+   "currency": "TWD",
+   "region": "Asie",
+   "scene": "chip",
+   "isin": "TW0002317005",
+   "timezone": "Asia/Taipei"
+  }
+ ],
  "excluded": [
   {
    "id": "cnooc",
