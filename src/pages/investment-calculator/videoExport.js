@@ -10,6 +10,7 @@
 // vrais points adjacents à l'instant t écoulé (mode Comparatif, drawComparativeFrame/revealSide) —
 // jamais une troisième source de donnée inventée entre les deux.
 import { fmtEUR, fmtPct, computeAssetSeries, sparseAssetSeries, indexAnchorPoints, applyPriceOverride, ymIndex } from './lib.js'
+import { historyInCurrency, monthlyCurrencyFactor } from '../../data/history-currency.js'
 import { ASSETS, getAssetMinDate, SPARSE_MONTHLY_DATA_IDS, INCONSISTENT_MONTHLY_DATA_IDS, MONTHS_SHORT } from '../../data/calculator-history.js'
 
 const W = 1080
@@ -87,8 +88,9 @@ function pickMimeType() {
 // actif "sparse", ici on BLOQUE la génération vidéo pour cet actif — juxtaposer deux courbes dont
 // l'une est presque entièrement interpolée serait trompeur dans un format comparatif.
 // Retourne un message d'erreur précis (nommant l'actif) ou null si l'actif est utilisable tel quel.
-export function getComparativeAssetIssue(assetId, startYm, mode, endYm) {
+export function getComparativeAssetIssue(assetId, startYm, mode, endYm, currency = 'native') {
   const asset = ASSETS[assetId]
+  try { const converted = historyInCurrency(asset, currency, startYm, endYm); if (endYm && converted.points.at(-1).date < endYm) return 'Historique de change incomplet sur cette période.' } catch (error) { return error.message }
   const minDate = getAssetMinDate(assetId)
   if (ymIndex(startYm) < ymIndex(minDate)) {
     const [y, m] = minDate.split('-')
@@ -119,8 +121,10 @@ export function getComparativeAssetIssue(assetId, startYm, mode, endYm) {
 // mensuelle complète — cf. son commentaire pour le pourquoi (rendu vidéo "hyper mal" sur ces actifs,
 // retour utilisateur du 14/09/2026). Mode toujours 'lump' pour ces actifs (DCA bloqué en amont par
 // getComparativeAssetIssue), donc pas de branche DCA à gérer ici.
-export function computeComparativeSeries(assetId, startYm, endYm, amount, mode, overridePriceRaw = '') {
-  const points = ASSETS[assetId].points
+export function computeComparativeSeries(assetId, startYm, endYm, amount, mode, overridePriceRaw = '', currency = 'native') {
+  const asset = historyInCurrency(ASSETS[assetId], currency, startYm, endYm)
+  const points = asset.points
+  if (overridePriceRaw && asset.fxConverted) overridePriceRaw = String(Number(overridePriceRaw) * monthlyCurrencyFactor(endYm, ASSETS[assetId].currency, asset.currency))
   const result = INCONSISTENT_MONTHLY_DATA_IDS.has(assetId)
     ? sparseAssetSeries(indexAnchorPoints(assetId, endYm), startYm, endYm, amount)
     : SPARSE_MONTHLY_DATA_IDS.has(assetId) && mode !== 'dca'

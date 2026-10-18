@@ -12,19 +12,23 @@ import Button from '../../design-system/Button'
 import { SHEETS } from './data.js'
 import { buildFactsheetTweet } from './lib.js'
 import { renderFactsheetImage } from './canvasImage.js'
-import { canUseEuros, factsheetCurrency, factsheetInCurrency } from './performanceCurrency.js'
+import { factsheetCurrencies, factsheetCurrency, factsheetInCurrency, factsheetVariants, factsheetInVariant } from './performanceCurrency.js'
 import './factsheet-tweets.css'
 
 export default function App() {
   const [selected, setSelected] = usePublicationPreference('index-sheet', SHEETS[0].id, id => SHEETS.some(s => s.id === id))
-  const [currency, setCurrency] = usePublicationPreference('index-sheet-currency', 'native', value => ['native', 'EUR'].includes(value))
+  const [currency, setCurrency] = usePublicationPreference('index-sheet-currency', 'native', value => ['native', 'EUR', 'USD'].includes(value))
   const [drafts, setDrafts] = useState({})
   const [copied, setCopied] = useState(false)
   const [image, setImage] = useState(null)
-  const original = SHEETS.find((entry) => entry.id === selected)
-  const euroAvailable = canUseEuros(original)
-  const effectiveCurrency = currency === 'EUR' && euroAvailable ? 'EUR' : 'native'
-  const draftKey = `${selected}:${effectiveCurrency}`
+  const base = SHEETS.find((entry) => entry.id === selected)
+  const [variant, setVariant] = usePublicationPreference('index-sheet-variant', 'native', value => ['native','NETR','GRTR'].includes(value))
+  const variants = factsheetVariants(base)
+  const effectiveVariant = variants.includes(variant) ? variant : 'native'
+  const original = factsheetInVariant(base, effectiveVariant)
+  const currencies = factsheetCurrencies(original)
+  const effectiveCurrency = currencies.includes(currency) ? currency : 'native'
+  const draftKey = `${selected}:${effectiveCurrency}:${effectiveVariant}`
   const selectedRef = useRef(draftKey)
   selectedRef.current = draftKey
   useEffect(() => { setImage(null) }, [draftKey])
@@ -57,11 +61,11 @@ export default function App() {
       <AssetPicker id="factsheet-subject" label="Choisir un indice" value={selected}
         items={SHEETS.map(entry => ({ id: entry.id, label: entry.title, group: exposureGroup(entry), detail: entry.index }))}
         onChange={value => { setSelected(value); setCopied(false) }} />
+      {variants.length > 1 && <label className="fs-label">Dividendes réinvestis <select aria-label="Dividendes réinvestis" value={effectiveVariant} onChange={e => { setVariant(e.target.value); setCopied(false) }}><option value="native">Convention d’origine</option>{variants.map(v => <option key={v} value={v}>{v === 'NETR' ? 'Nets' : 'Bruts'}</option>)}</select></label>}
       <label className="fs-label" htmlFor="factsheet-currency">Devise des performances</label>
       <select id="factsheet-currency" value={effectiveCurrency} onChange={event => { setCurrency(event.target.value); setCopied(false) }}>
         <option value="native">Devise d’origine{factsheetCurrency(original) ? ` (${factsheetCurrency(original)})` : ''}</option>
-        {factsheetCurrency(original) !== 'EUR' && euroAvailable && <option value="EUR">Euros (EUR)</option>}
-        {factsheetCurrency(original) === 'EUR' && <option value="EUR">Euros (EUR)</option>}
+        {currencies.map(c => <option key={c} value={c}>{c === 'EUR' ? 'Euros (EUR)' : 'Dollars (USD)'}</option>)}
       </select>
       <div className="fs-meta">
         <span>📅 Composition : {sheet.snapshot}</span>

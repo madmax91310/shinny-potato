@@ -101,10 +101,10 @@ export default function VideoExport({ videoParams, filenameBase, comparativeInpu
   }
 
   const issue1 = compMode === 'comparative' && comparativeInputs
-    ? getComparativeAssetIssue(asset1Id, comparativeInputs.startYm, mode1, comparativeInputs.endYm)
+    ? getComparativeAssetIssue(asset1Id, comparativeInputs.startYm, mode1, comparativeInputs.endYm, comparativeInputs.currency)
     : null
   const issue2 = compMode === 'comparative' && comparativeInputs
-    ? getComparativeAssetIssue(asset2Id, comparativeInputs.startYm, mode2, comparativeInputs.endYm)
+    ? getComparativeAssetIssue(asset2Id, comparativeInputs.startYm, mode2, comparativeInputs.endYm, comparativeInputs.currency)
     : null
   // Un même actif comparé à lui-même avec le même mode n'a rien à montrer (deux courbes identiques) —
   // bloqué comme les autres "issues", jamais silencieusement autorisé. Comparer le même actif reste
@@ -179,8 +179,8 @@ export default function VideoExport({ videoParams, filenameBase, comparativeInpu
         finalValue2: s2.finalValue,
         gainPct1: pct(s1.finalValue, s1.totalInvested),
         gainPct2: pct(s2.finalValue, s2.totalInvested),
-        currency1: ASSETS[asset1Id].currency,
-        currency2: ASSETS[asset2Id].currency,
+        currency1: comparison.sides[0].asset.currency,
+        currency2: comparison.sides[1].asset.currency,
       }
       const blob = await renderComparativeVideo(params, setProgress)
       setVideoUrl(URL.createObjectURL(blob))

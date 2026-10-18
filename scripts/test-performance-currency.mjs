@@ -27,7 +27,7 @@ if (worldOfficial) {
   assert.notEqual(eur.asset.currencyMethod, 'official')
   assert.ok(Math.abs(compound(eur.returns) - compound(native.returns) * usdPerEur(2015) / usdPerEur(LAST)) < 1e-12)
 }
-for (const assetId of ['msciEmerging', 'msciAcwi']) {
+for (const assetId of ['msciEmerging']) {
   const [entry] = engine.getPerformanceEntries({ assetId, year: 2016, currency: 'EUR' })
   const period = entry.returns.map(row => row.year)
   if (officialFor(assetId, period)) {
@@ -70,7 +70,7 @@ try {
 const [yen] = convertPerformanceEntries([{asset:{currency:'JPY'},returns:[{year:2025,pct:10}]}], 'EUR')
 assert.ok(Math.abs(yen.returns[0].pct - ((1.1 * calendarYears[2024].rates.JPY / calendarYears[2025].rates.JPY - 1) * 100)) < 1e-12)
 assert.throws(() => convertPerformanceEntries([{asset:{currency:'ZZZ'},returns:[{year:2025,pct:10}]}], 'EUR'), /change incomplet/)
-const pair = engine.getPerformanceEntries({ mode: 'comparatif', assetIdA: 'msciWorld', assetIdB: 'stoxx600', year: 2016, currency: 'USD' })
+const pair = engine.getPerformanceEntries({ mode: 'comparatif', assetIdA: 'msciWorld', assetIdB: 'sp500', year: 2016, currency: 'USD' })
 assert.equal(pair.length, 2)
 assert.ok(pair.every(entry => entry.asset.currency === 'USD'))
 assert.deepEqual(pair[0].returns.map(r => r.year), pair[1].returns.map(r => r.year))

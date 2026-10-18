@@ -122,6 +122,7 @@ jobs:
       - run: node scripts/test-wealth-simulator.mjs
       - run: python -m unittest discover -s scripts -p "test_performance_currency.py"
       - run: node scripts/test-performance-currency.mjs
+      - run: node scripts/test-cross-tool-currency.mjs
       - run: node scripts/test-annual-rollover.mjs
       - run: node scripts/test-inflation-consistency.mjs
       - run: node scripts/test-fx-consistency.mjs
@@ -338,6 +339,8 @@ jobs:
           path: ~/.cache/ms-playwright
           key: chromium-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
       - run: npx playwright install --with-deps chromium
+      - run: node scripts/playwright-currency-consistency.mjs
+        if: matrix.shard == 0
       - run: node scripts/playwright-distinct-asset-routing.mjs
         if: matrix.shard == 1
       - run: node scripts/playwright-routing-additions.mjs

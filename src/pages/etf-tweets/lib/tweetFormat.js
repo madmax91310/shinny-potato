@@ -38,7 +38,7 @@ export function buildTweetText(theme) {
     // Le taux de swap du cuivre n'est pas compris dans les frais de gestion.
     const swapRate = AUTOMATED_ETF[etf.isin]?.characteristics?.annualSwapRatePct
     if (etf.isCopperEtc && Number.isFinite(swapRate)) lines.push(`💸 Taux de swap annuel : ${swapRate.toLocaleString('fr-FR')} % en supplément`)
-    const performance = getComparisonPerformance(etf.isin, years)
+    const performance = getComparisonPerformance(etf.isin, years, theme.performanceCurrency)
     if (performance?.rows.length) {
       const currency = performance.currency === 'USD' ? 'en dollars' : performance.currency === 'EUR' ? 'en euros' : `en ${performance.currency}`
       lines.push('', `📈 Performances annuelles ${currency}`,
