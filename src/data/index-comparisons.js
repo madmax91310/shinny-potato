@@ -278,7 +278,7 @@ export const FAMILIES = [
       // https://www.blackrock.com/fr/particuliers/products/253740/ishares-msci-usa-b-ucits-etf
       { key: 'msci_usa', label: 'iShares MSCI USA', ...getInstrumentComparatorReturns('IE00B52SFT06') },
     ],
-    perfMethodNote: 'ℹ️ Les deux ETF Amundi sont présentés en euros ; iShares MSCI USA est présenté en dollars (NAV de la part USD). Les performances ne sont pas directement comparables sans tenir compte du change.',
+    perfMethodNote: 'ℹ️ Les deux ETF Amundi sont présentés en euros ; iShares MSCI USA est présenté en dollars (NAV de la part USD). Les performances ne sont pas directement comparables sans tenir compte du change. Les choix manuels du Générateur peuvent utiliser les cours de Bourse ajustés de la même part ; ces deux bases peuvent différer.',
     verdictTitle: '✅ LE VERDICT',
     verdict: [
       { q: '💳 Un S&P 500 en PEA à frais affichés réduits ?', a: 'iShares SPEA (0,10 %, fonds récent), ou Amundi PEA S&P 500 (0,12 %, historique plus long). Le TER ne résume pas le coût ni la qualité de suivi.' },
@@ -749,7 +749,7 @@ export const FAMILIES = [
       // https://www.blackrock.com/fr/particuliers/products/273192/ishares-msci-china-a-ucits-etf
       { key: 'msci_china_a', label: 'iShares MSCI China A', ...getInstrumentComparatorReturns('IE00BQT3WG13') },
     ],
-    perfMethodNote: 'ℹ️ Les parts iShares MSCI China, FTSE China 50 et MSCI China A sont en dollars ; Amundi PEA Chine est en euros. Comparer directement les rendements mélange les effets de change.',
+    perfMethodNote: 'ℹ️ Les parts iShares MSCI China, FTSE China 50 et MSCI China A sont en dollars ; Amundi PEA Chine est en euros. Comparer directement les rendements mélange les effets de change. Ces rendements sont les NAV publiées par les émetteurs ; les choix manuels du Générateur peuvent utiliser les cours de Bourse ajustés de la même part, dans la devise de sa cotation (en euros pour FTSE China 50 à Amsterdam). Les bases et les devises peuvent donc différer.',
     verdictTitle: '✅ LE VERDICT',
     verdict: [
       { q: '🏙️ La référence la plus suivie, en CTO ?', a: 'iShares MSCI China.' },

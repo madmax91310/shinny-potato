@@ -38,7 +38,8 @@ actifs ») ; sélection PEA annuelle prise par position (`slice(0, 6)`) sur des 
   l’observation automatique porte frais, encours daté, au moins une année civile complète et les trois
   expositions publiées (pays, secteurs, positions) ; une matière première sans exposition actions est
   admise. Même exigence que `audit-comparison-automation.mjs`, qui tourne sur l’ensemble.
-- Résultat : 126 thèmes couvrent 229 fiches. Quinze fiches restent hors comparatif, pour cause
+- Résultat : 126 thèmes couvrent 229 fiches avant fusion de master ; après la fusion des 14 ETF
+  iShares de #762 (12 thèmes éditoriaux), 138 thèmes couvrent 243 fiches. Quinze fiches restent hors comparatif, pour cause
   d’observations incomplètes et non par oubli : FR0013346681 (monétaire, pas d’exposition actions),
   LU3180074463, FR001400ZGO4, LU2970735911 (lancements 2025, premier calendrier attendu),
   IE000716YHJ7, IE0000QLH0G6, IE000L6ZMMC4, IE00BLCHJB90, IE000NDWFGA5, IE00BMH5Y871, IE0000N55FP4

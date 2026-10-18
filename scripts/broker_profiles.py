@@ -171,6 +171,9 @@ def statement(broker, field, texts, qualification_texts=None, today=None):
         if broker=='ibkr':
             return proved(r'IB-IE offers access to PEA eligible products on markets outside of the eurozone.{0,220}?IB-IE will proceed to an automatic currency conversion',True,'PEA : conversion automatique en cas d’achat d’un titre dans une autre devise ; barème propre au PEA non confirmé.','partiel',document='ibkrFxFaq')
         if broker=='caidf':
+            current = r"Des opérations peuvent être réalisées dans une devise autre que l.euro\. Dans ce cas, votre compte espèces associé à votre CTO est débité \(en cas d’achat de titres financiers\) ou crédité \(en cas de vente de titres financiers\) du montant en euros correspondant\. Des frais peuvent s’appliquer\. Ce montant en euros est calculé en appliquant le taux de change que nous pratiquons au moment de l.opération pour la devise concernée\."
+            if re.search(current,texts['caCtoContract'],re.I):
+                return proved(current,True,'CTO : conversion en euros au taux de change pratiqué par la caisse Île-de-France au moment de l’opération ; frais éventuels. Montant et portée PEA non établis par cette clause.','partiel',document='caCtoContract')
             clause = r'Pour les opérations donnant lieu à des règlements en devises, le compte du Client enregistrera la contre-valeur en euros du montant de l.opération réalisée par application du taux pratiqué par la Caisse Régionale sur la devise concernée ainsi que les frais et commissions y afférents'
             return proved(clause,True,'CTO : conversion en euros au cours pratiqué par la caisse Île-de-France, avec frais et commissions associés. Montant et portée PEA non établis par cette clause.','partiel',document='caCtoContract')
         find(r'Les rendements en devises étrangères.{0,160}?sont convertis en euro',texts['trFxRules'])
@@ -200,6 +203,7 @@ def parse(broker,field,raws,today,sources=None):
     conversion = {'automaticOnPea':True} if broker=='ibkr' and field=='change' else None
     if broker=='caidf' and field=='change' and decisive=='caCtoContract':
         conversion = {'account':'CTO','toEuro':True,'bankRate':True,'associatedFees':True,'rate':None}
+        if 'Des frais peuvent s’appliquer.' in quote: conversion['feesConditional']=True
     if broker == 'tr' and field == 'change' and decisive == 'trDividendsFx':
         supporting['trFxRules'] = find(r'Les cours d.achat ou de vente des devises nécessaires à la conversion monétaire.{0,320}?marges d.achat et de vente figurant dans la liste ci-dessous',texts['trFxRules'])[0]
         table = texts['trFxRules'].split('Marges spécifiques à la devise pour la conversion :')

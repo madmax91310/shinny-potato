@@ -3,8 +3,13 @@ const read=path=>JSON.parse(readFileSync(new URL('../'+path,import.meta.url)))
 const catalog=Object.values(read('src/pages/dca-profiles/catalog.json'))
 const active=new Set(Object.values(read('src/data/equity-history-links.json')).map(r=>r.isin))
 const classifications=read('src/data/dca-security-classifications.json')
-const exchanges={
- 'NASDAQ':['','America/New_York'],'New York Stock Exchange Inc.':['','America/New_York'],
+// Curated candidates carry the editorial identity (id, label, scene, region) and the expected
+// exact listing. The classification stays the only source of the ticker, exchange and currency.
+const curated=new Map(read('scripts/global-equity-candidates.json').candidates.map(c=>[c.isin,c]))
+// Exchange labels as published in BlackRock complete holdings, mapped to the Yahoo suffix of
+// the same venue and its trading timezone. A venue absent from this map is never guessed.
+export const exchanges={
+ 'NASDAQ':['','America/New_York'],'New York Stock Exchange Inc.':['','America/New_York'],'Nyse Mkt Llc':['','America/New_York'],
  'Nyse Euronext - Euronext Paris':['.PA','Europe/Paris'],'Xetra':['.DE','Europe/Berlin'],
  'SIX Swiss Exchange':['.SW','Europe/Zurich'],'London Stock Exchange':['.L','Europe/London'],
  'Euronext Amsterdam':['.AS','Europe/Amsterdam'],'Bolsa De Madrid':['.MC','Europe/Madrid'],
@@ -12,21 +17,39 @@ const exchanges={
  'Korea Exchange (Stock Market)':['.KS','Asia/Seoul'],'Hong Kong Exchanges And Clearing Ltd':['.HK','Asia/Hong_Kong'],
  'Omx Nordic Exchange Copenhagen A/S':['.CO','Europe/Copenhagen'],
  'National Stock Exchange Of India':['.NS','Asia/Kolkata'],'Singapore Exchange':['.SI','Asia/Singapore'],
- 'Shenzhen Stock Exchange':['.SZ','Asia/Shanghai'],
+ 'Shenzhen Stock Exchange':['.SZ','Asia/Shanghai'],'Shanghai Stock Exchange':['.SS','Asia/Shanghai'],
+ 'Euronext Brussels':['.BR','Europe/Brussels'],'Nyse Euronext - Euronext Brussels':['.BR','Europe/Brussels'],'Oslo Bors Asa':['.OL','Europe/Oslo'],
+ 'Nasdaq Omx Helsinki Ltd.':['.HE','Europe/Helsinki'],'Nasdaq Omx Nordic':['.ST','Europe/Stockholm'],'Nasdaq Omx Stockholm':['.ST','Europe/Stockholm'],
+ 'Toronto Stock Exchange':['.TO','America/Toronto'],'Asx - All Markets':['.AX','Australia/Sydney'],
 }
-const candidates=[]
-for(const item of catalog) {
- if(item.kind!=='equity'||active.has(item.isin))continue
- const r=classifications[item.isin],market=exchanges[r?.exchange]
- if(!market||!r.ticker||!r.currency||!r.sourceUrl||!r.asOf)continue
- const [suffix,timezone]=market
- let ticker=r.ticker.replace(/\s+/g,'-')
- if(suffix==='.HK')ticker=ticker.padStart(4,'0')
- candidates.push({id:`stock${item.isin}`,isin:item.isin,label:r.exchange==='London Stock Exchange'?item.name.replace(/\s*\((?:NYSE|ADR)\)$/,'')+' (Londres)':item.name,ticker:r.ticker,
-  symbol:ticker+suffix,currency:r.currency,timezone,parser:'yahoo',field:'adjclose',precision:6,
-  instrumentType:'EQUITY',consumerScope:'equity',collectAnniversary:true,
-  listingEvidenceId:`${item.isin}:${r.exchange}:${r.ticker}:${r.currency}`,
-  listingEvidence:{sourceUrl:r.sourceUrl,asOf:r.asOf,isin:r.isin,ticker:r.ticker,exchange:r.exchange,currency:r.currency},
-  method:'Cours de la cotation identifiée par ISIN dans les positions émetteur, ajustés des distributions et divisions ; dernières clôtures quotidiennes recoupées avec les clôtures mensuelles Yahoo.'})
+const normal=value=>String(value).toUpperCase().replace(/[-\s]/g,'').replace(/^0+(?=\d)/,'')
+export function buildCandidates(){
+ const candidates=[], skipped=[]
+ for(const item of catalog) {
+  if(item.kind!=='equity'||active.has(item.isin))continue
+  const r=classifications[item.isin],market=exchanges[r?.exchange],expected=curated.get(item.isin)
+  if(!r){if(expected)skipped.push({id:expected.id,isin:item.isin,reason:'No classification in the official complete holdings yet'});continue}
+  if(!market||!r.ticker||!r.currency||!r.sourceUrl||!r.asOf){skipped.push({id:expected?.id??item.isin,isin:item.isin,reason:`Unsupported or incomplete listing evidence: ${r.exchange??'no exchange'}`});continue}
+  const [suffix,timezone]=market
+  // Yahoo writes London tickers without their trailing dot (BP. → BP.L, NG. → NG.L).
+  let ticker=r.ticker.replace(/\s+/g,'-').replace(/\.+$/,'')
+  if(suffix==='.HK')ticker=ticker.padStart(4,'0')
+  const symbol=ticker+suffix
+  if(expected?.symbol&&expected.symbol!==symbol){skipped.push({id:expected.id,isin:item.isin,reason:`Expected listing ${expected.symbol} differs from the issuer-held listing ${symbol}; no substitution`});continue}
+  if(expected&&normal(expected.currency==='GBp'?'GBP':expected.currency)!==normal(r.currency)){skipped.push({id:expected.id,isin:item.isin,reason:`Expected currency ${expected.currency} differs from the issuer listing currency ${r.currency}`});continue}
+  const label=expected?.label??(r.exchange==='London Stock Exchange'?item.name.replace(/\s*\((?:NYSE|ADR)\)$/,'')+' (Londres)':item.name)
+  candidates.push({id:expected?.id??`stock${item.isin}`,isin:item.isin,label,ticker:r.ticker,
+   symbol,currency:r.currency,timezone:expected?.timezone??timezone,parser:'yahoo',field:'adjclose',precision:6,
+   instrumentType:'EQUITY',consumerScope:'equity',collectAnniversary:true,
+   ...(expected?{icon:'📈',tweetPhrase:expected.label}:{}),
+   listingEvidenceId:`${item.isin}:${r.exchange}:${r.ticker}:${r.currency}`,
+   listingEvidence:{sourceUrl:r.sourceUrl,asOf:r.asOf,isin:r.isin,ticker:r.ticker,exchange:r.exchange,currency:r.currency},
+   method:'Cours de la cotation identifiée par ISIN dans les positions émetteur, ajustés des distributions et divisions ; dernières clôtures quotidiennes recoupées avec les clôtures mensuelles Yahoo.'})
+ }
+ return {candidates,skipped}
 }
-process.stdout.write(JSON.stringify(candidates))
+if(process.argv[1]===new URL(import.meta.url).pathname){
+ const {candidates,skipped}=buildCandidates()
+ if(skipped.length)process.stderr.write(JSON.stringify(skipped,null,1)+'\n')
+ process.stdout.write(JSON.stringify(candidates))
+}

@@ -1,0 +1,133 @@
+name: Onboard new assets
+# Qualifies newly configured assets with real collections on the dispatched branch:
+# exact-stock classification from official complete holdings, iShares qualified
+# exposures, Yahoo monthly histories and dated closes. Only validated observations are
+# committed back to the same branch; failures keep the previous data and stay listed.
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/onboard-assets.yml'
+      - 'scripts/global-equity-candidates.json'
+      - 'scripts/qualified-exposure-sources.json'
+  workflow_dispatch:
+    inputs:
+      equity_limit:
+        description: Maximum number of equity candidates to qualify in this run
+        default: '200'
+      etf_limit:
+        description: Maximum number of ETF listings to qualify in this run
+        default: '40'
+      qualified_only:
+        description: Space-separated ids of qualified-exposure-sources.json to collect (empty = every configured share without a record)
+        default: ''
+      push:
+        description: Commit and push validated observations to the dispatched branch
+        default: 'true'
+permissions:
+  contents: read
+jobs:
+  onboard:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    permissions:
+      contents: write
+    concurrency:
+      group: onboard-assets-${{ github.head_ref || github.ref }}
+      cancel-in-progress: false
+      queue: max
+    env:
+      EQUITY_LIMIT: ${{ inputs.equity_limit || '200' }}
+      ETF_LIMIT: ${{ inputs.etf_limit || '40' }}
+      PUSH: ${{ inputs.push || 'true' }}
+      TARGET_BRANCH: ${{ github.head_ref || github.ref_name }}
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          ref: ${{ github.head_ref || github.ref }}
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 20
+      - run: pip install beautifulsoup4==4.15.0
+      - run: npm ci
+      - run: python -m unittest discover -s scripts -p 'test_monthly_qualification.py'
+      - name: Collect qualified iShares exposures
+        id: qualified
+        continue-on-error: true
+        env:
+          QUALIFIED_ONLY: ${{ inputs.qualified_only }}
+        run: |
+          if [ -z "$QUALIFIED_ONLY" ]; then
+            QUALIFIED_ONLY=$(node -e "const c=require('./scripts/qualified-exposure-sources.json').instruments,r=require('./src/data/qualified-exposure-etfs.json');console.log(c.filter(i=>!r[i.id]).map(i=>i.id).join(' '))")
+          fi
+          if [ -z "$QUALIFIED_ONLY" ]; then echo 'Every configured qualified share already has a record'; exit 0; fi
+          echo "Collecting: $QUALIFIED_ONLY"
+          # shellcheck disable=SC2086
+          python scripts/collect_qualified_exposures.py --apply --output "$RUNNER_TEMP/qualified-exposures.json" --only $QUALIFIED_ONLY
+      - run: node scripts/build-automation-targets.mjs
+      - name: Classify exact stocks and collect missing complete holdings
+        id: classify
+        continue-on-error: true
+        # The four classification funds plus every newly generated physical-fund source
+        # that has no complete composition yet (new qualified shares).
+        run: |
+          MISSING=$(node -e "const s={...require('./scripts/dca-complete-holdings-sources.json'),...require('./scripts/generated-holdings-sources.json')},h=require('./src/data/dca-complete-holdings.json');console.log(Object.keys(s).filter(i=>!h[i]).join(' '))")
+          # shellcheck disable=SC2086
+          python scripts/collect_dca_complete_holdings.py --apply --output "$RUNNER_TEMP/dca-complete-holdings.json" --only IE00B4L5Y983 IE00BKM4GZ66 IE00B5BMR087 IE00BF4RFH31 $MISSING
+      - run: node scripts/build-dca-exposures.mjs
+      - name: Qualify equity histories
+        id: equities
+        continue-on-error: true
+        run: |
+          node scripts/export-equity-candidates.mjs > "$RUNNER_TEMP/equity-candidates.json" 2> "$RUNNER_TEMP/equity-skipped.json" || true
+          python scripts/qualify_monthly_candidates.py --candidates "$RUNNER_TEMP/equity-candidates.json" --limit "$EQUITY_LIMIT" --apply
+      - name: Qualify exact-share ETF histories
+        id: etfs
+        continue-on-error: true
+        run: |
+          node scripts/export-monthly-candidates.mjs > "$RUNNER_TEMP/monthly-candidates.json"
+          python scripts/qualify_monthly_candidates.py --candidates "$RUNNER_TEMP/monthly-candidates.json" --limit "$ETF_LIMIT" --apply
+      - name: Promote qualified curated equities
+        run: node scripts/sync-global-equities.mjs
+      - name: Rebuild derived registries
+        run: node scripts/build-equity-history-links.mjs && node scripts/build-dca-exposures.mjs && node scripts/build-ranking-annual.mjs && node scripts/build-monthly-duel-returns.mjs && node scripts/build-equity-duel-returns.mjs && node scripts/build-performance-links.mjs && node scripts/build-tool-links.mjs
+      - name: Audit collected histories
+        id: audit
+        continue-on-error: true
+        run: node scripts/audit-automated-monthly.mjs && node scripts/test-monthly-consumers.mjs
+      - name: Build with the new data
+        id: build
+        continue-on-error: true
+        run: npm run build
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: onboarding-observation
+          path: |
+            ${{ runner.temp }}/qualified-exposures.json
+            ${{ runner.temp }}/dca-complete-holdings.json
+            ${{ runner.temp }}/equity-candidates.json
+            ${{ runner.temp }}/equity-skipped.json
+            ${{ runner.temp }}/monthly-candidates.json
+            scripts/source-snapshots/monthly-qualification-status.json
+            scripts/global-equity-candidates.json
+          if-no-files-found: ignore
+          retention-days: 35
+      - name: Commit validated observations to the branch
+        if: env.PUSH == 'true'
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add src/data src/pages/dca-profiles scripts/source-snapshots scripts/monthly-automation.json scripts/global-equity-candidates.json scripts/generated-holdings-sources.json scripts/instrument-metadata-sources.json docs public/data
+          if git diff --cached --quiet; then echo 'No validated observation to commit'; exit 0; fi
+          git commit -m 'Collect validated observations for newly configured assets'
+          git push origin "HEAD:${TARGET_BRANCH}"
+      - name: Report collection outcome
+        run: |
+          {
+            echo "qualified: ${{ steps.qualified.outcome }} | classify: ${{ steps.classify.outcome }} | equities: ${{ steps.equities.outcome }} | etfs: ${{ steps.etfs.outcome }} | audit: ${{ steps.audit.outcome }} | build: ${{ steps.build.outcome }}"
+            echo; echo '## Candidates still pending'; node -e "for(const c of require('./scripts/global-equity-candidates.json').candidates)console.log('- '+c.id+' ('+c.isin+'): '+(c.lastAttempt?.error??'not attempted'))"
+          } >> "$GITHUB_STEP_SUMMARY"
+          if [ "${{ steps.audit.outcome }}" != 'success' ] || [ "${{ steps.build.outcome }}" != 'success' ]; then exit 1; fi

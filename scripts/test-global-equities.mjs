@@ -20,9 +20,17 @@ import { fxRate } from '../src/lib/fx-rate.js'
 import { projectLightRegistries } from './project-light-registries.mjs'
 import { convertCalendarReturn } from '../src/data/calendar-fx.js'
 
-assert.equal(GLOBAL.length, 50)
-assert.equal(new Set(GLOBAL.map(a=>a.isin)).size, 50)
-assert.deepEqual(Object.fromEntries(['Europe','Asie','États-Unis'].map(region=>[region,GLOBAL.filter(a=>a.region===region).length])), {Europe:15,Asie:20,'États-Unis':15})
+// The registry only holds qualified identities: curated candidates stay in
+// scripts/global-equity-candidates.json until their real collection succeeds.
+assert(GLOBAL.length >= 50, 'the original 50 international equities stay connected')
+assert.equal(new Set(GLOBAL.map(a=>a.isin)).size, GLOBAL.length)
+assert.equal(new Set(GLOBAL.map(a=>a.id)).size, GLOBAL.length)
+const REGIONS = ['Europe','Asie','Océanie','États-Unis','Canada']
+for (const a of GLOBAL) assert(REGIONS.includes(a.region) && a.periodStart && a.country && a.sector && a.identitySourceUrl, `${a.id}: complete qualified identity`)
+const byRegion=Object.fromEntries(REGIONS.map(region=>[region,GLOBAL.filter(a=>a.region===region).length]))
+assert(byRegion.Europe>=15 && byRegion.Asie>=20 && byRegion['États-Unis']>=15, JSON.stringify(byRegion))
+const CANDIDATES = JSON.parse(readFileSync('scripts/global-equity-candidates.json')).candidates
+for (const c of CANDIDATES) assert(!GLOBAL.some(a=>a.isin===c.isin || a.id===c.id), `${c.id}: candidate already promoted`)
 const config=JSON.parse(readFileSync('scripts/monthly-automation.json')).series
 const coverage=new Map(catalogCoverage(references).map(r=>[r.isin,r]))
 const simulation=new Set(JSON.parse(readFileSync('src/data/simulation-links.json')))
@@ -73,4 +81,4 @@ const code=projection.code.replace("import { fxRate } from '../lib/fx-rate.js';"
 const projected=await import('data:text/javascript;base64,'+Buffer.from(code).toString('base64'))
 for(const currency of new Set(GLOBAL.map(a=>a.currency))) assert.equal(projected.convertCalendarReturn(10,2025,currency),convertCalendarReturn(10,2025,currency))
 assert.equal(projected.calendarRate(1800,'USD'),null)
-console.log('50 global equities: 7 tools, exact identities, full exposures, real ETF overlap, dated quotes, native/ECB returns and common years verified.')
+console.log(`${GLOBAL.length} global equities (${JSON.stringify(byRegion)}): 7 tools, exact identities, full exposures, real ETF overlap, dated quotes, native/ECB returns and common years verified.`)

@@ -179,11 +179,30 @@ SUPPLEMENT_SOURCES={
  'ibkr_pea_transfer':('ibkr','sortant','https://www.interactivebrokers.ie/fr/accounts/plan-depargne-en-action-accounts.php'),
  'ibkr_fx':('ibkr','change','https://www.interactivebrokers.ie/fr/pricing/commissions-spot-currencies.php'),
  'bourso_transfer':('bourso','entrant','https://www.boursobank.com/aide-en-ligne/bourse/mobilite-bourse/question/proposez-vous-une-offre-en-cas-de-transfert-de-compte-bourse-53103659'),
+ 'bourso_minimum_order':('bourso','minimumOrder','https://www.boursobank.com/content/brochure_tarifaire/boursorama_bt.pdf'),
  'fortuneo_transfer':('fortuneo','entrant','https://www.fortuneo.fr/faq/fortuneo-rembourse-t-il-les-frais-de-transfert-dun-compte-bourse'),
+ 'fortuneo_amundi':('fortuneo','offerAmundi','https://www.fortuneo.fr/bourse'),
  'saxo_offer':('saxo','offerPea','https://www.home.saxo/fr-fr/accounts/pea/terms-and-conditions'),
  'saxo_amundi':('saxo','offerAmundi','https://www.home.saxo/fr-fr/campaigns/amundi-etf'),
 }
 def parse_supplement(key,s,today):
+ if key=='bourso_minimum_order':
+  broker,field,url=SUPPLEMENT_SOURCES[key]
+  pages=[(i,p) for i,p in enumerate(s.split('\f'),1) if 'Conditions' in p and 'PEA 18-25 ans' in p and 'Boursomarkets' in p and re.search(r'ETF [–-] ETN [–-] ETC\s*\n\s*\(Paris,Amsterdam\)',p)]
+  if len(pages)!=1:raise ValueError('Table des minimums PEA ETF absente ou ambiguë')
+  page,block=pages[0]
+  row=re.search(r'ETF [–-] ETN [–-] ETC\s*\n\s*\(Paris,Amsterdam\)\s+([^\n]+)',block)
+  amounts=re.findall(r'([\d ]+)€',row[1])
+  # All four account/offer columns currently agree. A future distinction needs
+  # an explicit column parser, never an assumption about the PEA column.
+  if len(amounts)!=4 or len({num(v) for v in amounts})!=1:raise ValueError('Colonnes de minimum ETF divergentes ou modifiées')
+  value=num(amounts[0])
+  if value<=0:raise ValueError('Minimum ETF invalide')
+  dated=re.search(r'Tarifs applicables au (\d{1,2}) (\w+) (\d{4})',s)
+  if not dated:raise ValueError('Date de la brochure des minimums absente')
+  published=dt.date(int(dated[3]),MONTHS[dated[2].lower()],int(dated[1])).isoformat()
+  meta=metadata(s,url,today,published);meta.update(page=page,statement=row[0])
+  return broker,field,item({'etfEuronext':value},f'Ordre minimum ETF sur Paris/Amsterdam : {fmt(value)} €, y compris sur PEA.',meta,'BoursoBank ; minimum par ordre ETF Paris/Amsterdam ; colonnes CTO et PEA avec/sans BoursoMarkets')
  if key in ('tr_pea_transfer','tr_pea_transfer_out'):
   broker,field,url=SUPPLEMENT_SOURCES[key]
   # macOS Poppler separates the initial glyph in "i nstitution". Repair this
@@ -259,6 +278,25 @@ def parse_supplement(key,s,today):
   cap=get(r'limite de ([\d ]+) € TTC',s);months=get(r'dans les ([\d]+) mois suivant le transfert',s)
   v={'maximum':cap,'requestMonths':months,'multiplier':2}
   full=f"Possible ✅ Premier transfert total : frais remboursés au double, jusqu’à {cap:,.0f} €, sans dépasser la valeur du compte, sous conditions. Justificatif à envoyer dans les {fmt(months)} mois ; compte toujours ouvert au remboursement.".replace(f'{cap:,.0f}',f'{cap:,.0f}'.replace(',',' '))
+ elif key=='fortuneo_amundi':
+  # The dated campaign banner is separate from Starter and the account-opening
+  # offers. Never derive its dates from the year in a page title.
+  require(s,'PEA et CTO')
+  campaign=re.findall(r'Du (\d{2}\.\d{2}\.\d{4}) au (\d{2}\.\d{2}\.\d{4})\s+(.*?)Produits non garantis en capital',s)
+  campaigns=[row for row in campaign if "ETF Amundi" in row[2]]
+  if len(campaigns)!=1:raise ValueError('Campagne Fortuneo Amundi datée absente ou ambiguë')
+  first,last,block=campaigns[0]
+  require(block,'Chaque mois',"l'ensemble de vos ordres d'achat",'sont gratuits sur une sélection d’ETF Amundi' if 'sélection d’ETF Amundi' in block else "sont gratuits sur une sélection d'ETF Amundi")
+  fee=get(r'([\d,]+)\s*€ de frais de courtage sur une sélection',block)
+  limits=re.search(r"ordres d'achat compris entre ([\d ]+) € et ([\d ]+) €",block)
+  if not limits or fee!=0:raise ValueError('Conditions de gratuité Amundi modifiées')
+  lower,upper=num(limits[1]),num(limits[2])
+  if not 0<lower<upper:raise ValueError('Bornes Amundi invalides')
+  start=dt.datetime.strptime(first,'%d.%m.%Y').date().isoformat();end=dt.datetime.strptime(last,'%d.%m.%Y').date().isoformat()
+  v={'purchaseFee':fee,'minimumOrder':lower,'maximumOrder':upper}
+  money=lambda value:f'{value:,.0f}'.replace(',',' ')
+  full=f"ETF Amundi de la sélection : {fmt(fee)} € de courtage sur chaque achat de {money(lower)} à {money(upper)} €, sur PEA et CTO, sous conditions."
+  meta['statement']=f'Du {first} au {last} '+block
  elif key=='fortuneo_transfer':
   require(s.lower(),'1er transfert','pea','justificatif','titres + espèces')
   cap=get(r"Jusqu'à ([\d ]+) € pour un compte transféré d'un encours minimum de",s)

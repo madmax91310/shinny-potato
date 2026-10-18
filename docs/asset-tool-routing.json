@@ -1,24 +1,24 @@
 {
-  "checkedAt": "2026-10-17T23:57:37.173Z",
+  "checkedAt": "2026-10-18T07:02:56.622Z",
   "summary": {
-    "instruments": 519,
-    "sheets": 244,
-    "comparisons": 229,
+    "instruments": 647,
+    "sheets": 258,
+    "comparisons": 243,
     "practical": 21,
-    "duels": 440,
+    "duels": 571,
     "generatorAutomatic": 141,
-    "dca": 519,
-    "fullExposure": 474,
+    "dca": 647,
+    "fullExposure": 602,
     "outsideExposure": 41,
-    "automaticHistories": 175,
-    "historyCandidates": 11,
+    "automaticHistories": 200,
+    "historyCandidates": 0,
     "unused": 0,
     "blockers": {
       "no-listing": 52,
       "listing-not-collectable": 0,
-      "qualification-failed": 0,
-      "collection-pending": 9,
-      "history-short": 16
+      "qualification-failed": 4,
+      "collection-pending": 0,
+      "history-short": 19
     }
   },
   "errors": [],
@@ -57,6 +57,478 @@
           "first": "2015-01",
           "last": "2026-09",
           "currency": "USD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "AU000000BHP4",
+      "name": "BHP",
+      "kind": "equity",
+      "practical": [],
+      "duel": false,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "missing",
+      "blocker": {
+        "code": "qualification-failed",
+        "detail": "Duplicate Yahoo local date"
+      },
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "AU000000CBA7",
+      "name": "Commonwealth Bank",
+      "kind": "equity",
+      "practical": [],
+      "duel": false,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "missing",
+      "blocker": {
+        "code": "qualification-failed",
+        "detail": "Duplicate Yahoo local date"
+      },
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "AU000000CSL8",
+      "name": "CSL",
+      "kind": "equity",
+      "practical": [],
+      "duel": false,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "missing",
+      "blocker": {
+        "code": "qualification-failed",
+        "detail": "Duplicate Yahoo local date"
+      },
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "AU000000MQG1",
+      "name": "Macquarie",
+      "kind": "equity",
+      "practical": [],
+      "duel": false,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "missing",
+      "blocker": {
+        "code": "qualification-failed",
+        "detail": "Duplicate Yahoo local date"
+      },
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "BE0974293251",
+      "name": "AB InBev",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "ab-inbev",
+          "automatic": true,
+          "first": "2016-01",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "CA11271J1075",
+      "name": "Brookfield",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "brookfield",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "CAD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "CA1363751027",
+      "name": "Canadian National Railway",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "canadian-national-railway",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "CAD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "CA29250N1050",
+      "name": "Enbridge",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "enbridge",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "CAD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "CA7800871021",
+      "name": "Royal Bank of Canada",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "royal-bank-of-canada",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "CAD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "CA82509L1076",
+      "name": "Shopify",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "shopify",
+          "automatic": true,
+          "first": "2015-06",
+          "last": "2026-09",
+          "currency": "CAD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "CA8911605092",
+      "name": "Toronto-Dominion Bank",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "toronto-dominion",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "CAD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "CH0010645932",
+      "name": "Givaudan",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "givaudan",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "CHF",
           "performance": true,
           "simulation": true,
           "anniversary": true
@@ -192,6 +664,48 @@
       "decision": "keep-used"
     },
     {
+      "isin": "CH0012214059",
+      "name": "Holcim",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "holcim",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "CHF",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
       "isin": "CH0012221716",
       "name": "ABB",
       "kind": "equity",
@@ -221,6 +735,48 @@
       "monthly": [
         {
           "id": "abb",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "CHF",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "CH0013841017",
+      "name": "Lonza",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "lonza",
           "automatic": true,
           "first": "2015-01",
           "last": "2026-09",
@@ -360,6 +916,48 @@
       "decision": "keep-used"
     },
     {
+      "isin": "CH0210483332",
+      "name": "Richemont",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "richemont",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "CHF",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
       "isin": "CH0244767585",
       "name": "UBS",
       "kind": "equity",
@@ -389,6 +987,48 @@
       "monthly": [
         {
           "id": "ubs",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "CHF",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "CH0418792922",
+      "name": "Sika",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "sika",
           "automatic": true,
           "first": "2015-01",
           "last": "2026-09",
@@ -438,6 +1078,48 @@
       "decision": "keep-used"
     },
     {
+      "isin": "CNE0000018R8",
+      "name": "Kweichow Moutai",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "kweichow-moutai",
+          "automatic": true,
+          "first": "2020-02",
+          "last": "2026-09",
+          "currency": "CNY",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
       "isin": "CNE100000296",
       "name": "BYD",
       "kind": "equity",
@@ -467,6 +1149,132 @@
       "monthly": [
         {
           "id": "byd",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "HKD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "CNE1000002H1",
+      "name": "China Construction Bank",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "china-construction-bank",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "HKD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "CNE1000003G1",
+      "name": "ICBC",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "icbc",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "HKD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "CNE1000003X6",
+      "name": "Ping An",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "ping-an",
           "automatic": true,
           "first": "2015-01",
           "last": "2026-09",
@@ -526,15 +1334,12 @@
       "name": "iShares STOXX Europe 600 UCITS ETF Dist",
       "kind": "etf",
       "practical": [],
-      "duel": false,
+      "duel": true,
       "qualification": null,
       "sheet": true,
       "comparison": true,
-      "generator": "missing",
-      "blocker": {
-        "code": "collection-pending",
-        "detail": "Cotation documentée ; série en attente de la prochaine collecte mensuelle"
-      },
+      "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -556,8 +1361,61 @@
         "identifiedCoverage": 20.17879,
         "automatic": false
       },
-      "monthly": [],
-      "historyCandidate": true,
+      "monthly": [
+        {
+          "id": "etfDE0002635307",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "DE0005140008",
+      "name": "Deutsche Bank",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "deutsche-bank",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
       "decision": "keep-used"
     },
     {
@@ -813,6 +1671,48 @@
       "decision": "keep-used"
     },
     {
+      "isin": "DE0007100000",
+      "name": "Mercedes-Benz Group",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "mercedes-benz",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
       "isin": "DE0007164600",
       "name": "SAP",
       "kind": "equity",
@@ -884,6 +1784,48 @@
       "monthly": [
         {
           "id": "siemens",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "DE0007664039",
+      "name": "Volkswagen (action de préférence)",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "volkswagen",
           "automatic": true,
           "first": "2015-01",
           "last": "2026-09",
@@ -1267,15 +2209,12 @@
       "name": "iShares STOXX Europe 600 Technology UCITS ETF (DE)",
       "kind": "etf",
       "practical": [],
-      "duel": false,
+      "duel": true,
       "qualification": null,
       "sheet": true,
       "comparison": true,
-      "generator": "missing",
-      "blocker": {
-        "code": "collection-pending",
-        "detail": "Cotation documentée ; série en attente de la prochaine collecte mensuelle"
-      },
+      "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -1297,8 +2236,19 @@
         "identifiedCoverage": 99.88506000000002,
         "automatic": true
       },
-      "monthly": [],
-      "historyCandidate": true,
+      "monthly": [
+        {
+          "id": "etfDE000A0H08Q4",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
       "decision": "keep-used"
     },
     {
@@ -1558,6 +2508,216 @@
       "decision": "keep-used"
     },
     {
+      "isin": "DE000ENER6Y0",
+      "name": "Siemens Energy",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "siemens-energy",
+          "automatic": true,
+          "first": "2020-10",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "DE000SHL1006",
+      "name": "Siemens Healthineers",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "siemens-healthineers",
+          "automatic": true,
+          "first": "2018-05",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "DK0060079531",
+      "name": "DSV",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "dsv",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "DKK",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "DK0060094928",
+      "name": "Ørsted",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "orsted",
+          "automatic": true,
+          "first": "2016-07",
+          "last": "2026-09",
+          "currency": "DKK",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "DK0060336014",
+      "name": "Novonesis",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "novonesis",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "DKK",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
       "isin": "DK0062498333",
       "name": "Novo Nordisk",
       "kind": "equity",
@@ -1768,6 +2928,90 @@
       "decision": "keep-used"
     },
     {
+      "isin": "FI4000297767",
+      "name": "Nordea",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "nordea",
+          "automatic": true,
+          "first": "2016-01",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "FR0000045072",
+      "name": "Crédit Agricole",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "credit-agricole",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
       "isin": "FR0000052292",
       "name": "Hermès",
       "kind": "equity",
@@ -1894,6 +3138,48 @@
       "decision": "keep-used"
     },
     {
+      "isin": "FR0000120172",
+      "name": "Carrefour",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "carrefour",
+          "automatic": true,
+          "first": "2016-01",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
       "isin": "FR0000120271",
       "name": "TotalEnergies",
       "kind": "equity",
@@ -1965,6 +3251,48 @@
       "monthly": [
         {
           "id": "loreal",
+          "automatic": true,
+          "first": "2016-01",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "FR0000120503",
+      "name": "Bouygues",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "bouygues",
           "automatic": true,
           "first": "2016-01",
           "last": "2026-09",
@@ -2104,6 +3432,48 @@
       "decision": "keep-used"
     },
     {
+      "isin": "FR0000120693",
+      "name": "Pernod Ricard",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "pernod-ricard",
+          "automatic": true,
+          "first": "2016-01",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
       "isin": "FR0000121014",
       "name": "LVMH",
       "kind": "equity",
@@ -2175,6 +3545,48 @@
       "monthly": [
         {
           "id": "thales",
+          "automatic": true,
+          "first": "2016-01",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "FR0000121485",
+      "name": "Kering",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "kering",
           "automatic": true,
           "first": "2016-01",
           "last": "2026-09",
@@ -2356,6 +3768,48 @@
       "decision": "keep-used"
     },
     {
+      "isin": "FR0000125338",
+      "name": "Capgemini",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "capgemini",
+          "automatic": true,
+          "first": "2016-01",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
       "isin": "FR0000125486",
       "name": "Vinci",
       "kind": "equity",
@@ -2398,6 +3852,90 @@
       "decision": "keep-used"
     },
     {
+      "isin": "FR0000130577",
+      "name": "Publicis",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "publicis",
+          "automatic": true,
+          "first": "2016-01",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "FR0000130809",
+      "name": "Société Générale",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "societe-generale",
+          "automatic": true,
+          "first": "2016-01",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
       "isin": "FR0000131104",
       "name": "BNP Paribas",
       "kind": "equity",
@@ -2427,6 +3965,48 @@
       "monthly": [
         {
           "id": "bnp-paribas",
+          "automatic": true,
+          "first": "2016-01",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "FR0000131906",
+      "name": "Renault",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "renault",
           "automatic": true,
           "first": "2016-01",
           "last": "2026-09",
@@ -3931,6 +5511,174 @@
       "decision": "keep-used"
     },
     {
+      "isin": "GB0002875804",
+      "name": "British American Tobacco",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "bat",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "GBp",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "GB0005405286",
+      "name": "HSBC",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "hsbc",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "GBp",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "GB0007188757",
+      "name": "Rio Tinto",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "rio-tinto",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "GBp",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "GB0007980591",
+      "name": "BP",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "bp",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "GBp",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
       "isin": "GB0009895292",
       "name": "AstraZeneca (NYSE)",
       "kind": "equity",
@@ -4166,6 +5914,48 @@
       "decision": "keep-used"
     },
     {
+      "isin": "GB00BDR05C01",
+      "name": "National Grid",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "national-grid",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "GBp",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
       "isin": "GB00BJYDH287",
       "name": "WisdomTree Physical Bitcoin",
       "kind": "etf",
@@ -4274,6 +6064,90 @@
       "decision": "keep-used"
     },
     {
+      "isin": "GB00BN7SWP63",
+      "name": "GSK",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "gsk",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "GBp",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "GB00BP6MXD84",
+      "name": "Shell",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "shell",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "GBp",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
       "isin": "GB00BVZK7T90",
       "name": "Unilever",
       "kind": "equity",
@@ -4307,6 +6181,90 @@
           "first": "2021-01",
           "last": "2026-09",
           "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "HK0000069689",
+      "name": "AIA Group",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "aia",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "HKD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "HK0388045442",
+      "name": "HKEX",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "hkex",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "HKD",
           "performance": true,
           "simulation": true,
           "anniversary": true
@@ -4840,8 +6798,8 @@
       "comparison": true,
       "generator": "missing",
       "blocker": {
-        "code": "collection-pending",
-        "detail": "Cotation documentée ; série en attente de la prochaine collecte mensuelle"
+        "code": "history-short",
+        "detail": "0 année(s) complète(s) ; 6 requises en génération automatique"
       },
       "dca": true,
       "countries": {
@@ -4864,8 +6822,19 @@
         "identifiedCoverage": 99.48306,
         "automatic": false
       },
-      "monthly": [],
-      "historyCandidate": true,
+      "monthly": [
+        {
+          "id": "etfIE0008470928",
+          "automatic": true,
+          "first": "2026-03",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": false,
+          "simulation": false,
+          "anniversary": false
+        }
+      ],
+      "historyCandidate": false,
       "decision": "keep-used"
     },
     {
@@ -5025,8 +6994,8 @@
       "comparison": true,
       "generator": "missing",
       "blocker": {
-        "code": "collection-pending",
-        "detail": "Cotation documentée ; série en attente de la prochaine collecte mensuelle"
+        "code": "history-short",
+        "detail": "0 année(s) complète(s) ; 6 requises en génération automatique"
       },
       "dca": true,
       "countries": {
@@ -5049,8 +7018,19 @@
         "identifiedCoverage": 99.72582,
         "automatic": true
       },
-      "monthly": [],
-      "historyCandidate": true,
+      "monthly": [
+        {
+          "id": "etfIE000C6ITGC8",
+          "automatic": true,
+          "first": "2026-01",
+          "last": "2026-09",
+          "currency": "USD",
+          "performance": false,
+          "simulation": false,
+          "anniversary": false
+        }
+      ],
+      "historyCandidate": false,
       "decision": "keep-used"
     },
     {
@@ -5536,6 +7516,56 @@
       "decision": "keep-used"
     },
     {
+      "isin": "IE000U9ODG19",
+      "name": "iShares Global Aerospace & Defence UCITS ETF",
+      "kind": "etf",
+      "practical": [],
+      "duel": false,
+      "qualification": null,
+      "sheet": true,
+      "comparison": true,
+      "generator": "missing",
+      "blocker": {
+        "code": "history-short",
+        "detail": "1 année(s) complète(s) ; 6 requises en génération automatique"
+      },
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": {
+        "asOf": "2026-10-15",
+        "complete": true,
+        "identifiedCoverage": 99.8454500000001,
+        "automatic": false
+      },
+      "monthly": [
+        {
+          "id": "etfIE000U9ODG19",
+          "automatic": true,
+          "first": "2024-03",
+          "last": "2026-09",
+          "currency": "USD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
       "isin": "IE000UL6CLP7",
       "name": "Global X Silver Miners UCITS ETF USD Accumulating",
       "kind": "etf",
@@ -5771,15 +7801,12 @@
       "name": "iShares China Large Cap UCITS ETF (Dist)",
       "kind": "etf",
       "practical": [],
-      "duel": false,
+      "duel": true,
       "qualification": null,
       "sheet": true,
       "comparison": true,
-      "generator": "missing",
-      "blocker": {
-        "code": "collection-pending",
-        "detail": "Cotation documentée ; série en attente de la prochaine collecte mensuelle"
-      },
+      "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -5801,8 +7828,66 @@
         "identifiedCoverage": 99.31486000000004,
         "automatic": true
       },
-      "monthly": [],
-      "historyCandidate": true,
+      "monthly": [
+        {
+          "id": "etfIE00B02KXK85",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "IE00B0M62S72",
+      "name": "iShares Euro Dividend UCITS ETF",
+      "kind": "etf",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": true,
+      "comparison": true,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 99.99,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": {
+        "asOf": "2026-10-15",
+        "complete": true,
+        "identifiedCoverage": 99.31887,
+        "automatic": false
+      },
+      "monthly": [
+        {
+          "id": "etfIE00B0M62S72",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
       "decision": "keep-used"
     },
     {
@@ -5900,7 +7985,7 @@
       "name": "iShares MSCI Taiwan UCITS ETF",
       "kind": "etf",
       "practical": [],
-      "duel": false,
+      "duel": true,
       "qualification": null,
       "sheet": true,
       "comparison": true,
@@ -5927,8 +8012,19 @@
         "identifiedCoverage": 99.67380000000004,
         "automatic": true
       },
-      "monthly": [],
-      "historyCandidate": true,
+      "monthly": [
+        {
+          "id": "etfIE00B0M63623",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
       "decision": "keep-used"
     },
     {
@@ -6257,15 +8353,12 @@
       "name": "iShares Core MSCI Europe UCITS ETF Dist",
       "kind": "etf",
       "practical": [],
-      "duel": false,
+      "duel": true,
       "qualification": null,
       "sheet": true,
       "comparison": true,
-      "generator": "missing",
-      "blocker": {
-        "code": "collection-pending",
-        "detail": "Cotation documentée ; série en attente de la prochaine collecte mensuelle"
-      },
+      "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -6287,8 +8380,19 @@
         "identifiedCoverage": 99.46494000000001,
         "automatic": false
       },
-      "monthly": [],
-      "historyCandidate": true,
+      "monthly": [
+        {
+          "id": "etfIE00B1YZSC51",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
       "decision": "keep-used"
     },
     {
@@ -6416,6 +8520,53 @@
       "monthly": [
         {
           "id": "etfIE00B2NPKV68",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "IE00B2QWCY14",
+      "name": "iShares S&P SmallCap 600 UCITS ETF",
+      "kind": "etf",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": true,
+      "comparison": true,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 99.99991,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": {
+        "asOf": "2026-10-15",
+        "complete": true,
+        "identifiedCoverage": 99.56647000000002,
+        "automatic": false
+      },
+      "monthly": [
+        {
+          "id": "etfIE00B2QWCY14",
           "automatic": true,
           "first": "2015-01",
           "last": "2026-09",
@@ -6673,6 +8824,53 @@
         "automatic": false
       },
       "monthly": [],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "IE00B3VWMM18",
+      "name": "iShares MSCI EMU Small Cap UCITS ETF",
+      "kind": "etf",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": true,
+      "comparison": true,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": {
+        "asOf": "2026-10-15",
+        "complete": true,
+        "identifiedCoverage": 99.21129000000003,
+        "automatic": false
+      },
+      "monthly": [
+        {
+          "id": "etfIE00B3VWMM18",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
       "historyCandidate": false,
       "decision": "keep-used"
     },
@@ -7134,6 +9332,48 @@
       "decision": "keep-used"
     },
     {
+      "isin": "IE00B4BNMY34",
+      "name": "Accenture",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "accenture",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "USD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
       "isin": "IE00B4JNQZ49",
       "name": "iShares S&P 500 Financials Sector UCITS ETF",
       "kind": "etf",
@@ -7212,8 +9452,19 @@
         "identifiedCoverage": 99.39906000000006,
         "automatic": true
       },
-      "monthly": [],
-      "historyCandidate": true,
+      "monthly": [
+        {
+          "id": "etfIE00B4K48X80",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
       "decision": "keep-used"
     },
     {
@@ -7644,15 +9895,12 @@
       "name": "iShares MSCI USA UCITS ETF (Acc)",
       "kind": "etf",
       "practical": [],
-      "duel": false,
+      "duel": true,
       "qualification": null,
       "sheet": true,
       "comparison": true,
-      "generator": "missing",
-      "blocker": {
-        "code": "collection-pending",
-        "detail": "Cotation documentée ; série en attente de la prochaine collecte mensuelle"
-      },
+      "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -7674,8 +9922,19 @@
         "identifiedCoverage": 99.82661000000004,
         "automatic": true
       },
-      "monthly": [],
-      "historyCandidate": true,
+      "monthly": [
+        {
+          "id": "etfIE00B52SFT06",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "USD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
       "decision": "keep-used"
     },
     {
@@ -7713,6 +9972,53 @@
       "monthly": [
         {
           "id": "etfIE00B53L3W79",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "IE00B53QG562",
+      "name": "iShares Core MSCI EMU UCITS ETF",
+      "kind": "etf",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": true,
+      "comparison": true,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": {
+        "asOf": "2026-10-15",
+        "complete": true,
+        "identifiedCoverage": 99.60348,
+        "automatic": false
+      },
+      "monthly": [
+        {
+          "id": "etfIE00B53QG562",
           "automatic": true,
           "first": "2015-01",
           "last": "2026-09",
@@ -8399,6 +10705,147 @@
       "decision": "keep-used"
     },
     {
+      "isin": "IE00BD1F4L37",
+      "name": "iShares Edge MSCI USA Quality Factor UCITS ETF",
+      "kind": "etf",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": true,
+      "comparison": true,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 99.99000000000004,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": {
+        "asOf": "2026-10-15",
+        "complete": true,
+        "identifiedCoverage": 99.84599000000006,
+        "automatic": false
+      },
+      "monthly": [
+        {
+          "id": "etfIE00BD1F4L37",
+          "automatic": true,
+          "first": "2016-11",
+          "last": "2026-09",
+          "currency": "USD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "IE00BD1F4M44",
+      "name": "iShares Edge MSCI USA Value Factor UCITS ETF",
+      "kind": "etf",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": true,
+      "comparison": true,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 99.99994999999998,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": {
+        "asOf": "2026-10-15",
+        "complete": true,
+        "identifiedCoverage": 99.49003999999998,
+        "automatic": false
+      },
+      "monthly": [
+        {
+          "id": "etfIE00BD1F4M44",
+          "automatic": true,
+          "first": "2016-11",
+          "last": "2026-09",
+          "currency": "USD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "IE00BD1F4N50",
+      "name": "iShares Edge MSCI USA Momentum Factor UCITS ETF",
+      "kind": "etf",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": true,
+      "comparison": true,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": {
+        "asOf": "2026-10-15",
+        "complete": true,
+        "identifiedCoverage": 99.72199999999995,
+        "automatic": false
+      },
+      "monthly": [
+        {
+          "id": "etfIE00BD1F4N50",
+          "automatic": true,
+          "first": "2016-11",
+          "last": "2026-09",
+          "currency": "USD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
       "isin": "IE00BD4TXV59",
       "name": "UBS Core MSCI World UCITS ETF",
       "kind": "etf",
@@ -9031,6 +11478,53 @@
       "decision": "keep-used"
     },
     {
+      "isin": "IE00BGL86Z12",
+      "name": "iShares Electric Vehicles and Driving Technology UCITS ETF",
+      "kind": "etf",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": true,
+      "comparison": true,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 99.99,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 99.99,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": {
+        "asOf": "2026-10-15",
+        "complete": true,
+        "identifiedCoverage": 99.65645999999994,
+        "automatic": false
+      },
+      "monthly": [
+        {
+          "id": "etfIE00BGL86Z12",
+          "automatic": true,
+          "first": "2019-03",
+          "last": "2026-09",
+          "currency": "USD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
       "isin": "IE00BGV5VN51",
       "name": "Xtrackers Artificial Intelligence and Big Data UCITS ETF",
       "kind": "etf",
@@ -9594,15 +12088,12 @@
       "name": "iShares MSCI China UCITS ETF (Acc)",
       "kind": "etf",
       "practical": [],
-      "duel": false,
+      "duel": true,
       "qualification": null,
       "sheet": true,
       "comparison": true,
-      "generator": "missing",
-      "blocker": {
-        "code": "collection-pending",
-        "detail": "Cotation documentée ; série en attente de la prochaine collecte mensuelle"
-      },
+      "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -9624,8 +12115,19 @@
         "identifiedCoverage": 99.5578599999999,
         "automatic": true
       },
-      "monthly": [],
-      "historyCandidate": true,
+      "monthly": [
+        {
+          "id": "etfIE00BJ5JPG56",
+          "automatic": true,
+          "first": "2019-07",
+          "last": "2026-09",
+          "currency": "USD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
       "decision": "keep-used"
     },
     {
@@ -11196,6 +13698,147 @@
       "decision": "keep-used"
     },
     {
+      "isin": "IE00BQN1K562",
+      "name": "iShares Edge MSCI Europe Quality Factor UCITS ETF",
+      "kind": "etf",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": true,
+      "comparison": true,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 99.99999999999999,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": {
+        "asOf": "2026-10-15",
+        "complete": true,
+        "identifiedCoverage": 99.25938999999994,
+        "automatic": false
+      },
+      "monthly": [
+        {
+          "id": "etfIE00BQN1K562",
+          "automatic": true,
+          "first": "2015-03",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "IE00BQN1K786",
+      "name": "iShares Edge MSCI Europe Momentum Factor UCITS ETF",
+      "kind": "etf",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": true,
+      "comparison": true,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 99.99999999999999,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": {
+        "asOf": "2026-10-15",
+        "complete": true,
+        "identifiedCoverage": 99.11910999999995,
+        "automatic": false
+      },
+      "monthly": [
+        {
+          "id": "etfIE00BQN1K786",
+          "automatic": true,
+          "first": "2015-03",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "IE00BQN1K901",
+      "name": "iShares Edge MSCI Europe Value Factor UCITS ETF",
+      "kind": "etf",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": true,
+      "comparison": true,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 99.98999999999998,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": {
+        "asOf": "2026-10-15",
+        "complete": true,
+        "identifiedCoverage": 99.63462000000007,
+        "automatic": false
+      },
+      "monthly": [
+        {
+          "id": "etfIE00BQN1K901",
+          "automatic": true,
+          "first": "2015-02",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
       "isin": "IE00BQQP9F84",
       "name": "VanEck Gold Miners UCITS ETF",
       "kind": "etf",
@@ -11247,15 +13890,12 @@
       "name": "iShares MSCI China A UCITS ETF (Acc)",
       "kind": "etf",
       "practical": [],
-      "duel": false,
+      "duel": true,
       "qualification": null,
       "sheet": true,
       "comparison": true,
-      "generator": "missing",
-      "blocker": {
-        "code": "collection-pending",
-        "detail": "Cotation documentée ; série en attente de la prochaine collecte mensuelle"
-      },
+      "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -11277,8 +13917,19 @@
         "identifiedCoverage": 99.89869000000003,
         "automatic": true
       },
-      "monthly": [],
-      "historyCandidate": true,
+      "monthly": [
+        {
+          "id": "etfIE00BQT3WG13",
+          "automatic": true,
+          "first": "2015-05",
+          "last": "2026-09",
+          "currency": "USD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
       "decision": "keep-used"
     },
     {
@@ -11411,6 +14062,48 @@
         "automatic": true
       },
       "monthly": [],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "IE00BTN1Y115",
+      "name": "Medtronic",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "medtronic",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "USD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
       "historyCandidate": false,
       "decision": "keep-used"
     },
@@ -11556,6 +14249,53 @@
       "decision": "keep-used"
     },
     {
+      "isin": "IE00BYX2JD69",
+      "name": "iShares MSCI World SRI UCITS ETF",
+      "kind": "etf",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": true,
+      "comparison": true,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 99.99,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 99.97999999999998,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": {
+        "asOf": "2026-10-15",
+        "complete": true,
+        "identifiedCoverage": 99.61023000000002,
+        "automatic": false
+      },
+      "monthly": [
+        {
+          "id": "etfIE00BYX2JD69",
+          "automatic": true,
+          "first": "2017-11",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
       "isin": "IE00BYXG2H39",
       "name": "iShares Nasdaq US Biotechnology UCITS ETF",
       "kind": "etf",
@@ -11686,6 +14426,53 @@
       "monthly": [
         {
           "id": "etf_robotics",
+          "automatic": true,
+          "first": "2016-10",
+          "last": "2026-09",
+          "currency": "USD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "IE00BYZK4669",
+      "name": "iShares Ageing Population UCITS ETF",
+      "kind": "etf",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": true,
+      "comparison": true,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": {
+        "asOf": "2026-10-15",
+        "complete": true,
+        "identifiedCoverage": 99.02553000000007,
+        "automatic": false
+      },
+      "monthly": [
+        {
+          "id": "etfIE00BYZK4669",
           "automatic": true,
           "first": "2016-10",
           "last": "2026-09",
@@ -12015,6 +14802,90 @@
       "decision": "keep-used"
     },
     {
+      "isin": "INE018A01030",
+      "name": "Larsen & Toubro",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "larsen-toubro",
+          "automatic": true,
+          "first": "2019-04",
+          "last": "2026-09",
+          "currency": "INR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "INE030A01027",
+      "name": "Hindustan Unilever",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "hindustan-unilever",
+          "automatic": true,
+          "first": "2019-04",
+          "last": "2026-09",
+          "currency": "INR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
       "isin": "INE040A01034",
       "name": "HDFC Bank",
       "kind": "equity",
@@ -12044,6 +14915,90 @@
       "monthly": [
         {
           "id": "hdfc-bank",
+          "automatic": true,
+          "first": "2019-04",
+          "last": "2026-09",
+          "currency": "INR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "INE044A01036",
+      "name": "Sun Pharma",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "sun-pharma",
+          "automatic": true,
+          "first": "2019-04",
+          "last": "2026-09",
+          "currency": "INR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "INE062A01020",
+      "name": "State Bank of India",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "sbi",
           "automatic": true,
           "first": "2019-04",
           "last": "2026-09",
@@ -12099,6 +15054,216 @@
       "decision": "keep-used"
     },
     {
+      "isin": "INE154A01025",
+      "name": "ITC",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "itc",
+          "automatic": true,
+          "first": "2019-04",
+          "last": "2026-09",
+          "currency": "INR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "INE237A01036",
+      "name": "Kotak Mahindra Bank",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "kotak-mahindra",
+          "automatic": true,
+          "first": "2019-04",
+          "last": "2026-09",
+          "currency": "INR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "INE238A01034",
+      "name": "Axis Bank",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "axis-bank",
+          "automatic": true,
+          "first": "2019-04",
+          "last": "2026-09",
+          "currency": "INR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "INE296A01032",
+      "name": "Bajaj Finance",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "bajaj-finance",
+          "automatic": true,
+          "first": "2019-04",
+          "last": "2026-09",
+          "currency": "INR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "INE397D01024",
+      "name": "Bharti Airtel",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "bharti-airtel",
+          "automatic": true,
+          "first": "2019-04",
+          "last": "2026-09",
+          "currency": "INR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
       "isin": "INE467B01029",
       "name": "Tata Consultancy Services",
       "kind": "equity",
@@ -12141,6 +15306,90 @@
       "decision": "keep-used"
     },
     {
+      "isin": "IT0000062072",
+      "name": "Generali",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "generali",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "IT0000072618",
+      "name": "Intesa Sanpaolo",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "intesa-sanpaolo",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
       "isin": "IT0003128367",
       "name": "Enel",
       "kind": "equity",
@@ -12170,6 +15419,90 @@
       "monthly": [
         {
           "id": "enel",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "IT0003132476",
+      "name": "Eni",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "eni",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "IT0005239360",
+      "name": "UniCredit",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "unicredit",
           "automatic": true,
           "first": "2015-01",
           "last": "2026-09",
@@ -12246,6 +15579,48 @@
           "first": "2020-01",
           "last": "2026-09",
           "currency": "USD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "JE00B4T3BW64",
+      "name": "Glencore",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "glencore",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "GBp",
           "performance": true,
           "simulation": true,
           "anniversary": true
@@ -12441,6 +15816,48 @@
       "decision": "keep-used"
     },
     {
+      "isin": "JP3143600009",
+      "name": "Itochu",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "itochu",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "JPY",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
       "isin": "JP3236200006",
       "name": "Keyence",
       "kind": "equity",
@@ -12470,6 +15887,48 @@
       "monthly": [
         {
           "id": "keyence",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "JPY",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "JP3371200001",
+      "name": "Shin-Etsu Chemical",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "shin-etsu",
           "automatic": true,
           "first": "2015-01",
           "last": "2026-09",
@@ -12567,6 +16026,216 @@
       "decision": "keep-used"
     },
     {
+      "isin": "JP3463000004",
+      "name": "Takeda",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "takeda",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "JPY",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "JP3475350009",
+      "name": "Daiichi Sankyo",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "daiichi-sankyo",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "JPY",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "JP3496400007",
+      "name": "KDDI",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "kddi",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "JPY",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "JP3519400000",
+      "name": "Chugai Pharmaceutical",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "chugai",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "JPY",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "JP3548600000",
+      "name": "Disco",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "disco",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "JPY",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
       "isin": "JP3571400005",
       "name": "Tokyo Electron",
       "kind": "equity",
@@ -12638,6 +16307,90 @@
       "monthly": [
         {
           "id": "toyota",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "JPY",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "JP3734800000",
+      "name": "Nidec",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "nidec",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "JPY",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "JP3735400008",
+      "name": "NTT",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "ntt",
           "automatic": true,
           "first": "2015-01",
           "last": "2026-09",
@@ -12735,6 +16488,216 @@
       "decision": "keep-used"
     },
     {
+      "isin": "JP3802300008",
+      "name": "Fast Retailing",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "fast-retailing",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "JPY",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "JP3837800006",
+      "name": "Hoya",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "hoya",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "JPY",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "JP3854600008",
+      "name": "Honda",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "honda",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "JPY",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "JP3890350006",
+      "name": "Sumitomo Mitsui Financial",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "smfg",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "JPY",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "JP3893600001",
+      "name": "Mitsui & Co.",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "mitsui",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "JPY",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
       "isin": "JP3898400001",
       "name": "Mitsubishi Corporation",
       "kind": "equity",
@@ -12819,6 +16782,90 @@
       "decision": "keep-used"
     },
     {
+      "isin": "JP3902900004",
+      "name": "Mitsubishi UFJ Financial",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "mufg",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "JPY",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "JP3914400001",
+      "name": "Murata",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "murata",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "JPY",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
       "isin": "JP3970300004",
       "name": "Recruit Holdings",
       "kind": "equity",
@@ -12852,6 +16899,48 @@
           "first": "2015-01",
           "last": "2026-09",
           "currency": "JPY",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "KR7000270009",
+      "name": "Kia",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "kia",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "KRW",
           "performance": true,
           "simulation": true,
           "anniversary": true
@@ -12903,6 +16992,48 @@
       "decision": "keep-used"
     },
     {
+      "isin": "KR7005380001",
+      "name": "Hyundai Motor",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "hyundai-motor",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "KRW",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
       "isin": "KR7005930003",
       "name": "Samsung Electronics",
       "kind": "equity",
@@ -12932,6 +17063,48 @@
       "monthly": [
         {
           "id": "samsung",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "KRW",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "KR7035420009",
+      "name": "Naver",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "naver",
           "automatic": true,
           "first": "2015-01",
           "last": "2026-09",
@@ -13018,6 +17191,48 @@
           "id": "meituan",
           "automatic": true,
           "first": "2018-10",
+          "last": "2026-09",
+          "currency": "HKD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "KYG6427A1022",
+      "name": "NetEase",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "netease",
+          "automatic": true,
+          "first": "2020-07",
           "last": "2026-09",
           "currency": "HKD",
           "performance": true,
@@ -14242,6 +18457,132 @@
       "decision": "keep-used"
     },
     {
+      "isin": "NL0000009165",
+      "name": "Heineken",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "heineken",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "NL0000009538",
+      "name": "Philips",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "philips",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "NL0000226223",
+      "name": "STMicroelectronics",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "stmicroelectronics",
+          "automatic": true,
+          "first": "2016-01",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
       "isin": "NL0000235190",
       "name": "Airbus",
       "kind": "equity",
@@ -14273,6 +18614,90 @@
           "id": "airbus",
           "automatic": true,
           "first": "2016-01",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "NL0000334118",
+      "name": "ASM International",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "asm-international",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "NL0000395903",
+      "name": "Wolters Kluwer",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "wolters-kluwer",
+          "automatic": true,
+          "first": "2015-01",
           "last": "2026-09",
           "currency": "EUR",
           "performance": true,
@@ -14462,6 +18887,342 @@
       "decision": "keep-used"
     },
     {
+      "isin": "NL0011821202",
+      "name": "ING",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "ing",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "NL0012969182",
+      "name": "Adyen",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "adyen",
+          "automatic": true,
+          "first": "2018-07",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "NL0013654783",
+      "name": "Prosus",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "prosus",
+          "automatic": true,
+          "first": "2019-10",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "NL00150001Q9",
+      "name": "Stellantis",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "stellantis",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "NO0010096985",
+      "name": "Equinor",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "equinor",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "NOK",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "SE0000115446",
+      "name": "Volvo",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "volvo",
+          "automatic": true,
+          "first": "2016-01",
+          "last": "2026-09",
+          "currency": "SEK",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "SE0015811963",
+      "name": "Investor AB",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "investor-ab",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "SEK",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "SE0017486889",
+      "name": "Atlas Copco",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "atlas-copco",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "SEK",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
       "isin": "SG1L01001701",
       "name": "DBS Group",
       "kind": "equity",
@@ -14495,6 +19256,132 @@
           "first": "2015-01",
           "last": "2026-09",
           "currency": "SGD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "SG1M31001969",
+      "name": "UOB",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "uob",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "SGD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "SG1S04926220",
+      "name": "OCBC",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "ocbc",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "SGD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "US00206R1023",
+      "name": "AT&T",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "t",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "USD",
           "performance": true,
           "simulation": true,
           "anniversary": true
@@ -15134,6 +20021,48 @@
       "decision": "keep-used"
     },
     {
+      "isin": "US03831W1080",
+      "name": "AppLovin",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "applovin",
+          "automatic": true,
+          "first": "2021-05",
+          "last": "2026-09",
+          "currency": "USD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
       "isin": "US0404132054",
       "name": "Arista Networks",
       "kind": "equity",
@@ -15457,6 +20386,48 @@
       "monthly": [
         {
           "id": "blackrock",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "USD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "US0970231058",
+      "name": "Boeing",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "boeing",
           "automatic": true,
           "first": "2015-01",
           "last": "2026-09",
@@ -15806,6 +20777,48 @@
       "decision": "keep-used"
     },
     {
+      "isin": "US1264081035",
+      "name": "CSX",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "csx",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "USD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
       "isin": "US1273871087",
       "name": "Cadence",
       "kind": "equity",
@@ -16016,6 +21029,48 @@
       "decision": "keep-used"
     },
     {
+      "isin": "US1729674242",
+      "name": "Citigroup",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "citigroup",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "USD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
       "isin": "US1912161007",
       "name": "Coca-Cola",
       "kind": "equity",
@@ -16171,6 +21226,48 @@
       "monthly": [
         {
           "id": "stockUS1999081045",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "USD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "US20030N1019",
+      "name": "Comcast",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "cmcsa",
           "automatic": true,
           "first": "2015-01",
           "last": "2026-09",
@@ -16381,6 +21478,48 @@
       "monthly": [
         {
           "id": "stockUS23331A1097",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "USD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "US2358511028",
+      "name": "Danaher",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "dhr",
           "automatic": true,
           "first": "2015-01",
           "last": "2026-09",
@@ -16814,6 +21953,48 @@
       "decision": "keep-used"
     },
     {
+      "isin": "US2910111044",
+      "name": "Emerson",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "emr",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "USD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
       "isin": "US29414B1044",
       "name": "EPAM Systems",
       "kind": "equity",
@@ -17053,6 +22234,48 @@
       "monthly": [
         {
           "id": "stockUS3032501047",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "USD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "US31428X1063",
+      "name": "FedEx",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "fdx",
           "automatic": true,
           "first": "2015-01",
           "last": "2026-09",
@@ -18788,6 +24011,48 @@
       "decision": "keep-used"
     },
     {
+      "isin": "US5738741041",
+      "name": "Marvell",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "marvell",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "USD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
       "isin": "US5745991068",
       "name": "Masco",
       "kind": "equity",
@@ -19628,6 +24893,48 @@
       "decision": "keep-used"
     },
     {
+      "isin": "US6745991058",
+      "name": "Occidental Petroleum",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "oxy",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "USD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
       "isin": "US68389X1054",
       "name": "Oracle",
       "kind": "equity",
@@ -20077,6 +25384,48 @@
       "monthly": [
         {
           "id": "pfe",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "USD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "US7181721090",
+      "name": "Philip Morris",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "philip-morris",
           "automatic": true,
           "first": "2015-01",
           "last": "2026-09",
@@ -20846,6 +26195,48 @@
       "decision": "keep-used"
     },
     {
+      "isin": "US8243481061",
+      "name": "Sherwin-Williams",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "shw",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "USD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
       "isin": "US83088M1027",
       "name": "Skyworks",
       "kind": "equity",
@@ -21182,6 +26573,48 @@
       "decision": "keep-used"
     },
     {
+      "isin": "US8725901040",
+      "name": "T-Mobile US",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "tmus",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "USD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
       "isin": "US8740391003",
       "name": "TSMC (ADR)",
       "kind": "equity",
@@ -21413,6 +26846,48 @@
       "monthly": [
         {
           "id": "thermo-fisher",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "USD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "US88579Y1010",
+      "name": "3M",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "3m",
           "automatic": true,
           "first": "2015-01",
           "last": "2026-09",
@@ -22085,6 +27560,48 @@
       "monthly": [
         {
           "id": "stockUS9418481035",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "USD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
+      "decision": "keep-used"
+    },
+    {
+      "isin": "US9497461015",
+      "name": "Wells Fargo",
+      "kind": "equity",
+      "practical": [],
+      "duel": true,
+      "qualification": null,
+      "sheet": false,
+      "comparison": false,
+      "generator": "manual",
+      "blocker": null,
+      "dca": true,
+      "countries": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 100,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-15"
+      },
+      "holdings": null,
+      "monthly": [
+        {
+          "id": "wells-fargo",
           "automatic": true,
           "first": "2015-01",
           "last": "2026-09",
