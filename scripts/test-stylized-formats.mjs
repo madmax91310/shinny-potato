@@ -116,14 +116,20 @@ try {
       const sampleYear = worldYears[Math.max(0,worldYears.length - 10)]
       const longId = ASSET_ORDER.find(id => getAnnualReturnStartYears(id).length > 10)
       const commonYear = (a,b) => getAnnualReturnStartYears(a).find(year => getAnnualReturnStartYears(b).includes(year))
+      for (const netId of ['msciAcwi','stoxx600']) {
+        let rejected = false
+        try { getPerformanceEntries({mode:'comparatif',assetIdA:'msciWorld',assetIdB:netId,year:commonYear('msciWorld',netId)}) }
+        catch (error) { rejected = /même convention/.test(error.message) }
+        if (!rejected) throw new Error('Mixed net/gross comparison must be rejected')
+      }
       for (const item of [
         ...[1,2,5,6,10].filter(count => count <= worldYears.length).map(count => ({mode:'simple',assetId:'msciWorld',year:worldYears.at(-count)})),
         ...(longId ? [{mode:'simple',assetId:longId,year:getAnnualReturnStartYears(longId)[0]}] : []),
         ...['EUR','USD'].map(currency => ({mode:'simple',assetId:'msciWorld',year:sampleYear,currency})),
         {mode:'simple',assetId:'sp500',year:getAnnualReturnStartYears('sp500')[0],currency:'EUR'},
         {mode:'comparatif',assetIdA:'msciWorld',assetIdB:'or',year:commonYear('msciWorld','or')},
-        {mode:'comparatif',assetIdA:'msciWorld',assetIdB:'stoxx600',year:commonYear('msciWorld','stoxx600'),currency:'USD'},
-        {mode:'comparatif',assetIdA:'msciAcwi',assetIdB:'msciWorld',year:commonYear('msciAcwi','msciWorld'),currency:'EUR'},
+        {mode:'comparatif',assetIdA:'msciAcwi',assetIdB:'stoxx600',year:commonYear('msciAcwi','stoxx600'),currency:'USD'},
+        {mode:'comparatif',assetIdA:'msciWorld',assetIdB:'sp500',year:commonYear('msciWorld','sp500'),currency:'EUR'},
       ]) {
         const entries = getPerformanceEntries(item)
         const name = `performance-cobalt-${item.assetId || item.assetIdA}-${item.year}-${item.currency || 'native'}-${item.mode}`
