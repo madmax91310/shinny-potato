@@ -4,6 +4,7 @@ import { computeBrut, computePoste, fmtEUR as fmtPowerEUR } from '../src/pages/p
 import { PRICE_OBSERVATION } from '../src/data/purchasing-power.js';
 import { BROKERS as COMPARISON_BROKERS, DUELS as BROKER_DUELS, buildTweet as buildBrokerPost } from '../src/pages/broker-comparator/data.js';
 import { buildReview, reviewCalendar } from '../src/pages/data-review/lib.js';
+import { groupReviews } from '../src/pages/data-review/groups.js';
 import { MARKET_HISTORY_REVIEW } from '../src/data/market-history-review.js';
 import { choose } from './card-selection.mjs'
 import { TOPICS as PRACTICAL_TOPICS } from '../src/data/practical-sheet-topics.js'
@@ -1412,10 +1413,12 @@ try {
   const reserveCount = buildReview().items.filter(item => item.category === 'reserve').length;
   await page.waitForFunction(count => new URLSearchParams(location.search).get('q') === '' && document.querySelectorAll('.data-review > .dr-list > .dr-item').length === count, reserveCount);
   reviewChecks.peaCustody = (await page.locator('.data-review > .dr-list > .dr-item').filter({hasText: 'Trade Republic'}).filter({hasText: 'garde'}).count()) === 1;
+  // Offer deadlines come from the broker registry: derive the expected cards, never a fixed count.
+  const deadlineGroups = groupReviews(buildReview().items.filter(item => item.until));
   await choose(page.getByLabel('Afficher', { exact: true }), 'deadlines');
-  await page.waitForFunction(() => new URLSearchParams(location.search).get('view') === 'deadlines' && document.querySelectorAll('.data-review > .dr-list > .dr-item').length === 3);
-  reviewChecks.deadlines = (await page.locator('.data-review > .dr-list > .dr-item').count()) === 3;
-  reviewChecks.sources = (await page.locator('.data-review > .dr-list').getByRole('link', { name: 'Source ↗', exact: true }).count()) === 3;
+  await page.waitForFunction(count => new URLSearchParams(location.search).get('view') === 'deadlines' && document.querySelectorAll('.data-review > .dr-list > .dr-item').length === count, deadlineGroups.length);
+  reviewChecks.deadlines = deadlineGroups.length > 0 && (await page.locator('.data-review > .dr-list > .dr-item').count()) === deadlineGroups.length;
+  reviewChecks.sources = (await page.locator('.data-review > .dr-list').getByRole('link', { name: 'Source ↗', exact: true }).count()) === deadlineGroups.filter(group => group.urls.length === 1).length;
   await page.goto(`${BASE}/donnees-a-revoir?view=calendar&q=FR001400U5Q4`, { waitUntil: 'networkidle' });
   const reviewRows = reviewCalendar(buildReview()).filter(item => [item.name, item.field, ...item.tools, ...item.aliases ?? []].join(' ').includes('FR001400U5Q4'));
   const expectedMaintenance = reviewRows.flatMap(item => item.maintenanceRecord ? maintenanceLinks(item.maintenanceRecord, item.maintenanceField).map(link => link.url) : []);
