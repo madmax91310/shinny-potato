@@ -141,6 +141,18 @@ def include_configured_workflows(state):
     return result
 
 
+def report_files(directory):
+    """Collector reports inside a downloaded artifact.
+
+    upload-artifact roots a multi-path artifact at the paths' common ancestor: a report
+    written to $RUNNER_TEMP next to repository snapshots lands under `_temp/`, not at the
+    root. Snapshots of src/data are evidence, never reports, and stay unread.
+    """
+    root = pathlib.Path(directory)
+    top = sorted(root.glob('*.json'))
+    return top or sorted(root.glob('_temp/**/*.json'))
+
+
 def read_report(path, workflow):
     # Issuer observations retain raw official components and full holdings.
     # Give that existing artifact a bounded larger envelope, then immediately
@@ -349,7 +361,7 @@ def main():
                     subprocess.run(['gh', 'run', 'download', str(run['id']), '--repo', repo,
                                     '--name', artifact_name, '--dir', directory],
                                    check=True, capture_output=True, timeout=90)
-                    for path in pathlib.Path(directory).glob('*.json'):
+                    for path in report_files(directory):
                         reports.append(read_report(path, run['path'].split('/')[-1]))
         state = update_status(state, run, jobs, reports)
         publication_history.append((run, jobs))
