@@ -23,6 +23,7 @@ try {
     await page.screenshot({path:`test-artifacts/global-equities/exposure-${asset.id}.png`,fullPage:true})
     await page.getByRole('button',{name:'Le DCA de…',exact:true}).click()
     const dca=page.locator('.dca-profiles-scope:visible')
+    await dca.getByLabel('Pseudonyme',{exact:true}).waitFor()
     while(await dca.locator('.dca-simple-line').count())await dca.locator('.dca-simple-line > button').first().click()
     await dca.getByRole('searchbox',{name:'Rechercher : Ajouter un actif',exact:true}).fill(asset.isin)
     await dca.locator(`[data-option][data-value="${asset.id}"]`).click()
