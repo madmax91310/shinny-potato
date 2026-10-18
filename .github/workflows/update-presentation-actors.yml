@@ -62,14 +62,6 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           bash scripts/commit-validated-data.sh 'Refresh validated public actor offer terms' src/data/automated-presentation-actors.json
-      - name: Preserve data publication receipt
-        if: always()
-        uses: actions/upload-artifact@v7.0.1
-        with:
-          name: data-publication-receipt
-          path: ${{ runner.temp }}/data-publication-receipt.json
-          if-no-files-found: ignore
-          retention-days: 35
   deploy:
     needs: refresh
     if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'

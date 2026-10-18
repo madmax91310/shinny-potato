@@ -8,6 +8,7 @@ if (( $# < 2 )); then
 fi
 message=$1
 shift
+publication_helper="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/data_publication.py"
 root=$(git rev-parse --show-toplevel)
 cd "$root"
 if [[ -f .refresh-rehearsal.json ]]; then
@@ -52,4 +53,4 @@ fi
 printf 'commit_sha=%s\n' "$result" >> "${GITHUB_OUTPUT:-/dev/stdout}"
 printf 'changed=%s\n' "$changed" >> "${GITHUB_OUTPUT:-/dev/stdout}"
 # Proof is generated from the committed tree, including rebases, never from uncommitted files.
-python3 scripts/data_publication.py receipt --commit "$result" --output "${RUNNER_TEMP:-/tmp}/data-publication-receipt.json" -- "$@"
+python3 "$publication_helper" receipt --commit "$result" --output "${RUNNER_TEMP:-/tmp}/data-publication-receipt.json" -- "$@"

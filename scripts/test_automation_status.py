@@ -311,3 +311,12 @@ class AuditRegressionTests(unittest.TestCase):
   self.assertEqual(row['publicationStatus'],'success');self.assertEqual(row['dataFailures'],{'fx':'timeout'})
   del build['dataSha']
   self.assertEqual(reconcile_publication(state,build,missing,lambda *_:'ahead')['workflows']['monthly']['publicationStatus'],'success')
+
+class LegacyPublicationProof(unittest.TestCase):
+ def test_uses_recorded_build_checkout_and_rejects_missing_or_ambiguous_proof(self):
+  from publish_automation_status import checkout_snapshot
+  sha='f7326440fd877d65ebd24f51197a6f3f46a6e44c'
+  log=f'2026-10-18T16:29:14Z [command]/usr/bin/git log -1 --format=%H\n2026-10-18T16:29:14Z {sha}\n'
+  self.assertEqual(checkout_snapshot(log),sha)
+  self.assertIsNone(checkout_snapshot('head_sha='+sha))
+  self.assertIsNone(checkout_snapshot(log+log))

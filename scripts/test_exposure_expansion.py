@@ -44,3 +44,15 @@ class Expansion(unittest.TestCase):
         with self.assertRaises(ValueError):parse_holdings(body,{'isin':'IE00BM67HK77'},dt.datetime(2026,10,16,tzinfo=dt.timezone.utc),'https://etf.dws.com/holdings')
 
 if __name__=='__main__':unittest.main()
+
+class InvescoHoldings(unittest.TestCase):
+ def test_exact_physical_top_ten_retains_weight_and_wrapped_identity(self):
+  from collect_invesco_allocations import parse_top_holdings
+  share={'isin':'IE000716YHJ7','sourceUrl':'https://www.invesco.com/exact-share.pdf'}
+  text=share['isin']+'\nReplication method Physical\n'+(Path(__file__).parent/'fixtures/official-documents/invesco-allworld-allocations.txt').read_text()
+  result=parse_top_holdings(text,share,dt.datetime(2026,10,18,tzinfo=dt.timezone.utc))
+  self.assertEqual(len(result['rows']),10)
+  self.assertAlmostEqual(sum(r['weightPct'] for r in result['rows']),24.73)
+  self.assertEqual(result['rows'][5]['name'],'TAIWAN SEMICONDUCTOR MANUFAC TWD10')
+  for changed in [text.replace('Weight','Value'),text.replace('5.02','-5.02'),text.replace('30 Sep 2026','30 Sep 2027'),text.replace(share['isin'],'OTHER')]:
+   with self.assertRaises(ValueError):parse_top_holdings(changed,share,dt.datetime(2026,10,18,tzinfo=dt.timezone.utc))

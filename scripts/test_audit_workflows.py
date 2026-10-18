@@ -57,6 +57,11 @@ class WorkflowContracts(unittest.TestCase):
 
     def test_publishers_use_isolated_recording_and_known_phase_steps(self):
         for filename, config in REGISTRY.items():
+            if config.get('publishes') is False:
+                workflow=(ROOT/'.github/workflows'/filename).read_text()
+                self.assertNotIn('commit-validated-data.sh',workflow)
+                self.assertNotIn('actions/deploy-pages@',workflow)
+                continue  # Rehearsal is monitored, but must never publish synthetic data.
             if filename == 'update-editorial-radar.yml':
                 continue  # Dedicated status branch, no data commit to master.
             workflow = (ROOT/'.github/workflows'/filename).read_text()

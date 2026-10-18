@@ -192,40 +192,40 @@
     "errors": []
   },
   "LU0380865021": {
-    "checkedAt": "2026-10-18T15:33:48.575784+00:00",
-    "observed": [],
-    "pending": [
+    "checkedAt": "2026-10-18T19:39:20.300212+00:00",
+    "observed": [
       "distribution",
       "domicile",
       "replicationMethod",
-      "pea",
-      "currencyHedge",
       "listings"
     ],
-    "errors": [
-      {
-        "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0380865021/pdpMetaTagsTealium",
-        "error": "Ambiguous listing document identity"
-      }
-    ]
+    "pending": [
+      "pea",
+      "currencyHedge"
+    ],
+    "firstPendingAt": {
+      "pea": "2026-10-18T19:37:29.042383+00:00",
+      "currencyHedge": "2026-10-18T19:37:29.042383+00:00"
+    },
+    "errors": []
   },
   "LU0328475792": {
-    "checkedAt": "2026-10-18T15:33:48.575784+00:00",
-    "observed": [],
-    "pending": [
+    "checkedAt": "2026-10-18T19:39:20.300212+00:00",
+    "observed": [
       "distribution",
       "domicile",
       "replicationMethod",
-      "pea",
-      "currencyHedge",
       "listings"
     ],
-    "errors": [
-      {
-        "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0328475792/pdpMetaTagsTealium",
-        "error": "Ambiguous listing document identity"
-      }
-    ]
+    "pending": [
+      "pea",
+      "currencyHedge"
+    ],
+    "firstPendingAt": {
+      "pea": "2026-10-18T19:37:29.042383+00:00",
+      "currencyHedge": "2026-10-18T19:37:29.042383+00:00"
+    },
+    "errors": []
   },
   "IE0008471009": {
     "checkedAt": "2026-10-18T15:33:48.575784+00:00",
@@ -270,7 +270,7 @@
     "errors": []
   },
   "IE00B3XXRP09": {
-    "checkedAt": "2026-10-18T15:33:48.575784+00:00",
+    "checkedAt": "2026-10-18T19:31:40.807499+00:00",
     "observed": [],
     "pending": [
       "distribution",
@@ -316,7 +316,7 @@
     "errors": []
   },
   "IE000716YHJ7": {
-    "checkedAt": "2026-10-18T15:33:48.575784+00:00",
+    "checkedAt": "2026-10-18T19:31:40.807499+00:00",
     "observed": [
       "domicile",
       "replicationMethod",
@@ -330,7 +330,7 @@
     "errors": []
   },
   "IE0000QLH0G6": {
-    "checkedAt": "2026-10-18T15:33:48.575784+00:00",
+    "checkedAt": "2026-10-18T19:31:40.807499+00:00",
     "observed": [
       "domicile",
       "replicationMethod",
@@ -372,7 +372,7 @@
     "errors": []
   },
   "IE00BLCHJB90": {
-    "checkedAt": "2026-10-18T15:33:48.575784+00:00",
+    "checkedAt": "2026-10-18T19:31:40.807499+00:00",
     "observed": [],
     "pending": [
       "distribution",
@@ -390,7 +390,7 @@
     ]
   },
   "IE000NDWFGA5": {
-    "checkedAt": "2026-10-18T15:33:48.575784+00:00",
+    "checkedAt": "2026-10-18T19:31:40.807499+00:00",
     "observed": [],
     "pending": [
       "distribution",
@@ -408,7 +408,7 @@
     ]
   },
   "IE00BMH5Y871": {
-    "checkedAt": "2026-10-18T15:33:48.575784+00:00",
+    "checkedAt": "2026-10-18T19:31:40.807499+00:00",
     "observed": [],
     "pending": [
       "distribution",
@@ -426,25 +426,25 @@
     ]
   },
   "LU0274209237": {
-    "checkedAt": "2026-10-18T15:33:48.575784+00:00",
-    "observed": [],
-    "pending": [
+    "checkedAt": "2026-10-18T19:39:20.300212+00:00",
+    "observed": [
       "distribution",
       "domicile",
       "replicationMethod",
-      "pea",
-      "currencyHedge",
       "listings"
     ],
-    "errors": [
-      {
-        "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0274209237/pdpMetaTagsTealium",
-        "error": "Ambiguous listing document identity"
-      }
-    ]
+    "pending": [
+      "pea",
+      "currencyHedge"
+    ],
+    "firstPendingAt": {
+      "pea": "2026-10-18T19:37:29.042383+00:00",
+      "currencyHedge": "2026-10-18T19:37:29.042383+00:00"
+    },
+    "errors": []
   },
   "IE00BK5BQX27": {
-    "checkedAt": "2026-10-18T15:33:48.575784+00:00",
+    "checkedAt": "2026-10-18T19:31:40.807499+00:00",
     "observed": [],
     "pending": [
       "distribution",
@@ -462,7 +462,7 @@
     ]
   },
   "IE00B945VV12": {
-    "checkedAt": "2026-10-18T15:33:48.575784+00:00",
+    "checkedAt": "2026-10-18T19:31:40.807499+00:00",
     "observed": [],
     "pending": [
       "distribution",
@@ -480,7 +480,7 @@
     ]
   },
   "IE00B3RBWM25": {
-    "checkedAt": "2026-10-18T16:04:20.346657+00:00",
+    "checkedAt": "2026-10-18T19:31:40.807499+00:00",
     "observed": [],
     "pending": [
       "distribution",
@@ -498,7 +498,7 @@
     ]
   },
   "IE00BK5BQV03": {
-    "checkedAt": "2026-10-18T15:33:48.575784+00:00",
+    "checkedAt": "2026-10-18T19:31:40.807499+00:00",
     "observed": [],
     "pending": [
       "distribution",
@@ -516,7 +516,7 @@
     ]
   },
   "IE00BFMXXD54": {
-    "checkedAt": "2026-10-18T15:33:48.575784+00:00",
+    "checkedAt": "2026-10-18T19:31:40.807499+00:00",
     "observed": [],
     "pending": [
       "distribution",
@@ -548,58 +548,58 @@
     "errors": []
   },
   "IE00BJ0KDQ92": {
-    "checkedAt": "2026-10-18T15:33:48.575784+00:00",
-    "observed": [],
-    "pending": [
+    "checkedAt": "2026-10-18T19:39:20.300212+00:00",
+    "observed": [
       "distribution",
       "domicile",
       "replicationMethod",
-      "pea",
-      "currencyHedge",
       "listings"
     ],
-    "errors": [
-      {
-        "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BJ0KDQ92/pdpMetaTagsTealium",
-        "error": "Ambiguous listing document identity"
-      }
-    ]
+    "pending": [
+      "pea",
+      "currencyHedge"
+    ],
+    "firstPendingAt": {
+      "pea": "2026-10-18T19:37:29.042383+00:00",
+      "currencyHedge": "2026-10-18T19:37:29.042383+00:00"
+    },
+    "errors": []
   },
   "IE00BK1PV551": {
-    "checkedAt": "2026-10-18T15:33:48.575784+00:00",
-    "observed": [],
-    "pending": [
+    "checkedAt": "2026-10-18T19:39:20.300212+00:00",
+    "observed": [
       "distribution",
       "domicile",
       "replicationMethod",
-      "pea",
-      "currencyHedge",
       "listings"
     ],
-    "errors": [
-      {
-        "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BK1PV551/pdpMetaTagsTealium",
-        "error": "Ambiguous listing document identity"
-      }
-    ]
+    "pending": [
+      "pea",
+      "currencyHedge"
+    ],
+    "firstPendingAt": {
+      "pea": "2026-10-18T19:37:29.042383+00:00",
+      "currencyHedge": "2026-10-18T19:37:29.042383+00:00"
+    },
+    "errors": []
   },
   "LU2903252349": {
-    "checkedAt": "2026-10-18T15:33:48.575784+00:00",
-    "observed": [],
-    "pending": [
+    "checkedAt": "2026-10-18T19:39:20.300212+00:00",
+    "observed": [
       "distribution",
       "domicile",
       "replicationMethod",
-      "pea",
-      "currencyHedge",
       "listings"
     ],
-    "errors": [
-      {
-        "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU2903252349/pdpMetaTagsTealium",
-        "error": "Ambiguous listing document identity"
-      }
-    ]
+    "pending": [
+      "pea",
+      "currencyHedge"
+    ],
+    "firstPendingAt": {
+      "pea": "2026-10-18T19:37:29.042383+00:00",
+      "currencyHedge": "2026-10-18T19:37:29.042383+00:00"
+    },
+    "errors": []
   },
   "DE0002635307": {
     "checkedAt": "2026-10-18T15:33:48.575784+00:00",
@@ -1716,28 +1716,29 @@
     "errors": []
   },
   "IE00BLNMYC90": {
-    "checkedAt": "2026-10-18T15:33:48.575784+00:00",
-    "observed": [],
-    "pending": [
+    "checkedAt": "2026-10-18T19:39:20.300212+00:00",
+    "observed": [
       "distribution",
       "domicile",
       "replicationMethod",
-      "pea",
-      "currencyHedge",
       "listings"
     ],
+    "pending": [
+      "pea",
+      "currencyHedge"
+    ],
+    "firstPendingAt": {
+      "pea": "2026-10-18T15:33:48.575784+00:00",
+      "currencyHedge": "2026-10-18T15:33:48.575784+00:00"
+    },
     "errors": [
-      {
-        "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/pdpMetaTagsTealium",
-        "error": "Ambiguous listing document identity"
-      },
       {
         "sourceUrl": "https://etf.dws.com/en-ch/IE00BLNMYC90-s-p-500-equal-weight-ucits-etf-1c/",
         "error": "Missing or multiple exact-share identities in metadata document"
       },
       {
         "sourceUrl": "https://www.zonebourse.com/cours/etf/XTRACKERS-S-P-500-EQUAL-W-122801274/composition/",
-        "error": "HTTP Error 403: Forbidden"
+        "error": "No explicit supported metadata fields"
       },
       {
         "sourceUrl": "https://www.borsaitaliana.it/borsa/etf/scheda/IE00BLNMYC90.html?lang=en",
@@ -1746,28 +1747,25 @@
     ]
   },
   "IE0006WW1TQ4": {
-    "checkedAt": "2026-10-18T15:33:48.575784+00:00",
-    "observed": [],
-    "pending": [
+    "checkedAt": "2026-10-18T19:39:20.300212+00:00",
+    "observed": [
       "distribution",
       "domicile",
       "replicationMethod",
-      "pea",
-      "currencyHedge",
       "listings"
     ],
+    "pending": [
+      "pea",
+      "currencyHedge"
+    ],
+    "firstPendingAt": {
+      "pea": "2026-10-18T15:33:48.575784+00:00",
+      "currencyHedge": "2026-10-18T15:33:48.575784+00:00"
+    },
     "errors": [
-      {
-        "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/pdpMetaTagsTealium",
-        "error": "Ambiguous listing document identity"
-      },
       {
         "sourceUrl": "https://etf.dws.com/fr-fr/AssetDownload/Index/410e8206-23cd-463b-b2a5-6018bfc1fd32/Factsheet.pdf",
         "error": "Missing or multiple exact-share identities in metadata document"
-      },
-      {
-        "sourceUrl": "https://www.zonebourse.com/cours/etf/XTRACKERS-MSCI-WORLD-EX-U-169862014/",
-        "error": "HTTP Error 403: Forbidden"
       },
       {
         "sourceUrl": "https://etf.dws.com/download/asset/82292b8e-bf9e-44f2-b20d-722c743110a3",
@@ -1776,22 +1774,22 @@
     ]
   },
   "LU0290358497": {
-    "checkedAt": "2026-10-18T15:33:48.575784+00:00",
+    "checkedAt": "2026-10-18T19:39:20.300212+00:00",
     "observed": [
       "distribution",
+      "domicile",
+      "replicationMethod",
       "listings"
     ],
     "pending": [
-      "domicile",
-      "replicationMethod",
       "pea",
       "currencyHedge"
     ],
+    "firstPendingAt": {
+      "pea": "2026-10-18T15:33:48.575784+00:00",
+      "currencyHedge": "2026-10-18T15:33:48.575784+00:00"
+    },
     "errors": [
-      {
-        "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0290358497/pdpMetaTagsTealium",
-        "error": "Ambiguous listing document identity"
-      },
       {
         "sourceUrl": "https://etf.agefi.fr/etf/XEON",
         "error": "Missing or multiple exact-share identities in metadata document"
@@ -1799,57 +1797,58 @@
     ]
   },
   "IE000L6ZMMC4": {
-    "checkedAt": "2026-10-18T15:33:48.575784+00:00",
-    "observed": [],
-    "pending": [
+    "checkedAt": "2026-10-18T19:39:20.300212+00:00",
+    "observed": [
       "distribution",
       "domicile",
       "replicationMethod",
-      "pea",
-      "currencyHedge",
       "listings"
     ],
-    "errors": [
-      {
-        "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE000L6ZMMC4/pdpMetaTagsTealium",
-        "error": "Ambiguous listing document identity"
-      }
-    ]
+    "pending": [
+      "pea",
+      "currencyHedge"
+    ],
+    "firstPendingAt": {
+      "pea": "2026-10-18T19:31:40.807499+00:00",
+      "currencyHedge": "2026-10-18T19:31:40.807499+00:00"
+    },
+    "errors": []
   },
   "IE00BGV5VN51": {
-    "checkedAt": "2026-10-18T15:33:48.575784+00:00",
-    "observed": [],
-    "pending": [
+    "checkedAt": "2026-10-18T19:39:20.300212+00:00",
+    "observed": [
       "distribution",
       "domicile",
       "replicationMethod",
-      "pea",
-      "currencyHedge",
       "listings"
     ],
-    "errors": [
-      {
-        "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BGV5VN51/pdpMetaTagsTealium",
-        "error": "Ambiguous listing document identity"
-      }
-    ]
+    "pending": [
+      "pea",
+      "currencyHedge"
+    ],
+    "firstPendingAt": {
+      "pea": "2026-10-18T15:33:48.575784+00:00",
+      "currencyHedge": "2026-10-18T15:33:48.575784+00:00"
+    },
+    "errors": []
   },
   "IE00BM67HK77": {
-    "checkedAt": "2026-10-18T15:33:48.575784+00:00",
-    "observed": [],
-    "pending": [
+    "checkedAt": "2026-10-18T19:39:20.300212+00:00",
+    "observed": [
       "distribution",
       "domicile",
       "replicationMethod",
-      "pea",
-      "currencyHedge",
       "listings"
     ],
+    "pending": [
+      "pea",
+      "currencyHedge"
+    ],
+    "firstPendingAt": {
+      "pea": "2026-10-18T15:33:48.575784+00:00",
+      "currencyHedge": "2026-10-18T15:33:48.575784+00:00"
+    },
     "errors": [
-      {
-        "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HK77/pdpMetaTagsTealium",
-        "error": "Ambiguous listing document identity"
-      },
       {
         "sourceUrl": "https://etf.dws.com/download/asset/0ebe43bb-3463-46d7-85e1-01ef46ee2f67",
         "error": "Missing or multiple exact-share identities in metadata document"
@@ -1857,76 +1856,76 @@
     ]
   },
   "IE00BM67HS53": {
-    "checkedAt": "2026-10-18T15:33:48.575784+00:00",
-    "observed": [],
-    "pending": [
+    "checkedAt": "2026-10-18T19:39:20.300212+00:00",
+    "observed": [
       "distribution",
       "domicile",
       "replicationMethod",
-      "pea",
-      "currencyHedge",
       "listings"
     ],
-    "errors": [
-      {
-        "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HS53/pdpMetaTagsTealium",
-        "error": "Ambiguous listing document identity"
-      }
-    ]
+    "pending": [
+      "pea",
+      "currencyHedge"
+    ],
+    "firstPendingAt": {
+      "pea": "2026-10-18T15:33:48.575784+00:00",
+      "currencyHedge": "2026-10-18T15:33:48.575784+00:00"
+    },
+    "errors": []
   },
   "IE00BTJRMP35": {
-    "checkedAt": "2026-10-18T15:33:48.575784+00:00",
-    "observed": [],
-    "pending": [
+    "checkedAt": "2026-10-18T19:39:20.300212+00:00",
+    "observed": [
       "distribution",
       "domicile",
       "replicationMethod",
-      "pea",
-      "currencyHedge",
       "listings"
     ],
-    "errors": [
-      {
-        "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BTJRMP35/pdpMetaTagsTealium",
-        "error": "Ambiguous listing document identity"
-      }
-    ]
+    "pending": [
+      "pea",
+      "currencyHedge"
+    ],
+    "firstPendingAt": {
+      "pea": "2026-10-18T19:37:29.042383+00:00",
+      "currencyHedge": "2026-10-18T19:37:29.042383+00:00"
+    },
+    "errors": []
   },
   "LU1875395870": {
-    "checkedAt": "2026-10-18T15:33:48.575784+00:00",
-    "observed": [],
-    "pending": [
+    "checkedAt": "2026-10-18T19:39:20.300212+00:00",
+    "observed": [
       "distribution",
       "domicile",
       "replicationMethod",
-      "pea",
-      "currencyHedge",
       "listings"
     ],
-    "errors": [
-      {
-        "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU1875395870/pdpMetaTagsTealium",
-        "error": "Ambiguous listing document identity"
-      }
-    ]
+    "pending": [
+      "pea",
+      "currencyHedge"
+    ],
+    "firstPendingAt": {
+      "pea": "2026-10-18T19:37:29.042383+00:00",
+      "currencyHedge": "2026-10-18T19:37:29.042383+00:00"
+    },
+    "errors": []
   },
   "LU2196470426": {
-    "checkedAt": "2026-10-18T15:33:48.575784+00:00",
-    "observed": [],
-    "pending": [
+    "checkedAt": "2026-10-18T19:39:20.300212+00:00",
+    "observed": [
       "distribution",
       "domicile",
       "replicationMethod",
-      "pea",
-      "currencyHedge",
       "listings"
     ],
-    "errors": [
-      {
-        "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU2196470426/pdpMetaTagsTealium",
-        "error": "Ambiguous listing document identity"
-      }
-    ]
+    "pending": [
+      "pea",
+      "currencyHedge"
+    ],
+    "firstPendingAt": {
+      "pea": "2026-10-18T19:37:29.042383+00:00",
+      "currencyHedge": "2026-10-18T19:37:29.042383+00:00"
+    },
+    "errors": []
   },
   "IE00BK5BQT80": {
     "checkedAt": "2026-10-18T16:04:20.346657+00:00",
@@ -2173,7 +2172,7 @@
     "errors": []
   },
   "IE00B3VVMM84": {
-    "checkedAt": "2026-10-18T15:33:48.575784+00:00",
+    "checkedAt": "2026-10-18T19:31:40.807499+00:00",
     "observed": [],
     "pending": [
       "distribution",
@@ -2546,7 +2545,7 @@
     ]
   },
   "IE00B4K6B022": {
-    "checkedAt": "2026-10-18T15:33:48.575784+00:00",
+    "checkedAt": "2026-10-18T19:31:40.807499+00:00",
     "observed": [
       "domicile",
       "replicationMethod"
@@ -2778,7 +2777,7 @@
     "errors": []
   },
   "IE00BD4TXV59": {
-    "checkedAt": "2026-10-18T15:33:48.575784+00:00",
+    "checkedAt": "2026-10-18T19:31:40.807499+00:00",
     "observed": [
       "domicile",
       "replicationMethod"
@@ -2806,7 +2805,7 @@
     "errors": []
   },
   "FR0011550185": {
-    "checkedAt": "2026-10-18T15:33:48.575784+00:00",
+    "checkedAt": "2026-10-18T19:31:40.807499+00:00",
     "observed": [
       "domicile",
       "distribution",
@@ -2820,7 +2819,7 @@
     "errors": []
   },
   "IE000QDFFK00": {
-    "checkedAt": "2026-10-18T15:33:48.575784+00:00",
+    "checkedAt": "2026-10-18T19:31:40.807499+00:00",
     "observed": [],
     "pending": [
       "distribution",
@@ -2931,40 +2930,40 @@
     "errors": []
   },
   "IE00BM67HV82": {
-    "checkedAt": "2026-10-18T15:33:48.575784+00:00",
-    "observed": [],
-    "pending": [
+    "checkedAt": "2026-10-18T19:39:20.300212+00:00",
+    "observed": [
       "distribution",
       "domicile",
       "replicationMethod",
-      "pea",
-      "currencyHedge",
       "listings"
     ],
-    "errors": [
-      {
-        "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HV82/pdpMetaTagsTealium",
-        "error": "Ambiguous listing document identity"
-      }
-    ]
+    "pending": [
+      "pea",
+      "currencyHedge"
+    ],
+    "firstPendingAt": {
+      "pea": "2026-10-18T15:33:48.575784+00:00",
+      "currencyHedge": "2026-10-18T15:33:48.575784+00:00"
+    },
+    "errors": []
   },
   "IE00BM67HQ30": {
-    "checkedAt": "2026-10-18T15:33:48.575784+00:00",
-    "observed": [],
-    "pending": [
+    "checkedAt": "2026-10-18T19:39:20.300212+00:00",
+    "observed": [
       "distribution",
       "domicile",
       "replicationMethod",
-      "pea",
-      "currencyHedge",
       "listings"
     ],
-    "errors": [
-      {
-        "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HQ30/pdpMetaTagsTealium",
-        "error": "Ambiguous listing document identity"
-      }
-    ]
+    "pending": [
+      "pea",
+      "currencyHedge"
+    ],
+    "firstPendingAt": {
+      "pea": "2026-10-18T15:33:48.575784+00:00",
+      "currencyHedge": "2026-10-18T15:33:48.575784+00:00"
+    },
+    "errors": []
   },
   "IE00B4556L06": {
     "checkedAt": "2026-10-18T15:33:48.575784+00:00",

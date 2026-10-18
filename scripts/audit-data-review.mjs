@@ -32,6 +32,29 @@ assert.deepEqual(result.items.map(x => x.field), ['Sans contrôle'], 'Ni photogr
 const separateSources = buildReview('2026-09-30', [], [{ id: 'test', nom: 'Test' }], { test: { frais: { status: 'confirmé', refs: [{ document: 'old' }, { document: 'new' }] } } }, { old: { title: 'Ancien contrôle', checked: '01/01/2026', url: 'https://example.org/old' }, new: { title: 'Récent', checked: '29/09/2026', url: 'https://example.org/new' } })
 assert.equal(separateSources.items.length, 1, 'Un contrôle récent ne masque pas un autre contrôle ancien')
 assert.equal(separateSources.items[0].field, 'Ancien contrôle')
+// Stable examples exercise deduplication and expiry without freezing the live offer roster.
+const offerSources = {
+  shared: { title: 'Offre commune', checked: '01/10/2026', reviewUntil: '2026-10-10', url: 'https://example.org/shared' },
+  later: { title: 'Offre suivante', checked: '01/10/2026', reviewUntil: '2026-12-31', url: 'https://example.org/later' },
+  added: { title: 'Nouvelle offre', checked: '01/10/2026', reviewUntil: '2027-03-31', url: 'https://example.org/added' },
+}
+const offerBrokers = [{ id: 'a', nom: 'A' }, { id: 'b', nom: 'B' }]
+const offerEvidence = {
+  a: {
+    frais: { status: 'confirmé', refs: [{ document: 'shared' }, { document: 'shared' }] },
+    dca: { status: 'confirmé', refs: [{ document: 'shared' }] },
+    transfert: { status: 'confirmé', refs: [{ document: 'later' }] },
+  },
+  b: { frais: { status: 'confirmé', refs: [{ document: 'shared' }] } },
+}
+const offerRows = (date, evidence = offerEvidence) => buildReview(date, [], offerBrokers, evidence, offerSources).items.filter(item => item.until)
+assert.deepEqual(offerRows('2026-10-02').map(item => item.id).sort(), ['offer:a:later', 'offer:a:shared', 'offer:b:shared'], 'Une offre réutilisée dans plusieurs cellules est unique par courtier')
+const expandedOffers = structuredClone(offerEvidence)
+expandedOffers.a.transfert.refs.push({ document: 'added' })
+assert.equal(offerRows('2026-10-02', expandedOffers).length, 4, 'Une nouvelle offre conserve les anciennes échéances')
+const expiredOffers = offerRows('2027-01-01', expandedOffers)
+assert.equal(expiredOffers.filter(item => item.category === 'expired').length, 3)
+assert.equal(expiredOffers.find(item => item.id === 'offer:a:added').category, 'scheduled')
 for (const source of Object.values({ ...OFFICIAL_SOURCES, ...SECONDARY_SOURCES })) {
   if (source.reviewUntil) assert.notEqual(dayNumber(source.reviewUntil), null, 'Échéance enregistrée invalide')
 }

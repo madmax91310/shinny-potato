@@ -5,6 +5,7 @@ import base64
 import json
 import os
 import pathlib
+import re
 import subprocess
 import tempfile
 import urllib.error
@@ -253,7 +254,7 @@ def update_status(state, run, jobs, reports=None):
     old_stamp = (previous.get('runId', 0), previous.get('attempt', 1))
     inactive = {row['id'] for report in reports or [] for row in normalize_report(report).get('inactive', [])}
     retires_legacy_alert = bool(inactive & previous.get('dataFailures', {}).keys())
-    if stamp < old_stamp or (stamp == old_stamp and not retires_legacy_alert) or run['conclusion'] in ('cancelled', 'skipped', 'neutral'):
+    if stamp < old_stamp or (stamp == old_stamp and previous.get('monitorVersion', 1) >= 2 and not retires_legacy_alert) or run['conclusion'] in ('cancelled', 'skipped', 'neutral'):
         return result
     failed = run['conclusion'] in ('failure', 'timed_out', 'startup_failure', 'action_required')
     data_failures = previous.get('dataFailures', {}).copy()
@@ -296,6 +297,8 @@ def update_status(state, run, jobs, reports=None):
     if validation_status != 'failure':
         validation_status = ('success' if checkpoint and checkpoint.get('conclusion') == 'success'
                              else 'not-run' if checkpoint else 'unknown')
+    if any(j['name'] == 'report-validation-failures' and j.get('conclusion') == 'failure' for j in jobs):
+        validation_status = 'failure'
     recording_status = phase_status(['Commit validated observations'])
     if recording_status == 'unknown':
         recording_status = 'not-run'
@@ -313,7 +316,7 @@ def update_status(state, run, jobs, reports=None):
     publication_status, published_at = publication_summary(run, jobs)
     failed = failed or any(value == 'failure' for value in (collection_status, validation_status, recording_status, publication_status))
     result['workflows'] = entries
-    entries[workflow] = {'name': WORKFLOWS[workflow], 'runId': run['id'], 'attempt': run.get('run_attempt', 1),
+    entries[workflow] = {'monitorVersion': 2, 'name': WORKFLOWS[workflow], 'runId': run['id'], 'attempt': run.get('run_attempt', 1),
         'headSha': run.get('head_sha'), 'createdAt': run.get('created_at'),
         'completedAt': run['updated_at'], 'status': 'failure' if failed or data_failures else 'success',
         'lastSuccessAt': previous.get('lastSuccessAt') if failed or data_failures else run['updated_at'],
@@ -324,6 +327,32 @@ def update_status(state, run, jobs, reports=None):
     result['schemaVersion'] = 1
     result['updatedAt'] = run['updated_at']
     return result
+
+
+def checkout_snapshot(log):
+    """Exact checkout proof from the reusable deployment build, not the workflow head."""
+    matches = re.findall(r'\[command\][^\n]*git log -1 --format=%H\r?\n[^\s]+ ([0-9a-f]{40})\r?(?:\n|$)', log)
+    return matches[0] if len(matches) == 1 else None
+
+
+def legacy_publication_receipt(repo, jobs, api):
+    builds = [j for j in jobs if j['name'] == 'deploy / build']
+    if len(builds) != 1:
+        return None
+    try:
+        log = subprocess.run(['gh', 'api', f'repos/{repo}/actions/jobs/{builds[0]["id"]}/logs'],
+                             check=True, capture_output=True, text=True, timeout=45).stdout
+        sha = checkout_snapshot(log[:500_000])
+        if not sha:
+            return None
+        tree = api(f'/git/trees/{sha}?recursive=1')
+        if tree.get('truncated'):
+            return None
+        files = {r['path']: r['sha'] for r in tree['tree'] if r['type'] == 'blob'
+                 and r['path'].startswith(('src/data/', 'scripts/source-snapshots/'))}
+        return {'schemaVersion': 1, 'commit': sha, 'files': files, 'evidenceJobId': builds[0]['id']}
+    except (subprocess.SubprocessError, urllib.error.URLError, ValueError, KeyError):
+        return None
 
 
 def reconcile_publication(state, build, manifest, compare):
@@ -411,6 +440,9 @@ def main():
         runs = [require_event['workflow_run']]
     publication_history = []
     for run in sorted(runs, key=lambda r: (r['id'], r.get('run_attempt', 1))):
+        previous_run = state.get('workflows', {}).get(run['path'].split('/')[-1], {})
+        if run['id'] < previous_run.get('runId', 0):
+            continue
         jobs = []
         page = 1
         while True:
@@ -452,6 +484,10 @@ def main():
                     receipt = json.loads((pathlib.Path(directory) / 'data-publication-receipt.json').read_text())
                     if receipt.get('schemaVersion') == 1 and isinstance(receipt.get('files'), dict):
                         row['publicationReceipt'] = receipt
+        if row.get('runId') == run['id'] and not row.get('publicationReceipt') and row.get('recordingStatus') == 'success':
+            receipt = legacy_publication_receipt(repo, jobs, api)
+            if receipt:
+                row['publicationReceipt'] = receipt
         publication_history.append((run, jobs))
     if args.backfill:
         state = repair_publication_history(state, publication_history)

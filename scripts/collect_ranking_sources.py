@@ -4,6 +4,7 @@ import copy
 import datetime as dt
 import hashlib
 import json
+from decimal import Decimal, ROUND_HALF_UP
 import pathlib
 import xml.etree.ElementTree as ET
 from concurrent.futures import ThreadPoolExecutor
@@ -102,6 +103,12 @@ def parse_fred_series(body, series):
     return daily
 
 
+def cross_value(per_usd, usd_per_eur):
+    # Official published decimal observations, rounded half up to four decimals.
+    # Avoid language-specific binary ties (e.g. 33.06 × 1.3275 = 43.88715).
+    return float((Decimal(str(per_usd)) * Decimal(str(usd_per_eur))).quantize(Decimal('0.0001'), rounding=ROUND_HALF_UP))
+
+
 def parse_cross_fx(fred_body, ecb_body, now, currency='TWD', series='DEXTAUS'):
     """TWD per EUR at the latest day of each completed month where both official series publish."""
     usd_per_eur = ecb_daily_usd(ecb_body)
@@ -113,7 +120,7 @@ def parse_cross_fx(fred_body, ecb_body, now, currency='TWD', series='DEXTAUS'):
             continue
         key = day.strftime('%Y-%m')
         observed[key] = {'asOf': day.isoformat(), 'usdPerEur': usd_per_eur[day], 'perUsd': per_usd[day],
-                         'value': round(per_usd[day] * usd_per_eur[day], 4)}
+                         'value': cross_value(per_usd[day], usd_per_eur[day])}
     # The H.10 release is weekly: a month-end published less than eight days ago may still be
     # missing from FRED. Every older completed month is required; a newer one is taken when present.
     due = now.date() - dt.timedelta(days=8)
@@ -128,7 +135,7 @@ def parse_cross_fx(fred_body, ecb_body, now, currency='TWD', series='DEXTAUS'):
     return {'sourceUrl': CROSS_SERIES[currency], 'series': series, 'secondarySourceUrl': ECB,
             'checkedAt': now.date().isoformat(), 'sha256': hashlib.sha256(fred_body).hexdigest(),
             'convention': f'{currency} per EUR = Federal Reserve H.10 noon buying rate ({currency} per USD, FRED {series}) '
-                          '× ECB USD per EUR reference rate, latest day of each completed month published by both',
+                          '× ECB USD per EUR reference rate, latest day of each completed month published by both; decimal half-up rounding to four places',
             'observations': dict(sorted(observed.items()))}
 
 

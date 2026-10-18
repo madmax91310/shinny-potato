@@ -145,6 +145,8 @@ def main():
     path = ROOT/'src/data/company-analysis.json'
     data = json.loads(path.read_text())
     now = dt.datetime.now(dt.timezone.utc)
+    if args.only and set(args.only) - {p['id'] for p in profiles if p.get('collectionAdapter') == 'sec-companyfacts'}:
+        parser.error('Unknown or unsupported company selection')
     targets = [p for p in profiles if p.get('collectionAdapter') == 'sec-companyfacts' and (not args.only or p['id'] in args.only)]
     report = {'checkedAt': now.isoformat(), 'companies': {}}
     with ThreadPoolExecutor(max_workers=4) as pool:

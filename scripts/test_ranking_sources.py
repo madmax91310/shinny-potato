@@ -15,6 +15,11 @@ def fred(rows, header='observation_date,DEXTAUS'):
 
 
 class RankingSourcesTest(unittest.TestCase):
+    def test_cross_rate_uses_decimal_half_up_at_exact_ties(self):
+        from collect_ranking_sources import cross_value
+        self.assertEqual(cross_value(33.06, 1.3275), 43.8872)
+        self.assertEqual(cross_value(29.03, 1.443), 41.8903)
+
     def test_cross_rate_uses_latest_common_day_and_keeps_provenance(self):
         now = dt.datetime(1999, 3, 3, tzinfo=UTC)
         ecb = document([('1999-01-28', 1.1), ('1999-01-29', 1.2), ('1999-02-25', 1.3), ('1999-02-26', 1.35), ('1999-03-01', 1.4)])

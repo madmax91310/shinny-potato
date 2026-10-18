@@ -50,11 +50,14 @@ class MetadataTests(unittest.TestCase):
     def test_dws_product_page_exchange_table(self):
         from pathlib import Path
         body=Path(__file__).with_name('fixtures').joinpath('official-documents','dws-exact-share.json').read_bytes()
-        self.assertEqual(parse_json(body,'IE00BLNMYC90'),{})
+        self.assertEqual(parse_json(body,'IE00BLNMYC90'),{'distribution':'Capitalizing','domicile':'Ireland','replicationMethod':'Direct Replication (physically)'})
         rows=parse_listings(body,{'isin':'IE00BLNMYC90'},'https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/pdpMetaTagsTealium','2026-10-18')
         self.assertIn(('ETFP','XDEW','EUR','XDEW.MI'),[(r['mic'],r['ticker'],r['currency'],r['symbol']) for r in rows])
         self.assertTrue(all(r['evidenceId'].startswith('IE00BLNMYC90-') for r in rows))
-        with self.assertRaises(ValueError):parse_listings(body.replace(b'IE00BLNMYC90',b'IE00B4L5Y983',1),{'isin':'IE00BLNMYC90'},'https://etf.dws.com','2026-10-18')
+        # An unrelated NAV link is not product identity; exact facts remain mandatory.
+        changed=body.replace(b'IE00BLNMYC90',b'IE00B4L5Y983',1)
+        self.assertEqual(parse_listings(changed,{'isin':'IE00BLNMYC90'},'https://etf.dws.com','2026-10-18'),[{**r,'sha256':__import__('hashlib').sha256(changed).hexdigest(),'sourceUrl':'https://etf.dws.com'} for r in rows])
+        with self.assertRaises(ValueError):parse_listings(body.replace(b'IE00BLNMYC90',b'IE00B4L5Y983'),{'isin':'IE00BLNMYC90'},'https://etf.dws.com','2026-10-18')
     def test_factsheet_venue_abbreviations_share_the_row(self):
         src={'isin':self.ISIN,'listings':[{'ticker':'ANAU','mic':'XPAR','exchange':'Euronext Paris','currency':'EUR','symbol':'ANAU.PA'}]}
         body=(self.ISIN+'<table><tr><td>EURONEXT P</td><td>EUR</td><td>ANAU FP</td></tr></table>').encode()
