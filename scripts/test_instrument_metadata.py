@@ -27,10 +27,10 @@ class MetadataTests(unittest.TestCase):
     def test_listing_tokens_must_share_a_table_row(self):
         src={'isin':self.ISIN,'listings':[{'ticker':'TEST','mic':'XLON','exchange':'London Stock Exchange','currency':'USD'}]}
         valid=(self.ISIN+'<table><tr><td>London Stock Exchange</td><td>TEST</td><td>USD</td></tr></table>').encode()
-        rows=parse_listings(valid,src,'https://issuer.test','2026-10-17')
+        rows=parse_listings(valid,src,'https://www.ishares.com/doc','2026-10-17')
         self.assertEqual(rows[0]['evidenceId'],self.ISIN+'-XLON-TEST-USD')
         invalid=(self.ISIN+'<table><tr><td>London Stock Exchange TEST</td></tr><tr><td>USD</td></tr></table>').encode()
-        self.assertEqual(parse_listings(invalid,src,'https://issuer.test','2026-10-17'),[])
+        self.assertEqual(parse_listings(invalid,src,'https://www.ishares.com/doc','2026-10-17'),[])
     def test_amundi_api_metadata_and_listings_are_exact(self):
         payload={'products':[{'productId':self.ISIN,'characteristics':{'ISIN':self.ISIN,'DISTRIBUTION_POLICY':'Capitalisation','FUND_REPLICATION_METHODOLOGY':'Indirect (Swap Based)',
             'LISTINGS':[{'exchangePlace':'Euronext Paris','tradingCurrency':'EUR','ticker':'PAASI FP','ric':'PAASI.PA'},{'exchangePlace':'LSE','tradingCurrency':'USD','ticker':'PAAS LN','ric':'PAAS.L'},{'exchangePlace':'Bolsa Mexicana','tradingCurrency':'MXN','ticker':'PAASIN MM','ric':'PAASIN.MX'}]}}]}
@@ -53,7 +53,7 @@ class MetadataTests(unittest.TestCase):
     def test_factsheet_venue_abbreviations_share_the_row(self):
         src={'isin':self.ISIN,'listings':[{'ticker':'ANAU','mic':'XPAR','exchange':'Euronext Paris','currency':'EUR','symbol':'ANAU.PA'}]}
         body=(self.ISIN+'<table><tr><td>EURONEXT P</td><td>EUR</td><td>ANAU FP</td></tr></table>').encode()
-        rows=parse_listings(body,src,'https://issuer.test','2026-10-18')
+        rows=parse_listings(body,src,'https://www.ishares.com/doc','2026-10-18')
         self.assertEqual((rows[0]['evidenceId'],rows[0]['symbol']),(self.ISIN+'-XPAR-ANAU-EUR','ANAU.PA'))
     def test_structured_identity(self):
         def doc(isin):return json.dumps({'componentsByNameMap':{'keyFundFacts':{'containersByNameMap':{'default':{'dataPointsByNameMap':{'isin':{'value':isin},'domicile':{'value':'Ireland'}}}}}}}).encode()
@@ -107,4 +107,10 @@ class MetadataTests(unittest.TestCase):
         url='https://www.vaneck.com/fr/en/library/fact-sheets/smh-fact-sheet.pdf'
         self.assertEqual(vaneck_factsheet_candidates(url),[url]+[f'https://www.vaneck.com/{r}/en/library/fact-sheets/smh-fact-sheet.pdf' for r in ROUTES['vaneck']['factsheetRegions']])
         self.assertEqual(len(vaneck_factsheet_candidates('https://www.vaneck.com/nl/en/library/fact-sheets/smh-fact-sheet.pdf')),2)
+    def test_mirror_documents_never_produce_listings(self):
+        src={'isin':self.ISIN,'listings':[{'ticker':'TEST','mic':'XLON','exchange':'London Stock Exchange','currency':'USD'}]}
+        body=(self.ISIN+'<table><tr><td>London Stock Exchange</td><td>TEST</td><td>USD</td></tr></table>').encode()
+        self.assertEqual(parse_listings(body,src,'https://swissfunddata.ch/sfdpub/docs/x.pdf','2026-10-18'),[])
+        self.assertEqual(parse_listings(body,src,'https://dokumenty.analizy.pl/pobierz/etf/X/KA/2026-09-30','2026-10-18'),[])
+        self.assertEqual(len(parse_listings(body,src,'https://www.ishares.com/doc','2026-10-18')),1)
 if __name__=='__main__':unittest.main()
