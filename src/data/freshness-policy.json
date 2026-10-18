@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "description": "Single freshness policy: how long a field may go without a successful check (checkDays) and how old its publication may be (dataDays) before it is reported. Read by report-asset-fields.mjs, collect_instrument_metadata.py and collect_scpi.py. Per-workflow run cadence stays in automation-workflows.json (maxAgeHours).",
+  "fields": {
+    "etf.default": { "checkDays": 7, "dataDays": 65, "note": "Countries, sectors, holdings, AUM: issuers republish monthly." },
+    "etf.ter": { "checkDays": 7, "dataDays": 400, "note": "Annual fee: may legitimately date from the last financial year." },
+    "etf.characteristic": { "checkDays": 7, "dataDays": 400, "fields": ["distribution", "pea", "currencyHedge", "listings"] },
+    "etf.staticCharacteristic": { "checkDays": 365, "dataDays": 400, "fields": ["domicile", "replicationMethod"], "note": "Changes only through a prospectus amendment or a fund merger." },
+    "etf.performance": { "checkDays": 7, "dataDays": 550, "note": "Calendar years: the last complete year is published in the following months." },
+    "etf.monthly": { "checkDays": 40, "dataDays": 65 },
+    "series.monthly": { "checkDays": 40, "dataDays": 65 },
+    "index.facts": { "checkDays": 40, "dataDays": 120 },
+    "index.returns": { "checkDays": 40, "dataDays": 550 },
+    "product.default": { "checkDays": 7, "dataDays": 120, "note": "SCPI and life-insurance presentations." },
+    "product.annual": { "checkDays": 7, "dataDays": 550, "fields": ["annual", "euroFunds"] }
+  },
+  "calendars": {
+    "scpi.quarterlyBulletin": { "graceDaysAfterNextQuarterEnd": 45, "note": "Quarterly bulletins are published about a month after the quarter; a missing link is a wait until then." }
+  }
+}

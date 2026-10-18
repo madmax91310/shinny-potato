@@ -10,18 +10,19 @@ from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from data_automation import UTC, write_json_atomic
 from issuer_documents import download, pdf_text
+from issuer_routes import vaneck_factsheet_candidates
 ROOT=Path(__file__).resolve().parents[1]
 FIELDS=('distribution','domicile','replicationMethod','pea','currencyHedge','listings')
-# Same threshold as the active-field freshness check (report-asset-fields.mjs): a static
-# characteristic missed by one transient source failure is not an incident before then.
-RENEWAL_GRACE_DAYS=7
+# Thresholds come from the single freshness policy (src/data/freshness-policy.json),
+# shared with the field freshness report (report-asset-fields.mjs).
+POLICY=json.loads((ROOT/'src/data/freshness-policy.json').read_text())['fields']
+RENEWAL_GRACE_DAYS=POLICY['etf.default']['checkDays']
 # Legal domicile and replication method only change through a prospectus amendment or a
 # fund merger: one unavailable issuer page must not raise a daily incident. They are
 # still re-read daily, published as soon as observed, and must be renewed within a year.
-STATIC_RENEWAL_DAYS={'domicile':365,'replicationMethod':365}
-# Any language of a regional factsheet (fr/en, fr/fr...) or the UCITS one. The browser
-# helper only reads English regional documents, so /fr/fr/ is read as /fr/en/.
-VANECK_FACTSHEET=re.compile(r'https://www\.vaneck\.com/(?:ucits|([a-z]{2})/[a-z]{2})/library/fact-sheets/([a-z0-9]+-fact-sheet\.pdf)')
+STATIC_RENEWAL_DAYS={field:POLICY['etf.staticCharacteristic']['checkDays'] for field in POLICY['etf.staticCharacteristic']['fields']}
+# Any language of a regional factsheet (fr/en, fr/fr...) or the UCITS one; see issuer_routes.
+VANECK_FACTSHEET=re.compile(r'https://www\.vaneck\.com/(?:ucits|[a-z]{2}/[a-z]{2})/library/fact-sheets/[a-z0-9]+-fact-sheet\.pdf')
 
 def fetch_document(url,fetch=download):
     """Returns (body, url actually read)."""
@@ -30,12 +31,9 @@ def fetch_document(url,fetch=download):
     except ValueError as error:
         # VanEck answers its factsheet URLs with a regional consent page. Like
         # collect_vaneck_etf.py, complete the gate in a browser, then try the same
-        # factsheet on the Dutch and UK gates, which US-based runners can pass.
-        match=VANECK_FACTSHEET.fullmatch(url)
-        if fetch is not download or 'Expected official PDF' not in str(error) or not match:raise
-        region,name=match.groups()
-        first=f'https://www.vaneck.com/{region}/en/library/fact-sheets/{name}' if region else url
-        candidates=list(dict.fromkeys([first,*(f'https://www.vaneck.com/{region}/en/library/fact-sheets/{name}' for region in ('nl','uk'))]))
+        # factsheet on the gates listed in issuer-access-routes.json.
+        if fetch is not download or 'Expected official PDF' not in str(error) or not VANECK_FACTSHEET.fullmatch(url):raise
+        candidates=vaneck_factsheet_candidates(url)
         failures=[]
         for candidate in candidates:
             try:result=subprocess.run(['node',str(Path(__file__).with_name('download-vaneck-document.mjs')),candidate],capture_output=True,timeout=120)
@@ -159,7 +157,7 @@ def main():
     path=ROOT/'src/data/automated-instrument-metadata.json';records=json.loads(path.read_text())
     status_path=ROOT/'src/data/instrument-metadata-status.json';status=json.loads(status_path.read_text());now=dt.datetime.now(UTC)
     def one(s):return s['isin'],*collect(s,now)
-    errors=[];updated=[];successes=[]
+    errors=[];updated=[];successes=[];within_grace=[]
     with ThreadPoolExecutor(max_workers=6) as pool:
         for isin,values,failures in pool.map(one,sources):
             old=records.get(isin,{})
@@ -172,10 +170,11 @@ def main():
             successes.extend({'id':f'{isin}:{field}'} for field in values)
             # Fail when previously automatic values stay unrenewed beyond the grace period; absent publications stay explicit pending fields.
             for field in old:
+                if field not in values and not renewal_overdue(old[field],now,field):within_grace.append({'id':f'{isin}:{field}'})
                 if field not in values and renewal_overdue(old[field],now,field):errors.append({'id':f'{isin}:{field}','field':field,'error':f'Previously automated metadata not renewed for more than {renewal_days(field)} days; original evidence retained.'})
     if a.apply:
         write_json_atomic(path,records);write_json_atomic(status_path,status)
-    write_json_atomic(a.output,{'checkedAt':now.isoformat(),'updated':updated,'successes':successes,'errors':errors,'pending':{isin:s['pending'] for isin,s in status.items() if s['pending']}})
+    write_json_atomic(a.output,{'checkedAt':now.isoformat(),'updated':updated,'successes':successes,'errors':errors,'inactive':within_grace,'pending':{isin:s['pending'] for isin,s in status.items() if s['pending']}})
     print(f'Metadata: {len(updated)}/{len(sources)} observed instruments; {len(errors)} failed renewals.')
     if errors:raise SystemExit(1)
 if __name__=='__main__':main()

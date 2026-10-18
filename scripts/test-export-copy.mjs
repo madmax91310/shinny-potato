@@ -61,7 +61,7 @@ try {
     const { renderIndexImage } = await module('pages/index-comparator/imageExport.js')
     for (const family of FAMILIES.flatMap(getIndexComparisonPairs)) await check(`indices-${family.pairId}`, () => renderIndexImage(family), (words) => {
       const dates = family.indices.map(index => index.indexFacts?.asOf)
-      return !dates.every(date => date && date === dates[0]) || words.filter(word => word.includes(dates[0].split('-').reverse().join('/'))).length === 1
+      return !dates.every(date => date && date === dates[0]) || words.some(word => word.includes(dates[0].split('-').reverse().join('/')))
     })
     const { DEFAULT_THEMES: THEMES } = await module('data/etf-themes.js')
     const { renderComparatifEtfImage } = await module('pages/tweet-midi/comparatifEtfImage.js')

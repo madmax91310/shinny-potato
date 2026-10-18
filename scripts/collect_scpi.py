@@ -268,7 +268,7 @@ class AwaitingPublication(ValueError):
 
 # Quarterly bulletins describe the quarter just ended and are published about a month
 # later. While the next edition is not yet due, a missing link is a wait, not a failure.
-BULLETIN_GRACE_DAYS = 45
+BULLETIN_GRACE_DAYS = json.loads((pathlib.Path(__file__).resolve().parents[1] / 'src/data/freshness-policy.json').read_text())['calendars']['scpi.quarterlyBulletin']['graceDaysAfterNextQuarterEnd']
 
 
 def next_bulletin_due(snapshot_as_of):

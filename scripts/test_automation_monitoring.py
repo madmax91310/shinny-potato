@@ -52,6 +52,10 @@ class MonitoringTests(unittest.TestCase):
         incident = evaluate(state)['active']['checks:x.yml']
         self.assertEqual((incident['kind'], incident['field']), ('checks', 'Contrôle après publication'))
         self.assertIn('browser-checks (2)', incident['cause'])
+        row['failures'][0]['checks'] = ['node scripts/playwright-tools.mjs — strict mode violation']
+        named = evaluate(state)['active']['checks:x.yml']['cause']
+        self.assertIn('browser-checks (2) : node scripts/playwright-tools.mjs — strict mode violation', named)
+        del row['failures'][0]['checks']
         row['publicationStatus'] = 'failure'
         self.assertEqual(evaluate(state)['active']['publication:x.yml']['kind'], 'publication')
         # A failed collector step is never relabelled as a mere check, even when publication succeeded.

@@ -38,6 +38,7 @@ jobs:
       - run: npm ci
       - run: python -m unittest discover -s scripts -p 'test_scpi.py'
       - run: python -m unittest discover -s scripts -p 'test_insurance.py'
+      - run: python -m unittest discover -s scripts -p 'test_source_revision.py'
       - run: python -m unittest discover -s scripts -p 'test_presentation_expansion.py'
       - run: python -m unittest discover -s scripts -p 'test_publication_periods.py'
       - name: "Collect observations: collect"
