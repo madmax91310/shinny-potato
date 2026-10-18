@@ -1,22 +1,5 @@
-// Image copy stays factual; first-person editorial wording belongs to the tweet.
-const TAKEAWAYS = {
- 'pea-cto': 'Les frais dépendent du courtier. L’imposition dépend de l’enveloppe et du type de revenu.',
- 'av-per': 'La fiscalité du PER dépend des versements déduits ou non et des modalités de sortie.',
- 'europe-pea': 'Europe large et zone euro couvrent des périmètres différents.',
- 'europe-indices': 'Les pays couverts et la concentration complètent le nombre de titres.',
- 'diversification': 'Le nombre d’ETF ne mesure pas la diversification du portefeuille entier.',
- 'cap-dist': 'Les performances se comparent à méthode identique, revenus réinvestis.',
- 'gold-physical': 'La structure juridique de l’ETC détermine les droits sur le métal. Un ETC n’est pas un ETF d’actions.',
- 'livret-euro': 'La disponibilité immédiate et les modalités de rachat du contrat sont distinctes.',
- 'pea-provider': 'Les frais et les services dépendent de l’établissement et des opérations réalisées.',
- 'before-etf': 'Le DIC décrit les caractéristiques, les frais et les risques du produit.',
- 'transfer-pea': 'Le transfert du plan conserve son antériorité fiscale. Un retrait suivi d’une ouverture est une autre opération.',
- 'broker-fees': 'Le coût total dépend des opérations réalisées et des conditions du barème.',
- 'merger': 'L’avis officiel de l’émetteur précise les changements et leurs modalités.',
- 'same-world': 'La part exacte et le coût total comptent ; le TER ne résume pas tout.',
- 'under-index': 'La devise, les revenus et la période doivent être alignés avant d’évaluer le suivi de l’indice.',
- 'dividend-gain': 'Le résultat inclut la valeur du placement et les revenus cumulés, au-delà du taux de distribution.',
-}
+// Presentation-only transformations. Figures and product observations stay in
+// the shared registries; the tweet and its complete evidence are unchanged.
 const TITLES = {
  merger: 'Un ETF fusionne ou change d’indice',
  'under-index': 'Un ETF monte moins que son indice',
@@ -28,13 +11,42 @@ const LABELS = {
  'Quelles entreprises ou quels actifs vais-je suivre ?': 'Entreprises et actifs couverts par l’indice',
  'Puis-je supporter une baisse et attendre ?': 'Capacité à supporter une baisse et horizon de placement',
 }
+export function practicalValue(value) {
+ return String(value ?? '').replace(/\bAccumulating\b/gi,'Capitalisant')
+  .replace(/\bDistributing\b/gi,'Distribuant').replace(/^Capitalisation$/i,'Capitalisant')
+}
+const label = value => practicalValue(LABELS[value] ?? value)
 export function imageCopy(sheet) {
- return {
-  title: TITLES[sheet.id] ?? sheet.title,
-  subtitle: sheet.id === 'pea-cto' ? 'Supports accessibles, plafond de versement et fiscalité' : [...new Set(sheet.rows.map(row => row[0]))].slice(0,3).join(' · '),
-  takeawayTitle: sheet.id === 'pea-cto' ? 'Frais et fiscalité' : 'À retenir',
-  takeaway: TAKEAWAYS[sheet.id] ?? sheet.takeaway,
-  columns: sheet.columns.map(value => LABELS[value] ?? value),
-  rows: sheet.rows.map(row => row.map(value => LABELS[value] ?? value)),
+ let rows=sheet.rows.map(row=>row.map(label))
+ let columns=sheet.columns.map(value=>label(value).replace(/\s+UCITS ETF.*$/i,''))
+ let tickers=columns.map(()=>''),subtitle='',caption=''
+ if(sheet.mode==='funds' && sheet.funds?.length){
+  columns=sheet.funds.map(f=>f.shortName.replace(/\s+CW8$/,''))
+  tickers=sheet.funds.map(f=>f.ticker)
+  const common=[]
+  // A common family name describes the universe, not an assertion that the
+  // currency and return variant of every benchmark is identical.
+  const family=sheet.fundGroup==='world'?'MSCI World':sheet.fundGroup==='sp500'?'S&P 500':null
+  if(family){common.push(family);rows=rows.filter(row=>row[0]!=='Indice')}
+  common.push('PEA') // fundTable accepts only individually documented PEA shares.
+  const incomes=sheet.funds.map(f=>practicalValue(f.distribution))
+  if(incomes.every(value=>value===incomes[0])){
+   common.push(incomes[0]==='Capitalisant'?'Revenus capitalisés':incomes[0]==='Distribuant'?'Revenus distribués':incomes[0])
+   rows=rows.filter(row=>row[0]!=='Revenus')
+  }
+  subtitle=common.join(' · ')
+  const aums=sheet.funds.map(f=>f.aum)
+  const shared=aums.every(a=>a?.asOf && a.asOf===aums[0]?.asOf && a.scope===aums[0]?.scope)
+  rows=rows.map(row=>row[0]!=='Encours'?row:[row[0],...row.slice(1).map(value=>{
+   const [amount,...stamp]=value.split('\n')
+   const compact=amount.replace(/ M EUR$/,' M€')
+   return shared?compact:[compact,...stamp].join('\n')
+  })])
+  if(shared)caption=`Encours ${aums[0].scope==='fund'?'des fonds':'des parts'} au ${aums[0].asOf.split('-').reverse().join('/')}`
+  rows.push(['ISIN',...sheet.funds.map(f=>f.isin)])
  }
+ // Exact ISINs stay on one dedicated row rather than crowding product headers.
+ const ids=rows.filter(row=>row[0]==='ISIN')
+ rows=[...rows.filter(row=>row[0]!=='ISIN'),...ids]
+ return {title:TITLES[sheet.id] ?? sheet.title.replace(/^Les ETF /,'ETF '),subtitle,columns,tickers,rows,caption}
 }

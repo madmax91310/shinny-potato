@@ -1,96 +1,135 @@
 import { imageCopy } from './imageCopy.js'
 
-// Dynamic canvas version of the approved dark, mint and gold composition.
-// Publication images keep the main content; evidence stays in the tool.
-const ink='#fffaf0', background='#071b14'
-const accents=['#a3f3ba','#ffcf66','#a9cffa']
+// Approved variant 3: ivory paper, shallow relief, green criterion gutter and
+// aligned cells. Every label and number is drawn live, never baked into artwork.
+const C={ink:'#103728',paper:'#f8f3e8',green:'#214a37',sage:'#e4e7d3',gold:'#b49750',rule:'#cec4a9'}
+const W=1600,PAD=54
 export function wrapLines(ctx,text,width) {
  const lines=[]
- for(const paragraph of String(text).split('\n')) {
+ for(const paragraph of String(text).split('\n')){
   let line=''
-  for(const word of paragraph.split(/\s+/)) {
+  for(const word of paragraph.match(/\S+(?:[ \u00a0\u202f]+(?:%|€|M€)(?=\s|$))?/g) ?? []){
    const next=line?line+' '+word:word
-   if(ctx.measureText(next).width>width && line) {lines.push(line);line=word} else line=next
+   if(ctx.measureText(next).width<=width){line=next;continue}
+   if(line){lines.push(line);line=''}
+   // Even unusually long references wrap without disappearing or clipping.
+   for(const char of word){
+    if(line && ctx.measureText(line+char).width>width){lines.push(line);line=''}
+    line+=char
+   }
   }
-  lines.push(line)
+  if(line)lines.push(line)
  }
  return lines
 }
-function font(ctx,size,weight=400,serif=false) {ctx.font=`${weight} ${size}px ${serif?'Georgia':'Arial'}, sans-serif`}
-function measure(ctx,text,width,size,weight=400,serif=false) {
+function font(ctx,size,weight=400,serif=false){ctx.font=`${weight} ${size}px ${serif?'Georgia, serif':'Arial, sans-serif'}`}
+function block(ctx,text,width,size,weight=400,serif=false){
  font(ctx,size,weight,serif)
- return wrapLines(ctx,text,width).length*size*1.28
-}
-function write(ctx,text,x,y,width,size=38,color=ink,weight=400,center=false,serif=false) {
- font(ctx,size,weight,serif);ctx.fillStyle=color;ctx.textAlign=center?'center':'left';ctx.textBaseline='top'
  const lines=wrapLines(ctx,text,width)
- lines.forEach((line,i)=>ctx.fillText(line,center?x+width/2:x,y+i*size*1.28))
- return lines.length*size*1.28
+ return {lines,size,weight,serif,height:lines.length*size*1.24}
 }
-function rounded(ctx,x,y,w,h,r,fill,stroke) {
- ctx.beginPath();ctx.roundRect(x,y,w,h,r)
- if(fill){ctx.fillStyle=fill;ctx.fill()}
- if(stroke){ctx.strokeStyle=stroke;ctx.lineWidth=2;ctx.stroke()}
+function draw(ctx,b,x,y,align='left',color=C.ink){
+ font(ctx,b.size,b.weight,b.serif);ctx.textBaseline='top';ctx.textAlign=align;ctx.fillStyle=color
+ b.lines.forEach((line,i)=>ctx.fillText(line,x,y+i*b.size*1.24))
 }
-function icon(ctx,label,x,y,color) {
- ctx.save();ctx.translate(x,y);ctx.strokeStyle=color;ctx.fillStyle=color;ctx.lineWidth=3
- ctx.beginPath();ctx.arc(0,0,40,0,Math.PI*2);ctx.stroke()
- if(/frais|coût|capital|versement|revenu|rendement|prix|économie/i.test(label)) {
-  for(let i=0;i<3;i++){ctx.beginPath();ctx.ellipse(-12+i*11,9-i*9,13,5,0,0,Math.PI*2);ctx.stroke();ctx.beginPath();ctx.moveTo(-25+i*11,9-i*9);ctx.lineTo(-25+i*11,19-i*9);ctx.ellipse(-12+i*11,19-i*9,13,5,0,0,Math.PI);ctx.lineTo(1+i*11,9-i*9);ctx.stroke()}
- } else if(/supports|exposition|pays|secteur|indice|titres|performance|écart|hausse|baisse/i.test(label)) {
-  for(let i=0;i<3;i++) ctx.strokeRect(-22+i*16,16-i*10,10,9+i*10)
- } else {
-  ctx.strokeRect(-17,-23,34,46)
-  for(let i=0;i<3;i++){ctx.beginPath();ctx.moveTo(-9,-9+i*10);ctx.lineTo(9,-9+i*10);ctx.stroke()}
+function rectangle(ctx,x,y,w,h,fill){ctx.fillStyle=fill;ctx.fillRect(x,y,w,h)}
+let grain
+function paper(ctx,width,height){
+ rectangle(ctx,0,0,width,height,C.paper)
+ if(!grain){
+  const tile=document.createElement('canvas');tile.width=tile.height=96
+  const g=tile.getContext('2d'),pixels=g.createImageData(96,96);let seed=78
+  for(let i=0;i<pixels.data.length;i+=4){
+   seed=(Math.imul(seed,1664525)+1013904223)>>>0
+   const white=seed&256
+   pixels.data[i]=white?255:91;pixels.data[i+1]=white?255:72;pixels.data[i+2]=white?255:34
+   pixels.data[i+3]=(seed>>>24)%5
+  }
+  g.putImageData(pixels,0,0)
+  grain=tile
  }
- ctx.restore()
+ ctx.fillStyle=ctx.createPattern(grain,'repeat');ctx.fillRect(0,0,width,height)
 }
-export function drawSheet(canvas,sheet) {
- const ctx=canvas.getContext('2d'), W=1600,pad=80,usable=W-pad*2,copy=imageCopy(sheet),n=copy.columns.length
- const gap=68,colW=(usable-gap*(n-1))/n,iconSpace=n===3?0:105
- const bodySize=n===3?32:40,labelSize=n===3?28:32,bodyW=colW-iconSpace-28
- const titleSize=sheet.id==='pea-cto'?146:82
- const titleH=measure(ctx,copy.title,usable,titleSize,700,true)
- const subtitleH=measure(ctx,copy.subtitle,usable-120,39,400,true)
- const tableTop=130+titleH+32+subtitleH+70
- const headSize=n===3?38:n===1?52:64
- const headH=Math.max(125,...copy.columns.map(c=>measure(ctx,c,colW-60,headSize,700,true)+42))
- const rowHeights=copy.rows.map(row=>Math.max(142,...copy.columns.map((_,i)=>measure(ctx,row[0].toUpperCase(),bodyW,labelSize,700)+18+measure(ctx,row[i+1],bodyW,bodySize)+42)))
- const tableH=headH+42+rowHeights.reduce((a,b)=>a+b,0)
- const takeTitleH=measure(ctx,copy.takeawayTitle,usable-80,52,700,true)
- const takeH=takeTitleH+20+measure(ctx,copy.takeaway,usable-130,39,400,true)+70
- const H=tableTop+tableH+45+takeH+80
- canvas.width=W;canvas.height=Math.ceil(H)
- ctx.fillStyle=background;ctx.fillRect(0,0,W,H)
- // Restrained graphic edges, matching the approved image.
- for(const [x,color] of [[-125,'#326649'],[W+125,'#8e7030']]) {ctx.fillStyle=color;ctx.beginPath();ctx.arc(x,225,195,0,Math.PI*2);ctx.fill()}
- write(ctx,'É P A R G N A N T   L I B R E',pad,42,usable,29,ink,600,true)
- ctx.fillStyle=accents[0];ctx.fillRect(W/2-50,100,100,4)
- if(sheet.id==='pea-cto') {
-  font(ctx,titleSize,700,true);const parts=[['PEA',accents[0]],[' ou ',ink],['CTO',accents[1]],[' ?',ink]]
-  let x=(W-parts.reduce((sum,[t])=>sum+ctx.measureText(t).width,0))/2
-  ctx.textAlign='left';ctx.textBaseline='top'
-  for(const [text,color] of parts){ctx.fillStyle=color;ctx.fillText(text,x,130);x+=ctx.measureText(text).width}
- } else write(ctx,copy.title,pad,130,usable,titleSize,ink,700,true,true)
- write(ctx,copy.subtitle,pad+60,130+titleH+32,usable-120,39,ink,400,true,true)
- copy.columns.forEach((column,i)=>{
-  const x=pad+i*(colW+gap),color=accents[i]
-  rounded(ctx,x,tableTop,colW,headH,headH/2,color)
-  const h=measure(ctx,column,colW-60,headSize,700,true)
-  write(ctx,column,x+30,tableTop+(headH-h)/2,colW-60,headSize,background,700,true,true)
-  let y=tableTop+headH+42
-  copy.rows.forEach((row,r)=>{
-   if(iconSpace) icon(ctx,row[0],x+42,y+44,color)
-   const contentX=x+iconSpace
-   const labelH=write(ctx,row[0].toUpperCase(),contentX,y,bodyW,labelSize,color,700)
-   write(ctx,row[i+1],contentX,y+labelH+18,bodyW,bodySize,ink)
-   y+=rowHeights[r]
+function relief(ctx,x,y,w,h,fill){
+ const wash=ctx.createLinearGradient(x,y,x+w,y+h);wash.addColorStop(0,fill);wash.addColorStop(1,'#f5efdf')
+ rectangle(ctx,x,y,w,h,wash)
+ rectangle(ctx,x,y,w,2,'#ffffffaa');rectangle(ctx,x,y,2,h,'#ffffff77')
+ rectangle(ctx,x+w-2,y,2,h,'#b0a58155');rectangle(ctx,x,y+h-2,w,2,'#b0a58155')
+}
+function corner(ctx,x,y,size,flip=false,bottom=false){
+ ctx.save();ctx.translate(x,y);if(flip)ctx.scale(-1,1);if(bottom)ctx.scale(1,-1)
+ ctx.shadowColor='#7a694230';ctx.shadowBlur=8;ctx.shadowOffsetY=4
+ ctx.beginPath();ctx.moveTo(0,0);ctx.lineTo(size,0);ctx.lineTo(0,size);ctx.closePath();ctx.fillStyle=C.green;ctx.fill()
+ ctx.shadowBlur=0;ctx.strokeStyle=C.gold;ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(size,0);ctx.lineTo(0,size);ctx.stroke();ctx.restore()
+}
+function cellSize(label,value,n){
+ if(label==='ISIN')return 36
+ if(label==='Frais annuels' && /^[\d\s,.]+ %$/.test(value))return 92
+ if(/^(Frais annuels|Capital final|Encours|Titres|Plafond de versement)$/.test(label) && /^[+−\-\d\s,.]+(?:%|M€|M EUR|€|ans)?$/.test(value))return n===3?68:76
+ return n===3?34:39
+}
+export function drawSheet(canvas,sheet){
+ const ctx=canvas.getContext('2d');if(!ctx)throw Error('Impossible de créer l’image')
+ const copy=imageCopy(sheet),n=copy.columns.length,usable=W-2*PAD
+ if(n<1 || n>3)throw Error('La fiche doit contenir un à trois éléments')
+ const gutter=n===3?230:n===2?290:360,colW=(usable-gutter)/n,inner=colW-48
+ const title=block(ctx,copy.title,usable-120,n===3?86:82,700,true)
+ const sub=block(ctx,copy.subtitle,usable-110,37,400,true)
+ const tableY=64+title.height+(sub.height?24+sub.height:0)+55
+ const heads=copy.columns.map((name,i)=>({name:block(ctx,name,inner,n===3?49:58,700,true),ticker:block(ctx,copy.tickers[i],inner,65,700,true)}))
+ const headerH=Math.max(145,...heads.map(h=>h.name.height+(h.ticker.height?h.ticker.height+25:0)+64))
+ const rows=copy.rows.map(row=>{
+  const label=block(ctx,row[0],gutter-44,31,700,true)
+  const cells=row.slice(1).map(value=>{
+   let size=cellSize(row[0],value,n)
+   // Numeric values keep a single line whenever possible; source precision and
+   // units are preserved, with no extrapolation or currency conversion.
+   if(size>40){font(ctx,size,700,true);while(ctx.measureText(value).width>inner&&size>42){size--;font(ctx,size,700,true)}}
+   return block(ctx,value,inner,size,size>40?700:400,size>40 || row[0]==='ISIN')
   })
-  if(i<n-1){ctx.fillStyle='#36584a';ctx.fillRect(x+colW+gap/2,tableTop+headH+42,2,tableH-headH-42)}
+  return {label,cells,height:Math.max(126,label.height+56,...cells.map(b=>b.height+56))}
  })
- let y=tableTop+tableH+45
- rounded(ctx,pad,y,usable,takeH,54,'#102d21','#36584a')
- write(ctx,copy.takeawayTitle,pad+40,y+30,usable-80,52,accents[0],700,true,true)
- write(ctx,copy.takeaway,pad+65,y+30+takeTitleH+20,usable-130,39,ink,400,true,true)
- return {width:W,height:Math.ceil(H)}
+ const footer=block(ctx,copy.caption,usable-350,29,400,true)
+ const natural=tableY+headerH+rows.reduce((sum,r)=>sum+r.height,0)+footer.height+148
+ const H=Math.ceil(Math.max(n===1?1280:1600,natural))
+ const extra=(H-natural)/Math.max(1,rows.length)
+ rows.forEach(row=>{row.height+=extra})
+ const tableH=headerH+rows.reduce((sum,r)=>sum+r.height,0)
+ canvas.width=W;canvas.height=H
+ paper(ctx,W,H);corner(ctx,0,0,100);corner(ctx,W,0,100,true);corner(ctx,W,H,80,true,true)
+ draw(ctx,title,W/2,64,'center')
+ if(sub.height)draw(ctx,sub,W/2,64+title.height+24,'center')
+ ctx.save();ctx.shadowColor='#725d3433';ctx.shadowBlur=17;ctx.shadowOffsetY=10
+ rectangle(ctx,PAD,tableY,usable,tableH,'#fffaf0');ctx.restore()
+ // Green labels on the left, pale raised product headers above the shared grid.
+ rectangle(ctx,PAD,tableY,gutter,tableH,C.green)
+ heads.forEach((head,i)=>{
+  const x=PAD+gutter+i*colW,center=x+colW/2
+  relief(ctx,x,tableY,colW,headerH,C.sage)
+  const contentH=head.name.height+(head.ticker.height?head.ticker.height+25:0)
+  const y=tableY+(headerH-contentH)/2
+  draw(ctx,head.name,center,y,'center')
+  if(head.ticker.height){
+   const by=y+head.name.height+20
+   rectangle(ctx,x+25,by,colW-50,head.ticker.height+10,C.green)
+   draw(ctx,head.ticker,center,by+5,'center',C.paper)
+  }
+ })
+ let y=tableY+headerH
+ rows.forEach(row=>{
+  rectangle(ctx,PAD,y,usable,1.5,C.gold)
+  draw(ctx,row.label,PAD+22,y+(row.height-row.label.height)/2,'left',C.paper)
+  rectangle(ctx,PAD+22,y+row.height-25,52,2,C.gold)
+  row.cells.forEach((cell,i)=>{
+   const x=PAD+gutter+i*colW
+   relief(ctx,x,y,colW,row.height,i%2?'#f9f5eb':'#faf7ee')
+   draw(ctx,cell,n===1?x+24:x+colW/2,y+(row.height-cell.height)/2,n===1?'left':'center')
+  })
+  y+=row.height
+ })
+ const footerY=H-59-Math.max(0,footer.lines.length-1)*footer.size*1.24
+ if(footer.height)draw(ctx,footer,PAD,footerY)
+ const signature=block(ctx,'Épargnant Libre',usable,32,400,true)
+ draw(ctx,signature,W-PAD,H-59,'right')
+ return {width:W,height:H}
 }
