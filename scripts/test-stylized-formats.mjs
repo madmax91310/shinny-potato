@@ -29,8 +29,9 @@ const server = spawn('node', ['node_modules/vite/bin/vite.js', '--host', '127.0.
 let browser
 try {
   for (let i = 0; i < 100; i++) { try { if ((await fetch(base)).ok) break } catch {} await new Promise(resolve => setTimeout(resolve, 200)) }
-  browser = await chromium.launch({ headless: true, args:['--disable-gpu','--disable-software-rasterizer','--disable-dev-shm-usage','--js-flags=--expose-gc'], ...(process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH ? { executablePath: process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH } : {}) })
+  browser = await chromium.launch({ headless: true, args:['--disable-gpu','--disable-software-rasterizer','--disable-dev-shm-usage'], ...(process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH ? { executablePath: process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH } : {}) })
   const page = await browser.newPage(); await page.goto(base)
+  page.on('console', message => { if (message.text().startsWith('Checked exports:')) console.log(message.text()) })
   const result = await page.evaluate(async () => {
     const { DEFAULT_THEMES } = await import('/shinny-potato/src/data/etf-themes.js')
     const { getInstrumentPeaStatus } = await import('/shinny-potato/src/data/instruments.js')
@@ -49,15 +50,17 @@ try {
       boxes.push(box); labels.push(String(value)); return original.call(this, value, x, y, ...rest)
     }
     const samples = []
-    const check = async (name, render, keep) => {
+    let checked = 0
+    const check = async (name, render, keep, expectedHeight) => {
       boxes = []; labels = []; current = name
       const canvas = await render()
       if (name.startsWith('performance-') && canvas.width !== 1600) throw new Error('Performance width changed')
+      if (expectedHeight && canvas.height !== expectedHeight) throw new Error('Ten-year single export must be square')
       if (labels.filter(label => /[ée]pargnant.?libre/i.test(label)).length !== 1) throw new Error('Missing signature')
       if (keep) samples.push({ name, png: canvas.toDataURL(), labels })
       // Release backing pixels between hundreds of exports in constrained Chromium.
       canvas.width = 1; canvas.height = 1
-      window.gc?.()
+      if (++checked % 100 === 0) console.log(`Checked exports: ${checked}`)
       return labels
     }
     try {
@@ -125,7 +128,7 @@ try {
         const entries = getPerformanceEntries(item)
         const name = `performance-cobalt-${item.assetId || item.assetIdA}-${item.year}-${item.currency || 'native'}-${item.mode}`
         const before = JSON.stringify(item)
-        const words = await check(name, () => renderPerformanceImage(item), true)
+        const words = await check(name, () => renderPerformanceImage(item), true, item.assetId === 'msciWorld' && entries[0].returns.length === 10 && !item.currency ? 1600 : undefined)
         if (before !== JSON.stringify(item)) throw new Error('Selection mutated by renderer')
         for (const {asset,returns} of entries) {
           if (!words.includes(`${returns[0].year} — ${returns.at(-1).year} · EN ${asset.currency}`)) throw new Error('Wrong displayed currency/period')
@@ -136,10 +139,6 @@ try {
         }
         // Long share identities remain exact, with wrapping rather than ellipsis.
         for (const {asset} of entries) if (!words.join(' ').includes((asset.label || asset.tweetPhrase).replace(/^Indice\s+/i,''))) throw new Error('Asset name truncated')
-        if (item.assetId === 'msciWorld' && entries[0].returns.length === 10 && !item.currency) {
-          const canvas = await renderPerformanceImage(item)
-          if (canvas.height !== 1600) throw new Error('Ten-year single export must be square')
-        }
       }
     } finally { CanvasRenderingContext2D.prototype.fillText = original }
     return samples
