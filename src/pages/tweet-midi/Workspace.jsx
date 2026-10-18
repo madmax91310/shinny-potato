@@ -87,10 +87,10 @@ function TweetMidiWorkspace({ search, initialFormat, title, description, runtime
   }).item);
   const [history, setHistory] = useState(() => [current.id]);
   const [performanceCurrency, setPerformanceCurrency] = useState(() => readPreference('performance-currency', 'native', value => ['native', 'EUR', 'USD'].includes(value)));
-  const availableCurrencies = current.format === FORMATS.PERFORMANCE_DEPUIS
+  const availableCurrencies = [FORMATS.PERFORMANCE_DEPUIS, FORMATS.COMPARATIF_ETF].includes(current.format)
     ? (runtime.engine.getPerformanceCurrencies?.(current) ?? []) : [];
   const effectiveCurrency = availableCurrencies.includes(performanceCurrency) ? performanceCurrency : 'native';
-  const publicationItem = useMemo(() => current.format === FORMATS.PERFORMANCE_DEPUIS
+  const publicationItem = useMemo(() => [FORMATS.PERFORMANCE_DEPUIS, FORMATS.COMPARATIF_ETF].includes(current.format)
     ? { ...current, currency: effectiveCurrency } : current, [current, effectiveCurrency]);
   const [copied, setCopied] = useState(false);
   const [imageState, setImageState] = useState('idle');
@@ -164,9 +164,11 @@ function TweetMidiWorkspace({ search, initialFormat, title, description, runtime
       setCopied(false);
       return;
     }
-    const { item, addToHistory } = pickForSelection({
+    let selection;
+    try { selection = pickForSelection({
       format, mode, subjectId: subject, subjectIdB: subjectB, secondaryId: secondary, history,
-    });
+    }); } catch (error) { notifyPublication(error.message, 'error'); return; }
+    const { item, addToHistory } = selection;
     if (addToHistory) setHistory((h) => [...h, item.id]);
     setCurrent(item);
     setCopied(false);
@@ -511,7 +513,7 @@ function TweetMidiWorkspace({ search, initialFormat, title, description, runtime
               </div>
             )}
 
-            {current.format === FORMATS.PERFORMANCE_DEPUIS && <div>
+            {[FORMATS.PERFORMANCE_DEPUIS, FORMATS.COMPARATIF_ETF].includes(current.format) && <div>
               <span className="mb-2 block text-xs font-semibold tracking-widest text-slate-500 uppercase">Devise des performances</span>
               <div className="flex flex-wrap gap-2" role="group" aria-label="Devise des performances">
                 {['native', ...availableCurrencies].map(currency => <Button key={currency} type="button"

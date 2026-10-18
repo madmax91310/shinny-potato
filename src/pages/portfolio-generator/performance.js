@@ -1,7 +1,7 @@
 import { latestCommonYears, performanceYears, calendarMap, HISTORICAL_YEARS } from '../../data/annual-window.js'
 export { performanceYears }
 import { PORTFOLIO_CURRENCIES } from '../../data/portfolio-currencies.js'
-import annualFx from '../../data/annual-fx.json' with { type: 'json' }
+import { convertCalendarReturn } from '../../data/calendar-fx.js'
 import { getAsset } from '../../data/portfolio-assets.js'
 import { dataLabels } from './compact.js'
 
@@ -15,11 +15,7 @@ export function assetReturn(asset, year) {
   const original = (asset.calendarReturns ?? calendarMap(asset.r))[year]
   if (!Number.isFinite(original) || original < -100) return null
   const currency = returnCurrency(asset)
-  if (currency === 'EUR') return original
-  if (currency !== 'USD') return null
-  const start = annualFx.years[year - 1]?.value
-  const end = annualFx.years[year]?.value
-  return start > 0 && end > 0 ? ((1 + original / 100) * start / end - 1) * 100 : null
+  return convertCalendarReturn(original, year, currency, 'EUR')
 }
 
 export function performanceNotes(selection, { includeMethod = true } = {}) {

@@ -117,7 +117,7 @@ function chart(ctx, state, d, currency, kind) {
 }
 export async function renderInvestmentImage(state, d) {
   if(state.assetId!=='custom') await ensureCalculatorAsset(state.assetId)
-  const asset = d.isCustom ? null : ASSETS[state.assetId], currency = asset?.currency ?? 'EUR'
+  const asset = d.isCustom ? null : d.asset ?? ASSETS[state.assetId], currency = d.currency ?? asset?.currency ?? 'EUR'
   await document.fonts.ready
   const credits = (asset?.sourceCredit || '').replace(' · Calculs Épargnant Libre', '').split('\n').filter(Boolean)
   const canvas = document.createElement('canvas'); canvas.width = W; canvas.height = W

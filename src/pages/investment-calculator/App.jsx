@@ -1,3 +1,4 @@
+import { historyCurrencies } from '../../data/history-currency.js'
 import { useSelectedHistory } from '../../lib/useSelectedHistory.js'
 import HistoricalContext from '../../design-system/HistoricalContext.jsx'
 import { readPreference, writePreference } from '../../lib/publication-preferences.js'
@@ -29,6 +30,7 @@ import Button from '../../design-system/Button'
 import './investment-calculator.css'
 
 const INITIAL_STATE = {
+  currency: 'native',
   scenario: 'standard',
   crisisId: 'covid',
   assetId: 'bitcoin',
@@ -66,6 +68,7 @@ function ResultCard({ state, d, copied, onCopy }) {
   const [image, setImage] = useState(null)
   const [imageLoading, setImageLoading] = useState(false)
   const [imageError, setImageError] = useState('')
+  useEffect(() => { setImage(null); setImageError('') }, [state])
   useEffect(() => {
     if (!image) return undefined
     const close = (event) => { if (event.key === 'Escape') setImage(null) }
@@ -82,7 +85,7 @@ function ResultCard({ state, d, copied, onCopy }) {
     finally { setImageLoading(false) }
   }
 
-  const asset = d.isCustom ? null : ASSETS[state.assetId]
+  const asset = d.isCustom ? null : d.asset ?? ASSETS[state.assetId]
   const monthlyIndex = INCONSISTENT_MONTHLY_DATA_IDS.has(state.assetId)
   const assetLabel = d.isCustom ? state.customLabel || 'cet actif' : asset.label
   // Actif coté en dollars (Amazon, S&P 500, Or...) : montant/résultat/comparaisons restent dans
@@ -224,6 +227,7 @@ function ResultCard({ state, d, copied, onCopy }) {
           }}
           filenameBase={`investissement-${d.isCustom ? 'actif' : state.assetId}-${d.effectiveMode}`}
           comparativeInputs={{
+            currency: state.currency ?? 'native',
             amount: d.amount,
             startYm: d.startYm,
             endYm: d.endYm,
@@ -288,7 +292,7 @@ function InvestmentEditor({state,setState}){
   // Actif coté en dollars (Amazon, S&P 500, Or...) : formulaire de saisie dans cette devise plutôt
   // que mélangé avec un € qui donnerait un faux air de conversion (demande utilisateur du
   // 22/09/2026) — cf. le même choix dans ResultCard et videoExport.js.
-  const currency = isCustom ? 'EUR' : ASSETS[state.assetId].currency
+  const currency = isCustom ? 'EUR' : (!crisisMode && ['EUR','USD'].includes(state.currency) ? state.currency : ASSETS[state.assetId].currency)
   const amount = parseFloat(state.amountRaw) || 0
   // Un champ vide (ou un texte non numérique, que le navigateur vide automatiquement) n'est pas
   // une erreur : c'est l'état neutre avant saisie. Un montant réellement saisi à 0 ou en négatif,
@@ -323,8 +327,10 @@ function InvestmentEditor({state,setState}){
   // en négatif ne doit jamais atteindre le calcul.
   const overridePriceInvalid = !isCustom && state.overridePriceRaw !== '' && !(parseFloat(state.overridePriceRaw) > 0)
   const hasValidOverride = !isCustom && !overridePriceInvalid && state.overridePriceRaw !== ''
-  const resultBlocked = amountInvalid || customStartInvalid || customEndInvalid || (!crisisMode && (startDateInvalid || overridePriceInvalid))
-  const d = useMemo(() => derive(state), [state])
+  const calculation = useMemo(() => { try { return { data: derive(crisisMode ? { ...state, currency: 'native' } : state) } } catch (error) { return { error: error.message, data: derive({ ...state, currency: 'native' }) } } }, [state, crisisMode])
+  const currencyOptions = isCustom ? [] : historyCurrencies(ASSETS[state.assetId], startYm, lastAvailableYm)
+  const resultBlocked = Boolean(calculation.error) || amountInvalid || customStartInvalid || customEndInvalid || (!crisisMode && (startDateInvalid || overridePriceInvalid))
+  const d = calculation.data
   // Bloqué (pas juste un avertissement) : cf. SPARSE_MONTHLY_DATA_IDS dans data.js — ethereum/cac40/lvmh
   // n'ont que des points annuels sur leur plage utilisable, donc un DCA mensuel sur l'un d'eux
   // interpolerait la quasi-totalité des mois plutôt que d'utiliser une vraie clôture mensuelle. Seul
@@ -379,6 +385,8 @@ function InvestmentEditor({state,setState}){
             </ChoicePicker>
             <p className="ic-hint">Compare trois départs : avant, pendant et après la crise.</p>
           </div>}
+          {!isCustom && !crisisMode && <label>Devise de l’investissement <select aria-label="Devise de l’investissement" value={state.currency ?? 'native'} onChange={e => set({ currency: e.target.value })}><option value="native">Devise d’origine</option>{['EUR','USD'].map(c => <option key={c} value={c} disabled={!currencyOptions.includes(c)}>{c === 'EUR' ? 'Euros (EUR)' : 'Dollars (USD)'}</option>)}</select></label>}
+          {calculation.error && <p role="alert">{calculation.error}</p>}
           <div>
             <p className="ic-eyebrow">Actif</p>
             <div className="ic-field">

@@ -1,7 +1,8 @@
+import { annualPerformanceInCurrency } from '../../data/annual-performance-currency.js'
 import { ETF_PUBLICATION_DATA } from './records.js'
 
 export function getAnnualPerformance(etf) {
-  return ETF_PUBLICATION_DATA[etf.isin]?.performance ?? null
+  return annualPerformanceInCurrency(ETF_PUBLICATION_DATA[etf.isin]?.performance ?? null, etf.performanceCurrency)
 }
 
 export function formatAnnualPerformance(series) {
