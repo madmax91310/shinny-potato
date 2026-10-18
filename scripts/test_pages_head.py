@@ -85,6 +85,16 @@ class PagesHeadTest(unittest.TestCase):
         result, output = self.guard(code=old_code)
         self.assertEqual(result.returncode, 0, result.stderr); self.assertEqual(output, 'current=true\n')
 
+    def test_shallow_fallback_checkout_fetches_code_history_before_comparing(self):
+        code = self.git('rev-parse', 'HEAD')
+        self.commit('src/data/automated-monthly.json')
+        shallow = Path(self.temp.name) / 'shallow'
+        subprocess.run(['git', 'clone', '--depth=1', '--branch=master', self.remote.as_uri(), str(shallow)], check=True, capture_output=True)
+        self.repo = shallow
+        self.assertEqual(self.git('rev-parse', '--is-shallow-repository'), 'true')
+        result, output = self.guard(code=code)
+        self.assertEqual(result.returncode, 0, result.stderr); self.assertEqual(output, 'current=true\n')
+
     def test_deployment_api_protects_against_stale_cdn(self):
         built = self.git('rev-parse', 'HEAD'); latest = self.commit('src/data/automated-monthly.json'); self.git('checkout', '--detach', built)
         self.deployments = [{'sha': latest, 'statuses_url': self.url+'/statuses/1'}]

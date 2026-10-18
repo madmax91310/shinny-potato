@@ -109,6 +109,7 @@ jobs:
     permissions:
       contents: read
       pages: write
+      deployments: read
       id-token: write
     uses: ./.github/workflows/deploy-pages.yml
     with:

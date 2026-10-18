@@ -7,6 +7,16 @@ from publish_automation_status import REGISTRY
 ROOT = Path(__file__).resolve().parents[1]
 
 class WorkflowContracts(unittest.TestCase):
+    def test_reusable_pages_callers_can_read_deployment_metadata(self):
+        for path in (ROOT/'.github/workflows').glob('*.yml'):
+            text = path.read_text()
+            if 'uses: ./.github/workflows/deploy-pages.yml' not in text: continue
+            root_permissions = text.split('\njobs:')[0]
+            for job in re.split(r'(?m)^  [a-zA-Z0-9_-]+:\n', text.split('\njobs:')[1]):
+                if 'uses: ./.github/workflows/deploy-pages.yml' not in job: continue
+                scope = job if '    permissions:' in job else root_permissions
+                self.assertRegex(scope, r'deployments: read', str(path))
+
     def test_scheduled_data_publishers_are_all_registered(self):
         publishers = {p.name for p in (ROOT/'.github/workflows').glob('*.yml')
                       if '  schedule:' in p.read_text() and 'uses: ./.github/workflows/deploy-pages.yml' in p.read_text()}
