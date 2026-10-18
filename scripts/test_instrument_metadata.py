@@ -78,4 +78,9 @@ class MetadataTests(unittest.TestCase):
         self.assertEqual(len(calls),3)
         with self.assertRaisesRegex(ValueError,'Expected official PDF'):
             module.fetch_document(official,consent)  # injected fetchers are never escalated to a browser
+    def test_issuer_routes_come_from_the_shared_registry(self):
+        from issuer_routes import vaneck_factsheet_candidates, ROUTES
+        url='https://www.vaneck.com/fr/en/library/fact-sheets/smh-fact-sheet.pdf'
+        self.assertEqual(vaneck_factsheet_candidates(url),[url]+[f'https://www.vaneck.com/{r}/en/library/fact-sheets/smh-fact-sheet.pdf' for r in ROUTES['vaneck']['factsheetRegions']])
+        self.assertEqual(len(vaneck_factsheet_candidates('https://www.vaneck.com/nl/en/library/fact-sheets/smh-fact-sheet.pdf')),2)
 if __name__=='__main__':unittest.main()

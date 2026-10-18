@@ -10,6 +10,7 @@ from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from data_automation import UTC, write_json_atomic
 from issuer_documents import download, pdf_text
+from issuer_routes import vaneck_factsheet_candidates
 ROOT=Path(__file__).resolve().parents[1]
 FIELDS=('distribution','domicile','replicationMethod','pea','currencyHedge','listings')
 # Thresholds come from the single freshness policy (src/data/freshness-policy.json),
@@ -29,10 +30,9 @@ def fetch_document(url,fetch=download):
     except ValueError as error:
         # VanEck answers its factsheet URLs with a regional consent page. Like
         # collect_vaneck_etf.py, complete the gate in a browser, then try the same
-        # factsheet on the Dutch and UK gates, which US-based runners can pass.
+        # factsheet on the gates listed in issuer-access-routes.json.
         if fetch is not download or 'Expected official PDF' not in str(error) or not VANECK_FACTSHEET.fullmatch(url):raise
-        name=url.rsplit('/',1)[1]
-        candidates=list(dict.fromkeys([url,*(f'https://www.vaneck.com/{region}/en/library/fact-sheets/{name}' for region in ('nl','uk'))]))
+        candidates=vaneck_factsheet_candidates(url)
         failures=[]
         for candidate in candidates:
             try:result=subprocess.run(['node',str(Path(__file__).with_name('download-vaneck-document.mjs')),candidate],capture_output=True,timeout=120)
