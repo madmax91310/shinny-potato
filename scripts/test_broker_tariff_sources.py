@@ -16,6 +16,7 @@ class DocumentSourcesTests(unittest.TestCase):
         url=profile_sources['caCtoContract']['url']
         clause='Pour les opérations donnant lieu à des règlements en devises'
         with patch('collect_broker_tariffs.download',return_value=(b'%PDF-test',url)), patch('collect_broker_tariffs.pdf_text',side_effect=[
+                'Legacy contract, three columns',
                 'Page un colonne un\f'+clause+'\f',
                 'Page un colonne deux\f suite de la clause\f',
                 'Page un colonne trois\fArticle suivant\f']) as extract:
@@ -23,7 +24,16 @@ class DocumentSourcesTests(unittest.TestCase):
         self.assertIn(clause+' suite de la clause',clean(document.split('\f')[1]))
         self.assertNotIn(clause,document.split('\f')[0])
         self.assertEqual(document.source_url,url)
-        self.assertEqual([call.kwargs['crop'] for call in extract.call_args_list],[(17,70,181,666),(199,70,181,666),(381,70,181,666)])
+        self.assertEqual([call.kwargs.get('crop') for call in extract.call_args_list],[None,(17,70,181,666),(199,70,181,666),(381,70,181,666)])
+
+    def test_current_cto_single_column_layout_is_not_cropped(self):
+        from broker_profiles import SOURCES as profile_sources
+        url=profile_sources['caCtoContract']['url']
+        text='CONVENTION DE COMPTE-TITRES ORDINAIRE\f6.2 Les règlements en devises étrangères\nCurrent clause'
+        with patch('collect_broker_tariffs.download',return_value=(b'%PDF-test',url)), patch('collect_broker_tariffs.pdf_text',return_value=text) as extract:
+            document=fetch_content(url)
+        self.assertEqual(document,text)
+        extract.assert_called_once_with(b'%PDF-test')
 
     def test_live_catalogue_links(self):
         expected = {'fortuneo': '/files/tarifs_fortuneo.pdf', 'saxo': '?revision=', 'xtb': 'table-des-frais-et-commissions', 'caidf': '04_2026.pdf'}

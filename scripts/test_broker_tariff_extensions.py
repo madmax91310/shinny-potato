@@ -10,6 +10,29 @@ FIXTURES=pathlib.Path(__file__).parent/'fixtures/broker-tariffs'
 TODAY='2026-10-08'
 def fixture(name):return (FIXTURES/name).read_text()
 class BrokerTariffTests(unittest.TestCase):
+ def test_bourso_etf_minimum_requires_matching_account_columns(self):
+  from collect_broker_tariffs import parse as parse_tariff
+  text=fixture('bourso.txt')
+  self.assertEqual(parse_tariff('bourso',text,TODAY)['page'],20)  # Not the BoursoFirst table on page 17.
+  o=parse_supplement('bourso_minimum_order',text,TODAY)[2]
+  self.assertEqual(o['values'],{'etfEuronext':100})
+  self.assertEqual(o['page'],23)
+  self.assertIn('PEA',o['copy']['full'])
+  changed=text.replace('100€','150€')
+  self.assertEqual(parse_supplement('bourso_minimum_order',changed,TODAY)[2]['values']['etfEuronext'],150)
+  changed=text.replace('100€                    100€                   100€','100€                    200€                   100€')
+  with self.assertRaises(ValueError):parse_supplement('bourso_minimum_order',changed,TODAY)
+ def test_fortuneo_amundi_dated_campaign_and_changed_conditions(self):
+  text=fixture('fortuneo_amundi.txt')
+  o=parse_supplement('fortuneo_amundi',text,TODAY)[2]
+  self.assertEqual(o['values'],{'purchaseFee':0,'minimumOrder':500,'maximumOrder':100000})
+  self.assertEqual((o['start'],o['until']),('2026-09-01','2026-12-31'))
+  self.assertIn('chaque achat',o['copy']['full'])
+  changed=parse_supplement('fortuneo_amundi',text.replace('500 € et 100 000 €','750 € et 50 000 €'),TODAY)[2]
+  self.assertEqual(changed['values']['minimumOrder'],750)
+  self.assertIn('750 à 50 000',changed['copy']['full'])
+  for old,new in [("l'ensemble de vos ordres d'achat","le premier ordre d'achat"),('31.12.2026','31 décembre'),('PEA et CTO','assurance-vie'),('0€ de frais de courtage','1€ de frais de courtage'),('Du 01.09.2026 au 31.12.2026','Du 01.01.2027 au 31.12.2026')]:
+   with self.subTest(old=old),self.assertRaises(ValueError):parse_supplement('fortuneo_amundi',text.replace(old,new),TODAY)
  def test_exact_markets_and_account_columns(self):
   expected={'saxo':{'rate':.08,'minimum':2},'xtb':{'threshold':100000,'rate':.2},'caidf':{'initial':.5,'small':.48,'middle':.18,'large':.12,'annual':96,'orders':12},'ibkr':{'rate':.05,'minimum':1.25,'fixedMinimum':3,'directRate':.10},'tr':{'minimum':1},'bd':{'fee0':.99,'fee1':1.9,'fee2':2.9,'fee3':3.8,'rate':.09}}
   for name,values in expected.items():
@@ -52,7 +75,7 @@ class BrokerTariffTests(unittest.TestCase):
   o=parse('saxo',s,TODAY)
   self.assertEqual(o['values']['rate'],.09);self.assertIn('0,09 %',o['copy']['full'])
  def test_supplement_scope_and_period(self):
-  results={key:parse_supplement(key,fixture('ibkr_pea.txt' if key.startswith('ibkr_pea_') else 'tr_pea_contract.txt' if key.startswith('tr_pea_transfer') else key+'.txt'),TODAY)[2] for key in SUPPLEMENT_SOURCES}
+  results={key:parse_supplement(key,fixture('bourso.txt' if key=='bourso_minimum_order' else 'ibkr_pea.txt' if key.startswith('ibkr_pea_') else 'tr_pea_contract.txt' if key.startswith('tr_pea_transfer') else key+'.txt'),TODAY)[2] for key in SUPPLEMENT_SOURCES}
   self.assertEqual(results['ibkr_pea_garde']['values'],{'fee':0})
   self.assertEqual(results['ibkr_pea_transfer']['values'],{'fee':0})
   with self.assertRaises(ValueError):parse_supplement('ibkr_pea_garde',fixture('ibkr_pea.txt').replace('Pas de droits de garde','Droits de garde payants'),TODAY)
