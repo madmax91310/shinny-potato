@@ -33,7 +33,7 @@ try {
  await page.getByLabel('Devise des performances',{exact:true}).selectOption('EUR')
  assert.match(await page.locator('.es-card').innerText(),/Performances annuelles \(EUR\)/)
  await download(page.getByRole('button',{name:'Télécharger l’image',exact:true}))
- await go('comparatif-etf')
+ await go('comparatif-etf?subject=usa')
  const euro=page.getByRole('button',{name:'Euros (EUR)',exact:true})
  await euro.click()
  assert.match(await page.locator('.tool-preview').innerText(),/Performances annuelles en euros/)
