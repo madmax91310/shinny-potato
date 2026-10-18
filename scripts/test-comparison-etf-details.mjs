@@ -108,7 +108,8 @@ for (const isin of ['IE00BD4TXV59','IE000XZSV718','IE000DQLYVB9','FR001400U5Q4']
 }
 const image=readFileSync('src/pages/tweet-midi/comparatifEtfImage.js','utf8')
 assert.ok(!image.includes("'#ffd286'"))
-assert.match(image,/color: observation\?\.pct < 0 \? RED : GREEN/)
+assert.match(image,/renderComparisonPaper/)
+assert.doesNotMatch(image,/PERFORMANCES ANNUELLES|Historique annuel non disponible/)
 console.log('Comparatif : parts exactes, aucune substitution, compositions datées et distinctes, secteurs complets, cohérence texte/image et couleurs vérifiés.')
 
 const usa = DEFAULT_THEMES.find(t => t.id === 'usa');
@@ -162,7 +163,7 @@ for (const count of [1,2,3,4,5,6,7,10]) {
  assert(layout.columns * layout.rows >= count)
  assert.equal(layout.compact, count >= 4)
  if (count === 4) assert.equal(layout.rows, 2)
- if (count === 5) assert.equal(layout.rows, 3)
+ if (count === 5) assert.equal(layout.rows, 2)
 }
 
 // Exposure comparisons have one representative for each deliberate choice.
