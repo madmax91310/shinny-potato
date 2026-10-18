@@ -71,6 +71,7 @@ export const ETF_EXPOSURE_COPY = {
   IE00BK5BCH80: 'Il suit le Solactive Clean Energy, une sélection mondiale d’entreprises liées aux énergies propres. Le thème est commun aux autres ETF, mais les règles de sélection et les pondérations diffèrent.',
   IE00B8GKDB10: 'Il sélectionne des entreprises des pays développés et émergents offrant un rendement de dividende élevé. Il privilégie le niveau du dividende plutôt qu’un historique de hausse régulière.',
   IE00B9CQXS71: 'Il sélectionne des entreprises ayant maintenu ou augmenté leurs dividendes pendant au moins dix ans. Son approche repose sur cet historique, plutôt que sur le seul rendement actuel.',
+  IE00B5M1WJ87: 'Il sélectionne des entreprises de la zone euro ayant maintenu ou augmenté leur dividende pendant au moins dix ans. Son approche repose sur cet historique, plutôt que sur le seul rendement actuel.',
   IE00BZ56SW52: 'Il combine des critères de qualité des entreprises et de croissance des dividendes. La part présentée réinvestit les dividendes au lieu de les verser.',
   FR0013411980: 'Il suit le TOPIX, un indice large des actions japonaises, dans le PEA. Il ne couvre pas le change : l’évolution du yen face à l’euro peut donc influencer ta performance.',
   FR0013411998: 'Il suit le même indice TOPIX, avec une couverture du change en euros. Cette couverture vise à réduire l’effet des variations du yen, sans supprimer le risque de baisse des actions.',

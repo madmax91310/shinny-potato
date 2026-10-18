@@ -20,7 +20,7 @@ export const BROKER_EDITORIAL = {
     cash: 'non selon les analyses consultées ❌',
     entrant: 'possible ✅ Premier transfert total : frais remboursés au double, jusqu’à 3 000 €, sans dépasser la valeur du compte, sous conditions.',
     sortant: '15 € par ligne, maximum 150 €.',
-    faible: 'Le plan automatique porte sur des fonds avec leurs propres frais. Ordre minimum ETF : 200 € ; certaines Bourses européennes : 2 500 €.',
+    faible: 'Le plan automatique porte sur des fonds avec leurs propres frais.',
   },
   ibkr: {
     frais: 'Actions France : 0,05 %, minimum 1,25 € en dégressif, plus frais de Bourse possibles. En fixe : minimum 3 € avec SmartRouting ; routage direct 0,10 %, minimum 4 €. Autres places : barèmes distincts, sous le plafond légal PEA.',
@@ -109,4 +109,5 @@ for (const [id, copy] of Object.entries(BROKER_EDITORIAL)) {
   else if (id==='caidf' && tariff) copy.faible=`Les droits de garde hors Integral s’ajoutent au courtage. ${fields.garde ?? ''}`;
   else if (id==='bourso' && profile.dca) copy.faible='Le plan porte sur des fonds avec leurs propres frais ; vérifier leur DIC.';
   else if (id==='tr' && profile.pme?.available===null) copy.faible='L’offre PEA-PME et certains frais propres au PEA restent à confirmer dans les documents publics.';
+  if (id==='bourso' && fields.minimumOrder) copy.faible += ` ${fields.minimumOrder}`;
 }

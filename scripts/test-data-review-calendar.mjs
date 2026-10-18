@@ -4,10 +4,10 @@ import { chromium } from 'playwright'
 import { spawn } from 'node:child_process'
 import { buildReview, reviewCalendar } from '../src/pages/data-review/lib.js'
 const report = buildReview()
+const offerCount = report.items.filter(item => item.until).length
 const calculatorCount = report.schedule.filter(item => item.tools.includes('Calculateur')).length
 const investorCount = report.schedule.filter(item => item.tools.includes('Présentation investisseur')).length
 const reserveCount = report.items.filter(item => item.category === 'reserve').length
-const offerCount = reviewCalendar(report).filter(item => item.until).length
 assert(calculatorCount > 0 && investorCount > 0 && reserveCount > 0)
 const server = spawn('node', ['node_modules/vite/bin/vite.js', 'preview', '--host', '127.0.0.1', '--port', '4311'], { stdio: 'ignore' })
 let browser

@@ -4,6 +4,8 @@
 
 Recette effectuée à partir de `master` au commit `b248801239679885200173e7db3570b5c622378d`, également identifié par le `build-info.json` du site publié au relevé. Les données générées par les builds ne sont pas incluses dans les corrections de cette branche.
 
+Pendant la recette, les PR #762 et #764 ont été fusionnées par les chantiers parallèles. La branche a ensuite intégré `master` au commit `8eebe02ffef9bb4b870f679a8108f330108a6ef2`. Les effectifs ci-dessous décrivent le premier instantané testé ; ils ne sont pas annoncés comme les effectifs définitifs après ces ajouts.
+
 Les 26 routes du registre ont été ouvertes dans Chromium à 1440 et 390 pixels, soit 52 ouvertures : aucune erreur JavaScript ni débordement horizontal de page. Ce passage systématique contrôle l’ouverture et les aperçus disponibles par défaut ; les suites spécialisées ci-dessous exercent les sélections, calculs, erreurs, sauvegardes et exports. Il ne couvre pas toutes les combinaisons possibles de tous les paramètres.
 
 Les 31 suites navigateur existantes exécutées ont toutes terminé avec succès, auxquelles s’ajoute le nouveau contrôle des en-têtes. Les audits ciblés de calculs, de données et de conventions passent également. Deux défauts ont été corrigés : un contrôle de maintenance bloquant l’ajout légitime d’une quatrième offre et un chevauchement entre une pastille et les noms d’actifs sur deux lignes dans les images de classement.
@@ -17,6 +19,8 @@ Le run CI [39105279286](https://github.com/madmax91310/shinny-potato/actions/run
 Le test confondait le dédoublonnage et le nombre d’offres du catalogue. Les attentes sont maintenant dérivées des références de preuve et de leurs échéances. Les assertions vérifient les identifiants exacts et les dates, pas uniquement un effectif. Le test navigateur du calendrier suit également le nombre d’offres du rapport courant.
 
 Une fixture indépendante vérifie qu’une offre utilisée par plusieurs rubriques n’apparaît qu’une fois par courtier, que deux courtiers peuvent conserver chacun une échéance pour le même document, qu’une nouvelle offre ne supprime pas les anciennes et que seule une offre réellement échue devient expirée.
+
+La correction du compteur vivant a également été apportée en parallèle dans `b37b24fe`, puis fusionnée sur `master`. La résolution conserve cette version et ajoute la fixture de régression. La nouvelle recette sur la base enrichie a détecté une attente asynchrone restée à trois dans le test navigateur, malgré le compteur devenu dynamique : cette dernière attente est corrigée ici également.
 
 Validation réalisée sur la base `master` avec trois offres et dans un worktree de la PR #764 au commit `1f8934020204f43f9d7520b98a073419a8091136` avec quatre offres. L’audit et le parcours navigateur du calendrier passent dans les deux contextes. Aucune offre ni date de preuve n’a été modifiée pour faire passer les contrôles.
 
@@ -83,7 +87,7 @@ Le flux radar réel est distinct des données intégrées au build et répond en
 
 Le parcours mobile a ensuite été vérifié sur le site public, depuis l’entrée de restauration de route : 179 signaux affichés au relevé, aucun message d’erreur, aucune requête échouée et aucune erreur JavaScript. L’écran indique un contrôle du 18 octobre à 09:01, heure de Paris. Cet effectif décrit le relevé, pas une valeur à figer dans un test.
 
-Les PR #761, #762 et #763 portent sur les ajouts d’actifs, raccordements et fiabilité ; #764 porte sur les courtiers. Leurs modifications n’ont pas été fusionnées ni remplacées ici. Le seul correctif concernant le blocage constaté de #764 change la recette de maintenance et a été vérifié contre cette branche isolée.
+Les chantiers #761, #762 et #763 portent sur les ajouts d’actifs, raccordements et fiabilité ; #764 porte sur les courtiers. #762 et #764 ayant été fusionnées pendant la recette, leur état a été intégré dans la branche sans remplacer leurs données. Les autres travaux connexes restent hors du périmètre des corrections propres à cette PR. Le blocage de #764 avait d’abord été reproduit et corrigé contre sa branche isolée, avant de rapprocher la correction de celle fusionnée en parallèle.
 
 Cette recette ne répare pas automatiquement chaque incident de source présent dans le moniteur. Elle ne prouve pas non plus un futur passage de tous les collecteurs après fusion. Un échec de collecte, une donnée conservée et un déploiement refusé restent des états distincts, à suivre dans les PR de fiabilité et les prochains runs.
 
@@ -91,6 +95,10 @@ Cette recette ne répare pas automatiquement chaque incident de source présent 
 
 Les tests de code et les rapprochements partagés ne remplacent pas une nouvelle lecture indépendante de chaque document financier externe. Les simulations restent soumises à leurs conventions ; les années incomplètes, historiques courts et couvertures partielles gardent leurs restrictions.
 
-Le lint termine avec succès et deux avertissements préexistants d’imports inutilisés, hors des fichiers modifiés. Les retouches de dates/valeurs dans les projections régénérées par le build sont exclues de cette livraison pour éviter de recouper les PR de données en cours.
+Le lint termine avec succès : deux avertissements préexistants sur la première base, puis trois sur la base enrichie, tous hors des fichiers modifiés. Les retouches de dates/valeurs dans les projections régénérées par le build sont exclues de cette livraison pour éviter de recouper les PR de données en cours.
+
+Après intégration de `master`, le build et dix contrôles ciblés passent de nouveau : revue, recertification, actions internationales, courtiers, classements, cohérence Générateur/Duels, expositions, conventions de performance, années ETF et nouvelle régression des en-têtes. La base enrichie comporte 258 fiches au périmètre de l’audit, dont 196 séries annuelles complètes ; 3 806 rendements sont rapprochés entre outils. L’audit actions internationales vérifie 160 sociétés et leurs raccordements à sept outils. Les conventions de source différentes restent explicites et ne sont pas converties en égalités artificielles.
+
+Les parcours navigateur Classements, Actifs & expositions, analyse DCA et calendrier ont été rejoués sur la version enrichie, avec des ports de test distincts des aperçus précédents. Ils passent après correction de l’attente du quatrième événement dans le calendrier. Le nouveau contrôle des en-têtes et les contrôles du partage des suites en CI passent également.
 
 Les corrections sont fournies sur une branche de travail pour revue. Cette recette n’autorise ni ne prétend une nouvelle mise en production : aucun changement n’a été fusionné sur `master` dans le cadre de cette intervention.

@@ -30,6 +30,9 @@ on:
       - 'src/data/*regulatory*'
       - 'src/data/broker-tariffs.js'
       - 'src/data/automated-broker-tariffs.json'
+      - 'scripts/audit-broker-tweet-data.mjs'
+      - 'scripts/test-broker-tweet-data.mjs'
+      - 'src/pages/broker-comparator/**'
 permissions:
   contents: read
 jobs:
@@ -82,6 +85,10 @@ jobs:
           if [ "$COLLECTION_FAILED" = 'true' ]; then
             echo 'Collecte partielle : les dernières observations qualifiées sont conservées. Voir les sources en échec dans regulatory-observations.' >> "$GITHUB_STEP_SUMMARY"
           fi
+      - name: Audit the data used by the 28 broker tweets
+        run: |
+          node scripts/test-broker-tweet-data.mjs
+          node scripts/audit-broker-tweet-data.mjs --observation "$RUNNER_TEMP/broker-observation.json" --output "$RUNNER_TEMP/broker-tweet-observation.json"
       - name: "Validate observations: python scripts audit_broker_coverage.py"
         run: python scripts/audit_broker_coverage.py
       - name: "Validate observations: node scripts test-broker-automation.mjs"
