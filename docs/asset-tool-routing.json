@@ -1,24 +1,24 @@
 {
-  "checkedAt": "2026-10-18T12:24:38.083Z",
+  "checkedAt": "2026-10-18T12:48:46.588Z",
   "summary": {
     "instruments": 647,
     "sheets": 258,
     "comparisons": 243,
     "practical": 21,
-    "duels": 575,
+    "duels": 581,
     "generatorAutomatic": 141,
     "dca": 647,
     "fullExposure": 602,
     "outsideExposure": 41,
-    "automaticHistories": 200,
-    "historyCandidates": 25,
+    "automaticHistories": 212,
+    "historyCandidates": 13,
     "unused": 0,
     "blockers": {
       "no-listing": 27,
       "listing-not-collectable": 0,
       "qualification-failed": 0,
-      "collection-pending": 25,
-      "history-short": 19
+      "collection-pending": 13,
+      "history-short": 24
     }
   },
   "errors": [],
@@ -4098,15 +4098,12 @@
       "name": "Amundi EURO STOXX 50 II UCITS ETF Acc",
       "kind": "etf",
       "practical": [],
-      "duel": false,
+      "duel": true,
       "qualification": null,
       "sheet": true,
       "comparison": true,
-      "generator": "missing",
-      "blocker": {
-        "code": "collection-pending",
-        "detail": "Cotation documentée ; série en attente de la prochaine collecte mensuelle"
-      },
+      "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -4128,8 +4125,19 @@
         "identifiedCoverage": 43.359466999999995,
         "automatic": false
       },
-      "monthly": [],
-      "historyCandidate": true,
+      "monthly": [
+        {
+          "id": "etfFR0007054358",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
       "decision": "keep-used"
     },
     {
@@ -4137,15 +4145,12 @@
       "name": "Amundi Dow Jones Industrial Average UCITS ETF Dist",
       "kind": "etf",
       "practical": [],
-      "duel": false,
+      "duel": true,
       "qualification": null,
       "sheet": true,
       "comparison": true,
-      "generator": "missing",
-      "blocker": {
-        "code": "collection-pending",
-        "detail": "Cotation documentée ; série en attente de la prochaine collecte mensuelle"
-      },
+      "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -4167,8 +4172,19 @@
         "identifiedCoverage": 55.01587800000001,
         "automatic": false
       },
-      "monthly": [],
-      "historyCandidate": true,
+      "monthly": [
+        {
+          "id": "etfFR0007056841",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
       "decision": "keep-used"
     },
     {
@@ -4581,15 +4597,12 @@
       "name": "Amundi PEA Immobilier Europe UCITS ETF Acc",
       "kind": "etf",
       "practical": [],
-      "duel": false,
+      "duel": true,
       "qualification": null,
       "sheet": true,
       "comparison": true,
-      "generator": "missing",
-      "blocker": {
-        "code": "collection-pending",
-        "detail": "Cotation documentée ; série en attente de la prochaine collecte mensuelle"
-      },
+      "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -4611,8 +4624,19 @@
         "identifiedCoverage": 45.76417,
         "automatic": false
       },
-      "monthly": [],
-      "historyCandidate": true,
+      "monthly": [
+        {
+          "id": "etfFR0011869304",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
       "decision": "keep-used"
     },
     {
@@ -4667,15 +4691,12 @@
       "name": "Amundi PEA Chine (MSCI China) Screened UCITS ETF",
       "kind": "etf",
       "practical": [],
-      "duel": false,
+      "duel": true,
       "qualification": null,
       "sheet": true,
       "comparison": true,
-      "generator": "missing",
-      "blocker": {
-        "code": "collection-pending",
-        "detail": "Cotation documentée ; série en attente de la prochaine collecte mensuelle"
-      },
+      "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -4697,8 +4718,19 @@
         "identifiedCoverage": 45.023155,
         "automatic": false
       },
-      "monthly": [],
-      "historyCandidate": true,
+      "monthly": [
+        {
+          "id": "etfFR0011871078",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
       "decision": "keep-used"
     },
     {
@@ -4800,15 +4832,12 @@
       "name": "Amundi PEA Euro Court Terme UCITS ETF Acc",
       "kind": "etf",
       "practical": [],
-      "duel": false,
+      "duel": true,
       "qualification": null,
       "sheet": true,
       "comparison": false,
-      "generator": "missing",
-      "blocker": {
-        "code": "collection-pending",
-        "detail": "Cotation documentée ; série en attente de la prochaine collecte mensuelle"
-      },
+      "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "not-applicable",
@@ -4819,8 +4848,19 @@
         "reason": "Hors classification"
       },
       "holdings": null,
-      "monthly": [],
-      "historyCandidate": true,
+      "monthly": [
+        {
+          "id": "etfFR0013346681",
+          "automatic": true,
+          "first": "2019-01",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
       "decision": "keep-used"
     },
     {
@@ -4875,15 +4915,12 @@
       "name": "Amundi PEA Japan (TOPIX) UCITS ETF",
       "kind": "etf",
       "practical": [],
-      "duel": false,
+      "duel": true,
       "qualification": null,
       "sheet": true,
       "comparison": true,
-      "generator": "missing",
-      "blocker": {
-        "code": "collection-pending",
-        "detail": "Cotation documentée ; série en attente de la prochaine collecte mensuelle"
-      },
+      "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -4905,8 +4942,19 @@
         "identifiedCoverage": 23.937476999999994,
         "automatic": false
       },
-      "monthly": [],
-      "historyCandidate": true,
+      "monthly": [
+        {
+          "id": "etfFR0013411980",
+          "automatic": true,
+          "first": "2019-05",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
       "decision": "keep-used"
     },
     {
@@ -5806,11 +5854,8 @@
       "qualification": null,
       "sheet": true,
       "comparison": true,
-      "generator": "missing",
-      "blocker": {
-        "code": "collection-pending",
-        "detail": "Cotation documentée ; série en attente de la prochaine collecte mensuelle"
-      },
+      "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "not-applicable",
@@ -5821,8 +5866,19 @@
         "reason": "Hors classification"
       },
       "holdings": null,
-      "monthly": [],
-      "historyCandidate": true,
+      "monthly": [
+        {
+          "id": "etfGB00B15KXQ89",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "USD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
       "decision": "keep-used"
     },
     {
@@ -6447,8 +6503,8 @@
       "comparison": true,
       "generator": "missing",
       "blocker": {
-        "code": "collection-pending",
-        "detail": "Cotation documentée ; série en attente de la prochaine collecte mensuelle"
+        "code": "history-short",
+        "detail": "0 année(s) complète(s) ; 6 requises en génération automatique"
       },
       "dca": true,
       "countries": {
@@ -6471,8 +6527,19 @@
         "identifiedCoverage": 0,
         "automatic": false
       },
-      "monthly": [],
-      "historyCandidate": true,
+      "monthly": [
+        {
+          "id": "etfIE0002Y8CX98",
+          "automatic": true,
+          "first": "2025-04",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": false,
+          "simulation": false,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
       "decision": "keep-used"
     },
     {
@@ -6595,8 +6662,8 @@
       "comparison": true,
       "generator": "missing",
       "blocker": {
-        "code": "collection-pending",
-        "detail": "Cotation documentée ; série en attente de la prochaine collecte mensuelle"
+        "code": "history-short",
+        "detail": "1 année(s) complète(s) ; 6 requises en génération automatique"
       },
       "dca": true,
       "countries": {
@@ -6619,8 +6686,19 @@
         "identifiedCoverage": 25.518104,
         "automatic": false
       },
-      "monthly": [],
-      "historyCandidate": true,
+      "monthly": [
+        {
+          "id": "etfIE0003XJA0J9",
+          "automatic": true,
+          "first": "2024-08",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
       "decision": "keep-used"
     },
     {
@@ -6987,8 +7065,8 @@
       "comparison": true,
       "generator": "missing",
       "blocker": {
-        "code": "collection-pending",
-        "detail": "Cotation documentée ; série en attente de la prochaine collecte mensuelle"
+        "code": "history-short",
+        "detail": "1 année(s) complète(s) ; 6 requises en génération automatique"
       },
       "dca": true,
       "countries": {
@@ -7011,8 +7089,19 @@
         "identifiedCoverage": 25.518104,
         "automatic": false
       },
-      "monthly": [],
-      "historyCandidate": true,
+      "monthly": [
+        {
+          "id": "etfIE0009HF1MK9",
+          "automatic": true,
+          "first": "2024-04",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
       "decision": "keep-used"
     },
     {
@@ -7655,8 +7744,8 @@
       "comparison": true,
       "generator": "missing",
       "blocker": {
-        "code": "collection-pending",
-        "detail": "Cotation documentée ; série en attente de la prochaine collecte mensuelle"
+        "code": "history-short",
+        "detail": "0 année(s) complète(s) ; 6 requises en génération automatique"
       },
       "dca": true,
       "countries": {
@@ -7679,8 +7768,19 @@
         "identifiedCoverage": 0,
         "automatic": false
       },
-      "monthly": [],
-      "historyCandidate": true,
+      "monthly": [
+        {
+          "id": "etfIE000W8WMSL2",
+          "automatic": true,
+          "first": "2025-10",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": false,
+          "simulation": false,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
       "decision": "keep-used"
     },
     {
@@ -7694,8 +7794,8 @@
       "comparison": true,
       "generator": "missing",
       "blocker": {
-        "code": "collection-pending",
-        "detail": "Cotation documentée ; série en attente de la prochaine collecte mensuelle"
+        "code": "history-short",
+        "detail": "2 année(s) complète(s) ; 6 requises en génération automatique"
       },
       "dca": true,
       "countries": {
@@ -7718,8 +7818,19 @@
         "identifiedCoverage": 99.99998200000005,
         "automatic": true
       },
-      "monthly": [],
-      "historyCandidate": true,
+      "monthly": [
+        {
+          "id": "etfIE000XZSV718",
+          "automatic": true,
+          "first": "2023-11",
+          "last": "2026-09",
+          "currency": "USD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
+      "historyCandidate": false,
       "decision": "keep-used"
     },
     {
