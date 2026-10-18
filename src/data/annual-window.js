@@ -4,9 +4,10 @@ export const HISTORICAL_YEARS = Object.freeze([2020, 2021, 2022, 2023, 2024, 202
 export function calendarMap(values, years = HISTORICAL_YEARS) {
   return Object.fromEntries(years.flatMap((year, i) => Number.isFinite(values?.[i]) ? [[year, values[i]]] : []));
 }
+export const lastCompleteYear = (now = new Date()) => now.getUTCFullYear() - 1;
 export function latestCommonYears(series, { length = 6, minimum = length, now = new Date() } = {}) {
   if (!series.length) return [];
-  const lastComplete = now.getUTCFullYear() - 1;
+  const lastComplete = lastCompleteYear(now);
   const common = Object.keys(series[0]).map(Number).filter(year => Number.isInteger(year) && year >= 2020 && year <= lastComplete &&
     series.every(row => Number.isFinite(row[year]) && row[year] > -100)).sort((a, b) => b - a);
   for (const end of common) {

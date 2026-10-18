@@ -34,7 +34,9 @@ export function projectSelectedData(){
  for(const [id,record] of Object.entries(INDEX_HISTORY)) {
   if(!historyUrls[id]) historyUrls[id]=add('history',id,{...record,points:record.points.map(([date,price])=>({date,price}))})
  }
- const exposureUrls=Object.fromEntries(Object.entries(exposureReferences).map(([id,record])=>[id,add('exposures',id,record)]))
+ // A reference without countries, sectors or equity sleeve (metals, crypto) is complete inline: no chunk, no fetch.
+ const inlineExposures=Object.keys(exposureReferences).filter(id=>!['countries','sectors','equitySleeve'].some(field=>exposureReferences[id][field]))
+ const exposureUrls=Object.fromEntries(Object.entries(exposureReferences).filter(([id])=>!inlineExposures.includes(id)).map(([id,record])=>[id,add('exposures',id,record)]))
  const exposureCatalogUrl=add('exposure-catalog','catalog',exposureReferences)
  const exposureIndex=Object.fromEntries(Object.entries(exposureReferences).map(([id,{countries:_c,sectors:_s,equitySleeve:_e,...record}])=>[id,record]))
  const anniversaryData=anniversaryProjection()
@@ -58,7 +60,7 @@ export function projectSelectedData(){
   transform(code,id){const path=id.replaceAll('\\','/').split('?')[0]
    if(path.endsWith('/src/data/portfolio-asset-loader.js')) return {code:loader(portfolioUrls)+`\nimport {getAsset} from './portfolio-assets.js';export async function ensurePortfolioAssets(ids){return Promise.all(ids.map(async id=>{const asset=getAsset(id);if(!asset)throw Error('Actif introuvable');if(asset.historyPending){const record=await loadRecord(id);if(record.id!==id || record.isin!==asset.isin)throw Error('Identité de l’actif incorrecte');Object.assign(asset,record);delete asset.historyPending}return asset}))}`,map:null}
    if(path.endsWith('/src/pages/dca-profiles/records.js')) return {code:loader({...exposureUrls,__catalog:exposureCatalogUrl})+`
-export const references=${JSON.stringify(exposureIndex)};export async function loadExposureCatalog(){return loadRecord('__catalog')};const ready=new Set();export const exposureRecords={isReady:id=>!references[id]||ready.has(id),load:async id=>{if(!references[id])return;const record=await loadRecord(id);Object.assign(references[id],record);ready.add(id);return record}};`,map:null}
+export const references=${JSON.stringify(exposureIndex)};export async function loadExposureCatalog(){return loadRecord('__catalog')};const ready=new Set(${JSON.stringify(inlineExposures)});export const exposureRecords={isReady:id=>!references[id]||ready.has(id),load:async id=>{if(!references[id]||ready.has(id))return references[id];const record=await loadRecord(id);Object.assign(references[id],record);ready.add(id);return record}};`,map:null}
    if(path.endsWith('/src/pages/tweet-midi/data/anniversaryHistory.js')) {
     const functions=['getValidYearsBackOptions','ymForYearsBack','fmtYm'].map(key=>anniversarySource.match(new RegExp('export function '+key+'\\([\\s\\S]*?\\n}'))[0]).join('\n')
     return {code:`import {interpolatePrice,ymIndex} from '../../investment-calculator/math.js';import {loadHistoryRecord} from '../../../data/history-browser.js';const data=${JSON.stringify(anniversaryData)},loaded=new Map();export const ASSETS=data.assets,ANNIVERSAIRE_ELIGIBLE_ASSETS=data.eligible,ANNIVERSAIRE_EXCLUDED_ASSETS=data.excluded,MONTHS_FULL=${JSON.stringify(history.MONTHS_FULL)};const getAssetMinDate=id=>data.bounds[id][0],getAssetMaxDate=id=>data.bounds[id][1];export const anniversaryRecords={isReady:id=>loaded.has(id),load:async id=>{const record=await loadHistoryRecord(id);loaded.set(id,record);return record}};export function getHistoricalPrice(id,ym){const record=loaded.get(id);if(!record)throw Error('Historique non chargé');return interpolatePrice(record.anniversaryPoints??record.points,ymIndex(ym)<ymIndex(getAssetMinDate(id))?getAssetMinDate(id):ym)};${functions}`,map:null}

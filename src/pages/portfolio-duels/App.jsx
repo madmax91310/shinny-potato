@@ -11,7 +11,7 @@ import ToolWorkspace from '../../design-system/ToolWorkspace'
 import { useRef, useState } from 'react'
 import PageHeader from '../../design-system/PageHeader'
 import Button from '../../design-system/Button'
-import { DUELS } from './data.js'
+import { DUELS, MANUAL_EXAMPLE } from './data.js'
 import { buildCustomDuel, buildDuel, buildTweet, CATALOG, resultReading, formatCapital, formatPercent } from './lib.js'
 const renderDuelImage = async duel => (await import('./canvasImage.js')).renderDuelImage(duel)
 import { HISTORICAL_YEARS as YEARS } from '../../data/annual-window.js'
@@ -122,8 +122,8 @@ function DuelWorkspace({ search }) {
       {mode === 'generated' && <div className="pd-controls"><p>Chaque portefeuille contient une base ETF et un complément, avec parfois une troisième ligne thématique.</p><Button type="button" onClick={regenerate}>🎲 Générer un autre duel</Button></div>}
       {mode === 'manual' && <>
         <Button variant="secondary" onClick={() => {
-          setLeft([{id: 'msci_world_ishares', pct: 100}])
-          setRight(['apple', 'microsoft', 'broadcom', 'tesla', 'berkshire', 'asml'].map((id, i) => ({id: `equity-${id}`, pct: i < 4 ? 17 : 16})))
+          setLeft(MANUAL_EXAMPLE.left.map(line => ({ ...line })))
+          setRight(MANUAL_EXAMPLE.right.map(line => ({ ...line })))
         }}>Exemple : World vs 6 actions</Button>
         <div className="pd-editors"><Suspense fallback={<p role="status">Chargement des actifs…</p>}><AllocationEditor label="A" lines={left} onChange={setLeft} /></Suspense><Suspense fallback={<p role="status">Chargement des actifs…</p>}><AllocationEditor label="B" lines={right} onChange={setRight} /></Suspense></div>
         <p className="pd-hint">1 à 6 actifs par portefeuille, sans base ETF obligatoire · total de 100 % de chaque côté · mêmes dates et calcul en euros · pondérations rétablies au début de chaque année.</p>

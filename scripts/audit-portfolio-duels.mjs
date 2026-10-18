@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import {getDuelArt} from '../src/pages/portfolio-duels/visualIdentity.js'
 import assert from 'node:assert/strict'
-import { DUELS } from '../src/pages/portfolio-duels/data.js'
+import { DUELS, MANUAL_EXAMPLE } from '../src/pages/portfolio-duels/data.js'
 import { buildCustomDuel, buildDuel, buildTweet, CATALOG, resultReading } from '../src/pages/portfolio-duels/lib.js'
 import { EUR_USD, euroReturn } from '../src/pages/portfolio-duels/catalog.js'
 import { generateDuel } from '../src/pages/portfolio-duels/generate.js'
@@ -38,6 +38,11 @@ const inspect = (duel) => {
   assert.ok(duel.sources.length > 0)
 }
 for (const definition of DUELS) inspect(buildDuel(definition))
+// The manual composer's example lives in the data module and resolves in the shared catalog.
+for (const side of ['left', 'right']) {
+  assert.equal(MANUAL_EXAMPLE[side].reduce((sum, line) => sum + line.pct, 0), 100, `exemple manuel : total ${side}`)
+  for (const line of MANUAL_EXAMPLE[side]) assert.ok(CATALOG.some(asset => asset.id === line.id), `exemple manuel : ${line.id} absent du catalogue`)
+}
 const original = DUELS.find((duel) => duel.id === 'world-em-ou-acwi')
 const full = buildDuel(original)
 assert.equal(full.b.assets.length, 2)

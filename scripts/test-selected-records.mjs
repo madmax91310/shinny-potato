@@ -43,8 +43,10 @@ try{
  const exposure=await import(uri(plugin.transform('',resolve('src/pages/dca-profiles/records.js')).code))
  assert(!Object.values(exposure.references).some(r=>r.countries||r.sectors||r.equitySleeve))
  const beforeNonEquity=requests.length
+ // Gold and Bitcoin point at exact shares (ISIN, classification outside equities) and never fetch an equity exposure.
  for(const id of ['gold','btc']){
-  assert(!references[id],`${id} has no equity exposure record`)
+  assert(/^[A-Z]{2}[A-Z0-9]{9}\d$/.test(references[id]?.isin??''),`${id} references an exact share`)
+  assert(references[id].outsideClassification&&!references[id].countries&&!references[id].sectors,`${id} has no equity exposure record`)
   assert(exposure.exposureRecords.isReady(id))
   await exposure.exposureRecords.load(id)
  }
