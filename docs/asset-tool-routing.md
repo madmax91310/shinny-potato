@@ -4,15 +4,15 @@ Généré le 2026-10-18 par `node scripts/audit-asset-tool-routing.mjs --write`.
 
 « Sans objet » ne signifie pas donnée manquante. « Complète » décrit la table collectée, pas la possibilité de calculer un recouvrement intégral : identification, fraîcheur et compatibilité restent contrôlées par le moteur. Un candidat historique possède une cotation documentée, mais sa série doit encore passer la collecte et les contrôles. Les actifs utilisés sont conservés.
 
-Actifs présentés sans historique automatique (Sans cotation : 27 · Qualification échouée : 4 · Collecte en attente : 25 · Historique court : 19) : la colonne « Blocage » donne la cause relevée et ce qui est attendu.
+Actifs présentés sans historique automatique (Sans cotation : 27 · Collecte en attente : 25 · Historique court : 19) : la colonne « Blocage » donne la cause relevée et ce qui est attendu.
 
 | Actif | ISIN | Fiche | Comparatif | Générateur | Pays / secteurs | Positions | Performance / Simulation / Anniversaire | Blocage |
 |---|---|---|---|---|---|---|---|---|
 | SLB | AN8068571086 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
-| BHP | AU000000BHP4 | — | — | missing | Oui / Oui | — | — / — / — | Qualification échouée — Duplicate Yahoo local date |
-| Commonwealth Bank | AU000000CBA7 | — | — | missing | Oui / Oui | — | — / — / — | Qualification échouée — Duplicate Yahoo local date |
-| CSL | AU000000CSL8 | — | — | missing | Oui / Oui | — | — / — / — | Qualification échouée — Duplicate Yahoo local date |
-| Macquarie | AU000000MQG1 | — | — | missing | Oui / Oui | — | — / — / — | Qualification échouée — Duplicate Yahoo local date |
+| BHP | AU000000BHP4 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
+| Commonwealth Bank | AU000000CBA7 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
+| CSL | AU000000CSL8 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
+| Macquarie | AU000000MQG1 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | AB InBev | BE0974293251 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Brookfield | CA11271J1075 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Canadian National Railway | CA1363751027 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |

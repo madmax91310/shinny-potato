@@ -65,6 +65,7 @@ export const CATEGORIES = [
   {id:'defensive-consumer-global',label:'Consommation défensive internationale',ids:['philip-morris','bat','pernod-ricard','heineken','ab-inbev','carrefour'],currency:'EUR'},
   {id:'transport-logistics',label:'Transport et logistique',ids:['fdx','csx','unp','canadian-national-railway','dsv'],currency:'EUR'},
   {id:'canada-leaders',label:'Grandes valeurs canadiennes',ids:['royal-bank-of-canada','shopify','canadian-national-railway','enbridge','toronto-dominion','brookfield'],currency:'EUR'},
+  {id:'australia-leaders',label:'Grandes valeurs australiennes',ids:['bhp','commonwealth-bank','csl','macquarie'],currency:'EUR'},
   { id: 'world-acwi-net', label: 'World et ACWI · vingt ans · indices nets', ids: ['world-net', 'msciAcwi'], currency: 'USD' },
   { id: 'world-acwi-imi', label: 'World, ACWI et ACWI IMI · indices nets', ids: ['world-net', 'msciAcwi', 'msciAcwiImi'], currency: 'USD' },
   { id: 'regions-indices', label: 'Grandes régions · indices nets', ids: ['world-net', 'msciUsa', 'msciEurope', 'japan-net', 'emerging-net'], currency: 'USD' },

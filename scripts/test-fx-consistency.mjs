@@ -22,4 +22,17 @@ assert.deepEqual(Object.keys(EUR_USD).sort(), Object.keys(annualFx.years).sort()
 const item = { currency: 'USD', values: [], calendarReturns: { 2024: 10 } }
 const expected = ((1.1) * EUR_USD[2023] / EUR_USD[2024] - 1) * 100
 assert.ok(Math.abs(euroReturn(item, 2024) - expected) < 1e-9)
-console.log(`Change : ${compared} taux annuels BCE identiques à la dernière observation de décembre ; conversion des duels vérifiée.`)
+// Cross rates (currencies without an ECB reference) are derived from two official series and
+// must stay recomputable from the stored observations; the ECB month-end itself is untouched.
+let crossMonths = 0
+for (const [currency, info] of Object.entries(monthlyFx.derived ?? {})) {
+  assert.ok(/^https:\/\/(fred\.stlouisfed\.org|www\.federalreserve\.gov)\//.test(info.sourceUrl), `${currency} : source du taux croisé non officielle`)
+  assert.equal(info.secondarySourceUrl, monthlyFx.sourceUrl)
+  for (const [month, row] of Object.entries(info.observations)) {
+    assert.ok(row.asOf.startsWith(month), `${currency} ${month} : observation hors du mois`)
+    assert.equal(monthlyFx.months[month]?.rates?.[currency], Math.round(row.perUsd * row.usdPerEur * 1e4) / 1e4, `${currency} ${month} : taux publié ≠ produit des deux séries`)
+    assert.ok(row.asOf <= monthlyFx.months[month].asOf, `${currency} ${month} : le jour commun ne peut pas dépasser le dernier jour BCE`)
+    crossMonths++
+  }
+}
+console.log(`Change : ${compared} taux annuels BCE identiques à la dernière observation de décembre ; conversion des duels vérifiée ; ${crossMonths} mois de taux croisés recomposés.`)

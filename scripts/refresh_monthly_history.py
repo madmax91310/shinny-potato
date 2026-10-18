@@ -62,7 +62,19 @@ def yahoo_chart(body, config, interval):
         price = number(adjusted[i]) if config['field'] == 'adjclose' and interval == '1d' else number(close)
         rows.append((date, number(close), price))
     if len({r[0] for r in rows}) != len(rows):
-        reject('Duplicate Yahoo local date')
+        # Yahoo repeats the latest ASX session as two bars (market open and closing time) with
+        # identical prices; one session with identical close and adjusted close is kept once.
+        # Any other repeated local date is still rejected, with the sessions named so the
+        # failure can be diagnosed from the status file.
+        collapsed, conflicts = {}, {}
+        for date, close, price in rows:
+            if date in collapsed and (collapsed[date][1], collapsed[date][2]) != (close, price):
+                conflicts.setdefault(date, [collapsed[date]]).append((date, close, price))
+            collapsed[date] = (date, close, price)
+        if conflicts:
+            detail = '; '.join(f'{date.isoformat()} ' + ' & '.join(f'{bar[1]}/{bar[2]}' for bar in bars) for date, bars in sorted(conflicts.items()))
+            reject(f'Duplicate Yahoo local date with different prices ({interval}, {zone}): {detail[:300]}')
+        rows = [collapsed[date] for date in sorted(collapsed)]
     return rows, zone
 
 
