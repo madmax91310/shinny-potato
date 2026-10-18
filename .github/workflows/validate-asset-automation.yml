@@ -3,6 +3,8 @@ on:
   pull_request:
     paths:
       - 'scripts/*asset-field*'
+      - 'scripts/lib/field-diagnostics.mjs'
+      - 'scripts/test-field-diagnostics.mjs'
       - 'scripts/*monthly*'
       - 'scripts/apply_etf_collection.py'
       - 'src/data/automated-*'
@@ -27,7 +29,7 @@ jobs:
       - run: npm ci
       - run: python -m unittest discover -s scripts -p 'test_issuer_monthly_capture.py'
       - run: python -m unittest discover -s scripts -p 'test_monthly_qualification.py'
-      - run: node scripts/test-asset-field-coverage.mjs
+      - run: node scripts/test-asset-field-coverage.mjs && node scripts/test-field-diagnostics.mjs
       - run: npm run build
       - run: node scripts/audit-automated-monthly.mjs && node scripts/test-etf-tool-connections.mjs && node scripts/audit-asset-tool-routing.mjs
       - run: npx playwright install --with-deps chromium

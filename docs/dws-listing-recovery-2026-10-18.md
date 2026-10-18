@@ -30,3 +30,11 @@ Les tests vérifient notamment qu’un titre détenu ou une suggestion d’autre
 La collecte des caractéristiques est déjà programmée quotidiennement ; la modification du collecteur déclenche aussi son workflow après fusion. Les nouveaux champs alimentent le registre partagé et les fiches ETF. Les cotations EUR/USD deviennent candidates à la qualification mensuelle existante, qui reste une étape distincte : cette correction ne fabrique aucun historique et ne rend pas un fonds admissible à un outil de performance sans les contrôles habituels de profondeur, identité et devise.
 
 Les rapports et projections produits par le build ne sont pas ajoutés au commit. Leur génération utilise les observations mises à jour et conserve les corrections du chantier #791.
+
+## Qualification et raccordement des historiques
+
+Les 24 cotations candidates EUR/USD des dix parts ont ensuite passé le qualificateur existant : identité et devise Yahoo, mois clos, rapprochement quotidien/mensuel, preuves de réponse et cours brut du dernier anniversaire. Une seule série par part entre dans le registre, selon l’ordre déterministe des cotations du collecteur. Les dix sources sont enregistrées dans la collecte mensuelle ; les autres observations, dont l’ajout Amundi de #791, sont conservées.
+
+Après génération : 235 historiques ETF/ETC automatisés au lieu de 225 ; 17 instruments restent sans cotation documentée au lieu de 27. Trente historiques sont trop courts pour la génération automatique, contre 28 auparavant : les deux nouveaux fonds récents restent correctement limités. Huit supports supplémentaires sont accessibles manuellement ; les conditions de profondeur et de périodes communes du Générateur et des Duels restent inchangées.
+
+Vérification de cette intégration : compilation et budgets, 664 historiques avec preuves, 235 raccordements ETF/ETC, raisons de blocage et 432 choix manuels contrôlés. Les fichiers dérivés produits par la compilation restent exclus du commit.
