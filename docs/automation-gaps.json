@@ -420,7 +420,7 @@
       "name": "Amundi PEA Euro Court Terme UCITS ETF Acc",
       "field": "countries",
       "label": "Pays",
-      "configured": false,
+      "configured": true,
       "status": "unqualified",
       "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
       "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
@@ -431,7 +431,7 @@
       "name": "Amundi PEA Euro Court Terme UCITS ETF Acc",
       "field": "sectors",
       "label": "Secteurs",
-      "configured": false,
+      "configured": true,
       "status": "unqualified",
       "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
       "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
@@ -442,7 +442,7 @@
       "name": "Amundi PEA Euro Court Terme UCITS ETF Acc",
       "field": "holdings",
       "label": "Positions pondérées",
-      "configured": false,
+      "configured": true,
       "status": "unqualified",
       "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
       "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
@@ -453,7 +453,7 @@
       "name": "Amundi European Strategic Autonomy UCITS ETF Acc",
       "field": "performance",
       "label": "Calendrier annuel",
-      "configured": false,
+      "configured": true,
       "status": "unqualified",
       "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
       "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
@@ -464,7 +464,7 @@
       "name": "Invesco FTSE All-World UCITS ETF Accumulating",
       "field": "holdings",
       "label": "Positions pondérées",
-      "configured": false,
+      "configured": true,
       "status": "unqualified",
       "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
       "sourceUrl": "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE000716YHJ7_factsheet_en.pdf"
@@ -475,7 +475,7 @@
       "name": "Invesco FTSE All-World UCITS ETF Distributing",
       "field": "holdings",
       "label": "Positions pondérées",
-      "configured": false,
+      "configured": true,
       "status": "unqualified",
       "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
       "sourceUrl": "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE0000QLH0G6_factsheet_en.pdf"
@@ -486,7 +486,7 @@
       "name": "Global X Robotics & Artificial Intelligence UCITS ETF USD Acc",
       "field": "performance",
       "label": "Calendrier annuel",
-      "configured": false,
+      "configured": true,
       "status": "unqualified",
       "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
       "sourceUrl": "https://globalxetfs.eu/funds/botz/"
@@ -497,7 +497,7 @@
       "name": "Global X Uranium UCITS ETF USD Acc",
       "field": "performance",
       "label": "Calendrier annuel",
-      "configured": false,
+      "configured": true,
       "status": "unqualified",
       "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
       "sourceUrl": "https://globalxetfs.eu/funds/urnu/"
@@ -508,7 +508,7 @@
       "name": "Global X Cybersecurity UCITS ETF USD Acc",
       "field": "performance",
       "label": "Calendrier annuel",
-      "configured": false,
+      "configured": true,
       "status": "unqualified",
       "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
       "sourceUrl": "https://globalxetfs.eu/funds/bug/"
@@ -900,7 +900,7 @@
       "status": "not-published",
       "checkedAt": "2026-10-18",
       "sourceUrl": "https://globalxetfs.eu/funds/silv/",
-      "sha256": "a6d1956f409f3290445bbf0e0c168cb9e127b9a6d0ee72c86e271e2b81b941f6",
+      "sha256": "2f4e4e7d247c66db1ecf22ce88ae8ec9d69aa8cd13a396980c294caf645a3c47",
       "reason": "Aucun tableau sectoriel complet du fonds dans la page officielle contrôlée.",
       "evidence": {
         "datedCountryTable": true,
@@ -1636,7 +1636,7 @@
       "reason": "La section de performance ne fournit pas de calendrier annuel qualifié pour la part USD distribuante. Les rendements capitalisants ou glissants ne sont pas substitués.",
       "checkedAt": "2026-10-18",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "15d2e7d24e8a6f0265188f2c3962346e54abf2ba3fcd76f6ba8f8b34866af71f",
+      "sha256": "31c3c290e11f896d81409e375a9a4568471f646c2d754f94126918e89aa0d2a5",
       "evidence": [
         "Performance History",
         "USD Accumulating",
@@ -1665,14 +1665,7 @@
         "15.75%",
         "-0.46%",
         "Performance is based on the fund’s NAV and is shown on a total return basis (i.e., with gross income reinvested, where applicable). The fund’s NAV may differ from its market price and, as a result, individual shareholders may realize returns that are different from the NAV performance. Cumulative return is the aggregate amount that an investment has gained or lost over time. Annualised return is the average return gained or lost by an investment each year over a given time period.",
-        "The performance data quoted represents past performance. Past performance does not guarantee future results. The investment return and principal value of an investment will fluctuate so that an investor's shares, when sold or redeemed, may be worth more or less than their original cost and current performance may be lower or higher than the performance quoted. High short-term performance, when observed, is unusual and investors should not expect such performance to be repeated. The return of your investment may increase or decrease as a result of currency fluctuations if your investment is made in a currency other than that used in past performance calculations.",
-        "Top 10 Reference Index Constituents",
-        "As of 08 Oct 2026",
-        "Weight (%)",
-        "Ticker",
-        "Name",
-        "8.30",
-        "NVDA"
+        "The performance data quoted represents past performance. Past performance does not guarantee future results. The investment return and principal value of an investment will fluctuate so that an investor's shares, when sold or redeemed, may be worth more or less than their original cost and current performance may be lower or higher than the performance quoted. High short-term performance, when observed, is unusual and investors should not expect such performance to be repeated. The return of your investment may increase or decrease as a result of currency fluctuations if your investment is made in a currency other than that used in past performance calculations."
       ]
     },
     {
@@ -1686,7 +1679,7 @@
       "reason": "Aucune allocation géographique économique complète qualifiée dans la page ; les pays de commercialisation et le panier de substitution sont exclus.",
       "checkedAt": "2026-10-18",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "15d2e7d24e8a6f0265188f2c3962346e54abf2ba3fcd76f6ba8f8b34866af71f",
+      "sha256": "31c3c290e11f896d81409e375a9a4568471f646c2d754f94126918e89aa0d2a5",
       "evidence": []
     },
     {
@@ -1700,7 +1693,7 @@
       "reason": "Table sectorielle de référence à recouper avec l’indice exact avant utilisation ; aucune allocation du panier de substitution utilisée.",
       "checkedAt": "2026-10-18",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "15d2e7d24e8a6f0265188f2c3962346e54abf2ba3fcd76f6ba8f8b34866af71f",
+      "sha256": "31c3c290e11f896d81409e375a9a4568471f646c2d754f94126918e89aa0d2a5",
       "evidence": [
         "Reference Index Sector Breakdown",
         "As of 30 Sep 2026",
@@ -1741,7 +1734,7 @@
       "reason": "Poids différents pour les mêmes titres dans la section datée de l’indice : AAPL, AMZN, GOOG, GOOGL, META, MSFT, NVDA, TSLA.",
       "checkedAt": "2026-10-18",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "15d2e7d24e8a6f0265188f2c3962346e54abf2ba3fcd76f6ba8f8b34866af71f",
+      "sha256": "31c3c290e11f896d81409e375a9a4568471f646c2d754f94126918e89aa0d2a5",
       "evidence": [
         "Top 10 Reference Index Constituents",
         "As of 08 Oct 2026",
