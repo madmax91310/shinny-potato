@@ -57,3 +57,11 @@ export const DUELS = [
  {id:'world-cloud-robotics',title:'World + cloud ou World + robotique ?',left:[{id:'msci_world_ishares',pct:85},{id:'cloud-wisdomtree',pct:15}],right:[{id:'msci_world_ishares',pct:85},{id:'sect_robotique',pct:15}],labels:['World + cloud','World + robotique'],question:'Quelle activité ajouterais-tu à ton socle mondial ?'},
  {id:'world-copper-miners',title:'World seul ou World + mines de cuivre ?',left:[{id:'msci_world_ishares',pct:100}],right:[{id:'msci_world_ishares',pct:90},{id:'copper-miners',pct:10}],labels:['World','World + mines de cuivre'],question:'Cette poche minière mérite-t-elle une place à côté du World ?'},
 ]
+
+// Exemple proposé par le composeur manuel : un ETF World face à six actions du catalogue des duels.
+// Les identifiants sont ceux de la banque commune ; aucune donnée n'est redite dans l'interface.
+export const MANUAL_EXAMPLE = Object.freeze({
+  left: [{ id: 'msci_world_ishares', pct: 100 }],
+  right: ['apple', 'microsoft', 'broadcom', 'tesla', 'berkshire', 'asml'].map((id, i) => ({ id: `equity-${id}`, pct: i < 4 ? 17 : 16 })),
+})
+

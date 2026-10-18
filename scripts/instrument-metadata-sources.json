@@ -2,63 +2,360 @@
   "instruments": [
     {
       "isin": "LU1681038672",
-      "listings": [],
+      "listings": [
+        {
+          "ticker": "RS2K",
+          "mic": "XPAR",
+          "exchange": "Euronext Paris",
+          "currency": "EUR",
+          "symbol": "RS2K.PA",
+          "excerpt": "LU1681038672 | Euronext Paris | RS2K FP | EUR | RS2K.PA",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "7c5c0d69784ce332520d9a4fdd7fce740b60444de35769da2b7d5a10b7cac72f",
+          "evidenceId": "LU1681038672-XPAR-RS2K-EUR"
+        },
+        {
+          "ticker": "RS2K",
+          "mic": "XETR",
+          "exchange": "Xetra",
+          "currency": "EUR",
+          "symbol": "RS2K.DE",
+          "excerpt": "LU1681038672 | Xetra | RS2K GY | EUR | RS2K.DE",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "7c5c0d69784ce332520d9a4fdd7fce740b60444de35769da2b7d5a10b7cac72f",
+          "evidenceId": "LU1681038672-XETR-RS2K-EUR"
+        },
+        {
+          "ticker": "RS2K",
+          "mic": "ETFP",
+          "exchange": "Borsa Italiana",
+          "currency": "EUR",
+          "symbol": "RS2K.MI",
+          "excerpt": "LU1681038672 | Borsa Italiana | RS2K IM | EUR | RS2K.MI",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "7c5c0d69784ce332520d9a4fdd7fce740b60444de35769da2b7d5a10b7cac72f",
+          "evidenceId": "LU1681038672-ETFP-RS2K-EUR"
+        }
+      ],
       "urls": [
         "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
       ]
     },
     {
       "isin": "FR0011869304",
-      "listings": [],
+      "listings": [
+        {
+          "ticker": "PMEH",
+          "mic": "XPAR",
+          "exchange": "Euronext Paris",
+          "currency": "EUR",
+          "symbol": "PMEH.PA",
+          "excerpt": "FR0011869304 | Euronext Paris | PMEH FP | EUR | PMEH.PA",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "653541831cc9ea88cd67f98936f03df557d30e3ee20ce676e4ac98e0c6891ddb",
+          "evidenceId": "FR0011869304-XPAR-PMEH-EUR"
+        }
+      ],
       "urls": [
         "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
       ]
     },
     {
       "isin": "FR0013346681",
-      "listings": [],
+      "listings": [
+        {
+          "ticker": "OBLI",
+          "mic": "XPAR",
+          "exchange": "Euronext Paris",
+          "currency": "EUR",
+          "symbol": "OBLI.PA",
+          "excerpt": "FR0013346681 | Euronext Paris | OBLI FP | EUR | OBLI.PA",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "e17d1f79e45bba3f57a0cf552fa52144b02f7da4df4771a6b121785ec943f405",
+          "evidenceId": "FR0013346681-XPAR-OBLI-EUR"
+        }
+      ],
       "urls": [
         "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
       ]
     },
     {
       "isin": "LU3180074463",
-      "listings": [],
+      "listings": [
+        {
+          "ticker": "INDEP",
+          "mic": "XPAR",
+          "exchange": "Euronext Paris",
+          "currency": "EUR",
+          "symbol": "INDEP.PA",
+          "excerpt": "LU3180074463 | Euronext Paris | INDEP FP | EUR | INDEP.PA",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "42d074359f8ff03e7c7aa79f8faed286b3d955cf91b306ee39136a6e3bcd0352",
+          "evidenceId": "LU3180074463-XPAR-INDEP-EUR"
+        },
+        {
+          "ticker": "SOVE",
+          "mic": "XETR",
+          "exchange": "Xetra",
+          "currency": "EUR",
+          "symbol": "SOVE.DE",
+          "excerpt": "LU3180074463 | Xetra | SOVE GY | EUR | SOVE.DE",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "42d074359f8ff03e7c7aa79f8faed286b3d955cf91b306ee39136a6e3bcd0352",
+          "evidenceId": "LU3180074463-XETR-SOVE-EUR"
+        },
+        {
+          "ticker": "SOVE",
+          "mic": "XLON",
+          "exchange": "London Stock Exchange",
+          "currency": "GBP",
+          "symbol": "SOVE.L",
+          "excerpt": "LU3180074463 | LSE | SOVE LN | GBP | SOVE.L",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "42d074359f8ff03e7c7aa79f8faed286b3d955cf91b306ee39136a6e3bcd0352",
+          "evidenceId": "LU3180074463-XLON-SOVE-GBP"
+        }
+      ],
       "urls": [
         "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
       ]
     },
     {
       "isin": "LU1829219390",
-      "listings": [],
+      "listings": [
+        {
+          "ticker": "BNKE",
+          "mic": "XPAR",
+          "exchange": "Euronext Paris",
+          "currency": "EUR",
+          "symbol": "BNKE.PA",
+          "excerpt": "LU1829219390 | Euronext Paris | BNKE FP | EUR | BNKE.PA",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "c798441739e9a7a668ca9826304b3fb610655526bf9d0a895e757d176e991d31",
+          "evidenceId": "LU1829219390-XPAR-BNKE-EUR"
+        },
+        {
+          "ticker": "BNKE",
+          "mic": "ETFP",
+          "exchange": "Borsa Italiana",
+          "currency": "EUR",
+          "symbol": "BNKE.MI",
+          "excerpt": "LU1829219390 | Borsa Italiana | BNKE IM | EUR | BNKE.MI",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "c798441739e9a7a668ca9826304b3fb610655526bf9d0a895e757d176e991d31",
+          "evidenceId": "LU1829219390-ETFP-BNKE-EUR"
+        },
+        {
+          "ticker": "LYBK",
+          "mic": "XETR",
+          "exchange": "Xetra",
+          "currency": "EUR",
+          "symbol": "LYBK.DE",
+          "excerpt": "LU1829219390 | Xetra | LYBK GY | EUR | LYBK.DE",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "c798441739e9a7a668ca9826304b3fb610655526bf9d0a895e757d176e991d31",
+          "evidenceId": "LU1829219390-XETR-LYBK-EUR"
+        },
+        {
+          "ticker": "BNKE",
+          "mic": "XLON",
+          "exchange": "London Stock Exchange",
+          "currency": "GBP",
+          "symbol": "BNKE.L",
+          "excerpt": "LU1829219390 | LSE | BNKE LN | GBP | BNKE.L",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "c798441739e9a7a668ca9826304b3fb610655526bf9d0a895e757d176e991d31",
+          "evidenceId": "LU1829219390-XLON-BNKE-GBP"
+        }
+      ],
       "urls": [
         "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
       ]
     },
     {
       "isin": "FR0007054358",
-      "listings": [],
+      "listings": [
+        {
+          "ticker": "LYSX",
+          "mic": "XETR",
+          "exchange": "Xetra",
+          "currency": "EUR",
+          "symbol": "LYSX.DE",
+          "excerpt": "FR0007054358 | Xetra | LYSX GY | EUR | LYSX.DE",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "670d30ffe41545a2a402526eb5e3fb97c77350448a2d0b75a3babc870d14e9de",
+          "evidenceId": "FR0007054358-XETR-LYSX-EUR"
+        },
+        {
+          "ticker": "MSE",
+          "mic": "XPAR",
+          "exchange": "Euronext Paris",
+          "currency": "EUR",
+          "symbol": "MSE.PA",
+          "excerpt": "FR0007054358 | Euronext Paris | MSE FP | EUR | MSE.PA",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "670d30ffe41545a2a402526eb5e3fb97c77350448a2d0b75a3babc870d14e9de",
+          "evidenceId": "FR0007054358-XPAR-MSE-EUR"
+        },
+        {
+          "ticker": "MSE",
+          "mic": "ETFP",
+          "exchange": "Borsa Italiana",
+          "currency": "EUR",
+          "symbol": "MSE.MI",
+          "excerpt": "FR0007054358 | Borsa Italiana | MSE IM | EUR | MSE.MI",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "670d30ffe41545a2a402526eb5e3fb97c77350448a2d0b75a3babc870d14e9de",
+          "evidenceId": "FR0007054358-ETFP-MSE-EUR"
+        }
+      ],
       "urls": [
         "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
       ]
     },
     {
       "isin": "LU1681040223",
-      "listings": [],
+      "listings": [
+        {
+          "ticker": "AME6",
+          "mic": "XETR",
+          "exchange": "Xetra",
+          "currency": "EUR",
+          "symbol": "AME6.DE",
+          "excerpt": "LU1681040223 | Xetra | AME6 GY | EUR | AME6.DE",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "8183cbc5049a4faead582c472f3dded9f1f2d14e53b4a788a68c9d398f032eb8",
+          "evidenceId": "LU1681040223-XETR-AME6-EUR"
+        },
+        {
+          "ticker": "C6E",
+          "mic": "XPAR",
+          "exchange": "Euronext Paris",
+          "currency": "EUR",
+          "symbol": "C6E.PA",
+          "excerpt": "LU1681040223 | Euronext Paris | C6E FP | EUR | C6E.PA",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "8183cbc5049a4faead582c472f3dded9f1f2d14e53b4a788a68c9d398f032eb8",
+          "evidenceId": "LU1681040223-XPAR-C6E-EUR"
+        }
+      ],
       "urls": [
         "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
       ]
     },
     {
       "isin": "IE0003XJA0J9",
-      "listings": [],
+      "listings": [
+        {
+          "ticker": "WEBN",
+          "mic": "XETR",
+          "exchange": "Xetra",
+          "currency": "EUR",
+          "symbol": "WEBN.DE",
+          "excerpt": "IE0003XJA0J9 | Xetra | WEBN GY | EUR | WEBN.DE",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "f38f7b61b354e5e3c8a5e99ce33b77b6189dfcc4c275911938071e2515ef8d81",
+          "evidenceId": "IE0003XJA0J9-XETR-WEBN-EUR"
+        },
+        {
+          "ticker": "WEBQ",
+          "mic": "XETR",
+          "exchange": "Xetra",
+          "currency": "USD",
+          "symbol": "WEBNUSD.DE",
+          "excerpt": "IE0003XJA0J9 | Xetra | WEBQ GY | USD | WEBNUSD.DE",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "f38f7b61b354e5e3c8a5e99ce33b77b6189dfcc4c275911938071e2515ef8d81",
+          "evidenceId": "IE0003XJA0J9-XETR-WEBQ-USD"
+        },
+        {
+          "ticker": "WEBN",
+          "mic": "ETFP",
+          "exchange": "Borsa Italiana",
+          "currency": "EUR",
+          "symbol": "WEBN.MI",
+          "excerpt": "IE0003XJA0J9 | Borsa Italiana | WEBN IM | EUR | WEBN.MI",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "f38f7b61b354e5e3c8a5e99ce33b77b6189dfcc4c275911938071e2515ef8d81",
+          "evidenceId": "IE0003XJA0J9-ETFP-WEBN-EUR"
+        }
+      ],
       "urls": [
         "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
       ]
     },
     {
       "isin": "IE0009HF1MK9",
-      "listings": [],
+      "listings": [
+        {
+          "ticker": "WEBG",
+          "mic": "XETR",
+          "exchange": "Xetra",
+          "currency": "EUR",
+          "symbol": "WEBG.DE",
+          "excerpt": "IE0009HF1MK9 | Xetra | WEBG GY | EUR | WEBG.DE",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "62cc772c0bfb7ebba370608cbb0d4f15762b2ac74824f7bd405a24fa9ccf6b94",
+          "evidenceId": "IE0009HF1MK9-XETR-WEBG-EUR"
+        },
+        {
+          "ticker": "WEBJ",
+          "mic": "XETR",
+          "exchange": "Xetra",
+          "currency": "USD",
+          "symbol": "WEBGUSD.DE",
+          "excerpt": "IE0009HF1MK9 | Xetra | WEBJ GY | USD | WEBGUSD.DE",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "62cc772c0bfb7ebba370608cbb0d4f15762b2ac74824f7bd405a24fa9ccf6b94",
+          "evidenceId": "IE0009HF1MK9-XETR-WEBJ-USD"
+        },
+        {
+          "ticker": "WEBK",
+          "mic": "XETR",
+          "exchange": "Xetra",
+          "currency": "GBP",
+          "symbol": "WEBGGBP.DE",
+          "excerpt": "IE0009HF1MK9 | Xetra | WEBK GY | GBP | WEBGGBP.DE",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "62cc772c0bfb7ebba370608cbb0d4f15762b2ac74824f7bd405a24fa9ccf6b94",
+          "evidenceId": "IE0009HF1MK9-XETR-WEBK-GBP"
+        },
+        {
+          "ticker": "PACW",
+          "mic": "XLON",
+          "exchange": "London Stock Exchange",
+          "currency": "GBP",
+          "symbol": "PACW.L",
+          "excerpt": "IE0009HF1MK9 | LSE | PACW LN | GBP | PACW.L",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "62cc772c0bfb7ebba370608cbb0d4f15762b2ac74824f7bd405a24fa9ccf6b94",
+          "evidenceId": "IE0009HF1MK9-XLON-PACW-GBP"
+        }
+      ],
       "urls": [
         "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
       ]
@@ -283,70 +580,324 @@
     },
     {
       "isin": "IE00B3XXRP09",
-      "listings": [],
+      "listings": [
+        {
+          "ticker": "VUSA",
+          "mic": "XAMS",
+          "exchange": "Euronext Amsterdam",
+          "currency": "EUR",
+          "symbol": "VUSA.AS"
+        },
+        {
+          "ticker": "VUSA",
+          "mic": "XETR",
+          "exchange": "Xetra",
+          "currency": "EUR",
+          "symbol": "VUSA.DE"
+        },
+        {
+          "ticker": "VUSA",
+          "mic": "ETFP",
+          "exchange": "Borsa Italiana",
+          "currency": "EUR",
+          "symbol": "VUSA.MI"
+        },
+        {
+          "ticker": "VUSD",
+          "mic": "XLON",
+          "exchange": "London Stock Exchange",
+          "currency": "USD",
+          "symbol": "VUSD.L"
+        }
+      ],
       "urls": [
         "https://fund-docs.vanguard.com/SandP_500_UCITS_ETF_USD_Distributing_9503_EU_INT_UK_EN.pdf"
       ]
     },
     {
       "isin": "IE00BKWQ0Q14",
-      "listings": [],
+      "listings": [
+        {
+          "ticker": "ERO",
+          "mic": "XPAR",
+          "exchange": "Euronext Paris",
+          "currency": "EUR",
+          "symbol": "ERO.PA",
+          "excerpt": "IE00BKWQ0Q14 | Euronext Paris (Primary) EUR 08 Dec 2014 ERO BM67J78 ERO FP ERO.PA",
+          "sourceUrl": "https://www.ssga.com/fr/en_gb/institutional/etfs/state-street-spdr-msci-europe-ucits-etf-ero-fp",
+          "checkedAt": "2026-10-18",
+          "sha256": "284896bfa74526b99d1d7a39423cda82346a8e7aba2c420ab00ed68f9df35bc3",
+          "evidenceId": "IE00BKWQ0Q14-XPAR-ERO-EUR"
+        },
+        {
+          "ticker": "EROX",
+          "mic": "ETFP",
+          "exchange": "Borsa Italiana",
+          "currency": "EUR",
+          "symbol": "EROX.MI",
+          "excerpt": "IE00BKWQ0Q14 | Borsa Italiana EUR 10 Dec 2014 EROX BM67J89 EROX IM EROX.MI",
+          "sourceUrl": "https://www.ssga.com/fr/en_gb/institutional/etfs/state-street-spdr-msci-europe-ucits-etf-ero-fp",
+          "checkedAt": "2026-10-18",
+          "sha256": "284896bfa74526b99d1d7a39423cda82346a8e7aba2c420ab00ed68f9df35bc3",
+          "evidenceId": "IE00BKWQ0Q14-ETFP-EROX-EUR"
+        },
+        {
+          "ticker": "SPYE",
+          "mic": "XETR",
+          "exchange": "Xetra",
+          "currency": "EUR",
+          "symbol": "SPYE.DE"
+        }
+      ],
       "urls": [
         "https://www.ssga.com/fr/en_gb/institutional/etfs/state-street-spdr-msci-europe-ucits-etf-ero-fp"
       ]
     },
     {
       "isin": "IE00BFY0GT14",
-      "listings": [],
+      "listings": [
+        {
+          "ticker": "SWRD",
+          "mic": "ETFP",
+          "exchange": "Borsa Italiana",
+          "currency": "EUR",
+          "symbol": "SWRD.MI",
+          "excerpt": "IE00BFY0GT14 | Borsa Italiana EUR 04 Mar 2019 SWRD BGR32D0 SWRD IM SWRD.MI",
+          "sourceUrl": "https://www.ssga.com/fr/en_gb/institutional/etfs/state-street-spdr-msci-world-ucits-etf-acc-sppw-gy",
+          "checkedAt": "2026-10-18",
+          "sha256": "443bc55ca3c3b9df0c950b8e7c50cf5add65f5c1f10b94b9f146a55369cc5fc7",
+          "evidenceId": "IE00BFY0GT14-ETFP-SWRD-EUR"
+        },
+        {
+          "ticker": "SWRD",
+          "mic": "XAMS",
+          "exchange": "Euronext Amsterdam",
+          "currency": "EUR",
+          "symbol": "SWRD.AS",
+          "excerpt": "IE00BFY0GT14 | Euronext Amsterdam EUR 04 Mar 2019 SWRD BJDW5N3 SWRD NA SWRD.AS",
+          "sourceUrl": "https://www.ssga.com/fr/en_gb/institutional/etfs/state-street-spdr-msci-world-ucits-etf-acc-sppw-gy",
+          "checkedAt": "2026-10-18",
+          "sha256": "443bc55ca3c3b9df0c950b8e7c50cf5add65f5c1f10b94b9f146a55369cc5fc7",
+          "evidenceId": "IE00BFY0GT14-XAMS-SWRD-EUR"
+        },
+        {
+          "ticker": "SWRD",
+          "mic": "XLON",
+          "exchange": "London Stock Exchange",
+          "currency": "USD",
+          "symbol": "SWRD.L",
+          "excerpt": "IE00BFY0GT14 | London Stock Exchange USD 04 Mar 2019 SWRD BF3THV8 SWRD LN SWRD.L",
+          "sourceUrl": "https://www.ssga.com/fr/en_gb/institutional/etfs/state-street-spdr-msci-world-ucits-etf-acc-sppw-gy",
+          "checkedAt": "2026-10-18",
+          "sha256": "443bc55ca3c3b9df0c950b8e7c50cf5add65f5c1f10b94b9f146a55369cc5fc7",
+          "evidenceId": "IE00BFY0GT14-XLON-SWRD-USD"
+        },
+        {
+          "ticker": "SPPW",
+          "mic": "XETR",
+          "exchange": "Xetra",
+          "currency": "EUR",
+          "symbol": "SPPW.DE"
+        }
+      ],
       "urls": [
         "https://www.ssga.com/fr/en_gb/institutional/etfs/state-street-spdr-msci-world-ucits-etf-acc-sppw-gy"
       ]
     },
     {
       "isin": "IE000716YHJ7",
-      "listings": [],
+      "listings": [
+        {
+          "ticker": "FWRA",
+          "mic": "XLON",
+          "exchange": "London Stock Exchange",
+          "currency": "USD",
+          "symbol": "FWRA.L"
+        },
+        {
+          "ticker": "FWRA",
+          "mic": "XETR",
+          "exchange": "Xetra",
+          "currency": "EUR",
+          "symbol": "FWRA.DE"
+        },
+        {
+          "ticker": "FWRA",
+          "mic": "ETFP",
+          "exchange": "Borsa Italiana",
+          "currency": "EUR",
+          "symbol": "FWRA.MI"
+        }
+      ],
       "urls": [
         "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE000716YHJ7_factsheet_en.pdf"
       ]
     },
     {
       "isin": "IE0000QLH0G6",
-      "listings": [],
+      "listings": [
+        {
+          "ticker": "FTWD",
+          "mic": "XLON",
+          "exchange": "London Stock Exchange",
+          "currency": "USD",
+          "symbol": "FTWD.L"
+        },
+        {
+          "ticker": "FTWD",
+          "mic": "XETR",
+          "exchange": "Xetra",
+          "currency": "EUR",
+          "symbol": "FTWD.DE"
+        }
+      ],
       "urls": [
         "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE0000QLH0G6_factsheet_en.pdf"
       ]
     },
     {
       "isin": "IE00BDVPNG13",
-      "listings": [],
+      "listings": [
+        {
+          "ticker": "WTAI",
+          "mic": "XLON",
+          "exchange": "London Stock Exchange",
+          "currency": "USD",
+          "symbol": "WTAI.L",
+          "excerpt": "IE00BDVPNG13 | LSE USD WTAI WTAI LN WTAI.L BDVPP98 IE00BDVPNG13 A2N7KX 05/12/2018",
+          "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13",
+          "checkedAt": "2026-10-18",
+          "sha256": "bbc846a02db0cdb6351d112adb3b4d96d7c5fcf7cf19052c1e38059b291178dc",
+          "evidenceId": "IE00BDVPNG13-XLON-WTAI-USD"
+        },
+        {
+          "ticker": "WTI2",
+          "mic": "XETR",
+          "exchange": "Xetra",
+          "currency": "EUR",
+          "symbol": "WTI2.DE",
+          "excerpt": "IE00BDVPNG13 | Xetra EUR WTI2 WTI2 GY WTI2.DE BHXH5X4 IE00BDVPNG13 A2N7KX 14/01/2019",
+          "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13",
+          "checkedAt": "2026-10-18",
+          "sha256": "bbc846a02db0cdb6351d112adb3b4d96d7c5fcf7cf19052c1e38059b291178dc",
+          "evidenceId": "IE00BDVPNG13-XETR-WTI2-EUR"
+        },
+        {
+          "ticker": "WTAI",
+          "mic": "ETFP",
+          "exchange": "Borsa Italiana",
+          "currency": "EUR",
+          "symbol": "WTAI.MI",
+          "excerpt": "IE00BDVPNG13 | Borsa Italiana EUR WTAI WTAI IM WTAI.MI BG1VY90 IE00BDVPNG13 A2N7KX 11/12/2018",
+          "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13",
+          "checkedAt": "2026-10-18",
+          "sha256": "bbc846a02db0cdb6351d112adb3b4d96d7c5fcf7cf19052c1e38059b291178dc",
+          "evidenceId": "IE00BDVPNG13-ETFP-WTAI-EUR"
+        }
+      ],
       "urls": [
         "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13"
       ]
     },
     {
       "isin": "IE00BKLF1R75",
-      "listings": [],
+      "listings": [
+        {
+          "ticker": "W1TA",
+          "mic": "XETR",
+          "exchange": "Xetra",
+          "currency": "EUR",
+          "symbol": "W1TA.DE",
+          "excerpt": "IE00BKLF1R75 | Xetra EUR W1TA W1TA GY W1TA.DE BLCH4F8 IE00BKLF1R75 A2PUJK 04/03/2020",
+          "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BKLF1R75",
+          "checkedAt": "2026-10-18",
+          "sha256": "47401000eaf6590742b1c88a6ae209849b2fd19a12f564610565427c5f3ac66d",
+          "evidenceId": "IE00BKLF1R75-XETR-W1TA-EUR"
+        },
+        {
+          "ticker": "VOLT",
+          "mic": "ETFP",
+          "exchange": "Borsa Italiana",
+          "currency": "EUR",
+          "symbol": "VOLT.MI",
+          "excerpt": "IE00BKLF1R75 | Borsa Italiana EUR VOLT VOLT IM VOLT.MI BKLFGV6 IE00BKLF1R75 A2PUJK 04/03/2020",
+          "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BKLF1R75",
+          "checkedAt": "2026-10-18",
+          "sha256": "47401000eaf6590742b1c88a6ae209849b2fd19a12f564610565427c5f3ac66d",
+          "evidenceId": "IE00BKLF1R75-ETFP-VOLT-EUR"
+        },
+        {
+          "ticker": "VOLT",
+          "mic": "XLON",
+          "exchange": "London Stock Exchange",
+          "currency": "USD",
+          "symbol": "VOLT.L",
+          "excerpt": "IE00BKLF1R75 | LSE USD VOLT VOLT LN VOLT.L BKLFGS3 IE00BKLF1R75 A2PUJK 02/03/2020",
+          "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BKLF1R75",
+          "checkedAt": "2026-10-18",
+          "sha256": "47401000eaf6590742b1c88a6ae209849b2fd19a12f564610565427c5f3ac66d",
+          "evidenceId": "IE00BKLF1R75-XLON-VOLT-USD"
+        },
+        {
+          "ticker": "VOLT",
+          "mic": "XPAR",
+          "exchange": "Euronext Paris",
+          "currency": "EUR",
+          "symbol": "VOLT.PA"
+        }
+      ],
       "urls": [
         "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BKLF1R75"
       ]
     },
     {
       "isin": "IE00BLCHJB90",
-      "listings": [],
+      "listings": [
+        {
+          "ticker": "BOTZ",
+          "mic": "XLON",
+          "exchange": "London Stock Exchange",
+          "currency": "USD",
+          "symbol": "BOTZ.L"
+        },
+        {
+          "ticker": "XB0T",
+          "mic": "XETR",
+          "exchange": "Xetra",
+          "currency": "EUR",
+          "symbol": "XB0T.DE"
+        }
+      ],
       "urls": [
         "https://globalxetfs.eu/funds/botz/"
       ]
     },
     {
       "isin": "IE000NDWFGA5",
-      "listings": [],
+      "listings": [
+        {
+          "ticker": "URNU",
+          "mic": "XLON",
+          "exchange": "London Stock Exchange",
+          "currency": "USD",
+          "symbol": "URNU.L"
+        }
+      ],
       "urls": [
         "https://globalxetfs.eu/funds/urnu/"
       ]
     },
     {
       "isin": "IE00BMH5Y871",
-      "listings": [],
+      "listings": [
+        {
+          "ticker": "BUG",
+          "mic": "XLON",
+          "exchange": "London Stock Exchange",
+          "currency": "USD",
+          "symbol": "BUG.L"
+        }
+      ],
       "urls": [
         "https://globalxetfs.eu/funds/bug/"
       ]
@@ -360,42 +911,184 @@
     },
     {
       "isin": "IE00BK5BQX27",
-      "listings": [],
+      "listings": [
+        {
+          "ticker": "VWCG",
+          "mic": "XETR",
+          "exchange": "Xetra",
+          "currency": "EUR",
+          "symbol": "VWCG.DE"
+        }
+      ],
       "urls": [
         "https://fund-docs.vanguard.com/FTSE_Developed_Europe_UCITS_ETF_EUR_Accumulating_9681_EU_INT_UK_EN.pdf"
       ]
     },
     {
       "isin": "IE00B945VV12",
-      "listings": [],
+      "listings": [
+        {
+          "ticker": "VEUR",
+          "mic": "XAMS",
+          "exchange": "Euronext Amsterdam",
+          "currency": "EUR",
+          "symbol": "VEUR.AS"
+        },
+        {
+          "ticker": "VEUR",
+          "mic": "XETR",
+          "exchange": "Xetra",
+          "currency": "EUR",
+          "symbol": "VEUR.DE"
+        },
+        {
+          "ticker": "VEUR",
+          "mic": "ETFP",
+          "exchange": "Borsa Italiana",
+          "currency": "EUR",
+          "symbol": "VEUR.MI"
+        },
+        {
+          "ticker": "VEUD",
+          "mic": "XLON",
+          "exchange": "London Stock Exchange",
+          "currency": "USD",
+          "symbol": "VEUD.L"
+        }
+      ],
       "urls": [
         "https://fund-docs.vanguard.com/FTSE_Developed_Europe_UCITS_ETF_EUR_Distributing_9520_EU_INT_UK_EN.pdf"
       ]
     },
     {
       "isin": "IE00B3RBWM25",
-      "listings": [],
+      "listings": [
+        {
+          "ticker": "VWRL",
+          "mic": "XAMS",
+          "exchange": "Euronext Amsterdam",
+          "currency": "EUR",
+          "symbol": "VWRL.AS"
+        },
+        {
+          "ticker": "VGWL",
+          "mic": "XETR",
+          "exchange": "Xetra",
+          "currency": "EUR",
+          "symbol": "VGWL.DE"
+        },
+        {
+          "ticker": "VWRL",
+          "mic": "ETFP",
+          "exchange": "Borsa Italiana",
+          "currency": "EUR",
+          "symbol": "VWRL.MI"
+        },
+        {
+          "ticker": "VWRD",
+          "mic": "XLON",
+          "exchange": "London Stock Exchange",
+          "currency": "USD",
+          "symbol": "VWRD.L"
+        }
+      ],
       "urls": [
         "https://fund-docs.vanguard.com/FTSE_All-World_UCITS_ETF_USD_Distributing_9505_EU_INT_UK_EN.pdf"
       ]
     },
     {
       "isin": "IE00BK5BQV03",
-      "listings": [],
+      "listings": [
+        {
+          "ticker": "VGVF",
+          "mic": "XETR",
+          "exchange": "Xetra",
+          "currency": "EUR",
+          "symbol": "VGVF.DE"
+        },
+        {
+          "ticker": "VHVE",
+          "mic": "XLON",
+          "exchange": "London Stock Exchange",
+          "currency": "USD",
+          "symbol": "VHVE.L"
+        }
+      ],
       "urls": [
         "https://fund-docs.vanguard.com/FTSE_Developed_World_UCITS_ETF_USD_Accumulating_9675_EU_INT_UK_EN.pdf"
       ]
     },
     {
       "isin": "IE00BFMXXD54",
-      "listings": [],
+      "listings": [
+        {
+          "ticker": "VUAA",
+          "mic": "XETR",
+          "exchange": "Xetra",
+          "currency": "EUR",
+          "symbol": "VUAA.DE"
+        },
+        {
+          "ticker": "VUAA",
+          "mic": "ETFP",
+          "exchange": "Borsa Italiana",
+          "currency": "EUR",
+          "symbol": "VUAA.MI"
+        },
+        {
+          "ticker": "VUAA",
+          "mic": "XLON",
+          "exchange": "London Stock Exchange",
+          "currency": "USD",
+          "symbol": "VUAA.L"
+        }
+      ],
       "urls": [
         "https://fund-docs.vanguard.com/SandP_500_UCITS_ETF_USD_Accumulating_9694_EU_INT_UK_EN.pdf"
       ]
     },
     {
       "isin": "IE00BMC38736",
-      "listings": [],
+      "listings": [
+        {
+          "ticker": "SMH",
+          "mic": "ETFP",
+          "exchange": "Borsa Italiana",
+          "currency": "EUR",
+          "symbol": "SMH.MI",
+          "excerpt": "IE00BMC38736 | BORSA ITALIANA EUR IE00BMC38736 SMH SMH IM SMH.MI BNKD634 VVSMEUIV",
+          "sourceUrl": "https://www.vaneck.com/fr/en/library/fact-sheets/smh-fact-sheet.pdf",
+          "checkedAt": "2026-10-18",
+          "sha256": "a1dbf544f9bbdb4e6a7ecd2d46421f155dbc8e73e3cf126716b34b8aa6833682",
+          "evidenceId": "IE00BMC38736-ETFP-SMH-EUR"
+        },
+        {
+          "ticker": "SMH",
+          "mic": "XPAR",
+          "exchange": "Euronext Paris",
+          "currency": "EUR",
+          "symbol": "SMH.PA",
+          "excerpt": "IE00BMC38736 | EURONEXT PARIS EUR IE00BMC38736 SMH SMH FP SMH.PA BSNR3D7 VVSMEUIV",
+          "sourceUrl": "https://www.vaneck.com/fr/en/library/fact-sheets/smh-fact-sheet.pdf",
+          "checkedAt": "2026-10-18",
+          "sha256": "a1dbf544f9bbdb4e6a7ecd2d46421f155dbc8e73e3cf126716b34b8aa6833682",
+          "evidenceId": "IE00BMC38736-XPAR-SMH-EUR"
+        },
+        {
+          "ticker": "SMH",
+          "mic": "XLON",
+          "exchange": "London Stock Exchange",
+          "currency": "USD",
+          "symbol": "SMH.L"
+        },
+        {
+          "ticker": "VVSM",
+          "mic": "XETR",
+          "exchange": "Xetra",
+          "currency": "EUR",
+          "symbol": "VVSM.DE"
+        }
+      ],
       "urls": [
         "https://www.vaneck.com/fr/en/library/fact-sheets/smh-fact-sheet.pdf"
       ]
@@ -795,19 +1488,21 @@
       "listings": [
         {
           "ticker": "GPEA",
-          "exchange": "Euronext Paris",
           "mic": "XPAR",
+          "exchange": "Euronext Paris",
           "currency": "EUR",
-          "sourceUrl": "https://www.borsaitaliana.it/borsa/etf/scheda/FR0014017NX3-XPAR.html",
-          "checkedAt": "2026-09-30",
+          "symbol": "GPEA.PA",
+          "excerpt": "FR0014017NX3 | Euronext Paris | GPEA FP | EUR | GPEA.PA",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "3fd2967087b28a6f5e821db5d72dd769fb12456a58c2276c3c898859624bede1",
           "evidenceId": "FR0014017NX3-XPAR-GPEA-EUR"
         }
       ],
       "urls": [
         "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
         "https://www.amundietf.fr/pdfDocuments/prospectus/FR0014017NX3/FRA/FRA",
-        "https://www.justetf.com/fr/etf-profile.html?isin=FR0014017NX3",
-        "https://www.borsaitaliana.it/borsa/etf/scheda/FR0014017NX3-XPAR.html"
+        "https://www.justetf.com/fr/etf-profile.html?isin=FR0014017NX3"
       ]
     },
     {
@@ -818,17 +1513,41 @@
           "mic": "XPAR",
           "exchange": "Euronext Paris",
           "currency": "EUR",
-          "excerpt": "FR0010342592 | Euronext Paris EUR LQQ FP LQQIV LQQ.PA LQQINAV=SOLA",
-          "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0010342592/FRA/FRA/INSTITUTIONNEL/ETF",
+          "symbol": "LQQ.PA",
+          "excerpt": "FR0010342592 | Euronext Paris | LQQ FP | EUR | LQQ.PA",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
           "checkedAt": "2026-10-18",
-          "sha256": "d7ede226b9cbd6af303aab296244d26fdb4c28a94543cd43ad0bbeedcaafc79a",
+          "sha256": "85be811b30f50b8a2d205fe3cf2bcd6b8066b4820a3056179625424941231e6a",
           "evidenceId": "FR0010342592-XPAR-LQQ-EUR"
+        },
+        {
+          "ticker": "L8I7",
+          "mic": "XETR",
+          "exchange": "Xetra",
+          "currency": "EUR",
+          "symbol": "L8I7.DE",
+          "excerpt": "FR0010342592 | Xetra | L8I7 GY | EUR | L8I7.DE",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "85be811b30f50b8a2d205fe3cf2bcd6b8066b4820a3056179625424941231e6a",
+          "evidenceId": "FR0010342592-XETR-L8I7-EUR"
+        },
+        {
+          "ticker": "LQQ",
+          "mic": "ETFP",
+          "exchange": "Borsa Italiana",
+          "currency": "EUR",
+          "symbol": "LQQA.MI",
+          "excerpt": "FR0010342592 | Borsa Italiana | LQQ IM | EUR | LQQA.MI",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "85be811b30f50b8a2d205fe3cf2bcd6b8066b4820a3056179625424941231e6a",
+          "evidenceId": "FR0010342592-ETFP-LQQ-EUR"
         }
       ],
       "urls": [
         "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
-        "https://www.justetf.com/en/etf-profile.html?isin=FR0010342592",
-        "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0010342592/FRA/FRA/INSTITUTIONNEL/ETF"
+        "https://www.justetf.com/en/etf-profile.html?isin=FR0010342592"
       ]
     },
     {
@@ -849,10 +1568,10 @@
           "exchange": "Euronext Paris",
           "currency": "EUR",
           "symbol": "LYNRJ.PA",
-          "excerpt": "FR0010524777 | Euronext Paris EUR NRJ FP ENERIV LYNRJ.PA ENERINAV=SOLA",
-          "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0010524777/FRA/FRA/RETAIL/ETF",
+          "excerpt": "FR0010524777 | Euronext Paris | NRJ FP | EUR | LYNRJ.PA",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
           "checkedAt": "2026-10-18",
-          "sha256": "c3f2fb69cd5743f7797b1c85dec8a7888350670bf450de3efaa219c84fcc7ef2",
+          "sha256": "250c6fe3a26587904d762847aaad32868b973702bc2f9a6d9b880e207446f1a1",
           "evidenceId": "FR0010524777-XPAR-NRJ-EUR"
         },
         {
@@ -861,11 +1580,47 @@
           "exchange": "London Stock Exchange",
           "currency": "USD",
           "symbol": "NRJU.L",
-          "excerpt": "FR0010524777 | LSE USD NRJU LN NRJUIV NRJU.L NRJUUSDINAV=SOLA",
-          "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0010524777/FRA/FRA/RETAIL/ETF",
+          "excerpt": "FR0010524777 | LSE | NRJU LN | USD | NRJU.L",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
           "checkedAt": "2026-10-18",
-          "sha256": "c3f2fb69cd5743f7797b1c85dec8a7888350670bf450de3efaa219c84fcc7ef2",
+          "sha256": "250c6fe3a26587904d762847aaad32868b973702bc2f9a6d9b880e207446f1a1",
           "evidenceId": "FR0010524777-XLON-NRJU-USD"
+        },
+        {
+          "ticker": "ENER",
+          "mic": "ETFP",
+          "exchange": "Borsa Italiana",
+          "currency": "EUR",
+          "symbol": "ENY.MI",
+          "excerpt": "FR0010524777 | Borsa Italiana | ENER IM | EUR | ENY.MI",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "250c6fe3a26587904d762847aaad32868b973702bc2f9a6d9b880e207446f1a1",
+          "evidenceId": "FR0010524777-ETFP-ENER-EUR"
+        },
+        {
+          "ticker": "LYXNRJ",
+          "mic": "XETR",
+          "exchange": "Xetra",
+          "currency": "EUR",
+          "symbol": "LYM9.DE",
+          "excerpt": "FR0010524777 | Xetra | LYXNRJ GY | EUR | LYM9.DE",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "250c6fe3a26587904d762847aaad32868b973702bc2f9a6d9b880e207446f1a1",
+          "evidenceId": "FR0010524777-XETR-LYXNRJ-EUR"
+        },
+        {
+          "ticker": "NRJL",
+          "mic": "XLON",
+          "exchange": "London Stock Exchange",
+          "currency": "GBP",
+          "symbol": "NRJL.L",
+          "excerpt": "FR0010524777 | LSE | NRJL LN | GBP | NRJL.L",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "250c6fe3a26587904d762847aaad32868b973702bc2f9a6d9b880e207446f1a1",
+          "evidenceId": "FR0010524777-XLON-NRJL-GBP"
         }
       ],
       "urls": [
@@ -881,26 +1636,53 @@
           "mic": "XPAR",
           "exchange": "Euronext Paris",
           "currency": "EUR",
-          "excerpt": "FR0010527275 | Euronext Paris EUR WAT FP LYWATIV LYWAT.PA LYWATINAV=SOLA",
-          "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0010527275/FRA/FRA/INSTITUTIONNEL/ETF",
+          "symbol": "LYWAT.PA",
+          "excerpt": "FR0010527275 | Euronext Paris | WAT FP | EUR | LYWAT.PA",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
           "checkedAt": "2026-10-18",
-          "sha256": "a7f3cd0f1fa9053c14e51e8a362a8aff0eb3e7a7a94eea204f25f0a303c0ea23",
+          "sha256": "2051a06157251c085cdd013deb1e1f2ab7303194b14832e6549b6b2d6925f31d",
           "evidenceId": "FR0010527275-XPAR-WAT-EUR"
         },
         {
           "ticker": "WAT",
-          "exchange": "Borsa Italiana",
           "mic": "ETFP",
+          "exchange": "Borsa Italiana",
           "currency": "EUR",
-          "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0010527275/FRA/FRA/INSTITUTIONNEL/ETF",
-          "checkedAt": "2026-09-30",
+          "symbol": "H2O.MI",
+          "excerpt": "FR0010527275 | Borsa Italiana | WAT IM | EUR | H2O.MI",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "2051a06157251c085cdd013deb1e1f2ab7303194b14832e6549b6b2d6925f31d",
           "evidenceId": "FR0010527275-ETFP-WAT-EUR"
+        },
+        {
+          "ticker": "LYXWAT",
+          "mic": "XETR",
+          "exchange": "Xetra",
+          "currency": "EUR",
+          "symbol": "LYM8.DE",
+          "excerpt": "FR0010527275 | Xetra | LYXWAT GY | EUR | LYM8.DE",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "2051a06157251c085cdd013deb1e1f2ab7303194b14832e6549b6b2d6925f31d",
+          "evidenceId": "FR0010527275-XETR-LYXWAT-EUR"
+        },
+        {
+          "ticker": "WATU",
+          "mic": "XLON",
+          "exchange": "London Stock Exchange",
+          "currency": "USD",
+          "symbol": "WATU.L",
+          "excerpt": "FR0010527275 | LSE | WATU LN | USD | WATU.L",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "2051a06157251c085cdd013deb1e1f2ab7303194b14832e6549b6b2d6925f31d",
+          "evidenceId": "FR0010527275-XLON-WATU-USD"
         }
       ],
       "urls": [
         "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
-        "https://www.justetf.com/en/etf-profile.html?isin=FR0010527275",
-        "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0010527275/FRA/FRA/INSTITUTIONNEL/ETF"
+        "https://www.justetf.com/en/etf-profile.html?isin=FR0010527275"
       ]
     },
     {
@@ -908,18 +1690,44 @@
       "listings": [
         {
           "ticker": "CL2",
-          "exchange": "Euronext Paris",
           "mic": "XPAR",
+          "exchange": "Euronext Paris",
           "currency": "EUR",
-          "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0010755611/FRA/FRA/INSTITUTIONNEL/ETF",
-          "checkedAt": "2026-10-04",
+          "symbol": "CL2.PA",
+          "excerpt": "FR0010755611 | Euronext Paris | CL2 FP | EUR | CL2.PA",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "bd5bbf6217322165f65725206057f1839fb24d548bfd281c50cee2cc082c25cf",
           "evidenceId": "FR0010755611-XPAR-CL2-EUR"
+        },
+        {
+          "ticker": "CL2GR",
+          "mic": "XETR",
+          "exchange": "Xetra",
+          "currency": "EUR",
+          "symbol": "18MF.DE",
+          "excerpt": "FR0010755611 | Xetra | CL2GR GY | EUR | 18MF.DE",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "bd5bbf6217322165f65725206057f1839fb24d548bfd281c50cee2cc082c25cf",
+          "evidenceId": "FR0010755611-XETR-CL2GR-EUR"
+        },
+        {
+          "ticker": "CL2",
+          "mic": "ETFP",
+          "exchange": "Borsa Italiana",
+          "currency": "EUR",
+          "symbol": "CL2.MI",
+          "excerpt": "FR0010755611 | Borsa Italiana | CL2 IM | EUR | CL2.MI",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "bd5bbf6217322165f65725206057f1839fb24d548bfd281c50cee2cc082c25cf",
+          "evidenceId": "FR0010755611-ETFP-CL2-EUR"
         }
       ],
       "urls": [
         "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
-        "https://www.justetf.com/en/etf-profile.html?isin=FR0010755611",
-        "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0010755611/FRA/FRA/INSTITUTIONNEL/ETF"
+        "https://www.justetf.com/en/etf-profile.html?isin=FR0010755611"
       ]
     },
     {
@@ -930,17 +1738,17 @@
           "mic": "XPAR",
           "exchange": "Euronext Paris",
           "currency": "EUR",
-          "excerpt": "FR0011440478 | Euronext Paris EUR PLEM FP PLEMIV PLEM.PA PLEMINAV=SOLA",
-          "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011440478/FRA/FRA/INSTITUTIONNEL/ETF",
+          "symbol": "PLEM.PA",
+          "excerpt": "FR0011440478 | Euronext Paris | PLEM FP | EUR | PLEM.PA",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
           "checkedAt": "2026-10-18",
-          "sha256": "8dcd8021a8faa0aea451a790eaa17b23c2aa86a1ecfacff864d73e90b6870a9e",
+          "sha256": "131c94d1189f4c806f8fc99922c0aada1367cf878852211649f4c944e22d0f2e",
           "evidenceId": "FR0011440478-XPAR-PLEM-EUR"
         }
       ],
       "urls": [
         "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
-        "https://www.justetf.com/fr/etf-profile.html?isin=FR0011440478",
-        "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011440478/FRA/FRA/INSTITUTIONNEL/ETF"
+        "https://www.justetf.com/fr/etf-profile.html?isin=FR0011440478"
       ]
     },
     {
@@ -951,10 +1759,11 @@
           "mic": "XPAR",
           "exchange": "Euronext Paris",
           "currency": "EUR",
-          "excerpt": "FR0011869320 | Euronext Paris EUR PINR FP PINRIV PINR.PA PINRINAV=SOLA",
-          "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011869320/FRA/FRA/INSTITUTIONNEL/ETF",
+          "symbol": "PINR.PA",
+          "excerpt": "FR0011869320 | Euronext Paris | PINR FP | EUR | PINR.PA",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
           "checkedAt": "2026-10-18",
-          "sha256": "808a7e3768d70f84fa867ffa82e062d2da48c6ada775861dbad82078f426c72e",
+          "sha256": "b7f1915ce2ff9263eff53e41d66ef1571db9dec8d41c447e93c8a97299e24f91",
           "evidenceId": "FR0011869320-XPAR-PINR-EUR"
         }
       ],
@@ -966,7 +1775,20 @@
     },
     {
       "isin": "FR0011871078",
-      "listings": [],
+      "listings": [
+        {
+          "ticker": "PASI",
+          "mic": "XPAR",
+          "exchange": "Euronext Paris",
+          "currency": "EUR",
+          "symbol": "PASI.PA",
+          "excerpt": "FR0011871078 | Euronext Paris | PASI FP | EUR | PASI.PA",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "2a0e316b5fb804645c8f027cb6bd3b54822078d6560c2841f98504f9db5e2ef5",
+          "evidenceId": "FR0011871078-XPAR-PASI-EUR"
+        }
+      ],
       "urls": [
         "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
         "https://www.justetf.com/fr/etf-profile.html?isin=FR0011871078"
@@ -980,18 +1802,18 @@
           "mic": "XPAR",
           "exchange": "Euronext Paris",
           "currency": "EUR",
-          "excerpt": "FR0011871110 | Euronext Paris EUR PUST FP PUSTIV PUST.PA PUSTINAV=SOLA",
-          "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011871110/FRA/FRA/INSTITUTIONNEL/ETF",
+          "symbol": "PUST.PA",
+          "excerpt": "FR0011871110 | Euronext Paris | PUST FP | EUR | PUST.PA",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
           "checkedAt": "2026-10-18",
-          "sha256": "0e4c59822afbc99c23b25cc9ccb955119c8086d38d64118c62b63a6d04cd9efd",
+          "sha256": "ad9add47b946a524b337273adb65f37e0999653e80482afaff3c04966f6525e3",
           "evidenceId": "FR0011871110-XPAR-PUST-EUR"
         }
       ],
       "urls": [
         "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
         "https://www.justetf.com/en/etf-profile.html?isin=FR0011871110",
-        "https://www.justetf.com/fr/etf-profile.html?isin=FR0011871110",
-        "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011871110/FRA/FRA/INSTITUTIONNEL/ETF"
+        "https://www.justetf.com/fr/etf-profile.html?isin=FR0011871110"
       ]
     },
     {
@@ -999,19 +1821,21 @@
       "listings": [
         {
           "ticker": "PSP5",
-          "exchange": "Euronext Paris",
           "mic": "XPAR",
+          "exchange": "Euronext Paris",
           "currency": "EUR",
-          "sourceUrl": "https://www.borsaitaliana.it/borsa/etf/scheda/FR0011871128-XPAR.html",
-          "checkedAt": "2026-09-30",
+          "symbol": "PSP5.PA",
+          "excerpt": "FR0011871128 | Euronext Paris | PSP5 FP | EUR | PSP5.PA",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "33f0a86290b463cc6ddc09ccc73c9685577e8b924c980253f354c8f7e3e15c8a",
           "evidenceId": "FR0011871128-XPAR-PSP5-EUR"
         }
       ],
       "urls": [
         "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
         "https://www.justetf.com/en/etf-profile.html?isin=FR0011871128",
-        "https://www.justetf.com/fr/etf-profile.html?isin=FR0011871128",
-        "https://www.borsaitaliana.it/borsa/etf/scheda/FR0011871128-XPAR.html"
+        "https://www.justetf.com/fr/etf-profile.html?isin=FR0011871128"
       ]
     },
     {
@@ -1019,23 +1843,38 @@
       "listings": [
         {
           "ticker": "CACC",
-          "exchange": "Euronext Paris",
           "mic": "XPAR",
+          "exchange": "Euronext Paris",
           "currency": "EUR",
-          "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013380607/FRA/FRA/RETAIL/ETF",
-          "checkedAt": "2026-10-04",
+          "symbol": "CACC.PA",
+          "excerpt": "FR0013380607 | Euronext Paris | CACC FP | EUR | CACC.PA",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "199345dc5242c47fa33209e2ec1075e632f5afd8ee3b80132986b619600f8b57",
           "evidenceId": "FR0013380607-XPAR-CACC-EUR"
         }
       ],
       "urls": [
         "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
-        "https://www.justetf.com/en/etf-profile.html?isin=FR0013380607",
-        "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013380607/FRA/FRA/RETAIL/ETF"
+        "https://www.justetf.com/en/etf-profile.html?isin=FR0013380607"
       ]
     },
     {
       "isin": "FR0013411980",
-      "listings": [],
+      "listings": [
+        {
+          "ticker": "PTPXE",
+          "mic": "XPAR",
+          "exchange": "Euronext Paris",
+          "currency": "EUR",
+          "symbol": "PTPXE.PA",
+          "excerpt": "FR0013411980 | Euronext Paris | PTPXE FP | EUR | PTPXE.PA",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "02545ca17f3bdd4912c9b33c80e2237e961a935b8e741d1bf83913f178007103",
+          "evidenceId": "FR0013411980-XPAR-PTPXE-EUR"
+        }
+      ],
       "urls": [
         "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
         "https://www.justetf.com/fr/etf-profile.html?isin=FR0013411980"
@@ -1046,19 +1885,21 @@
       "listings": [
         {
           "ticker": "PTPXH",
-          "exchange": "Euronext Paris",
           "mic": "XPAR",
+          "exchange": "Euronext Paris",
           "currency": "EUR",
-          "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013411998/FRA/FRA/INSTITUTIONNEL/ETF",
-          "checkedAt": "2026-09-30",
+          "symbol": "PTPXH.PA",
+          "excerpt": "FR0013411998 | Euronext Paris | PTPXH FP | EUR | PTPXH.PA",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "e67038c5bf5458ab5f30869ba0a80528a8ff610ef979ac110e7849d54ed3f921",
           "evidenceId": "FR0013411998-XPAR-PTPXH-EUR"
         }
       ],
       "urls": [
         "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
         "https://www.justetf.com/en/etf-profile.html?isin=FR0013411998",
-        "https://www.justetf.com/fr/etf-profile.html?isin=FR0013411998",
-        "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013411998/FRA/FRA/INSTITUTIONNEL/ETF"
+        "https://www.justetf.com/fr/etf-profile.html?isin=FR0013411998"
       ]
     },
     {
@@ -1066,18 +1907,20 @@
       "listings": [
         {
           "ticker": "PALAT",
-          "exchange": "Euronext Paris",
           "mic": "XPAR",
+          "exchange": "Euronext Paris",
           "currency": "EUR",
-          "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013412004/FRA/FRA/INSTITUTIONNEL/ETF",
-          "checkedAt": "2026-09-30",
+          "symbol": "PALAT.PA",
+          "excerpt": "FR0013412004 | Euronext Paris | PALAT FP | EUR | PALAT.PA",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "ee46a66e5e0527b5ab18b2e9456c4241931342027476a406e7c269a9def27031",
           "evidenceId": "FR0013412004-XPAR-PALAT-EUR"
         }
       ],
       "urls": [
         "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
-        "https://www.justetf.com/fr/etf-profile.html?isin=FR0013412004",
-        "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013412004/FRA/FRA/INSTITUTIONNEL/ETF"
+        "https://www.justetf.com/fr/etf-profile.html?isin=FR0013412004"
       ]
     },
     {
@@ -1088,17 +1931,17 @@
           "mic": "XPAR",
           "exchange": "Euronext Paris",
           "currency": "EUR",
-          "excerpt": "FR0013412012 | Euronext Paris EUR PAASI FP IPAAS PAASI.PA IPAAS=BNPP",
-          "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013412012/FRA/FRA/INSTITUTIONNEL/ETF",
+          "symbol": "PAASI.PA",
+          "excerpt": "FR0013412012 | Euronext Paris | PAASI FP | EUR | PAASI.PA",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
           "checkedAt": "2026-10-18",
-          "sha256": "4902973723ac1270c9498ab3e87291c40e35e5c5dfa09d8d12a3f036077cee2a",
+          "sha256": "bfb4e0243189283198ad3d62199c6a294dba25a3e6812518d25f847004ce234a",
           "evidenceId": "FR0013412012-XPAR-PAASI-EUR"
         }
       ],
       "urls": [
         "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
-        "https://www.justetf.com/fr/etf-profile.html?isin=FR0013412012",
-        "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013412012/FRA/FRA/INSTITUTIONNEL/ETF"
+        "https://www.justetf.com/fr/etf-profile.html?isin=FR0013412012"
       ]
     },
     {
@@ -1109,10 +1952,11 @@
           "mic": "XPAR",
           "exchange": "Euronext Paris",
           "currency": "EUR",
-          "excerpt": "FR0013412020 | Euronext Paris EUR PAEEM FP IPAEE PAEEM.PA IPAEE=BNPP",
-          "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013412020/FRA/FRA/INSTITUTIONNEL/ETF",
+          "symbol": "PAEEM.PA",
+          "excerpt": "FR0013412020 | Euronext Paris | PAEEM FP | EUR | PAEEM.PA",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
           "checkedAt": "2026-10-18",
-          "sha256": "fbe6905fca95a2676b318ef6d78f5e8de3fc96787c7ef408b47aa971870cbc7f",
+          "sha256": "fb0e4a3c461ce84c673d7912a23b8e218cea444003e03d3f60122a5961764658",
           "evidenceId": "FR0013412020-XPAR-PAEEM-EUR"
         }
       ],
@@ -1130,18 +1974,18 @@
           "mic": "XPAR",
           "exchange": "Euronext Paris",
           "currency": "EUR",
-          "excerpt": "FR0013412038 | Euronext Paris EUR PCEU FP IPCEU PCEU.PA IPCEU=BNPP",
-          "sourceUrl": "https://www.amundietf.fr/pdfDocuments/download/c4f606a3-f783-4553-b7f6-143137c8d964/MonthlyFactsheet_4386409_CL78022_FRA_ENG_ETF_INSTITUTIONNEL_20260430.pdf",
+          "symbol": "PCEU.PA",
+          "excerpt": "FR0013412038 | Euronext Paris | PCEU FP | EUR | PCEU.PA",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
           "checkedAt": "2026-10-18",
-          "sha256": "edcac71cb72c4dfad480cb02f0f11f0b07d6c827d62f813c93b7e322009512da",
+          "sha256": "cba0f6f2152454355647f528c97d59e09119da4452e265b2680141f5233b4909",
           "evidenceId": "FR0013412038-XPAR-PCEU-EUR"
         }
       ],
       "urls": [
         "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
         "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013412038/FRA/FRA/INSTITUTIONNEL/ETF",
-        "https://www.justetf.com/fr/etf-profile.html?isin=FR0013412038",
-        "https://www.amundietf.fr/pdfDocuments/download/c4f606a3-f783-4553-b7f6-143137c8d964/MonthlyFactsheet_4386409_CL78022_FRA_ENG_ETF_INSTITUTIONNEL_20260430.pdf"
+        "https://www.justetf.com/fr/etf-profile.html?isin=FR0013412038"
       ]
     },
     {
@@ -1153,11 +1997,11 @@
           "exchange": "Euronext Paris",
           "currency": "EUR",
           "symbol": "AMGOLD.PA",
-          "evidenceId": "FR0013416716-XPAR-GOLD-EUR",
+          "excerpt": "FR0013416716 | Euronext Paris | GOLD FP | EUR | AMGOLD.PA",
           "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
-          "checkedAt": "2026-10-17",
-          "excerpt": "FR0013416716 | Euronext Paris EUR GOLD FP AMGOLD.PA FR0013416716",
-          "sha256": "c1a451aca80a1a0a6919a713b0816c56f95155ec6eef4a01b4b60ede1a6ea90b"
+          "checkedAt": "2026-10-18",
+          "sha256": "13135fa1f7706f745a9c8981673c4e3accbe983903cb05412804e3744525bf51",
+          "evidenceId": "FR0013416716-XPAR-GOLD-EUR"
         },
         {
           "ticker": "GLDA",
@@ -1165,11 +2009,11 @@
           "exchange": "Xetra",
           "currency": "EUR",
           "symbol": "GLDA.DE",
-          "evidenceId": "FR0013416716-XETR-GLDA-EUR",
+          "excerpt": "FR0013416716 | Xetra | GLDA GY | EUR | GLDA.DE",
           "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
-          "checkedAt": "2026-10-17",
-          "excerpt": "FR0013416716 | Xetra EUR GLDA GY GLDA.DE FR0013416716",
-          "sha256": "c1a451aca80a1a0a6919a713b0816c56f95155ec6eef4a01b4b60ede1a6ea90b"
+          "checkedAt": "2026-10-18",
+          "sha256": "13135fa1f7706f745a9c8981673c4e3accbe983903cb05412804e3744525bf51",
+          "evidenceId": "FR0013416716-XETR-GLDA-EUR"
         },
         {
           "ticker": "GLDD",
@@ -1177,11 +2021,35 @@
           "exchange": "London Stock Exchange",
           "currency": "USD",
           "symbol": "GLDD.L",
-          "evidenceId": "FR0013416716-XLON-GLDD-USD",
+          "excerpt": "FR0013416716 | LSE | GLDD LN | USD | GLDD.L",
           "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
-          "checkedAt": "2026-10-17",
-          "excerpt": "FR0013416716 | LSE USD GLDD LN GLDD.L FR0013416716",
-          "sha256": "c1a451aca80a1a0a6919a713b0816c56f95155ec6eef4a01b4b60ede1a6ea90b"
+          "checkedAt": "2026-10-18",
+          "sha256": "13135fa1f7706f745a9c8981673c4e3accbe983903cb05412804e3744525bf51",
+          "evidenceId": "FR0013416716-XLON-GLDD-USD"
+        },
+        {
+          "ticker": "GOLD",
+          "mic": "XAMS",
+          "exchange": "Euronext Amsterdam",
+          "currency": "USD",
+          "symbol": "AMGOLD.AS",
+          "excerpt": "FR0013416716 | Euronext Amsterdam | GOLD NA | USD | AMGOLD.AS",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "13135fa1f7706f745a9c8981673c4e3accbe983903cb05412804e3744525bf51",
+          "evidenceId": "FR0013416716-XAMS-GOLD-USD"
+        },
+        {
+          "ticker": "GOLD",
+          "mic": "ETFP",
+          "exchange": "Borsa Italiana",
+          "currency": "EUR",
+          "symbol": "AGOLD.MI",
+          "excerpt": "FR0013416716 | Borsa Italiana | GOLD IM | EUR | AGOLD.MI",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "13135fa1f7706f745a9c8981673c4e3accbe983903cb05412804e3744525bf51",
+          "evidenceId": "FR0013416716-ETFP-GOLD-EUR"
         }
       ],
       "urls": [
@@ -1194,18 +2062,20 @@
       "listings": [
         {
           "ticker": "MLUX",
-          "exchange": "Euronext Paris",
           "mic": "XPAR",
+          "exchange": "Euronext Paris",
           "currency": "EUR",
-          "sourceUrl": "https://live.euronext.com/en/product/etfs/FR001400S9V0-XPAR",
-          "checkedAt": "2026-10-11",
+          "symbol": "MLUX.PA",
+          "excerpt": "FR001400S9V0 | Euronext Paris | MLUX FP | EUR | MLUX.PA",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "1631d8b066c2623f17a3d0fbf09d5e971bc67ceb3595d642313750235b271530",
           "evidenceId": "FR001400S9V0-XPAR-MLUX-EUR"
         }
       ],
       "urls": [
         "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
-        "https://www.justetf.com/fr/etf-profile.html?isin=FR001400S9V0",
-        "https://live.euronext.com/en/product/etfs/FR001400S9V0-XPAR"
+        "https://www.justetf.com/fr/etf-profile.html?isin=FR001400S9V0"
       ]
     },
     {
@@ -1216,23 +2086,72 @@
           "mic": "XPAR",
           "exchange": "Euronext Paris",
           "currency": "EUR",
-          "excerpt": "FR001400U5Q4 | Euronext Paris EUR DCAM FP DCAMEUIV DCAM.PA IDCAMEURINAV=SOLA",
-          "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR001400U5Q4/FRA/FRA/INSTITUTIONNEL/ETF",
+          "symbol": "DCAM.PA",
+          "excerpt": "FR001400U5Q4 | Euronext Paris | DCAM FP | EUR | DCAM.PA",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
           "checkedAt": "2026-10-18",
-          "sha256": "086a9e7e4eb1952a61cfe53c572963a0a3aaf847827d838d3a3bf8969d7a594f",
+          "sha256": "19c624b28471f548fcc9b9b9d6b992c49e89a4adc4132aedcc39e4f33b07aff6",
           "evidenceId": "FR001400U5Q4-XPAR-DCAM-EUR"
         }
       ],
       "urls": [
         "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
         "https://www.justetf.com/en/etf-profile.html?isin=FR001400U5Q4",
-        "https://www.justetf.com/fr/etf-profile.html?isin=FR001400U5Q4",
-        "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR001400U5Q4/FRA/FRA/INSTITUTIONNEL/ETF"
+        "https://www.justetf.com/fr/etf-profile.html?isin=FR001400U5Q4"
       ]
     },
     {
       "isin": "LU0908500753",
-      "listings": [],
+      "listings": [
+        {
+          "ticker": "LYP6",
+          "mic": "XETR",
+          "exchange": "Xetra",
+          "currency": "EUR",
+          "symbol": "LYP6.DE",
+          "excerpt": "LU0908500753 | Xetra | LYP6 GY | EUR | LYP6.DE",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "80e4111c894fb375d12a7191a13672724bc4e612635361e848e4f4e200b0d5a7",
+          "evidenceId": "LU0908500753-XETR-LYP6-EUR"
+        },
+        {
+          "ticker": "MEUD",
+          "mic": "XPAR",
+          "exchange": "Euronext Paris",
+          "currency": "EUR",
+          "symbol": "MEUD.PA",
+          "excerpt": "LU0908500753 | Euronext Paris | MEUD FP | EUR | MEUD.PA",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "80e4111c894fb375d12a7191a13672724bc4e612635361e848e4f4e200b0d5a7",
+          "evidenceId": "LU0908500753-XPAR-MEUD-EUR"
+        },
+        {
+          "ticker": "MEUD",
+          "mic": "ETFP",
+          "exchange": "Borsa Italiana",
+          "currency": "EUR",
+          "symbol": "MEUD.MI",
+          "excerpt": "LU0908500753 | Borsa Italiana | MEUD IM | EUR | MEUD.MI",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "80e4111c894fb375d12a7191a13672724bc4e612635361e848e4f4e200b0d5a7",
+          "evidenceId": "LU0908500753-ETFP-MEUD-EUR"
+        },
+        {
+          "ticker": "MEUS",
+          "mic": "XLON",
+          "exchange": "London Stock Exchange",
+          "currency": "USD",
+          "symbol": "MEUS.L",
+          "excerpt": "LU0908500753 | LSE | MEUS LN | USD | MEUS.L",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "80e4111c894fb375d12a7191a13672724bc4e612635361e848e4f4e200b0d5a7",
+          "evidenceId": "LU0908500753-XLON-MEUS-USD"
+        }
+      ],
       "urls": [
         "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
       ]
@@ -1242,18 +2161,44 @@
       "listings": [
         {
           "ticker": "EPRA",
-          "exchange": "Euronext Paris",
           "mic": "XPAR",
+          "exchange": "Euronext Paris",
           "currency": "EUR",
-          "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1437018838/FRA/FRA/INSTITUTIONNEL/ETF",
-          "checkedAt": "2026-10-04",
+          "symbol": "EPRA.PA",
+          "excerpt": "LU1437018838 | Euronext Paris | EPRA FP | EUR | EPRA.PA",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "92c8a092a2a3a89dadc02d8ef347201b639382f65218c246e389b1fc59b9f495",
           "evidenceId": "LU1437018838-XPAR-EPRA-EUR"
+        },
+        {
+          "ticker": "EPRA",
+          "mic": "ETFP",
+          "exchange": "Borsa Italiana",
+          "currency": "EUR",
+          "symbol": "EPRA.MI",
+          "excerpt": "LU1437018838 | Borsa Italiana | EPRA IM | EUR | EPRA.MI",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "92c8a092a2a3a89dadc02d8ef347201b639382f65218c246e389b1fc59b9f495",
+          "evidenceId": "LU1437018838-ETFP-EPRA-EUR"
+        },
+        {
+          "ticker": "EPRU",
+          "mic": "XAMS",
+          "exchange": "Euronext Amsterdam",
+          "currency": "USD",
+          "symbol": "EPRA.AS",
+          "excerpt": "LU1437018838 | Euronext Amsterdam | EPRU NA | USD | EPRA.AS",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "92c8a092a2a3a89dadc02d8ef347201b639382f65218c246e389b1fc59b9f495",
+          "evidenceId": "LU1437018838-XAMS-EPRU-USD"
         }
       ],
       "urls": [
         "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
-        "https://www.justetf.com/en/etf-profile.html?isin=LU1437018838",
-        "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1437018838/FRA/FRA/INSTITUTIONNEL/ETF"
+        "https://www.justetf.com/en/etf-profile.html?isin=LU1437018838"
       ]
     },
     {
@@ -1264,28 +2209,54 @@
           "mic": "XPAR",
           "exchange": "Euronext Paris",
           "currency": "EUR",
-          "excerpt": "LU1681043599 | Euronext Paris EUR CW8 FP INCW8 CW8.PA INCW8=BNPP",
-          "sourceUrl": "https://www.amundietf.fr/pdfDocuments/download/0c01e75c-5cc9-4713-9308-cef750de2338/MonthlyFactsheet_4383940_CL54770_FRA_ENG_ETF_INSTITUTIONNEL_20260430.pdf",
+          "symbol": "CW8.PA",
+          "excerpt": "LU1681043599 | Euronext Paris | CW8 FP | EUR | CW8.PA",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
           "checkedAt": "2026-10-18",
-          "sha256": "22b30302a1ab73d0d2a8e32cb98a4e7a047365a5bb81f78a2cd9266396e3ae90",
+          "sha256": "899932e05a0cbb438a91b6a94fca01fef66152c18d4d0d36be9a1f05c62c881f",
           "evidenceId": "LU1681043599-XPAR-CW8-EUR"
         },
         {
           "ticker": "CW8",
-          "exchange": "Borsa Italiana",
           "mic": "ETFP",
+          "exchange": "Borsa Italiana",
           "currency": "EUR",
-          "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1681043599/FRA/FRA/INSTITUTIONNEL/ETF",
-          "checkedAt": "2026-09-30",
+          "symbol": "CW8.MI",
+          "excerpt": "LU1681043599 | Borsa Italiana | CW8 IM | EUR | CW8.MI",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "899932e05a0cbb438a91b6a94fca01fef66152c18d4d0d36be9a1f05c62c881f",
           "evidenceId": "LU1681043599-ETFP-CW8-EUR"
+        },
+        {
+          "ticker": "AMEW",
+          "mic": "XETR",
+          "exchange": "Xetra",
+          "currency": "EUR",
+          "symbol": "AMEW.DE",
+          "excerpt": "LU1681043599 | Xetra | AMEW GY | EUR | AMEW.DE",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "899932e05a0cbb438a91b6a94fca01fef66152c18d4d0d36be9a1f05c62c881f",
+          "evidenceId": "LU1681043599-XETR-AMEW-EUR"
+        },
+        {
+          "ticker": "AMEX",
+          "mic": "XETR",
+          "exchange": "Xetra",
+          "currency": "USD",
+          "symbol": "AMEWUSD.DE",
+          "excerpt": "LU1681043599 | Xetra | AMEX GY | USD | AMEWUSD.DE",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "899932e05a0cbb438a91b6a94fca01fef66152c18d4d0d36be9a1f05c62c881f",
+          "evidenceId": "LU1681043599-XETR-AMEX-USD"
         }
       ],
       "urls": [
         "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
         "https://www.justetf.com/en/etf-profile.html?isin=LU1681043599",
-        "https://www.justetf.com/fr/etf-profile.html?isin=LU1681043599",
-        "https://www.amundietf.fr/pdfDocuments/download/0c01e75c-5cc9-4713-9308-cef750de2338/MonthlyFactsheet_4383940_CL54770_FRA_ENG_ETF_INSTITUTIONNEL_20260430.pdf",
-        "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1681043599/FRA/FRA/INSTITUTIONNEL/ETF"
+        "https://www.justetf.com/fr/etf-profile.html?isin=LU1681043599"
       ]
     },
     {
@@ -1296,17 +2267,41 @@
           "mic": "XPAR",
           "exchange": "Euronext Paris",
           "currency": "EUR",
-          "excerpt": "LU1681045370 | Euronext Paris EUR AEEM FP IAEEM AEEM.PA IAEEM=BNPP",
-          "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1681045370/FRA/FRA/INSTITUTIONNEL/ETF",
+          "symbol": "AEEM.PA",
+          "excerpt": "LU1681045370 | Euronext Paris | AEEM FP | EUR | AEEM.PA",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
           "checkedAt": "2026-10-18",
-          "sha256": "3bd79ded1d40a2c2102e8f5d5780ff22870355ecd9a5064c06cabd978fc12bf7",
+          "sha256": "c4690b1e0caca7f9348b4f8bf74a4f252bc9435ef6d2cf85add5e49d053940be",
           "evidenceId": "LU1681045370-XPAR-AEEM-EUR"
+        },
+        {
+          "ticker": "AEEM",
+          "mic": "ETFP",
+          "exchange": "Borsa Italiana",
+          "currency": "EUR",
+          "symbol": "AEEM.MI",
+          "excerpt": "LU1681045370 | Borsa Italiana | AEEM IM | EUR | AEEM.MI",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "c4690b1e0caca7f9348b4f8bf74a4f252bc9435ef6d2cf85add5e49d053940be",
+          "evidenceId": "LU1681045370-ETFP-AEEM-EUR"
+        },
+        {
+          "ticker": "AMEM",
+          "mic": "XETR",
+          "exchange": "Xetra",
+          "currency": "EUR",
+          "symbol": "AMEM.DE",
+          "excerpt": "LU1681045370 | Xetra | AMEM GY | EUR | AMEM.DE",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "c4690b1e0caca7f9348b4f8bf74a4f252bc9435ef6d2cf85add5e49d053940be",
+          "evidenceId": "LU1681045370-XETR-AMEM-EUR"
         }
       ],
       "urls": [
         "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
-        "https://www.justetf.com/en/etf-profile.html?isin=LU1681045370",
-        "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1681045370/FRA/FRA/INSTITUTIONNEL/ETF"
+        "https://www.justetf.com/en/etf-profile.html?isin=LU1681045370"
       ]
     },
     {
@@ -1317,19 +2312,23 @@
           "mic": "XPAR",
           "exchange": "Euronext Paris",
           "currency": "EUR",
-          "excerpt": "LU1681047236 | Euronext Paris EUR C50 FP INC50 C50.PA INC50=BNPP",
-          "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1681047236/ENG/FRA/INSTITUTIONNEL/ETF",
+          "symbol": "C50.PA",
+          "excerpt": "LU1681047236 | Euronext Paris | C50 FP | EUR | C50.PA",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
           "checkedAt": "2026-10-18",
-          "sha256": "e169a834b03576ecf1ee0eca278651f296cf3907365a8d598a76ba94ac876107",
+          "sha256": "47878f3bcb0301f15add01f69d2e3615c59837d71af1dfe81f34e78977103366",
           "evidenceId": "LU1681047236-XPAR-C50-EUR"
         },
         {
           "ticker": "C50",
-          "exchange": "Borsa Italiana",
           "mic": "ETFP",
+          "exchange": "Borsa Italiana",
           "currency": "EUR",
-          "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1681047236/FRA/FRA/INSTITUTIONNEL/ETF",
-          "checkedAt": "2026-09-30",
+          "symbol": "C50.MI",
+          "excerpt": "LU1681047236 | Borsa Italiana | C50 IM | EUR | C50.MI",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "47878f3bcb0301f15add01f69d2e3615c59837d71af1dfe81f34e78977103366",
           "evidenceId": "LU1681047236-ETFP-C50-EUR"
         },
         {
@@ -1340,13 +2339,24 @@
           "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1681047236/FRA/FRA/INSTITUTIONNEL/ETF",
           "checkedAt": "2026-09-30",
           "evidenceId": "LU1681047236-XSWX-C50-EUR"
+        },
+        {
+          "ticker": "V50A",
+          "mic": "XETR",
+          "exchange": "Xetra",
+          "currency": "EUR",
+          "symbol": "V50A.DE",
+          "excerpt": "LU1681047236 | Xetra | V50A GY | EUR | V50A.DE",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "47878f3bcb0301f15add01f69d2e3615c59837d71af1dfe81f34e78977103366",
+          "evidenceId": "LU1681047236-XETR-V50A-EUR"
         }
       ],
       "urls": [
         "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
         "https://www.justetf.com/en/etf-profile.html?isin=LU1681047236",
         "https://www.justetf.com/fr/etf-profile.html?isin=LU1681047236",
-        "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1681047236/ENG/FRA/INSTITUTIONNEL/ETF",
         "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1681047236/FRA/FRA/INSTITUTIONNEL/ETF"
       ]
     },
@@ -1358,19 +2368,23 @@
           "mic": "XPAR",
           "exchange": "Euronext Paris",
           "currency": "EUR",
-          "excerpt": "LU1681048630 | Euronext Paris EUR GLUX FP IGLUX GLUX.PA INGLUX=BNPP",
-          "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1681048630/FRA/FRA/INSTITUTIONNEL/ETF",
+          "symbol": "GLUX.PA",
+          "excerpt": "LU1681048630 | Euronext Paris | GLUX FP | EUR | GLUX.PA",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
           "checkedAt": "2026-10-18",
-          "sha256": "a388d885666673f2b794250f030bc44ec0665ebea0ace74ac45cddad95293774",
+          "sha256": "95efab57307c0be4080e6aa5112778cf057cf8a2a8cdae866f7c0ebfea48daac",
           "evidenceId": "LU1681048630-XPAR-GLUX-EUR"
         },
         {
           "ticker": "GLUX",
-          "exchange": "Borsa Italiana",
           "mic": "ETFP",
+          "exchange": "Borsa Italiana",
           "currency": "EUR",
-          "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1681048630/FRA/FRA/INSTITUTIONNEL/ETF",
-          "checkedAt": "2026-09-30",
+          "symbol": "GLUX.MI",
+          "excerpt": "LU1681048630 | Borsa Italiana | GLUX IM | EUR | GLUX.MI",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "95efab57307c0be4080e6aa5112778cf057cf8a2a8cdae866f7c0ebfea48daac",
           "evidenceId": "LU1681048630-ETFP-GLUX-EUR"
         },
         {
@@ -1378,10 +2392,11 @@
           "mic": "XETR",
           "exchange": "Xetra",
           "currency": "EUR",
-          "excerpt": "LU1681048630 | Deutsche Boerse (Xetra) EUR GLUX GY IGLUX AMGLUX.DE INGLUX=BNPP",
-          "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1681048630/FRA/FRA/INSTITUTIONNEL/ETF",
+          "symbol": "AMGLUX.DE",
+          "excerpt": "LU1681048630 | Xetra | GLUX GY | EUR | AMGLUX.DE",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
           "checkedAt": "2026-10-18",
-          "sha256": "a388d885666673f2b794250f030bc44ec0665ebea0ace74ac45cddad95293774",
+          "sha256": "95efab57307c0be4080e6aa5112778cf057cf8a2a8cdae866f7c0ebfea48daac",
           "evidenceId": "LU1681048630-XETR-GLUX-EUR"
         },
         {
@@ -1392,6 +2407,42 @@
           "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1681048630/FRA/FRA/INSTITUTIONNEL/ETF",
           "checkedAt": "2026-09-30",
           "evidenceId": "LU1681048630-XSWX-GLUX-EUR"
+        },
+        {
+          "ticker": "CI5",
+          "mic": "XPAR",
+          "exchange": "Euronext Paris",
+          "currency": "EUR",
+          "symbol": "CI5.PA",
+          "excerpt": "LU1681048630 | Euronext Paris | CI5 FP | EUR | CI5.PA",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "95efab57307c0be4080e6aa5112778cf057cf8a2a8cdae866f7c0ebfea48daac",
+          "evidenceId": "LU1681048630-XPAR-CI5-EUR"
+        },
+        {
+          "ticker": "CI5",
+          "mic": "ETFP",
+          "exchange": "Borsa Italiana",
+          "currency": "EUR",
+          "symbol": "CI5.MI",
+          "excerpt": "LU1681048630 | Borsa Italiana | CI5 IM | EUR | CI5.MI",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "95efab57307c0be4080e6aa5112778cf057cf8a2a8cdae866f7c0ebfea48daac",
+          "evidenceId": "LU1681048630-ETFP-CI5-EUR"
+        },
+        {
+          "ticker": "CI5GR",
+          "mic": "XETR",
+          "exchange": "Xetra",
+          "currency": "EUR",
+          "symbol": "CI5.DE",
+          "excerpt": "LU1681048630 | Xetra | CI5GR GY | EUR | CI5.DE",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "95efab57307c0be4080e6aa5112778cf057cf8a2a8cdae866f7c0ebfea48daac",
+          "evidenceId": "LU1681048630-XETR-CI5GR-EUR"
         }
       ],
       "urls": [
@@ -1405,11 +2456,14 @@
       "listings": [
         {
           "ticker": "10AJ",
-          "exchange": "Xetra",
           "mic": "XETR",
+          "exchange": "Xetra",
           "currency": "EUR",
-          "sourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=LU1737652823",
-          "checkedAt": "2026-10-04",
+          "symbol": "10AJ.DE",
+          "excerpt": "LU1737652823 | Xetra | 10AJ GY | EUR | 10AJ.DE",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "497c834040e276bb0ae964e5bb5c21b2282e14fb347e7aa4d3518fa81501b772",
           "evidenceId": "LU1737652823-XETR-10AJ-EUR"
         }
       ],
@@ -1426,23 +2480,84 @@
           "mic": "XPAR",
           "exchange": "Euronext Paris",
           "currency": "EUR",
-          "excerpt": "LU1834983550 | Euronext Paris EUR BRES FP BREIV BRES.PA BREINAV=SOLA",
-          "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1834983550/FRA/FRA/INSTITUTIONNEL/ETF",
+          "symbol": "BRES.PA",
+          "excerpt": "LU1834983550 | Euronext Paris | BRES FP | EUR | BRES.PA",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
           "checkedAt": "2026-10-18",
-          "sha256": "4e59844f64ec3a9342fc53ca005fa987a67a44c75ba9d55d2ca48c6b521a9606",
+          "sha256": "5381363a8942c9b87a01ad81385875ace0800aa32b04dbbb52b6c30cc6574235",
           "evidenceId": "LU1834983550-XPAR-BRES-EUR"
+        },
+        {
+          "ticker": "BRES",
+          "mic": "ETFP",
+          "exchange": "Borsa Italiana",
+          "currency": "EUR",
+          "symbol": "BRES.MI",
+          "excerpt": "LU1834983550 | Borsa Italiana | BRES IM | EUR | BRES.MI",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "5381363a8942c9b87a01ad81385875ace0800aa32b04dbbb52b6c30cc6574235",
+          "evidenceId": "LU1834983550-ETFP-BRES-EUR"
+        },
+        {
+          "ticker": "LBRE",
+          "mic": "XETR",
+          "exchange": "Xetra",
+          "currency": "EUR",
+          "symbol": "LBRE.DE",
+          "excerpt": "LU1834983550 | Xetra | LBRE GY | EUR | LBRE.DE",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "5381363a8942c9b87a01ad81385875ace0800aa32b04dbbb52b6c30cc6574235",
+          "evidenceId": "LU1834983550-XETR-LBRE-EUR"
         }
       ],
       "urls": [
         "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
         "https://www.justetf.com/en/etf-profile.html?isin=LU1834983550",
-        "https://www.justetf.com/fr/etf-profile.html?isin=LU1834983550",
-        "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1834983550/FRA/FRA/INSTITUTIONNEL/ETF"
+        "https://www.justetf.com/fr/etf-profile.html?isin=LU1834983550"
       ]
     },
     {
       "isin": "LU1834983634",
-      "listings": [],
+      "listings": [
+        {
+          "ticker": "CHM",
+          "mic": "XPAR",
+          "exchange": "Euronext Paris",
+          "currency": "EUR",
+          "symbol": "CHM.PA",
+          "excerpt": "LU1834983634 | Euronext Paris | CHM FP | EUR | CHM.PA",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "5429ae3c537e2e04067044ccb6e875f7357f6e6acc2b8d2d9463acd1ddc5912d",
+          "evidenceId": "LU1834983634-XPAR-CHM-EUR"
+        },
+        {
+          "ticker": "CHM",
+          "mic": "ETFP",
+          "exchange": "Borsa Italiana",
+          "currency": "EUR",
+          "symbol": "CHM.MI",
+          "excerpt": "LU1834983634 | Borsa Italiana | CHM IM | EUR | CHM.MI",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "5429ae3c537e2e04067044ccb6e875f7357f6e6acc2b8d2d9463acd1ddc5912d",
+          "evidenceId": "LU1834983634-ETFP-CHM-EUR"
+        },
+        {
+          "ticker": "LCHM",
+          "mic": "XETR",
+          "exchange": "Xetra",
+          "currency": "EUR",
+          "symbol": "LCHM.DE",
+          "excerpt": "LU1834983634 | Xetra | LCHM GY | EUR | LCHM.DE",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "5429ae3c537e2e04067044ccb6e875f7357f6e6acc2b8d2d9463acd1ddc5912d",
+          "evidenceId": "LU1834983634-XETR-LCHM-EUR"
+        }
+      ],
       "urls": [
         "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
         "https://www.justetf.com/fr/etf-profile.html?isin=LU1834983634"
@@ -1457,11 +2572,35 @@
           "exchange": "Euronext Paris",
           "currency": "EUR",
           "symbol": "LYXHEA.PA",
-          "excerpt": "LU1834986900 | Euronext Paris EUR HLT FP HLTIV LYXHEA.PA HLTINAV=SOLA",
-          "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1834986900/FRA/FRA/INSTITUTIONNEL/ETF",
+          "excerpt": "LU1834986900 | Euronext Paris | HLT FP | EUR | LYXHEA.PA",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
           "checkedAt": "2026-10-18",
-          "sha256": "972988e69bf02330b66d5c774a945ed876fc2724ef156caec54aaceb71ea263e",
+          "sha256": "0b51ae8dcaadbdb5097d448ce586b36ed87ece60943c209d9b5616ea1f3717c6",
           "evidenceId": "LU1834986900-XPAR-HLT-EUR"
+        },
+        {
+          "ticker": "HLT",
+          "mic": "ETFP",
+          "exchange": "Borsa Italiana",
+          "currency": "EUR",
+          "symbol": "LYXHEA.MI",
+          "excerpt": "LU1834986900 | Borsa Italiana | HLT IM | EUR | LYXHEA.MI",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "0b51ae8dcaadbdb5097d448ce586b36ed87ece60943c209d9b5616ea1f3717c6",
+          "evidenceId": "LU1834986900-ETFP-HLT-EUR"
+        },
+        {
+          "ticker": "LHTC",
+          "mic": "XETR",
+          "exchange": "Xetra",
+          "currency": "EUR",
+          "symbol": "LHTC.DE",
+          "excerpt": "LU1834986900 | Xetra | LHTC GY | EUR | LHTC.DE",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "0b51ae8dcaadbdb5097d448ce586b36ed87ece60943c209d9b5616ea1f3717c6",
+          "evidenceId": "LU1834986900-XETR-LHTC-EUR"
         }
       ],
       "urls": [
@@ -1479,11 +2618,35 @@
           "exchange": "Euronext Paris",
           "currency": "EUR",
           "symbol": "LYXTNO.PA",
-          "excerpt": "LU1834988518 | Euronext Paris EUR TNO FP LYXTNOIV LYXTNO.PA LYXTNOINAV=SOLA",
-          "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1834988518/FRA/FRA/INSTITUTIONNEL/ETF",
+          "excerpt": "LU1834988518 | Euronext Paris | TNO FP | EUR | LYXTNO.PA",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
           "checkedAt": "2026-10-18",
-          "sha256": "4949a9bee70d9a0a7b3d4924a2e8a9f8a91cb6d4c775530c71ba577c0cd3aee0",
+          "sha256": "d40b94657dc4725bae0175cbe030048b8ab5069aaabaaff868e696ce68ec7305",
           "evidenceId": "LU1834988518-XPAR-TNO-EUR"
+        },
+        {
+          "ticker": "LTUG",
+          "mic": "XETR",
+          "exchange": "Xetra",
+          "currency": "EUR",
+          "symbol": "LTUG.DE",
+          "excerpt": "LU1834988518 | Xetra | LTUG GY | EUR | LTUG.DE",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "d40b94657dc4725bae0175cbe030048b8ab5069aaabaaff868e696ce68ec7305",
+          "evidenceId": "LU1834988518-XETR-LTUG-EUR"
+        },
+        {
+          "ticker": "TNO",
+          "mic": "ETFP",
+          "exchange": "Borsa Italiana",
+          "currency": "EUR",
+          "symbol": "LYXTNO.MI",
+          "excerpt": "LU1834988518 | Borsa Italiana | TNO IM | EUR | LYXTNO.MI",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "d40b94657dc4725bae0175cbe030048b8ab5069aaabaaff868e696ce68ec7305",
+          "evidenceId": "LU1834988518-ETFP-TNO-EUR"
         }
       ],
       "urls": [
@@ -1497,23 +2660,74 @@
       "listings": [
         {
           "ticker": "ETFCOR",
-          "exchange": "Borsa Italiana",
           "mic": "ETFP",
+          "exchange": "Borsa Italiana",
           "currency": "EUR",
-          "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1931975079/FRA/FRA/INSTITUTIONNEL/ETF/20260731",
-          "checkedAt": "2026-10-04",
+          "symbol": "ETFCOR.MI",
+          "excerpt": "LU1931975079 | Borsa Italiana | ETFCOR IM | EUR | ETFCOR.MI",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "87129faf63bfdd6a6437d8a4bbd7c1dc4422441d7be9c2eb0b8d49abc96124d9",
           "evidenceId": "LU1931975079-ETFP-ETFCOR-EUR"
+        },
+        {
+          "ticker": "PR1C",
+          "mic": "XETR",
+          "exchange": "Xetra",
+          "currency": "EUR",
+          "symbol": "PR1C.DE",
+          "excerpt": "LU1931975079 | Xetra | PR1C GY | EUR | PR1C.DE",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "87129faf63bfdd6a6437d8a4bbd7c1dc4422441d7be9c2eb0b8d49abc96124d9",
+          "evidenceId": "LU1931975079-XETR-PR1C-EUR"
         }
       ],
       "urls": [
         "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
-        "https://www.justetf.com/en/etf-profile.html?isin=LU1931975079",
-        "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1931975079/FRA/FRA/INSTITUTIONNEL/ETF"
+        "https://www.justetf.com/en/etf-profile.html?isin=LU1931975079"
       ]
     },
     {
       "isin": "LU2089238385",
-      "listings": [],
+      "listings": [
+        {
+          "ticker": "PRAJ",
+          "mic": "XETR",
+          "exchange": "Xetra",
+          "currency": "EUR",
+          "symbol": "PRAJ.DE",
+          "excerpt": "LU2089238385 | Xetra | PRAJ GY | EUR | PRAJ.DE",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "994c130e938a2d0d7fe3bb288c07731350296cdc1ce8c31ae88fd8515a4b88e7",
+          "evidenceId": "LU2089238385-XETR-PRAJ-EUR"
+        },
+        {
+          "ticker": "PRAJ",
+          "mic": "XLON",
+          "exchange": "London Stock Exchange",
+          "currency": "GBP",
+          "symbol": "PRAJ.L",
+          "excerpt": "LU2089238385 | LSE | PRAJ LN | GBP | PRAJ.L",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "994c130e938a2d0d7fe3bb288c07731350296cdc1ce8c31ae88fd8515a4b88e7",
+          "evidenceId": "LU2089238385-XLON-PRAJ-GBP"
+        },
+        {
+          "ticker": "PRAJ",
+          "mic": "XPAR",
+          "exchange": "Euronext Paris",
+          "currency": "EUR",
+          "symbol": "PRAJ.PA",
+          "excerpt": "LU2089238385 | Euronext Paris | PRAJ FP | EUR | PRAJ.PA",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "994c130e938a2d0d7fe3bb288c07731350296cdc1ce8c31ae88fd8515a4b88e7",
+          "evidenceId": "LU2089238385-XPAR-PRAJ-EUR"
+        }
+      ],
       "urls": [
         "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
       ]
@@ -1526,22 +2740,83 @@
           "mic": "XETR",
           "exchange": "Xetra",
           "currency": "EUR",
-          "excerpt": "LU2970735911 | Deutsche Boerse (Xetra) EUR AEHY GY AEHYEUIV AEHY.DE IAEHYEURINAV=SOLA",
-          "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU2970735911/FRA/FRA/INSTITUTIONNEL/ETF",
+          "symbol": "AEHY.DE",
+          "excerpt": "LU2970735911 | Xetra | AEHY GY | EUR | AEHY.DE",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
           "checkedAt": "2026-10-18",
-          "sha256": "d648e76d8d0b0d94d455a42251a189efc74aa554bb5fdeb47237a4d9d37130a5",
+          "sha256": "0cf03188fb91ee9749d69e0bcd598906eb110561e60943f298bdd302d910ecdd",
           "evidenceId": "LU2970735911-XETR-AEHY-EUR"
         }
       ],
       "urls": [
         "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
-        "https://www.justetf.com/en/etf-profile.html?isin=LU2970735911",
-        "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU2970735911/FRA/FRA/INSTITUTIONNEL/ETF"
+        "https://www.justetf.com/en/etf-profile.html?isin=LU2970735911"
       ]
     },
     {
       "isin": "LU3038520774",
-      "listings": [],
+      "listings": [
+        {
+          "ticker": "DEFS",
+          "mic": "XPAR",
+          "exchange": "Euronext Paris",
+          "currency": "EUR",
+          "symbol": "DEFS.PA",
+          "excerpt": "LU3038520774 | Euronext Paris | DEFS FP | EUR | DEFS.PA",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "12430f2559df2aaaf0d72ac34b7549f1f8dd29c5018b890a844433f5b08d5407",
+          "evidenceId": "LU3038520774-XPAR-DEFS-EUR"
+        },
+        {
+          "ticker": "EDFS",
+          "mic": "XETR",
+          "exchange": "Xetra",
+          "currency": "EUR",
+          "symbol": "EDFS.DE",
+          "excerpt": "LU3038520774 | Xetra | EDFS GY | EUR | EDFS.DE",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "12430f2559df2aaaf0d72ac34b7549f1f8dd29c5018b890a844433f5b08d5407",
+          "evidenceId": "LU3038520774-XETR-EDFS-EUR"
+        },
+        {
+          "ticker": "DEFS",
+          "mic": "ETFP",
+          "exchange": "Borsa Italiana",
+          "currency": "EUR",
+          "symbol": "DEFS.MI",
+          "excerpt": "LU3038520774 | Borsa Italiana | DEFS IM | EUR | DEFS.MI",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "12430f2559df2aaaf0d72ac34b7549f1f8dd29c5018b890a844433f5b08d5407",
+          "evidenceId": "LU3038520774-ETFP-DEFS-EUR"
+        },
+        {
+          "ticker": "DEFE",
+          "mic": "XLON",
+          "exchange": "London Stock Exchange",
+          "currency": "GBP",
+          "symbol": "DEFE.L",
+          "excerpt": "LU3038520774 | LSE | DEFE LN | GBP | DEFE.L",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "12430f2559df2aaaf0d72ac34b7549f1f8dd29c5018b890a844433f5b08d5407",
+          "evidenceId": "LU3038520774-XLON-DEFE-GBP"
+        },
+        {
+          "ticker": "DEFS",
+          "mic": "XLON",
+          "exchange": "London Stock Exchange",
+          "currency": "USD",
+          "symbol": "DEFS.L",
+          "excerpt": "LU3038520774 | LSE | DEFS LN | USD | DEFS.L",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "12430f2559df2aaaf0d72ac34b7549f1f8dd29c5018b890a844433f5b08d5407",
+          "evidenceId": "LU3038520774-XLON-DEFS-USD"
+        }
+      ],
       "urls": [
         "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
         "https://www.ca-sicavetfcp.fr/productsheet/view/idpart/382/idvm/LU3038520774/lg/fr/popup/1"
@@ -3329,7 +4604,7 @@
           "excerpt": "IE00B3YLTY66 | Euronext Paris EUR 14 Sep 2011 IMIE B6R4XC9 IMIE FP IMIE.PA",
           "sourceUrl": "https://www.ssga.com/lu/de/intermediary/etfs/state-street-spdr-msci-all-country-world-investable-market-ucits-etf-acc-spyi-gy",
           "checkedAt": "2026-10-18",
-          "sha256": "14c960c1c5bfa2115ff40b895f6bda4065f02e9eba1b4cb5b953db304c48fc75",
+          "sha256": "7024c792cfbda03a3cc33b16287126f41adc03983c6d8875a8bb5e0c3d55cafb",
           "evidenceId": "IE00B3YLTY66-XPAR-IMIE-EUR"
         }
       ],
@@ -3348,7 +4623,7 @@
           "excerpt": "IE00BJ38QD84 | Euronext Paris EUR 08 déc. 2014 R2US BSTLBM8 R2US FP R2US.PA",
           "sourceUrl": "https://www.ssga.com/fr/fr/intermediary/etfs/state-street-spdr-russell-2000-us-small-cap-ucits-etf-acc-zprr-gy",
           "checkedAt": "2026-10-18",
-          "sha256": "8bf89810d13278283e33c96d8f9a0763ed6769eb50b3c62416b4828ba90ee86b",
+          "sha256": "718caa965b9aa55c58cfdd6db12cb10349735fdb73a5fa909920bbf87fcaa40e",
           "evidenceId": "IE00BJ38QD84-XPAR-R2US-EUR"
         }
       ],
@@ -3367,7 +4642,7 @@
           "excerpt": "IE00B3T9LM79 | Borsa Italiana EUR 12 avr. 2012 EUCO B6TGX01 EUCO IM EUCO.MI",
           "sourceUrl": "https://www.ssga.com/fr/fr/intermediary/etfs/state-street-spdr-bloomberg-euro-corporate-bond-ucits-etf-dist-sybc-gy",
           "checkedAt": "2026-10-18",
-          "sha256": "26754fa6c8a29019d98235128dca5b87ca3265cd04ccb05c716dbdc6f39e6309",
+          "sha256": "14ef833d6876d9d803c338add3ce87c12d4f01e6cb98e10d867501ffe82e8487",
           "evidenceId": "IE00B3T9LM79-ETFP-EUCO-EUR"
         }
       ],
@@ -3387,7 +4662,7 @@
           "excerpt": "IE00B44Z5B48 | Euronext Paris EUR 14 Sep 2011 ACWE B407QR7 ACWE FP ACWE.PA",
           "sourceUrl": "https://www.ssga.com/ie/en_gb/intermediary/etfs/state-street-spdr-msci-all-country-world-ucits-etf-acc-spyy-gy",
           "checkedAt": "2026-10-18",
-          "sha256": "106beab37a1b7215dcea6bbf8b9442f2ac787517c803459583d949d7f3a0ac25",
+          "sha256": "570e948eaec16cfae4b8e793bf2086c006a5bb2d18f5544248e32faf6a416273",
           "evidenceId": "IE00B44Z5B48-XPAR-ACWE-EUR"
         }
       ],
@@ -3408,7 +4683,7 @@
           "excerpt": "IE00B469F816 | Borsa Italiana EUR 12 avr. 2012 EMRG B3V7WC6 EMRG IM EMRG.MI",
           "sourceUrl": "https://www.ssga.com/fr/fr/intermediary/etfs/state-street-spdr-msci-emerging-markets-ucits-etf-spym-gy",
           "checkedAt": "2026-10-18",
-          "sha256": "97926137ec7b23804f11b3a811968368a8a78bb389c924e4320a27937966ba6a",
+          "sha256": "6c4bcd441ce2e3c45593bc25dcc99ceedf809cc535f16b90502a7bd7b7bf4898",
           "evidenceId": "IE00B469F816-ETFP-EMRG-EUR"
         }
       ],
@@ -3428,7 +4703,7 @@
           "excerpt": "IE00B5M1WJ87 | Euronext Paris EUR 08 Dec 2014 EUDV BSTL7H5 EUDV FP EUDV.PA",
           "sourceUrl": "https://www.ssga.com/fr/en_gb/institutional/etfs/state-street-spdr-sp-euro-dividend-aristocrats-ucits-etf-dist-spyw-gy",
           "checkedAt": "2026-10-18",
-          "sha256": "1a887d777230bc602b890654985dcb91ccb79832c9eda7b897fade1236f37971",
+          "sha256": "d0ef1a19c17694ff9c3b44162f48a4b5ed25c9a49b8e5d84cc87b4d74329cc4a",
           "evidenceId": "IE00B5M1WJ87-XPAR-EUDV-EUR"
         },
         {
@@ -3439,7 +4714,7 @@
           "excerpt": "IE00B5M1WJ87 | Borsa Italiana EUR 04 Dec 2012 EUDV B760PF2 EUDV IM EUDV.MI",
           "sourceUrl": "https://www.ssga.com/fr/en_gb/institutional/etfs/state-street-spdr-sp-euro-dividend-aristocrats-ucits-etf-dist-spyw-gy",
           "checkedAt": "2026-10-18",
-          "sha256": "1a887d777230bc602b890654985dcb91ccb79832c9eda7b897fade1236f37971",
+          "sha256": "d0ef1a19c17694ff9c3b44162f48a4b5ed25c9a49b8e5d84cc87b4d74329cc4a",
           "evidenceId": "IE00B5M1WJ87-ETFP-EUDV-EUR"
         },
         {
@@ -3450,7 +4725,7 @@
           "excerpt": "IE00B5M1WJ87 | London Stock Exchange GBP 01 Mar 2012 EUDV B5M1WJ8 EUDV LN EUDV.L",
           "sourceUrl": "https://www.ssga.com/fr/en_gb/institutional/etfs/state-street-spdr-sp-euro-dividend-aristocrats-ucits-etf-dist-spyw-gy",
           "checkedAt": "2026-10-18",
-          "sha256": "1a887d777230bc602b890654985dcb91ccb79832c9eda7b897fade1236f37971",
+          "sha256": "d0ef1a19c17694ff9c3b44162f48a4b5ed25c9a49b8e5d84cc87b4d74329cc4a",
           "evidenceId": "IE00B5M1WJ87-XLON-EUDV-GBP"
         },
         {
@@ -3461,7 +4736,7 @@
           "excerpt": "IE00B5M1WJ87 | SIX Swiss Exchange CHF 29 Jan 2013 EUDV B7ZWG45 EUDV SE EUDV.S",
           "sourceUrl": "https://www.ssga.com/fr/en_gb/institutional/etfs/state-street-spdr-sp-euro-dividend-aristocrats-ucits-etf-dist-spyw-gy",
           "checkedAt": "2026-10-18",
-          "sha256": "1a887d777230bc602b890654985dcb91ccb79832c9eda7b897fade1236f37971",
+          "sha256": "d0ef1a19c17694ff9c3b44162f48a4b5ed25c9a49b8e5d84cc87b4d74329cc4a",
           "evidenceId": "IE00B5M1WJ87-XSWX-EUDV-CHF"
         }
       ],
@@ -3481,7 +4756,7 @@
           "excerpt": "IE00B6YX5D40 | Borsa Italiana EUR 12 Apr 2012 USDV B7J4XN5 USDV IM USDV.MI",
           "sourceUrl": "https://www.ssga.com/ie/en_gb/institutional/etfs/state-street-spdr-sp-us-dividend-aristocrats-ucits-etf-dist-spyd-gy",
           "checkedAt": "2026-10-18",
-          "sha256": "d1d9f8ebdd0cdf7b1ee0cf2325c5c82f31d138a09f42457e4361975f9bcfa753",
+          "sha256": "518ec5845c765e5b9c3bba635c7251273a7bae984cd255cb303e66400724f450",
           "evidenceId": "IE00B6YX5D40-ETFP-USDV-EUR"
         },
         {
@@ -3492,7 +4767,7 @@
           "excerpt": "IE00B6YX5D40 | London Stock Exchange GBP 20 Oct 2011 USDV B3VFBK1 USDV LN USDV.L",
           "sourceUrl": "https://www.ssga.com/ie/en_gb/institutional/etfs/state-street-spdr-sp-us-dividend-aristocrats-ucits-etf-dist-spyd-gy",
           "checkedAt": "2026-10-18",
-          "sha256": "d1d9f8ebdd0cdf7b1ee0cf2325c5c82f31d138a09f42457e4361975f9bcfa753",
+          "sha256": "518ec5845c765e5b9c3bba635c7251273a7bae984cd255cb303e66400724f450",
           "evidenceId": "IE00B6YX5D40-XLON-USDV-GBP"
         },
         {
@@ -3503,7 +4778,7 @@
           "excerpt": "IE00B6YX5D40 | SIX Swiss Exchange CHF 31 Jan 2012 USDV B5M0QP9 USDV SE USDV.S",
           "sourceUrl": "https://www.ssga.com/ie/en_gb/institutional/etfs/state-street-spdr-sp-us-dividend-aristocrats-ucits-etf-dist-spyd-gy",
           "checkedAt": "2026-10-18",
-          "sha256": "d1d9f8ebdd0cdf7b1ee0cf2325c5c82f31d138a09f42457e4361975f9bcfa753",
+          "sha256": "518ec5845c765e5b9c3bba635c7251273a7bae984cd255cb303e66400724f450",
           "evidenceId": "IE00B6YX5D40-XSWX-USDV-CHF"
         }
       ],
@@ -3541,7 +4816,7 @@
           "excerpt": "IE00BYTRR863 | Euronext Amsterdam (Primary) EUR 03 May 2016 WNRG BYZJ087 WNRG NA WNRG.AS",
           "sourceUrl": "https://www.ssga.com/ie/en_gb/institutional/etfs/state-street-spdr-msci-world-energy-ucits-etf-wnrg-na",
           "checkedAt": "2026-10-18",
-          "sha256": "964acfd91b276885cc7524018bf36c99b5436189156975f4e21b9fa1b453de44",
+          "sha256": "f5cbafc08d964f2a92975b6f7c54a8fd0e5ff659682190f16f75b93f4e0b5685",
           "evidenceId": "IE00BYTRR863-XAMS-WNRG-EUR"
         },
         {
@@ -3552,7 +4827,7 @@
           "excerpt": "IE00BYTRR863 | Borsa Italiana EUR 30 Jan 2019 WNRG BHXH6H5 WNRG IM WRNG.MI",
           "sourceUrl": "https://www.ssga.com/ie/en_gb/institutional/etfs/state-street-spdr-msci-world-energy-ucits-etf-wnrg-na",
           "checkedAt": "2026-10-18",
-          "sha256": "964acfd91b276885cc7524018bf36c99b5436189156975f4e21b9fa1b453de44",
+          "sha256": "f5cbafc08d964f2a92975b6f7c54a8fd0e5ff659682190f16f75b93f4e0b5685",
           "evidenceId": "IE00BYTRR863-ETFP-WNRG-EUR"
         },
         {
@@ -3563,7 +4838,7 @@
           "excerpt": "IE00BYTRR863 | London Stock Exchange USD 04 May 2016 WNRG BYYW106 WNRG LN SPWNRG.L",
           "sourceUrl": "https://www.ssga.com/ie/en_gb/institutional/etfs/state-street-spdr-msci-world-energy-ucits-etf-wnrg-na",
           "checkedAt": "2026-10-18",
-          "sha256": "964acfd91b276885cc7524018bf36c99b5436189156975f4e21b9fa1b453de44",
+          "sha256": "f5cbafc08d964f2a92975b6f7c54a8fd0e5ff659682190f16f75b93f4e0b5685",
           "evidenceId": "IE00BYTRR863-XLON-WNRG-USD"
         },
         {
@@ -3574,7 +4849,7 @@
           "excerpt": "IE00BYTRR863 | SIX Swiss Exchange USD 06 May 2016 WNRG BYZJ0L0 WNRG SE SPWNRG.S",
           "sourceUrl": "https://www.ssga.com/ie/en_gb/institutional/etfs/state-street-spdr-msci-world-energy-ucits-etf-wnrg-na",
           "checkedAt": "2026-10-18",
-          "sha256": "964acfd91b276885cc7524018bf36c99b5436189156975f4e21b9fa1b453de44",
+          "sha256": "f5cbafc08d964f2a92975b6f7c54a8fd0e5ff659682190f16f75b93f4e0b5685",
           "evidenceId": "IE00BYTRR863-XSWX-WNRG-USD"
         }
       ],
@@ -3655,11 +4930,13 @@
       "listings": [
         {
           "ticker": "XEON",
-          "exchange": "Xetra",
           "mic": "XETR",
+          "exchange": "Xetra",
           "currency": "EUR",
+          "excerpt": "LU0290358497 | XETRA XEON GY XEON.DE EUR",
           "sourceUrl": "https://etf.dws.com/download/asset/5643099c-7044-46a2-bfd8-b24c4752c7f6",
-          "checkedAt": "2026-10-01",
+          "checkedAt": "2026-10-18",
+          "sha256": "1a8f5cf6c1b889e8b7aaccee8d0d03f91addccf39da78ea003fe456ccc1a5573",
           "evidenceId": "LU0290358497-XETR-XEON-EUR"
         }
       ],
@@ -3924,7 +5201,7 @@
           "excerpt": "IE0007Y8Y157 | Borsa Italiana EUR EUR IE0007Y8Y157 QNTM QNTM IM QNTM.MI BPQCYN5 QNTMEUIV",
           "sourceUrl": "https://www.vaneck.com/ucits/library/fact-sheets/qntm-fact-sheet.pdf",
           "checkedAt": "2026-10-18",
-          "sha256": "584a1c66d7cae582466f24b9524b4c89e250dac5430eaa5e38ceb5f7a4fa19bb",
+          "sha256": "f2b419b23482703c58ac1ea5839136237739b3a0792f79f258e50c046b214cfa",
           "evidenceId": "IE0007Y8Y157-ETFP-QNTM-EUR"
         },
         {
@@ -3944,7 +5221,7 @@
           "excerpt": "IE0007Y8Y157 | SIX Swiss Exchange CHF CHF IE0007Y8Y157 QNTM QNTM SE QNTM.S BPQCYQ8 QNTMUSIV",
           "sourceUrl": "https://www.vaneck.com/ucits/library/fact-sheets/qntm-fact-sheet.pdf",
           "checkedAt": "2026-10-18",
-          "sha256": "584a1c66d7cae582466f24b9524b4c89e250dac5430eaa5e38ceb5f7a4fa19bb",
+          "sha256": "f2b419b23482703c58ac1ea5839136237739b3a0792f79f258e50c046b214cfa",
           "evidenceId": "IE0007Y8Y157-XSWX-QNTM-CHF"
         }
       ],
@@ -3978,11 +5255,13 @@
       "listings": [
         {
           "ticker": "JEDI",
-          "exchange": "Borsa Italiana",
           "mic": "ETFP",
+          "exchange": "Borsa Italiana",
           "currency": "EUR",
-          "sourceUrl": "https://www.vaneck.com/fr/en/library/fact-sheets/jedi-fact-sheet",
-          "checkedAt": "2026-09-30",
+          "excerpt": "IE000YU9K6K2 | BORSA ITALIANA EUR IE000YU9K6K2 JEDI JEDI IM JEDI.MI BLDCDK0 JEDIEUIV",
+          "sourceUrl": "https://www.vaneck.com/ucits/library/fact-sheets/jedi-fact-sheet.pdf",
+          "checkedAt": "2026-10-18",
+          "sha256": "0b708f2cf00ad4ddecc1191cf78b07506b0e98949a502bc01814780ce8ff3f7b",
           "evidenceId": "IE000YU9K6K2-ETFP-JEDI-EUR"
         },
         {
@@ -4005,11 +5284,13 @@
         },
         {
           "ticker": "JEDI",
-          "exchange": "SIX Swiss Exchange",
           "mic": "XSWX",
+          "exchange": "SIX Swiss Exchange",
           "currency": "CHF",
-          "sourceUrl": "https://www.vaneck.com/fr/en/library/fact-sheets/jedi-fact-sheet",
-          "checkedAt": "2026-09-30",
+          "excerpt": "IE000YU9K6K2 | SIX SWISS EXCHANGE CHF IE000YU9K6K2 JEDI JEDI SE JEDI.S BLDCDL1 JEDIUSIV",
+          "sourceUrl": "https://www.vaneck.com/ucits/library/fact-sheets/jedi-fact-sheet.pdf",
+          "checkedAt": "2026-10-18",
+          "sha256": "0b708f2cf00ad4ddecc1191cf78b07506b0e98949a502bc01814780ce8ff3f7b",
           "evidenceId": "IE000YU9K6K2-XSWX-JEDI-CHF"
         }
       ],
@@ -4024,20 +5305,24 @@
       "listings": [
         {
           "ticker": "DFNS",
-          "exchange": "Euronext Paris",
           "mic": "XPAR",
+          "exchange": "Euronext Paris",
           "currency": "EUR",
-          "sourceUrl": "https://www.vaneck.com/uk/en/library/fact-sheets/dfns-fact-sheet.pdf",
-          "checkedAt": "2026-09-30",
+          "excerpt": "IE000YYE6WK5 | EURONEXT PARIS EUR IE000YYE6WK5 DFNS DFNS FP DFNS.PA BSNR4V2 DFNSEUIV",
+          "sourceUrl": "https://www.vaneck.com/ucits/library/fact-sheets/dfns-fact-sheet.pdf",
+          "checkedAt": "2026-10-18",
+          "sha256": "d5886d4a13954fa7cfef8eac14b1e2ec69f1ceade71690905860f2f288fa467b",
           "evidenceId": "IE000YYE6WK5-XPAR-DFNS-EUR"
         },
         {
           "ticker": "DFNS",
-          "exchange": "Borsa Italiana",
           "mic": "ETFP",
+          "exchange": "Borsa Italiana",
           "currency": "EUR",
-          "sourceUrl": "https://www.vaneck.com/uk/en/library/fact-sheets/dfns-fact-sheet.pdf",
-          "checkedAt": "2026-09-30",
+          "excerpt": "IE000YYE6WK5 | BORSA ITALIANA EUR IE000YYE6WK5 DFNS DFNS IM DFNS.MI BR1H1V6 DFNSEUIV",
+          "sourceUrl": "https://www.vaneck.com/ucits/library/fact-sheets/dfns-fact-sheet.pdf",
+          "checkedAt": "2026-10-18",
+          "sha256": "d5886d4a13954fa7cfef8eac14b1e2ec69f1ceade71690905860f2f288fa467b",
           "evidenceId": "IE000YYE6WK5-ETFP-DFNS-EUR"
         },
         {
@@ -4051,11 +5336,13 @@
         },
         {
           "ticker": "DFNS",
-          "exchange": "SIX Swiss Exchange",
           "mic": "XSWX",
+          "exchange": "SIX Swiss Exchange",
           "currency": "CHF",
-          "sourceUrl": "https://www.vaneck.com/uk/en/library/fact-sheets/dfns-fact-sheet.pdf",
-          "checkedAt": "2026-09-30",
+          "excerpt": "IE000YYE6WK5 | SIX SWISS EXCHANGE CHF IE000YYE6WK5 DFNS DFNS SE DFNS.S BR1H1X8 --",
+          "sourceUrl": "https://www.vaneck.com/ucits/library/fact-sheets/dfns-fact-sheet.pdf",
+          "checkedAt": "2026-10-18",
+          "sha256": "d5886d4a13954fa7cfef8eac14b1e2ec69f1ceade71690905860f2f288fa467b",
           "evidenceId": "IE000YYE6WK5-XSWX-DFNS-CHF"
         },
         {
@@ -4079,11 +5366,13 @@
       "listings": [
         {
           "ticker": "GDIG",
-          "exchange": "Borsa Italiana",
           "mic": "ETFP",
+          "exchange": "Borsa Italiana",
           "currency": "EUR",
-          "sourceUrl": "https://www.vaneck.com/fr/en/library/fact-sheets/gdig-fact-sheet.pdf",
-          "checkedAt": "2026-10-11",
+          "excerpt": "IE00BDFBTQ78 | BORSA ITALIANA EUR IE00BDFBTQ78 GDIG GDIG IM GDIG.MI BD9G3S8 GDIGEUIV",
+          "sourceUrl": "https://www.vaneck.com/ucits/library/fact-sheets/gdig-fact-sheet.pdf",
+          "checkedAt": "2026-10-18",
+          "sha256": "874dbb3ce654c7aed691657a9912f2104f61187991bdf94c2422fdc1eb1f8172",
           "evidenceId": "IE00BDFBTQ78-ETFP-GDIG-EUR"
         }
       ],
@@ -4097,18 +5386,19 @@
       "listings": [
         {
           "ticker": "TRET",
-          "exchange": "Euronext Amsterdam",
           "mic": "XAMS",
+          "exchange": "Euronext Amsterdam",
           "currency": "EUR",
-          "sourceUrl": "https://www.vaneck.com/uk/en/library/fact-sheets/tret-fact-sheet.pdf",
-          "checkedAt": "2026-10-04",
+          "excerpt": "NL0009690239 | EURONEXT AMSTERDAM EUR NL0009690239 TRET TRET NA TRET.AS B46JTC3 ITRET",
+          "sourceUrl": "https://www.vaneck.com/ucits/library/fact-sheets/tret-fact-sheet.pdf",
+          "checkedAt": "2026-10-18",
+          "sha256": "b25a8a1ac5dbf44d3cf1d100d8f46727216e831797dbaec28626458dc35b0df6",
           "evidenceId": "NL0009690239-XAMS-TRET-EUR"
         }
       ],
       "urls": [
         "https://www.vaneck.com/ucits/library/fact-sheets/tret-fact-sheet.pdf",
-        "https://www.justetf.com/en/etf-profile.html?isin=NL0009690239",
-        "https://www.vaneck.com/uk/en/library/fact-sheets/tret-fact-sheet.pdf"
+        "https://www.justetf.com/en/etf-profile.html?isin=NL0009690239"
       ]
     },
     {
@@ -4116,27 +5406,30 @@
       "listings": [
         {
           "ticker": "TDIV",
-          "exchange": "Euronext Paris",
           "mic": "XPAR",
+          "exchange": "Euronext Paris",
           "currency": "EUR",
-          "sourceUrl": "https://www.vaneck.com/uk/en/library/fact-sheets/tdiv-fact-sheet.pdf",
-          "checkedAt": "2026-10-04",
+          "excerpt": "NL0011683594 | EURONEXT PARIS EUR NL0011683594 TDIV TDIV FP TDIV.PA BSNR3C6 ITDIV",
+          "sourceUrl": "https://www.vaneck.com/ucits/library/fact-sheets/tdiv-fact-sheet.pdf",
+          "checkedAt": "2026-10-18",
+          "sha256": "34b739863455004619dc91bfda04e7e2971f710972a110521ddfb29dc00df5cb",
           "evidenceId": "NL0011683594-XPAR-TDIV-EUR"
         },
         {
           "ticker": "TDIV",
-          "exchange": "Euronext Amsterdam",
           "mic": "XAMS",
+          "exchange": "Euronext Amsterdam",
           "currency": "EUR",
-          "sourceUrl": "https://www.vaneck.com/uk/en/library/fact-sheets/tdiv-fact-sheet.pdf",
-          "checkedAt": "2026-10-11",
+          "excerpt": "NL0011683594 | EURONEXT AMSTERDAM EUR NL0011683594 TDIV TDIV NA TDIV.AS BYY8386 ITDIV",
+          "sourceUrl": "https://www.vaneck.com/ucits/library/fact-sheets/tdiv-fact-sheet.pdf",
+          "checkedAt": "2026-10-18",
+          "sha256": "34b739863455004619dc91bfda04e7e2971f710972a110521ddfb29dc00df5cb",
           "evidenceId": "NL0011683594-XAMS-TDIV-EUR"
         }
       ],
       "urls": [
         "https://www.vaneck.com/ucits/library/fact-sheets/tdiv-fact-sheet.pdf",
-        "https://www.justetf.com/en/etf-profile.html?isin=NL0011683594",
-        "https://www.vaneck.com/uk/en/library/fact-sheets/tdiv-fact-sheet.pdf"
+        "https://www.justetf.com/en/etf-profile.html?isin=NL0011683594"
       ]
     },
     {
@@ -4178,7 +5471,36 @@
     },
     {
       "isin": "IE00B3VVMM84",
-      "listings": [],
+      "listings": [
+        {
+          "ticker": "VFEM",
+          "mic": "XAMS",
+          "exchange": "Euronext Amsterdam",
+          "currency": "EUR",
+          "symbol": "VFEM.AS"
+        },
+        {
+          "ticker": "VFEM",
+          "mic": "XETR",
+          "exchange": "Xetra",
+          "currency": "EUR",
+          "symbol": "VFEM.DE"
+        },
+        {
+          "ticker": "VFEM",
+          "mic": "ETFP",
+          "exchange": "Borsa Italiana",
+          "currency": "EUR",
+          "symbol": "VFEM.MI"
+        },
+        {
+          "ticker": "VDEM",
+          "mic": "XLON",
+          "exchange": "London Stock Exchange",
+          "currency": "USD",
+          "symbol": "VDEM.L"
+        }
+      ],
       "urls": [
         "https://fund-docs.vanguard.com/FTSE_Emerging_Markets_UCITS_ETF_USD_Distributing_9507_EU_INT_UK_EN.pdf"
       ]
@@ -4846,7 +6168,41 @@
     },
     {
       "isin": "IE000XZSV718",
-      "listings": [],
+      "listings": [
+        {
+          "ticker": "SPYL",
+          "mic": "XLON",
+          "exchange": "London Stock Exchange",
+          "currency": "USD",
+          "symbol": "SPYL.L",
+          "excerpt": "IE000XZSV718 | London Stock Exchange USD 02 Nov 2023 SPYL BRJ9Z23 SPYL LN SPYL.L",
+          "sourceUrl": "https://www.ssga.com/fr/en_gb/intermediary/etfs/state-street-spdr-sp-500-ucits-etf-acc-spyl-gy",
+          "checkedAt": "2026-10-18",
+          "sha256": "cc3476ab5f8ba955eba0b1a99f3d608a49a634d43cbac6aae38018cdc71dba2a",
+          "evidenceId": "IE000XZSV718-XLON-SPYL-USD"
+        },
+        {
+          "ticker": "SPYL",
+          "mic": "XETR",
+          "exchange": "Xetra",
+          "currency": "EUR",
+          "symbol": "SPYL.DE"
+        },
+        {
+          "ticker": "SPYL",
+          "mic": "ETFP",
+          "exchange": "Borsa Italiana",
+          "currency": "EUR",
+          "symbol": "SPYL.MI"
+        },
+        {
+          "ticker": "SPYL",
+          "mic": "XPAR",
+          "exchange": "Euronext Paris",
+          "currency": "EUR",
+          "symbol": "SPYL.PA"
+        }
+      ],
       "urls": [
         "https://www.ssga.com/fr/en_gb/intermediary/etfs/state-street-spdr-sp-500-ucits-etf-acc-spyl-gy"
       ]
@@ -5434,7 +6790,22 @@
     },
     {
       "isin": "IE00B4K6B022",
-      "listings": [],
+      "listings": [
+        {
+          "ticker": "H50E",
+          "mic": "XLON",
+          "exchange": "London Stock Exchange",
+          "currency": "EUR",
+          "symbol": "H50E.L"
+        },
+        {
+          "ticker": "H50E",
+          "mic": "XPAR",
+          "exchange": "Euronext Paris",
+          "currency": "EUR",
+          "symbol": "H50E.PA"
+        }
+      ],
       "urls": [
         "https://www.assetmanagement.hsbc.co.uk/api/v1/download/document/ie00b4k6b022/gb/en/factsheet"
       ]
@@ -5450,14 +6821,14 @@
           "excerpt": "IE0002XZSHO1 | Nyse Euronext - Euronext Paris WPEA EUR 03/avr./2024 BMGCDM6 WPEA PA WPEA.PA",
           "sourceUrl": "https://www.blackrock.com/fr/particuliers/products/335178/ishares-msci-world-swap-pea-ucits-etf",
           "checkedAt": "2026-10-18",
-          "sha256": "931c1f803f326a1daea5a6056bb91e2241c516c99fc6e3636ed31b0986e363ba",
+          "sha256": "3d407ce9bc33b21f73f72ff768ac97e070e307d026fa1a7d2370a1d1e1bba7ed",
           "evidenceId": "IE0002XZSHO1-XPAR-WPEA-EUR"
         }
       ],
       "urls": [
         "https://www.blackrock.com/fr/particuliers/literature/fact-sheet/wpea-ishares-msci-world-swap-pea-ucits-etf-fund-fact-sheet-fr-fr.pdf",
-        "https://www.justetf.com/fr/etf-profile.html?isin=IE0002XZSHO1",
-        "https://www.blackrock.com/fr/particuliers/products/335178/ishares-msci-world-swap-pea-ucits-etf"
+        "https://www.blackrock.com/fr/particuliers/products/335178/ishares-msci-world-swap-pea-ucits-etf",
+        "https://www.justetf.com/fr/etf-profile.html?isin=IE0002XZSHO1"
       ]
     },
     {
@@ -5577,14 +6948,66 @@
     },
     {
       "isin": "GB00B15KXQ89",
-      "listings": [],
+      "listings": [
+        {
+          "ticker": "COPA",
+          "mic": "XLON",
+          "exchange": "London Stock Exchange",
+          "currency": "USD",
+          "symbol": "COPA.L",
+          "excerpt": "GB00B15KXQ89 | LSE USD COPA COPA LN COPA.L B15KXQ8 GB00B15KXQ89 A0KRKR 27/09/2006",
+          "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXQ89",
+          "checkedAt": "2026-10-18",
+          "sha256": "2cbea6c256ba71ec7037c4ca72709c4391ceac79bd7cbc682b3f3588dc33535a",
+          "evidenceId": "GB00B15KXQ89-XLON-COPA-USD"
+        }
+      ],
       "urls": [
         "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXQ89"
       ]
     },
     {
       "isin": "IE0002Y8CX98",
-      "listings": [],
+      "listings": [
+        {
+          "ticker": "EUDF",
+          "mic": "XETR",
+          "exchange": "Xetra",
+          "currency": "EUR",
+          "symbol": "EUDF.DE",
+          "excerpt": "IE0002Y8CX98 | Xetra EUR EUDF EUDF GY EUDF.DE BRC2WC8 IE0002Y8CX98 A40Y9K 11/03/2025",
+          "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE0002Y8CX98",
+          "checkedAt": "2026-10-18",
+          "sha256": "acd0a9cf3def21a6141e6b9560a5eb96e709aba1da028a590145441f82ddcb59",
+          "evidenceId": "IE0002Y8CX98-XETR-EUDF-EUR"
+        },
+        {
+          "ticker": "WDEF",
+          "mic": "ETFP",
+          "exchange": "Borsa Italiana",
+          "currency": "EUR",
+          "symbol": "WDEF.MI",
+          "excerpt": "IE0002Y8CX98 | Borsa Italiana EUR WDEF WDEF IM WDEF.MI BRC2VW1 IE0002Y8CX98 A40Y9K 11/03/2025",
+          "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE0002Y8CX98",
+          "checkedAt": "2026-10-18",
+          "sha256": "acd0a9cf3def21a6141e6b9560a5eb96e709aba1da028a590145441f82ddcb59",
+          "evidenceId": "IE0002Y8CX98-ETFP-WDEF-EUR"
+        },
+        {
+          "ticker": "WDEF",
+          "mic": "XPAR",
+          "exchange": "Euronext Paris",
+          "currency": "EUR",
+          "symbol": "WDEF.PA"
+        },
+        {
+          "ticker": "WDEF",
+          "mic": "XLON",
+          "exchange": "London Stock Exchange",
+          "currency": "USD",
+          "symbol": "WDEF.L"
+        }
+      ],
       "urls": [
         "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE0002Y8CX98",
         "https://www.wisdomtree.eu/en-ie/etfs/thematic/wdef---wisdomtree-europe-defence-ucits-etf---eur-acc"
@@ -5592,7 +7015,44 @@
     },
     {
       "isin": "IE000W8WMSL2",
-      "listings": [],
+      "listings": [
+        {
+          "ticker": "WQTM",
+          "mic": "XETR",
+          "exchange": "Xetra",
+          "currency": "EUR",
+          "symbol": "WQTM.DE",
+          "excerpt": "IE000W8WMSL2 | Xetra EUR WQTM WQTM GY WQTM.DE BP47T82 IE000W8WMSL2 A419HV 02/09/2025",
+          "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE000W8WMSL2",
+          "checkedAt": "2026-10-18",
+          "sha256": "aec6044572977bafd3ae932e8032fa1bdbb0f21ad55770280619adaca4fa4b98",
+          "evidenceId": "IE000W8WMSL2-XETR-WQTM-EUR"
+        },
+        {
+          "ticker": "WQTM",
+          "mic": "ETFP",
+          "exchange": "Borsa Italiana",
+          "currency": "EUR",
+          "symbol": "WQTM.MI",
+          "excerpt": "IE000W8WMSL2 | Borsa Italiana EUR WQTM WQTM IM WQTM.MI BP47TF9 IE000W8WMSL2 A419HV 02/09/2025",
+          "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE000W8WMSL2",
+          "checkedAt": "2026-10-18",
+          "sha256": "aec6044572977bafd3ae932e8032fa1bdbb0f21ad55770280619adaca4fa4b98",
+          "evidenceId": "IE000W8WMSL2-ETFP-WQTM-EUR"
+        },
+        {
+          "ticker": "WQTM",
+          "mic": "XLON",
+          "exchange": "London Stock Exchange",
+          "currency": "USD",
+          "symbol": "WQTM.L",
+          "excerpt": "IE000W8WMSL2 | LSE USD WQTM WQTM LN WQTM.L BSVJS52 IE000W8WMSL2 A419HV 03/09/2025",
+          "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE000W8WMSL2",
+          "checkedAt": "2026-10-18",
+          "sha256": "aec6044572977bafd3ae932e8032fa1bdbb0f21ad55770280619adaca4fa4b98",
+          "evidenceId": "IE000W8WMSL2-XLON-WQTM-USD"
+        }
+      ],
       "urls": [
         "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE000W8WMSL2"
       ]
@@ -5721,14 +7181,107 @@
     },
     {
       "isin": "IE00BD4TXV59",
-      "listings": [],
+      "listings": [
+        {
+          "ticker": "UETW",
+          "mic": "XETR",
+          "exchange": "Xetra",
+          "currency": "EUR",
+          "symbol": "UETW.DE",
+          "excerpt": "IE00BD4TXV59 | Deutsche Börse (XETRA) EUR 09:00am - 05:30pm CET UETW GY UETW.DE UETWEUIV",
+          "sourceUrl": "https://swissfunddata.ch/sfdpub/docs/fsm-8522_03_03-20260930-en.pdf",
+          "checkedAt": "2026-10-18",
+          "sha256": "8bdbf7953d336b2f37608e4b97f7d2d7c12cae1c1009625721779ce975cda13e",
+          "evidenceId": "IE00BD4TXV59-XETR-UETW-EUR"
+        },
+        {
+          "ticker": "WRDUSW",
+          "mic": "XSWX",
+          "exchange": "SIX Swiss Exchange",
+          "currency": "USD",
+          "symbol": "WRDUSW.SW",
+          "excerpt": "IE00BD4TXV59 | SIX Swiss Exchange USD 09:00am - 05:30pm CET WRDUSW SW WRDUSW.S WRDUUSIV",
+          "sourceUrl": "https://swissfunddata.ch/sfdpub/docs/fsm-8522_03_03-20260930-en.pdf",
+          "checkedAt": "2026-10-18",
+          "sha256": "8bdbf7953d336b2f37608e4b97f7d2d7c12cae1c1009625721779ce975cda13e",
+          "evidenceId": "IE00BD4TXV59-XSWX-WRDUSW-USD"
+        },
+        {
+          "ticker": "WRDB",
+          "mic": "XLON",
+          "exchange": "London Stock Exchange",
+          "currency": "USD",
+          "symbol": "WRDB.L",
+          "excerpt": "IE00BD4TXV59 | London Stock Exchange USD 09:00am - 05:30pm CET WRDB LN WRDB.L WRDUUSIV",
+          "sourceUrl": "https://swissfunddata.ch/sfdpub/docs/fsm-8522_03_03-20260930-en.pdf",
+          "checkedAt": "2026-10-18",
+          "sha256": "8bdbf7953d336b2f37608e4b97f7d2d7c12cae1c1009625721779ce975cda13e",
+          "evidenceId": "IE00BD4TXV59-XLON-WRDB-USD"
+        },
+        {
+          "ticker": "WRDA",
+          "mic": "ETFP",
+          "exchange": "Borsa Italiana",
+          "currency": "EUR",
+          "symbol": "WRDA.MI"
+        }
+      ],
       "urls": [
         "https://swissfunddata.ch/sfdpub/docs/fsm-8522_03_03-20260930-en.pdf"
       ]
     },
     {
       "isin": "FR0007056841",
-      "listings": [],
+      "listings": [
+        {
+          "ticker": "DJE",
+          "mic": "XPAR",
+          "exchange": "Euronext Paris",
+          "currency": "EUR",
+          "symbol": "DJE.PA",
+          "excerpt": "FR0007056841 | Euronext Paris | DJE FP | EUR | DJE.PA",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "18eb8cd84dec31fdd87f2ecfc62f23f25e239d67685c5e4169fd3d3b61beafbd",
+          "evidenceId": "FR0007056841-XPAR-DJE-EUR"
+        },
+        {
+          "ticker": "DJE",
+          "mic": "ETFP",
+          "exchange": "Borsa Italiana",
+          "currency": "EUR",
+          "symbol": "DJE.MI",
+          "excerpt": "FR0007056841 | Borsa Italiana | DJE IM | EUR | DJE.MI",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "18eb8cd84dec31fdd87f2ecfc62f23f25e239d67685c5e4169fd3d3b61beafbd",
+          "evidenceId": "FR0007056841-ETFP-DJE-EUR"
+        },
+        {
+          "ticker": "DJAM",
+          "mic": "XETR",
+          "exchange": "Xetra",
+          "currency": "EUR",
+          "symbol": "DJE.DE",
+          "excerpt": "FR0007056841 | Xetra | DJAM GY | EUR | DJE.DE",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "18eb8cd84dec31fdd87f2ecfc62f23f25e239d67685c5e4169fd3d3b61beafbd",
+          "evidenceId": "FR0007056841-XETR-DJAM-EUR"
+        },
+        {
+          "ticker": "DJEU",
+          "mic": "XLON",
+          "exchange": "London Stock Exchange",
+          "currency": "USD",
+          "symbol": "DJEU.L",
+          "excerpt": "FR0007056841 | LSE | DJEU LN | USD | DJEU.L",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-18",
+          "sha256": "18eb8cd84dec31fdd87f2ecfc62f23f25e239d67685c5e4169fd3d3b61beafbd",
+          "evidenceId": "FR0007056841-XLON-DJEU-USD"
+        }
+      ],
       "urls": [
         "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
         "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0007056841/FRA/FRA/RETAIL/ETF"
@@ -5736,7 +7289,15 @@
     },
     {
       "isin": "FR0011550185",
-      "listings": [],
+      "listings": [
+        {
+          "ticker": "ESE",
+          "mic": "XPAR",
+          "exchange": "Euronext Paris",
+          "currency": "EUR",
+          "symbol": "ESE.PA"
+        }
+      ],
       "urls": [
         "https://dokumenty.analizy.pl/pobierz/etf/E_SBNPEF002_C_EUR/KA/2026-09-30",
         "https://www.justetf.com/fr/etf-profile.html?isin=FR0011550185"
@@ -5763,7 +7324,44 @@
     },
     {
       "isin": "IE000QDFFK00",
-      "listings": [],
+      "listings": [
+        {
+          "ticker": "ANAU",
+          "mic": "XPAR",
+          "exchange": "Euronext Paris",
+          "currency": "EUR",
+          "symbol": "ANAU.PA",
+          "excerpt": "IE000QDFFK00 | EURONEXT P EUR ANAU FP",
+          "sourceUrl": "https://dokumenty.analizy.pl/pobierz/etf/E_AXAIC001_A_USD/KA/2026-09-30",
+          "checkedAt": "2026-10-18",
+          "sha256": "c6cc58c21971229076a6d705950d8f969fa3501c45aff6d3e44389e3cc33f20d",
+          "evidenceId": "IE000QDFFK00-XPAR-ANAU-EUR"
+        },
+        {
+          "ticker": "ANAU",
+          "mic": "XETR",
+          "exchange": "Xetra",
+          "currency": "USD",
+          "symbol": "ANAU.DE",
+          "excerpt": "IE000QDFFK00 | XETRA USD ANAU GY",
+          "sourceUrl": "https://dokumenty.analizy.pl/pobierz/etf/E_AXAIC001_A_USD/KA/2026-09-30",
+          "checkedAt": "2026-10-18",
+          "sha256": "c6cc58c21971229076a6d705950d8f969fa3501c45aff6d3e44389e3cc33f20d",
+          "evidenceId": "IE000QDFFK00-XETR-ANAU-USD"
+        },
+        {
+          "ticker": "ANAU",
+          "mic": "ETFP",
+          "exchange": "Borsa Italiana",
+          "currency": "EUR",
+          "symbol": "ANAU.MI",
+          "excerpt": "IE000QDFFK00 | All definitions of risks indicators are available in the section 'Glossary' below Borsa Italiana S.P.A. EUR ANAU IM",
+          "sourceUrl": "https://dokumenty.analizy.pl/pobierz/etf/E_AXAIC001_A_USD/KA/2026-09-30",
+          "checkedAt": "2026-10-18",
+          "sha256": "c6cc58c21971229076a6d705950d8f969fa3501c45aff6d3e44389e3cc33f20d",
+          "evidenceId": "IE000QDFFK00-ETFP-ANAU-EUR"
+        }
+      ],
       "urls": [
         "https://dokumenty.analizy.pl/pobierz/etf/E_AXAIC001_A_USD/KA/2026-09-30"
       ]
@@ -5776,17 +7374,17 @@
           "mic": "XPAR",
           "exchange": "Euronext Paris",
           "currency": "EUR",
-          "excerpt": "FR001400ZGO4 | Euronext Paris EUR PEMS FP - PEMS.PA -",
-          "sourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR001400ZGO4/FRA/FRA/RETAIL/ETF",
+          "symbol": "PEMS.PA",
+          "excerpt": "FR001400ZGO4 | Euronext Paris | PEMS FP | EUR | PEMS.PA",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
           "checkedAt": "2026-10-18",
-          "sha256": "0c644662d810bb52d1ab670017657d8bf72506f5d7de375d16b65c55bc1d6556",
+          "sha256": "ce2c119607663782055e1652085486e5f6ce21f1836d9e695d77e439dfdd53ca",
           "evidenceId": "FR001400ZGO4-XPAR-PEMS-EUR"
         }
       ],
       "urls": [
         "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
-        "https://www.justetf.com/fr/etf-profile.html?isin=FR001400ZGO4",
-        "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR001400ZGO4/FRA/FRA/RETAIL/ETF"
+        "https://www.justetf.com/fr/etf-profile.html?isin=FR001400ZGO4"
       ]
     },
     {
@@ -5919,11 +7517,13 @@
       "listings": [
         {
           "ticker": "GDX",
-          "exchange": "Borsa Italiana",
           "mic": "ETFP",
+          "exchange": "Borsa Italiana",
           "currency": "EUR",
+          "excerpt": "IE00BQQP9F84 | BORSA ITALIANA EUR IE00BQQP9F84 GDX GDX IM GDX.MI BYT2HZ8 GDXEUIV",
           "sourceUrl": "https://www.vaneck.com/nl/en/library/fact-sheets/gdx-fact-sheet.pdf",
-          "checkedAt": "2026-10-11",
+          "checkedAt": "2026-10-18",
+          "sha256": "24275cb10ca58fcbcb66b07e4b17efc78188ce0be084b525b6b815750d3d580b",
           "evidenceId": "IE00BQQP9F84-ETFP-GDX-EUR"
         }
       ],
@@ -9266,7 +10866,7 @@
           "currency": "EUR",
           "symbol": "V20A.DE",
           "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_20_Equity_UCITS_ETF_EUR_Accumulating_9490_FR_INT_FR.pdf",
-          "checkedAt": "2026-10-17",
+          "checkedAt": "2026-10-18",
           "evidenceId": "IE00BMVB5K07-XETR-V20A-EUR",
           "excerpt": "IE00BMVB5K07 | Deutsche Börse | EUR | V20A | V20A.DE"
         }
@@ -9286,7 +10886,7 @@
           "currency": "EUR",
           "symbol": "V40A.DE",
           "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_40_Equity_UCITS_ETF_EUR_Accumulating_9492_FR_INT_FR.pdf",
-          "checkedAt": "2026-10-17",
+          "checkedAt": "2026-10-18",
           "evidenceId": "IE00BMVB5M21-XETR-V40A-EUR",
           "excerpt": "IE00BMVB5M21 | Deutsche Börse | EUR | V40A | V40A.DE"
         }
@@ -9306,7 +10906,7 @@
           "currency": "EUR",
           "symbol": "V60A.DE",
           "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_60_Equity_UCITS_ETF_EUR_Accumulating_9494_FR_INT_FR.pdf",
-          "checkedAt": "2026-10-17",
+          "checkedAt": "2026-10-18",
           "evidenceId": "IE00BMVB5P51-XETR-V60A-EUR",
           "excerpt": "IE00BMVB5P51 | Deutsche Börse | EUR | V60A | V60A.DE"
         }
@@ -9326,7 +10926,7 @@
           "currency": "EUR",
           "symbol": "V80A.DE",
           "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_80_Equity_UCITS_ETF_EUR_Accumulating_9496_FR_INT_FR.pdf",
-          "checkedAt": "2026-10-17",
+          "checkedAt": "2026-10-18",
           "evidenceId": "IE00BMVB5R75-XETR-V80A-EUR",
           "excerpt": "IE00BMVB5R75 | Deutsche Börse | EUR | V80A | V80A.DE"
         }

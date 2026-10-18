@@ -4,6 +4,12 @@ import { QUALIFIED_ETF_COMPARISONS } from './qualified-etf-comparisons.js';
 import { QUALIFIED_EXPOSURE_SHEETS } from './qualified-exposure-sheets.js';
 import { getInstrumentName, affirmInstrumentPea, getInstrumentPeaStatus } from './instruments.js';
 import { formatEtfTer } from './etf-ter.js';
+import { ETF_TER_BY_ISIN } from './etf-ter.js';
+import { ETFS } from './etf-cards.js';
+import { AUTOMATED_ETF } from './automated-etf.js';
+import { benchmarkKey } from './asset-selection.js';
+import { exposureGroup } from './asset-labels.js';
+import { getInstrumentFacts } from './instrument-facts.js';
 let uid = 0
 function nextId(prefix) {
   uid += 1
@@ -836,8 +842,70 @@ const PEA_COMPARISONS = [
   hook: `${emoji} ${question}`, peaOnly: true, comparisonNote,
 }))
 
+// Comparatifs dérivés des registres : toute fiche ETF absente des thèmes éditoriaux est proposée
+// soit avec les autres parts de nos fiches qui suivent le même indice, soit dans une sélection de
+// sa famille d’exposition. Règles fixes (PEA en tête, puis frais croissants) ; aucune part n’est
+// affichée sans frais, encours et expositions collectés, sauf une matière première sans
+// exposition actions.
+const EDITORIAL_THEMES = [...COMPARISON_THEMES, ...PEA_COMPARISONS]
+const editorialSets = new Set(EDITORIAL_THEMES.map(theme => theme.etfs.map(e => e.isin).sort().join('+')))
+const slug = text => String(text).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+const isCommodity = isin => ['ETC', 'ETP', 'ETN'].includes(getInstrumentFacts(isin).instrumentType) || /\b(ETC|ETP|ETN)\b/.test(getInstrumentName(isin))
+export function comparisonReady(isin, record = AUTOMATED_ETF[isin]) {
+  if (!record || !Number.isFinite(record.characteristics?.terPct) || !(record.aum?.amount > 0 && record.aum.asOf && record.aum.checkedAt)) return false
+  // Au moins une année civile complète publiée : une part lancée dans l’année attend son premier calendrier.
+  if (!Object.values(record.performance?.years ?? {}).some(Number.isFinite)) return false
+  if (isCommodity(isin)) return true
+  // Les trois expositions publiées et datées ; une absence même qualifiée reste hors des comparatifs dérivés.
+  return ['countries', 'sectors', 'holdings'].every(field => record[field]?.rows?.length && record[field].asOf)
+}
+const peaWording = isin => { const status = getInstrumentPeaStatus(isin); return status === true ? affirmInstrumentPea(isin, true, 'éligible PEA') : status === false ? 'CTO, hors PEA' : 'éligibilité PEA non documentée' }
+const distributionWording = isin => getInstrumentFacts(isin).distribution?.toLocaleLowerCase('fr-FR') ?? null
+const byFees = (a, b) => Number(ETF_TER_BY_ISIN[a] ?? 99) - Number(ETF_TER_BY_ISIN[b] ?? 99) || getInstrumentName(a).localeCompare(getInstrumentName(b), 'fr')
+const peaFirst = isins => [...isins].sort((a, b) => Number(getInstrumentPeaStatus(b) === true) - Number(getInstrumentPeaStatus(a) === true) || byFees(a, b))
+const derivedEtf = (isin, differenciateur) => createEtf({ isin, nom: getInstrumentName(isin, 'tweet'), frais: formatEtfTer(isin), differenciateur, isCopperEtc: isin === 'GB00B15KXQ89' })
+const readyCards = ETFS.filter(card => card.isin && comparisonReady(card.isin))
+// Une couverture de change absente (null) ou déclarée nulle (false) décrit la même part non couverte.
+const indexLabel = isin => { const key = benchmarkKey(isin); if (!key) return null; const [benchmark, hedge] = key.split('|hedge:'); return hedge === 'none' || hedge === 'false' ? benchmark : `${benchmark} · couverture de change` }
+const byIndex = new Map()
+for (const card of readyCards) { const label = indexLabel(card.isin); if (label) byIndex.set(label, [...(byIndex.get(label) ?? []), card.isin]) }
+export const SAME_INDEX_THEMES = [...byIndex].filter(([, isins]) => isins.length >= 2 && !editorialSets.has([...isins].sort().join('+')))
+  .sort(([a], [b]) => a.localeCompare(b, 'fr')).map(([label, isins]) => {
+    const ordered = peaFirst(isins).slice(0, 5)
+    const transition = isins.length > ordered.length
+      ? `${isins.length} ETF de nos fiches suivent ${label}. Voici les ${ordered.length} à regarder d’abord, PEA en tête puis frais croissants :`
+      : `${isins.length} ETF de nos fiches suivent ${label}. Frais, éligibilité PEA et politique de distribution font la différence :`
+    const cloture = 'Même indice ne veut pas dire même résultat : frais, méthode de réplication, enveloppe fiscale et écart de suivi séparent ces parts.'
+    // Le texte publié lit hook et comparisonNote ; l’image lit cloture.
+    return createTheme({ id: `meme-indice-${slug(label)}`, nom: `Même indice : ${label}`, emoji: '🔁', derived: 'same-index', benchmark: label, universe: isins.length,
+      hook: `🔁 Plusieurs ETF suivent ${label} : lequel choisir ?`, transition, cloture, comparisonNote: `${transition.replace(/ :$/, '.')} ${cloture}`,
+      etfs: ordered.map(isin => derivedEtf(isin, [distributionWording(isin), peaWording(isin)].filter(Boolean).join(', '))),
+      ctaEngagement: 'Tu as retenu laquelle, et pourquoi ?' })
+  })
+const GROUP_EMOJI = { Monde: '🌍', 'États-Unis': '🇺🇸', Europe: '🇪🇺', Émergents: '🌏', Japon: '🇯🇵', 'Obligations et monétaire': '📅', 'Matières premières': '🛢️', Crypto: '🪙', Immobilier: '🏢', 'Dividendes et revenus': '💶', 'Secteurs et thématiques': '🧩', 'Facteurs et pondérations': '⚖️', 'Multi-actifs': '⚖️' }
+const covered = new Set([...EDITORIAL_THEMES, ...SAME_INDEX_THEMES].flatMap(theme => theme.etfs.map(e => e.isin)))
+const byGroup = new Map()
+for (const card of readyCards.filter(card => !covered.has(card.isin))) {
+  const group = exposureGroup({ ...card, benchmark: getInstrumentFacts(card.isin).benchmark })
+  byGroup.set(group, [...(byGroup.get(group) ?? []), card])
+}
+export const EXPOSURE_THEMES = [...byGroup].sort(([a], [b]) => a.localeCompare(b, 'fr')).flatMap(([group, cards]) => {
+  const ordered = cards.sort((a, b) => byFees(a.isin, b.isin))
+  const chunks = Array.from({ length: Math.ceil(ordered.length / 4) }, (_, i) => ordered.slice(i * 4, i * 4 + 4))
+  const cloture = 'Une même famille d’exposition ne veut pas dire un même indice : composition, devise et méthode de réplication se vérifient avant toute comparaison de performance.'
+  return chunks.map((chunk, i) => {
+    const transition = chunk.length > 1 ? `${chunk.length} ETF « ${group} » de nos fiches, classés par frais croissants :` : `Un ETF « ${group} » de nos fiches, à découvrir :`
+    return createTheme({ id: `selection-${slug(group)}${chunks.length > 1 ? `-${i + 1}` : ''}`, nom: `${group} · sélection${chunks.length > 1 ? ` ${i + 1}` : ''}`, emoji: GROUP_EMOJI[group] ?? '📊', derived: 'exposure', group,
+      // Every theme needs a distinct question: the selection rank is part of it when a group spans several themes.
+      hook: `${GROUP_EMOJI[group] ?? '📊'} ${chunk.length > 1 ? `Quel ETF « ${group} » choisir${chunks.length > 1 ? ` parmi la sélection ${i + 1}` : ''} ?` : `Connais-tu cet ETF « ${group} » ?`}`, transition, cloture, comparisonNote: `${transition.replace(/ :$/, '.')} ${cloture}`,
+      etfs: chunk.map(card => derivedEtf(card.isin, [getInstrumentFacts(card.isin).benchmark ? `indice suivi : ${getInstrumentFacts(card.isin).benchmark}` : card.verdict || card.whatIs, peaWording(card.isin)].filter(Boolean).join(' ; '))),
+      ctaEngagement: 'Lequel correspond à ta stratégie ?' })
+  })
+})
+export const DERIVED_THEMES = [...SAME_INDEX_THEMES, ...EXPOSURE_THEMES]
+
 // PEA en premier, sans changer l’exposition des autres produits du comparatif.
 // Le tri est stable : les différences d’indice, de zone ou de couverture restent visibles.
-export const DEFAULT_THEMES = [...COMPARISON_THEMES, ...PEA_COMPARISONS].map(theme => ({ ...theme,
+export const DEFAULT_THEMES = [...EDITORIAL_THEMES, ...DERIVED_THEMES].map(theme => ({ ...theme,
   etfs: [...theme.etfs].sort((a, b) => Number(getInstrumentPeaStatus(b.isin) === true) - Number(getInstrumentPeaStatus(a.isin) === true)),
 }));

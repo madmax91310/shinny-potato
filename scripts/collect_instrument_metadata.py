@@ -23,10 +23,45 @@ RENEWAL_GRACE_DAYS=POLICY['etf.default']['checkDays']
 STATIC_RENEWAL_DAYS={field:POLICY['etf.staticCharacteristic']['checkDays'] for field in POLICY['etf.staticCharacteristic']['fields']}
 # Any language of a regional factsheet (fr/en, fr/fr...) or the UCITS one; see issuer_routes.
 VANECK_FACTSHEET=re.compile(r'https://www\.vaneck\.com/(?:ucits|[a-z]{2}/[a-z]{2})/library/fact-sheets/[a-z0-9]+-fact-sheet\.pdf')
+# Amundi publishes exact-share characteristics and listings through a POST API only: a GET on this
+# URL answers 405 and had left every Amundi instrument without metadata or listing evidence.
+AMUNDI_API='https://www.amundietf.fr/mapi/ProductAPI/getProductsData'
+AMUNDI_CHARACTERISTICS=['ISIN','DISTRIBUTION_POLICY','FUND_REPLICATION_METHODOLOGY','LISTINGS','MAIN_LISTINGS']
+# Exchange labels as the issuers print them, mapped to the MIC used across the registries.
+EXCHANGE_MICS={'London Stock Exchange':'XLON','LSE':'XLON','Deutsche Boerse Xetra':'XETR','Xetra':'XETR','XETRA':'XETR',
+  'Euronext Amsterdam':'XAMS','Nyse Euronext - Euronext Paris':'XPAR','Euronext Paris':'XPAR','Borsa Italiana':'ETFP','SIX Swiss Exchange':'XSWX'}
+CANONICAL_EXCHANGES={'XLON':'London Stock Exchange','XETR':'Xetra','XAMS':'Euronext Amsterdam','XPAR':'Euronext Paris','ETFP':'Borsa Italiana','XSWX':'SIX Swiss Exchange'}
+SYMBOL=re.compile(r'[A-Za-z0-9]+\.[A-Za-z]+')
 
-def fetch_document(url,fetch=download):
+def fetch_amundi(isin):
+    from collect_amundi_etf import fetch_api,request_payload
+    payload=request_payload([{'isin':isin}],dt.datetime.now(UTC))
+    payload.update(characteristics=AMUNDI_CHARACTERISTICS,breakDown={'aggregationFields':[]},metrics=[],historics=[])
+    return json.dumps(fetch_api(payload),ensure_ascii=False,sort_keys=True).encode()
+
+def amundi_product(doc,isin):
+    products=doc.get('products')
+    if not isinstance(products,list) or len(products)!=1:raise ValueError('Missing or multiple Amundi products')
+    product=products[0]
+    if product.get('productId')!=isin or product.get('characteristics',{}).get('ISIN')!=isin:raise ValueError('Wrong exact-share metadata')
+    return product
+
+def dws_identity(body,isin):
+    if set(re.findall(rb'\b[A-Z]{2}[A-Z0-9]{9}\d\b',body))!={isin.encode()}:raise ValueError('Ambiguous listing document identity')
+
+def dws_tables(node):
+    # Every table of the product page whose columns name a stock exchange; nothing is read from headings.
+    if isinstance(node,dict):
+        columns=node.get('columns');values=node.get('values')
+        if isinstance(columns,list) and isinstance(values,list) and any(isinstance(c,dict) and c.get('key')=='StockExchange' for c in columns):yield values
+        for child in node.values():yield from dws_tables(child)
+    elif isinstance(node,list):
+        for child in node:yield from dws_tables(child)
+
+def fetch_document(url,fetch=download,isin=None):
     """Returns (body, url actually read)."""
     try:
+        if url==AMUNDI_API and fetch is download:return fetch_amundi(isin),url
         return fetch(url),url
     except ValueError as error:
         # VanEck answers its factsheet URLs with a regional consent page. Like
@@ -91,6 +126,13 @@ def parse_text(text,isin):
 
 def parse_json(body,isin):
     doc=json.loads(body)
+    if isinstance(doc,dict) and 'products' in doc:
+        facts=amundi_product(doc,isin)['characteristics']
+        mapping={'DISTRIBUTION_POLICY':'distribution','FUND_REPLICATION_METHODOLOGY':'replicationMethod'}
+        return {field:facts[key] for key,field in mapping.items() if isinstance(facts.get(key),str) and facts[key]}
+    if isinstance(doc,dict) and 'pdpResult' in doc:
+        # The DWS product page exposes no explicit characteristic fields: only its exchange table is read.
+        dws_identity(body,isin);return {}
     try:
         points=doc['componentsByNameMap']['keyFundFacts']['containersByNameMap']['default']['dataPointsByNameMap']
         if points['isin']['value']!=isin:raise ValueError('Wrong exact-share metadata')
@@ -102,9 +144,24 @@ def parse_json(body,isin):
 def parse_listings(body,source,url,checked):
     if 'www.justetf.com/' in url:return []  # Listings require an issuer or exchange row, not a specialist profile alone.
     isin=source['isin'];digest=hashlib.sha256(body).hexdigest();rows=[]
-    markets={'London Stock Exchange':'XLON','Deutsche Boerse Xetra':'XETR','Xetra':'XETR','Euronext Amsterdam':'XAMS','Nyse Euronext - Euronext Paris':'XPAR','Euronext Paris':'XPAR','Borsa Italiana':'ETFP','SIX Swiss Exchange':'XSWX'}
+    markets=EXCHANGE_MICS
     if body.lstrip().startswith(b'{'):
         doc=json.loads(body)
+        if isinstance(doc,dict) and 'products' in doc:
+            for row in amundi_product(doc,isin)['characteristics'].get('LISTINGS') or []:
+                mic=markets.get(row.get('exchangePlace'));currency=row.get('tradingCurrency');bloomberg=str(row.get('ticker') or '').split();symbol=row.get('ric')
+                if not mic or not re.fullmatch(r'[A-Z]{3}',currency or '') or not bloomberg or not isinstance(symbol,str) or not SYMBOL.fullmatch(symbol):continue
+                rows.append(dict(ticker=bloomberg[0],mic=mic,exchange=CANONICAL_EXCHANGES[mic],currency=currency,symbol=symbol,excerpt=' | '.join([isin,row['exchangePlace'],row['ticker'],currency,symbol])))
+            return [r|{'sourceUrl':url,'checkedAt':checked,'sha256':digest,'evidenceId':f"{isin}-{r['mic']}-{r['ticker']}-{r['currency']}"} for r in rows]
+        if isinstance(doc,dict) and 'pdpResult' in doc:
+            dws_identity(body,isin)
+            for values in dws_tables(doc):
+                for row in values:
+                    cell=lambda key:(row.get(key) or {}).get('value') if isinstance(row.get(key),dict) else None
+                    mic=markets.get(cell('StockExchange'));currency=cell('Currency');bloomberg=str(cell('BloombergTicker') or '').split();symbol=cell('ReutersRic')
+                    if not mic or not re.fullmatch(r'[A-Z]{3}',currency or '') or not bloomberg or not isinstance(symbol,str) or not SYMBOL.fullmatch(symbol):continue
+                    rows.append(dict(ticker=bloomberg[0],mic=mic,exchange=CANONICAL_EXCHANGES[mic],currency=currency,symbol=symbol,excerpt=' | '.join([isin,cell('StockExchange'),cell('BloombergTicker'),currency,symbol])))
+            return [r|{'sourceUrl':url,'checkedAt':checked,'sha256':digest,'evidenceId':f"{isin}-{r['mic']}-{r['ticker']}-{r['currency']}"} for r in rows]
         points=doc['componentsByNameMap']['keyFundFacts']['containersByNameMap']['default']['dataPointsByNameMap']
         if points['isin']['value']!=isin:raise ValueError('Wrong listing share')
         data=doc['componentsByNameMap'].get('listings',{}).get('containersByNameMap',{}).get('default',{}).get('dataPointsByNameMap',{})
@@ -119,9 +176,10 @@ def parse_listings(body,source,url,checked):
         if set(re.findall(r'\b[A-Z]{2}[A-Z0-9]{9}\d\b',text))!={isin}:raise ValueError('Ambiguous listing document identity')
         if body.startswith(b'%PDF-'):blocks=text.splitlines()
         else:blocks=[html.unescape(re.sub('<[^>]+>',' ',r)) for r in re.findall(r'<tr\b[^>]*>(.*?)</tr>',body.decode(),re.S|re.I)]
-        # VanEck factsheets print exchanges in capitals and name Xetra "Deutsche Börse"
-        # (Bloomberg suffix GY, i.e. Xetra); ticker and currency must still match the row.
-        aliases={'XLON':['London Stock Exchange','LSE'],'XPAR':['Euronext Paris'],'XAMS':['Euronext Amsterdam'],'ETFP':['Borsa Italiana'],'XETR':['Xetra','Deutsche Börse'],'XSWX':['SIX Swiss Exchange','SIX Swiss']}
+        # Issuer factsheets abbreviate or capitalise the venues (BNP: « EURONEXT P », « SIX SWISS » ; DWS: « XETRA » ;
+        # VanEck: « LONDON STOCK EXCHANGE », and Xetra as « DEUTSCHE BÖRSE », Bloomberg suffix GY). Matching ignores
+        # case; ticker and currency must still be on the same row.
+        aliases={'XLON':['London Stock Exchange','LSE'],'XPAR':['Euronext Paris','EURONEXT P','Euronext (FR)'],'XAMS':['Euronext Amsterdam','EURONEXT A'],'ETFP':['Borsa Italiana','BORSA ITALIANA'],'XETR':['Xetra','XETRA','Deutsche Börse'],'XSWX':['SIX Swiss Exchange','SIX Swiss','SIX SWISS']}
         for listing in source.get('listings',[]):
             for block in blocks:
                 if re.search(r'(?<![A-Za-z0-9])'+re.escape(listing['ticker'])+r'(?![A-Za-z0-9])',block) and re.search(r'\b'+re.escape(listing['currency'])+r'\b',block) and any(m.casefold() in block.casefold() for m in aliases.get(listing['mic'],[listing['exchange']])):
@@ -133,7 +191,7 @@ def collect(source,now,fetch=download):
     values={};errors=[];conflicts=set();checked=now.date().isoformat()
     for url in source['urls']:
         try:
-            body,url=fetch_document(url,fetch)
+            body,url=fetch_document(url,fetch,source['isin'])
             fields=parse_json(body,source['isin']) if body.lstrip().startswith(b'{') else parse_text(text_of(body),source['isin'])
             listing_rows=parse_listings(body,source,url,checked)
             if listing_rows:fields['listings']=listing_rows

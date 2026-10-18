@@ -7,7 +7,7 @@ import { getInstrumentPeaStatus } from '../src/data/instruments.js'
 import { getPreferredInstrumentListing } from '../src/data/instrument-listings.js'
 import { getComparisonPerformance, getComparisonYears } from '../src/pages/tweet-midi/comparisonPerformance.js'
 import { buildTweetText } from '../src/pages/etf-tweets/lib/tweetFormat.js'
-import { ETF_EXPOSURE_COPY, COMPARISON_HOOKS } from '../src/pages/etf-tweets/lib/exposureCopy.js'
+import { ETF_EXPOSURE_COPY, COMPARISON_HOOKS, getEtfExposureCopy } from '../src/pages/etf-tweets/lib/exposureCopy.js'
 import { COMPARISON_ETF_DETAILS } from '../src/data/comparison-etf-details.js'
 import { readFileSync } from 'node:fs'
 import { getComparisonPolicy } from '../src/pages/etf-tweets/lib/comparisonPolicy.js'
@@ -51,9 +51,11 @@ for (const fund of emerging.etfs) {
 }
 for (const theme of DEFAULT_THEMES) {
  const tweet = buildTweetText(theme)
- assert.equal(tweet.split('\n')[0], `${theme.emoji} ${COMPARISON_HOOKS[theme.id]}`)
+ // Derived themes (same index, exposure selections) carry their own question and fall back on each
+ // share's differenciateur when no editorial exposure copy exists for the ISIN.
+ assert.equal(tweet.split('\n')[0], theme.derived ? theme.hook : `${theme.emoji} ${COMPARISON_HOOKS[theme.id]}`)
  for (const fund of theme.etfs) {
-  const exposure = ETF_EXPOSURE_COPY[fund.isin]
+  const exposure = theme.derived ? getEtfExposureCopy(fund) : ETF_EXPOSURE_COPY[fund.isin]
   assert.ok(exposure, `Exposition manquante : ${fund.isin}`)
   const blockEnd = tweet.indexOf(`🆔 ISIN : ${fund.isin}`)
   const blockStart = tweet.lastIndexOf('\n\n', tweet.indexOf(exposure))

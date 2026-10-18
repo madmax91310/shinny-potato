@@ -1,4 +1,4 @@
-import { buildAutomatedIndexSheets } from './automated-index-sheets.js';
+import { buildAutomatedIndexSheets, derivedSheetDefinitions, AUTOMATED_SHEET_DEFINITIONS } from './automated-index-sheets.js';
 import { refreshIndexSheet } from './automated-indices.js';
 import { INDEX_RETURNS, getIndexReturns } from './index-returns.js'
 import { getIndexComposition, getIndexFacts } from './index-facts.js'
@@ -213,12 +213,15 @@ const ARCHIVE_SHEETS = [
   },
 ]
 
-const automatedSheets = buildAutomatedIndexSheets();
+// Editorial automated sheets first; then one sheet for every other complete index of the daily workflow.
+export const DERIVED_SHEET_DEFINITIONS = derivedSheetDefinitions([...ARCHIVE_SHEETS, ...AUTOMATED_SHEET_DEFINITIONS].map(sheet => sheet.id));
+const automatedSheets = buildAutomatedIndexSheets(undefined, new Date(), [...AUTOMATED_SHEET_DEFINITIONS, ...DERIVED_SHEET_DEFINITIONS]);
 export const SHEETS = [...ARCHIVE_SHEETS.map(sheet => {
   const automated = automatedSheets.find(row => row.id === sheet.id);
   // Keep the approved editorial structure while requiring complete automated facts.
   const previous = refreshIndexSheet(sheet);
-  const current = automated ? { ...previous, ...automated, takeaway: previous.takeaway } : previous;
+  // Automated facts replace the archive snapshot; the approved title, intro, insight and takeaway stay.
+  const current = automated ? { ...previous, ...automated, title: previous.title, intro: previous.intro, insight: previous.insight, takeaway: previous.takeaway, derived: undefined } : previous;
   if (current.performance.kind !== 'indice' || !/dividendes.*réinvestis/.test(current.performance.detail)) {
     throw new Error(`La fiche exige un indice dividendes réinvestis : ${sheet.id}`);
   }

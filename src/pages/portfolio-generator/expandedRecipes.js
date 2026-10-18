@@ -23,7 +23,7 @@ export function expandedRecipes(profile,risk) {
     const stable=[80,65,35,0,0][level];
     const satellite=[5,10,15,20,25][level];
     return [
-      ...ASSETS.filter(a=>a.distinctCandidate && !a.manualOnly && a.cat==='actions_larges' && level>=2).map(a=>make(`distinct-${a.id}`,`Monde et ${a.label.toLowerCase()}`,[[GLOBAL,100-stable-satellite],[a.id,satellite],['fonds_euros',stable]])),
+      ...ASSETS.filter(a=>a.distinctCandidate && !a.manualOnly && a.cat==='actions_larges' && level>=2).map(a=>make(`distinct-${a.id}`,`Monde et ${(a.label ?? a.name).toLowerCase()}`,[[GLOBAL,100-stable-satellite],[a.id,satellite],['fonds_euros',stable]])),
       ...(level>=2 ? [
         make('global-cloud-robotics','Monde, cloud et robotique',[[GLOBAL,100-stable-2*satellite],['cloud-wisdomtree',satellite],['sect_robotique',satellite],['fonds_euros',stable]]),
         make('global-timber-agriculture','Monde, bois et agro-industrie',[[GLOBAL,100-stable-2*satellite],['timber-ishares',satellite],['agribusiness-ishares',satellite],['fonds_euros',stable]]),

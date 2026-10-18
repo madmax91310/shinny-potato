@@ -31,6 +31,30 @@ class MetadataTests(unittest.TestCase):
         self.assertEqual(rows[0]['evidenceId'],self.ISIN+'-XLON-TEST-USD')
         invalid=(self.ISIN+'<table><tr><td>London Stock Exchange TEST</td></tr><tr><td>USD</td></tr></table>').encode()
         self.assertEqual(parse_listings(invalid,src,'https://issuer.test','2026-10-17'),[])
+    def test_amundi_api_metadata_and_listings_are_exact(self):
+        payload={'products':[{'productId':self.ISIN,'characteristics':{'ISIN':self.ISIN,'DISTRIBUTION_POLICY':'Capitalisation','FUND_REPLICATION_METHODOLOGY':'Indirect (Swap Based)',
+            'LISTINGS':[{'exchangePlace':'Euronext Paris','tradingCurrency':'EUR','ticker':'PAASI FP','ric':'PAASI.PA'},{'exchangePlace':'LSE','tradingCurrency':'USD','ticker':'PAAS LN','ric':'PAAS.L'},{'exchangePlace':'Bolsa Mexicana','tradingCurrency':'MXN','ticker':'PAASIN MM','ric':'PAASIN.MX'}]}}]}
+        body=json.dumps(payload).encode()
+        self.assertEqual(parse_json(body,self.ISIN),{'distribution':'Capitalisation','replicationMethod':'Indirect (Swap Based)'})
+        rows=parse_listings(body,{'isin':self.ISIN},'https://www.amundietf.fr/mapi/ProductAPI/getProductsData','2026-10-18')
+        self.assertEqual([(r['mic'],r['ticker'],r['currency'],r['symbol']) for r in rows],[('XPAR','PAASI','EUR','PAASI.PA'),('XLON','PAAS','USD','PAAS.L')])
+        self.assertEqual(rows[0]['evidenceId'],self.ISIN+'-XPAR-PAASI-EUR');self.assertEqual(rows[0]['exchange'],'Euronext Paris')
+        payload['products'][0]['characteristics']['ISIN']='IE00BP3QZ601'
+        with self.assertRaises(ValueError):parse_json(json.dumps(payload).encode(),self.ISIN)
+        with self.assertRaises(ValueError):parse_listings(json.dumps(payload).encode(),{'isin':self.ISIN},'https://www.amundietf.fr/mapi/ProductAPI/getProductsData','2026-10-18')
+    def test_dws_product_page_exchange_table(self):
+        from pathlib import Path
+        body=Path(__file__).with_name('fixtures').joinpath('official-documents','dws-exact-share.json').read_bytes()
+        self.assertEqual(parse_json(body,'IE00BLNMYC90'),{})
+        rows=parse_listings(body,{'isin':'IE00BLNMYC90'},'https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/pdpMetaTagsTealium','2026-10-18')
+        self.assertIn(('ETFP','XDEW','EUR','XDEW.MI'),[(r['mic'],r['ticker'],r['currency'],r['symbol']) for r in rows])
+        self.assertTrue(all(r['evidenceId'].startswith('IE00BLNMYC90-') for r in rows))
+        with self.assertRaises(ValueError):parse_listings(body.replace(b'IE00BLNMYC90',b'IE00B4L5Y983',1),{'isin':'IE00BLNMYC90'},'https://etf.dws.com','2026-10-18')
+    def test_factsheet_venue_abbreviations_share_the_row(self):
+        src={'isin':self.ISIN,'listings':[{'ticker':'ANAU','mic':'XPAR','exchange':'Euronext Paris','currency':'EUR','symbol':'ANAU.PA'}]}
+        body=(self.ISIN+'<table><tr><td>EURONEXT P</td><td>EUR</td><td>ANAU FP</td></tr></table>').encode()
+        rows=parse_listings(body,src,'https://issuer.test','2026-10-18')
+        self.assertEqual((rows[0]['evidenceId'],rows[0]['symbol']),(self.ISIN+'-XPAR-ANAU-EUR','ANAU.PA'))
     def test_structured_identity(self):
         def doc(isin):return json.dumps({'componentsByNameMap':{'keyFundFacts':{'containersByNameMap':{'default':{'dataPointsByNameMap':{'isin':{'value':isin},'domicile':{'value':'Ireland'}}}}}}}).encode()
         self.assertEqual(parse_json(doc(self.ISIN),self.ISIN),{'domicile':'Ireland'})

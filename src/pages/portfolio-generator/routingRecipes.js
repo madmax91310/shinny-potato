@@ -1,6 +1,6 @@
 // 16/10/2026: already-collected exact shares, newly used in automatic recipes.
 // No return series or issuer observations are copied here.
-const slot = (id, pct, spread = 10) => ({ id, pct, minPct:Math.max(5,pct-spread), maxPct:Math.min(100,pct+spread) });
+const slot = (ids, pct, spread = 10) => ({ ...(Array.isArray(ids) ? {idOptions:ids} : {id:ids}), pct, minPct:Math.max(5,pct-spread), maxPct:Math.min(100,pct+spread) });
 const make = (id,label,rows) => ({id:`routing-${id}`,label,description:label,assets:rows.filter(([,pct])=>pct>0).map(([id,pct,spread])=>slot(id,pct,spread))});
 const levels = {prudent:0,defensif:1,equilibre:2,dynamique:3,offensif:4};
 export function routingRecipes(profile,risk) {

@@ -10,6 +10,7 @@ import {latestCommonYears} from '../src/data/annual-window.js'
 import {projectLightRegistries} from './project-light-registries.mjs'
 import {buildAssetFieldReport} from './report-asset-fields.mjs'
 import {matchesListing} from './build-equity-history-links.mjs'
+import {AUTOMATIC_RECIPE_ISINS} from '../src/data/automated-portfolio-funds.js'
 const exposureCatalogue=JSON.parse(readFileSync('src/pages/dca-profiles/catalog.json'));
 const exposureStocks=Object.values(exposureCatalogue).filter(r=>r.kind==='equity');
 assert(exposureStocks.every(r=>/^[A-Z]{2}[A-Z0-9]{9}\d$/.test(r.isin)));
@@ -24,7 +25,7 @@ assert.equal(matchesListing({symbol:'SAN.MC',currency:'EUR'},{ticker:'SAN',curre
 assert.equal(matchesListing({symbol:'SAP',currency:'USD'},{ticker:'SAP',currency:'EUR',exchange:'Xetra'}),false)
 let count=0
 for(const asset of PORTFOLIO.filter(a=>a.id.startsWith('equity-')||a.id.startsWith('manual-'))) {
- assert(asset.manualOnly)
+ assert.equal(asset.manualOnly,!AUTOMATIC_RECIPE_ISINS.has(asset.isin),`${asset.id}: statut manuel`)
  assert(latestCommonYears([asset.calendarReturns],{minimum:3}).length>=3)
  const duelAsset=CATALOG.find(a=>a.isin===asset.isin)
  assert(duelAsset,`${asset.id}: duel destination`)
