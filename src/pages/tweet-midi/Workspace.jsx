@@ -87,11 +87,12 @@ function TweetMidiWorkspace({ search, initialFormat, title, description, runtime
   }).item);
   const [history, setHistory] = useState(() => [current.id]);
   const [performanceCurrency, setPerformanceCurrency] = useState(() => readPreference('performance-currency', 'native', value => ['native', 'EUR', 'USD'].includes(value)));
-  const availableCurrencies = [FORMATS.PERFORMANCE_DEPUIS, FORMATS.COMPARATIF_ETF].includes(current.format)
+  const supportsCurrency = [FORMATS.PERFORMANCE_DEPUIS, FORMATS.COMPARATIF_ETF].includes(current.format);
+  const availableCurrencies = supportsCurrency
     ? (runtime.engine.getPerformanceCurrencies?.(current) ?? []) : [];
   const effectiveCurrency = availableCurrencies.includes(performanceCurrency) ? performanceCurrency : 'native';
-  const publicationItem = useMemo(() => [FORMATS.PERFORMANCE_DEPUIS, FORMATS.COMPARATIF_ETF].includes(current.format)
-    ? { ...current, currency: effectiveCurrency } : current, [current, effectiveCurrency]);
+  const publicationItem = useMemo(() => supportsCurrency
+    ? { ...current, currency: effectiveCurrency } : current, [current, effectiveCurrency, supportsCurrency]);
   const [copied, setCopied] = useState(false);
   const [imageState, setImageState] = useState('idle');
   // Niveau(x) actuel(s) — Format "Il y a X ans" uniquement, un champ en mode Simple, deux en mode
@@ -513,7 +514,7 @@ function TweetMidiWorkspace({ search, initialFormat, title, description, runtime
               </div>
             )}
 
-            {[FORMATS.PERFORMANCE_DEPUIS, FORMATS.COMPARATIF_ETF].includes(current.format) && <div>
+            {supportsCurrency && <div>
               <span className="mb-2 block text-xs font-semibold tracking-widest text-slate-500 uppercase">Devise des performances</span>
               <div className="flex flex-wrap gap-2" role="group" aria-label="Devise des performances">
                 {['native', ...availableCurrencies].map(currency => <Button key={currency} type="button"
