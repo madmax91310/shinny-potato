@@ -2,6 +2,7 @@ import EQUITY_DUEL_RETURNS from './equity-duel-returns.json' with {type:'json'};
 import MONTHLY_DUEL_RETURNS from './monthly-duel-returns.json' with {type:'json'};
 import { RESOURCE_DUEL_CHOICES } from './resource-selections.js'
 import { NON_BOND_SHEETS } from './non-bond-expansion.js';
+import { convertCalendarReturn } from './calendar-fx.js';
 import annualFx from './annual-fx.json' with { type: 'json' };
 import { ASSETS } from './portfolio-assets.js'
 import { getInstrumentDuelSeries, getInstrumentCalendarReturns } from './instrument-returns.js'
@@ -167,8 +168,5 @@ export function euroReturn(item, year) {
   if (item.euroCalendarReturns) return item.euroCalendarReturns[year] ?? null
   const original = item.calendarReturns?.[year] ?? item.values[year - 2020]
   if (!Number.isFinite(original)) return null
-  if (item.currency === 'EUR') return original
-  const start = EUR_USD[year - 1]
-  const end = EUR_USD[year]
-  return start && end ? ((1 + original / 100) * start / end - 1) * 100 : null
+  return convertCalendarReturn(original, year, item.currency, 'EUR')
 }

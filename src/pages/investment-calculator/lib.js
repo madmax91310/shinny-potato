@@ -1,8 +1,11 @@
+import { LIVRET_A, INFLATION } from '../../data/history-parameters.js'
+import { historyInCurrency } from '../../data/history-currency.js'
+import { monthlyCurrencyFactor } from '../../data/history-currency.js'
 import { fmtEUR, fmtPct } from '../../lib/format-currency.js'
 export { fmtEUR, fmtPct } from '../../lib/format-currency.js'
 import { INFLATION_MONTHLY } from '../../data/inflation-monthly.js'
 // Logique de calcul partagée avec Tweet Midi.
-import { ASSETS, LATEST_YM, MONTHS_FULL, LIVRET_A, INFLATION, INCONSISTENT_MONTHLY_DATA_IDS } from '../../data/calculator-history.js'
+import { ASSETS, LATEST_YM, MONTHS_FULL, INCONSISTENT_MONTHLY_DATA_IDS } from '../../data/calculator-history.js'
 
 import { ymIndex,monthsBetween,clampYm,computeAssetSeries,sparseAssetSeries,computeBenchmarkSeries,computeCustomSeries,pct,applyPriceOverride } from './math.js'
 export { ymIndex,indexToYm,monthsBetween,clampYm,interpolatePrice,computeAssetSeries,sparseAssetSeries,computeBenchmarkSeries,computeLivretSeries,computeCustomSeries,currencySymbol,pct,applyPriceOverride } from './math.js'
@@ -18,7 +21,9 @@ export function derive(state) {
   const startYm = clampYm(state.startYear + '-' + (state.startMonth < 10 ? '0' + state.startMonth : state.startMonth), LATEST_YM)
   // Sans prix saisi, on s'arrête au dernier mois réellement renseigné pour cet actif.
   // Sinon le DCA achète des mois supplémentaires au dernier prix, sans donnée de marché.
-  const lastAssetYm = isCustom ? clampYm(Object.keys(INFLATION_MONTHLY).sort().at(-1), LATEST_YM) : ASSETS[state.assetId].points.at(-1).date
+  const requestedEnd = isCustom ? null : ASSETS[state.assetId].points.at(-1).date
+  const asset = isCustom ? null : historyInCurrency(ASSETS[state.assetId], state.currency, startYm, requestedEnd)
+  const lastAssetYm = isCustom ? clampYm(Object.keys(INFLATION_MONTHLY).sort().at(-1), LATEST_YM) : asset.points.at(-1).date
   // Le prix facultatif revalorise les parts au terme de cette série, sans inventer
   // de nouveaux versements mensuels entre la dernière clôture et la saisie.
   const endYm = clampYm(lastAssetYm, LATEST_YM)
@@ -28,13 +33,14 @@ export function derive(state) {
     ? computeCustomSeries(safeStartYm, endYm, amount, state.customStart, state.customEnd)
     : INCONSISTENT_MONTHLY_DATA_IDS.has(state.assetId)
       ? sparseAssetSeries(indexAnchorPoints(state.assetId, endYm), safeStartYm, endYm, amount)
-      : computeAssetSeries(ASSETS[state.assetId].points, safeStartYm, endYm, amount, effectiveMode)
+      : computeAssetSeries(asset.points, safeStartYm, endYm, amount, effectiveMode)
 
   if (!isCustom) {
-    result = applyPriceOverride(result, ASSETS[state.assetId].points, state.overridePriceRaw, endYm)
+    const override = state.overridePriceRaw && asset.fxConverted ? String(Number(state.overridePriceRaw) * monthlyCurrencyFactor(endYm, ASSETS[state.assetId].currency, asset.currency)) : state.overridePriceRaw
+    result = applyPriceOverride(result, asset.points, override, endYm)
   }
 
-  const compareEuro = isCustom || ASSETS[state.assetId].currency === 'EUR'
+  const compareEuro = isCustom || asset.currency === 'EUR'
   const livretComplete = monthsBetween(safeStartYm, endYm).slice(1)
     .every(month => Object.keys(LIVRET_A).some(since => since <= month))
   const livretA = compareEuro && livretComplete ? computeBenchmarkSeries(LIVRET_A, safeStartYm, endYm, amount, effectiveMode) : null
@@ -44,11 +50,11 @@ export function derive(state) {
     .every(month => month < '2017-01' || INFLATION_MONTHLY[month] !== undefined)
   const inflation = compareEuro && inflationComplete ? computeBenchmarkSeries(INFLATION, safeStartYm, endYm, amount, effectiveMode) : null
 
-  return { amount, isCustom, effectiveMode, startYm: safeStartYm, endYm, result, livretA, inflation }
+  return { asset, currency: asset?.currency ?? 'EUR', amount, isCustom, effectiveMode, startYm: safeStartYm, endYm, result, livretA, inflation }
 }
 
 export function buildTweetText(state, d) {
-  const asset = d.isCustom ? null : ASSETS[state.assetId]
+  const asset = d.isCustom ? null : d.asset ?? ASSETS[state.assetId]
   const assetLabel = d.isCustom ? (state.customLabel || 'cet actif') : asset.label
   // Actif coté en dollars (Amazon, S&P 500, Or...) : le montant simulé et le résultat restent dans
   // cette devise plutôt que mélangés avec un € qui donnerait un faux air de conversion (demande

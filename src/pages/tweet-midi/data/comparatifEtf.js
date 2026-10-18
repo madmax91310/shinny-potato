@@ -11,9 +11,9 @@ export const COMPARATIF_ETF_SUBJECTS = DEFAULT_THEMES.map((t) => ({ id: t.id, la
 
 const byId = new Map(DEFAULT_THEMES.map((t) => [t.id, t]));
 
-export function getComparatifEtfText(themeId) {
+export function getComparatifEtfText(themeId, currency = 'native') {
   const theme = byId.get(themeId);
-  return theme ? buildEtfComparatifText(theme) : "";
+  return theme ? buildEtfComparatifText({ ...theme, performanceCurrency: currency }) : "";
 }
 
 export function getComparatifEtfTheme(themeId) {

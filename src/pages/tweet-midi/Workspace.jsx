@@ -19,6 +19,7 @@ import PageHeader from "../../design-system/PageHeader";
 import Button from "../../design-system/Button";
 import Card from "../../design-system/Card";
 
+const BADGE_CLASS = "rounded-full border px-2.5 py-0.5 text-[11px] font-medium";
 const FORMAT_BADGE_STYLES = {
   [FORMATS.DILEMME]: "border-amber-500/30 bg-amber-500/10 text-amber-300",
   [FORMATS.FICHE_LEXIQUE]: "border-violet-500/30 bg-violet-500/10 text-violet-300",
@@ -71,9 +72,10 @@ function TweetMidiWorkspace({ search, initialFormat, title, description, runtime
       : getSimulationAssetId(params.get('asset'))) : initialFormat === FORMATS.ANNIVERSAIRE && ANNIVERSAIRE_ELIGIBLE_ASSETS.some(asset => asset.id === params.get('asset')) ? params.get('asset') : null;
   // Recheck against the actual pool: a removed/unusable history cannot trigger
   // pickForSelection's fallback to an unrelated asset.
+  const hasComparisonSubject = id => id === SUBJECT_ALEATOIRE || getSubjectsForFormat(initialFormat).some(group => group.items.some(item => item.id === id));
   const initialSubject = requestedAsset && getSecondaryOptionsForFormat(initialFormat, MODES.SIMPLE, requestedAsset).length
     ? requestedAsset : initialFormat === FORMATS.COMPARATIF_ETF
-      ? (getSubjectsForFormat(initialFormat).some(group => group.items.some(item => item.id === params.get('subject'))) ? params.get('subject') : readPreference('comparison-subject', SUBJECT_ALEATOIRE, id => id === SUBJECT_ALEATOIRE || getSubjectsForFormat(initialFormat).some(group => group.items.some(item => item.id === id))))
+      ? (hasComparisonSubject(params.get('subject')) ? params.get('subject') : readPreference('comparison-subject', SUBJECT_ALEATOIRE, hasComparisonSubject))
       : SUBJECT_ALEATOIRE;
   const [format, setFormat] = useState(initialFormat);
   const [mode, setMode] = useState(MODES.SIMPLE);
@@ -87,11 +89,12 @@ function TweetMidiWorkspace({ search, initialFormat, title, description, runtime
   }).item);
   const [history, setHistory] = useState(() => [current.id]);
   const [performanceCurrency, setPerformanceCurrency] = useState(() => readPreference('performance-currency', 'native', value => ['native', 'EUR', 'USD'].includes(value)));
-  const availableCurrencies = current.format === FORMATS.PERFORMANCE_DEPUIS
+  const supportsCurrency = [FORMATS.PERFORMANCE_DEPUIS, FORMATS.COMPARATIF_ETF].includes(current.format);
+  const availableCurrencies = supportsCurrency
     ? (runtime.engine.getPerformanceCurrencies?.(current) ?? []) : [];
   const effectiveCurrency = availableCurrencies.includes(performanceCurrency) ? performanceCurrency : 'native';
-  const publicationItem = useMemo(() => current.format === FORMATS.PERFORMANCE_DEPUIS
-    ? { ...current, currency: effectiveCurrency } : current, [current, effectiveCurrency]);
+  const publicationItem = useMemo(() => supportsCurrency
+    ? { ...current, currency: effectiveCurrency } : current, [current, effectiveCurrency, supportsCurrency]);
   const [copied, setCopied] = useState(false);
   const [imageState, setImageState] = useState('idle');
   // Niveau(x) actuel(s) — Format "Il y a X ans" uniquement, un champ en mode Simple, deux en mode
@@ -110,26 +113,28 @@ function TweetMidiWorkspace({ search, initialFormat, title, description, runtime
   const [paPoste, setPaPoste] = useState("loyer");
   const [paGrowth, setPaGrowth] = useState(null);
 
-  const isMarketFormat = format === FORMATS.ANNIVERSAIRE || format === FORMATS.PERFORMANCE_DEPUIS;
+  const isMarketFormat = [FORMATS.ANNIVERSAIRE, FORMATS.PERFORMANCE_DEPUIS].includes(format);
   const isPouvoirAchat = format === FORMATS.POUVOIR_ACHAT;
+
+  function resetSubjects() {
+    setSubject(SUBJECT_ALEATOIRE);
+    setSubjectB(SUBJECT_ALEATOIRE);
+    setSecondary(SUBJECT_ALEATOIRE);
+  }
 
   function handleSelectFormat(nextFormat) {
     setFormat(nextFormat);
     setMode(MODES.SIMPLE);
     // Le sujet précédent peut ne pas exister dans le nouveau format : on revient à "Aléatoire"
     // plutôt que de garder une sélection invalide sans que l'utilisateur s'en rende compte.
-    setSubject(SUBJECT_ALEATOIRE);
-    setSubjectB(SUBJECT_ALEATOIRE);
-    setSecondary(SUBJECT_ALEATOIRE);
+    resetSubjects();
   }
 
   function handleSelectMode(nextMode) {
     setMode(nextMode);
     // Les années en arrière / l'année de départ valides dépendent du mode (paire vs actif seul) :
     // retour à "Aléatoire" par sécurité plutôt que de garder une combinaison qui n'a plus de sens.
-    setSubject(SUBJECT_ALEATOIRE);
-    setSubjectB(SUBJECT_ALEATOIRE);
-    setSecondary(SUBJECT_ALEATOIRE);
+    resetSubjects();
   }
 
   function handleSelectSubject(setter, value) {
@@ -143,12 +148,10 @@ function TweetMidiWorkspace({ search, initialFormat, title, description, runtime
   // paraissant "bloqué" faute d'un moyen visible de revenir à Aléatoire sans rouvrir les menus un
   // par un : ce bouton fait exactement ça, en un clic.
   const hasPreciseSelection =
-    subject !== SUBJECT_ALEATOIRE || subjectB !== SUBJECT_ALEATOIRE || secondary !== SUBJECT_ALEATOIRE;
+    [subject, subjectB, secondary].some(value => value !== SUBJECT_ALEATOIRE);
   function handleResetSelection() {
     notifyPublication('Sélection réinitialisée.');
-    setSubject(SUBJECT_ALEATOIRE);
-    setSubjectB(SUBJECT_ALEATOIRE);
-    setSecondary(SUBJECT_ALEATOIRE);
+    resetSubjects();
   }
 
   function handleGenerate() {
@@ -164,9 +167,11 @@ function TweetMidiWorkspace({ search, initialFormat, title, description, runtime
       setCopied(false);
       return;
     }
-    const { item, addToHistory } = pickForSelection({
+    let selection;
+    try { selection = pickForSelection({
       format, mode, subjectId: subject, subjectIdB: subjectB, secondaryId: secondary, history,
-    });
+    }); } catch (error) { notifyPublication(error.message, 'error'); return; }
+    const { item, addToHistory } = selection;
     if (addToHistory) setHistory((h) => [...h, item.id]);
     setCurrent(item);
     setCopied(false);
@@ -212,8 +217,7 @@ function TweetMidiWorkspace({ search, initialFormat, title, description, runtime
   const niveauActuelBValide = !!observationB;
   const records = useSelectedRecords(isAnniversaire ? [current.assetId, current.assetIdA, current.assetIdB] : [], runtime.records);
   const copyDisabled = !records.ready ||
-    (isAnniversaire && !isComparatifCurrent && !niveauActuelValide) ||
-    (isAnniversaire && isComparatifCurrent && !(niveauActuelValide && niveauActuelBValide));
+    (isAnniversaire && (!niveauActuelValide || (isComparatifCurrent && !niveauActuelBValide)));
 
   const text = records.ready ? buildTweetText(publicationItem, { niveauActuel, niveauActuelB }) : '';
   const status = getLengthStatus(text.length);
@@ -511,7 +515,7 @@ function TweetMidiWorkspace({ search, initialFormat, title, description, runtime
               </div>
             )}
 
-            {current.format === FORMATS.PERFORMANCE_DEPUIS && <div>
+            {supportsCurrency && <div>
               <span className="mb-2 block text-xs font-semibold tracking-widest text-slate-500 uppercase">Devise des performances</span>
               <div className="flex flex-wrap gap-2" role="group" aria-label="Devise des performances">
                 {['native', ...availableCurrencies].map(currency => <Button key={currency} type="button"
@@ -565,14 +569,14 @@ function TweetMidiWorkspace({ search, initialFormat, title, description, runtime
               <div className="flex items-center gap-2">
                 <h2 className="text-xs font-semibold tracking-widest text-slate-500 uppercase">Aperçu du tweet</h2>
                 <span
-                  className={`rounded-full border px-2.5 py-0.5 text-[11px] font-medium ${FORMAT_BADGE_STYLES[current.format]}`}
+                  className={`${BADGE_CLASS} ${FORMAT_BADGE_STYLES[current.format]}`}
                 >
                   {FORMAT_LABELS[current.format]}
                   {isComparatifCurrent ? " · Comparatif" : ""}
                 </span>
               </div>
               <span
-                className={`rounded-full border px-2.5 py-0.5 text-[11px] font-medium ${LENGTH_STATUS_STYLES[displayStatus.level]}`}
+                className={`${BADGE_CLASS} ${LENGTH_STATUS_STYLES[displayStatus.level]}`}
               >
                 {displayStatus.label}
               </span>

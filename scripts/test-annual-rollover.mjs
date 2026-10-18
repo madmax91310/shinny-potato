@@ -5,6 +5,7 @@ import { getInstrumentReturnValues, getInstrumentCalendarReturns } from '../src/
 import { annualizedReturn, computeYearlyPerf, performanceExcerpt } from '../src/pages/portfolio-generator/performance.js';
 import { performanceEntries, annualPerformanceRange } from '../src/pages/etf-sheets/annualPerformance.js';
 import { getComparisonPerformance, getComparisonYears } from '../src/pages/tweet-midi/comparisonPerformance.js';
+import { CALENDAR_FX_YEARS } from '../src/data/calendar-fx.js';
 
 const NativeDate = Date;
 const now = new NativeDate('2027-02-16T12:00:00Z');
@@ -12,6 +13,7 @@ const isin = 'IE00B4L5Y983';
 const oldRecord = structuredClone(AUTOMATED_ETF[isin]);
 const oldDisplay = AUTOMATED_PERFORMANCE[isin];
 const archive = [...getInstrumentReturnValues(isin)];
+const oldFx2026 = CALENDAR_FX_YEARS[2026];
 try {
   globalThis.Date = class extends NativeDate {
     constructor(...args) { super(...(args.length ? args : [now.toISOString()])); }
@@ -44,10 +46,10 @@ try {
   assert.deepEqual(latestCommonYears([hole]), [], 'A gap cannot become a six-year simulation');
   assert.equal(annualizedReturn({ 2025: null, 2026: 10 }), null);
   assert.deepEqual(latestCommonYears([{ 2026: -100 }]), []);
-  const { CATALOG, EUR_USD, euroReturn } = await import('../src/data/duel-assets.js');
+  const { CATALOG, euroReturn } = await import('../src/data/duel-assets.js');
   const world = CATALOG.find(item => item.isin === isin);
   assert.equal(euroReturn(world, 2026), null, 'Missing verified FX blocks the future EUR return');
-  EUR_USD[2026] = 1.2; // Simulate the next completed ECB year, never write it to data.
+  CALENDAR_FX_YEARS[2026] = { asOf: '2026-12-31', rates: { EUR: 1, USD: 1.2 } }; // In-memory completed ECB year.
   assert(Number.isFinite(euroReturn(world, 2026)));
   const { buildCustomDuel, buildTweet } = await import('../src/pages/portfolio-duels/lib.js');
   const complement = CATALOG.find(item => item.id === 'msci_em');
@@ -58,9 +60,10 @@ try {
   finally { complement.calendarReturns = savedCalendar; }
   assert.deepEqual(duel.years, [2021, 2022, 2023, 2024, 2025, 2026]);
   assert.match(buildTweet(duel), /début 2021.*fin 2026/);
-  delete EUR_USD[2026];
   console.log('Annual rollover: aligned returns, geometric results, ETF labels, common periods, missing FX and immutable archives verified.');
 } finally {
+  if (oldFx2026) CALENDAR_FX_YEARS[2026] = oldFx2026;
+  else delete CALENDAR_FX_YEARS[2026];
   globalThis.Date = NativeDate;
   AUTOMATED_ETF[isin] = oldRecord;
   AUTOMATED_PERFORMANCE[isin] = oldDisplay;
