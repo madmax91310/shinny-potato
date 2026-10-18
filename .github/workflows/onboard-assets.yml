@@ -121,7 +121,18 @@ jobs:
         uses: actions/upload-artifact@v7.0.1
         with:
           name: onboarding-validated-data
-          path: ${{ env.VALIDATED_PATHS }}
+          # One path per line: a single space-separated line is read as one path.
+          path: |
+            src/data
+            src/pages/dca-profiles
+            scripts/source-snapshots
+            scripts/monthly-automation.json
+            scripts/global-equity-candidates.json
+            scripts/generated-holdings-sources.json
+            scripts/instrument-metadata-sources.json
+            docs
+            public/data
+          if-no-files-found: error
           include-hidden-files: false
           retention-days: 3
       - name: Commit validated observations
