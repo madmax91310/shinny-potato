@@ -14,6 +14,11 @@ from refresh_monthly_history import collect_one, months
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 ECB = 'https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.xml'
+# The ECB publishes no reference rate for the New Taiwan dollar. The Federal Reserve H.10
+# release (noon buying rates in New York, TWD per USD, series DEXTAUS republished by FRED)
+# crossed with the ECB USD rate of the same day gives a documented TWD per EUR rate.
+FRED_TWD = 'https://fred.stlouisfed.org/graph/fredgraph.csv?id=DEXTAUS'
+CROSS_SERIES = {'TWD': FRED_TWD}
 
 
 def parse_fx(body, now):
@@ -54,6 +59,87 @@ def parse_fx(body, now):
     return {'sourceUrl': ECB, 'checkedAt': now.date().isoformat(),
             'convention': 'Units of currency per EUR, final ECB reference observation in each completed month',
             'sha256': hashlib.sha256(body).hexdigest(), 'months': dict(sorted(observed.items()))}
+
+
+def ecb_daily_usd(body):
+    """USD per EUR for every ECB reference day."""
+    root = ET.fromstring(body)
+    if root.tag != '{http://www.gesmes.org/xml/2002-08-01}Envelope':
+        reject('Wrong ECB document')
+    ns = '{http://www.ecb.int/vocabulary/2002-08-01/eurofxref}'
+    daily = {}
+    for cube in root.iter(ns + 'Cube'):
+        if 'time' not in cube.attrib:
+            continue
+        rates = [float(row.attrib['rate']) for row in cube if row.attrib.get('currency') == 'USD']
+        if len(rates) == 1 and 0 < rates[0] < float('inf'):
+            daily[dt.date.fromisoformat(cube.attrib['time'])] = rates[0]
+    return daily
+
+
+def parse_fred_series(body, series):
+    """Daily observations of one FRED CSV export; '.' marks a day without a rate."""
+    lines = body.decode('utf-8-sig').splitlines()
+    if not lines or lines[0].strip().lower() not in (f'observation_date,{series.lower()}', f'date,{series.lower()}'):
+        reject('Wrong FRED document')
+    daily = {}
+    for line in lines[1:]:
+        if not line.strip():
+            continue
+        day, _, value = line.partition(',')
+        value = value.strip()
+        if value in ('.', ''):
+            continue
+        rate = float(value)
+        if not 0 < rate < float('inf'):
+            reject('Invalid FRED rate')
+        when = dt.date.fromisoformat(day.strip())
+        if when in daily:
+            reject('Duplicate FRED observation')
+        daily[when] = rate
+    if not daily:
+        reject('Empty FRED series')
+    return daily
+
+
+def parse_cross_fx(fred_body, ecb_body, now, currency='TWD', series='DEXTAUS'):
+    """TWD per EUR at the latest day of each completed month where both official series publish."""
+    usd_per_eur = ecb_daily_usd(ecb_body)
+    per_usd = parse_fred_series(fred_body, series)
+    boundary = dt.date(now.year, now.month, 1)
+    observed = {}
+    for day in sorted(set(usd_per_eur) & set(per_usd)):
+        if day >= boundary or day > now.date():
+            continue
+        key = day.strftime('%Y-%m')
+        observed[key] = {'asOf': day.isoformat(), 'usdPerEur': usd_per_eur[day], 'perUsd': per_usd[day],
+                         'value': round(per_usd[day] * usd_per_eur[day], 4)}
+    # The H.10 release is weekly: a month-end published less than eight days ago may still be
+    # missing from FRED. Every older completed month is required; a newer one is taken when present.
+    due = now.date() - dt.timedelta(days=8)
+    expected = [key for key in months('1999-01', dt.datetime(now.year, now.month, 1, tzinfo=UTC))
+                if month_shift(dt.datetime.strptime(key, '%Y-%m'), 1).date() - dt.timedelta(days=1) <= due]
+    if not set(expected).issubset(observed):
+        reject('Incomplete cross-rate month-end coverage')
+    for key, row in observed.items():
+        next_month = month_shift(dt.datetime.strptime(key, '%Y-%m'), 1).date()
+        if (next_month - dt.date.fromisoformat(row['asOf'])).days > 7:
+            reject('Stale cross-rate month-end observation')
+    return {'sourceUrl': CROSS_SERIES[currency], 'series': series, 'secondarySourceUrl': ECB,
+            'checkedAt': now.date().isoformat(), 'sha256': hashlib.sha256(fred_body).hexdigest(),
+            'convention': f'{currency} per EUR = Federal Reserve H.10 noon buying rate ({currency} per USD, FRED {series}) '
+                          '× ECB USD per EUR reference rate, latest day of each completed month published by both',
+            'observations': dict(sorted(observed.items()))}
+
+
+def apply_cross_rates(fx, derived):
+    """Write the derived month-end rates next to the ECB rates; provenance stays in fx['derived']."""
+    fx['derived'] = derived
+    for currency, info in derived.items():
+        for key, row in info['observations'].items():
+            if key in fx['months']:
+                fx['months'][key]['rates'][currency] = row['value']
+    return fx
 
 
 def validate_record(record, old=None):
@@ -112,11 +198,27 @@ def main():
     fx_path = ROOT / 'src/data/monthly-fx.json'
     old_fx = json.loads(fx_path.read_text()) if fx_path.exists() else {}
     fx_failed = False
+    cross_failed = False
     if (not args.only or 'fx' in args.only) and (not args.retry_failed or latest not in old_fx.get('months', {})):
         try:
-            fx = parse_fx(download(ECB, max_bytes=12_000_000), now)
+            ecb_body = download(ECB, max_bytes=12_000_000)
+            fx = parse_fx(ecb_body, now)
             if old_fx and not set(old_fx['months']).issubset(fx['months']):
                 reject('ECB coverage would regress')
+            # A failed cross source keeps its last validated observations, visibly.
+            derived = dict(old_fx.get('derived', {}))
+            for currency, url in CROSS_SERIES.items():
+                try:
+                    cross = parse_cross_fx(download(url, max_bytes=4_000_000), ecb_body, now, currency)
+                    previous = derived.get(currency, {}).get('observations', {})
+                    if not set(previous).issubset(cross['observations']):
+                        reject(f'{currency} cross-rate coverage would regress')
+                    derived[currency] = cross
+                    print(f'{currency} cross FX:', len(cross['observations']), 'months')
+                except Exception as error:
+                    print(f'{currency} cross FX failed:', error, flush=True)
+                    cross_failed = True
+            apply_cross_rates(fx, derived)
             if args.apply:
                 write_json_atomic(fx_path, fx)
             print('ECB monthly FX:', len(fx['months']), 'months')
@@ -146,8 +248,8 @@ def main():
     if args.apply:
         write_json_atomic(active_path, active)
         write_json_atomic(proof_path, proofs)
-        write_json_atomic(status_path, {'checkedAt': now.isoformat(), 'fxFailed': fx_failed, 'series': sorted(reports.values(), key=lambda s: s['id'])})
-    if fx_failed or any(item['status'] == 'failed' for item in reports.values()):
+        write_json_atomic(status_path, {'checkedAt': now.isoformat(), 'fxFailed': fx_failed, 'crossFxFailed': cross_failed, 'series': sorted(reports.values(), key=lambda s: s['id'])})
+    if fx_failed or cross_failed or any(item['status'] == 'failed' for item in reports.values()):
         raise SystemExit(1)
 
 
