@@ -36,7 +36,7 @@ try {
  await page.goto(`${base}/duels-portefeuilles?asset=equity-apple`,{waitUntil:'networkidle'})
  assert((await page.locator('#pd-tweet').inputValue()).includes('Apple'))
  await page.goto(`${base}/le-dca-de?isin=US0378331005`,{waitUntil:'networkidle'})
- await page.getByRole('button',{name:'Générer l’image',exact:true}).click()
+ await page.locator('.dca-simple-preview img').waitFor()
  await page.getByAltText('Répartition et expositions du portefeuille').waitFor()
  await page.goto(`${base}/performance-depuis?isin=US0378331005`,{waitUntil:'networkidle'})
  await page.getByRole('button',{name:'🔄 Générer',exact:true}).click()

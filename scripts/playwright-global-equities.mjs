@@ -16,7 +16,7 @@ try {
   await mkdir('test-artifacts/global-equities',{recursive:true})
   for(const asset of samples){
     await page.goto(`${base}/le-dca-de?isin=${asset.isin}`,{waitUntil:'networkidle'})
-    await page.getByRole('button',{name:'Générer l’image',exact:true}).click()
+    await page.locator('.dca-simple-preview img').waitFor()
     const exposure=page.getByAltText('Répartition et expositions du portefeuille')
     await exposure.waitFor({state:'visible'})
     assert(await exposure.evaluate(img=>img.naturalWidth>=1000))
