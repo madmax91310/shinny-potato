@@ -61,11 +61,29 @@ class PagesHeadTest(unittest.TestCase):
         self.git('checkout', '--detach', built)
         result, output = self.guard(); self.assertEqual(result.returncode, 0, result.stderr); self.assertEqual(output, 'current=true\n')
 
-    def test_new_code_still_supersedes_old_build(self):
+    def test_unpublished_code_does_not_starve_validated_build(self):
         built = self.git('rev-parse', 'HEAD'); self.commit('src/code.js'); self.git('checkout', '--detach', built)
-        result, output = self.guard(); self.assertEqual(result.returncode, 0, result.stderr); self.assertEqual(output, 'current=false\n')
-        self.assertIn('Skipping superseded', result.stdout)
+        result, output = self.guard(); self.assertEqual(result.returncode, 0, result.stderr); self.assertEqual(output, 'current=true\n')
+        self.assertIn('Publishable', result.stdout)
         result, output = self.guard('--validation'); self.assertEqual(result.returncode, 0, result.stderr); self.assertEqual(output, 'current=true\n')
+
+    def test_published_code_still_supersedes_old_build_with_newer_master(self):
+        built = self.git('rev-parse', 'HEAD')
+        published = self.commit('src/code.js')
+        self.commit('src/newer-pending-code.js')
+        self.git('checkout', '--detach', built)
+        self.info = {'sha': published}
+        result, output = self.guard()
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(output, 'current=false\n')
+        # The same protection applies when the CDN is stale but the API knows
+        # that a newer version was actually published.
+        self.info = {'sha': built}
+        self.deployments = [{'sha': published, 'statuses_url': self.url+'/statuses/1'}]
+        self.states['/statuses/1'] = [{'state': 'success', 'environment_url': 'https://example.github.io/repo/'}]
+        result, output = self.guard(api=True)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(output, 'current=false\n')
 
     def test_no_rollback_of_published_code_or_fallback_data(self):
         built = self.git('rev-parse', 'HEAD'); latest = self.commit('src/data/automated-monthly.json')

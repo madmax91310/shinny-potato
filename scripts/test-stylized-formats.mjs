@@ -130,6 +130,7 @@ try {
         {mode:'comparatif',assetIdA:'msciWorld',assetIdB:'or',year:commonYear('msciWorld','or')},
         {mode:'comparatif',assetIdA:'msciAcwi',assetIdB:'stoxx600',year:commonYear('msciAcwi','stoxx600'),currency:'USD'},
         {mode:'comparatif',assetIdA:'msciWorld',assetIdB:'sp500',year:commonYear('msciWorld','sp500'),currency:'EUR'},
+        {mode:'comparatif',assetIdA:'msciAcwi',assetIdB:'or',year:commonYear('msciAcwi','or'),currency:'EUR'},
       ]) {
         const entries = getPerformanceEntries(item)
         const name = `performance-cobalt-${item.assetId || item.assetIdA}-${item.year}-${item.currency || 'native'}-${item.mode}`

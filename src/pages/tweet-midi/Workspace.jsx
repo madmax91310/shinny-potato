@@ -19,6 +19,7 @@ import PageHeader from "../../design-system/PageHeader";
 import Button from "../../design-system/Button";
 import Card from "../../design-system/Card";
 
+const BADGE_CLASS = "rounded-full border px-2.5 py-0.5 text-[11px] font-medium";
 const FORMAT_BADGE_STYLES = {
   [FORMATS.DILEMME]: "border-amber-500/30 bg-amber-500/10 text-amber-300",
   [FORMATS.FICHE_LEXIQUE]: "border-violet-500/30 bg-violet-500/10 text-violet-300",
@@ -111,26 +112,28 @@ function TweetMidiWorkspace({ search, initialFormat, title, description, runtime
   const [paPoste, setPaPoste] = useState("loyer");
   const [paGrowth, setPaGrowth] = useState(null);
 
-  const isMarketFormat = format === FORMATS.ANNIVERSAIRE || format === FORMATS.PERFORMANCE_DEPUIS;
+  const isMarketFormat = [FORMATS.ANNIVERSAIRE, FORMATS.PERFORMANCE_DEPUIS].includes(format);
   const isPouvoirAchat = format === FORMATS.POUVOIR_ACHAT;
+
+  function resetSubjects() {
+    setSubject(SUBJECT_ALEATOIRE);
+    setSubjectB(SUBJECT_ALEATOIRE);
+    setSecondary(SUBJECT_ALEATOIRE);
+  }
 
   function handleSelectFormat(nextFormat) {
     setFormat(nextFormat);
     setMode(MODES.SIMPLE);
     // Le sujet précédent peut ne pas exister dans le nouveau format : on revient à "Aléatoire"
     // plutôt que de garder une sélection invalide sans que l'utilisateur s'en rende compte.
-    setSubject(SUBJECT_ALEATOIRE);
-    setSubjectB(SUBJECT_ALEATOIRE);
-    setSecondary(SUBJECT_ALEATOIRE);
+    resetSubjects();
   }
 
   function handleSelectMode(nextMode) {
     setMode(nextMode);
     // Les années en arrière / l'année de départ valides dépendent du mode (paire vs actif seul) :
     // retour à "Aléatoire" par sécurité plutôt que de garder une combinaison qui n'a plus de sens.
-    setSubject(SUBJECT_ALEATOIRE);
-    setSubjectB(SUBJECT_ALEATOIRE);
-    setSecondary(SUBJECT_ALEATOIRE);
+    resetSubjects();
   }
 
   function handleSelectSubject(setter, value) {
@@ -144,12 +147,10 @@ function TweetMidiWorkspace({ search, initialFormat, title, description, runtime
   // paraissant "bloqué" faute d'un moyen visible de revenir à Aléatoire sans rouvrir les menus un
   // par un : ce bouton fait exactement ça, en un clic.
   const hasPreciseSelection =
-    subject !== SUBJECT_ALEATOIRE || subjectB !== SUBJECT_ALEATOIRE || secondary !== SUBJECT_ALEATOIRE;
+    [subject, subjectB, secondary].some(value => value !== SUBJECT_ALEATOIRE);
   function handleResetSelection() {
     notifyPublication('Sélection réinitialisée.');
-    setSubject(SUBJECT_ALEATOIRE);
-    setSubjectB(SUBJECT_ALEATOIRE);
-    setSecondary(SUBJECT_ALEATOIRE);
+    resetSubjects();
   }
 
   function handleGenerate() {
@@ -215,8 +216,7 @@ function TweetMidiWorkspace({ search, initialFormat, title, description, runtime
   const niveauActuelBValide = !!observationB;
   const records = useSelectedRecords(isAnniversaire ? [current.assetId, current.assetIdA, current.assetIdB] : [], runtime.records);
   const copyDisabled = !records.ready ||
-    (isAnniversaire && !isComparatifCurrent && !niveauActuelValide) ||
-    (isAnniversaire && isComparatifCurrent && !(niveauActuelValide && niveauActuelBValide));
+    (isAnniversaire && (!niveauActuelValide || (isComparatifCurrent && !niveauActuelBValide)));
 
   const text = records.ready ? buildTweetText(publicationItem, { niveauActuel, niveauActuelB }) : '';
   const status = getLengthStatus(text.length);
@@ -568,14 +568,14 @@ function TweetMidiWorkspace({ search, initialFormat, title, description, runtime
               <div className="flex items-center gap-2">
                 <h2 className="text-xs font-semibold tracking-widest text-slate-500 uppercase">Aperçu du tweet</h2>
                 <span
-                  className={`rounded-full border px-2.5 py-0.5 text-[11px] font-medium ${FORMAT_BADGE_STYLES[current.format]}`}
+                  className={`${BADGE_CLASS} ${FORMAT_BADGE_STYLES[current.format]}`}
                 >
                   {FORMAT_LABELS[current.format]}
                   {isComparatifCurrent ? " · Comparatif" : ""}
                 </span>
               </div>
               <span
-                className={`rounded-full border px-2.5 py-0.5 text-[11px] font-medium ${LENGTH_STATUS_STYLES[displayStatus.level]}`}
+                className={`${BADGE_CLASS} ${LENGTH_STATUS_STYLES[displayStatus.level]}`}
               >
                 {displayStatus.label}
               </span>
