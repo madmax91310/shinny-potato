@@ -130,6 +130,7 @@ export function buildFactsheetTweet(sheet) {
 
   lines.push('', `📈 Les performances ${sheet.performance.kind === 'ETF' ? `de l’ETF ${sheet.isin}` : `de l’indice ${sheet.index}`} :`)
   lines.push(`${sheet.performance.detail.replace(/\.$/, '')}.`)
+  if (sheet.performance.currencyNote) lines.push(sheet.performance.currencyNote)
   for (const [year, value] of sheet.returns ?? []) lines.push(`${value >= 0 ? '📈' : '📉'} ${year} : ${pct(value)}`)
   if (sheet.performance.tenYear != null) lines.push(`Sur dix ans : ${pct(sheet.performance.tenYear)} par an pour l’indice.`)
   if (sheet.performance.annualizedFiveYear != null) lines.push(`Sur cinq ans : ${pct(sheet.performance.annualizedFiveYear)} par an pour l’indice.`)
