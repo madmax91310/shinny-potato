@@ -20,12 +20,12 @@ async function json(url, authenticated = false) {
 }
 const candidate = git('rev-parse', 'HEAD')
 const code = process.env.PAGES_CODE_SHA || candidate
-if (!sha(code) || !ancestor(code, candidate)) throw new Error('Invalid built code identity')
 // A checkout is shallow in Actions. Fetch the actual master history before any
 // ancestry comparison; a broken/missing remote remains a blocking error.
 const shallow = git('rev-parse', '--is-shallow-repository') === 'true'
 git('fetch', '--no-tags', ...(shallow ? ['--unshallow'] : []), 'origin', 'refs/heads/master:refs/remotes/origin/master')
 const master = git('rev-parse', 'refs/remotes/origin/master')
+if (!sha(code) || !ancestor(code, candidate)) throw new Error('Invalid built code identity')
 if (!ancestor(candidate, master)) emit(false, 'the built commit is not an ancestor of master')
 else if (process.argv.includes('--validation')) emit(true, 'validation may run before newer data collections complete')
 else {
