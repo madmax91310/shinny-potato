@@ -38,6 +38,19 @@ const identities = {
   'em-standard': ['emerging', 'Marchés émergents'],
   'em-esg': ['emerging', 'Marchés émergents · sélection ESG'],
   'russell-2000': ['small', 'Petites entreprises américaines'],
+  // Fiches dérivées du registre (lot 7, 18/10/2026) : scènes sans numéral uniquement,
+  // le nom exact de l'indice, les pays et les lignes viennent du registre.
+  'ftse-china-50': ['emerging', 'Grandes entreprises chinoises cotées à Hong Kong'],
+  'ftse-em': ['emerging', 'Marchés émergents · grandes et moyennes capitalisations'],
+  'msci-china': ['emerging', 'Grandes et moyennes entreprises chinoises'],
+  'msci-china-a': ['emerging', 'Actions A chinoises · grandes et moyennes capitalisations'],
+  'msci-em-asia-screened': ['emerging', 'Marchés émergents d’Asie · filtres d’exclusion'],
+  'msci-em-emea-esg': ['emerging', 'Émergents Europe, Moyen-Orient et Afrique · sélection ESG'],
+  'msci-em-latin-america': ['emerging', 'Marchés émergents d’Amérique latine'],
+  'msci-em-latin-america-selection': ['emerging', 'Amérique latine · sélection plafonnée 20/35'],
+  'msci-japan-imi': ['japan', 'Marché japonais · grandes, moyennes et petites capitalisations'],
+  'msci-world-high-dividend-yield-advanced-select': ['world', 'Pays développés · dividendes élevés · sélection avancée'],
+  'sp-euro-dividend-aristocrats': ['world', 'Zone euro · dividendes en hausse régulière'],
 }
 export const INDEX_RIBBON_ART = Object.freeze(identities)
 const images = new Map()
