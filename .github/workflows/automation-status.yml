@@ -65,6 +65,7 @@ jobs:
           node-version: 24
       - run: node scripts/test-monitoring-context.mjs
       - run: python -m unittest discover -s scripts -p 'test_automation*.py'
+      - run: python -m unittest discover -s scripts -p 'test_source_revision.py'
   publish:
     if: github.event_name != 'pull_request' && (github.event_name != 'workflow_run' || (github.event.workflow_run.head_branch == 'master' && github.event.workflow_run.head_repository.full_name == github.repository && github.event.workflow_run.event != 'pull_request'))
     runs-on: ubuntu-26.04
@@ -74,6 +75,7 @@ jobs:
       checks: read
       contents: write
       issues: write
+      pull-requests: write
     steps:
       - uses: actions/checkout@v7.0.1
         with:
@@ -86,6 +88,7 @@ jobs:
           node-version: 24
       - run: node scripts/test-monitoring-context.mjs
       - run: python -m unittest discover -s scripts -p 'test_automation*.py'
+      - run: python -m unittest discover -s scripts -p 'test_source_revision.py'
       - name: Record completed automation
         if: github.event_name == 'workflow_run'
         env:
@@ -101,3 +104,10 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: python scripts/publish_automation_status.py --monitor-only
+      # A changed official clause or contract title becomes a pull request that adds
+      # the new wording; merging it is the human validation. Never blocks monitoring.
+      - name: Propose validation of changed official wording
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python scripts/propose_source_revision.py

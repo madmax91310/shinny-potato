@@ -10,6 +10,7 @@ import pathlib
 import re
 from bs4 import BeautifulSoup
 from broker_profile_qualification import qualify
+from accepted_wording import accepted_clause_match
 
 SOURCES = json.loads(pathlib.Path(__file__).with_name('broker_profile_sources.json').read_text())
 FIELDS = ('dca', 'pea', 'pme', 'jeune', 'ifu', 'cash', 'boursomarkets')
@@ -50,7 +51,7 @@ def closest_passage(pattern, text, limit=260):
     return ' '.join(words[at:at+size+8])[:limit]
 
 def find(pattern, text):
-    match = re.search(pattern, text, re.I)
+    match = re.search(pattern, text, re.I) or accepted_clause_match(pattern, text)
     if not match:
         near = closest_passage(pattern, text)
         raise ValueError('Clause officielle absente ou modifiée : '+pattern+(f' | Passage actuel le plus proche : « {near} »' if near else ' | Aucun passage proche dans le document actuel'))
