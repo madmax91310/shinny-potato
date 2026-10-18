@@ -5,6 +5,16 @@ financier pédagogique prêt à publier (texte + parfois image/vidéo), pour un 
 l'investissement. Déployé sur GitHub Pages (`.github/workflows/deploy-pages.yml`, push sur
 `master`), live sur `https://madmax91310.github.io/shinny-potato/`.
 
+## Référence d'audit obligatoire (18/10/2026)
+
+Avant toute modification, appliquer la référence de travail fournie par l'utilisateur :
+contrat de chaque outil, règles de données, règles éditoriales et visuelles, calendrier,
+recette avant livraison. Elle est chargée automatiquement ci-dessous. En cas de contradiction,
+une nouvelle instruction de l'utilisateur prime, puis le code actuel ; requalifier l'état
+courant avant d'affirmer qu'un constat de l'audit est toujours vrai.
+
+@docs/claude/audit-application-2026-10-18.md
+
 ## Architecture
 
 Chaque outil vit dans `src/pages/<outil>/` avec le même découpage :
