@@ -163,7 +163,10 @@ jobs:
       - run: node scripts/test-tweet-bank-validity.mjs
       - run: npm run audit:source-inventory
       - run: node scripts/test-comparison-etf-details.mjs
-      - run: npm run verify:tweet-midi
+      - run: node scripts/test-tweet-midi-shards.mjs
+      # Freeze the verifier and all its input data at the same point as before.
+      # Execution moves to four exhaustive partitions, alongside browser checks.
+      - run: node scripts/build-tweet-midi-verifier.mjs
       - run: npm run audit:investor-profiles
       - run: npm run audit:household-statistics
       - run: node scripts/test-diversification-lot-one.mjs
@@ -222,12 +225,41 @@ jobs:
             src/data/monthly-duel-returns.json
           if-no-files-found: error
           retention-days: 2
+      - uses: actions/upload-artifact@v7.0.1
+        with:
+          name: tweet-midi-verifier
+          path: test-artifacts/tweet-midi-verifier.mjs
+          if-no-files-found: error
+          retention-days: 2
       - uses: actions/configure-pages@v6.0.0
         if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
       - uses: actions/upload-pages-artifact@v5.0.0
         if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
         with:
           path: dist
+
+  tweet-midi-checks:
+    needs: build
+    runs-on: ubuntu-26.04
+    permissions:
+      contents: read
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1, 2, 3]
+    steps:
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 20
+      - uses: actions/download-artifact@v4
+        with:
+          name: tweet-midi-verifier
+          path: test-artifacts
+      - name: Verify every entry in this partition
+        env:
+          TWEET_MIDI_SHARD_INDEX: ${{ matrix.shard }}
+          TWEET_MIDI_SHARD_COUNT: 4
+        run: node test-artifacts/tweet-midi-verifier.mjs
 
   python-checks:
     needs: current-snapshot
@@ -443,10 +475,10 @@ jobs:
           exit 1
 
   deploy:
-    needs: [scope, build, python-checks, browser-checks, exposure-browser-check, smoke]
+    needs: [scope, build, tweet-midi-checks, python-checks, browser-checks, exposure-browser-check, smoke]
     if: >-
       always() && github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
-      && needs.build.result == 'success' && needs.python-checks.result == 'success' && needs.smoke.result == 'success'
+      && needs.build.result == 'success' && needs.tweet-midi-checks.result == 'success' && needs.python-checks.result == 'success' && needs.smoke.result == 'success'
       && ((needs.browser-checks.result == 'success' && needs.exposure-browser-check.result == 'success')
           || needs.scope.outputs.data_only == 'true')
     # Explicitly validate the next ubuntu-latest image before its rollout.
@@ -479,11 +511,11 @@ jobs:
   # and publish it if the build and the data smoke test pass. The failed checks
   # stay red in this run and in the monitoring issue.
   fallback-build:
-    needs: [scope, build, python-checks, browser-checks, exposure-browser-check, smoke]
+    needs: [scope, build, tweet-midi-checks, python-checks, browser-checks, exposure-browser-check, smoke]
     if: >-
       always() && github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
       && needs.scope.result == 'success' && needs.scope.outputs.data_only != 'true' && needs.scope.outputs.published != ''
-      && !(needs.build.result == 'success' && needs.python-checks.result == 'success' && needs.smoke.result == 'success'
+      && !(needs.build.result == 'success' && needs.tweet-midi-checks.result == 'success' && needs.python-checks.result == 'success' && needs.smoke.result == 'success'
            && needs.browser-checks.result == 'success' && needs.exposure-browser-check.result == 'success')
     runs-on: ubuntu-26.04
     permissions:
