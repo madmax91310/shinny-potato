@@ -162,7 +162,11 @@ export async function renderComparisonPaper(cards) {
       round(ctx,x,top,colW,row.height,'#f8f4e9',24);ctx.restore()
       ctx.save();ctx.beginPath();ctx.roundRect(x,top,colW,row.height,24);ctx.clip()
       const split=Math.round(art.height*.17)
-      ctx.drawImage(art,0,0,art.width,split,x,top,colW,row.header)
+      // Keep the textured paper lip, but limit the green fold to a small corner
+      // so even a full-width, multiline name never sits on dark decoration.
+      ctx.drawImage(art,art.width*.5,0,art.width*.5,split,x,top,colW,row.header)
+      ctx.save();ctx.beginPath();ctx.moveTo(x,top);ctx.lineTo(x+120*scale,top);ctx.lineTo(x,top+72*scale);ctx.closePath();ctx.clip()
+      ctx.drawImage(art,0,0,art.width*.25,split*.25,x,top,120*scale,72*scale);ctx.restore()
       ctx.drawImage(art,0,split,art.width,art.height-split,x,top+row.header,colW,row.height-row.header)
       ctx.restore()
       const headerTextY=top+102*scale+(row.header-card.header)/2
