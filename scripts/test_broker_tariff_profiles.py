@@ -12,6 +12,22 @@ TODAY='2026-10-08'
 def raws(broker,field):return {key:(FIXTURES/(key+'.txt')).read_text() for key in DOCUMENTS[broker][field]}
 
 class BrokerProfilesTests(unittest.TestCase):
+    def test_current_caidf_cto_clause_keeps_page_and_conditional_fees(self):
+        from broker_document_sources import SourceDocument
+        raw=raws('caidf','change')
+        url='https://www.credit-agricole.fr/content/dam/assetsca/cr882/npc/documents/fip-et-cgl/66289.1789655190953.CGL_CTO_PDF.pdf'
+        text=(FIXTURES/'caCtoContract-current.txt').read_text()
+        raw['caCtoContract']=SourceDocument(text,url)
+        o=parse('caidf','change',raw,'2026-10-18')
+        self.assertEqual(o['sourceUrl'],url)
+        self.assertEqual(o['refs'][0]['page'],28)
+        self.assertTrue(o['conversion']['feesConditional'])
+        self.assertEqual(o['conversion']['account'],'CTO')
+        self.assertIsNone(o['conversion']['rate'])
+        self.assertEqual(o['status'],'partiel')
+        for old,new in [('votre CTO','votre compte bancaire'),('Des frais peuvent s’appliquer.','Aucun frais ne s’applique.'),('taux de change que nous pratiquons','taux de change à demander')]:
+            changed={**raw,'caCtoContract':text.replace(old,new)}
+            with self.subTest(old=old),self.assertRaises(ValueError):parse('caidf','change',changed,'2026-10-18')
     def test_tr_currency_margins_are_extracted_without_percentage_conversion(self):
         raw = raws('tr','change')
         observed = parse('tr','change',raw,TODAY)

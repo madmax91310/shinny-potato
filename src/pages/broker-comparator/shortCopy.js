@@ -17,8 +17,9 @@ export function brokerShortCopy(id, observations = BROKER_TARIFFS, today) {
       copy.verdict = p.dca?.available === true ? 'Pour les achats programmés sur PEA sans frais d’exécution.' : `Pour des ordres ponctuels à ${n(v.minimum)} €, dans la limite du plafond PEA.`;
       break;
     case 'bourso':
-      copy.frais = `Découverte : ${n(v.minimum)} € jusqu’à ${n(v.threshold)} €, puis ${n(v.rate)} % ; plafond PEA en ligne : 0,5 %.`;
+      copy.frais = `Découverte, actions Euronext : ${n(v.minimum)} € jusqu’à ${n(v.threshold)} €, puis ${n(v.rate)} % ; plafond PEA en ligne : 0,5 %.`;
       copy.faible = 'Le plan automatique utilise des fonds avec leurs propres frais de gestion.';
+      if (f.minimumOrder) copy.faible += ` ${f.minimumOrder}`;
       copy.verdict = `Pour réunir banque et PEA${p.pme?.available === true ? ', avec accès au PEA-PME' : ''}, au même endroit.`;
       break;
     case 'fortuneo':
@@ -65,7 +66,8 @@ export function brokerShortCopy(id, observations = BROKER_TARIFFS, today) {
   if (['confirmé','corroboré'].includes(p.garde?.status) && p.garde.available != null) copy.garde = p.garde.copy.full;
   else if (!p.garde && f.garde) copy.garde = f.garde;
   // A proved PEA exclusion says nothing about the availability on CTO.
-  if (/Espèces du PEA non rémunérées|espèces du PEA exclues|PEA exclu/i.test(p.cash?.copy.full ?? '')) {
+  const officialCash = o.profile?.cash;
+  if (/Espèces du PEA non rémunérées|espèces du PEA exclues|PEA exclu/i.test(officialCash?.copy.full ?? '')) {
     copy.cash = '❌ Sur PEA.';
     if (id === 'tr') copy.cash += ' Hors PEA : intérêts après activation, sous conditions.';
     if (id === 'saxo') copy.cash += ' Hors PEA : clients VIP uniquement, sous conditions.';
@@ -89,7 +91,9 @@ export function brokerShortCopy(id, observations = BROKER_TARIFFS, today) {
   if (f.change && !p.change && id !== 'ibkr') copy.change = f.change;
   else if (p.change?.status === 'confirmé' && p.change.available != null) copy.change = p.change.copy.full;
   if (id === 'tr' && p.change?.conversion?.incomeToEuro && p.change.conversion.marginByCurrency) copy.change = 'Revenus en devises : conversion en euros au cours Trade Republic, avec marge selon la devise.';
-  if (id === 'caidf' && p.change?.conversion?.account === 'CTO' && p.change.conversion.toEuro) copy.change = 'CTO : conversion en euros au cours de la caisse Île-de-France, avec frais et commissions associés.';
+  if (id === 'caidf' && p.change?.conversion?.account === 'CTO' && p.change.conversion.toEuro) copy.change = p.change.conversion.feesConditional
+    ? 'CTO : conversion en euros au taux de la caisse Île-de-France au moment de l’opération ; frais éventuels.'
+    : 'CTO : conversion en euros au cours de la caisse Île-de-France, avec frais et commissions associés.';
   // Generic IBKR FX pricing is not attributed to the PEA.
   if (id === 'ibkr' && values('change')) {
     const fx = values('change');
@@ -99,7 +103,7 @@ export function brokerShortCopy(id, observations = BROKER_TARIFFS, today) {
     const offer = Object.values(o.fields).find(field => field.copy.full === full);
     const until = offer.until ? ` Jusqu’au ${date(offer.until)}.` : '';
     if (offer === o.fields.offerPea) return `0 € sur ${n(offer.values.count)} actions européennes, achat et vente, pour les nouveaux PEA ouverts ou transférés éligibles ; change éventuel.${until}`;
-    if (offer === o.fields.offerAmundi) return `ETF Amundi de la sélection : 0 € à l’achat ; vente payante, comptes de même nature détenus dans les ${n(offer.values.priorAccountMonths)} derniers mois exclus, transfert des positions bloqué ${n(offer.values.transferLockMonths)} mois.${until}`;
+    if (id === 'saxo' && offer === o.fields.offerAmundi) return `ETF Amundi de la sélection : 0 € à l’achat ; vente payante, comptes de même nature détenus dans les ${n(offer.values.priorAccountMonths)} derniers mois exclus, transfert des positions bloqué ${n(offer.values.transferLockMonths)} mois.${until}`;
     return full + until;
   });
   if (p.boursomarkets?.status === 'confirmé' && p.boursomarkets.available) copy.offres.unshift('BoursoMarkets : ETF Amundi éligibles à l’offre, 0 € de courtage à l’achat ; vente au tarif applicable.');
