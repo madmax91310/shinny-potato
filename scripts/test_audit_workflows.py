@@ -7,6 +7,32 @@ from publish_automation_status import REGISTRY
 ROOT = Path(__file__).resolve().parents[1]
 
 class WorkflowContracts(unittest.TestCase):
+    def test_tweet_midi_partitions_preserve_the_publication_gate(self):
+        workflow = (ROOT/'.github/workflows/deploy-pages.yml').read_text()
+        build = workflow.split('\n  build:\n')[1].split('\n  tweet-midi-checks:\n')[0]
+        shards = workflow.split('\n  tweet-midi-checks:\n')[1].split('\n  python-checks:\n')[0]
+        self.assertIn('node scripts/build-tweet-midi-verifier.mjs', build)
+        self.assertNotIn('run: npm run verify:tweet-midi', build)
+        self.assertIn('node scripts/test-tweet-midi-shards.mjs', build)
+        self.assertIn('path: test-artifacts/tweet-midi-verifier.mjs', build)
+        self.assertIn('if-no-files-found: error', build)
+        self.assertIn('needs: build', shards)
+        self.assertIn('fail-fast: false', shards)
+        self.assertIn('shard: [0, 1, 2, 3]', shards)
+        self.assertIn('TWEET_MIDI_SHARD_INDEX: ${{ matrix.shard }}', shards)
+        self.assertIn('TWEET_MIDI_SHARD_COUNT: 4', shards)
+        self.assertIn('name: tweet-midi-verifier', shards)
+        self.assertIn('run: node test-artifacts/tweet-midi-verifier.mjs', shards)
+        self.assertNotIn('continue-on-error', shards)
+        self.assertNotIn('npm ci', shards)  # No mutable reinstall or source rebuild.
+        browser = workflow.split('\n  browser-checks:\n')[1].split('\n  exposure-browser-check:\n')[0]
+        self.assertIn('needs: build', browser)
+        self.assertNotIn('needs: tweet-midi-checks', browser)
+        for name in ['deploy', 'fallback-build']:
+            job = re.split(r'(?m)^  [a-zA-Z0-9_-]+:\n', workflow.split('\n  '+name+':\n')[1])[0]
+            self.assertIn('build, tweet-midi-checks,', job)
+            self.assertIn("needs.tweet-midi-checks.result == 'success'", job)
+
     def test_reusable_pages_callers_can_read_deployment_metadata(self):
         for path in (ROOT/'.github/workflows').glob('*.yml'):
             text = path.read_text()
@@ -79,11 +105,11 @@ class WorkflowContracts(unittest.TestCase):
     def test_deploy_requires_every_validation_job_and_same_built_commit(self):
         workflow = (ROOT/'.github/workflows/deploy-pages.yml').read_text()
         deploy = workflow.split('\n  deploy:\n')[1]
-        self.assertIn('needs: [scope, build, python-checks, browser-checks, exposure-browser-check, smoke]', deploy)
+        self.assertIn('needs: [scope, build, tweet-midi-checks, python-checks, browser-checks, exposure-browser-check, smoke]', deploy)
         condition = deploy.split('if: >-\n')[1].split('\n    runs-on:')[0]
         # Build, Python and smoke checks block every publication; editorial browser
         # checks may only be bypassed for an automation data-only snapshot.
-        for blocking in ["needs.build.result == 'success'", "needs.python-checks.result == 'success'", "needs.smoke.result == 'success'",
+        for blocking in ["needs.tweet-midi-checks.result == 'success'", "needs.build.result == 'success'", "needs.python-checks.result == 'success'", "needs.smoke.result == 'success'",
                          "github.event_name != 'pull_request'"]:
             self.assertIn(blocking, condition)
         self.assertIn("((needs.browser-checks.result == 'success' && needs.exposure-browser-check.result == 'success')\n          || needs.scope.outputs.data_only == 'true')", condition)

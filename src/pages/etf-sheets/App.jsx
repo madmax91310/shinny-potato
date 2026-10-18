@@ -1,3 +1,4 @@
+import ChoicePicker from '../../design-system/ChoicePicker.jsx'
 import { annualPerformanceCurrencies } from '../../data/annual-performance-currency.js'
 import { metricCopy } from '../../data/etf-metric-copy.js'
 import { usePublicationPreference } from '../../lib/usePublicationPreference.js'
@@ -289,7 +290,7 @@ function EtfWorkspace({ search }) {
             <div className="es-select-shell">
               <AssetPicker id="es-etf-select" className="es-select" label="Choisir un ETF" items={options} value={currentId} onChange={selectETF} selectOnGroupChange />
             </div>
-            <label>Devise des performances <select aria-label="Devise des performances" value={effectiveCurrency} onChange={e => setCurrency(e.target.value)}><option value="native">Devise d’origine</option>{currencies.map(c => <option key={c} value={c}>{c === 'EUR' ? 'Euros (EUR)' : 'Dollars (USD)'}</option>)}</select></label>
+            <label>Devise des performances <ChoicePicker aria-label="Devise des performances" value={effectiveCurrency} onChange={e => setCurrency(e.target.value)}><option value="native">Devise d’origine</option>{currencies.map(c => <option key={c} value={c}>{c === 'EUR' ? 'Euros (EUR)' : 'Dollars (USD)'}</option>)}</ChoicePicker></label>
             <Button type="button" variant="secondary" onClick={pickRandom}>🔄 ETF aléatoire</Button>
             <AssetToolLinks isin={currentEtf.isin} exclude="sheet" />
             {performanceHref && <Button as={Link} to={performanceHref} variant="secondary">Voir sa performance</Button>}

@@ -1,5 +1,9 @@
 # Lots 4–5–6 : raccordements, métadonnées et suivi
 
+## Actualisation du 18 octobre, après #789 et #796
+
+Intégration de master `523d0cb6` : garde de publication, attente HTTP bornée, sélecteurs de devises et quatre partitions exhaustives conservés. Compilation et budgets réussis ; diagnostics des champs, blocages, 654 historiques, 225 ETF/ETC, 7 tests de qualification et 18 tests de métadonnées validés. Le parcours Chromium EUR/USD et net/brut, les comparatifs, le calculateur et trois téléchargements PNG passent sur la compilation intégrée. Les projections sans changement de générateur sont régénérées pour les tests et exclues du commit ; les rapports dont le générateur change restent actualisés. Les contrôles GitHub de cette intégration restent nécessaires avant fusion.
+
 Branche séparée de master c1d38cd. Les conversions et moteurs de rendement des lots 1–3 ne sont pas modifiés.
 
 ## Raccordements vérifiés

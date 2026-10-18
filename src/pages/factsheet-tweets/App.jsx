@@ -1,3 +1,4 @@
+import ChoicePicker from '../../design-system/ChoicePicker.jsx'
 import { usePublicationPreference } from '../../lib/usePublicationPreference.js'
 import { notifyPublication, copyPublicationText } from '../../design-system/publicationActions.js'
 import ActionMenu from '../../design-system/ActionMenu'
@@ -61,12 +62,12 @@ export default function App() {
       <AssetPicker id="factsheet-subject" label="Choisir un indice" value={selected}
         items={SHEETS.map(entry => ({ id: entry.id, label: entry.title, group: exposureGroup(entry), detail: entry.index }))}
         onChange={value => { setSelected(value); setCopied(false) }} />
-      {variants.length > 1 && <label className="fs-label">Dividendes réinvestis <select aria-label="Dividendes réinvestis" value={effectiveVariant} onChange={e => { setVariant(e.target.value); setCopied(false) }}><option value="native">Convention d’origine</option>{variants.map(v => <option key={v} value={v}>{v === 'NETR' ? 'Nets' : 'Bruts'}</option>)}</select></label>}
+      {variants.length > 1 && <label className="fs-label">Dividendes réinvestis <ChoicePicker aria-label="Dividendes réinvestis" value={effectiveVariant} onChange={e => { setVariant(e.target.value); setCopied(false) }}><option value="native">Convention d’origine</option>{variants.map(v => <option key={v} value={v}>{v === 'NETR' ? 'Nets' : 'Bruts'}</option>)}</ChoicePicker></label>}
       <label className="fs-label" htmlFor="factsheet-currency">Devise des performances</label>
-      <select id="factsheet-currency" value={effectiveCurrency} onChange={event => { setCurrency(event.target.value); setCopied(false) }}>
+      <ChoicePicker id="factsheet-currency" value={effectiveCurrency} onChange={event => { setCurrency(event.target.value); setCopied(false) }}>
         <option value="native">Devise d’origine{factsheetCurrency(original) ? ` (${factsheetCurrency(original)})` : ''}</option>
         {currencies.map(c => <option key={c} value={c}>{c === 'EUR' ? 'Euros (EUR)' : 'Dollars (USD)'}</option>)}
-      </select>
+      </ChoicePicker>
       <div className="fs-meta">
         <span>📅 Composition : {sheet.snapshot}</span>
         <span>📈 Performances : {sheet.performance.kind === 'ETF' ? `ETF ${sheet.isin}` : 'indice'} · {sheet.performance.date}</span>
