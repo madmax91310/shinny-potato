@@ -471298,5 +471298,95 @@
     "checkedAt": "2026-10-18",
     "periodEnd": "2026-09",
     "responseSha256": "91b455eb46f9968c6f890b367c9a5de87b76976db5d8a1df3baed4b5d96c70a6"
+  },
+  "etfLU3180074463": {
+    "id": "etfLU3180074463",
+    "label": "Amundi European Strategic Autonomy UCITS ETF Acc",
+    "isin": "LU3180074463",
+    "ticker": "INDEP",
+    "mic": "XPAR",
+    "currency": "EUR",
+    "parser": "yahoo",
+    "symbol": "INDEP.PA",
+    "field": "adjclose",
+    "precision": 6,
+    "consumerScope": "catalog",
+    "listingEvidenceId": "LU3180074463-XPAR-INDEP-EUR",
+    "instrumentType": "ETF",
+    "method": "Cours de la part exacte, ajustés des distributions et divisions ; dernière séance mensuelle recoupée avec la bougie mensuelle Yahoo",
+    "collectAnniversary": true,
+    "yahooInstrumentType": "ETF",
+    "periodStart": "2025-12",
+    "verifyMonthlyDisagreements": true,
+    "sourceUrls": [
+      "https://query2.finance.yahoo.com/v8/finance/chart/INDEP.PA?period1=1764547200&period2=1790812800&interval=1d&events=div%2Csplits",
+      "https://query2.finance.yahoo.com/v8/finance/chart/INDEP.PA?period1=1764547200&period2=1790812800&interval=1mo&events=div%2Csplits"
+    ],
+    "timezone": "Europe/Paris",
+    "proofRows": [
+      {
+        "date": "2025-12-31",
+        "close": 5.1570000648498535,
+        "monthlyClose": 5.1570000648498535,
+        "value": 5.1570000648498535
+      },
+      {
+        "date": "2026-01-30",
+        "close": 5.406000137329102,
+        "monthlyClose": 5.406000137329102,
+        "value": 5.406000137329102
+      },
+      {
+        "date": "2026-02-27",
+        "close": 5.5879998207092285,
+        "monthlyClose": 5.5879998207092285,
+        "value": 5.5879998207092285
+      },
+      {
+        "date": "2026-03-31",
+        "close": 5.244999885559082,
+        "monthlyClose": 5.244999885559082,
+        "value": 5.244999885559082
+      },
+      {
+        "date": "2026-04-30",
+        "close": 5.474999904632568,
+        "monthlyClose": 5.474999904632568,
+        "value": 5.474999904632568
+      },
+      {
+        "date": "2026-05-29",
+        "close": 5.72599983215332,
+        "monthlyClose": 5.72599983215332,
+        "value": 5.72599983215332
+      },
+      {
+        "date": "2026-06-30",
+        "close": 5.869999885559082,
+        "monthlyClose": 5.869999885559082,
+        "value": 5.869999885559082
+      },
+      {
+        "date": "2026-07-31",
+        "close": 5.8470001220703125,
+        "monthlyClose": 5.8470001220703125,
+        "value": 5.8470001220703125
+      },
+      {
+        "date": "2026-08-31",
+        "close": 5.909999847412109,
+        "monthlyClose": 5.909999847412109,
+        "value": 5.909999847412109
+      },
+      {
+        "date": "2026-09-30",
+        "close": 5.7779998779296875,
+        "monthlyClose": 5.7779998779296875,
+        "value": 5.7779998779296875
+      }
+    ],
+    "checkedAt": "2026-10-18",
+    "periodEnd": "2026-09",
+    "responseSha256": "ce2c9ff70fb67eb9bce427c482025c5186b2702f42cdfaf42f8326bb721e970a"
   }
 }

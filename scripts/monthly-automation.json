@@ -13836,6 +13836,26 @@
       "yahooInstrumentType": "ETF",
       "periodStart": "2025-06",
       "verifyMonthlyDisagreements": true
+    },
+    {
+      "id": "etfLU3180074463",
+      "label": "Amundi European Strategic Autonomy UCITS ETF Acc",
+      "isin": "LU3180074463",
+      "ticker": "INDEP",
+      "mic": "XPAR",
+      "currency": "EUR",
+      "parser": "yahoo",
+      "symbol": "INDEP.PA",
+      "field": "adjclose",
+      "precision": 6,
+      "consumerScope": "catalog",
+      "listingEvidenceId": "LU3180074463-XPAR-INDEP-EUR",
+      "instrumentType": "ETF",
+      "method": "Cours de la part exacte, ajustés des distributions et divisions ; dernière séance mensuelle recoupée avec la bougie mensuelle Yahoo",
+      "collectAnniversary": true,
+      "yahooInstrumentType": "ETF",
+      "periodStart": "2025-12",
+      "verifyMonthlyDisagreements": true
     }
   ]
 }

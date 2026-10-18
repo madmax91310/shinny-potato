@@ -9542,5 +9542,22 @@
     "ticker": "DEFS",
     "mic": "XPAR",
     "listingEvidenceId": "LU3038520774-XPAR-DEFS-EUR"
+  },
+  "etfLU3180074463": {
+    "value": 5.751999855041504,
+    "asOf": "2026-10-16",
+    "currency": "EUR",
+    "parser": "yahoo",
+    "symbol": "INDEP.PA",
+    "indexCode": null,
+    "variant": null,
+    "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/INDEP.PA?period1=1790985600&period2=1792281600&interval=1d&events=splits",
+    "sha256": "2030195d2072fc10375d831fbd91de0297a4cfac39e2e5b31e2eccd8bf51ad51",
+    "method": "Dernière séance terminée ; cours brut",
+    "maxAgeDays": 7,
+    "isin": "LU3180074463",
+    "ticker": "INDEP",
+    "mic": "XPAR",
+    "listingEvidenceId": "LU3180074463-XPAR-INDEP-EUR"
   }
 }

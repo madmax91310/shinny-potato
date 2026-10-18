@@ -72,9 +72,10 @@ function TweetMidiWorkspace({ search, initialFormat, title, description, runtime
       : getSimulationAssetId(params.get('asset'))) : initialFormat === FORMATS.ANNIVERSAIRE && ANNIVERSAIRE_ELIGIBLE_ASSETS.some(asset => asset.id === params.get('asset')) ? params.get('asset') : null;
   // Recheck against the actual pool: a removed/unusable history cannot trigger
   // pickForSelection's fallback to an unrelated asset.
+  const hasComparisonSubject = id => id === SUBJECT_ALEATOIRE || getSubjectsForFormat(initialFormat).some(group => group.items.some(item => item.id === id));
   const initialSubject = requestedAsset && getSecondaryOptionsForFormat(initialFormat, MODES.SIMPLE, requestedAsset).length
     ? requestedAsset : initialFormat === FORMATS.COMPARATIF_ETF
-      ? (getSubjectsForFormat(initialFormat).some(group => group.items.some(item => item.id === params.get('subject'))) ? params.get('subject') : readPreference('comparison-subject', SUBJECT_ALEATOIRE, id => id === SUBJECT_ALEATOIRE || getSubjectsForFormat(initialFormat).some(group => group.items.some(item => item.id === id))))
+      ? (hasComparisonSubject(params.get('subject')) ? params.get('subject') : readPreference('comparison-subject', SUBJECT_ALEATOIRE, hasComparisonSubject))
       : SUBJECT_ALEATOIRE;
   const [format, setFormat] = useState(initialFormat);
   const [mode, setMode] = useState(MODES.SIMPLE);
