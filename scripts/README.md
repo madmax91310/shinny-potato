@@ -249,6 +249,21 @@ un outil vide ou une valeur `NaN`/`undefined`/`Infinity`. Il ne vérifie aucun c
 une collecte légitime ne peut pas le casser, une donnée corrompue si. Il bloque toutes les
 publications.
 
+## Voie de secours, répétitions et textes officiels modifiés
+
+- `compose-fallback-snapshot.mjs --published <sha>` : bascule l'arbre sur le code publié puis
+  y recopie tous les chemins de données d'automatisation du nouvel instantané. Utilisé par
+  `fallback-build` quand le portail complet échoue sur un changement de code
+  (`test-fallback-snapshot.mjs`).
+- `simulate-refresh.mjs --scenario next-month|ecb-outage|year-rollover` : ajoute des clôtures
+  mensuelles synthétiques (et les changes BCE, sauf panne) dans un clone jetable. Jamais sur
+  une branche que l'on committe. Rejoué chaque mois par `rehearse-refresh.yml`.
+- `propose_source_revision.py` : transforme chaque incident « Source modifiée, à valider » en PR
+  qui ajoute le nouveau texte à `accepted-source-wording.json` (lu par `accepted_wording.py`).
+- `browser-check-error.mjs` : extrait la première erreur d'un contrôle navigateur ; annotée
+  `Échec <commande>`, elle nomme le contrôle dans l'incident de surveillance.
+- `issuer-access-routes.json` / `issuer_routes.py` / `issuer-routes.mjs` : voies d'accès par émetteur.
+
 ## `playwright-tools.mjs`
 
 Le duel de portefeuilles compare deux constructions indépendantes : une base ETF obligatoire,
