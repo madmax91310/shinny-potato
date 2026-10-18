@@ -34,22 +34,30 @@
     },
     "update-market-monthly.yml": {
       "name": "Historiques mensuels des marchés",
-      "runId": 39124304898,
+      "runId": 39125103851,
       "attempt": 1,
-      "completedAt": "2026-10-18T11:43:14Z",
+      "completedAt": "2026-10-18T12:58:06Z",
       "status": "failure",
       "lastSuccessAt": "2026-10-18T10:52:01Z",
       "collectionStatus": "success",
-      "validationStatus": "failure",
-      "recordingStatus": "not-run",
-      "publicationStatus": "not-run",
-      "lastCollectionSuccessAt": "2026-10-18T11:43:14Z",
+      "validationStatus": "success",
+      "recordingStatus": "success",
+      "publicationStatus": "failure",
+      "lastCollectionSuccessAt": "2026-10-18T12:58:06Z",
       "lastPublicationSuccessAt": "2026-10-16T15:32:37Z",
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39124304898",
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39125103851",
       "failures": [
         {
-          "job": "refresh",
-          "step": "Validate observations: node scripts test-etf-tool-connections.mjs"
+          "job": "deploy / build",
+          "step": "Run node scripts/test-portfolio-roadmap.mjs"
+        },
+        {
+          "job": "deploy / fallback-build",
+          "step": "Run npm run build"
+        },
+        {
+          "job": "report-failures",
+          "step": "Run echo 'Une source mensuelle a échoué : historique précédent conservé. Les autres mises à jour validées ont été publiées si les audits et le déploiement ont réussi.' >> \"$GITHUB_STEP_SUMMARY\""
         }
       ],
       "dataFailures": {}
@@ -495,11 +503,11 @@
       "failures": []
     }
   },
-  "updatedAt": "2026-10-18T12:58:01Z",
+  "updatedAt": "2026-10-18T12:58:06Z",
   "monitoring": {
     "schemaVersion": 1,
-    "checkedAt": "2026-10-18T12:59:38.607258+00:00",
-    "revision": 110,
+    "checkedAt": "2026-10-18T12:59:58.752108+00:00",
+    "revision": 111,
     "active": {
       "publication:update-practical-sheets.yml": {
         "name": "Sources des fiches pratiques",
@@ -515,7 +523,7 @@
         "cause": "deploy / build : Run npm run audit:instrument-listings ; deploy / fallback-build : Run npm run build",
         "id": "publication:update-practical-sheets.yml",
         "firstSeenAt": "2026-10-18T11:43:59.694981+00:00",
-        "lastSeenAt": "2026-10-18T12:59:38.607258+00:00"
+        "lastSeenAt": "2026-10-18T12:59:58.752108+00:00"
       },
       "publication:update-publication-observations.yml": {
         "name": "Pouvoir d’achat et niveaux des anniversaires",
@@ -532,7 +540,7 @@
         "cause": "deploy / browser-checks (0) : node scripts/playwright-tools.mjs — Échec sans message ; deploy / fallback-build : Run npm run build",
         "id": "publication:update-publication-observations.yml",
         "firstSeenAt": "2026-10-18T12:52:04.191577+00:00",
-        "lastSeenAt": "2026-10-18T12:59:38.607258+00:00"
+        "lastSeenAt": "2026-10-18T12:59:58.752108+00:00"
       },
       "collection:update-insurance.yml:linxea-avenir-2": {
         "name": "Linxea Avenir 2",
@@ -551,7 +559,7 @@
         "dataId": "linxea-avenir-2",
         "id": "collection:update-insurance.yml:linxea-avenir-2",
         "firstSeenAt": "2026-10-14T13:08:27.203935+00:00",
-        "lastSeenAt": "2026-10-18T12:59:38.607258+00:00"
+        "lastSeenAt": "2026-10-18T12:59:58.752108+00:00"
       },
       "publication:update-insurance.yml": {
         "name": "Présentations d’assurance-vie",
@@ -567,7 +575,7 @@
         "cause": "deploy / browser-checks (0) : node scripts/playwright-tools.mjs — Échec sans message ; deploy / fallback-build : Run npm run build",
         "id": "publication:update-insurance.yml",
         "firstSeenAt": "2026-10-18T12:59:38.607258+00:00",
-        "lastSeenAt": "2026-10-18T12:59:38.607258+00:00"
+        "lastSeenAt": "2026-10-18T12:59:58.752108+00:00"
       },
       "collection:update-scpi.yml:transitions-europe": {
         "name": "Transitions Europe",
@@ -589,7 +597,7 @@
         "dataId": "transitions-europe",
         "id": "collection:update-scpi.yml:transitions-europe",
         "firstSeenAt": "2026-10-18T10:29:36.524873+00:00",
-        "lastSeenAt": "2026-10-18T12:59:38.607258+00:00"
+        "lastSeenAt": "2026-10-18T12:59:58.752108+00:00"
       },
       "publication:update-presentation-actors.yml": {
         "name": "Présentations des acteurs et offres",
@@ -605,7 +613,7 @@
         "cause": "deploy / browser-checks (0) : node scripts/playwright-tools.mjs — Échec sans message ; deploy / fallback-build : Run npm run build",
         "id": "publication:update-presentation-actors.yml",
         "firstSeenAt": "2026-10-18T12:56:03.999172+00:00",
-        "lastSeenAt": "2026-10-18T12:59:38.607258+00:00"
+        "lastSeenAt": "2026-10-18T12:59:58.752108+00:00"
       },
       "publication:update-regulatory-data.yml": {
         "name": "Paramètres fiscaux, LDDS et tarifs de courtiers",
@@ -622,9 +630,9 @@
         "cause": "deploy / build : Run node scripts/test-portfolio-roadmap.mjs ; deploy / fallback-build : Run npm run build",
         "id": "publication:update-regulatory-data.yml",
         "firstSeenAt": "2026-10-18T12:59:15.049897+00:00",
-        "lastSeenAt": "2026-10-18T12:59:38.607258+00:00"
+        "lastSeenAt": "2026-10-18T12:59:58.752108+00:00"
       },
-      "workflow:update-market-monthly.yml": {
+      "publication:update-market-monthly.yml": {
         "name": "Historiques mensuels des marchés",
         "tools": [
           "Et si tu avais investi",
@@ -634,14 +642,14 @@
         ],
         "impactScope": "collector",
         "workflow": "update-market-monthly.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39124304898",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39125103851",
         "to": "/donnees-a-revoir",
-        "kind": "collection",
-        "field": "Exécution du collecteur",
-        "cause": "refresh : Validate observations: node scripts test-etf-tool-connections.mjs",
-        "id": "workflow:update-market-monthly.yml",
-        "firstSeenAt": "2026-10-18T11:43:35.606108+00:00",
-        "lastSeenAt": "2026-10-18T12:59:38.607258+00:00"
+        "kind": "publication",
+        "field": "Publication",
+        "cause": "deploy / build : Run node scripts/test-portfolio-roadmap.mjs ; deploy / fallback-build : Run npm run build ; report-failures : Run echo 'Une source mensuelle a échoué : historique précédent conservé. Les autres mises à jour validées ont été publiées si les audits et le déploiement ont réussi.' >> \"$GITHUB_STEP_SUMMARY\"",
+        "id": "publication:update-market-monthly.yml",
+        "firstSeenAt": "2026-10-18T12:59:58.752108+00:00",
+        "lastSeenAt": "2026-10-18T12:59:58.752108+00:00"
       },
       "publication:update-company-analysis.yml": {
         "name": "Analyses d’entreprises",
@@ -657,7 +665,7 @@
         "cause": "deploy / build : Run npm run audit:instrument-listings ; deploy / fallback-build : Run npm run build ; report-failures : Run echo 'Some sources failed. Previous observations were retained independently; stale ratios are omitted by the publication engine.' >> \"$GITHUB_STEP_SUMMARY\"",
         "id": "publication:update-company-analysis.yml",
         "firstSeenAt": "2026-10-18T11:47:02.423295+00:00",
-        "lastSeenAt": "2026-10-18T12:59:38.607258+00:00"
+        "lastSeenAt": "2026-10-18T12:59:58.752108+00:00"
       },
       "publication:update-economic-data.yml": {
         "name": "Taux d’épargne, ménages, SCPI et fonds euros",
@@ -674,7 +682,7 @@
         "cause": "deploy / build : Run npm run audit:etf-annual-performance",
         "id": "publication:update-economic-data.yml",
         "firstSeenAt": "2026-10-17T12:18:32.387705+00:00",
-        "lastSeenAt": "2026-10-18T12:59:38.607258+00:00"
+        "lastSeenAt": "2026-10-18T12:59:58.752108+00:00"
       },
       "publication:update-non-bond-expansion.yml": {
         "name": "Nouveaux actifs et historiques",
@@ -693,7 +701,7 @@
         "cause": "deploy / browser-checks (0) : node scripts/playwright-tools.mjs — Échec sans message ; deploy / fallback-build : Run npm run build",
         "id": "publication:update-non-bond-expansion.yml",
         "firstSeenAt": "2026-10-18T12:58:02.935819+00:00",
-        "lastSeenAt": "2026-10-18T12:59:38.607258+00:00"
+        "lastSeenAt": "2026-10-18T12:59:58.752108+00:00"
       },
       "publication:update-qualified-exposures.yml": {
         "name": "Expositions ETF qualifiées",
@@ -713,7 +721,7 @@
         "cause": "deploy / build : Run npm run audit:calculator-series",
         "id": "publication:update-qualified-exposures.yml",
         "firstSeenAt": "2026-10-16T12:48:21.924866+00:00",
-        "lastSeenAt": "2026-10-18T12:59:38.607258+00:00"
+        "lastSeenAt": "2026-10-18T12:59:58.752108+00:00"
       },
       "collection:update-exposure-expansion.yml:etf-exposure-expansion-IE00BK1PV551": {
         "name": "Xtrackers MSCI World UCITS ETF 1D",
@@ -737,7 +745,7 @@
         "dataId": "etf-exposure-expansion-IE00BK1PV551",
         "id": "collection:update-exposure-expansion.yml:etf-exposure-expansion-IE00BK1PV551",
         "firstSeenAt": "2026-10-17T20:42:44.184725+00:00",
-        "lastSeenAt": "2026-10-18T12:59:38.607258+00:00"
+        "lastSeenAt": "2026-10-18T12:59:58.752108+00:00"
       },
       "workflow:update-instrument-metadata.yml": {
         "name": "Caractéristiques et statut PEA par ISIN",
@@ -756,7 +764,7 @@
         "cause": "refresh : Run npm run build && node scripts/test-full-auto-routing.mjs",
         "id": "workflow:update-instrument-metadata.yml",
         "firstSeenAt": "2026-10-18T12:57:39.234539+00:00",
-        "lastSeenAt": "2026-10-18T12:59:38.607258+00:00"
+        "lastSeenAt": "2026-10-18T12:59:58.752108+00:00"
       },
       "unobserved:onboard-assets.yml": {
         "name": "Intégration des nouveaux actifs",
@@ -779,36 +787,10 @@
         "cause": "Aucune exécution terminée avec une date exploitable.",
         "id": "unobserved:onboard-assets.yml",
         "firstSeenAt": "2026-10-18T12:02:38.068054+00:00",
-        "lastSeenAt": "2026-10-18T12:59:38.607258+00:00"
+        "lastSeenAt": "2026-10-18T12:59:58.752108+00:00"
       }
     },
     "events": [
-      {
-        "revision": 81,
-        "at": "2026-10-17T20:42:44.184725+00:00",
-        "opened": [
-          "collection:update-exposure-expansion.yml:etf-exposure-expansion-IE00BK1PV551"
-        ],
-        "resolved": [
-          {
-            "name": "35 ETF des allocations",
-            "tools": [
-              "Portefeuille / DCA"
-            ],
-            "impactScope": "collector",
-            "workflow": "update-exposure-expansion.yml",
-            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38920056871",
-            "to": "/donnees-a-revoir",
-            "kind": "publication",
-            "field": "Publication",
-            "cause": "deploy / build : Run node scripts/build-dca-exposures.mjs && npm run test:dca && node scripts/audit-portfolio-routing.mjs",
-            "id": "publication:update-exposure-expansion.yml",
-            "firstSeenAt": "2026-10-16T15:06:10.074991+00:00",
-            "lastSeenAt": "2026-10-17T20:42:25.096124+00:00",
-            "resolvedAt": "2026-10-17T20:42:44.184725+00:00"
-          }
-        ]
-      },
       {
         "revision": 82,
         "at": "2026-10-17T20:43:14.258283+00:00",
@@ -1625,9 +1607,58 @@
           "publication:update-insurance.yml"
         ],
         "resolved": []
+      },
+      {
+        "revision": 111,
+        "at": "2026-10-18T12:59:58.752108+00:00",
+        "opened": [
+          "publication:update-market-monthly.yml"
+        ],
+        "resolved": [
+          {
+            "name": "Historiques mensuels des marchés",
+            "tools": [
+              "Et si tu avais investi",
+              "Performance depuis",
+              "Duel",
+              "Générateur"
+            ],
+            "impactScope": "collector",
+            "workflow": "update-market-monthly.yml",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39124304898",
+            "to": "/donnees-a-revoir",
+            "kind": "collection",
+            "field": "Exécution du collecteur",
+            "cause": "refresh : Validate observations: node scripts test-etf-tool-connections.mjs",
+            "id": "workflow:update-market-monthly.yml",
+            "firstSeenAt": "2026-10-18T11:43:35.606108+00:00",
+            "lastSeenAt": "2026-10-18T12:59:38.607258+00:00",
+            "resolvedAt": "2026-10-18T12:59:58.752108+00:00"
+          }
+        ]
       }
     ],
     "resolved": [
+      {
+        "name": "Historiques mensuels des marchés",
+        "tools": [
+          "Et si tu avais investi",
+          "Performance depuis",
+          "Duel",
+          "Générateur"
+        ],
+        "impactScope": "collector",
+        "workflow": "update-market-monthly.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39124304898",
+        "to": "/donnees-a-revoir",
+        "kind": "collection",
+        "field": "Exécution du collecteur",
+        "cause": "refresh : Validate observations: node scripts test-etf-tool-connections.mjs",
+        "id": "workflow:update-market-monthly.yml",
+        "firstSeenAt": "2026-10-18T11:43:35.606108+00:00",
+        "lastSeenAt": "2026-10-18T12:59:38.607258+00:00",
+        "resolvedAt": "2026-10-18T12:59:58.752108+00:00"
+      },
       {
         "name": "Caractéristiques et statut PEA par ISIN",
         "tools": [
@@ -3821,20 +3852,6 @@
         "field": "Poids du pays Netherlands",
         "cause": "Valeur contradictoire pour la même période (2026-10-13) : Poids du pays Netherlands. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Netherlands:630657e8b950b3715e6c0f9a:2026-10-13).",
         "id": "radar:904bc242273cd75e7261ccc1",
-        "firstSeenAt": "2026-10-15T12:49:29.696670+00:00",
-        "lastSeenAt": "2026-10-15T17:57:53.913128+00:00",
-        "resolvedAt": "2026-10-15T17:58:10.525626+00:00"
-      },
-      {
-        "name": "IE000L6ZMMC4",
-        "tools": [],
-        "impactScope": "collector",
-        "sourceUrls": [],
-        "to": "/donnees-a-revoir",
-        "kind": "conflict",
-        "field": "Poids du pays Singapore",
-        "cause": "Valeur contradictoire pour la même période (2026-10-13) : Poids du pays Singapore. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Singapore:630657e8b950b3715e6c0f9a:2026-10-13).",
-        "id": "radar:3c7344e46408f7e31e0db232",
         "firstSeenAt": "2026-10-15T12:49:29.696670+00:00",
         "lastSeenAt": "2026-10-15T17:57:53.913128+00:00",
         "resolvedAt": "2026-10-15T17:58:10.525626+00:00"
