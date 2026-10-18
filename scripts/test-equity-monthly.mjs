@@ -35,7 +35,7 @@ for (const config of configs) {
 assert.equal(currencySymbol('KRW'),'₩')
 assert.equal(currencySymbol('EUR'),'€')
 assert.equal(currencySymbol('USD'),'$')
-for(const [code,symbol] of Object.entries({CHF:'CHF',DKK:'kr',JPY:'¥',HKD:'$'})) assert.equal(currencySymbol(code),symbol)
+for(const [code,symbol] of Object.entries({CHF:'CHF',DKK:'kr',JPY:'¥',HKD:'$',NOK:'kr',SEK:'kr',CAD:'$',AUD:'$'})) assert.equal(currencySymbol(code),symbol)
 console.log(`${configs.length} equities: automatic records, 3 consumers, lump sum/DCA, raw anniversary prices and currencies validated.`)
 const { compactHistory }=await import('./compact-history.mjs')
 for(const records of [ASSETS,{test:{points:[{date:'2025-01',price:1},{date:'2025-03',price:2}]}}]) {
