@@ -1,13 +1,18 @@
 import RETURNS from './monthly-duel-returns.json' with { type: 'json' }
 import { INSTRUMENTS_BY_ISIN } from './instruments.js'
 import { latestCommonYears } from './annual-window.js'
+import { RESOURCE_DUEL_CHOICES } from './resource-selections.js'
 // Qualified exact-share market histories supply manual choices automatically.
 // Existing editorial recipes keep their own asset IDs and return conventions.
 // 18/10/2026 : parts documentées sur six années complètes et admises dans un groupe d'options du
 // Générateur (theses.js) ; elles perdent le statut « manuel seulement ». Toute autre part reste manuelle.
 export const AUTOMATIC_RECIPE_ISINS = new Set(['IE0008471009', 'IE00B52MJY50'])
+const CURATED_NAV_SHARES = new Set(RESOURCE_DUEL_CHOICES.map(([, isin]) => isin))
 export const AUTOMATED_PORTFOLIO_FUNDS = Object.values(RETURNS).flatMap(record => {
   const identity=INSTRUMENTS_BY_ISIN[record.isin]
+  // Curated resource shares already have their issuer NAV calendar in the Duels (resource-selections.js):
+  // a second, market-price entry in the Générateur would show another number for the same share.
+  if (CURATED_NAV_SHARES.has(record.isin)) return []
   if (!identity || record.basis!=='market-price' || !record.source?.startsWith('https://') || !record.checkedAt || !['EUR','USD'].includes(record.currency) || latestCommonYears([record.years],{minimum:3}).length<3) return []
   const name=identity.name, expiry=name.match(/\b(?:Dec|December|décembre)\s+(20\d{2})\b/i)?.[1]
   if (expiry && new Date().getUTCFullYear()>Number(expiry)) return []

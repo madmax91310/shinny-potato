@@ -121,11 +121,7 @@ const extraFunds = [
   const market = MONTHLY_DUEL_RETURNS[isin]
   const official = getInstrumentDuelSeries(isin)
   const officialYears=official?.years ?? Object.fromEntries((official?.values ?? []).map((v,i)=>[2020+i,v]))
-  // When the same share is also a manual Générateur asset (market-price calendar), both tools
-  // must show one number: use that same market series here.
-  const sharedManual = market && ASSETS.some(a => a.id === `manual-${isin}` && a.automatedManual)
-  const series = sharedManual && latestCommonYears([market.years],{minimum:3}).length>=3 ? market
-    : latestCommonYears([officialYears],{minimum:3}).length>=3 ? official : market && latestCommonYears([market.years],{minimum:3}).length>=3 ? market : official
+  const series = latestCommonYears([officialYears],{minimum:3}).length>=3 ? official : market && latestCommonYears([market.years],{minimum:3}).length>=3 ? market : official
   if (!series?.source) throw new Error(`Historique de part absent : ${isin}`)
   return { id, isin, label, exposure, name: getInstrumentName(isin), role, group: ROLES[role],
     ...series, note: series.note ?? (['copper','platinum','palladium'].includes(exposure) ? 'Rendements NAV de l’ETC exact, frais inclus, en USD. '+(exposure==='copper'?'Contrats à terme via swap ; renouvellement des contrats et frais de swap distincts.':'Adossé à du métal physique ; sans revenu distribué.') : exposure === 'multifactor' ? 'Rendements NAV de la part exacte, revenus réinvestis. Le fonds a changé d’indice : cet historique ne décrit pas uniquement la stratégie STOXX actuelle.' : exposure === 'gold' ? 'Rendements de l’ETC adossé à de l’or physique, sans revenu distribué ; années complètes communes.' : 'Rendements de la part exacte, revenus réinvestis ; seules les années complètes disponibles sont comparées.') }
