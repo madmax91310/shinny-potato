@@ -50,6 +50,22 @@ class WorkflowContracts(unittest.TestCase):
             self.assertIn("if: always() && needs.refresh.outputs.collection_failed == 'true'", workflow)
             self.assertLess(refresh.index('npm run build'), refresh.index('bash scripts/commit-validated-data.sh'))
 
+    def test_fallback_lane_publishes_fresh_data_only_with_published_code(self):
+        workflow = (ROOT/'.github/workflows/deploy-pages.yml').read_text()
+        fallback = workflow.split('\n  fallback-build:\n')[1].split('\n  deploy-fallback:\n')[0]
+        condition = fallback.split('if: >-\n')[1].split('\n    runs-on:')[0]
+        # Only when the full gate failed on a code change, never for PRs or the data-only lane.
+        for required in ["github.event_name != 'pull_request'", "needs.scope.outputs.data_only != 'true'",
+                         "needs.scope.outputs.published != ''", "!(needs.build.result == 'success'"]:
+            self.assertIn(required, condition)
+        steps = fallback.split('steps:')[1]
+        order = [steps.index(x) for x in ['compose-fallback-snapshot.mjs --published', 'npm run build', 'dist/build-info.json', 'smoke-data-routes.mjs', 'upload-pages-artifact']]
+        self.assertEqual(order, sorted(order))
+        deploy = workflow.split('\n  deploy-fallback:\n')[1]
+        self.assertIn('group: pages-production', deploy)
+        self.assertIn('bash scripts/check-pages-head.sh', deploy)
+        self.assertIn('artifact_name: github-pages-fallback', deploy)
+
     def test_deploy_requires_every_validation_job_and_same_built_commit(self):
         workflow = (ROOT/'.github/workflows/deploy-pages.yml').read_text()
         deploy = workflow.split('\n  deploy:\n')[1]
