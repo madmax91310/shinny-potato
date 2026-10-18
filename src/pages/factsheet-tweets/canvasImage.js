@@ -71,7 +71,7 @@ function performanceNote(sheet) {
     .replace('rendement net en euros', 'EUR · rendement net')
     .replace('en EUR, dividendes nets réinvestis', 'EUR · dividendes nets réinvestis')
     .replace(' ; secteurs selon la classification ICB de FTSE', ' · secteurs ICB')
-  return [detail, sheet.performance.date, sheet.performance.historyNote].filter(Boolean).join(' · ')
+  return [detail, sheet.performance.date, sheet.performance.currencyNote, sheet.performance.historyNote].filter(Boolean).join(' · ')
 }
 let grain
 function paper(ctx, height) {
