@@ -4,7 +4,7 @@ Généré le 2026-10-18 par `node scripts/audit-asset-tool-routing.mjs --write`.
 
 « Sans objet » ne signifie pas donnée manquante. « Complète » décrit la table collectée, pas la possibilité de calculer un recouvrement intégral : identification, fraîcheur et compatibilité restent contrôlées par le moteur. Un candidat historique possède une cotation documentée, mais sa série doit encore passer la collecte et les contrôles. Les actifs utilisés sont conservés.
 
-Actifs présentés sans historique automatique (Sans cotation : 25 · Collecte en attente : 27 · Historique court : 19) : la colonne « Blocage » donne la cause relevée et ce qui est attendu.
+Actifs présentés sans historique automatique (Sans cotation : 27 · Collecte en attente : 25 · Historique court : 19) : la colonne « Blocage » donne la cause relevée et ce qui est attendu.
 
 | Actif | ISIN | Fiche | Comparatif | Générateur | Pays / secteurs | Positions | Performance / Simulation / Anniversaire | Blocage |
 |---|---|---|---|---|---|---|---|---|
@@ -178,7 +178,7 @@ Actifs présentés sans historique automatique (Sans cotation : 25 · Collecte e
 | Xtrackers FTSE All-World UCITS ETF 1C | IE000L6ZMMC4 | Oui | — | missing | Oui / Oui | Complète | — / — / — | Sans cotation — Aucune cotation documentée ni candidate · etf.dws.com : Ambiguous listing document identity |
 | VanEck Uranium and Nuclear Technologies UCITS ETF | IE000M7V94E1 | Oui | Oui | missing | Oui / Oui | Partielle | Oui / Oui / Oui | Historique court — 2 année(s) complète(s) ; 6 requises en génération automatique |
 | Global X Uranium UCITS ETF USD Acc | IE000NDWFGA5 | Oui | — | missing | Oui / Oui | Partielle | — / — / — | Sans cotation — Cotations candidates déclarées, en attente du document émetteur · globalxetfs.eu : Missing or multiple exact-share identities in metadata document |
-| BNP Paribas Easy II Nasdaq 100 UCITS ETF (Acc) | IE000QDFFK00 | Oui | Oui | missing | Oui / Oui | Partielle | — / — / — | Collecte en attente — Cotation documentée ; série en attente de la prochaine collecte mensuelle |
+| BNP Paribas Easy II Nasdaq 100 UCITS ETF (Acc) | IE000QDFFK00 | Oui | Oui | missing | Oui / Oui | Partielle | — / — / — | Sans cotation — Cotations candidates déclarées, en attente du document émetteur |
 | iShares Blockchain Technology UCITS ETF | IE000RDRMSD1 | Oui | Oui | manual | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | Linde | IE000S9YS762 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | iShares iBonds Dec 2029 Term € Corp UCITS ETF | IE000SNLFDR7 | Oui | Oui | missing | Oui / Oui | Partielle | Oui / Oui / Oui | Historique court — 1 année(s) complète(s) ; 6 requises en génération automatique |
@@ -256,7 +256,7 @@ Actifs présentés sans historique automatique (Sans cotation : 25 · Collecte e
 | iShares Edge MSCI USA Quality Factor UCITS ETF | IE00BD1F4L37 | Oui | Oui | manual | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | iShares Edge MSCI USA Value Factor UCITS ETF | IE00BD1F4M44 | Oui | Oui | manual | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | iShares Edge MSCI USA Momentum Factor UCITS ETF | IE00BD1F4N50 | Oui | Oui | manual | Oui / Oui | Complète | Oui / Oui / Oui | — |
-| UBS Core MSCI World UCITS ETF | IE00BD4TXV59 | Oui | Oui | missing | Oui / Oui | Partielle | — / — / — | Collecte en attente — Cotation documentée ; série en attente de la prochaine collecte mensuelle |
+| UBS Core MSCI World UCITS ETF | IE00BD4TXV59 | Oui | Oui | missing | Oui / Oui | Partielle | — / — / — | Sans cotation — Cotations candidates déclarées, en attente du document émetteur |
 | Invesco Bloomberg Commodity UCITS ETF | IE00BD6FTQ80 | Oui | — | automatic | Sans objet / Sans objet | — | Oui / Oui / Oui | — |
 | iShares Core Global Aggregate Bond UCITS ETF EUR Hedged (Acc) | IE00BDBRDM35 | Oui | Oui | automatic | Sans objet / Sans objet | Partielle | Oui / Oui / — | — |
 | VanEck S&P Global Mining UCITS ETF | IE00BDFBTQ78 | Oui | Oui | manual | Oui / Oui | Partielle | Oui / Oui / Oui | — |

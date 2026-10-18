@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-18T10:57:21.995Z",
+  "checkedAt": "2026-10-18T12:24:38.083Z",
   "summary": {
     "instruments": 647,
     "sheets": 258,
@@ -11,13 +11,13 @@
     "fullExposure": 602,
     "outsideExposure": 41,
     "automaticHistories": 200,
-    "historyCandidates": 27,
+    "historyCandidates": 25,
     "unused": 0,
     "blockers": {
-      "no-listing": 25,
+      "no-listing": 27,
       "listing-not-collectable": 0,
       "qualification-failed": 0,
-      "collection-pending": 27,
+      "collection-pending": 25,
       "history-short": 19
     }
   },
@@ -7371,8 +7371,8 @@
       "comparison": true,
       "generator": "missing",
       "blocker": {
-        "code": "collection-pending",
-        "detail": "Cotation documentée ; série en attente de la prochaine collecte mensuelle"
+        "code": "no-listing",
+        "detail": "Cotations candidates déclarées, en attente du document émetteur"
       },
       "dca": true,
       "countries": {
@@ -7396,7 +7396,7 @@
         "automatic": false
       },
       "monthly": [],
-      "historyCandidate": true,
+      "historyCandidate": false,
       "decision": "keep-used"
     },
     {
@@ -10888,8 +10888,8 @@
       "comparison": true,
       "generator": "missing",
       "blocker": {
-        "code": "collection-pending",
-        "detail": "Cotation documentée ; série en attente de la prochaine collecte mensuelle"
+        "code": "no-listing",
+        "detail": "Cotations candidates déclarées, en attente du document émetteur"
       },
       "dca": true,
       "countries": {
@@ -10913,7 +10913,7 @@
         "automatic": false
       },
       "monthly": [],
-      "historyCandidate": true,
+      "historyCandidate": false,
       "decision": "keep-used"
     },
     {
