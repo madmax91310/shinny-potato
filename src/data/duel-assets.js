@@ -128,6 +128,7 @@ const extraFunds = [
 })
 const stoxxIsin = 'FR0011550193'
 const stoxxEvidence = COMPARATOR_RETURN_EVIDENCE[stoxxIsin]
+const stoxxOfficialAsset = ASSETS.find(a => a.isin === stoxxIsin && a.returnBasis === 'fund')
 const expansionFunds=[...NON_BOND_SHEETS.map(r=>({id:r.id,isin:r.isin,label:r.title,exposure:r.id,role:'complement',group:ROLES.complement,name:r.name,...getInstrumentDuelSeries(r.isin),note:r.whatToKnow})),{id:'world-islamic',isin:'IE00B27YCN58',label:'World Islamic',exposure:'world-islamic',role:'complement',group:ROLES.complement,name:getInstrumentName('IE00B27YCN58'),...getInstrumentDuelSeries('IE00B27YCN58'),note:'Rendements NAV de la part exacte, revenus réinvestis ; critères sectoriels et financiers de finance islamique.'}];
 const routedFunds = [...DISTINCT_PORTFOLIO_CANDIDATES, {id:'cloud-wisdomtree',isin:'IE00BJGWQN72',label:'Cloud',note:'Les logiciels et services du cloud ; une poche actions thématique.'}].flatMap(c=>{
  if([...expansionFunds,...fundItems,...extraFunds].some(a=>a.isin===c.isin))return []
@@ -139,7 +140,8 @@ const routedFunds = [...DISTINCT_PORTFOLIO_CANDIDATES, {id:'cloud-wisdomtree',is
 const equityItems = EQUITY_DUEL_RETURNS.map(item => ({...item, name: item.label, instrumentType: 'EQUITY', role: 'complement', group: 'Actions individuelles', exposure: item.id, basis: 'adjusted-price', note: 'Cours ajustés des dividendes et divisions ; rendements calculés entre clôtures de décembre, sur années complètes uniquement.'}))
 const allAutomatedFunds = Object.values(MONTHLY_DUEL_RETURNS).filter(s=>![...routedFunds,...expansionFunds,...fundItems,...extraFunds].some(a=>a.isin===s.isin) && s.isin!==stoxxIsin).flatMap(s=>{
  const asset=ASSETS.find(a=>a.isin===s.isin)
- const official=asset&&!asset.distinctCandidate?getInstrumentDuelSeries(s.isin):null
+ // A manual Générateur asset backed by the issuer's NAV calendar keeps that same calendar here.
+ const official=asset&&(!asset.distinctCandidate||asset.returnBasis==='fund')?getInstrumentDuelSeries(s.isin):null
  // A legacy mixed/proxy portfolio history cannot silently become exact-share market returns.
  if(asset&&!asset.distinctCandidate&&!official?.source)return []
  const series=official?{...official,source:official.source??PORTFOLIO_RETURN_EVIDENCE[s.isin]?.sourceUrls[0],values:asset.r,currency:asset.returnCurrency??official.currency,calendarReturns:asset.calendarReturns}:s
@@ -151,6 +153,8 @@ export const CATALOG = [...allAutomatedFunds, ...equityItems, ...routedFunds, ..
   currency: stoxxEvidence.currency, values: [null, null, null, ...COMPARATOR_RETURNS_BY_ISIN[stoxxIsin]],
   source: stoxxEvidence.sourceUrls[0], note: 'Rendements de la part exacte, disponibles sur 2023–2025 seulement.',
   ...(MONTHLY_DUEL_RETURNS[stoxxIsin] ?? {}),
+  // Same rule as the Générateur: the issuer's NAV calendar, when complete enough, wins over market prices.
+  ...(stoxxOfficialAsset ? {...getInstrumentDuelSeries(stoxxIsin), currency: stoxxOfficialAsset.returnCurrency, calendarReturns: stoxxOfficialAsset.calendarReturns} : {}),
 }].filter((item) => {
   item.calendarReturns ??= getInstrumentCalendarReturns(item.isin, item.values)
   const expiry=item.id.match(/^ibonds-euro-(\d{4})$/)?.[1]
