@@ -1,6 +1,7 @@
 """Issuer access routes shared by the Python collectors (scripts/issuer-access-routes.json)."""
 import json
 import pathlib
+import re
 
 ROUTES = json.loads((pathlib.Path(__file__).with_name('issuer-access-routes.json')).read_text())
 
@@ -10,5 +11,7 @@ def vaneck_factsheet_candidates(url):
     serve automated clients."""
     name = url.rsplit('/', 1)[1]
     route = ROUTES['vaneck']
+    # The browser helper only reads English regional documents: /fr/fr/ is requested as /fr/en/.
+    requested = re.sub(r'^(https://www\.vaneck\.com/[a-z]{2})/[a-z]{2}/', r'\1/en/', url)
     alternatives = [route['factsheet'].format(region=region, name=name) for region in route['factsheetRegions']]
-    return list(dict.fromkeys([url, *alternatives]))
+    return list(dict.fromkeys([requested, *alternatives]))

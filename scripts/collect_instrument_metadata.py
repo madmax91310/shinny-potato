@@ -21,7 +21,8 @@ RENEWAL_GRACE_DAYS=POLICY['etf.default']['checkDays']
 # fund merger: one unavailable issuer page must not raise a daily incident. They are
 # still re-read daily, published as soon as observed, and must be renewed within a year.
 STATIC_RENEWAL_DAYS={field:POLICY['etf.staticCharacteristic']['checkDays'] for field in POLICY['etf.staticCharacteristic']['fields']}
-VANECK_FACTSHEET=re.compile(r'https://www\.vaneck\.com/(?:ucits|[a-z]{2}/en)/library/fact-sheets/[a-z0-9]+-fact-sheet\.pdf')
+# Any language of a regional factsheet (fr/en, fr/fr...) or the UCITS one; see issuer_routes.
+VANECK_FACTSHEET=re.compile(r'https://www\.vaneck\.com/(?:ucits|[a-z]{2}/[a-z]{2})/library/fact-sheets/[a-z0-9]+-fact-sheet\.pdf')
 # Amundi publishes exact-share characteristics and listings through a POST API only: a GET on this
 # URL answers 405 and had left every Amundi instrument without metadata or listing evidence.
 AMUNDI_API='https://www.amundietf.fr/mapi/ProductAPI/getProductsData'
@@ -94,8 +95,8 @@ def parse_text(text,isin):
     if identities!={isin}:raise ValueError('Missing or multiple exact-share identities in metadata document')
     text=re.sub(r'[ \t\r]+',' ',text)
     patterns={
-      'distribution':r'(?:Use of (?:Income|Profits)|Income Treatment|Distribution Policy|Affectation des r[ée]sultats|Politique de distribution)\s*[:\n]?\s*(Accumulating|Distributing|Capitalisation|Distribution)\b',
-      'domicile':r'(?:Fund Domicile|Domicile|Domiciliation|Domicile du fonds)\s*[:\n]?\s*(Ireland|Irlande|Luxembourg|Germany|Allemagne|France|Jersey)\b',
+      'distribution':r'(?:Use of (?:Income|Profits)|Income Treatment|Distribution Policy|Affectation des r[ée]sultats|Politique de distribution)\s*[:\n]?\s*(Accumulating|Distributing|Capitalisation|Distribution|Reinvestment)\b',
+      'domicile':r'(?:Fund Domicile|Domicile|Domiciliation|Domicile du fonds)\s*[:\n]?\s*(Ireland|Irlande|Luxembourg|Germany|Allemagne|France|Jersey|(?:The )?Netherlands)\b',
       'replicationMethod':r'(?:Replication (?:Method|methodology)|M[ée]thode de r[ée]plication|Replication|R[ée]plication)\s*[:\n]?\s*(Physical(?:\s*\((?:Full replication|Optimised sampling)\))?|Synthetic|Physique|Synth[ée]tique|Direct Replication|Indirect\s*\(Swap Based\))\b',
       'pea':r'(?:PEA eligibility|Eligible PEA|[ÉE]ligibilit[ée] (?:au )?PEA|[ÉE]ligible (?:au )?PEA|R[ée]gime fiscal PEA)\s*[:\n]?\s*(Yes|No|Oui|Non)\b',
       'currencyHedge':r'(?:Currency Hedged|Currency Hedge|Couverture de change|Couvert contre le risque de change)\s*[:\n]?\s*(Yes|No|Oui|Non)\b',
@@ -106,7 +107,15 @@ def parse_text(text,isin):
         if len(found)>1:raise ValueError('Conflicting explicit metadata: '+field)
         if found:
             value=found.pop()
+            # VanEck factsheets: "Income Treatment Reinvestment" and "Domicile The Netherlands".
+            value={'Reinvestment':'Accumulating','The Netherlands':'Netherlands'}.get(value,value)
             result[field]=value.lower() in ('yes','oui') if field in ('pea','currencyHedge') else value
+    # VanEck factsheets print "Product Structure Physical (Full" and wrap "Replication)" onto
+    # the next line, after text from the description column.
+    if 'replicationMethod' not in result:
+        found={(kind+(f' ({scope} {method.lower()})' if scope else '')) for kind,scope,method in re.findall(r'^Product Structure (Physical|Synthetic)(?: \((Full|Optimi[sz]ed)\b[^\n]*\n\s*(Replication|Sampling)\))?',text,re.M)}
+        if len(found)>1:raise ValueError('Conflicting explicit metadata: replicationMethod')
+        if found:result['replicationMethod']=found.pop()
     if 'pea' not in result:
         badges={line.strip().lower() for line in text.splitlines()}
         positive=bool(badges & {'éligible au pea','eligible au pea'})
@@ -172,8 +181,10 @@ def parse_listings(body,source,url,checked):
         if set(re.findall(r'\b[A-Z]{2}[A-Z0-9]{9}\d\b',text))!={isin}:raise ValueError('Ambiguous listing document identity')
         if body.startswith(b'%PDF-'):blocks=text.splitlines()
         else:blocks=[html.unescape(re.sub('<[^>]+>',' ',r)) for r in re.findall(r'<tr\b[^>]*>(.*?)</tr>',body.decode(),re.S|re.I)]
-        # Issuer factsheets abbreviate or capitalise the venues (BNP: « EURONEXT P », « SIX SWISS » ; DWS: « XETRA »).
-        aliases={'XLON':['London Stock Exchange','LSE'],'XPAR':['Euronext Paris','EURONEXT P','Euronext (FR)'],'XAMS':['Euronext Amsterdam','EURONEXT A'],'ETFP':['Borsa Italiana','BORSA ITALIANA'],'XETR':['Xetra','XETRA'],'XSWX':['SIX Swiss Exchange','SIX Swiss','SIX SWISS']}
+        # Issuer factsheets abbreviate or capitalise the venues (BNP: « EURONEXT P », « SIX SWISS » ; DWS: « XETRA » ;
+        # VanEck: « LONDON STOCK EXCHANGE », and Xetra as « DEUTSCHE BÖRSE », Bloomberg suffix GY). Exact labels only:
+        # a case-insensitive « LSE » would match « else » or « false ».
+        aliases={'XLON':['London Stock Exchange','LONDON STOCK EXCHANGE','LSE'],'XPAR':['Euronext Paris','EURONEXT P','Euronext (FR)'],'XAMS':['Euronext Amsterdam','EURONEXT A'],'ETFP':['Borsa Italiana','BORSA ITALIANA'],'XETR':['Xetra','XETRA','Deutsche Börse','DEUTSCHE BÖRSE'],'XSWX':['SIX Swiss Exchange','SIX Swiss','SIX SWISS']}
         for listing in source.get('listings',[]):
             for block in blocks:
                 if re.search(r'(?<![A-Za-z0-9])'+re.escape(listing['ticker'])+r'(?![A-Za-z0-9])',block) and re.search(r'\b'+re.escape(listing['currency'])+r'\b',block) and any(m in block for m in aliases.get(listing['mic'],[listing['exchange']])):
