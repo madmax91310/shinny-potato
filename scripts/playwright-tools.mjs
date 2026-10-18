@@ -985,7 +985,9 @@ async function testFactsheetTweets(page) {
     await img.decode();
     return [img.naturalWidth, img.naturalHeight];
   });
-  ok &&= dimensions[0] === 1600 && dimensions[1] === 2000;
+  // Since #780 the factsheet grows with its content: 1600 wide, at least 1600 high, portrait up to 1.6 (same rule as test-index-ribbon).
+  const factsheetSize = (width, height) => width === 1600 && height >= 1600 && height / width <= 1.6;
+  ok &&= factsheetSize(dimensions[0], dimensions[1]);
   const [download] = await Promise.all([
     page.waitForEvent('download'),
     preview.getByRole('link', { name: /Télécharger le PNG/ }).click(),
@@ -997,10 +999,11 @@ async function testFactsheetTweets(page) {
     await page.locator('.workspace-action-menu summary').click();
   await page.getByRole('button', { name: /Prévisualiser l’image PNG/ }).click();
     const current = page.getByRole('dialog', { name: 'Aperçu de la fiche PNG' });
-    ok &&= await current.locator('img').evaluate(async (img) => {
+    const size = await current.locator('img').evaluate(async (img) => {
       await img.decode();
-      return img.naturalWidth === 1600 && img.naturalHeight === 2000;
+      return [img.naturalWidth, img.naturalHeight];
     });
+    ok &&= factsheetSize(size[0], size[1]);
     if (['sp500-equal-weight', 'russell-2000'].includes(id)) {
       await mkdir('test-artifacts', { recursive: true });
       const data = await current.locator('img').getAttribute('src');
