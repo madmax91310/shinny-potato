@@ -121,32 +121,29 @@
     },
     "update-regulatory-data.yml": {
       "name": "Paramètres fiscaux, LDDS et tarifs de courtiers",
-      "runId": 39067245750,
+      "runId": 39106074461,
       "attempt": 1,
-      "completedAt": "2026-10-17T21:15:28Z",
+      "completedAt": "2026-10-18T07:52:17Z",
       "status": "failure",
       "lastSuccessAt": "2026-10-15T13:54:08Z",
-      "collectionStatus": "failure",
+      "collectionStatus": "success",
       "validationStatus": "success",
       "recordingStatus": "success",
-      "publicationStatus": "not-run",
-      "lastCollectionSuccessAt": "2026-10-15T13:54:08Z",
+      "publicationStatus": "failure",
+      "lastCollectionSuccessAt": "2026-10-18T07:52:17Z",
       "lastPublicationSuccessAt": "2026-10-16T13:49:08Z",
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39067245750",
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39106074461",
       "failures": [
         {
-          "job": "report-failures",
-          "step": "Run echo 'Une collecte réglementaire a échoué. Les dernières valeurs validées restent disponibles. Consulter regulatory-observations.' >> \"$GITHUB_STEP_SUMMARY\""
+          "job": "deploy / browser-checks (2)",
+          "step": "Run node scripts/run-browser-checks.mjs 2 4"
+        },
+        {
+          "job": "deploy / browser-checks (0)",
+          "step": "Run node scripts/run-browser-checks.mjs 0 4"
         }
       ],
-      "dataFailures": {
-        "broker-observation:caidf:profile:change": {
-          "name": "caidf:profile:change",
-          "completedAt": "2026-10-17T21:15:28Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39067245750",
-          "cause": "Clause officielle absente ou modifiée : Pour les opérations donnant lieu à des règlements en devises, le compte du Client enregistrera la contre-valeur en euros du montant de l.opération réalisée par application du taux pratiqué par la Caisse Régionale sur la devise concernée ainsi que les frais et commissions y afférents | Aucun passage proche dans le document actuel"
-        }
-      }
+      "dataFailures": {}
     },
     "update-scpi.yml": {
       "name": "Présentations de SCPI",
@@ -530,11 +527,11 @@
       }
     }
   },
-  "updatedAt": "2026-10-18T07:34:53Z",
+  "updatedAt": "2026-10-18T07:52:17Z",
   "monitoring": {
     "schemaVersion": 1,
-    "checkedAt": "2026-10-18T07:35:09.542393+00:00",
-    "revision": 89,
+    "checkedAt": "2026-10-18T07:52:38.079329+00:00",
+    "revision": 90,
     "active": {
       "collection:update-practical-sheets.yml:practical:13f": {
         "name": "SEC · questions et réponses sur le formulaire 13F",
@@ -555,7 +552,7 @@
         "dataId": "practical:13f",
         "id": "collection:update-practical-sheets.yml:practical:13f",
         "firstSeenAt": "2026-10-14T21:07:26.171294+00:00",
-        "lastSeenAt": "2026-10-18T07:35:09.542393+00:00"
+        "lastSeenAt": "2026-10-18T07:52:38.079329+00:00"
       },
       "collection:update-editorial-radar.yml:radar:etf": {
         "name": "Radar · etf",
@@ -574,7 +571,7 @@
         "dataId": "radar:etf",
         "id": "collection:update-editorial-radar.yml:radar:etf",
         "firstSeenAt": "2026-10-17T20:43:14.258283+00:00",
-        "lastSeenAt": "2026-10-18T07:35:09.542393+00:00"
+        "lastSeenAt": "2026-10-18T07:52:38.079329+00:00"
       },
       "collection:update-insurance.yml:linxea-avenir-2": {
         "name": "Linxea Avenir 2",
@@ -593,7 +590,7 @@
         "dataId": "linxea-avenir-2",
         "id": "collection:update-insurance.yml:linxea-avenir-2",
         "firstSeenAt": "2026-10-14T13:08:27.203935+00:00",
-        "lastSeenAt": "2026-10-18T07:35:09.542393+00:00"
+        "lastSeenAt": "2026-10-18T07:52:38.079329+00:00"
       },
       "publication:update-insurance.yml": {
         "name": "Présentations d’assurance-vie",
@@ -609,7 +606,7 @@
         "cause": "deploy / browser-checks (0) : Run node scripts/run-browser-checks.mjs 0 4",
         "id": "publication:update-insurance.yml",
         "firstSeenAt": "2026-10-17T21:10:48.471758+00:00",
-        "lastSeenAt": "2026-10-18T07:35:09.542393+00:00"
+        "lastSeenAt": "2026-10-18T07:52:38.079329+00:00"
       },
       "collection:update-scpi.yml:remake-live": {
         "name": "Remake Live",
@@ -632,27 +629,24 @@
         "dataId": "remake-live",
         "id": "collection:update-scpi.yml:remake-live",
         "firstSeenAt": "2026-10-15T13:02:43.499914+00:00",
-        "lastSeenAt": "2026-10-18T07:35:09.542393+00:00"
+        "lastSeenAt": "2026-10-18T07:52:38.079329+00:00"
       },
-      "collection:update-regulatory-data.yml:broker-observation:caidf:profile:change": {
-        "name": "caidf:profile:change",
+      "publication:update-regulatory-data.yml": {
+        "name": "Paramètres fiscaux, LDDS et tarifs de courtiers",
         "tools": [
           "Comparatif courtiers",
           "Fiches pratiques"
         ],
         "impactScope": "collector",
         "workflow": "update-regulatory-data.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39067245750",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39106074461",
         "to": "/donnees-a-revoir",
-        "completedAt": "2026-10-17T21:15:28Z",
-        "cause": "Clause officielle absente ou modifiée : Pour les opérations donnant lieu à des règlements en devises, le compte du Client enregistrera la contre-valeur en euros du montant de l.opération réalisée par application du taux pratiqué par la Caisse Régionale sur la devise concernée ainsi que les frais et commissions y afférents | Aucun passage proche dans le document actuel",
-        "sourceUrls": [],
-        "kind": "review",
-        "field": "Champs du collecteur",
-        "dataId": "broker-observation:caidf:profile:change",
-        "id": "collection:update-regulatory-data.yml:broker-observation:caidf:profile:change",
-        "firstSeenAt": "2026-10-15T18:00:14.760687+00:00",
-        "lastSeenAt": "2026-10-18T07:35:09.542393+00:00"
+        "kind": "publication",
+        "field": "Publication",
+        "cause": "deploy / browser-checks (2) : Run node scripts/run-browser-checks.mjs 2 4 ; deploy / browser-checks (0) : Run node scripts/run-browser-checks.mjs 0 4",
+        "id": "publication:update-regulatory-data.yml",
+        "firstSeenAt": "2026-10-18T07:52:38.079329+00:00",
+        "lastSeenAt": "2026-10-18T07:52:38.079329+00:00"
       },
       "publication:collect-etf-pilot.yml": {
         "name": "ETF et compositions d’indices",
@@ -670,7 +664,7 @@
         "cause": "deploy / build : Run npm run audit:instrument-listings",
         "id": "publication:collect-etf-pilot.yml",
         "firstSeenAt": "2026-10-17T20:51:12.413498+00:00",
-        "lastSeenAt": "2026-10-18T07:35:09.542393+00:00"
+        "lastSeenAt": "2026-10-18T07:52:38.079329+00:00"
       },
       "publication:update-market-monthly.yml": {
         "name": "Historiques mensuels des marchés",
@@ -689,7 +683,7 @@
         "cause": "deploy / browser-checks (2) : Run node scripts/run-browser-checks.mjs 2 4 ; deploy / browser-checks (0) : Run node scripts/run-browser-checks.mjs 0 4",
         "id": "publication:update-market-monthly.yml",
         "firstSeenAt": "2026-10-17T12:19:18.394776+00:00",
-        "lastSeenAt": "2026-10-18T07:35:09.542393+00:00"
+        "lastSeenAt": "2026-10-18T07:52:38.079329+00:00"
       },
       "publication:update-economic-data.yml": {
         "name": "Taux d’épargne, ménages, SCPI et fonds euros",
@@ -706,7 +700,7 @@
         "cause": "deploy / build : Run npm run audit:etf-annual-performance",
         "id": "publication:update-economic-data.yml",
         "firstSeenAt": "2026-10-17T12:18:32.387705+00:00",
-        "lastSeenAt": "2026-10-18T07:35:09.542393+00:00"
+        "lastSeenAt": "2026-10-18T07:52:38.079329+00:00"
       },
       "publication:update-lifestrategy.yml": {
         "name": "Vanguard LifeStrategy",
@@ -725,7 +719,7 @@
         "cause": "deploy / browser-checks (3) : Run node scripts/run-browser-checks.mjs 3 4",
         "id": "publication:update-lifestrategy.yml",
         "firstSeenAt": "2026-10-17T10:03:28.054539+00:00",
-        "lastSeenAt": "2026-10-18T07:35:09.542393+00:00"
+        "lastSeenAt": "2026-10-18T07:52:38.079329+00:00"
       },
       "publication:update-qualified-exposures.yml": {
         "name": "Expositions ETF qualifiées",
@@ -745,7 +739,7 @@
         "cause": "deploy / build : Run npm run audit:calculator-series",
         "id": "publication:update-qualified-exposures.yml",
         "firstSeenAt": "2026-10-16T12:48:21.924866+00:00",
-        "lastSeenAt": "2026-10-18T07:35:09.542393+00:00"
+        "lastSeenAt": "2026-10-18T07:52:38.079329+00:00"
       },
       "collection:update-exposure-expansion.yml:etf-exposure-expansion-IE00BK1PV551": {
         "name": "Xtrackers MSCI World UCITS ETF 1D",
@@ -768,7 +762,7 @@
         "dataId": "etf-exposure-expansion-IE00BK1PV551",
         "id": "collection:update-exposure-expansion.yml:etf-exposure-expansion-IE00BK1PV551",
         "firstSeenAt": "2026-10-17T20:42:44.184725+00:00",
-        "lastSeenAt": "2026-10-18T07:35:09.542393+00:00"
+        "lastSeenAt": "2026-10-18T07:52:38.079329+00:00"
       },
       "collection:update-instrument-metadata.yml:IE00BMC38736:domicile": {
         "name": "VanEck Semiconductor UCITS ETF",
@@ -790,7 +784,7 @@
         "dataId": "IE00BMC38736:domicile",
         "id": "collection:update-instrument-metadata.yml:IE00BMC38736:domicile",
         "firstSeenAt": "2026-10-17T11:48:18.107199+00:00",
-        "lastSeenAt": "2026-10-18T07:35:09.542393+00:00"
+        "lastSeenAt": "2026-10-18T07:52:38.079329+00:00"
       },
       "collection:update-instrument-metadata.yml:IE00BDBRDM35:replicationMethod": {
         "name": "iShares Core Global Aggregate Bond UCITS ETF EUR Hedged (Acc)",
@@ -817,7 +811,7 @@
         "dataId": "IE00BDBRDM35:replicationMethod",
         "id": "collection:update-instrument-metadata.yml:IE00BDBRDM35:replicationMethod",
         "firstSeenAt": "2026-10-17T11:48:18.107199+00:00",
-        "lastSeenAt": "2026-10-18T07:35:09.542393+00:00"
+        "lastSeenAt": "2026-10-18T07:52:38.079329+00:00"
       },
       "collection:update-instrument-metadata.yml:IE0006WW1TQ4:replicationMethod": {
         "name": "Xtrackers MSCI World ex USA UCITS ETF 1C",
@@ -848,7 +842,7 @@
         "dataId": "IE0006WW1TQ4:replicationMethod",
         "id": "collection:update-instrument-metadata.yml:IE0006WW1TQ4:replicationMethod",
         "firstSeenAt": "2026-10-17T11:48:18.107199+00:00",
-        "lastSeenAt": "2026-10-18T07:35:09.542393+00:00"
+        "lastSeenAt": "2026-10-18T07:52:38.079329+00:00"
       },
       "collection:update-instrument-metadata.yml:IE00BYWQWR46:domicile": {
         "name": "VanEck Video Gaming and eSports UCITS ETF",
@@ -874,7 +868,7 @@
         "dataId": "IE00BYWQWR46:domicile",
         "id": "collection:update-instrument-metadata.yml:IE00BYWQWR46:domicile",
         "firstSeenAt": "2026-10-17T11:48:18.107199+00:00",
-        "lastSeenAt": "2026-10-18T07:35:09.542393+00:00"
+        "lastSeenAt": "2026-10-18T07:52:38.079329+00:00"
       },
       "collection:update-instrument-metadata.yml:IE00BDFBTQ78:domicile": {
         "name": "VanEck S&P Global Mining UCITS ETF",
@@ -901,7 +895,7 @@
         "dataId": "IE00BDFBTQ78:domicile",
         "id": "collection:update-instrument-metadata.yml:IE00BDFBTQ78:domicile",
         "firstSeenAt": "2026-10-17T11:48:18.107199+00:00",
-        "lastSeenAt": "2026-10-18T07:35:09.542393+00:00"
+        "lastSeenAt": "2026-10-18T07:52:38.079329+00:00"
       },
       "collection:update-instrument-metadata.yml:IE0002Y8CX98:distribution": {
         "name": "WisdomTree Europe Defence UCITS ETF",
@@ -927,7 +921,7 @@
         "dataId": "IE0002Y8CX98:distribution",
         "id": "collection:update-instrument-metadata.yml:IE0002Y8CX98:distribution",
         "firstSeenAt": "2026-10-17T11:48:18.107199+00:00",
-        "lastSeenAt": "2026-10-18T07:35:09.542393+00:00"
+        "lastSeenAt": "2026-10-18T07:52:38.079329+00:00"
       },
       "collection:update-instrument-metadata.yml:IE0002Y8CX98:replicationMethod": {
         "name": "WisdomTree Europe Defence UCITS ETF",
@@ -953,7 +947,7 @@
         "dataId": "IE0002Y8CX98:replicationMethod",
         "id": "collection:update-instrument-metadata.yml:IE0002Y8CX98:replicationMethod",
         "firstSeenAt": "2026-10-17T11:48:18.107199+00:00",
-        "lastSeenAt": "2026-10-18T07:35:09.542393+00:00"
+        "lastSeenAt": "2026-10-18T07:52:38.079329+00:00"
       },
       "collection:update-instrument-metadata.yml:IE0002Y8CX98:domicile": {
         "name": "WisdomTree Europe Defence UCITS ETF",
@@ -979,7 +973,7 @@
         "dataId": "IE0002Y8CX98:domicile",
         "id": "collection:update-instrument-metadata.yml:IE0002Y8CX98:domicile",
         "firstSeenAt": "2026-10-17T11:48:18.107199+00:00",
-        "lastSeenAt": "2026-10-18T07:35:09.542393+00:00"
+        "lastSeenAt": "2026-10-18T07:52:38.079329+00:00"
       },
       "collection:update-instrument-metadata.yml:IE000W8WMSL2:distribution": {
         "name": "WisdomTree Quantum Computing UCITS ETF",
@@ -1004,7 +998,7 @@
         "dataId": "IE000W8WMSL2:distribution",
         "id": "collection:update-instrument-metadata.yml:IE000W8WMSL2:distribution",
         "firstSeenAt": "2026-10-17T11:48:18.107199+00:00",
-        "lastSeenAt": "2026-10-18T07:35:09.542393+00:00"
+        "lastSeenAt": "2026-10-18T07:52:38.079329+00:00"
       },
       "collection:update-instrument-metadata.yml:IE000W8WMSL2:replicationMethod": {
         "name": "WisdomTree Quantum Computing UCITS ETF",
@@ -1029,7 +1023,7 @@
         "dataId": "IE000W8WMSL2:replicationMethod",
         "id": "collection:update-instrument-metadata.yml:IE000W8WMSL2:replicationMethod",
         "firstSeenAt": "2026-10-17T11:48:18.107199+00:00",
-        "lastSeenAt": "2026-10-18T07:35:09.542393+00:00"
+        "lastSeenAt": "2026-10-18T07:52:38.079329+00:00"
       },
       "collection:update-instrument-metadata.yml:IE00BQQP9F84:domicile": {
         "name": "VanEck Gold Miners UCITS ETF",
@@ -1054,39 +1048,10 @@
         "dataId": "IE00BQQP9F84:domicile",
         "id": "collection:update-instrument-metadata.yml:IE00BQQP9F84:domicile",
         "firstSeenAt": "2026-10-17T11:48:18.107199+00:00",
-        "lastSeenAt": "2026-10-18T07:35:09.542393+00:00"
+        "lastSeenAt": "2026-10-18T07:52:38.079329+00:00"
       }
     },
     "events": [
-      {
-        "revision": 60,
-        "at": "2026-10-17T06:50:25.288673+00:00",
-        "opened": [
-          "workflow:update-market-monthly.yml"
-        ],
-        "resolved": [
-          {
-            "name": "Historiques mensuels des marchés",
-            "tools": [
-              "Et si tu avais investi",
-              "Performance depuis",
-              "Duel",
-              "Générateur"
-            ],
-            "impactScope": "collector",
-            "workflow": "update-market-monthly.yml",
-            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/38959238197",
-            "to": "/donnees-a-revoir",
-            "kind": "publication",
-            "field": "Publication",
-            "cause": "deploy / browser-checks (2) : Run node scripts/run-browser-checks.mjs 2 4 ; deploy / browser-checks (0) : Run node scripts/run-browser-checks.mjs 0 4 ; deploy / browser-checks (1) : Run node scripts/run-browser-checks.mjs 1 4",
-            "id": "publication:update-market-monthly.yml",
-            "firstSeenAt": "2026-10-16T17:44:15.317185+00:00",
-            "lastSeenAt": "2026-10-17T06:47:15.487291+00:00",
-            "resolvedAt": "2026-10-17T06:50:25.288673+00:00"
-          }
-        ]
-      },
       {
         "revision": 61,
         "at": "2026-10-17T09:20:15.688078+00:00",
@@ -1591,9 +1556,60 @@
             "resolvedAt": "2026-10-18T07:35:09.542393+00:00"
           }
         ]
+      },
+      {
+        "revision": 90,
+        "at": "2026-10-18T07:52:38.079329+00:00",
+        "opened": [
+          "publication:update-regulatory-data.yml"
+        ],
+        "resolved": [
+          {
+            "name": "caidf:profile:change",
+            "tools": [
+              "Comparatif courtiers",
+              "Fiches pratiques"
+            ],
+            "impactScope": "collector",
+            "workflow": "update-regulatory-data.yml",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39067245750",
+            "to": "/donnees-a-revoir",
+            "completedAt": "2026-10-17T21:15:28Z",
+            "cause": "Clause officielle absente ou modifiée : Pour les opérations donnant lieu à des règlements en devises, le compte du Client enregistrera la contre-valeur en euros du montant de l.opération réalisée par application du taux pratiqué par la Caisse Régionale sur la devise concernée ainsi que les frais et commissions y afférents | Aucun passage proche dans le document actuel",
+            "sourceUrls": [],
+            "kind": "review",
+            "field": "Champs du collecteur",
+            "dataId": "broker-observation:caidf:profile:change",
+            "id": "collection:update-regulatory-data.yml:broker-observation:caidf:profile:change",
+            "firstSeenAt": "2026-10-15T18:00:14.760687+00:00",
+            "lastSeenAt": "2026-10-18T07:35:09.542393+00:00",
+            "resolvedAt": "2026-10-18T07:52:38.079329+00:00"
+          }
+        ]
       }
     ],
     "resolved": [
+      {
+        "name": "caidf:profile:change",
+        "tools": [
+          "Comparatif courtiers",
+          "Fiches pratiques"
+        ],
+        "impactScope": "collector",
+        "workflow": "update-regulatory-data.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39067245750",
+        "to": "/donnees-a-revoir",
+        "completedAt": "2026-10-17T21:15:28Z",
+        "cause": "Clause officielle absente ou modifiée : Pour les opérations donnant lieu à des règlements en devises, le compte du Client enregistrera la contre-valeur en euros du montant de l.opération réalisée par application du taux pratiqué par la Caisse Régionale sur la devise concernée ainsi que les frais et commissions y afférents | Aucun passage proche dans le document actuel",
+        "sourceUrls": [],
+        "kind": "review",
+        "field": "Champs du collecteur",
+        "dataId": "broker-observation:caidf:profile:change",
+        "id": "collection:update-regulatory-data.yml:broker-observation:caidf:profile:change",
+        "firstSeenAt": "2026-10-15T18:00:14.760687+00:00",
+        "lastSeenAt": "2026-10-18T07:35:09.542393+00:00",
+        "resolvedAt": "2026-10-18T07:52:38.079329+00:00"
+      },
       {
         "name": "Bitwise Physical Bitcoin ETP",
         "tools": [
@@ -3717,30 +3733,6 @@
         "field": "Poids du pays Switzerland",
         "cause": "Valeur contradictoire pour la même période (2026-10-13) : Poids du pays Switzerland. Dernière observation conservée ; propositions archivées (etf:IE00BM67HS53:countries:Switzerland:9e8222db7f15caa14c54cb45:2026-10-13).",
         "id": "radar:15299251ff9915c1e371c813",
-        "firstSeenAt": "2026-10-14T19:12:42.647375+00:00",
-        "lastSeenAt": "2026-10-14T21:48:33.143199+00:00",
-        "resolvedAt": "2026-10-15T00:31:06.137308+00:00"
-      },
-      {
-        "name": "Xtrackers MSCI World Materials UCITS ETF",
-        "tools": [
-          "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Impact des frais",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "sourceUrls": [
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HS53/historicaldata/download",
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HS53/pdpMetaTagsTealium",
-          "https://www.justetf.com/en/etf-profile.html?isin=IE00BM67HS53"
-        ],
-        "to": "/bibliotheque-donnees?id=IE00BM67HS53",
-        "kind": "conflict",
-        "field": "Poids du pays United Kingdom",
-        "cause": "Valeur contradictoire pour la même période (2026-10-13) : Poids du pays United Kingdom. Dernière observation conservée ; propositions archivées (etf:IE00BM67HS53:countries:United Kingdom:9e8222db7f15caa14c54cb45:2026-10-13).",
-        "id": "radar:d4eb9fdf91e5a772926534d5",
         "firstSeenAt": "2026-10-14T19:12:42.647375+00:00",
         "lastSeenAt": "2026-10-14T21:48:33.143199+00:00",
         "resolvedAt": "2026-10-15T00:31:06.137308+00:00"
