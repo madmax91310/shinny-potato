@@ -107,9 +107,11 @@ def normalize_report(report):
     if 'observations' in report and 'indices' not in report and 'shares' not in report:
         # 'waiting': the next scheduled edition is not due yet. The alert is retired without
         # claiming a recovery; it reopens as a failure once the edition is overdue.
+        # 'superseded': the official page declares a successor (Linxea Avenir 2 -> 2+); the
+        # contract is archived with that evidence and its old identity alert is retired.
         return {'successes':[{'id':o['id']} for o in report['observations'] if o['status']=='success'],
                 'errors':[{'id':o['id'],'name':o.get('name',o['id']),'error':o.get('reason','Collecte échouée')} for o in report['observations'] if o['status']=='failure'],
-                'inactive':[{'id':o['id']} for o in report['observations'] if o['status']=='waiting']}
+                'inactive':[{'id':o['id']} for o in report['observations'] if o['status'] in ('waiting', 'superseded')]}
     if 'indices' in report:
         successes, errors = [], []
         for item in report['indices']:

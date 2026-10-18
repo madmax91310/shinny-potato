@@ -2,7 +2,19 @@
 import math
 
 
-def anomalies(previous, incoming):
+def corroborated_fund_aum(aum, siblings):
+    """Another share class publishing the very same fund total on the same date.
+
+    Two exact-share workbooks agreeing to the cent prove they describe one fund, so a
+    large jump against the stored value corrects that stored value, not the market.
+    """
+    return aum.get('scope') == 'fund' and any(
+        other.get('scope') == 'fund' and other.get('currency') == aum.get('currency')
+        and other.get('asOf') == aum.get('asOf') and abs(other.get('amount', 0) - aum.get('amount', 0)) <= 0.01
+        for other in siblings)
+
+
+def anomalies(previous, incoming, sibling_aum=()):
     issues = []
     old_performance = previous.get('performance', {})
     performance = incoming.get('performance', {})
@@ -18,7 +30,7 @@ def anomalies(previous, incoming):
         from datetime import date
         days = (date.fromisoformat(new['asOf']) - date.fromisoformat(old['asOf'])).days
         ratio = new['amount'] / old['amount']
-        if days <= 45 and (ratio >= 2 or ratio <= .5):
+        if days <= 45 and (ratio >= 2 or ratio <= .5) and not corroborated_fund_aum(new, sibling_aum):
             issues.append(f'aum: {old["amount"]} -> {new["amount"]} {new["currency"]}, ratio {ratio:.3f} in {days} days')
     for field in ('countries', 'countriesRisk', 'sectors', 'holdings'):
         old, new = previous.get(field, {}), incoming.get(field, {})
