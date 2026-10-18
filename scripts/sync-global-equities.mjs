@@ -18,7 +18,7 @@ for(const c of candidatesFile.candidates){
  if(known.has(c.isin)){continue}
  if(!record||record.isin!==c.isin||!security){
   const attempt=status[c.isin]
-  remaining.push({...c,...(attempt?{lastAttempt:{checkedAt:attempt.checkedAt,status:attempt.status,error:attempt.error??null}}:{})})
+  remaining.push({...c,...(attempt?{lastAttempt:{checkedAt:attempt.checkedAt,status:attempt.status,error:attempt.error??attempt.reason??null}}:{})})
   continue
  }
  if(c.symbol&&c.symbol!==record.symbol)throw new Error(`${c.id}: qualified symbol ${record.symbol} differs from the curated listing ${c.symbol}`)
