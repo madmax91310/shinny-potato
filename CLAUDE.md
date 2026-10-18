@@ -167,3 +167,8 @@ s'alimente seule sans qu'un test sans rapport retienne les données :
   passage d'année (`scripts/simulate-refresh.mjs`) ; un échec y annonce une collecte future bloquée.
 - **Textes officiels modifiés** : la surveillance ouvre une PR qui ajoute le nouveau texte à
   `scripts/accepted-source-wording.json` ; la fusionner vaut validation humaine.
+- **PR et fichiers régénérés** : une PR ne committe pas les rapports et projections que le build
+  ou les collecteurs régénèrent (`docs/*-coverage*`, `docs/asset-tool-routing.*`, `docs/automation-gaps.*`,
+  `src/data/ranking-annual.json`, projections `src/pages/dca-profiles/*.json`…), sauf si elle modifie
+  leur générateur. Les tests qui les lisent les régénèrent avant. Sinon chaque collecte ou PR parallèle
+  crée un faux conflit et oblige à relancer la CI.
