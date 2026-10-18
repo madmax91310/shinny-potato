@@ -16,7 +16,6 @@ import { CATALOG as DUEL_CATALOG } from '../src/data/duel-assets.js'
 import { DISTINCT_ASSET_ISINS } from '../src/data/distinct-asset-selections.js'
 import { DISTINCT_PORTFOLIO_CANDIDATES } from '../src/data/distinct-portfolio-assets.js'
 import { latestCommonYears } from '../src/data/annual-window.js'
-import { RESOURCE_DUEL_CHOICES } from '../src/data/resource-selections.js'
 import monthlyReturns from '../src/data/monthly-duel-returns.json' with {type:'json'}
 
 const read = path => JSON.parse(readFileSync(path, 'utf8'))
@@ -33,10 +32,7 @@ const metadataStatus = read('src/data/instrument-metadata-status.json')
 const listingCandidates = new Set(read('scripts/listing-candidates.json').candidates.map(c => c.isin))
 const COLLECTABLE = { XPAR:'.PA', XAMS:'.AS', XETR:'.DE', XLON:'.L', ETFP:'.MI', XSWX:'.SW' }
 const GENERATOR_YEARS = 6
-const CURATED_NAV = new Set(RESOURCE_DUEL_CHOICES.map(([, isin]) => isin))
 function historyBlocker(isin, histories, completeYears) {
-  // Deliberate: curated resource ETCs keep their issuer NAV calendar in the Duels only.
-  if (CURATED_NAV.has(isin) && completeYears >= 3) return {code:'curated-duel', detail:'Choix éditorial : rendement officiel (VL) dans les Duels ; pas de second calendrier de marché dans le Générateur'}
   if (histories.length) return completeYears < GENERATOR_YEARS ? {code:'history-short', detail:`${completeYears} année(s) complète(s) ; ${GENERATOR_YEARS} requises en génération automatique`} : null
   const listings = INSTRUMENT_LISTINGS_BY_ISIN[isin] ?? []
   const status = qualification[isin]
@@ -93,14 +89,14 @@ const summary = {instruments:rows.length, sheets:rows.filter(r=>r.sheet).length,
   outsideExposure:rows.filter(r=>r.countries.status==='not-applicable' && r.sectors.status==='not-applicable').length,
   automaticHistories:Object.keys(ETF_MONTHLY_HISTORIES).length,
   historyCandidates:rows.filter(r=>r.historyCandidate).length, unused:rows.filter(r=>r.decision==='review-unused').length,
-  blockers:Object.fromEntries(['no-listing','listing-not-collectable','qualification-failed','collection-pending','history-short','curated-duel'].map(code => [code, rows.filter(r => r.blocker?.code === code).length]))}
+  blockers:Object.fromEntries(['no-listing','listing-not-collectable','qualification-failed','collection-pending','history-short'].map(code => [code, rows.filter(r => r.blocker?.code === code).length]))}
 const report = {checkedAt:now.toISOString(), summary, errors, rows}
 if (process.argv.includes('--write')) {
   const selected=rows.filter(r=>DISTINCT_ASSET_ISINS.includes(r.isin))
   writeFileSync('docs/distinct-asset-routing.json',JSON.stringify({summary:{assets:selected.length},rows:selected},null,2)+'\n')
   writeFileSync('docs/asset-tool-routing.json', JSON.stringify(report,null,2)+'\n')
   const mark = v => v ? 'Oui' : '—'
-  const BLOCKER_LABELS = {'no-listing':'Sans cotation', 'listing-not-collectable':'Cotation non collectable', 'qualification-failed':'Qualification échouée', 'collection-pending':'Collecte en attente', 'history-short':'Historique court', 'curated-duel':'Choix éditorial (Duels)'}
+  const BLOCKER_LABELS = {'no-listing':'Sans cotation', 'listing-not-collectable':'Cotation non collectable', 'qualification-failed':'Qualification échouée', 'collection-pending':'Collecte en attente', 'history-short':'Historique court'}
   const blocked = Object.entries(summary.blockers).filter(([,n]) => n).map(([code,n]) => `${BLOCKER_LABELS[code]} : ${n}`).join(' · ') || 'aucun'
   const exposureLabel = v => ({available:'Oui', 'not-applicable':'Sans objet', incomplete:'Partiel', missing:'Absent'}[v.status])
   const table = rows.map(r => `| ${r.name.replaceAll('|','/')} | ${r.isin} | ${mark(r.sheet)} | ${mark(r.comparison)} | ${r.generator} | ${exposureLabel(r.countries)} / ${exposureLabel(r.sectors)} | ${r.holdings?.complete ? 'Complète' : r.holdings ? 'Partielle' : '—'} | ${mark(r.monthly.some(h=>h.performance))} / ${mark(r.monthly.some(h=>h.simulation))} / ${mark(r.monthly.some(h=>h.anniversary))} | ${r.blocker ? `${BLOCKER_LABELS[r.blocker.code]} — ${r.blocker.detail.replaceAll('|','/')}` : '—'} |`).join('\n')
