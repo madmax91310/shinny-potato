@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "description": "Exact shares whose tracked benchmark changed. Calendar years before the first complete year under the current benchmark describe another strategy: they are kept in the collected records but never published as this share's performance. Each entry is sourced and cross-checked.",
+  "shares": {
+    "FR0013346681": {
+      "effectiveDate": "2024-10-17",
+      "previousName": "Amundi PEA Obligations d'État Euro UCITS ETF",
+      "previousBenchmark": "FTSE MTS Eurozone Government Bond IG",
+      "currentBenchmark": "Solactive ESTR Overnight Total Return Index",
+      "sourceUrl": "https://amundietf.fr/pdfDocuments/noticetoshareholders_fr0013346681_fra_fra_20240916.pdf",
+      "corroborationUrl": "https://www.epargnant30.fr/amundi-etf-changements-dindice-sur-les-etf-pea-mon-avis/",
+      "checkedAt": "2026-10-18",
+      "note": "Avis aux porteurs Amundi du 16/09/2024 et article indépendant concordants (recherche web, deux requêtes reformulées). Les calendriers 2020-2024 (dont -18,98 % en 2022) sont ceux de l'ancien fonds d'obligations d'État."
+    }
+  }
+}

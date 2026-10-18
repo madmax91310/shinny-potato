@@ -31,7 +31,7 @@ assert(missing.gaps.some(g=>g.id==='sp-global-dividend-aristocrats'&&g.field==='
 assert(missing.gaps.some(g=>g.id==='sp-euro-dividend-aristocrats'&&g.field==='holdings'&&g.status==='access-blocked'));
 console.log('Missing-field inventory: unknown products, exact-share conflicts, non-applicable fields and newly qualified calendars checked.');
 
-assert.equal(r.recentCalendars.length,12);
+assert.equal(r.recentCalendars.length,recent.size,'one calendar row per dated recent launch');
 assert(r.recentCalendars.every(s=>s.configured));
 for(const id of recent) {
   const pending=buildGapInventory({etf:{},now:'2028-02-01'});
@@ -50,8 +50,13 @@ for (const id of recent) {
   assert.equal(calendarEligibility(id,eligibility.earliestPublicationDate).status,'waiting-publication');
   assert.equal(buildGapInventory({etf:{},now:eligibility.earliestPublicationDate}).recentCalendars.find(s=>s.id===id).firstYear,null);
 }
-assert.equal([...recent].filter(id=>calendarEligibility(id,'2026-10-09').earliestPublicationDate==='2027-01-01').length,9);
-assert.equal([...recent].filter(id=>calendarEligibility(id,'2026-10-09').earliestPublicationDate==='2028-01-01').length,3);
+// First publication date follows each dated launch (counts come from the registry, not fixed numbers).
+for (const id of recent) {
+  const {launchDate,earliestPublicationDate}=calendarEligibility(id,'2026-10-09');
+  const first=Number(launchDate.slice(0,4))+(launchDate.endsWith('-01-01')?0:1);
+  assert.equal(earliestPublicationDate,`${first+1}-01-01`,id);
+}
+assert.equal(calendarEligibility('LU3180074463','2026-10-09').earliestPublicationDate,'2027-01-01');
 assert.deepEqual(calendarEligibility('unknown','2026-10-09'),{});
 assert(!r.insuranceGaps.some(g=>g.id==='lucya-cardif'&&g.field==='maxAllocation'));
 const missingAllocation=[{id:'test-missing',name:'Test',checkedAt:'2026-10-09',euroFunds:[{name:'Fonds',maxAllocation:null,ceiling:1000000,allocationEvidence:{status:'not-published',reason:'Maximum absent de la source'}}]}];

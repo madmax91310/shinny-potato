@@ -5,4 +5,5 @@ assert.equal(firstError(log), "locator.click: Error: strict mode violation: loca
 assert.equal(firstError('AssertionError [ERR_ASSERTION]: 50% expected\n'), 'AssertionError [ERR_ASSERTION]: 50%25 expected')
 assert.equal(firstError(''), 'Échec sans message')
 assert.equal(firstError('plain last line'), 'plain last line')
+assert.equal(firstError('', '  [OK] A\n  [ÉCHEC] Dans les coulisses des indices — 51 fiches\n    Coulisses des indices : premier contrôle en échec — dimensions du PNG'), '[ÉCHEC] Dans les coulisses des indices — 51 fiches · Coulisses des indices : premier contrôle en échec — dimensions du PNG')
 console.log('Browser check error annotation: first error line extracted and escaped.')

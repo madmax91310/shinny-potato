@@ -183,7 +183,7 @@ jobs:
       - run: node scripts/test-portfolio-recipes.mjs
       - run: node scripts/test-generator-controls.mjs
       - run: node scripts/test-etf-routing-expansion.mjs
-      - run: node scripts/audit-asset-tool-routing.mjs
+      - run: node scripts/audit-asset-tool-routing.mjs --write
       - run: node scripts/test-asset-routing-blockers.mjs
       - run: node scripts/test-publication-reliability.mjs
       - run: node scripts/test-historical-publications.mjs
@@ -202,6 +202,7 @@ jobs:
       - run: node scripts/test-fallback-snapshot.mjs
       - run: node scripts/test-browser-check-error.mjs
       - run: node scripts/test-freshness-policy.mjs
+      - run: node scripts/test-benchmark-changes.mjs
       - name: Record the published commit for the data-only lane
         run: printf '{"sha":"%s","builtAt":"%s"}\n' "$(git rev-parse HEAD)" "$(date -u +%Y-%m-%dT%H:%M:%SZ)" > dist/build-info.json
       - uses: actions/upload-artifact@v7.0.1
