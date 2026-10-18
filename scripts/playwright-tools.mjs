@@ -985,7 +985,9 @@ async function testFactsheetTweets(page) {
     await img.decode();
     return [img.naturalWidth, img.naturalHeight];
   });
-  ok &&= dimensions[0] === 1600 && dimensions[1] === 2000;
+  // Hauteur adaptative depuis #780 : mêmes bornes que test-index-ribbon.mjs.
+  const factsheetSize = ([width, height]) => width === 1600 && height >= 1600 && height / width <= 1.6;
+  ok &&= factsheetSize(dimensions);
   const [download] = await Promise.all([
     page.waitForEvent('download'),
     preview.getByRole('link', { name: /Télécharger le PNG/ }).click(),
@@ -997,10 +999,10 @@ async function testFactsheetTweets(page) {
     await page.locator('.workspace-action-menu summary').click();
   await page.getByRole('button', { name: /Prévisualiser l’image PNG/ }).click();
     const current = page.getByRole('dialog', { name: 'Aperçu de la fiche PNG' });
-    ok &&= await current.locator('img').evaluate(async (img) => {
+    ok &&= factsheetSize(await current.locator('img').evaluate(async (img) => {
       await img.decode();
-      return img.naturalWidth === 1600 && img.naturalHeight === 2000;
-    });
+      return [img.naturalWidth, img.naturalHeight];
+    }));
     if (['sp500-equal-weight', 'russell-2000'].includes(id)) {
       await mkdir('test-artifacts', { recursive: true });
       const data = await current.locator('img').getAttribute('src');
