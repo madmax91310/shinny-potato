@@ -15,6 +15,7 @@ on:
 permissions:
   contents: read
   pages: write
+  deployments: read
   id-token: write
 
 concurrency:
@@ -40,7 +41,7 @@ jobs:
           if [[ "$PR_EVENT" == true || "$MASTER_REF" != true ]]; then
             echo 'current=true' >> "$GITHUB_OUTPUT"
           else
-            bash scripts/check-pages-head.sh
+            bash scripts/check-pages-head.sh --validation
           fi
   # Data-only lane: when every file changed since the published commit is an
   # automation data path, the code already passed the full gate. Editorial and
@@ -461,6 +462,8 @@ jobs:
           ref: ${{ needs.build.outputs.commit_sha }}
       - name: Skip superseded production snapshots
         id: current
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
         run: bash scripts/check-pages-head.sh
       - id: deployment
         if: steps.current.outputs.current == 'true'
@@ -526,6 +529,9 @@ jobs:
           ref: ${{ needs.fallback-build.outputs.data_sha }}
       - name: Skip superseded production snapshots
         id: current
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          PAGES_CODE_SHA: ${{ needs.scope.outputs.published }}
         run: bash scripts/check-pages-head.sh
       - id: deployment
         if: steps.current.outputs.current == 'true'
