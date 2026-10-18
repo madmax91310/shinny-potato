@@ -78,4 +78,36 @@ class MetadataTests(unittest.TestCase):
         self.assertEqual(len(calls),3)
         with self.assertRaisesRegex(ValueError,'Expected official PDF'):
             module.fetch_document(official,consent)  # injected fetchers are never escalated to a browser
+    def test_french_language_vaneck_factsheet_is_read_through_english_gates(self):
+        from unittest.mock import patch
+        import subprocess
+        import collect_instrument_metadata as module
+        def consent(url):raise ValueError('Expected official PDF at '+url+'; received VanEck France')
+        calls=[]
+        def run(cmd,**kwargs):
+            calls.append(cmd[-1])
+            if '/nl/en/' in cmd[-1]:return subprocess.CompletedProcess(cmd,0,stdout=b'%PDF-1.7 fixture',stderr=b'')
+            return subprocess.CompletedProcess(cmd,1,stdout=b'',stderr=b'Error: Official VanEck regional gate still active')
+        french='https://www.vaneck.com/fr/fr/library/fact-sheets/nucl-fact-sheet.pdf'
+        with patch.object(module,'download',consent),patch.object(module.subprocess,'run',run):
+            self.assertEqual(module.fetch_document(french,module.download),(b'%PDF-1.7 fixture','https://www.vaneck.com/nl/en/library/fact-sheets/nucl-fact-sheet.pdf'))
+        # The browser helper only accepts English regional documents: /fr/fr/ is never passed to it.
+        self.assertEqual(calls,['https://www.vaneck.com/fr/en/library/fact-sheets/nucl-fact-sheet.pdf','https://www.vaneck.com/nl/en/library/fact-sheets/nucl-fact-sheet.pdf'])
+    def test_vaneck_factsheet_layout(self):
+        import re
+        import collect_instrument_metadata as module
+        fixtures=module.ROOT/'scripts/fixtures'
+        cases={'official-documents/presentation-six/gdx-full.txt':('IE00BQQP9F84','Accumulating','Ireland'),
+               'presentation-performance/qntm.txt':('IE0007Y8Y157','Accumulating','Ireland'),
+               'official-documents/vaneck-tdiv-facts.txt':('NL0011683594','Distributing','Netherlands')}
+        for path,(isin,distribution,domicile) in cases.items():
+            with self.subTest(path=path):
+                self.assertEqual(parse_text((fixtures/path).read_text(),isin),{'distribution':distribution,'domicile':domicile,'replicationMethod':'Physical (Full replication)'})
+        text=(fixtures/'official-documents/presentation-six/gdx-full.txt').read_text()
+        src={'isin':'IE00BQQP9F84','listings':[{'ticker':'G2X','mic':'XETR','exchange':'Xetra','currency':'EUR'},{'ticker':'GDX','mic':'XLON','exchange':'London Stock Exchange','currency':'USD'},{'ticker':'GDX','mic':'XETR','exchange':'Xetra','currency':'EUR'}]}
+        from unittest.mock import patch
+        with patch.object(module,'text_of',lambda body:text):
+            rows=parse_listings(b'%PDF-fixture',src,'https://www.vaneck.com/nl/en/library/fact-sheets/gdx-fact-sheet.pdf','2026-10-18')
+        # GDX trades on Xetra as G2X: the Xetra row is not attributed to the GDX ticker.
+        self.assertEqual([r['evidenceId'] for r in rows],['IE00BQQP9F84-XETR-G2X-EUR','IE00BQQP9F84-XLON-GDX-USD'])
 if __name__=='__main__':unittest.main()
