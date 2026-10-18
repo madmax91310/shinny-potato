@@ -19,3 +19,13 @@ assert.equal(scheduledReview(base, { registry: 'src/data/index-facts.js', label:
 assert.equal(scheduledReview(base, { registry: 'src/data/etf-ter.js', label: 'Frais' }, today).category, 'current', 'An unchanged fee can be rechecked without changing its effective date')
 for (const record of DATA_CATALOG) for (const field of record.fields) assert(!/undefined|NaN/.test(field.label), `${record.id}: ${field.label}`)
 console.log('Observation age: old, future and invalid AUM/composition dates; unchanged fees and historical archives; catalogue labels verified.')
+
+const {fieldState,productFieldEvidence}=await import('./report-asset-fields.mjs')
+const checkedAt='2026-10-18'
+assert.equal(fieldState({checkedAt,periodEnd:'2020-01'},checkedAt),'publication-old')
+for(const asOf of ['date-invalide','2026-02-30','2027-01-01'])assert.equal(fieldState({checkedAt,asOf},checkedAt),'invalid-date')
+assert.equal(fieldState({checkedAt,years:{2020:4}},checkedAt,{dataDays:550}),'publication-old')
+assert.equal(fieldState({checkedAt,asOf:'2022-01-01'},checkedAt,{effectiveDate:true}),'current')
+assert.equal(fieldState({checkedAt},checkedAt,{requireObservation:true}),'undated-observation')
+const euroFunds=productFieldEvidence([{years:[{year:2025}]},{years:[{year:2020}]}],{checkedAt},'euroFunds')
+assert.equal(fieldState(euroFunds,checkedAt,{dataDays:550}),'publication-old')

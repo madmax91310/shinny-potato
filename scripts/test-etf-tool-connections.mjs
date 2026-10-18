@@ -1,8 +1,9 @@
 import assert from 'node:assert/strict'
+import { execFileSync } from 'node:child_process'
+import { fileURLToPath } from 'node:url'
 import { ASSETS, ASSET_ORDER } from '../src/data/market-history.js'
 import { ETF_MONTHLY_HISTORIES } from '../src/data/etf-monthly-history.js'
 import { derive, buildTweetText as buildInvestmentText } from '../src/pages/investment-calculator/lib.js'
-import { getPerformanceAssetId } from '../src/data/performance-links.js'
 import { resolveAnniversaryLevel } from '../src/data/anniversary-levels.js'
 import BASE_LEVELS from '../src/data/anniversary-levels.json' with { type: 'json' }
 import { ANNIVERSAIRE_ELIGIBLE_ASSETS, getHistoricalPrice, getValidYearsBackOptions, getAnnualReturnStartYears, getAnnualReturns, ymForYearsBack, performanceBasis } from '../src/pages/tweet-midi/data/marketHistory.js'
@@ -12,6 +13,10 @@ import { PERFORMANCE_ART } from '../src/pages/tweet-midi/performanceArt.js'
 import { INVESTMENT_ART } from '../src/pages/investment-calculator/emeraldArt.js'
 
 import NON_BOND_LEVELS from '../src/data/non-bond-levels.json' with {type:'json'};
+// A collector can validate this test before the production build regenerates its
+// projections. Always build the shortcuts from the current observations first.
+execFileSync(process.execPath, [fileURLToPath(new URL('./build-performance-links.mjs', import.meta.url))], { stdio: 'inherit' })
+const { getPerformanceAssetId } = await import('../src/data/performance-links.js')
 const LEVELS={...BASE_LEVELS,...NON_BOND_LEVELS};
 const clock = new Date('2026-10-11T12:00:00Z')
 const close = (a, b) => assert(Math.abs(a - b) < 1e-7, `${a} != ${b}`)

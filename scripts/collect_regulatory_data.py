@@ -20,6 +20,7 @@ DEST = ROOT / 'src/data/automated-regulatory.json'
 DC = '{http://purl.org/dc/elements/1.1/}'
 BASE = 'https://lecomarquage.service-public.gouv.fr/vdd/3.5/part/xml/'
 SOURCES = {
+ 'pel': ('F16140', 'Plan épargne logement (PEL)', {'pelCeiling': r'Le montant maximum que vous pouvez verser sur le PEL est ([\d ]+) €'}),
  'livret': ('F2365', 'Livret A', {'livretCeiling': r"Le montant maximum d'épargne inscrit sur le livret A est de ([\d ]+) €"}),
  'ldds': ('F2368', 'Livret de développement durable et solidaire (LDDS)', {'lddsCeiling': r'Le plafond du LDDS est de ([\d ]+) €', 'lddsRate': r"Le taux d'intérêt annuel est de ([\d,]+) %"}),
  'pea': ('F2385', "Plan d'épargne en actions (PEA)", {
@@ -139,7 +140,13 @@ def parse(name, raw, today, previous=None):
   if key.endswith('Year'): limit = int(today[:4])
   if not 0 < value <= limit:
    raise ValueError(f'Valeur invalide : {key}')
- return {'values': values, 'publishedAt': published, 'checkedAt': today,
+ extra = {}
+ if name == 'pel':
+  from pel_generations import parse_generations
+  extra['generations'] = parse_generations(root, today, text, unique)
+  if previous and any(row not in extra['generations'] for row in previous.get('generations', []) if row.get('to')):
+   raise ValueError('PEL historical generation changed; review required')
+ return {**extra, 'values': values, 'publishedAt': published, 'checkedAt': today,
   'sourceUrl': root.get('spUrl'), 'downloadUrl': BASE+identity+'.xml',
   'title': title, 'sha256': hashlib.sha256(raw).hexdigest(),
   'scope': 'Résident fiscal français ; régime général, hors exceptions historiques',

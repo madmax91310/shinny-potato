@@ -224,7 +224,9 @@
     ],
     "collectionSteps": [
       "Collect observations: collect",
-      "Collect observations: python scripts refresh_index_sources.py --only-derived --output RUNNER_TEMP derived-index-observation.json --apply"
+      "Collect observations: python scripts refresh_index_sources.py --only-derived --output RUNNER_TEMP derived-index-observation.json --apply",
+      "Refresh exact issuer listing tables",
+      "Refresh exact ranking histories and ECB conversion"
     ],
     "validationSteps": [
       "Validate observations: python -m unittest discover -s scripts -p  test_remaining_index_sources.py",
@@ -248,7 +250,8 @@
       "/generateur-portefeuilles",
       "/classements-performances",
       "/faits-marquants-marches"
-    ]
+    ],
+    "artifact": "monthly-market-observation"
   },
   "update-bitcoin-monthly.yml": {
     "name": "Historique du bitcoin",
@@ -386,7 +389,8 @@
     ],
     "paths": [
       "/analyse-entreprise"
-    ]
+    ],
+    "artifact": "company-analysis-observation"
   },
   "update-economic-data.yml": {
     "name": "Taux d’épargne, ménages, SCPI et fonds euros",
@@ -627,5 +631,24 @@
       "/le-dca-de",
       "/fiches-etf"
     ]
+  },
+  "rehearse-refresh.yml": {
+    "name": "Répétition des futures collectes",
+    "workflowName": "Rehearse future data refreshes",
+    "collectionJob": "rehearse",
+    "maxAgeHours": 840,
+    "tools": [
+      "Tous les outils de performance"
+    ],
+    "collectionSteps": [
+      "Simulate the collection"
+    ],
+    "validationSteps": [
+      "Validate collected observations"
+    ],
+    "paths": [
+      "/donnees-a-revoir"
+    ],
+    "publishes": false
   }
 }

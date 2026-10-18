@@ -27,7 +27,7 @@ def incident_context(identifier, context, fallback):
             'to': matches[0].get('to') if matches else '/donnees-a-revoir'}
 
 
-SOURCE_CHANGE_MARKERS = ('Clause officielle absente ou modifiée', 'Wrong contract identity')
+SOURCE_CHANGE_MARKERS = ('Qualification de publication requise', 'Clause officielle absente ou modifiée', 'Wrong contract identity')
 
 
 def evaluate_monitoring(state, context, registry, now, radar=None):

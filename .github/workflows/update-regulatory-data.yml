@@ -9,6 +9,7 @@ on:
       - '.github/workflows/update-regulatory-data.yml'
       - 'scripts/collect_regulatory_data.py'
       - 'scripts/regulatory_extensions.py'
+      - 'scripts/pel_generations.py'
       - 'scripts/collect_broker_tariffs.py'
       - 'scripts/broker_tariff_extensions.py'
       - 'scripts/broker_profiles.py'

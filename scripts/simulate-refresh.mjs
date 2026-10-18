@@ -26,31 +26,48 @@ export function simulate(repo, until, withFx) {
   const read = rel => JSON.parse(readFileSync(file(rel), 'utf8'))
   const write = (rel, data) => writeFileSync(file(rel), JSON.stringify(data, null, 2) + '\n')
   const checkedAt = `${nextMonth(until)}-03`
-  const records = read('src/data/automated-monthly.json')
-  const evidence = read('scripts/source-snapshots/monthly-automated.json')
-  let added = 0
-  for (const [id, record] of Object.entries(records)) {
-    const proof = evidence[id]
-    if (!record.points?.length || !proof) continue
-    const digits = record.precision ?? 2
-    let [ym] = record.points.at(-1)
-    let value = proof.proofRows.at(-1).value
-    while (ym < until) {
-      ym = nextMonth(ym); value *= 1.005
-      const price = Math.round(value * 10 ** digits) / 10 ** digits
-      record.points.push([ym, price])
-      if (record.anniversaryPoints?.length) record.anniversaryPoints.push([ym, price])
-      const template = proof.proofRows.at(-1)
-      const row = { ...template, date: monthEnd(ym), value }
-      for (const key of ['close', 'monthlyClose', 'monthlyValue']) if (key in template) row[key] = value
-      proof.proofRows.push(row)
-      added++
+  const families = [
+    ['src/data/automated-monthly.json','scripts/source-snapshots/monthly-automated.json'],
+    ['src/data/automated-etf-monthly.json','scripts/source-snapshots/monthly-automated.json'],
+    ['src/data/non-bond-monthly-records.json','scripts/source-snapshots/non-bond-monthly-active.json'],
+    ['src/data/ranking-histories.json','scripts/source-snapshots/ranking-histories.json'],
+    ['src/data/bitcoin-yahoo-monthly.json',null],
+    ['src/data/worldbank-gold-monthly.json',null],
+  ]
+  let added=0
+  const coverage={}
+  for(const [source,proofFile] of families) {
+    const data=read(source),single=Array.isArray(data.points),records=single?{single:data}:data
+    const evidence=proofFile?read(proofFile):{}
+    let count=0
+    for(const [id,record] of Object.entries(records)) {
+      if(!record.points?.length)continue
+      const proof=evidence[id],proofRows=proof?.proofRows??proof?.rows
+      if(proofFile&&!proofRows?.length)throw new Error(`Rehearsal proof missing: ${source}:${id}`)
+      const digits=record.precision??2
+      let [ym,value]=record.points.at(-1)
+      let raw=record.anniversaryPoints?.at(-1)?.[1]
+      while(ym<until) {
+        ym=nextMonth(ym);value*=1.005
+        const price=Math.round(value*10**digits)/10**digits
+        record.points.push([ym,price])
+        if(Number.isFinite(raw)) {raw*=1.005;record.anniversaryPoints.push([ym,Math.round(raw*10**digits)/10**digits])}
+        if(proof) {
+          const template=proofRows.at(-1),row={...template,date:monthEnd(ym),value:price}
+          for(const key of ['close','monthlyClose','monthlyValue'])if(key in template)row[key]=template[key]*1.005
+          proofRows.push(row)
+        }
+        added++
+      }
+      record.periodEnd=ym;record.checkedAt=checkedAt
+      if(proof) {proof.periodEnd=ym;proof.checkedAt=checkedAt}
+      count++
     }
-    record.periodEnd = proof.periodEnd = ym
-    record.checkedAt = proof.checkedAt = checkedAt
+    coverage[source]=count
+    write(source,data)
+    if(proofFile)write(proofFile,evidence)
   }
-  write('src/data/automated-monthly.json', records)
-  write('scripts/source-snapshots/monthly-automated.json', evidence)
+  write('.refresh-rehearsal.json',{synthetic:true,until,checkedAt,coverage})
   let fxAdded = 0
   if (withFx) {
     const fx = read('src/data/monthly-fx.json')
@@ -64,7 +81,7 @@ export function simulate(repo, until, withFx) {
     fx.checkedAt = checkedAt
     write('src/data/monthly-fx.json', fx)
   }
-  return { added, fxAdded, checkedAt }
+  return { added, fxAdded, checkedAt, coverage }
 }
 
 export function latestMonth(repo) {

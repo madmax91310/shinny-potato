@@ -8,8 +8,13 @@ if (( $# < 2 )); then
 fi
 message=$1
 shift
+publication_helper="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/data_publication.py"
 root=$(git rev-parse --show-toplevel)
 cd "$root"
+if [[ -f .refresh-rehearsal.json ]]; then
+  echo "Synthetic rehearsal data cannot be published." >&2
+  exit 1
+fi
 base=$(git rev-parse HEAD)
 task_dir=$(mktemp -d)
 cleanup() {
@@ -47,3 +52,5 @@ else
 fi
 printf 'commit_sha=%s\n' "$result" >> "${GITHUB_OUTPUT:-/dev/stdout}"
 printf 'changed=%s\n' "$changed" >> "${GITHUB_OUTPUT:-/dev/stdout}"
+# Proof is generated from the committed tree, including rebases, never from uncommitted files.
+python3 "$publication_helper" receipt --commit "$result" --output "${RUNNER_TEMP:-/tmp}/data-publication-receipt.json" -- "$@"
