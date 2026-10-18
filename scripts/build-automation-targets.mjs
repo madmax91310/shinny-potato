@@ -11,9 +11,13 @@ const existing=JSON.parse(readFileSync('scripts/dca-complete-holdings-sources.js
 const candidates=Object.fromEntries(JSON.parse(readFileSync('scripts/listing-candidates.json')).candidates.map(c=>[c.isin,c.rows]))
 const withCandidates=(isin,listings)=>[...listings,...(candidates[isin]??[]).filter(c=>!listings.some(l=>l.mic===c.mic&&l.ticker===c.ticker&&l.currency===c.currency)).map(({ticker,mic,exchange,currency,symbol})=>({ticker,mic,exchange,currency,symbol}))]
 const holdings={},metadata=[]
+// Qualified iShares shares flagged peaIssuerPage whose PEA status is still undocumented: the
+// French issuer page states « Régime fiscal PEA » itself; a dash there keeps the status unknown.
+const peaIssuerPages=new Set(JSON.parse(readFileSync('scripts/qualified-exposure-sources.json')).instruments.filter(i=>i.peaIssuerPage).map(i=>i.isin))
+const frenchIssuerPage=(isin,r)=>{const id=/[?&]portfolioId=(\d+)/.exec(r.sourceUrl??'')?.[1];return id&&peaIssuerPages.has(isin)&&PEA_REVIEWS_BY_ISIN[isin]?.eligible==null?[`https://www.blackrock.com/fr/particuliers/products/${id}`]:[]}
 const currentDocument=url=>url?.replace(/(\/pdfDocuments\/(?:monthly-factsheet|kid-priips|prospectus)\/[^?]+)\/\d{8}(?=$|\?)/,'$1')
 for(const [isin,r] of Object.entries(AUTOMATED_ETF)) {
- const facts=getInstrumentFacts(isin),listings=withCandidates(isin,getInstrumentListings(isin)),urls=[r.sourceUrl,facts.characteristicsSource?.url,PEA_REVIEWS_BY_ISIN[isin]?.sourceUrl,...(PEA_REVIEWS_BY_ISIN[isin]?.eligible===true?['https://www.justetf.com/fr/etf-profile.html?isin='+isin]:[]),...listings.map(l=>l.sourceUrl)]
+ const facts=getInstrumentFacts(isin),listings=withCandidates(isin,getInstrumentListings(isin)),urls=[r.sourceUrl,facts.characteristicsSource?.url,PEA_REVIEWS_BY_ISIN[isin]?.sourceUrl,...(PEA_REVIEWS_BY_ISIN[isin]?.eligible===true?['https://www.justetf.com/fr/etf-profile.html?isin='+isin]:[]),...listings.map(l=>l.sourceUrl),...frenchIssuerPage(isin,r)]
  // Characteristics only need the fund facts and listings; full holdings exceed the download limit.
  const endpoint=blackrockCharacteristicsEndpoint
  // WisdomTree product pages answer 403 to automated clients; its official factsheet API does not.

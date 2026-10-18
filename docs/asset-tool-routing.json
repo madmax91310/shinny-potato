@@ -1,11 +1,11 @@
 {
-  "checkedAt": "2026-10-18T11:46:20.009Z",
+  "checkedAt": "2026-10-18T12:24:38.083Z",
   "summary": {
     "instruments": 647,
     "sheets": 258,
     "comparisons": 243,
     "practical": 21,
-    "duels": 571,
+    "duels": 575,
     "generatorAutomatic": 141,
     "dca": 647,
     "fullExposure": 602,
@@ -16,7 +16,7 @@
     "blockers": {
       "no-listing": 27,
       "listing-not-collectable": 0,
-      "qualification-failed": 4,
+      "qualification-failed": 0,
       "collection-pending": 25,
       "history-short": 19
     }
@@ -70,15 +70,12 @@
       "name": "BHP",
       "kind": "equity",
       "practical": [],
-      "duel": false,
+      "duel": true,
       "qualification": null,
       "sheet": false,
       "comparison": false,
-      "generator": "missing",
-      "blocker": {
-        "code": "qualification-failed",
-        "detail": "Duplicate Yahoo local date"
-      },
+      "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -95,7 +92,18 @@
         "date": "2026-10-15"
       },
       "holdings": null,
-      "monthly": [],
+      "monthly": [
+        {
+          "id": "bhp",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "AUD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
       "historyCandidate": false,
       "decision": "keep-used"
     },
@@ -104,15 +112,12 @@
       "name": "Commonwealth Bank",
       "kind": "equity",
       "practical": [],
-      "duel": false,
+      "duel": true,
       "qualification": null,
       "sheet": false,
       "comparison": false,
-      "generator": "missing",
-      "blocker": {
-        "code": "qualification-failed",
-        "detail": "Duplicate Yahoo local date"
-      },
+      "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -129,7 +134,18 @@
         "date": "2026-10-15"
       },
       "holdings": null,
-      "monthly": [],
+      "monthly": [
+        {
+          "id": "commonwealth-bank",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "AUD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
       "historyCandidate": false,
       "decision": "keep-used"
     },
@@ -138,15 +154,12 @@
       "name": "CSL",
       "kind": "equity",
       "practical": [],
-      "duel": false,
+      "duel": true,
       "qualification": null,
       "sheet": false,
       "comparison": false,
-      "generator": "missing",
-      "blocker": {
-        "code": "qualification-failed",
-        "detail": "Duplicate Yahoo local date"
-      },
+      "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -163,7 +176,18 @@
         "date": "2026-10-15"
       },
       "holdings": null,
-      "monthly": [],
+      "monthly": [
+        {
+          "id": "csl",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "AUD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
       "historyCandidate": false,
       "decision": "keep-used"
     },
@@ -172,15 +196,12 @@
       "name": "Macquarie",
       "kind": "equity",
       "practical": [],
-      "duel": false,
+      "duel": true,
       "qualification": null,
       "sheet": false,
       "comparison": false,
-      "generator": "missing",
-      "blocker": {
-        "code": "qualification-failed",
-        "detail": "Duplicate Yahoo local date"
-      },
+      "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -197,7 +218,18 @@
         "date": "2026-10-15"
       },
       "holdings": null,
-      "monthly": [],
+      "monthly": [
+        {
+          "id": "macquarie",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "AUD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
       "historyCandidate": false,
       "decision": "keep-used"
     },

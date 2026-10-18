@@ -2,6 +2,7 @@ import unittest
 from unittest.mock import patch
 import datetime as dt
 from qualify_monthly_candidates import qualify
+from refresh_monthly_history import yahoo_chart
 class Qualification(unittest.TestCase):
  def test_identity_and_first_partial_month(self):
   source=dict(symbol='TEST.L',currency='USD',isin='IE000TEST000',id='test')
@@ -60,3 +61,21 @@ class Qualification(unittest.TestCase):
   fetch=lambda u:{'chart':{'result':[{'meta':dict(symbol='X',currency='EUR',instrumentType='ETF',firstTradeDate=1609459200)}]}}
   with self.assertRaisesRegex(ValueError,'cross-check'):qualify(source,dt.datetime(2026,10,16),fetch,fail)
 if __name__=='__main__':unittest.main()
+
+class YahooSessions(unittest.TestCase):
+ def chart(self,stamps,closes,adjusted=None):
+  meta=dict(symbol='BHP.AX',currency='AUD',dataGranularity='1d',instrumentType='EQUITY',exchangeTimezoneName='Australia/Sydney')
+  return {'chart':{'result':[{'meta':meta,'timestamp':stamps,'indicators':{'quote':[{'close':closes}],'adjclose':[{'adjclose':adjusted or closes}]}}]}}
+ def test_identical_repeated_asx_session_is_kept_once(self):
+  # Yahoo lists the latest ASX session twice: the regular bar at 10:00 local and a closing-time bar.
+  config=dict(symbol='BHP.AX',currency='AUD',field='adjclose',consumerScope='equity')
+  open_bar=int(dt.datetime(2026,10,15,23,0,tzinfo=dt.timezone.utc).timestamp())   # 16/10 10:00 Sydney
+  close_bar=int(dt.datetime(2026,10,16,5,10,tzinfo=dt.timezone.utc).timestamp())  # 16/10 16:10 Sydney
+  previous=int(dt.datetime(2026,10,14,23,0,tzinfo=dt.timezone.utc).timestamp())
+  rows,zone=yahoo_chart(self.chart([previous,open_bar,close_bar],[59.5,60.03,60.03]),config,'1d')
+  self.assertEqual(zone,'Australia/Sydney')
+  self.assertEqual([(r[0].isoformat(),r[1]) for r in rows],[('2026-10-15',59.5),('2026-10-16',60.03)])
+  with self.assertRaisesRegex(ValueError,'different prices'):
+   yahoo_chart(self.chart([previous,open_bar,close_bar],[59.5,60.03,60.10]),config,'1d')
+  with self.assertRaisesRegex(ValueError,'different prices'):
+   yahoo_chart(self.chart([previous,open_bar,close_bar],[59.5,60.03,60.03],[59.5,60.03,59.99]),config,'1d')
