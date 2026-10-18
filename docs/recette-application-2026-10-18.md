@@ -81,6 +81,8 @@ Le `build-info.json` public identifie le commit audité. La présence de ce comm
 
 Le flux radar réel est distinct des données intégrées au build et répond en HTTP. La première recette locale sans configuration du proxy réseau du navigateur affichait « Failed to fetch ». Le même accès à la source réussit dans Chromium une fois le proxy de l’environnement configuré. Cet incident de banc de test n’a pas été classé comme panne de production ni contourné par une modification du site.
 
+Le parcours mobile a ensuite été vérifié sur le site public, depuis l’entrée de restauration de route : 179 signaux affichés au relevé, aucun message d’erreur, aucune requête échouée et aucune erreur JavaScript. L’écran indique un contrôle du 18 octobre à 09:01, heure de Paris. Cet effectif décrit le relevé, pas une valeur à figer dans un test.
+
 Les PR #761, #762 et #763 portent sur les ajouts d’actifs, raccordements et fiabilité ; #764 porte sur les courtiers. Leurs modifications n’ont pas été fusionnées ni remplacées ici. Le seul correctif concernant le blocage constaté de #764 change la recette de maintenance et a été vérifié contre cette branche isolée.
 
 Cette recette ne répare pas automatiquement chaque incident de source présent dans le moniteur. Elle ne prouve pas non plus un futur passage de tous les collecteurs après fusion. Un échec de collecte, une donnée conservée et un déploiement refusé restent des états distincts, à suivre dans les PR de fiabilité et les prochains runs.
