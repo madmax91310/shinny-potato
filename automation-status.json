@@ -402,27 +402,36 @@
     },
     "update-instrument-metadata.yml": {
       "name": "Caractéristiques et statut PEA par ISIN",
-      "runId": 39115175765,
+      "runId": 39117281553,
       "attempt": 1,
-      "completedAt": "2026-10-18T10:21:14Z",
-      "status": "success",
+      "completedAt": "2026-10-18T10:33:14Z",
+      "status": "failure",
       "lastSuccessAt": "2026-10-18T10:21:14Z",
       "collectionStatus": "success",
       "validationStatus": "success",
       "recordingStatus": "success",
-      "publicationStatus": "not-run",
-      "lastCollectionSuccessAt": "2026-10-18T10:21:14Z",
+      "publicationStatus": "failure",
+      "lastCollectionSuccessAt": "2026-10-18T10:33:14Z",
       "lastPublicationSuccessAt": "2026-10-17T21:20:32Z",
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39115175765",
-      "failures": [],
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39117281553",
+      "failures": [
+        {
+          "job": "deploy / build",
+          "step": "Run npm run audit:instrument-listings"
+        },
+        {
+          "job": "deploy / fallback-build",
+          "step": "Run npm run build"
+        }
+      ],
       "dataFailures": {}
     }
   },
-  "updatedAt": "2026-10-18T10:30:32Z",
+  "updatedAt": "2026-10-18T10:33:14Z",
   "monitoring": {
     "schemaVersion": 1,
-    "checkedAt": "2026-10-18T10:31:34.743636+00:00",
-    "revision": 97,
+    "checkedAt": "2026-10-18T10:33:45.298860+00:00",
+    "revision": 98,
     "active": {
       "collection:update-practical-sheets.yml:practical:13f": {
         "name": "SEC · questions et réponses sur le formulaire 13F",
@@ -443,7 +452,7 @@
         "dataId": "practical:13f",
         "id": "collection:update-practical-sheets.yml:practical:13f",
         "firstSeenAt": "2026-10-14T21:07:26.171294+00:00",
-        "lastSeenAt": "2026-10-18T10:31:34.743636+00:00"
+        "lastSeenAt": "2026-10-18T10:33:45.298860+00:00"
       },
       "collection:update-insurance.yml:linxea-avenir-2": {
         "name": "Linxea Avenir 2",
@@ -462,7 +471,7 @@
         "dataId": "linxea-avenir-2",
         "id": "collection:update-insurance.yml:linxea-avenir-2",
         "firstSeenAt": "2026-10-14T13:08:27.203935+00:00",
-        "lastSeenAt": "2026-10-18T10:31:34.743636+00:00"
+        "lastSeenAt": "2026-10-18T10:33:45.298860+00:00"
       },
       "collection:update-scpi.yml:transitions-europe": {
         "name": "Transitions Europe",
@@ -484,7 +493,7 @@
         "dataId": "transitions-europe",
         "id": "collection:update-scpi.yml:transitions-europe",
         "firstSeenAt": "2026-10-18T10:29:36.524873+00:00",
-        "lastSeenAt": "2026-10-18T10:31:34.743636+00:00"
+        "lastSeenAt": "2026-10-18T10:33:45.298860+00:00"
       },
       "publication:update-market-monthly.yml": {
         "name": "Historiques mensuels des marchés",
@@ -503,7 +512,7 @@
         "cause": "deploy / browser-checks (2) : Run node scripts/run-browser-checks.mjs 2 4",
         "id": "publication:update-market-monthly.yml",
         "firstSeenAt": "2026-10-17T12:19:18.394776+00:00",
-        "lastSeenAt": "2026-10-18T10:31:34.743636+00:00"
+        "lastSeenAt": "2026-10-18T10:33:45.298860+00:00"
       },
       "publication:update-economic-data.yml": {
         "name": "Taux d’épargne, ménages, SCPI et fonds euros",
@@ -520,7 +529,7 @@
         "cause": "deploy / build : Run npm run audit:etf-annual-performance",
         "id": "publication:update-economic-data.yml",
         "firstSeenAt": "2026-10-17T12:18:32.387705+00:00",
-        "lastSeenAt": "2026-10-18T10:31:34.743636+00:00"
+        "lastSeenAt": "2026-10-18T10:33:45.298860+00:00"
       },
       "publication:update-lifestrategy.yml": {
         "name": "Vanguard LifeStrategy",
@@ -539,7 +548,7 @@
         "cause": "deploy / browser-checks (3) : Run node scripts/run-browser-checks.mjs 3 4",
         "id": "publication:update-lifestrategy.yml",
         "firstSeenAt": "2026-10-17T10:03:28.054539+00:00",
-        "lastSeenAt": "2026-10-18T10:31:34.743636+00:00"
+        "lastSeenAt": "2026-10-18T10:33:45.298860+00:00"
       },
       "publication:update-qualified-exposures.yml": {
         "name": "Expositions ETF qualifiées",
@@ -559,7 +568,7 @@
         "cause": "deploy / build : Run npm run audit:calculator-series",
         "id": "publication:update-qualified-exposures.yml",
         "firstSeenAt": "2026-10-16T12:48:21.924866+00:00",
-        "lastSeenAt": "2026-10-18T10:31:34.743636+00:00"
+        "lastSeenAt": "2026-10-18T10:33:45.298860+00:00"
       },
       "collection:update-exposure-expansion.yml:etf-exposure-expansion-IE00BK1PV551": {
         "name": "Xtrackers MSCI World UCITS ETF 1D",
@@ -583,18 +592,29 @@
         "dataId": "etf-exposure-expansion-IE00BK1PV551",
         "id": "collection:update-exposure-expansion.yml:etf-exposure-expansion-IE00BK1PV551",
         "firstSeenAt": "2026-10-17T20:42:44.184725+00:00",
-        "lastSeenAt": "2026-10-18T10:31:34.743636+00:00"
+        "lastSeenAt": "2026-10-18T10:33:45.298860+00:00"
+      },
+      "publication:update-instrument-metadata.yml": {
+        "name": "Caractéristiques et statut PEA par ISIN",
+        "tools": [
+          "Présentation ETF",
+          "Comparatif ETF",
+          "Générateur",
+          "Portefeuille / DCA"
+        ],
+        "impactScope": "collector",
+        "workflow": "update-instrument-metadata.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39117281553",
+        "to": "/donnees-a-revoir",
+        "kind": "publication",
+        "field": "Publication",
+        "cause": "deploy / build : Run npm run audit:instrument-listings ; deploy / fallback-build : Run npm run build",
+        "id": "publication:update-instrument-metadata.yml",
+        "firstSeenAt": "2026-10-18T10:33:45.298860+00:00",
+        "lastSeenAt": "2026-10-18T10:33:45.298860+00:00"
       }
     },
     "events": [
-      {
-        "revision": 68,
-        "at": "2026-10-17T12:08:19.175286+00:00",
-        "opened": [
-          "publication:update-non-bond-expansion.yml"
-        ],
-        "resolved": []
-      },
       {
         "revision": 69,
         "at": "2026-10-17T12:13:02.100146+00:00",
@@ -1427,6 +1447,14 @@
         "at": "2026-10-18T10:29:36.524873+00:00",
         "opened": [
           "collection:update-scpi.yml:transitions-europe"
+        ],
+        "resolved": []
+      },
+      {
+        "revision": 98,
+        "at": "2026-10-18T10:33:45.298860+00:00",
+        "opened": [
+          "publication:update-instrument-metadata.yml"
         ],
         "resolved": []
       }
