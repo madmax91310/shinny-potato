@@ -48,10 +48,6 @@ jobs:
       - name: "Collect observations: collect"
         id: collect
         continue-on-error: true
-        env:
-          # Repository secret « Nom du projet adresse@domaine » : la SEC refuse les
-          # adresses noreply (HTTP 403). Absent : seule la source SEC échoue, visiblement.
-          SEC_USER_AGENT: ${{ secrets.SEC_USER_AGENT }}
         run: python scripts/collect_practical_sheets.py --apply --output "$RUNNER_TEMP/practical-observation.json"
       - name: Report source changes and failures
         if: always()

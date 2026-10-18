@@ -72,7 +72,10 @@ class CollectionTests(unittest.TestCase):
                 c.collect('test',{**self.config(),'url':'https://www.sec.gov/x'},{},'2026-10-17')
             self.assertEqual(fetch.call_args[0][0].get_header('User-agent'),agent)
     def test_sec_refuses_missing_or_noreply_contact_before_any_request(self):
-        for value in ('','EpargnantLibre/1.0 https://github.com/x','EpargnantLibre-Data madmax91310@users.noreply.github.com'):
+        self.assertRegex(c.SEC_CONTACT_USER_AGENT,r'\S+@\S+\.\w+');self.assertNotIn('noreply',c.SEC_CONTACT_USER_AGENT)
+        with patch.dict(os.environ,{'SEC_USER_AGENT':''}):
+            self.assertEqual(c.user_agent('https://www.sec.gov/x'),c.SEC_CONTACT_USER_AGENT)
+        for value in ('EpargnantLibre/1.0 https://github.com/x','EpargnantLibre-Data madmax91310@users.noreply.github.com'):
             with patch.dict(os.environ,{'SEC_USER_AGENT':value}), patch('urllib.request.urlopen') as fetch:
                 key,record,error=c.collect('13f',{**self.config(),'url':'https://www.sec.gov/x'},{'checkedAt':'2026-10-14'},'2026-10-18')
                 fetch.assert_not_called()

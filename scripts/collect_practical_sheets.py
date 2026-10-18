@@ -119,9 +119,12 @@ def parse(raw, config):
 # @users.noreply.github.com address (or no address) every www.sec.gov page answers 403
 # "Request Rate Threshold Exceeded" and data.sec.gov answers 403 "Undeclared Automated
 # Tool", from the very first request; the same requests with a contact address on an
-# ordinary mail domain answer 200. The address is a repository secret, never committed.
+# ordinary mail domain answer 200. Public contact address chosen by the account owner
+# (18/10/2026); the SEC_USER_AGENT environment variable can override it.
+SEC_CONTACT_USER_AGENT = 'EpargnantLibre lepargnantlibre@gmail.com'
+
 def sec_user_agent():
-    agent = (os.environ.get('SEC_USER_AGENT') or '').strip()
+    agent = (os.environ.get('SEC_USER_AGENT') or SEC_CONTACT_USER_AGENT).strip()
     if not re.search(r'\S+@\S+\.\w+', agent) or 'noreply' in agent.casefold():
         raise ValueError('SEC_USER_AGENT absent ou sans adresse de contact joignable '
                          '(secret du dépôt, ex. « Nom du projet contact@domaine.fr ») : la SEC refuse la requête')
