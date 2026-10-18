@@ -431,26 +431,22 @@
     },
     "update-instrument-metadata.yml": {
       "name": "Caractéristiques et statut PEA par ISIN",
-      "runId": 39117281553,
+      "runId": 39125084644,
       "attempt": 1,
-      "completedAt": "2026-10-18T10:33:14Z",
+      "completedAt": "2026-10-18T12:54:06Z",
       "status": "failure",
       "lastSuccessAt": "2026-10-18T10:21:14Z",
       "collectionStatus": "success",
-      "validationStatus": "success",
-      "recordingStatus": "success",
-      "publicationStatus": "failure",
-      "lastCollectionSuccessAt": "2026-10-18T10:33:14Z",
+      "validationStatus": "not-run",
+      "recordingStatus": "not-run",
+      "publicationStatus": "not-run",
+      "lastCollectionSuccessAt": "2026-10-18T12:54:06Z",
       "lastPublicationSuccessAt": "2026-10-17T21:20:32Z",
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39117281553",
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39125084644",
       "failures": [
         {
-          "job": "deploy / build",
-          "step": "Run npm run audit:instrument-listings"
-        },
-        {
-          "job": "deploy / fallback-build",
-          "step": "Run npm run build"
+          "job": "refresh",
+          "step": "Run npm run build && node scripts/test-full-auto-routing.mjs"
         }
       ],
       "dataFailures": {}
@@ -466,11 +462,11 @@
       "failures": []
     }
   },
-  "updatedAt": "2026-10-18T12:53:49Z",
+  "updatedAt": "2026-10-18T12:54:06Z",
   "monitoring": {
     "schemaVersion": 1,
-    "checkedAt": "2026-10-18T12:56:03.999172+00:00",
-    "revision": 106,
+    "checkedAt": "2026-10-18T12:57:39.234539+00:00",
+    "revision": 107,
     "active": {
       "publication:update-practical-sheets.yml": {
         "name": "Sources des fiches pratiques",
@@ -486,7 +482,7 @@
         "cause": "deploy / build : Run npm run audit:instrument-listings ; deploy / fallback-build : Run npm run build",
         "id": "publication:update-practical-sheets.yml",
         "firstSeenAt": "2026-10-18T11:43:59.694981+00:00",
-        "lastSeenAt": "2026-10-18T12:56:03.999172+00:00"
+        "lastSeenAt": "2026-10-18T12:57:39.234539+00:00"
       },
       "publication:update-publication-observations.yml": {
         "name": "Pouvoir d’achat et niveaux des anniversaires",
@@ -503,7 +499,7 @@
         "cause": "deploy / browser-checks (0) : node scripts/playwright-tools.mjs — Échec sans message ; deploy / fallback-build : Run npm run build",
         "id": "publication:update-publication-observations.yml",
         "firstSeenAt": "2026-10-18T12:52:04.191577+00:00",
-        "lastSeenAt": "2026-10-18T12:56:03.999172+00:00"
+        "lastSeenAt": "2026-10-18T12:57:39.234539+00:00"
       },
       "collection:update-insurance.yml:linxea-avenir-2": {
         "name": "Linxea Avenir 2",
@@ -522,7 +518,7 @@
         "dataId": "linxea-avenir-2",
         "id": "collection:update-insurance.yml:linxea-avenir-2",
         "firstSeenAt": "2026-10-14T13:08:27.203935+00:00",
-        "lastSeenAt": "2026-10-18T12:56:03.999172+00:00"
+        "lastSeenAt": "2026-10-18T12:57:39.234539+00:00"
       },
       "collection:update-scpi.yml:transitions-europe": {
         "name": "Transitions Europe",
@@ -544,7 +540,7 @@
         "dataId": "transitions-europe",
         "id": "collection:update-scpi.yml:transitions-europe",
         "firstSeenAt": "2026-10-18T10:29:36.524873+00:00",
-        "lastSeenAt": "2026-10-18T12:56:03.999172+00:00"
+        "lastSeenAt": "2026-10-18T12:57:39.234539+00:00"
       },
       "publication:update-presentation-actors.yml": {
         "name": "Présentations des acteurs et offres",
@@ -560,7 +556,7 @@
         "cause": "deploy / browser-checks (0) : node scripts/playwright-tools.mjs — Échec sans message ; deploy / fallback-build : Run npm run build",
         "id": "publication:update-presentation-actors.yml",
         "firstSeenAt": "2026-10-18T12:56:03.999172+00:00",
-        "lastSeenAt": "2026-10-18T12:56:03.999172+00:00"
+        "lastSeenAt": "2026-10-18T12:57:39.234539+00:00"
       },
       "workflow:update-market-monthly.yml": {
         "name": "Historiques mensuels des marchés",
@@ -579,7 +575,7 @@
         "cause": "refresh : Validate observations: node scripts test-etf-tool-connections.mjs",
         "id": "workflow:update-market-monthly.yml",
         "firstSeenAt": "2026-10-18T11:43:35.606108+00:00",
-        "lastSeenAt": "2026-10-18T12:56:03.999172+00:00"
+        "lastSeenAt": "2026-10-18T12:57:39.234539+00:00"
       },
       "publication:update-company-analysis.yml": {
         "name": "Analyses d’entreprises",
@@ -595,7 +591,7 @@
         "cause": "deploy / build : Run npm run audit:instrument-listings ; deploy / fallback-build : Run npm run build ; report-failures : Run echo 'Some sources failed. Previous observations were retained independently; stale ratios are omitted by the publication engine.' >> \"$GITHUB_STEP_SUMMARY\"",
         "id": "publication:update-company-analysis.yml",
         "firstSeenAt": "2026-10-18T11:47:02.423295+00:00",
-        "lastSeenAt": "2026-10-18T12:56:03.999172+00:00"
+        "lastSeenAt": "2026-10-18T12:57:39.234539+00:00"
       },
       "publication:update-economic-data.yml": {
         "name": "Taux d’épargne, ménages, SCPI et fonds euros",
@@ -612,7 +608,7 @@
         "cause": "deploy / build : Run npm run audit:etf-annual-performance",
         "id": "publication:update-economic-data.yml",
         "firstSeenAt": "2026-10-17T12:18:32.387705+00:00",
-        "lastSeenAt": "2026-10-18T12:56:03.999172+00:00"
+        "lastSeenAt": "2026-10-18T12:57:39.234539+00:00"
       },
       "publication:update-qualified-exposures.yml": {
         "name": "Expositions ETF qualifiées",
@@ -632,7 +628,7 @@
         "cause": "deploy / build : Run npm run audit:calculator-series",
         "id": "publication:update-qualified-exposures.yml",
         "firstSeenAt": "2026-10-16T12:48:21.924866+00:00",
-        "lastSeenAt": "2026-10-18T12:56:03.999172+00:00"
+        "lastSeenAt": "2026-10-18T12:57:39.234539+00:00"
       },
       "collection:update-exposure-expansion.yml:etf-exposure-expansion-IE00BK1PV551": {
         "name": "Xtrackers MSCI World UCITS ETF 1D",
@@ -656,9 +652,9 @@
         "dataId": "etf-exposure-expansion-IE00BK1PV551",
         "id": "collection:update-exposure-expansion.yml:etf-exposure-expansion-IE00BK1PV551",
         "firstSeenAt": "2026-10-17T20:42:44.184725+00:00",
-        "lastSeenAt": "2026-10-18T12:56:03.999172+00:00"
+        "lastSeenAt": "2026-10-18T12:57:39.234539+00:00"
       },
-      "publication:update-instrument-metadata.yml": {
+      "workflow:update-instrument-metadata.yml": {
         "name": "Caractéristiques et statut PEA par ISIN",
         "tools": [
           "Présentation ETF",
@@ -668,14 +664,14 @@
         ],
         "impactScope": "collector",
         "workflow": "update-instrument-metadata.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39117281553",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39125084644",
         "to": "/donnees-a-revoir",
-        "kind": "publication",
-        "field": "Publication",
-        "cause": "deploy / build : Run npm run audit:instrument-listings ; deploy / fallback-build : Run npm run build",
-        "id": "publication:update-instrument-metadata.yml",
-        "firstSeenAt": "2026-10-18T10:33:45.298860+00:00",
-        "lastSeenAt": "2026-10-18T12:56:03.999172+00:00"
+        "kind": "collection",
+        "field": "Exécution du collecteur",
+        "cause": "refresh : Run npm run build && node scripts/test-full-auto-routing.mjs",
+        "id": "workflow:update-instrument-metadata.yml",
+        "firstSeenAt": "2026-10-18T12:57:39.234539+00:00",
+        "lastSeenAt": "2026-10-18T12:57:39.234539+00:00"
       },
       "unobserved:onboard-assets.yml": {
         "name": "Intégration des nouveaux actifs",
@@ -698,37 +694,10 @@
         "cause": "Aucune exécution terminée avec une date exploitable.",
         "id": "unobserved:onboard-assets.yml",
         "firstSeenAt": "2026-10-18T12:02:38.068054+00:00",
-        "lastSeenAt": "2026-10-18T12:56:03.999172+00:00"
+        "lastSeenAt": "2026-10-18T12:57:39.234539+00:00"
       }
     },
     "events": [
-      {
-        "revision": 77,
-        "at": "2026-10-17T18:30:51.229249+00:00",
-        "opened": [],
-        "resolved": [
-          {
-            "name": "Caractéristiques et statut PEA par ISIN",
-            "tools": [
-              "Présentation ETF",
-              "Comparatif ETF",
-              "Générateur",
-              "Portefeuille / DCA"
-            ],
-            "impactScope": "collector",
-            "workflow": "update-instrument-metadata.yml",
-            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39031768919",
-            "to": "/donnees-a-revoir",
-            "kind": "publication",
-            "field": "Publication",
-            "cause": "deploy / browser-checks (2) : Run node scripts/run-browser-checks.mjs 2 4 ; deploy / browser-checks (0) : Run node scripts/run-browser-checks.mjs 0 4 ; report-failures : Run exit 1",
-            "id": "publication:update-instrument-metadata.yml",
-            "firstSeenAt": "2026-10-17T12:52:22.886766+00:00",
-            "lastSeenAt": "2026-10-17T17:56:12.667792+00:00",
-            "resolvedAt": "2026-10-17T18:30:51.229249+00:00"
-          }
-        ]
-      },
       {
         "revision": 78,
         "at": "2026-10-17T20:32:19.770529+00:00",
@@ -1589,9 +1558,58 @@
           "publication:update-presentation-actors.yml"
         ],
         "resolved": []
+      },
+      {
+        "revision": 107,
+        "at": "2026-10-18T12:57:39.234539+00:00",
+        "opened": [
+          "workflow:update-instrument-metadata.yml"
+        ],
+        "resolved": [
+          {
+            "name": "Caractéristiques et statut PEA par ISIN",
+            "tools": [
+              "Présentation ETF",
+              "Comparatif ETF",
+              "Générateur",
+              "Portefeuille / DCA"
+            ],
+            "impactScope": "collector",
+            "workflow": "update-instrument-metadata.yml",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39117281553",
+            "to": "/donnees-a-revoir",
+            "kind": "publication",
+            "field": "Publication",
+            "cause": "deploy / build : Run npm run audit:instrument-listings ; deploy / fallback-build : Run npm run build",
+            "id": "publication:update-instrument-metadata.yml",
+            "firstSeenAt": "2026-10-18T10:33:45.298860+00:00",
+            "lastSeenAt": "2026-10-18T12:56:03.999172+00:00",
+            "resolvedAt": "2026-10-18T12:57:39.234539+00:00"
+          }
+        ]
       }
     ],
     "resolved": [
+      {
+        "name": "Caractéristiques et statut PEA par ISIN",
+        "tools": [
+          "Présentation ETF",
+          "Comparatif ETF",
+          "Générateur",
+          "Portefeuille / DCA"
+        ],
+        "impactScope": "collector",
+        "workflow": "update-instrument-metadata.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39117281553",
+        "to": "/donnees-a-revoir",
+        "kind": "publication",
+        "field": "Publication",
+        "cause": "deploy / build : Run npm run audit:instrument-listings ; deploy / fallback-build : Run npm run build",
+        "id": "publication:update-instrument-metadata.yml",
+        "firstSeenAt": "2026-10-18T10:33:45.298860+00:00",
+        "lastSeenAt": "2026-10-18T12:56:03.999172+00:00",
+        "resolvedAt": "2026-10-18T12:57:39.234539+00:00"
+      },
       {
         "name": "SEC · questions et réponses sur le formulaire 13F",
         "tools": [
@@ -3779,20 +3797,6 @@
         "field": "Poids du pays Singapore",
         "cause": "Valeur contradictoire pour la même période (2026-10-13) : Poids du pays Singapore. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Singapore:630657e8b950b3715e6c0f9a:2026-10-13).",
         "id": "radar:3c7344e46408f7e31e0db232",
-        "firstSeenAt": "2026-10-15T12:49:29.696670+00:00",
-        "lastSeenAt": "2026-10-15T17:57:53.913128+00:00",
-        "resolvedAt": "2026-10-15T17:58:10.525626+00:00"
-      },
-      {
-        "name": "IE000L6ZMMC4",
-        "tools": [],
-        "impactScope": "collector",
-        "sourceUrls": [],
-        "to": "/donnees-a-revoir",
-        "kind": "conflict",
-        "field": "Poids du pays Hong Kong",
-        "cause": "Valeur contradictoire pour la même période (2026-10-13) : Poids du pays Hong Kong. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Hong Kong:630657e8b950b3715e6c0f9a:2026-10-13).",
-        "id": "radar:cec755877d14c75d8f771a31",
         "firstSeenAt": "2026-10-15T12:49:29.696670+00:00",
         "lastSeenAt": "2026-10-15T17:57:53.913128+00:00",
         "resolvedAt": "2026-10-15T17:58:10.525626+00:00"
