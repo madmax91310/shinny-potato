@@ -215,33 +215,20 @@
     },
     "update-editorial-radar.yml": {
       "name": "Radar éditorial quotidien",
-      "runId": 39139621779,
+      "runId": 39140159568,
       "attempt": 1,
-      "completedAt": "2026-10-18T15:15:54Z",
-      "status": "failure",
-      "lastSuccessAt": "2026-10-18T15:14:39Z",
-      "collectionStatus": "failure",
+      "completedAt": "2026-10-18T15:22:55Z",
+      "status": "success",
+      "lastSuccessAt": "2026-10-18T15:22:55Z",
+      "collectionStatus": "success",
       "validationStatus": "unknown",
       "recordingStatus": "not-run",
       "publicationStatus": "not-run",
-      "lastCollectionSuccessAt": "2026-10-18T15:14:39Z",
+      "lastCollectionSuccessAt": "2026-10-18T15:22:55Z",
       "lastPublicationSuccessAt": null,
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39139621779",
-      "failures": [
-        {
-          "job": "report-failures",
-          "step": "Run echo 'Radar partiel : une famille de sources locales est illisible ; ses signaux précédents sont conservés. Voir editorial-radar-observations.' >> \"$GITHUB_STEP_SUMMARY\""
-        }
-      ],
-      "dataFailures": {
-        "radar:etf": {
-          "name": "Radar · etf",
-          "completedAt": "2026-10-18T15:15:54Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39139621779",
-          "cause": "La page de communiqués Vanguard a changé de format.",
-          "field": "Sources du radar"
-        }
-      }
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39140159568",
+      "failures": [],
+      "dataFailures": {}
     },
     "update-presentation-actors.yml": {
       "name": "Présentations des acteurs et offres",
@@ -436,11 +423,11 @@
       "failures": []
     }
   },
-  "updatedAt": "2026-10-18T15:22:05Z",
+  "updatedAt": "2026-10-18T15:22:55Z",
   "monitoring": {
     "schemaVersion": 1,
-    "checkedAt": "2026-10-18T15:22:24.093393+00:00",
-    "revision": 120,
+    "checkedAt": "2026-10-18T15:23:09.476126+00:00",
+    "revision": 121,
     "active": {
       "publication:update-practical-sheets.yml": {
         "name": "Sources des fiches pratiques",
@@ -456,26 +443,7 @@
         "cause": "deploy / build : Run node scripts/test-portfolio-roadmap.mjs",
         "id": "publication:update-practical-sheets.yml",
         "firstSeenAt": "2026-10-18T11:43:59.694981+00:00",
-        "lastSeenAt": "2026-10-18T15:22:24.093393+00:00"
-      },
-      "collection:update-editorial-radar.yml:radar:etf": {
-        "name": "Radar · etf",
-        "tools": [
-          "Radar éditorial"
-        ],
-        "impactScope": "collector",
-        "workflow": "update-editorial-radar.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39139621779",
-        "to": "/donnees-a-revoir",
-        "completedAt": "2026-10-18T15:15:54Z",
-        "cause": "La page de communiqués Vanguard a changé de format.",
-        "field": "Sources du radar",
-        "sourceUrls": [],
-        "kind": "collection",
-        "dataId": "radar:etf",
-        "id": "collection:update-editorial-radar.yml:radar:etf",
-        "firstSeenAt": "2026-10-18T15:16:12.214134+00:00",
-        "lastSeenAt": "2026-10-18T15:22:24.093393+00:00"
+        "lastSeenAt": "2026-10-18T15:23:09.476126+00:00"
       },
       "publication:update-publication-observations.yml": {
         "name": "Pouvoir d’achat et niveaux des anniversaires",
@@ -492,7 +460,7 @@
         "cause": "deploy / build : Run node scripts/test-portfolio-roadmap.mjs",
         "id": "publication:update-publication-observations.yml",
         "firstSeenAt": "2026-10-18T12:52:04.191577+00:00",
-        "lastSeenAt": "2026-10-18T15:22:24.093393+00:00"
+        "lastSeenAt": "2026-10-18T15:23:09.476126+00:00"
       },
       "publication:update-insurance.yml": {
         "name": "Présentations d’assurance-vie",
@@ -508,7 +476,7 @@
         "cause": "deploy / build : Run node scripts/test-portfolio-roadmap.mjs",
         "id": "publication:update-insurance.yml",
         "firstSeenAt": "2026-10-18T12:59:38.607258+00:00",
-        "lastSeenAt": "2026-10-18T15:22:24.093393+00:00"
+        "lastSeenAt": "2026-10-18T15:23:09.476126+00:00"
       },
       "publication:update-scpi.yml": {
         "name": "Présentations de SCPI",
@@ -524,7 +492,7 @@
         "cause": "deploy / build : Run node scripts/test-portfolio-roadmap.mjs",
         "id": "publication:update-scpi.yml",
         "firstSeenAt": "2026-10-18T13:01:05.329643+00:00",
-        "lastSeenAt": "2026-10-18T15:22:24.093393+00:00"
+        "lastSeenAt": "2026-10-18T15:23:09.476126+00:00"
       },
       "publication:update-presentation-actors.yml": {
         "name": "Présentations des acteurs et offres",
@@ -540,7 +508,7 @@
         "cause": "deploy / build : Run node scripts/test-portfolio-roadmap.mjs",
         "id": "publication:update-presentation-actors.yml",
         "firstSeenAt": "2026-10-18T12:56:03.999172+00:00",
-        "lastSeenAt": "2026-10-18T15:22:24.093393+00:00"
+        "lastSeenAt": "2026-10-18T15:23:09.476126+00:00"
       },
       "publication:update-regulatory-data.yml": {
         "name": "Paramètres fiscaux, LDDS et tarifs de courtiers",
@@ -557,7 +525,7 @@
         "cause": "deploy / build : Run node scripts/test-portfolio-roadmap.mjs",
         "id": "publication:update-regulatory-data.yml",
         "firstSeenAt": "2026-10-18T12:59:15.049897+00:00",
-        "lastSeenAt": "2026-10-18T15:22:24.093393+00:00"
+        "lastSeenAt": "2026-10-18T15:23:09.476126+00:00"
       },
       "workflow:update-company-analysis.yml": {
         "name": "Analyses d’entreprises",
@@ -573,7 +541,7 @@
         "cause": "report-failures : Run echo 'Some sources failed. Previous observations were retained independently; stale ratios are omitted by the publication engine.' >> \"$GITHUB_STEP_SUMMARY\"",
         "id": "workflow:update-company-analysis.yml",
         "firstSeenAt": "2026-10-18T14:47:12.930226+00:00",
-        "lastSeenAt": "2026-10-18T15:22:24.093393+00:00"
+        "lastSeenAt": "2026-10-18T15:23:09.476126+00:00"
       },
       "publication:update-economic-data.yml": {
         "name": "Taux d’épargne, ménages, SCPI et fonds euros",
@@ -590,7 +558,7 @@
         "cause": "deploy / build : Run node scripts/test-portfolio-roadmap.mjs",
         "id": "publication:update-economic-data.yml",
         "firstSeenAt": "2026-10-17T12:18:32.387705+00:00",
-        "lastSeenAt": "2026-10-18T15:22:24.093393+00:00"
+        "lastSeenAt": "2026-10-18T15:23:09.476126+00:00"
       },
       "publication:update-non-bond-expansion.yml": {
         "name": "Nouveaux actifs et historiques",
@@ -609,7 +577,7 @@
         "cause": "deploy / build : Run node scripts/test-portfolio-roadmap.mjs",
         "id": "publication:update-non-bond-expansion.yml",
         "firstSeenAt": "2026-10-18T12:58:02.935819+00:00",
-        "lastSeenAt": "2026-10-18T15:22:24.093393+00:00"
+        "lastSeenAt": "2026-10-18T15:23:09.476126+00:00"
       },
       "publication:update-qualified-exposures.yml": {
         "name": "Expositions ETF qualifiées",
@@ -629,7 +597,7 @@
         "cause": "deploy / build : Run node scripts/test-portfolio-roadmap.mjs ; deploy / fallback-build : Run npm run build",
         "id": "publication:update-qualified-exposures.yml",
         "firstSeenAt": "2026-10-16T12:48:21.924866+00:00",
-        "lastSeenAt": "2026-10-18T15:22:24.093393+00:00"
+        "lastSeenAt": "2026-10-18T15:23:09.476126+00:00"
       },
       "workflow:update-instrument-metadata.yml": {
         "name": "Caractéristiques et statut PEA par ISIN",
@@ -648,7 +616,7 @@
         "cause": "verify : Run node scripts/test-full-auto-routing.mjs",
         "id": "workflow:update-instrument-metadata.yml",
         "firstSeenAt": "2026-10-18T12:57:39.234539+00:00",
-        "lastSeenAt": "2026-10-18T15:22:24.093393+00:00"
+        "lastSeenAt": "2026-10-18T15:23:09.476126+00:00"
       },
       "unobserved:onboard-assets.yml": {
         "name": "Intégration des nouveaux actifs",
@@ -671,41 +639,10 @@
         "cause": "Aucune exécution terminée avec une date exploitable.",
         "id": "unobserved:onboard-assets.yml",
         "firstSeenAt": "2026-10-18T12:02:38.068054+00:00",
-        "lastSeenAt": "2026-10-18T15:22:24.093393+00:00"
+        "lastSeenAt": "2026-10-18T15:23:09.476126+00:00"
       }
     },
     "events": [
-      {
-        "revision": 91,
-        "at": "2026-10-18T09:30:21.314164+00:00",
-        "opened": [],
-        "resolved": [
-          {
-            "name": "Remake Live",
-            "tools": [
-              "Présentation de SCPI"
-            ],
-            "impactScope": "asset",
-            "workflow": "update-scpi.yml",
-            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39029586514",
-            "to": "/bibliotheque-donnees?id=scpi%3Aremake-live",
-            "completedAt": "2026-10-17T12:16:55Z",
-            "cause": "Missing current official bulletin",
-            "sourceUrls": [
-              "https://www.remake.fr/remake-live",
-              "https://www.remake.fr/wp-content/uploads/2026/08/Rapport-Annuel-Remake-Live-2025-1.pdf",
-              "https://www.remake.fr/wp-content/uploads/2026/08/remake-live-bulletin-information-30-07-2026.pdf"
-            ],
-            "kind": "collection",
-            "field": "Champs du collecteur",
-            "dataId": "remake-live",
-            "id": "collection:update-scpi.yml:remake-live",
-            "firstSeenAt": "2026-10-15T13:02:43.499914+00:00",
-            "lastSeenAt": "2026-10-18T09:21:17.464301+00:00",
-            "resolvedAt": "2026-10-18T09:30:21.314164+00:00"
-          }
-        ]
-      },
       {
         "revision": 92,
         "at": "2026-10-18T10:12:38.025789+00:00",
@@ -1547,9 +1484,56 @@
             "resolvedAt": "2026-10-18T15:21:07.791000+00:00"
           }
         ]
+      },
+      {
+        "revision": 121,
+        "at": "2026-10-18T15:23:09.476126+00:00",
+        "opened": [],
+        "resolved": [
+          {
+            "name": "Radar · etf",
+            "tools": [
+              "Radar éditorial"
+            ],
+            "impactScope": "collector",
+            "workflow": "update-editorial-radar.yml",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39139621779",
+            "to": "/donnees-a-revoir",
+            "completedAt": "2026-10-18T15:15:54Z",
+            "cause": "La page de communiqués Vanguard a changé de format.",
+            "field": "Sources du radar",
+            "sourceUrls": [],
+            "kind": "collection",
+            "dataId": "radar:etf",
+            "id": "collection:update-editorial-radar.yml:radar:etf",
+            "firstSeenAt": "2026-10-18T15:16:12.214134+00:00",
+            "lastSeenAt": "2026-10-18T15:22:24.093393+00:00",
+            "resolvedAt": "2026-10-18T15:23:09.476126+00:00"
+          }
+        ]
       }
     ],
     "resolved": [
+      {
+        "name": "Radar · etf",
+        "tools": [
+          "Radar éditorial"
+        ],
+        "impactScope": "collector",
+        "workflow": "update-editorial-radar.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39139621779",
+        "to": "/donnees-a-revoir",
+        "completedAt": "2026-10-18T15:15:54Z",
+        "cause": "La page de communiqués Vanguard a changé de format.",
+        "field": "Sources du radar",
+        "sourceUrls": [],
+        "kind": "collection",
+        "dataId": "radar:etf",
+        "id": "collection:update-editorial-radar.yml:radar:etf",
+        "firstSeenAt": "2026-10-18T15:16:12.214134+00:00",
+        "lastSeenAt": "2026-10-18T15:22:24.093393+00:00",
+        "resolvedAt": "2026-10-18T15:23:09.476126+00:00"
+      },
       {
         "name": "Xtrackers MSCI World UCITS ETF 1D",
         "tools": [
@@ -3792,20 +3776,6 @@
         "field": "Poids du pays United States",
         "cause": "Valeur contradictoire pour la même période (2026-10-13) : Poids du pays United States. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:United States:630657e8b950b3715e6c0f9a:2026-10-13).",
         "id": "radar:a45dfd74218c90971534b75e",
-        "firstSeenAt": "2026-10-15T12:49:29.696670+00:00",
-        "lastSeenAt": "2026-10-15T17:57:53.913128+00:00",
-        "resolvedAt": "2026-10-15T17:58:10.525626+00:00"
-      },
-      {
-        "name": "IE000L6ZMMC4",
-        "tools": [],
-        "impactScope": "collector",
-        "sourceUrls": [],
-        "to": "/donnees-a-revoir",
-        "kind": "conflict",
-        "field": "Poids du pays United Kingdom",
-        "cause": "Valeur contradictoire pour la même période (2026-10-13) : Poids du pays United Kingdom. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:United Kingdom:630657e8b950b3715e6c0f9a:2026-10-13).",
-        "id": "radar:745536af72c2010441cebb73",
         "firstSeenAt": "2026-10-15T12:49:29.696670+00:00",
         "lastSeenAt": "2026-10-15T17:57:53.913128+00:00",
         "resolvedAt": "2026-10-15T17:58:10.525626+00:00"
