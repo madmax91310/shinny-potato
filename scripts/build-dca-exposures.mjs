@@ -1,7 +1,7 @@
 import { deriveExposureSleeves } from './derive-exposure-sleeves.mjs'
 import { readFileSync, writeFileSync, existsSync } from 'node:fs'
 import { AUTOMATED_ETF } from '../src/data/automated-etf.js'
-import { qualifyExposureClassification } from '../src/lib/exposure-classification.js'
+import { selectDcaCountryObservation } from './select-dca-country-observation.mjs'
 import { PORTFOLIO_EXPOSURES } from '../src/data/portfolio-exposure-data.js'
 import { INSTRUMENT_LISTINGS_BY_ISIN } from '../src/data/instrument-listings.js'
 import { getInstrumentPeaStatus, getInstrumentName } from '../src/data/instruments.js'
@@ -46,17 +46,7 @@ const records = Object.fromEntries(Object.entries(allMapping).map(([asset,isin])
 
  for(const field of ['countries','sectors']){
   let observation=PORTFOLIO_EXPOSURES[isin]?.[field]
- // Prefer the same complete holdings-based country contract when a current,
- // non-negative alternative exists. Never relabel the published table as risk.
- if(field==='countries'){
-  const risk=AUTOMATED_ETF[isin]?.countriesRisk
-  const candidate=risk&&{...risk,provider:AUTOMATED_ETF[isin].provider,basis:'fund'}
-  const classification=candidate&&qualifyExposureClassification(candidate,'countries')
-  const sum=candidate?.rows?.reduce((s,r)=>s+r.weightPct,0)
-  if(classification?.id==='ishares-risk-net'&&(!observation||candidate.asOf>=observation.asOf)
-     &&sum>=99&&sum<=100.5&&candidate.rows.every(r=>Number.isFinite(r.weightPct)&&r.weightPct>=0))
-   observation={...candidate,classificationMetadata:classification}
- }
+ if(field==='countries')observation=selectDcaCountryObservation(observation,AUTOMATED_ETF[isin])
   if(chartSleeves[isin]?.[field])observation=chartSleeves[isin][field]
   if(!observation)continue
   if(synthetic&&observation.basis==='fund')continue // Never use a synthetic ETF's substitute basket as economic exposure.

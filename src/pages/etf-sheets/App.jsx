@@ -1,3 +1,5 @@
+import ChoicePicker from '../../design-system/ChoicePicker.jsx'
+import { annualPerformanceCurrencies } from '../../data/annual-performance-currency.js'
 import { metricCopy } from '../../data/etf-metric-copy.js'
 import { usePublicationPreference } from '../../lib/usePublicationPreference.js'
 import { notifyPublication, copyPublicationText, startPublicationDownload } from '../../design-system/publicationActions.js'
@@ -214,7 +216,14 @@ function EtfWorkspace({ search }) {
   const selectedRef = useRef(currentId)
   selectedRef.current = currentId
   useEffect(() => { setLightbox(null) }, [currentId])
-  const currentEtf = readSheetRecord(currentId)
+  const [currency, setCurrency] = usePublicationPreference('etf-performance-currency', 'native', value => ['native','EUR','USD'].includes(value))
+  const sourceEtf = readSheetRecord(currentId)
+  const currencies = annualPerformanceCurrencies(getAnnualPerformance(sourceEtf))
+  const effectiveCurrency = currencies.includes(currency) ? currency : 'native'
+  const currentEtf = { ...sourceEtf, performanceCurrency: effectiveCurrency }
+  const exportKey = `${currentId}:${effectiveCurrency}`
+  selectedRef.current = exportKey
+  useEffect(() => { setLightbox(null); setCopied(false) }, [exportKey])
   const performanceHref = getPerformanceHref(currentEtf.isin)
 
   const options = useMemo(() => OPTIONS, [])
@@ -251,7 +260,7 @@ function EtfWorkspace({ search }) {
     setImageError('')
     try {
       const canvas = await renderETFImage(currentEtf)
-      if (selectedRef.current !== currentEtf.id) return
+      if (selectedRef.current !== exportKey) return
       if (directDownload) downloadImage(canvas, `${currentEtf.id}-fiche-etf.png`)
       else setLightbox({ dataUrl: canvas.toDataURL('image/png'), filename: currentEtf.id + '-fiche-etf.png', title: currentEtf.name })
     } catch (error) {
@@ -281,6 +290,7 @@ function EtfWorkspace({ search }) {
             <div className="es-select-shell">
               <AssetPicker id="es-etf-select" className="es-select" label="Choisir un ETF" items={options} value={currentId} onChange={selectETF} selectOnGroupChange />
             </div>
+            <label>Devise des performances <ChoicePicker aria-label="Devise des performances" value={effectiveCurrency} onChange={e => setCurrency(e.target.value)}><option value="native">Devise d’origine</option>{currencies.map(c => <option key={c} value={c}>{c === 'EUR' ? 'Euros (EUR)' : 'Dollars (USD)'}</option>)}</ChoicePicker></label>
             <Button type="button" variant="secondary" onClick={pickRandom}>🔄 ETF aléatoire</Button>
             <AssetToolLinks isin={currentEtf.isin} exclude="sheet" />
             {performanceHref && <Button as={Link} to={performanceHref} variant="secondary">Voir sa performance</Button>}

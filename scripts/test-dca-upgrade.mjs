@@ -4,6 +4,17 @@ import {donutData,integerPercentages} from '../src/pages/dca-profiles/image.js'
 import {PROFILES} from '../src/pages/dca-profiles/data.js'
 import {prepareProfile,analyzeProfile,references} from '../src/pages/dca-profiles/engine.js'
 import {validSaved, filterProfiles,searchAssets,readSaved,writeSaved,SAVED_KEY} from '../src/pages/dca-profiles/management.js'
+import {selectDcaCountryObservation} from './select-dca-country-observation.mjs'
+const published={asOf:'2026-10-16',method:'Published geography'}
+const source={provider:'iShares',countriesRisk:{asOf:'2026-10-15',sourceUrl:'https://www.ishares.com/data',method:'Country of risk, all published holdings including cash/derivatives, no renormalisation',rows:[{name:'United States',weightPct:100}]}}
+const selectionDate=new Date('2026-10-18T12:00:00Z')
+const selected=selectDcaCountryObservation(published,source,selectionDate)
+assert.equal(selected.classificationMetadata.id,'ishares-risk-net')
+assert.equal(selected.asOf,'2026-10-15','A newer, different geography contract must not discard current risk-country data')
+assert.deepEqual(selected.rows,source.countriesRisk.rows)
+for(const change of [{asOf:'2020-01-01'},{asOf:'2026-10-19'},{asOf:'2026-02-31'},{method:'Unqualified geography'},{rows:[{name:'US',weightPct:90}]},{rows:[{name:'US',weightPct:101},{name:'Cash',weightPct:-1}]}]){
+ assert.equal(selectDcaCountryObservation(published,{...source,countriesRisk:{...source.countriesRisk,...change}},selectionDate),published,'Invalid, stale, incomplete or incompatible observations retain the published fallback')
+}
 const now=new Date('2026-10-15T12:00:00Z')
 const record=(asOf,compatibility='country-risk',rows=[{name:'United States',weightPct:100}])=>({countries:{asOf,compatibility,rows,basis:'fund',sourceUrl:'https://example.com/data'}})
 const lines=[{asset:'world',isin:'one',weight:60,label:'World'},{asset:'acwi',isin:'two',weight:30,label:'ACWI'},{asset:'gold',weight:10,label:'Or'}]

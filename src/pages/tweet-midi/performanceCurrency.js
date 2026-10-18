@@ -1,11 +1,12 @@
 import { conversionNote } from '../../lib/performance-conventions.js'
 import { calendarRate, convertCalendarReturn } from '../../data/calendar-fx.js'
+import { returnConvention } from '../../lib/return-convention.js'
 import official from '../../data/official-performance-currencies.json' with { type: 'json' }
 
 // Registered exact indices only. Never substitute an index for an ETF/share.
 function officialReturns({ asset, returns }, currency) {
   const record = official[asset.id]?.[currency]
-  if (!record || asset.currency !== 'USD' || asset.priceUnit !== 'points' || record.variant !== 'GRTR'
+  if (!record || asset.currency !== 'USD' || asset.priceUnit !== 'points' || record.variant !== returnConvention(asset)
     || record.currency !== currency || !record.sourceUrl || !record.asOf || !returns.length
     || !returns.every(row => Number.isFinite(record.annualReturns[row.year]))) return null
   return record
