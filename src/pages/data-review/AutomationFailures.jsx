@@ -35,7 +35,7 @@ export default function AutomationFailures() {
     return () => { active = false; clearInterval(timer); controller?.abort() }
   }, [])
   const rows = overview?.filter(row => filter === 'all' || row.state === filter) ?? []
-  return <><section className="dr-automation" aria-label="Bilan des collectes automatiques">
+  return <><MonitoringIncidents monitor={monitor} /><section className="dr-automation" aria-label="Bilan des collectes automatiques">
     <h2>Bilan des collectes automatiques</h2>
     <p className="dr-note">Les dates ci-dessous suivent les exécutions des collecteurs. Une collecte réussie peut conserver une valeur inchangée ; elle ne change pas la date de la donnée. La publication de l’application est suivie séparément. Les champs indisponibles figurent dans les réserves de cette page.</p>
     {!overview && !unavailable && <p role="status" className="dr-note">Chargement du bilan des collectes…</p>}
@@ -66,5 +66,5 @@ export default function AutomationFailures() {
         <div className="dr-links"><a href={alert.runUrl} target="_blank" rel="noreferrer">Voir la cause et le suivi ↗</a></div>
       </article>)}</div></section>}
     {unavailable && <p className="dr-note" role="status">Le suivi des automatisations est momentanément indisponible. Les éventuelles alertes affichées n’ont pas pu être revérifiées.</p>}
-  </section><AssetFieldCoverage /><MonitoringIncidents monitor={monitor} /></>
+  </section><AssetFieldCoverage /></>
 }
