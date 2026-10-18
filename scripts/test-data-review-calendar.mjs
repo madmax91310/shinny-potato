@@ -51,7 +51,7 @@ try {
   await page.waitForFunction(count => document.querySelectorAll('.data-review > .dr-list > .dr-item').length === count, quarterlyCount)
   assert.equal(await page.getByRole('link', { name: 'Ouvrir le portefeuille investisseur' }).count(), investorCount)
   await choose(page.getByLabel('Temporalité', { exact: true }), 'event')
-  await page.waitForFunction(() => document.querySelectorAll('.data-review > .dr-list > .dr-item').length === 3)
+  await page.waitForFunction(count => document.querySelectorAll('.data-review > .dr-list > .dr-item').length === count, offerCount)
   assert.equal(await page.getByText('Fin de l’offre', { exact: true }).count(), offerCount)
   await page.setViewportSize({ width: 390, height: 844 })
   assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth))
