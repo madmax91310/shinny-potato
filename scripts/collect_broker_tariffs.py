@@ -55,7 +55,7 @@ def parse(name, content, today, previous=None):
  for key,value in values.items():
   if not 0<=value<=(100000 if key=='threshold' else 100):raise ValueError('Tarif invalide')
  return {'values':values,'asOf':published,'checkedAt':today,'sourceUrl':SOURCES[name], 'scope':scope,
-  'page': next(i for i,p in enumerate(content.split('\f'),1) if ('Courtage Actions Euronext' if name == 'bourso' else 'TARIFS DE COURTAGE BOURSE') in p),
+  'page': next(i for i,p in enumerate(content.split('\f'),1) if ('Courtage Actions Euronext (Paris, Amsterdam, Bruxelles) et Horaires Etendus' if name == 'bourso' else 'TARIFS DE COURTAGE BOURSE') in p),
   'method':'Tableau de courtage de la brochure officielle ; forfait et marché exacts', 'sha256':hashlib.sha256(content.encode()).hexdigest()}
 def fetch_content(url):
  from broker_public_faq import PREFIX, read_answer
@@ -83,14 +83,14 @@ def fetch_content(url):
   if url==SUPPLEMENT_SOURCES['tr_pea_transfer'][2]:
    text=pdf_text(raw,crop=(0,300))
   elif 'cr882/' in url and 'CGL_CTO_PDF.pdf' in url:
-   # Article 20 continues from the bottom of column one into column two.
-   # Extract the three body columns separately: Poppler's raw reading order
-   # differs between versions. Exclude the repeating header/footer, then
-   # reassemble each physical page to preserve proof page numbers.
-   columns=[pdf_text(raw,crop=(x,70,181,666)).split('\f') for x in (17,199,381)]
-   if len({len(column) for column in columns})!=1:
-    raise ValueError('Pagination incohérente de la convention CTO régionale')
-   text='\f'.join('\n'.join(page) for page in zip(*columns))
+   text=pdf_text(raw)
+   # The current 45-page contract uses a single column (section 6.2).
+   # Keep its original pages; the old article 20 contract needs column repair.
+   if not ('CONVENTION DE COMPTE-TITRES ORDINAIRE' in text and '6.2 Les règlements en devises étrangères' in text):
+    columns=[pdf_text(raw,crop=(x,70,181,666)).split('\f') for x in (17,199,381)]
+    if len({len(column) for column in columns})!=1:
+     raise ValueError('Pagination incohérente de la convention CTO régionale')
+    text='\f'.join('\n'.join(page) for page in zip(*columns))
   else:
    text=pdf_text(raw)
  else:text=raw.decode('utf-8')

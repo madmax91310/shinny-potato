@@ -1,15 +1,15 @@
-# Champs restant à automatiser — 2026-10-17
+# Champs restant à automatiser — 2026-10-18
 
 Inventaire des champs réellement présents dans les observations actives. Couverture distincte de disponibilité réseau et de fraîcheur. Les catégories sont issues des qualifications de sources ; elles ne certifient pas un téléchargement réussi aujourd’hui.
 
 | Champ ETF/ETP | Présent / applicable | Non applicable | En attente | Non publié | À résoudre |
 |---|---:|---:|---:|---:|---:|
-| Frais | 244/244 | 0 | 0 | 0 | 0 |
-| Encours | 244/244 | 0 | 0 | 0 | 0 |
-| Calendrier annuel | 224/244 | 0 | 12 | 4 | 4 |
-| Pays | 215/222 | 22 | 0 | 6 | 1 |
-| Secteurs | 215/222 | 22 | 0 | 5 | 2 |
-| Positions pondérées | 218/222 | 22 | 0 | 0 | 4 |
+| Frais | 258/258 | 0 | 0 | 0 | 0 |
+| Encours | 258/258 | 0 | 0 | 0 | 0 |
+| Calendrier annuel | 238/258 | 0 | 12 | 4 | 4 |
+| Pays | 229/236 | 22 | 0 | 6 | 1 |
+| Secteurs | 229/236 | 22 | 0 | 5 | 2 |
+| Positions pondérées | 232/236 | 22 | 0 | 0 | 4 |
 
 ## Premiers calendriers des 12 parts récentes
 

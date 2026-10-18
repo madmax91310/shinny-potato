@@ -19,6 +19,11 @@ export function brokerProfile(id, observations = snapshot.brokers, today = new I
 export function applyBrokerProfile(broker, observations = snapshot.brokers) {
   const profile = brokerProfile(broker.id, observations);
   const result = {...broker, post:{...broker.post}, pea:{...broker.pea}};
+  const minimumOrder = observations[broker.id]?.fields?.minimumOrder;
+  if (minimumOrder) {
+    result.pointFaible = `Frais des fonds du plan automatique en supplément. ${minimumOrder.copy.full}`;
+    result.post.faibles = [result.pointFaible];
+  }
   for (const key of ['dca','ifu','garde','boursomarkets']) {
     const o = profile[key]; if (!o) continue;
     const text=o.copy.full;

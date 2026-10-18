@@ -263,7 +263,7 @@ for (const [id, observation] of Object.entries(BROKER_TARIFFS)) {
     refs:[{document,...(observation.page ? {page:observation.page} : {})}],automatedEvidence:observation};
   for (const [key,o] of Object.entries(observation.fields ?? {})) {
     const doc = fieldDocument(id,key); OFFICIAL_SOURCES[doc] = source(o);
-    if (key.startsWith('offer') || key==='directPrice') BROKER_EVIDENCE[id].frais.refs.push({document:doc});
+    if (key.startsWith('offer') || key==='directPrice' || key==='minimumOrder') BROKER_EVIDENCE[id].frais.refs.push({document:doc,...(o.page ? {page:o.page} : {})});
     if (['garde','change'].includes(key)) BROKER_EVIDENCE[id][key] = {
       status:id === 'ibkr' && key === 'change' ? 'partiel' : 'confirmé',summary:o.copy.full,
       ...(key === 'change' ? {post:o.copy.full} : {}),
