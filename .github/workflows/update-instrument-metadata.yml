@@ -57,6 +57,8 @@ jobs:
           retention-days: 14
       - run: python -m unittest discover -s scripts -p 'test*metadata*.py'
       - run: node scripts/test-automated-characteristics.mjs
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
       - run: sudo apt-get update && sudo apt-get install -y poppler-utils
       - run: node scripts/build-automation-targets.mjs
       - name: Observe representative source formats without changing registries
@@ -180,6 +182,7 @@ jobs:
           python-version: '3.12'
       - run: pip install beautifulsoup4==4.15.0
       - run: npm ci
+      - run: npx playwright install --with-deps chromium
       - run: sudo apt-get update && sudo apt-get install -y poppler-utils
       - run: node scripts/build-automation-targets.mjs
       - name: Collect exact metadata observations
