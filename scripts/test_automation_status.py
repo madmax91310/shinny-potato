@@ -5,6 +5,19 @@ from publish_automation_status import update_status, read_report, publication_su
 def run(id=1,conclusion='failure',workflow='update-economic-data.yml',**kwargs):
  return {'id':id,'path':'.github/workflows/'+workflow,'head_branch':'master','event':'schedule','status':'completed','conclusion':conclusion,'updated_at':f'2026-10-{id:02d}T10:00:00Z','html_url':f'https://github.com/test/repo/actions/runs/{id}',**kwargs}
 class StatusTests(unittest.TestCase):
+ def test_explicit_fresh_quarter_closes_only_its_own_incident(self):
+  def report(rows):return {'_collector':'company-universe-observation','companies':rows}
+  initial=update_status({},run(workflow='update-company-analysis.yml'),[],[report({
+      'a':{'quarter':'retained with original observation date; annual-only fallback'},
+      'b':{'quarter':'retained with original observation date; annual-only fallback'}})])
+  accounts_only=update_status(initial,run(2,workflow='update-company-analysis.yml'),[],[report({'a':{'accounts':'updated'}})])
+  failures=accounts_only['workflows']['update-company-analysis.yml']['dataFailures']
+  self.assertIn('company-universe-observation:a:quarter',failures)
+  recovered=update_status(accounts_only,run(3,workflow='update-company-analysis.yml'),[],[report({'a':{'accounts':'updated','quarter':'updated'}})])
+  failures=recovered['workflows']['update-company-analysis.yml']['dataFailures']
+  self.assertNotIn('company-universe-observation:a:quarter',failures)
+  self.assertIn('company-universe-observation:b:quarter',failures)
+
  def test_dca_equity_report_tracks_missing_and_recovered_classifications(self):
   report={'_collector':'dca-equities','updated':['airliquide'],'missing':['nintendo']}
   failed=update_status({},run(workflow='update-qualified-exposures.yml'),[],[report])

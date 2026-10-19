@@ -99,6 +99,8 @@ def collect(profile, old, now):
         item['accountsSourceKind'] = 'standardised-secondary' if secondary else 'sec'
         if secondary:item['accountsProvenance'] = secondary['provenance']
         status['accounts'] = 'updated'
+        if accounts.get('quarter') and not retained_quarter:
+            status['quarter'] = 'updated'
     except Exception as error:
         status['accounts'] = str(error)[:250]
     try:
@@ -175,3 +177,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+
