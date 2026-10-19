@@ -4,6 +4,7 @@ import {mkdir} from 'node:fs/promises'
 import {spawn} from 'node:child_process'
 import {chromium} from 'playwright'
 import {DEFAULT_THEMES} from '../src/data/etf-themes.js'
+import {getComparatifEtfText} from '../src/pages/tweet-midi/data/comparatifEtf.js'
 
 const metadata=JSON.parse(readFileSync('src/data/automated-instrument-metadata.json','utf8'))
 const comparison=DEFAULT_THEMES.find(theme=>theme.etfs.some(fund=>fund.isin==='IE00B4L5Y983'))
@@ -38,7 +39,7 @@ try {
   if(await page.getByRole('button',{name:'Aperçu',exact:true}).isVisible())await page.getByRole('button',{name:'Aperçu',exact:true}).click()
   await page.getByRole('tab',{name:'Texte',exact:true}).click()
   await page.waitForFunction(()=>document.querySelector('pre')?.textContent.includes('IE00B4L5Y983'))
-  assert((await page.locator('pre').innerText()).includes('Capitalisant'))
+  assert.equal((await page.locator('pre').innerText()).trim(),getComparatifEtfText(comparison.id).trim(),'The actual comparison follows its current source model and publication format')
   assert(await page.getByRole('button',{name:'Copier le texte',exact:true}).isEnabled())
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+2),false)
   await page.screenshot({path:`test-artifacts/metadata/comparison-${width}.png`,fullPage:true})
