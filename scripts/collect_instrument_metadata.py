@@ -48,20 +48,20 @@ def amundi_product(doc,isin):
     return product
 
 def dws_identity(body,isin):
-    # Scope identity and tables to the product's key facts. Related-share links in
-    # navigation can legitimately contain other ISINs, never used as product evidence.
-    from collect_dws_etf import items
-    facts={}
-    doc=json.loads(body)
-    product=doc.get('tealium',{}).get('attributes',{}).get('product_id')
-    if product is not None and product!=isin:raise ValueError('Wrong DWS page product')
-    section=doc['pdpResult']['pageSections']['keyFacts']
-    for item in items(section):
-        key=re.sub('<[^>]+>','',str(item['key']))
-        if key in ('ISIN','Income treatment','Fund domicile','Investment methodology'):
-            if key in facts:raise ValueError('Duplicate DWS exact-share characteristic')
-            facts[key]=item['value']
-    if facts.get('ISIN')!=isin:raise ValueError('Wrong DWS exact-share metadata')
+    # Product pages also contain holdings, collateral and suggested funds. Their ISINs
+    # are not identities of this share. Bind the exchange table to its own key facts.
+    doc=json.loads(body);page=doc.get('pdpResult',{})
+    facts=page.get('pageSections',{}).get('keyFacts',{})
+    basic=[item for item in facts.get('accordionItems',[]) if item.get('id')=='fundinformation-basicinformation']
+    if len(basic)!=1:raise ValueError('Missing or multiple DWS product identity sections')
+    identities=[item.get('value') for bundle in basic[0].get('listBundle',[]) for item in bundle.get('items',[]) if item.get('key')=='ISIN']
+    if not identities or any(value!=isin for value in identities):raise ValueError('Ambiguous listing document identity')
+    header=page.get('pageFrame',{}).get('productHeader',{}).get('identifier')
+    if header is not None:
+        header_ids=[item.get('value') for item in header if item.get('key')=='ISIN']
+        if not header_ids or any(value!=isin for value in header_ids):raise ValueError('Conflicting DWS product header identity')
+    product_id=doc.get('tealium',{}).get('attributes',{}).get('product_id')
+    if product_id is not None and product_id!=isin:raise ValueError('Conflicting DWS product identity')
     return facts
 
 def dws_tables(node):
@@ -113,7 +113,7 @@ def parse_text(text,isin):
       'distribution':r'(?:Use of (?:Income|Profits)|Income Treatment|Distribution Policy|Affectation des r[ée]sultats|Politique de distribution)\s*[:\n]?\s*(Accumulating|Distributing|Capitalisation|Distribution|Reinvestment)\b',
       'domicile':r'(?:Fund Domicile|Domicile|Domiciliation|Domicile du fonds)\s*[:\n]?\s*(Ireland|Irlande|Luxembourg|Germany|Allemagne|France|Jersey|(?:The )?Netherlands)\b',
       'replicationMethod':r'(?:Replication (?:Method|methodology)|M[ée]thode de r[ée]plication|Replication|R[ée]plication)\s*[:\n]?\s*(Physical(?:\s*\((?:Full replication|Optimised sampling)\))?|Synthetic|Physique|Synth[ée]tique|Direct Replication|Indirect\s*\(Swap Based\))\b',
-      'pea':r'(?:PEA eligibility|Eligible PEA|[ÉE]ligibilit[ée] (?:au )?PEA|[ÉE]ligibilit[ée] au plan d[’\x27]Epargne en Actions \(PEA\)|PEA berechtigt|[ÉE]ligible (?:au )?PEA|R[ée]gime fiscal PEA)\s*[:\n]?\s*(Yes|No|Oui|Non|Keine|Ja|Nein)\b',
+      'pea':r'(?:PEA eligibility|PEA Eligible|Eligible PEA|[ÉE]ligibilit[ée] (?:au )?PEA|[ÉE]ligibilit[ée] au plan d[’\x27]Epargne en Actions \(PEA\)|PEA berechtigt|[ÉE]ligible (?:au )?PEA|R[ée]gime fiscal PEA)\s*[:\n]?\s*(Yes|No|Oui|Non|Keine|Ja|Nein)\b',
       'currencyHedge':r'(?:Currency Hedged|Currency Hedge|Couverture de change|Couvert contre le risque de change)\s*[:\n]?\s*(Yes|No|Oui|Non)\b',
     }
     result={}
@@ -146,7 +146,14 @@ def parse_json(body,isin):
         mapping={'DISTRIBUTION_POLICY':'distribution','FUND_REPLICATION_METHODOLOGY':'replicationMethod'}
         return {field:facts[key] for key,field in mapping.items() if isinstance(facts.get(key),str) and facts[key]}
     if isinstance(doc,dict) and 'pdpResult' in doc:
-        facts=dws_identity(body,isin)
+        from collect_dws_etf import items
+        section=dws_identity(body,isin)
+        facts={}
+        for item in items(section):
+            key=re.sub('<[^>]+>','',str(item['key']))
+            if key in ('ISIN','Income treatment','Fund domicile','Investment methodology'):
+                if key in facts:raise ValueError('Duplicate DWS exact-share characteristic')
+                facts[key]=item['value']
         mapping={'Income treatment':'distribution','Fund domicile':'domicile','Investment methodology':'replicationMethod'}
         return {field:facts[key] for key,field in mapping.items() if isinstance(facts.get(key),str) and facts[key]}
     try:
@@ -159,6 +166,54 @@ def parse_json(body,isin):
 
 LISTING_HOSTS=set(json.loads((ROOT/'scripts/listing-source-hosts.json').read_text())['hosts'])
 
+def globalx_listing_rows(body, isin):
+    """Read only the trading table under the exact share heading, including streamed rows."""
+    from bs4 import BeautifulSoup
+    soup=BeautifulSoup(body,'html.parser')
+    # React streams table fragments outside their destination. Resolve only explicit
+    # fragment/placeholder pairs; never execute scripts or use neighbouring shares.
+    for fragment, placeholder in re.findall(r'\$RS\("(S:[a-zA-Z0-9]+)","(P:[a-zA-Z0-9]+)"\)',body.decode()):
+        target=soup.find_all(id=placeholder); parts=soup.find_all(id=fragment)
+        if len(target)!=1 or len(parts)!=1:raise ValueError('Ambiguous Global X streamed listing fragment')
+        for child in list(parts[0].contents):target[0].insert_before(child.extract())
+        target[0].decompose();parts[0].decompose()
+    headings=[h for h in soup.find_all('h2') if set(re.findall(r'\b[A-Z]{2}[A-Z0-9]{9}\d\b',h.get_text(' ',strip=True)))=={isin}]
+    if len(headings)!=1:raise ValueError('Missing or duplicate Global X exact-share trading heading')
+    section=headings[0].find_next_sibling()
+    if section is None or section.find('h2') or section.name=='h2':raise ValueError('Missing Global X adjacent trading section')
+    if set(re.findall(r'\b[A-Z]{2}[A-Z0-9]{9}\d\b',section.get_text(' ',strip=True)))-{isin}:raise ValueError('Mixed Global X trading shares')
+    tables=[section] if section.name=='table' else section.find_all('table')
+    if len(tables)!=1:raise ValueError('Ambiguous Global X trading table')
+    headers=[c.get_text(' ',strip=True) for c in tables[0].find_all('th')]
+    if headers[:3]!=['Exchange','Trading Currency','Ticker']:raise ValueError('Unsupported Global X trading columns')
+    markets={**EXCHANGE_MICS,'Deutsche Börse Xetra':'XETR'}
+    rows=[]
+    for tr in tables[0].find_all('tr'):
+        cells=[c.get_text(' ',strip=True) for c in tr.find_all('td',recursive=False)]
+        if not cells:continue
+        if len(cells)!=len(headers):raise ValueError('Incomplete Global X trading row')
+        mic=markets.get(cells[0]);ticker=cells[2].split()[0]
+        if not mic or not re.fullmatch(r'[A-Z]{3}',cells[1]) or not re.fullmatch(r'[A-Za-z0-9]+',ticker):continue
+        rows.append(dict(ticker=ticker,mic=mic,exchange=CANONICAL_EXCHANGES[mic],currency=cells[1],excerpt=isin+' | '+' | '.join(cells[:5])))
+    return rows
+
+def vanguard_listing_rows(text, isin):
+    if set(re.findall(r'\b[A-Z]{2}[A-Z0-9]{9}\d\b',text))!={isin}:raise ValueError('Ambiguous Vanguard exact share')
+    block=re.search(r'Key ETF facts\s+Exchange ticker\s+SEDOL\s+Reuters\s+Bloomberg[^\n]*\n(.*?)\n\s*Base currency\b',text,re.S)
+    if not block:return []
+    venues={'London Stock Exchange':('XLON','L'),'SIX Swiss Exchange':('XSWX','S'),
+            'NYSE Euronext':('XAMS','AS'),'Euronext':('XAMS','AS'),
+            'Deutsche Börse':('XETR','DE'),'Borsa Italiana S.p.A.':('ETFP','MI')}
+    venue=None;venue_label=None;rows=[]
+    for line in block[1].splitlines():
+        if not line.strip():continue
+        if line.strip() in venues:venue=venues[line.strip()];venue_label=line.strip();continue
+        match=re.fullmatch(r'\s*([A-Z]{3})\s+([A-Z0-9]+)\s+([A-Z0-9]{7})\s+([A-Z0-9]+\.([A-Z]+))\s+.*',line)
+        if not match:venue=None;continue
+        if not venue or match[5]!=venue[1]:raise ValueError('Vanguard venue and Reuters suffix disagree')
+        rows.append(dict(ticker=match[2],mic=venue[0],exchange=CANONICAL_EXCHANGES[venue[0]],currency=match[1],symbol=match[4],excerpt=isin+' | '+venue_label+' '+' '.join(line.split())))
+    return rows
+
 def parse_listings(body,source,url,checked):
     if 'www.justetf.com/' in url:return []  # Listings require an issuer or exchange row, not a specialist profile alone.
     # Mirrors (fund-data platforms, document aggregators) may describe a fund but are not listing evidence.
@@ -166,6 +221,11 @@ def parse_listings(body,source,url,checked):
     if urlsplit(url).scheme!='https' or urlsplit(url).hostname not in LISTING_HOSTS:return []
     isin=source['isin'];digest=hashlib.sha256(body).hexdigest();rows=[]
     markets=EXCHANGE_MICS
+    if urlsplit(url).hostname=='globalxetfs.eu' and not body.startswith(b'%PDF-'):
+        return [r|{'sourceUrl':url,'checkedAt':checked,'sha256':digest,'evidenceId':f"{isin}-{r['mic']}-{r['ticker']}-{r['currency']}"} for r in globalx_listing_rows(body,isin)]
+    if urlsplit(url).hostname=='fund-docs.vanguard.com' and body.startswith(b'%PDF-'):
+        rows=vanguard_listing_rows(text_of(body),isin)
+        if rows:return [r|{'sourceUrl':url,'checkedAt':checked,'sha256':digest,'evidenceId':f"{isin}-{r['mic']}-{r['ticker']}-{r['currency']}"} for r in rows]
     if body.lstrip().startswith(b'{'):
         doc=json.loads(body)
         if isinstance(doc,dict) and 'products' in doc:
@@ -175,8 +235,10 @@ def parse_listings(body,source,url,checked):
                 rows.append(dict(ticker=bloomberg[0],mic=mic,exchange=CANONICAL_EXCHANGES[mic],currency=currency,symbol=symbol,excerpt=' | '.join([isin,row['exchangePlace'],row['ticker'],currency,symbol])))
             return [r|{'sourceUrl':url,'checkedAt':checked,'sha256':digest,'evidenceId':f"{isin}-{r['mic']}-{r['ticker']}-{r['currency']}"} for r in rows]
         if isinstance(doc,dict) and 'pdpResult' in doc:
-            dws_identity(body,isin)
-            for values in dws_tables(doc['pdpResult']['pageSections']['keyFacts']):
+            facts=dws_identity(body,isin)
+            trading=[item for item in facts.get('accordionItems',[]) if item.get('id')=='fundinformation-tradinginformation']
+            if len(trading)!=1:raise ValueError('Missing or multiple DWS product trading sections')
+            for values in dws_tables(trading[0]):
                 for row in values:
                     cell=lambda key:(row.get(key) or {}).get('value') if isinstance(row.get(key),dict) else None
                     mic=markets.get(cell('StockExchange'));currency=cell('Currency');bloomberg=str(cell('BloombergTicker') or '').split();symbol=cell('ReutersRic')
@@ -212,7 +274,7 @@ def parse_listings(body,source,url,checked):
         # Issuer factsheets abbreviate or capitalise the venues (BNP: « EURONEXT P », « SIX SWISS » ; DWS: « XETRA » ;
         # VanEck: « LONDON STOCK EXCHANGE », and Xetra as « DEUTSCHE BÖRSE », Bloomberg suffix GY). Exact labels only:
         # a case-insensitive « LSE » would match « else » or « false ».
-        aliases={'XLON':['London Stock Exchange','LONDON STOCK EXCHANGE','LSE'],'XPAR':['Euronext Paris','EURONEXT P','Euronext (FR)'],'XAMS':['Euronext Amsterdam','EURONEXT A'],'ETFP':['Borsa Italiana','BORSA ITALIANA'],'XETR':['Xetra','XETRA','Deutsche Börse','DEUTSCHE BÖRSE'],'XSWX':['SIX Swiss Exchange','SIX Swiss','SIX SWISS']}
+        aliases={'XLON':['London Stock Exchange','LONDON STOCK EXCHANGE','LSE'],'XPAR':['Euronext Paris','EURONEXT P','Euronext (FR)','Euronext(FR)'],'XAMS':['Euronext Amsterdam','EURONEXT A'],'ETFP':['Borsa Italiana','BORSA ITALIANA'],'XETR':['Xetra','XETRA','Deutsche Börse','DEUTSCHE BÖRSE'],'XSWX':['SIX Swiss Exchange','SIX Swiss','SIX SWISS']}
         for listing in source.get('listings',[]):
             for block in blocks:
                 venue=any(m in block for m in aliases.get(listing['mic'],[listing['exchange']]))

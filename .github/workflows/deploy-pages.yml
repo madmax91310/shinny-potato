@@ -161,7 +161,8 @@ jobs:
       - run: node scripts/test-monthly-consumers.mjs
       - run: node scripts/test-equity-monthly.mjs
       - run: node scripts/test-investment-crisis.mjs
-      - run: node scripts/test-etf-tool-connections.mjs
+      # Derive shortcuts from this snapshot before testing newly qualified histories.
+      - run: node scripts/build-performance-links.mjs && node scripts/test-etf-tool-connections.mjs
       - run: node scripts/test-investment-conclusions.mjs
       - run: node scripts/test-anniversary-indices.mjs
       - run: node scripts/test-existing-asset-formats.mjs

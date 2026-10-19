@@ -1,11 +1,11 @@
 {
   "IE00B4L5Y983": {
-    "checkedAt": "2026-10-19T04:47:28.883455+00:00",
+    "checkedAt": "2026-10-19T05:10:08.712088+00:00",
     "observed": [
       "distribution",
       "domicile",
-      "listings",
-      "replicationMethod"
+      "replicationMethod",
+      "listings"
     ],
     "pending": [
       "pea",
@@ -44,7 +44,7 @@
     "errors": []
   },
   "FR0011550193": {
-    "checkedAt": "2026-10-19T04:47:28.883455+00:00",
+    "checkedAt": "2026-10-19T05:10:08.712088+00:00",
     "observed": [
       "domicile",
       "distribution",
@@ -346,30 +346,25 @@
     "errors": []
   },
   "IE00B3XXRP09": {
-    "checkedAt": "2026-10-18T21:01:40.042807+00:00",
-    "observed": [],
+    "checkedAt": "2026-10-19T05:16:45.684567+00:00",
+    "observed": [
+      "listings"
+    ],
     "pending": [
       "distribution",
       "domicile",
       "replicationMethod",
       "pea",
-      "currencyHedge",
-      "listings"
+      "currencyHedge"
     ],
     "firstPendingAt": {
       "distribution": "2026-10-18T19:31:40.807499+00:00",
       "domicile": "2026-10-18T19:31:40.807499+00:00",
       "replicationMethod": "2026-10-18T19:31:40.807499+00:00",
       "pea": "2026-10-18T19:31:40.807499+00:00",
-      "currencyHedge": "2026-10-18T19:31:40.807499+00:00",
-      "listings": "2026-10-18T19:31:40.807499+00:00"
+      "currencyHedge": "2026-10-18T19:31:40.807499+00:00"
     },
-    "errors": [
-      {
-        "sourceUrl": "https://fund-docs.vanguard.com/SandP_500_UCITS_ETF_USD_Distributing_9503_EU_INT_UK_EN.pdf",
-        "error": "No explicit supported metadata fields"
-      }
-    ]
+    "errors": []
   },
   "IE00BKWQ0Q14": {
     "checkedAt": "2026-10-18T21:01:40.042807+00:00",
@@ -488,23 +483,23 @@
     "errors": []
   },
   "IE00BLCHJB90": {
-    "checkedAt": "2026-10-18T21:01:40.042807+00:00",
-    "observed": [],
+    "checkedAt": "2026-10-19T05:15:57.555154+00:00",
+    "observed": [
+      "listings"
+    ],
     "pending": [
       "distribution",
       "domicile",
       "replicationMethod",
       "pea",
-      "currencyHedge",
-      "listings"
+      "currencyHedge"
     ],
     "firstPendingAt": {
       "distribution": "2026-10-18T19:31:40.807499+00:00",
       "domicile": "2026-10-18T19:31:40.807499+00:00",
       "replicationMethod": "2026-10-18T19:31:40.807499+00:00",
       "pea": "2026-10-18T19:31:40.807499+00:00",
-      "currencyHedge": "2026-10-18T19:31:40.807499+00:00",
-      "listings": "2026-10-18T19:31:40.807499+00:00"
+      "currencyHedge": "2026-10-18T19:31:40.807499+00:00"
     },
     "errors": [
       {
@@ -514,23 +509,23 @@
     ]
   },
   "IE000NDWFGA5": {
-    "checkedAt": "2026-10-18T21:01:40.042807+00:00",
-    "observed": [],
+    "checkedAt": "2026-10-19T05:15:57.555154+00:00",
+    "observed": [
+      "listings"
+    ],
     "pending": [
       "distribution",
       "domicile",
       "replicationMethod",
       "pea",
-      "currencyHedge",
-      "listings"
+      "currencyHedge"
     ],
     "firstPendingAt": {
       "distribution": "2026-10-18T19:31:40.807499+00:00",
       "domicile": "2026-10-18T19:31:40.807499+00:00",
       "replicationMethod": "2026-10-18T19:31:40.807499+00:00",
       "pea": "2026-10-18T19:31:40.807499+00:00",
-      "currencyHedge": "2026-10-18T19:31:40.807499+00:00",
-      "listings": "2026-10-18T19:31:40.807499+00:00"
+      "currencyHedge": "2026-10-18T19:31:40.807499+00:00"
     },
     "errors": [
       {
@@ -540,23 +535,23 @@
     ]
   },
   "IE00BMH5Y871": {
-    "checkedAt": "2026-10-18T21:01:40.042807+00:00",
-    "observed": [],
+    "checkedAt": "2026-10-19T05:15:57.555154+00:00",
+    "observed": [
+      "listings"
+    ],
     "pending": [
       "distribution",
       "domicile",
       "replicationMethod",
       "pea",
-      "currencyHedge",
-      "listings"
+      "currencyHedge"
     ],
     "firstPendingAt": {
       "distribution": "2026-10-18T19:31:40.807499+00:00",
       "domicile": "2026-10-18T19:31:40.807499+00:00",
       "replicationMethod": "2026-10-18T19:31:40.807499+00:00",
       "pea": "2026-10-18T19:31:40.807499+00:00",
-      "currencyHedge": "2026-10-18T19:31:40.807499+00:00",
-      "listings": "2026-10-18T19:31:40.807499+00:00"
+      "currencyHedge": "2026-10-18T19:31:40.807499+00:00"
     },
     "errors": [
       {
@@ -584,134 +579,109 @@
     "errors": []
   },
   "IE00BK5BQX27": {
-    "checkedAt": "2026-10-18T21:01:40.042807+00:00",
-    "observed": [],
+    "checkedAt": "2026-10-19T05:16:45.684567+00:00",
+    "observed": [
+      "listings"
+    ],
     "pending": [
       "distribution",
       "domicile",
       "replicationMethod",
       "pea",
-      "currencyHedge",
-      "listings"
+      "currencyHedge"
     ],
     "firstPendingAt": {
       "distribution": "2026-10-18T19:31:40.807499+00:00",
       "domicile": "2026-10-18T19:31:40.807499+00:00",
       "replicationMethod": "2026-10-18T19:31:40.807499+00:00",
       "pea": "2026-10-18T19:31:40.807499+00:00",
-      "currencyHedge": "2026-10-18T19:31:40.807499+00:00",
-      "listings": "2026-10-18T19:31:40.807499+00:00"
+      "currencyHedge": "2026-10-18T19:31:40.807499+00:00"
     },
-    "errors": [
-      {
-        "sourceUrl": "https://fund-docs.vanguard.com/FTSE_Developed_Europe_UCITS_ETF_EUR_Accumulating_9681_EU_INT_UK_EN.pdf",
-        "error": "No explicit supported metadata fields"
-      }
-    ]
+    "errors": []
   },
   "IE00B945VV12": {
-    "checkedAt": "2026-10-18T21:01:40.042807+00:00",
-    "observed": [],
+    "checkedAt": "2026-10-19T05:16:45.684567+00:00",
+    "observed": [
+      "listings"
+    ],
     "pending": [
       "distribution",
       "domicile",
       "replicationMethod",
       "pea",
-      "currencyHedge",
-      "listings"
+      "currencyHedge"
     ],
     "firstPendingAt": {
       "distribution": "2026-10-18T19:31:40.807499+00:00",
       "domicile": "2026-10-18T19:31:40.807499+00:00",
       "replicationMethod": "2026-10-18T19:31:40.807499+00:00",
       "pea": "2026-10-18T19:31:40.807499+00:00",
-      "currencyHedge": "2026-10-18T19:31:40.807499+00:00",
-      "listings": "2026-10-18T19:31:40.807499+00:00"
+      "currencyHedge": "2026-10-18T19:31:40.807499+00:00"
     },
-    "errors": [
-      {
-        "sourceUrl": "https://fund-docs.vanguard.com/FTSE_Developed_Europe_UCITS_ETF_EUR_Distributing_9520_EU_INT_UK_EN.pdf",
-        "error": "No explicit supported metadata fields"
-      }
-    ]
+    "errors": []
   },
   "IE00B3RBWM25": {
-    "checkedAt": "2026-10-18T21:01:40.042807+00:00",
-    "observed": [],
+    "checkedAt": "2026-10-19T05:16:45.684567+00:00",
+    "observed": [
+      "listings"
+    ],
     "pending": [
       "distribution",
       "domicile",
       "replicationMethod",
       "pea",
-      "currencyHedge",
-      "listings"
+      "currencyHedge"
     ],
     "firstPendingAt": {
       "distribution": "2026-10-18T19:31:40.807499+00:00",
       "domicile": "2026-10-18T19:31:40.807499+00:00",
       "replicationMethod": "2026-10-18T19:31:40.807499+00:00",
       "pea": "2026-10-18T19:31:40.807499+00:00",
-      "currencyHedge": "2026-10-18T19:31:40.807499+00:00",
-      "listings": "2026-10-18T19:31:40.807499+00:00"
+      "currencyHedge": "2026-10-18T19:31:40.807499+00:00"
     },
-    "errors": [
-      {
-        "sourceUrl": "https://fund-docs.vanguard.com/FTSE_All-World_UCITS_ETF_USD_Distributing_9505_EU_INT_UK_EN.pdf",
-        "error": "No explicit supported metadata fields"
-      }
-    ]
+    "errors": []
   },
   "IE00BK5BQV03": {
-    "checkedAt": "2026-10-18T21:01:40.042807+00:00",
-    "observed": [],
+    "checkedAt": "2026-10-19T05:16:45.684567+00:00",
+    "observed": [
+      "listings"
+    ],
     "pending": [
       "distribution",
       "domicile",
       "replicationMethod",
       "pea",
-      "currencyHedge",
-      "listings"
+      "currencyHedge"
     ],
     "firstPendingAt": {
       "distribution": "2026-10-18T19:31:40.807499+00:00",
       "domicile": "2026-10-18T19:31:40.807499+00:00",
       "replicationMethod": "2026-10-18T19:31:40.807499+00:00",
       "pea": "2026-10-18T19:31:40.807499+00:00",
-      "currencyHedge": "2026-10-18T19:31:40.807499+00:00",
-      "listings": "2026-10-18T19:31:40.807499+00:00"
+      "currencyHedge": "2026-10-18T19:31:40.807499+00:00"
     },
-    "errors": [
-      {
-        "sourceUrl": "https://fund-docs.vanguard.com/FTSE_Developed_World_UCITS_ETF_USD_Accumulating_9675_EU_INT_UK_EN.pdf",
-        "error": "No explicit supported metadata fields"
-      }
-    ]
+    "errors": []
   },
   "IE00BFMXXD54": {
-    "checkedAt": "2026-10-18T21:01:40.042807+00:00",
-    "observed": [],
+    "checkedAt": "2026-10-19T05:16:45.684567+00:00",
+    "observed": [
+      "listings"
+    ],
     "pending": [
       "distribution",
       "domicile",
       "replicationMethod",
       "pea",
-      "currencyHedge",
-      "listings"
+      "currencyHedge"
     ],
     "firstPendingAt": {
       "distribution": "2026-10-18T19:31:40.807499+00:00",
       "domicile": "2026-10-18T19:31:40.807499+00:00",
       "replicationMethod": "2026-10-18T19:31:40.807499+00:00",
       "pea": "2026-10-18T19:31:40.807499+00:00",
-      "currencyHedge": "2026-10-18T19:31:40.807499+00:00",
-      "listings": "2026-10-18T19:31:40.807499+00:00"
+      "currencyHedge": "2026-10-18T19:31:40.807499+00:00"
     },
-    "errors": [
-      {
-        "sourceUrl": "https://fund-docs.vanguard.com/SandP_500_UCITS_ETF_USD_Accumulating_9694_EU_INT_UK_EN.pdf",
-        "error": "No explicit supported metadata fields"
-      }
-    ]
+    "errors": []
   },
   "IE00BMC38736": {
     "checkedAt": "2026-10-18T21:01:40.042807+00:00",
@@ -1494,12 +1464,12 @@
     "errors": []
   },
   "IE00B3FH7618": {
-    "checkedAt": "2026-10-19T04:47:28.883455+00:00",
+    "checkedAt": "2026-10-19T05:10:08.712088+00:00",
     "observed": [
       "distribution",
       "domicile",
-      "listings",
-      "replicationMethod"
+      "replicationMethod",
+      "listings"
     ],
     "pending": [
       "pea",
@@ -1521,12 +1491,12 @@
     ]
   },
   "IE00BDBRDM35": {
-    "checkedAt": "2026-10-19T04:47:28.883455+00:00",
+    "checkedAt": "2026-10-19T05:10:08.712088+00:00",
     "observed": [
       "distribution",
       "domicile",
-      "listings",
-      "replicationMethod"
+      "replicationMethod",
+      "listings"
     ],
     "pending": [
       "pea",
@@ -1539,12 +1509,12 @@
     "errors": []
   },
   "IE00BZCQB185": {
-    "checkedAt": "2026-10-19T04:47:28.883455+00:00",
+    "checkedAt": "2026-10-19T05:10:08.712088+00:00",
     "observed": [
       "distribution",
       "domicile",
-      "listings",
-      "replicationMethod"
+      "replicationMethod",
+      "listings"
     ],
     "pending": [
       "pea",
@@ -1593,12 +1563,12 @@
     "errors": []
   },
   "IE00B0M62X26": {
-    "checkedAt": "2026-10-19T04:47:28.883455+00:00",
+    "checkedAt": "2026-10-19T05:10:08.712088+00:00",
     "observed": [
       "distribution",
       "domicile",
-      "listings",
-      "replicationMethod"
+      "replicationMethod",
+      "listings"
     ],
     "pending": [
       "pea",
@@ -1863,12 +1833,12 @@
     "errors": []
   },
   "IE00BMG6Z448": {
-    "checkedAt": "2026-10-19T04:47:28.883455+00:00",
+    "checkedAt": "2026-10-19T05:10:08.712088+00:00",
     "observed": [
       "distribution",
       "domicile",
-      "listings",
-      "replicationMethod"
+      "replicationMethod",
+      "listings"
     ],
     "pending": [
       "pea",
@@ -2175,12 +2145,12 @@
     "errors": []
   },
   "IE00BLNMYC90": {
-    "checkedAt": "2026-10-19T04:47:28.883455+00:00",
+    "checkedAt": "2026-10-19T05:10:08.712088+00:00",
     "observed": [
       "distribution",
       "domicile",
-      "listings",
-      "replicationMethod"
+      "replicationMethod",
+      "listings"
     ],
     "pending": [
       "pea",
@@ -2192,26 +2162,26 @@
     },
     "errors": [
       {
-        "sourceUrl": "https://www.zonebourse.com/cours/etf/XTRACKERS-S-P-500-EQUAL-W-122801274/composition/",
-        "error": "No explicit supported metadata fields"
-      },
-      {
         "sourceUrl": "https://etf.dws.com/en-ch/IE00BLNMYC90-s-p-500-equal-weight-ucits-etf-1c/",
         "error": "Missing or multiple exact-share identities in metadata document"
       },
       {
         "sourceUrl": "https://etf.dws.com/en-ch/IE00BLNMYC90-s-p-500-equal-weight-ucits-etf-1c/",
         "error": "Missing listing document identity"
+      },
+      {
+        "sourceUrl": "https://www.zonebourse.com/cours/etf/XTRACKERS-S-P-500-EQUAL-W-122801274/composition/",
+        "error": "No explicit supported metadata fields"
       }
     ]
   },
   "IE0006WW1TQ4": {
-    "checkedAt": "2026-10-19T04:47:28.883455+00:00",
+    "checkedAt": "2026-10-19T05:10:08.712088+00:00",
     "observed": [
       "distribution",
       "domicile",
-      "listings",
-      "replicationMethod"
+      "replicationMethod",
+      "listings"
     ],
     "pending": [
       "pea",
@@ -2227,18 +2197,26 @@
         "error": "Missing or multiple exact-share identities in metadata document"
       },
       {
+        "sourceUrl": "https://etf.dws.com/fr-fr/AssetDownload/Index/410e8206-23cd-463b-b2a5-6018bfc1fd32/Factsheet.pdf",
+        "error": "No explicit supported metadata fields"
+      },
+      {
         "sourceUrl": "https://etf.dws.com/download/asset/82292b8e-bf9e-44f2-b20d-722c743110a3",
         "error": "Missing or multiple exact-share identities in metadata document"
+      },
+      {
+        "sourceUrl": "https://etf.dws.com/download/asset/82292b8e-bf9e-44f2-b20d-722c743110a3",
+        "error": "No explicit supported metadata fields"
       }
     ]
   },
   "LU0290358497": {
-    "checkedAt": "2026-10-19T04:47:28.883455+00:00",
+    "checkedAt": "2026-10-19T05:10:08.712088+00:00",
     "observed": [
       "distribution",
       "domicile",
-      "listings",
-      "replicationMethod"
+      "replicationMethod",
+      "listings"
     ],
     "pending": [
       "pea",
@@ -2252,6 +2230,10 @@
       {
         "sourceUrl": "https://etf.agefi.fr/etf/XEON",
         "error": "Missing or multiple exact-share identities in metadata document"
+      },
+      {
+        "sourceUrl": "https://etf.agefi.fr/etf/XEON",
+        "error": "No explicit supported metadata fields"
       }
     ]
   },
@@ -2387,11 +2369,11 @@
     "errors": []
   },
   "IE00BK5BQT80": {
-    "checkedAt": "2026-10-19T04:47:28.883455+00:00",
+    "checkedAt": "2026-10-19T05:16:45.684567+00:00",
     "observed": [
+      "listings",
       "distribution",
       "domicile",
-      "listings",
       "replicationMethod"
     ],
     "pending": [
@@ -2405,11 +2387,11 @@
     "errors": []
   },
   "IE00BK5BR626": {
-    "checkedAt": "2026-10-19T04:47:28.883455+00:00",
+    "checkedAt": "2026-10-19T05:16:45.684567+00:00",
     "observed": [
+      "listings",
       "distribution",
       "domicile",
-      "listings",
       "replicationMethod"
     ],
     "pending": [
@@ -2423,11 +2405,11 @@
     "errors": []
   },
   "IE00B8GKDB10": {
-    "checkedAt": "2026-10-19T04:47:28.883455+00:00",
+    "checkedAt": "2026-10-19T05:16:45.684567+00:00",
     "observed": [
+      "listings",
       "distribution",
       "domicile",
-      "listings",
       "replicationMethod"
     ],
     "pending": [
@@ -2441,11 +2423,11 @@
     "errors": []
   },
   "IE00BK5BR733": {
-    "checkedAt": "2026-10-19T04:47:28.883455+00:00",
+    "checkedAt": "2026-10-19T05:16:45.684567+00:00",
     "observed": [
+      "listings",
       "distribution",
       "domicile",
-      "listings",
       "replicationMethod"
     ],
     "pending": [
@@ -2459,32 +2441,32 @@
     "errors": []
   },
   "IE00BZ163G84": {
-    "checkedAt": "2026-10-19T04:47:28.883455+00:00",
+    "checkedAt": "2026-10-19T05:16:45.684567+00:00",
     "observed": [
-      "domicile"
+      "listings"
     ],
     "pending": [
       "distribution",
+      "domicile",
       "replicationMethod",
       "pea",
-      "currencyHedge",
-      "listings"
+      "currencyHedge"
     ],
     "firstPendingAt": {
       "distribution": "2026-10-18T15:33:48.575784+00:00",
+      "domicile": "2026-10-19T05:16:45.684567+00:00",
       "replicationMethod": "2026-10-18T15:33:48.575784+00:00",
       "pea": "2026-10-18T15:33:48.575784+00:00",
-      "currencyHedge": "2026-10-18T15:33:48.575784+00:00",
-      "listings": "2026-10-18T15:33:48.575784+00:00"
+      "currencyHedge": "2026-10-18T15:33:48.575784+00:00"
     },
     "errors": [
       {
-        "sourceUrl": "https://fund-docs.vanguard.com/EUR_Corporate_Bond_UCITS_ETF_EUR_Distributing_9659_EU_INT_UK_EN.pdf",
-        "error": "No explicit supported metadata fields"
+        "sourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=IE00BZ163G84",
+        "error": "Missing or multiple exact-share identities in metadata document"
       },
       {
         "sourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=IE00BZ163G84",
-        "error": "Missing or multiple exact-share identities in metadata document"
+        "error": "No explicit supported metadata fields"
       }
     ]
   },
@@ -2633,7 +2615,7 @@
     "errors": []
   },
   "IE00B579F325": {
-    "checkedAt": "2026-10-19T04:47:28.883455+00:00",
+    "checkedAt": "2026-10-19T05:10:08.712088+00:00",
     "observed": [
       "domicile",
       "replicationMethod",
@@ -2656,7 +2638,7 @@
     ]
   },
   "IE00BD6FTQ80": {
-    "checkedAt": "2026-10-19T04:47:28.883455+00:00",
+    "checkedAt": "2026-10-19T05:10:08.712088+00:00",
     "observed": [
       "domicile",
       "replicationMethod",
@@ -2674,30 +2656,25 @@
     "errors": []
   },
   "IE00B3VVMM84": {
-    "checkedAt": "2026-10-18T21:01:40.042807+00:00",
-    "observed": [],
+    "checkedAt": "2026-10-19T05:16:45.684567+00:00",
+    "observed": [
+      "listings"
+    ],
     "pending": [
       "distribution",
       "domicile",
       "replicationMethod",
       "pea",
-      "currencyHedge",
-      "listings"
+      "currencyHedge"
     ],
     "firstPendingAt": {
       "distribution": "2026-10-18T19:31:40.807499+00:00",
       "domicile": "2026-10-18T19:31:40.807499+00:00",
       "replicationMethod": "2026-10-18T19:31:40.807499+00:00",
       "pea": "2026-10-18T19:31:40.807499+00:00",
-      "currencyHedge": "2026-10-18T19:31:40.807499+00:00",
-      "listings": "2026-10-18T19:31:40.807499+00:00"
+      "currencyHedge": "2026-10-18T19:31:40.807499+00:00"
     },
-    "errors": [
-      {
-        "sourceUrl": "https://fund-docs.vanguard.com/FTSE_Emerging_Markets_UCITS_ETF_USD_Distributing_9507_EU_INT_UK_EN.pdf",
-        "error": "No explicit supported metadata fields"
-      }
-    ]
+    "errors": []
   },
   "IE00B02KXK85": {
     "checkedAt": "2026-10-18T21:01:40.042807+00:00",
@@ -2754,7 +2731,7 @@
     "errors": []
   },
   "IE00B4ND3602": {
-    "checkedAt": "2026-10-19T04:47:28.883455+00:00",
+    "checkedAt": "2026-10-19T05:10:08.712088+00:00",
     "observed": [
       "distribution",
       "domicile",
@@ -2899,7 +2876,7 @@
     "errors": []
   },
   "IE00B2NPKV68": {
-    "checkedAt": "2026-10-19T04:47:28.883455+00:00",
+    "checkedAt": "2026-10-19T05:10:08.712088+00:00",
     "observed": [
       "distribution",
       "domicile",
@@ -2922,7 +2899,7 @@
     ]
   },
   "IE00B1FZS913": {
-    "checkedAt": "2026-10-19T04:47:28.883455+00:00",
+    "checkedAt": "2026-10-19T05:10:08.712088+00:00",
     "observed": [
       "distribution",
       "domicile",
@@ -3124,21 +3101,20 @@
     "errors": []
   },
   "IE00BYPLS672": {
-    "checkedAt": "2026-10-19T04:47:28.883455+00:00",
+    "checkedAt": "2026-10-19T05:10:08.712088+00:00",
     "observed": [
       "distribution",
       "domicile",
-      "replicationMethod"
+      "replicationMethod",
+      "listings"
     ],
     "pending": [
       "pea",
-      "currencyHedge",
-      "listings"
+      "currencyHedge"
     ],
     "firstPendingAt": {
       "pea": "2026-10-18T15:33:48.575784+00:00",
-      "currencyHedge": "2026-10-18T15:33:48.575784+00:00",
-      "listings": "2026-10-18T15:33:48.575784+00:00"
+      "currencyHedge": "2026-10-18T15:33:48.575784+00:00"
     },
     "errors": [
       {
@@ -3189,12 +3165,12 @@
     "errors": []
   },
   "IE00BF0M2Z96": {
-    "checkedAt": "2026-10-19T04:47:28.883455+00:00",
+    "checkedAt": "2026-10-19T05:10:08.712088+00:00",
     "observed": [
       "distribution",
       "domicile",
-      "listings",
-      "replicationMethod"
+      "replicationMethod",
+      "listings"
     ],
     "pending": [
       "pea",
@@ -3216,21 +3192,20 @@
     ]
   },
   "IE00BK5BCD43": {
-    "checkedAt": "2026-10-19T04:47:28.883455+00:00",
+    "checkedAt": "2026-10-19T05:10:08.712088+00:00",
     "observed": [
       "distribution",
       "domicile",
-      "replicationMethod"
+      "replicationMethod",
+      "listings"
     ],
     "pending": [
       "pea",
-      "currencyHedge",
-      "listings"
+      "currencyHedge"
     ],
     "firstPendingAt": {
       "pea": "2026-10-18T15:33:48.575784+00:00",
-      "currencyHedge": "2026-10-18T15:33:48.575784+00:00",
-      "listings": "2026-10-18T15:33:48.575784+00:00"
+      "currencyHedge": "2026-10-18T15:33:48.575784+00:00"
     },
     "errors": [
       {
@@ -3269,7 +3244,7 @@
     ]
   },
   "DE000A27Z304": {
-    "checkedAt": "2026-10-19T04:47:28.883455+00:00",
+    "checkedAt": "2026-10-19T05:10:08.712088+00:00",
     "observed": [
       "domicile",
       "distribution",
@@ -3312,7 +3287,7 @@
     "errors": []
   },
   "IE0002Y8CX98": {
-    "checkedAt": "2026-10-19T04:47:28.883455+00:00",
+    "checkedAt": "2026-10-19T05:10:08.712088+00:00",
     "observed": [
       "distribution",
       "replicationMethod",
@@ -3349,43 +3324,41 @@
     "errors": []
   },
   "IE00BZ56SW52": {
-    "checkedAt": "2026-10-18T21:01:40.042807+00:00",
+    "checkedAt": "2026-10-19T05:13:45.611847+00:00",
     "observed": [
       "distribution",
-      "replicationMethod"
+      "replicationMethod",
+      "pea",
+      "listings"
     ],
     "pending": [
       "domicile",
-      "pea",
-      "currencyHedge",
-      "listings"
+      "currencyHedge"
     ],
     "firstPendingAt": {
       "domicile": "2026-10-18T15:33:48.575784+00:00",
-      "pea": "2026-10-18T15:33:48.575784+00:00",
-      "currencyHedge": "2026-10-18T15:33:48.575784+00:00",
-      "listings": "2026-10-18T15:33:48.575784+00:00"
+      "currencyHedge": "2026-10-18T15:33:48.575784+00:00"
     },
     "errors": []
   },
   "IE00BM8R0J59": {
-    "checkedAt": "2026-10-19T04:47:28.883455+00:00",
-    "observed": [],
+    "checkedAt": "2026-10-19T05:13:45.611847+00:00",
+    "observed": [
+      "listings"
+    ],
     "pending": [
       "distribution",
       "domicile",
       "replicationMethod",
       "pea",
-      "currencyHedge",
-      "listings"
+      "currencyHedge"
     ],
     "firstPendingAt": {
       "distribution": "2026-10-18T15:33:48.575784+00:00",
       "domicile": "2026-10-18T15:33:48.575784+00:00",
       "replicationMethod": "2026-10-18T15:33:48.575784+00:00",
       "pea": "2026-10-18T15:33:48.575784+00:00",
-      "currencyHedge": "2026-10-18T15:33:48.575784+00:00",
-      "listings": "2026-10-18T15:33:48.575784+00:00"
+      "currencyHedge": "2026-10-18T15:33:48.575784+00:00"
     },
     "errors": [
       {
@@ -3393,24 +3366,16 @@
         "error": "Missing or multiple exact-share identities in metadata document"
       },
       {
-        "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-        "error": "Ambiguous listing document identity"
-      },
-      {
         "sourceUrl": "https://globalxetfs.eu/fr/funds/qyld",
         "error": "Missing or multiple exact-share identities in metadata document"
       },
       {
         "sourceUrl": "https://globalxetfs.eu/fr/funds/qyld",
-        "error": "Ambiguous listing document identity"
+        "error": "Unsupported Global X trading columns"
       },
       {
         "sourceUrl": "https://globalxetfs.eu/funds/qyld",
         "error": "Missing or multiple exact-share identities in metadata document"
-      },
-      {
-        "sourceUrl": "https://globalxetfs.eu/funds/qyld",
-        "error": "Ambiguous listing document identity"
       }
     ]
   },
@@ -3471,11 +3436,11 @@
     "errors": []
   },
   "FR0007056841": {
-    "checkedAt": "2026-10-19T04:47:28.883455+00:00",
+    "checkedAt": "2026-10-19T05:10:08.712088+00:00",
     "observed": [
       "distribution",
-      "listings",
-      "replicationMethod"
+      "replicationMethod",
+      "listings"
     ],
     "pending": [
       "domicile",
@@ -3575,20 +3540,19 @@
     ]
   },
   "IE00BJGWQN72": {
-    "checkedAt": "2026-10-18T21:01:40.042807+00:00",
+    "checkedAt": "2026-10-19T05:13:45.611847+00:00",
     "observed": [
       "distribution",
       "replicationMethod",
+      "pea",
       "listings"
     ],
     "pending": [
       "domicile",
-      "pea",
       "currencyHedge"
     ],
     "firstPendingAt": {
       "domicile": "2026-10-18T15:33:48.575784+00:00",
-      "pea": "2026-10-18T15:33:48.575784+00:00",
       "currencyHedge": "2026-10-18T15:33:48.575784+00:00"
     },
     "errors": []
@@ -3612,23 +3576,23 @@
     "errors": []
   },
   "IE0003Z9E2Y3": {
-    "checkedAt": "2026-10-18T21:01:40.042807+00:00",
-    "observed": [],
+    "checkedAt": "2026-10-19T05:13:45.611847+00:00",
+    "observed": [
+      "listings"
+    ],
     "pending": [
       "distribution",
       "domicile",
       "replicationMethod",
       "pea",
-      "currencyHedge",
-      "listings"
+      "currencyHedge"
     ],
     "firstPendingAt": {
       "distribution": "2026-10-18T15:33:48.575784+00:00",
       "domicile": "2026-10-18T15:33:48.575784+00:00",
       "replicationMethod": "2026-10-18T15:33:48.575784+00:00",
       "pea": "2026-10-18T15:33:48.575784+00:00",
-      "currencyHedge": "2026-10-18T15:33:48.575784+00:00",
-      "listings": "2026-10-18T15:33:48.575784+00:00"
+      "currencyHedge": "2026-10-18T15:33:48.575784+00:00"
     },
     "errors": [
       {
@@ -3782,7 +3746,7 @@
     ]
   },
   "IE00BF4RFH31": {
-    "checkedAt": "2026-10-19T04:47:28.883455+00:00",
+    "checkedAt": "2026-10-19T05:10:08.712088+00:00",
     "observed": [
       "distribution",
       "domicile",
@@ -3801,11 +3765,15 @@
       {
         "sourceUrl": "https://www.zonebourse.com/actualite-bourse/ETF-de-la-semaine-jouez-le-retour-des-small-caps-44560263/",
         "error": "Missing or multiple exact-share identities in metadata document"
+      },
+      {
+        "sourceUrl": "https://www.zonebourse.com/actualite-bourse/ETF-de-la-semaine-jouez-le-retour-des-small-caps-44560263/",
+        "error": "No explicit supported metadata fields"
       }
     ]
   },
   "IE00B1FZS467": {
-    "checkedAt": "2026-10-19T04:47:28.883455+00:00",
+    "checkedAt": "2026-10-19T05:10:08.712088+00:00",
     "observed": [
       "distribution",
       "domicile",
@@ -4679,108 +4647,84 @@
     "errors": []
   },
   "IE00BMVB5K07": {
-    "checkedAt": "2026-10-18T21:01:40.042807+00:00",
+    "checkedAt": "2026-10-19T05:16:45.684567+00:00",
     "observed": [
-      "domicile"
+      "domicile",
+      "listings"
     ],
     "pending": [
       "distribution",
       "replicationMethod",
       "pea",
-      "currencyHedge",
-      "listings"
+      "currencyHedge"
     ],
     "firstPendingAt": {
       "distribution": "2026-10-18T15:33:48.575784+00:00",
       "replicationMethod": "2026-10-18T15:33:48.575784+00:00",
       "pea": "2026-10-18T15:33:48.575784+00:00",
-      "currencyHedge": "2026-10-18T15:33:48.575784+00:00",
-      "listings": "2026-10-18T15:33:48.575784+00:00"
+      "currencyHedge": "2026-10-18T15:33:48.575784+00:00"
     },
-    "errors": [
-      {
-        "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_20_Equity_UCITS_ETF_EUR_Accumulating_9490_FR_INT_FR.pdf",
-        "error": "No explicit supported metadata fields"
-      }
-    ]
+    "errors": []
   },
   "IE00BMVB5M21": {
-    "checkedAt": "2026-10-18T21:01:40.042807+00:00",
+    "checkedAt": "2026-10-19T05:16:45.684567+00:00",
     "observed": [
-      "domicile"
+      "domicile",
+      "listings"
     ],
     "pending": [
       "distribution",
       "replicationMethod",
       "pea",
-      "currencyHedge",
-      "listings"
+      "currencyHedge"
     ],
     "firstPendingAt": {
       "distribution": "2026-10-18T15:33:48.575784+00:00",
       "replicationMethod": "2026-10-18T15:33:48.575784+00:00",
       "pea": "2026-10-18T15:33:48.575784+00:00",
-      "currencyHedge": "2026-10-18T15:33:48.575784+00:00",
-      "listings": "2026-10-18T15:33:48.575784+00:00"
+      "currencyHedge": "2026-10-18T15:33:48.575784+00:00"
     },
-    "errors": [
-      {
-        "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_40_Equity_UCITS_ETF_EUR_Accumulating_9492_FR_INT_FR.pdf",
-        "error": "No explicit supported metadata fields"
-      }
-    ]
+    "errors": []
   },
   "IE00BMVB5P51": {
-    "checkedAt": "2026-10-18T21:01:40.042807+00:00",
+    "checkedAt": "2026-10-19T05:16:45.684567+00:00",
     "observed": [
-      "domicile"
+      "domicile",
+      "listings"
     ],
     "pending": [
       "distribution",
       "replicationMethod",
       "pea",
-      "currencyHedge",
-      "listings"
+      "currencyHedge"
     ],
     "firstPendingAt": {
       "distribution": "2026-10-18T15:33:48.575784+00:00",
       "replicationMethod": "2026-10-18T15:33:48.575784+00:00",
       "pea": "2026-10-18T15:33:48.575784+00:00",
-      "currencyHedge": "2026-10-18T15:33:48.575784+00:00",
-      "listings": "2026-10-18T15:33:48.575784+00:00"
+      "currencyHedge": "2026-10-18T15:33:48.575784+00:00"
     },
-    "errors": [
-      {
-        "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_60_Equity_UCITS_ETF_EUR_Accumulating_9494_FR_INT_FR.pdf",
-        "error": "No explicit supported metadata fields"
-      }
-    ]
+    "errors": []
   },
   "IE00BMVB5R75": {
-    "checkedAt": "2026-10-18T21:01:40.042807+00:00",
+    "checkedAt": "2026-10-19T05:16:45.684567+00:00",
     "observed": [
-      "domicile"
+      "domicile",
+      "listings"
     ],
     "pending": [
       "distribution",
       "replicationMethod",
       "pea",
-      "currencyHedge",
-      "listings"
+      "currencyHedge"
     ],
     "firstPendingAt": {
       "distribution": "2026-10-18T15:33:48.575784+00:00",
       "replicationMethod": "2026-10-18T15:33:48.575784+00:00",
       "pea": "2026-10-18T15:33:48.575784+00:00",
-      "currencyHedge": "2026-10-18T15:33:48.575784+00:00",
-      "listings": "2026-10-18T15:33:48.575784+00:00"
+      "currencyHedge": "2026-10-18T15:33:48.575784+00:00"
     },
-    "errors": [
-      {
-        "sourceUrl": "https://fund-docs.vanguard.com/LifeStrategy_80_Equity_UCITS_ETF_EUR_Accumulating_9496_FR_INT_FR.pdf",
-        "error": "No explicit supported metadata fields"
-      }
-    ]
+    "errors": []
   },
   "IE00B53QG562": {
     "checkedAt": "2026-10-18T21:01:40.042807+00:00",

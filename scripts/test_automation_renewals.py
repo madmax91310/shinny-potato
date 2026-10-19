@@ -38,6 +38,22 @@ class Renewals(unittest.TestCase):
         self.assertFalse(metadata.parse_text(isin+"\nPEA berechtigt\nKeine",isin)['pea'])
         self.assertFalse(metadata.parse_text(isin+"\nEligibilité au plan d'Epargne en Actions (PEA):\nNon",isin)['pea'])
         self.assertNotIn('pea',metadata.parse_text(isin+"\nISA Eligibility Yes",isin))
+        self.assertFalse(metadata.parse_text(isin+'\nPEA Eligible No',isin)['pea'])
+
+    def test_globalx_streamed_rows_belong_to_their_exact_share(self):
+        isin='IE00BM8R0J59'; other='IE00BM8R0H36'
+        header='<thead><tr><th>Exchange</th><th>Trading Currency</th><th>Ticker</th></tr></thead>'
+        body=(f'<div><h2>USD Accumulating (ISIN: {other})</h2><table>{header}'
+              '<tr><td>Xetra</td><td>EUR</td><td>WRONG GY</td></tr></table></div>'
+              f'<div><h2>USD Distributing (ISIN: {isin})</h2><table>{header}'
+              '<tbody><template id="P:24"></template></tbody></table></div>'
+              '<table hidden><tbody id="S:24"><tr><td>Deutsche Börse Xetra</td><td>EUR</td><td>QYLE GY</td></tr></tbody></table>'
+              '<script>$RS("S:24","P:24")</script>').encode()
+        rows=metadata.globalx_listing_rows(body,isin)
+        self.assertEqual([(r['ticker'],r['currency']) for r in rows],[('QYLE','EUR')])
+        self.assertNotIn('symbol',rows[0])
+        with self.assertRaises(ValueError):metadata.globalx_listing_rows(body.replace(b'P:24"',b'P:25"',1),isin)
+        with self.assertRaises(ValueError):metadata.globalx_listing_rows(body.replace(other.encode(),isin.encode()),isin)
 
     def test_listing_without_quote_provider_symbol_is_still_documented(self):
         isin='IE00B66F4759'
@@ -46,6 +62,16 @@ class Renewals(unittest.TestCase):
                  'exchange':['Bolsa Mexicana De Valores'],'ticker':['IHYG'],'currencyCode':['MXN'],'ric':[None]}.items()}}}}}}
         rows=metadata.parse_listings(json.dumps(doc).encode(),{'isin':isin},'https://www.blackrock.com/data','2026-10-19')
         self.assertEqual(rows[0]['mic'],'XMEX');self.assertNotIn('symbol',rows[0])
+
+    def test_vanguard_discovers_listings_without_seed_tickers(self):
+        text=('IE00BK5BQX27\nKey ETF facts   Exchange ticker   SEDOL   Reuters   Bloomberg\n'
+              'London Stock Exchange\nGBP  VEUA  BJSBDC0  VEUA.L  VEUA LN\n'
+              'USD  VWCG  BJSB5S0  VWCG.L  VWCG LN\n'
+              'NYSE Euronext\nEUR  VWCG  BQB3BT5  VWCG.AS  VWCG NA\nBase currency EUR')
+        rows=metadata.vanguard_listing_rows(text,'IE00BK5BQX27')
+        self.assertEqual([(r['mic'],r['currency']) for r in rows],[('XLON','GBP'),('XLON','USD'),('XAMS','EUR')])
+        with self.assertRaises(ValueError):metadata.vanguard_listing_rows(text.replace('VWCG.AS','VWCG.DE'),'IE00BK5BQX27')
+        with self.assertRaises(ValueError):metadata.vanguard_listing_rows(text+'\nIE00B4L5Y983','IE00BK5BQX27')
 
     def test_multishare_pdf_requires_identity_on_same_listing_row(self):
         isin='IE00BF0M2Z96';other='IE00B4L5Y983'
