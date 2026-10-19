@@ -63,6 +63,7 @@ jobs:
       - uses: actions/setup-python@v7.0.0
         with:
           python-version: '3.12'
+      - run: pip install beautifulsoup4==4.15.0
       - uses: actions/setup-node@v7.0.0
         with:
           node-version: 24
@@ -86,6 +87,7 @@ jobs:
       - uses: actions/setup-python@v7.0.0
         with:
           python-version: '3.12'
+      - run: pip install beautifulsoup4==4.15.0
       - uses: actions/setup-node@v7.0.0
         with:
           node-version: 24
