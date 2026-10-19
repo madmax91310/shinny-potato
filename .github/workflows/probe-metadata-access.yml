@@ -13,10 +13,16 @@ jobs:
       - uses: actions/setup-node@v7.0.0
         with:
           node-version: 24
-      - run: npm ci
-      - run: npx playwright install --with-deps chromium
-      - run: node scripts/probe-public-metadata-access.mjs
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: '3.12'
+      - run: pip install beautifulsoup4==4.15.0
+      - run: node scripts/probe-fortuneo-targets.mjs
         env:
+          PROBE_TARGETS: ${{ runner.temp }}/fortuneo-targets.json
+      - run: python scripts/probe_fortuneo_metadata.py
+        env:
+          PROBE_TARGETS: ${{ runner.temp }}/fortuneo-targets.json
           PROBE_OUTPUT: ${{ runner.temp }}/public-metadata-access
       - uses: actions/upload-artifact@v7.0.1
         if: always()
