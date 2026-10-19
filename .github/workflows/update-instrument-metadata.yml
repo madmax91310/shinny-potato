@@ -12,6 +12,7 @@ on:
       - 'scripts/listing-candidates.json'
       - 'scripts/build-automation-targets.mjs'
       - 'scripts/split-etf-records.mjs'
+      - 'src/data/automated-characteristics.js'
       - 'vite.config.js'
   pull_request:
     paths:
@@ -22,6 +23,8 @@ on:
       - 'scripts/build-automation-targets.mjs'
       - 'scripts/build-monthly-duel-returns.mjs'
       - 'src/data/*metadata*'
+      - 'src/data/automated-characteristics.js'
+      - 'scripts/test-automated-characteristics.mjs'
       - 'src/data/*portfolio*'
       - 'src/data/equity-history-links.json'
       - '.github/workflows/update-instrument-metadata.yml'
@@ -121,15 +124,19 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_monthly_qualification.py'
       - run: npm run build
       - run: node scripts/test-automated-characteristics.mjs
+      - run: node scripts/test-comparison-etf-details.mjs
       - run: node scripts/test-full-auto-routing.mjs
       - run: npx playwright install --with-deps chromium
       - run: node scripts/playwright-full-auto-routing.mjs
       - run: node scripts/test-asset-field-ui.mjs
+      - run: node scripts/playwright-metadata-completion.mjs
       - uses: actions/upload-artifact@v7.0.1
         if: always()
         with:
           name: full-auto-browser-check
-          path: test-artifacts/full-auto
+          path: |
+            test-artifacts/full-auto
+            test-artifacts/metadata
           if-no-files-found: ignore
           retention-days: 14
   refresh:

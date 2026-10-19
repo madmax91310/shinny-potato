@@ -77,6 +77,11 @@ def fetch_document(url,fetch=download,isin=None):
     """Returns (body, url actually read)."""
     try:
         if url==AMUNDI_API and fetch is download:return fetch_amundi(isin),url
+        if fetch is download and url.startswith('https://www.boursedirect.fr/'):
+            # This broker intermittently leaves automated connections unanswered. A
+            # source candidate must not consume three 25-second waits per instrument.
+            return download(url,return_source=True,timeout=8,max_attempts=1,headers={'User-Agent':'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/130.0.0.0 Safari/537.36','Accept-Language':'fr-FR,fr;q=0.9'})
+        if fetch is download:return download(url,return_source=True)
         return fetch(url),url
     except ValueError as error:
         # VanEck answers its factsheet URLs with a regional consent page. Like

@@ -71,5 +71,23 @@ class MetadataCompletionTests(unittest.TestCase):
     def test_combined_distribution_policy_is_not_truncated(self):
         self.assertEqual(parse_text(self.ISIN+'\nDistribution Policy: Capitalisation and/or distribution',self.ISIN)['distribution'],'Capitalisation and/or distribution')
 
+    def test_observed_fortuneo_table_has_an_explicit_negative(self):
+        from pathlib import Path
+        from collect_instrument_metadata import parse_broker_pea
+        body=Path(__file__).with_name('fixtures').joinpath('metadata-completion','fortuneo-pea-table.html').read_bytes()
+        self.assertEqual(parse_broker_pea(body,self.ISIN),{'pea':False})
+        self.assertEqual(parse_broker_pea(body.replace(b'non / non / non',b'non / oui / oui'),self.ISIN),{'pea':False})
+
+    def test_public_document_redirects_keep_the_effective_source(self):
+        from unittest.mock import patch
+        import collect_instrument_metadata as module
+        with patch.object(module,'download',return_value=(b'public response','https://issuer.test/current')) as fetch:
+            self.assertEqual(module.fetch_document('https://issuer.test/old',fetch=fetch),(b'public response','https://issuer.test/current'))
+            fetch.assert_called_once_with('https://issuer.test/old',return_source=True)
+        with patch.object(module,'download',return_value=(b'public response','https://www.boursedirect.fr/current')) as fetch:
+            module.fetch_document('https://www.boursedirect.fr/old',fetch=fetch)
+            self.assertEqual(fetch.call_args.kwargs['timeout'],8)
+            self.assertEqual(fetch.call_args.kwargs['max_attempts'],1)
+
 
 if __name__=='__main__':unittest.main()
