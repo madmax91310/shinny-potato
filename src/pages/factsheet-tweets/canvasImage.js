@@ -124,7 +124,7 @@ export async function renderFactsheetImage(sheet) {
   const count = sheet.constituents ?? sheet.indexFacts?.targetConstituents
   const badgeW = count == null ? 0 : 252
   const titleW = USABLE - (badgeW ? badgeW + 42 : 0)
-  const title = block(ctx, sheet.index ?? sheet.title, titleW, 82, 700, true)
+  const title = block(ctx, sheet.index ?? sheet.title, titleW, 112, 700, 'display')
   const subtitle = block(ctx, getIndexArt(sheet).description, titleW, 38, 700)
   const date = sheet.indexFacts?.asOf
   const compositionDate = block(ctx, `Composition ${date ? `au ${date.split('-').reverse().join('/')}` : `: ${sheet.snapshot ?? 'archive non datée'}`}`, titleW, 29)
