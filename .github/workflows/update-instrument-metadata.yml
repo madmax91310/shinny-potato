@@ -27,6 +27,29 @@ on:
 permissions:
   contents: read
 jobs:
+  source-evidence:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 24
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: '3.12'
+      - run: pip install beautifulsoup4==4.15.0
+      - run: sudo apt-get update && sudo apt-get install -y poppler-utils
+      - run: node scripts/build-automation-targets.mjs
+      - name: Observe public exact-share sources without changing registries
+        run: python scripts/probe_instrument_metadata.py --output "$RUNNER_TEMP/metadata-evidence"
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: exact-share-metadata-source-evidence
+          path: ${{ runner.temp }}/metadata-evidence
+          retention-days: 14
   verify:
     runs-on: ubuntu-24.04
     steps:
@@ -127,4 +150,5 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - run: exit 1
+
 

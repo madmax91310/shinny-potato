@@ -14,11 +14,11 @@ const holdings={},metadata=[]
 // Qualified iShares shares flagged peaIssuerPage whose PEA status is still undocumented: the
 // French issuer page states « Régime fiscal PEA » itself; a dash there keeps the status unknown.
 const peaIssuerPages=new Set(JSON.parse(readFileSync('scripts/qualified-exposure-sources.json')).instruments.filter(i=>i.peaIssuerPage).map(i=>i.isin))
-const frenchIssuerPage=(isin,r)=>{const id=/[?&]portfolioId=(\d+)/.exec(r.sourceUrl??'')?.[1];return id&&peaIssuerPages.has(isin)&&PEA_REVIEWS_BY_ISIN[isin]?.eligible==null?[`https://www.blackrock.com/fr/particuliers/products/${id}`]:[]}
+const frenchIssuerPage=(isin,r)=>{const id=/[?&]portfolioId=(\d+)/.exec(r.sourceUrl??'')?.[1];return id?[`https://www.blackrock.com/fr/particuliers/products/${id}`]:[]}
 // A VanEck factsheet page (no .pdf) is an HTML shell without the share's ISIN; read the PDF it serves.
 const currentDocument=url=>url?.replace(/(\/pdfDocuments\/(?:monthly-factsheet|kid-priips|prospectus)\/[^?]+)\/\d{8}(?=$|\?)/,'$1').replace(/^(https:\/\/www\.vaneck\.com\/(?:ucits|[a-z]{2}\/[a-z]{2})\/library\/fact-sheets\/[a-z0-9]+-fact-sheet)$/,'$1.pdf')
 for(const [isin,r] of Object.entries(AUTOMATED_ETF)) {
- const facts=getInstrumentFacts(isin),listings=withCandidates(isin,getInstrumentListings(isin)),urls=[r.sourceUrl,facts.characteristicsSource?.url,PEA_REVIEWS_BY_ISIN[isin]?.sourceUrl,...(PEA_REVIEWS_BY_ISIN[isin]?.eligible===true?['https://www.justetf.com/fr/etf-profile.html?isin='+isin]:[]),...listings.map(l=>l.sourceUrl),...frenchIssuerPage(isin,r)]
+ const facts=getInstrumentFacts(isin),listings=withCandidates(isin,getInstrumentListings(isin)),urls=[r.sourceUrl,facts.characteristicsSource?.url,PEA_REVIEWS_BY_ISIN[isin]?.sourceUrl,'https://www.justetf.com/fr/etf-profile.html?isin='+isin,...listings.map(l=>l.sourceUrl),...frenchIssuerPage(isin,r)]
  // Characteristics only need the fund facts and listings; full holdings exceed the download limit.
  const endpoint=blackrockCharacteristicsEndpoint
  // WisdomTree product pages answer 403 to automated clients; its official factsheet API does not.
@@ -36,3 +36,4 @@ for(const [isin,r] of Object.entries(AUTOMATED_ETF)) {
 writeFileSync('scripts/generated-holdings-sources.json',JSON.stringify(holdings,null,2)+'\n')
 writeFileSync('scripts/instrument-metadata-sources.json',JSON.stringify({instruments:metadata},null,2)+'\n')
 console.log(`Automatic targets: ${metadata.length} metadata instruments, ${Object.keys(holdings).length} additional complete holdings sources.`)
+
