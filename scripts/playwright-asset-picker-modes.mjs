@@ -55,7 +55,7 @@ try {
   await page.reload()
   await page.locator('.dca-simple-line').nth(1).waitFor()
   assert.equal(await page.locator('.dca-simple-line').count(),2)
-  while(await page.locator('.dca-simple-line').count()) await page.locator('.dca-simple-line button').first().click()
+  while(await page.locator('.dca-simple-line').count()) await page.getByRole('button',{name:/^Retirer /}).first().click()
   await page.locator('.dca-simple .asset-picker summary').filter({hasText:'Derniers actifs utilisés'}).click()
   assert(await page.getByRole('group',{name:'Récents : Ajouter un actif',exact:true}).getByRole('button').count()>=2)
   await page.goto(base+'fiches-etf')
