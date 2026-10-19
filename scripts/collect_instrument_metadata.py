@@ -174,6 +174,26 @@ def parse_json(body,isin):
     mapping={'useOfProfitsCode':'distribution','domicile':'domicile','productStructure':'replicationMethod'}
     return {field:points[key]['value'] for key,field in mapping.items() if isinstance(points.get(key,{}).get('value'),str) and points[key]['value']}
 
+def parse_broker_pea(body,isin):
+    """Only explicit PEA cells on an exact-share broker reference page qualify."""
+    from bs4 import BeautifulSoup
+    soup=BeautifulSoup(body,'html.parser')
+    for node in soup(['script','style']):node.decompose()
+    identities=set(re.findall(r'\b[A-Z]{2}[A-Z0-9]{9}\d\b',soup.get_text(' ',strip=True)))
+    if identities!={isin}:raise ValueError('Missing or multiple broker share identities')
+    values=set()
+    for row in soup.find_all('tr'):
+        cells=[c.get_text(' ',strip=True) for c in row.find_all(['th','td'],recursive=False)]
+        if len(cells)!=2:continue
+        label,value=cells[0].strip(),cells[1].strip().lower()
+        if label=='PEA/PEA-PME/SRD':
+            if not re.fullmatch(r'(?:oui|non)\s*/\s*(?:oui|non)\s*/\s*(?:oui|non)',value):continue
+            value=value.split('/')[0].strip()
+        elif label!='PEA':continue
+        if value in ('yes','oui','no','non'):values.add(value in ('yes','oui'))
+    if len(values)>1:raise ValueError('Conflicting broker PEA statements')
+    return {'pea':values.pop()} if values else {}
+
 LISTING_HOSTS=set(json.loads((ROOT/'scripts/listing-source-hosts.json').read_text())['hosts'])
 
 def bitwise_listing_rows(body, isin):
@@ -333,7 +353,9 @@ def collect(source,now,fetch=download,on_document=None):
             body,url=fetch_document(url,fetch,source['isin'])
             if on_document:on_document(requested_url,url,body)
             try:
-                fields=parse_json(body,source['isin']) if body.lstrip().startswith(b'{') else parse_text(text_of(body),source['isin'])
+                from urllib.parse import urlsplit
+                if urlsplit(url).hostname in ('bourse.fortuneo.fr','www.boursedirect.fr'):fields=parse_broker_pea(body,source['isin'])
+                else:fields=parse_json(body,source['isin']) if body.lstrip().startswith(b'{') else parse_text(text_of(body),source['isin'])
             except ValueError as error:
                 # A listing table can identify its share even when the surrounding
                 # prospectus also names an index. This never qualifies other fields.
