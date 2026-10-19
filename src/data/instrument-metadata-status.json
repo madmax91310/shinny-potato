@@ -54,13 +54,10 @@
       },
       "pea": {
         "status": "observed",
-        "lastAttemptAt": "2026-10-19T18:28:18.006178+00:00",
+        "lastAttemptAt": "2026-10-19T18:54:56.933Z",
         "lastSuccessAt": "2026-10-19",
         "sourceUrls": [
-          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "https://www.justetf.com/en/etf-profile.html?isin=IE00B4L5Y983",
-          "https://bourse.fortuneo.fr/trackers/cours-ishares-core-msci-world-ucits-etf-usd-acc-IWDA-IE00B4L5Y983-46",
-          "https://www.justetf.com/fr/etf-profile.html?isin=IE00B4L5Y983"
+          "https://bourse.fortuneo.fr/trackers/cours-ishares-core-msci-world-ucits-etf-usd-acc-IWDA-IE00B4L5Y983-46"
         ],
         "cause": null,
         "sourceErrors": []
@@ -188,14 +185,11 @@
       "distribution",
       "replicationMethod",
       "pea",
-      "currencyHedge"
-    ],
-    "pending": [
+      "currencyHedge",
       "listings"
     ],
-    "firstPendingAt": {
-      "listings": "2026-10-18T16:04:20.346657+00:00"
-    },
+    "pending": [],
+    "firstPendingAt": {},
     "errors": [
       {
         "sourceUrl": "https://www.borsaitaliana.it/borsa/etf/scheda/FR0011550193-XPAR.html",
@@ -264,21 +258,14 @@
         "sourceErrors": []
       },
       "listings": {
-        "status": "unobserved",
-        "lastAttemptAt": "2026-10-19T18:28:18.006178+00:00",
-        "lastSuccessAt": null,
+        "status": "observed",
+        "lastAttemptAt": "2026-10-19T19:03:46.218Z",
+        "lastSuccessAt": "2026-10-19",
         "sourceUrls": [
-          "https://dokumenty.analizy.pl/pobierz/etf/E_SBNPEF003_A_EUR/KA/2026-09-30",
-          "https://www.justetf.com/fr/etf-profile.html?isin=FR0011550193",
-          "https://www.borsaitaliana.it/borsa/etf/scheda/FR0011550193-XPAR.html"
+          "https://live.euronext.com/en/product/etfs/FR0011550193-XPAR"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
-        "sourceErrors": [
-          {
-            "sourceUrl": "https://www.borsaitaliana.it/borsa/etf/scheda/FR0011550193-XPAR.html",
-            "error": "No explicit supported metadata fields"
-          }
-        ]
+        "cause": null,
+        "sourceErrors": []
       }
     }
   },
@@ -1925,15 +1912,14 @@
       "domicile",
       "replicationMethod",
       "currencyHedge",
-      "distribution"
-    ],
-    "pending": [
-      "pea",
+      "distribution",
       "listings"
     ],
+    "pending": [
+      "pea"
+    ],
     "firstPendingAt": {
-      "pea": "2026-10-18T19:31:40.807499+00:00",
-      "listings": "2026-10-18T19:31:40.807499+00:00"
+      "pea": "2026-10-18T19:31:40.807499+00:00"
     },
     "errors": [
       {
@@ -2008,21 +1994,14 @@
         "sourceErrors": []
       },
       "listings": {
-        "status": "unobserved",
-        "lastAttemptAt": "2026-10-19T18:28:18.006178+00:00",
-        "lastSuccessAt": null,
+        "status": "observed",
+        "lastAttemptAt": "2026-10-19T18:54:42.166Z",
+        "lastSuccessAt": "2026-10-19",
         "sourceUrls": [
-          "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE000716YHJ7_factsheet_en.pdf",
-          "https://www.justetf.com/fr/etf-profile.html?isin=IE000716YHJ7",
-          "https://www.boursedirect.fr/fr/marche/electronic-etf-etc-etn-and-open-end-funds-market/invesco-ftse-all-world-ucits-e-IE000716YHJ7-FWRA-EUR-ETFP/seance"
+          "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE000716YHJ7?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
-        "sourceErrors": [
-          {
-            "sourceUrl": "https://www.boursedirect.fr/fr/marche/electronic-etf-etc-etn-and-open-end-funds-market/invesco-ftse-all-world-ucits-e-IE000716YHJ7-FWRA-EUR-ETFP/seance",
-            "error": "Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
-          }
-        ]
+        "cause": null,
+        "sourceErrors": []
       }
     }
   },
@@ -2032,15 +2011,14 @@
       "domicile",
       "replicationMethod",
       "currencyHedge",
-      "distribution"
-    ],
-    "pending": [
-      "pea",
+      "distribution",
       "listings"
     ],
+    "pending": [
+      "pea"
+    ],
     "firstPendingAt": {
-      "pea": "2026-10-18T19:31:40.807499+00:00",
-      "listings": "2026-10-18T19:31:40.807499+00:00"
+      "pea": "2026-10-18T19:31:40.807499+00:00"
     },
     "errors": [],
     "fields": {
@@ -2100,14 +2078,13 @@
         "sourceErrors": []
       },
       "listings": {
-        "status": "unobserved",
-        "lastAttemptAt": "2026-10-19T18:28:18.006178+00:00",
-        "lastSuccessAt": null,
+        "status": "observed",
+        "lastAttemptAt": "2026-10-19T18:54:43.799Z",
+        "lastSuccessAt": "2026-10-19",
         "sourceUrls": [
-          "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE0000QLH0G6_factsheet_en.pdf",
-          "https://www.justetf.com/fr/etf-profile.html?isin=IE0000QLH0G6"
+          "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE0000QLH0G6?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
+        "cause": null,
         "sourceErrors": []
       }
     }
@@ -2711,14 +2688,11 @@
       "distribution",
       "domicile",
       "replicationMethod",
-      "currencyHedge"
-    ],
-    "pending": [
+      "currencyHedge",
       "pea"
     ],
-    "firstPendingAt": {
-      "pea": "2026-10-18T19:31:40.807499+00:00"
-    },
+    "pending": [],
+    "firstPendingAt": {},
     "errors": [
       {
         "sourceUrl": "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/vanguard-ftse-developed-europe-IE00BK5BQX27-VWCG-EUR-XAMS/seance",
@@ -2763,21 +2737,14 @@
         "sourceErrors": []
       },
       "pea": {
-        "status": "unobserved",
-        "lastAttemptAt": "2026-10-19T18:28:18.006178+00:00",
-        "lastSuccessAt": null,
+        "status": "observed",
+        "lastAttemptAt": "2026-10-19T18:59:08.368Z",
+        "lastSuccessAt": "2026-10-19",
         "sourceUrls": [
-          "https://fund-docs.vanguard.com/FTSE_Developed_Europe_UCITS_ETF_EUR_Accumulating_9681_EU_INT_UK_EN.pdf",
-          "https://www.justetf.com/fr/etf-profile.html?isin=IE00BK5BQX27",
-          "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/vanguard-ftse-developed-europe-IE00BK5BQX27-VWCG-EUR-XAMS/seance"
+          "https://bourse.fortuneo.fr/trackers/cours-vanguard-ftse-developed-europe-ucits-etf-eur-acc-VWCG-IE00BK5BQX27-46"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
-        "sourceErrors": [
-          {
-            "sourceUrl": "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/vanguard-ftse-developed-europe-IE00BK5BQX27-VWCG-EUR-XAMS/seance",
-            "error": "Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
-          }
-        ]
+        "cause": null,
+        "sourceErrors": []
       },
       "currencyHedge": {
         "status": "observed",
@@ -6804,14 +6771,11 @@
       "replicationMethod",
       "listings",
       "domicile",
-      "currencyHedge"
-    ],
-    "pending": [
+      "currencyHedge",
       "pea"
     ],
-    "firstPendingAt": {
-      "pea": "2026-10-18T15:33:48.575784+00:00"
-    },
+    "pending": [],
+    "firstPendingAt": {},
     "errors": [
       {
         "sourceUrl": "https://www.boursedirect.fr/fr/marche/euronext-paris/amundi-prime-japan-ucits-etf-d-LU2089238385-PRAJ-EUR-XPAR/seance",
@@ -6856,21 +6820,14 @@
         "sourceErrors": []
       },
       "pea": {
-        "status": "unobserved",
-        "lastAttemptAt": "2026-10-19T18:28:18.006178+00:00",
-        "lastSuccessAt": null,
+        "status": "observed",
+        "lastAttemptAt": "2026-10-19T18:59:18.069Z",
+        "lastSuccessAt": "2026-10-19",
         "sourceUrls": [
-          "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
-          "https://www.justetf.com/fr/etf-profile.html?isin=LU2089238385",
-          "https://www.boursedirect.fr/fr/marche/euronext-paris/amundi-prime-japan-ucits-etf-d-LU2089238385-PRAJ-EUR-XPAR/seance"
+          "https://bourse.fortuneo.fr/trackers/cours-amundi-prime-japan-ucits-etf-dr-jpy-acc-PRAJ-LU2089238385-23"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
-        "sourceErrors": [
-          {
-            "sourceUrl": "https://www.boursedirect.fr/fr/marche/euronext-paris/amundi-prime-japan-ucits-etf-d-LU2089238385-PRAJ-EUR-XPAR/seance",
-            "error": "Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
-          }
-        ]
+        "cause": null,
+        "sourceErrors": []
       },
       "currencyHedge": {
         "status": "observed",
@@ -7084,14 +7041,11 @@
       "domicile",
       "replicationMethod",
       "listings",
-      "currencyHedge"
-    ],
-    "pending": [
+      "currencyHedge",
       "pea"
     ],
-    "firstPendingAt": {
-      "pea": "2026-10-18T15:33:48.575784+00:00"
-    },
+    "pending": [],
+    "firstPendingAt": {},
     "errors": [
       {
         "sourceUrl": "https://etf.agefi.fr/etf/IEGE",
@@ -7146,27 +7100,14 @@
         "sourceErrors": []
       },
       "pea": {
-        "status": "unobserved",
-        "lastAttemptAt": "2026-10-19T18:28:18.006178+00:00",
-        "lastSuccessAt": null,
+        "status": "observed",
+        "lastAttemptAt": "2026-10-19T18:59:23.461Z",
+        "lastSuccessAt": "2026-10-19",
         "sourceUrls": [
-          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251741&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "https://www.ishares.com/uk/individual/en/products/251741/ishares-euro-government-bond-01yr-ucits-etf",
-          "https://etf.agefi.fr/etf/IEGE",
-          "https://www.justetf.com/fr/etf-profile.html?isin=IE00B3FH7618",
-          "https://www.blackrock.com/fr/particuliers/products/251741/ishares-euro-government-bond-01yr-ucits-etf"
+          "https://bourse.fortuneo.fr/trackers/cours-ishares-eur-govt-bond-0-1yr-ucits-etf-dis-IEGE-IE00B3FH7618-46"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
-        "sourceErrors": [
-          {
-            "sourceUrl": "https://etf.agefi.fr/etf/IEGE",
-            "error": "Missing or multiple exact-share identities in metadata document"
-          },
-          {
-            "sourceUrl": "https://etf.agefi.fr/etf/IEGE",
-            "error": "No explicit supported metadata fields"
-          }
-        ]
+        "cause": null,
+        "sourceErrors": []
       },
       "currencyHedge": {
         "status": "observed",
@@ -7205,14 +7146,11 @@
       "domicile",
       "replicationMethod",
       "listings",
-      "currencyHedge"
-    ],
-    "pending": [
+      "currencyHedge",
       "pea"
     ],
-    "firstPendingAt": {
-      "pea": "2026-10-18T15:33:48.575784+00:00"
-    },
+    "pending": [],
+    "firstPendingAt": {},
     "errors": [
       {
         "sourceUrl": "https://www.zonebourse.com/cours/etf/ISHARES-CORE-GLOBAL-AGGRE-67015255/actualite/",
@@ -7270,28 +7208,14 @@
         "sourceErrors": []
       },
       "pea": {
-        "status": "unobserved",
-        "lastAttemptAt": "2026-10-19T18:28:18.006178+00:00",
-        "lastSuccessAt": null,
+        "status": "observed",
+        "lastAttemptAt": "2026-10-19T18:59:28.050Z",
+        "lastSuccessAt": "2026-10-19",
         "sourceUrls": [
-          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=291770&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "https://www.ishares.com/uk/individual/en/products/291770/ishares-global-aggregate-bond-ucits-etf-eur-hedged-%28acc%29-fund?siteEntryPassthrough=true",
-          "https://www.zonebourse.com/cours/etf/ISHARES-CORE-GLOBAL-AGGRE-67015255/actualite/",
-          "https://www.justetf.com/fr/etf-profile.html?isin=IE00BDBRDM35",
-          "https://www.blackrock.com/fr/particuliers/products/291770/ishares-global-aggregate-bond-ucits-etf-eur-hedged-%28acc%29-fund",
-          "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/ishares-core-global-aggregate-IE00BDBRDM35-AGGH-EUR-XAMS/seance"
+          "https://bourse.fortuneo.fr/trackers/cours-ishrs-iii-core-glbl-aggr-b-u-etf-AGGH-IE00BDBRDM35-46"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
-        "sourceErrors": [
-          {
-            "sourceUrl": "https://www.zonebourse.com/cours/etf/ISHARES-CORE-GLOBAL-AGGRE-67015255/actualite/",
-            "error": "HTTP Error 403: Forbidden"
-          },
-          {
-            "sourceUrl": "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/ishares-core-global-aggregate-IE00BDBRDM35-AGGH-EUR-XAMS/seance",
-            "error": "Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
-          }
-        ]
+        "cause": null,
+        "sourceErrors": []
       },
       "currencyHedge": {
         "status": "observed",
@@ -7332,14 +7256,11 @@
       "domicile",
       "replicationMethod",
       "listings",
-      "currencyHedge"
-    ],
-    "pending": [
+      "currencyHedge",
       "pea"
     ],
-    "firstPendingAt": {
-      "pea": "2026-10-18T15:33:48.575784+00:00"
-    },
+    "pending": [],
+    "firstPendingAt": {},
     "errors": [
       {
         "sourceUrl": "https://www.zonebourse.com/cours/etf/ISHARES-MSCI-INDIA-UCITS--43536110/",
@@ -7397,28 +7318,14 @@
         "sourceErrors": []
       },
       "pea": {
-        "status": "unobserved",
-        "lastAttemptAt": "2026-10-19T18:28:18.006178+00:00",
-        "lastSuccessAt": null,
+        "status": "observed",
+        "lastAttemptAt": "2026-10-19T18:59:32.715Z",
+        "lastSuccessAt": "2026-10-19",
         "sourceUrls": [
-          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=297617&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "https://www.ishares.com/uk/individual/en/products/297617/ishares-msci-india-ucits-etf",
-          "https://www.zonebourse.com/cours/etf/ISHARES-MSCI-INDIA-UCITS--43536110/",
-          "https://www.justetf.com/fr/etf-profile.html?isin=IE00BZCQB185",
-          "https://www.blackrock.com/fr/particuliers/products/297617/ishares-msci-india-ucits-etf",
-          "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/ishares-msci-india-ucits-etf-u-IE00BZCQB185-NDIA-EUR-XAMS/seance"
+          "https://bourse.fortuneo.fr/trackers/cours-ishares-msci-india-ucits-etf-usd-acc-NDIA-IE00BZCQB185-46"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
-        "sourceErrors": [
-          {
-            "sourceUrl": "https://www.zonebourse.com/cours/etf/ISHARES-MSCI-INDIA-UCITS--43536110/",
-            "error": "Metadata source cooldown after HTTP 403; no new field evidence"
-          },
-          {
-            "sourceUrl": "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/ishares-msci-india-ucits-etf-u-IE00BZCQB185-NDIA-EUR-XAMS/seance",
-            "error": "Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
-          }
-        ]
+        "cause": null,
+        "sourceErrors": []
       },
       "currencyHedge": {
         "status": "observed",
@@ -7553,14 +7460,11 @@
       "domicile",
       "replicationMethod",
       "listings",
-      "currencyHedge"
-    ],
-    "pending": [
+      "currencyHedge",
       "pea"
     ],
-    "firstPendingAt": {
-      "pea": "2026-10-18T15:33:48.575784+00:00"
-    },
+    "pending": [],
+    "firstPendingAt": {},
     "errors": [
       {
         "sourceUrl": "https://www.boursedirect.fr/fr/marche/electronic-etf-etc-etn-and-open-end-funds-market/ishares-blockchain-technology-IE000RDRMSD1-BLTH-EUR-ETFP/seance",
@@ -7608,22 +7512,14 @@
         "sourceErrors": []
       },
       "pea": {
-        "status": "unobserved",
-        "lastAttemptAt": "2026-10-19T18:28:18.006178+00:00",
-        "lastSuccessAt": null,
+        "status": "observed",
+        "lastAttemptAt": "2026-10-19T18:59:36.656Z",
+        "lastSuccessAt": "2026-10-19",
         "sourceUrls": [
-          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=328618&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "https://www.justetf.com/en/etf-profile.html?isin=IE000RDRMSD1",
-          "https://www.justetf.com/fr/etf-profile.html?isin=IE000RDRMSD1",
-          "https://www.boursedirect.fr/fr/marche/electronic-etf-etc-etn-and-open-end-funds-market/ishares-blockchain-technology-IE000RDRMSD1-BLTH-EUR-ETFP/seance"
+          "https://bourse.fortuneo.fr/trackers/cours-ishares-blockchain-technology-ucits-etf-usd-acc-BLKC-IE000RDRMSD1-918"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
-        "sourceErrors": [
-          {
-            "sourceUrl": "https://www.boursedirect.fr/fr/marche/electronic-etf-etc-etn-and-open-end-funds-market/ishares-blockchain-technology-IE000RDRMSD1-BLTH-EUR-ETFP/seance",
-            "error": "Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
-          }
-        ]
+        "cause": null,
+        "sourceErrors": []
       },
       "currencyHedge": {
         "status": "observed",
@@ -7660,14 +7556,11 @@
       "domicile",
       "replicationMethod",
       "listings",
-      "currencyHedge"
-    ],
-    "pending": [
+      "currencyHedge",
       "pea"
     ],
-    "firstPendingAt": {
-      "pea": "2026-10-18T15:33:48.575784+00:00"
-    },
+    "pending": [],
+    "firstPendingAt": {},
     "errors": [
       {
         "sourceUrl": "https://www.zonebourse.com/cours/etf/ISHARES-INFLATION-LINKED--27235/",
@@ -7725,28 +7618,14 @@
         "sourceErrors": []
       },
       "pea": {
-        "status": "unobserved",
-        "lastAttemptAt": "2026-10-19T18:28:18.006178+00:00",
-        "lastSuccessAt": null,
+        "status": "observed",
+        "lastAttemptAt": "2026-10-19T18:59:40.601Z",
+        "lastSuccessAt": "2026-10-19",
         "sourceUrls": [
-          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251739&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "https://www.ishares.com/uk/individual/en/products/251739/ishares-euro-inflation-linked-government-bond-ucits-etf",
-          "https://www.zonebourse.com/cours/etf/ISHARES-INFLATION-LINKED--27235/",
-          "https://www.justetf.com/fr/etf-profile.html?isin=IE00B0M62X26",
-          "https://www.blackrock.com/fr/particuliers/products/251739/ishares-euro-inflation-linked-government-bond-ucits-etf",
-          "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/ishares-euro-inflation-linked-IE00B0M62X26-IBCI-EUR-XAMS/seance"
+          "https://bourse.fortuneo.fr/trackers/cours-ishares-eur-inflation-linked-govt-bond-ucits-etf-acc-IBCI-IE00B0M62X26-46"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
-        "sourceErrors": [
-          {
-            "sourceUrl": "https://www.zonebourse.com/cours/etf/ISHARES-INFLATION-LINKED--27235/",
-            "error": "Metadata source cooldown after HTTP 403; no new field evidence"
-          },
-          {
-            "sourceUrl": "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/ishares-euro-inflation-linked-IE00B0M62X26-IBCI-EUR-XAMS/seance",
-            "error": "Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
-          }
-        ]
+        "cause": null,
+        "sourceErrors": []
       },
       "currencyHedge": {
         "status": "observed",
@@ -7787,14 +7666,11 @@
       "domicile",
       "replicationMethod",
       "listings",
-      "currencyHedge"
-    ],
-    "pending": [
+      "currencyHedge",
       "pea"
     ],
-    "firstPendingAt": {
-      "pea": "2026-10-18T15:33:48.575784+00:00"
-    },
+    "pending": [],
+    "firstPendingAt": {},
     "errors": [
       {
         "sourceUrl": "https://www.boursedirect.fr/fr/marche/six-swiss-exchange/ish-devmark-propyld-usd-d-IE00B1FZS350-IWDP-EUR-XAMS-EUR-XSWX/seance",
@@ -7842,22 +7718,14 @@
         "sourceErrors": []
       },
       "pea": {
-        "status": "unobserved",
-        "lastAttemptAt": "2026-10-19T18:28:18.006178+00:00",
-        "lastSuccessAt": null,
+        "status": "observed",
+        "lastAttemptAt": "2026-10-19T18:59:43.938Z",
+        "lastSuccessAt": "2026-10-19",
         "sourceUrls": [
-          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251801&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "https://www.justetf.com/en/etf-profile.html?isin=IE00B1FZS350",
-          "https://www.justetf.com/fr/etf-profile.html?isin=IE00B1FZS350",
-          "https://www.boursedirect.fr/fr/marche/six-swiss-exchange/ish-devmark-propyld-usd-d-IE00B1FZS350-IWDP-EUR-XAMS-EUR-XSWX/seance"
+          "https://bourse.fortuneo.fr/trackers/cours-ishares-developed-markets-property-yield-ucits-etf-usd-dis-IWDP-IE00B1FZS350-46"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
-        "sourceErrors": [
-          {
-            "sourceUrl": "https://www.boursedirect.fr/fr/marche/six-swiss-exchange/ish-devmark-propyld-usd-d-IE00B1FZS350-IWDP-EUR-XAMS-EUR-XSWX/seance",
-            "error": "Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
-          }
-        ]
+        "cause": null,
+        "sourceErrors": []
       },
       "currencyHedge": {
         "status": "observed",
@@ -8497,14 +8365,11 @@
       "domicile",
       "replicationMethod",
       "listings",
-      "currencyHedge"
-    ],
-    "pending": [
+      "currencyHedge",
       "pea"
     ],
-    "firstPendingAt": {
-      "pea": "2026-10-18T15:33:48.575784+00:00"
-    },
+    "pending": [],
+    "firstPendingAt": {},
     "errors": [
       {
         "sourceUrl": "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/ishares-msci-acwi-ucits-etf-us-IE00B6R52259-SSAC-EUR-XAMS/seance",
@@ -8552,22 +8417,14 @@
         "sourceErrors": []
       },
       "pea": {
-        "status": "unobserved",
-        "lastAttemptAt": "2026-10-19T18:28:18.006178+00:00",
-        "lastSuccessAt": null,
+        "status": "observed",
+        "lastAttemptAt": "2026-10-19T18:59:51.391Z",
+        "lastSuccessAt": "2026-10-19",
         "sourceUrls": [
-          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251850&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "https://www.justetf.com/en/etf-profile.html?isin=IE00B6R52259",
-          "https://www.justetf.com/fr/etf-profile.html?isin=IE00B6R52259",
-          "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/ishares-msci-acwi-ucits-etf-us-IE00B6R52259-SSAC-EUR-XAMS/seance"
+          "https://bourse.fortuneo.fr/trackers/cours-ishares-msci-acwi-ucits-etf-usd-acc-SSAC-IE00B6R52259-46"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
-        "sourceErrors": [
-          {
-            "sourceUrl": "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/ishares-msci-acwi-ucits-etf-us-IE00B6R52259-SSAC-EUR-XAMS/seance",
-            "error": "Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
-          }
-        ]
+        "cause": null,
+        "sourceErrors": []
       },
       "currencyHedge": {
         "status": "observed",
@@ -8805,14 +8662,11 @@
       "domicile",
       "replicationMethod",
       "listings",
-      "currencyHedge"
-    ],
-    "pending": [
+      "currencyHedge",
       "pea"
     ],
-    "firstPendingAt": {
-      "pea": "2026-10-18T15:33:48.575784+00:00"
-    },
+    "pending": [],
+    "firstPendingAt": {},
     "errors": [
       {
         "sourceUrl": "https://www.boursedirect.fr/fr/marche/euronext-paris/ishares-j-p-morgan-em-local-g-IE00BFZPF546-EMGA-EUR-XPAR/seance",
@@ -8863,23 +8717,14 @@
         "sourceErrors": []
       },
       "pea": {
-        "status": "unobserved",
-        "lastAttemptAt": "2026-10-19T18:28:18.006178+00:00",
-        "lastSuccessAt": null,
+        "status": "observed",
+        "lastAttemptAt": "2026-10-19T18:59:55.826Z",
+        "lastSuccessAt": "2026-10-19",
         "sourceUrls": [
-          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=297676&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "https://www.ishares.com/uk/professionals/en/products/297676/ishares-j-p-morgan-em-local-govt-bond-ucits-etf-usd-%28acc%29-fund",
-          "https://www.justetf.com/fr/etf-profile.html?isin=IE00BFZPF546",
-          "https://www.blackrock.com/fr/particuliers/products/297676/ishares-j-p-morgan-em-local-govt-bond-ucits-etf-usd-%28acc%29-fund",
-          "https://www.boursedirect.fr/fr/marche/euronext-paris/ishares-j-p-morgan-em-local-g-IE00BFZPF546-EMGA-EUR-XPAR/seance"
+          "https://bourse.fortuneo.fr/trackers/cours-ishares-j-p-morgan-em-local-govt-bond-ucits-etf-usd-acc-EMGA-IE00BFZPF546-23"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
-        "sourceErrors": [
-          {
-            "sourceUrl": "https://www.boursedirect.fr/fr/marche/euronext-paris/ishares-j-p-morgan-em-local-g-IE00BFZPF546-EMGA-EUR-XPAR/seance",
-            "error": "Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
-          }
-        ]
+        "cause": null,
+        "sourceErrors": []
       },
       "currencyHedge": {
         "status": "observed",
@@ -8918,14 +8763,11 @@
       "domicile",
       "replicationMethod",
       "listings",
-      "currencyHedge"
-    ],
-    "pending": [
+      "currencyHedge",
       "pea"
     ],
-    "firstPendingAt": {
-      "pea": "2026-10-18T15:33:48.575784+00:00"
-    },
+    "pending": [],
+    "firstPendingAt": {},
     "errors": [
       {
         "sourceUrl": "https://www.boursedirect.fr/fr/marche/electronic-etf-etc-etn-and-open-end-funds-market/ishares-msci-world-information-IE00BJ5JNY98-WITS-EUR-EUR-ETFP/seance",
@@ -8973,22 +8815,14 @@
         "sourceErrors": []
       },
       "pea": {
-        "status": "unobserved",
-        "lastAttemptAt": "2026-10-19T18:28:18.006178+00:00",
-        "lastSuccessAt": null,
+        "status": "observed",
+        "lastAttemptAt": "2026-10-19T18:59:58.913Z",
+        "lastSuccessAt": "2026-10-19",
         "sourceUrls": [
-          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=308858&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "https://www.justetf.com/en/etf-profile.html?isin=IE00BJ5JNY98",
-          "https://www.justetf.com/fr/etf-profile.html?isin=IE00BJ5JNY98",
-          "https://www.boursedirect.fr/fr/marche/electronic-etf-etc-etn-and-open-end-funds-market/ishares-msci-world-information-IE00BJ5JNY98-WITS-EUR-EUR-ETFP/seance"
+          "https://bourse.fortuneo.fr/trackers/cours-ishares-msci-world-information-technology-sector-advanced-ucits-etf-usd-dis-WITS-IE00BJ5JNY98-918"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
-        "sourceErrors": [
-          {
-            "sourceUrl": "https://www.boursedirect.fr/fr/marche/electronic-etf-etc-etn-and-open-end-funds-market/ishares-msci-world-information-IE00BJ5JNY98-WITS-EUR-EUR-ETFP/seance",
-            "error": "Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
-          }
-        ]
+        "cause": null,
+        "sourceErrors": []
       },
       "currencyHedge": {
         "status": "observed",
@@ -9025,14 +8859,11 @@
       "domicile",
       "replicationMethod",
       "listings",
-      "currencyHedge"
-    ],
-    "pending": [
+      "currencyHedge",
       "pea"
     ],
-    "firstPendingAt": {
-      "pea": "2026-10-18T15:33:48.575784+00:00"
-    },
+    "pending": [],
+    "firstPendingAt": {},
     "errors": [],
     "fields": {
       "distribution": {
@@ -9072,15 +8903,13 @@
         "sourceErrors": []
       },
       "pea": {
-        "status": "unobserved",
-        "lastAttemptAt": "2026-10-19T18:28:18.006178+00:00",
-        "lastSuccessAt": null,
+        "status": "observed",
+        "lastAttemptAt": "2026-10-19T19:00:03.202Z",
+        "lastSuccessAt": "2026-10-19",
         "sourceUrls": [
-          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=309947&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "https://www.justetf.com/en/etf-profile.html?isin=IE00BK95B138",
-          "https://www.justetf.com/fr/etf-profile.html?isin=IE00BK95B138"
+          "https://bourse.fortuneo.fr/trackers/cours-ishares-treasury-bond-ucits-etf-usd-dis-GOVT-IE00BK95B138-918"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
+        "cause": null,
         "sourceErrors": []
       },
       "currencyHedge": {
@@ -9116,14 +8945,11 @@
       "domicile",
       "replicationMethod",
       "listings",
-      "currencyHedge"
-    ],
-    "pending": [
+      "currencyHedge",
       "pea"
     ],
-    "firstPendingAt": {
-      "pea": "2026-10-18T15:33:48.575784+00:00"
-    },
+    "pending": [],
+    "firstPendingAt": {},
     "errors": [],
     "fields": {
       "distribution": {
@@ -9163,15 +8989,13 @@
         "sourceErrors": []
       },
       "pea": {
-        "status": "unobserved",
-        "lastAttemptAt": "2026-10-19T18:28:18.006178+00:00",
-        "lastSuccessAt": null,
+        "status": "observed",
+        "lastAttemptAt": "2026-10-19T19:00:06.716Z",
+        "lastSuccessAt": "2026-10-19",
         "sourceUrls": [
-          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=313316&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "https://www.justetf.com/en/etf-profile.html?isin=IE00BKPX3K41",
-          "https://www.justetf.com/fr/etf-profile.html?isin=IE00BKPX3K41"
+          "https://bourse.fortuneo.fr/trackers/cours-ishares-msci-ac-far-east-ex-japan-ucits-etf-usd-acc-IFFI-IE00BKPX3K41-918"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
+        "cause": null,
         "sourceErrors": []
       },
       "currencyHedge": {
@@ -9207,14 +9031,11 @@
       "domicile",
       "replicationMethod",
       "listings",
-      "currencyHedge"
-    ],
-    "pending": [
+      "currencyHedge",
       "pea"
     ],
-    "firstPendingAt": {
-      "pea": "2026-10-18T15:33:48.575784+00:00"
-    },
+    "pending": [],
+    "firstPendingAt": {},
     "errors": [
       {
         "sourceUrl": "https://www.zonebourse.com/cours/etf/ISHARES-MSCI-EM-EX-CHINA--172321596/composition/",
@@ -9272,28 +9093,14 @@
         "sourceErrors": []
       },
       "pea": {
-        "status": "unobserved",
-        "lastAttemptAt": "2026-10-19T18:28:18.006178+00:00",
-        "lastSuccessAt": null,
+        "status": "observed",
+        "lastAttemptAt": "2026-10-19T19:00:08.621Z",
+        "lastSuccessAt": "2026-10-19",
         "sourceUrls": [
-          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=315592&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "https://www.ishares.com/uk/individual/en/products/315592/ishares-msci-em-ex-china-ucits-etf?siteEntryPassthrough=true&switchLocale=y",
-          "https://www.zonebourse.com/cours/etf/ISHARES-MSCI-EM-EX-CHINA--172321596/composition/",
-          "https://www.justetf.com/fr/etf-profile.html?isin=IE00BMG6Z448",
-          "https://www.blackrock.com/fr/particuliers/products/315592/ishares-msci-em-ex-china-ucits-etf",
-          "https://www.boursedirect.fr/fr/marche/euronext-paris/ishares-msci-em-ex-china-ucits-IE00BMG6Z448-MTPI-EUR-XPAR/seance"
+          "https://bourse.fortuneo.fr/trackers/cours-ishares-msci-em-ex-china-ucits-etf-usd-acc-MTPI-IE00BMG6Z448-23"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
-        "sourceErrors": [
-          {
-            "sourceUrl": "https://www.zonebourse.com/cours/etf/ISHARES-MSCI-EM-EX-CHINA--172321596/composition/",
-            "error": "Metadata source cooldown after HTTP 403; no new field evidence"
-          },
-          {
-            "sourceUrl": "https://www.boursedirect.fr/fr/marche/euronext-paris/ishares-msci-em-ex-china-ucits-IE00BMG6Z448-MTPI-EUR-XPAR/seance",
-            "error": "Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
-          }
-        ]
+        "cause": null,
+        "sourceErrors": []
       },
       "currencyHedge": {
         "status": "observed",
@@ -9829,14 +9636,11 @@
       "domicile",
       "replicationMethod",
       "listings",
-      "currencyHedge"
-    ],
-    "pending": [
+      "currencyHedge",
       "pea"
     ],
-    "firstPendingAt": {
-      "pea": "2026-10-18T15:33:48.575784+00:00"
-    },
+    "pending": [],
+    "firstPendingAt": {},
     "errors": [
       {
         "sourceUrl": "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/ishares-digital-security-ucits-IE00BG0J4C88-LOCK-EUR-XAMS/seance",
@@ -9884,22 +9688,14 @@
         "sourceErrors": []
       },
       "pea": {
-        "status": "unobserved",
-        "lastAttemptAt": "2026-10-19T18:28:18.006178+00:00",
-        "lastSuccessAt": null,
+        "status": "observed",
+        "lastAttemptAt": "2026-10-19T19:00:13.474Z",
+        "lastSuccessAt": "2026-10-19",
         "sourceUrls": [
-          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=297843&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "https://www.justetf.com/en/etf-profile.html?isin=IE00BG0J4C88",
-          "https://www.justetf.com/fr/etf-profile.html?isin=IE00BG0J4C88",
-          "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/ishares-digital-security-ucits-IE00BG0J4C88-LOCK-EUR-XAMS/seance"
+          "https://bourse.fortuneo.fr/trackers/cours-ishares-digital-security-ucits-etf-usd-acc-LOCK-IE00BG0J4C88-46"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
-        "sourceErrors": [
-          {
-            "sourceUrl": "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/ishares-digital-security-ucits-IE00BG0J4C88-LOCK-EUR-XAMS/seance",
-            "error": "Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
-          }
-        ]
+        "cause": null,
+        "sourceErrors": []
       },
       "currencyHedge": {
         "status": "observed",
@@ -9936,14 +9732,11 @@
       "domicile",
       "replicationMethod",
       "listings",
-      "currencyHedge"
-    ],
-    "pending": [
+      "currencyHedge",
       "pea"
     ],
-    "firstPendingAt": {
-      "pea": "2026-10-18T15:33:48.575784+00:00"
-    },
+    "pending": [],
+    "firstPendingAt": {},
     "errors": [
       {
         "sourceUrl": "https://www.boursedirect.fr/fr/marche/six-swiss-exchange/is-msci-eu-scp-ucits-etf-eu-a-IE0000N55FP4-ESCE-EUR-XAMS-EUR-XSWX/seance",
@@ -9991,22 +9784,14 @@
         "sourceErrors": []
       },
       "pea": {
-        "status": "unobserved",
-        "lastAttemptAt": "2026-10-19T18:28:18.006178+00:00",
-        "lastSuccessAt": null,
+        "status": "observed",
+        "lastAttemptAt": "2026-10-19T19:00:16.788Z",
+        "lastSuccessAt": "2026-10-19",
         "sourceUrls": [
-          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=348766&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "https://www.justetf.com/en/etf-profile.html?isin=IE0000N55FP4",
-          "https://www.justetf.com/fr/etf-profile.html?isin=IE0000N55FP4",
-          "https://www.boursedirect.fr/fr/marche/six-swiss-exchange/is-msci-eu-scp-ucits-etf-eu-a-IE0000N55FP4-ESCE-EUR-XAMS-EUR-XSWX/seance"
+          "https://bourse.fortuneo.fr/trackers/cours-ishares-msci-europe-small-cap-ucits-etf-eur-acc-ESCE-IE0000N55FP4-46"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
-        "sourceErrors": [
-          {
-            "sourceUrl": "https://www.boursedirect.fr/fr/marche/six-swiss-exchange/is-msci-eu-scp-ucits-etf-eu-a-IE0000N55FP4-ESCE-EUR-XAMS-EUR-XSWX/seance",
-            "error": "Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
-          }
-        ]
+        "cause": null,
+        "sourceErrors": []
       },
       "currencyHedge": {
         "status": "observed",
@@ -11100,12 +10885,7 @@
         "lastAttemptAt": "2026-10-19T18:28:18.006178+00:00",
         "lastSuccessAt": "2026-10-19",
         "sourceUrls": [
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/pdpMetaTagsTealium",
-          "https://etf.dws.com/fr-fr/AssetDownload/Index/410e8206-23cd-463b-b2a5-6018bfc1fd32/Factsheet.pdf",
-          "https://www.zonebourse.com/cours/etf/XTRACKERS-MSCI-WORLD-EX-U-169862014/",
-          "https://www.justetf.com/fr/etf-profile.html?isin=IE0006WW1TQ4",
-          "https://etf.dws.com/download/asset/82292b8e-bf9e-44f2-b20d-722c743110a3",
-          "https://www.boursedirect.fr/fr/marche/electronic-etf-etc-etn-and-open-end-funds-market/xtrackers-msci-world-ex-usa-uc-IE0006WW1TQ4-EXUS-EUR-ETFP/seance"
+          "https://etf.dws.com/download/asset/82292b8e-bf9e-44f2-b20d-722c743110a3"
         ],
         "cause": null,
         "sourceErrors": []
@@ -11977,14 +11757,11 @@
       "distribution",
       "domicile",
       "replicationMethod",
-      "currencyHedge"
-    ],
-    "pending": [
+      "currencyHedge",
       "pea"
     ],
-    "firstPendingAt": {
-      "pea": "2026-10-18T16:04:20.346657+00:00"
-    },
+    "pending": [],
+    "firstPendingAt": {},
     "errors": [
       {
         "sourceUrl": "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/vanguard-ftse-all-world-ucits-IE00BK5BQT80-VWCE-EUR-XAMS/seance",
@@ -12032,22 +11809,14 @@
         "sourceErrors": []
       },
       "pea": {
-        "status": "unobserved",
-        "lastAttemptAt": "2026-10-19T18:28:18.006178+00:00",
-        "lastSuccessAt": null,
+        "status": "observed",
+        "lastAttemptAt": "2026-10-19T19:00:29.783Z",
+        "lastSuccessAt": "2026-10-19",
         "sourceUrls": [
-          "https://fund-docs.vanguard.com/FTSE_All-World_UCITS_ETF_USD_Accumulating_9679_EU_INT_UK_EN.pdf",
-          "https://www.justetf.com/en/etf-profile.html?isin=IE00BK5BQT80",
-          "https://www.justetf.com/fr/etf-profile.html?isin=IE00BK5BQT80",
-          "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/vanguard-ftse-all-world-ucits-IE00BK5BQT80-VWCE-EUR-XAMS/seance"
+          "https://bourse.fortuneo.fr/trackers/cours-vanguard-ftse-all-world-ucits-etf-usd-acc-VWCE-IE00BK5BQT80-46"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
-        "sourceErrors": [
-          {
-            "sourceUrl": "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/vanguard-ftse-all-world-ucits-IE00BK5BQT80-VWCE-EUR-XAMS/seance",
-            "error": "Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
-          }
-        ]
+        "cause": null,
+        "sourceErrors": []
       },
       "currencyHedge": {
         "status": "observed",
@@ -12379,14 +12148,11 @@
       "distribution",
       "domicile",
       "replicationMethod",
-      "currencyHedge"
-    ],
-    "pending": [
+      "currencyHedge",
       "pea"
     ],
-    "firstPendingAt": {
-      "pea": "2026-10-18T15:33:48.575784+00:00"
-    },
+    "pending": [],
+    "firstPendingAt": {},
     "errors": [
       {
         "sourceUrl": "https://www.boursedirect.fr/fr/marche/electronic-etf-etc-etn-and-open-end-funds-market/vanguard-eur-corporate-bond-uc-IE00BZ163G84-VECP-ETFP-EUR-ETFP/seance",
@@ -12434,22 +12200,14 @@
         "sourceErrors": []
       },
       "pea": {
-        "status": "unobserved",
-        "lastAttemptAt": "2026-10-19T18:28:18.006178+00:00",
-        "lastSuccessAt": null,
+        "status": "observed",
+        "lastAttemptAt": "2026-10-19T19:00:35.161Z",
+        "lastSuccessAt": "2026-10-19",
         "sourceUrls": [
-          "https://fund-docs.vanguard.com/EUR_Corporate_Bond_UCITS_ETF_EUR_Distributing_9659_EU_INT_UK_EN.pdf",
-          "https://www.justetf.com/en/etf-profile.html?isin=IE00BZ163G84",
-          "https://www.justetf.com/fr/etf-profile.html?isin=IE00BZ163G84",
-          "https://www.boursedirect.fr/fr/marche/electronic-etf-etc-etn-and-open-end-funds-market/vanguard-eur-corporate-bond-uc-IE00BZ163G84-VECP-ETFP-EUR-ETFP/seance"
+          "https://bourse.fortuneo.fr/trackers/cours-vanguard-eur-corporate-bond-ucits-etf-dis-VECP-IE00BZ163G84-46"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
-        "sourceErrors": [
-          {
-            "sourceUrl": "https://www.boursedirect.fr/fr/marche/electronic-etf-etc-etn-and-open-end-funds-market/vanguard-eur-corporate-bond-uc-IE00BZ163G84-VECP-ETFP-EUR-ETFP/seance",
-            "error": "Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
-          }
-        ]
+        "cause": null,
+        "sourceErrors": []
       },
       "currencyHedge": {
         "status": "observed",
@@ -13063,14 +12821,11 @@
       "domicile",
       "replicationMethod",
       "listings",
-      "currencyHedge"
-    ],
-    "pending": [
+      "currencyHedge",
       "pea"
     ],
-    "firstPendingAt": {
-      "pea": "2026-10-18T15:33:48.575784+00:00"
-    },
+    "pending": [],
+    "firstPendingAt": {},
     "errors": [
       {
         "sourceUrl": "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/vaneck-global-real-estate-ucit-NL0009690239-TRET-EUR-XAMS/seance",
@@ -13118,22 +12873,14 @@
         "sourceErrors": []
       },
       "pea": {
-        "status": "unobserved",
-        "lastAttemptAt": "2026-10-19T18:28:18.006178+00:00",
-        "lastSuccessAt": null,
+        "status": "observed",
+        "lastAttemptAt": "2026-10-19T19:00:39.515Z",
+        "lastSuccessAt": "2026-10-19",
         "sourceUrls": [
-          "https://www.vaneck.com/ucits/library/fact-sheets/tret-fact-sheet.pdf",
-          "https://www.justetf.com/en/etf-profile.html?isin=NL0009690239",
-          "https://www.justetf.com/fr/etf-profile.html?isin=NL0009690239",
-          "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/vaneck-global-real-estate-ucit-NL0009690239-TRET-EUR-XAMS/seance"
+          "https://bourse.fortuneo.fr/trackers/cours-vaneck-global-real-estate-ucits-etf-eur-dis-TRET-NL0009690239-46"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
-        "sourceErrors": [
-          {
-            "sourceUrl": "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/vaneck-global-real-estate-ucit-NL0009690239-TRET-EUR-XAMS/seance",
-            "error": "Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
-          }
-        ]
+        "cause": null,
+        "sourceErrors": []
       },
       "currencyHedge": {
         "status": "observed",
@@ -13263,16 +13010,12 @@
       "domicile",
       "replicationMethod",
       "currencyHedge",
-      "distribution"
+      "distribution",
+      "listings",
+      "pea"
     ],
-    "pending": [
-      "pea",
-      "listings"
-    ],
-    "firstPendingAt": {
-      "pea": "2026-10-18T15:33:48.575784+00:00",
-      "listings": "2026-10-18T15:33:48.575784+00:00"
-    },
+    "pending": [],
+    "firstPendingAt": {},
     "errors": [
       {
         "sourceUrl": "https://live.euronext.com/en/product/etfs/IE00B579F325-XAMS/financial-calendar",
@@ -13327,27 +13070,14 @@
         "sourceErrors": []
       },
       "pea": {
-        "status": "unobserved",
-        "lastAttemptAt": "2026-10-19T18:28:18.006178+00:00",
-        "lastSuccessAt": null,
+        "status": "observed",
+        "lastAttemptAt": "2026-10-19T19:00:42.746Z",
+        "lastSuccessAt": "2026-10-19",
         "sourceUrls": [
-          "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE00B579F325_factsheet_en.pdf",
-          "https://www.justetf.com/en/etf-profile.html?isin=IE00B579F325",
-          "https://www.justetf.com/fr/etf-profile.html?isin=IE00B579F325",
-          "https://live.euronext.com/en/product/etfs/IE00B579F325-XAMS/financial-calendar",
-          "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/invesco-physical-gold-etc-IE00B579F325-SGLD-EUR-XAMS/seance"
+          "https://bourse.fortuneo.fr/trackers/cours-inve-phys-gold-etc-SGLD-IE00B579F325-46"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
-        "sourceErrors": [
-          {
-            "sourceUrl": "https://live.euronext.com/en/product/etfs/IE00B579F325-XAMS/financial-calendar",
-            "error": "No explicit supported metadata fields"
-          },
-          {
-            "sourceUrl": "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/invesco-physical-gold-etc-IE00B579F325-SGLD-EUR-XAMS/seance",
-            "error": "Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
-          }
-        ]
+        "cause": null,
+        "sourceErrors": []
       },
       "currencyHedge": {
         "status": "observed",
@@ -13364,27 +13094,14 @@
         "sourceErrors": []
       },
       "listings": {
-        "status": "unobserved",
-        "lastAttemptAt": "2026-10-19T18:28:18.006178+00:00",
-        "lastSuccessAt": null,
+        "status": "observed",
+        "lastAttemptAt": "2026-10-19T18:54:43.875Z",
+        "lastSuccessAt": "2026-10-19",
         "sourceUrls": [
-          "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE00B579F325_factsheet_en.pdf",
-          "https://www.justetf.com/en/etf-profile.html?isin=IE00B579F325",
-          "https://www.justetf.com/fr/etf-profile.html?isin=IE00B579F325",
-          "https://live.euronext.com/en/product/etfs/IE00B579F325-XAMS/financial-calendar",
-          "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/invesco-physical-gold-etc-IE00B579F325-SGLD-EUR-XAMS/seance"
+          "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B579F325?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
-        "sourceErrors": [
-          {
-            "sourceUrl": "https://live.euronext.com/en/product/etfs/IE00B579F325-XAMS/financial-calendar",
-            "error": "No explicit supported metadata fields"
-          },
-          {
-            "sourceUrl": "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/invesco-physical-gold-etc-IE00B579F325-SGLD-EUR-XAMS/seance",
-            "error": "Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
-          }
-        ]
+        "cause": null,
+        "sourceErrors": []
       }
     }
   },
@@ -13394,15 +13111,14 @@
       "domicile",
       "replicationMethod",
       "currencyHedge",
-      "distribution"
-    ],
-    "pending": [
-      "pea",
+      "distribution",
       "listings"
     ],
+    "pending": [
+      "pea"
+    ],
     "firstPendingAt": {
-      "pea": "2026-10-18T15:33:48.575784+00:00",
-      "listings": "2026-10-18T15:33:48.575784+00:00"
+      "pea": "2026-10-18T15:33:48.575784+00:00"
     },
     "errors": [
       {
@@ -13482,22 +13198,14 @@
         "sourceErrors": []
       },
       "listings": {
-        "status": "unobserved",
-        "lastAttemptAt": "2026-10-19T18:28:18.006178+00:00",
-        "lastSuccessAt": null,
+        "status": "observed",
+        "lastAttemptAt": "2026-10-19T18:54:45.533Z",
+        "lastSuccessAt": "2026-10-19",
         "sourceUrls": [
-          "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE00BD6FTQ80_factsheet_en.pdf",
-          "https://www.justetf.com/en/etf-profile.html?isin=IE00BD6FTQ80",
-          "https://www.justetf.com/fr/etf-profile.html?isin=IE00BD6FTQ80",
-          "https://www.boursedirect.fr/fr/marche/london-stock-exchange/invesco-markets-plc-invesco-bb-IE00BD6FTQ80-CMOP-GBX-XLON/seance"
+          "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00BD6FTQ80?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
-        "sourceErrors": [
-          {
-            "sourceUrl": "https://www.boursedirect.fr/fr/marche/london-stock-exchange/invesco-markets-plc-invesco-bb-IE00BD6FTQ80-CMOP-GBX-XLON/seance",
-            "error": "Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
-          }
-        ]
+        "cause": null,
+        "sourceErrors": []
       }
     }
   },
@@ -13596,14 +13304,11 @@
       "domicile",
       "replicationMethod",
       "listings",
-      "currencyHedge"
-    ],
-    "pending": [
+      "currencyHedge",
       "pea"
     ],
-    "firstPendingAt": {
-      "pea": "2026-10-18T15:33:48.575784+00:00"
-    },
+    "pending": [],
+    "firstPendingAt": {},
     "errors": [
       {
         "sourceUrl": "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/ishares-china-large-cap-ucits-IE00B02KXK85-FXC-EUR-XAMS/seance",
@@ -13648,21 +13353,14 @@
         "sourceErrors": []
       },
       "pea": {
-        "status": "unobserved",
-        "lastAttemptAt": "2026-10-19T18:28:18.006178+00:00",
-        "lastSuccessAt": null,
+        "status": "observed",
+        "lastAttemptAt": "2026-10-19T19:00:47.785Z",
+        "lastSuccessAt": "2026-10-19",
         "sourceUrls": [
-          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251798&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "https://www.justetf.com/fr/etf-profile.html?isin=IE00B02KXK85",
-          "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/ishares-china-large-cap-ucits-IE00B02KXK85-FXC-EUR-XAMS/seance"
+          "https://bourse.fortuneo.fr/trackers/cours-ishares-china-large-cap-ucits-etf-usd-dis-FXC-IE00B02KXK85-46"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
-        "sourceErrors": [
-          {
-            "sourceUrl": "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/ishares-china-large-cap-ucits-IE00B02KXK85-FXC-EUR-XAMS/seance",
-            "error": "Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
-          }
-        ]
+        "cause": null,
+        "sourceErrors": []
       },
       "currencyHedge": {
         "status": "observed",
@@ -13791,14 +13489,11 @@
       "domicile",
       "replicationMethod",
       "listings",
-      "currencyHedge"
-    ],
-    "pending": [
+      "currencyHedge",
       "pea"
     ],
-    "firstPendingAt": {
-      "pea": "2026-10-18T15:33:48.575784+00:00"
-    },
+    "pending": [],
+    "firstPendingAt": {},
     "errors": [
       {
         "sourceUrl": "https://www.boursedirect.fr/fr/marche/london-stock-exchange/ishares-physical-metals-plc-i-IE00B4NCWG09-ISLN-USD-XLON/seance",
@@ -13846,22 +13541,14 @@
         "sourceErrors": []
       },
       "pea": {
-        "status": "unobserved",
-        "lastAttemptAt": "2026-10-19T18:28:18.006178+00:00",
-        "lastSuccessAt": null,
+        "status": "observed",
+        "lastAttemptAt": "2026-10-19T19:08:56.370Z",
+        "lastSuccessAt": "2026-10-19",
         "sourceUrls": [
-          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=258443&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "https://www.justetf.com/en/etf-profile.html?isin=IE00B4NCWG09",
-          "https://www.justetf.com/fr/etf-profile.html?isin=IE00B4NCWG09",
-          "https://www.boursedirect.fr/fr/marche/london-stock-exchange/ishares-physical-metals-plc-i-IE00B4NCWG09-ISLN-USD-XLON/seance"
+          "https://bourse.fortuneo.fr/trackers/cours-ishetcxslrimxpar-SSLN-XPAR-IE00B4NCWG09-23"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
-        "sourceErrors": [
-          {
-            "sourceUrl": "https://www.boursedirect.fr/fr/marche/london-stock-exchange/ishares-physical-metals-plc-i-IE00B4NCWG09-ISLN-USD-XLON/seance",
-            "error": "Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
-          }
-        ]
+        "cause": null,
+        "sourceErrors": []
       },
       "currencyHedge": {
         "status": "observed",
@@ -13898,14 +13585,11 @@
       "domicile",
       "replicationMethod",
       "listings",
-      "currencyHedge"
-    ],
-    "pending": [
+      "currencyHedge",
       "pea"
     ],
-    "firstPendingAt": {
-      "pea": "2026-10-18T15:33:48.575784+00:00"
-    },
+    "pending": [],
+    "firstPendingAt": {},
     "errors": [
       {
         "sourceUrl": "https://www.boursedirect.fr/fr/marche/euronext-paris/ishares-physical-gold-etc-IE00B4ND3602-SLGN-EUR-XPAR/seance",
@@ -13953,22 +13637,14 @@
         "sourceErrors": []
       },
       "pea": {
-        "status": "unobserved",
-        "lastAttemptAt": "2026-10-19T18:28:18.006178+00:00",
-        "lastSuccessAt": null,
+        "status": "observed",
+        "lastAttemptAt": "2026-10-19T19:00:51.241Z",
+        "lastSuccessAt": "2026-10-19",
         "sourceUrls": [
-          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=258441&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "https://www.justetf.com/en/etf-profile.html?isin=IE00B4ND3602",
-          "https://www.justetf.com/fr/etf-profile.html?isin=IE00B4ND3602",
-          "https://www.boursedirect.fr/fr/marche/euronext-paris/ishares-physical-gold-etc-IE00B4ND3602-SLGN-EUR-XPAR/seance"
+          "https://bourse.fortuneo.fr/trackers/cours-ishetcxgdeimxpar-SLGN-IE00B4ND3602-23"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
-        "sourceErrors": [
-          {
-            "sourceUrl": "https://www.boursedirect.fr/fr/marche/euronext-paris/ishares-physical-gold-etc-IE00B4ND3602-SLGN-EUR-XPAR/seance",
-            "error": "Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
-          }
-        ]
+        "cause": null,
+        "sourceErrors": []
       },
       "currencyHedge": {
         "status": "observed",
@@ -14181,14 +13857,11 @@
       "domicile",
       "replicationMethod",
       "listings",
-      "currencyHedge"
-    ],
-    "pending": [
+      "currencyHedge",
       "pea"
     ],
-    "firstPendingAt": {
-      "pea": "2026-10-18T15:33:48.575784+00:00"
-    },
+    "pending": [],
+    "firstPendingAt": {},
     "errors": [
       {
         "sourceUrl": "https://www.boursedirect.fr/fr/marche/xetra/ishs-vi-div-com-s-u-etf-IE00BDFL4P12-SXRS-EUR-XETR/seance",
@@ -14236,22 +13909,14 @@
         "sourceErrors": []
       },
       "pea": {
-        "status": "unobserved",
-        "lastAttemptAt": "2026-10-19T18:28:18.006178+00:00",
-        "lastSuccessAt": null,
+        "status": "observed",
+        "lastAttemptAt": "2026-10-19T19:00:54.077Z",
+        "lastSuccessAt": "2026-10-19",
         "sourceUrls": [
-          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=287254&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "https://www.justetf.com/en/etf-profile.html?isin=IE00BDFL4P12",
-          "https://www.justetf.com/fr/etf-profile.html?isin=IE00BDFL4P12",
-          "https://www.boursedirect.fr/fr/marche/xetra/ishs-vi-div-com-s-u-etf-IE00BDFL4P12-SXRS-EUR-XETR/seance"
+          "https://bourse.fortuneo.fr/trackers/cours-ishares-diversified-commodity-swap-ucits-etf-usd-acc-ICOM-IE00BDFL4P12-23"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
-        "sourceErrors": [
-          {
-            "sourceUrl": "https://www.boursedirect.fr/fr/marche/xetra/ishs-vi-div-com-s-u-etf-IE00BDFL4P12-SXRS-EUR-XETR/seance",
-            "error": "Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
-          }
-        ]
+        "cause": null,
+        "sourceErrors": []
       },
       "currencyHedge": {
         "status": "observed",
@@ -14288,14 +13953,11 @@
       "domicile",
       "replicationMethod",
       "listings",
-      "currencyHedge"
-    ],
-    "pending": [
+      "currencyHedge",
       "pea"
     ],
-    "firstPendingAt": {
-      "pea": "2026-10-18T15:33:48.575784+00:00"
-    },
+    "pending": [],
+    "firstPendingAt": {},
     "errors": [
       {
         "sourceUrl": "https://www.boursedirect.fr/fr/marche/xetra/ishsiv-msci-china-dl-a-IE00BJ5JPG56-ICGA-EUR-XETR/seance",
@@ -14340,21 +14002,14 @@
         "sourceErrors": []
       },
       "pea": {
-        "status": "unobserved",
-        "lastAttemptAt": "2026-10-19T18:28:18.006178+00:00",
-        "lastSuccessAt": null,
+        "status": "observed",
+        "lastAttemptAt": "2026-10-19T19:00:57.468Z",
+        "lastSuccessAt": "2026-10-19",
         "sourceUrls": [
-          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=308751&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "https://www.justetf.com/fr/etf-profile.html?isin=IE00BJ5JPG56",
-          "https://www.boursedirect.fr/fr/marche/xetra/ishsiv-msci-china-dl-a-IE00BJ5JPG56-ICGA-EUR-XETR/seance"
+          "https://bourse.fortuneo.fr/trackers/cours-ishares-msci-china-ucits-etf-usd-acc-ICHN-IE00BJ5JPG56-918"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
-        "sourceErrors": [
-          {
-            "sourceUrl": "https://www.boursedirect.fr/fr/marche/xetra/ishsiv-msci-china-dl-a-IE00BJ5JPG56-ICGA-EUR-XETR/seance",
-            "error": "Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
-          }
-        ]
+        "cause": null,
+        "sourceErrors": []
       },
       "currencyHedge": {
         "status": "observed",
@@ -14483,14 +14138,11 @@
       "domicile",
       "replicationMethod",
       "listings",
-      "currencyHedge"
-    ],
-    "pending": [
+      "currencyHedge",
       "pea"
     ],
-    "firstPendingAt": {
-      "pea": "2026-10-18T15:33:48.575784+00:00"
-    },
+    "pending": [],
+    "firstPendingAt": {},
     "errors": [
       {
         "sourceUrl": "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/ishares-msci-china-a-ucits-etf-IE00BQT3WG13-CNYA-EUR-XAMS/seance",
@@ -14535,21 +14187,14 @@
         "sourceErrors": []
       },
       "pea": {
-        "status": "unobserved",
-        "lastAttemptAt": "2026-10-19T18:28:18.006178+00:00",
-        "lastSuccessAt": null,
+        "status": "observed",
+        "lastAttemptAt": "2026-10-19T19:01:01.813Z",
+        "lastSuccessAt": "2026-10-19",
         "sourceUrls": [
-          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=273192&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "https://www.justetf.com/fr/etf-profile.html?isin=IE00BQT3WG13",
-          "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/ishares-msci-china-a-ucits-etf-IE00BQT3WG13-CNYA-EUR-XAMS/seance"
+          "https://bourse.fortuneo.fr/trackers/cours-ishares-msci-china-a-ucits-etf-usd-acc-CNYA-IE00BQT3WG13-46"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
-        "sourceErrors": [
-          {
-            "sourceUrl": "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/ishares-msci-china-a-ucits-etf-IE00BQT3WG13-CNYA-EUR-XAMS/seance",
-            "error": "Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
-          }
-        ]
+        "cause": null,
+        "sourceErrors": []
       },
       "currencyHedge": {
         "status": "observed",
@@ -14787,14 +14432,11 @@
       "domicile",
       "replicationMethod",
       "listings",
-      "currencyHedge"
-    ],
-    "pending": [
+      "currencyHedge",
       "pea"
     ],
-    "firstPendingAt": {
-      "pea": "2026-10-18T15:33:48.575784+00:00"
-    },
+    "pending": [],
+    "firstPendingAt": {},
     "errors": [
       {
         "sourceUrl": "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/ishares-eur-govt-bond-15-30yr-IE00B1FZS913-IBGL-EUR-XAMS/seance",
@@ -14845,23 +14487,14 @@
         "sourceErrors": []
       },
       "pea": {
-        "status": "unobserved",
-        "lastAttemptAt": "2026-10-19T18:28:18.006178+00:00",
-        "lastSuccessAt": null,
+        "status": "observed",
+        "lastAttemptAt": "2026-10-19T19:01:06.532Z",
+        "lastSuccessAt": "2026-10-19",
         "sourceUrls": [
-          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251735&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "https://www.ishares.com/uk/individual/en/products/251735/ishares-euro-government-bond-1530yr-ucits-etf",
-          "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/ishares-eur-govt-bond-15-30yr-IE00B1FZS913-IBGL-EUR-XAMS/seance",
-          "https://www.justetf.com/fr/etf-profile.html?isin=IE00B1FZS913",
-          "https://www.blackrock.com/fr/particuliers/products/251735/ishares-euro-government-bond-1530yr-ucits-etf"
+          "https://bourse.fortuneo.fr/trackers/cours-ishares-eur-govt-bond-15-30yr-ucits-etf-dis-IBGL-IE00B1FZS913-46"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
-        "sourceErrors": [
-          {
-            "sourceUrl": "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/ishares-eur-govt-bond-15-30yr-IE00B1FZS913-IBGL-EUR-XAMS/seance",
-            "error": "Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
-          }
-        ]
+        "cause": null,
+        "sourceErrors": []
       },
       "currencyHedge": {
         "status": "observed",
@@ -15579,14 +15212,11 @@
       "replicationMethod",
       "currencyHedge",
       "listings",
-      "distribution"
-    ],
-    "pending": [
+      "distribution",
       "pea"
     ],
-    "firstPendingAt": {
-      "pea": "2026-10-18T15:33:48.575784+00:00"
-    },
+    "pending": [],
+    "firstPendingAt": {},
     "errors": [
       {
         "sourceUrl": "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/wisdom-tree-physical-gold-JE00B1VS3770-PHAU-EUR-XAMS/seance",
@@ -15634,22 +15264,14 @@
         "sourceErrors": []
       },
       "pea": {
-        "status": "unobserved",
-        "lastAttemptAt": "2026-10-19T18:28:18.006178+00:00",
-        "lastSuccessAt": null,
+        "status": "observed",
+        "lastAttemptAt": "2026-10-19T19:01:15.653Z",
+        "lastSuccessAt": "2026-10-19",
         "sourceUrls": [
-          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/MSL/EU/EN-GB/JE00B1VS3770",
-          "https://www.justetf.com/en/etf-profile.html?isin=JE00B1VS3770",
-          "https://www.justetf.com/fr/etf-profile.html?isin=JE00B1VS3770",
-          "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/wisdom-tree-physical-gold-JE00B1VS3770-PHAU-EUR-XAMS/seance"
+          "https://bourse.fortuneo.fr/trackers/cours-wt-physical-gold-PHAU-JE00B1VS3770-46"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
-        "sourceErrors": [
-          {
-            "sourceUrl": "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/wisdom-tree-physical-gold-JE00B1VS3770-PHAU-EUR-XAMS/seance",
-            "error": "Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
-          }
-        ]
+        "cause": null,
+        "sourceErrors": []
       },
       "currencyHedge": {
         "status": "observed",
@@ -15874,14 +15496,11 @@
       "domicile",
       "replicationMethod",
       "currencyHedge",
-      "listings"
-    ],
-    "pending": [
+      "listings",
       "pea"
     ],
-    "firstPendingAt": {
-      "pea": "2026-10-18T15:33:48.575784+00:00"
-    },
+    "pending": [],
+    "firstPendingAt": {},
     "errors": [
       {
         "sourceUrl": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
@@ -15940,31 +15559,14 @@
         "sourceErrors": []
       },
       "pea": {
-        "status": "unobserved",
-        "lastAttemptAt": "2026-10-19T18:28:18.006178+00:00",
-        "lastSuccessAt": null,
+        "status": "observed",
+        "lastAttemptAt": "2026-10-19T19:01:19.065Z",
+        "lastSuccessAt": "2026-10-19",
         "sourceUrls": [
-          "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
-          "https://www.justetf.com/en/etf-profile.html?isin=IE00BYPLS672",
-          "https://www.justetf.com/fr/etf-profile.html?isin=IE00BYPLS672",
-          "https://www.borsaitaliana.it/CAETF/2025-92214-SUPPLEMENTS-650e8c0e-ea76-4490-ad4e-32661d4a6888.pdf",
-          "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/legal-general-ucits-etf-plc-IE00BYPLS672-ISPY-EUR-XAMS/seance"
+          "https://bourse.fortuneo.fr/trackers/cours-l-g-cyber-security-ucits-etf-usd-acc-ISPY-IE00BYPLS672-46"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
-        "sourceErrors": [
-          {
-            "sourceUrl": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
-            "error": "No qualified structured metadata parser for this endpoint"
-          },
-          {
-            "sourceUrl": "https://www.borsaitaliana.it/CAETF/2025-92214-SUPPLEMENTS-650e8c0e-ea76-4490-ad4e-32661d4a6888.pdf",
-            "error": "Missing or multiple exact-share identities in metadata document"
-          },
-          {
-            "sourceUrl": "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/legal-general-ucits-etf-plc-IE00BYPLS672-ISPY-EUR-XAMS/seance",
-            "error": "Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
-          }
-        ]
+        "cause": null,
+        "sourceErrors": []
       },
       "currencyHedge": {
         "status": "observed",
@@ -16003,14 +15605,11 @@
       "replicationMethod",
       "pea",
       "distribution",
-      "currencyHedge"
-    ],
-    "pending": [
+      "currencyHedge",
       "listings"
     ],
-    "firstPendingAt": {
-      "listings": "2026-10-18T19:31:40.807499+00:00"
-    },
+    "pending": [],
+    "firstPendingAt": {},
     "errors": [],
     "fields": {
       "distribution": {
@@ -16074,15 +15673,13 @@
         "sourceErrors": []
       },
       "listings": {
-        "status": "unobserved",
-        "lastAttemptAt": "2026-10-19T18:28:18.006178+00:00",
-        "lastSuccessAt": null,
+        "status": "observed",
+        "lastAttemptAt": "2026-10-19T19:03:37.690Z",
+        "lastSuccessAt": "2026-10-19",
         "sourceUrls": [
-          "https://www.assetmanagement.hsbc.co.uk/api/v1/download/document/ie00b4k6b022/gb/en/factsheet",
-          "https://bourse.fortuneo.fr/trackers/cours-hsbc-euro-stoxx-50-ucits-etf-dis-50E-IE00B4K6B022-23",
-          "https://www.justetf.com/fr/etf-profile.html?isin=IE00B4K6B022"
+          "https://live.euronext.com/en/product/etfs/IE00B4K6B022-XPAR"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
+        "cause": null,
         "sourceErrors": []
       }
     }
@@ -16201,14 +15798,11 @@
       "domicile",
       "replicationMethod",
       "currencyHedge",
-      "listings"
-    ],
-    "pending": [
+      "listings",
       "pea"
     ],
-    "firstPendingAt": {
-      "pea": "2026-10-18T15:33:48.575784+00:00"
-    },
+    "pending": [],
+    "firstPendingAt": {},
     "errors": [
       {
         "sourceUrl": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
@@ -16267,31 +15861,14 @@
         "sourceErrors": []
       },
       "pea": {
-        "status": "unobserved",
-        "lastAttemptAt": "2026-10-19T18:28:18.006178+00:00",
-        "lastSuccessAt": null,
+        "status": "observed",
+        "lastAttemptAt": "2026-10-19T19:01:22.983Z",
+        "lastSuccessAt": "2026-10-19",
         "sourceUrls": [
-          "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
-          "https://www.justetf.com/en/etf-profile.html?isin=IE00BF0M2Z96",
-          "https://www.justetf.com/fr/etf-profile.html?isin=IE00BF0M2Z96",
-          "https://www.borsaitaliana.it/CAETF/2025-92213-SUPPLEMENTS-6c5bd598-b83f-40ba-925d-a07046bf4e10.pdf",
-          "https://www.boursedirect.fr/fr/marche/six-swiss-exchange/l-g-battery-value-chain-IE00BF0M2Z96-BATT-EUR-XAMS-EUR-XSWX/seance"
+          "https://bourse.fortuneo.fr/trackers/cours-l-g-battery-value-chain-ucits-etf-usd-acc-BATT-IE00BF0M2Z96-46"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
-        "sourceErrors": [
-          {
-            "sourceUrl": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
-            "error": "No qualified structured metadata parser for this endpoint"
-          },
-          {
-            "sourceUrl": "https://www.borsaitaliana.it/CAETF/2025-92213-SUPPLEMENTS-6c5bd598-b83f-40ba-925d-a07046bf4e10.pdf",
-            "error": "Missing or multiple exact-share identities in metadata document"
-          },
-          {
-            "sourceUrl": "https://www.boursedirect.fr/fr/marche/six-swiss-exchange/l-g-battery-value-chain-IE00BF0M2Z96-BATT-EUR-XAMS-EUR-XSWX/seance",
-            "error": "Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
-          }
-        ]
+        "cause": null,
+        "sourceErrors": []
       },
       "currencyHedge": {
         "status": "observed",
@@ -16312,11 +15889,7 @@
         "lastAttemptAt": "2026-10-19T18:28:18.006178+00:00",
         "lastSuccessAt": "2026-10-19",
         "sourceUrls": [
-          "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
-          "https://www.justetf.com/en/etf-profile.html?isin=IE00BF0M2Z96",
-          "https://www.justetf.com/fr/etf-profile.html?isin=IE00BF0M2Z96",
-          "https://www.borsaitaliana.it/CAETF/2025-92213-SUPPLEMENTS-6c5bd598-b83f-40ba-925d-a07046bf4e10.pdf",
-          "https://www.boursedirect.fr/fr/marche/six-swiss-exchange/l-g-battery-value-chain-IE00BF0M2Z96-BATT-EUR-XAMS-EUR-XSWX/seance"
+          "https://www.borsaitaliana.it/CAETF/2025-92213-SUPPLEMENTS-6c5bd598-b83f-40ba-925d-a07046bf4e10.pdf"
         ],
         "cause": null,
         "sourceErrors": []
@@ -16441,11 +16014,7 @@
         "lastAttemptAt": "2026-10-19T18:28:18.006178+00:00",
         "lastSuccessAt": "2026-10-19",
         "sourceUrls": [
-          "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
-          "https://www.justetf.com/en/etf-profile.html?isin=IE00BK5BCD43",
-          "https://www.justetf.com/fr/etf-profile.html?isin=IE00BK5BCD43",
-          "https://www.borsaitaliana.it/CAETF/2025-92212-SUPPLEMENTS-ec3a89e8-685a-41c4-9208-0d21cd7b5f21.pdf",
-          "https://www.boursedirect.fr/fr/marche/six-swiss-exchange/l-g-artificial-intelligence-IE00BK5BCD43-AIAI-CHF-XSWX/seance"
+          "https://www.borsaitaliana.it/CAETF/2025-92212-SUPPLEMENTS-ec3a89e8-685a-41c4-9208-0d21cd7b5f21.pdf"
         ],
         "cause": null,
         "sourceErrors": []
@@ -17320,15 +16889,14 @@
       "distribution",
       "domicile",
       "replicationMethod",
-      "currencyHedge"
-    ],
-    "pending": [
-      "pea",
+      "currencyHedge",
       "listings"
     ],
+    "pending": [
+      "pea"
+    ],
     "firstPendingAt": {
-      "pea": "2026-10-18T19:31:40.807499+00:00",
-      "listings": "2026-10-18T19:31:40.807499+00:00"
+      "pea": "2026-10-18T19:31:40.807499+00:00"
     },
     "errors": [
       {
@@ -17403,21 +16971,14 @@
         "sourceErrors": []
       },
       "listings": {
-        "status": "retained",
-        "lastAttemptAt": "2026-10-19T18:28:18.006178+00:00",
-        "lastSuccessAt": "2026-10-18",
+        "status": "observed",
+        "lastAttemptAt": "2026-10-19T19:26:56.713Z",
+        "lastSuccessAt": "2026-10-19",
         "sourceUrls": [
-          "https://swissfunddata.ch/sfdpub/docs/fsm-8522_03_03-20260930-en.pdf",
-          "https://www.justetf.com/fr/etf-profile.html?isin=IE00BD4TXV59",
-          "https://www.boursedirect.fr/fr/marche/london-stock-exchange/ubs-irl-etf-plc-ubs-core-msc-IE00BD4TXV59-WRDA-GBX-XLON/seance"
+          "https://live.euronext.com/en/product/etfs/IE00BD4TXV59-ETFP"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
-        "sourceErrors": [
-          {
-            "sourceUrl": "https://www.boursedirect.fr/fr/marche/london-stock-exchange/ubs-irl-etf-plc-ubs-core-msc-IE00BD4TXV59-WRDA-GBX-XLON/seance",
-            "error": "Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
-          }
-        ]
+        "cause": null,
+        "sourceErrors": []
       }
     }
   },
@@ -17522,14 +17083,11 @@
       "distribution",
       "replicationMethod",
       "pea",
-      "currencyHedge"
-    ],
-    "pending": [
+      "currencyHedge",
       "listings"
     ],
-    "firstPendingAt": {
-      "listings": "2026-10-18T19:31:40.807499+00:00"
-    },
+    "pending": [],
+    "firstPendingAt": {},
     "errors": [],
     "fields": {
       "distribution": {
@@ -17588,14 +17146,13 @@
         "sourceErrors": []
       },
       "listings": {
-        "status": "unobserved",
-        "lastAttemptAt": "2026-10-19T18:28:18.006178+00:00",
-        "lastSuccessAt": null,
+        "status": "observed",
+        "lastAttemptAt": "2026-10-19T19:03:43.535Z",
+        "lastSuccessAt": "2026-10-19",
         "sourceUrls": [
-          "https://dokumenty.analizy.pl/pobierz/etf/E_SBNPEF002_C_EUR/KA/2026-09-30",
-          "https://www.justetf.com/fr/etf-profile.html?isin=FR0011550185"
+          "https://live.euronext.com/en/product/etfs/FR0011550185-XPAR"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
+        "cause": null,
         "sourceErrors": []
       }
     }
@@ -17606,16 +17163,12 @@
       "distribution",
       "domicile",
       "replicationMethod",
-      "currencyHedge"
-    ],
-    "pending": [
+      "currencyHedge",
       "pea",
       "listings"
     ],
-    "firstPendingAt": {
-      "pea": "2026-10-18T19:31:40.807499+00:00",
-      "listings": "2026-10-18T19:31:40.807499+00:00"
-    },
+    "pending": [],
+    "firstPendingAt": {},
     "errors": [
       {
         "sourceUrl": "https://dokumenty.analizy.pl/pobierz/etf/E_AXAIC001_A_USD/KA/2026-09-30",
@@ -17664,25 +17217,14 @@
         "sourceErrors": []
       },
       "pea": {
-        "status": "unobserved",
-        "lastAttemptAt": "2026-10-19T18:28:18.006178+00:00",
-        "lastSuccessAt": null,
+        "status": "observed",
+        "lastAttemptAt": "2026-10-19T19:01:29.841Z",
+        "lastSuccessAt": "2026-10-19",
         "sourceUrls": [
-          "https://dokumenty.analizy.pl/pobierz/etf/E_AXAIC001_A_USD/KA/2026-09-30",
-          "https://www.justetf.com/fr/etf-profile.html?isin=IE000QDFFK00",
-          "https://www.boursedirect.fr/fr/marche/euronext-paris/bnp-paribas-easy-ii-nasdaq-100-IE000QDFFK00-ANAU-EUR-XPAR/seance"
+          "https://bourse.fortuneo.fr/trackers/cours-bnp-paribas-easy-ii-nasdaq-100-ucits-etf-usd-acc-ANAU-IE000QDFFK00-23"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
-        "sourceErrors": [
-          {
-            "sourceUrl": "https://dokumenty.analizy.pl/pobierz/etf/E_AXAIC001_A_USD/KA/2026-09-30",
-            "error": "No explicit supported metadata fields"
-          },
-          {
-            "sourceUrl": "https://www.boursedirect.fr/fr/marche/euronext-paris/bnp-paribas-easy-ii-nasdaq-100-IE000QDFFK00-ANAU-EUR-XPAR/seance",
-            "error": "Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
-          }
-        ]
+        "cause": null,
+        "sourceErrors": []
       },
       "currencyHedge": {
         "status": "observed",
@@ -17697,25 +17239,14 @@
         "sourceErrors": []
       },
       "listings": {
-        "status": "retained",
-        "lastAttemptAt": "2026-10-19T18:28:18.006178+00:00",
-        "lastSuccessAt": "2026-10-18",
+        "status": "observed",
+        "lastAttemptAt": "2026-10-19T19:24:52.862Z",
+        "lastSuccessAt": "2026-10-19",
         "sourceUrls": [
-          "https://dokumenty.analizy.pl/pobierz/etf/E_AXAIC001_A_USD/KA/2026-09-30",
-          "https://www.justetf.com/fr/etf-profile.html?isin=IE000QDFFK00",
-          "https://www.boursedirect.fr/fr/marche/euronext-paris/bnp-paribas-easy-ii-nasdaq-100-IE000QDFFK00-ANAU-EUR-XPAR/seance"
+          "https://live.euronext.com/en/product/etfs/IE000QDFFK00-XPAR"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
-        "sourceErrors": [
-          {
-            "sourceUrl": "https://dokumenty.analizy.pl/pobierz/etf/E_AXAIC001_A_USD/KA/2026-09-30",
-            "error": "No explicit supported metadata fields"
-          },
-          {
-            "sourceUrl": "https://www.boursedirect.fr/fr/marche/euronext-paris/bnp-paribas-easy-ii-nasdaq-100-IE000QDFFK00-ANAU-EUR-XPAR/seance",
-            "error": "Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
-          }
-        ]
+        "cause": null,
+        "sourceErrors": []
       }
     }
   },
@@ -19111,14 +18642,11 @@
       "domicile",
       "replicationMethod",
       "listings",
-      "currencyHedge"
-    ],
-    "pending": [
+      "currencyHedge",
       "pea"
     ],
-    "firstPendingAt": {
-      "pea": "2026-10-18T15:33:48.575784+00:00"
-    },
+    "pending": [],
+    "firstPendingAt": {},
     "errors": [],
     "fields": {
       "distribution": {
@@ -19158,15 +18686,13 @@
         "sourceErrors": []
       },
       "pea": {
-        "status": "unobserved",
-        "lastAttemptAt": "2026-10-19T18:28:18.006178+00:00",
-        "lastSuccessAt": null,
+        "status": "observed",
+        "lastAttemptAt": "2026-10-19T19:01:41.655Z",
+        "lastSuccessAt": "2026-10-19",
         "sourceUrls": [
-          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=308836&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "https://www.justetf.com/en/etf-profile.html?isin=IE00BJ5JP097",
-          "https://www.justetf.com/fr/etf-profile.html?isin=IE00BJ5JP097"
+          "https://bourse.fortuneo.fr/trackers/cours-ishares-msci-world-financials-sector-advanced-ucits-etf-usd-dis-WFNS-IE00BJ5JP097-918"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
+        "cause": null,
         "sourceErrors": []
       },
       "currencyHedge": {
@@ -19416,14 +18942,11 @@
       "domicile",
       "replicationMethod",
       "listings",
-      "currencyHedge"
-    ],
-    "pending": [
+      "currencyHedge",
       "pea"
     ],
-    "firstPendingAt": {
-      "pea": "2026-10-18T15:33:48.575784+00:00"
-    },
+    "pending": [],
+    "firstPendingAt": {},
     "errors": [
       {
         "sourceUrl": "https://www.ishares.com/uk/individual/en/products/284219/?siteEntryPassthrough=true&switchLocale=y",
@@ -19475,26 +18998,14 @@
         "sourceErrors": []
       },
       "pea": {
-        "status": "unobserved",
-        "lastAttemptAt": "2026-10-19T18:28:18.006178+00:00",
-        "lastSuccessAt": null,
+        "status": "observed",
+        "lastAttemptAt": "2026-10-19T19:01:47.086Z",
+        "lastSuccessAt": "2026-10-19",
         "sourceUrls": [
-          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=284219&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "https://www.ishares.com/uk/individual/en/products/284219/?siteEntryPassthrough=true&switchLocale=y",
-          "https://www.justetf.com/fr/etf-profile.html?isin=IE00BYZK4552",
-          "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/ishares-automation-robotics-IE00BYZK4552-RBOE-EUR-XAMS/seance"
+          "https://bourse.fortuneo.fr/trackers/cours-ishares-automation-robotics-ucits-etf-usd-acc-RBOE-IE00BYZK4552-46"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
-        "sourceErrors": [
-          {
-            "sourceUrl": "https://www.ishares.com/uk/individual/en/products/284219/?siteEntryPassthrough=true&switchLocale=y",
-            "error": "Metadata source cooldown after HTTP 403; no new field evidence"
-          },
-          {
-            "sourceUrl": "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/ishares-automation-robotics-IE00BYZK4552-RBOE-EUR-XAMS/seance",
-            "error": "Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
-          }
-        ]
+        "cause": null,
+        "sourceErrors": []
       },
       "currencyHedge": {
         "status": "observed",
@@ -19531,14 +19042,11 @@
       "domicile",
       "replicationMethod",
       "listings",
-      "currencyHedge"
-    ],
-    "pending": [
+      "currencyHedge",
       "pea"
     ],
-    "firstPendingAt": {
-      "pea": "2026-10-18T15:33:48.575784+00:00"
-    },
+    "pending": [],
+    "firstPendingAt": {},
     "errors": [
       {
         "sourceUrl": "https://www.ishares.com/uk/individual/en/literature/fact-sheet/heal-ishares-healthcare-innovation-ucits-etf-fund-fact-sheet-en-gb.pdf",
@@ -19590,26 +19098,14 @@
         "sourceErrors": []
       },
       "pea": {
-        "status": "unobserved",
-        "lastAttemptAt": "2026-10-19T18:28:18.006178+00:00",
-        "lastSuccessAt": null,
+        "status": "observed",
+        "lastAttemptAt": "2026-10-19T19:01:50.660Z",
+        "lastSuccessAt": "2026-10-19",
         "sourceUrls": [
-          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=284216&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "https://www.ishares.com/uk/individual/en/literature/fact-sheet/heal-ishares-healthcare-innovation-ucits-etf-fund-fact-sheet-en-gb.pdf",
-          "https://www.justetf.com/fr/etf-profile.html?isin=IE00BYZK4776",
-          "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/ishares-healthcare-innovation-IE00BYZK4776-HEAL-EUR-XAMS/seance"
+          "https://bourse.fortuneo.fr/trackers/cours-ishares-healthcare-innovation-ucits-etf-usd-acc-HEAL-IE00BYZK4776-46"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
-        "sourceErrors": [
-          {
-            "sourceUrl": "https://www.ishares.com/uk/individual/en/literature/fact-sheet/heal-ishares-healthcare-innovation-ucits-etf-fund-fact-sheet-en-gb.pdf",
-            "error": "Metadata source cooldown after HTTP 403; no new field evidence"
-          },
-          {
-            "sourceUrl": "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/ishares-healthcare-innovation-IE00BYZK4776-HEAL-EUR-XAMS/seance",
-            "error": "Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
-          }
-        ]
+        "cause": null,
+        "sourceErrors": []
       },
       "currencyHedge": {
         "status": "observed",
@@ -19753,14 +19249,11 @@
       "domicile",
       "replicationMethod",
       "listings",
-      "currencyHedge"
-    ],
-    "pending": [
+      "currencyHedge",
       "pea"
     ],
-    "firstPendingAt": {
-      "pea": "2026-10-18T15:33:48.575784+00:00"
-    },
+    "pending": [],
+    "firstPendingAt": {},
     "errors": [],
     "fields": {
       "distribution": {
@@ -19797,14 +19290,13 @@
         "sourceErrors": []
       },
       "pea": {
-        "status": "unobserved",
-        "lastAttemptAt": "2026-10-19T18:28:18.006178+00:00",
-        "lastSuccessAt": null,
+        "status": "observed",
+        "lastAttemptAt": "2026-10-19T19:01:56.041Z",
+        "lastSuccessAt": "2026-10-19",
         "sourceUrls": [
-          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=308902&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "https://www.justetf.com/fr/etf-profile.html?isin=IE00BJ5JP329"
+          "https://bourse.fortuneo.fr/trackers/cours-ishares-msci-world-consumer-staples-sector-advanced-ucits-etf-usd-dis-WCSS-IE00BJ5JP329-918"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
+        "cause": null,
         "sourceErrors": []
       },
       "currencyHedge": {
@@ -19838,14 +19330,11 @@
       "domicile",
       "replicationMethod",
       "listings",
-      "currencyHedge"
-    ],
-    "pending": [
+      "currencyHedge",
       "pea"
     ],
-    "firstPendingAt": {
-      "pea": "2026-10-18T15:33:48.575784+00:00"
-    },
+    "pending": [],
+    "firstPendingAt": {},
     "errors": [
       {
         "sourceUrl": "https://www.boursedirect.fr/fr/marche/electronic-etf-etc-etn-and-open-end-funds-market/ishares-msci-world-health-care-IE00BJ5JNZ06-WHCS-EUR-EUR-ETFP/seance",
@@ -19890,21 +19379,14 @@
         "sourceErrors": []
       },
       "pea": {
-        "status": "unobserved",
-        "lastAttemptAt": "2026-10-19T18:28:18.006178+00:00",
-        "lastSuccessAt": null,
+        "status": "observed",
+        "lastAttemptAt": "2026-10-19T19:01:59.526Z",
+        "lastSuccessAt": "2026-10-19",
         "sourceUrls": [
-          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=308909&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "https://www.justetf.com/fr/etf-profile.html?isin=IE00BJ5JNZ06",
-          "https://www.boursedirect.fr/fr/marche/electronic-etf-etc-etn-and-open-end-funds-market/ishares-msci-world-health-care-IE00BJ5JNZ06-WHCS-EUR-EUR-ETFP/seance"
+          "https://bourse.fortuneo.fr/trackers/cours-ishares-msci-world-health-care-sector-advanced-ucits-etf-usd-dis-WHCS-IE00BJ5JNZ06-918"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
-        "sourceErrors": [
-          {
-            "sourceUrl": "https://www.boursedirect.fr/fr/marche/electronic-etf-etc-etn-and-open-end-funds-market/ishares-msci-world-health-care-IE00BJ5JNZ06-WHCS-EUR-EUR-ETFP/seance",
-            "error": "Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
-          }
-        ]
+        "cause": null,
+        "sourceErrors": []
       },
       "currencyHedge": {
         "status": "observed",
@@ -20608,14 +20090,11 @@
       "currencyHedge",
       "listings",
       "distribution",
-      "replicationMethod"
-    ],
-    "pending": [
+      "replicationMethod",
       "pea"
     ],
-    "firstPendingAt": {
-      "pea": "2026-10-18T15:33:48.575784+00:00"
-    },
+    "pending": [],
+    "firstPendingAt": {},
     "errors": [
       {
         "sourceUrl": "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-wheat",
@@ -20667,26 +20146,14 @@
         "sourceErrors": []
       },
       "pea": {
-        "status": "unobserved",
-        "lastAttemptAt": "2026-10-19T18:28:18.006178+00:00",
-        "lastSuccessAt": null,
+        "status": "observed",
+        "lastAttemptAt": "2026-10-19T19:02:04.638Z",
+        "lastSuccessAt": "2026-10-19",
         "sourceUrls": [
-          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB664",
-          "https://www.justetf.com/fr/etf-profile.html?isin=JE00BN7KB664",
-          "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-wheat",
-          "https://www.boursedirect.fr/fr/marche/euronext-paris/wt-wheat-JE00BN7KB664-WEATP-EUR-XPAR/seance"
+          "https://bourse.fortuneo.fr/trackers/cours-wisdomtree-wheat-eur-acc-WEATP-JE00BN7KB664-23"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
-        "sourceErrors": [
-          {
-            "sourceUrl": "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-wheat",
-            "error": "Metadata source cooldown after HTTP 403; no new field evidence"
-          },
-          {
-            "sourceUrl": "https://www.boursedirect.fr/fr/marche/euronext-paris/wt-wheat-JE00BN7KB664-WEATP-EUR-XPAR/seance",
-            "error": "Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
-          }
-        ]
+        "cause": null,
+        "sourceErrors": []
       },
       "currencyHedge": {
         "status": "observed",
@@ -20722,15 +20189,14 @@
       "domicile",
       "replicationMethod",
       "currencyHedge",
-      "distribution"
-    ],
-    "pending": [
-      "pea",
+      "distribution",
       "listings"
     ],
+    "pending": [
+      "pea"
+    ],
     "firstPendingAt": {
-      "pea": "2026-10-18T15:33:48.575784+00:00",
-      "listings": "2026-10-18T15:33:48.575784+00:00"
+      "pea": "2026-10-18T15:33:48.575784+00:00"
     },
     "errors": [
       {
@@ -20813,25 +20279,14 @@
         "sourceErrors": []
       },
       "listings": {
-        "status": "unobserved",
-        "lastAttemptAt": "2026-10-19T18:28:18.006178+00:00",
-        "lastSuccessAt": null,
+        "status": "observed",
+        "lastAttemptAt": "2026-10-19T18:54:47.176Z",
+        "lastSuccessAt": "2026-10-19",
         "sourceUrls": [
-          "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE000L2SA8K5_factsheet_en.pdf",
-          "https://www.justetf.com/fr/etf-profile.html?isin=IE000L2SA8K5",
           "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE000L2SA8K5?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
-        "sourceErrors": [
-          {
-            "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE000L2SA8K5?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData",
-            "error": "Missing or multiple exact-share identities in metadata document"
-          },
-          {
-            "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE000L2SA8K5?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData",
-            "error": "Missing listing document identity"
-          }
-        ]
+        "cause": null,
+        "sourceErrors": []
       }
     }
   },
@@ -21110,14 +20565,11 @@
       "domicile",
       "replicationMethod",
       "listings",
-      "currencyHedge"
-    ],
-    "pending": [
+      "currencyHedge",
       "pea"
     ],
-    "firstPendingAt": {
-      "pea": "2026-10-18T15:33:48.575784+00:00"
-    },
+    "pending": [],
+    "firstPendingAt": {},
     "errors": [
       {
         "sourceUrl": "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/ishares-agribusiness-ucits-etf-IE00B6R52143-ISAE-EUR-XAMS/seance",
@@ -21162,21 +20614,14 @@
         "sourceErrors": []
       },
       "pea": {
-        "status": "unobserved",
-        "lastAttemptAt": "2026-10-19T18:28:18.006178+00:00",
-        "lastSuccessAt": null,
+        "status": "observed",
+        "lastAttemptAt": "2026-10-19T19:02:10.946Z",
+        "lastSuccessAt": "2026-10-19",
         "sourceUrls": [
-          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251707&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "https://www.justetf.com/fr/etf-profile.html?isin=IE00B6R52143",
-          "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/ishares-agribusiness-ucits-etf-IE00B6R52143-ISAE-EUR-XAMS/seance"
+          "https://bourse.fortuneo.fr/trackers/cours-ishares-agribusiness-ucits-etf-usd-acc-ISAE-IE00B6R52143-46"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
-        "sourceErrors": [
-          {
-            "sourceUrl": "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/ishares-agribusiness-ucits-etf-IE00B6R52143-ISAE-EUR-XAMS/seance",
-            "error": "Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
-          }
-        ]
+        "cause": null,
+        "sourceErrors": []
       },
       "currencyHedge": {
         "status": "observed",
@@ -21400,14 +20845,11 @@
       "domicile",
       "replicationMethod",
       "listings",
-      "currencyHedge"
-    ],
-    "pending": [
+      "currencyHedge",
       "pea"
     ],
-    "firstPendingAt": {
-      "pea": "2026-10-18T15:33:48.575784+00:00"
-    },
+    "pending": [],
+    "firstPendingAt": {},
     "errors": [],
     "fields": {
       "distribution": {
@@ -21444,14 +20886,13 @@
         "sourceErrors": []
       },
       "pea": {
-        "status": "unobserved",
-        "lastAttemptAt": "2026-10-19T18:28:18.006178+00:00",
-        "lastSuccessAt": null,
+        "status": "observed",
+        "lastAttemptAt": "2026-10-19T19:02:16.986Z",
+        "lastSuccessAt": "2026-10-19",
         "sourceUrls": [
-          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=326347&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "https://www.justetf.com/fr/etf-profile.html?isin=IE00BJ5JP659"
+          "https://bourse.fortuneo.fr/trackers/cours-ishares-msci-world-industrials-sector-advanced-ucits-etf-usd-dis-WINS-IE00BJ5JP659-918"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
+        "cause": null,
         "sourceErrors": []
       },
       "currencyHedge": {
@@ -21485,14 +20926,11 @@
       "domicile",
       "replicationMethod",
       "listings",
-      "currencyHedge"
-    ],
-    "pending": [
+      "currencyHedge",
       "pea"
     ],
-    "firstPendingAt": {
-      "pea": "2026-10-18T15:33:48.575784+00:00"
-    },
+    "pending": [],
+    "firstPendingAt": {},
     "errors": [],
     "fields": {
       "distribution": {
@@ -21529,14 +20967,13 @@
         "sourceErrors": []
       },
       "pea": {
-        "status": "unobserved",
-        "lastAttemptAt": "2026-10-19T18:28:18.006178+00:00",
-        "lastSuccessAt": null,
+        "status": "observed",
+        "lastAttemptAt": "2026-10-19T19:02:21.800Z",
+        "lastSuccessAt": "2026-10-19",
         "sourceUrls": [
-          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=308873&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "https://www.justetf.com/fr/etf-profile.html?isin=IE00BJ5JP212"
+          "https://bourse.fortuneo.fr/trackers/cours-ishares-msci-world-consumer-discretionary-sector-advanced-ucits-etf-usd-dis-WCDS-IE00BJ5JP212-918"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
+        "cause": null,
         "sourceErrors": []
       },
       "currencyHedge": {
@@ -21570,14 +21007,11 @@
       "domicile",
       "replicationMethod",
       "listings",
-      "currencyHedge"
-    ],
-    "pending": [
+      "currencyHedge",
       "pea"
     ],
-    "firstPendingAt": {
-      "pea": "2026-10-18T15:33:48.575784+00:00"
-    },
+    "pending": [],
+    "firstPendingAt": {},
     "errors": [
       {
         "sourceUrl": "https://www.boursedirect.fr/fr/marche/six-swiss-exchange/ish-msci-wld-energy-usd-d-IE00BJ5JP105-WENS-USD-USD-XSWX/seance",
@@ -21622,21 +21056,14 @@
         "sourceErrors": []
       },
       "pea": {
-        "status": "unobserved",
-        "lastAttemptAt": "2026-10-19T18:28:18.006178+00:00",
-        "lastSuccessAt": null,
+        "status": "observed",
+        "lastAttemptAt": "2026-10-19T19:02:25.963Z",
+        "lastSuccessAt": "2026-10-19",
         "sourceUrls": [
-          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=308904&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "https://www.justetf.com/fr/etf-profile.html?isin=IE00BJ5JP105",
-          "https://www.boursedirect.fr/fr/marche/six-swiss-exchange/ish-msci-wld-energy-usd-d-IE00BJ5JP105-WENS-USD-USD-XSWX/seance"
+          "https://bourse.fortuneo.fr/trackers/cours-ishares-msci-world-energy-sector-ucits-etf-usd-dis-WENS-IE00BJ5JP105-918"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
-        "sourceErrors": [
-          {
-            "sourceUrl": "https://www.boursedirect.fr/fr/marche/six-swiss-exchange/ish-msci-wld-energy-usd-d-IE00BJ5JP105-WENS-USD-USD-XSWX/seance",
-            "error": "Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
-          }
-        ]
+        "cause": null,
+        "sourceErrors": []
       },
       "currencyHedge": {
         "status": "observed",
@@ -21671,14 +21098,11 @@
       "domicile",
       "replicationMethod",
       "listings",
-      "currencyHedge"
-    ],
-    "pending": [
+      "currencyHedge",
       "pea"
     ],
-    "firstPendingAt": {
-      "pea": "2026-10-18T15:33:48.575784+00:00"
-    },
+    "pending": [],
+    "firstPendingAt": {},
     "errors": [],
     "fields": {
       "distribution": {
@@ -21715,14 +21139,13 @@
         "sourceErrors": []
       },
       "pea": {
-        "status": "unobserved",
-        "lastAttemptAt": "2026-10-19T18:28:18.006178+00:00",
-        "lastSuccessAt": null,
+        "status": "observed",
+        "lastAttemptAt": "2026-10-19T19:02:30.246Z",
+        "lastSuccessAt": "2026-10-19",
         "sourceUrls": [
-          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=326317&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "https://www.justetf.com/fr/etf-profile.html?isin=IE00BJ5JP436"
+          "https://bourse.fortuneo.fr/trackers/cours-ishares-msci-world-communication-services-sector-advanced-ucits-etf-usd-dis-WCMS-IE00BJ5JP436-918"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
+        "cause": null,
         "sourceErrors": []
       },
       "currencyHedge": {
@@ -21756,14 +21179,11 @@
       "domicile",
       "replicationMethod",
       "listings",
-      "currencyHedge"
-    ],
-    "pending": [
+      "currencyHedge",
       "pea"
     ],
-    "firstPendingAt": {
-      "pea": "2026-10-18T15:33:48.575784+00:00"
-    },
+    "pending": [],
+    "firstPendingAt": {},
     "errors": [
       {
         "sourceUrl": "https://www.boursedirect.fr/fr/marche/six-swiss-exchange/ish-msci-wld-mat-esg-usd-d-IE00BJ5JP766-WMTS-EUR-ETFP-EUR-XSWX/seance",
@@ -21808,21 +21228,14 @@
         "sourceErrors": []
       },
       "pea": {
-        "status": "unobserved",
-        "lastAttemptAt": "2026-10-19T18:28:18.006178+00:00",
-        "lastSuccessAt": null,
+        "status": "observed",
+        "lastAttemptAt": "2026-10-19T19:02:34.805Z",
+        "lastSuccessAt": "2026-10-19",
         "sourceUrls": [
-          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=326341&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "https://www.justetf.com/fr/etf-profile.html?isin=IE00BJ5JP766",
-          "https://www.boursedirect.fr/fr/marche/six-swiss-exchange/ish-msci-wld-mat-esg-usd-d-IE00BJ5JP766-WMTS-EUR-ETFP-EUR-XSWX/seance"
+          "https://bourse.fortuneo.fr/trackers/cours-ishares-msci-world-materials-sector-advanced-ucits-etf-usd-dis-WMTS-IE00BJ5JP766-918"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
-        "sourceErrors": [
-          {
-            "sourceUrl": "https://www.boursedirect.fr/fr/marche/six-swiss-exchange/ish-msci-wld-mat-esg-usd-d-IE00BJ5JP766-WMTS-EUR-ETFP-EUR-XSWX/seance",
-            "error": "Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
-          }
-        ]
+        "cause": null,
+        "sourceErrors": []
       },
       "currencyHedge": {
         "status": "observed",
@@ -21942,14 +21355,11 @@
       "domicile",
       "replicationMethod",
       "listings",
-      "currencyHedge"
-    ],
-    "pending": [
+      "currencyHedge",
       "pea"
     ],
-    "firstPendingAt": {
-      "pea": "2026-10-18T15:33:48.575784+00:00"
-    },
+    "pending": [],
+    "firstPendingAt": {},
     "errors": [
       {
         "sourceUrl": "https://www.boursedirect.fr/fr/marche/euronext-paris/ishares-ibonds-dec-2028-term-IE0008UEVOE0-B28A-EUR-XPAR/seance",
@@ -21994,21 +21404,14 @@
         "sourceErrors": []
       },
       "pea": {
-        "status": "unobserved",
-        "lastAttemptAt": "2026-10-19T18:28:18.006178+00:00",
-        "lastSuccessAt": null,
+        "status": "observed",
+        "lastAttemptAt": "2026-10-19T19:02:38.106Z",
+        "lastSuccessAt": "2026-10-19",
         "sourceUrls": [
-          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=332876&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "https://www.justetf.com/fr/etf-profile.html?isin=IE0008UEVOE0",
-          "https://www.boursedirect.fr/fr/marche/euronext-paris/ishares-ibonds-dec-2028-term-IE0008UEVOE0-B28A-EUR-XPAR/seance"
+          "https://bourse.fortuneo.fr/trackers/cours-ishares-ibonds-dec-2028-term-eur-corp-ucits-etf-acc-B28A-IE0008UEVOE0-23"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
-        "sourceErrors": [
-          {
-            "sourceUrl": "https://www.boursedirect.fr/fr/marche/euronext-paris/ishares-ibonds-dec-2028-term-IE0008UEVOE0-B28A-EUR-XPAR/seance",
-            "error": "Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
-          }
-        ]
+        "cause": null,
+        "sourceErrors": []
       },
       "currencyHedge": {
         "status": "observed",
@@ -22128,14 +21531,11 @@
       "domicile",
       "replicationMethod",
       "listings",
-      "currencyHedge"
-    ],
-    "pending": [
+      "currencyHedge",
       "pea"
     ],
-    "firstPendingAt": {
-      "pea": "2026-10-18T15:33:48.575784+00:00"
-    },
+    "pending": [],
+    "firstPendingAt": {},
     "errors": [
       {
         "sourceUrl": "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/ishares-eur-govt-bond-5-7yr-uc-IE00B4WXJG34-IEGY-EUR-XAMS/seance",
@@ -22180,21 +21580,14 @@
         "sourceErrors": []
       },
       "pea": {
-        "status": "unobserved",
-        "lastAttemptAt": "2026-10-19T18:28:18.006178+00:00",
-        "lastSuccessAt": null,
+        "status": "observed",
+        "lastAttemptAt": "2026-10-19T19:02:43.966Z",
+        "lastSuccessAt": "2026-10-19",
         "sourceUrls": [
-          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251737&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "https://www.justetf.com/fr/etf-profile.html?isin=IE00B4WXJG34",
-          "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/ishares-eur-govt-bond-5-7yr-uc-IE00B4WXJG34-IEGY-EUR-XAMS/seance"
+          "https://bourse.fortuneo.fr/trackers/cours-ishares-eur-govt-bond-5-7yr-ucits-etf-dis-IEGY-IE00B4WXJG34-46"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
-        "sourceErrors": [
-          {
-            "sourceUrl": "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/ishares-eur-govt-bond-5-7yr-uc-IE00B4WXJG34-IEGY-EUR-XAMS/seance",
-            "error": "Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
-          }
-        ]
+        "cause": null,
+        "sourceErrors": []
       },
       "currencyHedge": {
         "status": "observed",
@@ -22979,14 +22372,11 @@
       "domicile",
       "replicationMethod",
       "listings",
-      "currencyHedge"
-    ],
-    "pending": [
+      "currencyHedge",
       "pea"
     ],
-    "firstPendingAt": {
-      "pea": "2026-10-18T15:33:48.575784+00:00"
-    },
+    "pending": [],
+    "firstPendingAt": {},
     "errors": [
       {
         "sourceUrl": "https://www.boursedirect.fr/fr/marche/no-market-e-g-unlisted/ishares-iv-plc-eur-ultrashort-IE00BCRY6557-ERN1-GBP-XXXX/seance",
@@ -23031,21 +22421,14 @@
         "sourceErrors": []
       },
       "pea": {
-        "status": "unobserved",
-        "lastAttemptAt": "2026-10-19T18:28:18.006178+00:00",
-        "lastSuccessAt": null,
+        "status": "observed",
+        "lastAttemptAt": "2026-10-19T19:02:54.203Z",
+        "lastSuccessAt": "2026-10-19",
         "sourceUrls": [
-          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=258114&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "https://www.justetf.com/fr/etf-profile.html?isin=IE00BCRY6557",
-          "https://www.boursedirect.fr/fr/marche/no-market-e-g-unlisted/ishares-iv-plc-eur-ultrashort-IE00BCRY6557-ERN1-GBP-XXXX/seance"
+          "https://bourse.fortuneo.fr/trackers/cours-ishares-eur-ultrashort-bond-ucits-etf-dis-ERNE-IE00BCRY6557-46"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
-        "sourceErrors": [
-          {
-            "sourceUrl": "https://www.boursedirect.fr/fr/marche/no-market-e-g-unlisted/ishares-iv-plc-eur-ultrashort-IE00BCRY6557-ERN1-GBP-XXXX/seance",
-            "error": "Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
-          }
-        ]
+        "cause": null,
+        "sourceErrors": []
       },
       "currencyHedge": {
         "status": "observed",
@@ -23452,14 +22835,11 @@
       "listings",
       "distribution",
       "replicationMethod",
-      "currencyHedge"
-    ],
-    "pending": [
+      "currencyHedge",
       "pea"
     ],
-    "firstPendingAt": {
-      "pea": "2026-10-18T15:33:48.575784+00:00"
-    },
+    "pending": [],
+    "firstPendingAt": {},
     "errors": [],
     "fields": {
       "distribution": {
@@ -23499,15 +22879,13 @@
         "sourceErrors": []
       },
       "pea": {
-        "status": "unobserved",
-        "lastAttemptAt": "2026-10-19T18:28:18.006178+00:00",
-        "lastSuccessAt": null,
+        "status": "observed",
+        "lastAttemptAt": "2026-10-19T19:08:53.405Z",
+        "lastSuccessAt": "2026-10-19",
         "sourceUrls": [
-          "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9490/lifestrategy-20-equity-ucits-etf-eur-accumulating",
-          "https://fund-docs.vanguard.com/LifeStrategy_20_Equity_UCITS_ETF_EUR_Accumulating_9490_FR_INT_FR.pdf",
-          "https://www.justetf.com/fr/etf-profile.html?isin=IE00BMVB5K07"
+          "https://bourse.fortuneo.fr/trackers/cours-vanguard-lifestrategy-20-equity-ucits-etf-eur-acc-V20A-IE00BMVB5K07-46"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
+        "cause": null,
         "sourceErrors": []
       },
       "currencyHedge": {
@@ -23543,14 +22921,11 @@
       "listings",
       "distribution",
       "replicationMethod",
-      "currencyHedge"
-    ],
-    "pending": [
+      "currencyHedge",
       "pea"
     ],
-    "firstPendingAt": {
-      "pea": "2026-10-18T15:33:48.575784+00:00"
-    },
+    "pending": [],
+    "firstPendingAt": {},
     "errors": [
       {
         "sourceUrl": "https://www.boursedirect.fr/fr/marche/electronic-etf-etc-etn-and-open-end-funds-market/vanguard-lifestrateg-40-equ-u-IE00BMVB5M21-VNGA40-EUR-ETFP/seance",
@@ -23598,22 +22973,14 @@
         "sourceErrors": []
       },
       "pea": {
-        "status": "unobserved",
-        "lastAttemptAt": "2026-10-19T18:28:18.006178+00:00",
-        "lastSuccessAt": null,
+        "status": "observed",
+        "lastAttemptAt": "2026-10-19T19:03:04.218Z",
+        "lastSuccessAt": "2026-10-19",
         "sourceUrls": [
-          "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9492/lifestrategy-40-equity-ucits-etf-eur-accumulating",
-          "https://fund-docs.vanguard.com/LifeStrategy_40_Equity_UCITS_ETF_EUR_Accumulating_9492_FR_INT_FR.pdf",
-          "https://www.justetf.com/fr/etf-profile.html?isin=IE00BMVB5M21",
-          "https://www.boursedirect.fr/fr/marche/electronic-etf-etc-etn-and-open-end-funds-market/vanguard-lifestrateg-40-equ-u-IE00BMVB5M21-VNGA40-EUR-ETFP/seance"
+          "https://bourse.fortuneo.fr/trackers/cours-vanguard-lifestrategy-40-equity-ucits-etf-eur-acc-V40A-IE00BMVB5M21-46"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
-        "sourceErrors": [
-          {
-            "sourceUrl": "https://www.boursedirect.fr/fr/marche/electronic-etf-etc-etn-and-open-end-funds-market/vanguard-lifestrateg-40-equ-u-IE00BMVB5M21-VNGA40-EUR-ETFP/seance",
-            "error": "Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
-          }
-        ]
+        "cause": null,
+        "sourceErrors": []
       },
       "currencyHedge": {
         "status": "observed",
@@ -23650,14 +23017,11 @@
       "listings",
       "distribution",
       "replicationMethod",
-      "currencyHedge"
-    ],
-    "pending": [
+      "currencyHedge",
       "pea"
     ],
-    "firstPendingAt": {
-      "pea": "2026-10-18T15:33:48.575784+00:00"
-    },
+    "pending": [],
+    "firstPendingAt": {},
     "errors": [
       {
         "sourceUrl": "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/vanguard-lifestrategy-60-equi-IE00BMVB5P51-V60A-EUR-XAMS/seance",
@@ -23705,22 +23069,14 @@
         "sourceErrors": []
       },
       "pea": {
-        "status": "unobserved",
-        "lastAttemptAt": "2026-10-19T18:28:18.006178+00:00",
-        "lastSuccessAt": null,
+        "status": "observed",
+        "lastAttemptAt": "2026-10-19T19:03:08.218Z",
+        "lastSuccessAt": "2026-10-19",
         "sourceUrls": [
-          "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9494/lifestrategy-60-equity-ucits-etf-eur-accumulating",
-          "https://fund-docs.vanguard.com/LifeStrategy_60_Equity_UCITS_ETF_EUR_Accumulating_9494_FR_INT_FR.pdf",
-          "https://www.justetf.com/fr/etf-profile.html?isin=IE00BMVB5P51",
-          "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/vanguard-lifestrategy-60-equi-IE00BMVB5P51-V60A-EUR-XAMS/seance"
+          "https://bourse.fortuneo.fr/trackers/cours-vanguard-lifestrategy-60-equity-ucits-etf-eur-acc-V60A-IE00BMVB5P51-46"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
-        "sourceErrors": [
-          {
-            "sourceUrl": "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/vanguard-lifestrategy-60-equi-IE00BMVB5P51-V60A-EUR-XAMS/seance",
-            "error": "Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
-          }
-        ]
+        "cause": null,
+        "sourceErrors": []
       },
       "currencyHedge": {
         "status": "observed",
@@ -23757,14 +23113,11 @@
       "listings",
       "distribution",
       "replicationMethod",
-      "currencyHedge"
-    ],
-    "pending": [
+      "currencyHedge",
       "pea"
     ],
-    "firstPendingAt": {
-      "pea": "2026-10-18T15:33:48.575784+00:00"
-    },
+    "pending": [],
+    "firstPendingAt": {},
     "errors": [
       {
         "sourceUrl": "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/vanguard-lifestrategy-80-equi-IE00BMVB5R75-V80A-EUR-XAMS/seance",
@@ -23812,22 +23165,14 @@
         "sourceErrors": []
       },
       "pea": {
-        "status": "unobserved",
-        "lastAttemptAt": "2026-10-19T18:28:18.006178+00:00",
-        "lastSuccessAt": null,
+        "status": "observed",
+        "lastAttemptAt": "2026-10-19T19:03:11.789Z",
+        "lastSuccessAt": "2026-10-19",
         "sourceUrls": [
-          "https://www.fr.vanguard/professionnel/produits/etf/lifestrategy/9496/lifestrategy-80-equity-ucits-etf-eur-accumulating",
-          "https://fund-docs.vanguard.com/LifeStrategy_80_Equity_UCITS_ETF_EUR_Accumulating_9496_FR_INT_FR.pdf",
-          "https://www.justetf.com/fr/etf-profile.html?isin=IE00BMVB5R75",
-          "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/vanguard-lifestrategy-80-equi-IE00BMVB5R75-V80A-EUR-XAMS/seance"
+          "https://bourse.fortuneo.fr/trackers/cours-vanguard-lifestrategy-80-equity-ucits-etf-eur-acc-V80A-IE00BMVB5R75-46"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
-        "sourceErrors": [
-          {
-            "sourceUrl": "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/vanguard-lifestrategy-80-equi-IE00BMVB5R75-V80A-EUR-XAMS/seance",
-            "error": "Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
-          }
-        ]
+        "cause": null,
+        "sourceErrors": []
       },
       "currencyHedge": {
         "status": "observed",
@@ -24863,14 +24208,11 @@
       "domicile",
       "replicationMethod",
       "listings",
-      "currencyHedge"
-    ],
-    "pending": [
+      "currencyHedge",
       "pea"
     ],
-    "firstPendingAt": {
-      "pea": "2026-10-18T15:33:48.575784+00:00"
-    },
+    "pending": [],
+    "firstPendingAt": {},
     "errors": [
       {
         "sourceUrl": "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/ishares-msci-world-sri-ucits-e-IE00BYX2JD69-SUSW-EUR-XAMS/seance",
@@ -24915,21 +24257,14 @@
         "sourceErrors": []
       },
       "pea": {
-        "status": "unobserved",
-        "lastAttemptAt": "2026-10-19T18:28:18.006178+00:00",
-        "lastSuccessAt": null,
+        "status": "observed",
+        "lastAttemptAt": "2026-10-19T19:03:26.104Z",
+        "lastSuccessAt": "2026-10-19",
         "sourceUrls": [
-          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=290846&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "https://www.justetf.com/fr/etf-profile.html?isin=IE00BYX2JD69",
-          "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/ishares-msci-world-sri-ucits-e-IE00BYX2JD69-SUSW-EUR-XAMS/seance"
+          "https://bourse.fortuneo.fr/trackers/cours-ishares-msci-world-sri-ucits-etf-eur-acc-SUSW-IE00BYX2JD69-46"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
-        "sourceErrors": [
-          {
-            "sourceUrl": "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/ishares-msci-world-sri-ucits-e-IE00BYX2JD69-SUSW-EUR-XAMS/seance",
-            "error": "Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
-          }
-        ]
+        "cause": null,
+        "sourceErrors": []
       },
       "currencyHedge": {
         "status": "observed",
@@ -24964,14 +24299,11 @@
       "domicile",
       "replicationMethod",
       "listings",
-      "currencyHedge"
-    ],
-    "pending": [
+      "currencyHedge",
       "pea"
     ],
-    "firstPendingAt": {
-      "pea": "2026-10-18T15:33:48.575784+00:00"
-    },
+    "pending": [],
+    "firstPendingAt": {},
     "errors": [
       {
         "sourceUrl": "https://www.boursedirect.fr/fr/marche/electronic-etf-etc-etn-and-open-end-funds-market/ishares-electric-veh-tec-ucits-IE00BGL86Z12-ECAR-ETFP-EUR-ETFP/seance",
@@ -25016,21 +24348,14 @@
         "sourceErrors": []
       },
       "pea": {
-        "status": "unobserved",
-        "lastAttemptAt": "2026-10-19T18:28:18.006178+00:00",
-        "lastSuccessAt": null,
+        "status": "observed",
+        "lastAttemptAt": "2026-10-19T19:03:30.464Z",
+        "lastSuccessAt": "2026-10-19",
         "sourceUrls": [
-          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=307130&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "https://www.justetf.com/fr/etf-profile.html?isin=IE00BGL86Z12",
-          "https://www.boursedirect.fr/fr/marche/electronic-etf-etc-etn-and-open-end-funds-market/ishares-electric-veh-tec-ucits-IE00BGL86Z12-ECAR-ETFP-EUR-ETFP/seance"
+          "https://bourse.fortuneo.fr/trackers/cours-ishares-electric-vehicles-and-driving-technology-ucits-etf-usd-acc-ECAR-IE00BGL86Z12-46"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
-        "sourceErrors": [
-          {
-            "sourceUrl": "https://www.boursedirect.fr/fr/marche/electronic-etf-etc-etn-and-open-end-funds-market/ishares-electric-veh-tec-ucits-IE00BGL86Z12-ECAR-ETFP-EUR-ETFP/seance",
-            "error": "Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
-          }
-        ]
+        "cause": null,
+        "sourceErrors": []
       },
       "currencyHedge": {
         "status": "observed",
@@ -25065,14 +24390,11 @@
       "domicile",
       "replicationMethod",
       "listings",
-      "currencyHedge"
-    ],
-    "pending": [
+      "currencyHedge",
       "pea"
     ],
-    "firstPendingAt": {
-      "pea": "2026-10-18T15:33:48.575784+00:00"
-    },
+    "pending": [],
+    "firstPendingAt": {},
     "errors": [
       {
         "sourceUrl": "https://www.boursedirect.fr/fr/marche/euronext-paris/ishares-global-aerospace-def-IE000U9ODG19-DFND-EUR-XPAR/seance",
@@ -25117,21 +24439,14 @@
         "sourceErrors": []
       },
       "pea": {
-        "status": "unobserved",
-        "lastAttemptAt": "2026-10-19T18:28:18.006178+00:00",
-        "lastSuccessAt": null,
+        "status": "observed",
+        "lastAttemptAt": "2026-10-19T19:03:32.779Z",
+        "lastSuccessAt": "2026-10-19",
         "sourceUrls": [
-          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=334464&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "https://www.justetf.com/fr/etf-profile.html?isin=IE000U9ODG19",
-          "https://www.boursedirect.fr/fr/marche/euronext-paris/ishares-global-aerospace-def-IE000U9ODG19-DFND-EUR-XPAR/seance"
+          "https://bourse.fortuneo.fr/trackers/cours-ishares-global-aerospace-defence-ucits-etf-usd-acc-DFND-IE000U9ODG19-23"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
-        "sourceErrors": [
-          {
-            "sourceUrl": "https://www.boursedirect.fr/fr/marche/euronext-paris/ishares-global-aerospace-def-IE000U9ODG19-DFND-EUR-XPAR/seance",
-            "error": "Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
-          }
-        ]
+        "cause": null,
+        "sourceErrors": []
       },
       "currencyHedge": {
         "status": "observed",
@@ -25166,14 +24481,11 @@
       "domicile",
       "replicationMethod",
       "listings",
-      "currencyHedge"
-    ],
-    "pending": [
+      "currencyHedge",
       "pea"
     ],
-    "firstPendingAt": {
-      "pea": "2026-10-18T15:33:48.575784+00:00"
-    },
+    "pending": [],
+    "firstPendingAt": {},
     "errors": [
       {
         "sourceUrl": "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/ishares-ageing-population-ucit-IE00BYZK4669-AGED-EUR-XAMS/seance",
@@ -25218,21 +24530,14 @@
         "sourceErrors": []
       },
       "pea": {
-        "status": "unobserved",
-        "lastAttemptAt": "2026-10-19T18:28:18.006178+00:00",
-        "lastSuccessAt": null,
+        "status": "observed",
+        "lastAttemptAt": "2026-10-19T19:03:36.098Z",
+        "lastSuccessAt": "2026-10-19",
         "sourceUrls": [
-          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=284218&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "https://www.justetf.com/fr/etf-profile.html?isin=IE00BYZK4669",
-          "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/ishares-ageing-population-ucit-IE00BYZK4669-AGED-EUR-XAMS/seance"
+          "https://bourse.fortuneo.fr/trackers/cours-ishares-ageing-population-ucits-etf-usd-acc-AGED-IE00BYZK4669-46"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
-        "sourceErrors": [
-          {
-            "sourceUrl": "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/ishares-ageing-population-ucit-IE00BYZK4669-AGED-EUR-XAMS/seance",
-            "error": "Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
-          }
-        ]
+        "cause": null,
+        "sourceErrors": []
       },
       "currencyHedge": {
         "status": "observed",

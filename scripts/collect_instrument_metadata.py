@@ -74,9 +74,21 @@ def dws_tables(node):
     elif isinstance(node,list):
         for child in node:yield from dws_tables(child)
 
+def fetch_exchange_document(url):
+    import base64,subprocess,urllib.error
+    result=subprocess.run(['node',str(Path(__file__).with_name('download-exchange-document.mjs')),url],capture_output=True,timeout=90)
+    try:doc=json.loads(result.stdout)
+    except (ValueError,TypeError):raise urllib.error.URLError('Exchange browser returned no document')
+    if result.returncode:
+        if doc.get('status'):raise urllib.error.HTTPError(url,doc['status'],doc.get('error'),None,None)
+        raise urllib.error.URLError(doc.get('error','Exchange document unavailable'))
+    return base64.b64decode(doc['body'],validate=True),doc['sourceUrl']
+
+
 def fetch_document(url,fetch=download,isin=None):
     """Returns (body, url actually read)."""
     try:
+        if re.fullmatch(r'https://live\.euronext\.com/en/product/etfs/[A-Z]{2}[A-Z0-9]{9}\d-[A-Z0-9]{4}',url) and fetch is download:return TRANSPORT.read(url,fetch=fetch_exchange_document)
         if url==AMUNDI_API and fetch is download:return fetch_amundi(isin),url
         if fetch is download and url.startswith('https://www.boursedirect.fr/'):
             # This broker intermittently leaves automated connections unanswered. A
@@ -301,6 +313,115 @@ def vanguard_listing_rows(text, isin):
         rows.append(dict(ticker=match[2],mic=venue[0],exchange=CANONICAL_EXCHANGES[venue[0]],currency=match[1],symbol=match[4],excerpt=isin+' | '+venue_label+' '+' '.join(line.split())))
     return rows
 
+def fortuneo_reference_urls(body,isin,url):
+    from urllib.parse import urlsplit,parse_qs
+    parsed=urlsplit(url)
+    if parsed.hostname!='bourse.fortuneo.fr' or parsed.path!='/api/search' or parse_qs(parsed.query)!={'term':[isin]}:
+        raise ValueError('Wrong broker discovery identity')
+    items=json.loads(body).get('market',{}).get('fortuneo',{}).get('items')
+    if not isinstance(items,list):raise ValueError('Invalid broker discovery response')
+    urls=[]
+    for item in items:
+        if not isinstance(item,dict) or item.get('codeIsin')!=isin or item.get('type')!='Tracker':continue
+        ticker=item.get('mnemo');place=item.get('codePlace')
+        if not isinstance(ticker,str) or not re.fullmatch(r'[A-Z0-9]+(?:-[A-Z0-9]+)*',ticker) or type(place)is not int or not 1<=place<=999999:continue
+        if item.get('codeRef')!=f'FTN{place:06d}{isin}':continue
+        candidate=f'https://bourse.fortuneo.fr/trackers/cours-etf-{ticker}-{isin}-{place}'
+        if candidate not in urls:urls.append(candidate)
+    return urls[:3]  # Discovery is not evidence of PEA or of a listing.
+
+
+def invesco_listing_rows(body,isin,url):
+    """The issuer's ISIN-keyed API returns one array of trading rows, not facts JSON."""
+    from urllib.parse import urlsplit, parse_qs
+    parts=urlsplit(url)
+    if parts.hostname!='dng-api.invesco.com' or parts.path!=f'/cache/v1/accounts/en_GB/shareclasses/{isin}' or parse_qs(parts.query)!={'expand':['marketdata'],'idType':['isin'],'variationType':['exchangeTradingInformationWithMarketData']}:
+        raise ValueError('Wrong Invesco exact-share endpoint')
+    data=json.loads(body)
+    if not isinstance(data,list) or not data:raise ValueError('Missing Invesco listing rows')
+    exchanges=EXCHANGE_MICS|{'Deutsche Börse (Xetra)':'XETR','Euronext Milan':'ETFP','Bolsa Mexicana de Valores':'XMEX'}
+    rows=[]
+    for row in data:
+        if not isinstance(row,dict):raise ValueError('Invalid Invesco listing row')
+        mic=exchanges.get(row.get('listingExchangeName'));currency=row.get('listingCurrency');ticker=row.get('listingExchangeTicker');symbol=row.get('listingRic')
+        if not mic:continue
+        if not isinstance(ticker,str) or not re.fullmatch(r'[A-Za-z0-9]+',ticker) or not re.fullmatch(r'[A-Z]{3}',currency or '') or not isinstance(symbol,str) or not SYMBOL.fullmatch(symbol):
+            raise ValueError('Incomplete Invesco listing identity')
+        # GBX is the published pence unit. Never silently relabel it GBP.
+        rows.append(dict(ticker=ticker,mic=mic,exchange=CANONICAL_EXCHANGES[mic],currency=currency,symbol=symbol,excerpt=isin+' | '+json.dumps(row,ensure_ascii=False,sort_keys=True)))
+    return rows
+
+
+def borsa_listing_rows(body,isin):
+    from bs4 import BeautifulSoup
+    soup=BeautifulSoup(body,'html.parser');found=[]
+    for table in soup.find_all('table'):
+        fields={}
+        for tr in table.find_all('tr'):
+            cells=tr.find_all(['th','td'],recursive=False)
+            if len(cells)!=2:continue
+            key,value=[cell.get_text(' ',strip=True) for cell in cells]
+            if key in ('Isin Code','MIC','Alphanumeric Code','Trading Currency'):
+                if key in fields:raise ValueError('Duplicate exchange identity field')
+                fields[key]=value
+        if fields.get('Isin Code')!=isin:continue
+        mic=fields.get('MIC');ticker=fields.get('Alphanumeric Code');currency=fields.get('Trading Currency')
+        if mic not in CANONICAL_EXCHANGES or not re.fullmatch(r'[A-Z]{3}',currency or '') or not re.fullmatch(r'[A-Za-z0-9]+',ticker or ''):continue
+        found.append(dict(ticker=ticker,mic=mic,exchange=CANONICAL_EXCHANGES[mic],currency=currency,excerpt=isin+' | '+table.get_text(' ',strip=True)))
+    if len(found)>1:raise ValueError('Ambiguous exchange identity tables')
+    return found
+
+
+def euronext_listing_rows(body,isin,url):
+    from bs4 import BeautifulSoup
+    soup=BeautifulSoup(body,'html.parser')
+    configs=soup.select('script[data-drupal-selector="drupal-settings-json"]')
+    if len(configs)!=1:raise ValueError('Missing exchange instrument settings')
+    instrument=json.loads(configs[0].string)['custom']['instrument']
+    if instrument.get('isin')!=isin or instrument.get('product_data')!=f"{isin}-{instrument.get('mic')}" or url!=f"https://live.euronext.com/en/product/etfs/{isin}-{instrument.get('mic')}":
+        raise ValueError('Wrong exchange exact-share identity')
+    currency=[]
+    for row in soup.find_all('tr'):
+        cells=row.find_all(['th','td'],recursive=False)
+        if len(cells)>=2 and cells[0].get_text(strip=True)=='Currency':currency.append(cells[1].get_text(strip=True))
+    if len(currency)!=1 or not re.fullmatch(r'[A-Z]{3}',currency[0]):raise ValueError('Missing or ambiguous exchange trading currency')
+    mic=instrument.get('mic');ticker=instrument.get('symbol')
+    if mic not in CANONICAL_EXCHANGES or not re.fullmatch(r'[A-Za-z0-9]+',ticker or ''):raise ValueError('Unsupported exchange trading identity')
+    return [dict(ticker=ticker,mic=mic,exchange=CANONICAL_EXCHANGES[mic],currency=currency[0],excerpt=isin+' | '+json.dumps(instrument,sort_keys=True)+' | Currency '+currency[0])]
+
+
+def scoped_supplement_listings(text,isin):
+    """Exchange-published L&G supplements: own ISIN on every trading row."""
+    if 'STOCK EXCHANGE LISTINGS' not in text or 'DEALING PROCEDURES' not in text:return []
+    block=text.split('STOCK EXCHANGE LISTINGS',1)[1].split('DEALING PROCEDURES',1)[0]
+    if not all(label in block for label in ('Listing','ISIN','Bloomberg','Reuters code')):return []
+    lines=block.splitlines();rows=[]
+    for i,line in enumerate(lines):
+        match=re.match(r'^(.+?)\s{2,}([A-Z]{3})\s+([A-Z0-9]{12})\s+([A-Z0-9]+)\s+(LN)\s+([A-Za-z0-9]+\.L)\s*$',line)
+        if not match or match[3]!=isin:continue
+        # The wrapped venue remains part of this row. LN alone is not venue evidence.
+        if not match[1].rstrip().endswith('London Stock') or i+1>=len(lines) or lines[i+1].strip()not in ('Exchange','ETF                    Shares    Exchange'):continue
+        rows.append(dict(ticker=match[4],mic='XLON',exchange='London Stock Exchange',currency=match[2],symbol=match[6],excerpt=isin+' | London Stock Exchange | '+' '.join((line+' '+lines[i+1]).split())))
+    return rows
+
+
+def dws_factsheet_listings(text,isin):
+    # The explicitly labelled fund identity excludes the separate holdings ISIN column.
+    identities=re.findall(r'^\s*ISIN\s+([A-Z0-9]{12})\b',text,re.M)
+    if identities!=[isin] or text.count('Listing and trading information')!=1:return []
+    block=text.split('Listing and trading information',1)[1].split('\f',1)[0]
+    if not all(label in block for label in ('Bloomberg','Reuters','Trading','Currency')):return []
+    venues={'Borsa Italiana':('ETFP','IM'),'London Stock Exchange':('XLON','LN'),'SIX - Swiss Exchange':('XSWX','SW'),'XETRA':('XETR','GY')}
+    rows=[]
+    for line in block.splitlines():
+        match=re.fullmatch(r'\s*(.+?)\s{2,}([A-Z0-9]+)\s+(IM|LN|SW|GY)\s+([A-Za-z0-9]+\.[A-Za-z]+)\s+([A-Z]{3})\s*',line)
+        if not match or match[1]not in venues:continue
+        mic,suffix=venues[match[1]]
+        if match[3]!=suffix:raise ValueError('Conflicting DWS venue and Bloomberg market')
+        rows.append(dict(ticker=match[2],mic=mic,exchange=CANONICAL_EXCHANGES[mic],currency=match[5],symbol=match[4],excerpt=isin+' | '+' '.join(line.split())))
+    return rows
+
+
 def parse_listings(body,source,url,checked):
     if 'www.justetf.com/' in url:return []  # Listings require an issuer or exchange row, not a specialist profile alone.
     # Mirrors (fund-data platforms, document aggregators) may describe a fund but are not listing evidence.
@@ -308,6 +429,11 @@ def parse_listings(body,source,url,checked):
     if urlsplit(url).scheme!='https' or urlsplit(url).hostname not in LISTING_HOSTS:return []
     isin=source['isin'];digest=hashlib.sha256(body).hexdigest();rows=[]
     markets=EXCHANGE_MICS
+    if urlsplit(url).hostname=='live.euronext.com' and re.fullmatch(r'/en/product/etfs/[A-Z0-9]{12}-[A-Z0-9]{4}',urlsplit(url).path):
+        return [r|{'sourceUrl':url,'checkedAt':checked,'sha256':digest,'evidenceId':f"{isin}-{r['mic']}-{r['ticker']}-{r['currency']}"} for r in euronext_listing_rows(body,isin,url)]
+    if urlsplit(url).hostname=='dng-api.invesco.com' or (urlsplit(url).hostname=='www.borsaitaliana.it' and not body.startswith(b'%PDF')):
+        rows=invesco_listing_rows(body,isin,url) if urlsplit(url).hostname=='dng-api.invesco.com' else borsa_listing_rows(body,isin)
+        return [r|{'sourceUrl':url,'checkedAt':checked,'sha256':digest,'evidenceId':f"{isin}-{r['mic']}-{r['ticker']}-{r['currency']}"} for r in rows]
     if urlsplit(url).hostname=='bitwiseinvestments.eu' and not body.startswith(b'%PDF-'):
         return [r|{'sourceUrl':url,'checkedAt':checked,'sha256':digest,'evidenceId':f"{isin}-{r['mic']}-{r['ticker']}-{r['currency']}"} for r in bitwise_listing_rows(body,isin)]
     if urlsplit(url).hostname=='globalxetfs.eu' and not body.startswith(b'%PDF-'):
@@ -347,6 +473,11 @@ def parse_listings(body,source,url,checked):
                              excerpt=' | '.join([isin,exchange,ticker,currency,str(symbol or '')])))
     else:
         text=text_of(body)
+        scoped=[]
+        if body.startswith(b'%PDF') and urlsplit(url).hostname=='www.borsaitaliana.it':scoped=scoped_supplement_listings(text,isin)
+        if body.startswith(b'%PDF') and urlsplit(url).hostname=='etf.dws.com':scoped=dws_factsheet_listings(text,isin)
+        if scoped:
+            rows.extend(scoped)
         identities=set(re.findall(r'\b[A-Z]{2}[A-Z0-9]{9}\d\b',text))
         if isin not in identities:raise ValueError('Missing listing document identity')
         if body.startswith(b'%PDF-'):
@@ -377,15 +508,25 @@ def parse_listings(body,source,url,checked):
     return [r|{'sourceUrl':url,'checkedAt':checked,'sha256':digest,'evidenceId':f"{isin}-{r['mic']}-{r['ticker']}-{r['currency']}"} for r in rows]
 
 def collect(source,now,fetch=download,on_document=None):
-    values={};errors=[];conflicts=set();observations={};checked=now.date().isoformat()
-    for requested_url in source['urls']:
+    from urllib.parse import urlsplit
+    values={};errors=[];conflicts=set();observations={};field_evidence={};checked=now.date().isoformat()
+    urls=list(source['urls'])
+    for requested_url in urls:
         url=requested_url
+        if urlsplit(url).hostname=='bourse.fortuneo.fr' and urlsplit(url).path=='/api/search' and urlsplit(values.get('pea',{}).get('sourceUrl','')).hostname=='bourse.fortuneo.fr':continue
         try:
             body,url=fetch_document(url,fetch,source['isin'])
             if on_document:on_document(requested_url,url,body)
+            if urlsplit(url).hostname=='bourse.fortuneo.fr' and urlsplit(url).path=='/api/search':
+                candidates=fortuneo_reference_urls(body,source['isin'],url)
+                if not candidates:errors.append({'sourceUrl':url,'field':'pea','error':'No exact-share broker reference found; this is not a negative PEA statement.'})
+                for candidate in candidates:
+                    if candidate not in urls:urls.append(candidate)
+                continue
             try:
                 from urllib.parse import urlsplit
-                if urlsplit(url).hostname=='www.justetf.com':fields=parse_justetf(body,source['isin'])
+                if urlsplit(url).hostname=='dng-api.invesco.com':fields={}
+                elif urlsplit(url).hostname=='www.justetf.com':fields=parse_justetf(body,source['isin'])
                 elif urlsplit(url).hostname in ('bourse.fortuneo.fr','www.boursedirect.fr'):fields=parse_broker_pea(body,source['isin'])
                 else:fields=parse_json(body,source['isin']) if body.lstrip().startswith(b'{') else parse_text(text_of(body),source['isin'])
             except ValueError as error:
@@ -397,7 +538,10 @@ def collect(source,now,fetch=download,on_document=None):
             if listing_rows:fields['listings']=listing_rows
             if not fields:raise ValueError('No explicit supported metadata fields')
             for field,value in fields.items():
-                if field in ('pea','currencyHedge'):observations.setdefault(field,{})[url]=value
+                if field in ('pea','currencyHedge'):
+                    observations.setdefault(field,{})[url]=value
+                    observations[field][requested_url]=value
+                    field_evidence.setdefault(field,{})[url]={'sourceUrl':url,'value':value,'checkedAt':checked,'sha256':hashlib.sha256(body).hexdigest()}
                 if field in conflicts:continue
                 if field in values and values[field]['value']!=value:
                     if field=='listings':
@@ -418,6 +562,16 @@ def collect(source,now,fetch=download,on_document=None):
                     continue
                 values[field]={'value':value,'checkedAt':checked,'sourceUrl':url,'sha256':hashlib.sha256(body).hexdigest()}
         except Exception as error:errors.append({'sourceUrl':url,'error':str(error)})
+    expectation=source.get('peaExpectation',{})
+    if 'pea' in values and type(expectation.get('value'))is bool and values['pea']['value']!=expectation['value']:
+        fresh=observations.get('pea',{})
+        agreeing={urlsplit(url).hostname for url,value in fresh.items() if value==values['pea']['value']}
+        if len(agreeing)<2:
+            values.pop('pea',None)
+            errors.append({'field':'pea','qualificationRequired':True,'sourceUrl':expectation.get('sourceUrl'),'error':'New PEA statement differs from the previous documented review; independent current corroboration required.','sources':[expectation]})
+    for field in conflicts:
+        if field in ('pea','currencyHedge'):
+            errors.append({'field':field,'qualificationRequired':True,'error':'Conflicting current exact-share statements; no automatic value chosen.','sources':list(field_evidence.get(field,{}).values())})
     for hold in source.get('qualificationHolds',[]):
         field=hold['field'];observed=observations.get(field,{})
         urls=[row['sourceUrl'] for row in hold['sources']]

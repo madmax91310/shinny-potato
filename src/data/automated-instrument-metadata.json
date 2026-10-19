@@ -140,9 +140,9 @@
     },
     "pea": {
       "value": false,
-      "checkedAt": "2026-10-19",
       "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-ishares-core-msci-world-ucits-etf-usd-acc-IWDA-IE00B4L5Y983-46",
-      "sha256": "19f92542e4458769d42d277882a7a3cc9e50f13214f7d6510098e65fdcf0ec5f"
+      "sha256": "b52a5ae01655146a9c42fb17b16f539f8a043e36a13fd9855ae929fbd9dfc5e7",
+      "checkedAt": "2026-10-19"
     }
   },
   "IE0002XZSHO1": {
@@ -225,6 +225,24 @@
       "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=FR0011550193",
       "sha256": "30baaffb17a5de47c99eb9fa8590bd81396b682e2027be064e6ea380cefc835d"
+    },
+    "listings": {
+      "value": [
+        {
+          "ticker": "ETZ",
+          "mic": "XPAR",
+          "exchange": "Euronext Paris",
+          "currency": "EUR",
+          "excerpt": "FR0011550193 | {\"default_period\": {\"range\": \"1D\", \"type\": \"intraday\"}, \"isin\": \"FR0011550193\", \"issuer_code\": \"600162\", \"mic\": \"XPAR\", \"name\": \"BNPP Stoxx 600C\", \"product_data\": \"FR0011550193-XPAR\", \"symbol\": \"ETZ\", \"type\": \"TRACK\", \"url_type\": \"etfs\"} | Currency EUR",
+          "sourceUrl": "https://live.euronext.com/en/product/etfs/FR0011550193-XPAR",
+          "checkedAt": "2026-10-19",
+          "sha256": "fe469ee35f25a0acc393819fccc6a160a376b1d634c95917ff0baa2f92a5a9ec",
+          "evidenceId": "FR0011550193-XPAR-ETZ-EUR"
+        }
+      ],
+      "sourceUrl": "https://live.euronext.com/en/product/etfs/FR0011550193-XPAR",
+      "sha256": "fe469ee35f25a0acc393819fccc6a160a376b1d634c95917ff0baa2f92a5a9ec",
+      "checkedAt": "2026-10-19"
     }
   },
   "IE00BP3QZ601": {
@@ -1773,6 +1791,73 @@
       "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE000716YHJ7",
       "sha256": "0784753f00ec5c212518e896e156719b7936aff65b69539709031f21c5e0ea31"
+    },
+    "listings": {
+      "value": [
+        {
+          "ticker": "FWRA",
+          "mic": "XLON",
+          "exchange": "London Stock Exchange",
+          "currency": "USD",
+          "symbol": "FWRA.L",
+          "excerpt": "IE000716YHJ7 | {\"effectiveDate\": \"2026-10-19T15:29:57\", \"inav\": 9.437727, \"listingBloombergTicker\": \"FWRA LN\", \"listingBloombergTickerInav\": \"FWRAIN\", \"listingCurrency\": \"USD\", \"listingExchangeName\": \"London Stock Exchange\", \"listingExchangeTicker\": \"FWRA\", \"listingReutersInav\": \"FWRAUSiv.P\", \"listingRic\": \"FWRA.L\", \"listingSedol\": \"BMZLPZ1\", \"listingValor\": \"125615212\", \"listingWKN\": \"A3D7QX\", \"settlementCycle\": \"T+2\", \"source\": \"Refinitiv\"}",
+          "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE000716YHJ7?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData",
+          "checkedAt": "2026-10-19",
+          "sha256": "b32209ff006bc19229b797d6ff606a7e00424172e5fa80c63a153bf63c0adc04",
+          "evidenceId": "IE000716YHJ7-XLON-FWRA-USD"
+        },
+        {
+          "ticker": "FWRG",
+          "mic": "XLON",
+          "exchange": "London Stock Exchange",
+          "currency": "GBX",
+          "symbol": "FWRG.L",
+          "excerpt": "IE000716YHJ7 | {\"effectiveDate\": \"2026-10-19T15:29:57\", \"inav\": 7.08586, \"listingBloombergTicker\": \"FWRG LN\", \"listingBloombergTickerInav\": \"FWRAINS\", \"listingCurrency\": \"GBX\", \"listingExchangeName\": \"London Stock Exchange\", \"listingExchangeTicker\": \"FWRG\", \"listingReutersInav\": \"FWRAGBiv.P\", \"listingRic\": \"FWRG.L\", \"listingSedol\": \"BMZLQ03\", \"listingValor\": \"125615212\", \"listingWKN\": \"A3D7QX\", \"settlementCycle\": \"T+2\", \"source\": \"Refinitiv\"}",
+          "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE000716YHJ7?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData",
+          "checkedAt": "2026-10-19",
+          "sha256": "b32209ff006bc19229b797d6ff606a7e00424172e5fa80c63a153bf63c0adc04",
+          "evidenceId": "IE000716YHJ7-XLON-FWRG-GBX"
+        },
+        {
+          "ticker": "FWRA",
+          "mic": "ETFP",
+          "exchange": "Borsa Italiana",
+          "currency": "EUR",
+          "symbol": "FWRA.MI",
+          "excerpt": "IE000716YHJ7 | {\"effectiveDate\": \"2026-10-19T15:29:57\", \"inav\": 8.410472, \"listingBloombergTicker\": \"FWRA IM\", \"listingBloombergTickerInav\": \"FWRAINE\", \"listingCurrency\": \"EUR\", \"listingExchangeName\": \"Euronext Milan\", \"listingExchangeTicker\": \"FWRA\", \"listingReutersInav\": \"FWRAEUiv.P\", \"listingRic\": \"FWRA.MI\", \"listingValor\": \"125615212\", \"listingWKN\": \"A3D7QX\", \"settlementCycle\": \"T+2\", \"source\": \"Refinitiv\"}",
+          "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE000716YHJ7?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData",
+          "checkedAt": "2026-10-19",
+          "sha256": "b32209ff006bc19229b797d6ff606a7e00424172e5fa80c63a153bf63c0adc04",
+          "evidenceId": "IE000716YHJ7-ETFP-FWRA-EUR"
+        },
+        {
+          "ticker": "FWIA",
+          "mic": "XETR",
+          "exchange": "Xetra",
+          "currency": "EUR",
+          "symbol": "FWIA.DE",
+          "excerpt": "IE000716YHJ7 | {\"effectiveDate\": \"2026-10-19T15:29:57\", \"inav\": 8.410472, \"listingBloombergTicker\": \"FWIA GY\", \"listingBloombergTickerInav\": \"FWRAINE\", \"listingCurrency\": \"EUR\", \"listingExchangeName\": \"Deutsche Börse (Xetra)\", \"listingExchangeTicker\": \"FWIA\", \"listingReutersInav\": \"FWRAEUiv.P\", \"listingRic\": \"FWIA.DE\", \"listingValor\": \"125615212\", \"listingWKN\": \"A3D7QX\", \"settlementCycle\": \"T+2\", \"source\": \"Refinitiv\"}",
+          "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE000716YHJ7?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData",
+          "checkedAt": "2026-10-19",
+          "sha256": "b32209ff006bc19229b797d6ff606a7e00424172e5fa80c63a153bf63c0adc04",
+          "evidenceId": "IE000716YHJ7-XETR-FWIA-EUR"
+        },
+        {
+          "ticker": "FWRA",
+          "mic": "XSWX",
+          "exchange": "SIX Swiss Exchange",
+          "currency": "CHF",
+          "symbol": "FWRA.S",
+          "excerpt": "IE000716YHJ7 | {\"effectiveDate\": \"2026-10-19T15:29:57\", \"inav\": 7.793334, \"listingBloombergTicker\": \"FWRA SW\", \"listingBloombergTickerInav\": \"FWRAINC\", \"listingCurrency\": \"CHF\", \"listingExchangeName\": \"SIX Swiss Exchange\", \"listingExchangeTicker\": \"FWRA\", \"listingReutersInav\": \"FWRACHiv.P\", \"listingRic\": \"FWRA.S\", \"listingValor\": \"125615212\", \"listingWKN\": \"A3D7QX\", \"settlementCycle\": \"T+2\", \"source\": \"Refinitiv\"}",
+          "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE000716YHJ7?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData",
+          "checkedAt": "2026-10-19",
+          "sha256": "b32209ff006bc19229b797d6ff606a7e00424172e5fa80c63a153bf63c0adc04",
+          "evidenceId": "IE000716YHJ7-XSWX-FWRA-CHF"
+        }
+      ],
+      "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE000716YHJ7?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData",
+      "sha256": "b32209ff006bc19229b797d6ff606a7e00424172e5fa80c63a153bf63c0adc04",
+      "checkedAt": "2026-10-19"
     }
   },
   "IE0000QLH0G6": {
@@ -1799,6 +1884,49 @@
       "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE0000QLH0G6",
       "sha256": "3c7e19cbae5afeba37b9f5cdb356f51455cb5c32ff5b47bffb7e1f91d5defd60"
+    },
+    "listings": {
+      "value": [
+        {
+          "ticker": "FTWD",
+          "mic": "XLON",
+          "exchange": "London Stock Exchange",
+          "currency": "USD",
+          "symbol": "FTWD.L",
+          "excerpt": "IE0000QLH0G6 | {\"effectiveDate\": \"2026-10-19T15:29:58\", \"inav\": 8.990841, \"listingBloombergTicker\": \"FTWD LN\", \"listingBloombergTickerInav\": \"FTWDIN\", \"listingCurrency\": \"USD\", \"listingExchangeName\": \"London Stock Exchange\", \"listingExchangeTicker\": \"FTWD\", \"listingReutersInav\": \"FTWDUSiv.P\", \"listingRic\": \"FTWD.L\", \"listingSedol\": \"BMZLQ47\", \"listingValor\": \"125615414\", \"listingWKN\": \"A3D7QY\", \"settlementCycle\": \"T+2\", \"source\": \"Refinitiv\"}",
+          "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE0000QLH0G6?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData",
+          "checkedAt": "2026-10-19",
+          "sha256": "a2ac2371e54895e2174248f97a023bdc175247f7abfdbc94076b2675c597a40d",
+          "evidenceId": "IE0000QLH0G6-XLON-FTWD-USD"
+        },
+        {
+          "ticker": "FTWG",
+          "mic": "XLON",
+          "exchange": "London Stock Exchange",
+          "currency": "GBX",
+          "symbol": "FTWG.L",
+          "excerpt": "IE0000QLH0G6 | {\"effectiveDate\": \"2026-10-19T15:29:58\", \"inav\": 6.750311, \"listingBloombergTicker\": \"FTWG LN\", \"listingBloombergTickerInav\": \"FTWDINS\", \"listingCurrency\": \"GBX\", \"listingExchangeName\": \"London Stock Exchange\", \"listingExchangeTicker\": \"FTWG\", \"listingReutersInav\": \"FTWDGBiv.P\", \"listingRic\": \"FTWG.L\", \"listingSedol\": \"BMZLQ58\", \"listingValor\": \"125615414\", \"listingWKN\": \"A3D7QY\", \"settlementCycle\": \"T+2\", \"source\": \"Refinitiv\"}",
+          "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE0000QLH0G6?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData",
+          "checkedAt": "2026-10-19",
+          "sha256": "a2ac2371e54895e2174248f97a023bdc175247f7abfdbc94076b2675c597a40d",
+          "evidenceId": "IE0000QLH0G6-XLON-FTWG-GBX"
+        },
+        {
+          "ticker": "FTWD",
+          "mic": "XETR",
+          "exchange": "Xetra",
+          "currency": "EUR",
+          "symbol": "FTWD.DE",
+          "excerpt": "IE0000QLH0G6 | {\"effectiveDate\": \"2026-10-19T15:29:58\", \"inav\": 8.012263, \"listingBloombergTicker\": \"FTWD GY\", \"listingBloombergTickerInav\": \"FTWDINE\", \"listingCurrency\": \"EUR\", \"listingExchangeName\": \"Deutsche Börse (Xetra)\", \"listingExchangeTicker\": \"FTWD\", \"listingReutersInav\": \"FTWDEUiv.P\", \"listingRic\": \"FTWD.DE\", \"listingValor\": \"125615414\", \"listingWKN\": \"A3D7QY\", \"settlementCycle\": \"T+2\", \"source\": \"Refinitiv\"}",
+          "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE0000QLH0G6?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData",
+          "checkedAt": "2026-10-19",
+          "sha256": "a2ac2371e54895e2174248f97a023bdc175247f7abfdbc94076b2675c597a40d",
+          "evidenceId": "IE0000QLH0G6-XETR-FTWD-EUR"
+        }
+      ],
+      "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE0000QLH0G6?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData",
+      "sha256": "a2ac2371e54895e2174248f97a023bdc175247f7abfdbc94076b2675c597a40d",
+      "checkedAt": "2026-10-19"
     }
   },
   "IE00BDVPNG13": {
@@ -2400,6 +2528,12 @@
       "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00BK5BQX27",
       "sha256": "8bc2a781c9308ea5b4684d5ed6071b3cd4f077af3ddf1e92db91581b01734ee7"
+    },
+    "pea": {
+      "value": false,
+      "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-vanguard-ftse-developed-europe-ucits-etf-eur-acc-VWCG-IE00BK5BQX27-46",
+      "sha256": "0373d7a3367db4ae50893f4fa2122f847dcc2d72fbfb3ff72e732697c36636e6",
+      "checkedAt": "2026-10-19"
     }
   },
   "IE00B945VV12": {
@@ -5916,6 +6050,12 @@
       "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=LU2089238385",
       "sha256": "d45a66f5553e80d8265f04dee48bcad690b3a046614d4dff7a562ab0a75cd861"
+    },
+    "pea": {
+      "value": false,
+      "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-amundi-prime-japan-ucits-etf-dr-jpy-acc-PRAJ-LU2089238385-23",
+      "sha256": "75d3e7f8bb12ab11e19146b60bea5f4d2b2ef90f75f79456c4a208e6cf92499a",
+      "checkedAt": "2026-10-19"
     }
   },
   "LU2970735911": {
@@ -6153,6 +6293,12 @@
       "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00B3FH7618",
       "sha256": "1237266d3d49b491b0b649f56852c0b5e4a07c43e54cc406ebfdb1447df16dfe"
+    },
+    "pea": {
+      "value": false,
+      "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-ishares-eur-govt-bond-0-1yr-ucits-etf-dis-IEGE-IE00B3FH7618-46",
+      "sha256": "7d3d9f5c2f9c2ebdcc9e3e6bd888b34ff0a34b84f8dc559b80efba39ee861a03",
+      "checkedAt": "2026-10-19"
     }
   },
   "IE00BDBRDM35": {
@@ -6246,6 +6392,12 @@
       "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00BDBRDM35",
       "sha256": "3ca919b8509da9be57572d5301bb774315b2949b5225fccde5e008612195f30d"
+    },
+    "pea": {
+      "value": false,
+      "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-ishrs-iii-core-glbl-aggr-b-u-etf-AGGH-IE00BDBRDM35-46",
+      "sha256": "5775b5cf9aeae81d1027f0114ef58fa7f76fd1efd91c85b19a5351d6a5ac205f",
+      "checkedAt": "2026-10-19"
     }
   },
   "IE00BZCQB185": {
@@ -6338,6 +6490,12 @@
       "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00BZCQB185",
       "sha256": "0b95260a13f63809db521789846b0e0aea5c22251791ab80be709b3e844f9b7e"
+    },
+    "pea": {
+      "value": false,
+      "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-ishares-msci-india-ucits-etf-usd-acc-NDIA-IE00BZCQB185-46",
+      "sha256": "1237942d503be6793b54132fa361e0fb33227d79e059efaf3c8b127f79595ad1",
+      "checkedAt": "2026-10-19"
     }
   },
   "IE000I8KRLL9": {
@@ -6565,6 +6723,12 @@
       "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE000RDRMSD1",
       "sha256": "15d6f040e8fac85ab85bd4f3a15dc3d5c6022a4cd40953e0d8b5137f86c2d098"
+    },
+    "pea": {
+      "value": false,
+      "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-ishares-blockchain-technology-ucits-etf-usd-acc-BLKC-IE000RDRMSD1-918",
+      "sha256": "f35bc332a5f87c10e708132d732e4ebcfd1dbde7bbd626ae605d93460e2bd2b8",
+      "checkedAt": "2026-10-19"
     }
   },
   "IE00B0M62X26": {
@@ -6658,6 +6822,12 @@
       "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00B0M62X26",
       "sha256": "1c069c85f562c741c933e48669231d819107aaafa0b427f9fa9e4b381b64e01c"
+    },
+    "pea": {
+      "value": false,
+      "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-ishares-eur-inflation-linked-govt-bond-ucits-etf-acc-IBCI-IE00B0M62X26-46",
+      "sha256": "604dee7082037ae8f9f4d59db8d4e838f8f1852db589900dae392694ef600db0",
+      "checkedAt": "2026-10-19"
     }
   },
   "IE00B1FZS350": {
@@ -6763,6 +6933,12 @@
       "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00B1FZS350",
       "sha256": "d0edcd4a92fa53bb673f678d9bdaf963b8c315d258676df6eadad4df1cf1f48d"
+    },
+    "pea": {
+      "value": false,
+      "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-ishares-developed-markets-property-yield-ucits-etf-usd-dis-IWDP-IE00B1FZS350-46",
+      "sha256": "5c96eccd8bce430539d6f9c671851b386efedd1d02dac473e9dd3e87e6e21ed8",
+      "checkedAt": "2026-10-19"
     }
   },
   "IE00B3F81R35": {
@@ -7534,6 +7710,12 @@
       "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00B6R52259",
       "sha256": "68019ff4db1257a3a5414e57ada8ae9c8bb43b9bd2928ba9020e59451026a7e3"
+    },
+    "pea": {
+      "value": false,
+      "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-ishares-msci-acwi-ucits-etf-usd-acc-SSAC-IE00B6R52259-46",
+      "sha256": "b64169fb16fa8725b7b46b2f410bfc9f9ac4d16f4f7d2ebb5c62defca67fc278",
+      "checkedAt": "2026-10-19"
     }
   },
   "IE00B8FHGS14": {
@@ -7817,6 +7999,12 @@
       "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00BFZPF546",
       "sha256": "3228b003eb895288331d4bbe093291502f20b3b3d9d60925202eacf899fcd2e3"
+    },
+    "pea": {
+      "value": false,
+      "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-ishares-j-p-morgan-em-local-govt-bond-ucits-etf-usd-acc-EMGA-IE00BFZPF546-23",
+      "sha256": "c21c78c1e1947e4a72c2bae05d0a5b84c6a285b6155e1d4ca92fbf672a40abb0",
+      "checkedAt": "2026-10-19"
     }
   },
   "IE00BJ5JNY98": {
@@ -7909,6 +8097,12 @@
       "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00BJ5JNY98",
       "sha256": "cc95e21f0f8f5259534c847c58589cd8d048245defd4bbe2256c8d3f795a0001"
+    },
+    "pea": {
+      "value": false,
+      "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-ishares-msci-world-information-technology-sector-advanced-ucits-etf-usd-dis-WITS-IE00BJ5JNY98-918",
+      "sha256": "82f3efc2d3d79c06fe425a80c52ad7dc63d819e6225a2ee31ddcf67bba6342db",
+      "checkedAt": "2026-10-19"
     }
   },
   "IE00BK95B138": {
@@ -7966,6 +8160,12 @@
       "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00BK95B138",
       "sha256": "2adfae892f57a05d8839e76eebff37065ab7fddcd336b3fcd8e42c3b30d9cf55"
+    },
+    "pea": {
+      "value": false,
+      "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-ishares-treasury-bond-ucits-etf-usd-dis-GOVT-IE00BK95B138-918",
+      "sha256": "c4b8380600f945cbb6a31092a92141eb3b26c4fca799ebefeea41970fec469e6",
+      "checkedAt": "2026-10-19"
     }
   },
   "IE00BKPX3K41": {
@@ -8023,6 +8223,12 @@
       "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00BKPX3K41",
       "sha256": "c1f4fe47fd9fd1112e676b152ddff4ef89f969e73a51caeb9d718741544b9d46"
+    },
+    "pea": {
+      "value": false,
+      "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-ishares-msci-ac-far-east-ex-japan-ucits-etf-usd-acc-IFFI-IE00BKPX3K41-918",
+      "sha256": "048f9da1ee55cfef52d1ddc872d742c301dfb17502d5247b409c7ca1e1d36af6",
+      "checkedAt": "2026-10-19"
     }
   },
   "IE00BMG6Z448": {
@@ -8128,6 +8334,12 @@
       "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00BMG6Z448",
       "sha256": "bc69bb9832b1b68bb0fe71e86fa75661b6f6d70b55e12ccb6738730f416267b1"
+    },
+    "pea": {
+      "value": false,
+      "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-ishares-msci-em-ex-china-ucits-etf-usd-acc-MTPI-IE00BMG6Z448-23",
+      "sha256": "2dac4ca37919d892c32983a3d8f1e15fc8e9581d0336aea463dcd56555554377",
+      "checkedAt": "2026-10-19"
     }
   },
   "IE00BMW42413": {
@@ -8678,6 +8890,12 @@
       "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00BG0J4C88",
       "sha256": "9a2d267336ec7acc0a9ebf627b0d682096b773f4647461953f19cc364bf5a548"
+    },
+    "pea": {
+      "value": false,
+      "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-ishares-digital-security-ucits-etf-usd-acc-LOCK-IE00BG0J4C88-46",
+      "sha256": "295e12b5f5f349d7b4352bf762c103b42cb2fe0ce1617decaa265f0404ae4350",
+      "checkedAt": "2026-10-19"
     }
   },
   "IE0000N55FP4": {
@@ -8747,6 +8965,12 @@
       "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE0000N55FP4",
       "sha256": "7e2e3eaafbf395751186d5bf47bcda8deb850902b8c3f39f7361be68e5bcd971"
+    },
+    "pea": {
+      "value": false,
+      "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-ishares-msci-europe-small-cap-ucits-etf-eur-acc-ESCE-IE0000N55FP4-46",
+      "sha256": "f437d64ba98908e87482826b9aaefb8abcf0a6d9ccdaecfed0c51f75dd3192a3",
+      "checkedAt": "2026-10-19"
     }
   },
   "IE00B3YLTY66": {
@@ -9395,10 +9619,10 @@
           "exchange": "London Stock Exchange",
           "currency": "GBP",
           "symbol": "XMWX.L",
-          "excerpt": "IE0006WW1TQ4 | London Stock Exchange | XMWX LN | GBP | XMWX.L",
-          "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/pdpMetaTagsTealium",
+          "excerpt": "IE0006WW1TQ4 | London Stock Exchange XMWX LN XMWX.L GBP",
+          "sourceUrl": "https://etf.dws.com/download/asset/82292b8e-bf9e-44f2-b20d-722c743110a3",
           "checkedAt": "2026-10-19",
-          "sha256": "063b5534a2e91e713b59f25d71d7ad89c3a8352d256e6392dbdf3ef94fcf499b",
+          "sha256": "47323ef398039910dcc245c6003701145b3150e006532115abea75f2530fef6c",
           "evidenceId": "IE0006WW1TQ4-XLON-XMWX-GBP"
         },
         {
@@ -9407,10 +9631,10 @@
           "exchange": "London Stock Exchange",
           "currency": "USD",
           "symbol": "EXUS.L",
-          "excerpt": "IE0006WW1TQ4 | London Stock Exchange | EXUS LN | USD | EXUS.L",
-          "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/pdpMetaTagsTealium",
+          "excerpt": "IE0006WW1TQ4 | London Stock Exchange EXUS LN EXUS.L USD",
+          "sourceUrl": "https://etf.dws.com/download/asset/82292b8e-bf9e-44f2-b20d-722c743110a3",
           "checkedAt": "2026-10-19",
-          "sha256": "063b5534a2e91e713b59f25d71d7ad89c3a8352d256e6392dbdf3ef94fcf499b",
+          "sha256": "47323ef398039910dcc245c6003701145b3150e006532115abea75f2530fef6c",
           "evidenceId": "IE0006WW1TQ4-XLON-EXUS-USD"
         },
         {
@@ -9419,10 +9643,10 @@
           "exchange": "Xetra",
           "currency": "EUR",
           "symbol": "EXUS.DE",
-          "excerpt": "IE0006WW1TQ4 | XETRA | EXUS GY | EUR | EXUS.DE",
-          "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/pdpMetaTagsTealium",
+          "excerpt": "IE0006WW1TQ4 | XETRA EXUS GY EXUS.DE EUR",
+          "sourceUrl": "https://etf.dws.com/download/asset/82292b8e-bf9e-44f2-b20d-722c743110a3",
           "checkedAt": "2026-10-19",
-          "sha256": "063b5534a2e91e713b59f25d71d7ad89c3a8352d256e6392dbdf3ef94fcf499b",
+          "sha256": "47323ef398039910dcc245c6003701145b3150e006532115abea75f2530fef6c",
           "evidenceId": "IE0006WW1TQ4-XETR-EXUS-EUR"
         },
         {
@@ -9431,16 +9655,28 @@
           "exchange": "Borsa Italiana",
           "currency": "EUR",
           "symbol": "EXUS.MI",
-          "excerpt": "IE0006WW1TQ4 | Borsa Italiana | EXUS IM | EUR | EXUS.MI",
-          "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/pdpMetaTagsTealium",
+          "excerpt": "IE0006WW1TQ4 | Borsa Italiana EXUS IM EXUS.MI EUR",
+          "sourceUrl": "https://etf.dws.com/download/asset/82292b8e-bf9e-44f2-b20d-722c743110a3",
           "checkedAt": "2026-10-19",
-          "sha256": "063b5534a2e91e713b59f25d71d7ad89c3a8352d256e6392dbdf3ef94fcf499b",
+          "sha256": "47323ef398039910dcc245c6003701145b3150e006532115abea75f2530fef6c",
           "evidenceId": "IE0006WW1TQ4-ETFP-EXUS-EUR"
+        },
+        {
+          "ticker": "EXUS",
+          "mic": "XSWX",
+          "exchange": "SIX Swiss Exchange",
+          "currency": "CHF",
+          "symbol": "EXUS.S",
+          "excerpt": "IE0006WW1TQ4 | SIX - Swiss Exchange EXUS SW EXUS.S CHF",
+          "sourceUrl": "https://etf.dws.com/download/asset/82292b8e-bf9e-44f2-b20d-722c743110a3",
+          "checkedAt": "2026-10-19",
+          "sha256": "47323ef398039910dcc245c6003701145b3150e006532115abea75f2530fef6c",
+          "evidenceId": "IE0006WW1TQ4-XSWX-EXUS-CHF"
         }
       ],
+      "sourceUrl": "https://etf.dws.com/download/asset/82292b8e-bf9e-44f2-b20d-722c743110a3",
       "checkedAt": "2026-10-19",
-      "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/pdpMetaTagsTealium",
-      "sha256": "063b5534a2e91e713b59f25d71d7ad89c3a8352d256e6392dbdf3ef94fcf499b"
+      "sha256": "47323ef398039910dcc245c6003701145b3150e006532115abea75f2530fef6c"
     },
     "currencyHedge": {
       "value": false,
@@ -10116,6 +10352,12 @@
       "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00BK5BQT80",
       "sha256": "aa150342abd1bcf55c9f3994602b43cb423b5e4b85bc615795f3f1b44ace1d3c"
+    },
+    "pea": {
+      "value": false,
+      "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-vanguard-ftse-all-world-ucits-etf-usd-acc-VWCE-IE00BK5BQT80-46",
+      "sha256": "062e8edf0222df5e7465c1816eedcf84ac5245b824249d61063704d22a829300",
+      "checkedAt": "2026-10-19"
     }
   },
   "IE00BK5BR626": {
@@ -10524,6 +10766,12 @@
       "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00BZ163G84",
       "sha256": "da4cbaf285eb68278293e9d7921d31864b5f75adc7ad56351bfdd83483f2e05f"
+    },
+    "pea": {
+      "value": false,
+      "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-vanguard-eur-corporate-bond-ucits-etf-dis-VECP-IE00BZ163G84-46",
+      "sha256": "3858e334c5be263521d0b2e5dcf0cb734854f088a90d0bcda11974481986fd25",
+      "checkedAt": "2026-10-19"
     }
   },
   "IE00BYWQWR46": {
@@ -10972,6 +11220,12 @@
       "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=NL0009690239",
       "sha256": "602eba1c4098a969da06bcc50fbb1f8374f6637dea94bc7cc14f75bbd3d8c80f"
+    },
+    "pea": {
+      "value": false,
+      "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-vaneck-global-real-estate-ucits-etf-eur-dis-TRET-NL0009690239-46",
+      "sha256": "b02e2402ff3a6ddc4f4e6447d7139d6c1e0bf0b4d31ab2e6937bbda48f6cba24",
+      "checkedAt": "2026-10-19"
     }
   },
   "NL0011683594": {
@@ -11059,6 +11313,115 @@
       "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=IE00B579F325",
       "sha256": "9fe2f3c5830849f0fe0f533fbd910c6cf6abdafd04769536b94b12520992a7af"
+    },
+    "listings": {
+      "value": [
+        {
+          "ticker": "SGLD",
+          "mic": "XLON",
+          "exchange": "London Stock Exchange",
+          "currency": "USD",
+          "symbol": "SGLD.L",
+          "excerpt": "IE00B579F325 | {\"effectiveDate\": null, \"listingBloombergTicker\": \"SGLD LN\", \"listingCurrency\": \"USD\", \"listingExchangeName\": \"London Stock Exchange\", \"listingExchangeTicker\": \"SGLD\", \"listingRic\": \"SGLD.L\", \"listingSedol\": \"B599TV6\", \"listingValor\": \"10326235\", \"listingWKN\": \"A1AA5X\", \"settlementCycle\": \"T+2\", \"source\": \"Refinitiv\"}",
+          "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B579F325?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData",
+          "checkedAt": "2026-10-19",
+          "sha256": "1672baebb950eb3ba8d5c0fbc6330e5f9dac81d4acf3cb3b77c773a4731d96a1",
+          "evidenceId": "IE00B579F325-XLON-SGLD-USD"
+        },
+        {
+          "ticker": "SGLP",
+          "mic": "XLON",
+          "exchange": "London Stock Exchange",
+          "currency": "GBX",
+          "symbol": "SGLP.L",
+          "excerpt": "IE00B579F325 | {\"effectiveDate\": null, \"listingBloombergTicker\": \"SGLP LN\", \"listingCurrency\": \"GBX\", \"listingExchangeName\": \"London Stock Exchange\", \"listingExchangeTicker\": \"SGLP\", \"listingRic\": \"SGLP.L\", \"listingSedol\": \"B4PYKC6\", \"listingValor\": \"10326235\", \"listingWKN\": \"A1AA5X\", \"settlementCycle\": \"T+2\", \"source\": \"Refinitiv\"}",
+          "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B579F325?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData",
+          "checkedAt": "2026-10-19",
+          "sha256": "1672baebb950eb3ba8d5c0fbc6330e5f9dac81d4acf3cb3b77c773a4731d96a1",
+          "evidenceId": "IE00B579F325-XLON-SGLP-GBX"
+        },
+        {
+          "ticker": "8PSG",
+          "mic": "XETR",
+          "exchange": "Xetra",
+          "currency": "EUR",
+          "symbol": "8PSG.DE",
+          "excerpt": "IE00B579F325 | {\"effectiveDate\": null, \"listingBloombergTicker\": \"8PSG GY\", \"listingCurrency\": \"EUR\", \"listingExchangeName\": \"Deutsche Börse (Xetra)\", \"listingExchangeTicker\": \"8PSG\", \"listingRic\": \"8PSG.DE\", \"listingValor\": \"10326235\", \"listingWKN\": \"A1AA5X\", \"settlementCycle\": \"T+2\", \"source\": \"Refinitiv\"}",
+          "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B579F325?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData",
+          "checkedAt": "2026-10-19",
+          "sha256": "1672baebb950eb3ba8d5c0fbc6330e5f9dac81d4acf3cb3b77c773a4731d96a1",
+          "evidenceId": "IE00B579F325-XETR-8PSG-EUR"
+        },
+        {
+          "ticker": "SGLDN",
+          "mic": "XMEX",
+          "exchange": "Bolsa Mexicana De Valores",
+          "currency": "MXN",
+          "symbol": "SGLDN.MX",
+          "excerpt": "IE00B579F325 | {\"effectiveDate\": null, \"listingBloombergTicker\": \"SGLDN MM\", \"listingCurrency\": \"MXN\", \"listingExchangeName\": \"Bolsa Mexicana de Valores\", \"listingExchangeTicker\": \"SGLDN\", \"listingRic\": \"SGLDN.MX\", \"settlementCycle\": \"T+2\", \"source\": \"Refinitiv\"}",
+          "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B579F325?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData",
+          "checkedAt": "2026-10-19",
+          "sha256": "1672baebb950eb3ba8d5c0fbc6330e5f9dac81d4acf3cb3b77c773a4731d96a1",
+          "evidenceId": "IE00B579F325-XMEX-SGLDN-MXN"
+        },
+        {
+          "ticker": "SGLDCHF",
+          "mic": "XSWX",
+          "exchange": "SIX Swiss Exchange",
+          "currency": "CHF",
+          "symbol": "SGLDCHF.S",
+          "excerpt": "IE00B579F325 | {\"effectiveDate\": null, \"listingBloombergTicker\": \"SGLDCHF SW\", \"listingCurrency\": \"CHF\", \"listingExchangeName\": \"SIX Swiss Exchange\", \"listingExchangeTicker\": \"SGLDCHF\", \"listingRic\": \"SGLDCHF.S\", \"listingValor\": \"10326235\", \"listingWKN\": \"A1AA5X\", \"settlementCycle\": \"T+2\", \"source\": \"Refinitiv\"}",
+          "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B579F325?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData",
+          "checkedAt": "2026-10-19",
+          "sha256": "1672baebb950eb3ba8d5c0fbc6330e5f9dac81d4acf3cb3b77c773a4731d96a1",
+          "evidenceId": "IE00B579F325-XSWX-SGLDCHF-CHF"
+        },
+        {
+          "ticker": "SGLD",
+          "mic": "XSWX",
+          "exchange": "SIX Swiss Exchange",
+          "currency": "USD",
+          "symbol": "SGLD.S",
+          "excerpt": "IE00B579F325 | {\"effectiveDate\": null, \"listingBloombergTicker\": \"SGLD SW\", \"listingCurrency\": \"USD\", \"listingExchangeName\": \"SIX Swiss Exchange\", \"listingExchangeTicker\": \"SGLD\", \"listingRic\": \"SGLD.S\", \"listingValor\": \"10326235\", \"listingWKN\": \"A1AA5X\", \"settlementCycle\": \"T+2\", \"source\": \"Refinitiv\"}",
+          "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B579F325?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData",
+          "checkedAt": "2026-10-19",
+          "sha256": "1672baebb950eb3ba8d5c0fbc6330e5f9dac81d4acf3cb3b77c773a4731d96a1",
+          "evidenceId": "IE00B579F325-XSWX-SGLD-USD"
+        },
+        {
+          "ticker": "SGLD",
+          "mic": "XAMS",
+          "exchange": "Euronext Amsterdam",
+          "currency": "EUR",
+          "symbol": "SGLD.AS",
+          "excerpt": "IE00B579F325 | {\"effectiveDate\": null, \"listingBloombergTicker\": \"SGLD NA\", \"listingCurrency\": \"EUR\", \"listingExchangeName\": \"Euronext Amsterdam\", \"listingExchangeTicker\": \"SGLD\", \"listingRic\": \"SGLD.AS\", \"listingValor\": \"10326235\", \"listingWKN\": \"A1AA5X\", \"settlementCycle\": \"T+2\", \"source\": \"Refinitiv\"}",
+          "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B579F325?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData",
+          "checkedAt": "2026-10-19",
+          "sha256": "1672baebb950eb3ba8d5c0fbc6330e5f9dac81d4acf3cb3b77c773a4731d96a1",
+          "evidenceId": "IE00B579F325-XAMS-SGLD-EUR"
+        },
+        {
+          "ticker": "SGLD",
+          "mic": "ETFP",
+          "exchange": "Borsa Italiana",
+          "currency": "EUR",
+          "symbol": "SGLD.MI",
+          "excerpt": "IE00B579F325 | {\"effectiveDate\": null, \"listingBloombergTicker\": \"SGLD IM\", \"listingCurrency\": \"EUR\", \"listingExchangeName\": \"Euronext Milan\", \"listingExchangeTicker\": \"SGLD\", \"listingRic\": \"SGLD.MI\", \"listingValor\": \"10326235\", \"listingWKN\": \"A1AA5X\", \"settlementCycle\": \"T+2\", \"source\": \"Refinitiv\"}",
+          "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B579F325?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData",
+          "checkedAt": "2026-10-19",
+          "sha256": "1672baebb950eb3ba8d5c0fbc6330e5f9dac81d4acf3cb3b77c773a4731d96a1",
+          "evidenceId": "IE00B579F325-ETFP-SGLD-EUR"
+        }
+      ],
+      "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00B579F325?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData",
+      "sha256": "1672baebb950eb3ba8d5c0fbc6330e5f9dac81d4acf3cb3b77c773a4731d96a1",
+      "checkedAt": "2026-10-19"
+    },
+    "pea": {
+      "value": false,
+      "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-inve-phys-gold-etc-SGLD-IE00B579F325-46",
+      "sha256": "f444a6c8e3dc0829c78ae052d2412c1f6a7757a1ba9c8e30502f235835b3dcf5",
+      "checkedAt": "2026-10-19"
     }
   },
   "IE00BD6FTQ80": {
@@ -11085,6 +11448,49 @@
       "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=IE00BD6FTQ80",
       "sha256": "4a7e87343ce49261f1e190f9c8677a0e4deb394ea174d22a45d6b02442ef339d"
+    },
+    "listings": {
+      "value": [
+        {
+          "ticker": "CMOD",
+          "mic": "XLON",
+          "exchange": "London Stock Exchange",
+          "currency": "USD",
+          "symbol": "CMOD.L",
+          "excerpt": "IE00BD6FTQ80 | {\"effectiveDate\": \"2026-10-19T15:29:59\", \"inav\": 35.824935, \"listingBloombergTicker\": \"CMOD LN\", \"listingBloombergTickerInav\": \"CMODIN\", \"listingCurrency\": \"USD\", \"listingExchangeName\": \"London Stock Exchange\", \"listingExchangeTicker\": \"CMOD\", \"listingReutersInav\": \"CMODUSiv.P\", \"listingRic\": \"CMOD.L\", \"listingSedol\": \"BYX9528\", \"listingValor\": \"34400611\", \"listingWKN\": \"A2AUD2\", \"settlementCycle\": \"T+2\", \"source\": \"Refinitiv\"}",
+          "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00BD6FTQ80?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData",
+          "checkedAt": "2026-10-19",
+          "sha256": "4fe223d4996c4e8d2d263fe8273c3210c71ab4dfb80fcbd09da9ac322169b4ea",
+          "evidenceId": "IE00BD6FTQ80-XLON-CMOD-USD"
+        },
+        {
+          "ticker": "CMOP",
+          "mic": "XLON",
+          "exchange": "London Stock Exchange",
+          "currency": "GBX",
+          "symbol": "CMOP.L",
+          "excerpt": "IE00BD6FTQ80 | {\"effectiveDate\": \"2026-10-19T15:29:59\", \"inav\": 26.897415, \"listingBloombergTicker\": \"CMOP LN\", \"listingBloombergTickerInav\": \"CMOPIN\", \"listingCurrency\": \"GBX\", \"listingExchangeName\": \"London Stock Exchange\", \"listingExchangeTicker\": \"CMOP\", \"listingReutersInav\": \"CMODGBiv.P\", \"listingRic\": \"CMOP.L\", \"listingSedol\": \"BD1X3S7\", \"listingValor\": \"34400611\", \"listingWKN\": \"A2AUD2\", \"settlementCycle\": \"T+2\", \"source\": \"Refinitiv\"}",
+          "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00BD6FTQ80?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData",
+          "checkedAt": "2026-10-19",
+          "sha256": "4fe223d4996c4e8d2d263fe8273c3210c71ab4dfb80fcbd09da9ac322169b4ea",
+          "evidenceId": "IE00BD6FTQ80-XLON-CMOP-GBX"
+        },
+        {
+          "ticker": "CMOD",
+          "mic": "ETFP",
+          "exchange": "Borsa Italiana",
+          "currency": "EUR",
+          "symbol": "CMOD.MI",
+          "excerpt": "IE00BD6FTQ80 | {\"effectiveDate\": \"2026-10-19T15:29:59\", \"inav\": 31.925549, \"listingBloombergTicker\": \"CMOD IM\", \"listingBloombergTickerInav\": \"CMODINE\", \"listingCurrency\": \"EUR\", \"listingExchangeName\": \"Euronext Milan\", \"listingExchangeTicker\": \"CMOD\", \"listingReutersInav\": \"CMODEUiv.P\", \"listingRic\": \"CMOD.MI\", \"listingValor\": \"34400611\", \"listingWKN\": \"A2AUD2\", \"settlementCycle\": \"T+2\", \"source\": \"Refinitiv\"}",
+          "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00BD6FTQ80?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData",
+          "checkedAt": "2026-10-19",
+          "sha256": "4fe223d4996c4e8d2d263fe8273c3210c71ab4dfb80fcbd09da9ac322169b4ea",
+          "evidenceId": "IE00BD6FTQ80-ETFP-CMOD-EUR"
+        }
+      ],
+      "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE00BD6FTQ80?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData",
+      "sha256": "4fe223d4996c4e8d2d263fe8273c3210c71ab4dfb80fcbd09da9ac322169b4ea",
+      "checkedAt": "2026-10-19"
     }
   },
   "IE00B3VVMM84": {
@@ -11313,6 +11719,12 @@
       "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00B02KXK85",
       "sha256": "6b69b4912c5cc45292572e5646bc84da5cb4c7ad81af352b99c665032c2a5368"
+    },
+    "pea": {
+      "value": false,
+      "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-ishares-china-large-cap-ucits-etf-usd-dis-FXC-IE00B02KXK85-46",
+      "sha256": "4f9d68f300d40449e945eb1b427f7644fdf6bc480d5658d2a2551af3bb88bd63",
+      "checkedAt": "2026-10-19"
     }
   },
   "IE00B0M63623": {
@@ -11505,6 +11917,12 @@
       "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00B4NCWG09",
       "sha256": "92d90ec7891d53aadaf68a57653607b4621c6fa204026cecc4a5a1802fc79690"
+    },
+    "pea": {
+      "value": false,
+      "checkedAt": "2026-10-19",
+      "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-ishetcxslrimxpar-SSLN-XPAR-IE00B4NCWG09-23",
+      "sha256": "9f51295d646bdf5690f979e79cd812829e7471ecc5c00543ec646f918852dffe"
     }
   },
   "IE00B4ND3602": {
@@ -11621,6 +12039,12 @@
       "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00B4ND3602",
       "sha256": "0eef60c14171d1e4bb887012735653159fe99e76393a459923efc46128ff1c44"
+    },
+    "pea": {
+      "value": false,
+      "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-ishetcxgdeimxpar-SLGN-IE00B4ND3602-23",
+      "sha256": "1acdaf9cf4fb61431474dc158b38fff1bdf1ba5b1414462046cb4b90a08ae11b",
+      "checkedAt": "2026-10-19"
     }
   },
   "IE00B52SFT06": {
@@ -11995,6 +12419,12 @@
       "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00BDFL4P12",
       "sha256": "aba16c4b1c2b02c62a8ab5a9d9f78ac624e468338dbd8ea5f0f7b97fa0aa3bd1"
+    },
+    "pea": {
+      "value": false,
+      "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-ishares-diversified-commodity-swap-ucits-etf-usd-acc-ICOM-IE00BDFL4P12-23",
+      "sha256": "5707adcdb03982cdbef49915b64b5d6aadb944ff0be5e19dfebfad0d69861066",
+      "checkedAt": "2026-10-19"
     }
   },
   "IE00BJ5JPG56": {
@@ -12075,6 +12505,12 @@
       "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00BJ5JPG56",
       "sha256": "0011bc4913439006017098ef2774a7f72488cc35870ba65f3718ae00ce9fb112"
+    },
+    "pea": {
+      "value": false,
+      "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-ishares-msci-china-ucits-etf-usd-acc-ICHN-IE00BJ5JPG56-918",
+      "sha256": "b699e8465e08bc36c99919b2e8af190e42fbebf6ba9d8313dab014b82199140b",
+      "checkedAt": "2026-10-19"
     }
   },
   "IE00BKPSFC54": {
@@ -12242,6 +12678,12 @@
       "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00BQT3WG13",
       "sha256": "0dd592c818cd9b1caa1cc46651515a1b6471245c15035573b063b007ee767d58"
+    },
+    "pea": {
+      "value": false,
+      "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-ishares-msci-china-a-ucits-etf-usd-acc-CNYA-IE00BQT3WG13-46",
+      "sha256": "b08de5832a8832e8a356b86763debdc501e6acd12d4115b80f1668ba745fdfad",
+      "checkedAt": "2026-10-19"
     }
   },
   "IE000XZSV718": {
@@ -12490,6 +12932,12 @@
       "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00B1FZS913",
       "sha256": "78479020369db6f7d83f53217ac530c40a0ef2690454a435a72059027d679b45"
+    },
+    "pea": {
+      "value": false,
+      "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-ishares-eur-govt-bond-15-30yr-ucits-etf-dis-IBGL-IE00B1FZS913-46",
+      "sha256": "f4b44c0f751bcff8dc397f100ed943cf03cba11045b05b9290496995a2d6abdc",
+      "checkedAt": "2026-10-19"
     }
   },
   "DE000A0H08Q4": {
@@ -13144,6 +13592,12 @@
       "checkedAt": "2026-10-19",
       "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/MSL/EU/EN-GB/JE00B1VS3770/",
       "sha256": "d724a76135963d0c7e57cddc487d718a026ebd834c0b9639f39ab83038fbc430"
+    },
+    "pea": {
+      "value": false,
+      "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-wt-physical-gold-PHAU-JE00B1VS3770-46",
+      "sha256": "e0b9dff53e24814c130131eef2f3cfe6ba0e1a70b35c02e10d932fb7d75227b7",
+      "checkedAt": "2026-10-19"
     }
   },
   "GB00BJYDH287": {
@@ -13312,6 +13766,12 @@
       "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00BYPLS672",
       "sha256": "0ee402c1772fa5f3f46f107fbc83f4af73c0dc7da3766c065680337b0518f3f5"
+    },
+    "pea": {
+      "value": false,
+      "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-l-g-cyber-security-ucits-etf-usd-acc-ISPY-IE00BYPLS672-46",
+      "sha256": "70415841e1731cf93b4eadf7fbedabb447a6f557f3a1ca56dae74eec1966c077",
+      "checkedAt": "2026-10-19"
     }
   },
   "IE00B4K6B022": {
@@ -13344,6 +13804,24 @@
       "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00B4K6B022",
       "sha256": "064336ff175ca148d2bfd1b03a9fba24942c8419202294d98e7ae9a1e98c2f59"
+    },
+    "listings": {
+      "value": [
+        {
+          "ticker": "50E",
+          "mic": "XPAR",
+          "exchange": "Euronext Paris",
+          "currency": "EUR",
+          "excerpt": "IE00B4K6B022 | {\"default_period\": {\"range\": \"1D\", \"type\": \"intraday\"}, \"isin\": \"IE00B4K6B022\", \"issuer_code\": \"165410\", \"mic\": \"XPAR\", \"name\": \"HSBC EUROSTX50 ETF\", \"product_data\": \"IE00B4K6B022-XPAR\", \"symbol\": \"50E\", \"type\": \"TRACK\", \"url_type\": \"etfs\"} | Currency EUR",
+          "sourceUrl": "https://live.euronext.com/en/product/etfs/IE00B4K6B022-XPAR",
+          "checkedAt": "2026-10-19",
+          "sha256": "2d9cc4e940adc32ebcad31b72cf87290b239781f002d931d1413741aa3f4a989",
+          "evidenceId": "IE00B4K6B022-XPAR-50E-EUR"
+        }
+      ],
+      "sourceUrl": "https://live.euronext.com/en/product/etfs/IE00B4K6B022-XPAR",
+      "sha256": "2d9cc4e940adc32ebcad31b72cf87290b239781f002d931d1413741aa3f4a989",
+      "checkedAt": "2026-10-19"
     }
   },
   "IE000DQLYVB9": {
@@ -13427,10 +13905,34 @@
           "checkedAt": "2026-10-19",
           "sha256": "413ec84b1831c42490414004b591a31c858249f2c28ff342bfb145742bb44912",
           "evidenceId": "IE00BF0M2Z96-ETFP-BATT-EUR"
+        },
+        {
+          "ticker": "BATT",
+          "mic": "XLON",
+          "exchange": "London Stock Exchange",
+          "currency": "USD",
+          "symbol": "BATT.L",
+          "excerpt": "IE00BF0M2Z96 | London Stock Exchange | USD Accumulating ETF London Stock USD IE00BF0M2Z96 BATT LN BATT.L ETF Shares Exchange",
+          "sourceUrl": "https://www.borsaitaliana.it/CAETF/2025-92213-SUPPLEMENTS-6c5bd598-b83f-40ba-925d-a07046bf4e10.pdf",
+          "checkedAt": "2026-10-19",
+          "sha256": "413ec84b1831c42490414004b591a31c858249f2c28ff342bfb145742bb44912",
+          "evidenceId": "IE00BF0M2Z96-XLON-BATT-USD"
+        },
+        {
+          "ticker": "BATG",
+          "mic": "XLON",
+          "exchange": "London Stock Exchange",
+          "currency": "GBX",
+          "symbol": "BATG.L",
+          "excerpt": "IE00BF0M2Z96 | London Stock Exchange | London Stock GBX IE00BF0M2Z96 BATG LN BATG.L Exchange",
+          "sourceUrl": "https://www.borsaitaliana.it/CAETF/2025-92213-SUPPLEMENTS-6c5bd598-b83f-40ba-925d-a07046bf4e10.pdf",
+          "checkedAt": "2026-10-19",
+          "sha256": "413ec84b1831c42490414004b591a31c858249f2c28ff342bfb145742bb44912",
+          "evidenceId": "IE00BF0M2Z96-XLON-BATG-GBX"
         }
       ],
-      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.borsaitaliana.it/CAETF/2025-92213-SUPPLEMENTS-6c5bd598-b83f-40ba-925d-a07046bf4e10.pdf",
+      "checkedAt": "2026-10-19",
       "sha256": "413ec84b1831c42490414004b591a31c858249f2c28ff342bfb145742bb44912"
     },
     "currencyHedge": {
@@ -13438,6 +13940,12 @@
       "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00BF0M2Z96",
       "sha256": "58171a6bc70818a6873a4f3077448d604d1e32b8c045fc1edb544cf7953dbb39"
+    },
+    "pea": {
+      "value": false,
+      "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-l-g-battery-value-chain-ucits-etf-usd-acc-BATT-IE00BF0M2Z96-46",
+      "sha256": "7bc2c807e66f4d99e01f3b8c7d7c28e3bb91209c836854b3581840f422dfcf3e",
+      "checkedAt": "2026-10-19"
     }
   },
   "IE00BK5BCD43": {
@@ -13471,10 +13979,34 @@
           "checkedAt": "2026-10-19",
           "sha256": "048be63b906ca042a324fa7c6ed6d6da8b481450c4d3a303997b652c627e0f51",
           "evidenceId": "IE00BK5BCD43-ETFP-AIAI-EUR"
+        },
+        {
+          "ticker": "AIAI",
+          "mic": "XLON",
+          "exchange": "London Stock Exchange",
+          "currency": "USD",
+          "symbol": "LGAIAI.L",
+          "excerpt": "IE00BK5BCD43 | London Stock Exchange | USD Accumulating ETF ETF Shares London Stock USD IE00BK5BCD43 AIAI LN LGAIAI.L Exchange",
+          "sourceUrl": "https://www.borsaitaliana.it/CAETF/2025-92212-SUPPLEMENTS-ec3a89e8-685a-41c4-9208-0d21cd7b5f21.pdf",
+          "checkedAt": "2026-10-19",
+          "sha256": "048be63b906ca042a324fa7c6ed6d6da8b481450c4d3a303997b652c627e0f51",
+          "evidenceId": "IE00BK5BCD43-XLON-AIAI-USD"
+        },
+        {
+          "ticker": "AIAG",
+          "mic": "XLON",
+          "exchange": "London Stock Exchange",
+          "currency": "GBX",
+          "symbol": "AIAG.L",
+          "excerpt": "IE00BK5BCD43 | London Stock Exchange | London Stock GBX IE00BK5BCD43 AIAG LN AIAG.L Exchange",
+          "sourceUrl": "https://www.borsaitaliana.it/CAETF/2025-92212-SUPPLEMENTS-ec3a89e8-685a-41c4-9208-0d21cd7b5f21.pdf",
+          "checkedAt": "2026-10-19",
+          "sha256": "048be63b906ca042a324fa7c6ed6d6da8b481450c4d3a303997b652c627e0f51",
+          "evidenceId": "IE00BK5BCD43-XLON-AIAG-GBX"
         }
       ],
-      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.borsaitaliana.it/CAETF/2025-92212-SUPPLEMENTS-ec3a89e8-685a-41c4-9208-0d21cd7b5f21.pdf",
+      "checkedAt": "2026-10-19",
       "sha256": "048be63b906ca042a324fa7c6ed6d6da8b481450c4d3a303997b652c627e0f51"
     },
     "currencyHedge": {
@@ -14127,45 +14659,20 @@
     "listings": {
       "value": [
         {
-          "ticker": "UETW",
-          "mic": "XETR",
-          "exchange": "Xetra",
+          "ticker": "WRDA",
+          "mic": "ETFP",
+          "exchange": "Borsa Italiana",
           "currency": "EUR",
-          "symbol": "UETW.DE",
-          "excerpt": "IE00BD4TXV59 | Deutsche Börse (XETRA) EUR 09:00am - 05:30pm CET UETW GY UETW.DE UETWEUIV",
-          "sourceUrl": "https://swissfunddata.ch/sfdpub/docs/fsm-8522_03_03-20260930-en.pdf",
-          "checkedAt": "2026-10-18",
-          "sha256": "8bdbf7953d336b2f37608e4b97f7d2d7c12cae1c1009625721779ce975cda13e",
-          "evidenceId": "IE00BD4TXV59-XETR-UETW-EUR"
-        },
-        {
-          "ticker": "WRDUSW",
-          "mic": "XSWX",
-          "exchange": "SIX Swiss Exchange",
-          "currency": "USD",
-          "symbol": "WRDUSW.SW",
-          "excerpt": "IE00BD4TXV59 | SIX Swiss Exchange USD 09:00am - 05:30pm CET WRDUSW SW WRDUSW.S WRDUUSIV",
-          "sourceUrl": "https://swissfunddata.ch/sfdpub/docs/fsm-8522_03_03-20260930-en.pdf",
-          "checkedAt": "2026-10-18",
-          "sha256": "8bdbf7953d336b2f37608e4b97f7d2d7c12cae1c1009625721779ce975cda13e",
-          "evidenceId": "IE00BD4TXV59-XSWX-WRDUSW-USD"
-        },
-        {
-          "ticker": "WRDB",
-          "mic": "XLON",
-          "exchange": "London Stock Exchange",
-          "currency": "USD",
-          "symbol": "WRDB.L",
-          "excerpt": "IE00BD4TXV59 | London Stock Exchange USD 09:00am - 05:30pm CET WRDB LN WRDB.L WRDUUSIV",
-          "sourceUrl": "https://swissfunddata.ch/sfdpub/docs/fsm-8522_03_03-20260930-en.pdf",
-          "checkedAt": "2026-10-18",
-          "sha256": "8bdbf7953d336b2f37608e4b97f7d2d7c12cae1c1009625721779ce975cda13e",
-          "evidenceId": "IE00BD4TXV59-XLON-WRDB-USD"
+          "excerpt": "IE00BD4TXV59 | {\"default_period\": {\"range\": \"1D\", \"type\": \"intraday\"}, \"isin\": \"IE00BD4TXV59\", \"issuer_code\": \"199245\", \"mic\": \"ETFP\", \"name\": \"UBSETFMSTRUSETFP\", \"product_data\": \"IE00BD4TXV59-ETFP\", \"symbol\": \"WRDA\", \"type\": \"TRACK\", \"url_type\": \"etfs\"} | Currency EUR",
+          "sourceUrl": "https://live.euronext.com/en/product/etfs/IE00BD4TXV59-ETFP",
+          "checkedAt": "2026-10-19",
+          "sha256": "94049f4b6be8cfffc293a886f7cd48771a4e6db0814f718d069cae80ee3762bd",
+          "evidenceId": "IE00BD4TXV59-ETFP-WRDA-EUR"
         }
       ],
-      "checkedAt": "2026-10-18",
-      "sourceUrl": "https://swissfunddata.ch/sfdpub/docs/fsm-8522_03_03-20260930-en.pdf",
-      "sha256": "8bdbf7953d336b2f37608e4b97f7d2d7c12cae1c1009625721779ce975cda13e"
+      "sourceUrl": "https://live.euronext.com/en/product/etfs/IE00BD4TXV59-ETFP",
+      "checkedAt": "2026-10-19",
+      "sha256": "94049f4b6be8cfffc293a886f7cd48771a4e6db0814f718d069cae80ee3762bd"
     },
     "distribution": {
       "value": "Accumulating",
@@ -14309,6 +14816,24 @@
       "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=FR0011550185",
       "sha256": "2fae1a861c00870e1c1e00c4775ac38701ba14d8a676f87ff1dce9f3b60d46d2"
+    },
+    "listings": {
+      "value": [
+        {
+          "ticker": "ESE",
+          "mic": "XPAR",
+          "exchange": "Euronext Paris",
+          "currency": "EUR",
+          "excerpt": "FR0011550185 | {\"default_period\": {\"range\": \"1D\", \"type\": \"intraday\"}, \"isin\": \"FR0011550185\", \"issuer_code\": \"600162\", \"mic\": \"XPAR\", \"name\": \"BNPP SP500 EUR C\", \"product_data\": \"FR0011550185-XPAR\", \"symbol\": \"ESE\", \"type\": \"TRACK\", \"url_type\": \"etfs\"} | Currency EUR",
+          "sourceUrl": "https://live.euronext.com/en/product/etfs/FR0011550185-XPAR",
+          "checkedAt": "2026-10-19",
+          "sha256": "02e34b9f83c17e58fcf82ed717ce886ae527d17ad43f68398ee532b501a1f62e",
+          "evidenceId": "FR0011550185-XPAR-ESE-EUR"
+        }
+      ],
+      "sourceUrl": "https://live.euronext.com/en/product/etfs/FR0011550185-XPAR",
+      "sha256": "02e34b9f83c17e58fcf82ed717ce886ae527d17ad43f68398ee532b501a1f62e",
+      "checkedAt": "2026-10-19"
     }
   },
   "IE000QDFFK00": {
@@ -14319,41 +14844,16 @@
           "mic": "XPAR",
           "exchange": "Euronext Paris",
           "currency": "EUR",
-          "symbol": "ANAU.PA",
-          "excerpt": "IE000QDFFK00 | EURONEXT P EUR ANAU FP",
-          "sourceUrl": "https://dokumenty.analizy.pl/pobierz/etf/E_AXAIC001_A_USD/KA/2026-09-30",
-          "checkedAt": "2026-10-18",
-          "sha256": "c6cc58c21971229076a6d705950d8f969fa3501c45aff6d3e44389e3cc33f20d",
+          "excerpt": "IE000QDFFK00 | {\"default_period\": {\"range\": \"1D\", \"type\": \"intraday\"}, \"isin\": \"IE000QDFFK00\", \"issuer_code\": \"600338\", \"mic\": \"XPAR\", \"name\": \"AXAETFNNDXXPAR\", \"product_data\": \"IE000QDFFK00-XPAR\", \"symbol\": \"ANAU\", \"type\": \"TRACK\", \"url_type\": \"etfs\"} | Currency EUR",
+          "sourceUrl": "https://live.euronext.com/en/product/etfs/IE000QDFFK00-XPAR",
+          "checkedAt": "2026-10-19",
+          "sha256": "5e40460b179fbae89d393a71bdeaf7ed052fe22b15511b4f295a0a16da2c4557",
           "evidenceId": "IE000QDFFK00-XPAR-ANAU-EUR"
-        },
-        {
-          "ticker": "ANAU",
-          "mic": "XETR",
-          "exchange": "Xetra",
-          "currency": "USD",
-          "symbol": "ANAU.DE",
-          "excerpt": "IE000QDFFK00 | XETRA USD ANAU GY",
-          "sourceUrl": "https://dokumenty.analizy.pl/pobierz/etf/E_AXAIC001_A_USD/KA/2026-09-30",
-          "checkedAt": "2026-10-18",
-          "sha256": "c6cc58c21971229076a6d705950d8f969fa3501c45aff6d3e44389e3cc33f20d",
-          "evidenceId": "IE000QDFFK00-XETR-ANAU-USD"
-        },
-        {
-          "ticker": "ANAU",
-          "mic": "ETFP",
-          "exchange": "Borsa Italiana",
-          "currency": "EUR",
-          "symbol": "ANAU.MI",
-          "excerpt": "IE000QDFFK00 | All definitions of risks indicators are available in the section 'Glossary' below Borsa Italiana S.P.A. EUR ANAU IM",
-          "sourceUrl": "https://dokumenty.analizy.pl/pobierz/etf/E_AXAIC001_A_USD/KA/2026-09-30",
-          "checkedAt": "2026-10-18",
-          "sha256": "c6cc58c21971229076a6d705950d8f969fa3501c45aff6d3e44389e3cc33f20d",
-          "evidenceId": "IE000QDFFK00-ETFP-ANAU-EUR"
         }
       ],
-      "checkedAt": "2026-10-18",
-      "sourceUrl": "https://dokumenty.analizy.pl/pobierz/etf/E_AXAIC001_A_USD/KA/2026-09-30",
-      "sha256": "c6cc58c21971229076a6d705950d8f969fa3501c45aff6d3e44389e3cc33f20d"
+      "sourceUrl": "https://live.euronext.com/en/product/etfs/IE000QDFFK00-XPAR",
+      "checkedAt": "2026-10-19",
+      "sha256": "5e40460b179fbae89d393a71bdeaf7ed052fe22b15511b4f295a0a16da2c4557"
     },
     "distribution": {
       "value": "Capitalisation",
@@ -14378,6 +14878,12 @@
       "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE000QDFFK00",
       "sha256": "5d42178ac0b669a983e7692139d78cc68b2778211d45c24dac7e817130572285"
+    },
+    "pea": {
+      "value": false,
+      "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-bnp-paribas-easy-ii-nasdaq-100-ucits-etf-usd-acc-ANAU-IE000QDFFK00-23",
+      "sha256": "7468e7dab7b92157e37cb503fb423bd9763ab8bdcbdfd2e45283ea51621ddad3",
+      "checkedAt": "2026-10-19"
     }
   },
   "FR001400ZGO4": {
@@ -15501,6 +16007,12 @@
       "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00BJ5JP097",
       "sha256": "f724b3e23e429063f7a4dac63d7f1abf6d66ce33f298927b2a458d4c21c66f7a"
+    },
+    "pea": {
+      "value": false,
+      "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-ishares-msci-world-financials-sector-advanced-ucits-etf-usd-dis-WFNS-IE00BJ5JP097-918",
+      "sha256": "39a2c5e7a41cb38cea4cc4ffc06d42eb0879ae7816c84450d46c20d69ad56eed",
+      "checkedAt": "2026-10-19"
     }
   },
   "IE00BP3QZ825": {
@@ -15836,6 +16348,12 @@
       "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00BYZK4552",
       "sha256": "0e4e51d399e29386220a683afe5d210f95d41aedf796c953b96be7d15c725826"
+    },
+    "pea": {
+      "value": false,
+      "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-ishares-automation-robotics-ucits-etf-usd-acc-RBOE-IE00BYZK4552-46",
+      "sha256": "7be5574569477ffc9dd4adee9c3035fffeda5fb87134b057479c94489913dbeb",
+      "checkedAt": "2026-10-19"
     }
   },
   "IE00BYZK4776": {
@@ -15881,6 +16399,12 @@
       "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00BYZK4776",
       "sha256": "473c236251ddf4f238082d73ba43c985e8cf8ff6edcb0f861fa7e5c99bdefdf0"
+    },
+    "pea": {
+      "value": false,
+      "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-ishares-healthcare-innovation-ucits-etf-usd-acc-HEAL-IE00BYZK4776-46",
+      "sha256": "26914551fdf83577be7eff266c63f7a83bf6496631e83ec94c4b7fd84e1f29ac",
+      "checkedAt": "2026-10-19"
     }
   },
   "IE00B1XNHC34": {
@@ -16030,6 +16554,12 @@
       "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00BJ5JP329",
       "sha256": "34d31d52e4c098a340c447c576951f626a90a87441c4c036265b83f35e5cc255"
+    },
+    "pea": {
+      "value": false,
+      "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-ishares-msci-world-consumer-staples-sector-advanced-ucits-etf-usd-dis-WCSS-IE00BJ5JP329-918",
+      "sha256": "a0aacd950660b0e4dd75f682d6e8d32859a8a0759efa5c7ec9727712aeefc79a",
+      "checkedAt": "2026-10-19"
     }
   },
   "IE00BJ5JNZ06": {
@@ -16110,6 +16640,12 @@
       "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00BJ5JNZ06",
       "sha256": "38983eab5a28e8b52aade261e339755db90edc0fa8416be134ebfa9a38285098"
+    },
+    "pea": {
+      "value": false,
+      "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-ishares-msci-world-health-care-sector-advanced-ucits-etf-usd-dis-WHCS-IE00BJ5JNZ06-918",
+      "sha256": "2f5b5ce43e89d1605e916661e3813f177f3051736c95ebbf3d199608e4feda81",
+      "checkedAt": "2026-10-19"
     }
   },
   "IE00B3F81G20": {
@@ -16662,6 +17198,12 @@
       "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=JE00BN7KB664",
       "sha256": "495cd1a62c590a2e9111499858fe63d0896978c04f99e13fe24aa663c54103d9"
+    },
+    "pea": {
+      "value": false,
+      "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-wisdomtree-wheat-eur-acc-WEATP-JE00BN7KB664-23",
+      "sha256": "6baae4049b4c7ca9f73d2b897e968836d6fc917843978adfd40d9054e2edbc22",
+      "checkedAt": "2026-10-19"
     }
   },
   "IE000L2SA8K5": {
@@ -16688,6 +17230,73 @@
       "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE000L2SA8K5",
       "sha256": "8e5ab47657e076d8c84dac3532bcfaa98284df69abf9c39ed339e4c462b983d8"
+    },
+    "listings": {
+      "value": [
+        {
+          "ticker": "IEWQ",
+          "mic": "XLON",
+          "exchange": "London Stock Exchange",
+          "currency": "USD",
+          "symbol": "IEWQ.L",
+          "excerpt": "IE000L2SA8K5 | {\"effectiveDate\": \"2026-10-19T15:29:48\", \"inav\": 8.043503, \"listingBloombergTicker\": \"IEWQ LN\", \"listingBloombergTickerInav\": \"IEWQIN\", \"listingCurrency\": \"USD\", \"listingExchangeName\": \"London Stock Exchange\", \"listingExchangeTicker\": \"IEWQ\", \"listingReutersInav\": \"IEWQUSiv.P\", \"listingRic\": \"IEWQ.L\", \"listingSedol\": \"BN6L4W7\", \"listingValor\": \"126756532\", \"listingWKN\": \"A3EE27\", \"settlementCycle\": \"T+2\", \"source\": \"Refinitiv\"}",
+          "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE000L2SA8K5?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData",
+          "checkedAt": "2026-10-19",
+          "sha256": "c1fc16d345f3b71a9c75ac5658baf4b2ab6e46979e4c498eed766f18bbb2b310",
+          "evidenceId": "IE000L2SA8K5-XLON-IEWQ-USD"
+        },
+        {
+          "ticker": "EWQX",
+          "mic": "XLON",
+          "exchange": "London Stock Exchange",
+          "currency": "GBX",
+          "symbol": "EWQX.L",
+          "excerpt": "IE000L2SA8K5 | {\"effectiveDate\": \"2026-10-19T15:29:48\", \"inav\": 6.039096, \"listingBloombergTicker\": \"EWQX LN\", \"listingBloombergTickerInav\": \"IEWQINS\", \"listingCurrency\": \"GBX\", \"listingExchangeName\": \"London Stock Exchange\", \"listingExchangeTicker\": \"EWQX\", \"listingReutersInav\": \"IEWQGBiv.P\", \"listingRic\": \"EWQX.L\", \"listingSedol\": \"BN6L4X8\", \"listingValor\": \"126756532\", \"listingWKN\": \"A3EE27\", \"settlementCycle\": \"T+2\", \"source\": \"Refinitiv\"}",
+          "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE000L2SA8K5?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData",
+          "checkedAt": "2026-10-19",
+          "sha256": "c1fc16d345f3b71a9c75ac5658baf4b2ab6e46979e4c498eed766f18bbb2b310",
+          "evidenceId": "IE000L2SA8K5-XLON-EWQX-GBX"
+        },
+        {
+          "ticker": "IEWQ",
+          "mic": "ETFP",
+          "exchange": "Borsa Italiana",
+          "currency": "EUR",
+          "symbol": "IEWQ.MI",
+          "excerpt": "IE000L2SA8K5 | {\"effectiveDate\": \"2026-10-19T15:29:48\", \"inav\": 7.168035, \"listingBloombergTicker\": \"IEWQ IM\", \"listingBloombergTickerInav\": \"IEWQINE\", \"listingCurrency\": \"EUR\", \"listingExchangeName\": \"Euronext Milan\", \"listingExchangeTicker\": \"IEWQ\", \"listingReutersInav\": \"IEWQEUiv.P\", \"listingRic\": \"IEWQ.MI\", \"listingValor\": \"126756532\", \"listingWKN\": \"A3EE27\", \"settlementCycle\": \"T+2\", \"source\": \"Refinitiv\"}",
+          "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE000L2SA8K5?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData",
+          "checkedAt": "2026-10-19",
+          "sha256": "c1fc16d345f3b71a9c75ac5658baf4b2ab6e46979e4c498eed766f18bbb2b310",
+          "evidenceId": "IE000L2SA8K5-ETFP-IEWQ-EUR"
+        },
+        {
+          "ticker": "EWQA",
+          "mic": "XETR",
+          "exchange": "Xetra",
+          "currency": "EUR",
+          "symbol": "EWQA.DE",
+          "excerpt": "IE000L2SA8K5 | {\"effectiveDate\": \"2026-10-19T15:29:48\", \"inav\": 7.168035, \"listingBloombergTicker\": \"EWQA GY\", \"listingBloombergTickerInav\": \"IEWQINE\", \"listingCurrency\": \"EUR\", \"listingExchangeName\": \"Deutsche Börse (Xetra)\", \"listingExchangeTicker\": \"EWQA\", \"listingReutersInav\": \"IEWQEUiv.P\", \"listingRic\": \"EWQA.DE\", \"listingValor\": \"126756532\", \"listingWKN\": \"A3EE27\", \"settlementCycle\": \"T+2\", \"source\": \"Refinitiv\"}",
+          "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE000L2SA8K5?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData",
+          "checkedAt": "2026-10-19",
+          "sha256": "c1fc16d345f3b71a9c75ac5658baf4b2ab6e46979e4c498eed766f18bbb2b310",
+          "evidenceId": "IE000L2SA8K5-XETR-EWQA-EUR"
+        },
+        {
+          "ticker": "IEWQ",
+          "mic": "XSWX",
+          "exchange": "SIX Swiss Exchange",
+          "currency": "CHF",
+          "symbol": "IEWQ.S",
+          "excerpt": "IE000L2SA8K5 | {\"effectiveDate\": \"2026-10-19T15:29:48\", \"inav\": 6.642034, \"listingBloombergTicker\": \"IEWQ SW\", \"listingBloombergTickerInav\": \"IEWQINC\", \"listingCurrency\": \"CHF\", \"listingExchangeName\": \"SIX Swiss Exchange\", \"listingExchangeTicker\": \"IEWQ\", \"listingReutersInav\": \"IEWQCHiv.P\", \"listingRic\": \"IEWQ.S\", \"listingValor\": \"126756532\", \"listingWKN\": \"A3EE27\", \"settlementCycle\": \"T+2\", \"source\": \"Refinitiv\"}",
+          "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE000L2SA8K5?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData",
+          "checkedAt": "2026-10-19",
+          "sha256": "c1fc16d345f3b71a9c75ac5658baf4b2ab6e46979e4c498eed766f18bbb2b310",
+          "evidenceId": "IE000L2SA8K5-XSWX-IEWQ-CHF"
+        }
+      ],
+      "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE000L2SA8K5?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData",
+      "sha256": "c1fc16d345f3b71a9c75ac5658baf4b2ab6e46979e4c498eed766f18bbb2b310",
+      "checkedAt": "2026-10-19"
     }
   },
   "IE00BSPLC413": {
@@ -17017,6 +17626,12 @@
       "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00B6R52143",
       "sha256": "99d8c7bdfc4f0499bd3890c5dd13e6d654b54dd07efdb0a9cf48e1bbcfbf694a"
+    },
+    "pea": {
+      "value": false,
+      "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-ishares-agribusiness-ucits-etf-usd-acc-ISAE-IE00B6R52143-46",
+      "sha256": "77dce629e0f0d8ad4f58b81ffb19e3c8b20f842abba7aba527c91d548262ded4",
+      "checkedAt": "2026-10-19"
     }
   },
   "IE00B27YCF74": {
@@ -17242,6 +17857,12 @@
       "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00BJ5JP659",
       "sha256": "3a9edb25bccc69f5efaf81a9c06b24c828f415f571cc9c9761551267da7d20fe"
+    },
+    "pea": {
+      "value": false,
+      "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-ishares-msci-world-industrials-sector-advanced-ucits-etf-usd-dis-WINS-IE00BJ5JP659-918",
+      "sha256": "1d53d0febc36a03cc3d3ab420844d443b515d5147c6b1ce54a417ce63720cc93",
+      "checkedAt": "2026-10-19"
     }
   },
   "IE00BJ5JP212": {
@@ -17299,6 +17920,12 @@
       "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00BJ5JP212",
       "sha256": "6ecb596ae772b6a05af09fabac65bfef0914b3454091a3f692ab491459b36e0b"
+    },
+    "pea": {
+      "value": false,
+      "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-ishares-msci-world-consumer-discretionary-sector-advanced-ucits-etf-usd-dis-WCDS-IE00BJ5JP212-918",
+      "sha256": "bcc92907a961aea4bb71de8fc2d39f59ad0a0db85904ab57917b47b136882ffe",
+      "checkedAt": "2026-10-19"
     }
   },
   "IE00BJ5JP105": {
@@ -17379,6 +18006,12 @@
       "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00BJ5JP105",
       "sha256": "afc78f92bd6a2eeea64c139c31275eafc11a150254587b2cbae71d9867110d87"
+    },
+    "pea": {
+      "value": false,
+      "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-ishares-msci-world-energy-sector-ucits-etf-usd-dis-WENS-IE00BJ5JP105-918",
+      "sha256": "57e71074833a4bdd74430e008ced6d6dabeeea956e191dfa5176917d1110132c",
+      "checkedAt": "2026-10-19"
     }
   },
   "IE00BJ5JP436": {
@@ -17436,6 +18069,12 @@
       "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00BJ5JP436",
       "sha256": "befcff447b07da4f60bcb2fa1620ba7cd3bac5cf6bc96654a5fa862ca4e925d0"
+    },
+    "pea": {
+      "value": false,
+      "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-ishares-msci-world-communication-services-sector-advanced-ucits-etf-usd-dis-WCMS-IE00BJ5JP436-918",
+      "sha256": "3fa4984c5fc3f4bbccac4f2896ad76f38627e7445d94f72aed40be6247ecfb13",
+      "checkedAt": "2026-10-19"
     }
   },
   "IE00BJ5JP766": {
@@ -17505,6 +18144,12 @@
       "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00BJ5JP766",
       "sha256": "a688a6f30ac8fed1ec90b0c597dcff94d2ea96ded6f4f58a061b8136b579d33e"
+    },
+    "pea": {
+      "value": false,
+      "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-ishares-msci-world-materials-sector-advanced-ucits-etf-usd-dis-WMTS-IE00BJ5JP766-918",
+      "sha256": "8fb5ee69d8f9e773cbb424f3a37f6c101b39d1097666e8455dc513f40ff1278e",
+      "checkedAt": "2026-10-19"
     }
   },
   "IE00BZ0PKT83": {
@@ -17691,6 +18336,12 @@
       "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE0008UEVOE0",
       "sha256": "5eefe24a00e92b20cfd56a4f663419e4dd0b7aae5c538079fb4e357f9056ac82"
+    },
+    "pea": {
+      "value": false,
+      "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-ishares-ibonds-dec-2028-term-eur-corp-ucits-etf-acc-B28A-IE0008UEVOE0-23",
+      "sha256": "fd94e04d9f87e49c189f480b8423df8c5682537e7bf493158899cb172ee0558f",
+      "checkedAt": "2026-10-19"
     }
   },
   "DE000A0H08F7": {
@@ -17829,6 +18480,12 @@
       "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00B4WXJG34",
       "sha256": "47b4df7a94d679798db30d17b891550ddd0d7c22eb907dfd22d6036447cffd13"
+    },
+    "pea": {
+      "value": false,
+      "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-ishares-eur-govt-bond-5-7yr-ucits-etf-dis-IEGY-IE00B4WXJG34-46",
+      "sha256": "1621e6bb84788d60f65f9e8061d1ceab8b4ed0b48c8e5d947f1b0c818334a406",
+      "checkedAt": "2026-10-19"
     }
   },
   "IE00B0M63284": {
@@ -18402,6 +19059,12 @@
       "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00BCRY6557",
       "sha256": "8ffb78874fe79a84ad8157a37dada9e8978dae354a51443f28fcf1b74390e6b7"
+    },
+    "pea": {
+      "value": false,
+      "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-ishares-eur-ultrashort-bond-ucits-etf-dis-ERNE-IE00BCRY6557-46",
+      "sha256": "7c4408f65b4b68f46edef4c8bcf02a067faab7ecef1bfdf2b13a565f89a17a78",
+      "checkedAt": "2026-10-19"
     }
   },
   "IE00BG0SKF03": {
@@ -18699,6 +19362,12 @@
       "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00BMVB5K07",
       "sha256": "d0c331e4d9c9d48798a189f1d2a9b5d991c19eb61a661d74341aed75bc466ebd"
+    },
+    "pea": {
+      "value": false,
+      "checkedAt": "2026-10-19",
+      "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-vanguard-lifestrategy-20-equity-ucits-etf-eur-acc-V20A-IE00BMVB5K07-46",
+      "sha256": "afa3a8b8e2c5ce08a98e8c9d379027945918a38f08993594fa64dbd9181eae6e"
     }
   },
   "IE00BMVB5M21": {
@@ -18744,6 +19413,12 @@
       "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00BMVB5M21",
       "sha256": "3278c730041d8dc08097798d1ed98d86587f2f067b6dac0fce84fda4acc46010"
+    },
+    "pea": {
+      "value": false,
+      "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-vanguard-lifestrategy-40-equity-ucits-etf-eur-acc-V40A-IE00BMVB5M21-46",
+      "sha256": "4001e5ab218d3383d88259c2c40b661588ba81515007c83b7dec94b0a6b8cc97",
+      "checkedAt": "2026-10-19"
     }
   },
   "IE00BMVB5P51": {
@@ -18789,6 +19464,12 @@
       "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00BMVB5P51",
       "sha256": "2973f0415f59bdf1221257b570fe07e29140246654214fbe164a88fdca46b24d"
+    },
+    "pea": {
+      "value": false,
+      "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-vanguard-lifestrategy-60-equity-ucits-etf-eur-acc-V60A-IE00BMVB5P51-46",
+      "sha256": "a50ba03c420d1dd4dd7aea0553cb099249d5c7463c5d96c2907652e45cde18ee",
+      "checkedAt": "2026-10-19"
     }
   },
   "IE00BMVB5R75": {
@@ -18834,6 +19515,12 @@
       "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00BMVB5R75",
       "sha256": "81e980257e8fb39100ffeb13923865a83cdb1556272bd06c688355692c04ee76"
+    },
+    "pea": {
+      "value": false,
+      "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-vanguard-lifestrategy-80-equity-ucits-etf-eur-acc-V80A-IE00BMVB5R75-46",
+      "sha256": "7ddd35112a8a3ce6b6af035be37bf5dff384e7a1033adb914dbfc7176695fbff",
+      "checkedAt": "2026-10-19"
     }
   },
   "IE00B53QG562": {
@@ -19880,6 +20567,12 @@
       "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00BYX2JD69",
       "sha256": "024be4eefb0fb54b6d079cbf3d5e105a371b59e1e994ef1e66a9f018d9f8ea4e"
+    },
+    "pea": {
+      "value": false,
+      "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-ishares-msci-world-sri-ucits-etf-eur-acc-SUSW-IE00BYX2JD69-46",
+      "sha256": "9994bec2cf480b008df34b763c4102136e575006a7ecd3b1075a4945fbae4930",
+      "checkedAt": "2026-10-19"
     }
   },
   "IE00BGL86Z12": {
@@ -19985,6 +20678,12 @@
       "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00BGL86Z12",
       "sha256": "5152b74a9c6793739756d9e0105c4630b52a507ea36f8b99307b678896fb63a7"
+    },
+    "pea": {
+      "value": false,
+      "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-ishares-electric-vehicles-and-driving-technology-ucits-etf-usd-acc-ECAR-IE00BGL86Z12-46",
+      "sha256": "db1cae1b0690bccec1aed34ecc7239060d981009b2c1495fa1850b51a65a22f6",
+      "checkedAt": "2026-10-19"
     }
   },
   "IE000U9ODG19": {
@@ -20090,6 +20789,12 @@
       "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE000U9ODG19",
       "sha256": "453729701e530438a380acd09a0372e910250b76acab5832e38b4ea2a807aceb"
+    },
+    "pea": {
+      "value": false,
+      "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-ishares-global-aerospace-defence-ucits-etf-usd-acc-DFND-IE000U9ODG19-23",
+      "sha256": "3372abdcee5be7dd63a5e49bd1279f84c28a4048556a4caa7aba8ca59e070eb1",
+      "checkedAt": "2026-10-19"
     }
   },
   "IE00BYZK4669": {
@@ -20207,6 +20912,12 @@
       "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00BYZK4669",
       "sha256": "06fa8d3dda728dce0f15b4adeac7d1fe3f67783eb2883ba9ec7b4e7dbbd3c46e"
+    },
+    "pea": {
+      "value": false,
+      "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-ishares-ageing-population-ucits-etf-usd-acc-AGED-IE00BYZK4669-46",
+      "sha256": "6c4e9d9c6cdeaeb4e46df2dcacdf3e967de1d2ec21cc75f10385f5414a3052f7",
+      "checkedAt": "2026-10-19"
     }
   }
 }

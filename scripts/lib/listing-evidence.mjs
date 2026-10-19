@@ -9,8 +9,8 @@ const MARKETS = {
   XLON: ['London Stock Exchange', /London Stock\s+Exchange|LONDON STOCK EXCHANGE|LSE/],
   XETR: ['Xetra', /Xetra|XETRA|DEUTSCHE BÖRSE|Deutsche Börse|Deutsche Boerse/],
   ETFP: ['Borsa Italiana', /Borsa Italiana|BORSA ITALIANA|Euronext Milan/],
-  XSWX: ['SIX Swiss Exchange', /SIX Swiss Ex|SIX SWISS EXCHANGE|Six Swiss Exchange/],
-  XMEX: ['Bolsa Mexicana De Valores', /Bolsa Mexicana De Valores/],
+  XSWX: ['SIX Swiss Exchange', /SIX Swiss Ex|SIX SWISS EXCHANGE|Six Swiss Exchange|SIX - Swiss Exchange/],
+  XMEX: ['Bolsa Mexicana De Valores', /Bolsa Mexicana (?:De|de) Valores/],
   XSGO: ['Santiago Stock Exchange', /Santiago Stock Exchange/],
   CEUX: ['Cboe Europe', /Cboe Europe/],
   XBRN: ['Berne Stock Exchange', /Berne Stock Exchange/],
@@ -53,7 +53,15 @@ export function validateListingEvidence({ published, listings, evidence, today =
           Date.parse(today) - Date.parse(row.checkedAt) > 180 * 86400000) fail(isin, `date de contrôle invalide ou périmée : ${key}`);
       if (proof.asOf && (!validDate(proof.asOf) || proof.asOf > proof.checkedAt)) fail(isin, `date documentaire invalide : ${key}`);
       const market = MARKETS[row.mic];
-      if (!market || market[0] !== row.exchange || !market[1].test(proof.excerpt ?? '')) fail(isin, `place sans preuve : ${key}`);
+      // A published MIC is the venue identity itself. Require its labelled field,
+      // never a bare code in a URL, neighbouring quote or arbitrary text.
+      const excerpt = typeof proof.excerpt === 'string' ? proof.excerpt : '';
+      const labelledCodes = [
+        ...[...excerpt.matchAll(/\bMIC\s*(?:\|\s*)?([A-Z0-9]{4})\b/g)].map(match => match[1]),
+        ...[...excerpt.matchAll(/"mic"\s*:\s*"([A-Z0-9]{4})"/g)].map(match => match[1]),
+      ];
+      const labelledMic = labelledCodes.includes(row.mic);
+      if (!market || market[0] !== row.exchange || !(market[1].test(proof.excerpt ?? '') || labelledMic)) fail(isin, `place sans preuve : ${key}`);
       const hasToken = (text, token) => typeof text === 'string' && typeof token==='string' && token.length>0 && new RegExp(`(?<![A-Za-z0-9])${token.replace(/[.*+?^${}()|[\]\\]/g,'\\$&').replace(/\s+/g,'\\s+')}(?![A-Za-z0-9])`).test(text);
       if (!hasToken(proof.excerpt, row.ticker)) fail(isin, `ticker absent de la preuve : ${key}`);
       if (!/^[A-Z]{3}$/.test(row.currency) || !hasToken(proof.currencyExcerpt ?? proof.excerpt, row.currency) ||
@@ -63,3 +71,4 @@ export function validateListingEvidence({ published, listings, evidence, today =
   for (const id of Object.keys(evidence)) if (!usedEvidence.has(id)) errors.push(`Preuve orpheline : ${id}`);
   return errors;
 }
+

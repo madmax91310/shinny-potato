@@ -8,6 +8,7 @@ on:
     paths:
       - '.github/workflows/update-instrument-metadata.yml'
       - 'scripts/collect_instrument_metadata.py'
+      - 'scripts/download-exchange-document.mjs'
       - 'scripts/instrument-metadata-supplemental-sources.json'
       - 'scripts/metadata-qualification-holds.json'
       - 'scripts/metadata_transport.py'
@@ -20,6 +21,7 @@ on:
     paths:
       - '*full-auto*'
       - 'scripts/*metadata*'
+      - 'scripts/download-exchange-document.mjs'
       - 'scripts/listing-candidates.json'
       - 'scripts/*equity*'
       - 'scripts/build-automation-targets.mjs'
@@ -135,6 +137,7 @@ jobs:
           path: src/data
       - run: python -m unittest discover -s scripts -p 'test_instrument_metadata.py'
       - run: python -m unittest discover -s scripts -p 'test_metadata_completion.py'
+      - run: python -m unittest discover -s scripts -p 'test_metadata_connections.py'
       - run: python -m unittest discover -s scripts -p 'test_metadata_evidence_replay.py'
       - run: python -m unittest discover -s scripts -p 'test_metadata_transport.py'
       - run: python -m unittest discover -s scripts -p 'test_metadata_recovery_diagnostics.py'
@@ -150,6 +153,7 @@ jobs:
       - run: node scripts/playwright-full-auto-routing.mjs
       - run: node scripts/test-asset-field-ui.mjs
       - run: node scripts/playwright-metadata-completion.mjs
+      - run: node scripts/playwright-metadata-connections.mjs
       - uses: actions/upload-artifact@v7.0.1
         if: always()
         with:
@@ -157,6 +161,7 @@ jobs:
           path: |
             test-artifacts/full-auto
             test-artifacts/metadata
+            test-artifacts/metadata-connections
           if-no-files-found: ignore
           retention-days: 14
   refresh:
@@ -233,5 +238,6 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - run: exit 1
+
 
 
