@@ -111,7 +111,7 @@ def parse_text(text,isin):
     text=re.sub(r'[ \t\r]+',' ',text)
     patterns={
       'distribution':r'(?:Use of (?:Income|Profits)|Income Treatment|Distribution Policy|Affectation des r[ée]sultats|Politique de distribution|^Distribution)\s*[:\n]?\s*(Capitalisation (?:and/or|et/ou) distribution|Accumulating|Distributing|Capitalisation|Distribution|Reinvestment)\b',
-      'domicile':r'(?:Fund Domicile|Domicile|Domiciliation(?: du fonds)?|Domicile du fonds)\s*[:\n]?\s*(Ireland|Irlande|Luxembourg|Germany|Allemagne|France|Jersey|(?:The )?Netherlands)\b',
+      'domicile':r'(?:Fund Domicile|Domicile|Domiciliation(?: du fonds)?|Domicile du fonds)\s*[:\n]?\s*(Ireland|Irlande|Luxembourg|Germany|Allemagne|France|Jersey|Switzerland|Suisse|(?:The )?Netherlands)\b',
       'replicationMethod':r'(?:Replication (?:Method|methodology)|M[ée]thode de r[ée]plication|Replication|R[ée]plication)\s*[:\n]?\s*(Physical(?:\s*\((?:Full replication|Optimised sampling)\))?|Synthetic|Physique|Synth[ée]tique|Direct Replication|Indirect\s*\(Swap Based\))\b',
       'pea':r'(?:PEA eligibility|PEA Eligible|Eligible PEA|[ÉE]ligibilit[ée] (?:au )?PEA|[ÉE]ligibilit[ée] au plan d[’\x27]Epargne en Actions \(PEA\)|PEA berechtigt|[ÉE]ligible (?:au )?PEA|R[ée]gime fiscal PEA)\s*[:\n]?\s*(Yes|No|Oui|Non|Keine|Ja|Nein)\b',
       'currencyHedge':r'(?:Currency Hedged|Currency Hedge|Couverture de change|Couvert contre le risque de change)\s*[:\n]?\s*(Yes|No|Oui|Non)\b',
@@ -173,6 +173,28 @@ def parse_json(body,isin):
         raise ValueError('No qualified structured metadata parser for this endpoint')
     mapping={'useOfProfitsCode':'distribution','domicile':'domicile','productStructure':'replicationMethod'}
     return {field:points[key]['value'] for key,field in mapping.items() if isinstance(points.get(key,{}).get('value'),str) and points[key]['value']}
+
+def parse_justetf(body,isin):
+    """Bind the profile's own basics rows and badge to its explicit header ISIN.
+
+    Related ETFs and promotional securities elsewhere on the page are separate
+    instruments. Their names, identifiers and tax badges never enter this scope.
+    """
+    from bs4 import BeautifulSoup
+    soup=BeautifulSoup(body,'html.parser')
+    identity=soup.select('[data-testid="etf-profile-header_isin-value"]')
+    if len(identity)!=1 or identity[0].get_text(strip=True)!=isin:raise ValueError('Wrong or ambiguous justETF profile identity')
+    text=[isin]
+    for key in ('distribution-policy','domicile-country','replication','currency-hedge'):
+        rows=soup.select(f'[data-testid="etf-basics_row_{key}"]')
+        if len(rows)>1:raise ValueError('Duplicate justETF basics row: '+key)
+        if rows:
+            if len(rows[0].find_all('td',recursive=False))!=2:raise ValueError('Incomplete justETF basics row: '+key)
+            text.append(rows[0].get_text('\n',strip=True))
+    badges=soup.select('[data-testid="etf-profile-controls_pea-label-text"]')
+    if len(badges)>1:raise ValueError('Duplicate justETF PEA badge')
+    if badges:text.append(badges[0].get_text(strip=True))
+    return parse_text('\n'.join(text),isin)
 
 def parse_broker_pea(body,isin):
     """Only explicit PEA cells on an exact-share broker reference page qualify."""
@@ -354,7 +376,8 @@ def collect(source,now,fetch=download,on_document=None):
             if on_document:on_document(requested_url,url,body)
             try:
                 from urllib.parse import urlsplit
-                if urlsplit(url).hostname in ('bourse.fortuneo.fr','www.boursedirect.fr'):fields=parse_broker_pea(body,source['isin'])
+                if urlsplit(url).hostname=='www.justetf.com':fields=parse_justetf(body,source['isin'])
+                elif urlsplit(url).hostname in ('bourse.fortuneo.fr','www.boursedirect.fr'):fields=parse_broker_pea(body,source['isin'])
                 else:fields=parse_json(body,source['isin']) if body.lstrip().startswith(b'{') else parse_text(text_of(body),source['isin'])
             except ValueError as error:
                 # A listing table can identify its share even when the surrounding
