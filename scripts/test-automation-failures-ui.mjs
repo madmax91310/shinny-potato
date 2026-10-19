@@ -12,6 +12,13 @@ try {
  let status={schemaVersion:1,workflows:{economic:{name:'Données économiques',status:'success',completedAt:'2026-10-07T10:00:00Z',lastSuccessAt:'2026-10-01T10:00:00Z',runUrl:'https://github.com/madmax91310/shinny-potato/actions/runs/1',dataFailures:{wealth:{name:'Patrimoine des ménages',completedAt:'2026-10-07T10:00:00Z',runUrl:'https://github.com/madmax91310/shinny-potato/actions/runs/1'}}}}}
  await page.route('**/automation-status/automation-status.json',route=>route.fulfill({json:status}))
  await page.goto('http://127.0.0.1:4317/shinny-potato/donnees-a-revoir',{waitUntil:'networkidle'})
+ const shared=page.locator('details').filter({has:page.locator('summary',{hasText:'Actions, historiques et expositions hors Analyse d’entreprise'})})
+ await shared.locator('summary').click()
+ const report=await (await page.request.get('http://127.0.0.1:4317/shinny-potato/data/shared-market-coverage.json')).json()
+ assert.equal(report.errors.length,0)
+ await shared.getByText(`${report.summary.histories} historiques`,{exact:false}).waitFor()
+ assert.match(await shared.textContent(),/Les actions utilisées ailleurs restent incluses/)
+ assert.equal(await shared.getByRole('link').getAttribute('href'),'/shinny-potato/data/shared-market-coverage.json')
  const section=page.getByRole('region',{name:'Échecs des mises à jour automatiques'})
  await section.getByRole('heading',{name:'Patrimoine des ménages'}).waitFor()
  assert.equal(await section.getByRole('link',{name:'Voir la cause et le suivi ↗'}).getAttribute('href'),status.workflows.economic.runUrl)

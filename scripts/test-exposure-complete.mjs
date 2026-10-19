@@ -14,6 +14,8 @@ assert.equal(selectDcaHoldings({...completeSample,asOf:'2026-01-01'},newerTopTen
 const newerComplete={...newerTopTen,complete:true}
 assert.equal(selectDcaHoldings(completeSample,newerComplete,selectionDate),newerComplete)
 assert.equal(selectDcaHoldings(undefined,newerTopTen,selectionDate),newerTopTen)
+assert.equal(selectDcaHoldings(completeSample,{...newerComplete,asOf:'2027-01-01'},selectionDate),completeSample)
+assert.equal(selectDcaHoldings(completeSample,{...newerComplete,asOf:'2026-02-30'},selectionDate),completeSample)
 const universe=equityUniverse()
 for(const [asset,r] of Object.entries(universe)){
  assert.equal(references[asset].kind,'equity')
