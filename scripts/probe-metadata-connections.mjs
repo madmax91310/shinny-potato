@@ -16,13 +16,10 @@ async function request(isin,url){
  catch(e){manifest.push({isin,requestedUrl:url,error:String(e)});writeFileSync(out+'/manifest.json',JSON.stringify(manifest,null,2))}
 }
 try{
- for(const isin of ['IE00B4L5Y983','IE00BP3QZ601','IE00BDBRDM35','IE00B0M62S72']){
-  const source=sources.find(x=>x.isin===isin);const api=source.urls.find(u=>u.includes('blackrock.com/varnish-api/'))
-  if(!api)continue
-  const id=new URL(api).searchParams.get('portfolioId')
-  await request(isin,api.replace('locale=en_GB','locale=fr_FR').replace('targetSite=ishares-uk','targetSite=ishares-fr').replace('/uk-retail01-','/fr-retail01-'))
-  await request(isin,'https://www.blackrock.com/fr/particuliers/products/'+id+'/fund')
+ for(const isin of ['IE0003XJA0J9','IE00BLNMYC90','IE00BP3QZ601','IE00B579F325','IE00BMVB5K07','IE00B4NCWG09']){
+  const url='https://www.previ-direct.com/web/eclient-mes-placements.fr/perf-uc-mes-placements.fr-retraite-33-?p_p_id=portletperfuc_WAR_portletperfuc&p_p_lifecycle=0&p_p_mode=view&p_p_state=normal&p_r_p_564233524_action=detailSupport&p_r_p_564233524_cdIsin='+isin+'&p_r_p_564233524_cdPrd=99&p_r_p_564233524_noPtn=999'
+  await request(isin,url)
  }
- for(const [isin,url] of [['IE0003XJA0J9','https://www.quantalys.com/Fonds/Recherche?isin=IE0003XJA0J9'],['IE0003XJA0J9','https://www.abcbourse.com/cotation/WEBNq'],['IE00BLNMYC90','https://www.boursorama.com/bourse/trackers/cours/composition/1gXDEW/']])await request(isin,url)
+ for(const [isin,url] of [['IE00BMVB5K07','https://bourse.fortuneo.fr/trackers/cours-etf-V20A-IE00BMVB5K07-46'],['IE00B4NCWG09','https://bourse.fortuneo.fr/trackers/cours-etf-SSLN-XPAR-IE00B4NCWG09-23']])await request(isin,url)
 }finally {writeFileSync(out+'/manifest.json',JSON.stringify(manifest,null,2));await browser.close()}
 console.log(JSON.stringify(manifest.map(({isin,requestedUrl,status,error})=>({isin,requestedUrl,status,error}))))
