@@ -134,3 +134,19 @@ La cotation parisienne SPEA (`IE000DQLYVB9`) est également relue sur Euronext.
 Cette voie indépendante renouvelle les cellules ISIN/MIC/ticker/devise lorsque
 la page iShares suisse refuse la lecture ; le refus de l’ancienne source reste
 visible et la dernière preuve valide est conservée si les deux voies échouent.
+
+## Déclarations PEA publiques Quantalys
+
+Pour les statuts sans preuve automatique, le navigateur utilise le formulaire public
+Quantalys avec l’ISIN exact. Le résultat de recherche n’est jamais une preuve fiscale.
+Seule une fiche `/Fonds/<identifiant>` portant cet ISIN dans son titre de part et
+une ligne unique « Eligible PEA » dans son propre panneau « Caractéristiques générales »
+peut qualifier le champ. « Eligible PEA PME », une cellule vide, un tiret et une
+recherche sans fiche ne sont pas des réponses négatives.
+
+Le registre conserve l’URL effective de la fiche, l’empreinte et la date de lecture.
+Les renouvellements suivants relisent cette fiche ; une panne conserve la dernière
+valeur validée. Les refus HTTP sont transmis au mécanisme commun de suspension de
+source. Les contradictions et les revues antérieures gardent leurs règles de
+qualification : un domaine supplémentaire ne permet pas de choisir arbitrairement
+une valeur dans un conflit.

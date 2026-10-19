@@ -32,6 +32,9 @@ for(const [isin,r] of Object.entries(AUTOMATED_ETF)) {
  // Search the broker's own reference index before constructing a profile URL.
  // An absent reference stays unknown; no ticker or market number is guessed.
  if(!METADATA[isin]?.pea||METADATA[isin]?.pea?.sourceUrl?.startsWith('https://bourse.fortuneo.fr/'))urls.push('https://bourse.fortuneo.fr/api/search?term='+isin)
+ // Quantalys exposes an explicit PEA cell on a public fund reference. Search is discovery only.
+ const priorPeaSource=METADATA[isin]?.pea?.sourceUrl??''
+ if(!METADATA[isin]?.pea||/^https:\/\/www\.quantalys\.com\/Fonds\/[1-9]\d*$/.test(priorPeaSource))urls.push(/^https:\/\/www\.quantalys\.com\/Fonds\/[1-9]\d*$/.test(priorPeaSource)?priorPeaSource:'https://www.quantalys.com/Recherche/RechercheRapide?inputSearch='+isin)
  if(urls.some(url=>url?.includes('invesco.com/')))
   urls.push('https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/'+isin+'?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData')
  if(['FR0011550185','FR0011550193','IE00B4K6B022','IE000QDFFK00','IE000DQLYVB9'].includes(isin))urls.push('https://live.euronext.com/en/product/etfs/'+isin+'-XPAR')
