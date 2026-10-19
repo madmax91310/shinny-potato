@@ -1,11 +1,7 @@
-import {execFileSync} from 'node:child_process'
+import {execFileSync,spawn} from 'node:child_process'
 import {mkdirSync,writeFileSync} from 'node:fs'
-import assert from 'node:assert/strict'
-import {exposureGroup} from '../src/data/asset-labels.js'
-const cases=[['EURO STOXX 50 Index','Europe'],['S&P 500 Index','États-Unis'],['MSCI Total Return Net World Index','Monde'],['MSCI India Index','Émergents']]
-for(const [benchmark,expected]of cases)assert.equal(exposureGroup({benchmark}),expected)
+import {chromium} from 'playwright'
 execFileSync('npm',['run','build'],{stdio:'inherit'})
-execFileSync('node',['scripts/test-etf-themes-coverage.mjs'],{stdio:'inherit'})
-execFileSync('node',['scripts/playwright-metadata-connections.mjs'],{stdio:'inherit'})
-mkdirSync('test-artifacts/metadata-connections',{recursive:true})
-writeFileSync('test-artifacts/metadata-connections/classification-validation.json',JSON.stringify({cases,passed:true,methods:['exact benchmark family assertions','theme coverage','real ETF sheets and comparison on mobile and desktop']},null,2))
+const {ALL_CATEGORIES,RANKING_ASSETS}=await import('../src/pages/performance-rankings/data.js')
+const out='test-artifacts/metadata-connections';mkdirSync(out,{recursive:true});let browser;const server=spawn('node',['node_modules/vite/bin/vite.js','preview','--host','127.0.0.1','--port','4388'],{stdio:'ignore'});const base='http://127.0.0.1:4388/shinny-potato'
+try{for(let i=0;i<100;i++){try{if((await fetch(base)).ok)break}catch{}await new Promise(r=>setTimeout(r,100))};browser=await chromium.launch({headless:true});const page=await browser.newPage({viewport:{width:1440,height:1000}});await page.goto(base+'/classements-performances',{waitUntil:'networkidle'});await page.getByRole('heading',{name:'Qui a vraiment gagné ?',exact:true}).waitFor();const actual=await page.getByRole('group',{name:'Catégorie',exact:true}).locator('[data-option]').evaluateAll(nodes=>nodes.map(n=>({id:n.dataset.value,text:n.textContent})));const expected=ALL_CATEGORIES.map(c=>({id:c.id,label:c.label,group:c.group,ids:c.ids}));const missing=expected.filter(e=>!actual.some(a=>a.id===e.id)),extra=actual.filter(a=>!expected.some(e=>e.id===a.id)),duplicates=actual.filter((a,i)=>actual.findIndex(x=>x.id===a.id)!==i);const report={actual,expected,missing,extra,duplicates,assets:Object.values(RANKING_ASSETS).map(a=>({id:a.id,label:a.label,group:a.group,isin:a.isin}))};writeFileSync(out+'/ranking-category-diagnostic.json',JSON.stringify(report,null,2));await page.screenshot({path:out+'/rankings-category-diagnostic.png',fullPage:true});console.log(JSON.stringify({diagnostic:true,actual:actual.length,expected:expected.length,missing,extra,duplicates}))}finally{await browser?.close();server.kill()}
