@@ -57,6 +57,7 @@ jobs:
           retention-days: 14
       - run: python -m unittest discover -s scripts -p 'test*metadata*.py'
       - run: node scripts/test-automated-characteristics.mjs
+      - run: node scripts/test-metadata-notes.mjs
       - run: npm ci
       - run: npx playwright install --with-deps chromium
       - run: sudo apt-get update && sudo apt-get install -y poppler-utils
@@ -142,6 +143,8 @@ jobs:
       - run: npm run build
       - run: node scripts/test-automated-characteristics.mjs
       - run: node scripts/test-comparison-etf-details.mjs
+      - run: node scripts/test-metadata-notes.mjs
+      - run: node scripts/test-property-infrastructure-step-two.mjs
       - run: node scripts/test-full-auto-routing.mjs
       - run: npx playwright install --with-deps chromium
       - run: node scripts/playwright-full-auto-routing.mjs

@@ -10,6 +10,8 @@ import { buildTweetText } from '../src/pages/index-comparator/lib.js'
 import { getIndexArt } from '../src/pages/factsheet-tweets/visualIdentity.js'
 import { DATA_CATALOG } from '../src/data/catalog.js'
 import { ASSETS } from '../src/data/market-history.js'
+import { getInstrumentPeaStatus } from '../src/data/instruments.js'
+import { groupPeaStatus } from '../src/data/pea-group-status.js'
 const proof = JSON.parse(readFileSync(new URL('./source-snapshots/property-infrastructure-2026-10-05.json', import.meta.url)))
 const ids = ['ftse-epra-nareit-developed-dividend-plus', 'ftse-global-core-infrastructure']
 const dates = ['2026-08-31','2026-09-30']
@@ -46,7 +48,9 @@ assert.deepEqual(family.indices.map(i=>i.indexFacts),ids.map(id=>getCurrentIndex
 assert.deepEqual(rows.map(r=>r.key),ids)
 assert(rows.every(r=>r.kind==='indice' && r.currency==='USD' && r.method===rows[0].method))
 assert.deepEqual(family.etfGroups.map(g=>g.funds[0].isin),['IE00B1FZS350','IE00B1FZS467'])
-assert.equal(family.etfGroups[1].pea,undefined,'Statut PEA inconnu ne devient pas false')
+const pea=groupPeaStatus(family.etfGroups[1].funds.map(fund=>getInstrumentPeaStatus(fund.isin)))
+assert.equal(family.etfGroups[1].pea,pea,'Le groupe suit les statuts documentés de ses parts, sans transformer une absence en false')
+assert.equal(/statut PEA non documenté/i.test(family.etfGroups[1].choiceNote),pea===undefined)
 assert.equal(family.perfFunds.length,0)
 const tweet = buildTweetText(family)
 for (const index of family.indices) {
@@ -56,3 +60,4 @@ for (const index of family.indices) {
 assert.match(tweet,/classifications diffèrent|classifications/i)
 assert.equal(tweet,buildTweetText({...family,perfFunds:[{key:'fake',y2025:999}]}),'Rendements indépendants de ceux des ETF')
 console.log('Immobilier / infrastructures : indices exacts, dates propres, TR USD, relevés PDF, règles divergentes explicites, ETF existants et périmètre ciblé vérifiés.')
+
