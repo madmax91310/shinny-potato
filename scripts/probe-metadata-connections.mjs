@@ -1,38 +1,11 @@
-import {readFileSync,writeFileSync,mkdirSync} from 'node:fs'
-import {createHash} from 'node:crypto'
-import {chromium} from 'playwright'
-import {getInstrumentListings} from '../src/data/instrument-listings.js'
-const out=process.env.PROBE_OUTPUT||'test-artifacts/metadata-connections';mkdirSync(out,{recursive:true})
-const records=JSON.parse(readFileSync('src/data/automated-instrument-metadata.json'))
-const sources=JSON.parse(readFileSync('scripts/instrument-metadata-sources.json')).instruments
-const browser=await chromium.launch({headless:true}),context=await browser.newContext(),manifest=[]
-async function save(isin,url,body,status,effective=url,kind='document'){
- const sha256=createHash('sha256').update(body).digest('hex'),file=sha256+'.body'
- writeFileSync(out+'/'+file,body);manifest.push({isin,requestedUrl:url,sourceUrl:effective,status,checkedAt:new Date().toISOString(),sha256,file,kind})
- writeFileSync(out+'/manifest.json',JSON.stringify(manifest,null,2))
-}
-async function request(isin,url){
- try {const r=await context.request.get(url,{timeout:20000});await save(isin,url,await r.body(),r.status(),r.url())}
- catch(e){manifest.push({isin,requestedUrl:url,error:String(e)});writeFileSync(out+'/manifest.json',JSON.stringify(manifest,null,2))}
-}
-try{
- const page=await context.newPage();await page.goto('https://www.quantalys.com/',{timeout:25000,waitUntil:'domcontentloaded'});
- for(const isin of ['IE000716YHJ7','IE0003XJA0J9','IE0000QLH0G6']){
- const url='https://www.quantalys.com/Recherche/RechercheRapide?inputSearch='+isin;
- try{
- await page.locator('#inputSearch').fill(isin);
- const [response]=await Promise.all([page.waitForNavigation({timeout:25000,waitUntil:'domcontentloaded'}),page.locator('form[action="/Recherche/RechercheRapide"]').evaluate(f=>f.submit())]);
- if(!response?.ok())throw new Error('Public response refused '+response?.status());
- if(!/^https:\/\/www\.quantalys\.com\/Fonds\/[1-9]\d*$/.test(page.url())){
- await page.getByRole('button',{name:'Recherche Avancée',exact:true}).click();
- await page.getByText('Exclure les fonds dissous ou absorbés',{exact:true}).click();
- await page.getByRole('button',{name:'Rechercher',exact:true}).click();await page.waitForTimeout(5000);
- }
- await save(isin,url,Buffer.from(await page.content()),response.status(),page.url(),'public-filtered-search');
- const links=await page.locator('table a[href^="/Fonds/"]').evaluateAll(aa=>[...new Set(aa.map(a=>a.href))].slice(0,3));
- for(const link of links){const fund=await context.newPage();try{const fr=await fund.goto(link,{timeout:20000,waitUntil:'domcontentloaded'});if(fr?.ok())await save(isin,link,Buffer.from(await fund.content()),fr.status(),fund.url(),'public-search-candidate')}catch{}await fund.close()}
- }catch(e){manifest.push({isin,requestedUrl:url,error:String(e)});try{await page.goto('https://www.quantalys.com/',{timeout:15000,waitUntil:'domcontentloaded'})}catch{}}
- }
- await page.close()
-}finally {writeFileSync(out+'/manifest.json',JSON.stringify(manifest,null,2));await browser.close()}
-console.log(JSON.stringify(manifest.map(({isin,requestedUrl,status,error})=>({isin,requestedUrl,status,error}))))
+import {execFileSync} from 'node:child_process'
+import {mkdirSync,writeFileSync} from 'node:fs'
+import assert from 'node:assert/strict'
+import {exposureGroup} from '../src/data/asset-labels.js'
+const cases=[['EURO STOXX 50 Index','Europe'],['S&P 500 Index','États-Unis'],['MSCI Total Return Net World Index','Monde'],['MSCI India Index','Émergents']]
+for(const [benchmark,expected]of cases)assert.equal(exposureGroup({benchmark}),expected)
+execFileSync('npm',['run','build'],{stdio:'inherit'})
+execFileSync('node',['scripts/test-etf-themes-coverage.mjs'],{stdio:'inherit'})
+execFileSync('node',['scripts/playwright-metadata-connections.mjs'],{stdio:'inherit'})
+mkdirSync('test-artifacts/metadata-connections',{recursive:true})
+writeFileSync('test-artifacts/metadata-connections/classification-validation.json',JSON.stringify({cases,passed:true,methods:['exact benchmark family assertions','theme coverage','real ETF sheets and comparison on mobile and desktop']},null,2))

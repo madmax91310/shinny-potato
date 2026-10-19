@@ -78,3 +78,75 @@ d’inventer une devise de couverture.
 La couverture actuelle et les lacunes par champ restent dans le rapport généré
 `public/data/asset-field-coverage.json` et l’écran « Données à revoir ». Un champ
 qui n’a pas de déclaration vérifiable reste inconnu et continue d’être contrôlé.
+
+## Raccordement des derniers supports (19 octobre 2026)
+
+Les huit supports qui n’avaient aucun ensemble de cotations dans le registre
+commun disposent maintenant de réponses qualifiées. L’API publique Invesco fournit
+ses lignes par ISIN (place, devise, ticker et RIC effectivement publiés), y compris
+FWIA sur Xetra pour le FTSE All-World. GBX reste une unité en pence, jamais rebaptisée
+GBP. Les pages Borsa Italiana exigent leurs propres cellules ISIN/MIC/ticker/devise.
+Euronext expose l’identité dans ses paramètres publics et la devise dans le tableau
+chargé par son application : un navigateur lit cette page avant qualification.
+Aucun symbole de fournisseur n’est inventé lorsque la place ne le publie pas.
+
+Le moteur public de recherche Fortuneo retrouve les références par ISIN exact et
+fournit le mnémonique et le code de marché de la fiche. La recherche seule ne prouve
+aucun statut fiscal. Le collecteur suit ensuite la fiche, conserve son URL effective
+et exige sa déclaration PEA explicite. Une recherche vide ne signifie jamais false.
+Les mnémoniques publiés avec un trait d’union sont acceptés. Ce raccordement a
+qualifié 54 statuts supplémentaires (170 sur 258), avec empreintes et dates réelles.
+Les 88 supports sans déclaration vérifiable restent dans les champs à qualifier.
+
+Une nouvelle déclaration opposée à une revue documentée requiert un accord frais
+de deux domaines indépendants. Les contradictions courantes conservent leurs deux
+preuves dans le diagnostic ; le générateur réintroduit ces sources comme conditions
+de qualification aux tentatives suivantes. Une panne ultérieure ne peut ainsi
+effacer le désaccord. Le cas justETF/Fortuneo sur IE00B0M62S72 reste bloqué.
+
+Les tests de connexion vérifient les réponses réelles archivées et les cas de mauvaise
+identité, devise absente, recherche vide, routes injectées et contradictions. Chromium
+vérifie les huit nouvelles cotations et un statut PEA nouvellement documenté dans
+les Fiches ETF, puis leur consommation par un Comparatif ETF, sur mobile et ordinateur.
+
+Les six diagnostics de cotation anciens du relevé initial ont également été
+traités : les nouveaux raccordements couvrent BNP et Invesco ; les lignes de
+Londres des suppléments L&G sont liées à l’ISIN de chaque ligne et à leur libellé
+de place sur deux lignes. La table DWS est liée à l’ISIN explicitement étiqueté
+du fonds et à sa section de cotations ; les ISIN des titres détenus restent séparés.
+Ces lecteurs conservent les RIC publiés (dont LGAIAI.L), sans les fabriquer à partir
+du ticker. Les preuves relues dans les archives gardent leur date de téléchargement.
+
+L’audit des sources primaires a également détecté deux ensembles anciens conservés
+dans des copies de documents (UBS IE00BD4TXV59 et BNP IE000QDFFK00). Ils ont été
+remplacés par les propres tables de cotation Euronext, pour Milan et Paris. Le
+compteur de 258 ensembles correspond ainsi à des sources acceptées par l’audit
+commun, et non à la simple présence d’une clé dans un fichier JSON. L’audit accepte
+un MIC explicitement étiqueté dans la table ou les paramètres de l’instrument ;
+un code isolé ou l’identifiant d’une autre propriété ne prouve aucune place.
+
+La « Currency Denomination » de Borsa Italiana décrit la dénomination de la part
+et ne qualifie jamais sa devise de cotation. Le cas UBS WRDA en donne une vérification
+réelle : part en USD, mais cotation milanaise en EUR. Seul le champ de cotation
+explicite de la page de marché est retenu pour la devise de négociation.
+
+La cotation parisienne SPEA (`IE000DQLYVB9`) est également relue sur Euronext.
+Cette voie indépendante renouvelle les cellules ISIN/MIC/ticker/devise lorsque
+la page iShares suisse refuse la lecture ; le refus de l’ancienne source reste
+visible et la dernière preuve valide est conservée si les deux voies échouent.
+
+## Déclarations PEA publiques Quantalys
+
+Pour les statuts sans preuve automatique, le navigateur utilise le formulaire public
+Quantalys avec l’ISIN exact. Le résultat de recherche n’est jamais une preuve fiscale.
+Seule une fiche `/Fonds/<identifiant>` portant cet ISIN dans son titre de part et
+une ligne unique « Eligible PEA » dans son propre panneau « Caractéristiques générales »
+peut qualifier le champ. « Eligible PEA PME », une cellule vide, un tiret et une
+recherche sans fiche ne sont pas des réponses négatives.
+
+Le registre conserve l’URL effective de la fiche, l’empreinte et la date de lecture.
+Les renouvellements suivants relisent cette fiche ; une panne conserve la dernière
+valeur validée. Les refus HTTP sont transmis au mécanisme commun de suspension de
+source. Les contradictions et les revues antérieures gardent leurs règles de
+qualification : un domaine supplémentaire ne permet pas de choisir arbitrairement
+une valeur dans un conflit.

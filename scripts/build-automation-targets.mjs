@@ -4,6 +4,7 @@ import {AUTOMATED_ETF} from '../src/data/automated-etf.js'
 import {INSTRUMENTS_BY_ISIN} from '../src/data/instruments.js'
 import {getInstrumentListings} from '../src/data/instrument-listings.js'
 import {getInstrumentFacts} from '../src/data/instrument-facts.js'
+import METADATA from '../src/data/automated-instrument-metadata.json' with {type:'json'}
 import {PEA_REVIEWS_BY_ISIN} from '../src/data/instrument-pea.js'
 const existing=JSON.parse(readFileSync('scripts/dca-complete-holdings-sources.json'))
 // Candidate rows the metadata collector must find in the issuer's own document before any
@@ -11,6 +12,7 @@ const existing=JSON.parse(readFileSync('scripts/dca-complete-holdings-sources.js
 const candidates=Object.fromEntries(JSON.parse(readFileSync('scripts/listing-candidates.json')).candidates.map(c=>[c.isin,c.rows]))
 const withCandidates=(isin,listings)=>[...listings,...(candidates[isin]??[]).filter(c=>!listings.some(l=>l.mic===c.mic&&l.ticker===c.ticker&&l.currency===c.currency)).map(({ticker,mic,exchange,currency,symbol})=>({ticker,mic,exchange,currency,symbol}))]
 const holdings={},metadata=[]
+const previousStatus=JSON.parse(readFileSync('src/data/instrument-metadata-status.json'))
 const supplemental=new Map(JSON.parse(readFileSync('scripts/instrument-metadata-supplemental-sources.json')).instruments.map(r=>[r.isin,r.urls]))
 const holds=new Map(JSON.parse(readFileSync('scripts/metadata-qualification-holds.json')).instruments.map(r=>[r.isin,r]))
 // Always renew French tax statements, including previously reviewed positives/negatives.
@@ -27,11 +29,26 @@ for(const [isin,r] of Object.entries(AUTOMATED_ETF)) {
  const facts=getInstrumentFacts(isin),listings=withCandidates(isin,getInstrumentListings(isin)),urls=[r.sourceUrl,facts.characteristicsSource?.url,PEA_REVIEWS_BY_ISIN[isin]?.sourceUrl,'https://www.justetf.com/fr/etf-profile.html?isin='+isin,...listings.map(l=>l.sourceUrl)]
  urls.push(...frenchIssuerPage(r,urls))
  urls.push(...(supplemental.get(isin)??[]))
+ // Search the broker's own reference index before constructing a profile URL.
+ // An absent reference stays unknown; no ticker or market number is guessed.
+ if(!METADATA[isin]?.pea||METADATA[isin]?.pea?.sourceUrl?.startsWith('https://bourse.fortuneo.fr/'))urls.push('https://bourse.fortuneo.fr/api/search?term='+isin)
+ // Quantalys exposes an explicit PEA cell on a public fund reference. Search is discovery only.
+ const priorPeaSource=METADATA[isin]?.pea?.sourceUrl??''
+ if(!METADATA[isin]?.pea||/^https:\/\/www\.quantalys\.com\/Fonds\/[1-9]\d*$/.test(priorPeaSource))urls.push(/^https:\/\/www\.quantalys\.com\/Fonds\/[1-9]\d*$/.test(priorPeaSource)?priorPeaSource:'https://www.quantalys.com/Recherche/RechercheRapide?inputSearch='+isin)
+ if(urls.some(url=>url?.includes('invesco.com/')))
+  urls.push('https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/'+isin+'?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData')
+ if(['FR0011550185','FR0011550193','IE00B4K6B022','IE000QDFFK00','IE000DQLYVB9'].includes(isin))urls.push('https://live.euronext.com/en/product/etfs/'+isin+'-XPAR')
+ if(isin==='IE00BD4TXV59')urls.push('https://live.euronext.com/en/product/etfs/'+isin+'-ETFP')
  // Characteristics only need the fund facts and listings; full holdings exceed the download limit.
  const endpoint=blackrockCharacteristicsEndpoint
  // WisdomTree product pages answer 403 to automated clients; its official factsheet API does not.
  const issuerDocuments=urls.some(url=>url?.includes('wisdomtree.com/'))&&wisdomtreeFactsheet(isin)?[wisdomtreeFactsheet(isin)]:[]
- metadata.push({isin,listings,urls:[...new Set([...urls.filter(Boolean),...issuerDocuments].map(currentDocument).map(endpoint))],...(holds.has(isin)?{qualificationHolds:[holds.get(isin)]}:{})})
+ const review=PEA_REVIEWS_BY_ISIN[isin]
+ // A later unavailable page cannot erase a previously observed contradiction.
+ // Keep one qualification condition per field and set of public source URLs.
+ const qualificationHolds=[...new Map(([...(holds.has(isin)?[holds.get(isin)]:[]),...(previousStatus[isin]?.errors??[]).filter(error=>error.qualificationRequired&&error.sources?.length>=2&&['pea','currencyHedge'].includes(error.field)).map(({field,sources})=>({field,sources}))]).map(hold=>[JSON.stringify([hold.field,hold.sources.map(row=>row.sourceUrl).sort()]),hold])).values()]
+ urls.push(...qualificationHolds.flatMap(hold=>hold.sources.map(row=>row.sourceUrl)))
+ metadata.push({isin,listings,...(typeof review?.eligible==='boolean'?{peaExpectation:{value:review.eligible,sourceUrl:review.sourceUrl,checkedAt:review.checkedAt}}:{}),urls:[...new Set([...urls.filter(Boolean),...issuerDocuments].map(currentDocument).map(endpoint))],...(qualificationHolds.length?{qualificationHolds}:{})})
  if(existing[isin])continue
  const name=INSTRUMENTS_BY_ISIN[isin]?.name??''
  if(/\b(?:ETC|ETN|ETP)\b|bond|treasury|govt|overnight|court terme/i.test(name))continue
