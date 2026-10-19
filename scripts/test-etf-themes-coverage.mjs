@@ -4,6 +4,16 @@ import { ETFS, CATEGORY_ORDER, CATEGORY_EMOJI } from '../src/data/etf-cards.js'
 import { benchmarkKey } from '../src/data/asset-selection.js'
 import { getInstrumentPeaStatus } from '../src/data/instruments.js'
 import { ETF_TER_BY_ISIN } from '../src/data/etf-ter.js'
+import { exposureGroup } from '../src/data/asset-labels.js'
+
+// The country name « Inde » must not match the generic word « Index ».
+for (const [name, benchmark, expected] of [
+  ['Xtrackers EURO STOXX 50', 'EURO STOXX 50 Index', 'Europe'],
+  ['Vanguard S&P 500', 'S&P 500 Index', 'États-Unis'],
+  ['Xtrackers MSCI World', 'MSCI Total Return Net World Index', 'Monde'],
+  ['ETF Inde', 'MSCI India Index', 'Émergents'],
+  ['ETF émergents', 'MSCI Emerging Markets Index', 'Émergents'],
+]) assert.equal(exposureGroup({name, benchmark}), expected, benchmark)
 
 // Every ETF sheet whose fees, assets and published exposures are collected is reachable from the
 // comparison tool; themes are unique; derived themes follow their stated rules (same index, PEA
