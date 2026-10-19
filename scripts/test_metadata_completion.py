@@ -60,11 +60,12 @@ class MetadataCompletionTests(unittest.TestCase):
 
     def test_explicit_broker_cells_distinguish_pea_from_pea_pme(self):
         from collect_instrument_metadata import parse_broker_pea
-        def doc(label,value):return (self.ISIN+f'<table><tr><td>{label}</td><td>{value}</td></tr></table>').encode()
+        def doc(label,value):return (f'<table><tr><th>Code isin</th><td>{self.ISIN}</td></tr><tr><td>{label}</td><td>{value}</td></tr></table>').encode()
         self.assertEqual(parse_broker_pea(doc('PEA/PEA-PME/SRD','non / oui / non'),self.ISIN),{'pea':False})
         self.assertEqual(parse_broker_pea(doc('PEA','Yes'),self.ISIN),{'pea':True})
         self.assertEqual(parse_broker_pea(doc('PEA-PME','Yes'),self.ISIN),{})
         self.assertEqual(parse_broker_pea(doc('PEA','-'),self.ISIN),{})
+        self.assertEqual(parse_broker_pea(self.ISIN.encode()+b'<table><tr><td>PEA</td><td>Yes</td></tr></table>',self.ISIN),{})
         with self.assertRaisesRegex(ValueError,'identities'):parse_broker_pea(doc('PEA','No'),'IE00BDBRDM35')
         with self.assertRaisesRegex(ValueError,'Conflicting'):parse_broker_pea(doc('PEA','No')+doc('PEA','Yes'),self.ISIN)
 

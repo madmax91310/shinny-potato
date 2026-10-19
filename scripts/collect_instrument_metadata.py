@@ -209,7 +209,10 @@ def parse_broker_pea(body,isin):
     identities=set(re.findall(r'\b[A-Z]{2}[A-Z0-9]{9}\d\b',soup.get_text(' ',strip=True)))
     if identities!={isin}:raise ValueError('Missing or multiple broker share identities')
     values=set()
-    for row in soup.find_all('tr'):
+    # The tax row must share a table with the exact ISIN. A tariff/promotion table
+    # elsewhere on this same page cannot supply the instrument's PEA status.
+    tables=[table for table in soup.find_all('table') if set(re.findall(r'\b[A-Z]{2}[A-Z0-9]{9}\d\b',table.get_text(' ',strip=True)))=={isin}]
+    for row in (row for table in tables for row in table.find_all('tr')):
         cells=[c.get_text(' ',strip=True) for c in row.find_all(['th','td'],recursive=False)]
         if len(cells)!=2:continue
         label,value=cells[0].strip(),cells[1].strip().lower()
