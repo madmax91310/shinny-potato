@@ -27,6 +27,8 @@ class SecTransportTests(unittest.TestCase):
         sec.before_request(self.url, clock=lambda: 401)
 
     def test_real_configured_identity_and_no_header_injection(self):
+        with patch.dict(os.environ, {'SEC_USER_AGENT': ''}):
+            self.assertEqual(sec.user_agent(), 'EpargnantLibre/1.0 lepargnantlibre@gmail.com')
         with patch.dict(os.environ, {'SEC_USER_AGENT': 'Test operator contact@example.org'}):
             self.assertEqual(sec.user_agent(), 'Test operator contact@example.org')
         with patch.dict(os.environ, {'SEC_USER_AGENT': 'invalid\nheader'}):

@@ -31,8 +31,8 @@ sa réservation ; elle n'est pas répétée immédiatement.
 
 - SEC : démarrages espacés de 250 ms par processus, `Retry-After` respecté pour
   les erreurs transitoires et circuit de cinq minutes après un refus 403.
-  Configurer la variable de dépôt `SEC_USER_AGENT` avec une identité et une
-  adresse de contact réelles. Aucune adresse n'est inventée. Cela ne garantit
+  Le contact technique fourni par l’opérateur est utilisé par défaut ; la
+  variable de dépôt `SEC_USER_AGENT` permet de remplacer cette identité. Cela ne garantit
   pas que la SEC autorise l'adresse IP du runner. Les replis conservent leurs
   dates et leurs limites, notamment les trimestres non renouvelés.
 - Change TWD : la même série officielle FRED DEXTAUS reste croisée avec la BCE

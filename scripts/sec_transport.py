@@ -24,7 +24,7 @@ def user_agent():
     configured = os.environ.get('SEC_USER_AGENT', '').strip()
     if configured and ('\n' in configured or '\r' in configured or len(configured) > 300):
         raise ValueError('Invalid SEC_USER_AGENT configuration')
-    return configured or 'EpargnantLibre/1.0 https://github.com/madmax91310/shinny-potato'
+    return configured or 'EpargnantLibre/1.0 lepargnantlibre@gmail.com'
 
 
 def before_request(url, clock=time.monotonic, sleep=time.sleep):
@@ -35,7 +35,7 @@ def before_request(url, clock=time.monotonic, sleep=time.sleep):
         current = clock()
         if current < _blocked_until:
             raise urllib.error.HTTPError(url, 403,
-                'SEC access cooldown; previous refusal retained. Configure a genuine operator contact in SEC_USER_AGENT.', None, None)
+                'SEC access cooldown; previous refusal retained. Check runner access and operator identity (SEC_USER_AGENT).', None, None)
         delay = max(0, _next_request-current)
         _next_request = max(current, _next_request) + INTERVAL
         # Keep the lock while waiting: no concurrent worker can pass its slot.
