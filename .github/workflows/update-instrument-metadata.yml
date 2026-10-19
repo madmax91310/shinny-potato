@@ -8,9 +8,13 @@ on:
     paths:
       - '.github/workflows/update-instrument-metadata.yml'
       - 'scripts/collect_instrument_metadata.py'
+      - 'scripts/instrument-metadata-supplemental-sources.json'
+      - 'scripts/metadata-qualification-holds.json'
+      - 'scripts/metadata_transport.py'
       - 'scripts/listing-candidates.json'
       - 'scripts/build-automation-targets.mjs'
       - 'scripts/split-etf-records.mjs'
+      - 'src/data/automated-characteristics.js'
       - 'vite.config.js'
   pull_request:
     paths:
@@ -21,13 +25,98 @@ on:
       - 'scripts/build-automation-targets.mjs'
       - 'scripts/build-monthly-duel-returns.mjs'
       - 'src/data/*metadata*'
+      - 'src/data/automated-characteristics.js'
+      - 'scripts/test-automated-characteristics.mjs'
       - 'src/data/*portfolio*'
       - 'src/data/equity-history-links.json'
       - '.github/workflows/update-instrument-metadata.yml'
 permissions:
   contents: read
+concurrency:
+  group: metadata-${{ github.event_name == 'pull_request' && github.ref || github.run_id }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 jobs:
+  source-evidence:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 24
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: '3.12'
+      - run: pip install beautifulsoup4==4.15.0
+      - run: pip download beautifulsoup4==4.15.0 --dest "$RUNNER_TEMP/metadata-python-runtime"
+      - uses: actions/upload-artifact@v7.0.1
+        with:
+          name: metadata-source-runtime-wheels
+          path: ${{ runner.temp }}/metadata-python-runtime
+          retention-days: 14
+      - run: python -m unittest discover -s scripts -p 'test*metadata*.py'
+      - run: node scripts/test-automated-characteristics.mjs
+      - run: node scripts/test-metadata-notes.mjs
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: sudo apt-get update && sudo apt-get install -y poppler-utils
+      - run: node scripts/build-automation-targets.mjs
+      - name: Observe representative source formats without changing registries
+        run: >-
+          python scripts/probe_instrument_metadata.py --output "$RUNNER_TEMP/metadata-sample-evidence"
+          --only IE00B4L5Y983 IE00BDBRDM35 IE00BLNMYC90 FR0007056841
+          IE00BMG6Z448 IE0006WW1TQ4 IE00B3XXRP09 IE00BKWQ0Q14
+          IE000716YHJ7 IE00BLCHJB90 IE00B4K6B022 IE00BK5BCH80
+          GB00B15KXQ89 IE00BD4TXV59 IE000QDFFK00 IE0003UVYC20
+          IE0003R87OG3 IE00BMVB5K07 IE00B579F325 IE00BD6FTQ80
+          DE000A27Z304 FR0011550193 IE00BF0M2Z96 IE00BK5BCD43
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: exact-share-metadata-sample-evidence
+          path: ${{ runner.temp }}/metadata-sample-evidence
+          retention-days: 14
+      - name: Observe all public exact-share sources without changing registries
+        run: python scripts/probe_instrument_metadata.py --output "$RUNNER_TEMP/metadata-evidence" --shard-count 4 --records-output "$RUNNER_TEMP/metadata-qualified/automated-instrument-metadata.json"
+      - uses: actions/upload-artifact@v7.0.1
+        with:
+          name: metadata-qualified-records
+          path: ${{ runner.temp }}/metadata-qualified
+          retention-days: 14
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: exact-share-metadata-source-evidence
+          path: ${{ runner.temp }}/metadata-evidence/manifest.json
+          retention-days: 14
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: metadata-raw-sources-0
+          path: ${{ runner.temp }}/metadata-evidence/part-0
+          retention-days: 14
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: metadata-raw-sources-1
+          path: ${{ runner.temp }}/metadata-evidence/part-1
+          retention-days: 14
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: metadata-raw-sources-2
+          path: ${{ runner.temp }}/metadata-evidence/part-2
+          retention-days: 14
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: metadata-raw-sources-3
+          path: ${{ runner.temp }}/metadata-evidence/part-3
+          retention-days: 14
   verify:
+    needs: source-evidence
+    if: always() && (github.event_name != 'pull_request' || needs.source-evidence.result == 'success')
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v7.0.1
@@ -39,19 +128,35 @@ jobs:
           python-version: '3.12'
       - run: pip install beautifulsoup4==4.15.0
       - run: npm ci
+      - uses: actions/download-artifact@v4
+        if: github.event_name == 'pull_request'
+        with:
+          name: metadata-qualified-records
+          path: src/data
       - run: python -m unittest discover -s scripts -p 'test_instrument_metadata.py'
+      - run: python -m unittest discover -s scripts -p 'test_metadata_completion.py'
+      - run: python -m unittest discover -s scripts -p 'test_metadata_evidence_replay.py'
+      - run: python -m unittest discover -s scripts -p 'test_metadata_transport.py'
       - run: python -m unittest discover -s scripts -p 'test_metadata_recovery_diagnostics.py'
       - run: python -m unittest discover -s scripts -p 'test_automation_renewals.py'
       - run: python -m unittest discover -s scripts -p 'test_monthly_qualification.py'
       - run: npm run build
+      - run: node scripts/test-automated-characteristics.mjs
+      - run: node scripts/test-comparison-etf-details.mjs
+      - run: node scripts/test-metadata-notes.mjs
+      - run: node scripts/test-property-infrastructure-step-two.mjs
       - run: node scripts/test-full-auto-routing.mjs
       - run: npx playwright install --with-deps chromium
       - run: node scripts/playwright-full-auto-routing.mjs
+      - run: node scripts/test-asset-field-ui.mjs
+      - run: node scripts/playwright-metadata-completion.mjs
       - uses: actions/upload-artifact@v7.0.1
         if: always()
         with:
           name: full-auto-browser-check
-          path: test-artifacts/full-auto
+          path: |
+            test-artifacts/full-auto
+            test-artifacts/metadata
           if-no-files-found: ignore
           retention-days: 14
   refresh:
@@ -80,6 +185,7 @@ jobs:
           python-version: '3.12'
       - run: pip install beautifulsoup4==4.15.0
       - run: npm ci
+      - run: npx playwright install --with-deps chromium
       - run: sudo apt-get update && sudo apt-get install -y poppler-utils
       - run: node scripts/build-automation-targets.mjs
       - name: Collect exact metadata observations
@@ -127,4 +233,5 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - run: exit 1
+
 

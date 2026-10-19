@@ -11,6 +11,7 @@ from pathlib import Path
 from data_automation import UTC, write_json_atomic
 from issuer_documents import download, pdf_text
 from issuer_routes import vaneck_factsheet_candidates
+from metadata_transport import TRANSPORT
 ROOT=Path(__file__).resolve().parents[1]
 FIELDS=('distribution','domicile','replicationMethod','pea','currencyHedge','listings')
 # Thresholds come from the single freshness policy (src/data/freshness-policy.json),
@@ -77,6 +78,11 @@ def fetch_document(url,fetch=download,isin=None):
     """Returns (body, url actually read)."""
     try:
         if url==AMUNDI_API and fetch is download:return fetch_amundi(isin),url
+        if fetch is download and url.startswith('https://www.boursedirect.fr/'):
+            # This broker intermittently leaves automated connections unanswered. A
+            # source candidate must not consume three 25-second waits per instrument.
+            return TRANSPORT.read(url,fetch=download,return_source=True,timeout=8,max_attempts=1,headers={'User-Agent':'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/130.0.0.0 Safari/537.36','Accept-Language':'fr-FR,fr;q=0.9'})
+        if fetch is download:return TRANSPORT.read(url,fetch=download,return_source=True)
         return fetch(url),url
     except ValueError as error:
         # VanEck answers its factsheet URLs with a regional consent page. Like
@@ -110,15 +116,15 @@ def parse_text(text,isin):
     if identities!={isin}:raise ValueError('Missing or multiple exact-share identities in metadata document')
     text=re.sub(r'[ \t\r]+',' ',text)
     patterns={
-      'distribution':r'(?:Use of (?:Income|Profits)|Income Treatment|Distribution Policy|Affectation des r[ée]sultats|Politique de distribution)\s*[:\n]?\s*(Accumulating|Distributing|Capitalisation|Distribution|Reinvestment)\b',
-      'domicile':r'(?:Fund Domicile|Domicile|Domiciliation|Domicile du fonds)\s*[:\n]?\s*(Ireland|Irlande|Luxembourg|Germany|Allemagne|France|Jersey|(?:The )?Netherlands)\b',
+      'distribution':r'(?:Use of (?:Income|Profits)|Income Treatment|Distribution Policy|Affectation des r[ée]sultats|Politique de distribution|^Distribution)\s*[:\n]?\s*(Capitalisation (?:and/or|et/ou) distribution|Accumulating|Distributing|Capitalisation|Distribution|Reinvestment)\b',
+      'domicile':r'(?:Fund Domicile|Domicile|Domiciliation(?: du fonds)?|Domicile du fonds)\s*[:\n]?\s*(Ireland|Irlande|Luxembourg|Germany|Allemagne|France|Jersey|Switzerland|Suisse|(?:The )?Netherlands)\b',
       'replicationMethod':r'(?:Replication (?:Method|methodology)|M[ée]thode de r[ée]plication|Replication|R[ée]plication)\s*[:\n]?\s*(Physical(?:\s*\((?:Full replication|Optimised sampling)\))?|Synthetic|Physique|Synth[ée]tique|Direct Replication|Indirect\s*\(Swap Based\))\b',
       'pea':r'(?:PEA eligibility|PEA Eligible|Eligible PEA|[ÉE]ligibilit[ée] (?:au )?PEA|[ÉE]ligibilit[ée] au plan d[’\x27]Epargne en Actions \(PEA\)|PEA berechtigt|[ÉE]ligible (?:au )?PEA|R[ée]gime fiscal PEA)\s*[:\n]?\s*(Yes|No|Oui|Non|Keine|Ja|Nein)\b',
       'currencyHedge':r'(?:Currency Hedged|Currency Hedge|Couverture de change|Couvert contre le risque de change)\s*[:\n]?\s*(Yes|No|Oui|Non)\b',
     }
     result={}
     for field,pattern in patterns.items():
-        found=set(re.findall(pattern,text,re.I))
+        found=set(re.findall(pattern,text,re.I|re.M))
         if len(found)>1:raise ValueError('Conflicting explicit metadata: '+field)
         if found:
             value=found.pop()
@@ -137,6 +143,16 @@ def parse_text(text,isin):
         negative=bool(badges & {'non éligible au pea','non eligible au pea'})
         if positive and negative:raise ValueError('Conflicting PEA badge statements')
         if positive or negative:result['pea']=positive
+    # Explicit row values on justETF EN/FR. Neither the fund name, trading currency,
+    # nor silence about a hedge is evidence. A dash stays unknown.
+    hedge_patterns=(
+        (r'^\s*Currency risk\s*[:\n]?\s*(Currency unhedged|Currency hedged(?: [A-Z]{3})?)\s*$',lambda v:v.lower().startswith('currency hedged')),
+        (r'^\s*Couverture du risque de change\s*[:\n]?\s*(Non couvert contre le risque de change|Couvert(?:ure)? (?:contre le risque de change|en [A-Z]{3}))\s*$',lambda v:not v.lower().startswith('non ')),
+    )
+    hedges={convert(value) for pattern,convert in hedge_patterns for value in re.findall(pattern,text,re.I|re.M)}
+    if 'currencyHedge' in result:hedges.add(result['currencyHedge'])
+    if len(hedges)>1:raise ValueError('Conflicting explicit metadata: currencyHedge')
+    if hedges:result['currencyHedge']=hedges.pop()
     return result
 
 def parse_json(body,isin):
@@ -164,7 +180,78 @@ def parse_json(body,isin):
     mapping={'useOfProfitsCode':'distribution','domicile':'domicile','productStructure':'replicationMethod'}
     return {field:points[key]['value'] for key,field in mapping.items() if isinstance(points.get(key,{}).get('value'),str) and points[key]['value']}
 
+def parse_justetf(body,isin):
+    """Bind the profile's own basics rows and badge to its explicit header ISIN.
+
+    Related ETFs and promotional securities elsewhere on the page are separate
+    instruments. Their names, identifiers and tax badges never enter this scope.
+    """
+    from bs4 import BeautifulSoup
+    soup=BeautifulSoup(body,'html.parser')
+    identity=soup.select('[data-testid="etf-profile-header_isin-value"]')
+    if len(identity)!=1 or identity[0].get_text(strip=True)!=isin:raise ValueError('Wrong or ambiguous justETF profile identity')
+    text=[isin]
+    for key in ('distribution-policy','domicile-country','replication','currency-hedge'):
+        rows=soup.select(f'[data-testid="etf-basics_row_{key}"]')
+        if len(rows)>1:raise ValueError('Duplicate justETF basics row: '+key)
+        if rows:
+            if len(rows[0].find_all('td',recursive=False))!=2:raise ValueError('Incomplete justETF basics row: '+key)
+            text.append(rows[0].get_text('\n',strip=True))
+    badges=soup.select('[data-testid="etf-profile-controls_pea-label-text"]')
+    if len(badges)>1:raise ValueError('Duplicate justETF PEA badge')
+    if badges:text.append(badges[0].get_text(strip=True))
+    return parse_text('\n'.join(text),isin)
+
+def parse_broker_pea(body,isin):
+    """Only explicit PEA cells on an exact-share broker reference page qualify."""
+    from bs4 import BeautifulSoup
+    soup=BeautifulSoup(body,'html.parser')
+    for node in soup(['script','style']):node.decompose()
+    identities=set(re.findall(r'\b[A-Z]{2}[A-Z0-9]{9}\d\b',soup.get_text(' ',strip=True)))
+    if identities!={isin}:raise ValueError('Missing or multiple broker share identities')
+    values=set()
+    # The tax row must share a table with the exact ISIN. A tariff/promotion table
+    # elsewhere on this same page cannot supply the instrument's PEA status.
+    tables=[table for table in soup.find_all('table') if set(re.findall(r'\b[A-Z]{2}[A-Z0-9]{9}\d\b',table.get_text(' ',strip=True)))=={isin}]
+    for row in (row for table in tables for row in table.find_all('tr')):
+        cells=[c.get_text(' ',strip=True) for c in row.find_all(['th','td'],recursive=False)]
+        if len(cells)!=2:continue
+        label,value=cells[0].strip(),cells[1].strip().lower()
+        if label=='PEA/PEA-PME/SRD':
+            if not re.fullmatch(r'(?:oui|non)\s*/\s*(?:oui|non)\s*/\s*(?:oui|non)',value):continue
+            value=value.split('/')[0].strip()
+        elif label!='PEA':continue
+        if value in ('yes','oui','no','non'):values.add(value in ('yes','oui'))
+    if len(values)>1:raise ValueError('Conflicting broker PEA statements')
+    return {'pea':values.pop()} if values else {}
+
 LISTING_HOSTS=set(json.loads((ROOT/'scripts/listing-source-hosts.json').read_text())['hosts'])
+
+def bitwise_listing_rows(body, isin):
+    """Each issuer trading row carries its own ISIN, currency, venue and codes."""
+    from bs4 import BeautifulSoup
+    soup=BeautifulSoup(body,'html.parser');rows=[]
+    for row in soup.select('.trading__tr[data-exchange-currency]'):
+        cells=row.select('.trading__info > .trading__td')
+        if len(cells)!=6:raise ValueError('Incomplete Bitwise trading row')
+        identities=set(re.findall(r'\b[A-Z]{2}[A-Z0-9]{9}\d\b',cells[0].get_text(' ',strip=True)))
+        if identities!={isin}:continue
+        # The same row must explicitly label the identity and Reuters cell.
+        identity_label=cells[0].select_one('.trading__attrname');ric_label=cells[5].select_one('.trading__attrname')
+        if identity_label is None or ric_label is None or identity_label.get_text(strip=True)!='ISIN' or ric_label.get_text(strip=True)!='RIC':raise ValueError('Unsupported Bitwise trading columns')
+        venue=row.select_one('.trading__title .trading__td a')
+        if venue is None:raise ValueError('Missing Bitwise listing venue')
+        mic=EXCHANGE_MICS.get(venue.get_text(' ',strip=True));currency=row.get('data-exchange-currency')
+        ticker=cells[3].get_text(' ',strip=True).split()
+        if not mic or not re.fullmatch(r'[A-Z]{3}',currency or '') or len(ticker)!=2 or not re.fullmatch(r'[A-Za-z0-9]+',ticker[0]):continue
+        displayed=row.select_one('.trading__title [data-clipboard]')
+        if displayed is None or displayed.get('data-clipboard')!=' '.join(ticker):raise ValueError('Conflicting Bitwise listing tickers')
+        for label in cells[5].select('.trading__attrname'):label.decompose()
+        symbol=cells[5].get_text(' ',strip=True)
+        rows.append(dict(ticker=ticker[0],mic=mic,exchange=CANONICAL_EXCHANGES[mic],currency=currency,
+                         **({'symbol':symbol} if SYMBOL.fullmatch(symbol) else {}),
+                         excerpt=' | '.join([isin,venue.get_text(' ',strip=True),currency,' '.join(ticker),symbol])))
+    return rows
 
 def globalx_listing_rows(body, isin):
     """Read only the trading table under the exact share heading, including streamed rows."""
@@ -221,6 +308,8 @@ def parse_listings(body,source,url,checked):
     if urlsplit(url).scheme!='https' or urlsplit(url).hostname not in LISTING_HOSTS:return []
     isin=source['isin'];digest=hashlib.sha256(body).hexdigest();rows=[]
     markets=EXCHANGE_MICS
+    if urlsplit(url).hostname=='bitwiseinvestments.eu' and not body.startswith(b'%PDF-'):
+        return [r|{'sourceUrl':url,'checkedAt':checked,'sha256':digest,'evidenceId':f"{isin}-{r['mic']}-{r['ticker']}-{r['currency']}"} for r in bitwise_listing_rows(body,isin)]
     if urlsplit(url).hostname=='globalxetfs.eu' and not body.startswith(b'%PDF-'):
         return [r|{'sourceUrl':url,'checkedAt':checked,'sha256':digest,'evidenceId':f"{isin}-{r['mic']}-{r['ticker']}-{r['currency']}"} for r in globalx_listing_rows(body,isin)]
     if urlsplit(url).hostname=='fund-docs.vanguard.com' and body.startswith(b'%PDF-'):
@@ -287,13 +376,18 @@ def parse_listings(body,source,url,checked):
                     break
     return [r|{'sourceUrl':url,'checkedAt':checked,'sha256':digest,'evidenceId':f"{isin}-{r['mic']}-{r['ticker']}-{r['currency']}"} for r in rows]
 
-def collect(source,now,fetch=download):
-    values={};errors=[];conflicts=set();checked=now.date().isoformat()
-    for url in source['urls']:
+def collect(source,now,fetch=download,on_document=None):
+    values={};errors=[];conflicts=set();observations={};checked=now.date().isoformat()
+    for requested_url in source['urls']:
+        url=requested_url
         try:
             body,url=fetch_document(url,fetch,source['isin'])
+            if on_document:on_document(requested_url,url,body)
             try:
-                fields=parse_json(body,source['isin']) if body.lstrip().startswith(b'{') else parse_text(text_of(body),source['isin'])
+                from urllib.parse import urlsplit
+                if urlsplit(url).hostname=='www.justetf.com':fields=parse_justetf(body,source['isin'])
+                elif urlsplit(url).hostname in ('bourse.fortuneo.fr','www.boursedirect.fr'):fields=parse_broker_pea(body,source['isin'])
+                else:fields=parse_json(body,source['isin']) if body.lstrip().startswith(b'{') else parse_text(text_of(body),source['isin'])
             except ValueError as error:
                 # A listing table can identify its share even when the surrounding
                 # prospectus also names an index. This never qualifies other fields.
@@ -303,6 +397,7 @@ def collect(source,now,fetch=download):
             if listing_rows:fields['listings']=listing_rows
             if not fields:raise ValueError('No explicit supported metadata fields')
             for field,value in fields.items():
+                if field in ('pea','currencyHedge'):observations.setdefault(field,{})[url]=value
                 if field in conflicts:continue
                 if field in values and values[field]['value']!=value:
                     if field=='listings':
@@ -323,6 +418,12 @@ def collect(source,now,fetch=download):
                     continue
                 values[field]={'value':value,'checkedAt':checked,'sourceUrl':url,'sha256':hashlib.sha256(body).hexdigest()}
         except Exception as error:errors.append({'sourceUrl':url,'error':str(error)})
+    for hold in source.get('qualificationHolds',[]):
+        field=hold['field'];observed=observations.get(field,{})
+        urls=[row['sourceUrl'] for row in hold['sources']]
+        if any(url not in observed for url in urls) or len({observed[url] for url in urls if url in observed})!=1:
+            values.pop(field,None)
+            errors.append({'sourceUrl':urls[0],'field':field,'qualificationRequired':True,'error':'Qualification de publication requise : contradiction entre sources non résolue ; aucune valeur choisie par défaut.','sources':hold['sources']})
     return values,errors
 
 def field_diagnostics(source, values, failures, old, now):
@@ -351,6 +452,7 @@ def main():
     errors=[];updated=[];successes=[];within_grace=[]
     with ThreadPoolExecutor(max_workers=6) as pool:
         for isin,values,failures in pool.map(one,sources):
+            errors.extend({'id':f"{isin}:{failure['field']}:qualification",'field':failure['field'],'error':failure['error']} for failure in failures if failure.get('qualificationRequired'))
             old=records.get(isin,{})
             for field,value in values.items():
                 if value['checkedAt']>=old.get(field,{}).get('checkedAt',''):old[field]=value
@@ -377,4 +479,5 @@ def main():
     print(f'Metadata: {len(updated)}/{len(sources)} observed instruments; {len(errors)} failed renewals.')
     if errors:raise SystemExit(1)
 if __name__=='__main__':main()
+
 

@@ -4,6 +4,7 @@ import { getInstrumentAum, getInstrumentAumBillions } from './instrument-aum.js'
 import { getInstrumentName, getInstrumentPeaStatus } from './instruments.js';
 import { requireInstrumentListing } from './instrument-listings.js';
 import { formatEtfTer } from './etf-ter.js';
+import { refreshPeaStatusNotes } from './pea-group-status.js';
 // Centralisation du 30/09/2026 : les commentaires de revue ci-dessous restent historiques ;
 // les comptages affichés utilisent les photographies explicites du registre.
 // Composition partagée : src/data/index-facts.js, par photographie explicite.
@@ -1070,3 +1071,9 @@ FAMILIES.push({
   { q: 'Exposer le portefeuille aux réseaux et au transport ?', a: 'Core Infrastructure sélectionne les revenus d’infrastructures, avec pays développés et émergents.' },
  ], closing: 'Quelle exposition correspond à la poche que tu veux construire ?',
 });
+
+
+// Renewable PEA evidence replaces historical undocumented placeholders in publication copy.
+for (const family of FAMILIES) {
+ if (family.etfGroups) family.etfGroups=family.etfGroups.map(group=>refreshPeaStatusNotes(group,getInstrumentPeaStatus));
+}

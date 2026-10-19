@@ -5,7 +5,8 @@ import { DATA_CATALOG } from '../src/data/catalog.js'
 import { ASSETS as HISTORY } from '../src/data/market-history.js'
 import { getInstrumentAnnualPerformance } from '../src/data/instrument-returns.js'
 import { AUTOMATED_PERFORMANCE } from '../src/data/automated-etf.js'
-import { getInstrumentPeaStatus } from '../src/data/instruments.js'
+import { getInstrumentPeaStatus, INSTRUMENTS_BY_ISIN } from '../src/data/instruments.js'
+import { PEA_REVIEWS_BY_ISIN } from '../src/data/instrument-pea.js'
 import { getInstrumentFacts } from '../src/data/instrument-facts.js'
 import { getComparisonPerformance } from '../src/pages/tweet-midi/comparisonPerformance.js'
 import { buildDuel } from '../src/pages/portfolio-duels/lib.js'
@@ -24,8 +25,14 @@ for (const proof of capture.funds) {
  assert.deepEqual(performance.values, AUTOMATED_PERFORMANCE[proof.isin]?.values ?? proof.values, 'Les rendements du fonds doivent suivre la publication émetteur, sans substitution d’indice')
  assert.equal(performance.currency, 'USD')
  assert.equal(performance.source, AUTOMATED_PERFORMANCE[proof.isin]?.source ?? proof.perfSource)
- assert.equal(getInstrumentPeaStatus(proof.isin), null, 'Le statut PEA absent reste inconnu')
- assert.equal(sheet.pea, null)
+ const review=PEA_REVIEWS_BY_ISIN[proof.isin]
+ const pea=typeof review?.eligible==='boolean'?review.eligible:null
+ if(pea!==null) {
+  assert.match(review.sourceUrl,/^https:\/\//,'Un statut PEA publié nécessite une source')
+  assert.match(review.checkedAt,/^\d{4}-\d{2}-\d{2}$/,'Le contrôle PEA garde sa date propre')
+ }
+ assert.equal(getInstrumentPeaStatus(proof.isin),pea,'Le statut suit la preuve courante ; une absence reste inconnue')
+ assert.equal(sheet.pea,pea,'La fiche consomme le même statut documenté')
  assert.equal(sheet.listing.currency, 'EUR')
  assert.equal(getInstrumentFacts(proof.isin).positionsAsOf, proof.positionsDate)
  assert.equal(getComparisonPerformance(proof.isin).label, 'ETF')
@@ -37,6 +44,9 @@ for (const proof of capture.funds) {
  const record = DATA_CATALOG.find(x => x.type === 'instrument' && x.id === proof.isin)
  for (const path of ['/fiches-etf','/comparatif-etf','/generateur-portefeuilles','/duels-portefeuilles','/impact-frais']) assert(record.consumers.some(c => c.path === path), `${proof.isin}: ${path}`)
 }
+const undocumented=Object.keys(INSTRUMENTS_BY_ISIN).find(isin=>PEA_REVIEWS_BY_ISIN[isin]?.eligible==null)
+if(undocumented)assert.equal(getInstrumentPeaStatus(undocumented),null,'Un instrument enregistré sans preuve PEA reste inconnu')
+assert.throws(()=>getInstrumentPeaStatus('__missing_metadata_test__'),/Produit inconnu/,'Un identifiant invalide ne devient pas un instrument documenté')
 assert.equal(buildDuel(DUELS.find(x => x.id === 'emergents-chine')).years[0],2022, 'Ex-China : aucune année avant la première année complète du fonds')
 for (const id of ['world-jeux-video','world-innovation-medicale','sante-innovation-biotech','world-immo-infrastructure']) assert.equal(buildDuel(DUELS.find(x => x.id === id)).years[0],2020)
 for (const id of ['msci-world-sector-neutral-quality','msci-world-enhanced-value','msci-em-ex-china']) {
@@ -53,4 +63,5 @@ for (const id of ['msci-world-sector-neutral-quality','msci-world-enhanced-value
 }
 for (const item of INDEX_DECISION_CASES) assert.doesNotMatch(item.text,/undefined|NaN/)
 assert.match(INDEX_DECISION_CASES[0].text,/petites capitalisations/)
-console.log('Jeux vidéo, innovation médicale et réutilisation : parts exactes, devises, PEA inconnu, périodes communes et compositions d’indice vérifiés.')
+console.log('Jeux vidéo, innovation médicale et réutilisation : parts exactes, devises, PEA sourcé ou inconnu, périodes communes et compositions d’indice vérifiés.')
+

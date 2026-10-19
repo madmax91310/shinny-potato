@@ -1,0 +1,23 @@
+{
+  "instruments": [
+    {
+      "isin": "IE00B0M62S72",
+      "field": "pea",
+      "reason": "Contradictory explicit exact-share PEA statements observed on the same day. Both sources must be observed agreeing before renewal.",
+      "sources": [
+        {
+          "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00B0M62S72",
+          "value": true,
+          "checkedAt": "2026-10-19",
+          "sha256": "04bac2fea7e840f62bd628f45e1d6c913a2adf4b492704a5cf6b9d26f0bb5157"
+        },
+        {
+          "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-ishares-euro-dividend-ucits-etf-eur-dis-IDVY-IE00B0M62S72-46",
+          "value": false,
+          "checkedAt": "2026-10-19",
+          "sha256": "9401633b001650af47c26b6edc85e74d4e9625f97d3bc10e02fc64e8a7c77b20"
+        }
+      ]
+    }
+  ]
+}
