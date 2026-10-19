@@ -1,0 +1,24 @@
+name: Probe metadata connections
+on:
+  push:
+    branches: [fix/pea-listing-connections]
+permissions:
+  contents: read
+jobs:
+  observe:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 24
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: node scripts/probe-metadata-connections.mjs
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: metadata-connections
+          path: test-artifacts/metadata-connections
+          retention-days: 14
