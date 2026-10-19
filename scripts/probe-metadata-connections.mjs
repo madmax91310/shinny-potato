@@ -16,10 +16,9 @@ async function request(isin,url){
  catch(e){manifest.push({isin,requestedUrl:url,error:String(e)});writeFileSync(out+'/manifest.json',JSON.stringify(manifest,null,2))}
 }
 try{
- const page=await context.newPage()
- for(const [isin,url] of [['IE0003XJA0J9','https://www.zonebourse.com/cours/etf/AMUNDI-PRIME-ALL-COUNTRY--176455745/'],['IE00BLNMYC90','https://www.zonebourse.com/recherche/?q=IE00BLNMYC90'],['IE0003XJA0J9','https://www.previ-direct.com/widget/web/eclient-linxea/perf-uc-linxea-avenir-7e-?p_p_id=portletperfuc_WAR_portletperfuc&p_p_lifecycle=0&p_p_mode=view&p_p_state=maximized&p_r_p_564233524_action=detailSupport&p_r_p_564233524_cdIsin=IE0003XJA0J9&p_r_p_564233524_cdPrd=7E&p_r_p_564233524_noPtn=264']]){
-  try{const response=await page.goto(url,{timeout:30000,waitUntil:'domcontentloaded'});await page.waitForTimeout(1500);await save(isin,url,Buffer.from(await page.content()),response.status(),page.url(),'browser')}catch(e){manifest.push({isin,requestedUrl:url,error:String(e)})}
- }
+ await request('IE00BD4TXV59','https://www.borsaitaliana.it/borsa/etf/scheda/IE00BD4TXV59-ETFP.html?lang=en')
+ const page=await context.newPage(),isin='IE000QDFFK00',url='https://live.euronext.com/en/product/etfs/'+isin+'-XPAR'
+ try{const response=await page.goto(url,{timeout:30000,waitUntil:'domcontentloaded'});await page.getByText('Currency',{exact:true}).waitFor({timeout:25000});await save(isin,url,Buffer.from(await page.content()),response.status(),page.url(),'euronext-browser')}catch(e){manifest.push({isin,requestedUrl:url,error:String(e)})}
  await page.close()
 }finally {writeFileSync(out+'/manifest.json',JSON.stringify(manifest,null,2));await browser.close()}
 console.log(JSON.stringify(manifest.map(({isin,requestedUrl,status,error})=>({isin,requestedUrl,status,error}))))
