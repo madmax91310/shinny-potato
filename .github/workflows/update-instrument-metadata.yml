@@ -30,6 +30,9 @@ on:
       - '.github/workflows/update-instrument-metadata.yml'
 permissions:
   contents: read
+concurrency:
+  group: metadata-${{ github.event_name == 'pull_request' && github.ref || github.run_id }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 jobs:
   source-evidence:
     if: github.event_name == 'pull_request'
@@ -44,6 +47,12 @@ jobs:
         with:
           python-version: '3.12'
       - run: pip install beautifulsoup4==4.15.0
+      - run: pip download beautifulsoup4==4.15.0 --dest "$RUNNER_TEMP/metadata-python-runtime"
+      - uses: actions/upload-artifact@v7.0.1
+        with:
+          name: metadata-source-runtime-wheels
+          path: ${{ runner.temp }}/metadata-python-runtime
+          retention-days: 14
       - run: python -m unittest discover -s scripts -p 'test*metadata*.py'
       - run: node scripts/test-automated-characteristics.mjs
       - run: sudo apt-get update && sudo apt-get install -y poppler-utils

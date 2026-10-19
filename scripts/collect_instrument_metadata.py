@@ -11,6 +11,7 @@ from pathlib import Path
 from data_automation import UTC, write_json_atomic
 from issuer_documents import download, pdf_text
 from issuer_routes import vaneck_factsheet_candidates
+from metadata_transport import TRANSPORT
 ROOT=Path(__file__).resolve().parents[1]
 FIELDS=('distribution','domicile','replicationMethod','pea','currencyHedge','listings')
 # Thresholds come from the single freshness policy (src/data/freshness-policy.json),
@@ -80,8 +81,8 @@ def fetch_document(url,fetch=download,isin=None):
         if fetch is download and url.startswith('https://www.boursedirect.fr/'):
             # This broker intermittently leaves automated connections unanswered. A
             # source candidate must not consume three 25-second waits per instrument.
-            return download(url,return_source=True,timeout=8,max_attempts=1,headers={'User-Agent':'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/130.0.0.0 Safari/537.36','Accept-Language':'fr-FR,fr;q=0.9'})
-        if fetch is download:return download(url,return_source=True)
+            return TRANSPORT.read(url,fetch=download,return_source=True,timeout=8,max_attempts=1,headers={'User-Agent':'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/130.0.0.0 Safari/537.36','Accept-Language':'fr-FR,fr;q=0.9'})
+        if fetch is download:return TRANSPORT.read(url,fetch=download,return_source=True)
         return fetch(url),url
     except ValueError as error:
         # VanEck answers its factsheet URLs with a regional consent page. Like
