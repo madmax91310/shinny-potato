@@ -58,7 +58,12 @@ jobs:
           path: ${{ runner.temp }}/metadata-sample-evidence
           retention-days: 14
       - name: Observe all public exact-share sources without changing registries
-        run: python scripts/probe_instrument_metadata.py --output "$RUNNER_TEMP/metadata-evidence" --shard-count 4
+        run: python scripts/probe_instrument_metadata.py --output "$RUNNER_TEMP/metadata-evidence" --shard-count 4 --records-output "$RUNNER_TEMP/metadata-qualified/automated-instrument-metadata.json"
+      - uses: actions/upload-artifact@v7.0.1
+        with:
+          name: metadata-qualified-records
+          path: ${{ runner.temp }}/metadata-qualified
+          retention-days: 14
       - uses: actions/upload-artifact@v7.0.1
         if: always()
         with:
@@ -90,6 +95,8 @@ jobs:
           path: ${{ runner.temp }}/metadata-evidence/part-3
           retention-days: 14
   verify:
+    needs: source-evidence
+    if: always() && (github.event_name != 'pull_request' || needs.source-evidence.result == 'success')
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v7.0.1
@@ -101,15 +108,22 @@ jobs:
           python-version: '3.12'
       - run: pip install beautifulsoup4==4.15.0
       - run: npm ci
+      - uses: actions/download-artifact@v8.0.1
+        if: github.event_name == 'pull_request'
+        with:
+          name: metadata-qualified-records
+          path: src/data
       - run: python -m unittest discover -s scripts -p 'test_instrument_metadata.py'
       - run: python -m unittest discover -s scripts -p 'test_metadata_completion.py'
       - run: python -m unittest discover -s scripts -p 'test_metadata_recovery_diagnostics.py'
       - run: python -m unittest discover -s scripts -p 'test_automation_renewals.py'
       - run: python -m unittest discover -s scripts -p 'test_monthly_qualification.py'
       - run: npm run build
+      - run: node scripts/test-automated-characteristics.mjs
       - run: node scripts/test-full-auto-routing.mjs
       - run: npx playwright install --with-deps chromium
       - run: node scripts/playwright-full-auto-routing.mjs
+      - run: node scripts/test-asset-field-ui.mjs
       - uses: actions/upload-artifact@v7.0.1
         if: always()
         with:

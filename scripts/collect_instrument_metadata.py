@@ -110,7 +110,7 @@ def parse_text(text,isin):
     if identities!={isin}:raise ValueError('Missing or multiple exact-share identities in metadata document')
     text=re.sub(r'[ \t\r]+',' ',text)
     patterns={
-      'distribution':r'(?:Use of (?:Income|Profits)|Income Treatment|Distribution Policy|Affectation des r[ée]sultats|Politique de distribution|^Distribution)\s*[:\n]?\s*(Accumulating|Distributing|Capitalisation|Distribution|Reinvestment)\b',
+      'distribution':r'(?:Use of (?:Income|Profits)|Income Treatment|Distribution Policy|Affectation des r[ée]sultats|Politique de distribution|^Distribution)\s*[:\n]?\s*(Capitalisation (?:and/or|et/ou) distribution|Accumulating|Distributing|Capitalisation|Distribution|Reinvestment)\b',
       'domicile':r'(?:Fund Domicile|Domicile|Domiciliation(?: du fonds)?|Domicile du fonds)\s*[:\n]?\s*(Ireland|Irlande|Luxembourg|Germany|Allemagne|France|Jersey|(?:The )?Netherlands)\b',
       'replicationMethod':r'(?:Replication (?:Method|methodology)|M[ée]thode de r[ée]plication|Replication|R[ée]plication)\s*[:\n]?\s*(Physical(?:\s*\((?:Full replication|Optimised sampling)\))?|Synthetic|Physique|Synth[ée]tique|Direct Replication|Indirect\s*\(Swap Based\))\b',
       'pea':r'(?:PEA eligibility|PEA Eligible|Eligible PEA|[ÉE]ligibilit[ée] (?:au )?PEA|[ÉE]ligibilit[ée] au plan d[’\x27]Epargne en Actions \(PEA\)|PEA berechtigt|[ÉE]ligible (?:au )?PEA|R[ée]gime fiscal PEA)\s*[:\n]?\s*(Yes|No|Oui|Non|Keine|Ja|Nein)\b',
@@ -325,11 +325,13 @@ def parse_listings(body,source,url,checked):
                     break
     return [r|{'sourceUrl':url,'checkedAt':checked,'sha256':digest,'evidenceId':f"{isin}-{r['mic']}-{r['ticker']}-{r['currency']}"} for r in rows]
 
-def collect(source,now,fetch=download):
+def collect(source,now,fetch=download,on_document=None):
     values={};errors=[];conflicts=set();checked=now.date().isoformat()
-    for url in source['urls']:
+    for requested_url in source['urls']:
+        url=requested_url
         try:
             body,url=fetch_document(url,fetch,source['isin'])
+            if on_document:on_document(requested_url,url,body)
             try:
                 fields=parse_json(body,source['isin']) if body.lstrip().startswith(b'{') else parse_text(text_of(body),source['isin'])
             except ValueError as error:
