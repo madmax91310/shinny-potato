@@ -185,10 +185,10 @@ Actifs présentés sans historique automatique (Sans cotation : 7 · Historique 
 | iShares Global Aerospace & Defence UCITS ETF | IE000U9ODG19 | Oui | Oui | missing | Oui / Oui | Complète | Oui / Oui / Oui | Historique court — 1 année(s) complète(s) ; 6 requises en génération automatique |
 | Global X Silver Miners UCITS ETF USD Accumulating | IE000UL6CLP7 | Oui | — | manual | Oui / Oui | Partielle | Oui / Oui / Oui | — |
 | WisdomTree Quantum Computing UCITS ETF | IE000W8WMSL2 | Oui | Oui | missing | Oui / Oui | Partielle | — / — / Oui | Historique court — 0 année(s) complète(s) ; 6 requises en génération automatique |
-| SPDR S&P 500 UCITS ETF Acc | IE000XZSV718 | Oui | Oui | missing | Oui / Oui | Complète | Oui / Oui / Oui | Historique court — 2 année(s) complète(s) ; 6 requises en génération automatique |
+| SPDR S&P 500 UCITS ETF Acc | IE000XZSV718 | Oui | Oui | missing | Partiel / Oui | Complète | Oui / Oui / Oui | Historique court — 2 année(s) complète(s) ; 6 requises en génération automatique |
 | VanEck Space Innovators UCITS ETF | IE000YU9K6K2 | Oui | Oui | manual | Oui / Oui | Partielle | Oui / Oui / Oui | — |
 | VanEck Defense UCITS ETF | IE000YYE6WK5 | Oui | Oui | missing | Oui / Oui | Partielle | Oui / Oui / Oui | Historique court — 1 année(s) complète(s) ; 6 requises en génération automatique |
-| iShares China Large Cap UCITS ETF (Dist) | IE00B02KXK85 | Oui | Oui | manual | Oui / Oui | Complète | Oui / Oui / Oui | — |
+| iShares China Large Cap UCITS ETF (Dist) | IE00B02KXK85 | Oui | Oui | manual | Partiel / Oui | Complète | Oui / Oui / Oui | — |
 | iShares Euro Dividend UCITS ETF | IE00B0M62S72 | Oui | Oui | manual | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | iShares € Inflation Linked Govt Bond UCITS ETF | IE00B0M62X26 | Oui | Oui | automatic | Sans objet / Sans objet | Partielle | Oui / Oui / — | — |
 | iShares European Property Yield UCITS ETF | IE00B0M63284 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
