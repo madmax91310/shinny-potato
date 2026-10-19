@@ -38,7 +38,9 @@ class ConnectionsTests(unittest.TestCase):
   with self.assertRaises(ValueError):invesco_listing_rows(json.dumps(broken).encode(),'IE000716YHJ7',url)
  def test_exchange_rows_require_currency_and_exact_instrument(self):
   body=(FIX/'borsa-listing.html').read_bytes()
-  self.assertEqual(borsa_listing_rows(body,'IE00B4K6B022')[0]['currency'],'EUR')
+  self.assertEqual(borsa_listing_rows(body,'IE00B4K6B022'),[],'Fund denomination is not evidence of trading currency')
+  explicit=body.replace(b'Currency Denomination',b'Trading Currency')
+  self.assertEqual(borsa_listing_rows(explicit,'IE00B4K6B022')[0]['currency'],'EUR')
   self.assertEqual(borsa_listing_rows(body,'FR0011550185'),[])
   self.assertEqual(borsa_listing_rows(body.replace(b'>EUR<',b'><'),'IE00B4K6B022'),[])
  def test_rendered_exchange_identity_is_scoped_and_currency_is_explicit(self):
@@ -69,3 +71,17 @@ class ConnectionsTests(unittest.TestCase):
    values,errors=collect(source,dt.datetime(2026,10,19,tzinfo=dt.timezone.utc))
   self.assertIs(values['pea']['value'],False)
   self.assertFalse(any(e.get('qualificationRequired')for e in errors))
+
+ def test_lg_wrapped_london_venue_requires_own_share_on_each_row(self):
+  from collect_instrument_metadata import scoped_supplement_listings
+  for isin,ticker,symbol in [('IE00BF0M2Z96','BATT','BATT.L'),('IE00BK5BCD43','AIAI','LGAIAI.L')]:
+   text=(FIX/(isin+'-listing-section.txt')).read_text();rows=scoped_supplement_listings(text,isin)
+   self.assertIn((ticker,'USD',symbol),[(r['ticker'],r['currency'],r['symbol'])for r in rows])
+   self.assertEqual(scoped_supplement_listings(text,'IE00BK5BQT80'),[])
+   self.assertEqual(scoped_supplement_listings(text.replace('London Stock','OTHER EXCHANGE'),isin),[])
+ def test_dws_own_identity_is_separate_from_constituent_isins(self):
+  from collect_instrument_metadata import dws_factsheet_listings
+  isin='IE0006WW1TQ4';text=(FIX/(isin+'-listing-section.txt')).read_text();rows=dws_factsheet_listings(text,isin)
+  self.assertIn(('XSWX','EXUS','CHF','EXUS.S'),[(r['mic'],r['ticker'],r['currency'],r['symbol'])for r in rows])
+  self.assertEqual(dws_factsheet_listings(text,'CH0038863350'),[])
+  self.assertEqual(dws_factsheet_listings(text.replace('ISIN','UNLABELLED',1),isin),[])

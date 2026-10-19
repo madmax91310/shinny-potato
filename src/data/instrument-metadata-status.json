@@ -10885,12 +10885,7 @@
         "lastAttemptAt": "2026-10-19T18:28:18.006178+00:00",
         "lastSuccessAt": "2026-10-19",
         "sourceUrls": [
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/pdpMetaTagsTealium",
-          "https://etf.dws.com/fr-fr/AssetDownload/Index/410e8206-23cd-463b-b2a5-6018bfc1fd32/Factsheet.pdf",
-          "https://www.zonebourse.com/cours/etf/XTRACKERS-MSCI-WORLD-EX-U-169862014/",
-          "https://www.justetf.com/fr/etf-profile.html?isin=IE0006WW1TQ4",
-          "https://etf.dws.com/download/asset/82292b8e-bf9e-44f2-b20d-722c743110a3",
-          "https://www.boursedirect.fr/fr/marche/electronic-etf-etc-etn-and-open-end-funds-market/xtrackers-msci-world-ex-usa-uc-IE0006WW1TQ4-EXUS-EUR-ETFP/seance"
+          "https://etf.dws.com/download/asset/82292b8e-bf9e-44f2-b20d-722c743110a3"
         ],
         "cause": null,
         "sourceErrors": []
@@ -15894,11 +15889,7 @@
         "lastAttemptAt": "2026-10-19T18:28:18.006178+00:00",
         "lastSuccessAt": "2026-10-19",
         "sourceUrls": [
-          "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
-          "https://www.justetf.com/en/etf-profile.html?isin=IE00BF0M2Z96",
-          "https://www.justetf.com/fr/etf-profile.html?isin=IE00BF0M2Z96",
-          "https://www.borsaitaliana.it/CAETF/2025-92213-SUPPLEMENTS-6c5bd598-b83f-40ba-925d-a07046bf4e10.pdf",
-          "https://www.boursedirect.fr/fr/marche/six-swiss-exchange/l-g-battery-value-chain-IE00BF0M2Z96-BATT-EUR-XAMS-EUR-XSWX/seance"
+          "https://www.borsaitaliana.it/CAETF/2025-92213-SUPPLEMENTS-6c5bd598-b83f-40ba-925d-a07046bf4e10.pdf"
         ],
         "cause": null,
         "sourceErrors": []
@@ -16023,11 +16014,7 @@
         "lastAttemptAt": "2026-10-19T18:28:18.006178+00:00",
         "lastSuccessAt": "2026-10-19",
         "sourceUrls": [
-          "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
-          "https://www.justetf.com/en/etf-profile.html?isin=IE00BK5BCD43",
-          "https://www.justetf.com/fr/etf-profile.html?isin=IE00BK5BCD43",
-          "https://www.borsaitaliana.it/CAETF/2025-92212-SUPPLEMENTS-ec3a89e8-685a-41c4-9208-0d21cd7b5f21.pdf",
-          "https://www.boursedirect.fr/fr/marche/six-swiss-exchange/l-g-artificial-intelligence-IE00BK5BCD43-AIAI-CHF-XSWX/seance"
+          "https://www.borsaitaliana.it/CAETF/2025-92212-SUPPLEMENTS-ec3a89e8-685a-41c4-9208-0d21cd7b5f21.pdf"
         ],
         "cause": null,
         "sourceErrors": []
@@ -16902,15 +16889,14 @@
       "distribution",
       "domicile",
       "replicationMethod",
-      "currencyHedge"
-    ],
-    "pending": [
-      "pea",
+      "currencyHedge",
       "listings"
     ],
+    "pending": [
+      "pea"
+    ],
     "firstPendingAt": {
-      "pea": "2026-10-18T19:31:40.807499+00:00",
-      "listings": "2026-10-18T19:31:40.807499+00:00"
+      "pea": "2026-10-18T19:31:40.807499+00:00"
     },
     "errors": [
       {
@@ -16985,21 +16971,14 @@
         "sourceErrors": []
       },
       "listings": {
-        "status": "retained",
-        "lastAttemptAt": "2026-10-19T18:28:18.006178+00:00",
-        "lastSuccessAt": "2026-10-18",
+        "status": "observed",
+        "lastAttemptAt": "2026-10-19T19:26:56.713Z",
+        "lastSuccessAt": "2026-10-19",
         "sourceUrls": [
-          "https://swissfunddata.ch/sfdpub/docs/fsm-8522_03_03-20260930-en.pdf",
-          "https://www.justetf.com/fr/etf-profile.html?isin=IE00BD4TXV59",
-          "https://www.boursedirect.fr/fr/marche/london-stock-exchange/ubs-irl-etf-plc-ubs-core-msc-IE00BD4TXV59-WRDA-GBX-XLON/seance"
+          "https://live.euronext.com/en/product/etfs/IE00BD4TXV59-ETFP"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
-        "sourceErrors": [
-          {
-            "sourceUrl": "https://www.boursedirect.fr/fr/marche/london-stock-exchange/ubs-irl-etf-plc-ubs-core-msc-IE00BD4TXV59-WRDA-GBX-XLON/seance",
-            "error": "Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
-          }
-        ]
+        "cause": null,
+        "sourceErrors": []
       }
     }
   },
@@ -17185,14 +17164,11 @@
       "domicile",
       "replicationMethod",
       "currencyHedge",
-      "pea"
-    ],
-    "pending": [
+      "pea",
       "listings"
     ],
-    "firstPendingAt": {
-      "listings": "2026-10-18T19:31:40.807499+00:00"
-    },
+    "pending": [],
+    "firstPendingAt": {},
     "errors": [
       {
         "sourceUrl": "https://dokumenty.analizy.pl/pobierz/etf/E_AXAIC001_A_USD/KA/2026-09-30",
@@ -17263,25 +17239,14 @@
         "sourceErrors": []
       },
       "listings": {
-        "status": "retained",
-        "lastAttemptAt": "2026-10-19T18:28:18.006178+00:00",
-        "lastSuccessAt": "2026-10-18",
+        "status": "observed",
+        "lastAttemptAt": "2026-10-19T19:24:52.862Z",
+        "lastSuccessAt": "2026-10-19",
         "sourceUrls": [
-          "https://dokumenty.analizy.pl/pobierz/etf/E_AXAIC001_A_USD/KA/2026-09-30",
-          "https://www.justetf.com/fr/etf-profile.html?isin=IE000QDFFK00",
-          "https://www.boursedirect.fr/fr/marche/euronext-paris/bnp-paribas-easy-ii-nasdaq-100-IE000QDFFK00-ANAU-EUR-XPAR/seance"
+          "https://live.euronext.com/en/product/etfs/IE000QDFFK00-XPAR"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
-        "sourceErrors": [
-          {
-            "sourceUrl": "https://dokumenty.analizy.pl/pobierz/etf/E_AXAIC001_A_USD/KA/2026-09-30",
-            "error": "No explicit supported metadata fields"
-          },
-          {
-            "sourceUrl": "https://www.boursedirect.fr/fr/marche/euronext-paris/bnp-paribas-easy-ii-nasdaq-100-IE000QDFFK00-ANAU-EUR-XPAR/seance",
-            "error": "Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
-          }
-        ]
+        "cause": null,
+        "sourceErrors": []
       }
     }
   },

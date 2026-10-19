@@ -361,11 +361,11 @@ def borsa_listing_rows(body,isin):
             cells=tr.find_all(['th','td'],recursive=False)
             if len(cells)!=2:continue
             key,value=[cell.get_text(' ',strip=True) for cell in cells]
-            if key in ('Isin Code','MIC','Alphanumeric Code','Currency Denomination'):
+            if key in ('Isin Code','MIC','Alphanumeric Code','Trading Currency'):
                 if key in fields:raise ValueError('Duplicate exchange identity field')
                 fields[key]=value
         if fields.get('Isin Code')!=isin:continue
-        mic=fields.get('MIC');ticker=fields.get('Alphanumeric Code');currency=fields.get('Currency Denomination')
+        mic=fields.get('MIC');ticker=fields.get('Alphanumeric Code');currency=fields.get('Trading Currency')
         if mic not in CANONICAL_EXCHANGES or not re.fullmatch(r'[A-Z]{3}',currency or '') or not re.fullmatch(r'[A-Za-z0-9]+',ticker or ''):continue
         found.append(dict(ticker=ticker,mic=mic,exchange=CANONICAL_EXCHANGES[mic],currency=currency,excerpt=isin+' | '+table.get_text(' ',strip=True)))
     if len(found)>1:raise ValueError('Ambiguous exchange identity tables')
@@ -388,6 +388,38 @@ def euronext_listing_rows(body,isin,url):
     mic=instrument.get('mic');ticker=instrument.get('symbol')
     if mic not in CANONICAL_EXCHANGES or not re.fullmatch(r'[A-Za-z0-9]+',ticker or ''):raise ValueError('Unsupported exchange trading identity')
     return [dict(ticker=ticker,mic=mic,exchange=CANONICAL_EXCHANGES[mic],currency=currency[0],excerpt=isin+' | '+json.dumps(instrument,sort_keys=True)+' | Currency '+currency[0])]
+
+
+def scoped_supplement_listings(text,isin):
+    """Exchange-published L&G supplements: own ISIN on every trading row."""
+    if 'STOCK EXCHANGE LISTINGS' not in text or 'DEALING PROCEDURES' not in text:return []
+    block=text.split('STOCK EXCHANGE LISTINGS',1)[1].split('DEALING PROCEDURES',1)[0]
+    if not all(label in block for label in ('Listing','ISIN','Bloomberg','Reuters code')):return []
+    lines=block.splitlines();rows=[]
+    for i,line in enumerate(lines):
+        match=re.match(r'^(.+?)\s{2,}([A-Z]{3})\s+([A-Z0-9]{12})\s+([A-Z0-9]+)\s+(LN)\s+([A-Za-z0-9]+\.L)\s*$',line)
+        if not match or match[3]!=isin:continue
+        # The wrapped venue remains part of this row. LN alone is not venue evidence.
+        if not match[1].rstrip().endswith('London Stock') or i+1>=len(lines) or lines[i+1].strip()not in ('Exchange','ETF                    Shares    Exchange'):continue
+        rows.append(dict(ticker=match[4],mic='XLON',exchange='London Stock Exchange',currency=match[2],symbol=match[6],excerpt=isin+' | London Stock Exchange | '+' '.join((line+' '+lines[i+1]).split())))
+    return rows
+
+
+def dws_factsheet_listings(text,isin):
+    # The explicitly labelled fund identity excludes the separate holdings ISIN column.
+    identities=re.findall(r'^\s*ISIN\s+([A-Z0-9]{12})\b',text,re.M)
+    if identities!=[isin] or text.count('Listing and trading information')!=1:return []
+    block=text.split('Listing and trading information',1)[1].split('\f',1)[0]
+    if not all(label in block for label in ('Bloomberg','Reuters','Trading','Currency')):return []
+    venues={'Borsa Italiana':('ETFP','IM'),'London Stock Exchange':('XLON','LN'),'SIX - Swiss Exchange':('XSWX','SW'),'XETRA':('XETR','GY')}
+    rows=[]
+    for line in block.splitlines():
+        match=re.fullmatch(r'\s*(.+?)\s{2,}([A-Z0-9]+)\s+(IM|LN|SW|GY)\s+([A-Za-z0-9]+\.[A-Za-z]+)\s+([A-Z]{3})\s*',line)
+        if not match or match[1]not in venues:continue
+        mic,suffix=venues[match[1]]
+        if match[3]!=suffix:raise ValueError('Conflicting DWS venue and Bloomberg market')
+        rows.append(dict(ticker=match[2],mic=mic,exchange=CANONICAL_EXCHANGES[mic],currency=match[5],symbol=match[4],excerpt=isin+' | '+' '.join(line.split())))
+    return rows
 
 
 def parse_listings(body,source,url,checked):
@@ -441,6 +473,11 @@ def parse_listings(body,source,url,checked):
                              excerpt=' | '.join([isin,exchange,ticker,currency,str(symbol or '')])))
     else:
         text=text_of(body)
+        scoped=[]
+        if body.startswith(b'%PDF') and urlsplit(url).hostname=='www.borsaitaliana.it':scoped=scoped_supplement_listings(text,isin)
+        if body.startswith(b'%PDF') and urlsplit(url).hostname=='etf.dws.com':scoped=dws_factsheet_listings(text,isin)
+        if scoped:
+            rows.extend(scoped)
         identities=set(re.findall(r'\b[A-Z]{2}[A-Z0-9]{9}\d\b',text))
         if isin not in identities:raise ValueError('Missing listing document identity')
         if body.startswith(b'%PDF-'):

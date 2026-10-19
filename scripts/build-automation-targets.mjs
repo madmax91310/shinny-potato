@@ -34,8 +34,8 @@ for(const [isin,r] of Object.entries(AUTOMATED_ETF)) {
  if(!METADATA[isin]?.pea||METADATA[isin]?.pea?.sourceUrl?.startsWith('https://bourse.fortuneo.fr/'))urls.push('https://bourse.fortuneo.fr/api/search?term='+isin)
  if(urls.some(url=>url?.includes('invesco.com/')))
   urls.push('https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/'+isin+'?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData')
- if(['FR0011550185','FR0011550193','IE00B4K6B022'].includes(isin))urls.push('https://live.euronext.com/en/product/etfs/'+isin+'-XPAR')
- if(isin==='IE00B4K6B022')urls.push('https://www.borsaitaliana.it/borsa/etf/scheda/'+isin+'-ETFP.html?lang=en')
+ if(['FR0011550185','FR0011550193','IE00B4K6B022','IE000QDFFK00'].includes(isin))urls.push('https://live.euronext.com/en/product/etfs/'+isin+'-XPAR')
+ if(isin==='IE00BD4TXV59')urls.push('https://live.euronext.com/en/product/etfs/'+isin+'-ETFP')
  // Characteristics only need the fund facts and listings; full holdings exceed the download limit.
  const endpoint=blackrockCharacteristicsEndpoint
  // WisdomTree product pages answer 403 to automated clients; its official factsheet API does not.

@@ -108,3 +108,24 @@ Les tests de connexion vérifient les réponses réelles archivées et les cas d
 identité, devise absente, recherche vide, routes injectées et contradictions. Chromium
 vérifie les huit nouvelles cotations et un statut PEA nouvellement documenté dans
 les Fiches ETF, puis leur consommation par un Comparatif ETF, sur mobile et ordinateur.
+
+Les six diagnostics de cotation anciens du relevé initial ont également été
+traités : les nouveaux raccordements couvrent BNP et Invesco ; les lignes de
+Londres des suppléments L&G sont liées à l’ISIN de chaque ligne et à leur libellé
+de place sur deux lignes. La table DWS est liée à l’ISIN explicitement étiqueté
+du fonds et à sa section de cotations ; les ISIN des titres détenus restent séparés.
+Ces lecteurs conservent les RIC publiés (dont LGAIAI.L), sans les fabriquer à partir
+du ticker. Les preuves relues dans les archives gardent leur date de téléchargement.
+
+L’audit des sources primaires a également détecté deux ensembles anciens conservés
+dans des copies de documents (UBS IE00BD4TXV59 et BNP IE000QDFFK00). Ils ont été
+remplacés par les propres tables de cotation Euronext, pour Milan et Paris. Le
+compteur de 258 ensembles correspond ainsi à des sources acceptées par l’audit
+commun, et non à la simple présence d’une clé dans un fichier JSON. L’audit accepte
+un MIC explicitement étiqueté dans la table ou les paramètres de l’instrument ;
+un code isolé ou l’identifiant d’une autre propriété ne prouve aucune place.
+
+La « Currency Denomination » de Borsa Italiana décrit la dénomination de la part
+et ne qualifie jamais sa devise de cotation. Le cas UBS WRDA en donne une vérification
+réelle : part en USD, mais cotation milanaise en EUR. Seul le champ de cotation
+explicite de la page de marché est retenu pour la devise de négociation.

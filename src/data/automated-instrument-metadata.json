@@ -9619,10 +9619,10 @@
           "exchange": "London Stock Exchange",
           "currency": "GBP",
           "symbol": "XMWX.L",
-          "excerpt": "IE0006WW1TQ4 | London Stock Exchange | XMWX LN | GBP | XMWX.L",
-          "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/pdpMetaTagsTealium",
+          "excerpt": "IE0006WW1TQ4 | London Stock Exchange XMWX LN XMWX.L GBP",
+          "sourceUrl": "https://etf.dws.com/download/asset/82292b8e-bf9e-44f2-b20d-722c743110a3",
           "checkedAt": "2026-10-19",
-          "sha256": "063b5534a2e91e713b59f25d71d7ad89c3a8352d256e6392dbdf3ef94fcf499b",
+          "sha256": "47323ef398039910dcc245c6003701145b3150e006532115abea75f2530fef6c",
           "evidenceId": "IE0006WW1TQ4-XLON-XMWX-GBP"
         },
         {
@@ -9631,10 +9631,10 @@
           "exchange": "London Stock Exchange",
           "currency": "USD",
           "symbol": "EXUS.L",
-          "excerpt": "IE0006WW1TQ4 | London Stock Exchange | EXUS LN | USD | EXUS.L",
-          "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/pdpMetaTagsTealium",
+          "excerpt": "IE0006WW1TQ4 | London Stock Exchange EXUS LN EXUS.L USD",
+          "sourceUrl": "https://etf.dws.com/download/asset/82292b8e-bf9e-44f2-b20d-722c743110a3",
           "checkedAt": "2026-10-19",
-          "sha256": "063b5534a2e91e713b59f25d71d7ad89c3a8352d256e6392dbdf3ef94fcf499b",
+          "sha256": "47323ef398039910dcc245c6003701145b3150e006532115abea75f2530fef6c",
           "evidenceId": "IE0006WW1TQ4-XLON-EXUS-USD"
         },
         {
@@ -9643,10 +9643,10 @@
           "exchange": "Xetra",
           "currency": "EUR",
           "symbol": "EXUS.DE",
-          "excerpt": "IE0006WW1TQ4 | XETRA | EXUS GY | EUR | EXUS.DE",
-          "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/pdpMetaTagsTealium",
+          "excerpt": "IE0006WW1TQ4 | XETRA EXUS GY EXUS.DE EUR",
+          "sourceUrl": "https://etf.dws.com/download/asset/82292b8e-bf9e-44f2-b20d-722c743110a3",
           "checkedAt": "2026-10-19",
-          "sha256": "063b5534a2e91e713b59f25d71d7ad89c3a8352d256e6392dbdf3ef94fcf499b",
+          "sha256": "47323ef398039910dcc245c6003701145b3150e006532115abea75f2530fef6c",
           "evidenceId": "IE0006WW1TQ4-XETR-EXUS-EUR"
         },
         {
@@ -9655,16 +9655,28 @@
           "exchange": "Borsa Italiana",
           "currency": "EUR",
           "symbol": "EXUS.MI",
-          "excerpt": "IE0006WW1TQ4 | Borsa Italiana | EXUS IM | EUR | EXUS.MI",
-          "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/pdpMetaTagsTealium",
+          "excerpt": "IE0006WW1TQ4 | Borsa Italiana EXUS IM EXUS.MI EUR",
+          "sourceUrl": "https://etf.dws.com/download/asset/82292b8e-bf9e-44f2-b20d-722c743110a3",
           "checkedAt": "2026-10-19",
-          "sha256": "063b5534a2e91e713b59f25d71d7ad89c3a8352d256e6392dbdf3ef94fcf499b",
+          "sha256": "47323ef398039910dcc245c6003701145b3150e006532115abea75f2530fef6c",
           "evidenceId": "IE0006WW1TQ4-ETFP-EXUS-EUR"
+        },
+        {
+          "ticker": "EXUS",
+          "mic": "XSWX",
+          "exchange": "SIX Swiss Exchange",
+          "currency": "CHF",
+          "symbol": "EXUS.S",
+          "excerpt": "IE0006WW1TQ4 | SIX - Swiss Exchange EXUS SW EXUS.S CHF",
+          "sourceUrl": "https://etf.dws.com/download/asset/82292b8e-bf9e-44f2-b20d-722c743110a3",
+          "checkedAt": "2026-10-19",
+          "sha256": "47323ef398039910dcc245c6003701145b3150e006532115abea75f2530fef6c",
+          "evidenceId": "IE0006WW1TQ4-XSWX-EXUS-CHF"
         }
       ],
+      "sourceUrl": "https://etf.dws.com/download/asset/82292b8e-bf9e-44f2-b20d-722c743110a3",
       "checkedAt": "2026-10-19",
-      "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/pdpMetaTagsTealium",
-      "sha256": "063b5534a2e91e713b59f25d71d7ad89c3a8352d256e6392dbdf3ef94fcf499b"
+      "sha256": "47323ef398039910dcc245c6003701145b3150e006532115abea75f2530fef6c"
     },
     "currencyHedge": {
       "value": false,
@@ -13796,17 +13808,6 @@
     "listings": {
       "value": [
         {
-          "ticker": "H50E",
-          "mic": "ETFP",
-          "exchange": "Borsa Italiana",
-          "currency": "EUR",
-          "excerpt": "IE00B4K6B022 | Instrument Type ETF Class Class 2 Equity Index ETF Alphanumeric Code H50E Isin Code IE00B4K6B022 MIC ETFP Lot Size 1.00 Total Annual Fees 0.05% Currency Denomination EUR",
-          "sourceUrl": "https://www.borsaitaliana.it/borsa/etf/scheda/IE00B4K6B022-ETFP.html?lang=en",
-          "checkedAt": "2026-10-19",
-          "sha256": "a5ff53d93d407ef19984d9782997798c519804de95ea5fe2fec26c5d5522fd30",
-          "evidenceId": "IE00B4K6B022-ETFP-H50E-EUR"
-        },
-        {
           "ticker": "50E",
           "mic": "XPAR",
           "exchange": "Euronext Paris",
@@ -13904,10 +13905,34 @@
           "checkedAt": "2026-10-19",
           "sha256": "413ec84b1831c42490414004b591a31c858249f2c28ff342bfb145742bb44912",
           "evidenceId": "IE00BF0M2Z96-ETFP-BATT-EUR"
+        },
+        {
+          "ticker": "BATT",
+          "mic": "XLON",
+          "exchange": "London Stock Exchange",
+          "currency": "USD",
+          "symbol": "BATT.L",
+          "excerpt": "IE00BF0M2Z96 | London Stock Exchange | USD Accumulating ETF London Stock USD IE00BF0M2Z96 BATT LN BATT.L ETF Shares Exchange",
+          "sourceUrl": "https://www.borsaitaliana.it/CAETF/2025-92213-SUPPLEMENTS-6c5bd598-b83f-40ba-925d-a07046bf4e10.pdf",
+          "checkedAt": "2026-10-19",
+          "sha256": "413ec84b1831c42490414004b591a31c858249f2c28ff342bfb145742bb44912",
+          "evidenceId": "IE00BF0M2Z96-XLON-BATT-USD"
+        },
+        {
+          "ticker": "BATG",
+          "mic": "XLON",
+          "exchange": "London Stock Exchange",
+          "currency": "GBX",
+          "symbol": "BATG.L",
+          "excerpt": "IE00BF0M2Z96 | London Stock Exchange | London Stock GBX IE00BF0M2Z96 BATG LN BATG.L Exchange",
+          "sourceUrl": "https://www.borsaitaliana.it/CAETF/2025-92213-SUPPLEMENTS-6c5bd598-b83f-40ba-925d-a07046bf4e10.pdf",
+          "checkedAt": "2026-10-19",
+          "sha256": "413ec84b1831c42490414004b591a31c858249f2c28ff342bfb145742bb44912",
+          "evidenceId": "IE00BF0M2Z96-XLON-BATG-GBX"
         }
       ],
-      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.borsaitaliana.it/CAETF/2025-92213-SUPPLEMENTS-6c5bd598-b83f-40ba-925d-a07046bf4e10.pdf",
+      "checkedAt": "2026-10-19",
       "sha256": "413ec84b1831c42490414004b591a31c858249f2c28ff342bfb145742bb44912"
     },
     "currencyHedge": {
@@ -13954,10 +13979,34 @@
           "checkedAt": "2026-10-19",
           "sha256": "048be63b906ca042a324fa7c6ed6d6da8b481450c4d3a303997b652c627e0f51",
           "evidenceId": "IE00BK5BCD43-ETFP-AIAI-EUR"
+        },
+        {
+          "ticker": "AIAI",
+          "mic": "XLON",
+          "exchange": "London Stock Exchange",
+          "currency": "USD",
+          "symbol": "LGAIAI.L",
+          "excerpt": "IE00BK5BCD43 | London Stock Exchange | USD Accumulating ETF ETF Shares London Stock USD IE00BK5BCD43 AIAI LN LGAIAI.L Exchange",
+          "sourceUrl": "https://www.borsaitaliana.it/CAETF/2025-92212-SUPPLEMENTS-ec3a89e8-685a-41c4-9208-0d21cd7b5f21.pdf",
+          "checkedAt": "2026-10-19",
+          "sha256": "048be63b906ca042a324fa7c6ed6d6da8b481450c4d3a303997b652c627e0f51",
+          "evidenceId": "IE00BK5BCD43-XLON-AIAI-USD"
+        },
+        {
+          "ticker": "AIAG",
+          "mic": "XLON",
+          "exchange": "London Stock Exchange",
+          "currency": "GBX",
+          "symbol": "AIAG.L",
+          "excerpt": "IE00BK5BCD43 | London Stock Exchange | London Stock GBX IE00BK5BCD43 AIAG LN AIAG.L Exchange",
+          "sourceUrl": "https://www.borsaitaliana.it/CAETF/2025-92212-SUPPLEMENTS-ec3a89e8-685a-41c4-9208-0d21cd7b5f21.pdf",
+          "checkedAt": "2026-10-19",
+          "sha256": "048be63b906ca042a324fa7c6ed6d6da8b481450c4d3a303997b652c627e0f51",
+          "evidenceId": "IE00BK5BCD43-XLON-AIAG-GBX"
         }
       ],
-      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.borsaitaliana.it/CAETF/2025-92212-SUPPLEMENTS-ec3a89e8-685a-41c4-9208-0d21cd7b5f21.pdf",
+      "checkedAt": "2026-10-19",
       "sha256": "048be63b906ca042a324fa7c6ed6d6da8b481450c4d3a303997b652c627e0f51"
     },
     "currencyHedge": {
@@ -14610,45 +14659,20 @@
     "listings": {
       "value": [
         {
-          "ticker": "UETW",
-          "mic": "XETR",
-          "exchange": "Xetra",
+          "ticker": "WRDA",
+          "mic": "ETFP",
+          "exchange": "Borsa Italiana",
           "currency": "EUR",
-          "symbol": "UETW.DE",
-          "excerpt": "IE00BD4TXV59 | Deutsche Börse (XETRA) EUR 09:00am - 05:30pm CET UETW GY UETW.DE UETWEUIV",
-          "sourceUrl": "https://swissfunddata.ch/sfdpub/docs/fsm-8522_03_03-20260930-en.pdf",
-          "checkedAt": "2026-10-18",
-          "sha256": "8bdbf7953d336b2f37608e4b97f7d2d7c12cae1c1009625721779ce975cda13e",
-          "evidenceId": "IE00BD4TXV59-XETR-UETW-EUR"
-        },
-        {
-          "ticker": "WRDUSW",
-          "mic": "XSWX",
-          "exchange": "SIX Swiss Exchange",
-          "currency": "USD",
-          "symbol": "WRDUSW.SW",
-          "excerpt": "IE00BD4TXV59 | SIX Swiss Exchange USD 09:00am - 05:30pm CET WRDUSW SW WRDUSW.S WRDUUSIV",
-          "sourceUrl": "https://swissfunddata.ch/sfdpub/docs/fsm-8522_03_03-20260930-en.pdf",
-          "checkedAt": "2026-10-18",
-          "sha256": "8bdbf7953d336b2f37608e4b97f7d2d7c12cae1c1009625721779ce975cda13e",
-          "evidenceId": "IE00BD4TXV59-XSWX-WRDUSW-USD"
-        },
-        {
-          "ticker": "WRDB",
-          "mic": "XLON",
-          "exchange": "London Stock Exchange",
-          "currency": "USD",
-          "symbol": "WRDB.L",
-          "excerpt": "IE00BD4TXV59 | London Stock Exchange USD 09:00am - 05:30pm CET WRDB LN WRDB.L WRDUUSIV",
-          "sourceUrl": "https://swissfunddata.ch/sfdpub/docs/fsm-8522_03_03-20260930-en.pdf",
-          "checkedAt": "2026-10-18",
-          "sha256": "8bdbf7953d336b2f37608e4b97f7d2d7c12cae1c1009625721779ce975cda13e",
-          "evidenceId": "IE00BD4TXV59-XLON-WRDB-USD"
+          "excerpt": "IE00BD4TXV59 | {\"default_period\": {\"range\": \"1D\", \"type\": \"intraday\"}, \"isin\": \"IE00BD4TXV59\", \"issuer_code\": \"199245\", \"mic\": \"ETFP\", \"name\": \"UBSETFMSTRUSETFP\", \"product_data\": \"IE00BD4TXV59-ETFP\", \"symbol\": \"WRDA\", \"type\": \"TRACK\", \"url_type\": \"etfs\"} | Currency EUR",
+          "sourceUrl": "https://live.euronext.com/en/product/etfs/IE00BD4TXV59-ETFP",
+          "checkedAt": "2026-10-19",
+          "sha256": "94049f4b6be8cfffc293a886f7cd48771a4e6db0814f718d069cae80ee3762bd",
+          "evidenceId": "IE00BD4TXV59-ETFP-WRDA-EUR"
         }
       ],
-      "checkedAt": "2026-10-18",
-      "sourceUrl": "https://swissfunddata.ch/sfdpub/docs/fsm-8522_03_03-20260930-en.pdf",
-      "sha256": "8bdbf7953d336b2f37608e4b97f7d2d7c12cae1c1009625721779ce975cda13e"
+      "sourceUrl": "https://live.euronext.com/en/product/etfs/IE00BD4TXV59-ETFP",
+      "checkedAt": "2026-10-19",
+      "sha256": "94049f4b6be8cfffc293a886f7cd48771a4e6db0814f718d069cae80ee3762bd"
     },
     "distribution": {
       "value": "Accumulating",
@@ -14820,41 +14844,16 @@
           "mic": "XPAR",
           "exchange": "Euronext Paris",
           "currency": "EUR",
-          "symbol": "ANAU.PA",
-          "excerpt": "IE000QDFFK00 | EURONEXT P EUR ANAU FP",
-          "sourceUrl": "https://dokumenty.analizy.pl/pobierz/etf/E_AXAIC001_A_USD/KA/2026-09-30",
-          "checkedAt": "2026-10-18",
-          "sha256": "c6cc58c21971229076a6d705950d8f969fa3501c45aff6d3e44389e3cc33f20d",
+          "excerpt": "IE000QDFFK00 | {\"default_period\": {\"range\": \"1D\", \"type\": \"intraday\"}, \"isin\": \"IE000QDFFK00\", \"issuer_code\": \"600338\", \"mic\": \"XPAR\", \"name\": \"AXAETFNNDXXPAR\", \"product_data\": \"IE000QDFFK00-XPAR\", \"symbol\": \"ANAU\", \"type\": \"TRACK\", \"url_type\": \"etfs\"} | Currency EUR",
+          "sourceUrl": "https://live.euronext.com/en/product/etfs/IE000QDFFK00-XPAR",
+          "checkedAt": "2026-10-19",
+          "sha256": "5e40460b179fbae89d393a71bdeaf7ed052fe22b15511b4f295a0a16da2c4557",
           "evidenceId": "IE000QDFFK00-XPAR-ANAU-EUR"
-        },
-        {
-          "ticker": "ANAU",
-          "mic": "XETR",
-          "exchange": "Xetra",
-          "currency": "USD",
-          "symbol": "ANAU.DE",
-          "excerpt": "IE000QDFFK00 | XETRA USD ANAU GY",
-          "sourceUrl": "https://dokumenty.analizy.pl/pobierz/etf/E_AXAIC001_A_USD/KA/2026-09-30",
-          "checkedAt": "2026-10-18",
-          "sha256": "c6cc58c21971229076a6d705950d8f969fa3501c45aff6d3e44389e3cc33f20d",
-          "evidenceId": "IE000QDFFK00-XETR-ANAU-USD"
-        },
-        {
-          "ticker": "ANAU",
-          "mic": "ETFP",
-          "exchange": "Borsa Italiana",
-          "currency": "EUR",
-          "symbol": "ANAU.MI",
-          "excerpt": "IE000QDFFK00 | All definitions of risks indicators are available in the section 'Glossary' below Borsa Italiana S.P.A. EUR ANAU IM",
-          "sourceUrl": "https://dokumenty.analizy.pl/pobierz/etf/E_AXAIC001_A_USD/KA/2026-09-30",
-          "checkedAt": "2026-10-18",
-          "sha256": "c6cc58c21971229076a6d705950d8f969fa3501c45aff6d3e44389e3cc33f20d",
-          "evidenceId": "IE000QDFFK00-ETFP-ANAU-EUR"
         }
       ],
-      "checkedAt": "2026-10-18",
-      "sourceUrl": "https://dokumenty.analizy.pl/pobierz/etf/E_AXAIC001_A_USD/KA/2026-09-30",
-      "sha256": "c6cc58c21971229076a6d705950d8f969fa3501c45aff6d3e44389e3cc33f20d"
+      "sourceUrl": "https://live.euronext.com/en/product/etfs/IE000QDFFK00-XPAR",
+      "checkedAt": "2026-10-19",
+      "sha256": "5e40460b179fbae89d393a71bdeaf7ed052fe22b15511b4f295a0a16da2c4557"
     },
     "distribution": {
       "value": "Capitalisation",

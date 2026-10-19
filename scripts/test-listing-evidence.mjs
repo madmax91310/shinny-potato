@@ -63,3 +63,11 @@ assert.equal(currentListingEvidence({ a: newerProof }, { a: olderProof }, {}, {}
 assert.deepEqual(currentListingEvidence({ retired: olderProof }, [], { FR001400U5Q4: [] }, {}), {});
 assert.equal(currentListingEvidence({}, { a: olderProof }, {}, {}).a, olderProof);
 console.log('Listing evidence keeps the newest observation regardless of collector order.');
+
+for(const excerpt of ['MIC XPAR | DCAM EUR','MIC | XPAR | DCAM EUR','{"mic":"XPAR","symbol":"DCAM","currency":"EUR"}']){
+ const mic=structuredClone(fixture);mic.evidence.a.excerpt=excerpt;assert.deepEqual(validateListingEvidence(mic),[]);
+}
+for(const excerpt of ['MIC XAMS | DCAM EUR','XPAR DCAM EUR','{"otherMic":"XPAR","symbol":"DCAM","currency":"EUR"}']){
+ const mic=structuredClone(fixture);mic.evidence.a.excerpt=excerpt;assert(validateListingEvidence(mic).some(error=>error.includes('place sans preuve')));
+}
+
