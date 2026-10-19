@@ -42,7 +42,8 @@ for(const [isin,r] of Object.entries(AUTOMATED_ETF)) {
  const issuerDocuments=urls.some(url=>url?.includes('wisdomtree.com/'))&&wisdomtreeFactsheet(isin)?[wisdomtreeFactsheet(isin)]:[]
  const review=PEA_REVIEWS_BY_ISIN[isin]
  // A later unavailable page cannot erase a previously observed contradiction.
- const qualificationHolds=[...(holds.has(isin)?[holds.get(isin)]:[]),...(previousStatus[isin]?.errors??[]).filter(error=>error.qualificationRequired&&error.sources?.length>=2&&['pea','currencyHedge'].includes(error.field)).map(({field,sources})=>({field,sources}))]
+ // Keep one qualification condition per field and set of public source URLs.
+ const qualificationHolds=[...new Map(([...(holds.has(isin)?[holds.get(isin)]:[]),...(previousStatus[isin]?.errors??[]).filter(error=>error.qualificationRequired&&error.sources?.length>=2&&['pea','currencyHedge'].includes(error.field)).map(({field,sources})=>({field,sources}))]).map(hold=>[JSON.stringify([hold.field,hold.sources.map(row=>row.sourceUrl).sort()]),hold])).values()]
  urls.push(...qualificationHolds.flatMap(hold=>hold.sources.map(row=>row.sourceUrl)))
  metadata.push({isin,listings,...(typeof review?.eligible==='boolean'?{peaExpectation:{value:review.eligible,sourceUrl:review.sourceUrl,checkedAt:review.checkedAt}}:{}),urls:[...new Set([...urls.filter(Boolean),...issuerDocuments].map(currentDocument).map(endpoint))],...(qualificationHolds.length?{qualificationHolds}:{})})
  if(existing[isin])continue
