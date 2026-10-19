@@ -1,9 +1,112 @@
 {
-  "checkedAt": "2026-10-18T13:10:47.041Z",
+  "checkedAt": "2026-10-19T15:03:47.754Z",
   "total": 647,
   "outside": 41,
-  "complete": 606,
-  "gaps": [],
+  "complete": 602,
+  "gaps": [
+    {
+      "asset": "IE00B1XNHC34",
+      "isin": "IE00B1XNHC34",
+      "name": "iShares Global Clean Energy Transition UCITS ETF",
+      "kind": "etf",
+      "provider": "iShares",
+      "countries": {
+        "coverage": 0,
+        "eligible": 100,
+        "outside": false,
+        "missing": 100,
+        "reasons": [
+          "Poids signés incompatibles avec un donut"
+        ],
+        "asOf": null
+      },
+      "sectors": {
+        "coverage": 0,
+        "eligible": 100,
+        "outside": false,
+        "missing": 100,
+        "reasons": [
+          "Poids signés incompatibles avec un donut"
+        ],
+        "asOf": null
+      }
+    },
+    {
+      "asset": "IE00B02KXK85",
+      "isin": "IE00B02KXK85",
+      "name": "iShares China Large Cap UCITS ETF (Dist)",
+      "kind": "etf",
+      "provider": "iShares",
+      "countries": {
+        "coverage": 0,
+        "eligible": 100,
+        "outside": false,
+        "missing": 100,
+        "reasons": [
+          "Poids signés incompatibles avec un donut"
+        ],
+        "asOf": null
+      },
+      "sectors": {
+        "coverage": 100,
+        "eligible": 100,
+        "outside": false,
+        "missing": 0,
+        "reasons": [],
+        "asOf": "2026-10-16"
+      }
+    },
+    {
+      "asset": "IE00BQT3WG13",
+      "isin": "IE00BQT3WG13",
+      "name": "iShares MSCI China A UCITS ETF (Acc)",
+      "kind": "etf",
+      "provider": "iShares",
+      "countries": {
+        "coverage": 0,
+        "eligible": 100,
+        "outside": false,
+        "missing": 100,
+        "reasons": [
+          "Poids signés incompatibles avec un donut"
+        ],
+        "asOf": null
+      },
+      "sectors": {
+        "coverage": 100,
+        "eligible": 100,
+        "outside": false,
+        "missing": 0,
+        "reasons": [],
+        "asOf": "2026-10-16"
+      }
+    },
+    {
+      "asset": "IE000XZSV718",
+      "isin": "IE000XZSV718",
+      "name": "SPDR S&P 500 UCITS ETF Acc",
+      "kind": "etf",
+      "provider": "State Street",
+      "countries": {
+        "coverage": 0,
+        "eligible": 100,
+        "outside": false,
+        "missing": 100,
+        "reasons": [
+          "Poids signés incompatibles avec un donut"
+        ],
+        "asOf": null
+      },
+      "sectors": {
+        "coverage": 100,
+        "eligible": 100,
+        "outside": false,
+        "missing": 0,
+        "reasons": [],
+        "asOf": "2026-10-16"
+      }
+    }
+  ],
   "outsideAssets": [
     {
       "asset": "gold",
