@@ -16,14 +16,16 @@ async function request(isin,url){
  catch(e){manifest.push({isin,requestedUrl:url,error:String(e)});writeFileSync(out+'/manifest.json',JSON.stringify(manifest,null,2))}
 }
 try{
- for(const [isin,url,kind] of [
- ['IE000DQLYVB9','https://live.euronext.com/en/product/etfs/IE000DQLYVB9-XPAR','euronext-browser'],
- ['IE000716YHJ7','https://www.quantalys.com/Fonds/Recherche?isin=IE000716YHJ7','public-browser']
- ]){
- const page=await context.newPage();
- try{const response=await page.goto(url,{timeout:30000,waitUntil:'domcontentloaded'});if(kind==='euronext-browser')await page.getByText('Currency',{exact:true}).waitFor({timeout:25000});else await page.waitForTimeout(4000);await save(isin,url,Buffer.from(await page.content()),response?.status(),page.url(),kind)}catch(e){manifest.push({isin,requestedUrl:url,error:String(e)})}
+ for(const isin of ['IE000716YHJ7','IE0003XJA0J9','IE00B0M62S72']){
+ const url='https://www.quantalys.com/Fonds/Recherche?isin='+isin,page=await context.newPage();
+ try{
+ await page.goto(url,{timeout:30000,waitUntil:'domcontentloaded'});
+ await page.locator('#inputSearch').fill(isin);
+ await Promise.all([page.waitForNavigation({timeout:30000,waitUntil:'domcontentloaded'}),page.locator('form[action="/Recherche/RechercheRapide"]').evaluate(f=>f.submit())]);
+ await page.waitForTimeout(2000);
+ await save(isin,url,Buffer.from(await page.content()),200,page.url(),'quantalys-public-search')
+ }catch(e){manifest.push({isin,requestedUrl:url,error:String(e)})}
  await page.close()
  }
- await request('IE000DQLYVB9','https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=342916&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true')
 }finally {writeFileSync(out+'/manifest.json',JSON.stringify(manifest,null,2));await browser.close()}
 console.log(JSON.stringify(manifest.map(({isin,requestedUrl,status,error})=>({isin,requestedUrl,status,error}))))
