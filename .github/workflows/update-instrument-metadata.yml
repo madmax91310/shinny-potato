@@ -42,7 +42,22 @@ jobs:
       - run: pip install beautifulsoup4==4.15.0
       - run: sudo apt-get update && sudo apt-get install -y poppler-utils
       - run: node scripts/build-automation-targets.mjs
-      - name: Observe public exact-share sources without changing registries
+      - name: Observe representative source formats without changing registries
+        run: >-
+          python scripts/probe_instrument_metadata.py --output "$RUNNER_TEMP/metadata-sample-evidence"
+          --only IE00B4L5Y983 IE00BDBRDM35 IE00BLNMYC90 FR0007056841
+          IE00BMG6Z448 IE0006WW1TQ4 IE00B3XXRP09 IE00BKWQ0Q14
+          IE000716YHJ7 IE00BLCHJB90 IE00B4K6B022 IE00BK5BCH80
+          GB00B15KXQ89 IE00BD4TXV59 IE000QDFFK00 IE0003UVYC20
+          IE0003R87OG3 IE00BMVB5K07 IE00B579F325 IE00BD6FTQ80
+          DE000A27Z304 FR0011550193 IE00BF0M2Z96 IE00BK5BCD43
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: exact-share-metadata-sample-evidence
+          path: ${{ runner.temp }}/metadata-sample-evidence
+          retention-days: 14
+      - name: Observe all public exact-share sources without changing registries
         run: python scripts/probe_instrument_metadata.py --output "$RUNNER_TEMP/metadata-evidence"
       - uses: actions/upload-artifact@v7.0.1
         if: always()
@@ -63,6 +78,7 @@ jobs:
       - run: pip install beautifulsoup4==4.15.0
       - run: npm ci
       - run: python -m unittest discover -s scripts -p 'test_instrument_metadata.py'
+      - run: python -m unittest discover -s scripts -p 'test_metadata_completion.py'
       - run: python -m unittest discover -s scripts -p 'test_metadata_recovery_diagnostics.py'
       - run: python -m unittest discover -s scripts -p 'test_automation_renewals.py'
       - run: python -m unittest discover -s scripts -p 'test_monthly_qualification.py'

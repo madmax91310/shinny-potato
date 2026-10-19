@@ -110,15 +110,15 @@ def parse_text(text,isin):
     if identities!={isin}:raise ValueError('Missing or multiple exact-share identities in metadata document')
     text=re.sub(r'[ \t\r]+',' ',text)
     patterns={
-      'distribution':r'(?:Use of (?:Income|Profits)|Income Treatment|Distribution Policy|Affectation des r[ée]sultats|Politique de distribution)\s*[:\n]?\s*(Accumulating|Distributing|Capitalisation|Distribution|Reinvestment)\b',
-      'domicile':r'(?:Fund Domicile|Domicile|Domiciliation|Domicile du fonds)\s*[:\n]?\s*(Ireland|Irlande|Luxembourg|Germany|Allemagne|France|Jersey|(?:The )?Netherlands)\b',
+      'distribution':r'(?:Use of (?:Income|Profits)|Income Treatment|Distribution Policy|Affectation des r[ée]sultats|Politique de distribution|^Distribution)\s*[:\n]?\s*(Accumulating|Distributing|Capitalisation|Distribution|Reinvestment)\b',
+      'domicile':r'(?:Fund Domicile|Domicile|Domiciliation(?: du fonds)?|Domicile du fonds)\s*[:\n]?\s*(Ireland|Irlande|Luxembourg|Germany|Allemagne|France|Jersey|(?:The )?Netherlands)\b',
       'replicationMethod':r'(?:Replication (?:Method|methodology)|M[ée]thode de r[ée]plication|Replication|R[ée]plication)\s*[:\n]?\s*(Physical(?:\s*\((?:Full replication|Optimised sampling)\))?|Synthetic|Physique|Synth[ée]tique|Direct Replication|Indirect\s*\(Swap Based\))\b',
       'pea':r'(?:PEA eligibility|PEA Eligible|Eligible PEA|[ÉE]ligibilit[ée] (?:au )?PEA|[ÉE]ligibilit[ée] au plan d[’\x27]Epargne en Actions \(PEA\)|PEA berechtigt|[ÉE]ligible (?:au )?PEA|R[ée]gime fiscal PEA)\s*[:\n]?\s*(Yes|No|Oui|Non|Keine|Ja|Nein)\b',
       'currencyHedge':r'(?:Currency Hedged|Currency Hedge|Couverture de change|Couvert contre le risque de change)\s*[:\n]?\s*(Yes|No|Oui|Non)\b',
     }
     result={}
     for field,pattern in patterns.items():
-        found=set(re.findall(pattern,text,re.I))
+        found=set(re.findall(pattern,text,re.I|re.M))
         if len(found)>1:raise ValueError('Conflicting explicit metadata: '+field)
         if found:
             value=found.pop()
@@ -137,6 +137,16 @@ def parse_text(text,isin):
         negative=bool(badges & {'non éligible au pea','non eligible au pea'})
         if positive and negative:raise ValueError('Conflicting PEA badge statements')
         if positive or negative:result['pea']=positive
+    # Explicit row values on justETF EN/FR. Neither the fund name, trading currency,
+    # nor silence about a hedge is evidence. A dash stays unknown.
+    hedge_patterns=(
+        (r'^\s*Currency risk\s*[:\n]?\s*(Currency unhedged|Currency hedged(?: [A-Z]{3})?)\s*$',lambda v:v.lower().startswith('currency hedged')),
+        (r'^\s*Couverture du risque de change\s*[:\n]?\s*(Non couvert contre le risque de change|Couvert(?:ure)? (?:contre le risque de change|en [A-Z]{3}))\s*$',lambda v:not v.lower().startswith('non ')),
+    )
+    hedges={convert(value) for pattern,convert in hedge_patterns for value in re.findall(pattern,text,re.I|re.M)}
+    if 'currencyHedge' in result:hedges.add(result['currencyHedge'])
+    if len(hedges)>1:raise ValueError('Conflicting explicit metadata: currencyHedge')
+    if hedges:result['currencyHedge']=hedges.pop()
     return result
 
 def parse_json(body,isin):
@@ -377,4 +387,5 @@ def main():
     print(f'Metadata: {len(updated)}/{len(sources)} observed instruments; {len(errors)} failed renewals.')
     if errors:raise SystemExit(1)
 if __name__=='__main__':main()
+
 
