@@ -47,6 +47,14 @@ for (const theme of EXPOSURE_THEMES) {
   const fees = theme.etfs.map(e => Number(ETF_TER_BY_ISIN[e.isin]))
   assert.deepEqual(fees, [...fees].sort((a, b) => a - b), `${theme.id} : frais croissants`)
 }
+// A PEA-first list may cease to be globally sorted by fees; its published note must say so.
+for (const theme of DEFAULT_THEMES.filter(t => t.derived === 'exposure')) {
+  const fees = theme.etfs.map(e => Number(ETF_TER_BY_ISIN[e.isin]));
+  if (fees.some((fee, i) => i > 0 && fee < fees[i - 1])) {
+    assert(!theme.comparisonNote.includes('classés par frais croissants'), `${theme.id} : frais non croissants`);
+    assert(theme.comparisonNote.includes('priorité au PEA'), `${theme.id} : priorité PEA explicitée`);
+  }
+}
 assert(DERIVED_THEMES.length === SAME_INDEX_THEMES.length + EXPOSURE_THEMES.length)
 
 // Every sheet category is declared, ordered and carries an emoji.

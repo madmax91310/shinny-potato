@@ -906,6 +906,9 @@ export const DERIVED_THEMES = [...SAME_INDEX_THEMES, ...EXPOSURE_THEMES]
 
 // PEA en premier, sans changer l’exposition des autres produits du comparatif.
 // Le tri est stable : les différences d’indice, de zone ou de couverture restent visibles.
-export const DEFAULT_THEMES = [...EDITORIAL_THEMES, ...DERIVED_THEMES].map(theme => ({ ...theme,
-  etfs: [...theme.etfs].sort((a, b) => Number(getInstrumentPeaStatus(b.isin) === true) - Number(getInstrumentPeaStatus(a.isin) === true)),
-}));
+export const DEFAULT_THEMES = [...EDITORIAL_THEMES, ...DERIVED_THEMES].map(theme => {
+  const etfs = [...theme.etfs].sort((a, b) => Number(getInstrumentPeaStatus(b.isin) === true) - Number(getInstrumentPeaStatus(a.isin) === true));
+  const peaReordered = theme.derived === 'exposure' && etfs.some((etf, i) => etf.isin !== theme.etfs[i].isin);
+  const orderWording = text => peaReordered && typeof text === 'string' ? text.replace('classés par frais croissants', 'avec priorité au PEA, puis aux frais') : text;
+  return { ...theme, etfs, transition: orderWording(theme.transition), comparisonNote: orderWording(theme.comparisonNote) };
+});
