@@ -1,4 +1,4 @@
-name: Probe metadata connections
+name: Verify published automation release
 on:
   push:
     branches: [fix/pea-listing-connections]
@@ -7,18 +7,23 @@ permissions:
 jobs:
   observe:
     runs-on: ubuntu-24.04
-    timeout-minutes: 18
+    timeout-minutes: 3
     steps:
-      - uses: actions/checkout@v7.0.1
-      - uses: actions/setup-node@v7.0.0
-        with:
-          node-version: 24
-      - run: npm ci
-      - run: npx playwright install --with-deps chromium
-      - run: node scripts/probe-metadata-connections.mjs
+      - name: Read the public release receipt
+        run: |
+          node --input-type=module <<'JS'
+          import {writeFileSync} from 'node:fs'
+          const expected="50d994820111a2757fd2aaa655335aff1d759da8"
+          const url='https://madmax91310.github.io/shinny-potato/build-info.json?verify='+expected
+          let last
+          for(let attempt=0;attempt<8;attempt++){
+           try{const response=await fetch(url,{headers:{'Cache-Control':'no-cache'},signal:AbortSignal.timeout(7000)});if(!response.ok)throw Error('HTTP '+response.status);const info=await response.json();last=info;if(info.sha===expected){const receipt={verifiedAt:new Date().toISOString(),expected,url,info};writeFileSync('public-release-receipt.json',JSON.stringify(receipt,null,2));console.log(JSON.stringify(receipt));process.exit(0)}}catch(error){last=String(error)}
+           await new Promise(resolve=>setTimeout(resolve,3000))
+          }
+          throw Error('Public release receipt mismatch: '+JSON.stringify(last))
+          JS
       - uses: actions/upload-artifact@v7.0.1
-        if: always()
         with:
-          name: metadata-connections
-          path: test-artifacts/metadata-connections
+          name: public-release-receipt
+          path: public-release-receipt.json
           retention-days: 14
