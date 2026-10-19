@@ -44,7 +44,7 @@ def evaluate_monitoring(state, context, registry, now, radar=None):
     for workflow, config in registry.items():
         row = state.get('workflows', {}).get(workflow, {})
         tools = config.get('tools', [])
-        base = {'name': config['name'], 'tools': tools, 'impactScope': 'collector', 'workflow': workflow, 'runUrl': row.get('runUrl'), 'to': '/donnees-a-revoir'}
+        base = {'name': config['name'], 'tools': tools, 'impactScope': 'collector', 'workflow': workflow, 'runUrl': row.get('runUrl'), 'to': '/donnees-a-revoir', 'lastSuccessAt': row.get('lastCollectionSuccessAt')}
         completed = timestamp(row.get('completedAt'))
         if not completed or completed > current:
             add('unobserved:' + workflow, {**base, 'kind': 'unobserved', 'field': 'Exécution', 'cause': 'Aucune exécution terminée avec une date exploitable.'})
@@ -57,7 +57,7 @@ def evaluate_monitoring(state, context, registry, now, radar=None):
             # An official document that changed wording or identity is not a broken collector:
             # the previous value is kept and a person must compare old and new text.
             review = any(marker in str(failure.get('cause', '')) for marker in SOURCE_CHANGE_MARKERS)
-            add(f'collection:{workflow}:{identifier}', {**base, **failure, **details, 'tools': details['tools'], 'kind': 'review' if review else 'collection',
+            add(f'collection:{workflow}:{identifier}', {**base, **failure, **details, 'tools': details['tools'], 'kind': 'review' if review else 'anomaly' if 'Suspicious' in str(failure.get('cause', '')) else 'collection',
                 'field': failure.get('field') or ('Composition' if identifier.endswith('-composition') else 'Performances' if identifier.endswith('-returns') else 'Champs du collecteur'),
                 'dataId': identifier})
         if row.get('status') == 'failure' and (not row.get('dataFailures') or row.get('publicationStatus') == 'failure'):
@@ -71,6 +71,16 @@ def evaluate_monitoring(state, context, registry, now, radar=None):
                 'cause': ' ; '.join(f"{f['job']} : {' / '.join(f['checks']) if f.get('checks') else f['step']}" for f in row.get('failures', [])) or 'Exécution en échec ; consulter le journal.'})
     for row in context['alerts']:
         add('calendar:' + row['id'], {**row, 'kind': 'freshness', 'cause': ('Date future à vérifier.' if row['category'] == 'future-date' else row.get('reason', 'Repli sur une valeur manuelle.') if row['category'] == 'manual-fallback' else 'Échéance de vérification atteinte ; contrôler la période disponible.'), 'lastSuccessAt': row.get('checkedAt')})
+    if 'historyAlerts' in context:
+        if not isinstance(context['historyAlerts'], list):
+            raise ValueError('Bilan des historiques invalide')
+        for row in context['historyAlerts']:
+            add('history:' + row['id'], {**row, 'lastSuccessAt': row.get('checkedAt')})
+    else:
+        # A legacy or unavailable report cannot certify recovery.
+        for key, row in old.items():
+            if key.startswith('history:'):
+                add(key, row)
     # Radar contradictions are review signals, never confirmed market movements.
     # A missing feed retains prior alerts and cannot claim a recovery.
     if radar is None:
@@ -88,11 +98,17 @@ def evaluate_monitoring(state, context, registry, now, radar=None):
             add(key, {**details, 'kind': 'conflict', 'field': field.group(1) if field else 'Concordance des sources', 'cause': error['reason']})
     resolved = [{**row, 'resolvedAt': now} for key, row in old.items() if key not in active]
     opened = [row for key, row in active.items() if key not in old]
-    changed = bool(opened or resolved)
+    # A date/run change alone is not a new incident. Notify only an increased
+    # severity, wider impact or additional missing/invalid periods.
+    severity = {'checks': 0, 'unobserved': 1, 'overdue': 1, 'freshness': 1, 'review': 2, 'collection': 2, 'history': 2, 'conflict': 3, 'anomaly': 3, 'publication': 3}
+    escalated = [row for key, row in active.items() if key in old and (
+        severity.get(row.get('kind'), 1) > severity.get(old[key].get('kind'), 1)
+        or any(set(row.get(field, [])) - set(old[key].get(field, [])) for field in ('tools', 'missingPeriods', 'invalidPeriods')))]
+    changed = bool(opened or resolved or escalated)
     revision = previous.get('revision', 0) + int(changed)
     events = previous.get('events', [])
     if changed:
-        events = [*events, {'revision': revision, 'at': now, 'opened': [r['id'] for r in opened], 'resolved': resolved}][-30:]
+        events = [*events, {'revision': revision, 'at': now, 'opened': [r['id'] for r in opened], 'resolved': resolved, 'escalated': [r['id'] for r in escalated]}][-30:]
     return {'schemaVersion': 1, 'checkedAt': now, 'revision': revision, 'active': active, 'events': events,
             'resolved': [*resolved, *previous.get('resolved', [])][:100]}
 
@@ -155,17 +171,18 @@ def sync_monitoring_issue(monitor, api, repo):
     recovered = [r for event in changes for r in event['resolved']]
     opened_ids = [id_ for e in changes for id_ in e['opened']]
     opened_rows = [monitor['active'][id_] for id_ in opened_ids if id_ in monitor['active']]
-    # A comment pings the assignee. It is only worth one when a data incident opens
-    # (collection, contradiction, publication, deadline) or when the quiet period has
-    # passed; flapping checks and plain recoveries only update the body, and the
-    # receipt then lives in the body so the same revision is never retried.
-    material = any(row.get('kind') in ('collection', 'conflict', 'publication', 'freshness') for row in opened_rows)
+    escalated_ids = {id_ for e in changes for id_ in e.get('escalated', [])}
+    escalated_rows = [monitor['active'][id_] for id_ in sorted(escalated_ids) if id_ in monitor['active']]
+    # Notify subscribed readers on a new data incident, escalation or recovery.
+    # Plain advisory checks keep their quiet period; receipts survive retries.
+    material = any(row.get('kind') in ('collection', 'conflict', 'publication', 'freshness', 'history', 'anomaly', 'overdue', 'review') for row in opened_rows)
     now = timestamp(monitor.get('checkedAt'))
     last_comment = max([stamp for c in comments if c.get('user', {}).get('login') == 'github-actions[bot]'
                         and (stamp := timestamp(c.get('created_at')))], default=None)
     quiet = bool(now and last_comment and (now - last_comment).total_seconds() < QUIET_HOURS * 3600)
     closing = not monitor['active']
-    comment = bool(opened_ids) and (material or not quiet) or closing
+    recovered_data = any(row.get('kind') not in ('checks', 'unobserved') for row in recovered)
+    comment = (bool(opened_ids) and (material or not quiet)) or bool(escalated_rows) or recovered_data or closing
     receipts = sorted(known | ({monitor['revision']} if not comment else set()))[-30:]
     # Reconcile open/closed state and body before the notification receipt.
     api(f"/issues/{issue['number']}", 'PATCH', {'title': title, 'body': body + '\n' + '\n'.join(f'<!-- monitor-notified:{revision} -->' for revision in receipts), 'state': 'open' if monitor['active'] else 'closed'})
@@ -174,6 +191,7 @@ def sync_monitoring_issue(monitor, api, repo):
     opened = len(opened_ids)
     summary = [receipt, f"{opened} nouveau(x) point(s) ; {len(recovered)} retour(s) à la normale ; {len(monitor['active'])} point(s) encore actif(s)."]
     summary += [f"- Nouveau : {safe(r['name'])} · {safe(r.get('field'))} · {safe(r.get('cause'))}" for r in opened_rows[:40]]
+    summary += [f"- Aggravation : {safe(r['name'])} · {safe(r.get('field'))} · {safe(r.get('cause'))}" for r in escalated_rows[:40]]
     summary += [f"- Résolu : {safe(r['name'])} · {safe(r.get('field'))}." for r in recovered[:40]]
     summary.append('Le détail regroupé figure dans le corps de cette issue et dans « Données à revoir ».')
     api(f"/issues/{issue['number']}/comments", 'POST', {'body': '\n\n'.join(summary)})

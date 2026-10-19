@@ -4,7 +4,7 @@ Généré le 2026-10-18 par `node scripts/audit-asset-tool-routing.mjs --write`.
 
 « Sans objet » ne signifie pas donnée manquante. « Complète » décrit la table collectée, pas la possibilité de calculer un recouvrement intégral : identification, fraîcheur et compatibilité restent contrôlées par le moteur. Un candidat historique possède une cotation documentée, mais sa série doit encore passer la collecte et les contrôles. Les actifs utilisés sont conservés.
 
-Actifs présentés sans historique automatique (Sans cotation : 27 · Historique court : 28) : la colonne « Blocage » donne la cause relevée et ce qui est attendu.
+Actifs présentés sans historique automatique (Sans cotation : 17 · Historique court : 30) : la colonne « Blocage » donne la cause relevée et ce qui est attendu.
 
 | Actif | ISIN | Fiche | Comparatif | Générateur | Pays / secteurs | Positions | Performance / Simulation / Anniversaire | Blocage |
 |---|---|---|---|---|---|---|---|---|
@@ -157,7 +157,7 @@ Actifs présentés sans historique automatique (Sans cotation : 27 · Historique
 | AIA Group | HK0000069689 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | HKEX | HK0388045442 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | iShares MSCI Europe Small Cap UCITS ETF | IE0000N55FP4 | Oui | — | automatic | Oui / Oui | Complète | — / — / — | — |
-| Invesco FTSE All-World UCITS ETF Distributing | IE0000QLH0G6 | Oui | — | missing | Oui / Oui | — | — / — / — | Sans cotation — Cotations candidates déclarées, en attente du document émetteur |
+| Invesco FTSE All-World UCITS ETF Distributing | IE0000QLH0G6 | Oui | Oui | missing | Oui / Oui | Partielle | — / — / — | Sans cotation — Cotations candidates déclarées, en attente du document émetteur |
 | iShares MSCI World Swap PEA UCITS ETF (Acc) | IE0002XZSHO1 | Oui | Oui | missing | Oui / Oui | Partielle | — / — / — | Historique court — 0 année(s) complète(s) ; 6 requises en génération automatique |
 | WisdomTree Europe Defence UCITS ETF | IE0002Y8CX98 | Oui | Oui | missing | Oui / Oui | Partielle | — / — / Oui | Historique court — 0 année(s) complète(s) ; 6 requises en génération automatique |
 | Avantis Global Small Cap Value UCITS ETF USD Acc | IE0003R87OG3 | Oui | Oui | missing | Oui / Oui | Partielle | Oui / Oui / Oui | Historique court — 1 année(s) complète(s) ; 6 requises en génération automatique |
@@ -165,7 +165,7 @@ Actifs présentés sans historique automatique (Sans cotation : 27 · Historique
 | Amundi Prime All Country World UCITS ETF Acc | IE0003XJA0J9 | Oui | Oui | missing | Oui / Oui | Partielle | Oui / Oui / Oui | Historique court — 1 année(s) complète(s) ; 6 requises en génération automatique |
 | Global X Copper Miners UCITS ETF USD Acc | IE0003Z9E2Y3 | Oui | Oui | manual | Oui / Oui | Partielle | Oui / Oui / Oui | — |
 | Xtrackers MSCI World ex USA UCITS ETF 1C | IE0006WW1TQ4 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
-| Invesco FTSE All-World UCITS ETF Accumulating | IE000716YHJ7 | Oui | — | missing | Oui / Oui | — | — / — / — | Sans cotation — Cotations candidates déclarées, en attente du document émetteur |
+| Invesco FTSE All-World UCITS ETF Accumulating | IE000716YHJ7 | Oui | Oui | missing | Oui / Oui | Partielle | — / — / — | Sans cotation — Cotations candidates déclarées, en attente du document émetteur |
 | VanEck Quantum Computing UCITS ETF A | IE0007Y8Y157 | Oui | Oui | missing | Oui / Oui | Partielle | — / — / Oui | Historique court — 0 année(s) complète(s) ; 6 requises en génération automatique |
 | iShares STOXX Europe 50 UCITS ETF Dist | IE0008470928 | Oui | Oui | missing | Oui / Oui | Complète | — / — / — | Historique court — 0 année(s) complète(s) ; 6 requises en génération automatique |
 | iShares Core EURO STOXX 50 UCITS ETF Dist | IE0008471009 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
@@ -175,7 +175,7 @@ Actifs présentés sans historique automatique (Sans cotation : 27 · Historique
 | iShares S&P 500 Swap PEA UCITS ETF | IE000DQLYVB9 | Oui | Oui | missing | Oui / Oui | Partielle | — / — / Oui | Historique court — 0 année(s) complète(s) ; 6 requises en génération automatique |
 | iShares MSCI Global Semiconductors UCITS ETF | IE000I8KRLL9 | Oui | Oui | manual | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | Invesco NASDAQ-100 Equal Weight UCITS ETF Acc | IE000L2SA8K5 | Oui | Oui | missing | Oui / Oui | Partielle | Oui / Oui / Oui | Historique court — 2 année(s) complète(s) ; 6 requises en génération automatique |
-| Xtrackers FTSE All-World UCITS ETF 1C | IE000L6ZMMC4 | Oui | — | missing | Oui / Oui | Complète | — / — / — | Sans cotation — Aucune cotation documentée ni candidate · etf.dws.com : Ambiguous listing document identity |
+| Xtrackers FTSE All-World UCITS ETF 1C | IE000L6ZMMC4 | Oui | — | missing | Oui / Oui | Complète | — / — / — | Historique court — 0 année(s) complète(s) ; 6 requises en génération automatique |
 | VanEck Uranium and Nuclear Technologies UCITS ETF | IE000M7V94E1 | Oui | Oui | missing | Oui / Oui | Partielle | Oui / Oui / Oui | Historique court — 2 année(s) complète(s) ; 6 requises en génération automatique |
 | Global X Uranium UCITS ETF USD Acc | IE000NDWFGA5 | Oui | — | missing | Oui / Oui | Partielle | — / — / — | Sans cotation — Cotations candidates déclarées, en attente du document émetteur · globalxetfs.eu : Missing or multiple exact-share identities in metadata document |
 | BNP Paribas Easy II Nasdaq 100 UCITS ETF (Acc) | IE000QDFFK00 | Oui | Oui | missing | Oui / Oui | Partielle | — / — / — | Sans cotation — Cotations candidates déclarées, en attente du document émetteur · dokumenty.analizy.pl : No explicit supported metadata fields |
@@ -273,7 +273,7 @@ Actifs présentés sans historique automatique (Sans cotation : 27 · Historique
 | iShares Edge MSCI EM Value Factor UCITS ETF | IE00BG0SKF03 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | iShares Electric Vehicles and Driving Technology UCITS ETF | IE00BGL86Z12 | Oui | Oui | manual | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | Xtrackers Artificial Intelligence and Big Data UCITS ETF | IE00BGV5VN51 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
-| Xtrackers MSCI World UCITS ETF 1C | IE00BJ0KDQ92 | Oui | Oui | missing | Oui / Oui | Partielle | — / — / — | Sans cotation — Aucune cotation documentée ni candidate · etf.dws.com : Ambiguous listing document identity |
+| Xtrackers MSCI World UCITS ETF 1C | IE00BJ0KDQ92 | Oui | Oui | manual | Oui / Oui | Partielle | Oui / Oui / Oui | — |
 | State Street SPDR Russell 2000 U.S. Small Cap UCITS ETF (Acc) | IE00BJ38QD84 | Oui | Oui | automatic | Oui / Oui | Partielle | Oui / Oui / Oui | — |
 | iShares MSCI World Information Technology Sector Advanced UCITS ETF USD (Dist) | IE00BJ5JNY98 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | iShares MSCI World Health Care Sector Advanced UCITS ETF | IE00BJ5JNZ06 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
@@ -286,7 +286,7 @@ Actifs présentés sans historique automatique (Sans cotation : 27 · Historique
 | iShares MSCI World Materials Sector Advanced UCITS ETF | IE00BJ5JP766 | Oui | Oui | manual | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | iShares MSCI China UCITS ETF (Acc) | IE00BJ5JPG56 | Oui | Oui | manual | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | WisdomTree Cloud Computing UCITS ETF USD Acc | IE00BJGWQN72 | Oui | Oui | automatic | Oui / Oui | Partielle | Oui / Oui / Oui | — |
-| Xtrackers MSCI World UCITS ETF 1D | IE00BK1PV551 | Oui | Oui | missing | Oui / Oui | Partielle | — / — / — | Sans cotation — Aucune cotation documentée ni candidate · etf.dws.com : Ambiguous listing document identity |
+| Xtrackers MSCI World UCITS ETF 1D | IE00BK1PV551 | Oui | Oui | manual | Oui / Oui | Partielle | Oui / Oui / Oui | — |
 | L&G Artificial Intelligence UCITS ETF | IE00BK5BCD43 | Oui | Oui | automatic | Oui / Oui | Partielle | Oui / Oui / Oui | — |
 | L&G Clean Energy UCITS ETF | IE00BK5BCH80 | Oui | Oui | manual | Oui / Oui | Partielle | Oui / Oui / Oui | — |
 | Vanguard FTSE All-World UCITS ETF (USD) Accumulating | IE00BK5BQT80 | Oui | Oui | automatic | Oui / Oui | Partielle | Oui / Oui / Oui | — |
@@ -327,7 +327,7 @@ Actifs présentés sans historique automatique (Sans cotation : 27 · Historique
 | iShares MSCI China A UCITS ETF (Acc) | IE00BQT3WG13 | Oui | Oui | manual | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | State Street SPDR MSCI Europe Small Cap Value Weighted UCITS ETF | IE00BSPLC298 | Oui | Oui | automatic | Oui / Oui | Partielle | Oui / Oui / Oui | — |
 | State Street SPDR MSCI USA Small Cap Value Weighted UCITS ETF | IE00BSPLC413 | Oui | Oui | automatic | Oui / Oui | Partielle | Oui / Oui / Oui | — |
-| Xtrackers MSCI Emerging Markets UCITS ETF | IE00BTJRMP35 | Oui | Oui | missing | Oui / Oui | Complète | — / — / — | Sans cotation — Aucune cotation documentée ni candidate · etf.dws.com : Ambiguous listing document identity |
+| Xtrackers MSCI Emerging Markets UCITS ETF | IE00BTJRMP35 | Oui | Oui | manual | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | Medtronic | IE00BTN1Y115 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | L&G Cyber Security UCITS ETF | IE00BYPLS672 | Oui | Oui | automatic | Oui / Oui | Partielle | Oui / Oui / Oui | — |
 | SPDR MSCI World Energy UCITS ETF | IE00BYTRR863 | Oui | Oui | automatic | Oui / Oui | Partielle | Oui / Oui / Oui | — |
@@ -406,10 +406,10 @@ Actifs présentés sans historique automatique (Sans cotation : 27 · Historique
 | JD.com | KYG8208B1014 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Tencent | KYG875721634 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | Xiaomi | KYG9830T1067 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
-| Xtrackers MSCI Europe UCITS ETF 1C | LU0274209237 | Oui | Oui | missing | Oui / Oui | Partielle | — / — / — | Sans cotation — Aucune cotation documentée ni candidate · etf.dws.com : Ambiguous listing document identity |
+| Xtrackers MSCI Europe UCITS ETF 1C | LU0274209237 | Oui | Oui | manual | Oui / Oui | Partielle | Oui / Oui / Oui | — |
 | Xtrackers II EUR Overnight Rate Swap UCITS ETF 1C | LU0290358497 | Oui | Oui | automatic | Sans objet / Sans objet | — | Oui / Oui / — | — |
-| Xtrackers STOXX Europe 600 UCITS ETF 1C | LU0328475792 | Oui | Oui | missing | Oui / Oui | Partielle | — / — / — | Sans cotation — Aucune cotation documentée ni candidate · etf.dws.com : Ambiguous listing document identity |
-| Xtrackers EURO STOXX 50 UCITS ETF 1C | LU0380865021 | Oui | Oui | missing | Oui / Oui | Partielle | — / — / — | Sans cotation — Aucune cotation documentée ni candidate · etf.dws.com : Ambiguous listing document identity |
+| Xtrackers STOXX Europe 600 UCITS ETF 1C | LU0328475792 | Oui | Oui | manual | Oui / Oui | Partielle | Oui / Oui / Oui | — |
+| Xtrackers EURO STOXX 50 UCITS ETF 1C | LU0380865021 | Oui | Oui | manual | Oui / Oui | Partielle | Oui / Oui / Oui | — |
 | Amundi Core STOXX Europe 600 UCITS ETF | LU0908500753 | Oui | Oui | missing | Oui / Oui | Partielle | Oui / Oui / Oui | Historique court — 1 année(s) complète(s) ; 6 requises en génération automatique |
 | Amundi FTSE EPRA NAREIT Global UCITS ETF | LU1437018838 | Oui | Oui | automatic | Oui / Oui | Partielle | Oui / Oui / Oui | — |
 | Amundi Russell 2000 UCITS ETF EUR Acc | LU1681038672 | Oui | Oui | manual | Oui / Oui | Partielle | Oui / Oui / Oui | — |
@@ -424,11 +424,11 @@ Actifs présentés sans historique automatique (Sans cotation : 27 · Historique
 | Amundi STOXX Europe 600 Basic Materials UCITS ETF | LU1834983634 | Oui | Oui | missing | Oui / Oui | Partielle | Oui / Oui / Oui | Historique court — 1 année(s) complète(s) ; 6 requises en génération automatique |
 | Amundi STOXX Europe 600 Healthcare UCITS ETF | LU1834986900 | Oui | Oui | automatic | Oui / Oui | Partielle | Oui / Oui / Oui | — |
 | Amundi STOXX Europe 600 Technology UCITS ETF | LU1834988518 | Oui | Oui | automatic | Oui / Oui | Partielle | Oui / Oui / Oui | — |
-| Xtrackers Nikkei 225 UCITS ETF | LU1875395870 | Oui | Oui | missing | Oui / Oui | Complète | — / — / — | Sans cotation — Aucune cotation documentée ni candidate · etf.dws.com : Ambiguous listing document identity |
+| Xtrackers Nikkei 225 UCITS ETF | LU1875395870 | Oui | Oui | manual | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | Amundi Core EUR Corporate Bond UCITS ETF | LU1931975079 | Oui | Oui | automatic | Sans objet / Sans objet | Partielle | Oui / Oui / Oui | — |
 | Amundi Prime Japan UCITS ETF | LU2089238385 | Oui | Oui | manual | Oui / Oui | Partielle | Oui / Oui / Oui | — |
-| Xtrackers Nikkei 225 UCITS ETF 1C (Acc) | LU2196470426 | Oui | Oui | missing | Oui / Oui | Complète | — / — / — | Sans cotation — Aucune cotation documentée ni candidate · etf.dws.com : Ambiguous listing document identity |
-| Xtrackers Scalable MSCI AC World UCITS ETF 1C | LU2903252349 | Oui | Oui | missing | Oui / Oui | Partielle | — / — / — | Sans cotation — Aucune cotation documentée ni candidate · etf.dws.com : Ambiguous listing document identity |
+| Xtrackers Nikkei 225 UCITS ETF 1C (Acc) | LU2196470426 | Oui | Oui | manual | Oui / Oui | Complète | Oui / Oui / Oui | — |
+| Xtrackers Scalable MSCI AC World UCITS ETF 1C | LU2903252349 | Oui | Oui | missing | Oui / Oui | Partielle | — / — / Oui | Historique court — 0 année(s) complète(s) ; 6 requises en génération automatique |
 | Amundi Core EUR High Yield Bond UCITS ETF | LU2970735911 | Oui | — | automatic | Sans objet / Sans objet | Partielle | — / — / Oui | — |
 | Amundi STOXX Europe Defense UCITS ETF | LU3038520774 | Oui | Oui | missing | Oui / Oui | Partielle | — / — / Oui | Historique court — 0 année(s) complète(s) ; 6 requises en génération automatique |
 | Amundi European Strategic Autonomy UCITS ETF Acc | LU3180074463 | Oui | — | missing | Oui / Oui | Partielle | — / — / — | Historique court — 0 année(s) complète(s) ; 6 requises en génération automatique |

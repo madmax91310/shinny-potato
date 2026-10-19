@@ -1,3 +1,4 @@
+import { historyAlerts } from './history-alerts.mjs'
 import { writeFileSync } from 'node:fs'
 import { pathToFileURL } from 'node:url'
 import { buildReview, parisToday } from '../src/pages/data-review/lib.js'
@@ -19,7 +20,9 @@ export function monitoringContext(review, households = HOUSEHOLD_STATISTICS) {
     alerts: [...rows.filter(row => ['stale', 'expired', 'future-date'].includes(row.category)).map(project), ...fallbacks] }
 }
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
-  const output = JSON.stringify(monitoringContext(buildReview(parisToday())), null, 2) + '\n'
+  const context = monitoringContext(buildReview(parisToday()))
+  context.historyAlerts = historyAlerts(context.today, context.entities)
+  const output = JSON.stringify(context, null, 2) + '\n'
   if (process.argv[2]) writeFileSync(process.argv[2], output)
   else process.stdout.write(output)
 }

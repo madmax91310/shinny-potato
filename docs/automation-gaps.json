@@ -52,13 +52,13 @@
     },
     "holdings": {
       "label": "Positions pondérées",
-      "present": 232,
+      "present": 234,
       "total": 258,
       "applicable": 235,
       "notApplicable": 23,
       "waiting": 0,
       "notPublished": 0,
-      "unresolved": 3
+      "unresolved": 1
     }
   },
   "recentCalendars": [
@@ -416,13 +416,13 @@
     "performance": 238,
     "countries": 229,
     "sectors": 229,
-    "holdings": 232
+    "holdings": 234
   },
   "summary": {
     "instrument:not-applicable": 69,
     "instrument:waiting-first-year": 13,
-    "instrument:unqualified": 3,
     "instrument:not-published": 18,
+    "instrument:unqualified": 1,
     "instrument:source-conflict": 1,
     "index:waiting-publication": 1,
     "index:not-applicable": 16
@@ -476,28 +476,6 @@
       "status": "waiting-first-year",
       "reason": "Première année civile complète : 2026. Publication possible à partir du 2027-01-01, selon l’émetteur ; aucun calendrier complet ne peut encore être collecté.",
       "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData"
-    },
-    {
-      "type": "instrument",
-      "id": "IE000716YHJ7",
-      "name": "Invesco FTSE All-World UCITS ETF Accumulating",
-      "field": "holdings",
-      "label": "Positions pondérées",
-      "configured": true,
-      "status": "unqualified",
-      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
-      "sourceUrl": "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE000716YHJ7_factsheet_en.pdf"
-    },
-    {
-      "type": "instrument",
-      "id": "IE0000QLH0G6",
-      "name": "Invesco FTSE All-World UCITS ETF Distributing",
-      "field": "holdings",
-      "label": "Positions pondérées",
-      "configured": true,
-      "status": "unqualified",
-      "reason": "Champ absent des observations actives ; source ou connecteur à qualifier.",
-      "sourceUrl": "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE0000QLH0G6_factsheet_en.pdf"
     },
     {
       "type": "instrument",
@@ -919,7 +897,7 @@
       "status": "not-published",
       "checkedAt": "2026-10-18",
       "sourceUrl": "https://globalxetfs.eu/funds/silv/",
-      "sha256": "cf201e0525ce08b9ea2bf730837d5f675328b97d18af4841dc50bf8cce0976ef",
+      "sha256": "7a617b60f32b0da4dc196c17de0f37ee3575dc91e26b4dabcbd5b9b58399443a",
       "reason": "Aucun tableau sectoriel complet du fonds dans la page officielle contrôlée.",
       "evidence": {
         "datedCountryTable": true,
@@ -1655,7 +1633,7 @@
       "reason": "La section de performance ne fournit pas de calendrier annuel qualifié pour la part USD distribuante. Les rendements capitalisants ou glissants ne sont pas substitués.",
       "checkedAt": "2026-10-18",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "6d6441063323be035a6982790a2a037b963c7f03d0eb187fbd60c2c7be6d5fa4",
+      "sha256": "477ab57b2f5cd71bed8382beaec181c35aa4350612a32647e671da4f11b3c354",
       "evidence": [
         "Performance History",
         "USD Accumulating",
@@ -1698,7 +1676,7 @@
       "reason": "Aucune allocation géographique économique complète qualifiée dans la page ; les pays de commercialisation et le panier de substitution sont exclus.",
       "checkedAt": "2026-10-18",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "6d6441063323be035a6982790a2a037b963c7f03d0eb187fbd60c2c7be6d5fa4",
+      "sha256": "477ab57b2f5cd71bed8382beaec181c35aa4350612a32647e671da4f11b3c354",
       "evidence": []
     },
     {
@@ -1712,7 +1690,7 @@
       "reason": "Table sectorielle de référence à recouper avec l’indice exact avant utilisation ; aucune allocation du panier de substitution utilisée.",
       "checkedAt": "2026-10-18",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "6d6441063323be035a6982790a2a037b963c7f03d0eb187fbd60c2c7be6d5fa4",
+      "sha256": "477ab57b2f5cd71bed8382beaec181c35aa4350612a32647e671da4f11b3c354",
       "evidence": [
         "Reference Index Sector Breakdown",
         "As of 30 Sep 2026",
@@ -1753,7 +1731,7 @@
       "reason": "Poids différents pour les mêmes titres dans la section datée de l’indice : AAPL, AMZN, GOOG, GOOGL, META, MSFT, NVDA, TSLA.",
       "checkedAt": "2026-10-18",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "6d6441063323be035a6982790a2a037b963c7f03d0eb187fbd60c2c7be6d5fa4",
+      "sha256": "477ab57b2f5cd71bed8382beaec181c35aa4350612a32647e671da4f11b3c354",
       "evidence": [
         "Top 10 Reference Index Constituents",
         "As of 08 Oct 2026",

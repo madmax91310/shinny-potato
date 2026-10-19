@@ -1,25 +1,25 @@
 {
-  "checkedAt": "2026-10-18T16:46:08.135Z",
+  "checkedAt": "2026-10-18T20:59:36.844Z",
   "summary": {
     "instruments": 647,
     "sheets": 258,
-    "comparisons": 243,
+    "comparisons": 245,
     "practical": 21,
-    "duels": 590,
+    "duels": 598,
     "generatorAutomatic": 141,
     "dca": 647,
     "fullExposure": 602,
     "outsideExposure": 41,
-    "automaticHistories": 225,
+    "automaticHistories": 235,
     "historyCandidates": 0,
     "unused": 0,
     "blockers": {
-      "no-listing": 27,
+      "no-listing": 17,
       "listing-not-collectable": 0,
       "qualification-failed": 0,
       "qualification-pending": 0,
       "collection-pending": 0,
-      "history-short": 28
+      "history-short": 30
     }
   },
   "errors": [],
@@ -1383,10 +1383,10 @@
       },
       "sectors": {
         "status": "available",
-        "coverage": 100,
+        "coverage": 99.98999999999998,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-10-15"
+        "date": "2026-10-16"
       },
       "holdings": {
         "asOf": "2026-10-15",
@@ -1972,14 +1972,14 @@
         "coverage": 100,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-10-15"
+        "date": "2026-10-16"
       },
       "sectors": {
         "status": "available",
         "coverage": 100,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-10-15"
+        "date": "2026-10-16"
       },
       "holdings": {
         "asOf": "2026-10-15",
@@ -2113,14 +2113,14 @@
         "coverage": 100,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-10-15"
+        "date": "2026-10-16"
       },
       "sectors": {
         "status": "available",
         "coverage": 100,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-10-15"
+        "date": "2026-10-16"
       },
       "holdings": {
         "asOf": "2026-10-15",
@@ -2258,10 +2258,10 @@
       },
       "sectors": {
         "status": "available",
-        "coverage": 100,
+        "coverage": 99.99,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-10-15"
+        "date": "2026-10-16"
       },
       "holdings": {
         "asOf": "2026-10-15",
@@ -4527,7 +4527,7 @@
           "tweet-midi",
           "investment-calculator"
         ],
-        "checkedAt": "2026-10-18T15:33:48.575784+00:00"
+        "checkedAt": "2026-10-18T19:31:40.807499+00:00"
       },
       "dca": true,
       "countries": {
@@ -6441,7 +6441,7 @@
       "duel": false,
       "qualification": null,
       "sheet": true,
-      "comparison": false,
+      "comparison": true,
       "generator": "missing",
       "blocker": {
         "code": "no-listing",
@@ -6453,7 +6453,7 @@
           "tweet-midi",
           "investment-calculator"
         ],
-        "checkedAt": "2026-10-18T15:33:48.575784+00:00"
+        "checkedAt": "2026-10-18T19:31:40.807499+00:00"
       },
       "dca": true,
       "countries": {
@@ -6470,7 +6470,12 @@
         "reason": "Disponible",
         "date": "2026-09-30"
       },
-      "holdings": null,
+      "holdings": {
+        "asOf": "2026-09-30",
+        "complete": false,
+        "identifiedCoverage": 0,
+        "automatic": false
+      },
       "monthly": [],
       "historyCandidate": false,
       "decision": "keep-used"
@@ -6881,7 +6886,7 @@
       "duel": false,
       "qualification": null,
       "sheet": true,
-      "comparison": false,
+      "comparison": true,
       "generator": "missing",
       "blocker": {
         "code": "no-listing",
@@ -6893,7 +6898,7 @@
           "tweet-midi",
           "investment-calculator"
         ],
-        "checkedAt": "2026-10-18T15:33:48.575784+00:00"
+        "checkedAt": "2026-10-18T19:31:40.807499+00:00"
       },
       "dca": true,
       "countries": {
@@ -6910,7 +6915,12 @@
         "reason": "Disponible",
         "date": "2026-09-30"
       },
-      "holdings": null,
+      "holdings": {
+        "asOf": "2026-09-30",
+        "complete": false,
+        "identifiedCoverage": 0,
+        "automatic": false
+      },
       "monthly": [],
       "historyCandidate": false,
       "decision": "keep-used"
@@ -7012,10 +7022,10 @@
       },
       "sectors": {
         "status": "available",
-        "coverage": 99.99,
+        "coverage": 100,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-10-15"
+        "date": "2026-10-16"
       },
       "holdings": {
         "asOf": "2026-10-15",
@@ -7059,10 +7069,10 @@
       },
       "sectors": {
         "status": "available",
-        "coverage": 100,
+        "coverage": 99.99999999999999,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-10-15"
+        "date": "2026-10-16"
       },
       "holdings": {
         "asOf": "2026-10-15",
@@ -7237,10 +7247,10 @@
       },
       "sectors": {
         "status": "available",
-        "coverage": 99.99999999999999,
+        "coverage": 100,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-10-15"
+        "date": "2026-10-16"
       },
       "holdings": {
         "asOf": "2026-10-15",
@@ -7345,7 +7355,7 @@
         "coverage": 100,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-10-15"
+        "date": "2026-10-16"
       },
       "holdings": {
         "asOf": "2026-10-15",
@@ -7444,8 +7454,8 @@
       "comparison": false,
       "generator": "missing",
       "blocker": {
-        "code": "no-listing",
-        "detail": "Aucune cotation documentée ni candidate · etf.dws.com : Ambiguous listing document identity",
+        "code": "history-short",
+        "detail": "0 année(s) complète(s) ; 6 requises en génération automatique",
         "field": "monthly",
         "tools": [
           "portfolio-generator",
@@ -7453,7 +7463,7 @@
           "tweet-midi",
           "investment-calculator"
         ],
-        "checkedAt": "2026-10-18T15:33:48.575784+00:00"
+        "checkedAt": "2026-10-18T19:43:08.193649+00:00"
       },
       "dca": true,
       "countries": {
@@ -7476,7 +7486,18 @@
         "identifiedCoverage": 99.74627337999995,
         "automatic": true
       },
-      "monthly": [],
+      "monthly": [
+        {
+          "id": "etfIE000L6ZMMC4",
+          "automatic": true,
+          "first": "2026-06",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": false,
+          "simulation": false,
+          "anniversary": false
+        }
+      ],
       "historyCandidate": false,
       "decision": "keep-used"
     },
@@ -7565,7 +7586,7 @@
           "tweet-midi",
           "investment-calculator"
         ],
-        "checkedAt": "2026-10-18T15:33:48.575784+00:00"
+        "checkedAt": "2026-10-18T19:31:40.807499+00:00"
       },
       "dca": true,
       "countries": {
@@ -7612,7 +7633,7 @@
           "tweet-midi",
           "investment-calculator"
         ],
-        "checkedAt": "2026-10-18T15:33:48.575784+00:00"
+        "checkedAt": "2026-10-18T19:31:40.807499+00:00"
       },
       "dca": true,
       "countries": {
@@ -7663,7 +7684,7 @@
         "coverage": 100,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-10-15"
+        "date": "2026-10-16"
       },
       "holdings": {
         "asOf": "2026-10-15",
@@ -8139,10 +8160,10 @@
       },
       "sectors": {
         "status": "available",
-        "coverage": 99.99999999999996,
+        "coverage": 100,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-10-15"
+        "date": "2026-10-16"
       },
       "holdings": {
         "asOf": "2026-10-15",
@@ -8323,10 +8344,10 @@
       },
       "sectors": {
         "status": "available",
-        "coverage": 99.99,
+        "coverage": 100,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-10-15"
+        "date": "2026-10-16"
       },
       "holdings": {
         "asOf": "2026-10-15",
@@ -8416,7 +8437,7 @@
         "coverage": 100,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-10-15"
+        "date": "2026-10-16"
       },
       "holdings": {
         "asOf": "2026-10-15",
@@ -8694,7 +8715,7 @@
         "coverage": 100,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-10-15"
+        "date": "2026-10-16"
       },
       "holdings": {
         "asOf": "2026-10-15",
@@ -8780,17 +8801,17 @@
       "dca": true,
       "countries": {
         "status": "available",
-        "coverage": 99.96999999999998,
-        "outside": 0,
-        "reason": "Disponible",
-        "date": "2026-10-15"
-      },
-      "sectors": {
-        "status": "available",
         "coverage": 100,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-10-15"
+        "date": "2026-10-16"
+      },
+      "sectors": {
+        "status": "available",
+        "coverage": 99.99,
+        "outside": 0,
+        "reason": "Disponible",
+        "date": "2026-10-16"
       },
       "holdings": {
         "asOf": "2026-10-15",
@@ -9050,7 +9071,7 @@
           "tweet-midi",
           "investment-calculator"
         ],
-        "checkedAt": "2026-10-18T16:04:20.346657+00:00"
+        "checkedAt": "2026-10-18T19:31:40.807499+00:00"
       },
       "dca": true,
       "countries": {
@@ -9138,7 +9159,7 @@
           "tweet-midi",
           "investment-calculator"
         ],
-        "checkedAt": "2026-10-18T15:33:48.575784+00:00"
+        "checkedAt": "2026-10-18T19:31:40.807499+00:00"
       },
       "dca": true,
       "countries": {
@@ -9233,10 +9254,10 @@
       },
       "sectors": {
         "status": "available",
-        "coverage": 99.99,
+        "coverage": 99.99999999999999,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-10-15"
+        "date": "2026-10-16"
       },
       "holdings": {
         "asOf": "2026-10-15",
@@ -9279,7 +9300,7 @@
           "tweet-midi",
           "investment-calculator"
         ],
-        "checkedAt": "2026-10-18T15:33:48.575784+00:00"
+        "checkedAt": "2026-10-18T19:31:40.807499+00:00"
       },
       "dca": true,
       "countries": {
@@ -9374,10 +9395,10 @@
       },
       "sectors": {
         "status": "available",
-        "coverage": 99.98,
+        "coverage": 100,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-10-15"
+        "date": "2026-10-16"
       },
       "holdings": {
         "asOf": "2026-10-15",
@@ -9424,7 +9445,7 @@
         "coverage": 100,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-10-15"
+        "date": "2026-10-16"
       },
       "holdings": {
         "asOf": "2026-10-15",
@@ -9748,7 +9769,7 @@
         "coverage": 100,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-10-15"
+        "date": "2026-10-16"
       },
       "holdings": {
         "asOf": "2026-10-15",
@@ -9792,10 +9813,10 @@
       },
       "sectors": {
         "status": "available",
-        "coverage": 99.97999999999998,
+        "coverage": 100,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-10-15"
+        "date": "2026-10-16"
       },
       "holdings": {
         "asOf": "2026-10-15",
@@ -9838,7 +9859,7 @@
           "tweet-midi",
           "investment-calculator"
         ],
-        "checkedAt": "2026-10-18T15:33:48.575784+00:00"
+        "checkedAt": "2026-10-18T19:31:40.807499+00:00"
       },
       "dca": true,
       "countries": {
@@ -9886,10 +9907,10 @@
       },
       "sectors": {
         "status": "available",
-        "coverage": 99.99,
+        "coverage": 100,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-10-15"
+        "date": "2026-10-16"
       },
       "holdings": {
         "asOf": "2026-10-15",
@@ -10231,7 +10252,7 @@
         "coverage": 100,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-10-15"
+        "date": "2026-10-16"
       },
       "holdings": {
         "asOf": "2026-10-15",
@@ -10322,10 +10343,10 @@
       },
       "sectors": {
         "status": "available",
-        "coverage": 100,
+        "coverage": 99.98999999999998,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-10-15"
+        "date": "2026-10-16"
       },
       "holdings": {
         "asOf": "2026-10-15",
@@ -10418,10 +10439,10 @@
       },
       "sectors": {
         "status": "available",
-        "coverage": 100,
+        "coverage": 99.97999999999998,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-10-15"
+        "date": "2026-10-16"
       },
       "holdings": {
         "asOf": "2026-10-15",
@@ -10504,7 +10525,7 @@
         "coverage": 99.98999999999998,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-10-15"
+        "date": "2026-10-16"
       },
       "holdings": {
         "asOf": "2026-10-15",
@@ -10598,7 +10619,7 @@
         "coverage": 100,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-10-15"
+        "date": "2026-10-16"
       },
       "holdings": {
         "asOf": "2026-10-15",
@@ -10732,10 +10753,10 @@
       },
       "sectors": {
         "status": "available",
-        "coverage": 99.99,
+        "coverage": 100,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-10-15"
+        "date": "2026-10-16"
       },
       "holdings": {
         "asOf": "2026-10-15",
@@ -10826,10 +10847,10 @@
       },
       "sectors": {
         "status": "available",
-        "coverage": 100,
+        "coverage": 99.99,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-10-15"
+        "date": "2026-10-16"
       },
       "holdings": {
         "asOf": "2026-10-15",
@@ -10961,7 +10982,7 @@
           "tweet-midi",
           "investment-calculator"
         ],
-        "checkedAt": "2026-10-18T15:33:48.575784+00:00"
+        "checkedAt": "2026-10-18T19:31:40.807499+00:00"
       },
       "dca": true,
       "countries": {
@@ -11237,7 +11258,7 @@
           "tweet-midi",
           "investment-calculator"
         ],
-        "checkedAt": "2026-10-18T15:33:48.575784+00:00"
+        "checkedAt": "2026-10-18T19:31:40.807499+00:00"
       },
       "dca": true,
       "countries": {
@@ -11630,7 +11651,7 @@
           "tweet-midi",
           "investment-calculator"
         ],
-        "checkedAt": "2026-10-18T15:33:48.575784+00:00"
+        "checkedAt": "2026-10-18T19:31:40.807499+00:00"
       },
       "dca": true,
       "countries": {
@@ -11980,23 +12001,12 @@
       "name": "Xtrackers MSCI World UCITS ETF 1C",
       "kind": "etf",
       "practical": [],
-      "duel": false,
+      "duel": true,
       "qualification": null,
       "sheet": true,
       "comparison": true,
-      "generator": "missing",
-      "blocker": {
-        "code": "no-listing",
-        "detail": "Aucune cotation documentée ni candidate · etf.dws.com : Ambiguous listing document identity",
-        "field": "monthly",
-        "tools": [
-          "portfolio-generator",
-          "performance-rankings",
-          "tweet-midi",
-          "investment-calculator"
-        ],
-        "checkedAt": "2026-10-18T15:33:48.575784+00:00"
-      },
+      "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -12018,7 +12028,18 @@
         "identifiedCoverage": 27.657885450000002,
         "automatic": false
       },
-      "monthly": [],
+      "monthly": [
+        {
+          "id": "etfIE00BJ0KDQ92",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
       "historyCandidate": false,
       "decision": "keep-used"
     },
@@ -12093,7 +12114,7 @@
         "coverage": 100,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-10-15"
+        "date": "2026-10-16"
       },
       "holdings": {
         "asOf": "2026-10-15",
@@ -12527,7 +12548,7 @@
         "coverage": 99.99,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-10-15"
+        "date": "2026-10-16"
       },
       "holdings": {
         "asOf": "2026-10-15",
@@ -12604,23 +12625,12 @@
       "name": "Xtrackers MSCI World UCITS ETF 1D",
       "kind": "etf",
       "practical": [],
-      "duel": false,
+      "duel": true,
       "qualification": null,
       "sheet": true,
       "comparison": true,
-      "generator": "missing",
-      "blocker": {
-        "code": "no-listing",
-        "detail": "Aucune cotation documentée ni candidate · etf.dws.com : Ambiguous listing document identity",
-        "field": "monthly",
-        "tools": [
-          "portfolio-generator",
-          "performance-rankings",
-          "tweet-midi",
-          "investment-calculator"
-        ],
-        "checkedAt": "2026-10-18T15:33:48.575784+00:00"
-      },
+      "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -12642,7 +12652,18 @@
         "identifiedCoverage": 27.657885450000002,
         "automatic": false
       },
-      "monthly": [],
+      "monthly": [
+        {
+          "id": "etfIE00BK1PV551",
+          "automatic": true,
+          "first": "2015-05",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
       "historyCandidate": false,
       "decision": "keep-used"
     },
@@ -12807,7 +12828,7 @@
           "tweet-midi",
           "investment-calculator"
         ],
-        "checkedAt": "2026-10-18T15:33:48.575784+00:00"
+        "checkedAt": "2026-10-18T19:31:40.807499+00:00"
       },
       "dca": true,
       "countries": {
@@ -12854,7 +12875,7 @@
           "tweet-midi",
           "investment-calculator"
         ],
-        "checkedAt": "2026-10-18T15:33:48.575784+00:00"
+        "checkedAt": "2026-10-18T19:31:40.807499+00:00"
       },
       "dca": true,
       "countries": {
@@ -13119,17 +13140,17 @@
       "dca": true,
       "countries": {
         "status": "available",
-        "coverage": 99.97999999999998,
+        "coverage": 99.99999999999999,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-10-15"
+        "date": "2026-10-16"
       },
       "sectors": {
         "status": "available",
-        "coverage": 99.97999999999998,
+        "coverage": 99.99000000000002,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-10-15"
+        "date": "2026-10-16"
       },
       "holdings": {
         "asOf": "2026-10-15",
@@ -13173,10 +13194,10 @@
       },
       "sectors": {
         "status": "available",
-        "coverage": 99.99,
+        "coverage": 99.98,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-10-15"
+        "date": "2026-10-16"
       },
       "holdings": {
         "asOf": "2026-10-15",
@@ -13313,7 +13334,7 @@
           "tweet-midi",
           "investment-calculator"
         ],
-        "checkedAt": "2026-10-18T15:33:48.575784+00:00"
+        "checkedAt": "2026-10-18T19:31:40.807499+00:00"
       },
       "dca": true,
       "countries": {
@@ -13688,7 +13709,7 @@
         "coverage": 100,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-10-15"
+        "date": "2026-10-16"
       },
       "holdings": {
         "asOf": "2026-10-15",
@@ -13731,7 +13752,7 @@
           "tweet-midi",
           "investment-calculator"
         ],
-        "checkedAt": "2026-10-18T15:33:48.575784+00:00"
+        "checkedAt": "2026-10-18T19:31:40.807499+00:00"
       },
       "dca": true,
       "countries": {
@@ -14515,23 +14536,12 @@
       "name": "Xtrackers MSCI Emerging Markets UCITS ETF",
       "kind": "etf",
       "practical": [],
-      "duel": false,
+      "duel": true,
       "qualification": null,
       "sheet": true,
       "comparison": true,
-      "generator": "missing",
-      "blocker": {
-        "code": "no-listing",
-        "detail": "Aucune cotation documentée ni candidate · etf.dws.com : Ambiguous listing document identity",
-        "field": "monthly",
-        "tools": [
-          "portfolio-generator",
-          "performance-rankings",
-          "tweet-midi",
-          "investment-calculator"
-        ],
-        "checkedAt": "2026-10-18T15:33:48.575784+00:00"
-      },
+      "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -14553,7 +14563,18 @@
         "identifiedCoverage": 99.37675167000003,
         "automatic": true
       },
-      "monthly": [],
+      "monthly": [
+        {
+          "id": "etfIE00BTJRMP35",
+          "automatic": true,
+          "first": "2017-07",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
       "historyCandidate": false,
       "decision": "keep-used"
     },
@@ -14811,7 +14832,7 @@
         "coverage": 100,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-10-15"
+        "date": "2026-10-16"
       },
       "holdings": {
         "asOf": "2026-10-15",
@@ -14855,10 +14876,10 @@
       },
       "sectors": {
         "status": "available",
-        "coverage": 99.99,
+        "coverage": 99.98,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-10-15"
+        "date": "2026-10-16"
       },
       "holdings": {
         "asOf": "2026-10-15",
@@ -15188,10 +15209,10 @@
       },
       "sectors": {
         "status": "available",
-        "coverage": 100,
+        "coverage": 99.99999999999999,
         "outside": 0,
         "reason": "Disponible",
-        "date": "2026-10-15"
+        "date": "2026-10-16"
       },
       "holdings": {
         "asOf": "2026-10-15",
@@ -17871,23 +17892,12 @@
       "name": "Xtrackers MSCI Europe UCITS ETF 1C",
       "kind": "etf",
       "practical": [],
-      "duel": false,
+      "duel": true,
       "qualification": null,
       "sheet": true,
       "comparison": true,
-      "generator": "missing",
-      "blocker": {
-        "code": "no-listing",
-        "detail": "Aucune cotation documentée ni candidate · etf.dws.com : Ambiguous listing document identity",
-        "field": "monthly",
-        "tools": [
-          "portfolio-generator",
-          "performance-rankings",
-          "tweet-midi",
-          "investment-calculator"
-        ],
-        "checkedAt": "2026-10-18T15:33:48.575784+00:00"
-      },
+      "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -17909,7 +17919,18 @@
         "identifiedCoverage": 22.12016273,
         "automatic": false
       },
-      "monthly": [],
+      "monthly": [
+        {
+          "id": "etfLU0274209237",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
       "historyCandidate": false,
       "decision": "keep-used"
     },
@@ -17954,23 +17975,12 @@
       "name": "Xtrackers STOXX Europe 600 UCITS ETF 1C",
       "kind": "etf",
       "practical": [],
-      "duel": false,
+      "duel": true,
       "qualification": null,
       "sheet": true,
       "comparison": true,
-      "generator": "missing",
-      "blocker": {
-        "code": "no-listing",
-        "detail": "Aucune cotation documentée ni candidate · etf.dws.com : Ambiguous listing document identity",
-        "field": "monthly",
-        "tools": [
-          "portfolio-generator",
-          "performance-rankings",
-          "tweet-midi",
-          "investment-calculator"
-        ],
-        "checkedAt": "2026-10-18T15:33:48.575784+00:00"
-      },
+      "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -17992,7 +18002,18 @@
         "identifiedCoverage": 20.31249903,
         "automatic": false
       },
-      "monthly": [],
+      "monthly": [
+        {
+          "id": "etfLU0328475792",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
       "historyCandidate": false,
       "decision": "keep-used"
     },
@@ -18001,23 +18022,12 @@
       "name": "Xtrackers EURO STOXX 50 UCITS ETF 1C",
       "kind": "etf",
       "practical": [],
-      "duel": false,
+      "duel": true,
       "qualification": null,
       "sheet": true,
       "comparison": true,
-      "generator": "missing",
-      "blocker": {
-        "code": "no-listing",
-        "detail": "Aucune cotation documentée ni candidate · etf.dws.com : Ambiguous listing document identity",
-        "field": "monthly",
-        "tools": [
-          "portfolio-generator",
-          "performance-rankings",
-          "tweet-midi",
-          "investment-calculator"
-        ],
-        "checkedAt": "2026-10-18T15:33:48.575784+00:00"
-      },
+      "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -18039,7 +18049,18 @@
         "identifiedCoverage": 43.751216799999995,
         "automatic": false
       },
-      "monthly": [],
+      "monthly": [
+        {
+          "id": "etfLU0380865021",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
       "historyCandidate": false,
       "decision": "keep-used"
     },
@@ -18722,23 +18743,12 @@
       "name": "Xtrackers Nikkei 225 UCITS ETF",
       "kind": "etf",
       "practical": [],
-      "duel": false,
+      "duel": true,
       "qualification": null,
       "sheet": true,
       "comparison": true,
-      "generator": "missing",
-      "blocker": {
-        "code": "no-listing",
-        "detail": "Aucune cotation documentée ni candidate · etf.dws.com : Ambiguous listing document identity",
-        "field": "monthly",
-        "tools": [
-          "portfolio-generator",
-          "performance-rankings",
-          "tweet-midi",
-          "investment-calculator"
-        ],
-        "checkedAt": "2026-10-18T15:33:48.575784+00:00"
-      },
+      "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -18760,7 +18770,18 @@
         "identifiedCoverage": 99.90519649000004,
         "automatic": true
       },
-      "monthly": [],
+      "monthly": [
+        {
+          "id": "etfLU1875395870",
+          "automatic": true,
+          "first": "2018-12",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
       "historyCandidate": false,
       "decision": "keep-used"
     },
@@ -18857,23 +18878,12 @@
       "name": "Xtrackers Nikkei 225 UCITS ETF 1C (Acc)",
       "kind": "etf",
       "practical": [],
-      "duel": false,
+      "duel": true,
       "qualification": null,
       "sheet": true,
       "comparison": true,
-      "generator": "missing",
-      "blocker": {
-        "code": "no-listing",
-        "detail": "Aucune cotation documentée ni candidate · etf.dws.com : Ambiguous listing document identity",
-        "field": "monthly",
-        "tools": [
-          "portfolio-generator",
-          "performance-rankings",
-          "tweet-midi",
-          "investment-calculator"
-        ],
-        "checkedAt": "2026-10-18T15:33:48.575784+00:00"
-      },
+      "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -18895,7 +18905,18 @@
         "identifiedCoverage": 99.90519649000004,
         "automatic": true
       },
-      "monthly": [],
+      "monthly": [
+        {
+          "id": "etfLU2196470426",
+          "automatic": true,
+          "first": "2020-12",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
       "historyCandidate": false,
       "decision": "keep-used"
     },
@@ -18910,8 +18931,8 @@
       "comparison": true,
       "generator": "missing",
       "blocker": {
-        "code": "no-listing",
-        "detail": "Aucune cotation documentée ni candidate · etf.dws.com : Ambiguous listing document identity",
+        "code": "history-short",
+        "detail": "0 année(s) complète(s) ; 6 requises en génération automatique",
         "field": "monthly",
         "tools": [
           "portfolio-generator",
@@ -18919,7 +18940,7 @@
           "tweet-midi",
           "investment-calculator"
         ],
-        "checkedAt": "2026-10-18T15:33:48.575784+00:00"
+        "checkedAt": "2026-10-18T19:43:08.193649+00:00"
       },
       "dca": true,
       "countries": {
@@ -18942,7 +18963,18 @@
         "identifiedCoverage": 0,
         "automatic": false
       },
-      "monthly": [],
+      "monthly": [
+        {
+          "id": "etfLU2903252349",
+          "automatic": true,
+          "first": "2025-03",
+          "last": "2026-09",
+          "currency": "EUR",
+          "performance": false,
+          "simulation": false,
+          "anniversary": true
+        }
+      ],
       "historyCandidate": false,
       "decision": "keep-used"
     },

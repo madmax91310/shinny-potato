@@ -8,15 +8,15 @@ Rapport fondé sur les collecteurs configurés et les données actives, pas sur 
 
 | Domaine | Couverture active | Fréquence |
 |---|---|---|
-| Historiques mensuels des simulateurs | 664/664 séries ; 429 collecteurs communs + Bitcoin et or | Marchés : 2, 4, 8 et 16 du mois ; Bitcoin : 2, 4 et 8 ; or : tentatives du 3 au 10 |
-| Parts ETF mensuelles raccordées | 225 parts exactes ; investissement et performance revenus réinvestis, anniversaire hors distributions | Même collecte mensuelle et reprise quotidienne des échecs |
+| Historiques mensuels des simulateurs | 674/674 séries ; 429 collecteurs communs + Bitcoin et or | Marchés : 2, 4, 8 et 16 du mois ; Bitcoin : 2, 4 et 8 ; or : tentatives du 3 au 10 |
+| Parts ETF mensuelles raccordées | 235 parts exactes ; investissement et performance revenus réinvestis, anniversaire hors distributions | Même collecte mensuelle et reprise quotidienne des échecs |
 | ETF/ETC/ETP | 258/258 instruments, au moins un champ | Quotidienne |
 | Actions individuelles (secteur et pays) | 388/388 actions ; secteur GICS et pays de risque issus des compositions complètes iShares ; données du 2026-10-15 | Quotidienne ; une action sortie des fonds sources garde sa dernière classification datée |
-| Comparatif ETF | 243/243 parts raccordées dans 138 blocs ; 233 calendriers actifs, 11 absences qualifiées | Quotidienne ; ajout de part contrôlé en CI |
+| Comparatif ETF | 245/245 parts raccordées dans 138 blocs ; 235 calendriers actifs, 11 absences qualifiées | Quotidienne ; ajout de part contrôlé en CI |
 | Compositions d’indices | 52 indices | 3 et 16 du mois |
 | Rendements annuels d’indices | 56 indices | 3 et 16 du mois |
 | Pouvoir d’achat | Prix généraux, alimentation, énergie, IRL et SMIC INSEE ; périodes et qualité publiées | Vérification quotidienne |
-| Anniversaires | 654 niveaux datés ; saisie manuelle facultative | Quotidienne ; or : dernière moyenne mensuelle |
+| Anniversaires | 664 niveaux datés ; saisie manuelle facultative | Quotidienne ; or : dernière moyenne mensuelle |
 | Inflation | INSEE, prolongement de la série mensuelle 2026+ | 1 et 16 du mois |
 | Portefeuilles d’investisseurs | 28 profils SEC 13F | Vérification quotidienne ; publication trimestrielle par les déclarants |
 | Suivi de fraîcheur | Rapport et rappels GitHub | Hebdomadaire ; ces rappels ne collectent pas les données manuelles |
@@ -65,7 +65,7 @@ Les frais collectés peuvent être ceux du dernier exercice publié : leur date 
 | Rendements calendaires de la part (au moins une année complète) | 238 |
 | Pays | 229 |
 | Secteurs ou sous-secteurs publiés | 229 |
-| Principales positions | 232 |
+| Principales positions | 234 |
 
 Ces couvertures ne s’additionnent pas : plusieurs champs concernent le même instrument. Les 23 expositions Amundi à l’indice suivi recouvrent des parts déjà collectées ; elles ne sont pas 23 fonds supplémentaires. Les compositions d’indice, portefeuilles de fonds et paniers de substitution ne sont jamais assimilés. Les simulations choisissent automatiquement la dernière fenêtre complète commune : six ans pour le Générateur, trois à six ans pour les Duels. Les comparatifs alignent les années des produits. Une publication tardive ou un change BCE manquant conserve la dernière période commune ; aucun rendement n’est extrapolé. Les getters historiques et photographies archivées gardent leur période fixe.
 
@@ -108,8 +108,8 @@ Les identités, domiciles, modes de réplication, couvertures de change, politiq
 | IE00B3XXRP09 | Vanguard S&P 500 UCITS ETF Distributing | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00BKWQ0Q14 | State Street SPDR MSCI Europe UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00BFY0GT14 | State Street SPDR MSCI World UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
-| IE000716YHJ7 | Invesco FTSE All-World UCITS ETF Accumulating | Principales positions |
-| IE0000QLH0G6 | Invesco FTSE All-World UCITS ETF Distributing | Principales positions |
+| IE000716YHJ7 | Invesco FTSE All-World UCITS ETF Accumulating | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
+| IE0000QLH0G6 | Invesco FTSE All-World UCITS ETF Distributing | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00BMC38736 | VanEck Semiconductor UCITS ETF | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00BDVPNG13 | WisdomTree Artificial Intelligence UCITS ETF USD Acc | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |
 | IE00BKLF1R75 | WisdomTree Battery Solutions UCITS ETF USD Acc | Les six champs sont couverts ; caractéristiques et cotations restent manuelles |

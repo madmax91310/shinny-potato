@@ -46,3 +46,13 @@ Les deux chantiers avaient qualifié les mêmes dix parts. Les registres sont ra
 Le collecteur conserve les contrôles d’identité et la table de cotation strictement délimitée de #799, ainsi que la lecture des caractéristiques et le rejet des champs dupliqués de #798. Les régressions des deux branches restent testées. Une nouvelle collecte de contrôle des dix parts réussit sans renouvellement en échec.
 
 Le portail Pages régénère désormais les raccourcis de performance avant le test des raccordements ETF. Le défaut a été reproduit sur un checkout propre : le test lisait l’ancienne projection avant la compilation. Aucun contrôle ni critère financier n’est supprimé. Compilation et budgets, 235 historiques ETF/ETC, 664 preuves historiques, 605 liens de performance, 649 liens de simulation, change BCE et 55 tests de suivi/workflows réussissent sur l’intégration.
+
+## Résolution après publication de #798 et #800 — 19 octobre 2026
+
+La branche est rapprochée de `master` au commit `ef9632a2a044621c5f7d23de52e832f510a72f51`. Les dix parts sont déjà présentes dans les collectes publiées. Les configurations et identités sont identiques par identifiant ; leur ordre différait seulement. Les deux conflits portent sur les valeurs ajustées et les preuves de réponses mensuelles renouvelées depuis la préparation de #799.
+
+Les observations, preuves, cours bruts, configurations et statuts de qualification de `master` sont conservés ensemble, sans fusion de valeurs point par point et sans modification de date. Cette résolution remplace le choix des observations décrit dans la section précédente. Le changement restant porte sur le contrôle strict des sections DWS, ses tests et l'ordre de régénération du portail Pages. Les améliorations publiées par #798 et #800 sont conservées.
+
+Les 19 tests du collecteur, l'audit des 664 historiques et les raccordements des 235 historiques ETF/ETC passent sur cet instantané. L'échec de l'ancienne collecte entreprises de #799 concernait une prévision Teradyne périmée ou datée dans le futur ; aucun seuil de fraîcheur ni contrôle financier n'est assoupli dans cette résolution.
+
+La compilation et les budgets passent également. Le parcours Chromium contrôle sept sélections manuelles, dont les parts Xtrackers IE00BJ0KDQ92 et IE00BK1PV551 : chargement différé, reprise après erreur, allocation, PNG et écran mobile. Les Duels, les expositions et Performance depuis sont exercés ; la part IE00BK1PV551 produit le texte attendu dans Performance depuis. Aucun fichier dérivé du build n’est ajouté à la résolution.

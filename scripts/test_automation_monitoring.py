@@ -199,4 +199,57 @@ class NotificationTests(unittest.TestCase):
         sync_monitoring_issue(evaluate(STATE), api, 'test/repo')
         self.assertEqual(api.writes, [])
 
+
+class AlertCenterTests(unittest.TestCase):
+    def test_escalation_ignores_runs_dates_and_repeated_failure(self):
+        context = {**CONTEXT, 'historyAlerts': [{'id': 'fund:gaps', 'name': 'Fund', 'kind': 'history', 'field': 'Monthly', 'cause': 'Missing month', 'missingPeriods': ['2026-07'], 'tools': ['Performance depuis']}]}
+        first = evaluate(STATE, context)
+        state = {**STATE, 'monitoring': first}
+        again = evaluate(state, context, now='2026-10-14T09:00:00Z')
+        self.assertEqual(first['revision'], again['revision'])
+        context = copy.deepcopy(context)
+        context['historyAlerts'][0]['missingPeriods'].append('2026-08')
+        worse = evaluate(state, context)
+        self.assertEqual(worse['revision'], first['revision'] + 1)
+        self.assertEqual(worse['events'][-1]['escalated'], ['history:fund:gaps'])
+        self.assertEqual(worse['active']['history:fund:gaps']['firstSeenAt'], NOW)
+        # Recovery is not inferred from the collector run: the gap must disappear.
+        unreadable = evaluate({**STATE, 'monitoring': worse}, CONTEXT)
+        self.assertIn('history:fund:gaps', unreadable['active'])
+        recovered = evaluate({**STATE, 'monitoring': worse}, {**CONTEXT, 'historyAlerts': []})
+        self.assertFalse(recovered['active'])
+        self.assertEqual(len(recovered['resolved']), 1)
+
+    def test_anomaly_and_last_success_are_preserved(self):
+        state = copy.deepcopy(STATE)
+        state['workflows']['x.yml'].update(lastCollectionSuccessAt='2026-10-10T08:00:00Z', dataFailures={'index-world-composition': {'cause': 'Suspicious ETF change'}})
+        row = evaluate(state)['active']['collection:x.yml:index-world-composition']
+        self.assertEqual(row['kind'], 'anomaly')
+        self.assertEqual(row['lastSuccessAt'], '2026-10-10T08:00:00Z')
+
+    def test_partial_data_recovery_and_escalation_notify_once(self):
+        api = FakeAPI(created_at=NOW)
+        context = {**CONTEXT, 'historyAlerts': [
+            {'id': 'a', 'name': 'A', 'kind': 'history', 'cause': 'Missing', 'missingPeriods': ['2026-07'], 'tools': []},
+            {'id': 'b', 'name': 'B', 'kind': 'history', 'cause': 'Missing', 'missingPeriods': ['2026-07'], 'tools': []}]}
+        first = evaluate(STATE, context)
+        sync_monitoring_issue(first, api, 'test/repo')
+        context = copy.deepcopy(context)
+        context['historyAlerts'][0]['missingPeriods'].append('2026-08')
+        worse = evaluate({**STATE, 'monitoring': first}, context)
+        sync_monitoring_issue(worse, api, 'test/repo')
+        self.assertIn('Aggravation : A', api.comments[-1]['body'])
+        count = len(api.writes)
+        sync_monitoring_issue(worse, api, 'test/repo')
+        self.assertEqual(len(api.writes), count)
+        context['historyAlerts'] = context['historyAlerts'][1:]
+        partial = evaluate({**STATE, 'monitoring': worse}, context)
+        sync_monitoring_issue(partial, api, 'test/repo')
+        self.assertEqual(len(api.comments), 2)
+        self.assertIn('Résolu : A', api.comments[-1]['body'])
+        self.assertEqual(api.issue['state'], 'open')
+        same = evaluate({**STATE, 'monitoring': partial}, context, now='2026-10-14T10:00:00Z')
+        sync_monitoring_issue(same, api, 'test/repo')
+        self.assertEqual(len(api.comments), 2)
+
 if __name__ == '__main__': unittest.main()
