@@ -4,6 +4,19 @@ import { ETFS, CATEGORY_ORDER, CATEGORY_EMOJI } from '../src/data/etf-cards.js'
 import { benchmarkKey } from '../src/data/asset-selection.js'
 import { getInstrumentPeaStatus } from '../src/data/instruments.js'
 import { ETF_TER_BY_ISIN } from '../src/data/etf-ter.js'
+import { exposureGroup } from '../src/data/asset-labels.js'
+
+// Country tokens must not match « Index » or override an explicitly excluded country.
+for (const [name, benchmark, expected] of [
+  ['Xtrackers EURO STOXX 50', 'EURO STOXX 50 Index', 'Europe'],
+  ['Vanguard S&P 500', 'S&P 500 Index', 'États-Unis'],
+  ['Xtrackers MSCI World', 'MSCI Total Return Net World Index', 'Monde'],
+  ['Xtrackers MSCI World ex USA', 'MSCI World ex USA Index', 'Monde'],
+  ['iShares MSCI AC Far East ex-Japan', 'MSCI AC Far East ex Japan Index', 'Asie hors Japon'],
+  ['ETF Japon', 'MSCI Japan Index', 'Japon'],
+  ['ETF Inde', 'MSCI India Index', 'Émergents'],
+  ['ETF émergents', 'MSCI Emerging Markets Index', 'Émergents'],
+]) assert.equal(exposureGroup({name, benchmark}), expected, benchmark)
 
 // Every ETF sheet whose fees, assets and published exposures are collected is reachable from the
 // comparison tool; themes are unique; derived themes follow their stated rules (same index, PEA
@@ -33,6 +46,14 @@ for (const theme of SAME_INDEX_THEMES) {
 for (const theme of EXPOSURE_THEMES) {
   const fees = theme.etfs.map(e => Number(ETF_TER_BY_ISIN[e.isin]))
   assert.deepEqual(fees, [...fees].sort((a, b) => a - b), `${theme.id} : frais croissants`)
+}
+// A PEA-first list may cease to be globally sorted by fees; its published note must say so.
+for (const theme of DEFAULT_THEMES.filter(t => t.derived === 'exposure')) {
+  const fees = theme.etfs.map(e => Number(ETF_TER_BY_ISIN[e.isin]));
+  if (fees.some((fee, i) => i > 0 && fee < fees[i - 1])) {
+    assert(!theme.comparisonNote.includes('classés par frais croissants'), `${theme.id} : frais non croissants`);
+    assert(theme.comparisonNote.includes('priorité au PEA'), `${theme.id} : priorité PEA explicitée`);
+  }
 }
 assert(DERIVED_THEMES.length === SAME_INDEX_THEMES.length + EXPOSURE_THEMES.length)
 
