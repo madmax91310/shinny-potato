@@ -130,20 +130,10 @@ export function buildFactsheetTweet(sheet) {
 
   lines.push('', `📈 Les performances ${sheet.performance.kind === 'ETF' ? `de l’ETF ${sheet.isin}` : `de l’indice ${sheet.index}`} :`)
   lines.push(`${sheet.performance.detail.replace(/\.$/, '')}.`)
-  if (sheet.performance.currencyNote) lines.push(sheet.performance.currencyNote)
   for (const [year, value] of sheet.returns ?? []) lines.push(`${value >= 0 ? '📈' : '📉'} ${year} : ${pct(value)}`)
   if (sheet.performance.tenYear != null) lines.push(`Sur dix ans : ${pct(sheet.performance.tenYear)} par an pour l’indice.`)
   if (sheet.performance.annualizedFiveYear != null) lines.push(`Sur cinq ans : ${pct(sheet.performance.annualizedFiveYear)} par an pour l’indice.`)
   if (sheet.performance.historyNote) lines.push('', `⚠️ ${sheet.performance.historyNote.replace('Les poids sont ceux de l’indice au 31 août 2026 ; les rendements', 'Les rendements')}`)
-  if (sheet.performance.kind === 'indice') {
-    const priceReturn = /hors dividendes|Price Return/i.test(sheet.performance.detail)
-    const dollars = /USD|dollars/i.test(sheet.performance.detail)
-    lines.push('', priceReturn
-      ? 'Les dividendes ne sont pas comptés dans ces chiffres : leur réinvestissement aurait donné un résultat différent.'
-      : dollars
-        ? 'Pour un ETF en euros, le change et les frais peuvent modifier ces résultats.'
-        : 'Les frais et le suivi de l’indice peuvent modifier le résultat d’un ETF.')
-  }
   const question = ['em-standard', 'em-esg', 'msci-em-ex-china'].includes(sheet.id)
     ? 'Cette répartition correspond à ce que tu recherches dans les marchés émergents ?'
     : questions[sheet.id] ?? 'Quel détail de cette composition retient ton attention ?'
