@@ -219,7 +219,7 @@ def refresh_fx(old_fx, previous_status, now, retry=False, selected=True):
     derived = copy.deepcopy(old_fx.get('derived', {}))
     for currency in due:
         try:
-            cross = parse_cross_fx(download(CROSS_SERIES[currency], max_bytes=4_000_000), body, now, currency)
+            cross = parse_cross_fx(download(CROSS_SERIES[currency], max_bytes=4_000_000, timeout=60, max_attempts=4), body, now, currency)
             if not set(derived.get(currency, {}).get('observations', {})).issubset(cross['observations']):
                 reject(f'{currency} cross-rate coverage would regress')
             derived[currency] = cross
@@ -290,3 +290,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+

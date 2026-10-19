@@ -12,6 +12,7 @@ import urllib.error
 import urllib.request
 
 from automation_monitoring import evaluate_monitoring, sync_monitoring_issue, timestamp
+from automation_recovery import plan_recovery, dispatch_recovery, recovery_reason
 
 REGISTRY = json.loads((pathlib.Path(__file__).resolve().parents[1] / 'src/data/automation-workflows.json').read_text())
 WORKFLOWS = {key: value['name'] for key, value in REGISTRY.items()}
@@ -422,7 +423,7 @@ def main():
             data=json.dumps(data).encode() if data is not None else None,
             headers={'Authorization': f'Bearer {token}', 'Accept': 'application/vnd.github+json', 'User-Agent': 'EpargnantLibre-Automation', 'Content-Type': 'application/json'})
         with urllib.request.urlopen(request, timeout=25) as response:
-            return json.load(response)
+            return json.load(response) if response.status != 204 else None
     try:
         file = api(f'/contents/{PATH}?ref={BRANCH}')
         state = decode_json_file(api, file)
@@ -521,7 +522,7 @@ def main():
         public = f'https://{owner}.github.io/{project}/'
         def published(path):
             with urllib.request.urlopen(public + path, timeout=20) as response:
-                return json.load(response)
+                return json.load(response) if response.status != 204 else None
         comparisons = {}
         def compare(base, head):
             key = (base, head)
@@ -543,11 +544,27 @@ def main():
     except (urllib.error.HTTPError, urllib.error.URLError, ValueError, KeyError):
         print('Radar non lisible ; alertes précédentes conservées.')
     state['monitoring'] = evaluate_monitoring(state, context, REGISTRY, dt.datetime.now(dt.timezone.utc).isoformat(), radar)
+    # Only trusted master collectors; reserve dispatches in the same durable status
+    # document before calling Actions. Never run code from a triggering PR.
+    now = dt.datetime.now(dt.timezone.utc)
+    current_runs = {}
+    for workflow, config in REGISTRY.items():
+        if workflow in ('onboard-assets.yml', 'rehearse-refresh.yml', 'deploy-pages.yml') or config.get('publishes') is False:
+            continue
+        if recovery_reason(state.get('workflows', {}).get(workflow, {}), config, now):
+            current_runs[workflow] = [run for run in api(f'/actions/workflows/{workflow}/runs?branch=master&per_page=100')['workflow_runs']
+                                      if run.get('event') in ('schedule','push','workflow_dispatch','workflow_run')]
+    state['recovery'], recovery_plans = plan_recovery(state, REGISTRY, now, current_runs)
     encoded = base64.b64encode((json.dumps(state,ensure_ascii=False,indent=2)+'\n').encode()).decode()
     payload = {'message': 'Update automation failure status', 'branch': BRANCH, 'content': encoded}
     if sha:
         payload['sha'] = sha
-    api(f'/contents/{PATH}', 'PUT', payload)
+    saved = api(f'/contents/{PATH}', 'PUT', payload)
+    if recovery_plans:
+        dispatch_recovery(api, state['recovery'], recovery_plans)
+        payload['sha'] = saved['content']['sha']
+        payload['content'] = base64.b64encode((json.dumps(state, ensure_ascii=False, indent=2)+'\n').encode()).decode()
+        api(f'/contents/{PATH}', 'PUT', payload)
     # Persist incidents before notifying. Bot issue/comment receipts make retries idempotent.
     sync_monitoring_issue(state['monitoring'], api, repo)
     print(f'Statuts publiés : {len(state["workflows"])} automatisations')
@@ -555,4 +572,5 @@ def main():
 
 if __name__ == '__main__':
     main()
+
 

@@ -10,7 +10,8 @@ import urllib.error
 import urllib.parse
 import urllib.request
 from zoneinfo import ZoneInfo
-from data_automation import write_json_atomic
+from data_automation import write_json_atomic, retry_delay
+from sec_transport import is_sec, user_agent, before_request, refused
 
 ROOT = Path(__file__).resolve().parents[1]
 UTC = dt.timezone.utc
@@ -19,11 +20,12 @@ REVENUE = ['RevenueFromContractWithCustomerExcludingAssessedTax', 'Revenues', 'S
 
 def fetch_json(url):
     request = urllib.request.Request(url, headers={
-        'User-Agent': 'EpargnantLibre/1.0 https://github.com/madmax91310/shinny-potato',
+        'User-Agent': user_agent() if is_sec(url) else 'EpargnantLibre/1.0 https://github.com/madmax91310/shinny-potato',
         'Accept': 'application/json',
     })
     for attempt in range(3):
         try:
+            before_request(url)
             with urllib.request.urlopen(request, timeout=30) as response:
                 if response.headers.get_content_type() not in ('application/json', 'text/json'):
                     raise ValueError('Unexpected content type')
@@ -32,9 +34,11 @@ def fetch_json(url):
                     raise ValueError('Response too large')
                 return json.loads(raw, parse_constant=lambda _: (_ for _ in ()).throw(ValueError('Nonfinite JSON')))
         except urllib.error.HTTPError as error:
-            if error.code in (400, 401, 403, 404) or attempt == 2:
+            if error.code == 403:
+                refused(url)
+            if error.code not in (408, 429, 500, 502, 503, 504) or attempt == 2:
                 raise
-            time.sleep(2 ** attempt)
+            time.sleep(retry_delay(error, attempt))
         except (urllib.error.URLError, TimeoutError):
             if attempt == 2:
                 raise
@@ -589,4 +593,5 @@ def main():
 
 if __name__ == '__main__':
     main()
+
 

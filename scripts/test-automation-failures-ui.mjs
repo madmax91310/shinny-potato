@@ -53,7 +53,17 @@ try {
 
  status={schemaVersion:1,workflows:{'update-company-analysis.yml':{name:'Analyse entreprises',status:'failure',collectionStatus:'success',recordingStatus:'failure',publicationStatus:'not-run',runUrl:'https://github.com/test/repo/actions/runs/3'}}}
  await page.reload({waitUntil:'networkidle'})
+ status.recovery={'update-company-analysis.yml':{status:'waiting',reason:'recording-failed',nextAttemptAt:'2026-10-19T16:00:00Z'}}
+ await page.reload({waitUntil:'networkidle'})
  await overview.getByText('Enregistrement en échec',{exact:true}).waitFor()
+ await overview.getByRole('status').filter({hasText:'Reprise automatique : Nouvelle tentative programmée'}).waitFor()
+ assert.match(await overview.textContent(),/Prochaine tentative possible/)
+ assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth))
+ await page.screenshot({path:'test-artifacts/automation-recovery-mobile.png',fullPage:true})
+ await page.setViewportSize({width:1440,height:1000})
+ assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth))
+ await page.screenshot({path:'test-artifacts/automation-recovery-desktop.png',fullPage:true})
+ await page.setViewportSize({width:390,height:844})
  assert.match(await overview.textContent(),/L’enregistrement des données validées a échoué/)
  assert.equal(await overview.getByText('Collecte en échec',{exact:true}).count(),0)
 
@@ -114,3 +124,4 @@ try {
  assert.deepEqual(errors,[])
  console.log('Automation overview UI: success, unknown, filters, dates, failures, recovery, unavailable status, links and mobile layout OK')
 }finally{await browser?.close();server.kill()}
+

@@ -347,6 +347,9 @@ jobs:
       - run: python -m unittest discover -s scripts -p "test_gold_monthly.py"
       - run: python -m unittest discover -s scripts -p "test_pages_head.py"
       - run: python -m unittest discover -s scripts -p 'test_automation*.py'
+      - run: python -m unittest discover -s scripts -p 'test_sec_transport.py'
+      - run: python -m unittest discover -s scripts -p 'test_source_download_recovery.py'
+      - run: python -m unittest discover -s scripts -p 'test_metadata_recovery_diagnostics.py'
       - run: python -m unittest discover -s scripts -p 'test_audit_workflows.py'
       - run: python -m unittest discover -s scripts -p 'test_validated_data_commit.py'
       - run: python -m unittest discover -s scripts -p 'test_data_publication.py'
@@ -591,4 +594,5 @@ jobs:
           artifact_name: github-pages-fallback
       - if: steps.current.outputs.current == 'true'
         run: echo "Données publiées avec le dernier code validé (voie de secours). Le code de master reste à réparer." >> "$GITHUB_STEP_SUMMARY"
+
 

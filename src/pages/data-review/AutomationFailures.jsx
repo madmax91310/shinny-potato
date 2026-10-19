@@ -6,6 +6,7 @@ import { TOOLS } from '../../tools.js'
 import { AUTOMATION_STATUS_URL, automationFailures, automationOverview } from './automation.js'
 const toolTitle = path => TOOLS.find(tool => tool.to === path)?.navLabel ?? path
 
+const recoveryLabel = value => ({ reserved: 'Relance réservée', dispatched: 'Relance demandée', waiting: 'Nouvelle tentative programmée', 'awaiting-current-run': 'Une exécution est déjà en cours ou attend son bilan', 'budget-exhausted': 'Limite de relances atteinte pour 24 heures', 'dispatch-failed': 'Demande de relance échouée ; nouvelle tentative différée' }[value] ?? null)
 const publicationLabel = value => ({ success: 'Réussie', failure: 'En échec', 'not-run': 'Non exécutée' }[value] ?? 'Non documentée')
 const date = value => value && Number.isFinite(Date.parse(value)) ? new Intl.DateTimeFormat('fr-FR', {dateStyle: 'short', timeStyle: 'short', timeZone: 'Europe/Paris'}).format(new Date(value)) : 'Non documenté'
 export default function AutomationFailures() {
@@ -50,6 +51,7 @@ export default function AutomationFailures() {
         {row.publicationStatus === 'failure' && <p>La publication de l’application a échoué.{row.collectionStatus === 'success' && ' La collecte a réussi ; son déploiement reste à reprendre.'}</p>}
         {row.state === 'failure' && <p>Les dernières données validées sont conservées.{row.failureCount > 0 && ` ${row.failureCount} donnée(s) en échec documentée(s).`}</p>}
         {row.state === 'failure' && row.cause && <p className="dr-cause">Cause relevée : {row.cause}</p>}
+        {recoveryLabel(row.recovery?.status) && <p className="dr-recovery" role="status">Reprise automatique : {recoveryLabel(row.recovery.status)}.{row.recovery.nextAttemptAt && ` Prochaine tentative possible : ${date(row.recovery.nextAttemptAt)}.`} Les collectes programmées continuent.</p>}
         <dl><dt>Dernière exécution</dt><dd>{date(row.completedAt)}{row.age && ` · ${row.age}`}</dd><dt>Dernier contrôle de collecte réussi</dt><dd>{date(row.lastCollectionSuccessAt)}</dd><dt>Collecte de cette exécution</dt><dd>{publicationLabel(row.collectionStatus)}</dd><dt>Validation de cette exécution</dt><dd>{publicationLabel(row.validationStatus)}</dd><dt>Enregistrement de cette exécution</dt><dd>{publicationLabel(row.recordingStatus)}</dd><dt>Publication de cette exécution</dt><dd>{publicationLabel(row.publicationStatus)}</dd><dt>Dernière publication réussie</dt><dd>{date(row.lastPublicationSuccessAt)}</dd><dt>Dernier succès complet</dt><dd>{date(row.lastSuccessAt)}</dd></dl>
         {row.paths.length > 0 && <p className="dr-tools">Outils alimentés : {row.paths.map((path, index) => <span key={path}>{index > 0 && ', '}<Link to={path}>{toolTitle(path)}</Link></span>)}</p>}
         {row.runUrl && <div className="dr-links"><a href={row.runUrl} target="_blank" rel="noreferrer">Voir l’exécution ↗</a></div>}
@@ -68,3 +70,4 @@ export default function AutomationFailures() {
     {unavailable && <p className="dr-note" role="status">Le suivi des automatisations est momentanément indisponible. Les éventuelles alertes affichées n’ont pas pu être revérifiées.</p>}
   </section><AssetFieldCoverage /></>
 }
+

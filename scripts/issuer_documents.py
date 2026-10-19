@@ -14,7 +14,9 @@ import urllib.parse
 from data_automation import UTC, reject, retry_delay, ResponseFormatError
 
 
-def download(url, max_bytes=8_000_000, headers=None, url_validator=None, return_source=False):
+def download(url, max_bytes=8_000_000, headers=None, url_validator=None, return_source=False, *, timeout=25, max_attempts=3):
+    if type(max_attempts) is not int or not 1 <= max_attempts <= 5 or not 0 < timeout <= 90:
+        raise ValueError("Invalid bounded download policy")
     # Issuer region redirects set cookies; keep them within this download chain.
     class OfficialRedirect(urllib.request.HTTPRedirectHandler):
         def redirect_request(self, req, fp, code, msg, response_headers, newurl):
@@ -25,9 +27,9 @@ def download(url, max_bytes=8_000_000, headers=None, url_validator=None, return_
         raise ResponseFormatError('URL outside official broker scope: '+url)
     opener = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(http.cookiejar.CookieJar()),OfficialRedirect())
     request = urllib.request.Request(url, headers={'User-Agent': 'EpargnantLibre-Data/1.0', 'Accept-Language': 'en', **(headers or {})})
-    for attempt in range(3):
+    for attempt in range(max_attempts):
         try:
-            with opener.open(request, timeout=25) as response:
+            with opener.open(request, timeout=timeout) as response:
                 if url_validator and not url_validator(response.geturl()):
                     raise ResponseFormatError('Final URL outside official broker scope: '+response.geturl())
                 body = response.read(max_bytes + 1)
@@ -36,7 +38,7 @@ def download(url, max_bytes=8_000_000, headers=None, url_validator=None, return_
                 if url.split('?')[0].endswith('.pdf') and not body.startswith(b'%PDF-'):
                     # A public regional landing page may initialise its cookie only after
                     # the redirect chain ends. Retry the original document with that jar.
-                    if (attempt < 2 and response.geturl() != url
+                    if (attempt < max_attempts - 1 and response.geturl() != url
                             and urllib.parse.urlparse(response.geturl()).netloc == urllib.parse.urlparse(url).netloc):
                         continue
                     title = re.search(br'<title[^>]*>(.*?)</title>', body, re.I | re.S)
@@ -44,11 +46,11 @@ def download(url, max_bytes=8_000_000, headers=None, url_validator=None, return_
                     raise ResponseFormatError(f'Expected official PDF at {url}; received {label} at {response.geturl()}')
                 return (body,response.geturl()) if return_source else body
         except urllib.error.HTTPError as error:
-            if error.code not in (429, 500, 502, 503, 504) or attempt == 2:
+            if error.code not in (429, 500, 502, 503, 504) or attempt == max_attempts - 1:
                 raise
             delay = retry_delay(error, attempt)
         except (urllib.error.URLError, TimeoutError, http.client.IncompleteRead, ConnectionError):
-            if attempt == 2:
+            if attempt == max_attempts - 1:
                 raise
             delay = 2 ** attempt
         time.sleep(delay)
@@ -127,3 +129,4 @@ def validated_rows(rows, complete=True):
     if complete and not 99 <= total <= 101 or not complete and not 0 < total <= 101:
         reject('Truncated official composition')
     return rows
+
