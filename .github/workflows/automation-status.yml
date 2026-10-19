@@ -38,6 +38,8 @@ on:
       - "scripts/automation_monitoring.py"
       - "scripts/test_automation_monitoring.py"
       - "scripts/automation_recovery.py"
+      - "scripts/github_automation_transport.py"
+      - "scripts/test_automation_github_transport.py"
       - "scripts/test_automation_recovery.py"
       - "scripts/build-monitoring-context.mjs"
       - "scripts/test-monitoring-context.mjs"
@@ -49,6 +51,7 @@ on:
       - 'scripts/publish_automation_status.py'
       - 'scripts/automation_monitoring.py'
       - 'scripts/automation_recovery.py'
+      - 'scripts/github_automation_transport.py'
       - 'scripts/build-monitoring-context.mjs'
       - 'src/data/automation-workflows.json'
 permissions:
