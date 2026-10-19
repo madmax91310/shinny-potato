@@ -13,11 +13,17 @@ const withCandidates=(isin,listings)=>[...listings,...(candidates[isin]??[]).fil
 const holdings={},metadata=[]
 // Always renew French tax statements, including previously reviewed positives/negatives.
 // The issuer's explicit « Régime fiscal PEA » is evidence; a dash stays unknown.
-const frenchIssuerPage=(isin,r)=>{const id=/[?&]portfolioId=(\d+)/.exec(r.sourceUrl??'')?.[1];return id?[`https://www.blackrock.com/fr/particuliers/products/${id}`]:[]}
+const frenchIssuerPage=(r,urls)=>{
+ const id=/[?&]portfolioId=(\d+)/.exec(r.sourceUrl??'')?.[1]
+ // Bare /products/<id> URLs return 404. Preserve the issuer-published product slug.
+ const product=urls.filter(Boolean).map(url=>/https:\/\/(?:www\.ishares\.com|www\.blackrock\.com)\/[^?]*\/products\/(\d+)\/([^/?#]+)/.exec(url)).find(match=>match?.[1]===id)
+ return product?[`https://www.blackrock.com/fr/particuliers/products/${id}/${product[2]}`]:[]
+}
 // A VanEck factsheet page (no .pdf) is an HTML shell without the share's ISIN; read the PDF it serves.
 const currentDocument=url=>url?.replace(/(\/pdfDocuments\/(?:monthly-factsheet|kid-priips|prospectus)\/[^?]+)\/\d{8}(?=$|\?)/,'$1').replace(/^(https:\/\/www\.vaneck\.com\/(?:ucits|[a-z]{2}\/[a-z]{2})\/library\/fact-sheets\/[a-z0-9]+-fact-sheet)$/,'$1.pdf')
 for(const [isin,r] of Object.entries(AUTOMATED_ETF)) {
- const facts=getInstrumentFacts(isin),listings=withCandidates(isin,getInstrumentListings(isin)),urls=[r.sourceUrl,facts.characteristicsSource?.url,PEA_REVIEWS_BY_ISIN[isin]?.sourceUrl,'https://www.justetf.com/fr/etf-profile.html?isin='+isin,...listings.map(l=>l.sourceUrl),...frenchIssuerPage(isin,r)]
+ const facts=getInstrumentFacts(isin),listings=withCandidates(isin,getInstrumentListings(isin)),urls=[r.sourceUrl,facts.characteristicsSource?.url,PEA_REVIEWS_BY_ISIN[isin]?.sourceUrl,'https://www.justetf.com/fr/etf-profile.html?isin='+isin,...listings.map(l=>l.sourceUrl)]
+ urls.push(...frenchIssuerPage(r,urls))
  // Characteristics only need the fund facts and listings; full holdings exceed the download limit.
  const endpoint=blackrockCharacteristicsEndpoint
  // WisdomTree product pages answer 403 to automated clients; its official factsheet API does not.

@@ -176,6 +176,32 @@ def parse_json(body,isin):
 
 LISTING_HOSTS=set(json.loads((ROOT/'scripts/listing-source-hosts.json').read_text())['hosts'])
 
+def bitwise_listing_rows(body, isin):
+    """Each issuer trading row carries its own ISIN, currency, venue and codes."""
+    from bs4 import BeautifulSoup
+    soup=BeautifulSoup(body,'html.parser');rows=[]
+    for row in soup.select('.trading__tr[data-exchange-currency]'):
+        cells=row.select('.trading__info > .trading__td')
+        if len(cells)!=6:raise ValueError('Incomplete Bitwise trading row')
+        identities=set(re.findall(r'\b[A-Z]{2}[A-Z0-9]{9}\d\b',cells[0].get_text(' ',strip=True)))
+        if identities!={isin}:continue
+        # The same row must explicitly label the identity and Reuters cell.
+        identity_label=cells[0].select_one('.trading__attrname');ric_label=cells[5].select_one('.trading__attrname')
+        if identity_label is None or ric_label is None or identity_label.get_text(strip=True)!='ISIN' or ric_label.get_text(strip=True)!='RIC':raise ValueError('Unsupported Bitwise trading columns')
+        venue=row.select_one('.trading__title .trading__td a')
+        if venue is None:raise ValueError('Missing Bitwise listing venue')
+        mic=EXCHANGE_MICS.get(venue.get_text(' ',strip=True));currency=row.get('data-exchange-currency')
+        ticker=cells[3].get_text(' ',strip=True).split()
+        if not mic or not re.fullmatch(r'[A-Z]{3}',currency or '') or len(ticker)!=2 or not re.fullmatch(r'[A-Za-z0-9]+',ticker[0]):continue
+        displayed=row.select_one('.trading__title [data-clipboard]')
+        if displayed is None or displayed.get('data-clipboard')!=' '.join(ticker):raise ValueError('Conflicting Bitwise listing tickers')
+        for label in cells[5].select('.trading__attrname'):label.decompose()
+        symbol=cells[5].get_text(' ',strip=True)
+        rows.append(dict(ticker=ticker[0],mic=mic,exchange=CANONICAL_EXCHANGES[mic],currency=currency,
+                         **({'symbol':symbol} if SYMBOL.fullmatch(symbol) else {}),
+                         excerpt=' | '.join([isin,venue.get_text(' ',strip=True),currency,' '.join(ticker),symbol])))
+    return rows
+
 def globalx_listing_rows(body, isin):
     """Read only the trading table under the exact share heading, including streamed rows."""
     from bs4 import BeautifulSoup
@@ -231,6 +257,8 @@ def parse_listings(body,source,url,checked):
     if urlsplit(url).scheme!='https' or urlsplit(url).hostname not in LISTING_HOSTS:return []
     isin=source['isin'];digest=hashlib.sha256(body).hexdigest();rows=[]
     markets=EXCHANGE_MICS
+    if urlsplit(url).hostname=='bitwiseinvestments.eu' and not body.startswith(b'%PDF-'):
+        return [r|{'sourceUrl':url,'checkedAt':checked,'sha256':digest,'evidenceId':f"{isin}-{r['mic']}-{r['ticker']}-{r['currency']}"} for r in bitwise_listing_rows(body,isin)]
     if urlsplit(url).hostname=='globalxetfs.eu' and not body.startswith(b'%PDF-'):
         return [r|{'sourceUrl':url,'checkedAt':checked,'sha256':digest,'evidenceId':f"{isin}-{r['mic']}-{r['ticker']}-{r['currency']}"} for r in globalx_listing_rows(body,isin)]
     if urlsplit(url).hostname=='fund-docs.vanguard.com' and body.startswith(b'%PDF-'):

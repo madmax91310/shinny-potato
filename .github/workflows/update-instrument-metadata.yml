@@ -58,12 +58,36 @@ jobs:
           path: ${{ runner.temp }}/metadata-sample-evidence
           retention-days: 14
       - name: Observe all public exact-share sources without changing registries
-        run: python scripts/probe_instrument_metadata.py --output "$RUNNER_TEMP/metadata-evidence"
+        run: python scripts/probe_instrument_metadata.py --output "$RUNNER_TEMP/metadata-evidence" --shard-count 4
       - uses: actions/upload-artifact@v7.0.1
         if: always()
         with:
           name: exact-share-metadata-source-evidence
-          path: ${{ runner.temp }}/metadata-evidence
+          path: ${{ runner.temp }}/metadata-evidence/manifest.json
+          retention-days: 14
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: metadata-raw-sources-0
+          path: ${{ runner.temp }}/metadata-evidence/part-0
+          retention-days: 14
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: metadata-raw-sources-1
+          path: ${{ runner.temp }}/metadata-evidence/part-1
+          retention-days: 14
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: metadata-raw-sources-2
+          path: ${{ runner.temp }}/metadata-evidence/part-2
+          retention-days: 14
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: metadata-raw-sources-3
+          path: ${{ runner.temp }}/metadata-evidence/part-3
           retention-days: 14
   verify:
     runs-on: ubuntu-24.04

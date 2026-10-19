@@ -32,5 +32,20 @@ class MetadataCompletionTests(unittest.TestCase):
         self.assertEqual(values['currencyHedge']['sha256'],hashlib.sha256(body).hexdigest())
         self.assertEqual(values['currencyHedge']['checkedAt'],'2026-10-19')
 
+    def test_bitwise_listing_is_bound_to_its_own_identity_and_currency(self):
+        from pathlib import Path
+        from collect_instrument_metadata import parse_listings
+        body=Path(__file__).with_name('fixtures').joinpath('metadata-completion','bitwise-exact-listing.html').read_bytes()
+        parse=lambda b,isin:parse_listings(b,{'isin':isin},'https://bitwiseinvestments.eu/products/bitwise-physical-bitcoin-etp/','2026-10-19')
+        rows=parse(body,'DE000A27Z304')
+        self.assertEqual([(r['mic'],r['ticker'],r['currency'],r['symbol']) for r in rows],[('XETR','BTCE','EUR','BTCE.DE')])
+        self.assertEqual(parse(body,self.ISIN),[])
+        # An unrelated share's row is not borrowed, even on the same issuer page.
+        mixed=parse(body+body.replace(b'DE000A27Z304',self.ISIN.encode()).replace(b'BTCE',b'OTHER'),'DE000A27Z304')
+        self.assertEqual([{k:v for k,v in r.items() if k!='sha256'} for r in mixed],[{k:v for k,v in r.items() if k!='sha256'} for r in rows])
+        with self.assertRaisesRegex(ValueError,'tickers'):
+            parse(body.replace(b'data-clipboard="BTCE GY"',b'data-clipboard="WRONG GY"'),'DE000A27Z304')
+        self.assertEqual(parse(body.replace(b'data-exchange-currency="EUR"',b'data-exchange-currency="UNKNOWN"'),'DE000A27Z304'),[])
+
 
 if __name__=='__main__':unittest.main()
