@@ -8,7 +8,8 @@ import {getInstrumentPeaStatus} from '../src/data/instruments.js'
 import {DEFAULT_THEMES} from '../src/data/etf-themes.js'
 import {getComparatifEtfText} from '../src/pages/tweet-midi/data/comparatifEtf.js'
 const records=JSON.parse(readFileSync('src/data/automated-instrument-metadata.json'))
-const isins=['IE000DQLYVB9','IE000716YHJ7','IE0000QLH0G6','IE00B579F325','IE00BD6FTQ80','IE00B4K6B022','FR0011550185','FR0011550193','IE000L2SA8K5','IE00BK5BQT80','IE00BD4TXV59','IE000QDFFK00']
+const connectedPea=Object.entries(records).filter(([isin,r])=>/^https:\/\/www\.quantalys\.com\/Fonds\/[1-9]\d*$/.test(r.pea?.sourceUrl??'')&&DEFAULT_THEMES.some(t=>t.etfs.some(f=>f.isin===isin))).map(([isin])=>isin).slice(0,3)
+const isins=[...new Set([...connectedPea,'IE000DQLYVB9','IE000716YHJ7','IE0000QLH0G6','IE00B579F325','IE00BD6FTQ80','IE00B4K6B022','FR0011550185','FR0011550193','IE000L2SA8K5','IE00BK5BQT80','IE00BD4TXV59','IE000QDFFK00'])]
 const server=spawn('node',['node_modules/vite/bin/vite.js','preview','--host','127.0.0.1','--port','4390'],{stdio:'ignore'})
 const base='http://127.0.0.1:4390/shinny-potato'
 let browser
@@ -34,12 +35,12 @@ try{
    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+2),false)
    if(['IE000DQLYVB9','IE000716YHJ7','IE00B4K6B022','FR0011550185','IE00BK5BQT80','IE00BD4TXV59','IE000QDFFK00'].includes(isin))await page.screenshot({path:'test-artifacts/metadata-connections/'+isin+'-'+width+'.png',fullPage:true})
   }
-  const theme=DEFAULT_THEMES.find(t=>t.etfs.some(f=>f.isin==='IE00BK5BQT80'))
+  const theme=DEFAULT_THEMES.find(t=>t.etfs.some(f=>connectedPea.includes(f.isin)))??DEFAULT_THEMES.find(t=>t.etfs.some(f=>f.isin==='IE00BK5BQT80'))
   assert(theme,'A real comparison contains the newly documented PEA share')
   await page.goto(base+'/comparatif-etf?subject='+encodeURIComponent(theme.id),{waitUntil:'networkidle'})
   if(await page.getByRole('button',{name:'Aperçu',exact:true}).isVisible())await page.getByRole('button',{name:'Aperçu',exact:true}).click()
   await page.getByRole('tab',{name:'Texte',exact:true}).click()
-  await page.waitForFunction(()=>document.querySelector('pre')?.textContent.includes('IE00BK5BQT80'))
+  await page.waitForFunction(isin=>document.querySelector('pre')?.textContent.includes(isin),theme.etfs[0].isin)
   assert.equal((await page.locator('pre').innerText()).trim(),getComparatifEtfText(theme.id).trim())
   await page.screenshot({path:'test-artifacts/metadata-connections/comparison-'+width+'.png',fullPage:true})
   await page.getByRole('tab',{name:'Image',exact:true}).click()

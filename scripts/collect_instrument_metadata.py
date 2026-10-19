@@ -88,6 +88,7 @@ def fetch_exchange_document(url):
 def fetch_document(url,fetch=download,isin=None):
     """Returns (body, url actually read)."""
     try:
+        if re.fullmatch(r'https://www\.quantalys\.com/(?:Fonds/[1-9]\d*|Recherche/RechercheRapide\?inputSearch=[A-Z]{2}[A-Z0-9]{9}\d)',url) and fetch is download:return TRANSPORT.read(url,fetch=fetch_quantalys_document)
         if re.fullmatch(r'https://live\.euronext\.com/en/product/etfs/[A-Z]{2}[A-Z0-9]{9}\d-[A-Z0-9]{4}',url) and fetch is download:return TRANSPORT.read(url,fetch=fetch_exchange_document)
         if url==AMUNDI_API and fetch is download:return fetch_amundi(isin),url
         if fetch is download and url.startswith('https://www.boursedirect.fr/'):
@@ -213,6 +214,38 @@ def parse_justetf(body,isin):
     if len(badges)>1:raise ValueError('Duplicate justETF PEA badge')
     if badges:text.append(badges[0].get_text(strip=True))
     return parse_text('\n'.join(text),isin)
+
+def fetch_quantalys_document(url):
+    import base64,urllib.error
+    result=subprocess.run(['node',str(Path(__file__).with_name('download-quantalys-document.mjs')),url],capture_output=True,timeout=90)
+    try:doc=json.loads(result.stdout)
+    except (ValueError,TypeError):raise urllib.error.URLError('Public fund browser returned no document')
+    if result.returncode:
+        if doc.get('status'):raise urllib.error.HTTPError(url,doc['status'],doc.get('error'),None,None)
+        raise urllib.error.URLError(doc.get('error','Public fund document unavailable'))
+    return base64.b64decode(doc['body'],validate=True),doc['sourceUrl']
+
+
+def parse_quantalys_pea(body,isin,url):
+    """The public fund's own characteristics panel, never a screener or PEA-PME row."""
+    from bs4 import BeautifulSoup
+    if not re.fullmatch(r'https://www\.quantalys\.com/Fonds/[1-9]\d*',url):raise ValueError('No public exact-share fund reference found')
+    soup=BeautifulSoup(body,'html.parser')
+    identities=[node.get_text(strip=True) for node in soup.select('h1 small')]
+    if identities!=[isin]:raise ValueError('Missing or conflicting public fund identity')
+    roots=soup.select('[data-ref="root-synthese-fond"]')
+    if len(roots)!=1:raise ValueError('Missing or multiple public fund summaries')
+    headers=[node for node in roots[0].select('h4') if node.get_text(' ',strip=True)=='Caractéristiques générales']
+    if len(headers)!=1:raise ValueError('Missing or multiple fund characteristics panels')
+    panel=headers[0].find_parent('div',class_='panel')
+    if panel is None:raise ValueError('Missing fund characteristics panel')
+    cells=[]
+    for row in panel.select('table tr'):
+        columns=row.find_all(['th','td'],recursive=False)
+        if len(columns)==2 and columns[0].get_text(' ',strip=True)=='Eligible PEA':cells.append(columns[1].get_text(' ',strip=True))
+    if len(cells)!=1:raise ValueError('Missing or ambiguous exact PEA statement')
+    return {'pea':cells[0]=='Oui'} if cells[0] in ('Oui','Non') else {}
+
 
 def parse_broker_pea(body,isin):
     """Only explicit PEA cells on an exact-share broker reference page qualify."""
@@ -513,6 +546,7 @@ def collect(source,now,fetch=download,on_document=None):
     urls=list(source['urls'])
     for requested_url in urls:
         url=requested_url
+        if re.fullmatch(r'https://www\.quantalys\.com/Recherche/RechercheRapide\?inputSearch=[A-Z]{2}[A-Z0-9]{9}\d',url) and urlsplit(values.get('pea',{}).get('sourceUrl','')).hostname=='www.quantalys.com':continue
         if urlsplit(url).hostname=='bourse.fortuneo.fr' and urlsplit(url).path=='/api/search' and urlsplit(values.get('pea',{}).get('sourceUrl','')).hostname=='bourse.fortuneo.fr':continue
         try:
             body,url=fetch_document(url,fetch,source['isin'])
@@ -527,6 +561,7 @@ def collect(source,now,fetch=download,on_document=None):
                 from urllib.parse import urlsplit
                 if urlsplit(url).hostname=='dng-api.invesco.com':fields={}
                 elif urlsplit(url).hostname=='www.justetf.com':fields=parse_justetf(body,source['isin'])
+                elif urlsplit(url).hostname=='www.quantalys.com':fields=parse_quantalys_pea(body,source['isin'],url)
                 elif urlsplit(url).hostname in ('bourse.fortuneo.fr','www.boursedirect.fr'):fields=parse_broker_pea(body,source['isin'])
                 else:fields=parse_json(body,source['isin']) if body.lstrip().startswith(b'{') else parse_text(text_of(body),source['isin'])
             except ValueError as error:
