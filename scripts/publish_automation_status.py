@@ -12,6 +12,7 @@ import urllib.error
 import urllib.request
 
 from automation_monitoring import evaluate_monitoring, sync_monitoring_issue, timestamp
+from github_automation_transport import request_json, unseen_completed_runs
 from automation_recovery import plan_recovery, persist_and_dispatch, recovery_reason
 
 REGISTRY = json.loads((pathlib.Path(__file__).resolve().parents[1] / 'src/data/automation-workflows.json').read_text())
@@ -419,11 +420,7 @@ def main():
     token = os.environ['GH_TOKEN']
     root = f'https://api.github.com/repos/{repo}'
     def api(path, method='GET', data=None):
-        request = urllib.request.Request(root+path, method=method,
-            data=json.dumps(data).encode() if data is not None else None,
-            headers={'Authorization': f'Bearer {token}', 'Accept': 'application/vnd.github+json', 'User-Agent': 'EpargnantLibre-Automation', 'Content-Type': 'application/json'})
-        with urllib.request.urlopen(request, timeout=25) as response:
-            return json.load(response) if response.status != 204 else None
+        return request_json(root+path, token, method, data)
     try:
         file = api(f'/contents/{PATH}?ref={BRANCH}')
         state = decode_json_file(api, file)
@@ -434,7 +431,7 @@ def main():
         state = {'schemaVersion': 1, 'workflows': {}}
         sha = None
     runs = []
-    if args.backfill:
+    if args.backfill or args.monitor_only:
         for workflow in WORKFLOWS:
             try:
                 candidates = api(f'/actions/workflows/{workflow}/runs?branch=master&status=completed&per_page=30')['workflow_runs']
@@ -442,6 +439,9 @@ def main():
                 if e.code == 404:
                     continue
                 raise
+            if args.monitor_only:
+                runs.extend(unseen_completed_runs(candidates, state.get('workflows', {}).get(workflow, {})))
+                continue
             candidates = [r for r in candidates if r['event'] in ('push', 'schedule', 'workflow_dispatch', 'workflow_run') and r['conclusion'] not in ('cancelled', 'skipped', 'neutral')]
             if candidates and workflow in REPORT_ARTIFACTS:
                 runs.extend(candidates)

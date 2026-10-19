@@ -21,6 +21,13 @@ collectes programmées continuent lorsque le budget de reprises est épuisé.
 L'intégration à la demande, les répétitions et le déploiement sont exclus.
 Une configuration sans première exécution ne se lance pas implicitement.
 
+Les lectures de l’API GitHub réessaient les erreurs transitoires jusqu’à trois
+fois. Les écritures et demandes de relance ne sont jamais répétées aveuglément.
+Le passage périodique relit les dernières exécutions terminées : un événement
+`workflow_run` manqué ou un précédent bilan interrompu par un 502 ne peut pas
+laisser indéfiniment une nouvelle collecte sans bilan. Les anciens rapports ne
+sont pas rejoués et les tentatives plus récentes restent distinguées.
+
 L'écran « Données à revoir » affiche l'attente, la demande de reprise, l'exécution
 déjà détectée ou le budget épuisé. Cela ne change jamais un échec en succès.
 Le journal `recovery` conserve les dates, causes, exécutions d'origine, résultats
