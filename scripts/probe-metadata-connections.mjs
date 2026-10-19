@@ -17,14 +17,15 @@ async function request(isin,url){
 }
 try{
  const page=await context.newPage();await page.goto('https://www.quantalys.com/',{timeout:25000,waitUntil:'domcontentloaded'});
- for(const isin of ['IE000716YHJ7','IE0003XJA0J9','IE0000QLH0G6','IE00BK5BQV03','IE0009HF1MK9']){
+ for(const isin of ['IE000716YHJ7','IE0003XJA0J9','IE0000QLH0G6']){
  const url='https://www.quantalys.com/Recherche/RechercheRapide?inputSearch='+isin;
  try{
  await page.locator('#inputSearch').fill(isin);
  const [response]=await Promise.all([page.waitForNavigation({timeout:25000,waitUntil:'domcontentloaded'}),page.locator('form[action="/Recherche/RechercheRapide"]').evaluate(f=>f.submit())]);
  if(!response?.ok())throw new Error('Public response refused '+response?.status());
  if(!/^https:\/\/www\.quantalys\.com\/Fonds\/[1-9]\d*$/.test(page.url())){
- await page.locator('input[name="Values.bExcludeUncommercialized"]').uncheck();
+ await page.getByRole('button',{name:'Recherche Avancée',exact:true}).click();
+ await page.getByText('Exclure les fonds dissous ou absorbés',{exact:true}).click();
  await page.getByRole('button',{name:'Rechercher',exact:true}).click();await page.waitForTimeout(5000);
  }
  await save(isin,url,Buffer.from(await page.content()),response.status(),page.url(),'public-filtered-search');
