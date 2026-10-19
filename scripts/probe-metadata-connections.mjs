@@ -16,11 +16,25 @@ async function request(isin,url){
  catch(e){manifest.push({isin,requestedUrl:url,error:String(e)});writeFileSync(out+'/manifest.json',JSON.stringify(manifest,null,2))}
 }
 try{
- for(const isin of ['IE0003XJA0J9','IE00BK5BQT80','IE00BLNMYC90','IE00B0M62S72','IE00B4L5Y983','IE00B53QG562','IE00B4K6B022'])
-  await request(isin,'https://bourse.fortuneo.fr/api/search?term='+isin)
+ for(const [isin,record] of Object.entries(records).filter(([isin,r])=>!r.pea)){
+  const searchUrl='https://bourse.fortuneo.fr/api/search?term='+isin
+  try{
+   const response=await context.request.get(searchUrl,{timeout:12000});const body=await response.body();await save(isin,searchUrl,body,response.status(),response.url(),'discovery')
+   if(response.status()===403||response.status()===429)break
+   if(response.ok()){
+    const items=JSON.parse(body).market?.fortuneo?.items??[]
+    const item=items.find(x=>x.codeIsin===isin&&x.type==='Tracker'&&/^[A-Z0-9]+$/.test(x.mnemo)&&Number.isInteger(x.codePlace))
+    if(item){await new Promise(r=>setTimeout(r,500));await request(isin,'https://bourse.fortuneo.fr/trackers/cours-etf-'+item.mnemo+'-'+isin+'-'+item.codePlace)}
+   }
+  }catch(e){manifest.push({isin,requestedUrl:searchUrl,error:String(e)})}
+  await new Promise(r=>setTimeout(r,500))
+ }
+ for(const isin of ['IE0003XJA0J9','IE00BLNMYC90'])await request(isin,'https://www.boursorama.com/recherche/?query='+isin)
  const page=await context.newPage()
- page.on('response',async r=>{if(/euronext.com/.test(r.url())&&/ajax|api|quote|detail/i.test(r.url()))try{await save('FR0011550185',r.url(),await r.body(),r.status(),r.url(),'euronext-response')}catch{}})
- try{await page.goto('https://live.euronext.com/en/product/etfs/FR0011550185-XPAR',{timeout:30000,waitUntil:'networkidle'});await save('FR0011550185',page.url(),Buffer.from(await page.content()),200,page.url(),'euronext-browser')}catch(e){console.log(String(e))}
+ for(const isin of ['FR0011550185','FR0011550193']){
+  const url='https://live.euronext.com/en/product/etfs/'+isin+'-XPAR'
+  try{const response=await page.goto(url,{timeout:30000,waitUntil:'domcontentloaded'});await page.getByText('Currency',{exact:true}).waitFor({timeout:25000});await save(isin,url,Buffer.from(await page.content()),response.status(),page.url(),'euronext-browser')}catch(e){manifest.push({isin,requestedUrl:url,error:String(e)})}
+ }
  await page.close()
 }finally {writeFileSync(out+'/manifest.json',JSON.stringify(manifest,null,2));await browser.close()}
 console.log(JSON.stringify(manifest.map(({isin,requestedUrl,status,error})=>({isin,requestedUrl,status,error}))))
