@@ -2,21 +2,21 @@
   "IE00B4L5Y983": {
     "distribution": {
       "value": "Accumulating",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=IE00B4L5Y983",
-      "sha256": "172518b08797a7fe910e1111a6373ffa15ae8d444e6688e497aa43f339abd606"
+      "sha256": "564089e7261aabb84b0bca022cd35cbbc707bd63c7b5bb5892675bd64b2ef9a0"
     },
     "domicile": {
       "value": "Ireland",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=IE00B4L5Y983",
-      "sha256": "172518b08797a7fe910e1111a6373ffa15ae8d444e6688e497aa43f339abd606"
+      "sha256": "564089e7261aabb84b0bca022cd35cbbc707bd63c7b5bb5892675bd64b2ef9a0"
     },
     "replicationMethod": {
       "value": "Physical",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=IE00B4L5Y983",
-      "sha256": "172518b08797a7fe910e1111a6373ffa15ae8d444e6688e497aa43f339abd606"
+      "sha256": "564089e7261aabb84b0bca022cd35cbbc707bd63c7b5bb5892675bd64b2ef9a0"
     },
     "listings": {
       "value": [
@@ -28,7 +28,7 @@
           "symbol": "SWDA.L",
           "excerpt": "IE00B4L5Y983 | London Stock Exchange | SWDA | GBP | SWDA.L",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "dc8b9dcc7b42539339e961e9aa7deb421b8a230391aa41355ab50c67b2cef358",
           "evidenceId": "IE00B4L5Y983-XLON-SWDA-GBP"
         },
@@ -40,7 +40,7 @@
           "symbol": "IWDA.AS",
           "excerpt": "IE00B4L5Y983 | Euronext Amsterdam | IWDA | EUR | IWDA.AS",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "dc8b9dcc7b42539339e961e9aa7deb421b8a230391aa41355ab50c67b2cef358",
           "evidenceId": "IE00B4L5Y983-XAMS-IWDA-EUR"
         },
@@ -52,7 +52,7 @@
           "symbol": "EUNL.DE",
           "excerpt": "IE00B4L5Y983 | Deutsche Boerse Xetra | EUNL | EUR | EUNL.DE",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "dc8b9dcc7b42539339e961e9aa7deb421b8a230391aa41355ab50c67b2cef358",
           "evidenceId": "IE00B4L5Y983-XETR-EUNL-EUR"
         },
@@ -64,9 +64,20 @@
           "symbol": "IWDA.L",
           "excerpt": "IE00B4L5Y983 | London Stock Exchange | IWDA | USD | IWDA.L",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "dc8b9dcc7b42539339e961e9aa7deb421b8a230391aa41355ab50c67b2cef358",
           "evidenceId": "IE00B4L5Y983-XLON-IWDA-USD"
+        },
+        {
+          "ticker": "IWDA",
+          "mic": "XMEX",
+          "exchange": "Bolsa Mexicana De Valores",
+          "currency": "MXN",
+          "excerpt": "IE00B4L5Y983 | Bolsa Mexicana De Valores | IWDA | MXN | ",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "checkedAt": "2026-10-19",
+          "sha256": "dc8b9dcc7b42539339e961e9aa7deb421b8a230391aa41355ab50c67b2cef358",
+          "evidenceId": "IE00B4L5Y983-XMEX-IWDA-MXN"
         },
         {
           "ticker": "SWDA",
@@ -76,9 +87,33 @@
           "symbol": "SWDA.MI",
           "excerpt": "IE00B4L5Y983 | Borsa Italiana | SWDA | EUR | SWDA.MI",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "dc8b9dcc7b42539339e961e9aa7deb421b8a230391aa41355ab50c67b2cef358",
           "evidenceId": "IE00B4L5Y983-ETFP-SWDA-EUR"
+        },
+        {
+          "ticker": "IWDACL",
+          "mic": "XSGO",
+          "exchange": "Santiago Stock Exchange",
+          "currency": "CLP",
+          "symbol": "IWDACL.SN",
+          "excerpt": "IE00B4L5Y983 | Santiago Stock Exchange | IWDACL | CLP | IWDACL.SN",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "checkedAt": "2026-10-19",
+          "sha256": "dc8b9dcc7b42539339e961e9aa7deb421b8a230391aa41355ab50c67b2cef358",
+          "evidenceId": "IE00B4L5Y983-XSGO-IWDACL-CLP"
+        },
+        {
+          "ticker": "IWDA",
+          "mic": "XSGO",
+          "exchange": "Santiago Stock Exchange",
+          "currency": "USD",
+          "symbol": "IWDA.SN",
+          "excerpt": "IE00B4L5Y983 | Santiago Stock Exchange | IWDA | USD | IWDA.SN",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "checkedAt": "2026-10-19",
+          "sha256": "dc8b9dcc7b42539339e961e9aa7deb421b8a230391aa41355ab50c67b2cef358",
+          "evidenceId": "IE00B4L5Y983-XSGO-IWDA-USD"
         },
         {
           "ticker": "SWDA",
@@ -88,12 +123,12 @@
           "symbol": "SWDA.S",
           "excerpt": "IE00B4L5Y983 | SIX Swiss Exchange | SWDA | USD | SWDA.S",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "dc8b9dcc7b42539339e961e9aa7deb421b8a230391aa41355ab50c67b2cef358",
           "evidenceId": "IE00B4L5Y983-XSWX-SWDA-USD"
         }
       ],
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "sha256": "dc8b9dcc7b42539339e961e9aa7deb421b8a230391aa41355ab50c67b2cef358"
     }
@@ -145,27 +180,27 @@
   "FR0011550193": {
     "domicile": {
       "value": "France",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://dokumenty.analizy.pl/pobierz/etf/E_SBNPEF003_A_EUR/KA/2026-09-30",
       "sha256": "d2060c1e7f27a642936f4f5f2ff13e3336acdbb4303ac8b27bcc00c516e559c4"
     },
     "pea": {
       "value": true,
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=FR0011550193",
-      "sha256": "582af7690878d4ac7636ac8fad8034844149c4edc05284c25e607ad2043fdf58"
+      "sha256": "17e1cbc41a1d3770c6779a979255ad210524490daab5333df5365827fb7dac5c"
     },
     "distribution": {
       "value": "Capitalisation",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=FR0011550193",
-      "sha256": "582af7690878d4ac7636ac8fad8034844149c4edc05284c25e607ad2043fdf58"
+      "sha256": "17e1cbc41a1d3770c6779a979255ad210524490daab5333df5365827fb7dac5c"
     },
     "replicationMethod": {
       "value": "Synthétique",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=FR0011550193",
-      "sha256": "582af7690878d4ac7636ac8fad8034844149c4edc05284c25e607ad2043fdf58"
+      "sha256": "17e1cbc41a1d3770c6779a979255ad210524490daab5333df5365827fb7dac5c"
     }
   },
   "IE00BP3QZ601": {
@@ -3388,19 +3423,19 @@
   "LU1681047236": {
     "distribution": {
       "value": "Capitalisation",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=LU1681047236",
-      "sha256": "5f6b4f768ba6a3ac185e251722f8b4499db78eb34d41259d87d6dbbf35190737"
+      "sha256": "84c5317a33b07722b314eaba41318c3b60408ef2d657b018b5a06a65995ed477"
     },
     "domicile": {
       "value": "Luxembourg",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=LU1681047236",
-      "sha256": "02167a94067d80729e1c381d3aed6607dff8aa8ea3ce99b7d5a4ad83e9baf962"
+      "sha256": "2741ad21009ecbf507b6cee6ae51c90fca9f7f4c29de12b1d29313f862cfb114"
     },
     "replicationMethod": {
       "value": "Direct(Physical)",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
       "sha256": "47878f3bcb0301f15add01f69d2e3615c59837d71af1dfe81f34e78977103366"
     },
@@ -3414,7 +3449,7 @@
           "symbol": "C50.PA",
           "excerpt": "LU1681047236 | Euronext Paris | C50 FP | EUR | C50.PA",
           "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "47878f3bcb0301f15add01f69d2e3615c59837d71af1dfe81f34e78977103366",
           "evidenceId": "LU1681047236-XPAR-C50-EUR"
         },
@@ -3426,9 +3461,21 @@
           "symbol": "C50.MI",
           "excerpt": "LU1681047236 | Borsa Italiana | C50 IM | EUR | C50.MI",
           "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "47878f3bcb0301f15add01f69d2e3615c59837d71af1dfe81f34e78977103366",
           "evidenceId": "LU1681047236-ETFP-C50-EUR"
+        },
+        {
+          "ticker": "C50",
+          "mic": "XSWX",
+          "exchange": "SIX Swiss Exchange",
+          "currency": "EUR",
+          "symbol": "C50.S",
+          "excerpt": "LU1681047236 | SIX Swiss Ex | C50 SW | EUR | C50.S",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-19",
+          "sha256": "47878f3bcb0301f15add01f69d2e3615c59837d71af1dfe81f34e78977103366",
+          "evidenceId": "LU1681047236-XSWX-C50-EUR"
         },
         {
           "ticker": "V50A",
@@ -3438,38 +3485,38 @@
           "symbol": "V50A.DE",
           "excerpt": "LU1681047236 | Xetra | V50A GY | EUR | V50A.DE",
           "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "47878f3bcb0301f15add01f69d2e3615c59837d71af1dfe81f34e78977103366",
           "evidenceId": "LU1681047236-XETR-V50A-EUR"
         }
       ],
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
       "sha256": "47878f3bcb0301f15add01f69d2e3615c59837d71af1dfe81f34e78977103366"
     },
     "pea": {
       "value": true,
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=LU1681047236",
-      "sha256": "5f6b4f768ba6a3ac185e251722f8b4499db78eb34d41259d87d6dbbf35190737"
+      "sha256": "84c5317a33b07722b314eaba41318c3b60408ef2d657b018b5a06a65995ed477"
     }
   },
   "LU1681048630": {
     "distribution": {
       "value": "Capitalisation",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
       "sha256": "95efab57307c0be4080e6aa5112778cf057cf8a2a8cdae866f7c0ebfea48daac"
     },
     "domicile": {
       "value": "Luxembourg",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=LU1681048630",
-      "sha256": "405ade171a1fbb3043531a5228dc520618bbd8a7f21b4b4bba0bf7b0489fe401"
+      "sha256": "cfbfb276a591741ab4da20cdcac17e9bca53c5192b7843cb330e28ebf953ae0f"
     },
     "replicationMethod": {
       "value": "Direct(Physical)",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
       "sha256": "95efab57307c0be4080e6aa5112778cf057cf8a2a8cdae866f7c0ebfea48daac"
     },
@@ -3483,7 +3530,7 @@
           "symbol": "CI5.PA",
           "excerpt": "LU1681048630 | Euronext Paris | CI5 FP | EUR | CI5.PA",
           "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "95efab57307c0be4080e6aa5112778cf057cf8a2a8cdae866f7c0ebfea48daac",
           "evidenceId": "LU1681048630-XPAR-CI5-EUR"
         },
@@ -3495,7 +3542,7 @@
           "symbol": "CI5.MI",
           "excerpt": "LU1681048630 | Borsa Italiana | CI5 IM | EUR | CI5.MI",
           "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "95efab57307c0be4080e6aa5112778cf057cf8a2a8cdae866f7c0ebfea48daac",
           "evidenceId": "LU1681048630-ETFP-CI5-EUR"
         },
@@ -3507,7 +3554,7 @@
           "symbol": "CI5.DE",
           "excerpt": "LU1681048630 | Xetra | CI5GR GY | EUR | CI5.DE",
           "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "95efab57307c0be4080e6aa5112778cf057cf8a2a8cdae866f7c0ebfea48daac",
           "evidenceId": "LU1681048630-XETR-CI5GR-EUR"
         },
@@ -3519,7 +3566,7 @@
           "symbol": "GLUX.PA",
           "excerpt": "LU1681048630 | Euronext Paris | GLUX FP | EUR | GLUX.PA",
           "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "95efab57307c0be4080e6aa5112778cf057cf8a2a8cdae866f7c0ebfea48daac",
           "evidenceId": "LU1681048630-XPAR-GLUX-EUR"
         },
@@ -3531,7 +3578,7 @@
           "symbol": "AMGLUX.DE",
           "excerpt": "LU1681048630 | Xetra | GLUX GY | EUR | AMGLUX.DE",
           "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "95efab57307c0be4080e6aa5112778cf057cf8a2a8cdae866f7c0ebfea48daac",
           "evidenceId": "LU1681048630-XETR-GLUX-EUR"
         },
@@ -3543,12 +3590,24 @@
           "symbol": "GLUX.MI",
           "excerpt": "LU1681048630 | Borsa Italiana | GLUX IM | EUR | GLUX.MI",
           "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "95efab57307c0be4080e6aa5112778cf057cf8a2a8cdae866f7c0ebfea48daac",
           "evidenceId": "LU1681048630-ETFP-GLUX-EUR"
+        },
+        {
+          "ticker": "GLUX",
+          "mic": "XSWX",
+          "exchange": "SIX Swiss Exchange",
+          "currency": "EUR",
+          "symbol": "GLUX.S",
+          "excerpt": "LU1681048630 | SIX Swiss Ex | GLUX SW | EUR | GLUX.S",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-19",
+          "sha256": "95efab57307c0be4080e6aa5112778cf057cf8a2a8cdae866f7c0ebfea48daac",
+          "evidenceId": "LU1681048630-XSWX-GLUX-EUR"
         }
       ],
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
       "sha256": "95efab57307c0be4080e6aa5112778cf057cf8a2a8cdae866f7c0ebfea48daac"
     }
@@ -4000,13 +4059,13 @@
   "LU3038520774": {
     "distribution": {
       "value": "Capitalisation",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
       "sha256": "12430f2559df2aaaf0d72ac34b7549f1f8dd29c5018b890a844433f5b08d5407"
     },
     "replicationMethod": {
       "value": "Direct(Physical)",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
       "sha256": "12430f2559df2aaaf0d72ac34b7549f1f8dd29c5018b890a844433f5b08d5407"
     },
@@ -4020,7 +4079,7 @@
           "symbol": "DEFS.PA",
           "excerpt": "LU3038520774 | Euronext Paris | DEFS FP | EUR | DEFS.PA",
           "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "12430f2559df2aaaf0d72ac34b7549f1f8dd29c5018b890a844433f5b08d5407",
           "evidenceId": "LU3038520774-XPAR-DEFS-EUR"
         },
@@ -4032,7 +4091,7 @@
           "symbol": "EDFS.DE",
           "excerpt": "LU3038520774 | Xetra | EDFS GY | EUR | EDFS.DE",
           "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "12430f2559df2aaaf0d72ac34b7549f1f8dd29c5018b890a844433f5b08d5407",
           "evidenceId": "LU3038520774-XETR-EDFS-EUR"
         },
@@ -4044,7 +4103,7 @@
           "symbol": "DEFS.MI",
           "excerpt": "LU3038520774 | Borsa Italiana | DEFS IM | EUR | DEFS.MI",
           "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "12430f2559df2aaaf0d72ac34b7549f1f8dd29c5018b890a844433f5b08d5407",
           "evidenceId": "LU3038520774-ETFP-DEFS-EUR"
         },
@@ -4056,7 +4115,7 @@
           "symbol": "DEFE.L",
           "excerpt": "LU3038520774 | LSE | DEFE LN | GBP | DEFE.L",
           "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "12430f2559df2aaaf0d72ac34b7549f1f8dd29c5018b890a844433f5b08d5407",
           "evidenceId": "LU3038520774-XLON-DEFE-GBP"
         },
@@ -4068,32 +4127,50 @@
           "symbol": "DEFS.L",
           "excerpt": "LU3038520774 | LSE | DEFS LN | USD | DEFS.L",
           "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "12430f2559df2aaaf0d72ac34b7549f1f8dd29c5018b890a844433f5b08d5407",
           "evidenceId": "LU3038520774-XLON-DEFS-USD"
+        },
+        {
+          "ticker": "DEFS",
+          "mic": "XSWX",
+          "exchange": "SIX Swiss Exchange",
+          "currency": "CHF",
+          "symbol": "DEFS.S",
+          "excerpt": "LU3038520774 | SIX Swiss Ex | DEFS SW | CHF | DEFS.S",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-19",
+          "sha256": "12430f2559df2aaaf0d72ac34b7549f1f8dd29c5018b890a844433f5b08d5407",
+          "evidenceId": "LU3038520774-XSWX-DEFS-CHF"
         }
       ],
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
       "sha256": "12430f2559df2aaaf0d72ac34b7549f1f8dd29c5018b890a844433f5b08d5407"
+    },
+    "pea": {
+      "value": false,
+      "checkedAt": "2026-10-19",
+      "sourceUrl": "https://www.ca-sicavetfcp.fr/productsheet/view/idpart/382/idvm/LU3038520774/lg/fr/popup/1",
+      "sha256": "282586628da6f5e3b7cb493e2dfc206a328bc563cc6555bcbe6f8755fdb05156"
     }
   },
   "IE00B3FH7618": {
     "distribution": {
       "value": "Distributing",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.ishares.com/uk/individual/en/products/251741/ishares-euro-government-bond-01yr-ucits-etf",
-      "sha256": "2421ca2d9c51d06984c2ffb5fcb586efb1f8b4a0fc4530d9840df1fbed4b56b8"
+      "sha256": "596227a3374db4982d1be70f1b7a92a548bbb55cf493600e85ea7e054087c9bd"
     },
     "domicile": {
       "value": "Ireland",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.ishares.com/uk/individual/en/products/251741/ishares-euro-government-bond-01yr-ucits-etf",
-      "sha256": "2421ca2d9c51d06984c2ffb5fcb586efb1f8b4a0fc4530d9840df1fbed4b56b8"
+      "sha256": "596227a3374db4982d1be70f1b7a92a548bbb55cf493600e85ea7e054087c9bd"
     },
     "replicationMethod": {
       "value": "Physical",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251741&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "sha256": "aa6e85394c1384bbe47da2e326588b1f04fd07ca34c05bd8f1ab720893b467c5"
     },
@@ -4107,7 +4184,7 @@
           "symbol": "IEGE.AS",
           "excerpt": "IE00B3FH7618 | Euronext Amsterdam | IEGE | EUR | IEGE.AS",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251741&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "aa6e85394c1384bbe47da2e326588b1f04fd07ca34c05bd8f1ab720893b467c5",
           "evidenceId": "IE00B3FH7618-XAMS-IEGE-EUR"
         },
@@ -4119,7 +4196,7 @@
           "symbol": "EUN6.DE",
           "excerpt": "IE00B3FH7618 | Deutsche Boerse Xetra | EUN6 | EUR | EUN6.DE",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251741&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "aa6e85394c1384bbe47da2e326588b1f04fd07ca34c05bd8f1ab720893b467c5",
           "evidenceId": "IE00B3FH7618-XETR-EUN6-EUR"
         },
@@ -4131,12 +4208,12 @@
           "symbol": "IEGE.MI",
           "excerpt": "IE00B3FH7618 | Borsa Italiana | IEGE | EUR | IEGE.MI",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251741&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "aa6e85394c1384bbe47da2e326588b1f04fd07ca34c05bd8f1ab720893b467c5",
           "evidenceId": "IE00B3FH7618-ETFP-IEGE-EUR"
         }
       ],
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251741&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "sha256": "aa6e85394c1384bbe47da2e326588b1f04fd07ca34c05bd8f1ab720893b467c5"
     }
@@ -4144,19 +4221,19 @@
   "IE00BDBRDM35": {
     "distribution": {
       "value": "Accumulating",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.ishares.com/uk/individual/en/products/291770/ishares-global-aggregate-bond-ucits-etf-eur-hedged-%28acc%29-fund?siteEntryPassthrough=true",
-      "sha256": "7c5b5cb17e8d5c56871743a7c9f868a6c5e9500e5ef07849fc8961b62cb63cc5"
+      "sha256": "6b531a1a632e67eeb45ff98576b68a18ecc3595ee468b6212af71bc9dd4a1110"
     },
     "domicile": {
       "value": "Ireland",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.ishares.com/uk/individual/en/products/291770/ishares-global-aggregate-bond-ucits-etf-eur-hedged-%28acc%29-fund?siteEntryPassthrough=true",
-      "sha256": "7c5b5cb17e8d5c56871743a7c9f868a6c5e9500e5ef07849fc8961b62cb63cc5"
+      "sha256": "6b531a1a632e67eeb45ff98576b68a18ecc3595ee468b6212af71bc9dd4a1110"
     },
     "replicationMethod": {
       "value": "Physical",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=291770&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "sha256": "31be014aa6071980e01f07fc82ee42b7aed96e54327d0db906e11664b36df53b"
     },
@@ -4170,7 +4247,7 @@
           "symbol": "EUNA.DE",
           "excerpt": "IE00BDBRDM35 | Xetra | AGGH | EUR | EUNA.DE",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=291770&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "31be014aa6071980e01f07fc82ee42b7aed96e54327d0db906e11664b36df53b",
           "evidenceId": "IE00BDBRDM35-XETR-AGGH-EUR"
         },
@@ -4182,9 +4259,21 @@
           "symbol": "EUNA.AS",
           "excerpt": "IE00BDBRDM35 | Euronext Amsterdam | AGGH | EUR | EUNA.AS",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=291770&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "31be014aa6071980e01f07fc82ee42b7aed96e54327d0db906e11664b36df53b",
           "evidenceId": "IE00BDBRDM35-XAMS-AGGH-EUR"
+        },
+        {
+          "ticker": "AGGH",
+          "mic": "XMEX",
+          "exchange": "Bolsa Mexicana De Valores",
+          "currency": "MXN",
+          "symbol": "AGGHN.MX",
+          "excerpt": "IE00BDBRDM35 | Bolsa Mexicana De Valores | AGGH | MXN | AGGHN.MX",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=291770&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "checkedAt": "2026-10-19",
+          "sha256": "31be014aa6071980e01f07fc82ee42b7aed96e54327d0db906e11664b36df53b",
+          "evidenceId": "IE00BDBRDM35-XMEX-AGGH-MXN"
         },
         {
           "ticker": "AGGH",
@@ -4194,7 +4283,7 @@
           "symbol": "AGGH.MI",
           "excerpt": "IE00BDBRDM35 | Borsa Italiana | AGGH | EUR | AGGH.MI",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=291770&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "31be014aa6071980e01f07fc82ee42b7aed96e54327d0db906e11664b36df53b",
           "evidenceId": "IE00BDBRDM35-ETFP-AGGH-EUR"
         },
@@ -4206,12 +4295,12 @@
           "symbol": "AGGH.S",
           "excerpt": "IE00BDBRDM35 | SIX Swiss Exchange | AGGH | EUR | AGGH.S",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=291770&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "31be014aa6071980e01f07fc82ee42b7aed96e54327d0db906e11664b36df53b",
           "evidenceId": "IE00BDBRDM35-XSWX-AGGH-EUR"
         }
       ],
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=291770&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "sha256": "31be014aa6071980e01f07fc82ee42b7aed96e54327d0db906e11664b36df53b"
     }
@@ -4219,19 +4308,19 @@
   "IE00BZCQB185": {
     "distribution": {
       "value": "Accumulating",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.ishares.com/uk/individual/en/products/297617/ishares-msci-india-ucits-etf",
-      "sha256": "db9e74150152a1823339b70b48b679be80af7a27456b865860104356e1a7c75c"
+      "sha256": "e9ac69c756b08198419197297c18c8cc51f07a64dee33629656ee08fadc62d7d"
     },
     "domicile": {
       "value": "Ireland",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.ishares.com/uk/individual/en/products/297617/ishares-msci-india-ucits-etf",
-      "sha256": "db9e74150152a1823339b70b48b679be80af7a27456b865860104356e1a7c75c"
+      "sha256": "e9ac69c756b08198419197297c18c8cc51f07a64dee33629656ee08fadc62d7d"
     },
     "replicationMethod": {
       "value": "Physical",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=297617&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "sha256": "7e20598b3bb430a5f25249d2a9925841e53bf08f0a47360e903d7d3324d9253f"
     },
@@ -4245,7 +4334,7 @@
           "symbol": "NDIA.L",
           "excerpt": "IE00BZCQB185 | London Stock Exchange | NDIA | USD | NDIA.L",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=297617&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "7e20598b3bb430a5f25249d2a9925841e53bf08f0a47360e903d7d3324d9253f",
           "evidenceId": "IE00BZCQB185-XLON-NDIA-USD"
         },
@@ -4257,7 +4346,7 @@
           "symbol": "NDIA.AS",
           "excerpt": "IE00BZCQB185 | Euronext Amsterdam | NDIA | EUR | NDIA.AS",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=297617&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "7e20598b3bb430a5f25249d2a9925841e53bf08f0a47360e903d7d3324d9253f",
           "evidenceId": "IE00BZCQB185-XAMS-NDIA-EUR"
         },
@@ -4269,9 +4358,20 @@
           "symbol": "ISIIND.L",
           "excerpt": "IE00BZCQB185 | London Stock Exchange | IIND | GBP | ISIIND.L",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=297617&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "7e20598b3bb430a5f25249d2a9925841e53bf08f0a47360e903d7d3324d9253f",
           "evidenceId": "IE00BZCQB185-XLON-IIND-GBP"
+        },
+        {
+          "ticker": "NDIA",
+          "mic": "XMEX",
+          "exchange": "Bolsa Mexicana De Valores",
+          "currency": "MXN",
+          "excerpt": "IE00BZCQB185 | Bolsa Mexicana De Valores | NDIA | MXN | ",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=297617&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "checkedAt": "2026-10-19",
+          "sha256": "7e20598b3bb430a5f25249d2a9925841e53bf08f0a47360e903d7d3324d9253f",
+          "evidenceId": "IE00BZCQB185-XMEX-NDIA-MXN"
         },
         {
           "ticker": "NDIA",
@@ -4281,12 +4381,12 @@
           "symbol": "NDIA.MI",
           "excerpt": "IE00BZCQB185 | Borsa Italiana | NDIA | EUR | NDIA.MI",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=297617&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "7e20598b3bb430a5f25249d2a9925841e53bf08f0a47360e903d7d3324d9253f",
           "evidenceId": "IE00BZCQB185-ETFP-NDIA-EUR"
         }
       ],
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=297617&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "sha256": "7e20598b3bb430a5f25249d2a9925841e53bf08f0a47360e903d7d3324d9253f"
     }
@@ -4294,21 +4394,21 @@
   "IE000I8KRLL9": {
     "distribution": {
       "value": "Accumulating",
-      "checkedAt": "2026-10-18",
-      "sourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=IE000I8KRLL9",
-      "sha256": "698c72d225e2f26f8dfa5172d0412add99a83012eef9e062a7eb3870634b3871"
+      "checkedAt": "2026-10-19",
+      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/319084/?siteEntryPassthrough=true&switchLocale=y",
+      "sha256": "8b5c884caaa211f829a5d7841188370ded6b702d6832448e8c074148209c3766"
     },
     "domicile": {
       "value": "Ireland",
-      "checkedAt": "2026-10-18",
-      "sourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=IE000I8KRLL9",
-      "sha256": "698c72d225e2f26f8dfa5172d0412add99a83012eef9e062a7eb3870634b3871"
+      "checkedAt": "2026-10-19",
+      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/319084/?siteEntryPassthrough=true&switchLocale=y",
+      "sha256": "8b5c884caaa211f829a5d7841188370ded6b702d6832448e8c074148209c3766"
     },
     "replicationMethod": {
       "value": "Physical",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=IE000I8KRLL9",
-      "sha256": "698c72d225e2f26f8dfa5172d0412add99a83012eef9e062a7eb3870634b3871"
+      "sha256": "83f1de29a9bba6bc7c200542f1923e251620606d16ef178925ae46bba10ebcac"
     },
     "listings": {
       "value": [
@@ -4320,7 +4420,7 @@
           "symbol": "SEMI.L",
           "excerpt": "IE000I8KRLL9 | London Stock Exchange | SEMI | GBP | SEMI.L",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=319084&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "051daf8a4b468b6d071d3bdb4a68779cc384ddd4e43f8cf3ace16bc454e8d682",
           "evidenceId": "IE000I8KRLL9-XLON-SEMI-GBP"
         },
@@ -4332,7 +4432,7 @@
           "symbol": "SEMIS.AS",
           "excerpt": "IE000I8KRLL9 | Euronext Amsterdam | SEMI | USD | SEMIS.AS",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=319084&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "051daf8a4b468b6d071d3bdb4a68779cc384ddd4e43f8cf3ace16bc454e8d682",
           "evidenceId": "IE000I8KRLL9-XAMS-SEMI-USD"
         },
@@ -4344,9 +4444,21 @@
           "symbol": "SEC0.DE",
           "excerpt": "IE000I8KRLL9 | Xetra | SEC0 | EUR | SEC0.DE",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=319084&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "051daf8a4b468b6d071d3bdb4a68779cc384ddd4e43f8cf3ace16bc454e8d682",
           "evidenceId": "IE000I8KRLL9-XETR-SEC0-EUR"
+        },
+        {
+          "ticker": "SEMI",
+          "mic": "XMEX",
+          "exchange": "Bolsa Mexicana De Valores",
+          "currency": "MXN",
+          "symbol": "SEMIN.MX",
+          "excerpt": "IE000I8KRLL9 | Bolsa Mexicana De Valores | SEMI | MXN | SEMIN.MX",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=319084&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "checkedAt": "2026-10-19",
+          "sha256": "051daf8a4b468b6d071d3bdb4a68779cc384ddd4e43f8cf3ace16bc454e8d682",
+          "evidenceId": "IE000I8KRLL9-XMEX-SEMI-MXN"
         },
         {
           "ticker": "SEME",
@@ -4356,7 +4468,7 @@
           "symbol": "SEME.MI",
           "excerpt": "IE000I8KRLL9 | Borsa Italiana | SEME | EUR | SEME.MI",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=319084&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "051daf8a4b468b6d071d3bdb4a68779cc384ddd4e43f8cf3ace16bc454e8d682",
           "evidenceId": "IE000I8KRLL9-ETFP-SEME-EUR"
         },
@@ -4368,7 +4480,7 @@
           "symbol": "SEME.PA",
           "excerpt": "IE000I8KRLL9 | Nyse Euronext - Euronext Paris | SEME | EUR | SEME.PA",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=319084&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "051daf8a4b468b6d071d3bdb4a68779cc384ddd4e43f8cf3ace16bc454e8d682",
           "evidenceId": "IE000I8KRLL9-XPAR-SEME-EUR"
         },
@@ -4380,12 +4492,12 @@
           "symbol": "SEMI.S",
           "excerpt": "IE000I8KRLL9 | SIX Swiss Exchange | SEMI | USD | SEMI.S",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=319084&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "051daf8a4b468b6d071d3bdb4a68779cc384ddd4e43f8cf3ace16bc454e8d682",
           "evidenceId": "IE000I8KRLL9-XSWX-SEMI-USD"
         }
       ],
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=319084&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "sha256": "051daf8a4b468b6d071d3bdb4a68779cc384ddd4e43f8cf3ace16bc454e8d682"
     }
@@ -4393,21 +4505,21 @@
   "IE000RDRMSD1": {
     "distribution": {
       "value": "Accumulating",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.ishares.com/uk/individual/en/products/328618/?siteEntryPassthrough=true&switchLocale=y",
-      "sha256": "e8062b2cc63698024af47df1051fec12d542f98666d2fe80f7ff7e797cc8f62c"
+      "sha256": "b5c2f7bcdd4b665d7320d5896245c77fa498862103d961fa0af0cf3cc813084e"
     },
     "domicile": {
       "value": "Ireland",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.ishares.com/uk/individual/en/products/328618/?siteEntryPassthrough=true&switchLocale=y",
-      "sha256": "e8062b2cc63698024af47df1051fec12d542f98666d2fe80f7ff7e797cc8f62c"
+      "sha256": "b5c2f7bcdd4b665d7320d5896245c77fa498862103d961fa0af0cf3cc813084e"
     },
     "replicationMethod": {
       "value": "Physical",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=IE000RDRMSD1",
-      "sha256": "bd7ea123501373770c0e1e1e5f2cd4dd9306d0f140ebe3a1ecd8cd27851780fa"
+      "sha256": "477714c886dde89c060ffa5352d00a1a998faa3d5e694d557ebdf799971618f1"
     },
     "listings": {
       "value": [
@@ -4419,7 +4531,7 @@
           "symbol": "BLKC.AS",
           "excerpt": "IE000RDRMSD1 | Euronext Amsterdam | BLKC | USD | BLKC.AS",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=328618&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "0bfc6499196d07ffee67109c9e3f258e709543270e4f8a846231cdc8fadf33b3",
           "evidenceId": "IE000RDRMSD1-XAMS-BLKC-USD"
         },
@@ -4431,7 +4543,7 @@
           "symbol": "CBUT.DE",
           "excerpt": "IE000RDRMSD1 | Xetra | CBUT | EUR | CBUT.DE",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=328618&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "0bfc6499196d07ffee67109c9e3f258e709543270e4f8a846231cdc8fadf33b3",
           "evidenceId": "IE000RDRMSD1-XETR-CBUT-EUR"
         },
@@ -4443,9 +4555,20 @@
           "symbol": "BLKC.L",
           "excerpt": "IE000RDRMSD1 | London Stock Exchange | BLKC | GBP | BLKC.L",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=328618&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "0bfc6499196d07ffee67109c9e3f258e709543270e4f8a846231cdc8fadf33b3",
           "evidenceId": "IE000RDRMSD1-XLON-BLKC-GBP"
+        },
+        {
+          "ticker": "BLKC",
+          "mic": "XMEX",
+          "exchange": "Bolsa Mexicana De Valores",
+          "currency": "MXN",
+          "excerpt": "IE000RDRMSD1 | Bolsa Mexicana De Valores | BLKC | MXN | ",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=328618&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "checkedAt": "2026-10-19",
+          "sha256": "0bfc6499196d07ffee67109c9e3f258e709543270e4f8a846231cdc8fadf33b3",
+          "evidenceId": "IE000RDRMSD1-XMEX-BLKC-MXN"
         },
         {
           "ticker": "BLTH",
@@ -4455,7 +4578,7 @@
           "symbol": "BLTH.MI",
           "excerpt": "IE000RDRMSD1 | Borsa Italiana | BLTH | EUR | BLTH.MI",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=328618&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "0bfc6499196d07ffee67109c9e3f258e709543270e4f8a846231cdc8fadf33b3",
           "evidenceId": "IE000RDRMSD1-ETFP-BLTH-EUR"
         },
@@ -4467,12 +4590,12 @@
           "symbol": "BLKC.S",
           "excerpt": "IE000RDRMSD1 | SIX Swiss Exchange | BLKC | USD | BLKC.S",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=328618&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "0bfc6499196d07ffee67109c9e3f258e709543270e4f8a846231cdc8fadf33b3",
           "evidenceId": "IE000RDRMSD1-XSWX-BLKC-USD"
         }
       ],
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=328618&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "sha256": "0bfc6499196d07ffee67109c9e3f258e709543270e4f8a846231cdc8fadf33b3"
     }
@@ -4480,19 +4603,19 @@
   "IE00B0M62X26": {
     "distribution": {
       "value": "Accumulating",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.ishares.com/uk/individual/en/products/251739/ishares-euro-inflation-linked-government-bond-ucits-etf",
-      "sha256": "bd7cbbd53f4ef45330b875b8103a6cdb40e2c1b50d00381d1c7a3c0c327db4ee"
+      "sha256": "59157285366d92ee0b52a48c6782312ce8a6682ddf4dbfb278bb6a5177ec7076"
     },
     "domicile": {
       "value": "Ireland",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.ishares.com/uk/individual/en/products/251739/ishares-euro-inflation-linked-government-bond-ucits-etf",
-      "sha256": "bd7cbbd53f4ef45330b875b8103a6cdb40e2c1b50d00381d1c7a3c0c327db4ee"
+      "sha256": "59157285366d92ee0b52a48c6782312ce8a6682ddf4dbfb278bb6a5177ec7076"
     },
     "replicationMethod": {
       "value": "Physical",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251739&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "sha256": "927b434c112e8c1855d0c3e3674440a9a1b4d1aa595e1bd37fa4ac988b05963f"
     },
@@ -4506,7 +4629,7 @@
           "symbol": "IBCI.L",
           "excerpt": "IE00B0M62X26 | London Stock Exchange | IBCI | GBP | IBCI.L",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251739&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "927b434c112e8c1855d0c3e3674440a9a1b4d1aa595e1bd37fa4ac988b05963f",
           "evidenceId": "IE00B0M62X26-XLON-IBCI-GBP"
         },
@@ -4518,7 +4641,7 @@
           "symbol": "IBCI.AS",
           "excerpt": "IE00B0M62X26 | Euronext Amsterdam | IBCI | EUR | IBCI.AS",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251739&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "927b434c112e8c1855d0c3e3674440a9a1b4d1aa595e1bd37fa4ac988b05963f",
           "evidenceId": "IE00B0M62X26-XAMS-IBCI-EUR"
         },
@@ -4530,7 +4653,7 @@
           "symbol": "IBEI.DE",
           "excerpt": "IE00B0M62X26 | Deutsche Boerse Xetra | IBCI | EUR | IBEI.DE",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251739&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "927b434c112e8c1855d0c3e3674440a9a1b4d1aa595e1bd37fa4ac988b05963f",
           "evidenceId": "IE00B0M62X26-XETR-IBCI-EUR"
         },
@@ -4542,7 +4665,7 @@
           "symbol": "IBCI.MI",
           "excerpt": "IE00B0M62X26 | Borsa Italiana | IBCI | EUR | IBCI.MI",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251739&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "927b434c112e8c1855d0c3e3674440a9a1b4d1aa595e1bd37fa4ac988b05963f",
           "evidenceId": "IE00B0M62X26-ETFP-IBCI-EUR"
         },
@@ -4554,12 +4677,12 @@
           "symbol": "IBCI.S",
           "excerpt": "IE00B0M62X26 | SIX Swiss Exchange | IBCI | CHF | IBCI.S",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251739&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "927b434c112e8c1855d0c3e3674440a9a1b4d1aa595e1bd37fa4ac988b05963f",
           "evidenceId": "IE00B0M62X26-XSWX-IBCI-CHF"
         }
       ],
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251739&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "sha256": "927b434c112e8c1855d0c3e3674440a9a1b4d1aa595e1bd37fa4ac988b05963f"
     }
@@ -5101,21 +5224,21 @@
   "IE00B66F4759": {
     "distribution": {
       "value": "Distributing",
-      "checkedAt": "2026-10-18",
-      "sourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=IE00B66F4759",
-      "sha256": "d21720e42bd9ba06674e16ed4c4b13aa9834dcf63ad0ffbb30ab60754921ef5b"
+      "checkedAt": "2026-10-19",
+      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/251843/?siteEntryPassthrough=true&switchLocale=y",
+      "sha256": "02b428d8cf974107187772f08eaffdd9efcc080236b5bc3365909882ec2d5407"
     },
     "domicile": {
       "value": "Ireland",
-      "checkedAt": "2026-10-18",
-      "sourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=IE00B66F4759",
-      "sha256": "d21720e42bd9ba06674e16ed4c4b13aa9834dcf63ad0ffbb30ab60754921ef5b"
+      "checkedAt": "2026-10-19",
+      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/251843/?siteEntryPassthrough=true&switchLocale=y",
+      "sha256": "02b428d8cf974107187772f08eaffdd9efcc080236b5bc3365909882ec2d5407"
     },
     "replicationMethod": {
       "value": "Physical",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=IE00B66F4759",
-      "sha256": "d21720e42bd9ba06674e16ed4c4b13aa9834dcf63ad0ffbb30ab60754921ef5b"
+      "sha256": "802c53fa5b051951301aa661cae60d624ea860f59afb55ca2807b8fea0a9d79b"
     },
     "listings": {
       "value": [
@@ -5127,7 +5250,7 @@
           "symbol": "IHYG.L",
           "excerpt": "IE00B66F4759 | London Stock Exchange | IHYG | EUR | IHYG.L",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251843&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "aef3f5e78c6882df04936f40469f696562b3dbc51db43b2aba7c376aef684fb3",
           "evidenceId": "IE00B66F4759-XLON-IHYG-EUR"
         },
@@ -5139,7 +5262,7 @@
           "symbol": "EUNW.DE",
           "excerpt": "IE00B66F4759 | Deutsche Boerse Xetra | EUNW | EUR | EUNW.DE",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251843&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "aef3f5e78c6882df04936f40469f696562b3dbc51db43b2aba7c376aef684fb3",
           "evidenceId": "IE00B66F4759-XETR-EUNW-EUR"
         },
@@ -5151,9 +5274,20 @@
           "symbol": "SHYG.L",
           "excerpt": "IE00B66F4759 | London Stock Exchange | SHYG | GBP | SHYG.L",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251843&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "aef3f5e78c6882df04936f40469f696562b3dbc51db43b2aba7c376aef684fb3",
           "evidenceId": "IE00B66F4759-XLON-SHYG-GBP"
+        },
+        {
+          "ticker": "IHYG",
+          "mic": "XMEX",
+          "exchange": "Bolsa Mexicana De Valores",
+          "currency": "MXN",
+          "excerpt": "IE00B66F4759 | Bolsa Mexicana De Valores | IHYG | MXN | ",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251843&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "checkedAt": "2026-10-19",
+          "sha256": "aef3f5e78c6882df04936f40469f696562b3dbc51db43b2aba7c376aef684fb3",
+          "evidenceId": "IE00B66F4759-XMEX-IHYG-MXN"
         },
         {
           "ticker": "IHYG",
@@ -5163,7 +5297,7 @@
           "symbol": "IHYG.MI",
           "excerpt": "IE00B66F4759 | Borsa Italiana | IHYG | EUR | IHYG.MI",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251843&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "aef3f5e78c6882df04936f40469f696562b3dbc51db43b2aba7c376aef684fb3",
           "evidenceId": "IE00B66F4759-ETFP-IHYG-EUR"
         },
@@ -5175,12 +5309,12 @@
           "symbol": "IHYG.S",
           "excerpt": "IE00B66F4759 | SIX Swiss Exchange | IHYG | CHF | IHYG.S",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251843&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "aef3f5e78c6882df04936f40469f696562b3dbc51db43b2aba7c376aef684fb3",
           "evidenceId": "IE00B66F4759-XSWX-IHYG-CHF"
         }
       ],
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251843&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "sha256": "aef3f5e78c6882df04936f40469f696562b3dbc51db43b2aba7c376aef684fb3"
     }
@@ -5299,21 +5433,21 @@
   "IE00B8FHGS14": {
     "distribution": {
       "value": "Accumulating",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.ishares.com/uk/individual/en/products/251382/?siteEntryPassthrough=true&switchLocale=y",
-      "sha256": "feecaffed15c22345620279e4ab577d14336a4fbbbbebf995f2b1da6f09ac8d3"
+      "sha256": "a492e58a17a360247be121adced42a02ebb4dcc5ab76aa4c528d3c1ba189270d"
     },
     "domicile": {
       "value": "Ireland",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.ishares.com/uk/individual/en/products/251382/?siteEntryPassthrough=true&switchLocale=y",
-      "sha256": "feecaffed15c22345620279e4ab577d14336a4fbbbbebf995f2b1da6f09ac8d3"
+      "sha256": "a492e58a17a360247be121adced42a02ebb4dcc5ab76aa4c528d3c1ba189270d"
     },
     "replicationMethod": {
       "value": "Physical",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=IE00B8FHGS14",
-      "sha256": "d11bc6f0a65170e2403160779a0f8eb62e4f98625081a6fbba1dfd206f0b9dcf"
+      "sha256": "b3699e108e488110ffd745e6b952d0bc9db0ba771f6f8e90943077ecf690f18f"
     },
     "listings": {
       "value": [
@@ -5325,9 +5459,21 @@
           "symbol": "MVOL.L",
           "excerpt": "IE00B8FHGS14 | London Stock Exchange | MVOL | USD | MVOL.L",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251382&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "e9ee8140743a36c45fd5a80647e79ea70f0f9b02f12665ad383d78d8600be685",
           "evidenceId": "IE00B8FHGS14-XLON-MVOL-USD"
+        },
+        {
+          "ticker": "MVOL",
+          "mic": "CEUX",
+          "exchange": "Cboe Europe",
+          "currency": "USD",
+          "symbol": "MVOLl.CHI",
+          "excerpt": "IE00B8FHGS14 | Cboe Europe | MVOL | USD | MVOLl.CHI",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251382&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "checkedAt": "2026-10-19",
+          "sha256": "e9ee8140743a36c45fd5a80647e79ea70f0f9b02f12665ad383d78d8600be685",
+          "evidenceId": "IE00B8FHGS14-CEUX-MVOL-USD"
         },
         {
           "ticker": "IQQ0",
@@ -5337,7 +5483,7 @@
           "symbol": "IQQ0.DE",
           "excerpt": "IE00B8FHGS14 | Deutsche Boerse Xetra | IQQ0 | EUR | IQQ0.DE",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251382&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "e9ee8140743a36c45fd5a80647e79ea70f0f9b02f12665ad383d78d8600be685",
           "evidenceId": "IE00B8FHGS14-XETR-IQQ0-EUR"
         },
@@ -5349,9 +5495,20 @@
           "symbol": "MINVI.L",
           "excerpt": "IE00B8FHGS14 | London Stock Exchange | MINV | GBP | MINVI.L",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251382&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "e9ee8140743a36c45fd5a80647e79ea70f0f9b02f12665ad383d78d8600be685",
           "evidenceId": "IE00B8FHGS14-XLON-MINV-GBP"
+        },
+        {
+          "ticker": "MVOL",
+          "mic": "XMEX",
+          "exchange": "Bolsa Mexicana De Valores",
+          "currency": "MXN",
+          "excerpt": "IE00B8FHGS14 | Bolsa Mexicana De Valores | MVOL | MXN | ",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251382&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "checkedAt": "2026-10-19",
+          "sha256": "e9ee8140743a36c45fd5a80647e79ea70f0f9b02f12665ad383d78d8600be685",
+          "evidenceId": "IE00B8FHGS14-XMEX-MVOL-MXN"
         },
         {
           "ticker": "MVOL",
@@ -5361,9 +5518,33 @@
           "symbol": "MVOL.MI",
           "excerpt": "IE00B8FHGS14 | Borsa Italiana | MVOL | EUR | MVOL.MI",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251382&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "e9ee8140743a36c45fd5a80647e79ea70f0f9b02f12665ad383d78d8600be685",
           "evidenceId": "IE00B8FHGS14-ETFP-MVOL-EUR"
+        },
+        {
+          "ticker": "MVOL",
+          "mic": "XSGO",
+          "exchange": "Santiago Stock Exchange",
+          "currency": "USD",
+          "symbol": "MVOL.SN",
+          "excerpt": "IE00B8FHGS14 | Santiago Stock Exchange | MVOL | USD | MVOL.SN",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251382&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "checkedAt": "2026-10-19",
+          "sha256": "e9ee8140743a36c45fd5a80647e79ea70f0f9b02f12665ad383d78d8600be685",
+          "evidenceId": "IE00B8FHGS14-XSGO-MVOL-USD"
+        },
+        {
+          "ticker": "MVOLCL",
+          "mic": "XSGO",
+          "exchange": "Santiago Stock Exchange",
+          "currency": "CLP",
+          "symbol": "MVOLCL.SN",
+          "excerpt": "IE00B8FHGS14 | Santiago Stock Exchange | MVOLCL | CLP | MVOLCL.SN",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251382&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "checkedAt": "2026-10-19",
+          "sha256": "e9ee8140743a36c45fd5a80647e79ea70f0f9b02f12665ad383d78d8600be685",
+          "evidenceId": "IE00B8FHGS14-XSGO-MVOLCL-CLP"
         },
         {
           "ticker": "MVOL",
@@ -5373,12 +5554,12 @@
           "symbol": "MVOL.S",
           "excerpt": "IE00B8FHGS14 | SIX Swiss Exchange | MVOL | CHF | MVOL.S",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251382&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "e9ee8140743a36c45fd5a80647e79ea70f0f9b02f12665ad383d78d8600be685",
           "evidenceId": "IE00B8FHGS14-XSWX-MVOL-CHF"
         }
       ],
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251382&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "sha256": "e9ee8140743a36c45fd5a80647e79ea70f0f9b02f12665ad383d78d8600be685"
     }
@@ -5437,19 +5618,19 @@
   "IE00BFZPF546": {
     "distribution": {
       "value": "Accumulating",
-      "checkedAt": "2026-10-18",
-      "sourceUrl": "https://www.ishares.com/uk/professionals/en/products/297676/ishares-j-p-morgan-em-local-govt-bond-ucits-etf-usd-%28acc%29-fund",
-      "sha256": "c257878a68250da88429a2f18e56e0abd63eef7f133113acb9fcfee1961c8fa0"
+      "checkedAt": "2026-10-19",
+      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/297676/?siteEntryPassthrough=true&switchLocale=y",
+      "sha256": "17fb3016ca12e3d2717a791c2e3bce4c9b11c24e00dc3a1f005a98d5a09704e8"
     },
     "domicile": {
       "value": "Ireland",
-      "checkedAt": "2026-10-18",
-      "sourceUrl": "https://www.ishares.com/uk/professionals/en/products/297676/ishares-j-p-morgan-em-local-govt-bond-ucits-etf-usd-%28acc%29-fund",
-      "sha256": "c257878a68250da88429a2f18e56e0abd63eef7f133113acb9fcfee1961c8fa0"
+      "checkedAt": "2026-10-19",
+      "sourceUrl": "https://www.ishares.com/uk/individual/en/products/297676/?siteEntryPassthrough=true&switchLocale=y",
+      "sha256": "17fb3016ca12e3d2717a791c2e3bce4c9b11c24e00dc3a1f005a98d5a09704e8"
     },
     "replicationMethod": {
       "value": "Physical",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=297676&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "sha256": "43a0d89ee10ab7a23adcd420259c40ea23f1e49e190a631f6a3c19a0f9bb3ef0"
     },
@@ -5463,9 +5644,21 @@
           "symbol": "EMGA.L",
           "excerpt": "IE00BFZPF546 | London Stock Exchange | EMGA | USD | EMGA.L",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=297676&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "43a0d89ee10ab7a23adcd420259c40ea23f1e49e190a631f6a3c19a0f9bb3ef0",
           "evidenceId": "IE00BFZPF546-XLON-EMGA-USD"
+        },
+        {
+          "ticker": "EMGA",
+          "mic": "XMEX",
+          "exchange": "Bolsa Mexicana De Valores",
+          "currency": "MXN",
+          "symbol": "EMGAN.MX",
+          "excerpt": "IE00BFZPF546 | Bolsa Mexicana De Valores | EMGA | MXN | EMGAN.MX",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=297676&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "checkedAt": "2026-10-19",
+          "sha256": "43a0d89ee10ab7a23adcd420259c40ea23f1e49e190a631f6a3c19a0f9bb3ef0",
+          "evidenceId": "IE00BFZPF546-XMEX-EMGA-MXN"
         },
         {
           "ticker": "EMGA",
@@ -5475,12 +5668,23 @@
           "symbol": "EMGAI.PA",
           "excerpt": "IE00BFZPF546 | Nyse Euronext - Euronext Paris | EMGA | EUR | EMGAI.PA",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=297676&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "43a0d89ee10ab7a23adcd420259c40ea23f1e49e190a631f6a3c19a0f9bb3ef0",
           "evidenceId": "IE00BFZPF546-XPAR-EMGA-EUR"
+        },
+        {
+          "ticker": "EMGA",
+          "mic": "XSGO",
+          "exchange": "Santiago Stock Exchange",
+          "currency": "USD",
+          "excerpt": "IE00BFZPF546 | Santiago Stock Exchange | EMGA | USD | ",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=297676&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "checkedAt": "2026-10-19",
+          "sha256": "43a0d89ee10ab7a23adcd420259c40ea23f1e49e190a631f6a3c19a0f9bb3ef0",
+          "evidenceId": "IE00BFZPF546-XSGO-EMGA-USD"
         }
       ],
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=297676&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "sha256": "43a0d89ee10ab7a23adcd420259c40ea23f1e49e190a631f6a3c19a0f9bb3ef0"
     }
@@ -5488,21 +5692,21 @@
   "IE00BJ5JNY98": {
     "distribution": {
       "value": "Distributing",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.ishares.com/uk/individual/en/products/308858/?siteEntryPassthrough=true&switchLocale=y",
-      "sha256": "be5fa285ad03cfd7682b6e1e5c69c240d62b59cc350ffd84b8976c7a2d069763"
+      "sha256": "698c3d2990aec8f670fc588bdc5b679aa2511eb3bb7285cada0200137755fd8d"
     },
     "domicile": {
       "value": "Ireland",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.ishares.com/uk/individual/en/products/308858/?siteEntryPassthrough=true&switchLocale=y",
-      "sha256": "be5fa285ad03cfd7682b6e1e5c69c240d62b59cc350ffd84b8976c7a2d069763"
+      "sha256": "698c3d2990aec8f670fc588bdc5b679aa2511eb3bb7285cada0200137755fd8d"
     },
     "replicationMethod": {
       "value": "Physical",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=IE00BJ5JNY98",
-      "sha256": "2c56ca51aa8d968e21a2d4284f66a8cdd3742dac8a523f094513450a8d49cf65"
+      "sha256": "e33003d193dd6481642f222bfbbb419635fbb2d51f489fdc17db4da62713fad5"
     },
     "listings": {
       "value": [
@@ -5514,7 +5718,7 @@
           "symbol": "WITS.AS",
           "excerpt": "IE00BJ5JNY98 | Euronext Amsterdam | WITS | USD | WITS.AS",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=308858&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "9013dbec76333cab2399ee860460892d077e8baa845968f9963ee77680b91d53",
           "evidenceId": "IE00BJ5JNY98-XAMS-WITS-USD"
         },
@@ -5526,7 +5730,7 @@
           "symbol": "WITS.DE",
           "excerpt": "IE00BJ5JNY98 | Xetra | AYEW | EUR | WITS.DE",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=308858&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "9013dbec76333cab2399ee860460892d077e8baa845968f9963ee77680b91d53",
           "evidenceId": "IE00BJ5JNY98-XETR-AYEW-EUR"
         },
@@ -5538,7 +5742,7 @@
           "symbol": "WITS.L",
           "excerpt": "IE00BJ5JNY98 | London Stock Exchange | WITS | GBP | WITS.L",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=308858&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "9013dbec76333cab2399ee860460892d077e8baa845968f9963ee77680b91d53",
           "evidenceId": "IE00BJ5JNY98-XLON-WITS-GBP"
         },
@@ -5550,12 +5754,23 @@
           "symbol": "WITS.MI",
           "excerpt": "IE00BJ5JNY98 | Borsa Italiana | WITS | EUR | WITS.MI",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=308858&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "9013dbec76333cab2399ee860460892d077e8baa845968f9963ee77680b91d53",
           "evidenceId": "IE00BJ5JNY98-ETFP-WITS-EUR"
+        },
+        {
+          "ticker": "WITS",
+          "mic": "XSWX",
+          "exchange": "SIX Swiss Exchange",
+          "currency": "USD",
+          "excerpt": "IE00BJ5JNY98 | SIX Swiss Exchange | WITS | USD | ",
+          "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=308858&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "checkedAt": "2026-10-19",
+          "sha256": "9013dbec76333cab2399ee860460892d077e8baa845968f9963ee77680b91d53",
+          "evidenceId": "IE00BJ5JNY98-XSWX-WITS-USD"
         }
       ],
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=308858&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "sha256": "9013dbec76333cab2399ee860460892d077e8baa845968f9963ee77680b91d53"
     }
@@ -5665,19 +5880,19 @@
   "IE00BMG6Z448": {
     "distribution": {
       "value": "Accumulating",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.ishares.com/uk/individual/en/products/315592/ishares-msci-em-ex-china-ucits-etf?siteEntryPassthrough=true&switchLocale=y",
-      "sha256": "86fc6e4abb403361170d6b6381b4b66e8896debaab0b7611c44065c92d6ea7f4"
+      "sha256": "55ca26f3e1e7011c3aae5fc22adf54d3722b1ed2faa2b5e45813350cfc1deb19"
     },
     "domicile": {
       "value": "Ireland",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.ishares.com/uk/individual/en/products/315592/ishares-msci-em-ex-china-ucits-etf?siteEntryPassthrough=true&switchLocale=y",
-      "sha256": "86fc6e4abb403361170d6b6381b4b66e8896debaab0b7611c44065c92d6ea7f4"
+      "sha256": "55ca26f3e1e7011c3aae5fc22adf54d3722b1ed2faa2b5e45813350cfc1deb19"
     },
     "replicationMethod": {
       "value": "Physical",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=315592&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "sha256": "e50786091de980924516a65a6b94555afe4f7bdf9f795da5b8ca9d9d1ff42605"
     },
@@ -5691,7 +5906,7 @@
           "symbol": "EXCH.AS",
           "excerpt": "IE00BMG6Z448 | Euronext Amsterdam | EXCH | USD | EXCH.AS",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=315592&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "e50786091de980924516a65a6b94555afe4f7bdf9f795da5b8ca9d9d1ff42605",
           "evidenceId": "IE00BMG6Z448-XAMS-EXCH-USD"
         },
@@ -5703,7 +5918,7 @@
           "symbol": "84X0.DE",
           "excerpt": "IE00BMG6Z448 | Xetra | 84X0 | EUR | 84X0.DE",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=315592&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "e50786091de980924516a65a6b94555afe4f7bdf9f795da5b8ca9d9d1ff42605",
           "evidenceId": "IE00BMG6Z448-XETR-84X0-EUR"
         },
@@ -5715,7 +5930,7 @@
           "symbol": "EXCS.L",
           "excerpt": "IE00BMG6Z448 | London Stock Exchange | EXCS | GBP | EXCS.L",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=315592&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "e50786091de980924516a65a6b94555afe4f7bdf9f795da5b8ca9d9d1ff42605",
           "evidenceId": "IE00BMG6Z448-XLON-EXCS-GBP"
         },
@@ -5727,7 +5942,7 @@
           "symbol": "EXCH.MI",
           "excerpt": "IE00BMG6Z448 | Borsa Italiana | EXCH | EUR | EXCH.MI",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=315592&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "e50786091de980924516a65a6b94555afe4f7bdf9f795da5b8ca9d9d1ff42605",
           "evidenceId": "IE00BMG6Z448-ETFP-EXCH-EUR"
         },
@@ -5739,7 +5954,7 @@
           "symbol": "EXCH.PA",
           "excerpt": "IE00BMG6Z448 | Nyse Euronext - Euronext Paris | MTPI | EUR | EXCH.PA",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=315592&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "e50786091de980924516a65a6b94555afe4f7bdf9f795da5b8ca9d9d1ff42605",
           "evidenceId": "IE00BMG6Z448-XPAR-MTPI-EUR"
         },
@@ -5751,12 +5966,12 @@
           "symbol": "EXCH.S",
           "excerpt": "IE00BMG6Z448 | SIX Swiss Exchange | EXCH | USD | EXCH.S",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=315592&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "e50786091de980924516a65a6b94555afe4f7bdf9f795da5b8ca9d9d1ff42605",
           "evidenceId": "IE00BMG6Z448-XSWX-EXCH-USD"
         }
       ],
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=315592&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "sha256": "e50786091de980924516a65a6b94555afe4f7bdf9f795da5b8ca9d9d1ff42605"
     }
@@ -6272,14 +6487,20 @@
           "currency": "EUR",
           "excerpt": "IE00B3YLTY66 | Euronext Paris EUR 14 Sep 2011 IMIE B6R4XC9 IMIE FP IMIE.PA",
           "sourceUrl": "https://www.ssga.com/lu/de/intermediary/etfs/state-street-spdr-msci-all-country-world-investable-market-ucits-etf-acc-spyi-gy",
-          "checkedAt": "2026-10-18",
-          "sha256": "263c4f6bbfa24a2cca1248ae15c55a08fca2dc42cb37e82047237238e8bd8fe6",
+          "checkedAt": "2026-10-19",
+          "sha256": "03c6d2f802a094075f8e971beab63b73402d6d29aa0d48d16462065c80f9a8be",
           "evidenceId": "IE00B3YLTY66-XPAR-IMIE-EUR"
         }
       ],
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.ssga.com/lu/de/intermediary/etfs/state-street-spdr-msci-all-country-world-investable-market-ucits-etf-acc-spyi-gy",
-      "sha256": "263c4f6bbfa24a2cca1248ae15c55a08fca2dc42cb37e82047237238e8bd8fe6"
+      "sha256": "03c6d2f802a094075f8e971beab63b73402d6d29aa0d48d16462065c80f9a8be"
+    },
+    "pea": {
+      "value": false,
+      "checkedAt": "2026-10-19",
+      "sourceUrl": "https://www.ssga.com/lu/de/intermediary/etfs/state-street-spdr-msci-all-country-world-investable-market-ucits-etf-acc-spyi-gy",
+      "sha256": "03c6d2f802a094075f8e971beab63b73402d6d29aa0d48d16462065c80f9a8be"
     }
   },
   "IE00BJ38QD84": {
@@ -6683,21 +6904,21 @@
   "IE00BLNMYC90": {
     "distribution": {
       "value": "Capitalizing",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/pdpMetaTagsTealium",
-      "sha256": "36d1661ff8eebf834e9c330e0b7e75c311978a6bcae1ca59d5440224fe066810"
+      "sha256": "97eb0d8e108b44e6d2100cfbed8008c38b25dc6b4824e5e3c148c4d48e63c20b"
     },
     "domicile": {
       "value": "Ireland",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/pdpMetaTagsTealium",
-      "sha256": "36d1661ff8eebf834e9c330e0b7e75c311978a6bcae1ca59d5440224fe066810"
+      "sha256": "97eb0d8e108b44e6d2100cfbed8008c38b25dc6b4824e5e3c148c4d48e63c20b"
     },
     "replicationMethod": {
       "value": "Direct Replication (physically)",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/pdpMetaTagsTealium",
-      "sha256": "36d1661ff8eebf834e9c330e0b7e75c311978a6bcae1ca59d5440224fe066810"
+      "sha256": "97eb0d8e108b44e6d2100cfbed8008c38b25dc6b4824e5e3c148c4d48e63c20b"
     },
     "listings": {
       "value": [
@@ -6709,8 +6930,8 @@
           "symbol": "XDEW.L",
           "excerpt": "IE00BLNMYC90 | London Stock Exchange | XDEW LN | USD | XDEW.L",
           "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/pdpMetaTagsTealium",
-          "checkedAt": "2026-10-18",
-          "sha256": "36d1661ff8eebf834e9c330e0b7e75c311978a6bcae1ca59d5440224fe066810",
+          "checkedAt": "2026-10-19",
+          "sha256": "97eb0d8e108b44e6d2100cfbed8008c38b25dc6b4824e5e3c148c4d48e63c20b",
           "evidenceId": "IE00BLNMYC90-XLON-XDEW-USD"
         },
         {
@@ -6721,8 +6942,8 @@
           "symbol": "XDEW.DE",
           "excerpt": "IE00BLNMYC90 | XETRA | XDEW GY | EUR | XDEW.DE",
           "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/pdpMetaTagsTealium",
-          "checkedAt": "2026-10-18",
-          "sha256": "36d1661ff8eebf834e9c330e0b7e75c311978a6bcae1ca59d5440224fe066810",
+          "checkedAt": "2026-10-19",
+          "sha256": "97eb0d8e108b44e6d2100cfbed8008c38b25dc6b4824e5e3c148c4d48e63c20b",
           "evidenceId": "IE00BLNMYC90-XETR-XDEW-EUR"
         },
         {
@@ -6733,8 +6954,8 @@
           "symbol": "XDWE.L",
           "excerpt": "IE00BLNMYC90 | London Stock Exchange | XDWE LN | GBX | XDWE.L",
           "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/pdpMetaTagsTealium",
-          "checkedAt": "2026-10-18",
-          "sha256": "36d1661ff8eebf834e9c330e0b7e75c311978a6bcae1ca59d5440224fe066810",
+          "checkedAt": "2026-10-19",
+          "sha256": "97eb0d8e108b44e6d2100cfbed8008c38b25dc6b4824e5e3c148c4d48e63c20b",
           "evidenceId": "IE00BLNMYC90-XLON-XDWE-GBX"
         },
         {
@@ -6745,34 +6966,34 @@
           "symbol": "XDEW.MI",
           "excerpt": "IE00BLNMYC90 | Borsa Italiana | XDEW IM | EUR | XDEW.MI",
           "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/pdpMetaTagsTealium",
-          "checkedAt": "2026-10-18",
-          "sha256": "36d1661ff8eebf834e9c330e0b7e75c311978a6bcae1ca59d5440224fe066810",
+          "checkedAt": "2026-10-19",
+          "sha256": "97eb0d8e108b44e6d2100cfbed8008c38b25dc6b4824e5e3c148c4d48e63c20b",
           "evidenceId": "IE00BLNMYC90-ETFP-XDEW-EUR"
         }
       ],
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/pdpMetaTagsTealium",
-      "sha256": "36d1661ff8eebf834e9c330e0b7e75c311978a6bcae1ca59d5440224fe066810"
+      "sha256": "97eb0d8e108b44e6d2100cfbed8008c38b25dc6b4824e5e3c148c4d48e63c20b"
     }
   },
   "IE0006WW1TQ4": {
     "replicationMethod": {
       "value": "Direct Replication (physically)",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/pdpMetaTagsTealium",
-      "sha256": "76dc11898d6a21ddc28a868b6ec1b3cdc06c6a1d600f59b5d321f00f9079d561"
+      "sha256": "7d70deb5fd91cff51232309785231bf659309fc5a6fd4e8a5293f29ca3771acb"
     },
     "distribution": {
       "value": "Capitalizing",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/pdpMetaTagsTealium",
-      "sha256": "76dc11898d6a21ddc28a868b6ec1b3cdc06c6a1d600f59b5d321f00f9079d561"
+      "sha256": "7d70deb5fd91cff51232309785231bf659309fc5a6fd4e8a5293f29ca3771acb"
     },
     "domicile": {
       "value": "Ireland",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/pdpMetaTagsTealium",
-      "sha256": "76dc11898d6a21ddc28a868b6ec1b3cdc06c6a1d600f59b5d321f00f9079d561"
+      "sha256": "7d70deb5fd91cff51232309785231bf659309fc5a6fd4e8a5293f29ca3771acb"
     },
     "listings": {
       "value": [
@@ -6784,8 +7005,8 @@
           "symbol": "XMWX.L",
           "excerpt": "IE0006WW1TQ4 | London Stock Exchange | XMWX LN | GBP | XMWX.L",
           "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/pdpMetaTagsTealium",
-          "checkedAt": "2026-10-18",
-          "sha256": "76dc11898d6a21ddc28a868b6ec1b3cdc06c6a1d600f59b5d321f00f9079d561",
+          "checkedAt": "2026-10-19",
+          "sha256": "7d70deb5fd91cff51232309785231bf659309fc5a6fd4e8a5293f29ca3771acb",
           "evidenceId": "IE0006WW1TQ4-XLON-XMWX-GBP"
         },
         {
@@ -6796,8 +7017,8 @@
           "symbol": "EXUS.L",
           "excerpt": "IE0006WW1TQ4 | London Stock Exchange | EXUS LN | USD | EXUS.L",
           "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/pdpMetaTagsTealium",
-          "checkedAt": "2026-10-18",
-          "sha256": "76dc11898d6a21ddc28a868b6ec1b3cdc06c6a1d600f59b5d321f00f9079d561",
+          "checkedAt": "2026-10-19",
+          "sha256": "7d70deb5fd91cff51232309785231bf659309fc5a6fd4e8a5293f29ca3771acb",
           "evidenceId": "IE0006WW1TQ4-XLON-EXUS-USD"
         },
         {
@@ -6808,8 +7029,8 @@
           "symbol": "EXUS.DE",
           "excerpt": "IE0006WW1TQ4 | XETRA | EXUS GY | EUR | EXUS.DE",
           "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/pdpMetaTagsTealium",
-          "checkedAt": "2026-10-18",
-          "sha256": "76dc11898d6a21ddc28a868b6ec1b3cdc06c6a1d600f59b5d321f00f9079d561",
+          "checkedAt": "2026-10-19",
+          "sha256": "7d70deb5fd91cff51232309785231bf659309fc5a6fd4e8a5293f29ca3771acb",
           "evidenceId": "IE0006WW1TQ4-XETR-EXUS-EUR"
         },
         {
@@ -6820,22 +7041,22 @@
           "symbol": "EXUS.MI",
           "excerpt": "IE0006WW1TQ4 | Borsa Italiana | EXUS IM | EUR | EXUS.MI",
           "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/pdpMetaTagsTealium",
-          "checkedAt": "2026-10-18",
-          "sha256": "76dc11898d6a21ddc28a868b6ec1b3cdc06c6a1d600f59b5d321f00f9079d561",
+          "checkedAt": "2026-10-19",
+          "sha256": "7d70deb5fd91cff51232309785231bf659309fc5a6fd4e8a5293f29ca3771acb",
           "evidenceId": "IE0006WW1TQ4-ETFP-EXUS-EUR"
         }
       ],
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/pdpMetaTagsTealium",
-      "sha256": "76dc11898d6a21ddc28a868b6ec1b3cdc06c6a1d600f59b5d321f00f9079d561"
+      "sha256": "7d70deb5fd91cff51232309785231bf659309fc5a6fd4e8a5293f29ca3771acb"
     }
   },
   "LU0290358497": {
     "distribution": {
       "value": "Capitalizing",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0290358497/pdpMetaTagsTealium",
-      "sha256": "1806963c02852d52fa5886f55d53c20fe9cb1c2091dc98a927cb1c6ffee0eb6c"
+      "sha256": "848bb747e2e0be8abc5b56ac812e3cb80811193a0fe759a8948f6c8cef3c068a"
     },
     "listings": {
       "value": [
@@ -6847,8 +7068,8 @@
           "symbol": "XEON.MI",
           "excerpt": "LU0290358497 | Borsa Italiana | XEON IM | EUR | XEON.MI",
           "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0290358497/pdpMetaTagsTealium",
-          "checkedAt": "2026-10-18",
-          "sha256": "1806963c02852d52fa5886f55d53c20fe9cb1c2091dc98a927cb1c6ffee0eb6c",
+          "checkedAt": "2026-10-19",
+          "sha256": "848bb747e2e0be8abc5b56ac812e3cb80811193a0fe759a8948f6c8cef3c068a",
           "evidenceId": "LU0290358497-ETFP-XEON-EUR"
         },
         {
@@ -6859,26 +7080,26 @@
           "symbol": "XEON.DE",
           "excerpt": "LU0290358497 | XETRA | XEON GY | EUR | XEON.DE",
           "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0290358497/pdpMetaTagsTealium",
-          "checkedAt": "2026-10-18",
-          "sha256": "1806963c02852d52fa5886f55d53c20fe9cb1c2091dc98a927cb1c6ffee0eb6c",
+          "checkedAt": "2026-10-19",
+          "sha256": "848bb747e2e0be8abc5b56ac812e3cb80811193a0fe759a8948f6c8cef3c068a",
           "evidenceId": "LU0290358497-XETR-XEON-EUR"
         }
       ],
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0290358497/pdpMetaTagsTealium",
-      "sha256": "1806963c02852d52fa5886f55d53c20fe9cb1c2091dc98a927cb1c6ffee0eb6c"
+      "sha256": "848bb747e2e0be8abc5b56ac812e3cb80811193a0fe759a8948f6c8cef3c068a"
     },
     "domicile": {
       "value": "Luxembourg",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0290358497/pdpMetaTagsTealium",
-      "sha256": "1806963c02852d52fa5886f55d53c20fe9cb1c2091dc98a927cb1c6ffee0eb6c"
+      "sha256": "848bb747e2e0be8abc5b56ac812e3cb80811193a0fe759a8948f6c8cef3c068a"
     },
     "replicationMethod": {
       "value": "Indirect Replication (Swap)",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0290358497/pdpMetaTagsTealium",
-      "sha256": "1806963c02852d52fa5886f55d53c20fe9cb1c2091dc98a927cb1c6ffee0eb6c"
+      "sha256": "848bb747e2e0be8abc5b56ac812e3cb80811193a0fe759a8948f6c8cef3c068a"
     }
   },
   "IE000L6ZMMC4": {
@@ -7349,89 +7570,183 @@
   "IE00BK5BQT80": {
     "distribution": {
       "value": "Accumulating",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=IE00BK5BQT80",
-      "sha256": "870d355793aba9671de17130c2cb19d125f632044310f0065afb10981d32c3a0"
+      "sha256": "4a7b13bdd8312dcb92dd49a5f21308c23d89f6476e05bb259e4e83388f49d103"
     },
     "domicile": {
       "value": "Ireland",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.vanguard.co.uk/professional/product/etf/equity/9679/ftse-all-world-ucits",
-      "sha256": "a0cc5d826e155c98e5d2e7cfeb2fc4063993ad08bbefffa540bb7f207669171a"
+      "sha256": "4f1d344221d8f83b578ebf9ba902798dcf6c7eee7f8226696818850ae96b334e"
     },
     "replicationMethod": {
       "value": "Physical",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=IE00BK5BQT80",
-      "sha256": "870d355793aba9671de17130c2cb19d125f632044310f0065afb10981d32c3a0"
+      "sha256": "4a7b13bdd8312dcb92dd49a5f21308c23d89f6476e05bb259e4e83388f49d103"
+    },
+    "listings": {
+      "value": [
+        {
+          "ticker": "VWCE",
+          "mic": "XAMS",
+          "exchange": "Euronext Amsterdam",
+          "currency": "EUR",
+          "excerpt": "IE00BK5BQT80 | NYSE Euronext EUR VWCE BQB3BS4 VWCE.AS VWCE NA IVWRAEUR —",
+          "sourceUrl": "https://fund-docs.vanguard.com/FTSE_All-World_UCITS_ETF_USD_Accumulating_9679_EU_INT_UK_EN.pdf",
+          "checkedAt": "2026-10-19",
+          "sha256": "083b682e7f62e154af9d18a9ba354b11f09924f2c9192b03a749454f647562d0",
+          "evidenceId": "IE00BK5BQT80-XAMS-VWCE-EUR"
+        },
+        {
+          "ticker": "VWCE",
+          "mic": "ETFP",
+          "exchange": "Borsa Italiana",
+          "currency": "EUR",
+          "excerpt": "IE00BK5BQT80 | Borsa Italiana S.p.A. EUR VWCE BKMDRF0 VWCE.MI VWCE IM IVWRAEUR —",
+          "sourceUrl": "https://fund-docs.vanguard.com/FTSE_All-World_UCITS_ETF_USD_Accumulating_9679_EU_INT_UK_EN.pdf",
+          "checkedAt": "2026-10-19",
+          "sha256": "083b682e7f62e154af9d18a9ba354b11f09924f2c9192b03a749454f647562d0",
+          "evidenceId": "IE00BK5BQT80-ETFP-VWCE-EUR"
+        },
+        {
+          "ticker": "VWCE",
+          "mic": "XETR",
+          "exchange": "Xetra",
+          "currency": "EUR",
+          "excerpt": "IE00BK5BQT80 | Deutsche Börse EUR VWCE BJVR0R9 VWCE.DE VWCE GY IVWRAEUR —",
+          "sourceUrl": "https://fund-docs.vanguard.com/FTSE_All-World_UCITS_ETF_USD_Accumulating_9679_EU_INT_UK_EN.pdf",
+          "checkedAt": "2026-10-19",
+          "sha256": "083b682e7f62e154af9d18a9ba354b11f09924f2c9192b03a749454f647562d0",
+          "evidenceId": "IE00BK5BQT80-XETR-VWCE-EUR"
+        }
+      ],
+      "checkedAt": "2026-10-19",
+      "sourceUrl": "https://fund-docs.vanguard.com/FTSE_All-World_UCITS_ETF_USD_Accumulating_9679_EU_INT_UK_EN.pdf",
+      "sha256": "083b682e7f62e154af9d18a9ba354b11f09924f2c9192b03a749454f647562d0"
     }
   },
   "IE00BK5BR626": {
     "distribution": {
       "value": "Accumulating",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=IE00BK5BR626",
-      "sha256": "b1a2422993c62bca713a16190cf77b547a1fa4d607ffe66fa6b93a0c5f41c39f"
+      "sha256": "26c640d018a0c0bb559dc1de7e1e58ab7da89b3a26dd0305257537f352be7102"
     },
     "domicile": {
       "value": "Ireland",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.vanguard.co.uk/professional/product/etf/equity/9677/ftse-all-world-high-dividend-yield-ucits",
-      "sha256": "98a9842359a24b9a4d191b78bf76eaf07fcaccc7cb7a88e49a786978077d53f0"
+      "sha256": "ee88984c3a44e43943b9c2339b84baebfe0392285fd418f74a26b77fc99f70b2"
     },
     "replicationMethod": {
       "value": "Physical",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=IE00BK5BR626",
-      "sha256": "b1a2422993c62bca713a16190cf77b547a1fa4d607ffe66fa6b93a0c5f41c39f"
+      "sha256": "26c640d018a0c0bb559dc1de7e1e58ab7da89b3a26dd0305257537f352be7102"
+    },
+    "listings": {
+      "value": [
+        {
+          "ticker": "VHYA",
+          "mic": "ETFP",
+          "exchange": "Borsa Italiana",
+          "currency": "EUR",
+          "excerpt": "IE00BK5BR626 | Borsa Italiana S.p.A. EUR VHYA BVK5HP5 VHYA.MI VHYA IM IVHYAEUR —",
+          "sourceUrl": "https://fund-docs.vanguard.com/FTSE_All-World_High_Dividend_Yield_UCITS_ETF_USD_Accumulating_9677_EU_INT_UK_EN.pdf",
+          "checkedAt": "2026-10-19",
+          "sha256": "c430c4764c3ff3efa059fc4b2174e776179bf6f201581dc099efa6865707ebe9",
+          "evidenceId": "IE00BK5BR626-ETFP-VHYA-EUR"
+        }
+      ],
+      "checkedAt": "2026-10-19",
+      "sourceUrl": "https://fund-docs.vanguard.com/FTSE_All-World_High_Dividend_Yield_UCITS_ETF_USD_Accumulating_9677_EU_INT_UK_EN.pdf",
+      "sha256": "c430c4764c3ff3efa059fc4b2174e776179bf6f201581dc099efa6865707ebe9"
     }
   },
   "IE00B8GKDB10": {
     "distribution": {
       "value": "Distributing",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=IE00B8GKDB10",
-      "sha256": "f6a73efd1128b7f6ab074a5388f0c083098c386d9ee1c9ad756b2aa3a4a9410e"
+      "sha256": "a851b2516a6c0bd1cede805f843e05c5a13a5fdfeee3efcce792a5a28daf9524"
     },
     "domicile": {
       "value": "Ireland",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.vanguard.co.uk/professional/product/etf/equity/9506/ftse-all-world-high-dividend-yield-ucits-etf-usd-distributing",
-      "sha256": "21217d5c81a44d0496670e773410eaaf81df69b46112aede6e606c34a8899a4d"
+      "sha256": "63a218019e85f0f4c2fb4099cc4d86d132cbe93012f66be3d49a4f772a4efc1c"
     },
     "replicationMethod": {
       "value": "Physical",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=IE00B8GKDB10",
-      "sha256": "f6a73efd1128b7f6ab074a5388f0c083098c386d9ee1c9ad756b2aa3a4a9410e"
+      "sha256": "a851b2516a6c0bd1cede805f843e05c5a13a5fdfeee3efcce792a5a28daf9524"
+    },
+    "listings": {
+      "value": [
+        {
+          "ticker": "VHYL",
+          "mic": "ETFP",
+          "exchange": "Borsa Italiana",
+          "currency": "EUR",
+          "excerpt": "IE00B8GKDB10 | Borsa Italiana S.p.A. EUR VHYL BGSF2B3 VHYL.MI VHYL IM IVHYLEUR —",
+          "sourceUrl": "https://fund-docs.vanguard.com/FTSE_All-World_High_Dividend_Yield_UCITS_ETF_USD_Distributing_9506_EU_INT_UK_EN.pdf",
+          "checkedAt": "2026-10-19",
+          "sha256": "567c99c85be5c79dc75769572587b07a00ad38deaf88939cca3766e8d567d244",
+          "evidenceId": "IE00B8GKDB10-ETFP-VHYL-EUR"
+        }
+      ],
+      "checkedAt": "2026-10-19",
+      "sourceUrl": "https://fund-docs.vanguard.com/FTSE_All-World_High_Dividend_Yield_UCITS_ETF_USD_Distributing_9506_EU_INT_UK_EN.pdf",
+      "sha256": "567c99c85be5c79dc75769572587b07a00ad38deaf88939cca3766e8d567d244"
     }
   },
   "IE00BK5BR733": {
     "distribution": {
       "value": "Accumulating",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=IE00BK5BR733",
-      "sha256": "46c1c30d0b7ecd20b4ae0a591cc1b723e5af198702de7984e9636254fc87a8a3"
+      "sha256": "de6a337e15555409a6c1fd769ba1071c38c2efaaa052e46e13ffcaa19a494dde"
     },
     "domicile": {
       "value": "Ireland",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.vanguard.co.uk/professional/product/etf/equity/9678/ftse-emerging-markets-ucits",
-      "sha256": "1eb422b1afff99f614d85e0a2f4038feffabc52262f6c5eed7e289c734b063c5"
+      "sha256": "12bd3e90110414da35b1f401cfdbefa42950a88c77117f7d336c4975bf280aa1"
     },
     "replicationMethod": {
       "value": "Physical",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=IE00BK5BR733",
-      "sha256": "46c1c30d0b7ecd20b4ae0a591cc1b723e5af198702de7984e9636254fc87a8a3"
+      "sha256": "de6a337e15555409a6c1fd769ba1071c38c2efaaa052e46e13ffcaa19a494dde"
+    },
+    "listings": {
+      "value": [
+        {
+          "ticker": "VFEA",
+          "mic": "ETFP",
+          "exchange": "Borsa Italiana",
+          "currency": "EUR",
+          "excerpt": "IE00BK5BR733 | Borsa Italiana S.p.A. EUR VFEA BKMDRM7 VFEA.MI VFEA IM IVFEAEUR —",
+          "sourceUrl": "https://fund-docs.vanguard.com/FTSE_Emerging_Markets_UCITS_ETF_USD_Accumulating_9678_EU_INT_UK_EN.pdf",
+          "checkedAt": "2026-10-19",
+          "sha256": "487f0b7106c8bdc0479b4fd07553ef74c33726f982632eafc6269da8ff32d3a9",
+          "evidenceId": "IE00BK5BR733-ETFP-VFEA-EUR"
+        }
+      ],
+      "checkedAt": "2026-10-19",
+      "sourceUrl": "https://fund-docs.vanguard.com/FTSE_Emerging_Markets_UCITS_ETF_USD_Accumulating_9678_EU_INT_UK_EN.pdf",
+      "sha256": "487f0b7106c8bdc0479b4fd07553ef74c33726f982632eafc6269da8ff32d3a9"
     }
   },
   "IE00BZ163G84": {
     "domicile": {
       "value": "Ireland",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.vanguard.co.uk/professional/product/etf/bond/9659/eur-corporate-bond-ucits-etf-eur-distributing",
-      "sha256": "ae85e8737333b0e7f1e3f589354119b1a9abf1e8e6d8838461cc7ef9a0e2a9f8"
+      "sha256": "e6933839ad60d0cf978edc7ecb50c20dfb3ceefc94c53f5b0ead2b9669986dc0"
     }
   },
   "IE00BYWQWR46": {
@@ -7862,53 +8177,53 @@
   "IE00B579F325": {
     "domicile": {
       "value": "Ireland",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=IE00B579F325",
-      "sha256": "d15929e7442ac1bc27ea2e9c13e8c669aed767485d5c73f9db25f2467d3ceeef"
+      "sha256": "78672fdb638148745d7181e5c4a37ac35d58a92592c27deebf006a1f6c63f541"
     },
     "replicationMethod": {
       "value": "Physical",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=IE00B579F325",
-      "sha256": "d15929e7442ac1bc27ea2e9c13e8c669aed767485d5c73f9db25f2467d3ceeef"
+      "sha256": "78672fdb638148745d7181e5c4a37ac35d58a92592c27deebf006a1f6c63f541"
     },
     "currencyHedge": {
       "value": false,
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE00B579F325_factsheet_en.pdf",
       "sha256": "1b241477b5595fbefdf5fc6e9e94824de0a3f1371409d5dfdea41acc720448b0"
     },
     "distribution": {
       "value": "Accumulating",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=IE00B579F325",
-      "sha256": "d15929e7442ac1bc27ea2e9c13e8c669aed767485d5c73f9db25f2467d3ceeef"
+      "sha256": "78672fdb638148745d7181e5c4a37ac35d58a92592c27deebf006a1f6c63f541"
     }
   },
   "IE00BD6FTQ80": {
     "domicile": {
       "value": "Ireland",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=IE00BD6FTQ80",
-      "sha256": "a357ad8e4aeb5c95a7b70e2ca0adaf1a762eb0d63751f784a8194ad46b1a647f"
+      "sha256": "320b5a985e7f73dd6eab3262852c813458d0d60e01d321f07e7c322d45131d1a"
     },
     "replicationMethod": {
       "value": "Synthetic",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=IE00BD6FTQ80",
-      "sha256": "a357ad8e4aeb5c95a7b70e2ca0adaf1a762eb0d63751f784a8194ad46b1a647f"
+      "sha256": "320b5a985e7f73dd6eab3262852c813458d0d60e01d321f07e7c322d45131d1a"
     },
     "currencyHedge": {
       "value": false,
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE00BD6FTQ80_factsheet_en.pdf",
       "sha256": "f8e1719b62cc99afdf55fc5f8729b60d6ce8b0b8002de449d770e6c25ee7e0d0"
     },
     "distribution": {
       "value": "Accumulating",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=IE00BD6FTQ80",
-      "sha256": "a357ad8e4aeb5c95a7b70e2ca0adaf1a762eb0d63751f784a8194ad46b1a647f"
+      "sha256": "320b5a985e7f73dd6eab3262852c813458d0d60e01d321f07e7c322d45131d1a"
     }
   },
   "IE00B3VVMM84": {},
@@ -8176,19 +8491,19 @@
   "IE00B4ND3602": {
     "distribution": {
       "value": "No Income",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=258441&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "sha256": "ccd1f98710767049cbe832fcc3f0e32ea1a111e5dc4ed777940d93df2523473f"
     },
     "domicile": {
       "value": "Ireland",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.ishares.com/uk/individual/en/products/258441/?siteEntryPassthrough=true&switchLocale=y",
-      "sha256": "5bada206acf13aadea57d87704943c014ffdd9c2abab0e8d31182e6ca1aaeac1"
+      "sha256": "182ed03d1bfc449cc238bea3ab3f680189e8f79d8912b70d68c947998441d8c4"
     },
     "replicationMethod": {
       "value": "Physical metal",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=258441&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "sha256": "ccd1f98710767049cbe832fcc3f0e32ea1a111e5dc4ed777940d93df2523473f"
     },
@@ -8202,7 +8517,7 @@
           "symbol": "SGLN.L",
           "excerpt": "IE00B4ND3602 | London Stock Exchange | SGLN | GBP | SGLN.L",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=258441&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "ccd1f98710767049cbe832fcc3f0e32ea1a111e5dc4ed777940d93df2523473f",
           "evidenceId": "IE00B4ND3602-XLON-SGLN-GBP"
         },
@@ -8214,7 +8529,7 @@
           "symbol": "PPFB.DE",
           "excerpt": "IE00B4ND3602 | Xetra | PPFB GY | EUR | PPFB.DE",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=258441&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "ccd1f98710767049cbe832fcc3f0e32ea1a111e5dc4ed777940d93df2523473f",
           "evidenceId": "IE00B4ND3602-XETR-PPFB GY-EUR"
         },
@@ -8226,7 +8541,7 @@
           "symbol": "IGLN.L",
           "excerpt": "IE00B4ND3602 | London Stock Exchange | IGLN | USD | IGLN.L",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=258441&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "ccd1f98710767049cbe832fcc3f0e32ea1a111e5dc4ed777940d93df2523473f",
           "evidenceId": "IE00B4ND3602-XLON-IGLN-USD"
         },
@@ -8238,7 +8553,7 @@
           "symbol": "EGLN.L",
           "excerpt": "IE00B4ND3602 | London Stock Exchange | EGLN | EUR | EGLN.L",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=258441&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "ccd1f98710767049cbe832fcc3f0e32ea1a111e5dc4ed777940d93df2523473f",
           "evidenceId": "IE00B4ND3602-XLON-EGLN-EUR"
         },
@@ -8250,7 +8565,7 @@
           "symbol": "SGLN.MI",
           "excerpt": "IE00B4ND3602 | Borsa Italiana | SGLN | EUR | SGLN.MI",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=258441&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "ccd1f98710767049cbe832fcc3f0e32ea1a111e5dc4ed777940d93df2523473f",
           "evidenceId": "IE00B4ND3602-ETFP-SGLN-EUR"
         },
@@ -8262,12 +8577,12 @@
           "symbol": "SLGNI.PA",
           "excerpt": "IE00B4ND3602 | Nyse Euronext - Euronext Paris | SLGN | EUR | SLGNI.PA",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=258441&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "ccd1f98710767049cbe832fcc3f0e32ea1a111e5dc4ed777940d93df2523473f",
           "evidenceId": "IE00B4ND3602-XPAR-SLGN-EUR"
         }
       ],
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=258441&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "sha256": "ccd1f98710767049cbe832fcc3f0e32ea1a111e5dc4ed777940d93df2523473f"
     }
@@ -8794,19 +9109,19 @@
   "IE00B2NPKV68": {
     "distribution": {
       "value": "Distributing",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.ishares.com/uk/individual/en/products/251824",
       "sha256": "721a19880d407df23c2ede6a6a096130e825d71ba3fe3e5971bdc5bf0c090cb3"
     },
     "domicile": {
       "value": "Ireland",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.ishares.com/uk/individual/en/products/251824",
       "sha256": "721a19880d407df23c2ede6a6a096130e825d71ba3fe3e5971bdc5bf0c090cb3"
     },
     "replicationMethod": {
       "value": "Physical",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251824&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "sha256": "c1e13257fb4b9249dd7e950b3b5d86b6d3681796b682c3591b10d7f3bdc4d04d"
     },
@@ -8820,7 +9135,7 @@
           "symbol": "SEMB.L",
           "excerpt": "IE00B2NPKV68 | London Stock Exchange | SEMB | GBP | SEMB.L",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251824&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "c1e13257fb4b9249dd7e950b3b5d86b6d3681796b682c3591b10d7f3bdc4d04d",
           "evidenceId": "IE00B2NPKV68-XLON-SEMB-GBP"
         },
@@ -8832,7 +9147,7 @@
           "symbol": "IUS7.DE",
           "excerpt": "IE00B2NPKV68 | Deutsche Boerse Xetra | IUS7 | EUR | IUS7.DE",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251824&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "c1e13257fb4b9249dd7e950b3b5d86b6d3681796b682c3591b10d7f3bdc4d04d",
           "evidenceId": "IE00B2NPKV68-XETR-IUS7-EUR"
         },
@@ -8844,7 +9159,7 @@
           "symbol": "IEMB.L",
           "excerpt": "IE00B2NPKV68 | London Stock Exchange | IEMB | USD | IEMB.L",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251824&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "c1e13257fb4b9249dd7e950b3b5d86b6d3681796b682c3591b10d7f3bdc4d04d",
           "evidenceId": "IE00B2NPKV68-XLON-IEMB-USD"
         },
@@ -8856,7 +9171,7 @@
           "symbol": "IEMB.MI",
           "excerpt": "IE00B2NPKV68 | Borsa Italiana | IEMB | EUR | IEMB.MI",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251824&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "c1e13257fb4b9249dd7e950b3b5d86b6d3681796b682c3591b10d7f3bdc4d04d",
           "evidenceId": "IE00B2NPKV68-ETFP-IEMB-EUR"
         },
@@ -8868,12 +9183,12 @@
           "symbol": "IEMB.S",
           "excerpt": "IE00B2NPKV68 | SIX Swiss Exchange | IEMB | USD | IEMB.S",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251824&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "c1e13257fb4b9249dd7e950b3b5d86b6d3681796b682c3591b10d7f3bdc4d04d",
           "evidenceId": "IE00B2NPKV68-XSWX-IEMB-USD"
         }
       ],
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251824&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "sha256": "c1e13257fb4b9249dd7e950b3b5d86b6d3681796b682c3591b10d7f3bdc4d04d"
     }
@@ -8881,19 +9196,19 @@
   "IE00B1FZS913": {
     "distribution": {
       "value": "Distributing",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.ishares.com/uk/individual/en/products/251735/ishares-euro-government-bond-1530yr-ucits-etf",
-      "sha256": "f972a27d7c999e6a24ce986f9f6b43295472b2ddf61f021b2583741f84a78fdd"
+      "sha256": "6127986b41761b40757349a1110a31788374ab72cd4b8982cbb43ddce2bd2727"
     },
     "domicile": {
       "value": "Ireland",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.ishares.com/uk/individual/en/products/251735/ishares-euro-government-bond-1530yr-ucits-etf",
-      "sha256": "f972a27d7c999e6a24ce986f9f6b43295472b2ddf61f021b2583741f84a78fdd"
+      "sha256": "6127986b41761b40757349a1110a31788374ab72cd4b8982cbb43ddce2bd2727"
     },
     "replicationMethod": {
       "value": "Physical",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251735&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "sha256": "24d41633cfb21d9d86977670ae535e9053026456e5965e0186c33f293187ecaf"
     },
@@ -8907,7 +9222,7 @@
           "symbol": "IBGL.L",
           "excerpt": "IE00B1FZS913 | London Stock Exchange | IBGL | GBP | IBGL.L",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251735&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "24d41633cfb21d9d86977670ae535e9053026456e5965e0186c33f293187ecaf",
           "evidenceId": "IE00B1FZS913-XLON-IBGL-GBP"
         },
@@ -8919,7 +9234,7 @@
           "symbol": "IBGL.AS",
           "excerpt": "IE00B1FZS913 | Euronext Amsterdam | IBGL | EUR | IBGL.AS",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251735&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "24d41633cfb21d9d86977670ae535e9053026456e5965e0186c33f293187ecaf",
           "evidenceId": "IE00B1FZS913-XAMS-IBGL-EUR"
         },
@@ -8931,7 +9246,7 @@
           "symbol": "IBCL.DE",
           "excerpt": "IE00B1FZS913 | Deutsche Boerse Xetra | IBCL | EUR | IBCL.DE",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251735&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "24d41633cfb21d9d86977670ae535e9053026456e5965e0186c33f293187ecaf",
           "evidenceId": "IE00B1FZS913-XETR-IBCL-EUR"
         },
@@ -8943,12 +9258,12 @@
           "symbol": "IBGL.MI",
           "excerpt": "IE00B1FZS913 | Borsa Italiana | IBGL | EUR | IBGL.MI",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251735&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "24d41633cfb21d9d86977670ae535e9053026456e5965e0186c33f293187ecaf",
           "evidenceId": "IE00B1FZS913-ETFP-IBGL-EUR"
         }
       ],
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251735&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "sha256": "24d41633cfb21d9d86977670ae535e9053026456e5965e0186c33f293187ecaf"
     }
@@ -9565,21 +9880,21 @@
   "IE00BYPLS672": {
     "distribution": {
       "value": "Accumulating",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=IE00BYPLS672",
-      "sha256": "5a7dc9b1943994fc60d2a45a555d0b1dc4561d37c0d5d8e8d12871cfd76366f9"
+      "sha256": "dc1de1938a1a35e9d6e0b9ae7bf2b435d740adcac9042c3fdef5957172b801a3"
     },
     "domicile": {
       "value": "Ireland",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=IE00BYPLS672",
-      "sha256": "5a7dc9b1943994fc60d2a45a555d0b1dc4561d37c0d5d8e8d12871cfd76366f9"
+      "sha256": "dc1de1938a1a35e9d6e0b9ae7bf2b435d740adcac9042c3fdef5957172b801a3"
     },
     "replicationMethod": {
       "value": "Physical",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=IE00BYPLS672",
-      "sha256": "5a7dc9b1943994fc60d2a45a555d0b1dc4561d37c0d5d8e8d12871cfd76366f9"
+      "sha256": "dc1de1938a1a35e9d6e0b9ae7bf2b435d740adcac9042c3fdef5957172b801a3"
     }
   },
   "IE00B4K6B022": {
@@ -9599,67 +9914,103 @@
   "IE000DQLYVB9": {
     "domicile": {
       "value": "Irlande",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.blackrock.com/fr/particuliers/literature/fact-sheet/spea-ishares-s-p-500-swap-pea-ucits-etf-fund-fact-sheet-fr-fr.pdf",
       "sha256": "5eceaf787220f001b9ce7398bf2c70bbb1f56d70c1bfeeade6a811ac645f64fa"
     },
     "distribution": {
       "value": "Accumulating",
-      "checkedAt": "2026-10-18",
-      "sourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=IE000DQLYVB9",
-      "sha256": "1adebf576a2f96bfa54124cfffb7e82356e9b5e5cbd8e41cdcc638bb4472b6c2"
+      "checkedAt": "2026-10-19",
+      "sourceUrl": "https://www.ishares.com/ch/professionals/en/products/342916/?switchLocale=Y",
+      "sha256": "85822b2fca30d39c1a7ce2ab9462be240d1c20ade076913e0b0572d7e349f1db"
     },
     "replicationMethod": {
       "value": "Synthetic",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=IE000DQLYVB9",
-      "sha256": "1adebf576a2f96bfa54124cfffb7e82356e9b5e5cbd8e41cdcc638bb4472b6c2"
+      "sha256": "bddc9b73a042c1dbd50e491a9f304957bd260ccd7eb9be29922b48665f120b1d"
     },
     "pea": {
       "value": true,
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE000DQLYVB9",
-      "sha256": "60bca3668a58bca02e4f32940a6adcc3cab67ee568de84640bfdbb34942087ca"
+      "sha256": "28320489d94c5be93ee4f5528335db30a55fbb8263481f09e650e6075173be7f"
+    },
+    "listings": {
+      "value": [
+        {
+          "ticker": "SPEA",
+          "mic": "XPAR",
+          "exchange": "Euronext Paris",
+          "currency": "EUR",
+          "excerpt": "IE000DQLYVB9 | Nyse Euronext - Euronext Paris SPEA EUR 04/Jun/2025 BTZJLM3 SPEA FP ISSPEA.PA A412X8",
+          "sourceUrl": "https://www.ishares.com/ch/professionals/en/products/342916/?switchLocale=Y",
+          "checkedAt": "2026-10-19",
+          "sha256": "85822b2fca30d39c1a7ce2ab9462be240d1c20ade076913e0b0572d7e349f1db",
+          "evidenceId": "IE000DQLYVB9-XPAR-SPEA-EUR"
+        }
+      ],
+      "checkedAt": "2026-10-19",
+      "sourceUrl": "https://www.ishares.com/ch/professionals/en/products/342916/?switchLocale=Y",
+      "sha256": "85822b2fca30d39c1a7ce2ab9462be240d1c20ade076913e0b0572d7e349f1db"
     }
   },
   "IE00BF0M2Z96": {
     "distribution": {
       "value": "Accumulating",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=IE00BF0M2Z96",
-      "sha256": "595c38c7ca6d2d52edf765ce6f02c41acb136d87f3e86a39bb4e6a2aea4c753d"
+      "sha256": "358d88c6490900b3143b813e6a40becc400e17339eae4079dc6ae22c7d2d4886"
     },
     "domicile": {
       "value": "Ireland",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=IE00BF0M2Z96",
-      "sha256": "595c38c7ca6d2d52edf765ce6f02c41acb136d87f3e86a39bb4e6a2aea4c753d"
+      "sha256": "358d88c6490900b3143b813e6a40becc400e17339eae4079dc6ae22c7d2d4886"
     },
     "replicationMethod": {
       "value": "Physical",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=IE00BF0M2Z96",
-      "sha256": "595c38c7ca6d2d52edf765ce6f02c41acb136d87f3e86a39bb4e6a2aea4c753d"
+      "sha256": "358d88c6490900b3143b813e6a40becc400e17339eae4079dc6ae22c7d2d4886"
+    },
+    "listings": {
+      "value": [
+        {
+          "ticker": "BATT",
+          "mic": "ETFP",
+          "exchange": "Borsa Italiana",
+          "currency": "EUR",
+          "excerpt": "IE00BF0M2Z96 | Borsa Italiana EUR IE00BF0M2Z96 BATT IM BATT.MI",
+          "sourceUrl": "https://www.borsaitaliana.it/CAETF/2025-92213-SUPPLEMENTS-6c5bd598-b83f-40ba-925d-a07046bf4e10.pdf",
+          "checkedAt": "2026-10-19",
+          "sha256": "413ec84b1831c42490414004b591a31c858249f2c28ff342bfb145742bb44912",
+          "evidenceId": "IE00BF0M2Z96-ETFP-BATT-EUR"
+        }
+      ],
+      "checkedAt": "2026-10-19",
+      "sourceUrl": "https://www.borsaitaliana.it/CAETF/2025-92213-SUPPLEMENTS-6c5bd598-b83f-40ba-925d-a07046bf4e10.pdf",
+      "sha256": "413ec84b1831c42490414004b591a31c858249f2c28ff342bfb145742bb44912"
     }
   },
   "IE00BK5BCD43": {
     "distribution": {
       "value": "Accumulating",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=IE00BK5BCD43",
-      "sha256": "1461ef43998ce0157ff153d4653e7a7c7d7aa10e54defaa0d51d4366ce514a80"
+      "sha256": "13a514af2cd823feb4b3468ab4c7a5e2fb4e050fb1bbd105494b6b97122b37a2"
     },
     "domicile": {
       "value": "Ireland",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=IE00BK5BCD43",
-      "sha256": "1461ef43998ce0157ff153d4653e7a7c7d7aa10e54defaa0d51d4366ce514a80"
+      "sha256": "13a514af2cd823feb4b3468ab4c7a5e2fb4e050fb1bbd105494b6b97122b37a2"
     },
     "replicationMethod": {
       "value": "Physical",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=IE00BK5BCD43",
-      "sha256": "1461ef43998ce0157ff153d4653e7a7c7d7aa10e54defaa0d51d4366ce514a80"
+      "sha256": "13a514af2cd823feb4b3468ab4c7a5e2fb4e050fb1bbd105494b6b97122b37a2"
     }
   },
   "IE00BK5BCH80": {
@@ -9691,21 +10042,21 @@
   "DE000A27Z304": {
     "domicile": {
       "value": "Germany",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=DE000A27Z304",
-      "sha256": "470fa907fd3033a1988df735f3e9342d17c541361ed422175b99a011e3eed542"
+      "sha256": "d8a4a53a9db4a769f077950b4e7a483fe612af1fe445cc3efb1d5e1989ae7bf1"
     },
     "distribution": {
       "value": "Accumulating",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=DE000A27Z304",
-      "sha256": "470fa907fd3033a1988df735f3e9342d17c541361ed422175b99a011e3eed542"
+      "sha256": "d8a4a53a9db4a769f077950b4e7a483fe612af1fe445cc3efb1d5e1989ae7bf1"
     },
     "replicationMethod": {
       "value": "Physical",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=DE000A27Z304",
-      "sha256": "470fa907fd3033a1988df735f3e9342d17c541361ed422175b99a011e3eed542"
+      "sha256": "d8a4a53a9db4a769f077950b4e7a483fe612af1fe445cc3efb1d5e1989ae7bf1"
     }
   },
   "GB00B15KXQ89": {
@@ -9744,21 +10095,21 @@
   "IE0002Y8CX98": {
     "distribution": {
       "value": "Accumulating",
-      "checkedAt": "2026-10-18",
-      "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE0002Y8CX98",
-      "sha256": "acd0a9cf3def21a6141e6b9560a5eb96e709aba1da028a590145441f82ddcb59"
+      "checkedAt": "2026-10-19",
+      "sourceUrl": "https://www.wisdomtree.eu/en-ie/etfs/thematic/wdef---wisdomtree-europe-defence-ucits-etf---eur-acc",
+      "sha256": "f4aa9f3f7119f7b7250ef05c0a161b90109ac5e1f7fd97ffabd284746771bfd3"
     },
     "replicationMethod": {
       "value": "Physical",
-      "checkedAt": "2026-10-18",
-      "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE0002Y8CX98",
-      "sha256": "acd0a9cf3def21a6141e6b9560a5eb96e709aba1da028a590145441f82ddcb59"
+      "checkedAt": "2026-10-19",
+      "sourceUrl": "https://www.wisdomtree.eu/en-ie/etfs/thematic/wdef---wisdomtree-europe-defence-ucits-etf---eur-acc",
+      "sha256": "f4aa9f3f7119f7b7250ef05c0a161b90109ac5e1f7fd97ffabd284746771bfd3"
     },
     "domicile": {
       "value": "Ireland",
-      "checkedAt": "2026-10-17",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.wisdomtree.eu/en-ie/etfs/thematic/wdef---wisdomtree-europe-defence-ucits-etf---eur-acc",
-      "sha256": "5de08dde97adbf4b3c1bb1ec51c77c85231b0d61977e428d6bd98f9c8025d66b"
+      "sha256": "f4aa9f3f7119f7b7250ef05c0a161b90109ac5e1f7fd97ffabd284746771bfd3"
     },
     "listings": {
       "value": [
@@ -9770,7 +10121,7 @@
           "symbol": "EUDF.DE",
           "excerpt": "IE0002Y8CX98 | Xetra EUR EUDF EUDF GY EUDF.DE BRC2WC8 IE0002Y8CX98 A40Y9K 11/03/2025",
           "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE0002Y8CX98",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "acd0a9cf3def21a6141e6b9560a5eb96e709aba1da028a590145441f82ddcb59",
           "evidenceId": "IE0002Y8CX98-XETR-EUDF-EUR"
         },
@@ -9782,12 +10133,12 @@
           "symbol": "WDEF.MI",
           "excerpt": "IE0002Y8CX98 | Borsa Italiana EUR WDEF WDEF IM WDEF.MI BRC2VW1 IE0002Y8CX98 A40Y9K 11/03/2025",
           "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE0002Y8CX98",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "acd0a9cf3def21a6141e6b9560a5eb96e709aba1da028a590145441f82ddcb59",
           "evidenceId": "IE0002Y8CX98-ETFP-WDEF-EUR"
         }
       ],
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE0002Y8CX98",
       "sha256": "acd0a9cf3def21a6141e6b9560a5eb96e709aba1da028a590145441f82ddcb59"
     }
@@ -10046,13 +10397,13 @@
   "FR0007056841": {
     "replicationMethod": {
       "value": "Indirect(Swap Based)",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
       "sha256": "18eb8cd84dec31fdd87f2ecfc62f23f25e239d67685c5e4169fd3d3b61beafbd"
     },
     "distribution": {
       "value": "Capitalisation and/or distribution",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
       "sha256": "18eb8cd84dec31fdd87f2ecfc62f23f25e239d67685c5e4169fd3d3b61beafbd"
     },
@@ -10066,7 +10417,7 @@
           "symbol": "DJE.PA",
           "excerpt": "FR0007056841 | Euronext Paris | DJE FP | EUR | DJE.PA",
           "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "18eb8cd84dec31fdd87f2ecfc62f23f25e239d67685c5e4169fd3d3b61beafbd",
           "evidenceId": "FR0007056841-XPAR-DJE-EUR"
         },
@@ -10078,9 +10429,21 @@
           "symbol": "DJE.MI",
           "excerpt": "FR0007056841 | Borsa Italiana | DJE IM | EUR | DJE.MI",
           "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "18eb8cd84dec31fdd87f2ecfc62f23f25e239d67685c5e4169fd3d3b61beafbd",
           "evidenceId": "FR0007056841-ETFP-DJE-EUR"
+        },
+        {
+          "ticker": "DJE",
+          "mic": "XSWX",
+          "exchange": "SIX Swiss Exchange",
+          "currency": "EUR",
+          "symbol": "DJE.S",
+          "excerpt": "FR0007056841 | SIX Swiss Ex | DJE SW | EUR | DJE.S",
+          "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+          "checkedAt": "2026-10-19",
+          "sha256": "18eb8cd84dec31fdd87f2ecfc62f23f25e239d67685c5e4169fd3d3b61beafbd",
+          "evidenceId": "FR0007056841-XSWX-DJE-EUR"
         },
         {
           "ticker": "DJAM",
@@ -10090,7 +10453,7 @@
           "symbol": "DJE.DE",
           "excerpt": "FR0007056841 | Xetra | DJAM GY | EUR | DJE.DE",
           "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "18eb8cd84dec31fdd87f2ecfc62f23f25e239d67685c5e4169fd3d3b61beafbd",
           "evidenceId": "FR0007056841-XETR-DJAM-EUR"
         },
@@ -10102,12 +10465,12 @@
           "symbol": "DJEU.L",
           "excerpt": "FR0007056841 | LSE | DJEU LN | USD | DJEU.L",
           "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "18eb8cd84dec31fdd87f2ecfc62f23f25e239d67685c5e4169fd3d3b61beafbd",
           "evidenceId": "FR0007056841-XLON-DJEU-USD"
         }
       ],
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
       "sha256": "18eb8cd84dec31fdd87f2ecfc62f23f25e239d67685c5e4169fd3d3b61beafbd"
     }
@@ -10731,21 +11094,21 @@
   "IE00BF4RFH31": {
     "distribution": {
       "value": "Accumulating",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=IE00BF4RFH31",
-      "sha256": "b3cc947c713041fcd7e7493d16ed7209c305aaece002db69641dd871dcf4b8cc"
+      "sha256": "a83ac41152205843c6fbbfb177dffeaec41b5156e82d73567d61b229325206e2"
     },
     "domicile": {
       "value": "Ireland",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=IE00BF4RFH31",
-      "sha256": "b3cc947c713041fcd7e7493d16ed7209c305aaece002db69641dd871dcf4b8cc"
+      "sha256": "a83ac41152205843c6fbbfb177dffeaec41b5156e82d73567d61b229325206e2"
     },
     "replicationMethod": {
       "value": "Physical",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=IE00BF4RFH31",
-      "sha256": "b3cc947c713041fcd7e7493d16ed7209c305aaece002db69641dd871dcf4b8cc"
+      "sha256": "a83ac41152205843c6fbbfb177dffeaec41b5156e82d73567d61b229325206e2"
     },
     "listings": {
       "value": [
@@ -10757,7 +11120,7 @@
           "symbol": "WSML.L",
           "excerpt": "IE00BF4RFH31 | London Stock Exchange | WSML | USD | WSML.L",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=296576&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "60af2f082e94440f3d3e229131b141eb5c1b5a92b45552d374952157dc298891",
           "evidenceId": "IE00BF4RFH31-XLON-WSML-USD"
         },
@@ -10769,7 +11132,7 @@
           "symbol": "IUSN.DE",
           "excerpt": "IE00BF4RFH31 | Xetra | IUSN | EUR | IUSN.DE",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=296576&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "60af2f082e94440f3d3e229131b141eb5c1b5a92b45552d374952157dc298891",
           "evidenceId": "IE00BF4RFH31-XETR-IUSN-EUR"
         },
@@ -10781,12 +11144,12 @@
           "symbol": "WLDS.L",
           "excerpt": "IE00BF4RFH31 | London Stock Exchange | WLDS | GBP | WLDS.L",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=296576&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "60af2f082e94440f3d3e229131b141eb5c1b5a92b45552d374952157dc298891",
           "evidenceId": "IE00BF4RFH31-XLON-WLDS-GBP"
         }
       ],
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=296576&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "sha256": "60af2f082e94440f3d3e229131b141eb5c1b5a92b45552d374952157dc298891"
     }
@@ -10794,19 +11157,19 @@
   "IE00B1FZS467": {
     "distribution": {
       "value": "Distributing",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.ishares.com/uk/individual/en/products/251809/ishares-global-infrastructure-ucits-etf",
-      "sha256": "3bd55e62b648184b0e75d722def9fa190e9fbdefe22b6ec837087bca6c303e3a"
+      "sha256": "6fb8f2928cd8c4597973704df5fa370ec32d3a734c04932d4a16b0643fcccb09"
     },
     "domicile": {
       "value": "Ireland",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.ishares.com/uk/individual/en/products/251809/ishares-global-infrastructure-ucits-etf",
-      "sha256": "3bd55e62b648184b0e75d722def9fa190e9fbdefe22b6ec837087bca6c303e3a"
+      "sha256": "6fb8f2928cd8c4597973704df5fa370ec32d3a734c04932d4a16b0643fcccb09"
     },
     "replicationMethod": {
       "value": "Physical",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251809&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "sha256": "57f2b395ed913f55a174ba11ab346897d3b0f6f3f43c81c192ce7e699a7788a7"
     },
@@ -10820,7 +11183,7 @@
           "symbol": "INFR.L",
           "excerpt": "IE00B1FZS467 | London Stock Exchange | INFR | GBP | INFR.L",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251809&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "57f2b395ed913f55a174ba11ab346897d3b0f6f3f43c81c192ce7e699a7788a7",
           "evidenceId": "IE00B1FZS467-XLON-INFR-GBP"
         },
@@ -10832,7 +11195,7 @@
           "symbol": "INFR.AS",
           "excerpt": "IE00B1FZS467 | Euronext Amsterdam | INFR | EUR | INFR.AS",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251809&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "57f2b395ed913f55a174ba11ab346897d3b0f6f3f43c81c192ce7e699a7788a7",
           "evidenceId": "IE00B1FZS467-XAMS-INFR-EUR"
         },
@@ -10844,7 +11207,7 @@
           "symbol": "IQQI.DE",
           "excerpt": "IE00B1FZS467 | Deutsche Boerse Xetra | IQQI | EUR | IQQI.DE",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251809&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "57f2b395ed913f55a174ba11ab346897d3b0f6f3f43c81c192ce7e699a7788a7",
           "evidenceId": "IE00B1FZS467-XETR-IQQI-EUR"
         },
@@ -10856,7 +11219,7 @@
           "symbol": "IDIN.L",
           "excerpt": "IE00B1FZS467 | London Stock Exchange | IDIN | USD | IDIN.L",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251809&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "57f2b395ed913f55a174ba11ab346897d3b0f6f3f43c81c192ce7e699a7788a7",
           "evidenceId": "IE00B1FZS467-XLON-IDIN-USD"
         },
@@ -10868,7 +11231,7 @@
           "symbol": "INFR.MI",
           "excerpt": "IE00B1FZS467 | Borsa Italiana | INFR | EUR | INFR.MI",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251809&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "57f2b395ed913f55a174ba11ab346897d3b0f6f3f43c81c192ce7e699a7788a7",
           "evidenceId": "IE00B1FZS467-ETFP-INFR-EUR"
         },
@@ -10880,12 +11243,12 @@
           "symbol": "INFR.S",
           "excerpt": "IE00B1FZS467 | SIX Swiss Exchange | INFR | USD | INFR.S",
           "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251809&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "checkedAt": "2026-10-18",
+          "checkedAt": "2026-10-19",
           "sha256": "57f2b395ed913f55a174ba11ab346897d3b0f6f3f43c81c192ce7e699a7788a7",
           "evidenceId": "IE00B1FZS467-XSWX-INFR-USD"
         }
       ],
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-19",
       "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251809&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
       "sha256": "57f2b395ed913f55a174ba11ab346897d3b0f6f3f43c81c192ce7e699a7788a7"
     }

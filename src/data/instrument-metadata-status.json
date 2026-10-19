@@ -1,11 +1,11 @@
 {
   "IE00B4L5Y983": {
-    "checkedAt": "2026-10-18T21:01:40.042807+00:00",
+    "checkedAt": "2026-10-19T04:47:28.883455+00:00",
     "observed": [
       "distribution",
       "domicile",
-      "replicationMethod",
-      "listings"
+      "listings",
+      "replicationMethod"
     ],
     "pending": [
       "pea",
@@ -19,6 +19,10 @@
       {
         "sourceUrl": "https://www.quantalys.com/Fonds/57862",
         "error": "Missing or multiple exact-share identities in metadata document"
+      },
+      {
+        "sourceUrl": "https://www.quantalys.com/Fonds/57862",
+        "error": "No explicit supported metadata fields"
       }
     ]
   },
@@ -40,7 +44,7 @@
     "errors": []
   },
   "FR0011550193": {
-    "checkedAt": "2026-10-18T21:01:40.042807+00:00",
+    "checkedAt": "2026-10-19T04:47:28.883455+00:00",
     "observed": [
       "domicile",
       "distribution",
@@ -1293,13 +1297,13 @@
     "errors": []
   },
   "LU1681047236": {
-    "checkedAt": "2026-10-18T21:01:40.042807+00:00",
+    "checkedAt": "2026-10-19T04:47:28.883455+00:00",
     "observed": [
       "distribution",
-      "replicationMethod",
-      "listings",
       "domicile",
-      "pea"
+      "listings",
+      "pea",
+      "replicationMethod"
     ],
     "pending": [
       "currencyHedge"
@@ -1310,12 +1314,12 @@
     "errors": []
   },
   "LU1681048630": {
-    "checkedAt": "2026-10-18T21:01:40.042807+00:00",
+    "checkedAt": "2026-10-19T04:47:28.883455+00:00",
     "observed": [
       "distribution",
-      "replicationMethod",
+      "domicile",
       "listings",
-      "domicile"
+      "replicationMethod"
     ],
     "pending": [
       "pea",
@@ -1472,36 +1476,30 @@
     "errors": []
   },
   "LU3038520774": {
-    "checkedAt": "2026-10-18T21:01:40.042807+00:00",
+    "checkedAt": "2026-10-19T04:47:28.883455+00:00",
     "observed": [
       "distribution",
-      "replicationMethod",
-      "listings"
+      "listings",
+      "pea",
+      "replicationMethod"
     ],
     "pending": [
       "domicile",
-      "pea",
       "currencyHedge"
     ],
     "firstPendingAt": {
       "domicile": "2026-10-18T15:33:48.575784+00:00",
-      "pea": "2026-10-18T15:33:48.575784+00:00",
       "currencyHedge": "2026-10-18T15:33:48.575784+00:00"
     },
-    "errors": [
-      {
-        "sourceUrl": "https://www.ca-sicavetfcp.fr/productsheet/view/idpart/382/idvm/LU3038520774/lg/fr/popup/1",
-        "error": "No explicit supported metadata fields"
-      }
-    ]
+    "errors": []
   },
   "IE00B3FH7618": {
-    "checkedAt": "2026-10-18T21:01:40.042807+00:00",
+    "checkedAt": "2026-10-19T04:47:28.883455+00:00",
     "observed": [
       "distribution",
       "domicile",
-      "replicationMethod",
-      "listings"
+      "listings",
+      "replicationMethod"
     ],
     "pending": [
       "pea",
@@ -1515,16 +1513,20 @@
       {
         "sourceUrl": "https://etf.agefi.fr/etf/IEGE",
         "error": "Missing or multiple exact-share identities in metadata document"
+      },
+      {
+        "sourceUrl": "https://etf.agefi.fr/etf/IEGE",
+        "error": "No explicit supported metadata fields"
       }
     ]
   },
   "IE00BDBRDM35": {
-    "checkedAt": "2026-10-18T21:01:40.042807+00:00",
+    "checkedAt": "2026-10-19T04:47:28.883455+00:00",
     "observed": [
       "distribution",
       "domicile",
-      "replicationMethod",
-      "listings"
+      "listings",
+      "replicationMethod"
     ],
     "pending": [
       "pea",
@@ -1534,20 +1536,15 @@
       "pea": "2026-10-18T15:33:48.575784+00:00",
       "currencyHedge": "2026-10-18T15:33:48.575784+00:00"
     },
-    "errors": [
-      {
-        "sourceUrl": "https://www.zonebourse.com/cours/etf/ISHARES-CORE-GLOBAL-AGGRE-67015255/actualite/",
-        "error": "HTTP Error 403: Forbidden"
-      }
-    ]
+    "errors": []
   },
   "IE00BZCQB185": {
-    "checkedAt": "2026-10-18T21:01:40.042807+00:00",
+    "checkedAt": "2026-10-19T04:47:28.883455+00:00",
     "observed": [
       "distribution",
       "domicile",
-      "replicationMethod",
-      "listings"
+      "listings",
+      "replicationMethod"
     ],
     "pending": [
       "pea",
@@ -1557,20 +1554,15 @@
       "pea": "2026-10-18T15:33:48.575784+00:00",
       "currencyHedge": "2026-10-18T15:33:48.575784+00:00"
     },
-    "errors": [
-      {
-        "sourceUrl": "https://www.zonebourse.com/cours/etf/ISHARES-MSCI-INDIA-UCITS--43536110/",
-        "error": "HTTP Error 403: Forbidden"
-      }
-    ]
+    "errors": []
   },
   "IE000I8KRLL9": {
-    "checkedAt": "2026-10-18T21:01:40.042807+00:00",
+    "checkedAt": "2026-10-19T04:47:28.883455+00:00",
     "observed": [
       "distribution",
       "domicile",
-      "replicationMethod",
-      "listings"
+      "listings",
+      "replicationMethod"
     ],
     "pending": [
       "pea",
@@ -1580,20 +1572,15 @@
       "pea": "2026-10-18T15:33:48.575784+00:00",
       "currencyHedge": "2026-10-18T15:33:48.575784+00:00"
     },
-    "errors": [
-      {
-        "sourceUrl": "https://www.ishares.com/uk/individual/en/products/319084/?siteEntryPassthrough=true&switchLocale=y",
-        "error": "HTTP Error 403: Forbidden"
-      }
-    ]
+    "errors": []
   },
   "IE000RDRMSD1": {
-    "checkedAt": "2026-10-18T21:01:40.042807+00:00",
+    "checkedAt": "2026-10-19T04:47:28.883455+00:00",
     "observed": [
       "distribution",
       "domicile",
-      "replicationMethod",
-      "listings"
+      "listings",
+      "replicationMethod"
     ],
     "pending": [
       "pea",
@@ -1606,12 +1593,12 @@
     "errors": []
   },
   "IE00B0M62X26": {
-    "checkedAt": "2026-10-18T21:01:40.042807+00:00",
+    "checkedAt": "2026-10-19T04:47:28.883455+00:00",
     "observed": [
       "distribution",
       "domicile",
-      "replicationMethod",
-      "listings"
+      "listings",
+      "replicationMethod"
     ],
     "pending": [
       "pea",
@@ -1621,12 +1608,7 @@
       "pea": "2026-10-18T15:33:48.575784+00:00",
       "currencyHedge": "2026-10-18T15:33:48.575784+00:00"
     },
-    "errors": [
-      {
-        "sourceUrl": "https://www.zonebourse.com/cours/etf/ISHARES-INFLATION-LINKED--27235/",
-        "error": "HTTP Error 403: Forbidden"
-      }
-    ]
+    "errors": []
   },
   "IE00B1FZS350": {
     "checkedAt": "2026-10-18T21:01:40.042807+00:00",
@@ -1737,12 +1719,12 @@
     "errors": []
   },
   "IE00B66F4759": {
-    "checkedAt": "2026-10-18T21:01:40.042807+00:00",
+    "checkedAt": "2026-10-19T04:47:28.883455+00:00",
     "observed": [
       "distribution",
       "domicile",
-      "replicationMethod",
-      "listings"
+      "listings",
+      "replicationMethod"
     ],
     "pending": [
       "pea",
@@ -1752,12 +1734,7 @@
       "pea": "2026-10-18T15:33:48.575784+00:00",
       "currencyHedge": "2026-10-18T15:33:48.575784+00:00"
     },
-    "errors": [
-      {
-        "sourceUrl": "https://www.ishares.com/uk/individual/en/products/251843/?siteEntryPassthrough=true&switchLocale=y",
-        "error": "HTTP Error 403: Forbidden"
-      }
-    ]
+    "errors": []
   },
   "IE00B6R52259": {
     "checkedAt": "2026-10-18T21:01:40.042807+00:00",
@@ -1778,12 +1755,12 @@
     "errors": []
   },
   "IE00B8FHGS14": {
-    "checkedAt": "2026-10-18T21:01:40.042807+00:00",
+    "checkedAt": "2026-10-19T04:47:28.883455+00:00",
     "observed": [
       "distribution",
       "domicile",
-      "replicationMethod",
-      "listings"
+      "listings",
+      "replicationMethod"
     ],
     "pending": [
       "pea",
@@ -1814,12 +1791,12 @@
     "errors": []
   },
   "IE00BFZPF546": {
-    "checkedAt": "2026-10-18T21:01:40.042807+00:00",
+    "checkedAt": "2026-10-19T04:47:28.883455+00:00",
     "observed": [
       "distribution",
       "domicile",
-      "replicationMethod",
-      "listings"
+      "listings",
+      "replicationMethod"
     ],
     "pending": [
       "pea",
@@ -1829,20 +1806,15 @@
       "pea": "2026-10-18T15:33:48.575784+00:00",
       "currencyHedge": "2026-10-18T15:33:48.575784+00:00"
     },
-    "errors": [
-      {
-        "sourceUrl": "https://www.ishares.com/uk/individual/en/products/297676/?siteEntryPassthrough=true&switchLocale=y",
-        "error": "HTTP Error 403: Forbidden"
-      }
-    ]
+    "errors": []
   },
   "IE00BJ5JNY98": {
-    "checkedAt": "2026-10-18T21:01:40.042807+00:00",
+    "checkedAt": "2026-10-19T04:47:28.883455+00:00",
     "observed": [
       "distribution",
       "domicile",
-      "replicationMethod",
-      "listings"
+      "listings",
+      "replicationMethod"
     ],
     "pending": [
       "pea",
@@ -1891,12 +1863,12 @@
     "errors": []
   },
   "IE00BMG6Z448": {
-    "checkedAt": "2026-10-18T21:01:40.042807+00:00",
+    "checkedAt": "2026-10-19T04:47:28.883455+00:00",
     "observed": [
       "distribution",
       "domicile",
-      "replicationMethod",
-      "listings"
+      "listings",
+      "replicationMethod"
     ],
     "pending": [
       "pea",
@@ -1909,7 +1881,7 @@
     "errors": [
       {
         "sourceUrl": "https://www.zonebourse.com/cours/etf/ISHARES-MSCI-EM-EX-CHINA--172321596/composition/",
-        "error": "HTTP Error 403: Forbidden"
+        "error": "No explicit supported metadata fields"
       }
     ]
   },
@@ -2040,22 +2012,21 @@
     "errors": []
   },
   "IE00B3YLTY66": {
-    "checkedAt": "2026-10-18T21:01:40.042807+00:00",
+    "checkedAt": "2026-10-19T04:47:28.883455+00:00",
     "observed": [
-      "listings"
+      "listings",
+      "pea"
     ],
     "pending": [
       "distribution",
       "domicile",
       "replicationMethod",
-      "pea",
       "currencyHedge"
     ],
     "firstPendingAt": {
       "distribution": "2026-10-18T15:33:48.575784+00:00",
       "domicile": "2026-10-18T15:33:48.575784+00:00",
       "replicationMethod": "2026-10-18T15:33:48.575784+00:00",
-      "pea": "2026-10-18T15:33:48.575784+00:00",
       "currencyHedge": "2026-10-18T15:33:48.575784+00:00"
     },
     "errors": []
@@ -2204,12 +2175,12 @@
     "errors": []
   },
   "IE00BLNMYC90": {
-    "checkedAt": "2026-10-18T21:01:40.042807+00:00",
+    "checkedAt": "2026-10-19T04:47:28.883455+00:00",
     "observed": [
       "distribution",
       "domicile",
-      "replicationMethod",
-      "listings"
+      "listings",
+      "replicationMethod"
     ],
     "pending": [
       "pea",
@@ -2221,22 +2192,26 @@
     },
     "errors": [
       {
+        "sourceUrl": "https://www.zonebourse.com/cours/etf/XTRACKERS-S-P-500-EQUAL-W-122801274/composition/",
+        "error": "No explicit supported metadata fields"
+      },
+      {
         "sourceUrl": "https://etf.dws.com/en-ch/IE00BLNMYC90-s-p-500-equal-weight-ucits-etf-1c/",
         "error": "Missing or multiple exact-share identities in metadata document"
       },
       {
-        "sourceUrl": "https://www.zonebourse.com/cours/etf/XTRACKERS-S-P-500-EQUAL-W-122801274/composition/",
-        "error": "HTTP Error 403: Forbidden"
+        "sourceUrl": "https://etf.dws.com/en-ch/IE00BLNMYC90-s-p-500-equal-weight-ucits-etf-1c/",
+        "error": "Missing listing document identity"
       }
     ]
   },
   "IE0006WW1TQ4": {
-    "checkedAt": "2026-10-18T21:01:40.042807+00:00",
+    "checkedAt": "2026-10-19T04:47:28.883455+00:00",
     "observed": [
       "distribution",
       "domicile",
-      "replicationMethod",
-      "listings"
+      "listings",
+      "replicationMethod"
     ],
     "pending": [
       "pea",
@@ -2252,22 +2227,18 @@
         "error": "Missing or multiple exact-share identities in metadata document"
       },
       {
-        "sourceUrl": "https://www.zonebourse.com/cours/etf/XTRACKERS-MSCI-WORLD-EX-U-169862014/",
-        "error": "HTTP Error 403: Forbidden"
-      },
-      {
         "sourceUrl": "https://etf.dws.com/download/asset/82292b8e-bf9e-44f2-b20d-722c743110a3",
         "error": "Missing or multiple exact-share identities in metadata document"
       }
     ]
   },
   "LU0290358497": {
-    "checkedAt": "2026-10-18T21:01:40.042807+00:00",
+    "checkedAt": "2026-10-19T04:47:28.883455+00:00",
     "observed": [
       "distribution",
       "domicile",
-      "replicationMethod",
-      "listings"
+      "listings",
+      "replicationMethod"
     ],
     "pending": [
       "pea",
@@ -2416,103 +2387,79 @@
     "errors": []
   },
   "IE00BK5BQT80": {
-    "checkedAt": "2026-10-18T21:01:40.042807+00:00",
+    "checkedAt": "2026-10-19T04:47:28.883455+00:00",
     "observed": [
       "distribution",
       "domicile",
+      "listings",
       "replicationMethod"
     ],
     "pending": [
       "pea",
-      "currencyHedge",
-      "listings"
+      "currencyHedge"
     ],
     "firstPendingAt": {
       "pea": "2026-10-18T16:04:20.346657+00:00",
-      "currencyHedge": "2026-10-18T16:04:20.346657+00:00",
-      "listings": "2026-10-18T16:04:20.346657+00:00"
+      "currencyHedge": "2026-10-18T16:04:20.346657+00:00"
     },
-    "errors": [
-      {
-        "sourceUrl": "https://fund-docs.vanguard.com/FTSE_All-World_UCITS_ETF_USD_Accumulating_9679_EU_INT_UK_EN.pdf",
-        "error": "No explicit supported metadata fields"
-      }
-    ]
+    "errors": []
   },
   "IE00BK5BR626": {
-    "checkedAt": "2026-10-18T21:01:40.042807+00:00",
+    "checkedAt": "2026-10-19T04:47:28.883455+00:00",
     "observed": [
       "distribution",
       "domicile",
+      "listings",
       "replicationMethod"
     ],
     "pending": [
       "pea",
-      "currencyHedge",
-      "listings"
+      "currencyHedge"
     ],
     "firstPendingAt": {
       "pea": "2026-10-18T15:33:48.575784+00:00",
-      "currencyHedge": "2026-10-18T15:33:48.575784+00:00",
-      "listings": "2026-10-18T15:33:48.575784+00:00"
+      "currencyHedge": "2026-10-18T15:33:48.575784+00:00"
     },
-    "errors": [
-      {
-        "sourceUrl": "https://fund-docs.vanguard.com/FTSE_All-World_High_Dividend_Yield_UCITS_ETF_USD_Accumulating_9677_EU_INT_UK_EN.pdf",
-        "error": "No explicit supported metadata fields"
-      }
-    ]
+    "errors": []
   },
   "IE00B8GKDB10": {
-    "checkedAt": "2026-10-18T21:01:40.042807+00:00",
+    "checkedAt": "2026-10-19T04:47:28.883455+00:00",
     "observed": [
       "distribution",
       "domicile",
+      "listings",
       "replicationMethod"
     ],
     "pending": [
       "pea",
-      "currencyHedge",
-      "listings"
+      "currencyHedge"
     ],
     "firstPendingAt": {
       "pea": "2026-10-18T15:33:48.575784+00:00",
-      "currencyHedge": "2026-10-18T15:33:48.575784+00:00",
-      "listings": "2026-10-18T15:33:48.575784+00:00"
+      "currencyHedge": "2026-10-18T15:33:48.575784+00:00"
     },
-    "errors": [
-      {
-        "sourceUrl": "https://fund-docs.vanguard.com/FTSE_All-World_High_Dividend_Yield_UCITS_ETF_USD_Distributing_9506_EU_INT_UK_EN.pdf",
-        "error": "No explicit supported metadata fields"
-      }
-    ]
+    "errors": []
   },
   "IE00BK5BR733": {
-    "checkedAt": "2026-10-18T21:01:40.042807+00:00",
+    "checkedAt": "2026-10-19T04:47:28.883455+00:00",
     "observed": [
       "distribution",
       "domicile",
+      "listings",
       "replicationMethod"
     ],
     "pending": [
       "pea",
-      "currencyHedge",
-      "listings"
+      "currencyHedge"
     ],
     "firstPendingAt": {
       "pea": "2026-10-18T15:33:48.575784+00:00",
-      "currencyHedge": "2026-10-18T15:33:48.575784+00:00",
-      "listings": "2026-10-18T15:33:48.575784+00:00"
+      "currencyHedge": "2026-10-18T15:33:48.575784+00:00"
     },
-    "errors": [
-      {
-        "sourceUrl": "https://fund-docs.vanguard.com/FTSE_Emerging_Markets_UCITS_ETF_USD_Accumulating_9678_EU_INT_UK_EN.pdf",
-        "error": "No explicit supported metadata fields"
-      }
-    ]
+    "errors": []
   },
   "IE00BZ163G84": {
-    "checkedAt": "2026-10-18T21:01:40.042807+00:00",
+    "checkedAt": "2026-10-19T04:47:28.883455+00:00",
     "observed": [
       "domicile"
     ],
@@ -2686,7 +2633,7 @@
     "errors": []
   },
   "IE00B579F325": {
-    "checkedAt": "2026-10-18T21:01:40.042807+00:00",
+    "checkedAt": "2026-10-19T04:47:28.883455+00:00",
     "observed": [
       "domicile",
       "replicationMethod",
@@ -2709,7 +2656,7 @@
     ]
   },
   "IE00BD6FTQ80": {
-    "checkedAt": "2026-10-18T21:01:40.042807+00:00",
+    "checkedAt": "2026-10-19T04:47:28.883455+00:00",
     "observed": [
       "domicile",
       "replicationMethod",
@@ -2807,7 +2754,7 @@
     "errors": []
   },
   "IE00B4ND3602": {
-    "checkedAt": "2026-10-18T21:01:40.042807+00:00",
+    "checkedAt": "2026-10-19T04:47:28.883455+00:00",
     "observed": [
       "distribution",
       "domicile",
@@ -2952,7 +2899,7 @@
     "errors": []
   },
   "IE00B2NPKV68": {
-    "checkedAt": "2026-10-18T21:01:40.042807+00:00",
+    "checkedAt": "2026-10-19T04:47:28.883455+00:00",
     "observed": [
       "distribution",
       "domicile",
@@ -2970,12 +2917,12 @@
     "errors": [
       {
         "sourceUrl": "https://www.zonebourse.com/cours/etf/ISHARES-J-P-MORGAN-EM-BON-17138508/composition/",
-        "error": "HTTP Error 403: Forbidden"
+        "error": "No explicit supported metadata fields"
       }
     ]
   },
   "IE00B1FZS913": {
-    "checkedAt": "2026-10-18T21:01:40.042807+00:00",
+    "checkedAt": "2026-10-19T04:47:28.883455+00:00",
     "observed": [
       "distribution",
       "domicile",
@@ -2993,7 +2940,7 @@
     "errors": [
       {
         "sourceUrl": "https://www.boursedirect.fr/fr/marche/euronext-amsterdam/ishares-eur-govt-bond-15-30yr-IE00B1FZS913-IBGL-EUR-XAMS/seance",
-        "error": "<urlopen error timed out>"
+        "error": "HTTP Error 502: Bad Gateway"
       }
     ]
   },
@@ -3177,7 +3124,7 @@
     "errors": []
   },
   "IE00BYPLS672": {
-    "checkedAt": "2026-10-18T21:01:40.042807+00:00",
+    "checkedAt": "2026-10-19T04:47:28.883455+00:00",
     "observed": [
       "distribution",
       "domicile",
@@ -3225,44 +3172,37 @@
     "errors": []
   },
   "IE000DQLYVB9": {
-    "checkedAt": "2026-10-18T21:01:40.042807+00:00",
+    "checkedAt": "2026-10-19T04:47:28.883455+00:00",
     "observed": [
-      "domicile",
       "distribution",
-      "replicationMethod",
-      "pea"
+      "domicile",
+      "listings",
+      "pea",
+      "replicationMethod"
     ],
     "pending": [
-      "currencyHedge",
-      "listings"
+      "currencyHedge"
     ],
     "firstPendingAt": {
-      "currencyHedge": "2026-10-18T15:33:48.575784+00:00",
-      "listings": "2026-10-18T15:33:48.575784+00:00"
+      "currencyHedge": "2026-10-18T15:33:48.575784+00:00"
     },
-    "errors": [
-      {
-        "sourceUrl": "https://www.ishares.com/ch/professionals/en/products/342916/?switchLocale=Y",
-        "error": "HTTP Error 403: Forbidden"
-      }
-    ]
+    "errors": []
   },
   "IE00BF0M2Z96": {
-    "checkedAt": "2026-10-18T21:01:40.042807+00:00",
+    "checkedAt": "2026-10-19T04:47:28.883455+00:00",
     "observed": [
       "distribution",
       "domicile",
+      "listings",
       "replicationMethod"
     ],
     "pending": [
       "pea",
-      "currencyHedge",
-      "listings"
+      "currencyHedge"
     ],
     "firstPendingAt": {
       "pea": "2026-10-18T15:33:48.575784+00:00",
-      "currencyHedge": "2026-10-18T15:33:48.575784+00:00",
-      "listings": "2026-10-18T15:33:48.575784+00:00"
+      "currencyHedge": "2026-10-18T15:33:48.575784+00:00"
     },
     "errors": [
       {
@@ -3276,7 +3216,7 @@
     ]
   },
   "IE00BK5BCD43": {
-    "checkedAt": "2026-10-18T21:01:40.042807+00:00",
+    "checkedAt": "2026-10-19T04:47:28.883455+00:00",
     "observed": [
       "distribution",
       "domicile",
@@ -3329,7 +3269,7 @@
     ]
   },
   "DE000A27Z304": {
-    "checkedAt": "2026-10-18T21:01:40.042807+00:00",
+    "checkedAt": "2026-10-19T04:47:28.883455+00:00",
     "observed": [
       "domicile",
       "distribution",
@@ -3372,28 +3312,22 @@
     "errors": []
   },
   "IE0002Y8CX98": {
-    "checkedAt": "2026-10-18T21:01:40.042807+00:00",
+    "checkedAt": "2026-10-19T04:47:28.883455+00:00",
     "observed": [
       "distribution",
       "replicationMethod",
-      "listings"
+      "listings",
+      "domicile"
     ],
     "pending": [
-      "domicile",
       "pea",
       "currencyHedge"
     ],
     "firstPendingAt": {
-      "domicile": "2026-10-18T15:33:48.575784+00:00",
       "pea": "2026-10-18T15:33:48.575784+00:00",
       "currencyHedge": "2026-10-18T15:33:48.575784+00:00"
     },
-    "errors": [
-      {
-        "sourceUrl": "https://www.wisdomtree.eu/en-ie/etfs/thematic/wdef---wisdomtree-europe-defence-ucits-etf---eur-acc",
-        "error": "HTTP Error 403: Forbidden"
-      }
-    ]
+    "errors": []
   },
   "IE000W8WMSL2": {
     "checkedAt": "2026-10-18T21:01:40.042807+00:00",
@@ -3435,7 +3369,7 @@
     "errors": []
   },
   "IE00BM8R0J59": {
-    "checkedAt": "2026-10-18T21:01:40.042807+00:00",
+    "checkedAt": "2026-10-19T04:47:28.883455+00:00",
     "observed": [],
     "pending": [
       "distribution",
@@ -3459,12 +3393,24 @@
         "error": "Missing or multiple exact-share identities in metadata document"
       },
       {
+        "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
+        "error": "Ambiguous listing document identity"
+      },
+      {
         "sourceUrl": "https://globalxetfs.eu/fr/funds/qyld",
         "error": "Missing or multiple exact-share identities in metadata document"
       },
       {
+        "sourceUrl": "https://globalxetfs.eu/fr/funds/qyld",
+        "error": "Ambiguous listing document identity"
+      },
+      {
         "sourceUrl": "https://globalxetfs.eu/funds/qyld",
         "error": "Missing or multiple exact-share identities in metadata document"
+      },
+      {
+        "sourceUrl": "https://globalxetfs.eu/funds/qyld",
+        "error": "Ambiguous listing document identity"
       }
     ]
   },
@@ -3525,11 +3471,11 @@
     "errors": []
   },
   "FR0007056841": {
-    "checkedAt": "2026-10-18T21:01:40.042807+00:00",
+    "checkedAt": "2026-10-19T04:47:28.883455+00:00",
     "observed": [
       "distribution",
-      "replicationMethod",
-      "listings"
+      "listings",
+      "replicationMethod"
     ],
     "pending": [
       "domicile",
@@ -3836,7 +3782,7 @@
     ]
   },
   "IE00BF4RFH31": {
-    "checkedAt": "2026-10-18T21:01:40.042807+00:00",
+    "checkedAt": "2026-10-19T04:47:28.883455+00:00",
     "observed": [
       "distribution",
       "domicile",
@@ -3854,12 +3800,12 @@
     "errors": [
       {
         "sourceUrl": "https://www.zonebourse.com/actualite-bourse/ETF-de-la-semaine-jouez-le-retour-des-small-caps-44560263/",
-        "error": "HTTP Error 403: Forbidden"
+        "error": "Missing or multiple exact-share identities in metadata document"
       }
     ]
   },
   "IE00B1FZS467": {
-    "checkedAt": "2026-10-18T21:01:40.042807+00:00",
+    "checkedAt": "2026-10-19T04:47:28.883455+00:00",
     "observed": [
       "distribution",
       "domicile",

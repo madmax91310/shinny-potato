@@ -29,8 +29,9 @@ AMUNDI_API='https://www.amundietf.fr/mapi/ProductAPI/getProductsData'
 AMUNDI_CHARACTERISTICS=['ISIN','DISTRIBUTION_POLICY','FUND_REPLICATION_METHODOLOGY','LISTINGS','MAIN_LISTINGS']
 # Exchange labels as the issuers print them, mapped to the MIC used across the registries.
 EXCHANGE_MICS={'London Stock Exchange':'XLON','LSE':'XLON','Deutsche Boerse Xetra':'XETR','Xetra':'XETR','XETRA':'XETR',
-  'Euronext Amsterdam':'XAMS','Nyse Euronext - Euronext Paris':'XPAR','Euronext Paris':'XPAR','Borsa Italiana':'ETFP','SIX Swiss Exchange':'XSWX'}
-CANONICAL_EXCHANGES={'XLON':'London Stock Exchange','XETR':'Xetra','XAMS':'Euronext Amsterdam','XPAR':'Euronext Paris','ETFP':'Borsa Italiana','XSWX':'SIX Swiss Exchange'}
+  'Euronext Amsterdam':'XAMS','Nyse Euronext - Euronext Paris':'XPAR','Euronext Paris':'XPAR','Borsa Italiana':'ETFP','SIX Swiss Exchange':'XSWX',
+  'SIX Swiss Ex':'XSWX','Bolsa Mexicana De Valores':'XMEX','Cboe Europe':'CEUX','Santiago Stock Exchange':'XSGO'}
+CANONICAL_EXCHANGES={'XLON':'London Stock Exchange','XETR':'Xetra','XAMS':'Euronext Amsterdam','XPAR':'Euronext Paris','ETFP':'Borsa Italiana','XSWX':'SIX Swiss Exchange','XMEX':'Bolsa Mexicana De Valores','CEUX':'Cboe Europe','XSGO':'Santiago Stock Exchange'}
 SYMBOL=re.compile(r'[A-Za-z0-9]+\.[A-Za-z]+')
 
 def fetch_amundi(isin):
@@ -112,7 +113,7 @@ def parse_text(text,isin):
       'distribution':r'(?:Use of (?:Income|Profits)|Income Treatment|Distribution Policy|Affectation des r[ée]sultats|Politique de distribution)\s*[:\n]?\s*(Accumulating|Distributing|Capitalisation|Distribution|Reinvestment)\b',
       'domicile':r'(?:Fund Domicile|Domicile|Domiciliation|Domicile du fonds)\s*[:\n]?\s*(Ireland|Irlande|Luxembourg|Germany|Allemagne|France|Jersey|(?:The )?Netherlands)\b',
       'replicationMethod':r'(?:Replication (?:Method|methodology)|M[ée]thode de r[ée]plication|Replication|R[ée]plication)\s*[:\n]?\s*(Physical(?:\s*\((?:Full replication|Optimised sampling)\))?|Synthetic|Physique|Synth[ée]tique|Direct Replication|Indirect\s*\(Swap Based\))\b',
-      'pea':r'(?:PEA eligibility|Eligible PEA|[ÉE]ligibilit[ée] (?:au )?PEA|[ÉE]ligible (?:au )?PEA|R[ée]gime fiscal PEA)\s*[:\n]?\s*(Yes|No|Oui|Non)\b',
+      'pea':r'(?:PEA eligibility|Eligible PEA|[ÉE]ligibilit[ée] (?:au )?PEA|[ÉE]ligibilit[ée] au plan d[’\x27]Epargne en Actions \(PEA\)|PEA berechtigt|[ÉE]ligible (?:au )?PEA|R[ée]gime fiscal PEA)\s*[:\n]?\s*(Yes|No|Oui|Non|Keine|Ja|Nein)\b',
       'currencyHedge':r'(?:Currency Hedged|Currency Hedge|Couverture de change|Couvert contre le risque de change)\s*[:\n]?\s*(Yes|No|Oui|Non)\b',
     }
     result={}
@@ -123,7 +124,7 @@ def parse_text(text,isin):
             value=found.pop()
             # VanEck factsheets: "Income Treatment Reinvestment" and "Domicile The Netherlands".
             value={'Reinvestment':'Accumulating','The Netherlands':'Netherlands'}.get(value,value)
-            result[field]=value.lower() in ('yes','oui') if field in ('pea','currencyHedge') else value
+            result[field]=value.lower() in ('yes','oui','ja') if field in ('pea','currencyHedge') else value
     # VanEck factsheets print "Product Structure Physical (Full" and wrap "Replication)" onto
     # the next line, after text from the description column.
     if 'replicationMethod' not in result:
@@ -188,21 +189,38 @@ def parse_listings(body,source,url,checked):
         columns=[data.get(k,{}).get('value',[]) for k in ['exchange','ticker','currencyCode','ric']]
         if len({len(v) for v in columns})!=1:raise ValueError('Truncated listing columns')
         for exchange,ticker,currency,symbol in zip(*columns):
-            if exchange not in markets or not re.fullmatch(r'[A-Z]{3}',currency or '') or not ticker or not symbol:continue
+            if exchange not in markets or not re.fullmatch(r'[A-Z]{3}',currency or '') or not ticker:continue
             canonical={'XETR':'Xetra','XPAR':'Euronext Paris'}.get(markets[exchange],exchange)
-            rows.append(dict(ticker=ticker,mic=markets[exchange],exchange=canonical,currency=currency,symbol=symbol,excerpt=' | '.join([isin,exchange,ticker,currency,symbol])))
+            rows.append(dict(ticker=ticker,mic=markets[exchange],exchange=canonical,currency=currency,
+                             **({'symbol':symbol} if isinstance(symbol,str) and SYMBOL.fullmatch(symbol) else {}),
+                             excerpt=' | '.join([isin,exchange,ticker,currency,str(symbol or '')])))
     else:
         text=text_of(body)
-        if set(re.findall(r'\b[A-Z]{2}[A-Z0-9]{9}\d\b',text))!={isin}:raise ValueError('Ambiguous listing document identity')
-        if body.startswith(b'%PDF-'):blocks=text.splitlines()
+        identities=set(re.findall(r'\b[A-Z]{2}[A-Z0-9]{9}\d\b',text))
+        if isin not in identities:raise ValueError('Missing listing document identity')
+        if body.startswith(b'%PDF-'):
+            blocks=text.splitlines()
+            # Vanguard factsheets print the venue on its own line immediately above
+            # the currency/ticker row. Never join rows from different shares.
+            if identities=={isin}:
+                blocks=[(blocks[i-1]+' '+line if i and re.match(r'^\s*[A-Z]{3}\s{2,}',line) else line) for i,line in enumerate(blocks)]
+            else:
+                # Multi-instrument documents require the exact ISIN in the SAME row.
+                blocks=[line for line in blocks if set(re.findall(r'\b[A-Z]{2}[A-Z0-9]{9}\d\b',line))=={isin}]
         else:blocks=[html.unescape(re.sub('<[^>]+>',' ',r)) for r in re.findall(r'<tr\b[^>]*>(.*?)</tr>',body.decode(),re.S|re.I)]
+        if identities!={isin} and not body.startswith(b'%PDF-'):raise ValueError('Ambiguous listing document identity')
         # Issuer factsheets abbreviate or capitalise the venues (BNP: « EURONEXT P », « SIX SWISS » ; DWS: « XETRA » ;
         # VanEck: « LONDON STOCK EXCHANGE », and Xetra as « DEUTSCHE BÖRSE », Bloomberg suffix GY). Exact labels only:
         # a case-insensitive « LSE » would match « else » or « false ».
         aliases={'XLON':['London Stock Exchange','LONDON STOCK EXCHANGE','LSE'],'XPAR':['Euronext Paris','EURONEXT P','Euronext (FR)'],'XAMS':['Euronext Amsterdam','EURONEXT A'],'ETFP':['Borsa Italiana','BORSA ITALIANA'],'XETR':['Xetra','XETRA','Deutsche Börse','DEUTSCHE BÖRSE'],'XSWX':['SIX Swiss Exchange','SIX Swiss','SIX SWISS']}
         for listing in source.get('listings',[]):
             for block in blocks:
-                if re.search(r'(?<![A-Za-z0-9])'+re.escape(listing['ticker'])+r'(?![A-Za-z0-9])',block) and re.search(r'\b'+re.escape(listing['currency'])+r'\b',block) and any(m in block for m in aliases.get(listing['mic'],[listing['exchange']])):
+                venue=any(m in block for m in aliases.get(listing['mic'],[listing['exchange']]))
+                # Vanguard's dated factsheet labels Amsterdam simply "Euronext";
+                # only the standalone venue header with an explicit .AS RIC qualifies.
+                if 'fund-docs.vanguard.com/' in url and listing['mic']=='XAMS':
+                    venue=venue or bool(re.match(r'^\s*Euronext\s+[A-Z]{3}\s{2,}',block) and re.search(r'\b'+re.escape(listing['ticker'])+r'\.AS\b',block))
+                if re.search(r'(?<![A-Za-z0-9])'+re.escape(listing['ticker'])+r'(?![A-Za-z0-9])',block) and re.search(r'\b'+re.escape(listing['currency'])+r'\b',block) and venue:
                     rows.append({k:listing[k] for k in ['ticker','mic','exchange','currency','symbol'] if k in listing}|{'excerpt':isin+' | '+' '.join(block.split())})
                     break
     return [r|{'sourceUrl':url,'checkedAt':checked,'sha256':digest,'evidenceId':f"{isin}-{r['mic']}-{r['ticker']}-{r['currency']}"} for r in rows]
@@ -212,13 +230,30 @@ def collect(source,now,fetch=download):
     for url in source['urls']:
         try:
             body,url=fetch_document(url,fetch,source['isin'])
-            fields=parse_json(body,source['isin']) if body.lstrip().startswith(b'{') else parse_text(text_of(body),source['isin'])
+            try:
+                fields=parse_json(body,source['isin']) if body.lstrip().startswith(b'{') else parse_text(text_of(body),source['isin'])
+            except ValueError as error:
+                # A listing table can identify its share even when the surrounding
+                # prospectus also names an index. This never qualifies other fields.
+                if body.lstrip().startswith(b'{'):raise
+                fields={};errors.append({'sourceUrl':url,'error':str(error)})
             listing_rows=parse_listings(body,source,url,checked)
             if listing_rows:fields['listings']=listing_rows
             if not fields:raise ValueError('No explicit supported metadata fields')
             for field,value in fields.items():
                 if field in conflicts:continue
                 if field in values and values[field]['value']!=value:
+                    if field=='listings':
+                        key=lambda row:(row['mic'],row['ticker'],row['currency'])
+                        merged={key(row):row for row in values[field]['value']}
+                        for row in value:
+                            old=merged.get(key(row))
+                            if old and old.get('symbol') and row.get('symbol') and old['symbol']!=row['symbol']:
+                                conflicts.add(field);values.pop(field,None)
+                                raise ValueError('Conflicting exact listing symbols')
+                            if not old or (row.get('symbol') and not old.get('symbol')):merged[key(row)]=row
+                        values[field]['value']=list(merged.values())
+                        continue
                     # Equivalent issuer labels are normalised below; unresolved differences are retained as failures.
                     if field in ('pea','currencyHedge'):
                         conflicts.add(field);values.pop(field,None)
