@@ -38,9 +38,9 @@ try {
       // Le DCA approuvé est un raster complet : sa signature est déjà dans les pixels.
       const branded = words.filter(word => /[ée]pargnant.?libre/i.test(word))
       if (name.startsWith('investment-')) {
-        // Approved layout has a masthead plus exactly one account signature.
-        if (branded.length !== 2 || words.filter(word => word === 'ÉPARGNANT LIBRE').length !== 1
-          || words.filter(word => word === '@Epargnantlibre').length !== 1) throw new Error(`${name}: expected one masthead and one signature`)
+        // Approved editorial collage has no masthead and exactly one account signature.
+        if (branded.length !== 1 || words.includes('ÉPARGNANT LIBRE')
+          || words.filter(word => word === '@Epargnantlibre').length !== 1) throw new Error(`${name}: expected no masthead and one signature`)
       } else if (name !== 'lexique-dca' && branded.length !== 1) throw new Error(`${name}: signature must appear once`)
       await window.saveExportCopy({ name, text, png: !name.startsWith('etf-') || records.length === 0 ? png : null })
       records.push(name)
