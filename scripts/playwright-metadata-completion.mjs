@@ -3,8 +3,11 @@ import {readFileSync} from 'node:fs'
 import {mkdir} from 'node:fs/promises'
 import {spawn} from 'node:child_process'
 import {chromium} from 'playwright'
+import {DEFAULT_THEMES} from '../src/data/etf-themes.js'
 
 const metadata=JSON.parse(readFileSync('src/data/automated-instrument-metadata.json','utf8'))
+const comparison=DEFAULT_THEMES.find(theme=>theme.etfs.some(fund=>fund.isin==='IE00B4L5Y983'))
+assert(comparison,'A real comparison theme must contain the exact instrument under test')
 const base='http://127.0.0.1:4389/shinny-potato'
 const server=spawn('node',['node_modules/vite/bin/vite.js','preview','--host','127.0.0.1','--port','4389'],{stdio:'ignore'})
 let browser
@@ -31,7 +34,7 @@ try {
    await page.getByRole('tab',{name:'Image',exact:true}).click()
    await page.waitForFunction(()=>document.querySelector('.publication-image-stage img')?.naturalWidth>=1000)
   }
-  await page.goto(`${base}/comparatif-etf?subject=monde`,{waitUntil:'networkidle'})
+  await page.goto(`${base}/comparatif-etf?subject=${encodeURIComponent(comparison.id)}`,{waitUntil:'networkidle'})
   if(await page.getByRole('button',{name:'Aperçu',exact:true}).isVisible())await page.getByRole('button',{name:'Aperçu',exact:true}).click()
   await page.getByRole('tab',{name:'Texte',exact:true}).click()
   await page.waitForFunction(()=>document.querySelector('pre')?.textContent.includes('IE00B4L5Y983'))
