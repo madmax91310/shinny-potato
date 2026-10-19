@@ -399,7 +399,7 @@ def parse_listings(body,source,url,checked):
     markets=EXCHANGE_MICS
     if urlsplit(url).hostname=='live.euronext.com' and re.fullmatch(r'/en/product/etfs/[A-Z0-9]{12}-[A-Z0-9]{4}',urlsplit(url).path):
         return [r|{'sourceUrl':url,'checkedAt':checked,'sha256':digest,'evidenceId':f"{isin}-{r['mic']}-{r['ticker']}-{r['currency']}"} for r in euronext_listing_rows(body,isin,url)]
-    if urlsplit(url).hostname in ('dng-api.invesco.com','www.borsaitaliana.it'):
+    if urlsplit(url).hostname=='dng-api.invesco.com' or (urlsplit(url).hostname=='www.borsaitaliana.it' and not body.startswith(b'%PDF')):
         rows=invesco_listing_rows(body,isin,url) if urlsplit(url).hostname=='dng-api.invesco.com' else borsa_listing_rows(body,isin)
         return [r|{'sourceUrl':url,'checkedAt':checked,'sha256':digest,'evidenceId':f"{isin}-{r['mic']}-{r['ticker']}-{r['currency']}"} for r in rows]
     if urlsplit(url).hostname=='bitwiseinvestments.eu' and not body.startswith(b'%PDF-'):
