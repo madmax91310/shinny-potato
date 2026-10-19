@@ -58,6 +58,35 @@ class MetadataTests(unittest.TestCase):
         changed=body.replace(b'IE00BLNMYC90',b'IE00B4L5Y983',1)
         self.assertEqual(parse_listings(changed,{'isin':'IE00BLNMYC90'},'https://etf.dws.com','2026-10-18'),[{**r,'sha256':__import__('hashlib').sha256(changed).hexdigest(),'sourceUrl':'https://etf.dws.com'} for r in rows])
         with self.assertRaises(ValueError):parse_listings(body.replace(b'IE00BLNMYC90',b'IE00B4L5Y983'),{'isin':'IE00BLNMYC90'},'https://etf.dws.com','2026-10-18')
+        wrong=json.loads(body)
+        wrong['pdpResult']['pageSections']['keyFacts']['accordionItems'][0]['listBundle'][0]['items'][0]['value']=self.ISIN
+        with self.assertRaises(ValueError):parse_listings(json.dumps(wrong).encode(),{'isin':'IE00BLNMYC90'},'https://etf.dws.com','2026-10-18')
+    def test_dws_collateral_and_recommendations_cannot_change_product_listings(self):
+        from pathlib import Path
+        from copy import deepcopy
+        doc=json.loads(Path(__file__).with_name('fixtures').joinpath('official-documents','dws-exact-share.json').read_bytes())
+        isin='IE00BLNMYC90';url='https://etf.dws.com/api/pdp/en-gb/etf/'+isin+'/pdpMetaTagsTealium'
+        parse=lambda value:parse_listings(json.dumps(value).encode(),{'isin':isin},url,'2026-10-18')
+        expected=[(r['mic'],r['ticker'],r['currency'],r['symbol']) for r in parse(doc)]
+        sections=doc['pdpResult']['pageSections']
+        unrelated=deepcopy(sections['keyFacts']['accordionItems'][3])
+        unrelated['table']['values'][0]['BloombergTicker']['value']='FOREIGN GY'
+        sections['securityKeyFacts']={'isin':self.ISIN,'table':unrelated['table']}
+        sections['topProducts']={'cards':[{'isin':'IE00BP3QZ601','table':unrelated['table']}]}
+        self.assertEqual([(r['mic'],r['ticker'],r['currency'],r['symbol']) for r in parse(doc)],expected)
+        self.assertEqual(parse_json(json.dumps(doc).encode(),isin),{'distribution':'Capitalizing','domicile':'Ireland','replicationMethod':'Direct Replication (physically)'})
+        doc['pdpResult']['pageFrame']={'productHeader':{'identifier':[{'key':'ISIN','value':self.ISIN}]}}
+        with self.assertRaisesRegex(ValueError,'header identity'):parse(doc)
+        doc['pdpResult']['pageFrame']['productHeader']['identifier'][0]['value']=isin
+        doc['tealium']={'attributes':{'product_id':self.ISIN}}
+        with self.assertRaisesRegex(ValueError,'product identity'):parse(doc)
+        del doc['tealium']
+        basic=sections['keyFacts']['accordionItems'][0]
+        basic['listBundle'][0]['items'].append({'key':'ISIN','value':self.ISIN})
+        with self.assertRaisesRegex(ValueError,'Ambiguous'):parse(doc)
+        basic['listBundle'][0]['items'].pop()
+        sections['keyFacts']['accordionItems'].append(deepcopy(basic))
+        with self.assertRaisesRegex(ValueError,'multiple DWS'):parse(doc)
     def test_factsheet_venue_abbreviations_share_the_row(self):
         src={'isin':self.ISIN,'listings':[{'ticker':'ANAU','mic':'XPAR','exchange':'Euronext Paris','currency':'EUR','symbol':'ANAU.PA'}]}
         body=(self.ISIN+'<table><tr><td>EURONEXT P</td><td>EUR</td><td>ANAU FP</td></tr></table>').encode()
