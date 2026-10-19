@@ -60,6 +60,7 @@ export function buildAssetFieldReport(now=new Date().toISOString().slice(0,10)) 
  const names={completeHoldings:'Positions intégrales',ter:'Frais',aum:'Encours',performance:'Performances annuelles',monthly:'Historique mensuel',countries:'Pays',sectors:'Secteurs',holdings:'Principales positions',distribution:'Distribution',domicile:'Domicile',replicationMethod:'Réplication',listings:'Cotations',pea:'Éligibilité PEA',currencyHedge:'Couverture de change'};
  const rows=[];
  const qualification=read('scripts/source-snapshots/monthly-qualification-status.json');
+ const metadataSources=new Map(read('scripts/instrument-metadata-sources.json').instruments.map(r=>[r.isin,r.urls]));
  for(const item of DATA_CATALOG.filter(r=>r.type==='instrument' && r.fields.find(f=>f.label==='Identité')?.value?.instrumentType!=='EQUITY')) {
   const record=AUTOMATED_ETF[item.id]??{};
   for(const field of Object.keys(names)) {
@@ -79,8 +80,8 @@ export function buildAssetFieldReport(now=new Date().toISOString().slice(0,10)) 
    const state=present?fieldState(value,now,{...freshness(etfFreshnessKey(field)),requireObservation:['monthly','aum','performance','countries','sectors','holdings','completeHoldings'].includes(field)}):gap?.status??(meta?'manual':'missing');
    const observed=field==='monthly'?value?.periodEnd:field==='performance'?completeCalendarYears(item.id,value?.years,now).at(-1)?.toString():value?.asOf;
    const configured=field==='completeHoldings'?!!holdingsSources[item.id]:meta?true:field==='monthly'?!!value:true;
-   const diagnostic=fieldDiagnostic({field,present,status:meta?metadataStatus[item.id]:null,gap,configured});
-   rows.push({diagnostic,tools:FIELD_TOOLS[field]??['etf-sheets'],automationConfigured:configured,...(meta?{lastAttempt:metadataStatus[item.id]?.checkedAt??null}:{}),id:item.id,name:item.name,type:'instrument',field,label:names[field],state,present,checkedAt:present?value.checkedAt??null:null,asOf:observed??null,sourceUrl:present?(value.sourceUrl??value.sourceUrls?.[0]??record.sourceUrl):gap?.sourceUrl??null,reason:diagnostic.reason??gap?.reason??(field==='monthly'&&!present?(qualification[item.id]?.reason??'Cotation exacte et historique mensuel complet à qualifier automatiquement lorsqu’une cotation documentée est disponible.'):null),
+   const diagnostic=fieldDiagnostic({field,present,state,status:meta?metadataStatus[item.id]:null,gap,configured});
+   rows.push({diagnostic,tools:FIELD_TOOLS[field]??['etf-sheets'],automationConfigured:configured,...(meta?{lastAttempt:metadataStatus[item.id]?.checkedAt??null,sourceUrls:metadataSources.get(item.id)??[]}:{}),id:item.id,name:item.name,type:'instrument',field,label:names[field],state,present,checkedAt:present?value.checkedAt??null:null,asOf:observed??null,sourceUrl:present?(value.sourceUrl??value.sourceUrls?.[0]??record.sourceUrl):gap?.sourceUrl??null,reason:diagnostic.reason??gap?.reason??(field==='monthly'&&!present?(qualification[item.id]?.reason??'Cotation exacte et historique mensuel complet à qualifier automatiquement lorsqu’une cotation documentée est disponible.'):null),
      ...(field==='monthly'&&value?{currency:value.currency,periodStart:value.periodStart,periodEnd:value.periodEnd,method:value.method}:{}),
      ...(field==='performance'&&record.performance?.months?{archivedMonthlyReturns:Object.keys(record.performance.months).length}:{})});
   }

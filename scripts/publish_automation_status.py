@@ -204,6 +204,17 @@ def read_report(path, workflow):
     return normalize_report(report)
 
 
+def read_report_safely(path, workflow):
+    """An unusable artifact is an incident, not a reason to lose every other result."""
+    try:
+        result = read_report(path, workflow)
+        result.setdefault('successes', []).append({'id': 'report-read:' + path.stem})
+        return result
+    except (ValueError, OSError) as error:
+        return {'successes': [], 'errors': [{'id': 'report-read:' + path.stem,
+                'field': 'Rapport de collecte', 'error': str(error)}]}
+
+
 def publication_summary(run, jobs):
     deploy_jobs = [job for job in jobs if job['name'].startswith('deploy /') or job['name'] == 'deploy']
     published = [step.get('completed_at') or job.get('completed_at') or run['updated_at']
@@ -470,7 +481,7 @@ def main():
                                     '--name', artifact_name, '--dir', directory],
                                    check=True, capture_output=True, timeout=90)
                     for path in report_files(directory):
-                        reports.append(read_report(path, run['path'].split('/')[-1]))
+                        reports.append(read_report_safely(path, run['path'].split('/')[-1]))
         state = update_status(state, run, jobs, reports)
         workflow = run['path'].split('/')[-1]
         row = state.get('workflows', {}).get(workflow, {})

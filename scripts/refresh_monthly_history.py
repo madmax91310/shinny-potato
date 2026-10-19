@@ -378,6 +378,16 @@ def refresh(config, current, baseline, now=None, collect=collect_one):
     return merged,{'checkedAt':now.isoformat(),'series':observations}
 
 
+def monitoring_report(report):
+    """Keep diagnostics bounded; full prices/proofs remain in the validated registries."""
+    return {'checkedAt': report['checkedAt'], 'series': [
+        {key: row[key] for key in ('id', 'status', 'reason') if key in row} |
+        ({'periodEnd': row['record']['periodEnd'],
+          'responseSha256': row['evidence'].get('responseSha256')}
+         if row['status'] == 'validated' else {})
+        for row in report['series']]}
+
+
 def main():
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--baseline',required=True,type=pathlib.Path);p.add_argument('--output',required=True,type=pathlib.Path)
@@ -393,7 +403,7 @@ def main():
     status=json.loads(status_path.read_text()) if status_path.exists() else {'series':{}}
     config=select_series(json.loads((ROOT/'scripts/monthly-automation.json').read_text()),status,args.only,args.retry_failed)
     merged,report=refresh(config,current,json.loads(args.baseline.read_text()))
-    write_json_atomic(args.output,report)
+    write_json_atomic(args.output,monitoring_report(report))
     if args.apply and report['series']:
         for observation in report['series']:
             status['series'][observation['id']]={

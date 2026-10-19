@@ -80,7 +80,7 @@ const rows = [...instruments.values()].map(e => {
     generator, blocker: blocker ? {...blocker, field:'monthly', tools:['portfolio-generator', ...(!monthly.some(h=>h.performance)?['performance-rankings','tweet-midi']:[]), ...(!monthly.some(h=>h.simulation)?['investment-calculator']:[])], checkedAt:qualification[e.isin]?.checkedAt ?? metadataStatus[e.isin]?.checkedAt ?? null} : null,
     dca:refs.length > 0, countries:exposure('countries'), sectors:exposure('sectors'),
     holdings:holdings ? {...holdings, automatic:Boolean(fullSources[e.isin])} : null, monthly,
-    historyCandidate:!h.length && (INSTRUMENT_LISTINGS_BY_ISIN[e.isin] ?? []).some(l => l.symbol && l.evidenceId),
+    historyCandidate:!h.length && (INSTRUMENT_LISTINGS_BY_ISIN[e.isin] ?? []).some(l => COLLECTABLE[l.mic] && ['EUR','USD'].includes(l.currency) && l.evidenceId),
     decision:refs.length || h.length || ETFS.some(a => a.isin === e.isin) || portfolio.length ? 'keep-used' : 'review-unused'}
 }).sort((a,b) => a.isin.localeCompare(b.isin))
 const summary = {instruments:rows.length, sheets:rows.filter(r=>r.sheet).length, comparisons:rows.filter(r=>r.comparison).length,

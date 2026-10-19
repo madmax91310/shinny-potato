@@ -37,8 +37,10 @@ jobs:
       - uses: actions/setup-python@v7.0.0
         with:
           python-version: '3.12'
+      - run: pip install beautifulsoup4==4.15.0
       - run: npm ci
       - run: python -m unittest discover -s scripts -p 'test_instrument_metadata.py'
+      - run: python -m unittest discover -s scripts -p 'test_automation_renewals.py'
       - run: python -m unittest discover -s scripts -p 'test_monthly_qualification.py'
       - run: npm run build
       - run: node scripts/test-full-auto-routing.mjs
@@ -75,6 +77,7 @@ jobs:
       - uses: actions/setup-python@v7.0.0
         with:
           python-version: '3.12'
+      - run: pip install beautifulsoup4==4.15.0
       - run: npm ci
       - run: sudo apt-get update && sudo apt-get install -y poppler-utils
       - run: node scripts/build-automation-targets.mjs

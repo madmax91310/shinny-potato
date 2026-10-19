@@ -1,18 +1,17 @@
 {
-  "checkedAt": "2026-10-18T20:42:43.643685+00:00",
+  "checkedAt": "2026-10-19T04:47:27.335533+00:00",
   "fxFailed": false,
-  "crossFxFailed": true,
+  "crossFxFailed": false,
   "fxSources": {
     "TWD": {
       "id": "fx:TWD",
-      "status": "failed",
-      "checkedAt": "2026-10-18T20:42:43.643685+00:00",
-      "reason": "The read operation timed out"
+      "status": "validated",
+      "checkedAt": "2026-10-19T04:47:27.335533+00:00"
     },
     "ECB": {
       "id": "fx:ECB",
       "status": "validated",
-      "checkedAt": "2026-10-18T20:42:43.643685+00:00"
+      "checkedAt": "2026-10-19T04:47:27.335533+00:00"
     }
   },
   "series": [
