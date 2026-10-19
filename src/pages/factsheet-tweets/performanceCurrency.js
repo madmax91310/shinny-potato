@@ -37,7 +37,7 @@ export function factsheetInCurrency(sheet, currency = 'native') {
     performance: { ...performance,
       detail: record ? `${sheet.index}, en ${currency}, dividendes bruts réinvestis, hors frais ETF` : performance.detail.replace(currencyWords, currency),
       date: record ? new Date(`${record.asOf}T00:00:00Z`).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }) : performance.date,
-      currencyNote: record ? `Série officielle MSCI en ${currency}, identique à Performance depuis.` : `Conversion en ${currency} aux taux de référence BCE de fin d’année, sans couverture de change.`,
+      currencyNote: record ? `Série officielle MSCI en ${currency}.` : `Conversion en ${currency} aux taux de référence BCE de fin d’année, sans couverture de change.`,
     },
     source: [...sheet.source, { label: record ? `MSCI · performances officielles ${currency}` : 'BCE · change de fin d’année', url: record?.sourceUrl ?? CALENDAR_FX_SOURCE }]
       .filter((source, index, sources) => sources.findIndex(item => item.url === source.url) === index),
