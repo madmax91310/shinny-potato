@@ -161,7 +161,7 @@ jobs:
           retention-days: 14
   refresh:
     needs: verify
-    if: github.event_name != 'pull_request'
+    if: always() && github.event_name != 'pull_request' && needs.verify.result == 'success'
     runs-on: ubuntu-24.04
     timeout-minutes: 45
     concurrency:
@@ -218,7 +218,7 @@ jobs:
           bash scripts/commit-validated-data.sh 'Refresh exact instrument metadata' src/data/automated-instrument-metadata.json src/data/instrument-metadata-status.json scripts/instrument-metadata-sources.json scripts/generated-holdings-sources.json docs/asset-field-coverage.md public/data/asset-field-coverage.json
   deploy:
     needs: refresh
-    if: github.event_name != 'pull_request'
+    if: always() && github.event_name != 'pull_request' && needs.refresh.result == 'success'
     permissions:
       contents: read
       pages: write
