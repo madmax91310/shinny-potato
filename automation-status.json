@@ -44,24 +44,24 @@
     "update-market-monthly.yml": {
       "monitorVersion": 2,
       "name": "Historiques mensuels des marchés",
-      "runId": 39264456173,
+      "runId": 39278915588,
       "attempt": 1,
-      "headSha": "a6f8c64e2af6234b574fa30cb547fbdc69ae86d2",
-      "createdAt": "2026-10-19T13:56:18Z",
-      "completedAt": "2026-10-19T14:25:21Z",
+      "headSha": "932cf29849af3d7655bba03748e8d677a1080d74",
+      "createdAt": "2026-10-19T15:33:29Z",
+      "completedAt": "2026-10-19T16:32:44Z",
       "status": "failure",
       "lastSuccessAt": "2026-10-18T15:09:29Z",
       "collectionStatus": "failure",
       "validationStatus": "success",
-      "recordingStatus": "success",
-      "publicationStatus": "success",
+      "recordingStatus": "failure",
+      "publicationStatus": "not-run",
       "lastCollectionSuccessAt": "2026-10-18T16:00:42Z",
       "lastPublicationSuccessAt": "2026-10-19T15:53:08Z",
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39264456173",
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39278915588",
       "failures": [
         {
-          "job": "deploy / build",
-          "step": "Run node scripts/build-dca-exposures.mjs && npm run test:dca && node scripts/audit-portfolio-routing.mjs"
+          "job": "refresh",
+          "step": "Commit validated observations"
         },
         {
           "job": "report-failures",
@@ -71,277 +71,12 @@
       "dataFailures": {
         "history:fx:TWD": {
           "name": "history:fx:TWD",
-          "completedAt": "2026-10-19T14:25:21Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39264456173",
+          "completedAt": "2026-10-19T16:32:44Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39278915588",
           "cause": "The read operation timed out",
           "field": "Change"
         }
-      },
-      "publicationReceipt": {
-        "commit": "4674d03a3ba624f0f0b999cc87f4364f87c5caba",
-        "files": {
-          "scripts/source-snapshots/anniversary-indices.json": "41351158e419e791e48fd4444db1c5572399a794",
-          "scripts/source-snapshots/automation-recovery-2026-10-10.json": "aa7cbfb38cf221de839d4e5d09cdd5485e7a373c",
-          "scripts/source-snapshots/bitcoin-automated.json": "7c88dc2fc9186abade8f9d188c33d59d38ad560c",
-          "scripts/source-snapshots/calculator-certified-2026-09-30.json": "69d6f30720d394788fa4f1c8eb376bb866d1d573",
-          "scripts/source-snapshots/calculator-companies-2026-10-02.json": "b066cd960e4ac849d156d5f1c83da38baab7fbae",
-          "scripts/source-snapshots/calculator-monthly-2026-10-02.json": "af87cad854fd9f0b085c3d26954555fd867f65d7",
-          "scripts/source-snapshots/calculator-msci-additions-2026-10-02.json": "6081ac0162562101c2e988a59429b6ca254ff089",
-          "scripts/source-snapshots/calculator-msci-world-2026-10-02.json": "e1a5b6c1383cadc5905949003dc05c5b0d74e634",
-          "scripts/source-snapshots/calculator-stoxx600-2026-10-02.json": "1cb90c892192071076c7744ceba97706531d189d",
-          "scripts/source-snapshots/calculator-unverifiable-before-2026-09-30.json": "13d6d85115f3ac19479a0738673e27e886413f95",
-          "scripts/source-snapshots/calculator-worldbank-gold-2026-09-29.json": "adb0911f65b97f685f7d6215b87402475e11866f",
-          "scripts/source-snapshots/calculator-worldbank-gold-2026-10-03.json": "e8b7dec60983259ab3476c5d03de0bb6354fa250",
-          "scripts/source-snapshots/calculator-yahoo-2026-09-29.json": "c8855f477f4e433500b8166788dd05776ef4d959",
-          "scripts/source-snapshots/catalog-expansion-monthly-validation.json": "6b103360909e4983e57030bcf31e8c840fa68138",
-          "scripts/source-snapshots/companies-additions-2026-10-03.json": "f6388656cc5f230a1b635be2fb705ea3ace355fe",
-          "scripts/source-snapshots/company-adjusted-forecast.html": "a5291d06ce4830b8b6bf3259ed0a267c105a8a78",
-          "scripts/source-snapshots/company-alphabet-history.json": "3e0c8c547d6579878b9e3be947852a329fbdd1c3",
-          "scripts/source-snapshots/company-balance-excerpts.json": "8153ca76a0e3e4cae73a8983006e8c53ef15983e",
-          "scripts/source-snapshots/company-coverage-statements.json": "650a320bbb9bff710f6b9c91f480db10c050f47d",
-          "scripts/source-snapshots/company-decision-statements-2026-10-12.json": "e55a0e1adc7a88cd2347e7818b0272fa53a0788f",
-          "scripts/source-snapshots/company-extended-publications-2026-10-07.json": "fff1d3d8abcca09ddbbdac18d72fd6e028aedfb4",
-          "scripts/source-snapshots/company-finviz-2026-10-07.html": "1a5b4ba3856d21c3a2a352760d5f7c6af93bc5b1",
-          "scripts/source-snapshots/company-publications-2026-10-07.json": "9056e0af0cf31b5f99d07c3822eba6a055bf28c9",
-          "scripts/source-snapshots/company-share-notes.json": "3431f23a432c8db0f1e8b8b1c859fd9a48bae5ec",
-          "scripts/source-snapshots/comparison-etf-details-2026-10-05.json": "4be267268f6e64c55fe39799bcfc29e13b1078ea",
-          "scripts/source-snapshots/data-review-2026-10-02.json": "cb93a696d1639ffeda63576d0bf803bcd2173dcb",
-          "scripts/source-snapshots/dca-equity-identity-review-2026-10-16.json": "fb6fa3b4969fe08f1cf80d45fa7f8031d3e5472e",
-          "scripts/source-snapshots/dca-history-identity-review-2026-10-16.json": "3e8fd9b841bd6c38c4353eb4360e71e08934b2fb",
-          "scripts/source-snapshots/diversification-history-2026-10-05.json": "53a01d2f185db158f0612506e9a0d04b3a4ba9b6",
-          "scripts/source-snapshots/etf-additions-2026-10-01.json": "864615c10b5851fa43aec68fd8551fd3598d7958",
-          "scripts/source-snapshots/etf-anniversary-initial.json": "38f8259018a14b9fc0f1c8d787aaac86e408c9f9",
-          "scripts/source-snapshots/etf-aum-2026-09-29.json": "7d895e6765e931e2b850ba874a2c136b3a718cb4",
-          "scripts/source-snapshots/etf-completeness-2026-10-04.json": "b0cd8d85050f6d02d6a39499a0e5028208835356",
-          "scripts/source-snapshots/etf-pilot-2026-10-05.json": "7b7e99201721537199d4eede61344e260df48fa1",
-          "scripts/source-snapshots/etf-review-2026-10-02.json": "5bcc0aa4886e8843526f4613a36068d656ceb5c1",
-          "scripts/source-snapshots/gaming-medical-2026-10-05.json": "c82444e6090e7ef7df519dd0dadb8bd2f686f035",
-          "scripts/source-snapshots/global-equity-identities-2026-10-17.json": "fcd0761cd554830beb651f30bab2042f65fc2469",
-          "scripts/source-snapshots/global-equity-qualification-2026-10-17.json": "ce3c630da8cf53a8c12b3e9b4d92f50fa25409ec",
-          "scripts/source-snapshots/household-benchmarks-2026-10-03.json": "83a68d487071bfaa607c49c48e04c6d19ae70ca4",
-          "scripts/source-snapshots/index-comparison-emerging-series-2026-10-04.json": "080c94bedbaa445ef58136c2ca9700bc87d659c4",
-          "scripts/source-snapshots/index-comparison-returns-2026-10-04.json": "ff882efce430bcaf82f0b285dbd6d6ff18f53a3e",
-          "scripts/source-snapshots/inflation-automated.json": "d27d44dea6fcd56c621060e20536b70a2e7ffcd9",
-          "scripts/source-snapshots/instrument-listings-2026-09-30.json": "03813cc4cdce8b0437df3786bfe46029b2667d32",
-          "scripts/source-snapshots/instrument-profiles-2026-09-30.json": "11f1a3035b068cc189322d3b274c92fa5654cdbd",
-          "scripts/source-snapshots/instrument-supports-2026-10-03.json": "d8488fcb9c5e375c69ef117194d3b26d7a983fbb",
-          "scripts/source-snapshots/investors-2026-10-03.json": "9362666dfe9bd1085531be64e062c6d49f7cad65",
-          "scripts/source-snapshots/monthly-automated-round4.json": "fd91fb369758f0e77a98d86e855722d9f7cce65e",
-          "scripts/source-snapshots/monthly-automated.json": "79863526d797791a85fc7354a8a95ac81cef2b78",
-          "scripts/source-snapshots/monthly-collection-status.json": "5ceb31fac02863aba12c0c87d2a59ea7482ff713",
-          "scripts/source-snapshots/monthly-history-additions-2026-10-03.json": "f909f75635d69b5f41446fb8fffecf52ac6b07b4",
-          "scripts/source-snapshots/monthly-lifestrategy.json": "2503909b7ea6a6ba2a42c3299eb4debaec54b4ee",
-          "scripts/source-snapshots/monthly-qualification-status.json": "0175eca2771fd74ba9cd07807cf03ecaccef45ed",
-          "scripts/source-snapshots/nasdaq-price-legacy.json": "0225a4ba735d8db64f24f0bf95c5beda9cf67212",
-          "scripts/source-snapshots/non-bond-monthly-active.json": "ed117ebf752014dbf2a09475d7d0f4ffe3aaeb68",
-          "scripts/source-snapshots/non-bond-monthly-validation.json": "a0e9d08e6f1c77aea2670b7fb13d837cf3e257ca",
-          "scripts/source-snapshots/property-infrastructure-2026-10-05.json": "b8a5b11681ee3343dd90a021c0be82f6109db78d",
-          "scripts/source-snapshots/ranking-collection-status.json": "bc3b289fdfb255cc14fe211864ae1100276627fb",
-          "scripts/source-snapshots/ranking-histories.json": "ffa8b1483b688de5910f95a5b1b1bd407793b1a4",
-          "scripts/source-snapshots/remaining-sources-2026-10-10.json": "4b4f48712ef36e9bd504d56cbdeb3961dfb60f68",
-          "scripts/source-snapshots/roadmap-monthly-validation.json": "9d76641fcb1f03bf90f9897c446898d79f36567b",
-          "scripts/source-snapshots/silver-returns-2026-10-03.json": "dedc82f95d21f9ce883e8c41985040b992592fe8",
-          "scripts/source-snapshots/world-factors-2026-10-05.json": "b32505ac2ecf9e077341506b7d03e01541c360cc",
-          "src/data/README.md": "0e8e004a0926c40326b8f70695d5e8cde62ba8e6",
-          "src/data/allocation-cases.js": "10bc4aabad395d355fa8a356b4c795aba48894e8",
-          "src/data/anniversary-index-history.json": "a5e535fdfccff92c4ce787367aa224768640092c",
-          "src/data/anniversary-levels.js": "3f66e27ce43010619809a7a7e18cf6b67ef07d4a",
-          "src/data/anniversary-levels.json": "ea5af3335a2bdbe50654af053da0ff4e6e6d4233",
-          "src/data/annual-fx.json": "a72a2ddada2f07b7cf9a6d401980cc33e72cea71",
-          "src/data/annual-performance-currency.js": "22f9117d59205a7a6f583896b97fb8358d38fd05",
-          "src/data/annual-window.js": "31cb88aa5578e949c2524f8915fcb842ebb55e61",
-          "src/data/archive-source-review.js": "6fc78bf11fcde87f35a37e5564b2c2b931369d3c",
-          "src/data/asset-labels.js": "b764fe5639dab42568ec5420e0ec97eaca7f58be",
-          "src/data/asset-selection.js": "53d20c3c8c3546123051d10900ed628cc6c89680",
-          "src/data/auto-history-identities.json": "4be2727c65eba1f854a386f1840f914f89e1f989",
-          "src/data/automated-broker-tariffs.json": "77dcc098843cf76514036b87ae3e59b45643bf44",
-          "src/data/automated-characteristics.js": "50d19750cb8858161242e86d774c3c9c7878bdf3",
-          "src/data/automated-economic.json": "f9f57ca215b7dffebdfdd6be1bb9cb6ec3520cda",
-          "src/data/automated-equity-history.js": "61640c2664b4df61cc812feff60596f274ece044",
-          "src/data/automated-etf-monthly.json": "3f655848c4b6da7ee47680e437ac164643e4bb65",
-          "src/data/automated-etf.js": "856e11a79b7b660a2ce51c2cfaf6b042ab955383",
-          "src/data/automated-etf.json": "16b5b7c7ae7b15e249c685404d435ee467b8c15e",
-          "src/data/automated-index-sheets.js": "5aaad6698199f57969f5f05a9ad538125c16d563",
-          "src/data/automated-indices.js": "758cce8fa90c7e0de363c3b4732eb7d3f3ab62a6",
-          "src/data/automated-indices.json": "db7184b380196530ff0c0627dee78cbb882386b5",
-          "src/data/automated-instrument-metadata.json": "67b045c934aa563ee44fa8dbcb9478237ecb19b9",
-          "src/data/automated-insurance.json": "c7056762e7a7213b824c51bc9a719462641f7c3c",
-          "src/data/automated-monthly.json": "516a99900e436ca0c28887e491b728b2903e92c7",
-          "src/data/automated-portfolio-funds.js": "767cb6b2c546ed3bbbcd5bb6474fedc99cacdde3",
-          "src/data/automated-practical-sheets.json": "8d5273cd37a73d937737a381be18704f2bf890ee",
-          "src/data/automated-presentation-actors.json": "9acf6a1525e84347a36936c2300a43f28d048b0b",
-          "src/data/automated-regulatory.json": "ee586341268684aff33cd237a671683102a84d81",
-          "src/data/automated-scpi.json": "5e9ff6b97ac7260f3111712fc0a59d31b43be276",
-          "src/data/automation-workflows.json": "74bf6273a4ba4c60fe2d981311db46e4d7c55ca0",
-          "src/data/benchmark-changes.js": "79031709afe943b2e6caeff350998a17050c1044",
-          "src/data/benchmark-changes.json": "3e6aff39d437de41c83e6a8ef9f5e035d83c23d8",
-          "src/data/bitcoin-yahoo-monthly.json": "326a7ac2f8c06f75e772dd2d56f02a2fe1f119da",
-          "src/data/bond-exposure-cases.js": "4e67b3a76441f7678bd92008842164796ddcf07e",
-          "src/data/broker-tariffs.js": "5b5d1550028f465c2c954b74afc2cc71350c29c2",
-          "src/data/calculator-history.js": "b9ed35fe1d27b0193ee861b77f420821c186df13",
-          "src/data/calendar-fx.js": "4ddf34a239d15964270827b3d11d04f3963f9dc2",
-          "src/data/catalog-browser.js": "11bb58af01915cff66cabe170c42d289c917ccf6",
-          "src/data/catalog-search.js": "1ab0c3fa4594f23f69dee8917aa9aa778c9b6794",
-          "src/data/catalog.js": "7406aa6e85015896931ab8ba266c05a370d82b85",
-          "src/data/commodity-allocation.js": "ecc9c8b547c3470c67235b890efa1bec9662ff26",
-          "src/data/commodity-publication-data.js": "db9a47760ef56278057b030246dc9fb1bdcbdf03",
-          "src/data/companies.js": "9ecaa127a09988d1fb9fc2ed1ce90b01926a720f",
-          "src/data/company-analysis.json": "737013e40e2841a66e1f735de4e4d0d4c04f7a9c",
-          "src/data/company-forecast-evaluation.json": "6dc193a256e95720c7418787b936258c24dc8e54",
-          "src/data/company-history-additions.js": "8522008be026e5decb1d3359d34783054667bec9",
-          "src/data/company-history.js": "3091b22a552d800cd4a808f5b9f295a61620c7e1",
-          "src/data/company-peers.js": "9a8fab9deb8f38190843016123c6aff4eae37bf0",
-          "src/data/company-profiles.json": "4fa6b45d5b6830b52fc2bd5be7fcbf03248456ec",
-          "src/data/company-release-cohort.json": "b27d905ef44e57a0c06fba21332432b15c7ba46d",
-          "src/data/comparator-return-evidence.js": "5346806e540a67b6f1f10589b0ed011b22f4876d",
-          "src/data/comparison-etf-details.js": "8cbeed70958ca9d76f54a562b539ba7efb975640",
-          "src/data/dca-complete-holdings.json": "9b55c4fdb2539662b19d9e7847c2fcbd1a9384f9",
-          "src/data/dca-equity-exposures.json": "996532543a46be84afccd5c35f05dd3f6d7175aa",
-          "src/data/dca-holdings-status.json": "0a5ab51aaf7589ed8180b8f597772a85f292a51c",
-          "src/data/dca-security-classifications.json": "1030de8f51aec6cc9c01ba4ee4c054272a0b8ae0",
-          "src/data/distinct-asset-selections.js": "31d609e2be111b0e3ab92f655d7f310e25f8c8e9",
-          "src/data/distinct-portfolio-assets.js": "fbbb21ec125e9116d65c84b9c0a5f3f9cb5e524b",
-          "src/data/diversification-history.js": "2615695d110896568477885a886a42032ca996e5",
-          "src/data/duel-assets.js": "f8cece8430ce30c06e3116094690fe5e9f1c50f0",
-          "src/data/economic-data.js": "cb0dcf1a491578dc4f9899824b3fcd8419d070e1",
-          "src/data/editorial-calendar.js": "320a69bd5329584476f6707ee763ae4d3cedcf57",
-          "src/data/editorial-cases.js": "8dfa5c93b74cab352cdb3f1623aa64c2a44fe348",
-          "src/data/envelope-fees.js": "249436ff54d73d9e5956be97ea205fa6ee0bc247",
-          "src/data/equity-duel-returns.json": "11652fbe840993ac447c2a2403bddf4653db0164",
-          "src/data/equity-history-identities.js": "4aac8ca90da498a0861bc70328ed589e663b6711",
-          "src/data/equity-history-links.json": "d60003da50220ac42ee90e738712fe0e9c028b62",
-          "src/data/etf-cards.js": "b066350a429587b83fcebf0eed2b8f7129f7f6c2",
-          "src/data/etf-development.js": "75272ab9644442310f34968a71a26adac44f72ea",
-          "src/data/etf-history-identities.js": "2f8585b0062a94f623cb1adb43b241a3f8268482",
-          "src/data/etf-metric-copy.js": "d5cabf3fcad21766c878dc1e2e181f3cbff94748",
-          "src/data/etf-monthly-history.js": "0ae24afd4fc28dbc3a97b19c6d98cedb4a02270a",
-          "src/data/etf-publication-data.js": "29072f858beb2b19c8a1f172641cd632a34f1186",
-          "src/data/etf-ter-evidence.js": "4121f23b0b438f6a661c8482187640d0e37f2f5d",
-          "src/data/etf-ter.js": "eb9c4d742deced4d4a814e050c198bf4f46822d1",
-          "src/data/etf-themes.js": "daf42a3cb9f58e41eb6b16af8e7f7548bff171a9",
-          "src/data/evidence.js": "aa30e2d7b85943a349135dfaf7a117038c2df8aa",
-          "src/data/exposure-additions.js": "b41d6536b90338fdfaf0f0a01e9d2577dacb98e6",
-          "src/data/exposure-etf-expansion-records.json": "36cc60cd7e636a3fb73140e4456db12b0744e48c",
-          "src/data/exposure-etf-expansion.js": "85a3671835c729e94daf4c8052707334c668842f",
-          "src/data/exposure-observations.js": "0cdce4c0352116568b56a8023e2b11a553c050d7",
-          "src/data/exposure-sleeves.json": "4934e75243cd33a70c24ecba8ce020b2d768d060",
-          "src/data/fee-comparison-assets.js": "83a3c304465ce7f6cb425c8243ef32d37ff267e7",
-          "src/data/financial-lexicon.js": "6b4307c26cccdbadc42084ea36a73c996b185fe0",
-          "src/data/french-characteristics.js": "eb57909680c31a53073d66325b1d9f233df422c2",
-          "src/data/freshness-policy.json": "47c7436de6e9ed47a79ec089f53b1d39798fc344",
-          "src/data/global-equities.json": "3911a5f4feeeb087218270098af78168ceea9b80",
-          "src/data/history-browser.js": "6828f578c8a8ce48f9a75baab2e1b36c51486ce9",
-          "src/data/history-currency.js": "b2340a68b7313cf6d1765b5f6d86682fd83a0980",
-          "src/data/history-parameters.js": "c95784f457f04e3ac1175987f0a26bb7ded56bd0",
-          "src/data/history-selection.js": "5bdbebda036fd74586a6a8bf08e9f3868d6e0842",
-          "src/data/history-statistics.js": "e62472f5015d5249bc14ff2c8f70ff3c0b0b131d",
-          "src/data/household-editorial.js": "f941acc7a0d56ec90e8c040af77398820b9861f7",
-          "src/data/household-statistics.js": "e52fa1e7a25d50710f58ffd9e1bebad5610581d3",
-          "src/data/index-comparison-composition.js": "50d0abcdca3ec423983b02dae78dae124b33a9c5",
-          "src/data/index-comparison-editorial.js": "95c81c46c58f2c694a8c0e170bae2abb118ecaef",
-          "src/data/index-comparison-pairs.js": "b06cbbc8b6cff11a5d11873f8b10cf64d718799d",
-          "src/data/index-comparison-performance.js": "8d98f918a41c3d1063d2d8fda8d40f3c56352e89",
-          "src/data/index-comparison-return-additions.js": "bbf69661a41c749c66115ee2392c0eafe452c6b6",
-          "src/data/index-comparisons.js": "c352bccd1e2e2ab7a50773fb818f807b15a524e5",
-          "src/data/index-composition-review.js": "22b6352a5779ec6460aa956755d49bda68551dca",
-          "src/data/index-decision-cases.js": "21f516fc5fe4db3969b48bfd6ebff388b4f707b4",
-          "src/data/index-exposure-additions.js": "5695796ba4662c1cd1c093610c51cf4e7592423b",
-          "src/data/index-facts.js": "a96388703ca9417579ffdbdf0bf34a6e0f08d24d",
-          "src/data/index-factsheets.js": "b2e1bd83be9670a21581f166ecd5757325db1421",
-          "src/data/index-returns.js": "1ff746a9116b09200c49455fc3f82782c469a173",
-          "src/data/index-source-review.js": "335cfecb46900b780f58e1497bdc3643397a2f72",
-          "src/data/inflation-monthly.js": "66c6a5dc66d8a495d9dba549f118407cbb4e1fc4",
-          "src/data/instrument-aum-observations.js": "8adbd1af8c07da92aee39cbb67f9da2766146df7",
-          "src/data/instrument-aum.js": "b4110a2cc2efd8005846adcba67b1af051a5ba57",
-          "src/data/instrument-characteristic-metadata.js": "93be23bed5bc35a373cc77a3cbebb6d8ca2c524a",
-          "src/data/instrument-comparator-returns.js": "55ee563072fbebe53d3e7b8bffcef7275d3ee9ee",
-          "src/data/instrument-facts.js": "119f5e2d7b15af349ed1b8021b73d6575b70237e",
-          "src/data/instrument-listings.js": "e8b7946b0448fac1893f20556755b7eaa7a919de",
-          "src/data/instrument-metadata-status.json": "b275ea8620cffa9a928abefae7808c5405ecf06e",
-          "src/data/instrument-metadata.js": "0ff262c49a84992ce1ce67a2bc1a24908fa89664",
-          "src/data/instrument-pea.js": "f05758a1ee37bedb85a3fcd49008954cea64cd1c",
-          "src/data/instrument-performance-review.js": "1bee603b907f8d3bb9c213137edcc67ba296fb1c",
-          "src/data/instrument-reference-evidence.js": "274892e27090b9ec2d6e86351e93aab6dad3ee5b",
-          "src/data/instrument-returns.js": "30f0eefd42849ab7d650b6c2da54889c0f2c0ff4",
-          "src/data/instruments.js": "9af00032e02e0035b16fe49d39fa797047170706",
-          "src/data/insurance.js": "5c861424006d432fbd743bb51dfce0dc63fa47c2",
-          "src/data/investment-presets.js": "4877a1fabf9f7e12ff9d40a8b853068f7f6addd2",
-          "src/data/investor-profiles.js": "c29c6014da0eb402b1490e63e5dcbf4bbcb6a532",
-          "src/data/investor-roster.js": "9a5bcf13eb12fe180898d29c0a40790eb61bb1a4",
-          "src/data/lifestrategy.js": "cecd2d07ff2e4d6767a625d4898702f5d7b0988d",
-          "src/data/lifestrategy.json": "9b25ae9963a8f03ab7d889cce10bd80a89997116",
-          "src/data/maintenance-links.js": "f93ee04fccc2fbaffbf5dc652250778075c85d90",
-          "src/data/market-history-review.js": "ed00c64153a2187689ff68633343f9a6d0dd1cb4",
-          "src/data/market-history.js": "483dc5cb657c1acb125ba8441652287f42001261",
-          "src/data/market-story-selection.js": "7c0949187a46181ff7d86ffb7f15b96bdaeea635",
-          "src/data/monthly-automation.js": "f030364ea6b36d3974564adf8d3bf3fc636e18a8",
-          "src/data/monthly-duel-returns.json": "026a6072f71f5bac793f61b8c5bd7b2940dac99c",
-          "src/data/monthly-fx.json": "7b99327f19a9bc6f531f4e6cb7c8fbb462d18ab5",
-          "src/data/monthly-history-additions.js": "8cdc34d6a7365168d3adb23da423882087ced435",
-          "src/data/msci-history.js": "bb3b567d7977bb337749e859875cf6388bfb35b4",
-          "src/data/new-index-returns.js": "7aa5ad0ff2a7aeaf5767ec7ec1c607abc0c7b4eb",
-          "src/data/non-bond-company-histories.json": "288732cbdaf47b8894be159fc38ada47d10987c5",
-          "src/data/non-bond-etf-records.json": "59943516a73d42bce11aa46bd71041c6d3c080ed",
-          "src/data/non-bond-expansion.js": "6b91922d8002e983a0ee9de793d8f3c64577a362",
-          "src/data/non-bond-levels.json": "fd78f9fb494164f7f42f25f45c4b3c9031110b2a",
-          "src/data/non-bond-monthly-records.json": "483b0c1577440a6eb8947d9a92faf666622d507a",
-          "src/data/non-bond-qualified-records.json": "f02cb8cc0130fe6525d3f10ce1c582f58328e657",
-          "src/data/official-performance-currencies.json": "8a29089880e0d3b3a008c361c5f490cda5b83435",
-          "src/data/pea-sector-completion.js": "bc265d72655afde0fef464a1ba77742e4b351e4b",
-          "src/data/pel-rates.js": "12c4b9c0b0580f77f69e948bf10e3a6a6ca08c4c",
-          "src/data/performance-links.js": "43dc9395b108b25beaea4ccb2f66bd1bfd02812a",
-          "src/data/performance-links.json": "b9147ab6a0897456d0507bea87cd13a261825756",
-          "src/data/portfolio-asset-loader.js": "52adaf7cf266ea57de1e538051518dc9a38c2609",
-          "src/data/portfolio-assets.js": "a9fe24d6cf370fc7c26775b8154561e44a816732",
-          "src/data/portfolio-currencies.js": "c3e9fe95750c8556e8eef25947e14a86e9308737",
-          "src/data/portfolio-equities.js": "90199da66009fe80873161c50a44c0b596df0d11",
-          "src/data/portfolio-exposure-data.js": "38aa7e3cd62ac3652b3aa6ebe900a58c41619427",
-          "src/data/portfolio-return-evidence.js": "2ed59db87099c9690e1a8efce49d81478c2b0b73",
-          "src/data/practical-sheet-topics.js": "99dfd492d4a2976ecd7b256de5be25be0e8c5d8e",
-          "src/data/practical-source-data.js": "21a81277c22404c8a905f4b5e8fbd5affcf0030b",
-          "src/data/preferred-instrument-tickers.js": "31ab1f35b86248464d2c95e8d9efcb3baa7a8dd3",
-          "src/data/presentation-actors.js": "21df64e0f9a75b97093fee2fa2915fa3f5091952",
-          "src/data/presentation-etf-additions.js": "432b782cd8bcfa78aee7dda15f91587e792d3cd9",
-          "src/data/presentation-etf-expansion.js": "626566034b621be9b28fba0d24ac3149213a4637",
-          "src/data/property-infrastructure-additions.js": "1466a686abe6df58796f49d50652e99e2f323353",
-          "src/data/purchasing-power-observations.json": "674d893e200aed7a74283c600abe4fe1857fce0d",
-          "src/data/purchasing-power.js": "a1227cc5ba6b7678b20da6829638896e2a44675a",
-          "src/data/qualified-etf-comparisons.js": "4dbcb2b83c5876fa9782a94bdb84b374c18c7012",
-          "src/data/qualified-exposure-etfs.json": "4b5d34f88e2c3bea0aa73f727b57bd67f453b23b",
-          "src/data/qualified-exposure-metrics.js": "0d5b5a5fc6f867368448f9725117a2706e4b6fcc",
-          "src/data/qualified-exposure-sheets.js": "167f50794b83e64d911708cc4f51f3cc1e1ec2f7",
-          "src/data/qualified-listing-records.json": "d0fb27b007982ad698c9de838fa7d21b2e6d4cf4",
-          "src/data/qualified-listings.js": "4a41d8b254005b3e38e7d2d18a17c89f1211a345",
-          "src/data/ranking-annual.json": "fe18f2f060268f2914748bdecd9dc2cf99007321",
-          "src/data/ranking-ftse.json": "701312f59f9372db718a9645adaf47f8bf2ef7b8",
-          "src/data/ranking-histories.json": "92c006b0e2dceaa1ba7a12aafd1b8d38ee2a5d3d",
-          "src/data/ranking-index-annual.json": "d696559f46c59c7b9b4af685f4de38ff36ab5921",
-          "src/data/regulatory-data.js": "334e20ed46db54c190d24b9302afd4cecdc84434",
-          "src/data/resource-selections.js": "0f5df8adca3ef691f06be46128bba32a0165be73",
-          "src/data/review-catalog.js": "bb9b246096c59b7c1aa3a9f3181c4a6ed32b9c49",
-          "src/data/review-projection.js": "862339bf3fbfa0c53ebb8244a9c5a81103dcc250",
-          "src/data/reviewed-broker-profiles.json": "943fa864d56082d74b500c35205470cb26fd46a6",
-          "src/data/round3-fund-sheets.js": "4a6f47af95a8a0ec5e21baf2fb5a2983df651c9a",
-          "src/data/routing-presentation-facts.js": "357460dd7d9d5ef1f1aef2b70c43a86b0d9a24a7",
-          "src/data/routing-presentations.js": "d6a57b40c18746b99616579a90c348e1bee4e236",
-          "src/data/scpi.js": "700e40f1ce305f7a86f9a5f53d5d30f5ac8781a9",
-          "src/data/search-text.js": "3e0f1faa6eea3fc0921a4a254469ee2b84d08b9e",
-          "src/data/shared-index-history.js": "a002f454c774af9474302e2e064615b84c203367",
-          "src/data/simulation-links.js": "d62d38e367c9390041be93c8269106a7b5104669",
-          "src/data/simulation-links.json": "24f70c56238cd0bded64f47cac7243aa56b8455b",
-          "src/data/simulation-proxies.js": "3f26f3ca36ffd41120bf5d170f8cd564cb6ae57b",
-          "src/data/supporting-evidence.js": "49e7a34d4319de1a12653d41f22ef504157cd984",
-          "src/data/tool-links.js": "346ef895fa18c6bc1725d60b18214b02ae97f375",
-          "src/data/tool-links.json": "69dd7dc0c5904aaa6ca6b2eaba55d7cbfc50fd70",
-          "src/data/vanguard-equity-underliers.json": "c042895b190476f2f69ea5c1e4aee4f266e370af",
-          "src/data/verified-returns.js": "c7c27ab3a0b263a531889568c147f7f95b0d2af5",
-          "src/data/world-factor-additions.js": "2f8aeef16c9d47e81d70f7a91de4beab007e425b",
-          "src/data/worldbank-gold-monthly.json": "9130eced22c23ec98efd5832148eca21f4e2f446"
-        },
-        "schemaVersion": 1
-      },
-      "publishedCodeSha": "98a0ab7916d07fc2cf15b4934572ff5adf6045ff",
-      "publishedDataSha": "98a0ab7916d07fc2cf15b4934572ff5adf6045ff"
+      }
     },
     "update-company-analysis.yml": {
       "monitorVersion": 2,
@@ -5731,10 +5466,10 @@
       "dataFailures": {}
     }
   },
-  "updatedAt": "2026-10-19T16:24:34Z",
+  "updatedAt": "2026-10-19T16:32:44Z",
   "monitoring": {
     "schemaVersion": 1,
-    "checkedAt": "2026-10-19T16:34:10.521893+00:00",
+    "checkedAt": "2026-10-19T16:35:02.887638+00:00",
     "revision": 153,
     "active": {
       "checks:update-practical-sheets.yml": {
@@ -5752,7 +5487,7 @@
         "cause": "deploy / build : Run node scripts/test-portfolio-roadmap.mjs",
         "id": "checks:update-practical-sheets.yml",
         "firstSeenAt": "2026-10-19T06:06:04.353814+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-editorial-radar.yml:radar:etf": {
         "name": "Radar · etf",
@@ -5772,7 +5507,7 @@
         "dataId": "radar:etf",
         "id": "collection:update-editorial-radar.yml:radar:etf",
         "firstSeenAt": "2026-10-19T15:42:20.977180+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-publication-observations.yml:anniversary-nasdaq100": {
         "name": "anniversary-nasdaq100",
@@ -5793,7 +5528,7 @@
         "dataId": "anniversary-nasdaq100",
         "id": "collection:update-publication-observations.yml:anniversary-nasdaq100",
         "firstSeenAt": "2026-10-19T15:54:22.458211+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "workflow:update-insurance.yml": {
         "name": "Présentations d’assurance-vie",
@@ -5810,7 +5545,7 @@
         "cause": "refresh : Commit validated observations",
         "id": "workflow:update-insurance.yml",
         "firstSeenAt": "2026-10-19T14:49:45.463160+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-scpi.yml:corum-origin": {
         "name": "CORUM Origin",
@@ -5834,7 +5569,7 @@
         "dataId": "corum-origin",
         "id": "collection:update-scpi.yml:corum-origin",
         "firstSeenAt": "2026-10-19T15:16:47.245028+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-scpi.yml:corum-xl": {
         "name": "CORUM XL",
@@ -5858,7 +5593,7 @@
         "dataId": "corum-xl",
         "id": "collection:update-scpi.yml:corum-xl",
         "firstSeenAt": "2026-10-19T15:16:47.245028+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-scpi.yml:corum-eurion": {
         "name": "CORUM Eurion",
@@ -5882,7 +5617,7 @@
         "dataId": "corum-eurion",
         "id": "collection:update-scpi.yml:corum-eurion",
         "firstSeenAt": "2026-10-19T15:16:47.245028+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "workflow:collect-etf-pilot.yml": {
         "name": "ETF et compositions d’indices",
@@ -5901,7 +5636,7 @@
         "cause": "refresh : Commit validated observations",
         "id": "workflow:collect-etf-pilot.yml",
         "firstSeenAt": "2026-10-19T14:41:01.356253+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-market-monthly.yml:history:fx:TWD": {
         "name": "history:fx:TWD",
@@ -5913,10 +5648,10 @@
         ],
         "impactScope": "collector",
         "workflow": "update-market-monthly.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39264456173",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39278915588",
         "to": "/donnees-a-revoir",
         "lastSuccessAt": "2026-10-18T16:00:42Z",
-        "completedAt": "2026-10-19T14:25:21Z",
+        "completedAt": "2026-10-19T16:32:44Z",
         "cause": "The read operation timed out",
         "field": "Change",
         "sourceUrls": [],
@@ -5924,7 +5659,7 @@
         "dataId": "history:fx:TWD",
         "id": "collection:update-market-monthly.yml:history:fx:TWD",
         "firstSeenAt": "2026-10-19T05:58:42.740410+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-depth-observation:alphabet:history": {
         "name": "alphabet",
@@ -5944,7 +5679,7 @@
         "dataId": "company-depth-observation:alphabet:history",
         "id": "collection:update-company-analysis.yml:company-depth-observation:alphabet:history",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-depth-observation:visa:history": {
         "name": "visa",
@@ -5964,7 +5699,7 @@
         "dataId": "company-depth-observation:visa:history",
         "id": "collection:update-company-analysis.yml:company-depth-observation:visa:history",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-depth-observation:netflix:depth": {
         "name": "netflix",
@@ -5984,7 +5719,7 @@
         "dataId": "company-depth-observation:netflix:depth",
         "id": "collection:update-company-analysis.yml:company-depth-observation:netflix:depth",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-depth-observation:deere:history": {
         "name": "deere",
@@ -6004,7 +5739,7 @@
         "dataId": "company-depth-observation:deere:history",
         "id": "collection:update-company-analysis.yml:company-depth-observation:deere:history",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-depth-observation:deere:depth": {
         "name": "deere",
@@ -6024,7 +5759,7 @@
         "dataId": "company-depth-observation:deere:depth",
         "id": "collection:update-company-analysis.yml:company-depth-observation:deere:depth",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-observation:alphabet:historySupplement": {
         "name": "alphabet",
@@ -6044,7 +5779,7 @@
         "dataId": "company-observation:alphabet:historySupplement",
         "id": "collection:update-company-analysis.yml:company-observation:alphabet:historySupplement",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-observation:alphabet:targetCashReference": {
         "name": "alphabet",
@@ -6064,7 +5799,7 @@
         "dataId": "company-observation:alphabet:targetCashReference",
         "id": "collection:update-company-analysis.yml:company-observation:alphabet:targetCashReference",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-observation:alphabet:valuationShareBasis": {
         "name": "alphabet",
@@ -6084,7 +5819,7 @@
         "dataId": "company-observation:alphabet:valuationShareBasis",
         "id": "collection:update-company-analysis.yml:company-observation:alphabet:valuationShareBasis",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-observation:amazon:valuationShareBasis": {
         "name": "amazon",
@@ -6104,7 +5839,7 @@
         "dataId": "company-observation:amazon:valuationShareBasis",
         "id": "collection:update-company-analysis.yml:company-observation:amazon:valuationShareBasis",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-observation:amazon:targetCashReference": {
         "name": "amazon",
@@ -6124,7 +5859,7 @@
         "dataId": "company-observation:amazon:targetCashReference",
         "id": "collection:update-company-analysis.yml:company-observation:amazon:targetCashReference",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-observation:lvmh:targetForecast": {
         "name": "lvmh",
@@ -6144,7 +5879,7 @@
         "dataId": "company-observation:lvmh:targetForecast",
         "id": "collection:update-company-analysis.yml:company-observation:lvmh:targetForecast",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-observation:lvmh:estimates": {
         "name": "lvmh",
@@ -6164,7 +5899,7 @@
         "dataId": "company-observation:lvmh:estimates",
         "id": "collection:update-company-analysis.yml:company-observation:lvmh:estimates",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-observation:air-liquide:targetForecast": {
         "name": "air-liquide",
@@ -6184,7 +5919,7 @@
         "dataId": "company-observation:air-liquide:targetForecast",
         "id": "collection:update-company-analysis.yml:company-observation:air-liquide:targetForecast",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-observation:air-liquide:targetCashReference": {
         "name": "air-liquide",
@@ -6204,7 +5939,7 @@
         "dataId": "company-observation:air-liquide:targetCashReference",
         "id": "collection:update-company-analysis.yml:company-observation:air-liquide:targetCashReference",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-observation:air-liquide:valuationShareBasis": {
         "name": "air-liquide",
@@ -6224,7 +5959,7 @@
         "dataId": "company-observation:air-liquide:valuationShareBasis",
         "id": "collection:update-company-analysis.yml:company-observation:air-liquide:valuationShareBasis",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-observation:air-liquide:estimates": {
         "name": "air-liquide",
@@ -6244,7 +5979,7 @@
         "dataId": "company-observation:air-liquide:estimates",
         "id": "collection:update-company-analysis.yml:company-observation:air-liquide:estimates",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-observation:schneider:targetForecast": {
         "name": "schneider",
@@ -6264,7 +5999,7 @@
         "dataId": "company-observation:schneider:targetForecast",
         "id": "collection:update-company-analysis.yml:company-observation:schneider:targetForecast",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-observation:schneider:estimates": {
         "name": "schneider",
@@ -6284,7 +6019,7 @@
         "dataId": "company-observation:schneider:estimates",
         "id": "collection:update-company-analysis.yml:company-observation:schneider:estimates",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-observation:totalenergies:targetCashReference": {
         "name": "totalenergies",
@@ -6304,7 +6039,7 @@
         "dataId": "company-observation:totalenergies:targetCashReference",
         "id": "collection:update-company-analysis.yml:company-observation:totalenergies:targetCashReference",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-observation:totalenergies:valuationShareBasis": {
         "name": "totalenergies",
@@ -6324,7 +6059,7 @@
         "dataId": "company-observation:totalenergies:valuationShareBasis",
         "id": "collection:update-company-analysis.yml:company-observation:totalenergies:valuationShareBasis",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-observation:visa:historySupplement": {
         "name": "visa",
@@ -6344,7 +6079,7 @@
         "dataId": "company-observation:visa:historySupplement",
         "id": "collection:update-company-analysis.yml:company-observation:visa:historySupplement",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-observation:visa:valuationShareBasis": {
         "name": "visa",
@@ -6364,7 +6099,7 @@
         "dataId": "company-observation:visa:valuationShareBasis",
         "id": "collection:update-company-analysis.yml:company-observation:visa:valuationShareBasis",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-observation:visa:targetCashReference": {
         "name": "visa",
@@ -6384,7 +6119,7 @@
         "dataId": "company-observation:visa:targetCashReference",
         "id": "collection:update-company-analysis.yml:company-observation:visa:targetCashReference",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-observation:meta:valuationShareBasis": {
         "name": "meta",
@@ -6404,7 +6139,7 @@
         "dataId": "company-observation:meta:valuationShareBasis",
         "id": "collection:update-company-analysis.yml:company-observation:meta:valuationShareBasis",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-observation:meta:targetCashReference": {
         "name": "meta",
@@ -6424,7 +6159,7 @@
         "dataId": "company-observation:meta:targetCashReference",
         "id": "collection:update-company-analysis.yml:company-observation:meta:targetCashReference",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-observation:servicenow:targetCashReference": {
         "name": "servicenow",
@@ -6444,7 +6179,7 @@
         "dataId": "company-observation:servicenow:targetCashReference",
         "id": "collection:update-company-analysis.yml:company-observation:servicenow:targetCashReference",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-observation:servicenow:valuationShareBasis": {
         "name": "servicenow",
@@ -6464,7 +6199,7 @@
         "dataId": "company-observation:servicenow:valuationShareBasis",
         "id": "collection:update-company-analysis.yml:company-observation:servicenow:valuationShareBasis",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-observation:walmart:targetCashReference": {
         "name": "walmart",
@@ -6484,7 +6219,7 @@
         "dataId": "company-observation:walmart:targetCashReference",
         "id": "collection:update-company-analysis.yml:company-observation:walmart:targetCashReference",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-observation:walmart:valuationShareBasis": {
         "name": "walmart",
@@ -6504,7 +6239,7 @@
         "dataId": "company-observation:walmart:valuationShareBasis",
         "id": "collection:update-company-analysis.yml:company-observation:walmart:valuationShareBasis",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-observation:netflix:targetCashReference": {
         "name": "netflix",
@@ -6524,7 +6259,7 @@
         "dataId": "company-observation:netflix:targetCashReference",
         "id": "collection:update-company-analysis.yml:company-observation:netflix:targetCashReference",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-observation:netflix:valuationShareBasis": {
         "name": "netflix",
@@ -6544,7 +6279,7 @@
         "dataId": "company-observation:netflix:valuationShareBasis",
         "id": "collection:update-company-analysis.yml:company-observation:netflix:valuationShareBasis",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-observation:booking:valuationShareBasis": {
         "name": "booking",
@@ -6564,7 +6299,7 @@
         "dataId": "company-observation:booking:valuationShareBasis",
         "id": "collection:update-company-analysis.yml:company-observation:booking:valuationShareBasis",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-observation:booking:targetCashReference": {
         "name": "booking",
@@ -6584,7 +6319,7 @@
         "dataId": "company-observation:booking:targetCashReference",
         "id": "collection:update-company-analysis.yml:company-observation:booking:targetCashReference",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-observation:deere:historySupplement": {
         "name": "deere",
@@ -6604,7 +6339,7 @@
         "dataId": "company-observation:deere:historySupplement",
         "id": "collection:update-company-analysis.yml:company-observation:deere:historySupplement",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-observation:deere:valuationShareBasis": {
         "name": "deere",
@@ -6624,7 +6359,7 @@
         "dataId": "company-observation:deere:valuationShareBasis",
         "id": "collection:update-company-analysis.yml:company-observation:deere:valuationShareBasis",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-observation:deere:targetCashReference": {
         "name": "deere",
@@ -6644,7 +6379,7 @@
         "dataId": "company-observation:deere:targetCashReference",
         "id": "collection:update-company-analysis.yml:company-observation:deere:targetCashReference",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-universe-observation:pg:accounts": {
         "name": "pg",
@@ -6664,7 +6399,7 @@
         "dataId": "company-universe-observation:pg:accounts",
         "id": "collection:update-company-analysis.yml:company-universe-observation:pg:accounts",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-universe-observation:jnj:accounts": {
         "name": "jnj",
@@ -6684,7 +6419,7 @@
         "dataId": "company-universe-observation:jnj:accounts",
         "id": "collection:update-company-analysis.yml:company-universe-observation:jnj:accounts",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-universe-observation:mrk:quarter": {
         "name": "mrk",
@@ -6704,7 +6439,7 @@
         "dataId": "company-universe-observation:mrk:quarter",
         "id": "collection:update-company-analysis.yml:company-universe-observation:mrk:quarter",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-universe-observation:mrk:cashBasis": {
         "name": "mrk",
@@ -6724,7 +6459,7 @@
         "dataId": "company-universe-observation:mrk:cashBasis",
         "id": "collection:update-company-analysis.yml:company-universe-observation:mrk:cashBasis",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-universe-observation:gild:forecast": {
         "name": "gild",
@@ -6744,7 +6479,7 @@
         "dataId": "company-universe-observation:gild:forecast",
         "id": "collection:update-company-analysis.yml:company-universe-observation:gild:forecast",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-universe-observation:abt:accounts": {
         "name": "abt",
@@ -6764,7 +6499,7 @@
         "dataId": "company-universe-observation:abt:accounts",
         "id": "collection:update-company-analysis.yml:company-universe-observation:abt:accounts",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-universe-observation:dhr:cashBasis": {
         "name": "dhr",
@@ -6784,7 +6519,7 @@
         "dataId": "company-universe-observation:dhr:cashBasis",
         "id": "collection:update-company-analysis.yml:company-universe-observation:dhr:cashBasis",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-universe-observation:fdx:cashBasis": {
         "name": "fdx",
@@ -6804,7 +6539,7 @@
         "dataId": "company-universe-observation:fdx:cashBasis",
         "id": "collection:update-company-analysis.yml:company-universe-observation:fdx:cashBasis",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-universe-observation:csx:cashBasis": {
         "name": "csx",
@@ -6824,7 +6559,7 @@
         "dataId": "company-universe-observation:csx:cashBasis",
         "id": "collection:update-company-analysis.yml:company-universe-observation:csx:cashBasis",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-universe-observation:emr:accounts": {
         "name": "emr",
@@ -6844,7 +6579,7 @@
         "dataId": "company-universe-observation:emr:accounts",
         "id": "collection:update-company-analysis.yml:company-universe-observation:emr:accounts",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-universe-observation:hon:cashBasis": {
         "name": "hon",
@@ -6864,7 +6599,7 @@
         "dataId": "company-universe-observation:hon:cashBasis",
         "id": "collection:update-company-analysis.yml:company-universe-observation:hon:cashBasis",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-universe-observation:ibm:cashBasis": {
         "name": "ibm",
@@ -6884,7 +6619,7 @@
         "dataId": "company-universe-observation:ibm:cashBasis",
         "id": "collection:update-company-analysis.yml:company-universe-observation:ibm:cashBasis",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-universe-observation:klac:cashBasis": {
         "name": "klac",
@@ -6904,7 +6639,7 @@
         "dataId": "company-universe-observation:klac:cashBasis",
         "id": "collection:update-company-analysis.yml:company-universe-observation:klac:cashBasis",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-universe-observation:intc:cashReference": {
         "name": "intc",
@@ -6924,7 +6659,7 @@
         "dataId": "company-universe-observation:intc:cashReference",
         "id": "collection:update-company-analysis.yml:company-universe-observation:intc:cashReference",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-universe-observation:oxy:accounts": {
         "name": "oxy",
@@ -6944,7 +6679,7 @@
         "dataId": "company-universe-observation:oxy:accounts",
         "id": "collection:update-company-analysis.yml:company-universe-observation:oxy:accounts",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-universe-observation:oxy:cashBasis": {
         "name": "oxy",
@@ -6964,7 +6699,7 @@
         "dataId": "company-universe-observation:oxy:cashBasis",
         "id": "collection:update-company-analysis.yml:company-universe-observation:oxy:cashBasis",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-universe-observation:t:accounts": {
         "name": "t",
@@ -6984,7 +6719,7 @@
         "dataId": "company-universe-observation:t:accounts",
         "id": "collection:update-company-analysis.yml:company-universe-observation:t:accounts",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-universe-observation:t:cashBasis": {
         "name": "t",
@@ -7004,7 +6739,7 @@
         "dataId": "company-universe-observation:t:cashBasis",
         "id": "collection:update-company-analysis.yml:company-universe-observation:t:cashBasis",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-universe-observation:cmcsa:cashBasis": {
         "name": "cmcsa",
@@ -7024,7 +6759,7 @@
         "dataId": "company-universe-observation:cmcsa:cashBasis",
         "id": "collection:update-company-analysis.yml:company-universe-observation:cmcsa:cashBasis",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-universe-observation:spgi:quarter": {
         "name": "spgi",
@@ -7044,7 +6779,7 @@
         "dataId": "company-universe-observation:spgi:quarter",
         "id": "collection:update-company-analysis.yml:company-universe-observation:spgi:quarter",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-universe-observation:spgi:cashBasis": {
         "name": "spgi",
@@ -7064,7 +6799,7 @@
         "dataId": "company-universe-observation:spgi:cashBasis",
         "id": "collection:update-company-analysis.yml:company-universe-observation:spgi:cashBasis",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-universe-observation:cdns:quarter": {
         "name": "cdns",
@@ -7084,7 +6819,7 @@
         "dataId": "company-universe-observation:cdns:quarter",
         "id": "collection:update-company-analysis.yml:company-universe-observation:cdns:quarter",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-universe-observation:ctsh:quarter": {
         "name": "ctsh",
@@ -7104,7 +6839,7 @@
         "dataId": "company-universe-observation:ctsh:quarter",
         "id": "collection:update-company-analysis.yml:company-universe-observation:ctsh:quarter",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-universe-observation:lii:quarter": {
         "name": "lii",
@@ -7124,7 +6859,7 @@
         "dataId": "company-universe-observation:lii:quarter",
         "id": "collection:update-company-analysis.yml:company-universe-observation:lii:quarter",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-universe-observation:pool:quarter": {
         "name": "pool",
@@ -7144,7 +6879,7 @@
         "dataId": "company-universe-observation:pool:quarter",
         "id": "collection:update-company-analysis.yml:company-universe-observation:pool:quarter",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-universe-observation:ppg:quarter": {
         "name": "ppg",
@@ -7164,7 +6899,7 @@
         "dataId": "company-universe-observation:ppg:quarter",
         "id": "collection:update-company-analysis.yml:company-universe-observation:ppg:quarter",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-universe-observation:vmc:quarter": {
         "name": "vmc",
@@ -7184,7 +6919,7 @@
         "dataId": "company-universe-observation:vmc:quarter",
         "id": "collection:update-company-analysis.yml:company-universe-observation:vmc:quarter",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-universe-observation:ter:forecast": {
         "name": "ter",
@@ -7204,7 +6939,7 @@
         "dataId": "company-universe-observation:ter:forecast",
         "id": "collection:update-company-analysis.yml:company-universe-observation:ter:forecast",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-universe-observation:dov:quarter": {
         "name": "dov",
@@ -7224,7 +6959,7 @@
         "dataId": "company-universe-observation:dov:quarter",
         "id": "collection:update-company-analysis.yml:company-universe-observation:dov:quarter",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-universe-observation:wat:quarter": {
         "name": "wat",
@@ -7244,7 +6979,7 @@
         "dataId": "company-universe-observation:wat:quarter",
         "id": "collection:update-company-analysis.yml:company-universe-observation:wat:quarter",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-universe-observation:it:quarter": {
         "name": "it",
@@ -7264,7 +6999,7 @@
         "dataId": "company-universe-observation:it:quarter",
         "id": "collection:update-company-analysis.yml:company-universe-observation:it:quarter",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-universe-observation:ste:forecast": {
         "name": "ste",
@@ -7284,7 +7019,7 @@
         "dataId": "company-universe-observation:ste:forecast",
         "id": "collection:update-company-analysis.yml:company-universe-observation:ste:forecast",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-universe-observation:lh:cashBasis": {
         "name": "lh",
@@ -7304,7 +7039,7 @@
         "dataId": "company-universe-observation:lh:cashBasis",
         "id": "collection:update-company-analysis.yml:company-universe-observation:lh:cashBasis",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-universe-observation:coo:cashBasis": {
         "name": "coo",
@@ -7324,7 +7059,7 @@
         "dataId": "company-universe-observation:coo:cashBasis",
         "id": "collection:update-company-analysis.yml:company-universe-observation:coo:cashBasis",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-universe-observation:tech:forecast": {
         "name": "tech",
@@ -7344,7 +7079,7 @@
         "dataId": "company-universe-observation:tech:forecast",
         "id": "collection:update-company-analysis.yml:company-universe-observation:tech:forecast",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-universe-observation:tech:accounts": {
         "name": "tech",
@@ -7364,7 +7099,7 @@
         "dataId": "company-universe-observation:tech:accounts",
         "id": "collection:update-company-analysis.yml:company-universe-observation:tech:accounts",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-universe-observation:tech:cashBasis": {
         "name": "tech",
@@ -7384,7 +7119,7 @@
         "dataId": "company-universe-observation:tech:cashBasis",
         "id": "collection:update-company-analysis.yml:company-universe-observation:tech:cashBasis",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-universe-observation:clx:forecast": {
         "name": "clx",
@@ -7404,7 +7139,7 @@
         "dataId": "company-universe-observation:clx:forecast",
         "id": "collection:update-company-analysis.yml:company-universe-observation:clx:forecast",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-universe-observation:sjm:quarter": {
         "name": "sjm",
@@ -7424,7 +7159,7 @@
         "dataId": "company-universe-observation:sjm:quarter",
         "id": "collection:update-company-analysis.yml:company-universe-observation:sjm:quarter",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-universe-observation:mkc:cashBasis": {
         "name": "mkc",
@@ -7444,7 +7179,7 @@
         "dataId": "company-universe-observation:mkc:cashBasis",
         "id": "collection:update-company-analysis.yml:company-universe-observation:mkc:cashBasis",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-universe-observation:wsm:cashBasis": {
         "name": "wsm",
@@ -7464,7 +7199,7 @@
         "dataId": "company-universe-observation:wsm:cashBasis",
         "id": "collection:update-company-analysis.yml:company-universe-observation:wsm:cashBasis",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-universe-observation:nvr:forecast": {
         "name": "nvr",
@@ -7484,7 +7219,7 @@
         "dataId": "company-universe-observation:nvr:forecast",
         "id": "collection:update-company-analysis.yml:company-universe-observation:nvr:forecast",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-universe-observation:len:quarter": {
         "name": "len",
@@ -7504,7 +7239,7 @@
         "dataId": "company-universe-observation:len:quarter",
         "id": "collection:update-company-analysis.yml:company-universe-observation:len:quarter",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-universe-observation:len:cashBasis": {
         "name": "len",
@@ -7524,7 +7259,7 @@
         "dataId": "company-universe-observation:len:cashBasis",
         "id": "collection:update-company-analysis.yml:company-universe-observation:len:cashBasis",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-universe-observation:len:forecast": {
         "name": "len",
@@ -7544,7 +7279,7 @@
         "dataId": "company-universe-observation:len:forecast",
         "id": "collection:update-company-analysis.yml:company-universe-observation:len:forecast",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-universe-observation:tol:forecast": {
         "name": "tol",
@@ -7564,7 +7299,7 @@
         "dataId": "company-universe-observation:tol:forecast",
         "id": "collection:update-company-analysis.yml:company-universe-observation:tol:forecast",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-universe-observation:rpm:accounts": {
         "name": "rpm",
@@ -7584,7 +7319,7 @@
         "dataId": "company-universe-observation:rpm:accounts",
         "id": "collection:update-company-analysis.yml:company-universe-observation:rpm:accounts",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-universe-observation:shw:cashBasis": {
         "name": "shw",
@@ -7604,7 +7339,7 @@
         "dataId": "company-universe-observation:shw:cashBasis",
         "id": "collection:update-company-analysis.yml:company-universe-observation:shw:cashBasis",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-universe-observation:fast:cashBasis": {
         "name": "fast",
@@ -7624,7 +7359,7 @@
         "dataId": "company-universe-observation:fast:cashBasis",
         "id": "collection:update-company-analysis.yml:company-universe-observation:fast:cashBasis",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-universe-observation:sna:quarter": {
         "name": "sna",
@@ -7644,7 +7379,7 @@
         "dataId": "company-universe-observation:sna:quarter",
         "id": "collection:update-company-analysis.yml:company-universe-observation:sna:quarter",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-universe-observation:vrsk:quarter": {
         "name": "vrsk",
@@ -7664,7 +7399,7 @@
         "dataId": "company-universe-observation:vrsk:quarter",
         "id": "collection:update-company-analysis.yml:company-universe-observation:vrsk:quarter",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-universe-observation:cprt:cashBasis": {
         "name": "cprt",
@@ -7684,7 +7419,7 @@
         "dataId": "company-universe-observation:cprt:cashBasis",
         "id": "collection:update-company-analysis.yml:company-universe-observation:cprt:cashBasis",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-universe-observation:odfl:cashBasis": {
         "name": "odfl",
@@ -7704,7 +7439,7 @@
         "dataId": "company-universe-observation:odfl:cashBasis",
         "id": "collection:update-company-analysis.yml:company-universe-observation:odfl:cashBasis",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-universe-observation:mas:quarter": {
         "name": "mas",
@@ -7724,7 +7459,7 @@
         "dataId": "company-universe-observation:mas:quarter",
         "id": "collection:update-company-analysis.yml:company-universe-observation:mas:quarter",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-universe-observation:j:cashBasis": {
         "name": "j",
@@ -7744,7 +7479,7 @@
         "dataId": "company-universe-observation:j:cashBasis",
         "id": "collection:update-company-analysis.yml:company-universe-observation:j:cashBasis",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-universe-observation:eme:forecast": {
         "name": "eme",
@@ -7764,7 +7499,7 @@
         "dataId": "company-universe-observation:eme:forecast",
         "id": "collection:update-company-analysis.yml:company-universe-observation:eme:forecast",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-universe-observation:pnr:accounts": {
         "name": "pnr",
@@ -7784,7 +7519,7 @@
         "dataId": "company-universe-observation:pnr:accounts",
         "id": "collection:update-company-analysis.yml:company-universe-observation:pnr:accounts",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-universe-observation:itt:quarter": {
         "name": "itt",
@@ -7804,7 +7539,7 @@
         "dataId": "company-universe-observation:itt:quarter",
         "id": "collection:update-company-analysis.yml:company-universe-observation:itt:quarter",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-universe-observation:gww:accounts": {
         "name": "gww",
@@ -7824,7 +7559,7 @@
         "dataId": "company-universe-observation:gww:accounts",
         "id": "collection:update-company-analysis.yml:company-universe-observation:gww:accounts",
         "firstSeenAt": "2026-10-18T21:33:40.615626+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-depth-observation:sbux:depth": {
         "name": "sbux",
@@ -7844,7 +7579,7 @@
         "dataId": "company-depth-observation:sbux:depth",
         "id": "collection:update-company-analysis.yml:company-depth-observation:sbux:depth",
         "firstSeenAt": "2026-10-19T16:14:54.415036+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-depth-observation:rsg:depth": {
         "name": "rsg",
@@ -7864,7 +7599,7 @@
         "dataId": "company-depth-observation:rsg:depth",
         "id": "collection:update-company-analysis.yml:company-depth-observation:rsg:depth",
         "firstSeenAt": "2026-10-19T16:14:54.415036+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-depth-observation:adi:depth": {
         "name": "adi",
@@ -7884,7 +7619,7 @@
         "dataId": "company-depth-observation:adi:depth",
         "id": "collection:update-company-analysis.yml:company-depth-observation:adi:depth",
         "firstSeenAt": "2026-10-19T16:14:54.415036+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-depth-observation:cvx:depth": {
         "name": "cvx",
@@ -7904,7 +7639,7 @@
         "dataId": "company-depth-observation:cvx:depth",
         "id": "collection:update-company-analysis.yml:company-depth-observation:cvx:depth",
         "firstSeenAt": "2026-10-19T16:14:54.415036+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-depth-observation:hlt:depth": {
         "name": "hlt",
@@ -7924,7 +7659,7 @@
         "dataId": "company-depth-observation:hlt:depth",
         "id": "collection:update-company-analysis.yml:company-depth-observation:hlt:depth",
         "firstSeenAt": "2026-10-19T16:14:54.415036+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-depth-observation:rost:depth": {
         "name": "rost",
@@ -7944,7 +7679,7 @@
         "dataId": "company-depth-observation:rost:depth",
         "id": "collection:update-company-analysis.yml:company-depth-observation:rost:depth",
         "firstSeenAt": "2026-10-19T16:14:54.415036+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-depth-observation:dg:depth": {
         "name": "dg",
@@ -7964,7 +7699,7 @@
         "dataId": "company-depth-observation:dg:depth",
         "id": "collection:update-company-analysis.yml:company-depth-observation:dg:depth",
         "firstSeenAt": "2026-10-19T16:14:54.415036+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-depth-observation:jkhy:depth": {
         "name": "jkhy",
@@ -7984,7 +7719,7 @@
         "dataId": "company-depth-observation:jkhy:depth",
         "id": "collection:update-company-analysis.yml:company-depth-observation:jkhy:depth",
         "firstSeenAt": "2026-10-19T16:14:54.415036+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-depth-observation:snps:depth": {
         "name": "snps",
@@ -8004,7 +7739,7 @@
         "dataId": "company-depth-observation:snps:depth",
         "id": "collection:update-company-analysis.yml:company-depth-observation:snps:depth",
         "firstSeenAt": "2026-10-19T16:14:54.415036+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-depth-observation:fico:depth": {
         "name": "fico",
@@ -8024,7 +7759,7 @@
         "dataId": "company-depth-observation:fico:depth",
         "id": "collection:update-company-analysis.yml:company-depth-observation:fico:depth",
         "firstSeenAt": "2026-10-19T16:14:54.415036+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-depth-observation:akam:depth": {
         "name": "akam",
@@ -8044,7 +7779,7 @@
         "dataId": "company-depth-observation:akam:depth",
         "id": "collection:update-company-analysis.yml:company-depth-observation:akam:depth",
         "firstSeenAt": "2026-10-19T16:14:54.415036+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-depth-observation:tyl:depth": {
         "name": "tyl",
@@ -8064,7 +7799,7 @@
         "dataId": "company-depth-observation:tyl:depth",
         "id": "collection:update-company-analysis.yml:company-depth-observation:tyl:depth",
         "firstSeenAt": "2026-10-19T16:14:54.415036+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-depth-observation:br:depth": {
         "name": "br",
@@ -8084,7 +7819,7 @@
         "dataId": "company-depth-observation:br:depth",
         "id": "collection:update-company-analysis.yml:company-depth-observation:br:depth",
         "firstSeenAt": "2026-10-19T16:14:54.415036+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-depth-observation:payc:depth": {
         "name": "payc",
@@ -8104,7 +7839,7 @@
         "dataId": "company-depth-observation:payc:depth",
         "id": "collection:update-company-analysis.yml:company-depth-observation:payc:depth",
         "firstSeenAt": "2026-10-19T16:14:54.415036+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-depth-observation:ame:depth": {
         "name": "ame",
@@ -8124,7 +7859,7 @@
         "dataId": "company-depth-observation:ame:depth",
         "id": "collection:update-company-analysis.yml:company-depth-observation:ame:depth",
         "firstSeenAt": "2026-10-19T16:14:54.415036+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-depth-observation:chrw:depth": {
         "name": "chrw",
@@ -8144,7 +7879,7 @@
         "dataId": "company-depth-observation:chrw:depth",
         "id": "collection:update-company-analysis.yml:company-depth-observation:chrw:depth",
         "firstSeenAt": "2026-10-19T16:14:54.415036+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-depth-observation:expd:depth": {
         "name": "expd",
@@ -8164,7 +7899,7 @@
         "dataId": "company-depth-observation:expd:depth",
         "id": "collection:update-company-analysis.yml:company-depth-observation:expd:depth",
         "firstSeenAt": "2026-10-19T16:14:54.415036+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-depth-observation:pwr:depth": {
         "name": "pwr",
@@ -8184,7 +7919,7 @@
         "dataId": "company-depth-observation:pwr:depth",
         "id": "collection:update-company-analysis.yml:company-depth-observation:pwr:depth",
         "firstSeenAt": "2026-10-19T16:14:54.415036+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-depth-observation:jbht:depth": {
         "name": "jbht",
@@ -8204,7 +7939,7 @@
         "dataId": "company-depth-observation:jbht:depth",
         "id": "collection:update-company-analysis.yml:company-depth-observation:jbht:depth",
         "firstSeenAt": "2026-10-19T16:14:54.415036+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-depth-observation:tt:depth": {
         "name": "tt",
@@ -8224,7 +7959,7 @@
         "dataId": "company-depth-observation:tt:depth",
         "id": "collection:update-company-analysis.yml:company-depth-observation:tt:depth",
         "firstSeenAt": "2026-10-19T16:14:54.415036+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-depth-observation:regn:depth": {
         "name": "regn",
@@ -8244,7 +7979,7 @@
         "dataId": "company-depth-observation:regn:depth",
         "id": "collection:update-company-analysis.yml:company-depth-observation:regn:depth",
         "firstSeenAt": "2026-10-19T16:14:54.415036+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-depth-observation:vrtx:depth": {
         "name": "vrtx",
@@ -8264,7 +7999,7 @@
         "dataId": "company-depth-observation:vrtx:depth",
         "id": "collection:update-company-analysis.yml:company-depth-observation:vrtx:depth",
         "firstSeenAt": "2026-10-19T16:14:54.415036+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-depth-observation:idxx:depth": {
         "name": "idxx",
@@ -8284,7 +8019,7 @@
         "dataId": "company-depth-observation:idxx:depth",
         "id": "collection:update-company-analysis.yml:company-depth-observation:idxx:depth",
         "firstSeenAt": "2026-10-19T16:14:54.415036+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-depth-observation:ew:depth": {
         "name": "ew",
@@ -8304,7 +8039,7 @@
         "dataId": "company-depth-observation:ew:depth",
         "id": "collection:update-company-analysis.yml:company-depth-observation:ew:depth",
         "firstSeenAt": "2026-10-19T16:14:54.415036+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-depth-observation:mtd:depth": {
         "name": "mtd",
@@ -8324,7 +8059,7 @@
         "dataId": "company-depth-observation:mtd:depth",
         "id": "collection:update-company-analysis.yml:company-depth-observation:mtd:depth",
         "firstSeenAt": "2026-10-19T16:14:54.415036+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-depth-observation:lulu:depth": {
         "name": "lulu",
@@ -8344,7 +8079,7 @@
         "dataId": "company-depth-observation:lulu:depth",
         "id": "collection:update-company-analysis.yml:company-depth-observation:lulu:depth",
         "firstSeenAt": "2026-10-19T16:14:54.415036+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-depth-observation:dhi:depth": {
         "name": "dhi",
@@ -8364,7 +8099,7 @@
         "dataId": "company-depth-observation:dhi:depth",
         "id": "collection:update-company-analysis.yml:company-depth-observation:dhi:depth",
         "firstSeenAt": "2026-10-19T16:14:54.415036+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-depth-observation:phm:depth": {
         "name": "phm",
@@ -8384,7 +8119,7 @@
         "dataId": "company-depth-observation:phm:depth",
         "id": "collection:update-company-analysis.yml:company-depth-observation:phm:depth",
         "firstSeenAt": "2026-10-19T16:14:54.415036+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-depth-observation:dpz:depth": {
         "name": "dpz",
@@ -8404,7 +8139,7 @@
         "dataId": "company-depth-observation:dpz:depth",
         "id": "collection:update-company-analysis.yml:company-depth-observation:dpz:depth",
         "firstSeenAt": "2026-10-19T16:14:54.415036+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-depth-observation:ulta:depth": {
         "name": "ulta",
@@ -8424,7 +8159,7 @@
         "dataId": "company-depth-observation:ulta:depth",
         "id": "collection:update-company-analysis.yml:company-depth-observation:ulta:depth",
         "firstSeenAt": "2026-10-19T16:14:54.415036+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-depth-observation:grmn:depth": {
         "name": "grmn",
@@ -8444,7 +8179,7 @@
         "dataId": "company-depth-observation:grmn:depth",
         "id": "collection:update-company-analysis.yml:company-depth-observation:grmn:depth",
         "firstSeenAt": "2026-10-19T16:14:54.415036+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-depth-observation:ecl:depth": {
         "name": "ecl",
@@ -8464,7 +8199,7 @@
         "dataId": "company-depth-observation:ecl:depth",
         "id": "collection:update-company-analysis.yml:company-depth-observation:ecl:depth",
         "firstSeenAt": "2026-10-19T16:14:54.415036+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-depth-observation:mpwr:depth": {
         "name": "mpwr",
@@ -8484,7 +8219,7 @@
         "dataId": "company-depth-observation:mpwr:depth",
         "id": "collection:update-company-analysis.yml:company-depth-observation:mpwr:depth",
         "firstSeenAt": "2026-10-19T16:14:54.415036+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-depth-observation:avy:depth": {
         "name": "avy",
@@ -8504,7 +8239,7 @@
         "dataId": "company-depth-observation:avy:depth",
         "id": "collection:update-company-analysis.yml:company-depth-observation:avy:depth",
         "firstSeenAt": "2026-10-19T16:14:54.415036+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-depth-observation:ter:depth": {
         "name": "ter",
@@ -8524,7 +8259,7 @@
         "dataId": "company-depth-observation:ter:depth",
         "id": "collection:update-company-analysis.yml:company-depth-observation:ter:depth",
         "firstSeenAt": "2026-10-19T16:14:54.415036+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-depth-observation:swks:depth": {
         "name": "swks",
@@ -8544,7 +8279,7 @@
         "dataId": "company-depth-observation:swks:depth",
         "id": "collection:update-company-analysis.yml:company-depth-observation:swks:depth",
         "firstSeenAt": "2026-10-19T16:14:54.415036+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-depth-observation:aos:depth": {
         "name": "aos",
@@ -8564,7 +8299,7 @@
         "dataId": "company-depth-observation:aos:depth",
         "id": "collection:update-company-analysis.yml:company-depth-observation:aos:depth",
         "firstSeenAt": "2026-10-19T16:14:54.415036+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-depth-observation:rol:depth": {
         "name": "rol",
@@ -8584,7 +8319,7 @@
         "dataId": "company-depth-observation:rol:depth",
         "id": "collection:update-company-analysis.yml:company-depth-observation:rol:depth",
         "firstSeenAt": "2026-10-19T16:14:54.415036+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-depth-observation:chd:depth": {
         "name": "chd",
@@ -8604,7 +8339,7 @@
         "dataId": "company-depth-observation:chd:depth",
         "id": "collection:update-company-analysis.yml:company-depth-observation:chd:depth",
         "firstSeenAt": "2026-10-19T16:14:54.415036+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-depth-observation:rmd:depth": {
         "name": "rmd",
@@ -8624,7 +8359,7 @@
         "dataId": "company-depth-observation:rmd:depth",
         "id": "collection:update-company-analysis.yml:company-depth-observation:rmd:depth",
         "firstSeenAt": "2026-10-19T16:14:54.415036+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-depth-observation:hrl:depth": {
         "name": "hrl",
@@ -8644,7 +8379,7 @@
         "dataId": "company-depth-observation:hrl:depth",
         "id": "collection:update-company-analysis.yml:company-depth-observation:hrl:depth",
         "firstSeenAt": "2026-10-19T16:14:54.415036+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-depth-observation:gpc:depth": {
         "name": "gpc",
@@ -8664,7 +8399,7 @@
         "dataId": "company-depth-observation:gpc:depth",
         "id": "collection:update-company-analysis.yml:company-depth-observation:gpc:depth",
         "firstSeenAt": "2026-10-19T16:14:54.415036+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-depth-observation:lkq:depth": {
         "name": "lkq",
@@ -8684,7 +8419,7 @@
         "dataId": "company-depth-observation:lkq:depth",
         "id": "collection:update-company-analysis.yml:company-depth-observation:lkq:depth",
         "firstSeenAt": "2026-10-19T16:14:54.415036+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-depth-observation:iex:depth": {
         "name": "iex",
@@ -8704,7 +8439,7 @@
         "dataId": "company-depth-observation:iex:depth",
         "id": "collection:update-company-analysis.yml:company-depth-observation:iex:depth",
         "firstSeenAt": "2026-10-19T16:14:54.415036+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-depth-observation:ndsn:depth": {
         "name": "ndsn",
@@ -8724,7 +8459,7 @@
         "dataId": "company-depth-observation:ndsn:depth",
         "id": "collection:update-company-analysis.yml:company-depth-observation:ndsn:depth",
         "firstSeenAt": "2026-10-19T16:14:54.415036+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-depth-observation:ggg:depth": {
         "name": "ggg",
@@ -8744,7 +8479,7 @@
         "dataId": "company-depth-observation:ggg:depth",
         "id": "collection:update-company-analysis.yml:company-depth-observation:ggg:depth",
         "firstSeenAt": "2026-10-19T16:14:54.415036+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-depth-observation:rhi:depth": {
         "name": "rhi",
@@ -8764,7 +8499,7 @@
         "dataId": "company-depth-observation:rhi:depth",
         "id": "collection:update-company-analysis.yml:company-depth-observation:rhi:depth",
         "firstSeenAt": "2026-10-19T16:14:54.415036+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-depth-observation:msci:depth": {
         "name": "msci",
@@ -8784,7 +8519,7 @@
         "dataId": "company-depth-observation:msci:depth",
         "id": "collection:update-company-analysis.yml:company-depth-observation:msci:depth",
         "firstSeenAt": "2026-10-19T16:14:54.415036+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-depth-observation:swk:depth": {
         "name": "swk",
@@ -8804,7 +8539,7 @@
         "dataId": "company-depth-observation:swk:depth",
         "id": "collection:update-company-analysis.yml:company-depth-observation:swk:depth",
         "firstSeenAt": "2026-10-19T16:14:54.415036+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-depth-observation:ffiv:depth": {
         "name": "ffiv",
@@ -8824,7 +8559,7 @@
         "dataId": "company-depth-observation:ffiv:depth",
         "id": "collection:update-company-analysis.yml:company-depth-observation:ffiv:depth",
         "firstSeenAt": "2026-10-19T16:14:54.415036+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-depth-observation:cdw:depth": {
         "name": "cdw",
@@ -8844,7 +8579,7 @@
         "dataId": "company-depth-observation:cdw:depth",
         "id": "collection:update-company-analysis.yml:company-depth-observation:cdw:depth",
         "firstSeenAt": "2026-10-19T16:14:54.415036+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-depth-observation:epam:depth": {
         "name": "epam",
@@ -8864,7 +8599,7 @@
         "dataId": "company-depth-observation:epam:depth",
         "id": "collection:update-company-analysis.yml:company-depth-observation:epam:depth",
         "firstSeenAt": "2026-10-19T16:14:54.415036+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-depth-observation:fix:depth": {
         "name": "fix",
@@ -8884,7 +8619,7 @@
         "dataId": "company-depth-observation:fix:depth",
         "id": "collection:update-company-analysis.yml:company-depth-observation:fix:depth",
         "firstSeenAt": "2026-10-19T16:14:54.415036+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-depth-observation:leco:depth": {
         "name": "leco",
@@ -8904,7 +8639,7 @@
         "dataId": "company-depth-observation:leco:depth",
         "id": "collection:update-company-analysis.yml:company-depth-observation:leco:depth",
         "firstSeenAt": "2026-10-19T16:14:54.415036+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-depth-observation:wcc:depth": {
         "name": "wcc",
@@ -8924,7 +8659,7 @@
         "dataId": "company-depth-observation:wcc:depth",
         "id": "collection:update-company-analysis.yml:company-depth-observation:wcc:depth",
         "firstSeenAt": "2026-10-19T16:14:54.415036+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-universe-observation:spgi:accounts": {
         "name": "spgi",
@@ -8944,7 +8679,7 @@
         "dataId": "company-universe-observation:spgi:accounts",
         "id": "collection:update-company-analysis.yml:company-universe-observation:spgi:accounts",
         "firstSeenAt": "2026-10-19T16:14:54.415036+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-universe-observation:cdns:accounts": {
         "name": "cdns",
@@ -8964,7 +8699,7 @@
         "dataId": "company-universe-observation:cdns:accounts",
         "id": "collection:update-company-analysis.yml:company-universe-observation:cdns:accounts",
         "firstSeenAt": "2026-10-19T16:14:54.415036+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-universe-observation:ctsh:accounts": {
         "name": "ctsh",
@@ -8984,7 +8719,7 @@
         "dataId": "company-universe-observation:ctsh:accounts",
         "id": "collection:update-company-analysis.yml:company-universe-observation:ctsh:accounts",
         "firstSeenAt": "2026-10-19T16:14:54.415036+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-universe-observation:lii:accounts": {
         "name": "lii",
@@ -9004,7 +8739,7 @@
         "dataId": "company-universe-observation:lii:accounts",
         "id": "collection:update-company-analysis.yml:company-universe-observation:lii:accounts",
         "firstSeenAt": "2026-10-19T16:14:54.415036+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-universe-observation:pool:accounts": {
         "name": "pool",
@@ -9024,7 +8759,7 @@
         "dataId": "company-universe-observation:pool:accounts",
         "id": "collection:update-company-analysis.yml:company-universe-observation:pool:accounts",
         "firstSeenAt": "2026-10-19T16:14:54.415036+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-universe-observation:ppg:accounts": {
         "name": "ppg",
@@ -9044,7 +8779,7 @@
         "dataId": "company-universe-observation:ppg:accounts",
         "id": "collection:update-company-analysis.yml:company-universe-observation:ppg:accounts",
         "firstSeenAt": "2026-10-19T16:14:54.415036+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-universe-observation:vmc:accounts": {
         "name": "vmc",
@@ -9064,7 +8799,7 @@
         "dataId": "company-universe-observation:vmc:accounts",
         "id": "collection:update-company-analysis.yml:company-universe-observation:vmc:accounts",
         "firstSeenAt": "2026-10-19T16:14:54.415036+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-universe-observation:clx:accounts": {
         "name": "clx",
@@ -9084,7 +8819,7 @@
         "dataId": "company-universe-observation:clx:accounts",
         "id": "collection:update-company-analysis.yml:company-universe-observation:clx:accounts",
         "firstSeenAt": "2026-10-19T16:14:54.415036+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-universe-observation:vrsk:accounts": {
         "name": "vrsk",
@@ -9104,7 +8839,7 @@
         "dataId": "company-universe-observation:vrsk:accounts",
         "id": "collection:update-company-analysis.yml:company-universe-observation:vrsk:accounts",
         "firstSeenAt": "2026-10-19T16:14:54.415036+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-universe-observation:fds:accounts": {
         "name": "fds",
@@ -9124,7 +8859,7 @@
         "dataId": "company-universe-observation:fds:accounts",
         "id": "collection:update-company-analysis.yml:company-universe-observation:fds:accounts",
         "firstSeenAt": "2026-10-19T16:14:54.415036+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-company-analysis.yml:company-universe-observation:mas:accounts": {
         "name": "mas",
@@ -9144,7 +8879,7 @@
         "dataId": "company-universe-observation:mas:accounts",
         "id": "collection:update-company-analysis.yml:company-universe-observation:mas:accounts",
         "firstSeenAt": "2026-10-19T16:14:54.415036+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "checks:update-economic-data.yml": {
         "name": "Taux d’épargne, ménages, SCPI et fonds euros",
@@ -9162,7 +8897,7 @@
         "cause": "deploy / build : Run node scripts/test-portfolio-roadmap.mjs",
         "id": "checks:update-economic-data.yml",
         "firstSeenAt": "2026-10-19T06:06:04.353814+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-qualified-exposures.yml:dca-holdings:IE00BLNMYC90": {
         "name": "Xtrackers S&P 500 Equal Weight UCITS ETF 1C",
@@ -9191,7 +8926,7 @@
         "dataId": "dca-holdings:IE00BLNMYC90",
         "id": "collection:update-qualified-exposures.yml:dca-holdings:IE00BLNMYC90",
         "firstSeenAt": "2026-10-19T16:21:46.234624+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-qualified-exposures.yml:dca-holdings:IE00BM67HK77": {
         "name": "Xtrackers MSCI World Health Care UCITS ETF",
@@ -9220,7 +8955,7 @@
         "dataId": "dca-holdings:IE00BM67HK77",
         "id": "collection:update-qualified-exposures.yml:dca-holdings:IE00BM67HK77",
         "firstSeenAt": "2026-10-19T16:21:46.234624+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-qualified-exposures.yml:dca-holdings:IE00BM67HS53": {
         "name": "Xtrackers MSCI World Materials UCITS ETF",
@@ -9248,7 +8983,7 @@
         "dataId": "dca-holdings:IE00BM67HS53",
         "id": "collection:update-qualified-exposures.yml:dca-holdings:IE00BM67HS53",
         "firstSeenAt": "2026-10-19T16:21:46.234624+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-qualified-exposures.yml:dca-holdings:IE00BM67HQ30": {
         "name": "Xtrackers MSCI World Utilities UCITS ETF",
@@ -9275,7 +9010,7 @@
         "dataId": "dca-holdings:IE00BM67HQ30",
         "id": "collection:update-qualified-exposures.yml:dca-holdings:IE00BM67HQ30",
         "firstSeenAt": "2026-10-19T16:21:46.234624+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-qualified-exposures.yml:dca-holdings:IE000L6ZMMC4": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -9300,7 +9035,7 @@
         "dataId": "dca-holdings:IE000L6ZMMC4",
         "id": "collection:update-qualified-exposures.yml:dca-holdings:IE000L6ZMMC4",
         "firstSeenAt": "2026-10-19T16:21:46.234624+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-qualified-exposures.yml:dca-holdings:IE00BTJRMP35": {
         "name": "Xtrackers MSCI Emerging Markets UCITS ETF",
@@ -9328,7 +9063,7 @@
         "dataId": "dca-holdings:IE00BTJRMP35",
         "id": "collection:update-qualified-exposures.yml:dca-holdings:IE00BTJRMP35",
         "firstSeenAt": "2026-10-19T16:21:46.234624+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-qualified-exposures.yml:dca-holdings:IE00BM67HV82": {
         "name": "Xtrackers MSCI World Industrials UCITS ETF 1C",
@@ -9355,7 +9090,7 @@
         "dataId": "dca-holdings:IE00BM67HV82",
         "id": "collection:update-qualified-exposures.yml:dca-holdings:IE00BM67HV82",
         "firstSeenAt": "2026-10-19T16:21:46.234624+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-instrument-metadata.yml:FR0007056841:pea": {
         "name": "Amundi Dow Jones Industrial Average UCITS ETF Dist",
@@ -9382,7 +9117,7 @@
         "dataId": "FR0007056841:pea",
         "id": "collection:update-instrument-metadata.yml:FR0007056841:pea",
         "firstSeenAt": "2026-10-18T21:44:28.941152+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-instrument-metadata.yml:IE00BLNMYC90:pea": {
         "name": "Xtrackers S&P 500 Equal Weight UCITS ETF 1C",
@@ -9411,7 +9146,7 @@
         "dataId": "IE00BLNMYC90:pea",
         "id": "collection:update-instrument-metadata.yml:IE00BLNMYC90:pea",
         "firstSeenAt": "2026-10-18T21:44:28.941152+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-instrument-metadata.yml:IE00B2NPKV68:pea": {
         "name": "iShares J.P. Morgan $ EM Bond UCITS ETF USD (Dist)",
@@ -9441,7 +9176,7 @@
         "dataId": "IE00B2NPKV68:pea",
         "id": "collection:update-instrument-metadata.yml:IE00B2NPKV68:pea",
         "firstSeenAt": "2026-10-18T21:44:28.941152+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-instrument-metadata.yml:IE00B1FZS913:pea": {
         "name": "iShares € Govt Bond 15-30yr UCITS ETF EUR (Dist)",
@@ -9471,7 +9206,7 @@
         "dataId": "IE00B1FZS913:pea",
         "id": "collection:update-instrument-metadata.yml:IE00B1FZS913:pea",
         "firstSeenAt": "2026-10-18T21:44:28.941152+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-instrument-metadata.yml:IE0006WW1TQ4:pea": {
         "name": "Xtrackers MSCI World ex USA UCITS ETF 1C",
@@ -9503,7 +9238,7 @@
         "dataId": "IE0006WW1TQ4:pea",
         "id": "collection:update-instrument-metadata.yml:IE0006WW1TQ4:pea",
         "firstSeenAt": "2026-10-18T21:44:28.941152+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-instrument-metadata.yml:LU0290358497:pea": {
         "name": "Xtrackers II EUR Overnight Rate Swap UCITS ETF 1C",
@@ -9532,7 +9267,7 @@
         "dataId": "LU0290358497:pea",
         "id": "collection:update-instrument-metadata.yml:LU0290358497:pea",
         "firstSeenAt": "2026-10-18T21:44:28.941152+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-instrument-metadata.yml:IE00B3FH7618:pea": {
         "name": "iShares € Govt Bond 0-1yr UCITS ETF EUR (Dist)",
@@ -9561,7 +9296,7 @@
         "dataId": "IE00B3FH7618:pea",
         "id": "collection:update-instrument-metadata.yml:IE00B3FH7618:pea",
         "firstSeenAt": "2026-10-18T21:44:28.941152+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-instrument-metadata.yml:IE00BDBRDM35:pea": {
         "name": "iShares Core Global Aggregate Bond UCITS ETF EUR Hedged (Acc)",
@@ -9590,7 +9325,7 @@
         "dataId": "IE00BDBRDM35:pea",
         "id": "collection:update-instrument-metadata.yml:IE00BDBRDM35:pea",
         "firstSeenAt": "2026-10-18T21:44:28.941152+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-instrument-metadata.yml:IE00BZCQB185:pea": {
         "name": "iShares MSCI India UCITS ETF USD (Acc)",
@@ -9619,7 +9354,7 @@
         "dataId": "IE00BZCQB185:pea",
         "id": "collection:update-instrument-metadata.yml:IE00BZCQB185:pea",
         "firstSeenAt": "2026-10-18T21:44:28.941152+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-instrument-metadata.yml:IE00B1FZS467:pea": {
         "name": "iShares Global Infrastructure UCITS ETF USD (Dist)",
@@ -9648,7 +9383,7 @@
         "dataId": "IE00B1FZS467:pea",
         "id": "collection:update-instrument-metadata.yml:IE00B1FZS467:pea",
         "firstSeenAt": "2026-10-18T21:44:28.941152+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-instrument-metadata.yml:DE000A27Z304:listings": {
         "name": "Bitwise Physical Bitcoin ETP",
@@ -9676,7 +9411,7 @@
         "dataId": "DE000A27Z304:listings",
         "id": "collection:update-instrument-metadata.yml:DE000A27Z304:listings",
         "firstSeenAt": "2026-10-18T21:44:28.941152+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-instrument-metadata.yml:FR0011550193:listings": {
         "name": "BNP Paribas Easy STOXX Europe 600 UCITS ETF",
@@ -9707,7 +9442,7 @@
         "dataId": "FR0011550193:listings",
         "id": "collection:update-instrument-metadata.yml:FR0011550193:listings",
         "firstSeenAt": "2026-10-18T21:44:28.941152+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-instrument-metadata.yml:IE00B0M62X26:pea": {
         "name": "iShares € Inflation Linked Govt Bond UCITS ETF",
@@ -9737,7 +9472,7 @@
         "dataId": "IE00B0M62X26:pea",
         "id": "collection:update-instrument-metadata.yml:IE00B0M62X26:pea",
         "firstSeenAt": "2026-10-18T21:44:28.941152+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-instrument-metadata.yml:IE00B4L5Y983:pea": {
         "name": "iShares Core MSCI World UCITS ETF (Acc)",
@@ -9767,7 +9502,7 @@
         "dataId": "IE00B4L5Y983:pea",
         "id": "collection:update-instrument-metadata.yml:IE00B4L5Y983:pea",
         "firstSeenAt": "2026-10-18T21:44:28.941152+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-instrument-metadata.yml:IE00B579F325:listings": {
         "name": "Invesco Physical Gold ETC",
@@ -9794,7 +9529,7 @@
         "dataId": "IE00B579F325:listings",
         "id": "collection:update-instrument-metadata.yml:IE00B579F325:listings",
         "firstSeenAt": "2026-10-18T21:44:28.941152+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-instrument-metadata.yml:IE00BD6FTQ80:listings": {
         "name": "Invesco Bloomberg Commodity UCITS ETF",
@@ -9820,7 +9555,7 @@
         "dataId": "IE00BD6FTQ80:listings",
         "id": "collection:update-instrument-metadata.yml:IE00BD6FTQ80:listings",
         "firstSeenAt": "2026-10-18T21:44:28.941152+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-instrument-metadata.yml:IE00BF4RFH31:pea": {
         "name": "iShares MSCI World Small Cap UCITS ETF",
@@ -9850,7 +9585,7 @@
         "dataId": "IE00BF4RFH31:pea",
         "id": "collection:update-instrument-metadata.yml:IE00BF4RFH31:pea",
         "firstSeenAt": "2026-10-18T21:44:28.941152+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-instrument-metadata.yml:IE00BMG6Z448:pea": {
         "name": "iShares MSCI EM ex-China UCITS ETF (Acc)",
@@ -9881,7 +9616,7 @@
         "dataId": "IE00BMG6Z448:pea",
         "id": "collection:update-instrument-metadata.yml:IE00BMG6Z448:pea",
         "firstSeenAt": "2026-10-18T21:44:28.941152+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-instrument-metadata.yml:IE0006WW1TQ4:listings": {
         "name": "Xtrackers MSCI World ex USA UCITS ETF 1C",
@@ -9913,7 +9648,7 @@
         "dataId": "IE0006WW1TQ4:listings",
         "id": "collection:update-instrument-metadata.yml:IE0006WW1TQ4:listings",
         "firstSeenAt": "2026-10-18T21:44:28.941152+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-instrument-metadata.yml:IE00BF0M2Z96:listings": {
         "name": "L&G Battery Value-Chain UCITS ETF",
@@ -9941,7 +9676,7 @@
         "dataId": "IE00BF0M2Z96:listings",
         "id": "collection:update-instrument-metadata.yml:IE00BF0M2Z96:listings",
         "firstSeenAt": "2026-10-18T21:44:28.941152+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "collection:update-instrument-metadata.yml:IE00BK5BCD43:listings": {
         "name": "L&G Artificial Intelligence UCITS ETF",
@@ -9969,7 +9704,7 @@
         "dataId": "IE00BK5BCD43:listings",
         "id": "collection:update-instrument-metadata.yml:IE00BK5BCD43:listings",
         "firstSeenAt": "2026-10-18T21:44:28.941152+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "unobserved:onboard-assets.yml": {
         "name": "Intégration des nouveaux actifs",
@@ -9993,7 +9728,7 @@
         "cause": "Aucune exécution terminée avec une date exploitable.",
         "id": "unobserved:onboard-assets.yml",
         "firstSeenAt": "2026-10-18T12:02:38.068054+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "radar:f6405f2a9d4b0c7a08c7de71": {
         "name": "SPDR € Corp Bond UCITS ETF",
@@ -10015,7 +9750,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-16) : Poids des dix premières lignes. Dernière observation conservée ; propositions archivées (etf:IE00B3T9LM79:top10:0261a38d6b954a5f4e504dab:2026-10-16).",
         "id": "radar:f6405f2a9d4b0c7a08c7de71",
         "firstSeenAt": "2026-10-19T16:21:46.234624+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "radar:c7b1732a42726b944665076c": {
         "name": "Xtrackers S&P 500 Equal Weight UCITS ETF 1C",
@@ -10039,7 +9774,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-16) : Poids du pays United States. Dernière observation conservée ; propositions archivées (etf:IE00BLNMYC90:countries:United States:8abd3910625177898532bf9d:2026-10-16).",
         "id": "radar:c7b1732a42726b944665076c",
         "firstSeenAt": "2026-10-19T16:21:46.234624+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "radar:683c4eed3bbdf57a8f7ef083": {
         "name": "Xtrackers S&P 500 Equal Weight UCITS ETF 1C",
@@ -10063,7 +9798,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-16) : Poids du pays Ireland. Dernière observation conservée ; propositions archivées (etf:IE00BLNMYC90:countries:Ireland:8abd3910625177898532bf9d:2026-10-16).",
         "id": "radar:683c4eed3bbdf57a8f7ef083",
         "firstSeenAt": "2026-10-19T16:21:46.234624+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "radar:b3f26a537fffd1de9781154b": {
         "name": "Xtrackers S&P 500 Equal Weight UCITS ETF 1C",
@@ -10087,7 +9822,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-16) : Poids du pays Switzerland. Dernière observation conservée ; propositions archivées (etf:IE00BLNMYC90:countries:Switzerland:8abd3910625177898532bf9d:2026-10-16).",
         "id": "radar:b3f26a537fffd1de9781154b",
         "firstSeenAt": "2026-10-19T16:21:46.234624+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "radar:5ce34e8d3d062245557487d2": {
         "name": "Xtrackers S&P 500 Equal Weight UCITS ETF 1C",
@@ -10111,7 +9846,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-16) : Poids du pays Bermuda. Dernière observation conservée ; propositions archivées (etf:IE00BLNMYC90:countries:Bermuda:8abd3910625177898532bf9d:2026-10-16).",
         "id": "radar:5ce34e8d3d062245557487d2",
         "firstSeenAt": "2026-10-19T16:21:46.234624+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "radar:a4bec2303589b87365daef7b": {
         "name": "Xtrackers S&P 500 Equal Weight UCITS ETF 1C",
@@ -10135,7 +9870,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-16) : Poids du pays United Kingdom. Dernière observation conservée ; propositions archivées (etf:IE00BLNMYC90:countries:United Kingdom:8abd3910625177898532bf9d:2026-10-16).",
         "id": "radar:a4bec2303589b87365daef7b",
         "firstSeenAt": "2026-10-19T16:21:46.234624+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "radar:5b34c2378800780647a5e122": {
         "name": "Xtrackers S&P 500 Equal Weight UCITS ETF 1C",
@@ -10159,7 +9894,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-16) : Poids du pays Canada. Dernière observation conservée ; propositions archivées (etf:IE00BLNMYC90:countries:Canada:8abd3910625177898532bf9d:2026-10-16).",
         "id": "radar:5b34c2378800780647a5e122",
         "firstSeenAt": "2026-10-19T16:21:46.234624+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "radar:d2c5dec8813e674a51cfe6ce": {
         "name": "Xtrackers S&P 500 Equal Weight UCITS ETF 1C",
@@ -10183,7 +9918,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-16) : Poids du pays Singapore. Dernière observation conservée ; propositions archivées (etf:IE00BLNMYC90:countries:Singapore:8abd3910625177898532bf9d:2026-10-16).",
         "id": "radar:d2c5dec8813e674a51cfe6ce",
         "firstSeenAt": "2026-10-19T16:21:46.234624+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "radar:a9475291638d89c62b2af0dc": {
         "name": "Xtrackers S&P 500 Equal Weight UCITS ETF 1C",
@@ -10207,7 +9942,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-16) : Poids du secteur Industrials. Dernière observation conservée ; propositions archivées (etf:IE00BLNMYC90:sectors:Industrials:8abd3910625177898532bf9d:2026-10-16).",
         "id": "radar:a9475291638d89c62b2af0dc",
         "firstSeenAt": "2026-10-19T16:21:46.234624+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "radar:385a5e71cd93db4f556584d2": {
         "name": "Xtrackers S&P 500 Equal Weight UCITS ETF 1C",
@@ -10231,7 +9966,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-16) : Poids du secteur Information Technology. Dernière observation conservée ; propositions archivées (etf:IE00BLNMYC90:sectors:Information Technology:8abd3910625177898532bf9d:2026-10-16).",
         "id": "radar:385a5e71cd93db4f556584d2",
         "firstSeenAt": "2026-10-19T16:21:46.234624+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "radar:0dbf9cf41f0ac66a8aec276c": {
         "name": "Xtrackers S&P 500 Equal Weight UCITS ETF 1C",
@@ -10255,7 +9990,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-16) : Poids du secteur Materials. Dernière observation conservée ; propositions archivées (etf:IE00BLNMYC90:sectors:Materials:8abd3910625177898532bf9d:2026-10-16).",
         "id": "radar:0dbf9cf41f0ac66a8aec276c",
         "firstSeenAt": "2026-10-19T16:21:46.234624+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "radar:6765aa747a59252129c2ed3b": {
         "name": "Xtrackers S&P 500 Equal Weight UCITS ETF 1C",
@@ -10279,7 +10014,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-16) : Poids du secteur Communication Services. Dernière observation conservée ; propositions archivées (etf:IE00BLNMYC90:sectors:Communication Services:8abd3910625177898532bf9d:2026-10-16).",
         "id": "radar:6765aa747a59252129c2ed3b",
         "firstSeenAt": "2026-10-19T16:21:46.234624+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "radar:a2c0c07f651a114bad82a328": {
         "name": "Xtrackers MSCI World ex USA UCITS ETF 1C",
@@ -10306,7 +10041,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-16) : Poids du pays United Kingdom. Dernière observation conservée ; propositions archivées (etf:IE0006WW1TQ4:countries:United Kingdom:896eb444159fd8c94545e70e:2026-10-16).",
         "id": "radar:a2c0c07f651a114bad82a328",
         "firstSeenAt": "2026-10-19T16:21:46.234624+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "radar:94e69d2a41174261e0d15a1f": {
         "name": "Xtrackers MSCI World ex USA UCITS ETF 1C",
@@ -10333,7 +10068,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-16) : Poids du pays France. Dernière observation conservée ; propositions archivées (etf:IE0006WW1TQ4:countries:France:896eb444159fd8c94545e70e:2026-10-16).",
         "id": "radar:94e69d2a41174261e0d15a1f",
         "firstSeenAt": "2026-10-19T16:21:46.234624+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "radar:dc8e46ca6092f19618b9358c": {
         "name": "Xtrackers MSCI World ex USA UCITS ETF 1C",
@@ -10360,7 +10095,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-16) : Poids du pays Netherlands. Dernière observation conservée ; propositions archivées (etf:IE0006WW1TQ4:countries:Netherlands:896eb444159fd8c94545e70e:2026-10-16).",
         "id": "radar:dc8e46ca6092f19618b9358c",
         "firstSeenAt": "2026-10-19T16:21:46.234624+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "radar:65199d0ce77f31a8f73f929c": {
         "name": "Xtrackers MSCI World ex USA UCITS ETF 1C",
@@ -10387,7 +10122,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-16) : Poids du pays Sweden. Dernière observation conservée ; propositions archivées (etf:IE0006WW1TQ4:countries:Sweden:896eb444159fd8c94545e70e:2026-10-16).",
         "id": "radar:65199d0ce77f31a8f73f929c",
         "firstSeenAt": "2026-10-19T16:21:46.234624+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "radar:309beeefe1cb0634bc7b49bf": {
         "name": "Xtrackers MSCI World ex USA UCITS ETF 1C",
@@ -10414,7 +10149,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-16) : Poids du pays Luxembourg. Dernière observation conservée ; propositions archivées (etf:IE0006WW1TQ4:countries:Luxembourg:896eb444159fd8c94545e70e:2026-10-16).",
         "id": "radar:309beeefe1cb0634bc7b49bf",
         "firstSeenAt": "2026-10-19T16:21:46.234624+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "radar:ff1999bfdd0b0ef625c6a024": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -10434,7 +10169,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-16) : Poids du pays United States. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:United States:630657e8b950b3715e6c0f9a:2026-10-16).",
         "id": "radar:ff1999bfdd0b0ef625c6a024",
         "firstSeenAt": "2026-10-19T16:21:46.234624+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "radar:9936ab6bf3a8c112f2aefa31": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -10454,7 +10189,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-16) : Poids du pays United Kingdom. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:United Kingdom:630657e8b950b3715e6c0f9a:2026-10-16).",
         "id": "radar:9936ab6bf3a8c112f2aefa31",
         "firstSeenAt": "2026-10-19T16:21:46.234624+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "radar:a32166e8a00d11a81dcd3491": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -10474,7 +10209,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-16) : Poids du pays China. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:China:630657e8b950b3715e6c0f9a:2026-10-16).",
         "id": "radar:a32166e8a00d11a81dcd3491",
         "firstSeenAt": "2026-10-19T16:21:46.234624+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "radar:810f7ce9cfe99fa08326aa5d": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -10494,7 +10229,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-16) : Poids du pays Switzerland. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Switzerland:630657e8b950b3715e6c0f9a:2026-10-16).",
         "id": "radar:810f7ce9cfe99fa08326aa5d",
         "firstSeenAt": "2026-10-19T16:21:46.234624+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "radar:a9aec5b1a78aa4d0e66d2987": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -10514,7 +10249,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-16) : Poids du pays France. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:France:630657e8b950b3715e6c0f9a:2026-10-16).",
         "id": "radar:a9aec5b1a78aa4d0e66d2987",
         "firstSeenAt": "2026-10-19T16:21:46.234624+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "radar:83534eaaf47a220bdeaa2221": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -10534,7 +10269,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-16) : Poids du pays Netherlands. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Netherlands:630657e8b950b3715e6c0f9a:2026-10-16).",
         "id": "radar:83534eaaf47a220bdeaa2221",
         "firstSeenAt": "2026-10-19T16:21:46.234624+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "radar:9899d9646709453820ac3596": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -10554,7 +10289,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-16) : Poids du pays Ireland. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Ireland:630657e8b950b3715e6c0f9a:2026-10-16).",
         "id": "radar:9899d9646709453820ac3596",
         "firstSeenAt": "2026-10-19T16:21:46.234624+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "radar:7d077d61971feaad0d93dc20": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -10574,7 +10309,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-16) : Poids du pays Brazil. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Brazil:630657e8b950b3715e6c0f9a:2026-10-16).",
         "id": "radar:7d077d61971feaad0d93dc20",
         "firstSeenAt": "2026-10-19T16:21:46.234624+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "radar:b2707e6bb80ccf4733de7423": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -10594,7 +10329,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-16) : Poids du pays Singapore. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Singapore:630657e8b950b3715e6c0f9a:2026-10-16).",
         "id": "radar:b2707e6bb80ccf4733de7423",
         "firstSeenAt": "2026-10-19T16:21:46.234624+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "radar:d51333e3840a0218a1d0b10d": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -10614,7 +10349,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-16) : Poids du pays Uruguay. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Uruguay:630657e8b950b3715e6c0f9a:2026-10-16).",
         "id": "radar:d51333e3840a0218a1d0b10d",
         "firstSeenAt": "2026-10-19T16:21:46.234624+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "radar:f9bbc4d120bb7dfdee2c4f5a": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -10634,7 +10369,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-16) : Poids du pays Bermuda. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Bermuda:630657e8b950b3715e6c0f9a:2026-10-16).",
         "id": "radar:f9bbc4d120bb7dfdee2c4f5a",
         "firstSeenAt": "2026-10-19T16:21:46.234624+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "radar:2b7da6bdc9f1f76ebd89c13f": {
         "name": "Xtrackers Artificial Intelligence and Big Data UCITS ETF",
@@ -10657,7 +10392,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-16) : Poids du pays United States. Dernière observation conservée ; propositions archivées (etf:IE00BGV5VN51:countries:United States:f9b8ebfcd2d4a3f0bd10cd4f:2026-10-16).",
         "id": "radar:2b7da6bdc9f1f76ebd89c13f",
         "firstSeenAt": "2026-10-19T16:21:46.234624+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "radar:cd846953bf3aeee5db502c4f": {
         "name": "Xtrackers Artificial Intelligence and Big Data UCITS ETF",
@@ -10680,7 +10415,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-16) : Poids du pays Ireland. Dernière observation conservée ; propositions archivées (etf:IE00BGV5VN51:countries:Ireland:f9b8ebfcd2d4a3f0bd10cd4f:2026-10-16).",
         "id": "radar:cd846953bf3aeee5db502c4f",
         "firstSeenAt": "2026-10-19T16:21:46.234624+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "radar:bf6507a03e3c2cef4a27408b": {
         "name": "Xtrackers Artificial Intelligence and Big Data UCITS ETF",
@@ -10703,7 +10438,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-16) : Poids du pays Australia. Dernière observation conservée ; propositions archivées (etf:IE00BGV5VN51:countries:Australia:f9b8ebfcd2d4a3f0bd10cd4f:2026-10-16).",
         "id": "radar:bf6507a03e3c2cef4a27408b",
         "firstSeenAt": "2026-10-19T16:21:46.234624+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "radar:cddc8ed3755942ee4a66f5f3": {
         "name": "Xtrackers MSCI World Health Care UCITS ETF",
@@ -10727,7 +10462,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-16) : Poids du pays United States. Dernière observation conservée ; propositions archivées (etf:IE00BM67HK77:countries:United States:e02e00a632cb2b9e9ddccd1e:2026-10-16).",
         "id": "radar:cddc8ed3755942ee4a66f5f3",
         "firstSeenAt": "2026-10-19T16:21:46.234624+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "radar:20095bdfadf820047f3a92eb": {
         "name": "Xtrackers MSCI World Health Care UCITS ETF",
@@ -10751,7 +10486,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-16) : Poids du pays United Kingdom. Dernière observation conservée ; propositions archivées (etf:IE00BM67HK77:countries:United Kingdom:e02e00a632cb2b9e9ddccd1e:2026-10-16).",
         "id": "radar:20095bdfadf820047f3a92eb",
         "firstSeenAt": "2026-10-19T16:21:46.234624+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "radar:66ba32a7db7fc3d5f96276f3": {
         "name": "Xtrackers MSCI World Health Care UCITS ETF",
@@ -10775,7 +10510,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-16) : Poids du pays Ireland. Dernière observation conservée ; propositions archivées (etf:IE00BM67HK77:countries:Ireland:e02e00a632cb2b9e9ddccd1e:2026-10-16).",
         "id": "radar:66ba32a7db7fc3d5f96276f3",
         "firstSeenAt": "2026-10-19T16:21:46.234624+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "radar:63d66802b37b86fd401b9038": {
         "name": "Xtrackers MSCI World Materials UCITS ETF",
@@ -10798,7 +10533,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-16) : Poids du pays United States. Dernière observation conservée ; propositions archivées (etf:IE00BM67HS53:countries:United States:9e8222db7f15caa14c54cb45:2026-10-16).",
         "id": "radar:63d66802b37b86fd401b9038",
         "firstSeenAt": "2026-10-19T16:21:46.234624+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "radar:162106e2cd0004d9bae412d7": {
         "name": "Xtrackers MSCI World Materials UCITS ETF",
@@ -10821,7 +10556,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-16) : Poids du pays United Kingdom. Dernière observation conservée ; propositions archivées (etf:IE00BM67HS53:countries:United Kingdom:9e8222db7f15caa14c54cb45:2026-10-16).",
         "id": "radar:162106e2cd0004d9bae412d7",
         "firstSeenAt": "2026-10-19T16:21:46.234624+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "radar:28dd403f3d758703bea40529": {
         "name": "Xtrackers MSCI World Materials UCITS ETF",
@@ -10844,7 +10579,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-16) : Poids du pays Switzerland. Dernière observation conservée ; propositions archivées (etf:IE00BM67HS53:countries:Switzerland:9e8222db7f15caa14c54cb45:2026-10-16).",
         "id": "radar:28dd403f3d758703bea40529",
         "firstSeenAt": "2026-10-19T16:21:46.234624+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "radar:830bed008cafa0f5875ec8c3": {
         "name": "Xtrackers MSCI World Materials UCITS ETF",
@@ -10867,7 +10602,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-16) : Poids du pays Ireland. Dernière observation conservée ; propositions archivées (etf:IE00BM67HS53:countries:Ireland:9e8222db7f15caa14c54cb45:2026-10-16).",
         "id": "radar:830bed008cafa0f5875ec8c3",
         "firstSeenAt": "2026-10-19T16:21:46.234624+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "radar:a36781df2fd856945c90776d": {
         "name": "Xtrackers MSCI Emerging Markets UCITS ETF",
@@ -10890,7 +10625,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-16) : Poids du pays China. Dernière observation conservée ; propositions archivées (etf:IE00BTJRMP35:countries:China:9a89e0e64273d8294b2dae58:2026-10-16).",
         "id": "radar:a36781df2fd856945c90776d",
         "firstSeenAt": "2026-10-19T16:21:46.234624+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "radar:8c28f70f80ad400e9f3c084b": {
         "name": "Xtrackers MSCI Emerging Markets UCITS ETF",
@@ -10913,7 +10648,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-16) : Poids du pays Brazil. Dernière observation conservée ; propositions archivées (etf:IE00BTJRMP35:countries:Brazil:9a89e0e64273d8294b2dae58:2026-10-16).",
         "id": "radar:8c28f70f80ad400e9f3c084b",
         "firstSeenAt": "2026-10-19T16:21:46.234624+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "radar:6f4c08e8dec49a27b4bfab90": {
         "name": "Xtrackers MSCI Emerging Markets UCITS ETF",
@@ -10936,7 +10671,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-16) : Poids du pays Ireland. Dernière observation conservée ; propositions archivées (etf:IE00BTJRMP35:countries:Ireland:9a89e0e64273d8294b2dae58:2026-10-16).",
         "id": "radar:6f4c08e8dec49a27b4bfab90",
         "firstSeenAt": "2026-10-19T16:21:46.234624+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "radar:0f6328133ce2481d20c07d8b": {
         "name": "Xtrackers MSCI Emerging Markets UCITS ETF",
@@ -10959,7 +10694,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-16) : Poids du pays Cayman Islands. Dernière observation conservée ; propositions archivées (etf:IE00BTJRMP35:countries:Cayman Islands:9a89e0e64273d8294b2dae58:2026-10-16).",
         "id": "radar:0f6328133ce2481d20c07d8b",
         "firstSeenAt": "2026-10-19T16:21:46.234624+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "radar:be5ba17642819f06aebcc51c": {
         "name": "Xtrackers MSCI World Industrials UCITS ETF 1C",
@@ -10981,7 +10716,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-16) : Poids du pays United States. Dernière observation conservée ; propositions archivées (etf:IE00BM67HV82:countries:United States:f5d10aa5ac6de524b51ebc86:2026-10-16).",
         "id": "radar:be5ba17642819f06aebcc51c",
         "firstSeenAt": "2026-10-19T16:21:46.234624+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "radar:5903d3149f230d1cdb31fe97": {
         "name": "Xtrackers MSCI World Industrials UCITS ETF 1C",
@@ -11003,7 +10738,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-16) : Poids du pays France. Dernière observation conservée ; propositions archivées (etf:IE00BM67HV82:countries:France:f5d10aa5ac6de524b51ebc86:2026-10-16).",
         "id": "radar:5903d3149f230d1cdb31fe97",
         "firstSeenAt": "2026-10-19T16:21:46.234624+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "radar:c3102d6b473f085825959073": {
         "name": "Xtrackers MSCI World Industrials UCITS ETF 1C",
@@ -11025,7 +10760,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-16) : Poids du pays Ireland. Dernière observation conservée ; propositions archivées (etf:IE00BM67HV82:countries:Ireland:f5d10aa5ac6de524b51ebc86:2026-10-16).",
         "id": "radar:c3102d6b473f085825959073",
         "firstSeenAt": "2026-10-19T16:21:46.234624+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "radar:a07d13a1feb610f3bf0972ce": {
         "name": "Xtrackers MSCI World Industrials UCITS ETF 1C",
@@ -11047,7 +10782,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-16) : Poids du pays Netherlands. Dernière observation conservée ; propositions archivées (etf:IE00BM67HV82:countries:Netherlands:f5d10aa5ac6de524b51ebc86:2026-10-16).",
         "id": "radar:a07d13a1feb610f3bf0972ce",
         "firstSeenAt": "2026-10-19T16:21:46.234624+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "radar:6511f2c5d1793b5b35d0930c": {
         "name": "Xtrackers MSCI World Industrials UCITS ETF 1C",
@@ -11069,7 +10804,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-16) : Poids du secteur Industrials. Dernière observation conservée ; propositions archivées (etf:IE00BM67HV82:sectors:Industrials:f5d10aa5ac6de524b51ebc86:2026-10-16).",
         "id": "radar:6511f2c5d1793b5b35d0930c",
         "firstSeenAt": "2026-10-19T16:21:46.234624+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       },
       "radar:7adb8e7ff0f9efa3170116b4": {
         "name": "Xtrackers MSCI World Industrials UCITS ETF 1C",
@@ -11091,7 +10826,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-16) : Poids du secteur Unassigned. Dernière observation conservée ; propositions archivées (etf:IE00BM67HV82:sectors:Unassigned:f5d10aa5ac6de524b51ebc86:2026-10-16).",
         "id": "radar:7adb8e7ff0f9efa3170116b4",
         "firstSeenAt": "2026-10-19T16:21:46.234624+00:00",
-        "lastSeenAt": "2026-10-19T16:34:10.521893+00:00"
+        "lastSeenAt": "2026-10-19T16:35:02.887638+00:00"
       }
     },
     "events": [
@@ -16929,11 +16664,11 @@
     },
     "update-market-monthly.yml": {
       "attempts": [],
-      "reason": "transient-source",
+      "reason": "recording-failed",
       "lastSuccessAt": "2026-10-18T16:00:42Z",
-      "observedRunId": 39264456173,
-      "nextAttemptAt": "2026-10-19T14:40:21+00:00",
-      "status": "awaiting-current-run"
+      "observedRunId": 39278915588,
+      "nextAttemptAt": "2026-10-19T16:47:44+00:00",
+      "status": "waiting"
     },
     "update-bitcoin-monthly.yml": {
       "attempts": [],
