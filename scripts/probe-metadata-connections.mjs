@@ -16,8 +16,7 @@ async function request(isin,url){
  catch(e){manifest.push({isin,requestedUrl:url,error:String(e)});writeFileSync(out+'/manifest.json',JSON.stringify(manifest,null,2))}
 }
 try{
- await request('IE00BD4TXV59','https://www.borsaitaliana.it/borsa/etf/scheda/IE00BD4TXV59-ETFP.html?lang=en')
- const page=await context.newPage(),isin='IE000QDFFK00',url='https://live.euronext.com/en/product/etfs/'+isin+'-XPAR'
+ const page=await context.newPage(),isin='IE00BD4TXV59',url='https://live.euronext.com/en/product/etfs/'+isin+'-ETFP'
  try{const response=await page.goto(url,{timeout:30000,waitUntil:'domcontentloaded'});await page.getByText('Currency',{exact:true}).waitFor({timeout:25000});await save(isin,url,Buffer.from(await page.content()),response.status(),page.url(),'euronext-browser')}catch(e){manifest.push({isin,requestedUrl:url,error:String(e)})}
  await page.close()
 }finally {writeFileSync(out+'/manifest.json',JSON.stringify(manifest,null,2));await browser.close()}
