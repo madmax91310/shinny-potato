@@ -21162,7 +21162,7 @@
       "exportDate": "2026-10-19",
       "exportTimezone": "Europe/Berlin",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/historicaldata/download",
-      "sha256": "0b67d960262f92cc5900a1f842bab6e4058e37982a8242bf764fba64adac6a9c",
+      "sha256": "30c7fb9a1a06ab7185fd58939055562ff515b69f43233c4a6ad6fc9e931f69e7",
       "method": "DWS dated historical fund AUM, all share classes, workbook currency; not exact-share assets",
       "checkedAt": "2026-10-19",
       "modifiedAt": "2026-10-19"
@@ -21171,18 +21171,18 @@
       "asOf": "2026-10-16",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/holdings",
-      "sha256": "b3ff6fdba1285e53ce85e6fdc8615e76700b36bdc01caef3e2e0cbc22ce14f53",
+      "sha256": "dfaf7121c72134a7d70011be449fa9e1dd950b5017c6bc0b2034d44e10eea9d1",
       "complete": true,
       "method": "Full physical securities portfolio; registration country and industry; net cash/derivatives retained",
       "rows": [
         {
           "name": "Industrials",
-          "weightPct": 16.192385,
+          "weightPct": 16.396236,
           "label": "Industrials"
         },
         {
           "name": "Information Technology",
-          "weightPct": 14.924048,
+          "weightPct": 14.749876,
           "label": "Information Technology"
         },
         {
@@ -21217,7 +21217,7 @@
         },
         {
           "name": "Materials",
-          "weightPct": 4.900983,
+          "weightPct": 4.697132,
           "label": "Materials"
         },
         {
@@ -21227,7 +21227,7 @@
         },
         {
           "name": "Communication Services",
-          "weightPct": 3.476456,
+          "weightPct": 3.650628,
           "label": "Communication"
         },
         {
@@ -21248,45 +21248,25 @@
       "asOf": "2026-10-16",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/holdings",
-      "sha256": "b3ff6fdba1285e53ce85e6fdc8615e76700b36bdc01caef3e2e0cbc22ce14f53",
+      "sha256": "dfaf7121c72134a7d70011be449fa9e1dd950b5017c6bc0b2034d44e10eea9d1",
       "complete": true,
       "method": "Full physical securities portfolio; registration country and industry; net cash/derivatives retained",
       "rows": [
         {
           "name": "United States",
-          "weightPct": 95.520918
+          "weightPct": 98.566383
         },
         {
           "name": "Ireland",
-          "weightPct": 2.120416
-        },
-        {
-          "name": "Switzerland",
-          "weightPct": 0.826299
-        },
-        {
-          "name": "Bermuda",
-          "weightPct": 0.421781
-        },
-        {
-          "name": "United Kingdom",
-          "weightPct": 0.414071
+          "weightPct": 1.075693
         },
         {
           "name": "Netherlands",
           "weightPct": 0.205309
         },
         {
-          "name": "Canada",
-          "weightPct": 0.194499
-        },
-        {
           "name": "Cash and/or Derivatives",
           "weightPct": 0.152612
-        },
-        {
-          "name": "Singapore",
-          "weightPct": 0.144093
         }
       ],
       "checkedAt": "2026-10-19",
@@ -21296,35 +21276,35 @@
       "asOf": "2026-10-16",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/holdings",
-      "sha256": "b3ff6fdba1285e53ce85e6fdc8615e76700b36bdc01caef3e2e0cbc22ce14f53",
+      "sha256": "dfaf7121c72134a7d70011be449fa9e1dd950b5017c6bc0b2034d44e10eea9d1",
       "rows": [
         {
-          "name": "Moderna Inc",
+          "name": "MODERNA",
           "isin": "US60770K1079",
           "weightPct": 0.32106664
         },
         {
-          "name": "PTC Inc",
+          "name": "PTC",
           "isin": "US69370C1009",
           "weightPct": 0.29940058
         },
         {
-          "name": "Accenture PLC",
+          "name": "ACCENTURE PLC CLASS A",
           "isin": "IE00B4BNMY34",
           "weightPct": 0.26034006
         },
         {
-          "name": "Illumina Inc",
+          "name": "ILLUMINA INC",
           "isin": "US4523271090",
           "weightPct": 0.25593396
         },
         {
-          "name": "Pure Storage Inc",
+          "name": "EVERPURE INC CLASS A",
           "isin": "US74624M1027",
           "weightPct": 0.25538446
         },
         {
-          "name": "Mettler-Toledo International Inc",
+          "name": "METTLER TOLEDO",
           "isin": "US5926881054",
           "weightPct": 0.25176472
         },
@@ -21334,17 +21314,17 @@
           "weightPct": 0.24631618
         },
         {
-          "name": "Gartner Inc",
+          "name": "GARTNER",
           "isin": "US3666511072",
           "weightPct": 0.24211099
         },
         {
-          "name": "Intuitive Surgical Inc",
+          "name": "INTUITIVE SURGICAL",
           "isin": "US46120E6023",
           "weightPct": 0.24117677
         },
         {
-          "name": "Marathon Petroleum Corp",
+          "name": "MARATHON PETROLEUM",
           "isin": "US56585A1025",
           "weightPct": 0.23943196
         }
@@ -21408,7 +21388,7 @@
       "exportDate": "2026-10-19",
       "exportTimezone": "Europe/Berlin",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/historicaldata/download",
-      "sha256": "f58476ca0b748bf492cf5e35f48b1b392d643f05397c6e093bcf8b4aab018156",
+      "sha256": "28338ce677a4e8f1c83e6241d9c824a60c2270fbe486b382dde6717d58caa6a1",
       "method": "DWS dated historical fund AUM, all share classes, workbook currency; not exact-share assets",
       "checkedAt": "2026-10-19",
       "modifiedAt": "2026-10-19"
@@ -21417,7 +21397,7 @@
       "asOf": "2026-10-16",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/holdings",
-      "sha256": "032bb3108ef4e515c495083c1636f35c8a861335a92d5c6fad720412ac5e03d4",
+      "sha256": "ba0e1dc8eac32f58605dac8fc30b355f7202531a983439e632d77f48aec23f83",
       "complete": true,
       "method": "Full physical securities portfolio; registration country and industry; net cash/derivatives retained",
       "rows": [
@@ -21494,7 +21474,7 @@
       "asOf": "2026-10-16",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/holdings",
-      "sha256": "032bb3108ef4e515c495083c1636f35c8a861335a92d5c6fad720412ac5e03d4",
+      "sha256": "ba0e1dc8eac32f58605dac8fc30b355f7202531a983439e632d77f48aec23f83",
       "complete": true,
       "method": "Full physical securities portfolio; registration country and industry; net cash/derivatives retained",
       "rows": [
@@ -21508,27 +21488,27 @@
         },
         {
           "name": "United Kingdom",
-          "weightPct": 12.042955
+          "weightPct": 10.803421
         },
         {
           "name": "Switzerland",
           "weightPct": 8.573501
         },
         {
+          "name": "France",
+          "weightPct": 7.828032
+        },
+        {
           "name": "Germany",
           "weightPct": 7.568586
         },
         {
-          "name": "France",
-          "weightPct": 7.286665
+          "name": "Netherlands",
+          "weightPct": 6.158354
         },
         {
           "name": "Australia",
           "weightPct": 6.036337
-        },
-        {
-          "name": "Netherlands",
-          "weightPct": 5.460187
         },
         {
           "name": "Spain",
@@ -21540,7 +21520,7 @@
         },
         {
           "name": "Sweden",
-          "weightPct": 2.685147
+          "weightPct": 2.717043
         },
         {
           "name": "Singapore",
@@ -21572,7 +21552,7 @@
         },
         {
           "name": "Luxembourg",
-          "weightPct": 0.538098
+          "weightPct": 0.506201
         },
         {
           "name": "Ireland",
@@ -21634,10 +21614,10 @@
       "asOf": "2026-10-16",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE0006WW1TQ4/holdings",
-      "sha256": "032bb3108ef4e515c495083c1636f35c8a861335a92d5c6fad720412ac5e03d4",
+      "sha256": "ba0e1dc8eac32f58605dac8fc30b355f7202531a983439e632d77f48aec23f83",
       "rows": [
         {
-          "name": "ASML Holding NV",
+          "name": "ASML HOLDING",
           "isin": "NL0010273215",
           "weightPct": 2.62706627
         },
@@ -21647,17 +21627,17 @@
           "weightPct": 1.3342103
         },
         {
-          "name": "Roche Holding AG",
+          "name": "ROCHE PS PAR AG",
           "isin": "CH1499059983",
           "weightPct": 1.31813214
         },
         {
-          "name": "Shell PLC",
+          "name": "SHELL",
           "isin": "GB00BP6MXD84",
           "weightPct": 1.2395341
         },
         {
-          "name": "Novartis AG",
+          "name": "NOVARTIS AG",
           "isin": "CH0012005267",
           "weightPct": 1.12988337
         },
@@ -21667,17 +21647,17 @@
           "weightPct": 1.11777384
         },
         {
-          "name": "Nestle SA",
+          "name": "NESTLE SA",
           "isin": "CH0038863350",
           "weightPct": 1.05079235
         },
         {
-          "name": "AstraZeneca PLC",
+          "name": "ASTRAZENECA PLC",
           "isin": "GB0009895292",
           "weightPct": 1.02336352
         },
         {
-          "name": "Mitsubishi UFJ Financial Group Inc",
+          "name": "MITSUBISHI UFJ FINANCIAL GROUP",
           "isin": "JP3902900004",
           "weightPct": 0.95677806
         },
@@ -21773,7 +21753,7 @@
       "exportDate": "2026-10-19",
       "exportTimezone": "Europe/Berlin",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU0290358497/historicaldata/download",
-      "sha256": "8d2d0fa1a2f995d49bbc2c8ff820abec7246dc2cbdbf31eab93b526efe817f53",
+      "sha256": "b94c34b14b24c8ef05e4121262028845953b6355708b07023ae21bf4b49ac733",
       "method": "DWS dated historical fund AUM, all share classes, workbook currency; not exact-share assets",
       "checkedAt": "2026-10-19",
       "modifiedAt": "2026-10-19"
@@ -21834,7 +21814,7 @@
       "exportDate": "2026-10-19",
       "exportTimezone": "Europe/Berlin",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE000L6ZMMC4/historicaldata/download",
-      "sha256": "464d9184bf917bb6e7bae8b9f7f9709edd4e36d959e6ca4973e0db2d4ecc40ea",
+      "sha256": "530d9e9247e6c4714887522b8812781c7d9e90c47cfe8f9f488b347c00fd175d",
       "method": "DWS dated historical fund AUM, all share classes, workbook currency; not exact-share assets",
       "checkedAt": "2026-10-19",
       "modifiedAt": "2026-10-19"
@@ -21843,7 +21823,7 @@
       "asOf": "2026-10-16",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE000L6ZMMC4/holdings",
-      "sha256": "b8d8fa0ed6c7b048d198fedd3dd85fe55b9a2363fe07f607e1de23e9462632e9",
+      "sha256": "1d5882add49da51dca96d3c2550076a8b61b617ee92b9c834813ee5849f6af01",
       "complete": true,
       "method": "Full physical securities portfolio; registration country and industry; net cash/derivatives retained",
       "rows": [
@@ -21920,13 +21900,13 @@
       "asOf": "2026-10-16",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE000L6ZMMC4/holdings",
-      "sha256": "b8d8fa0ed6c7b048d198fedd3dd85fe55b9a2363fe07f607e1de23e9462632e9",
+      "sha256": "1d5882add49da51dca96d3c2550076a8b61b617ee92b9c834813ee5849f6af01",
       "complete": true,
       "method": "Full physical securities portfolio; registration country and industry; net cash/derivatives retained",
       "rows": [
         {
           "name": "United States",
-          "weightPct": 60.935794
+          "weightPct": 61.992824
         },
         {
           "name": "Japan",
@@ -21937,48 +21917,44 @@
           "weightPct": 3.282345
         },
         {
-          "name": "United Kingdom",
-          "weightPct": 3.203443
-        },
-        {
           "name": "Canada",
           "weightPct": 2.901458
         },
         {
           "name": "China",
-          "weightPct": 2.62534
+          "weightPct": 2.686037
         },
         {
-          "name": "Switzerland",
-          "weightPct": 2.265003
+          "name": "United Kingdom",
+          "weightPct": 2.665628
         },
         {
           "name": "Korea, Republic of",
           "weightPct": 2.152248
         },
         {
-          "name": "Germany",
-          "weightPct": 1.795674
+          "name": "Switzerland",
+          "weightPct": 2.06959
         },
         {
           "name": "France",
-          "weightPct": 1.761473
+          "weightPct": 1.885609
+        },
+        {
+          "name": "Germany",
+          "weightPct": 1.795674
         },
         {
           "name": "Australia",
           "weightPct": 1.609385
         },
         {
+          "name": "Netherlands",
+          "weightPct": 1.520183
+        },
+        {
           "name": "Non classé",
           "weightPct": 1.51765
-        },
-        {
-          "name": "Netherlands",
-          "weightPct": 1.352619
-        },
-        {
-          "name": "Ireland",
-          "weightPct": 0.964879
         },
         {
           "name": "Spain",
@@ -21989,16 +21965,16 @@
           "weightPct": 0.711871
         },
         {
+          "name": "Brazil",
+          "weightPct": 0.693836
+        },
+        {
           "name": "Italy",
           "weightPct": 0.686905
         },
         {
-          "name": "Brazil",
-          "weightPct": 0.611163
-        },
-        {
-          "name": "Singapore",
-          "weightPct": 0.499477
+          "name": "Ireland",
+          "weightPct": 0.470178
         },
         {
           "name": "Hong Kong",
@@ -22007,6 +21983,10 @@
         {
           "name": "South Africa",
           "weightPct": 0.372076
+        },
+        {
+          "name": "Singapore",
+          "weightPct": 0.363987
         },
         {
           "name": "Denmark",
@@ -22065,10 +22045,6 @@
           "weightPct": 0.087011
         },
         {
-          "name": "Uruguay",
-          "weightPct": 0.082672
-        },
-        {
           "name": "Chile",
           "weightPct": 0.082032
         },
@@ -22083,10 +22059,6 @@
         {
           "name": "Kuwait",
           "weightPct": 0.057882
-        },
-        {
-          "name": "Bermuda",
-          "weightPct": 0.056012
         },
         {
           "name": "Turkey",
@@ -22141,6 +22113,10 @@
           "weightPct": 0.010878
         },
         {
+          "name": "Bermuda",
+          "weightPct": 0.010003
+        },
+        {
           "name": "Czech Republic",
           "weightPct": 0.00974
         },
@@ -22156,30 +22132,30 @@
       "asOf": "2026-10-16",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE000L6ZMMC4/holdings",
-      "sha256": "b8d8fa0ed6c7b048d198fedd3dd85fe55b9a2363fe07f607e1de23e9462632e9",
+      "sha256": "1d5882add49da51dca96d3c2550076a8b61b617ee92b9c834813ee5849f6af01",
       "rows": [
         {
-          "name": "NVIDIA Corp",
+          "name": "NVIDIA",
           "isin": "US67066G1040",
           "weightPct": 4.72564415
         },
         {
-          "name": "Apple Inc",
+          "name": "APPLE",
           "isin": "US0378331005",
           "weightPct": 4.69916799
         },
         {
-          "name": "Microsoft Corp",
+          "name": "MICROSOFT",
           "isin": "US5949181045",
           "weightPct": 3.72061983
         },
         {
-          "name": "Amazon.com Inc",
+          "name": "AMAZON COM INC",
           "isin": "US0231351067",
           "weightPct": 2.29909051
         },
         {
-          "name": "Alphabet Inc (US02079K3059)",
+          "name": "ALPHABET CLASS A",
           "isin": "US02079K3059",
           "weightPct": 1.88272513
         },
@@ -22189,7 +22165,7 @@
           "weightPct": 1.68706577
         },
         {
-          "name": "Alphabet Inc (US02079K1079)",
+          "name": "ALPHABET CLASS C",
           "isin": "US02079K1079",
           "weightPct": 1.51945529
         },
@@ -22199,12 +22175,12 @@
           "weightPct": 1.51764958
         },
         {
-          "name": "Meta Platforms Inc",
+          "name": "META PLATFORMS CLASS A",
           "isin": "US30303M1027",
           "weightPct": 1.47912049
         },
         {
-          "name": "Broadcom Inc",
+          "name": "BROADCOM INC",
           "isin": "US11135F1012",
           "weightPct": 1.45118593
         }
@@ -22282,7 +22258,7 @@
       "exportDate": "2026-10-19",
       "exportTimezone": "Europe/Berlin",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BGV5VN51/historicaldata/download",
-      "sha256": "ea0c09e5c415b87e3e3851b30289868043939978f4703f8cc13b8b0a96331dad",
+      "sha256": "6ee65eec40d03d1f9eb5e51bd4627b921e17fdf60ce1a6b82e192316c6c746d8",
       "method": "DWS dated historical fund AUM, all share classes, workbook currency; not exact-share assets",
       "checkedAt": "2026-10-19",
       "modifiedAt": "2026-10-19"
@@ -22291,7 +22267,7 @@
       "asOf": "2026-10-16",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BGV5VN51/holdings",
-      "sha256": "5cd4f983209f3de568886a47d3fb7b89a736baefd59c85e06d3256bdf7f8861a",
+      "sha256": "a66dc59e532f7d409badd67b63086ba5fd50e6659337836465e1237b34cb1450",
       "complete": true,
       "method": "Full physical securities portfolio; registration country and industry; net cash/derivatives retained",
       "rows": [
@@ -22338,13 +22314,13 @@
       "asOf": "2026-10-16",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BGV5VN51/holdings",
-      "sha256": "5cd4f983209f3de568886a47d3fb7b89a736baefd59c85e06d3256bdf7f8861a",
+      "sha256": "a66dc59e532f7d409badd67b63086ba5fd50e6659337836465e1237b34cb1450",
       "complete": true,
       "method": "Full physical securities portfolio; registration country and industry; net cash/derivatives retained",
       "rows": [
         {
           "name": "United States",
-          "weightPct": 83.358917
+          "weightPct": 84.967915
         },
         {
           "name": "Korea, Republic of",
@@ -22359,20 +22335,12 @@
           "weightPct": 2.403156
         },
         {
-          "name": "Ireland",
-          "weightPct": 1.203723
-        },
-        {
           "name": "Taiwan",
           "weightPct": 1.080368
         },
         {
           "name": "Japan",
           "weightPct": 0.941501
-        },
-        {
-          "name": "Australia",
-          "weightPct": 0.405275
         },
         {
           "name": "United Kingdom",
@@ -22398,55 +22366,55 @@
       "asOf": "2026-10-16",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BGV5VN51/holdings",
-      "sha256": "5cd4f983209f3de568886a47d3fb7b89a736baefd59c85e06d3256bdf7f8861a",
+      "sha256": "a66dc59e532f7d409badd67b63086ba5fd50e6659337836465e1237b34cb1450",
       "rows": [
         {
-          "name": "Microsoft Corp",
+          "name": "MICROSOFT",
           "isin": "US5949181045",
           "weightPct": 6.26673456
         },
         {
-          "name": "Meta Platforms Inc",
+          "name": "META PLATFORMS CLASS A",
           "isin": "US30303M1027",
           "weightPct": 5.56402858
         },
         {
-          "name": "Apple Inc",
+          "name": "APPLE",
           "isin": "US0378331005",
           "weightPct": 5.24461221
         },
         {
-          "name": "NVIDIA Corp",
+          "name": "NVIDIA",
           "isin": "US67066G1040",
           "weightPct": 4.72855672
         },
         {
-          "name": "Walmart Inc",
+          "name": "WALMART",
           "isin": "US9311421039",
           "weightPct": 4.63503316
         },
         {
-          "name": "Amazon.com Inc",
+          "name": "AMAZON COM INC",
           "isin": "US0231351067",
           "weightPct": 4.63467928
         },
         {
-          "name": "Alphabet Inc",
+          "name": "ALPHABET CLASS A",
           "isin": "US02079K3059",
           "weightPct": 4.21103022
         },
         {
-          "name": "Advanced Micro Devices Inc",
+          "name": "ADVANCED MICRO DEVICES",
           "isin": "US0079031078",
           "weightPct": 4.02175604
         },
         {
-          "name": "Palantir Technologies Inc",
+          "name": "PALANTIR TECHNOLOGIES CLASS A",
           "isin": "US69608A1088",
           "weightPct": 3.81386055
         },
         {
-          "name": "Cisco Systems Inc",
+          "name": "CISCO SYSTEMS INC",
           "isin": "US17275R1023",
           "weightPct": 3.62124629
         }
@@ -22528,7 +22496,7 @@
       "exportDate": "2026-10-19",
       "exportTimezone": "Europe/Berlin",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HK77/historicaldata/download",
-      "sha256": "d8a244086c44c2a5931f51d2d3746c702d1af5caed44d02814795d6a40821809",
+      "sha256": "90c4e1f00443372f0daac4287bb6870f3288832d851b50294fb90a0ae993e0eb",
       "method": "DWS dated historical fund AUM, all share classes, workbook currency; not exact-share assets",
       "checkedAt": "2026-10-19",
       "modifiedAt": "2026-10-19"
@@ -22537,7 +22505,7 @@
       "asOf": "2026-10-16",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HK77/holdings",
-      "sha256": "802e1b559159f313d1c1f6a1d77e491a30378e515caed85fafc6b739c9e452af",
+      "sha256": "de41b12dc29e99d4bf634de8d6eb60954a72895869031cef889331e82c83f0c4",
       "complete": true,
       "method": "Full physical securities portfolio; registration country and industry; net cash/derivatives retained",
       "rows": [
@@ -22564,13 +22532,13 @@
       "asOf": "2026-10-16",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HK77/holdings",
-      "sha256": "802e1b559159f313d1c1f6a1d77e491a30378e515caed85fafc6b739c9e452af",
+      "sha256": "de41b12dc29e99d4bf634de8d6eb60954a72895869031cef889331e82c83f0c4",
       "complete": true,
       "method": "Full physical securities portfolio; registration country and industry; net cash/derivatives retained",
       "rows": [
         {
           "name": "United States",
-          "weightPct": 72.840788
+          "weightPct": 74.686671
         },
         {
           "name": "Switzerland",
@@ -22578,7 +22546,7 @@
         },
         {
           "name": "United Kingdom",
-          "weightPct": 4.376152
+          "weightPct": 4.175338
         },
         {
           "name": "Japan",
@@ -22591,10 +22559,6 @@
         {
           "name": "France",
           "weightPct": 1.852224
-        },
-        {
-          "name": "Ireland",
-          "weightPct": 1.743539
         },
         {
           "name": "Germany",
@@ -22633,6 +22597,10 @@
           "weightPct": 0.114644
         },
         {
+          "name": "Ireland",
+          "weightPct": 0.098471
+        },
+        {
           "name": "Sweden",
           "weightPct": 0.090616
         },
@@ -22652,55 +22620,55 @@
       "asOf": "2026-10-16",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HK77/holdings",
-      "sha256": "802e1b559159f313d1c1f6a1d77e491a30378e515caed85fafc6b739c9e452af",
+      "sha256": "de41b12dc29e99d4bf634de8d6eb60954a72895869031cef889331e82c83f0c4",
       "rows": [
         {
-          "name": "Eli Lilly and Co",
+          "name": "ELI LILLY",
           "isin": "US5324571083",
           "weightPct": 11.57439454
         },
         {
-          "name": "Johnson & Johnson",
+          "name": "JOHNSON & JOHNSON",
           "isin": "US4781601046",
           "weightPct": 7.07636588
         },
         {
-          "name": "AbbVie Inc",
+          "name": "ABBVIE",
           "isin": "US00287Y1091",
           "weightPct": 5.80093965
         },
         {
-          "name": "UnitedHealth Group Inc",
+          "name": "UNITEDHEALTH GROUP",
           "isin": "US91324P1021",
           "weightPct": 4.19341793
         },
         {
-          "name": "Merck & Co Inc",
+          "name": "MERCK & CO INC",
           "isin": "US58933Y1055",
           "weightPct": 4.14640685
         },
         {
-          "name": "Roche Holding AG",
+          "name": "ROCHE PS PAR AG",
           "isin": "CH1499059983",
           "weightPct": 3.7246691
         },
         {
-          "name": "Novartis AG",
+          "name": "NOVARTIS AG",
           "isin": "CH0012005267",
           "weightPct": 3.19278418
         },
         {
-          "name": "Thermo Fisher Scientific Inc",
+          "name": "THERMO FISHER SCIENTIFIC",
           "isin": "US8835561023",
           "weightPct": 2.94962954
         },
         {
-          "name": "AstraZeneca PLC",
+          "name": "ASTRAZENECA PLC",
           "isin": "GB0009895292",
           "weightPct": 2.89097981
         },
         {
-          "name": "Amgen Inc",
+          "name": "AMGEN INC",
           "isin": "US0311621009",
           "weightPct": 2.68528002
         }
@@ -22817,7 +22785,7 @@
       "exportDate": "2026-10-19",
       "exportTimezone": "Europe/Berlin",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HS53/historicaldata/download",
-      "sha256": "be4412b7999e458836bd6489fdabbdd2b1efd9dc6c187a18e08029612a3eaa47",
+      "sha256": "537122abdf0e2619ac2b8e4e207b15476af041748a32fa5c6967dbd71f7c78e2",
       "method": "DWS dated historical fund AUM, all share classes, workbook currency; not exact-share assets",
       "checkedAt": "2026-10-19",
       "modifiedAt": "2026-10-19"
@@ -22826,7 +22794,7 @@
       "asOf": "2026-10-16",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HS53/holdings",
-      "sha256": "7c38d373ea21815a4847a04df2ad9b6c79491142b82f92b683e344db7588c256",
+      "sha256": "a0c5159a943022961a2b3e74e1d94555b9fbd28256fd259b689896a2f1695a9b",
       "complete": true,
       "method": "Full physical securities portfolio; registration country and industry; net cash/derivatives retained",
       "rows": [
@@ -22853,13 +22821,13 @@
       "asOf": "2026-10-16",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HS53/holdings",
-      "sha256": "7c38d373ea21815a4847a04df2ad9b6c79491142b82f92b683e344db7588c256",
+      "sha256": "a0c5159a943022961a2b3e74e1d94555b9fbd28256fd259b689896a2f1695a9b",
       "complete": true,
       "method": "Full physical securities portfolio; registration country and industry; net cash/derivatives retained",
       "rows": [
         {
           "name": "United States",
-          "weightPct": 28.116577
+          "weightPct": 28.816036
         },
         {
           "name": "Australia",
@@ -22870,8 +22838,8 @@
           "weightPct": 12.734342
         },
         {
-          "name": "United Kingdom",
-          "weightPct": 10.566421
+          "name": "Ireland",
+          "weightPct": 10.668824
         },
         {
           "name": "Japan",
@@ -22879,7 +22847,7 @@
         },
         {
           "name": "Switzerland",
-          "weightPct": 5.699986
+          "weightPct": 5.000527
         },
         {
           "name": "France",
@@ -22890,8 +22858,8 @@
           "weightPct": 3.265519
         },
         {
-          "name": "Ireland",
-          "weightPct": 2.716582
+          "name": "United Kingdom",
+          "weightPct": 2.61418
         },
         {
           "name": "Brazil",
@@ -22953,10 +22921,10 @@
       "asOf": "2026-10-16",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HS53/holdings",
-      "sha256": "7c38d373ea21815a4847a04df2ad9b6c79491142b82f92b683e344db7588c256",
+      "sha256": "a0c5159a943022961a2b3e74e1d94555b9fbd28256fd259b689896a2f1695a9b",
       "rows": [
         {
-          "name": "Linde PLC",
+          "name": "LINDE PLC",
           "isin": "IE000S9YS762",
           "weightPct": 7.95224161
         },
@@ -22966,7 +22934,7 @@
           "weightPct": 7.32845108
         },
         {
-          "name": "Newmont Corporation",
+          "name": "NEWMONT",
           "isin": "US6516391066",
           "weightPct": 4.32801175
         },
@@ -22976,7 +22944,7 @@
           "weightPct": 4.18139328
         },
         {
-          "name": "Freeport-McMoRan Inc",
+          "name": "FREEPORT MCMORAN INC",
           "isin": "US35671D8570",
           "weightPct": 3.44777396
         },
@@ -22991,7 +22959,7 @@
           "weightPct": 3.31167822
         },
         {
-          "name": "Sherwin-Williams Co",
+          "name": "SHERWIN WILLIAMS",
           "isin": "US8243481061",
           "weightPct": 2.6373589
         },
@@ -23086,7 +23054,7 @@
       "exportDate": "2026-10-19",
       "exportTimezone": "Europe/Berlin",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BTJRMP35/historicaldata/download",
-      "sha256": "962c9d203a33ca31b7d4347bfddd9d79510ca1dfb4bb80a582685de36c34dde0",
+      "sha256": "7c36aeef638a4e2975da5fba59735438caea0c28af82e89c28b480dd25652be9",
       "method": "DWS dated historical fund AUM, all share classes, workbook currency; not exact-share assets",
       "checkedAt": "2026-10-19",
       "modifiedAt": "2026-10-19"
@@ -23095,7 +23063,7 @@
       "asOf": "2026-10-16",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BTJRMP35/holdings",
-      "sha256": "9d98baea81cedb10e0e28784cfe94bed8751e64db1d3da3f7056ad08e2d3611d",
+      "sha256": "778daaf081d479735f32615f5f050a1d13ef5c8f5019cb548c621bea3cfa814d",
       "complete": true,
       "method": "Full physical securities portfolio; registration country and industry; net cash/derivatives retained",
       "rows": [
@@ -23172,7 +23140,7 @@
       "asOf": "2026-10-16",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BTJRMP35/holdings",
-      "sha256": "9d98baea81cedb10e0e28784cfe94bed8751e64db1d3da3f7056ad08e2d3611d",
+      "sha256": "778daaf081d479735f32615f5f050a1d13ef5c8f5019cb548c621bea3cfa814d",
       "complete": true,
       "method": "Full physical securities portfolio; registration country and industry; net cash/derivatives retained",
       "rows": [
@@ -23182,7 +23150,7 @@
         },
         {
           "name": "China",
-          "weightPct": 19.27512
+          "weightPct": 19.629908
         },
         {
           "name": "Korea, Republic of",
@@ -23194,7 +23162,7 @@
         },
         {
           "name": "Brazil",
-          "weightPct": 4.584781
+          "weightPct": 4.683235
         },
         {
           "name": "South Africa",
@@ -23231,10 +23199,6 @@
         {
           "name": "Greece",
           "weightPct": 0.599603
-        },
-        {
-          "name": "Ireland",
-          "weightPct": 0.54746
         },
         {
           "name": "Kuwait",
@@ -23277,6 +23241,10 @@
           "weightPct": 0.193761
         },
         {
+          "name": "Ireland",
+          "weightPct": 0.192672
+        },
+        {
           "name": "Hong Kong",
           "weightPct": 0.185168
         },
@@ -23287,10 +23255,6 @@
         {
           "name": "Czech Republic",
           "weightPct": 0.115893
-        },
-        {
-          "name": "Cayman Islands",
-          "weightPct": 0.098454
         },
         {
           "name": "Luxembourg",
@@ -23332,7 +23296,7 @@
       "asOf": "2026-10-16",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BTJRMP35/holdings",
-      "sha256": "9d98baea81cedb10e0e28784cfe94bed8751e64db1d3da3f7056ad08e2d3611d",
+      "sha256": "778daaf081d479735f32615f5f050a1d13ef5c8f5019cb548c621bea3cfa814d",
       "rows": [
         {
           "name": "TAIWAN SEMICONDUCTOR MANUFACTURING",
@@ -23459,7 +23423,7 @@
       "exportDate": "2026-10-19",
       "exportTimezone": "Europe/Berlin",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU1875395870/historicaldata/download",
-      "sha256": "6213530798c32a393ed08b0548fa8c1da29e8f235663a6768784ed28f7a5631d",
+      "sha256": "5c8a36bc09978b8bef4fe0eda9c256fba7a8ee51780261a0d22eb0a0dc8a0a5e",
       "method": "DWS dated historical fund AUM, all share classes, workbook currency; not exact-share assets",
       "checkedAt": "2026-10-19",
       "modifiedAt": "2026-10-19"
@@ -23468,7 +23432,7 @@
       "asOf": "2026-10-09",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU1875395870/holdings",
-      "sha256": "db4570cdfd61946d77e5eca116dadd667ead78be32b9dfbc88d01f266e602ccf",
+      "sha256": "1a7ce59dfb82ecf99b889cdc1920f52d8d571c2f5054804892d4ebd68546da5c",
       "complete": true,
       "method": "Full physical securities portfolio; registration country and industry; net cash/derivatives retained",
       "rows": [
@@ -23545,7 +23509,7 @@
       "asOf": "2026-10-09",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU1875395870/holdings",
-      "sha256": "db4570cdfd61946d77e5eca116dadd667ead78be32b9dfbc88d01f266e602ccf",
+      "sha256": "1a7ce59dfb82ecf99b889cdc1920f52d8d571c2f5054804892d4ebd68546da5c",
       "complete": true,
       "method": "Full physical securities portfolio; registration country and industry; net cash/derivatives retained",
       "rows": [
@@ -23565,15 +23529,15 @@
       "asOf": "2026-10-09",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU1875395870/holdings",
-      "sha256": "db4570cdfd61946d77e5eca116dadd667ead78be32b9dfbc88d01f266e602ccf",
+      "sha256": "1a7ce59dfb82ecf99b889cdc1920f52d8d571c2f5054804892d4ebd68546da5c",
       "rows": [
         {
-          "name": "Advantest Corp",
+          "name": "ADVANTEST",
           "isin": "JP3122400009",
           "weightPct": 12.99260698
         },
         {
-          "name": "Tokyo Electron Ltd",
+          "name": "TOKYO ELECTRON",
           "isin": "JP3571400005",
           "weightPct": 9.10747221
         },
@@ -23583,12 +23547,12 @@
           "weightPct": 8.40512841
         },
         {
-          "name": "SoftBank Group Corp",
+          "name": "SOFTBANK GROUP CORP",
           "isin": "JP3436100006",
           "weightPct": 6.79465929
         },
         {
-          "name": "Recruit Holdings Co Ltd",
+          "name": "RECRUIT HOLDINGS LTD",
           "isin": "JP3970300004",
           "weightPct": 2.59858783
         },
@@ -23603,7 +23567,7 @@
           "weightPct": 2.24723291
         },
         {
-          "name": "Kioxia Holdings Corporation",
+          "name": "KIOXIA HOLDINGS",
           "isin": "JP3236330001",
           "weightPct": 1.79327165
         },
@@ -23677,7 +23641,7 @@
       "exportDate": "2026-10-19",
       "exportTimezone": "Europe/Berlin",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU2196470426/historicaldata/download",
-      "sha256": "337570c807461d8fc7d78eeb1132647ee2d3e9ab3e336bd5bc892ebd91170b50",
+      "sha256": "cbeb1ec0ab410fbd629a15c804b2f825d26e5f16cf7602ab21f7b6f6105ae0d8",
       "method": "DWS dated historical fund AUM, all share classes, workbook currency; not exact-share assets",
       "checkedAt": "2026-10-19",
       "modifiedAt": "2026-10-19"
@@ -23686,7 +23650,7 @@
       "asOf": "2026-10-09",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU2196470426/holdings",
-      "sha256": "17803e3c3d78852d5136549a864593668225150950e875728ee6e92b1fb4539e",
+      "sha256": "175e4141344d7f3e395e4aa963761874fa34d5bd5e77e73cc3a80b1e66358cc6",
       "complete": true,
       "method": "Full physical securities portfolio; registration country and industry; net cash/derivatives retained",
       "rows": [
@@ -23763,7 +23727,7 @@
       "asOf": "2026-10-09",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU2196470426/holdings",
-      "sha256": "17803e3c3d78852d5136549a864593668225150950e875728ee6e92b1fb4539e",
+      "sha256": "175e4141344d7f3e395e4aa963761874fa34d5bd5e77e73cc3a80b1e66358cc6",
       "complete": true,
       "method": "Full physical securities portfolio; registration country and industry; net cash/derivatives retained",
       "rows": [
@@ -23783,15 +23747,15 @@
       "asOf": "2026-10-09",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/LU2196470426/holdings",
-      "sha256": "17803e3c3d78852d5136549a864593668225150950e875728ee6e92b1fb4539e",
+      "sha256": "175e4141344d7f3e395e4aa963761874fa34d5bd5e77e73cc3a80b1e66358cc6",
       "rows": [
         {
-          "name": "Advantest Corp",
+          "name": "ADVANTEST",
           "isin": "JP3122400009",
           "weightPct": 12.99260698
         },
         {
-          "name": "Tokyo Electron Ltd",
+          "name": "TOKYO ELECTRON",
           "isin": "JP3571400005",
           "weightPct": 9.10747221
         },
@@ -23801,12 +23765,12 @@
           "weightPct": 8.40512841
         },
         {
-          "name": "SoftBank Group Corp",
+          "name": "SOFTBANK GROUP CORP",
           "isin": "JP3436100006",
           "weightPct": 6.79465929
         },
         {
-          "name": "Recruit Holdings Co Ltd",
+          "name": "RECRUIT HOLDINGS LTD",
           "isin": "JP3970300004",
           "weightPct": 2.59858783
         },
@@ -23821,7 +23785,7 @@
           "weightPct": 2.24723291
         },
         {
-          "name": "Kioxia Holdings Corporation",
+          "name": "KIOXIA HOLDINGS",
           "isin": "JP3236330001",
           "weightPct": 1.79327165
         },
@@ -25570,7 +25534,7 @@
       "basis": "fund",
       "sourceUrl": "https://www.vanguard.co.uk/gpx/graphql",
       "method": "Ten largest individual corporate bond securities by percent of fund NAV; cash and futures excluded, no renormalisation; published SEDOL, coupon and maturity retained",
-      "sha256": "38914d852483f253256723849dbe82dca57186236aa18d39e76a69bd3ad903f5",
+      "sha256": "3cc464290b5c7b737dc0c390b097eda53a54a1291c6631ef4808e87407766c78",
       "rows": [
         {
           "name": "Anheuser-Busch InBev SA/NV · 2% · 2028-03-17 · BZ6D7P1",
@@ -26054,7 +26018,7 @@
       ],
       "asOf": "2026-09-30",
       "sourceUrl": "https://www.vaneck.com/uk/en/library/fact-sheets/qntm-fact-sheet.pdf",
-      "sha256": "73890687129ad6ddd9d5cec07148db2d010a7325dc9e23e38a7983c86eba1735",
+      "sha256": "1152ae8994e9313bf30ee4003769ed654e4aea99154e888ecc98e7f53573ad66",
       "months": {
         "2026-09": 0.55
       },
@@ -26062,7 +26026,7 @@
         "2026-09": {
           "asOf": "2026-09-30",
           "sourceUrl": "https://www.vaneck.com/uk/en/library/fact-sheets/qntm-fact-sheet.pdf",
-          "sha256": "73890687129ad6ddd9d5cec07148db2d010a7325dc9e23e38a7983c86eba1735",
+          "sha256": "1152ae8994e9313bf30ee4003769ed654e4aea99154e888ecc98e7f53573ad66",
           "checkedAt": "2026-10-19",
           "method": "Published exact-share one-month NAV total return at calendar month end"
         }
@@ -30809,12 +30773,12 @@
     "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251961&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
     "provider": "iShares",
     "aum": {
-      "amount": 223094406.49,
+      "amount": 224636637.58,
       "currency": "EUR",
       "scope": "share-class",
-      "asOf": "2026-10-16",
+      "asOf": "2026-10-19",
       "checkedAt": "2026-10-19",
-      "modifiedAt": "2026-10-17"
+      "modifiedAt": "2026-10-19"
     },
     "sectors": {
       "asOf": "2026-10-16",
@@ -32645,9 +32609,9 @@
         "2024": 114.17,
         "2025": -4.71
       },
-      "asOf": "2026-10-16",
+      "asOf": "2026-10-19",
       "sourceUrl": "https://api.primary.21shares.com/api/product_valuation_history/ABTC",
-      "sha256": "b546f05331cc2f35bdf78fc0238d583a351228088a4c650e0fe4994e2e6d25ee",
+      "sha256": "dcd8d3078390d5a5f3140ea2c0fa00078d81d12bada622372fd254f0bbac09d1",
       "method": "calendar-year exact ETP USD NAV return, net of fees, issuer-adjusted for share splits; monthly issuer returns cross-checked; derived from rounded issuer NAV levels",
       "validationSources": [
         "https://api.primary.21shares.com/api/product_details/ABTC",
@@ -32675,15 +32639,15 @@
       "scope": "fund",
       "asOf": "2026-10-16",
       "sourceUrl": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
-      "sha256": "1c61d1114484e5156d7aa4b54dbaebcb3da0f6af3b298b5f2b9a627d22ff3096",
+      "sha256": "40eb8440a351050e71e515036c4185cd9d0bef4414934dbda01aca3ea4df39b8",
       "checkedAt": "2026-10-19",
       "modifiedAt": "2026-10-19"
     },
     "characteristics": {
       "terPct": 0.69,
-      "asOf": "2026-08-31",
+      "asOf": "2026-09-30",
       "sourceUrl": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
-      "sha256": "1c61d1114484e5156d7aa4b54dbaebcb3da0f6af3b298b5f2b9a627d22ff3096",
+      "sha256": "40eb8440a351050e71e515036c4185cd9d0bef4414934dbda01aca3ea4df39b8",
       "checkedAt": "2026-10-19",
       "modifiedAt": "2026-10-19"
     },
@@ -32796,10 +32760,10 @@
         "2024": 17.72,
         "2025": 7.77
       },
-      "asOf": "2026-08-31",
+      "asOf": "2026-09-30",
       "method": "calendar-year exact-share NAV total return, net income reinvested, net of fees",
       "sourceUrl": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
-      "sha256": "1c61d1114484e5156d7aa4b54dbaebcb3da0f6af3b298b5f2b9a627d22ff3096",
+      "sha256": "40eb8440a351050e71e515036c4185cd9d0bef4414934dbda01aca3ea4df39b8",
       "checkedAt": "2026-10-19",
       "modifiedAt": "2026-10-19"
     },
@@ -32807,7 +32771,7 @@
       "terPct": {
         "checkedAt": "2026-10-19",
         "sourceUrl": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
-        "asOf": "2026-08-31"
+        "asOf": "2026-09-30"
       }
     }
   },
@@ -33483,7 +33447,7 @@
       "scope": "fund",
       "asOf": "2026-10-16",
       "sourceUrl": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
-      "sha256": "1c61d1114484e5156d7aa4b54dbaebcb3da0f6af3b298b5f2b9a627d22ff3096",
+      "sha256": "40eb8440a351050e71e515036c4185cd9d0bef4414934dbda01aca3ea4df39b8",
       "checkedAt": "2026-10-19",
       "modifiedAt": "2026-10-19"
     },
@@ -33616,9 +33580,9 @@
     },
     "characteristics": {
       "terPct": 0.49,
-      "asOf": "2026-08-31",
+      "asOf": "2026-09-30",
       "sourceUrl": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
-      "sha256": "1c61d1114484e5156d7aa4b54dbaebcb3da0f6af3b298b5f2b9a627d22ff3096",
+      "sha256": "40eb8440a351050e71e515036c4185cd9d0bef4414934dbda01aca3ea4df39b8",
       "checkedAt": "2026-10-19",
       "modifiedAt": "2026-10-19"
     },
@@ -33633,10 +33597,10 @@
         "2024": -1.14,
         "2025": 72.17
       },
-      "asOf": "2026-08-31",
+      "asOf": "2026-09-30",
       "method": "calendar-year exact-share NAV total return, net income reinvested, net of fees",
       "sourceUrl": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
-      "sha256": "1c61d1114484e5156d7aa4b54dbaebcb3da0f6af3b298b5f2b9a627d22ff3096",
+      "sha256": "40eb8440a351050e71e515036c4185cd9d0bef4414934dbda01aca3ea4df39b8",
       "checkedAt": "2026-10-19",
       "modifiedAt": "2026-10-19"
     },
@@ -33644,7 +33608,7 @@
       "terPct": {
         "checkedAt": "2026-10-19",
         "sourceUrl": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
-        "asOf": "2026-08-31"
+        "asOf": "2026-09-30"
       }
     }
   },
@@ -33659,7 +33623,7 @@
       "scope": "fund",
       "asOf": "2026-10-16",
       "sourceUrl": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
-      "sha256": "1c61d1114484e5156d7aa4b54dbaebcb3da0f6af3b298b5f2b9a627d22ff3096",
+      "sha256": "40eb8440a351050e71e515036c4185cd9d0bef4414934dbda01aca3ea4df39b8",
       "checkedAt": "2026-10-19",
       "modifiedAt": "2026-10-19"
     },
@@ -33802,9 +33766,9 @@
     },
     "characteristics": {
       "terPct": 0.49,
-      "asOf": "2026-08-31",
+      "asOf": "2026-09-30",
       "sourceUrl": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
-      "sha256": "1c61d1114484e5156d7aa4b54dbaebcb3da0f6af3b298b5f2b9a627d22ff3096",
+      "sha256": "40eb8440a351050e71e515036c4185cd9d0bef4414934dbda01aca3ea4df39b8",
       "checkedAt": "2026-10-19",
       "modifiedAt": "2026-10-19"
     },
@@ -33819,10 +33783,10 @@
         "2024": 18.67,
         "2025": 30.7
       },
-      "asOf": "2026-08-31",
+      "asOf": "2026-09-30",
       "method": "calendar-year exact-share NAV total return, net income reinvested, net of fees",
       "sourceUrl": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
-      "sha256": "1c61d1114484e5156d7aa4b54dbaebcb3da0f6af3b298b5f2b9a627d22ff3096",
+      "sha256": "40eb8440a351050e71e515036c4185cd9d0bef4414934dbda01aca3ea4df39b8",
       "checkedAt": "2026-10-19",
       "modifiedAt": "2026-10-19"
     },
@@ -33830,7 +33794,7 @@
       "terPct": {
         "checkedAt": "2026-10-19",
         "sourceUrl": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
-        "asOf": "2026-08-31"
+        "asOf": "2026-09-30"
       }
     }
   },
@@ -33845,7 +33809,7 @@
       "scope": "fund",
       "asOf": "2026-10-16",
       "sourceUrl": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
-      "sha256": "1c61d1114484e5156d7aa4b54dbaebcb3da0f6af3b298b5f2b9a627d22ff3096",
+      "sha256": "40eb8440a351050e71e515036c4185cd9d0bef4414934dbda01aca3ea4df39b8",
       "checkedAt": "2026-10-19",
       "modifiedAt": "2026-10-19"
     },
@@ -33983,9 +33947,9 @@
     },
     "characteristics": {
       "terPct": 0.49,
-      "asOf": "2026-08-31",
+      "asOf": "2026-09-30",
       "sourceUrl": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
-      "sha256": "1c61d1114484e5156d7aa4b54dbaebcb3da0f6af3b298b5f2b9a627d22ff3096",
+      "sha256": "40eb8440a351050e71e515036c4185cd9d0bef4414934dbda01aca3ea4df39b8",
       "checkedAt": "2026-10-19",
       "modifiedAt": "2026-10-19"
     },
@@ -33999,10 +33963,10 @@
         "2024": -14.5,
         "2025": 52.01
       },
-      "asOf": "2026-08-31",
+      "asOf": "2026-09-30",
       "method": "calendar-year exact-share NAV total return, net income reinvested, net of fees",
       "sourceUrl": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
-      "sha256": "1c61d1114484e5156d7aa4b54dbaebcb3da0f6af3b298b5f2b9a627d22ff3096",
+      "sha256": "40eb8440a351050e71e515036c4185cd9d0bef4414934dbda01aca3ea4df39b8",
       "checkedAt": "2026-10-19",
       "modifiedAt": "2026-10-19"
     },
@@ -34010,7 +33974,7 @@
       "terPct": {
         "checkedAt": "2026-10-19",
         "sourceUrl": "https://fundcentres.landg.com/srp/api/fund-centre/47?audience=79&language=1",
-        "asOf": "2026-08-31"
+        "asOf": "2026-09-30"
       }
     }
   },
@@ -34020,19 +33984,19 @@
     "sourceUrl": "https://bitwiseinvestments.eu/products/bitwise-physical-bitcoin-etp/",
     "provider": "Bitwise",
     "aum": {
-      "amount": 874760461.79,
+      "amount": 880673467.83,
       "currency": "USD",
       "scope": "share-class",
       "asOf": "2026-10-19",
       "sourceUrl": "https://bitwiseinvestments.eu/products/bitwise-physical-bitcoin-etp/",
-      "sha256": "7442ad1768a585312f62418f0bae23282d8a998610df4a27a0bfbbb5cfffe3c8",
+      "sha256": "e78a30293ff2332a73f876a9f6ad228f6ac30f426f3ffff78f4feee4d2d69085",
       "checkedAt": "2026-10-19",
       "modifiedAt": "2026-10-19"
     },
     "characteristics": {
       "asOf": "2026-10-19",
       "sourceUrl": "https://bitwiseinvestments.eu/products/bitwise-physical-bitcoin-etp/",
-      "sha256": "7442ad1768a585312f62418f0bae23282d8a998610df4a27a0bfbbb5cfffe3c8",
+      "sha256": "e78a30293ff2332a73f876a9f6ad228f6ac30f426f3ffff78f4feee4d2d69085",
       "terPct": 2.0,
       "checkedAt": "2026-10-19",
       "modifiedAt": "2026-10-19"
@@ -34049,7 +34013,7 @@
       },
       "asOf": "2026-10-19",
       "sourceUrl": "https://bitwiseinvestments.eu/products/bitwise-physical-bitcoin-etp/",
-      "sha256": "7442ad1768a585312f62418f0bae23282d8a998610df4a27a0bfbbb5cfffe3c8",
+      "sha256": "e78a30293ff2332a73f876a9f6ad228f6ac30f426f3ffff78f4feee4d2d69085",
       "method": "calendar-year exact ETP NAV total return, net of fees",
       "checkedAt": "2026-10-19",
       "modifiedAt": "2026-10-19"
@@ -34760,14 +34724,14 @@
       "scope": "fund",
       "asOf": "2026-10-16",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "cb5047b7cb12aede9c015f125f4785000f62a1a890f711e3e74ec94bb1650591",
+      "sha256": "a5a7b995f30032568572269a6c25e8af11eaf8fd3534238e949e83afc0c7a5fc",
       "checkedAt": "2026-10-19",
       "modifiedAt": "2026-10-19"
     },
     "characteristics": {
       "asOf": "2026-10-16",
       "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-      "sha256": "cb5047b7cb12aede9c015f125f4785000f62a1a890f711e3e74ec94bb1650591",
+      "sha256": "a5a7b995f30032568572269a6c25e8af11eaf8fd3534238e949e83afc0c7a5fc",
       "terPct": 0.45,
       "checkedAt": "2026-10-19",
       "modifiedAt": "2026-10-19"
@@ -34778,7 +34742,7 @@
         "reason": "La section de performance ne fournit pas de calendrier annuel qualifié pour la part USD distribuante. Les rendements capitalisants ou glissants ne sont pas substitués.",
         "checkedAt": "2026-10-19",
         "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-        "sha256": "cb5047b7cb12aede9c015f125f4785000f62a1a890f711e3e74ec94bb1650591",
+        "sha256": "a5a7b995f30032568572269a6c25e8af11eaf8fd3534238e949e83afc0c7a5fc",
         "evidence": [
           "Performance History",
           "USD Accumulating",
@@ -34822,7 +34786,7 @@
         "reason": "Aucune allocation géographique économique complète qualifiée dans la page ; les pays de commercialisation et le panier de substitution sont exclus.",
         "checkedAt": "2026-10-19",
         "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-        "sha256": "cb5047b7cb12aede9c015f125f4785000f62a1a890f711e3e74ec94bb1650591",
+        "sha256": "a5a7b995f30032568572269a6c25e8af11eaf8fd3534238e949e83afc0c7a5fc",
         "evidence": []
       },
       "holdings": {
@@ -34830,7 +34794,7 @@
         "reason": "Poids différents pour les mêmes titres dans la section datée de l’indice : AAPL, AMZN, GOOG, GOOGL, META, MSFT, NVDA, TSLA.",
         "checkedAt": "2026-10-19",
         "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-        "sha256": "cb5047b7cb12aede9c015f125f4785000f62a1a890f711e3e74ec94bb1650591",
+        "sha256": "a5a7b995f30032568572269a6c25e8af11eaf8fd3534238e949e83afc0c7a5fc",
         "evidence": [
           "Top 10 Reference Index Constituents",
           "As of 08 Oct 2026",
@@ -34904,7 +34868,7 @@
         "reason": "Table sectorielle de référence à recouper avec l’indice exact avant utilisation ; aucune allocation du panier de substitution utilisée.",
         "checkedAt": "2026-10-19",
         "sourceUrl": "https://globalxetfs.eu/funds/qyld/",
-        "sha256": "cb5047b7cb12aede9c015f125f4785000f62a1a890f711e3e74ec94bb1650591",
+        "sha256": "a5a7b995f30032568572269a6c25e8af11eaf8fd3534238e949e83afc0c7a5fc",
         "evidence": [
           "Reference Index Sector Breakdown",
           "As of 30 Sep 2026",
@@ -34975,9 +34939,9 @@
         "2024": 122.51,
         "2025": -7.99
       },
-      "asOf": "2026-10-16",
+      "asOf": "2026-10-19",
       "sourceUrl": "https://www-api.coinshares.com/api/v2/Widgets?ApiKey=094DA478-140C-4E3E-B394-7A19BBE8326B&names=ISIN_GRAPH_GB00BLD4ZL17%40%25,ISIN_KEYSTATS_GB00BLD4ZL17",
-      "sha256": "51238f0b69b6c4e8a503d1c907951fe584cf92cf21912d7182decd0440f1b3df",
+      "sha256": "47531cd25b545172eb43aa8be1b41eae6621abe136dff8f339195f14eafd7d02",
       "method": "calendar-year exact ETP return from issuer normalized USD product series; fees and staking reflected; derived from rounded issuer levels",
       "checkedAt": "2026-10-19",
       "modifiedAt": "2026-10-19"
@@ -35021,9 +34985,9 @@
         "2024": 46.75,
         "2025": -11.7
       },
-      "asOf": "2026-10-16",
+      "asOf": "2026-10-19",
       "sourceUrl": "https://www-api.coinshares.com/api/v2/Widgets?ApiKey=094DA478-140C-4E3E-B394-7A19BBE8326B&names=ISIN_GRAPH_GB00BLD4ZM24%40%25,ISIN_KEYSTATS_GB00BLD4ZM24",
-      "sha256": "348d3e859d5a775d008035a22d625502e2b6608a5a1447aebebaaa02e9e4da2c",
+      "sha256": "efae2c2cd3b37e9513a303cb71290325c7658a2a7c77eb3e4f8c188d055b66de",
       "method": "calendar-year exact ETP return from issuer normalized USD product series; fees and staking reflected; derived from rounded issuer levels",
       "checkedAt": "2026-10-19",
       "modifiedAt": "2026-10-19"
@@ -37237,7 +37201,7 @@
       "scope": "fund",
       "asOf": "2026-10-16",
       "sourceUrl": "https://globalxetfs.eu/funds/copx/",
-      "sha256": "5c084b8aecbdf9103a1b4df077ca8c95a61ce8ad4e60139767ceebe717538fce",
+      "sha256": "b0fcee27787efc06e3415c14af3d845527aca89047d7c312f561855cfda09308",
       "checkedAt": "2026-10-19",
       "modifiedAt": "2026-10-19"
     },
@@ -37257,7 +37221,7 @@
       "asOf": "2026-09-30",
       "basis": "fund",
       "sourceUrl": "https://globalxetfs.eu/funds/copx/",
-      "sha256": "5c084b8aecbdf9103a1b4df077ca8c95a61ce8ad4e60139767ceebe717538fce",
+      "sha256": "b0fcee27787efc06e3415c14af3d845527aca89047d7c312f561855cfda09308",
       "checkedAt": "2026-10-19",
       "modifiedAt": "2026-10-19"
     },
@@ -37315,7 +37279,7 @@
       "asOf": "2026-09-30",
       "basis": "fund",
       "sourceUrl": "https://globalxetfs.eu/funds/copx/",
-      "sha256": "5c084b8aecbdf9103a1b4df077ca8c95a61ce8ad4e60139767ceebe717538fce",
+      "sha256": "b0fcee27787efc06e3415c14af3d845527aca89047d7c312f561855cfda09308",
       "checkedAt": "2026-10-19",
       "modifiedAt": "2026-10-19"
     },
@@ -37365,14 +37329,14 @@
       "asOf": "2026-10-16",
       "basis": "fund",
       "sourceUrl": "https://globalxetfs.eu/funds/copx/",
-      "sha256": "5c084b8aecbdf9103a1b4df077ca8c95a61ce8ad4e60139767ceebe717538fce",
+      "sha256": "b0fcee27787efc06e3415c14af3d845527aca89047d7c312f561855cfda09308",
       "checkedAt": "2026-10-19",
       "modifiedAt": "2026-10-19"
     },
     "characteristics": {
       "asOf": "2026-10-16",
       "sourceUrl": "https://globalxetfs.eu/funds/copx/",
-      "sha256": "5c084b8aecbdf9103a1b4df077ca8c95a61ce8ad4e60139767ceebe717538fce",
+      "sha256": "b0fcee27787efc06e3415c14af3d845527aca89047d7c312f561855cfda09308",
       "terPct": 0.55,
       "checkedAt": "2026-10-19",
       "modifiedAt": "2026-10-19"
@@ -37410,7 +37374,7 @@
       ],
       "asOf": "2026-09-30",
       "sourceUrl": "https://globalxetfs.eu/funds/copx/",
-      "sha256": "5c084b8aecbdf9103a1b4df077ca8c95a61ce8ad4e60139767ceebe717538fce",
+      "sha256": "b0fcee27787efc06e3415c14af3d845527aca89047d7c312f561855cfda09308",
       "note": "",
       "method": "cumulative exact-share NAV total return, gross income reinvested, net of fees",
       "months": {
@@ -37420,7 +37384,7 @@
         "2026-09": {
           "asOf": "2026-09-30",
           "sourceUrl": "https://globalxetfs.eu/funds/copx/",
-          "sha256": "5c084b8aecbdf9103a1b4df077ca8c95a61ce8ad4e60139767ceebe717538fce",
+          "sha256": "b0fcee27787efc06e3415c14af3d845527aca89047d7c312f561855cfda09308",
           "checkedAt": "2026-10-19",
           "method": "Published exact-share one-month NAV total return at calendar month end"
         }
@@ -37672,7 +37636,7 @@
       "exportDate": "2026-10-19",
       "exportTimezone": "Europe/Berlin",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HV82/historicaldata/download",
-      "sha256": "d22490b5437d2b26ab28f66b5de3b65fab84f853ea479096c78e0f1d4abc27d5",
+      "sha256": "b1db6cb594fbb75e22bb80eb7fe00e1e15821e21c5adbc79b73fc414649befc4",
       "method": "DWS dated historical fund AUM, all share classes, workbook currency; not exact-share assets",
       "checkedAt": "2026-10-19",
       "modifiedAt": "2026-10-19"
@@ -37681,13 +37645,13 @@
       "asOf": "2026-10-16",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HV82/holdings",
-      "sha256": "c4f2cf55cbce968c316fcb2f244d1639841e7f698d8b05f64ecd44646210ac94",
+      "sha256": "faa3f8bca292aacce7a28ea24d8913b31b160e5753d094b76be5e63d407f1c48",
       "complete": true,
       "method": "Full physical securities portfolio; registration country and industry; net cash/derivatives retained",
       "rows": [
         {
           "name": "Industrials",
-          "weightPct": 99.602253,
+          "weightPct": 99.783967,
           "label": "Industrials"
         },
         {
@@ -37697,7 +37661,7 @@
         },
         {
           "name": "Unassigned",
-          "weightPct": 0.19863,
+          "weightPct": 0.016916,
           "label": "Non classé"
         }
       ],
@@ -37708,33 +37672,29 @@
       "asOf": "2026-10-16",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HV82/holdings",
-      "sha256": "c4f2cf55cbce968c316fcb2f244d1639841e7f698d8b05f64ecd44646210ac94",
+      "sha256": "faa3f8bca292aacce7a28ea24d8913b31b160e5753d094b76be5e63d407f1c48",
       "complete": true,
       "method": "Full physical securities portfolio; registration country and industry; net cash/derivatives retained",
       "rows": [
         {
           "name": "United States",
-          "weightPct": 52.52796
+          "weightPct": 56.025179
         },
         {
           "name": "Japan",
           "weightPct": 13.107051
         },
         {
+          "name": "France",
+          "weightPct": 6.417523
+        },
+        {
           "name": "Germany",
           "weightPct": 5.588615
         },
         {
-          "name": "France",
-          "weightPct": 5.056911
-        },
-        {
           "name": "United Kingdom",
           "weightPct": 4.700887
-        },
-        {
-          "name": "Ireland",
-          "weightPct": 4.027749
         },
         {
           "name": "Sweden",
@@ -37749,10 +37709,6 @@
           "weightPct": 2.525171
         },
         {
-          "name": "Netherlands",
-          "weightPct": 1.813212
-        },
-        {
           "name": "Denmark",
           "weightPct": 0.860155
         },
@@ -37765,8 +37721,16 @@
           "weightPct": 0.586873
         },
         {
+          "name": "Ireland",
+          "weightPct": 0.530529
+        },
+        {
           "name": "Finland",
           "weightPct": 0.491155
+        },
+        {
+          "name": "Netherlands",
+          "weightPct": 0.452599
         },
         {
           "name": "Hong Kong",
@@ -37808,40 +37772,40 @@
       "asOf": "2026-10-16",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HV82/holdings",
-      "sha256": "c4f2cf55cbce968c316fcb2f244d1639841e7f698d8b05f64ecd44646210ac94",
+      "sha256": "faa3f8bca292aacce7a28ea24d8913b31b160e5753d094b76be5e63d407f1c48",
       "rows": [
         {
-          "name": "Caterpillar Inc",
+          "name": "CATERPILLAR INC",
           "isin": "US1491231015",
           "weightPct": 3.44205007
         },
         {
-          "name": "General Electric Co",
+          "name": "GE AEROSPACE",
           "isin": "US3696043013",
           "weightPct": 3.33013957
         },
         {
-          "name": "RTX Corp",
+          "name": "RTX",
           "isin": "US75513E1010",
           "weightPct": 2.66915976
         },
         {
-          "name": "GE Vernova Inc",
+          "name": "GE VERNOVA",
           "isin": "US36828A1016",
           "weightPct": 2.53162279
         },
         {
-          "name": "Siemens AG",
+          "name": "SIEMENS N AG",
           "isin": "DE0007236101",
           "weightPct": 2.2518784
         },
         {
-          "name": "Union Pacific Corp",
+          "name": "UNION PACIFIC",
           "isin": "US9078181081",
           "weightPct": 1.75467293
         },
         {
-          "name": "Hitachi Ltd",
+          "name": "HITACHI",
           "isin": "JP3788600009",
           "weightPct": 1.65118637
         },
@@ -37851,12 +37815,12 @@
           "weightPct": 1.60221073
         },
         {
-          "name": "Deere & Co",
+          "name": "DEERE",
           "isin": "US2441991054",
           "weightPct": 1.59348577
         },
         {
-          "name": "Recruit Holdings Co Ltd",
+          "name": "RECRUIT HOLDINGS LTD",
           "isin": "JP3970300004",
           "weightPct": 1.57980196
         }
@@ -37938,7 +37902,7 @@
       "exportDate": "2026-10-19",
       "exportTimezone": "Europe/Berlin",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HQ30/historicaldata/download",
-      "sha256": "2e059a9981742303b8bd2775ddf833fefd36c758ca43fef71426312be09a4948",
+      "sha256": "17a598d7c681b81492f975f2c241a5146ada7f546be95268beaad323cb20ac4c",
       "method": "DWS dated historical fund AUM, all share classes, workbook currency; not exact-share assets",
       "checkedAt": "2026-10-19",
       "modifiedAt": "2026-10-19"
@@ -37947,7 +37911,7 @@
       "asOf": "2026-10-16",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HQ30/holdings",
-      "sha256": "ec4f22249846c36c6122fb27531f5c929d7686e3b9fc6c8599773aa266b2068d",
+      "sha256": "41c0251c83c6df8b3c3e4ef2a4824cb66ee97ee9d35b056c4009a90231679d08",
       "complete": true,
       "method": "Full physical securities portfolio; registration country and industry; net cash/derivatives retained",
       "rows": [
@@ -37974,7 +37938,7 @@
       "asOf": "2026-10-16",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HQ30/holdings",
-      "sha256": "ec4f22249846c36c6122fb27531f5c929d7686e3b9fc6c8599773aa266b2068d",
+      "sha256": "41c0251c83c6df8b3c3e4ef2a4824cb66ee97ee9d35b056c4009a90231679d08",
       "complete": true,
       "method": "Full physical securities portfolio; registration country and industry; net cash/derivatives retained",
       "rows": [
@@ -38066,10 +38030,10 @@
       "asOf": "2026-10-16",
       "basis": "fund",
       "sourceUrl": "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HQ30/holdings",
-      "sha256": "ec4f22249846c36c6122fb27531f5c929d7686e3b9fc6c8599773aa266b2068d",
+      "sha256": "41c0251c83c6df8b3c3e4ef2a4824cb66ee97ee9d35b056c4009a90231679d08",
       "rows": [
         {
-          "name": "Nextera Energy Inc",
+          "name": "NEXTERA ENERGY",
           "isin": "US65339F1012",
           "weightPct": 7.58398716
         },
@@ -38079,17 +38043,17 @@
           "weightPct": 6.8996643
         },
         {
-          "name": "Southern Co",
+          "name": "SOUTHERN",
           "isin": "US8425871071",
           "weightPct": 4.68383727
         },
         {
-          "name": "Duke Energy Corp",
+          "name": "DUKE ENERGY CORP",
           "isin": "US26441C2044",
           "weightPct": 4.31520223
         },
         {
-          "name": "Constellation Energy Corp",
+          "name": "CONSTELLATION ENERGY CORP",
           "isin": "US21037T1097",
           "weightPct": 3.86388551
         },
@@ -38109,12 +38073,12 @@
           "weightPct": 3.15279028
         },
         {
-          "name": "Dominion Energy Inc",
+          "name": "DOMINION ENERGY",
           "isin": "US25746U1097",
           "weightPct": 2.54735174
         },
         {
-          "name": "Sempra",
+          "name": "SEMPRA",
           "isin": "US8168511090",
           "weightPct": 2.48465285
         }
@@ -38372,14 +38336,14 @@
       "scope": "fund",
       "asOf": "2026-10-16",
       "sourceUrl": "https://globalxetfs.eu/funds/silv/",
-      "sha256": "6c0f77d7d798d82ac11d9b0778a114b7bdcac7dafe0543a4fbfa382a5ad60fe8",
+      "sha256": "0561223ed82621cd8a131f9d79b7369d9fbc2ed2413a4d8a9228fff3d221b539",
       "checkedAt": "2026-10-19",
       "modifiedAt": "2026-10-19"
     },
     "characteristics": {
       "asOf": "2026-10-16",
       "sourceUrl": "https://globalxetfs.eu/funds/silv/",
-      "sha256": "6c0f77d7d798d82ac11d9b0778a114b7bdcac7dafe0543a4fbfa382a5ad60fe8",
+      "sha256": "0561223ed82621cd8a131f9d79b7369d9fbc2ed2413a4d8a9228fff3d221b539",
       "terPct": 0.65,
       "checkedAt": "2026-10-19",
       "modifiedAt": "2026-10-19"
@@ -38390,7 +38354,7 @@
       "years": {},
       "asOf": "2026-09-30",
       "sourceUrl": "https://globalxetfs.eu/funds/silv/",
-      "sha256": "6c0f77d7d798d82ac11d9b0778a114b7bdcac7dafe0543a4fbfa382a5ad60fe8",
+      "sha256": "0561223ed82621cd8a131f9d79b7369d9fbc2ed2413a4d8a9228fff3d221b539",
       "method": "cumulative exact-share NAV total return, gross income reinvested, net of fees",
       "observations": [
         {
@@ -38426,7 +38390,7 @@
         "2026-09": {
           "asOf": "2026-09-30",
           "sourceUrl": "https://globalxetfs.eu/funds/silv/",
-          "sha256": "6c0f77d7d798d82ac11d9b0778a114b7bdcac7dafe0543a4fbfa382a5ad60fe8",
+          "sha256": "0561223ed82621cd8a131f9d79b7369d9fbc2ed2413a4d8a9228fff3d221b539",
           "checkedAt": "2026-10-19",
           "method": "Published exact-share one-month NAV total return at calendar month end"
         }
@@ -38472,7 +38436,7 @@
       "asOf": "2026-09-30",
       "basis": "fund",
       "sourceUrl": "https://globalxetfs.eu/funds/silv/",
-      "sha256": "6c0f77d7d798d82ac11d9b0778a114b7bdcac7dafe0543a4fbfa382a5ad60fe8",
+      "sha256": "0561223ed82621cd8a131f9d79b7369d9fbc2ed2413a4d8a9228fff3d221b539",
       "checkedAt": "2026-10-19",
       "modifiedAt": "2026-10-19"
     },
@@ -38522,7 +38486,7 @@
       "asOf": "2026-10-16",
       "basis": "fund",
       "sourceUrl": "https://globalxetfs.eu/funds/silv/",
-      "sha256": "6c0f77d7d798d82ac11d9b0778a114b7bdcac7dafe0543a4fbfa382a5ad60fe8",
+      "sha256": "0561223ed82621cd8a131f9d79b7369d9fbc2ed2413a4d8a9228fff3d221b539",
       "checkedAt": "2026-10-19",
       "modifiedAt": "2026-10-19"
     },
@@ -38531,7 +38495,7 @@
         "status": "not-published",
         "checkedAt": "2026-10-19",
         "sourceUrl": "https://globalxetfs.eu/funds/silv/",
-        "sha256": "6c0f77d7d798d82ac11d9b0778a114b7bdcac7dafe0543a4fbfa382a5ad60fe8",
+        "sha256": "0561223ed82621cd8a131f9d79b7369d9fbc2ed2413a4d8a9228fff3d221b539",
         "reason": "Aucun tableau sectoriel complet du fonds dans la page officielle contrôlée.",
         "evidence": {
           "datedCountryTable": true,
