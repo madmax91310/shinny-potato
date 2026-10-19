@@ -8,7 +8,7 @@ import {CATALOG,buildCustomDuel} from '../src/pages/portfolio-duels/lib.js'
 import {buildManualPortfolio} from '../src/pages/portfolio-generator/engine.js'
 import {latestCommonYears} from '../src/data/annual-window.js'
 import {projectLightRegistries} from './project-light-registries.mjs'
-import {buildAssetFieldReport} from './report-asset-fields.mjs'
+import {buildAssetFieldReport,completeHoldingsEvidence,fieldState} from './report-asset-fields.mjs'
 import {matchesListing} from './build-equity-history-links.mjs'
 import {AUTOMATIC_RECIPE_ISINS} from '../src/data/automated-portfolio-funds.js'
 const exposureCatalogue=JSON.parse(readFileSync('src/pages/dca-profiles/catalog.json'));
@@ -46,7 +46,19 @@ for(const asset of PORTFOLIO) {
 const report=buildAssetFieldReport()
 assert(report.summary.completeHoldings)
 assert(report.rows.some(r=>r.field==='pea'&&r.automationConfigured))
-for(const row of report.rows.filter(r=>r.field==='completeHoldings'&&r.present))assert(row.asOf&&row.checkedAt&&row.sourceUrl)
+for(const row of report.rows.filter(r=>r.field==='completeHoldings'&&r.present)) {
+ assert(row.asOf&&row.sourceUrl,`${row.id}: retained holdings need a period and source`)
+ if(row.checkedAt)assert.notEqual(row.state,'undated-check',row.id)
+ else assert.equal(row.state,'undated-check',`${row.id}: a missing historical check remains explicit`)
+ if(row.state==='current')assert(row.checkedAt,`${row.id}: current requires a successful check`)
+}
+const retained={complete:true,asOf:'2026-10-15',sourceUrl:'https://issuer.example/holdings'}
+const failed={status:'failed',checkedAt:'2026-10-19',lastSuccessAt:'2026-10-16'}
+assert.equal(completeHoldingsEvidence(retained,failed).checkedAt,'2026-10-16')
+assert.equal(completeHoldingsEvidence(retained,{status:'failed',checkedAt:'2026-10-19'}).checkedAt,null)
+assert.equal(fieldState(completeHoldingsEvidence(retained,{status:'failed',checkedAt:'2026-10-19'}),'2026-10-19'),'undated-check')
+assert.equal(completeHoldingsEvidence({...retained,checkedAt:'2026-10-15'},failed).checkedAt,'2026-10-15')
 const workflow=readFileSync('.github/workflows/update-market-monthly.yml','utf8')
 assert(workflow.includes('export-equity-candidates.mjs')&&workflow.includes('build-equity-history-links.mjs'))
 console.log(`${count} manual choices: exact identities, common EUR results in duels/generator, automatic qualification and deferred-data parity verified.`)
+
