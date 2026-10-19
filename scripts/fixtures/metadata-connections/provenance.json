@@ -1,0 +1,30 @@
+{
+  "invesco-listings.json": {
+    "isin": "IE000716YHJ7",
+    "sourceUrl": "https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/IE000716YHJ7?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData",
+    "checkedAt": "2026-10-19T18:54:42.166Z",
+    "sha256": "b32209ff006bc19229b797d6ff606a7e00424172e5fa80c63a153bf63c0adc04",
+    "fixtureSha256": "b32209ff006bc19229b797d6ff606a7e00424172e5fa80c63a153bf63c0adc04"
+  },
+  "borsa-listing.html": {
+    "isin": "IE00B4K6B022",
+    "sourceUrl": "https://www.borsaitaliana.it/borsa/etf/scheda/IE00B4K6B022-ETFP.html?lang=en",
+    "checkedAt": "2026-10-19T18:54:51.455Z",
+    "sha256": "a5ff53d93d407ef19984d9782997798c519804de95ea5fe2fec26c5d5522fd30",
+    "fixtureSha256": "45cb47512ecf2eed2209ab8b7d14119c8e5922e07eed08223e17cf226008c8d3"
+  },
+  "fortuneo-discovery.json": {
+    "isin": "IE00BK5BQT80",
+    "sourceUrl": "https://bourse.fortuneo.fr/api/search?term=IE00BK5BQT80",
+    "checkedAt": "2026-10-19T18:56:47.330Z",
+    "sha256": "b59ec4bfd6a2d2c30c0dde18f126a1b90321f8519e25c37a55720d7e2707e063",
+    "fixtureSha256": "b59ec4bfd6a2d2c30c0dde18f126a1b90321f8519e25c37a55720d7e2707e063"
+  },
+  "euronext-listing.html": {
+    "isin": "FR0011550185",
+    "sourceUrl": "https://live.euronext.com/en/product/etfs/FR0011550185-XPAR",
+    "checkedAt": "2026-10-19T18:56:52.153Z",
+    "sha256": "1c59af201d3a3ec620eabcc2f192891b315f6640de498900dee439fc832413b6",
+    "fixtureSha256": "8d629d0c71da9b1d38ad75d4d9fb435d100e5ab5bbd16b943457e8be79ea5367"
+  }
+}

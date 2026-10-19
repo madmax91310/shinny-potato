@@ -78,3 +78,33 @@ d’inventer une devise de couverture.
 La couverture actuelle et les lacunes par champ restent dans le rapport généré
 `public/data/asset-field-coverage.json` et l’écran « Données à revoir ». Un champ
 qui n’a pas de déclaration vérifiable reste inconnu et continue d’être contrôlé.
+
+## Raccordement des derniers supports (19 octobre 2026)
+
+Les huit supports qui n’avaient aucun ensemble de cotations dans le registre
+commun disposent maintenant de réponses qualifiées. L’API publique Invesco fournit
+ses lignes par ISIN (place, devise, ticker et RIC effectivement publiés), y compris
+FWIA sur Xetra pour le FTSE All-World. GBX reste une unité en pence, jamais rebaptisée
+GBP. Les pages Borsa Italiana exigent leurs propres cellules ISIN/MIC/ticker/devise.
+Euronext expose l’identité dans ses paramètres publics et la devise dans le tableau
+chargé par son application : un navigateur lit cette page avant qualification.
+Aucun symbole de fournisseur n’est inventé lorsque la place ne le publie pas.
+
+Le moteur public de recherche Fortuneo retrouve les références par ISIN exact et
+fournit le mnémonique et le code de marché de la fiche. La recherche seule ne prouve
+aucun statut fiscal. Le collecteur suit ensuite la fiche, conserve son URL effective
+et exige sa déclaration PEA explicite. Une recherche vide ne signifie jamais false.
+Les mnémoniques publiés avec un trait d’union sont acceptés. Ce raccordement a
+qualifié 54 statuts supplémentaires (170 sur 258), avec empreintes et dates réelles.
+Les 88 supports sans déclaration vérifiable restent dans les champs à qualifier.
+
+Une nouvelle déclaration opposée à une revue documentée requiert un accord frais
+de deux domaines indépendants. Les contradictions courantes conservent leurs deux
+preuves dans le diagnostic ; le générateur réintroduit ces sources comme conditions
+de qualification aux tentatives suivantes. Une panne ultérieure ne peut ainsi
+effacer le désaccord. Le cas justETF/Fortuneo sur IE00B0M62S72 reste bloqué.
+
+Les tests de connexion vérifient les réponses réelles archivées et les cas de mauvaise
+identité, devise absente, recherche vide, routes injectées et contradictions. Chromium
+vérifie les huit nouvelles cotations et un statut PEA nouvellement documenté dans
+les Fiches ETF, puis leur consommation par un Comparatif ETF, sur mobile et ordinateur.
