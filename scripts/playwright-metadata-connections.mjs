@@ -8,7 +8,7 @@ import {getInstrumentPeaStatus} from '../src/data/instruments.js'
 import {DEFAULT_THEMES} from '../src/data/etf-themes.js'
 import {getComparatifEtfText} from '../src/pages/tweet-midi/data/comparatifEtf.js'
 const records=JSON.parse(readFileSync('src/data/automated-instrument-metadata.json'))
-const isins=['IE000716YHJ7','IE0000QLH0G6','IE00B579F325','IE00BD6FTQ80','IE00B4K6B022','FR0011550185','FR0011550193','IE000L2SA8K5','IE00BK5BQT80','IE00BD4TXV59','IE000QDFFK00']
+const isins=['IE000DQLYVB9','IE000716YHJ7','IE0000QLH0G6','IE00B579F325','IE00BD6FTQ80','IE00B4K6B022','FR0011550185','FR0011550193','IE000L2SA8K5','IE00BK5BQT80','IE00BD4TXV59','IE000QDFFK00']
 const server=spawn('node',['node_modules/vite/bin/vite.js','preview','--host','127.0.0.1','--port','4390'],{stdio:'ignore'})
 const base='http://127.0.0.1:4390/shinny-potato'
 let browser
@@ -32,7 +32,7 @@ try{
    assert(text.includes('Cotation : '+listing.exchange+' · '+listing.currency),isin+': exact preferred venue and currency reach the sheet')
    if(getInstrumentPeaStatus(isin)===false)assert(text.includes('CTO'),isin+': documented negative is rendered as CTO')
    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+2),false)
-   if(['IE000716YHJ7','IE00B4K6B022','FR0011550185','IE00BK5BQT80','IE00BD4TXV59','IE000QDFFK00'].includes(isin))await page.screenshot({path:'test-artifacts/metadata-connections/'+isin+'-'+width+'.png',fullPage:true})
+   if(['IE000DQLYVB9','IE000716YHJ7','IE00B4K6B022','FR0011550185','IE00BK5BQT80','IE00BD4TXV59','IE000QDFFK00'].includes(isin))await page.screenshot({path:'test-artifacts/metadata-connections/'+isin+'-'+width+'.png',fullPage:true})
   }
   const theme=DEFAULT_THEMES.find(t=>t.etfs.some(f=>f.isin==='IE00BK5BQT80'))
   assert(theme,'A real comparison contains the newly documented PEA share')

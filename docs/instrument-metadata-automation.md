@@ -129,3 +129,8 @@ La « Currency Denomination » de Borsa Italiana décrit la dénomination de la 
 et ne qualifie jamais sa devise de cotation. Le cas UBS WRDA en donne une vérification
 réelle : part en USD, mais cotation milanaise en EUR. Seul le champ de cotation
 explicite de la page de marché est retenu pour la devise de négociation.
+
+La cotation parisienne SPEA (`IE000DQLYVB9`) est également relue sur Euronext.
+Cette voie indépendante renouvelle les cellules ISIN/MIC/ticker/devise lorsque
+la page iShares suisse refuse la lecture ; le refus de l’ancienne source reste
+visible et la dernière preuve valide est conservée si les deux voies échouent.
