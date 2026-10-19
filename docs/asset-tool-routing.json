@@ -1,20 +1,20 @@
 {
-  "checkedAt": "2026-10-18T20:59:36.844Z",
+  "checkedAt": "2026-10-19T06:31:24.623Z",
   "summary": {
     "instruments": 647,
     "sheets": 258,
     "comparisons": 245,
     "practical": 21,
-    "duels": 598,
+    "duels": 608,
     "generatorAutomatic": 141,
     "dca": 647,
     "fullExposure": 602,
     "outsideExposure": 41,
-    "automaticHistories": 235,
+    "automaticHistories": 245,
     "historyCandidates": 0,
     "unused": 0,
     "blockers": {
-      "no-listing": 17,
+      "no-listing": 7,
       "listing-not-collectable": 0,
       "qualification-failed": 0,
       "qualification-pending": 0,
@@ -4527,7 +4527,7 @@
           "tweet-midi",
           "investment-calculator"
         ],
-        "checkedAt": "2026-10-18T19:31:40.807499+00:00"
+        "checkedAt": "2026-10-19T05:14:21.408654+00:00"
       },
       "dca": true,
       "countries": {
@@ -6453,7 +6453,7 @@
           "tweet-midi",
           "investment-calculator"
         ],
-        "checkedAt": "2026-10-18T19:31:40.807499+00:00"
+        "checkedAt": "2026-10-19T05:14:21.408654+00:00"
       },
       "dca": true,
       "countries": {
@@ -6622,7 +6622,7 @@
         "tools": [
           "portfolio-generator"
         ],
-        "checkedAt": "2026-10-18T15:33:48.575784+00:00"
+        "checkedAt": "2026-10-19T05:14:21.408654+00:00"
       },
       "dca": true,
       "countries": {
@@ -6898,7 +6898,7 @@
           "tweet-midi",
           "investment-calculator"
         ],
-        "checkedAt": "2026-10-18T19:31:40.807499+00:00"
+        "checkedAt": "2026-10-19T05:14:21.408654+00:00"
       },
       "dca": true,
       "countries": {
@@ -7122,7 +7122,7 @@
         "tools": [
           "portfolio-generator"
         ],
-        "checkedAt": "2026-10-18T15:33:48.575784+00:00"
+        "checkedAt": "2026-10-19T05:14:21.408654+00:00"
       },
       "dca": true,
       "countries": {
@@ -7405,7 +7405,7 @@
         "tools": [
           "portfolio-generator"
         ],
-        "checkedAt": "2026-10-18T15:33:48.575784+00:00"
+        "checkedAt": "2026-10-19T05:14:21.408654+00:00"
       },
       "dca": true,
       "countries": {
@@ -7571,23 +7571,12 @@
       "name": "Global X Uranium UCITS ETF USD Acc",
       "kind": "etf",
       "practical": [],
-      "duel": false,
+      "duel": true,
       "qualification": null,
       "sheet": true,
       "comparison": false,
-      "generator": "missing",
-      "blocker": {
-        "code": "no-listing",
-        "detail": "Cotations candidates déclarées, en attente du document émetteur · globalxetfs.eu : Missing or multiple exact-share identities in metadata document",
-        "field": "monthly",
-        "tools": [
-          "portfolio-generator",
-          "performance-rankings",
-          "tweet-midi",
-          "investment-calculator"
-        ],
-        "checkedAt": "2026-10-18T19:31:40.807499+00:00"
-      },
+      "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -7609,7 +7598,18 @@
         "identifiedCoverage": 0,
         "automatic": false
       },
-      "monthly": [],
+      "monthly": [
+        {
+          "id": "etfIE000NDWFGA5",
+          "automatic": true,
+          "first": "2022-05",
+          "last": "2026-09",
+          "currency": "USD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
       "historyCandidate": false,
       "decision": "keep-used"
     },
@@ -7633,7 +7633,7 @@
           "tweet-midi",
           "investment-calculator"
         ],
-        "checkedAt": "2026-10-18T19:31:40.807499+00:00"
+        "checkedAt": "2026-10-19T05:14:21.408654+00:00"
       },
       "dca": true,
       "countries": {
@@ -7775,7 +7775,7 @@
         "tools": [
           "portfolio-generator"
         ],
-        "checkedAt": "2026-10-18T15:33:48.575784+00:00"
+        "checkedAt": "2026-10-19T05:14:21.408654+00:00"
       },
       "dca": true,
       "countries": {
@@ -9056,23 +9056,12 @@
       "name": "Vanguard FTSE All-World UCITS ETF Distributing",
       "kind": "etf",
       "practical": [],
-      "duel": false,
+      "duel": true,
       "qualification": null,
       "sheet": true,
       "comparison": true,
-      "generator": "missing",
-      "blocker": {
-        "code": "no-listing",
-        "detail": "Cotations candidates déclarées, en attente du document émetteur · fund-docs.vanguard.com : No explicit supported metadata fields",
-        "field": "monthly",
-        "tools": [
-          "portfolio-generator",
-          "performance-rankings",
-          "tweet-midi",
-          "investment-calculator"
-        ],
-        "checkedAt": "2026-10-18T19:31:40.807499+00:00"
-      },
+      "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -9094,7 +9083,18 @@
         "identifiedCoverage": 0,
         "automatic": false
       },
-      "monthly": [],
+      "monthly": [
+        {
+          "id": "etfIE00B3RBWM25",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "USD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
       "historyCandidate": false,
       "decision": "keep-used"
     },
@@ -9144,23 +9144,12 @@
       "name": "Vanguard FTSE Emerging Markets UCITS ETF (Dist)",
       "kind": "etf",
       "practical": [],
-      "duel": false,
+      "duel": true,
       "qualification": null,
       "sheet": true,
       "comparison": true,
-      "generator": "missing",
-      "blocker": {
-        "code": "no-listing",
-        "detail": "Cotations candidates déclarées, en attente du document émetteur · fund-docs.vanguard.com : No explicit supported metadata fields",
-        "field": "monthly",
-        "tools": [
-          "portfolio-generator",
-          "performance-rankings",
-          "tweet-midi",
-          "investment-calculator"
-        ],
-        "checkedAt": "2026-10-18T19:31:40.807499+00:00"
-      },
+      "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -9182,7 +9171,18 @@
         "identifiedCoverage": 0,
         "automatic": false
       },
-      "monthly": [],
+      "monthly": [
+        {
+          "id": "etfIE00B3VVMM84",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "USD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
       "historyCandidate": false,
       "decision": "keep-used"
     },
@@ -9285,23 +9285,12 @@
       "name": "Vanguard S&P 500 UCITS ETF Distributing",
       "kind": "etf",
       "practical": [],
-      "duel": false,
+      "duel": true,
       "qualification": null,
       "sheet": true,
       "comparison": true,
-      "generator": "missing",
-      "blocker": {
-        "code": "no-listing",
-        "detail": "Cotations candidates déclarées, en attente du document émetteur · fund-docs.vanguard.com : No explicit supported metadata fields",
-        "field": "monthly",
-        "tools": [
-          "portfolio-generator",
-          "performance-rankings",
-          "tweet-midi",
-          "investment-calculator"
-        ],
-        "checkedAt": "2026-10-18T19:31:40.807499+00:00"
-      },
+      "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -9323,7 +9312,18 @@
         "identifiedCoverage": 0,
         "automatic": false
       },
-      "monthly": [],
+      "monthly": [
+        {
+          "id": "etfIE00B3XXRP09",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "USD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
       "historyCandidate": false,
       "decision": "keep-used"
     },
@@ -9629,7 +9629,7 @@
         "tools": [
           "portfolio-generator"
         ],
-        "checkedAt": "2026-10-18T15:33:48.575784+00:00"
+        "checkedAt": "2026-10-19T05:14:21.408654+00:00"
       },
       "dca": true,
       "countries": {
@@ -9859,7 +9859,7 @@
           "tweet-midi",
           "investment-calculator"
         ],
-        "checkedAt": "2026-10-18T19:31:40.807499+00:00"
+        "checkedAt": "2026-10-19T05:14:21.408654+00:00"
       },
       "dca": true,
       "countries": {
@@ -10047,7 +10047,7 @@
         "tools": [
           "portfolio-generator"
         ],
-        "checkedAt": "2026-10-18T15:33:48.575784+00:00"
+        "checkedAt": "2026-10-19T05:14:21.408654+00:00"
       },
       "dca": true,
       "countries": {
@@ -10967,23 +10967,12 @@
       "name": "Vanguard FTSE Developed Europe UCITS ETF Distributing",
       "kind": "etf",
       "practical": [],
-      "duel": false,
+      "duel": true,
       "qualification": null,
       "sheet": true,
       "comparison": true,
-      "generator": "missing",
-      "blocker": {
-        "code": "no-listing",
-        "detail": "Cotations candidates déclarées, en attente du document émetteur · fund-docs.vanguard.com : No explicit supported metadata fields",
-        "field": "monthly",
-        "tools": [
-          "portfolio-generator",
-          "performance-rankings",
-          "tweet-midi",
-          "investment-calculator"
-        ],
-        "checkedAt": "2026-10-18T19:31:40.807499+00:00"
-      },
+      "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -11005,7 +10994,18 @@
         "identifiedCoverage": 0,
         "automatic": false
       },
-      "monthly": [],
+      "monthly": [
+        {
+          "id": "etfIE00B945VV12",
+          "automatic": true,
+          "first": "2015-01",
+          "last": "2026-09",
+          "currency": "USD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
       "historyCandidate": false,
       "decision": "keep-used"
     },
@@ -11258,7 +11258,7 @@
           "tweet-midi",
           "investment-calculator"
         ],
-        "checkedAt": "2026-10-18T19:31:40.807499+00:00"
+        "checkedAt": "2026-10-19T05:14:21.408654+00:00"
       },
       "dca": true,
       "countries": {
@@ -11636,23 +11636,12 @@
       "name": "Vanguard S&P 500 UCITS ETF Accumulating",
       "kind": "etf",
       "practical": [],
-      "duel": false,
+      "duel": true,
       "qualification": null,
       "sheet": true,
       "comparison": true,
-      "generator": "missing",
-      "blocker": {
-        "code": "no-listing",
-        "detail": "Cotations candidates déclarées, en attente du document émetteur · fund-docs.vanguard.com : No explicit supported metadata fields",
-        "field": "monthly",
-        "tools": [
-          "portfolio-generator",
-          "performance-rankings",
-          "tweet-midi",
-          "investment-calculator"
-        ],
-        "checkedAt": "2026-10-18T19:31:40.807499+00:00"
-      },
+      "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -11674,7 +11663,18 @@
         "identifiedCoverage": 0,
         "automatic": false
       },
-      "monthly": [],
+      "monthly": [
+        {
+          "id": "etfIE00BFMXXD54",
+          "automatic": true,
+          "first": "2019-06",
+          "last": "2026-09",
+          "currency": "USD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
       "historyCandidate": false,
       "decision": "keep-used"
     },
@@ -12813,23 +12813,12 @@
       "name": "Vanguard FTSE Developed World UCITS ETF Accumulating",
       "kind": "etf",
       "practical": [],
-      "duel": false,
+      "duel": true,
       "qualification": null,
       "sheet": true,
       "comparison": true,
-      "generator": "missing",
-      "blocker": {
-        "code": "no-listing",
-        "detail": "Cotations candidates déclarées, en attente du document émetteur · fund-docs.vanguard.com : No explicit supported metadata fields",
-        "field": "monthly",
-        "tools": [
-          "portfolio-generator",
-          "performance-rankings",
-          "tweet-midi",
-          "investment-calculator"
-        ],
-        "checkedAt": "2026-10-18T19:31:40.807499+00:00"
-      },
+      "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -12851,7 +12840,18 @@
         "identifiedCoverage": 0,
         "automatic": false
       },
-      "monthly": [],
+      "monthly": [
+        {
+          "id": "etfIE00BK5BQV03",
+          "automatic": true,
+          "first": "2019-10",
+          "last": "2026-09",
+          "currency": "USD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
       "historyCandidate": false,
       "decision": "keep-used"
     },
@@ -12860,23 +12860,12 @@
       "name": "Vanguard FTSE Developed Europe UCITS ETF Accumulating",
       "kind": "etf",
       "practical": [],
-      "duel": false,
+      "duel": true,
       "qualification": null,
       "sheet": true,
       "comparison": true,
-      "generator": "missing",
-      "blocker": {
-        "code": "no-listing",
-        "detail": "Cotations candidates déclarées, en attente du document émetteur · fund-docs.vanguard.com : No explicit supported metadata fields",
-        "field": "monthly",
-        "tools": [
-          "portfolio-generator",
-          "performance-rankings",
-          "tweet-midi",
-          "investment-calculator"
-        ],
-        "checkedAt": "2026-10-18T19:31:40.807499+00:00"
-      },
+      "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -12898,7 +12887,18 @@
         "identifiedCoverage": 0,
         "automatic": false
       },
-      "monthly": [],
+      "monthly": [
+        {
+          "id": "etfIE00BK5BQX27",
+          "automatic": true,
+          "first": "2019-08",
+          "last": "2026-09",
+          "currency": "USD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
       "historyCandidate": false,
       "decision": "keep-used"
     },
@@ -13319,23 +13319,12 @@
       "name": "Global X Robotics & Artificial Intelligence UCITS ETF USD Acc",
       "kind": "etf",
       "practical": [],
-      "duel": false,
+      "duel": true,
       "qualification": null,
       "sheet": true,
       "comparison": false,
-      "generator": "missing",
-      "blocker": {
-        "code": "no-listing",
-        "detail": "Cotations candidates déclarées, en attente du document émetteur · globalxetfs.eu : Missing or multiple exact-share identities in metadata document",
-        "field": "monthly",
-        "tools": [
-          "portfolio-generator",
-          "performance-rankings",
-          "tweet-midi",
-          "investment-calculator"
-        ],
-        "checkedAt": "2026-10-18T19:31:40.807499+00:00"
-      },
+      "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -13357,7 +13346,18 @@
         "identifiedCoverage": 0,
         "automatic": false
       },
-      "monthly": [],
+      "monthly": [
+        {
+          "id": "etfIE00BLCHJB90",
+          "automatic": true,
+          "first": "2021-12",
+          "last": "2026-09",
+          "currency": "USD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
       "historyCandidate": false,
       "decision": "keep-used"
     },
@@ -13737,23 +13737,12 @@
       "name": "Global X Cybersecurity UCITS ETF USD Acc",
       "kind": "etf",
       "practical": [],
-      "duel": false,
+      "duel": true,
       "qualification": null,
       "sheet": true,
       "comparison": false,
-      "generator": "missing",
-      "blocker": {
-        "code": "no-listing",
-        "detail": "Cotations candidates déclarées, en attente du document émetteur · globalxetfs.eu : Missing or multiple exact-share identities in metadata document",
-        "field": "monthly",
-        "tools": [
-          "portfolio-generator",
-          "performance-rankings",
-          "tweet-midi",
-          "investment-calculator"
-        ],
-        "checkedAt": "2026-10-18T19:31:40.807499+00:00"
-      },
+      "generator": "manual",
+      "blocker": null,
       "dca": true,
       "countries": {
         "status": "available",
@@ -13775,7 +13764,18 @@
         "identifiedCoverage": 0,
         "automatic": false
       },
-      "monthly": [],
+      "monthly": [
+        {
+          "id": "etfIE00BMH5Y871",
+          "automatic": true,
+          "first": "2021-12",
+          "last": "2026-09",
+          "currency": "USD",
+          "performance": true,
+          "simulation": true,
+          "anniversary": true
+        }
+      ],
       "historyCandidate": false,
       "decision": "keep-used"
     },

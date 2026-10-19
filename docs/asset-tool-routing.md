@@ -1,10 +1,10 @@
 # Raccordements par actif et par outil
 
-Généré le 2026-10-18 par `node scripts/audit-asset-tool-routing.mjs --write`. Le JSON associé contient les sources automatiques, dates, devises et motifs détaillés.
+Généré le 2026-10-19 par `node scripts/audit-asset-tool-routing.mjs --write`. Le JSON associé contient les sources automatiques, dates, devises et motifs détaillés.
 
 « Sans objet » ne signifie pas donnée manquante. « Complète » décrit la table collectée, pas la possibilité de calculer un recouvrement intégral : identification, fraîcheur et compatibilité restent contrôlées par le moteur. Un candidat historique possède une cotation documentée, mais sa série doit encore passer la collecte et les contrôles. Les actifs utilisés sont conservés.
 
-Actifs présentés sans historique automatique (Sans cotation : 17 · Historique court : 30) : la colonne « Blocage » donne la cause relevée et ce qui est attendu.
+Actifs présentés sans historique automatique (Sans cotation : 7 · Historique court : 30) : la colonne « Blocage » donne la cause relevée et ce qui est attendu.
 
 | Actif | ISIN | Fiche | Comparatif | Générateur | Pays / secteurs | Positions | Performance / Simulation / Anniversaire | Blocage |
 |---|---|---|---|---|---|---|---|---|
@@ -177,7 +177,7 @@ Actifs présentés sans historique automatique (Sans cotation : 17 · Historique
 | Invesco NASDAQ-100 Equal Weight UCITS ETF Acc | IE000L2SA8K5 | Oui | Oui | missing | Oui / Oui | Partielle | Oui / Oui / Oui | Historique court — 2 année(s) complète(s) ; 6 requises en génération automatique |
 | Xtrackers FTSE All-World UCITS ETF 1C | IE000L6ZMMC4 | Oui | — | missing | Oui / Oui | Complète | — / — / — | Historique court — 0 année(s) complète(s) ; 6 requises en génération automatique |
 | VanEck Uranium and Nuclear Technologies UCITS ETF | IE000M7V94E1 | Oui | Oui | missing | Oui / Oui | Partielle | Oui / Oui / Oui | Historique court — 2 année(s) complète(s) ; 6 requises en génération automatique |
-| Global X Uranium UCITS ETF USD Acc | IE000NDWFGA5 | Oui | — | missing | Oui / Oui | Partielle | — / — / — | Sans cotation — Cotations candidates déclarées, en attente du document émetteur · globalxetfs.eu : Missing or multiple exact-share identities in metadata document |
+| Global X Uranium UCITS ETF USD Acc | IE000NDWFGA5 | Oui | — | manual | Oui / Oui | Partielle | Oui / Oui / Oui | — |
 | BNP Paribas Easy II Nasdaq 100 UCITS ETF (Acc) | IE000QDFFK00 | Oui | Oui | missing | Oui / Oui | Partielle | — / — / — | Sans cotation — Cotations candidates déclarées, en attente du document émetteur · dokumenty.analizy.pl : No explicit supported metadata fields |
 | iShares Blockchain Technology UCITS ETF | IE000RDRMSD1 | Oui | Oui | manual | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | Linde | IE000S9YS762 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
@@ -208,12 +208,12 @@ Actifs présentés sans historique automatique (Sans cotation : 17 · Historique
 | iShares MSCI EM Small Cap UCITS ETF USD (Dist) | IE00B3F81G20 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | iShares Core € Corp Bond UCITS ETF (Dist) | IE00B3F81R35 | Oui | Oui | automatic | Sans objet / Sans objet | Partielle | Oui / Oui / — | — |
 | iShares € Govt Bond 0-1yr UCITS ETF EUR (Dist) | IE00B3FH7618 | Oui | Oui | automatic | Sans objet / Sans objet | Partielle | Oui / Oui / — | — |
-| Vanguard FTSE All-World UCITS ETF Distributing | IE00B3RBWM25 | Oui | Oui | missing | Oui / Oui | Partielle | — / — / — | Sans cotation — Cotations candidates déclarées, en attente du document émetteur · fund-docs.vanguard.com : No explicit supported metadata fields |
+| Vanguard FTSE All-World UCITS ETF Distributing | IE00B3RBWM25 | Oui | Oui | manual | Oui / Oui | Partielle | Oui / Oui / Oui | — |
 | SPDR € Corp Bond UCITS ETF | IE00B3T9LM79 | Oui | Oui | automatic | Sans objet / Sans objet | Partielle | Oui / Oui / Oui | — |
-| Vanguard FTSE Emerging Markets UCITS ETF (Dist) | IE00B3VVMM84 | Oui | Oui | missing | Oui / Oui | Partielle | — / — / — | Sans cotation — Cotations candidates déclarées, en attente du document émetteur · fund-docs.vanguard.com : No explicit supported metadata fields |
+| Vanguard FTSE Emerging Markets UCITS ETF (Dist) | IE00B3VVMM84 | Oui | Oui | manual | Oui / Oui | Partielle | Oui / Oui / Oui | — |
 | iShares MSCI EMU Small Cap UCITS ETF | IE00B3VWMM18 | Oui | Oui | manual | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | iShares S&P 500 Information Technology Sector UCITS ETF | IE00B3WJKG14 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
-| Vanguard S&P 500 UCITS ETF Distributing | IE00B3XXRP09 | Oui | Oui | missing | Oui / Oui | Partielle | — / — / — | Sans cotation — Cotations candidates déclarées, en attente du document émetteur · fund-docs.vanguard.com : No explicit supported metadata fields |
+| Vanguard S&P 500 UCITS ETF Distributing | IE00B3XXRP09 | Oui | Oui | manual | Oui / Oui | Partielle | Oui / Oui / Oui | — |
 | State Street SPDR MSCI All Country World Investable Market UCITS ETF (Acc) | IE00B3YLTY66 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | iShares S&P 500 Consumer Staples Sector UCITS ETF | IE00B40B8R38 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | iShares S&P 500 Energy Sector UCITS ETF | IE00B42NKQ00 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
@@ -250,7 +250,7 @@ Actifs présentés sans historique automatique (Sans cotation : 17 · Historique
 | iShares Edge MSCI World Minimum Volatility UCITS ETF | IE00B8FHGS14 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | Vanguard FTSE All-World High Dividend Yield UCITS ETF | IE00B8GKDB10 | Oui | Oui | automatic | Oui / Oui | Partielle | Oui / Oui / Oui | — |
 | Eaton | IE00B8KQN827 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
-| Vanguard FTSE Developed Europe UCITS ETF Distributing | IE00B945VV12 | Oui | Oui | missing | Oui / Oui | Partielle | — / — / — | Sans cotation — Cotations candidates déclarées, en attente du document émetteur · fund-docs.vanguard.com : No explicit supported metadata fields |
+| Vanguard FTSE Developed Europe UCITS ETF Distributing | IE00B945VV12 | Oui | Oui | manual | Oui / Oui | Partielle | Oui / Oui / Oui | — |
 | SPDR S&P Global Dividend Aristocrats UCITS ETF | IE00B9CQXS71 | Oui | Oui | automatic | Oui / Oui | Partielle | Oui / Oui / Oui | — |
 | iShares € Ultrashort Bond UCITS ETF | IE00BCRY6557 | Oui | Oui | automatic | Sans objet / Sans objet | Partielle | Oui / Oui / Oui | — |
 | iShares Edge MSCI USA Quality Factor UCITS ETF | IE00BD1F4L37 | Oui | Oui | manual | Oui / Oui | Complète | Oui / Oui / Oui | — |
@@ -265,7 +265,7 @@ Actifs présentés sans historique automatique (Sans cotation : 17 · Historique
 | L&G Battery Value-Chain UCITS ETF | IE00BF0M2Z96 | Oui | Oui | automatic | Oui / Oui | Partielle | Oui / Oui / Oui | — |
 | iShares € High Yield Corp Bond UCITS ETF (Acc) | IE00BF3N7094 | Oui | Oui | automatic | Sans objet / Sans objet | Partielle | Oui / Oui / Oui | — |
 | iShares MSCI World Small Cap UCITS ETF | IE00BF4RFH31 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
-| Vanguard S&P 500 UCITS ETF Accumulating | IE00BFMXXD54 | Oui | Oui | missing | Oui / Oui | Partielle | — / — / — | Sans cotation — Cotations candidates déclarées, en attente du document émetteur · fund-docs.vanguard.com : No explicit supported metadata fields |
+| Vanguard S&P 500 UCITS ETF Accumulating | IE00BFMXXD54 | Oui | Oui | manual | Oui / Oui | Partielle | Oui / Oui / Oui | — |
 | Allegion | IE00BFRT3W74 | — | — | manual | Oui / Oui | — | Oui / Oui / Oui | — |
 | State Street SPDR MSCI World UCITS ETF | IE00BFY0GT14 | Oui | Oui | manual | Oui / Oui | Partielle | Oui / Oui / Oui | — |
 | iShares J.P. Morgan EM Local Govt Bond UCITS ETF (Acc) | IE00BFZPF546 | Oui | Oui | automatic | Sans objet / Sans objet | Partielle | — / — / — | — |
@@ -290,8 +290,8 @@ Actifs présentés sans historique automatique (Sans cotation : 17 · Historique
 | L&G Artificial Intelligence UCITS ETF | IE00BK5BCD43 | Oui | Oui | automatic | Oui / Oui | Partielle | Oui / Oui / Oui | — |
 | L&G Clean Energy UCITS ETF | IE00BK5BCH80 | Oui | Oui | manual | Oui / Oui | Partielle | Oui / Oui / Oui | — |
 | Vanguard FTSE All-World UCITS ETF (USD) Accumulating | IE00BK5BQT80 | Oui | Oui | automatic | Oui / Oui | Partielle | Oui / Oui / Oui | — |
-| Vanguard FTSE Developed World UCITS ETF Accumulating | IE00BK5BQV03 | Oui | Oui | missing | Oui / Oui | Partielle | — / — / — | Sans cotation — Cotations candidates déclarées, en attente du document émetteur · fund-docs.vanguard.com : No explicit supported metadata fields |
-| Vanguard FTSE Developed Europe UCITS ETF Accumulating | IE00BK5BQX27 | Oui | Oui | missing | Oui / Oui | Partielle | — / — / — | Sans cotation — Cotations candidates déclarées, en attente du document émetteur · fund-docs.vanguard.com : No explicit supported metadata fields |
+| Vanguard FTSE Developed World UCITS ETF Accumulating | IE00BK5BQV03 | Oui | Oui | manual | Oui / Oui | Partielle | Oui / Oui / Oui | — |
+| Vanguard FTSE Developed Europe UCITS ETF Accumulating | IE00BK5BQX27 | Oui | Oui | manual | Oui / Oui | Partielle | Oui / Oui / Oui | — |
 | Vanguard FTSE All-World High Dividend Yield UCITS ETF | IE00BK5BR626 | Oui | Oui | automatic | Oui / Oui | Partielle | — / — / — | — |
 | Vanguard FTSE Emerging Markets UCITS ETF (Acc) | IE00BK5BR733 | Oui | Oui | automatic | Oui / Oui | Partielle | Oui / Oui / Oui | — |
 | iShares $ Treasury Bond UCITS ETF | IE00BK95B138 | Oui | Oui | automatic | Sans objet / Sans objet | Partielle | Oui / Oui / Oui | — |
@@ -301,7 +301,7 @@ Actifs présentés sans historique automatique (Sans cotation : 17 · Historique
 | iShares MSCI World Quality Dividend Advanced UCITS ETF | IE00BKPSFC54 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | iShares MSCI AC Far East ex-Japan UCITS ETF | IE00BKPX3K41 | Oui | Oui | automatic | Oui / Oui | Complète | — / — / — | — |
 | State Street SPDR MSCI Europe UCITS ETF | IE00BKWQ0Q14 | Oui | Oui | manual | Oui / Oui | Partielle | Oui / Oui / Oui | — |
-| Global X Robotics & Artificial Intelligence UCITS ETF USD Acc | IE00BLCHJB90 | Oui | — | missing | Oui / Oui | Partielle | — / — / — | Sans cotation — Cotations candidates déclarées, en attente du document émetteur · globalxetfs.eu : Missing or multiple exact-share identities in metadata document |
+| Global X Robotics & Artificial Intelligence UCITS ETF USD Acc | IE00BLCHJB90 | Oui | — | manual | Oui / Oui | Partielle | Oui / Oui / Oui | — |
 | Xtrackers S&P 500 Equal Weight UCITS ETF 1C | IE00BLNMYC90 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | Xtrackers MSCI World Health Care UCITS ETF | IE00BM67HK77 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
 | Xtrackers MSCI World Utilities UCITS ETF | IE00BM67HQ30 | Oui | Oui | automatic | Oui / Oui | Complète | Oui / Oui / Oui | — |
@@ -310,7 +310,7 @@ Actifs présentés sans historique automatique (Sans cotation : 17 · Historique
 | Global X Nasdaq 100 Covered Call UCITS ETF | IE00BM8R0J59 | Oui | — | automatic | Oui / Oui | — | Oui / Oui / Oui | — |
 | VanEck Semiconductor UCITS ETF | IE00BMC38736 | Oui | Oui | manual | Oui / Oui | Partielle | Oui / Oui / Oui | — |
 | iShares MSCI EM ex-China UCITS ETF (Acc) | IE00BMG6Z448 | Oui | Oui | manual | Oui / Oui | Complète | Oui / Oui / Oui | — |
-| Global X Cybersecurity UCITS ETF USD Acc | IE00BMH5Y871 | Oui | — | missing | Oui / Oui | Partielle | — / — / — | Sans cotation — Cotations candidates déclarées, en attente du document émetteur · globalxetfs.eu : Missing or multiple exact-share identities in metadata document |
+| Global X Cybersecurity UCITS ETF USD Acc | IE00BMH5Y871 | Oui | — | manual | Oui / Oui | Partielle | Oui / Oui / Oui | — |
 | Vanguard LifeStrategy 20% Equity UCITS ETF (EUR) Accumulating | IE00BMVB5K07 | Oui | Oui | manual | Partiel / Partiel | Partielle | Oui / Oui / — | — |
 | Vanguard LifeStrategy 40% Equity UCITS ETF (EUR) Accumulating | IE00BMVB5M21 | Oui | Oui | manual | Partiel / Partiel | Partielle | Oui / Oui / — | — |
 | Vanguard LifeStrategy 60% Equity UCITS ETF (EUR) Accumulating | IE00BMVB5P51 | Oui | Oui | manual | Partiel / Partiel | Partielle | Oui / Oui / — | — |
