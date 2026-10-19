@@ -377,7 +377,7 @@ def parse_listings(body,source,url,checked):
     return [r|{'sourceUrl':url,'checkedAt':checked,'sha256':digest,'evidenceId':f"{isin}-{r['mic']}-{r['ticker']}-{r['currency']}"} for r in rows]
 
 def collect(source,now,fetch=download,on_document=None):
-    values={};errors=[];conflicts=set();checked=now.date().isoformat()
+    values={};errors=[];conflicts=set();observations={};checked=now.date().isoformat()
     for requested_url in source['urls']:
         url=requested_url
         try:
@@ -397,6 +397,7 @@ def collect(source,now,fetch=download,on_document=None):
             if listing_rows:fields['listings']=listing_rows
             if not fields:raise ValueError('No explicit supported metadata fields')
             for field,value in fields.items():
+                if field in ('pea','currencyHedge'):observations.setdefault(field,{})[url]=value
                 if field in conflicts:continue
                 if field in values and values[field]['value']!=value:
                     if field=='listings':
@@ -417,6 +418,12 @@ def collect(source,now,fetch=download,on_document=None):
                     continue
                 values[field]={'value':value,'checkedAt':checked,'sourceUrl':url,'sha256':hashlib.sha256(body).hexdigest()}
         except Exception as error:errors.append({'sourceUrl':url,'error':str(error)})
+    for hold in source.get('qualificationHolds',[]):
+        field=hold['field'];observed=observations.get(field,{})
+        urls=[row['sourceUrl'] for row in hold['sources']]
+        if any(url not in observed for url in urls) or len({observed[url] for url in urls if url in observed})!=1:
+            values.pop(field,None)
+            errors.append({'sourceUrl':urls[0],'field':field,'qualificationRequired':True,'error':'Qualification de publication requise : contradiction entre sources non résolue ; aucune valeur choisie par défaut.','sources':hold['sources']})
     return values,errors
 
 def field_diagnostics(source, values, failures, old, now):
@@ -445,6 +452,7 @@ def main():
     errors=[];updated=[];successes=[];within_grace=[]
     with ThreadPoolExecutor(max_workers=6) as pool:
         for isin,values,failures in pool.map(one,sources):
+            errors.extend({'id':f"{isin}:{failure['field']}:qualification",'field':failure['field'],'error':failure['error']} for failure in failures if failure.get('qualificationRequired'))
             old=records.get(isin,{})
             for field,value in values.items():
                 if value['checkedAt']>=old.get(field,{}).get('checkedAt',''):old[field]=value

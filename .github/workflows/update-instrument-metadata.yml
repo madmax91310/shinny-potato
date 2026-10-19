@@ -9,6 +9,8 @@ on:
       - '.github/workflows/update-instrument-metadata.yml'
       - 'scripts/collect_instrument_metadata.py'
       - 'scripts/instrument-metadata-supplemental-sources.json'
+      - 'scripts/metadata-qualification-holds.json'
+      - 'scripts/metadata_transport.py'
       - 'scripts/listing-candidates.json'
       - 'scripts/build-automation-targets.mjs'
       - 'scripts/split-etf-records.mjs'
@@ -130,6 +132,8 @@ jobs:
           path: src/data
       - run: python -m unittest discover -s scripts -p 'test_instrument_metadata.py'
       - run: python -m unittest discover -s scripts -p 'test_metadata_completion.py'
+      - run: python -m unittest discover -s scripts -p 'test_metadata_evidence_replay.py'
+      - run: python -m unittest discover -s scripts -p 'test_metadata_transport.py'
       - run: python -m unittest discover -s scripts -p 'test_metadata_recovery_diagnostics.py'
       - run: python -m unittest discover -s scripts -p 'test_automation_renewals.py'
       - run: python -m unittest discover -s scripts -p 'test_monthly_qualification.py'

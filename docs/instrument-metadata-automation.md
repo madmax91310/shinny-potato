@@ -43,6 +43,28 @@ ETF et l’écran de couverture dans Chromium, sur mobile et ordinateur. Les
 documents bruts sont répartis en quatre archives et conservés quatorze jours.
 Les extraits de régression versionnés possèdent leur provenance et leur empreinte.
 
+`replay_metadata_evidence.py` peut requalifier ces réponses archivées avec le
+parseur courant, sans réseau : il vérifie leur empreinte, leur identité et conserve
+la date de chaque téléchargement réussi. Rejouer une réponse ancienne ne la
+transforme jamais en un nouveau contrôle. Cela permet d’enregistrer les preuves
+collectées pendant ce chantier même lorsqu’une source refuse les appels suivants.
+Les requêtes sont sérialisées par hôte ; un refus 403 ou 429 suspend cet hôte pendant
+cinq minutes dans le processus, sans retenter chaque ISIN. Les nouvelles révisions
+d’une PR annulent ses observations devenues obsolètes.
+
+Les contradictions connues sont dans `scripts/metadata-qualification-holds.json`,
+avec les deux déclarations observées et leurs preuves. Le champ n’est pas renouvelé
+tant que les deux sources n’ont pas été relues avec des valeurs concordantes. Une
+source indisponible ne résout pas une contradiction ; le diagnostic de qualification
+reste visible. Le cas initial concerne le PEA de `IE00B0M62S72` (justETF/Fortuneo).
+
+L’enregistrement initial de ce chantier reprend 711 réponses publiques archivées
+et vérifiées avec le parseur courant. Il complète les quatre caractéristiques de
+base pour les 258 supports, conserve 250 ensembles de cotations qualifiées et
+116 statuts PEA documentés. Les refus constatés à la dernière tentative restent
+dans le diagnostic ; ces observations archivées ne sont pas redatées. Les deux
+déclarations contradictoires du statut PEA cité ci-dessus restent séparées.
+
 ## Consommation des valeurs
 
 La politique de distribution distingue capitalisation, distribution et politique
