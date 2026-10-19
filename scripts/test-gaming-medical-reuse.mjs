@@ -5,7 +5,7 @@ import { DATA_CATALOG } from '../src/data/catalog.js'
 import { ASSETS as HISTORY } from '../src/data/market-history.js'
 import { getInstrumentAnnualPerformance } from '../src/data/instrument-returns.js'
 import { AUTOMATED_PERFORMANCE } from '../src/data/automated-etf.js'
-import { getInstrumentPeaStatus } from '../src/data/instruments.js'
+import { getInstrumentPeaStatus, INSTRUMENTS_BY_ISIN } from '../src/data/instruments.js'
 import { PEA_REVIEWS_BY_ISIN } from '../src/data/instrument-pea.js'
 import { getInstrumentFacts } from '../src/data/instrument-facts.js'
 import { getComparisonPerformance } from '../src/pages/tweet-midi/comparisonPerformance.js'
@@ -44,7 +44,9 @@ for (const proof of capture.funds) {
  const record = DATA_CATALOG.find(x => x.type === 'instrument' && x.id === proof.isin)
  for (const path of ['/fiches-etf','/comparatif-etf','/generateur-portefeuilles','/duels-portefeuilles','/impact-frais']) assert(record.consumers.some(c => c.path === path), `${proof.isin}: ${path}`)
 }
-assert.equal(getInstrumentPeaStatus('__missing_metadata_test__'),null,'Aucune preuve ne devient jamais un statut PEA négatif')
+const undocumented=Object.keys(INSTRUMENTS_BY_ISIN).find(isin=>PEA_REVIEWS_BY_ISIN[isin]?.eligible==null)
+if(undocumented)assert.equal(getInstrumentPeaStatus(undocumented),null,'Un instrument enregistré sans preuve PEA reste inconnu')
+assert.throws(()=>getInstrumentPeaStatus('__missing_metadata_test__'),/Produit inconnu/,'Un identifiant invalide ne devient pas un instrument documenté')
 assert.equal(buildDuel(DUELS.find(x => x.id === 'emergents-chine')).years[0],2022, 'Ex-China : aucune année avant la première année complète du fonds')
 for (const id of ['world-jeux-video','world-innovation-medicale','sante-innovation-biotech','world-immo-infrastructure']) assert.equal(buildDuel(DUELS.find(x => x.id === id)).years[0],2020)
 for (const id of ['msci-world-sector-neutral-quality','msci-world-enhanced-value','msci-em-ex-china']) {
