@@ -50,6 +50,8 @@ transforme jamais en un nouveau contrôle. Cela permet d’enregistrer les preuv
 collectées pendant ce chantier même lorsqu’une source refuse les appels suivants.
 Les requêtes sont sérialisées par hôte ; un refus 403 ou 429 suspend cet hôte pendant
 cinq minutes dans le processus, sans retenter chaque ISIN. Les nouvelles révisions
+Trois échecs de transport consécutifs suspendent également l’hôte ; un document
+absent isolé ne bloque pas les autres parts. Les nouvelles révisions
 d’une PR annulent ses observations devenues obsolètes.
 
 Les contradictions connues sont dans `scripts/metadata-qualification-holds.json`,
