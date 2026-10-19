@@ -12,7 +12,7 @@ import urllib.error
 import urllib.request
 
 from automation_monitoring import evaluate_monitoring, sync_monitoring_issue, timestamp
-from automation_recovery import plan_recovery, dispatch_recovery, recovery_reason
+from automation_recovery import plan_recovery, persist_and_dispatch, recovery_reason
 
 REGISTRY = json.loads((pathlib.Path(__file__).resolve().parents[1] / 'src/data/automation-workflows.json').read_text())
 WORKFLOWS = {key: value['name'] for key, value in REGISTRY.items()}
@@ -559,12 +559,7 @@ def main():
     payload = {'message': 'Update automation failure status', 'branch': BRANCH, 'content': encoded}
     if sha:
         payload['sha'] = sha
-    saved = api(f'/contents/{PATH}', 'PUT', payload)
-    if recovery_plans:
-        dispatch_recovery(api, state['recovery'], recovery_plans)
-        payload['sha'] = saved['content']['sha']
-        payload['content'] = base64.b64encode((json.dumps(state, ensure_ascii=False, indent=2)+'\n').encode()).decode()
-        api(f'/contents/{PATH}', 'PUT', payload)
+    persist_and_dispatch(api, PATH, payload, state, recovery_plans)
     # Persist incidents before notifying. Bot issue/comment receipts make retries idempotent.
     sync_monitoring_issue(state['monitoring'], api, repo)
     print(f'Statuts publiés : {len(state["workflows"])} automatisations')

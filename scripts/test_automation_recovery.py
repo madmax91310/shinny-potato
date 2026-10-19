@@ -1,7 +1,9 @@
 import copy
 import datetime as dt
+import base64
+import json
 import unittest
-from automation_recovery import plan_recovery, dispatch_recovery
+from automation_recovery import plan_recovery, dispatch_recovery, persist_and_dispatch
 
 NOW = dt.datetime(2026, 10, 19, 12, tzinfo=dt.timezone.utc)
 REGISTRY = {'update-test.yml': {'maxAgeHours': 48}}
@@ -81,6 +83,32 @@ class RecoveryTests(unittest.TestCase):
         self.assertEqual(ledger['update-test.yml']['status'], 'dispatch-failed')
         state['recovery'] = ledger
         self.assertEqual(self.plan(state)[1], [])
+
+    def test_durable_reservation_precedes_post_and_conditional_write_prevents_duplicates(self):
+        state = self.state()
+        state['recovery'], plans = self.plan(state)
+        payload = {'sha': 'original', 'content': base64.b64encode(json.dumps(state).encode()).decode()}
+        saved, calls = {}, []
+        def api(path, method, body):
+            calls.append((path, method))
+            if method == 'PUT':
+                self.assertEqual(body['sha'], 'original' if not saved else 'reserved-sha')
+                saved.clear()
+                saved.update(json.loads(base64.b64decode(body['content'])))
+                return {'content': {'sha': 'reserved-sha'}}
+            self.assertEqual(saved['recovery']['update-test.yml']['status'], 'reserved')
+            self.assertEqual(self.plan(saved)[1], [])
+            self.assertEqual(body, {'ref': 'master'})
+        persist_and_dispatch(api, 'automation-status.json', payload, state, plans)
+        self.assertEqual([method for _, method in calls], ['PUT', 'POST', 'PUT'])
+        self.assertEqual(saved['recovery']['update-test.yml']['status'], 'dispatched')
+        calls.clear()
+        def conflict(*args):
+            calls.append(args)
+            raise RuntimeError('status branch changed')
+        with self.assertRaises(RuntimeError):
+            persist_and_dispatch(conflict, 'automation-status.json', payload, state, plans)
+        self.assertEqual(len(calls), 1, 'No dispatch follows a refused reservation write')
 
 
 if __name__ == '__main__':

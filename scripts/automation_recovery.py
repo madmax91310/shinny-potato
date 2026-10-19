@@ -1,6 +1,8 @@
 """Bounded fresh-master dispatches; never replay an obsolete workflow snapshot."""
 import copy
 import datetime as dt
+import base64
+import json
 import re
 
 UTC = dt.timezone.utc
@@ -99,3 +101,13 @@ def dispatch_recovery(api, ledger, plans):
             status, error = 'dispatch-failed', f'{type(exception).__name__}: {exception}'[:300]
         entry['status'] = status
         entry['attempts'][-1].update(status=status, error=error)
+
+
+def persist_and_dispatch(api, path, payload, state, plans):
+    """The conditional status write is the transaction boundary before dispatch."""
+    saved = api(f'/contents/{path}', 'PUT', payload)
+    if plans:
+        dispatch_recovery(api, state['recovery'], plans)
+        payload = {**payload, 'sha': saved['content']['sha'],
+                   'content': base64.b64encode((json.dumps(state, ensure_ascii=False, indent=2)+'\n').encode()).decode()}
+        api(f'/contents/{path}', 'PUT', payload)
