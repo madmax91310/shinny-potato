@@ -10,11 +10,8 @@ URL='https://www.quantalys.com/Fonds/17300'
 class QuantalysTests(unittest.TestCase):
  def test_explicit_own_pea_cell(self):
   self.assertEqual(parse_quantalys_pea(BODY,ISIN,URL),{'pea':False})
-  from bs4 import BeautifulSoup
-  soup=BeautifulSoup(BODY,'html.parser')
-  row=next(r for r in soup.select('tr') if r.find('td').get_text(' ',strip=True)=='Eligible PEA')
-  row.find_all('td')[1].string='Oui'
-  self.assertEqual(parse_quantalys_pea(str(soup).encode(),ISIN,URL),{'pea':True})
+  positive=(Path(__file__).with_name('fixtures')/'metadata-connections'/'quantalys-pea-positive.html').read_bytes()
+  self.assertEqual(parse_quantalys_pea(positive,'IE00B3VWMM18','https://www.quantalys.com/Fonds/56778'),{'pea':True})
  def test_unknown_is_not_negative(self):
   from bs4 import BeautifulSoup
   soup=BeautifulSoup(BODY,'html.parser')
@@ -57,4 +54,21 @@ class QuantalysTests(unittest.TestCase):
    values,_=collect({'isin':ISIN,'urls':[search]},dt.datetime(2026,10,19,tzinfo=dt.timezone.utc))
   self.assertEqual(values['pea']['sourceUrl'],URL)
   self.assertIs(values['pea']['value'],False)
+ def test_valid_reference_skips_redundant_discovery(self):
+  search='https://www.quantalys.com/Recherche/RechercheRapide?inputSearch='+ISIN
+  with patch('collect_instrument_metadata.fetch_document',return_value=(BODY,URL))as fetch:
+   values,errors=collect({'isin':ISIN,'urls':[URL,search]},dt.datetime(2026,10,19,tzinfo=dt.timezone.utc))
+  self.assertEqual(fetch.call_count,1)
+  self.assertIs(values['pea']['value'],False)
+  self.assertFalse(errors)
+ def test_missing_reference_can_be_rediscovered(self):
+  search='https://www.quantalys.com/Recherche/RechercheRapide?inputSearch='+ISIN
+  def fetch(url,*args,**kwargs):
+   if url==URL:raise ValueError('Public reference unavailable')
+   return BODY,URL
+  with patch('collect_instrument_metadata.fetch_document',side_effect=fetch)as called:
+   values,errors=collect({'isin':ISIN,'urls':[URL,search]},dt.datetime(2026,10,19,tzinfo=dt.timezone.utc))
+  self.assertEqual(called.call_count,2)
+  self.assertIs(values['pea']['value'],False)
+  self.assertTrue(errors)
 

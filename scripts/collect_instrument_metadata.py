@@ -546,6 +546,7 @@ def collect(source,now,fetch=download,on_document=None):
     urls=list(source['urls'])
     for requested_url in urls:
         url=requested_url
+        if re.fullmatch(r'https://www\.quantalys\.com/Recherche/RechercheRapide\?inputSearch=[A-Z]{2}[A-Z0-9]{9}\d',url) and urlsplit(values.get('pea',{}).get('sourceUrl','')).hostname=='www.quantalys.com':continue
         if urlsplit(url).hostname=='bourse.fortuneo.fr' and urlsplit(url).path=='/api/search' and urlsplit(values.get('pea',{}).get('sourceUrl','')).hostname=='bourse.fortuneo.fr':continue
         try:
             body,url=fetch_document(url,fetch,source['isin'])
