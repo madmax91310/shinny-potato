@@ -18,6 +18,9 @@ async function json(url, authenticated = false) {
   return response.json()
 }
 const candidate = git('rev-parse', 'HEAD')
+if (process.env.PAGES_FALLBACK === 'true' && !sha(process.env.PAGES_CODE_SHA)) {
+  throw new Error('Fallback publication requires the exact built code identity')
+}
 const code = process.env.PAGES_CODE_SHA || candidate
 // A checkout is shallow in Actions. Fetch the actual master history before any
 // ancestry comparison; a broken/missing remote remains a blocking error.
@@ -53,3 +56,4 @@ else {
   if (!codeCurrent || !publishedData.every(ref => ancestor(ref, candidate))) emit(false, 'a newer code or data snapshot is already published (or history is unknown)')
   else emit(true, `${candidate}; ${changed.length} newer file change(s) remain eligible for later validated publication`)
 }
+
