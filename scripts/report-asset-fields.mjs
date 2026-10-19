@@ -2,6 +2,7 @@ import {INSTRUMENT_LISTINGS_BY_ISIN} from '../src/data/instrument-listings.js';
 import {PEA_REVIEWS_BY_ISIN} from '../src/data/instrument-pea.js';
 import {fieldDiagnostic,FIELD_TOOLS} from './lib/field-diagnostics.mjs';
 import {ASSETS} from '../src/data/market-history.js';
+import {equityExposureGaps} from './dca-equity-universe.mjs';
 import {readFileSync,writeFileSync,mkdirSync} from 'node:fs';
 import {fileURLToPath} from 'node:url';
 import {AUTOMATED_ETF} from '../src/data/automated-etf.js';
@@ -58,7 +59,7 @@ export function buildAssetFieldReport(now=new Date().toISOString().slice(0,10)) 
  const completeHoldings=read('src/data/dca-complete-holdings.json'),holdingsStatus=read('src/data/dca-holdings-status.json'),metadataStatus=read('src/data/instrument-metadata-status.json');
  const holdingsSources={...read('scripts/dca-complete-holdings-sources.json'),...read('scripts/generated-holdings-sources.json')};
  const names={completeHoldings:'Positions intégrales',ter:'Frais',aum:'Encours',performance:'Performances annuelles',monthly:'Historique mensuel',countries:'Pays',sectors:'Secteurs',holdings:'Principales positions',distribution:'Distribution',domicile:'Domicile',replicationMethod:'Réplication',listings:'Cotations',pea:'Éligibilité PEA',currencyHedge:'Couverture de change'};
- const rows=[];
+ const rows=[...equityExposureGaps()];
  const qualification=read('scripts/source-snapshots/monthly-qualification-status.json');
  const metadataSources=new Map(read('scripts/instrument-metadata-sources.json').instruments.map(r=>[r.isin,r.urls]));
  for(const item of DATA_CATALOG.filter(r=>r.type==='instrument' && r.fields.find(f=>f.label==='Identité')?.value?.instrumentType!=='EQUITY')) {
@@ -108,3 +109,4 @@ export function writeAssetFieldReport() {
  return r;
 }
 if(process.argv[1]===fileURLToPath(import.meta.url)){const r=process.argv.includes('--write')?writeAssetFieldReport():buildAssetFieldReport();console.log(JSON.stringify(r.summary,null,2));}
+
