@@ -16,9 +16,13 @@ async function request(isin,url){
  catch(e){manifest.push({isin,requestedUrl:url,error:String(e)});writeFileSync(out+'/manifest.json',JSON.stringify(manifest,null,2))}
 }
 try{
- for(const [isin,url] of [['IE0003XJA0J9','https://www.boursorama.com/recherche/?query=IE0003XJA0J9'],['IE00BLNMYC90','https://www.boursorama.com/bourse/trackers/cours/1gXDEW/'],['IE0003XJA0J9','https://www.boursorama.com/recherche/ajax?query=IE0003XJA0J9']])await request(isin,url)
- const page=await context.newPage(),isin='IE00B4K6B022',url='https://live.euronext.com/en/product/etfs/'+isin+'-XPAR'
- try{const response=await page.goto(url,{timeout:30000,waitUntil:'domcontentloaded'});await page.getByText('Currency',{exact:true}).waitFor({timeout:25000});await save(isin,url,Buffer.from(await page.content()),response.status(),page.url(),'euronext-browser')}catch(e){manifest.push({isin,requestedUrl:url,error:String(e)})}
- await page.close()
+ for(const isin of ['IE00B4L5Y983','IE00BP3QZ601','IE00BDBRDM35','IE00B0M62S72']){
+  const source=sources.find(x=>x.isin===isin);const api=source.urls.find(u=>u.includes('blackrock.com/varnish-api/'))
+  if(!api)continue
+  const id=new URL(api).searchParams.get('portfolioId')
+  await request(isin,api.replace('locale=en_GB','locale=fr_FR').replace('targetSite=ishares-uk','targetSite=ishares-fr').replace('/uk-retail01-','/fr-retail01-'))
+  await request(isin,'https://www.blackrock.com/fr/particuliers/products/'+id+'/fund')
+ }
+ for(const [isin,url] of [['IE0003XJA0J9','https://www.quantalys.com/Fonds/Recherche?isin=IE0003XJA0J9'],['IE0003XJA0J9','https://www.abcbourse.com/cotation/WEBNq'],['IE00BLNMYC90','https://www.boursorama.com/bourse/trackers/cours/composition/1gXDEW/']])await request(isin,url)
 }finally {writeFileSync(out+'/manifest.json',JSON.stringify(manifest,null,2));await browser.close()}
 console.log(JSON.stringify(manifest.map(({isin,requestedUrl,status,error})=>({isin,requestedUrl,status,error}))))
