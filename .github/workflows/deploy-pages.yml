@@ -67,7 +67,7 @@ jobs:
           node-version: 20
       - name: Record the data snapshot requested for publication
         if: github.event_name != 'pull_request'
-        run: python3 scripts/data_publication.py receipt --commit "$(git rev-parse HEAD)" --output "$RUNNER_TEMP/data-publication-receipt.json" -- src/data scripts/source-snapshots
+        run: python3 scripts/data_publication.py receipt --all --commit "$(git rev-parse HEAD)" --output "$RUNNER_TEMP/data-publication-receipt.json"
       - uses: actions/upload-artifact@v7.0.1
         if: github.event_name != 'pull_request'
         with:
@@ -348,6 +348,8 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_automation*.py'
       - run: python -m unittest discover -s scripts -p 'test_audit_workflows.py'
       - run: python -m unittest discover -s scripts -p 'test_validated_data_commit.py'
+      - run: python -m unittest discover -s scripts -p 'test_data_publication.py'
+      - run: python -m unittest discover -s scripts -p 'test_publication_safety.py'
 
   browser-checks:
     needs: build
@@ -532,6 +534,7 @@ jobs:
       contents: read
     outputs:
       data_sha: ${{ steps.compose.outputs.data_sha }}
+      code_sha: ${{ steps.compose.outputs.code_sha }}
     steps:
       - uses: actions/checkout@v7.0.1
         with:
@@ -577,7 +580,8 @@ jobs:
         id: current
         env:
           GITHUB_TOKEN: ${{ github.token }}
-          PAGES_CODE_SHA: ${{ needs.scope.outputs.published }}
+          PAGES_CODE_SHA: ${{ needs.fallback-build.outputs.code_sha }}
+          PAGES_FALLBACK: 'true'
         run: bash scripts/check-pages-head.sh
       - id: deployment
         if: steps.current.outputs.current == 'true'
@@ -586,3 +590,4 @@ jobs:
           artifact_name: github-pages-fallback
       - if: steps.current.outputs.current == 'true'
         run: echo "Données publiées avec le dernier code validé (voie de secours). Le code de master reste à réparer." >> "$GITHUB_STEP_SUMMARY"
+

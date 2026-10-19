@@ -360,7 +360,9 @@ def legacy_publication_receipt(repo, jobs, api):
         if tree.get('truncated'):
             return None
         files = {r['path']: r['sha'] for r in tree['tree'] if r['type'] == 'blob'
-                 and r['path'].startswith(('src/data/', 'scripts/source-snapshots/'))}
+                 and (r['path'].startswith(('src/data/', 'scripts/source-snapshots/', 'public/data/'))
+                      or r['path'].startswith('src/pages/') and r['path'].endswith('.json'))
+                 and r['path'] != 'public/data/publication-manifest.json'}
         return {'schemaVersion': 1, 'commit': sha, 'files': files, 'evidenceJobId': builds[0]['id']}
     except (subprocess.SubprocessError, urllib.error.URLError, ValueError, KeyError):
         return None
@@ -550,3 +552,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+

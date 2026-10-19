@@ -106,6 +106,10 @@ class WorkflowContracts(unittest.TestCase):
         self.assertIn('group: pages-production', deploy)
         self.assertIn('bash scripts/check-pages-head.sh', deploy)
         self.assertIn('artifact_name: github-pages-fallback', deploy)
+        self.assertIn('code_sha: ${{ steps.compose.outputs.code_sha }}', fallback)
+        self.assertIn('PAGES_CODE_SHA: ${{ needs.fallback-build.outputs.code_sha }}', deploy)
+        self.assertIn("PAGES_FALLBACK: 'true'", deploy)
+        self.assertNotIn('needs.scope.', deploy)
 
     def test_deploy_requires_every_validation_job_and_same_built_commit(self):
         workflow = (ROOT/'.github/workflows/deploy-pages.yml').read_text()
@@ -148,3 +152,4 @@ class WorkflowContracts(unittest.TestCase):
                 self.assertRegex(body, r'(?m)^\s*queue:\s*max\s*$', (path.name, body))
 
 if __name__ == '__main__': unittest.main()
+

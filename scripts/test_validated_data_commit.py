@@ -49,7 +49,7 @@ class CommitValidatedData(unittest.TestCase):
         self.git(self.local, 'add', 'generated.json')
         before = self.git(self.local, 'diff', '--cached')
         self.advance_remote('other.txt')
-        result = self.publish()
+        result = self.publish({'VALIDATED_DATA_CHECK': 'test -f validated.json && test -f other.txt'})
         self.assertEqual(result.returncode, 0, result.stderr)
         self.assertEqual(self.git(self.remote, 'show', 'master:validated.json'), 'validated update')
         self.assertEqual(self.git(self.remote, 'show', 'master:generated.json'), 'original')
@@ -76,6 +76,17 @@ class CommitValidatedData(unittest.TestCase):
         self.assertEqual(self.git(self.remote, 'rev-parse', 'master'), head)
         self.assertFalse((self.root / 'output').exists())
 
+    def test_changed_inputs_require_explicit_revalidation(self):
+        (self.local / 'validated.json').write_text('derived from original other.txt\n')
+        self.advance_remote('other.txt')
+        head = self.git(self.remote, 'rev-parse', 'master')
+        result = self.publish()
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn('Remote inputs changed after collection', result.stderr)
+        self.assertEqual(self.git(self.remote, 'rev-parse', 'master'), head)
+        self.assertEqual(self.git(self.remote, 'show', 'master:validated.json'), 'original')
+        self.assertFalse((self.root / 'output').exists())
+
     def test_no_change_does_not_publish_generated_files(self):
         head = self.git(self.remote, 'rev-parse', 'master')
         (self.local / 'generated.json').write_text('generated\n')
@@ -85,3 +96,4 @@ class CommitValidatedData(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
