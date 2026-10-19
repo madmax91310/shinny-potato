@@ -324,7 +324,7 @@ class LegacyPublicationProof(unittest.TestCase):
 
 class LargeStatusFile(unittest.TestCase):
  def test_large_status_reads_the_exact_observed_sha_without_refetching_the_branch(self):
-  import base64
+  import base64,json
   from publish_automation_status import decode_json_file
   state={'schemaVersion':1,'workflows':{},'padding':'x'*1_100_000}
   encoded=base64.b64encode(json.dumps(state).encode()).decode()
