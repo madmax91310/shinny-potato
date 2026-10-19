@@ -60,3 +60,10 @@ class ConnectionsTests(unittest.TestCase):
   self.assertNotIn('pea',values)
   self.assertTrue(any(e.get('qualificationRequired')for e in errors))
   self.assertEqual(len(next(e['sources']for e in errors if e.get('qualificationRequired'))),2)
+
+ def test_hold_can_follow_a_public_source_redirect(self):
+  isin='IE00BK5BQT80';old='https://issuer.test/old';new='https://issuer.test/current';other='https://other.test/facts';body=f'{isin}\nEligible PEA: No'.encode()
+  source={'isin':isin,'urls':[old,other],'qualificationHolds':[{'field':'pea','sources':[{'sourceUrl':old,'value':True},{'sourceUrl':other,'value':False}]}]}
+  values,errors=collect(source,dt.datetime(2026,10,19,tzinfo=dt.timezone.utc),lambda url:(body,new if url==old else other))
+  self.assertIs(values['pea']['value'],False)
+  self.assertFalse(any(e.get('qualificationRequired')for e in errors))

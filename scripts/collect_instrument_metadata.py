@@ -476,6 +476,7 @@ def collect(source,now,fetch=download,on_document=None):
     urls=list(source['urls'])
     for requested_url in urls:
         url=requested_url
+        if urlsplit(url).hostname=='bourse.fortuneo.fr' and urlsplit(url).path=='/api/search' and urlsplit(values.get('pea',{}).get('sourceUrl','')).hostname=='bourse.fortuneo.fr':continue
         try:
             body,url=fetch_document(url,fetch,source['isin'])
             if on_document:on_document(requested_url,url,body)
@@ -502,6 +503,7 @@ def collect(source,now,fetch=download,on_document=None):
             for field,value in fields.items():
                 if field in ('pea','currencyHedge'):
                     observations.setdefault(field,{})[url]=value
+                    observations[field][requested_url]=value
                     field_evidence.setdefault(field,{})[url]={'sourceUrl':url,'value':value,'checkedAt':checked,'sha256':hashlib.sha256(body).hexdigest()}
                 if field in conflicts:continue
                 if field in values and values[field]['value']!=value:

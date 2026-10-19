@@ -31,7 +31,7 @@ for(const [isin,r] of Object.entries(AUTOMATED_ETF)) {
  urls.push(...(supplemental.get(isin)??[]))
  // Search the broker's own reference index before constructing a profile URL.
  // An absent reference stays unknown; no ticker or market number is guessed.
- if(!METADATA[isin]?.pea)urls.push('https://bourse.fortuneo.fr/api/search?term='+isin)
+ if(!METADATA[isin]?.pea||METADATA[isin]?.pea?.sourceUrl?.startsWith('https://bourse.fortuneo.fr/'))urls.push('https://bourse.fortuneo.fr/api/search?term='+isin)
  if(urls.some(url=>url?.includes('invesco.com/')))
   urls.push('https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/'+isin+'?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData')
  if(['FR0011550185','FR0011550193','IE00B4K6B022'].includes(isin))urls.push('https://live.euronext.com/en/product/etfs/'+isin+'-XPAR')
