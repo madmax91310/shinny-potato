@@ -64,6 +64,8 @@ class ConnectionsTests(unittest.TestCase):
  def test_hold_can_follow_a_public_source_redirect(self):
   isin='IE00BK5BQT80';old='https://issuer.test/old';new='https://issuer.test/current';other='https://other.test/facts';body=f'{isin}\nEligible PEA: No'.encode()
   source={'isin':isin,'urls':[old,other],'qualificationHolds':[{'field':'pea','sources':[{'sourceUrl':old,'value':True},{'sourceUrl':other,'value':False}]}]}
-  values,errors=collect(source,dt.datetime(2026,10,19,tzinfo=dt.timezone.utc),lambda url:(body,new if url==old else other))
+  from unittest.mock import patch
+  with patch('collect_instrument_metadata.fetch_document',side_effect=lambda url,*a,**k:(body,new if url==old else other)):
+   values,errors=collect(source,dt.datetime(2026,10,19,tzinfo=dt.timezone.utc))
   self.assertIs(values['pea']['value'],False)
   self.assertFalse(any(e.get('qualificationRequired')for e in errors))
