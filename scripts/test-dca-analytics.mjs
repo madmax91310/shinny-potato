@@ -19,6 +19,11 @@ for(const [capital,months] of [[0,12],[1000,1.2],[1000,121],[NaN,12]])assert.thr
 const partial=portfolioAnalytics(lines,refs,{x:{...observation,complete:false,rows:observation.rows.slice(0,1)}},now)
 assert.equal(partial.groups[0].complete,false)
 assert(partial.groups[0].coverage<100)
+// A top-list remains partial even if its rounded weights happen to total 100%.
+const roundedPartial=portfolioAnalytics(lines,refs,{x:{...observation,complete:false},y:observation},now)
+assert.equal(roundedPartial.groups[0].coverage,100)
+assert.equal(roundedPartial.groups[0].complete,false)
+assert.equal(roundedPartial.pairs[0].overlap,null)
 const diff=compareExposures(result,result,'countries');assert(diff.compatible);assert(diff.rows.every(r=>r.delta===0))
 const incompatible=structuredClone(result);incompatible.exposures.countries.groups[0].classification='registration'
 assert.equal(compareExposures(result,incompatible,'countries').compatible,false)

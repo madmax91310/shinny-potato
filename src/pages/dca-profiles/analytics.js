@@ -13,7 +13,7 @@ export function allocationAfterContributions(lines,capital,months) {
  return lines.map(l=>({...l,weight:100*(capital*l.weight/100+months*l.amount)/total}))
 }
 export function concentration(groups) {
- return groups.map(group=>({...group,top5:group.rows.slice(0,5).reduce((s,r)=>s+r.weight,0),top10:group.rows.slice(0,10).reduce((s,r)=>s+r.weight,0),identified:group.rows.length,complete:group.coverage>=99.5&&group.portfolioWeight>=99.5}))
+ return groups.map(group=>({...group,top5:group.rows.slice(0,5).reduce((s,r)=>s+r.weight,0),top10:group.rows.slice(0,10).reduce((s,r)=>s+r.weight,0),identified:group.rows.length,complete:group.complete===true&&group.coverage>=99.5&&group.portfolioWeight>=99.5}))
 }
 export function portfolioAnalytics(lines,refs,holdings,now=new Date()) {
  const shared=sharedPositions(lines,refs,now,holdings)

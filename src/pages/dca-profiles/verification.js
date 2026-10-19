@@ -48,7 +48,7 @@ export function sharedPositions(lines,references,now=new Date(),observations={})
     securities.set(isin,current)
    }
    const rows=[...securities.values()].sort((a,b)=>b.weight-a.weight)
-   totals.push({scope,asOf:latest,oldest:cluster.at(-1).h.asOf,rows,coverage:rows.reduce((s,r)=>s+r.weight,0),portfolioWeight:cluster.reduce((s,x)=>s+x.line.weight,0)})
+   totals.push({scope,asOf:latest,oldest:cluster.at(-1).h.asOf,rows,coverage:rows.reduce((s,r)=>s+r.weight,0),portfolioWeight:cluster.reduce((s,x)=>s+x.line.weight,0),complete:cluster.every(x=>x.h.complete===true&&x.h.rows.every(r=>x.rows.has(r.isin)))})
   }
  }
  return {pairs,unavailable,totals}
