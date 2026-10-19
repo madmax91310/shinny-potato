@@ -23,9 +23,10 @@ class PublicationProofs(unittest.TestCase):
         self.git('config', 'user.name', 'Publication test')
         for name in ['src/data/active.json', 'public/data/investors/example.json',
                      'src/pages/dca-profiles/holdings-1.json', 'src/pages/dca-profiles/App.jsx',
-                     'scripts/source-snapshots/proof.json', 'public/data/publication-manifest.json']:
+                     'scripts/source-snapshots/proof.json', 'public/data/publication-manifest.json',
+                     'docs/asset-tool-routing.json']:
             self.write(name, '{"value":1}\n')
-        self.write('.github/workflows/collect.yml', "run: bash scripts/commit-validated-data.sh 'Refresh validated data' src/data/active.json public/data/investors src/pages/dca-profiles/holdings*.json\n")
+        self.write('.github/workflows/collect.yml', "run: bash scripts/commit-validated-data.sh 'Refresh validated data' src/data/active.json public/data/investors src/pages/dca-profiles/holdings*.json docs/asset-tool-routing.json\n")
         self.git('add', '.')
         self.git('commit', '-qm', 'initial')
 
@@ -52,6 +53,7 @@ class PublicationProofs(unittest.TestCase):
         self.assertIn('src/pages/dca-profiles/holdings-1.json', files)
         self.assertNotIn('src/pages/dca-profiles/App.jsx', files)
         self.assertNotIn(publication.MANIFEST, files)
+        self.assertNotIn('docs/asset-tool-routing.json', files)
 
     def test_manifest_hashes_composed_bytes_instead_of_head(self):
         path = 'public/data/investors/example.json'

@@ -27,6 +27,11 @@ def matches(path, patterns):
                path == pattern or path.startswith(pattern.rstrip('/') + '/') for pattern in patterns)
 
 
+def is_publication_data(path):
+    return (path.startswith(('src/data/', 'scripts/source-snapshots/', 'public/data/'))
+            or path.startswith('src/pages/') and path.endswith('.json')) and path != MANIFEST
+
+
 def git(*args):
     return subprocess.check_output(['git', *args])
 
@@ -35,7 +40,7 @@ def tracked(commit, paths):
     rows = git('ls-tree', '-r', '-z', commit).split(b'\0')
     return {path.decode(): meta.decode().split()[2] for row in rows if row
             for meta, path in [row.split(b'\t', 1)]
-            if meta.split()[1] == b'blob' and path.decode() != MANIFEST and matches(path.decode(), paths)}
+            if meta.split()[1] == b'blob' and is_publication_data(path.decode()) and matches(path.decode(), paths)}
 
 
 def manifest():
