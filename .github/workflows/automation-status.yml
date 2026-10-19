@@ -29,7 +29,7 @@ on:
     types: [completed]
   workflow_dispatch:
   schedule:
-    - cron: "23 * * * *"
+    - cron: "8,23,38,53 * * * *"
   pull_request:
     paths:
       - ".github/workflows/automation-status.yml"
@@ -37,6 +37,8 @@ on:
       - "scripts/test_automation_status.py"
       - "scripts/automation_monitoring.py"
       - "scripts/test_automation_monitoring.py"
+      - "scripts/automation_recovery.py"
+      - "scripts/test_automation_recovery.py"
       - "scripts/build-monitoring-context.mjs"
       - "scripts/test-monitoring-context.mjs"
       - "src/data/automation-workflows.json"
@@ -46,6 +48,7 @@ on:
       - '.github/workflows/automation-status.yml'
       - 'scripts/publish_automation_status.py'
       - 'scripts/automation_monitoring.py'
+      - 'scripts/automation_recovery.py'
       - 'scripts/build-monitoring-context.mjs'
       - 'src/data/automation-workflows.json'
 permissions:
@@ -75,7 +78,7 @@ jobs:
     runs-on: ubuntu-26.04
     timeout-minutes: 20
     permissions:
-      actions: read
+      actions: write
       checks: read
       contents: write
       issues: write
@@ -116,3 +119,4 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: python scripts/propose_source_revision.py
+

@@ -52,6 +52,10 @@ export function productFieldEvidence(value,record,field) {
  }
  return {...value,checkedAt};
 }
+export function completeHoldingsEvidence(record,status) {
+ if(!record?.complete)return null;
+ return {...record,checkedAt:record.checkedAt??status?.lastSuccessAt??(status?.status==='validated'?status.checkedAt:null)};
+}
 export function buildAssetFieldReport(now=new Date().toISOString().slice(0,10)) {
  const gaps=buildGapInventory({now}), gapMap=new Map(gaps.gaps.map(r=>[`${r.id}:${r.field}`,r]));
  const monthly={...read('src/data/automated-monthly.json'),...read('src/data/automated-etf-monthly.json'),...read('src/data/non-bond-monthly-records.json')};
@@ -74,14 +78,14 @@ export function buildAssetFieldReport(now=new Date().toISOString().slice(0,10)) 
     value=oldest?{...oldest,listings}:null;
    }
    if(field==='pea') {const p=PEA_REVIEWS_BY_ISIN[item.id];value=typeof p?.eligible==='boolean'&&p.sourceUrl?{...p,pea:p.eligible}:null;}
-   if(field==='completeHoldings')value=completeHoldings[item.id]?.complete?{...completeHoldings[item.id],checkedAt:holdingsStatus[item.id]?.status==='validated'?holdingsStatus[item.id].checkedAt:null}:null;
+   if(field==='completeHoldings')value=completeHoldingsEvidence(completeHoldings[item.id],holdingsStatus[item.id]);
    if(field==='monthly')value=Object.values(monthly).find(r=>r.isin===item.id);
    const present=field==='completeHoldings'?!!value?.rows?.length:field==='monthly'?!!value?.points?.length:field==='performance'?completeCalendarYears(item.id,value?.years,now).length>0:field==='ter'?Number.isFinite(value?.terPct):meta?(typeof value?.[field]==='boolean'||!!value?.[field]?.length):field==='aum'?Number.isFinite(value?.amount):!!value?.rows?.length;
    const gap=gapMap.get(`${item.id}:${field}`);
    const state=present?fieldState(value,now,{...freshness(etfFreshnessKey(field)),requireObservation:['monthly','aum','performance','countries','sectors','holdings','completeHoldings'].includes(field)}):gap?.status??(meta?'manual':'missing');
    const observed=field==='monthly'?value?.periodEnd:field==='performance'?completeCalendarYears(item.id,value?.years,now).at(-1)?.toString():value?.asOf;
    const configured=field==='completeHoldings'?!!holdingsSources[item.id]:meta?true:field==='monthly'?!!value:true;
-   const diagnostic=fieldDiagnostic({field,present,state,status:meta?metadataStatus[item.id]:null,gap,configured});
+   const diagnostic=field==='completeHoldings'&&holdingsStatus[item.id]?.status==='failed'?{code:'retained-source-failure',reason:holdingsStatus[item.id].error}:fieldDiagnostic({field,present,state,status:meta?metadataStatus[item.id]:null,gap,configured});
    rows.push({diagnostic,tools:FIELD_TOOLS[field]??['etf-sheets'],automationConfigured:configured,...(meta?{lastAttempt:metadataStatus[item.id]?.checkedAt??null,sourceUrls:metadataSources.get(item.id)??[]}:{}),id:item.id,name:item.name,type:'instrument',field,label:names[field],state,present,checkedAt:present?value.checkedAt??null:null,asOf:observed??null,sourceUrl:present?(value.sourceUrl??value.sourceUrls?.[0]??record.sourceUrl):gap?.sourceUrl??null,reason:diagnostic.reason??gap?.reason??(field==='monthly'&&!present?(qualification[item.id]?.reason??'Cotation exacte et historique mensuel complet à qualifier automatiquement lorsqu’une cotation documentée est disponible.'):null),
      ...(field==='monthly'&&value?{currency:value.currency,periodStart:value.periodStart,periodEnd:value.periodEnd,method:value.method}:{}),
      ...(field==='performance'&&record.performance?.months?{archivedMonthlyReturns:Object.keys(record.performance.months).length}:{})});
@@ -109,4 +113,5 @@ export function writeAssetFieldReport() {
  return r;
 }
 if(process.argv[1]===fileURLToPath(import.meta.url)){const r=process.argv.includes('--write')?writeAssetFieldReport():buildAssetFieldReport();console.log(JSON.stringify(r.summary,null,2));}
+
 

@@ -2,6 +2,7 @@
 import datetime as dt
 import json
 import pathlib
+import re
 from concurrent.futures import ThreadPoolExecutor
 
 from collect_dws_etf import parse_holdings
@@ -12,9 +13,16 @@ def verify(isin, record, now, fetch=get_json):
     url = f'https://etf.dws.com/api/pdp/en-gb/etf/{isin}/holdings'
     body = fetch(url)
     parsed = parse_holdings(body, {'isin': isin}, now, url)
+    # The raw API also contains market values and display metadata. They can
+    # change without changing the dated, qualified country/sector allocations.
+    # Keep both hashes; never assert byte equality from equal financial values.
+    active_hashes = {record[field].get('sha256') for field in ('countries', 'sectors')}
+    if len(active_hashes) != 1 or not re.fullmatch(r'[a-f0-9]{64}', next(iter(active_hashes)) or ''):
+        raise ValueError('DWS active evidence hashes are missing or inconsistent')
+    active_hash = next(iter(active_hashes))
     for field in ('countries', 'sectors'):
         active, live = record[field], parsed[field]
-        for key in ('asOf', 'basis', 'method', 'sha256', 'sourceUrl', 'complete'):
+        for key in ('asOf', 'basis', 'method', 'sourceUrl', 'complete'):
             if active.get(key) != live.get(key):
                 raise ValueError(f'DWS {field}: live evidence differs from active {key}')
         weights = lambda rows: sorted((r['name'], r['weightPct']) for r in rows)
@@ -22,6 +30,8 @@ def verify(isin, record, now, fetch=get_json):
             raise ValueError(f'DWS {field}: active aggregates differ from the full portfolio')
     return {'entity': isin, 'period': parsed['countries']['asOf'],
             'sourceUrl': url, 'sourceHash': parsed['countries']['sha256'],
+            'activeSourceHash': active_hash,
+            'evidenceRelation': 'identical-document' if active_hash == parsed['countries']['sha256'] else 'same-qualified-allocations',
             'method': parsed['countries']['method'], 'checkedAt': now.isoformat(),
             'allocations': {field: parsed[field]['rows'] for field in ('countries', 'sectors')},
             # Preserve Python's numeric representation (e.g. 1.0 vs 1) so the
@@ -50,3 +60,4 @@ if __name__ == '__main__':
     root = pathlib.Path(__file__).resolve().parents[1]
     records = json.loads((root / 'src/data/automated-etf.json').read_text())
     print(json.dumps(collect(records, dt.datetime.now(UTC)), allow_nan=False))
+

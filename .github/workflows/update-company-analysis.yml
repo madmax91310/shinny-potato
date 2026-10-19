@@ -7,6 +7,8 @@ on:
     paths:
       - '.github/workflows/update-company-analysis.yml'
       - 'scripts/*company*'
+      - 'scripts/sec_transport.py'
+      - 'scripts/test_sec_transport.py'
       - 'scripts/commit-validated-data.sh'
       - 'scripts/test_validated_data_commit.py'
       - 'src/data/company-*.json'
@@ -16,6 +18,8 @@ on:
     paths:
       - '.github/workflows/update-company-analysis.yml'
       - 'scripts/*company*'
+      - 'scripts/sec_transport.py'
+      - 'scripts/test_sec_transport.py'
       - 'scripts/commit-validated-data.sh'
       - 'scripts/test_validated_data_commit.py'
       - 'src/data/company-profiles.json'
@@ -28,6 +32,8 @@ jobs:
     concurrency:
       group: company-data-${{ github.event_name == 'pull_request' && github.ref || 'production' }}
       cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+    env:
+      SEC_USER_AGENT: ${{ vars.SEC_USER_AGENT }}
     permissions:
       contents: write
     outputs:
@@ -48,6 +54,7 @@ jobs:
       - run: npm ci
       - run: pip install -r scripts/company-requirements.txt
       - run: python -m unittest discover -s scripts -p 'test_company*.py'
+      - run: python -m unittest discover -s scripts -p 'test_sec_transport.py'
       - run: python -m unittest discover -s scripts -p 'test_validated_data_commit.py'
       - id: universe
         name: Renew the SEC universe and retain original dates on failure
@@ -218,3 +225,4 @@ jobs:
       - run: |
           echo 'Le contrat de couverture entreprises a échoué ; consulter company-final-acceptance.' >> "$GITHUB_STEP_SUMMARY"
           exit 1
+

@@ -4,6 +4,7 @@ from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor
 from urllib.parse import urlsplit, parse_qs
 from data_automation import get_json, get_text, UTC, write_json_atomic
+from observation_status import holdings_status
 from collect_etf_holdings import parse_holdings
 ROOT=Path(__file__).resolve().parents[1]
 def parse_complete(body,isin,url,now,fund_asset_class="Equity"):
@@ -69,7 +70,7 @@ def main():
             if error:errors[isin]=error;continue
             h,securities=result
             if previous.get(isin,{}).get('asOf','')>h['asOf']:errors[isin]='Date regression';continue
-            fresh[isin]=h
+            fresh[isin]={**h,'checkedAt':now.isoformat()}
             for r in securities:
                 if r['isin'] not in wanted:continue
                 if r['isin'] not in evidence or evidence[r['isin']]['asOf']<h['asOf']:evidence[r['isin']]={**r,'asOf':h['asOf'],'checkedAt':now.isoformat(),'sourceUrl':h['sourceUrl']}
@@ -82,10 +83,10 @@ def main():
         status_path=ROOT/'src/data/dca-holdings-status.json'
         status=json.loads(status_path.read_text()) if status_path.exists() else {}
         for isin in config:
-            status[isin]={'checkedAt':now.isoformat(),'status':'failed' if isin in errors else 'validated',
-                'asOf':fresh.get(isin,previous.get(isin,{})).get('asOf'),**({'error':errors[isin]} if isin in errors else {})}
+            status[isin]=holdings_status(status.get(isin,{}),previous.get(isin,{}),fresh.get(isin),errors.get(isin),now)
         write_json_atomic(status_path,status)
     write_json_atomic(args.output,{'updated':list(fresh),'successes':[{'id':'dca-holdings:'+isin} for isin in fresh],'errors':[{'id':'dca-holdings:'+isin,'field':'Composition complète','error':error} for isin,error in errors.items()]})
     print(f'Complete holdings: {len(fresh)}/{len(config)}; identified securities: {len(evidence)}; errors: {errors}')
     if errors:raise SystemExit(1)
 if __name__=='__main__':main()
+

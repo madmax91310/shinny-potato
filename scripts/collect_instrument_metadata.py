@@ -325,6 +325,22 @@ def collect(source,now,fetch=download):
         except Exception as error:errors.append({'sourceUrl':url,'error':str(error)})
     return values,errors
 
+def field_diagnostics(source, values, failures, old, now):
+    """Separate the attempt date from actual field evidence and retained values."""
+    errors=[{'sourceUrl':row.get('sourceUrl'),'error':row.get('error')} for row in failures]
+    result={}
+    for field in FIELDS:
+        observed=values.get(field)
+        retained=old.get(field,{})
+        result[field]={'status':'observed' if observed else 'retained' if retained else 'unobserved',
+            'lastAttemptAt':now.isoformat(),
+            'lastSuccessAt':(observed or retained).get('checkedAt'),
+            'sourceUrls':list(source['urls']),
+            'cause':None if observed else 'No exact field evidence extracted from the configured sources; an absent statement does not mean false.',
+            'sourceErrors':[] if observed else errors}
+    return result
+
+
 def main():
     p=argparse.ArgumentParser();p.add_argument('--apply',action='store_true');p.add_argument('--only',nargs='+');p.add_argument('--output',type=Path,required=True);a=p.parse_args()
     sources=json.loads((ROOT/'scripts/instrument-metadata-sources.json').read_text())['instruments']
@@ -342,7 +358,8 @@ def main():
             missing=[field for field in FIELDS if field not in values]
             prior=status.get(isin,{})
             first_pending={field:prior.get('firstPendingAt',{}).get(field,prior.get('checkedAt',now.isoformat()) if field in prior.get('pending',[]) else now.isoformat()) for field in missing}
-            status[isin]={'checkedAt':now.isoformat(),'observed':list(values),'pending':missing,'firstPendingAt':first_pending,'errors':failures}
+            status[isin]={'checkedAt':now.isoformat(),'observed':list(values),'pending':missing,'firstPendingAt':first_pending,'errors':failures,
+                          'fields':field_diagnostics(next(s for s in sources if s['isin']==isin),values,failures,old,now)}
             for field in missing:
                 if field not in old and renewal_overdue({'checkedAt':first_pending[field]},now):
                     errors.append({'id':f'{isin}:{field}:qualification','field':field,'error':'Qualification de publication requise : champ jamais observé ; vérifier la source exacte ou documenter explicitement sa non-publication.'})
@@ -352,10 +369,12 @@ def main():
             # Fail when previously automatic values stay unrenewed beyond the grace period; absent publications stay explicit pending fields.
             for field in old:
                 if field not in values and not renewal_overdue(old[field],now,field):within_grace.append({'id':f'{isin}:{field}'})
-                if field not in values and renewal_overdue(old[field],now,field):errors.append({'id':f'{isin}:{field}','field':field,'error':f'Previously automated metadata not renewed for more than {renewal_days(field)} days; original evidence retained.'})
+                if field not in values and renewal_overdue(old[field],now,field):errors.append({'id':f'{isin}:{field}','field':field,'error':f'Previously automated metadata not renewed for more than {renewal_days(field)} days; original evidence retained. '+ ' | '.join(str(e.get('error','')) for e in failures)[:300],
+                    'lastSuccessAt':old[field].get('checkedAt'),'lastAttemptAt':now.isoformat()})
     if a.apply:
         write_json_atomic(path,records);write_json_atomic(status_path,status)
     write_json_atomic(a.output,{'checkedAt':now.isoformat(),'updated':updated,'successes':successes,'errors':errors,'inactive':within_grace,'pending':{isin:s['pending'] for isin,s in status.items() if s['pending']}})
     print(f'Metadata: {len(updated)}/{len(sources)} observed instruments; {len(errors)} failed renewals.')
     if errors:raise SystemExit(1)
 if __name__=='__main__':main()
+

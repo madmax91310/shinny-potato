@@ -38,6 +38,20 @@ class VerificationTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             verify(self.isin, self.record, self.now, lambda url: partial)
 
+    def test_non_allocation_document_revision_keeps_both_hashes(self):
+        body = copy.deepcopy(self.body)
+        body['retrievedDisplayMetadata'] = {'label': 'updated'}
+        proof = verify(self.isin, self.record, self.now, lambda url: body)
+        self.assertEqual(proof['evidenceRelation'], 'same-qualified-allocations')
+        self.assertEqual(proof['activeSourceHash'], self.record['countries']['sha256'])
+        self.assertNotEqual(proof['sourceHash'], proof['activeSourceHash'])
+        self.assertEqual(hashlib.sha256(proof['canonicalBody'].encode()).hexdigest(), proof['sourceHash'])
+        # A real allocation change must still fail even when the old hash matches
+        # the other active field. No tolerance, renormalisation or recertification.
+        body['tables'][0]['values'][0]['column_1']['sortValue'] += .01
+        with self.assertRaises(ValueError):
+            verify(self.isin, self.record, self.now, lambda url: body)
+
     def test_network_failure_preserves_error_and_produces_no_proof(self):
         def fail(url): raise TimeoutError('DWS timeout')
         report = collect({self.isin: self.record}, self.now, fail)
@@ -63,3 +77,4 @@ class VerificationTests(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+

@@ -57,3 +57,12 @@ assert(automationFailures(status).some(row => row.id === 'partial:one'), 'Un éc
   assert.equal(withCause.cause, 'deploy / build : Run npm run audit:etf-annual-performance ; HTTP 403')
   console.log(`Automation manifest: ${collectors.length} collectors supervised, routes, phases, age and causes verified.`)
 }
+
+
+const recovering = structuredClone(status)
+recovering.recovery = { partial: { status: 'waiting', reason: 'transient-source', nextAttemptAt: '2026-10-13T21:00:00Z' } }
+const recoveryRow = automationOverview(recovering, now).find(r => r.id === 'partial')
+assert.equal(recoveryRow.state, 'failure', 'Une relance ne vaut pas une récupération de la source')
+assert.equal(recoveryRow.recovery.status, 'waiting')
+assert.equal(recoveryRow.recovery.nextAttemptAt, '2026-10-13T21:00:00Z')
+assert.equal(automationOverview(status, now).find(r => r.id === 'partial').recovery, null)

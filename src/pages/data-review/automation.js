@@ -15,7 +15,7 @@ export function automationOverview(status, now = new Date()) {
     const state = value.status === 'failure' || failures ? 'failure'
       : overdue ? 'overdue' : validCompleted && value.collectionStatus === 'success' ? 'success' : 'unknown'
     const cause = [...(value.failures ?? []).map(failure => `${failure.job} : ${failure.step}`), ...Object.values(value.dataFailures ?? {}).map(data => data.cause).filter(Boolean)]
-    return { ...value, id, state, failureCount: failures, maxAgeHours: maxAge, paths: registry[id]?.paths ?? [], age: relativeAge(value.completedAt, now), cause: [...new Set(cause)].join(' ; ') || null }
+    return { ...value, recovery: status.recovery?.[id] ?? null, id, state, failureCount: failures, maxAgeHours: maxAge, paths: registry[id]?.paths ?? [], age: relativeAge(value.completedAt, now), cause: [...new Set(cause)].join(' ; ') || null }
   }).sort((a, b) => a.name.localeCompare(b.name, 'fr'))
 }
 
@@ -38,3 +38,4 @@ export function automationFailures(status) {
   })
     .sort((a, b) => a.name.localeCompare(b.name, 'fr'))
 }
+
