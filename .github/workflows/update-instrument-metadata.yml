@@ -44,6 +44,8 @@ jobs:
         with:
           python-version: '3.12'
       - run: pip install beautifulsoup4==4.15.0
+      - run: python -m unittest discover -s scripts -p 'test*metadata*.py'
+      - run: node scripts/test-automated-characteristics.mjs
       - run: sudo apt-get update && sudo apt-get install -y poppler-utils
       - run: node scripts/build-automation-targets.mjs
       - name: Observe representative source formats without changing registries

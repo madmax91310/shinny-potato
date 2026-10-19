@@ -116,7 +116,7 @@ class MetadataTests(unittest.TestCase):
         from unittest.mock import patch
         import subprocess
         import collect_instrument_metadata as module
-        def consent(url):raise ValueError('Expected official PDF at '+url+'; received VanEck France | ETF Provider')
+        def consent(url,return_source=False):raise ValueError('Expected official PDF at '+url+'; received VanEck France | ETF Provider')
         calls=[]
         # US runners are sent to the US site by the French gate; the Dutch gate succeeds.
         def run(cmd,**kwargs):
@@ -143,7 +143,7 @@ class MetadataTests(unittest.TestCase):
         from unittest.mock import patch
         import subprocess
         import collect_instrument_metadata as module
-        def consent(url):raise ValueError('Expected official PDF at '+url+'; received VanEck France')
+        def consent(url,return_source=False):raise ValueError('Expected official PDF at '+url+'; received VanEck France')
         calls=[]
         def run(cmd,**kwargs):
             calls.append(cmd[-1])
@@ -183,3 +183,4 @@ class MetadataTests(unittest.TestCase):
         self.assertEqual(parse_listings(body,src,'https://dokumenty.analizy.pl/pobierz/etf/X/KA/2026-09-30','2026-10-18'),[])
         self.assertEqual(len(parse_listings(body,src,'https://www.ishares.com/doc','2026-10-18')),1)
 if __name__=='__main__':unittest.main()
+
