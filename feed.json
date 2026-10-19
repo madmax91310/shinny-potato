@@ -5,7 +5,7 @@
         "id": "service-public",
         "name": "Service Public",
         "url": "https://www.service-public.gouv.fr/abonnements/rss/actu-actualites-particuliers.rss",
-        "checkedAt": "2026-10-19T07:29:45.371Z",
+        "checkedAt": "2026-10-19T07:43:16.602Z",
         "status": "ok",
         "articles": 10,
         "relevant": 4
@@ -14,16 +14,16 @@
         "id": "bercy",
         "name": "Ministère de l’Économie",
         "url": "https://www.economie.gouv.fr/rss/toutesactualites",
-        "checkedAt": "2026-10-19T07:29:45.371Z",
+        "checkedAt": "2026-10-19T07:43:16.602Z",
         "status": "ok",
         "articles": 10,
-        "relevant": 2
+        "relevant": 3
       },
       {
         "id": "vie-publique-actualites",
         "name": "Vie publique · actualités",
         "url": "https://www.vie-publique.fr/actualites-feeds.xml",
-        "checkedAt": "2026-10-19T07:29:45.371Z",
+        "checkedAt": "2026-10-19T07:43:16.602Z",
         "status": "ok",
         "articles": 10,
         "relevant": 1
@@ -32,7 +32,7 @@
         "id": "vie-publique-lois",
         "name": "Vie publique · lois",
         "url": "https://www.vie-publique.fr/lois-feeds.xml",
-        "checkedAt": "2026-10-19T07:29:45.371Z",
+        "checkedAt": "2026-10-19T07:43:16.602Z",
         "status": "ok",
         "articles": 100,
         "relevant": 0
@@ -41,7 +41,7 @@
         "id": "banque-france-credit",
         "name": "Banque de France · crédits aux particuliers",
         "url": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166",
-        "checkedAt": "2026-10-19T07:29:45.371Z",
+        "checkedAt": "2026-10-19T07:43:16.602Z",
         "status": "ok",
         "articles": 12,
         "relevant": 2
@@ -50,7 +50,7 @@
         "id": "cre-prix",
         "name": "CRE · prix de l’énergie",
         "url": "https://www.cre.fr/documents/communiques-de-presse.html",
-        "checkedAt": "2026-10-19T07:29:45.371Z",
+        "checkedAt": "2026-10-19T07:43:16.602Z",
         "status": "ok",
         "articles": 7,
         "relevant": 1
@@ -69,7 +69,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-16",
-        "checkedAt": "2026-10-19T07:29:45.371Z",
+        "checkedAt": "2026-10-19T07:43:16.602Z",
         "sourceUrl": "https://www.economie.gouv.fr/actualites/video-les-dernieres-mesures-daide-et-de-soutien-face-la-hausse-des-prix-des-carburants",
         "scope": "Actualité officielle · particuliers",
         "tool": "/pouvoir-achat",
@@ -97,7 +97,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-16",
-        "checkedAt": "2026-10-19T07:29:45.371Z",
+        "checkedAt": "2026-10-19T07:43:16.602Z",
         "sourceUrl": "https://www.economie.gouv.fr/actualites/carburant-laide-pour-les-travailleurs-grands-rouleurs",
         "scope": "Actualité officielle · particuliers",
         "tool": "/pouvoir-achat",
@@ -115,6 +115,34 @@
       },
       {
         "family": "pouvoir-achat",
+        "entity": "purchasing-news-7f7a263cc8557bdef244",
+        "label": "Participation du public sur la demande de permis de recherches de géothermie de Bois d’Arcy (Yvelines), à la société ENGIE Énergie Services SAS",
+        "field": "announcement",
+        "fieldLabel": "Actualité officielle",
+        "value": {
+          "title": "Participation du public sur la demande de permis de recherches de géothermie de Bois d’Arcy (Yvelines), à la société ENGIE Énergie Services SAS",
+          "summary": "Une participation du public par voie électronique est ouverte du lundi 19 octobre au lundi 9 novembre 2026 sur la demande d’octroi d’un permis exclusif de recherches de gîtes géothermiques, dit « Permis de Bois d’Arcy », dans le département des Yvelines, au profit de la société ENGIE Énergie Services SAS (ENGIE ES).",
+          "status": "À préciser"
+        },
+        "period": "2026-10-16",
+        "checkedAt": "2026-10-19T07:43:16.602Z",
+        "sourceUrl": "https://www.economie.gouv.fr/actualites/participation-du-public-sur-la-demande-de-permis-de-recherches-de-geothermie-de-bois-darcy-yvelines-la-societe-engie-energie-services-sas",
+        "scope": "Actualité officielle · particuliers",
+        "tool": "/pouvoir-achat",
+        "rule": "announcement",
+        "discovery": true,
+        "priority": "normal",
+        "topic": "depenses",
+        "topicLabel": "Dépenses courantes",
+        "publisher": "Ministère de l’Économie",
+        "status": "À préciser",
+        "statusEvidence": "",
+        "summary": "Une participation du public par voie électronique est ouverte du lundi 19 octobre au lundi 9 novembre 2026 sur la demande d’octroi d’un permis exclusif de recherches de gîtes géothermiques, dit « Permis de Bois d’Arcy », dans le département des Yvelines, au profit de la société ENGIE Énergie Services SAS (ENGIE ES).",
+        "angle": "Qui paiera davantage ou moins, et à quelle date ?",
+        "reason": "Titre, résumé et date récupérés automatiquement dans le flux officiel. Le statut repose sur une formulation explicite ; aucun impact individuel n’est inventé."
+      },
+      {
+        "family": "pouvoir-achat",
         "entity": "purchasing-news-ede07461774a16dcb210",
         "label": "Gaz : quels sont les niveaux des stocks en Europe pour l'hiver 2026-2027 ?",
         "field": "announcement",
@@ -125,7 +153,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-15",
-        "checkedAt": "2026-10-19T07:29:45.371Z",
+        "checkedAt": "2026-10-19T07:43:16.602Z",
         "sourceUrl": "https://www.vie-publique.fr/en-bref/304972-gaz-quels-sont-les-niveaux-des-stocks-en-europe-pour-lhiver-2026",
         "scope": "Actualité officielle · particuliers",
         "tool": "/pouvoir-achat",
@@ -153,7 +181,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-15",
-        "checkedAt": "2026-10-19T07:29:45.371Z",
+        "checkedAt": "2026-10-19T07:43:16.602Z",
         "sourceUrl": "https://www.service-public.gouv.fr/particuliers/actualites/A17342",
         "scope": "Actualité officielle · particuliers",
         "tool": "/pouvoir-achat",
@@ -181,7 +209,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-15",
-        "checkedAt": "2026-10-19T07:29:45.371Z",
+        "checkedAt": "2026-10-19T07:43:16.602Z",
         "sourceUrl": "https://www.service-public.gouv.fr/particuliers/actualites/A17790",
         "scope": "Actualité officielle · particuliers",
         "tool": "/pouvoir-achat",
@@ -209,7 +237,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-14",
-        "checkedAt": "2026-10-19T07:29:45.371Z",
+        "checkedAt": "2026-10-19T07:43:16.602Z",
         "sourceUrl": "https://www.service-public.gouv.fr/particuliers/actualites/A19094",
         "scope": "Actualité officielle · particuliers",
         "tool": "/pouvoir-achat",
@@ -237,7 +265,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-14",
-        "checkedAt": "2026-10-19T07:29:45.371Z",
+        "checkedAt": "2026-10-19T07:43:16.602Z",
         "sourceUrl": "https://www.service-public.gouv.fr/particuliers/actualites/A19057",
         "scope": "Actualité officielle · particuliers",
         "tool": "/pouvoir-achat",
@@ -489,7 +517,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-06",
-        "checkedAt": "2026-10-19T07:29:45.371Z",
+        "checkedAt": "2026-10-19T07:43:16.602Z",
         "sourceUrl": "https://www.banque-france.fr/fr/statistiques/credit/credits-aux-particuliers-2026-08",
         "scope": "Actualité officielle · particuliers",
         "tool": "/pouvoir-achat",
@@ -573,7 +601,7 @@
           "status": "À préciser"
         },
         "period": "2026-09-10",
-        "checkedAt": "2026-10-19T07:29:45.371Z",
+        "checkedAt": "2026-10-19T07:43:16.602Z",
         "sourceUrl": "https://www.cre.fr/documents/communiques-de-presse/le-prix-repere-de-vente-de-gaz-augmente-de-63-ttc-au-1er-octobre-2026.html",
         "scope": "Actualité officielle · particuliers",
         "tool": "/pouvoir-achat",
@@ -601,7 +629,7 @@
           "status": "À préciser"
         },
         "period": "2026-09-07",
-        "checkedAt": "2026-10-19T07:29:45.371Z",
+        "checkedAt": "2026-10-19T07:43:16.602Z",
         "sourceUrl": "https://www.banque-france.fr/fr/statistiques/credit/credits-aux-particuliers-2026-07",
         "scope": "Actualité officielle · particuliers",
         "tool": "/pouvoir-achat",
@@ -621,9 +649,9 @@
   },
   "schemaVersion": 1,
   "initializedAt": "2026-10-09T04:46:31.490Z",
-  "checkedAt": "2026-10-19T07:29:51.397Z",
+  "checkedAt": "2026-10-19T07:43:21.179Z",
   "sourceRevision": "edcddc7929451c2cb6dba0b3abc0430ec94ea38e",
-  "observationCount": 7004,
+  "observationCount": 7005,
   "coverage": {
     "etf": 227,
     "indices": 52,
@@ -633,9 +661,9 @@
     "assurance": 7,
     "investisseurs": 28,
     "economie": 32,
-    "pouvoir-achat": 10
+    "pouvoir-achat": 11
   },
-  "newSignalCount": 0,
+  "newSignalCount": 1,
   "errors": [
     {
       "family": "etf",
@@ -709,6 +737,43 @@
     }
   ],
   "events": [
+    {
+      "topic": "depenses",
+      "topicLabel": "Dépenses courantes",
+      "publisher": "Ministère de l’Économie",
+      "status": "À préciser",
+      "statusEvidence": "",
+      "summary": "Une participation du public par voie électronique est ouverte du lundi 19 octobre au lundi 9 novembre 2026 sur la demande d’octroi d’un permis exclusif de recherches de gîtes géothermiques, dit « Permis de Bois d’Arcy », dans le département des Yvelines, au profit de la société ENGIE Énergie Services SAS (ENGIE ES).",
+      "id": "a6dc0aa708123305b6d4925b",
+      "family": "pouvoir-achat",
+      "entity": "purchasing-news-7f7a263cc8557bdef244",
+      "label": "Participation du public sur la demande de permis de recherches de géothermie de Bois d’Arcy (Yvelines), à la société ENGIE Énergie Services SAS",
+      "field": "announcement",
+      "fieldLabel": "Actualité officielle",
+      "title": "Pouvoir d’achat : Participation du public sur la demande de permis de recherches de géothermie de Bois d’Arcy (Yvelines), à la société ENGIE Énergie Services SAS",
+      "kind": "new",
+      "priority": "normal",
+      "detectedAt": "2026-10-19T07:43:21.179Z",
+      "before": null,
+      "after": {
+        "title": "Participation du public sur la demande de permis de recherches de géothermie de Bois d’Arcy (Yvelines), à la société ENGIE Énergie Services SAS",
+        "summary": "Une participation du public par voie électronique est ouverte du lundi 19 octobre au lundi 9 novembre 2026 sur la demande d’octroi d’un permis exclusif de recherches de gîtes géothermiques, dit « Permis de Bois d’Arcy », dans le département des Yvelines, au profit de la société ENGIE Énergie Services SAS (ENGIE ES).",
+        "status": "À préciser"
+      },
+      "beforeText": "Pas encore suivi",
+      "afterText": "title : Participation du public sur la demande de permis de recherches de géothermie de Bois d’Arcy (Yvelines), à la société ENGIE Énergie Services SAS · summary : Une participation du public par voie électronique est ouverte du lundi 19 octobre au lundi 9 novembre 2026 sur la demande d’octroi d’un permis exclusif de recherches de gîtes géothermiques, dit « Permis de Bois d’Arcy », dans le département des Yvelines, au profit de la société ENGIE Énergie Services SAS (ENGIE ES). · status : À préciser",
+      "beforePeriod": null,
+      "period": "2026-10-16",
+      "scope": "Actualité officielle · particuliers",
+      "unit": "",
+      "sourceUrl": "https://www.economie.gouv.fr/actualites/participation-du-public-sur-la-demande-de-permis-de-recherches-de-geothermie-de-bois-darcy-yvelines-la-societe-engie-energie-services-sas",
+      "previousSourceUrl": null,
+      "checkedAt": "2026-10-19T07:43:16.602Z",
+      "tool": "/pouvoir-achat",
+      "angle": "Qui paiera davantage ou moins, et à quelle date ?",
+      "draft": "🔖 Sauvegarde ce tweet\n\nParticipation du public sur la demande de permis de recherches de géothermie de Bois d’Arcy (Yvelines), à la société ENGIE Énergie Services SAS\n\nUne participation du public par voie électronique est ouverte du lundi 19 octobre au lundi 9 novembre 2026 sur la demande d’octroi d’un permis exclusif de recherches de gîtes géothermiques, dit « Permis de Bois d’Arcy », dans le département des Yvelines, au profit de la société ENGIE Énergie Services SAS (ENGIE ES).\n\n📌 À préciser\n\nQui paiera davantage ou moins, et à quelle date ?\n\nSource : https://www.economie.gouv.fr/actualites/participation-du-public-sur-la-demande-de-permis-de-recherches-de-geothermie-de-bois-darcy-yvelines-la-societe-engie-energie-services-sas",
+      "reason": "Titre, résumé et date récupérés automatiquement dans le flux officiel. Le statut repose sur une formulation explicite ; aucun impact individuel n’est inventé."
+    },
     {
       "id": "25b16c53e1fa64af120940e7",
       "family": "etf",
