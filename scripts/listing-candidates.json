@@ -65,9 +65,8 @@
       {"ticker": "WRDUSW", "mic": "XSWX", "exchange": "SIX Swiss Exchange", "currency": "USD", "symbol": "WRDUSW.SW"},
       {"ticker": "WRDA", "mic": "ETFP", "exchange": "Borsa Italiana", "currency": "EUR", "symbol": "WRDA.MI"},
       {"ticker": "WRDB", "mic": "XLON", "exchange": "London Stock Exchange", "currency": "USD", "symbol": "WRDB.L"}]},
-    {"isin": "IE00B4K6B022", "basis": "HSBC EURO STOXX 50 : H50E Londres, 50E Paris — identifiant propre de la page Euronext contrôlé le 19/10/2026 ; aucun symbole fournisseur déduit", "rows": [
-      {"ticker": "H50E", "mic": "XLON", "exchange": "London Stock Exchange", "currency": "EUR", "symbol": "H50E.L"},
-      {"ticker": "50E", "mic": "XPAR", "exchange": "Euronext Paris", "currency": "EUR"}]},
+    {"isin": "IE00B4K6B022", "basis": "HSBC EURO STOXX 50 : H50E Londres reste candidat ; 50E Paris est désormais une cotation vérifiée du registre commun, sans symbole fournisseur inventé", "rows": [
+      {"ticker": "H50E", "mic": "XLON", "exchange": "London Stock Exchange", "currency": "EUR", "symbol": "H50E.L"}]},
     {"isin": "FR0011550185", "basis": "BNP Paribas Easy S&P 500 Acc : ESE Euronext Paris ; la fiche BNP sépare devise et place, ligne attendue d’un autre document", "rows": [
       {"ticker": "ESE", "mic": "XPAR", "exchange": "Euronext Paris", "currency": "EUR", "symbol": "ESE.PA"}]},
     {"isin": "IE000QDFFK00", "basis": "BNP Paribas Easy II Nasdaq 100 Acc : table « Exchange / Currency / Ticker » de la fiche (EURONEXT P EUR ANAU FP, XETRA USD ANAU GY, Borsa Italiana EUR ANAU IM)", "rows": [
