@@ -394,14 +394,17 @@ def reconcile_publication(state, build, manifest, compare):
     return result
 
 
-def read_large_file(api, path, ref):
-    """The contents API leaves `content` empty above 1 MB (the radar feed is larger):
-    read the blob by its sha in that case, which works up to 100 MB."""
-    file = api(f'/contents/{path}?ref={ref}')
+def decode_json_file(api, file):
+    """Read the exact observed blob when the contents API omits a large body."""
     content = file.get('content') if file.get('encoding') == 'base64' else None
     if not content:
         content = api(f"/git/blobs/{file['sha']}")['content']
     return json.loads(base64.b64decode(content))
+
+
+def read_large_file(api, path, ref):
+    """The contents API leaves `content` empty above 1 MB; use its exact blob."""
+    return decode_json_file(api, api(f'/contents/{path}?ref={ref}'))
 
 
 def main():
@@ -422,7 +425,7 @@ def main():
             return json.load(response)
     try:
         file = api(f'/contents/{PATH}?ref={BRANCH}')
-        state = json.loads(base64.b64decode(file['content']))
+        state = decode_json_file(api, file)
         sha = file['sha']
     except urllib.error.HTTPError as e:
         if e.code != 404:

@@ -320,3 +320,21 @@ class LegacyPublicationProof(unittest.TestCase):
   self.assertEqual(checkout_snapshot(log),sha)
   self.assertIsNone(checkout_snapshot('head_sha='+sha))
   self.assertIsNone(checkout_snapshot(log+log))
+
+
+class LargeStatusFile(unittest.TestCase):
+ def test_large_status_reads_the_exact_observed_sha_without_refetching_the_branch(self):
+  import base64
+  from publish_automation_status import decode_json_file
+  state={'schemaVersion':1,'workflows':{},'padding':'x'*1_100_000}
+  encoded=base64.b64encode(json.dumps(state).encode()).decode()
+  calls=[]
+  def api(path):
+   calls.append(path)
+   self.assertEqual(path,'/git/blobs/observed-status-sha')
+   return {'content':encoded,'encoding':'base64'}
+  file={'sha':'observed-status-sha','content':'','encoding':'none'}
+  self.assertEqual(decode_json_file(api,file),state)
+  self.assertEqual(calls,['/git/blobs/observed-status-sha'])
+  self.assertEqual(file['sha'],'observed-status-sha')
+
