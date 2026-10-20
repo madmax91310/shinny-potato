@@ -10010,5 +10010,21 @@
     "ticker": "WRDA",
     "mic": "ETFP",
     "listingEvidenceId": "IE00BD4TXV59-ETFP-WRDA-EUR"
+  },
+  "stockUS45167R1041": {
+    "value": 233.86000061035156,
+    "asOf": "2026-10-19",
+    "currency": "USD",
+    "parser": "yahoo",
+    "symbol": "IEX",
+    "indexCode": null,
+    "variant": null,
+    "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/IEX?period1=1791158400&period2=1792454400&interval=1d&events=splits",
+    "sha256": "043c17f4e614c9dc9999a7c4564e5f81a3bd7e1fc40aea80e8f2f88d6d8b5b11",
+    "method": "Dernière séance terminée ; cours brut",
+    "maxAgeDays": 7,
+    "isin": "US45167R1041",
+    "ticker": "IEX",
+    "listingEvidenceId": "US45167R1041:New York Stock Exchange Inc.:IEX:USD"
   }
 }

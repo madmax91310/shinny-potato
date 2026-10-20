@@ -14376,6 +14376,33 @@
       "yahooInstrumentType": "ETF",
       "periodStart": "2024-10",
       "verifyMonthlyDisagreements": true
+    },
+    {
+      "id": "stockUS45167R1041",
+      "isin": "US45167R1041",
+      "label": "IDEX",
+      "ticker": "IEX",
+      "symbol": "IEX",
+      "currency": "USD",
+      "timezone": "America/New_York",
+      "parser": "yahoo",
+      "field": "adjclose",
+      "precision": 6,
+      "instrumentType": "EQUITY",
+      "consumerScope": "equity",
+      "collectAnniversary": true,
+      "listingEvidenceId": "US45167R1041:New York Stock Exchange Inc.:IEX:USD",
+      "listingEvidence": {
+        "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251882&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+        "asOf": "2026-10-19",
+        "isin": "US45167R1041",
+        "ticker": "IEX",
+        "exchange": "New York Stock Exchange Inc.",
+        "currency": "USD"
+      },
+      "method": "Cours de la cotation identifiée par ISIN dans les positions émetteur, ajustés des distributions et divisions ; dernières clôtures quotidiennes recoupées avec les clôtures mensuelles Yahoo.",
+      "yahooInstrumentType": "EQUITY",
+      "periodStart": "2015-01"
     }
   ]
 }
