@@ -11,7 +11,7 @@ jobs:
     timeout-minutes: 8
     steps:
       - uses: actions/checkout@v7.0.1
-      - run: git archive HEAD -o /tmp/application-source.tar
+      - run: git archive HEAD src scripts docs .github package.json package-lock.json vite.config.js index.html -o /tmp/application-source.tar
       - uses: actions/upload-artifact@v7.0.1
         with:
           name: application-source
