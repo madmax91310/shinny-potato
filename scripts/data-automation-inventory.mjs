@@ -1,4 +1,4 @@
-import { readFileSync, readdirSync, mkdirSync, writeFileSync } from 'node:fs'
+import { readFileSync, readdirSync, mkdirSync, writeFileSync, existsSync } from 'node:fs'
 import { resolve, relative, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { DATA_CATALOG } from '../src/data/catalog.js'
@@ -119,6 +119,12 @@ export function buildDataAutomationInventory(){
  }))
  const connections=coverage.rows.map(row=>qualifyCoverage(row,{record:AUTOMATED_ETF[row.id],holdingStatus:row.field==='completeHoldings'?holdingsStatus[row.id]:null,holdingSource:row.field==='completeHoldings'?holdingSources[row.id]:null,metadataStatus:attempts[row.id]}))
  for(const f of fields.filter(f=>f.requiresConnection))connections.push({type:f.type,id:f.id,name:f.name,field:`catalog:${f.field}`,label:f.field,observationState:'manual',actionState:'connector-needed',requiresAction:true,priority:2,sourceUrl:f.sourceUrls[0]??null,configuredSourceUrls:f.sourceUrls,checkedAt:f.checkedAt,lastSuccessAt:null,lastAttemptAt:null,tools:f.consumers.map(c=>c.path),reason:f.missingReason??f.nature.reason,nextAction:f.type==='instrument'?'Recollecter la table liée à la part exacte, qualifier la période et brancher sa valeur au registre commun.':'Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.'})
+ const accessPath='public/data/pending-source-checks.json'
+ const access=existsSync(resolve(ROOT,accessPath))?JSON.parse(read(accessPath)):null
+ if(access?.schemaVersion===1)for(const connection of connections){
+  const proof=access.observations?.[`${connection.id}:${connection.field}`]
+  if(proof?.qualification==='access-check-only'&&proof.financialDataQualified===false)connection.sourceAccess=proof
+ }
  const backlog=connections.filter(row=>row.requiresAction).sort((a,b)=>a.priority-b.priority||(b.tools?.length??0)-(a.tools?.length??0)||a.id.localeCompare(b.id)||a.field.localeCompare(b.field))
  const count=(rows,key)=>rows.reduce((a,r)=>(a[r[key]]=(a[r[key]]??0)+1,a),{})
  return {schemaVersion:1,generatedAt:new Date().toISOString(),

@@ -5,8 +5,9 @@ import {chromium} from 'playwright'
 import {getInstrumentAnnualPerformance} from '../src/data/instrument-returns.js'
 import {REVIEWED_PERFORMANCE_META} from '../src/data/instrument-performance-review.js'
 const raw=JSON.parse(readFileSync('src/data/dca-complete-holdings.json'))
-const physical=process.argv.includes('--physical')
-const selected=physical?['IE00BK5BQT80','IE00BFMXXD54']:['IE00BFY0GT14','IE00BKWQ0Q14']
+const newIssuers=process.argv.includes('--new-issuers')
+const physical=process.argv.includes('--physical')||newIssuers
+const selected=newIssuers?['IE00B4K6B022','IE0003UVYC20']:physical?['IE00BK5BQT80','IE00BFMXXD54']:['IE00BFY0GT14','IE00BKWQ0Q14']
 for(const isin of selected)assert(raw[isin]?.complete&&raw[isin].checkedAt&&raw[isin].sha256&&raw[isin].rows.length>10,`Fresh complete portfolio required: ${isin}`)
 if(physical){
  const targets=JSON.parse(readFileSync('scripts/generated-holdings-sources.json'))
@@ -54,10 +55,11 @@ try{
   await page.getByText(/^Recouvrement entre les supports ·/).click()
   await page.locator('.dca-pair-grid article').first().waitFor()
   const pair=await page.locator('.dca-pair-grid article').first().innerText()
-  assert(!pair.includes('Partiel'),'Real overlap must use complete issuer portfolios')
+  if(newIssuers)assert(pair.includes('Partiel'),'Cash and option sleeves must prevent an integral overlap claim')
+  else assert(!pair.includes('Partiel'),'Real overlap must use complete issuer portfolios')
   assert(Number(/(\d+) titres communs/.exec(pair)?.[1])>10,'Overlap includes more than the editorial top ten')
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+2),false)
-  await page.screenshot({path:`test-artifacts/live-data-connections/${physical?'physical-':''}holdings-${width}.png`,fullPage:true})
+  await page.screenshot({path:`test-artifacts/live-data-connections/${newIssuers?'new-issuers-':physical?'physical-':''}holdings-${width}.png`,fullPage:true})
   await page.goto(`${base}/fiches-etf?isin=IE00BM8R0J59`,{waitUntil:'networkidle'})
   if(await page.getByRole('button',{name:'Aperçu',exact:true}).isVisible())await page.getByRole('button',{name:'Aperçu',exact:true}).click()
   await page.getByRole('tab',{name:'Texte',exact:true}).click()

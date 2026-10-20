@@ -294,7 +294,7 @@ jobs:
       - uses: actions/setup-python@v7.0.0
         with:
           python-version: '3.12'
-      - run: pip install beautifulsoup4==4.15.0 openpyxl==3.1.5
+      - run: pip install beautifulsoup4==4.15.0 openpyxl==3.1.5 xlrd==2.0.2
       - run: python -m unittest discover -s scripts -p "test_dca*py"
       - run: python -m unittest discover -s scripts -p 'test_broker_tariff*.py'
       - run: python scripts/audit_broker_coverage.py
@@ -359,6 +359,9 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_metadata_incidents.py'
       - run: python -m unittest discover -s scripts -p 'test_physical_holdings.py'
       - run: python -m unittest discover -s scripts -p 'test_lifestrategy_holdings.py'
+      - run: python -m unittest discover -s scripts -p 'test_dws_liquidity_funds.py'
+      - run: python -m unittest discover -s scripts -p 'test_hsbc_jpm_holdings.py'
+      - run: python -m unittest discover -s scripts -p 'test_pending_sources.py'
       - run: python -m unittest discover -s scripts -p 'test_audit_workflows.py'
       - run: python -m unittest discover -s scripts -p 'test_validated_data_commit.py'
       - run: python -m unittest discover -s scripts -p 'test_data_publication.py'

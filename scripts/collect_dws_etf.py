@@ -15,6 +15,7 @@ from zoneinfo import ZoneInfo
 from data_automation import UTC, get_text, number, reject, write_json_atomic
 from issuer_documents import bounded_return, document_date, validated_rows, download
 from apply_etf_collection import apply
+from dws_liquidity_funds import SOURCES as LIQUIDITY_FUNDS
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 
@@ -132,7 +133,7 @@ def parse_product(body, share, now):
     return result
 
 
-def parse_holdings(body, share, now, url, *, complete=False):
+def parse_holdings(body, share, now, url, *, complete=False, non_equity_funds=None):
     tables = body.get('tables', [])
     if len(tables) != 1:
         reject('Missing/ambiguous DWS securities table')
@@ -200,12 +201,25 @@ def parse_holdings(body, share, now, url, *, complete=False):
             'method': 'Full physical securities portfolio; registration country and industry; net cash/derivatives retained',
             'rows': sorted(rows, key=lambda r: -r['weightPct'])}
     if complete:
-        if any(p.get('assetClass') == 'Mutual Fund' for p in holdings):
-            reject('Fund-of-funds look-through is not qualified')
+        excluded=[]
+        for position in holdings:
+            if position.get('assetClass') != 'Mutual Fund' and position['isin'] not in LIQUIDITY_FUNDS:continue
+            evidence=(non_equity_funds or {}).get(position['isin'],{})
+            if (evidence.get('isin')!=position['isin'] or evidence.get('kind')!='non-equity-money-market-fund'
+                    or not re.fullmatch(r'[0-9a-f]{64}',evidence.get('sha256',''))
+                    or not evidence.get('sourceUrl') or not evidence.get('asOf') or not evidence.get('checkedAt')):
+                reject('Fund-of-funds look-through is not qualified')
+            excluded.append({**position,'qualification':evidence})
         if sum(p['weightPct'] for p in holdings) > 100.5:
             reject('Non-long-only complete DWS portfolio')
+        excluded_ids={p['isin'] for p in excluded}
+        direct=[dict(p) for p in holdings if p['isin'] not in excluded_ids]
+        if len(direct)<10:reject('Incomplete direct DWS equity list')
         result['completeHoldings'] = {'asOf': stamp, 'basis': 'fund', 'sourceUrl': url,
-            'sha256': digest, 'complete': True, 'rows': [dict(p) for p in holdings]}
+            'sha256': digest, 'complete': True, 'rows': direct,
+            'excludedPositions':excluded,'excludedNonEquityFundWeightPct':sum(p['weightPct'] for p in excluded),
+            'method':'Complete physical securities; qualified non-equity money-market fund shares and net cash/derivatives excluded; original fund NAV weights, no renormalisation',
+            'sourceUrls':[url,*sorted({p['qualification']['sourceUrl'] for p in excluded})]}
     holdings = sorted(holdings, key=lambda r: -r['weightPct'])[:10]
     names = [p['name'] for p in holdings]
     for p in holdings:
