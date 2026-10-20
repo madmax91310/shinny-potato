@@ -6,7 +6,7 @@ import {appendFileSync,readFileSync,writeFileSync} from 'node:fs'
 import {fileURLToPath} from 'node:url'
 import {automationPaths,classify} from './classify-deploy-scope.mjs'
 import {compose} from './compose-fallback-snapshot.mjs'
-import {requiredFiles} from './prepare-validated-data.mjs'
+import {requiredFiles,primaryDataPaths} from './prepare-validated-data.mjs'
 export function codeDataSnapshot({code,head,ancestor,changed,allowed,history=()=>[]}) {
  assert(ancestor(code,head),'Validated code must belong to master history')
  if(classify(changed(code,head),allowed).dataOnly)return head
@@ -32,7 +32,7 @@ async function main(){
  const refresh=data!==code
  if(refresh){
   const producers=JSON.parse(readFileSync(new URL('./validated-data-producers.json',import.meta.url)))
-  const paths=[...new Set(Object.values(producers).flat())]
+  const paths=primaryDataPaths(Object.values(producers).flat())
   const files=requiredFiles(paths,git('ls-tree','-r','--name-only',data).split('\n'),allowed)
   writeFileSync(process.env.REQUIRED_DATA_RECEIPT,JSON.stringify(Object.fromEntries(files.map(path=>[path,git('rev-parse',`${data}:${path}`)])))+'\n')
   const result=compose({published:code,data,allowed})

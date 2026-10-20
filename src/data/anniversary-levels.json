@@ -53,26 +53,26 @@
     "maxAgeDays": 7
   },
   "nasdaq100": {
-    "value": 36093.67,
-    "asOf": "2026-10-19",
+    "value": 36045.9296875,
+    "asOf": "2026-10-20",
     "currency": "USD",
-    "parser": "fred",
-    "symbol": "XNDX",
+    "parser": "yahoo",
+    "symbol": "^XNDX",
     "indexCode": null,
     "variant": "TOTAL",
-    "sourceUrl": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=NASDAQXNDX&cosd=2026-10-05&coed=2026-10-19",
-    "sha256": "007344e904f96a285744d05e6512fd70cd7bb4516f482f3856619a004279ebc3",
-    "method": "Niveau officiel XNDX Total Return USD de la dernière séance terminée, diffusé par FRED ; deux fenêtres datées concordantes",
+    "sourceUrl": "https://query1.finance.yahoo.com/v8/finance/chart/%5EXNDX?range=5d&interval=1d&includePrePost=false",
+    "sha256": "1608c03d6ddc1f114a77096c027fdcfb4206040a2f4600e46f777284d194a328",
+    "method": "Clôture XNDX Total Return USD, dividendes bruts réinvestis ; fenêtres Yahoo prises en charge concordantes et séance terminée",
     "maxAgeDays": 7,
-    "seriesId": "NASDAQXNDX",
     "sourceUrls": [
-      "https://fred.stlouisfed.org/graph/fredgraph.csv?id=NASDAQXNDX&cosd=2026-10-05&coed=2026-10-19",
-      "https://fred.stlouisfed.org/graph/fredgraph.csv?id=NASDAQXNDX&cosd=2026-09-28&coed=2026-10-19"
+      "https://query1.finance.yahoo.com/v8/finance/chart/%5EXNDX?range=5d&interval=1d&includePrePost=false",
+      "https://query2.finance.yahoo.com/v8/finance/chart/%5EXNDX?range=1d&interval=1d&includePrePost=false"
     ],
     "sourceHashes": {
-      "https://fred.stlouisfed.org/graph/fredgraph.csv?id=NASDAQXNDX&cosd=2026-10-05&coed=2026-10-19": "53e03ee413462ba9136dfd64b80efe39e9f98a4b5b6ce92bb31dc8db874966f0",
-      "https://fred.stlouisfed.org/graph/fredgraph.csv?id=NASDAQXNDX&cosd=2026-09-28&coed=2026-10-19": "12ea9e52b0fcd7aafda013b00b5752e78c5d4d5734cf55ece642bb7fd32c4bf7"
-    }
+      "https://query1.finance.yahoo.com/v8/finance/chart/%5EXNDX?range=5d&interval=1d&includePrePost=false": "da3deaa7d04274cd381cafda4e47334288dac5aaaf0a03ba0960c2cf12a439ab",
+      "https://query2.finance.yahoo.com/v8/finance/chart/%5EXNDX?range=1d&interval=1d&includePrePost=false": "587c9760eac0e2a1bd96193c97909f57322c35a5e8e86a87a175ec7bba1d61e9"
+    },
+    "quoteMethod": "supported-xndx-ranges"
   },
   "soxx": {
     "value": 501.92999267578125,
