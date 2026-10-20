@@ -18795,14 +18795,15 @@
           "at": "2026-10-20T13:12:01.281486+00:00",
           "reason": "recording-failed",
           "sourceRunId": 39425011491,
-          "status": "reserved",
-          "ref": "master"
+          "status": "dispatched",
+          "ref": "master",
+          "error": null
         }
       ],
       "reason": "recording-failed",
       "lastSuccessAt": "2026-10-18T13:52:57Z",
       "observedRunId": 39425011491,
-      "status": "reserved",
+      "status": "dispatched",
       "nextAttemptAt": "2026-10-20T14:12:01.281486+00:00"
     },
     "update-presentation-actors.yml": {
