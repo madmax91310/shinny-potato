@@ -18465,15 +18465,16 @@
           "at": "2026-10-20T02:50:02.313087+00:00",
           "reason": "recording-failed",
           "sourceRunId": 39321673904,
-          "status": "reserved",
-          "ref": "master"
+          "status": "dispatched",
+          "ref": "master",
+          "error": null
         }
       ],
       "reason": "recording-failed",
       "lastSuccessAt": "2026-10-18T16:00:42Z",
       "observedRunId": 39321673904,
       "nextAttemptAt": "2026-10-20T06:50:02.313087+00:00",
-      "status": "reserved"
+      "status": "dispatched"
     },
     "update-bitcoin-monthly.yml": {
       "attempts": [],
