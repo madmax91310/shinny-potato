@@ -1,6 +1,7 @@
 import { createHash } from 'node:crypto'
 import { publishablePurchasingNews } from './purchasing-power-news.mjs'
 import { reconcileDws } from './dws-reconciliation.mjs'
+import { factualTitle } from '../../src/lib/radar-editorial.js'
 
 export const FAMILIES = { etf: 'ETF', indices: 'Indices', courtiers: 'Courtiers', epargne: 'Épargne', scpi: 'SCPI', assurance: 'Assurance-vie', investisseurs: 'Investisseurs', economie: 'Repères économiques', 'pouvoir-achat': 'Pouvoir d’achat' }
 export function stable(value) {
@@ -48,7 +49,7 @@ function makeEvent(before, after, detectedAt, kind = 'change') {
   const beforeText = before ? displayValue(before.value, after.unit) : 'Pas encore suivi'
   const afterText = displayValue(after.value, after.unit)
   const purchasing = after.family === 'pouvoir-achat'
-  const metadata = purchasing ? Object.fromEntries(['topic', 'topicLabel', 'publisher', 'status', 'statusEvidence', 'summary'].map(key => [key, after[key] ?? ''])) : {}
+  const metadata = purchasing ? Object.fromEntries(['topic', 'topicLabel', 'publisher', 'status', 'statusEvidence', 'summary'].map(key => [key, after[key] ?? ''])) : Object.fromEntries(['launchDetails', 'documentUrl', 'documentCheckedAt', 'documentHash'].filter(key => after[key] !== undefined).map(key => [key, after[key]]))
   const title = after.rule === 'announcement' ? `Nouveau communiqué officiel : ${after.label}` : kind === 'new' ? `${after.label} : nouvelle donnée suivie` : isPublication ? `${after.label} : nouvelle publication` : `${after.label} : ${after.fieldLabel.toLocaleLowerCase('fr-FR')} en mouvement`
   const movement = kind === 'new' ? `Une nouvelle donnée sourcée est disponible : ${afterText}.` : isPublication ? `La publication ${after.period} est disponible : ${afterText}.` : `${after.fieldLabel} : ${beforeText} → ${afterText}.`
   const angle = after.angle ?? `Qu’est-ce que cette évolution change pour quelqu’un qui utilise ${after.label} ?`
@@ -150,6 +151,7 @@ export function advanceRadar(previous, observations, { now = new Date(), sourceR
       const recentAnnouncement = after.rule !== 'announcement' || Date.parse(after.period) >= Date.parse(after.family === 'pouvoir-achat' ? stamp : state.initializedAt) - 7 * 86400000
       if (previous && !familyBootstrap && !entities.has(`${after.family}:${after.entity}`) && after.discovery && recentAnnouncement) {
         const event = makeEvent(null, after, stamp, 'new')
+        event.title = factualTitle(event)
         if (!seen.has(event.id)) { seen.add(event.id); newEvents.push(event) }
       }
       continue
@@ -165,6 +167,7 @@ export function advanceRadar(previous, observations, { now = new Date(), sourceR
     }
     if (!meaningful(before, after)) continue
     const event = makeEvent(before, after, stamp)
+    event.title = factualTitle(event)
     state.anchors[key] = after
     if (!seen.has(event.id)) { seen.add(event.id); newEvents.push(event) }
   }
@@ -179,6 +182,12 @@ export function advanceRadar(previous, observations, { now = new Date(), sourceR
     event.status = 'source-conflict'
   }
   const publishableNewEvents = newEvents.filter(event => event.status !== 'source-conflict')
+  // Enrich an existing announcement without inventing a second launch alert.
+  for (const row of valid.filter(row => row.family === 'etf' && row.field === 'announcement' && row.launchDetails)) {
+    for (const event of state.events.filter(event => event.entity === row.entity && event.period === row.period && event.label === row.label)) {
+      for (const key of ['launchDetails', 'documentUrl', 'documentCheckedAt', 'documentHash']) event[key] = row[key]
+    }
+  }
   for (const [conflictKey, conflict] of Object.entries(state.conflicts)) {
     const latest = state.current[observationKey(conflict.accepted)]
     if (latest?.period > conflict.period && !conflict.resolvedAt) {

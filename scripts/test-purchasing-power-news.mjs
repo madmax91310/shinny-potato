@@ -61,7 +61,7 @@ assert.equal(pendingNotifications(next.state.events, { ...ledger, acknowledged: 
 const updated = { ...row, period: '2026-10-10', status: 'Application annoncée', statusEvidence: 'Le plafond entrera en vigueur.', value: { ...row.value, status: 'Application annoncée' } }
 const revised = advanceRadar(next.state, [updated, newer], { now })
 assert.equal(revised.newEvents.length, 1, 'Révision de la même URL suivie')
-assert.match(revised.newEvents[0].title, /mise à jour/)
+assert.equal(revised.newEvents[0].title, revised.newEvents[0].label)
 const failed = advanceRadar(revised.state, [], { now, errors: [{ family: 'pouvoir-achat', entity: source.name, reason: 'HTTP 500' }] })
 assert.equal(failed.state.current[observationKey(row)].value.status, updated.value.status)
 assert.equal(failed.feed.purchasingPower.items.length, 2, 'Historique conservé après panne')

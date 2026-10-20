@@ -6,8 +6,9 @@ import { createHash } from 'node:crypto'
 import { collectObservations } from './update-editorial-radar.mjs'
 import { advanceRadar, shouldRefreshRadar } from './lib/editorial-radar.mjs'
 import { collectPurchasingNews } from './lib/purchasing-power-news.mjs'
-import { collectRadarNews } from './lib/radar-news.mjs'
+import { collectRadarNews, enrichEtfLaunches } from './lib/radar-news.mjs'
 import { notificationState, notifyRadar } from './lib/radar-notifications.mjs'
+import { editorialState } from '../src/lib/radar-editorial.js'
 
 // Data publication is one atomic commit on a dedicated branch. It does not
 // rewrite master or depend on an application rebuild for each observation.
@@ -51,6 +52,8 @@ if (refresh) {
   const { observations, errors } = await collectObservations()
   if (!observations.length || errors.some(error => error.family === 'radar')) throw new Error('Sources locales incomplètes ; historique conservé.')
   const [news, purchasing] = await Promise.all([collectRadarNews(), collectPurchasingNews(new Date(), fetch, previous)])
+  const launches = await enrichEtfLaunches(news.observations)
+  errors.push(...launches.errors)
   observations.push(...news.observations, ...purchasing.observations); errors.push(...news.errors, ...purchasing.errors)
   const { stdout } = await promisify(execFile)('python', ['scripts/verify_dws_compositions.py'], { maxBuffer: 16 * 1024 * 1024, timeout: 300000 })
   const verification = JSON.parse(stdout)
@@ -93,7 +96,7 @@ await writeFile(resolve(output, 'feed.json'), `${JSON.stringify(result.feed, nul
 
 // Data has already been committed. A notification failure leaves the daily
 // feed working and the unacknowledged events available for tomorrow's retry.
-const notification = await notifyRadar({ events: result.state.events, ledger, api, repo, evidenceRevision: nextCommit.sha, maintain: true })
+const notification = await notifyRadar({ events: result.state.events.filter(event => editorialState(event) === 'ready'), ledger, api, repo, evidenceRevision: nextCommit.sha, maintain: true })
 if (notification.sent || notification.recovered) {
   const blob = await api('git/blobs', 'POST', { content: `${JSON.stringify(notification.ledger, null, 2)}\n`, encoding: 'utf-8' })
   const receiptTree = await api('git/trees', 'POST', { base_tree: nextTree.sha, tree: [{ path: 'notifications.json', mode: '100644', type: 'blob', sha: blob.sha }] })

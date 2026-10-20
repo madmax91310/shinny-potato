@@ -193,3 +193,41 @@ Le test reproduit les observations Git de l'issue #545, la migration d'un état
 contenant déjà le conflit, le filtrage des notifications, l'isolation des
 périmètres et la reprise des mouvements légitimes. Voir le diagnostic
 [Materials](radar-materials-2026-10-13.md) pour les preuves et leurs limites.
+
+## Sélection éditoriale — 20 octobre 2026
+
+La collecte et les preuves historiques restent intactes. La page ouvre sur cinq
+sujets au maximum, détectés au cours des quatorze derniers jours : frais,
+conditions, PEA documenté par ISIN, publications investisseurs et informations
+pratiques suffisamment concrètes. Les titres donnent la valeur avant/après.
+Les compositions, encours, métriques et statistiques restent consultables dans
+« Variations secondaires » ; ils ne déclenchent plus les notifications GitHub.
+« À suivre » conserve les annonces à compléter. « Historique complet » donne
+accès aux événements du flux public (500 maximum), sans limite de récence.
+La limite de cinq cartes est appliquée après recherche, filtre et regroupement.
+Les changements d'une même entité, période et maturité sont regroupés, chaque
+source, périmètre, brouillon et reçu de lecture étant conservé. Aucun regroupement
+sémantique de réformes différentes n'est déduit d'un simple thème commun.
+
+Les communiqués Vanguard Europe et Global X Europe sont distingués des nouveaux
+raccordements de catalogue. Une formulation explicite de lancement constitue
+une annonce ; un futur lancement ne devient jamais une disponibilité actuelle.
+Un lancement déclaré et documenté (ISIN unique et frais ou indice explicites),
+ou un début de négociation explicite, rejoint « À exploiter ». Les autres
+lancements restent dans « À suivre ». Le radar ne promet pas une couverture
+exhaustive des émetteurs, ni la disponibilité en France ou chez un courtier.
+
+Les PDF récents des deux sources officielles sont lus via `pdftotext` dans le
+workflow. Seuls les champs explicitement libellés d'un document à ISIN unique
+sont repris : frais, indice, PEA, distribution et date de première négociation.
+Une ambiguïté, plusieurs ISIN ou un champ absent restent sans valeur affichée.
+La source, sa date de contrôle et l'empreinte du document sont conservées.
+Un échec d'extraction garde l'annonce connue et produit une réserve technique ;
+il ne rend pas le lancement prêt à publier. Les anciens communiqués, dividendes,
+rapports et simples ajouts de produits ne deviennent pas des lancements.
+L'enrichissement d'une annonce existante ne crée pas une deuxième alerte.
+
+Vérifications ajoutées : `scripts/test-radar-editorial.mjs` (intégré à
+`npm run test:radar` et au workflow), et scénario navigateur avec un flux mixte,
+cinq cartes, regroupement, lecture groupée, annonces futures, variations
+secondaires, historique et absence de débordement mobile.
