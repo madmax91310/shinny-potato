@@ -203,6 +203,19 @@ def parse(id_, documents, today):
   offers=[offer('oca-oeuvre','Matis — société projet par œuvre','OCA d’une SAS ; modalités générales, œuvre et émetteur à sélectionner séparément.',{'access':f'À partir de {fmt(ticket)} € par société annoncé sur la page française.','fees':f'Réception/transmission d’ordres : {fmt(order)} %. Placement : {fmt(placement)} %. Carried interest : {fmt(carry)} % de la plus-value au bénéfice de Matis Holding. L’émission inclut aussi taxes/droits, transport, conseil et fonctionnement de la société ; bases et montants propres à l’offre, pas de coût total déduit de ces seuls pourcentages.','duration':f'Schéma : horizon cible {fmt(target)} mois, revente anticipée possible. Présentation : cible {fmt(overview)} mois. La cible n’est pas une échéance de remboursement garantie ; durée du titre à confirmer.','income':'Produit de revente de l’œuvre après les charges et les conditions du titre ; plus-value non garantie.','exit':'Sortie liée à la revente et au titre ; aucune disponibilité personnelle de l’œuvre, pas de remboursement anticipé garanti.'},['Œuvre et FICI : durée du titre, bases des commissions, autres coûts'],[['Accès annoncé',f'{fmt(ticket)} €'],['Instrument','Oblig. conv.'],['Durée','À confirmer']],warnings)]
   offers[0]['fields']['access']['sourceUrl']=urls[1]
   offers[0]['fields']['duration']['sourceUrls']=urls
+ # These sheets describe the platform. A project contract is a separate scope,
+ # never an unfilled financial value in the general platform sheet.
+ project_requirements={
+  'bricks':['Pour chaque projet : consulter la FICI, l’émetteur, le coupon et l’échéance.'],
+  'enerfip':['Pour chaque levée : consulter la FICI, l’émetteur, le taux, l’échéance et les frais indirects.'],
+  'hectarea':['Pour chaque opération : consulter les documents du titre, l’émetteur, le coupon et l’échéance.'],
+  'matis':['Pour chaque œuvre : consulter la FICI, la durée du titre, les bases des commissions et les autres coûts.'],
+ }
+ if id_ in project_requirements:
+  for o in offers:
+   o['scopeType']='platform'
+   o['projectRequirements']=project_requirements[id_]
+   o['missing']=['Montant des frais de petits retraits non publié.'] if id_=='hectarea' else []
  if effective and dt.date.fromisoformat(effective)>today:raise ValueError('Future source terms')
  for o in offers:
   for f in o['fields'].values():

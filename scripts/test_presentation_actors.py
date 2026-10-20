@@ -25,8 +25,21 @@ class ActorTermsTests(unittest.TestCase):
     if record['id'] in ('tudigo','lendosphere'):
      self.assertEqual(set(offer['fields']), {'access','fees','duration','income','exit'})
      self.assertIn('distinct',offer['scope'])
+    elif record['id'] in ('bricks','enerfip','matis'):
+     self.assertEqual(offer['missing'],[])
     else:self.assertTrue(offer['missing'])
     self.assertEqual(set(offer['fields']),{'access','fees','duration','income','exit'})
+ def test_platform_scope_keeps_general_fee_gap_and_project_boundaries(self):
+  for id_ in ('bricks','enerfip','hectarea','matis'):
+   o=parse(id_,self.fixtures()[id_],TODAY)['offers'][0]
+   self.assertEqual(o['scopeType'],'platform')
+   self.assertTrue(o['projectRequirements'])
+   self.assertIn('échéance' if id_!='matis' else 'durée',o['projectRequirements'][0])
+   self.assertEqual(bool(o['missing']),id_=='hectarea')
+   if id_=='hectarea':self.assertIn('petits retraits',o['missing'][0])
+  matis=parse('matis',self.fixtures()['matis'],TODAY)['offers'][0]
+  self.assertTrue(matis['warnings'])
+  self.assertIn('bases et montants propres',matis['fields']['fees']['value'])
  def test_wrong_page_disappearing_qualifier_and_unit_price_conflict(self):
   fixtures=self.fixtures()
   for id_,old,new in [('mymarguerit','2 316','2 999'),('enerfip','fonds n’ont pas été libérés','fonds ont été libérés'),('france-valley','0,018% TTC','variable'),('fundora','possibles extensions','sans extensions'),('hectarea','sur la plus-value lors du rachat','sur une autre base')]:

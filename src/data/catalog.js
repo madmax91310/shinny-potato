@@ -170,7 +170,8 @@ export const DATA_CATALOG = Object.freeze([
     fields: record.offers.flatMap(offer => [
       ...Object.values(offer.fields).map(term => field(`${offer.name} · ${term.label}`, 'presentation-actors', term.value,
         {sourceUrls: term.sourceUrls ?? [term.sourceUrl], asOf: term.effectiveAt ?? null, checkedAt:term.checkedAt, scope:offer.scope, method:`Conditions publiques collectées ; explication de l’acteur éditoriale. ${offer.availability?.status === 'closed' ? 'Souscriptions clôturées selon la publication de l’acteur.' : 'Disponibilité de souscription non établie.'}`, note:offer.warnings.join(' ')})),
-      {...field(`${offer.name} · À compléter`, 'presentation-actors', offer.missing.join(' ; '), {sourceUrls:record.sources.map(source=>source.url),checkedAt:record.checkedAt,scope:offer.scope,method:'Informations non qualifiées, à obtenir dans la documentation du véhicule.'}), qualificationMissing:offer.missing.join(' ; ')},
+      ...(offer.projectRequirements?.length ? [field(`${offer.name} · Conditions variables selon le projet`, 'presentation-actors', offer.projectRequirements.join(' '), {sourceUrls:record.sources.map(source=>source.url),checkedAt:record.checkedAt,scope:offer.scope,method:'Fiche générale de plateforme ; conditions contractuelles propres à chaque opération, sans projet sélectionné.'})] : []),
+      ...(offer.missing.length ? [{...field(`${offer.name} · À compléter`, 'presentation-actors', offer.missing.join(' ; '), {sourceUrls:record.sources.map(source=>source.url),checkedAt:record.checkedAt,scope:offer.scope,method:'Informations non qualifiées, à obtenir dans la documentation du véhicule.'}), qualificationMissing:offer.missing.join(' ; ')}] : []),
     ]) })),
   ...SCPI.map(record => ({ id: `scpi:${record.id}`, type: 'scpi', name: record.name, aliases: [record.id, 'immobilier', 'SCPI'],
     consumers: [{ tool: 'Présentation de SCPI', path: '/presentations?famille=scpi' }],

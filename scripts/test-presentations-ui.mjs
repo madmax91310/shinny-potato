@@ -16,6 +16,12 @@ try {
   for(const record of PRESENTATION_ACTORS){
     await families.getByRole('button',{name:ACTOR_FAMILIES.find(row=>row.id===record.family).label,exact:true}).click()
     await page.getByRole('group',{name:'Choisir un acteur',exact:true}).getByRole('button',{name:record.name,exact:true}).click()
+    if (record.selectedOffer.scopeType === 'platform') {
+      await page.getByRole('heading',{name:'Fonctionnement de la plateforme',exact:true}).waitFor()
+      await page.getByRole('heading',{name:'Conditions propres à chaque projet',exact:true}).waitFor()
+      assert.equal(await page.getByRole('heading',{name:'Informations à compléter',exact:true}).count(),record.id === 'hectarea' ? 1 : 0)
+      if (record.id === 'hectarea') await page.getByText('Montant des frais de petits retraits non publié.',{exact:true}).waitFor()
+    }
     await page.getByRole('tab',{name:'Texte',exact:true}).click()
     assert.equal(await page.locator('#actor-draft').inputValue(),buildActorTweet(record))
     await page.locator('#actor-draft').fill(`Retouche ${record.id}`)
