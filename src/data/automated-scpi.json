@@ -4,66 +4,75 @@
       "id": "iroko-zen",
       "name": "Iroko Zen",
       "sourceUrl": "https://www.iroko.eu/scpi/zen",
-      "checkedAt": "2026-10-19",
+      "checkedAt": "2026-10-20",
       "snapshot": {
-        "asOf": null,
-        "dateNote": "La date des graphiques n’est pas publiée ; date du relevé conservée séparément.",
+        "asOf": "2026-06-30",
+        "checkedAt": "2026-10-20",
         "countries": [
           {
             "label": "France",
-            "value": 28.7
+            "value": 27.3
           },
           {
             "label": "Royaume-Uni",
-            "value": 27.2
+            "value": 26.7
           },
           {
             "label": "Espagne",
-            "value": 14.4
+            "value": 15.6
           },
           {
             "label": "Pays-Bas",
-            "value": 12
+            "value": 10.5
           },
           {
             "label": "Irlande",
-            "value": 9.8
+            "value": 9.7
           },
           {
             "label": "Allemagne",
-            "value": 7
+            "value": 7.2
+          },
+          {
+            "label": "Belgique",
+            "value": 2.2
           },
           {
             "label": "Italie",
-            "value": 0.9
+            "value": 0.8
           }
         ],
         "sectors": [
           {
-            "label": "Commerces",
-            "value": 36.9
-          },
-          {
             "label": "Bureaux",
-            "value": 26.2
+            "value": 31.6
           },
           {
-            "label": "Locaux d'activités",
-            "value": 13.6
+            "label": "Locaux d’activité",
+            "value": 11.6
           },
           {
             "label": "Santé, hôtellerie, autre",
-            "value": 12
+            "value": 10.6
           },
           {
             "label": "Entrepôts",
-            "value": 11.3
+            "value": 7.7
+          },
+          {
+            "label": "Logistique",
+            "value": 2.2
+          },
+          {
+            "label": "Commerces",
+            "value": 36.3
           }
         ],
         "sourceUrls": [
-          "https://opendata.iroko.com/embed/charts/geo-rep-value-zen",
-          "https://opendata.iroko.com/embed/charts/type-rep-value-zen"
-        ]
+          "https://iroko-documents.s3.eu-west-3.amazonaws.com/Iroko_Zen_bulletin_trimestriel.pdf"
+        ],
+        "dateNote": "Bulletin trimestriel : date du patrimoine conservée, distincte de la période de validité du document. Répartition en valeur d’expertise hors droits.",
+        "sha256": "db540be39c6920c8d1c9196ffadb98f2785381f47ac7368ea4421fef7e2ef9bf"
       },
       "annual": {
         "years": [
