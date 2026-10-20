@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict'
+import { choose } from './card-selection.mjs'
 import { chromium } from 'playwright'
 import { spawn } from 'node:child_process'
 import { mkdir, writeFile, readFile } from 'node:fs/promises'
@@ -102,5 +103,24 @@ try {
       } finally { ASSETS.apple.points = originalPoints }
     } finally { CanvasRenderingContext2D.prototype.fillText = original }
   })
+  const mobile = await browser.newPage({ viewport: { width: 393, height: 851 }, isMobile: true, hasTouch: true, userAgent: 'Mozilla/5.0 (Linux; Android 16) AppleWebKit/537.36 Chrome/130.0.0.0 Mobile Safari/537.36' })
+  await mobile.goto(`${base}calculateur-investissement`)
+  await choose(mobile.getByRole('group', { name: 'Choisir un actif', exact: true }), 'totalenergies')
+  await mobile.getByRole('button', { name: 'Mensuel (DCA)', exact: true }).click()
+  await mobile.getByRole('button', { name: 'Aperçu', exact: true }).click()
+  await mobile.getByRole('tab', { name: 'Image', exact: true }).click()
+  const preview = mobile.locator('.publication-image-stage img')
+  await preview.waitFor()
+  const png = Buffer.from((await preview.getAttribute('src')).split(',')[1], 'base64')
+  await writeFile('test-artifacts/investment-emerald/totalenergies-mobile.png', png)
+  for (const [label, filename] of [['Télécharger cet aperçu', 'publication.png'], ['📊 Télécharger une image', 'investissement-totalenergies-dca.png']]) {
+    const [download] = await Promise.all([mobile.waitForEvent('download'), mobile.getByRole('button', { name: label, exact: true }).click()])
+    assert.equal(download.suggestedFilename(), filename)
+    assert.equal(await download.failure(), null)
+    assert.deepEqual(await readFile(await download.path()), png, `${label}: must download the displayed PNG`)
+  }
+  assert.equal(await mobile.locator('.ic-image-overlay').count(), 0, 'No invisible dialog in hidden text panel')
+  await mobile.close()
+  console.log('Android mobile: preview and toolbar download the exact displayed TotalEnergies DCA PNG.')
   console.log(`${ASSET_ORDER.length} actifs × versement unique/DCA : identités, devises, résultats, points annuels, prix saisi, pertes, grands montants et absence de chevauchement vérifiés.`)
 } finally { await browser?.close(); server.kill('SIGTERM') }

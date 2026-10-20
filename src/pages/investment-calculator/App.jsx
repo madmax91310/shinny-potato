@@ -1,3 +1,4 @@
+import { downloadImage } from '../../design-system/downloadImage.js'
 import { historyCurrencies } from '../../data/history-currency.js'
 import { useSelectedHistory } from '../../lib/useSelectedHistory.js'
 import HistoricalContext from '../../design-system/HistoricalContext.jsx'
@@ -65,22 +66,15 @@ function CompareItem({ label, value, deltaVal, currency, highlight }) {
 
 function ResultCard({ state, d, copied, onCopy }) {
   const [exportMode, setExportMode] = useState('simple')
-  const [image, setImage] = useState(null)
   const [imageLoading, setImageLoading] = useState(false)
   const [imageError, setImageError] = useState('')
-  useEffect(() => { setImage(null); setImageError('') }, [state])
-  useEffect(() => {
-    if (!image) return undefined
-    const close = (event) => { if (event.key === 'Escape') setImage(null) }
-    document.addEventListener('keydown', close)
-    return () => document.removeEventListener('keydown', close)
-  }, [image])
+  useEffect(() => { setImageError('') }, [state])
 
   async function showImage() {
     setImageLoading(true); setImageError('')
     try {
       const canvas = await renderInvestmentImage(state, d)
-      setImage({ dataUrl: canvas.toDataURL('image/png'), filename: `investissement-${state.assetId}-${d.effectiveMode}.png` })
+      downloadImage(canvas, `investissement-${state.assetId}-${d.effectiveMode}.png`)
     } catch (error) { setImageError(error.message || 'Création de l’image impossible. Réessaie.') }
     finally { setImageLoading(false) }
   }
@@ -244,16 +238,7 @@ function ResultCard({ state, d, copied, onCopy }) {
           }}
         />
       </div>
-      {image && (
-        <div className="ic-image-overlay" role="dialog" aria-modal="true" aria-label="Aperçu de l’image du placement">
-          <button className="ic-image-backdrop" type="button" aria-label="Fermer en touchant le fond" onClick={() => setImage(null)} />
-          <div className="ic-image-panel">
-            <button className="ic-image-close" type="button" aria-label="Fermer l’aperçu" onClick={() => setImage(null)}>✕</button>
-            <img src={image.dataUrl} alt="Graphique du placement prêt à télécharger" />
-            <a className="ic-image-download" href={image.dataUrl} download={image.filename}>⬇️ Télécharger le PNG</a>
-          </div>
-        </div>
-      )}
+
     </div>
   )
 }

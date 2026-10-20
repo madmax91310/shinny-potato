@@ -226,24 +226,11 @@ async function testCalculateur(page) {
   const priceContextOk = /Série en USD : \d+ points présents dans le code sur \d+ mois/.test(await page.locator('.ic-method-note').innerText());
 
   const imageButton = page.getByRole('button', { name: '📊 Télécharger une image' });
-  await imageButton.click();
-  const monthlyPreview = page.getByRole('dialog', { name: 'Aperçu de l’image du placement' });
-  const monthlyImage = (await monthlyPreview.locator('img').getAttribute('src'))?.startsWith('data:image/png;base64,');
-  const [monthlyDownload] = await Promise.all([
-    page.waitForEvent('download'),
-    monthlyPreview.getByRole('link', { name: '⬇️ Télécharger le PNG' }).click(),
-  ]);
-  await monthlyPreview.getByRole('button', { name: 'Fermer l’aperçu' }).click();
-
+  const [monthlyDownload] = await Promise.all([page.waitForEvent('download'), imageButton.click()]);
+  const monthlyImage = (await readFile(await monthlyDownload.path())).subarray(1, 4).toString() === 'PNG';
   await choose(page.getByRole('group', {name:'Choisir un actif',exact:true}), 'cac40');
-  await imageButton.click();
-  const annualPreview = page.getByRole('dialog', { name: 'Aperçu de l’image du placement' });
-  const annualImage = (await annualPreview.locator('img').getAttribute('src'))?.startsWith('data:image/png;base64,');
-  const [annualDownload] = await Promise.all([
-    page.waitForEvent('download'),
-    annualPreview.getByRole('link', { name: '⬇️ Télécharger le PNG' }).click(),
-  ]);
-  await annualPreview.getByRole('button', { name: 'Fermer l’aperçu' }).click();
+  const [annualDownload] = await Promise.all([page.waitForEvent('download'), imageButton.click()]);
+  const annualImage = (await readFile(await annualDownload.path())).subarray(1, 4).toString() === 'PNG';
 
   await choose(page.getByRole('group', {name:'Choisir un actif',exact:true}), "ethereum");
   await page.locator('.ic-method-note').filter({ hasText: 'Série en USD' }).waitFor();

@@ -1,4 +1,3 @@
-import { startPublicationDownload } from './publicationActions.js'
 import { useEffect, useId, useRef, useState } from 'react'
 import ImageZoom from './ImageZoom'
 
@@ -45,11 +44,10 @@ export default function PublicationPreview({ children, renderImage, imageContent
     return () => { active = false }
   }, [tab, renderImage, imageDisabled, attempt])
   const ready = image.status === 'ready' && image.owner === renderImage && !imageDisabled
-  function downloadPreview() {
+  async function downloadPreview() {
     if (!ready) return
-    const link = document.createElement('a')
-    link.href = image.url; link.download = 'publication.png'
-    document.body.append(link); startPublicationDownload(link); link.remove()
+    try { const { downloadImage } = await import('./downloadImage.js'); downloadImage(image.url, 'publication.png') }
+    catch { setZoomError('Impossible de télécharger cette image. Réessaie.') }
   }
   function select(next) { setLocalTab(next); onTabChange?.(next) }
   function keydown(event) {

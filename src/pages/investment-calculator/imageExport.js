@@ -4,10 +4,10 @@ import { ASSETS, INCONSISTENT_MONTHLY_DATA_IDS, MONTHS_FULL, SPARSE_MONTHLY_DATA
 import { fmtEUR, fmtPct, pct, ymIndex } from './lib.js'
 
 const W = 1600, INK = '#171b16', MUTED = '#526057', GREEN = '#174c3c', RED = '#ad3d2b', GOLD = '#cf5937', GRID = '#d6d2c5'
-function text(ctx, value, x, y, size, { width = 1460, color = INK, align = 'left', weight = 700 } = {}) {
+function text(ctx, value, x, y, size, { width = 1460, color = INK, align = 'left', weight = 700, family = 'Arial, sans-serif', maxHeight = Infinity } = {}) {
   ctx.textBaseline = 'alphabetic'; ctx.textAlign = align; ctx.fillStyle = color
   let fitted = size
-  do { ctx.font = `${weight} ${fitted}px Arial, sans-serif`; if (ctx.measureText(value).width <= width) break; fitted-- } while (fitted > 12)
+  do { ctx.font = `${weight} ${fitted}px ${family}`; const m = ctx.measureText(value); if (m.width <= width && m.actualBoundingBoxAscent + m.actualBoundingBoxDescent <= maxHeight) break; fitted-- } while (fitted > 12)
   ctx.fillText(value, x, y)
 }
 const prettyMonth = ym => `${MONTHS_FULL[Number(ym.slice(5, 7)) - 1]} ${ym.slice(0, 4)}`
@@ -46,32 +46,33 @@ export function annualInvestmentCapital(state, d) {
 }
 function title(ctx, label) {
   const words = label.split(/\s+/), lines = ['']
-  ctx.font = '500 100px ExportEditorial, Georgia, serif'
+  ctx.font = '900 124px Georgia, serif'
   for (const word of words) {
     const i = lines.length - 1, next = `${lines[i]} ${word}`.trim()
     if (ctx.measureText(next).width > 900 && i === 0 && lines[i]) lines.push(word)
     else lines[i] = next
   }
   lines.forEach((line, i) => {
-    let size = 100
-    do { ctx.font = `500 ${size}px ExportEditorial, Georgia, serif`; const m = ctx.measureText(line); if (m.width <= 900 && m.actualBoundingBoxAscent + m.actualBoundingBoxDescent <= 84) break; size-- } while (size > 12)
-    ctx.fillStyle = INK; ctx.textAlign = 'left'; ctx.textBaseline = 'alphabetic'; ctx.fillText(line, 65, 270 + i * 100 + ctx.measureText(line).actualBoundingBoxAscent)
+    let size = 124
+    do { ctx.font = `900 ${size}px Georgia, serif`; const m = ctx.measureText(line); if (m.width <= 900 && m.actualBoundingBoxAscent + m.actualBoundingBoxDescent <= 98) break; size-- } while (size > 12)
+    ctx.fillStyle = INK; ctx.textAlign = 'left'; ctx.textBaseline = 'alphabetic'; ctx.fillText(line, 65, 260 + i * 108 + ctx.measureText(line).actualBoundingBoxAscent)
   })
+  return lines.length
 }
-function chart(ctx, state, d, currency, kind) {
+function chart(ctx, state, d, currency, kind, lift = 0) {
   const annual = kind !== 'monthly', rows = annual ? annualInvestmentCapital(state, d) : null
   const values = annual ? rows.map(p => p.value) : d.result.series
-  const left = 195, right = 1515, top = 860, bottom = 1330
+  const left = 195, right = 1515, top = 860 + lift, bottom = 1330
   const peak = Math.max(1, ...values, ...d.result.invested)
   const magnitude = 10 ** Math.floor(Math.log10(peak / 2))
   const step = [1, 2, 2.5, 5, 10].map(n => n * magnitude).find(n => n * 2 >= peak * 1.15) || magnitude * 10
   const maximum = step * 2
   const py = v => bottom - v / maximum * (bottom - top)
   const px = i => left + (values.length <= 1 ? .5 : i / (values.length - 1)) * (right - left)
-  if (annual) text(ctx, kind === 'endpoints' ? 'Départ → valeur finale' : rows.every(p => p.date.endsWith('-12')) ? 'Capital en fin d’année' : 'Capital aux dates observées', 85, 815, 29, { width: 1000 })
+  if (annual) text(ctx, kind === 'endpoints' ? 'Départ → valeur finale' : rows.every(p => p.date.endsWith('-12')) ? 'Capital en fin d’année' : 'Capital aux dates observées', 85, 815 + lift, 29, { width: 1000 })
   if (d.effectiveMode === 'dca' && !annual) {
-    ctx.strokeStyle = GOLD; ctx.lineWidth = 2; ctx.setLineDash([8, 7]); ctx.beginPath(); ctx.moveTo(1095, 806); ctx.lineTo(1125, 806); ctx.stroke(); ctx.setLineDash([])
-    text(ctx, 'Versements cumulés', 1135, 815, 20, { width: 380, color: MUTED, weight: 400 })
+    ctx.strokeStyle = GOLD; ctx.lineWidth = 2; ctx.setLineDash([8, 7]); ctx.beginPath(); ctx.moveTo(1095, 806 + lift); ctx.lineTo(1125, 806 + lift); ctx.stroke(); ctx.setLineDash([])
+    text(ctx, 'Versements cumulés', 1135, 815 + lift, 20, { width: 380, color: MUTED, weight: 400 })
   }
   for (let i = 0; i <= 2; i++) {
     const value = maximum * i / 2, y = py(value)
@@ -116,23 +117,24 @@ export async function renderInvestmentImage(state, d) {
   const canvas = document.createElement('canvas'); canvas.width = W; canvas.height = W
   const ctx = canvas.getContext('2d'); drawEditorialPaper(ctx); drawEditorialCollage(ctx, art)
   const dca = d.effectiveMode === 'dca', gain = d.result.finalValue - d.result.totalInvested
-  text(ctx, money(d.amount, currency), 65, 155, 130, { width: 900, weight: 900 })
+  text(ctx, money(d.amount, currency), 65, 160, 166, { width: 900, weight: 400, family: 'InvestmentCondensed, Impact, sans-serif', maxHeight: 140 })
   text(ctx, dca ? 'investis chaque mois dans' : 'investis dans', 65, 225, 47, { width: 900 })
-  title(ctx, asset?.tweetPhrase || state.customLabel || 'cet actif')
-  text(ctx, `${prettyMonth(d.startYm)} → ${prettyMonth(d.endYm)}`, 65, 515, 30, { width: 900, weight: 400 })
-  if (dca) text(ctx, `TOTAL VERSÉ : ${money(d.result.totalInvested, currency)}`, 65, 552, 25, { width: 900, color: MUTED })
-  text(ctx, 'Capital final', 65, 605, 30, { width: 690 })
-  text(ctx, money(d.result.finalValue, currency), 65, 710, 108, { width: 690, color: gain < 0 ? RED : GREEN, weight: 900 })
-  ctx.strokeStyle = MUTED; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(800, 580); ctx.lineTo(800, 752); ctx.stroke()
-  text(ctx, gain < 0 ? 'Perte' : 'Gain', 845, 605, 28, { width: 690 })
-  text(ctx, money(Math.abs(gain), currency), 845, 660, 56, { width: 690, color: gain < 0 ? RED : GREEN })
-  text(ctx, fmtPct(pct(d.result.finalValue, d.result.totalInvested)), 845, 715, 48, { width: 690, color: gain < 0 ? RED : GREEN })
-  text(ctx, dca ? `${gain < 0 ? 'Perte' : 'Gain'} sur les sommes versées` : 'Sur la période', 845, 747, 23, { width: 690, color: MUTED, weight: 400 })
+  const titleLines = title(ctx, asset?.label || state.customLabel || 'cet actif')
+  const lift = titleLines === 1 ? -80 : 0
+  text(ctx, `${prettyMonth(d.startYm)} → ${prettyMonth(d.endYm)}`, 65, 515 + lift, 30, { width: 900, weight: 400 })
+  if (dca) text(ctx, `TOTAL VERSÉ : ${money(d.result.totalInvested, currency)}`, 65, 552 + lift, 25, { width: 900, color: MUTED })
+  text(ctx, 'Capital final', 65, 605 + lift, 30, { width: 690 })
+  text(ctx, money(d.result.finalValue, currency), 65, 710 + lift, 122, { width: 690, color: gain < 0 ? RED : GREEN, weight: 400, family: 'InvestmentCondensed, Impact, sans-serif', maxHeight: 84 })
+  ctx.strokeStyle = MUTED; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(800, 580 + lift); ctx.lineTo(800, 752 + lift); ctx.stroke()
+  text(ctx, gain < 0 ? 'Perte' : 'Gain', 845, 605 + lift, 28, { width: 690 })
+  text(ctx, money(Math.abs(gain), currency), 845, 660 + lift, 56, { width: 690, color: gain < 0 ? RED : GREEN })
+  text(ctx, fmtPct(pct(d.result.finalValue, d.result.totalInvested)), 845, 715 + lift, 48, { width: 690, color: gain < 0 ? RED : GREEN })
+  text(ctx, dca ? `${gain < 0 ? 'Perte' : 'Gain'} sur les sommes versées` : 'Sur la période', 845, 747 + lift, 23, { width: 690, color: MUTED, weight: 400 })
   ctx.save(); ctx.shadowColor = '#30281820'; ctx.shadowBlur = 22; ctx.shadowOffsetY = 8
-  ctx.fillStyle = '#fffaf0'; ctx.beginPath(); ctx.roundRect(45, 770, 1510, 630, 26); ctx.fill(); ctx.restore()
+  ctx.fillStyle = '#fffaf0'; ctx.beginPath(); ctx.roundRect(45, 770 + lift, 1510, 630 - lift, 26); ctx.fill(); ctx.restore()
   const kind = investmentChartKind(state, d)
-  if (kind === 'monthly') text(ctx, 'Évolution du capital', 85, 815, 29, { weight: 400 })
-  chart(ctx, state, d, currency, kind)
+  if (kind === 'monthly') text(ctx, 'Évolution du capital', 85, 815 + lift, 29, { weight: 400 })
+  chart(ctx, state, d, currency, kind, lift)
   const details = [`En ${currency}`, hasOverride(state) && !d.isCustom ? 'Prix final saisi' : null, asset?.returnNote].filter(Boolean).join(' · ')
   ctx.strokeStyle = GRID; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(65, 1410); ctx.lineTo(1535, 1410); ctx.stroke()
   text(ctx, details, 65, 1450, 26, { width: 1460, color: MUTED, weight: 400 })
