@@ -16005,14 +16005,15 @@
           "at": "2026-10-20T19:51:00.432899+00:00",
           "reason": "recording-failed",
           "sourceRunId": 39477274636,
-          "status": "reserved",
-          "ref": "master"
+          "status": "dispatched",
+          "ref": "master",
+          "error": null
         }
       ],
       "reason": "recording-failed",
       "lastSuccessAt": "2026-10-20T18:46:46Z",
       "observedRunId": 39477274636,
-      "status": "reserved",
+      "status": "dispatched",
       "nextAttemptAt": "2026-10-20T23:51:00.432899+00:00"
     },
     "update-lifestrategy.yml": {
