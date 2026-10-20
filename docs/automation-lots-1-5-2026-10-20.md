@@ -26,7 +26,7 @@ La sélection des validations peut regrouper les commits de code devenus obsolè
 | 1. Publication automatique fiable | Mécanisme généralisé aux 21 producteurs | Vérifier les cycles réels de chaque famille et les preuves publiques |
 | 2. Surveillance et reprise | Surveillance des champs et certification de publication renforcées | Suivre les incidents réels et les délais propres aux sources |
 | 3. Treize compositions physiques | Sources examinées ; blocages maintenus | Obtenir des téléchargements complets qualifiables pour les 13 fonds |
-| 4. Indices de 32 ETF | Deux TOPIX raccordés, identité encore partielle | Six codes TOPIX à qualifier ; 30 autres raccordements d'indices |
+| 4. Indices de 32 ETF | Deux TOPIX qualifiés, 1 636 identités chacun | 30 autres raccordements d'indices |
 | 5. Contradictions et données non qualifiées | Preuves PEA renouvelées ; absences et conflits maintenus | Résoudre les preuves PEA/QYLD et les quatre retards WisdomTree |
 | 6. Conditions contractuelles | À poursuivre | Placement-direct Vie, Anaxago, Fundora, France Valley, Bacchus, MyMarguerit, Hectarea et six recoupements courtiers |
 | 7. Données non publiées/manuelles | À poursuivre | 18 non publiées et 6 manuelles ; ne pas créer de valeurs artificielles |
@@ -36,8 +36,12 @@ La sélection des validations peut regrouper les commits de code devenus obsolè
 | 11. Tests et gouvernance | Tests ciblés ajoutés | Qualification des modules et procédures de reprise par famille |
 | 12. Performances et exploitation | Chargement différé des compositions conservé | Suivi des poids, quotas, durées et coûts |
 
-Les compteurs de l'inventaire publié restent la référence. Les deux TOPIX peuvent changer de catégorie sans réduire le nombre de points à traiter : raccorder un tableau complet ne résout pas les identités absentes. Les lots 3 à 5 ne sont donc pas annoncés comme intégralement terminés.
+L'inventaire construit et testé après qualification des 1 636 identités TOPIX contient 4 008 raccordements courants sur 4 210 lignes et 92 éléments actionnables, contre 4 006 et 94 avant cette livraison. Il reste 30 indices, 31 connecteurs, 18 données non publiées, 6 manuelles, 4 retards, 2 conflits et 1 champ non qualifié. Les compteurs publics ne peuvent être annoncés mis à jour qu'après vérification de la publication. Les lots 3 à 5 ne sont pas intégralement terminés.
+
+La collecte quotidienne XNDX reste en incident : Yahoo ne fournit plus les séances et les téléchargements de remplacement FRED expirent en conditions réelles. La correction #837 reste en brouillon ; les dernières valeurs valides sont conservées. Les échecs de commit liés aux collectes concurrentes restent visibles et passent par la reprise bornée sur un master récent.
 
 ## Code validé pendant des actualisations concurrentes
 
 Le job de publication conserve le verrou Pages pendant la sélection et la construction. Si de nouvelles données d'automatisation sont arrivées après les contrôles complets, il peut les associer au code qui vient de réussir ces contrôles. Tout changement de consommateur, de collecteur ou de workflow exige sa propre validation complète. La composition refuse les identifiants inconnus ; compilation, contrôle des fichiers exacts de tous les producteurs, test navigateur et vérification publique restent bloquants. Le manifeste final identifie séparément le code validé et les données réellement reconstruites. L'ancien artefact ne peut pas écraser celui qui vient d'être reconstruit.
+
+Les demandes de validation sont regroupées par dernier commit de code : les collecteurs d'une même version partagent une file, une nouvelle version peut être validée sans attendre les demandes obsolètes. Le verrou Pages reste global et une demande déjà publiée ne poursuit pas des données ultérieures.
