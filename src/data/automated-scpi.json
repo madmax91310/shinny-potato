@@ -421,115 +421,116 @@
       "id": "corum-origin",
       "name": "CORUM Origin",
       "sourceUrl": "https://www.corum.fr/nos-scpi/corum-origin",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-20",
       "snapshot": {
-        "asOf": "2026-06-30",
+        "asOf": "2026-09-30",
         "countries": [
           {
             "label": "Pays-Bas",
-            "value": 27
+            "value": 28.0
           },
           {
             "label": "Italie",
-            "value": 16
+            "value": 17.0
           },
           {
             "label": "Irlande",
-            "value": 12
+            "value": 12.0
           },
           {
             "label": "Espagne",
-            "value": 9
+            "value": 9.0
           },
           {
             "label": "Finlande",
-            "value": 9
+            "value": 7.0
           },
           {
             "label": "Belgique",
-            "value": 7
+            "value": 7.0
           },
           {
             "label": "France",
-            "value": 7
+            "value": 7.0
           },
           {
             "label": "Allemagne",
-            "value": 5
+            "value": 5.0
           },
           {
             "label": "Lituanie",
-            "value": 2
+            "value": 2.0
           },
           {
             "label": "Slovénie",
-            "value": 2
+            "value": 2.0
           },
           {
             "label": "Portugal",
-            "value": 2
+            "value": 2.0
           },
           {
             "label": "Estonie",
-            "value": 1
+            "value": 1.0
           },
           {
             "label": "Lettonie",
-            "value": 1
+            "value": 1.0
           }
         ],
         "sectors": [
           {
             "label": "Bureaux",
-            "value": 60
+            "value": 60.0
           },
           {
             "label": "Commerces",
-            "value": 24
+            "value": 24.0
           },
           {
             "label": "Hôtellerie",
-            "value": 8
+            "value": 8.0
           },
           {
             "label": "Logistique",
-            "value": 4
+            "value": 4.0
           },
           {
             "label": "Activités",
-            "value": 2
+            "value": 2.0
           },
           {
             "label": "Santé",
-            "value": 1
+            "value": 1.0
           },
           {
             "label": "Éducation et loisirs",
-            "value": 1
+            "value": 1.0
           }
         ],
         "sourceUrls": [
-          "https://www.corum.fr/sites/default/files/2026-07/CORUM%20Origin-%20Fil%20d%27Actualit%C3%A9s%202026-T2_V5-web%201_0.pdf"
+          "https://www.corum.fr/sites/default/files/2026-10/CORUM%20Origin-%20Fil%20d%27Actualit%C3%A9s%202026-T3-web%20%281%29_0.pdf"
         ],
-        "dateNote": "Bulletin trimestriel officiel : libellés reconnus par gabarits visuels qualifiés, chiffres imprimés lus à deux résolutions concordantes ; aucune estimation des surfaces des graphiques."
+        "dateNote": "Répartitions du bulletin trimestriel officiel : libellés et pourcentages imprimés associés par leurs coordonnées dans le PDF ; totaux contrôlés, aucune estimation des surfaces.",
+        "sha256": "42dc72447853212c97b769ed027c998dd368faf3e73ea5763b3e00a7ae80fb43"
       },
       "portfolio": {
         "buildings": {
           "value": 170,
-          "asOf": "2026-06-30",
-          "sourceUrl": "https://www.corum.fr/sites/default/files/2026-07/CORUM%20Origin-%20Fil%20d%27Actualit%C3%A9s%202026-T2_V5-web%201_0.pdf",
+          "asOf": "2026-09-30",
+          "sourceUrl": "https://www.corum.fr/sites/default/files/2026-10/CORUM%20Origin-%20Fil%20d%27Actualit%C3%A9s%202026-T3-web%20%281%29_0.pdf",
           "label": "Immeubles"
         },
         "tenants": {
-          "value": 434,
-          "asOf": "2026-06-30",
-          "sourceUrl": "https://www.corum.fr/sites/default/files/2026-07/CORUM%20Origin-%20Fil%20d%27Actualit%C3%A9s%202026-T2_V5-web%201_0.pdf",
+          "value": 444,
+          "asOf": "2026-09-30",
+          "sourceUrl": "https://www.corum.fr/sites/default/files/2026-10/CORUM%20Origin-%20Fil%20d%27Actualit%C3%A9s%202026-T3-web%20%281%29_0.pdf",
           "label": "Locataires"
         },
         "occupancy": {
-          "value": 95.77,
-          "asOf": "2026-06-30",
-          "sourceUrl": "https://www.corum.fr/sites/default/files/2026-07/CORUM%20Origin-%20Fil%20d%27Actualit%C3%A9s%202026-T2_V5-web%201_0.pdf",
+          "value": 95.48,
+          "asOf": "2026-09-30",
+          "sourceUrl": "https://www.corum.fr/sites/default/files/2026-10/CORUM%20Origin-%20Fil%20d%27Actualit%C3%A9s%202026-T3-web%20%281%29_0.pdf",
           "label": "Taux d’occupation financier",
           "basis": "Inclut les locaux sous franchise de loyer ; distinct du taux physique."
         }
@@ -603,107 +604,108 @@
       "id": "corum-xl",
       "name": "CORUM XL",
       "sourceUrl": "https://www.corum.fr/nos-scpi/corum-xl",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-20",
       "snapshot": {
-        "asOf": "2026-06-30",
+        "asOf": "2026-09-30",
         "countries": [
           {
             "label": "Royaume-Uni",
-            "value": 54
+            "value": 54.0
           },
           {
             "label": "Pologne",
-            "value": 21
-          },
-          {
-            "label": "Pays-Bas",
-            "value": 9
+            "value": 21.0
           },
           {
             "label": "Irlande",
-            "value": 4
+            "value": 4.0
           },
           {
             "label": "Espagne",
-            "value": 3
+            "value": 3.0
           },
           {
             "label": "Italie",
-            "value": 3
+            "value": 3.0
           },
           {
             "label": "Norvège",
-            "value": 2
+            "value": 2.0
           },
           {
             "label": "Belgique",
-            "value": 1
+            "value": 1.0
           },
           {
             "label": "Canada",
-            "value": 1
+            "value": 1.0
           },
           {
             "label": "Portugal",
-            "value": 1
+            "value": 1.0
           },
           {
             "label": "Allemagne",
-            "value": 1
+            "value": 1.0
+          },
+          {
+            "label": "Pays-Bas",
+            "value": 9.0
           }
         ],
         "sectors": [
           {
             "label": "Bureaux",
-            "value": 55
+            "value": 55.0
           },
           {
             "label": "Commerces",
-            "value": 18
+            "value": 18.0
           },
           {
             "label": "Hôtellerie",
-            "value": 14
+            "value": 14.0
           },
           {
             "label": "Industriel et logistique",
-            "value": 6
+            "value": 6.0
           },
           {
             "label": "Santé",
-            "value": 4
+            "value": 4.0
           },
           {
             "label": "Éducation et loisirs",
-            "value": 2
+            "value": 2.0
           },
           {
             "label": "Parkings",
-            "value": 1
+            "value": 1.0
           }
         ],
         "sourceUrls": [
-          "https://www.corum.fr/sites/default/files/2026-07/CORUM%20XL%20-%20Fil%20d%27Actualit%C3%A9s%202026-T2%202%20%281%29_0.pdf"
+          "https://www.corum.fr/sites/default/files/2026-10/CORUM%20XL%20-%20Fil%20d%27Actualit%C3%A9s%202026-T3-web_0.pdf"
         ],
-        "dateNote": "Bulletin trimestriel officiel : libellés reconnus par gabarits visuels qualifiés, chiffres imprimés lus à deux résolutions concordantes ; aucune estimation des surfaces des graphiques."
+        "dateNote": "Répartitions du bulletin trimestriel officiel : libellés et pourcentages imprimés associés par leurs coordonnées dans le PDF ; totaux contrôlés, aucune estimation des surfaces.",
+        "sha256": "7033aea37cc61baec474807378399fe47b017fdd20d265891f97a28ad92dd2e3"
       },
       "portfolio": {
         "buildings": {
-          "value": 96,
-          "asOf": "2026-06-30",
-          "sourceUrl": "https://www.corum.fr/sites/default/files/2026-07/CORUM%20XL%20-%20Fil%20d%27Actualit%C3%A9s%202026-T2%202%20%281%29_0.pdf",
+          "value": 98,
+          "asOf": "2026-09-30",
+          "sourceUrl": "https://www.corum.fr/sites/default/files/2026-10/CORUM%20XL%20-%20Fil%20d%27Actualit%C3%A9s%202026-T3-web_0.pdf",
           "label": "Immeubles"
         },
         "tenants": {
-          "value": 239,
-          "asOf": "2026-06-30",
-          "sourceUrl": "https://www.corum.fr/sites/default/files/2026-07/CORUM%20XL%20-%20Fil%20d%27Actualit%C3%A9s%202026-T2%202%20%281%29_0.pdf",
+          "value": 251,
+          "asOf": "2026-09-30",
+          "sourceUrl": "https://www.corum.fr/sites/default/files/2026-10/CORUM%20XL%20-%20Fil%20d%27Actualit%C3%A9s%202026-T3-web_0.pdf",
           "label": "Locataires"
         },
         "occupancy": {
-          "value": 95.6,
-          "asOf": "2026-06-30",
-          "sourceUrl": "https://www.corum.fr/sites/default/files/2026-07/CORUM%20XL%20-%20Fil%20d%27Actualit%C3%A9s%202026-T2%202%20%281%29_0.pdf",
+          "value": 95.44,
+          "asOf": "2026-09-30",
+          "sourceUrl": "https://www.corum.fr/sites/default/files/2026-10/CORUM%20XL%20-%20Fil%20d%27Actualit%C3%A9s%202026-T3-web_0.pdf",
           "label": "Taux d’occupation financier",
           "basis": "Inclut les locaux sous franchise de loyer ; distinct du taux physique."
         }
@@ -781,9 +783,9 @@
       "id": "corum-eurion",
       "name": "CORUM Eurion",
       "sourceUrl": "https://www.corum.fr/nos-scpi/eurion",
-      "checkedAt": "2026-10-18",
+      "checkedAt": "2026-10-20",
       "snapshot": {
-        "asOf": "2026-06-30",
+        "asOf": "2026-09-30",
         "countries": [
           {
             "label": "Pays-Bas",
@@ -821,7 +823,7 @@
         "sectors": [
           {
             "label": "Bureaux",
-            "value": 73.0
+            "value": 72.0
           },
           {
             "label": "Hôtellerie",
@@ -833,7 +835,7 @@
           },
           {
             "label": "Commerces",
-            "value": 7.0
+            "value": 8.0
           },
           {
             "label": "Éducation et loisirs",
@@ -841,27 +843,28 @@
           }
         ],
         "sourceUrls": [
-          "https://www.corum.fr/sites/default/files/2026-07/CORUM%20Eurion%20-%20Fil%20d%27Actualit%C3%A9s%202026-T2_0.pdf"
+          "https://www.corum.fr/sites/default/files/2026-10/CORUM%20Eurion%20-%20Fil%20d%27Actualit%C3%A9s%202026-T3-web_0.pdf"
         ],
-        "dateNote": "Répartitions extraites du dernier bulletin trimestriel officiel."
+        "dateNote": "Répartitions du bulletin trimestriel officiel : libellés et pourcentages imprimés associés par leurs coordonnées dans le PDF ; totaux contrôlés, aucune estimation des surfaces.",
+        "sha256": "e42b7e567b2271db2fab85e07d367eb8f2a26a53eca20f6a8b9fda7160060afa"
       },
       "portfolio": {
         "buildings": {
-          "value": 54,
-          "asOf": "2026-06-30",
-          "sourceUrl": "https://www.corum.fr/sites/default/files/2026-07/CORUM%20Eurion%20-%20Fil%20d%27Actualit%C3%A9s%202026-T2_0.pdf",
+          "value": 55,
+          "asOf": "2026-09-30",
+          "sourceUrl": "https://www.corum.fr/sites/default/files/2026-10/CORUM%20Eurion%20-%20Fil%20d%27Actualit%C3%A9s%202026-T3-web_0.pdf",
           "label": "Immeubles"
         },
         "tenants": {
-          "value": 129,
-          "asOf": "2026-06-30",
-          "sourceUrl": "https://www.corum.fr/sites/default/files/2026-07/CORUM%20Eurion%20-%20Fil%20d%27Actualit%C3%A9s%202026-T2_0.pdf",
+          "value": 131,
+          "asOf": "2026-09-30",
+          "sourceUrl": "https://www.corum.fr/sites/default/files/2026-10/CORUM%20Eurion%20-%20Fil%20d%27Actualit%C3%A9s%202026-T3-web_0.pdf",
           "label": "Locataires"
         },
         "occupancy": {
           "value": 99.92,
-          "asOf": "2026-06-30",
-          "sourceUrl": "https://www.corum.fr/sites/default/files/2026-07/CORUM%20Eurion%20-%20Fil%20d%27Actualit%C3%A9s%202026-T2_0.pdf",
+          "asOf": "2026-09-30",
+          "sourceUrl": "https://www.corum.fr/sites/default/files/2026-10/CORUM%20Eurion%20-%20Fil%20d%27Actualit%C3%A9s%202026-T3-web_0.pdf",
           "label": "Taux d’occupation financier",
           "basis": "Inclut les locaux sous franchise de loyer ; distinct du taux physique."
         }
