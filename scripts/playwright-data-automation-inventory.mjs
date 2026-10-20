@@ -3,6 +3,8 @@ import {spawn} from 'node:child_process'
 import {readFileSync,mkdirSync} from 'node:fs'
 import {chromium} from 'playwright'
 const report=JSON.parse(readFileSync('dist/data/data-automation-inventory.json'))
+if(report.backlog[0])report.backlog[0].sourceAccess={qualification:'access-check-only',financialDataQualified:false,
+ status:'accessible-unqualified',lastAccessAttemptAt:'2026-10-20T12:00:00Z'}
 const server=spawn('node',['node_modules/vite/bin/vite.js','preview','--host','127.0.0.1','--port','4391'],{stdio:'ignore'})
 const base='http://127.0.0.1:4391/shinny-potato'
 let browser
@@ -15,6 +17,7 @@ try{
   page.on('pageerror',e=>errors.push(e.message));page.on('request',r=>requests.push(r.url()))
   // Keep this recipe independent of the live status branch, which has its own tests.
   await page.route('**/automation-status/automation-status.json',r=>r.fulfill({status:200,contentType:'application/json',body:JSON.stringify({schemaVersion:1,workflows:{}})}))
+  await page.route('**/data/data-automation-inventory.json',r=>r.fulfill({json:report}))
   await page.goto(base+'/donnees-a-revoir',{waitUntil:'networkidle'})
   const section=page.locator('section').filter({has:page.getByRole('heading',{name:'Inventaire de toutes les données',exact:true})})
   await section.getByText(`${report.summary.catalogRecords} fiches · ${report.summary.catalogFields} champs de catalogue · ${report.summary.registries} modules examinés.`,{exact:true}).waitFor()
@@ -32,7 +35,14 @@ try{
   await section.getByText(`${archiveCount} champs correspondants · ${Math.min(archiveCount,50)} affichés`,{exact:true}).waitFor()
   await section.getByRole('combobox',{name:'Afficher',exact:true}).selectOption('actions')
   const first=report.backlog[0]
-  if(first){await search.fill(first.id);await section.getByRole('heading',{name:`${first.name} · ${first.label}`,exact:true}).waitFor()}
+  if(first){
+   await search.fill(first.id)
+   const row=section.getByRole('heading',{name:`${first.name} · ${first.label}`,exact:true}).locator('..')
+   await row.waitFor()
+   await row.getByText(/Source accessible ; champ toujours à qualifier/).waitFor()
+   assert.match(await row.textContent(),/Ce contrôle ne renouvelle pas la donnée financière/)
+   assert.equal(await row.locator('dd').last().textContent(),first.lastSuccessAt??'Non documenté')
+  }
   assert.equal(await section.getByRole('link',{name:'Télécharger les raccordements à traiter (CSV)'}).getAttribute('href'),'/shinny-potato/data/data-connections-backlog.csv')
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+2),false)
   await page.screenshot({path:`test-artifacts/data-automation-inventory/${width}.png`,fullPage:true})
