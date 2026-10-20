@@ -5,7 +5,10 @@ const READ_KEY = 'epargnantlibre-radar-read-v1'
 const SIGNALS_KEY = 'epargnantlibre-radar-signals-v1'
 const UPDATE_EVENT = 'editorial-radar-read'
 export function cachedSignalIds() {
-  try { const value = JSON.parse(localStorage.getItem(SIGNALS_KEY) ?? '[]'); return Array.isArray(value) ? value.filter(id => typeof id === 'string') : [] } catch { return [] }
+  try {
+    const value = JSON.parse(localStorage.getItem(SIGNALS_KEY) ?? '[]'), read = new Set(readIds())
+    return Array.isArray(value) ? value.map(group => Array.isArray(group) ? group.find(id => typeof id === 'string' && !read.has(id)) ?? group[0] : group).filter(id => typeof id === 'string') : []
+  } catch { return [] }
 }
 export function readIds() {
   try { const value = JSON.parse(localStorage.getItem(READ_KEY) ?? '[]'); return Array.isArray(value) ? value.filter(id => typeof id === 'string') : [] } catch { return [] }
@@ -13,12 +16,16 @@ export function readIds() {
 export function markRead(ids) {
   try { localStorage.setItem(READ_KEY, JSON.stringify([...new Set([...readIds(), ...ids])].slice(-2000))); window.dispatchEvent(new Event(UPDATE_EVENT)); return true } catch { return false }
 }
+export function cacheSignalGroups(groups) {
+  try { localStorage.setItem(SIGNALS_KEY, JSON.stringify(groups)); window.dispatchEvent(new Event(UPDATE_EVENT)) } catch { /* Storage is optional. */ }
+}
 export function validateFeed(feed) {
   if (feed?.schemaVersion !== 1 || !Number.isFinite(Date.parse(feed.checkedAt)) || !Array.isArray(feed.events) || feed.events.length > 500 || !feed.coverage || !Array.isArray(feed.errors)) throw new Error('Le radar a renvoyé un format non reconnu.')
   const ids = new Set()
   for (const event of feed.events) {
     if (!event.id || ids.has(event.id) || !FAMILIES[event.family] || !Number.isFinite(Date.parse(event.detectedAt)) || typeof event.title !== 'string' || typeof event.draft !== 'string' || !event.scope || !event.period) throw new Error('Un signal du radar est incomplet.')
     if (new URL(event.sourceUrl).protocol !== 'https:' || !event.tool?.startsWith('/') || event.tool.startsWith('//')) throw new Error('Un lien du radar est invalide.')
+    if (event.documentUrl && new URL(event.documentUrl).protocol !== 'https:') throw new Error('Un communiqué du radar est invalide.')
     ids.add(event.id)
   }
   if (feed.purchasingPower) {
@@ -34,7 +41,6 @@ export async function fetchRadar(signal) {
   const response = await fetch(RADAR_URL, { cache: 'no-store', signal: signal ? AbortSignal.any([signal, AbortSignal.timeout(15000)]) : AbortSignal.timeout(15000) })
   if (!response.ok) throw new Error(response.status === 404 ? 'Le premier relevé du radar est en préparation.' : 'Le radar est momentanément indisponible.')
   const feed = validateFeed(await response.json())
-  try { localStorage.setItem(SIGNALS_KEY, JSON.stringify(feed.events.map(event => event.id))); window.dispatchEvent(new Event(UPDATE_EVENT)) } catch { /* The radar remains usable without local storage. */ }
   if (feed.purchasingPower) {
     if (!Array.isArray(feed.purchasingPower.items) || feed.purchasingPower.items.length > 120 || !Array.isArray(feed.purchasingPower.sources)) throw new Error('La veille pouvoir d’achat est incomplète.')
     for (const item of [...feed.purchasingPower.items, ...feed.purchasingPower.sources]) {
