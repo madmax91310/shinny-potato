@@ -406,7 +406,7 @@ export const REVIEWED_PERFORMANCE_META = Object.freeze({
     ],
     "source": "https://globalxetfs.eu/funds/qyld",
     "checkedAt": "2026-10-04",
-    "observations": [
+    "archivedObservations": [
       {
         "label": "2026 · YTD",
         "value": 11.33,
@@ -423,7 +423,9 @@ export const REVIEWED_PERFORMANCE_META = Object.freeze({
         "asOf": "2026-09-30"
       }
     ],
-    "note": "Rendements cumulés NAV de la part QYLD distribuante, au 30/09/2026.",
+    "availability": "not-published",
+    "qualificationHold": {"sourceUrl": "https://globalxetfs.eu/funds/qyld/", "checkedAt": "2026-10-20T08:47:34.254871+00:00", "sha256": "1f69a30ee05b6453518d8ba15ad8b720263811105061356e386343754fd46f5b", "reason": "La table courante de performance est intitulée USD Accumulating. Les anciens rendements glissants ne sont pas recertifiés pour la part USD distribuante IE00BM8R0J59 ; ils restent en archive, sans substitution de part."},
+    "note": "La table courante de performance est intitulée USD Accumulating. Les anciens rendements glissants ne sont pas recertifiés pour la part USD distribuante IE00BM8R0J59 ; ils restent en archive, sans substitution de part.",
     "portfolioHistoryBasis": "proxy"
   },
   "GB00BLD4ZL17": {

@@ -26,6 +26,14 @@ try{
   assert(await section.locator('article').count()>0)
   assert.equal(await section.getByRole('link',{name:'Télécharger l’inventaire complet (JSON)'}).getAttribute('href'),'/shinny-potato/data/data-automation-inventory.json')
   assert.equal(await section.locator('details > ul').last().locator('li').count(),report.summary.peaRemaining)
+  await search.fill('')
+  await section.getByRole('combobox',{name:'Nature des données',exact:true}).selectOption('archive')
+  const archiveCount=report.fields.filter(f=>f.nature.kind==='archive').length
+  await section.getByText(`${archiveCount} champs correspondants · ${Math.min(archiveCount,50)} affichés`,{exact:true}).waitFor()
+  await section.getByRole('combobox',{name:'Afficher',exact:true}).selectOption('actions')
+  const first=report.backlog[0]
+  if(first){await search.fill(first.id);await section.getByRole('heading',{name:`${first.name} · ${first.label}`,exact:true}).waitFor()}
+  assert.equal(await section.getByRole('link',{name:'Télécharger les raccordements à traiter (CSV)'}).getAttribute('href'),'/shinny-potato/data/data-connections-backlog.csv')
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+2),false)
   await page.screenshot({path:`test-artifacts/data-automation-inventory/${width}.png`,fullPage:true})
   assert.deepEqual(errors,[]);await page.close()

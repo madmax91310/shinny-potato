@@ -2,6 +2,8 @@ import { readFileSync, readdirSync, mkdirSync, writeFileSync } from 'node:fs'
 import { resolve, relative, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { DATA_CATALOG } from '../src/data/catalog.js'
+import { registryQualification, fieldQualification, coverageKey, qualifyCoverage } from './lib/data-qualification.mjs'
+import { AUTOMATED_ETF } from '../src/data/automated-etf.js'
 import { buildAssetFieldReport } from './report-asset-fields.mjs'
 import metadata from '../src/data/automated-instrument-metadata.json' with {type:'json'}
 import attempts from '../src/data/instrument-metadata-status.json' with {type:'json'}
@@ -93,22 +95,36 @@ export function buildDataAutomationInventory(){
    catalogFields:DATA_CATALOG.reduce((n,r)=>n+r.fields.filter(f=>f.registry===path).length,0),
    action:upstream.length||direct.length?'Qualifier la couverture au niveau de chaque champ ; vérifier le dernier succès dans Données à revoir.':'Décider si les valeurs sont éditoriales, hypothèses de simulation ou chiffres à raccorder ; aucun statut automatique déduit du nom du fichier.'}
  })
+ for(const registry of registries)registry.qualification=registryQualification(registry)
  const registryMap=new Map(registries.map(r=>[r.path,r]))
+ const coverage=buildAssetFieldReport(),pea=peaInventory()
+ const coverageMap=new Map(coverage.rows.map(row=>[`${row.id}:${row.field}`,row]))
+ const holdingsStatus=JSON.parse(read('src/data/dca-holdings-status.json'))
+ const holdingSources={...JSON.parse(read('scripts/dca-complete-holdings-sources.json')),...JSON.parse(read('scripts/generated-holdings-sources.json'))}
  const fields=DATA_CATALOG.flatMap(record=>record.fields.map((field,index)=>{
   const registry=registryMap.get(field.registry),evidence=field.metadata??{}
+  const nature=fieldQualification(field,record),key=coverageKey(field,record)
+  const matchingCoverage=key?coverageMap.get(`${record.id.replace(/^history:/,'')}:${key}`):null
   return {id:record.id,type:record.type,name:record.name,field:field.label,fieldIndex:index,registry:field.registry,
    consumers:record.consumers,mode:registry?.mode??'unmapped',upstreamWorkflows:registry?.upstreamWorkflows??[],
-   qualification:'source-configuration-only',sourceStatus:evidence.sourceStatus??null,numericPaths:numericPaths(field.value),
+   qualification:'source-configuration-only',nature,
+   coverageReference:matchingCoverage?{id:matchingCoverage.id,field:matchingCoverage.field,state:matchingCoverage.state,checkedAt:matchingCoverage.checkedAt}:null,
+   provenanceGap:['live','history'].includes(nature.kind)&&(!evidence.sourceUrls?.length||!evidence.checkedAt),
+   sourceStatus:evidence.sourceStatus??null,numericPaths:numericPaths(field.value),
    sourceUrls:evidence.sourceUrls??[],checkedAt:evidence.checkedAt??null,asOf:evidence.asOf??null,
    scope:evidence.scope??null,method:evidence.method??null,
-   action:evidence.sourceStatus==='archive-unverifiable'?'Archive non recertifiable conservée avec sa qualification ; ne pas l’utiliser comme observation actuelle.':!evidence.sourceUrls?.length?'Compléter la provenance ou confirmer le statut éditorial/archive.':!evidence.checkedAt?'Qualifier la date de contrôle ; la génération du rapport ne renouvelle pas la preuve.':registry?.mode==='manual-or-editorial'?'Qualifier la mise à jour manuelle et séparer rédaction, hypothèses et chiffres vivants.':'Contrôler la couverture par champ et le dernier résultat de collecte ; un workflow configuré ne certifie pas cette valeur.'}
+   requiresConnection:(['live','history'].includes(nature.kind)&&(registry?.mode==='manual-or-editorial'||nature.manual))||!!field.qualificationMissing,
+   missingReason:field.qualificationMissing||null,
+   action:nature.kind==='archive'?nature.reason:nature.kind==='simulation'||nature.kind==='editorial'?nature.reason:evidence.sourceStatus==='archive-unverifiable'?'Archive non recertifiable conservée avec sa qualification ; ne pas l’utiliser comme observation actuelle.':!evidence.sourceUrls?.length?'Compléter la provenance ou confirmer le statut éditorial/archive.':!evidence.checkedAt?'Qualifier la date de contrôle ; la génération du rapport ne renouvelle pas la preuve.':registry?.mode==='manual-or-editorial'?'Qualifier la mise à jour manuelle et séparer rédaction, hypothèses et chiffres vivants.':'Contrôler la couverture par champ et le dernier résultat de collecte ; un workflow configuré ne certifie pas cette valeur.'}
  }))
- const coverage=buildAssetFieldReport(),pea=peaInventory()
+ const connections=coverage.rows.map(row=>qualifyCoverage(row,{record:AUTOMATED_ETF[row.id],holdingStatus:row.field==='completeHoldings'?holdingsStatus[row.id]:null,holdingSource:row.field==='completeHoldings'?holdingSources[row.id]:null,metadataStatus:attempts[row.id]}))
+ for(const f of fields.filter(f=>f.requiresConnection))connections.push({type:f.type,id:f.id,name:f.name,field:`catalog:${f.field}`,label:f.field,observationState:'manual',actionState:'connector-needed',requiresAction:true,priority:2,sourceUrl:f.sourceUrls[0]??null,configuredSourceUrls:f.sourceUrls,checkedAt:f.checkedAt,lastSuccessAt:null,lastAttemptAt:null,tools:f.consumers.map(c=>c.path),reason:f.missingReason??f.nature.reason,nextAction:f.type==='instrument'?'Recollecter la table liée à la part exacte, qualifier la période et brancher sa valeur au registre commun.':'Qualifier la condition dans la documentation du contrat ou de l’offre, puis raccorder son renouvellement avec ses limites et sa date.'})
+ const backlog=connections.filter(row=>row.requiresAction).sort((a,b)=>a.priority-b.priority||(b.tools?.length??0)-(a.tools?.length??0)||a.id.localeCompare(b.id)||a.field.localeCompare(b.field))
  const count=(rows,key)=>rows.reduce((a,r)=>(a[r[key]]=(a[r[key]]??0)+1,a),{})
  return {schemaVersion:1,generatedAt:new Date().toISOString(),
   method:'Inventaire du code et des observations enregistrées. Modes des fichiers déduits uniquement des chemins explicitement publiés par les workflows et de leurs imports. Les champs de catalogue restent à qualification individuelle : aucun workflow, nom de fichier, source accessible ou date de génération ne garantit une actualisation réussie. Les lignes de couverture conservent les dates et états propres des observations. Les modules non référencés au catalogue restent listés séparément.',
-  summary:{registries:registries.length,registryModes:count(registries,'mode'),catalogRecords:DATA_CATALOG.length,catalogFields:fields.length,catalogTypes:count(DATA_CATALOG,'type'),fieldsWithoutSource:fields.filter(f=>!f.sourceUrls.length).length,fieldsWithoutCheckDate:fields.filter(f=>!f.checkedAt).length,scheduledWorkflows:workflows.filter(w=>w.crons.length).length,coverageRows:coverage.rows.length,coverageStates:count(coverage.rows,'state'),peaQualified:pea.filter(p=>p.qualified).length,peaRemaining:pea.filter(p=>!p.qualified).length},
-  workflows,registries,fields,datasets:registryFiles.filter(p=>p.endsWith('.json')).map(jsonDatasetInfo),coverage,pea}
+  summary:{fieldKinds:count(fields.map(f=>f.nature),'kind'),registryRoles:count(registries.map(r=>r.qualification),'role'),liveProvenanceGaps:fields.filter(f=>f.provenanceGap).length,connectionStates:count(connections,'actionState'),actionableConnections:backlog.length,unclassifiedFields:fields.filter(f=>f.nature.kind==='unclassified').length,unclassifiedModules:registries.filter(r=>r.qualification.role==='unclassified').length,registries:registries.length,registryModes:count(registries,'mode'),catalogRecords:DATA_CATALOG.length,catalogFields:fields.length,catalogTypes:count(DATA_CATALOG,'type'),fieldsWithoutSource:fields.filter(f=>!f.sourceUrls.length).length,fieldsWithoutCheckDate:fields.filter(f=>!f.checkedAt).length,scheduledWorkflows:workflows.filter(w=>w.crons.length).length,coverageRows:coverage.rows.length,coverageStates:count(coverage.rows,'state'),peaQualified:pea.filter(p=>p.qualified).length,peaRemaining:pea.filter(p=>!p.qualified).length},
+  workflows,registries,fields,connections,backlog,datasets:registryFiles.filter(p=>p.endsWith('.json')).map(jsonDatasetInfo),coverage,pea}
 }
 export function writeDataAutomationInventory(){
  const report=buildDataAutomationInventory();mkdirSync(resolve(ROOT,'public/data'),{recursive:true})
@@ -117,6 +133,8 @@ export function writeDataAutomationInventory(){
  const csvCell=value=>'"'+String(value??'').replaceAll('"','""')+'"'
  const csv=[['isin','etat','qualifie','eligible_pea','controle_preuve','source','sha256','derniere_tentative','action'],...report.pea.map(p=>[p.isin,p.state,p.qualified,p.value,p.checkedAt,p.sourceUrl,p.sha256,p.lastAttemptAt,p.nextAction])].map(row=>row.map(csvCell).join(',')).join('\r\n')+'\r\n'
  writeFileSync(resolve(ROOT,'public/data/pea-automation.csv'),csv)
+ const connectionCsv=[['type','id','nom','champ','etat_observation','etat_raccordement','priorite','source','sources_configurees','controle_valeur','derniere_tentative','dernier_succes','outils','motif','action'],...report.backlog.map(r=>[r.type,r.id,r.name,r.field,r.observationState,r.actionState,r.priority,r.sourceUrl,r.configuredSourceUrls.join(' | '),r.checkedAt,r.lastAttemptAt,r.lastSuccessAt,(r.tools??[]).join(' | '),r.reason,r.nextAction])].map(row=>row.map(csvCell).join(',')).join('\r\n')+'\r\n'
+ writeFileSync(resolve(ROOT,'public/data/data-connections-backlog.csv'),connectionCsv)
  const escape=s=>String(s??'').replaceAll('|','\\|').replaceAll('\n',' ')
  const lines=['# Inventaire de l’automatisation des données','',`Généré le ${report.generatedAt}.`, '',report.method,'',
   `${report.summary.registries} modules de données ; ${report.summary.catalogFields} champs du catalogue ; ${report.summary.coverageRows} lignes de couverture détaillée.`,
@@ -124,7 +142,7 @@ export function writeDataAutomationInventory(){
   '', '## Familles du catalogue','', '| Famille | Fiches |','|---|---:|',...Object.entries(report.summary.catalogTypes).map(([type,n])=>`| ${type} | ${n} |`),
   '', '## Modules et mises à jour','', '« mixed-or-derived » signale un mélange possible de données automatiques et de valeurs éditoriales/manuelles ; ce mode ne certifie aucun champ individuel.',
   '', '| Module | Mode | Workflows en amont | Consommateurs directs ou indirects |','|---|---|---|---:|',...report.registries.map(r=>`| ${r.path} | ${r.mode} | ${r.upstreamWorkflows.map(escape).join(', ')} | ${r.consumers.length} |`),
-  '', '## Statuts PEA restant à qualifier','', '| ISIN | État | Action |','|---|---|---|',...report.pea.filter(p=>!p.qualified).map(p=>`| ${p.isin} | ${p.state} | ${escape(p.nextAction)} |`),
+  '', '## Qualification et raccordements', '', `${report.summary.actionableConnections} raccordements demandent une action. Les états bruts de couverture restent conservés : une composition actions hors périmètre n’est pas une nouvelle donnée collectée.`, '', '| Nature des champs | Nombre |','|---|---:|',...Object.entries(report.summary.fieldKinds).map(([kind,n])=>`| ${kind} | ${n} |`), '', '| État de raccordement | Nombre |','|---|---:|',...Object.entries(report.summary.connectionStates).map(([state,n])=>`| ${state} | ${n} |`), '', 'Le CSV `data/data-connections-backlog.csv` contient chaque raccordement restant avec source, tentative, dernier succès, consommateurs et action. Les champs financiers sans provenance, les modules non qualifiés et les archives restent visibles séparément dans le JSON.', '', '## Statuts PEA restant à qualifier','', '| ISIN | État | Action |','|---|---|---|',...report.pea.filter(p=>!p.qualified).map(p=>`| ${p.isin} | ${p.state} | ${escape(p.nextAction)} |`),
   '', '## Exploitation','', 'Le JSON public `data/data-automation-inventory.json` fournit les champs du catalogue, leurs sources, dates, consommateurs, valeurs numériques présentes (chemins uniquement), workflows et crons UTC, ainsi que la couverture détaillée et les diagnostics PEA. Il est régénéré à chaque build. Les derniers résultats réseau restent dans le suivi des automatisations ; cet inventaire ne prétend pas avoir relu chaque fournisseur.',
   '', 'Priorités : 1. statuts PEA inconnus et contradiction ; 2. champs vivants sans source/date ou sans collecteur ; 3. champs absents, en retard ou conservés après panne ; 4. modules hors catalogue et données éditoriales à séparer des chiffres. Les champs non applicables ou en attente de publication gardent leur qualification.', '']
  writeFileSync(resolve(ROOT,'public/data/data-automation-inventory.md'),lines.join('\n'))

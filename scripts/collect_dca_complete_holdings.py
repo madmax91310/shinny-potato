@@ -40,7 +40,7 @@ def parse_complete(body,isin,url,now,fund_asset_class="Equity"):
         if kind=='Equity' and (isinstance(weight,bool) or not isinstance(weight,(int,float)) or not __import__('math').isfinite(weight) or weight<0):raise ValueError('Invalid or short equity position')
         if kind!='Equity' or weight==0:continue
         rows.append({'isin':security,'name':name,'weightPct':weight})
-        if re.fullmatch(r'[A-Z]{2}[A-Z0-9]{9}[0-9]',security or ''):
+        if not localized and re.fullmatch(r'[A-Z]{2}[A-Z0-9]{9}[0-9]',security or ''):
             securities.append({'isin':security,'name':name,'country':None if localized else country,'sector':None if localized else sector,'ticker':ticker,'currency':currency,'exchange':exchange})
     total=sum(r['weightPct'] for r in rows)
     if not rows or total>100.5:raise ValueError('Non-long-only equity composition')
