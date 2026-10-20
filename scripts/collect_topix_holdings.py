@@ -73,6 +73,27 @@ def identity_rows(raw):
     return identities
 
 
+def historical_identities(page,url,stamp,now,fetch):
+    """Accept a historical response only if its printed CSV date and JSON agree."""
+    soup=BeautifulSoup(page,'html.parser')
+    links={urljoin(IDENTITY,a['href'])for a in soup.select('a[href]') if a.get_text(' ',strip=True)=='Download Holdings' and 'fileType=csv' in a['href']}
+    if len(links)!=1:raise ValueError('Missing historical identity download')
+    csv_url=links.pop();parsed=urlsplit(csv_url)
+    if parsed.netloc!='www.blackrock.com' or not parsed.path.startswith('/jp/individual-en/en/products/279438/fund/'):raise ValueError('Unexpected historical identity source')
+    stamp_arg=stamp.replace('-','');csv_url+='&asOfDate='+stamp_arg
+    raw=fetch(csv_url);lines=list(csv.reader(io.StringIO(raw.decode('utf-8-sig'))))
+    if not lines or lines[0]!=['Fund Holdings as of',stamp.replace('-','/')]:raise ValueError('Historical identity CSV does not confirm the requested date')
+    header=next((i for i,row in enumerate(lines)if row[:2]==['Ticker','Name']),None)
+    if header is None:raise ValueError('Historical identity CSV schema missing')
+    table=list(csv.DictReader(io.StringIO('\n'.join(','.join('"'+cell.replace('"','""')+'"' for cell in row)for row in lines[header:]))))
+    actual={r['Ticker']:float(r['Weight (%)'].replace(',','')) for r in table if r.get('Asset Class')=='Equity' and r.get('Exchange')=='Tokyo Stock Exchange' and r.get('Market Currency')=='JPY'}
+    history_url=re.sub(r'([?&]asOfDate=)\d{8}',lambda m:m[1]+stamp_arg,url)
+    body=fetch(history_url);payload=json.loads(body.decode('utf-8-sig'));rows=payload['aaData']
+    expected={r[0]:float(r[5]['display'].replace(',','')) for r in rows if len(r)==17 and r[3]=='Equity' and r[13]=='Tokyo Stock Exchange' and r[16]=='JPY'}
+    if not actual or actual!=expected:raise ValueError('Historical CSV / identity JSON disagree')
+    return identity_rows(body),{'sourceUrl':history_url,'asOf':stamp,'sha256':proof(body),'dateSourceUrl':csv_url,'dateSha256':proof(raw)}
+
+
 def combine(rows,identities,stamp):
     output=[{**r,'isin':identities.get(r['memberCode'],{}).get('isin'),
              'name':identities.get(r['memberCode'],{}).get('name',r['name'])}for r in rows]
@@ -103,7 +124,17 @@ def collect(share,now,fetch=download):
     raw=fetch(JPX);rows,stamp=jpx_rows(raw,now)
     if share_stamp<stamp:raise ValueError('TOPIX benchmark proof predates index composition')
     page=fetch(IDENTITY);url,identity_stamp=identity_route(page,now);ids=fetch(url)
-    result=combine(rows,identity_rows(ids),stamp)
+    identities=identity_rows(ids);history=None;history_error=None
+    # Historical identities take precedence for historical index members; if the
+    # issuer no longer serves that date, current identities remain separately dated.
+    try:
+        old_ids,history=historical_identities(page,url,stamp,now,fetch)
+        identities={**identities,**old_ids}
+    except Exception as error:
+        history_error=str(error)[:300]
+    result=combine(rows,identities,stamp)
+    if history:result['identityHistory']=history
+    elif history_error:result['identityHistoryError']=history_error
     result.update(sourceUrl=JPX,sha256=proof(raw),identitySourceUrl=url,identitySha256=proof(ids),
                   identityAsOf=identity_stamp,shareAsOf=share_stamp,shareSourceUrl=share['identitySourceUrl'],shareSha256=proof(document),
                   sourceUrls=[JPX,url,share['identitySourceUrl']])

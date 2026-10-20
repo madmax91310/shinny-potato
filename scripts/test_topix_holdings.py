@@ -1,5 +1,5 @@
 import csv,datetime as dt,io,json,unittest
-from collect_topix_holdings import jpx_rows,identity_rows,combine,HEADERS,qualify_share
+from collect_topix_holdings import jpx_rows,identity_rows,combine,HEADERS,qualify_share,historical_identities
 NOW=dt.datetime(2026,10,20,tzinfo=dt.timezone.utc)
 def fixture():
  out=io.StringIO();writer=csv.writer(out);writer.writerow(HEADERS)
@@ -23,6 +23,21 @@ class Topix(unittest.TestCase):
  def test_truncation_mixed_dates_bad_totals_and_schema_are_rejected(self):
   for bad in [fixture().replace(b'20260831',b'20260830',1),fixture().replace(b'0.1000%',b'5.0000%',1),fixture().replace(b'1001',b'1000'),fixture().splitlines()[0]+b'\n',fixture().replace(b'0.1000%',b'nan%',1)]:
    with self.assertRaises(ValueError):jpx_rows(bad,NOW)
+ def test_historical_identity_date_requires_csv_json_concordance(self):
+  data=identities()
+  for row in data['aaData']:row[5]={'raw':20,'display':'20.00'}
+  out=io.StringIO();writer=csv.writer(out);writer.writerow(['Fund Holdings as of','2026/08/31']);writer.writerow(['Ticker','Name','Asset Class','Weight (%)','Exchange','Market Currency'])
+  for row in data['aaData']:writer.writerow([row[0],row[1],'Equity','20.00','Tokyo Stock Exchange','JPY'])
+  raw=out.getvalue().encode()
+  page=b'<a href="/jp/individual-en/en/products/279438/fund/1480664184455.ajax?fileType=csv">Download Holdings</a>'
+  url='https://www.blackrock.com/jp/individual-en/en/products/279438/fund/1480664184455.ajax?tab=all&fileType=json&asOfDate=20261019'
+  fetch=lambda u:raw if 'fileType=csv' in u else json.dumps(data).encode()
+  ids,source=historical_identities(page,url,'2026-08-31',NOW,fetch)
+  self.assertEqual(len(ids),1000);self.assertEqual(source['asOf'],'2026-08-31')
+  with self.assertRaises(ValueError):historical_identities(page,url,'2026-09-30',NOW,fetch)
+  data['aaData'][0][5]['display']='19.00'
+  with self.assertRaises(ValueError):historical_identities(page,url,'2026-08-31',NOW,fetch)
+
  def test_exact_share_benchmark_and_date_are_required(self):
   text="Amundi PEA Japon (TOPIX) UCITS ETF EUR Acc REPORTING 30/09/2026 Objectif d'investissement performance de l’indice TOPIX (« l’Indice ») (.TOPXDV) (TPXDDVD) FR0013411980"
   self.assertEqual(qualify_share(text,'FR0013411980',NOW),'2026-09-30')
