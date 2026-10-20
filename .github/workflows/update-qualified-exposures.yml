@@ -63,7 +63,7 @@ jobs:
       - uses: actions/setup-node@v7.0.0
         with:
           node-version: 24
-      - run: pip install beautifulsoup4==4.15.0
+      - run: pip install beautifulsoup4==4.15.0 xlrd==2.0.2
       - run: npm ci
       - run: sudo apt-get update && sudo apt-get install -y poppler-utils
       - name: "Collect observations: collect"

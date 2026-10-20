@@ -18,7 +18,7 @@ jobs:
       - uses: actions/setup-node@v7.0.0
         with:
           node-version: 24
-      - run: pip install beautifulsoup4==4.15.0
+      - run: pip install beautifulsoup4==4.15.0 xlrd==2.0.2
       - run: sudo apt-get update && sudo apt-get install -y poppler-utils
       - run: node scripts/data-automation-inventory.mjs --write
       - run: |
@@ -29,7 +29,9 @@ jobs:
           writeFileSync('test-artifacts/automation-source-probe/backlog.json',JSON.stringify({summary:d.summary,backlog:d.backlog,pea:d.pea.filter(p=>!p.qualified)},null,2))
           JS
       - run: python scripts/probe_automation_sources.py
+      - run: node scripts/build-automation-targets.mjs
       - run: python -m unittest discover -s scripts -p 'test*dws*py'
+      - run: python -m unittest discover -s scripts -p 'test_hsbc_jpm_holdings.py'
       - name: Recollect all DWS full portfolios with exact non-equity qualification
         continue-on-error: true
         run: >-
@@ -37,6 +39,8 @@ jobs:
           --only IE00BLNMYC90 IE00BM67HK77 IE00BM67HS53 IE00BM67HQ30 IE000L6ZMMC4
           IE00BTJRMP35 IE00BM67HV82 LU0380865021 LU0328475792 LU0274209237
           --output test-artifacts/automation-source-probe/dws-live.json
+      - name: Qualify HSBC and JPM full portfolios in direct collection
+        run: python scripts/collect_dca_complete_holdings.py --apply --only IE00B4K6B022 IE0003UVYC20 --output test-artifacts/automation-source-probe/hsbc-jpm-live.json
       - run: npm ci
       - run: npx playwright install --with-deps chromium
       - run: node scripts/probe_automation_browser.mjs

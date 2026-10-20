@@ -67,6 +67,8 @@ for(const [isin,r] of Object.entries(AUTOMATED_ETF)) {
  else if(/^https:\/\/etf\.dws\.com\/api\/pdp\/en-gb\/etf\//.test(url))holdings[isin]={isin,name,currency:r.aum?.currency,parser:'dws',sourceUrl:url}
  else if(/^https:\/\/www\.ssga\.com\/[^?#]+\/etfs\//.test(url))holdings[isin]={isin,name,currency:r.aum?.currency,parser:'ssga',sourceUrl:url}
  else if(/^https:\/\/globalxetfs\.eu\/funds\/(?:botz|bug|copx|silv)\/?$/.test(url))holdings[isin]={isin,name,currency:'USD',parser:'globalx-complete',sourceUrl:url}
+ else if(isin==='IE00B4K6B022')holdings[isin]={isin,name,currency:'EUR',parser:'hsbc-complete'}
+ else if(isin==='IE0003UVYC20')holdings[isin]={isin,name,currency:'USD',parser:'jpm-complete'}
  else if(share?.parser==='vaneck'&&share.pageUrl&&share.apiTicker)holdings[isin]={isin,name,currency:share.currency,parser:'vaneck-complete',pageUrl:share.pageUrl,apiTicker:share.apiTicker}
  else if(share&&(amundiShares.has(isin)||share.parser==='amundi-expansion'))holdings[isin]={isin,name,currency:share.currency,parser:'amundi-complete'}
  else if(share?.productCode&&/vanguard/.test(share.parser??''))holdings[isin]={isin,name,currency:share.currency,productCode:share.productCode,parser:'vanguard-complete'}

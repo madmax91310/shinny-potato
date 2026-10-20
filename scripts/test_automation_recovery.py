@@ -43,9 +43,19 @@ class RecoveryTests(unittest.TestCase):
         self.assertEqual(self.plan(state, NOW+dt.timedelta(hours=25))[1], ['update-test.yml'])
 
     def test_running_newer_run_and_recent_failure_wait(self):
-        for runs in [[{'id': 7, 'status': 'in_progress'}], [{'id': 8, 'status': 'completed'}], [{'id': 8, 'status': 'queued'}]]:
+        for runs in [[{'id': 7, 'status': 'in_progress'}], [{'id': 8, 'status': 'completed'}], [{'id': 8, 'status': 'queued'}],
+                     [{'id':7,'run_attempt':2,'status':'completed'}]]:
             self.assertEqual(self.plan(self.state(), runs=runs)[1], [])
         self.assertEqual(self.plan(self.state(completedAt=(NOW-dt.timedelta(minutes=5)).isoformat()))[1], [])
+
+    def test_future_reservation_survives_clock_skew_without_duplicate_dispatch(self):
+        state=self.state()
+        reserved={'at':(NOW+dt.timedelta(minutes=2)).isoformat(),'status':'reserved','ref':'master'}
+        state['recovery']={'update-test.yml':{'attempts':[reserved]}}
+        ledger,plans=self.plan(state)
+        self.assertEqual(plans,[])
+        self.assertEqual(ledger['update-test.yml']['attempts'],[reserved])
+        self.assertEqual(ledger['update-test.yml']['status'],'waiting')
 
     def test_recording_failure_recollects_but_validation_failure_does_not(self):
         state = self.state(dataFailures={}, recordingStatus='failure', failures=[{'step': 'Commit validated observations'}])

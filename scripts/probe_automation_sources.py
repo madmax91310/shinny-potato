@@ -10,7 +10,7 @@ records=[]
 def fetch(item):
     label,url=item
     try:
-        body,final=download(url,max_bytes=6_000_000,timeout=18,max_attempts=1,return_source=True)
+        body,final=download(url,max_bytes=20_000_000 if label=='ubs-bundle' else 6_000_000,timeout=18,max_attempts=1,return_source=True)
         path=OUT/(label+'.raw');path.write_bytes(body)
         row={'label':label,'url':url,'finalUrl':final,'bytes':len(body),'sha256':hashlib.sha256(body).hexdigest()}
         if body.startswith(b'%PDF-'):
@@ -38,6 +38,12 @@ urls=[
  ('globalx-urnu','https://globalxetfs.eu/funds/urnu/'),
  ('hsbc-factsheet','https://www.assetmanagement.hsbc.co.uk/api/v1/download/document/ie00b4k6b022/gb/en/factsheet'),
  ('ubs-page','https://www.ubs.com/de/en/assetmanagement/funds/etf.html/ie00bd4txv59-ubs-core-msci-world-ucits-etf-usd-acc-pd001'),
+ ('ubs-bundle','https://www.ubs.com/app/HA4/productdetails/newbundle.js'),
+ ('wt-cloud-ie','https://www.wisdomtree.com/ie/products/equities/wisdomtree-cloud-computing-ucits-etf---usd-acc'),
+ ('wt-cloud-lu','https://www.wisdomtree.com/lu/products/equities/wisdomtree-cloud-computing-ucits-etf---usd-acc'),
+ ('wt-swagger','https://dataspanapi.wisdomtree.com/swagger/v1/swagger.json'),
+ ('wt-api-root','https://dataspanapi.wisdomtree.com/'),
+ ('wt-holdings-document','https://dataspanapi.wisdomtree.com/pdr/documents/HOLDINGS/UCITS/EU/EN-GB/IE00BJGWQN72'),
 ]
 for name in ['holdings','fundholdings','portfolio']:
     urls.append(('hsbc-'+name,'https://www.assetmanagement.hsbc.co.uk/api/v1/download/document/ie00b4k6b022/gb/en/'+name))

@@ -393,6 +393,14 @@ def collect_vaneck(share, now):
                        excludedWeightPctByType=excluded)
 
 
-COLLECTORS = {'globalx-complete': collect_globalx, 'avantis-complete': collect_avantis,
+def collect_hsbc(share, now):
+    from hsbc_holdings import collect
+    return collect(share,now)
+
+def collect_jpm(share, now):
+    from jpm_holdings import collect
+    return collect(share,now)
+
+COLLECTORS = {'jpm-complete':collect_jpm,'hsbc-complete':collect_hsbc,'globalx-complete': collect_globalx, 'avantis-complete': collect_avantis,
               'amundi-complete': collect_amundi, 'vanguard-complete': collect_vanguard,
               'invesco-complete': collect_invesco, 'vaneck-complete': collect_vaneck}

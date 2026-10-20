@@ -7,15 +7,16 @@ const targets=[
  ['jpm','https://am.jpmorgan.com/sg/en/asset-management/per/products/jpm-global-equity-premium-income-active-ucits-etf-usd-dist-ie0003uvyc20'],
  ['ubs','https://www.ubs.com/de/en/assetmanagement/funds/etf.html/ie00bd4txv59-ubs-core-msci-world-ucits-etf-usd-acc-pd001'],
  ['lg','https://fundcentres.landg.com/en/uk/institutional/fund-centre/ETF/Cyber-Security/IE00BYPLS672/'],
+ ['wt','https://www.wisdomtree.com/ie/products/equities/wisdomtree-cloud-computing-ucits-etf---usd-acc'],
 ]
 for(const [label,url] of targets){
  const context=await browser.newContext()
  const page=await context.newPage();const requests=[],pending=[];let counter=0,bytes=0
  page.on('response',response=>{
   const u=new URL(response.url())
-  if(!['am.jpmorgan.com','cdn.jpmorganfunds.com','www.ubs.com','fundcentres.landg.com'].includes(u.hostname))return
+  if(!['am.jpmorgan.com','cdn.jpmorganfunds.com','www.ubs.com','fundcentres.landg.com','www.wisdomtree.com','dataspanapi.wisdomtree.com'].includes(u.hostname))return
   if(!/json|javascript/.test(response.headers()['content-type']??''))return
-  if(!/api|FundsMarketingHandler|fund|pdp|product|portfolio/i.test(u.pathname))return
+  if(label!=='ubs'&&!/api|FundsMarketingHandler|fund|pdp|product|portfolio/i.test(u.pathname))return
   const number=counter++;if(number>=45)return
   pending.push((async()=>{try{
    const body=await response.body();if(body.length>4e6||bytes+body.length>12e6)return;bytes+=body.length

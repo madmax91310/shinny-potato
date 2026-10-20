@@ -58,7 +58,9 @@ def plan_recovery(state, registry, now, active_runs):
         row = state.get('workflows', {}).get(workflow, {})
         reason = recovery_reason(row, config, now)
         previous = ledger.get(workflow, {})
-        attempts = [a for a in previous.get('attempts', []) if (at := stamp(a.get('at'))) and 0 <= (now-at).total_seconds() < WINDOW]
+        # A clock ahead of this monitor must not erase a durable reservation and
+        # permit a duplicate dispatch. Keep it until its own rolling window ends.
+        attempts = [a for a in previous.get('attempts', []) if (at := stamp(a.get('at'))) and (now-at).total_seconds() < WINDOW]
         entry = {**previous, 'attempts': attempts, 'reason': reason,
                  'lastSuccessAt': row.get('lastCollectionSuccessAt'), 'observedRunId': row.get('runId')}
         ledger[workflow] = entry
@@ -77,7 +79,8 @@ def plan_recovery(state, registry, now, active_runs):
             eligible = now
         entry['nextAttemptAt'] = eligible.isoformat()
         runs = active_runs.get(workflow, [])
-        if any(r.get('status') != 'completed' or r.get('id', 0) > row.get('runId', 0) for r in runs):
+        observed=(row.get('runId',0),row.get('attempt',1))
+        if any(r.get('status') != 'completed' or (r.get('id',0),r.get('run_attempt',1)) > observed for r in runs):
             entry['status'] = 'awaiting-current-run'
             continue
         if now < eligible or len(plans) >= MAX_DISPATCHES:
