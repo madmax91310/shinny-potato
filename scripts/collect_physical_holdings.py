@@ -4,6 +4,8 @@ import hashlib
 import io
 import json
 import math
+import os
+from pathlib import Path
 import re
 from urllib.parse import urljoin, urlsplit
 from urllib.parse import urlencode
@@ -15,6 +17,16 @@ ISIN = re.compile(r'[A-Z]{2}[A-Z0-9]{9}\d')
 
 def digest(body):
     return hashlib.sha256(body if isinstance(body, bytes) else body.encode()).hexdigest()
+
+
+def source_proof(share, kind, body):
+    """Optional CI artifact, including rejected observations for diagnosis."""
+    directory = os.environ.get('PHYSICAL_SOURCE_PROOF_DIR')
+    if directory:
+        root = Path(directory)
+        root.mkdir(parents=True, exist_ok=True)
+        raw = body if isinstance(body, bytes) else json.dumps(body, sort_keys=True).encode()
+        (root / (share['isin'] + '-' + kind + '.raw')).write_bytes(raw)
 
 
 def checked_rows(rows, minimum=1):
@@ -165,6 +177,7 @@ def collect_amundi(share, now):
     payload['composition'] = {'compositionFields': [
         'date', 'type', 'bbg', 'isin', 'name', 'weight', 'quantity', 'currency', 'sector', 'country', 'countryOfRisk']}
     body = fetch_api(payload)
+    source_proof(share, 'amundi', body)
     rows, stamp, excluded = amundi_composition(body, share, now)
     return observation(rows, stamp, API, json.dumps(body, sort_keys=True),
                        excludedWeightPctByType=excluded)
@@ -356,6 +369,7 @@ def collect_vaneck(share, now):
     page = public_page(share['pageUrl'])
     url = vaneck_url(page, share)
     raw = download(url)
+    source_proof(share, 'vaneck', raw)
     rows, stamp, excluded = vaneck_composition(json.loads(raw), share, now)
     return observation(rows, stamp, url, raw, identitySourceUrl=share['pageUrl'], identitySha256=digest(page),
                        excludedWeightPctByType=excluded)

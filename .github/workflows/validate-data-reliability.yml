@@ -34,6 +34,8 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_physical_holdings.py'
       - run: node scripts/build-automation-targets.mjs
       - name: Qualify complete portfolios against live issuer sources
+        env:
+          PHYSICAL_SOURCE_PROOF_DIR: test-artifacts/physical-sources
         run: |
           python - <<'PYTHON'
           import json, subprocess
