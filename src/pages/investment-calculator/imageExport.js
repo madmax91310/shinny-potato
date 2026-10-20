@@ -12,7 +12,6 @@ function text(ctx, value, x, y, size, { width = 1460, color = INK, align = 'left
 }
 const prettyMonth = ym => `${MONTHS_FULL[Number(ym.slice(5, 7)) - 1]} ${ym.slice(0, 4)}`
 const money = (value, currency) => fmtEUR(value, currency)
-const hasOverride = state => !['', undefined].includes(state.overridePriceRaw) && Number(state.overridePriceRaw) > 0
 
 export function investmentChartKind(state, d) {
   if (d.isCustom) return 'endpoints'
@@ -49,11 +48,11 @@ function title(ctx, label) {
   ctx.font = '900 232px Georgia, serif'
   for (const word of words) {
     const i = lines.length - 1, next = `${lines[i]} ${word}`.trim()
-    if (ctx.measureText(next).width > 860 && i === 0 && lines[i]) lines.push(word)
+    if (ctx.measureText(next).width > 730 && i === 0 && lines[i]) lines.push(word)
     else lines[i] = next
   }
   lines.forEach((line, i) => text(ctx, line, 65, (lines.length === 1 ? 680 : 620) + i * 180, lines.length === 1 ? 252 : 155,
-    { width: 860, family: 'Georgia, serif', weight: 900, maxHeight: lines.length === 1 ? 230 : 135 }))
+    { width: 730, family: 'Georgia, serif', weight: 900, maxHeight: lines.length === 1 ? 230 : 135 }))
 }
 function chart(ctx, state, d, currency, kind) {
   const annual = kind !== 'monthly', rows = annual ? annualInvestmentCapital(state, d) : null
@@ -113,19 +112,19 @@ export async function renderInvestmentImage(state, d) {
   const ctx = canvas.getContext('2d'); drawEditorialPaper(ctx, art); drawEditorialCollage(ctx, art)
   const dca = d.effectiveMode === 'dca', gain = d.result.finalValue - d.result.totalInvested
   const condensed = { weight: 400, family: 'InvestmentCondensed, Impact, sans-serif' }
-  text(ctx, money(d.amount, currency), 65, 330, 310, { ...condensed, width: 860, maxHeight: 290 })
-  text(ctx, dca ? 'investis chaque mois dans' : 'investis dans', 65, 425, 73, { width: 860, weight: 900 })
+  text(ctx, money(d.amount, currency), 65, 330, 310, { ...condensed, width: 730, maxHeight: 290 })
+  text(ctx, dca ? 'investis chaque mois dans' : 'investis dans', 65, 425, 73, { width: 730, weight: 900 })
   title(ctx, asset?.label || state.customLabel || 'cet actif')
-  text(ctx, `${prettyMonth(d.startYm)} → ${prettyMonth(d.endYm)}`, 65, 875, 39, { width: 880, family: 'Georgia, serif', weight: 400 })
-  ctx.strokeStyle = INK; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(65, 902); ctx.lineTo(870, 902); ctx.stroke()
-  if (dca) text(ctx, `TOTAL VERSÉ : ${money(d.result.totalInvested, currency)}`, 65, 943, 28, { width: 900, color: MUTED })
-  text(ctx, 'Capital final', 65, 1005, 39, { width: 520 })
-  text(ctx, money(d.result.finalValue, currency), 65, 1190, 220, { ...condensed, width: 530, color: gain < 0 ? RED : GREEN, maxHeight: 160 })
-  ctx.strokeStyle = INK; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(625, 970); ctx.lineTo(625, 1220); ctx.stroke()
-  text(ctx, gain < 0 ? 'Perte' : 'Gain', 665, 1005, 35, { width: 400 })
-  text(ctx, money(Math.abs(gain), currency), 665, 1090, 112, { ...condensed, width: 400, maxHeight: 75, color: gain < 0 ? RED : GREEN })
-  text(ctx, dca ? `${gain < 0 ? 'Perte' : 'Gain'} sur les sommes versées` : 'Performance', 665, 1140, 31, { width: 400 })
-  text(ctx, fmtPct(pct(d.result.finalValue, d.result.totalInvested)), 665, 1210, 103, { ...condensed, width: 400, maxHeight: 65, color: gain < 0 ? RED : GREEN })
+  text(ctx, `${prettyMonth(d.startYm)} → ${prettyMonth(d.endYm)}`, 65, 875, 39, { width: 730, family: 'Georgia, serif', weight: 400 })
+  ctx.strokeStyle = INK; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(65, 902); ctx.lineTo(795, 902); ctx.stroke()
+  if (dca) text(ctx, `TOTAL VERSÉ : ${money(d.result.totalInvested, currency)}`, 65, 943, 28, { width: 730, color: MUTED })
+  text(ctx, 'Capital final', 65, 1005, 39, { width: 420 })
+  text(ctx, money(d.result.finalValue, currency), 65, 1190, 220, { ...condensed, width: 420, color: gain < 0 ? RED : GREEN, maxHeight: 160 })
+  ctx.strokeStyle = INK; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(530, 970); ctx.lineTo(530, 1220); ctx.stroke()
+  text(ctx, gain < 0 ? 'Perte' : 'Gain', 565, 1005, 35, { width: 230 })
+  text(ctx, money(Math.abs(gain), currency), 565, 1090, 112, { ...condensed, width: 230, maxHeight: 75, color: gain < 0 ? RED : GREEN })
+  text(ctx, dca ? `${gain < 0 ? 'Perte' : 'Gain'} sur les sommes versées` : 'Performance', 565, 1140, 31, { width: 230 })
+  text(ctx, fmtPct(pct(d.result.finalValue, d.result.totalInvested)), 565, 1210, 103, { ...condensed, width: 230, maxHeight: 65, color: gain < 0 ? RED : GREEN })
   ctx.save(); ctx.shadowColor = '#30281835'; ctx.shadowBlur = 24; ctx.shadowOffsetY = 9
   ctx.fillStyle = '#fff8e9'; ctx.beginPath(); ctx.roundRect(45, 1240, 1510, 630, 40); ctx.fill(); ctx.restore()
   const kind = investmentChartKind(state, d)
@@ -135,11 +134,26 @@ export async function renderInvestmentImage(state, d) {
   text(ctx, kind === 'monthly' ? 'MENSUEL' : kind === 'annual' ? 'ANNUEL' : 'DÉPART / FIN', 105, 1297, 32,
     { width: kind === 'endpoints' ? 170 : 200, color: '#fffaf0' })
   chart(ctx, state, d, currency, kind)
-  text(ctx, '@Epargnantlibre', 65, 1940, 51, { width: 650, family: 'Georgia, serif', weight: 400 })
-  ctx.strokeStyle = GOLD; ctx.lineWidth = 6; ctx.beginPath(); ctx.moveTo(75, 1960); ctx.lineTo(625, 1950); ctx.stroke()
-  const details = [`En ${currency}`, hasOverride(state) && !d.isCustom ? 'Prix final saisi' : null, asset?.returnNote, state.assetId === 'silver' ? 'Futures COMEX continus · hors frais et roulement' : null].filter(Boolean).join(' · ')
-  text(ctx, details, 65, 1990, 21, { width: 1460, color: MUTED, weight: 400 })
-  text(ctx, 'Pas un conseil financier', 65, 2020, 23, { width: 650, color: MUTED, weight: 400 })
-  credits.forEach((credit, i) => text(ctx, credit, 1535, 1940 + i * 27, 19, { width: 760, color: MUTED, align: 'right', weight: 400 }))
+  text(ctx, '@Epargnantlibre', 65, 1903, 35, { width: 650, family: 'Georgia, serif', weight: 400 })
+  ctx.strokeStyle = GOLD; ctx.lineWidth = 6; ctx.beginPath(); ctx.moveTo(75, 1919); ctx.lineTo(555, 1911); ctx.stroke()
+  const details = [`En ${currency}`, asset?.returnNote, state.assetId === 'silver' ? 'Futures COMEX continus · hors frais et roulement' : null].filter(Boolean).join(' · ')
+  const footer = [details, ...credits, 'Pas un conseil financier']
+  let footerSize = 18, footerLines
+  do {
+    ctx.font = `400 ${footerSize}px Arial, sans-serif`
+    footerLines = footer.flatMap(value => {
+      const lines = ['']
+      for (const word of value.split(/\s+/)) {
+        const next = `${lines.at(-1)} ${word}`.trim()
+        if (lines.at(-1) && ctx.measureText(next).width > 730) lines.push(word)
+        else lines[lines.length - 1] = next
+      }
+      return lines
+    })
+    if (footerLines.length * (footerSize + 4) <= 90 || footerSize <= 10) break
+    footerSize--
+  } while (true)
+  footerLines.forEach((line, i) => text(ctx, line, 65, 1940 + i * (footerSize + 4), footerSize,
+    { width: 730, color: MUTED, weight: 400 }))
   return canvas
 }
