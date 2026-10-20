@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict'
-import {chooseSnapshot,alreadyPublished} from './resolve-pages-snapshot.mjs'
+import {chooseSnapshot,alreadyPublished,planSnapshot} from './resolve-pages-snapshot.mjs'
 const old='a'.repeat(40), newer='b'.repeat(40), next='c'.repeat(40)
 const ancestor=(a,b)=>[old,newer,next].indexOf(a)<= [old,newer,next].indexOf(b)
 const base={requested:old,master:newer,ancestor,allowed:['src/data/active.json']}
@@ -15,3 +15,6 @@ console.log('Queued data coalesced; code boundaries and fallback publication ide
 assert.equal(chooseSnapshot({...base,fullGate:true,changed:()=>['src/pages/App.jsx']}),newer)
 assert.equal(chooseSnapshot({...base,fullGate:true,changed:()=>['.github/workflows/deploy-pages.yml','src/pages/App.jsx']}),old)
 assert.equal(chooseSnapshot({...base,fullGate:true,ancestor:()=>false,changed:()=>[]}),old)
+
+
+assert.deepEqual(planSnapshot({...base,master:next,info:{sha:newer,dataSha:newer},changed:()=>['src/data/active.json']}),{candidate:old,current:false},'An already fulfilled request must not chase unrelated later data')

@@ -1,3 +1,4 @@
+import {publicationCodeEpoch} from './publication-code-epoch.mjs'
 import assert from 'node:assert/strict'
 import {execFileSync} from 'node:child_process'
 import {appendFileSync,readFileSync,writeFileSync} from 'node:fs'
@@ -31,6 +32,7 @@ async function main(){
  assert(ancestor(info.sha,source),'Published code is outside this data history')
  const write=value=>appendFileSync(process.env.GITHUB_OUTPUT,value+'\n')
  if(!ancestor(info.dataSha??info.sha,source)){write('current=false\nneeds_code=false');console.log('A newer data snapshot is already public.');return}
+ write('code_epoch='+publicationCodeEpoch(info.sha,source,git,automationPaths()))
  const changed=git('diff','--name-only',info.sha,source,'--','src').split('\n').filter(Boolean)
  const blocked=consumerChanges(changed)
  if(blocked.length){write('current=false\nneeds_code=true');console.log('Data needs the full code gate for changed financial consumers: '+blocked.join(', '));return}
@@ -42,3 +44,4 @@ async function main(){
  console.log(`Validated producer: ${files.length} exact files from ${source}, published code ${info.sha}.`)
 }
 if(process.argv[1]===fileURLToPath(import.meta.url))await main()
+

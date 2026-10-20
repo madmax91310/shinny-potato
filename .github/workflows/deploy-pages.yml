@@ -11,6 +11,11 @@ on:
         description: Commit containing refreshed investor data
         required: true
         type: string
+      validation_group:
+        description: Stable code commit shared by collectors requesting the same validation
+        required: false
+        type: string
+        default: ''
 
 permissions:
   contents: read
@@ -19,11 +24,11 @@ permissions:
   id-token: write
 
 concurrency:
-  # Queue code validations; select current master before pinning every check.
+  # Validate a code epoch once at a time; a newer epoch starts independently.
   # The new group separates this policy from the old snapshot backlog. Older
   # runs retain their checks and the shared publication-order guard.
   # No active validation or publication is cancelled by a collector.
-  group: pages-code-validation-${{ github.event_name == 'pull_request' && github.ref || (github.ref == 'refs/heads/master' && 'production' || github.run_id) }}
+  group: pages-code-validation-${{ github.event_name == 'pull_request' && github.ref || (inputs.validation_group || github.sha) }}
   cancel-in-progress: false
   queue: max
 
@@ -221,6 +226,7 @@ jobs:
       - run: node scripts/test-pages-snapshot.mjs && node scripts/test-bounded-command.mjs && node scripts/test-data-incidents.mjs
       - run: node scripts/test-fallback-snapshot.mjs
       - run: node scripts/test-validated-data-publisher.mjs
+      - run: node scripts/test-code-data-refresh.mjs
       - run: node scripts/test-browser-check-error.mjs
       - run: node scripts/test-freshness-policy.mjs
       - run: node scripts/test-benchmark-changes.mjs
@@ -539,26 +545,80 @@ jobs:
       - uses: actions/checkout@v7.0.1
         with:
           ref: ${{ needs.build.outputs.commit_sha }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 24
+      - id: data
+        env:
+          VALIDATED_CODE_SHA: ${{ needs.build.outputs.commit_sha }}
+          REQUIRED_DATA_RECEIPT: ${{ runner.temp }}/code-data-required.json
+        run: node scripts/prepare-code-data-refresh.mjs
+      - if: steps.data.outputs.refresh == 'true'
+        run: npm ci
+      - if: steps.data.outputs.refresh == 'true'
+        run: npm run audit:data-catalog && npm run build
+      - name: Require every primary producer file after rebuilding newer data
+        if: steps.data.outputs.refresh == 'true'
+        env:
+          REQUIRED_DATA_RECEIPT: ${{ runner.temp }}/code-data-required.json
+        run: |
+          node --input-type=module - <<'JS'
+          import assert from 'node:assert/strict'
+          import {readFileSync} from 'node:fs'
+          import {execFileSync} from 'node:child_process'
+          const required=JSON.parse(readFileSync(process.env.REQUIRED_DATA_RECEIPT))
+          assert(Object.keys(required).length)
+          for(const [path,sha] of Object.entries(required))assert.equal(execFileSync('git',['hash-object',path],{encoding:'utf8'}).trim(),sha,'A validated producer file changed during rebuild: '+path)
+          JS
+      - if: steps.data.outputs.refresh == 'true'
+        run: npx playwright install --with-deps chromium
+      - if: steps.data.outputs.refresh == 'true'
+        run: node scripts/smoke-data-routes.mjs
+      - name: Seal the rebuilt code and data identities
+        if: steps.data.outputs.refresh == 'true'
+        env:
+          CODE_SHA: ${{ steps.data.outputs.code_sha }}
+          DATA_SHA: ${{ steps.data.outputs.data_sha }}
+        run: |
+          python3 scripts/data_publication.py manifest --output dist/data/publication-manifest.json
+          node --input-type=module - <<'JS'
+          import {writeFileSync} from 'node:fs'
+          writeFileSync('dist/build-info.json',JSON.stringify({sha:process.env.CODE_SHA,dataSha:process.env.DATA_SHA,lane:'validated-code-data',builtAt:new Date().toISOString()})+'\n')
+          JS
+      - uses: actions/configure-pages@v6.0.0
+        if: steps.data.outputs.refresh == 'true'
+      - uses: actions/upload-pages-artifact@v5.0.0
+        if: steps.data.outputs.refresh == 'true'
+        with:
+          name: github-pages-current-data
+          path: dist
+      - if: steps.data.outputs.refresh == 'true'
+        run: git reset --hard "${{ steps.data.outputs.data_sha }}"
       - name: Skip superseded production snapshots
         id: current
         env:
           GITHUB_TOKEN: ${{ github.token }}
+          PAGES_CODE_SHA: ${{ steps.data.outputs.code_sha }}
+          PAGES_FALLBACK: ${{ steps.data.outputs.refresh }}
         run: bash scripts/check-pages-head.sh
       - id: deployment
         if: steps.current.outputs.current == 'true'
         uses: actions/deploy-pages@v5.0.1
+        with:
+          artifact_name: ${{ steps.data.outputs.refresh == 'true' && 'github-pages-current-data' || 'github-pages' }}
       - uses: actions/setup-node@v7.0.0
         if: steps.current.outputs.current == 'true'
         with:
           node-version: 24
       - uses: actions/download-artifact@v4
-        if: steps.current.outputs.current == 'true'
+        if: steps.current.outputs.current == 'true' && steps.data.outputs.refresh != 'true'
         with:
           name: validated-site
           path: dist
       - name: Verify the actual public data artifact
         if: steps.current.outputs.current == 'true'
-        run: node scripts/verify-pages-publication.mjs "${{ steps.deployment.outputs.page_url }}" "${{ needs.build.outputs.commit_sha }}"
+        run: node scripts/verify-pages-publication.mjs "${{ steps.deployment.outputs.page_url }}" "${{ steps.data.outputs.code_sha }}" "${{ steps.data.outputs.data_sha }}"
       - uses: actions/upload-artifact@v7.0.1
         if: always() && steps.current.outputs.current == 'true'
         with:

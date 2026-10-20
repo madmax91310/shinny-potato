@@ -1,0 +1,29 @@
+name: Validate code and data publication refresh
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/deploy-pages.yml'
+      - '.github/workflows/validate-code-data-refresh.yml'
+      - 'scripts/*code-data-refresh*'
+      - 'scripts/publication-code-epoch.mjs'
+      - 'scripts/*pages-snapshot.mjs'
+      - 'scripts/*validated-data.mjs'
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-26.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 24
+      - run: node scripts/test-code-data-refresh.mjs
+      - run: node scripts/test-pages-snapshot.mjs
+      - run: node scripts/test-validated-data-publisher.mjs
+      - run: python3 -m unittest discover -s scripts -p 'test_audit_workflows.py'
+      - run: npm ci
+      - run: npm run build
+      - run: npx playwright install --with-deps chromium
+      - run: node scripts/smoke-data-routes.mjs
