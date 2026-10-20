@@ -28,12 +28,15 @@ const currentDocument=url=>url?.replace(/(\/pdfDocuments\/(?:monthly-factsheet|k
 for(const [isin,r] of Object.entries(AUTOMATED_ETF)) {
  const facts=getInstrumentFacts(isin),listings=withCandidates(isin,getInstrumentListings(isin)),urls=[r.sourceUrl,facts.characteristicsSource?.url,PEA_REVIEWS_BY_ISIN[isin]?.sourceUrl,'https://www.justetf.com/fr/etf-profile.html?isin='+isin,...listings.map(l=>l.sourceUrl)]
  urls.push(...frenchIssuerPage(r,urls))
+ // French tax panels publish an explicit boolean, unlike an absent badge.
+ urls.push(...urls.filter(url=>url?.startsWith('https://etf.dws.com/api/pdp/en-gb/etf/')).map(url=>url.replace('/api/pdp/en-gb/','/api/pdp/fr-fr/')))
  urls.push(...(supplemental.get(isin)??[]))
  // Search the broker's own reference index before constructing a profile URL.
  // An absent reference stays unknown; no ticker or market number is guessed.
  if(!METADATA[isin]?.pea||METADATA[isin]?.pea?.sourceUrl?.startsWith('https://bourse.fortuneo.fr/'))urls.push('https://bourse.fortuneo.fr/api/search?term='+isin)
  // Quantalys exposes an explicit PEA cell on a public fund reference. Search is discovery only.
  const priorPeaSource=METADATA[isin]?.pea?.sourceUrl??''
+ if(!METADATA[isin]?.pea||priorPeaSource.startsWith('https://extraetf.com/'))urls.push('https://extraetf.com/fr/etf-profile/'+isin)
  if(!METADATA[isin]?.pea||/^https:\/\/www\.quantalys\.com\/Fonds\/[1-9]\d*$/.test(priorPeaSource))urls.push(/^https:\/\/www\.quantalys\.com\/Fonds\/[1-9]\d*$/.test(priorPeaSource)?priorPeaSource:'https://www.quantalys.com/Recherche/RechercheRapide?inputSearch='+isin)
  if(urls.some(url=>url?.includes('invesco.com/')))
   urls.push('https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/'+isin+'?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData')
