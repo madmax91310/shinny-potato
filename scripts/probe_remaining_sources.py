@@ -6,22 +6,22 @@ from bs4 import BeautifulSoup
 from issuer_documents import download,pdf_text
 OUT=pathlib.Path('test-artifacts/remaining-sources');OUT.mkdir(parents=True,exist_ok=True)
 URLS=[
-('iroko-quarter','https://www.iroko.eu/bulletins-trimestriels/t2-2026'),
 ('iroko-latest-pdf','https://iroko-documents.s3.eu-west-3.amazonaws.com/Iroko_Zen_bulletin_trimestriel.pdf'),
-('stoxx600','https://stoxx.com/index/sxxp/'),
-('stoxxtech','https://stoxx.com/index/sx8r/'),
-('stoxx-csv','https://www.stoxx.com/document/Indices/Current/Components/SXXP.csv'),
-('stoxx-tech-csv','https://www.stoxx.com/document/Indices/Current/Components/SX8R.csv'),
-('stoxx-tech-pdf','https://www.stoxx.com/document/Indices/Current/Components/SX8R.pdf'),
-('topix','https://www.jpx.co.jp/english/markets/indices/topix/tvdivq00000030ne-att/topixweight_e.csv'),
-('lg-fund-data','https://fundcentres.landg.com/srp/api/fund/100?audience=79&share_class_id=893&language=1'),
+('lg-fund-explorer','https://fundcentres.landg.com/assets/bundles/versions/26.10-195-4963d446/lgim/js/fundExplorer.js'),
+('stoxx-tech-csv','https://stoxx.com/document/Indices/Current/Components/SX8R.csv'),
+('stoxx-tech-pdf','https://stoxx.com/document/Indices/Current/Components/SX8R.pdf'),
+('stoxx-factsheets','https://stoxx.com/factsheets/'),
+('topix','https://www.jpx.co.jp/automation/markets/indices/topix/files/topixweight_e.csv'),
+('topix-ja','https://www.jpx.co.jp/automation/markets/indices/topix/files/topixweight_j.csv'),
+('topix-overview','https://www.jpx.co.jp/english/markets/indices/topix/'),
 ]
 
 def fetch(item):
  label,url=item
  try:
-  raw,final=download(url,max_bytes=8_000_000,timeout=20,max_attempts=1,return_source=True)
-  (OUT/(label+'.raw')).write_bytes(raw)
+  raw,final=download(url,max_bytes=64_000_000 if label=="iroko-latest-pdf" else 8_000_000,timeout=20,max_attempts=1,return_source=True)
+  
+  if len(raw)<16_000_000:(OUT/(label+'.raw')).write_bytes(raw)
   row={'label':label,'url':url,'finalUrl':final,'bytes':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}
   if raw.startswith(b'%PDF-'):(OUT/(label+'.txt')).write_text(pdf_text(raw))
   elif b'<html' in raw[:1500].lower() or b'<!doctype' in raw[:100].lower():
