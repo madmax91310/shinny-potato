@@ -515,5 +515,53 @@
     "isin": "IE00BYZK4669",
     "name": "iShares Ageing Population UCITS ETF",
     "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Choldings.all&locale=en_GB&portfolioId=284218&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+  },
+  "IE00BMVB5K07": {
+    "isin": "IE00BMVB5K07",
+    "name": "Vanguard LifeStrategy 20% Equity UCITS ETF (EUR) Accumulating",
+    "currency": "EUR",
+    "parser": "lifestrategy-lookthrough"
+  },
+  "IE00BMVB5M21": {
+    "isin": "IE00BMVB5M21",
+    "name": "Vanguard LifeStrategy 40% Equity UCITS ETF (EUR) Accumulating",
+    "currency": "EUR",
+    "parser": "lifestrategy-lookthrough"
+  },
+  "IE00BMVB5P51": {
+    "isin": "IE00BMVB5P51",
+    "name": "Vanguard LifeStrategy 60% Equity UCITS ETF (EUR) Accumulating",
+    "currency": "EUR",
+    "parser": "lifestrategy-lookthrough"
+  },
+  "IE00BMVB5R75": {
+    "isin": "IE00BMVB5R75",
+    "name": "Vanguard LifeStrategy 80% Equity UCITS ETF (EUR) Accumulating",
+    "currency": "EUR",
+    "parser": "lifestrategy-lookthrough"
+  },
+  "IE00BFMXYX26": {
+    "isin": "IE00BFMXYX26",
+    "name": "Vanguard FTSE Japan UCITS ETF (USD) Accumulating",
+    "productCode": 9674,
+    "currency": "USD",
+    "parser": "vanguard-complete",
+    "catalog": false
+  },
+  "IE00BK5BQZ41": {
+    "isin": "IE00BK5BQZ41",
+    "name": "Vanguard FTSE Developed Asia Pacific ex Japan UCITS ETF (USD) Accumulating",
+    "productCode": 9676,
+    "currency": "USD",
+    "parser": "vanguard-complete",
+    "catalog": false
+  },
+  "IE00BKX55R35": {
+    "isin": "IE00BKX55R35",
+    "name": "Vanguard FTSE North America UCITS ETF",
+    "productCode": 9523,
+    "currency": "USD",
+    "parser": "vanguard-complete",
+    "catalog": false
   }
 }
