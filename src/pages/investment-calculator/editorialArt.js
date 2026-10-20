@@ -46,14 +46,13 @@ function torn(ctx, x, y, w, h, seed = 0) {
   ctx.closePath()
 }
 export function drawEditorialCollage(ctx, art) {
-  if (art.poster) { ctx.drawImage(art.poster, 0, 0, 1600, 2040); return }
+  // The illustration owns the right column; all editorial text stays left of it.
+  ctx.save(); ctx.beginPath(); ctx.moveTo(1600, 0); ctx.lineTo(1600, 2040)
+  for (let y = 2040; y >= 0; y -= 12) ctx.lineTo(870 + 12 * Math.sin(y * .05) + 8 * Math.cos(y * .17), y)
+  ctx.closePath(); ctx.clip()
+  if (art.poster) { ctx.drawImage(art.poster, 0, 0, 1600, 2040); ctx.restore(); return }
   // Keep the approved illustration continuous, at poster scale: cutting it into
   // horizontal strips shrank the subject and broke the reference composition.
-  ctx.save()
-  ctx.beginPath()
-  ctx.moveTo(900, 0); ctx.lineTo(1600, 0); ctx.lineTo(1600, 2040)
-  ctx.lineTo(700, 2040); ctx.lineTo(1040, 1520); ctx.lineTo(1080, 1150)
-  ctx.lineTo(870, 790); ctx.lineTo(830, 400); ctx.closePath(); ctx.clip()
   ctx.globalCompositeOperation = 'multiply'
   if (art.collage) {
     ctx.drawImage(art.collage, 760, -20, 920, 2080)

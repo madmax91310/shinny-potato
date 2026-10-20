@@ -50,6 +50,7 @@ try {
     CanvasRenderingContext2D.prototype.fillText = function(value, x, y, ...rest) {
       const m = this.measureText(value), box = { text: value, l: x - m.actualBoundingBoxLeft, r: x + m.actualBoundingBoxRight, t: y - m.actualBoundingBoxAscent, b: y + m.actualBoundingBoxDescent }
       if (box.l < 0 || box.r > this.canvas.width || box.t < 0 || box.b > this.canvas.height) throw new Error(`Clipped ${current}: ${value}`)
+      if ((box.b < 1240 || box.t > 1870) && box.r > 820) throw new Error(`Text enters the right illustration ${current}: ${value}`)
       for (const prior of boxes) if (Math.min(box.r, prior.r) - Math.max(box.l, prior.l) > 1 && Math.min(box.b, prior.b) - Math.max(box.t, prior.t) > 1) throw new Error(`Overlap ${current}: ${prior.text} / ${value}`)
       boxes.push(box); labels.push(String(value)); return original.call(this, value, x, y, ...rest)
     }
@@ -67,7 +68,7 @@ try {
       if (!labels.includes(`En ${currency}`) && !labels.some(label => label.startsWith(`En ${currency} ·`))) throw new Error('Wrong currency')
       if (labels.filter(label => label === '@Epargnantlibre').length !== 1) throw new Error('Signature must appear once')
       if (d.effectiveMode === 'dca' && !labels.some(label => label.startsWith('TOTAL VERSÉ'))) throw new Error('Lost monthly contributions')
-      for (const credit of (ASSETS[state.assetId]?.sourceCredit || '').replace(' · Calculs Épargnant Libre', '').split('\n').filter(Boolean)) if (!labels.includes(credit)) throw new Error('Missing source credit')
+      for (const credit of (ASSETS[state.assetId]?.sourceCredit || '').replace(' · Calculs Épargnant Libre', '').split('\n').filter(Boolean)) if (!labels.join(' ').replace(/\s+/g, ' ').includes(credit.replace(/\s+/g, ' '))) throw new Error('Missing source credit')
       if (!labels.includes('Pas un conseil financier')) throw new Error('Wrong footer')
       if (d.effectiveMode === 'dca' && !labels.includes(`${d.result.finalValue < d.result.totalInvested ? 'Perte' : 'Gain'} sur les sommes versées`)) throw new Error('Missing monthly return label')
       if (keep) await window.saveInvestmentSample({ name, png: canvas.toDataURL(), labels })
@@ -77,7 +78,7 @@ try {
       for (const id of ASSET_ORDER) for (const mode of ['lump', 'dca']) await check(`${id}-${mode}`, stateFor(id, mode), mode === 'lump' && ['apple', 'microsoft', 'msciWorld', 'or', 'tesla', 'asml', 'msciEurope', 'msciIndia', 'msciWorldQuality', 'msciWorldValue', 'russell2000'].includes(id))
       const override = { ...stateFor('apple'), overridePriceRaw: '10' }
       await check('loss-manual-price', override, true)
-      if (!labels.some(label => label.includes('Prix final saisi'))) throw new Error('Unlabelled manual price')
+      if (labels.some(label => label.includes('Prix final saisi'))) throw new Error('Manual-price label must not appear in the image')
       await check('large-dca', { ...stateFor('bitcoin', 'dca'), amountRaw: '999999999999' })
       const last = ASSETS.apple.points.at(-1).date
       await check('single-month', { ...stateFor('apple'), startYear: Number(last.slice(0, 4)), startMonth: Number(last.slice(5, 7)) })
