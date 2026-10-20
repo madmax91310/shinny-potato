@@ -43,9 +43,15 @@ export function drawEditorialCollage(ctx, art) {
   ctx.save(); ctx.beginPath(); ctx.rect(1000, 0, 600, 560); ctx.clip()
   if (art.collage) {
     ctx.globalCompositeOperation = 'multiply'
-    const ratio = Math.min(600 / art.collage.width, 560 / art.collage.height)
-    const w = art.collage.width * ratio, h = art.collage.height * ratio
-    ctx.drawImage(art.collage, 1600 - w, 0, w, h)
+    // Three overlapping cutouts fill the poster's illustration column without
+    // stretching a portrait into a landscape or adding a framed-photo border.
+    const source = art.collage, ratio = 600 / source.width, band = source.height / 3
+    for (let i = 0; i < 3; i++) {
+      const h = 220, y = i * 170, sh = Math.min(band, h / ratio)
+      ctx.save(); torn(ctx, 1000, y, 600, h, i); ctx.clip()
+      ctx.drawImage(source, 0, i * band + (band - sh) / 2, source.width, sh, 1000, y - 12, 600, h + 24)
+      ctx.restore()
+    }
   } else {
     ctx.fillStyle = '#d45b36'; ctx.beginPath(); ctx.arc(1310, 165, 250, 0, Math.PI * 2); ctx.fill()
     ctx.fillStyle = '#173f33'; torn(ctx, 1060, 180, 650, 350, 1); ctx.fill()
