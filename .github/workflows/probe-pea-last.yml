@@ -1,0 +1,38 @@
+name: Inspect remaining public PEA declarations
+on:
+  push:
+    branches: [probe/pea-final-public-sources]
+permissions:
+  contents: read
+jobs:
+  read:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - name: Read public exact-share profiles
+        shell: python
+        run: |
+          import json,urllib.request,urllib.error,hashlib,datetime,time
+          from pathlib import Path
+          out=Path('/tmp/last-pea');out.mkdir()
+          ids=['IE000716YHJ7','IE0000QLH0G6','IE0007Y8Y157','IE00BD6FTQ80','IE0003R87OG3','IE000L2SA8K5','IE000DQLYVB9']
+          urls=['https://www.etfjourney.com/fr/etf/'+i for i in ids]+['https://www.centralcharts.com/fr/4759107-invesco-ftse-all-world-ucits-etf/quotes','https://www.francetransactions.com/bourse/etf/vaneck-quantum-computing-ucits-etf-a-ie0007y8y157.html']
+          rows=[];denied=set()
+          for i,url in enumerate(urls):
+            host=urllib.parse.urlsplit(url).hostname
+            if host in denied:rows.append({'url':url,'error':'Host cooldown after refusal'});continue
+            try:
+              with urllib.request.urlopen(urllib.request.Request(url,headers={'User-Agent':'ShinnyPotatoDataAudit/1.0 (lepargnantlibre@gmail.com)'}),timeout=15) as r:
+                body=r.read();filename=f'{i}.html';(out/filename).write_bytes(body)
+                rows.append({'url':r.url,'file':filename,'status':r.status,'sha256':hashlib.sha256(body).hexdigest(),'checkedAt':datetime.datetime.now(datetime.timezone.utc).isoformat()})
+            except Exception as e:
+              rows.append({'url':url,'error':str(e)})
+              if isinstance(e,urllib.error.HTTPError) and e.code in (403,429):denied.add(host)
+            time.sleep(.5)
+          (out/'manifest.json').write_text(json.dumps(rows,indent=2));print(json.dumps(rows))
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: last-pea-public-evidence
+          path: /tmp/last-pea
+          retention-days: 14
