@@ -3,9 +3,9 @@ import {execFileSync} from 'node:child_process'
 import {appendFileSync,readFileSync,writeFileSync} from 'node:fs'
 import {fileURLToPath} from 'node:url'
 import {automationPaths,classify} from './classify-deploy-scope.mjs'
-// These pending editorial changes do not interpret financial observations.
-const independent=new Set(['src/data/editorial-calendar.js','src/pages/Home.jsx','src/tools.js'])
-export const consumerChanges=paths=>paths.filter(path=>/^src\/.*\.(?:[cm]?js|jsx|tsx?|css)$/.test(path)&&!independent.has(path)&&path!=='src/data/inflation-monthly.js')
+// Every changed application module requires the full code gate. Publishing newer
+// data over older editorial code would keep superseding the pending calendar build.
+export const consumerChanges=paths=>paths.filter(path=>/^src\/.*\.(?:[cm]?js|jsx|tsx?|css)$/.test(path)&&path!=='src/data/inflation-monthly.js')
 export function requiredDataPath(path){assert.match(path??'',/^(?:src\/data\/(?:[a-z0-9-]+\.json|inflation-monthly\.js)|public\/data\/[a-z0-9-]+)$/);return path}
 export function producerPaths(producer,single,registry){
  if(producer){assert(Object.hasOwn(registry,producer),'Unknown validated producer');assert(!single,'Choose a producer or a legacy single path');return registry[producer].map(requiredDataPath)}
