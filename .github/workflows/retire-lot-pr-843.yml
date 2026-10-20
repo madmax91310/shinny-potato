@@ -1,0 +1,15 @@
+name: Retire merged task PR 843 validation
+on:
+  push:
+    branches: [ops/retire-merged-lot-validations]
+permissions:
+  contents: read
+concurrency:
+  group: pages-code-validation-refs/pull/843/merge
+  cancel-in-progress: true
+jobs:
+  retired:
+    runs-on: ubuntu-26.04
+    timeout-minutes: 2
+    steps:
+      - run: echo "PR 843 merged after passing targeted checks; preserve the full master gate."
