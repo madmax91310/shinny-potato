@@ -114,8 +114,8 @@ async function testPracticalSheets(page) {
 
 async function testWorkspaceNavigation(page) {
   await page.goto(`${BASE}/`, { waitUntil: 'networkidle' });
-  const entries = EDITORIAL_WEEK.flatMap(({ day, morning, evening }) =>
-    [['Matin · après le récap', morning], ['Soir', evening]].flatMap(([label, slots]) =>
+  const entries = EDITORIAL_WEEK.flatMap(({ day, midday, evening }) =>
+    [['Midi', midday], ['Soir', evening]].flatMap(([label, slots]) =>
       slots.map(slot => ({ path: slot.path, label: slot.note || `${day} ${label.toLowerCase()}` }))));
   const otherTools = HOME_TOOLS.filter(tool => !entries.some(entry => entry.path === tool.to));
   const expectedPaths = [...entries.map(entry => entry.path), ...otherTools.filter(tool => tool.publicationDay === 'Publication ponctuelle').map(tool => tool.to), ...otherTools.filter(tool => tool.publicationDay !== 'Publication ponctuelle').map(tool => tool.to)];
@@ -124,10 +124,10 @@ async function testWorkspaceNavigation(page) {
   checks.publicationDays = (await page.locator('.workspace-publication-day').allTextContents()).sort().join('|') === expectedLabels.sort().join('|');
   checks.onlyTools = await page.locator('.workspace-search,.workspace-filters,.workspace-brand').count() === 0;
   checks.weeklyOrder = (await page.locator('.workspace-tool-card').evaluateAll(cards => cards.map(card => new URL(card.href).pathname.split('/').at(-1)))).join('|') === expectedPaths.map(path => path.slice(1)).join('|');
-  checks.rankingsMorningOnly = await page.locator('[data-period="morning"] a[href$="/classements-performances"]').count() === 3 && await page.locator('[data-period="evening"] a[href$="/classements-performances"]').count() === 0;
-  checks.investmentTwice = await page.locator('[data-period="morning"] a[href$="/calculateur-investissement"]').count() === 2;
+  checks.rankingsMiddayOnly = await page.locator('[data-period="midday"] a[href$="/classements-performances"]').count() === 2 && await page.locator('[data-period="evening"] a[href$="/classements-performances"]').count() === 0;
+  checks.investmentOnce = await page.locator('[data-period="midday"] a[href$="/calculateur-investissement"]').count() === 1;
   checks.brokersWednesday = await page.locator('[data-day="2"] [data-period="evening"] a[href$="/comparatif-courtiers"]').count() === 1;
-  checks.sundayOptional = (await page.locator('[data-day="6"] a[href$="/classements-performances"]').textContent()).includes('Facultatif');
+  checks.fridayReserved = await page.locator('[data-day="4"] [data-period="evening"] .workspace-tool-card').count() === 0 && (await page.locator('[data-day="4"] [data-period="evening"]').textContent()).includes('Réservé à ton tweet du vendredi');
   for (const width of [320, 390, 768, 1280]) {
     await page.setViewportSize({ width, height: 844 });
     checks[`overflow${width}`] = await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth);

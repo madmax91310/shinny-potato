@@ -22,11 +22,11 @@ export default function Home() {
     return terms.every(term => text.includes(term))
   })
   const today = new Intl.DateTimeFormat('fr-FR', { weekday: 'long', timeZone: 'Europe/Paris' }).format(new Date())
-  const scheduled = HOME_TOOLS.filter(tool => EDITORIAL_WEEK.some(({ morning, evening }) => [...morning, ...evening].some(entry => entry.path === tool.to)))
+  const scheduled = HOME_TOOLS.filter(tool => EDITORIAL_WEEK.some(({ midday, evening }) => [...midday, ...evening].some(entry => entry.path === tool.to)))
   const occasional = HOME_TOOLS.filter(tool => tool.publicationDay === 'Publication ponctuelle')
   const shortcuts = HOME_TOOLS.filter(tool => !scheduled.includes(tool) && !occasional.includes(tool))
   return <div className="workspace-home">
-    <header className="home-heading"><h1>Mes outils de la semaine</h1><p className="home-calendar-intro">Récap tôt, puis le format du matin. Le midi reste libre pour tes tweets personnels.</p></header>
+    <header className="home-heading"><h1>Mes outils de la semaine</h1><p className="home-calendar-intro">Un format par créneau, le midi et le soir.</p></header>
     <nav className="home-quick-links" aria-label="Outils favoris">
       {QUICK_PATHS.map(path => {
         const tool = HOME_TOOLS.find(item => item.to === path)
@@ -46,14 +46,14 @@ export default function Home() {
     </div>
     {!searching && <>
     <div className="home-week">
-      {EDITORIAL_WEEK.map(({ day, morning, evening, morningNote }, index) => {
+      {EDITORIAL_WEEK.map(({ day, midday, evening, middayNote, eveningNote }, index) => {
         const isToday = day.toLowerCase() === today
         return <section className={`home-day${isToday ? ' home-day--today' : ''}`} data-day={index} key={day} aria-labelledby={`home-day-${index}`}>
           <div className="home-day-band"><h2 id={`home-day-${index}`}>{day}</h2>{isToday && <small className="home-today">Aujourd’hui</small>}<span aria-hidden="true">{DAY_ICONS[index]}</span></div>
           <div className="home-day-content">
-            {[['morning', 'Matin · après le récap', morning], ['evening', 'Soir', evening]].map(([period, label, entries]) => <div className="home-period" data-period={period} key={period}>
+            {[['midday', 'Midi', midday], ['evening', 'Soir', evening]].map(([period, label, entries]) => <div className="home-period" data-period={period} key={period}>
               <h3>{label}</h3>
-              {period === 'morning' && morningNote && <p className="home-day-note">{morningNote}</p>}
+              {(period === 'midday' ? middayNote : eveningNote) && <p className="home-day-note">{period === 'midday' ? middayNote : eveningNote}</p>}
               <ToolList tools={entries.map(entry => ({ ...HOME_TOOLS.find(tool => tool.to === entry.path), ...(entry.title ? { title: entry.title } : {}), publicationDay: entry.note || `${day} ${label.toLowerCase()}` }))} />
             </div>)}
           </div>

@@ -26,28 +26,35 @@ try {
   const errors = []
   page.on('pageerror', error => errors.push(error.message))
   await page.goto(`${base}/`, { waitUntil: 'networkidle' })
-  const scheduledEntries = EDITORIAL_WEEK.flatMap(day => [...day.morning, ...day.evening])
+  const scheduledEntries = EDITORIAL_WEEK.flatMap(day => [...day.midday, ...day.evening])
   const scheduledPaths = new Set(scheduledEntries.map(entry => entry.path))
   assert.equal(await page.locator('.workspace-tool-card').count(), scheduledEntries.length + TOOLS.filter(t => !t.hidden && !scheduledPaths.has(t.to)).length)
   assert.equal(await page.getByRole('link', {name:/Vrai ou faux|Cas concrets|Comparateur indices|Dilemme/}).count(), 0)
   assert.equal(await page.locator('.workspace-tool-card[href$="/tweet-midi"]').count(), 0)
-  for (const [index, morning, evening] of [
-    [0, ['/classements-performances'], ['/comparatif-etf']],
+  for (const [index, midday, evening] of [
+    [0, ['/performance-depuis'], ['/tweets-factsheets']],
     [1, ['/calculateur-investissement'], ['/le-dca-de']],
-    [2, ['/france-100-menages', '/pouvoir-achat'], ['/comparatif-courtiers']],
-    [3, ['/classements-performances'], ['/fiches-etf', '/tweets-factsheets']],
-    [4, ['/calculateur-investissement'], ['/duels-portefeuilles', '/generateur-portefeuilles']],
-    [5, [], ['/performance-depuis', '/presentations']],
-    [6, ['/classements-performances', '/fiches-pratiques', '/faits-marquants-marches', '/il-y-a-x-ans'], ['/portefeuilles-investisseurs']],
+    [2, ['/classements-performances'], ['/comparatif-courtiers']],
+    [3, ['/classements-performances'], ['/banque-tweets']],
+    [4, ['/fiches-etf'], []],
+    [5, [], []],
+    [6, ['/portefeuilles-investisseurs'], ['/fiches-pratiques']],
   ]) {
-    for (const [period, paths] of [['morning', morning], ['evening', evening]]) {
+    for (const [period, paths] of [['midday', midday], ['evening', evening]]) {
       const actual = await page.locator(`[data-day="${index}"] [data-period="${period}"] .workspace-tool-card`).evaluateAll(cards => cards.map(card => '/' + new URL(card.href).pathname.split('/').at(-1)))
       assert.deepEqual(actual, paths, `${index}: ${period}`)
     }
   }
   assert.equal(await page.locator('[data-period="evening"] a[href$="/classements-performances"]').count(), 0)
-  assert.equal(await page.locator('[data-day="6"] a[href$="/classements-performances"] .workspace-publication-day').innerText(), 'Facultatif')
-  assert.equal(await page.locator('.home-calendar-intro').innerText(), 'Récap tôt, puis le format du matin. Le midi reste libre pour tes tweets personnels.')
+  assert.equal(await page.locator('.home-period').count(), 14)
+  assert.equal(await page.locator('.home-week [data-period="midday"] > h3').filter({ hasText: /^Midi$/ }).count(), 7)
+  assert.equal(await page.locator('.home-week a[href$="/calculateur-investissement"]').count(), 1)
+  assert.equal(await page.locator('[data-day="4"] [data-period="evening"] .home-day-note').innerText(), 'Réservé à ton tweet du vendredi')
+  assert.equal(await page.locator('[data-day="5"] [data-period="midday"] .home-day-note').innerText(), 'Ton bilan de la semaine')
+  assert.equal(await page.locator('[data-day="5"] [data-period="evening"] .home-day-note').innerText(), 'Quote de ton bilan')
+  assert.equal(await page.locator('[data-day="3"] [data-period="midday"] .workspace-tool-card h2').innerText(), 'Classement')
+  assert.equal(await page.locator('.home-week').getByText(/alternance|alternative|facultatif|matin|récap/i).count(), 0)
+  assert.equal(await page.locator('.home-calendar-intro').innerText(), 'Un format par créneau, le midi et le soir.')
   for (const width of [320, 390]) {
     await page.setViewportSize({ width, height: 844 })
     assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), `${width}: horizontal overflow`)
