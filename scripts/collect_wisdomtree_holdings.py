@@ -12,6 +12,13 @@ from collect_ssga_etf import xlsx_rows
 
 IDENTITIES=[(r['isin'],r['url'])for r in json.loads((Path(__file__).with_name('security-identity-sources.json')).read_text())]
 
+def known_shares():
+    shares={}
+    for name in ['additional-etf-sources.json','exposure-etf-expansion.json']:
+        for share in json.loads(Path(__file__).with_name(name).read_text())['instruments']:
+            if share.get('documentType')=='wisdomtree-ucits':shares[share['isin']]=share
+    return list(shares.values())
+
 def rankings(page):
     chunks=[];found=[];securities=[]
     for script in BeautifulSoup(page,'html.parser').find_all('script'):

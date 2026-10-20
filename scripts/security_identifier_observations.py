@@ -40,7 +40,7 @@ def mappings(now):
     return out,proofs
 
 def refresh(now,max_requests=4):
-    from collect_wisdomtree_holdings import IDENTITIES,identity_document,identities,rankings
+    from collect_wisdomtree_holdings import IDENTITIES,identity_document,identities,rankings,known_shares
     from issuer_documents import download
     from data_automation import write_json_atomic
     cache=json.loads(PATH.read_text())if PATH.exists()else {'schemaVersion':1,'observations':{}}
@@ -58,7 +58,7 @@ def refresh(now,max_requests=4):
             if re.fullmatch(r'[A-Z]{2}[A-Z0-9]{9}\d',r.get('isin')or''):
                 candidates.setdefault(normalize(r.get('name','')),set()).add(r['isin'])
             if re.fullmatch(r'[A-Z0-9]{7}',r.get('sedol')or'')and r.get('isin'):known[r['sedol']]=r['isin']
-    shares=json.loads((ROOT/'scripts/additional-etf-sources.json').read_text())['instruments']
+    shares=known_shares()
     pending=[]
     for share in shares:
         if share.get('documentType')!='wisdomtree-ucits':continue

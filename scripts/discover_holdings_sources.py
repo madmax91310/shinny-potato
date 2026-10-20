@@ -3,7 +3,7 @@ import datetime as dt
 import json
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor
-from collect_wisdomtree_holdings import collect
+from collect_wisdomtree_holdings import collect,known_shares
 from data_automation import write_json_atomic
 ROOT=Path(__file__).resolve().parents[1]
 
@@ -28,8 +28,7 @@ def discover(shares,configured,holdings,now,fetch=collect):
       'method':'Known catalogue shares only. Missing identities or inconsistent holdings remain pending. Access checks never qualify financial data.'}
 
 def main():
-    source=json.loads((ROOT/'scripts/additional-etf-sources.json').read_text())['instruments']
-    staged=[s for s in source if s.get('documentType')=='wisdomtree-ucits']
+    staged=known_shares()
     config=ROOT/'scripts/generated-holdings-sources.json';raw=ROOT/'src/data/dca-complete-holdings.json'
     enabled,records,report=discover(staged,json.loads(config.read_text()),json.loads(raw.read_text()),dt.datetime.now(dt.timezone.utc))
     write_json_atomic(config,enabled);write_json_atomic(raw,records)
