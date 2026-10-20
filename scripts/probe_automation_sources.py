@@ -36,6 +36,8 @@ urls=[
  ('jpm-page','https://am.jpmorgan.com/de/en/asset-management/institutional/products/jpm-global-equity-premium-income-active-ucits-etf-usd-dist-ie0003uvyc20'),
  ('hsbc-page','https://www.assetmanagement.hsbc.co.uk/en/intermediary/investment-expertise/etfs/etf-products/ie00b4k6b022'),
  ('globalx-urnu','https://globalxetfs.eu/funds/urnu/'),
+ ('hsbc-factsheet','https://www.assetmanagement.hsbc.co.uk/api/v1/download/document/ie00b4k6b022/gb/en/factsheet'),
+ ('ubs-page','https://www.ubs.com/de/en/assetmanagement/funds/etf.html/ie00bd4txv59-ubs-core-msci-world-ucits-etf-usd-acc-pd001'),
 ]
 for name in ['holdings','fundholdings','portfolio']:
     urls.append(('hsbc-'+name,'https://www.assetmanagement.hsbc.co.uk/api/v1/download/document/ie00b4k6b022/gb/en/'+name))
@@ -48,7 +50,9 @@ try:
             identity=next((v for v in share['data'] if isinstance(v,str) and v in TARGETS),None)
             if identity:
                 path=share['data'][0];fid=fund['id'];sid=share['id']
-                more.extend([(f'lg-{identity}',urljoin('https://fundcentres.landg.com',path)),(f'lg-docs-{identity}','https://fundcentres.landg.com/srp/api/documents/?'+urlencode({'audience':79,'language':1,'share_classes':sid})),(f'lg-fcs-{identity}','https://fundcentres.landg.com/srp/api/fcs/funds/'+str(fid))])
+                params=[('audience',79),('language',1),('share_classes',sid)]
+                for kind in [157,8215,356,4123,8329,1557,599,158,159,1267,2740,1549]:params.append(('lit_types',kind))
+                more.extend([(f'lg-{identity}',urljoin('https://fundcentres.landg.com',path)),(f'lg-docs-{identity}','https://fundcentres.landg.com/srp/api/documents/?'+urlencode(params)),(f'lg-fcs-{identity}','https://fundcentres.landg.com/srp/api/fcs/funds/'+str(fid))])
     records.extend(concurrent.futures.ThreadPoolExecutor(max_workers=6).map(fetch,more))
 except Exception as e:records.append({'label':'lg-discovery','error':str(e)})
 (OUT/'manifest.json').write_text(json.dumps(records,ensure_ascii=False,indent=2)+'\n')
