@@ -85,15 +85,26 @@ def combine(rows,identities,stamp):
             'method':'Full official JPX TOPIX month-end member weights, without renormalisation; exact Tokyo codes/JPY mapped to separately dated BlackRock identities only. Unknown identities remain explicit. Equity index exposure excludes fund cash, fees, swaps and currency hedges.'}
 
 
+def qualify_share(text,isin,now):
+    text=' '.join(text.split())
+    title='Amundi PEA Japon (TOPIX) UCITS ETF EUR '+('Hedged Acc' if SHARES[isin] else 'Acc')
+    header=text.split("Objectif d'investissement",1)[0]
+    dates=re.findall(r'\b\d{2}/\d{2}/\d{4}\b',header)
+    if title not in header or len(dates)!=1 or isin not in text:raise ValueError('Wrong TOPIX share/report identity')
+    stamp=document_date(dates[0],now)
+    if not re.search(r'performance de l.indice TOPIX \(',text) or '(.TOPXDV)' not in text or '(TPXDDVD)' not in text:raise ValueError('TOPIX exact economic benchmark changed')
+    return stamp
+
+
 def collect(share,now,fetch=download):
     if share['isin'] not in SHARES or share.get('currency')!='EUR':raise ValueError('Unqualified TOPIX share')
     # Exact-share current document proves the economic benchmark, not holdings.
-    document=fetch(share['identitySourceUrl']);text=' '.join(pdf_text(document).split())
-    if share['isin'] not in text or not re.search(share['benchmarkPattern'],text):raise ValueError('TOPIX exact-share benchmark changed')
+    document=fetch(share['identitySourceUrl']);share_stamp=qualify_share(pdf_text(document),share['isin'],now)
     raw=fetch(JPX);rows,stamp=jpx_rows(raw,now)
+    if share_stamp<stamp:raise ValueError('TOPIX benchmark proof predates index composition')
     page=fetch(IDENTITY);url,identity_stamp=identity_route(page,now);ids=fetch(url)
     result=combine(rows,identity_rows(ids),stamp)
     result.update(sourceUrl=JPX,sha256=proof(raw),identitySourceUrl=url,identitySha256=proof(ids),
-                  identityAsOf=identity_stamp,shareSourceUrl=share['identitySourceUrl'],shareSha256=proof(document),
+                  identityAsOf=identity_stamp,shareAsOf=share_stamp,shareSourceUrl=share['identitySourceUrl'],shareSha256=proof(document),
                   sourceUrls=[JPX,url,share['identitySourceUrl']])
     return result

@@ -1,5 +1,5 @@
 import csv,datetime as dt,io,json,unittest
-from collect_topix_holdings import jpx_rows,identity_rows,combine,HEADERS
+from collect_topix_holdings import jpx_rows,identity_rows,combine,HEADERS,qualify_share
 NOW=dt.datetime(2026,10,20,tzinfo=dt.timezone.utc)
 def fixture():
  out=io.StringIO();writer=csv.writer(out);writer.writerow(HEADERS)
@@ -23,6 +23,13 @@ class Topix(unittest.TestCase):
  def test_truncation_mixed_dates_bad_totals_and_schema_are_rejected(self):
   for bad in [fixture().replace(b'20260831',b'20260830',1),fixture().replace(b'0.1000%',b'5.0000%',1),fixture().replace(b'1001',b'1000'),fixture().splitlines()[0]+b'\n',fixture().replace(b'0.1000%',b'nan%',1)]:
    with self.assertRaises(ValueError):jpx_rows(bad,NOW)
+ def test_exact_share_benchmark_and_date_are_required(self):
+  text="Amundi PEA Japon (TOPIX) UCITS ETF EUR Acc REPORTING 30/09/2026 Objectif d'investissement performance de l’indice TOPIX (« l’Indice ») (.TOPXDV) (TPXDDVD) FR0013411980"
+  self.assertEqual(qualify_share(text,'FR0013411980',NOW),'2026-09-30')
+  for wrong in [text.replace('TOPIX («','TOPIX 100 («'),text.replace('TPXDDVD','OTHER'),text.replace('30/09/2026','30/11/2026')]:
+   with self.assertRaises(ValueError):qualify_share(wrong,'FR0013411980',NOW)
+  with self.assertRaises(ValueError):qualify_share(text,'FR0013411998',NOW)
+
  def test_duplicate_identity_and_wrong_row_shape_rejected(self):
   data=identities();data['aaData'].append([*data['aaData'][0][:9],'JP0000000990',*data['aaData'][0][10:]])
   with self.assertRaises(ValueError):identity_rows(json.dumps(data).encode())

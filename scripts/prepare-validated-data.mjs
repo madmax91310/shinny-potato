@@ -5,7 +5,7 @@ import {fileURLToPath} from 'node:url'
 import {automationPaths,classify} from './classify-deploy-scope.mjs'
 // These pending editorial changes do not interpret financial observations.
 const independent=new Set(['src/data/editorial-calendar.js','src/pages/Home.jsx','src/tools.js'])
-export const consumerChanges=paths=>paths.filter(path=>/^src\/.*\.(?:[cm]?js|jsx|tsx?|css)$/.test(path)&&!independent.has(path))
+export const consumerChanges=paths=>paths.filter(path=>/^src\/.*\.(?:[cm]?js|jsx|tsx?|css)$/.test(path)&&!independent.has(path)&&path!=='src/data/inflation-monthly.js')
 export function requiredDataPath(path){assert.match(path??'',/^(?:src\/data\/(?:[a-z0-9-]+\.json|inflation-monthly\.js)|public\/data\/[a-z0-9-]+)$/);return path}
 export function producerPaths(producer,single,registry){
  if(producer){assert(Object.hasOwn(registry,producer),'Unknown validated producer');assert(!single,'Choose a producer or a legacy single path');return registry[producer].map(requiredDataPath)}
