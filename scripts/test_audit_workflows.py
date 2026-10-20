@@ -139,6 +139,15 @@ class WorkflowContracts(unittest.TestCase):
             for path in paths:self.assertTrue(path in workflow or ('VALIDATED_PATHS: src/data ' in workflow and path.startswith('src/data/')), (filename,path))
         self.assertEqual(set(registry),{name for name,c in REGISTRY.items() if c.get('publishes') is not False and name!='update-editorial-radar.yml'})
 
+    def test_full_gate_can_adopt_newer_data_without_a_code_or_data_rollback(self):
+        workflow=(ROOT/'.github/workflows/deploy-pages.yml').read_text()
+        deploy=workflow.split('\n  deploy:\n')[1].split('\n  # Fallback lane:')[0]
+        for required in ['group: pages-production','prepare-code-data-refresh.mjs','Require every primary producer file','git hash-object','smoke-data-routes.mjs','github-pages-current-data','steps.data.outputs.code_sha','steps.data.outputs.data_sha']:
+            self.assertIn(required.replace('git hash-object',"['hash-object',path]"),deploy)
+        self.assertLess(deploy.index('prepare-code-data-refresh.mjs'),deploy.index('smoke-data-routes.mjs'))
+        self.assertLess(deploy.index('smoke-data-routes.mjs'),deploy.index('uses: actions/deploy-pages@'))
+        self.assertIn("steps.data.outputs.refresh != 'true'",deploy,'The original artifact must never overwrite the rebuilt one')
+
     def test_deploy_requires_every_validation_job_and_same_built_commit(self):
         workflow = (ROOT/'.github/workflows/deploy-pages.yml').read_text()
         deploy = workflow.split('\n  deploy:\n')[1]

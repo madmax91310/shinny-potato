@@ -37,3 +37,7 @@ La sélection des validations peut regrouper les commits de code devenus obsolè
 | 12. Performances et exploitation | Chargement différé des compositions conservé | Suivi des poids, quotas, durées et coûts |
 
 Les compteurs de l'inventaire publié restent la référence. Les deux TOPIX peuvent changer de catégorie sans réduire le nombre de points à traiter : raccorder un tableau complet ne résout pas les identités absentes. Les lots 3 à 5 ne sont donc pas annoncés comme intégralement terminés.
+
+## Code validé pendant des actualisations concurrentes
+
+Le job de publication conserve le verrou Pages pendant la sélection et la construction. Si de nouvelles données d'automatisation sont arrivées après les contrôles complets, il peut les associer au code qui vient de réussir ces contrôles. Tout changement de consommateur, de collecteur ou de workflow exige sa propre validation complète. La composition refuse les identifiants inconnus ; compilation, contrôle des fichiers exacts de tous les producteurs, test navigateur et vérification publique restent bloquants. Le manifeste final identifie séparément le code validé et les données réellement reconstruites. L'ancien artefact ne peut pas écraser celui qui vient d'être reconstruit.
