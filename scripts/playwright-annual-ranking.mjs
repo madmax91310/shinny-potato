@@ -2,6 +2,7 @@ import assert from 'node:assert/strict'
 import { readFile, mkdir, writeFile } from 'node:fs/promises'
 import { resolve, extname } from 'node:path'
 import { chromium } from 'playwright'
+import { RANKING_ASSETS, ANNUAL_ASSETS } from '../src/pages/performance-rankings/data.js'
 
 // Exercise the production canvas renderer in Chromium with synthetic financial data.
 const root = resolve('.'), artifacts = 'test-artifacts/performance-rankings'
@@ -20,6 +21,12 @@ try {
   })
   const errors = []; page.on('pageerror', error => errors.push(error.message))
   await page.goto('http://annual.test/')
+  const registryNames = Object.values({ ...RANKING_ASSETS, ...ANNUAL_ASSETS }).map(asset => asset.shortLabel ?? asset.label)
+  await page.evaluate(async names => {
+    const { annualNameLines } = await import('/src/pages/performance-rankings/image.js')
+    const ctx = document.createElement('canvas').getContext('2d')
+    for (const name of names) annualNameLines(ctx, name, 202)
+  }, registryNames)
   const renders = await page.evaluate(async () => {
     const { buildRanking } = await import('/src/pages/performance-rankings/engine.js')
     const { renderRankingImage, annualNameLines } = await import('/src/pages/performance-rankings/image.js')

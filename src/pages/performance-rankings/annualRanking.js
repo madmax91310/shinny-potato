@@ -29,12 +29,12 @@ export function annualRankingColumns(result) {
   })
 }
 
-export function annualRankingLayout(assetCount, yearCount) {
+export function annualRankingLayout(assetCount, yearCount, nameHeight = 0) {
   if (!Number.isInteger(assetCount) || assetCount < 2 || assetCount > 6 || !Number.isInteger(yearCount) || yearCount < 1 || yearCount > 7) throw new Error('Choisis 2 à 6 actifs et 1 à 7 années complètes.')
   const margin = 36, rankWidth = 66, gap = 10
   const width = Math.max(1000, margin * 2 + rankWidth + yearCount * 236)
   const cellWidth = (width - margin * 2 - rankWidth) / yearCount
-  const rowHeight = assetCount <= 3 ? 180 : 166
+  const rowHeight = Math.max(assetCount <= 3 ? 180 : 166, nameHeight + 92)
   const tableY = 156, headerHeight = 52
   return { width, height: tableY + headerHeight + assetCount * rowHeight + 52, margin, rankWidth, gap, cellWidth, rowHeight, tableY, headerHeight }
 }

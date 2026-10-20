@@ -146,8 +146,14 @@ export function renderRankingImage(result, _title, regularity, presentation = 'c
 // The preview and the download call this same canvas renderer with the same result.
 export function renderAnnualRankingImage(result) {
   const columns = annualRankingColumns(result)
-  const l = annualRankingLayout(result.assets.length, columns.length)
   const canvas = document.createElement('canvas')
+  const measure = canvas.getContext('2d')
+  const initial = annualRankingLayout(result.assets.length, columns.length)
+  const nameHeight = Math.max(...columns.flatMap(column => column.rows.map(row => {
+    const plan = annualNameLines(measure, row.label, initial.cellWidth - initial.gap - 24)
+    return plan.rows.length * (plan.size + 3)
+  })))
+  const l = annualRankingLayout(result.assets.length, columns.length, nameHeight)
   canvas.width = l.width; canvas.height = l.height
   const ctx = canvas.getContext('2d')
   ctx.fillStyle = '#0b1c2b'; ctx.fillRect(0, 0, l.width, l.height)
@@ -187,7 +193,7 @@ export function annualNameLines(ctx, value, width) {
       if (line && ctx.measureText(next).width > width) { rows.push(line); line = word } else line = next
     }
     if (line) rows.push(line)
-    if (rows.length * (size + 3) <= 78 && rows.every(row => ctx.measureText(row).width <= width)) return { rows, size }
+    if (rows.length * (size + 3) <= 104 && rows.every(row => ctx.measureText(row).width <= width)) return { rows, size }
   }
   throw new Error(`Nom trop long pour ce format : ${value}. Réduis le nombre d’années pour agrandir les cases.`)
 }
