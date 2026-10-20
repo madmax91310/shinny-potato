@@ -23,5 +23,6 @@ export default function DataAutomationInventory(){
    </>}
   </details>
   <p><a href={base()+'data-automation-inventory.json'} download>Télécharger l’inventaire complet (JSON)</a></p>
+  <p><a href={base()+'pea-automation.csv'} download>Télécharger le suivi des statuts PEA (CSV)</a></p>
  </section>
 }

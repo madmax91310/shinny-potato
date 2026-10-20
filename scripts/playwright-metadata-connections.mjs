@@ -8,7 +8,7 @@ import {getInstrumentPeaStatus} from '../src/data/instruments.js'
 import {DEFAULT_THEMES} from '../src/data/etf-themes.js'
 import {getComparatifEtfText} from '../src/pages/tweet-midi/data/comparatifEtf.js'
 const records=JSON.parse(readFileSync('src/data/automated-instrument-metadata.json'))
-const connectedPea=Object.entries(records).filter(([isin,r])=>/^https:\/\/www\.quantalys\.com\/Fonds\/[1-9]\d*$/.test(r.pea?.sourceUrl??'')&&DEFAULT_THEMES.some(t=>t.etfs.some(f=>f.isin===isin))).map(([isin])=>isin).slice(0,3)
+const connectedPea=Object.entries(records).filter(([isin,r])=>/^https:\/\/(?:www\.quantalys\.com\/Fonds\/[1-9]\d*|extraetf\.com\/fr\/etf-profile\/[A-Z0-9]+|etf\.dws\.com\/api\/pdp\/fr-fr\/etf\/[A-Z0-9]+\/pdpMetaTagsTealium)$/.test(r.pea?.sourceUrl??'')&&DEFAULT_THEMES.some(t=>t.etfs.some(f=>f.isin===isin))).map(([isin])=>isin).slice(0,3)
 const isins=[...new Set([...connectedPea,'IE000DQLYVB9','IE000716YHJ7','IE0000QLH0G6','IE00B579F325','IE00BD6FTQ80','IE00B4K6B022','FR0011550185','FR0011550193','IE000L2SA8K5','IE00BK5BQT80','IE00BD4TXV59','IE000QDFFK00'])]
 const server=spawn('node',['node_modules/vite/bin/vite.js','preview','--host','127.0.0.1','--port','4390'],{stdio:'ignore'})
 const base='http://127.0.0.1:4390/shinny-potato'

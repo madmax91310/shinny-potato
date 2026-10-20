@@ -26,3 +26,32 @@ jobs:
           name: pea-completion-proof
           path: /tmp/pea-completion
           retention-days: 14
+  browser:
+    needs: qualify
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 24
+      - uses: actions/download-artifact@v4
+        with:
+          name: pea-completion-proof
+          path: /tmp/pea-completion
+      - run: cp /tmp/pea-completion/qualified-records.json src/data/automated-instrument-metadata.json
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run build
+      - run: node scripts/test-data-automation-inventory.mjs
+      - run: node scripts/playwright-data-automation-inventory.mjs
+      - run: node scripts/playwright-metadata-connections.mjs
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: pea-inventory-browser-proof
+          path: |
+            test-artifacts/data-automation-inventory
+            test-artifacts/metadata-connections
+            dist/data/data-automation-summary.json
+          retention-days: 14

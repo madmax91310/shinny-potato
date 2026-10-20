@@ -1,13 +1,21 @@
 import copy,json,unittest
 from pathlib import Path
 from bs4 import BeautifulSoup
-from collect_instrument_metadata import parse_json,parse_extraetf_pea
+from collect_instrument_metadata import parse_json,parse_extraetf_pea,parse_francetransactions_pea
 FIXTURES=Path(__file__).with_name('fixtures')/'metadata-connections'
 EXTRA=(FIXTURES/'extraetf-pea.html').read_bytes()
 DWS=json.loads((FIXTURES/'dws-french-pea.json').read_text())
 ISIN='IE00BFMXXD54'
 URL='https://extraetf.com/fr/etf-profile/'+ISIN
 class FrenchPeaTests(unittest.TestCase):
+ def test_france_explicit_tax_cell_and_positive_icon(self):
+  body=(FIXTURES/'francetransactions-pea.html').read_bytes();url='https://www.francetransactions.com/bourse/etf/vaneck-quantum-computing-ucits-etf-a-ie0007y8y157.html'
+  self.assertEqual(parse_francetransactions_pea(body,'IE0007Y8Y157',url),{'pea':False})
+  self.assertEqual(parse_francetransactions_pea(body.replace('❌'.encode(),'✅'.encode(),1),'IE0007Y8Y157',url),{'pea':True})
+  with self.assertRaises(ValueError):parse_francetransactions_pea(body+body,'IE0007Y8Y157',url)
+  with self.assertRaises(ValueError):parse_francetransactions_pea(body.replace('Éligibilité PEA'.encode(),'Éligibilité PEA PME'.encode()),'IE0007Y8Y157',url)
+  with self.assertRaises(ValueError):parse_francetransactions_pea(body,'IE0007Y8Y157',url.replace('francetransactions.com','example.com'))
+  self.assertEqual(parse_francetransactions_pea(body.replace('❌'.encode(),b'-',1),'IE0007Y8Y157',url),{})
  def extra(self,change):
   soup=BeautifulSoup(EXTRA,'html.parser');state=json.loads(soup.script.string);change(state);soup.script.string=json.dumps(state);return str(soup).encode()
  def test_real_negative_and_positive_boolean(self):

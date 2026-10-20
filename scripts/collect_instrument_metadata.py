@@ -255,6 +255,26 @@ def parse_extraetf_pea(body,isin,url):
     return {'pea':value} if type(value)is bool else {}
 
 
+def parse_francetransactions_pea(body,isin,url):
+    """An explicit tax cell in the fund's own identified profile table."""
+    from bs4 import BeautifulSoup
+    if not re.fullmatch(r'https://www\.francetransactions\.com/bourse/etf/[a-z0-9-]+-'+isin.lower()+r'\.html',url):raise ValueError('Wrong French fund profile reference')
+    soup=BeautifulSoup(body,'html.parser');profiles=[]
+    for table in soup.select('table.spip'):
+        headers=[h.get_text(' ',strip=True) for h in table.select('thead th')]
+        if len(headers)!=1 or not headers[0].startswith('Fiche fonds '):continue
+        rows=[]
+        for row in table.select('tbody > tr'):
+            cells=row.find_all(['td','th'],recursive=False)
+            if len(cells)==2:rows.append([c.get_text(' ',strip=True) for c in cells])
+        identities=[value for key,value in rows if key=='Code ISIN']
+        if identities==[isin]:profiles.append(rows)
+    if len(profiles)!=1:raise ValueError('Missing or ambiguous French fund identity table')
+    values=[value for key,value in profiles[0] if key=='Éligibilité PEA']
+    if len(values)!=1:raise ValueError('Missing or duplicate French PEA statement')
+    return {'pea':values[0] in ('✅','Oui')} if values[0] in ('✅','❌','Oui','Non') else {}
+
+
 def parse_quantalys_pea(body,isin,url):
     """The public fund's own characteristics panel, never a screener or PEA-PME row."""
     from bs4 import BeautifulSoup
@@ -592,6 +612,7 @@ def collect(source,now,fetch=download,on_document=None):
                 elif urlsplit(url).hostname=='www.justetf.com':fields=parse_justetf(body,source['isin'])
                 elif urlsplit(url).hostname=='www.quantalys.com':fields=parse_quantalys_pea(body,source['isin'],url)
                 elif urlsplit(url).hostname=='extraetf.com':fields=parse_extraetf_pea(body,source['isin'],url)
+                elif urlsplit(url).hostname=='www.francetransactions.com':fields=parse_francetransactions_pea(body,source['isin'],url)
                 elif urlsplit(url).hostname in ('bourse.fortuneo.fr','www.boursedirect.fr'):fields=parse_broker_pea(body,source['isin'])
                 else:fields=parse_json(body,source['isin']) if body.lstrip().startswith(b'{') else parse_text(text_of(body),source['isin'])
             except ValueError as error:

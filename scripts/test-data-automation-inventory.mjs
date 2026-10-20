@@ -28,6 +28,10 @@ assert.equal(report.summary.peaQualified+report.summary.peaRemaining,report.pea.
 assert(report.fields.every(f=>f.qualification==='source-configuration-only'))
 assert(report.registries.some(r=>r.path==='src/data/automated-instrument-metadata.json'&&r.mode==='scheduled-output'))
 assert(report.registries.some(r=>r.path==='src/pages/portfolio-generator/theses.js'))
+assert(report.registries.some(r=>r.path==='src/pages/dca-profiles/catalog.json'),'page-specific projections must remain in the inventory')
+const held=peaInventory({a:{pea:proof}},{a:{errors:[{field:'pea',qualificationRequired:true,sources:[{value:true},{value:false}]}]}})[0]
+assert.equal(held.qualified,false,'a retained proof cannot resolve a known conflict')
+assert.equal(held.value,null)
 for(const field of report.fields)assert.equal(new Set(field.numericPaths).size,field.numericPaths.length)
 assert(report.fields.some(f=>f.numericPaths.some(p=>p.includes('[]'))),'array paths must be compacted without losing their numeric nature')
 console.log('Inventory: writer allowlists, null/false/proof semantics, source conflicts, coverage and array paths passed.')

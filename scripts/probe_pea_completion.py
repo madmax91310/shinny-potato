@@ -13,7 +13,7 @@ def main():
  selected=[]
  for source in sources:
   if source['isin'] in records and 'pea' in records[source['isin']] and source['isin'] not in ['IE000DQLYVB9','FR0011550185']:continue
-  source=dict(source);source['urls']=[u for u in source['urls']if u.startswith('https://etf.dws.com/api/pdp/fr-fr/etf/') or u.startswith('https://extraetf.com/fr/etf-profile/')]
+  source=dict(source);source['urls']=[u for u in source['urls']if u.startswith('https://etf.dws.com/api/pdp/fr-fr/etf/') or u.startswith('https://extraetf.com/fr/etf-profile/') or u.startswith('https://www.francetransactions.com/bourse/etf/')]
   extra='https://extraetf.com/fr/etf-profile/'+source['isin']
   if extra not in source['urls']:source['urls'].append(extra)
   selected.append(source)
