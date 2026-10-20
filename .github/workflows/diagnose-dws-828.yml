@@ -1,0 +1,49 @@
+name: Inspect DWS fund-position diagnostics
+on:
+  push:
+    branches: [codex/diagnose-dws-828]
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-26.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - run: pip install beautifulsoup4==4.15.0
+      - run: |
+          python3 - <<'PY'
+          import sys,json,hashlib
+          from pathlib import Path
+          from concurrent.futures import ThreadPoolExecutor
+          sys.path.insert(0,"scripts")
+          from data_automation import get_text
+          sources={}
+          for path in ["scripts/dca-complete-holdings-sources.json","scripts/generated-holdings-sources.json"]:
+              sources.update(json.loads(Path(path).read_text()))
+          def inspect(item):
+              isin,c=item
+              url=c["sourceUrl"].rsplit("/",1)[0]+"/holdings"
+              try:
+                  raw=get_text(url,("application/json",),25000000)
+                  body=json.loads(raw)
+                  assert len(body["tables"])==1
+                  table=body["tables"][0]
+                  rows=table["values"]
+                  funds=[{"isin":p["header"]["value"],"name":p["column_0"]["value"],"weightPct":p["column_1"]["sortValue"],"type":p["column_5"]["value"]} for p in rows if p["column_5"]["value"] in ("Mutual Fund","Warrants")]
+                  return {"isin":isin,"sourceUrl":url,"sha256":hashlib.sha256(raw.encode()).hexdigest(),"disclaimers":table.get("disclaimers"),"positions":len(rows),"funds":funds}
+              except Exception as e:return {"isin":isin,"error":str(e)}
+          items=[item for item in sources.items() if item[1].get("parser")=="dws"]
+          report=list(ThreadPoolExecutor(max_workers=6).map(inspect,items))
+          Path("test-artifacts").mkdir(exist_ok=True)
+          Path("test-artifacts/dws-fund-positions.json").write_text(json.dumps(report,ensure_ascii=False,indent=2))
+          for item in report:print(json.dumps(item,ensure_ascii=False))
+          assert report and not any("error" in row for row in report)
+          
+          PY
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: dws-fund-position-diagnostics
+          path: test-artifacts/dws-fund-positions.json
+          retention-days: 14
