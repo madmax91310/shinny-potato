@@ -12,6 +12,7 @@ from data_automation import UTC, write_json_atomic
 from issuer_documents import download, pdf_text
 from issuer_routes import vaneck_factsheet_candidates
 from metadata_transport import TRANSPORT
+from metadata_incidents import qualification_failures, report_incidents
 ROOT=Path(__file__).resolve().parents[1]
 FIELDS=('distribution','domicile','replicationMethod','pea','currencyHedge','listings')
 # Thresholds come from the single freshness policy (src/data/freshness-policy.json),
@@ -664,7 +665,7 @@ def collect(source,now,fetch=download,on_document=None):
         if any(url not in observed for url in urls) or len({observed[url] for url in urls if url in observed})!=1:
             values.pop(field,None)
             errors.append({'sourceUrl':urls[0],'field':field,'qualificationRequired':True,'error':'Qualification de publication requise : contradiction entre sources non résolue ; aucune valeur choisie par défaut.','sources':hold['sources']})
-    return values,errors
+    return values,qualification_failures(errors)
 
 def field_diagnostics(source, values, failures, old, now):
     """Separate the attempt date from actual field evidence and retained values."""
@@ -673,11 +674,13 @@ def field_diagnostics(source, values, failures, old, now):
     for field in FIELDS:
         observed=values.get(field)
         retained=old.get(field,{})
+        conflict=next((failure for failure in failures if failure.get('qualificationRequired') and failure.get('field')==field),None)
         result[field]={'status':'observed' if observed else 'retained' if retained else 'unobserved',
+            'category':None if observed else 'source-conflict' if conflict else 'source-unavailable' if errors else 'missing-field',
             'lastAttemptAt':now.isoformat(),
             'lastSuccessAt':(observed or retained).get('checkedAt'),
             'sourceUrls':list(source['urls']),
-            'cause':None if observed else 'No exact field evidence extracted from the configured sources; an absent statement does not mean false.',
+            'cause':None if observed else conflict['error'] if conflict else 'No exact field evidence extracted from the configured sources; an absent statement does not mean false.',
             'sourceErrors':[] if observed else errors}
     return result
 
@@ -692,7 +695,7 @@ def main():
     errors=[];updated=[];successes=[];within_grace=[]
     with ThreadPoolExecutor(max_workers=6) as pool:
         for isin,values,failures in pool.map(one,sources):
-            errors.extend({'id':f"{isin}:{failure['field']}:qualification",'field':failure['field'],'error':failure['error']} for failure in failures if failure.get('qualificationRequired'))
+            errors.extend({**failure,'id':f"{isin}:{failure['field']}:qualification",'lastAttemptAt':now.isoformat()} for failure in failures if failure.get('qualificationRequired'))
             old=records.get(isin,{})
             for field,value in values.items():
                 if value['checkedAt']>=old.get(field,{}).get('checkedAt',''):old[field]=value
@@ -715,8 +718,11 @@ def main():
                     'lastSuccessAt':old[field].get('checkedAt'),'lastAttemptAt':now.isoformat()})
     if a.apply:
         write_json_atomic(path,records);write_json_atomic(status_path,status)
+    errors=report_incidents(errors)
+    failed={error['id'] for error in errors}
+    successes=list({item['id']:item for item in successes if item['id'] not in failed}.values())
     write_json_atomic(a.output,{'checkedAt':now.isoformat(),'updated':updated,'successes':successes,'errors':errors,'inactive':within_grace,'pending':{isin:s['pending'] for isin,s in status.items() if s['pending']}})
-    print(f'Metadata: {len(updated)}/{len(sources)} observed instruments; {len(errors)} failed renewals.')
+    print(f'Metadata: {len(updated)}/{len(sources)} instruments with observed fields; {len(errors)} distinct field incidents.')
     if errors:raise SystemExit(1)
 if __name__=='__main__':main()
 

@@ -7,6 +7,10 @@ on:
     branches: [master]
     paths:
       - 'scripts/collect_dca_complete_holdings.py'
+      - 'scripts/collect_physical_holdings.py'
+      - 'scripts/lifestrategy_holdings.py'
+      - 'scripts/test_lifestrategy_holdings.py'
+      - 'scripts/test_physical_holdings.py'
       - 'scripts/build-automation-targets.mjs'
       - 'scripts/dca-complete-holdings-sources.json'
       - '.github/workflows/update-qualified-exposures.yml'
@@ -20,6 +24,10 @@ on:
       - 'scripts/derive-exposure-sleeves.mjs'
       - 'scripts/dca-equity-identities.json'
       - 'scripts/collect_dca_complete_holdings.py'
+      - 'scripts/collect_physical_holdings.py'
+      - 'scripts/lifestrategy_holdings.py'
+      - 'scripts/test_lifestrategy_holdings.py'
+      - 'scripts/test_physical_holdings.py'
       - 'scripts/collect_dws_etf.py'
       - 'scripts/collect_ssga_etf.py'
       - 'scripts/test_dca_dws_complete.py'
@@ -35,7 +43,7 @@ permissions:
 jobs:
   refresh:
     runs-on: ubuntu-24.04
-    timeout-minutes: 20
+    timeout-minutes: 30
     concurrency:
       group: active-market-data-${{ github.event_name == 'pull_request' && format('{0}-{1}', github.workflow, github.ref) || 'production' }}
       cancel-in-progress: false
@@ -82,6 +90,8 @@ jobs:
       - run: python -m unittest discover -s scripts -p "test_exposure_sleeves.py"
       - name: Validate complete DWS parser
         run: python -m unittest discover -s scripts -p "test_dca*py"
+      - name: Validate complete physical issuer portfolios
+        run: python -m unittest discover -s scripts -p "test_physical_holdings.py" && python -m unittest discover -s scripts -p "test_lifestrategy_holdings.py"
       - name: Validate DCA observations
         run: node scripts/build-dca-exposures.mjs && npm run test:dca
       - name: "Validate observations: node scripts test-qualified-exposures.mjs"
@@ -94,6 +104,7 @@ jobs:
         run: |
           npx playwright install --with-deps chromium
           node scripts/playwright-live-data-connections.mjs
+          node scripts/playwright-live-data-connections.mjs --physical
       - uses: actions/upload-artifact@v7.0.1
         if: always()
         with:

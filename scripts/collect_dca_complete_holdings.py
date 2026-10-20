@@ -59,6 +59,9 @@ def main():
     def one(item):
         isin,c=item
         try:
+            from collect_physical_holdings import COLLECTORS
+            if c.get('parser') in COLLECTORS:
+                return isin, (COLLECTORS[c['parser']](c, now), []), None
             if c.get('parser') == 'ssga':
                 from collect_ssga_etf import parse_page, parse_holdings, get_xlsx, Inputs
                 from urllib.parse import urljoin
@@ -87,8 +90,9 @@ def main():
             h['sha256']=hashlib.sha256(raw.encode()).hexdigest()
             return isin,(h,securities),None
         except Exception as e:return isin,None,str(e)
+    direct={isin:c for isin,c in config.items() if c.get('parser')!='lifestrategy-lookthrough'}
     with ThreadPoolExecutor(max_workers=6) as pool:
-        for isin,result,error in pool.map(one,config.items()):
+        for isin,result,error in pool.map(one,direct.items()):
             if error:errors[isin]=error;continue
             h,securities=result
             if previous.get(isin,{}).get('asOf','')>h['asOf']:errors[isin]='Date regression';continue
@@ -96,6 +100,16 @@ def main():
             for r in securities:
                 if r['isin'] not in wanted:continue
                 if r['isin'] not in evidence or evidence[r['isin']]['asOf']<h['asOf']:evidence[r['isin']]={**r,'asOf':h['asOf'],'checkedAt':now.isoformat(),'sourceUrl':h['sourceUrl']}
+    derived={isin:c for isin,c in config.items() if c.get('parser')=='lifestrategy-lookthrough'}
+    if derived:
+        from lifestrategy_holdings import derive
+        records=json.loads((ROOT/'src/data/lifestrategy.json').read_text())
+        for isin in derived:
+            try:
+                h=derive(isin,records[isin],{**previous,**fresh},errors,now)
+                if previous.get(isin,{}).get('asOf','')>h['asOf']:raise ValueError('Date regression')
+                fresh[isin]={**h,'checkedAt':now.isoformat()}
+            except Exception as e:errors[isin]=str(e)
     if args.apply:
         write_json_atomic(path,{**previous,**fresh})
         ep=ROOT/'src/data/dca-security-classifications.json';old=json.loads(ep.read_text()) if ep.exists() else {}

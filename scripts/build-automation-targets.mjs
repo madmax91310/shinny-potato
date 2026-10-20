@@ -7,6 +7,9 @@ import {getInstrumentFacts} from '../src/data/instrument-facts.js'
 import METADATA from '../src/data/automated-instrument-metadata.json' with {type:'json'}
 import {PEA_REVIEWS_BY_ISIN} from '../src/data/instrument-pea.js'
 const existing=JSON.parse(readFileSync('scripts/dca-complete-holdings-sources.json'))
+const issuerShares=new Map(['amundi-etf','additional-etf-sources','exposure-etf-expansion','non-bond-expansion-sources'].flatMap(file=>
+ JSON.parse(readFileSync(`scripts/${file}.json`)).instruments).map(share=>[share.isin,share]))
+const amundiShares=new Set(JSON.parse(readFileSync('scripts/amundi-etf.json')).instruments.map(share=>share.isin))
 // Candidate rows the metadata collector must find in the issuer's own document before any
 // registry learns them: a verified row for the same venue, ticker and currency takes precedence.
 const candidates=Object.fromEntries(JSON.parse(readFileSync('scripts/listing-candidates.json')).candidates.map(c=>[c.isin,c.rows]))
@@ -56,12 +59,29 @@ for(const [isin,r] of Object.entries(AUTOMATED_ETF)) {
  const name=INSTRUMENTS_BY_ISIN[isin]?.name??''
  if(/\b(?:ETC|ETN|ETP)\b|bond|treasury|govt|overnight|court terme/i.test(name))continue
  const url=r.sourceUrl??''
+ const share=issuerShares.get(isin)
  const method=r.characteristics?.replicationMethod??facts.replicationMethod??''
  if(!/physic|physisch|physique|direct replication/i.test(method) || /synthe|swap|indirect/i.test(method))continue
- if(url.includes('blackrock.com/varnish-api/') && /portfolioId=\d+/.test(url))holdings[isin]={isin,name,url:url.replace(/component=[^&]+/,'component=keyFundFacts%2Choldings.all')}
+ if(['IE00BMVB5K07','IE00BMVB5M21','IE00BMVB5P51','IE00BMVB5R75'].includes(isin))holdings[isin]={isin,name,currency:'EUR',parser:'lifestrategy-lookthrough'}
+ else if(url.includes('blackrock.com/varnish-api/') && /portfolioId=\d+/.test(url))holdings[isin]={isin,name,url:url.replace(/component=[^&]+/,'component=keyFundFacts%2Choldings.all')}
  else if(/^https:\/\/etf\.dws\.com\/api\/pdp\/en-gb\/etf\//.test(url))holdings[isin]={isin,name,currency:r.aum?.currency,parser:'dws',sourceUrl:url}
  else if(/^https:\/\/www\.ssga\.com\/[^?#]+\/etfs\//.test(url))holdings[isin]={isin,name,currency:r.aum?.currency,parser:'ssga',sourceUrl:url}
+ else if(/^https:\/\/globalxetfs\.eu\/funds\/(?:botz|bug|copx|silv)\/?$/.test(url))holdings[isin]={isin,name,currency:'USD',parser:'globalx-complete',sourceUrl:url}
+ else if(share?.parser==='vaneck'&&share.pageUrl&&share.apiTicker)holdings[isin]={isin,name,currency:share.currency,parser:'vaneck-complete',pageUrl:share.pageUrl,apiTicker:share.apiTicker}
+ else if(share&&(amundiShares.has(isin)||share.parser==='amundi-expansion'))holdings[isin]={isin,name,currency:share.currency,parser:'amundi-complete'}
+ else if(share?.productCode&&/vanguard/.test(share.parser??''))holdings[isin]={isin,name,currency:share.currency,productCode:share.productCode,parser:'vanguard-complete'}
+ else if(['IE000716YHJ7','IE0000QLH0G6','IE000L2SA8K5'].includes(isin)&&share)holdings[isin]={isin,name,currency:share.currency,parser:'invesco-complete',sourceUrl:share.sourceUrl}
+ else if(isin==='IE0003R87OG3')holdings[isin]={isin,name,currency:'USD',parser:'avantis-complete',
+  sourceUrl:share.sourceUrl,
+  holdingsUrl:'https://www.avantisinvestors.com/ucitsetf/en-de/total-holdings/295032351307042/'}
 }
+// Exact fund-level classes already qualified in collect_vanguard_sleeves.py.
+// These dependencies are not new user catalogue products.
+for(const [isin,productCode,name]of [
+ ['IE00BFMXYX26',9674,'Vanguard FTSE Japan UCITS ETF (USD) Accumulating'],
+ ['IE00BK5BQZ41',9676,'Vanguard FTSE Developed Asia Pacific ex Japan UCITS ETF (USD) Accumulating'],
+ ['IE00BKX55R35',9523,'Vanguard FTSE North America UCITS ETF']])
+ holdings[isin]={isin,name,productCode,currency:'USD',parser:'vanguard-complete',catalog:false}
 writeFileSync('scripts/generated-holdings-sources.json',JSON.stringify(holdings,null,2)+'\n')
 writeFileSync('scripts/instrument-metadata-sources.json',JSON.stringify({instruments:metadata},null,2)+'\n')
 console.log(`Automatic targets: ${metadata.length} metadata instruments, ${Object.keys(holdings).length} additional complete holdings sources.`)
