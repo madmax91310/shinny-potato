@@ -1,0 +1,33 @@
+name: Validate automation lots 1 to 5
+on:
+  push:
+    branches: [feat/automation-lots-1-5]
+  pull_request:
+    paths:
+      - 'scripts/*automation_lots*'
+      - '.github/workflows/validate-automation-lots.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  sources:
+    runs-on: ubuntu-26.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: '3.12'
+      - run: pip install beautifulsoup4==4.15.0
+      - run: sudo apt-get update -qq && sudo apt-get install -y poppler-utils
+      - run: python scripts/probe_automation_lots.py
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: automation-lots-manifest
+          path: test-artifacts/automation-lots/manifest.json
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: automation-lots-sources
+          path: test-artifacts/automation-lots
