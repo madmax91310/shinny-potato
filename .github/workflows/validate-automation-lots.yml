@@ -68,7 +68,7 @@ jobs:
     runs-on: ubuntu-26.04
     timeout-minutes: 20
     permissions:
-      contents: write
+      contents: read
     steps:
       - uses: actions/checkout@v7.0.1
       - uses: actions/setup-node@v7.0.0
@@ -89,18 +89,6 @@ jobs:
       - run: npx playwright install --with-deps chromium
       - run: node scripts/playwright-live-data-connections.mjs --topix
       - run: node scripts/playwright-data-automation-inventory.mjs
-      - name: Record validated index observations on the feature branch
-        if: github.event_name == 'push' && github.ref == 'refs/heads/feat/automation-lots-1-5'
-        run: |
-          git fetch origin feat/automation-lots-1-5
-          test "$(git rev-parse origin/feat/automation-lots-1-5)" = "$GITHUB_SHA"
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add src/data/dca-complete-holdings.json src/data/dca-holdings-status.json
-          if ! git diff --cached --quiet; then
-            git commit -m 'Record qualified TOPIX weights and explicit unidentified exposure'
-            git push origin HEAD:feat/automation-lots-1-5
-          fi
       - uses: actions/upload-artifact@v7.0.1
         if: always()
         with:

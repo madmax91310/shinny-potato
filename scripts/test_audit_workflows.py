@@ -131,6 +131,8 @@ class WorkflowContracts(unittest.TestCase):
             self.assertIn('producer: '+filename,workflow)
             self.assertIn('uses: ./.github/workflows/publish-validated-data.yml',workflow)
             self.assertTrue(paths,filename)
+            committed=re.findall(r'src/data/[a-z0-9-]+\.json',next((line for line in workflow.splitlines() if 'bash scripts/commit-validated-data.sh' in line),''))
+            self.assertTrue(set(committed)<=set(paths),(filename,set(committed)-set(paths)))
             for path in paths:self.assertTrue(path in workflow or ('VALIDATED_PATHS: src/data ' in workflow and path.startswith('src/data/')), (filename,path))
         self.assertEqual(set(registry),{name for name,c in REGISTRY.items() if c.get('publishes') is not False and name!='update-editorial-radar.yml'})
 

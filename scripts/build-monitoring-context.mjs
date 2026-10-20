@@ -21,13 +21,14 @@ export function monitoringContext(review, households = HOUSEHOLD_STATISTICS) {
     alerts: [...rows.filter(row => ['stale', 'expired', 'future-date'].includes(row.category)).map(project), ...fallbacks] }
 }
 // Field-level evidence catches retained failures even when a workflow succeeded.
-export function fieldAlerts(report) {
+export function fieldAlerts(report,entities=[]) {
   const invalid=new Set(['check-overdue','publication-old','invalid-date','future-date','undated-check','undated-observation'])
+  const toolsFor=row=>{const tools=[...new Set(entities.filter(e=>e.aliases?.includes(row.id)).flatMap(e=>e.tools??[]))];return tools.length?tools:row.tools??[]}
   return report.rows.filter(r=>r.present&&(invalid.has(r.state)||r.diagnostic?.code==='retained-source-failure')).map(r=>({
     id:`${r.type}:${r.id}:${r.field}`, name:r.name, aliases:[r.id], field:r.label??r.field,
     kind:r.diagnostic?.code==='retained-source-failure'?'collection':'freshness',
     cause:r.diagnostic?.reason??`${r.state}; dernière observation conservée à sa date d’origine.`,
-    category:r.state, tools:r.tools??[], impactScope:'asset', sourceUrls:r.sourceUrl?[r.sourceUrl]:[],
+    category:r.state, tools:toolsFor(r), impactScope:'asset', sourceUrls:r.sourceUrl?[r.sourceUrl]:[],
     checkedAt:r.checkedAt??null, asOf:r.asOf??null, lastSuccessAt:r.checkedAt??null,
     evaluatedAt:report.checkedAt, to:'/donnees-a-revoir'
   }))
@@ -35,7 +36,7 @@ export function fieldAlerts(report) {
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
   const context = monitoringContext(buildReview(parisToday()))
   context.historyAlerts = historyAlerts(context.today, context.entities)
-  context.fieldAlerts = fieldAlerts(buildAssetFieldReport(context.today))
+  context.fieldAlerts = fieldAlerts(buildAssetFieldReport(context.today),context.entities)
   const output = JSON.stringify(context, null, 2) + '\n'
   if (process.argv[2]) writeFileSync(process.argv[2], output)
   else process.stdout.write(output)
