@@ -22,7 +22,7 @@ concurrency:
   # Queue production snapshots, coalescing only data commits when a run starts.
   # No active validation or publication is cancelled by a collector.
   group: pages-validation-${{ github.event_name == 'pull_request' && github.ref || (github.ref == 'refs/heads/master' && 'production' || github.run_id) }}
-  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+  cancel-in-progress: false
   queue: max
 
 jobs:
