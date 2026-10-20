@@ -3,6 +3,9 @@ import argparse
 import datetime as dt
 import base64
 import json
+import io
+import time
+import zipfile
 import os
 import pathlib
 import re
@@ -180,6 +183,39 @@ def include_configured_workflows(state):
         entries.setdefault(workflow, {'name':name, 'status':'unknown', 'collectionStatus':'unknown',
             'validationStatus':'unknown', 'recordingStatus':'not-run', 'publicationStatus':'not-run', 'dataFailures':{}, 'failures':[]})
     return result
+
+
+def download_status_artifact(repo, artifacts, name, directory, timeout=45, runner=subprocess.run, sleep=time.sleep):
+    """Select one immutable artifact ID, including after reruns, and retry safe reads.
+
+    A download failure becomes a local evidence error; it must not abort monitoring
+    for all other collectors. Never combine same-name archives from several attempts.
+    """
+    candidates = [a for a in artifacts if a['name'] == name and not a.get('expired')]
+    if not candidates:
+        return False
+    artifact = max(candidates, key=lambda a: a['id'])
+    if artifact.get('size_in_bytes', 0) > 256_000_000:
+        raise ValueError('Automation artifact exceeds download limit')
+    for attempt in range(2):
+        try:
+            response = runner(['gh', 'api', f'/repos/{repo}/actions/artifacts/{artifact["id"]}/zip'],
+                              check=True, capture_output=True, timeout=timeout)
+            break
+        except (subprocess.CalledProcessError, subprocess.TimeoutExpired):
+            if attempt:
+                raise
+            sleep(1)
+    root = pathlib.Path(directory).resolve()
+    with zipfile.ZipFile(io.BytesIO(response.stdout)) as archive:
+        if sum(item.file_size for item in archive.infolist()) > 512_000_000:
+            raise ValueError('Automation artifact exceeds extraction limit')
+        for item in archive.infolist():
+            target = (root / item.filename).resolve()
+            if not target.is_relative_to(root):
+                raise ValueError('Invalid automation artifact path')
+        archive.extractall(root)
+    return True
 
 
 def report_files(directory):
@@ -483,11 +519,18 @@ def main():
             available = [a for a in artifacts if a['name'] == artifact_name and not a['expired']]
             if available:
                 with tempfile.TemporaryDirectory() as directory:
-                    subprocess.run(['gh', 'run', 'download', str(run['id']), '--repo', repo,
-                                    '--name', artifact_name, '--dir', directory],
-                                   check=True, capture_output=True, timeout=90)
-                    for path in report_files(directory):
-                        reports.append(read_report_safely(path, run['path'].split('/')[-1]))
+                    key = 'artifact-read:' + artifact_name
+                    try:
+                        download_status_artifact(repo, artifacts, artifact_name, directory)
+                        paths = list(report_files(directory))
+                        if not paths:
+                            raise ValueError('Collector report missing from artifact')
+                        for path in paths:
+                            reports.append(read_report_safely(path, run['path'].split('/')[-1]))
+                        reports.append({'successes': [{'id': key}], 'errors': []})
+                    except (subprocess.SubprocessError, OSError, ValueError, zipfile.BadZipFile) as error:
+                        reports.append({'successes': [], 'errors': [{'id': key, 'field': 'Rapport de collecte',
+                            'error': 'Artifact unavailable: ' + type(error).__name__}]})
         state = update_status(state, run, jobs, reports)
         workflow = run['path'].split('/')[-1]
         row = state.get('workflows', {}).get(workflow, {})
@@ -495,12 +538,16 @@ def main():
             receipts = api(f'/actions/runs/{run["id"]}/artifacts?per_page=100')['artifacts']
             if any(a['name'] == 'data-publication-receipt' and not a['expired'] for a in receipts):
                 with tempfile.TemporaryDirectory() as directory:
-                    subprocess.run(['gh', 'run', 'download', str(run['id']), '--repo', repo,
-                                    '--name', 'data-publication-receipt', '--dir', directory],
-                                   check=True, capture_output=True, timeout=45)
-                    receipt = json.loads((pathlib.Path(directory) / 'data-publication-receipt.json').read_text())
-                    if receipt.get('schemaVersion') == 1 and isinstance(receipt.get('files'), dict):
+                    try:
+                        download_status_artifact(repo, receipts, 'data-publication-receipt', directory)
+                        receipt = json.loads((pathlib.Path(directory) / 'data-publication-receipt.json').read_text())
+                        if not isinstance(receipt, dict) or receipt.get('schemaVersion') != 1 or not isinstance(receipt.get('files'), dict):
+                            raise ValueError('Invalid publication receipt')
                         row['publicationReceipt'] = receipt
+                        row.pop('publicationEvidenceError', None)
+                    except (subprocess.SubprocessError, OSError, ValueError, zipfile.BadZipFile) as error:
+                        row['publicationEvidenceError'] = 'Publication receipt unavailable: ' + type(error).__name__
+                        print(f'Run {run["id"]}: {row["publicationEvidenceError"]}; other collectors remain observable.')
         if row.get('runId') == run['id'] and not row.get('publicationReceipt') and row.get('recordingStatus') == 'success':
             receipt = legacy_publication_receipt(repo, jobs, api)
             if receipt:

@@ -1,4 +1,10 @@
 import unittest
+import io
+import json
+import pathlib
+import subprocess
+import tempfile
+import zipfile
 from unittest.mock import Mock
 from publish_automation_status import update_status, read_report, publication_summary, repair_publication_history, include_configured_workflows, normalize_report
 
@@ -351,3 +357,35 @@ class LargeStatusFile(unittest.TestCase):
   self.assertEqual(calls,['/git/blobs/observed-status-sha'])
   self.assertEqual(file['sha'],'observed-status-sha')
 
+
+class ArtifactDownloadTests(unittest.TestCase):
+ def test_reruns_download_only_latest_immutable_id(self):
+  from publish_automation_status import download_status_artifact
+  body=io.BytesIO()
+  with zipfile.ZipFile(body,'w') as archive:archive.writestr('data-publication-receipt.json',json.dumps({'schemaVersion':1,'files':{'source':'blob'}}))
+  runner=Mock(return_value=Mock(stdout=body.getvalue()))
+  with tempfile.TemporaryDirectory() as directory:
+   self.assertTrue(download_status_artifact('owner/repo',[{'id':1,'name':'receipt'},{'id':3,'name':'receipt','expired':True},{'id':2,'name':'receipt'}],'receipt',directory,runner=runner))
+   self.assertEqual(json.loads((pathlib.Path(directory)/'data-publication-receipt.json').read_text())['files'],{'source':'blob'})
+  self.assertEqual(runner.call_args.args[0],['gh','api','/repos/owner/repo/actions/artifacts/2/zip'])
+
+ def test_transient_download_retries_exact_id_and_never_invents_evidence(self):
+  from publish_automation_status import download_status_artifact
+  runner=Mock(side_effect=subprocess.CalledProcessError(1,['gh']))
+  with tempfile.TemporaryDirectory() as directory:
+   with self.assertRaises(subprocess.CalledProcessError):
+    download_status_artifact('owner/repo',[{'id':4,'name':'receipt'}],'receipt',directory,runner=runner,sleep=lambda _:None)
+   self.assertEqual(list(pathlib.Path(directory).iterdir()),[])
+  self.assertEqual(runner.call_count,2)
+
+ def test_unavailable_and_unsafe_archives_never_create_a_receipt(self):
+  from publish_automation_status import download_status_artifact
+  runner=Mock()
+  with tempfile.TemporaryDirectory() as directory:
+   self.assertFalse(download_status_artifact('owner/repo',[],'receipt',directory,runner=runner))
+   runner.assert_not_called()
+   body=io.BytesIO()
+   with zipfile.ZipFile(body,'w') as archive:archive.writestr('../receipt.json','{}')
+   runner.return_value=Mock(stdout=body.getvalue())
+   with self.assertRaises(ValueError):download_status_artifact('owner/repo',[{'id':4,'name':'receipt'}],'receipt',directory,runner=runner)
+   self.assertEqual(list(pathlib.Path(directory).iterdir()),[])
