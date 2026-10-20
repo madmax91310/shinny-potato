@@ -13,7 +13,7 @@ if(physical){
  const catalog=JSON.parse(readFileSync('src/pages/dca-profiles/catalog.json'))
  const manifest=JSON.parse(readFileSync('src/pages/dca-profiles/holdings-manifest.json'))
  const shards=new Map()
- for(const [isin,target]of Object.entries(targets).filter(([,r])=>r.parser?.endsWith('-complete'))){
+ for(const [isin,target]of Object.entries(targets).filter(([,r])=>r.catalog!==false&&(r.parser?.endsWith('-complete')||r.parser==='lifestrategy-lookthrough'))){
   const source=raw[isin]
   assert(source?.complete&&source.checkedAt&&source.sha256&&source.rows.length>10,`Missing qualified physical source ${isin}`)
   const asset=Object.keys(catalog).find(key=>catalog[key].isin===isin)
@@ -25,6 +25,11 @@ if(physical){
   assert.equal(projected.rows.length,source.rows.length,`${isin}: truncated physical portfolio`)
   assert.equal(projected.complete,true,`${isin}: full source lost its scope`)
   assert(Math.abs(projected.rows.reduce((sum,r)=>sum+r.weightPct,0)-source.rows.reduce((sum,r)=>sum+r.weightPct,0))<1e-8,`${isin}: NAV weights changed`)
+  if(target.parser==='lifestrategy-lookthrough'){
+   assert.equal(projected.scope,'equity-lookthrough')
+   assert(projected.sourceUrls.length>1,'Look-through dependency provenance must reach the application')
+   assert(projected.rows.reduce((sum,r)=>sum+r.weightPct,0)<85,'LifeStrategy equity sleeve must never be scaled to 100%')
+  }
  }
 }
 const qyld=getInstrumentAnnualPerformance('IE00BM8R0J59')

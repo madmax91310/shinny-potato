@@ -8,6 +8,8 @@ on:
     paths:
       - 'scripts/collect_dca_complete_holdings.py'
       - 'scripts/collect_physical_holdings.py'
+      - 'scripts/lifestrategy_holdings.py'
+      - 'scripts/test_lifestrategy_holdings.py'
       - 'scripts/test_physical_holdings.py'
       - 'scripts/build-automation-targets.mjs'
       - 'scripts/dca-complete-holdings-sources.json'
@@ -23,6 +25,8 @@ on:
       - 'scripts/dca-equity-identities.json'
       - 'scripts/collect_dca_complete_holdings.py'
       - 'scripts/collect_physical_holdings.py'
+      - 'scripts/lifestrategy_holdings.py'
+      - 'scripts/test_lifestrategy_holdings.py'
       - 'scripts/test_physical_holdings.py'
       - 'scripts/collect_dws_etf.py'
       - 'scripts/collect_ssga_etf.py'
@@ -87,7 +91,7 @@ jobs:
       - name: Validate complete DWS parser
         run: python -m unittest discover -s scripts -p "test_dca*py"
       - name: Validate complete physical issuer portfolios
-        run: python -m unittest discover -s scripts -p "test_physical_holdings.py"
+        run: python -m unittest discover -s scripts -p "test_physical_holdings.py" && python -m unittest discover -s scripts -p "test_lifestrategy_holdings.py"
       - name: Validate DCA observations
         run: node scripts/build-dca-exposures.mjs && npm run test:dca
       - name: "Validate observations: node scripts test-qualified-exposures.mjs"
