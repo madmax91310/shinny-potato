@@ -218,6 +218,7 @@ jobs:
       - run: node scripts/test-deploy-scope.mjs
       - run: node scripts/test-pages-snapshot.mjs && node scripts/test-bounded-command.mjs && node scripts/test-data-incidents.mjs
       - run: node scripts/test-fallback-snapshot.mjs
+      - run: node scripts/test-validated-data-publisher.mjs
       - run: node scripts/test-browser-check-error.mjs
       - run: node scripts/test-freshness-policy.mjs
       - run: node scripts/test-benchmark-changes.mjs
