@@ -68,7 +68,7 @@ assert(current.items.some(x => x.id === 'broker:tr:garde' && x.category === 'res
 const datedOffers = Object.values(BROKER_TARIFFS).flatMap(broker => Object.values(broker.fields ?? {}).filter(field => field.until));
 const offerKeys = records => [...new Set(records.map(record => `${record.sourceUrl}|${record.until}`))].sort();
 assert.deepEqual(current.items.filter(x => x.until).map(x => `${x.urls[0]}|${x.until}`).sort(), offerKeys(datedOffers), 'Chaque offre du registre figure une seule fois, même réutilisée dans plusieurs cellules')
-assert.equal(current.archives, 16)
+assert.equal(current.archives, 19, '16 photographies d’indices et 3 relevés QYLD explicitement archivés')
 assert.equal(new Set(current.items.map(x => x.id)).size, current.items.length)
 assert(current.items.every(x => x.to.startsWith('/') && x.reason && x.name && x.field))
 assert.equal(buildReview('2027-01-01').items.filter(x => x.category === 'expired').length, offerKeys(datedOffers.filter(offer => offer.until < '2027-01-01')).length)
@@ -114,7 +114,7 @@ for (const id of ['stoxx600', 'eurostoxx50']) {
   assert.equal(migrated.schedule.find(x => x.metadata.method === net.metadata.method).category, 'current')
 }
 assert.deepEqual(remaining.items.filter(x => x.category === 'reserve').map(x => x.id).sort(), expectedReserves, 'Toutes les preuves non résolues restent visibles')
-assert.equal(remaining.archives, 16, 'La recherche ne doit pas masquer un reliquat en archive')
+assert.equal(remaining.archives, 19, 'La recherche ne doit pas masquer un reliquat en archive')
 console.log(`Revue au ${current.today} : ${current.items.length} éléments, ${expectedReserves.length} réserves, ${offerKeys(datedOffers).length} échéances ; archives séparées : ${current.archives}. Cas limites de dates validés.`)
 console.log(`Revue du ${closure.checkedAt} : ${closure.records.length} contrôles clôturés, ${expectedUndated.length} contrôles non datés et ${expectedReserves.length} réserves conservés ; conventions Price/NET séparées.`)
 
