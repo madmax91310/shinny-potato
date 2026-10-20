@@ -18428,14 +18428,15 @@
           "at": "2026-10-20T15:41:59.189690+00:00",
           "reason": "recording-failed",
           "sourceRunId": 39446835542,
-          "status": "reserved",
-          "ref": "master"
+          "status": "dispatched",
+          "ref": "master",
+          "error": null
         }
       ],
       "reason": "recording-failed",
       "lastSuccessAt": "2026-10-20T15:22:20Z",
       "observedRunId": 39446835542,
-      "status": "reserved",
+      "status": "dispatched",
       "nextAttemptAt": "2026-10-20T16:41:59.189690+00:00"
     },
     "update-instrument-metadata.yml": {
