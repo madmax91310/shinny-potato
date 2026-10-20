@@ -1,0 +1,19 @@
+name: Inspect PEA sources and data inventory
+on:
+  push:
+    branches: [fix/pea-audit-completion]
+    paths: ['.github/workflows/inspect-pea-audit.yml']
+permissions:
+  contents: read
+jobs:
+  snapshot:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - run: git archive HEAD -o /tmp/application-source.tar
+      - uses: actions/upload-artifact@v7.0.1
+        with:
+          name: application-source
+          path: /tmp/application-source.tar
+          retention-days: 7
