@@ -1,0 +1,36 @@
+name: Qualify remaining automation sources
+on:
+  push:
+    branches: [feat/complete-data-automation]
+    paths:
+      - '.github/workflows/qualify-automation-sources.yml'
+      - 'scripts/probe_automation_sources.py'
+permissions:
+  contents: read
+jobs:
+  qualify:
+    runs-on: ubuntu-26.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - run: git fetch origin automation-status:refs/remotes/origin/automation-status
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 24
+      - run: pip install beautifulsoup4==4.15.0
+      - run: sudo apt-get update && sudo apt-get install -y poppler-utils
+      - run: node scripts/data-automation-inventory.mjs --write
+      - run: |
+          node --input-type=module - <<'JS'
+          import {readFileSync,writeFileSync,mkdirSync} from 'node:fs'
+          const d=JSON.parse(readFileSync('public/data/data-automation-inventory.json'))
+          mkdirSync('test-artifacts/automation-source-probe',{recursive:true})
+          writeFileSync('test-artifacts/automation-source-probe/backlog.json',JSON.stringify({summary:d.summary,backlog:d.backlog,pea:d.pea.filter(p=>!p.qualified)},null,2))
+          JS
+      - run: python scripts/probe_automation_sources.py
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: automation-source-qualification
+          path: test-artifacts/automation-source-probe
+          retention-days: 14
