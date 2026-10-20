@@ -6,6 +6,7 @@ import json
 import math
 import re
 from urllib.parse import urljoin, urlsplit
+from urllib.parse import urlencode
 from bs4 import BeautifulSoup
 from issuer_documents import download, document_date, public_page
 
@@ -70,13 +71,14 @@ def globalx_csv(raw, now):
             'AUSTRALIAN DOLLAR', 'SOUTH KOREAN WON', 'KOREAN WON', 'SWEDISH KRONA',
             'DANISH KRONE', 'NEW TAIWAN DOLLAR', 'CHINESE RENMINBI', 'SINGAPORE DOLLAR',
             'SOUTH AFRICAN RAND', 'CHILEAN PESO', 'POLISH ZLOTY',
+            'SWEDISH KRONE', 'MEXICAN PESO', 'PERUVIAN NEW SOL', 'SAUDI RIYAL',
             'OTHER PAYABLE & RECEIVABLES', 'CASH'}
     for row in reader:
         if row['AS_OF_DATE'].startswith('The information contained herein') and not row.get('NAME'):
             continue  # Explicit copyright footer, never a portfolio position.
         dates.add(document_date(row['AS_OF_DATE'], now))
         weight = float(row['NET_ASSETS'])
-        if not math.isfinite(weight) or weight < -0.1:
+        if not math.isfinite(weight) or not -5 <= weight <= 100:
             raise ValueError('Invalid Global X weight')
         total += weight
         if not row['ISIN']:
@@ -105,7 +107,8 @@ def collect_avantis(share, now):
         raise ValueError('Unsupported Avantis share')
     page = download(share['sourceUrl'])
     text = pdf_text(page)
-    if share['isin'] not in text or 'AVWS' not in text or 'Global Small Cap Value' not in text:
+    if (share['isin'] not in text or 'AVWS' not in text or 'Global Small Cap Value' not in text
+            or 'USD - Accumulating' not in text):
         raise ValueError('Avantis exact physical accumulating share not confirmed')
     url = share['holdingsUrl']
     raw = public_page(url)
@@ -183,6 +186,7 @@ VANGUARD_QUERY = '''query CompleteEquityHoldings($portIds: [String!], $lastItemK
 
 def vanguard_pages(pages, share, now):
     rows, dates, totals, cursors, excluded, all_items = [], set(), set(), set(), {}, []
+    positions = set()
     for index, page in enumerate(pages):
         if page.get('errors'):
             raise ValueError('Vanguard holdings query error')
@@ -212,9 +216,18 @@ def vanguard_pages(pages, share, now):
             if not -1 <= weight <= 100:
                 raise ValueError('Invalid Vanguard weight')
             kind = item['securityType']
-            if kind == 'EQ.STOCK':
-                rows.append(dict(isin=item['isin'], name=item['securityLongDescription'], weightPct=weight))
-            elif kind in ('CASH', 'FX.FORWARD', 'EQ.FUTURE'):
+            if kind in ('EQ.STOCK', 'EQ.REIT', 'EQ.DRCPT', 'EQ.PREF', 'EQ.FSH'):
+                if weight < 0:
+                    raise ValueError('Short physical equity position')
+                if weight == 0:
+                    continue  # Worthless/reclaim rows remain counted in the full issuer file.
+                key = (item['isin'], item.get('sedol1'))
+                if key in positions:
+                    raise ValueError('Repeated Vanguard security/listing position')
+                positions.add(key)
+                rows.append(dict(isin=item['isin'], name=item['securityLongDescription'], weightPct=weight,
+                                 sedol=item.get('sedol1')))
+            elif kind in ('CRNY', 'CT.SPOT', 'CT.FOREX', 'CT.PORTSWAP', 'DE.IND', 'EQ.RIGHT', 'EQ.WRT'):
                 excluded[kind] = excluded.get(kind, 0) + weight
             else:
                 raise ValueError('Unqualified Vanguard security type: ' + str(kind))
@@ -223,7 +236,17 @@ def vanguard_pages(pages, share, now):
         raise ValueError('Truncated, changing or mixed-date Vanguard portfolio')
     if not 99 <= sum(item['marketValuePercentage'] for item in all_items) <= 100.5:
         raise ValueError('Incomplete Vanguard NAV weights')
-    return checked_rows(rows, 11), dates.pop(), excluded
+    # One ISIN may trade on multiple venues with different SEDOLs.
+    # Distinct issuer positions are summed by exact ISIN, never by a fuzzy name.
+    aggregated = {}
+    for row in rows:
+        if not ISIN.fullmatch(row['isin'] or ''):
+            raise ValueError('Missing Vanguard positive equity ISIN')
+        if row['isin'] not in aggregated:
+            aggregated[row['isin']] = dict(isin=row['isin'], name=row['name'], weightPct=0, sourcePositions=0)
+        aggregated[row['isin']]['weightPct'] += row['weightPct']
+        aggregated[row['isin']]['sourcePositions'] += 1
+    return checked_rows(list(aggregated.values()), 11), dates.pop(), excluded
 
 
 def collect_vanguard(share, now):
@@ -275,6 +298,67 @@ def collect_invesco(share, now):
                        identitySha256=digest(raw_identity))
 
 
+def vaneck_url(page, share):
+    soup = BeautifulSoup(page, 'html.parser')
+    identities = {tag.get('data-value') for tag in soup.select('[data-value]')
+                  if ISIN.fullmatch(tag.get('data-value', ''))}
+    ticker = soup.select_one('ve-fundticker')
+    country, language = soup.select_one('ve-country'), soup.select_one('ve-language')
+    if (identities != {share['isin']} or not ticker or ticker.get_text(strip=True) != share['apiTicker']
+            or not country or country.get_text(strip=True) != 'uk'
+            or not language or language.get_text(strip=True) != 'en'):
+        raise ValueError('Wrong VanEck exact UCITS share (US tickers are not interchangeable)')
+    blocks = soup.select('section#portfolio ve-holdingsblock')
+    if len(blocks) != 1:
+        raise ValueError('Missing or ambiguous VanEck full holdings widget')
+    block, pageid = blocks[0].get('data-blockid', ''), blocks[0].get('data-pageid', '')
+    if not block.isdigit() or not pageid.isdigit():
+        raise ValueError('Invalid VanEck portfolio widget')
+    return 'https://www.vaneck.com/Main/HoldingsBlock/GetContent/?' + urlencode(
+        dict(blockid=block, pageid=pageid, ticker=share['apiTicker'], reactlang='en', reactctr='uk'))
+
+
+def vaneck_composition(body, share, now):
+    import datetime as dt
+    data = body['data']
+    if (data['Ticker'] != share['apiTicker'] or data['IsTopTen'] is not False
+            or data.get('IsWeightings') or data.get('IndexTicker')
+            or data['Title'] != 'All Holdings (%)'):
+        raise ValueError('Not the exact VanEck full fund portfolio')
+    items = data['Holdings']
+    if int(data['TotalAmount']) != len(items) or len(items) < 11:
+        raise ValueError('Truncated VanEck full portfolio')
+    stamp = document_date(data['AsOfDate'], now)
+    rows, total, excluded = [], 0, {}
+    for item in items:
+        if (item['Ticker'] != share['apiTicker'] or item['PortfolioTicker'] != share['apiTicker']
+                or item['LabelType'] != 'Holdings'
+                or dt.datetime.strptime(item['AsOfDate'], '%m/%d/%y').date().isoformat() != stamp):
+            raise ValueError('Mixed VanEck portfolio identities/dates')
+        weight = float(item['Weight'])
+        if not math.isfinite(weight) or not -5 <= weight <= 100:
+            raise ValueError('Invalid VanEck weight')
+        total += weight
+        if item['AssetClass'] == 'Stock':
+            rows.append(dict(isin=item['ISIN'], name=item['HoldingName'], weightPct=weight))
+        elif item['AssetClass'] == 'Cash':
+            excluded['Cash'] = excluded.get('Cash', 0) + weight
+        else:
+            raise ValueError('Unqualified VanEck asset class: ' + item['AssetClass'])
+    if abs(total - 100) > max(.1, len(items) * .005 + .01):
+        raise ValueError('Incomplete VanEck NAV weights')
+    return checked_rows(rows, 11), stamp, excluded
+
+
+def collect_vaneck(share, now):
+    page = public_page(share['pageUrl'])
+    url = vaneck_url(page, share)
+    raw = download(url)
+    rows, stamp, excluded = vaneck_composition(json.loads(raw), share, now)
+    return observation(rows, stamp, url, raw, identitySourceUrl=share['pageUrl'], identitySha256=digest(page),
+                       excludedWeightPctByType=excluded)
+
+
 COLLECTORS = {'globalx-complete': collect_globalx, 'avantis-complete': collect_avantis,
               'amundi-complete': collect_amundi, 'vanguard-complete': collect_vanguard,
-              'invesco-complete': collect_invesco}
+              'invesco-complete': collect_invesco, 'vaneck-complete': collect_vaneck}

@@ -31,6 +31,7 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_publication_safety.py' && python -m unittest discover -s scripts -p 'test_data_publication.py'
       - run: python -m unittest discover -s scripts -p 'test_audit_workflows.py'
       - run: node scripts/test-pages-snapshot.mjs && node scripts/test-bounded-command.mjs && node scripts/test-data-incidents.mjs && node scripts/test-browser-shards.mjs
+      - run: python -m unittest discover -s scripts -p 'test_physical_holdings.py'
       - run: node scripts/build-automation-targets.mjs
       - name: Qualify complete portfolios against live issuer sources
         continue-on-error: true
