@@ -16,7 +16,7 @@ jobs:
           from pathlib import Path
           out=Path('/tmp/last-pea');out.mkdir()
           ids=['IE000716YHJ7','IE0000QLH0G6','IE0007Y8Y157','IE00BD6FTQ80','IE0003R87OG3','IE000L2SA8K5','IE000DQLYVB9']
-          urls=['https://www.etfjourney.com/fr/etf/'+i for i in ids]+['https://www.centralcharts.com/fr/4759107-invesco-ftse-all-world-ucits-etf/quotes','https://www.francetransactions.com/bourse/etf/vaneck-quantum-computing-ucits-etf-a-ie0007y8y157.html']
+          urls=['https://etfjourney.com/fr/etf/'+i for i in ids]+['https://www.francetransactions.com/bourse/etf/invesco-nasdaq-100-equal-wght-etf-acc-ie000l2sa8k5.html','https://www.francetransactions.com/bourse/etf/vaneck-quantum-computing-ucits-etf-a-ie0007y8y157.html']
           rows=[];denied=set()
           for i,url in enumerate(urls):
             host=urllib.parse.urlsplit(url).hostname
