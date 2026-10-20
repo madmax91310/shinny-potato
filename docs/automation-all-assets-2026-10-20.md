@@ -40,6 +40,8 @@ Après collecte réelle et compilation : 4 015 lignes courantes, 85 raccordement
 
 ## Exploitation des nouveaux raccordements
 
+La recette réelle sur GitHub a constaté HTTP 403 sur les pages WisdomTree avec le téléchargement générique. Le transport des pages est aligné sur le lecteur public à cookies/en-têtes utilisé par les autres collecteurs. Le renouvellement depuis GitHub doit être confirmé ; une observation locale complète ne suffit pas à prouver l’autonomie de cette source en production. Un refus maintenu demeure un incident, sans rajeunissement des données.
+
 Le workflow quotidien `update-qualified-exposures.yml` renouvelle les preuves d'identité (quatre requêtes OpenFIGI au maximum par exécution, sans clé), sonde les parts WisdomTree connues puis collecte les compositions activées. Une correspondance expirée, ambiguë ou contradictoire est rejetée. Le cache ne certifie que les identifiants, jamais une valeur ou un poids courant. Les données précédentes sont conservées en cas d'échec et le statut de collecte garde son incident.
 
 `build-automation-targets.mjs` reconstitue aussi le connecteur Cloud à partir de sa composition qualifiée, pour qu'un build ultérieur ne l'efface pas. Les nouvelles sorties font partie du reçu obligatoire du producteur et du manifeste public. Le bilan/CSV est calculé à la compilation ; il ne s'ajoute pas aux paquets initiaux des outils.

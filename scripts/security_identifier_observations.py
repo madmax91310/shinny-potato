@@ -41,7 +41,7 @@ def mappings(now):
 
 def refresh(now,max_requests=4):
     from collect_wisdomtree_holdings import IDENTITIES,identity_document,identities,rankings,known_shares
-    from issuer_documents import download
+    from issuer_documents import public_page
     from data_automation import write_json_atomic
     cache=json.loads(PATH.read_text())if PATH.exists()else {'schemaVersion':1,'observations':{}}
     known,_=mappings(now)
@@ -62,7 +62,7 @@ def refresh(now,max_requests=4):
     pending=[]
     for share in shares:
         if share.get('documentType')!='wisdomtree-ucits':continue
-        try:pending.extend(rankings(download(share['sourceUrl'],max_bytes=12_000_000).decode())['ranking'])
+        try:pending.extend(rankings(public_page(share['sourceUrl'],max_bytes=12_000_000))['ranking'])
         except Exception as e:print('Identity discovery pending:',share['isin'],str(e)[:200])
     attempts=0;seen=set()
     for r in pending:

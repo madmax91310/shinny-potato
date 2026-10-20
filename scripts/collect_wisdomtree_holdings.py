@@ -7,7 +7,7 @@ import re
 from functools import lru_cache
 from pathlib import Path
 from bs4 import BeautifulSoup
-from issuer_documents import download,document_date
+from issuer_documents import download,document_date,public_page
 from collect_ssga_etf import xlsx_rows
 
 IDENTITIES=[(r['isin'],r['url'])for r in json.loads((Path(__file__).with_name('security-identity-sources.json')).read_text())]
@@ -89,7 +89,7 @@ def parse(page,share,now,mapping,identity_dates):
 
 def collect(share,now):
     from collect_physical_holdings import observation
-    page=download(share['sourceUrl'],max_bytes=12_000_000).decode();mapping={};dates=[];proofs={}
+    page=public_page(share['sourceUrl'],max_bytes=12_000_000);mapping={};dates=[];proofs={}
     for expected,url in IDENTITIES:
         raw=identity_document(url);values,stamp=identities(raw,expected,now)
         if any(k in mapping and mapping[k]!=v for k,v in values.items()):raise ValueError('Contradictory identity sources')
