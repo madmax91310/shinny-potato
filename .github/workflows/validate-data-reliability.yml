@@ -14,9 +14,14 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
       - run: pip install beautifulsoup4==4.15.0
-      - run: sudo apt-get update && sudo apt-get install -y poppler-utils
-      - run: python scripts/probe_physical_sources.py
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: python scripts/probe_extra_sources.py
+      - run: node scripts/probe-browser-sources.mjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:
