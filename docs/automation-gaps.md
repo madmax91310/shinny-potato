@@ -178,7 +178,7 @@ Une valeur absente ne signifie pas absence de plafond. Les offres bonus, les con
 
 | Contrat | Fonds | Champ | Dernier contrôle des sources | Motif |
 |---|---|---|---|---|
-| Lucya Cardif | Fonds général | Plafond en euros | 2026-10-19 | Plafond unique en euros non qualifié ; les bornes ou clauses conditionnelles restent dans les conditions du fonds. |
-| Lucya Cardif | Euro Private Strategies | Plafond en euros | 2026-10-19 | Plafond unique en euros non qualifié ; les bornes ou clauses conditionnelles restent dans les conditions du fonds. |
-| Placement-direct Vie | Actif général SwissLife | Quote-part maximale | 2026-10-19 | La documentation de Placement-direct Vie ne chiffre pas la quote-part maximale actuelle de cet actif général ; les annonces du contrat distinct Placement-direct Euro+ ne s’y appliquent pas. |
-| Placement-direct Vie | Actif général SwissLife | Plafond en euros | 2026-10-19 | Plafond unique en euros non qualifié ; les bornes ou clauses conditionnelles restent dans les conditions du fonds. |
+| Lucya Cardif | Fonds général | Plafond en euros | 2026-10-20 | Plafond unique en euros non qualifié ; les bornes ou clauses conditionnelles restent dans les conditions du fonds. |
+| Lucya Cardif | Euro Private Strategies | Plafond en euros | 2026-10-20 | Plafond unique en euros non qualifié ; les bornes ou clauses conditionnelles restent dans les conditions du fonds. |
+| Placement-direct Vie | Actif général SwissLife | Quote-part maximale | 2026-10-20 | La documentation de Placement-direct Vie ne chiffre pas la quote-part maximale actuelle de cet actif général ; les annonces du contrat distinct Placement-direct Euro+ ne s’y appliquent pas. |
+| Placement-direct Vie | Actif général SwissLife | Plafond en euros | 2026-10-20 | Plafond unique en euros non qualifié ; les bornes ou clauses conditionnelles restent dans les conditions du fonds. |
