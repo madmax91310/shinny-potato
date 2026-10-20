@@ -21,6 +21,11 @@ class IrokoSnapshotTests(unittest.TestCase):
         self.assertEqual(next(v['value'] for v in r['countries'] if v['label']=='France'),27.3)
         self.assertEqual(next(v['value'] for v in r['sectors'] if v['label']=='Santé, hôtellerie, autre'),10.6)
         self.assertAlmostEqual(sum(v['value'] for v in r['countries']),100)
+    def test_next_quarter_and_first_quarter_heading_are_supported(self):
+        text,pages=self.source()
+        for header,stamp,expected in [('Le 3e trimestre d’Iroko Zen','30 septembre 2026','2026-09-30'),('Le 1er trimestre d’Iroko Zen','31 mars 2026','2026-03-31')]:
+            future=text.replace('Le 2e trimestre d’Iroko Zen',header).replace('30 juin 2026',stamp)
+            self.assertEqual(parse_snapshot(future,pages,TODAY)['asOf'],expected)
     def test_changed_layout_date_or_omitted_row_rejected(self):
         text,pages=self.source()
         for bad in [text.replace('Données Iroko au','Publication au'),text.replace('30 juin 2026','30 juin 2027'),text.replace('30 juin 2026','29 juin 2026'),text.replace('Le 2e trimestre d’Iroko Zen','Le 3e trimestre d’Iroko Zen')]:

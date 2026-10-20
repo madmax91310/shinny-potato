@@ -2,7 +2,7 @@ import assert from 'node:assert/strict'
 import { SCPI } from '../src/data/scpi.js'
 import { DATA_CATALOG, searchData } from '../src/data/catalog.js'
 import { TOOLS, HOME_TOOLS } from '../src/tools.js'
-import { buildTweet, allocation } from '../src/pages/scpi-presentation/lib.js'
+import { buildTweet, allocation, dateLabel } from '../src/pages/scpi-presentation/lib.js'
 assert.equal(SCPI.length, 8)
 assert.equal(HOME_TOOLS.filter(row => row.to === '/presentations').length, 1)
 assert(TOOLS.find(row => row.to === '/presentations'))
@@ -21,8 +21,8 @@ for (const record of SCPI) {
 }
 assert(buildTweet(SCPI[0]).includes('14,4 % TTC'))
 const iroko=SCPI.find(row=>row.id==='iroko-zen')
-assert.equal(iroko.snapshot.asOf,'2026-06-30')
-assert(buildTweet(iroko).includes('Au 30/06/2026'))
+assert.match(iroko.snapshot.asOf,/^\d{4}-(?:03-31|06-30|09-30|12-31)$/)
+assert(buildTweet(iroko).includes(`Au ${dateLabel(iroko.snapshot.asOf)}`))
 assert(!buildTweet(iroko).includes('date des graphiques non précisée'))
 const undatedIroko=structuredClone(iroko);undatedIroko.snapshot.asOf=null
 assert(buildTweet(undatedIroko).includes('date des graphiques non précisée'))
