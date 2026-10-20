@@ -143,7 +143,7 @@ export function presentationReliefModel(record,kind) {
   if(kind==='actor') return { ...model, highlights: record.highlights.map(([label,value]) => row(label,
     record.id==='tudigo' && label==='Exposition' && value==='Entreprises non cotées' ? 'Non coté' :
     record.id==='lendosphere' && label==='Exposition' && value==='Transition énergétique' ? 'Énergie' : value)),
-    qualifier: (record.selectedOffer?.availability?.status === 'closed' ? record.selectedOffer.name+' · Souscriptions clôturées le '+dateLabel(record.selectedOffer.availability.asOf) : record.selectedOffer?.warnings.length ? 'Durées officielles divergentes · Confirmer les conditions du titre' : (record.selectedOffer?.name ?? 'Fonctionnement général de l’acteur')+' · Conditions publiques')+' · Vérifié le '+dateLabel(record.checkedAt),
+    qualifier: (record.selectedOffer?.availability?.status === 'closed' ? record.selectedOffer.name+' · Souscriptions clôturées le '+dateLabel(record.selectedOffer.availability.asOf) : record.selectedOffer?.warnings.length ? 'Durées officielles divergentes · Confirmer les conditions du titre' : (record.selectedOffer?.scopeType === 'platform' ? 'Fiche générale · Conditions selon le projet' : (record.selectedOffer?.name ?? 'Fonctionnement général de l’acteur')+' · Conditions publiques'))+' · Vérifié le '+dateLabel(record.checkedAt),
     brand: presentationBrands[record.id] }
   if(kind==='scpi') {
     const latest=record.annual.years.at(-1)

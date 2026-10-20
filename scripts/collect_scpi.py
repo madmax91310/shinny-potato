@@ -123,32 +123,47 @@ def remake_portfolio(text,date,url,pages):
             'occupancy':{'value':occupancy,'asOf':date,'sourceUrl':url,'label':'Taux d’occupation financier','basis':'Inclut les locaux sous franchise de loyer ; distinct du taux physique. Le nombre de baux n’est pas un nombre de locataires.'}}
 
 
+def iroko_public_config(script):
+    # Both quote styles occur in the issuer's public loader. Never execute JavaScript.
+    values=[]
+    for name in ['SUPABASE_URL','SUPABASE_ANON_KEY']:
+        pattern=r"\bconst\s+"+name+r"\s*=\s*(['\"])([^'\"\s]+)\1\s*;"
+        matches=re.findall(pattern,script)
+        if len(matches)!=1:raise ValueError('Missing or ambiguous public Iroko configuration: '+name)
+        values.append(matches[0][1])
+    if not re.fullmatch(r'https://[a-z0-9]+\.supabase\.co',values[0]):raise ValueError('Unexpected public Iroko API host')
+    return values
+
+
 def collect_iroko(today):
     script = fetch('https://opendata.iroko.com/api/figure-embed.js').decode()
-    host = required(r"SUPABASE_URL\s*=\s*'([^']+)'", script).group(1)
-    key = required(r"SUPABASE_ANON_KEY\s*=\s*'([^']+)'", script).group(1)
+    host, key = iroko_public_config(script)
     # The public read-only credential is discovered from the issuer's embed, never configured by the user.
     names = ['distribution_yield', 'share_unit_price', 'financial_occupancy_rate', 'asset_count', 'tenant_count']
     query = urllib.parse.urlencode({'fund': 'eq.zen', 'select': 'name,period,unit,value,update_date',
                                   'name': 'in.(' + ','.join(names) + ')', 'order': 'update_date.desc', 'limit': '1000'})
     api = host + '/rest/v1/key_figures?' + query
     with concurrent.futures.ThreadPoolExecutor() as pool:
-        urls = [IROKO, IROKO_NOTE, 'https://opendata.iroko.com/embed/charts/geo-rep-value-zen', 'https://opendata.iroko.com/embed/charts/type-rep-value-zen']
+        urls = [IROKO, IROKO_NOTE]
         futures = [pool.submit(fetch, url) for url in urls]
         rows = json.loads(fetch(api, {'apikey': key, 'Authorization': 'Bearer ' + key}))
-        page, note, geo, sectors = [f.result() for f in futures]
+        page, note = [f.result() for f in futures]
     prices = sorted([r for r in rows if r['name'] == 'share_unit_price' and r['value'] is not None and r['update_date'] <= today.isoformat()], key=lambda r: r['update_date'])
     if not prices:
         raise ValueError('Missing share price')
     occupancy = next((r for r in rows if r['name'] == 'financial_occupancy_rate' and r['value'] is not None and r['update_date'] <= today.isoformat()), None)
     record = {'id': 'iroko-zen', 'name': 'Iroko Zen', 'sourceUrl': IROKO, 'checkedAt': today.isoformat(),
-              'snapshot': {'asOf': None, 'dateNote': 'La date des graphiques n’est pas publiée ; date du relevé conservée séparément.',
-                           'countries': split_chart(geo.decode()), 'sectors': split_chart(sectors.decode()), 'sourceUrls': urls[2:]},
+              'snapshot': None,
               'annual': {'years': annual_iroko(rows, today), 'sourceUrl': 'https://opendata.iroko.com/api/figure-embed.js'},
               'price': {'value': prices[-1]['value'], 'asOf': prices[-1]['update_date'], 'previousValue': prices[0]['value'], 'previousAsOf': prices[0]['update_date'], 'sourceUrl': IROKO},
               'conditions': {**parse_iroko_conditions(pdf_text(note), BeautifulSoup(page, 'html.parser').get_text(' ', strip=True)), 'sourceUrl': IROKO_NOTE}}
     if occupancy:
         record['occupancy'] = {'value': occupancy['value'], 'asOf': occupancy['update_date'], 'sourceUrl': IROKO}
+    try:
+        from collect_iroko_snapshot import collect_snapshot
+        record['snapshot']=collect_snapshot(today)
+    except Exception as error:
+        record['snapshotError']=str(error)[:250]
     record['portfolio'] = iroko_portfolio(rows,today)
     record['priceHistory'] = {'years':[{'asOf':r['update_date'],'value':r['value']} for r in prices], 'sourceUrl':IROKO, 'dateNote':'Prix publiés dans les observations datées de l’émetteur.'}
     return record
@@ -285,8 +300,20 @@ def refresh(previous, adapters, today):
     observations = []
     for id, adapter in adapters.items():
         try:
-            record = validate(adapter(today), today)
+            record = adapter(today)
             old = records.get(id)
+            snapshot_error=record.pop('snapshotError',None)
+            if id=='iroko-zen':
+                new_stamp=(record.get('snapshot') or {}).get('asOf')
+                old_stamp=(old or {}).get('snapshot',{}).get('asOf')
+                if old_stamp and (not new_stamp or new_stamp<old_stamp):
+                    snapshot_error=snapshot_error or 'Quarterly portfolio publication disappeared or regressed'
+                if snapshot_error:
+                    if not old:raise ValueError(snapshot_error)
+                    import copy
+                    record['snapshot']=copy.deepcopy(old['snapshot'])
+                    record['snapshot'].setdefault('checkedAt',old['checkedAt'])
+            record = validate(record, today)
             # Never overwrite a newer photograph with an older publication.
             for field in ['snapshot', 'price']:
                 if old and old[field]['asOf'] and record[field]['asOf'] and record[field]['asOf'] < old[field]['asOf']:
@@ -302,6 +329,8 @@ def refresh(previous, adapters, today):
                     if not any(all(new[k]==action[k] for k in ['asOf','ratio','oldPrice','newPrice']) for new in record.get('priceHistory',{}).get('corporateActions',[])):raise ValueError('Share split evidence disappeared or changed')
             records[id] = record
             observations.append({'id': id, 'name':record['name'], 'status': 'success'})
+            if id=='iroko-zen':
+                observations.append({'id':'iroko-zen:snapshot','name':'Iroko Zen · Répartition trimestrielle','status':'failure' if snapshot_error else 'success',**({'reason':snapshot_error} if snapshot_error else {})})
         except AwaitingPublication as error:
             old = records.get(id)
             due = old and old.get('snapshot', {}).get('asOf') and next_bulletin_due(old['snapshot']['asOf'])

@@ -20,7 +20,12 @@ for (const record of SCPI) {
   assert(DATA_CATALOG.find(row => row.id === `scpi:${record.id}`).fields.length >= 4)
 }
 assert(buildTweet(SCPI[0]).includes('14,4 % TTC'))
-assert(buildTweet(SCPI[0]).includes('date des graphiques non précisée'))
+const iroko=SCPI.find(row=>row.id==='iroko-zen')
+assert.equal(iroko.snapshot.asOf,'2026-06-30')
+assert(buildTweet(iroko).includes('Au 30/06/2026'))
+assert(!buildTweet(iroko).includes('date des graphiques non précisée'))
+const undatedIroko=structuredClone(iroko);undatedIroko.snapshot.asOf=null
+assert(buildTweet(undatedIroko).includes('date des graphiques non précisée'))
 assert(allocation([{label:'A',value:20},{label:'B',value:30},{label:'C',value:40},{label:'D',value:10}]).endsWith('autres 10 %'))
 const changed = structuredClone(SCPI.find(row => row.id === 'remake-live'))
 changed.snapshot.countries = [{ label: 'France', value: 60 }, { label: 'Allemagne', value: 40 }]

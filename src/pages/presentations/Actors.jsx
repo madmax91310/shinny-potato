@@ -43,7 +43,7 @@ export default function Actors({ family }) {
         </ChoicePicker>}
         <div className="scpi-evidence">
           <h2>{record.name}</h2><p>{record.role}</p>
-          <h3>L’offre présentée</h3><p>{record.offer}</p><p>{record.selectedOffer?.scope}</p>
+          <h3>{record.selectedOffer?.scopeType === 'platform' ? 'Fonctionnement de la plateforme' : 'L’offre présentée'}</h3><p>{record.offer}</p><p>{record.selectedOffer?.scope}</p>
           {record.selectedOffer?.availability?.status === 'closed' && <p className="data-warning">Souscriptions clôturées le {dateLabel(record.selectedOffer.availability.asOf)}. <a href={record.selectedOffer.availability.sourceUrl} target="_blank" rel="noreferrer">Statut publié par l’acteur</a></p>}
           <h3>Ce que tu détiens</h3><p>{record.vehicle}</p><p>{record.distinction}</p>
           <h3>Fonctionnement</h3><p>{record.mechanism}</p>
@@ -52,7 +52,8 @@ export default function Actors({ family }) {
             <h3>Frais et durée de l’offre</h3>
             {[record.selectedOffer.fields.fees, record.selectedOffer.fields.duration].map(field => <p key={field.label}>{field.value}{field.effectiveAt && <> Conditions datées du {dateLabel(field.effectiveAt)}.</>}</p>)}
             {record.selectedOffer.warnings.map(warning => <p className="data-warning" key={warning}>{warning}</p>)}
-            <h3>Informations à compléter</h3><p>{record.selectedOffer.missing.join(' ; ')}.</p>
+            {record.selectedOffer.projectRequirements?.length > 0 && <><h3>Conditions propres à chaque projet</h3>{record.selectedOffer.projectRequirements.map(value => <p key={value}>{value}</p>)}</>}
+            {record.selectedOffer.missing.length > 0 && <><h3>Informations à compléter</h3><p>{record.selectedOffer.missing.join(' ; ')}</p></>}
           </>}
           <h3>Risques propres à l’exposition</h3><p>{record.risks}</p>
           <details><summary>Sources et périmètre de la fiche</summary>

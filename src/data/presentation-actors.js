@@ -217,7 +217,7 @@ export function buildActorTweet(record) {
   const offer = record.selectedOffer
   return [
     `${record.intro} 👇`,
-    `📄 L’offre présentée : ${record.offer}.`,
+    offer?.scopeType === 'platform' ? `📄 Fiche générale : ${record.name}. Conditions selon le projet et ses documents.` : `📄 L’offre présentée : ${record.offer}.`,
     offer?.availability?.status === 'closed' ? `📌 Souscriptions clôturées le ${offer.availability.asOf.split('-').reverse().join('/')}.` : '',
     `📦 Ce que tu détiens : ${record.vehicle}.\n${record.distinction}`,
     `💶 Pour commencer : ${shortActorField(record, 'access')}`,

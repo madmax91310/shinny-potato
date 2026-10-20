@@ -44,7 +44,7 @@ const {DATA_CATALOG}=await import('../src/data/catalog.js')
 const {buildReview}=await import('../src/pages/data-review/lib.js')
 const review=buildReview('2026-10-09')
 assert.equal(DATA_CATALOG.filter(record=>record.type==='actor').length,11)
-assert.equal(review.items.filter(item=>item.id.startsWith('qualification:actor:')).length,13)
+assert.equal(review.items.filter(item=>item.id.startsWith('qualification:actor:')).length,10)
 assert.equal(review.items.filter(item=>item.id.startsWith('qualification:insurance:')).length,1)
 
 const anaxago=byId('anaxago'), partB=applyActorOffer(anaxago,'axclimat-i-b')
@@ -75,4 +75,14 @@ for (const actor of PRESENTATION_ACTORS) for (const offer of actor.offers) {
     assert(text.includes(figure), `${actor.id}/${offer.id}: missing main fee ${figure}`)
   }
   for (const warning of offer.warnings) assert(text.includes(warning))
+}
+
+for (const id of ['bricks','enerfip','hectarea','matis']) {
+  const record=byId(id),offer=record.selectedOffer
+  assert.equal(offer.scopeType,'platform')
+  assert(buildActorTweet(record).includes('Fiche générale'))
+  assert(offer.projectRequirements.length > 0)
+  assert.equal(Boolean(offer.missing.length),id === 'hectarea')
+  const catalog=DATA_CATALOG.find(row=>row.id === `actor:${id}`)
+  assert(catalog.fields.some(row=>row.label?.includes('Conditions variables') || row.name?.includes('Conditions variables')))
 }
