@@ -1,6 +1,7 @@
 """CORUM documents: discover current annual report and note on official product pages."""
 import datetime as dt
 import calendar
+import hashlib
 import json
 import pathlib
 import re
@@ -116,32 +117,50 @@ def parse_annual_price_history(text, today, url):
 
 
 def parse_eurion_quarterly(text,pages,url,today):
-    from collect_extended_scpi import allocation,counter,metric
-    required(r'CORUM Eurion',text)
+    return parse_quarterly_text(text,pages,url,today,'corum-eurion')
+
+
+def parse_quarterly_text(text,pages,url,today,id_):
+    from collect_extended_scpi import percentages,counter,metric
+    required(re.escape(PRODUCTS[id_][0]),text)
     stamp=required(r'DONNÉES AU (\d+) (\w+) (\d{4})',text)
     date=dt.date(int(stamp[3]),MONTHS[stamp[2].lower()],int(stamp[1])).isoformat()
     if dt.date.fromisoformat(date)>today:raise ValueError('Future quarterly publication')
-    page=next(p for p in pages if any(w['text']=='typologique' for w in p['words']) and any(w['text']=='géographique' for w in p['words']))
-    words=page['words']
-    sector_labels={'Bureau*':'Bureaux','Hôtellerie':'Hôtellerie','Industriel':'Industriel et logistique','Commerce':'Commerces','Éducation':'Éducation et loisirs'}
-    sectors=allocation(words,list(sector_labels),lambda w:280<w['y']<330,True,25)
-    for r in sectors:r['label']=sector_labels[r['label']]
+    charts=[p for p in pages if any(w['text']=='typologique' for w in p['words']) and any(w['text']=='géographique' for w in p['words'])]
+    if len(charts)!=1:raise ValueError('Missing/ambiguous quarterly allocation page')
+    page=charts[0];words=page['words']
+    names={'Bureau*':'Bureaux','Hôtellerie':'Hôtellerie','Commerce':'Commerces','Industriel & logistique':'Industriel et logistique',
+           'Industriel logistique':'Industriel et logistique','Industriel':'Industriel et logistique','Logistique':'Logistique',
+           'Activité':'Activités','Santé':'Santé','Éducation & loisirs':'Éducation et loisirs','Éducation & loisir':'Éducation et loisirs',
+           'Éducation':'Éducation et loisirs','Parking':'Parkings'}
+    region=[w for w in words if 280<w['y']<330]
+    values=sorted(percentages(region),key=lambda w:w['x']);sectors=[]
+    centers=[(v['x']+v['right'])/2 for v in values]
+    for i,value in enumerate(values):
+        left=(centers[i-1]+centers[i])/2 if i else 0
+        right=(centers[i]+centers[i+1])/2 if i+1<len(values) else page['width']
+        label_words=sorted([w for w in region if left<(w['x']+w['right'])/2<right and 5<w['y']-value['y']<25],key=lambda w:w['x'])
+        label=' '.join(w['text'] for w in label_words)
+        if label not in names:raise ValueError('Unknown quarterly sector label: '+label)
+        sectors.append({'label':names[label],'value':value['value']})
     countries=[]
-    for label in [w for w in words if w['text'] in COUNTRIES and w['x']<100 and 380<w['y']<620]:
+    for label in [w for w in words if w['text'] in COUNTRIES and w['x']<page['width']*.18 and 380<w['y']<620]:
         found=[]
         for pct in words:
-            if pct['text']!='%' or pct['x']>300 or abs(pct['y']-label['y'])>2:continue
-            values=[v for v in words if re.fullmatch(r'[\d,.]+',v['text']) and abs(v['y']-pct['y'])<5 and 0<pct['x']-v['right']<15]
-            if values:found.append(number(max(values,key=lambda v:v['right'])['text']))
+            if pct['text']!='%' or not label['right']<pct['x']<page['width']*.95 or abs(pct['y']-label['y'])>2:continue
+            candidates=[v for v in words if re.fullmatch(r'[\d,.]+',v['text']) and abs(v['y']-pct['y'])<5 and 0<pct['x']-v['right']<15]
+            if candidates:found.append(number(max(candidates,key=lambda v:v['right'])['text']))
         if len(found)!=1:raise ValueError('Ambiguous quarterly country weight: '+label['text'])
         countries.append({'label':label['text'],'value':found[0]})
-    if abs(sum(r['value'] for r in countries)-100)>.15 or abs(sum(r['value'] for r in sectors)-100)>.15:raise ValueError('Incomplete quarterly allocation')
+    for rows in (countries,sectors):
+        if not rows or len({r['label'] for r in rows})!=len(rows) or any(not 0<=r['value']<=100 for r in rows) or abs(sum(r['value'] for r in rows)-100)>.15:
+            raise ValueError('Incomplete quarterly allocation')
     compact=re.sub(r'\s+',' ',text)
     occupancy=number(required(r'FINANCIER \(TOF\).{0,600}?([\d,.]+)\s*%',compact)[1])
     portfolio={'buildings':metric(counter(words,'Nombre d’immeubles',lambda w:w['y']<210),date,url,'Immeubles'),
                'tenants':metric(counter(words,'Nombre de locataires',lambda w:w['y']<210),date,url,'Locataires'),
                'occupancy':metric(occupancy,date,url,'Taux d’occupation financier','Inclut les locaux sous franchise de loyer ; distinct du taux physique.')}
-    return {'asOf':date,'countries':countries,'sectors':sectors,'sourceUrls':[url],'dateNote':'Répartitions extraites du dernier bulletin trimestriel officiel.'},portfolio
+    return {'asOf':date,'countries':countries,'sectors':sectors,'sourceUrls':[url],'dateNote':'Répartitions du bulletin trimestriel officiel : libellés et pourcentages imprimés associés par leurs coordonnées dans le PDF ; totaux contrôlés, aucune estimation des surfaces.'},portfolio
 
 
 def origin_occupancy(html, today, url):
@@ -209,11 +228,17 @@ def collect(id_,today):
         from collect_extended_scpi import document_links, latest
         url=latest(document_links(documents_html,base),re.escape(name)+r'.*?(?P<year>\d{4})-T(?P<quarter>[1-4])[^/]*\.pdf',today)
         data=fetch(url)
-        if id_=='corum-eurion':
-            snapshot,portfolio=parse_eurion_quarterly(pdf_text(data),bbox_pages(data),url,today)
+        text=pdf_text(data);pages=bbox_pages(data)
+        text_countries=any(w['text'] in COUNTRIES and w['x']<p['width']*.18 and 380<w['y']<620 for p in pages if any(v['text']=='typologique' for v in p['words']) for w in p['words'])
+        if id_=='corum-eurion' or text_countries:
+            from corum_vector_ocr import period
+            printed=period(text.split('\f')[0],url,today)
+            snapshot,portfolio=parse_quarterly_text(text,pages,url,today,id_)
+            if snapshot['asOf']!=printed:raise ValueError('Quarterly header and allocation period disagree')
         else:
             from corum_vector_ocr import extract
             snapshot,portfolio=extract(data,id_,url,today)
+        snapshot['sha256']=hashlib.sha256(data).hexdigest()
     return {'id':id_,'name':name,'sourceUrl':base,'checkedAt':today.isoformat(),
             'snapshot':snapshot, 'portfolio':portfolio, 'priceHistory':parse_annual_price_history(annual,today,annual_url),
             'annual':{'years':parse_annual(annual,today),'sourceUrl':annual_url},

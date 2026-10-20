@@ -111,6 +111,19 @@ class WorkflowContracts(unittest.TestCase):
         self.assertIn("PAGES_FALLBACK: 'true'", deploy)
         self.assertNotIn('needs.scope.', deploy)
 
+    def test_validated_data_lane_keeps_compatibility_and_publication_guards(self):
+        workflow=(ROOT/'.github/workflows/publish-validated-data.yml').read_text()
+        for required in ['group: pages-production','prepare-validated-data.mjs','compose-fallback-snapshot.mjs --published','REQUIRED_DATA_BLOB','Required data was held back or changed','smoke-data-routes.mjs','bash scripts/check-pages-head.sh','verify-pages-publication.mjs','name: data-publication-receipt']:
+            self.assertIn(required,workflow)
+        self.assertLess(workflow.index('npm run build'),workflow.index('hash-object'))
+        self.assertLess(workflow.index('hash-object'),workflow.index('smoke-data-routes.mjs'))
+        self.assertLess(workflow.index('smoke-data-routes.mjs'),workflow.index('uses: actions/deploy-pages@'))
+        self.assertIn("if: steps.order.outputs.current == 'true'",workflow)
+        for name,path in [('update-scpi.yml','src/data/automated-scpi.json'),('update-presentation-actors.yml','src/data/automated-presentation-actors.json')]:
+            caller=(ROOT/'.github/workflows'/name).read_text()
+            self.assertIn('uses: ./.github/workflows/publish-validated-data.yml',caller)
+            self.assertIn('required_path: '+path,caller)
+
     def test_deploy_requires_every_validation_job_and_same_built_commit(self):
         workflow = (ROOT/'.github/workflows/deploy-pages.yml').read_text()
         deploy = workflow.split('\n  deploy:\n')[1]

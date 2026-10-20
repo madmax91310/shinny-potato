@@ -1,0 +1,120 @@
+name: Publish validated data with published code
+on:
+  workflow_call:
+    inputs:
+      ref:
+        required: true
+        type: string
+      required_path:
+        required: true
+        type: string
+permissions:
+  contents: read
+  pages: write
+  deployments: read
+  id-token: write
+jobs:
+  publish:
+    if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
+    runs-on: ubuntu-26.04
+    timeout-minutes: 20
+    # Hold the publication lock from code selection through verification.
+    concurrency:
+      group: pages-production
+      cancel-in-progress: false
+      queue: max
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          ref: ${{ inputs.ref }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 24
+      - run: node scripts/test-validated-data-publisher.mjs
+      - id: plan
+        env:
+          REQUIRED_DATA_PATH: ${{ inputs.required_path }}
+        run: node scripts/prepare-validated-data.mjs
+      - name: Record exact expected publication data
+        if: steps.plan.outputs.current == 'true'
+        run: python3 scripts/data_publication.py receipt --all --commit "${{ steps.plan.outputs.data_sha }}" --output "$RUNNER_TEMP/data-publication-receipt.json"
+      - id: compose
+        if: steps.plan.outputs.current == 'true'
+        run: node scripts/compose-fallback-snapshot.mjs --published "${{ steps.plan.outputs.code_sha }}" --data "${{ steps.plan.outputs.data_sha }}"
+      - if: steps.plan.outputs.current == 'true'
+        run: npm ci
+      - if: steps.plan.outputs.current == 'true'
+        run: npm run audit:data-catalog
+      - if: steps.plan.outputs.current == 'true'
+        run: npm run build
+      - name: Require the producer's exact validated observations after all generators
+        if: steps.plan.outputs.current == 'true'
+        env:
+          REQUIRED_DATA_PATH: ${{ inputs.required_path }}
+          REQUIRED_DATA_BLOB: ${{ steps.plan.outputs.required_blob }}
+        run: |
+          node --input-type=module - <<'JS'
+          import assert from 'node:assert/strict'
+          import {execFileSync} from 'node:child_process'
+          assert.equal(execFileSync('git',['hash-object',process.env.REQUIRED_DATA_PATH],{encoding:'utf8'}).trim(),process.env.REQUIRED_DATA_BLOB,'Required data was held back or changed during generation')
+          JS
+      - name: Seal actual composite data
+        if: steps.plan.outputs.current == 'true'
+        run: python3 scripts/data_publication.py manifest --output dist/data/publication-manifest.json
+      - name: Record actual code and data identities
+        if: steps.plan.outputs.current == 'true'
+        env:
+          CODE_SHA: ${{ steps.compose.outputs.code_sha }}
+          DATA_SHA: ${{ steps.compose.outputs.data_sha }}
+        run: |
+          node --input-type=module - <<'JS'
+          import {writeFileSync} from 'node:fs'
+          writeFileSync('dist/build-info.json',JSON.stringify({sha:process.env.CODE_SHA,dataSha:process.env.DATA_SHA,lane:'validated-data',builtAt:new Date().toISOString()})+'\n')
+          JS
+      - if: steps.plan.outputs.current == 'true'
+        run: npx playwright install --with-deps chromium
+      - if: steps.plan.outputs.current == 'true'
+        run: node scripts/smoke-data-routes.mjs
+      - uses: actions/configure-pages@v6.0.0
+        if: steps.plan.outputs.current == 'true'
+      - uses: actions/upload-pages-artifact@v5.0.0
+        if: steps.plan.outputs.current == 'true'
+        with:
+          name: validated-data-pages
+          path: dist
+      - name: Restore source identity for the publication order guard
+        if: steps.plan.outputs.current == 'true'
+        run: git reset --hard "${{ steps.compose.outputs.data_sha }}"
+      - id: order
+        if: steps.plan.outputs.current == 'true'
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          PAGES_CODE_SHA: ${{ steps.compose.outputs.code_sha }}
+          PAGES_FALLBACK: 'true'
+        run: bash scripts/check-pages-head.sh
+      - id: deployment
+        if: steps.order.outputs.current == 'true'
+        uses: actions/deploy-pages@v5.0.1
+        with:
+          artifact_name: validated-data-pages
+      - name: Verify actual public data
+        if: steps.order.outputs.current == 'true'
+        run: node scripts/verify-pages-publication.mjs "${{ steps.deployment.outputs.page_url }}" "${{ steps.compose.outputs.code_sha }}" "${{ steps.compose.outputs.data_sha }}"
+      - uses: actions/upload-artifact@v7.0.1
+        if: always() && steps.plan.outputs.current == 'true'
+        with:
+          name: data-publication-receipt
+          path: ${{ runner.temp }}/data-publication-receipt.json
+          if-no-files-found: error
+          retention-days: 35
+      - uses: actions/upload-artifact@v7.0.1
+        if: steps.order.outputs.current == 'true'
+        with:
+          name: verified-data-publication
+          path: test-artifacts/publication-verified.json
+          if-no-files-found: error
+          retention-days: 35
