@@ -20,6 +20,18 @@ jobs:
       - name: Observe new complete portfolios
         continue-on-error: true
         run: python scripts/probe_live_data_connections.py --apply --only LU0380865021 LU0328475792 LU0274209237 IE00BJ0KDQ92 IE00BK1PV551 DE0002635307 IE00BKWQ0Q14 IE00BFY0GT14 IE00BJ38QD84 IE00B44Z5B48 IE00B469F816 IE00B5M1WJ87 IE00B6YX5D40 IE00B9CQXS71 IE00BYTRR863 IE00BSPLC298 IE00BSPLC413 --output live-data-proof/collection.json
+      - name: Inspect remaining manual rolling returns
+        continue-on-error: true
+        run: |
+          PYTHONPATH=scripts python - <<'PY'
+          from issuer_documents import public_page
+          from pathlib import Path
+          import hashlib,json,datetime
+          url='https://globalxetfs.eu/funds/qyld/'
+          body=public_page(url)
+          Path('live-data-proof/globalx-current.html').write_text(body)
+          Path('live-data-proof/globalx-proof.json').write_text(json.dumps({'url':url,'checkedAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),'sha256':hashlib.sha256(body.encode()).hexdigest()}))
+          PY
       - run: cp src/data/dca-complete-holdings.json src/data/dca-holdings-status.json scripts/generated-holdings-sources.json live-data-proof/
       - uses: actions/upload-artifact@v4
         with:
