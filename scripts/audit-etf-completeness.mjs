@@ -9,6 +9,13 @@ import { ROUTING_PRESENTATION_FACTS } from '../src/data/routing-presentation-fac
 import { getPreferredInstrumentListing } from '../src/data/instrument-listings.js';
 import { getInstrumentFacts } from '../src/data/instrument-facts.js';
 const capture = JSON.parse(readFileSync(new URL('./source-snapshots/etf-completeness-2026-10-04.json', import.meta.url)));
+const rollingReview = JSON.parse(readFileSync(new URL('./source-snapshots/live-data-connections-2026-10-20.json', import.meta.url))).rollingPerformanceReview;
+const qyld = REVIEWED_PERFORMANCE_META.IE00BM8R0J59;
+assert.equal(qyld.qualificationHold.sourceUrl, rollingReview.url);
+assert.equal(qyld.qualificationHold.sha256, rollingReview.sha256);
+assert.equal(qyld.qualificationHold.checkedAt, rollingReview.checkedAt);
+assert.deepEqual(qyld.archivedObservations, capture.performances.IE00BM8R0J59.observations, 'Les valeurs du relevé initial restent intactes en archive');
+assert(!qyld.observations?.length, 'Le relevé non recertifié ne devient pas un rendement courant');
 const today = new Date().toISOString().slice(0, 10);
 const unpublished = new Set(capture.unpublished);
 // A newly qualified exact-share calendar resolves the archived absence/conflict.
@@ -45,8 +52,9 @@ for (const etf of ETFS) {
   if (series.values.some(Number.isFinite)) annual++;
   else if (series.observations?.length) other++;
   else {
-    assert(unpublished.has(etf.isin) || sourceConflicts.has(etf.isin), `${etf.isin}: absence non revue`);
-    assert.equal(series.availability, sourceConflicts.has(etf.isin) ? 'source-conflict' : 'not-yet-published');
+    const reviewedHold = etf.isin === 'IE00BM8R0J59';
+    assert(unpublished.has(etf.isin) || sourceConflicts.has(etf.isin) || reviewedHold, `${etf.isin}: absence non revue`);
+    assert.equal(series.availability, reviewedHold ? 'not-published' : sourceConflicts.has(etf.isin) ? 'source-conflict' : 'not-yet-published');
     assert(series.note && series.source);
   }
   for (const entry of performanceEntries(series)) {

@@ -23,14 +23,24 @@ function auditSourceCoverage(catalog = DATA_CATALOG, families = FAMILIES, sheets
   const report = getDataProvenanceReport(catalog, families, sheets);
   assert.equal(report.activeSourceGaps.length, 0, `Manque actif de source : ${report.activeSourceGaps.map(e => `${e.id}/${e.field.label}`).join(', ')}`);
   assert.equal(report.invalidArchives.length, 0, 'Archive non revue ou utilisée par un consommateur actif');
-  assert.equal(report.unverifiableArchives.length, 16, 'Inventaire des archives non recertifiables modifié : revue explicite requise');
+  assert.equal(report.unverifiableArchives.length, 19, 'Inventaire des archives non recertifiables modifié : revue explicite requise');
   return report;
 }
 const report = auditSourceCoverage();
 assert.equal(ARCHIVE_SOURCE_REVIEW.length, 19);
+const qyldArchives = report.unverifiableArchives.filter(row => row.id === 'IE00BM8R0J59');
+assert.equal(qyldArchives.length, 3, 'Les trois relevés QYLD restent conservés et exclus des rendements actuels');
+for (const row of qyldArchives) {
+  assert.equal(row.field.metadata.reviewedAt, '2026-10-20');
+  assert.equal(row.field.metadata.checkedAt, null);
+  assert(!getInstrumentAnnualPerformance(row.id).observations?.includes(row.field.value));
+  const fake = {...row.field, value: {...row.field.value, value: 999}};
+  const altered = DATA_CATALOG.map(r => r.id === row.id ? {...r, fields: r.fields.map(f => f === row.field ? fake : f)} : r);
+  assert.throws(() => auditSourceCoverage(altered), /Archive non revue/);
+}
 
 // Une nouvelle absence active doit échouer même si le total sans URL reste à 16.
-const archive = report.unverifiableArchives[0];
+const archive = report.unverifiableArchives.find(row => row.field.registry === 'src/data/index-facts.js');
 const missingField = { label: 'Champ actif de régression', registry: 'src/data/instruments.js', value: 'test', metadata: normalizeEvidence() };
 const activeGap = { id: 'regression:active', type: 'instrument', fields: [missingField] };
 const replacedArchive = DATA_CATALOG.map(r => r.id === archive.id ? { ...r, fields: r.fields.filter(f => f !== archive.field) } : r);

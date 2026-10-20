@@ -1,5 +1,5 @@
 """Complete physical equity holdings, kept separately from editorial top tens."""
-import argparse, datetime as dt, json, re
+import argparse, datetime as dt, json, re, hashlib, copy
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor
 from urllib.parse import urlsplit, parse_qs
@@ -7,9 +7,27 @@ from data_automation import get_json, get_text, UTC, write_json_atomic
 from observation_status import holdings_status
 from collect_etf_holdings import parse_holdings
 ROOT=Path(__file__).resolve().parents[1]
+def physical_ssga_page(page):
+    from bs4 import BeautifulSoup
+    soup=BeautifulSoup(page,'html.parser')
+    values=[]
+    for row in soup.select('tr'):
+        label=row.find('th');value=row.find('td')
+        if label and value and label.get_text(' ',strip=True) in ('Replication Method','Méthode de Réplication','Méthode de réplication','Replikationsmethode'):
+            values.append(value.get_text(' ',strip=True))
+    return len(values)==1 and values[0] in ('Replicated','Optimised','Optimized','Optimisé','Optimisée','Réplication','Optimiert')
+
 def parse_complete(body,isin,url,now,fund_asset_class="Equity"):
+    localized=False
     facts=body['componentsByNameMap']['keyFundFacts']['containersByNameMap']['default']['dataPointsByNameMap']
     if facts['isin']['value']!=isin:raise ValueError('Wrong exact share identity')
+    if facts.get('productStructure',{}).get('value')=='Physisch' and facts.get('assetClass',{}).get('value')=='Aktien':
+        # Literal issuer translations only; no geographic/sector translation is inferred.
+        localized=True;body=copy.deepcopy(body)
+        facts=body['componentsByNameMap']['keyFundFacts']['containersByNameMap']['default']['dataPointsByNameMap']
+        facts['productStructure']['value']='Physical';facts['assetClass']['value']='Equity'
+        points=body['componentsByNameMap']['holdings']['containersByNameMap']['all']['dataPointsByNameMap']
+        points['assetClass']['value']=[{'Aktien':'Equity','Geldmarkt':'Cash'}.get(v,v) for v in points['assetClass']['value']]
     if fund_asset_class not in ('Equity','Real Estate') or facts.get('productStructure',{}).get('value')!='Physical' or facts.get('assetClass',{}).get('value')!=fund_asset_class:raise ValueError('Only explicitly qualified physical equity or listed real-estate funds are supported')
     product=parse_qs(urlsplit(url).query)['portfolioId'][0]
     h,_=parse_holdings(body,{'productId':product,'currency':body['currencyCode']},now)
@@ -22,8 +40,8 @@ def parse_complete(body,isin,url,now,fund_asset_class="Equity"):
         if kind=='Equity' and (isinstance(weight,bool) or not isinstance(weight,(int,float)) or not __import__('math').isfinite(weight) or weight<0):raise ValueError('Invalid or short equity position')
         if kind!='Equity' or weight==0:continue
         rows.append({'isin':security,'name':name,'weightPct':weight})
-        if re.fullmatch(r'[A-Z]{2}[A-Z0-9]{9}[0-9]',security or ''):
-            securities.append({'isin':security,'name':name,'country':country,'sector':sector,'ticker':ticker,'currency':currency,'exchange':exchange})
+        if not localized and re.fullmatch(r'[A-Z]{2}[A-Z0-9]{9}[0-9]',security or ''):
+            securities.append({'isin':security,'name':name,'country':None if localized else country,'sector':None if localized else sector,'ticker':ticker,'currency':currency,'exchange':exchange})
     total=sum(r['weightPct'] for r in rows)
     if not rows or total>100.5:raise ValueError('Non-long-only equity composition')
     return {'asOf':h['asOf'],'basis':'fund','sourceUrl':url,'complete':True,'rows':rows},securities
@@ -46,14 +64,15 @@ def main():
                 from urllib.parse import urljoin
                 from bs4 import BeautifulSoup
                 page=get_text(c['sourceUrl'],('text/html',),6_000_000)
+                page_hash=hashlib.sha256(page.encode()).hexdigest()
                 result,path=parse_page(page,c,now)
                 inputs=Inputs();inputs.feed(page)
                 if inputs.data['fund-quick-info']['attrs'].get('fund-assetclass-en',{}).get('value')!='Equity':raise ValueError('Only equity State Street funds are qualified')
-                text=BeautifulSoup(page,'html.parser').get_text(' ',strip=True)
-                if not re.search(r'Replikationsmethode\s+Optimiert|Replication Method\s+(?:Optimized|Replicated)|Méthode de réplication\s+(?:Optimisée|Réplication)',text):raise ValueError('Physical State Street replication not confirmed')
+                if not physical_ssga_page(page):raise ValueError('Physical State Street replication not confirmed')
                 if not path:raise ValueError('Missing State Street holdings download')
                 url=urljoin(c['sourceUrl'],path)
-                h=parse_holdings(get_xlsx(url),c,now,complete=True);h['sourceUrl']=url
+                raw=get_xlsx(url)
+                h=parse_holdings(raw,c,now,complete=True);h.update(sourceUrl=url,sha256=hashlib.sha256(raw).hexdigest(),identitySourceUrl=c['sourceUrl'],identitySha256=page_hash,method='Complete physical equity securities published in the issuer workbook; cash excluded, no renormalisation')
                 return isin,(h,[]),None
             if c.get('parser') == 'dws':
                 from collect_dws_etf import parse_product, parse_holdings
@@ -63,7 +82,10 @@ def main():
                 url = c['sourceUrl'].rsplit('/', 1)[0] + '/holdings'
                 body = json.loads(get_text(url, ('application/json',), 25_000_000))
                 return isin, (parse_holdings(body, c, now, url, complete=True)['completeHoldings'], []), None
-            return isin,parse_complete(json.loads(get_text(c['url'],('application/json',),25_000_000)),isin,c['url'],now,c.get('fundAssetClass','Equity')),None
+            raw=get_text(c['url'],('application/json',),25_000_000)
+            h,securities=parse_complete(json.loads(raw),isin,c['url'],now,c.get('fundAssetClass','Equity'))
+            h['sha256']=hashlib.sha256(raw.encode()).hexdigest()
+            return isin,(h,securities),None
         except Exception as e:return isin,None,str(e)
     with ThreadPoolExecutor(max_workers=6) as pool:
         for isin,result,error in pool.map(one,config.items()):
