@@ -1,5 +1,5 @@
 """Complete physical equity holdings, kept separately from editorial top tens."""
-import argparse, datetime as dt, json, re
+import argparse, datetime as dt, json, re, hashlib
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor
 from urllib.parse import urlsplit, parse_qs
@@ -46,6 +46,7 @@ def main():
                 from urllib.parse import urljoin
                 from bs4 import BeautifulSoup
                 page=get_text(c['sourceUrl'],('text/html',),6_000_000)
+                page_hash=hashlib.sha256(page.encode()).hexdigest()
                 result,path=parse_page(page,c,now)
                 inputs=Inputs();inputs.feed(page)
                 if inputs.data['fund-quick-info']['attrs'].get('fund-assetclass-en',{}).get('value')!='Equity':raise ValueError('Only equity State Street funds are qualified')
@@ -53,7 +54,8 @@ def main():
                 if not re.search(r'Replikationsmethode\s+Optimiert|Replication Method\s+(?:Optimized|Replicated)|Méthode de réplication\s+(?:Optimisée|Réplication)',text):raise ValueError('Physical State Street replication not confirmed')
                 if not path:raise ValueError('Missing State Street holdings download')
                 url=urljoin(c['sourceUrl'],path)
-                h=parse_holdings(get_xlsx(url),c,now,complete=True);h['sourceUrl']=url
+                raw=get_xlsx(url)
+                h=parse_holdings(raw,c,now,complete=True);h.update(sourceUrl=url,sha256=hashlib.sha256(raw).hexdigest(),identitySourceUrl=c['sourceUrl'],identitySha256=page_hash,method='Complete physical equity securities published in the issuer workbook; cash excluded, no renormalisation')
                 return isin,(h,[]),None
             if c.get('parser') == 'dws':
                 from collect_dws_etf import parse_product, parse_holdings
@@ -63,7 +65,10 @@ def main():
                 url = c['sourceUrl'].rsplit('/', 1)[0] + '/holdings'
                 body = json.loads(get_text(url, ('application/json',), 25_000_000))
                 return isin, (parse_holdings(body, c, now, url, complete=True)['completeHoldings'], []), None
-            return isin,parse_complete(json.loads(get_text(c['url'],('application/json',),25_000_000)),isin,c['url'],now,c.get('fundAssetClass','Equity')),None
+            raw=get_text(c['url'],('application/json',),25_000_000)
+            h,securities=parse_complete(json.loads(raw),isin,c['url'],now,c.get('fundAssetClass','Equity'))
+            h['sha256']=hashlib.sha256(raw.encode()).hexdigest()
+            return isin,(h,securities),None
         except Exception as e:return isin,None,str(e)
     with ThreadPoolExecutor(max_workers=6) as pool:
         for isin,result,error in pool.map(one,config.items()):
