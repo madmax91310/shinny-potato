@@ -41,6 +41,8 @@ assert.equal(result.totals[0].rows.find(r=>r.isin===a).direct,20)
 assert.equal(result.totals[0].coverage,100)
 assert.equal(result.pairs.length,3)
 assert.equal(sharedPositions(positions,refs,now,{x:{...o,complete:false},y:o}).pairs[0].overlap,null)
+const unidentified={...o,rows:[{name:'Apple',isin:a,weightPct:99.9},{name:'Published stock without ISIN',isin:null,weightPct:.1}]}
+assert.equal(sharedPositions(positions,refs,now,{x:unidentified,y:o}).pairs[0].overlap,null,'A full issuer file with an unidentified position cannot claim complete overlap')
 assert.equal(sharedPositions(positions,refs,now,{x:{...o,synthetic:true},y:o}).unavailable.length,1)
 const manifest=JSON.parse(readFileSync('src/pages/dca-profiles/holdings-manifest.json'))
 const observations=Object.assign({},...[...new Set(Object.values(manifest))].map(n=>JSON.parse(readFileSync(`src/pages/dca-profiles/holdings-${n}.json`))))

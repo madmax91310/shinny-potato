@@ -29,26 +29,31 @@ def source_proof(share, kind, body):
         (root / (share['isin'] + '-' + kind + '.raw')).write_bytes(raw)
 
 
-def checked_rows(rows, minimum=1):
+def checked_rows(rows, minimum=1, allow_unidentified=False):
     if len(rows) < minimum:
         raise ValueError('Incomplete physical portfolio')
     for row in rows:
         weight = row['weightPct']
-        if (not ISIN.fullmatch(row.get('isin') or '') or not row.get('name')
+        identity = row.get('isin')
+        if ((not ISIN.fullmatch(identity or '') and not (allow_unidentified and identity is None))
+                or not isinstance(row.get('name'), str) or not row['name']
                 or isinstance(weight, bool) or not isinstance(weight, (int, float))
                 or not math.isfinite(weight) or weight < 0):
             raise ValueError('Unqualified physical security identity/weight')
-    if len({row['isin'] for row in rows}) != len(rows):
+    identified = [row['isin'] for row in rows if row.get('isin')]
+    if len(set(identified)) != len(identified):
         raise ValueError('Duplicate physical security')
     if not 0 < sum(row['weightPct'] for row in rows) <= 100.5:
         raise ValueError('Invalid physical portfolio NAV weights')
     return [row for row in rows if row['weightPct'] > 0]
 
 
-def observation(rows, stamp, url, raw, **extra):
-    return dict(rows=checked_rows(rows), asOf=stamp, basis='fund', complete=True,
+def observation(rows, stamp, url, raw, allow_unidentified=False, **extra):
+    return dict(rows=checked_rows(rows, allow_unidentified=allow_unidentified), asOf=stamp, basis='fund', complete=True,
                 sourceUrl=url, sha256=digest(raw),
-                method='Complete published physical equity securities; cash excluded; original fund NAV weights, no renormalisation',
+                method='Complete published physical equity securities; cash and non-equity positions excluded; original fund NAV weights, no renormalisation',
+                unidentifiedSecurityCount=sum(not r.get('isin') for r in rows),
+                unidentifiedWeightPct=sum(r['weightPct'] for r in rows if not r.get('isin')),
                 **extra)
 
 
@@ -341,12 +346,14 @@ def vaneck_composition(body, share, now):
     items = data['Holdings']
     stocks = [row for row in items if row['AssetClass'] == 'Stock']
     cash = [row for row in items if row['AssetClass'] == 'Cash']
-    if int(data['TotalAmount']) != len(stocks) or len(cash) > 1 or len(stocks) < 11:
+    if int(data['TotalAmount']) != len(items) - len(cash) or len(cash) > 1 or len(stocks) < 11:
         raise ValueError('Truncated VanEck full portfolio')
     stamp = document_date(data['AsOfDate'], now)
     rows, total, excluded = [], 0, {}
+    positions = set()
+    portfolio_ticker = {'TRET': 'TRETNL', 'TDIV': 'TDIVNL'}.get(share['apiTicker'], share['apiTicker'])
     for item in items:
-        if (item['Ticker'] != share['apiTicker'] or item['PortfolioTicker'] != share['apiTicker']
+        if (item['Ticker'] != share['apiTicker'] or item['PortfolioTicker'] != portfolio_ticker
                 or item['LabelType'] != 'Holdings'
                 or dt.datetime.strptime(item['AsOfDate'], '%m/%d/%y').date().isoformat() != stamp):
             raise ValueError('Mixed VanEck portfolio identities/dates')
@@ -355,14 +362,24 @@ def vaneck_composition(body, share, now):
             raise ValueError('Invalid VanEck weight')
         total += weight
         if item['AssetClass'] == 'Stock':
-            rows.append(dict(isin=item['ISIN'], name=item['HoldingName'], weightPct=weight))
+            # Blank ISINs are a published identification gap, never invented or joined by name.
+            # The UI rejects complete overlap whenever any row lacks an ISIN.
+            key = (item['LabelOrder'], item['FIGI'])
+            if key in positions:
+                raise ValueError('Repeated VanEck position')
+            positions.add(key)
+            rows.append(dict(isin=item['ISIN'] or None, name=item['HoldingName'], weightPct=weight,
+                             figi=item['FIGI'], ticker=item['Label']))
         elif item['AssetClass'] == 'Cash':
             excluded['Cash'] = excluded.get('Cash', 0) + weight
+        elif (item['AssetClass'] == 'Other' and share['apiTicker'] == 'UCTNUCL'
+              and item['ISIN'] == 'CA85210A1049' and item['HoldingName'] == 'Sprott Physical Uranium Trust'):
+            excluded['Physical uranium trust'] = excluded.get('Physical uranium trust', 0) + weight
         else:
             raise ValueError('Unqualified VanEck asset class: ' + item['AssetClass'])
     if abs(total - 100) > max(.1, len(items) * .005 + .01):
         raise ValueError('Incomplete VanEck NAV weights')
-    return checked_rows(rows, 11), stamp, excluded
+    return checked_rows(rows, 11, allow_unidentified=True), stamp, excluded
 
 
 def collect_vaneck(share, now):
@@ -371,7 +388,8 @@ def collect_vaneck(share, now):
     raw = download(url)
     source_proof(share, 'vaneck', raw)
     rows, stamp, excluded = vaneck_composition(json.loads(raw), share, now)
-    return observation(rows, stamp, url, raw, identitySourceUrl=share['pageUrl'], identitySha256=digest(page),
+    return observation(rows, stamp, url, raw, allow_unidentified=True,
+                       identitySourceUrl=share['pageUrl'], identitySha256=digest(page),
                        excludedWeightPctByType=excluded)
 
 

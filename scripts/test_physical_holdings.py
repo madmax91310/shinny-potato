@@ -111,6 +111,10 @@ class PhysicalHoldingsTest(unittest.TestCase):
         self.assertEqual((len(rows), stamp, excluded), (25, '2026-10-19', {'Cash': .02}))
         self.assertAlmostEqual(sum(r['weightPct'] for r in rows), 99.98)
         with self.assertRaises(ValueError): vaneck_composition(body, {'apiTicker': 'SMH'}, NOW)
+        body['data']['Holdings'][0]['ISIN'] = ''
+        self.assertIsNone(vaneck_composition(body, {'apiTicker': 'UCTSMH'}, NOW)[0][0]['isin'])
+        body['data']['Holdings'][0]['ISIN'] = 'WRONG'
+        with self.assertRaises(ValueError): vaneck_composition(body, {'apiTicker': 'UCTSMH'}, NOW)
         body['data']['Holdings'].pop(0)
         with self.assertRaises(ValueError): vaneck_composition(body, {'apiTicker': 'UCTSMH'}, NOW)
         page = '<span data-value="IE00BMC38736"></span><ve-fundticker>UCTSMH</ve-fundticker><ve-country>uk</ve-country><ve-language>en</ve-language><section id="holdings"><ve-holdingsblock data-blockid="194732" data-pageid="233164"></ve-holdingsblock></section>'
