@@ -111,7 +111,7 @@ class PublicationTests(unittest.TestCase):
         self.assertFalse(xndx_source_upgrade('other',old,new))
         for bad in [raw.replace(b'NASDAQXNDX',b'NASDAQ100'),raw.replace(b'36000.25',b'-1'),raw.replace(b'2026-10-07',b'2026-10-06')]:
             with self.assertRaises(ValueError):collect_level(config,NOW,byte_fetch=lambda _:bad)
-        def conflict(url):return raw if 'cosd=' in url else raw.replace(b'36000.25',b'36001.25')
+        def conflict(url):return raw if 'cosd=2026-09-23' in url else raw.replace(b'36000.25',b'36001.25')
         with self.assertRaises(ValueError):collect_level(config,NOW,byte_fetch=conflict)
 
     def test_completed_session_and_preservation(self):

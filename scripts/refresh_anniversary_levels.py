@@ -60,8 +60,8 @@ def collect_one(config, now, json_fetch=None, byte_fetch=download):
         if (config.get('id'),config.get('seriesId'),config.get('symbol'),config.get('currency'),config.get('variant')) != ('nasdaq100','NASDAQXNDX','XNDX','USD','TOTAL'):
             reject('Wrong daily FRED economic index')
         base='https://fred.stlouisfed.org/graph/fredgraph.csv?id=NASDAQXNDX'
-        urls=[base+'&cosd='+start.isoformat()+'&coed='+(end-dt.timedelta(days=1)).isoformat(),base]
-        raw=[byte_fetch(u) for u in urls]
+        urls=[base+'&cosd='+first.isoformat()+'&coed='+(end-dt.timedelta(days=1)).isoformat()for first in (start,start-dt.timedelta(days=7))]
+        raw=[download(u,timeout=60,max_attempts=2) if byte_fetch is download else byte_fetch(u) for u in urls]
         def parse(content):
             reader=csv.DictReader(io.StringIO(content.decode('utf-8-sig')))
             if reader.fieldnames!=['observation_date','NASDAQXNDX']:reject('Wrong daily FRED series schema')
@@ -117,7 +117,7 @@ def collect_one(config, now, json_fetch=None, byte_fetch=download):
     return {'value':value,'asOf':asof,'currency':config['currency'],'parser':parser,
             'symbol':config.get('symbol'),'indexCode':config.get('indexCode'),'variant':config.get('variant'),
             'sourceUrl':url,'sha256':hashlib.sha256(json.dumps(body,sort_keys=True,allow_nan=False).encode()).hexdigest(),
-            'method':('Niveau officiel XNDX Total Return USD de la dernière séance terminée, diffusé par FRED ; relevé courant et requête datée concordants' if parser=='fred' else ('Niveau XNDX Total Return USD de la dernière séance terminée, dividendes bruts réinvestis' if config.get('symbol')=='^XNDX' else 'Dernière séance terminée ; cours brut') if parser=='yahoo' else ('Niveau officiel de fin de mois, Total Return USD' if parser=='ftse' else 'Niveau officiel de fin de séance, variante exacte')),
+            'method':('Niveau officiel XNDX Total Return USD de la dernière séance terminée, diffusé par FRED ; deux fenêtres datées concordantes' if parser=='fred' else ('Niveau XNDX Total Return USD de la dernière séance terminée, dividendes bruts réinvestis' if config.get('symbol')=='^XNDX' else 'Dernière séance terminée ; cours brut') if parser=='yahoo' else ('Niveau officiel de fin de mois, Total Return USD' if parser=='ftse' else 'Niveau officiel de fin de séance, variante exacte')),
             'maxAgeDays':45 if parser=='ftse' else 7,
             **({'seriesId':'NASDAQXNDX','sourceUrls':urls,'sourceHashes':body['sources']}if parser=='fred' else {}),
             **({key:config[key] for key in ('isin','ticker','mic','listingEvidenceId') if key in config} if config.get('isin') else {})}
@@ -130,7 +130,7 @@ def xndx_source_upgrade(identifier,old,record):
     if record.get('seriesId')!='NASDAQXNDX':return False
     base='https://fred.stlouisfed.org/graph/fredgraph.csv?id=NASDAQXNDX'
     sources=record.get('sourceHashes',{})
-    return (len(sources)==2 and base in sources and record.get('sourceUrl','').startswith(base+'&cosd=')
+    return (len(sources)==2 and all(url.startswith(base+'&cosd=')for url in sources) and record.get('sourceUrl','').startswith(base+'&cosd=')
             and record['sourceUrl'] in sources and all(re.fullmatch(r'[a-f0-9]{64}',value or '')for value in sources.values()))
 
 
