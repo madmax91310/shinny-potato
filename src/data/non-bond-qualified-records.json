@@ -28,97 +28,97 @@
       "asOf": "2026-10-19"
     },
     "countries": {
-      "asOf": "2026-10-16",
+      "asOf": "2026-10-19",
       "rows": [
         {
           "name": "United States",
-          "weightPct": 67.92
+          "weightPct": 68.21
         },
         {
           "name": "Japan",
-          "weightPct": 6.93
+          "weightPct": 6.86
         },
         {
           "name": "United Kingdom",
-          "weightPct": 4.12
+          "weightPct": 4.06
         },
         {
           "name": "Canada",
-          "weightPct": 3.83
+          "weightPct": 3.8
         },
         {
           "name": "France",
-          "weightPct": 3.58
+          "weightPct": 3.54
         },
         {
           "name": "Netherlands",
-          "weightPct": 2.78
+          "weightPct": 2.79
         },
         {
           "name": "Germany",
-          "weightPct": 2.62
-        },
-        {
-          "name": "Switzerland",
-          "weightPct": 1.63
+          "weightPct": 2.59
         },
         {
           "name": "Australia",
+          "weightPct": 1.62
+        },
+        {
+          "name": "Switzerland",
           "weightPct": 1.61
         },
         {
           "name": "Sweden",
-          "weightPct": 1.16
+          "weightPct": 1.14
         },
         {
           "name": "Other",
-          "weightPct": 3.52
+          "weightPct": 3.47
         },
         {
           "name": "Cash and/or Derivatives",
-          "weightPct": 0.31
+          "weightPct": 0.3
         }
       ],
       "sourceComponent": "exposureBreakdowns.geography.countries"
     },
     "sectors": {
-      "asOf": "2026-10-16",
+      "asOf": "2026-10-19",
       "rows": [
         {
           "name": "Information Technology",
-          "weightPct": 43.35
+          "weightPct": 43.7
         },
         {
           "name": "Industrials",
-          "weightPct": 12.82
+          "weightPct": 12.69
         },
         {
           "name": "Energy",
-          "weightPct": 12.62
+          "weightPct": 12.54
         },
         {
           "name": "Health Care",
-          "weightPct": 10.42
+          "weightPct": 10.32
         },
         {
           "name": "Materials",
-          "weightPct": 8.74
+          "weightPct": 8.68
         },
         {
           "name": "Consumer Discretionary",
-          "weightPct": 6.71
+          "weightPct": 6.81
         },
         {
           "name": "Consumer Staples",
-          "weightPct": 3.21
+          "weightPct": 3.18
         },
         {
           "name": "Real Estate",
-          "weightPct": 0.84
+          "weightPct": 0.83
         },
         {
           "name": "Utilities",
-          "weightPct": 0.82
+          "weightPct": 0.8
         },
         {
           "name": "Communication",
@@ -126,7 +126,7 @@
         },
         {
           "name": "Cash and/or Derivatives",
-          "weightPct": 0.31
+          "weightPct": 0.3
         }
       ],
       "sourceComponent": "exposureBreakdowns.sector"
@@ -149,57 +149,57 @@
       }
     },
     "holdings": {
-      "asOf": "2026-10-16",
+      "asOf": "2026-10-19",
       "basis": "fund",
       "rows": [
         {
           "name": "MICROSOFT",
-          "weightPct": 14.29711,
+          "weightPct": 14.36237,
           "isin": "US5949181045"
         },
         {
           "name": "TESLA INC",
-          "weightPct": 3.88622,
+          "weightPct": 4.01684,
           "isin": "US88160R1014"
         },
         {
           "name": "MICRON TECHNOLOGY",
-          "weightPct": 3.80093,
+          "weightPct": 3.89856,
           "isin": "US5951121038"
         },
         {
           "name": "ADVANCED MICRO DEVICES",
-          "weightPct": 3.29981,
+          "weightPct": 3.34492,
           "isin": "US0079031078"
         },
         {
           "name": "EXXONMOBIL HOLDINGS CORP",
-          "weightPct": 2.84253,
+          "weightPct": 2.82051,
           "isin": "US30233Q1085"
         },
         {
           "name": "ASML HOLDING",
-          "weightPct": 2.47178,
+          "weightPct": 2.48562,
           "isin": "NL0010273215"
         },
         {
           "name": "JOHNSON & JOHNSON",
-          "weightPct": 2.35234,
+          "weightPct": 2.32705,
           "isin": "US4781601046"
         },
         {
           "name": "CISCO SYSTEMS INC",
-          "weightPct": 1.62272,
+          "weightPct": 1.60307,
           "isin": "US17275R1023"
         },
         {
           "name": "CHEVRON",
-          "weightPct": 1.59065,
+          "weightPct": 1.58016,
           "isin": "US1667641005"
         },
         {
           "name": "INTEL CORPORATION",
-          "weightPct": 1.51531,
+          "weightPct": 1.54609,
           "isin": "US4581401001"
         }
       ]
@@ -254,10 +254,10 @@
     ],
     "metrics": {
       "twelveMonTrlYld": {
-        "value": 0.943192,
+        "value": 0.939497,
         "label": "Rendement des distributions sur 12 mois",
         "unit": "%",
-        "asOf": "2026-10-16",
+        "asOf": "2026-10-19",
         "checkedAt": "2026-10-20",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251394&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The yield an investor would have received if they had held the fund over the last twelve months assuming the most recent NAV. The 12-Month yield is calculated by assuming any income distributions over the past twelve months and dividing by the sum of the most recent NAV and any capital gain distributions made over the past twelve months. This yield calculation does not take into account any dividends received and held by the fund, but are awaiting the next distribution date. This can cause deviation with index level yield values.",
@@ -267,27 +267,27 @@
         "value": 387.0,
         "label": "Nombre de positions hors liquidités et dérivés",
         "unit": "positions",
-        "asOf": "2026-10-16",
+        "asOf": "2026-10-19",
         "checkedAt": "2026-10-20",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251394&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The number of holdings in the fund excluding cash positions and derivatives exposures. Derivatives are contracts used by the fund to gain exposure to an investment without buying it directly.  They can be used in a number of ways. For example a &#39;currency forward&#39; derivative contract can be used to &#39;hedge&#39; or aim to mitigate the effects of changes in exchange rates.",
         "scope": "Fund portfolio"
       },
       "priceEarnings": {
-        "value": 28.18753,
+        "value": 28.02907,
         "label": "PER du portefeuille selon l’émetteur",
         "unit": "fois",
-        "asOf": "2026-10-16",
+        "asOf": "2026-10-19",
         "checkedAt": "2026-10-20",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251394&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The price to earnings ratio (P/E) is a fundamental measure used to determine if an investment is valued appropriately. Each holdings&#39; P/E is the latest closing price divided by the latest 12 months&#39; earnings per share. Negative earnings are excluded, extraordinary items are excluded, and P/E ratios over 60 are set to 60.",
         "scope": "Fund portfolio"
       },
       "priceBook": {
-        "value": 4.23696,
+        "value": 4.25899,
         "label": "Cours / actif net comptable selon l’émetteur",
         "unit": "fois",
-        "asOf": "2026-10-16",
+        "asOf": "2026-10-19",
         "checkedAt": "2026-10-20",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251394&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The price to book (P/B) value ratio is a fundamental measure used to determine if an investment is valued appropriately. The book value of a company is a measure of how much a company&#39;s assets are worth assuming the company&#39;s debts are paid off. Negative book values are excluded from this calculation and holding price to book ratios over 25 are set to 25.",
@@ -304,8 +304,8 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-10-20T12:42:01.682401+00:00",
-    "pageSha256": "095cc4ac9a31672261633da494f847bbd0d4f5886f94911f8e072a87cbb360ba",
+    "checkedAt": "2026-10-20T18:44:35.055416+00:00",
+    "pageSha256": "fa28d63c03c5e45223f7ca64c583332b23637c92958cbc28bf6ad024a60748e9",
     "automatedRecord": {
       "currency": "USD",
       "productId": 251394,
@@ -320,51 +320,51 @@
         "modifiedAt": "2026-10-20"
       },
       "sectors": {
-        "asOf": "2026-10-16",
+        "asOf": "2026-10-19",
         "rows": [
           {
             "name": "Information Technology",
-            "weightPct": 43.35,
+            "weightPct": 43.7,
             "label": "Information Technology"
           },
           {
             "name": "Industrials",
-            "weightPct": 12.82,
+            "weightPct": 12.69,
             "label": "Industrials"
           },
           {
             "name": "Energy",
-            "weightPct": 12.62,
+            "weightPct": 12.54,
             "label": "Energy"
           },
           {
             "name": "Health Care",
-            "weightPct": 10.42,
+            "weightPct": 10.32,
             "label": "Health Care"
           },
           {
             "name": "Materials",
-            "weightPct": 8.74,
+            "weightPct": 8.68,
             "label": "Materials"
           },
           {
             "name": "Consumer Discretionary",
-            "weightPct": 6.71,
+            "weightPct": 6.81,
             "label": "Consumer Discretionary"
           },
           {
             "name": "Consumer Staples",
-            "weightPct": 3.21,
+            "weightPct": 3.18,
             "label": "Consumer Staples"
           },
           {
             "name": "Real Estate",
-            "weightPct": 0.84,
+            "weightPct": 0.83,
             "label": "Immobilier"
           },
           {
             "name": "Utilities",
-            "weightPct": 0.82,
+            "weightPct": 0.8,
             "label": "Utilities"
           },
           {
@@ -374,127 +374,127 @@
           },
           {
             "name": "Cash and/or Derivatives",
-            "weightPct": 0.31,
+            "weightPct": 0.3,
             "label": "Cash and/or Derivatives"
           }
         ],
         "sourceComponent": "exposureBreakdowns.sector",
         "checkedAt": "2026-10-20",
-        "modifiedAt": "2026-10-18"
+        "modifiedAt": "2026-10-20"
       },
       "countries": {
-        "asOf": "2026-10-16",
+        "asOf": "2026-10-19",
         "rows": [
           {
             "name": "United States",
-            "weightPct": 67.92
+            "weightPct": 68.21
           },
           {
             "name": "Japan",
-            "weightPct": 6.93
+            "weightPct": 6.86
           },
           {
             "name": "United Kingdom",
-            "weightPct": 4.12
+            "weightPct": 4.06
           },
           {
             "name": "Canada",
-            "weightPct": 3.83
+            "weightPct": 3.8
           },
           {
             "name": "France",
-            "weightPct": 3.58
+            "weightPct": 3.54
           },
           {
             "name": "Netherlands",
-            "weightPct": 2.78
+            "weightPct": 2.79
           },
           {
             "name": "Germany",
-            "weightPct": 2.62
-          },
-          {
-            "name": "Switzerland",
-            "weightPct": 1.63
+            "weightPct": 2.59
           },
           {
             "name": "Australia",
+            "weightPct": 1.62
+          },
+          {
+            "name": "Switzerland",
             "weightPct": 1.61
           },
           {
             "name": "Sweden",
-            "weightPct": 1.16
+            "weightPct": 1.14
           },
           {
             "name": "Other",
-            "weightPct": 3.52
+            "weightPct": 3.47
           },
           {
             "name": "Cash and/or Derivatives",
-            "weightPct": 0.31
+            "weightPct": 0.3
           }
         ],
         "sourceComponent": "exposureBreakdowns.geography.countries",
         "checkedAt": "2026-10-20",
-        "modifiedAt": "2026-10-18"
+        "modifiedAt": "2026-10-20"
       },
       "holdings": {
-        "asOf": "2026-10-16",
+        "asOf": "2026-10-19",
         "basis": "fund",
         "rows": [
           {
             "name": "MICROSOFT",
-            "weightPct": 14.29711,
+            "weightPct": 14.36237,
             "isin": "US5949181045"
           },
           {
             "name": "TESLA INC",
-            "weightPct": 3.88622,
+            "weightPct": 4.01684,
             "isin": "US88160R1014"
           },
           {
             "name": "MICRON TECHNOLOGY",
-            "weightPct": 3.80093,
+            "weightPct": 3.89856,
             "isin": "US5951121038"
           },
           {
             "name": "ADVANCED MICRO DEVICES",
-            "weightPct": 3.29981,
+            "weightPct": 3.34492,
             "isin": "US0079031078"
           },
           {
             "name": "EXXONMOBIL HOLDINGS CORP",
-            "weightPct": 2.84253,
+            "weightPct": 2.82051,
             "isin": "US30233Q1085"
           },
           {
             "name": "ASML HOLDING",
-            "weightPct": 2.47178,
+            "weightPct": 2.48562,
             "isin": "NL0010273215"
           },
           {
             "name": "JOHNSON & JOHNSON",
-            "weightPct": 2.35234,
+            "weightPct": 2.32705,
             "isin": "US4781601046"
           },
           {
             "name": "CISCO SYSTEMS INC",
-            "weightPct": 1.62272,
+            "weightPct": 1.60307,
             "isin": "US17275R1023"
           },
           {
             "name": "CHEVRON",
-            "weightPct": 1.59065,
+            "weightPct": 1.58016,
             "isin": "US1667641005"
           },
           {
             "name": "INTEL CORPORATION",
-            "weightPct": 1.51531,
+            "weightPct": 1.54609,
             "isin": "US4581401001"
           }
         ],
         "checkedAt": "2026-10-20",
-        "modifiedAt": "2026-10-19"
+        "modifiedAt": "2026-10-20"
       },
       "characteristics": {
         "terPct": 0.3,
@@ -588,11 +588,11 @@
       "asOf": "2026-10-19"
     },
     "countries": {
-      "asOf": "2026-10-16",
+      "asOf": "2026-10-19",
       "rows": [
         {
           "name": "United Kingdom",
-          "weightPct": 27.09
+          "weightPct": 27.02
         },
         {
           "name": "Spain",
@@ -600,31 +600,31 @@
         },
         {
           "name": "Italy",
-          "weightPct": 13.96
+          "weightPct": 13.93
         },
         {
           "name": "France",
-          "weightPct": 7.77
+          "weightPct": 7.71
         },
         {
           "name": "Netherlands",
-          "weightPct": 5.53
+          "weightPct": 5.54
         },
         {
           "name": "Sweden",
-          "weightPct": 4.34
+          "weightPct": 4.4
         },
         {
           "name": "Germany",
-          "weightPct": 3.48
-        },
-        {
-          "name": "Finland",
-          "weightPct": 2.62
+          "weightPct": 3.46
         },
         {
           "name": "Austria",
-          "weightPct": 2.6
+          "weightPct": 2.64
+        },
+        {
+          "name": "Finland",
+          "weightPct": 2.63
         },
         {
           "name": "Poland",
@@ -636,19 +636,19 @@
         },
         {
           "name": "Greece",
-          "weightPct": 2.02
+          "weightPct": 2.04
         },
         {
           "name": "Ireland",
-          "weightPct": 1.98
+          "weightPct": 1.99
         },
         {
           "name": "Norway",
-          "weightPct": 1.53
+          "weightPct": 1.57
         },
         {
           "name": "Belgium",
-          "weightPct": 1.49
+          "weightPct": 1.47
         },
         {
           "name": "Other",
@@ -662,7 +662,7 @@
       "sourceComponent": "exposureBreakdowns.geography.countries"
     },
     "sectors": {
-      "asOf": "2026-10-16",
+      "asOf": "2026-10-19",
       "rows": [
         {
           "name": "Banks",
@@ -693,57 +693,57 @@
       }
     },
     "holdings": {
-      "asOf": "2026-10-16",
+      "asOf": "2026-10-19",
       "basis": "fund",
       "rows": [
         {
           "name": "HSBC HOLDINGS PLC",
-          "weightPct": 14.23184,
+          "weightPct": 14.22149,
           "isin": "GB0005405286"
         },
         {
           "name": "BANCO SANTANDER",
-          "weightPct": 8.84579,
+          "weightPct": 8.83273,
           "isin": "ES0113900J37"
         },
         {
-          "name": "BANCO BILBAO VIZCAYA ARGENTARIA SA",
-          "weightPct": 6.3338,
+          "name": "BANCO BILBAO VIZCAYA ARGENTARIA",
+          "weightPct": 6.3397,
           "isin": "ES0113211835"
         },
         {
           "name": "UNICREDIT",
-          "weightPct": 5.62533,
+          "weightPct": 5.61844,
           "isin": "IT0005239360"
         },
         {
           "name": "INTESA SANPAOLO",
-          "weightPct": 4.68819,
+          "weightPct": 4.68194,
           "isin": "IT0000072618"
         },
         {
           "name": "BNP PARIBAS SA",
-          "weightPct": 4.55636,
+          "weightPct": 4.53559,
           "isin": "FR0000131104"
         },
         {
           "name": "ING GROEP",
-          "weightPct": 4.23145,
+          "weightPct": 4.23949,
           "isin": "NL0011821202"
         },
         {
           "name": "LLOYDS BANKING GROUP PLC",
-          "weightPct": 3.53883,
+          "weightPct": 3.55216,
           "isin": "GB0008706128"
         },
         {
           "name": "BARCLAYS PLC",
-          "weightPct": 3.38661,
+          "weightPct": 3.33763,
           "isin": "GB0031348658"
         },
         {
           "name": "NATWEST GROUP PLC",
-          "weightPct": 3.15328,
+          "weightPct": 3.1334,
           "isin": "GB00BM8PJY71"
         }
       ]
@@ -787,10 +787,10 @@
     ],
     "metrics": {
       "twelveMonTrlYld": {
-        "value": 3.816279,
+        "value": 3.89538,
         "label": "Rendement des distributions sur 12 mois",
         "unit": "%",
-        "asOf": "2026-10-16",
+        "asOf": "2026-10-19",
         "checkedAt": "2026-10-20",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251934&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The yield an investor would have received if they had held the fund over the last twelve months assuming the most recent NAV. The 12-Month yield is calculated by assuming any income distributions over the past twelve months and dividing by the sum of the most recent NAV and any capital gain distributions made over the past twelve months. This yield calculation does not take into account any dividends received and held by the fund, but are awaiting the next distribution date. This can cause deviation with index level yield values.",
@@ -800,27 +800,27 @@
         "value": 62.0,
         "label": "Nombre de positions hors liquidités et dérivés",
         "unit": "positions",
-        "asOf": "2026-10-16",
+        "asOf": "2026-10-19",
         "checkedAt": "2026-10-20",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251934&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The number of holdings in the fund excluding cash positions and derivatives exposures. Derivatives are contracts used by the fund to gain exposure to an investment without buying it directly.  They can be used in a number of ways. For example a &#39;currency forward&#39; derivative contract can be used to &#39;hedge&#39; or aim to mitigate the effects of changes in exchange rates.",
         "scope": "Fund portfolio"
       },
       "priceEarnings": {
-        "value": 12.19813,
+        "value": 12.28084,
         "label": "PER du portefeuille selon l’émetteur",
         "unit": "fois",
-        "asOf": "2026-10-16",
+        "asOf": "2026-10-19",
         "checkedAt": "2026-10-20",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251934&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The price to earnings ratio (P/E) is a fundamental measure used to determine if an investment is valued appropriately. Each holdings&#39; P/E is the latest closing price divided by the latest 12 months&#39; earnings per share. Negative earnings are excluded, extraordinary items are excluded, and P/E ratios over 60 are set to 60.",
         "scope": "Fund portfolio"
       },
       "priceBook": {
-        "value": 1.5196,
+        "value": 1.53038,
         "label": "Cours / actif net comptable selon l’émetteur",
         "unit": "fois",
-        "asOf": "2026-10-16",
+        "asOf": "2026-10-19",
         "checkedAt": "2026-10-20",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251934&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The price to book (P/B) value ratio is a fundamental measure used to determine if an investment is valued appropriately. The book value of a company is a measure of how much a company&#39;s assets are worth assuming the company&#39;s debts are paid off. Negative book values are excluded from this calculation and holding price to book ratios over 25 are set to 25.",
@@ -837,8 +837,8 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-10-20T12:42:01.682401+00:00",
-    "pageSha256": "5542c83fa4ef3b6fbdb0e84a8ad8cffe36c7a0237739fab480b741529f30cf1e",
+    "checkedAt": "2026-10-20T18:44:35.055416+00:00",
+    "pageSha256": "3daa6e229aad682c2c58ba84abad6550423cd609f924858e9a3c29db06ec68fe",
     "automatedRecord": {
       "currency": "EUR",
       "productId": 251934,
@@ -853,7 +853,7 @@
         "modifiedAt": "2026-10-20"
       },
       "sectors": {
-        "asOf": "2026-10-16",
+        "asOf": "2026-10-19",
         "rows": [
           {
             "name": "Banks",
@@ -868,14 +868,14 @@
         ],
         "sourceComponent": "exposureBreakdowns.sector",
         "checkedAt": "2026-10-20",
-        "modifiedAt": "2026-10-18"
+        "modifiedAt": "2026-10-20"
       },
       "countries": {
-        "asOf": "2026-10-16",
+        "asOf": "2026-10-19",
         "rows": [
           {
             "name": "United Kingdom",
-            "weightPct": 27.09
+            "weightPct": 27.02
           },
           {
             "name": "Spain",
@@ -883,31 +883,31 @@
           },
           {
             "name": "Italy",
-            "weightPct": 13.96
+            "weightPct": 13.93
           },
           {
             "name": "France",
-            "weightPct": 7.77
+            "weightPct": 7.71
           },
           {
             "name": "Netherlands",
-            "weightPct": 5.53
+            "weightPct": 5.54
           },
           {
             "name": "Sweden",
-            "weightPct": 4.34
+            "weightPct": 4.4
           },
           {
             "name": "Germany",
-            "weightPct": 3.48
-          },
-          {
-            "name": "Finland",
-            "weightPct": 2.62
+            "weightPct": 3.46
           },
           {
             "name": "Austria",
-            "weightPct": 2.6
+            "weightPct": 2.64
+          },
+          {
+            "name": "Finland",
+            "weightPct": 2.63
           },
           {
             "name": "Poland",
@@ -919,19 +919,19 @@
           },
           {
             "name": "Greece",
-            "weightPct": 2.02
+            "weightPct": 2.04
           },
           {
             "name": "Ireland",
-            "weightPct": 1.98
+            "weightPct": 1.99
           },
           {
             "name": "Norway",
-            "weightPct": 1.53
+            "weightPct": 1.57
           },
           {
             "name": "Belgium",
-            "weightPct": 1.49
+            "weightPct": 1.47
           },
           {
             "name": "Other",
@@ -944,65 +944,65 @@
         ],
         "sourceComponent": "exposureBreakdowns.geography.countries",
         "checkedAt": "2026-10-20",
-        "modifiedAt": "2026-10-18"
+        "modifiedAt": "2026-10-20"
       },
       "holdings": {
-        "asOf": "2026-10-16",
+        "asOf": "2026-10-19",
         "basis": "fund",
         "rows": [
           {
             "name": "HSBC HOLDINGS PLC",
-            "weightPct": 14.23184,
+            "weightPct": 14.22149,
             "isin": "GB0005405286"
           },
           {
             "name": "BANCO SANTANDER",
-            "weightPct": 8.84579,
+            "weightPct": 8.83273,
             "isin": "ES0113900J37"
           },
           {
-            "name": "BANCO BILBAO VIZCAYA ARGENTARIA SA",
-            "weightPct": 6.3338,
+            "name": "BANCO BILBAO VIZCAYA ARGENTARIA",
+            "weightPct": 6.3397,
             "isin": "ES0113211835"
           },
           {
             "name": "UNICREDIT",
-            "weightPct": 5.62533,
+            "weightPct": 5.61844,
             "isin": "IT0005239360"
           },
           {
             "name": "INTESA SANPAOLO",
-            "weightPct": 4.68819,
+            "weightPct": 4.68194,
             "isin": "IT0000072618"
           },
           {
             "name": "BNP PARIBAS SA",
-            "weightPct": 4.55636,
+            "weightPct": 4.53559,
             "isin": "FR0000131104"
           },
           {
             "name": "ING GROEP",
-            "weightPct": 4.23145,
+            "weightPct": 4.23949,
             "isin": "NL0011821202"
           },
           {
             "name": "LLOYDS BANKING GROUP PLC",
-            "weightPct": 3.53883,
+            "weightPct": 3.55216,
             "isin": "GB0008706128"
           },
           {
             "name": "BARCLAYS PLC",
-            "weightPct": 3.38661,
+            "weightPct": 3.33763,
             "isin": "GB0031348658"
           },
           {
             "name": "NATWEST GROUP PLC",
-            "weightPct": 3.15328,
+            "weightPct": 3.1334,
             "isin": "GB00BM8PJY71"
           }
         ],
         "checkedAt": "2026-10-20",
-        "modifiedAt": "2026-10-19"
+        "modifiedAt": "2026-10-20"
       },
       "characteristics": {
         "terPct": 0.46,
@@ -1100,27 +1100,27 @@
       "asOf": "2026-10-19"
     },
     "countries": {
-      "asOf": "2026-10-16",
+      "asOf": "2026-10-19",
       "rows": [
         {
           "name": "Germany",
-          "weightPct": 32.3
+          "weightPct": 32.13
         },
         {
           "name": "Switzerland",
-          "weightPct": 24.25
+          "weightPct": 24.5
         },
         {
           "name": "United Kingdom",
-          "weightPct": 12.3
+          "weightPct": 12.32
         },
         {
           "name": "France",
-          "weightPct": 10.15
+          "weightPct": 10.11
         },
         {
           "name": "Italy",
-          "weightPct": 7.11
+          "weightPct": 6.99
         },
         {
           "name": "Netherlands",
@@ -1128,11 +1128,11 @@
         },
         {
           "name": "Finland",
-          "weightPct": 2.83
+          "weightPct": 2.86
         },
         {
           "name": "Norway",
-          "weightPct": 1.54
+          "weightPct": 1.56
         },
         {
           "name": "Belgium",
@@ -1140,11 +1140,11 @@
         },
         {
           "name": "Poland",
-          "weightPct": 1.21
+          "weightPct": 1.2
         },
         {
           "name": "Other",
-          "weightPct": 1.31
+          "weightPct": 1.32
         },
         {
           "name": "Cash and/or Derivatives",
@@ -1154,7 +1154,7 @@
       "sourceComponent": "exposureBreakdowns.geography.countries"
     },
     "sectors": {
-      "asOf": "2026-10-16",
+      "asOf": "2026-10-19",
       "rows": [
         {
           "name": "Insurance",
@@ -1185,57 +1185,57 @@
       }
     },
     "holdings": {
-      "asOf": "2026-10-16",
+      "asOf": "2026-10-19",
       "basis": "fund",
       "rows": [
         {
           "name": "ALLIANZ",
-          "weightPct": 20.62544,
+          "weightPct": 20.43222,
           "isin": "DE0008404005"
         },
         {
           "name": "ZURICH INSURANCE GROUP AG",
-          "weightPct": 12.52915,
+          "weightPct": 12.63941,
           "isin": "CH0011075394"
         },
         {
           "name": "AXA SA",
-          "weightPct": 9.47141,
+          "weightPct": 9.43657,
           "isin": "FR0000120628"
         },
         {
           "name": "MUENCHENER RUECKVERSICHERUNGS-GESE",
-          "weightPct": 8.68092,
+          "weightPct": 8.69068,
           "isin": "DE0008430026"
         },
         {
           "name": "SWISS RE AG",
-          "weightPct": 6.05212,
+          "weightPct": 6.12981,
           "isin": "CH0126881561"
         },
         {
           "name": "ASSICURAZIONI GENERALI",
-          "weightPct": 5.78325,
+          "weightPct": 5.7048,
           "isin": "IT0000062072"
         },
         {
           "name": "SWISS LIFE HOLDING AG",
-          "weightPct": 3.49623,
+          "weightPct": 3.51178,
           "isin": "CH0014852781"
         },
         {
           "name": "PRUDENTIAL PLC",
-          "weightPct": 3.35879,
+          "weightPct": 3.33481,
           "isin": "GB0007099541"
         },
         {
           "name": "AVIVA PLC",
-          "weightPct": 3.17425,
+          "weightPct": 3.18554,
           "isin": "GB00BPQY8M80"
         },
         {
           "name": "SAMPO CLASS A",
-          "weightPct": 2.83078,
+          "weightPct": 2.85882,
           "isin": "FI4000552500"
         }
       ]
@@ -1268,10 +1268,10 @@
     ],
     "metrics": {
       "twelveMonTrlYld": {
-        "value": 3.405864,
+        "value": 3.437423,
         "label": "Rendement des distributions sur 12 mois",
         "unit": "%",
-        "asOf": "2026-10-16",
+        "asOf": "2026-10-19",
         "checkedAt": "2026-10-20",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251950&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The yield an investor would have received if they had held the fund over the last twelve months assuming the most recent NAV. The 12-Month yield is calculated by assuming any income distributions over the past twelve months and dividing by the sum of the most recent NAV and any capital gain distributions made over the past twelve months. This yield calculation does not take into account any dividends received and held by the fund, but are awaiting the next distribution date. This can cause deviation with index level yield values.",
@@ -1281,27 +1281,27 @@
         "value": 29.0,
         "label": "Nombre de positions hors liquidités et dérivés",
         "unit": "positions",
-        "asOf": "2026-10-16",
+        "asOf": "2026-10-19",
         "checkedAt": "2026-10-20",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251950&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The number of holdings in the fund excluding cash positions and derivatives exposures. Derivatives are contracts used by the fund to gain exposure to an investment without buying it directly.  They can be used in a number of ways. For example a &#39;currency forward&#39; derivative contract can be used to &#39;hedge&#39; or aim to mitigate the effects of changes in exchange rates.",
         "scope": "Fund portfolio"
       },
       "priceEarnings": {
-        "value": 13.47882,
+        "value": 13.58475,
         "label": "PER du portefeuille selon l’émetteur",
         "unit": "fois",
-        "asOf": "2026-10-16",
+        "asOf": "2026-10-19",
         "checkedAt": "2026-10-20",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251950&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The price to earnings ratio (P/E) is a fundamental measure used to determine if an investment is valued appropriately. Each holdings&#39; P/E is the latest closing price divided by the latest 12 months&#39; earnings per share. Negative earnings are excluded, extraordinary items are excluded, and P/E ratios over 60 are set to 60.",
         "scope": "Fund portfolio"
       },
       "priceBook": {
-        "value": 2.09142,
+        "value": 2.10804,
         "label": "Cours / actif net comptable selon l’émetteur",
         "unit": "fois",
-        "asOf": "2026-10-16",
+        "asOf": "2026-10-19",
         "checkedAt": "2026-10-20",
         "sourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=251950&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
         "method": "The price to book (P/B) value ratio is a fundamental measure used to determine if an investment is valued appropriately. The book value of a company is a measure of how much a company&#39;s assets are worth assuming the company&#39;s debts are paid off. Negative book values are excluded from this calculation and holding price to book ratios over 25 are set to 25.",
@@ -1318,8 +1318,8 @@
         "scope": "Fund portfolio"
       }
     },
-    "checkedAt": "2026-10-20T12:42:01.682401+00:00",
-    "pageSha256": "80cdeeb588440950e8a678f20d63a487fc67c4a85b815d88b3a235339c4451f3",
+    "checkedAt": "2026-10-20T18:44:35.055416+00:00",
+    "pageSha256": "8c3361db96f0f26d19ef769e4b71ba73a3057fc184393fd7c3358e19c1a5accd",
     "automatedRecord": {
       "currency": "EUR",
       "productId": 251950,
@@ -1334,7 +1334,7 @@
         "modifiedAt": "2026-10-20"
       },
       "sectors": {
-        "asOf": "2026-10-16",
+        "asOf": "2026-10-19",
         "rows": [
           {
             "name": "Insurance",
@@ -1349,30 +1349,30 @@
         ],
         "sourceComponent": "exposureBreakdowns.sector",
         "checkedAt": "2026-10-20",
-        "modifiedAt": "2026-10-18"
+        "modifiedAt": "2026-10-20"
       },
       "countries": {
-        "asOf": "2026-10-16",
+        "asOf": "2026-10-19",
         "rows": [
           {
             "name": "Germany",
-            "weightPct": 32.3
+            "weightPct": 32.13
           },
           {
             "name": "Switzerland",
-            "weightPct": 24.25
+            "weightPct": 24.5
           },
           {
             "name": "United Kingdom",
-            "weightPct": 12.3
+            "weightPct": 12.32
           },
           {
             "name": "France",
-            "weightPct": 10.15
+            "weightPct": 10.11
           },
           {
             "name": "Italy",
-            "weightPct": 7.11
+            "weightPct": 6.99
           },
           {
             "name": "Netherlands",
@@ -1380,11 +1380,11 @@
           },
           {
             "name": "Finland",
-            "weightPct": 2.83
+            "weightPct": 2.86
           },
           {
             "name": "Norway",
-            "weightPct": 1.54
+            "weightPct": 1.56
           },
           {
             "name": "Belgium",
@@ -1392,11 +1392,11 @@
           },
           {
             "name": "Poland",
-            "weightPct": 1.21
+            "weightPct": 1.2
           },
           {
             "name": "Other",
-            "weightPct": 1.31
+            "weightPct": 1.32
           },
           {
             "name": "Cash and/or Derivatives",
@@ -1405,65 +1405,65 @@
         ],
         "sourceComponent": "exposureBreakdowns.geography.countries",
         "checkedAt": "2026-10-20",
-        "modifiedAt": "2026-10-18"
+        "modifiedAt": "2026-10-20"
       },
       "holdings": {
-        "asOf": "2026-10-16",
+        "asOf": "2026-10-19",
         "basis": "fund",
         "rows": [
           {
             "name": "ALLIANZ",
-            "weightPct": 20.62544,
+            "weightPct": 20.43222,
             "isin": "DE0008404005"
           },
           {
             "name": "ZURICH INSURANCE GROUP AG",
-            "weightPct": 12.52915,
+            "weightPct": 12.63941,
             "isin": "CH0011075394"
           },
           {
             "name": "AXA SA",
-            "weightPct": 9.47141,
+            "weightPct": 9.43657,
             "isin": "FR0000120628"
           },
           {
             "name": "MUENCHENER RUECKVERSICHERUNGS-GESE",
-            "weightPct": 8.68092,
+            "weightPct": 8.69068,
             "isin": "DE0008430026"
           },
           {
             "name": "SWISS RE AG",
-            "weightPct": 6.05212,
+            "weightPct": 6.12981,
             "isin": "CH0126881561"
           },
           {
             "name": "ASSICURAZIONI GENERALI",
-            "weightPct": 5.78325,
+            "weightPct": 5.7048,
             "isin": "IT0000062072"
           },
           {
             "name": "SWISS LIFE HOLDING AG",
-            "weightPct": 3.49623,
+            "weightPct": 3.51178,
             "isin": "CH0014852781"
           },
           {
             "name": "PRUDENTIAL PLC",
-            "weightPct": 3.35879,
+            "weightPct": 3.33481,
             "isin": "GB0007099541"
           },
           {
             "name": "AVIVA PLC",
-            "weightPct": 3.17425,
+            "weightPct": 3.18554,
             "isin": "GB00BPQY8M80"
           },
           {
             "name": "SAMPO CLASS A",
-            "weightPct": 2.83078,
+            "weightPct": 2.85882,
             "isin": "FI4000552500"
           }
         ],
         "checkedAt": "2026-10-20",
-        "modifiedAt": "2026-10-19"
+        "modifiedAt": "2026-10-20"
       },
       "characteristics": {
         "terPct": 0.46,
