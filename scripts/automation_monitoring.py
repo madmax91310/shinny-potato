@@ -81,6 +81,16 @@ def evaluate_monitoring(state, context, registry, now, radar=None):
         for key, row in old.items():
             if key.startswith('history:'):
                 add(key, row)
+    # A missing field report cannot silently close retained-source or freshness incidents.
+    if 'fieldAlerts' in context:
+        if not isinstance(context['fieldAlerts'], list):
+            raise ValueError('Bilan des champs invalide')
+        for row in context['fieldAlerts']:
+            add('field:' + row['id'], row)
+    else:
+        for key, row in old.items():
+            if key.startswith('field:'):
+                add(key, row)
     # Radar contradictions are review signals, never confirmed market movements.
     # A missing feed retains prior alerts and cannot claim a recovery.
     if radar is None:

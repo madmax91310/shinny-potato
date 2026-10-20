@@ -296,9 +296,11 @@ jobs:
       pages: write
       deployments: read
       id-token: write
-    uses: ./.github/workflows/deploy-pages.yml
+    uses: ./.github/workflows/publish-validated-data.yml
     with:
       ref: ${{ needs.refresh.outputs.commit_sha }}
+      producer: collect-etf-pilot.yml
+
   report-failures:
     needs: [refresh, deploy]
     if: always() && needs.refresh.outputs.collection_failed == 'true'

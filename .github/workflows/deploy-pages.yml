@@ -360,6 +360,7 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_metadata_recovery_diagnostics.py'
       - run: python -m unittest discover -s scripts -p 'test_metadata_incidents.py'
       - run: python -m unittest discover -s scripts -p 'test_physical_holdings.py'
+      - run: python -m unittest discover -s scripts -p 'test_topix_holdings.py'
       - run: python -m unittest discover -s scripts -p 'test_lifestrategy_holdings.py'
       - run: python -m unittest discover -s scripts -p 'test_dws_liquidity_funds.py'
       - run: python -m unittest discover -s scripts -p 'test_hsbc_jpm_holdings.py'

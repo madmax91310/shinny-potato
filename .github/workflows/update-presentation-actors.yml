@@ -73,7 +73,8 @@ jobs:
     uses: ./.github/workflows/publish-validated-data.yml
     with:
       ref: ${{ needs.refresh.outputs.commit_sha }}
-      required_path: src/data/automated-presentation-actors.json
+      producer: update-presentation-actors.yml
+
   report-failures:
     needs: [refresh, deploy]
     if: always() && needs.refresh.outputs.failed == 'true'

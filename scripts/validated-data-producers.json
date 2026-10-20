@@ -1,0 +1,23 @@
+{
+  "collect-etf-pilot.yml": ["src/data/automated-etf.json", "src/data/automated-indices.json", "src/data/annual-fx.json"],
+  "update-bitcoin-monthly.yml": ["src/data/bitcoin-yahoo-monthly.json", "src/data/automated-indices.json"],
+  "update-gold-monthly.yml": ["src/data/worldbank-gold-monthly.json"],
+  "update-inflation.yml": ["src/data/inflation-monthly.js"],
+  "update-investor-13f.yml": ["public/data/investors"],
+  "update-insurance.yml": ["src/data/automated-insurance.json"],
+  "update-scpi.yml": ["src/data/automated-scpi.json"],
+  "update-presentation-actors.yml": ["src/data/automated-presentation-actors.json"],
+  "update-company-analysis.yml": ["src/data/company-analysis.json", "src/data/company-forecast-evaluation.json", "src/data/company-profiles.json"],
+  "update-economic-data.yml": ["src/data/automated-economic.json"],
+  "update-regulatory-data.yml": ["src/data/automated-regulatory.json", "src/data/automated-broker-tariffs.json"],
+  "update-practical-sheets.yml": ["src/data/automated-practical-sheets.json"],
+  "update-lifestrategy.yml": ["src/data/lifestrategy.json"],
+  "update-non-bond-expansion.yml": ["src/data/non-bond-etf-records.json", "src/data/non-bond-qualified-records.json", "src/data/non-bond-monthly-records.json", "src/data/non-bond-levels.json"],
+  "update-qualified-exposures.yml": ["src/data/qualified-exposure-etfs.json", "src/data/exposure-sleeves.json", "src/data/vanguard-equity-underliers.json", "src/data/dca-complete-holdings.json", "src/data/dca-security-classifications.json", "src/data/dca-holdings-status.json"],
+  "update-exposure-expansion.yml": ["src/data/exposure-etf-expansion-records.json"],
+  "update-instrument-metadata.yml": ["src/data/automated-instrument-metadata.json", "src/data/instrument-metadata-status.json"],
+  "refresh-automated-index-sheets.yml": ["src/data/automated-indices.json"],
+  "update-market-monthly.yml": ["src/data/automated-monthly.json", "src/data/automated-etf-monthly.json", "src/data/monthly-fx.json", "src/data/equity-duel-returns.json"],
+  "update-publication-observations.yml": ["src/data/purchasing-power-observations.json", "src/data/anniversary-levels.json", "src/data/anniversary-index-history.json"],
+  "onboard-assets.yml": ["src/data/qualified-exposure-etfs.json", "src/data/dca-complete-holdings.json", "src/data/dca-equity-exposures.json"]
+}

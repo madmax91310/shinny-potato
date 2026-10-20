@@ -20,7 +20,7 @@ def public_url(url):
 
 def prerequisite(row):
     if row.get('id') in ['actor:bricks','actor:enerfip','actor:hectarea','actor:matis']:
-        return 'exact-project-document-required'
+        return 'published-general-platform-condition-required'
     if row.get('type')=='actor':return 'exact-offer-and-underlying-documents-required'
     if row.get('actionState')=='tracked-index-needed':return 'economic-index-holdings-required'
     if row.get('actionState')=='source-conflict':return 'contradictory-evidence-requires-qualification'

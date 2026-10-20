@@ -79,7 +79,8 @@ jobs:
     uses: ./.github/workflows/publish-validated-data.yml
     with:
       ref: ${{ needs.refresh.outputs.commit_sha }}
-      required_path: src/data/automated-scpi.json
+      producer: update-scpi.yml
+
   report-failures:
     needs: [refresh, deploy]
     if: always() && needs.refresh.outputs.failed == 'true'

@@ -31,6 +31,8 @@ add('topix-english','https://www.jpx.co.jp/automation/english/markets/indices/to
 add('nasdaq-index','https://indexes.nasdaq.com/Index/Weighting/NDX')
 for isin in ['IE00BDVPNG13','IE00BKLF1R75']:
  add(isin,'https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/'+isin)
+for isin in ['FR0013411980','FR0013411998']:
+ add(isin,'https://www.amundietf.fr/pdfDocuments/monthly-factsheet/'+isin+'/FRA/FRA/INSTITUTIONNEL/ETF')
 def one(item):
  url,ids=item;row={'ids':ids,'url':url,'checkedAt':dt.datetime.now(dt.timezone.utc).isoformat()}
  try:

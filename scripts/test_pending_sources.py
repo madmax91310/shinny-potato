@@ -10,7 +10,7 @@ class PendingSources(unittest.TestCase):
         report=check([original],{},NOW,lambda url,**kwargs:(b'public page',url))
         row=report['observations']['actor:bricks:catalog:Projet']
         self.assertFalse(row['financialDataQualified'])
-        self.assertEqual(row['prerequisite'],'exact-project-document-required')
+        self.assertEqual(row['prerequisite'],'published-general-platform-condition-required')
         self.assertEqual(row['status'],'accessible-unqualified')
         self.assertNotIn('checkedAt',row);self.assertNotIn('lastSuccessAt',row);self.assertNotIn('asOf',row)
         self.assertEqual(original['actionState'],'connector-needed')

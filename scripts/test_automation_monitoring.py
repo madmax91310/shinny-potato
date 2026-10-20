@@ -74,6 +74,19 @@ class MonitoringTests(unittest.TestCase):
             state['workflows']['x.yml']['completedAt'] = stamp
             self.assertIn('unobserved:x.yml', evaluate(state)['active'])
 
+    def test_field_incident_survives_missing_report_and_green_workflow(self):
+        context={**CONTEXT,'fieldAlerts':[{'id':'ETF:holdings','name':'ETF','field':'Positions','kind':'collection','cause':'403','checkedAt':'2026-09-01','asOf':'2026-08-31'}]}
+        first=evaluate(STATE,context)
+        self.assertIn('field:ETF:holdings',first['active'])
+        state={**STATE,'monitoring':first}
+        missing=evaluate(state,CONTEXT)
+        self.assertIn('field:ETF:holdings',missing['active'])
+        self.assertEqual(missing['resolved'],[])
+        good=evaluate(state,{**CONTEXT,'fieldAlerts':[]})
+        self.assertNotIn('field:ETF:holdings',good['active'])
+        self.assertEqual(len(good['resolved']),1)
+        self.assertEqual(first['active']['field:ETF:holdings']['checkedAt'],'2026-09-01')
+
     def test_conflict_and_unreadable_radar_cannot_fake_recovery(self):
         radar = {'errors': [{'entity': 'world', 'reason': 'Valeur contradictoire pour la même période (2026-09) : Secteurs'}]}
         first = evaluate(STATE, radar=radar)

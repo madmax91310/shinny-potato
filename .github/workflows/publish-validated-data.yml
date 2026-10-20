@@ -6,8 +6,13 @@ on:
         required: true
         type: string
       required_path:
-        required: true
+        required: false
         type: string
+        default: ''
+      producer:
+        required: false
+        type: string
+        default: ''
 permissions:
   contents: read
   pages: write
@@ -23,6 +28,8 @@ jobs:
       group: pages-production
       cancel-in-progress: false
       queue: max
+    outputs:
+      needs_code: ${{ steps.plan.outputs.needs_code }}
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -38,6 +45,8 @@ jobs:
       - id: plan
         env:
           REQUIRED_DATA_PATH: ${{ inputs.required_path }}
+          DATA_PRODUCER: ${{ inputs.producer }}
+          REQUIRED_DATA_RECEIPT: ${{ runner.temp }}/required-data.json
         run: node scripts/prepare-validated-data.mjs
       - name: Record exact expected publication data
         if: steps.plan.outputs.current == 'true'
@@ -56,11 +65,15 @@ jobs:
         env:
           REQUIRED_DATA_PATH: ${{ inputs.required_path }}
           REQUIRED_DATA_BLOB: ${{ steps.plan.outputs.required_blob }}
+          REQUIRED_DATA_RECEIPT: ${{ runner.temp }}/required-data.json
         run: |
           node --input-type=module - <<'JS'
           import assert from 'node:assert/strict'
           import {execFileSync} from 'node:child_process'
-          assert.equal(execFileSync('git',['hash-object',process.env.REQUIRED_DATA_PATH],{encoding:'utf8'}).trim(),process.env.REQUIRED_DATA_BLOB,'Required data was held back or changed during generation')
+          import {readFileSync} from 'node:fs'
+          const required=JSON.parse(readFileSync(process.env.REQUIRED_DATA_RECEIPT))
+          assert(Object.keys(required).length,'Producer receipt is empty')
+          for(const [path,blob] of Object.entries(required))assert.equal(execFileSync('git',['hash-object',path],{encoding:'utf8'}).trim(),blob,'Required data was held back or changed during generation: '+path)
           JS
       - name: Seal actual composite data
         if: steps.plan.outputs.current == 'true'
@@ -118,3 +131,15 @@ jobs:
           path: test-artifacts/publication-verified.json
           if-no-files-found: error
           retention-days: 35
+
+  publish-code:
+    needs: publish
+    if: needs.publish.outputs.needs_code == 'true'
+    permissions:
+      contents: read
+      pages: write
+      deployments: read
+      id-token: write
+    uses: ./.github/workflows/deploy-pages.yml
+    with:
+      ref: ${{ inputs.ref }}

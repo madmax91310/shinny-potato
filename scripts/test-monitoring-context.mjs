@@ -45,3 +45,16 @@ console.log('History alerts: gaps, launch boundary, invalid observations, policy
 
 assert.deepEqual(inspectHistory({periods:[],cadence:'monthly',today:'2026-10-18',policy,periodStart:'2026-08',periodEnd:'2026-09'}).missingPeriods,['2026-08','2026-09'], 'An emptied previously documented range remains an incident')
 assert.deepEqual(inspectHistory({periods:[['2026-08',100]],cadence:'monthly',today:'2026-10-18',policy,periodStart:'2026-07',periodEnd:'2026-09'}).missingPeriods,['2026-07','2026-09'], 'Declared endpoints cannot silently disappear')
+const {fieldAlerts}=await import('./build-monitoring-context.mjs')
+const rows=[
+ {type:'instrument',id:'A',name:'A',field:'completeHoldings',label:'Positions intégrales',present:true,state:'current',diagnostic:{code:'retained-source-failure',reason:'HTTP 403'},checkedAt:'2026-10-01',asOf:'2026-09-30',tools:['dca-profiles']},
+ {type:'instrument',id:'B',name:'B',field:'countries',present:true,state:'check-overdue',checkedAt:'2026-10-01'},
+ {type:'instrument',id:'C',present:false,state:'not-published'},
+ {type:'instrument',id:'D',present:true,state:'current'}]
+const fields=fieldAlerts({checkedAt:'2026-10-20',rows})
+assert.equal(fields.length,2)
+assert.equal(fields[0].kind,'collection')
+assert.equal(fields[0].checkedAt,'2026-10-01')
+assert.equal(fields[0].asOf,'2026-09-30')
+assert.equal(fields[1].kind,'freshness')
+assert.equal(fields[0].evaluatedAt,'2026-10-20')
