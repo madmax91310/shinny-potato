@@ -7,6 +7,9 @@ import {getInstrumentFacts} from '../src/data/instrument-facts.js'
 import METADATA from '../src/data/automated-instrument-metadata.json' with {type:'json'}
 import {PEA_REVIEWS_BY_ISIN} from '../src/data/instrument-pea.js'
 const existing=JSON.parse(readFileSync('scripts/dca-complete-holdings-sources.json'))
+const issuerShares=new Map(['amundi-etf','additional-etf-sources','exposure-etf-expansion','non-bond-expansion-sources'].flatMap(file=>
+ JSON.parse(readFileSync(`scripts/${file}.json`)).instruments).map(share=>[share.isin,share]))
+const amundiShares=new Set(JSON.parse(readFileSync('scripts/amundi-etf.json')).instruments.map(share=>share.isin))
 // Candidate rows the metadata collector must find in the issuer's own document before any
 // registry learns them: a verified row for the same venue, ticker and currency takes precedence.
 const candidates=Object.fromEntries(JSON.parse(readFileSync('scripts/listing-candidates.json')).candidates.map(c=>[c.isin,c.rows]))
@@ -56,11 +59,19 @@ for(const [isin,r] of Object.entries(AUTOMATED_ETF)) {
  const name=INSTRUMENTS_BY_ISIN[isin]?.name??''
  if(/\b(?:ETC|ETN|ETP)\b|bond|treasury|govt|overnight|court terme/i.test(name))continue
  const url=r.sourceUrl??''
+ const share=issuerShares.get(isin)
  const method=r.characteristics?.replicationMethod??facts.replicationMethod??''
  if(!/physic|physisch|physique|direct replication/i.test(method) || /synthe|swap|indirect/i.test(method))continue
  if(url.includes('blackrock.com/varnish-api/') && /portfolioId=\d+/.test(url))holdings[isin]={isin,name,url:url.replace(/component=[^&]+/,'component=keyFundFacts%2Choldings.all')}
  else if(/^https:\/\/etf\.dws\.com\/api\/pdp\/en-gb\/etf\//.test(url))holdings[isin]={isin,name,currency:r.aum?.currency,parser:'dws',sourceUrl:url}
  else if(/^https:\/\/www\.ssga\.com\/[^?#]+\/etfs\//.test(url))holdings[isin]={isin,name,currency:r.aum?.currency,parser:'ssga',sourceUrl:url}
+ else if(/^https:\/\/globalxetfs\.eu\/funds\/(?:botz|urnu|bug|copx|silv)\/?$/.test(url))holdings[isin]={isin,name,currency:'USD',parser:'globalx-complete',sourceUrl:url}
+ else if(share&&(amundiShares.has(isin)||share.parser==='amundi-expansion'))holdings[isin]={isin,name,currency:share.currency,parser:'amundi-complete'}
+ else if(share?.productCode&&/vanguard/.test(share.parser??''))holdings[isin]={isin,name,currency:share.currency,productCode:share.productCode,parser:'vanguard-complete'}
+ else if(['IE000716YHJ7','IE0000QLH0G6','IE000L2SA8K5'].includes(isin)&&share)holdings[isin]={isin,name,currency:share.currency,parser:'invesco-complete',sourceUrl:share.sourceUrl}
+ else if(isin==='IE0003R87OG3')holdings[isin]={isin,name,currency:'USD',parser:'avantis-complete',
+  sourceUrl:share.sourceUrl,
+  holdingsUrl:'https://www.avantisinvestors.com/ucitsetf/en-de/total-holdings/295032351307042/'}
 }
 writeFileSync('scripts/generated-holdings-sources.json',JSON.stringify(holdings,null,2)+'\n')
 writeFileSync('scripts/instrument-metadata-sources.json',JSON.stringify({instruments:metadata},null,2)+'\n')

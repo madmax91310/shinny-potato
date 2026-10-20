@@ -59,6 +59,9 @@ def main():
     def one(item):
         isin,c=item
         try:
+            from collect_physical_holdings import COLLECTORS
+            if c.get('parser') in COLLECTORS:
+                return isin, (COLLECTORS[c['parser']](c, now), []), None
             if c.get('parser') == 'ssga':
                 from collect_ssga_etf import parse_page, parse_holdings, get_xlsx, Inputs
                 from urllib.parse import urljoin

@@ -26,15 +26,28 @@ jobs:
         with:
           node-version: 24
       - run: pip install beautifulsoup4==4.15.0
+      - run: sudo apt-get update -qq && sudo apt-get install -y poppler-utils
       - run: python -m unittest discover -s scripts -p 'test*metadata*.py'
       - run: python -m unittest discover -s scripts -p 'test_publication_safety.py' && python -m unittest discover -s scripts -p 'test_data_publication.py'
       - run: python -m unittest discover -s scripts -p 'test_audit_workflows.py'
       - run: node scripts/test-pages-snapshot.mjs && node scripts/test-bounded-command.mjs && node scripts/test-data-incidents.mjs && node scripts/test-browser-shards.mjs
-      - run: python scripts/probe_extra_sources.py
-        if: always()
+      - run: node scripts/build-automation-targets.mjs
+      - name: Qualify complete portfolios against live issuer sources
+        continue-on-error: true
+        run: |
+          python - <<'PYTHON'
+          import json, subprocess
+          config=json.load(open('scripts/generated-holdings-sources.json'))
+          selected=[k for k,v in config.items() if v.get('parser','').endswith('-complete')]
+          subprocess.run(['python','scripts/collect_dca_complete_holdings.py','--apply','--only',*selected,'--output','test-artifacts/physical-live.json'],check=True)
+          PYTHON
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: extra-sources
-          path: source-probe
+          name: physical-qualification
+          path: |
+            test-artifacts
+            src/data/dca-complete-holdings.json
+            src/data/dca-holdings-status.json
+            scripts/generated-holdings-sources.json
           retention-days: 7
