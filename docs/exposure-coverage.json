@@ -1,36 +1,9 @@
 {
-  "checkedAt": "2026-10-20T15:18:14.932Z",
-  "total": 647,
+  "checkedAt": "2026-10-20T19:15:38.980Z",
+  "total": 648,
   "outside": 41,
-  "complete": 603,
+  "complete": 606,
   "gaps": [
-    {
-      "asset": "IE00B1XNHC34",
-      "isin": "IE00B1XNHC34",
-      "name": "iShares Global Clean Energy Transition UCITS ETF",
-      "kind": "etf",
-      "provider": "iShares",
-      "countries": {
-        "coverage": 0,
-        "eligible": 100,
-        "outside": false,
-        "missing": 100,
-        "reasons": [
-          "Poids signés incompatibles avec un donut"
-        ],
-        "asOf": null
-      },
-      "sectors": {
-        "coverage": 0,
-        "eligible": 100,
-        "outside": false,
-        "missing": 100,
-        "reasons": [
-          "Poids signés incompatibles avec un donut"
-        ],
-        "asOf": null
-      }
-    },
     {
       "asset": "IE00B02KXK85",
       "isin": "IE00B02KXK85",
@@ -48,37 +21,12 @@
         "asOf": null
       },
       "sectors": {
-        "coverage": 100,
+        "coverage": 99.99,
         "eligible": 100,
         "outside": false,
-        "missing": 0,
+        "missing": 0.010000000000005116,
         "reasons": [],
-        "asOf": "2026-10-16"
-      }
-    },
-    {
-      "asset": "IE00BQT3WG13",
-      "isin": "IE00BQT3WG13",
-      "name": "iShares MSCI China A UCITS ETF (Acc)",
-      "kind": "etf",
-      "provider": "iShares",
-      "countries": {
-        "coverage": 0,
-        "eligible": 100,
-        "outside": false,
-        "missing": 100,
-        "reasons": [
-          "Poids signés incompatibles avec un donut"
-        ],
-        "asOf": null
-      },
-      "sectors": {
-        "coverage": 100,
-        "eligible": 100,
-        "outside": false,
-        "missing": 0,
-        "reasons": [],
-        "asOf": "2026-10-16"
+        "asOf": "2026-10-19"
       }
     }
   ],
