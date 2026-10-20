@@ -6,14 +6,20 @@ on:
 permissions:
   contents: read
 jobs:
-  snapshot:
+  sources:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
-      - run: git archive --format=tar HEAD src scripts docs .github package.json package-lock.json vite.config.js index.html CLAUDE.md > current-source.tar
-      - uses: actions/upload-artifact@v4
+      - uses: actions/setup-python@v5
         with:
-          name: current-source
-          path: current-source.tar
+          python-version: '3.12'
+      - run: pip install beautifulsoup4==4.15.0
+      - run: sudo apt-get update && sudo apt-get install -y poppler-utils
+      - run: python scripts/probe_physical_sources.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: source-probe
+          path: source-probe
           retention-days: 7
