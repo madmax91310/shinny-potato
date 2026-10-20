@@ -16,7 +16,7 @@ jobs:
           from pathlib import Path
           out=Path('/tmp/last-pea');out.mkdir()
           ids=['IE000716YHJ7','IE0000QLH0G6','IE00BD6FTQ80']
-          urls=['https://www.invesco.com/content/dam/invesco/emea/fr/product-documents/etf/share-class/factsheet/'+i+'_factsheet_fr-fr.pdf' for i in ids]
+          urls=['https://www.invesco.com/content/dam/invesco/fr/fr/product-documents/etf/share-class/factsheet/'+i+'_factsheet_fr-fr.pdf' for i in ids]
           rows=[];denied=set()
           for i,url in enumerate(urls):
             host=urllib.parse.urlsplit(url).hostname
