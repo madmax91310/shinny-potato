@@ -139,6 +139,7 @@ jobs:
       - run: node scripts/test-automated-indices.mjs
       - run: node scripts/test-automated-index-sheets.mjs
       - run: node scripts/test-automation-gap-inventory.mjs
+      - run: node scripts/test-data-automation-inventory.mjs
       - run: node scripts/test-etf-completeness.mjs
       - run: node scripts/test-priority-issuer-consumers.mjs
       - run: npm run audit:portfolio-provenance
@@ -389,6 +390,8 @@ jobs:
           path: ~/.cache/ms-playwright
           key: chromium-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
       - run: npx playwright install --with-deps chromium
+      - run: node scripts/playwright-data-automation-inventory.mjs
+        if: matrix.shard == 0
       - run: node scripts/playwright-currency-consistency.mjs
         if: matrix.shard == 0
       - run: node scripts/playwright-distinct-asset-routing.mjs

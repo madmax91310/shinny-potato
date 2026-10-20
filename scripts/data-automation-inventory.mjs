@@ -1,0 +1,133 @@
+import { readFileSync, readdirSync, mkdirSync, writeFileSync } from 'node:fs'
+import { resolve, relative, dirname } from 'node:path'
+import { fileURLToPath } from 'node:url'
+import { DATA_CATALOG } from '../src/data/catalog.js'
+import { buildAssetFieldReport } from './report-asset-fields.mjs'
+import metadata from '../src/data/automated-instrument-metadata.json' with {type:'json'}
+import attempts from '../src/data/instrument-metadata-status.json' with {type:'json'}
+const ROOT=fileURLToPath(new URL('../',import.meta.url))
+const read=p=>readFileSync(resolve(ROOT,p),'utf8')
+function files(dir){return readdirSync(resolve(ROOT,dir),{withFileTypes:true}).flatMap(e=>e.isDirectory()?files(`${dir}/${e.name}`):[`${dir}/${e.name}`])}
+const sourceFiles=files('src').filter(p=>/\.(?:m?js|jsx|json)$/.test(p))
+const known=new Set(sourceFiles)
+export function importsOf(path,text=read(path)){
+ const result=[]
+ for(const match of text.matchAll(/(?:\bfrom\s*|\bimport\s*\(?\s*)['"]([^'"]+)['"]/g)){
+  if(!match[1].startsWith('.'))continue
+  const base=relative(ROOT,resolve(ROOT,dirname(path),match[1]))
+  const found=[base,base+'.js',base+'.jsx',base+'/index.js'].find(p=>known.has(p))
+  if(found)result.push(found)
+ }
+ return [...new Set(result)]
+}
+const graph=new Map(sourceFiles.filter(p=>!p.endsWith('.json')).map(p=>[p,importsOf(p)]))
+function dependencies(path,seen=new Set()){
+ if(seen.has(path))return seen
+ seen.add(path)
+ for(const child of graph.get(path)??[])dependencies(child,seen)
+ return seen
+}
+export function workflowInfo(path,text=read(path)){
+ const outputs=[]
+ // Only the explicitly validated commit allowlist establishes a writer. PR path
+ // filters and a mention in a test do not establish automatic publication.
+ for(const line of text.split('\n').filter(l=>l.includes('bash scripts/commit-validated-data.sh ')))
+  for(const m of line.matchAll(/(?:src|public)\/[A-Za-z0-9_./*?-]+\.(?:json|js)/g))outputs.push(m[0])
+ return {path,name:/^name:\s*(.+)$/m.exec(text)?.[1]??path,
+  crons:[...text.matchAll(/\bcron:\s*['"]([^'"]+)['"]/g)].map(m=>m[1]),
+  collectors:[...new Set([...text.matchAll(/\b(?:python3?|node)\s+(scripts\/[\w./-]+\.(?:py|mjs))/g)].map(m=>m[1]))],
+  outputs:[...new Set(outputs)],monitored:JSON.parse(read('src/data/automation-workflows.json'))[path.split('/').at(-1)]!=null}
+}
+function matches(path,pattern){return new RegExp('^'+pattern.split('*').map(s=>s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')).join('.*')+'$').test(path)}
+function numericPaths(value,path='',out=new Set()){
+ if(typeof value==='number'&&Number.isFinite(value))out.add(path||'$')
+ else if(value&&typeof value==='object')for(const [key,child] of Object.entries(value))numericPaths(child,path?`${path}.${Array.isArray(value)?'[]':key}`:key,out)
+ return [...out]
+}
+function jsonDatasetInfo(path){
+ const value=JSON.parse(read(path)),schema=new Set(),sources=new Set(),checks=new Set(),observations=new Set();let numericLeaves=0
+ function visit(node,p=''){
+  if(node&&typeof node==='object'){
+   const dynamic=!Array.isArray(node)&&p===''&&Object.keys(node).length>20
+   for(const [key,child]of Object.entries(node)){
+    const segment=Array.isArray(node)?'[]':/^[A-Z]{2}[A-Z0-9]{9}\d$/.test(key)?'{isin}':/^\d{4}(?:-\d{2}(?:-\d{2})?)?$/.test(key)?'{period}':dynamic?'{record}':key
+    visit(child,p?`${p}.${segment}`:segment)
+    if(typeof child==='string'){
+     if((/url|source/i.test(key)||/url|source/i.test(p.split('.').at(-1)))&&/^https?:\/\//.test(child))sources.add(child)
+     if(/^checkedAt$/.test(key)&&/^\d{4}-\d{2}-\d{2}/.test(child))checks.add(child)
+     if(/^(asOf|periodEnd|effectiveAt|publishedAt)$/.test(key)&&/^\d{4}-\d{2}-\d{2}/.test(child))observations.add(child)
+    }
+   }
+  }else{schema.add(p);if(typeof node==='number'&&Number.isFinite(node))numericLeaves++}
+ }
+ visit(value)
+ const range=set=>{const a=[...set].sort();return a.length?{oldest:a[0],latest:a.at(-1)}:null}
+ return {path,rootKind:Array.isArray(value)?'array':typeof value,rootEntries:value&&typeof value==='object'?Object.keys(value).length:1,numericLeaves,schemaPaths:[...schema].sort(),sourceUrls:[...sources].sort(),checkDateRange:range(checks),observationDateRange:range(observations),method:'Schéma exhaustif du fichier enregistré, sans échantillonnage. Les plages de dates peuvent inclure des archives ; elles ne certifient aucune fraîcheur individuelle. Un nombre peut être une donnée, un identifiant ou une hypothèse.'}
+}
+export function peaInventory(records=metadata,statuses=attempts){
+ return Object.keys(records).sort().map(isin=>{
+  const proof=records[isin].pea, status=statuses[isin]??{}
+  const conflicts=(status.errors??[]).filter(e=>e.qualificationRequired&&e.field==='pea')
+  const qualified=!conflicts.length&&typeof proof?.value==='boolean'&&!!proof.sourceUrl&&!!proof.checkedAt&&/^[a-f0-9]{64}$/.test(proof.sha256??'')
+  const diagnostic=status.fields?.pea??{}
+  return {isin,qualified,value:qualified?proof.value:null,
+   state:conflicts.length?'source-conflict':qualified?(diagnostic.status==='retained'?'retained':'qualified'):'unqualified',
+   checkedAt:qualified?proof.checkedAt:null,sourceUrl:qualified?proof.sourceUrl:null,sha256:qualified?proof.sha256:null,
+   lastAttemptAt:diagnostic.lastAttemptAt??status.checkedAt??null,
+   sources:conflicts.flatMap(e=>e.sources??[]),
+   failures:(status.errors??[]).filter(e=>!e.field||e.field==='pea').map(({sourceUrl,error})=>({sourceUrl,error})),
+   nextAction:conflicts.length?'Obtenir une clarification explicite de l’émetteur ou un accord des sources contradictoires.':qualified?'Renouvellement par le collecteur quotidien.':'Qualifier une déclaration PEA explicite liée à cet ISIN ; absence et tiret restent inconnus.'}
+ })
+}
+export function buildDataAutomationInventory(){
+ const workflows=files('.github/workflows').filter(p=>p.endsWith('.yml')).map(p=>workflowInfo(p)).filter(w=>w.crons.length||w.outputs.length)
+ const writers=path=>workflows.filter(w=>w.outputs.some(pattern=>matches(path,pattern)))
+ const consumers=sourceFiles.filter(p=>p.startsWith('src/pages/')&&/\.(?:jsx|js)$/.test(p)).map(path=>({path,deps:dependencies(path)}))
+ const registryFiles=sourceFiles.filter(p=>p.startsWith('src/data/')||p.startsWith('src/pages/')&&p.endsWith('.json')||/^src\/pages\/[^/]+\/(?:data|theses|engine)\.js$/.test(p))
+ const registries=registryFiles.map(path=>{
+  const deps=[...dependencies(path)],direct=writers(path)
+  const upstream=[...new Set(deps.flatMap(p=>writers(p).map(w=>w.path)))]
+  const users=consumers.filter(c=>c.deps.has(path)).map(c=>c.path)
+  return {path,mode:direct.some(w=>w.crons.length)?'scheduled-output':direct.length?'event-output':upstream.length?'mixed-or-derived':'manual-or-editorial',
+   writers:direct.map(w=>w.path),upstreamWorkflows:upstream,dependencies:deps.filter(p=>p!==path),consumers:users,
+   catalogFields:DATA_CATALOG.reduce((n,r)=>n+r.fields.filter(f=>f.registry===path).length,0),
+   action:upstream.length||direct.length?'Qualifier la couverture au niveau de chaque champ ; vérifier le dernier succès dans Données à revoir.':'Décider si les valeurs sont éditoriales, hypothèses de simulation ou chiffres à raccorder ; aucun statut automatique déduit du nom du fichier.'}
+ })
+ const registryMap=new Map(registries.map(r=>[r.path,r]))
+ const fields=DATA_CATALOG.flatMap(record=>record.fields.map((field,index)=>{
+  const registry=registryMap.get(field.registry),evidence=field.metadata??{}
+  return {id:record.id,type:record.type,name:record.name,field:field.label,fieldIndex:index,registry:field.registry,
+   consumers:record.consumers,mode:registry?.mode??'unmapped',upstreamWorkflows:registry?.upstreamWorkflows??[],
+   qualification:'source-configuration-only',sourceStatus:evidence.sourceStatus??null,numericPaths:numericPaths(field.value),
+   sourceUrls:evidence.sourceUrls??[],checkedAt:evidence.checkedAt??null,asOf:evidence.asOf??null,
+   scope:evidence.scope??null,method:evidence.method??null,
+   action:evidence.sourceStatus==='archive-unverifiable'?'Archive non recertifiable conservée avec sa qualification ; ne pas l’utiliser comme observation actuelle.':!evidence.sourceUrls?.length?'Compléter la provenance ou confirmer le statut éditorial/archive.':!evidence.checkedAt?'Qualifier la date de contrôle ; la génération du rapport ne renouvelle pas la preuve.':registry?.mode==='manual-or-editorial'?'Qualifier la mise à jour manuelle et séparer rédaction, hypothèses et chiffres vivants.':'Contrôler la couverture par champ et le dernier résultat de collecte ; un workflow configuré ne certifie pas cette valeur.'}
+ }))
+ const coverage=buildAssetFieldReport(),pea=peaInventory()
+ const count=(rows,key)=>rows.reduce((a,r)=>(a[r[key]]=(a[r[key]]??0)+1,a),{})
+ return {schemaVersion:1,generatedAt:new Date().toISOString(),
+  method:'Inventaire du code et des observations enregistrées. Modes des fichiers déduits uniquement des chemins explicitement publiés par les workflows et de leurs imports. Les champs de catalogue restent à qualification individuelle : aucun workflow, nom de fichier, source accessible ou date de génération ne garantit une actualisation réussie. Les lignes de couverture conservent les dates et états propres des observations. Les modules non référencés au catalogue restent listés séparément.',
+  summary:{registries:registries.length,registryModes:count(registries,'mode'),catalogRecords:DATA_CATALOG.length,catalogFields:fields.length,catalogTypes:count(DATA_CATALOG,'type'),fieldsWithoutSource:fields.filter(f=>!f.sourceUrls.length).length,fieldsWithoutCheckDate:fields.filter(f=>!f.checkedAt).length,scheduledWorkflows:workflows.filter(w=>w.crons.length).length,coverageRows:coverage.rows.length,coverageStates:count(coverage.rows,'state'),peaQualified:pea.filter(p=>p.qualified).length,peaRemaining:pea.filter(p=>!p.qualified).length},
+  workflows,registries,fields,datasets:registryFiles.filter(p=>p.endsWith('.json')).map(jsonDatasetInfo),coverage,pea}
+}
+export function writeDataAutomationInventory(){
+ const report=buildDataAutomationInventory();mkdirSync(resolve(ROOT,'public/data'),{recursive:true})
+ writeFileSync(resolve(ROOT,'public/data/data-automation-inventory.json'),JSON.stringify(report)+'\n')
+ writeFileSync(resolve(ROOT,'public/data/data-automation-summary.json'),JSON.stringify({schemaVersion:report.schemaVersion,generatedAt:report.generatedAt,summary:report.summary})+'\n')
+ const csvCell=value=>'"'+String(value??'').replaceAll('"','""')+'"'
+ const csv=[['isin','etat','qualifie','eligible_pea','controle_preuve','source','sha256','derniere_tentative','action'],...report.pea.map(p=>[p.isin,p.state,p.qualified,p.value,p.checkedAt,p.sourceUrl,p.sha256,p.lastAttemptAt,p.nextAction])].map(row=>row.map(csvCell).join(',')).join('\r\n')+'\r\n'
+ writeFileSync(resolve(ROOT,'public/data/pea-automation.csv'),csv)
+ const escape=s=>String(s??'').replaceAll('|','\\|').replaceAll('\n',' ')
+ const lines=['# Inventaire de l’automatisation des données','',`Généré le ${report.generatedAt}.`, '',report.method,'',
+  `${report.summary.registries} modules de données ; ${report.summary.catalogFields} champs du catalogue ; ${report.summary.coverageRows} lignes de couverture détaillée.`,
+  '',`PEA : ${report.summary.peaQualified}/${report.pea.length} statuts avec preuve ; ${report.summary.peaRemaining} non qualifiés.`,
+  '', '## Familles du catalogue','', '| Famille | Fiches |','|---|---:|',...Object.entries(report.summary.catalogTypes).map(([type,n])=>`| ${type} | ${n} |`),
+  '', '## Modules et mises à jour','', '« mixed-or-derived » signale un mélange possible de données automatiques et de valeurs éditoriales/manuelles ; ce mode ne certifie aucun champ individuel.',
+  '', '| Module | Mode | Workflows en amont | Consommateurs directs ou indirects |','|---|---|---|---:|',...report.registries.map(r=>`| ${r.path} | ${r.mode} | ${r.upstreamWorkflows.map(escape).join(', ')} | ${r.consumers.length} |`),
+  '', '## Statuts PEA restant à qualifier','', '| ISIN | État | Action |','|---|---|---|',...report.pea.filter(p=>!p.qualified).map(p=>`| ${p.isin} | ${p.state} | ${escape(p.nextAction)} |`),
+  '', '## Exploitation','', 'Le JSON public `data/data-automation-inventory.json` fournit les champs du catalogue, leurs sources, dates, consommateurs, valeurs numériques présentes (chemins uniquement), workflows et crons UTC, ainsi que la couverture détaillée et les diagnostics PEA. Il est régénéré à chaque build. Les derniers résultats réseau restent dans le suivi des automatisations ; cet inventaire ne prétend pas avoir relu chaque fournisseur.',
+  '', 'Priorités : 1. statuts PEA inconnus et contradiction ; 2. champs vivants sans source/date ou sans collecteur ; 3. champs absents, en retard ou conservés après panne ; 4. modules hors catalogue et données éditoriales à séparer des chiffres. Les champs non applicables ou en attente de publication gardent leur qualification.', '']
+ writeFileSync(resolve(ROOT,'public/data/data-automation-inventory.md'),lines.join('\n'))
+ return report
+}
+if(process.argv[1]===fileURLToPath(import.meta.url)){const r=process.argv.includes('--write')?writeDataAutomationInventory():buildDataAutomationInventory();console.log(JSON.stringify(r.summary,null,2))}
