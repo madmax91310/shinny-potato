@@ -1,0 +1,66 @@
+name: Verify public automation delivery
+on:
+  push:
+    branches: [verify/automation-lots-publication]
+permissions:
+  contents: read
+jobs:
+  public-browser:
+    runs-on: ubuntu-26.04
+    timeout-minutes: 30
+    env:
+      TEST_BASE_URL: https://madmax91310.github.io/shinny-potato
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 24
+      - name: Wait for the released code and select its actual data
+        run: |
+          python3 - <<'PYTHON'
+          import datetime,json,pathlib,subprocess,time,urllib.request
+          base='https://madmax91310.github.io/shinny-potato/'
+          ancestor='5dbc4ae6465851851125863704fa2186e34fc682'
+          for attempt in range(50):
+              try:
+                  with urllib.request.urlopen(base+'build-info.json?browser-proof='+str(time.time()),timeout=20)as response:info=json.load(response)
+                  subprocess.run(['git','fetch','--quiet','origin','master'],check=True)
+                  if subprocess.run(['git','merge-base','--is-ancestor',ancestor,info['sha']],capture_output=True).returncode==0:
+                      pathlib.Path('/tmp/public-build-before.json').write_text(json.dumps(info))
+                      subprocess.run(['git','checkout','--detach',info.get('dataSha',info['sha'])],check=True)
+                      break
+                  print('Awaiting the complete released code:',info['sha'],flush=True)
+              except Exception as error:print(type(error).__name__,str(error)[:160],flush=True)
+              time.sleep(20)
+          else:raise SystemExit('Released code has not reached Pages')
+          PYTHON
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - name: Check every public tool
+        run: node scripts/smoke-data-routes.mjs
+      - name: Check actual public TOPIX portfolios on mobile and desktop
+        run: |
+          python3 - <<'PYTHON'
+          import pathlib
+          p=pathlib.Path('scripts/playwright-live-data-connections.mjs')
+          source=p.read_text()
+          source='\n'.join('const server=null' if line.startswith("const server=spawn(") else "const base=process.env.TEST_BASE_URL" if line.startswith("const base='http://127.0.0.1:4392") else line for line in source.splitlines())
+          p.write_text(source.replace('server.kill()','server?.kill()'))
+          PYTHON
+          node scripts/playwright-live-data-connections.mjs --topix
+      - name: Record the public browser proof
+        run: |
+          python3 - <<'PYTHON'
+          import datetime,json,pathlib,time,urllib.request
+          with urllib.request.urlopen('https://madmax91310.github.io/shinny-potato/build-info.json?browser-proof='+str(time.time()),timeout=20)as response:after=json.load(response)
+          before=json.loads(pathlib.Path('/tmp/public-build-before.json').read_text())
+          pathlib.Path('test-artifacts/public-browser-verified.json').write_text(json.dumps({'checkedAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),'before':before,'after':after,'checks':['Every public tool renders','TOPIX complete holdings and overlap, mobile/desktop','QYLD archived returns remain separate']},indent=2)+'\n')
+          PYTHON
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: verified-public-browser
+          path: test-artifacts
+          retention-days: 35
