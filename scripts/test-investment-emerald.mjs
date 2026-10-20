@@ -61,7 +61,7 @@ try {
       boxes = []; labels = []; current = name
       const d = derive(state), before = JSON.stringify(d), canvas = await renderInvestmentImage(state, d)
       const currency = d.isCustom ? 'EUR' : ASSETS[state.assetId].currency
-      if (canvas.width !== 1600 || canvas.height !== 1600) throw new Error('Export must stay square')
+      if (canvas.width !== 1600 || canvas.height !== 2040) throw new Error('Export must follow the approved portrait poster')
       if (JSON.stringify(d) !== before) throw new Error('Changed calculation')
       if (!labels.includes(fmtEUR(d.result.finalValue, currency)) || !labels.includes(fmtPct(pct(d.result.finalValue, d.result.totalInvested)))) throw new Error('Wrong capital or return')
       if (!labels.includes(`En ${currency}`) && !labels.some(label => label.startsWith(`En ${currency} ·`))) throw new Error('Wrong currency')
@@ -111,7 +111,7 @@ try {
   await mobile.getByRole('tab', { name: 'Image', exact: true }).click()
   const preview = mobile.locator('.publication-image-stage img')
   await preview.waitFor()
-  const png = Buffer.from((await preview.getAttribute('src')).split(',')[1], 'base64')
+  const png = Buffer.from(await preview.evaluate(async image => Array.from(new Uint8Array(await (await fetch(image.src)).arrayBuffer()))))
   await writeFile('test-artifacts/investment-emerald/totalenergies-mobile.png', png)
   for (const [label, filename] of [['Télécharger cet aperçu', 'publication.png'], ['📊 Télécharger une image', 'investissement-totalenergies-dca.png']]) {
     const [download] = await Promise.all([mobile.waitForEvent('download'), mobile.getByRole('button', { name: label, exact: true }).click()])
