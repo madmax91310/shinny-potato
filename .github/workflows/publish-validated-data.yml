@@ -29,6 +29,7 @@ jobs:
       cancel-in-progress: false
       queue: max
     outputs:
+      code_epoch: ${{ steps.plan.outputs.code_epoch }}
       needs_code: ${{ steps.plan.outputs.needs_code == 'true' || (steps.plan.outputs.current == 'true' && steps.producer.outcome == 'failure') }}
     environment:
       name: github-pages
@@ -153,3 +154,4 @@ jobs:
     uses: ./.github/workflows/deploy-pages.yml
     with:
       ref: ${{ inputs.ref }}
+      validation_group: ${{ needs.publish.outputs.code_epoch }}

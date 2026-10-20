@@ -31,3 +31,9 @@ try{
  assert.equal(held.heldBack.length,1)
  assert.equal(JSON.parse(readFileSync(join(cwd,'src/data/a.json'))).known.value,1)
 }finally{rmSync(cwd,{recursive:true,force:true})}
+
+const {publicationCodeEpoch}=await import('./publication-code-epoch.mjs')
+const history=(...args)=>args[0]==='rev-list'?'data2\ncode1\ndata0':args.at(-1)==='data2'?'src/data/a.json':'src/pages/App.jsx'
+assert.equal(publicationCodeEpoch('old','head',history,['src/data/a.json']),'code1')
+const dataOnly=(...args)=>args[0]==='rev-list'?'data2\ndata1':'src/data/a.json'
+assert.equal(publicationCodeEpoch('old','head',dataOnly,['src/data/a.json']),'old')

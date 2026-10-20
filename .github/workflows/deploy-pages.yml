@@ -11,6 +11,11 @@ on:
         description: Commit containing refreshed investor data
         required: true
         type: string
+      validation_group:
+        description: Stable code commit shared by collectors requesting the same validation
+        required: false
+        type: string
+        default: ''
 
 permissions:
   contents: read
@@ -19,11 +24,11 @@ permissions:
   id-token: write
 
 concurrency:
-  # Queue code validations; select current master before pinning every check.
+  # Validate a code epoch once at a time; a newer epoch starts independently.
   # The new group separates this policy from the old snapshot backlog. Older
   # runs retain their checks and the shared publication-order guard.
   # No active validation or publication is cancelled by a collector.
-  group: pages-code-validation-${{ github.event_name == 'pull_request' && github.ref || (github.ref == 'refs/heads/master' && 'production' || github.run_id) }}
+  group: pages-code-validation-${{ github.event_name == 'pull_request' && github.ref || (inputs.validation_group || github.sha) }}
   cancel-in-progress: false
   queue: max
 

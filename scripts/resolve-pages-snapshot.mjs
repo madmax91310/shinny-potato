@@ -20,6 +20,13 @@ export function alreadyPublished(candidate, info, ancestor) {
     && ancestor(candidate, info.sha) && ancestor(candidate, info.dataSha ?? info.sha)
 }
 
+export function planSnapshot(options){
+ const {requested,info,ancestor}=options
+ if(alreadyPublished(requested,info,ancestor))return {candidate:requested,current:false}
+ const candidate=chooseSnapshot(options)
+ return {candidate,current:!alreadyPublished(candidate,info,ancestor)}
+}
+
 async function main() {
   const git = (...args) => execFileSync('git', args, {encoding:'utf8', stdio:['ignore','pipe','pipe']}).trim()
   const ancestor = (a,b) => {try {git('merge-base','--is-ancestor',a,b); return true} catch {return false}}
@@ -29,17 +36,19 @@ async function main() {
     git('fetch','--no-tags','origin','refs/heads/master:refs/remotes/origin/master')
     const master = git('rev-parse','refs/remotes/origin/master')
     if (!ancestor(requested, master)) throw new Error('Requested publication is outside master history')
-    candidate = chooseSnapshot({requested,master,ancestor,allowed:automationPaths(),fullGate:true,
-      changed:(a,b)=>git('diff','--name-only',a,b).split('\n').filter(Boolean)})
     const repo = process.env.GITHUB_REPOSITORY
     const url = `https://${repo.split('/')[0]}.github.io/${repo.split('/')[1]}/build-info.json?selection=${Date.now()}`
+    let info=null
     try {
       const response = await fetch(url,{cache:'no-store',signal:AbortSignal.timeout(15000)})
-      if (response.ok) current = !alreadyPublished(candidate, await response.json(), ancestor)
-    } catch { /* Unknown publication keeps all validations; it never skips them. */ }
+      if(response.ok)info=await response.json()
+    } catch { /* Unknown publication keeps every validation. */ }
+    ;({candidate,current}=planSnapshot({requested,master,info,ancestor,allowed:automationPaths(),fullGate:true,
+      changed:(a,b)=>git('diff','--name-only',a,b).split('\n').filter(Boolean)}))
   }
   const output = `commit_sha=${candidate}\ncurrent=${current}\n`
   console.log(`Requested ${requested}; selected ${candidate}; validation required: ${current}`)
   if (process.env.GITHUB_OUTPUT) appendFileSync(process.env.GITHUB_OUTPUT,output)
 }
 if (process.argv[1] === fileURLToPath(import.meta.url)) await main()
+

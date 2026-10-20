@@ -19,3 +19,4 @@ assert.throws(()=>requiredDataPath('public/data/../private'))
 console.log('Producer receipts cover multiple outputs and every recorded directory member; unknown and unowned files fail closed.')
 
 assert.deepEqual(consumerChanges(['src/data/inflation-monthly.js']),[],'Generated INSEE data is checked as producer bytes, not interpreted as changed financial code')
+
