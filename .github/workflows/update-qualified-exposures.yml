@@ -8,6 +8,11 @@ on:
     paths:
       - 'scripts/collect_dca_complete_holdings.py'
       - 'scripts/collect_physical_holdings.py'
+      - 'scripts/collect_wisdomtree_holdings.py'
+      - 'scripts/discover_holdings_sources.py'
+      - 'scripts/security_identifier_observations.py'
+      - 'scripts/security-identity-sources.json'
+      - 'scripts/test_wisdomtree_discovery.py'
       - 'scripts/collect_topix_holdings.py'
       - 'scripts/test_topix_holdings.py'
       - 'scripts/dws_liquidity_funds.py'
@@ -35,6 +40,11 @@ on:
       - 'scripts/dca-equity-identities.json'
       - 'scripts/collect_dca_complete_holdings.py'
       - 'scripts/collect_physical_holdings.py'
+      - 'scripts/collect_wisdomtree_holdings.py'
+      - 'scripts/discover_holdings_sources.py'
+      - 'scripts/security_identifier_observations.py'
+      - 'scripts/security-identity-sources.json'
+      - 'scripts/test_wisdomtree_discovery.py'
       - 'scripts/collect_topix_holdings.py'
       - 'scripts/test_topix_holdings.py'
       - 'scripts/lifestrategy_holdings.py'
@@ -87,6 +97,12 @@ jobs:
         continue-on-error: ${{ github.event_name != 'pull_request' }}
         run: python scripts/collect_dca_equities.py --apply --output "$RUNNER_TEMP/dca-equities.json"
       - run: node scripts/build-automation-targets.mjs
+      - name: Validate staged source qualification
+        run: python -m unittest discover -s scripts -p 'test_wisdomtree_discovery.py'
+      - name: Refresh exact security identifier evidence
+        run: python scripts/security_identifier_observations.py
+      - name: Discover complete issuer portfolios without replacing qualified values on failure
+        run: python scripts/discover_holdings_sources.py
       - name: "Collect observations: holdings"
         id: holdings
         continue-on-error: ${{ github.event_name != 'pull_request' }}
@@ -122,6 +138,7 @@ jobs:
           node scripts/playwright-live-data-connections.mjs
           node scripts/playwright-live-data-connections.mjs --physical
           node scripts/playwright-live-data-connections.mjs --new-issuers
+          node scripts/playwright-live-data-connections.mjs --wisdomtree
       - uses: actions/upload-artifact@v7.0.1
         if: always()
         with:
@@ -134,6 +151,7 @@ jobs:
             ${{ runner.temp }}/exposure-sleeves.json
             ${{ runner.temp }}/vanguard-sleeves.json
             public/data/pending-source-checks.json
+            public/data/holdings-discovery.json
           retention-days: 35
       - name: Validate collected observations
         run: echo 'Mandatory observation checks passed'
@@ -143,7 +161,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          bash scripts/commit-validated-data.sh 'Refresh qualified exact-share exposure data' public/data/pending-source-checks.json scripts/generated-holdings-sources.json scripts/instrument-metadata-sources.json src/data/qualified-listing-records.json src/data/exposure-sleeves.json src/data/vanguard-equity-underliers.json docs/exposure-coverage.json docs/exposure-coverage.md src/data/qualified-exposure-etfs.json src/data/automated-etf.json src/data/dca-equity-exposures.json src/pages/dca-profiles/exposures.json src/pages/dca-profiles/exposures-extra-0.json src/pages/dca-profiles/exposures-extra-1.json src/pages/dca-profiles/exposures-extra-2.json src/pages/dca-profiles/catalog.json src/pages/dca-profiles/holdings*.json src/data/dca-complete-holdings.json src/data/dca-security-classifications.json src/data/dca-holdings-status.json
+          bash scripts/commit-validated-data.sh 'Refresh qualified exact-share exposure data' public/data/holdings-discovery.json src/data/security-identifier-observations.json public/data/pending-source-checks.json scripts/generated-holdings-sources.json scripts/instrument-metadata-sources.json src/data/qualified-listing-records.json src/data/exposure-sleeves.json src/data/vanguard-equity-underliers.json docs/exposure-coverage.json docs/exposure-coverage.md src/data/qualified-exposure-etfs.json src/data/automated-etf.json src/data/dca-equity-exposures.json src/pages/dca-profiles/exposures.json src/pages/dca-profiles/exposures-extra-0.json src/pages/dca-profiles/exposures-extra-1.json src/pages/dca-profiles/exposures-extra-2.json src/pages/dca-profiles/catalog.json src/pages/dca-profiles/holdings*.json src/data/dca-complete-holdings.json src/data/dca-security-classifications.json src/data/dca-holdings-status.json
   deploy:
     needs: refresh
     if: github.event_name != 'pull_request'

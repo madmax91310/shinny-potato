@@ -84,13 +84,35 @@ class PublicationTests(unittest.TestCase):
         self.assertEqual(len(report['errors']),3)
     def test_xndx_daily_identity_and_finished_session(self):
         config=next(c for c in configurations() if c['id']=='nasdaq100')
-        self.assertEqual((config['parser'],config['symbol'],config['variant']),('yahoo','^XNDX','TOTAL'))
+        self.assertEqual((config['parser'],config['symbol'],config['variant']),('fred','XNDX','TOTAL'))
+        config={**config,'parser':'yahoo','symbol':'^XNDX'}
         stamp=int(dt.datetime(2026,10,7,20,tzinfo=UTC).timestamp())
         body={'chart':{'error':None,'result':[{'meta':{'symbol':'^XNDX','currency':'USD','dataGranularity':'1d','exchangeTimezoneName':'America/New_York'},'timestamp':[stamp],'indicators':{'quote':[{'close':[36000.25]}]}}]}}
         r=collect_level(config,NOW,json_fetch=lambda _:body)
         self.assertEqual((r['symbol'],r['variant'],r['value'],r['asOf']),('^XNDX','TOTAL',36000.25,'2026-10-07'))
         body['chart']['result'][0]['meta']['symbol']='^NDX'
         with self.assertRaises(ValueError):collect_level(config,NOW,json_fetch=lambda _:body)
+
+    def test_xndx_fred_daily_concordance_and_explicit_source_migration(self):
+        from refresh_anniversary_levels import xndx_source_upgrade
+        config=next(c for c in configurations()if c['id']=='nasdaq100')
+        raw=b'observation_date,NASDAQXNDX\n2026-10-06,35900.1\n2026-10-07,36000.25\n2026-10-08,37000\n'
+        calls=[]
+        def fetch(url):calls.append(url);return raw
+        new=collect_level(config,NOW,byte_fetch=fetch)
+        self.assertEqual((new['value'],new['asOf'],new['seriesId']),(36000.25,'2026-10-07','NASDAQXNDX'))
+        self.assertEqual(len(calls),2);self.assertEqual(len(new['sourceHashes']),2)
+        old={'value':35900.1,'asOf':'2026-10-06','parser':'yahoo','symbol':'^XNDX','currency':'USD','variant':'TOTAL','indexCode':None}
+        merged,report=refresh_levels({'nasdaq100':old},NOW,lambda *_:new,selected=[config])
+        self.assertFalse(report['errors']);self.assertEqual(merged['nasdaq100'],new)
+        for bad in [{**new,'variant':'PRICE'},{**new,'symbol':'NDX'},{**new,'isin':'US0000000000'},{**new,'sourceHashes':{}},{**new,'asOf':'2026-10-05'}]:
+            retained,report=refresh_levels({'nasdaq100':old},NOW,lambda *_:bad,selected=[config])
+            self.assertTrue(report['errors']);self.assertEqual(retained['nasdaq100'],old)
+        self.assertFalse(xndx_source_upgrade('other',old,new))
+        for bad in [raw.replace(b'NASDAQXNDX',b'NASDAQ100'),raw.replace(b'36000.25',b'-1'),raw.replace(b'2026-10-07',b'2026-10-06')]:
+            with self.assertRaises(ValueError):collect_level(config,NOW,byte_fetch=lambda _:bad)
+        def conflict(url):return raw if 'cosd=2026-09-23' in url else raw.replace(b'36000.25',b'36001.25')
+        with self.assertRaises(ValueError):collect_level(config,NOW,byte_fetch=conflict)
 
     def test_completed_session_and_preservation(self):
         self.assertEqual(completed([(dt.date(2026,10,7),100),(dt.date(2026,10,8),200)],NOW),('2026-10-07',100))

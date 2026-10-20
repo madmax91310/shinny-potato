@@ -53,17 +53,26 @@
     "maxAgeDays": 7
   },
   "nasdaq100": {
-    "value": 36093.67578125,
+    "value": 36093.67,
     "asOf": "2026-10-19",
     "currency": "USD",
-    "parser": "yahoo",
-    "symbol": "^XNDX",
+    "parser": "fred",
+    "symbol": "XNDX",
     "indexCode": null,
     "variant": "TOTAL",
-    "sourceUrl": "https://query2.finance.yahoo.com/v8/finance/chart/%5EXNDX?period1=1791158400&period2=1792454400&interval=1d&events=splits",
-    "sha256": "5dfc543a7abdd2b01eb73015f471b93ad7a86f52e8a45863ba838167f2018028",
-    "method": "Niveau XNDX Total Return USD de la dernière séance terminée, dividendes bruts réinvestis",
-    "maxAgeDays": 7
+    "sourceUrl": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=NASDAQXNDX&cosd=2026-10-05&coed=2026-10-19",
+    "sha256": "007344e904f96a285744d05e6512fd70cd7bb4516f482f3856619a004279ebc3",
+    "method": "Niveau officiel XNDX Total Return USD de la dernière séance terminée, diffusé par FRED ; deux fenêtres datées concordantes",
+    "maxAgeDays": 7,
+    "seriesId": "NASDAQXNDX",
+    "sourceUrls": [
+      "https://fred.stlouisfed.org/graph/fredgraph.csv?id=NASDAQXNDX&cosd=2026-10-05&coed=2026-10-19",
+      "https://fred.stlouisfed.org/graph/fredgraph.csv?id=NASDAQXNDX&cosd=2026-09-28&coed=2026-10-19"
+    ],
+    "sourceHashes": {
+      "https://fred.stlouisfed.org/graph/fredgraph.csv?id=NASDAQXNDX&cosd=2026-10-05&coed=2026-10-19": "53e03ee413462ba9136dfd64b80efe39e9f98a4b5b6ce92bb31dc8db874966f0",
+      "https://fred.stlouisfed.org/graph/fredgraph.csv?id=NASDAQXNDX&cosd=2026-09-28&coed=2026-10-19": "12ea9e52b0fcd7aafda013b00b5752e78c5d4d5734cf55ece642bb7fd32c4bf7"
+    }
   },
   "soxx": {
     "value": 501.92999267578125,

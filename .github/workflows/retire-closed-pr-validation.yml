@@ -1,0 +1,24 @@
+name: Retire closed PR validation
+on:
+  pull_request_target:
+    types: [closed]
+permissions:
+  contents: read
+  actions: write
+jobs:
+  retire:
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-26.04
+    timeout-minutes: 5
+    steps:
+      # Trusted base-branch code only; never execute the closed PR's checkout.
+      - uses: actions/checkout@v7.0.1
+        with:
+          ref: master
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 24
+      - run: node scripts/test-closed-pr-validation.mjs
+      - run: node scripts/cancel-closed-pr-validation.mjs
+        env:
+          GITHUB_TOKEN: ${{ github.token }}

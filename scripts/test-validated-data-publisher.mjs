@@ -20,3 +20,6 @@ console.log('Producer receipts cover multiple outputs and every recorded directo
 
 assert.deepEqual(consumerChanges(['src/data/inflation-monthly.js']),[],'Generated INSEE data is checked as producer bytes, not interpreted as changed financial code')
 
+
+assert.equal(requiredDataPath('public/data/holdings-discovery.json'),'public/data/holdings-discovery.json')
+for(const path of ['public/data/private.js','public/data/../private.json','public/data/a.json/child'])assert.throws(()=>requiredDataPath(path))

@@ -14,6 +14,7 @@ const amundiShares=new Set(JSON.parse(readFileSync('scripts/amundi-etf.json')).i
 // registry learns them: a verified row for the same venue, ticker and currency takes precedence.
 const candidates=Object.fromEntries(JSON.parse(readFileSync('scripts/listing-candidates.json')).candidates.map(c=>[c.isin,c.rows]))
 const withCandidates=(isin,listings)=>[...listings,...(candidates[isin]??[]).filter(c=>!listings.some(l=>l.mic===c.mic&&l.ticker===c.ticker&&l.currency===c.currency)).map(({ticker,mic,exchange,currency,symbol})=>({ticker,mic,exchange,currency,symbol}))]
+const completeHoldings=JSON.parse(readFileSync('src/data/dca-complete-holdings.json'))
 const holdings={},metadata=[]
 const previousStatus=JSON.parse(readFileSync('src/data/instrument-metadata-status.json'))
 const supplemental=new Map(JSON.parse(readFileSync('scripts/instrument-metadata-supplemental-sources.json')).instruments.map(r=>[r.isin,r.urls]))
@@ -73,6 +74,7 @@ for(const [isin,r] of Object.entries(AUTOMATED_ETF)) {
  else if(share&&(amundiShares.has(isin)||share.parser==='amundi-expansion'))holdings[isin]={isin,name,currency:share.currency,parser:'amundi-complete'}
  else if(share?.productCode&&/vanguard/.test(share.parser??''))holdings[isin]={isin,name,currency:share.currency,productCode:share.productCode,parser:'vanguard-complete'}
  else if(['IE000716YHJ7','IE0000QLH0G6','IE000L2SA8K5'].includes(isin)&&share)holdings[isin]={isin,name,currency:share.currency,parser:'invesco-complete',sourceUrl:share.sourceUrl}
+ else if(share?.documentType==='wisdomtree-ucits'&&completeHoldings[isin]?.complete===true&&completeHoldings[isin]?.sourceUrl===share.sourceUrl&&completeHoldings[isin]?.identityMethod==='Exact SEDOL to ISIN; identity-source weights never imported')holdings[isin]={isin,name,currency:share.currency,provider:share.provider,sourceUrl:share.sourceUrl,parser:'wisdomtree-complete'}
  else if(isin==='IE0003R87OG3')holdings[isin]={isin,name,currency:'USD',parser:'avantis-complete',
   sourceUrl:share.sourceUrl,
   holdingsUrl:'https://www.avantisinvestors.com/ucitsetf/en-de/total-holdings/295032351307042/'}

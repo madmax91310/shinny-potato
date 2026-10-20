@@ -7,7 +7,7 @@ import {automationPaths,classify} from './classify-deploy-scope.mjs'
 // Every changed application module requires the full code gate. Publishing newer
 // data over older editorial code would keep superseding the pending calendar build.
 export const consumerChanges=paths=>paths.filter(path=>/^src\/.*\.(?:[cm]?js|jsx|tsx?|css)$/.test(path)&&path!=='src/data/inflation-monthly.js')
-export function requiredDataPath(path){assert.match(path??'',/^(?:src\/data\/(?:[a-z0-9-]+\.json|inflation-monthly\.js)|public\/data\/[a-z0-9-]+)$/);return path}
+export function requiredDataPath(path){assert.match(path??'',/^(?:src\/data\/(?:[a-z0-9-]+\.json|inflation-monthly\.js)|public\/data\/[a-z0-9-]+(?:\.json)?)$/);return path}
 export function producerPaths(producer,single,registry){
  if(producer){assert(Object.hasOwn(registry,producer),'Unknown validated producer');assert(!single,'Choose a producer or a legacy single path');return registry[producer].map(requiredDataPath)}
  return [requiredDataPath(single)]
