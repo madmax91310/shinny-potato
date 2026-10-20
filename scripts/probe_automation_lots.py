@@ -50,5 +50,7 @@ for parent in list(rows):
   soup=BeautifulSoup((OUT/(parent['sha256']+'.raw')).read_bytes(),'html.parser')
   links={urljoin(parent['actualUrl'],a['href']) for a in soup.select('a[href]') if 'fileType=csv' in a['href'] and 'hold' in a['href'].lower()}
   for url in sorted(links)[:3]:rows.append(one((url,['topix-identities-csv'])))
+  tab=soup.select_one('#allHoldingsTab[data-ajaxuri]')
+  if tab:rows.append(one((urljoin(parent['actualUrl'],tab['data-ajaxuri']),['topix-identities-json'])))
 (OUT/'manifest.json').write_text(json.dumps(rows,ensure_ascii=False,indent=2)+'\n')
 print(json.dumps(rows,ensure_ascii=False,indent=2))
