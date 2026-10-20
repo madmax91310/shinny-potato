@@ -45,7 +45,7 @@ class WorkflowContracts(unittest.TestCase):
 
     def test_scheduled_data_publishers_are_all_registered(self):
         publishers = {p.name for p in (ROOT/'.github/workflows').glob('*.yml')
-                      if '  schedule:' in p.read_text() and 'uses: ./.github/workflows/deploy-pages.yml' in p.read_text()}
+                      if '  schedule:' in p.read_text() and any('uses: ./.github/workflows/'+lane in p.read_text() for lane in ('deploy-pages.yml','publish-validated-data.yml'))}
         self.assertEqual(publishers - REGISTRY.keys(), set())
         status = (ROOT/'.github/workflows/automation-status.yml').read_text()
         for filename, config in REGISTRY.items():
@@ -119,10 +119,25 @@ class WorkflowContracts(unittest.TestCase):
         self.assertLess(workflow.index('hash-object'),workflow.index('smoke-data-routes.mjs'))
         self.assertLess(workflow.index('smoke-data-routes.mjs'),workflow.index('uses: actions/deploy-pages@'))
         self.assertIn("if: steps.order.outputs.current == 'true'",workflow)
+        self.assertIn("steps.producer.outcome == 'failure'",workflow)
+        self.assertIn("if: needs.publish.outputs.needs_code == 'true'",workflow)
+        self.assertIn("if: steps.plan.outputs.current == 'true' && steps.producer.outcome == 'success'",workflow)
         for name,path in [('update-scpi.yml','src/data/automated-scpi.json'),('update-presentation-actors.yml','src/data/automated-presentation-actors.json')]:
             caller=(ROOT/'.github/workflows'/name).read_text()
             self.assertIn('uses: ./.github/workflows/publish-validated-data.yml',caller)
-            self.assertIn('required_path: '+path,caller)
+            self.assertIn('producer: '+name,caller)
+
+    def test_all_producers_require_every_primary_output(self):
+        registry=json.loads((ROOT/'scripts/validated-data-producers.json').read_text())
+        for filename,paths in registry.items():
+            workflow=(ROOT/'.github/workflows'/filename).read_text()
+            self.assertIn('producer: '+filename,workflow)
+            self.assertIn('uses: ./.github/workflows/publish-validated-data.yml',workflow)
+            self.assertTrue(paths,filename)
+            committed=re.findall(r'src/data/[a-z0-9-]+\.json',next((line for line in workflow.splitlines() if 'bash scripts/commit-validated-data.sh' in line),''))
+            self.assertTrue(set(committed)<=set(paths),(filename,set(committed)-set(paths)))
+            for path in paths:self.assertTrue(path in workflow or ('VALIDATED_PATHS: src/data ' in workflow and path.startswith('src/data/')), (filename,path))
+        self.assertEqual(set(registry),{name for name,c in REGISTRY.items() if c.get('publishes') is not False and name!='update-editorial-radar.yml'})
 
     def test_deploy_requires_every_validation_job_and_same_built_commit(self):
         workflow = (ROOT/'.github/workflows/deploy-pages.yml').read_text()

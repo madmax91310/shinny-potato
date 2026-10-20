@@ -19,9 +19,11 @@ permissions:
   id-token: write
 
 concurrency:
-  # Queue production snapshots, coalescing only data commits when a run starts.
+  # Queue code validations; select current master before pinning every check.
+  # The new group separates this policy from the old snapshot backlog. Older
+  # runs retain their checks and the shared publication-order guard.
   # No active validation or publication is cancelled by a collector.
-  group: pages-validation-${{ github.event_name == 'pull_request' && github.ref || (github.ref == 'refs/heads/master' && 'production' || github.run_id) }}
+  group: pages-code-validation-${{ github.event_name == 'pull_request' && github.ref || (github.ref == 'refs/heads/master' && 'production' || github.run_id) }}
   cancel-in-progress: false
   queue: max
 
@@ -360,6 +362,7 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_metadata_recovery_diagnostics.py'
       - run: python -m unittest discover -s scripts -p 'test_metadata_incidents.py'
       - run: python -m unittest discover -s scripts -p 'test_physical_holdings.py'
+      - run: python -m unittest discover -s scripts -p 'test_topix_holdings.py'
       - run: python -m unittest discover -s scripts -p 'test_lifestrategy_holdings.py'
       - run: python -m unittest discover -s scripts -p 'test_dws_liquidity_funds.py'
       - run: python -m unittest discover -s scripts -p 'test_hsbc_jpm_holdings.py'

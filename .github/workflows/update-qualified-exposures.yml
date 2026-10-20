@@ -8,6 +8,8 @@ on:
     paths:
       - 'scripts/collect_dca_complete_holdings.py'
       - 'scripts/collect_physical_holdings.py'
+      - 'scripts/collect_topix_holdings.py'
+      - 'scripts/test_topix_holdings.py'
       - 'scripts/dws_liquidity_funds.py'
       - 'scripts/hsbc_holdings.py'
       - 'scripts/jpm_holdings.py'
@@ -33,6 +35,8 @@ on:
       - 'scripts/dca-equity-identities.json'
       - 'scripts/collect_dca_complete_holdings.py'
       - 'scripts/collect_physical_holdings.py'
+      - 'scripts/collect_topix_holdings.py'
+      - 'scripts/test_topix_holdings.py'
       - 'scripts/lifestrategy_holdings.py'
       - 'scripts/test_lifestrategy_holdings.py'
       - 'scripts/test_physical_holdings.py'
@@ -96,6 +100,7 @@ jobs:
         continue-on-error: ${{ github.event_name != 'pull_request' }}
         run: python scripts/collect_vanguard_sleeves.py --apply --output "$RUNNER_TEMP/vanguard-sleeves.json"
       - run: python -m unittest discover -s scripts -p "test_exposure_sleeves.py"
+      - run: python -m unittest discover -s scripts -p 'test_topix_holdings.py'
       - name: Validate complete DWS parser
         run: python -m unittest discover -s scripts -p "test_dca*py"
       - name: Validate complete physical issuer portfolios
@@ -147,9 +152,11 @@ jobs:
       pages: write
       deployments: read
       id-token: write
-    uses: ./.github/workflows/deploy-pages.yml
+    uses: ./.github/workflows/publish-validated-data.yml
     with:
       ref: ${{ needs.refresh.outputs.commit_sha }}
+      producer: update-qualified-exposures.yml
+
   report-failures:
     needs: [refresh, deploy]
     if: always() && needs.refresh.outputs.collection_failed == 'true'

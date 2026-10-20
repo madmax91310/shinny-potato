@@ -164,6 +164,14 @@ class StatusTests(unittest.TestCase):
   self.assertEqual(result['collectionStatus'],'success')
   self.assertEqual(publication_summary(run(2,'success'),[{'name':'deploy / deploy','conclusion':'success'}]),('not-run',None))
 
+ def test_deploy_success_without_public_byte_verification_is_not_certified(self):
+  job={'name':'deploy / publish','conclusion':'failure','steps':[
+    {'name':'Run actions/deploy-pages@v5.0.1','conclusion':'success'},
+    {'name':'Verify actual public data','conclusion':'failure'}]}
+  self.assertEqual(publication_summary(run(),[job]),('failure',None))
+  job['steps'][1].update(conclusion='success',completed_at='2026-10-01T10:01:00Z')
+  self.assertEqual(publication_summary(run(),[job]),('success','2026-10-01T10:01:00Z'))
+
  def test_backfill_repairs_false_publication_without_replaying_data(self):
   published=[{'name':'deploy / deploy','conclusion':'success','completed_at':'2026-10-01T09:59:00Z','steps':[{'name':'Run actions/deploy-pages@v5.0.1','conclusion':'success','completed_at':'2026-10-01T09:58:00Z'}]}]
   skipped=[{'name':'deploy / deploy','conclusion':'success','completed_at':'2026-10-02T09:59:00Z','steps':[{'name':'Run actions/deploy-pages@v5.0.1','conclusion':'skipped'}]}]

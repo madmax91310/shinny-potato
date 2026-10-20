@@ -1,0 +1,120 @@
+name: Validate automation lots 1 to 5
+on:
+  push:
+    branches: [feat/automation-lots-1-5]
+  pull_request:
+    paths:
+      - 'scripts/*automation_lots*'
+      - '.github/workflows/validate-automation-lots.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  pr-queue:
+    runs-on: ubuntu-26.04
+    timeout-minutes: 5
+    continue-on-error: true
+    permissions:
+      actions: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - run: python3 -m unittest discover -s scripts -p 'test_pr_validation_queue.py'
+      - env:
+          GH_TOKEN: ${{ github.token }}
+          VALIDATION_HEAD_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: python3 scripts/pr_validation_queue.py
+  sources:
+    needs: pr-queue
+    if: always()
+    runs-on: ubuntu-26.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: '3.12'
+      - run: pip install beautifulsoup4==4.15.0
+      - run: sudo apt-get update -qq && sudo apt-get install -y poppler-utils
+      - run: python scripts/probe_automation_lots.py
+      - name: Recheck exact PEA and distribution evidence
+        continue-on-error: true
+        run: python scripts/collect_instrument_metadata.py --only IE0000QLH0G6 IE0003R87OG3 IE000716YHJ7 IE00BD6FTQ80 IE00B0M62S72 --output test-artifacts/automation-lots/metadata.json
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: automation-lots-manifest
+          path: test-artifacts/automation-lots/manifest.json
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: automation-lots-sources
+          path: test-artifacts/automation-lots
+
+  reliability:
+    needs: pr-queue
+    if: always()
+    runs-on: ubuntu-26.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 24
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: '3.12'
+      - run: pip install beautifulsoup4==4.15.0
+      - run: node scripts/test-validated-data-publisher.mjs
+      - run: node scripts/test-pages-snapshot.mjs
+      - run: python -m unittest discover -s scripts -p 'test_audit_workflows.py'
+      - run: python -m unittest discover -s scripts -p 'test_automation*.py'
+      - run: python -m unittest discover -s scripts -p 'test_pending_sources.py'
+      - run: node scripts/test-monitoring-context.mjs
+      - run: npm ci
+      - run: npm run build
+      - run: npx playwright install --with-deps chromium
+      - run: node scripts/smoke-data-routes.mjs
+      - run: node scripts/test-automation-failures-ui.mjs
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: automation-lots-reliability
+          path: test-artifacts
+
+  topix:
+    needs: pr-queue
+    if: always()
+    runs-on: ubuntu-26.04
+    timeout-minutes: 20
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 24
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: '3.12'
+      - run: pip install beautifulsoup4==4.15.0
+      - run: sudo apt-get update -qq && sudo apt-get install -y poppler-utils
+      - run: python -m unittest discover -s scripts -p 'test_topix_holdings.py'
+      - name: Qualify exact TOPIX benchmark equity compositions
+        run: python scripts/collect_dca_complete_holdings.py --apply --only FR0013411980 FR0013411998 --output test-artifacts/topix-live.json
+      - run: npm ci
+      - run: npm run build
+      - run: npm run test:dca
+      - run: node scripts/test-data-automation-inventory.mjs
+      - run: npx playwright install --with-deps chromium
+      - run: node scripts/playwright-live-data-connections.mjs --topix
+      - run: node scripts/playwright-data-automation-inventory.mjs
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: topix-validation
+          path: |
+            test-artifacts/topix-live.json
+            test-artifacts/live-data-connections
+            test-artifacts/data-automation-inventory
+            public/data/data-automation-summary.json

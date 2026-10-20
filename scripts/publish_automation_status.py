@@ -255,10 +255,21 @@ def read_report_safely(path, workflow):
 
 def publication_summary(run, jobs):
     deploy_jobs = [job for job in jobs if job['name'].startswith('deploy /') or job['name'] == 'deploy']
-    published = [step.get('completed_at') or job.get('completed_at') or run['updated_at']
-                 for job in deploy_jobs for step in job.get('steps', [])
-                 if 'actions/deploy-pages@' in step.get('name', '') and step.get('conclusion') == 'success']
-    status = 'success' if published else 'failure' if any(job.get('conclusion') in ('failure', 'timed_out') for job in deploy_jobs) else 'not-run'
+    published = []
+    verification_failed = False
+    for job in deploy_jobs:
+        steps = job.get('steps', [])
+        deployments = [step for step in steps if 'actions/deploy-pages@' in step.get('name', '') and step.get('conclusion') == 'success']
+        checks = [step for step in steps if step.get('name') in ('Verify actual public data', 'Verify the actual public data artifact', 'Verify the actual fallback data artifact')]
+        # Legacy runs without this step retain their original evidence; a modern
+        # deployment is never certified before the actual public-byte check.
+        if deployments and checks and not all(step.get('conclusion') == 'success' for step in checks):
+            verification_failed = True
+            continue
+        if deployments:
+            last = checks[-1] if checks else deployments[-1]
+            published.append(last.get('completed_at') or job.get('completed_at') or run['updated_at'])
+    status = 'success' if published else 'failure' if verification_failed or any(job.get('conclusion') in ('failure', 'timed_out') for job in deploy_jobs) else 'not-run'
     return status, max(published, default=None)
 
 

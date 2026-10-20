@@ -11,3 +11,7 @@ assert.ok(!alreadyPublished(newer,{sha:old,dataSha:newer},ancestor),'fallback co
 assert.ok(!alreadyPublished(newer,{sha:newer,dataSha:old},ancestor))
 assert.ok(!alreadyPublished(old,{},ancestor))
 console.log('Queued data coalesced; code boundaries and fallback publication identities preserved.')
+
+assert.equal(chooseSnapshot({...base,fullGate:true,changed:()=>['src/pages/App.jsx']}),newer)
+assert.equal(chooseSnapshot({...base,fullGate:true,changed:()=>['.github/workflows/deploy-pages.yml','src/pages/App.jsx']}),old)
+assert.equal(chooseSnapshot({...base,fullGate:true,ancestor:()=>false,changed:()=>[]}),old)

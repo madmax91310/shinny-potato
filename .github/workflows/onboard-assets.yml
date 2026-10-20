@@ -158,9 +158,10 @@ jobs:
       pages: write
       deployments: read
       id-token: write
-    uses: ./.github/workflows/deploy-pages.yml
+    uses: ./.github/workflows/publish-validated-data.yml
     with:
       ref: ${{ needs.onboard.outputs.commit_sha }}
+      producer: onboard-assets.yml
   # A manual run on a work branch records the validated observations on that branch; the
   # pull request's own gate then re-checks them with the code.
   publish-branch:
@@ -185,6 +186,7 @@ jobs:
           if git diff --cached --quiet; then echo 'No validated observation to commit'; exit 0; fi
           git commit -m 'Collect validated observations for newly configured assets'
           git push origin "HEAD:${{ github.ref_name }}"
+
   report-failures:
     needs: [onboard, deploy]
     if: always() && needs.onboard.outputs.collection_failed == 'true'

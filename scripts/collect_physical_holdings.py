@@ -401,6 +401,8 @@ def collect_jpm(share, now):
     from jpm_holdings import collect
     return collect(share,now)
 
-COLLECTORS = {'jpm-complete':collect_jpm,'hsbc-complete':collect_hsbc,'globalx-complete': collect_globalx, 'avantis-complete': collect_avantis,
+from collect_topix_holdings import collect as collect_topix
+
+COLLECTORS = {'jpx-topix':collect_topix,'jpm-complete':collect_jpm,'hsbc-complete':collect_hsbc,'globalx-complete': collect_globalx, 'avantis-complete': collect_avantis,
               'amundi-complete': collect_amundi, 'vanguard-complete': collect_vanguard,
               'invesco-complete': collect_invesco, 'vaneck-complete': collect_vaneck}

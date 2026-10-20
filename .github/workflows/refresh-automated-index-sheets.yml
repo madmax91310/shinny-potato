@@ -89,9 +89,11 @@ jobs:
       pages: write
       deployments: read
       id-token: write
-    uses: ./.github/workflows/deploy-pages.yml
+    uses: ./.github/workflows/publish-validated-data.yml
     with:
       ref: ${{ needs.collect.outputs.commit_sha }}
+      producer: refresh-automated-index-sheets.yml
+
   report-failures:
     needs: [collect, deploy]
     if: always() && needs.collect.outputs.failed == 'true'

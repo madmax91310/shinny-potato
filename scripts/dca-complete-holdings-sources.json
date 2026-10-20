@@ -361,5 +361,17 @@
   "IE00B0M63284": {
     "url": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251808&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
     "fundAssetClass": "Real Estate"
+  },
+  "FR0013411980": {
+    "isin": "FR0013411980",
+    "currency": "EUR",
+    "parser": "jpx-topix",
+    "identitySourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013411980/FRA/FRA/INSTITUTIONNEL/ETF"
+  },
+  "FR0013411998": {
+    "isin": "FR0013411998",
+    "currency": "EUR",
+    "parser": "jpx-topix",
+    "identitySourceUrl": "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013411998/FRA/FRA/INSTITUTIONNEL/ETF"
   }
 }

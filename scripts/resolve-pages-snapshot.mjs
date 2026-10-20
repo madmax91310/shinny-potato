@@ -1,11 +1,17 @@
-// Coalesce queued data commits before validation. Never include unrequested code.
+// Select a master snapshot before every validation job pins that exact commit.
 import {execFileSync} from 'node:child_process'
 import {appendFileSync} from 'node:fs'
 import {fileURLToPath} from 'node:url'
 import {automationPaths, classify} from './classify-deploy-scope.mjs'
 
-export function chooseSnapshot({requested, master, ancestor, changed, allowed}) {
-  return ancestor(requested, master) && classify(changed(requested, master), allowed).dataOnly ? master : requested
+export function chooseSnapshot({requested, master, ancestor, changed, allowed, fullGate=false}) {
+  if(!ancestor(requested,master))return requested
+  const paths=changed(requested,master)
+  // Workflow definitions are fixed by the triggering event: never run old gates
+  // against a snapshot that changed those definitions. Ordinary code still runs
+  // every mandatory validation against the selected immutable commit.
+  const gatesChanged=paths.some(path=>path.startsWith('.github/workflows/'))
+  return classify(paths,allowed).dataOnly || (fullGate&&!gatesChanged) ? master : requested
 }
 
 export function alreadyPublished(candidate, info, ancestor) {
@@ -23,7 +29,7 @@ async function main() {
     git('fetch','--no-tags','origin','refs/heads/master:refs/remotes/origin/master')
     const master = git('rev-parse','refs/remotes/origin/master')
     if (!ancestor(requested, master)) throw new Error('Requested publication is outside master history')
-    candidate = chooseSnapshot({requested,master,ancestor,allowed:automationPaths(),
+    candidate = chooseSnapshot({requested,master,ancestor,allowed:automationPaths(),fullGate:true,
       changed:(a,b)=>git('diff','--name-only',a,b).split('\n').filter(Boolean)})
     const repo = process.env.GITHUB_REPOSITORY
     const url = `https://${repo.split('/')[0]}.github.io/${repo.split('/')[1]}/build-info.json?selection=${Date.now()}`
