@@ -1,49 +1,71 @@
-name: Audit live data connections
+name: Verify published data connections
 on:
   push:
     branches: [audit/live-data-connections]
 permissions:
   contents: read
 jobs:
-  qualify:
+  verify:
     runs-on: ubuntu-latest
+    timeout-minutes: 45
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7.0.1
+        with:
+          ref: 7490cc9fa6bae1bbaf04bf498e0bcc810547ddbf
+      - uses: actions/setup-node@v7.0.0
         with:
           node-version: 24
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-      - run: pip install beautifulsoup4==4.15.0
-      - run: node scripts/build-automation-targets.mjs
-      - name: Observe new complete portfolios
-        run: python scripts/probe_live_data_connections.py --apply --only LU0380865021 LU0328475792 LU0274209237 IE00BJ0KDQ92 IE00BK1PV551 DE0002635307 IE00BKWQ0Q14 IE00BFY0GT14 IE00BJ38QD84 IE00B44Z5B48 IE00B469F816 IE00B5M1WJ87 IE00B6YX5D40 IE00B9CQXS71 IE00BYTRR863 IE00BSPLC298 IE00BSPLC413 --output live-data-proof/collection.json
-      - name: Inspect remaining manual rolling returns
-        continue-on-error: true
+      - name: Verify public build, exact holdings and data backlog
+        env:
+          EXPECTED_SHA: 7490cc9fa6bae1bbaf04bf498e0bcc810547ddbf
         run: |
-          PYTHONPATH=scripts python - <<'PY'
-          from issuer_documents import public_page
-          from pathlib import Path
-          import hashlib,json,datetime
-          url='https://globalxetfs.eu/funds/qyld/'
-          body=public_page(url)
-          Path('live-data-proof/globalx-current.html').write_text(body)
-          Path('live-data-proof/globalx-proof.json').write_text(json.dumps({'url':url,'checkedAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),'sha256':hashlib.sha256(body.encode()).hexdigest()}))
-          PY
-      - run: npm ci
-      - run: npm run build
-      - run: node scripts/test-data-qualification.mjs && node scripts/test-data-automation-inventory.mjs
-      - run: npx playwright install --with-deps chromium
-      - run: node scripts/playwright-data-automation-inventory.mjs
-      - run: node scripts/playwright-live-data-connections.mjs
-      - uses: actions/upload-artifact@v4
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict'
+          import {readFileSync,writeFileSync} from 'node:fs'
+          const base='https://madmax91310.github.io/shinny-potato/'
+          const expected=process.env.EXPECTED_SHA
+          assert(expected)
+          const get=async(path,json=true)=>{
+           const response=await fetch(base+path+'?audit='+Date.now(),{cache:'no-store'})
+           assert(response.ok,`${path}: HTTP ${response.status}`)
+           return json?response.json():response.text()
+          }
+          let before
+          for(let i=0;i<240;i++){
+           before=await get('build-info.json')
+           if(before.sha===expected&&!before.lane)break
+           if(i===239)throw Error(`Expected ${expected}; public build is ${JSON.stringify(before)}`)
+           await new Promise(r=>setTimeout(r,10000))
+          }
+          const report=await get('data/data-automation-inventory.json')
+          const summary=await get('data/data-automation-summary.json')
+          assert.deepEqual(report.summary,summary.summary)
+          const source=JSON.parse(readFileSync('scripts/source-snapshots/live-data-connections-2026-10-20.json'))
+          const records=JSON.parse(readFileSync('src/data/dca-complete-holdings.json'))
+          const qualified=source.qualifiedIsins.map(isin=>{
+           const row=report.connections.find(r=>r.id===isin&&r.field==='completeHoldings')
+           assert(row?.present&&row.actionState==='current',`${isin}: ${JSON.stringify(row)}`)
+           assert(records[isin]?.complete&&/^[a-f0-9]{64}$/.test(records[isin].sha256))
+           assert(row.checkedAt?.startsWith('2026-10-20'),`${isin}: stale check`)
+           return {isin,checkedAt:row.checkedAt,sha256:records[isin].sha256,positions:records[isin].rows.length}
+          })
+          const archive=report.fields.filter(f=>f.id==='IE00BM8R0J59'&&f.field.startsWith('Archive performance ·'))
+          assert.equal(archive.length,3)
+          assert(archive.every(f=>f.nature.kind==='archive'&&f.checkedAt===null))
+          assert(!report.fields.some(f=>f.id==='IE00BM8R0J59'&&f.field.startsWith('Performance ')))
+          assert(report.backlog.some(r=>r.id==='IE00BM8R0J59'&&r.field==='catalog:Rendements glissants à qualifier'))
+          const csv=await get('data/data-connections-backlog.csv',false)
+          assert(csv.includes('Rendements glissants à qualifier')&&csv.includes('derniere_tentative'))
+          assert.equal(report.summary.actionableConnections,report.backlog.length)
+          const after=await get('build-info.json')
+          assert.deepEqual(before,after,'Publication changed during audit')
+          const result={build:after,qualified,summary:report.summary,qyldArchived:archive.length,csvPublished:true}
+          writeFileSync('public-verification.json',JSON.stringify(result,null,2)+'\n')
+          console.log(JSON.stringify(result,null,2))
+          
+          JS
+      - uses: actions/upload-artifact@v7.0.1
         if: always()
         with:
-          name: browser-proof
-          path: test-artifacts
-      - run: cp src/data/dca-complete-holdings.json src/data/dca-holdings-status.json scripts/generated-holdings-sources.json live-data-proof/
-      - uses: actions/upload-artifact@v4
-        with:
-          name: portfolio-proof
-          path: live-data-proof
+          name: public-verification
+          path: public-verification.json
