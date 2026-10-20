@@ -1,4 +1,4 @@
-# Couverture et fraîcheur des actifs — 2026-10-19
+# Couverture et fraîcheur des actifs — 2026-10-20
 
 Les états décrivent les observations enregistrées, pas une garantie réseau. Contrôle en retard : plus de 7 jours pour les champs ETF (365 pour le domicile et la réplication, modifiés seulement par prospectus), 40 pour les historiques mensuels. Seuils : src/data/freshness-policy.json. Publication ancienne : seuil distinct, adapté au champ. Les caractéristiques manuelles ne sont pas comptées comme automatiques. Les principales positions ne constituent pas un portefeuille complet.
 
@@ -6,12 +6,12 @@ Les états décrivent les observations enregistrées, pas une garantie réseau. 
 |---|---:|---:|---:|---:|
 | Positions intégrales | 102/258 | 95 | 0 | 0 |
 | Frais | 258/258 | 258 | 0 | 0 |
-| Encours | 258/258 | 258 | 0 | 0 |
+| Encours | 258/258 | 257 | 1 | 0 |
 | Performances annuelles | 238/258 | 238 | 0 | 0 |
-| Historique mensuel | 252/258 | 252 | 0 | 0 |
-| Pays | 229/258 | 229 | 0 | 0 |
-| Secteurs | 229/258 | 229 | 0 | 0 |
-| Principales positions | 234/258 | 234 | 0 | 0 |
+| Historique mensuel | 258/258 | 258 | 0 | 0 |
+| Pays | 229/258 | 228 | 1 | 0 |
+| Secteurs | 229/258 | 228 | 1 | 0 |
+| Principales positions | 234/258 | 233 | 1 | 0 |
 | Distribution | 258/258 | 258 | 0 | 0 |
 | Domicile | 258/258 | 258 | 0 | 0 |
 | Réplication | 258/258 | 258 | 0 | 0 |
