@@ -26,6 +26,11 @@ add('urnu','https://globalxetfs.eu/funds/urnu/')
 add('urnu-holdings','https://globalxetfs.eu/api/funds/urnu/topholdingscsv')
 add('qyld','https://globalxetfs.eu/funds/qyld/')
 add('wisdomtree-home','https://dataspanapi.wisdomtree.com/swagger/index.html')
+add('topix-identities-page','https://www.blackrock.com/jp/individual-en/en/products/279438/ishares-core-topix-etf')
+add('topix-english','https://www.jpx.co.jp/automation/english/markets/indices/topix/files/topixweight_e.csv')
+add('nasdaq-index','https://indexes.nasdaq.com/Index/Weighting/NDX')
+for isin in ['IE00BDVPNG13','IE00BKLF1R75']:
+ add(isin,'https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/'+isin)
 def one(item):
  url,ids=item;row={'ids':ids,'url':url,'checkedAt':dt.datetime.now(dt.timezone.utc).isoformat()}
  try:
@@ -39,5 +44,11 @@ def one(item):
  except Exception as e:row.update(status='unavailable',error=str(e))
  return row
 rows=list(ThreadPoolExecutor(max_workers=4).map(one,requests.items()))
+# Follow only public holdings links actually printed by the official identity page.
+for parent in list(rows):
+ if parent['ids']==['topix-identities-page'] and parent.get('sha256'):
+  soup=BeautifulSoup((OUT/(parent['sha256']+'.raw')).read_bytes(),'html.parser')
+  links={urljoin(parent['actualUrl'],a['href']) for a in soup.select('a[href]') if 'fileType=csv' in a['href'] and 'hold' in a['href'].lower()}
+  for url in sorted(links)[:3]:rows.append(one((url,['topix-identities-csv'])))
 (OUT/'manifest.json').write_text(json.dumps(rows,ensure_ascii=False,indent=2)+'\n')
 print(json.dumps(rows,ensure_ascii=False,indent=2))
