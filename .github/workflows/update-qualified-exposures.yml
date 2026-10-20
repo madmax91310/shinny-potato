@@ -3,6 +3,13 @@ on:
   schedule:
     - cron: '50 7 * * *'
   workflow_dispatch:
+  push:
+    branches: [master]
+    paths:
+      - 'scripts/collect_dca_complete_holdings.py'
+      - 'scripts/build-automation-targets.mjs'
+      - 'scripts/dca-complete-holdings-sources.json'
+      - '.github/workflows/update-qualified-exposures.yml'
   pull_request:
     paths:
       - 'scripts/collect_qualified_exposures.py'
@@ -16,6 +23,11 @@ on:
       - 'scripts/collect_dws_etf.py'
       - 'scripts/collect_ssga_etf.py'
       - 'scripts/test_dca_dws_complete.py'
+      - 'scripts/test_dca_localized_complete.py'
+      - 'scripts/validate_holdings_refresh.py'
+      - 'scripts/test_dca_refresh_gate.py'
+      - 'scripts/playwright-live-data-connections.mjs'
+      - 'scripts/build-automation-targets.mjs'
       - 'scripts/dca-complete-holdings-sources.json'
       - 'scripts/dca-equity-extra-identities.json'
       - 'src/data/qualified-exposure*'
@@ -44,7 +56,7 @@ jobs:
           python-version: '3.12'
       - uses: actions/setup-node@v7.0.0
         with:
-          node-version: 20
+          node-version: 24
       - run: pip install beautifulsoup4==4.15.0
       - run: npm ci
       - run: sudo apt-get update && sudo apt-get install -y poppler-utils
@@ -57,10 +69,14 @@ jobs:
         continue-on-error: ${{ github.event_name != 'pull_request' }}
         run: python scripts/collect_dca_equities.py --apply --output "$RUNNER_TEMP/dca-equities.json"
       - run: node scripts/build-automation-targets.mjs
+      - run: cp src/data/dca-holdings-status.json "$RUNNER_TEMP/previous-holdings-status.json"
       - name: "Collect observations: holdings"
         id: holdings
-        continue-on-error: ${{ github.event_name != 'pull_request' }}
+        continue-on-error: true
         run: python scripts/collect_dca_complete_holdings.py --apply --output "$RUNNER_TEMP/dca-complete-holdings.json"
+      - name: Reject new complete-holdings failures in a PR
+        if: github.event_name == 'pull_request'
+        run: python scripts/validate_holdings_refresh.py "$RUNNER_TEMP/dca-complete-holdings.json" "$RUNNER_TEMP/previous-holdings-status.json"
       - name: "Collect observations: sleeves"
         id: sleeves
         continue-on-error: ${{ github.event_name != 'pull_request' }}
@@ -80,11 +96,16 @@ jobs:
         run: npm run audit:instrument-catalog
       - name: "Validate observations: npm run build"
         run: npm run build
+      - name: Verify complete portfolios in the browser
+        run: |
+          npx playwright install --with-deps chromium
+          node scripts/playwright-live-data-connections.mjs
       - uses: actions/upload-artifact@v7.0.1
         if: always()
         with:
           name: qualified-exposures-observation
           path: |
+            test-artifacts/live-data-connections
             ${{ runner.temp }}/qualified-exposures.json
             ${{ runner.temp }}/dca-equities.json
             ${{ runner.temp }}/dca-complete-holdings.json

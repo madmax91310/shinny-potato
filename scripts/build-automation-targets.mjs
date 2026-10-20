@@ -57,9 +57,10 @@ for(const [isin,r] of Object.entries(AUTOMATED_ETF)) {
  if(/\b(?:ETC|ETN|ETP)\b|bond|treasury|govt|overnight|court terme/i.test(name))continue
  const url=r.sourceUrl??''
  const method=r.characteristics?.replicationMethod??facts.replicationMethod??''
- if(!/physic|direct replication/i.test(method) || /synthe|swap|indirect/i.test(method))continue
- if(url.includes('blackrock.com/varnish-api/') && /portfolioId=\d+/.test(url))holdings[isin]={url:url.replace(/component=[^&]+/,'component=keyFundFacts%2Choldings.all')}
- else if(/api\.funds\.dws\.com.*\/products\//.test(url))holdings[isin]={parser:'dws',sourceUrl:url}
+ if(!/physic|physisch|physique|direct replication/i.test(method) || /synthe|swap|indirect/i.test(method))continue
+ if(url.includes('blackrock.com/varnish-api/') && /portfolioId=\d+/.test(url))holdings[isin]={isin,name,url:url.replace(/component=[^&]+/,'component=keyFundFacts%2Choldings.all')}
+ else if(/^https:\/\/etf\.dws\.com\/api\/pdp\/en-gb\/etf\//.test(url))holdings[isin]={isin,name,currency:r.aum?.currency,parser:'dws',sourceUrl:url}
+ else if(/^https:\/\/www\.ssga\.com\/[^?#]+\/etfs\//.test(url))holdings[isin]={isin,name,currency:r.aum?.currency,parser:'ssga',sourceUrl:url}
 }
 writeFileSync('scripts/generated-holdings-sources.json',JSON.stringify(holdings,null,2)+'\n')
 writeFileSync('scripts/instrument-metadata-sources.json',JSON.stringify({instruments:metadata},null,2)+'\n')

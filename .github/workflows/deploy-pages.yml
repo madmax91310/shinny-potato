@@ -139,7 +139,7 @@ jobs:
       - run: node scripts/test-automated-indices.mjs
       - run: node scripts/test-automated-index-sheets.mjs
       - run: node scripts/test-automation-gap-inventory.mjs
-      - run: node scripts/test-data-automation-inventory.mjs
+      - run: node scripts/test-data-automation-inventory.mjs && node scripts/test-data-qualification.mjs
       - run: node scripts/test-etf-completeness.mjs
       - run: node scripts/test-priority-issuer-consumers.mjs
       - run: npm run audit:portfolio-provenance
