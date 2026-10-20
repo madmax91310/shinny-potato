@@ -1,38 +1,27 @@
-name: Inspect remaining public PEA declarations
+name: Verify corrected download check against validated automation site
 on:
   push:
     branches: [probe/pea-final-public-sources]
 permissions:
   contents: read
+  actions: read
 jobs:
-  read:
+  verify:
     runs-on: ubuntu-24.04
-    timeout-minutes: 5
+    timeout-minutes: 10
     steps:
-      - name: Read public exact-share profiles
-        shell: python
-        run: |
-          import json,urllib.request,urllib.error,hashlib,datetime,time
-          from pathlib import Path
-          out=Path('/tmp/last-pea');out.mkdir()
-          ids=['IE000716YHJ7','IE0000QLH0G6','IE00BD6FTQ80']
-          urls=['https://www.invesco.com/content/dam/invesco/fr/fr/product-documents/etf/share-class/factsheet/'+i+'_factsheet_fr-fr.pdf' for i in ids]
-          rows=[];denied=set()
-          for i,url in enumerate(urls):
-            host=urllib.parse.urlsplit(url).hostname
-            if host in denied:rows.append({'url':url,'error':'Host cooldown after refusal'});continue
-            try:
-              with urllib.request.urlopen(urllib.request.Request(url,headers={'User-Agent':'ShinnyPotatoDataAudit/1.0 (lepargnantlibre@gmail.com)'}),timeout=15) as r:
-                body=r.read();filename=f'{i}.html';(out/filename).write_bytes(body)
-                rows.append({'url':r.url,'file':filename,'status':r.status,'sha256':hashlib.sha256(body).hexdigest(),'checkedAt':datetime.datetime.now(datetime.timezone.utc).isoformat()})
-            except Exception as e:
-              rows.append({'url':url,'error':str(e)})
-              if isinstance(e,urllib.error.HTTPError) and e.code in (403,429):denied.add(host)
-            time.sleep(.5)
-          (out/'manifest.json').write_text(json.dumps(rows,indent=2));print(json.dumps(rows))
-      - uses: actions/upload-artifact@v7.0.1
-        if: always()
+      - uses: actions/checkout@v7.0.1
         with:
-          name: last-pea-public-evidence
-          path: /tmp/last-pea
-          retention-days: 14
+          ref: 27855acdf7884eb978fd1f19c16aa6b579ebf02c
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 24
+      - run: npm ci
+      - uses: actions/download-artifact@v4
+        with:
+          name: validated-site
+          run-id: 39378770726
+          github-token: ${{ github.token }}
+          path: dist
+      - run: npx playwright install --with-deps chromium
+      - run: node scripts/test-publication-continuity.mjs
