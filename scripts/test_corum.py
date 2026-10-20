@@ -5,7 +5,7 @@ import unittest
 import copy
 import hashlib
 from unittest.mock import patch
-from collect_corum import parse_annual_allocations, parse_annual, parse_conditions, documents, parse_eurion_quarterly
+from collect_corum import parse_annual_allocations, parse_annual, parse_conditions, documents, parse_eurion_quarterly, parse_quarterly_text
 TODAY=dt.date(2026,10,8)
 FIXTURES=pathlib.Path(__file__).parent/'fixtures/corum'
 
@@ -39,8 +39,19 @@ class CorumTests(unittest.TestCase):
         self.assertEqual(portfolio['buildings']['value'],55)
         self.assertEqual(portfolio['tenants']['value'],131)
         outside=copy.deepcopy(pages)
-        next(w for w in outside[0]['words'] if w['text']=='%' and 300<w['x']<301)['x']=400
+        next(w for w in outside[0]['words'] if w['text']=='%' and 300<w['x']<301)['y']=410
         with self.assertRaises(ValueError):parse_eurion_quarterly(text,outside,'https://www.corum.fr/CORUM-Eurion-2026-T3.pdf',dt.date(2026,10,20))
+    def test_origin_and_xl_new_text_tables_and_unknown_labels(self):
+        for row in json.loads((FIXTURES/'quarterly-text-t3-2026.json').read_text()):
+            snapshot,portfolio=parse_quarterly_text(row['text'],row['pages'],row['url'],dt.date(2026,10,20),row['id'])
+            self.assertEqual(snapshot['asOf'],'2026-09-30')
+            self.assertEqual(sum(v['value'] for v in snapshot['countries']),100)
+            self.assertEqual(sum(v['value'] for v in snapshot['sectors']),100)
+            expected=(170,444,95.48) if row['id']=='corum-origin' else (98,251,95.44)
+            self.assertEqual(tuple(portfolio[key]['value'] for key in ['buildings','tenants','occupancy']),expected)
+            bad=copy.deepcopy(row['pages'])
+            next(w for w in bad[0]['words'] if w['text']=='Bureau*')['text']='Inconnu'
+            with self.assertRaises(ValueError):parse_quarterly_text(row['text'],bad,row['url'],dt.date(2026,10,20),row['id'])
     def test_missing_weight_fails(self):
         pages=json.loads((FIXTURES/'origin-allocation.json').read_text())
         pages[0]['words']=[w for w in pages[0]['words'] if w['text']!='%']
