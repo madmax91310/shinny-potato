@@ -1,4 +1,6 @@
 import assert from 'node:assert/strict'
+import { readFile } from 'node:fs/promises'
+import { createHash } from 'node:crypto'
 import { chromium } from 'playwright'
 import { spawn } from 'node:child_process'
 import { choose } from './card-selection.mjs'
@@ -39,7 +41,9 @@ try {
   const before = await image.getAttribute('src')
   const [download] = await Promise.all([page.waitForEvent('download'), page.getByRole('button', { name: 'Télécharger cet aperçu', exact: true }).click()])
   assert.equal(download.suggestedFilename(), 'publication.png')
-  assert.equal(download.url(), before, 'download uses the displayed image')
+  assert.equal(await download.failure(), null)
+  const digest = bytes => createHash('sha256').update(bytes).digest('hex')
+  assert.equal(digest(await readFile(await download.path())), digest(Buffer.from(before.split(',')[1], 'base64')), 'download contains the exact displayed PNG, including Blob downloads')
   await page.getByRole('button', { name: 'Agrandir l’image', exact: true }).click()
   await page.keyboard.press('Escape')
   await choose(page.locator('#es-etf-select'), { index: 2 })
