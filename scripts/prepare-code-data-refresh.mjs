@@ -7,9 +7,18 @@ import {fileURLToPath} from 'node:url'
 import {automationPaths,classify} from './classify-deploy-scope.mjs'
 import {compose} from './compose-fallback-snapshot.mjs'
 import {requiredFiles} from './prepare-validated-data.mjs'
-export function codeDataSnapshot({code,head,ancestor,changed,allowed}) {
+export function codeDataSnapshot({code,head,ancestor,changed,allowed,history=()=>[]}) {
  assert(ancestor(code,head),'Validated code must belong to master history')
- return classify(changed(code,head),allowed).dataOnly?head:code
+ if(classify(changed(code,head),allowed).dataOnly)return head
+ // Later unvalidated code must not discard the valid data prefix that arrived
+ // before it. Never cross that code change to adopt subsequent observations.
+ let candidate=code
+ for(const next of history(code,head)){
+  if(!ancestor(code,next))continue
+  if(!classify(changed(candidate,next),allowed).dataOnly)break
+  candidate=next
+ }
+ return candidate
 }
 async function main(){
  const git=(...args)=>execFileSync('git',args,{encoding:'utf8',stdio:['ignore','pipe','pipe']}).trim()
@@ -17,7 +26,9 @@ async function main(){
  const code=git('rev-parse','HEAD');assert.equal(code,process.env.VALIDATED_CODE_SHA)
  git('fetch','--no-tags','origin','refs/heads/master:refs/remotes/origin/master')
  const allowed=automationPaths()
- const data=codeDataSnapshot({code,head:git('rev-parse','origin/master'),ancestor,allowed,changed:(a,b)=>git('diff','--name-only',a,b).split('\n').filter(Boolean)})
+ const data=codeDataSnapshot({code,head:git('rev-parse','origin/master'),ancestor,allowed,
+  changed:(a,b)=>git('diff','--name-only',a,b).split('\n').filter(Boolean),
+  history:(a,b)=>git('rev-list','--first-parent','--reverse',`${a}..${b}`).split('\n').filter(Boolean)})
  const refresh=data!==code
  if(refresh){
   const producers=JSON.parse(readFileSync(new URL('./validated-data-producers.json',import.meta.url)))

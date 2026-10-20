@@ -5,6 +5,10 @@ assert.equal(codeDataSnapshot({...base,changed:()=>['src/data/a.json']}),'latest
 assert.equal(codeDataSnapshot({...base,changed:()=>['src/data/inflation-monthly.js']}),'latest')
 for(const path of ['src/pages/App.jsx','scripts/collector.py','.github/workflows/deploy-pages.yml','src/data/unknown.json'])assert.equal(codeDataSnapshot({...base,changed:()=>[path]}),'validated')
 assert.throws(()=>codeDataSnapshot({...base,ancestor:()=>false,changed:()=>[]}))
+const prefix={...base,history:()=>['data1','code2','data3'],changed:(a,b)=>b==='data1'?['src/data/a.json']:['src/pages/App.jsx','src/data/a.json']}
+assert.equal(codeDataSnapshot(prefix),'data1')
+assert.equal(codeDataSnapshot({...prefix,history:()=>['code2','data3']}),'validated')
+assert.equal(codeDataSnapshot({...prefix,changed:(a,b)=>b==='data1'?['src/data/a.json']:['src/data/unknown.json']}),'data1')
 console.log('Validated code adopts only declared data; changed consumers, collectors, gates and divergent histories require full validation.')
 // Exercise the real composite: code stays immutable, data changes, unknown assets
 // remain held back by the shared composer instead of silently reaching the UI.
@@ -30,6 +34,12 @@ try{
  const held=compose({published:code,data:git('rev-parse','HEAD'),cwd,allowed:['src/data/a.json']})
  assert.equal(held.heldBack.length,1)
  assert.equal(JSON.parse(readFileSync(join(cwd,'src/data/a.json'))).known.value,1)
+ git('reset','--hard',data);writeFileSync(join(cwd,'app.js'),'export const changed = true\n');git('add','.');git('commit','-qm','Later unvalidated consumer')
+ writeFileSync(join(cwd,'src/data/a.json'),'{"known":{"value":4}}\n');git('add','.');git('commit','-qm','Data after consumer')
+ const head=git('rev-parse','HEAD')
+ assert.equal(codeDataSnapshot({code,head,ancestor:()=>true,allowed:['src/data/a.json'],
+  changed:(a,b)=>git('diff','--name-only',a,b).split('\n').filter(Boolean),
+  history:(a,b)=>git('rev-list','--first-parent','--reverse',`${a}..${b}`).split('\n').filter(Boolean)}),data)
 }finally{rmSync(cwd,{recursive:true,force:true})}
 
 const {publicationCodeEpoch}=await import('./publication-code-epoch.mjs')
