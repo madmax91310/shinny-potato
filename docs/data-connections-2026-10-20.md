@@ -59,7 +59,8 @@ refusées, les dates inchangées après échec et les nouvelles données non qua
 Le navigateur contrôle les calculs de recouvrement avec plus de dix titres communs,
 la fiche QYLD et l'inventaire, sur mobile et ordinateur.
 
-En PR, le contrôle de collecte complète tolère uniquement une erreur identique
-déjà enregistrée pour la même source. Une erreur nouvelle, modifiée, un résultat
-absent ou contradictoire bloque la validation. En production, une collecte partielle
-reste signalée en échec après publication des seules observations validées.
+En PR, toute erreur de collecte complète bloque la validation. La collecte intégrale
+sur le run 39398154323 a validé 120 sources sur 120. En production, une collecte
+partielle reste signalée en échec après publication des seules observations validées.
+Les tests Python des compositions s'exécutent dans le job Python, où leurs dépendances
+HTML sont installées, et restent obligatoires avant le déploiement.
