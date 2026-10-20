@@ -1,0 +1,18 @@
+name: Audit live data connections
+on:
+  push:
+    branches: [audit/live-data-connections]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: git archive --format=tar HEAD src scripts docs .github package.json package-lock.json vite.config.js index.html CLAUDE.md > current-source.tar
+      - uses: actions/upload-artifact@v4
+        with:
+          name: current-source
+          path: current-source.tar
+          retention-days: 7
