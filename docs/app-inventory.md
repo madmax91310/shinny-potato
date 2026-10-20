@@ -47,7 +47,7 @@ Généré depuis les routes, le catalogue et les observations actives. Régéné
 | lexicon | 44 |
 | reference | 11 |
 | scpi | 8 |
-| series | 691 |
+| series | 697 |
 
 ## Champs des instruments
 
