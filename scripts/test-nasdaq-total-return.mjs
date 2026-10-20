@@ -25,7 +25,7 @@ assert.equal(daily.parser,'fred')
 assert.equal(daily.seriesId,'NASDAQXNDX')
 assert.equal(Object.keys(daily.sourceHashes).length,2)
 for(const [url,hash]of Object.entries(daily.sourceHashes)){
- assert.match(url,/^https:\/\/fred\.stlouisfed\.org\/graph\/fredgraph\.csv\?id=NASDAQXNDX&cosd=/)
+ assert(url==='https://fred.stlouisfed.org/data/NASDAQXNDX.txt'||/^https:\/\/fred\.stlouisfed\.org\/graph\/fredgraph\.csv\?id=NASDAQXNDX(?:&cosd=|$)/.test(url))
  assert.match(hash,/^[a-f0-9]{64}$/)
 }
 assert.equal(daily.variant,'TOTAL')

@@ -60,22 +60,40 @@ def collect_one(config, now, json_fetch=None, byte_fetch=download):
         if (config.get('id'),config.get('seriesId'),config.get('symbol'),config.get('currency'),config.get('variant')) != ('nasdaq100','NASDAQXNDX','XNDX','USD','TOTAL'):
             reject('Wrong daily FRED economic index')
         base='https://fred.stlouisfed.org/graph/fredgraph.csv?id=NASDAQXNDX'
-        urls=[base+'&cosd='+first.isoformat()+'&coed='+(end-dt.timedelta(days=1)).isoformat()for first in (start,start-dt.timedelta(days=7))]
-        raw=[download(u,timeout=60,max_attempts=2) if byte_fetch is download else byte_fetch(u) for u in urls]
-        def parse(content):
-            reader=csv.DictReader(io.StringIO(content.decode('utf-8-sig')))
-            if reader.fieldnames!=['observation_date','NASDAQXNDX']:reject('Wrong daily FRED series schema')
-            dates=[];values=[]
-            for row in reader:
-                day=dt.date.fromisoformat(row['observation_date']);dates.append(day)
-                if row['NASDAQXNDX'] in ('','.'):continue
-                value=number(float(row['NASDAQXNDX']))
+        # Both are fixed public publications. Date-filtered graph URLs can
+        # time out on hosted runners even when these cached documents respond.
+        urls=[base,'https://fred.stlouisfed.org/data/NASDAQXNDX.txt']
+        raw=[download(u,timeout=45,max_attempts=2) if byte_fetch is download else byte_fetch(u) for u in urls]
+        def values(pairs):
+            dates=[];result=[]
+            for date,level in pairs:
+                day=dt.date.fromisoformat(date);dates.append(day)
+                if level in ('','.'):continue
+                value=number(float(level))
                 if value<=0:reject('Invalid daily FRED level')
-                if start<=day<end:values.append((day,value))
+                if start<=day<end:result.append((day,value))
             if dates!=sorted(set(dates)):reject('Duplicate/unordered daily FRED dates')
-            return values
-        window,independent=map(parse,raw)
-        if not window or window!=independent:reject('Independent daily FRED windows disagree')
+            return result
+        reader=csv.DictReader(io.StringIO(raw[0].decode('utf-8-sig')))
+        if reader.fieldnames!=['observation_date','NASDAQXNDX']:reject('Wrong daily FRED series schema')
+        window=values((r['observation_date'],r['NASDAQXNDX'])for r in reader)
+        from bs4 import BeautifulSoup
+        page=BeautifulSoup(raw[1],'html.parser')
+        metadata=page.find('table',attrs={'aria-label':'metadata - NASDAQ-100 Total Return'})
+        if not metadata:reject('Missing official FRED table identity')
+        fields={row.th.get_text(' ',strip=True):row.td.get_text(' ',strip=True)for row in metadata.select('tr')if row.th and row.td}
+        if any(fields.get(k)!=v for k,v in {'Title':'NASDAQ-100 Total Return','Series ID':'NASDAQXNDX','Source':'Nasdaq, Inc.','Frequency':'Daily','Units':'Index'}.items()):reject('Wrong official FRED table identity')
+        table=page.find('table',id='data-table-observations')
+        if not table or [th.get_text(strip=True)for th in table.select('thead th')]!=['DATE','VALUE']:reject('Wrong FRED table schema')
+        pairs=[(row.th.get_text(strip=True),row.td.get_text(strip=True))for row in table.select('tbody tr')if row.th and row.td]
+        extra=page.find(id='extra-rows')
+        if extra:
+            for item in extra.get_text().split('#')[1:]:
+                cells=item.strip().split('|')
+                if len(cells)!=2:reject('Malformed FRED extra observations')
+                pairs.append(tuple(cells))
+        independent=values(pairs)
+        if not window or window!=independent:reject('Independent daily FRED publications disagree')
         asof,value=completed(window,now,'America/New_York')
         url=urls[0];body={'sources':dict(zip(urls,[hashlib.sha256(r).hexdigest()for r in raw]))}
     elif parser == 'msci':
@@ -117,7 +135,7 @@ def collect_one(config, now, json_fetch=None, byte_fetch=download):
     return {'value':value,'asOf':asof,'currency':config['currency'],'parser':parser,
             'symbol':config.get('symbol'),'indexCode':config.get('indexCode'),'variant':config.get('variant'),
             'sourceUrl':url,'sha256':hashlib.sha256(json.dumps(body,sort_keys=True,allow_nan=False).encode()).hexdigest(),
-            'method':('Niveau officiel XNDX Total Return USD de la dernière séance terminée, diffusé par FRED ; deux fenêtres datées concordantes' if parser=='fred' else ('Niveau XNDX Total Return USD de la dernière séance terminée, dividendes bruts réinvestis' if config.get('symbol')=='^XNDX' else 'Dernière séance terminée ; cours brut') if parser=='yahoo' else ('Niveau officiel de fin de mois, Total Return USD' if parser=='ftse' else 'Niveau officiel de fin de séance, variante exacte')),
+            'method':('Niveau officiel XNDX Total Return USD de la dernière séance terminée, diffusé par FRED ; deux publications officielles concordantes' if parser=='fred' else ('Niveau XNDX Total Return USD de la dernière séance terminée, dividendes bruts réinvestis' if config.get('symbol')=='^XNDX' else 'Dernière séance terminée ; cours brut') if parser=='yahoo' else ('Niveau officiel de fin de mois, Total Return USD' if parser=='ftse' else 'Niveau officiel de fin de séance, variante exacte')),
             'maxAgeDays':45 if parser=='ftse' else 7,
             **({'seriesId':'NASDAQXNDX','sourceUrls':urls,'sourceHashes':body['sources']}if parser=='fred' else {}),
             **({key:config[key] for key in ('isin','ticker','mic','listingEvidenceId') if key in config} if config.get('isin') else {})}
@@ -130,8 +148,11 @@ def xndx_source_upgrade(identifier,old,record):
     if record.get('seriesId')!='NASDAQXNDX':return False
     base='https://fred.stlouisfed.org/graph/fredgraph.csv?id=NASDAQXNDX'
     sources=record.get('sourceHashes',{})
-    return (len(sources)==2 and all(url.startswith(base+'&cosd=')for url in sources) and record.get('sourceUrl','').startswith(base+'&cosd=')
-            and record['sourceUrl'] in sources and all(re.fullmatch(r'[a-f0-9]{64}',value or '')for value in sources.values()))
+    static={base,'https://fred.stlouisfed.org/data/NASDAQXNDX.txt'}
+    exact_pair=set(sources)==static or all(url.startswith(base+'&cosd=')for url in sources)
+    return (len(sources)==2 and exact_pair and record.get('sourceUrl') in sources
+            and all(re.fullmatch(r'[a-f0-9]{64}',value or '')for value in sources.values()))
+
 
 
 def refresh(current, now, collect=collect_one, selected=None):

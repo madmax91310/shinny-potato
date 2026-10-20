@@ -55,3 +55,7 @@ Compilation et budgets de routes ; catalogue des instruments et catalogue géné
 Le contrôle réseau des courtiers qualifie six barèmes et conserve les deux autres : Saxo présente une brochure courante absente/ambiguë dans son catalogue, Bourse Direct interrompt les connexions testées. Trois FAQ IBKR répondent HTTP 503. Ces sondages de campagne ne renouvellent pas les observations retenues et ne sont pas assimilés à une collecte de production réussie.
 
 Les preuves finales de fusion et de publication sont les commits GitHub, l'action Pages réussie, `build-info.json` et l'artefact `publication-verified.json` de cette action. Les chiffres ci-dessus ne doivent être présentés comme publiés qu'après cette vérification.
+
+### Correction Nasdaq après recette du collecteur hébergé
+
+La recette GitHub a confirmé que les deux CSV filtrés par dates pouvaient expirer, malgré leur disponibilité locale. Le lecteur utilise désormais deux routes officielles fixes : le CSV complet `fredgraph.csv?id=NASDAQXNDX` et la table `data/NASDAQXNDX.txt` (servie en HTML, y compris ses observations supplémentaires). Il compare leurs observations dans la fenêtre récente, contrôle l'identifiant, le fournisseur, la fréquence, les unités, l'ordre des dates, les valeurs et la dernière séance terminée. Les deux empreintes originales sont conservées. La convention reste XNDX Total Return USD. Une divergence ou une publication trop ancienne maintient la dernière bonne observation et l'incident. La confirmation du renouvellement hébergé reste nécessaire avant de clôturer ce point.

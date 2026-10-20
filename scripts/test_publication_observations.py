@@ -97,8 +97,9 @@ class PublicationTests(unittest.TestCase):
         from refresh_anniversary_levels import xndx_source_upgrade
         config=next(c for c in configurations()if c['id']=='nasdaq100')
         raw=b'observation_date,NASDAQXNDX\n2026-10-06,35900.1\n2026-10-07,36000.25\n2026-10-08,37000\n'
+        table=b"""<table aria-label="metadata - NASDAQ-100 Total Return"><tr><th>Title</th><td>NASDAQ-100 Total Return</td></tr><tr><th>Series ID</th><td>NASDAQXNDX</td></tr><tr><th>Source</th><td>Nasdaq, Inc.</td></tr><tr><th>Frequency</th><td>Daily</td></tr><tr><th>Units</th><td>Index</td></tr></table><table id="data-table-observations"><thead><tr><th>DATE</th><th>VALUE</th></tr></thead><tbody><tr><th>2026-10-06</th><td>35900.1</td></tr></tbody></table><div id="extra-rows">#2026-10-07|36000.25 #2026-10-08|37000</div>"""
         calls=[]
-        def fetch(url):calls.append(url);return raw
+        def fetch(url):calls.append(url);return raw if 'fredgraph.csv' in url else table
         new=collect_level(config,NOW,byte_fetch=fetch)
         self.assertEqual((new['value'],new['asOf'],new['seriesId']),(36000.25,'2026-10-07','NASDAQXNDX'))
         self.assertEqual(len(calls),2);self.assertEqual(len(new['sourceHashes']),2)
@@ -110,9 +111,11 @@ class PublicationTests(unittest.TestCase):
             self.assertTrue(report['errors']);self.assertEqual(retained['nasdaq100'],old)
         self.assertFalse(xndx_source_upgrade('other',old,new))
         for bad in [raw.replace(b'NASDAQXNDX',b'NASDAQ100'),raw.replace(b'36000.25',b'-1'),raw.replace(b'2026-10-07',b'2026-10-06')]:
-            with self.assertRaises(ValueError):collect_level(config,NOW,byte_fetch=lambda _:bad)
-        def conflict(url):return raw if 'cosd=2026-09-23' in url else raw.replace(b'36000.25',b'36001.25')
+            with self.assertRaises(ValueError):collect_level(config,NOW,byte_fetch=lambda u:bad if 'fredgraph.csv'in u else table)
+        def conflict(url):return raw if 'fredgraph.csv' in url else table.replace(b'36000.25',b'36001.25')
         with self.assertRaises(ValueError):collect_level(config,NOW,byte_fetch=conflict)
+        for bad in [table.replace(b'NASDAQXNDX',b'NASDAQ100'),table.replace(b'2026-10-08|37000',b'2026-10-07|37000'),table.replace(b'Nasdaq, Inc.',b'Other')]:
+            with self.assertRaises(ValueError):collect_level(config,NOW,byte_fetch=lambda u:raw if 'fredgraph.csv'in u else bad)
 
     def test_completed_session_and_preservation(self):
         self.assertEqual(completed([(dt.date(2026,10,7),100),(dt.date(2026,10,8),200)],NOW),('2026-10-07',100))
