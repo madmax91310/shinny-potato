@@ -96,8 +96,8 @@ class PublicationTests(unittest.TestCase):
     def test_xndx_fred_daily_concordance_and_explicit_source_migration(self):
         from refresh_anniversary_levels import xndx_source_upgrade
         config=next(c for c in configurations()if c['id']=='nasdaq100')
-        raw=b'observation_date,NASDAQXNDX\n2026-10-06,35900.1\n2026-10-07,36000.25\n2026-10-08,37000\n'
-        table=b"""<table aria-label="metadata - NASDAQ-100 Total Return"><tr><th>Title</th><td>NASDAQ-100 Total Return</td></tr><tr><th>Series ID</th><td>NASDAQXNDX</td></tr><tr><th>Source</th><td>Nasdaq, Inc.</td></tr><tr><th>Frequency</th><td>Daily</td></tr><tr><th>Units</th><td>Index</td></tr></table><table id="data-table-observations"><thead><tr><th>DATE</th><th>VALUE</th></tr></thead><tbody><tr><th>2026-10-06</th><td>35900.1</td></tr></tbody></table><div id="extra-rows">#2026-10-07|36000.25 #2026-10-08|37000</div>"""
+        raw=b'observation_date,NASDAQXNDX\n2026-10-06,35900.1\n2026-10-07,36000.25\n2026-10-08,37000\n2026-10-09,.\n'
+        table=b"""<table aria-label="metadata - NASDAQ-100 Total Return"><tr><th>Title</th><td>NASDAQ-100 Total Return</td></tr><tr><th>Series ID</th><td>NASDAQXNDX</td></tr><tr><th>Source</th><td>Nasdaq, Inc.</td></tr><tr><th>Frequency</th><td>Daily</td></tr><tr><th>Units</th><td>Index</td></tr></table><table id="data-table-observations"><thead><tr><th>DATE</th><th>VALUE</th></tr></thead><tbody><tr><th>2026-10-06</th><td>35900.1</td></tr></tbody></table><div id="extra-rows">#2026-10-07|36000.25 #2026-10-08|37000 #2026-10-09|       .</div>"""
         calls=[]
         def fetch(url):calls.append(url);return raw if 'fredgraph.csv' in url else table
         new=collect_level(config,NOW,byte_fetch=fetch)

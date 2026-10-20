@@ -60,18 +60,18 @@
     "symbol": "XNDX",
     "indexCode": null,
     "variant": "TOTAL",
-    "sourceUrl": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=NASDAQXNDX&cosd=2026-10-05&coed=2026-10-19",
-    "sha256": "007344e904f96a285744d05e6512fd70cd7bb4516f482f3856619a004279ebc3",
-    "method": "Niveau officiel XNDX Total Return USD de la dernière séance terminée, diffusé par FRED ; deux fenêtres datées concordantes",
+    "sourceUrl": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=NASDAQXNDX",
+    "sha256": "2b79e01e444e7eb90f9d66960d0cdac06fa2053c4446d6071acf45355b2022b9",
+    "method": "Niveau officiel XNDX Total Return USD de la dernière séance terminée, diffusé par FRED ; deux publications officielles concordantes",
     "maxAgeDays": 7,
     "seriesId": "NASDAQXNDX",
     "sourceUrls": [
-      "https://fred.stlouisfed.org/graph/fredgraph.csv?id=NASDAQXNDX&cosd=2026-10-05&coed=2026-10-19",
-      "https://fred.stlouisfed.org/graph/fredgraph.csv?id=NASDAQXNDX&cosd=2026-09-28&coed=2026-10-19"
+      "https://fred.stlouisfed.org/graph/fredgraph.csv?id=NASDAQXNDX",
+      "https://fred.stlouisfed.org/data/NASDAQXNDX.txt"
     ],
     "sourceHashes": {
-      "https://fred.stlouisfed.org/graph/fredgraph.csv?id=NASDAQXNDX&cosd=2026-10-05&coed=2026-10-19": "53e03ee413462ba9136dfd64b80efe39e9f98a4b5b6ce92bb31dc8db874966f0",
-      "https://fred.stlouisfed.org/graph/fredgraph.csv?id=NASDAQXNDX&cosd=2026-09-28&coed=2026-10-19": "12ea9e52b0fcd7aafda013b00b5752e78c5d4d5734cf55ece642bb7fd32c4bf7"
+      "https://fred.stlouisfed.org/graph/fredgraph.csv?id=NASDAQXNDX": "0b2ae358a573245ca84ef453bc7053983da30e43833ce6d797c13872026acf10",
+      "https://fred.stlouisfed.org/data/NASDAQXNDX.txt": "d5bcfcd2022f1571c8c59ab1aaf91364515ec87e3b2c131cd07b24444f759e27"
     }
   },
   "soxx": {

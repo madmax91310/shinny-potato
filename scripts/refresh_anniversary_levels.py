@@ -67,7 +67,7 @@ def collect_one(config, now, json_fetch=None, byte_fetch=download):
         def values(pairs):
             dates=[];result=[]
             for date,level in pairs:
-                day=dt.date.fromisoformat(date);dates.append(day)
+                day=dt.date.fromisoformat(date);dates.append(day);level=level.strip()
                 if level in ('','.'):continue
                 value=number(float(level))
                 if value<=0:reject('Invalid daily FRED level')
