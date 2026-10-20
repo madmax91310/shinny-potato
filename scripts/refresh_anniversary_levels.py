@@ -21,13 +21,13 @@ def configurations():
     active = json.loads((ROOT/'src/data/automated-monthly.json').read_text())
     equities = [s for s in sources if s.get('consumerScope') == 'equity' and s['id'] in active]
     sources = [{**s, 'field': 'close'} for s in sources if s['id'] in IDS or s in etfs or s in equities]
-    # XNDX has only short daily coverage on Yahoo, sufficient for the current level.
-    # The full monthly XNDX history remains Nasdaq via FRED; never use ^NDX here.
+    # The exact XNDX daily series distributed by FRED also supplies monthly
+    # history. Yahoo can return metadata without any daily candles for ^XNDX.
     for source in sources:
         if source['id'] == 'nasdaq100':
-            if (source.get('symbol'),source.get('currency'),source.get('variant')) != ('XNDX','USD','TOTAL'):
+            if (source.get('symbol'),source.get('currency'),source.get('variant'),source.get('seriesId')) != ('XNDX','USD','TOTAL','NASDAQXNDX'):
                 reject('Nasdaq monthly/daily return convention differs')
-            source.update(parser='yahoo',symbol='^XNDX',timezone='America/New_York')
+            source.update(parser='fred',timezone='America/New_York')
     sources += [{'id':'bitcoin','label':'Bitcoin','parser':'yahoo','symbol':'BTC-USD','currency':'USD','field':'close','timezone':'UTC'},
                 {'id':'cac40','label':'CAC 40','parser':'yahoo','symbol':'^FCHI','currency':'EUR','field':'close','timezone':'Europe/Paris'}]
     if {s['id'] for s in sources} != IDS | {'bitcoin','cac40'} | {s['id'] for s in etfs} | {s['id'] for s in equities}: reject('Configuration anniversaire incomplète')
@@ -55,6 +55,29 @@ def collect_one(config, now, json_fetch=None, byte_fetch=download):
             'period2':int(dt.datetime.combine(end,dt.time(),UTC).timestamp()),'interval':'1d','events':'splits'})
         body=json_fetch(url); rows, zone=yahoo_chart(body,config,'1d')
         asof,value=completed([(r[0],r[1]) for r in rows],now,zone)
+    elif parser == 'fred':
+        import csv,io
+        if (config.get('id'),config.get('seriesId'),config.get('symbol'),config.get('currency'),config.get('variant')) != ('nasdaq100','NASDAQXNDX','XNDX','USD','TOTAL'):
+            reject('Wrong daily FRED economic index')
+        base='https://fred.stlouisfed.org/graph/fredgraph.csv?id=NASDAQXNDX'
+        urls=[base+'&cosd='+first.isoformat()+'&coed='+(end-dt.timedelta(days=1)).isoformat()for first in (start,start-dt.timedelta(days=7))]
+        raw=[download(u,timeout=60,max_attempts=2) if byte_fetch is download else byte_fetch(u) for u in urls]
+        def parse(content):
+            reader=csv.DictReader(io.StringIO(content.decode('utf-8-sig')))
+            if reader.fieldnames!=['observation_date','NASDAQXNDX']:reject('Wrong daily FRED series schema')
+            dates=[];values=[]
+            for row in reader:
+                day=dt.date.fromisoformat(row['observation_date']);dates.append(day)
+                if row['NASDAQXNDX'] in ('','.'):continue
+                value=number(float(row['NASDAQXNDX']))
+                if value<=0:reject('Invalid daily FRED level')
+                if start<=day<end:values.append((day,value))
+            if dates!=sorted(set(dates)):reject('Duplicate/unordered daily FRED dates')
+            return values
+        window,independent=map(parse,raw)
+        if not window or window!=independent:reject('Independent daily FRED windows disagree')
+        asof,value=completed(window,now,'America/New_York')
+        url=urls[0];body={'sources':dict(zip(urls,[hashlib.sha256(r).hexdigest()for r in raw]))}
     elif parser == 'msci':
         url='https://app2.msci.com/products/service/index/indexmaster/getLevelDataForGraph?'+urlencode({
             'currency_symbol':config['currency'],'index_variant':config['variant'],'start_date':start.strftime('%Y%m%d'),
@@ -94,9 +117,22 @@ def collect_one(config, now, json_fetch=None, byte_fetch=download):
     return {'value':value,'asOf':asof,'currency':config['currency'],'parser':parser,
             'symbol':config.get('symbol'),'indexCode':config.get('indexCode'),'variant':config.get('variant'),
             'sourceUrl':url,'sha256':hashlib.sha256(json.dumps(body,sort_keys=True,allow_nan=False).encode()).hexdigest(),
-            'method':('Niveau XNDX Total Return USD de la dernière séance terminée, dividendes bruts réinvestis' if config.get('symbol')=='^XNDX' else 'Dernière séance terminée ; cours brut') if parser=='yahoo' else ('Niveau officiel de fin de mois, Total Return USD' if parser=='ftse' else 'Niveau officiel de fin de séance, variante exacte'),
+            'method':('Niveau officiel XNDX Total Return USD de la dernière séance terminée, diffusé par FRED ; deux fenêtres datées concordantes' if parser=='fred' else ('Niveau XNDX Total Return USD de la dernière séance terminée, dividendes bruts réinvestis' if config.get('symbol')=='^XNDX' else 'Dernière séance terminée ; cours brut') if parser=='yahoo' else ('Niveau officiel de fin de mois, Total Return USD' if parser=='ftse' else 'Niveau officiel de fin de séance, variante exacte')),
             'maxAgeDays':45 if parser=='ftse' else 7,
+            **({'seriesId':'NASDAQXNDX','sourceUrls':urls,'sourceHashes':body['sources']}if parser=='fred' else {}),
             **({key:config[key] for key in ('isin','ticker','mic','listingEvidenceId') if key in config} if config.get('isin') else {})}
+
+def xndx_source_upgrade(identifier,old,record):
+    if identifier!='nasdaq100' or not old:return False
+    convention=lambda r:tuple(r.get(k)for k in ('parser','symbol','currency','variant'))
+    if convention(old)!=('yahoo','^XNDX','USD','TOTAL') or convention(record)!=('fred','XNDX','USD','TOTAL'):return False
+    if any(old.get(k)!=record.get(k)for k in ('indexCode','isin','ticker','mic','listingEvidenceId')):return False
+    if record.get('seriesId')!='NASDAQXNDX':return False
+    base='https://fred.stlouisfed.org/graph/fredgraph.csv?id=NASDAQXNDX'
+    sources=record.get('sourceHashes',{})
+    return (len(sources)==2 and all(url.startswith(base+'&cosd=')for url in sources) and record.get('sourceUrl','').startswith(base+'&cosd=')
+            and record['sourceUrl'] in sources and all(re.fullmatch(r'[a-f0-9]{64}',value or '')for value in sources.values()))
+
 
 def refresh(current, now, collect=collect_one, selected=None):
     merged=current.copy();successes=[];errors=[]
@@ -112,6 +148,9 @@ def refresh(current, now, collect=collect_one, selected=None):
             # an existing identifier must never change or disappear.
             convention_changed = old and (any(record.get(k)!=old.get(k) for k in ['currency','parser','symbol','indexCode','variant']) or
                 any(old.get(k) is not None and record.get(k)!=old[k] for k in ['isin','ticker','mic','listingEvidenceId']))
+            # One explicit transport migration; the economic index stays XNDX
+            # Total Return USD. Every other convention change still fails closed.
+            if xndx_source_upgrade(id_,old,record):convention_changed=False
             if old and (record['asOf'] < old['asOf'] or convention_changed):
                 errors.append({'id':'anniversary-'+id_,'error':'Régression de date ou changement de convention'});continue
             merged[id_]=record;successes.append({'id':'anniversary-'+id_})

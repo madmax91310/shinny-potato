@@ -1,5 +1,7 @@
 # Automatisation et fiabilité — lots 1 à 5, 20 octobre 2026
 
+> Historique de la campagne précédente. État actualisé : [automatisation de tous les actifs](automation-all-assets-2026-10-20.md), notamment Nasdaq, WisdomTree et compteurs.
+
 ## Livraisons
 
 1. Les 21 producteurs financiers sont raccordés au publieur validé commun. Le registre `scripts/validated-data-producers.json` énumère toutes leurs sorties JSON communes explicitement committées, ainsi que les sorties principales du parcours d’intégration. Chaque fichier (y compris chaque fichier d'un répertoire 13F) est comparé au blob exact du producteur après tous les générateurs. Le reçu décrit ce producteur, et non des fichiers étrangers éventuellement retenus par la composition. Le manifeste et la vérification HTTP restent ceux des octets réellement construits. Le code financier modifié passe par le portail complet. Un fichier nécessaire retenu par la composition déclenche aussi ce portail ; il ne peut pas être publié par la voie rapide.

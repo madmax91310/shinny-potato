@@ -24,11 +24,10 @@ permissions:
   id-token: write
 
 concurrency:
-  # Validate a code epoch once at a time; a newer epoch starts independently.
-  # The new group separates this policy from the old snapshot backlog. Older
-  # runs retain their checks and the shared publication-order guard.
-  # No active validation or publication is cancelled by a collector.
-  group: pages-code-validation-${{ github.event_name == 'pull_request' && github.ref || (inputs.validation_group || github.sha) }}
+  # Producers and master pushes share one full validation queue. The selector
+  # coalesces queued requests; the publisher adopts the latest safe data prefix.
+  # One group per data SHA otherwise starts 8 browser jobs for every collector.
+  group: pages-validation-v3-${{ github.event_name == 'pull_request' && github.ref || 'master' }}
   cancel-in-progress: false
   queue: max
 
@@ -147,7 +146,7 @@ jobs:
       - run: node scripts/test-automated-indices.mjs
       - run: node scripts/test-automated-index-sheets.mjs
       - run: node scripts/test-automation-gap-inventory.mjs
-      - run: node scripts/test-data-automation-inventory.mjs && node scripts/test-data-qualification.mjs
+      - run: node scripts/test-data-automation-inventory.mjs && node scripts/test-data-qualification.mjs && node scripts/test-asset-automation.mjs && node scripts/test-closed-pr-validation.mjs
       - run: node scripts/test-etf-completeness.mjs
       - run: node scripts/test-priority-issuer-consumers.mjs
       - run: npm run audit:portfolio-provenance
@@ -368,6 +367,7 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_metadata_recovery_diagnostics.py'
       - run: python -m unittest discover -s scripts -p 'test_metadata_incidents.py'
       - run: python -m unittest discover -s scripts -p 'test_physical_holdings.py'
+      - run: python -m unittest discover -s scripts -p 'test_wisdomtree_discovery.py'
       - run: python -m unittest discover -s scripts -p 'test_topix_holdings.py'
       - run: python -m unittest discover -s scripts -p 'test_lifestrategy_holdings.py'
       - run: python -m unittest discover -s scripts -p 'test_dws_liquidity_funds.py'

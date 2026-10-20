@@ -3,6 +3,7 @@ import { resolve, relative, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { DATA_CATALOG } from '../src/data/catalog.js'
 import { registryQualification, fieldQualification, coverageKey, qualifyCoverage } from './lib/data-qualification.mjs'
+import {assetAutomation,assetAutomationCsv} from './lib/asset-automation.mjs'
 import { AUTOMATED_ETF } from '../src/data/automated-etf.js'
 import { buildAssetFieldReport } from './report-asset-fields.mjs'
 import metadata from '../src/data/automated-instrument-metadata.json' with {type:'json'}
@@ -104,7 +105,7 @@ export function buildDataAutomationInventory(){
  const fields=DATA_CATALOG.flatMap(record=>record.fields.map((field,index)=>{
   const registry=registryMap.get(field.registry),evidence=field.metadata??{}
   const nature=fieldQualification(field,record),key=coverageKey(field,record)
-  const matchingCoverage=key?coverageMap.get(`${record.id.replace(/^history:/,'')}:${key}`):null
+  const matchingCoverage=key?coverageMap.get(`${record.id.replace(/^(history|insurance|scpi|index):/,'')}:${key}`):null
   return {id:record.id,type:record.type,name:record.name,field:field.label,fieldIndex:index,registry:field.registry,
    consumers:record.consumers,mode:registry?.mode??'unmapped',upstreamWorkflows:registry?.upstreamWorkflows??[],
    qualification:'source-configuration-only',nature,
@@ -112,7 +113,7 @@ export function buildDataAutomationInventory(){
    provenanceGap:['live','history'].includes(nature.kind)&&(!evidence.sourceUrls?.length||!evidence.checkedAt),
    sourceStatus:evidence.sourceStatus??null,numericPaths:numericPaths(field.value),
    sourceUrls:evidence.sourceUrls??[],checkedAt:evidence.checkedAt??null,asOf:evidence.asOf??null,
-   scope:evidence.scope??null,method:evidence.method??null,
+   currency:evidence.currency??null,scope:evidence.scope??null,method:evidence.method??null,
    requiresConnection:(['live','history'].includes(nature.kind)&&(registry?.mode==='manual-or-editorial'||nature.manual))||!!field.qualificationMissing,
    missingReason:field.qualificationMissing||null,
    action:nature.kind==='archive'?nature.reason:nature.kind==='simulation'||nature.kind==='editorial'?nature.reason:evidence.sourceStatus==='archive-unverifiable'?'Archive non recertifiable conservée avec sa qualification ; ne pas l’utiliser comme observation actuelle.':!evidence.sourceUrls?.length?'Compléter la provenance ou confirmer le statut éditorial/archive.':!evidence.checkedAt?'Qualifier la date de contrôle ; la génération du rapport ne renouvelle pas la preuve.':registry?.mode==='manual-or-editorial'?'Qualifier la mise à jour manuelle et séparer rédaction, hypothèses et chiffres vivants.':'Contrôler la couverture par champ et le dernier résultat de collecte ; un workflow configuré ne certifie pas cette valeur.'}
@@ -125,15 +126,24 @@ export function buildDataAutomationInventory(){
   const proof=access.observations?.[`${connection.id}:${connection.field}`]
   if(proof?.qualification==='access-check-only'&&proof.financialDataQualified===false)connection.sourceAccess=proof
  }
+ const discoveryPath='public/data/holdings-discovery.json'
+ const discovery=existsSync(resolve(ROOT,discoveryPath))?JSON.parse(read(discoveryPath)):null
+ if(discovery?.schemaVersion===1)for(const connection of connections){
+  if(connection.field==='completeHoldings'&&discovery.observations?.[connection.id])connection.sourceDiscovery=discovery.observations[connection.id]
+ }
  const backlog=connections.filter(row=>row.requiresAction).sort((a,b)=>a.priority-b.priority||(b.tools?.length??0)-(a.tools?.length??0)||a.id.localeCompare(b.id)||a.field.localeCompare(b.field))
  const count=(rows,key)=>rows.reduce((a,r)=>(a[r[key]]=(a[r[key]]??0)+1,a),{})
- return {schemaVersion:1,generatedAt:new Date().toISOString(),
+ const report={schemaVersion:1,generatedAt:new Date().toISOString(),
   method:'Inventaire du code et des observations enregistrées. Modes des fichiers déduits uniquement des chemins explicitement publiés par les workflows et de leurs imports. Les champs de catalogue restent à qualification individuelle : aucun workflow, nom de fichier, source accessible ou date de génération ne garantit une actualisation réussie. Les lignes de couverture conservent les dates et états propres des observations. Les modules non référencés au catalogue restent listés séparément.',
   summary:{fieldKinds:count(fields.map(f=>f.nature),'kind'),registryRoles:count(registries.map(r=>r.qualification),'role'),liveProvenanceGaps:fields.filter(f=>f.provenanceGap).length,connectionStates:count(connections,'actionState'),actionableConnections:backlog.length,unclassifiedFields:fields.filter(f=>f.nature.kind==='unclassified').length,unclassifiedModules:registries.filter(r=>r.qualification.role==='unclassified').length,registries:registries.length,registryModes:count(registries,'mode'),catalogRecords:DATA_CATALOG.length,catalogFields:fields.length,catalogTypes:count(DATA_CATALOG,'type'),fieldsWithoutSource:fields.filter(f=>!f.sourceUrls.length).length,fieldsWithoutCheckDate:fields.filter(f=>!f.checkedAt).length,scheduledWorkflows:workflows.filter(w=>w.crons.length).length,coverageRows:coverage.rows.length,coverageStates:count(coverage.rows,'state'),peaQualified:pea.filter(p=>p.qualified).length,peaRemaining:pea.filter(p=>!p.qualified).length},
   workflows,registries,fields,connections,backlog,datasets:registryFiles.filter(p=>p.endsWith('.json')).map(jsonDatasetInfo),coverage,pea}
+ const certification=assetAutomation(report)
+ report.assets=certification.assets;report.summary.assetAutomation=certification.summary
+ return report
 }
 export function writeDataAutomationInventory(){
  const report=buildDataAutomationInventory();mkdirSync(resolve(ROOT,'public/data'),{recursive:true})
+ writeFileSync(resolve(ROOT,'public/data/asset-automation.csv'),assetAutomationCsv(report.assets))
  writeFileSync(resolve(ROOT,'public/data/data-automation-inventory.json'),JSON.stringify(report)+'\n')
  writeFileSync(resolve(ROOT,'public/data/data-automation-summary.json'),JSON.stringify({schemaVersion:report.schemaVersion,generatedAt:report.generatedAt,summary:report.summary})+'\n')
  const csvCell=value=>'"'+String(value??'').replaceAll('"','""')+'"'

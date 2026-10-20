@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict'
-import {readFileSync,writeFileSync,mkdirSync} from 'node:fs'
+import {readFileSync,writeFileSync,mkdirSync,existsSync} from 'node:fs'
+import {dirname,join} from 'node:path'
 import {setTimeout as wait} from 'node:timers/promises'
 import {createHash} from 'node:crypto'
 const [base,expectedCode,expectedData=expectedCode,manifestPath='dist/data/publication-manifest.json']=process.argv.slice(2)
@@ -37,9 +38,22 @@ for(let attempt=0;attempt<30;attempt++){
   assert.deepEqual(manifest,expected,'Published data differs from the validated artifact')
   const publicFilesVerified=await verifyPublicFiles(manifest)
   const summary=await json('data/data-automation-summary.json')
+  let assetCertificate=null
+  const csvPath=join(dirname(manifestPath),'asset-automation.csv')
+  if(existsSync(csvPath)){
+   assert.ok(summary.summary.assetAutomation?.profiles>0,'Public per-asset certification summary missing')
+   const url=new URL('data/asset-automation.csv',base.endsWith('/')?base:base+'/')
+   url.searchParams.set('verify',`${expectedData}-${Date.now()}`)
+   const response=await fetch(url,{cache:'no-store',signal:AbortSignal.timeout(30000)})
+   assert.ok(response.ok,'Public per-asset CSV missing')
+   const bytes=Buffer.from(await response.arrayBuffer())
+   const sha=body=>createHash('sha256').update(body).digest('hex')
+   assert.equal(sha(bytes),sha(readFileSync(csvPath)),'Public per-asset CSV differs from validated artifact')
+   assetCertificate={...summary.summary.assetAutomation,csvSha256:sha(bytes)}
+  }
   const after=await json('build-info.json');assert.deepEqual(after,before,'Publication changed during verification')
   mkdirSync('test-artifacts',{recursive:true})
-  writeFileSync('test-artifacts/publication-verified.json',JSON.stringify({build:after,checkedAt:new Date().toISOString(),files:Object.keys(manifest.files).length,publicFilesVerified,summary},null,2)+'\n')
+  writeFileSync('test-artifacts/publication-verified.json',JSON.stringify({build:after,checkedAt:new Date().toISOString(),files:Object.keys(manifest.files).length,publicFilesVerified,assetCertificate,summary},null,2)+'\n')
   console.log(`Verified public code ${expectedCode}, data ${expectedData}, ${Object.keys(manifest.files).length} data files.`)
   process.exit(0)
  }catch(error){last=error;console.log(`Public verification ${attempt+1}/30: ${error.message.slice(0,220)}`)}

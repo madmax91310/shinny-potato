@@ -5,10 +5,11 @@ import {chromium} from 'playwright'
 import {getInstrumentAnnualPerformance} from '../src/data/instrument-returns.js'
 import {REVIEWED_PERFORMANCE_META} from '../src/data/instrument-performance-review.js'
 const raw=JSON.parse(readFileSync('src/data/dca-complete-holdings.json'))
+const wisdomtree=process.argv.includes('--wisdomtree')
 const topix=process.argv.includes('--topix')
 const newIssuers=process.argv.includes('--new-issuers')
-const physical=process.argv.includes('--physical')||newIssuers
-const selected=topix?['FR0013411980','FR0013411998']:newIssuers?['IE00B4K6B022','IE0003UVYC20']:physical?['IE00BK5BQT80','IE00BFMXXD54']:['IE00BFY0GT14','IE00BKWQ0Q14']
+const physical=process.argv.includes('--physical')||newIssuers||wisdomtree
+const selected=wisdomtree?['IE00BJGWQN72','IE00BFY0GT14']:topix?['FR0013411980','FR0013411998']:newIssuers?['IE00B4K6B022','IE0003UVYC20']:physical?['IE00BK5BQT80','IE00BFMXXD54']:['IE00BFY0GT14','IE00BKWQ0Q14']
 for(const isin of selected)assert(raw[isin]?.complete&&raw[isin].checkedAt&&raw[isin].sha256&&raw[isin].rows.length>10,`Fresh complete portfolio required: ${isin}`)
 if(physical){
  const targets=JSON.parse(readFileSync('scripts/generated-holdings-sources.json'))
@@ -34,7 +35,7 @@ if(physical){
   }
  }
 }
-const qyld=getInstrumentAnnualPerformance('IE00BM8R0J59')
+assert(getInstrumentAnnualPerformance('IE00BM8R0J59'),'QYLD annual performance stays connected')
 assert(!REVIEWED_PERFORMANCE_META.IE00BM8R0J59.observations?.length,'Legacy unqualified rolling returns must not be published')
 assert.equal(REVIEWED_PERFORMANCE_META.IE00BM8R0J59.archivedObservations.length,3)
 const server=spawn('node',['node_modules/vite/bin/vite.js','preview','--host','127.0.0.1','--port','4392'],{stdio:'ignore'})

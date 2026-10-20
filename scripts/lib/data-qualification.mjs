@@ -11,6 +11,7 @@ export function registryQualification(registry){
 const FIELD_KEYS={'Frais annuels (%)':'ter','Encours':'aum','Éligibilité PEA':'pea','Caractéristiques':null};
 export function fieldQualification(field,record){
  const label=field.label, registry=field.registry;
+ if(registry==='src/data/presentation-actors.js'&&label.endsWith(' · Conditions variables selon le projet'))return {kind:'reference',reason:'Limites de la fiche générale de plateforme ; les conditions d’une opération non sélectionnée ne sont pas des observations manquantes de la plateforme.'};
  if(registry==='src/data/simulation-proxies.js'||label.startsWith('Historique de simulation'))return {kind:'simulation',reason:'Proxy de simulation identifié ; aucune attribution de son rendement à la part exacte.'};
  if(registry==='src/data/instrument-aum-observations.js'||(label.startsWith('Photographie ·')||label.startsWith('Archive performance ·'))||record.name?.endsWith(' · archive'))return {kind:'archive',reason:'Photographie historique conservée à sa date et dans son périmètre ; ne pas la renouveler avec la date du build.'};
  if(label==='Définition'||label==='Activité')return {kind:'editorial',reason:'Texte éditorial ; les paramètres chiffrés variables sont suivis séparément.'};
@@ -25,6 +26,9 @@ export function fieldQualification(field,record){
  return {kind:'unclassified',reason:'Nature du champ à qualifier explicitement avant tout raccordement.'};
 }
 export function coverageKey(field,record){
+ if(record.type==='index')return field.label.startsWith('Composition courante')?'facts':field.label.startsWith('Rendements d’indice')?'returns':null;
+ if(record.type==='insurance')return {'Frais du contrat':'fees','Versements minimums':'access','Supports proposés':'access','Fonds euros, rendements et conditions':'euroFunds'}[field.label]??null;
+ if(record.type==='scpi')return {'Pays et secteurs':'portfolio','Taux de distribution annuels':'annual','Prix de souscription':'price','Frais et conditions':'conditions'}[field.label]??null;
  if(record.type==='instrument')return FIELD_KEYS[field.label]??(field.label.startsWith('Cotation ')?'listings':null);
  if(record.type==='series'&&record.id.startsWith('history:'))return 'monthly';
  return null;

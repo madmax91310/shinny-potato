@@ -1,0 +1,10 @@
+const STATES={connected:'Champs raccordés',blocked:'Données à compléter','scheduled-evidence':'Collectes raccordées, cycles à confirmer','qualification-needed':'Preuves de renouvellement à compléter','reference-only':'Référence seule'}
+const FIELDS={connected:'Raccordé','scheduled-evidence':'Source et collecteur raccordés, cycle à confirmer',blocked:'À compléter','qualification-needed':'Renouvellement à qualifier',reference:'Référence',excluded:'Archive, rédaction ou simulation','not-required':'Non requis ou publication attendue'}
+export default function AssetAutomationProfiles({report,query}){
+ const q=query.trim().toLocaleLowerCase('fr')
+ const rows=(report.assets??[]).filter(a=>[a.id,a.name,a.type,STATES[a.state]].join(' ').toLocaleLowerCase('fr').includes(q))
+ return <><p>{rows.length} fiches financières correspondantes · {Math.min(rows.length,25)} affichées. Les fiches d’instrument, d’entreprise et d’historique gardent leurs périmètres distincts.</p>
+ <p>« Champs raccordés » porte sur les champs applicables inventoriés. Une collecte programmée ou une source accessible ne certifie pas à elle seule leur renouvellement.</p>
+ <div className="dr-list">{rows.slice(0,25).map(a=><article className="dr-item" key={a.id}><h3>{a.name}</h3><p>{a.id} · {STATES[a.state]}</p><p>{a.counts.connected??0} champs raccordés · {a.counts.blocked??0} à compléter · {a.counts['qualification-needed']??0} preuves de renouvellement à compléter.</p>
+ <details><summary>Voir chaque champ, ses sources et ses usages</summary>{a.fields.map(f=><div key={f.key}><h4>{f.label} · {FIELDS[f.state]}</h4><p>{f.nextAction}</p><p>Contrôle de la source : {f.checkedAt??'Non documenté'}. Date de la donnée : {f.asOf??'Non documentée'}.</p>{f.sourceDiscovery&&<p>Dernière qualification de la composition : {f.sourceDiscovery.lastAttemptAt}. {f.sourceDiscovery.error??f.sourceDiscovery.status}</p>}{f.scope&&<p>{f.scope}</p>}{f.method&&<p>{f.method}</p>}{f.workflows.map(w=><p key={w.path}>Collecte : {w.name}</p>)}{f.sourceUrls.map(url=><p key={url}><a href={url} target="_blank" rel="noreferrer">Source ↗</a></p>)}</div>)}</details></article>)}</div></>
+}

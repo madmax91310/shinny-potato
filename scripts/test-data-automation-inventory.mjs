@@ -35,3 +35,5 @@ assert.equal(held.value,null)
 for(const field of report.fields)assert.equal(new Set(field.numericPaths).size,field.numericPaths.length)
 assert(report.fields.some(f=>f.numericPaths.some(p=>p.includes('[]'))),'array paths must be compacted without losing their numeric nature')
 console.log('Inventory: writer allowlists, null/false/proof semantics, source conflicts, coverage and array paths passed.')
+
+assert.equal(report.assets.length,report.summary.assetAutomation.profiles,'read-only inventory and written inventory share the same field certification')
