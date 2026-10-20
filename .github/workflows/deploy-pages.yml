@@ -589,6 +589,8 @@ jobs:
         run: node scripts/compose-fallback-snapshot.mjs --published "${{ needs.scope.outputs.published }}"
       - run: npm ci
       - run: npm run build
+      - name: Seal final fallback data after all generators
+        run: python3 scripts/data_publication.py manifest --output dist/data/publication-manifest.json
       - name: Record the published code and the data snapshot
         run: printf '{"sha":"%s","dataSha":"%s","lane":"fallback","builtAt":"%s"}\n' "${{ steps.compose.outputs.code_sha }}" "${{ steps.compose.outputs.data_sha }}" "$(date -u +%Y-%m-%dT%H:%M:%SZ)" > dist/build-info.json
       - uses: actions/cache@v4
