@@ -88,7 +88,7 @@ jobs:
     runs-on: ubuntu-26.04
     timeout-minutes: 20
     permissions:
-      contents: write
+      contents: read
     steps:
       - uses: actions/checkout@v7.0.1
       - uses: actions/setup-node@v7.0.0
@@ -109,25 +109,6 @@ jobs:
       - run: npx playwright install --with-deps chromium
       - run: node scripts/playwright-live-data-connections.mjs --topix
       - run: node scripts/playwright-data-automation-inventory.mjs
-      - name: Record improved historical identities after all validations
-        if: github.event_name == 'push'
-        run: |
-          python3 - <<'PYTHON'
-          import json,subprocess,pathlib
-          path='src/data/dca-complete-holdings.json'
-          old=json.loads(subprocess.check_output(['git','show','HEAD:'+path]))
-          new=json.loads(pathlib.Path(path).read_text())
-          better=any(new[i].get('unidentifiedWeightPct',100)<old.get(i,{}).get('unidentifiedWeightPct',100) for i in ('FR0013411980','FR0013411998'))
-          pathlib.Path('/tmp/topix-improved').write_text(str(better))
-          PYTHON
-          if [ "$(cat /tmp/topix-improved)" != 'True' ]; then exit 0; fi
-          git fetch origin feat/automation-lots-1-5
-          if [ "$(git rev-parse origin/feat/automation-lots-1-5)" != "$GITHUB_SHA" ]; then exit 0; fi
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add src/data/dca-complete-holdings.json src/data/dca-holdings-status.json
-          git commit -m 'Record validated historical TOPIX security identities'
-          git push origin HEAD:feat/automation-lots-1-5
       - uses: actions/upload-artifact@v7.0.1
         if: always()
         with:

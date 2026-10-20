@@ -137,5 +137,5 @@ def collect(share,now,fetch=download):
     elif history_error:result['identityHistoryError']=history_error
     result.update(sourceUrl=JPX,sha256=proof(raw),identitySourceUrl=url,identitySha256=proof(ids),
                   identityAsOf=identity_stamp,shareAsOf=share_stamp,shareSourceUrl=share['identitySourceUrl'],shareSha256=proof(document),
-                  sourceUrls=[JPX,url,share['identitySourceUrl']])
+                  sourceUrls=[JPX,url,share['identitySourceUrl'],*([history['sourceUrl'],history['dateSourceUrl']] if history else [])])
     return result

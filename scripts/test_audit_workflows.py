@@ -119,6 +119,9 @@ class WorkflowContracts(unittest.TestCase):
         self.assertLess(workflow.index('hash-object'),workflow.index('smoke-data-routes.mjs'))
         self.assertLess(workflow.index('smoke-data-routes.mjs'),workflow.index('uses: actions/deploy-pages@'))
         self.assertIn("if: steps.order.outputs.current == 'true'",workflow)
+        self.assertIn("steps.producer.outcome == 'failure'",workflow)
+        self.assertIn("if: needs.publish.outputs.needs_code == 'true'",workflow)
+        self.assertIn("if: steps.plan.outputs.current == 'true' && steps.producer.outcome == 'success'",workflow)
         for name,path in [('update-scpi.yml','src/data/automated-scpi.json'),('update-presentation-actors.yml','src/data/automated-presentation-actors.json')]:
             caller=(ROOT/'.github/workflows'/name).read_text()
             self.assertIn('uses: ./.github/workflows/publish-validated-data.yml',caller)
