@@ -5,11 +5,7 @@ from urllib.parse import urljoin,urlsplit
 from bs4 import BeautifulSoup
 from issuer_documents import download,pdf_text
 OUT=pathlib.Path('test-artifacts/remaining-sources');OUT.mkdir(parents=True,exist_ok=True)
-URLS=[
-('iroko-latest-pdf','https://iroko-documents.s3.eu-west-3.amazonaws.com/Iroko_Zen_bulletin_trimestriel.pdf'),
-('lg-literature','https://fundcentres.landg.com/srp/api/literature-structure/38?audience=79&language=1'),
-('lg-cyber-lower','https://fundcentres.landg.com/en/uk/institutional/fund-centre/etf/cyber-security/IE00BYPLS672/'),
-]
+URLS=[('iroko-figure','https://opendata.iroko.com/api/figure-embed.js')]
 
 def fetch(item):
  label,url=item
@@ -39,14 +35,3 @@ rows+=list(ThreadPoolExecutor(max_workers=6).map(fetch,more))
 (OUT/'manifest.json').write_text(json.dumps(rows,ensure_ascii=False,indent=2))
 for r in rows:print(json.dumps({k:v for k,v in r.items() if k not in ['links','scripts']}))
 
-import datetime as dt
-from collect_dca_equities import SOURCE
-from collect_dca_complete_holdings import parse_complete
-for key,isin,url in [('world','IE00B4L5Y983',SOURCE),('japan','IE00B4L5YX21',SOURCE.replace('251882','251867'))]:
- try:
-  raw=download(url,max_bytes=12_000_000)
-  h,identities=parse_complete(json.loads(raw),isin,url,dt.datetime.now(dt.timezone.utc))
-  record={'sourceUrl':url,'sha256':hashlib.sha256(raw).hexdigest(),'asOf':h['asOf'],'identities':identities if key=='japan' else [r for r in identities if r['isin']=='US45167R1041']}
-  (OUT/(key+'-identities.json')).write_text(json.dumps(record,ensure_ascii=False,indent=2))
-  print(key,len(record['identities']))
- except Exception as e: print(key,str(e))
