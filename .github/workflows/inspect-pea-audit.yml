@@ -2,46 +2,27 @@ name: Inspect PEA sources and data inventory
 on:
   push:
     branches: [fix/pea-audit-completion]
-    paths: ['.github/workflows/inspect-pea-audit.yml']
 permissions:
   contents: read
 jobs:
-  sources:
+  qualify:
     runs-on: ubuntu-24.04
-    timeout-minutes: 8
+    timeout-minutes: 12
     steps:
       - uses: actions/checkout@v7.0.1
-      - name: Read public source samples
-        shell: python
-        run: |
-          import json,urllib.request,urllib.error,hashlib,datetime,time
-          from pathlib import Path
-          out=Path('/tmp/pea-samples');out.mkdir(exist_ok=True)
-          sources=json.load(open('scripts/instrument-metadata-sources.json'))['instruments']
-          metadata=json.load(open('src/data/automated-instrument-metadata.json'))
-          urls=[]
-          for r in sources:
-           if metadata.get(r['isin'],{}).get('pea'):continue
-           for url in r['urls']:
-            if '/api/pdp/en-gb/' in url:urls.append((r['isin'],url.replace('/api/pdp/en-gb/','/api/pdp/fr-fr/')))
-            if '/varnish-api/' in url:urls.append((r['isin'],url))
-          urls.extend([('IE00BFMXXD54','https://extraetf.com/fr/etf-profile/IE00BFMXXD54'),('IE0000QLH0G6','https://www.invesco.com/fr/fr/financial-products/etfs/invesco-ftse-all-world-ucits-etf-dist.html')])
-          rows=[];denied=set()
-          for i,(isin,url) in enumerate(urls):
-           host=urllib.parse.urlsplit(url).hostname
-           if host in denied:rows.append({'isin':isin,'url':url,'error':'Host cooldown after refusal'});continue
-           try:
-            with urllib.request.urlopen(urllib.request.Request(url,headers={'User-Agent':'ShinnyPotatoDataAudit/1.0 (lepargnantlibre@gmail.com)'}),timeout=12) as r:
-             body=r.read();name=f'{i}.raw';(out/name).write_bytes(body)
-             rows.append({'isin':isin,'url':r.url,'file':name,'status':r.status,'sha256':hashlib.sha256(body).hexdigest(),'bytes':len(body),'checkedAt':datetime.datetime.now(datetime.timezone.utc).isoformat()})
-           except Exception as e:
-            rows.append({'isin':isin,'url':url,'error':str(e)})
-            if isinstance(e,urllib.error.HTTPError) and e.code in (403,429):denied.add(host)
-           time.sleep(.5)
-          (out/'manifest.json').write_text(json.dumps(rows,indent=2))
-          print(json.dumps(rows))
-      - uses: actions/upload-artifact@v7.0.1
+      - uses: actions/setup-node@v7.0.0
         with:
-          name: pea-source-samples
-          path: /tmp/pea-samples
-          retention-days: 7
+          node-version: 24
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: '3.12'
+      - run: pip install beautifulsoup4==4.15.0
+      - run: python -m unittest discover -s scripts -p 'test*metadata*.py'
+      - run: node scripts/build-automation-targets.mjs
+      - run: python scripts/probe_pea_completion.py --output /tmp/pea-completion
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: pea-completion-proof
+          path: /tmp/pea-completion
+          retention-days: 14

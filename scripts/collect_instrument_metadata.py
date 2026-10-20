@@ -184,7 +184,14 @@ def parse_json(body,isin):
                 if key in facts:raise ValueError('Duplicate DWS exact-share characteristic')
                 facts[key]=item['value']
         mapping={'Income treatment':'distribution','Fund domicile':'domicile','Investment methodology':'replicationMethod'}
-        return {field:facts[key] for key,field in mapping.items() if isinstance(facts.get(key),str) and facts[key]}
+        values={field:facts[key] for key,field in mapping.items() if isinstance(facts.get(key),str) and facts[key]}
+        panels=[item for item in section.get('accordionItems',[]) if item.get('id')=='fundinformation-taxdata']
+        if len(panels)>1:raise ValueError('Duplicate DWS tax panel')
+        if panels:
+            pea=[item for item in panels[0].get('list',{}).get('items',[]) if item.get('key')=='Eligible au PEA']
+            if len(pea)>1:raise ValueError('Duplicate DWS PEA statement')
+            if pea and pea[0].get('type')=='BOOL' and type(pea[0].get('value'))is bool:values['pea']=pea[0]['value']
+        return values
     try:
         points=doc['componentsByNameMap']['keyFundFacts']['containersByNameMap']['default']['dataPointsByNameMap']
         if points['isin']['value']!=isin:raise ValueError('Wrong exact-share metadata')
@@ -224,6 +231,28 @@ def fetch_quantalys_document(url):
         if doc.get('status'):raise urllib.error.HTTPError(url,doc['status'],doc.get('error'),None,None)
         raise urllib.error.URLError(doc.get('error','Public fund document unavailable'))
     return base64.b64decode(doc['body'],validate=True),doc['sourceUrl']
+
+
+def parse_extraetf_pea(body,isin,url):
+    """Read the exact profile's public server-rendered detail response, not its holdings."""
+    from bs4 import BeautifulSoup
+    if url!=f'https://extraetf.com/fr/etf-profile/{isin}':raise ValueError('Wrong extraETF profile reference')
+    scripts=BeautifulSoup(body,'html.parser').select('script#frontend-state[type="application/json"]')
+    if len(scripts)!=1:raise ValueError('Missing or duplicate extraETF profile state')
+    def unique(pairs):
+        result={}
+        for key,value in pairs:
+            if key in result:raise ValueError('Duplicate extraETF state key')
+            result[key]=value
+        return result
+    state=json.loads(scripts[0].get_text(),object_pairs_hook=unique)
+    if not isinstance(state,dict):raise ValueError('Invalid extraETF profile state')
+    packets=[value for value in state.values() if isinstance(value,dict) and value.get('u')=='https://extraetf.com/api-v2/detail/']
+    if len(packets)!=1 or packets[0].get('s')!=200:raise ValueError('Missing or ambiguous extraETF detail response')
+    data=packets[0].get('b',{});rows=data.get('results')
+    if data.get('count')!=1 or not isinstance(rows,list) or len(rows)!=1 or rows[0].get('isin')!=isin:raise ValueError('Wrong or ambiguous extraETF share identity')
+    value=rows[0].get('international_features',{}).get('fr',{}).get('PEA')
+    return {'pea':value} if type(value)is bool else {}
 
 
 def parse_quantalys_pea(body,isin,url):
@@ -562,6 +591,7 @@ def collect(source,now,fetch=download,on_document=None):
                 if urlsplit(url).hostname=='dng-api.invesco.com':fields={}
                 elif urlsplit(url).hostname=='www.justetf.com':fields=parse_justetf(body,source['isin'])
                 elif urlsplit(url).hostname=='www.quantalys.com':fields=parse_quantalys_pea(body,source['isin'],url)
+                elif urlsplit(url).hostname=='extraetf.com':fields=parse_extraetf_pea(body,source['isin'],url)
                 elif urlsplit(url).hostname in ('bourse.fortuneo.fr','www.boursedirect.fr'):fields=parse_broker_pea(body,source['isin'])
                 else:fields=parse_json(body,source['isin']) if body.lstrip().startswith(b'{') else parse_text(text_of(body),source['isin'])
             except ValueError as error:
