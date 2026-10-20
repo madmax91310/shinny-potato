@@ -308,7 +308,7 @@ def vaneck_url(page, share):
             or not country or country.get_text(strip=True) != 'uk'
             or not language or language.get_text(strip=True) != 'en'):
         raise ValueError('Wrong VanEck exact UCITS share (US tickers are not interchangeable)')
-    blocks = soup.select('section#portfolio ve-holdingsblock')
+    blocks = soup.select('section#holdings ve-holdingsblock')
     if len(blocks) != 1:
         raise ValueError('Missing or ambiguous VanEck full holdings widget')
     block, pageid = blocks[0].get('data-blockid', ''), blocks[0].get('data-pageid', '')
@@ -326,7 +326,9 @@ def vaneck_composition(body, share, now):
             or data['Title'] != 'All Holdings (%)'):
         raise ValueError('Not the exact VanEck full fund portfolio')
     items = data['Holdings']
-    if int(data['TotalAmount']) != len(items) or len(items) < 11:
+    stocks = [row for row in items if row['AssetClass'] == 'Stock']
+    cash = [row for row in items if row['AssetClass'] == 'Cash']
+    if int(data['TotalAmount']) != len(stocks) or len(cash) > 1 or len(stocks) < 11:
         raise ValueError('Truncated VanEck full portfolio')
     stamp = document_date(data['AsOfDate'], now)
     rows, total, excluded = [], 0, {}

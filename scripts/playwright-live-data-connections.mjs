@@ -5,8 +5,28 @@ import {chromium} from 'playwright'
 import {getInstrumentAnnualPerformance} from '../src/data/instrument-returns.js'
 import {REVIEWED_PERFORMANCE_META} from '../src/data/instrument-performance-review.js'
 const raw=JSON.parse(readFileSync('src/data/dca-complete-holdings.json'))
-const selected=['IE00BFY0GT14','IE00BKWQ0Q14']
+const physical=process.argv.includes('--physical')
+const selected=physical?['IE00BK5BQT80','IE00BFMXXD54']:['IE00BFY0GT14','IE00BKWQ0Q14']
 for(const isin of selected)assert(raw[isin]?.complete&&raw[isin].checkedAt&&raw[isin].sha256&&raw[isin].rows.length>10,`Fresh complete portfolio required: ${isin}`)
+if(physical){
+ const targets=JSON.parse(readFileSync('scripts/generated-holdings-sources.json'))
+ const catalog=JSON.parse(readFileSync('src/pages/dca-profiles/catalog.json'))
+ const manifest=JSON.parse(readFileSync('src/pages/dca-profiles/holdings-manifest.json'))
+ const shards=new Map()
+ for(const [isin,target]of Object.entries(targets).filter(([,r])=>r.parser?.endsWith('-complete'))){
+  const source=raw[isin]
+  assert(source?.complete&&source.checkedAt&&source.sha256&&source.rows.length>10,`Missing qualified physical source ${isin}`)
+  const asset=Object.keys(catalog).find(key=>catalog[key].isin===isin)
+  assert(asset&&manifest[asset]!==undefined,`Missing physical portfolio in DCA ${isin}`)
+  const shard=manifest[asset]
+  if(!shards.has(shard))shards.set(shard,JSON.parse(readFileSync(`src/pages/dca-profiles/holdings-${shard}.json`)))
+  const projected=shards.get(shard)[asset]
+  assert.equal(projected.asOf,source.asOf,`${isin}: published date differs`)
+  assert.equal(projected.rows.length,source.rows.length,`${isin}: truncated physical portfolio`)
+  assert.equal(projected.complete,true,`${isin}: full source lost its scope`)
+  assert(Math.abs(projected.rows.reduce((sum,r)=>sum+r.weightPct,0)-source.rows.reduce((sum,r)=>sum+r.weightPct,0))<1e-8,`${isin}: NAV weights changed`)
+ }
+}
 const qyld=getInstrumentAnnualPerformance('IE00BM8R0J59')
 assert(!REVIEWED_PERFORMANCE_META.IE00BM8R0J59.observations?.length,'Legacy unqualified rolling returns must not be published')
 assert.equal(REVIEWED_PERFORMANCE_META.IE00BM8R0J59.archivedObservations.length,3)
@@ -32,7 +52,7 @@ try{
   assert(!pair.includes('Partiel'),'Real overlap must use complete issuer portfolios')
   assert(Number(/(\d+) titres communs/.exec(pair)?.[1])>10,'Overlap includes more than the editorial top ten')
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+2),false)
-  await page.screenshot({path:`test-artifacts/live-data-connections/holdings-${width}.png`,fullPage:true})
+  await page.screenshot({path:`test-artifacts/live-data-connections/${physical?'physical-':''}holdings-${width}.png`,fullPage:true})
   await page.goto(`${base}/fiches-etf?isin=IE00BM8R0J59`,{waitUntil:'networkidle'})
   if(await page.getByRole('button',{name:'Aperçu',exact:true}).isVisible())await page.getByRole('button',{name:'Aperçu',exact:true}).click()
   await page.getByRole('tab',{name:'Texte',exact:true}).click()

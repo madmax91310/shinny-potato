@@ -2,9 +2,10 @@
 import copy
 import datetime as dt
 import pathlib
+import json
 import unittest
 from collect_physical_holdings import (
-    amundi_composition, checked_rows, globalx_csv, invesco_composition, vanguard_pages)
+    amundi_composition, checked_rows, globalx_csv, invesco_composition, vanguard_pages, vaneck_composition, vaneck_url)
 
 NOW = dt.datetime(2026, 10, 20, tzinfo=dt.timezone.utc)
 SHARE = dict(isin='IE00BK5BQT80', currency='USD', productCode=9679)
@@ -103,6 +104,30 @@ class PhysicalHoldingsTest(unittest.TestCase):
             with self.assertRaises(ValueError): checked_rows(rows)
         rows = securities(); rows[0]['isin'] = rows[1]['isin']
         with self.assertRaises(ValueError): checked_rows(rows)
+
+    def test_vaneck_ucits_and_us_tickers_never_interchangeable(self):
+        body = json.loads((pathlib.Path(__file__).parent/'fixtures/physical-holdings/vaneck-ucits.json').read_text())
+        rows, stamp, excluded = vaneck_composition(body, {'apiTicker': 'UCTSMH'}, NOW)
+        self.assertEqual((len(rows), stamp, excluded), (25, '2026-10-19', {'Cash': .02}))
+        self.assertAlmostEqual(sum(r['weightPct'] for r in rows), 99.98)
+        with self.assertRaises(ValueError): vaneck_composition(body, {'apiTicker': 'SMH'}, NOW)
+        body['data']['Holdings'].pop(0)
+        with self.assertRaises(ValueError): vaneck_composition(body, {'apiTicker': 'UCTSMH'}, NOW)
+        page = '<span data-value="IE00BMC38736"></span><ve-fundticker>UCTSMH</ve-fundticker><ve-country>uk</ve-country><ve-language>en</ve-language><section id="holdings"><ve-holdingsblock data-blockid="194732" data-pageid="233164"></ve-holdingsblock></section>'
+        share = dict(isin='IE00BMC38736', apiTicker='UCTSMH')
+        self.assertIn('ticker=UCTSMH', vaneck_url(page, share))
+        with self.assertRaises(ValueError): vaneck_url(page.replace('UCTSMH', 'SMH'), share)
+
+    def test_vanguard_distinct_listings_aggregate_exact_isin(self):
+        page = vanguard()
+        items = page['data']['borHoldings'][0]['holdings']['items']
+        for index, item in enumerate(items): item['sedol1'] = str(index).zfill(7)
+        items[1]['isin'] = items[0]['isin']
+        rows, _, _ = vanguard_pages([page], SHARE, NOW)
+        self.assertEqual(len(rows), 11)
+        self.assertAlmostEqual(rows[0]['weightPct'], 200/12)
+        items[1]['sedol1'] = items[0]['sedol1']
+        with self.assertRaises(ValueError): vanguard_pages([page], SHARE, NOW)
 
 
 if __name__ == '__main__':

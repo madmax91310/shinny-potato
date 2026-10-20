@@ -12,11 +12,11 @@ on:
       - '.github/workflows/validate-data-reliability.yml'
   workflow_dispatch:
 permissions:
-  contents: read
+  contents: write
 jobs:
   reliability:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -34,7 +34,6 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_physical_holdings.py'
       - run: node scripts/build-automation-targets.mjs
       - name: Qualify complete portfolios against live issuer sources
-        continue-on-error: true
         run: |
           python - <<'PYTHON'
           import json, subprocess
@@ -42,6 +41,23 @@ jobs:
           selected=[k for k,v in config.items() if v.get('parser','').endswith('-complete')]
           subprocess.run(['python','scripts/collect_dca_complete_holdings.py','--apply','--only',*selected,'--output','test-artifacts/physical-live.json'],check=True)
           PYTHON
+      - run: npm ci
+      - run: node scripts/build-dca-exposures.mjs && npm run test:dca
+      - run: npm run build
+      - run: npx playwright install --with-deps chromium
+      - run: node scripts/playwright-live-data-connections.mjs --physical
+      - name: Save validated source observations on the feature branch
+        if: github.event_name == 'push' && github.ref == 'refs/heads/feat/data-reliability-physical-holdings'
+        run: |
+          git fetch origin feat/data-reliability-physical-holdings
+          test "$(git rev-parse origin/feat/data-reliability-physical-holdings)" = "$GITHUB_SHA"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add src/data/dca-complete-holdings.json src/data/dca-holdings-status.json scripts/generated-holdings-sources.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Record validated complete physical equity portfolios'
+            git push origin HEAD:feat/data-reliability-physical-holdings
+          fi
       - uses: actions/upload-artifact@v4
         if: always()
         with:
