@@ -1,0 +1,24 @@
+name: Qualify remaining primary data sources
+on:
+  push:
+    branches: [feat/finish-remaining-automation]
+    paths: ['scripts/probe_remaining_sources.py', '.github/workflows/qualify-remaining-sources.yml']
+permissions:
+  contents: read
+jobs:
+  investigate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 24
+      - run: pip install beautifulsoup4==4.15.0
+      - run: python scripts/probe_remaining_sources.py
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: remaining-source-evidence
+          path: test-artifacts/remaining-sources
+          retention-days: 14
