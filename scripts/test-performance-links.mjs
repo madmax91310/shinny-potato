@@ -28,9 +28,15 @@ for (const etf of ETFS) {
     assert.equal(item.year, year)
   }
 }
-// Same benchmark is insufficient: these World and S&P 500 share classes have
-// no exact monthly history and must never open a substitute index/older ETF.
-for (const isin of ['FR001400U5Q4', 'IE0002XZSHO1', 'FR0011550185', 'unknown', '__proto__', null]) {
+// A new exact-share history may legitimately connect one of these formerly
+// absent shares. A shared benchmark still never permits an older ETF/index.
+for (const isin of ['FR001400U5Q4', 'IE0002XZSHO1', 'FR0011550185']) {
+  const exact = ASSET_ORDER.filter(id => ASSETS[id].isin === isin && getAnnualReturnStartYears(id).length)
+  assert(exact.length <= 1, `Ambiguous exact-share history: ${isin}`)
+  assert.equal(getPerformanceAssetId(isin), exact[0] ?? null)
+  assert.equal(getPerformanceHref(isin), exact.length ? `/performance-depuis?isin=${isin}` : null)
+}
+for (const isin of ['unknown', '__proto__', null]) {
   assert.equal(getPerformanceHref(isin), null)
 }
 console.log(`Performance links verified: ${Object.keys(index).length} exact histories; valid years and absent shares checked.`)
