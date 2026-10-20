@@ -24,3 +24,7 @@ Chaque entrée reste exportable dans l’inventaire JSON et le CSV des raccordem
 - Six corroborations externes de courtiers conservent leur revue distincte des données officielles automatisées.
 
 Les 43 périmètres hors actions et 13 premières années civiles en attente ne sont pas des collectes en panne. Le nombre final d’actions se lit dans l’inventaire effectivement publié ; il peut évoluer avec les sources et leurs échéances.
+
+## Recette réelle
+
+Run [39444045059](https://github.com/madmax91310/shinny-potato/actions/runs/39444045059) : 174/174 collectes de compositions réussies, aucune erreur ; 24 tests Python ciblés, tests DCA et inventaire, build et quatre recettes Chromium sur mobile et ordinateur réussis. Le solde passe de 111 à 99 actions ; 34 URL sont contrôlées pour ces 99 raccordements, sans en changer la qualification financière.
