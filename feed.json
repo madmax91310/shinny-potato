@@ -5,7 +5,7 @@
         "id": "service-public",
         "name": "Service Public",
         "url": "https://www.service-public.gouv.fr/abonnements/rss/actu-actualites-particuliers.rss",
-        "checkedAt": "2026-10-19T22:18:44.137Z",
+        "checkedAt": "2026-10-20T06:37:32.720Z",
         "status": "ok",
         "articles": 10,
         "relevant": 3
@@ -14,7 +14,7 @@
         "id": "bercy",
         "name": "Ministère de l’Économie",
         "url": "https://www.economie.gouv.fr/rss/toutesactualites",
-        "checkedAt": "2026-10-19T22:18:44.137Z",
+        "checkedAt": "2026-10-20T06:37:32.720Z",
         "status": "ok",
         "articles": 10,
         "relevant": 3
@@ -23,7 +23,7 @@
         "id": "vie-publique-actualites",
         "name": "Vie publique · actualités",
         "url": "https://www.vie-publique.fr/actualites-feeds.xml",
-        "checkedAt": "2026-10-19T22:18:44.137Z",
+        "checkedAt": "2026-10-20T06:37:32.720Z",
         "status": "ok",
         "articles": 10,
         "relevant": 1
@@ -32,7 +32,7 @@
         "id": "vie-publique-lois",
         "name": "Vie publique · lois",
         "url": "https://www.vie-publique.fr/lois-feeds.xml",
-        "checkedAt": "2026-10-19T22:18:44.137Z",
+        "checkedAt": "2026-10-20T06:37:32.720Z",
         "status": "ok",
         "articles": 100,
         "relevant": 0
@@ -41,7 +41,7 @@
         "id": "banque-france-credit",
         "name": "Banque de France · crédits aux particuliers",
         "url": "https://www.banque-france.fr/fr/publications-et-statistiques/statistiques?theme%5B7157%5D=7157&sub_theme%5B7166%5D=7166",
-        "checkedAt": "2026-10-19T22:18:44.137Z",
+        "checkedAt": "2026-10-20T06:37:32.720Z",
         "status": "ok",
         "articles": 12,
         "relevant": 2
@@ -50,13 +50,41 @@
         "id": "cre-prix",
         "name": "CRE · prix de l’énergie",
         "url": "https://www.cre.fr/documents/communiques-de-presse.html",
-        "checkedAt": "2026-10-19T22:18:44.137Z",
+        "checkedAt": "2026-10-20T06:37:32.720Z",
         "status": "ok",
         "articles": 7,
         "relevant": 1
       }
     ],
     "items": [
+      {
+        "family": "pouvoir-achat",
+        "entity": "purchasing-news-efe8e5f07f1b7b8afc3e",
+        "label": "Aidants : dans quels cas l’accompagnement d’un proche compte pour la retraite ?",
+        "field": "announcement",
+        "fieldLabel": "Actualité officielle",
+        "value": {
+          "title": "Aidants : dans quels cas l’accompagnement d’un proche compte pour la retraite ?",
+          "summary": "Le rôle d’aidant peut parfois vous amener à réduire votre temps de travail, voire à cesser temporairement d’exercer votre activité professionnelle. Malgré cela, vous pouvez continuer à cotiser pour votre retraite grâce à l’assurance vieillesse des aidants, sous certaines conditions. Service Public vous présente ce dispositif.",
+          "status": "À préciser"
+        },
+        "period": "2026-10-20",
+        "checkedAt": "2026-10-20T06:37:32.720Z",
+        "sourceUrl": "https://www.service-public.gouv.fr/particuliers/actualites/A19097",
+        "scope": "Actualité officielle · particuliers",
+        "tool": "/pouvoir-achat",
+        "rule": "announcement",
+        "discovery": true,
+        "priority": "normal",
+        "topic": "revenus",
+        "topicLabel": "Revenus et aides",
+        "publisher": "Service Public",
+        "status": "À préciser",
+        "statusEvidence": "",
+        "summary": "Le rôle d’aidant peut parfois vous amener à réduire votre temps de travail, voire à cesser temporairement d’exercer votre activité professionnelle. Malgré cela, vous pouvez continuer à cotiser pour votre retraite grâce à l’assurance vieillesse des aidants, sous certaines conditions. Service Public vous présente ce dispositif.",
+        "angle": "Pour quels foyers, avec quelles conditions et quel montant ?",
+        "reason": "Titre, résumé et date récupérés automatiquement dans le flux officiel. Le statut repose sur une formulation explicite ; aucun impact individuel n’est inventé."
+      },
       {
         "family": "pouvoir-achat",
         "entity": "purchasing-news-3c7bbe7bf73c5e23dfed",
@@ -69,7 +97,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-19",
-        "checkedAt": "2026-10-19T22:18:44.137Z",
+        "checkedAt": "2026-10-20T06:37:32.720Z",
         "sourceUrl": "https://www.service-public.gouv.fr/particuliers/actualites/A15386",
         "scope": "Actualité officielle · particuliers",
         "tool": "/pouvoir-achat",
@@ -97,7 +125,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-16",
-        "checkedAt": "2026-10-19T22:18:44.137Z",
+        "checkedAt": "2026-10-20T06:37:32.720Z",
         "sourceUrl": "https://www.economie.gouv.fr/actualites/video-les-dernieres-mesures-daide-et-de-soutien-face-la-hausse-des-prix-des-carburants",
         "scope": "Actualité officielle · particuliers",
         "tool": "/pouvoir-achat",
@@ -125,7 +153,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-16",
-        "checkedAt": "2026-10-19T22:18:44.137Z",
+        "checkedAt": "2026-10-20T06:37:32.720Z",
         "sourceUrl": "https://www.economie.gouv.fr/actualites/carburant-laide-pour-les-travailleurs-grands-rouleurs",
         "scope": "Actualité officielle · particuliers",
         "tool": "/pouvoir-achat",
@@ -153,7 +181,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-16",
-        "checkedAt": "2026-10-19T22:18:44.137Z",
+        "checkedAt": "2026-10-20T06:37:32.720Z",
         "sourceUrl": "https://www.economie.gouv.fr/actualites/participation-du-public-sur-la-demande-de-permis-de-recherches-de-geothermie-de-bois-darcy-yvelines-la-societe-engie-energie-services-sas",
         "scope": "Actualité officielle · particuliers",
         "tool": "/pouvoir-achat",
@@ -181,7 +209,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-15",
-        "checkedAt": "2026-10-19T22:18:44.137Z",
+        "checkedAt": "2026-10-20T06:37:32.720Z",
         "sourceUrl": "https://www.vie-publique.fr/en-bref/304972-gaz-quels-sont-les-niveaux-des-stocks-en-europe-pour-lhiver-2026",
         "scope": "Actualité officielle · particuliers",
         "tool": "/pouvoir-achat",
@@ -209,7 +237,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-15",
-        "checkedAt": "2026-10-19T22:18:44.137Z",
+        "checkedAt": "2026-10-20T06:37:32.720Z",
         "sourceUrl": "https://www.service-public.gouv.fr/particuliers/actualites/A17342",
         "scope": "Actualité officielle · particuliers",
         "tool": "/pouvoir-achat",
@@ -545,7 +573,7 @@
           "status": "À préciser"
         },
         "period": "2026-10-06",
-        "checkedAt": "2026-10-19T22:18:44.137Z",
+        "checkedAt": "2026-10-20T06:37:32.720Z",
         "sourceUrl": "https://www.banque-france.fr/fr/statistiques/credit/credits-aux-particuliers-2026-08",
         "scope": "Actualité officielle · particuliers",
         "tool": "/pouvoir-achat",
@@ -629,7 +657,7 @@
           "status": "À préciser"
         },
         "period": "2026-09-10",
-        "checkedAt": "2026-10-19T22:18:44.137Z",
+        "checkedAt": "2026-10-20T06:37:32.720Z",
         "sourceUrl": "https://www.cre.fr/documents/communiques-de-presse/le-prix-repere-de-vente-de-gaz-augmente-de-63-ttc-au-1er-octobre-2026.html",
         "scope": "Actualité officielle · particuliers",
         "tool": "/pouvoir-achat",
@@ -657,7 +685,7 @@
           "status": "À préciser"
         },
         "period": "2026-09-07",
-        "checkedAt": "2026-10-19T22:18:44.137Z",
+        "checkedAt": "2026-10-20T06:37:32.720Z",
         "sourceUrl": "https://www.banque-france.fr/fr/statistiques/credit/credits-aux-particuliers-2026-07",
         "scope": "Actualité officielle · particuliers",
         "tool": "/pouvoir-achat",
@@ -677,8 +705,8 @@
   },
   "schemaVersion": 1,
   "initializedAt": "2026-10-09T04:46:31.490Z",
-  "checkedAt": "2026-10-19T22:18:49.795Z",
-  "sourceRevision": "50d994820111a2757fd2aaa655335aff1d759da8",
+  "checkedAt": "2026-10-20T06:37:40.490Z",
+  "sourceRevision": "c137dd57d4ed944915b5ba11ed0bfedef230ea63",
   "observationCount": 7002,
   "coverage": {
     "etf": 227,
@@ -691,7 +719,7 @@
     "economie": 32,
     "pouvoir-achat": 10
   },
-  "newSignalCount": 0,
+  "newSignalCount": 6,
   "errors": [
     {
       "family": "etf",
@@ -767,249 +795,181 @@
       "family": "etf",
       "entity": "IE00B3T9LM79",
       "reason": "Valeur contradictoire pour la même période (2026-10-16) : Poids des dix premières lignes. Dernière observation conservée ; propositions archivées (etf:IE00B3T9LM79:top10:0261a38d6b954a5f4e504dab:2026-10-16)."
-    },
-    {
-      "family": "etf",
-      "entity": "IE00BLNMYC90",
-      "reason": "Valeur contradictoire pour la même période (2026-10-16) : Poids du pays United States. Dernière observation conservée ; propositions archivées (etf:IE00BLNMYC90:countries:United States:8abd3910625177898532bf9d:2026-10-16)."
-    },
-    {
-      "family": "etf",
-      "entity": "IE00BLNMYC90",
-      "reason": "Valeur contradictoire pour la même période (2026-10-16) : Poids du pays Ireland. Dernière observation conservée ; propositions archivées (etf:IE00BLNMYC90:countries:Ireland:8abd3910625177898532bf9d:2026-10-16)."
-    },
-    {
-      "family": "etf",
-      "entity": "IE00BLNMYC90",
-      "reason": "Valeur contradictoire pour la même période (2026-10-16) : Poids du pays Switzerland. Dernière observation conservée ; propositions archivées (etf:IE00BLNMYC90:countries:Switzerland:8abd3910625177898532bf9d:2026-10-16)."
-    },
-    {
-      "family": "etf",
-      "entity": "IE00BLNMYC90",
-      "reason": "Valeur contradictoire pour la même période (2026-10-16) : Poids du pays Bermuda. Dernière observation conservée ; propositions archivées (etf:IE00BLNMYC90:countries:Bermuda:8abd3910625177898532bf9d:2026-10-16)."
-    },
-    {
-      "family": "etf",
-      "entity": "IE00BLNMYC90",
-      "reason": "Valeur contradictoire pour la même période (2026-10-16) : Poids du pays United Kingdom. Dernière observation conservée ; propositions archivées (etf:IE00BLNMYC90:countries:United Kingdom:8abd3910625177898532bf9d:2026-10-16)."
-    },
-    {
-      "family": "etf",
-      "entity": "IE00BLNMYC90",
-      "reason": "Valeur contradictoire pour la même période (2026-10-16) : Poids du pays Canada. Dernière observation conservée ; propositions archivées (etf:IE00BLNMYC90:countries:Canada:8abd3910625177898532bf9d:2026-10-16)."
-    },
-    {
-      "family": "etf",
-      "entity": "IE00BLNMYC90",
-      "reason": "Valeur contradictoire pour la même période (2026-10-16) : Poids du pays Singapore. Dernière observation conservée ; propositions archivées (etf:IE00BLNMYC90:countries:Singapore:8abd3910625177898532bf9d:2026-10-16)."
-    },
-    {
-      "family": "etf",
-      "entity": "IE00BLNMYC90",
-      "reason": "Valeur contradictoire pour la même période (2026-10-16) : Poids du secteur Industrials. Dernière observation conservée ; propositions archivées (etf:IE00BLNMYC90:sectors:Industrials:8abd3910625177898532bf9d:2026-10-16)."
-    },
-    {
-      "family": "etf",
-      "entity": "IE00BLNMYC90",
-      "reason": "Valeur contradictoire pour la même période (2026-10-16) : Poids du secteur Information Technology. Dernière observation conservée ; propositions archivées (etf:IE00BLNMYC90:sectors:Information Technology:8abd3910625177898532bf9d:2026-10-16)."
-    },
-    {
-      "family": "etf",
-      "entity": "IE00BLNMYC90",
-      "reason": "Valeur contradictoire pour la même période (2026-10-16) : Poids du secteur Materials. Dernière observation conservée ; propositions archivées (etf:IE00BLNMYC90:sectors:Materials:8abd3910625177898532bf9d:2026-10-16)."
-    },
-    {
-      "family": "etf",
-      "entity": "IE00BLNMYC90",
-      "reason": "Valeur contradictoire pour la même période (2026-10-16) : Poids du secteur Communication Services. Dernière observation conservée ; propositions archivées (etf:IE00BLNMYC90:sectors:Communication Services:8abd3910625177898532bf9d:2026-10-16)."
-    },
-    {
-      "family": "etf",
-      "entity": "IE0006WW1TQ4",
-      "reason": "Valeur contradictoire pour la même période (2026-10-16) : Poids du pays United Kingdom. Dernière observation conservée ; propositions archivées (etf:IE0006WW1TQ4:countries:United Kingdom:896eb444159fd8c94545e70e:2026-10-16)."
-    },
-    {
-      "family": "etf",
-      "entity": "IE0006WW1TQ4",
-      "reason": "Valeur contradictoire pour la même période (2026-10-16) : Poids du pays France. Dernière observation conservée ; propositions archivées (etf:IE0006WW1TQ4:countries:France:896eb444159fd8c94545e70e:2026-10-16)."
-    },
-    {
-      "family": "etf",
-      "entity": "IE0006WW1TQ4",
-      "reason": "Valeur contradictoire pour la même période (2026-10-16) : Poids du pays Netherlands. Dernière observation conservée ; propositions archivées (etf:IE0006WW1TQ4:countries:Netherlands:896eb444159fd8c94545e70e:2026-10-16)."
-    },
-    {
-      "family": "etf",
-      "entity": "IE0006WW1TQ4",
-      "reason": "Valeur contradictoire pour la même période (2026-10-16) : Poids du pays Sweden. Dernière observation conservée ; propositions archivées (etf:IE0006WW1TQ4:countries:Sweden:896eb444159fd8c94545e70e:2026-10-16)."
-    },
-    {
-      "family": "etf",
-      "entity": "IE0006WW1TQ4",
-      "reason": "Valeur contradictoire pour la même période (2026-10-16) : Poids du pays Luxembourg. Dernière observation conservée ; propositions archivées (etf:IE0006WW1TQ4:countries:Luxembourg:896eb444159fd8c94545e70e:2026-10-16)."
-    },
-    {
-      "family": "etf",
-      "entity": "IE000L6ZMMC4",
-      "reason": "Valeur contradictoire pour la même période (2026-10-16) : Poids du pays United States. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:United States:630657e8b950b3715e6c0f9a:2026-10-16)."
-    },
-    {
-      "family": "etf",
-      "entity": "IE000L6ZMMC4",
-      "reason": "Valeur contradictoire pour la même période (2026-10-16) : Poids du pays United Kingdom. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:United Kingdom:630657e8b950b3715e6c0f9a:2026-10-16)."
-    },
-    {
-      "family": "etf",
-      "entity": "IE000L6ZMMC4",
-      "reason": "Valeur contradictoire pour la même période (2026-10-16) : Poids du pays China. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:China:630657e8b950b3715e6c0f9a:2026-10-16)."
-    },
-    {
-      "family": "etf",
-      "entity": "IE000L6ZMMC4",
-      "reason": "Valeur contradictoire pour la même période (2026-10-16) : Poids du pays Switzerland. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Switzerland:630657e8b950b3715e6c0f9a:2026-10-16)."
-    },
-    {
-      "family": "etf",
-      "entity": "IE000L6ZMMC4",
-      "reason": "Valeur contradictoire pour la même période (2026-10-16) : Poids du pays France. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:France:630657e8b950b3715e6c0f9a:2026-10-16)."
-    },
-    {
-      "family": "etf",
-      "entity": "IE000L6ZMMC4",
-      "reason": "Valeur contradictoire pour la même période (2026-10-16) : Poids du pays Netherlands. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Netherlands:630657e8b950b3715e6c0f9a:2026-10-16)."
-    },
-    {
-      "family": "etf",
-      "entity": "IE000L6ZMMC4",
-      "reason": "Valeur contradictoire pour la même période (2026-10-16) : Poids du pays Ireland. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Ireland:630657e8b950b3715e6c0f9a:2026-10-16)."
-    },
-    {
-      "family": "etf",
-      "entity": "IE000L6ZMMC4",
-      "reason": "Valeur contradictoire pour la même période (2026-10-16) : Poids du pays Brazil. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Brazil:630657e8b950b3715e6c0f9a:2026-10-16)."
-    },
-    {
-      "family": "etf",
-      "entity": "IE000L6ZMMC4",
-      "reason": "Valeur contradictoire pour la même période (2026-10-16) : Poids du pays Singapore. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Singapore:630657e8b950b3715e6c0f9a:2026-10-16)."
-    },
-    {
-      "family": "etf",
-      "entity": "IE000L6ZMMC4",
-      "reason": "Valeur contradictoire pour la même période (2026-10-16) : Poids du pays Uruguay. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Uruguay:630657e8b950b3715e6c0f9a:2026-10-16)."
-    },
-    {
-      "family": "etf",
-      "entity": "IE000L6ZMMC4",
-      "reason": "Valeur contradictoire pour la même période (2026-10-16) : Poids du pays Bermuda. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Bermuda:630657e8b950b3715e6c0f9a:2026-10-16)."
-    },
-    {
-      "family": "etf",
-      "entity": "IE00BGV5VN51",
-      "reason": "Valeur contradictoire pour la même période (2026-10-16) : Poids du pays United States. Dernière observation conservée ; propositions archivées (etf:IE00BGV5VN51:countries:United States:f9b8ebfcd2d4a3f0bd10cd4f:2026-10-16)."
-    },
-    {
-      "family": "etf",
-      "entity": "IE00BGV5VN51",
-      "reason": "Valeur contradictoire pour la même période (2026-10-16) : Poids du pays Ireland. Dernière observation conservée ; propositions archivées (etf:IE00BGV5VN51:countries:Ireland:f9b8ebfcd2d4a3f0bd10cd4f:2026-10-16)."
-    },
-    {
-      "family": "etf",
-      "entity": "IE00BGV5VN51",
-      "reason": "Valeur contradictoire pour la même période (2026-10-16) : Poids du pays Australia. Dernière observation conservée ; propositions archivées (etf:IE00BGV5VN51:countries:Australia:f9b8ebfcd2d4a3f0bd10cd4f:2026-10-16)."
-    },
-    {
-      "family": "etf",
-      "entity": "IE00BM67HK77",
-      "reason": "Valeur contradictoire pour la même période (2026-10-16) : Poids du pays United States. Dernière observation conservée ; propositions archivées (etf:IE00BM67HK77:countries:United States:e02e00a632cb2b9e9ddccd1e:2026-10-16)."
-    },
-    {
-      "family": "etf",
-      "entity": "IE00BM67HK77",
-      "reason": "Valeur contradictoire pour la même période (2026-10-16) : Poids du pays United Kingdom. Dernière observation conservée ; propositions archivées (etf:IE00BM67HK77:countries:United Kingdom:e02e00a632cb2b9e9ddccd1e:2026-10-16)."
-    },
-    {
-      "family": "etf",
-      "entity": "IE00BM67HK77",
-      "reason": "Valeur contradictoire pour la même période (2026-10-16) : Poids du pays Ireland. Dernière observation conservée ; propositions archivées (etf:IE00BM67HK77:countries:Ireland:e02e00a632cb2b9e9ddccd1e:2026-10-16)."
-    },
-    {
-      "family": "etf",
-      "entity": "IE00BM67HS53",
-      "reason": "Valeur contradictoire pour la même période (2026-10-16) : Poids du pays United States. Dernière observation conservée ; propositions archivées (etf:IE00BM67HS53:countries:United States:9e8222db7f15caa14c54cb45:2026-10-16)."
-    },
-    {
-      "family": "etf",
-      "entity": "IE00BM67HS53",
-      "reason": "Valeur contradictoire pour la même période (2026-10-16) : Poids du pays United Kingdom. Dernière observation conservée ; propositions archivées (etf:IE00BM67HS53:countries:United Kingdom:9e8222db7f15caa14c54cb45:2026-10-16)."
-    },
-    {
-      "family": "etf",
-      "entity": "IE00BM67HS53",
-      "reason": "Valeur contradictoire pour la même période (2026-10-16) : Poids du pays Switzerland. Dernière observation conservée ; propositions archivées (etf:IE00BM67HS53:countries:Switzerland:9e8222db7f15caa14c54cb45:2026-10-16)."
-    },
-    {
-      "family": "etf",
-      "entity": "IE00BM67HS53",
-      "reason": "Valeur contradictoire pour la même période (2026-10-16) : Poids du pays Ireland. Dernière observation conservée ; propositions archivées (etf:IE00BM67HS53:countries:Ireland:9e8222db7f15caa14c54cb45:2026-10-16)."
-    },
-    {
-      "family": "etf",
-      "entity": "IE00BTJRMP35",
-      "reason": "Valeur contradictoire pour la même période (2026-10-16) : Poids du pays China. Dernière observation conservée ; propositions archivées (etf:IE00BTJRMP35:countries:China:9a89e0e64273d8294b2dae58:2026-10-16)."
-    },
-    {
-      "family": "etf",
-      "entity": "IE00BTJRMP35",
-      "reason": "Valeur contradictoire pour la même période (2026-10-16) : Poids du pays Brazil. Dernière observation conservée ; propositions archivées (etf:IE00BTJRMP35:countries:Brazil:9a89e0e64273d8294b2dae58:2026-10-16)."
-    },
-    {
-      "family": "etf",
-      "entity": "IE00BTJRMP35",
-      "reason": "Valeur contradictoire pour la même période (2026-10-16) : Poids du pays Ireland. Dernière observation conservée ; propositions archivées (etf:IE00BTJRMP35:countries:Ireland:9a89e0e64273d8294b2dae58:2026-10-16)."
-    },
-    {
-      "family": "etf",
-      "entity": "IE00BTJRMP35",
-      "reason": "Valeur contradictoire pour la même période (2026-10-16) : Poids du pays Cayman Islands. Dernière observation conservée ; propositions archivées (etf:IE00BTJRMP35:countries:Cayman Islands:9a89e0e64273d8294b2dae58:2026-10-16)."
-    },
-    {
-      "family": "etf",
-      "entity": "IE00BM67HV82",
-      "reason": "Valeur contradictoire pour la même période (2026-10-16) : Poids du pays United States. Dernière observation conservée ; propositions archivées (etf:IE00BM67HV82:countries:United States:f5d10aa5ac6de524b51ebc86:2026-10-16)."
-    },
-    {
-      "family": "etf",
-      "entity": "IE00BM67HV82",
-      "reason": "Valeur contradictoire pour la même période (2026-10-16) : Poids du pays France. Dernière observation conservée ; propositions archivées (etf:IE00BM67HV82:countries:France:f5d10aa5ac6de524b51ebc86:2026-10-16)."
-    },
-    {
-      "family": "etf",
-      "entity": "IE00BM67HV82",
-      "reason": "Valeur contradictoire pour la même période (2026-10-16) : Poids du pays Ireland. Dernière observation conservée ; propositions archivées (etf:IE00BM67HV82:countries:Ireland:f5d10aa5ac6de524b51ebc86:2026-10-16)."
-    },
-    {
-      "family": "etf",
-      "entity": "IE00BM67HV82",
-      "reason": "Valeur contradictoire pour la même période (2026-10-16) : Poids du pays Netherlands. Dernière observation conservée ; propositions archivées (etf:IE00BM67HV82:countries:Netherlands:f5d10aa5ac6de524b51ebc86:2026-10-16)."
-    },
-    {
-      "family": "etf",
-      "entity": "IE00BM67HV82",
-      "reason": "Valeur contradictoire pour la même période (2026-10-16) : Poids du secteur Industrials. Dernière observation conservée ; propositions archivées (etf:IE00BM67HV82:sectors:Industrials:f5d10aa5ac6de524b51ebc86:2026-10-16)."
-    },
-    {
-      "family": "etf",
-      "entity": "IE00BM67HV82",
-      "reason": "Valeur contradictoire pour la même période (2026-10-16) : Poids du secteur Unassigned. Dernière observation conservée ; propositions archivées (etf:IE00BM67HV82:sectors:Unassigned:f5d10aa5ac6de524b51ebc86:2026-10-16)."
-    },
-    {
-      "family": "etf",
-      "entity": "DE000A27Z304",
-      "reason": "Valeur contradictoire pour la même période (2026-10-19) : Encours. Dernière observation conservée ; propositions archivées (etf:DE000A27Z304:aum:7ee6ce84bc97ae28c68471dd:2026-10-19)."
     }
   ],
   "events": [
+    {
+      "id": "0f191b316af3d683b011190c",
+      "family": "etf",
+      "entity": "FR0010755611",
+      "label": "Amundi MSCI USA Daily (2x) Leveraged UCITS ETF Acc",
+      "field": "sectors:Information Technology",
+      "fieldLabel": "Poids du secteur Information Technology",
+      "title": "Amundi MSCI USA Daily (2x) Leveraged UCITS ETF Acc : poids du secteur information technology en mouvement",
+      "kind": "change",
+      "priority": "normal",
+      "detectedAt": "2026-10-20T06:37:40.490Z",
+      "before": 39.872689,
+      "after": 37.577254,
+      "beforeText": "39,873 %",
+      "afterText": "37,577 %",
+      "beforePeriod": "2026-10-05",
+      "period": "2026-10-16",
+      "scope": "FR0010755611 · index · sectors",
+      "unit": "%",
+      "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+      "previousSourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+      "checkedAt": "2026-10-20",
+      "tool": "/fiches-etf",
+      "angle": "Cette exposition est-elle aussi diversifiée que son nom le laisse penser ?",
+      "draft": "Poids du secteur Information Technology : 39,873 % → 37,577 %.\n\nAmundi MSCI USA Daily (2x) Leveraged UCITS ETF Acc · FR0010755611\nPérimètre : FR0010755611 · index · sectors\nAncienne observation : 2026-10-05\nObservation actuelle : 2026-10-16\n\nCette exposition est-elle aussi diversifiée que son nom le laisse penser ?",
+      "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
+    },
+    {
+      "id": "5ae83a5a83247eae474a3ab3",
+      "family": "etf",
+      "entity": "FR0011871128",
+      "label": "Amundi PEA S&P 500 UCITS ETF",
+      "field": "sectors:Information Technology",
+      "fieldLabel": "Poids du secteur Information Technology",
+      "title": "Amundi PEA S&P 500 UCITS ETF : poids du secteur information technology en mouvement",
+      "kind": "change",
+      "priority": "normal",
+      "detectedAt": "2026-10-20T06:37:40.490Z",
+      "before": 40.089413,
+      "after": 37.820294,
+      "beforeText": "40,089 %",
+      "afterText": "37,82 %",
+      "beforePeriod": "2026-10-05",
+      "period": "2026-10-16",
+      "scope": "FR0011871128 · index · sectors",
+      "unit": "%",
+      "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+      "previousSourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+      "checkedAt": "2026-10-20",
+      "tool": "/fiches-etf",
+      "angle": "Cette exposition est-elle aussi diversifiée que son nom le laisse penser ?",
+      "draft": "Poids du secteur Information Technology : 40,089 % → 37,82 %.\n\nAmundi PEA S&P 500 UCITS ETF · FR0011871128\nPérimètre : FR0011871128 · index · sectors\nAncienne observation : 2026-10-05\nObservation actuelle : 2026-10-16\n\nCette exposition est-elle aussi diversifiée que son nom le laisse penser ?",
+      "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
+    },
+    {
+      "id": "b9ecc4ba510ace190318cdd3",
+      "family": "etf",
+      "entity": "LU1681043599",
+      "label": "Amundi MSCI World Swap UCITS ETF (Acc)",
+      "field": "sectors:Information Technology",
+      "fieldLabel": "Poids du secteur Information Technology",
+      "title": "Amundi MSCI World Swap UCITS ETF (Acc) : poids du secteur information technology en mouvement",
+      "kind": "change",
+      "priority": "normal",
+      "detectedAt": "2026-10-20T06:37:40.490Z",
+      "before": 32.335095,
+      "after": 30.215088,
+      "beforeText": "32,335 %",
+      "afterText": "30,215 %",
+      "beforePeriod": "2026-10-05",
+      "period": "2026-10-16",
+      "scope": "LU1681043599 · index · sectors",
+      "unit": "%",
+      "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+      "previousSourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+      "checkedAt": "2026-10-20",
+      "tool": "/fiches-etf",
+      "angle": "Cette exposition est-elle aussi diversifiée que son nom le laisse penser ?",
+      "draft": "Poids du secteur Information Technology : 32,335 % → 30,215 %.\n\nAmundi MSCI World Swap UCITS ETF (Acc) · LU1681043599\nPérimètre : LU1681043599 · index · sectors\nAncienne observation : 2026-10-05\nObservation actuelle : 2026-10-16\n\nCette exposition est-elle aussi diversifiée que son nom le laisse penser ?",
+      "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
+    },
+    {
+      "id": "be3d4b718449c4742921806e",
+      "family": "etf",
+      "entity": "FR001400U5Q4",
+      "label": "Amundi PEA Monde (MSCI World) UCITS ETF",
+      "field": "sectors:Information Technology",
+      "fieldLabel": "Poids du secteur Information Technology",
+      "title": "Amundi PEA Monde (MSCI World) UCITS ETF : poids du secteur information technology en mouvement",
+      "kind": "change",
+      "priority": "normal",
+      "detectedAt": "2026-10-20T06:37:40.490Z",
+      "before": 32.335095,
+      "after": 30.215088,
+      "beforeText": "32,335 %",
+      "afterText": "30,215 %",
+      "beforePeriod": "2026-10-05",
+      "period": "2026-10-16",
+      "scope": "FR001400U5Q4 · index · sectors",
+      "unit": "%",
+      "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+      "previousSourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+      "checkedAt": "2026-10-20",
+      "tool": "/fiches-etf",
+      "angle": "Cette exposition est-elle aussi diversifiée que son nom le laisse penser ?",
+      "draft": "Poids du secteur Information Technology : 32,335 % → 30,215 %.\n\nAmundi PEA Monde (MSCI World) UCITS ETF · FR001400U5Q4\nPérimètre : FR001400U5Q4 · index · sectors\nAncienne observation : 2026-10-05\nObservation actuelle : 2026-10-16\n\nCette exposition est-elle aussi diversifiée que son nom le laisse penser ?",
+      "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
+    },
+    {
+      "topic": "revenus",
+      "topicLabel": "Revenus et aides",
+      "publisher": "Service Public",
+      "status": "À préciser",
+      "statusEvidence": "",
+      "summary": "Le rôle d’aidant peut parfois vous amener à réduire votre temps de travail, voire à cesser temporairement d’exercer votre activité professionnelle. Malgré cela, vous pouvez continuer à cotiser pour votre retraite grâce à l’assurance vieillesse des aidants, sous certaines conditions. Service Public vous présente ce dispositif.",
+      "id": "d2905a79114c757826d0bf6c",
+      "family": "pouvoir-achat",
+      "entity": "purchasing-news-efe8e5f07f1b7b8afc3e",
+      "label": "Aidants : dans quels cas l’accompagnement d’un proche compte pour la retraite ?",
+      "field": "announcement",
+      "fieldLabel": "Actualité officielle",
+      "title": "Pouvoir d’achat : Aidants : dans quels cas l’accompagnement d’un proche compte pour la retraite ?",
+      "kind": "new",
+      "priority": "normal",
+      "detectedAt": "2026-10-20T06:37:40.490Z",
+      "before": null,
+      "after": {
+        "title": "Aidants : dans quels cas l’accompagnement d’un proche compte pour la retraite ?",
+        "summary": "Le rôle d’aidant peut parfois vous amener à réduire votre temps de travail, voire à cesser temporairement d’exercer votre activité professionnelle. Malgré cela, vous pouvez continuer à cotiser pour votre retraite grâce à l’assurance vieillesse des aidants, sous certaines conditions. Service Public vous présente ce dispositif.",
+        "status": "À préciser"
+      },
+      "beforeText": "Pas encore suivi",
+      "afterText": "title : Aidants : dans quels cas l’accompagnement d’un proche compte pour la retraite ? · summary : Le rôle d’aidant peut parfois vous amener à réduire votre temps de travail, voire à cesser temporairement d’exercer votre activité professionnelle. Malgré cela, vous pouvez continuer à cotiser pour votre retraite grâce à l’assurance vieillesse des aidants, sous certaines conditions. Service Public vous présente ce dispositif. · status : À préciser",
+      "beforePeriod": null,
+      "period": "2026-10-20",
+      "scope": "Actualité officielle · particuliers",
+      "unit": "",
+      "sourceUrl": "https://www.service-public.gouv.fr/particuliers/actualites/A19097",
+      "previousSourceUrl": null,
+      "checkedAt": "2026-10-20T06:37:32.720Z",
+      "tool": "/pouvoir-achat",
+      "angle": "Pour quels foyers, avec quelles conditions et quel montant ?",
+      "draft": "🔖 Sauvegarde ce tweet\n\nAidants : dans quels cas l’accompagnement d’un proche compte pour la retraite ?\n\nLe rôle d’aidant peut parfois vous amener à réduire votre temps de travail, voire à cesser temporairement d’exercer votre activité professionnelle. Malgré cela, vous pouvez continuer à cotiser pour votre retraite grâce à l’assurance vieillesse des aidants, sous certaines conditions. Service Public vous présente ce dispositif.\n\n📌 À préciser\n\nPour quels foyers, avec quelles conditions et quel montant ?\n\nSource : https://www.service-public.gouv.fr/particuliers/actualites/A19097",
+      "reason": "Titre, résumé et date récupérés automatiquement dans le flux officiel. Le statut repose sur une formulation explicite ; aucun impact individuel n’est inventé."
+    },
+    {
+      "id": "e975e0a6ca9d8bfd5d20bb7d",
+      "family": "etf",
+      "entity": "FR0014017NX3",
+      "label": "Amundi PEA Global (MSCI ACWI) UCITS ETF (Acc)",
+      "field": "sectors:Information Technology",
+      "fieldLabel": "Poids du secteur Information Technology",
+      "title": "Amundi PEA Global (MSCI ACWI) UCITS ETF (Acc) : poids du secteur information technology en mouvement",
+      "kind": "change",
+      "priority": "normal",
+      "detectedAt": "2026-10-20T06:37:40.490Z",
+      "before": 33.823375,
+      "after": 31.447243,
+      "beforeText": "33,823 %",
+      "afterText": "31,447 %",
+      "beforePeriod": "2026-10-05",
+      "period": "2026-10-16",
+      "scope": "FR0014017NX3 · index · sectors",
+      "unit": "%",
+      "sourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+      "previousSourceUrl": "https://www.amundietf.fr/mapi/ProductAPI/getProductsData",
+      "checkedAt": "2026-10-20",
+      "tool": "/fiches-etf",
+      "angle": "Cette exposition est-elle aussi diversifiée que son nom le laisse penser ?",
+      "draft": "Poids du secteur Information Technology : 33,823 % → 31,447 %.\n\nAmundi PEA Global (MSCI ACWI) UCITS ETF (Acc) · FR0014017NX3\nPérimètre : FR0014017NX3 · index · sectors\nAncienne observation : 2026-10-05\nObservation actuelle : 2026-10-16\n\nCette exposition est-elle aussi diversifiée que son nom le laisse penser ?",
+      "reason": "Variation cumulée d’au moins 2 points de pourcentage, même périmètre."
+    },
     {
       "id": "014e08c2584ba98a7f0a260a",
       "family": "etf",
