@@ -21,13 +21,13 @@ def configurations():
     active = json.loads((ROOT/'src/data/automated-monthly.json').read_text())
     equities = [s for s in sources if s.get('consumerScope') == 'equity' and s['id'] in active]
     sources = [{**s, 'field': 'close'} for s in sources if s['id'] in IDS or s in etfs or s in equities]
-    # The exact XNDX daily series distributed by FRED also supplies monthly
-    # history. Yahoo can return metadata without any daily candles for ^XNDX.
+    # XNDX publishes daily candles for its supported 1d/5d ranges, not arbitrary
+    # period1/period2 windows. Its monthly economic series remains FRED XNDX.
     for source in sources:
         if source['id'] == 'nasdaq100':
             if (source.get('symbol'),source.get('currency'),source.get('variant'),source.get('seriesId')) != ('XNDX','USD','TOTAL','NASDAQXNDX'):
                 reject('Nasdaq monthly/daily return convention differs')
-            source.update(parser='fred',timezone='America/New_York')
+            source.update(parser='yahoo',symbol='^XNDX',timezone='America/New_York')
     sources += [{'id':'bitcoin','label':'Bitcoin','parser':'yahoo','symbol':'BTC-USD','currency':'USD','field':'close','timezone':'UTC'},
                 {'id':'cac40','label':'CAC 40','parser':'yahoo','symbol':'^FCHI','currency':'EUR','field':'close','timezone':'Europe/Paris'}]
     if {s['id'] for s in sources} != IDS | {'bitcoin','cac40'} | {s['id'] for s in etfs} | {s['id'] for s in equities}: reject('Configuration anniversaire incomplète')
@@ -50,52 +50,14 @@ def collect_one(config, now, json_fetch=None, byte_fetch=download):
     # unchanged for deterministic validation.
     json_fetch = json_fetch or (get_msci_json if parser == 'msci' else get_json)
     if parser == 'yahoo':
-        url = 'https://query2.finance.yahoo.com/v8/finance/chart/'+quote(config['symbol'],safe='')+'?'+urlencode({
-            'period1':int(dt.datetime.combine(start,dt.time(),UTC).timestamp()),
-            'period2':int(dt.datetime.combine(end,dt.time(),UTC).timestamp()),'interval':'1d','events':'splits'})
-        body=json_fetch(url); rows, zone=yahoo_chart(body,config,'1d')
-        asof,value=completed([(r[0],r[1]) for r in rows],now,zone)
-    elif parser == 'fred':
-        import csv,io
-        if (config.get('id'),config.get('seriesId'),config.get('symbol'),config.get('currency'),config.get('variant')) != ('nasdaq100','NASDAQXNDX','XNDX','USD','TOTAL'):
-            reject('Wrong daily FRED economic index')
-        base='https://fred.stlouisfed.org/graph/fredgraph.csv?id=NASDAQXNDX'
-        # Both are fixed public publications. Date-filtered graph URLs can
-        # time out on hosted runners even when these cached documents respond.
-        urls=[base,'https://fred.stlouisfed.org/data/NASDAQXNDX.txt']
-        raw=[download(u,timeout=45,max_attempts=2) if byte_fetch is download else byte_fetch(u) for u in urls]
-        def values(pairs):
-            dates=[];result=[]
-            for date,level in pairs:
-                day=dt.date.fromisoformat(date);dates.append(day);level=level.strip()
-                if level in ('','.'):continue
-                value=number(float(level))
-                if value<=0:reject('Invalid daily FRED level')
-                if start<=day<end:result.append((day,value))
-            if dates!=sorted(set(dates)):reject('Duplicate/unordered daily FRED dates')
-            return result
-        reader=csv.DictReader(io.StringIO(raw[0].decode('utf-8-sig')))
-        if reader.fieldnames!=['observation_date','NASDAQXNDX']:reject('Wrong daily FRED series schema')
-        window=values((r['observation_date'],r['NASDAQXNDX'])for r in reader)
-        from bs4 import BeautifulSoup
-        page=BeautifulSoup(raw[1],'html.parser')
-        metadata=page.find('table',attrs={'aria-label':'metadata - NASDAQ-100 Total Return'})
-        if not metadata:reject('Missing official FRED table identity')
-        fields={row.th.get_text(' ',strip=True):row.td.get_text(' ',strip=True)for row in metadata.select('tr')if row.th and row.td}
-        if any(fields.get(k)!=v for k,v in {'Title':'NASDAQ-100 Total Return','Series ID':'NASDAQXNDX','Source':'Nasdaq, Inc.','Frequency':'Daily','Units':'Index'}.items()):reject('Wrong official FRED table identity')
-        table=page.find('table',id='data-table-observations')
-        if not table or [th.get_text(strip=True)for th in table.select('thead th')]!=['DATE','VALUE']:reject('Wrong FRED table schema')
-        pairs=[(row.th.get_text(strip=True),row.td.get_text(strip=True))for row in table.select('tbody tr')if row.th and row.td]
-        extra=page.find(id='extra-rows')
-        if extra:
-            for item in extra.get_text().split('#')[1:]:
-                cells=item.strip().split('|')
-                if len(cells)!=2:reject('Malformed FRED extra observations')
-                pairs.append(tuple(cells))
-        independent=values(pairs)
-        if not window or window!=independent:reject('Independent daily FRED publications disagree')
-        asof,value=completed(window,now,'America/New_York')
-        url=urls[0];body={'sources':dict(zip(urls,[hashlib.sha256(r).hexdigest()for r in raw]))}
+        if config['id']=='nasdaq100':
+            asof,value,url,body=xndx_supported_ranges(config,now,json_fetch)
+        else:
+            url = 'https://query2.finance.yahoo.com/v8/finance/chart/'+quote(config['symbol'],safe='')+'?'+urlencode({
+                'period1':int(dt.datetime.combine(start,dt.time(),UTC).timestamp()),
+                'period2':int(dt.datetime.combine(end,dt.time(),UTC).timestamp()),'interval':'1d','events':'splits'})
+            body=json_fetch(url); rows, zone=yahoo_chart(body,config,'1d')
+            asof,value=completed([(r[0],r[1]) for r in rows],now,zone)
     elif parser == 'msci':
         url='https://app2.msci.com/products/service/index/indexmaster/getLevelDataForGraph?'+urlencode({
             'currency_symbol':config['currency'],'index_variant':config['variant'],'start_date':start.strftime('%Y%m%d'),
@@ -135,24 +97,56 @@ def collect_one(config, now, json_fetch=None, byte_fetch=download):
     return {'value':value,'asOf':asof,'currency':config['currency'],'parser':parser,
             'symbol':config.get('symbol'),'indexCode':config.get('indexCode'),'variant':config.get('variant'),
             'sourceUrl':url,'sha256':hashlib.sha256(json.dumps(body,sort_keys=True,allow_nan=False).encode()).hexdigest(),
-            'method':('Niveau officiel XNDX Total Return USD de la dernière séance terminée, diffusé par FRED ; deux publications officielles concordantes' if parser=='fred' else ('Niveau XNDX Total Return USD de la dernière séance terminée, dividendes bruts réinvestis' if config.get('symbol')=='^XNDX' else 'Dernière séance terminée ; cours brut') if parser=='yahoo' else ('Niveau officiel de fin de mois, Total Return USD' if parser=='ftse' else 'Niveau officiel de fin de séance, variante exacte')),
+            'method':('Clôture XNDX Total Return USD, dividendes bruts réinvestis ; fenêtres Yahoo prises en charge concordantes et séance terminée' if config.get('symbol')=='^XNDX' else 'Dernière séance terminée ; cours brut') if parser=='yahoo' else ('Niveau officiel de fin de mois, Total Return USD' if parser=='ftse' else 'Niveau officiel de fin de séance, variante exacte'),
             'maxAgeDays':45 if parser=='ftse' else 7,
-            **({'seriesId':'NASDAQXNDX','sourceUrls':urls,'sourceHashes':body['sources']}if parser=='fred' else {}),
+            **({'sourceUrls':list(body['sources']),'sourceHashes':body['sources'],'quoteMethod':'supported-xndx-ranges'}if config['id']=='nasdaq100'and parser=='yahoo' else {}),
             **({key:config[key] for key in ('isin','ticker','mic','listingEvidenceId') if key in config} if config.get('isin') else {})}
+
+XNDX_URLS=[f'https://query{host}.finance.yahoo.com/v8/finance/chart/%5EXNDX?range={window}&interval=1d&includePrePost=false'for host,window in [(1,'5d'),(2,'1d')]]
+
+def xndx_supported_ranges(config,now,fetch):
+    if (config.get('symbol'),config.get('currency'),config.get('variant'))!=('^XNDX','USD','TOTAL'):reject('Wrong XNDX convention')
+    observations=[];proofs={}
+    for url,window in zip(XNDX_URLS,['5d','1d']):
+        data=fetch(url);rows,zone=yahoo_chart(data,config,'1d')
+        payload=data['chart']['result'][0];meta=payload['meta']
+        if (meta.get('instrumentType'),meta.get('longName'),meta.get('range'))!=('INDEX','NASDAQ-100 Total Return',window):reject('Wrong XNDX index or supported range')
+        today=now.astimezone(ZoneInfo(zone)).date()
+        candidates=[(r[0],r[1])for r in rows if r[0]<today]
+        current=[r for r in rows if r[0]==today]
+        if current:
+            regular=meta.get('currentTradingPeriod',{}).get('regular',{})
+            end=regular.get('end');start=regular.get('start');stamp=meta.get('regularMarketTime')
+            if all(type(v)in (int,float)for v in [start,end,stamp]):
+                close=dt.datetime.fromtimestamp(end,UTC).astimezone(ZoneInfo(zone))
+                begin=dt.datetime.fromtimestamp(start,UTC).astimezone(ZoneInfo(zone))
+                quote_time=dt.datetime.fromtimestamp(stamp,UTC).astimezone(ZoneInfo(zone))
+                # Same-day bars are accepted only after the published session has
+                # ended, with a matching post-close quote timestamp and price.
+                finished=(begin.date()==close.date()==quote_time.date()==today and begin.time()==dt.time(9,30)
+                    and close.time()in [dt.time(13),dt.time(16)] and end<=stamp<=now.timestamp()
+                    and now.timestamp()>=end+900 and payload['timestamp'][-1]==stamp)
+                if finished:
+                    value=number(meta.get('regularMarketPrice'))
+                    if abs(value-current[-1][1])>.005:reject('XNDX close and regular quote disagree')
+                    candidates.append((today,current[-1][1]))
+        if not candidates:reject('No completed XNDX session in supported range')
+        day,value=max(candidates)
+        if (today-day).days>7 or value<=0:reject('Stale or invalid XNDX close')
+        observations.append((day.isoformat(),value))
+        proofs[url]=hashlib.sha256(json.dumps(data,sort_keys=True,allow_nan=False).encode()).hexdigest()
+    if observations[0]!=observations[1]:reject('Supported XNDX windows disagree')
+    return observations[0][0],observations[0][1],XNDX_URLS[0],{'sources':proofs}
 
 def xndx_source_upgrade(identifier,old,record):
     if identifier!='nasdaq100' or not old:return False
     convention=lambda r:tuple(r.get(k)for k in ('parser','symbol','currency','variant'))
-    if convention(old)!=('yahoo','^XNDX','USD','TOTAL') or convention(record)!=('fred','XNDX','USD','TOTAL'):return False
+    if convention(old)!=('fred','XNDX','USD','TOTAL')or old.get('seriesId')!='NASDAQXNDX':return False
+    if convention(record)!=('yahoo','^XNDX','USD','TOTAL')or record.get('quoteMethod')!='supported-xndx-ranges':return False
     if any(old.get(k)!=record.get(k)for k in ('indexCode','isin','ticker','mic','listingEvidenceId')):return False
-    if record.get('seriesId')!='NASDAQXNDX':return False
-    base='https://fred.stlouisfed.org/graph/fredgraph.csv?id=NASDAQXNDX'
     sources=record.get('sourceHashes',{})
-    static={base,'https://fred.stlouisfed.org/data/NASDAQXNDX.txt'}
-    exact_pair=set(sources)==static or all(url.startswith(base+'&cosd=')for url in sources)
-    return (len(sources)==2 and exact_pair and record.get('sourceUrl') in sources
-            and all(re.fullmatch(r'[a-f0-9]{64}',value or '')for value in sources.values()))
-
+    return (set(sources)==set(XNDX_URLS)and record.get('sourceUrl')in sources
+            and all(re.fullmatch(r'[a-f0-9]{64}',v or '')for v in sources.values()))
 
 
 def refresh(current, now, collect=collect_one, selected=None):

@@ -20,12 +20,12 @@ assert(Math.abs(result.result.finalValue-100*record.points.at(-1)[1]/points['202
 console.log('XNDX: full monthly series, independent annual returns, text convention and simulation verified.')
 const { resolveAnniversaryLevel }=await import('../src/data/anniversary-levels.js')
 const daily=JSON.parse(readFileSync('src/data/anniversary-levels.json')).nasdaq100
-assert.equal(daily.symbol,'XNDX')
-assert.equal(daily.parser,'fred')
-assert.equal(daily.seriesId,'NASDAQXNDX')
+assert.equal(daily.symbol,'^XNDX')
+assert.equal(daily.parser,'yahoo')
+assert.equal(daily.quoteMethod,'supported-xndx-ranges')
 assert.equal(Object.keys(daily.sourceHashes).length,2)
 for(const [url,hash]of Object.entries(daily.sourceHashes)){
- assert(url==='https://fred.stlouisfed.org/data/NASDAQXNDX.txt'||/^https:\/\/fred\.stlouisfed\.org\/graph\/fredgraph\.csv\?id=NASDAQXNDX(?:&cosd=|$)/.test(url))
+ assert.match(url,/^https:\/\/query[12]\.finance\.yahoo\.com\/v8\/finance\/chart\/%5EXNDX\?range=(?:1d|5d)&interval=1d&includePrePost=false$/)
  assert.match(hash,/^[a-f0-9]{64}$/)
 }
 assert.equal(daily.variant,'TOTAL')
