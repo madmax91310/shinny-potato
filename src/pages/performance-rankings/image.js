@@ -1,4 +1,5 @@
-import { COLORS } from './data.js'
+import { COLORS } from './palette.js'
+import { annualImagePercent, annualRankingColumns, annualRankingLayout, contrastText } from './annualRanking.js'
 import { annualColumns, basisLabel, formatMonth, rebalanceLabel } from './engine.js'
 
 const INK = '#f5eddb', MUTED = '#acc0c9', GOLD = '#e7c879'
@@ -60,7 +61,8 @@ export function rankingImageLayout(assetCount, columnCount, regularity = false) 
   return { width, height: tableBottom + 28 + (regularity ? 142 : 0), margin, labelWidth, cellWidth, rowHeight, tableY, headerHeight, tableBottom, transposed, gridColumns, gridRows }
 }
 const imagePercent = value => `${value > 0 ? '+' : ''}${value.toLocaleString('fr-FR', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} %`
-export function renderRankingImage(result, _title, regularity) {
+export function renderRankingImage(result, _title, regularity, presentation = 'current') {
+  if (presentation === 'annual') return renderAnnualRankingImage(result)
   const columns = annualColumns(result)
   const descriptions = [
     ...result.assets.filter(a => a.portfolio).map(a => `${a.shortLabel} : ${a.portfolio.lines.map(l => `${l.pct} % ${l.asset.shortLabel ?? l.asset.label}`).join(' + ')} · ${rebalanceLabel(a.portfolio.rebalance)}`),
@@ -140,3 +142,53 @@ export function renderRankingImage(result, _title, regularity) {
   }
   return canvas
 }
+
+// The preview and the download call this same canvas renderer with the same result.
+export function renderAnnualRankingImage(result) {
+  const columns = annualRankingColumns(result)
+  const l = annualRankingLayout(result.assets.length, columns.length)
+  const canvas = document.createElement('canvas')
+  canvas.width = l.width; canvas.height = l.height
+  const ctx = canvas.getContext('2d')
+  ctx.fillStyle = '#0b1c2b'; ctx.fillRect(0, 0, l.width, l.height)
+  text(ctx, 'Classement annuel', l.margin, 46, 38, INK, 'left', true, 700)
+  text(ctx, columns.length === 1 ? columns[0].label : `${columns[0].label} — ${columns.at(-1).label}`, l.width - l.margin, 46, 28, GOLD, 'right')
+  fit(ctx, `${result.coverage.currency} · ${basisLabel(result.coverage.basis)}`, l.margin, 98, 23, l.width - 2 * l.margin, MUTED, 'left', 400)
+  ctx.strokeStyle = '#acc0c940'; ctx.beginPath(); ctx.moveTo(l.margin, 130); ctx.lineTo(l.width - l.margin, 130); ctx.stroke()
+  text(ctx, 'Rang', l.margin + l.rankWidth / 2 - 5, l.tableY + l.headerHeight / 2, 19, MUTED, 'center')
+  for (let rank = 0; rank < result.assets.length; rank++) {
+    text(ctx, String(rank + 1), l.margin + l.rankWidth / 2 - 5, l.tableY + l.headerHeight + (rank + .5) * l.rowHeight, 32, MUTED, 'center')
+  }
+  columns.forEach((column, col) => {
+    const x = l.margin + l.rankWidth + col * l.cellWidth
+    text(ctx, column.label, x + l.cellWidth / 2, l.tableY + l.headerHeight / 2, 30, INK, 'center', false, 700)
+    column.rows.forEach((row, index) => {
+      const y = l.tableY + l.headerHeight + index * l.rowHeight
+      const w = l.cellWidth - l.gap, h = l.rowHeight - l.gap
+      rounded(ctx, x + l.gap / 2, y + l.gap / 2, w, h, row.color, null, 10)
+      const color = contrastText(row.color), cx = x + l.cellWidth / 2
+      const lines = annualNameLines(ctx, row.label, w - 24)
+      lines.rows.forEach((line, i) => text(ctx, line, cx, y + 18 + lines.size / 2 + i * (lines.size + 3), lines.size, color, 'center', false, 700))
+      text(ctx, annualImagePercent(row.value), cx, y + l.rowHeight - 49, 43, color, 'center', false, 700)
+      if (row.tied) text(ctx, `${row.rank} ex æquo`, cx, y + l.rowHeight - 19, 17, color, 'center', false, 500)
+    })
+  })
+  text(ctx, 'Épargnant Libre', l.width - l.margin, l.height - 20, 20, MUTED, 'right', true, 400)
+  return canvas
+}
+
+export function annualNameLines(ctx, value, width) {
+  // Keep the complete, unambiguous name: no ellipsis and no canvas maxWidth compression.
+  for (let size = 29; size >= 18; size--) {
+    ctx.font = `700 ${size}px Arial, sans-serif`
+    const rows = []; let line = ''
+    for (const word of value.split(/\s+/)) {
+      const next = line ? `${line} ${word}` : word
+      if (line && ctx.measureText(next).width > width) { rows.push(line); line = word } else line = next
+    }
+    if (line) rows.push(line)
+    if (rows.length * (size + 3) <= 78 && rows.every(row => ctx.measureText(row).width <= width)) return { rows, size }
+  }
+  throw new Error(`Nom trop long pour ce format : ${value}. Réduis le nombre d’années pour agrandir les cases.`)
+}
+

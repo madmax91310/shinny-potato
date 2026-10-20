@@ -60,7 +60,7 @@ export function periodReturn(asset, start, end, annualized = false) {
 }
 export function rankRows(rows) {
   const sorted = rows.map(row => ({ ...row })).sort((a, b) => b.value - a.value || a.order - b.order)
-  sorted.forEach((row, i) => { row.rank = i && Math.abs(row.value - sorted[i - 1].value) < 1e-8 ? sorted[i - 1].rank : i + 1 })
+  sorted.forEach((row, i) => { row.rank = i && row.value === sorted[i - 1].value ? sorted[i - 1].rank : i + 1 })
   return sorted
 }
 export function rankPeriod(assets, start, end, annualized = false, portfolioAnchor = start) {
@@ -108,7 +108,7 @@ export function rollingRegularity(assets, months) {
       const s = stats.find(s => s.id === row.id)
       if (row.rank === 1) s.wins++
       if (row.rank <= 2) s.topTwo++
-      if (Math.abs(row.value - min) < 1e-8) s.last++
+      if (row.value === min) s.last++
     }
   }
   return { count, months, start: coverage.start, end: coverage.end, stats }
@@ -187,3 +187,4 @@ export function portfolioReturn(asset, start, end, annualized = false) {
   const growth = values.reduce((sum, v) => sum + v, 0)
   return (Math.pow(growth, annualized ? 12 / (monthIndex(end) - monthIndex(start)) : 1) - 1) * 100
 }
+

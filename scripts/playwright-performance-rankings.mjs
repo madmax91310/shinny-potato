@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict'
-import { mkdir, writeFile } from 'node:fs/promises'
+import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { chromium } from 'playwright'
 import { spawn } from 'node:child_process'
 import { ALL_CATEGORIES, CATEGORIES, RANKING_ASSETS } from '../src/pages/performance-rankings/data.js'
@@ -209,6 +209,55 @@ try {
   await page.getByRole('tab', { name: 'Image', exact: true }).click()
   await img.waitFor({ state: 'visible' })
   await page.screenshot({ path: 'test-artifacts/performance-rankings/mobile.png', fullPage: true })
+  // Both presentations retain the exact calculation snapshot and annualized tweet.
+  await page.setViewportSize({ width: 1440, height: 1000 })
+  for (const [id, count, length] of [['luxury-stocks', 2, 2], ['us-stocks', 6, 7]]) {
+    await category(id)
+    await page.getByRole('button', { name: 'Année par année', exact: true }).click()
+    const last = Number(await page.getByRole('group', { name: 'Dernière année', exact: true }).getAttribute('data-value'))
+    await page.getByRole('group', { name: 'Première année', exact: true }).locator(`[data-value="${last - length + 1}"]`).click()
+    await page.getByRole('tab', { name: 'Texte', exact: true }).click()
+    const tweet = await page.getByLabel('Texte à publier', { exact: true }).inputValue()
+    const selected = await page.locator('.rk-selected strong').allTextContents()
+    await page.getByRole('button', { name: 'Classement annuel', exact: true }).click()
+    assert.equal(await page.getByLabel('Texte à publier', { exact: true }).inputValue(), tweet)
+    assert.deepEqual(await page.locator('.rk-selected strong').allTextContents(), selected)
+    assert.equal(await page.locator('.rk-annual-table td').count(), count * length)
+    const colours = await page.locator('.rk-annual-table td').evaluateAll(cells => cells.map(cell => ({ id: cell.dataset.asset, color: cell.style.background, rank: Number(cell.dataset.rank) })))
+    for (const cell of colours) assert(colours.filter(other => other.id === cell.id).every(other => other.color === cell.color))
+    await page.getByRole('tab', { name: 'Image', exact: true }).click()
+    await img.waitFor({ state: 'visible' })
+    await page.waitForFunction(() => { const img = document.querySelector('.publication-image-stage img'); return img?.complete && img.naturalWidth > 0 })
+    const png = await img.getAttribute('src')
+    await writeFile(`test-artifacts/performance-rankings/annual-live-${count}-${length}.png`, Buffer.from(png.split(',')[1], 'base64'))
+    const event = page.waitForEvent('download')
+    await page.getByRole('button', { name: 'Télécharger l’image', exact: true }).click()
+    const downloaded = await event
+    assert.match(downloaded.suggestedFilename(), /classement-annual-.*-EUR-/)
+    const path = `test-artifacts/performance-rankings/annual-live-downloaded-${count}.png`
+    await downloaded.saveAs(path)
+    assert.equal((await readFile(path)).toString('base64'), png.split(',')[1])
+    await page.getByRole('button', { name: 'Présentation actuelle', exact: true }).click()
+    await page.getByRole('tab', { name: 'Texte', exact: true }).click()
+    assert.equal(await page.getByLabel('Texte à publier', { exact: true }).inputValue(), tweet)
+  }
+  await page.getByRole('button', { name: 'Classement annuel', exact: true }).click()
+  await page.getByRole('button', { name: 'Période libre', exact: true }).click()
+  await page.getByLabel('Début, fin de mois', { exact: true }).fill('2020-05')
+  await page.getByLabel('Fin, fin de mois', { exact: true }).fill('2022-08')
+  assert.match(await page.getByRole('alert').innerText(), /année partielle/)
+  assert(await page.getByRole('button', { name: 'Télécharger l’image', exact: true }).isDisabled())
+  await page.getByRole('button', { name: 'Utiliser la dernière période commune (7 années maximum)', exact: true }).click()
+  assert.equal(await page.getByRole('alert').count(), 0)
+  await page.getByRole('group', { name: 'Devise du classement', exact: true }).locator('[data-value="USD"]').click()
+  await page.getByRole('tab', { name: 'Texte', exact: true }).click()
+  assert.match(await page.locator('.rk-annual-table caption').innerText(), /USD/)
+  await page.setViewportSize({ width: 390, height: 844 })
+  assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth))
+  await page.getByRole('button', { name: 'Aperçu', exact: true }).click()
+  await page.getByRole('tab', { name: 'Image', exact: true }).click()
+  await img.waitFor({ state: 'visible' })
+  await page.screenshot({ path: 'test-artifacts/performance-rankings/annual-live-mobile.png', fullPage: true })
   assert.deepEqual(errors, [])
   console.log('Rankings: categories, calendar/custom modes, annualization, regularity, invalid dates, exact manual selections, PNG download, desktop and mobile passed.')
 } catch (error) {
@@ -219,3 +268,4 @@ try {
   }
   throw error
 } finally { await browser?.close(); server?.kill() }
+
