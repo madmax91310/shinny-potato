@@ -163,7 +163,8 @@ def extract(data,id_,url,today):
     out=pathlib.Path(directory)/f'p{page}-{dpi}'
     subprocess.run(['pdftocairo','-f',str(page),'-l',str(page),'-r',str(dpi),'-png','-singlefile',str(pdf),str(out)],check=True,timeout=80,stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)
    first=Image.open(pathlib.Path(directory)/f'p1-{dpi}.png').convert('RGB')
-   stamp=ocr(crop(first,(.40,.02,.96,.043)),directory,f'period-{dpi}')
+   # Keep the quarter numeral at the left and exclude the separate validity line.
+   stamp=ocr(crop(first,(.32,.02,.96,.04)),directory,f'period-{dpi}')
    date=period(stamp,url,today)
    identity=ocr(white_letters(crop(first,(.05,.93,.32,.963))),directory,f'identity-{dpi}')
    if expected not in identity.lower():raise ValueError('Printed product identity unreadable or wrong: '+identity)

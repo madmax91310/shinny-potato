@@ -1,6 +1,7 @@
 """CORUM documents: discover current annual report and note on official product pages."""
 import datetime as dt
 import calendar
+import hashlib
 import json
 import pathlib
 import re
@@ -130,7 +131,7 @@ def parse_eurion_quarterly(text,pages,url,today):
     for label in [w for w in words if w['text'] in COUNTRIES and w['x']<100 and 380<w['y']<620]:
         found=[]
         for pct in words:
-            if pct['text']!='%' or pct['x']>300 or abs(pct['y']-label['y'])>2:continue
+            if pct['text']!='%' or pct['x']>page['width']*.60 or abs(pct['y']-label['y'])>2:continue
             values=[v for v in words if re.fullmatch(r'[\d,.]+',v['text']) and abs(v['y']-pct['y'])<5 and 0<pct['x']-v['right']<15]
             if values:found.append(number(max(values,key=lambda v:v['right'])['text']))
         if len(found)!=1:raise ValueError('Ambiguous quarterly country weight: '+label['text'])
@@ -214,6 +215,7 @@ def collect(id_,today):
         else:
             from corum_vector_ocr import extract
             snapshot,portfolio=extract(data,id_,url,today)
+        snapshot['sha256']=hashlib.sha256(data).hexdigest()
     return {'id':id_,'name':name,'sourceUrl':base,'checkedAt':today.isoformat(),
             'snapshot':snapshot, 'portfolio':portfolio, 'priceHistory':parse_annual_price_history(annual,today,annual_url),
             'annual':{'years':parse_annual(annual,today),'sourceUrl':annual_url},
