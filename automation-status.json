@@ -15918,14 +15918,15 @@
           "at": "2026-10-20T18:45:41.849853+00:00",
           "reason": "recording-failed",
           "sourceRunId": 39474711177,
-          "status": "reserved",
-          "ref": "master"
+          "status": "dispatched",
+          "ref": "master",
+          "error": null
         }
       ],
       "reason": "recording-failed",
       "lastSuccessAt": "2026-10-18T21:19:08Z",
       "observedRunId": 39474711177,
-      "status": "reserved",
+      "status": "dispatched",
       "nextAttemptAt": "2026-10-20T19:45:41.849853+00:00"
     },
     "collect-etf-pilot.yml": {
@@ -15934,15 +15935,16 @@
           "at": "2026-10-20T18:45:41.849853+00:00",
           "reason": "recording-failed",
           "sourceRunId": 39474711087,
-          "status": "reserved",
-          "ref": "master"
+          "status": "dispatched",
+          "ref": "master",
+          "error": null
         }
       ],
       "reason": "recording-failed",
       "lastSuccessAt": "2026-10-20T18:29:53Z",
       "observedRunId": 39474711087,
       "nextAttemptAt": "2026-10-20T19:45:41.849853+00:00",
-      "status": "reserved"
+      "status": "dispatched"
     },
     "update-market-monthly.yml": {
       "attempts": [
