@@ -2,7 +2,6 @@ name: Validate Corum quarterly source recovery
 on:
   push:
     branches: [fix/corum-quarterly-source-layout]
-    paths: ['.github/workflows/validate-corum-layout.yml', 'scripts/collect_corum.py', 'scripts/corum_vector_ocr.py', 'scripts/test_corum.py', 'scripts/fixtures/corum/eurion-quarterly-t3-2026*']
 permissions:
   contents: write
 jobs:
