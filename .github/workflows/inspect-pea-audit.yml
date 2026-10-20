@@ -18,9 +18,10 @@ jobs:
           from pathlib import Path
           out=Path('/tmp/pea-samples');out.mkdir()
           urls=[
-            'https://www.zonebourse.com/cours/etf/INVESCO-FTSE-ALL-WORLD-UC-172321486/',
-            'https://etf.agefi.fr/etf/VUAA',
-            'https://www.blackrock.com/fr/particuliers/products/251787/ishares-euro-dividend-ucits-etf']
+            'https://www.trackinsight.com/en/fund/VUAA/characteristics',
+            'https://www.boursorama.com/bourse/trackers/recherche/?query=IE00BFMXXD54',
+            'https://www.boursedirect.fr/fr/marche/euronext-amsterdam/ishares-euro-dividend-ucits-et-IE00B0M62S72-IDVY-EUR-XAMS/seance',
+            'https://www.quantalys.com/Recherche?search=IE00BFMXXD54']
           rows=[]
           for i,url in enumerate(urls):
             try:
