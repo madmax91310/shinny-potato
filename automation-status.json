@@ -17784,14 +17784,15 @@
           "at": "2026-10-20T17:57:27.575795+00:00",
           "reason": "recording-failed",
           "sourceRunId": 39465032029,
-          "status": "reserved",
-          "ref": "master"
+          "status": "dispatched",
+          "ref": "master",
+          "error": null
         }
       ],
       "reason": "recording-failed",
       "lastSuccessAt": "2026-10-20T17:27:05Z",
       "observedRunId": 39465032029,
-      "status": "reserved",
+      "status": "dispatched",
       "nextAttemptAt": "2026-10-20T18:57:27.575795+00:00"
     },
     "update-company-analysis.yml": {
