@@ -26,7 +26,7 @@ Après collecte réelle et compilation : 4 015 lignes courantes, 85 raccordement
 | Lot | État livré ou maintenu | Ce qui reste pour une autonomie totale |
 |---|---|---|
 | 1. Inventaire par actif et champ | Inventaire complet, sources, dates propres, devise quand documentée, périmètre, méthode, workflows, consommateurs et export CSV ; bilan consultable par ISIN ou nom | Prouver individuellement les champs encore non certifiés ; aucun raccourci par fichier programmé |
-| 2. Collecte, reprise et publication | 21 producteurs au publieur validé, preuves des blobs exacts, régression interdite, conservation des dernières bonnes observations et incidents distincts | Confirmer les cycles de chaque source ; surveiller les incidents réels et nouvelles publications |
+| 2. Collecte, reprise et publication | 21 producteurs au publieur validé, preuves des blobs exacts des observations brutes, régression interdite, conservation des dernières bonnes observations et incidents distincts | Confirmer les cycles de chaque source ; surveiller les incidents réels et nouvelles publications |
 | 3. Connecteurs et compositions physiques | Cloud Computing raccordé (65 titres) ; qualification automatique conditionnelle WisdomTree et renouvellement borné des identifiants publics | 12 compositions physiques encore absentes : identités ou documents complets à qualifier, dont les cinq fonds WisdomTree en découverte ; accès complet L&G, UBS, BNP et autres sources selon chaque part |
 | 4. Compositions des indices économiques | Deux TOPIX déjà qualifiés, 1 636 titres identifiés chacun ; leurs poids viennent de JPX | 30 raccordements d'indices exacts : obtenir les publications complètes utilisables, parfois sous licence ; aucun panier de substitution assimilé à l'indice |
 | 5. Données en erreur, conflits, PEA | Nasdaq réparé ; quatre retards WisdomTree clos ; conflits conservés et tentatives diagnostiquées | Cinq statuts PEA, dont la contradiction iShares Euro Dividend ; divergence des poids QYLD et secteur à recouper ; absence ne signifie jamais faux |
@@ -55,3 +55,8 @@ Compilation et budgets de routes ; catalogue des instruments et catalogue géné
 Le contrôle réseau des courtiers qualifie six barèmes et conserve les deux autres : Saxo présente une brochure courante absente/ambiguë dans son catalogue, Bourse Direct interrompt les connexions testées. Trois FAQ IBKR répondent HTTP 503. Ces sondages de campagne ne renouvellent pas les observations retenues et ne sont pas assimilés à une collecte de production réussie.
 
 Les preuves finales de fusion et de publication sont les commits GitHub, l'action Pages réussie, `build-info.json` et l'artefact `publication-verified.json` de cette action. Les chiffres ci-dessus ne doivent être présentés comme publiés qu'après cette vérification.
+
+
+### Projections et contrôle d’intégrité après reconstruction
+
+La première publication a été bloquée sur `equity-history-links.json` : le build régénérait cet index à partir de sources actualisées, et le reçu le traitait comme une observation brute immuable. Le registre explicite `validated-derived-data.json` distingue neuf projections dont les générateurs sont obligatoires dans `prebuild`. Toutes les observations brutes et tous les nouveaux fichiers non explicitement classés restent comparés aux blobs du producteur. Les projections sont reconstruites avec le code validé et les sources vérifiées ; leurs octets effectifs restent scellés dans le manifeste public. Les garde-fous sur les sources, les identifiants inconnus et les régressions ne sont pas retirés.

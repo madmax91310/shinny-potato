@@ -23,3 +23,20 @@ assert.deepEqual(consumerChanges(['src/data/inflation-monthly.js']),[],'Generate
 
 assert.equal(requiredDataPath('public/data/holdings-discovery.json'),'public/data/holdings-discovery.json')
 for(const path of ['public/data/private.js','public/data/../private.json','public/data/a.json/child'])assert.throws(()=>requiredDataPath(path))
+
+// A stale checked-in projection must not block a valid rebuild. No unrelated
+// source becomes exempt merely because its name resembles a generated file.
+const {primaryDataPaths}=await import('./prepare-validated-data.mjs')
+const {readFileSync}=await import('node:fs')
+const derived=JSON.parse(readFileSync('scripts/validated-derived-data.json')).outputs
+const pipeline=JSON.parse(readFileSync('package.json')).scripts.prebuild
+for(const [path,generator]of Object.entries(derived)){
+ assert(pipeline.includes('node '+generator),`${path}: generator must run in prebuild`)
+ assert(readFileSync(generator,'utf8').includes('/'+path.split('/').at(-1)),`${path}: output must be declared by its generator`)
+}
+const raw=['src/data/automated-monthly.json','src/data/anniversary-levels.json','src/data/dca-complete-holdings.json','src/data/my-history-links.json']
+assert.deepEqual(primaryDataPaths([...raw,...Object.keys(derived)]),raw)
+const producers=JSON.parse(readFileSync('scripts/validated-data-producers.json'))
+for(const producer of Object.keys(producers))assert(producerPaths(producer,'',producers).length>0)
+assert.throws(()=>producerPaths('only-derived.yml','',{'only-derived.yml':['src/data/equity-history-links.json']}))
+console.log('Only nine explicit reproducible projections are rebuilt; every other source stays mandatory, including future unknown JSON outputs.')

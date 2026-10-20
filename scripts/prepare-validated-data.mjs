@@ -1,3 +1,4 @@
+import DERIVED from './validated-derived-data.json' with {type:'json'}
 import {publicationCodeEpoch} from './publication-code-epoch.mjs'
 import assert from 'node:assert/strict'
 import {execFileSync} from 'node:child_process'
@@ -8,8 +9,9 @@ import {automationPaths,classify} from './classify-deploy-scope.mjs'
 // data over older editorial code would keep superseding the pending calendar build.
 export const consumerChanges=paths=>paths.filter(path=>/^src\/.*\.(?:[cm]?js|jsx|tsx?|css)$/.test(path)&&path!=='src/data/inflation-monthly.js')
 export function requiredDataPath(path){assert.match(path??'',/^(?:src\/data\/(?:[a-z0-9-]+\.json|inflation-monthly\.js)|public\/data\/[a-z0-9-]+(?:\.json)?)$/);return path}
+export function primaryDataPaths(paths){return [...new Set(paths.map(requiredDataPath))].filter(path=>!Object.hasOwn(DERIVED.outputs,path))}
 export function producerPaths(producer,single,registry){
- if(producer){assert(Object.hasOwn(registry,producer),'Unknown validated producer');assert(!single,'Choose a producer or a legacy single path');return registry[producer].map(requiredDataPath)}
+ if(producer){assert(Object.hasOwn(registry,producer),'Unknown validated producer');assert(!single,'Choose a producer or a legacy single path');const paths=primaryDataPaths(registry[producer]);assert(paths.length,'A producer needs primary source observations');return paths}
  return [requiredDataPath(single)]
 }
 export function requiredFiles(paths,files,allowed){
