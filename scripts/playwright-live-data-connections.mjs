@@ -26,6 +26,7 @@ try{
   const weights=page.getByRole('spinbutton');await weights.nth(0).fill('50');await weights.nth(1).fill('50')
   await page.getByAltText('Répartition et expositions du portefeuille').waitFor()
   await page.getByText('Voir l’analyse détaillée',{exact:true}).click()
+  await page.getByText(/^Recouvrement entre les supports ·/).click()
   await page.locator('.dca-pair-grid article').first().waitFor()
   const pair=await page.locator('.dca-pair-grid article').first().innerText()
   assert(!pair.includes('Partiel'),'Real overlap must use complete issuer portfolios')
