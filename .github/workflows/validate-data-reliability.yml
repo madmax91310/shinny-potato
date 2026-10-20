@@ -2,11 +2,19 @@ name: Validate data reliability and physical holdings
 on:
   push:
     branches: [feat/data-reliability-physical-holdings]
+  pull_request:
+    paths:
+      - 'scripts/*physical*'
+      - 'scripts/*metadata_incidents*'
+      - 'scripts/*pages-snapshot*'
+      - 'scripts/*bounded-command*'
+      - 'scripts/lib/bounded-command.mjs'
+      - '.github/workflows/validate-data-reliability.yml'
   workflow_dispatch:
 permissions:
   contents: read
 jobs:
-  sources:
+  reliability:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -18,13 +26,14 @@ jobs:
         with:
           node-version: 24
       - run: pip install beautifulsoup4==4.15.0
-      - run: npm ci
-      - run: npx playwright install --with-deps chromium
+      - run: python -m unittest discover -s scripts -p 'test*metadata*.py'
+      - run: python -m unittest discover -s scripts -p 'test*publication*.py'
+      - run: python -m unittest discover -s scripts -p 'test_audit_workflows.py'
+      - run: node scripts/test-pages-snapshot.mjs && node scripts/test-bounded-command.mjs && node scripts/test-data-incidents.mjs && node scripts/test-browser-shards.mjs
       - run: python scripts/probe_extra_sources.py
-      - run: node scripts/probe-browser-sources.mjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: source-probe
+          name: extra-sources
           path: source-probe
           retention-days: 7

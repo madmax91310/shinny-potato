@@ -19,30 +19,31 @@ permissions:
   id-token: write
 
 concurrency:
-  # Only newer revisions of the same PR may cancel their validation. Production
-  # builds (including workflow_call from 13F refresh) have independent lifetimes.
-  group: pages-validation-${{ github.event_name == 'pull_request' && github.ref || github.run_id }}
+  # Queue production snapshots, coalescing only data commits when a run starts.
+  # No active validation or publication is cancelled by a collector.
+  group: pages-validation-${{ github.event_name == 'pull_request' && github.ref || (github.ref == 'refs/heads/master' && 'production' || github.run_id) }}
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+  queue: max
 
 jobs:
   current-snapshot:
     runs-on: ubuntu-26.04
+    timeout-minutes: 5
     outputs:
       current: ${{ steps.head.outputs.current }}
+      commit_sha: ${{ steps.head.outputs.commit_sha }}
     steps:
       - uses: actions/checkout@v7.0.1
         with:
           ref: ${{ inputs.ref || github.sha }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 24
       - id: head
         env:
-          PR_EVENT: ${{ github.event_name == 'pull_request' }}
-          MASTER_REF: ${{ github.ref == 'refs/heads/master' }}
-        run: |
-          if [[ "$PR_EVENT" == true || "$MASTER_REF" != true ]]; then
-            echo 'current=true' >> "$GITHUB_OUTPUT"
-          else
-            bash scripts/check-pages-head.sh --validation
-          fi
+          PAGES_PRODUCTION: ${{ github.event_name != 'pull_request' && github.ref == 'refs/heads/master' }}
+        run: node scripts/resolve-pages-snapshot.mjs
   # Data-only lane: when every file changed since the published commit is an
   # automation data path, the code already passed the full gate. Editorial and
   # visual browser checks then become advisory, so refreshed data is never held
@@ -57,10 +58,11 @@ jobs:
     outputs:
       data_only: ${{ steps.scope.outputs.data_only }}
       published: ${{ steps.scope.outputs.published }}
+      commit_sha: ${{ needs.current-snapshot.outputs.commit_sha }}
     steps:
       - uses: actions/checkout@v7.0.1
         with:
-          ref: ${{ inputs.ref || github.sha }}
+          ref: ${{ needs.current-snapshot.outputs.commit_sha }}
           fetch-depth: 0
       - uses: actions/setup-node@v7.0.0
         with:
@@ -88,7 +90,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7.0.1
         with:
-          ref: ${{ inputs.ref || github.sha }}
+          ref: ${{ needs.current-snapshot.outputs.commit_sha }}
       - name: Record the exact built snapshot
         id: snapshot
         run: echo "commit_sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
@@ -214,6 +216,7 @@ jobs:
       - run: node scripts/test-practical-sheets.mjs
       - run: node scripts/test-performance-links.mjs
       - run: node scripts/test-deploy-scope.mjs
+      - run: node scripts/test-pages-snapshot.mjs && node scripts/test-bounded-command.mjs && node scripts/test-data-incidents.mjs
       - run: node scripts/test-fallback-snapshot.mjs
       - run: node scripts/test-browser-check-error.mjs
       - run: node scripts/test-freshness-policy.mjs
@@ -282,7 +285,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7.0.1
         with:
-          ref: ${{ inputs.ref || github.sha }}
+          ref: ${{ needs.current-snapshot.outputs.commit_sha }}
       - uses: actions/setup-node@v7.0.0
         with:
           node-version: 20
@@ -353,12 +356,14 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_holdings_recovery.py'
       - run: python -m unittest discover -s scripts -p 'test_source_download_recovery.py'
       - run: python -m unittest discover -s scripts -p 'test_metadata_recovery_diagnostics.py'
+      - run: python -m unittest discover -s scripts -p 'test_metadata_incidents.py'
       - run: python -m unittest discover -s scripts -p 'test_audit_workflows.py'
       - run: python -m unittest discover -s scripts -p 'test_validated_data_commit.py'
       - run: python -m unittest discover -s scripts -p 'test_data_publication.py'
       - run: python -m unittest discover -s scripts -p 'test_publication_safety.py'
 
   browser-checks:
+    timeout-minutes: 40
     needs: build
     runs-on: ubuntu-26.04
     permissions:
@@ -413,6 +418,13 @@ jobs:
         if: matrix.shard == 0
       - run: node scripts/playwright-nasdaq-total-return.mjs
         if: matrix.shard == 0
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: browser-durations-${{ matrix.shard }}
+          path: test-artifacts/browser-durations-*.json
+          if-no-files-found: ignore
+          retention-days: 35
       # Visual exports are diagnostics: a green shard needs none, a red shard keeps
       # them a week (one shard can produce 2 GB of PNG exports).
       - uses: actions/upload-artifact@v7.0.1
@@ -432,7 +444,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7.0.1
         with:
-          ref: ${{ inputs.ref || github.sha }}
+          ref: ${{ needs.current-snapshot.outputs.commit_sha }}
       - uses: actions/setup-node@v7.0.0
         with:
           node-version: 20
@@ -525,6 +537,25 @@ jobs:
       - id: deployment
         if: steps.current.outputs.current == 'true'
         uses: actions/deploy-pages@v5.0.1
+      - uses: actions/setup-node@v7.0.0
+        if: steps.current.outputs.current == 'true'
+        with:
+          node-version: 24
+      - uses: actions/download-artifact@v4
+        if: steps.current.outputs.current == 'true'
+        with:
+          name: validated-site
+          path: dist
+      - name: Verify the actual public data artifact
+        if: steps.current.outputs.current == 'true'
+        run: node scripts/verify-pages-publication.mjs "${{ steps.deployment.outputs.page_url }}" "${{ needs.build.outputs.commit_sha }}"
+      - uses: actions/upload-artifact@v7.0.1
+        if: always() && steps.current.outputs.current == 'true'
+        with:
+          name: verified-publication
+          path: test-artifacts/publication-verified.json
+          if-no-files-found: error
+          retention-days: 35
 
   # Fallback lane: the full gate failed on a snapshot whose code changed since the
   # published commit. Refreshed data must not wait for a human to repair the code:
@@ -547,7 +578,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7.0.1
         with:
-          ref: ${{ inputs.ref || github.sha }}
+          ref: ${{ needs.scope.outputs.commit_sha }}
           fetch-depth: 0
       - uses: actions/setup-node@v7.0.0
         with:
@@ -569,6 +600,11 @@ jobs:
         with:
           name: github-pages-fallback
           path: dist
+      - uses: actions/upload-artifact@v7.0.1
+        with:
+          name: fallback-publication-manifest
+          path: dist/data/publication-manifest.json
+          retention-days: 2
 
   deploy-fallback:
     needs: fallback-build
@@ -601,3 +637,22 @@ jobs:
         run: echo "Données publiées avec le dernier code validé (voie de secours). Le code de master reste à réparer." >> "$GITHUB_STEP_SUMMARY"
 
 
+      - uses: actions/setup-node@v7.0.0
+        if: steps.current.outputs.current == 'true'
+        with:
+          node-version: 24
+      - uses: actions/download-artifact@v4
+        if: steps.current.outputs.current == 'true'
+        with:
+          name: fallback-publication-manifest
+          path: dist/data
+      - name: Verify the actual fallback data artifact
+        if: steps.current.outputs.current == 'true'
+        run: node scripts/verify-pages-publication.mjs "${{ steps.deployment.outputs.page_url }}" "${{ needs.fallback-build.outputs.code_sha }}" "${{ needs.fallback-build.outputs.data_sha }}"
+      - uses: actions/upload-artifact@v7.0.1
+        if: always() && steps.current.outputs.current == 'true'
+        with:
+          name: verified-fallback-publication
+          path: test-artifacts/publication-verified.json
+          if-no-files-found: error
+          retention-days: 35
