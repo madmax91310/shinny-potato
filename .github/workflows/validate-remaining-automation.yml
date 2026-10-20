@@ -2,7 +2,7 @@ name: Validate remaining automation changes
 on:
   push:
     branches: [feat/finish-remaining-automation]
-    paths: ['.github/workflows/validate-remaining-automation.yml', 'scripts/collect_presentation_actors.py', 'scripts/test_presentation_actors.py', 'scripts/test-presentations*', 'src/pages/presentations/Actors.jsx', 'src/data/catalog.js']
+    paths: ['.github/workflows/validate-remaining-automation.yml', 'scripts/collect_presentation_actors.py', 'scripts/*iroko_snapshot*', 'scripts/collect_scpi.py', 'scripts/dca-equity-extra-identities.json', 'scripts/test_presentation_actors.py', 'scripts/test-presentations*', 'src/pages/presentations/Actors.jsx', 'src/data/catalog.js']
 permissions:
   contents: write
 jobs:
@@ -24,7 +24,23 @@ jobs:
       - run: npm ci
       - run: python -m unittest discover -s scripts -p test_presentation_actors.py
       - run: python scripts/collect_presentation_actors.py --apply --output actor-observations.json
+      - run: python -m unittest discover -s scripts -p test_iroko_snapshot.py
+      - run: python -m unittest discover -s scripts -p test_scpi.py
+      - name: Collect dated Iroko snapshot independently
+        run: |
+          PYTHONPATH=scripts python - <<'PYCODE'
+          import datetime as dt,json,pathlib
+          from collect_scpi import collect_iroko,refresh,OUTPUT
+          previous=json.loads(OUTPUT.read_text())
+          data,observations=refresh(previous,{'iroko-zen':collect_iroko},dt.date.today())
+          pathlib.Path('iroko-observations.json').write_text(json.dumps(observations,ensure_ascii=False,indent=2))
+          assert all(o['status']=='success' for o in observations),observations
+          OUTPUT.write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n')
+          PYCODE
+      - run: python scripts/collect_dca_complete_holdings.py --only IE00B4L5Y983 --apply --output equity-observations.json
+      - run: node scripts/build-dca-exposures.mjs
       - run: node scripts/test-presentations.mjs
+      - run: node scripts/test-scpi.mjs
       - run: npm run audit:data-catalog
       - run: npm run build
       - run: npx playwright install --with-deps chromium
@@ -33,7 +49,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add src/data/automated-presentation-actors.json
+          git add src/data/automated-presentation-actors.json src/data/automated-scpi.json src/data/dca-complete-holdings.json src/data/dca-security-classifications.json public/data/complete-holdings-status.json
           if ! git diff --cached --quiet; then
             git commit -m 'Refresh validated general platform sheets from official sources'
             git push origin HEAD:feat/finish-remaining-automation
@@ -44,5 +60,7 @@ jobs:
           name: platform-validation
           path: |
             actor-observations.json
+            iroko-observations.json
+            equity-observations.json
             src/data/automated-presentation-actors.json
           retention-days: 14

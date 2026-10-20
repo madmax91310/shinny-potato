@@ -45,6 +45,7 @@ export default function App({ embedded = false }) {
           <h2>Les données utilisées</h2>
           <p>Sources officielles vérifiées le {dateLabel(record.checkedAt)}.</p>
           <p>Répartition {record.snapshot.asOf ? `au ${dateLabel(record.snapshot.asOf)}` : 'sans date publiée dans les graphiques'}. Prix au {dateLabel(record.price.asOf)}.</p>
+          {record.snapshot.checkedAt && <p>Répartition vérifiée le {dateLabel(record.snapshot.checkedAt)}. {record.snapshot.dateNote}</p>}
           {record.snapshot.dateNote && <p>{record.snapshot.dateNote}</p>}
           <p><a href={record.sourceUrl} target="_blank" rel="noreferrer">Présentation officielle</a></p>
           <p><a href={record.conditions.sourceUrl} target="_blank" rel="noreferrer">Frais et conditions de souscription</a></p>
