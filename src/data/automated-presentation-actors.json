@@ -129,7 +129,7 @@
     "sources": [
       {
         "url": "https://www.mymarguerit.com/",
-        "sha256": "f2ca9557bf33600d478c7a0a53c054acc74b89f232083ae655ce6df3faee56d4"
+        "sha256": "88c4abf487dba0bd15840988e1d3b4633eb47428b3bce94fd0a6bf72d76d5220"
       }
     ],
     "offers": [
@@ -202,11 +202,11 @@
     "sources": [
       {
         "url": "https://bacchusconseil.com/fonctionnement/",
-        "sha256": "be591b2bac905174a9c71bfd8dd2f4958aa6c5667d0308053198a002ae562632"
+        "sha256": "cbcf95e7c4b120554e592d50a0720315462db3b6f51ca2dd61343db6ec95b688"
       },
       {
         "url": "https://bacchusconseil.com/gfv/gfv-cave-de-tain-crozes-hermitage/",
-        "sha256": "0fc14bd5b46814c282c6d2160212e0be91562697a23f4075e61be4b89b62d124"
+        "sha256": "23b244b1e69eeaaa55698327d97374b94a72b5457ba1eacc0f479330e072b117"
       }
     ],
     "offers": [
@@ -480,7 +480,7 @@
     "sources": [
       {
         "url": "https://www.enerfip.eu/fr/legal/convention-investisseur",
-        "sha256": "ecd24d99bc5d0db8d7a29a954d0d5d1d3def1c5ce64ff3ee9e6a97595fa4dfdc"
+        "sha256": "55f57a163011eda69fcb53df89be7ad87118ace33a5830ff8cc9ebf21ca81542"
       }
     ],
     "offers": [
@@ -525,9 +525,7 @@
             "effectiveAt": "2026-05-22"
           }
         },
-        "missing": [
-          "Projet précis : FICI, émetteur, taux, échéance et frais indirects"
-        ],
+        "missing": [],
         "highlights": [
           [
             "Plancher plateforme",
@@ -542,7 +540,11 @@
             "Selon titre"
           ]
         ],
-        "warnings": []
+        "warnings": [],
+        "scopeType": "platform",
+        "projectRequirements": [
+          "Pour chaque levée : consulter la FICI, l’émetteur, le taux, l’échéance et les frais indirects."
+        ]
       }
     ]
   },
@@ -597,9 +599,7 @@
             "checkedAt": "2026-10-20"
           }
         },
-        "missing": [
-          "Projet précis : FICI, émetteur, coupon et échéance"
-        ],
+        "missing": [],
         "highlights": [
           [
             "Accès annoncé",
@@ -614,7 +614,11 @@
             "1,2 € TTC"
           ]
         ],
-        "warnings": []
+        "warnings": [],
+        "scopeType": "platform",
+        "projectRequirements": [
+          "Pour chaque projet : consulter la FICI, l’émetteur, le coupon et l’échéance."
+        ]
       }
     ]
   },
@@ -625,11 +629,11 @@
     "sources": [
       {
         "url": "https://www.matis.club/comment-investir/schema-investissement",
-        "sha256": "1278c1b09b105dc9cac9e422601e696d75ea2d93799e10b823de1532d5c8b99e"
+        "sha256": "a46db3ede839f9d95d7d4db794eabe66a27e1b94af9a27282d44ea3d14039303"
       },
       {
         "url": "https://www.matis.club/comment-investir",
-        "sha256": "e7e7afefbc419f8b0ceb7150532c72c8290faaf7037700f3b17b326c408b400d"
+        "sha256": "a01c44e6c65decdd2db3a2b2ea04c1cbb3cbd292bbed9efdc26c96d98b50b243"
       }
     ],
     "offers": [
@@ -673,9 +677,7 @@
             "checkedAt": "2026-10-20"
           }
         },
-        "missing": [
-          "Œuvre et FICI : durée du titre, bases des commissions, autres coûts"
-        ],
+        "missing": [],
         "highlights": [
           [
             "Accès annoncé",
@@ -692,6 +694,10 @@
         ],
         "warnings": [
           "Pages officielles divergentes : présentation 24 mois, schéma 60 mois. Confirmer la durée dans les conditions de l’offre choisie."
+        ],
+        "scopeType": "platform",
+        "projectRequirements": [
+          "Pour chaque œuvre : consulter la FICI, la durée du titre, les bases des commissions et les autres coûts."
         ]
       }
     ]
@@ -762,7 +768,7 @@
           }
         },
         "missing": [
-          "Projet précis : échéance, émetteur, coupon et tarif de petit retrait"
+          "Montant des frais de petits retraits non publié."
         ],
         "highlights": [
           [
@@ -778,7 +784,11 @@
             "8–12 %"
           ]
         ],
-        "warnings": []
+        "warnings": [],
+        "scopeType": "platform",
+        "projectRequirements": [
+          "Pour chaque opération : consulter les documents du titre, l’émetteur, le coupon et l’échéance."
+        ]
       }
     ]
   },
@@ -1010,11 +1020,11 @@
     "sources": [
       {
         "url": "https://www.lendosphere.com/infos/questions-frequentes",
-        "sha256": "fac192b1ce95899acf74eb03d59672539b3987e68bf5f8ec17ec4e13eb88108a"
+        "sha256": "06ab23d5a0d752b57b32d5729c9421cc4b59b110cbf3522bdc7043074673d207"
       },
       {
         "url": "https://www.lendosphere.com/infos/comment-ca-marche",
-        "sha256": "fc252abce7ed07318dbb776cfddb7e703deaf5438b351951497caf72ea4226ff"
+        "sha256": "a533b1ebe3c1e363bc8864d252d76d12733373d3b34e383ea072f46370970c96"
       }
     ],
     "offers": [
