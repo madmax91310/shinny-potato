@@ -28,9 +28,9 @@ for (const etf of ETFS) {
     assert.equal(item.year, year)
   }
 }
-// Same benchmark is insufficient: these World and S&P 500 share classes have
-// no exact monthly history and must never open a substitute index/older ETF.
-for (const isin of ['FR001400U5Q4', 'IE0002XZSHO1', 'FR0011550185', 'unknown', '__proto__', null]) {
+// Same benchmark is insufficient: shares without their own usable history must
+// never open a substitute index/older ETF. Derive absence as collection expands.
+for (const isin of [...ETFS.filter(etf => !Object.hasOwn(expected, etf.isin)).map(etf => etf.isin), 'unknown', '__proto__', null]) {
   assert.equal(getPerformanceHref(isin), null)
 }
 console.log(`Performance links verified: ${Object.keys(index).length} exact histories; valid years and absent shares checked.`)
