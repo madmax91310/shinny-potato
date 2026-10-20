@@ -4,10 +4,16 @@ import json
 from pathlib import Path
 import unittest
 from collect_iroko_snapshot import parse_snapshot
-from collect_scpi import refresh
+from collect_scpi import refresh,iroko_public_config
 ROOT=Path(__file__).parent/'fixtures/scpi'
 TODAY=dt.date(2026,10,20)
 class IrokoSnapshotTests(unittest.TestCase):
+    def test_public_embed_configuration_quote_change_and_conflict(self):
+        for quote in ["'",'"']:
+            script=f'const SUPABASE_URL = {quote}https://example123.supabase.co{quote}; const SUPABASE_ANON_KEY = {quote}sb_publishable_fixture{quote};'
+            self.assertEqual(iroko_public_config(script),['https://example123.supabase.co','sb_publishable_fixture'])
+            with self.assertRaises(ValueError):iroko_public_config(script+' const SUPABASE_URL = "https://other.supabase.co";')
+            with self.assertRaises(ValueError):iroko_public_config(script.replace('example123.supabase.co','unexpected.test'))
     def source(self):return (ROOT/'iroko-quarterly.txt').read_text(),json.loads((ROOT/'iroko-quarterly-bbox.json').read_text())
     def test_date_basis_and_combined_sector(self):
         r=parse_snapshot(*self.source(),TODAY)
@@ -17,7 +23,7 @@ class IrokoSnapshotTests(unittest.TestCase):
         self.assertAlmostEqual(sum(v['value'] for v in r['countries']),100)
     def test_changed_layout_date_or_omitted_row_rejected(self):
         text,pages=self.source()
-        for bad in [text.replace('Données Iroko au','Publication au'),text.replace('30 juin 2026','30 juin 2027'),text.replace('30 juin 2026','29 juin 2026')]:
+        for bad in [text.replace('Données Iroko au','Publication au'),text.replace('30 juin 2026','30 juin 2027'),text.replace('30 juin 2026','29 juin 2026'),text.replace('Le 2e trimestre d’Iroko Zen','Le 3e trimestre d’Iroko Zen')]:
             with self.assertRaises(ValueError):parse_snapshot(bad,pages,TODAY)
         bad=copy.deepcopy(pages)
         next(w for w in bad[0]['words'] if w['text']=='France')['text']='Nouveau pays'

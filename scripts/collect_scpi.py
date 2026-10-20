@@ -123,10 +123,21 @@ def remake_portfolio(text,date,url,pages):
             'occupancy':{'value':occupancy,'asOf':date,'sourceUrl':url,'label':'Taux d’occupation financier','basis':'Inclut les locaux sous franchise de loyer ; distinct du taux physique. Le nombre de baux n’est pas un nombre de locataires.'}}
 
 
+def iroko_public_config(script):
+    # Both quote styles occur in the issuer's public loader. Never execute JavaScript.
+    values=[]
+    for name in ['SUPABASE_URL','SUPABASE_ANON_KEY']:
+        pattern=r"\bconst\s+"+name+r"\s*=\s*(['\"])([^'\"\s]+)\1\s*;"
+        matches=re.findall(pattern,script)
+        if len(matches)!=1:raise ValueError('Missing or ambiguous public Iroko configuration: '+name)
+        values.append(matches[0][1])
+    if not re.fullmatch(r'https://[a-z0-9]+\.supabase\.co',values[0]):raise ValueError('Unexpected public Iroko API host')
+    return values
+
+
 def collect_iroko(today):
     script = fetch('https://opendata.iroko.com/api/figure-embed.js').decode()
-    host = required(r"SUPABASE_URL\s*=\s*'([^']+)'", script).group(1)
-    key = required(r"SUPABASE_ANON_KEY\s*=\s*'([^']+)'", script).group(1)
+    host, key = iroko_public_config(script)
     # The public read-only credential is discovered from the issuer's embed, never configured by the user.
     names = ['distribution_yield', 'share_unit_price', 'financial_occupancy_rate', 'asset_count', 'tenant_count']
     query = urllib.parse.urlencode({'fund': 'eq.zen', 'select': 'name,period,unit,value,update_date',

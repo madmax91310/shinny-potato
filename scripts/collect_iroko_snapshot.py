@@ -16,6 +16,8 @@ def parse_snapshot(text,pages,today):
     next_month=stamp.replace(day=28)+dt.timedelta(days=4)
     if stamp!=next_month.replace(day=1)-dt.timedelta(days=1) or stamp>today:
         raise ValueError('Invalid quarterly portfolio date')
+    quarter=re.search(r"Le\s+([1-4])e\s+trimestre d[’']Iroko Zen",text)
+    if not quarter or int(quarter[1])!=stamp.month//3:raise ValueError('Wrong fund or quarterly period')
     candidates=[p for p in pages if any(w['text']=='géographique' for w in p['words']) and any(w['text']=='typologie' for w in p['words'])]
     if len(candidates)!=1:raise ValueError('Missing/ambiguous allocation page')
     p=candidates[0];words=p['words'];width=p['width']
