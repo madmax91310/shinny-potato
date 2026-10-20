@@ -1,0 +1,16 @@
+name: Retire superseded task PR 839 validation
+on:
+  push:
+    branches: [ops/retire-merged-lot-validations]
+permissions:
+  contents: read
+# The task's merged or draft PR only. Production groups remain untouched.
+concurrency:
+  group: pages-code-validation-refs/pull/839/merge
+  cancel-in-progress: true
+jobs:
+  retired:
+    runs-on: ubuntu-26.04
+    timeout-minutes: 2
+    steps:
+      - run: echo "Superseded task PR 839; keep the fully checked master publication."
