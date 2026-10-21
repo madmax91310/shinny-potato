@@ -115,9 +115,9 @@ jobs:
         run: python scripts/discover_holdings_sources.py
       - name: "Collect observations: holdings"
         id: holdings
+        continue-on-error: ${{ github.event_name != 'pull_request' }}
         env:
           WISDOMTREE_BROWSER_CAPTURE: '1'
-        continue-on-error: ${{ github.event_name != 'pull_request' }}
         run: python scripts/collect_dca_complete_holdings.py --apply --output "$RUNNER_TEMP/dca-complete-holdings.json"
       - name: "Collect observations: sleeves"
         id: sleeves
