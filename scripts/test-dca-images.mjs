@@ -65,7 +65,7 @@ try {
       const anonymous={...prepareProfile(PROFILES[0]),name:'',imageOnly:true,lines:prepareProfile(PROFILES[0]).lines.map(({amount:_amount,...line})=>line)}
       const canvas=await renderDcaImage(anonymous,field)
       if(labels.some(l=>/LE DCA DE|investis par mois|Salaire|ans|Julien/.test(l)))throw Error('Identity or amounts leaked')
-      if(!labels.includes(field==='all'?'Épargnant Libre':'Expositions du portefeuille'))throw Error('Missing anonymous heading')
+      if(!labels.includes('Épargnant Libre'))throw Error('Missing anonymous heading')
       if(['both','all'].includes(field)&&(!labels.includes('Exposition géographique')||!labels.includes('Exposition sectorielle')))throw Error('Missing panel')
       output.push({id:'anonymous-'+field,labels:[...labels],png:canvas.toDataURL()})
     }
@@ -141,3 +141,4 @@ try {
   assert.equal(await page.getByRole('group',{name:/Support position/}).count(),0,'No second ISIN confirmation')
   console.log('420 DCA images and simplified workflow: participant draft export, text-independent PNG, stale image protection, saves, automatic restore, filters and mobile verified.')
 } finally {await browser?.close();server.kill('SIGTERM')}
+
