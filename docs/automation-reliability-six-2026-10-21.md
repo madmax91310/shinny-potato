@@ -32,3 +32,9 @@ Les secteurs et pays de la seule poche actions d’un fonds multi-actifs ne devi
 Tests du changement d’hôte Yahoo, de la conservation des conventions, du secours FRED, du refus des mauvaises identités et dates Invesco, des coupures DILA, des propositions d’identités et du rejet des paniers L&G. Régressions des collecteurs mensuels, des métadonnées et des automatisations. Compilation avec budgets de routes, audits des sources et recette Chromium des fiches et comparatifs en mobile et bureau.
 
 La fusion et la publication restent soumises au portail complet ; la livraison publique est vérifiée séparément après déploiement.
+
+## Relances ciblées et dates des incidents
+
+Le rapport des historiques conserve les états précédents, mais indique maintenant séparément les sources réellement interrogées pendant le cycle. Seules ces tentatives peuvent fermer un incident ou renouveler sa date d’échec. Une relance du change ne recertifie donc ni les historiques ignorés ni une autre devise conservée. Deux régressions supplémentaires vérifient la conservation de l’incident, de sa date, puis sa clôture après une véritable collecte réussie. Les anciens rapports restent lisibles.
+
+Un contrôle public de WisdomTree Cloud sur les environnements GitHub Linux, macOS et Windows a retourné HTTP 403 dans les trois cas ; le succès local ne certifie pas un renouvellement autonome depuis GitHub.
