@@ -15145,15 +15145,16 @@
           "at": "2026-10-21T17:34:46.671758+00:00",
           "reason": "recording-failed",
           "sourceRunId": 39599330208,
-          "status": "reserved",
-          "ref": "master"
+          "status": "dispatched",
+          "ref": "master",
+          "error": null
         }
       ],
       "reason": "recording-failed",
       "lastSuccessAt": "2026-10-18T16:00:42Z",
       "observedRunId": 39599330208,
       "nextAttemptAt": "2026-10-21T21:34:46.671758+00:00",
-      "status": "reserved"
+      "status": "dispatched"
     },
     "update-bitcoin-monthly.yml": {
       "attempts": [],
