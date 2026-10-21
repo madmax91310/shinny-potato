@@ -16,6 +16,22 @@ try {
   const errors = []; page.on('pageerror', e => errors.push(e.message))
   await page.goto(`${base}/classements-performances`, { waitUntil: 'networkidle' })
   await page.getByRole('heading', { name: 'Qui a vraiment gagné ?', exact: true }).waitFor()
+  // An open tab must still export after a deployment removes old JS chunks.
+  // Do this before opening the image preview, which could mask a lazy import.
+  await page.getByRole('button', { name: 'Classement annuel', exact: true }).click()
+  const lateModules = []
+  const blockLateModule = route => { lateModules.push(route.request().url()); return route.abort() }
+  await page.route('**/*.js', blockLateModule)
+  const offlineExport = page.waitForEvent('download')
+  await page.getByRole('button', { name: 'Télécharger l’image', exact: true }).click()
+  const annualExport = await offlineExport
+  assert.match(annualExport.suggestedFilename(), /^classement-annual-.*\.png$/)
+  const chunks = []
+  for await (const chunk of await annualExport.createReadStream()) chunks.push(chunk)
+  assert.equal(Buffer.concat(chunks).subarray(0, 8).toString('hex'), '89504e470d0a1a0a')
+  assert.deepEqual(lateModules, [], 'Export must use the already loaded renderer')
+  await page.unroute('**/*.js', blockLateModule)
+  await page.getByRole('button', { name: 'Présentation actuelle', exact: true }).click()
   const category = async value => {
     const c = ALL_CATEGORIES.find(c => c.id === value)
     const family = comparisonFamily(c, { ...RANKING_ASSETS, ...ANNUAL_ASSETS })
