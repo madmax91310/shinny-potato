@@ -53,9 +53,12 @@ try{
   assert(await profile.getByRole('link',{name:'Source ↗'}).count()>0,'individual field source links are exposed')
   assert.equal(await section.getByRole('link',{name:'Télécharger le bilan par actif et par champ (CSV)'}).getAttribute('href'),'/shinny-potato/data/asset-automation.csv')
   await section.getByRole('combobox',{name:'Afficher',exact:true}).selectOption('priorities')
-  await search.fill('IE00BM8R0J59')
-  await section.getByRole('heading',{name:'Calendrier de cotation calculé · EUR',exact:true}).waitFor()
-  await section.getByText(/ces rendements diffèrent du calendrier NAV/i).waitFor()
+  const alternative=report.connections.find(r=>r.field==='performance'&&r.actionState!=='current'&&r.marketCalendar)
+  if(alternative){
+   await search.fill(alternative.id)
+   await section.getByRole('heading',{name:`Calendrier de cotation calculé · ${alternative.marketCalendar.currency}`,exact:true}).waitFor()
+   await section.getByText(/ces rendements diffèrent du calendrier NAV/i).waitFor()
+  }
   await section.getByRole('combobox',{name:'Données prioritaires'}).selectOption('completeHoldings')
   await search.fill('IE000NDWFGA5')
   await section.getByText(/Identités non qualifiées/).waitFor()
@@ -70,8 +73,14 @@ try{
    if(await page.getByRole('button',{name:'Aperçu',exact:true}).isVisible())await page.getByRole('button',{name:'Aperçu',exact:true}).click()
    await page.getByRole('tab',{name:'Texte',exact:true}).click()
    await page.locator('.es-card .es-facts').getByText(`ISIN : ${isin}`,{exact:true}).waitFor()
-   const expected=report.connections.find(r=>r.id===isin&&r.field==='performance').marketCalendar
+   const observation=report.connections.find(r=>r.id===isin&&r.field==='performance')
+   const expected=observation.marketCalendar
    const card=await page.locator('.es-card').innerText()
+   if(observation.actionState==='current'){
+    assert(card.includes('Performances annuelles'),isin)
+    assert(!card.includes('cours ajustés, distributions réinvesties'),'The official NAV calendar must regain precedence once published: '+isin)
+    continue
+   }
    assert(card.includes('cours ajustés, distributions réinvesties'),isin)
    assert(card.includes(`(${expected.currency})`),isin)
    const year=Object.keys(expected.years).at(-1),value=expected.years[year]

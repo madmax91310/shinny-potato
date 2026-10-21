@@ -76,8 +76,7 @@ for (const r of PRESENTATION_ETF_ADDITIONS.filter(r=>r.reviewedAt)) {
   if(record[field]) assert(record[field].rows.length && record[field].asOf);
   else assert.equal(record.fieldQualification[field].status,'not-published');
  }
- if(r.isin==='IE0003R87OG3') {
-  assert.equal(series.sourceKind,'adjusted-market-price');
+ if(r.isin==='IE0003R87OG3'&&series.sourceKind==='adjusted-market-price') {
   assert(series.values.some(Number.isFinite));
   assert.deepEqual(series.values,series.calendarYears.map(y=>marketCalendars[r.isin].years[y]??null));
   assert.equal(Object.keys(record.performance.years).length,0);
