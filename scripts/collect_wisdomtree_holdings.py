@@ -80,7 +80,9 @@ def parse(page,share,now,mapping,identity_dates):
     weights=[r['pctWeight']for r in items]
     if any(type(w)not in (int,float)or not math.isfinite(w)or not 0<=w<=1 for w in weights):raise ValueError('Invalid weights')
     checks=[r['wgtSumCheck']for r in items if 'wgtSumCheck'in r]
-    if not checks or abs(sum(weights)-1)>0.0002 or any(abs(v-sum(weights))>0.0002 for v in checks):raise ValueError('Incomplete weights')
+    if (not checks or abs(sum(weights)-1)>0.0002
+            or any(type(v)not in (int,float)or not math.isfinite(v)or abs(v-sum(weights))>0.0002 for v in checks)):
+        raise ValueError('Incomplete weights')
     missing={r['descriptorB']for r in items}-mapping.keys()
     if missing:raise ValueError('Unqualified SEDOL identities: '+', '.join(sorted(missing)))
     rows=[dict(isin=mapping[r['descriptorB']],sedol=r['descriptorB'],name=r['constituentName'],weightPct=r['pctWeight']*100)for r in items]

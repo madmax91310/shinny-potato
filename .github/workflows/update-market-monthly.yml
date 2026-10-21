@@ -25,6 +25,9 @@ on:
       - 'scripts/monthly-automation.json'
       - 'scripts/data_automation.py'
       - 'scripts/collect_ranking_sources.py'
+      - 'scripts/market_transport.py'
+      - 'scripts/test_market_transport.py'
+      - 'scripts/test_cross_fx_fallback.py'
   pull_request:
     paths:
       - '.github/workflows/update-market-monthly.yml'
@@ -72,6 +75,8 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_monthly_qualification.py'
       - run: python -m unittest discover -s scripts -p 'test_nasdaq_monthly.py'
       - run: python -m unittest discover -s scripts -p 'test_ranking_sources.py'
+      - run: python -m unittest discover -s scripts -p 'test_cross_fx_fallback.py'
+      - run: python -m unittest discover -s scripts -p 'test_market_transport.py'
       - run: node scripts/test-nasdaq-total-return.mjs
       - run: python -m unittest discover -s scripts -p 'test_data_automation.py'
       - run: python -m unittest discover -s scripts -p 'test_qualified_listings.py'

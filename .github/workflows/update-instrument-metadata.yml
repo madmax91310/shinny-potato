@@ -138,6 +138,7 @@ jobs:
           name: metadata-qualified-records
           path: src/data
       - run: python -m unittest discover -s scripts -p 'test_instrument_metadata.py'
+      - run: python -m unittest discover -s scripts -p 'test_invesco_characteristics.py'
       - run: python -m unittest discover -s scripts -p 'test_metadata_completion.py'
       - run: python -m unittest discover -s scripts -p 'test_metadata_connections.py'
       - run: python -m unittest discover -s scripts -p 'test_quantalys_metadata.py'
@@ -206,6 +207,7 @@ jobs:
         run: node scripts/check-active-data-freshness.mjs "$RUNNER_TEMP/instrument-metadata.json"
       - name: Validate metadata observations
         run: python -m unittest discover -s scripts -p 'test_instrument_metadata.py'
+      - run: python -m unittest discover -s scripts -p 'test_invesco_characteristics.py'
       - run: npm run build && node scripts/test-full-auto-routing.mjs
       - uses: actions/upload-artifact@v7.0.1
         if: always()
@@ -221,7 +223,7 @@ jobs:
       - name: Commit validated observations
         id: commit
         env:
-          VALIDATED_DATA_CHECK: npm ci --ignore-scripts && python -m unittest discover -s scripts -p 'test_instrument_metadata.py' && npm run build && node scripts/test-full-auto-routing.mjs
+          VALIDATED_DATA_CHECK: npm ci --ignore-scripts && python -m unittest discover -s scripts -p 'test_instrument_metadata.py' && python -m unittest discover -s scripts -p 'test_invesco_characteristics.py' && npm run build && node scripts/test-full-auto-routing.mjs
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'

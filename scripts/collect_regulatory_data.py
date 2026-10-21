@@ -11,7 +11,7 @@ import hashlib
 import json
 import pathlib
 import re
-import urllib.request
+from issuer_documents import download
 import xml.etree.ElementTree as ET
 from regulatory_extensions import SOURCES as EXTRA_SOURCES, extra_values
 
@@ -159,18 +159,21 @@ def collect(baseline, fetch, today):
   except Exception as exc: failures[name] = str(exc)
  return result, failures
 
+def fetch_publication(url):
+ if url not in {BASE+identity+'.xml' for identity,_,_ in SOURCES.values()}:
+  raise ValueError('Unknown official regulatory publication')
+ return download(url, max_bytes=2_000_000, timeout=60, max_attempts=3,
+                 headers={'User-Agent':'EpargnantLibre official-data collector'})
+
 def main():
  parser = argparse.ArgumentParser(); parser.add_argument('--apply', action='store_true'); parser.add_argument('--output', type=pathlib.Path, required=True)
  args = parser.parse_args(); today = dt.datetime.now(dt.timezone.utc).date().isoformat()
  baseline = json.loads(DEST.read_text()) if DEST.exists() else {'schemaVersion': 1, 'sources': {}}
- def fetch(url):
-  with urllib.request.urlopen(urllib.request.Request(url, headers={'User-Agent':'Patrimoine-Compagnie official-data collector'}), timeout=60) as response:
-   return response.read(2_000_001)
  def fetch_safe(url):
-  try: return fetch(url)
+  try: return fetch_publication(url)
   except Exception as exc: return exc
  urls = [BASE+identity+'.xml' for identity,_,_ in SOURCES.values()]
- with ThreadPoolExecutor(max_workers=8) as pool: responses = dict(zip(urls, pool.map(fetch_safe, urls)))
+ with ThreadPoolExecutor(max_workers=4) as pool: responses = dict(zip(urls, pool.map(fetch_safe, urls)))
  def cached(url):
   response = responses[url]
   if isinstance(response, Exception): raise response
@@ -180,7 +183,7 @@ def main():
  args.output.write_text(json.dumps({'observations':result, 'failures':failures}, ensure_ascii=False, indent=2)+'\n')
  if args.apply:
   temporary = DEST.with_suffix('.tmp'); temporary.write_text(json.dumps(result, ensure_ascii=False, indent=2)+'\n'); temporary.replace(DEST)
- print(json.dumps({'validatedSources':len(result['sources']), 'failures':failures}, ensure_ascii=False))
+ print(json.dumps({'validatedSources':len(SOURCES)-len(failures), 'retainedSources':sum(name in baseline['sources'] for name in failures), 'failures':failures}, ensure_ascii=False))
  return bool(failures)
 
 if __name__ == '__main__': raise SystemExit(main())

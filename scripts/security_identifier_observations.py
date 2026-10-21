@@ -3,11 +3,21 @@ import datetime as dt
 import hashlib
 import json
 import re
+import unicodedata
+import time
 import urllib.request
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 PATH=ROOT/'src/data/security-identifier-observations.json'
 API='https://api.openfigi.com/v3/mapping'
+
+def candidate_name(value):
+    """Propose crosswalk queries only. This key is never a security identity."""
+    text = ''.join(c for c in unicodedata.normalize('NFKD', value.upper()) if not unicodedata.combining(c))
+    text = re.sub(r'\b(?:GBP|USD|EUR|GBX|JPY|SEK|NOK|CHF)\s*\d+(?:[.,]\d+)?\b', '', text)
+    text = re.sub(r'\b(?:ORDINARY|ORD|COMMON)\s+(?:SHARES?|STOCK)\b', '', text)
+    text = re.sub(r'\b(?:INCORPORATED|INC|CORPORATION|CORP|PLC|LIMITED|LTD)\b', '', text)
+    return re.sub('[^A-Z0-9]', '', text)
 
 def digest(value):
     return hashlib.sha256(json.dumps(value,sort_keys=True,separators=(',',':')).encode()).hexdigest()
@@ -39,7 +49,9 @@ def mappings(now):
         except (ValueError,KeyError,TypeError):continue
     return out,proofs
 
-def refresh(now,max_requests=4):
+def refresh(now,max_requests=12):
+    if type(max_requests) is not int or not 1 <= max_requests <= 24:
+        raise ValueError('Invalid bounded identifier request budget')
     from collect_wisdomtree_holdings import IDENTITIES,identity_document,identities,rankings,known_shares
     from issuer_documents import public_page
     from data_automation import write_json_atomic
@@ -51,7 +63,7 @@ def refresh(now,max_requests=4):
         except Exception as e:print('Identity workbook pending:',fund,str(e)[:200])
     raw=json.loads((ROOT/'src/data/dca-complete-holdings.json').read_text())
     candidates={}
-    normalize=lambda s:re.sub('[^A-Z0-9]','',s.upper())
+    normalize=candidate_name
     for fund in raw.values():
         if not fund.get('complete')or not re.fullmatch(r'[a-f0-9]{64}',fund.get('sha256','')):continue
         for r in fund.get('rows',[]):
@@ -74,6 +86,9 @@ def refresh(now,max_requests=4):
         if attempts>=max_requests:break
         jobs=[{'idType':'ID_SEDOL','idValue':sedol},*[{'idType':'ID_ISIN','idValue':v}for v in values]]
         request=urllib.request.Request(API,json.dumps(jobs).encode(),{'Content-Type':'application/json','User-Agent':'EpargnantLibre/1.0 (lepargnantlibre@gmail.com)'})
+        # Public OpenFIGI mapping: remain below 25 requests per minute, including
+        # the next run's independent lookup. An HTTP failure still stops the batch.
+        if attempts:time.sleep(3)
         attempts+=1
         try:
             with urllib.request.urlopen(request,timeout=25)as response:result=json.load(response)

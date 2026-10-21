@@ -13,6 +13,20 @@ def state():return {'activeShareClass':{'data':{'id':893,'currency':'USD','paren
     'pageSections':[{'key':'portfolioBreakdown','canvas':{'part':{'downloads':{'part':{'data':{'893':[{'name':'Download full fund holdings','url':URL}], '999':[{'name':'Wrong share','url':'https://evil.example/file'}]}}}}}}]}
 
 class LGDiscoveryTests(unittest.TestCase):
+    def test_generic_explorer_retry_still_rejects_creation_basket_and_wrong_share(self):
+        raw=('ETF Trading ID'+ISIN+'\nBasket Trade Date2026-10-20\nCash Component is a balancing number\nBasket Client Disclaimer').encode()
+        calls=[]
+        def fetch(url):
+            calls.append(url)
+            return page(state()).encode() if url==SHARE['pageUrl'] else raw
+        with self.assertRaises(UnqualifiedHoldings) as raised:
+            collect(SHARE,None,fetch=fetch,page_fetch=lambda _:'<html>Generic explorer</html>')
+        self.assertEqual(raised.exception.evidence['documentBasis'],'creation-basket')
+        self.assertEqual(calls,[SHARE['pageUrl'],URL.replace('fundcentres.lgim.com','fundcentres.landg.com')])
+        wrong=state();wrong['activeShareClass']['data']['data']['shareclassISIN']='IE00WRONG000'
+        with self.assertRaisesRegex(ValueError,'Wrong L&G'):
+            collect(SHARE,None,fetch=lambda _:self.fail('Wrong identity must not try another document'),page_fetch=lambda _:page(wrong))
+
     def test_exact_share_link_and_domain_migration(self):
         self.assertEqual(document_link(page(state()),SHARE),URL.replace('fundcentres.lgim.com','fundcentres.landg.com'))
         wrong=copy.deepcopy(SHARE);wrong['isin']='IE00WRONG000'

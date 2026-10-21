@@ -43,8 +43,10 @@ for(const [isin,r] of Object.entries(AUTOMATED_ETF)) {
  const priorPeaSource=METADATA[isin]?.pea?.sourceUrl??''
  if(!METADATA[isin]?.pea||priorPeaSource.startsWith('https://extraetf.com/'))urls.push('https://extraetf.com/fr/etf-profile/'+isin)
  if(!METADATA[isin]?.pea||/^https:\/\/www\.quantalys\.com\/Fonds\/[1-9]\d*$/.test(priorPeaSource))urls.push(/^https:\/\/www\.quantalys\.com\/Fonds\/[1-9]\d*$/.test(priorPeaSource)?priorPeaSource:'https://www.quantalys.com/Recherche/RechercheRapide?inputSearch='+isin)
- if(urls.some(url=>url?.includes('invesco.com/')))
+ if(urls.some(url=>url?.includes('invesco.com/'))){
+  urls.push('https://dng-api.invesco.com/cache/v1/accounts/fr_FR/shareclasses/'+isin+'?idType=isin')
   urls.push('https://dng-api.invesco.com/cache/v1/accounts/en_GB/shareclasses/'+isin+'?expand=marketdata&idType=isin&variationType=exchangeTradingInformationWithMarketData')
+ }
  if(['FR0011550185','FR0011550193','IE00B4K6B022','IE000QDFFK00','IE000DQLYVB9'].includes(isin))urls.push('https://live.euronext.com/en/product/etfs/'+isin+'-XPAR')
  if(isin==='IE00BD4TXV59')urls.push('https://live.euronext.com/en/product/etfs/'+isin+'-ETFP')
  // Characteristics only need the fund facts and listings; full holdings exceed the download limit.
