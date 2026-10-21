@@ -1,3 +1,4 @@
+import { expect } from 'playwright/test'
 // Exercise the visible buttons, including scrollable result lists.
 export async function choose(picker, choice) {
   // A partial label can also match its search input; operate on the picker root.
@@ -19,11 +20,10 @@ export async function choose(picker, choice) {
     await more.click()
   }
   const expected=await target.getAttribute('data-value')
-  const pickerId=await picker.getAttribute('id')
   await target.click()
   // React may defer the selection commit while rebuilding a publication preview.
-  // An attached picker alone does not prove that the requested value was applied.
-  await picker.page().waitForFunction(({id,value})=>document.getElementById(id)?.getAttribute('data-value')===value,{id:pickerId,value:expected})
+  // Retry through the locator: selected-history loading can replace the picker DOM node.
+  await expect(picker).toHaveAttribute('data-value',expected,{timeout:30000})
   // Some workspaces switch to the publication preview after selecting a support.
   await picker.waitFor({state:'attached'})
 }
