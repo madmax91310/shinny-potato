@@ -52,7 +52,9 @@ try {
   assert.equal(await page.locator('[data-day="4"] [data-period="evening"] .home-day-note').innerText(), 'Réservé à ton tweet du vendredi')
   assert.equal(await page.locator('[data-day="5"] [data-period="midday"] .home-day-note').innerText(), 'Ton bilan de la semaine')
   assert.equal(await page.locator('[data-day="5"] [data-period="evening"] .home-day-note').innerText(), 'Quote de ton bilan')
-  assert.equal(await page.locator('[data-day="3"] [data-period="midday"] .workspace-tool-card h2').innerText(), 'Qui a vraiment gagné ?')
+  for (const day of [2, 3]) {
+    assert.equal(await page.locator(`[data-day="${day}"] [data-period="midday"] .workspace-tool-card h2`).innerText(), 'Qui a vraiment gagné ?')
+  }
   assert.equal(await page.locator('.home-week').getByText(/alternance|alternative|facultatif|matin|récap/i).count(), 0)
   assert.equal(await page.locator('.home-calendar-intro').innerText(), 'Un format par créneau, le midi et le soir.')
   for (const width of [320, 390]) {

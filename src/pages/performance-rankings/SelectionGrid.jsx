@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import ChoicePicker from '../../design-system/ChoicePicker.jsx'
 import { CATEGORIES, EXPOSURE_CATEGORIES } from './data.js'
 import { EQUITY_GROUPS } from './suggestions.js'
 import { isStock, toggleAsset } from './selection.js'
@@ -24,11 +25,11 @@ export default function SelectionGrid({ ids, currency, assets, onChange }) {
   }
   return <section className="rk-batch" aria-label="Sélection par cases à cocher">
     <p aria-live="polite"><strong>{ids.length}/6 sélectionnés</strong> · de deux à six actifs</p>
-    <label className="rk-field">Univers à cocher<select aria-label="Univers à cocher" value={group} onChange={e => { setGroup(e.target.value); setLimit(30) }}>
+    <label className="rk-field">Univers à cocher<ChoicePicker aria-label="Univers à cocher" value={group} onChange={e => { setGroup(e.target.value); setLimit(30) }}>
       <option value="stocks">Toutes les actions</option><option value="etfs">ETF actions</option>
       <optgroup label="Univers éditoriaux">{GROUPS.map(c => <option key={c.id} value={c.id}>{c.label}</option>)}</optgroup>
       <optgroup label="Par exposition (registre)">{EXPOSURE_CATEGORIES.map(c => <option key={c.id} value={c.id}>{c.group} · {c.universe} ETF et ETC</option>)}</optgroup>
-    </select></label>
+    </ChoicePicker></label>
     <label className="rk-field">Rechercher dans l’univers<input type="search" value={query} onChange={e => { setQuery(e.target.value); setLimit(30) }} placeholder="Nom, ticker ou ISIN…" /></label>
     <div className="rk-checkbox-list">{choices.slice(0, limit).map(a => <label key={a.id}>
       <input type="checkbox" checked={ids.includes(a.id)} disabled={ids.length >= 6 && !ids.includes(a.id)} onChange={() => toggle(a.id)} aria-label={`Sélectionner ${a.label}`} />
