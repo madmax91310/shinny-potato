@@ -43,18 +43,20 @@ export function donutData(analysis,field='countries',limit=4){
 }
 function exposurePanel(ctx,a,field,x,y,width,limit){
  const {rows,scope}=donutData(a,field,limit)
- text(ctx,field==='countries'?'Exposition géographique':'Exposition sectorielle',x,y,width,36,C.ivory,700,'DcaEditorial')
+ centered(ctx,field==='countries'?'Exposition géographique':'Exposition sectorielle',x+width/2,y,width,36)
  const cx=x+width/2,cy=y+280,r=220,inner=150
  let angle=-Math.PI/2
  for(const row of rows){const end=angle+row.weight/100*Math.PI*2;ctx.beginPath();ctx.arc(cx,cy,r,angle,end);ctx.arc(cx,cy,inner,end,angle,true);ctx.closePath();ctx.fillStyle=row.color;ctx.fill();angle=end}
  const percentages=integerPercentages(rows)
+ const lead=rows.findIndex(r=>!['Non ventilé ici','Écart d’arrondi','Sans objet'].includes(r.name))
+ if(lead>=0){centered(ctx,exposurePercentage(rows[lead].weight,percentages[lead]),cx,cy+5,270,52);centered(ctx,rows[lead].name,cx,cy+47,260,23,C.muted,400)}
  rows.forEach((row,i)=>{
-  const left=x+(i%2)*width/2,top=y+(rows.length>6?530:540)+Math.floor(i/2)*(rows.length>6?48:65)
+  const left=rows.length===1?cx-110:x+65+(i%2)*(width-80)/2,top=y+(rows.length>6?530:540)+Math.floor(i/2)*(rows.length>6?48:65)
   ctx.fillStyle=row.color;ctx.beginPath();ctx.arc(left+8,top-7,7,0,Math.PI*2);ctx.fill()
   text(ctx,row.name,left+24,top,width/2-35,rows.length>6?18:22,C.ivory,400)
   text(ctx,exposurePercentage(row.weight,percentages[i]),left+24,top+(rows.length>6?23:28),width/2-35,rows.length>6?20:25)
  })
- text(ctx,scope,x,y+32,width,18,C.muted,400)
+ ctx.save();ctx.textAlign='center';text(ctx,scope,x+width/2,y+32,width,18,C.muted,400);ctx.restore()
 }
 function ring(ctx,rows,cx,cy,r,inner){
  let angle=-Math.PI/2
@@ -145,6 +147,24 @@ async function overlapPortfolio(ctx,p){
  text(ctx,'Via les fonds',780,900,220,21,'#63dfbd')
  text(ctx,g?.scope==='index'?'Périmètre : indices suivis':'Périmètre : positions publiées',1090,900,440,18,C.muted,400)
 }
+async function companiesPanel(ctx,p,y){
+ const {loadHoldings}=await import('./holdings-loader.js')
+ const {portfolioCompanies}=await import('./companies.js')
+ const holdings=await loadHoldings(p.lines.map(l=>l.asset))
+ const result=portfolioCompanies(p.lines,references,holdings)
+ panel(ctx,35,y-20,1530,270)
+ centered(ctx,result.complete?'Les 10 premières entreprises':'Principales entreprises identifiées',800,y+27,1450,34)
+ // Portfolio percentages retain the full denominator, including assets without holdings.
+ const subtitle=result.complete?`${pct(result.topWeight)} du portefeuille`:`Composition partielle · ${pct(result.coverage)} du portefeuille identifié`
+ ctx.save();ctx.textAlign='center';text(ctx,subtitle,800,y+58,1450,20,C.muted,400);ctx.restore()
+ result.rows.forEach((r,i)=>{
+  const x=65+(i%5)*298,top=y+108+Math.floor(i/5)*84
+  text(ctx,`${i+1}. ${r.name}`,x,top,270,22,C.ivory,400)
+  text(ctx,pct(r.weightPct),x,top+33,270,30,C.yellow)
+ })
+ if(!result.rows.length)centered(ctx,'Aucune composition exploitable pour cette sélection',800,y+150,1400,26,C.muted,400)
+ if(!p.imageOnly)centered(ctx,'Épargnant Libre',800,y+284,1480,32)
+}
 let fontReady
 async function loadDcaFont(){
  if(!fontReady)fontReady=new FontFace('DcaEditorial',`url("${import.meta.env.BASE_URL}asset-art/editorial.woff2")`,{weight:'500'}).load().then(font=>document.fonts.add(font)).catch(()=>{fontReady=undefined;return false})
@@ -156,22 +176,24 @@ export async function renderDcaImage(input,field='countries'){
  await Promise.all([...new Set(p.lines.map(line=>line.asset))].map(id=>exposureRecords.load(id)))
  const a=analyzeProfile(p)
  if(a.errors.length)throw Error(a.errors.join(' '))
- const canvas=document.createElement('canvas');canvas.width=1600;canvas.height=['all','overlap'].includes(field)?1000:1067;const ctx=canvas.getContext('2d')
- const bg=ctx.createLinearGradient(0,0,1600,1067);bg.addColorStop(0,'#071b36');bg.addColorStop(.5,'#03152c');bg.addColorStop(1,'#092952');ctx.fillStyle=bg;ctx.fillRect(0,0,1600,1067)
+ const baseHeight=['all','overlap'].includes(field)?1000:p.imageOnly?960:1067
+ const includeCompanies=p.showCompanies===true&&field!=='overlap'
+ const canvas=document.createElement('canvas');canvas.width=1600;canvas.height=baseHeight+(includeCompanies?300:0);const ctx=canvas.getContext('2d')
+ const bg=ctx.createLinearGradient(0,0,1600,1067);bg.addColorStop(0,'#071b36');bg.addColorStop(.5,'#03152c');bg.addColorStop(1,'#092952');ctx.fillStyle=bg;ctx.fillRect(0,0,1600,canvas.height)
+ const finish=async()=>{if(includeCompanies)await companiesPanel(ctx,p,baseHeight);return canvas}
  if(field==='overlap'){await overlapPortfolio(ctx,p);return canvas}
- if(field==='all'){fullPortfolio(ctx,p,a);return canvas}
+ if(field==='all'){fullPortfolio(ctx,p,a);return finish()}
  if(p.imageOnly||field==='both'){
-  text(ctx,p.imageOnly?'Expositions du portefeuille':`Le DCA de ${p.name}`,64,100,1472,65,C.ivory,700,'DcaEditorial')
-  if(!p.imageOnly)text(ctx,`${euro(a.monthly)} investis par mois`,66,158,1470,34,C.yellow)
+  centered(ctx,p.imageOnly?'Épargnant Libre':`Le DCA de ${p.name}`,800,83,1472,49)
+  if(!p.imageOnly)centered(ctx,`${euro(a.monthly)} investis par mois`,800,158,1470,34,C.yellow)
   if(field==='all'){
    fullPortfolio(ctx,p,a)
   }else if(field==='both'){
    exposurePanel(ctx,a,'countries',66,218,700,p.exposureLimit)
    exposurePanel(ctx,a,'sectors',834,218,700,p.exposureLimit)
   }else exposurePanel(ctx,a,field,450,218,700,p.exposureLimit)
-  rule(ctx,64,1013,1472)
-  text(ctx,'Épargnant Libre',1205,1051,330,32,C.ivory,700,'DcaEditorial')
-  return canvas
+  if(!includeCompanies&&!p.imageOnly)centered(ctx,'Épargnant Libre',800,1035,1472,36)
+  return finish()
  }
  text(ctx,'LE DCA DE',64,62,710,26,C.muted,700)
  text(ctx,p.name,62,161,710,96,C.ivory,700,'DcaEditorial')
@@ -203,7 +225,6 @@ export async function renderDcaImage(input,field='countries'){
  text(ctx,scope,880,195,650,18,C.muted,400)
 
 
- rule(ctx,64,1013,1472)
- text(ctx,'Épargnant Libre',1205,1051,330,32,C.ivory,700,'DcaEditorial')
- return canvas
+ if(!includeCompanies)centered(ctx,'Épargnant Libre',800,1035,1472,36)
+ return finish()
 }
