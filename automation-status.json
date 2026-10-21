@@ -464,21 +464,25 @@
     "collect-etf-pilot.yml": {
       "monitorVersion": 2,
       "name": "ETF et compositions d’indices",
-      "runId": 39626719321,
+      "runId": 39663948042,
       "attempt": 1,
-      "headSha": "dbb51f8db609322abe66bd9d5d564a957b8b4a11",
-      "createdAt": "2026-10-21T15:33:09Z",
-      "completedAt": "2026-10-21T15:41:07Z",
+      "headSha": "5018fd36c894ee2309c486924becd516a18f533d",
+      "createdAt": "2026-10-21T19:42:17Z",
+      "completedAt": "2026-10-21T19:45:20Z",
       "status": "failure",
       "lastSuccessAt": "2026-10-21T12:22:45Z",
       "collectionStatus": "failure",
-      "validationStatus": "success",
-      "recordingStatus": "success",
-      "publicationStatus": "success",
+      "validationStatus": "not-run",
+      "recordingStatus": "not-run",
+      "publicationStatus": "not-run",
       "lastCollectionSuccessAt": "2026-10-21T12:22:45Z",
       "lastPublicationSuccessAt": "2026-10-21T15:40:53Z",
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39626719321",
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39663948042",
       "failures": [
+        {
+          "job": "refresh",
+          "step": "Run node scripts/test-asset-field-coverage.mjs"
+        },
         {
           "job": "report-failures",
           "step": "Run echo 'Une source ETF ou indice a échoué. Ses dernières données fiables sont conservées ; les autres collectes validées ont été publiées si les audits et le déploiement ont réussi.' >> \"$GITHUB_STEP_SUMMARY\""
@@ -487,149 +491,88 @@
       "dataFailures": {
         "etf-additional-observation-FR0011550185": {
           "name": "ETF FR0011550185",
-          "completedAt": "2026-10-21T15:41:07Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39626719321",
+          "completedAt": "2026-10-21T19:45:20Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39663948042",
           "cause": "HTTP Error 503: Service Unavailable",
           "field": "Collecte ETF"
         },
         "etf-additional-observation-FR0011550193": {
           "name": "ETF FR0011550193",
-          "completedAt": "2026-10-21T15:41:07Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39626719321",
+          "completedAt": "2026-10-21T19:45:20Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39663948042",
           "cause": "HTTP Error 503: Service Unavailable",
           "field": "Collecte ETF"
         },
         "etf-additional-observation-IE000QDFFK00": {
           "name": "ETF IE000QDFFK00",
-          "completedAt": "2026-10-21T15:41:07Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39626719321",
+          "completedAt": "2026-10-21T19:45:20Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39663948042",
           "cause": "HTTP Error 503: Service Unavailable",
-          "field": "Collecte ETF"
-        },
-        "etf-additional-observation-IE00B2NPKV68": {
-          "name": "ETF IE00B2NPKV68",
-          "completedAt": "2026-10-21T15:41:07Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39626719321",
-          "cause": "HTTP Error 403: Forbidden",
-          "field": "Collecte ETF"
-        },
-        "etf-additional-observation-IE00B1FZS913": {
-          "name": "ETF IE00B1FZS913",
-          "completedAt": "2026-10-21T15:41:07Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39626719321",
-          "cause": "HTTP Error 403: Forbidden",
-          "field": "Collecte ETF"
-        },
-        "etf-additional-observation-DE000A0H08Q4": {
-          "name": "ETF DE000A0H08Q4",
-          "completedAt": "2026-10-21T15:41:07Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39626719321",
-          "cause": "HTTP Error 403: Forbidden",
           "field": "Collecte ETF"
         },
         "etf-additional-observation-IE000DQLYVB9": {
           "name": "ETF IE000DQLYVB9",
-          "completedAt": "2026-10-21T15:41:07Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39626719321",
+          "completedAt": "2026-10-21T19:45:20Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39663948042",
           "cause": "Amundi current index document unavailable: https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU0496786574/FRA/FRA/INSTITUTIONNEL/ETF: HTTP Error 404: Not Found ; https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU0496786574/FRA/FRA/INSTITUTIONNEL/ETF/20260930: HTTP Error 404: Not Found ; https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU0496786574/FRA/FRA/INSTITUTIONNEL/ETF/20260831: HTTP Error 404: Not Found",
           "field": "exposures"
         },
         "index-russell-2000-composition": {
           "name": "Russell 2000 · composition",
-          "completedAt": "2026-10-21T15:41:07Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39626719321",
+          "completedAt": "2026-10-21T19:45:20Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39663948042",
           "cause": "Amundi current index document unavailable: https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1681038672/FRA/FRA/INSTITUTIONNEL/ETF: HTTP Error 404: Not Found ; https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1681038672/FRA/FRA/INSTITUTIONNEL/ETF/20260930: HTTP Error 404: Not Found ; https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1681038672/FRA/FRA/INSTITUTIONNEL/ETF/20260831: HTTP Error 404: Not Found"
         },
         "index-stoxx600-composition": {
           "name": "STOXX Europe 600 · composition",
-          "completedAt": "2026-10-21T15:41:07Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39626719321",
+          "completedAt": "2026-10-21T19:45:20Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39663948042",
           "cause": "Amundi current index document unavailable: https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU0908500753/FRA/FRA/INSTITUTIONNEL/ETF: HTTP Error 404: Not Found ; https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU0908500753/FRA/FRA/INSTITUTIONNEL/ETF/20260930: HTTP Error 404: Not Found ; https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU0908500753/FRA/FRA/INSTITUTIONNEL/ETF/20260831: HTTP Error 404: Not Found"
         },
         "index-eurostoxx50-composition": {
           "name": "EURO STOXX 50 · composition",
-          "completedAt": "2026-10-21T15:41:07Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39626719321",
+          "completedAt": "2026-10-21T19:45:20Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39663948042",
           "cause": "Amundi current index document unavailable: https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR001400ZGP1/FRA/FRA/INSTITUTIONNEL/ETF: HTTP Error 404: Not Found ; https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR001400ZGP1/FRA/FRA/INSTITUTIONNEL/ETF/20260930: HTTP Error 404: Not Found ; https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR001400ZGP1/FRA/FRA/INSTITUTIONNEL/ETF/20260831: HTTP Error 404: Not Found"
         },
         "index-topix-composition": {
           "name": "TOPIX · composition",
-          "completedAt": "2026-10-21T15:41:07Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39626719321",
+          "completedAt": "2026-10-21T19:45:20Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39663948042",
           "cause": "Amundi current index document unavailable: https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013411980/FRA/FRA/INSTITUTIONNEL/ETF: HTTP Error 404: Not Found ; https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013411980/FRA/FRA/INSTITUTIONNEL/ETF/20260930: HTTP Error 404: Not Found ; https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013411980/FRA/FRA/INSTITUTIONNEL/ETF/20260831: HTTP Error 404: Not Found"
         },
         "index-sp500-pea-composition": {
           "name": "S&P 500 · composition",
-          "completedAt": "2026-10-21T15:41:07Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39626719321",
+          "completedAt": "2026-10-21T19:45:20Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39663948042",
           "cause": "Amundi current index document unavailable: https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU0496786574/FRA/FRA/INSTITUTIONNEL/ETF: HTTP Error 404: Not Found ; https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU0496786574/FRA/FRA/INSTITUTIONNEL/ETF/20260930: HTTP Error 404: Not Found ; https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU0496786574/FRA/FRA/INSTITUTIONNEL/ETF/20260831: HTTP Error 404: Not Found"
         },
         "index-nasdaq-pea-composition": {
           "name": "NASDAQ-100 Notional Net Total Return · composition",
-          "completedAt": "2026-10-21T15:41:07Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39626719321",
+          "completedAt": "2026-10-21T19:45:20Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39663948042",
           "cause": "Amundi current index document unavailable: https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011871110/FRA/FRA/INSTITUTIONNEL/ETF: HTTP Error 404: Not Found ; https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011871110/FRA/FRA/INSTITUTIONNEL/ETF/20260930: HTTP Error 404: Not Found ; https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011871110/FRA/FRA/INSTITUTIONNEL/ETF/20260831: HTTP Error 404: Not Found"
         },
         "index-sp500-equal-weight-composition": {
           "name": "S&P 500 Equal Weight · composition",
-          "completedAt": "2026-10-21T15:41:07Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39626719321",
+          "completedAt": "2026-10-21T19:45:20Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39663948042",
           "cause": "Amundi current index document unavailable: https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU2991918421/FRA/FRA/INSTITUTIONNEL/ETF: HTTP Error 404: Not Found ; https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU2991918421/FRA/FRA/INSTITUTIONNEL/ETF/20260930: HTTP Error 404: Not Found ; https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU2991918421/FRA/FRA/INSTITUTIONNEL/ETF/20260831: HTTP Error 404: Not Found"
-        },
-        "etf-observation-IE00BZCQB185": {
-          "name": "ETF IE00BZCQB185",
-          "completedAt": "2026-10-21T15:41:07Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39626719321",
-          "cause": "HTTP Error 403: Forbidden"
-        },
-        "etf-observation-IE000I8KRLL9": {
-          "name": "ETF IE000I8KRLL9",
-          "completedAt": "2026-10-21T15:41:07Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39626719321",
-          "cause": "HTTP Error 403: Forbidden"
-        },
-        "etf-observation-IE00B66F4759": {
-          "name": "ETF IE00B66F4759",
-          "completedAt": "2026-10-21T15:41:07Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39626719321",
-          "cause": "HTTP Error 403: Forbidden"
-        },
-        "etf-observation-IE00BMG6Z448": {
-          "name": "ETF IE00BMG6Z448",
-          "completedAt": "2026-10-21T15:41:07Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39626719321",
-          "cause": "HTTP Error 403: Forbidden"
-        },
-        "etf-observation-IE00BYXG2H39": {
-          "name": "ETF IE00BYXG2H39",
-          "completedAt": "2026-10-21T15:41:07Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39626719321",
-          "cause": "HTTP Error 403: Forbidden"
         },
         "etf-presentation-performance-FR001400U5Q4": {
           "name": "ETF FR001400U5Q4",
-          "completedAt": "2026-10-21T15:41:07Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39626719321",
+          "completedAt": "2026-10-21T19:45:20Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39663948042",
           "cause": "HTTP Error 404: Not Found",
           "field": "Collecte ETF"
         },
         "etf-presentation-performance-LU2970735911": {
           "name": "ETF LU2970735911",
-          "completedAt": "2026-10-21T15:41:07Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39626719321",
+          "completedAt": "2026-10-21T19:45:20Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39663948042",
           "cause": "HTTP Error 404: Not Found",
           "field": "Collecte ETF"
         }
-      },
-      "publicationReceipt": {
-        "commit": "087d45a72ee4762d505775ef172dbdb4dd1ff0c1",
-        "files": {
-          "src/data/annual-fx.json": "fba1fbdade322417ff8e5d8ecc3b6b7274941017",
-          "src/data/automated-etf.json": "4d6c7cfad00346abd7f20cf254305ff9ad4bbc0b",
-          "src/data/automated-indices.json": "d9a28edcc7ad160d0d806b172f76414721c42ec4",
-          "src/data/official-performance-currencies.json": "8a29089880e0d3b3a008c361c5f490cda5b83435"
-        },
-        "schemaVersion": 1
       }
     },
     "update-economic-data.yml": {
@@ -647,7 +590,7 @@
       "recordingStatus": "success",
       "publicationStatus": "success",
       "lastCollectionSuccessAt": "2026-10-21T13:59:12Z",
-      "lastPublicationSuccessAt": "2026-10-21T18:53:23.975Z",
+      "lastPublicationSuccessAt": "2026-10-21T19:39:37.215Z",
       "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39612353686",
       "failures": [],
       "dataFailures": {},
@@ -659,7 +602,7 @@
         "schemaVersion": 1
       },
       "publishedCodeSha": "96b8b3d0d49679e1dbb51be5cd551712cb2cfc26",
-      "publishedDataSha": "d0ae04fe7f2c7a1be0ea05ae551bf1b3bf699dcb"
+      "publishedDataSha": "d43d6c331379e10b1157e8284aa4b08e57144128"
     },
     "update-regulatory-data.yml": {
       "monitorVersion": 2,
@@ -1046,7 +989,7 @@
       "recordingStatus": "success",
       "publicationStatus": "success",
       "lastCollectionSuccessAt": "2026-10-21T13:04:40Z",
-      "lastPublicationSuccessAt": "2026-10-21T18:53:23.975Z",
+      "lastPublicationSuccessAt": "2026-10-21T19:39:37.215Z",
       "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39604150504",
       "failures": [],
       "dataFailures": {},
@@ -1058,7 +1001,7 @@
         "schemaVersion": 1
       },
       "publishedCodeSha": "96b8b3d0d49679e1dbb51be5cd551712cb2cfc26",
-      "publishedDataSha": "d0ae04fe7f2c7a1be0ea05ae551bf1b3bf699dcb"
+      "publishedDataSha": "d43d6c331379e10b1157e8284aa4b08e57144128"
     },
     "update-insurance.yml": {
       "monitorVersion": 2,
@@ -1075,7 +1018,7 @@
       "recordingStatus": "success",
       "publicationStatus": "success",
       "lastCollectionSuccessAt": "2026-10-21T13:06:54Z",
-      "lastPublicationSuccessAt": "2026-10-21T18:53:23.975Z",
+      "lastPublicationSuccessAt": "2026-10-21T19:39:37.215Z",
       "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39604524326",
       "failures": [],
       "dataFailures": {},
@@ -1087,7 +1030,7 @@
         "schemaVersion": 1
       },
       "publishedCodeSha": "96b8b3d0d49679e1dbb51be5cd551712cb2cfc26",
-      "publishedDataSha": "d0ae04fe7f2c7a1be0ea05ae551bf1b3bf699dcb"
+      "publishedDataSha": "d43d6c331379e10b1157e8284aa4b08e57144128"
     },
     "update-bitcoin-monthly.yml": {
       "monitorVersion": 2,
@@ -1124,7 +1067,7 @@
       "recordingStatus": "success",
       "publicationStatus": "success",
       "lastCollectionSuccessAt": "2026-10-21T13:12:11Z",
-      "lastPublicationSuccessAt": "2026-10-21T18:53:23.975Z",
+      "lastPublicationSuccessAt": "2026-10-21T19:39:37.215Z",
       "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39656306385",
       "failures": [
         {
@@ -1150,7 +1093,7 @@
         "schemaVersion": 1
       },
       "publishedCodeSha": "96b8b3d0d49679e1dbb51be5cd551712cb2cfc26",
-      "publishedDataSha": "d0ae04fe7f2c7a1be0ea05ae551bf1b3bf699dcb"
+      "publishedDataSha": "d43d6c331379e10b1157e8284aa4b08e57144128"
     },
     "update-editorial-radar.yml": {
       "monitorVersion": 2,
@@ -1200,7 +1143,7 @@
       "recordingStatus": "success",
       "publicationStatus": "success",
       "lastCollectionSuccessAt": "2026-10-21T13:11:16Z",
-      "lastPublicationSuccessAt": "2026-10-21T18:53:23.975Z",
+      "lastPublicationSuccessAt": "2026-10-21T19:39:37.215Z",
       "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39605350059",
       "failures": [],
       "dataFailures": {},
@@ -1212,7 +1155,7 @@
         "schemaVersion": 1
       },
       "publishedCodeSha": "96b8b3d0d49679e1dbb51be5cd551712cb2cfc26",
-      "publishedDataSha": "d0ae04fe7f2c7a1be0ea05ae551bf1b3bf699dcb"
+      "publishedDataSha": "d43d6c331379e10b1157e8284aa4b08e57144128"
     },
     "update-practical-sheets.yml": {
       "monitorVersion": 2,
@@ -1229,7 +1172,7 @@
       "recordingStatus": "success",
       "publicationStatus": "success",
       "lastCollectionSuccessAt": "2026-10-21T14:32:26Z",
-      "lastPublicationSuccessAt": "2026-10-21T18:53:23.975Z",
+      "lastPublicationSuccessAt": "2026-10-21T19:39:37.215Z",
       "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39622926207",
       "failures": [
         {
@@ -1265,7 +1208,7 @@
         "schemaVersion": 1
       },
       "publishedCodeSha": "96b8b3d0d49679e1dbb51be5cd551712cb2cfc26",
-      "publishedDataSha": "d0ae04fe7f2c7a1be0ea05ae551bf1b3bf699dcb"
+      "publishedDataSha": "d43d6c331379e10b1157e8284aa4b08e57144128"
     },
     "update-inflation.yml": {
       "monitorVersion": 2,
@@ -1658,7 +1601,7 @@
       "recordingStatus": "success",
       "publicationStatus": "success",
       "lastCollectionSuccessAt": "2026-10-21T10:33:30Z",
-      "lastPublicationSuccessAt": "2026-10-21T18:53:23.975Z",
+      "lastPublicationSuccessAt": "2026-10-21T19:39:37.215Z",
       "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39585064956",
       "failures": [],
       "dataFailures": {},
@@ -1670,7 +1613,7 @@
         "schemaVersion": 1
       },
       "publishedCodeSha": "96b8b3d0d49679e1dbb51be5cd551712cb2cfc26",
-      "publishedDataSha": "d0ae04fe7f2c7a1be0ea05ae551bf1b3bf699dcb"
+      "publishedDataSha": "d43d6c331379e10b1157e8284aa4b08e57144128"
     },
     "update-non-bond-expansion.yml": {
       "monitorVersion": 2,
@@ -1687,7 +1630,7 @@
       "recordingStatus": "success",
       "publicationStatus": "success",
       "lastCollectionSuccessAt": "2026-10-21T12:59:10Z",
-      "lastPublicationSuccessAt": "2026-10-21T18:53:23.975Z",
+      "lastPublicationSuccessAt": "2026-10-21T19:39:37.215Z",
       "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39603357101",
       "failures": [],
       "dataFailures": {},
@@ -1702,7 +1645,7 @@
         "schemaVersion": 1
       },
       "publishedCodeSha": "96b8b3d0d49679e1dbb51be5cd551712cb2cfc26",
-      "publishedDataSha": "d0ae04fe7f2c7a1be0ea05ae551bf1b3bf699dcb"
+      "publishedDataSha": "d43d6c331379e10b1157e8284aa4b08e57144128"
     },
     "update-qualified-exposures.yml": {
       "monitorVersion": 2,
@@ -1793,7 +1736,7 @@
       "recordingStatus": "success",
       "publicationStatus": "success",
       "lastCollectionSuccessAt": "2026-10-18T16:32:07Z",
-      "lastPublicationSuccessAt": "2026-10-21T18:53:23.975Z",
+      "lastPublicationSuccessAt": "2026-10-21T19:39:37.215Z",
       "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39617689999",
       "failures": [
         {
@@ -1819,7 +1762,7 @@
         "schemaVersion": 1
       },
       "publishedCodeSha": "96b8b3d0d49679e1dbb51be5cd551712cb2cfc26",
-      "publishedDataSha": "d0ae04fe7f2c7a1be0ea05ae551bf1b3bf699dcb"
+      "publishedDataSha": "d43d6c331379e10b1157e8284aa4b08e57144128"
     },
     "onboard-assets.yml": {
       "monitorVersion": 2,
@@ -1877,11 +1820,11 @@
       "dataFailures": {}
     }
   },
-  "updatedAt": "2026-10-21T18:55:00Z",
+  "updatedAt": "2026-10-21T19:45:20Z",
   "monitoring": {
     "schemaVersion": 1,
-    "checkedAt": "2026-10-21T19:39:29.949722+00:00",
-    "revision": 231,
+    "checkedAt": "2026-10-21T19:45:47.597005+00:00",
+    "revision": 232,
     "active": {
       "collection:update-practical-sheets.yml:practical:etf": {
         "name": "AMF · comprendre les ETF",
@@ -1903,7 +1846,7 @@
         "dataId": "practical:etf",
         "id": "collection:update-practical-sheets.yml:practical:etf",
         "firstSeenAt": "2026-10-21T15:24:19.560741+00:00",
-        "lastSeenAt": "2026-10-21T19:39:29.949722+00:00"
+        "lastSeenAt": "2026-10-21T19:45:47.597005+00:00"
       },
       "collection:update-practical-sheets.yml:practical:transfer": {
         "name": "AMF · transfert du PEA",
@@ -1925,7 +1868,7 @@
         "dataId": "practical:transfer",
         "id": "collection:update-practical-sheets.yml:practical:transfer",
         "firstSeenAt": "2026-10-21T15:24:19.560741+00:00",
-        "lastSeenAt": "2026-10-21T19:39:29.949722+00:00"
+        "lastSeenAt": "2026-10-21T19:45:47.597005+00:00"
       },
       "collection:update-practical-sheets.yml:practical:bonds": {
         "name": "AMF · comprendre les obligations et le risque de taux",
@@ -1947,7 +1890,7 @@
         "dataId": "practical:bonds",
         "id": "collection:update-practical-sheets.yml:practical:bonds",
         "firstSeenAt": "2026-10-21T15:24:19.560741+00:00",
-        "lastSeenAt": "2026-10-21T19:39:29.949722+00:00"
+        "lastSeenAt": "2026-10-21T19:45:47.597005+00:00"
       },
       "collection:update-editorial-radar.yml:radar:pouvoir-achat": {
         "name": "Radar · pouvoir-achat",
@@ -1967,7 +1910,7 @@
         "dataId": "radar:pouvoir-achat",
         "id": "collection:update-editorial-radar.yml:radar:pouvoir-achat",
         "firstSeenAt": "2026-10-21T12:39:24.700361+00:00",
-        "lastSeenAt": "2026-10-21T19:39:29.949722+00:00"
+        "lastSeenAt": "2026-10-21T19:45:47.597005+00:00"
       },
       "collection:update-publication-observations.yml:anniversary-nasdaq100": {
         "name": "anniversary-nasdaq100",
@@ -1988,7 +1931,7 @@
         "dataId": "anniversary-nasdaq100",
         "id": "collection:update-publication-observations.yml:anniversary-nasdaq100",
         "firstSeenAt": "2026-10-21T19:34:30.410800+00:00",
-        "lastSeenAt": "2026-10-21T19:39:29.949722+00:00"
+        "lastSeenAt": "2026-10-21T19:45:47.597005+00:00"
       },
       "collection:collect-etf-pilot.yml:etf-additional-observation-FR0011550185": {
         "name": "BNP Paribas Easy S&P 500 UCITS ETF (Acc)",
@@ -2002,10 +1945,10 @@
         ],
         "impactScope": "asset",
         "workflow": "collect-etf-pilot.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39626719321",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39663948042",
         "to": "/bibliotheque-donnees?id=FR0011550185",
         "lastSuccessAt": "2026-10-21T12:22:45Z",
-        "completedAt": "2026-10-21T15:41:07Z",
+        "completedAt": "2026-10-21T19:45:20Z",
         "cause": "HTTP Error 503: Service Unavailable",
         "field": "Collecte ETF",
         "sourceUrls": [
@@ -2018,7 +1961,7 @@
         "dataId": "etf-additional-observation-FR0011550185",
         "id": "collection:collect-etf-pilot.yml:etf-additional-observation-FR0011550185",
         "firstSeenAt": "2026-10-21T15:08:25.397352+00:00",
-        "lastSeenAt": "2026-10-21T19:39:29.949722+00:00"
+        "lastSeenAt": "2026-10-21T19:45:47.597005+00:00"
       },
       "collection:collect-etf-pilot.yml:etf-additional-observation-FR0011550193": {
         "name": "BNP Paribas Easy STOXX Europe 600 UCITS ETF",
@@ -2032,10 +1975,10 @@
         ],
         "impactScope": "asset",
         "workflow": "collect-etf-pilot.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39626719321",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39663948042",
         "to": "/bibliotheque-donnees?id=FR0011550193",
         "lastSuccessAt": "2026-10-21T12:22:45Z",
-        "completedAt": "2026-10-21T15:41:07Z",
+        "completedAt": "2026-10-21T19:45:20Z",
         "cause": "HTTP Error 503: Service Unavailable",
         "field": "Collecte ETF",
         "sourceUrls": [
@@ -2049,21 +1992,23 @@
         "dataId": "etf-additional-observation-FR0011550193",
         "id": "collection:collect-etf-pilot.yml:etf-additional-observation-FR0011550193",
         "firstSeenAt": "2026-10-21T15:08:25.397352+00:00",
-        "lastSeenAt": "2026-10-21T19:39:29.949722+00:00"
+        "lastSeenAt": "2026-10-21T19:45:47.597005+00:00"
       },
       "collection:collect-etf-pilot.yml:etf-additional-observation-IE000QDFFK00": {
         "name": "BNP Paribas Easy II Nasdaq 100 UCITS ETF (Acc)",
         "tools": [
           "Comparatif ETF",
+          "Duels de portefeuilles",
+          "Générateur de portefeuilles",
           "Impact des frais",
           "Présentation ETF"
         ],
         "impactScope": "asset",
         "workflow": "collect-etf-pilot.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39626719321",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39663948042",
         "to": "/bibliotheque-donnees?id=IE000QDFFK00",
         "lastSuccessAt": "2026-10-21T12:22:45Z",
-        "completedAt": "2026-10-21T15:41:07Z",
+        "completedAt": "2026-10-21T19:45:20Z",
         "cause": "HTTP Error 503: Service Unavailable",
         "field": "Collecte ETF",
         "sourceUrls": [
@@ -2076,96 +2021,7 @@
         "dataId": "etf-additional-observation-IE000QDFFK00",
         "id": "collection:collect-etf-pilot.yml:etf-additional-observation-IE000QDFFK00",
         "firstSeenAt": "2026-10-21T15:08:25.397352+00:00",
-        "lastSeenAt": "2026-10-21T19:39:29.949722+00:00"
-      },
-      "collection:collect-etf-pilot.yml:etf-additional-observation-IE00B2NPKV68": {
-        "name": "iShares J.P. Morgan $ EM Bond UCITS ETF USD (Dist)",
-        "tools": [
-          "Banque de tweets",
-          "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Impact des frais",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "workflow": "collect-etf-pilot.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39626719321",
-        "to": "/bibliotheque-donnees?id=IE00B2NPKV68",
-        "lastSuccessAt": "2026-10-21T12:22:45Z",
-        "completedAt": "2026-10-21T15:41:07Z",
-        "cause": "HTTP Error 403: Forbidden",
-        "field": "Collecte ETF",
-        "sourceUrls": [
-          "https://extraetf.com/fr/etf-profile/IE00B2NPKV68",
-          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251824&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251824&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "https://www.ishares.com/uk/individual/en/products/251824"
-        ],
-        "kind": "collection",
-        "dataId": "etf-additional-observation-IE00B2NPKV68",
-        "id": "collection:collect-etf-pilot.yml:etf-additional-observation-IE00B2NPKV68",
-        "firstSeenAt": "2026-10-21T19:34:30.410800+00:00",
-        "lastSeenAt": "2026-10-21T19:39:29.949722+00:00"
-      },
-      "collection:collect-etf-pilot.yml:etf-additional-observation-IE00B1FZS913": {
-        "name": "iShares € Govt Bond 15-30yr UCITS ETF EUR (Dist)",
-        "tools": [
-          "Banque de tweets",
-          "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Impact des frais",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "workflow": "collect-etf-pilot.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39626719321",
-        "to": "/bibliotheque-donnees?id=IE00B1FZS913",
-        "lastSuccessAt": "2026-10-21T12:22:45Z",
-        "completedAt": "2026-10-21T15:41:07Z",
-        "cause": "HTTP Error 403: Forbidden",
-        "field": "Collecte ETF",
-        "sourceUrls": [
-          "https://bourse.fortuneo.fr/trackers/cours-ishares-eur-govt-bond-15-30yr-ucits-etf-dis-IBGL-IE00B1FZS913-46",
-          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251735&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251735&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "https://www.ishares.com/uk/individual/en/products/251735/ishares-euro-government-bond-1530yr-ucits-etf"
-        ],
-        "kind": "collection",
-        "dataId": "etf-additional-observation-IE00B1FZS913",
-        "id": "collection:collect-etf-pilot.yml:etf-additional-observation-IE00B1FZS913",
-        "firstSeenAt": "2026-10-21T19:34:30.410800+00:00",
-        "lastSeenAt": "2026-10-21T19:39:29.949722+00:00"
-      },
-      "collection:collect-etf-pilot.yml:etf-additional-observation-DE000A0H08Q4": {
-        "name": "iShares STOXX Europe 600 Technology UCITS ETF (DE)",
-        "tools": [
-          "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Impact des frais",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "workflow": "collect-etf-pilot.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39626719321",
-        "to": "/bibliotheque-donnees?id=DE000A0H08Q4",
-        "lastSuccessAt": "2026-10-21T12:22:45Z",
-        "completedAt": "2026-10-21T15:41:07Z",
-        "cause": "HTTP Error 403: Forbidden",
-        "field": "Collecte ETF",
-        "sourceUrls": [
-          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251961&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251961&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "https://www.justetf.com/en/etf-profile.html?isin=DE000A0H08Q4",
-          "https://www.justetf.com/fr/etf-profile.html?isin=DE000A0H08Q4"
-        ],
-        "kind": "collection",
-        "dataId": "etf-additional-observation-DE000A0H08Q4",
-        "id": "collection:collect-etf-pilot.yml:etf-additional-observation-DE000A0H08Q4",
-        "firstSeenAt": "2026-10-21T19:34:30.410800+00:00",
-        "lastSeenAt": "2026-10-21T19:39:29.949722+00:00"
+        "lastSeenAt": "2026-10-21T19:45:47.597005+00:00"
       },
       "collection:collect-etf-pilot.yml:etf-additional-observation-IE000DQLYVB9": {
         "name": "iShares S&P 500 Swap PEA UCITS ETF",
@@ -2177,10 +2033,10 @@
         ],
         "impactScope": "asset",
         "workflow": "collect-etf-pilot.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39626719321",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39663948042",
         "to": "/bibliotheque-donnees?id=IE000DQLYVB9",
         "lastSuccessAt": "2026-10-21T12:22:45Z",
-        "completedAt": "2026-10-21T15:41:07Z",
+        "completedAt": "2026-10-21T19:45:20Z",
         "cause": "Amundi current index document unavailable: https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU0496786574/FRA/FRA/INSTITUTIONNEL/ETF: HTTP Error 404: Not Found ; https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU0496786574/FRA/FRA/INSTITUTIONNEL/ETF/20260930: HTTP Error 404: Not Found ; https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU0496786574/FRA/FRA/INSTITUTIONNEL/ETF/20260831: HTTP Error 404: Not Found",
         "field": "exposures",
         "sourceUrls": [
@@ -2195,7 +2051,7 @@
         "dataId": "etf-additional-observation-IE000DQLYVB9",
         "id": "collection:collect-etf-pilot.yml:etf-additional-observation-IE000DQLYVB9",
         "firstSeenAt": "2026-10-21T19:34:30.410800+00:00",
-        "lastSeenAt": "2026-10-21T19:39:29.949722+00:00"
+        "lastSeenAt": "2026-10-21T19:45:47.597005+00:00"
       },
       "collection:collect-etf-pilot.yml:index-russell-2000-composition": {
         "name": "Russell 2000",
@@ -2204,10 +2060,10 @@
         ],
         "impactScope": "asset",
         "workflow": "collect-etf-pilot.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39626719321",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39663948042",
         "to": "/bibliotheque-donnees?id=russell-2000",
         "lastSuccessAt": "2026-10-21T12:22:45Z",
-        "completedAt": "2026-10-21T15:41:07Z",
+        "completedAt": "2026-10-21T19:45:20Z",
         "cause": "Amundi current index document unavailable: https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1681038672/FRA/FRA/INSTITUTIONNEL/ETF: HTTP Error 404: Not Found ; https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1681038672/FRA/FRA/INSTITUTIONNEL/ETF/20260930: HTTP Error 404: Not Found ; https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU1681038672/FRA/FRA/INSTITUTIONNEL/ETF/20260831: HTTP Error 404: Not Found",
         "sourceUrls": [
           "https://research.ftserussell.com/Analytics/FactSheets/Home/DownloadSingleIssue?isManual=True&issueName=US2000USD",
@@ -2218,7 +2074,7 @@
         "dataId": "index-russell-2000-composition",
         "id": "collection:collect-etf-pilot.yml:index-russell-2000-composition",
         "firstSeenAt": "2026-10-21T19:34:30.410800+00:00",
-        "lastSeenAt": "2026-10-21T19:39:29.949722+00:00"
+        "lastSeenAt": "2026-10-21T19:45:47.597005+00:00"
       },
       "collection:collect-etf-pilot.yml:index-stoxx600-composition": {
         "name": "Indice STOXX Europe 600",
@@ -2230,10 +2086,10 @@
         ],
         "impactScope": "asset",
         "workflow": "collect-etf-pilot.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39626719321",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39663948042",
         "to": "/bibliotheque-donnees?id=history%3Astoxx600",
         "lastSuccessAt": "2026-10-21T12:22:45Z",
-        "completedAt": "2026-10-21T15:41:07Z",
+        "completedAt": "2026-10-21T19:45:20Z",
         "cause": "Amundi current index document unavailable: https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU0908500753/FRA/FRA/INSTITUTIONNEL/ETF: HTTP Error 404: Not Found ; https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU0908500753/FRA/FRA/INSTITUTIONNEL/ETF/20260930: HTTP Error 404: Not Found ; https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU0908500753/FRA/FRA/INSTITUTIONNEL/ETF/20260831: HTTP Error 404: Not Found",
         "sourceUrls": [
           "https://stoxx.com/index/sxxp/?factsheet=true",
@@ -2245,7 +2101,7 @@
         "dataId": "index-stoxx600-composition",
         "id": "collection:collect-etf-pilot.yml:index-stoxx600-composition",
         "firstSeenAt": "2026-10-21T19:34:30.410800+00:00",
-        "lastSeenAt": "2026-10-21T19:39:29.949722+00:00"
+        "lastSeenAt": "2026-10-21T19:45:47.597005+00:00"
       },
       "collection:collect-etf-pilot.yml:index-eurostoxx50-composition": {
         "name": "EURO STOXX 50",
@@ -2255,10 +2111,10 @@
         ],
         "impactScope": "asset",
         "workflow": "collect-etf-pilot.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39626719321",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39663948042",
         "to": "/bibliotheque-donnees?id=eurostoxx50",
         "lastSuccessAt": "2026-10-21T12:22:45Z",
-        "completedAt": "2026-10-21T15:41:07Z",
+        "completedAt": "2026-10-21T19:45:20Z",
         "cause": "Amundi current index document unavailable: https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR001400ZGP1/FRA/FRA/INSTITUTIONNEL/ETF: HTTP Error 404: Not Found ; https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR001400ZGP1/FRA/FRA/INSTITUTIONNEL/ETF/20260930: HTTP Error 404: Not Found ; https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR001400ZGP1/FRA/FRA/INSTITUTIONNEL/ETF/20260831: HTTP Error 404: Not Found",
         "sourceUrls": [
           "https://stoxx.com/index/sx5e/?factsheet=true",
@@ -2270,7 +2126,7 @@
         "dataId": "index-eurostoxx50-composition",
         "id": "collection:collect-etf-pilot.yml:index-eurostoxx50-composition",
         "firstSeenAt": "2026-10-21T19:34:30.410800+00:00",
-        "lastSeenAt": "2026-10-21T19:39:29.949722+00:00"
+        "lastSeenAt": "2026-10-21T19:45:47.597005+00:00"
       },
       "collection:collect-etf-pilot.yml:index-topix-composition": {
         "name": "TOPIX",
@@ -2279,10 +2135,10 @@
         ],
         "impactScope": "asset",
         "workflow": "collect-etf-pilot.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39626719321",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39663948042",
         "to": "/bibliotheque-donnees?id=topix",
         "lastSuccessAt": "2026-10-21T12:22:45Z",
-        "completedAt": "2026-10-21T15:41:07Z",
+        "completedAt": "2026-10-21T19:45:20Z",
         "cause": "Amundi current index document unavailable: https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013411980/FRA/FRA/INSTITUTIONNEL/ETF: HTTP Error 404: Not Found ; https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013411980/FRA/FRA/INSTITUTIONNEL/ETF/20260930: HTTP Error 404: Not Found ; https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013411980/FRA/FRA/INSTITUTIONNEL/ETF/20260831: HTTP Error 404: Not Found",
         "sourceUrls": [
           "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0013411980/FRA/FRA/INSTITUTIONNEL/ETF",
@@ -2296,7 +2152,7 @@
         "dataId": "index-topix-composition",
         "id": "collection:collect-etf-pilot.yml:index-topix-composition",
         "firstSeenAt": "2026-10-21T19:34:30.410800+00:00",
-        "lastSeenAt": "2026-10-21T19:39:29.949722+00:00"
+        "lastSeenAt": "2026-10-21T19:45:47.597005+00:00"
       },
       "collection:collect-etf-pilot.yml:index-sp500-pea-composition": {
         "name": "S&P 500",
@@ -2306,10 +2162,10 @@
         ],
         "impactScope": "asset",
         "workflow": "collect-etf-pilot.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39626719321",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39663948042",
         "to": "/bibliotheque-donnees?id=sp500-pea",
         "lastSuccessAt": "2026-10-21T12:22:45Z",
-        "completedAt": "2026-10-21T15:41:07Z",
+        "completedAt": "2026-10-21T19:45:20Z",
         "cause": "Amundi current index document unavailable: https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU0496786574/FRA/FRA/INSTITUTIONNEL/ETF: HTTP Error 404: Not Found ; https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU0496786574/FRA/FRA/INSTITUTIONNEL/ETF/20260930: HTTP Error 404: Not Found ; https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU0496786574/FRA/FRA/INSTITUTIONNEL/ETF/20260831: HTTP Error 404: Not Found",
         "sourceUrls": [
           "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011871128/FRA/FRA/RETAIL/ETF/20260630",
@@ -2322,7 +2178,7 @@
         "dataId": "index-sp500-pea-composition",
         "id": "collection:collect-etf-pilot.yml:index-sp500-pea-composition",
         "firstSeenAt": "2026-10-21T19:34:30.410800+00:00",
-        "lastSeenAt": "2026-10-21T19:39:29.949722+00:00"
+        "lastSeenAt": "2026-10-21T19:45:47.597005+00:00"
       },
       "collection:collect-etf-pilot.yml:index-nasdaq-pea-composition": {
         "name": "NASDAQ-100 Notional Net Total Return",
@@ -2332,10 +2188,10 @@
         ],
         "impactScope": "asset",
         "workflow": "collect-etf-pilot.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39626719321",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39663948042",
         "to": "/bibliotheque-donnees?id=nasdaq-pea",
         "lastSuccessAt": "2026-10-21T12:22:45Z",
-        "completedAt": "2026-10-21T15:41:07Z",
+        "completedAt": "2026-10-21T19:45:20Z",
         "cause": "Amundi current index document unavailable: https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011871110/FRA/FRA/INSTITUTIONNEL/ETF: HTTP Error 404: Not Found ; https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011871110/FRA/FRA/INSTITUTIONNEL/ETF/20260930: HTTP Error 404: Not Found ; https://www.amundietf.fr/pdfDocuments/monthly-factsheet/FR0011871110/FRA/FRA/INSTITUTIONNEL/ETF/20260831: HTTP Error 404: Not Found",
         "sourceUrls": [
           "https://indexes.nasdaq.com/docs/FS_XNDX.pdf",
@@ -2347,7 +2203,7 @@
         "dataId": "index-nasdaq-pea-composition",
         "id": "collection:collect-etf-pilot.yml:index-nasdaq-pea-composition",
         "firstSeenAt": "2026-10-21T19:34:30.410800+00:00",
-        "lastSeenAt": "2026-10-21T19:39:29.949722+00:00"
+        "lastSeenAt": "2026-10-21T19:45:47.597005+00:00"
       },
       "collection:collect-etf-pilot.yml:index-sp500-equal-weight-composition": {
         "name": "S&P 500 Equal Weight",
@@ -2357,10 +2213,10 @@
         ],
         "impactScope": "asset",
         "workflow": "collect-etf-pilot.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39626719321",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39663948042",
         "to": "/bibliotheque-donnees?id=sp500-equal-weight",
         "lastSuccessAt": "2026-10-21T12:22:45Z",
-        "completedAt": "2026-10-21T15:41:07Z",
+        "completedAt": "2026-10-21T19:45:20Z",
         "cause": "Amundi current index document unavailable: https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU2991918421/FRA/FRA/INSTITUTIONNEL/ETF: HTTP Error 404: Not Found ; https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU2991918421/FRA/FRA/INSTITUTIONNEL/ETF/20260930: HTTP Error 404: Not Found ; https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU2991918421/FRA/FRA/INSTITUTIONNEL/ETF/20260831: HTTP Error 404: Not Found",
         "sourceUrls": [
           "https://www.amundietf.fr/pdfDocuments/monthly-factsheet/LU2991918421/ENG/FRA/INSTITUTIONNEL/ETF/20260831",
@@ -2373,157 +2229,7 @@
         "dataId": "index-sp500-equal-weight-composition",
         "id": "collection:collect-etf-pilot.yml:index-sp500-equal-weight-composition",
         "firstSeenAt": "2026-10-21T19:34:30.410800+00:00",
-        "lastSeenAt": "2026-10-21T19:39:29.949722+00:00"
-      },
-      "collection:collect-etf-pilot.yml:etf-observation-IE00BZCQB185": {
-        "name": "iShares MSCI India UCITS ETF USD (Acc)",
-        "tools": [
-          "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Impact des frais",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "workflow": "collect-etf-pilot.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39626719321",
-        "to": "/bibliotheque-donnees?id=IE00BZCQB185",
-        "lastSuccessAt": "2026-10-21T12:22:45Z",
-        "completedAt": "2026-10-21T15:41:07Z",
-        "cause": "HTTP Error 403: Forbidden",
-        "sourceUrls": [
-          "https://bourse.fortuneo.fr/trackers/cours-ishares-msci-india-ucits-etf-usd-acc-NDIA-IE00BZCQB185-46",
-          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=297617&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=297617&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "https://www.ishares.com/uk/individual/en/products/297617/ishares-msci-india-ucits-etf"
-        ],
-        "kind": "collection",
-        "field": "Champs du collecteur",
-        "dataId": "etf-observation-IE00BZCQB185",
-        "id": "collection:collect-etf-pilot.yml:etf-observation-IE00BZCQB185",
-        "firstSeenAt": "2026-10-21T19:34:30.410800+00:00",
-        "lastSeenAt": "2026-10-21T19:39:29.949722+00:00"
-      },
-      "collection:collect-etf-pilot.yml:etf-observation-IE000I8KRLL9": {
-        "name": "iShares MSCI Global Semiconductors UCITS ETF",
-        "tools": [
-          "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Impact des frais",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "workflow": "collect-etf-pilot.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39626719321",
-        "to": "/bibliotheque-donnees?id=IE000I8KRLL9",
-        "lastSuccessAt": "2026-10-21T12:22:45Z",
-        "completedAt": "2026-10-21T15:41:07Z",
-        "cause": "HTTP Error 403: Forbidden",
-        "sourceUrls": [
-          "https://bourse.fortuneo.fr/trackers/cours-ishares-msci-global-semiconductors-ucits-etf-usd-acc-SEME-IE000I8KRLL9-23",
-          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=319084&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=319084&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "https://www.ishares.com/uk/individual/en/products/319084/?siteEntryPassthrough=true&switchLocale=y",
-          "https://www.justetf.com/en/etf-profile.html?isin=IE000I8KRLL9"
-        ],
-        "kind": "collection",
-        "field": "Champs du collecteur",
-        "dataId": "etf-observation-IE000I8KRLL9",
-        "id": "collection:collect-etf-pilot.yml:etf-observation-IE000I8KRLL9",
-        "firstSeenAt": "2026-10-21T19:34:30.410800+00:00",
-        "lastSeenAt": "2026-10-21T19:39:29.949722+00:00"
-      },
-      "collection:collect-etf-pilot.yml:etf-observation-IE00B66F4759": {
-        "name": "iShares Euro High Yield Corporate Bond UCITS ETF (Dist)",
-        "tools": [
-          "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Impact des frais",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "workflow": "collect-etf-pilot.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39626719321",
-        "to": "/bibliotheque-donnees?id=IE00B66F4759",
-        "lastSuccessAt": "2026-10-21T12:22:45Z",
-        "completedAt": "2026-10-21T15:41:07Z",
-        "cause": "HTTP Error 403: Forbidden",
-        "sourceUrls": [
-          "https://extraetf.com/fr/etf-profile/IE00B66F4759",
-          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251843&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251843&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "https://www.ishares.com/uk/individual/en/products/251843/?siteEntryPassthrough=true&switchLocale=y",
-          "https://www.justetf.com/en/etf-profile.html?isin=IE00B66F4759"
-        ],
-        "kind": "collection",
-        "field": "Champs du collecteur",
-        "dataId": "etf-observation-IE00B66F4759",
-        "id": "collection:collect-etf-pilot.yml:etf-observation-IE00B66F4759",
-        "firstSeenAt": "2026-10-21T19:34:30.410800+00:00",
-        "lastSeenAt": "2026-10-21T19:39:29.949722+00:00"
-      },
-      "collection:collect-etf-pilot.yml:etf-observation-IE00BMG6Z448": {
-        "name": "iShares MSCI EM ex-China UCITS ETF (Acc)",
-        "tools": [
-          "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Impact des frais",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "workflow": "collect-etf-pilot.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39626719321",
-        "to": "/bibliotheque-donnees?id=IE00BMG6Z448",
-        "lastSuccessAt": "2026-10-21T12:22:45Z",
-        "completedAt": "2026-10-21T15:41:07Z",
-        "cause": "HTTP Error 403: Forbidden",
-        "sourceUrls": [
-          "https://bourse.fortuneo.fr/trackers/cours-ishares-msci-em-ex-china-ucits-etf-usd-acc-MTPI-IE00BMG6Z448-23",
-          "https://www.blackrock.com/fr/particuliers/products/315592/",
-          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=315592&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=315592&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "https://www.ishares.com/uk/individual/en/products/315592/ishares-msci-em-ex-china-ucits-etf?siteEntryPassthrough=true&switchLocale=y",
-          "https://www.justetf.com/en/etf-profile.html?isin=IE00BMG6Z448"
-        ],
-        "kind": "collection",
-        "field": "Champs du collecteur",
-        "dataId": "etf-observation-IE00BMG6Z448",
-        "id": "collection:collect-etf-pilot.yml:etf-observation-IE00BMG6Z448",
-        "firstSeenAt": "2026-10-21T19:34:30.410800+00:00",
-        "lastSeenAt": "2026-10-21T19:39:29.949722+00:00"
-      },
-      "collection:collect-etf-pilot.yml:etf-observation-IE00BYXG2H39": {
-        "name": "iShares Nasdaq US Biotechnology UCITS ETF",
-        "tools": [
-          "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Impact des frais",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "workflow": "collect-etf-pilot.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39626719321",
-        "to": "/bibliotheque-donnees?id=IE00BYXG2H39",
-        "lastSuccessAt": "2026-10-21T12:22:45Z",
-        "completedAt": "2026-10-21T15:41:07Z",
-        "cause": "HTTP Error 403: Forbidden",
-        "sourceUrls": [
-          "https://extraetf.com/fr/etf-profile/IE00BYXG2H39",
-          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=291450&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=291450&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
-          "https://www.ishares.com/ch/institutional/en/literature/fact-sheet/btec-ishares-nasdaq-us-biotechnology-ucits-etf-fund-fact-sheet-fr-ch.pdf",
-          "https://www.justetf.com/en/etf-profile.html?isin=IE00BYXG2H39"
-        ],
-        "kind": "collection",
-        "field": "Champs du collecteur",
-        "dataId": "etf-observation-IE00BYXG2H39",
-        "id": "collection:collect-etf-pilot.yml:etf-observation-IE00BYXG2H39",
-        "firstSeenAt": "2026-10-21T19:34:30.410800+00:00",
-        "lastSeenAt": "2026-10-21T19:39:29.949722+00:00"
+        "lastSeenAt": "2026-10-21T19:45:47.597005+00:00"
       },
       "collection:collect-etf-pilot.yml:etf-presentation-performance-FR001400U5Q4": {
         "name": "Amundi PEA Monde (MSCI World) UCITS ETF",
@@ -2537,10 +2243,10 @@
         ],
         "impactScope": "asset",
         "workflow": "collect-etf-pilot.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39626719321",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39663948042",
         "to": "/bibliotheque-donnees?id=FR001400U5Q4",
         "lastSuccessAt": "2026-10-21T12:22:45Z",
-        "completedAt": "2026-10-21T15:41:07Z",
+        "completedAt": "2026-10-21T19:45:20Z",
         "cause": "HTTP Error 404: Not Found",
         "field": "Collecte ETF",
         "sourceUrls": [
@@ -2554,7 +2260,7 @@
         "dataId": "etf-presentation-performance-FR001400U5Q4",
         "id": "collection:collect-etf-pilot.yml:etf-presentation-performance-FR001400U5Q4",
         "firstSeenAt": "2026-10-21T19:34:30.410800+00:00",
-        "lastSeenAt": "2026-10-21T19:39:29.949722+00:00"
+        "lastSeenAt": "2026-10-21T19:45:47.597005+00:00"
       },
       "collection:collect-etf-pilot.yml:etf-presentation-performance-LU2970735911": {
         "name": "Amundi Core EUR High Yield Bond UCITS ETF",
@@ -2566,10 +2272,10 @@
         ],
         "impactScope": "asset",
         "workflow": "collect-etf-pilot.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39626719321",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39663948042",
         "to": "/bibliotheque-donnees?id=LU2970735911",
         "lastSuccessAt": "2026-10-21T12:22:45Z",
-        "completedAt": "2026-10-21T15:41:07Z",
+        "completedAt": "2026-10-21T19:45:20Z",
         "cause": "HTTP Error 404: Not Found",
         "field": "Collecte ETF",
         "sourceUrls": [
@@ -2584,7 +2290,7 @@
         "dataId": "etf-presentation-performance-LU2970735911",
         "id": "collection:collect-etf-pilot.yml:etf-presentation-performance-LU2970735911",
         "firstSeenAt": "2026-10-21T19:34:30.410800+00:00",
-        "lastSeenAt": "2026-10-21T19:39:29.949722+00:00"
+        "lastSeenAt": "2026-10-21T19:45:47.597005+00:00"
       },
       "collection:update-market-monthly.yml:history:fx:TWD": {
         "name": "history:fx:TWD",
@@ -2607,7 +2313,7 @@
         "dataId": "history:fx:TWD",
         "id": "collection:update-market-monthly.yml:history:fx:TWD",
         "firstSeenAt": "2026-10-19T05:58:42.740410+00:00",
-        "lastSeenAt": "2026-10-21T19:39:29.949722+00:00"
+        "lastSeenAt": "2026-10-21T19:45:47.597005+00:00"
       },
       "collection:update-market-monthly.yml:listing:FR0010524777": {
         "name": "Amundi MSCI New Energy UCITS ETF Dist",
@@ -2636,7 +2342,7 @@
         "dataId": "listing:FR0010524777",
         "id": "collection:update-market-monthly.yml:listing:FR0010524777",
         "firstSeenAt": "2026-10-21T19:34:30.410800+00:00",
-        "lastSeenAt": "2026-10-21T19:39:29.949722+00:00"
+        "lastSeenAt": "2026-10-21T19:45:47.597005+00:00"
       },
       "collection:update-market-monthly.yml:history:nasdaq100": {
         "name": "Nasdaq-100",
@@ -2662,7 +2368,7 @@
         "dataId": "history:nasdaq100",
         "id": "collection:update-market-monthly.yml:history:nasdaq100",
         "firstSeenAt": "2026-10-21T19:34:30.410800+00:00",
-        "lastSeenAt": "2026-10-21T19:39:29.949722+00:00"
+        "lastSeenAt": "2026-10-21T19:45:47.597005+00:00"
       },
       "checks:update-investor-13f.yml": {
         "name": "Portefeuilles des investisseurs",
@@ -2679,7 +2385,7 @@
         "cause": "deploy / publish-code / build : Run node scripts/build-dca-exposures.mjs && npm run test:dca && node scripts/audit-portfolio-routing.mjs ; deploy / publish-code / exposure-browser-check : Run node scripts/playwright-exposure-scope.mjs",
         "id": "checks:update-investor-13f.yml",
         "firstSeenAt": "2026-10-21T17:34:46.663710+00:00",
-        "lastSeenAt": "2026-10-21T19:39:29.949722+00:00"
+        "lastSeenAt": "2026-10-21T19:45:47.597005+00:00"
       },
       "collection:update-qualified-exposures.yml:dca-holdings:IE00BJGWQN72": {
         "name": "WisdomTree Cloud Computing UCITS ETF USD Acc",
@@ -2707,7 +2413,7 @@
         "dataId": "dca-holdings:IE00BJGWQN72",
         "id": "collection:update-qualified-exposures.yml:dca-holdings:IE00BJGWQN72",
         "firstSeenAt": "2026-10-21T09:49:46.266914+00:00",
-        "lastSeenAt": "2026-10-21T19:39:29.949722+00:00"
+        "lastSeenAt": "2026-10-21T19:45:47.597005+00:00"
       },
       "collection:update-qualified-exposures.yml:dca-holdings:IE00BDVPNG13": {
         "name": "WisdomTree Artificial Intelligence UCITS ETF USD Acc",
@@ -2735,7 +2441,7 @@
         "dataId": "dca-holdings:IE00BDVPNG13",
         "id": "collection:update-qualified-exposures.yml:dca-holdings:IE00BDVPNG13",
         "firstSeenAt": "2026-10-21T15:09:43.235632+00:00",
-        "lastSeenAt": "2026-10-21T19:39:29.949722+00:00"
+        "lastSeenAt": "2026-10-21T19:45:47.597005+00:00"
       },
       "collection:update-qualified-exposures.yml:dca-holdings:IE0002Y8CX98": {
         "name": "WisdomTree Europe Defence UCITS ETF",
@@ -2762,7 +2468,7 @@
         "dataId": "dca-holdings:IE0002Y8CX98",
         "id": "collection:update-qualified-exposures.yml:dca-holdings:IE0002Y8CX98",
         "firstSeenAt": "2026-10-21T15:09:43.235632+00:00",
-        "lastSeenAt": "2026-10-21T19:39:29.949722+00:00"
+        "lastSeenAt": "2026-10-21T19:45:47.597005+00:00"
       },
       "collection:update-qualified-exposures.yml:dca-holdings:IE000W8WMSL2": {
         "name": "WisdomTree Quantum Computing UCITS ETF",
@@ -2789,7 +2495,7 @@
         "dataId": "dca-holdings:IE000W8WMSL2",
         "id": "collection:update-qualified-exposures.yml:dca-holdings:IE000W8WMSL2",
         "firstSeenAt": "2026-10-21T15:09:43.235632+00:00",
-        "lastSeenAt": "2026-10-21T19:39:29.949722+00:00"
+        "lastSeenAt": "2026-10-21T19:45:47.597005+00:00"
       },
       "collection:update-instrument-metadata.yml:IE00B0M62S72:pea:qualification": {
         "name": "iShares Euro Dividend UCITS ETF",
@@ -2816,7 +2522,7 @@
         "dataId": "IE00B0M62S72:pea:qualification",
         "id": "collection:update-instrument-metadata.yml:IE00B0M62S72:pea:qualification",
         "firstSeenAt": "2026-10-19T19:03:43.742241+00:00",
-        "lastSeenAt": "2026-10-21T19:39:29.949722+00:00"
+        "lastSeenAt": "2026-10-21T19:45:47.597005+00:00"
       },
       "field:instrument:IE00BDVPNG13:completeHoldings": {
         "id": "field:instrument:IE00BDVPNG13:completeHoldings",
@@ -2845,7 +2551,7 @@
         "evaluatedAt": "2026-10-21",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-21T14:39:49.523354+00:00",
-        "lastSeenAt": "2026-10-21T19:39:29.949722+00:00"
+        "lastSeenAt": "2026-10-21T19:45:47.597005+00:00"
       },
       "field:instrument:IE00BJGWQN72:completeHoldings": {
         "id": "field:instrument:IE00BJGWQN72:completeHoldings",
@@ -2874,7 +2580,7 @@
         "evaluatedAt": "2026-10-21",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-21T12:01:24.697671+00:00",
-        "lastSeenAt": "2026-10-21T19:39:29.949722+00:00"
+        "lastSeenAt": "2026-10-21T19:45:47.597005+00:00"
       },
       "field:instrument:IE0002Y8CX98:completeHoldings": {
         "id": "field:instrument:IE0002Y8CX98:completeHoldings",
@@ -2901,7 +2607,7 @@
         "evaluatedAt": "2026-10-21",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-21T14:39:49.523354+00:00",
-        "lastSeenAt": "2026-10-21T19:39:29.949722+00:00"
+        "lastSeenAt": "2026-10-21T19:45:47.597005+00:00"
       },
       "field:instrument:IE000W8WMSL2:completeHoldings": {
         "id": "field:instrument:IE000W8WMSL2:completeHoldings",
@@ -2928,7 +2634,7 @@
         "evaluatedAt": "2026-10-21",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-21T14:39:49.523354+00:00",
-        "lastSeenAt": "2026-10-21T19:39:29.949722+00:00"
+        "lastSeenAt": "2026-10-21T19:45:47.597005+00:00"
       },
       "radar:f803743f0d8effa9ba3ba35a": {
         "name": "SPDR € Corp Bond UCITS ETF",
@@ -2950,7 +2656,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-20) : Poids des dix premières lignes. Dernière observation conservée ; propositions archivées (etf:IE00B3T9LM79:top10:0261a38d6b954a5f4e504dab:2026-10-20).",
         "id": "radar:f803743f0d8effa9ba3ba35a",
         "firstSeenAt": "2026-10-21T17:36:02.877448+00:00",
-        "lastSeenAt": "2026-10-21T19:39:29.949722+00:00"
+        "lastSeenAt": "2026-10-21T19:45:47.597005+00:00"
       },
       "radar:4f4ba8cb087f5ab7283d9ece": {
         "name": "Xtrackers MSCI World ex USA UCITS ETF 1C",
@@ -2977,7 +2683,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-20) : Poids du pays United Kingdom. Dernière observation conservée ; propositions archivées (etf:IE0006WW1TQ4:countries:United Kingdom:896eb444159fd8c94545e70e:2026-10-20).",
         "id": "radar:4f4ba8cb087f5ab7283d9ece",
         "firstSeenAt": "2026-10-21T17:36:02.877448+00:00",
-        "lastSeenAt": "2026-10-21T19:39:29.949722+00:00"
+        "lastSeenAt": "2026-10-21T19:45:47.597005+00:00"
       },
       "radar:2a6cddb5ade1c330dfff255a": {
         "name": "Xtrackers MSCI World ex USA UCITS ETF 1C",
@@ -3004,7 +2710,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-20) : Poids du pays France. Dernière observation conservée ; propositions archivées (etf:IE0006WW1TQ4:countries:France:896eb444159fd8c94545e70e:2026-10-20).",
         "id": "radar:2a6cddb5ade1c330dfff255a",
         "firstSeenAt": "2026-10-21T17:36:02.877448+00:00",
-        "lastSeenAt": "2026-10-21T19:39:29.949722+00:00"
+        "lastSeenAt": "2026-10-21T19:45:47.597005+00:00"
       },
       "radar:45e64be209a1a7bf034e15a1": {
         "name": "Xtrackers MSCI World ex USA UCITS ETF 1C",
@@ -3031,7 +2737,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-20) : Poids du pays Netherlands. Dernière observation conservée ; propositions archivées (etf:IE0006WW1TQ4:countries:Netherlands:896eb444159fd8c94545e70e:2026-10-20).",
         "id": "radar:45e64be209a1a7bf034e15a1",
         "firstSeenAt": "2026-10-21T17:36:02.877448+00:00",
-        "lastSeenAt": "2026-10-21T19:39:29.949722+00:00"
+        "lastSeenAt": "2026-10-21T19:45:47.597005+00:00"
       },
       "radar:91592047ef13da6e7f4a43af": {
         "name": "Xtrackers MSCI World ex USA UCITS ETF 1C",
@@ -3058,7 +2764,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-20) : Poids du pays Sweden. Dernière observation conservée ; propositions archivées (etf:IE0006WW1TQ4:countries:Sweden:896eb444159fd8c94545e70e:2026-10-20).",
         "id": "radar:91592047ef13da6e7f4a43af",
         "firstSeenAt": "2026-10-21T17:36:02.877448+00:00",
-        "lastSeenAt": "2026-10-21T19:39:29.949722+00:00"
+        "lastSeenAt": "2026-10-21T19:45:47.597005+00:00"
       },
       "radar:58f0cf8646925b56a97683e9": {
         "name": "Xtrackers MSCI World ex USA UCITS ETF 1C",
@@ -3085,7 +2791,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-20) : Poids du pays Luxembourg. Dernière observation conservée ; propositions archivées (etf:IE0006WW1TQ4:countries:Luxembourg:896eb444159fd8c94545e70e:2026-10-20).",
         "id": "radar:58f0cf8646925b56a97683e9",
         "firstSeenAt": "2026-10-21T17:36:02.877448+00:00",
-        "lastSeenAt": "2026-10-21T19:39:29.949722+00:00"
+        "lastSeenAt": "2026-10-21T19:45:47.597005+00:00"
       },
       "radar:66be4fe6481a11ea2541c059": {
         "name": "Xtrackers Artificial Intelligence and Big Data UCITS ETF",
@@ -3109,7 +2815,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-20) : Poids du pays United States. Dernière observation conservée ; propositions archivées (etf:IE00BGV5VN51:countries:United States:f9b8ebfcd2d4a3f0bd10cd4f:2026-10-20).",
         "id": "radar:66be4fe6481a11ea2541c059",
         "firstSeenAt": "2026-10-21T17:36:02.877448+00:00",
-        "lastSeenAt": "2026-10-21T19:39:29.949722+00:00"
+        "lastSeenAt": "2026-10-21T19:45:47.597005+00:00"
       },
       "radar:2fc50432194786d6c6c1fb0c": {
         "name": "Xtrackers Artificial Intelligence and Big Data UCITS ETF",
@@ -3133,7 +2839,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-20) : Poids du pays Ireland. Dernière observation conservée ; propositions archivées (etf:IE00BGV5VN51:countries:Ireland:f9b8ebfcd2d4a3f0bd10cd4f:2026-10-20).",
         "id": "radar:2fc50432194786d6c6c1fb0c",
         "firstSeenAt": "2026-10-21T17:36:02.877448+00:00",
-        "lastSeenAt": "2026-10-21T19:39:29.949722+00:00"
+        "lastSeenAt": "2026-10-21T19:45:47.597005+00:00"
       },
       "radar:162e690c059fed0f61fa579c": {
         "name": "Xtrackers Artificial Intelligence and Big Data UCITS ETF",
@@ -3157,7 +2863,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-20) : Poids du pays Australia. Dernière observation conservée ; propositions archivées (etf:IE00BGV5VN51:countries:Australia:f9b8ebfcd2d4a3f0bd10cd4f:2026-10-20).",
         "id": "radar:162e690c059fed0f61fa579c",
         "firstSeenAt": "2026-10-21T17:36:02.877448+00:00",
-        "lastSeenAt": "2026-10-21T19:39:29.949722+00:00"
+        "lastSeenAt": "2026-10-21T19:45:47.597005+00:00"
       },
       "radar:a8b4b25286824c3c36d69145": {
         "name": "Xtrackers MSCI World Health Care UCITS ETF",
@@ -3182,7 +2888,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-20) : Poids du pays United States. Dernière observation conservée ; propositions archivées (etf:IE00BM67HK77:countries:United States:e02e00a632cb2b9e9ddccd1e:2026-10-20).",
         "id": "radar:a8b4b25286824c3c36d69145",
         "firstSeenAt": "2026-10-21T17:36:02.877448+00:00",
-        "lastSeenAt": "2026-10-21T19:39:29.949722+00:00"
+        "lastSeenAt": "2026-10-21T19:45:47.597005+00:00"
       },
       "radar:cf512249db4214f892e73ff4": {
         "name": "Xtrackers MSCI World Health Care UCITS ETF",
@@ -3207,7 +2913,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-20) : Poids du pays United Kingdom. Dernière observation conservée ; propositions archivées (etf:IE00BM67HK77:countries:United Kingdom:e02e00a632cb2b9e9ddccd1e:2026-10-20).",
         "id": "radar:cf512249db4214f892e73ff4",
         "firstSeenAt": "2026-10-21T17:36:02.877448+00:00",
-        "lastSeenAt": "2026-10-21T19:39:29.949722+00:00"
+        "lastSeenAt": "2026-10-21T19:45:47.597005+00:00"
       },
       "radar:1c700f1a0f0d902671fb266c": {
         "name": "Xtrackers MSCI World Health Care UCITS ETF",
@@ -3232,7 +2938,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-20) : Poids du pays Ireland. Dernière observation conservée ; propositions archivées (etf:IE00BM67HK77:countries:Ireland:e02e00a632cb2b9e9ddccd1e:2026-10-20).",
         "id": "radar:1c700f1a0f0d902671fb266c",
         "firstSeenAt": "2026-10-21T17:36:02.877448+00:00",
-        "lastSeenAt": "2026-10-21T19:39:29.949722+00:00"
+        "lastSeenAt": "2026-10-21T19:45:47.597005+00:00"
       },
       "radar:9daa0ab661f701ee3c8026f4": {
         "name": "Xtrackers MSCI Emerging Markets UCITS ETF",
@@ -3256,7 +2962,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-20) : Poids du pays China. Dernière observation conservée ; propositions archivées (etf:IE00BTJRMP35:countries:China:9a89e0e64273d8294b2dae58:2026-10-20).",
         "id": "radar:9daa0ab661f701ee3c8026f4",
         "firstSeenAt": "2026-10-21T17:36:02.877448+00:00",
-        "lastSeenAt": "2026-10-21T19:39:29.949722+00:00"
+        "lastSeenAt": "2026-10-21T19:45:47.597005+00:00"
       },
       "radar:88e88e59e9e809c50ff8d9b2": {
         "name": "Xtrackers MSCI Emerging Markets UCITS ETF",
@@ -3280,7 +2986,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-20) : Poids du pays Brazil. Dernière observation conservée ; propositions archivées (etf:IE00BTJRMP35:countries:Brazil:9a89e0e64273d8294b2dae58:2026-10-20).",
         "id": "radar:88e88e59e9e809c50ff8d9b2",
         "firstSeenAt": "2026-10-21T17:36:02.877448+00:00",
-        "lastSeenAt": "2026-10-21T19:39:29.949722+00:00"
+        "lastSeenAt": "2026-10-21T19:45:47.597005+00:00"
       },
       "radar:e88ce3686178c8f81b3d1eb0": {
         "name": "Xtrackers MSCI Emerging Markets UCITS ETF",
@@ -3304,7 +3010,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-20) : Poids du pays Ireland. Dernière observation conservée ; propositions archivées (etf:IE00BTJRMP35:countries:Ireland:9a89e0e64273d8294b2dae58:2026-10-20).",
         "id": "radar:e88ce3686178c8f81b3d1eb0",
         "firstSeenAt": "2026-10-21T17:36:02.877448+00:00",
-        "lastSeenAt": "2026-10-21T19:39:29.949722+00:00"
+        "lastSeenAt": "2026-10-21T19:45:47.597005+00:00"
       },
       "radar:c41e166d64020e449af66d47": {
         "name": "Xtrackers MSCI Emerging Markets UCITS ETF",
@@ -3328,43 +3034,10 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-20) : Poids du pays Cayman Islands. Dernière observation conservée ; propositions archivées (etf:IE00BTJRMP35:countries:Cayman Islands:9a89e0e64273d8294b2dae58:2026-10-20).",
         "id": "radar:c41e166d64020e449af66d47",
         "firstSeenAt": "2026-10-21T17:36:02.877448+00:00",
-        "lastSeenAt": "2026-10-21T19:39:29.949722+00:00"
+        "lastSeenAt": "2026-10-21T19:45:47.597005+00:00"
       }
     },
     "events": [
-      {
-        "revision": 202,
-        "at": "2026-10-21T06:20:34.851229+00:00",
-        "opened": [],
-        "resolved": [
-          {
-            "name": "Bitwise Physical Bitcoin ETP",
-            "tools": [
-              "Comparatif ETF",
-              "Duels de portefeuilles",
-              "Générateur de portefeuilles",
-              "Présentation ETF"
-            ],
-            "impactScope": "asset",
-            "sourceUrls": [
-              "https://bitwiseinvestments.eu/de/products/bitwise-physical-bitcoin-etp/",
-              "https://bitwiseinvestments.eu/products/bitwise-physical-bitcoin-etp/",
-              "https://bourse.fortuneo.fr/trackers/cours-bitetnxetcfixpar-BTCE-DE000A27Z304-23",
-              "https://www.justetf.com/en/etf-profile.html?isin=DE000A27Z304",
-              "https://www.slickcharts.com/currency/BTC/returns"
-            ],
-            "to": "/bibliotheque-donnees?id=DE000A27Z304",
-            "kind": "conflict",
-            "field": "Encours",
-            "cause": "Valeur contradictoire pour la même période (2026-10-20) : Encours. Dernière observation conservée ; propositions archivées (etf:DE000A27Z304:aum:7ee6ce84bc97ae28c68471dd:2026-10-20).",
-            "id": "radar:53bf32dd0edc7865b04be5b0",
-            "firstSeenAt": "2026-10-20T19:51:00.268149+00:00",
-            "lastSeenAt": "2026-10-21T06:13:22.812342+00:00",
-            "resolvedAt": "2026-10-21T06:20:34.851229+00:00"
-          }
-        ],
-        "escalated": []
-      },
       {
         "revision": 203,
         "at": "2026-10-21T08:35:59.077983+00:00",
@@ -9558,9 +9231,514 @@
         ],
         "retired": [],
         "escalated": []
+      },
+      {
+        "revision": 232,
+        "at": "2026-10-21T19:45:47.597005+00:00",
+        "opened": [],
+        "resolved": [
+          {
+            "name": "iShares J.P. Morgan $ EM Bond UCITS ETF USD (Dist)",
+            "tools": [
+              "Banque de tweets",
+              "Comparatif ETF",
+              "Duels de portefeuilles",
+              "Générateur de portefeuilles",
+              "Impact des frais",
+              "Présentation ETF"
+            ],
+            "impactScope": "asset",
+            "workflow": "collect-etf-pilot.yml",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39626719321",
+            "to": "/bibliotheque-donnees?id=IE00B2NPKV68",
+            "lastSuccessAt": "2026-10-21T12:22:45Z",
+            "completedAt": "2026-10-21T15:41:07Z",
+            "cause": "HTTP Error 403: Forbidden",
+            "field": "Collecte ETF",
+            "sourceUrls": [
+              "https://extraetf.com/fr/etf-profile/IE00B2NPKV68",
+              "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251824&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+              "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251824&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+              "https://www.ishares.com/uk/individual/en/products/251824"
+            ],
+            "kind": "collection",
+            "dataId": "etf-additional-observation-IE00B2NPKV68",
+            "id": "collection:collect-etf-pilot.yml:etf-additional-observation-IE00B2NPKV68",
+            "firstSeenAt": "2026-10-21T19:34:30.410800+00:00",
+            "lastSeenAt": "2026-10-21T19:39:29.949722+00:00",
+            "resolvedAt": "2026-10-21T19:45:47.597005+00:00"
+          },
+          {
+            "name": "iShares € Govt Bond 15-30yr UCITS ETF EUR (Dist)",
+            "tools": [
+              "Banque de tweets",
+              "Comparatif ETF",
+              "Duels de portefeuilles",
+              "Générateur de portefeuilles",
+              "Impact des frais",
+              "Présentation ETF"
+            ],
+            "impactScope": "asset",
+            "workflow": "collect-etf-pilot.yml",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39626719321",
+            "to": "/bibliotheque-donnees?id=IE00B1FZS913",
+            "lastSuccessAt": "2026-10-21T12:22:45Z",
+            "completedAt": "2026-10-21T15:41:07Z",
+            "cause": "HTTP Error 403: Forbidden",
+            "field": "Collecte ETF",
+            "sourceUrls": [
+              "https://bourse.fortuneo.fr/trackers/cours-ishares-eur-govt-bond-15-30yr-ucits-etf-dis-IBGL-IE00B1FZS913-46",
+              "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251735&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+              "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251735&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+              "https://www.ishares.com/uk/individual/en/products/251735/ishares-euro-government-bond-1530yr-ucits-etf"
+            ],
+            "kind": "collection",
+            "dataId": "etf-additional-observation-IE00B1FZS913",
+            "id": "collection:collect-etf-pilot.yml:etf-additional-observation-IE00B1FZS913",
+            "firstSeenAt": "2026-10-21T19:34:30.410800+00:00",
+            "lastSeenAt": "2026-10-21T19:39:29.949722+00:00",
+            "resolvedAt": "2026-10-21T19:45:47.597005+00:00"
+          },
+          {
+            "name": "iShares STOXX Europe 600 Technology UCITS ETF (DE)",
+            "tools": [
+              "Comparatif ETF",
+              "Duels de portefeuilles",
+              "Générateur de portefeuilles",
+              "Impact des frais",
+              "Présentation ETF"
+            ],
+            "impactScope": "asset",
+            "workflow": "collect-etf-pilot.yml",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39626719321",
+            "to": "/bibliotheque-donnees?id=DE000A0H08Q4",
+            "lastSuccessAt": "2026-10-21T12:22:45Z",
+            "completedAt": "2026-10-21T15:41:07Z",
+            "cause": "HTTP Error 403: Forbidden",
+            "field": "Collecte ETF",
+            "sourceUrls": [
+              "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251961&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+              "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251961&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+              "https://www.justetf.com/en/etf-profile.html?isin=DE000A0H08Q4",
+              "https://www.justetf.com/fr/etf-profile.html?isin=DE000A0H08Q4"
+            ],
+            "kind": "collection",
+            "dataId": "etf-additional-observation-DE000A0H08Q4",
+            "id": "collection:collect-etf-pilot.yml:etf-additional-observation-DE000A0H08Q4",
+            "firstSeenAt": "2026-10-21T19:34:30.410800+00:00",
+            "lastSeenAt": "2026-10-21T19:39:29.949722+00:00",
+            "resolvedAt": "2026-10-21T19:45:47.597005+00:00"
+          },
+          {
+            "name": "iShares MSCI India UCITS ETF USD (Acc)",
+            "tools": [
+              "Comparatif ETF",
+              "Duels de portefeuilles",
+              "Générateur de portefeuilles",
+              "Impact des frais",
+              "Présentation ETF"
+            ],
+            "impactScope": "asset",
+            "workflow": "collect-etf-pilot.yml",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39626719321",
+            "to": "/bibliotheque-donnees?id=IE00BZCQB185",
+            "lastSuccessAt": "2026-10-21T12:22:45Z",
+            "completedAt": "2026-10-21T15:41:07Z",
+            "cause": "HTTP Error 403: Forbidden",
+            "sourceUrls": [
+              "https://bourse.fortuneo.fr/trackers/cours-ishares-msci-india-ucits-etf-usd-acc-NDIA-IE00BZCQB185-46",
+              "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=297617&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+              "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=297617&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+              "https://www.ishares.com/uk/individual/en/products/297617/ishares-msci-india-ucits-etf"
+            ],
+            "kind": "collection",
+            "field": "Champs du collecteur",
+            "dataId": "etf-observation-IE00BZCQB185",
+            "id": "collection:collect-etf-pilot.yml:etf-observation-IE00BZCQB185",
+            "firstSeenAt": "2026-10-21T19:34:30.410800+00:00",
+            "lastSeenAt": "2026-10-21T19:39:29.949722+00:00",
+            "resolvedAt": "2026-10-21T19:45:47.597005+00:00"
+          },
+          {
+            "name": "iShares MSCI Global Semiconductors UCITS ETF",
+            "tools": [
+              "Comparatif ETF",
+              "Duels de portefeuilles",
+              "Générateur de portefeuilles",
+              "Impact des frais",
+              "Présentation ETF"
+            ],
+            "impactScope": "asset",
+            "workflow": "collect-etf-pilot.yml",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39626719321",
+            "to": "/bibliotheque-donnees?id=IE000I8KRLL9",
+            "lastSuccessAt": "2026-10-21T12:22:45Z",
+            "completedAt": "2026-10-21T15:41:07Z",
+            "cause": "HTTP Error 403: Forbidden",
+            "sourceUrls": [
+              "https://bourse.fortuneo.fr/trackers/cours-ishares-msci-global-semiconductors-ucits-etf-usd-acc-SEME-IE000I8KRLL9-23",
+              "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=319084&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+              "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=319084&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+              "https://www.ishares.com/uk/individual/en/products/319084/?siteEntryPassthrough=true&switchLocale=y",
+              "https://www.justetf.com/en/etf-profile.html?isin=IE000I8KRLL9"
+            ],
+            "kind": "collection",
+            "field": "Champs du collecteur",
+            "dataId": "etf-observation-IE000I8KRLL9",
+            "id": "collection:collect-etf-pilot.yml:etf-observation-IE000I8KRLL9",
+            "firstSeenAt": "2026-10-21T19:34:30.410800+00:00",
+            "lastSeenAt": "2026-10-21T19:39:29.949722+00:00",
+            "resolvedAt": "2026-10-21T19:45:47.597005+00:00"
+          },
+          {
+            "name": "iShares Euro High Yield Corporate Bond UCITS ETF (Dist)",
+            "tools": [
+              "Comparatif ETF",
+              "Duels de portefeuilles",
+              "Générateur de portefeuilles",
+              "Impact des frais",
+              "Présentation ETF"
+            ],
+            "impactScope": "asset",
+            "workflow": "collect-etf-pilot.yml",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39626719321",
+            "to": "/bibliotheque-donnees?id=IE00B66F4759",
+            "lastSuccessAt": "2026-10-21T12:22:45Z",
+            "completedAt": "2026-10-21T15:41:07Z",
+            "cause": "HTTP Error 403: Forbidden",
+            "sourceUrls": [
+              "https://extraetf.com/fr/etf-profile/IE00B66F4759",
+              "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251843&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+              "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251843&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+              "https://www.ishares.com/uk/individual/en/products/251843/?siteEntryPassthrough=true&switchLocale=y",
+              "https://www.justetf.com/en/etf-profile.html?isin=IE00B66F4759"
+            ],
+            "kind": "collection",
+            "field": "Champs du collecteur",
+            "dataId": "etf-observation-IE00B66F4759",
+            "id": "collection:collect-etf-pilot.yml:etf-observation-IE00B66F4759",
+            "firstSeenAt": "2026-10-21T19:34:30.410800+00:00",
+            "lastSeenAt": "2026-10-21T19:39:29.949722+00:00",
+            "resolvedAt": "2026-10-21T19:45:47.597005+00:00"
+          },
+          {
+            "name": "iShares MSCI EM ex-China UCITS ETF (Acc)",
+            "tools": [
+              "Comparatif ETF",
+              "Duels de portefeuilles",
+              "Générateur de portefeuilles",
+              "Impact des frais",
+              "Présentation ETF"
+            ],
+            "impactScope": "asset",
+            "workflow": "collect-etf-pilot.yml",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39626719321",
+            "to": "/bibliotheque-donnees?id=IE00BMG6Z448",
+            "lastSuccessAt": "2026-10-21T12:22:45Z",
+            "completedAt": "2026-10-21T15:41:07Z",
+            "cause": "HTTP Error 403: Forbidden",
+            "sourceUrls": [
+              "https://bourse.fortuneo.fr/trackers/cours-ishares-msci-em-ex-china-ucits-etf-usd-acc-MTPI-IE00BMG6Z448-23",
+              "https://www.blackrock.com/fr/particuliers/products/315592/",
+              "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=315592&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+              "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=315592&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+              "https://www.ishares.com/uk/individual/en/products/315592/ishares-msci-em-ex-china-ucits-etf?siteEntryPassthrough=true&switchLocale=y",
+              "https://www.justetf.com/en/etf-profile.html?isin=IE00BMG6Z448"
+            ],
+            "kind": "collection",
+            "field": "Champs du collecteur",
+            "dataId": "etf-observation-IE00BMG6Z448",
+            "id": "collection:collect-etf-pilot.yml:etf-observation-IE00BMG6Z448",
+            "firstSeenAt": "2026-10-21T19:34:30.410800+00:00",
+            "lastSeenAt": "2026-10-21T19:39:29.949722+00:00",
+            "resolvedAt": "2026-10-21T19:45:47.597005+00:00"
+          },
+          {
+            "name": "iShares Nasdaq US Biotechnology UCITS ETF",
+            "tools": [
+              "Comparatif ETF",
+              "Duels de portefeuilles",
+              "Générateur de portefeuilles",
+              "Impact des frais",
+              "Présentation ETF"
+            ],
+            "impactScope": "asset",
+            "workflow": "collect-etf-pilot.yml",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39626719321",
+            "to": "/bibliotheque-donnees?id=IE00BYXG2H39",
+            "lastSuccessAt": "2026-10-21T12:22:45Z",
+            "completedAt": "2026-10-21T15:41:07Z",
+            "cause": "HTTP Error 403: Forbidden",
+            "sourceUrls": [
+              "https://extraetf.com/fr/etf-profile/IE00BYXG2H39",
+              "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=291450&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+              "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=291450&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+              "https://www.ishares.com/ch/institutional/en/literature/fact-sheet/btec-ishares-nasdaq-us-biotechnology-ucits-etf-fund-fact-sheet-fr-ch.pdf",
+              "https://www.justetf.com/en/etf-profile.html?isin=IE00BYXG2H39"
+            ],
+            "kind": "collection",
+            "field": "Champs du collecteur",
+            "dataId": "etf-observation-IE00BYXG2H39",
+            "id": "collection:collect-etf-pilot.yml:etf-observation-IE00BYXG2H39",
+            "firstSeenAt": "2026-10-21T19:34:30.410800+00:00",
+            "lastSeenAt": "2026-10-21T19:39:29.949722+00:00",
+            "resolvedAt": "2026-10-21T19:45:47.597005+00:00"
+          }
+        ],
+        "retired": [],
+        "escalated": [
+          "collection:collect-etf-pilot.yml:etf-additional-observation-IE000QDFFK00"
+        ]
       }
     ],
     "resolved": [
+      {
+        "name": "iShares J.P. Morgan $ EM Bond UCITS ETF USD (Dist)",
+        "tools": [
+          "Banque de tweets",
+          "Comparatif ETF",
+          "Duels de portefeuilles",
+          "Générateur de portefeuilles",
+          "Impact des frais",
+          "Présentation ETF"
+        ],
+        "impactScope": "asset",
+        "workflow": "collect-etf-pilot.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39626719321",
+        "to": "/bibliotheque-donnees?id=IE00B2NPKV68",
+        "lastSuccessAt": "2026-10-21T12:22:45Z",
+        "completedAt": "2026-10-21T15:41:07Z",
+        "cause": "HTTP Error 403: Forbidden",
+        "field": "Collecte ETF",
+        "sourceUrls": [
+          "https://extraetf.com/fr/etf-profile/IE00B2NPKV68",
+          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251824&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251824&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "https://www.ishares.com/uk/individual/en/products/251824"
+        ],
+        "kind": "collection",
+        "dataId": "etf-additional-observation-IE00B2NPKV68",
+        "id": "collection:collect-etf-pilot.yml:etf-additional-observation-IE00B2NPKV68",
+        "firstSeenAt": "2026-10-21T19:34:30.410800+00:00",
+        "lastSeenAt": "2026-10-21T19:39:29.949722+00:00",
+        "resolvedAt": "2026-10-21T19:45:47.597005+00:00"
+      },
+      {
+        "name": "iShares € Govt Bond 15-30yr UCITS ETF EUR (Dist)",
+        "tools": [
+          "Banque de tweets",
+          "Comparatif ETF",
+          "Duels de portefeuilles",
+          "Générateur de portefeuilles",
+          "Impact des frais",
+          "Présentation ETF"
+        ],
+        "impactScope": "asset",
+        "workflow": "collect-etf-pilot.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39626719321",
+        "to": "/bibliotheque-donnees?id=IE00B1FZS913",
+        "lastSuccessAt": "2026-10-21T12:22:45Z",
+        "completedAt": "2026-10-21T15:41:07Z",
+        "cause": "HTTP Error 403: Forbidden",
+        "field": "Collecte ETF",
+        "sourceUrls": [
+          "https://bourse.fortuneo.fr/trackers/cours-ishares-eur-govt-bond-15-30yr-ucits-etf-dis-IBGL-IE00B1FZS913-46",
+          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251735&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251735&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "https://www.ishares.com/uk/individual/en/products/251735/ishares-euro-government-bond-1530yr-ucits-etf"
+        ],
+        "kind": "collection",
+        "dataId": "etf-additional-observation-IE00B1FZS913",
+        "id": "collection:collect-etf-pilot.yml:etf-additional-observation-IE00B1FZS913",
+        "firstSeenAt": "2026-10-21T19:34:30.410800+00:00",
+        "lastSeenAt": "2026-10-21T19:39:29.949722+00:00",
+        "resolvedAt": "2026-10-21T19:45:47.597005+00:00"
+      },
+      {
+        "name": "iShares STOXX Europe 600 Technology UCITS ETF (DE)",
+        "tools": [
+          "Comparatif ETF",
+          "Duels de portefeuilles",
+          "Générateur de portefeuilles",
+          "Impact des frais",
+          "Présentation ETF"
+        ],
+        "impactScope": "asset",
+        "workflow": "collect-etf-pilot.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39626719321",
+        "to": "/bibliotheque-donnees?id=DE000A0H08Q4",
+        "lastSuccessAt": "2026-10-21T12:22:45Z",
+        "completedAt": "2026-10-21T15:41:07Z",
+        "cause": "HTTP Error 403: Forbidden",
+        "field": "Collecte ETF",
+        "sourceUrls": [
+          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251961&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251961&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "https://www.justetf.com/en/etf-profile.html?isin=DE000A0H08Q4",
+          "https://www.justetf.com/fr/etf-profile.html?isin=DE000A0H08Q4"
+        ],
+        "kind": "collection",
+        "dataId": "etf-additional-observation-DE000A0H08Q4",
+        "id": "collection:collect-etf-pilot.yml:etf-additional-observation-DE000A0H08Q4",
+        "firstSeenAt": "2026-10-21T19:34:30.410800+00:00",
+        "lastSeenAt": "2026-10-21T19:39:29.949722+00:00",
+        "resolvedAt": "2026-10-21T19:45:47.597005+00:00"
+      },
+      {
+        "name": "iShares MSCI India UCITS ETF USD (Acc)",
+        "tools": [
+          "Comparatif ETF",
+          "Duels de portefeuilles",
+          "Générateur de portefeuilles",
+          "Impact des frais",
+          "Présentation ETF"
+        ],
+        "impactScope": "asset",
+        "workflow": "collect-etf-pilot.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39626719321",
+        "to": "/bibliotheque-donnees?id=IE00BZCQB185",
+        "lastSuccessAt": "2026-10-21T12:22:45Z",
+        "completedAt": "2026-10-21T15:41:07Z",
+        "cause": "HTTP Error 403: Forbidden",
+        "sourceUrls": [
+          "https://bourse.fortuneo.fr/trackers/cours-ishares-msci-india-ucits-etf-usd-acc-NDIA-IE00BZCQB185-46",
+          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=297617&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=297617&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "https://www.ishares.com/uk/individual/en/products/297617/ishares-msci-india-ucits-etf"
+        ],
+        "kind": "collection",
+        "field": "Champs du collecteur",
+        "dataId": "etf-observation-IE00BZCQB185",
+        "id": "collection:collect-etf-pilot.yml:etf-observation-IE00BZCQB185",
+        "firstSeenAt": "2026-10-21T19:34:30.410800+00:00",
+        "lastSeenAt": "2026-10-21T19:39:29.949722+00:00",
+        "resolvedAt": "2026-10-21T19:45:47.597005+00:00"
+      },
+      {
+        "name": "iShares MSCI Global Semiconductors UCITS ETF",
+        "tools": [
+          "Comparatif ETF",
+          "Duels de portefeuilles",
+          "Générateur de portefeuilles",
+          "Impact des frais",
+          "Présentation ETF"
+        ],
+        "impactScope": "asset",
+        "workflow": "collect-etf-pilot.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39626719321",
+        "to": "/bibliotheque-donnees?id=IE000I8KRLL9",
+        "lastSuccessAt": "2026-10-21T12:22:45Z",
+        "completedAt": "2026-10-21T15:41:07Z",
+        "cause": "HTTP Error 403: Forbidden",
+        "sourceUrls": [
+          "https://bourse.fortuneo.fr/trackers/cours-ishares-msci-global-semiconductors-ucits-etf-usd-acc-SEME-IE000I8KRLL9-23",
+          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=319084&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=319084&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "https://www.ishares.com/uk/individual/en/products/319084/?siteEntryPassthrough=true&switchLocale=y",
+          "https://www.justetf.com/en/etf-profile.html?isin=IE000I8KRLL9"
+        ],
+        "kind": "collection",
+        "field": "Champs du collecteur",
+        "dataId": "etf-observation-IE000I8KRLL9",
+        "id": "collection:collect-etf-pilot.yml:etf-observation-IE000I8KRLL9",
+        "firstSeenAt": "2026-10-21T19:34:30.410800+00:00",
+        "lastSeenAt": "2026-10-21T19:39:29.949722+00:00",
+        "resolvedAt": "2026-10-21T19:45:47.597005+00:00"
+      },
+      {
+        "name": "iShares Euro High Yield Corporate Bond UCITS ETF (Dist)",
+        "tools": [
+          "Comparatif ETF",
+          "Duels de portefeuilles",
+          "Générateur de portefeuilles",
+          "Impact des frais",
+          "Présentation ETF"
+        ],
+        "impactScope": "asset",
+        "workflow": "collect-etf-pilot.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39626719321",
+        "to": "/bibliotheque-donnees?id=IE00B66F4759",
+        "lastSuccessAt": "2026-10-21T12:22:45Z",
+        "completedAt": "2026-10-21T15:41:07Z",
+        "cause": "HTTP Error 403: Forbidden",
+        "sourceUrls": [
+          "https://extraetf.com/fr/etf-profile/IE00B66F4759",
+          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251843&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=251843&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "https://www.ishares.com/uk/individual/en/products/251843/?siteEntryPassthrough=true&switchLocale=y",
+          "https://www.justetf.com/en/etf-profile.html?isin=IE00B66F4759"
+        ],
+        "kind": "collection",
+        "field": "Champs du collecteur",
+        "dataId": "etf-observation-IE00B66F4759",
+        "id": "collection:collect-etf-pilot.yml:etf-observation-IE00B66F4759",
+        "firstSeenAt": "2026-10-21T19:34:30.410800+00:00",
+        "lastSeenAt": "2026-10-21T19:39:29.949722+00:00",
+        "resolvedAt": "2026-10-21T19:45:47.597005+00:00"
+      },
+      {
+        "name": "iShares MSCI EM ex-China UCITS ETF (Acc)",
+        "tools": [
+          "Comparatif ETF",
+          "Duels de portefeuilles",
+          "Générateur de portefeuilles",
+          "Impact des frais",
+          "Présentation ETF"
+        ],
+        "impactScope": "asset",
+        "workflow": "collect-etf-pilot.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39626719321",
+        "to": "/bibliotheque-donnees?id=IE00BMG6Z448",
+        "lastSuccessAt": "2026-10-21T12:22:45Z",
+        "completedAt": "2026-10-21T15:41:07Z",
+        "cause": "HTTP Error 403: Forbidden",
+        "sourceUrls": [
+          "https://bourse.fortuneo.fr/trackers/cours-ishares-msci-em-ex-china-ucits-etf-usd-acc-MTPI-IE00BMG6Z448-23",
+          "https://www.blackrock.com/fr/particuliers/products/315592/",
+          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=315592&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=315592&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "https://www.ishares.com/uk/individual/en/products/315592/ishares-msci-em-ex-china-ucits-etf?siteEntryPassthrough=true&switchLocale=y",
+          "https://www.justetf.com/en/etf-profile.html?isin=IE00BMG6Z448"
+        ],
+        "kind": "collection",
+        "field": "Champs du collecteur",
+        "dataId": "etf-observation-IE00BMG6Z448",
+        "id": "collection:collect-etf-pilot.yml:etf-observation-IE00BMG6Z448",
+        "firstSeenAt": "2026-10-21T19:34:30.410800+00:00",
+        "lastSeenAt": "2026-10-21T19:39:29.949722+00:00",
+        "resolvedAt": "2026-10-21T19:45:47.597005+00:00"
+      },
+      {
+        "name": "iShares Nasdaq US Biotechnology UCITS ETF",
+        "tools": [
+          "Comparatif ETF",
+          "Duels de portefeuilles",
+          "Générateur de portefeuilles",
+          "Impact des frais",
+          "Présentation ETF"
+        ],
+        "impactScope": "asset",
+        "workflow": "collect-etf-pilot.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39626719321",
+        "to": "/bibliotheque-donnees?id=IE00BYXG2H39",
+        "lastSuccessAt": "2026-10-21T12:22:45Z",
+        "completedAt": "2026-10-21T15:41:07Z",
+        "cause": "HTTP Error 403: Forbidden",
+        "sourceUrls": [
+          "https://extraetf.com/fr/etf-profile/IE00BYXG2H39",
+          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=291450&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all&locale=en_GB&portfolioId=291450&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+          "https://www.ishares.com/ch/institutional/en/literature/fact-sheet/btec-ishares-nasdaq-us-biotechnology-ucits-etf-fund-fact-sheet-fr-ch.pdf",
+          "https://www.justetf.com/en/etf-profile.html?isin=IE00BYXG2H39"
+        ],
+        "kind": "collection",
+        "field": "Champs du collecteur",
+        "dataId": "etf-observation-IE00BYXG2H39",
+        "id": "collection:collect-etf-pilot.yml:etf-observation-IE00BYXG2H39",
+        "firstSeenAt": "2026-10-21T19:34:30.410800+00:00",
+        "lastSeenAt": "2026-10-21T19:39:29.949722+00:00",
+        "resolvedAt": "2026-10-21T19:45:47.597005+00:00"
+      },
       {
         "name": "Pouvoir d’achat et niveaux des anniversaires",
         "tools": [
@@ -11913,223 +12091,6 @@
         "firstSeenAt": "2026-10-20T07:19:54.916297+00:00",
         "lastSeenAt": "2026-10-21T05:38:08.549445+00:00",
         "resolvedAt": "2026-10-21T05:41:56.145816+00:00"
-      },
-      {
-        "name": "WisdomTree Cloud Computing UCITS ETF USD Acc",
-        "tools": [
-          "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Impact des frais",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "workflow": "update-instrument-metadata.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39474711038",
-        "to": "/bibliotheque-donnees?id=IE00BJGWQN72",
-        "lastSuccessAt": "2026-10-18T16:32:07Z",
-        "completedAt": "2026-10-20T20:23:41Z",
-        "cause": "check-overdue; checked=2026-10-12, published=2026-10-09",
-        "field": "Pays",
-        "sourceUrls": [
-          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BJGWQN72",
-          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BJGWQN72/",
-          "https://www.wisdomtree.com/gb/products/equities/wisdomtree-cloud-computing-ucits-etf---usd-acc"
-        ],
-        "kind": "collection",
-        "dataId": "IE00BJGWQN72:countries",
-        "id": "collection:update-instrument-metadata.yml:IE00BJGWQN72:countries",
-        "firstSeenAt": "2026-10-20T07:19:54.916297+00:00",
-        "lastSeenAt": "2026-10-21T05:38:08.549445+00:00",
-        "resolvedAt": "2026-10-21T05:41:56.145816+00:00"
-      },
-      {
-        "name": "WisdomTree Cloud Computing UCITS ETF USD Acc",
-        "tools": [
-          "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Impact des frais",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "workflow": "update-instrument-metadata.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39474711038",
-        "to": "/bibliotheque-donnees?id=IE00BJGWQN72",
-        "lastSuccessAt": "2026-10-18T16:32:07Z",
-        "completedAt": "2026-10-20T20:23:41Z",
-        "cause": "check-overdue; checked=2026-10-12, published=2026-10-08",
-        "field": "Secteurs",
-        "sourceUrls": [
-          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BJGWQN72",
-          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BJGWQN72/",
-          "https://www.wisdomtree.com/gb/products/equities/wisdomtree-cloud-computing-ucits-etf---usd-acc"
-        ],
-        "kind": "collection",
-        "dataId": "IE00BJGWQN72:sectors",
-        "id": "collection:update-instrument-metadata.yml:IE00BJGWQN72:sectors",
-        "firstSeenAt": "2026-10-20T07:19:54.916297+00:00",
-        "lastSeenAt": "2026-10-21T05:38:08.549445+00:00",
-        "resolvedAt": "2026-10-21T05:41:56.145816+00:00"
-      },
-      {
-        "name": "WisdomTree Cloud Computing UCITS ETF USD Acc",
-        "tools": [
-          "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Impact des frais",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "workflow": "update-instrument-metadata.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39474711038",
-        "to": "/bibliotheque-donnees?id=IE00BJGWQN72",
-        "lastSuccessAt": "2026-10-18T16:32:07Z",
-        "completedAt": "2026-10-20T20:23:41Z",
-        "cause": "check-overdue; checked=2026-10-12, published=2026-10-08",
-        "field": "Principales positions",
-        "sourceUrls": [
-          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BJGWQN72",
-          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BJGWQN72/",
-          "https://www.wisdomtree.com/gb/products/equities/wisdomtree-cloud-computing-ucits-etf---usd-acc"
-        ],
-        "kind": "collection",
-        "dataId": "IE00BJGWQN72:holdings",
-        "id": "collection:update-instrument-metadata.yml:IE00BJGWQN72:holdings",
-        "firstSeenAt": "2026-10-20T07:19:54.916297+00:00",
-        "lastSeenAt": "2026-10-21T05:38:08.549445+00:00",
-        "resolvedAt": "2026-10-21T05:41:56.145816+00:00"
-      },
-      {
-        "id": "field:instrument:IE00BJGWQN72:completeHoldings",
-        "name": "WisdomTree Cloud Computing UCITS ETF USD Acc",
-        "aliases": [
-          "IE00BJGWQN72"
-        ],
-        "field": "Positions intégrales",
-        "kind": "collection",
-        "cause": "HTTP Error 403: Forbidden",
-        "category": "current",
-        "tools": [
-          "Présentation ETF",
-          "Générateur de portefeuilles",
-          "Duels de portefeuilles",
-          "Impact des frais",
-          "Comparatif ETF"
-        ],
-        "impactScope": "asset",
-        "sourceUrls": [
-          "https://www.wisdomtree.com/gb/products/equities/wisdomtree-cloud-computing-ucits-etf---usd-acc"
-        ],
-        "checkedAt": "2026-10-20T20:52:28.432683+00:00",
-        "asOf": "2026-10-15",
-        "lastSuccessAt": "2026-10-20T20:52:28.432683+00:00",
-        "evaluatedAt": "2026-10-21",
-        "to": "/donnees-a-revoir",
-        "firstSeenAt": "2026-10-20T21:37:28.552244+00:00",
-        "lastSeenAt": "2026-10-21T05:16:59.606903+00:00",
-        "resolvedAt": "2026-10-21T05:27:04.410963+00:00"
-      },
-      {
-        "name": "Xtrackers S&P 500 Equal Weight UCITS ETF 1C",
-        "tools": [
-          "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Impact des frais",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "sourceUrls": [
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/historicaldata/download",
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/pdpMetaTagsTealium",
-          "https://etf.dws.com/api/pdp/fr-fr/etf/IE00BLNMYC90/pdpMetaTagsTealium",
-          "https://etf.dws.com/en-ch/IE00BLNMYC90-s-p-500-equal-weight-ucits-etf-1c/"
-        ],
-        "to": "/bibliotheque-donnees?id=IE00BLNMYC90",
-        "kind": "conflict",
-        "field": "Poids du pays United States",
-        "cause": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays United States. Dernière observation conservée ; propositions archivées (etf:IE00BLNMYC90:countries:United States:8abd3910625177898532bf9d:2026-10-19).",
-        "id": "radar:cd31a2782d298ba6a44b64ef",
-        "firstSeenAt": "2026-10-20T16:05:29.541605+00:00",
-        "lastSeenAt": "2026-10-21T00:34:42.908591+00:00",
-        "resolvedAt": "2026-10-21T00:36:50.700683+00:00"
-      },
-      {
-        "name": "Xtrackers S&P 500 Equal Weight UCITS ETF 1C",
-        "tools": [
-          "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Impact des frais",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "sourceUrls": [
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/historicaldata/download",
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/pdpMetaTagsTealium",
-          "https://etf.dws.com/api/pdp/fr-fr/etf/IE00BLNMYC90/pdpMetaTagsTealium",
-          "https://etf.dws.com/en-ch/IE00BLNMYC90-s-p-500-equal-weight-ucits-etf-1c/"
-        ],
-        "to": "/bibliotheque-donnees?id=IE00BLNMYC90",
-        "kind": "conflict",
-        "field": "Poids du pays Ireland",
-        "cause": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays Ireland. Dernière observation conservée ; propositions archivées (etf:IE00BLNMYC90:countries:Ireland:8abd3910625177898532bf9d:2026-10-19).",
-        "id": "radar:6eaa480c8e90a2248e99982b",
-        "firstSeenAt": "2026-10-20T16:05:29.541605+00:00",
-        "lastSeenAt": "2026-10-21T00:34:42.908591+00:00",
-        "resolvedAt": "2026-10-21T00:36:50.700683+00:00"
-      },
-      {
-        "name": "Xtrackers S&P 500 Equal Weight UCITS ETF 1C",
-        "tools": [
-          "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Impact des frais",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "sourceUrls": [
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/historicaldata/download",
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/pdpMetaTagsTealium",
-          "https://etf.dws.com/api/pdp/fr-fr/etf/IE00BLNMYC90/pdpMetaTagsTealium",
-          "https://etf.dws.com/en-ch/IE00BLNMYC90-s-p-500-equal-weight-ucits-etf-1c/"
-        ],
-        "to": "/bibliotheque-donnees?id=IE00BLNMYC90",
-        "kind": "conflict",
-        "field": "Poids du pays Switzerland",
-        "cause": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays Switzerland. Dernière observation conservée ; propositions archivées (etf:IE00BLNMYC90:countries:Switzerland:8abd3910625177898532bf9d:2026-10-19).",
-        "id": "radar:a3760b967238578141bbbaa5",
-        "firstSeenAt": "2026-10-20T16:05:29.541605+00:00",
-        "lastSeenAt": "2026-10-21T00:34:42.908591+00:00",
-        "resolvedAt": "2026-10-21T00:36:50.700683+00:00"
-      },
-      {
-        "name": "Xtrackers S&P 500 Equal Weight UCITS ETF 1C",
-        "tools": [
-          "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Impact des frais",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "sourceUrls": [
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/historicaldata/download",
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE00BLNMYC90/pdpMetaTagsTealium",
-          "https://etf.dws.com/api/pdp/fr-fr/etf/IE00BLNMYC90/pdpMetaTagsTealium",
-          "https://etf.dws.com/en-ch/IE00BLNMYC90-s-p-500-equal-weight-ucits-etf-1c/"
-        ],
-        "to": "/bibliotheque-donnees?id=IE00BLNMYC90",
-        "kind": "conflict",
-        "field": "Poids du pays United Kingdom",
-        "cause": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays United Kingdom. Dernière observation conservée ; propositions archivées (etf:IE00BLNMYC90:countries:United Kingdom:8abd3910625177898532bf9d:2026-10-19).",
-        "id": "radar:9efa4fe2deb2f587df844706",
-        "firstSeenAt": "2026-10-20T16:05:29.541605+00:00",
-        "lastSeenAt": "2026-10-21T00:34:42.908591+00:00",
-        "resolvedAt": "2026-10-21T00:36:50.700683+00:00"
       }
     ],
     "retired": [
@@ -15802,9 +15763,9 @@
       ],
       "reason": "transient-source",
       "lastSuccessAt": "2026-10-21T12:22:45Z",
-      "observedRunId": 39626719321,
+      "observedRunId": 39663948042,
       "nextAttemptAt": "2026-10-21T23:34:30.441362+00:00",
-      "status": "awaiting-current-run"
+      "status": "waiting"
     },
     "update-market-monthly.yml": {
       "attempts": [
