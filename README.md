@@ -12,6 +12,13 @@ navigation, routes et modules. La collecte ETF quotidienne versionne son actuali
 Le comparateur d’indices reste un moteur interne sans route publique. Les moteurs
 conservés et les liens de compatibilité sont distingués des outils accessibles.
 
+## Portefeuilles IA
+
+Saisie manuelle des décisions, suivi quotidien fictif, classement et focus texte/PNG.
+La [notice et l’audit](docs/portefeuilles-ia.md) décrivent les sources validées, la méthode
+en unités synthétiques et l’import JSON nécessaire pour enregistrer les demandes dans le dépôt.
+Aucune connexion aux IA ou à un courtier.
+
 ## Démarrer
 
 ```bash

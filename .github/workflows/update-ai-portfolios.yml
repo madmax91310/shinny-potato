@@ -1,0 +1,101 @@
+name: Update AI portfolio daily tracking
+on:
+  schedule:
+    - cron: '20 5,9 * * *'
+  workflow_dispatch:
+    inputs:
+      qualify_all:
+        description: 'Retester aussi les cotations non admises'
+        type: boolean
+        default: false
+  pull_request:
+    paths:
+      - '.github/workflows/update-ai-portfolios.yml'
+      - 'scripts/*ai*portfolio*'
+      - 'src/pages/ai-portfolios/**'
+      - 'data/ai-portfolios/**'
+      - 'public/data/ai-portfolios/**'
+permissions:
+  contents: read
+jobs:
+  refresh:
+    runs-on: ubuntu-26.04
+    timeout-minutes: 25
+    concurrency:
+      group: active-market-data-${{ github.event_name == 'pull_request' && format('{0}-{1}', github.workflow, github.ref) || 'production' }}
+      cancel-in-progress: false
+      queue: max
+    permissions:
+      contents: write
+    outputs:
+      commit_sha: ${{ steps.commit.outputs.commit_sha }}
+      collection_failed: ${{ steps.collect.outcome == 'failure' }}
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          ref: ${{ github.event_name == 'pull_request' && github.ref || 'master' }}
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 24
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: '3.12'
+      - run: npm ci
+      - run: pip install -r scripts/ai-portfolios-requirements.txt
+      - name: Validate accounting and daily coverage
+        run: |
+          node scripts/test-ai-portfolios.mjs
+          python -m unittest discover -s scripts -p test_ai_portfolios.py
+      - name: Collect exact daily closes and ECB FX
+        id: collect
+        continue-on-error: true
+        env:
+          QUALIFY_ALL: ${{ inputs.qualify_all }}
+        run: |
+          args=()
+          if [[ "$QUALIFY_ALL" == 'true' ]]; then args+=(--qualify-all); fi
+          python scripts/collect_ai_portfolios.py "${args[@]}" --report "$RUNNER_TEMP/ai-portfolio-observations.json"
+      - name: Execute recorded simulations and prepare valuations
+        run: node scripts/ai-portfolios.mjs refresh
+      - name: Validate observations build
+        run: npm run build
+      - if: github.event_name == 'pull_request'
+        run: npx playwright install --with-deps chromium
+      - name: Validate desktop mobile and PNGs
+        if: github.event_name == 'pull_request'
+        run: node scripts/playwright-ai-portfolios.mjs
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: ai-portfolio-observations
+          path: ${{ runner.temp }}/ai-portfolio-observations.json
+          retention-days: 35
+      - name: Validate collected observations
+        run: node scripts/test-ai-portfolios.mjs
+      - name: Commit validated observations
+        id: commit
+        if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          bash scripts/commit-validated-data.sh 'Refresh AI portfolio daily tracking' data/ai-portfolios public/data/ai-portfolios
+  deploy:
+    needs: refresh
+    if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
+    permissions:
+      contents: read
+      pages: write
+      deployments: read
+      id-token: write
+    uses: ./.github/workflows/publish-validated-data.yml
+    with:
+      ref: ${{ needs.refresh.outputs.commit_sha }}
+      producer: update-ai-portfolios.yml
+  report-failures:
+    needs: [refresh, deploy]
+    if: always() && needs.refresh.outputs.collection_failed == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo 'Une source quotidienne admise est en échec. Les autres observations ont été conservées ; consulter les sources dans Portefeuilles IA et relancer le workflow.'
+          exit 1
