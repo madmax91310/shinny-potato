@@ -147,7 +147,8 @@ try {
       assert(destination, `Missing tool link: ${tool.to}`)
       await opening.locator(`.workspace-tool-card[href="${destination}"]`).first().click()
       await opening.locator('.workspace-home').waitFor({ state: 'detached' })
-      await opening.locator('main h1').first().waitFor()
+      // Focused modes retain a mounted page heading while hiding the redundant header.
+      await opening.locator('main h1').first().waitFor({ state: 'attached' })
       await opening.waitForLoadState('networkidle')
       assert.equal(await opening.locator('.workspace-error').count(), 0, `${tool.to}: tool failed to open`)
       const generate = opening.getByRole('button', { name: /^(🔄 )?Générer$/ })
