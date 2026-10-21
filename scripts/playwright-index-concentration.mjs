@@ -19,15 +19,27 @@ try {
   await page.goto(`${base}tweets-factsheets`)
   await page.locator('#factsheet-subject').waitFor()
   async function select(id,title){
+    const change=page.locator('.fs-change-index')
+    if(await change.isVisible() && await change.getAttribute('aria-expanded')==='false')await change.click()
     const settings=page.getByRole('button',{name:'Réglages',exact:true})
     if(await settings.isVisible())await settings.click()
     await page.getByRole('searchbox',{name:'Rechercher : Choisir un indice',exact:true}).fill(title)
     await page.locator(`#factsheet-subject [data-option][data-value="${id}"]`).click()
     assert.equal(await page.locator('#factsheet-subject').getAttribute('data-value'),id)
   }
+  assert.equal(await page.getByRole('tab',{name:'Coulisses des indices',exact:true}).getAttribute('aria-selected'),'true')
+  assert.equal(await page.locator('#fs-composition-panel').isVisible(),false)
+  await page.getByRole('tab',{name:'Coulisses des indices',exact:true}).focus()
+  await page.keyboard.press('ArrowRight')
+  assert.equal(await page.getByRole('tab',{name:'Composition top 10',exact:true}).getAttribute('aria-selected'),'true')
+  await page.keyboard.press('Home')
+  assert.equal(await page.getByRole('tab',{name:'Coulisses des indices',exact:true}).getAttribute('aria-selected'),'true')
+
   const cases=[['cac40','CAC 40'],['nasdaq-pea','Nasdaq-100'],['dow-jones','Dow Jones Industrial Average'],['sp500-pea','S&P 500'],['world','MSCI World'],['acwi','MSCI ACWI'],['dax','DAX'],['msci-korea','MSCI Korea'],['russell-2000','Russell 2000']]
   for(const [id,title] of cases){
     await select(id,title)
+    await page.getByRole('tab',{name:'Composition top 10',exact:true}).click()
+    assert.equal(await page.locator('#factsheet-draft').isVisible(),false)
     const preview=page.locator('.fs-composition-preview')
     await preview.evaluate(i=>i.decode())
     const data=await preview.getAttribute('src')
@@ -41,24 +53,45 @@ try {
     const w=expected.readUInt32BE(16), h=expected.readUInt32BE(20)
     assert.equal(w,1200);assert.ok(h>=1000 && h<=2000,`${id} ${w}x${h}`)
     // Original image and its explicit download remain available for every selection.
+    await page.getByRole('tab',{name:'Coulisses des indices',exact:true}).click()
     await page.getByRole('tab',{name:'Image',exact:true}).click()
     const original=page.locator('.publication-preview img, .publication-preview-stage img, .studio-preview img').first()
     await original.evaluate(i=>i.decode())
     const originalData=await original.getAttribute('src')
+    if(!external && !['cac40','dow-jones','dax','msci-korea'].includes(id)){
+      const legacy=await page.evaluate(async id=>{
+        const {SHEETS}=await import('/shinny-potato/src/pages/factsheet-tweets/data.js')
+        const {renderFactsheetImage}=await import('/shinny-potato/scripts/fixtures/index-companies/original-canvasImage.js')
+        return (await renderFactsheetImage(SHEETS.find(s=>s.id===id))).toDataURL()
+      },id)
+      assert.equal(digest(Buffer.from(originalData.split(',')[1],'base64')),digest(Buffer.from(legacy.split(',')[1],'base64')),'Primary preview is the original image, not the qualified replacement')
+    }
+
     const [main]=await Promise.all([page.waitForEvent('download'),page.getByRole('button',{name:'Télécharger l’image',exact:true}).click()])
     assert.ok(main.suggestedFilename().startsWith(id+'-'))
     await main.saveAs(`${directory}/${id}-fiche.png`)
     assert.equal(digest(await readFile(`${directory}/${id}-fiche.png`)),digest(Buffer.from(originalData.split(',')[1],'base64')))
     await page.screenshot({path:`${directory}/${id}-desktop.png`,fullPage:true})
   }
+  await page.getByRole('tab',{name:'Composition top 10',exact:true}).click()
   await select('msci-usa','MSCI USA')
-  await page.getByText(/ne certifient pas les dix premières entreprises/).first().waitFor()
+  await page.locator('#fs-composition-panel').getByText(/ne certifient pas les dix premières entreprises/).first().waitFor()
   assert.equal(await page.locator('.fs-composition-preview').count(),0)
   assert.equal(await page.getByRole('button',{name:'Télécharger la composition en PNG',exact:true}).isDisabled(),true)
   // Back-to-back choices never expose the previous index's asynchronous canvas.
   await select('world','MSCI World');await select('dax','DAX');await select('world','MSCI World')
   await page.locator('.fs-composition-preview').evaluate(i=>i.decode())
   assert.match(await page.locator('.fs-composition-preview').getAttribute('alt'),/MSCI World/)
+  await page.getByRole('tab',{name:'Coulisses des indices',exact:true}).click()
+  await page.getByRole('tab',{name:'Texte',exact:true}).click()
+  const textBefore=await page.locator('#factsheet-draft').inputValue()
+  assert.ok(textBefore.length>200)
+  await page.locator('#factsheet-draft').fill(textBefore+'\nBrouillon conservé entre les onglets.')
+  await page.getByRole('tab',{name:'Composition top 10',exact:true}).click()
+  assert.equal(await page.locator('#fs-coulisses-panel').isVisible(),false)
+  await page.getByRole('tab',{name:'Coulisses des indices',exact:true}).click()
+  assert.equal(await page.locator('#factsheet-draft').inputValue(),textBefore+'\nBrouillon conservé entre les onglets.')
+  await page.getByRole('tab',{name:'Composition top 10',exact:true}).click()
   await page.setViewportSize({width:390,height:844})
   for(const [id,title] of [cases[2],cases[4],cases[8]]){
     await select(id,title)
@@ -66,6 +99,7 @@ try {
     const [download]=await Promise.all([page.waitForEvent('download'),page.getByRole('button',{name:'Télécharger la composition en PNG',exact:true}).click()])
     assert.equal(await download.failure(),null)
     assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'Mobile overflow')
+    await page.getByText('Téléchargement lancé.',{exact:true}).waitFor({state:'hidden',timeout:6000})
     await page.locator('.fs-composition-panel').scrollIntoViewIfNeeded()
     await page.screenshot({path:`${directory}/${id}-mobile.png`,fullPage:true})
   }
@@ -75,6 +109,14 @@ try {
       const {SHEETS}=await import('/shinny-potato/src/pages/factsheet-tweets/data.js')
       const {getIndexConcentration,compositionImageSheet}=await import('/shinny-potato/src/data/index-company-compositions.js')
       const {renderCompositionImage,renderFactsheetImage}=await import('/shinny-potato/src/pages/factsheet-tweets/canvasImage.js')
+      const {renderFactsheetImage:renderOriginal}=await import('/shinny-potato/scripts/fixtures/index-companies/original-canvasImage.js')
+      let historical=0
+      for(const sheet of SHEETS.filter(s=>!s.compositionOnly)){
+        const expected=(await renderOriginal(sheet)).toDataURL()
+        const actual=(await renderFactsheetImage(sheet)).toDataURL()
+        if(expected!==actual)throw new Error(sheet.id+' original image was changed')
+        historical++
+      }
       let text=[],boxes=[]
       const original=CanvasRenderingContext2D.prototype.fillText
       CanvasRenderingContext2D.prototype.fillText=function(value,x,y,...rest){
@@ -102,10 +144,11 @@ try {
         const sheet=SHEETS.find(s=>s.id==='world'), c=getIndexConcentration('world')
         const fixture={...c,top:c.top.map((r,i)=>({...r,name:i===0?'Une entreprise au nom exceptionnellement long pour contrôler la lisibilité sur téléphone':r.name,weightPct:i===0?99.91:.001})),topWeight:99.919,otherWeight:.081}
         const canvas=await renderCompositionImage(sheet,fixture)
-        return {count,fixture:canvas.toDataURL()}
+        return {count,historical,fixture:canvas.toDataURL()}
       }finally{CanvasRenderingContext2D.prototype.fillText=original}
     })
     await writeFile(`${directory}/long-small-fixture.png`,Buffer.from(report.fixture.split(',')[1],'base64'))
+    console.log(`${report.historical} original PNGs are pixel-identical to the renderer before #858`)
     console.log(`${report.count} compositions: all canvas labels, geometry and metadata restrictions checked`)
   }
   assert.deepEqual(errors,[])
