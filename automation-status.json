@@ -936,7 +936,7 @@
       "recordingStatus": "success",
       "publicationStatus": "success",
       "lastCollectionSuccessAt": "2026-10-20T18:32:24Z",
-      "lastPublicationSuccessAt": "2026-10-21T09:00:07.753Z",
+      "lastPublicationSuccessAt": "2026-10-21T09:43:28.710Z",
       "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39474711089",
       "failures": [],
       "dataFailures": {},
@@ -948,7 +948,7 @@
         "schemaVersion": 1
       },
       "publishedCodeSha": "ea8b7e659a00a6ffa4f974fdaaa149563b8bd49d",
-      "publishedDataSha": "a31b4a570dc5f9a03954022b0432ca5ed83f1849"
+      "publishedDataSha": "63601864afd244034e2776b4c53efab2d5e7d54e"
     },
     "update-practical-sheets.yml": {
       "monitorVersion": 2,
@@ -965,7 +965,7 @@
       "recordingStatus": "success",
       "publicationStatus": "success",
       "lastCollectionSuccessAt": "2026-10-20T18:30:07Z",
-      "lastPublicationSuccessAt": "2026-10-21T09:00:07.753Z",
+      "lastPublicationSuccessAt": "2026-10-21T09:43:28.710Z",
       "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39474711064",
       "failures": [],
       "dataFailures": {},
@@ -977,7 +977,7 @@
         "schemaVersion": 1
       },
       "publishedCodeSha": "ea8b7e659a00a6ffa4f974fdaaa149563b8bd49d",
-      "publishedDataSha": "a31b4a570dc5f9a03954022b0432ca5ed83f1849"
+      "publishedDataSha": "63601864afd244034e2776b4c53efab2d5e7d54e"
     },
     "update-inflation.yml": {
       "monitorVersion": 2,
@@ -1370,7 +1370,7 @@
       "recordingStatus": "success",
       "publicationStatus": "success",
       "lastCollectionSuccessAt": "2026-10-20T19:17:50Z",
-      "lastPublicationSuccessAt": "2026-10-21T09:00:07.753Z",
+      "lastPublicationSuccessAt": "2026-10-21T09:43:28.710Z",
       "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39474711129",
       "failures": [],
       "dataFailures": {},
@@ -1382,7 +1382,7 @@
         "schemaVersion": 1
       },
       "publishedCodeSha": "ea8b7e659a00a6ffa4f974fdaaa149563b8bd49d",
-      "publishedDataSha": "a31b4a570dc5f9a03954022b0432ca5ed83f1849"
+      "publishedDataSha": "63601864afd244034e2776b4c53efab2d5e7d54e"
     },
     "update-non-bond-expansion.yml": {
       "monitorVersion": 2,
@@ -1785,25 +1785,21 @@
     "update-instrument-metadata.yml": {
       "monitorVersion": 2,
       "name": "Caractéristiques et statut PEA par ISIN",
-      "runId": 39553115014,
+      "runId": 39570294529,
       "attempt": 1,
-      "headSha": "7bd7c2ddc2359a131362caa76411f2e2d57648b0",
-      "createdAt": "2026-10-21T06:03:39Z",
-      "completedAt": "2026-10-21T06:22:06Z",
+      "headSha": "ea8b7e659a00a6ffa4f974fdaaa149563b8bd49d",
+      "createdAt": "2026-10-21T08:34:27Z",
+      "completedAt": "2026-10-21T09:44:49Z",
       "status": "failure",
       "lastSuccessAt": "2026-10-18T16:32:07Z",
       "collectionStatus": "failure",
       "validationStatus": "success",
-      "recordingStatus": "failure",
-      "publicationStatus": "not-run",
+      "recordingStatus": "success",
+      "publicationStatus": "success",
       "lastCollectionSuccessAt": "2026-10-18T16:32:07Z",
-      "lastPublicationSuccessAt": "2026-10-20T15:02:22Z",
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
+      "lastPublicationSuccessAt": "2026-10-21T09:43:28.710Z",
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39570294529",
       "failures": [
-        {
-          "job": "refresh",
-          "step": "Commit validated observations"
-        },
         {
           "job": "report-failures",
           "step": "Run exit 1"
@@ -1812,117 +1808,22 @@
       "dataFailures": {
         "IE00B0M62S72:pea:qualification": {
           "name": "IE00B0M62S72:pea:qualification",
-          "completedAt": "2026-10-21T06:22:06Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
-          "cause": "Conflicting current exact-share statements; no automatic value chosen. | Qualification de publication requise : contradiction entre sources non résolue ; aucune valeur choisie par défaut.",
+          "completedAt": "2026-10-21T09:44:49Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39570294529",
+          "cause": "Qualification de publication requise : contradiction entre sources non résolue ; aucune valeur choisie par défaut.",
           "field": "pea"
-        },
-        "JE00B78CGV99:ter": {
-          "name": "JE00B78CGV99:ter",
-          "completedAt": "2026-10-21T06:22:06Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
-          "cause": "check-overdue; checked=2026-10-13, published=2026-10-12",
-          "field": "Frais"
-        },
-        "JE00B78CGV99:aum": {
-          "name": "JE00B78CGV99:aum",
-          "completedAt": "2026-10-21T06:22:06Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
-          "cause": "check-overdue; checked=2026-10-13, published=2026-10-12",
-          "field": "Encours"
-        },
-        "GB00B15KXV33:ter": {
-          "name": "GB00B15KXV33:ter",
-          "completedAt": "2026-10-21T06:22:06Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
-          "cause": "check-overdue; checked=2026-10-13, published=2026-10-12",
-          "field": "Frais"
-        },
-        "GB00B15KXV33:aum": {
-          "name": "GB00B15KXV33:aum",
-          "completedAt": "2026-10-21T06:22:06Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
-          "cause": "check-overdue; checked=2026-10-13, published=2026-10-12",
-          "field": "Encours"
-        },
-        "GB00B15KXV33:listings": {
-          "name": "GB00B15KXV33:listings",
-          "completedAt": "2026-10-21T06:22:06Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
-          "cause": "check-overdue; checked=2026-10-13, published=unknown",
-          "field": "Cotations"
-        },
-        "JE00BN7KB334:ter": {
-          "name": "JE00BN7KB334:ter",
-          "completedAt": "2026-10-21T06:22:06Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
-          "cause": "check-overdue; checked=2026-10-13, published=2026-10-12",
-          "field": "Frais"
-        },
-        "JE00BN7KB334:aum": {
-          "name": "JE00BN7KB334:aum",
-          "completedAt": "2026-10-21T06:22:06Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
-          "cause": "check-overdue; checked=2026-10-13, published=2026-10-12",
-          "field": "Encours"
-        },
-        "JE00BN7KB334:listings": {
-          "name": "JE00BN7KB334:listings",
-          "completedAt": "2026-10-21T06:22:06Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
-          "cause": "check-overdue; checked=2026-10-13, published=unknown",
-          "field": "Cotations"
-        },
-        "JE00BN7KB557:ter": {
-          "name": "JE00BN7KB557:ter",
-          "completedAt": "2026-10-21T06:22:06Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
-          "cause": "check-overdue; checked=2026-10-13, published=2026-10-12",
-          "field": "Frais"
-        },
-        "JE00BN7KB557:aum": {
-          "name": "JE00BN7KB557:aum",
-          "completedAt": "2026-10-21T06:22:06Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
-          "cause": "check-overdue; checked=2026-10-13, published=2026-10-12",
-          "field": "Encours"
-        },
-        "JE00B2QXZK10:ter": {
-          "name": "JE00B2QXZK10:ter",
-          "completedAt": "2026-10-21T06:22:06Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
-          "cause": "check-overdue; checked=2026-10-13, published=2026-10-12",
-          "field": "Frais"
-        },
-        "JE00B2QXZK10:aum": {
-          "name": "JE00B2QXZK10:aum",
-          "completedAt": "2026-10-21T06:22:06Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
-          "cause": "check-overdue; checked=2026-10-13, published=2026-10-12",
-          "field": "Encours"
-        },
-        "JE00BN7KB664:ter": {
-          "name": "JE00BN7KB664:ter",
-          "completedAt": "2026-10-21T06:22:06Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
-          "cause": "check-overdue; checked=2026-10-13, published=2026-10-12",
-          "field": "Frais"
-        },
-        "JE00BN7KB664:aum": {
-          "name": "JE00BN7KB664:aum",
-          "completedAt": "2026-10-21T06:22:06Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
-          "cause": "check-overdue; checked=2026-10-13, published=2026-10-12",
-          "field": "Encours"
-        },
-        "JE00BN7KB664:listings": {
-          "name": "JE00BN7KB664:listings",
-          "completedAt": "2026-10-21T06:22:06Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
-          "cause": "check-overdue; checked=2026-10-13, published=unknown",
-          "field": "Cotations"
         }
-      }
+      },
+      "publicationReceipt": {
+        "commit": "63601864afd244034e2776b4c53efab2d5e7d54e",
+        "files": {
+          "src/data/automated-instrument-metadata.json": "e92d8af7eb449403ab511586b6a937af1442bc45",
+          "src/data/instrument-metadata-status.json": "f2a5e4e791112fe8fc0e9d92bc2b0e163ec05b7e"
+        },
+        "schemaVersion": 1
+      },
+      "publishedCodeSha": "ea8b7e659a00a6ffa4f974fdaaa149563b8bd49d",
+      "publishedDataSha": "63601864afd244034e2776b4c53efab2d5e7d54e"
     },
     "onboard-assets.yml": {
       "name": "Intégration des nouveaux actifs",
@@ -1955,11 +1856,11 @@
       "dataFailures": {}
     }
   },
-  "updatedAt": "2026-10-21T09:22:57Z",
+  "updatedAt": "2026-10-21T09:44:49Z",
   "monitoring": {
     "schemaVersion": 1,
-    "checkedAt": "2026-10-21T09:35:30.234999+00:00",
-    "revision": 204,
+    "checkedAt": "2026-10-21T09:45:11.597473+00:00",
+    "revision": 205,
     "active": {
       "workflow:update-regulatory-data.yml": {
         "name": "Paramètres fiscaux, LDDS et tarifs de courtiers",
@@ -1977,7 +1878,7 @@
         "cause": "refresh : Commit validated observations",
         "id": "workflow:update-regulatory-data.yml",
         "firstSeenAt": "2026-10-21T08:43:51.764046+00:00",
-        "lastSeenAt": "2026-10-21T09:35:30.234999+00:00"
+        "lastSeenAt": "2026-10-21T09:45:11.597473+00:00"
       },
       "collection:update-market-monthly.yml:history:fx:TWD": {
         "name": "history:fx:TWD",
@@ -2000,7 +1901,7 @@
         "dataId": "history:fx:TWD",
         "id": "collection:update-market-monthly.yml:history:fx:TWD",
         "firstSeenAt": "2026-10-19T05:58:42.740410+00:00",
-        "lastSeenAt": "2026-10-21T09:35:30.234999+00:00"
+        "lastSeenAt": "2026-10-21T09:45:11.597473+00:00"
       },
       "collection:update-instrument-metadata.yml:IE00B0M62S72:pea:qualification": {
         "name": "iShares Euro Dividend UCITS ETF",
@@ -2013,11 +1914,11 @@
         ],
         "impactScope": "asset",
         "workflow": "update-instrument-metadata.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39570294529",
         "to": "/bibliotheque-donnees?id=IE00B0M62S72",
         "lastSuccessAt": "2026-10-18T16:32:07Z",
-        "completedAt": "2026-10-21T06:22:06Z",
-        "cause": "Conflicting current exact-share statements; no automatic value chosen. | Qualification de publication requise : contradiction entre sources non résolue ; aucune valeur choisie par défaut.",
+        "completedAt": "2026-10-21T09:44:49Z",
+        "cause": "Qualification de publication requise : contradiction entre sources non résolue ; aucune valeur choisie par défaut.",
         "field": "pea",
         "sourceUrls": [
           "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251787&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
@@ -2027,427 +1928,7 @@
         "dataId": "IE00B0M62S72:pea:qualification",
         "id": "collection:update-instrument-metadata.yml:IE00B0M62S72:pea:qualification",
         "firstSeenAt": "2026-10-19T19:03:43.742241+00:00",
-        "lastSeenAt": "2026-10-21T09:35:30.234999+00:00"
-      },
-      "collection:update-instrument-metadata.yml:JE00B78CGV99:ter": {
-        "name": "WisdomTree Brent Crude Oil",
-        "tools": [
-          "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "workflow": "update-instrument-metadata.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
-        "to": "/bibliotheque-donnees?id=JE00B78CGV99",
-        "lastSuccessAt": "2026-10-18T16:32:07Z",
-        "completedAt": "2026-10-21T06:22:06Z",
-        "cause": "check-overdue; checked=2026-10-13, published=2026-10-12",
-        "field": "Frais",
-        "sourceUrls": [
-          "https://bourse.fortuneo.fr/trackers/cours-wisdomtree-brent-crude-oil-usd-acc-BRNT-JE00B78CGV99-23",
-          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B78CGV99",
-          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B78CGV99/",
-          "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-brent-crude-oil"
-        ],
-        "kind": "collection",
-        "dataId": "JE00B78CGV99:ter",
-        "id": "collection:update-instrument-metadata.yml:JE00B78CGV99:ter",
-        "firstSeenAt": "2026-10-21T05:41:56.145816+00:00",
-        "lastSeenAt": "2026-10-21T09:35:30.234999+00:00"
-      },
-      "collection:update-instrument-metadata.yml:JE00B78CGV99:aum": {
-        "name": "WisdomTree Brent Crude Oil",
-        "tools": [
-          "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "workflow": "update-instrument-metadata.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
-        "to": "/bibliotheque-donnees?id=JE00B78CGV99",
-        "lastSuccessAt": "2026-10-18T16:32:07Z",
-        "completedAt": "2026-10-21T06:22:06Z",
-        "cause": "check-overdue; checked=2026-10-13, published=2026-10-12",
-        "field": "Encours",
-        "sourceUrls": [
-          "https://bourse.fortuneo.fr/trackers/cours-wisdomtree-brent-crude-oil-usd-acc-BRNT-JE00B78CGV99-23",
-          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B78CGV99",
-          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B78CGV99/",
-          "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-brent-crude-oil"
-        ],
-        "kind": "collection",
-        "dataId": "JE00B78CGV99:aum",
-        "id": "collection:update-instrument-metadata.yml:JE00B78CGV99:aum",
-        "firstSeenAt": "2026-10-21T05:41:56.145816+00:00",
-        "lastSeenAt": "2026-10-21T09:35:30.234999+00:00"
-      },
-      "collection:update-instrument-metadata.yml:GB00B15KXV33:ter": {
-        "name": "WisdomTree WTI Crude Oil",
-        "tools": [
-          "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "workflow": "update-instrument-metadata.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
-        "to": "/bibliotheque-donnees?id=GB00B15KXV33",
-        "lastSuccessAt": "2026-10-18T16:32:07Z",
-        "completedAt": "2026-10-21T06:22:06Z",
-        "cause": "check-overdue; checked=2026-10-13, published=2026-10-12",
-        "field": "Frais",
-        "sourceUrls": [
-          "https://bourse.fortuneo.fr/trackers/cours-wt-crude-oil-CRUDP-GB00B15KXV33-23",
-          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXV33",
-          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXV33/",
-          "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-wti-crude-oil"
-        ],
-        "kind": "collection",
-        "dataId": "GB00B15KXV33:ter",
-        "id": "collection:update-instrument-metadata.yml:GB00B15KXV33:ter",
-        "firstSeenAt": "2026-10-21T05:41:56.145816+00:00",
-        "lastSeenAt": "2026-10-21T09:35:30.234999+00:00"
-      },
-      "collection:update-instrument-metadata.yml:GB00B15KXV33:aum": {
-        "name": "WisdomTree WTI Crude Oil",
-        "tools": [
-          "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "workflow": "update-instrument-metadata.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
-        "to": "/bibliotheque-donnees?id=GB00B15KXV33",
-        "lastSuccessAt": "2026-10-18T16:32:07Z",
-        "completedAt": "2026-10-21T06:22:06Z",
-        "cause": "check-overdue; checked=2026-10-13, published=2026-10-12",
-        "field": "Encours",
-        "sourceUrls": [
-          "https://bourse.fortuneo.fr/trackers/cours-wt-crude-oil-CRUDP-GB00B15KXV33-23",
-          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXV33",
-          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXV33/",
-          "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-wti-crude-oil"
-        ],
-        "kind": "collection",
-        "dataId": "GB00B15KXV33:aum",
-        "id": "collection:update-instrument-metadata.yml:GB00B15KXV33:aum",
-        "firstSeenAt": "2026-10-21T05:41:56.145816+00:00",
-        "lastSeenAt": "2026-10-21T09:35:30.234999+00:00"
-      },
-      "collection:update-instrument-metadata.yml:GB00B15KXV33:listings": {
-        "name": "WisdomTree WTI Crude Oil",
-        "tools": [
-          "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "workflow": "update-instrument-metadata.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
-        "to": "/bibliotheque-donnees?id=GB00B15KXV33",
-        "lastSuccessAt": "2026-10-18T16:32:07Z",
-        "completedAt": "2026-10-21T06:22:06Z",
-        "cause": "check-overdue; checked=2026-10-13, published=unknown",
-        "field": "Cotations",
-        "sourceUrls": [
-          "https://bourse.fortuneo.fr/trackers/cours-wt-crude-oil-CRUDP-GB00B15KXV33-23",
-          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXV33",
-          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXV33/",
-          "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-wti-crude-oil"
-        ],
-        "kind": "collection",
-        "dataId": "GB00B15KXV33:listings",
-        "id": "collection:update-instrument-metadata.yml:GB00B15KXV33:listings",
-        "firstSeenAt": "2026-10-21T05:41:56.145816+00:00",
-        "lastSeenAt": "2026-10-21T09:35:30.234999+00:00"
-      },
-      "collection:update-instrument-metadata.yml:JE00BN7KB334:ter": {
-        "name": "WisdomTree Natural Gas",
-        "tools": [
-          "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "workflow": "update-instrument-metadata.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
-        "to": "/bibliotheque-donnees?id=JE00BN7KB334",
-        "lastSuccessAt": "2026-10-18T16:32:07Z",
-        "completedAt": "2026-10-21T06:22:06Z",
-        "cause": "check-overdue; checked=2026-10-13, published=2026-10-12",
-        "field": "Frais",
-        "sourceUrls": [
-          "https://bourse.fortuneo.fr/trackers/cours-wisdomtree-natural-gas-usd-acc-NGASP-JE00BN7KB334-23",
-          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB334",
-          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB334/",
-          "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-natural-gas"
-        ],
-        "kind": "collection",
-        "dataId": "JE00BN7KB334:ter",
-        "id": "collection:update-instrument-metadata.yml:JE00BN7KB334:ter",
-        "firstSeenAt": "2026-10-21T05:41:56.145816+00:00",
-        "lastSeenAt": "2026-10-21T09:35:30.234999+00:00"
-      },
-      "collection:update-instrument-metadata.yml:JE00BN7KB334:aum": {
-        "name": "WisdomTree Natural Gas",
-        "tools": [
-          "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "workflow": "update-instrument-metadata.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
-        "to": "/bibliotheque-donnees?id=JE00BN7KB334",
-        "lastSuccessAt": "2026-10-18T16:32:07Z",
-        "completedAt": "2026-10-21T06:22:06Z",
-        "cause": "check-overdue; checked=2026-10-13, published=2026-10-12",
-        "field": "Encours",
-        "sourceUrls": [
-          "https://bourse.fortuneo.fr/trackers/cours-wisdomtree-natural-gas-usd-acc-NGASP-JE00BN7KB334-23",
-          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB334",
-          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB334/",
-          "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-natural-gas"
-        ],
-        "kind": "collection",
-        "dataId": "JE00BN7KB334:aum",
-        "id": "collection:update-instrument-metadata.yml:JE00BN7KB334:aum",
-        "firstSeenAt": "2026-10-21T05:41:56.145816+00:00",
-        "lastSeenAt": "2026-10-21T09:35:30.234999+00:00"
-      },
-      "collection:update-instrument-metadata.yml:JE00BN7KB334:listings": {
-        "name": "WisdomTree Natural Gas",
-        "tools": [
-          "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "workflow": "update-instrument-metadata.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
-        "to": "/bibliotheque-donnees?id=JE00BN7KB334",
-        "lastSuccessAt": "2026-10-18T16:32:07Z",
-        "completedAt": "2026-10-21T06:22:06Z",
-        "cause": "check-overdue; checked=2026-10-13, published=unknown",
-        "field": "Cotations",
-        "sourceUrls": [
-          "https://bourse.fortuneo.fr/trackers/cours-wisdomtree-natural-gas-usd-acc-NGASP-JE00BN7KB334-23",
-          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB334",
-          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB334/",
-          "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-natural-gas"
-        ],
-        "kind": "collection",
-        "dataId": "JE00BN7KB334:listings",
-        "id": "collection:update-instrument-metadata.yml:JE00BN7KB334:listings",
-        "firstSeenAt": "2026-10-21T05:41:56.145816+00:00",
-        "lastSeenAt": "2026-10-21T09:35:30.234999+00:00"
-      },
-      "collection:update-instrument-metadata.yml:JE00BN7KB557:ter": {
-        "name": "WisdomTree Coffee",
-        "tools": [
-          "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "workflow": "update-instrument-metadata.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
-        "to": "/bibliotheque-donnees?id=JE00BN7KB557",
-        "lastSuccessAt": "2026-10-18T16:32:07Z",
-        "completedAt": "2026-10-21T06:22:06Z",
-        "cause": "check-overdue; checked=2026-10-13, published=2026-10-12",
-        "field": "Frais",
-        "sourceUrls": [
-          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB557",
-          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB557/",
-          "https://extraetf.com/fr/etf-profile/JE00BN7KB557",
-          "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-coffee"
-        ],
-        "kind": "collection",
-        "dataId": "JE00BN7KB557:ter",
-        "id": "collection:update-instrument-metadata.yml:JE00BN7KB557:ter",
-        "firstSeenAt": "2026-10-21T05:41:56.145816+00:00",
-        "lastSeenAt": "2026-10-21T09:35:30.234999+00:00"
-      },
-      "collection:update-instrument-metadata.yml:JE00BN7KB557:aum": {
-        "name": "WisdomTree Coffee",
-        "tools": [
-          "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "workflow": "update-instrument-metadata.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
-        "to": "/bibliotheque-donnees?id=JE00BN7KB557",
-        "lastSuccessAt": "2026-10-18T16:32:07Z",
-        "completedAt": "2026-10-21T06:22:06Z",
-        "cause": "check-overdue; checked=2026-10-13, published=2026-10-12",
-        "field": "Encours",
-        "sourceUrls": [
-          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB557",
-          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB557/",
-          "https://extraetf.com/fr/etf-profile/JE00BN7KB557",
-          "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-coffee"
-        ],
-        "kind": "collection",
-        "dataId": "JE00BN7KB557:aum",
-        "id": "collection:update-instrument-metadata.yml:JE00BN7KB557:aum",
-        "firstSeenAt": "2026-10-21T05:41:56.145816+00:00",
-        "lastSeenAt": "2026-10-21T09:35:30.234999+00:00"
-      },
-      "collection:update-instrument-metadata.yml:JE00B2QXZK10:ter": {
-        "name": "WisdomTree Cocoa",
-        "tools": [
-          "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "workflow": "update-instrument-metadata.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
-        "to": "/bibliotheque-donnees?id=JE00B2QXZK10",
-        "lastSuccessAt": "2026-10-18T16:32:07Z",
-        "completedAt": "2026-10-21T06:22:06Z",
-        "cause": "check-overdue; checked=2026-10-13, published=2026-10-12",
-        "field": "Frais",
-        "sourceUrls": [
-          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B2QXZK10",
-          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B2QXZK10/",
-          "https://extraetf.com/fr/etf-profile/JE00B2QXZK10",
-          "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-cocoa"
-        ],
-        "kind": "collection",
-        "dataId": "JE00B2QXZK10:ter",
-        "id": "collection:update-instrument-metadata.yml:JE00B2QXZK10:ter",
-        "firstSeenAt": "2026-10-21T05:41:56.145816+00:00",
-        "lastSeenAt": "2026-10-21T09:35:30.234999+00:00"
-      },
-      "collection:update-instrument-metadata.yml:JE00B2QXZK10:aum": {
-        "name": "WisdomTree Cocoa",
-        "tools": [
-          "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "workflow": "update-instrument-metadata.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
-        "to": "/bibliotheque-donnees?id=JE00B2QXZK10",
-        "lastSuccessAt": "2026-10-18T16:32:07Z",
-        "completedAt": "2026-10-21T06:22:06Z",
-        "cause": "check-overdue; checked=2026-10-13, published=2026-10-12",
-        "field": "Encours",
-        "sourceUrls": [
-          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B2QXZK10",
-          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B2QXZK10/",
-          "https://extraetf.com/fr/etf-profile/JE00B2QXZK10",
-          "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-cocoa"
-        ],
-        "kind": "collection",
-        "dataId": "JE00B2QXZK10:aum",
-        "id": "collection:update-instrument-metadata.yml:JE00B2QXZK10:aum",
-        "firstSeenAt": "2026-10-21T05:41:56.145816+00:00",
-        "lastSeenAt": "2026-10-21T09:35:30.234999+00:00"
-      },
-      "collection:update-instrument-metadata.yml:JE00BN7KB664:ter": {
-        "name": "WisdomTree Wheat",
-        "tools": [
-          "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "workflow": "update-instrument-metadata.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
-        "to": "/bibliotheque-donnees?id=JE00BN7KB664",
-        "lastSuccessAt": "2026-10-18T16:32:07Z",
-        "completedAt": "2026-10-21T06:22:06Z",
-        "cause": "check-overdue; checked=2026-10-13, published=2026-10-12",
-        "field": "Frais",
-        "sourceUrls": [
-          "https://bourse.fortuneo.fr/trackers/cours-wisdomtree-wheat-eur-acc-WEATP-JE00BN7KB664-23",
-          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB664",
-          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB664/",
-          "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-wheat"
-        ],
-        "kind": "collection",
-        "dataId": "JE00BN7KB664:ter",
-        "id": "collection:update-instrument-metadata.yml:JE00BN7KB664:ter",
-        "firstSeenAt": "2026-10-21T05:41:56.145816+00:00",
-        "lastSeenAt": "2026-10-21T09:35:30.234999+00:00"
-      },
-      "collection:update-instrument-metadata.yml:JE00BN7KB664:aum": {
-        "name": "WisdomTree Wheat",
-        "tools": [
-          "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "workflow": "update-instrument-metadata.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
-        "to": "/bibliotheque-donnees?id=JE00BN7KB664",
-        "lastSuccessAt": "2026-10-18T16:32:07Z",
-        "completedAt": "2026-10-21T06:22:06Z",
-        "cause": "check-overdue; checked=2026-10-13, published=2026-10-12",
-        "field": "Encours",
-        "sourceUrls": [
-          "https://bourse.fortuneo.fr/trackers/cours-wisdomtree-wheat-eur-acc-WEATP-JE00BN7KB664-23",
-          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB664",
-          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB664/",
-          "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-wheat"
-        ],
-        "kind": "collection",
-        "dataId": "JE00BN7KB664:aum",
-        "id": "collection:update-instrument-metadata.yml:JE00BN7KB664:aum",
-        "firstSeenAt": "2026-10-21T05:41:56.145816+00:00",
-        "lastSeenAt": "2026-10-21T09:35:30.234999+00:00"
-      },
-      "collection:update-instrument-metadata.yml:JE00BN7KB664:listings": {
-        "name": "WisdomTree Wheat",
-        "tools": [
-          "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "workflow": "update-instrument-metadata.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
-        "to": "/bibliotheque-donnees?id=JE00BN7KB664",
-        "lastSuccessAt": "2026-10-18T16:32:07Z",
-        "completedAt": "2026-10-21T06:22:06Z",
-        "cause": "check-overdue; checked=2026-10-13, published=unknown",
-        "field": "Cotations",
-        "sourceUrls": [
-          "https://bourse.fortuneo.fr/trackers/cours-wisdomtree-wheat-eur-acc-WEATP-JE00BN7KB664-23",
-          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB664",
-          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB664/",
-          "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-wheat"
-        ],
-        "kind": "collection",
-        "dataId": "JE00BN7KB664:listings",
-        "id": "collection:update-instrument-metadata.yml:JE00BN7KB664:listings",
-        "firstSeenAt": "2026-10-21T05:41:56.145816+00:00",
-        "lastSeenAt": "2026-10-21T09:35:30.234999+00:00"
+        "lastSeenAt": "2026-10-21T09:45:11.597473+00:00"
       },
       "unobserved:onboard-assets.yml": {
         "name": "Intégration des nouveaux actifs",
@@ -2471,7 +1952,7 @@
         "cause": "Aucune exécution terminée avec une date exploitable.",
         "id": "unobserved:onboard-assets.yml",
         "firstSeenAt": "2026-10-18T12:02:38.068054+00:00",
-        "lastSeenAt": "2026-10-21T09:35:30.234999+00:00"
+        "lastSeenAt": "2026-10-21T09:45:11.597473+00:00"
       },
       "field:instrument:IE00BJGWQN72:completeHoldings": {
         "id": "field:instrument:IE00BJGWQN72:completeHoldings",
@@ -2500,7 +1981,7 @@
         "evaluatedAt": "2026-10-21",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-21T05:38:08.549445+00:00",
-        "lastSeenAt": "2026-10-21T09:35:30.234999+00:00"
+        "lastSeenAt": "2026-10-21T09:45:11.597473+00:00"
       },
       "radar:4b633e62dc0a87d1c02f6b7e": {
         "name": "SPDR € Corp Bond UCITS ETF",
@@ -2522,19 +2003,10 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-19) : Poids des dix premières lignes. Dernière observation conservée ; propositions archivées (etf:IE00B3T9LM79:top10:0261a38d6b954a5f4e504dab:2026-10-19).",
         "id": "radar:4b633e62dc0a87d1c02f6b7e",
         "firstSeenAt": "2026-10-20T19:51:00.268149+00:00",
-        "lastSeenAt": "2026-10-21T09:35:30.234999+00:00"
+        "lastSeenAt": "2026-10-21T09:45:11.597473+00:00"
       }
     },
     "events": [
-      {
-        "revision": 175,
-        "at": "2026-10-20T12:50:07.780630+00:00",
-        "opened": [
-          "collection:update-scpi.yml:iroko-zen"
-        ],
-        "resolved": [],
-        "escalated": []
-      },
       {
         "revision": 176,
         "at": "2026-10-20T12:51:04.872692+00:00",
@@ -11869,9 +11341,888 @@
         ],
         "retired": [],
         "escalated": []
+      },
+      {
+        "revision": 205,
+        "at": "2026-10-21T09:45:11.597473+00:00",
+        "opened": [],
+        "resolved": [
+          {
+            "name": "WisdomTree Brent Crude Oil",
+            "tools": [
+              "Comparatif ETF",
+              "Duels de portefeuilles",
+              "Générateur de portefeuilles",
+              "Présentation ETF"
+            ],
+            "impactScope": "asset",
+            "workflow": "update-instrument-metadata.yml",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
+            "to": "/bibliotheque-donnees?id=JE00B78CGV99",
+            "lastSuccessAt": "2026-10-18T16:32:07Z",
+            "completedAt": "2026-10-21T06:22:06Z",
+            "cause": "check-overdue; checked=2026-10-13, published=2026-10-12",
+            "field": "Frais",
+            "sourceUrls": [
+              "https://bourse.fortuneo.fr/trackers/cours-wisdomtree-brent-crude-oil-usd-acc-BRNT-JE00B78CGV99-23",
+              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B78CGV99",
+              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B78CGV99/",
+              "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-brent-crude-oil"
+            ],
+            "kind": "collection",
+            "dataId": "JE00B78CGV99:ter",
+            "id": "collection:update-instrument-metadata.yml:JE00B78CGV99:ter",
+            "firstSeenAt": "2026-10-21T05:41:56.145816+00:00",
+            "lastSeenAt": "2026-10-21T09:35:30.234999+00:00",
+            "resolvedAt": "2026-10-21T09:45:11.597473+00:00"
+          },
+          {
+            "name": "WisdomTree Brent Crude Oil",
+            "tools": [
+              "Comparatif ETF",
+              "Duels de portefeuilles",
+              "Générateur de portefeuilles",
+              "Présentation ETF"
+            ],
+            "impactScope": "asset",
+            "workflow": "update-instrument-metadata.yml",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
+            "to": "/bibliotheque-donnees?id=JE00B78CGV99",
+            "lastSuccessAt": "2026-10-18T16:32:07Z",
+            "completedAt": "2026-10-21T06:22:06Z",
+            "cause": "check-overdue; checked=2026-10-13, published=2026-10-12",
+            "field": "Encours",
+            "sourceUrls": [
+              "https://bourse.fortuneo.fr/trackers/cours-wisdomtree-brent-crude-oil-usd-acc-BRNT-JE00B78CGV99-23",
+              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B78CGV99",
+              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B78CGV99/",
+              "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-brent-crude-oil"
+            ],
+            "kind": "collection",
+            "dataId": "JE00B78CGV99:aum",
+            "id": "collection:update-instrument-metadata.yml:JE00B78CGV99:aum",
+            "firstSeenAt": "2026-10-21T05:41:56.145816+00:00",
+            "lastSeenAt": "2026-10-21T09:35:30.234999+00:00",
+            "resolvedAt": "2026-10-21T09:45:11.597473+00:00"
+          },
+          {
+            "name": "WisdomTree WTI Crude Oil",
+            "tools": [
+              "Comparatif ETF",
+              "Duels de portefeuilles",
+              "Générateur de portefeuilles",
+              "Présentation ETF"
+            ],
+            "impactScope": "asset",
+            "workflow": "update-instrument-metadata.yml",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
+            "to": "/bibliotheque-donnees?id=GB00B15KXV33",
+            "lastSuccessAt": "2026-10-18T16:32:07Z",
+            "completedAt": "2026-10-21T06:22:06Z",
+            "cause": "check-overdue; checked=2026-10-13, published=2026-10-12",
+            "field": "Frais",
+            "sourceUrls": [
+              "https://bourse.fortuneo.fr/trackers/cours-wt-crude-oil-CRUDP-GB00B15KXV33-23",
+              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXV33",
+              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXV33/",
+              "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-wti-crude-oil"
+            ],
+            "kind": "collection",
+            "dataId": "GB00B15KXV33:ter",
+            "id": "collection:update-instrument-metadata.yml:GB00B15KXV33:ter",
+            "firstSeenAt": "2026-10-21T05:41:56.145816+00:00",
+            "lastSeenAt": "2026-10-21T09:35:30.234999+00:00",
+            "resolvedAt": "2026-10-21T09:45:11.597473+00:00"
+          },
+          {
+            "name": "WisdomTree WTI Crude Oil",
+            "tools": [
+              "Comparatif ETF",
+              "Duels de portefeuilles",
+              "Générateur de portefeuilles",
+              "Présentation ETF"
+            ],
+            "impactScope": "asset",
+            "workflow": "update-instrument-metadata.yml",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
+            "to": "/bibliotheque-donnees?id=GB00B15KXV33",
+            "lastSuccessAt": "2026-10-18T16:32:07Z",
+            "completedAt": "2026-10-21T06:22:06Z",
+            "cause": "check-overdue; checked=2026-10-13, published=2026-10-12",
+            "field": "Encours",
+            "sourceUrls": [
+              "https://bourse.fortuneo.fr/trackers/cours-wt-crude-oil-CRUDP-GB00B15KXV33-23",
+              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXV33",
+              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXV33/",
+              "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-wti-crude-oil"
+            ],
+            "kind": "collection",
+            "dataId": "GB00B15KXV33:aum",
+            "id": "collection:update-instrument-metadata.yml:GB00B15KXV33:aum",
+            "firstSeenAt": "2026-10-21T05:41:56.145816+00:00",
+            "lastSeenAt": "2026-10-21T09:35:30.234999+00:00",
+            "resolvedAt": "2026-10-21T09:45:11.597473+00:00"
+          },
+          {
+            "name": "WisdomTree WTI Crude Oil",
+            "tools": [
+              "Comparatif ETF",
+              "Duels de portefeuilles",
+              "Générateur de portefeuilles",
+              "Présentation ETF"
+            ],
+            "impactScope": "asset",
+            "workflow": "update-instrument-metadata.yml",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
+            "to": "/bibliotheque-donnees?id=GB00B15KXV33",
+            "lastSuccessAt": "2026-10-18T16:32:07Z",
+            "completedAt": "2026-10-21T06:22:06Z",
+            "cause": "check-overdue; checked=2026-10-13, published=unknown",
+            "field": "Cotations",
+            "sourceUrls": [
+              "https://bourse.fortuneo.fr/trackers/cours-wt-crude-oil-CRUDP-GB00B15KXV33-23",
+              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXV33",
+              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXV33/",
+              "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-wti-crude-oil"
+            ],
+            "kind": "collection",
+            "dataId": "GB00B15KXV33:listings",
+            "id": "collection:update-instrument-metadata.yml:GB00B15KXV33:listings",
+            "firstSeenAt": "2026-10-21T05:41:56.145816+00:00",
+            "lastSeenAt": "2026-10-21T09:35:30.234999+00:00",
+            "resolvedAt": "2026-10-21T09:45:11.597473+00:00"
+          },
+          {
+            "name": "WisdomTree Natural Gas",
+            "tools": [
+              "Comparatif ETF",
+              "Duels de portefeuilles",
+              "Générateur de portefeuilles",
+              "Présentation ETF"
+            ],
+            "impactScope": "asset",
+            "workflow": "update-instrument-metadata.yml",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
+            "to": "/bibliotheque-donnees?id=JE00BN7KB334",
+            "lastSuccessAt": "2026-10-18T16:32:07Z",
+            "completedAt": "2026-10-21T06:22:06Z",
+            "cause": "check-overdue; checked=2026-10-13, published=2026-10-12",
+            "field": "Frais",
+            "sourceUrls": [
+              "https://bourse.fortuneo.fr/trackers/cours-wisdomtree-natural-gas-usd-acc-NGASP-JE00BN7KB334-23",
+              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB334",
+              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB334/",
+              "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-natural-gas"
+            ],
+            "kind": "collection",
+            "dataId": "JE00BN7KB334:ter",
+            "id": "collection:update-instrument-metadata.yml:JE00BN7KB334:ter",
+            "firstSeenAt": "2026-10-21T05:41:56.145816+00:00",
+            "lastSeenAt": "2026-10-21T09:35:30.234999+00:00",
+            "resolvedAt": "2026-10-21T09:45:11.597473+00:00"
+          },
+          {
+            "name": "WisdomTree Natural Gas",
+            "tools": [
+              "Comparatif ETF",
+              "Duels de portefeuilles",
+              "Générateur de portefeuilles",
+              "Présentation ETF"
+            ],
+            "impactScope": "asset",
+            "workflow": "update-instrument-metadata.yml",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
+            "to": "/bibliotheque-donnees?id=JE00BN7KB334",
+            "lastSuccessAt": "2026-10-18T16:32:07Z",
+            "completedAt": "2026-10-21T06:22:06Z",
+            "cause": "check-overdue; checked=2026-10-13, published=2026-10-12",
+            "field": "Encours",
+            "sourceUrls": [
+              "https://bourse.fortuneo.fr/trackers/cours-wisdomtree-natural-gas-usd-acc-NGASP-JE00BN7KB334-23",
+              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB334",
+              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB334/",
+              "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-natural-gas"
+            ],
+            "kind": "collection",
+            "dataId": "JE00BN7KB334:aum",
+            "id": "collection:update-instrument-metadata.yml:JE00BN7KB334:aum",
+            "firstSeenAt": "2026-10-21T05:41:56.145816+00:00",
+            "lastSeenAt": "2026-10-21T09:35:30.234999+00:00",
+            "resolvedAt": "2026-10-21T09:45:11.597473+00:00"
+          },
+          {
+            "name": "WisdomTree Natural Gas",
+            "tools": [
+              "Comparatif ETF",
+              "Duels de portefeuilles",
+              "Générateur de portefeuilles",
+              "Présentation ETF"
+            ],
+            "impactScope": "asset",
+            "workflow": "update-instrument-metadata.yml",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
+            "to": "/bibliotheque-donnees?id=JE00BN7KB334",
+            "lastSuccessAt": "2026-10-18T16:32:07Z",
+            "completedAt": "2026-10-21T06:22:06Z",
+            "cause": "check-overdue; checked=2026-10-13, published=unknown",
+            "field": "Cotations",
+            "sourceUrls": [
+              "https://bourse.fortuneo.fr/trackers/cours-wisdomtree-natural-gas-usd-acc-NGASP-JE00BN7KB334-23",
+              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB334",
+              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB334/",
+              "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-natural-gas"
+            ],
+            "kind": "collection",
+            "dataId": "JE00BN7KB334:listings",
+            "id": "collection:update-instrument-metadata.yml:JE00BN7KB334:listings",
+            "firstSeenAt": "2026-10-21T05:41:56.145816+00:00",
+            "lastSeenAt": "2026-10-21T09:35:30.234999+00:00",
+            "resolvedAt": "2026-10-21T09:45:11.597473+00:00"
+          },
+          {
+            "name": "WisdomTree Coffee",
+            "tools": [
+              "Comparatif ETF",
+              "Duels de portefeuilles",
+              "Générateur de portefeuilles",
+              "Présentation ETF"
+            ],
+            "impactScope": "asset",
+            "workflow": "update-instrument-metadata.yml",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
+            "to": "/bibliotheque-donnees?id=JE00BN7KB557",
+            "lastSuccessAt": "2026-10-18T16:32:07Z",
+            "completedAt": "2026-10-21T06:22:06Z",
+            "cause": "check-overdue; checked=2026-10-13, published=2026-10-12",
+            "field": "Frais",
+            "sourceUrls": [
+              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB557",
+              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB557/",
+              "https://extraetf.com/fr/etf-profile/JE00BN7KB557",
+              "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-coffee"
+            ],
+            "kind": "collection",
+            "dataId": "JE00BN7KB557:ter",
+            "id": "collection:update-instrument-metadata.yml:JE00BN7KB557:ter",
+            "firstSeenAt": "2026-10-21T05:41:56.145816+00:00",
+            "lastSeenAt": "2026-10-21T09:35:30.234999+00:00",
+            "resolvedAt": "2026-10-21T09:45:11.597473+00:00"
+          },
+          {
+            "name": "WisdomTree Coffee",
+            "tools": [
+              "Comparatif ETF",
+              "Duels de portefeuilles",
+              "Générateur de portefeuilles",
+              "Présentation ETF"
+            ],
+            "impactScope": "asset",
+            "workflow": "update-instrument-metadata.yml",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
+            "to": "/bibliotheque-donnees?id=JE00BN7KB557",
+            "lastSuccessAt": "2026-10-18T16:32:07Z",
+            "completedAt": "2026-10-21T06:22:06Z",
+            "cause": "check-overdue; checked=2026-10-13, published=2026-10-12",
+            "field": "Encours",
+            "sourceUrls": [
+              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB557",
+              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB557/",
+              "https://extraetf.com/fr/etf-profile/JE00BN7KB557",
+              "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-coffee"
+            ],
+            "kind": "collection",
+            "dataId": "JE00BN7KB557:aum",
+            "id": "collection:update-instrument-metadata.yml:JE00BN7KB557:aum",
+            "firstSeenAt": "2026-10-21T05:41:56.145816+00:00",
+            "lastSeenAt": "2026-10-21T09:35:30.234999+00:00",
+            "resolvedAt": "2026-10-21T09:45:11.597473+00:00"
+          },
+          {
+            "name": "WisdomTree Cocoa",
+            "tools": [
+              "Comparatif ETF",
+              "Duels de portefeuilles",
+              "Générateur de portefeuilles",
+              "Présentation ETF"
+            ],
+            "impactScope": "asset",
+            "workflow": "update-instrument-metadata.yml",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
+            "to": "/bibliotheque-donnees?id=JE00B2QXZK10",
+            "lastSuccessAt": "2026-10-18T16:32:07Z",
+            "completedAt": "2026-10-21T06:22:06Z",
+            "cause": "check-overdue; checked=2026-10-13, published=2026-10-12",
+            "field": "Frais",
+            "sourceUrls": [
+              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B2QXZK10",
+              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B2QXZK10/",
+              "https://extraetf.com/fr/etf-profile/JE00B2QXZK10",
+              "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-cocoa"
+            ],
+            "kind": "collection",
+            "dataId": "JE00B2QXZK10:ter",
+            "id": "collection:update-instrument-metadata.yml:JE00B2QXZK10:ter",
+            "firstSeenAt": "2026-10-21T05:41:56.145816+00:00",
+            "lastSeenAt": "2026-10-21T09:35:30.234999+00:00",
+            "resolvedAt": "2026-10-21T09:45:11.597473+00:00"
+          },
+          {
+            "name": "WisdomTree Cocoa",
+            "tools": [
+              "Comparatif ETF",
+              "Duels de portefeuilles",
+              "Générateur de portefeuilles",
+              "Présentation ETF"
+            ],
+            "impactScope": "asset",
+            "workflow": "update-instrument-metadata.yml",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
+            "to": "/bibliotheque-donnees?id=JE00B2QXZK10",
+            "lastSuccessAt": "2026-10-18T16:32:07Z",
+            "completedAt": "2026-10-21T06:22:06Z",
+            "cause": "check-overdue; checked=2026-10-13, published=2026-10-12",
+            "field": "Encours",
+            "sourceUrls": [
+              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B2QXZK10",
+              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B2QXZK10/",
+              "https://extraetf.com/fr/etf-profile/JE00B2QXZK10",
+              "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-cocoa"
+            ],
+            "kind": "collection",
+            "dataId": "JE00B2QXZK10:aum",
+            "id": "collection:update-instrument-metadata.yml:JE00B2QXZK10:aum",
+            "firstSeenAt": "2026-10-21T05:41:56.145816+00:00",
+            "lastSeenAt": "2026-10-21T09:35:30.234999+00:00",
+            "resolvedAt": "2026-10-21T09:45:11.597473+00:00"
+          },
+          {
+            "name": "WisdomTree Wheat",
+            "tools": [
+              "Comparatif ETF",
+              "Duels de portefeuilles",
+              "Générateur de portefeuilles",
+              "Présentation ETF"
+            ],
+            "impactScope": "asset",
+            "workflow": "update-instrument-metadata.yml",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
+            "to": "/bibliotheque-donnees?id=JE00BN7KB664",
+            "lastSuccessAt": "2026-10-18T16:32:07Z",
+            "completedAt": "2026-10-21T06:22:06Z",
+            "cause": "check-overdue; checked=2026-10-13, published=2026-10-12",
+            "field": "Frais",
+            "sourceUrls": [
+              "https://bourse.fortuneo.fr/trackers/cours-wisdomtree-wheat-eur-acc-WEATP-JE00BN7KB664-23",
+              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB664",
+              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB664/",
+              "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-wheat"
+            ],
+            "kind": "collection",
+            "dataId": "JE00BN7KB664:ter",
+            "id": "collection:update-instrument-metadata.yml:JE00BN7KB664:ter",
+            "firstSeenAt": "2026-10-21T05:41:56.145816+00:00",
+            "lastSeenAt": "2026-10-21T09:35:30.234999+00:00",
+            "resolvedAt": "2026-10-21T09:45:11.597473+00:00"
+          },
+          {
+            "name": "WisdomTree Wheat",
+            "tools": [
+              "Comparatif ETF",
+              "Duels de portefeuilles",
+              "Générateur de portefeuilles",
+              "Présentation ETF"
+            ],
+            "impactScope": "asset",
+            "workflow": "update-instrument-metadata.yml",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
+            "to": "/bibliotheque-donnees?id=JE00BN7KB664",
+            "lastSuccessAt": "2026-10-18T16:32:07Z",
+            "completedAt": "2026-10-21T06:22:06Z",
+            "cause": "check-overdue; checked=2026-10-13, published=2026-10-12",
+            "field": "Encours",
+            "sourceUrls": [
+              "https://bourse.fortuneo.fr/trackers/cours-wisdomtree-wheat-eur-acc-WEATP-JE00BN7KB664-23",
+              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB664",
+              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB664/",
+              "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-wheat"
+            ],
+            "kind": "collection",
+            "dataId": "JE00BN7KB664:aum",
+            "id": "collection:update-instrument-metadata.yml:JE00BN7KB664:aum",
+            "firstSeenAt": "2026-10-21T05:41:56.145816+00:00",
+            "lastSeenAt": "2026-10-21T09:35:30.234999+00:00",
+            "resolvedAt": "2026-10-21T09:45:11.597473+00:00"
+          },
+          {
+            "name": "WisdomTree Wheat",
+            "tools": [
+              "Comparatif ETF",
+              "Duels de portefeuilles",
+              "Générateur de portefeuilles",
+              "Présentation ETF"
+            ],
+            "impactScope": "asset",
+            "workflow": "update-instrument-metadata.yml",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
+            "to": "/bibliotheque-donnees?id=JE00BN7KB664",
+            "lastSuccessAt": "2026-10-18T16:32:07Z",
+            "completedAt": "2026-10-21T06:22:06Z",
+            "cause": "check-overdue; checked=2026-10-13, published=unknown",
+            "field": "Cotations",
+            "sourceUrls": [
+              "https://bourse.fortuneo.fr/trackers/cours-wisdomtree-wheat-eur-acc-WEATP-JE00BN7KB664-23",
+              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB664",
+              "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB664/",
+              "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-wheat"
+            ],
+            "kind": "collection",
+            "dataId": "JE00BN7KB664:listings",
+            "id": "collection:update-instrument-metadata.yml:JE00BN7KB664:listings",
+            "firstSeenAt": "2026-10-21T05:41:56.145816+00:00",
+            "lastSeenAt": "2026-10-21T09:35:30.234999+00:00",
+            "resolvedAt": "2026-10-21T09:45:11.597473+00:00"
+          }
+        ],
+        "retired": [],
+        "escalated": []
       }
     ],
     "resolved": [
+      {
+        "name": "WisdomTree Brent Crude Oil",
+        "tools": [
+          "Comparatif ETF",
+          "Duels de portefeuilles",
+          "Générateur de portefeuilles",
+          "Présentation ETF"
+        ],
+        "impactScope": "asset",
+        "workflow": "update-instrument-metadata.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
+        "to": "/bibliotheque-donnees?id=JE00B78CGV99",
+        "lastSuccessAt": "2026-10-18T16:32:07Z",
+        "completedAt": "2026-10-21T06:22:06Z",
+        "cause": "check-overdue; checked=2026-10-13, published=2026-10-12",
+        "field": "Frais",
+        "sourceUrls": [
+          "https://bourse.fortuneo.fr/trackers/cours-wisdomtree-brent-crude-oil-usd-acc-BRNT-JE00B78CGV99-23",
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B78CGV99",
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B78CGV99/",
+          "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-brent-crude-oil"
+        ],
+        "kind": "collection",
+        "dataId": "JE00B78CGV99:ter",
+        "id": "collection:update-instrument-metadata.yml:JE00B78CGV99:ter",
+        "firstSeenAt": "2026-10-21T05:41:56.145816+00:00",
+        "lastSeenAt": "2026-10-21T09:35:30.234999+00:00",
+        "resolvedAt": "2026-10-21T09:45:11.597473+00:00"
+      },
+      {
+        "name": "WisdomTree Brent Crude Oil",
+        "tools": [
+          "Comparatif ETF",
+          "Duels de portefeuilles",
+          "Générateur de portefeuilles",
+          "Présentation ETF"
+        ],
+        "impactScope": "asset",
+        "workflow": "update-instrument-metadata.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
+        "to": "/bibliotheque-donnees?id=JE00B78CGV99",
+        "lastSuccessAt": "2026-10-18T16:32:07Z",
+        "completedAt": "2026-10-21T06:22:06Z",
+        "cause": "check-overdue; checked=2026-10-13, published=2026-10-12",
+        "field": "Encours",
+        "sourceUrls": [
+          "https://bourse.fortuneo.fr/trackers/cours-wisdomtree-brent-crude-oil-usd-acc-BRNT-JE00B78CGV99-23",
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B78CGV99",
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B78CGV99/",
+          "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-brent-crude-oil"
+        ],
+        "kind": "collection",
+        "dataId": "JE00B78CGV99:aum",
+        "id": "collection:update-instrument-metadata.yml:JE00B78CGV99:aum",
+        "firstSeenAt": "2026-10-21T05:41:56.145816+00:00",
+        "lastSeenAt": "2026-10-21T09:35:30.234999+00:00",
+        "resolvedAt": "2026-10-21T09:45:11.597473+00:00"
+      },
+      {
+        "name": "WisdomTree WTI Crude Oil",
+        "tools": [
+          "Comparatif ETF",
+          "Duels de portefeuilles",
+          "Générateur de portefeuilles",
+          "Présentation ETF"
+        ],
+        "impactScope": "asset",
+        "workflow": "update-instrument-metadata.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
+        "to": "/bibliotheque-donnees?id=GB00B15KXV33",
+        "lastSuccessAt": "2026-10-18T16:32:07Z",
+        "completedAt": "2026-10-21T06:22:06Z",
+        "cause": "check-overdue; checked=2026-10-13, published=2026-10-12",
+        "field": "Frais",
+        "sourceUrls": [
+          "https://bourse.fortuneo.fr/trackers/cours-wt-crude-oil-CRUDP-GB00B15KXV33-23",
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXV33",
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXV33/",
+          "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-wti-crude-oil"
+        ],
+        "kind": "collection",
+        "dataId": "GB00B15KXV33:ter",
+        "id": "collection:update-instrument-metadata.yml:GB00B15KXV33:ter",
+        "firstSeenAt": "2026-10-21T05:41:56.145816+00:00",
+        "lastSeenAt": "2026-10-21T09:35:30.234999+00:00",
+        "resolvedAt": "2026-10-21T09:45:11.597473+00:00"
+      },
+      {
+        "name": "WisdomTree WTI Crude Oil",
+        "tools": [
+          "Comparatif ETF",
+          "Duels de portefeuilles",
+          "Générateur de portefeuilles",
+          "Présentation ETF"
+        ],
+        "impactScope": "asset",
+        "workflow": "update-instrument-metadata.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
+        "to": "/bibliotheque-donnees?id=GB00B15KXV33",
+        "lastSuccessAt": "2026-10-18T16:32:07Z",
+        "completedAt": "2026-10-21T06:22:06Z",
+        "cause": "check-overdue; checked=2026-10-13, published=2026-10-12",
+        "field": "Encours",
+        "sourceUrls": [
+          "https://bourse.fortuneo.fr/trackers/cours-wt-crude-oil-CRUDP-GB00B15KXV33-23",
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXV33",
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXV33/",
+          "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-wti-crude-oil"
+        ],
+        "kind": "collection",
+        "dataId": "GB00B15KXV33:aum",
+        "id": "collection:update-instrument-metadata.yml:GB00B15KXV33:aum",
+        "firstSeenAt": "2026-10-21T05:41:56.145816+00:00",
+        "lastSeenAt": "2026-10-21T09:35:30.234999+00:00",
+        "resolvedAt": "2026-10-21T09:45:11.597473+00:00"
+      },
+      {
+        "name": "WisdomTree WTI Crude Oil",
+        "tools": [
+          "Comparatif ETF",
+          "Duels de portefeuilles",
+          "Générateur de portefeuilles",
+          "Présentation ETF"
+        ],
+        "impactScope": "asset",
+        "workflow": "update-instrument-metadata.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
+        "to": "/bibliotheque-donnees?id=GB00B15KXV33",
+        "lastSuccessAt": "2026-10-18T16:32:07Z",
+        "completedAt": "2026-10-21T06:22:06Z",
+        "cause": "check-overdue; checked=2026-10-13, published=unknown",
+        "field": "Cotations",
+        "sourceUrls": [
+          "https://bourse.fortuneo.fr/trackers/cours-wt-crude-oil-CRUDP-GB00B15KXV33-23",
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXV33",
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXV33/",
+          "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-wti-crude-oil"
+        ],
+        "kind": "collection",
+        "dataId": "GB00B15KXV33:listings",
+        "id": "collection:update-instrument-metadata.yml:GB00B15KXV33:listings",
+        "firstSeenAt": "2026-10-21T05:41:56.145816+00:00",
+        "lastSeenAt": "2026-10-21T09:35:30.234999+00:00",
+        "resolvedAt": "2026-10-21T09:45:11.597473+00:00"
+      },
+      {
+        "name": "WisdomTree Natural Gas",
+        "tools": [
+          "Comparatif ETF",
+          "Duels de portefeuilles",
+          "Générateur de portefeuilles",
+          "Présentation ETF"
+        ],
+        "impactScope": "asset",
+        "workflow": "update-instrument-metadata.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
+        "to": "/bibliotheque-donnees?id=JE00BN7KB334",
+        "lastSuccessAt": "2026-10-18T16:32:07Z",
+        "completedAt": "2026-10-21T06:22:06Z",
+        "cause": "check-overdue; checked=2026-10-13, published=2026-10-12",
+        "field": "Frais",
+        "sourceUrls": [
+          "https://bourse.fortuneo.fr/trackers/cours-wisdomtree-natural-gas-usd-acc-NGASP-JE00BN7KB334-23",
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB334",
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB334/",
+          "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-natural-gas"
+        ],
+        "kind": "collection",
+        "dataId": "JE00BN7KB334:ter",
+        "id": "collection:update-instrument-metadata.yml:JE00BN7KB334:ter",
+        "firstSeenAt": "2026-10-21T05:41:56.145816+00:00",
+        "lastSeenAt": "2026-10-21T09:35:30.234999+00:00",
+        "resolvedAt": "2026-10-21T09:45:11.597473+00:00"
+      },
+      {
+        "name": "WisdomTree Natural Gas",
+        "tools": [
+          "Comparatif ETF",
+          "Duels de portefeuilles",
+          "Générateur de portefeuilles",
+          "Présentation ETF"
+        ],
+        "impactScope": "asset",
+        "workflow": "update-instrument-metadata.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
+        "to": "/bibliotheque-donnees?id=JE00BN7KB334",
+        "lastSuccessAt": "2026-10-18T16:32:07Z",
+        "completedAt": "2026-10-21T06:22:06Z",
+        "cause": "check-overdue; checked=2026-10-13, published=2026-10-12",
+        "field": "Encours",
+        "sourceUrls": [
+          "https://bourse.fortuneo.fr/trackers/cours-wisdomtree-natural-gas-usd-acc-NGASP-JE00BN7KB334-23",
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB334",
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB334/",
+          "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-natural-gas"
+        ],
+        "kind": "collection",
+        "dataId": "JE00BN7KB334:aum",
+        "id": "collection:update-instrument-metadata.yml:JE00BN7KB334:aum",
+        "firstSeenAt": "2026-10-21T05:41:56.145816+00:00",
+        "lastSeenAt": "2026-10-21T09:35:30.234999+00:00",
+        "resolvedAt": "2026-10-21T09:45:11.597473+00:00"
+      },
+      {
+        "name": "WisdomTree Natural Gas",
+        "tools": [
+          "Comparatif ETF",
+          "Duels de portefeuilles",
+          "Générateur de portefeuilles",
+          "Présentation ETF"
+        ],
+        "impactScope": "asset",
+        "workflow": "update-instrument-metadata.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
+        "to": "/bibliotheque-donnees?id=JE00BN7KB334",
+        "lastSuccessAt": "2026-10-18T16:32:07Z",
+        "completedAt": "2026-10-21T06:22:06Z",
+        "cause": "check-overdue; checked=2026-10-13, published=unknown",
+        "field": "Cotations",
+        "sourceUrls": [
+          "https://bourse.fortuneo.fr/trackers/cours-wisdomtree-natural-gas-usd-acc-NGASP-JE00BN7KB334-23",
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB334",
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB334/",
+          "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-natural-gas"
+        ],
+        "kind": "collection",
+        "dataId": "JE00BN7KB334:listings",
+        "id": "collection:update-instrument-metadata.yml:JE00BN7KB334:listings",
+        "firstSeenAt": "2026-10-21T05:41:56.145816+00:00",
+        "lastSeenAt": "2026-10-21T09:35:30.234999+00:00",
+        "resolvedAt": "2026-10-21T09:45:11.597473+00:00"
+      },
+      {
+        "name": "WisdomTree Coffee",
+        "tools": [
+          "Comparatif ETF",
+          "Duels de portefeuilles",
+          "Générateur de portefeuilles",
+          "Présentation ETF"
+        ],
+        "impactScope": "asset",
+        "workflow": "update-instrument-metadata.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
+        "to": "/bibliotheque-donnees?id=JE00BN7KB557",
+        "lastSuccessAt": "2026-10-18T16:32:07Z",
+        "completedAt": "2026-10-21T06:22:06Z",
+        "cause": "check-overdue; checked=2026-10-13, published=2026-10-12",
+        "field": "Frais",
+        "sourceUrls": [
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB557",
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB557/",
+          "https://extraetf.com/fr/etf-profile/JE00BN7KB557",
+          "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-coffee"
+        ],
+        "kind": "collection",
+        "dataId": "JE00BN7KB557:ter",
+        "id": "collection:update-instrument-metadata.yml:JE00BN7KB557:ter",
+        "firstSeenAt": "2026-10-21T05:41:56.145816+00:00",
+        "lastSeenAt": "2026-10-21T09:35:30.234999+00:00",
+        "resolvedAt": "2026-10-21T09:45:11.597473+00:00"
+      },
+      {
+        "name": "WisdomTree Coffee",
+        "tools": [
+          "Comparatif ETF",
+          "Duels de portefeuilles",
+          "Générateur de portefeuilles",
+          "Présentation ETF"
+        ],
+        "impactScope": "asset",
+        "workflow": "update-instrument-metadata.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
+        "to": "/bibliotheque-donnees?id=JE00BN7KB557",
+        "lastSuccessAt": "2026-10-18T16:32:07Z",
+        "completedAt": "2026-10-21T06:22:06Z",
+        "cause": "check-overdue; checked=2026-10-13, published=2026-10-12",
+        "field": "Encours",
+        "sourceUrls": [
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB557",
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB557/",
+          "https://extraetf.com/fr/etf-profile/JE00BN7KB557",
+          "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-coffee"
+        ],
+        "kind": "collection",
+        "dataId": "JE00BN7KB557:aum",
+        "id": "collection:update-instrument-metadata.yml:JE00BN7KB557:aum",
+        "firstSeenAt": "2026-10-21T05:41:56.145816+00:00",
+        "lastSeenAt": "2026-10-21T09:35:30.234999+00:00",
+        "resolvedAt": "2026-10-21T09:45:11.597473+00:00"
+      },
+      {
+        "name": "WisdomTree Cocoa",
+        "tools": [
+          "Comparatif ETF",
+          "Duels de portefeuilles",
+          "Générateur de portefeuilles",
+          "Présentation ETF"
+        ],
+        "impactScope": "asset",
+        "workflow": "update-instrument-metadata.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
+        "to": "/bibliotheque-donnees?id=JE00B2QXZK10",
+        "lastSuccessAt": "2026-10-18T16:32:07Z",
+        "completedAt": "2026-10-21T06:22:06Z",
+        "cause": "check-overdue; checked=2026-10-13, published=2026-10-12",
+        "field": "Frais",
+        "sourceUrls": [
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B2QXZK10",
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B2QXZK10/",
+          "https://extraetf.com/fr/etf-profile/JE00B2QXZK10",
+          "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-cocoa"
+        ],
+        "kind": "collection",
+        "dataId": "JE00B2QXZK10:ter",
+        "id": "collection:update-instrument-metadata.yml:JE00B2QXZK10:ter",
+        "firstSeenAt": "2026-10-21T05:41:56.145816+00:00",
+        "lastSeenAt": "2026-10-21T09:35:30.234999+00:00",
+        "resolvedAt": "2026-10-21T09:45:11.597473+00:00"
+      },
+      {
+        "name": "WisdomTree Cocoa",
+        "tools": [
+          "Comparatif ETF",
+          "Duels de portefeuilles",
+          "Générateur de portefeuilles",
+          "Présentation ETF"
+        ],
+        "impactScope": "asset",
+        "workflow": "update-instrument-metadata.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
+        "to": "/bibliotheque-donnees?id=JE00B2QXZK10",
+        "lastSuccessAt": "2026-10-18T16:32:07Z",
+        "completedAt": "2026-10-21T06:22:06Z",
+        "cause": "check-overdue; checked=2026-10-13, published=2026-10-12",
+        "field": "Encours",
+        "sourceUrls": [
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B2QXZK10",
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B2QXZK10/",
+          "https://extraetf.com/fr/etf-profile/JE00B2QXZK10",
+          "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-cocoa"
+        ],
+        "kind": "collection",
+        "dataId": "JE00B2QXZK10:aum",
+        "id": "collection:update-instrument-metadata.yml:JE00B2QXZK10:aum",
+        "firstSeenAt": "2026-10-21T05:41:56.145816+00:00",
+        "lastSeenAt": "2026-10-21T09:35:30.234999+00:00",
+        "resolvedAt": "2026-10-21T09:45:11.597473+00:00"
+      },
+      {
+        "name": "WisdomTree Wheat",
+        "tools": [
+          "Comparatif ETF",
+          "Duels de portefeuilles",
+          "Générateur de portefeuilles",
+          "Présentation ETF"
+        ],
+        "impactScope": "asset",
+        "workflow": "update-instrument-metadata.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
+        "to": "/bibliotheque-donnees?id=JE00BN7KB664",
+        "lastSuccessAt": "2026-10-18T16:32:07Z",
+        "completedAt": "2026-10-21T06:22:06Z",
+        "cause": "check-overdue; checked=2026-10-13, published=2026-10-12",
+        "field": "Frais",
+        "sourceUrls": [
+          "https://bourse.fortuneo.fr/trackers/cours-wisdomtree-wheat-eur-acc-WEATP-JE00BN7KB664-23",
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB664",
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB664/",
+          "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-wheat"
+        ],
+        "kind": "collection",
+        "dataId": "JE00BN7KB664:ter",
+        "id": "collection:update-instrument-metadata.yml:JE00BN7KB664:ter",
+        "firstSeenAt": "2026-10-21T05:41:56.145816+00:00",
+        "lastSeenAt": "2026-10-21T09:35:30.234999+00:00",
+        "resolvedAt": "2026-10-21T09:45:11.597473+00:00"
+      },
+      {
+        "name": "WisdomTree Wheat",
+        "tools": [
+          "Comparatif ETF",
+          "Duels de portefeuilles",
+          "Générateur de portefeuilles",
+          "Présentation ETF"
+        ],
+        "impactScope": "asset",
+        "workflow": "update-instrument-metadata.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
+        "to": "/bibliotheque-donnees?id=JE00BN7KB664",
+        "lastSuccessAt": "2026-10-18T16:32:07Z",
+        "completedAt": "2026-10-21T06:22:06Z",
+        "cause": "check-overdue; checked=2026-10-13, published=2026-10-12",
+        "field": "Encours",
+        "sourceUrls": [
+          "https://bourse.fortuneo.fr/trackers/cours-wisdomtree-wheat-eur-acc-WEATP-JE00BN7KB664-23",
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB664",
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB664/",
+          "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-wheat"
+        ],
+        "kind": "collection",
+        "dataId": "JE00BN7KB664:aum",
+        "id": "collection:update-instrument-metadata.yml:JE00BN7KB664:aum",
+        "firstSeenAt": "2026-10-21T05:41:56.145816+00:00",
+        "lastSeenAt": "2026-10-21T09:35:30.234999+00:00",
+        "resolvedAt": "2026-10-21T09:45:11.597473+00:00"
+      },
+      {
+        "name": "WisdomTree Wheat",
+        "tools": [
+          "Comparatif ETF",
+          "Duels de portefeuilles",
+          "Générateur de portefeuilles",
+          "Présentation ETF"
+        ],
+        "impactScope": "asset",
+        "workflow": "update-instrument-metadata.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39553115014",
+        "to": "/bibliotheque-donnees?id=JE00BN7KB664",
+        "lastSuccessAt": "2026-10-18T16:32:07Z",
+        "completedAt": "2026-10-21T06:22:06Z",
+        "cause": "check-overdue; checked=2026-10-13, published=unknown",
+        "field": "Cotations",
+        "sourceUrls": [
+          "https://bourse.fortuneo.fr/trackers/cours-wisdomtree-wheat-eur-acc-WEATP-JE00BN7KB664-23",
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB664",
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB664/",
+          "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-wheat"
+        ],
+        "kind": "collection",
+        "dataId": "JE00BN7KB664:listings",
+        "id": "collection:update-instrument-metadata.yml:JE00BN7KB664:listings",
+        "firstSeenAt": "2026-10-21T05:41:56.145816+00:00",
+        "lastSeenAt": "2026-10-21T09:35:30.234999+00:00",
+        "resolvedAt": "2026-10-21T09:45:11.597473+00:00"
+      },
       {
         "name": "saxo",
         "tools": [
@@ -14044,388 +14395,6 @@
         "field": "Poids du pays China",
         "cause": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays China. Dernière observation conservée ; propositions archivées (etf:IE00BGV5VN51:countries:China:f9b8ebfcd2d4a3f0bd10cd4f:2026-10-19).",
         "id": "radar:aefe49e1680249dd3d070d6e",
-        "firstSeenAt": "2026-10-20T16:05:29.541605+00:00",
-        "lastSeenAt": "2026-10-21T00:34:42.908591+00:00",
-        "resolvedAt": "2026-10-21T00:36:50.700683+00:00"
-      },
-      {
-        "name": "Xtrackers MSCI World Health Care UCITS ETF",
-        "tools": [
-          "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Impact des frais",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "sourceUrls": [
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HK77/historicaldata/download",
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HK77/pdpMetaTagsTealium",
-          "https://etf.dws.com/api/pdp/fr-fr/etf/IE00BM67HK77/pdpMetaTagsTealium",
-          "https://etf.dws.com/download/asset/0ebe43bb-3463-46d7-85e1-01ef46ee2f67",
-          "https://www.justetf.com/en/etf-profile.html?isin=IE00BM67HK77"
-        ],
-        "to": "/bibliotheque-donnees?id=IE00BM67HK77",
-        "kind": "conflict",
-        "field": "Poids du pays United States",
-        "cause": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays United States. Dernière observation conservée ; propositions archivées (etf:IE00BM67HK77:countries:United States:e02e00a632cb2b9e9ddccd1e:2026-10-19).",
-        "id": "radar:0f232df3701a139757ff21d8",
-        "firstSeenAt": "2026-10-20T16:05:29.541605+00:00",
-        "lastSeenAt": "2026-10-21T00:34:42.908591+00:00",
-        "resolvedAt": "2026-10-21T00:36:50.700683+00:00"
-      },
-      {
-        "name": "Xtrackers MSCI World Health Care UCITS ETF",
-        "tools": [
-          "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Impact des frais",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "sourceUrls": [
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HK77/historicaldata/download",
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HK77/pdpMetaTagsTealium",
-          "https://etf.dws.com/api/pdp/fr-fr/etf/IE00BM67HK77/pdpMetaTagsTealium",
-          "https://etf.dws.com/download/asset/0ebe43bb-3463-46d7-85e1-01ef46ee2f67",
-          "https://www.justetf.com/en/etf-profile.html?isin=IE00BM67HK77"
-        ],
-        "to": "/bibliotheque-donnees?id=IE00BM67HK77",
-        "kind": "conflict",
-        "field": "Poids du pays Switzerland",
-        "cause": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays Switzerland. Dernière observation conservée ; propositions archivées (etf:IE00BM67HK77:countries:Switzerland:e02e00a632cb2b9e9ddccd1e:2026-10-19).",
-        "id": "radar:de9f1058b72e9094e1f6b560",
-        "firstSeenAt": "2026-10-20T16:05:29.541605+00:00",
-        "lastSeenAt": "2026-10-21T00:34:42.908591+00:00",
-        "resolvedAt": "2026-10-21T00:36:50.700683+00:00"
-      },
-      {
-        "name": "Xtrackers MSCI World Health Care UCITS ETF",
-        "tools": [
-          "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Impact des frais",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "sourceUrls": [
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HK77/historicaldata/download",
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HK77/pdpMetaTagsTealium",
-          "https://etf.dws.com/api/pdp/fr-fr/etf/IE00BM67HK77/pdpMetaTagsTealium",
-          "https://etf.dws.com/download/asset/0ebe43bb-3463-46d7-85e1-01ef46ee2f67",
-          "https://www.justetf.com/en/etf-profile.html?isin=IE00BM67HK77"
-        ],
-        "to": "/bibliotheque-donnees?id=IE00BM67HK77",
-        "kind": "conflict",
-        "field": "Poids du pays United Kingdom",
-        "cause": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays United Kingdom. Dernière observation conservée ; propositions archivées (etf:IE00BM67HK77:countries:United Kingdom:e02e00a632cb2b9e9ddccd1e:2026-10-19).",
-        "id": "radar:8e48420bad94e6e4cda0aba5",
-        "firstSeenAt": "2026-10-20T16:05:29.541605+00:00",
-        "lastSeenAt": "2026-10-21T00:34:42.908591+00:00",
-        "resolvedAt": "2026-10-21T00:36:50.700683+00:00"
-      },
-      {
-        "name": "Xtrackers MSCI World Health Care UCITS ETF",
-        "tools": [
-          "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Impact des frais",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "sourceUrls": [
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HK77/historicaldata/download",
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HK77/pdpMetaTagsTealium",
-          "https://etf.dws.com/api/pdp/fr-fr/etf/IE00BM67HK77/pdpMetaTagsTealium",
-          "https://etf.dws.com/download/asset/0ebe43bb-3463-46d7-85e1-01ef46ee2f67",
-          "https://www.justetf.com/en/etf-profile.html?isin=IE00BM67HK77"
-        ],
-        "to": "/bibliotheque-donnees?id=IE00BM67HK77",
-        "kind": "conflict",
-        "field": "Poids du pays Ireland",
-        "cause": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays Ireland. Dernière observation conservée ; propositions archivées (etf:IE00BM67HK77:countries:Ireland:e02e00a632cb2b9e9ddccd1e:2026-10-19).",
-        "id": "radar:04ef830246187740fa011e6f",
-        "firstSeenAt": "2026-10-20T16:05:29.541605+00:00",
-        "lastSeenAt": "2026-10-21T00:34:42.908591+00:00",
-        "resolvedAt": "2026-10-21T00:36:50.700683+00:00"
-      },
-      {
-        "name": "Xtrackers MSCI World Health Care UCITS ETF",
-        "tools": [
-          "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Impact des frais",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "sourceUrls": [
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HK77/historicaldata/download",
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HK77/pdpMetaTagsTealium",
-          "https://etf.dws.com/api/pdp/fr-fr/etf/IE00BM67HK77/pdpMetaTagsTealium",
-          "https://etf.dws.com/download/asset/0ebe43bb-3463-46d7-85e1-01ef46ee2f67",
-          "https://www.justetf.com/en/etf-profile.html?isin=IE00BM67HK77"
-        ],
-        "to": "/bibliotheque-donnees?id=IE00BM67HK77",
-        "kind": "conflict",
-        "field": "Poids du pays Netherlands",
-        "cause": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays Netherlands. Dernière observation conservée ; propositions archivées (etf:IE00BM67HK77:countries:Netherlands:e02e00a632cb2b9e9ddccd1e:2026-10-19).",
-        "id": "radar:cd8f792f081d167e606fcfe8",
-        "firstSeenAt": "2026-10-20T16:05:29.541605+00:00",
-        "lastSeenAt": "2026-10-21T00:34:42.908591+00:00",
-        "resolvedAt": "2026-10-21T00:36:50.700683+00:00"
-      },
-      {
-        "name": "Xtrackers MSCI World Health Care UCITS ETF",
-        "tools": [
-          "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Impact des frais",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "sourceUrls": [
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HK77/historicaldata/download",
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HK77/pdpMetaTagsTealium",
-          "https://etf.dws.com/api/pdp/fr-fr/etf/IE00BM67HK77/pdpMetaTagsTealium",
-          "https://etf.dws.com/download/asset/0ebe43bb-3463-46d7-85e1-01ef46ee2f67",
-          "https://www.justetf.com/en/etf-profile.html?isin=IE00BM67HK77"
-        ],
-        "to": "/bibliotheque-donnees?id=IE00BM67HK77",
-        "kind": "conflict",
-        "field": "Poids du pays Belgium",
-        "cause": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays Belgium. Dernière observation conservée ; propositions archivées (etf:IE00BM67HK77:countries:Belgium:e02e00a632cb2b9e9ddccd1e:2026-10-19).",
-        "id": "radar:5242a22b03f4f5fb7fe045bd",
-        "firstSeenAt": "2026-10-20T16:05:29.541605+00:00",
-        "lastSeenAt": "2026-10-21T00:34:42.908591+00:00",
-        "resolvedAt": "2026-10-21T00:36:50.700683+00:00"
-      },
-      {
-        "name": "Xtrackers MSCI World Health Care UCITS ETF",
-        "tools": [
-          "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Impact des frais",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "sourceUrls": [
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HK77/historicaldata/download",
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HK77/pdpMetaTagsTealium",
-          "https://etf.dws.com/api/pdp/fr-fr/etf/IE00BM67HK77/pdpMetaTagsTealium",
-          "https://etf.dws.com/download/asset/0ebe43bb-3463-46d7-85e1-01ef46ee2f67",
-          "https://www.justetf.com/en/etf-profile.html?isin=IE00BM67HK77"
-        ],
-        "to": "/bibliotheque-donnees?id=IE00BM67HK77",
-        "kind": "conflict",
-        "field": "Poids du pays Australia",
-        "cause": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays Australia. Dernière observation conservée ; propositions archivées (etf:IE00BM67HK77:countries:Australia:e02e00a632cb2b9e9ddccd1e:2026-10-19).",
-        "id": "radar:84b18389785d5d7ac03f2474",
-        "firstSeenAt": "2026-10-20T16:05:29.541605+00:00",
-        "lastSeenAt": "2026-10-21T00:34:42.908591+00:00",
-        "resolvedAt": "2026-10-21T00:36:50.700683+00:00"
-      },
-      {
-        "name": "Xtrackers MSCI World Materials UCITS ETF",
-        "tools": [
-          "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Impact des frais",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "sourceUrls": [
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HS53/historicaldata/download",
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HS53/pdpMetaTagsTealium",
-          "https://etf.dws.com/api/pdp/fr-fr/etf/IE00BM67HS53/pdpMetaTagsTealium",
-          "https://www.justetf.com/en/etf-profile.html?isin=IE00BM67HS53"
-        ],
-        "to": "/bibliotheque-donnees?id=IE00BM67HS53",
-        "kind": "conflict",
-        "field": "Poids du pays United States",
-        "cause": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays United States. Dernière observation conservée ; propositions archivées (etf:IE00BM67HS53:countries:United States:9e8222db7f15caa14c54cb45:2026-10-19).",
-        "id": "radar:0d57080a55f727696860c71b",
-        "firstSeenAt": "2026-10-20T16:05:29.541605+00:00",
-        "lastSeenAt": "2026-10-21T00:34:42.908591+00:00",
-        "resolvedAt": "2026-10-21T00:36:50.700683+00:00"
-      },
-      {
-        "name": "Xtrackers MSCI World Materials UCITS ETF",
-        "tools": [
-          "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Impact des frais",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "sourceUrls": [
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HS53/historicaldata/download",
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HS53/pdpMetaTagsTealium",
-          "https://etf.dws.com/api/pdp/fr-fr/etf/IE00BM67HS53/pdpMetaTagsTealium",
-          "https://www.justetf.com/en/etf-profile.html?isin=IE00BM67HS53"
-        ],
-        "to": "/bibliotheque-donnees?id=IE00BM67HS53",
-        "kind": "conflict",
-        "field": "Poids du pays Australia",
-        "cause": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays Australia. Dernière observation conservée ; propositions archivées (etf:IE00BM67HS53:countries:Australia:9e8222db7f15caa14c54cb45:2026-10-19).",
-        "id": "radar:6538748c8384b68805e2be13",
-        "firstSeenAt": "2026-10-20T16:05:29.541605+00:00",
-        "lastSeenAt": "2026-10-21T00:34:42.908591+00:00",
-        "resolvedAt": "2026-10-21T00:36:50.700683+00:00"
-      },
-      {
-        "name": "Xtrackers MSCI World Materials UCITS ETF",
-        "tools": [
-          "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Impact des frais",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "sourceUrls": [
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HS53/historicaldata/download",
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HS53/pdpMetaTagsTealium",
-          "https://etf.dws.com/api/pdp/fr-fr/etf/IE00BM67HS53/pdpMetaTagsTealium",
-          "https://www.justetf.com/en/etf-profile.html?isin=IE00BM67HS53"
-        ],
-        "to": "/bibliotheque-donnees?id=IE00BM67HS53",
-        "kind": "conflict",
-        "field": "Poids du pays Canada",
-        "cause": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays Canada. Dernière observation conservée ; propositions archivées (etf:IE00BM67HS53:countries:Canada:9e8222db7f15caa14c54cb45:2026-10-19).",
-        "id": "radar:811fccd5a3ae3f2ce294f96d",
-        "firstSeenAt": "2026-10-20T16:05:29.541605+00:00",
-        "lastSeenAt": "2026-10-21T00:34:42.908591+00:00",
-        "resolvedAt": "2026-10-21T00:36:50.700683+00:00"
-      },
-      {
-        "name": "Xtrackers MSCI World Materials UCITS ETF",
-        "tools": [
-          "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Impact des frais",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "sourceUrls": [
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HS53/historicaldata/download",
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HS53/pdpMetaTagsTealium",
-          "https://etf.dws.com/api/pdp/fr-fr/etf/IE00BM67HS53/pdpMetaTagsTealium",
-          "https://www.justetf.com/en/etf-profile.html?isin=IE00BM67HS53"
-        ],
-        "to": "/bibliotheque-donnees?id=IE00BM67HS53",
-        "kind": "conflict",
-        "field": "Poids du pays United Kingdom",
-        "cause": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays United Kingdom. Dernière observation conservée ; propositions archivées (etf:IE00BM67HS53:countries:United Kingdom:9e8222db7f15caa14c54cb45:2026-10-19).",
-        "id": "radar:a06e5f794e61eb51afd6502d",
-        "firstSeenAt": "2026-10-20T16:05:29.541605+00:00",
-        "lastSeenAt": "2026-10-21T00:34:42.908591+00:00",
-        "resolvedAt": "2026-10-21T00:36:50.700683+00:00"
-      },
-      {
-        "name": "Xtrackers MSCI World Materials UCITS ETF",
-        "tools": [
-          "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Impact des frais",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "sourceUrls": [
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HS53/historicaldata/download",
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HS53/pdpMetaTagsTealium",
-          "https://etf.dws.com/api/pdp/fr-fr/etf/IE00BM67HS53/pdpMetaTagsTealium",
-          "https://www.justetf.com/en/etf-profile.html?isin=IE00BM67HS53"
-        ],
-        "to": "/bibliotheque-donnees?id=IE00BM67HS53",
-        "kind": "conflict",
-        "field": "Poids du pays Switzerland",
-        "cause": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays Switzerland. Dernière observation conservée ; propositions archivées (etf:IE00BM67HS53:countries:Switzerland:9e8222db7f15caa14c54cb45:2026-10-19).",
-        "id": "radar:f5ea1c4f9541dc5c99c38e71",
-        "firstSeenAt": "2026-10-20T16:05:29.541605+00:00",
-        "lastSeenAt": "2026-10-21T00:34:42.908591+00:00",
-        "resolvedAt": "2026-10-21T00:36:50.700683+00:00"
-      },
-      {
-        "name": "Xtrackers MSCI World Materials UCITS ETF",
-        "tools": [
-          "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Impact des frais",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "sourceUrls": [
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HS53/historicaldata/download",
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HS53/pdpMetaTagsTealium",
-          "https://etf.dws.com/api/pdp/fr-fr/etf/IE00BM67HS53/pdpMetaTagsTealium",
-          "https://www.justetf.com/en/etf-profile.html?isin=IE00BM67HS53"
-        ],
-        "to": "/bibliotheque-donnees?id=IE00BM67HS53",
-        "kind": "conflict",
-        "field": "Poids du pays Ireland",
-        "cause": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays Ireland. Dernière observation conservée ; propositions archivées (etf:IE00BM67HS53:countries:Ireland:9e8222db7f15caa14c54cb45:2026-10-19).",
-        "id": "radar:a592ab502ae6f08a73893a82",
-        "firstSeenAt": "2026-10-20T16:05:29.541605+00:00",
-        "lastSeenAt": "2026-10-21T00:34:42.908591+00:00",
-        "resolvedAt": "2026-10-21T00:36:50.700683+00:00"
-      },
-      {
-        "name": "Xtrackers MSCI World Materials UCITS ETF",
-        "tools": [
-          "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Impact des frais",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "sourceUrls": [
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HS53/historicaldata/download",
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HS53/pdpMetaTagsTealium",
-          "https://etf.dws.com/api/pdp/fr-fr/etf/IE00BM67HS53/pdpMetaTagsTealium",
-          "https://www.justetf.com/en/etf-profile.html?isin=IE00BM67HS53"
-        ],
-        "to": "/bibliotheque-donnees?id=IE00BM67HS53",
-        "kind": "conflict",
-        "field": "Poids du pays Brazil",
-        "cause": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays Brazil. Dernière observation conservée ; propositions archivées (etf:IE00BM67HS53:countries:Brazil:9e8222db7f15caa14c54cb45:2026-10-19).",
-        "id": "radar:fb79632021ea78696466b21d",
-        "firstSeenAt": "2026-10-20T16:05:29.541605+00:00",
-        "lastSeenAt": "2026-10-21T00:34:42.908591+00:00",
-        "resolvedAt": "2026-10-21T00:36:50.700683+00:00"
-      },
-      {
-        "name": "Xtrackers MSCI World Materials UCITS ETF",
-        "tools": [
-          "Comparatif ETF",
-          "Duels de portefeuilles",
-          "Générateur de portefeuilles",
-          "Impact des frais",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "sourceUrls": [
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HS53/historicaldata/download",
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE00BM67HS53/pdpMetaTagsTealium",
-          "https://etf.dws.com/api/pdp/fr-fr/etf/IE00BM67HS53/pdpMetaTagsTealium",
-          "https://www.justetf.com/en/etf-profile.html?isin=IE00BM67HS53"
-        ],
-        "to": "/bibliotheque-donnees?id=IE00BM67HS53",
-        "kind": "conflict",
-        "field": "Poids du pays Chile",
-        "cause": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays Chile. Dernière observation conservée ; propositions archivées (etf:IE00BM67HS53:countries:Chile:9e8222db7f15caa14c54cb45:2026-10-19).",
-        "id": "radar:779723e53abd8c8ac5d5d510",
         "firstSeenAt": "2026-10-20T16:05:29.541605+00:00",
         "lastSeenAt": "2026-10-21T00:34:42.908591+00:00",
         "resolvedAt": "2026-10-21T00:36:50.700683+00:00"
@@ -18289,11 +18258,11 @@
           "error": null
         }
       ],
-      "reason": "recording-failed",
+      "reason": null,
       "lastSuccessAt": "2026-10-18T16:32:07Z",
-      "observedRunId": 39553115014,
-      "status": "awaiting-current-run",
-      "nextAttemptAt": "2026-10-21T07:03:34.415735+00:00"
+      "observedRunId": 39570294529,
+      "status": "idle",
+      "nextAttemptAt": null
     }
   }
 }
