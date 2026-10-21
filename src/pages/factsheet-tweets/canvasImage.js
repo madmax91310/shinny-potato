@@ -56,20 +56,6 @@ function displayLabel(name) {
 }
 // Only display aliases: no grouping of share classes or change to their weights.
 export function imageCompanyLabel(name) {
-  const aliases = {
-    'SIEMENS ENERGY AG': 'Siemens Energy', 'SIEMENS HEALTHINEERS AG': 'Siemens Healthineers',
-    'AIRBUS SE-BERLIN': 'Airbus', 'AIRBUS SE PARIS': 'Airbus',
-    'DEUTSCHE TELEKOM NAM (XETRA)': 'Deutsche Telekom', 'INFINEON TECHNOLOGIES AG': 'Infineon',
-    'MUENCHENER RUECKVER AG-REG': 'Munich Re', 'DEUTSCHE BANK NAMEN': 'Deutsche Bank', 'DHL GROUP (XETRA)': 'DHL Group',
-    'GOLDMAN SACHS GROUP INC': 'Goldman Sachs', 'CATERPILLAR INC': 'Caterpillar', 'AMGEN INC': 'Amgen',
-    'UNITEDHEALTH GROUP INC': 'UnitedHealth', 'TRAVELERS COMPANIES': 'Travelers', 'SHERWIN-WILLIAMS CO/THE': 'Sherwin-Williams',
-    'VISA INC-CLASS A SHARES': 'Visa', 'ALPHABET INC CL A': 'Alphabet', 'TESLA INC': 'Tesla', 'ELI LILLY': 'Eli Lilly',
-    'SK HYNIX': 'SK Hynix', 'SK SQUARE': 'SK Square', 'SAMSUNG ELECTRO MECHANICS LTD': 'Samsung Electro-Mechanics',
-    'KB FINANCIAL GROUP': 'KB Financial', 'SHINHAN FINANCIAL GROUP': 'Shinhan Financial', 'SAMSUNG SDI LTD': 'Samsung SDI',
-    'HANA FINANCIAL GROUP': 'Hana Financial', 'CELLTRION': 'Celltrion',
-    'LVMH MOET HENNESSY LOUIS VUI': 'LVMH', 'L OREAL (PARIS)': 'L’Oréal', 'SANOFI - PARIS': 'Sanofi', 'AXA SA': 'AXA',
-  }
-  if (aliases[name.toUpperCase()]) return aliases[name.toUpperCase()]
   return companyLabel(name)
     .replace(/^HSBC HOLDING PLC(?: GBP)?$/i, 'HSBC')
     .replace(/^ROCHE HLDG AG-GENUSS(?: CHF)?$/i, 'Roche')
@@ -147,7 +133,7 @@ export async function renderFactsheetImage(sheet) {
   const bands = [
     compositionBand(ctx, 'PAYS', sortedRows(sheet.countries).filter(([name]) => !/autres|others/i.test(name)).slice(0, 4).map(([name, value]) => [displayLabel(name), value])),
     compositionBand(ctx, 'SECTEURS', sortedRows(sheet.sectors).slice(0, 4).map(([name, value]) => [displayLabel(sectorLabel(name)), value])),
-    compositionBand(ctx, 'ENTREPRISES', sortedRows(sheet.holdings).slice(0, 4).map(([name, value]) => [imageCompanyLabel(name), value])),
+    compositionBand(ctx, 'ENTREPRISES', sortedRows(sheet.holdings).slice(0, 4).map(([name, value]) => [(sheet.concentration?.available ? compositionCompanyLabel : imageCompanyLabel)(name), value])),
   ]
   const returns = sheet.returns.slice().sort((a, b) => a[0] - b[0])
   // New complete years grow the strip in balanced rows instead of shrinking type.
@@ -219,6 +205,24 @@ export async function renderFactsheetImage(sheet) {
 
 
 // No logo request participates in rendering: this canvas is self-contained.
+function compositionCompanyLabel(name) {
+  const aliases = {
+    'SIEMENS ENERGY AG': 'Siemens Energy', 'SIEMENS HEALTHINEERS AG': 'Siemens Healthineers',
+    'AIRBUS SE-BERLIN': 'Airbus', 'AIRBUS SE PARIS': 'Airbus',
+    'DEUTSCHE TELEKOM NAM (XETRA)': 'Deutsche Telekom', 'INFINEON TECHNOLOGIES AG': 'Infineon',
+    'MUENCHENER RUECKVER AG-REG': 'Munich Re', 'DEUTSCHE BANK NAMEN': 'Deutsche Bank', 'DHL GROUP (XETRA)': 'DHL Group',
+    'GOLDMAN SACHS GROUP INC': 'Goldman Sachs', 'CATERPILLAR INC': 'Caterpillar', 'AMGEN INC': 'Amgen',
+    'UNITEDHEALTH GROUP INC': 'UnitedHealth', 'TRAVELERS COMPANIES': 'Travelers', 'SHERWIN-WILLIAMS CO/THE': 'Sherwin-Williams',
+    'VISA INC-CLASS A SHARES': 'Visa', 'ALPHABET INC CL A': 'Alphabet', 'TESLA INC': 'Tesla', 'ELI LILLY': 'Eli Lilly',
+    'SK HYNIX': 'SK Hynix', 'SK SQUARE': 'SK Square', 'SAMSUNG ELECTRO MECHANICS LTD': 'Samsung Electro-Mechanics',
+    'KB FINANCIAL GROUP': 'KB Financial', 'SHINHAN FINANCIAL GROUP': 'Shinhan Financial', 'SAMSUNG SDI LTD': 'Samsung SDI',
+    'HANA FINANCIAL GROUP': 'Hana Financial', 'CELLTRION': 'Celltrion',
+    'LVMH MOET HENNESSY LOUIS VUI': 'LVMH', 'L OREAL (PARIS)': 'L’Oréal', 'SANOFI - PARIS': 'Sanofi', 'AXA SA': 'AXA',
+  }
+  if (aliases[name.toUpperCase()]) return aliases[name.toUpperCase()]
+  return imageCompanyLabel(name)
+}
+
 export async function renderCompositionImage(sheet, composition) {
   if (!composition?.available) throw new Error('Composition indisponible')
   await Promise.all([loadEditorialFont(), loadDisplayFont()])
@@ -227,7 +231,7 @@ export async function renderCompositionImage(sheet, composition) {
   const width = 1200, margin = 48, columnW = 534, gap = 36
   const colors = ['#214a37','#b49750','#497e63','#d3a766','#7a9d85','#685b39','#87b4a3','#b87950','#366b73','#967b93','#ddd5c3']
   const values = roundedComposition(composition)
-  const entries = [...composition.top.map((row, i) => ({ name: imageCompanyLabel(row.name), value: values[i], weight: row.weightPct, color: colors[i] })),
+  const entries = [...composition.top.map((row, i) => ({ name: compositionCompanyLabel(row.name), value: values[i], weight: row.weightPct, color: colors[i] })),
     { name: 'Autres entreprises', value: values[10], weight: composition.otherWeight, color: colors[10] }]
   const title = block(ctx, sheet.index ?? sheet.title, width - margin * 2, 80, 700, 'display')
   const titleY = 38, donutTop = titleY + title.height + 22, diameter = 660

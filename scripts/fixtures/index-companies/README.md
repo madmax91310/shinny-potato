@@ -17,3 +17,5 @@ and full-replication wording are checked on every collection. Holdings and their
 classification must have the same date; a failure retains the previous qualified
 composition. The native portfolio is an explicit approximation, not an official
 MSCI composition.
+
+`original-canvasImage.js` est le moteur de rendu avant #858 (`1e32749a^`), avec seulement les chemins d’import déplacés. Le test navigateur exige une égalité pixel par pixel des 51 fiches d’origine ; ce témoin ne produit aucun visuel dans l’application.

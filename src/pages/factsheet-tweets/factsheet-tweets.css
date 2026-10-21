@@ -27,6 +27,13 @@
 .fs-composition-panel p { margin: 12px 0; }
 .fs-composition-preview { display: block; width: 100%; max-width: 650px; height: auto; margin: 18px auto; }
 
-/* The original fixed action bar must not cover the second visual's actions. */
-.fs-composition-panel { margin-bottom: 180px; }
-.fs-composition-panel button { scroll-margin-block: 100px 200px; }
+/* The composition tab has its own actions; the original toolbar stays in its tab. */
+.fs-composition-panel { margin-bottom: 24px; }
+.fs-composition-panel button { scroll-margin-block: 24px; }
+.fs-composition-evidence summary { cursor: pointer; font-weight: 700; }
+.fs-feature-tabs { display: flex; gap: 8px; margin: 0 0 18px; }
+.fs-feature-tabs button { flex: 1; padding: 14px 12px; border: 1px solid #d7ceba; border-radius: 12px; color: #214a37; background: #f8f3e8; font: inherit; font-weight: 700; cursor: pointer; }
+.fs-feature-tabs button[aria-selected="true"] { color: #fff; background: #214a37; border-color: #214a37; }
+.fs-feature-tabs button:focus-visible { outline: 3px solid #b49750; outline-offset: 3px; }
+.fs-change-index { display: block; width: 100%; padding: 8px 0; border: 0; background: transparent; color: #214a37; font: inherit; font-weight: 700; cursor: pointer; text-align: left; }
+.fs-change-index[aria-expanded="true"] { margin-bottom: 18px; }
