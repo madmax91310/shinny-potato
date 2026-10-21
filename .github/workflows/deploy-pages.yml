@@ -140,6 +140,7 @@ jobs:
       - run: node scripts/test-annual-rollover.mjs
       - run: node scripts/test-inflation-consistency.mjs
       - run: node scripts/test-fx-consistency.mjs
+      - run: npm run test:index-concentration
       - run: node scripts/test-automated-indices.mjs
       - run: node scripts/test-automated-index-sheets.mjs
       - run: node scripts/test-automation-gap-inventory.mjs
@@ -244,6 +245,7 @@ jobs:
             src/data/tool-links.json
             src/data/monthly-duel-returns.json
             src/data/ranking-annual.json
+            src/data/index-company-compositions.json
           if-no-files-found: error
           retention-days: 2
       - uses: actions/upload-artifact@v7.0.1
@@ -337,6 +339,7 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_index_extensions.py'
       - run: python -m unittest discover -s scripts -p 'test_world_sector_indices.py'
       - run: python -m unittest discover -s scripts -p 'test_index_composition_gate.py'
+      - run: python -m unittest discover -s scripts -p 'test_index_companies.py'
       - run: python -m unittest discover -s scripts -p 'test_remaining_aum.py'
       - run: pip install -r scripts/company-requirements.txt
       - run: python -m unittest discover -s scripts -p 'test_scpi.py'

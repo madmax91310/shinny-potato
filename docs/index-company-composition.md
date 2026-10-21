@@ -1,0 +1,73 @@
+# Composition et concentration dans Coulisses des indices
+
+Qualification initiale : 21 octobre 2026. 32 indices sur 55. Les valeurs et la disponibilité sont recalculées au build depuis les observations communes.
+
+Les documents de CAC 40, DAX et Dow Jones décrivent explicitement l’indice (jamais le panier du fonds synthétique). La règle de sélection de chaque univers permet une seule ligne par entreprise ; les dix lignes doivent toutes avoir un ISIN explicitement revu. Les autres compositions retenues sont des approximations par ETF physiques du benchmark exact, identifiées dans l’interface avec leurs preuves. Une modification du benchmark ou de la réplication suspend la nouvelle qualification.
+
+Les compositions complètes sont regroupées par ISIN et table d’identités d’émetteurs revue, sans comparaison floue des noms. Les classes Alphabet, Samsung, Roche, les titres français au nominatif et la structure duale Rio Tinto sont notamment regroupés. Les dix entreprises sont sélectionnées après agrégation. Les poids ne sont pas renormalisés. Le reste vaut 100 moins leur somme, sans effectif supposé. L’arrondi répartit les centièmes pour que les dix libellés concordent avec le centre du donut et que les onze parts totalisent 100 %.
+
+Les pays, secteurs et positions d’un visuel ont la même date. Le tweet historique et ses performances, devises et conventions ne changent pas. Une fiche d’origine reste prévisualisable dans le menu des actions pour les compositions approchées. Le comptage d’un fonds n’est jamais attribué à l’indice ; les comptages historiques restent sur la fiche d’origine. Les indices ajoutés ici n’inventent aucune performance ni aucun tweet.
+
+Les portefeuilles physiques sont actualisés par les collecteurs existants. Le workflow quotidien des fiches actualise aussi les quatre indices complémentaires et conserve les qualifications validées et leur historique par date dans index-company-observations.json. Un échec conserve la dernière qualification, indique sa date et remonte dans le rapport d’automatisation. La projection compacte est régénérée à chaque build ; elle est ignorée par git. La fraîcheur utilise freshness-policy.json.
+
+Limites : une fiche limitée à dix titres ne certifie pas dix entreprises après regroupement. MSCI Korea publie deux classes Samsung et seulement neuf entreprises ; le dixième émetteur n’est pas déductible. Le MSCI Korea 20/35 du catalogue ETF est un autre indice et n’est pas substitué. Les droits ou titres sans ISIN, les fonds sous-jacents non transparisés à la même date et les dates de ventilations incompatibles désactivent la nouvelle qualification. Une approximation ETF peut différer de l’indice (échantillonnage, trésorerie, arrondis, réplication) ; la source et cette limite restent visibles dans l’interface.
+
+| Indice | Composition top 10 | Date ou limite |
+|---|---|---|
+| MSCI USA | Indisponible | Les principales lignes disponibles ne certifient pas les dix premières entreprises après regroupement. Aucune composition complète qualifiée pour cet indice exact. |
+| MSCI India | Approximation ETF physique | 2026-10-19 |
+| FTSE EPRA Nareit Developed Dividend+ | Indisponible | Dates des positions, pays et secteurs incompatibles ; aucun mélange de photographies |
+| FTSE Global Core Infrastructure | Approximation ETF physique | 2026-10-19 |
+| MSCI World Momentum | Approximation ETF physique | 2026-10-19 |
+| MSCI World Minimum Volatility (USD) | Approximation ETF physique | 2026-10-19 |
+| MSCI World Sector Neutral Quality | Approximation ETF physique | 2026-10-19 |
+| MSCI World Enhanced Value | Approximation ETF physique | 2026-10-19 |
+| MSCI EM ex-China | Indisponible | Identifiant, doublon ou poids de titre incohérent |
+| MSCI ACWI IMI | Approximation ETF physique | 2026-10-20 |
+| S&P 500 Equal Weight | Approximation ETF physique | 2026-10-19 |
+| Russell 2000 | Approximation ETF physique | 2026-10-20 |
+| MSCI Emerging Markets | Approximation ETF physique | 2026-10-20 |
+| TOPIX | Indisponible | Les principales lignes disponibles ne certifient pas les dix premières entreprises après regroupement. Aucune composition complète qualifiée pour cet indice exact. |
+| Nikkei 225 | Indisponible | Les principales lignes disponibles ne certifient pas les dix premières entreprises après regroupement. Aucune composition complète qualifiée pour cet indice exact. |
+| MSCI ACWI | Approximation ETF physique | 2026-10-20 |
+| FTSE All-World | Approximation ETF physique | 2026-09-30 |
+| MSCI World Small Cap | Indisponible | Identifiant, doublon ou poids de titre incohérent |
+| MSCI World ex USA | Approximation ETF physique | 2026-10-19 |
+| MSCI World | Approximation ETF physique | 2026-10-19 |
+| STOXX Europe 600 | Approximation ETF physique | 2026-10-19 |
+| EURO STOXX 50 | Approximation ETF physique | 2026-10-19 |
+| MSCI Europe | Approximation ETF physique | 2026-10-19 |
+| MSCI EM ex-Egypt ESG Broad CTB Select | Indisponible | Les principales lignes disponibles ne certifient pas les dix premières entreprises après regroupement. Aucune composition complète qualifiée pour cet indice exact. |
+| S&P 500 | Approximation ETF physique | 2026-10-19 |
+| Nasdaq-100 | Approximation ETF physique | 2026-10-19 |
+| MSCI World Consumer Discretionary | Indisponible | Les principales lignes disponibles ne certifient pas les dix premières entreprises après regroupement. Aucune composition complète qualifiée pour cet indice exact. |
+| MSCI World Communication Services | Indisponible | Les principales lignes disponibles ne certifient pas les dix premières entreprises après regroupement. Aucune composition complète qualifiée pour cet indice exact. |
+| MSCI World Health Care | Approximation ETF physique | 2026-10-19 |
+| MSCI World Financials | Indisponible | Les principales lignes disponibles ne certifient pas les dix premières entreprises après regroupement. Aucune composition complète qualifiée pour cet indice exact. |
+| MSCI World Energy | Indisponible | Les principales lignes disponibles ne certifient pas les dix premières entreprises après regroupement. Aucune composition complète qualifiée pour cet indice exact. |
+| MSCI World Islamic | Approximation ETF physique | 2026-10-19 |
+| MSCI World Materials | Approximation ETF physique | 2026-10-19 |
+| MSCI World Utilities | Approximation ETF physique | 2026-10-19 |
+| MSCI World Industrials | Approximation ETF physique | 2026-10-19 |
+| MSCI World Consumer Staples | Indisponible | Les principales lignes disponibles ne certifient pas les dix premières entreprises après regroupement. Aucune composition complète qualifiée pour cet indice exact. |
+| MSCI EM IMI | Indisponible | Identifiant, doublon ou poids de titre incohérent |
+| FTSE All-World High Dividend Yield | Approximation ETF physique | 2026-09-30 |
+| S&P Global Dividend Aristocrats Quality Income | Indisponible | Les principales lignes disponibles ne certifient pas les dix premières entreprises après regroupement. Aucune composition complète qualifiée pour cet indice exact. |
+| MSCI World Growth | Indisponible | Les principales lignes disponibles ne certifient pas les dix premières entreprises après regroupement. Aucune composition complète qualifiée pour cet indice exact. |
+| FTSE China 50 | Indisponible | Les principales lignes disponibles ne certifient pas les dix premières entreprises après regroupement. Aucune composition complète qualifiée pour cet indice exact. |
+| FTSE EM | Approximation ETF physique | 2026-09-30 |
+| MSCI China | Indisponible | Les principales lignes disponibles ne certifient pas les dix premières entreprises après regroupement. Aucune composition complète qualifiée pour cet indice exact. |
+| MSCI China A | Indisponible | Les principales lignes disponibles ne certifient pas les dix premières entreprises après regroupement. Aucune composition complète qualifiée pour cet indice exact. |
+| MSCI EM Asia Screened Select ex Thermal Coal | Indisponible | Les principales lignes disponibles ne certifient pas les dix premières entreprises après regroupement. Aucune composition complète qualifiée pour cet indice exact. |
+| MSCI Emerging EMEA ESG Transition | Indisponible | Les principales lignes disponibles ne certifient pas les dix premières entreprises après regroupement. Aucune composition complète qualifiée pour cet indice exact. |
+| MSCI Emerging Markets Latin America | Indisponible | Les principales lignes disponibles ne certifient pas les dix premières entreprises après regroupement. Aucune composition complète qualifiée pour cet indice exact. |
+| MSCI Latin America Selection 20/35 Capped | Indisponible | Les principales lignes disponibles ne certifient pas les dix premières entreprises après regroupement. Aucune composition complète qualifiée pour cet indice exact. |
+| MSCI Japan IMI | Approximation ETF physique | 2026-10-19 |
+| MSCI World High Dividend Yield Advanced Select | Approximation ETF physique | 2026-10-19 |
+| S&P Euro High Yield Dividend Aristocrats | Approximation ETF physique | 2026-10-20 |
+| CAC 40 | Poids de l’indice publiés par Amundi | 2026-09-30 |
+| Dow Jones Industrial Average | Poids de l’indice publiés par Amundi | 2026-09-30 |
+| DAX | Poids de l’indice publiés par Amundi | 2026-09-30 |
+| MSCI Korea | Indisponible | La fiche MSCI Korea publie dix titres, soit neuf entreprises après regroupement des deux catégories Samsung Electronics. Le dixième émetteur ne peut pas être déterminé. MSCI Korea 20/35 est un autre indice. |
+
+Validation : tests purs et collecte avec panne partielle, parsers existants, build et audit des bundles, vérificateur des fiches, contrôle navigateur de tous les canevas qualifiés, export réel et égalité binaire aperçu/PNG pour huit indices, navigation rapide, indisponibilité Korea et mobile 390 px. Les images DAX, World, Dow Jones et Russell 2000 ont été inspectées visuellement. Les preuves navigateur sont produites sous test-artifacts/index-concentration.

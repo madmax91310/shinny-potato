@@ -19,3 +19,14 @@
 .fs-image-download { display: block; margin-top: 14px; padding: 13px; border-radius: 10px; background: #6552c4; color: #222636; text-align: center; font-weight: 700; text-decoration: none; }
 .fs-image-dialog p { font-size: 13px; line-height: 1.5; }
 @media (max-width: 600px) { .fs-editor textarea { min-height: 700px; } .fs-actions button { flex: 1 1 100%; } }
+
+.fs-composition-evidence { margin-top: 20px; padding: 16px; background: #f8f3e8; border: 1px solid #d7ceba; border-radius: 12px; color: #214a37; font-size: 14px; line-height: 1.55; overflow-wrap: anywhere; }
+.fs-composition-evidence p { margin: 10px 0; }
+.fs-composition-evidence a { text-decoration: underline; }
+.fs-composition-panel h2 { font-size: 22px; margin: 0 0 12px; }
+.fs-composition-panel p { margin: 12px 0; }
+.fs-composition-preview { display: block; width: 100%; max-width: 650px; height: auto; margin: 18px auto; }
+
+/* The original fixed action bar must not cover the second visual's actions. */
+.fs-composition-panel { margin-bottom: 180px; }
+.fs-composition-panel button { scroll-margin-block: 100px 200px; }

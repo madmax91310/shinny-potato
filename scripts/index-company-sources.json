@@ -1,0 +1,253 @@
+{
+  "additionalIndices": [
+    {
+      "id": "cac40",
+      "name": "CAC 40",
+      "parser": "amundi-index-document",
+      "collectComposition": true,
+      "compositionParser": "amundi-index-document",
+      "compositionIsin": "FR0013380607",
+      "compositionReplication": "Physique",
+      "compositionIdentityPattern": "100% CAC 40",
+      "method": "Capitalisation flottante, avec plafonnement",
+      "singleSecurityPerCompany": true,
+      "methodologyUrl": "https://live.euronext.com/en/product/indices/FR0003500008-XPAR"
+    },
+    {
+      "id": "dow-jones",
+      "name": "Dow Jones Industrial Average",
+      "parser": "amundi-index-document",
+      "collectComposition": true,
+      "compositionParser": "amundi-index-document",
+      "compositionIsin": "FR0007056841",
+      "compositionIdentityPattern": "100% DOW JONES INDUSTRIAL AVERAGE",
+      "method": "Pondération par le prix des actions (price weighted), pas par capitalisation",
+      "singleSecurityPerCompany": true,
+      "methodologyUrl": "https://www.spglobal.com/spdji/en/indices/equity/dow-jones-industrial-average/"
+    },
+    {
+      "id": "dax",
+      "name": "DAX",
+      "parser": "amundi-index-document",
+      "collectComposition": true,
+      "compositionParser": "amundi-index-document",
+      "compositionIsin": "LU0252633754",
+      "compositionReplication": "Physique",
+      "compositionIdentityPattern": "100% DAX INDEX",
+      "method": "Capitalisation flottante, avec plafonnement",
+      "singleSecurityPerCompany": true,
+      "methodologyUrl": "https://www.stoxx.com/index-details?symbol=DAX"
+    },
+    {
+      "id": "msci-korea",
+      "name": "MSCI Korea",
+      "parser": "msci",
+      "sourceUrl": "https://www.msci.com/documents/10199/255599/msci-korea-index.pdf",
+      "countryScope": {
+        "name": "Korea",
+        "proof": "South Korean market"
+      },
+      "method": "Capitalisation ajustée du flottant ; indice standard, sans plafond 20/35",
+      "methodologyUrl": "https://www.msci.com/indexes/index/941000"
+    }
+  ],
+  "physicalProxies": {
+    "world": {
+      "isin": "IE00B4L5Y983",
+      "benchmark": "MSCI World",
+      "observedBenchmark": "MSCI World Index (Net)"
+    },
+    "acwi": {
+      "isin": "IE00B44Z5B48",
+      "benchmark": "MSCI All Country World (ACWI)",
+      "observedBenchmark": "MSCI ACWI (All Country World Index) Index"
+    },
+    "sp500-pea": {
+      "isin": "IE00B5BMR087",
+      "benchmark": "S&P 500®",
+      "observedBenchmark": "S&P 500 Index"
+    },
+    "nasdaq-pea": {
+      "isin": "IE00B53SZB19",
+      "benchmark": "Nasdaq 100®",
+      "observedBenchmark": "NASDAQ 100 Index"
+    },
+    "acwi-imi": {
+      "isin": "IE00B3YLTY66",
+      "benchmark": "MSCI ACWI IMI Index (Net Total Return)",
+      "observedBenchmark": "MSCI ACWI IMI (All Country World Investable Market Index) Index"
+    },
+    "world-small-cap": {
+      "isin": "IE00BF4RFH31",
+      "benchmark": "MSCI World Small Cap",
+      "observedBenchmark": "MSCI World Small Cap Index (Net)"
+    },
+    "world-ex-usa": {
+      "isin": "IE0006WW1TQ4",
+      "benchmark": "MSCI World ex USA Index (Net Total Return)",
+      "observedBenchmark": "MSCI WORLD ex USA"
+    },
+    "mscieurope": {
+      "isin": "IE00B4K48X80",
+      "benchmark": "MSCI Europe",
+      "observedBenchmark": "MSCI Europe Index"
+    },
+    "eurostoxx50": {
+      "isin": "IE00B53L3W79",
+      "benchmark": "EURO STOXX® 50",
+      "observedBenchmark": "STOXX Eurozone 50 (Net Return)"
+    },
+    "msci-india": {
+      "isin": "IE00BZCQB185",
+      "benchmark": "MSCI India Index (Net)",
+      "observedBenchmark": "MSCI India Index (Net)"
+    },
+    "msci-japan-imi": {
+      "isin": "IE00B4L5YX21",
+      "benchmark": "MSCI Japan IMI",
+      "observedBenchmark": "MSCI Japan Investable Market Net Index (USD)"
+    },
+    "msci-em-imi": {
+      "isin": "IE00BKM4GZ66",
+      "benchmark": "MSCI Emerging Markets Investable Market (IMI)",
+      "observedBenchmark": "MSCI Emerging Markets Investable Market Index (USD) (Net)"
+    },
+    "em-standard": {
+      "isin": "IE00B469F816",
+      "benchmark": "MSCI Emerging Markets",
+      "observedBenchmark": "MSCI Emerging Markets Index"
+    },
+    "msci-em-ex-china": {
+      "isin": "IE00BMG6Z448",
+      "benchmark": "MSCI Emerging Markets ex China Index (Net)",
+      "observedBenchmark": "MSCI Emerging Markets ex China Index (Net)"
+    },
+    "msci-world-momentum": {
+      "isin": "IE00BP3QZ825",
+      "benchmark": "MSCI World Momentum",
+      "observedBenchmark": "MSCI World Momentum index (Net)"
+    },
+    "msci-world-sector-neutral-quality": {
+      "isin": "IE00BP3QZ601",
+      "benchmark": "MSCI World Sector Neutral Quality",
+      "observedBenchmark": "MSCI World Sector Neutral Quality Index (Net)"
+    },
+    "msci-world-enhanced-value": {
+      "isin": "IE00BP3QZB59",
+      "benchmark": "MSCI World Enhanced Value",
+      "observedBenchmark": "MSCI World Enhanced Value index (Net)"
+    },
+    "msci-world-minimum-volatility-usd": {
+      "isin": "IE00B8FHGS14",
+      "benchmark": "MSCI World Minimum Volatility",
+      "observedBenchmark": "MSCI WORLD MINIMUM VOLATILITY (USD)"
+    },
+    "msci-world-high-dividend-yield-advanced-select": {
+      "isin": "IE00BKPSFC54",
+      "benchmark": "MSCI World High Dividend Yield Advanced Select",
+      "observedBenchmark": "MSCI World High Dividend Yield Advanced Select Index USD"
+    },
+    "ftse-all-world": {
+      "isin": "IE00BK5BQT80",
+      "benchmark": "FTSE All-World",
+      "observedBenchmark": "FTSE All-World"
+    },
+    "ftse-em": {
+      "isin": "IE00BK5BR733",
+      "benchmark": "FTSE Emerging",
+      "observedBenchmark": "FTSE Emerging"
+    },
+    "ftse-all-world-high-dividend-yield": {
+      "isin": "IE00B8GKDB10",
+      "benchmark": "FTSE All-World High Dividend Yield",
+      "observedBenchmark": "FTSE All-World High Dividend Yield"
+    },
+    "ftse-epra-nareit-developed-dividend-plus": {
+      "isin": "IE00B1FZS350",
+      "benchmark": "FTSE EPRA/NAREIT Developed Dividend+",
+      "observedBenchmark": "FTSE EPRA Nareit Developed Dividend+ Net Index in USD"
+    },
+    "ftse-global-core-infrastructure": {
+      "isin": "IE00B1FZS467",
+      "benchmark": "FTSE Global Core Infrastructure Index (USD)",
+      "observedBenchmark": "FTSE Global Core Infrastructure Index (USD)"
+    },
+    "sp500-equal-weight": {
+      "isin": "IE00BLNMYC90",
+      "benchmark": "S&P 500 Equal Weight Index (Net Total Return)",
+      "observedBenchmark": "S&P 500® Equal Weight Index"
+    },
+    "russell-2000": {
+      "isin": "IE00BJ38QD84",
+      "benchmark": "Russell 2000 Index (Net Total Return)",
+      "observedBenchmark": "Russell 2000<sup>®</sup> Index"
+    },
+    "sp-euro-dividend-aristocrats": {
+      "isin": "IE00B5M1WJ87",
+      "benchmark": "S&P Euro High Yield Dividend Aristocrats Index",
+      "observedBenchmark": "S&P Euro High Yield Dividend Aristocrats Index"
+    },
+    "msci-world-health-care": {
+      "isin": "IE00BM67HK77",
+      "benchmark": "MSCI World Health Care Index (NTR, USD)",
+      "observedBenchmark": "MSCI WORLD HEALTH CARE TRN INDEX"
+    },
+    "msci-world-materials": {
+      "isin": "IE00BM67HS53",
+      "benchmark": "MSCI WORLD MATERIALS TRN INDEX",
+      "observedBenchmark": "MSCI WORLD MATERIALS TRN INDEX"
+    },
+    "msci-world-utilities": {
+      "isin": "IE00BM67HQ30",
+      "benchmark": "MSCI WORLD UTILITIES TRN INDEX",
+      "observedBenchmark": "MSCI WORLD UTILITIES TRN INDEX"
+    },
+    "msci-world-industrials": {
+      "isin": "IE00BM67HV82",
+      "benchmark": "MSCI World Industrials Index (Net Total Return)",
+      "observedBenchmark": "MSCI WORLD INDUSTRIALS TRN INDEX"
+    },
+    "stoxx600": {
+      "isin": "DE0002635307",
+      "benchmark": "STOXX Europe 600 Index (EUR)",
+      "observedBenchmark": "STOXX Europe 600 Index (EUR)"
+    },
+    "world-islamic": {
+      "isin": "IE00B27YCN58",
+      "benchmark": "MSCI Developed World Islamic Index (NET) (USD)",
+      "observedBenchmark": "MSCI Developed World Islamic Index (NET) (USD)"
+    }
+  },
+  "reviewedSecurityLabels": {
+    "GOLDMAN SACHS GROUP INC": "US38141G1040",
+    "CATERPILLAR INC": "US1491231015",
+    "MICROSOFT CORP": "US5949181045",
+    "AMGEN INC": "US0311621009",
+    "UNITEDHEALTH GROUP INC": "US91324P1021",
+    "VISA INC-CLASS A SHARES": "US92826C8394",
+    "TRAVELERS COMPANIES": "US89417E1091",
+    "ALPHABET INC CL A": "US02079K3059",
+    "JPMORGAN CHASE & CO": "US46625H1005",
+    "SHERWIN-WILLIAMS CO/THE": "US8243481061",
+    "SIEMENS AG-REG": "DE0007236101",
+    "SAP SE / XETRA": "DE0007164600",
+    "ALLIANZ SE-REG": "DE0008404005",
+    "SIEMENS ENERGY AG": "DE000ENER6Y0",
+    "AIRBUS SE-BERLIN": "NL0000235190",
+    "DEUTSCHE TELEKOM NAM (XETRA)": "DE0005557508",
+    "INFINEON TECHNOLOGIES AG": "DE0006231004",
+    "MUENCHENER RUECKVER AG-REG": "DE0008430026",
+    "DEUTSCHE BANK NAMEN": "DE0005140008",
+    "DHL GROUP (XETRA)": "DE0005552004",
+    "SCHNEIDER ELECT SE": "FR0000121972",
+    "TOTALENERGIES SE PARIS": "FR0000120271",
+    "AIRBUS SE PARIS": "NL0000235190",
+    "AIR LIQUIDE SA": "FR0000120073",
+    "SAFRAN SA": "FR0000073272",
+    "BNP PARIBAS": "FR0000131104",
+    "LVMH MOET HENNESSY LOUIS VUI": "FR0000121014",
+    "L OREAL (PARIS)": "FR0000120321",
+    "SANOFI - PARIS": "FR0000120578",
+    "AXA SA": "FR0000120628"
+  }
+}

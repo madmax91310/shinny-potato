@@ -1,5 +1,9 @@
 // Reviewed exposure illustrations. Abstract glass blocks never encode weights.
 const identities = {
+ cac40: ['europe50', 'Grandes entreprises cotées à Paris'],
+ 'dow-jones': ['sp500', '30 entreprises américaines · pondération par le prix'],
+ dax: ['europe50', 'Grandes entreprises allemandes'],
+ 'msci-korea': ['emerging', 'Grandes et moyennes entreprises sud-coréennes'],
  'msci-world-consumer-discretionary':['world','Pays développés · consommation discrétionnaire'],
  'msci-world-communication-services':['world','Pays développés · services de communication'],
   'msci-world-health-care': ['health', 'Pays développés · secteur santé'],

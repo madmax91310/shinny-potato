@@ -11,6 +11,11 @@ on:
       - 'scripts/collect_index_documents.py'
       - 'scripts/test_world_sector_indices.py'
       - 'scripts/test_index_composition_gate.py'
+      - 'scripts/*index_companies*'
+      - 'scripts/index-company-sources.json'
+      - 'scripts/build-index-company-compositions.mjs'
+      - 'src/data/index-company*'
+      - 'src/data/index-concentration-core.js'
       - 'scripts/collect_sp_composition.py'
       - 'scripts/test_complete_index_sheets.py'
       - 'src/data/automated-index-sheets.js'
@@ -48,6 +53,12 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_complete_index_sheets.py'
       - run: python -m unittest discover -s scripts -p 'test_world_sector_indices.py'
       - run: python -m unittest discover -s scripts -p 'test_index_composition_gate.py'
+      - run: python -m unittest discover -s scripts -p 'test_index_companies.py'
+      - name: Refresh additional exact-index company compositions
+        continue-on-error: true
+        run: python scripts/refresh_index_companies.py --apply --output "${{ runner.temp }}/index-company-observations.json"
+      - run: node scripts/build-index-company-compositions.mjs --apply --report "${{ runner.temp }}/index-company-qualification-observations.json"
+      - run: npm run test:index-concentration
       - name: Collect selected indices directly and require every displayed field
         run: >-
           python scripts/refresh_index_sources.py --require-complete --apply
@@ -66,12 +77,12 @@ jobs:
         if: always()
         with:
           name: complete-index-sheet-observations
-          path: ${{ runner.temp }}/selected-index-observations.json
+          path: ${{ runner.temp }}/*index*observations.json
           retention-days: 35
       - name: Detect partial failures
         id: partial
         if: always()
-        run: python scripts/report_partial_failures.py "$RUNNER_TEMP/selected-index-observations.json"
+        run: python scripts/report_partial_failures.py "$RUNNER_TEMP/selected-index-observations.json" "$RUNNER_TEMP/index-company-observations.json" "$RUNNER_TEMP/index-company-qualification-observations.json"
       - name: Validate collected observations
         run: echo 'Mandatory observation checks passed'
       - name: Commit validated observations
@@ -80,7 +91,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          bash scripts/commit-validated-data.sh 'Refresh complete automated index sheets' src/data/automated-indices.json
+          bash scripts/commit-validated-data.sh 'Refresh complete automated index sheets' src/data/automated-indices.json src/data/index-company-observations.json
   deploy:
     needs: collect
     if: github.event_name != 'pull_request'
