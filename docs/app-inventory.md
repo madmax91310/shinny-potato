@@ -39,15 +39,15 @@ Généré depuis les routes, le catalogue et les observations actives. Régéné
 |---|---:|
 | actor | 11 |
 | broker | 8 |
-| company | 158 |
+| company | 159 |
 | household | 29 |
 | index | 52 |
-| instrument | 646 |
+| instrument | 647 |
 | insurance | 7 |
 | lexicon | 44 |
 | reference | 11 |
 | scpi | 8 |
-| series | 697 |
+| series | 698 |
 
 ## Champs des instruments
 
