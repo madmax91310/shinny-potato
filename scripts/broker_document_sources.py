@@ -24,7 +24,7 @@ CATALOGUES = {
   'page': 'https://www.boursedirect.fr/fr/formulaires-en-ligne', 'label': r'^Conditions Générales courantes$',
   'hosts': ('www.boursedirect.fr', 'www.boursedirect.com'), 'path': r'/pdf/CG[^/]*\.pdf$'},
  'https://www.home.saxo/-/media/documents/regional/fr-fr/manuals/brochure-tarifaire-generale-2026.pdf': {
-  'page': 'https://www.home.saxo/fr-fr/rates-and-conditions/commissions-charges-and-margin-schedule',
+  'page': 'https://www.home.saxo/fr-fr/rates-and-conditions/pricing-overview',
   'label': r'^Brochure tarifaire$', 'hosts': ('www.home.saxo',),
   'path': r'/-/media/documents/regional/fr-fr/manuals/brochure-tarifaire-generale[^/]*\.pdf$'},
  'https://www.xtb.com/fr/fichiers/table-des-frais-et-commissions_052026.pdf': {

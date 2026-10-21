@@ -2,6 +2,7 @@
   "schemaVersion": 1,
   "description": "Single freshness policy: how long a field may go without a successful check (checkDays) and how old its publication may be (dataDays) before it is reported. Read by report-asset-fields.mjs, collect_instrument_metadata.py and collect_scpi.py. Per-workflow run cadence stays in automation-workflows.json (maxAgeHours).",
   "fields": {
+    "investor.13f": {"checkDays": 7, "dataDays": 155, "note": "Contrôle quotidien des nouvelles déclarations ; la période 13F conserve sa date trimestrielle et son délai réglementaire de publication."},
     "etf.default": { "checkDays": 7, "dataDays": 65, "note": "Countries, sectors, holdings, AUM: issuers republish monthly." },
     "etf.ter": { "checkDays": 7, "dataDays": 400, "note": "Annual fee: may legitimately date from the last financial year." },
     "etf.characteristic": { "checkDays": 7, "dataDays": 400, "fields": ["distribution", "pea", "currencyHedge", "listings"] },

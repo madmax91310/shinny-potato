@@ -24,7 +24,6 @@ const FactsheetTweets = lazy(() => import('./pages/factsheet-tweets/App'))
 const DataSearch = lazy(() => import('./pages/data-search/App'))
 const HouseholdApp = lazy(() => import('./pages/france-100-menages/App'))
 const DataReview = lazy(() => import('./pages/data-review/App'))
-const CompanyAnalysis = lazy(() => import('./pages/company-analysis/App'))
 const Presentations = lazy(() => import('./pages/presentations/App'))
 const InvestorPortfolio = lazy(() => import('./pages/investor-portfolio/App'))
 
@@ -46,7 +45,6 @@ const TOOL_ELEMENTS = {
   '/radar-editorial': <EditorialRadar />,
   '/simulateur-patrimoine': <WealthSimulator />,
   '/presentations': <Presentations />,
-  '/analyse-entreprise': <CompanyAnalysis />,
   '/france-100-menages': <HouseholdApp />,
   '/donnees-a-revoir': <DataReview />,
   '/bibliotheque-donnees': <DataSearch />,

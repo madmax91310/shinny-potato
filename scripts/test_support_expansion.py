@@ -7,7 +7,6 @@ from pathlib import Path
 import unittest
 from collect_index_documents import msci_composition, msci_returns
 from refresh_index_sources import validate_complete_sheet
-from company_publications import candidates
 from collect_presentation_actors import parse
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -42,13 +41,6 @@ class SupportExpansion(unittest.TestCase):
                 msci_composition(text.replace('classiﬁed','not classified'), config, NOW, country_text=countries)
             with self.assertRaises(ValueError):
                 msci_composition(text, config, NOW, country_text=re.sub(r'United States \d+(?:\.\d+)?%', '', countries))
-
-    def test_meta_issuer_urls_follow_calendar_and_do_not_select_future_quarters(self):
-        urls=list(candidates('meta', NOW.date()))
-        self.assertTrue(any('2026/Meta-Reports-Second-Quarter-2026-Results/' in u for group in urls for u in group))
-        annual=list(candidates('meta',NOW.date(),annual_only=True))
-        self.assertIn('https://investor.atmeta.com/investor-news/press-release-details/2026/Meta-Reports-Fourth-Quarter-and-Full-Year-2025-Results/',annual[0])
-        self.assertFalse(any('Full-Year-2026' in u for group in annual for u in group))
 
     def test_platform_fee_exceptions_and_changed_clauses_fail_closed(self):
         fixtures = json.loads((ROOT/'scripts/fixtures/presentation-actors/public-terms.json').read_text())

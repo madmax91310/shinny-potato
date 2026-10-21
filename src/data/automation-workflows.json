@@ -355,43 +355,6 @@
       "/portefeuilles-investisseurs"
     ]
   },
-  "update-company-analysis.yml": {
-    "name": "Analyses d’entreprises",
-    "workflowName": "Update company analysis",
-    "collectionJob": "refresh",
-    "maxAgeHours": 48,
-    "tools": [
-      "Analyse d’entreprise"
-    ],
-    "collectionSteps": [
-      "Renew the SEC universe and retain original dates on failure",
-      "Qualify expanded publication components from issuer documents",
-      "Collect observations: collect",
-      "Renew independently reconciled annual risk information"
-    ],
-    "validationSteps": [
-      "Qualify candidates against the complete product contract",
-      "Validate observations: node scripts test-company-independent.mjs",
-      "Validate observations: node scripts test-company-professional.mjs",
-      "Validate observations: node scripts test-company-context.mjs",
-      "Validate observations: node scripts test-company-expanded-coverage.mjs",
-      "Validate observations: node scripts test-company-analysis.mjs",
-      "Validate observations: node scripts test-company-decision.mjs",
-      "Validate observations: node scripts test-company-valuation.mjs",
-      "Validate observations: node scripts test-company-explorer.mjs",
-      "Require 150 usable companies and preserve the complete-data floor",
-      "Validate observations: node scripts test-company-release.mjs",
-      "Validate observations: node scripts test-company-forecast-ledger.mjs",
-      "Audit automatic valuation coverage",
-      "Validate observations: npm run build",
-      "Verify company UI in Chromium",
-      "Validate collected observations"
-    ],
-    "paths": [
-      "/analyse-entreprise"
-    ],
-    "artifact": "company-analysis-observation"
-  },
   "update-economic-data.yml": {
     "name": "Taux d’épargne, ménages, SCPI et fonds euros",
     "workflowName": "Update official economic data",

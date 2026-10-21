@@ -1,5 +1,5 @@
 import { readFileSync } from 'node:fs'
-import profiles from '../src/data/company-profiles.json' with {type:'json'}
+import profiles from '../src/data/equity-candidates.json' with {type:'json'}
 import { ASSETS } from '../src/data/market-history.js'
 import { COMPANY_HISTORY } from '../src/data/company-history.js'
 export const EQUITY_ALIASES={'novo-nordisk':'novo','saint-gobain':'saintgobain',linde:'lin',moodys:'mco','air-liquide':'airliquide',totalenergies:'total','waste-management':'wasteManagement','bnp-paribas':'bnp','coca-cola':'cocacola',google:'alphabet','home-depot':'hd',mcdonalds:'mcd',abbvie:'abbv','thermo-fisher':'tmo',oracle:'orcl',qualcomm:'qcom','texas-instruments':'txn',micron:'mu','applied-materials':'amat',exxonmobil:'xom',chevron:'cvx',conocophillips:'cop'}
@@ -33,12 +33,12 @@ export function equityUniverse({includeUnqualified=false}={}){
  }
  for(const r of Object.values(rows)){r.kind='equity';r.tickers||=[];r.name||=r.id;r.isin||=''}
  // Financial-account qualification does not establish an exact security identity.
- // Keep these companies in the analysis tool and report the missing exposure identity.
+ // Report a pending candidate separately from securities already used by exposure tools.
  return includeUnqualified?rows:Object.fromEntries(Object.entries(rows).filter(([,r])=>/^[A-Z]{2}[A-Z0-9]{9}[0-9]$/.test(r.isin)))
 }
 
 export function equityExposureGaps(){
- const reason='Entreprise disponible dans l’analyse financière, mais ISIN exact non qualifié pour les outils d’exposition. Raccorder une identité sourcée avant la classification pays/secteur.'
+ const reason='Identité candidate sans ISIN exact qualifié pour les outils d’exposition. Raccorder une identité sourcée avant la classification pays/secteur.'
  return Object.values(equityUniverse({includeUnqualified:true})).filter(r=>!/^[A-Z]{2}[A-Z0-9]{9}[0-9]$/.test(r.isin)).map(r=>({id:r.id,name:r.name,type:'equity',field:'identity',label:'Identité ISIN pour les expositions',state:'unqualified',present:false,automationConfigured:false,checkedAt:null,asOf:null,sourceUrl:r.sourceUrl??null,tools:['dca-profiles'],reason,diagnostic:{code:'missing-isin',reason}}))
 }
 

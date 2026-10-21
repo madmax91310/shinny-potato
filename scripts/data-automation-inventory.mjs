@@ -4,6 +4,8 @@ import { fileURLToPath } from 'node:url'
 import { DATA_CATALOG } from '../src/data/catalog.js'
 import { registryQualification, fieldQualification, coverageKey, qualifyCoverage } from './lib/data-qualification.mjs'
 import {assetAutomation,assetAutomationCsv} from './lib/asset-automation.mjs'
+import {consumerUsage} from './lib/consumer-usage.mjs'
+import {externalConsumerAssets} from './lib/external-consumer-assets.mjs'
 import { AUTOMATED_ETF } from '../src/data/automated-etf.js'
 import { marketCalendarPerformance } from '../src/data/market-calendar-performance.js'
 import exposureSleeves from '../src/data/exposure-sleeves.json' with {type:'json'}
@@ -159,11 +161,15 @@ export function buildDataAutomationInventory(){
  const certification=assetAutomation(report)
  report.summary.priorityMarkets=priorityMarkets
  report.assets=certification.assets;report.summary.assetAutomation=certification.summary
+ const externalAssets=externalConsumerAssets(workflows,report.generatedAt)
+ report.consumerUsage={...consumerUsage([...report.assets,...externalAssets]),externalAssets}
+ report.summary.consumerUsage=report.consumerUsage.summary
  return report
 }
 export function writeDataAutomationInventory(){
  const report=buildDataAutomationInventory();mkdirSync(resolve(ROOT,'public/data'),{recursive:true})
  writeFileSync(resolve(ROOT,'public/data/asset-automation.csv'),assetAutomationCsv(report.assets))
+ writeFileSync(resolve(ROOT,'public/data/consumer-data-usage.json'),JSON.stringify({...report.consumerUsage,assets:report.assets})+'\n')
  writeFileSync(resolve(ROOT,'public/data/data-automation-inventory.json'),JSON.stringify(report)+'\n')
  writeFileSync(resolve(ROOT,'public/data/data-automation-summary.json'),JSON.stringify({schemaVersion:report.schemaVersion,generatedAt:report.generatedAt,summary:report.summary})+'\n')
  const csvCell=value=>'"'+String(value??'').replaceAll('"','""')+'"'

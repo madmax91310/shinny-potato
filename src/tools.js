@@ -21,11 +21,6 @@ export const TOOLS = [
     publicationDay: 'Publication ponctuelle', icon: '🛡️', accent: '#65d5b0',
     description: 'Assurance-vie, SCPI et acteurs du non coté ou des actifs réels : texte et visuel personnalisés.', status: 'disponible' },
   {
-    to: '/analyse-entreprise', hidden: true, title: 'Analyse d’entreprise',
-    publicationDay: 'Publication ponctuelle', icon: '🏭', accent: '#7bd8bd',
-    description: 'Activité, résultats publiés et valorisation disponible : texte et image actualisés automatiquement.', status: 'disponible',
-  },
-  {
     to: '/portefeuilles-investisseurs', title: 'Présentation d’un investisseur connu',
     publicationDay: 'Publication ponctuelle', icon: '👤', accent: '#d5ad65',
     description: `${INVESTORS.length} profils 13F : tweet, répartition et export PNG issus des déclarations SEC, via FolioFact et Tracefour.`, status: 'disponible',
@@ -166,7 +161,6 @@ const TOOL_SUMMARIES = {
   '/radar-editorial': 'Les changements sourcés qui peuvent devenir tes prochains posts.',
   '/simulateur-patrimoine': 'Ton patrimoine aujourd’hui et demain, avec des comparaisons pour X.',
   '/presentations': 'Un acteur, son offre et ce que tu détiens réellement.',
-  '/analyse-entreprise': 'Son activité, ses résultats et sa valorisation disponible.',
   '/comparatif-courtiers': 'Frais, PEA et services des courtiers en face à face.',
   '/calculateur-investissement': 'Ce que serait devenu ton investissement au fil du temps.',
   '/impact-frais': 'Mesure ce que les frais changent à ton capital final.',

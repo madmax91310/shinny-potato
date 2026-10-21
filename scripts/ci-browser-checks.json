@@ -15,7 +15,6 @@
   "node scripts/test-presentations.mjs",
   "node scripts/test-presentations-ui.mjs",
   "node scripts/test-presentation-images.mjs",
-  "node scripts/test-company-analysis-ui.mjs",
   "node scripts/playwright-tools.mjs",
   "node scripts/playwright-publication-actions.mjs",
   "npm run test:radar:browser",
@@ -45,5 +44,6 @@
   "node scripts/playwright-performance-rankings.mjs",
   "node scripts/test-ranking-header-layout.mjs",
   "node scripts/playwright-interface-loading.mjs",
-  "node scripts/playwright-selected-records.mjs"
+  "node scripts/playwright-selected-records.mjs",
+  "node scripts/playwright-consumed-data.mjs"
 ]

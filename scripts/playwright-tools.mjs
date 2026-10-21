@@ -186,10 +186,6 @@ async function testWorkspaceNavigation(page) {
   // Each tool must expose a usable view on small phones without losing its mounted output.
   for (const tool of TOOLS) {
     await page.goto(`${BASE}${tool.to}`, { waitUntil: 'networkidle' });
-    if (tool.to === '/analyse-entreprise') {
-      checks.companyValuationVisible = await page.getByTestId('company-valuation').isVisible();
-      await page.getByText('Comptes détaillés et publication existante', {exact:true}).click();
-    }
     const switcher = page.locator('.workspace-view-switch');
     for (const width of [320, 390]) {
       await page.setViewportSize({ width, height: 844 });

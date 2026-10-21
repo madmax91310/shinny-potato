@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "workflows": {
+    "update-company-analysis.yml": {
+      "tool": "/analyse-entreprise",
+      "retiredAt": "2026-10-21",
+      "reason": "Analyse d’entreprise retirée à la demande de l’utilisateur. Ses comptes, ratios et prévisions ne sont plus requis ; les données de marché utilisées ailleurs restent suivies."
+    }
+  }
+}

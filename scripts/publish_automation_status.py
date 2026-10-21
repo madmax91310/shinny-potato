@@ -179,6 +179,9 @@ def include_configured_workflows(state):
     result = json.loads(json.dumps(state))
     result.setdefault('schemaVersion', 1)
     entries = result.setdefault('workflows', {})
+    retired = json.loads((pathlib.Path(__file__).resolve().parents[1] / 'src/data/retired-automations.json').read_text())['workflows']
+    for workflow in retired:
+        entries.pop(workflow, None)
     for workflow, name in WORKFLOWS.items():
         entries.setdefault(workflow, {'name':name, 'status':'unknown', 'collectionStatus':'unknown',
             'validationStatus':'unknown', 'recordingStatus':'not-run', 'publicationStatus':'not-run', 'dataFailures':{}, 'failures':[]})

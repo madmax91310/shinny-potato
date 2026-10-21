@@ -1,13 +1,14 @@
 // Field certificates derive from existing evidence. File schedules alone never
 // certify every value that a mixed registry exposes.
 import POLICY from '../../src/data/freshness-policy.json' with {type:'json'}
-const FINANCIAL=new Set(['instrument','series','company','index','insurance','scpi','actor','broker'])
+const FINANCIAL=new Set(['instrument','series','index','insurance','scpi','actor','broker','household','lexicon','reference'])
 const EXCLUDED=new Set(['editorial','archive','simulation'])
 const PASSIVE=new Set(['archived','not-applicable','outside-equity-scope','waiting-first-year'])
 // Explicit facade contracts. Unlisted fields stay unqualified even when their
 // file imports one of these producers.
 const BINDINGS=[
- ['src/data/companies.js',/^(Comptes annuels|Comptes trimestriels|Cours de clôture|BPA sur douze mois|Dette et trésorerie|Actions en circulation|Historique annuel ·|Cash et indicateurs de décision ·|Bilan et capitaux propres ·|Historique de dette nette ·)/,'update-company-analysis.yml'],
+ ['src/data/household-statistics.js',/^Statistique de ménages$/,'update-economic-data.yml'],
+ ['src/data/regulatory-data.js',/^Paramètres officiels ·/,'update-regulatory-data.yml'],
  ['src/data/presentation-actors.js',/ · (Accès|Frais publiés|Durée|Revenus|Sortie)$/,'update-presentation-actors.yml'],
  ['src/data/broker-tariffs.js',/^(Tarif courtage automatisé|Paramètre automatisé ·|Conditions officielles ·)/,'update-regulatory-data.yml'],
  ['src/data/scpi.js',/^(Actifs immobiliers|Locataires|Taux d’occupation financier|Immeubles|Historique daté du prix de souscription)$/,'update-scpi.yml'],

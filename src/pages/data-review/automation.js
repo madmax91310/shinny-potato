@@ -1,11 +1,12 @@
 import registry from '../../data/automation-workflows.json' with { type: 'json' }
+import retired from '../../data/retired-automations.json' with {type:'json'}
 export const AUTOMATION_STATUS_URL = 'https://raw.githubusercontent.com/madmax91310/shinny-potato/automation-status/automation-status.json'
 
 export function automationOverview(status, now = new Date()) {
   // Un état absent ou inconnu ne vaut jamais une collecte réussie.
   if (status?.schemaVersion !== 1 || !status.workflows || typeof status.workflows !== 'object' || Array.isArray(status.workflows)) throw new Error('Statut des automatisations indisponible')
   const configured = Object.fromEntries(Object.entries(registry).map(([id, entry]) => [id, { name: entry.name }]))
-  return Object.entries({ ...configured, ...status.workflows }).map(([id, value]) => {
+  return Object.entries({ ...configured, ...status.workflows }).filter(([id])=>!Object.hasOwn(retired.workflows,id)).map(([id, value]) => {
     if (!value || typeof value !== 'object' || typeof value.name !== 'string') throw new Error('Statut de collecte invalide')
     const failures = Object.keys(value.dataFailures ?? {}).length
     const maxAge = registry[id]?.maxAgeHours

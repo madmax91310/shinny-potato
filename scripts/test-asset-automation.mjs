@@ -15,10 +15,10 @@ assert.equal(assetAutomation({...base,connections:[wait]}).assets[0].state,'refe
 assert.match(assetAutomationCsv(assetAutomation(base).assets),/"Test, ""part"""/)
 console.log('Asset certificates: field proof, failed source retention, dates, identity-only, first-year wait and CSV passed.')
 
-const boundWorkflow={...workflow,path:'.github/workflows/update-company-analysis.yml'}
-const bound={...field,id:'company:test',type:'company',registry:'src/data/companies.js',field:'Comptes annuels',coverageReference:null,sourceStatus:'documented',upstreamWorkflows:[boundWorkflow.path]}
+const boundWorkflow={...workflow,path:'.github/workflows/update-regulatory-data.yml'}
+const bound={...field,id:'broker:test',type:'broker',registry:'src/data/broker-tariffs.js',field:'Tarif courtage automatisé',coverageReference:null,sourceStatus:'documented',upstreamWorkflows:[boundWorkflow.path]}
 assert.equal(assetAutomation({...base,fields:[bound],connections:[],workflows:[boundWorkflow]}).assets[0].state,'scheduled-evidence')
-assert.equal(assetAutomation({...base,fields:[{...bound,checkedAt:'2026-10-01'}],connections:[],workflows:[boundWorkflow]}).assets[0].state,'blocked','a facade contract does not renew old evidence')
+assert.equal(assetAutomation({...base,fields:[{...bound,checkedAt:'2025-10-01'}],connections:[],workflows:[boundWorkflow]}).assets[0].state,'blocked','a facade contract does not renew old evidence')
 assert.equal(assetAutomation({...base,fields:[{...bound,field:'Prévisions non observées'}],connections:[],workflows:[boundWorkflow]}).assets[0].state,'qualification-needed','unknown field is not certified by a file schedule')
 
 assert.equal(assetAutomation({...base,fields:[{...field,asOf:'2026-10-21'}]}).assets[0].state,'blocked','future observation dates cannot certify current data')

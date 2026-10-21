@@ -13,6 +13,8 @@ on:
       - 'scripts/capture-wisdomtree-api.mjs'
       - 'scripts/test_wisdomtree_api_holdings.py'
       - 'scripts/discover_holdings_sources.py'
+      - 'scripts/discover_lg_holdings.py'
+      - 'scripts/test_lg_discovery.py'
       - 'scripts/security_identifier_observations.py'
       - 'scripts/security-identity-sources.json'
       - 'scripts/test_wisdomtree_discovery.py'
@@ -48,6 +50,8 @@ on:
       - 'scripts/capture-wisdomtree-api.mjs'
       - 'scripts/test_wisdomtree_api_holdings.py'
       - 'scripts/discover_holdings_sources.py'
+      - 'scripts/discover_lg_holdings.py'
+      - 'scripts/test_lg_discovery.py'
       - 'scripts/security_identifier_observations.py'
       - 'scripts/security-identity-sources.json'
       - 'scripts/test_wisdomtree_discovery.py'
@@ -111,6 +115,7 @@ jobs:
         run: python -m unittest discover -s scripts -p 'test_wisdomtree_api_holdings.py'
       - name: Refresh exact security identifier evidence
         run: python scripts/security_identifier_observations.py
+      - run: python -m unittest discover -s scripts -p 'test_lg_discovery.py'
       - name: Discover complete issuer portfolios without replacing qualified values on failure
         run: python scripts/discover_holdings_sources.py
       - name: "Collect observations: holdings"

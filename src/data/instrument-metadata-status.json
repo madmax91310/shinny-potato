@@ -2174,7 +2174,7 @@
     }
   },
   "IE000716YHJ7": {
-    "checkedAt": "2026-10-20T21:37:49.441988+00:00",
+    "checkedAt": "2026-10-21T07:55:37.245325+00:00",
     "observed": [
       "domicile",
       "replicationMethod",
@@ -2191,7 +2191,7 @@
     "errors": [
       {
         "sourceUrl": "https://www.boursedirect.fr/fr/marche/electronic-etf-etc-etn-and-open-end-funds-market/invesco-ftse-all-world-ucits-e-IE000716YHJ7-FWRA-EUR-ETFP/seance",
-        "error": "Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
+        "error": "HTTP Error 503: Service Unavailable"
       },
       {
         "sourceUrl": "https://bourse.fortuneo.fr/api/search?term=IE000716YHJ7",
@@ -2215,8 +2215,8 @@
       "distribution": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-20T21:37:49.441988+00:00",
-        "lastSuccessAt": "2026-10-20",
+        "lastAttemptAt": "2026-10-21T07:55:37.245325+00:00",
+        "lastSuccessAt": "2026-10-21",
         "sourceUrls": [
           "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE000716YHJ7_factsheet_en.pdf",
           "https://www.justetf.com/fr/etf-profile.html?isin=IE000716YHJ7",
@@ -2232,8 +2232,8 @@
       "domicile": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-20T21:37:49.441988+00:00",
-        "lastSuccessAt": "2026-10-20",
+        "lastAttemptAt": "2026-10-21T07:55:37.245325+00:00",
+        "lastSuccessAt": "2026-10-21",
         "sourceUrls": [
           "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE000716YHJ7_factsheet_en.pdf",
           "https://www.justetf.com/fr/etf-profile.html?isin=IE000716YHJ7",
@@ -2249,8 +2249,8 @@
       "replicationMethod": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-20T21:37:49.441988+00:00",
-        "lastSuccessAt": "2026-10-20",
+        "lastAttemptAt": "2026-10-21T07:55:37.245325+00:00",
+        "lastSuccessAt": "2026-10-21",
         "sourceUrls": [
           "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE000716YHJ7_factsheet_en.pdf",
           "https://www.justetf.com/fr/etf-profile.html?isin=IE000716YHJ7",
@@ -2266,7 +2266,7 @@
       "pea": {
         "status": "unobserved",
         "category": "source-unavailable",
-        "lastAttemptAt": "2026-10-20T21:37:49.441988+00:00",
+        "lastAttemptAt": "2026-10-21T07:55:37.245325+00:00",
         "lastSuccessAt": null,
         "sourceUrls": [
           "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE000716YHJ7_factsheet_en.pdf",
@@ -2281,7 +2281,7 @@
         "sourceErrors": [
           {
             "sourceUrl": "https://www.boursedirect.fr/fr/marche/electronic-etf-etc-etn-and-open-end-funds-market/invesco-ftse-all-world-ucits-e-IE000716YHJ7-FWRA-EUR-ETFP/seance",
-            "error": "Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
+            "error": "HTTP Error 503: Service Unavailable"
           },
           {
             "sourceUrl": "https://bourse.fortuneo.fr/api/search?term=IE000716YHJ7",
@@ -2304,8 +2304,8 @@
       "currencyHedge": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-20T21:37:49.441988+00:00",
-        "lastSuccessAt": "2026-10-20",
+        "lastAttemptAt": "2026-10-21T07:55:37.245325+00:00",
+        "lastSuccessAt": "2026-10-21",
         "sourceUrls": [
           "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE000716YHJ7_factsheet_en.pdf",
           "https://www.justetf.com/fr/etf-profile.html?isin=IE000716YHJ7",
@@ -2321,8 +2321,8 @@
       "listings": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-20T21:37:49.441988+00:00",
-        "lastSuccessAt": "2026-10-20",
+        "lastAttemptAt": "2026-10-21T07:55:37.245325+00:00",
+        "lastSuccessAt": "2026-10-21",
         "sourceUrls": [
           "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE000716YHJ7_factsheet_en.pdf",
           "https://www.justetf.com/fr/etf-profile.html?isin=IE000716YHJ7",
@@ -2338,7 +2338,7 @@
     }
   },
   "IE0000QLH0G6": {
-    "checkedAt": "2026-10-20T21:37:49.441988+00:00",
+    "checkedAt": "2026-10-21T07:55:37.245325+00:00",
     "observed": [
       "domicile",
       "replicationMethod",
@@ -2363,11 +2363,11 @@
         "error": "No explicit supported metadata fields"
       },
       {
-        "sourceUrl": "https://www.quantalys.com/Recherche?search=IE0000QLH0G6",
+        "sourceUrl": "https://www.quantalys.com/redirect_AO75LOAPIWRYAVQUL54WAARY2S4IKHUORPUEC62LZBMRX6UMUVJA====/redirect_6Y3YNKKR65PNBE42OO46SPMVOJCBKQI3FPFMD6D5K2SYTWVIGYHQ====/redirect_AO75LOAPIWRYAVQUL54WAARY2S4IKHUORPUEC62LZBMRX6UMUVJA====/redirect_6Y3YNKKR65PNBE42OO46SPMVOJCBKQI3FPFMD6D5K2SYTWVIGYHQ====/Recherche/RechercheRapide",
         "error": "No public exact-share fund reference found"
       },
       {
-        "sourceUrl": "https://www.quantalys.com/Recherche?search=IE0000QLH0G6",
+        "sourceUrl": "https://www.quantalys.com/redirect_AO75LOAPIWRYAVQUL54WAARY2S4IKHUORPUEC62LZBMRX6UMUVJA====/redirect_6Y3YNKKR65PNBE42OO46SPMVOJCBKQI3FPFMD6D5K2SYTWVIGYHQ====/redirect_AO75LOAPIWRYAVQUL54WAARY2S4IKHUORPUEC62LZBMRX6UMUVJA====/redirect_6Y3YNKKR65PNBE42OO46SPMVOJCBKQI3FPFMD6D5K2SYTWVIGYHQ====/Recherche/RechercheRapide",
         "error": "No explicit supported metadata fields"
       }
     ],
@@ -2375,8 +2375,8 @@
       "distribution": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-20T21:37:49.441988+00:00",
-        "lastSuccessAt": "2026-10-20",
+        "lastAttemptAt": "2026-10-21T07:55:37.245325+00:00",
+        "lastSuccessAt": "2026-10-21",
         "sourceUrls": [
           "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE0000QLH0G6_factsheet_en.pdf",
           "https://www.justetf.com/fr/etf-profile.html?isin=IE0000QLH0G6",
@@ -2391,8 +2391,8 @@
       "domicile": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-20T21:37:49.441988+00:00",
-        "lastSuccessAt": "2026-10-20",
+        "lastAttemptAt": "2026-10-21T07:55:37.245325+00:00",
+        "lastSuccessAt": "2026-10-21",
         "sourceUrls": [
           "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE0000QLH0G6_factsheet_en.pdf",
           "https://www.justetf.com/fr/etf-profile.html?isin=IE0000QLH0G6",
@@ -2407,8 +2407,8 @@
       "replicationMethod": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-20T21:37:49.441988+00:00",
-        "lastSuccessAt": "2026-10-20",
+        "lastAttemptAt": "2026-10-21T07:55:37.245325+00:00",
+        "lastSuccessAt": "2026-10-21",
         "sourceUrls": [
           "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE0000QLH0G6_factsheet_en.pdf",
           "https://www.justetf.com/fr/etf-profile.html?isin=IE0000QLH0G6",
@@ -2423,7 +2423,7 @@
       "pea": {
         "status": "unobserved",
         "category": "source-unavailable",
-        "lastAttemptAt": "2026-10-20T21:37:49.441988+00:00",
+        "lastAttemptAt": "2026-10-21T07:55:37.245325+00:00",
         "lastSuccessAt": null,
         "sourceUrls": [
           "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE0000QLH0G6_factsheet_en.pdf",
@@ -2444,11 +2444,11 @@
             "error": "No explicit supported metadata fields"
           },
           {
-            "sourceUrl": "https://www.quantalys.com/Recherche?search=IE0000QLH0G6",
+            "sourceUrl": "https://www.quantalys.com/redirect_AO75LOAPIWRYAVQUL54WAARY2S4IKHUORPUEC62LZBMRX6UMUVJA====/redirect_6Y3YNKKR65PNBE42OO46SPMVOJCBKQI3FPFMD6D5K2SYTWVIGYHQ====/redirect_AO75LOAPIWRYAVQUL54WAARY2S4IKHUORPUEC62LZBMRX6UMUVJA====/redirect_6Y3YNKKR65PNBE42OO46SPMVOJCBKQI3FPFMD6D5K2SYTWVIGYHQ====/Recherche/RechercheRapide",
             "error": "No public exact-share fund reference found"
           },
           {
-            "sourceUrl": "https://www.quantalys.com/Recherche?search=IE0000QLH0G6",
+            "sourceUrl": "https://www.quantalys.com/redirect_AO75LOAPIWRYAVQUL54WAARY2S4IKHUORPUEC62LZBMRX6UMUVJA====/redirect_6Y3YNKKR65PNBE42OO46SPMVOJCBKQI3FPFMD6D5K2SYTWVIGYHQ====/redirect_AO75LOAPIWRYAVQUL54WAARY2S4IKHUORPUEC62LZBMRX6UMUVJA====/redirect_6Y3YNKKR65PNBE42OO46SPMVOJCBKQI3FPFMD6D5K2SYTWVIGYHQ====/Recherche/RechercheRapide",
             "error": "No explicit supported metadata fields"
           }
         ]
@@ -2456,8 +2456,8 @@
       "currencyHedge": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-20T21:37:49.441988+00:00",
-        "lastSuccessAt": "2026-10-20",
+        "lastAttemptAt": "2026-10-21T07:55:37.245325+00:00",
+        "lastSuccessAt": "2026-10-21",
         "sourceUrls": [
           "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE0000QLH0G6_factsheet_en.pdf",
           "https://www.justetf.com/fr/etf-profile.html?isin=IE0000QLH0G6",
@@ -2472,8 +2472,8 @@
       "listings": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-20T21:37:49.441988+00:00",
-        "lastSuccessAt": "2026-10-20",
+        "lastAttemptAt": "2026-10-21T07:55:37.245325+00:00",
+        "lastSuccessAt": "2026-10-21",
         "sourceUrls": [
           "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE0000QLH0G6_factsheet_en.pdf",
           "https://www.justetf.com/fr/etf-profile.html?isin=IE0000QLH0G6",
@@ -15184,33 +15184,24 @@
     }
   },
   "IE00BD6FTQ80": {
-    "checkedAt": "2026-10-20T21:37:49.441988+00:00",
+    "checkedAt": "2026-10-21T07:55:37.245325+00:00",
     "observed": [
       "domicile",
       "replicationMethod",
       "currencyHedge",
+      "distribution",
       "listings"
     ],
     "pending": [
-      "distribution",
       "pea"
     ],
     "firstPendingAt": {
-      "distribution": "2026-10-20T21:37:49.441988+00:00",
       "pea": "2026-10-18T15:33:48.575784+00:00"
     },
     "errors": [
       {
-        "sourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=IE00BD6FTQ80",
-        "error": "Metadata source cooldown after HTTP 403; no new field evidence"
-      },
-      {
-        "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00BD6FTQ80",
-        "error": "Metadata source cooldown after HTTP 403; no new field evidence"
-      },
-      {
         "sourceUrl": "https://www.boursedirect.fr/fr/marche/london-stock-exchange/invesco-markets-plc-invesco-bb-IE00BD6FTQ80-CMOP-GBX-XLON/seance",
-        "error": "Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
+        "error": "HTTP Error 503: Service Unavailable"
       },
       {
         "sourceUrl": "https://bourse.fortuneo.fr/api/search?term=IE00BD6FTQ80",
@@ -15222,20 +15213,20 @@
         "error": "No explicit supported metadata fields"
       },
       {
-        "sourceUrl": "https://www.quantalys.com/Recherche?search=IE00BD6FTQ80",
+        "sourceUrl": "https://www.quantalys.com/redirect_6Y3YNKKR65PNBE42OO46SPMVOJCBKQI3FPFMD6D5K2SYTWVIGYHQ====/Recherche/RechercheRapide",
         "error": "No public exact-share fund reference found"
       },
       {
-        "sourceUrl": "https://www.quantalys.com/Recherche?search=IE00BD6FTQ80",
+        "sourceUrl": "https://www.quantalys.com/redirect_6Y3YNKKR65PNBE42OO46SPMVOJCBKQI3FPFMD6D5K2SYTWVIGYHQ====/Recherche/RechercheRapide",
         "error": "No explicit supported metadata fields"
       }
     ],
     "fields": {
       "distribution": {
-        "status": "retained",
-        "category": "source-unavailable",
-        "lastAttemptAt": "2026-10-20T21:37:49.441988+00:00",
-        "lastSuccessAt": "2026-10-20",
+        "status": "observed",
+        "category": null,
+        "lastAttemptAt": "2026-10-21T07:55:37.245325+00:00",
+        "lastSuccessAt": "2026-10-21",
         "sourceUrls": [
           "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE00BD6FTQ80_factsheet_en.pdf",
           "https://www.justetf.com/en/etf-profile.html?isin=IE00BD6FTQ80",
@@ -15246,43 +15237,14 @@
           "https://extraetf.com/fr/etf-profile/IE00BD6FTQ80",
           "https://www.quantalys.com/Recherche/RechercheRapide?inputSearch=IE00BD6FTQ80"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
-        "sourceErrors": [
-          {
-            "sourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=IE00BD6FTQ80",
-            "error": "Metadata source cooldown after HTTP 403; no new field evidence"
-          },
-          {
-            "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00BD6FTQ80",
-            "error": "Metadata source cooldown after HTTP 403; no new field evidence"
-          },
-          {
-            "sourceUrl": "https://www.boursedirect.fr/fr/marche/london-stock-exchange/invesco-markets-plc-invesco-bb-IE00BD6FTQ80-CMOP-GBX-XLON/seance",
-            "error": "Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
-          },
-          {
-            "sourceUrl": "https://bourse.fortuneo.fr/api/search?term=IE00BD6FTQ80",
-            "error": "No exact-share broker reference found; this is not a negative PEA statement."
-          },
-          {
-            "sourceUrl": "https://extraetf.com/fr/etf-profile/IE00BD6FTQ80",
-            "error": "No explicit supported metadata fields"
-          },
-          {
-            "sourceUrl": "https://www.quantalys.com/Recherche?search=IE00BD6FTQ80",
-            "error": "No public exact-share fund reference found"
-          },
-          {
-            "sourceUrl": "https://www.quantalys.com/Recherche?search=IE00BD6FTQ80",
-            "error": "No explicit supported metadata fields"
-          }
-        ]
+        "cause": null,
+        "sourceErrors": []
       },
       "domicile": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-20T21:37:49.441988+00:00",
-        "lastSuccessAt": "2026-10-20",
+        "lastAttemptAt": "2026-10-21T07:55:37.245325+00:00",
+        "lastSuccessAt": "2026-10-21",
         "sourceUrls": [
           "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE00BD6FTQ80_factsheet_en.pdf",
           "https://www.justetf.com/en/etf-profile.html?isin=IE00BD6FTQ80",
@@ -15299,8 +15261,8 @@
       "replicationMethod": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-20T21:37:49.441988+00:00",
-        "lastSuccessAt": "2026-10-20",
+        "lastAttemptAt": "2026-10-21T07:55:37.245325+00:00",
+        "lastSuccessAt": "2026-10-21",
         "sourceUrls": [
           "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE00BD6FTQ80_factsheet_en.pdf",
           "https://www.justetf.com/en/etf-profile.html?isin=IE00BD6FTQ80",
@@ -15317,7 +15279,7 @@
       "pea": {
         "status": "unobserved",
         "category": "source-unavailable",
-        "lastAttemptAt": "2026-10-20T21:37:49.441988+00:00",
+        "lastAttemptAt": "2026-10-21T07:55:37.245325+00:00",
         "lastSuccessAt": null,
         "sourceUrls": [
           "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE00BD6FTQ80_factsheet_en.pdf",
@@ -15332,16 +15294,8 @@
         "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
         "sourceErrors": [
           {
-            "sourceUrl": "https://www.justetf.com/en/etf-profile.html?isin=IE00BD6FTQ80",
-            "error": "Metadata source cooldown after HTTP 403; no new field evidence"
-          },
-          {
-            "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00BD6FTQ80",
-            "error": "Metadata source cooldown after HTTP 403; no new field evidence"
-          },
-          {
             "sourceUrl": "https://www.boursedirect.fr/fr/marche/london-stock-exchange/invesco-markets-plc-invesco-bb-IE00BD6FTQ80-CMOP-GBX-XLON/seance",
-            "error": "Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
+            "error": "HTTP Error 503: Service Unavailable"
           },
           {
             "sourceUrl": "https://bourse.fortuneo.fr/api/search?term=IE00BD6FTQ80",
@@ -15352,11 +15306,11 @@
             "error": "No explicit supported metadata fields"
           },
           {
-            "sourceUrl": "https://www.quantalys.com/Recherche?search=IE00BD6FTQ80",
+            "sourceUrl": "https://www.quantalys.com/redirect_6Y3YNKKR65PNBE42OO46SPMVOJCBKQI3FPFMD6D5K2SYTWVIGYHQ====/Recherche/RechercheRapide",
             "error": "No public exact-share fund reference found"
           },
           {
-            "sourceUrl": "https://www.quantalys.com/Recherche?search=IE00BD6FTQ80",
+            "sourceUrl": "https://www.quantalys.com/redirect_6Y3YNKKR65PNBE42OO46SPMVOJCBKQI3FPFMD6D5K2SYTWVIGYHQ====/Recherche/RechercheRapide",
             "error": "No explicit supported metadata fields"
           }
         ]
@@ -15364,8 +15318,8 @@
       "currencyHedge": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-20T21:37:49.441988+00:00",
-        "lastSuccessAt": "2026-10-20",
+        "lastAttemptAt": "2026-10-21T07:55:37.245325+00:00",
+        "lastSuccessAt": "2026-10-21",
         "sourceUrls": [
           "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE00BD6FTQ80_factsheet_en.pdf",
           "https://www.justetf.com/en/etf-profile.html?isin=IE00BD6FTQ80",
@@ -15382,8 +15336,8 @@
       "listings": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-20T21:37:49.441988+00:00",
-        "lastSuccessAt": "2026-10-20",
+        "lastAttemptAt": "2026-10-21T07:55:37.245325+00:00",
+        "lastSuccessAt": "2026-10-21",
         "sourceUrls": [
           "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE00BD6FTQ80_factsheet_en.pdf",
           "https://www.justetf.com/en/etf-profile.html?isin=IE00BD6FTQ80",
@@ -22773,32 +22727,24 @@
     }
   },
   "IE0003R87OG3": {
-    "checkedAt": "2026-10-20T21:37:49.441988+00:00",
+    "checkedAt": "2026-10-21T07:55:37.245325+00:00",
     "observed": [
-      "listings"
-    ],
-    "pending": [
+      "listings",
       "distribution",
       "domicile",
       "replicationMethod",
-      "pea",
       "currencyHedge"
     ],
+    "pending": [
+      "pea"
+    ],
     "firstPendingAt": {
-      "distribution": "2026-10-19T21:13:03.557366+00:00",
-      "domicile": "2026-10-19T21:13:03.557366+00:00",
-      "replicationMethod": "2026-10-19T21:13:03.557366+00:00",
-      "pea": "2026-10-18T15:33:48.575784+00:00",
-      "currencyHedge": "2026-10-19T21:13:03.557366+00:00"
+      "pea": "2026-10-18T15:33:48.575784+00:00"
     },
     "errors": [
       {
         "sourceUrl": "https://res.avantisinvestors.com/Avantis/ucits-etfs/PRIIP-Avantis-Global-Small-Cap-Value-UCITS-ETF-EN.pdf",
         "error": "No explicit supported metadata fields"
-      },
-      {
-        "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE0003R87OG3",
-        "error": "Metadata source cooldown after HTTP 403; no new field evidence"
       },
       {
         "sourceUrl": "https://bourse.fortuneo.fr/api/search?term=IE0003R87OG3",
@@ -22810,20 +22756,16 @@
         "error": "No explicit supported metadata fields"
       },
       {
-        "sourceUrl": "https://www.quantalys.com/Recherche?search=IE0003R87OG3",
-        "error": "No public exact-share fund reference found"
-      },
-      {
-        "sourceUrl": "https://www.quantalys.com/Recherche?search=IE0003R87OG3",
-        "error": "No explicit supported metadata fields"
+        "sourceUrl": "https://www.quantalys.com/Recherche/RechercheRapide?inputSearch=IE0003R87OG3",
+        "error": "<urlopen error TimeoutError: locator.fill: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#inputSearch')\u001b[22m\n>"
       }
     ],
     "fields": {
       "distribution": {
-        "status": "retained",
-        "category": "source-unavailable",
-        "lastAttemptAt": "2026-10-20T21:37:49.441988+00:00",
-        "lastSuccessAt": "2026-10-19",
+        "status": "observed",
+        "category": null,
+        "lastAttemptAt": "2026-10-21T07:55:37.245325+00:00",
+        "lastSuccessAt": "2026-10-21",
         "sourceUrls": [
           "https://res.americancentury.com/docs/avantis-global-small-cap-value-ucits-etf-fact-sheet.pdf",
           "https://res.avantisinvestors.com/Avantis/ucits-etfs/PRIIP-Avantis-Global-Small-Cap-Value-UCITS-ETF-EN.pdf",
@@ -22832,39 +22774,14 @@
           "https://extraetf.com/fr/etf-profile/IE0003R87OG3",
           "https://www.quantalys.com/Recherche/RechercheRapide?inputSearch=IE0003R87OG3"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
-        "sourceErrors": [
-          {
-            "sourceUrl": "https://res.avantisinvestors.com/Avantis/ucits-etfs/PRIIP-Avantis-Global-Small-Cap-Value-UCITS-ETF-EN.pdf",
-            "error": "No explicit supported metadata fields"
-          },
-          {
-            "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE0003R87OG3",
-            "error": "Metadata source cooldown after HTTP 403; no new field evidence"
-          },
-          {
-            "sourceUrl": "https://bourse.fortuneo.fr/api/search?term=IE0003R87OG3",
-            "error": "No exact-share broker reference found; this is not a negative PEA statement."
-          },
-          {
-            "sourceUrl": "https://extraetf.com/fr/etf-profile/IE0003R87OG3",
-            "error": "No explicit supported metadata fields"
-          },
-          {
-            "sourceUrl": "https://www.quantalys.com/Recherche?search=IE0003R87OG3",
-            "error": "No public exact-share fund reference found"
-          },
-          {
-            "sourceUrl": "https://www.quantalys.com/Recherche?search=IE0003R87OG3",
-            "error": "No explicit supported metadata fields"
-          }
-        ]
+        "cause": null,
+        "sourceErrors": []
       },
       "domicile": {
-        "status": "retained",
-        "category": "source-unavailable",
-        "lastAttemptAt": "2026-10-20T21:37:49.441988+00:00",
-        "lastSuccessAt": "2026-10-19",
+        "status": "observed",
+        "category": null,
+        "lastAttemptAt": "2026-10-21T07:55:37.245325+00:00",
+        "lastSuccessAt": "2026-10-21",
         "sourceUrls": [
           "https://res.americancentury.com/docs/avantis-global-small-cap-value-ucits-etf-fact-sheet.pdf",
           "https://res.avantisinvestors.com/Avantis/ucits-etfs/PRIIP-Avantis-Global-Small-Cap-Value-UCITS-ETF-EN.pdf",
@@ -22873,39 +22790,14 @@
           "https://extraetf.com/fr/etf-profile/IE0003R87OG3",
           "https://www.quantalys.com/Recherche/RechercheRapide?inputSearch=IE0003R87OG3"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
-        "sourceErrors": [
-          {
-            "sourceUrl": "https://res.avantisinvestors.com/Avantis/ucits-etfs/PRIIP-Avantis-Global-Small-Cap-Value-UCITS-ETF-EN.pdf",
-            "error": "No explicit supported metadata fields"
-          },
-          {
-            "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE0003R87OG3",
-            "error": "Metadata source cooldown after HTTP 403; no new field evidence"
-          },
-          {
-            "sourceUrl": "https://bourse.fortuneo.fr/api/search?term=IE0003R87OG3",
-            "error": "No exact-share broker reference found; this is not a negative PEA statement."
-          },
-          {
-            "sourceUrl": "https://extraetf.com/fr/etf-profile/IE0003R87OG3",
-            "error": "No explicit supported metadata fields"
-          },
-          {
-            "sourceUrl": "https://www.quantalys.com/Recherche?search=IE0003R87OG3",
-            "error": "No public exact-share fund reference found"
-          },
-          {
-            "sourceUrl": "https://www.quantalys.com/Recherche?search=IE0003R87OG3",
-            "error": "No explicit supported metadata fields"
-          }
-        ]
+        "cause": null,
+        "sourceErrors": []
       },
       "replicationMethod": {
-        "status": "retained",
-        "category": "source-unavailable",
-        "lastAttemptAt": "2026-10-20T21:37:49.441988+00:00",
-        "lastSuccessAt": "2026-10-19",
+        "status": "observed",
+        "category": null,
+        "lastAttemptAt": "2026-10-21T07:55:37.245325+00:00",
+        "lastSuccessAt": "2026-10-21",
         "sourceUrls": [
           "https://res.americancentury.com/docs/avantis-global-small-cap-value-ucits-etf-fact-sheet.pdf",
           "https://res.avantisinvestors.com/Avantis/ucits-etfs/PRIIP-Avantis-Global-Small-Cap-Value-UCITS-ETF-EN.pdf",
@@ -22914,38 +22806,13 @@
           "https://extraetf.com/fr/etf-profile/IE0003R87OG3",
           "https://www.quantalys.com/Recherche/RechercheRapide?inputSearch=IE0003R87OG3"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
-        "sourceErrors": [
-          {
-            "sourceUrl": "https://res.avantisinvestors.com/Avantis/ucits-etfs/PRIIP-Avantis-Global-Small-Cap-Value-UCITS-ETF-EN.pdf",
-            "error": "No explicit supported metadata fields"
-          },
-          {
-            "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE0003R87OG3",
-            "error": "Metadata source cooldown after HTTP 403; no new field evidence"
-          },
-          {
-            "sourceUrl": "https://bourse.fortuneo.fr/api/search?term=IE0003R87OG3",
-            "error": "No exact-share broker reference found; this is not a negative PEA statement."
-          },
-          {
-            "sourceUrl": "https://extraetf.com/fr/etf-profile/IE0003R87OG3",
-            "error": "No explicit supported metadata fields"
-          },
-          {
-            "sourceUrl": "https://www.quantalys.com/Recherche?search=IE0003R87OG3",
-            "error": "No public exact-share fund reference found"
-          },
-          {
-            "sourceUrl": "https://www.quantalys.com/Recherche?search=IE0003R87OG3",
-            "error": "No explicit supported metadata fields"
-          }
-        ]
+        "cause": null,
+        "sourceErrors": []
       },
       "pea": {
         "status": "unobserved",
         "category": "source-unavailable",
-        "lastAttemptAt": "2026-10-20T21:37:49.441988+00:00",
+        "lastAttemptAt": "2026-10-21T07:55:37.245325+00:00",
         "lastSuccessAt": null,
         "sourceUrls": [
           "https://res.americancentury.com/docs/avantis-global-small-cap-value-ucits-etf-fact-sheet.pdf",
@@ -22962,10 +22829,6 @@
             "error": "No explicit supported metadata fields"
           },
           {
-            "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE0003R87OG3",
-            "error": "Metadata source cooldown after HTTP 403; no new field evidence"
-          },
-          {
             "sourceUrl": "https://bourse.fortuneo.fr/api/search?term=IE0003R87OG3",
             "error": "No exact-share broker reference found; this is not a negative PEA statement."
           },
@@ -22974,20 +22837,16 @@
             "error": "No explicit supported metadata fields"
           },
           {
-            "sourceUrl": "https://www.quantalys.com/Recherche?search=IE0003R87OG3",
-            "error": "No public exact-share fund reference found"
-          },
-          {
-            "sourceUrl": "https://www.quantalys.com/Recherche?search=IE0003R87OG3",
-            "error": "No explicit supported metadata fields"
+            "sourceUrl": "https://www.quantalys.com/Recherche/RechercheRapide?inputSearch=IE0003R87OG3",
+            "error": "<urlopen error TimeoutError: locator.fill: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#inputSearch')\u001b[22m\n>"
           }
         ]
       },
       "currencyHedge": {
-        "status": "retained",
-        "category": "source-unavailable",
-        "lastAttemptAt": "2026-10-20T21:37:49.441988+00:00",
-        "lastSuccessAt": "2026-10-19",
+        "status": "observed",
+        "category": null,
+        "lastAttemptAt": "2026-10-21T07:55:37.245325+00:00",
+        "lastSuccessAt": "2026-10-21",
         "sourceUrls": [
           "https://res.americancentury.com/docs/avantis-global-small-cap-value-ucits-etf-fact-sheet.pdf",
           "https://res.avantisinvestors.com/Avantis/ucits-etfs/PRIIP-Avantis-Global-Small-Cap-Value-UCITS-ETF-EN.pdf",
@@ -22996,39 +22855,14 @@
           "https://extraetf.com/fr/etf-profile/IE0003R87OG3",
           "https://www.quantalys.com/Recherche/RechercheRapide?inputSearch=IE0003R87OG3"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
-        "sourceErrors": [
-          {
-            "sourceUrl": "https://res.avantisinvestors.com/Avantis/ucits-etfs/PRIIP-Avantis-Global-Small-Cap-Value-UCITS-ETF-EN.pdf",
-            "error": "No explicit supported metadata fields"
-          },
-          {
-            "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE0003R87OG3",
-            "error": "Metadata source cooldown after HTTP 403; no new field evidence"
-          },
-          {
-            "sourceUrl": "https://bourse.fortuneo.fr/api/search?term=IE0003R87OG3",
-            "error": "No exact-share broker reference found; this is not a negative PEA statement."
-          },
-          {
-            "sourceUrl": "https://extraetf.com/fr/etf-profile/IE0003R87OG3",
-            "error": "No explicit supported metadata fields"
-          },
-          {
-            "sourceUrl": "https://www.quantalys.com/Recherche?search=IE0003R87OG3",
-            "error": "No public exact-share fund reference found"
-          },
-          {
-            "sourceUrl": "https://www.quantalys.com/Recherche?search=IE0003R87OG3",
-            "error": "No explicit supported metadata fields"
-          }
-        ]
+        "cause": null,
+        "sourceErrors": []
       },
       "listings": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-20T21:37:49.441988+00:00",
-        "lastSuccessAt": "2026-10-20",
+        "lastAttemptAt": "2026-10-21T07:55:37.245325+00:00",
+        "lastSuccessAt": "2026-10-21",
         "sourceUrls": [
           "https://res.americancentury.com/docs/avantis-global-small-cap-value-ucits-etf-fact-sheet.pdf",
           "https://res.avantisinvestors.com/Avantis/ucits-etfs/PRIIP-Avantis-Global-Small-Cap-Value-UCITS-ETF-EN.pdf",
@@ -24613,33 +24447,24 @@
     }
   },
   "JE00B78CGV99": {
-    "checkedAt": "2026-10-20T21:37:49.441988+00:00",
+    "checkedAt": "2026-10-21T07:55:37.245325+00:00",
     "observed": [
       "domicile",
       "currencyHedge",
       "listings",
-      "pea"
-    ],
-    "pending": [
+      "pea",
       "distribution",
       "replicationMethod"
     ],
-    "firstPendingAt": {
-      "distribution": "2026-10-20T09:50:25.256828+00:00",
-      "replicationMethod": "2026-10-20T09:50:25.256828+00:00"
-    },
-    "errors": [
-      {
-        "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=JE00B78CGV99",
-        "error": "Metadata source cooldown after HTTP 403; no new field evidence"
-      }
-    ],
+    "pending": [],
+    "firstPendingAt": {},
+    "errors": [],
     "fields": {
       "distribution": {
-        "status": "retained",
-        "category": "source-unavailable",
-        "lastAttemptAt": "2026-10-20T21:37:49.441988+00:00",
-        "lastSuccessAt": "2026-10-20",
+        "status": "observed",
+        "category": null,
+        "lastAttemptAt": "2026-10-21T07:55:37.245325+00:00",
+        "lastSuccessAt": "2026-10-21",
         "sourceUrls": [
           "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B78CGV99",
           "https://bourse.fortuneo.fr/trackers/cours-wisdomtree-brent-crude-oil-usd-acc-BRNT-JE00B78CGV99-23",
@@ -24647,19 +24472,14 @@
           "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B78CGV99/",
           "https://bourse.fortuneo.fr/api/search?term=JE00B78CGV99"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
-        "sourceErrors": [
-          {
-            "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=JE00B78CGV99",
-            "error": "Metadata source cooldown after HTTP 403; no new field evidence"
-          }
-        ]
+        "cause": null,
+        "sourceErrors": []
       },
       "domicile": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-20T21:37:49.441988+00:00",
-        "lastSuccessAt": "2026-10-20",
+        "lastAttemptAt": "2026-10-21T07:55:37.245325+00:00",
+        "lastSuccessAt": "2026-10-21",
         "sourceUrls": [
           "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B78CGV99",
           "https://bourse.fortuneo.fr/trackers/cours-wisdomtree-brent-crude-oil-usd-acc-BRNT-JE00B78CGV99-23",
@@ -24671,10 +24491,10 @@
         "sourceErrors": []
       },
       "replicationMethod": {
-        "status": "retained",
-        "category": "source-unavailable",
-        "lastAttemptAt": "2026-10-20T21:37:49.441988+00:00",
-        "lastSuccessAt": "2026-10-20",
+        "status": "observed",
+        "category": null,
+        "lastAttemptAt": "2026-10-21T07:55:37.245325+00:00",
+        "lastSuccessAt": "2026-10-21",
         "sourceUrls": [
           "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B78CGV99",
           "https://bourse.fortuneo.fr/trackers/cours-wisdomtree-brent-crude-oil-usd-acc-BRNT-JE00B78CGV99-23",
@@ -24682,19 +24502,14 @@
           "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B78CGV99/",
           "https://bourse.fortuneo.fr/api/search?term=JE00B78CGV99"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
-        "sourceErrors": [
-          {
-            "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=JE00B78CGV99",
-            "error": "Metadata source cooldown after HTTP 403; no new field evidence"
-          }
-        ]
+        "cause": null,
+        "sourceErrors": []
       },
       "pea": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-20T21:37:49.441988+00:00",
-        "lastSuccessAt": "2026-10-20",
+        "lastAttemptAt": "2026-10-21T07:55:37.245325+00:00",
+        "lastSuccessAt": "2026-10-21",
         "sourceUrls": [
           "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B78CGV99",
           "https://bourse.fortuneo.fr/trackers/cours-wisdomtree-brent-crude-oil-usd-acc-BRNT-JE00B78CGV99-23",
@@ -24708,8 +24523,8 @@
       "currencyHedge": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-20T21:37:49.441988+00:00",
-        "lastSuccessAt": "2026-10-20",
+        "lastAttemptAt": "2026-10-21T07:55:37.245325+00:00",
+        "lastSuccessAt": "2026-10-21",
         "sourceUrls": [
           "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B78CGV99",
           "https://bourse.fortuneo.fr/trackers/cours-wisdomtree-brent-crude-oil-usd-acc-BRNT-JE00B78CGV99-23",
@@ -24723,8 +24538,8 @@
       "listings": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-20T21:37:49.441988+00:00",
-        "lastSuccessAt": "2026-10-20",
+        "lastAttemptAt": "2026-10-21T07:55:37.245325+00:00",
+        "lastSuccessAt": "2026-10-21",
         "sourceUrls": [
           "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B78CGV99",
           "https://bourse.fortuneo.fr/trackers/cours-wisdomtree-brent-crude-oil-usd-acc-BRNT-JE00B78CGV99-23",
@@ -24738,37 +24553,24 @@
     }
   },
   "GB00B15KXV33": {
-    "checkedAt": "2026-10-20T21:37:49.441988+00:00",
+    "checkedAt": "2026-10-21T07:55:37.245325+00:00",
     "observed": [
       "domicile",
       "currencyHedge",
       "listings",
-      "pea"
-    ],
-    "pending": [
+      "pea",
       "distribution",
       "replicationMethod"
     ],
-    "firstPendingAt": {
-      "distribution": "2026-10-20T09:50:25.256828+00:00",
-      "replicationMethod": "2026-10-20T09:50:25.256828+00:00"
-    },
-    "errors": [
-      {
-        "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=GB00B15KXV33",
-        "error": "Metadata source cooldown after HTTP 403; no new field evidence"
-      },
-      {
-        "sourceUrl": "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-wti-crude-oil",
-        "error": "HTTP Error 403: Forbidden"
-      }
-    ],
+    "pending": [],
+    "firstPendingAt": {},
+    "errors": [],
     "fields": {
       "distribution": {
-        "status": "retained",
-        "category": "source-unavailable",
-        "lastAttemptAt": "2026-10-20T21:37:49.441988+00:00",
-        "lastSuccessAt": "2026-10-20",
+        "status": "observed",
+        "category": null,
+        "lastAttemptAt": "2026-10-21T07:55:37.245325+00:00",
+        "lastSuccessAt": "2026-10-21",
         "sourceUrls": [
           "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXV33",
           "https://bourse.fortuneo.fr/trackers/cours-wt-crude-oil-CRUDP-GB00B15KXV33-23",
@@ -24777,23 +24579,14 @@
           "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-wti-crude-oil",
           "https://bourse.fortuneo.fr/api/search?term=GB00B15KXV33"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
-        "sourceErrors": [
-          {
-            "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=GB00B15KXV33",
-            "error": "Metadata source cooldown after HTTP 403; no new field evidence"
-          },
-          {
-            "sourceUrl": "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-wti-crude-oil",
-            "error": "HTTP Error 403: Forbidden"
-          }
-        ]
+        "cause": null,
+        "sourceErrors": []
       },
       "domicile": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-20T21:37:49.441988+00:00",
-        "lastSuccessAt": "2026-10-20",
+        "lastAttemptAt": "2026-10-21T07:55:37.245325+00:00",
+        "lastSuccessAt": "2026-10-21",
         "sourceUrls": [
           "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXV33",
           "https://bourse.fortuneo.fr/trackers/cours-wt-crude-oil-CRUDP-GB00B15KXV33-23",
@@ -24806,10 +24599,10 @@
         "sourceErrors": []
       },
       "replicationMethod": {
-        "status": "retained",
-        "category": "source-unavailable",
-        "lastAttemptAt": "2026-10-20T21:37:49.441988+00:00",
-        "lastSuccessAt": "2026-10-20",
+        "status": "observed",
+        "category": null,
+        "lastAttemptAt": "2026-10-21T07:55:37.245325+00:00",
+        "lastSuccessAt": "2026-10-21",
         "sourceUrls": [
           "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXV33",
           "https://bourse.fortuneo.fr/trackers/cours-wt-crude-oil-CRUDP-GB00B15KXV33-23",
@@ -24818,23 +24611,14 @@
           "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-wti-crude-oil",
           "https://bourse.fortuneo.fr/api/search?term=GB00B15KXV33"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
-        "sourceErrors": [
-          {
-            "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=GB00B15KXV33",
-            "error": "Metadata source cooldown after HTTP 403; no new field evidence"
-          },
-          {
-            "sourceUrl": "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-wti-crude-oil",
-            "error": "HTTP Error 403: Forbidden"
-          }
-        ]
+        "cause": null,
+        "sourceErrors": []
       },
       "pea": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-20T21:37:49.441988+00:00",
-        "lastSuccessAt": "2026-10-20",
+        "lastAttemptAt": "2026-10-21T07:55:37.245325+00:00",
+        "lastSuccessAt": "2026-10-21",
         "sourceUrls": [
           "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXV33",
           "https://bourse.fortuneo.fr/trackers/cours-wt-crude-oil-CRUDP-GB00B15KXV33-23",
@@ -24849,8 +24633,8 @@
       "currencyHedge": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-20T21:37:49.441988+00:00",
-        "lastSuccessAt": "2026-10-20",
+        "lastAttemptAt": "2026-10-21T07:55:37.245325+00:00",
+        "lastSuccessAt": "2026-10-21",
         "sourceUrls": [
           "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXV33",
           "https://bourse.fortuneo.fr/trackers/cours-wt-crude-oil-CRUDP-GB00B15KXV33-23",
@@ -24865,8 +24649,8 @@
       "listings": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-20T21:37:49.441988+00:00",
-        "lastSuccessAt": "2026-10-20",
+        "lastAttemptAt": "2026-10-21T07:55:37.245325+00:00",
+        "lastSuccessAt": "2026-10-21",
         "sourceUrls": [
           "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXV33",
           "https://bourse.fortuneo.fr/trackers/cours-wt-crude-oil-CRUDP-GB00B15KXV33-23",
@@ -24881,37 +24665,24 @@
     }
   },
   "JE00BN7KB334": {
-    "checkedAt": "2026-10-20T21:37:49.441988+00:00",
+    "checkedAt": "2026-10-21T07:55:37.245325+00:00",
     "observed": [
       "domicile",
       "currencyHedge",
       "listings",
-      "pea"
-    ],
-    "pending": [
+      "pea",
       "distribution",
       "replicationMethod"
     ],
-    "firstPendingAt": {
-      "distribution": "2026-10-20T09:50:25.256828+00:00",
-      "replicationMethod": "2026-10-20T09:50:25.256828+00:00"
-    },
-    "errors": [
-      {
-        "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=JE00BN7KB334",
-        "error": "Metadata source cooldown after HTTP 403; no new field evidence"
-      },
-      {
-        "sourceUrl": "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-natural-gas",
-        "error": "Metadata source cooldown after HTTP 403; no new field evidence"
-      }
-    ],
+    "pending": [],
+    "firstPendingAt": {},
+    "errors": [],
     "fields": {
       "distribution": {
-        "status": "retained",
-        "category": "source-unavailable",
-        "lastAttemptAt": "2026-10-20T21:37:49.441988+00:00",
-        "lastSuccessAt": "2026-10-20",
+        "status": "observed",
+        "category": null,
+        "lastAttemptAt": "2026-10-21T07:55:37.245325+00:00",
+        "lastSuccessAt": "2026-10-21",
         "sourceUrls": [
           "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB334",
           "https://bourse.fortuneo.fr/trackers/cours-wisdomtree-natural-gas-usd-acc-NGASP-JE00BN7KB334-23",
@@ -24920,23 +24691,14 @@
           "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-natural-gas",
           "https://bourse.fortuneo.fr/api/search?term=JE00BN7KB334"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
-        "sourceErrors": [
-          {
-            "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=JE00BN7KB334",
-            "error": "Metadata source cooldown after HTTP 403; no new field evidence"
-          },
-          {
-            "sourceUrl": "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-natural-gas",
-            "error": "Metadata source cooldown after HTTP 403; no new field evidence"
-          }
-        ]
+        "cause": null,
+        "sourceErrors": []
       },
       "domicile": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-20T21:37:49.441988+00:00",
-        "lastSuccessAt": "2026-10-20",
+        "lastAttemptAt": "2026-10-21T07:55:37.245325+00:00",
+        "lastSuccessAt": "2026-10-21",
         "sourceUrls": [
           "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB334",
           "https://bourse.fortuneo.fr/trackers/cours-wisdomtree-natural-gas-usd-acc-NGASP-JE00BN7KB334-23",
@@ -24949,10 +24711,10 @@
         "sourceErrors": []
       },
       "replicationMethod": {
-        "status": "retained",
-        "category": "source-unavailable",
-        "lastAttemptAt": "2026-10-20T21:37:49.441988+00:00",
-        "lastSuccessAt": "2026-10-20",
+        "status": "observed",
+        "category": null,
+        "lastAttemptAt": "2026-10-21T07:55:37.245325+00:00",
+        "lastSuccessAt": "2026-10-21",
         "sourceUrls": [
           "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB334",
           "https://bourse.fortuneo.fr/trackers/cours-wisdomtree-natural-gas-usd-acc-NGASP-JE00BN7KB334-23",
@@ -24961,23 +24723,14 @@
           "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-natural-gas",
           "https://bourse.fortuneo.fr/api/search?term=JE00BN7KB334"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
-        "sourceErrors": [
-          {
-            "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=JE00BN7KB334",
-            "error": "Metadata source cooldown after HTTP 403; no new field evidence"
-          },
-          {
-            "sourceUrl": "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-natural-gas",
-            "error": "Metadata source cooldown after HTTP 403; no new field evidence"
-          }
-        ]
+        "cause": null,
+        "sourceErrors": []
       },
       "pea": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-20T21:37:49.441988+00:00",
-        "lastSuccessAt": "2026-10-20",
+        "lastAttemptAt": "2026-10-21T07:55:37.245325+00:00",
+        "lastSuccessAt": "2026-10-21",
         "sourceUrls": [
           "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB334",
           "https://bourse.fortuneo.fr/trackers/cours-wisdomtree-natural-gas-usd-acc-NGASP-JE00BN7KB334-23",
@@ -24992,8 +24745,8 @@
       "currencyHedge": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-20T21:37:49.441988+00:00",
-        "lastSuccessAt": "2026-10-20",
+        "lastAttemptAt": "2026-10-21T07:55:37.245325+00:00",
+        "lastSuccessAt": "2026-10-21",
         "sourceUrls": [
           "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB334",
           "https://bourse.fortuneo.fr/trackers/cours-wisdomtree-natural-gas-usd-acc-NGASP-JE00BN7KB334-23",
@@ -25008,8 +24761,8 @@
       "listings": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-20T21:37:49.441988+00:00",
-        "lastSuccessAt": "2026-10-20",
+        "lastAttemptAt": "2026-10-21T07:55:37.245325+00:00",
+        "lastSuccessAt": "2026-10-21",
         "sourceUrls": [
           "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB334",
           "https://bourse.fortuneo.fr/trackers/cours-wisdomtree-natural-gas-usd-acc-NGASP-JE00BN7KB334-23",
@@ -25024,52 +24777,38 @@
     }
   },
   "JE00BN7KB557": {
-    "checkedAt": "2026-10-20T21:37:49.441988+00:00",
+    "checkedAt": "2026-10-21T07:55:37.245325+00:00",
     "observed": [
       "domicile",
       "currencyHedge",
       "listings",
-      "pea"
-    ],
-    "pending": [
+      "pea",
       "distribution",
       "replicationMethod"
     ],
-    "firstPendingAt": {
-      "distribution": "2026-10-20T09:50:25.256828+00:00",
-      "replicationMethod": "2026-10-20T09:50:25.256828+00:00"
-    },
-    "errors": [
-      {
-        "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=JE00BN7KB557",
-        "error": "Metadata source cooldown after HTTP 403; no new field evidence"
-      }
-    ],
+    "pending": [],
+    "firstPendingAt": {},
+    "errors": [],
     "fields": {
       "distribution": {
-        "status": "retained",
-        "category": "source-unavailable",
-        "lastAttemptAt": "2026-10-20T21:37:49.441988+00:00",
-        "lastSuccessAt": "2026-10-20",
+        "status": "observed",
+        "category": null,
+        "lastAttemptAt": "2026-10-21T07:55:37.245325+00:00",
+        "lastSuccessAt": "2026-10-21",
         "sourceUrls": [
           "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB557",
           "https://extraetf.com/fr/etf-profile/JE00BN7KB557",
           "https://www.justetf.com/fr/etf-profile.html?isin=JE00BN7KB557",
           "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB557/"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
-        "sourceErrors": [
-          {
-            "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=JE00BN7KB557",
-            "error": "Metadata source cooldown after HTTP 403; no new field evidence"
-          }
-        ]
+        "cause": null,
+        "sourceErrors": []
       },
       "domicile": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-20T21:37:49.441988+00:00",
-        "lastSuccessAt": "2026-10-20",
+        "lastAttemptAt": "2026-10-21T07:55:37.245325+00:00",
+        "lastSuccessAt": "2026-10-21",
         "sourceUrls": [
           "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB557",
           "https://extraetf.com/fr/etf-profile/JE00BN7KB557",
@@ -25080,29 +24819,24 @@
         "sourceErrors": []
       },
       "replicationMethod": {
-        "status": "retained",
-        "category": "source-unavailable",
-        "lastAttemptAt": "2026-10-20T21:37:49.441988+00:00",
-        "lastSuccessAt": "2026-10-20",
+        "status": "observed",
+        "category": null,
+        "lastAttemptAt": "2026-10-21T07:55:37.245325+00:00",
+        "lastSuccessAt": "2026-10-21",
         "sourceUrls": [
           "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB557",
           "https://extraetf.com/fr/etf-profile/JE00BN7KB557",
           "https://www.justetf.com/fr/etf-profile.html?isin=JE00BN7KB557",
           "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB557/"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
-        "sourceErrors": [
-          {
-            "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=JE00BN7KB557",
-            "error": "Metadata source cooldown after HTTP 403; no new field evidence"
-          }
-        ]
+        "cause": null,
+        "sourceErrors": []
       },
       "pea": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-20T21:37:49.441988+00:00",
-        "lastSuccessAt": "2026-10-20",
+        "lastAttemptAt": "2026-10-21T07:55:37.245325+00:00",
+        "lastSuccessAt": "2026-10-21",
         "sourceUrls": [
           "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB557",
           "https://extraetf.com/fr/etf-profile/JE00BN7KB557",
@@ -25115,8 +24849,8 @@
       "currencyHedge": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-20T21:37:49.441988+00:00",
-        "lastSuccessAt": "2026-10-20",
+        "lastAttemptAt": "2026-10-21T07:55:37.245325+00:00",
+        "lastSuccessAt": "2026-10-21",
         "sourceUrls": [
           "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB557",
           "https://extraetf.com/fr/etf-profile/JE00BN7KB557",
@@ -25129,8 +24863,8 @@
       "listings": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-20T21:37:49.441988+00:00",
-        "lastSuccessAt": "2026-10-20",
+        "lastAttemptAt": "2026-10-21T07:55:37.245325+00:00",
+        "lastSuccessAt": "2026-10-21",
         "sourceUrls": [
           "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB557",
           "https://extraetf.com/fr/etf-profile/JE00BN7KB557",
@@ -25143,37 +24877,29 @@
     }
   },
   "JE00B2QXZK10": {
-    "checkedAt": "2026-10-20T21:37:49.441988+00:00",
+    "checkedAt": "2026-10-21T07:55:37.245325+00:00",
     "observed": [
       "domicile",
       "currencyHedge",
       "listings",
-      "pea"
-    ],
-    "pending": [
+      "pea",
       "distribution",
       "replicationMethod"
     ],
-    "firstPendingAt": {
-      "distribution": "2026-10-20T09:50:25.256828+00:00",
-      "replicationMethod": "2026-10-20T09:50:25.256828+00:00"
-    },
+    "pending": [],
+    "firstPendingAt": {},
     "errors": [
       {
-        "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=JE00B2QXZK10",
-        "error": "Metadata source cooldown after HTTP 403; no new field evidence"
-      },
-      {
         "sourceUrl": "https://www.boursedirect.fr/fr/marche/london-stock-exchange/wisdomtree-commodity-securitie-JE00B2QXZK10-COCO-USD-XLON/seance",
-        "error": "Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
+        "error": "HTTP Error 503: Service Unavailable"
       }
     ],
     "fields": {
       "distribution": {
-        "status": "retained",
-        "category": "source-unavailable",
-        "lastAttemptAt": "2026-10-20T21:37:49.441988+00:00",
-        "lastSuccessAt": "2026-10-20",
+        "status": "observed",
+        "category": null,
+        "lastAttemptAt": "2026-10-21T07:55:37.245325+00:00",
+        "lastSuccessAt": "2026-10-21",
         "sourceUrls": [
           "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B2QXZK10",
           "https://extraetf.com/fr/etf-profile/JE00B2QXZK10",
@@ -25181,23 +24907,14 @@
           "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B2QXZK10/",
           "https://www.boursedirect.fr/fr/marche/london-stock-exchange/wisdomtree-commodity-securitie-JE00B2QXZK10-COCO-USD-XLON/seance"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
-        "sourceErrors": [
-          {
-            "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=JE00B2QXZK10",
-            "error": "Metadata source cooldown after HTTP 403; no new field evidence"
-          },
-          {
-            "sourceUrl": "https://www.boursedirect.fr/fr/marche/london-stock-exchange/wisdomtree-commodity-securitie-JE00B2QXZK10-COCO-USD-XLON/seance",
-            "error": "Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
-          }
-        ]
+        "cause": null,
+        "sourceErrors": []
       },
       "domicile": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-20T21:37:49.441988+00:00",
-        "lastSuccessAt": "2026-10-20",
+        "lastAttemptAt": "2026-10-21T07:55:37.245325+00:00",
+        "lastSuccessAt": "2026-10-21",
         "sourceUrls": [
           "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B2QXZK10",
           "https://extraetf.com/fr/etf-profile/JE00B2QXZK10",
@@ -25209,10 +24926,10 @@
         "sourceErrors": []
       },
       "replicationMethod": {
-        "status": "retained",
-        "category": "source-unavailable",
-        "lastAttemptAt": "2026-10-20T21:37:49.441988+00:00",
-        "lastSuccessAt": "2026-10-20",
+        "status": "observed",
+        "category": null,
+        "lastAttemptAt": "2026-10-21T07:55:37.245325+00:00",
+        "lastSuccessAt": "2026-10-21",
         "sourceUrls": [
           "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B2QXZK10",
           "https://extraetf.com/fr/etf-profile/JE00B2QXZK10",
@@ -25220,23 +24937,14 @@
           "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B2QXZK10/",
           "https://www.boursedirect.fr/fr/marche/london-stock-exchange/wisdomtree-commodity-securitie-JE00B2QXZK10-COCO-USD-XLON/seance"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
-        "sourceErrors": [
-          {
-            "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=JE00B2QXZK10",
-            "error": "Metadata source cooldown after HTTP 403; no new field evidence"
-          },
-          {
-            "sourceUrl": "https://www.boursedirect.fr/fr/marche/london-stock-exchange/wisdomtree-commodity-securitie-JE00B2QXZK10-COCO-USD-XLON/seance",
-            "error": "Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
-          }
-        ]
+        "cause": null,
+        "sourceErrors": []
       },
       "pea": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-20T21:37:49.441988+00:00",
-        "lastSuccessAt": "2026-10-20",
+        "lastAttemptAt": "2026-10-21T07:55:37.245325+00:00",
+        "lastSuccessAt": "2026-10-21",
         "sourceUrls": [
           "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B2QXZK10",
           "https://extraetf.com/fr/etf-profile/JE00B2QXZK10",
@@ -25250,8 +24958,8 @@
       "currencyHedge": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-20T21:37:49.441988+00:00",
-        "lastSuccessAt": "2026-10-20",
+        "lastAttemptAt": "2026-10-21T07:55:37.245325+00:00",
+        "lastSuccessAt": "2026-10-21",
         "sourceUrls": [
           "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B2QXZK10",
           "https://extraetf.com/fr/etf-profile/JE00B2QXZK10",
@@ -25265,8 +24973,8 @@
       "listings": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-20T21:37:49.441988+00:00",
-        "lastSuccessAt": "2026-10-20",
+        "lastAttemptAt": "2026-10-21T07:55:37.245325+00:00",
+        "lastSuccessAt": "2026-10-21",
         "sourceUrls": [
           "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00B2QXZK10",
           "https://extraetf.com/fr/etf-profile/JE00B2QXZK10",
@@ -25280,41 +24988,29 @@
     }
   },
   "JE00BN7KB664": {
-    "checkedAt": "2026-10-20T21:37:49.441988+00:00",
+    "checkedAt": "2026-10-21T07:55:37.245325+00:00",
     "observed": [
       "domicile",
       "currencyHedge",
       "listings",
-      "pea"
-    ],
-    "pending": [
+      "pea",
       "distribution",
       "replicationMethod"
     ],
-    "firstPendingAt": {
-      "distribution": "2026-10-20T09:50:25.256828+00:00",
-      "replicationMethod": "2026-10-20T09:50:25.256828+00:00"
-    },
+    "pending": [],
+    "firstPendingAt": {},
     "errors": [
       {
-        "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=JE00BN7KB664",
-        "error": "Metadata source cooldown after HTTP 403; no new field evidence"
-      },
-      {
-        "sourceUrl": "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-wheat",
-        "error": "Metadata source cooldown after HTTP 403; no new field evidence"
-      },
-      {
         "sourceUrl": "https://www.boursedirect.fr/fr/marche/euronext-paris/wt-wheat-JE00BN7KB664-WEATP-EUR-XPAR/seance",
-        "error": "Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
+        "error": "Metadata source cooldown after HTTP 503; no new field evidence"
       }
     ],
     "fields": {
       "distribution": {
-        "status": "retained",
-        "category": "source-unavailable",
-        "lastAttemptAt": "2026-10-20T21:37:49.441988+00:00",
-        "lastSuccessAt": "2026-10-20",
+        "status": "observed",
+        "category": null,
+        "lastAttemptAt": "2026-10-21T07:55:37.245325+00:00",
+        "lastSuccessAt": "2026-10-21",
         "sourceUrls": [
           "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB664",
           "https://bourse.fortuneo.fr/trackers/cours-wisdomtree-wheat-eur-acc-WEATP-JE00BN7KB664-23",
@@ -25324,27 +25020,14 @@
           "https://www.boursedirect.fr/fr/marche/euronext-paris/wt-wheat-JE00BN7KB664-WEATP-EUR-XPAR/seance",
           "https://bourse.fortuneo.fr/api/search?term=JE00BN7KB664"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
-        "sourceErrors": [
-          {
-            "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=JE00BN7KB664",
-            "error": "Metadata source cooldown after HTTP 403; no new field evidence"
-          },
-          {
-            "sourceUrl": "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-wheat",
-            "error": "Metadata source cooldown after HTTP 403; no new field evidence"
-          },
-          {
-            "sourceUrl": "https://www.boursedirect.fr/fr/marche/euronext-paris/wt-wheat-JE00BN7KB664-WEATP-EUR-XPAR/seance",
-            "error": "Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
-          }
-        ]
+        "cause": null,
+        "sourceErrors": []
       },
       "domicile": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-20T21:37:49.441988+00:00",
-        "lastSuccessAt": "2026-10-20",
+        "lastAttemptAt": "2026-10-21T07:55:37.245325+00:00",
+        "lastSuccessAt": "2026-10-21",
         "sourceUrls": [
           "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB664",
           "https://bourse.fortuneo.fr/trackers/cours-wisdomtree-wheat-eur-acc-WEATP-JE00BN7KB664-23",
@@ -25358,10 +25041,10 @@
         "sourceErrors": []
       },
       "replicationMethod": {
-        "status": "retained",
-        "category": "source-unavailable",
-        "lastAttemptAt": "2026-10-20T21:37:49.441988+00:00",
-        "lastSuccessAt": "2026-10-20",
+        "status": "observed",
+        "category": null,
+        "lastAttemptAt": "2026-10-21T07:55:37.245325+00:00",
+        "lastSuccessAt": "2026-10-21",
         "sourceUrls": [
           "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB664",
           "https://bourse.fortuneo.fr/trackers/cours-wisdomtree-wheat-eur-acc-WEATP-JE00BN7KB664-23",
@@ -25371,27 +25054,14 @@
           "https://www.boursedirect.fr/fr/marche/euronext-paris/wt-wheat-JE00BN7KB664-WEATP-EUR-XPAR/seance",
           "https://bourse.fortuneo.fr/api/search?term=JE00BN7KB664"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
-        "sourceErrors": [
-          {
-            "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=JE00BN7KB664",
-            "error": "Metadata source cooldown after HTTP 403; no new field evidence"
-          },
-          {
-            "sourceUrl": "https://www.wisdomtree.com/gb/products/commodities/wisdomtree-wheat",
-            "error": "Metadata source cooldown after HTTP 403; no new field evidence"
-          },
-          {
-            "sourceUrl": "https://www.boursedirect.fr/fr/marche/euronext-paris/wt-wheat-JE00BN7KB664-WEATP-EUR-XPAR/seance",
-            "error": "Metadata source cooldown after repeated transport timeouts or failures; no new field evidence"
-          }
-        ]
+        "cause": null,
+        "sourceErrors": []
       },
       "pea": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-20T21:37:49.441988+00:00",
-        "lastSuccessAt": "2026-10-20",
+        "lastAttemptAt": "2026-10-21T07:55:37.245325+00:00",
+        "lastSuccessAt": "2026-10-21",
         "sourceUrls": [
           "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB664",
           "https://bourse.fortuneo.fr/trackers/cours-wisdomtree-wheat-eur-acc-WEATP-JE00BN7KB664-23",
@@ -25407,8 +25077,8 @@
       "currencyHedge": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-20T21:37:49.441988+00:00",
-        "lastSuccessAt": "2026-10-20",
+        "lastAttemptAt": "2026-10-21T07:55:37.245325+00:00",
+        "lastSuccessAt": "2026-10-21",
         "sourceUrls": [
           "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB664",
           "https://bourse.fortuneo.fr/trackers/cours-wisdomtree-wheat-eur-acc-WEATP-JE00BN7KB664-23",
@@ -25424,8 +25094,8 @@
       "listings": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-20T21:37:49.441988+00:00",
-        "lastSuccessAt": "2026-10-20",
+        "lastAttemptAt": "2026-10-21T07:55:37.245325+00:00",
+        "lastSuccessAt": "2026-10-21",
         "sourceUrls": [
           "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/JE00BN7KB664",
           "https://bourse.fortuneo.fr/trackers/cours-wisdomtree-wheat-eur-acc-WEATP-JE00BN7KB664-23",
@@ -29642,32 +29312,60 @@
     }
   },
   "IE00B0M62S72": {
-    "checkedAt": "2026-10-20T21:37:49.441988+00:00",
+    "checkedAt": "2026-10-21T07:55:37.245325+00:00",
     "observed": [
       "distribution",
       "domicile",
       "replicationMethod",
-      "listings"
-    ],
-    "pending": [
-      "pea",
+      "listings",
       "currencyHedge"
     ],
+    "pending": [
+      "pea"
+    ],
     "firstPendingAt": {
-      "pea": "2026-10-18T15:33:48.575784+00:00",
-      "currencyHedge": "2026-10-20T09:50:25.256828+00:00"
+      "pea": "2026-10-18T15:33:48.575784+00:00"
     },
     "errors": [
       {
-        "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00B0M62S72",
-        "error": "Metadata source cooldown after HTTP 403; no new field evidence"
+        "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-ishares-euro-dividend-ucits-etf-eur-dis-IDVY-IE00B0M62S72-46",
+        "error": "Conflicting metadata sources: pea"
       },
       {
-        "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00B0M62S72",
+        "sourceUrl": "https://www.quantalys.com/redirect_57YV6YILRTJFJHCDM3DNOHMI7D3RPCKTFRBUMRQIRMWYFCT3YQRA====/Fonds/17300",
+        "error": "No public exact-share fund reference found"
+      },
+      {
+        "sourceUrl": "https://www.quantalys.com/redirect_57YV6YILRTJFJHCDM3DNOHMI7D3RPCKTFRBUMRQIRMWYFCT3YQRA====/Fonds/17300",
+        "error": "No explicit supported metadata fields"
+      },
+      {
+        "sourceUrl": "https://www.quantalys.com/Recherche/RechercheRapide?inputSearch=IE00B0M62S72",
+        "error": "<urlopen error TimeoutError: locator.fill: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#inputSearch')\u001b[22m\n>"
+      },
+      {
         "field": "pea",
         "qualificationRequired": true,
-        "error": "Qualification de publication requise : contradiction entre sources non résolue ; aucune valeur choisie par défaut.",
+        "error": "Conflicting current exact-share statements; no automatic value chosen. | Qualification de publication requise : contradiction entre sources non résolue ; aucune valeur choisie par défaut.",
         "sources": [
+          {
+            "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00B0M62S72",
+            "value": true,
+            "checkedAt": "2026-10-21",
+            "sha256": "7a5ae0b2a6a6c94b2fe34ae988b8e9d5213f210795e264f084b488344d7ef237"
+          },
+          {
+            "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-ishares-euro-dividend-ucits-etf-eur-dis-IDVY-IE00B0M62S72-46",
+            "value": false,
+            "checkedAt": "2026-10-21",
+            "sha256": "b0d69f9fc74b56e52281e6119651416e1f1f371e5dd4ba4d844b3cee8cb8775a"
+          },
+          {
+            "sourceUrl": "https://extraetf.com/fr/etf-profile/IE00B0M62S72",
+            "value": false,
+            "checkedAt": "2026-10-21",
+            "sha256": "19eadb4f4aa1424bdd9de1917d039c9c9e6ec12a39bddcea23e2b2d87a4f2491"
+          },
           {
             "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00B0M62S72",
             "value": true,
@@ -29719,6 +29417,7 @@
         ],
         "category": "source-conflict",
         "reasons": [
+          "Conflicting current exact-share statements; no automatic value chosen.",
           "Qualification de publication requise : contradiction entre sources non résolue ; aucune valeur choisie par défaut."
         ]
       }
@@ -29727,8 +29426,8 @@
       "distribution": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-20T21:37:49.441988+00:00",
-        "lastSuccessAt": "2026-10-20",
+        "lastAttemptAt": "2026-10-21T07:55:37.245325+00:00",
+        "lastSuccessAt": "2026-10-21",
         "sourceUrls": [
           "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251787&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "https://www.justetf.com/fr/etf-profile.html?isin=IE00B0M62S72",
@@ -29744,8 +29443,8 @@
       "domicile": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-20T21:37:49.441988+00:00",
-        "lastSuccessAt": "2026-10-20",
+        "lastAttemptAt": "2026-10-21T07:55:37.245325+00:00",
+        "lastSuccessAt": "2026-10-21",
         "sourceUrls": [
           "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251787&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "https://www.justetf.com/fr/etf-profile.html?isin=IE00B0M62S72",
@@ -29761,8 +29460,8 @@
       "replicationMethod": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-20T21:37:49.441988+00:00",
-        "lastSuccessAt": "2026-10-20",
+        "lastAttemptAt": "2026-10-21T07:55:37.245325+00:00",
+        "lastSuccessAt": "2026-10-21",
         "sourceUrls": [
           "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251787&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "https://www.justetf.com/fr/etf-profile.html?isin=IE00B0M62S72",
@@ -29778,7 +29477,7 @@
       "pea": {
         "status": "unobserved",
         "category": "source-conflict",
-        "lastAttemptAt": "2026-10-20T21:37:49.441988+00:00",
+        "lastAttemptAt": "2026-10-21T07:55:37.245325+00:00",
         "lastSuccessAt": null,
         "sourceUrls": [
           "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251787&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
@@ -29789,23 +29488,35 @@
           "https://extraetf.com/fr/etf-profile/IE00B0M62S72",
           "https://www.quantalys.com/Recherche/RechercheRapide?inputSearch=IE00B0M62S72"
         ],
-        "cause": "Qualification de publication requise : contradiction entre sources non résolue ; aucune valeur choisie par défaut.",
+        "cause": "Conflicting current exact-share statements; no automatic value chosen. | Qualification de publication requise : contradiction entre sources non résolue ; aucune valeur choisie par défaut.",
         "sourceErrors": [
           {
-            "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00B0M62S72",
-            "error": "Metadata source cooldown after HTTP 403; no new field evidence"
+            "sourceUrl": "https://bourse.fortuneo.fr/trackers/cours-ishares-euro-dividend-ucits-etf-eur-dis-IDVY-IE00B0M62S72-46",
+            "error": "Conflicting metadata sources: pea"
           },
           {
-            "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00B0M62S72",
-            "error": "Qualification de publication requise : contradiction entre sources non résolue ; aucune valeur choisie par défaut."
+            "sourceUrl": "https://www.quantalys.com/redirect_57YV6YILRTJFJHCDM3DNOHMI7D3RPCKTFRBUMRQIRMWYFCT3YQRA====/Fonds/17300",
+            "error": "No public exact-share fund reference found"
+          },
+          {
+            "sourceUrl": "https://www.quantalys.com/redirect_57YV6YILRTJFJHCDM3DNOHMI7D3RPCKTFRBUMRQIRMWYFCT3YQRA====/Fonds/17300",
+            "error": "No explicit supported metadata fields"
+          },
+          {
+            "sourceUrl": "https://www.quantalys.com/Recherche/RechercheRapide?inputSearch=IE00B0M62S72",
+            "error": "<urlopen error TimeoutError: locator.fill: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('#inputSearch')\u001b[22m\n>"
+          },
+          {
+            "sourceUrl": null,
+            "error": "Conflicting current exact-share statements; no automatic value chosen. | Qualification de publication requise : contradiction entre sources non résolue ; aucune valeur choisie par défaut."
           }
         ]
       },
       "currencyHedge": {
-        "status": "retained",
-        "category": "source-unavailable",
-        "lastAttemptAt": "2026-10-20T21:37:49.441988+00:00",
-        "lastSuccessAt": "2026-10-20",
+        "status": "observed",
+        "category": null,
+        "lastAttemptAt": "2026-10-21T07:55:37.245325+00:00",
+        "lastSuccessAt": "2026-10-21",
         "sourceUrls": [
           "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251787&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "https://www.justetf.com/fr/etf-profile.html?isin=IE00B0M62S72",
@@ -29815,23 +29526,14 @@
           "https://extraetf.com/fr/etf-profile/IE00B0M62S72",
           "https://www.quantalys.com/Recherche/RechercheRapide?inputSearch=IE00B0M62S72"
         ],
-        "cause": "No exact field evidence extracted from the configured sources; an absent statement does not mean false.",
-        "sourceErrors": [
-          {
-            "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00B0M62S72",
-            "error": "Metadata source cooldown after HTTP 403; no new field evidence"
-          },
-          {
-            "sourceUrl": "https://www.justetf.com/fr/etf-profile.html?isin=IE00B0M62S72",
-            "error": "Qualification de publication requise : contradiction entre sources non résolue ; aucune valeur choisie par défaut."
-          }
-        ]
+        "cause": null,
+        "sourceErrors": []
       },
       "listings": {
         "status": "observed",
         "category": null,
-        "lastAttemptAt": "2026-10-20T21:37:49.441988+00:00",
-        "lastSuccessAt": "2026-10-20",
+        "lastAttemptAt": "2026-10-21T07:55:37.245325+00:00",
+        "lastSuccessAt": "2026-10-21",
         "sourceUrls": [
           "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=251787&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
           "https://www.justetf.com/fr/etf-profile.html?isin=IE00B0M62S72",
