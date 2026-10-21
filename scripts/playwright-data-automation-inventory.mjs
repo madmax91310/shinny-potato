@@ -52,9 +52,41 @@ try{
   await profile.getByText(/Contrôle de la source/).first().waitFor()
   assert(await profile.getByRole('link',{name:'Source ↗'}).count()>0,'individual field source links are exposed')
   assert.equal(await section.getByRole('link',{name:'Télécharger le bilan par actif et par champ (CSV)'}).getAttribute('href'),'/shinny-potato/data/asset-automation.csv')
+  await section.getByRole('combobox',{name:'Afficher',exact:true}).selectOption('priorities')
+  const alternative=report.connections.find(r=>r.field==='performance'&&r.actionState!=='current'&&r.marketCalendar)
+  if(alternative){
+   await search.fill(alternative.id)
+   await section.getByRole('heading',{name:`Calendrier de cotation calculé · ${alternative.marketCalendar.currency}`,exact:true}).waitFor()
+   await section.getByText(/ces rendements diffèrent du calendrier NAV/i).waitFor()
+  }
+  await section.getByRole('combobox',{name:'Données prioritaires'}).selectOption('completeHoldings')
+  await search.fill('IE000NDWFGA5')
+  await section.getByText(/Identités non qualifiées/).waitFor()
+  await section.getByRole('combobox',{name:'Données prioritaires'}).selectOption('countries')
+  await search.fill('IE0003R87OG3')
+  await section.getByRole('heading',{name:'Répartition de la poche actions',exact:true}).waitFor()
+  await section.getByText(/exclut les liquidités/).waitFor()
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+2),false)
   await page.screenshot({path:`test-artifacts/data-automation-inventory/${width}.png`,fullPage:true})
+  for(const isin of ['IE00BLCHJB90','IE000NDWFGA5','IE00BMH5Y871','IE000UL6CLP7','IE0003R87OG3','IE0003Z9E2Y3','IE00BM8R0J59']){
+   await page.goto(`${base}/fiches-etf?isin=${isin}`,{waitUntil:'networkidle'})
+   if(await page.getByRole('button',{name:'Aperçu',exact:true}).isVisible())await page.getByRole('button',{name:'Aperçu',exact:true}).click()
+   await page.getByRole('tab',{name:'Texte',exact:true}).click()
+   await page.locator('.es-card .es-facts').getByText(`ISIN : ${isin}`,{exact:true}).waitFor()
+   const observation=report.connections.find(r=>r.id===isin&&r.field==='performance')
+   const expected=observation.marketCalendar
+   const card=await page.locator('.es-card').innerText()
+   if(observation.actionState==='current'){
+    assert(card.includes('Performances annuelles'),isin)
+    assert(!card.includes('cours ajustés, distributions réinvesties'),'The official NAV calendar must regain precedence once published: '+isin)
+    continue
+   }
+   assert(card.includes('cours ajustés, distributions réinvesties'),isin)
+   assert(card.includes(`(${expected.currency})`),isin)
+   const year=Object.keys(expected.years).at(-1),value=expected.years[year]
+   assert(card.includes(`${year} : ${value>0?'+':''}${value.toLocaleString('fr-FR',{maximumFractionDigits:2})} %`),isin)
+  }
   assert.deepEqual(errors,[]);await page.close()
  }
- console.log('Data automation inventory: current summary, lazy audit, exact-ISIN search, PEA gaps, download and mobile/desktop passed.')
+ console.log('Data automation inventory and priority markets: lazy audit, dated alternatives, unknown weights and seven calculated ETF calendars verified on mobile/desktop.')
 }finally{await browser?.close();server.kill()}

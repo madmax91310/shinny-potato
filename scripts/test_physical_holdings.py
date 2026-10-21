@@ -35,6 +35,15 @@ def vanguard():
 
 
 class PhysicalHoldingsTest(unittest.TestCase):
+    def test_uranium_unidentified_separate_lines_are_not_cash_or_listed_shares(self):
+        raw=(pathlib.Path(__file__).parent/'fixtures/physical-holdings/globalx-urnu.csv').read_bytes()
+        rows,stamp=globalx_csv(raw,NOW)
+        self.assertEqual(stamp,'2026-10-20')
+        unknown=[r for r in rows if r['isin'] is None]
+        self.assertEqual(len(unknown),2)
+        self.assertAlmostEqual(sum(r['weightPct']for r in unknown),.004)
+        self.assertEqual(len([r for r in rows if r['name']=='VERDERA ENERGY CORP']),3)
+        self.assertEqual(len({r['isin']for r in rows if r['isin']}),len(rows)-2)
     def test_globalx_actual_full_file(self):
         raw = (pathlib.Path(__file__).parent/'fixtures/physical-holdings/globalx-botz.csv').read_bytes()
         rows, stamp = globalx_csv(raw, NOW)
@@ -48,6 +57,19 @@ class PhysicalHoldingsTest(unittest.TestCase):
         self.assertEqual(sum(r['weightPct'] for r in rows), 96)
         self.assertEqual(excluded, {'CASH': 4})
         self.assertEqual(stamp, '2026-10-16')
+
+    def test_amundi_cash_payables_keep_net_nav_without_short_equities(self):
+        body=amundi();composition=body['products'][0]['composition']
+        positive=composition['compositionData'][-1]
+        positive['weight']=positive['compositionCharacteristics']['weight']=.054
+        negative=copy.deepcopy(positive)
+        negative['weight']=negative['compositionCharacteristics']['weight']=-.014
+        composition['compositionData'].append(negative);composition['totalNumberOfInstruments']+=1
+        rows,_,excluded=amundi_composition(body,SHARE,NOW)
+        self.assertAlmostEqual(sum(r['weightPct']for r in rows),96)
+        self.assertAlmostEqual(excluded['CASH'],4)
+        negative['compositionCharacteristics']['type']='EQUITY_ORDINARY'
+        with self.assertRaises(ValueError):amundi_composition(body,SHARE,NOW)
 
     def test_amundi_wrong_identity_replication_count_date_weight(self):
         for field, value in [('ISIN', 'IE0000000000'), ('CURRENCY', 'EUR'),

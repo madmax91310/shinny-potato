@@ -1,4 +1,5 @@
 import { QUALIFIED_METRICS } from './qualified-exposure-metrics.js';
+import { marketCalendarPerformance } from './market-calendar-performance.js';
 import { QUALIFIED_EXPOSURE_SHEETS } from './qualified-exposure-sheets.js'
 import practicalReferences from './automated-practical-sheets.json' with { type: 'json' };
 import { TOPICS as PRACTICAL_TOPICS, FUND_GROUPS as PRACTICAL_FUND_GROUPS } from './practical-sheet-topics.js';
@@ -86,10 +87,16 @@ function instrument(isin, identity) {
   if (officialAum) fields.push(field('Encours daté publié par l’émetteur', 'instrument-aum-observations', officialAum, officialAum));
   for (const listing of listings) fields.push(field(`Cotation ${listing.mic}`, 'instrument-listings', listing, { ...listing, dateStatus: 'not-applicable', scope: `${scope} ; ${listing.exchange}`, method: 'Devise de négociation, distincte de celle des rendements.' }));
   const evidence = AUTOMATED_PERFORMANCE[isin] ?? getInstrumentAnnualPerformance(isin);
+  const calculated = marketCalendarPerformance(isin);
+  if(calculated && !LIVE_PERFORMANCE[isin]?.values.some(Number.isFinite)) fields.push(field('Rendements annuels de cotation','market-calendar-performance',Object.entries(calculated.years).map(([year,value])=>[Number(year),value]),{
+    sourceUrls:calculated.sourceUrls,checkedAt:calculated.checkedAt,asOf:calculated.periodEnd,
+    periodStart:calculated.periodStart,periodEnd:calculated.periodEnd,currency:calculated.currency,
+    scope:`Part exacte ${isin} ; cotation ${calculated.listingEvidenceId}`,method:calculated.method,note:calculated.note
+  }));
   const proxy = SIMULATION_PROXIES[isin];
   if (proxy) fields.push(field('Historique de simulation (proxy)', 'simulation-proxies', { ...proxy, values: getInstrumentReturnValues(isin) }, { sourceUrls: [proxy.source], checkedAt: '2026-10-03', asOf: '2025-12-31', periodStart: '2020-01-01', periodEnd: '2025-12-31', currency: proxy.currency, scope: proxy.scope, method: 'Proxy documenté, distinct de la part exacte', note: proxy.note }));
   const reviewed = REVIEWED_PERFORMANCE_META[isin];
-  const candidateReturns = AUTOMATED_PERFORMANCE[isin] ? AUTOMATED_PERFORMANCE[isin].values : reviewed ? (evidence.values.some(Number.isFinite) ? evidence.values : null) :
+  const candidateReturns = evidence?.sourceKind==='adjusted-market-price' ? null : AUTOMATED_PERFORMANCE[isin] ? AUTOMATED_PERFORMANCE[isin].values : reviewed ? (evidence.values.some(Number.isFinite) ? evidence.values : null) :
     proxy ? VERIFIED_RETURNS[isin].values : PORTFOLIO_RETURN_EVIDENCE[isin] || evidence ? getInstrumentReturnValues(isin) : null;
   const returns = candidateReturns?.some(Number.isFinite) ? candidateReturns : null;
   if (returns) {

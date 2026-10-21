@@ -82,6 +82,8 @@ def globalx_csv(raw, now):
     if reader.fieldnames != ['AS_OF_DATE', 'SEDOL', 'NAME', 'NET_ASSETS', 'TICKER',
                             'MARKET_PRICE', 'SHARES_HELD', 'MARKET_VALUE', 'ISIN', 'COUNTRY']:
         raise ValueError('Global X portfolio schema changed')
+    published = list(reader)
+    identified_names = {r['NAME'] for r in published if ISIN.fullmatch(r.get('ISIN') or '')}
     rows, dates, total = [], set(), 0
     cash = {'US DOLLAR', 'U.S. DOLLAR', 'EURO', 'BRITISH STERLING POUND', 'JAPANESE YEN',
             'NORWEGIAN KRONE', 'HONG KONG DOLLAR', 'CANADIAN DOLLAR', 'SWISS FRANC',
@@ -90,7 +92,7 @@ def globalx_csv(raw, now):
             'SOUTH AFRICAN RAND', 'CHILEAN PESO', 'POLISH ZLOTY',
             'SWEDISH KRONE', 'MEXICAN PESO', 'PERUVIAN NEW SOL', 'SAUDI RIYAL',
             'OTHER PAYABLE & RECEIVABLES', 'CASH'}
-    for row in reader:
+    for row in published:
         if row['AS_OF_DATE'].startswith('The information contained herein') and not row.get('NAME'):
             continue  # Explicit copyright footer, never a portfolio position.
         dates.add(document_date(row['AS_OF_DATE'], now))
@@ -99,14 +101,21 @@ def globalx_csv(raw, now):
             raise ValueError('Invalid Global X weight')
         total += weight
         if not row['ISIN']:
-            if row['NAME'] not in cash or row['TICKER']:
+            if row['NAME'] in cash and not row['TICKER']:
+                continue
+            # Separate unlisted/restricted lines can share a name with a listed
+            # security. Preserve their weights and unknown identity; never copy
+            # the listed line's ISIN onto them or count them as cash.
+            if row['NAME'] not in identified_names or row['TICKER'] or row['SEDOL'] or weight < 0:
                 raise ValueError('Unidentified non-cash Global X position: ' + row['NAME'])
-            continue
         rows.append({'isin': row['ISIN'], 'name': row['NAME'], 'weightPct': weight,
                      'sedol': row['SEDOL']})
+        if not row['ISIN']:
+            rows[-1]['isin'] = None
+            rows[-1]['identityStatus'] = 'unpublished-separate-position'
     if len(dates) != 1 or not 99 <= total <= 100.5:
         raise ValueError('Truncated or mixed-date Global X portfolio')
-    return checked_rows(rows, minimum=11), dates.pop()
+    return checked_rows(rows, minimum=11, allow_unidentified=True), dates.pop()
 
 
 def collect_globalx(share, now):
@@ -114,7 +123,8 @@ def collect_globalx(share, now):
     url = globalx_page(page, share)
     raw = download(url)
     rows, stamp = globalx_csv(raw, now)
-    return observation(rows, stamp, url, raw, identitySourceUrl=share['sourceUrl'], identitySha256=digest(page))
+    return observation(rows, stamp, url, raw, allow_unidentified=True,
+                       identitySourceUrl=share['sourceUrl'], identitySha256=digest(page))
 
 
 def collect_avantis(share, now):
@@ -159,12 +169,15 @@ def amundi_composition(data, share, now):
     for entry in entries:
         item = entry['compositionCharacteristics']
         weight = finite_weight(entry['weight'])
-        if weight != finite_weight(item['weight']) or not -0.01 <= weight <= 1:
+        kind = item['type']
+        # Payables and receivables are separate signed cash lines. Their net
+        # NAV weight is checked below; no negative equity position is admitted.
+        minimum = -1 if kind == 'CASH' else -.01
+        if weight != finite_weight(item['weight']) or not minimum <= weight <= 1:
             raise ValueError('Inconsistent Amundi weight')
         if document_date(item['date'], now) != stamp:
             raise ValueError('Mixed-date Amundi portfolio')
         total += weight
-        kind = item['type']
         if kind in ('CASH', 'FUTURE', 'ETF', 'RIGHT'):
             excluded[kind] = excluded.get(kind, 0) + weight * 100
         elif kind in ('EQUITY_ORDINARY', 'PREFERENCE_SHARES', 'DEPOSITORY_RECEIPT'):

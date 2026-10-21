@@ -125,6 +125,7 @@ jobs:
       - run: node scripts/test-all-weather.mjs && node scripts/test-model-portfolios.mjs
       - run: node scripts/test-exposure-observations.mjs
       - run: node scripts/build-monthly-duel-returns.mjs && node scripts/test-distinct-asset-routing.mjs
+      - run: node scripts/test-market-calendar-performance.mjs
       - run: node scripts/test-presentation-etf.mjs
       - run: node scripts/test-scpi.mjs
       - run: node scripts/test-insurance.mjs
@@ -368,6 +369,7 @@ jobs:
       - run: python -m unittest discover -s scripts -p 'test_metadata_incidents.py'
       - run: python -m unittest discover -s scripts -p 'test_physical_holdings.py'
       - run: python -m unittest discover -s scripts -p 'test_wisdomtree_discovery.py'
+      - run: python -m unittest discover -s scripts -p 'test_wisdomtree_api_holdings.py'
       - run: python -m unittest discover -s scripts -p 'test_topix_holdings.py'
       - run: python -m unittest discover -s scripts -p 'test_lifestrategy_holdings.py'
       - run: python -m unittest discover -s scripts -p 'test_dws_liquidity_funds.py'

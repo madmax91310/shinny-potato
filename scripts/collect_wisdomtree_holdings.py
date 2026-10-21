@@ -88,6 +88,9 @@ def parse(page,share,now,mapping,identity_dates):
     return rows,stamp
 
 def collect(share,now):
+    from wisdomtree_api_holdings import CLASSES, collect as api_collect
+    if share['isin'] in CLASSES:
+        return api_collect(share, now)
     from collect_physical_holdings import observation
     page=public_page(share['sourceUrl'],max_bytes=12_000_000);mapping={};dates=[];proofs={}
     for expected,url in IDENTITIES:

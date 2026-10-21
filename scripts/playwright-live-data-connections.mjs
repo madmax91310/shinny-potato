@@ -57,7 +57,7 @@ try{
   await page.getByText(/^Recouvrement entre les supports ·/).click()
   await page.locator('.dca-pair-grid article').first().waitFor()
   const pair=await page.locator('.dca-pair-grid article').first().innerText()
-  if(newIssuers||topix&&selected.some(isin=>raw[isin].unidentifiedWeightPct>0))assert(pair.includes('Partiel'),'Cash and option sleeves must prevent an integral overlap claim')
+  if(newIssuers||selected.some(isin=>raw[isin].unidentifiedWeightPct>0))assert(pair.includes('Partiel'),'Unknown identities, cash and option sleeves must prevent an integral overlap claim')
   else assert(!pair.includes('Partiel'),'Real overlap must use complete issuer portfolios')
   assert(Number(/(\d+) titres communs/.exec(pair)?.[1])>10,'Overlap includes more than the editorial top ten')
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+2),false)

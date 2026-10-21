@@ -6,6 +6,7 @@ import { SIMULATION_PROXIES } from './simulation-proxies.js';
 // Ce déplacement ne constitue pas une nouvelle vérification des cours.
 import { calendarMap, latestCommonYears, HISTORICAL_YEARS } from './annual-window.js';
 import { VERIFIED_RETURNS } from './verified-returns.js';
+import { marketCalendarPerformance } from './market-calendar-performance.js';
 
 export const PORTFOLIO_RETURNS_BY_ISIN = Object.freeze({
   'LU1834983550': Object.freeze([12.32, 26.65, 9.57, -2.07, -8.16, 31.8]),
@@ -109,7 +110,11 @@ const CARD_SERIES_BY_ISIN = Object.freeze({
 });
 
 export function getInstrumentAnnualPerformance(isin) {
-  if (AUTOMATED_PERFORMANCE[isin]) return AUTOMATED_PERFORMANCE[isin];
+  const official = AUTOMATED_PERFORMANCE[isin];
+  if (official?.values.some(Number.isFinite)) return official;
+  const market = marketCalendarPerformance(isin);
+  if (market) return market;
+  if (official) return official;
   const reviewed = REVIEWED_PERFORMANCE_META[isin];
   if (reviewed) return { ...reviewed, values: reviewed.values ?? PORTFOLIO_RETURNS_BY_ISIN[isin] };
   if (VERIFIED_RETURNS[isin]) return VERIFIED_RETURNS[isin].values.some(Number.isFinite) ? VERIFIED_RETURNS[isin] : null;
@@ -135,7 +140,7 @@ export const DUEL_SERIES_BY_ISIN = Object.freeze({
 });
 
 export function getInstrumentDuelSeries(isin) {
-  const proxy = SIMULATION_PROXIES[isin];
+  const proxy = SIMULATION_PROXIES[isin] ?? (REVIEWED_PERFORMANCE_META[isin]?.portfolioHistoryBasis === 'proxy' && !AUTOMATED_PERFORMANCE[isin]?.values.some(Number.isFinite) ? REVIEWED_PERFORMANCE_META[isin] : null);
   if (proxy && !latestCommonYears([AUTOMATED_ETF[isin]?.performance?.years ?? {}]).length) return { ...proxy, values: getInstrumentReturnValues(isin), basis: 'proxy' };
   const annual = getInstrumentAnnualPerformance(isin);
   const historicalValues = annual?.calendarYears ? HISTORICAL_YEARS.map(year => annual.years[year] ?? null) : annual?.values;

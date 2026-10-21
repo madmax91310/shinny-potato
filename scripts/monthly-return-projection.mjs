@@ -1,4 +1,7 @@
 export function monthlyCalendarReturns(record,now=new Date()) {
+ if(!Array.isArray(record.points)||record.points.some((point,index)=>
+  !Array.isArray(point)||point.length!==2||!/^\d{4}-(0[1-9]|1[0-2])$/.test(point[0])||
+  !Number.isFinite(point[1])||point[1]<=0||index>0&&point[0]<=record.points[index-1][0]))return {}
  const points=new Map(record.points),years={}
  for(const [month,price]of record.points){
   if(!month.endsWith('-12'))continue
