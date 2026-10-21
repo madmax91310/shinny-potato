@@ -4,7 +4,7 @@ import { ActionTarget } from './actionTarget'
 
 // Panels stay mounted when changing views: drafts and selected instruments persist.
 // Desktop shows both columns; mobile shows one focused view at a time.
-export default function ToolWorkspace({ children, className = '', actions, renderImage, imageContent, imageAlt, imageDisabled, view: controlledView, onViewChange, publicationTab, onPublicationTabChange }) {
+export default function ToolWorkspace({ children, className = '', actions, renderImage, imageContent, imageAlt, imageFilename, imageDisabled, view: controlledView, onViewChange, publicationTab, onPublicationTabChange }) {
   const [localView, setLocalView] = useState('settings')
   const view = controlledView ?? localView
   function setView(next) { setLocalView(next); onViewChange?.(next) }
@@ -28,9 +28,10 @@ export default function ToolWorkspace({ children, className = '', actions, rende
     <ActionTarget.Provider value={actionTarget}>
       <div className={`workspace-tool-columns ${className}`}>{Children.map(children, child => {
         if (!isValidElement(child) || !child.props.className?.split(' ').includes('tool-preview') || (!renderImage && !imageContent)) return child
-        return <div className="tool-preview studio-preview"><PublicationPreview {...{ renderImage, imageContent, imageAlt, imageDisabled }} tab={publicationTab} onTabChange={onPublicationTabChange}>{cloneElement(child, { className: child.props.className.replace(/\btool-preview\b/g, '') })}</PublicationPreview></div>
+        return <div className="tool-preview studio-preview"><PublicationPreview {...{ renderImage, imageContent, imageAlt, imageFilename, imageDisabled }} tab={publicationTab} onTabChange={onPublicationTabChange}>{cloneElement(child, { className: child.props.className.replace(/\btool-preview\b/g, '') })}</PublicationPreview></div>
       })}</div>
       <div ref={setActionTarget} className="workspace-actions" role="group" aria-label="Actions de publication">{actions}</div>
     </ActionTarget.Provider>
   </div>
 }
+

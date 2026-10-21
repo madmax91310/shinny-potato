@@ -7,18 +7,20 @@ const subscribe = callback => {
   globalThis.addEventListener('storage', callback)
   return () => { globalThis.removeEventListener('asset-picker-preferences', callback); globalThis.removeEventListener('storage', callback) }
 }
-export function useAssetPickerPreferences(items, legacyKey) {
+export function useAssetPickerPreferences(items, legacyKey, persistent = true) {
   const {favorites,recents} = JSON.parse(useSyncExternalStore(subscribe, snapshot, () => '{"favorites":[],"recents":[]}'))
   useEffect(() => {
+    if (!persistent) return
     const migratedKey = `asset-picker:migrated:${legacyKey}`
     if (readPreference(migratedKey, false)) return
     const previous = readPreference(legacyKey, [], validAssetKeys)
     const keys = items.filter(item => previous.includes(String(item.id))).map(assetPreferenceKey)
     if (keys.length) updateAssetKeys(ASSET_FAVORITES_KEY, all => [...all,...keys])
     writePreference(migratedKey, true)
-  }, [items, legacyKey])
+  }, [items, legacyKey, persistent])
   return { favorites, recents,
-    toggleFavorite: item => updateAssetKeys(ASSET_FAVORITES_KEY, all => all.includes(assetPreferenceKey(item)) ? all.filter(key => key !== assetPreferenceKey(item)) : [assetPreferenceKey(item),...all]),
-    remember: item => updateAssetKeys(ASSET_RECENTS_KEY, all => [assetPreferenceKey(item),...all], 8),
+    toggleFavorite: item => persistent && updateAssetKeys(ASSET_FAVORITES_KEY, all => all.includes(assetPreferenceKey(item)) ? all.filter(key => key !== assetPreferenceKey(item)) : [assetPreferenceKey(item),...all]),
+    remember: item => persistent && updateAssetKeys(ASSET_RECENTS_KEY, all => [assetPreferenceKey(item),...all], 8),
   }
 }
+

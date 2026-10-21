@@ -9,7 +9,7 @@ const GROUPS = CATEGORIES.filter(c => EQUITY_GROUPS.has(c.id))
 const ETF_IDS = new Set(GROUPS.flatMap(c => c.ids))
 // Registry exposure groups list every ETF and ETC of the group, not only the six of the prepared ranking.
 const EXPOSURE = new Map(EXPOSURE_CATEGORIES.map(c => [c.id, c]))
-export default function SelectionGrid({ ids, currency, assets, onChange }) {
+export default function SelectionGrid({ minimum = 0, ids, currency, assets, onChange }) {
   const [group, setGroup] = useState('stocks')
   const [query, setQuery] = useState('')
   const [error, setError] = useState('')
@@ -32,7 +32,7 @@ export default function SelectionGrid({ ids, currency, assets, onChange }) {
     </ChoicePicker></label>
     <label className="rk-field">Rechercher dans l’univers<input type="search" value={query} onChange={e => { setQuery(e.target.value); setLimit(30) }} placeholder="Nom, ticker ou ISIN…" /></label>
     <div className="rk-checkbox-list">{choices.slice(0, limit).map(a => <label key={a.id}>
-      <input type="checkbox" checked={ids.includes(a.id)} disabled={ids.length >= 6 && !ids.includes(a.id)} onChange={() => toggle(a.id)} aria-label={`Sélectionner ${a.label}`} />
+      <input type="checkbox" checked={ids.includes(a.id)} disabled={(ids.length >= 6 && !ids.includes(a.id)) || (ids.length <= minimum && ids.includes(a.id))} onChange={() => toggle(a.id)} aria-label={`Sélectionner ${a.label}`} />
       <span><strong>{a.shortLabel}</strong><small>{a.label} · {a.currency}</small></span>
     </label>)}</div>
     {!choices.length && <p role="status">Aucun actif ne correspond à cette recherche.</p>}
@@ -41,3 +41,4 @@ export default function SelectionGrid({ ids, currency, assets, onChange }) {
     {error && <p role="alert">{error}</p>}
   </section>
 }
+

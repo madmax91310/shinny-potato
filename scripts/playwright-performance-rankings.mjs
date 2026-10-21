@@ -296,6 +296,7 @@ try {
   await page.getByRole('group', { name: 'Devise du classement', exact: true }).locator('[data-value="EUR"]').click()
   const recent = CATEGORIES.find(c => c.id === 'small-cap-regions').ids.map(id => RANKING_ASSETS[id]).sort((a, b) => b.points[0].date.localeCompare(a.points[0].date))[0]
   assert(recent.points[0].date > `${requestedYear - 1}-12`)
+  await page.getByRole('button', { name: 'Présentation actuelle', exact: true }).click()
   await page.getByRole('button', { name: 'Personnaliser les actifs', exact: true }).click()
   await page.getByRole('button', { name: 'Nouvelle sélection', exact: true }).click()
   await page.getByRole('button', { name: 'Un par un', exact: true }).click()
@@ -307,6 +308,109 @@ try {
   assert.equal(await page.locator('.rk-selected>div').count(), 2)
   assert(await page.getByRole('button', { name: 'Télécharger l’image', exact: true }).isDisabled())
   assert.match(await page.getByRole('alert').innerText(), /couvertes/)
+  // Prepared annual profiles are temporary workspaces, including picker preferences.
+  await page.getByRole('button', { name: 'Classement annuel', exact: true }).click()
+  await category('world')
+  await page.getByRole('tab', { name: 'Texte', exact: true }).click()
+  const profile = CATEGORIES.find(c => c.id === 'world')
+  const catalogBefore = JSON.stringify(profile)
+  const originalNames = await page.locator('.rk-selected strong').allTextContents()
+  const originalText = await page.getByLabel('Texte à publier', { exact: true }).inputValue()
+  const beforeStorage = await page.evaluate(() => JSON.stringify({ local: { ...localStorage }, session: { ...sessionStorage } }))
+  await page.evaluate(() => {
+    window.selectionWrites = []
+    const original = Storage.prototype.setItem
+    Storage.prototype.setItem = function(key, value) { window.selectionWrites.push(key); return original.call(this, key, value) }
+    Object.defineProperty(navigator, 'clipboard', { configurable: true, value: { writeText: async value => { window.copiedSelectionText = value } } })
+  })
+  const listed = new Set(ALL_CATEGORIES.flatMap(c => c.ids))
+  const extra = Object.values(RANKING_ASSETS).find(a => !listed.has(a.id) && a.currency === 'EUR' && a.basis === 'adjusted' && commonCoverage([...profile.ids.map(id => RANKING_ASSETS[id]), a]).years.length >= 2)
+  assert(extra, 'The complete compatible catalog must include assets outside prepared profiles')
+  await page.getByRole('button', { name: 'Ajouter un actif au profil', exact: true }).click()
+  await search.fill(extra.label)
+  await page.locator(`.rk-manual [data-option][data-value="${extra.id}"]`).click()
+  if (await page.getByRole('alert').count()) await page.getByRole('button', { name: 'Utiliser la dernière période commune (7 années maximum)', exact: true }).click()
+  assert.equal(await page.locator('.rk-selected>div').count(), profile.ids.length + 1)
+  assert((await page.getByLabel('Texte à publier', { exact: true }).inputValue()).includes(extra.shortLabel))
+  const addedPngEvent = page.waitForEvent('download')
+  await page.getByRole('button', { name: 'Télécharger l’image', exact: true }).click()
+  const addedPng = await addedPngEvent
+  const addedChunks = []
+  for await (const chunk of await addedPng.createReadStream()) addedChunks.push(chunk)
+  assert.equal(Buffer.concat(addedChunks).subarray(0, 8).toString('hex'), '89504e470d0a1a0a')
+  const selectedColours = await page.locator('.rk-annual-table td').evaluateAll(cells => Object.fromEntries(cells.map(c => [c.dataset.asset, c.style.background])))
+  const edited = (await page.getByLabel('Texte à publier', { exact: true }).inputValue()) + '\nMa conclusion personnelle.  '
+  await page.getByLabel('Texte à publier', { exact: true }).fill(edited)
+  await page.getByRole('button', { name: 'Copier le texte', exact: true }).click()
+  assert.equal(await page.evaluate(() => window.copiedSelectionText), edited)
+  const removedName = originalNames[0], removedId = profile.ids[0]
+  await page.getByRole('button', { name: `Retirer ${removedName}`, exact: true }).click()
+  assert.equal(await page.getByLabel('Texte à publier', { exact: true }).inputValue(), edited)
+  await page.getByRole('button', { name: 'Actualiser le texte avec la sélection', exact: true }).waitFor()
+  assert.equal(await page.locator(`.rk-annual-table td[data-asset="${removedId}"]`).count(), 0)
+  for (const cell of await page.locator('.rk-annual-table td').evaluateAll(cells => cells.map(c => ({ id: c.dataset.asset, color: c.style.background })))) assert.equal(cell.color, selectedColours[cell.id])
+  await page.getByRole('tab', { name: 'Image', exact: true }).click()
+  await page.waitForFunction(() => document.querySelector('.publication-image-stage img')?.src.startsWith('data:image/png'))
+  const pngAfterRemoval = await img.getAttribute('src')
+  const pngEvent = page.waitForEvent('download')
+  await page.getByRole('button', { name: 'Télécharger l’image', exact: true }).click()
+  const modifiedPng = await pngEvent
+  assert(modifiedPng.suggestedFilename().includes(extra.id.toLowerCase().replace(/[^a-z0-9]+/g, '-')))
+  assert(!modifiedPng.suggestedFilename().includes(removedId.toLowerCase()))
+  const pngChunks = []
+  for await (const chunk of await modifiedPng.createReadStream()) pngChunks.push(chunk)
+  assert.equal(Buffer.concat(pngChunks).toString('base64'), pngAfterRemoval.split(',')[1])
+  const previewDownloadEvent = page.waitForEvent('download')
+  await page.getByRole('button', { name: 'Télécharger cet aperçu', exact: true }).click()
+  assert.equal((await previewDownloadEvent).suggestedFilename(), modifiedPng.suggestedFilename())
+  await page.getByRole('tab', { name: 'Texte', exact: true }).click()
+  await page.getByRole('button', { name: 'Actualiser le texte avec la sélection', exact: true }).click()
+  const refreshed = await page.getByLabel('Texte à publier', { exact: true }).inputValue()
+  assert(!refreshed.includes(removedName))
+  assert(refreshed.includes(extra.shortLabel))
+  await page.getByLabel('Texte à publier', { exact: true }).fill('Retouche conservée')
+  await page.getByRole('group', { name: 'Devise du classement', exact: true }).locator('[data-value="USD"]').click()
+  assert.equal(await page.getByLabel('Texte à publier', { exact: true }).inputValue(), 'Retouche conservée')
+  await page.getByRole('button', { name: 'Actualiser le texte avec la sélection', exact: true }).click()
+  assert.match(await page.getByLabel('Texte à publier', { exact: true }).inputValue(), /en USD/)
+  await page.getByLabel('Texte à publier', { exact: true }).fill('Retouche avant changement de période')
+  const lastDraftYear = Number(await page.getByRole('group', { name: 'Dernière année', exact: true }).getAttribute('data-value'))
+  await page.getByRole('group', { name: 'Première année', exact: true }).locator(`[data-value="${lastDraftYear - 1}"]`).click()
+  assert.equal(await page.getByLabel('Texte à publier', { exact: true }).inputValue(), 'Retouche avant changement de période')
+  await page.getByRole('button', { name: 'Actualiser le texte avec la sélection', exact: true }).click()
+  assert((await page.getByLabel('Texte à publier', { exact: true }).inputValue()).includes(`entre ${lastDraftYear - 1} et ${lastDraftYear}`))
+  await page.getByRole('button', { name: 'Réinitialiser le profil', exact: true }).click()
+  assert.deepEqual(await page.locator('.rk-selected strong').allTextContents(), originalNames)
+  assert.equal(await page.getByLabel('Texte à publier', { exact: true }).inputValue(), originalText)
+  assert.equal(JSON.stringify(profile), catalogBefore)
+  assert.equal(await page.getByRole('button', { name: 'Enregistrer la confrontation', exact: true }).count(), 0)
+  assert.deepEqual(await page.evaluate(() => window.selectionWrites), [])
+  assert.equal(await page.evaluate(() => JSON.stringify({ local: { ...localStorage }, session: { ...sessionStorage } })), beforeStorage)
+  await category('luxury-stocks')
+  assert.equal(await page.locator('.rk-selected>div').count(), 2)
+  for (const button of await page.getByRole('button', { name: /^Retirer / }).all()) assert(await button.isDisabled())
+  await category('world')
+  assert.deepEqual(await page.locator('.rk-selected strong').allTextContents(), originalNames)
+  // Shorter history keeps the requested years and offers an explicit correction.
+  await page.getByRole('group', { name: 'Devise du classement', exact: true }).locator('[data-value="EUR"]').click()
+  const requestedCommonYear = await page.getByRole('group', { name: 'Première année', exact: true }).getAttribute('data-value')
+  await page.getByRole('button', { name: 'Ajouter un actif au profil', exact: true }).click()
+  await search.fill(recent.label)
+  await page.locator(`.rk-manual [data-option][data-value="${recent.id}"]`).click()
+  assert.equal(await page.getByRole('group', { name: 'Première année', exact: true }).getAttribute('data-value'), requestedCommonYear)
+  assert.match(await page.getByRole('alert').innerText(), /couvertes/)
+  assert(await page.getByRole('button', { name: 'Télécharger l’image', exact: true }).isDisabled())
+  const commonPeriodAction = page.getByRole('button', { name: 'Utiliser la dernière période commune (7 années maximum)', exact: true })
+  if (await commonPeriodAction.count()) {
+    await commonPeriodAction.click()
+    assert.equal(await page.getByRole('alert').count(), 0)
+  } else {
+    await page.getByText(/Historique insuffisant : au moins 2 années/).waitFor()
+    assert(await page.getByRole('button', { name: 'Télécharger l’image', exact: true }).isDisabled())
+  }
+  assert.equal(await page.locator('.rk-selected>div').count(), profile.ids.length + 1)
+  await page.reload({ waitUntil: 'networkidle' })
+  assert.deepEqual(await page.locator('.rk-selected strong').allTextContents(), originalNames)
   assert.deepEqual(errors, [])
   console.log('Rankings: categories, calendar/custom modes, annualization, regularity, invalid dates, exact manual selections, PNG download, desktop and mobile passed.')
 } catch (error) {
@@ -317,4 +421,5 @@ try {
   }
   throw error
 } finally { await browser?.close(); server?.kill() }
+
 

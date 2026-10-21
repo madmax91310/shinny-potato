@@ -9,10 +9,13 @@ for(const [asset,country,countryWeight,tech,total,date] of [
  ['IE0002XZSHO1','United States',72.94,31.78,100.02,'2026-09-30'],
  ['europe','United Kingdom',18.46,9.16,100.01,'2026-09-30'],
  ['FR0013412020','Taiwan',29.747008,42.389722,100,'2026-10-14'],
-])for(const field of ['countries','sectors'])references[asset][field]={
+]) {
+ delete references[asset].equitySleeve // These frozen observations describe the whole fixture allocation.
+ for(const field of ['countries','sectors'])references[asset][field]={
  ...references[asset][field],asOf:date,compatibility:`fixture-${asset}-${field}`,rows:field==='countries'
  ?[{name:country,weightPct:countryWeight},{name:'Other',weightPct:100-countryWeight}]
  :[{name:'Technology',weightPct:tech},{name:'Other',weightPct:total-tech}],
+}
 }
 const lines=['IE0002XZSHO1','europe','FR0013412020'].map((asset,i)=>({asset,label:references[asset].name,isin:references[asset].isin,weight:[70,20,10][i]}))
 const profile={imageOnly:true,name:'',scope:'Portefeuille investi',lines}
@@ -52,3 +55,4 @@ for(const [asset,r] of Object.entries(references).filter(([,r])=>r.isin))for(con
  assert(Math.abs(donutData({[field]:result},field).rows.reduce((s,r)=>s+r.weight,0)-100)<1e-6,asset)
 }
 console.log('Published portfolio synthesis: 70/20/10 fully represented, provenance, exact weighted results, missing data and catalog mass conservation verified.')
+

@@ -14,7 +14,9 @@ for(const [i,p] of PROFILES.entries()){
 const p={...prepareProfile(PROFILES[0]),lines:[{asset:'world',label:'World',weight:80,amount:50,isin:references.world.isin},{asset:'sp500',label:'S&P 500',weight:20,amount:50,isin:references.sp500.isin}]}
 assert.equal(analyzeProfile(p).changes[0].share,50)
 assert.equal(analyzeProfile(p).changes[0].delta,-30)
-assert(analyzeProfile(p).countries.coverage>99.9 && analyzeProfile(p).countries.coverage<=100)
+// Physical funds retain their observed cash allocation outside the equity pocket.
+const expectedCoverage = profile => profile.lines.reduce((sum, line) => sum + line.weight * (references[line.asset].equitySleeve?.weightPct ?? 100) / 100, 0)
+assert(Math.abs(analyzeProfile(p).countries.coverage - expectedCoverage(p)) < 1e-8)
 const g=analyzeProfile(p).countries.groups.find(g=>g.rows.some(r=>r.name==='États-Unis'))
 assert(g)
 assert(g.rows.every(r=>r.weight<=g.coverage+0.01))
@@ -26,7 +28,7 @@ assert.equal(analyzeProfile(noDca).monthly,0)
 assert(observation(noDca).includes('Aucun versement'))
 const newPosition={...p,lines:[{...p.lines[0],weight:100,amount:0},{...p.lines[1],weight:0,amount:100}]}
 assert.deepEqual(validateProfile(newPosition),[])
-assert(analyzeProfile(newPosition).countries.coverage>99.9 && analyzeProfile(newPosition).countries.coverage<=100)
+assert(Math.abs(analyzeProfile(newPosition).countries.coverage - expectedCoverage(newPosition)) < 1e-8)
 const unconfirmed={...p,lines:p.lines.map(l=>({...l,isin:''}))}
 assert.equal(analyzeProfile(unconfirmed).countries.coverage,0)
 assert(!publicationReady({...p,mode:'participant',approved:false}))
@@ -72,3 +74,4 @@ for(const scope of PROFILE_SCOPES){
  if(scope!=='Portefeuille investi')assert(buildTweetText(selected).includes(`(${scope})`))
 }
 for(const scope of [undefined,'undefined','','Inconnu'])assert(validateProfile({...p,scope}).length)
+
