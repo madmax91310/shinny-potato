@@ -44,21 +44,25 @@
     "update-market-monthly.yml": {
       "monitorVersion": 2,
       "name": "Historiques mensuels des marchés",
-      "runId": 39575768616,
+      "runId": 39590805436,
       "attempt": 1,
-      "headSha": "613b4aa3dcd55e4fb8b9bcff2b3d4842e607f966",
-      "createdAt": "2026-10-21T09:17:13Z",
-      "completedAt": "2026-10-21T10:10:39Z",
+      "headSha": "b79ceba0bf97b9ffd8412838fd3368422c84563a",
+      "createdAt": "2026-10-21T11:17:05Z",
+      "completedAt": "2026-10-21T11:55:00Z",
       "status": "failure",
       "lastSuccessAt": "2026-10-18T15:09:29Z",
       "collectionStatus": "failure",
       "validationStatus": "success",
-      "recordingStatus": "success",
-      "publicationStatus": "success",
+      "recordingStatus": "failure",
+      "publicationStatus": "not-run",
       "lastCollectionSuccessAt": "2026-10-18T16:00:42Z",
       "lastPublicationSuccessAt": "2026-10-21T10:37:06.525Z",
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39575768616",
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39590805436",
       "failures": [
+        {
+          "job": "refresh",
+          "step": "Commit validated observations"
+        },
         {
           "job": "report-failures",
           "step": "Run echo 'Une source mensuelle a échoué : historique précédent conservé. Les autres mises à jour validées ont été publiées si les audits et le déploiement ont réussi.' >> \"$GITHUB_STEP_SUMMARY\""
@@ -67,28 +71,12 @@
       "dataFailures": {
         "history:fx:TWD": {
           "name": "history:fx:TWD",
-          "completedAt": "2026-10-21T10:10:39Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39575768616",
-          "cause": "The read operation timed out",
+          "completedAt": "2026-10-21T11:55:00Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39590805436",
+          "cause": "Official cross-rate access failed: https://fred.stlouisfed.org/graph/fredgraph.csv?id=DEXTAUS&cosd=1999-01-01&coed=2026-10-21: The read operation timed out | https://fred.stlouisfed.org/graph/fredgraph.csv?id=DEXTAUS: The read operation timed out",
           "field": "Change"
         }
-      },
-      "publicationReceipt": {
-        "commit": "b70cfef8670a40b5e89ff0f7c0d265c77a7fe5d2",
-        "files": {
-          "src/data/anniversary-levels.json": "e4792fe0946e62a4a9de13d98067aed0674bd5ca",
-          "src/data/auto-history-identities.json": "f3e03d5e40670765197df9c2541c6cdee8d61cb2",
-          "src/data/automated-etf-monthly.json": "76ed3942c0a30eeb62a6d65344f50f514cc0b842",
-          "src/data/automated-indices.json": "2fba79a15a86447dd9c5898aae30a1f7e57bf427",
-          "src/data/automated-monthly.json": "4929e7440ece4516181cf3e706016fe7be9d171e",
-          "src/data/monthly-fx.json": "8a26c83fab92a9d56a63fe9e751179dd26b5901c",
-          "src/data/qualified-listing-records.json": "3c936c0113c57ae81ccdc62ceb520edd61502cc2",
-          "src/data/ranking-histories.json": "0a476e33ca04c660a353e07300a5d8113b118667"
-        },
-        "schemaVersion": 1
-      },
-      "publishedCodeSha": "613b4aa3dcd55e4fb8b9bcff2b3d4842e607f966",
-      "publishedDataSha": "304604bb0aa9d49fec917b29f79f259604aa2c94"
+      }
     },
     "collect-etf-pilot.yml": {
       "monitorVersion": 2,
@@ -1257,10 +1245,10 @@
       "dataFailures": {}
     }
   },
-  "updatedAt": "2026-10-21T11:23:12Z",
+  "updatedAt": "2026-10-21T11:55:00Z",
   "monitoring": {
     "schemaVersion": 1,
-    "checkedAt": "2026-10-21T11:42:48.979388+00:00",
+    "checkedAt": "2026-10-21T11:55:20.873248+00:00",
     "revision": 211,
     "active": {
       "workflow:update-publication-observations.yml": {
@@ -1279,7 +1267,7 @@
         "cause": "refresh : Commit validated observations",
         "id": "workflow:update-publication-observations.yml",
         "firstSeenAt": "2026-10-21T11:20:31.588995+00:00",
-        "lastSeenAt": "2026-10-21T11:42:48.979388+00:00"
+        "lastSeenAt": "2026-10-21T11:55:20.873248+00:00"
       },
       "collection:update-market-monthly.yml:history:fx:TWD": {
         "name": "history:fx:TWD",
@@ -1291,18 +1279,18 @@
         ],
         "impactScope": "collector",
         "workflow": "update-market-monthly.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39575768616",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39590805436",
         "to": "/donnees-a-revoir",
         "lastSuccessAt": "2026-10-18T16:00:42Z",
-        "completedAt": "2026-10-21T10:10:39Z",
-        "cause": "The read operation timed out",
+        "completedAt": "2026-10-21T11:55:00Z",
+        "cause": "Official cross-rate access failed: https://fred.stlouisfed.org/graph/fredgraph.csv?id=DEXTAUS&cosd=1999-01-01&coed=2026-10-21: The read operation timed out | https://fred.stlouisfed.org/graph/fredgraph.csv?id=DEXTAUS: The read operation timed out",
         "field": "Change",
         "sourceUrls": [],
         "kind": "collection",
         "dataId": "history:fx:TWD",
         "id": "collection:update-market-monthly.yml:history:fx:TWD",
         "firstSeenAt": "2026-10-19T05:58:42.740410+00:00",
-        "lastSeenAt": "2026-10-21T11:42:48.979388+00:00"
+        "lastSeenAt": "2026-10-21T11:55:20.873248+00:00"
       },
       "collection:update-qualified-exposures.yml:dca-holdings:IE00BJGWQN72": {
         "name": "WisdomTree Cloud Computing UCITS ETF USD Acc",
@@ -1330,7 +1318,7 @@
         "dataId": "dca-holdings:IE00BJGWQN72",
         "id": "collection:update-qualified-exposures.yml:dca-holdings:IE00BJGWQN72",
         "firstSeenAt": "2026-10-21T09:49:46.266914+00:00",
-        "lastSeenAt": "2026-10-21T11:42:48.979388+00:00"
+        "lastSeenAt": "2026-10-21T11:55:20.873248+00:00"
       },
       "collection:update-instrument-metadata.yml:IE00B0M62S72:pea:qualification": {
         "name": "iShares Euro Dividend UCITS ETF",
@@ -1357,7 +1345,7 @@
         "dataId": "IE00B0M62S72:pea:qualification",
         "id": "collection:update-instrument-metadata.yml:IE00B0M62S72:pea:qualification",
         "firstSeenAt": "2026-10-19T19:03:43.742241+00:00",
-        "lastSeenAt": "2026-10-21T11:42:48.979388+00:00"
+        "lastSeenAt": "2026-10-21T11:55:20.873248+00:00"
       },
       "radar:4b633e62dc0a87d1c02f6b7e": {
         "name": "SPDR € Corp Bond UCITS ETF",
@@ -1379,7 +1367,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-19) : Poids des dix premières lignes. Dernière observation conservée ; propositions archivées (etf:IE00B3T9LM79:top10:0261a38d6b954a5f4e504dab:2026-10-19).",
         "id": "radar:4b633e62dc0a87d1c02f6b7e",
         "firstSeenAt": "2026-10-20T19:51:00.268149+00:00",
-        "lastSeenAt": "2026-10-21T11:42:48.979388+00:00"
+        "lastSeenAt": "2026-10-21T11:55:20.873248+00:00"
       }
     },
     "events": [
@@ -17571,9 +17559,9 @@
           "error": null
         }
       ],
-      "reason": "transient-source",
+      "reason": "recording-failed",
       "lastSuccessAt": "2026-10-18T16:00:42Z",
-      "observedRunId": 39575768616,
+      "observedRunId": 39590805436,
       "nextAttemptAt": "2026-10-21T16:54:40.668521+00:00",
       "status": "budget-exhausted"
     },
