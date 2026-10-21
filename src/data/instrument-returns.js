@@ -140,7 +140,7 @@ export const DUEL_SERIES_BY_ISIN = Object.freeze({
 });
 
 export function getInstrumentDuelSeries(isin) {
-  const proxy = SIMULATION_PROXIES[isin] ?? (REVIEWED_PERFORMANCE_META[isin]?.portfolioHistoryBasis === 'proxy' ? REVIEWED_PERFORMANCE_META[isin] : null);
+  const proxy = SIMULATION_PROXIES[isin] ?? (REVIEWED_PERFORMANCE_META[isin]?.portfolioHistoryBasis === 'proxy' && !AUTOMATED_PERFORMANCE[isin]?.values.some(Number.isFinite) ? REVIEWED_PERFORMANCE_META[isin] : null);
   if (proxy && !latestCommonYears([AUTOMATED_ETF[isin]?.performance?.years ?? {}]).length) return { ...proxy, values: getInstrumentReturnValues(isin), basis: 'proxy' };
   const annual = getInstrumentAnnualPerformance(isin);
   const historicalValues = annual?.calendarYears ? HISTORICAL_YEARS.map(year => annual.years[year] ?? null) : annual?.values;

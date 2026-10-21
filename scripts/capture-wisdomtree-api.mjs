@@ -12,4 +12,5 @@ try{
  const body=await response.body()
  if(body.length>8_000_000||!Array.isArray(JSON.parse(body.toString())))throw Error('Invalid issuer API response')
  process.stdout.write(body)
-}finally{await browser.close()}
+}catch(error){process.stderr.write(error.message+'\n');process.exitCode=1}
+finally{await browser.close()}

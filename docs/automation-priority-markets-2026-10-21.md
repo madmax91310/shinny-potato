@@ -12,7 +12,7 @@ Cette livraison traite les cinq priorités demandées. Elle ne certifie pas une 
 | 4. Calendriers manquants | Sept parts disposent de calendriers annuels calculés depuis leurs cotations qualifiées : Robotics, Uranium, Cybersecurity, Silver Miners, Copper Miners, Avantis Small Cap Value et QYLD. Texte, aperçu et image distinguent les cours ajustés du calendrier NAV. | Sept calendriers officiels restent non publiés/non qualifiés. Les treize premières années civiles attendues restent en attente, sans année de lancement artificiellement complétée. |
 | 5. Indices exacts | Collectes réelles de MSCI World et Nasdaq PEA : deux compositions publiées et deux calendriers, sans erreur. Suivi des performances et répartitions d’indices dans la vue prioritaire. Contrôles d’accès renouvelés pour les trente raccordements de compositions intégrales en attente. | Une fiche pays/secteurs/top dix n’est pas une liste intégrale. Les trente compositions d’indices économiques restent à obtenir et qualifier. Aucun poids d’ETF utilisé comme poids de son indice. |
 
-La qualification locale fait passer le backlog ciblé de 102 à 100 : un connecteur physique supplémentaire et l’incident de renouvellement Cloud sont levés localement. La confirmation GitHub et les compteurs réellement publiés priment sur ce relevé. Les quinze contrôles en retard concernent d’autres métadonnées WisdomTree ; ils ne sont pas effacés par ce chantier.
+La qualification locale fait passer le backlog ciblé de 102 à 100 : un connecteur physique supplémentaire et l’incident de renouvellement Cloud sont levés localement. La recette GitHub renouvelle 177 compositions sur 178, dont Uranium, mais Cloud reste en HTTP 403, même dans un navigateur public normal. Son renouvellement n’est donc pas certifié autonome ; cet incident doit rester visible en production. Les compteurs réellement publiés priment sur le relevé local. Les quinze contrôles en retard concernent d’autres métadonnées WisdomTree ; ils ne sont pas effacés par ce chantier.
 
 ## Preuves et renouvellement WisdomTree
 
@@ -22,7 +22,9 @@ Les poids de l’API conservent leur photographie et leur dénominateur NAV. Le 
 
 OpenFIGI reçoit des requêtes ISIN indépendantes, puis si nécessaire des requêtes sur les FIGI de cotation exacts. Un rapprochement exige un FIGI identique, ou une requête du FIGI exact confirmant simultanément le même FIGI composite et la même classe d’actions. Le nom ne propose qu’un candidat. Requêtes, réponses complètes, empreintes et dates sont conservées dans l’observation brute. Les preuves sont réutilisées pendant leur durée de validité ; un nouvel identifiant ou une expiration déclenche leur renouvellement. Une erreur de source conserve la dernière composition validée et son incident.
 
-Le collecteur existant `update-qualified-exposures.yml` renouvelle ces compositions quotidiennement ; aucun nouveau service secret ni abonnement n’est requis.
+Le collecteur existant `update-qualified-exposures.yml` tente le renouvellement quotidiennement. Un accès HTTP 403 déclenche une seule tentative du point public JSON dans Chromium ordinaire, sans identifiants ni résolution de challenge ; un nouveau refus conserve l’incident. Aucun nouveau service secret ni abonnement n’est requis.
+
+La recette a également révélé des lignes de trésorerie Amundi à payer et à recevoir supérieures à 1 % prises séparément. Le lecteur conserve ces lignes signées et leur solde net, contrôle le total NAV et continue de rejeter les positions actions négatives ; aucune renormalisation n’est appliquée. Le proxy historique de simulation QYLD garde sa devise USD, indépendamment du calendrier de cotation EUR de la part UCITS affiché dans la fiche.
 
 ## Consommation et suivi
 
