@@ -30,7 +30,7 @@ jobs:
       - run: python scripts/validate_non_bond_expansion.py
       - run: python scripts/refresh_non_bond_sources.py --fields etf --output "$RUNNER_TEMP/islamic.json"
       - run: python scripts/refresh_index_sources.py --ids world-islamic --require-complete --output "$RUNNER_TEMP/index.json"
-      - run: node scripts/audit-calculator-series-archive.mjs
+      - run: npm run audit:calculator-series
       - uses: actions/upload-artifact@v7.0.1
         if: always()
         with:
