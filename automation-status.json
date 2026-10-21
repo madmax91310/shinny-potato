@@ -471,27 +471,62 @@
     "update-regulatory-data.yml": {
       "monitorVersion": 2,
       "name": "Paramètres fiscaux, LDDS et tarifs de courtiers",
-      "runId": 39571504121,
+      "runId": 39585245137,
       "attempt": 1,
-      "headSha": "a31b4a570dc5f9a03954022b0432ca5ed83f1849",
-      "createdAt": "2026-10-21T08:44:00Z",
-      "completedAt": "2026-10-21T08:47:03Z",
+      "headSha": "1f365a7db4407c867ae2031ca83cced7611c6a45",
+      "createdAt": "2026-10-21T10:31:45Z",
+      "completedAt": "2026-10-21T10:38:12Z",
       "status": "failure",
       "lastSuccessAt": "2026-10-18T21:19:08Z",
-      "collectionStatus": "success",
+      "collectionStatus": "failure",
       "validationStatus": "success",
-      "recordingStatus": "failure",
-      "publicationStatus": "not-run",
+      "recordingStatus": "success",
+      "publicationStatus": "success",
       "lastCollectionSuccessAt": "2026-10-21T08:47:03Z",
-      "lastPublicationSuccessAt": "2026-10-21T07:19:14Z",
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39571504121",
+      "lastPublicationSuccessAt": "2026-10-21T10:34:31.601Z",
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39585245137",
       "failures": [
         {
-          "job": "refresh",
-          "step": "Commit validated observations"
+          "job": "report-failures",
+          "step": "Run echo 'Une collecte réglementaire a échoué. Les dernières valeurs validées restent disponibles. Consulter regulatory-observations.' >> \"$GITHUB_STEP_SUMMARY\""
         }
       ],
-      "dataFailures": {}
+      "dataFailures": {
+        "fiscal-observation:dividends": {
+          "name": "Impôt sur le revenu - Revenus d'épargne et de placement",
+          "completedAt": "2026-10-21T10:38:12Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39585245137",
+          "cause": "Remote end closed connection without response"
+        },
+        "fiscal-observation:pee": {
+          "name": "Plan d'épargne entreprise (PEE)",
+          "completedAt": "2026-10-21T10:38:12Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39585245137",
+          "cause": "Remote end closed connection without response"
+        },
+        "fiscal-observation:rent": {
+          "name": "Impôt sur le revenu - Revenus locatifs (location non meublée)",
+          "completedAt": "2026-10-21T10:38:12Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39585245137",
+          "cause": "Remote end closed connection without response"
+        },
+        "fiscal-observation:lmnp": {
+          "name": "Impôt sur le revenu - Revenus d'une location meublée",
+          "completedAt": "2026-10-21T10:38:12Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39585245137",
+          "cause": "Remote end closed connection without response"
+        }
+      },
+      "publicationReceipt": {
+        "commit": "304604bb0aa9d49fec917b29f79f259604aa2c94",
+        "files": {
+          "src/data/automated-broker-tariffs.json": "c6f5ba7d6141f848004e8dda9f900a1d2da91241",
+          "src/data/automated-regulatory.json": "2db81b6b515d109b9b8b13ac83fd81dff5ce2075"
+        },
+        "schemaVersion": 1
+      },
+      "publishedCodeSha": "613b4aa3dcd55e4fb8b9bcff2b3d4842e607f966",
+      "publishedDataSha": "8bc5606b732a439060dd9c80cf056151f366f671"
     },
     "update-scpi.yml": {
       "monitorVersion": 2,
@@ -1587,29 +1622,95 @@
       "dataFailures": {}
     }
   },
-  "updatedAt": "2026-10-21T10:35:40Z",
+  "updatedAt": "2026-10-21T10:38:12Z",
   "monitoring": {
     "schemaVersion": 1,
-    "checkedAt": "2026-10-21T10:36:00.480469+00:00",
-    "revision": 207,
+    "checkedAt": "2026-10-21T10:38:36.416483+00:00",
+    "revision": 208,
     "active": {
-      "workflow:update-regulatory-data.yml": {
-        "name": "Paramètres fiscaux, LDDS et tarifs de courtiers",
+      "collection:update-regulatory-data.yml:fiscal-observation:dividends": {
+        "name": "Impôt sur le revenu - Revenus d'épargne et de placement",
         "tools": [
           "Comparatif courtiers",
           "Fiches pratiques"
         ],
         "impactScope": "collector",
         "workflow": "update-regulatory-data.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39571504121",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39585245137",
         "to": "/donnees-a-revoir",
         "lastSuccessAt": "2026-10-21T08:47:03Z",
+        "completedAt": "2026-10-21T10:38:12Z",
+        "cause": "Remote end closed connection without response",
+        "sourceUrls": [],
         "kind": "collection",
-        "field": "Exécution du collecteur",
-        "cause": "refresh : Commit validated observations",
-        "id": "workflow:update-regulatory-data.yml",
-        "firstSeenAt": "2026-10-21T08:43:51.764046+00:00",
-        "lastSeenAt": "2026-10-21T10:36:00.480469+00:00"
+        "field": "Champs du collecteur",
+        "dataId": "fiscal-observation:dividends",
+        "id": "collection:update-regulatory-data.yml:fiscal-observation:dividends",
+        "firstSeenAt": "2026-10-21T10:38:36.416483+00:00",
+        "lastSeenAt": "2026-10-21T10:38:36.416483+00:00"
+      },
+      "collection:update-regulatory-data.yml:fiscal-observation:pee": {
+        "name": "Plan d'épargne entreprise (PEE)",
+        "tools": [
+          "Comparatif courtiers",
+          "Fiches pratiques"
+        ],
+        "impactScope": "collector",
+        "workflow": "update-regulatory-data.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39585245137",
+        "to": "/donnees-a-revoir",
+        "lastSuccessAt": "2026-10-21T08:47:03Z",
+        "completedAt": "2026-10-21T10:38:12Z",
+        "cause": "Remote end closed connection without response",
+        "sourceUrls": [],
+        "kind": "collection",
+        "field": "Champs du collecteur",
+        "dataId": "fiscal-observation:pee",
+        "id": "collection:update-regulatory-data.yml:fiscal-observation:pee",
+        "firstSeenAt": "2026-10-21T10:38:36.416483+00:00",
+        "lastSeenAt": "2026-10-21T10:38:36.416483+00:00"
+      },
+      "collection:update-regulatory-data.yml:fiscal-observation:rent": {
+        "name": "Impôt sur le revenu - Revenus locatifs (location non meublée)",
+        "tools": [
+          "Comparatif courtiers",
+          "Fiches pratiques"
+        ],
+        "impactScope": "collector",
+        "workflow": "update-regulatory-data.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39585245137",
+        "to": "/donnees-a-revoir",
+        "lastSuccessAt": "2026-10-21T08:47:03Z",
+        "completedAt": "2026-10-21T10:38:12Z",
+        "cause": "Remote end closed connection without response",
+        "sourceUrls": [],
+        "kind": "collection",
+        "field": "Champs du collecteur",
+        "dataId": "fiscal-observation:rent",
+        "id": "collection:update-regulatory-data.yml:fiscal-observation:rent",
+        "firstSeenAt": "2026-10-21T10:38:36.416483+00:00",
+        "lastSeenAt": "2026-10-21T10:38:36.416483+00:00"
+      },
+      "collection:update-regulatory-data.yml:fiscal-observation:lmnp": {
+        "name": "Impôt sur le revenu - Revenus d'une location meublée",
+        "tools": [
+          "Comparatif courtiers",
+          "Fiches pratiques"
+        ],
+        "impactScope": "collector",
+        "workflow": "update-regulatory-data.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39585245137",
+        "to": "/donnees-a-revoir",
+        "lastSuccessAt": "2026-10-21T08:47:03Z",
+        "completedAt": "2026-10-21T10:38:12Z",
+        "cause": "Remote end closed connection without response",
+        "sourceUrls": [],
+        "kind": "collection",
+        "field": "Champs du collecteur",
+        "dataId": "fiscal-observation:lmnp",
+        "id": "collection:update-regulatory-data.yml:fiscal-observation:lmnp",
+        "firstSeenAt": "2026-10-21T10:38:36.416483+00:00",
+        "lastSeenAt": "2026-10-21T10:38:36.416483+00:00"
       },
       "collection:update-market-monthly.yml:history:fx:TWD": {
         "name": "history:fx:TWD",
@@ -1632,7 +1733,7 @@
         "dataId": "history:fx:TWD",
         "id": "collection:update-market-monthly.yml:history:fx:TWD",
         "firstSeenAt": "2026-10-19T05:58:42.740410+00:00",
-        "lastSeenAt": "2026-10-21T10:36:00.480469+00:00"
+        "lastSeenAt": "2026-10-21T10:38:36.416483+00:00"
       },
       "collection:update-qualified-exposures.yml:dca-holdings:IE00BJGWQN72": {
         "name": "WisdomTree Cloud Computing UCITS ETF USD Acc",
@@ -1660,7 +1761,7 @@
         "dataId": "dca-holdings:IE00BJGWQN72",
         "id": "collection:update-qualified-exposures.yml:dca-holdings:IE00BJGWQN72",
         "firstSeenAt": "2026-10-21T09:49:46.266914+00:00",
-        "lastSeenAt": "2026-10-21T10:36:00.480469+00:00"
+        "lastSeenAt": "2026-10-21T10:38:36.416483+00:00"
       },
       "collection:update-instrument-metadata.yml:IE00B0M62S72:pea:qualification": {
         "name": "iShares Euro Dividend UCITS ETF",
@@ -1687,7 +1788,7 @@
         "dataId": "IE00B0M62S72:pea:qualification",
         "id": "collection:update-instrument-metadata.yml:IE00B0M62S72:pea:qualification",
         "firstSeenAt": "2026-10-19T19:03:43.742241+00:00",
-        "lastSeenAt": "2026-10-21T10:36:00.480469+00:00"
+        "lastSeenAt": "2026-10-21T10:38:36.416483+00:00"
       },
       "field:instrument:IE00BJGWQN72:completeHoldings": {
         "id": "field:instrument:IE00BJGWQN72:completeHoldings",
@@ -1716,7 +1817,7 @@
         "evaluatedAt": "2026-10-21",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-21T05:38:08.549445+00:00",
-        "lastSeenAt": "2026-10-21T10:36:00.480469+00:00"
+        "lastSeenAt": "2026-10-21T10:38:36.416483+00:00"
       },
       "radar:4b633e62dc0a87d1c02f6b7e": {
         "name": "SPDR € Corp Bond UCITS ETF",
@@ -1738,40 +1839,10 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-19) : Poids des dix premières lignes. Dernière observation conservée ; propositions archivées (etf:IE00B3T9LM79:top10:0261a38d6b954a5f4e504dab:2026-10-19).",
         "id": "radar:4b633e62dc0a87d1c02f6b7e",
         "firstSeenAt": "2026-10-20T19:51:00.268149+00:00",
-        "lastSeenAt": "2026-10-21T10:36:00.480469+00:00"
+        "lastSeenAt": "2026-10-21T10:38:36.416483+00:00"
       }
     },
     "events": [
-      {
-        "revision": 178,
-        "at": "2026-10-20T13:33:14.516248+00:00",
-        "opened": [],
-        "resolved": [
-          {
-            "name": "anniversary-nasdaq100",
-            "tools": [
-              "Pouvoir d’achat",
-              "Il y a X ans"
-            ],
-            "impactScope": "collector",
-            "workflow": "update-publication-observations.yml",
-            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39273498823",
-            "to": "/donnees-a-revoir",
-            "lastSuccessAt": "2026-10-18T21:22:15Z",
-            "completedAt": "2026-10-19T15:26:19Z",
-            "cause": "'timestamp'",
-            "sourceUrls": [],
-            "kind": "collection",
-            "field": "Champs du collecteur",
-            "dataId": "anniversary-nasdaq100",
-            "id": "collection:update-publication-observations.yml:anniversary-nasdaq100",
-            "firstSeenAt": "2026-10-19T15:54:22.458211+00:00",
-            "lastSeenAt": "2026-10-20T13:26:53.138115+00:00",
-            "resolvedAt": "2026-10-20T13:33:14.516248+00:00"
-          }
-        ],
-        "escalated": []
-      },
       {
         "revision": 179,
         "at": "2026-10-20T13:34:56.697442+00:00",
@@ -11505,9 +11576,61 @@
         ],
         "retired": [],
         "escalated": []
+      },
+      {
+        "revision": 208,
+        "at": "2026-10-21T10:38:36.416483+00:00",
+        "opened": [
+          "collection:update-regulatory-data.yml:fiscal-observation:dividends",
+          "collection:update-regulatory-data.yml:fiscal-observation:pee",
+          "collection:update-regulatory-data.yml:fiscal-observation:rent",
+          "collection:update-regulatory-data.yml:fiscal-observation:lmnp"
+        ],
+        "resolved": [
+          {
+            "name": "Paramètres fiscaux, LDDS et tarifs de courtiers",
+            "tools": [
+              "Comparatif courtiers",
+              "Fiches pratiques"
+            ],
+            "impactScope": "collector",
+            "workflow": "update-regulatory-data.yml",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39571504121",
+            "to": "/donnees-a-revoir",
+            "lastSuccessAt": "2026-10-21T08:47:03Z",
+            "kind": "collection",
+            "field": "Exécution du collecteur",
+            "cause": "refresh : Commit validated observations",
+            "id": "workflow:update-regulatory-data.yml",
+            "firstSeenAt": "2026-10-21T08:43:51.764046+00:00",
+            "lastSeenAt": "2026-10-21T10:36:00.480469+00:00",
+            "resolvedAt": "2026-10-21T10:38:36.416483+00:00"
+          }
+        ],
+        "retired": [],
+        "escalated": []
       }
     ],
     "resolved": [
+      {
+        "name": "Paramètres fiscaux, LDDS et tarifs de courtiers",
+        "tools": [
+          "Comparatif courtiers",
+          "Fiches pratiques"
+        ],
+        "impactScope": "collector",
+        "workflow": "update-regulatory-data.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39571504121",
+        "to": "/donnees-a-revoir",
+        "lastSuccessAt": "2026-10-21T08:47:03Z",
+        "kind": "collection",
+        "field": "Exécution du collecteur",
+        "cause": "refresh : Commit validated observations",
+        "id": "workflow:update-regulatory-data.yml",
+        "firstSeenAt": "2026-10-21T08:43:51.764046+00:00",
+        "lastSeenAt": "2026-10-21T10:36:00.480469+00:00",
+        "resolvedAt": "2026-10-21T10:38:36.416483+00:00"
+      },
       {
         "name": "Intégration des nouveaux actifs",
         "tools": [
@@ -14093,28 +14216,6 @@
         "field": "Poids du pays Macao",
         "cause": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays Macao. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Macao:630657e8b950b3715e6c0f9a:2026-10-19).",
         "id": "radar:b6a2cc31378ca28a3a20b8c5",
-        "firstSeenAt": "2026-10-20T16:05:29.541605+00:00",
-        "lastSeenAt": "2026-10-21T00:34:42.908591+00:00",
-        "resolvedAt": "2026-10-21T00:36:50.700683+00:00"
-      },
-      {
-        "name": "Xtrackers FTSE All-World UCITS ETF 1C",
-        "tools": [
-          "Impact des frais",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "sourceUrls": [
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE000L6ZMMC4/historicaldata/download",
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE000L6ZMMC4/pdpMetaTagsTealium",
-          "https://etf.dws.com/api/pdp/fr-fr/etf/IE000L6ZMMC4/pdpMetaTagsTealium",
-          "https://www.justetf.com/en/etf-profile.html?isin=IE000L6ZMMC4"
-        ],
-        "to": "/bibliotheque-donnees?id=IE000L6ZMMC4",
-        "kind": "conflict",
-        "field": "Poids du pays Jersey",
-        "cause": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays Jersey. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Jersey:630657e8b950b3715e6c0f9a:2026-10-19).",
-        "id": "radar:758259cc58c198bd77c71ef5",
         "firstSeenAt": "2026-10-20T16:05:29.541605+00:00",
         "lastSeenAt": "2026-10-21T00:34:42.908591+00:00",
         "resolvedAt": "2026-10-21T00:36:50.700683+00:00"
@@ -17754,10 +17855,10 @@
           "error": null
         }
       ],
-      "reason": "recording-failed",
+      "reason": "transient-source",
       "lastSuccessAt": "2026-10-21T08:47:03Z",
-      "observedRunId": 39571504121,
-      "status": "awaiting-current-run",
+      "observedRunId": 39585245137,
+      "status": "waiting",
       "nextAttemptAt": "2026-10-21T12:43:51.773573+00:00"
     },
     "collect-etf-pilot.yml": {
