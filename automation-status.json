@@ -17494,14 +17494,15 @@
           "at": "2026-10-21T15:14:24.094816+00:00",
           "reason": "transient-source",
           "sourceRunId": 39623497345,
-          "status": "reserved",
-          "ref": "master"
+          "status": "dispatched",
+          "ref": "master",
+          "error": null
         }
       ],
       "reason": "transient-source",
       "lastSuccessAt": "2026-10-21T12:23:36Z",
       "observedRunId": 39623497345,
-      "status": "reserved",
+      "status": "dispatched",
       "nextAttemptAt": "2026-10-21T19:14:24.094816+00:00"
     },
     "update-publication-observations.yml": {
