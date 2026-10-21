@@ -36,19 +36,20 @@ class Holdings(unittest.TestCase):
             with self.assertRaisesRegex(ValueError,'Mixed fund/date'):parse(page(bad),SHARE,NOW,mapping,['2026-10-19'])
     def test_cloud_access_fallback_never_retries_a_financial_validation_failure(self):
         from collect_wisdomtree_holdings import collect
+        from wisdomtree_api_holdings import IssuerApiUnavailable
         value={'complete':True,'asOf':'2026-10-19','rows':[{'isin':'US0000000001'}]}
-        with patch('wisdomtree_api_holdings.collect',side_effect=urllib.error.HTTPError('https://www.wisdomtree.com/api/fund-holdings/3104137',403,'Forbidden',{},None)),patch('collect_wisdomtree_holdings.collect_rankings',return_value=value) as alternate:
+        with patch('wisdomtree_api_holdings.collect',side_effect=IssuerApiUnavailable('HTTP 403')),patch('collect_wisdomtree_holdings.collect_rankings',return_value=value) as alternate:
             result=collect(SHARE,NOW)
             self.assertEqual(result['asOf'],'2026-10-19')
             self.assertEqual(result['accessAttempts'][0]['status'],'unavailable')
             alternate.assert_called_once()
-        for error in [ValueError('Wrong API fund identity'),urllib.error.HTTPError('https://www.wisdomtree.com/api/fund-holdings/3104137',404,'Removed',{},None)]:
+        for error in [ValueError('Wrong API fund identity'),urllib.error.HTTPError('https://api.openfigi.com/v3/mapping',403,'Identifier service unavailable',{},None),urllib.error.HTTPError('https://www.wisdomtree.com/api/fund-holdings/3104137',404,'Removed',{},None)]:
             with patch('wisdomtree_api_holdings.collect',side_effect=error),patch('collect_wisdomtree_holdings.collect_rankings') as alternate:
                 with self.assertRaises(type(error)):collect(SHARE,NOW)
                 alternate.assert_not_called()
         from observation_status import holdings_status
         # A validated but older alternate never replaces the newer observation.
-        with patch('wisdomtree_api_holdings.collect',side_effect=TimeoutError('down')),patch('collect_wisdomtree_holdings.collect_rankings',return_value={**value,'asOf':'2026-10-18'}):
+        with patch('wisdomtree_api_holdings.collect',side_effect=IssuerApiUnavailable('timeout')),patch('collect_wisdomtree_holdings.collect_rankings',return_value={**value,'asOf':'2026-10-18'}):
             old=collect(SHARE,NOW)
         previous={'asOf':'2026-10-19','checkedAt':'2026-10-19T00:00:00+00:00'}
         error='Date regression' if previous['asOf']>old['asOf'] else None

@@ -1,6 +1,8 @@
 import copy
 import datetime as dt
 import unittest
+import urllib.error
+from unittest.mock import patch
 from wisdomtree_api_holdings import parse, identity_map
 from security_identifier_observations import API, digest
 
@@ -32,6 +34,18 @@ class ApiHoldings(unittest.TestCase):
                 parse(body,SHARE,NOW,{'BBG000000000':'US0000000001'})
         with self.assertRaises(ValueError):parse(portfolio()[:-1],SHARE,NOW,{'BBG000000000':'US0000000001'})
         with self.assertRaises(ValueError):parse(portfolio(),SHARE,NOW,{})
+
+    def test_only_the_fund_api_transport_is_marked_for_fallback(self):
+        from wisdomtree_api_holdings import collect,IssuerApiUnavailable
+        text='IE00BJGWQN72 WisdomTree Cloud Computing UCITS ETF - USD Acc Replication Method Physical (fully replicated) Base Currency USD WCLD WCLD LN Document Date: 20/10/2026'
+        for code in [403,429,503,404]:
+            def fetch(url,**kwargs):
+                if 'dataspanapi' in url:return b'%PDF-test'
+                raise urllib.error.HTTPError(url,code,'Source unavailable',{},None)
+            with self.subTest(code=code),patch('wisdomtree_api_holdings.pdf_text',return_value=text):
+                with self.assertRaises(IssuerApiUnavailable if code!=404 else urllib.error.HTTPError):collect(SHARE,NOW,fetch=fetch)
+        def identity_failure(url,**kwargs):raise urllib.error.HTTPError(url,403,'Identity document unavailable',{},None)
+        with self.assertRaises(urllib.error.HTTPError):collect(SHARE,NOW,fetch=identity_failure)
 
     def test_exact_figi_cache_expiry_conflict_and_proof(self):
         response=[{'data':[{'figi':'BBG000000000','marketSector':'Equity','name':'Different label'}]}]

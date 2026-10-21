@@ -1,5 +1,6 @@
 """Public issuer holdings API; FIGIs are joined to independently proved ISINs."""
 import datetime as dt
+import http.client
 import json
 import math
 import os
@@ -125,13 +126,16 @@ def collect(share, now, fetch=download, post=mapping_request):
         raw = fetch(url, headers={'User-Agent':'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36',
                                  'Accept':'application/json','Referer':'https://www.wisdomtree.com/gb/products/equities/wisdomtree-cloud-computing-ucits-etf---usd-acc'})
     except urllib.error.HTTPError as error:
+        if error.code not in (403,408,429,500,502,503,504):raise
         if error.code!=403 or os.environ.get('WISDOMTREE_BROWSER_CAPTURE')!='1':
-            raise
+            raise IssuerApiUnavailable(f'Public issuer API unavailable: HTTP {error.code}') from error
         result=subprocess.run(['node',str(ROOT/'scripts/capture-wisdomtree-api.mjs'),url],cwd=ROOT,capture_output=True,timeout=45)
         if result.returncode:
             raise IssuerApiUnavailable('Issuer API HTTP 403; public browser also failed: '+result.stderr.decode(errors='replace')[-700:])
         raw=result.stdout
         capture_method='public-browser-json'
+    except (urllib.error.URLError,TimeoutError,ConnectionError,http.client.IncompleteRead) as error:
+        raise IssuerApiUnavailable('Public issuer API unavailable: '+str(error)) from error
     payload = json.loads(raw)
     previous = json.loads((ROOT/'src/data/dca-complete-holdings.json').read_text())
     observations = previous.get(share['isin'], {}).get('identityObservations', [])

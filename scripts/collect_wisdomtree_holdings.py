@@ -4,8 +4,6 @@ import hashlib
 import json
 import math
 import re
-import urllib.error
-import http.client
 from functools import lru_cache
 from pathlib import Path
 from bs4 import BeautifulSoup
@@ -92,15 +90,12 @@ def parse(page,share,now,mapping,identity_dates):
     return rows,stamp
 
 def collect(share,now):
-    from wisdomtree_api_holdings import CLASSES, collect as api_collect
+    from wisdomtree_api_holdings import CLASSES, IssuerApiUnavailable, collect as api_collect
     if share['isin'] not in CLASSES:
         return collect_rankings(share,now)
     try:
         return api_collect(share,now)
-    except urllib.error.HTTPError as error:
-        if error.code not in (403,408,429,500,502,503,504):raise
-        primary_error=error
-    except (urllib.error.URLError,TimeoutError,ConnectionError,http.client.IncompleteRead) as error:
+    except IssuerApiUnavailable as error:
         primary_error=error
     # Same exact fund, public issuer SSR portfolio. Identity/date/weight gates
     # are unchanged. The caller still refuses a date older than retained data.
