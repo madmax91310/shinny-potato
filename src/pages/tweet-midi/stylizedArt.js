@@ -20,7 +20,7 @@ export function getPaperArt(themeId, isin) {
 }
 
 const neonGroups = {
-  world: ['msciWorld', 'msciWorldSmallCap', 'msciAcwi','msciAcwiImi','msciWorldExUsa', 'msciWorldMomentum', 'msciWorldQuality', 'msciWorldValue'], america: ['sp500', 'nasdaq100', 'msciUsa', 'russell2000'], france: ['cac40'], europe: ['stoxx600', 'msciEurope'], emerging: ['msciEmerging', 'msciIndia', 'msciEmergingExChina'],
+  world: ['world-net','acwi-gross','ftseAllWorld','msciWorld', 'msciWorldSmallCap', 'msciAcwi','msciAcwiImi','msciWorldExUsa', 'msciWorldMomentum', 'msciWorldQuality', 'msciWorldValue'], america: ['sp500', 'nasdaq100', 'msciUsa', 'russell2000'], france: ['cac40'], europe: ['stoxx600', 'msciEurope'], emerging: ['emerging-net','msciEmerging', 'msciIndia', 'msciEmergingExChina'],
   chip: ['soxx', 'apple', 'microsoft', 'broadcom', 'nvidia', 'google', 'meta', 'adobe','sap', 'asml', 'intel'],
   gold: ['or'], silver: ['silver'], money: ['euroMoney'], bonds: ['euroGovShort', 'euroGov13', 'globalBondEur', 'euroInflationBond', 'euroCorporateBond', 'euroHighYieldBond', 'berkshire'],
   luxury: ['lvmh', 'hermes'], car: ['tesla'], shopping: ['booking','home-depot','nike', 'amazon', 'costco'], cinema: ['disney','netflix'], payments: ['mastercard','jpmorgan', 'visa', 'paypal'], groceries: ['pepsico','procter-gamble', 'nestle', 'cocacola'],
@@ -34,6 +34,7 @@ const historicalEtfSceneFiles = Object.fromEntries(
   ['robotics', 'health', 'finance', 'infrastructure', 'renewables', 'energy', 'commodities'].map(scene => [scene, `etf-night/${scene}.webp`]),
 )
 export const NEON_ASSET_ART = Object.freeze({
+  'japan-net': { scene:'japan', sceneFile:'paper/japan.webp', mark:null },
   ...Object.fromEntries(Object.entries(EQUITY_HISTORY_IDENTITIES).map(([id, asset]) => [id, {scene:asset.scene, sceneFile:`etf-night/${asset.scene}.webp`, mark:null}])),
   ...Object.fromEntries(Object.entries(neonGroups).flatMap(([scene, ids]) => ids.map(id => [id, { scene: scene === 'crypto' ? null : scene, mark: ANNIVERSARY_ART[id]?.kind === 'logo' ? ANNIVERSARY_ART[id].mark : null }]))),
   ...Object.fromEntries(Object.entries(ETF_HISTORY_IDENTITIES).map(([id, asset]) => [id, {

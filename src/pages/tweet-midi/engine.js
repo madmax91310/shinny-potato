@@ -185,7 +185,7 @@ const ANNIVERSAIRE_SUBJECTS_FLAT = [
   { categorie: null, items: ANNIVERSAIRE_ELIGIBLE_ASSETS.map((a) => ({ id: a.id, label: `${a.icon} ${a.label}${a.anniversaryVariant ? ` — ${a.anniversaryVariant}` : ""}` })) },
 ];
 const PERFORMANCE_DEPUIS_SUBJECTS_FLAT = [
-  { categorie: null, items: MARKET_ASSETS.map((a) => ({ id: a.id, isin:a.isin, search:ASSETS[a.id]?.ticker??'', label: `${a.icon} ${historyOptionLabel(a.id, ASSETS[a.id])}` })) },
+  { categorie: null, items: MARKET_ASSETS.filter(a => performanceYears.get(a.id)?.length).map((a) => ({ id: a.id, isin:a.isin, search:ASSETS[a.id]?.ticker??'', label: `${a.icon} ${historyOptionLabel(a.id, ASSETS[a.id])}` })) },
 ];
 
 function getSubjectsForFormat(format) {

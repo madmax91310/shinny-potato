@@ -278,7 +278,12 @@ for (const asset of ASSETS.filter(a => a.instrumentType === 'EQUITY')) {
  add(asset.id, 'single-stock', asset.name, `On détient ici des actions de ${asset.name}. Le résultat dépend d’une seule entreprise, qui peut déjà être présente dans les ETF du portefeuille.`);
  entries[asset.id].description = `Actions de ${asset.name}.`;
 }
-for(const asset of ASSETS.filter(a=>a.automatedManual)) {
+for(const asset of ASSETS.filter(a=>a.automatedManual || a.annualManual)) {
+ if(asset.annualManual && asset.cat==='matieres_premieres') {
+  add(asset.id,'commodity',asset.name,'Cette ligne suit un métal physique après les frais du produit ; elle ne verse pas de revenu.');
+  entries[asset.id].description=asset.name;
+  continue;
+ }
  add(asset.id,'fund',asset.name,'Cette ligne suit la sélection et les règles propres au fonds. Sa place dans le portefeuille dépend de ses entreprises et de ses expositions, qui peuvent recouper les autres lignes.');
  entries[asset.id].description=asset.name;
 }

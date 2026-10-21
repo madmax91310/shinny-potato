@@ -7,6 +7,8 @@ import { PROFILES } from '../src/pages/portfolio-generator/theses.js'
 import { getRecipes } from '../src/pages/portfolio-generator/recipes.js'
 import { ASSETS, ASSET_ORDER } from '../src/data/market-history.js'
 import { getAnnualReturnStartYears, getValidYearsBackOptions } from '../src/pages/tweet-midi/data/marketHistory.js'
+import { getPerformanceAssetId } from '../src/data/performance-links.js'
+import { getAnnualReturnStartYears as performanceYears } from '../src/pages/tweet-midi/data/performanceHistory.js'
 import { references } from '../src/pages/dca-profiles/engine.js'
 import { catalogCoverage } from '../src/pages/dca-profiles/verification.js'
 import { INSTRUMENT_LISTINGS_BY_ISIN } from '../src/data/instrument-listings.js'
@@ -68,16 +70,20 @@ const rows = [...instruments.values()].map(e => {
   const portfolio = PORTFOLIO.filter(a => a.isin === e.isin)
   const monthly = h.map(([id,a]) => ({id, automatic:sources.has(id), first:a.points[0]?.date, last:a.points.at(-1)?.date, currency:a.currency,
     performance:getAnnualReturnStartYears(id).length > 0, simulation:simulations.has(id), anniversary:Boolean(a.anniversaryPoints?.length && levels[id] && getValidYearsBackOptions(id,now).length)}))
+  const performanceId=getPerformanceAssetId(e.isin)
+  const annualPerformance=Boolean(performanceId && performanceYears(performanceId).length)
   const holdings = refs.find(([,a]) => a.holdings)?.[1].holdings
   const candidate = DISTINCT_PORTFOLIO_CANDIDATES.find(a=>a.isin===e.isin)
   const qualifiedYears = candidate ? latestCommonYears([monthlyReturns[e.isin]?.years ?? {}],{minimum:1}) : []
   const completeYears = latestCommonYears([monthlyReturns[e.isin]?.years ?? {}],{minimum:1}).length
   const generator = portfolio.some(a => used.has(a.id) && !a.manualOnly) ? 'automatic' : portfolio.length ? 'manual' : 'missing'
-  const blocker = generator === 'missing' && (ETFS.some(a => a.isin === e.isin) || DEFAULT_THEMES.some(t => t.etfs.some(a => a.isin === e.isin)) || refs.length) ? historyBlocker(e.isin, h, completeYears) : null
+  // A composition-only consumer does not require monthly prices or portfolio admission.
+  const compositionOnly = refs.length>0 && refs.every(([,ref])=>ref.compositionOnly===true)
+  const blocker = !compositionOnly && generator === 'missing' && (ETFS.some(a => a.isin === e.isin) || DEFAULT_THEMES.some(t => t.etfs.some(a => a.isin === e.isin)) || refs.length) ? historyBlocker(e.isin, h, completeYears) : null
   return {...e, practical:TOPICS.filter(t=>t.products?.includes(e.isin)).map(t=>t.id), duel:DUEL_CATALOG.some(a=>a.isin===e.isin),
     qualification:candidate ? {completeYears:qualifiedYears,minimumDuel:3,minimumGenerator:6,reason:qualifiedYears.length<3?'Historique de la part trop court pour les duels et le générateur':qualifiedYears.length<6?'Historique utilisable en manuel ; six années communes requises en génération automatique':'Historique suffisamment long ; contrôles de construction et de risque maintenus'} : null,
     sheet:ETFS.some(a => a.isin === e.isin), comparison:DEFAULT_THEMES.some(t => t.etfs.some(a => a.isin === e.isin)),
-    generator, blocker: blocker ? {...blocker, field:'monthly', tools:['portfolio-generator', ...(!monthly.some(h=>h.performance)?['performance-rankings','tweet-midi']:[]), ...(!monthly.some(h=>h.simulation)?['investment-calculator']:[])], checkedAt:qualification[e.isin]?.checkedAt ?? metadataStatus[e.isin]?.checkedAt ?? null} : null,
+    generator, annualPerformance, blocker: blocker ? {...blocker, field:'monthly', tools:['portfolio-generator', ...(!monthly.some(h=>h.performance)?['performance-rankings',...(!annualPerformance?['tweet-midi']:[])]:[]), ...(!monthly.some(h=>h.simulation)?['investment-calculator']:[])], checkedAt:qualification[e.isin]?.checkedAt ?? metadataStatus[e.isin]?.checkedAt ?? null} : null,
     dca:refs.length > 0, countries:exposure('countries'), sectors:exposure('sectors'),
     holdings:holdings ? {...holdings, automatic:Boolean(fullSources[e.isin])} : null, monthly,
     historyCandidate:!h.length && (INSTRUMENT_LISTINGS_BY_ISIN[e.isin] ?? []).some(l => COLLECTABLE[l.mic] && ['EUR','USD'].includes(l.currency) && l.evidenceId),
@@ -100,7 +106,7 @@ if (process.argv.includes('--write')) {
   const BLOCKER_LABELS = {'no-listing':'Sans cotation', 'listing-not-collectable':'Cotation non collectable', 'qualification-failed':'Qualification échouée', 'qualification-pending':'Qualification en attente', 'collection-pending':'Collecte en attente', 'history-short':'Historique court'}
   const blocked = Object.entries(summary.blockers).filter(([,n]) => n).map(([code,n]) => `${BLOCKER_LABELS[code]} : ${n}`).join(' · ') || 'aucun'
   const exposureLabel = v => ({available:'Oui', 'not-applicable':'Sans objet', incomplete:'Partiel', missing:'Absent'}[v.status])
-  const table = rows.map(r => `| ${r.name.replaceAll('|','/')} | ${r.isin} | ${mark(r.sheet)} | ${mark(r.comparison)} | ${r.generator} | ${exposureLabel(r.countries)} / ${exposureLabel(r.sectors)} | ${r.holdings?.complete ? 'Complète' : r.holdings ? 'Partielle' : '—'} | ${mark(r.monthly.some(h=>h.performance))} / ${mark(r.monthly.some(h=>h.simulation))} / ${mark(r.monthly.some(h=>h.anniversary))} | ${r.blocker ? `${BLOCKER_LABELS[r.blocker.code]} — ${r.blocker.detail.replaceAll('|','/')}` : '—'} |`).join('\n')
+  const table = rows.map(r => `| ${r.name.replaceAll('|','/')} | ${r.isin} | ${mark(r.sheet)} | ${mark(r.comparison)} | ${r.generator} | ${exposureLabel(r.countries)} / ${exposureLabel(r.sectors)} | ${r.holdings?.complete ? 'Complète' : r.holdings ? 'Partielle' : '—'} | ${mark(r.annualPerformance || r.monthly.some(h=>h.performance))} / ${mark(r.monthly.some(h=>h.simulation))} / ${mark(r.monthly.some(h=>h.anniversary))} | ${r.blocker ? `${BLOCKER_LABELS[r.blocker.code]} — ${r.blocker.detail.replaceAll('|','/')}` : '—'} |`).join('\n')
   writeFileSync('docs/asset-tool-routing.md', `# Raccordements par actif et par outil\n\nGénéré le ${now.toISOString().slice(0,10)} par \`node scripts/audit-asset-tool-routing.mjs --write\`. Le JSON associé contient les sources automatiques, dates, devises et motifs détaillés.\n\n« Sans objet » ne signifie pas donnée manquante. « Complète » décrit la table collectée, pas la possibilité de calculer un recouvrement intégral : identification, fraîcheur et compatibilité restent contrôlées par le moteur. Un candidat historique possède une cotation documentée, mais sa série doit encore passer la collecte et les contrôles. Les actifs utilisés sont conservés.\n\nActifs présentés sans historique automatique (${blocked}) : la colonne « Blocage » donne la cause relevée et ce qui est attendu.\n\n| Actif | ISIN | Fiche | Comparatif | Générateur | Pays / secteurs | Positions | Performance / Simulation / Anniversaire | Blocage |\n|---|---|---|---|---|---|---|---|---|\n${table}\n`)
 }
 console.log(JSON.stringify({summary,errors}))

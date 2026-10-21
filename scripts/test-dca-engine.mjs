@@ -1,3 +1,4 @@
+import { exposureDisplay } from '../src/pages/dca-profiles/exposure.js'
 import assert from 'node:assert/strict'
 import {PROFILES} from '../src/pages/dca-profiles/data.js'
 import {prepareProfile,analyzeProfile,validateProfile,publicationReady,observation,references} from '../src/pages/dca-profiles/engine.js'
@@ -17,6 +18,9 @@ assert.equal(analyzeProfile(p).changes[0].delta,-30)
 // Physical funds retain their observed cash allocation outside the equity pocket.
 const expectedCoverage = profile => profile.lines.reduce((sum, line) => sum + line.weight * (references[line.asset].equitySleeve?.weightPct ?? 100) / 100, 0)
 assert(Math.abs(analyzeProfile(p).countries.coverage - expectedCoverage(p)) < 1e-8)
+const countries=analyzeProfile(p).countries
+assert(countries.coverage>0 && countries.coverage<=100)
+assert(Math.abs(countries.coverage+countries.neutralWeight+exposureDisplay(countries).missing-100)<1e-9,'Current holdings retain unknown countries and non-equity weights')
 const g=analyzeProfile(p).countries.groups.find(g=>g.rows.some(r=>r.name==='États-Unis'))
 assert(g)
 assert(g.rows.every(r=>r.weight<=g.coverage+0.01))
@@ -29,6 +33,8 @@ assert(observation(noDca).includes('Aucun versement'))
 const newPosition={...p,lines:[{...p.lines[0],weight:100,amount:0},{...p.lines[1],weight:0,amount:100}]}
 assert.deepEqual(validateProfile(newPosition),[])
 assert(Math.abs(analyzeProfile(newPosition).countries.coverage - expectedCoverage(newPosition)) < 1e-8)
+const newCountries=analyzeProfile(newPosition).countries
+assert(Math.abs(newCountries.coverage+newCountries.neutralWeight+exposureDisplay(newCountries).missing-100)<1e-9)
 const unconfirmed={...p,lines:p.lines.map(l=>({...l,isin:''}))}
 assert.equal(analyzeProfile(unconfirmed).countries.coverage,0)
 assert(!publicationReady({...p,mode:'participant',approved:false}))

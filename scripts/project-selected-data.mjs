@@ -5,18 +5,18 @@ import * as history from '../src/data/market-history.js'
 import * as anniversary from '../src/pages/tweet-midi/data/marketHistory.js'
 import { references as exposureReferences } from '../src/pages/dca-profiles/records.js'
 import INDEX_HISTORY from '../src/data/anniversary-index-history.json' with {type:'json'}
-import { MARKET_ASSETS, getAnnualReturnStartYears, getAnnualReturns, performanceBasis } from '../src/pages/tweet-midi/data/marketHistory.js'
+import { ASSETS as PERFORMANCE_ASSETS, MARKET_ASSETS, getAnnualReturnStartYears, getAnnualReturns, performanceBasis } from '../src/pages/tweet-midi/data/performanceHistory.js'
 import { ETFS, CATEGORY_EMOJI } from '../src/data/etf-cards.js'
 import { ETF_PUBLICATION_DATA } from '../src/data/etf-publication-data.js'
 import { instrumentOption } from '../src/data/asset-selection.js'
 
 export function annualProjection() {
- const assets=Object.fromEntries(Object.entries(history.ASSETS).map(([id,{points:_points,anniversaryPoints:_anniversaryPoints,...asset}])=>[id,{...asset,historyId:id}]))
- const market=MARKET_ASSETS.map(({points:_points,...asset})=>({...asset,ticker:history.ASSETS[asset.id].ticker,historyId:asset.id}))
- const years=Object.fromEntries(MARKET_ASSETS.map(a=>[a.id,getAnnualReturnStartYears(a.id)]))
- const returns=Object.fromEntries(MARKET_ASSETS.map(a=>[a.id,Object.fromEntries(years[a.id].map(y=>[y,getAnnualReturns(a.id,y)[0]]))]))
- const basis=Object.fromEntries(MARKET_ASSETS.map(a=>[a.id,performanceBasis(a.id)]))
- return {assets,market,years,returns,basis,latestYear:Number(history.LATEST_YM.slice(0,4))}
+ const assets=Object.fromEntries(Object.entries(PERFORMANCE_ASSETS).map(([id,{points:_points,anniversaryPoints:_anniversaryPoints,...asset}])=>[id,{...asset,historyId:id}]))
+ const market=MARKET_ASSETS.map(({points:_points,...asset})=>({...asset,ticker:PERFORMANCE_ASSETS[asset.id].ticker,historyId:asset.id}))
+ const years=Object.fromEntries(Object.keys(PERFORMANCE_ASSETS).map(id=>[id,getAnnualReturnStartYears(id)]))
+ const returns=Object.fromEntries(Object.keys(PERFORMANCE_ASSETS).map(id=>[id,Object.fromEntries(years[id].map(y=>[y,getAnnualReturns(id,y)[0]]))]))
+ const basis=Object.fromEntries(Object.keys(PERFORMANCE_ASSETS).map(id=>[id,performanceBasis(id)]))
+ return {assets,market,years,returns,basis,latestYear:new Date().getUTCFullYear()}
 }
 export function anniversaryProjection() {
  const strip = ({points:_points,anniversaryPoints:_raw,...asset}) => asset

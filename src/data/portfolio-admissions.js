@@ -1,0 +1,16 @@
+import { QUALIFIED_FUND_CALENDARS } from './qualified-annual-calendars.js'
+import { latestCommonYears } from './annual-window.js'
+// Deliberate admissions, not permission inferred from history length. One European
+// factor at a time, as a satellite beside the broad European core; never a PEA recipe.
+const factors = [
+  ['europe-value-ishares', 'IE00BQN1K901', 'value'],
+  ['europe-momentum-ishares', 'IE00BQN1K786', 'momentum'],
+  ['europe-quality-ishares', 'IE00BQN1K562', 'quality'],
+]
+export const AUTOMATIC_FACTOR_ADMISSIONS = factors.flatMap(([id, isin, factor]) => {
+  const record = QUALIFIED_FUND_CALENDARS[isin]
+  if (!record || latestCommonYears([record.years]).length !== 6 || record.currency !== 'EUR') return []
+  return [{ id, isin, factor, role: 'satellite', profile: 'pro_europe', risks: ['equilibre', 'dynamique', 'offensif'],
+    minPct: 5, maxPct: 20, peaRequired: false, exclusiveGroup: 'europe-factor', core: 'europe_pea_amundi' }]
+})
+export const AUTOMATIC_FACTOR_IDS = AUTOMATIC_FACTOR_ADMISSIONS.map(row => row.id)

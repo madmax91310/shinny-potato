@@ -10,6 +10,8 @@ import * as pea from '../src/data/instrument-pea.js'
 import * as ter from '../src/data/etf-ter.js'
 import * as terEvidence from '../src/data/etf-ter-evidence.js'
 import * as portfolio from '../src/data/portfolio-assets.js'
+import * as admissions from '../src/data/portfolio-admissions.js'
+import * as certifiedIndices from '../src/data/certified-monthly-indices.js'
 import * as currencies from '../src/data/portfolio-currencies.js'
 import * as calendarFx from '../src/data/calendar-fx.js'
 import * as reference from '../src/data/instrument-reference-evidence.js'
@@ -31,7 +33,7 @@ export function projectLightRegistries() {
     ['instruments', instruments, "import { PEA_REVIEWS_BY_ISIN } from './instrument-pea.js';"],
     ['instrument-facts', facts, "import { getInstrumentListings } from './instrument-listings.js'; export { getInstrumentListings };"],
     ['instrument-listings', listings, ''], ['instrument-pea', pea, ''], ['etf-ter', ter, ''], ['etf-ter-evidence', terEvidence, ''],
-    ['portfolio-assets', portfolio, ''], ['portfolio-currencies', currencies, ''], ['practical-source-data', practical, ''], ['preferred-instrument-tickers',preferredTickers,''],
+    ['portfolio-assets', portfolio, ''], ['portfolio-admissions', admissions, ''], ['certified-monthly-indices', certifiedIndices, ''], ['portfolio-currencies', currencies, ''], ['practical-source-data', practical, ''], ['preferred-instrument-tickers',preferredTickers,''],
   ]
   const projections = new Map(definitions.map(([name, exports, imports]) => {
     if(name==='portfolio-assets') exports={...exports,ASSETS:exports.ASSETS.map(asset=>asset.manualOnly && /^(?:equity-|manual-)/.test(asset.id)?Object.fromEntries([...['id','isin','name','instrumentType','cat','emoji','manualOnly','returnCurrency'].filter(k=>asset[k]!==undefined).map(k=>[k,asset[k]]),['historyPending',true]]):asset)}

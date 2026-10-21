@@ -324,6 +324,28 @@
       "precision": 6,
       "method": "Indice MSCI ACWI GRTR USD, clôtures mensuelles officielles recoupées avec les niveaux quotidiens",
       "identitySourceUrl": "https://www.msci.com/indexes/index/892400/"
+    },
+    {
+      "id": "aerospace-paris-eur",
+      "label": "iShares Global Aerospace & Defence UCITS ETF · Paris EUR",
+      "isin": "IE000U9ODG19",
+      "ticker": "DFND",
+      "mic": "XPAR",
+      "currency": "EUR",
+      "parser": "yahoo",
+      "symbol": "DFND.PA",
+      "field": "adjclose",
+      "precision": 6,
+      "consumerScope": "catalog",
+      "listingEvidenceId": "IE000U9ODG19-XPAR-DFND-EUR",
+      "instrumentType": "ETF",
+      "method": "Cours de la part exacte, ajustés des distributions et divisions ; dernière séance mensuelle recoupée avec la bougie mensuelle Yahoo",
+      "collectAnniversary": false,
+      "yahooInstrumentType": "ETF",
+      "periodStart": "2024-08",
+      "verifyMonthlyDisagreements": true,
+      "discoverStart": true,
+      "listingSourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=334464&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
     }
   ]
 }

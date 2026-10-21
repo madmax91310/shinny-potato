@@ -5,7 +5,7 @@ import { fmtEUR, fmtPct } from '../../lib/format-currency.js'
 export { fmtEUR, fmtPct } from '../../lib/format-currency.js'
 import { INFLATION_MONTHLY } from '../../data/inflation-monthly.js'
 // Logique de calcul partagée avec Tweet Midi.
-import { ASSETS, LATEST_YM, MONTHS_FULL, INCONSISTENT_MONTHLY_DATA_IDS } from '../../data/calculator-history.js'
+import { ASSETS, LATEST_YM, MONTHS_FULL, INCONSISTENT_MONTHLY_DATA_IDS, getAssetMinDate } from '../../data/calculator-history.js'
 
 import { ymIndex,monthsBetween,clampYm,computeAssetSeries,sparseAssetSeries,computeBenchmarkSeries,computeCustomSeries,pct,applyPriceOverride } from './math.js'
 export { ymIndex,indexToYm,monthsBetween,clampYm,interpolatePrice,computeAssetSeries,sparseAssetSeries,computeBenchmarkSeries,computeLivretSeries,computeCustomSeries,currencySymbol,pct,applyPriceOverride } from './math.js'
@@ -18,7 +18,10 @@ export function derive(state) {
   const amount = parseFloat(state.amountRaw) || 0
   const isCustom = state.assetId === 'custom'
   const effectiveMode = isCustom || INCONSISTENT_MONTHLY_DATA_IDS.has(state.assetId) ? 'lump' : state.mode
-  const startYm = clampYm(state.startYear + '-' + (state.startMonth < 10 ? '0' + state.startMonth : state.startMonth), LATEST_YM)
+  const requestedStart = clampYm(state.startYear + '-' + (state.startMonth < 10 ? '0' + state.startMonth : state.startMonth), LATEST_YM)
+  const minimum = isCustom ? null : getAssetMinDate(state.assetId)
+  // The engine also honours the verified floor, including when called outside the form.
+  const startYm = minimum && ymIndex(requestedStart) < ymIndex(minimum) ? minimum : requestedStart
   // Sans prix saisi, on s'arrête au dernier mois réellement renseigné pour cet actif.
   // Sinon le DCA achète des mois supplémentaires au dernier prix, sans donnée de marché.
   const requestedEnd = isCustom ? null : ASSETS[state.assetId].points.at(-1).date
@@ -47,7 +50,7 @@ export function derive(state) {
   // Market month-ends can arrive before INSEE. Keep the market result available
   // and omit a benchmark whose full period has not yet been published.
   const inflationComplete = monthsBetween(safeStartYm, endYm).slice(1)
-    .every(month => month < '2017-01' || INFLATION_MONTHLY[month] !== undefined)
+    .every(month => month < '2017-01' ? Number.isFinite(INFLATION[Number(month.slice(0,4))]) : INFLATION_MONTHLY[month] !== undefined)
   const inflation = compareEuro && inflationComplete ? computeBenchmarkSeries(INFLATION, safeStartYm, endYm, amount, effectiveMode) : null
 
   return { asset, currency: asset?.currency ?? 'EUR', amount, isCustom, effectiveMode, startYm: safeStartYm, endYm, result, livretA, inflation }

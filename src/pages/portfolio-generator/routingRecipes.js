@@ -1,3 +1,4 @@
+import { AUTOMATIC_FACTOR_ADMISSIONS } from '../../data/portfolio-admissions.js';
 // 16/10/2026: already-collected exact shares, newly used in automatic recipes.
 // No return series or issuer observations are copied here.
 const slot = (ids, pct, spread = 10) => ({ ...(Array.isArray(ids) ? {idOptions:ids} : {id:ids}), pct, minPct:Math.max(5,pct-spread), maxPct:Math.min(100,pct+spread) });
@@ -15,7 +16,9 @@ export function routingRecipes(profile,risk) {
   ];
   if(profile==='pro_europe') {
     const core=[10,30,50,70,75][i], sat=[5,10,15,20,25][i];
+    const factors = AUTOMATIC_FACTOR_ADMISSIONS.filter(a => a.profile === profile && a.risks.includes(risk));
     return [
+      ...(factors.length ? [make('europe-factor','Europe et filtre factoriel', [['europe_pea_amundi',[0,0,55,70,75][i],5],[factors.map(a => a.id),15,5],['oblig_etat_eur_short',[0,0,30,15,10][i],5]])] : []),
       make('europe-govt','Europe et dette à maturité intermédiaire', [['europe_pea_amundi',core],['euro-govt-5-7',sat],['oblig_etat_eur_short',80-core-sat>0?80-core-sat:0],['fonds_euros',core+sat<80?20:100-core-sat]]),
       ...(i>=2 ? [make('europe-resources','Europe et producteurs de ressources', [['europe_pea_amundi',core],['basic_resources_pea',sat],['oblig_etat_eur_short',100-core-sat]]),
         make('europe-property','Europe et immobilier coté', [['europe_pea_amundi',core],['europe-property',sat],['oblig_etat_eur_short',100-core-sat]])] : []),

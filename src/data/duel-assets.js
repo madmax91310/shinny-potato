@@ -1,3 +1,4 @@
+import { ANNUAL_PORTFOLIO_FUNDS } from './annual-portfolio-funds.js'
 import EQUITY_DUEL_RETURNS from './equity-duel-returns.json' with {type:'json'};
 import MONTHLY_DUEL_RETURNS from './monthly-duel-returns.json' with {type:'json'};
 import { RESOURCE_DUEL_CHOICES } from './resource-selections.js'
@@ -144,13 +145,19 @@ const routedFunds = [...DISTINCT_PORTFOLIO_CANDIDATES, {id:'cloud-wisdomtree',is
 const equityItems = EQUITY_DUEL_RETURNS.map(item => ({...item, name: item.label, instrumentType: 'EQUITY', role: 'complement', group: 'Actions individuelles', exposure: item.id, basis: 'adjusted-price', note: 'Cours ajustés des dividendes et divisions ; rendements calculés entre clôtures de décembre, sur années complètes uniquement.'}))
 const allAutomatedFunds = Object.values(MONTHLY_DUEL_RETURNS).filter(s=>![...routedFunds,...expansionFunds,...fundItems,...extraFunds].some(a=>a.isin===s.isin) && s.isin!==stoxxIsin).flatMap(s=>{
  const asset=ASSETS.find(a=>a.isin===s.isin)
+ if(asset?.annualManual)return [] // Use the same qualified annual NAV contract in both tools.
  const official=asset&&!asset.distinctCandidate?getInstrumentDuelSeries(s.isin):null
  // A legacy mixed/proxy portfolio history cannot silently become exact-share market returns.
  if(asset&&!asset.distinctCandidate&&!official?.source)return []
  const series=official?{...official,source:official.source??PORTFOLIO_RETURN_EVIDENCE[s.isin]?.sourceUrls[0],values:asset.r,currency:asset.returnCurrency??official.currency,calendarReturns:asset.calendarReturns}:s
  return [{...series,isin:s.isin,id:`manual-${s.isin}`,name:getInstrumentName(s.isin),label:getInstrumentName(s.isin),exposure:s.isin,role:'complement',group:ROLES.complement}]
 });
-export const CATALOG = [...allAutomatedFunds, ...equityItems, ...routedFunds, ...expansionFunds, ...fundItems, ...extraFunds, {
+const existingFundIsins = new Set([...allAutomatedFunds, ...routedFunds, ...expansionFunds, ...fundItems, ...extraFunds].map(a => a.isin));
+existingFundIsins.add(stoxxIsin);
+const annualFunds = ANNUAL_PORTFOLIO_FUNDS.filter(a => !existingFundIsins.has(a.isin)).map(a => ({ ...a,
+  label: a.name, exposure: a.isin, role: 'complement', group: ROLES.complement, currency: a.returnCurrency, values: a.r,
+}));
+export const CATALOG = [...annualFunds, ...allAutomatedFunds, ...equityItems, ...routedFunds, ...expansionFunds, ...fundItems, ...extraFunds, {
   id: 'stoxx600_bnp', isin: stoxxIsin, name: getInstrumentName(stoxxIsin),
   role: 'complement', label: 'STOXX Europe 600', exposure: 'europe', group: ROLES.complement,
   currency: stoxxEvidence.currency, values: [null, null, null, ...COMPARATOR_RETURNS_BY_ISIN[stoxxIsin]],

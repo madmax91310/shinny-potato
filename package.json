@@ -47,6 +47,9 @@
     "test:dca": "node scripts/test-dca-profiles.mjs && node scripts/test-dca-engine.mjs && node scripts/test-dca-upgrade.mjs && node scripts/test-exposure-checker.mjs && node scripts/test-exposure-complete.mjs && node scripts/test-dca-analytics.mjs && node scripts/test-published-exposure.mjs && node scripts/test-exposure-scope.mjs",
     "audit:asset-routing": "node scripts/audit-asset-tool-routing.mjs",
     "report:exposures": "node scripts/build-dca-exposures.mjs && node scripts/report-exposure-coverage.mjs",
+    "test:connections": "node scripts/test-verified-connections.mjs",
+    "test:connections:browser": "node scripts/playwright-verified-connections.mjs",
+    "audit:connections": "node scripts/audit-verified-connections.mjs",
     "test:rankings": "node scripts/test-performance-rankings.mjs",
     "audit:data-automation": "node scripts/data-automation-inventory.mjs --write && node scripts/test-data-automation-inventory.mjs",
     "test:index-concentration": "node scripts/build-index-company-compositions.mjs && node scripts/test-index-concentration.mjs"
