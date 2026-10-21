@@ -12557,15 +12557,16 @@
           "at": "2026-10-21T21:36:46.565860+00:00",
           "reason": "transient-source",
           "sourceRunId": 39645077061,
-          "status": "reserved",
-          "ref": "master"
+          "status": "dispatched",
+          "ref": "master",
+          "error": null
         }
       ],
       "reason": "transient-source",
       "lastSuccessAt": "2026-10-18T16:00:42Z",
       "observedRunId": 39645077061,
       "nextAttemptAt": "2026-10-22T01:36:46.565860+00:00",
-      "status": "reserved"
+      "status": "dispatched"
     },
     "update-bitcoin-monthly.yml": {
       "attempts": [],
