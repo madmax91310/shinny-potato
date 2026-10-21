@@ -16346,14 +16346,15 @@
           "at": "2026-10-21T06:03:34.415735+00:00",
           "reason": "recording-failed",
           "sourceRunId": 39549495712,
-          "status": "reserved",
-          "ref": "master"
+          "status": "dispatched",
+          "ref": "master",
+          "error": null
         }
       ],
       "reason": "recording-failed",
       "lastSuccessAt": "2026-10-18T16:32:07Z",
       "observedRunId": 39549495712,
-      "status": "reserved",
+      "status": "dispatched",
       "nextAttemptAt": "2026-10-21T07:03:34.415735+00:00"
     }
   }
