@@ -17655,14 +17655,15 @@
           "at": "2026-10-21T15:07:44.339739+00:00",
           "reason": "recording-failed",
           "sourceRunId": 39616936020,
-          "status": "reserved",
-          "ref": "master"
+          "status": "dispatched",
+          "ref": "master",
+          "error": null
         }
       ],
       "reason": "recording-failed",
       "lastSuccessAt": "2026-10-21T14:32:26Z",
       "observedRunId": 39616936020,
-      "status": "reserved",
+      "status": "dispatched",
       "nextAttemptAt": "2026-10-21T16:07:44.339739+00:00"
     },
     "update-editorial-radar.yml": {
