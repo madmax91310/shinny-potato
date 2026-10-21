@@ -1155,20 +1155,20 @@
     "update-qualified-exposures.yml": {
       "monitorVersion": 2,
       "name": "Expositions ETF qualifiées",
-      "runId": 39590805626,
+      "runId": 39601109961,
       "attempt": 1,
-      "headSha": "b79ceba0bf97b9ffd8412838fd3368422c84563a",
-      "createdAt": "2026-10-21T11:17:05Z",
-      "completedAt": "2026-10-21T12:01:04Z",
+      "headSha": "6d0225a9ca9839fedf23fb8e5285bbcc0c9944a7",
+      "createdAt": "2026-10-21T12:37:40Z",
+      "completedAt": "2026-10-21T15:07:57Z",
       "status": "failure",
       "lastSuccessAt": "2026-10-20T20:23:09Z",
       "collectionStatus": "failure",
       "validationStatus": "success",
       "recordingStatus": "success",
-      "publicationStatus": "success",
+      "publicationStatus": "not-run",
       "lastCollectionSuccessAt": "2026-10-20T20:23:09Z",
       "lastPublicationSuccessAt": "2026-10-21T12:07:57Z",
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39590805626",
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39601109961",
       "failures": [
         {
           "job": "report-failures",
@@ -1178,31 +1178,40 @@
       "dataFailures": {
         "dca-holdings:IE00BJGWQN72": {
           "name": "dca-holdings:IE00BJGWQN72",
-          "completedAt": "2026-10-21T12:01:04Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39590805626",
-          "cause": "Issuer API HTTP 403; public browser also failed: Public issuer API unavailable in browser: HTTP 403\n",
+          "completedAt": "2026-10-21T15:07:57Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39601109961",
+          "cause": "Issuer API unavailable: Issuer API HTTP 403; public browser also failed: Public issuer API unavailable in browser: HTTP 403\n; public full portfolio unqualified: HTTP Error 403: Forbidden",
+          "field": "Composition complète"
+        },
+        "dca-holdings:IE00BDVPNG13": {
+          "name": "dca-holdings:IE00BDVPNG13",
+          "completedAt": "2026-10-21T15:07:57Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39601109961",
+          "cause": "HTTP Error 403: Forbidden",
+          "field": "Composition complète"
+        },
+        "dca-holdings:IE0002Y8CX98": {
+          "name": "dca-holdings:IE0002Y8CX98",
+          "completedAt": "2026-10-21T15:07:57Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39601109961",
+          "cause": "HTTP Error 403: Forbidden",
+          "field": "Composition complète"
+        },
+        "dca-holdings:IE000W8WMSL2": {
+          "name": "dca-holdings:IE000W8WMSL2",
+          "completedAt": "2026-10-21T15:07:57Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39601109961",
+          "cause": "HTTP Error 403: Forbidden",
+          "field": "Composition complète"
+        },
+        "dca-holdings:IE0003UVYC20": {
+          "name": "dca-holdings:IE0003UVYC20",
+          "completedAt": "2026-10-21T15:07:57Z",
+          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39601109961",
+          "cause": "HTTP Error 400: Bad Request",
           "field": "Composition complète"
         }
-      },
-      "publicationReceipt": {
-        "commit": "d03c26b7570022e43684173b1972633acbee5056",
-        "files": {
-          "public/data/holdings-discovery.json": "d311430276eef044c674a0a8658d45cdc0cb07ee",
-          "src/data/automated-etf.json": "7dd8b963b9cf7b4a836b6c16ffc8e2dab9d23a2b",
-          "src/data/dca-complete-holdings.json": "3e4b92f8da49f91788eb31727fa37cda2e149d58",
-          "src/data/dca-equity-exposures.json": "02fca41b83a7b888150bfd703cfff786ff347ccc",
-          "src/data/dca-holdings-status.json": "805a426ea5a06f022b20b0ec27c49a58da708b1d",
-          "src/data/dca-security-classifications.json": "b4279c4e6f2ca18dce572f7bb9334091abb3b9b5",
-          "src/data/exposure-sleeves.json": "bdb6738d679bcd0bdc32748c62774ea1a20cfde1",
-          "src/data/qualified-exposure-etfs.json": "2e7e5618c839f617eee49938af244fae017171aa",
-          "src/data/qualified-listing-records.json": "d7559c3c245cc0f98f1b9879f30063e4d0eedc0f",
-          "src/data/security-identifier-observations.json": "6105728759ddca327f57107b04d0a5f029a1d89a",
-          "src/data/vanguard-equity-underliers.json": "e71c04cdc1b6d132ba80e26b733cecc2d673db72"
-        },
-        "schemaVersion": 1
-      },
-      "publishedCodeSha": "6004c9a28e7a20eba0ae28fd695dca2e138021a4",
-      "publishedDataSha": "6004c9a28e7a20eba0ae28fd695dca2e138021a4"
+      }
     },
     "update-exposure-expansion.yml": {
       "monitorVersion": 2,
@@ -1679,11 +1688,11 @@
       "dataFailures": {}
     }
   },
-  "updatedAt": "2026-10-21T15:07:42Z",
+  "updatedAt": "2026-10-21T15:07:57Z",
   "monitoring": {
     "schemaVersion": 1,
-    "checkedAt": "2026-10-21T15:09:03.175553+00:00",
-    "revision": 224,
+    "checkedAt": "2026-10-21T15:09:43.235632+00:00",
+    "revision": 225,
     "active": {
       "workflow:update-practical-sheets.yml": {
         "name": "Sources des fiches pratiques",
@@ -1700,7 +1709,7 @@
         "cause": "refresh : Commit validated observations",
         "id": "workflow:update-practical-sheets.yml",
         "firstSeenAt": "2026-10-21T14:33:06.277263+00:00",
-        "lastSeenAt": "2026-10-21T15:09:03.175553+00:00"
+        "lastSeenAt": "2026-10-21T15:09:43.235632+00:00"
       },
       "collection:update-editorial-radar.yml:radar:pouvoir-achat": {
         "name": "Radar · pouvoir-achat",
@@ -1720,7 +1729,7 @@
         "dataId": "radar:pouvoir-achat",
         "id": "collection:update-editorial-radar.yml:radar:pouvoir-achat",
         "firstSeenAt": "2026-10-21T12:39:24.700361+00:00",
-        "lastSeenAt": "2026-10-21T15:09:03.175553+00:00"
+        "lastSeenAt": "2026-10-21T15:09:43.235632+00:00"
       },
       "collection:update-editorial-radar.yml:radar:etf": {
         "name": "Radar · etf",
@@ -1740,7 +1749,7 @@
         "dataId": "radar:etf",
         "id": "collection:update-editorial-radar.yml:radar:etf",
         "firstSeenAt": "2026-10-21T13:13:48.260249+00:00",
-        "lastSeenAt": "2026-10-21T15:09:03.175553+00:00"
+        "lastSeenAt": "2026-10-21T15:09:43.235632+00:00"
       },
       "workflow:update-publication-observations.yml": {
         "name": "Pouvoir d’achat et niveaux des anniversaires",
@@ -1758,7 +1767,7 @@
         "cause": "refresh : Commit validated observations",
         "id": "workflow:update-publication-observations.yml",
         "firstSeenAt": "2026-10-21T13:13:12.009256+00:00",
-        "lastSeenAt": "2026-10-21T15:09:03.175553+00:00"
+        "lastSeenAt": "2026-10-21T15:09:43.235632+00:00"
       },
       "collection:collect-etf-pilot.yml:etf-additional-observation-FR0011550185": {
         "name": "BNP Paribas Easy S&P 500 UCITS ETF (Acc)",
@@ -1788,7 +1797,7 @@
         "dataId": "etf-additional-observation-FR0011550185",
         "id": "collection:collect-etf-pilot.yml:etf-additional-observation-FR0011550185",
         "firstSeenAt": "2026-10-21T15:08:25.397352+00:00",
-        "lastSeenAt": "2026-10-21T15:09:03.175553+00:00"
+        "lastSeenAt": "2026-10-21T15:09:43.235632+00:00"
       },
       "collection:collect-etf-pilot.yml:etf-additional-observation-FR0011550193": {
         "name": "BNP Paribas Easy STOXX Europe 600 UCITS ETF",
@@ -1819,7 +1828,7 @@
         "dataId": "etf-additional-observation-FR0011550193",
         "id": "collection:collect-etf-pilot.yml:etf-additional-observation-FR0011550193",
         "firstSeenAt": "2026-10-21T15:08:25.397352+00:00",
-        "lastSeenAt": "2026-10-21T15:09:03.175553+00:00"
+        "lastSeenAt": "2026-10-21T15:09:43.235632+00:00"
       },
       "collection:collect-etf-pilot.yml:etf-additional-observation-IE000QDFFK00": {
         "name": "BNP Paribas Easy II Nasdaq 100 UCITS ETF (Acc)",
@@ -1846,7 +1855,7 @@
         "dataId": "etf-additional-observation-IE000QDFFK00",
         "id": "collection:collect-etf-pilot.yml:etf-additional-observation-IE000QDFFK00",
         "firstSeenAt": "2026-10-21T15:08:25.397352+00:00",
-        "lastSeenAt": "2026-10-21T15:09:03.175553+00:00"
+        "lastSeenAt": "2026-10-21T15:09:43.235632+00:00"
       },
       "collection:update-market-monthly.yml:history:fx:TWD": {
         "name": "history:fx:TWD",
@@ -1869,7 +1878,7 @@
         "dataId": "history:fx:TWD",
         "id": "collection:update-market-monthly.yml:history:fx:TWD",
         "firstSeenAt": "2026-10-19T05:58:42.740410+00:00",
-        "lastSeenAt": "2026-10-21T15:09:03.175553+00:00"
+        "lastSeenAt": "2026-10-21T15:09:43.235632+00:00"
       },
       "collection:update-qualified-exposures.yml:dca-holdings:IE00BJGWQN72": {
         "name": "WisdomTree Cloud Computing UCITS ETF USD Acc",
@@ -1882,11 +1891,11 @@
         ],
         "impactScope": "asset",
         "workflow": "update-qualified-exposures.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39590805626",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39601109961",
         "to": "/bibliotheque-donnees?id=IE00BJGWQN72",
         "lastSuccessAt": "2026-10-20T20:23:09Z",
-        "completedAt": "2026-10-21T12:01:04Z",
-        "cause": "Issuer API HTTP 403; public browser also failed: Public issuer API unavailable in browser: HTTP 403\n",
+        "completedAt": "2026-10-21T15:07:57Z",
+        "cause": "Issuer API unavailable: Issuer API HTTP 403; public browser also failed: Public issuer API unavailable in browser: HTTP 403\n; public full portfolio unqualified: HTTP Error 403: Forbidden",
         "field": "Composition complète",
         "sourceUrls": [
           "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BJGWQN72",
@@ -1897,7 +1906,114 @@
         "dataId": "dca-holdings:IE00BJGWQN72",
         "id": "collection:update-qualified-exposures.yml:dca-holdings:IE00BJGWQN72",
         "firstSeenAt": "2026-10-21T09:49:46.266914+00:00",
-        "lastSeenAt": "2026-10-21T15:09:03.175553+00:00"
+        "lastSeenAt": "2026-10-21T15:09:43.235632+00:00"
+      },
+      "collection:update-qualified-exposures.yml:dca-holdings:IE00BDVPNG13": {
+        "name": "WisdomTree Artificial Intelligence UCITS ETF USD Acc",
+        "tools": [
+          "Comparatif ETF",
+          "Duels de portefeuilles",
+          "Générateur de portefeuilles",
+          "Impact des frais",
+          "Présentation ETF"
+        ],
+        "impactScope": "asset",
+        "workflow": "update-qualified-exposures.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39601109961",
+        "to": "/bibliotheque-donnees?id=IE00BDVPNG13",
+        "lastSuccessAt": "2026-10-20T20:23:09Z",
+        "completedAt": "2026-10-21T15:07:57Z",
+        "cause": "HTTP Error 403: Forbidden",
+        "field": "Composition complète",
+        "sourceUrls": [
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13",
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE00BDVPNG13/",
+          "https://www.wisdomtree.com/gb/products/equities/wisdomtree-artificial-intelligence-ucits-etf---usd-acc"
+        ],
+        "kind": "collection",
+        "dataId": "dca-holdings:IE00BDVPNG13",
+        "id": "collection:update-qualified-exposures.yml:dca-holdings:IE00BDVPNG13",
+        "firstSeenAt": "2026-10-21T15:09:43.235632+00:00",
+        "lastSeenAt": "2026-10-21T15:09:43.235632+00:00"
+      },
+      "collection:update-qualified-exposures.yml:dca-holdings:IE0002Y8CX98": {
+        "name": "WisdomTree Europe Defence UCITS ETF",
+        "tools": [
+          "Comparatif ETF",
+          "Impact des frais",
+          "Présentation ETF"
+        ],
+        "impactScope": "asset",
+        "workflow": "update-qualified-exposures.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39601109961",
+        "to": "/bibliotheque-donnees?id=IE0002Y8CX98",
+        "lastSuccessAt": "2026-10-20T20:23:09Z",
+        "completedAt": "2026-10-21T15:07:57Z",
+        "cause": "HTTP Error 403: Forbidden",
+        "field": "Composition complète",
+        "sourceUrls": [
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE0002Y8CX98",
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE0002Y8CX98/",
+          "https://www.justetf.com/en/etf-profile.html?isin=IE0002Y8CX98",
+          "https://www.wisdomtree.com/gb/products/equities/wisdomtree-europe-defence-ucits-etf---eur-acc"
+        ],
+        "kind": "collection",
+        "dataId": "dca-holdings:IE0002Y8CX98",
+        "id": "collection:update-qualified-exposures.yml:dca-holdings:IE0002Y8CX98",
+        "firstSeenAt": "2026-10-21T15:09:43.235632+00:00",
+        "lastSeenAt": "2026-10-21T15:09:43.235632+00:00"
+      },
+      "collection:update-qualified-exposures.yml:dca-holdings:IE000W8WMSL2": {
+        "name": "WisdomTree Quantum Computing UCITS ETF",
+        "tools": [
+          "Comparatif ETF",
+          "Impact des frais",
+          "Présentation ETF"
+        ],
+        "impactScope": "asset",
+        "workflow": "update-qualified-exposures.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39601109961",
+        "to": "/bibliotheque-donnees?id=IE000W8WMSL2",
+        "lastSuccessAt": "2026-10-20T20:23:09Z",
+        "completedAt": "2026-10-21T15:07:57Z",
+        "cause": "HTTP Error 403: Forbidden",
+        "field": "Composition complète",
+        "sourceUrls": [
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE000W8WMSL2",
+          "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/UCITS/EU/EN-GB/IE000W8WMSL2/",
+          "https://www.justetf.com/en/etf-profile.html?isin=IE000W8WMSL2",
+          "https://www.wisdomtree.com/gb/products/equities/wisdomtree-quantum-computing-ucits-etf---usd-acc"
+        ],
+        "kind": "collection",
+        "dataId": "dca-holdings:IE000W8WMSL2",
+        "id": "collection:update-qualified-exposures.yml:dca-holdings:IE000W8WMSL2",
+        "firstSeenAt": "2026-10-21T15:09:43.235632+00:00",
+        "lastSeenAt": "2026-10-21T15:09:43.235632+00:00"
+      },
+      "collection:update-qualified-exposures.yml:dca-holdings:IE0003UVYC20": {
+        "name": "JPM Global Equity Premium Income Active UCITS ETF USD (Dist)",
+        "tools": [
+          "Comparatif ETF",
+          "Impact des frais",
+          "Présentation ETF"
+        ],
+        "impactScope": "asset",
+        "workflow": "update-qualified-exposures.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39601109961",
+        "to": "/bibliotheque-donnees?id=IE0003UVYC20",
+        "lastSuccessAt": "2026-10-20T20:23:09Z",
+        "completedAt": "2026-10-21T15:07:57Z",
+        "cause": "HTTP Error 400: Bad Request",
+        "field": "Composition complète",
+        "sourceUrls": [
+          "https://am.jpmorgan.com/content/dam/jpm-am-aem/asiapacific/sg/en/literature/fact-sheet/factsheet-jpmorgan-global-equity-premium-income-active-ucits-etf.pdf",
+          "https://www.quantalys.com/Fonds/2112744"
+        ],
+        "kind": "collection",
+        "dataId": "dca-holdings:IE0003UVYC20",
+        "id": "collection:update-qualified-exposures.yml:dca-holdings:IE0003UVYC20",
+        "firstSeenAt": "2026-10-21T15:09:43.235632+00:00",
+        "lastSeenAt": "2026-10-21T15:09:43.235632+00:00"
       },
       "collection:update-instrument-metadata.yml:IE00B0M62S72:pea:qualification": {
         "name": "iShares Euro Dividend UCITS ETF",
@@ -1924,7 +2040,7 @@
         "dataId": "IE00B0M62S72:pea:qualification",
         "id": "collection:update-instrument-metadata.yml:IE00B0M62S72:pea:qualification",
         "firstSeenAt": "2026-10-19T19:03:43.742241+00:00",
-        "lastSeenAt": "2026-10-21T15:09:03.175553+00:00"
+        "lastSeenAt": "2026-10-21T15:09:43.235632+00:00"
       },
       "publication:update-instrument-metadata.yml": {
         "name": "Caractéristiques et statut PEA par ISIN",
@@ -1944,7 +2060,7 @@
         "cause": "deploy / publish-code / browser-checks (2) : node scripts/playwright-publication-actions.mjs — name: 'TimeoutError' ; deploy / publish-code / browser-checks (1) : node scripts/test-index-ribbon.mjs — name: 'TimeoutError' ; deploy / publish-code / advisory-checks : Run echo \"Données publiées (voie données : publication success). Un contrôle navigateur éditorial a échoué et doit être réparé ; il ne bloque plus les données.\" >> \"$GITHUB_STEP_SUMMARY\" ; report-failures : Run exit 1",
         "id": "publication:update-instrument-metadata.yml",
         "firstSeenAt": "2026-10-21T14:04:07.425335+00:00",
-        "lastSeenAt": "2026-10-21T15:09:03.175553+00:00"
+        "lastSeenAt": "2026-10-21T15:09:43.235632+00:00"
       },
       "field:instrument:IE00BDVPNG13:completeHoldings": {
         "id": "field:instrument:IE00BDVPNG13:completeHoldings",
@@ -1973,7 +2089,7 @@
         "evaluatedAt": "2026-10-21",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-21T14:39:49.523354+00:00",
-        "lastSeenAt": "2026-10-21T15:09:03.175553+00:00"
+        "lastSeenAt": "2026-10-21T15:09:43.235632+00:00"
       },
       "field:instrument:IE00BJGWQN72:completeHoldings": {
         "id": "field:instrument:IE00BJGWQN72:completeHoldings",
@@ -2002,7 +2118,7 @@
         "evaluatedAt": "2026-10-21",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-21T12:01:24.697671+00:00",
-        "lastSeenAt": "2026-10-21T15:09:03.175553+00:00"
+        "lastSeenAt": "2026-10-21T15:09:43.235632+00:00"
       },
       "field:instrument:IE0002Y8CX98:completeHoldings": {
         "id": "field:instrument:IE0002Y8CX98:completeHoldings",
@@ -2029,7 +2145,7 @@
         "evaluatedAt": "2026-10-21",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-21T14:39:49.523354+00:00",
-        "lastSeenAt": "2026-10-21T15:09:03.175553+00:00"
+        "lastSeenAt": "2026-10-21T15:09:43.235632+00:00"
       },
       "field:instrument:IE000W8WMSL2:completeHoldings": {
         "id": "field:instrument:IE000W8WMSL2:completeHoldings",
@@ -2056,114 +2172,10 @@
         "evaluatedAt": "2026-10-21",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-21T14:39:49.523354+00:00",
-        "lastSeenAt": "2026-10-21T15:09:03.175553+00:00"
+        "lastSeenAt": "2026-10-21T15:09:43.235632+00:00"
       }
     },
     "events": [
-      {
-        "revision": 195,
-        "at": "2026-10-20T21:57:40.144833+00:00",
-        "opened": [],
-        "resolved": [
-          {
-            "name": "Présentations d’assurance-vie",
-            "tools": [
-              "Présentations assurance-vie"
-            ],
-            "impactScope": "collector",
-            "workflow": "update-insurance.yml",
-            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39474711013",
-            "to": "/donnees-a-revoir",
-            "lastSuccessAt": "2026-10-20T18:28:02Z",
-            "kind": "collection",
-            "field": "Exécution du collecteur",
-            "cause": "refresh : Commit validated observations",
-            "id": "workflow:update-insurance.yml",
-            "firstSeenAt": "2026-10-20T16:22:55.844299+00:00",
-            "lastSeenAt": "2026-10-20T21:56:29.616001+00:00",
-            "resolvedAt": "2026-10-20T21:57:40.144833+00:00"
-          },
-          {
-            "name": "ETF et compositions d’indices",
-            "tools": [
-              "Présentation ETF",
-              "Comparatif ETF",
-              "Coulisses des indices"
-            ],
-            "impactScope": "collector",
-            "workflow": "collect-etf-pilot.yml",
-            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39474711087",
-            "to": "/donnees-a-revoir",
-            "lastSuccessAt": "2026-10-20T18:29:53Z",
-            "kind": "collection",
-            "field": "Exécution du collecteur",
-            "cause": "refresh : Commit validated observations",
-            "id": "workflow:collect-etf-pilot.yml",
-            "firstSeenAt": "2026-10-20T18:36:57.304303+00:00",
-            "lastSeenAt": "2026-10-20T21:56:29.616001+00:00",
-            "resolvedAt": "2026-10-20T21:57:40.144833+00:00"
-          },
-          {
-            "name": "Portefeuilles des investisseurs",
-            "tools": [
-              "Présentation investisseur"
-            ],
-            "impactScope": "collector",
-            "workflow": "update-investor-13f.yml",
-            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39465032029",
-            "to": "/donnees-a-revoir",
-            "lastSuccessAt": "2026-10-20T17:27:05Z",
-            "kind": "collection",
-            "field": "Exécution du collecteur",
-            "cause": "update : Commit validated observations",
-            "id": "workflow:update-investor-13f.yml",
-            "firstSeenAt": "2026-10-20T17:27:36.039111+00:00",
-            "lastSeenAt": "2026-10-20T21:56:29.616001+00:00",
-            "resolvedAt": "2026-10-20T21:57:40.144833+00:00"
-          },
-          {
-            "name": "Taux d’épargne, ménages, SCPI et fonds euros",
-            "tools": [
-              "Pouvoir d’achat",
-              "France en 100 ménages"
-            ],
-            "impactScope": "collector",
-            "workflow": "update-economic-data.yml",
-            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39477274636",
-            "to": "/donnees-a-revoir",
-            "lastSuccessAt": "2026-10-20T18:46:46Z",
-            "kind": "collection",
-            "field": "Exécution du collecteur",
-            "cause": "refresh : Commit validated observations",
-            "id": "workflow:update-economic-data.yml",
-            "firstSeenAt": "2026-10-20T18:36:57.304303+00:00",
-            "lastSeenAt": "2026-10-20T21:56:29.616001+00:00",
-            "resolvedAt": "2026-10-20T21:57:40.144833+00:00"
-          },
-          {
-            "name": "Nouveaux actifs et historiques",
-            "tools": [
-              "Présentation ETF",
-              "Comparatif ETF",
-              "Et si tu avais investi",
-              "Il y a X ans"
-            ],
-            "impactScope": "collector",
-            "workflow": "update-non-bond-expansion.yml",
-            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39474711076",
-            "to": "/donnees-a-revoir",
-            "lastSuccessAt": "2026-10-20T18:27:58Z",
-            "kind": "collection",
-            "field": "Exécution du collecteur",
-            "cause": "refresh : Commit validated observations",
-            "id": "workflow:update-non-bond-expansion.yml",
-            "firstSeenAt": "2026-10-20T18:36:57.304303+00:00",
-            "lastSeenAt": "2026-10-20T21:56:29.616001+00:00",
-            "resolvedAt": "2026-10-20T21:57:40.144833+00:00"
-          }
-        ],
-        "escalated": []
-      },
       {
         "revision": 196,
         "at": "2026-10-20T22:02:22.485077+00:00",
@@ -11320,6 +11332,19 @@
         ],
         "retired": [],
         "escalated": []
+      },
+      {
+        "revision": 225,
+        "at": "2026-10-21T15:09:43.235632+00:00",
+        "opened": [
+          "collection:update-qualified-exposures.yml:dca-holdings:IE00BDVPNG13",
+          "collection:update-qualified-exposures.yml:dca-holdings:IE0002Y8CX98",
+          "collection:update-qualified-exposures.yml:dca-holdings:IE000W8WMSL2",
+          "collection:update-qualified-exposures.yml:dca-holdings:IE0003UVYC20"
+        ],
+        "resolved": [],
+        "retired": [],
+        "escalated": []
       }
     ],
     "resolved": [
@@ -17757,7 +17782,7 @@
       "attempts": [],
       "reason": null,
       "lastSuccessAt": "2026-10-20T20:23:09Z",
-      "observedRunId": 39590805626,
+      "observedRunId": 39601109961,
       "status": "idle",
       "nextAttemptAt": null
     },
