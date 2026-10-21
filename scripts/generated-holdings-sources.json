@@ -99,6 +99,14 @@
     "parser": "invesco-complete",
     "sourceUrl": "https://www.invesco.com/content/dam/invesco/emea/en/product-documents/etf/share-class/factsheet/IE0000QLH0G6_factsheet_en.pdf"
   },
+  "IE00BDVPNG13": {
+    "isin": "IE00BDVPNG13",
+    "name": "WisdomTree Artificial Intelligence UCITS ETF USD Acc",
+    "currency": "USD",
+    "provider": "WisdomTree",
+    "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-artificial-intelligence-ucits-etf---usd-acc",
+    "parser": "wisdomtree-complete"
+  },
   "IE00BLCHJB90": {
     "isin": "IE00BLCHJB90",
     "name": "Global X Robotics & Artificial Intelligence UCITS ETF USD Acc",
@@ -402,6 +410,22 @@
     "name": "HSBC EURO STOXX 50",
     "currency": "EUR",
     "parser": "hsbc-complete"
+  },
+  "IE0002Y8CX98": {
+    "isin": "IE0002Y8CX98",
+    "name": "WisdomTree Europe Defence UCITS ETF",
+    "currency": "EUR",
+    "provider": "WisdomTree",
+    "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-europe-defence-ucits-etf---eur-acc",
+    "parser": "wisdomtree-complete"
+  },
+  "IE000W8WMSL2": {
+    "isin": "IE000W8WMSL2",
+    "name": "WisdomTree Quantum Computing UCITS ETF",
+    "currency": "USD",
+    "provider": "WisdomTree",
+    "sourceUrl": "https://www.wisdomtree.com/gb/products/equities/wisdomtree-quantum-computing-ucits-etf---usd-acc",
+    "parser": "wisdomtree-complete"
   },
   "IE00BJGWQN72": {
     "isin": "IE00BJGWQN72",
