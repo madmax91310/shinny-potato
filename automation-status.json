@@ -471,62 +471,32 @@
     "update-regulatory-data.yml": {
       "monitorVersion": 2,
       "name": "Paramètres fiscaux, LDDS et tarifs de courtiers",
-      "runId": 39585245137,
+      "runId": 39590805445,
       "attempt": 1,
-      "headSha": "1f365a7db4407c867ae2031ca83cced7611c6a45",
-      "createdAt": "2026-10-21T10:31:45Z",
-      "completedAt": "2026-10-21T10:38:12Z",
-      "status": "failure",
-      "lastSuccessAt": "2026-10-18T21:19:08Z",
-      "collectionStatus": "failure",
+      "headSha": "b79ceba0bf97b9ffd8412838fd3368422c84563a",
+      "createdAt": "2026-10-21T11:17:05Z",
+      "completedAt": "2026-10-21T11:22:13Z",
+      "status": "success",
+      "lastSuccessAt": "2026-10-21T11:22:13Z",
+      "collectionStatus": "success",
       "validationStatus": "success",
       "recordingStatus": "success",
       "publicationStatus": "success",
-      "lastCollectionSuccessAt": "2026-10-21T08:47:03Z",
-      "lastPublicationSuccessAt": "2026-10-21T10:37:06.525Z",
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39585245137",
-      "failures": [
-        {
-          "job": "report-failures",
-          "step": "Run echo 'Une collecte réglementaire a échoué. Les dernières valeurs validées restent disponibles. Consulter regulatory-observations.' >> \"$GITHUB_STEP_SUMMARY\""
-        }
-      ],
-      "dataFailures": {
-        "fiscal-observation:dividends": {
-          "name": "Impôt sur le revenu - Revenus d'épargne et de placement",
-          "completedAt": "2026-10-21T10:38:12Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39585245137",
-          "cause": "Remote end closed connection without response"
-        },
-        "fiscal-observation:pee": {
-          "name": "Plan d'épargne entreprise (PEE)",
-          "completedAt": "2026-10-21T10:38:12Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39585245137",
-          "cause": "Remote end closed connection without response"
-        },
-        "fiscal-observation:rent": {
-          "name": "Impôt sur le revenu - Revenus locatifs (location non meublée)",
-          "completedAt": "2026-10-21T10:38:12Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39585245137",
-          "cause": "Remote end closed connection without response"
-        },
-        "fiscal-observation:lmnp": {
-          "name": "Impôt sur le revenu - Revenus d'une location meublée",
-          "completedAt": "2026-10-21T10:38:12Z",
-          "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39585245137",
-          "cause": "Remote end closed connection without response"
-        }
-      },
+      "lastCollectionSuccessAt": "2026-10-21T11:22:13Z",
+      "lastPublicationSuccessAt": "2026-10-21T11:21:08.846Z",
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39590805445",
+      "failures": [],
+      "dataFailures": {},
       "publicationReceipt": {
-        "commit": "304604bb0aa9d49fec917b29f79f259604aa2c94",
+        "commit": "1fabffe6c2b90773d45382b4b635fee5530fb131",
         "files": {
-          "src/data/automated-broker-tariffs.json": "c6f5ba7d6141f848004e8dda9f900a1d2da91241",
+          "src/data/automated-broker-tariffs.json": "0b4290abd983d3dcfae03759fd91a4bdbee0bad5",
           "src/data/automated-regulatory.json": "2db81b6b515d109b9b8b13ac83fd81dff5ce2075"
         },
         "schemaVersion": 1
       },
       "publishedCodeSha": "613b4aa3dcd55e4fb8b9bcff2b3d4842e607f966",
-      "publishedDataSha": "304604bb0aa9d49fec917b29f79f259604aa2c94"
+      "publishedDataSha": "1fabffe6c2b90773d45382b4b635fee5530fb131"
     },
     "update-scpi.yml": {
       "monitorVersion": 2,
@@ -648,7 +618,7 @@
       "recordingStatus": "success",
       "publicationStatus": "success",
       "lastCollectionSuccessAt": "2026-10-20T18:32:24Z",
-      "lastPublicationSuccessAt": "2026-10-21T10:37:06.525Z",
+      "lastPublicationSuccessAt": "2026-10-21T11:21:08.846Z",
       "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39474711089",
       "failures": [],
       "dataFailures": {},
@@ -660,7 +630,7 @@
         "schemaVersion": 1
       },
       "publishedCodeSha": "613b4aa3dcd55e4fb8b9bcff2b3d4842e607f966",
-      "publishedDataSha": "304604bb0aa9d49fec917b29f79f259604aa2c94"
+      "publishedDataSha": "1fabffe6c2b90773d45382b4b635fee5530fb131"
     },
     "update-practical-sheets.yml": {
       "monitorVersion": 2,
@@ -677,7 +647,7 @@
       "recordingStatus": "success",
       "publicationStatus": "success",
       "lastCollectionSuccessAt": "2026-10-20T18:30:07Z",
-      "lastPublicationSuccessAt": "2026-10-21T10:37:06.525Z",
+      "lastPublicationSuccessAt": "2026-10-21T11:21:08.846Z",
       "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39474711064",
       "failures": [],
       "dataFailures": {},
@@ -689,7 +659,7 @@
         "schemaVersion": 1
       },
       "publishedCodeSha": "613b4aa3dcd55e4fb8b9bcff2b3d4842e607f966",
-      "publishedDataSha": "304604bb0aa9d49fec917b29f79f259604aa2c94"
+      "publishedDataSha": "1fabffe6c2b90773d45382b4b635fee5530fb131"
     },
     "update-inflation.yml": {
       "monitorVersion": 2,
@@ -1082,7 +1052,7 @@
       "recordingStatus": "success",
       "publicationStatus": "success",
       "lastCollectionSuccessAt": "2026-10-21T10:33:30Z",
-      "lastPublicationSuccessAt": "2026-10-21T10:37:06.525Z",
+      "lastPublicationSuccessAt": "2026-10-21T11:21:08.846Z",
       "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39585064956",
       "failures": [],
       "dataFailures": {},
@@ -1094,7 +1064,7 @@
         "schemaVersion": 1
       },
       "publishedCodeSha": "613b4aa3dcd55e4fb8b9bcff2b3d4842e607f966",
-      "publishedDataSha": "304604bb0aa9d49fec917b29f79f259604aa2c94"
+      "publishedDataSha": "1fabffe6c2b90773d45382b4b635fee5530fb131"
     },
     "update-non-bond-expansion.yml": {
       "monitorVersion": 2,
@@ -1287,11 +1257,11 @@
       "dataFailures": {}
     }
   },
-  "updatedAt": "2026-10-21T11:19:57Z",
+  "updatedAt": "2026-10-21T11:22:13Z",
   "monitoring": {
     "schemaVersion": 1,
-    "checkedAt": "2026-10-21T11:21:21.780533+00:00",
-    "revision": 210,
+    "checkedAt": "2026-10-21T11:22:54.944437+00:00",
+    "revision": 211,
     "active": {
       "workflow:update-publication-observations.yml": {
         "name": "Pouvoir d’achat et niveaux des anniversaires",
@@ -1309,91 +1279,7 @@
         "cause": "refresh : Commit validated observations",
         "id": "workflow:update-publication-observations.yml",
         "firstSeenAt": "2026-10-21T11:20:31.588995+00:00",
-        "lastSeenAt": "2026-10-21T11:21:21.780533+00:00"
-      },
-      "collection:update-regulatory-data.yml:fiscal-observation:dividends": {
-        "name": "Impôt sur le revenu - Revenus d'épargne et de placement",
-        "tools": [
-          "Comparatif courtiers",
-          "Fiches pratiques"
-        ],
-        "impactScope": "collector",
-        "workflow": "update-regulatory-data.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39585245137",
-        "to": "/donnees-a-revoir",
-        "lastSuccessAt": "2026-10-21T08:47:03Z",
-        "completedAt": "2026-10-21T10:38:12Z",
-        "cause": "Remote end closed connection without response",
-        "sourceUrls": [],
-        "kind": "collection",
-        "field": "Champs du collecteur",
-        "dataId": "fiscal-observation:dividends",
-        "id": "collection:update-regulatory-data.yml:fiscal-observation:dividends",
-        "firstSeenAt": "2026-10-21T10:38:36.416483+00:00",
-        "lastSeenAt": "2026-10-21T11:21:21.780533+00:00"
-      },
-      "collection:update-regulatory-data.yml:fiscal-observation:pee": {
-        "name": "Plan d'épargne entreprise (PEE)",
-        "tools": [
-          "Comparatif courtiers",
-          "Fiches pratiques"
-        ],
-        "impactScope": "collector",
-        "workflow": "update-regulatory-data.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39585245137",
-        "to": "/donnees-a-revoir",
-        "lastSuccessAt": "2026-10-21T08:47:03Z",
-        "completedAt": "2026-10-21T10:38:12Z",
-        "cause": "Remote end closed connection without response",
-        "sourceUrls": [],
-        "kind": "collection",
-        "field": "Champs du collecteur",
-        "dataId": "fiscal-observation:pee",
-        "id": "collection:update-regulatory-data.yml:fiscal-observation:pee",
-        "firstSeenAt": "2026-10-21T10:38:36.416483+00:00",
-        "lastSeenAt": "2026-10-21T11:21:21.780533+00:00"
-      },
-      "collection:update-regulatory-data.yml:fiscal-observation:rent": {
-        "name": "Impôt sur le revenu - Revenus locatifs (location non meublée)",
-        "tools": [
-          "Comparatif courtiers",
-          "Fiches pratiques"
-        ],
-        "impactScope": "collector",
-        "workflow": "update-regulatory-data.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39585245137",
-        "to": "/donnees-a-revoir",
-        "lastSuccessAt": "2026-10-21T08:47:03Z",
-        "completedAt": "2026-10-21T10:38:12Z",
-        "cause": "Remote end closed connection without response",
-        "sourceUrls": [],
-        "kind": "collection",
-        "field": "Champs du collecteur",
-        "dataId": "fiscal-observation:rent",
-        "id": "collection:update-regulatory-data.yml:fiscal-observation:rent",
-        "firstSeenAt": "2026-10-21T10:38:36.416483+00:00",
-        "lastSeenAt": "2026-10-21T11:21:21.780533+00:00"
-      },
-      "collection:update-regulatory-data.yml:fiscal-observation:lmnp": {
-        "name": "Impôt sur le revenu - Revenus d'une location meublée",
-        "tools": [
-          "Comparatif courtiers",
-          "Fiches pratiques"
-        ],
-        "impactScope": "collector",
-        "workflow": "update-regulatory-data.yml",
-        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39585245137",
-        "to": "/donnees-a-revoir",
-        "lastSuccessAt": "2026-10-21T08:47:03Z",
-        "completedAt": "2026-10-21T10:38:12Z",
-        "cause": "Remote end closed connection without response",
-        "sourceUrls": [],
-        "kind": "collection",
-        "field": "Champs du collecteur",
-        "dataId": "fiscal-observation:lmnp",
-        "id": "collection:update-regulatory-data.yml:fiscal-observation:lmnp",
-        "firstSeenAt": "2026-10-21T10:38:36.416483+00:00",
-        "lastSeenAt": "2026-10-21T11:21:21.780533+00:00"
+        "lastSeenAt": "2026-10-21T11:22:54.944437+00:00"
       },
       "collection:update-market-monthly.yml:history:fx:TWD": {
         "name": "history:fx:TWD",
@@ -1416,7 +1302,7 @@
         "dataId": "history:fx:TWD",
         "id": "collection:update-market-monthly.yml:history:fx:TWD",
         "firstSeenAt": "2026-10-19T05:58:42.740410+00:00",
-        "lastSeenAt": "2026-10-21T11:21:21.780533+00:00"
+        "lastSeenAt": "2026-10-21T11:22:54.944437+00:00"
       },
       "collection:update-qualified-exposures.yml:dca-holdings:IE00BJGWQN72": {
         "name": "WisdomTree Cloud Computing UCITS ETF USD Acc",
@@ -1444,7 +1330,7 @@
         "dataId": "dca-holdings:IE00BJGWQN72",
         "id": "collection:update-qualified-exposures.yml:dca-holdings:IE00BJGWQN72",
         "firstSeenAt": "2026-10-21T09:49:46.266914+00:00",
-        "lastSeenAt": "2026-10-21T11:21:21.780533+00:00"
+        "lastSeenAt": "2026-10-21T11:22:54.944437+00:00"
       },
       "collection:update-instrument-metadata.yml:IE00B0M62S72:pea:qualification": {
         "name": "iShares Euro Dividend UCITS ETF",
@@ -1471,7 +1357,7 @@
         "dataId": "IE00B0M62S72:pea:qualification",
         "id": "collection:update-instrument-metadata.yml:IE00B0M62S72:pea:qualification",
         "firstSeenAt": "2026-10-19T19:03:43.742241+00:00",
-        "lastSeenAt": "2026-10-21T11:21:21.780533+00:00"
+        "lastSeenAt": "2026-10-21T11:22:54.944437+00:00"
       },
       "radar:4b633e62dc0a87d1c02f6b7e": {
         "name": "SPDR € Corp Bond UCITS ETF",
@@ -1493,19 +1379,10 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-19) : Poids des dix premières lignes. Dernière observation conservée ; propositions archivées (etf:IE00B3T9LM79:top10:0261a38d6b954a5f4e504dab:2026-10-19).",
         "id": "radar:4b633e62dc0a87d1c02f6b7e",
         "firstSeenAt": "2026-10-20T19:51:00.268149+00:00",
-        "lastSeenAt": "2026-10-21T11:21:21.780533+00:00"
+        "lastSeenAt": "2026-10-21T11:22:54.944437+00:00"
       }
     },
     "events": [
-      {
-        "revision": 181,
-        "at": "2026-10-20T15:24:05.630383+00:00",
-        "opened": [
-          "workflow:update-exposure-expansion.yml"
-        ],
-        "resolved": [],
-        "escalated": []
-      },
       {
         "revision": 182,
         "at": "2026-10-20T16:05:29.541605+00:00",
@@ -11285,9 +11162,194 @@
         "resolved": [],
         "retired": [],
         "escalated": []
+      },
+      {
+        "revision": 211,
+        "at": "2026-10-21T11:22:54.944437+00:00",
+        "opened": [],
+        "resolved": [
+          {
+            "name": "Impôt sur le revenu - Revenus d'épargne et de placement",
+            "tools": [
+              "Comparatif courtiers",
+              "Fiches pratiques"
+            ],
+            "impactScope": "collector",
+            "workflow": "update-regulatory-data.yml",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39585245137",
+            "to": "/donnees-a-revoir",
+            "lastSuccessAt": "2026-10-21T08:47:03Z",
+            "completedAt": "2026-10-21T10:38:12Z",
+            "cause": "Remote end closed connection without response",
+            "sourceUrls": [],
+            "kind": "collection",
+            "field": "Champs du collecteur",
+            "dataId": "fiscal-observation:dividends",
+            "id": "collection:update-regulatory-data.yml:fiscal-observation:dividends",
+            "firstSeenAt": "2026-10-21T10:38:36.416483+00:00",
+            "lastSeenAt": "2026-10-21T11:21:21.780533+00:00",
+            "resolvedAt": "2026-10-21T11:22:54.944437+00:00"
+          },
+          {
+            "name": "Plan d'épargne entreprise (PEE)",
+            "tools": [
+              "Comparatif courtiers",
+              "Fiches pratiques"
+            ],
+            "impactScope": "collector",
+            "workflow": "update-regulatory-data.yml",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39585245137",
+            "to": "/donnees-a-revoir",
+            "lastSuccessAt": "2026-10-21T08:47:03Z",
+            "completedAt": "2026-10-21T10:38:12Z",
+            "cause": "Remote end closed connection without response",
+            "sourceUrls": [],
+            "kind": "collection",
+            "field": "Champs du collecteur",
+            "dataId": "fiscal-observation:pee",
+            "id": "collection:update-regulatory-data.yml:fiscal-observation:pee",
+            "firstSeenAt": "2026-10-21T10:38:36.416483+00:00",
+            "lastSeenAt": "2026-10-21T11:21:21.780533+00:00",
+            "resolvedAt": "2026-10-21T11:22:54.944437+00:00"
+          },
+          {
+            "name": "Impôt sur le revenu - Revenus locatifs (location non meublée)",
+            "tools": [
+              "Comparatif courtiers",
+              "Fiches pratiques"
+            ],
+            "impactScope": "collector",
+            "workflow": "update-regulatory-data.yml",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39585245137",
+            "to": "/donnees-a-revoir",
+            "lastSuccessAt": "2026-10-21T08:47:03Z",
+            "completedAt": "2026-10-21T10:38:12Z",
+            "cause": "Remote end closed connection without response",
+            "sourceUrls": [],
+            "kind": "collection",
+            "field": "Champs du collecteur",
+            "dataId": "fiscal-observation:rent",
+            "id": "collection:update-regulatory-data.yml:fiscal-observation:rent",
+            "firstSeenAt": "2026-10-21T10:38:36.416483+00:00",
+            "lastSeenAt": "2026-10-21T11:21:21.780533+00:00",
+            "resolvedAt": "2026-10-21T11:22:54.944437+00:00"
+          },
+          {
+            "name": "Impôt sur le revenu - Revenus d'une location meublée",
+            "tools": [
+              "Comparatif courtiers",
+              "Fiches pratiques"
+            ],
+            "impactScope": "collector",
+            "workflow": "update-regulatory-data.yml",
+            "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39585245137",
+            "to": "/donnees-a-revoir",
+            "lastSuccessAt": "2026-10-21T08:47:03Z",
+            "completedAt": "2026-10-21T10:38:12Z",
+            "cause": "Remote end closed connection without response",
+            "sourceUrls": [],
+            "kind": "collection",
+            "field": "Champs du collecteur",
+            "dataId": "fiscal-observation:lmnp",
+            "id": "collection:update-regulatory-data.yml:fiscal-observation:lmnp",
+            "firstSeenAt": "2026-10-21T10:38:36.416483+00:00",
+            "lastSeenAt": "2026-10-21T11:21:21.780533+00:00",
+            "resolvedAt": "2026-10-21T11:22:54.944437+00:00"
+          }
+        ],
+        "retired": [],
+        "escalated": []
       }
     ],
     "resolved": [
+      {
+        "name": "Impôt sur le revenu - Revenus d'épargne et de placement",
+        "tools": [
+          "Comparatif courtiers",
+          "Fiches pratiques"
+        ],
+        "impactScope": "collector",
+        "workflow": "update-regulatory-data.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39585245137",
+        "to": "/donnees-a-revoir",
+        "lastSuccessAt": "2026-10-21T08:47:03Z",
+        "completedAt": "2026-10-21T10:38:12Z",
+        "cause": "Remote end closed connection without response",
+        "sourceUrls": [],
+        "kind": "collection",
+        "field": "Champs du collecteur",
+        "dataId": "fiscal-observation:dividends",
+        "id": "collection:update-regulatory-data.yml:fiscal-observation:dividends",
+        "firstSeenAt": "2026-10-21T10:38:36.416483+00:00",
+        "lastSeenAt": "2026-10-21T11:21:21.780533+00:00",
+        "resolvedAt": "2026-10-21T11:22:54.944437+00:00"
+      },
+      {
+        "name": "Plan d'épargne entreprise (PEE)",
+        "tools": [
+          "Comparatif courtiers",
+          "Fiches pratiques"
+        ],
+        "impactScope": "collector",
+        "workflow": "update-regulatory-data.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39585245137",
+        "to": "/donnees-a-revoir",
+        "lastSuccessAt": "2026-10-21T08:47:03Z",
+        "completedAt": "2026-10-21T10:38:12Z",
+        "cause": "Remote end closed connection without response",
+        "sourceUrls": [],
+        "kind": "collection",
+        "field": "Champs du collecteur",
+        "dataId": "fiscal-observation:pee",
+        "id": "collection:update-regulatory-data.yml:fiscal-observation:pee",
+        "firstSeenAt": "2026-10-21T10:38:36.416483+00:00",
+        "lastSeenAt": "2026-10-21T11:21:21.780533+00:00",
+        "resolvedAt": "2026-10-21T11:22:54.944437+00:00"
+      },
+      {
+        "name": "Impôt sur le revenu - Revenus locatifs (location non meublée)",
+        "tools": [
+          "Comparatif courtiers",
+          "Fiches pratiques"
+        ],
+        "impactScope": "collector",
+        "workflow": "update-regulatory-data.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39585245137",
+        "to": "/donnees-a-revoir",
+        "lastSuccessAt": "2026-10-21T08:47:03Z",
+        "completedAt": "2026-10-21T10:38:12Z",
+        "cause": "Remote end closed connection without response",
+        "sourceUrls": [],
+        "kind": "collection",
+        "field": "Champs du collecteur",
+        "dataId": "fiscal-observation:rent",
+        "id": "collection:update-regulatory-data.yml:fiscal-observation:rent",
+        "firstSeenAt": "2026-10-21T10:38:36.416483+00:00",
+        "lastSeenAt": "2026-10-21T11:21:21.780533+00:00",
+        "resolvedAt": "2026-10-21T11:22:54.944437+00:00"
+      },
+      {
+        "name": "Impôt sur le revenu - Revenus d'une location meublée",
+        "tools": [
+          "Comparatif courtiers",
+          "Fiches pratiques"
+        ],
+        "impactScope": "collector",
+        "workflow": "update-regulatory-data.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39585245137",
+        "to": "/donnees-a-revoir",
+        "lastSuccessAt": "2026-10-21T08:47:03Z",
+        "completedAt": "2026-10-21T10:38:12Z",
+        "cause": "Remote end closed connection without response",
+        "sourceUrls": [],
+        "kind": "collection",
+        "field": "Champs du collecteur",
+        "dataId": "fiscal-observation:lmnp",
+        "id": "collection:update-regulatory-data.yml:fiscal-observation:lmnp",
+        "firstSeenAt": "2026-10-21T10:38:36.416483+00:00",
+        "lastSeenAt": "2026-10-21T11:21:21.780533+00:00",
+        "resolvedAt": "2026-10-21T11:22:54.944437+00:00"
+      },
       {
         "id": "field:instrument:IE00BJGWQN72:completeHoldings",
         "name": "WisdomTree Cloud Computing UCITS ETF USD Acc",
@@ -13812,94 +13874,6 @@
         "field": "Poids du pays Chile",
         "cause": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays Chile. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Chile:630657e8b950b3715e6c0f9a:2026-10-19).",
         "id": "radar:4fcfd92543ddeca6a69d2a9a",
-        "firstSeenAt": "2026-10-20T16:05:29.541605+00:00",
-        "lastSeenAt": "2026-10-21T00:34:42.908591+00:00",
-        "resolvedAt": "2026-10-21T00:36:50.700683+00:00"
-      },
-      {
-        "name": "Xtrackers FTSE All-World UCITS ETF 1C",
-        "tools": [
-          "Impact des frais",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "sourceUrls": [
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE000L6ZMMC4/historicaldata/download",
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE000L6ZMMC4/pdpMetaTagsTealium",
-          "https://etf.dws.com/api/pdp/fr-fr/etf/IE000L6ZMMC4/pdpMetaTagsTealium",
-          "https://www.justetf.com/en/etf-profile.html?isin=IE000L6ZMMC4"
-        ],
-        "to": "/bibliotheque-donnees?id=IE000L6ZMMC4",
-        "kind": "conflict",
-        "field": "Poids du pays Greece",
-        "cause": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays Greece. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Greece:630657e8b950b3715e6c0f9a:2026-10-19).",
-        "id": "radar:cb73d7ea2170de4d32d78ccb",
-        "firstSeenAt": "2026-10-20T16:05:29.541605+00:00",
-        "lastSeenAt": "2026-10-21T00:34:42.908591+00:00",
-        "resolvedAt": "2026-10-21T00:36:50.700683+00:00"
-      },
-      {
-        "name": "Xtrackers FTSE All-World UCITS ETF 1C",
-        "tools": [
-          "Impact des frais",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "sourceUrls": [
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE000L6ZMMC4/historicaldata/download",
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE000L6ZMMC4/pdpMetaTagsTealium",
-          "https://etf.dws.com/api/pdp/fr-fr/etf/IE000L6ZMMC4/pdpMetaTagsTealium",
-          "https://www.justetf.com/en/etf-profile.html?isin=IE000L6ZMMC4"
-        ],
-        "to": "/bibliotheque-donnees?id=IE000L6ZMMC4",
-        "kind": "conflict",
-        "field": "Poids du pays Cayman Islands",
-        "cause": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays Cayman Islands. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Cayman Islands:630657e8b950b3715e6c0f9a:2026-10-19).",
-        "id": "radar:4fd98023f8b39f4a73dbeb6d",
-        "firstSeenAt": "2026-10-20T16:05:29.541605+00:00",
-        "lastSeenAt": "2026-10-21T00:34:42.908591+00:00",
-        "resolvedAt": "2026-10-21T00:36:50.700683+00:00"
-      },
-      {
-        "name": "Xtrackers FTSE All-World UCITS ETF 1C",
-        "tools": [
-          "Impact des frais",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "sourceUrls": [
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE000L6ZMMC4/historicaldata/download",
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE000L6ZMMC4/pdpMetaTagsTealium",
-          "https://etf.dws.com/api/pdp/fr-fr/etf/IE000L6ZMMC4/pdpMetaTagsTealium",
-          "https://www.justetf.com/en/etf-profile.html?isin=IE000L6ZMMC4"
-        ],
-        "to": "/bibliotheque-donnees?id=IE000L6ZMMC4",
-        "kind": "conflict",
-        "field": "Poids du pays Romania",
-        "cause": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays Romania. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Romania:630657e8b950b3715e6c0f9a:2026-10-19).",
-        "id": "radar:0321ea9c1e36dbc2612dbc2b",
-        "firstSeenAt": "2026-10-20T16:05:29.541605+00:00",
-        "lastSeenAt": "2026-10-21T00:34:42.908591+00:00",
-        "resolvedAt": "2026-10-21T00:36:50.700683+00:00"
-      },
-      {
-        "name": "Xtrackers FTSE All-World UCITS ETF 1C",
-        "tools": [
-          "Impact des frais",
-          "Présentation ETF"
-        ],
-        "impactScope": "asset",
-        "sourceUrls": [
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE000L6ZMMC4/historicaldata/download",
-          "https://etf.dws.com/api/pdp/en-gb/etf/IE000L6ZMMC4/pdpMetaTagsTealium",
-          "https://etf.dws.com/api/pdp/fr-fr/etf/IE000L6ZMMC4/pdpMetaTagsTealium",
-          "https://www.justetf.com/en/etf-profile.html?isin=IE000L6ZMMC4"
-        ],
-        "to": "/bibliotheque-donnees?id=IE000L6ZMMC4",
-        "kind": "conflict",
-        "field": "Poids du pays Zambia",
-        "cause": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays Zambia. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Zambia:630657e8b950b3715e6c0f9a:2026-10-19).",
-        "id": "radar:d4976b3e291e6c643374fdaa",
         "firstSeenAt": "2026-10-20T16:05:29.541605+00:00",
         "lastSeenAt": "2026-10-21T00:34:42.908591+00:00",
         "resolvedAt": "2026-10-21T00:36:50.700683+00:00"
@@ -17547,11 +17521,11 @@
           "error": null
         }
       ],
-      "reason": "transient-source",
-      "lastSuccessAt": "2026-10-21T08:47:03Z",
-      "observedRunId": 39585245137,
-      "status": "awaiting-current-run",
-      "nextAttemptAt": "2026-10-21T12:43:51.773573+00:00"
+      "reason": null,
+      "lastSuccessAt": "2026-10-21T11:22:13Z",
+      "observedRunId": 39590805445,
+      "status": "idle",
+      "nextAttemptAt": null
     },
     "collect-etf-pilot.yml": {
       "attempts": [
