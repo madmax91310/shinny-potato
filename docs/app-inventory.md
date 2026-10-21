@@ -13,8 +13,8 @@ Généré depuis les routes, le catalogue et les observations actives. Régéné
 | Simulateur de patrimoine | /simulateur-patrimoine |
 | Présentations | /presentations |
 | Analyse d’entreprise | /analyse-entreprise |
-| Portefeuille d’investisseur | /portefeuilles-investisseurs |
-| La France en 100 ménages | /france-100-menages |
+| Présentation d’un investisseur connu | /portefeuilles-investisseurs |
+| France en 100 ménages | /france-100-menages |
 | Données à revoir | /donnees-a-revoir |
 | Bibliothèque de données | /bibliotheque-donnees |
 | Et si tu avais investi ? | /calculateur-investissement |
@@ -28,10 +28,10 @@ Généré depuis les routes, le catalogue et les observations actives. Régéné
 | Performance depuis | /performance-depuis |
 | Pouvoir d’achat | /pouvoir-achat |
 | Dilemme | /dilemme |
-| Calculateur d'impact des frais | /impact-frais |
-| Faits marquants des marchés | /faits-marquants-marches |
-| Banque de tweets à recycler | /banque-tweets |
-| Dans les coulisses des indices | /tweets-factsheets |
+| Impact des frais | /impact-frais |
+| Faits marquants | /faits-marquants-marches |
+| Banque de tweets | /banque-tweets |
+| Coulisses des indices | /tweets-factsheets |
 
 ## Catalogue
 
