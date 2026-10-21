@@ -1,5 +1,6 @@
 """Read official SCPI publications. A failed adapter never replaces validated data."""
 import argparse
+import http.client
 import concurrent.futures
 import datetime as dt
 import json
@@ -19,6 +20,7 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / 'src/data/automated-scpi.json'
 IROKO = 'https://www.iroko.eu/scpi/zen'
 REMAKE = 'https://www.remake.fr/remake-live'
+MAX_PUBLICATION_BYTES = 32_000_000  # Annual SCPI reports can exceed 17 MB.
 IROKO_NOTE = 'https://iroko-documents.s3.eu-west-3.amazonaws.com/Iroko_Zen_note_information.pdf'
 
 
@@ -29,14 +31,16 @@ def fetch(url, headers=None):
     for attempt in range(3):
         try:
             with urllib.request.urlopen(request, timeout=30) as response:
-                data = response.read()
+                data = response.read(MAX_PUBLICATION_BYTES + 1)
+            if len(data) > MAX_PUBLICATION_BYTES:
+                raise ValueError('Official publication exceeds size limit: ' + url)
             if not data:
                 raise ValueError('Empty official publication: ' + url)
             return data
         except urllib.error.HTTPError as error:
             if error.code not in (408, 429, 500, 502, 503, 504) or attempt == 2:
                 raise
-        except (urllib.error.URLError, TimeoutError, ConnectionError):
+        except (urllib.error.URLError, TimeoutError, ConnectionError, http.client.IncompleteRead):
             if attempt == 2:
                 raise
         time.sleep(attempt + 1)

@@ -1,5 +1,6 @@
 """Public issuer holdings API; FIGIs are joined to independently proved ISINs."""
 import datetime as dt
+import http.client
 import json
 import math
 import os
@@ -13,6 +14,10 @@ from security_identifier_observations import API, digest
 
 ROOT = Path(__file__).resolve().parents[1]
 CLASSES = {'IE00BJGWQN72': (3104137, 'WCLD LN', 'WisdomTree Cloud Computing UCITS ETF - USD Acc')}
+
+
+class IssuerApiUnavailable(ConnectionError):
+    """Both ordinary public transports failed; financial validation is separate."""
 
 
 def mapping_request(jobs):
@@ -82,7 +87,7 @@ def parse(payload, share, now, mapping):
         weight = item['wgt']
         if type(weight) not in (int, float) or not math.isfinite(weight) or not 0 <= weight <= 1:
             raise ValueError('Invalid API portfolio weight')
-        if any(type(item.get(k)) not in (int,float) or abs(item[k]-1) > .00001 for k in ['checkSumWgtEntity','checkSumWgtAssetGroup']):
+        if any(type(item.get(k)) not in (int,float) or not math.isfinite(item[k]) or abs(item[k]-1) > .00001 for k in ['checkSumWgtEntity','checkSumWgtAssetGroup']):
             raise ValueError('Unqualified API portfolio checksum')
         total += weight
         if item.get('securityName') == 'CASH W-O' and item.get('figi') is None and item.get('securityTicker') is None:
@@ -121,13 +126,16 @@ def collect(share, now, fetch=download, post=mapping_request):
         raw = fetch(url, headers={'User-Agent':'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36',
                                  'Accept':'application/json','Referer':'https://www.wisdomtree.com/gb/products/equities/wisdomtree-cloud-computing-ucits-etf---usd-acc'})
     except urllib.error.HTTPError as error:
+        if error.code not in (403,408,429,500,502,503,504):raise
         if error.code!=403 or os.environ.get('WISDOMTREE_BROWSER_CAPTURE')!='1':
-            raise
+            raise IssuerApiUnavailable(f'Public issuer API unavailable: HTTP {error.code}') from error
         result=subprocess.run(['node',str(ROOT/'scripts/capture-wisdomtree-api.mjs'),url],cwd=ROOT,capture_output=True,timeout=45)
         if result.returncode:
-            raise ValueError('Issuer API HTTP 403; public browser also failed: '+result.stderr.decode(errors='replace')[-700:])
+            raise IssuerApiUnavailable('Issuer API HTTP 403; public browser also failed: '+result.stderr.decode(errors='replace')[-700:])
         raw=result.stdout
         capture_method='public-browser-json'
+    except (urllib.error.URLError,TimeoutError,ConnectionError,http.client.IncompleteRead) as error:
+        raise IssuerApiUnavailable('Public issuer API unavailable: '+str(error)) from error
     payload = json.loads(raw)
     previous = json.loads((ROOT/'src/data/dca-complete-holdings.json').read_text())
     observations = previous.get(share['isin'], {}).get('identityObservations', [])

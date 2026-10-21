@@ -90,9 +90,26 @@ def parse(page,share,now,mapping,identity_dates):
     return rows,stamp
 
 def collect(share,now):
-    from wisdomtree_api_holdings import CLASSES, collect as api_collect
-    if share['isin'] in CLASSES:
-        return api_collect(share, now)
+    from wisdomtree_api_holdings import CLASSES, IssuerApiUnavailable, collect as api_collect
+    if share['isin'] not in CLASSES:
+        return collect_rankings(share,now)
+    try:
+        return api_collect(share,now)
+    except IssuerApiUnavailable as error:
+        primary_error=error
+    # Same exact fund, public issuer SSR portfolio. Identity/date/weight gates
+    # are unchanged. The caller still refuses a date older than retained data.
+    try:
+        result=collect_rankings(share,now)
+    except Exception as error:
+        raise ValueError(f'Issuer API unavailable: {primary_error}; public full portfolio unqualified: {error}') from error
+    result['accessAttempts']=[{'sourceUrl':f'https://www.wisdomtree.com/api/fund-holdings/{CLASSES[share["isin"]][0]}',
+        'status':'unavailable','error':str(primary_error)[:800]},
+        {'sourceUrl':share['sourceUrl'],'status':'validated-public-portfolio'}]
+    return result
+
+
+def collect_rankings(share,now):
     from collect_physical_holdings import observation
     page=public_page(share['sourceUrl'],max_bytes=12_000_000);mapping={};dates=[];proofs={}
     for expected,url in IDENTITIES:
@@ -100,18 +117,16 @@ def collect(share,now):
         if any(k in mapping and mapping[k]!=v for k,v in values.items()):raise ValueError('Contradictory identity sources')
         mapping.update(values);dates.append(stamp);proofs[url]=hashlib.sha256(raw).hexdigest()
     retained=json.loads((Path(__file__).resolve().parents[1]/'src/data/dca-complete-holdings.json').read_text())
-    fresh_days=json.loads((Path(__file__).resolve().parents[1]/'src/data/freshness-policy.json').read_text())['fields']['etf.default']['checkDays']
+    from security_identifier_observations import mappings,retained_identity_pairs
     for record in retained.values():
-        pairs=[r for r in record.get('rows',[])if re.fullmatch(r'[A-Z0-9]{7}',r.get('sedol')or'')and re.fullmatch(r'[A-Z]{2}[A-Z0-9]{9}\d',r.get('isin')or'')]
-        if not pairs or not record.get('complete')or not re.fullmatch(r'[a-f0-9]{64}',record.get('sha256')or''):continue
-        stamp=record.get('asOf');today=now.date()
-        if not stamp or not 0<=(today-dt.date.fromisoformat(stamp)).days<=fresh_days:continue
+        pairs=retained_identity_pairs(record,now)
+        if not pairs:continue
+        stamp=record['asOf']
         for row in pairs:
             key,value=row['sedol'],row['isin']
             if key in mapping and mapping[key]!=value:raise ValueError('Conflicting retained identity')
             mapping[key]=value
         proofs[record['sourceUrl']]=record['sha256'];dates.append(stamp)
-    from security_identifier_observations import mappings
     crosswalk,identifier_proofs=mappings(now)
     for key,value in crosswalk.items():
         if key in mapping and mapping[key]!=value:raise ValueError('Conflicting qualified identifier crosswalk')

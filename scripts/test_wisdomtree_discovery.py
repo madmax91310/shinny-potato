@@ -2,6 +2,7 @@ import copy
 import datetime as dt
 import json
 import unittest
+import urllib.error
 from unittest.mock import patch
 from collect_wisdomtree_holdings import rankings,parse
 from discover_holdings_sources import discover
@@ -33,6 +34,30 @@ class Holdings(unittest.TestCase):
                 with self.assertRaisesRegex(ValueError,'Incomplete weights'):parse(page(bad),SHARE,NOW,mapping,['2026-10-19'])
             bad=copy.deepcopy(data);bad['ranking'][0]['dt']='2026-10-18'
             with self.assertRaisesRegex(ValueError,'Mixed fund/date'):parse(page(bad),SHARE,NOW,mapping,['2026-10-19'])
+    def test_cloud_access_fallback_never_retries_a_financial_validation_failure(self):
+        from collect_wisdomtree_holdings import collect
+        from wisdomtree_api_holdings import IssuerApiUnavailable
+        value={'complete':True,'asOf':'2026-10-19','rows':[{'isin':'US0000000001'}]}
+        with patch('wisdomtree_api_holdings.collect',side_effect=IssuerApiUnavailable('HTTP 403')),patch('collect_wisdomtree_holdings.collect_rankings',return_value=value) as alternate:
+            result=collect(SHARE,NOW)
+            self.assertEqual(result['asOf'],'2026-10-19')
+            self.assertEqual(result['accessAttempts'][0]['status'],'unavailable')
+            alternate.assert_called_once()
+        for error in [ValueError('Wrong API fund identity'),urllib.error.HTTPError('https://api.openfigi.com/v3/mapping',403,'Identifier service unavailable',{},None),urllib.error.HTTPError('https://www.wisdomtree.com/api/fund-holdings/3104137',404,'Removed',{},None)]:
+            with patch('wisdomtree_api_holdings.collect',side_effect=error),patch('collect_wisdomtree_holdings.collect_rankings') as alternate:
+                with self.assertRaises(type(error)):collect(SHARE,NOW)
+                alternate.assert_not_called()
+        from observation_status import holdings_status
+        # A validated but older alternate never replaces the newer observation.
+        with patch('wisdomtree_api_holdings.collect',side_effect=IssuerApiUnavailable('timeout')),patch('collect_wisdomtree_holdings.collect_rankings',return_value={**value,'asOf':'2026-10-18'}):
+            old=collect(SHARE,NOW)
+        previous={'asOf':'2026-10-19','checkedAt':'2026-10-19T00:00:00+00:00'}
+        error='Date regression' if previous['asOf']>old['asOf'] else None
+        status=holdings_status({},previous,None,error,NOW)
+        self.assertEqual(status['asOf'],'2026-10-19')
+        self.assertEqual(status['lastSuccessAt'],previous['checkedAt'])
+        self.assertEqual(status['status'],'failed')
+
     def test_sector_rows_complete_truncated_top100(self):
         data=fixture();allrows=data['ranking'];data['ranking']=allrows[:3]
         self.assertEqual(len(rankings(page({'holdings':data,'sectors':{'holdings':allrows}}))['ranking']),11)
@@ -60,6 +85,25 @@ class Identifiers(unittest.TestCase):
         value=self.evidence();self.assertEqual(qualified(value,NOW),('BN7GN02','IL0011794802'))
         value['response'][1]['data'][0]={**value['response'][1]['data'][0],'figi':'BBG000BK00N7'};value['sha256']=digest(value['response'])
         with self.assertRaisesRegex(ValueError,'Missing or ambiguous'):qualified(value,NOW)
+    def test_ny_registered_share_is_distinct_from_another_security_type(self):
+        value=self.evidence()
+        for response in value['response']:response['data'][0]['securityType']='NY Reg Shrs'
+        value['sha256']=digest(value['response'])
+        self.assertEqual(qualified(value,NOW),('BN7GN02','IL0011794802'))
+        value['response'][1]['data'][0]={**value['response'][1]['data'][0],'securityType':'Common Stock'}
+        value['sha256']=digest(value['response'])
+        with self.assertRaises(ValueError):qualified(value,NOW)
+
+    def test_adr_queries_require_the_same_depositary_receipt_not_the_ordinary_share(self):
+        value=self.evidence()
+        for response in value['response']:
+            response['data'][0]['securityType']='ADR'
+        value['sha256']=digest(value['response'])
+        self.assertEqual(qualified(value,NOW),('BN7GN02','IL0011794802'))
+        value['response'][1]['data'][0]={**value['response'][1]['data'][0],'securityType':'Common Stock'}
+        value['sha256']=digest(value['response'])
+        with self.assertRaisesRegex(ValueError,'Missing or ambiguous'):qualified(value,NOW)
+
     def test_tamper_expiry_future_and_ambiguous_isin(self):
         value=self.evidence();value['sha256']='0'*64
         with self.assertRaisesRegex(ValueError,'evidence'):qualified(value,NOW)

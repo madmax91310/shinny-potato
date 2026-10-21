@@ -3,10 +3,11 @@ import datetime as dt
 import json
 import pathlib
 import unittest
+import http.client
 import io
 import urllib.error
 from unittest.mock import patch
-from collect_scpi import fetch, parse_remake, parse_iroko_conditions, split_chart, annual_iroko, refresh, validate, remake_price_history
+from collect_scpi import MAX_PUBLICATION_BYTES, fetch, parse_remake, parse_iroko_conditions, split_chart, annual_iroko, refresh, validate, remake_price_history
 
 FIXTURES = pathlib.Path(__file__).parent / 'fixtures/scpi'
 TODAY = dt.date(2026, 10, 8)
@@ -23,7 +24,7 @@ class ScpiTests(unittest.TestCase):
             with self.assertRaises(ValueError):remake_price_history(bad,url,current,TODAY)
 
     def test_temporary_network_failure_retries_then_recovers(self):
-        for error in [TimeoutError('timeout'), urllib.error.URLError('reset'), urllib.error.HTTPError('https://official.test',503,'Unavailable',{},None)]:
+        for error in [http.client.IncompleteRead(b'partial'), TimeoutError('timeout'), urllib.error.URLError('reset'), urllib.error.HTTPError('https://official.test',503,'Unavailable',{},None)]:
             with patch('collect_scpi.urllib.request.urlopen',side_effect=[error,io.BytesIO(b'%PDF-verified')]) as request, patch('collect_scpi.time.sleep'):
                 self.assertEqual(fetch('https://official.test'),b'%PDF-verified')
                 self.assertEqual(request.call_count,2)
@@ -35,6 +36,17 @@ class ScpiTests(unittest.TestCase):
                 self.assertEqual(request.call_count,count)
         with patch('collect_scpi.urllib.request.urlopen',return_value=io.BytesIO(b'')) as request:
             with self.assertRaises(ValueError):fetch('https://official.test')
+            self.assertEqual(request.call_count,1)
+
+    def test_current_large_annual_report_still_fits_the_bounded_reader(self):
+        # Observed Content-Length of the official 2025 ActivImmo report, 21/10/2026.
+        body=b'%PDF-'+b'x'*(17_423_444-5)
+        with patch('collect_scpi.urllib.request.urlopen',return_value=io.BytesIO(body)):
+            self.assertEqual(len(fetch('https://official.test/annual.pdf')),17_423_444)
+
+    def test_oversized_publication_is_rejected_without_retry(self):
+        with patch('collect_scpi.urllib.request.urlopen',return_value=io.BytesIO(b'x'*(MAX_PUBLICATION_BYTES+1))) as request:
+            with self.assertRaisesRegex(ValueError,'size limit'):fetch('https://official.test')
             self.assertEqual(request.call_count,1)
 
     def remake(self):

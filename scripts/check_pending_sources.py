@@ -42,22 +42,39 @@ def inspect(url,now,previous,fetch=download):
                    sha256=previous.get('sha256'))
     return row
 
+MAX_SOURCES_PER_CONNECTION = 8
+
+
+def source_urls(row):
+    """Keep the primary and independent configured routes, in declared order."""
+    values=[row.get('sourceUrl'),*(row.get('configuredSourceUrls') or [])]
+    return list(dict.fromkeys(u for u in values if isinstance(u,str) and u))
+
+
 def check(backlog,previous,now,fetch=download):
     choices={}
     for row in backlog:
-        url=row.get('sourceUrl') or next(iter(row.get('configuredSourceUrls') or []),None)
-        if url:choices[url]=previous.get('sources',{}).get(url,{})
+        for url in source_urls(row)[:MAX_SOURCES_PER_CONNECTION]:
+            choices[url]=previous.get('sources',{}).get(url,{})
     def one(item):return item[0],inspect(item[0],now,item[1],fetch)
-    sources=dict(ThreadPoolExecutor(max_workers=6).map(one,choices.items()))
+    with ThreadPoolExecutor(max_workers=6) as pool:
+        sources=dict(pool.map(one,choices.items()))
     observations={}
     for row in backlog:
-        url=row.get('sourceUrl') or next(iter(row.get('configuredSourceUrls') or []),None)
+        urls=source_urls(row)
+        checked=urls[:MAX_SOURCES_PER_CONNECTION]
+        # A reachable alternative is an access observation only. Every failed
+        # primary remains in sources and sourceChecks; no financial closure.
+        selected=next((u for u in checked if sources[u]['status']!='unavailable'),next(iter(checked),None))
         key=row['id']+':'+row['field']
-        observations[key]={'prerequisite':prerequisite(row),**(sources[url] if url else {
+        observations[key]={'prerequisite':prerequisite(row),**(sources[selected] if selected else {
             'status':'not-configured','lastAccessAttemptAt':now.isoformat(),
-            'qualification':'access-check-only','financialDataQualified':False})}
+            'qualification':'access-check-only','financialDataQualified':False}),
+            'primarySourceUrl':next(iter(urls),None),
+            'sourceChecks':[{'sourceUrl':u,'status':sources[u]['status']} for u in checked],
+            'notCheckedSourceUrls':urls[MAX_SOURCES_PER_CONNECTION:]}
     return {'schemaVersion':1,'checkedAt':now.isoformat(),
-        'method':'HTTP access and content changes only; never renew financial checkedAt, asOf or lastSuccessAt, and never resolve a qualification incident.',
+        'method':'HTTP access and content changes only; primary and configured alternatives are checked independently with a bounded budget. Never renew financial checkedAt, asOf or lastSuccessAt, and never resolve a qualification incident.',
         'sources':sources,'observations':observations}
 
 def main():

@@ -5,11 +5,12 @@ import {chromium} from 'playwright'
 import {getInstrumentAnnualPerformance} from '../src/data/instrument-returns.js'
 import {REVIEWED_PERFORMANCE_META} from '../src/data/instrument-performance-review.js'
 const raw=JSON.parse(readFileSync('src/data/dca-complete-holdings.json'))
+const discovered=process.argv.includes('--discovered')
 const wisdomtree=process.argv.includes('--wisdomtree')
 const topix=process.argv.includes('--topix')
 const newIssuers=process.argv.includes('--new-issuers')
-const physical=process.argv.includes('--physical')||newIssuers||wisdomtree
-const selected=wisdomtree?['IE00BJGWQN72','IE00BFY0GT14']:topix?['FR0013411980','FR0013411998']:newIssuers?['IE00B4K6B022','IE0003UVYC20']:physical?['IE00BK5BQT80','IE00BFMXXD54']:['IE00BFY0GT14','IE00BKWQ0Q14']
+const physical=process.argv.includes('--physical')||newIssuers||wisdomtree||discovered
+const selected=discovered?['IE000W8WMSL2','IE00BDVPNG13']:wisdomtree?['IE00BJGWQN72','IE00BFY0GT14']:topix?['FR0013411980','FR0013411998']:newIssuers?['IE00B4K6B022','IE0003UVYC20']:physical?['IE00BK5BQT80','IE00BFMXXD54']:['IE00BFY0GT14','IE00BKWQ0Q14']
 for(const isin of selected)assert(raw[isin]?.complete&&raw[isin].checkedAt&&raw[isin].sha256&&raw[isin].rows.length>10,`Fresh complete portfolio required: ${isin}`)
 if(physical){
  const targets=JSON.parse(readFileSync('scripts/generated-holdings-sources.json'))

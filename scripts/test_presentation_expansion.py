@@ -4,7 +4,7 @@ import json
 from pathlib import Path
 import unittest
 from collect_atland_scpi import parse_epargne
-from collect_other_insurance import parse_lucya, parse_placement, qualify_lucya_general_allocation
+from collect_other_insurance import parse_lucya, parse_placement, qualify_lucya_general_allocation, placement_notice_conditions
 from collect_scpi import remake_price_history, validate as validate_scpi, refresh as refresh_scpi
 from collect_insurance import validate as validate_insurance, refresh as refresh_insurance
 from insurance_literal import LiteralReader, nuxt_returns
@@ -99,6 +99,15 @@ N 0 900
         self.assertEqual((f['years'][-1]['returnMin'],f['years'][-1]['returnMax']),(1.9,3.45))
         self.assertEqual(len(f['years'][-1]['tiers']),6)
         self.assertIn('0,8 %/an',r['fees']['notes'])
+    def test_current_official_net_guarantee_clause_and_changed_costs(self):
+        text=(Path(__file__).parent/'fixtures/presentation-expansion/placement-current-conditions.txt').read_text()
+        guarantee,options=placement_notice_conditions(text,.6)
+        self.assertEqual(guarantee,99.4)
+        self.assertEqual([o['additionalFee'] for o in options],[.4,.7])
+        for old,new in [('nettes de frais','brutes de frais'),('plancher décès','nouvelle garantie'),('0,60 %','0,75 %')]:
+            with self.subTest(old=old),self.assertRaises(ValueError):
+                placement_notice_conditions(text.replace(old,new),.6)
+
     def test_hero_maximum_must_match_barème(self):
         with self.assertRaises(ValueError):self.placement(self.placement_html().replace('Jusqu’à 3,45','Jusqu’à 9'))
     def test_inconsistent_tier_and_disappearing_fund_preserve_record(self):
