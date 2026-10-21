@@ -43,7 +43,7 @@ for(const width of [390,1440]){
   await page.locator('.dca-simple-preview img').waitFor()
   assert.equal(requests.filter(r=>r.includes('/data/exposures/')).length,before,'cached exact exposure')
   assert(!requests.some(r=>r.includes('/data/exposure-catalog/')))
-  await page.getByRole('button',{name:'Le DCA de…',exact:true}).click()
+  await page.getByRole('button',{name:'Le DCA d’un abonné',exact:true}).click()
   await page.locator('.dca-profiles-scope:visible').getByText('Voir l’analyse détaillée',{exact:true}).click()
   await page.getByRole('heading',{name:'Ce que tu détiens vraiment',exact:true}).waitFor()
   await page.getByText('Sources, couverture du catalogue et détail des comparaisons',{exact:true}).filter({visible:true}).click()

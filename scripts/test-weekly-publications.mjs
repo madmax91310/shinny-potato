@@ -52,7 +52,7 @@ try {
   assert.equal(await page.locator('[data-day="4"] [data-period="evening"] .home-day-note').innerText(), 'Réservé à ton tweet du vendredi')
   assert.equal(await page.locator('[data-day="5"] [data-period="midday"] .home-day-note').innerText(), 'Ton bilan de la semaine')
   assert.equal(await page.locator('[data-day="5"] [data-period="evening"] .home-day-note').innerText(), 'Quote de ton bilan')
-  assert.equal(await page.locator('[data-day="3"] [data-period="midday"] .workspace-tool-card h2').innerText(), 'Classement')
+  assert.equal(await page.locator('[data-day="3"] [data-period="midday"] .workspace-tool-card h2').innerText(), 'Qui a vraiment gagné ?')
   assert.equal(await page.locator('.home-week').getByText(/alternance|alternative|facultatif|matin|récap/i).count(), 0)
   assert.equal(await page.locator('.home-calendar-intro').innerText(), 'Un format par créneau, le midi et le soir.')
   for (const width of [320, 390]) {
@@ -68,6 +68,27 @@ try {
   }
   assert.deepEqual(await page.locator('.home-day-band h2').allTextContents(), ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'])
   assert.equal(new Set(await page.locator('.workspace-tool-card').evaluateAll(cards => cards.map(card => card.getAttribute('href')))).size, TOOLS.filter(t=>!t.hidden).length)
+  assert.equal(await page.locator('a[href$="/analyse-entreprise"]').count(), 0, 'Abandoned analysis is absent from home and navigation')
+  // Scheduled DCA links open the publication, including after reload. Switching
+  // modes updates the URL so browser back restores the selected tool.
+  await page.locator('[data-day="1"] [data-period="evening"] .workspace-tool-card').click()
+  await page.getByRole('heading', {name:'Le DCA d’un abonné',exact:true,level:1}).waitFor()
+  assert.equal(new URL(page.url()).searchParams.get('mode'), 'dca')
+  await page.reload({waitUntil:'networkidle'})
+  await page.getByRole('heading', {name:'Le DCA d’un abonné',exact:true,level:1}).waitFor()
+  await page.getByRole('button', {name:'Analyser une allocation',exact:true}).click()
+  await page.getByRole('heading', {name:'Actifs & expositions',exact:true,level:1}).waitFor()
+  await page.goBack()
+  await page.getByRole('heading', {name:'Le DCA d’un abonné',exact:true,level:1}).waitFor()
+  for (const path of ['/classements-performances','/tweets-factsheets','/calculateur-investissement']) {
+    const tool=TOOLS.find(item=>item.to===path)
+    await page.goto(base+path, {waitUntil:'networkidle'})
+    await page.getByRole('heading', {name:tool.title,exact:true,level:1}).waitFor()
+    assert.equal(await page.locator('.workspace-sidebar').getByRole('link',{name:tool.title,exact:true,includeHidden:true}).count(),1)
+    assert.equal(await page.locator('.workspace-mobile-menu').getByRole('link',{name:tool.title,exact:true,includeHidden:true}).count(),1)
+    assert.equal(await page.locator('a[href$="/analyse-entreprise"]').count(),0)
+  }
+  await page.goto(base+'/',{waitUntil:'networkidle'})
   // Short screens and enlarged text must grow cards instead of overlapping labels.
   for (const [width, height, enlarged] of [[320, 568, false], [360, 640, false], [390, 700, false], [390, 844, true]]) {
     await page.setViewportSize({ width, height })

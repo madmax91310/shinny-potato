@@ -52,7 +52,7 @@ export default function DcaApp(){
  function toggleUsed(){try{const next=used.includes(profile.id)?used.filter(id=>id!==profile.id):[...used,profile.id];localStorage.setItem(USED_KEY,JSON.stringify(next));setUsed(next)}catch{setFeedback('Le suivi ne peut pas être enregistré sur cet appareil.')}}
  async function copy(){try{await copyPublicationText(draft);setFeedback('Texte copié.')}catch{setFeedback('Copie impossible. Sélectionne le texte.')}}
  return <div className="dca-profiles-scope dca-simple">
- <PageHeader title="Le DCA de…" subtitle="Choisis un profil ou saisis une participation, puis récupère le texte et l’image."/>
+ <PageHeader title="Le DCA d’un abonné" subtitle="Choisis un profil ou saisis une participation, puis récupère le texte et l’image."/>
  {initial.error&&<p role="alert">{initial.error}</p>}
  <div className="dca-simple-grid">
   <section className="dca-simple-card" id="dca-compose" aria-label="Composer le DCA">

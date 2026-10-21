@@ -153,9 +153,9 @@ async function testWorkspaceNavigation(page) {
   await page.screenshot({ path: 'test-artifacts/weekly-home/desktop.png', fullPage: true });
   await page.setViewportSize({ width: 390, height: 844 });
   await page.locator('.workspace-tool-card[href$="/impact-frais"]').click();
-  await page.getByRole('heading', { name: "Calculateur d'impact des frais", exact: true }).waitFor();
+  await page.getByRole('heading', { name: "Impact des frais", exact: true }).waitFor();
   await page.locator('.workspace-mobile-menu summary').click();
-  await page.locator('.workspace-mobile-menu').getByRole('link', { name: 'Fiches ETF', exact: true }).click();
+  await page.locator('.workspace-mobile-menu').getByRole('link', { name: "Présentation d'ETF", exact: true }).click();
   await page.getByRole('group', { name: 'Choisir un ETF', exact: true }).waitFor();
   checks.menuCloses = await page.locator('.workspace-mobile-menu').getAttribute('open') === null;
   await page.reload({ waitUntil: 'networkidle' });
@@ -206,7 +206,7 @@ async function testWorkspaceNavigation(page) {
   }
   await page.goto(`${BASE}/fiches-etf`, { waitUntil: 'networkidle' });
   await page.setViewportSize({ width: 1280, height: 720 });
-  checks.active = await page.locator('.workspace-sidebar').getByRole('link', { name: 'Fiches ETF', exact: true }).getAttribute('aria-current') === 'page';
+  checks.active = await page.locator('.workspace-sidebar').getByRole('link', { name: "Présentation d'ETF", exact: true }).getAttribute('aria-current') === 'page';
   record('Accueil et navigation', Object.values(checks).every(Boolean), JSON.stringify(checks));
 }
 

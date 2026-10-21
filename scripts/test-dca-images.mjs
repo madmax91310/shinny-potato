@@ -12,7 +12,7 @@ try {
   let failHoldings=true
   await page.route(/\/holdings-\d+\.json/,route=>failHoldings&&!/[?&](import|url)([=&]|$)/.test(route.request().url())?route.abort():route.continue())
   await page.goto(base+'le-dca-de')
-  await page.getByRole('button',{name:'Le DCA de…',exact:true}).click()
+  await page.getByRole('button',{name:'Le DCA d’un abonné',exact:true}).click()
   await page.getByText('Voir l’analyse détaillée',{exact:true}).filter({visible:true}).click()
   await page.getByRole('button',{name:'Relancer l’analyse',exact:true}).waitFor()
   failHoldings=false
@@ -111,7 +111,7 @@ try {
   await page.getByLabel('Nom de la sauvegarde',{exact:true}).filter({visible:true}).fill('Deuxième portefeuille')
   await page.getByRole('button',{name:'Enregistrer ce portefeuille',exact:true}).click()
   await page.reload()
-  await page.getByRole('button',{name:'Le DCA de…',exact:true}).click()
+  await page.getByRole('button',{name:'Le DCA d’un abonné',exact:true}).click()
   // Automatic draft restore survives reload without a second Restore button.
   assert.equal(await page.getByLabel('Pseudonyme',{exact:true}).inputValue(),'Julien')
   await page.locator('.dca-saved:visible summary').click()

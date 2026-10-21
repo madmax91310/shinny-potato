@@ -47,7 +47,7 @@ browser=await chromium.launch({headless:true,...(process.env.CHROMIUM_PATH?{exec
   await weights.nth(0).fill('80')
   await page.locator('.dca-simple-preview img').waitFor()
   assert(await page.locator('.dca-simple-preview img').evaluate(async img=>{await img.decode();return img.naturalWidth===1600}),'Restoring a valid allocation prepares a fresh usable URL')
-  await page.getByRole('button',{name:'Le DCA de…',exact:true}).click()
+  await page.getByRole('button',{name:'Le DCA d’un abonné',exact:true}).click()
   await page.getByRole('button',{name:'Analyser une allocation',exact:true}).click()
   assert.equal(await weights.nth(0).inputValue(),'80')
   assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth))
