@@ -12,7 +12,7 @@ import PageHeader from '../../design-system/PageHeader'
 import Button from '../../design-system/Button'
 import { SHEETS } from './data.js'
 import { buildFactsheetTweet } from './lib.js'
-import { getIndexConcentration, compositionImageSheet } from '../../data/index-company-compositions.js'
+import { getIndexConcentration } from '../../data/index-company-compositions.js'
 import { renderCompositionImage, renderFactsheetImage } from './canvasImage.js'
 import { factsheetCurrencies, factsheetCurrency, factsheetInCurrency, factsheetVariants, factsheetInVariant } from './performanceCurrency.js'
 import './factsheet-tweets.css'
@@ -41,12 +41,11 @@ export default function App() {
   const imageFilename = `${sheet.id}-${factsheetCurrency(sheet) ?? 'native'}-dans-les-coulisses.png`
   const text = base.compositionOnly ? '' : drafts[draftKey] ?? buildFactsheetTweet(sheet)
   const concentration = useMemo(() => getIndexConcentration(selected), [selected])
-  const visualSheet = compositionImageSheet(sheet, concentration)
-  const mainSheet = base.compositionOnly ? visualSheet : sheet
+  const mainSheet = sheet
   const renderMainImage = useCallback(() => {
     const historical = factsheetInCurrency(factsheetInVariant(base, effectiveVariant), effectiveCurrency)
-    return renderFactsheetImage(base.compositionOnly ? compositionImageSheet(historical, concentration) : historical)
-  }, [base, effectiveVariant, effectiveCurrency, concentration])
+    return renderFactsheetImage(historical)
+  }, [base, effectiveVariant, effectiveCurrency])
   const [compositionPreview, setCompositionPreview] = useState(null)
   const [compositionAttempt, setCompositionAttempt] = useState(0)
   const readyComposition = compositionPreview?.owner === selected && compositionPreview.canvas

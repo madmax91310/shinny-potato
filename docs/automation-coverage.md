@@ -11,7 +11,7 @@ Rapport fondé sur les collecteurs configurés et les données actives, pas sur 
 | Historiques mensuels des simulateurs | 691/691 séries ; 430 collecteurs communs + Bitcoin et or | Marchés : 2, 4, 8 et 16 du mois ; Bitcoin : 2, 4 et 8 ; or : tentatives du 3 au 10 |
 | Parts ETF mensuelles raccordées | 251 parts exactes ; investissement et performance revenus réinvestis, anniversaire hors distributions | Même collecte mensuelle et reprise quotidienne des échecs |
 | ETF/ETC/ETP | 258/258 instruments, au moins un champ | Quotidienne |
-| Actions individuelles (secteur et pays) | 389/389 actions ; secteur GICS et pays de risque issus des compositions complètes iShares ; données du 2026-10-19 au 2026-10-20 | Quotidienne ; une action sortie des fonds sources garde sa dernière classification datée |
+| Actions individuelles (secteur et pays) | 389/389 actions ; secteur GICS et pays de risque issus des compositions complètes iShares ; données du 2026-10-20 | Quotidienne ; une action sortie des fonds sources garde sa dernière classification datée |
 | Comparatif ETF | 245/245 parts raccordées dans 139 blocs ; 235 calendriers actifs, 11 absences qualifiées | Quotidienne ; ajout de part contrôlé en CI |
 | Compositions d’indices | 52 indices | 3 et 16 du mois |
 | Rendements annuels d’indices | 56 indices | 3 et 16 du mois |
@@ -348,6 +348,10 @@ S&P 500, S&P 500 Equal Weight, STOXX Europe 600 et EURO STOXX 50 : les compositi
 
 | Indice | Bloc hors collecte active |
 |---|---|
+| CAC 40 (cac40) | Composition / méthodologie, Rendements annuels |
+| Dow Jones Industrial Average (dow-jones) | Composition / méthodologie, Rendements annuels |
+| DAX (dax) | Composition / méthodologie, Rendements annuels |
+| MSCI Korea (msci-korea) | Composition / méthodologie, Rendements annuels |
 
 Russell 2000 : composition automatisée depuis les tables explicitement consacrées à l’indice de la fiche mensuelle Amundi LU1681038672 (pays, secteurs, dix positions pondérées et nombre de titres). Sa convention de rendement TOTAL USD reste issue de FTSE Russell, distincte du NET de la fiche Amundi. Russell 1000 : lecteur du comptage et des onze secteurs imprimés raccordé ; poids individuels du top dix toujours absents de la publication. L’inventaire par champ distingue les observations actives du connecteur configuré. Les photographies archivées ne changent pas de date. Les quatre séries annuelles de sous-jacents sont automatisées : or/argent depuis les lignes Benchmark USD des fiches BlackRock (cours du métal, jamais rendement ETC), Bitcoin/Ethereum depuis les clôtures décembre/décembre de leurs séries spot USD validées. S&P 500 utilise également sa série exacte ^SP500TR USD, dividendes réinvestis. Les mises à jour mensuelles recalculent ces annuels avant leurs audits et publications. Les moyennes mensuelles Banque mondiale pour l’or et les contrats SI=F pour l’argent ne servent pas de substitut aux références métal annuelles.
 
