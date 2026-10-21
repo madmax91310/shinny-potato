@@ -46,6 +46,7 @@ export function roundedComposition(concentration) {
 
 // Failed refreshes retain a complete, previously qualified render model and date.
 export function retainQualifiedComposition(candidate, previous) {
+  if (candidate?.available && previous?.available && candidate.asOf < previous.asOf) return { ...previous, retained: true, refresh: { ...previous.refresh, status: 'failed', error: 'Date de composition en recul : dernière photographie valide conservée.' } }
   if (candidate?.available) return candidate
   if (!previous?.available) return candidate
   return { ...previous, retained: true, refresh: { ...previous.refresh, status: 'failed', error: candidate.reason } }

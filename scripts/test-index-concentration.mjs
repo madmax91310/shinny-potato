@@ -3,6 +3,7 @@ import { aggregateCompanies, calculateConcentration, roundedComposition, retainQ
 import { getIndexConcentration, compositionImageSheet } from '../src/data/index-company-compositions.js'
 import identities from '../src/data/index-company-identities.json' with { type: 'json' }
 import records from '../src/data/index-company-compositions.json' with { type: 'json' }
+import observations from '../src/data/index-company-observations.json' with { type: 'json' }
 import full from '../src/data/dca-complete-holdings.json' with { type: 'json' }
 import { SHEETS } from '../src/data/index-factsheets.js'
 const grouped = aggregateCompanies([
@@ -19,11 +20,10 @@ assert.equal(records['msci-korea'].available, false)
 assert.match(records['msci-korea'].reason, /neuf entreprises/)
 assert.match(records['dow-jones'].method, /prix/)
 assert.equal(records['dow-jones'].approximation, false)
-assert.ok(Math.abs(records['dow-jones'].topWeight - 55.39) < 1e-10)
+assert.ok(Math.abs(records['dow-jones'].topWeight - observations['dow-jones'].facts.holdings.reduce((sum, [, weight]) => sum + weight, 0)) < 1e-10)
 assert.equal(records.dax.topWeight, records.dax.top.reduce((s,r)=>s+r.weightPct,0))
 assert.equal(records.world.top.find(r=>r.name==='Alphabet').securities.length, 2)
-assert.equal(records.world.topWeight, aggregateCompanies(full.IE00B4L5Y983.rows, identities).slice(0,10).reduce((s,r)=>s+r.weightPct,0))
-assert.ok(records.world.top.some(r=>r.name==='ELI LILLY'), 'Eleventh security supplies the tenth company')
+if (!records.world.retained) assert.equal(records.world.topWeight, aggregateCompanies(full.IE00B4L5Y983.rows, identities).slice(0,10).reduce((s,r)=>s+r.weightPct,0))
 for(const [id, record] of Object.entries(records)) {
   const c=getIndexConcentration(id)
   if(!c.available) continue
@@ -59,3 +59,9 @@ assert.equal(retained.checkedAt,records.world.checkedAt)
 assert.equal(retained.topWeight,records.world.topWeight)
 assert.equal(retained.refresh.status,'failed')
 assert.equal(retainQualifiedComposition({available:false},null).available,false)
+
+// Eleven security lines with two Alphabet classes still identify ten companies.
+const eleven=[{isin:'US02079K3059',name:'Alphabet A',weightPct:4},{isin:'US02079K1079',name:'Alphabet C',weightPct:3},...rows.slice(0,9).map((r,i)=>({...r,weightPct:2-i/10}))]
+const elevenResult=calculateConcentration({...record,rows:eleven,topCompaniesCertified:true},identities)
+assert.equal(elevenResult.top.length,10)
+assert.ok(elevenResult.top.some(r=>r.id===rows[8].isin))
