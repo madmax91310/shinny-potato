@@ -397,8 +397,14 @@ try {
   assert.equal(await page.getByRole('group', { name: 'Première année', exact: true }).getAttribute('data-value'), requestedCommonYear)
   assert.match(await page.getByRole('alert').innerText(), /couvertes/)
   assert(await page.getByRole('button', { name: 'Télécharger l’image', exact: true }).isDisabled())
-  await page.getByRole('button', { name: 'Utiliser la dernière période commune (7 années maximum)', exact: true }).click()
-  assert.equal(await page.getByRole('alert').count(), 0)
+  const commonPeriodAction = page.getByRole('button', { name: 'Utiliser la dernière période commune (7 années maximum)', exact: true })
+  if (await commonPeriodAction.count()) {
+    await commonPeriodAction.click()
+    assert.equal(await page.getByRole('alert').count(), 0)
+  } else {
+    await page.getByText(/Historique insuffisant : au moins 2 années/).waitFor()
+    assert(await page.getByRole('button', { name: 'Télécharger l’image', exact: true }).isDisabled())
+  }
   assert.equal(await page.locator('.rk-selected>div').count(), profile.ids.length + 1)
   await page.reload({ waitUntil: 'networkidle' })
   assert.deepEqual(await page.locator('.rk-selected strong').allTextContents(), originalNames)

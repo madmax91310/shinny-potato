@@ -247,6 +247,7 @@ export default function App() {
           {mode === 'years' && <label>Dernière année<ChoicePicker aria-label="Dernière année" value={dates.endYear ?? ''} onChange={e => dateField('endYear', Number(e.target.value))}>{coverage?.years.map(y => <option key={y} value={y}>{y}</option>)}</ChoicePicker></label>}
         </div>}
         {coverage && <p className="rk-coverage"><strong>{coverage.currency} · {basisLabel(coverage.basis)}</strong><br />Historique commun : {coverage.start} → {coverage.end}{coverage.years.length ? ` · ${coverage.years.length} années civiles complètes` : ' · aucune année civile complète'}</p>}
+        {presentation === 'annual' && coverage && coverage.years.length < 2 && <p className="rk-note" role="status">Historique insuffisant : au moins 2 années civiles complètes communes sont nécessaires. {coverage.years.length ? `Seule l’année ${coverage.years[0]} est disponible.` : 'Aucune année complète commune n’est disponible.'} Retire ou remplace un actif pour étendre la période.</p>}
         {error && <p className="rk-error" role="alert">{error}</p>}
         {imageError && <p className="rk-error" role="alert">{imageError}</p>}
         {(error || imageError) && coverage?.years.length >= (presentation === 'annual' ? 2 : 1) && <div className="rk-note">
