@@ -16932,14 +16932,15 @@
           "at": "2026-10-21T00:34:43.111769+00:00",
           "reason": "recording-failed",
           "sourceRunId": 39486891997,
-          "status": "reserved",
-          "ref": "master"
+          "status": "dispatched",
+          "ref": "master",
+          "error": null
         }
       ],
       "reason": "recording-failed",
       "lastSuccessAt": "2026-10-18T14:46:58Z",
       "observedRunId": 39486891997,
-      "status": "reserved",
+      "status": "dispatched",
       "nextAttemptAt": "2026-10-21T04:34:43.111769+00:00"
     },
     "update-economic-data.yml": {
