@@ -5,17 +5,17 @@ Les états décrivent les observations enregistrées, pas une garantie réseau. 
 | Champ ETF/ETP | Présent | Contrôle récent | Contrôle en retard | Publication ancienne |
 |---|---:|---:|---:|---:|
 | Positions intégrales | 174/258 | 174 | 0 | 0 |
-| Frais | 258/258 | 252 | 6 | 0 |
-| Encours | 258/258 | 252 | 6 | 0 |
+| Frais | 258/258 | 258 | 0 | 0 |
+| Encours | 258/258 | 258 | 0 | 0 |
 | Performances annuelles | 238/258 | 238 | 0 | 0 |
 | Historique mensuel | 258/258 | 258 | 0 | 0 |
 | Pays | 229/258 | 229 | 0 | 0 |
 | Secteurs | 229/258 | 229 | 0 | 0 |
 | Principales positions | 234/258 | 234 | 0 | 0 |
-| Distribution | 248/258 | 248 | 0 | 0 |
+| Distribution | 257/258 | 257 | 0 | 0 |
 | Domicile | 258/258 | 258 | 0 | 0 |
 | Réplication | 258/258 | 258 | 0 | 0 |
-| Cotations | 258/258 | 255 | 3 | 0 |
+| Cotations | 258/258 | 258 | 0 | 0 |
 | Éligibilité PEA | 253/258 | 253 | 0 | 0 |
 | Couverture de change | 258/258 | 258 | 0 | 0 |
 
