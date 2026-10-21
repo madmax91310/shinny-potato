@@ -285,10 +285,10 @@ def main():
             result = collect_source(source, now)
             record = {k: v for k, v in result.items() if k not in ('rawResponse', 'proofRows', 'anniversaryPoints')}
             validate_record(record, active.get(source['id']))
-            return {'id': source['id'], 'status': 'validated', 'record': record,
+            return {'id': source['id'], 'status': 'validated', 'checkedAt':now.isoformat(), 'record': record,
                     'proof': {'responseSha256': result['responseSha256'], 'rows': result['proofRows']}}
         except Exception as error:
-            return {'id': source['id'], 'status': 'failed', 'reason': str(error)}
+            return {'id': source['id'], 'status': 'failed', 'checkedAt':now.isoformat(), 'reason': str(error)}
     proof_path = ROOT / 'scripts/source-snapshots/ranking-histories.json'
     proofs = json.loads(proof_path.read_text()) if proof_path.exists() else {}
     with ThreadPoolExecutor(max_workers=3) as pool:
@@ -298,7 +298,8 @@ def main():
             if item['status'] == 'validated':
                 active[item['id']] = item['record']
                 proofs[item['id']] = item['proof']
-    status = {'checkedAt': now.isoformat(), 'fxFailed': fx_failed, 'crossFxFailed': cross_failed, 'fxSources': fx_reports, 'series': sorted(reports.values(), key=lambda s: s['id'])}
+    attempted = [s['id'] for s in selected] + [row['id'] for row in fx_reports.values() if row.get('checkedAt')==now.isoformat()]
+    status = {'checkedAt': now.isoformat(), 'attemptedIds':attempted, 'fxFailed': fx_failed, 'crossFxFailed': cross_failed, 'fxSources': fx_reports, 'series': sorted(reports.values(), key=lambda s: s['id'])}
     if args.output:
         write_json_atomic(args.output, status)
     if args.apply:

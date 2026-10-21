@@ -39,6 +39,14 @@ def normalize_report(report):
         if not report.get('fxSources'):
             rows += [{'id': 'fx:' + key, 'status': 'failed', 'reason': 'Source de change en échec'}
                      for key, failed in [('ECB', report.get('fxFailed')), ('TWD', report.get('crossFxFailed'))] if failed]
+        if 'attemptedIds' in report:
+            attempted = report['attemptedIds']
+            if (not isinstance(attempted,list) or any(not isinstance(id_,str)or not id_ for id_ in attempted)
+                    or len(set(attempted))!=len(attempted)):
+                raise ValueError('Invalid attempted ranking source identifiers')
+            # A retained status is not this run's observation. Keep the old incident
+            # and its original attempt date when a targeted retry skips its source.
+            rows = [row for row in rows if row['id'] in attempted]
         return {'successes': [{'id': 'history:' + r['id']} for r in rows if r.get('status') == 'validated'],
                 'errors': [{'id': 'history:' + r['id'], 'field': 'Change' if r['id'].startswith('fx:') else 'Historique mensuel',
                             'error': r.get('reason', 'Collecte échouée')} for r in rows if r.get('status') == 'failed']}
