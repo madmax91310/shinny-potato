@@ -15795,15 +15795,16 @@
           "at": "2026-10-21T19:34:30.441362+00:00",
           "reason": "transient-source",
           "sourceRunId": 39626719321,
-          "status": "reserved",
-          "ref": "master"
+          "status": "dispatched",
+          "ref": "master",
+          "error": null
         }
       ],
       "reason": "transient-source",
       "lastSuccessAt": "2026-10-21T12:22:45Z",
       "observedRunId": 39626719321,
       "nextAttemptAt": "2026-10-21T23:34:30.441362+00:00",
-      "status": "reserved"
+      "status": "dispatched"
     },
     "update-market-monthly.yml": {
       "attempts": [
