@@ -60,6 +60,25 @@ class Identifiers(unittest.TestCase):
         value=self.evidence();self.assertEqual(qualified(value,NOW),('BN7GN02','IL0011794802'))
         value['response'][1]['data'][0]={**value['response'][1]['data'][0],'figi':'BBG000BK00N7'};value['sha256']=digest(value['response'])
         with self.assertRaisesRegex(ValueError,'Missing or ambiguous'):qualified(value,NOW)
+    def test_ny_registered_share_is_distinct_from_another_security_type(self):
+        value=self.evidence()
+        for response in value['response']:response['data'][0]['securityType']='NY Reg Shrs'
+        value['sha256']=digest(value['response'])
+        self.assertEqual(qualified(value,NOW),('BN7GN02','IL0011794802'))
+        value['response'][1]['data'][0]={**value['response'][1]['data'][0],'securityType':'Common Stock'}
+        value['sha256']=digest(value['response'])
+        with self.assertRaises(ValueError):qualified(value,NOW)
+
+    def test_adr_queries_require_the_same_depositary_receipt_not_the_ordinary_share(self):
+        value=self.evidence()
+        for response in value['response']:
+            response['data'][0]['securityType']='ADR'
+        value['sha256']=digest(value['response'])
+        self.assertEqual(qualified(value,NOW),('BN7GN02','IL0011794802'))
+        value['response'][1]['data'][0]={**value['response'][1]['data'][0],'securityType':'Common Stock'}
+        value['sha256']=digest(value['response'])
+        with self.assertRaisesRegex(ValueError,'Missing or ambiguous'):qualified(value,NOW)
+
     def test_tamper_expiry_future_and_ambiguous_isin(self):
         value=self.evidence();value['sha256']='0'*64
         with self.assertRaisesRegex(ValueError,'evidence'):qualified(value,NOW)

@@ -1,5 +1,6 @@
 """Read official SCPI publications. A failed adapter never replaces validated data."""
 import argparse
+import http.client
 import concurrent.futures
 import datetime as dt
 import json
@@ -29,14 +30,16 @@ def fetch(url, headers=None):
     for attempt in range(3):
         try:
             with urllib.request.urlopen(request, timeout=30) as response:
-                data = response.read()
+                data = response.read(8_000_001)
+            if len(data) > 8_000_000:
+                raise ValueError('Official publication exceeds size limit: ' + url)
             if not data:
                 raise ValueError('Empty official publication: ' + url)
             return data
         except urllib.error.HTTPError as error:
             if error.code not in (408, 429, 500, 502, 503, 504) or attempt == 2:
                 raise
-        except (urllib.error.URLError, TimeoutError, ConnectionError):
+        except (urllib.error.URLError, TimeoutError, ConnectionError, http.client.IncompleteRead):
             if attempt == 2:
                 raise
         time.sleep(attempt + 1)

@@ -158,7 +158,15 @@ def parse_placement(html,notice,fees_text,notice_url,fees_url,today):
 
 def placement_notice_conditions(notice, management):
     notice=re.sub(r'\s+',' ',notice).replace('\x07','')
-    required(r'Les droits exprimés en euros comportent une garantie en capital égale aux sommes versées, nettes des prélèvements effectués au titre des frais de souscription et de gestion',notice)
+    # The current contract expressly deducts the optional death-floor premium.
+    # Both exact clauses state a net guarantee; never admit a gross guarantee or
+    # silently disregard an unknown/new cost by matching a generic prefix.
+    clauses = [
+        r'Les droits exprimés en euros comportent une garantie en capital égale aux sommes versées, nettes des prélèvements effectués au titre des frais de souscription et de gestion',
+        r'Les droits exprimés en euros comportent une garantie en capital égale aux sommes versées, nettes de frais et du coût de la garantie « plancher décès » si cette option a été souscrite\.',
+    ]
+    if not any(re.search(clause, notice) for clause in clauses):
+        raise ValueError('Unqualified Placement-direct Vie net capital guarantee clause')
     required(r'sur le fonds en euros : ([\d,.]+)\s*% de l’épargne sur base annuelle',notice)
     notice_fee=number(required(r'sur le fonds en euros : ([\d,.]+)\s*% de l’épargne sur base annuelle',notice)[1])
     if notice_fee!=management:raise ValueError('Notice and fee sheet disagree on euro fund charges')

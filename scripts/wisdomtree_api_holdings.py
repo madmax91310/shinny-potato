@@ -82,7 +82,7 @@ def parse(payload, share, now, mapping):
         weight = item['wgt']
         if type(weight) not in (int, float) or not math.isfinite(weight) or not 0 <= weight <= 1:
             raise ValueError('Invalid API portfolio weight')
-        if any(type(item.get(k)) not in (int,float) or abs(item[k]-1) > .00001 for k in ['checkSumWgtEntity','checkSumWgtAssetGroup']):
+        if any(type(item.get(k)) not in (int,float) or not math.isfinite(item[k]) or abs(item[k]-1) > .00001 for k in ['checkSumWgtEntity','checkSumWgtAssetGroup']):
             raise ValueError('Unqualified API portfolio checksum')
         total += weight
         if item.get('securityName') == 'CASH W-O' and item.get('figi') is None and item.get('securityTicker') is None:

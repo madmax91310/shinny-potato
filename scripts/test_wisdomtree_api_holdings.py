@@ -26,7 +26,7 @@ class ApiHoldings(unittest.TestCase):
 
     def test_wrong_fund_future_partial_short_or_duplicate_rejected(self):
         for key,value in [('wtClassID',1),('fundTicker','WRONG'),('dt','2026-10-22'),
-                          ('wgt',-.1),('wgt',float('nan')),('checkSumWgtEntity',.99),('figi','BBG000000001')]:
+                          ('wgt',-.1),('wgt',float('nan')),('checkSumWgtEntity',float('nan')),('checkSumWgtAssetGroup',float('inf')),('checkSumWgtEntity',True),('checkSumWgtEntity',.99),('figi','BBG000000001')]:
             body=portfolio();body[0][key]=value
             with self.subTest(key=key,value=value),self.assertRaises(ValueError):
                 parse(body,SHARE,NOW,{'BBG000000000':'US0000000001'})
