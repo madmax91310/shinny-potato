@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+import { isQualifiedAnnualPortfolioFund } from '../src/data/annual-portfolio-funds.js'
 import { ROUTING_PRESENTATIONS } from '../src/data/routing-presentations.js';
 import { NON_BOND_SHEETS } from '../src/data/non-bond-expansion.js';
 import { LIFESTRATEGY_SHEETS } from '../src/data/lifestrategy.js'
@@ -156,7 +156,7 @@ for (const [context, file, items] of collections) {
       console.error(`${file} : mention PEA incertaine malgré un statut revu pour ${item.isin}`);
       errors++;
     }
-    if (context !== 'portfolio' && !ETF_TER_BY_ISIN[item.isin]) {
+    if (context !== 'portfolio' && !(context==='exposure' && item.compositionOnly===true) && !ETF_TER_BY_ISIN[item.isin]) {
       console.error(`${file} : frais absents pour ${item.isin}`);
       errors++;
     }
@@ -227,6 +227,10 @@ for (const family of FAMILIES) for (const group of family.etfGroups ?? []) {
   }
 }
 for (const asset of ASSETS.filter(item => item.isin && item.instrumentType !== 'EQUITY')) {
+  if(asset.annualManual) {
+    if(!isQualifiedAnnualPortfolioFund(asset)){console.error(`Générateur : source NAV divergente pour ${asset.isin}`);errors++}
+    returnUsages++;continue
+  }
   const expected=(asset.distinctCandidate || asset.automatedManual) ? monthly[asset.isin]?.values : getInstrumentReturnValues(asset.isin);
   if (asset.r !== expected) {
     console.error(`Générateur : série locale ou divergente pour ${asset.isin}`);

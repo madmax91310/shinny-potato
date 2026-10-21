@@ -1,4 +1,5 @@
 import { writeFileSync } from 'node:fs'
+import { QUALIFIED_INDEX_CALENDARS } from '../src/data/qualified-annual-calendars.js'
 import { ETFS } from '../src/data/etf-cards.js'
 import { getInstrumentAnnualPerformance } from '../src/data/instrument-returns.js'
 import HISTORY from '../src/data/anniversary-index-history.json' with { type: 'json' }
@@ -39,6 +40,11 @@ for (const [id, source] of Object.entries(LONG)) {
   indexRows[`annual-${source.targetId ?? id}`] = { id: `annual-${source.targetId ?? id}`, label: source.label, shortLabel: source.label,
     priceUnit: 'points', frequency: 'annual', basis: source.variant === 'NETR' ? 'index-net' : 'index-gross',
     currency: source.currency, years, sourceUrls: source.sourceUrls, checkedAt: source.checkedAt, method: source.method }
+}
+// Preserve the longer qualified variant where it already exists; add actual official calendars only.
+for (const record of Object.values(QUALIFIED_INDEX_CALENDARS)) {
+  const existing = Object.values(indexRows).find(row => row.label.replace(/^Indice /, '') === record.label && row.basis === record.basis && row.currency === record.currency)
+  if (!existing) indexRows[record.id] = record
 }
 writeFileSync('src/data/ranking-index-annual.json', JSON.stringify(indexRows))
 writeFileSync('src/data/ranking-ftse.json', JSON.stringify(HISTORY.ftseAllWorld))

@@ -14,22 +14,25 @@ const fullHoldings=readOptional('dca-complete-holdings.json')
 const securities=readOptional('dca-security-classifications.json')
 const holdingStatus=readOptional('dca-holdings-status.json')
 const multiAsset=readOptional('lifestrategy.json')
-const chartSleeves=deriveExposureSleeves({...AUTOMATED_ETF,...readOptional('vanguard-equity-underliers.json')},readOptional('automated-indices.json'),readOptional('exposure-sleeves.json'))
+const compositionOnlyFunds=readOptional('vanguard-equity-underliers.json')
+const exposureFunds={...compositionOnlyFunds,...AUTOMATED_ETF}
+const chartSleeves=deriveExposureSleeves(exposureFunds,readOptional('automated-indices.json'),readOptional('exposure-sleeves.json'))
 const bondIsins=new Set(PORTFOLIO_ASSETS.filter(a=>a.cat==='obligataire'&&a.isin).map(a=>a.isin))
 // Explicit example instruments, never silently assigned to a participant's generic ETF.
 const mapping = {equalweight:'IE00BLNMYC90',robotics:'IE00BYZK4552',ai:'IE00BGV5VN51',cloud:'IE00BJGWQN72',energy:'IE00BJ5JP105',staples:'IE00BJ5JP329',discretionary:'IE00BJ5JP212',emexchina:'IE00BMG6Z448',emsmall:'IE00B3F81G20',smallvalue:'IE00BSPLC298',minvol:'IE00B8FHGS14',multifactor:'IE00BZ0PKT83',world:'IE00B4L5Y983',sp500:'IE00B5BMR087',europe:'FR0011550193',emerging:'IE00BTJRMP35',allworld:'IE00BK5BQT80',acwi:'IE00B6R52259',small:'IE00BF4RFH31',quality:'IE00BP3QZ601',nasdaq:'IE00B53SZB19',value:'IE00BP3QZB59',momentum:'IE00BP3QZ825',dividend:'IE00B9CQXS71',reit:'LU1437018838',russell:'IE00BJ38QD84',cybersecurity:'IE00BG0J4C88',water:'FR0010527275',infrastructure:'IE00B1FZS467',healthcare:'IE00BJ5JNZ06',industrials:'IE00BJ5JP659',materials:'IE00BM67HS53',utilities:'IE00BM67HQ30',timber:'IE00B27YCF74',agribusiness:'IE00B6R52143',semiconductors:'IE000I8KRLL9',lifestrategy20:'IE00BMVB5K07',lifestrategy40:'IE00BMVB5M21',lifestrategy60:'IE00BMVB5P51',lifestrategy80:'IE00BMVB5R75',
  // Or, argent, Bitcoin et Ethereum : parts exactes des registres (mêmes ETC/ETP que le Générateur), sans exposition actions.
  gold:'IE00B4ND3602',silver:'IE00B4NCWG09',btc:'GB00BLD4ZL17',eth:'GB00BLD4ZM24'}
 const aliasesByIsin=Object.fromEntries(Object.entries(mapping).map(([asset,isin])=>[isin,asset]))
-const allMapping={...mapping,...Object.fromEntries(Object.keys(AUTOMATED_ETF).filter(isin=>!aliasesByIsin[isin]).map(isin=>[isin,isin]))}
+const allMapping={...mapping,...Object.fromEntries(Object.keys(exposureFunds).filter(isin=>!aliasesByIsin[isin]).map(isin=>[isin,isin]))}
 const commodityIsins=new Set(PORTFOLIO_ASSETS.filter(a=>a.cat==='matieres_premieres'&&a.isin).map(a=>a.isin))
 const catalog={}
 const holdings={}
 const records = Object.fromEntries(Object.entries(allMapping).map(([asset,isin])=>{
- const source=AUTOMATED_ETF[isin],name=getInstrumentName(isin) || isin
+ const source=exposureFunds[isin],name=source?.name ?? getInstrumentName(isin) ?? isin
  const synthetic=/swap|synthetic|leveraged|daily.*2x/i.test(name+' '+(source?.characteristics?.replicationMethod||''))
  const outside=/physical.*gold|physical.*silver|physical.*platinum|physical.*palladium|physical.*bitcoin|ethereum|bitcoin etp/i.test(name)
- const record={isin,name,kind:/\bET[CP]\b/.test(name)?'etc':'etf',provider:source?.provider,pea:getInstrumentPeaStatus(isin),tickers:(INSTRUMENT_LISTINGS_BY_ISIN[isin]||[]).map(l=>l.ticker),synthetic}
+ const compositionOnly=Boolean(compositionOnlyFunds[isin]&&!AUTOMATED_ETF[isin])
+ const record={isin,name,...(compositionOnly?{compositionOnly:true}:{}),kind:/\bET[CP]\b/.test(name)?'etc':'etf',provider:source?.provider,pea:compositionOnly ? null : getInstrumentPeaStatus(isin),tickers:(INSTRUMENT_LISTINGS_BY_ISIN[isin]||[]).map(l=>l.ticker),synthetic}
  // Exact products: overnight rate fund and copper ETC have no equity-sector allocation.
  if(['FR0013346681','LU0290358497'].includes(isin))record.outsideClassification='Monétaire'
  if(isin==='GB00B15KXQ89')record.outsideClassification='Cuivre'
@@ -38,7 +41,7 @@ const records = Object.fromEntries(Object.entries(allMapping).map(([asset,isin])
  if(!record.outsideClassification&&bondIsins.has(isin))record.outsideClassification='Obligations'
  if(chartSleeves[isin]?.equitySleeve)record.equitySleeve=chartSleeves[isin].equitySleeve
  if(multiAsset[isin]?.assetAllocation)record.assetAllocation=multiAsset[isin].assetAllocation
- catalog[asset]={isin,name,kind:record.kind,pea:record.pea,tickers:record.tickers,provider:record.provider}
+ catalog[asset]={isin,name,...(compositionOnly?{compositionOnly:true}:{}),kind:record.kind,pea:record.pea,tickers:record.tickers,provider:record.provider}
  if(holdingStatus[isin])catalog[asset].holdingsStatus=holdingStatus[isin]
  const complete=fullHoldings[isin],partial=source?.holdings
  const h=selectDcaHoldings(complete,partial)
@@ -46,8 +49,8 @@ const records = Object.fromEntries(Object.entries(allMapping).map(([asset,isin])
  if(h)holdings[asset]={asOf:h.asOf,basis:h.basis||'fund',sourceUrl:h.sourceUrl||source.sourceUrl,...(h.scope?{scope:h.scope,method:h.method,sourceUrls:h.sourceUrls}:{}),complete:h.complete===true,rows:h.rows.map(r=>({name:r.name,isin:r.isin,weightPct:r.weightPct})),synthetic}
 
  for(const field of ['countries','sectors']){
-  let observation=PORTFOLIO_EXPOSURES[isin]?.[field]
- if(field==='countries')observation=selectDcaCountryObservation(observation,AUTOMATED_ETF[isin])
+  let observation=PORTFOLIO_EXPOSURES[isin]?.[field] ?? compositionOnlyFunds[isin]?.[field]
+ if(field==='countries')observation=selectDcaCountryObservation(observation,exposureFunds[isin])
   if(chartSleeves[isin]?.[field])observation=chartSleeves[isin][field]
   if(!observation)continue
   if(synthetic&&observation.basis==='fund')continue // Never use a synthetic ETF's substitute basket as economic exposure.
@@ -72,9 +75,9 @@ for(const [asset,equity] of Object.entries(equityUniverse())){
 }
 
 if(!/nasdaq/i.test(records.nasdaq.name))throw Error('DCA Nasdaq identity mismatch')
-const legacy=Object.fromEntries(Object.entries(records).filter(([key])=>!Object.hasOwn(AUTOMATED_ETF,key)&&records[key].kind!=='equity'))
+const legacy=Object.fromEntries(Object.entries(records).filter(([key])=>!Object.hasOwn(exposureFunds,key)&&records[key].kind!=='equity'))
 writeFileSync(new URL('../src/pages/dca-profiles/exposures.json',import.meta.url),JSON.stringify(legacy))
-const extra=Object.entries(records).filter(([key])=>Object.hasOwn(AUTOMATED_ETF,key)||records[key].kind==='equity')
+const extra=Object.entries(records).filter(([key])=>Object.hasOwn(exposureFunds,key)||records[key].kind==='equity')
 for(let i=0;i<3;i++)writeFileSync(new URL(`../src/pages/dca-profiles/exposures-extra-${i}.json`,import.meta.url),JSON.stringify(Object.fromEntries(extra.filter((_,j)=>j%3===i))))
 writeFileSync(new URL('../src/pages/dca-profiles/catalog.json',import.meta.url),JSON.stringify(catalog))
 // Lazy shards prevent complete compositions from enlarging the initial route bundle.

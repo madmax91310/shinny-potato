@@ -1,3 +1,4 @@
+import * as performance from '../src/pages/tweet-midi/data/performanceHistory.js'
 import assert from 'node:assert/strict'
 import { readFile } from 'node:fs/promises'
 import { ASSETS, ASSET_ORDER } from '../src/data/market-history.js'
@@ -9,8 +10,7 @@ import { SPARSE_MONTHLY_DATA_IDS, INCONSISTENT_MONTHLY_DATA_IDS, getAssetMinDate
 import { getSimulationAssetId, getSimulationHref, getAnnualPerformanceHref } from '../src/data/simulation-links.js'
 
 const index = JSON.parse(await readFile(new URL('../src/data/performance-links.json', import.meta.url)))
-const expected = Object.fromEntries(ASSET_ORDER.filter(id => ASSETS[id].isin && getAnnualReturnStartYears(id).length)
-  .map(id => [ASSETS[id].isin, id]))
+const expected = Object.fromEntries(performance.MARKET_ASSETS.filter(asset => asset.isin && performance.getAnnualReturnStartYears(asset.id).length).map(asset => [asset.isin, asset.id]))
 assert.deepEqual(index, expected, 'Shortcut index must match the usable share-class histories')
 for (const etf of ETFS) {
   const assetId = getPerformanceAssetId(etf.isin)
@@ -18,7 +18,7 @@ for (const etf of ETFS) {
     assert.equal(getPerformanceHref(etf.isin), null)
     continue
   }
-  assert.equal(ASSETS[assetId].isin, etf.isin)
+  assert.equal(performance.ASSETS[assetId].isin, etf.isin)
   assert.equal(new URL(getPerformanceHref(etf.isin), 'https://example.test').searchParams.get('isin'), etf.isin)
   const years = getSecondaryOptionsForFormat(FORMATS.PERFORMANCE_DEPUIS, MODES.SIMPLE, assetId)
   assert(years.length > 0)
@@ -67,6 +67,7 @@ const { getSubjectsForFormat } = await import('../src/pages/tweet-midi/lib.js')
 assert.deepEqual(MARKET_ASSETS.map(asset => asset.id), ASSET_ORDER)
 const choices = getSubjectsForFormat(FORMATS.PERFORMANCE_DEPUIS).flatMap(group => group.items)
 for (const id of ASSET_ORDER) {
+  if(!performance.getAnnualReturnStartYears(id).length){assert(!choices.some(choice=>choice.id===id));continue}
   assert.equal(choices.find(choice => choice.id === id).label,
     `${ASSETS[id].icon} ${historyOptionLabel(id, ASSETS[id])}`)
   if (['ETC','ETN','ETP'].includes(ASSETS[id].instrumentType)) assert(historyOptionLabel(id, ASSETS[id]).startsWith(`${ASSETS[id].instrumentType} · `))
@@ -76,4 +77,5 @@ for (const id of ASSET_ORDER) {
 assert.match(historyOptionLabel('msciWorldMomentum', ASSETS.msciWorldMomentum), /^Indice · MSCI World Momentum/)
 assert.match(historyOptionLabel('nasdaq100', ASSETS.nasdaq100), /^Indice · /)
 assert.match(historyOptionLabel('soxx', ASSETS.soxx), /^ETF · /)
+for(const asset of performance.MARKET_ASSETS.filter(a=>!ASSETS[a.id] && performance.getAnnualReturnStartYears(a.id).length)) assert(choices.some(c=>c.id===asset.id),'Annual-only series remains selectable')
 console.log(`Same ${ASSET_ORDER.length} source identities and unambiguous index/ETF/ETC selection labels verified.`)

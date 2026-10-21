@@ -181,6 +181,7 @@ export function getBenchmarkPerformance(startYm, endYm) {
 export function performanceBasis(assetId) {
   const asset = ASSETS[assetId];
   if (ANNIVERSARY_INDEX_VARIANTS[assetId]) return ANNIVERSARY_INDEX_VARIANTS[assetId];
+  if(asset.priceUnit==='points' && ['NETR','GRTR'].includes(asset.variant)) return performanceBasisLabel({currency:asset.currency,income:asset.variant==='NETR'?'net':'gross'});
   if (['ETC','ETN','ETP'].includes(asset.instrumentType)) return `${asset.currency} · cours de l’${asset.instrumentType}`;
   if (asset.priceMethod === 'adjusted') return performanceBasisLabel({ currency: asset.currency, income: 'reinvested' });
   if (assetId === 'or') return performanceBasisLabel({ currency: asset.currency, detail: 'moyennes mensuelles du prix de l’or' });
@@ -195,7 +196,7 @@ const REBASED_INDEX_IDS = new Set(ASSET_ORDER.filter(id => ASSETS[id].priceUnit 
 // qui bloque leur DCA. Ethereum en est retiré le 30/09/2026 après contrôle des 105 mois
 // complets Yahoo ; sa plage commence en décembre 2017. Performance depuis conserve
 // les seuls points réels de clôture d’année (getLastRealPointOfYear).
-const ANNIVERSAIRE_EXCLUDED_IDS = new Set(['etfLifeStrategy20','etfLifeStrategy40','etfLifeStrategy60','etfLifeStrategy80', ...SPARSE_MONTHLY_DATA_IDS, ...ASSET_ORDER.filter(id => ASSETS[id].priceMethod === 'adjusted' && !ASSETS[id].anniversaryPoints)]);
+const ANNIVERSAIRE_EXCLUDED_IDS = new Set([...ASSET_ORDER.filter(id=>ASSETS[id].anniversaryAvailable===false),'etfLifeStrategy20','etfLifeStrategy40','etfLifeStrategy60','etfLifeStrategy80', ...SPARSE_MONTHLY_DATA_IDS, ...ASSET_ORDER.filter(id => ASSETS[id].priceMethod === 'adjusted' && !ASSETS[id].anniversaryPoints)]);
 
 // Performance depuis conserve son comportement historique : pas de niveau d’indice.
 export function hasComparableLevel(assetId) {

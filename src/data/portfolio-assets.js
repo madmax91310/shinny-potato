@@ -1,3 +1,5 @@
+import { AUTOMATIC_FACTOR_IDS } from './portfolio-admissions.js'
+import { ANNUAL_PORTFOLIO_FUNDS } from './annual-portfolio-funds.js'
 import { QUALIFIED_EXPOSURE_SHEETS } from './qualified-exposure-sheets.js';
 import { AUTOMATED_PORTFOLIO_FUNDS } from './automated-portfolio-funds.js';
 import { PORTFOLIO_EQUITIES } from './portfolio-equities.js';
@@ -102,7 +104,7 @@ export const ASSETS = [
  {id:'health_world_dws',isin:'IE00BM67HK77',name:getInstrumentName('IE00BM67HK77','portfolio'),cat:'actions_larges',emoji:'🩺',manualOnly:false,r:getInstrumentReturnValues('IE00BM67HK77'),desc:['Santé mondiale','Renfort sectoriel','Risque actions et réglementation'],confidenceNote:'Part exacte, NAV USD, revenus réinvestis. Risque de change.'},
  {id:'new_energy_amundi',isin:'FR0010524777',name:getInstrumentName('FR0010524777','portfolio'),cat:'actions_larges',emoji:'⚡',manualOnly:false,r:getInstrumentReturnValues('FR0010524777'),desc:['Nouvelles énergies','Renfort thématique','Sensibilité aux taux et aux investissements'],confidenceNote:'Part exacte en EUR, revenus réinvestis, frais inclus.'},
  // Parts qualifiées : cinq satellites entrent dans les recettes automatiques le 15/10/2026.
- ...QUALIFIED_EXPOSURE_SHEETS.filter(r=>r.portfolioCategory && getInstrumentReturnValues(r.isin).every(Number.isFinite)).map(r=>({id:r.id,isin:r.isin,name:r.name,cat:r.portfolioCategory,emoji:r.portfolioCategory==='obligataire'?'📅':r.portfolioCategory==='immobilier'?'🏢':'🌍',manualOnly:!['euro-govt-5-7','europe-property','world-staples','world-discretionary','world-energy','water-ishares','world-multifactor','world-midcap-equal','world-eur-hedged','agribusiness-ishares','timber-ishares','europe-utilities','europe-telecom','europe-food','europe-media','europe-retail','euro-ultrashort-ishares','em-value-ishares'].includes(r.id),distributing:r.incomePolicy==='distributing',r:getInstrumentReturnValues(r.isin),desc:[r.whatIs,r.whyInteresting,r.whatToKnow],confidenceNote:`Rendements NAV de la part exacte en ${r.currency}, revenus réinvestis et frais du fonds inclus.`})),
+ ...QUALIFIED_EXPOSURE_SHEETS.filter(r=>r.portfolioCategory && getInstrumentReturnValues(r.isin).every(Number.isFinite)).map(r=>({id:r.id,isin:r.isin,name:r.name,cat:r.portfolioCategory,emoji:r.portfolioCategory==='obligataire'?'📅':r.portfolioCategory==='immobilier'?'🏢':'🌍',manualOnly:![...AUTOMATIC_FACTOR_IDS,'euro-govt-5-7','europe-property','world-staples','world-discretionary','world-energy','water-ishares','world-multifactor','world-midcap-equal','world-eur-hedged','agribusiness-ishares','timber-ishares','europe-utilities','europe-telecom','europe-food','europe-media','europe-retail','euro-ultrashort-ishares','em-value-ishares'].includes(r.id),distributing:r.incomePolicy==='distributing',r:getInstrumentReturnValues(r.isin),desc:[r.whatIs,r.whyInteresting,r.whatToKnow],confidenceNote:`Rendements NAV de la part exacte en ${r.currency}, revenus réinvestis et frais du fonds inclus.`})),
  {id:'europe-construction',isin:'DE000A0H08F7',name:getInstrumentName('DE000A0H08F7'),cat:'actions_larges',emoji:'🏗️',manualOnly:false,distributing:true,r:getInstrumentReturnValues('DE000A0H08F7'),confidenceNote:'Rendements NAV EUR de la part exacte, revenus réinvestis.',desc:['Construction et matériaux européens','Un secteur distinct des infrastructures mondiales','Sensibilité aux commandes, aux coûts et au cycle immobilier']},
  {id:'europe-banks',isin:'DE000A0F5UJ7',name:getInstrumentName('DE000A0F5UJ7','portfolio'),cat:'actions_larges',emoji:'🟢',manualOnly:false,distributing:true,r:getInstrumentReturnValues('DE000A0F5UJ7'),confidenceNote:'Rendements NAV de la part EUR, revenus réinvestis ; exposition sectorielle européenne.',desc: (()=>{const s=QUALIFIED_EXPOSURE_SHEETS.find(r=>r.id==='europe-banks');return [s.whatIs,s.whyInteresting,s.whatToKnow]})()},
  {id:'europe-insurance',isin:'DE000A0H08K7',name:getInstrumentName('DE000A0H08K7','portfolio'),cat:'actions_larges',emoji:'🟢',manualOnly:false,distributing:true,r:getInstrumentReturnValues('DE000A0H08K7'),confidenceNote:'Rendements NAV de la part EUR, revenus réinvestis ; exposition sectorielle européenne.',desc: (()=>{const s=QUALIFIED_EXPOSURE_SHEETS.find(r=>r.id==='europe-insurance');return [s.whatIs,s.whyInteresting,s.whatToKnow]})()},
@@ -1523,6 +1525,9 @@ export const ASSETS = [
 
 const editorialIsins = new Set(ASSETS.map(asset=>asset.isin).filter(Boolean));
 ASSETS.push(...AUTOMATED_PORTFOLIO_FUNDS.filter(asset=>!editorialIsins.has(asset.isin)));
+
+const existingIsins = new Set(ASSETS.map(asset => asset.isin));
+ASSETS.push(...ANNUAL_PORTFOLIO_FUNDS.filter(asset => !existingIsins.has(asset.isin)));
 
 for (const asset of ASSETS) asset.calendarReturns ??= asset.isin ? getInstrumentCalendarReturns(asset.isin, asset.r) : economicCalendar(asset.id, asset.r);
 

@@ -1,3 +1,4 @@
+import { getAnnualReturnStartYears as routedPerformanceYears, ASSETS as routedPerformanceAssets } from '../src/pages/tweet-midi/data/performanceHistory.js'
 import assert from 'node:assert/strict'
 import { execFileSync } from 'node:child_process'
 import { fileURLToPath } from 'node:url'
@@ -26,7 +27,9 @@ for (const [id, asset] of Object.entries(ETF_MONTHLY_HISTORIES)) {
   assert(ASSET_ORDER.includes(id))
   assert.equal(ANNIVERSAIRE_ELIGIBLE_ASSETS.some(a => a.id === id), Boolean(asset.anniversaryPoints?.length && getValidYearsBackOptions(id,new Date()).length), id)
   assert(ANNIVERSARY_ART[id] && PERFORMANCE_ART[id] && INVESTMENT_ART[id])
-  assert.equal(getPerformanceAssetId(asset.isin), getAnnualReturnStartYears(id).length ? id : null)
+  const routedId=getPerformanceAssetId(asset.isin)
+  if(getAnnualReturnStartYears(id).length) assert.equal(routedId,id)
+  else if(routedId){assert.equal(routedPerformanceAssets[routedId].isin,asset.isin);assert(routedPerformanceYears(routedId).length>0)}
   const priceInstrument = ['ETC','ETN','ETP'].includes(asset.instrumentType)
   assert.match(performanceBasis(id), priceInstrument ? new RegExp(`cours de l’${asset.instrumentType}`) : /revenus réinvestis/)
   const start = asset.points[0].date

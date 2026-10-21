@@ -11,7 +11,7 @@ for (const config of CONFIG.series) {
   assert.equal(asset.currency,'USD');assert.equal(asset.priceUnit,'points')
   assert.ok(asset.anniversaryVariant.includes('réinvestis'))
   assert.ok(ANNIVERSAIRE_ELIGIBLE_ASSETS.some(a=>a.id===config.id))
-  assert.equal(MARKET_ASSETS.some(a=>a.id===config.id), config.id !== 'ftseAllWorld', 'Eight complete histories are shared; short FTSE history remains dedicated')
+  assert.equal(MARKET_ASSETS.some(a=>a.id===config.id), true, 'Official monthly histories are shared within their actual available windows')
   assert.equal(ANNIVERSAIRE_ELIGIBLE_ASSETS.filter(a=>a.id===config.id).length, 1, 'No duplicate anniversary choice')
   for (const [date,value] of record.points) assert.equal(getHistoricalPrice(config.id,date),value)
   const options=getValidYearsBackOptions(config.id,clock)

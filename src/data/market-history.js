@@ -1,3 +1,4 @@
+import { CERTIFIED_INDEX_HISTORIES } from './certified-monthly-indices.js'
 import { AUTOMATED_EQUITY_HISTORY } from './automated-equity-history.js'
 import { INFLATION_MONTHLY } from './inflation-monthly.js'
 import { indexMethodNote } from '../lib/performance-conventions.js'
@@ -605,7 +606,9 @@ export const BASELINE_ASSETS = {
   ...MONTHLY_HISTORY_ADDITIONS,
 }
 
-export const ASSETS = Object.fromEntries(Object.entries({ ...applyMonthlyAutomation(BASELINE_ASSETS), ...ETF_MONTHLY_HISTORIES, ...AUTOMATED_EQUITY_HISTORY }).map(([id, asset]) => [id,
+const PRIMARY_ASSETS = { ...applyMonthlyAutomation(BASELINE_ASSETS), ...ETF_MONTHLY_HISTORIES, ...AUTOMATED_EQUITY_HISTORY }
+const ADDITIONAL_INDICES = Object.fromEntries(Object.entries(CERTIFIED_INDEX_HISTORIES).filter(([id])=>!PRIMARY_ASSETS[id]))
+export const ASSETS = Object.fromEntries(Object.entries({ ...PRIMARY_ASSETS, ...ADDITIONAL_INDICES }).map(([id, asset]) => [id,
   EQUITY_LINKS[id] ? { ...asset, isin: EQUITY_LINKS[id].isin, instrumentType: 'EQUITY' } : asset,
 ]))
 
@@ -617,6 +620,7 @@ export const ASSET_ORDER = [...new Set([
   'euroMoney', 'euroGovShort', 'euroGov13', 'globalBondEur', 'euroInflationBond', 'euroCorporateBond', 'euroHighYieldBond',
   ...Object.keys(ETF_MONTHLY_HISTORIES),
   ...Object.keys(AUTOMATED_EQUITY_HISTORY),
+  ...Object.keys(ADDITIONAL_INDICES),
 ])]
 
 // Les anciennes séries espacées ont été remplacées par des observations mensuelles.
@@ -693,4 +697,5 @@ export const DATE_PRESETS = [
   { label: 'janv. 2020', y: 2020, m: 1 },
   { label: 'janv. 2023', y: 2023, m: 1 },
 ]
-export const YEARS = Array.from({ length: Number(LATEST_YM.slice(0, 4)) - 2015 + 1 }, (_, i) => 2015 + i)
+const FIRST_HISTORY_YEAR = Math.min(...Object.values(ASSETS).map(asset=>Number(asset.points[0].date.slice(0,4))))
+export const YEARS = Array.from({ length: Number(LATEST_YM.slice(0, 4)) - FIRST_HISTORY_YEAR + 1 }, (_, i) => FIRST_HISTORY_YEAR + i)

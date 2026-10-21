@@ -3,6 +3,10 @@ export async function choose(picker, choice) {
   // A partial label can also match its search input; operate on the picker root.
   picker=picker.locator('xpath=self::*[@data-selector] | .//*[@data-selector]')
   await picker.waitFor({state:'attached'})
+  if(!await picker.isVisible()){
+    const settings=picker.page().getByRole('button',{name:'Réglages',exact:true})
+    if(await settings.isVisible())await settings.click()
+  }
   const target = typeof choice === 'object' && 'index' in choice
     ? picker.locator('[data-option]').nth(choice.index)
     : picker.locator(`[data-option][data-value=${JSON.stringify(String(choice))}]`)
@@ -15,5 +19,6 @@ export async function choose(picker, choice) {
     await more.click()
   }
   await target.click()
-  await picker.waitFor({state:'visible'})
+  // Some workspaces switch to the publication preview after selecting a support.
+  await picker.waitFor({state:'attached'})
 }

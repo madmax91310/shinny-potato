@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+import { isQualifiedAnnualPortfolioFund } from '../src/data/annual-portfolio-funds.js'
 import { NON_BOND_SHEETS } from '../src/data/non-bond-expansion.js'
 import { QUALIFIED_EXPOSURE_SHEETS } from '../src/data/qualified-exposure-sheets.js'
 import { LIFESTRATEGY_RECORDS } from '../src/data/lifestrategy.js'
@@ -17,7 +17,8 @@ import { latestCommonYears } from '../src/data/annual-window.js'
 
 const roadmapIds = new Set('em_ex_china semiconducteurs_monde financieres_monde blockchain_ishares cloud-wisdomtree ia-big-data-xtrackers gold-miners-vaneck euro-dividend-aristocrats'.split(' '))
 const groups = {
-  'Cours ajustés de la part exacte': ASSETS.filter(a=>a.distinctCandidate).map(a=>a.id).join(' '),
+  'Fonds · calendriers NAV annuels qualifiés': ASSETS.filter(a=>a.annualManual).map(a=>a.id).join(' '),
+  'Cours ajustés de la part exacte': ASSETS.filter(a=>a.distinctCandidate&&!a.annualManual).map(a=>a.id).join(' '),
   'Fonds confirmé chez l’émetteur': `lifestrategy20 lifestrategy40 lifestrategy60 lifestrategy80 private_equity_ishares bitcoin_21shares topix_pea_hedged basic_resources_pea argent monetaire_xeon oblig_0_1_ishares oblig_global_agg_eur_hedged actions_india_ishares infrastructure_ishares oblig_hy_ishares_acc oblig_em_local_ishares_acc world_minvol_ishares world_quality_ishares world_momentum_ishares msci_acwi_ishares immo_ishares_yield sect_cyber_lg sect_biotech_ishares sect_energy_spdr sect_tech_world_ishares sect_ai_lg sect_batteries_lg sect_water_amundi sect_luxury_amundi dividend_aristocrats_us_spdr msci_world sp500 nasdaq100 nasdaq100_ishares cac40 eurostoxx50 eurostoxx50_ishares msci_em_amundi actions_coree actions_taiwan oblig_etat_eur_short oblig_etat_eur oblig_corp_ig oblig_hy oblig_inflation sp500_ishares lqq cl2 sect_sante mp_large strat_dividendes strat_dividendes_dist high_dividend high_dividend_dist quality_dividend_dist tech_europe sect_energie sect_tech sect_robotique sect_cybersecurite dividend_leaders immo_gpr oblig_etat_us actions_japon actions_value sect_financieres smallcap_monde ftse_em_vanguard mp_large_icom oblig_corp_amundi oblig_corp_vanguard oblig_corp_spdr sect_energie_propre sect_conso_defensive sect_utilities foncieres_etf foncieres_etf_dist ftse_allworld_vanguard msci_europe msci_em or or_ishares or_amundi msci_world_ishares msci_acwi msci_em_spdr or_wisdomtree bitcoin_wisdomtree`,
   'Indice ou cours du sous-jacent': `bitcoin ethereum msci_world_amundi_pea smallcap_europe`,
   'Autre fonds ou historique mixte': `qyld_ucits oblig_hy_amundi actions_asie_ex_japon quality_dividend bitcoin_etcgroup`,
@@ -265,6 +266,10 @@ for (const asset of ASSETS) {
   if (asset.instrumentType === 'EQUITY') {
     const record=EQUITY_RETURNS.find(r=>r.id===asset.id)
     if (!asset.manualOnly || asset.returnCurrency!=='EUR' || !record?.source?.startsWith('https://') || !record.checkedAt || JSON.stringify(asset.calendarReturns)!==JSON.stringify(record.euroCalendarReturns) || !asset.r.every((v,i)=>v===(record.euroCalendarReturns[2020+i]??null)) || asset.r.filter(Number.isFinite).length<3) { console.error(`Source action divergente : ${asset.id}`); errors++ }
+    continue
+  }
+  if(asset.annualManual) {
+    if(!isQualifiedAnnualPortfolioFund(asset)){console.error(`Source NAV divergente : ${asset.id}`);errors++}
     continue
   }
   const official = getInstrumentAnnualPerformance(asset.isin)

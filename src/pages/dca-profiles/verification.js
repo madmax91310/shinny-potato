@@ -1,3 +1,5 @@
+import { aggregateCompanies } from '../../data/index-concentration-core.js'
+import COMPANY_IDENTITIES from '../../data/index-company-identities.json' with { type: 'json' }
 import { dcaExposure, exposureDisplay, EXPOSURE_MAX_AGE_DAYS, EXPOSURE_MAX_SPREAD_DAYS } from './exposure.js'
 export function catalogCoverage(references,now=new Date()){
  return Object.entries(references).map(([asset,r])=>{
@@ -27,8 +29,13 @@ export function sharedPositions(lines,references,now=new Date(),observations={})
   const left=eligible[i],right=eligible[j]
   if((left.h.basis!==right.h.basis&&left.h.basis!=='equity'&&right.h.basis!=='equity')||Math.abs(Date.parse(left.h.asOf)-Date.parse(right.h.asOf))/86400000>EXPOSURE_MAX_SPREAD_DAYS)continue
   const common=[...left.rows].filter(([isin])=>right.rows.has(isin)).map(([isin,l])=>({isin,name:l.name,leftWeight:l.weightPct,rightWeight:right.rows.get(isin).weightPct,portfolioWeight:(left.line.weight*l.weightPct+right.line.weight*right.rows.get(isin).weightPct)/100})).sort((a,b)=>b.portfolioWeight-a.portfolioWeight)
+  const companies = [left,right].map(item => new Map(aggregateCompanies([...item.rows.values()].map(row=>({...row,name:row.name?.trim()||row.isin})), COMPANY_IDENTITIES).map(row => [row.id,row])))
+  const companyCommon = [...companies[0]].filter(([id]) => companies[1].has(id)).map(([id,row]) => ({
+    id, name:row.name, leftWeight:row.weightPct, rightWeight:companies[1].get(id).weightPct,
+    leftSecurities:row.securities, rightSecurities:companies[1].get(id).securities,
+  }))
   const full=[left,right].every(x=>x.h.complete===true&&x.h.rows.every(r=>x.rows.has(r.isin))&&x.h.rows.reduce((s,r)=>s+r.weightPct,0)>=99.5)
-  pairs.push({left:left.line.label,right:right.line.label,common,full,overlap:full?common.reduce((s,r)=>s+Math.min(r.leftWeight,r.rightWeight),0):null,sources:[left.h,right.h].map(h=>({asOf:h.asOf,url:h.sourceUrl})),identifiedCoverage:[left,right].map(x=>[...x.rows.values()].reduce((s,r)=>s+r.weightPct,0))})
+  pairs.push({left:left.line.label,right:right.line.label,common,companyCommon,full,overlap:full?companyCommon.reduce((s,r)=>s+Math.min(r.leftWeight,r.rightWeight),0):null,sources:[left.h,right.h].map(h=>({asOf:h.asOf,url:h.sourceUrl})),identifiedCoverage:[left,right].map(x=>[...x.rows.values()].reduce((s,r)=>s+r.weightPct,0))})
  }
  // Aggregate each security once across all compatible lines (never sum pairs).
  const totals=[]

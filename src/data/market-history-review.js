@@ -1,3 +1,4 @@
+import { CERTIFIED_INDEX_HISTORY_REVIEW } from './certified-monthly-indices.js'
 import { applyMonthlyReviews } from './monthly-automation.js';
 import BITCOIN_MONTHLY from './bitcoin-yahoo-monthly.json' with { type: 'json' };
 import { DIVERSIFICATION_HISTORY_REVIEW } from './diversification-history.js';
@@ -320,4 +321,4 @@ const BASELINE_REVIEW = {
   },
 };
 
-export const MARKET_HISTORY_REVIEW = applyMonthlyReviews(BASELINE_REVIEW);
+export const MARKET_HISTORY_REVIEW = applyMonthlyReviews({...CERTIFIED_INDEX_HISTORY_REVIEW,...BASELINE_REVIEW});

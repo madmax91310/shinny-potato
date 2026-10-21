@@ -1,5 +1,6 @@
 import { CATALOG, buildCustomDuel } from './lib.js'
-const byRole = (role) => CATALOG.filter((asset) => asset.role === role)
+// Annual-only admissions stay manual; generated Duel constructions retain their qualified pools.
+const byRole = (role) => CATALOG.filter((asset) => asset.role === role && !asset.annualManual)
 const pick = (items) => items[Math.floor(Math.random() * items.length)]
 
 function allocation() {

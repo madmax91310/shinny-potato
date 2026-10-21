@@ -1,4 +1,4 @@
-import { ASSETS } from '../../data/market-history.js'
+import { ASSETS, MARKET_ASSETS, getAnnualReturnStartYears, getAnnualReturns, performanceBasis } from './data/performanceHistory.js'
 import { historyOptionLabel } from '../../data/history-selection.js'
 import { resolveAnniversaryLevel } from '../../data/anniversary-levels.js';
 import { anniversaryResult, anniversaryClosing, anniversaryComparisonNote } from './anniversaryEditorial.js';
@@ -9,9 +9,8 @@ import { TERMES } from "../../data/financial-lexicon.js";
 import { MONTHS_FULL } from '../../data/market-history.js';
 import { fmtEUR, fmtPct } from "../investment-calculator/lib.js";
 import {
-  MARKET_ASSETS, ANNIVERSAIRE_ELIGIBLE_ASSETS, getValidYearsBackOptions,
+  ANNIVERSAIRE_ELIGIBLE_ASSETS, getValidYearsBackOptions,
   getHistoricalPrice, ymForYearsBack, fmtYm,
-  getAnnualReturnStartYears, getAnnualReturns, performanceBasis,
 } from "./data/marketHistory.js";
 // Format "Pouvoir d'achat" : aucune donnée ni logique de calcul propre — réutilise entièrement le
 // simulateur "Pouvoir d'achat" (montants, années, séries INSEE, calcul, punchlines) ; cette couche

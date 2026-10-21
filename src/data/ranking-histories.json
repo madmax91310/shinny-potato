@@ -21639,5 +21639,140 @@
     "checkedAt": "2026-10-21",
     "periodEnd": "2026-09",
     "responseSha256": "98427cacb072d929565775418201705fe6502389b820073316a19ef8ab9b7095"
+  },
+  "aerospace-paris-eur": {
+    "id": "aerospace-paris-eur",
+    "label": "iShares Global Aerospace & Defence UCITS ETF · Paris EUR",
+    "isin": "IE000U9ODG19",
+    "ticker": "DFND",
+    "mic": "XPAR",
+    "currency": "EUR",
+    "parser": "yahoo",
+    "symbol": "DFND.PA",
+    "field": "adjclose",
+    "precision": 6,
+    "consumerScope": "catalog",
+    "listingEvidenceId": "IE000U9ODG19-XPAR-DFND-EUR",
+    "instrumentType": "ETF",
+    "method": "Cours de la part exacte, ajustés des distributions et divisions ; dernière séance mensuelle recoupée avec la bougie mensuelle Yahoo",
+    "collectAnniversary": false,
+    "yahooInstrumentType": "ETF",
+    "periodStart": "2024-08",
+    "verifyMonthlyDisagreements": true,
+    "listingSourceUrl": "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Clistings&locale=en_GB&portfolioId=334464&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true",
+    "points": [
+      [
+        "2024-08",
+        5.462
+      ],
+      [
+        "2024-09",
+        5.398
+      ],
+      [
+        "2024-10",
+        5.42
+      ],
+      [
+        "2024-11",
+        5.794
+      ],
+      [
+        "2024-12",
+        5.674
+      ],
+      [
+        "2025-01",
+        6.138
+      ],
+      [
+        "2025-02",
+        6.237
+      ],
+      [
+        "2025-03",
+        6.185
+      ],
+      [
+        "2025-04",
+        6.126
+      ],
+      [
+        "2025-05",
+        6.872
+      ],
+      [
+        "2025-06",
+        7.067
+      ],
+      [
+        "2025-07",
+        7.43
+      ],
+      [
+        "2025-08",
+        7.336
+      ],
+      [
+        "2025-09",
+        7.804
+      ],
+      [
+        "2025-10",
+        7.934
+      ],
+      [
+        "2025-11",
+        7.457
+      ],
+      [
+        "2025-12",
+        7.775
+      ],
+      [
+        "2026-01",
+        8.392
+      ],
+      [
+        "2026-02",
+        8.729
+      ],
+      [
+        "2026-03",
+        7.985
+      ],
+      [
+        "2026-04",
+        7.925
+      ],
+      [
+        "2026-05",
+        8.443
+      ],
+      [
+        "2026-06",
+        8.57
+      ],
+      [
+        "2026-07",
+        8.636
+      ],
+      [
+        "2026-08",
+        8.364
+      ],
+      [
+        "2026-09",
+        7.908
+      ]
+    ],
+    "sourceUrls": [
+      "https://query2.finance.yahoo.com/v8/finance/chart/DFND.PA?period1=1722470400&period2=1790812800&interval=1d&events=div%2Csplits",
+      "https://query2.finance.yahoo.com/v8/finance/chart/DFND.PA?period1=1722470400&period2=1790812800&interval=1mo&events=div%2Csplits"
+    ],
+    "timezone": "Europe/Paris",
+    "checkedAt": "2026-10-21",
+    "periodEnd": "2026-09",
+    "responseSha256": "7c31e5b40a0455b53ce4ffe620c1eb716b091e0231b93d9bc9c0c0cce145dd57"
   }
 }

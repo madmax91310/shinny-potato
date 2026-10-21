@@ -14,7 +14,14 @@ const CODES = ['no-listing', 'listing-not-collectable', 'qualification-failed', 
 const SUFFIX = { XPAR:'.PA', XAMS:'.AS', XETR:'.DE', XLON:'.L', ETFP:'.MI', XSWX:'.SW' }
 const EXCHANGES = { XPAR:'Euronext Paris', XAMS:'Euronext Amsterdam', XETR:'Xetra', XLON:'London Stock Exchange', ETFP:'Borsa Italiana', XSWX:'SIX Swiss Exchange' }
 
-const presented = routing.rows.filter(r => r.generator === 'missing' && (r.sheet || r.comparison || r.dca))
+const exposureCatalog=read('src/pages/dca-profiles/catalog.json')
+for(const row of routing.rows.filter(r=>r.compositionOnly)){
+ const refs=Object.values(exposureCatalog).filter(r=>r.isin===row.isin)
+ assert(refs.length && refs.every(r=>r.compositionOnly===true))
+ assert.equal(row.blocker,null,'Composition-only data does not require prices')
+ assert(!row.sheet && !row.comparison && row.dca)
+}
+const presented = routing.rows.filter(r => !r.compositionOnly && r.generator === 'missing' && (r.sheet || r.comparison || r.dca))
 assert.ok(presented.length > 0, 'the audit lists presented assets without automatic history')
 for (const row of presented) {
   assert.ok(row.blocker, `${row.isin} : cause de blocage absente`)

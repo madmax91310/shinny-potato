@@ -1,0 +1,227 @@
+{
+  "checkedAt": "2026-10-21T19:24:07.183Z",
+  "exclusions": [
+    {
+      "id": "soxx",
+      "isin": null,
+      "name": "ETF Semi-conducteurs (SOXX)",
+      "currency": "USD",
+      "monthlyExcluded": true,
+      "reason": "Cours bruts hors dividendes ; pas de série ajustée ni de preuve ISIN qualifiées.",
+      "frozenMonths": [],
+      "sourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/SOXX?period1=1451606400&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/SOXX?period1=1451606400&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ],
+      "checkedAt": "2026-10-06",
+      "configuredSource": {
+        "id": "soxx",
+        "label": "ETF Semi-conducteurs (SOXX)",
+        "currency": "USD",
+        "periodStart": "2016-01",
+        "method": "Clôture brute à la dernière séance mensuelle ; recoupement avec la clôture de la bougie mensuelle Yahoo",
+        "parser": "yahoo",
+        "symbol": "SOXX",
+        "field": "close",
+        "precision": 2,
+        "collectAnniversary": false,
+        "timezone": "America/New_York"
+      },
+      "officialAnnualCalendars": [],
+      "qualifiedAlternative": null
+    },
+    {
+      "id": "etfIE00BDFBTQ78",
+      "isin": "IE00BDFBTQ78",
+      "name": "VanEck S&P Global Mining UCITS ETF",
+      "currency": "EUR",
+      "monthlyExcluded": true,
+      "reason": "Au moins trois clôtures mensuelles identiques ; garde-fou maintenu.",
+      "frozenMonths": [
+        "2019-01"
+      ],
+      "sourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/GDIG.MI?period1=1527811200&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/GDIG.MI?period1=1527811200&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ],
+      "checkedAt": "2026-10-16",
+      "configuredSource": {
+        "id": "etfIE00BDFBTQ78",
+        "label": "VanEck S&P Global Mining UCITS ETF",
+        "isin": "IE00BDFBTQ78",
+        "ticker": "GDIG",
+        "mic": "ETFP",
+        "currency": "EUR",
+        "parser": "yahoo",
+        "symbol": "GDIG.MI",
+        "field": "adjclose",
+        "precision": 6,
+        "consumerScope": "catalog",
+        "listingEvidenceId": "IE00BDFBTQ78-ETFP-GDIG-EUR",
+        "instrumentType": "ETF",
+        "method": "Cours de la part exacte, ajustés des distributions et divisions ; dernière séance mensuelle recoupée avec la bougie mensuelle Yahoo",
+        "collectAnniversary": true,
+        "periodStart": "2018-06"
+      },
+      "officialAnnualCalendars": [
+        {
+          "id": "annual-IE00BDFBTQ78",
+          "basis": "fund-nav",
+          "currency": "USD",
+          "years": [
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
+          ],
+          "sourceUrls": [
+            "https://www.vaneck.com/ucits/library/fact-sheets/gdig-fact-sheet.pdf"
+          ]
+        }
+      ],
+      "qualifiedAlternative": null
+    },
+    {
+      "id": "etfIE000U9ODG19",
+      "isin": "IE000U9ODG19",
+      "name": "iShares Global Aerospace & Defence UCITS ETF",
+      "currency": "USD",
+      "monthlyExcluded": true,
+      "reason": "Au moins trois clôtures mensuelles identiques ; garde-fou maintenu.",
+      "frozenMonths": [
+        "2025-02",
+        "2025-03",
+        "2025-04",
+        "2025-05",
+        "2025-06",
+        "2025-07",
+        "2025-08",
+        "2025-09",
+        "2025-10",
+        "2025-11",
+        "2025-12",
+        "2026-01"
+      ],
+      "sourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/DFND.SW?period1=1709251200&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/DFND.SW?period1=1709251200&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ],
+      "checkedAt": "2026-10-17",
+      "configuredSource": {
+        "id": "etfIE000U9ODG19",
+        "label": "iShares Global Aerospace & Defence UCITS ETF",
+        "isin": "IE000U9ODG19",
+        "ticker": "DFND",
+        "mic": "XSWX",
+        "currency": "USD",
+        "parser": "yahoo",
+        "symbol": "DFND.SW",
+        "field": "adjclose",
+        "precision": 6,
+        "consumerScope": "catalog",
+        "listingEvidenceId": "IE000U9ODG19-XSWX-DFND-USD",
+        "instrumentType": "ETF",
+        "method": "Cours de la part exacte, ajustés des distributions et divisions ; dernière séance mensuelle recoupée avec la bougie mensuelle Yahoo",
+        "collectAnniversary": true,
+        "yahooInstrumentType": "ETF",
+        "periodStart": "2024-03",
+        "verifyMonthlyDisagreements": true
+      },
+      "officialAnnualCalendars": [
+        {
+          "id": "annual-IE000U9ODG19",
+          "basis": "fund-nav",
+          "currency": "USD",
+          "years": [
+            "2025"
+          ],
+          "sourceUrls": [
+            "https://www.blackrock.com/varnish-api/uk-retail01-product-data/product-data/api/v2/get-product-data?appSubType=ISHARES&appType=PRODUCT_PAGE&component=keyFundFacts%2Cperformance%2CexposureBreakdowns%2Choldings.all%2Clistings%2CfundamentalsAndRisk&locale=en_GB&portfolioId=334464&targetSite=ishares-uk&userType=individual&excludeContent=true&includeConfig=true"
+          ]
+        }
+      ],
+      "qualifiedAlternative": {
+        "id": "aerospace-paris-eur",
+        "isin": "IE000U9ODG19",
+        "currency": "EUR",
+        "symbol": "DFND.PA",
+        "mic": "XPAR",
+        "first": "2024-08",
+        "last": "2026-09",
+        "sourceUrls": [
+          "https://query2.finance.yahoo.com/v8/finance/chart/DFND.PA?period1=1722470400&period2=1790812800&interval=1d&events=div%2Csplits",
+          "https://query2.finance.yahoo.com/v8/finance/chart/DFND.PA?period1=1722470400&period2=1790812800&interval=1mo&events=div%2Csplits"
+        ],
+        "checkedAt": "2026-10-21",
+        "listingEvidenceId": "IE000U9ODG19-XPAR-DFND-EUR",
+        "annualYears": [
+          2025
+        ],
+        "annualRankingAllowed": false
+      }
+    },
+    {
+      "id": "etfGB00B15KXQ89",
+      "isin": "GB00B15KXQ89",
+      "name": "WisdomTree Copper",
+      "currency": "USD",
+      "monthlyExcluded": true,
+      "reason": "Au moins trois clôtures mensuelles identiques ; garde-fou maintenu.",
+      "frozenMonths": [
+        "2015-09",
+        "2017-03"
+      ],
+      "sourceUrls": [
+        "https://query2.finance.yahoo.com/v8/finance/chart/COPA.L?period1=1420070400&period2=1790812800&interval=1d&events=div%2Csplits",
+        "https://query2.finance.yahoo.com/v8/finance/chart/COPA.L?period1=1420070400&period2=1790812800&interval=1mo&events=div%2Csplits"
+      ],
+      "checkedAt": "2026-10-18",
+      "configuredSource": {
+        "id": "etfGB00B15KXQ89",
+        "label": "WisdomTree Copper",
+        "isin": "GB00B15KXQ89",
+        "ticker": "COPA",
+        "mic": "XLON",
+        "currency": "USD",
+        "parser": "yahoo",
+        "symbol": "COPA.L",
+        "field": "adjclose",
+        "precision": 6,
+        "consumerScope": "catalog",
+        "listingEvidenceId": "GB00B15KXQ89-XLON-COPA-USD",
+        "instrumentType": "ETC",
+        "method": "Cours de la part exacte, ajustés des distributions et divisions ; dernière séance mensuelle recoupée avec la bougie mensuelle Yahoo",
+        "collectAnniversary": true,
+        "yahooInstrumentType": "EQUITY",
+        "periodStart": "2015-01",
+        "verifyMonthlyDisagreements": true
+      },
+      "officialAnnualCalendars": [
+        {
+          "id": "annual-GB00B15KXQ89",
+          "basis": "fund-nav",
+          "currency": "USD",
+          "years": [
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "2025"
+          ],
+          "sourceUrls": [
+            "https://dataspanapi.wisdomtree.com/pdr/documents/FACTSHEET/CSL/EU/EN-GB/GB00B15KXQ89"
+          ]
+        }
+      ],
+      "qualifiedAlternative": null
+    }
+  ]
+}

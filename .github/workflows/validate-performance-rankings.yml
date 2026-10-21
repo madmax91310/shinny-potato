@@ -4,6 +4,10 @@ on:
     paths:
       - 'src/pages/performance-rankings/**'
       - 'src/data/*history*'
+      - 'src/data/qualified-annual-calendars.js'
+      - 'src/data/annual-portfolio-funds.js'
+      - 'src/data/portfolio-admissions.js'
+      - 'scripts/*verified-connections*'
       - 'src/data/*monthly*'
       - 'src/data/ranking-*'
       - 'scripts/*ranking*'
@@ -33,6 +37,7 @@ jobs:
       - run: node scripts/build-ranking-annual.mjs && node scripts/test-performance-rankings.mjs
       - run: node scripts/test-annual-ranking.mjs
       - run: npm run build
+      - run: node scripts/test-verified-connections.mjs
       - uses: actions/cache@v4
         with:
           path: ~/.cache/ms-playwright
@@ -40,12 +45,15 @@ jobs:
       - run: npx playwright install --with-deps chromium
       - run: node scripts/playwright-performance-rankings.mjs
       - run: node scripts/playwright-annual-ranking.mjs
+      - run: node scripts/playwright-verified-connections.mjs
       - run: node scripts/test-weekly-publications.mjs
       - uses: actions/upload-artifact@v7.0.1
         if: always()
         with:
           name: rankings-browser-preview
-          path: test-artifacts/performance-rankings
+          path: |
+            test-artifacts/performance-rankings
+            test-artifacts/verified-connections
           if-no-files-found: ignore
           retention-days: 7
 

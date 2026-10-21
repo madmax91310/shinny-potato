@@ -1,0 +1,1489 @@
+{
+  "inputs": [
+    {
+      "name": "liste-complete-raccordements-pour-work-2026-10-21.csv",
+      "sha256": "bef6c53a84c953ebd44f5a61d9c9e1281a1099e18054585d6b3756a1d277eda4"
+    },
+    {
+      "name": "liste-complete-raccordements-pour-work-2026-10-21.txt",
+      "sha256": "1c14c67c78cfb15ca81e037c19dfbec653552ed905004139316b9a55b1a0acbc"
+    }
+  ],
+  "snapshotPairs": 642,
+  "snapshotReferences": 574,
+  "includedSnapshotPairs": 73,
+  "excludedSnapshotPairs": 569,
+  "excludedByTool": {
+    "Faits marquants": 558,
+    "Comparatif ETF": 3,
+    "Impact des frais": 1,
+    "Fiches pratiques — sélection Europe": 1,
+    "Simulateur de patrimoine — frais du contrat": 6
+  },
+  "scope": "Instantané de candidats uniquement. Toutes les sources et tous les consommateurs du dépôt sont audités indépendamment dans la matrice. Aucun travail sur les Faits marquants, frais d’assurance-vie, Comparatif ETF, Impact des frais ou Fiches pratiques.",
+  "candidates": [
+    {
+      "asset": "Amundi Core STOXX Europe 600 UCITS ETF",
+      "snapshotIdentifier": "LU0908500753",
+      "isin": "LU0908500753",
+      "snapshotTool": "Duels de portefeuilles",
+      "snapshotStatus": "Raccordement proposé — données présentes",
+      "currentDecisions": [
+        {
+          "asset": "LU0908500753",
+          "tool": "duels",
+          "status": "raccordable",
+          "implementation": "ajouté",
+          "selector": true,
+          "engine": true,
+          "addedRoutes": [
+            "nav-LU0908500753"
+          ],
+          "blocker": ""
+        }
+      ]
+    },
+    {
+      "asset": "Amundi Core STOXX Europe 600 UCITS ETF",
+      "snapshotIdentifier": "LU0908500753",
+      "isin": "LU0908500753",
+      "snapshotTool": "Générateur de portefeuilles — manuel",
+      "snapshotStatus": "Raccordement proposé — données présentes",
+      "currentDecisions": [
+        {
+          "asset": "LU0908500753",
+          "tool": "portefeuille-manuel",
+          "status": "raccordable",
+          "implementation": "ajouté",
+          "selector": true,
+          "engine": true,
+          "addedRoutes": [
+            "nav-LU0908500753"
+          ],
+          "blocker": ""
+        }
+      ]
+    },
+    {
+      "asset": "Amundi Dow Jones Industrial Average UCITS ETF Dist",
+      "snapshotIdentifier": "FR0007056841",
+      "isin": "FR0007056841",
+      "snapshotTool": "Générateur de portefeuilles — automatique",
+      "snapshotStatus": "Candidat — recettes et risque à qualifier",
+      "currentDecisions": [
+        {
+          "asset": "FR0007056841",
+          "tool": "portefeuille-automatique",
+          "status": "bloqué",
+          "implementation": "aucun",
+          "selector": false,
+          "engine": false,
+          "addedRoutes": [],
+          "blocker": "Aucun rôle automatique validé pour ce support ; longueur historique seule insuffisante. Voir manualOnly et recettes."
+        }
+      ]
+    },
+    {
+      "asset": "Amundi EURO STOXX 50 II UCITS ETF Acc",
+      "snapshotIdentifier": "FR0007054358",
+      "isin": "FR0007054358",
+      "snapshotTool": "Générateur de portefeuilles — automatique",
+      "snapshotStatus": "Candidat — recettes et risque à qualifier",
+      "currentDecisions": [
+        {
+          "asset": "FR0007054358",
+          "tool": "portefeuille-automatique",
+          "status": "bloqué",
+          "implementation": "aucun",
+          "selector": false,
+          "engine": false,
+          "addedRoutes": [],
+          "blocker": "Aucun rôle automatique validé pour ce support ; longueur historique seule insuffisante. Voir manualOnly et recettes."
+        }
+      ]
+    },
+    {
+      "asset": "Amundi Euro Stoxx Banks UCITS ETF Acc",
+      "snapshotIdentifier": "LU1829219390",
+      "isin": "LU1829219390",
+      "snapshotTool": "Générateur de portefeuilles — automatique",
+      "snapshotStatus": "Candidat — recettes et risque à qualifier",
+      "currentDecisions": [
+        {
+          "asset": "LU1829219390",
+          "tool": "portefeuille-automatique",
+          "status": "bloqué",
+          "implementation": "aucun",
+          "selector": false,
+          "engine": false,
+          "addedRoutes": [],
+          "blocker": "Aucun rôle automatique validé pour ce support ; longueur historique seule insuffisante. Voir manualOnly et recettes."
+        }
+      ]
+    },
+    {
+      "asset": "Amundi PEA Amérique Latine (MSCI Emerging Latin America Selection) UCITS ETF",
+      "snapshotIdentifier": "FR0013412004",
+      "isin": "FR0013412004",
+      "snapshotTool": "Générateur de portefeuilles — automatique",
+      "snapshotStatus": "Candidat — recettes et risque à qualifier",
+      "currentDecisions": [
+        {
+          "asset": "FR0013412004",
+          "tool": "portefeuille-automatique",
+          "status": "bloqué",
+          "implementation": "aucun",
+          "selector": false,
+          "engine": false,
+          "addedRoutes": [],
+          "blocker": "Aucun rôle automatique validé pour ce support ; longueur historique seule insuffisante. Voir manualOnly et recettes."
+        }
+      ]
+    },
+    {
+      "asset": "Amundi PEA Asie Emergente (MSCI Emerging Asia) Screened UCITS ETF",
+      "snapshotIdentifier": "FR0013412012",
+      "isin": "FR0013412012",
+      "snapshotTool": "Générateur de portefeuilles — automatique",
+      "snapshotStatus": "Candidat — recettes et risque à qualifier",
+      "currentDecisions": [
+        {
+          "asset": "FR0013412012",
+          "tool": "portefeuille-automatique",
+          "status": "bloqué",
+          "implementation": "aucun",
+          "selector": false,
+          "engine": false,
+          "addedRoutes": [],
+          "blocker": "Aucun rôle automatique validé pour ce support ; longueur historique seule insuffisante. Voir manualOnly et recettes."
+        }
+      ]
+    },
+    {
+      "asset": "Amundi PEA Chine (MSCI China) Screened UCITS ETF",
+      "snapshotIdentifier": "FR0011871078",
+      "isin": "FR0011871078",
+      "snapshotTool": "Générateur de portefeuilles — automatique",
+      "snapshotStatus": "Candidat — recettes et risque à qualifier",
+      "currentDecisions": [
+        {
+          "asset": "FR0011871078",
+          "tool": "portefeuille-automatique",
+          "status": "bloqué",
+          "implementation": "aucun",
+          "selector": false,
+          "engine": false,
+          "addedRoutes": [],
+          "blocker": "Aucun rôle automatique validé pour ce support ; longueur historique seule insuffisante. Voir manualOnly et recettes."
+        }
+      ]
+    },
+    {
+      "asset": "Amundi PEA Emergent EMEA (MSCI Emerging EMEA) ESG Transition UCITS ETF",
+      "snapshotIdentifier": "FR0011440478",
+      "isin": "FR0011440478",
+      "snapshotTool": "Générateur de portefeuilles — automatique",
+      "snapshotStatus": "Candidat — recettes et risque à qualifier",
+      "currentDecisions": [
+        {
+          "asset": "FR0011440478",
+          "tool": "portefeuille-automatique",
+          "status": "bloqué",
+          "implementation": "aucun",
+          "selector": false,
+          "engine": false,
+          "addedRoutes": [],
+          "blocker": "Aucun rôle automatique validé pour ce support ; longueur historique seule insuffisante. Voir manualOnly et recettes."
+        }
+      ]
+    },
+    {
+      "asset": "Amundi PEA Euro Court Terme UCITS ETF Acc",
+      "snapshotIdentifier": "FR0013346681",
+      "isin": "FR0013346681",
+      "snapshotTool": "Générateur de portefeuilles — automatique",
+      "snapshotStatus": "Candidat — recettes et risque à qualifier",
+      "currentDecisions": [
+        {
+          "asset": "FR0013346681",
+          "tool": "portefeuille-automatique",
+          "status": "bloqué",
+          "implementation": "aucun",
+          "selector": false,
+          "engine": false,
+          "addedRoutes": [],
+          "blocker": "Aucun rôle automatique validé pour ce support ; longueur historique seule insuffisante. Voir manualOnly et recettes."
+        }
+      ]
+    },
+    {
+      "asset": "Amundi PEA Immobilier Europe UCITS ETF Acc",
+      "snapshotIdentifier": "FR0011869304",
+      "isin": "FR0011869304",
+      "snapshotTool": "Générateur de portefeuilles — automatique",
+      "snapshotStatus": "Candidat — recettes et risque à qualifier",
+      "currentDecisions": [
+        {
+          "asset": "FR0011869304",
+          "tool": "portefeuille-automatique",
+          "status": "bloqué",
+          "implementation": "aucun",
+          "selector": false,
+          "engine": false,
+          "addedRoutes": [],
+          "blocker": "Aucun rôle automatique validé pour ce support ; longueur historique seule insuffisante. Voir manualOnly et recettes."
+        }
+      ]
+    },
+    {
+      "asset": "Amundi PEA Inde (MSCI India) UCITS ETF",
+      "snapshotIdentifier": "FR0011869320",
+      "isin": "FR0011869320",
+      "snapshotTool": "Générateur de portefeuilles — automatique",
+      "snapshotStatus": "Candidat — recettes et risque à qualifier",
+      "currentDecisions": [
+        {
+          "asset": "FR0011869320",
+          "tool": "portefeuille-automatique",
+          "status": "bloqué",
+          "implementation": "aucun",
+          "selector": false,
+          "engine": false,
+          "addedRoutes": [],
+          "blocker": "Aucun rôle automatique validé pour ce support ; longueur historique seule insuffisante. Voir manualOnly et recettes."
+        }
+      ]
+    },
+    {
+      "asset": "Amundi PEA Japan (TOPIX) UCITS ETF",
+      "snapshotIdentifier": "FR0013411980",
+      "isin": "FR0013411980",
+      "snapshotTool": "Générateur de portefeuilles — automatique",
+      "snapshotStatus": "Candidat — recettes et risque à qualifier",
+      "currentDecisions": [
+        {
+          "asset": "FR0013411980",
+          "tool": "portefeuille-automatique",
+          "status": "bloqué",
+          "implementation": "aucun",
+          "selector": false,
+          "engine": false,
+          "addedRoutes": [],
+          "blocker": "Aucun rôle automatique validé pour ce support ; longueur historique seule insuffisante. Voir manualOnly et recettes."
+        }
+      ]
+    },
+    {
+      "asset": "Amundi Russell 2000 UCITS ETF EUR Acc",
+      "snapshotIdentifier": "LU1681038672",
+      "isin": "LU1681038672",
+      "snapshotTool": "Générateur de portefeuilles — automatique",
+      "snapshotStatus": "Candidat — recettes et risque à qualifier",
+      "currentDecisions": [
+        {
+          "asset": "LU1681038672",
+          "tool": "portefeuille-automatique",
+          "status": "bloqué",
+          "implementation": "aucun",
+          "selector": false,
+          "engine": false,
+          "addedRoutes": [],
+          "blocker": "Aucun rôle automatique validé pour ce support ; longueur historique seule insuffisante. Voir manualOnly et recettes."
+        }
+      ]
+    },
+    {
+      "asset": "Amundi STOXX Europe 600 ESG UCITS ETF Acc",
+      "snapshotIdentifier": "LU1681040223",
+      "isin": "LU1681040223",
+      "snapshotTool": "Générateur de portefeuilles — automatique",
+      "snapshotStatus": "Candidat — recettes et risque à qualifier",
+      "currentDecisions": [
+        {
+          "asset": "LU1681040223",
+          "tool": "portefeuille-automatique",
+          "status": "bloqué",
+          "implementation": "aucun",
+          "selector": false,
+          "engine": false,
+          "addedRoutes": [],
+          "blocker": "Aucun rôle automatique validé pour ce support ; longueur historique seule insuffisante. Voir manualOnly et recettes."
+        }
+      ]
+    },
+    {
+      "asset": "BNP Paribas Easy II Nasdaq 100 UCITS ETF (Acc)",
+      "snapshotIdentifier": "IE000QDFFK00",
+      "isin": "IE000QDFFK00",
+      "snapshotTool": "Duels de portefeuilles",
+      "snapshotStatus": "Raccordement proposé — données présentes",
+      "currentDecisions": [
+        {
+          "asset": "IE000QDFFK00",
+          "tool": "duels",
+          "status": "raccordable",
+          "implementation": "ajouté",
+          "selector": true,
+          "engine": true,
+          "addedRoutes": [
+            "nav-IE000QDFFK00"
+          ],
+          "blocker": ""
+        }
+      ]
+    },
+    {
+      "asset": "BNP Paribas Easy II Nasdaq 100 UCITS ETF (Acc)",
+      "snapshotIdentifier": "IE000QDFFK00",
+      "isin": "IE000QDFFK00",
+      "snapshotTool": "Générateur de portefeuilles — manuel",
+      "snapshotStatus": "Raccordement proposé — données présentes",
+      "currentDecisions": [
+        {
+          "asset": "IE000QDFFK00",
+          "tool": "portefeuille-manuel",
+          "status": "raccordable",
+          "implementation": "ajouté",
+          "selector": true,
+          "engine": true,
+          "addedRoutes": [
+            "nav-IE000QDFFK00"
+          ],
+          "blocker": ""
+        }
+      ]
+    },
+    {
+      "asset": "BNP Paribas Easy S&P 500 UCITS ETF (Acc)",
+      "snapshotIdentifier": "FR0011550185",
+      "isin": "FR0011550185",
+      "snapshotTool": "Générateur de portefeuilles — automatique",
+      "snapshotStatus": "Candidat — recettes et risque à qualifier",
+      "currentDecisions": [
+        {
+          "asset": "FR0011550185",
+          "tool": "portefeuille-automatique",
+          "status": "bloqué",
+          "implementation": "aucun",
+          "selector": false,
+          "engine": false,
+          "addedRoutes": [],
+          "blocker": "Aucun rôle automatique validé pour ce support ; longueur historique seule insuffisante. Voir manualOnly et recettes."
+        }
+      ]
+    },
+    {
+      "asset": "BNP Paribas Easy STOXX Europe 600 UCITS ETF",
+      "snapshotIdentifier": "FR0011550193",
+      "isin": "FR0011550193",
+      "snapshotTool": "Générateur de portefeuilles — automatique",
+      "snapshotStatus": "Candidat — recettes et risque à qualifier",
+      "currentDecisions": [
+        {
+          "asset": "FR0011550193",
+          "tool": "portefeuille-automatique",
+          "status": "bloqué",
+          "implementation": "aucun",
+          "selector": false,
+          "engine": false,
+          "addedRoutes": [],
+          "blocker": "Aucun rôle automatique validé pour ce support ; longueur historique seule insuffisante. Voir manualOnly et recettes."
+        }
+      ]
+    },
+    {
+      "asset": "ETF Semi-conducteurs SOXX",
+      "snapshotIdentifier": "soxx",
+      "isin": null,
+      "snapshotTool": "Classements de performances",
+      "snapshotStatus": "Exclusion à requalifier — pas un raccordement acquis",
+      "currentDecisions": [
+        {
+          "asset": "series:soxx",
+          "tool": "qui-comparaison",
+          "status": "bloqué",
+          "implementation": "aucun",
+          "selector": false,
+          "engine": false,
+          "addedRoutes": [],
+          "blocker": "SOXX : cours bruts hors dividendes ; identité ISIN et série ajustée non qualifiées."
+        },
+        {
+          "asset": "series:soxx",
+          "tool": "qui-classement-annuel",
+          "status": "bloqué",
+          "implementation": "aucun",
+          "selector": false,
+          "engine": false,
+          "addedRoutes": [],
+          "blocker": "SOXX : cours bruts hors dividendes ; identité ISIN et série ajustée non qualifiées."
+        }
+      ]
+    },
+    {
+      "asset": "HSBC EURO STOXX 50",
+      "snapshotIdentifier": "IE00B4K6B022",
+      "isin": "IE00B4K6B022",
+      "snapshotTool": "Générateur de portefeuilles — automatique",
+      "snapshotStatus": "Candidat — recettes et risque à qualifier",
+      "currentDecisions": [
+        {
+          "asset": "IE00B4K6B022",
+          "tool": "portefeuille-automatique",
+          "status": "bloqué",
+          "implementation": "aucun",
+          "selector": false,
+          "engine": false,
+          "addedRoutes": [],
+          "blocker": "Aucun rôle automatique validé pour ce support ; longueur historique seule insuffisante. Voir manualOnly et recettes."
+        }
+      ]
+    },
+    {
+      "asset": "iShares Ageing Population UCITS ETF",
+      "snapshotIdentifier": "IE00BYZK4669",
+      "isin": "IE00BYZK4669",
+      "snapshotTool": "Générateur de portefeuilles — automatique",
+      "snapshotStatus": "Candidat — recettes et risque à qualifier",
+      "currentDecisions": [
+        {
+          "asset": "IE00BYZK4669",
+          "tool": "portefeuille-automatique",
+          "status": "bloqué",
+          "implementation": "aucun",
+          "selector": false,
+          "engine": false,
+          "addedRoutes": [],
+          "blocker": "Aucun rôle automatique validé pour ce support ; longueur historique seule insuffisante. Voir manualOnly et recettes."
+        }
+      ]
+    },
+    {
+      "asset": "iShares China Large Cap UCITS ETF (Dist)",
+      "snapshotIdentifier": "IE00B02KXK85",
+      "isin": "IE00B02KXK85",
+      "snapshotTool": "Générateur de portefeuilles — automatique",
+      "snapshotStatus": "Candidat — recettes et risque à qualifier",
+      "currentDecisions": [
+        {
+          "asset": "IE00B02KXK85",
+          "tool": "portefeuille-automatique",
+          "status": "bloqué",
+          "implementation": "aucun",
+          "selector": false,
+          "engine": false,
+          "addedRoutes": [],
+          "blocker": "Aucun rôle automatique validé pour ce support ; longueur historique seule insuffisante. Voir manualOnly et recettes."
+        }
+      ]
+    },
+    {
+      "asset": "iShares Core MSCI EMU UCITS ETF",
+      "snapshotIdentifier": "IE00B53QG562",
+      "isin": "IE00B53QG562",
+      "snapshotTool": "Générateur de portefeuilles — automatique",
+      "snapshotStatus": "Candidat — recettes et risque à qualifier",
+      "currentDecisions": [
+        {
+          "asset": "IE00B53QG562",
+          "tool": "portefeuille-automatique",
+          "status": "bloqué",
+          "implementation": "aucun",
+          "selector": false,
+          "engine": false,
+          "addedRoutes": [],
+          "blocker": "Aucun rôle automatique validé pour ce support ; longueur historique seule insuffisante. Voir manualOnly et recettes."
+        }
+      ]
+    },
+    {
+      "asset": "iShares Core MSCI Europe UCITS ETF Dist",
+      "snapshotIdentifier": "IE00B1YZSC51",
+      "isin": "IE00B1YZSC51",
+      "snapshotTool": "Générateur de portefeuilles — automatique",
+      "snapshotStatus": "Candidat — recettes et risque à qualifier",
+      "currentDecisions": [
+        {
+          "asset": "IE00B1YZSC51",
+          "tool": "portefeuille-automatique",
+          "status": "bloqué",
+          "implementation": "aucun",
+          "selector": false,
+          "engine": false,
+          "addedRoutes": [],
+          "blocker": "Aucun rôle automatique validé pour ce support ; longueur historique seule insuffisante. Voir manualOnly et recettes."
+        }
+      ]
+    },
+    {
+      "asset": "iShares Edge MSCI Europe Momentum Factor UCITS ETF",
+      "snapshotIdentifier": "IE00BQN1K786",
+      "isin": "IE00BQN1K786",
+      "snapshotTool": "Générateur de portefeuilles — automatique",
+      "snapshotStatus": "Candidat — recettes et risque à qualifier",
+      "currentDecisions": [
+        {
+          "asset": "IE00BQN1K786",
+          "tool": "portefeuille-automatique",
+          "status": "raccordable",
+          "implementation": "ajouté",
+          "selector": true,
+          "engine": true,
+          "addedRoutes": [
+            "europe-momentum-ishares"
+          ],
+          "blocker": ""
+        }
+      ]
+    },
+    {
+      "asset": "iShares Edge MSCI Europe Quality Factor UCITS ETF",
+      "snapshotIdentifier": "IE00BQN1K562",
+      "isin": "IE00BQN1K562",
+      "snapshotTool": "Générateur de portefeuilles — automatique",
+      "snapshotStatus": "Candidat — recettes et risque à qualifier",
+      "currentDecisions": [
+        {
+          "asset": "IE00BQN1K562",
+          "tool": "portefeuille-automatique",
+          "status": "raccordable",
+          "implementation": "ajouté",
+          "selector": true,
+          "engine": true,
+          "addedRoutes": [
+            "europe-quality-ishares"
+          ],
+          "blocker": ""
+        }
+      ]
+    },
+    {
+      "asset": "iShares Edge MSCI Europe Value Factor UCITS ETF",
+      "snapshotIdentifier": "IE00BQN1K901",
+      "isin": "IE00BQN1K901",
+      "snapshotTool": "Générateur de portefeuilles — automatique",
+      "snapshotStatus": "Candidat — recettes et risque à qualifier",
+      "currentDecisions": [
+        {
+          "asset": "IE00BQN1K901",
+          "tool": "portefeuille-automatique",
+          "status": "raccordable",
+          "implementation": "ajouté",
+          "selector": true,
+          "engine": true,
+          "addedRoutes": [
+            "europe-value-ishares"
+          ],
+          "blocker": ""
+        }
+      ]
+    },
+    {
+      "asset": "iShares Edge MSCI USA Momentum Factor UCITS ETF",
+      "snapshotIdentifier": "IE00BD1F4N50",
+      "isin": "IE00BD1F4N50",
+      "snapshotTool": "Générateur de portefeuilles — automatique",
+      "snapshotStatus": "Candidat — recettes et risque à qualifier",
+      "currentDecisions": [
+        {
+          "asset": "IE00BD1F4N50",
+          "tool": "portefeuille-automatique",
+          "status": "bloqué",
+          "implementation": "aucun",
+          "selector": false,
+          "engine": false,
+          "addedRoutes": [],
+          "blocker": "Aucun rôle automatique validé pour ce support ; longueur historique seule insuffisante. Voir manualOnly et recettes."
+        }
+      ]
+    },
+    {
+      "asset": "iShares Edge MSCI USA Quality Factor UCITS ETF",
+      "snapshotIdentifier": "IE00BD1F4L37",
+      "isin": "IE00BD1F4L37",
+      "snapshotTool": "Générateur de portefeuilles — automatique",
+      "snapshotStatus": "Candidat — recettes et risque à qualifier",
+      "currentDecisions": [
+        {
+          "asset": "IE00BD1F4L37",
+          "tool": "portefeuille-automatique",
+          "status": "bloqué",
+          "implementation": "aucun",
+          "selector": false,
+          "engine": false,
+          "addedRoutes": [],
+          "blocker": "Aucun rôle automatique validé pour ce support ; longueur historique seule insuffisante. Voir manualOnly et recettes."
+        }
+      ]
+    },
+    {
+      "asset": "iShares Edge MSCI USA Value Factor UCITS ETF",
+      "snapshotIdentifier": "IE00BD1F4M44",
+      "isin": "IE00BD1F4M44",
+      "snapshotTool": "Générateur de portefeuilles — automatique",
+      "snapshotStatus": "Candidat — recettes et risque à qualifier",
+      "currentDecisions": [
+        {
+          "asset": "IE00BD1F4M44",
+          "tool": "portefeuille-automatique",
+          "status": "bloqué",
+          "implementation": "aucun",
+          "selector": false,
+          "engine": false,
+          "addedRoutes": [],
+          "blocker": "Aucun rôle automatique validé pour ce support ; longueur historique seule insuffisante. Voir manualOnly et recettes."
+        }
+      ]
+    },
+    {
+      "asset": "iShares Electric Vehicles and Driving Technology UCITS ETF",
+      "snapshotIdentifier": "IE00BGL86Z12",
+      "isin": "IE00BGL86Z12",
+      "snapshotTool": "Générateur de portefeuilles — automatique",
+      "snapshotStatus": "Candidat — recettes et risque à qualifier",
+      "currentDecisions": [
+        {
+          "asset": "IE00BGL86Z12",
+          "tool": "portefeuille-automatique",
+          "status": "bloqué",
+          "implementation": "aucun",
+          "selector": false,
+          "engine": false,
+          "addedRoutes": [],
+          "blocker": "Aucun rôle automatique validé pour ce support ; longueur historique seule insuffisante. Voir manualOnly et recettes."
+        }
+      ]
+    },
+    {
+      "asset": "iShares Euro Dividend UCITS ETF",
+      "snapshotIdentifier": "IE00B0M62S72",
+      "isin": "IE00B0M62S72",
+      "snapshotTool": "Générateur de portefeuilles — automatique",
+      "snapshotStatus": "Candidat — recettes et risque à qualifier",
+      "currentDecisions": [
+        {
+          "asset": "IE00B0M62S72",
+          "tool": "portefeuille-automatique",
+          "status": "bloqué",
+          "implementation": "aucun",
+          "selector": false,
+          "engine": false,
+          "addedRoutes": [],
+          "blocker": "Aucun rôle automatique validé pour ce support ; longueur historique seule insuffisante. Voir manualOnly et recettes."
+        }
+      ]
+    },
+    {
+      "asset": "iShares Global Aerospace & Defence",
+      "snapshotIdentifier": "IE000U9ODG19",
+      "isin": "IE000U9ODG19",
+      "snapshotTool": "Classements de performances",
+      "snapshotStatus": "Exclusion à requalifier — pas un raccordement acquis",
+      "currentDecisions": [
+        {
+          "asset": "IE000U9ODG19",
+          "tool": "qui-comparaison",
+          "status": "déjà raccordé",
+          "implementation": "existant",
+          "selector": true,
+          "engine": true,
+          "addedRoutes": [
+            "aerospace-paris-eur"
+          ],
+          "blocker": ""
+        },
+        {
+          "asset": "IE000U9ODG19",
+          "tool": "qui-classement-annuel",
+          "status": "bloqué",
+          "implementation": "aucun",
+          "selector": true,
+          "engine": false,
+          "addedRoutes": [],
+          "blocker": "Le classement annuel actuel exige deux années civiles complètes consécutives. ; Le classement annuel actuel exige deux années civiles complètes consécutives."
+        }
+      ]
+    },
+    {
+      "asset": "iShares MSCI China A UCITS ETF (Acc)",
+      "snapshotIdentifier": "IE00BQT3WG13",
+      "isin": "IE00BQT3WG13",
+      "snapshotTool": "Générateur de portefeuilles — automatique",
+      "snapshotStatus": "Candidat — recettes et risque à qualifier",
+      "currentDecisions": [
+        {
+          "asset": "IE00BQT3WG13",
+          "tool": "portefeuille-automatique",
+          "status": "bloqué",
+          "implementation": "aucun",
+          "selector": false,
+          "engine": false,
+          "addedRoutes": [],
+          "blocker": "Aucun rôle automatique validé pour ce support ; longueur historique seule insuffisante. Voir manualOnly et recettes."
+        }
+      ]
+    },
+    {
+      "asset": "iShares MSCI China UCITS ETF (Acc)",
+      "snapshotIdentifier": "IE00BJ5JPG56",
+      "isin": "IE00BJ5JPG56",
+      "snapshotTool": "Générateur de portefeuilles — automatique",
+      "snapshotStatus": "Candidat — recettes et risque à qualifier",
+      "currentDecisions": [
+        {
+          "asset": "IE00BJ5JPG56",
+          "tool": "portefeuille-automatique",
+          "status": "bloqué",
+          "implementation": "aucun",
+          "selector": false,
+          "engine": false,
+          "addedRoutes": [],
+          "blocker": "Aucun rôle automatique validé pour ce support ; longueur historique seule insuffisante. Voir manualOnly et recettes."
+        }
+      ]
+    },
+    {
+      "asset": "iShares MSCI EMU Small Cap UCITS ETF",
+      "snapshotIdentifier": "IE00B3VWMM18",
+      "isin": "IE00B3VWMM18",
+      "snapshotTool": "Générateur de portefeuilles — automatique",
+      "snapshotStatus": "Candidat — recettes et risque à qualifier",
+      "currentDecisions": [
+        {
+          "asset": "IE00B3VWMM18",
+          "tool": "portefeuille-automatique",
+          "status": "bloqué",
+          "implementation": "aucun",
+          "selector": false,
+          "engine": false,
+          "addedRoutes": [],
+          "blocker": "Aucun rôle automatique validé pour ce support ; longueur historique seule insuffisante. Voir manualOnly et recettes."
+        }
+      ]
+    },
+    {
+      "asset": "iShares MSCI USA UCITS ETF (Acc)",
+      "snapshotIdentifier": "IE00B52SFT06",
+      "isin": "IE00B52SFT06",
+      "snapshotTool": "Générateur de portefeuilles — automatique",
+      "snapshotStatus": "Candidat — recettes et risque à qualifier",
+      "currentDecisions": [
+        {
+          "asset": "IE00B52SFT06",
+          "tool": "portefeuille-automatique",
+          "status": "bloqué",
+          "implementation": "aucun",
+          "selector": false,
+          "engine": false,
+          "addedRoutes": [],
+          "blocker": "Aucun rôle automatique validé pour ce support ; longueur historique seule insuffisante. Voir manualOnly et recettes."
+        }
+      ]
+    },
+    {
+      "asset": "iShares MSCI World Industrials Sector Advanced UCITS ETF",
+      "snapshotIdentifier": "IE00BJ5JP659",
+      "isin": "IE00BJ5JP659",
+      "snapshotTool": "Duels de portefeuilles",
+      "snapshotStatus": "Raccordement proposé — données présentes",
+      "currentDecisions": [
+        {
+          "asset": "IE00BJ5JP659",
+          "tool": "duels",
+          "status": "raccordable",
+          "implementation": "ajouté",
+          "selector": true,
+          "engine": true,
+          "addedRoutes": [
+            "nav-IE00BJ5JP659"
+          ],
+          "blocker": ""
+        }
+      ]
+    },
+    {
+      "asset": "iShares MSCI World Industrials Sector Advanced UCITS ETF",
+      "snapshotIdentifier": "IE00BJ5JP659",
+      "isin": "IE00BJ5JP659",
+      "snapshotTool": "Générateur de portefeuilles — manuel",
+      "snapshotStatus": "Raccordement proposé — données présentes",
+      "currentDecisions": [
+        {
+          "asset": "IE00BJ5JP659",
+          "tool": "portefeuille-manuel",
+          "status": "raccordable",
+          "implementation": "ajouté",
+          "selector": true,
+          "engine": true,
+          "addedRoutes": [
+            "nav-IE00BJ5JP659"
+          ],
+          "blocker": ""
+        }
+      ]
+    },
+    {
+      "asset": "iShares MSCI World Islamic UCITS ETF",
+      "snapshotIdentifier": "IE00B27YCN58",
+      "isin": "IE00B27YCN58",
+      "snapshotTool": "Générateur de portefeuilles — automatique",
+      "snapshotStatus": "Candidat — recettes et risque à qualifier",
+      "currentDecisions": [
+        {
+          "asset": "IE00B27YCN58",
+          "tool": "portefeuille-automatique",
+          "status": "bloqué",
+          "implementation": "aucun",
+          "selector": false,
+          "engine": false,
+          "addedRoutes": [],
+          "blocker": "Aucun rôle automatique validé pour ce support ; longueur historique seule insuffisante. Voir manualOnly et recettes."
+        }
+      ]
+    },
+    {
+      "asset": "iShares MSCI World SRI UCITS ETF",
+      "snapshotIdentifier": "IE00BYX2JD69",
+      "isin": "IE00BYX2JD69",
+      "snapshotTool": "Générateur de portefeuilles — automatique",
+      "snapshotStatus": "Candidat — recettes et risque à qualifier",
+      "currentDecisions": [
+        {
+          "asset": "IE00BYX2JD69",
+          "tool": "portefeuille-automatique",
+          "status": "bloqué",
+          "implementation": "aucun",
+          "selector": false,
+          "engine": false,
+          "addedRoutes": [],
+          "blocker": "Aucun rôle automatique validé pour ce support ; longueur historique seule insuffisante. Voir manualOnly et recettes."
+        }
+      ]
+    },
+    {
+      "asset": "iShares Physical Palladium ETC",
+      "snapshotIdentifier": "IE00B4556L06",
+      "isin": "IE00B4556L06",
+      "snapshotTool": "Générateur de portefeuilles — manuel",
+      "snapshotStatus": "Raccordement proposé — données présentes",
+      "currentDecisions": [
+        {
+          "asset": "IE00B4556L06",
+          "tool": "portefeuille-manuel",
+          "status": "raccordable",
+          "implementation": "ajouté",
+          "selector": true,
+          "engine": true,
+          "addedRoutes": [
+            "nav-IE00B4556L06"
+          ],
+          "blocker": ""
+        }
+      ]
+    },
+    {
+      "asset": "iShares Physical Platinum ETC",
+      "snapshotIdentifier": "IE00B4LHWP62",
+      "isin": "IE00B4LHWP62",
+      "snapshotTool": "Générateur de portefeuilles — manuel",
+      "snapshotStatus": "Raccordement proposé — données présentes",
+      "currentDecisions": [
+        {
+          "asset": "IE00B4LHWP62",
+          "tool": "portefeuille-manuel",
+          "status": "raccordable",
+          "implementation": "ajouté",
+          "selector": true,
+          "engine": true,
+          "addedRoutes": [
+            "nav-IE00B4LHWP62"
+          ],
+          "blocker": ""
+        }
+      ]
+    },
+    {
+      "asset": "iShares S&P SmallCap 600 UCITS ETF",
+      "snapshotIdentifier": "IE00B2QWCY14",
+      "isin": "IE00B2QWCY14",
+      "snapshotTool": "Générateur de portefeuilles — automatique",
+      "snapshotStatus": "Candidat — recettes et risque à qualifier",
+      "currentDecisions": [
+        {
+          "asset": "IE00B2QWCY14",
+          "tool": "portefeuille-automatique",
+          "status": "bloqué",
+          "implementation": "aucun",
+          "selector": false,
+          "engine": false,
+          "addedRoutes": [],
+          "blocker": "Aucun rôle automatique validé pour ce support ; longueur historique seule insuffisante. Voir manualOnly et recettes."
+        }
+      ]
+    },
+    {
+      "asset": "iShares STOXX Europe 50 UCITS ETF Dist",
+      "snapshotIdentifier": "IE0008470928",
+      "isin": "IE0008470928",
+      "snapshotTool": "Duels de portefeuilles",
+      "snapshotStatus": "Raccordement proposé — données présentes",
+      "currentDecisions": [
+        {
+          "asset": "IE0008470928",
+          "tool": "duels",
+          "status": "raccordable",
+          "implementation": "ajouté",
+          "selector": true,
+          "engine": true,
+          "addedRoutes": [
+            "nav-IE0008470928"
+          ],
+          "blocker": ""
+        }
+      ]
+    },
+    {
+      "asset": "iShares STOXX Europe 50 UCITS ETF Dist",
+      "snapshotIdentifier": "IE0008470928",
+      "isin": "IE0008470928",
+      "snapshotTool": "Générateur de portefeuilles — manuel",
+      "snapshotStatus": "Raccordement proposé — données présentes",
+      "currentDecisions": [
+        {
+          "asset": "IE0008470928",
+          "tool": "portefeuille-manuel",
+          "status": "raccordable",
+          "implementation": "ajouté",
+          "selector": true,
+          "engine": true,
+          "addedRoutes": [
+            "nav-IE0008470928"
+          ],
+          "blocker": ""
+        }
+      ]
+    },
+    {
+      "asset": "iShares STOXX Europe 600 Technology UCITS ETF (DE)",
+      "snapshotIdentifier": "DE000A0H08Q4",
+      "isin": "DE000A0H08Q4",
+      "snapshotTool": "Générateur de portefeuilles — automatique",
+      "snapshotStatus": "Candidat — recettes et risque à qualifier",
+      "currentDecisions": [
+        {
+          "asset": "DE000A0H08Q4",
+          "tool": "portefeuille-automatique",
+          "status": "bloqué",
+          "implementation": "aucun",
+          "selector": false,
+          "engine": false,
+          "addedRoutes": [],
+          "blocker": "Aucun rôle automatique validé pour ce support ; longueur historique seule insuffisante. Voir manualOnly et recettes."
+        }
+      ]
+    },
+    {
+      "asset": "iShares STOXX Europe 600 UCITS ETF Dist",
+      "snapshotIdentifier": "DE0002635307",
+      "isin": "DE0002635307",
+      "snapshotTool": "Générateur de portefeuilles — automatique",
+      "snapshotStatus": "Candidat — recettes et risque à qualifier",
+      "currentDecisions": [
+        {
+          "asset": "DE0002635307",
+          "tool": "portefeuille-automatique",
+          "status": "bloqué",
+          "implementation": "aucun",
+          "selector": false,
+          "engine": false,
+          "addedRoutes": [],
+          "blocker": "Aucun rôle automatique validé pour ce support ; longueur historique seule insuffisante. Voir manualOnly et recettes."
+        }
+      ]
+    },
+    {
+      "asset": "State Street SPDR MSCI Europe UCITS ETF",
+      "snapshotIdentifier": "IE00BKWQ0Q14",
+      "isin": "IE00BKWQ0Q14",
+      "snapshotTool": "Générateur de portefeuilles — automatique",
+      "snapshotStatus": "Candidat — recettes et risque à qualifier",
+      "currentDecisions": [
+        {
+          "asset": "IE00BKWQ0Q14",
+          "tool": "portefeuille-automatique",
+          "status": "bloqué",
+          "implementation": "aucun",
+          "selector": false,
+          "engine": false,
+          "addedRoutes": [],
+          "blocker": "Aucun rôle automatique validé pour ce support ; longueur historique seule insuffisante. Voir manualOnly et recettes."
+        }
+      ]
+    },
+    {
+      "asset": "State Street SPDR MSCI World UCITS ETF",
+      "snapshotIdentifier": "IE00BFY0GT14",
+      "isin": "IE00BFY0GT14",
+      "snapshotTool": "Générateur de portefeuilles — automatique",
+      "snapshotStatus": "Candidat — recettes et risque à qualifier",
+      "currentDecisions": [
+        {
+          "asset": "IE00BFY0GT14",
+          "tool": "portefeuille-automatique",
+          "status": "bloqué",
+          "implementation": "aucun",
+          "selector": false,
+          "engine": false,
+          "addedRoutes": [],
+          "blocker": "Aucun rôle automatique validé pour ce support ; longueur historique seule insuffisante. Voir manualOnly et recettes."
+        }
+      ]
+    },
+    {
+      "asset": "UBS Core MSCI World UCITS ETF",
+      "snapshotIdentifier": "IE00BD4TXV59",
+      "isin": "IE00BD4TXV59",
+      "snapshotTool": "Duels de portefeuilles",
+      "snapshotStatus": "Raccordement proposé — données présentes",
+      "currentDecisions": [
+        {
+          "asset": "IE00BD4TXV59",
+          "tool": "duels",
+          "status": "raccordable",
+          "implementation": "ajouté",
+          "selector": true,
+          "engine": true,
+          "addedRoutes": [
+            "nav-IE00BD4TXV59"
+          ],
+          "blocker": ""
+        }
+      ]
+    },
+    {
+      "asset": "UBS Core MSCI World UCITS ETF",
+      "snapshotIdentifier": "IE00BD4TXV59",
+      "isin": "IE00BD4TXV59",
+      "snapshotTool": "Générateur de portefeuilles — manuel",
+      "snapshotStatus": "Raccordement proposé — données présentes",
+      "currentDecisions": [
+        {
+          "asset": "IE00BD4TXV59",
+          "tool": "portefeuille-manuel",
+          "status": "raccordable",
+          "implementation": "ajouté",
+          "selector": true,
+          "engine": true,
+          "addedRoutes": [
+            "nav-IE00BD4TXV59"
+          ],
+          "blocker": ""
+        }
+      ]
+    },
+    {
+      "asset": "VanEck S&P Global Mining",
+      "snapshotIdentifier": "IE00BDFBTQ78",
+      "isin": "IE00BDFBTQ78",
+      "snapshotTool": "Classements de performances",
+      "snapshotStatus": "Exclusion à requalifier — pas un raccordement acquis",
+      "currentDecisions": [
+        {
+          "asset": "IE00BDFBTQ78",
+          "tool": "qui-comparaison",
+          "status": "déjà raccordé",
+          "implementation": "existant",
+          "selector": true,
+          "engine": true,
+          "addedRoutes": [],
+          "blocker": ""
+        },
+        {
+          "asset": "IE00BDFBTQ78",
+          "tool": "qui-classement-annuel",
+          "status": "déjà raccordé",
+          "implementation": "existant",
+          "selector": true,
+          "engine": true,
+          "addedRoutes": [],
+          "blocker": ""
+        }
+      ]
+    },
+    {
+      "asset": "VanEck S&P Global Mining UCITS ETF",
+      "snapshotIdentifier": "IE00BDFBTQ78",
+      "isin": "IE00BDFBTQ78",
+      "snapshotTool": "Générateur de portefeuilles — automatique",
+      "snapshotStatus": "Candidat — recettes et risque à qualifier",
+      "currentDecisions": [
+        {
+          "asset": "IE00BDFBTQ78",
+          "tool": "portefeuille-automatique",
+          "status": "bloqué",
+          "implementation": "aucun",
+          "selector": false,
+          "engine": false,
+          "addedRoutes": [],
+          "blocker": "Aucun rôle automatique validé pour ce support ; longueur historique seule insuffisante. Voir manualOnly et recettes."
+        }
+      ]
+    },
+    {
+      "asset": "Vanguard FTSE All-World UCITS ETF Distributing",
+      "snapshotIdentifier": "IE00B3RBWM25",
+      "isin": "IE00B3RBWM25",
+      "snapshotTool": "Générateur de portefeuilles — automatique",
+      "snapshotStatus": "Candidat — recettes et risque à qualifier",
+      "currentDecisions": [
+        {
+          "asset": "IE00B3RBWM25",
+          "tool": "portefeuille-automatique",
+          "status": "bloqué",
+          "implementation": "aucun",
+          "selector": false,
+          "engine": false,
+          "addedRoutes": [],
+          "blocker": "Aucun rôle automatique validé pour ce support ; longueur historique seule insuffisante. Voir manualOnly et recettes."
+        }
+      ]
+    },
+    {
+      "asset": "Vanguard FTSE Developed Europe UCITS ETF Accumulating",
+      "snapshotIdentifier": "IE00BK5BQX27",
+      "isin": "IE00BK5BQX27",
+      "snapshotTool": "Générateur de portefeuilles — automatique",
+      "snapshotStatus": "Candidat — recettes et risque à qualifier",
+      "currentDecisions": [
+        {
+          "asset": "IE00BK5BQX27",
+          "tool": "portefeuille-automatique",
+          "status": "bloqué",
+          "implementation": "aucun",
+          "selector": false,
+          "engine": false,
+          "addedRoutes": [],
+          "blocker": "Aucun rôle automatique validé pour ce support ; longueur historique seule insuffisante. Voir manualOnly et recettes."
+        }
+      ]
+    },
+    {
+      "asset": "Vanguard FTSE Developed Europe UCITS ETF Distributing",
+      "snapshotIdentifier": "IE00B945VV12",
+      "isin": "IE00B945VV12",
+      "snapshotTool": "Générateur de portefeuilles — automatique",
+      "snapshotStatus": "Candidat — recettes et risque à qualifier",
+      "currentDecisions": [
+        {
+          "asset": "IE00B945VV12",
+          "tool": "portefeuille-automatique",
+          "status": "bloqué",
+          "implementation": "aucun",
+          "selector": false,
+          "engine": false,
+          "addedRoutes": [],
+          "blocker": "Aucun rôle automatique validé pour ce support ; longueur historique seule insuffisante. Voir manualOnly et recettes."
+        }
+      ]
+    },
+    {
+      "asset": "Vanguard FTSE Developed World UCITS ETF Accumulating",
+      "snapshotIdentifier": "IE00BK5BQV03",
+      "isin": "IE00BK5BQV03",
+      "snapshotTool": "Générateur de portefeuilles — automatique",
+      "snapshotStatus": "Candidat — recettes et risque à qualifier",
+      "currentDecisions": [
+        {
+          "asset": "IE00BK5BQV03",
+          "tool": "portefeuille-automatique",
+          "status": "bloqué",
+          "implementation": "aucun",
+          "selector": false,
+          "engine": false,
+          "addedRoutes": [],
+          "blocker": "Aucun rôle automatique validé pour ce support ; longueur historique seule insuffisante. Voir manualOnly et recettes."
+        }
+      ]
+    },
+    {
+      "asset": "Vanguard FTSE Emerging Markets UCITS ETF (Dist)",
+      "snapshotIdentifier": "IE00B3VVMM84",
+      "isin": "IE00B3VVMM84",
+      "snapshotTool": "Générateur de portefeuilles — automatique",
+      "snapshotStatus": "Candidat — recettes et risque à qualifier",
+      "currentDecisions": [
+        {
+          "asset": "IE00B3VVMM84",
+          "tool": "portefeuille-automatique",
+          "status": "bloqué",
+          "implementation": "aucun",
+          "selector": false,
+          "engine": false,
+          "addedRoutes": [],
+          "blocker": "Aucun rôle automatique validé pour ce support ; longueur historique seule insuffisante. Voir manualOnly et recettes."
+        }
+      ]
+    },
+    {
+      "asset": "Vanguard S&P 500 UCITS ETF Accumulating",
+      "snapshotIdentifier": "IE00BFMXXD54",
+      "isin": "IE00BFMXXD54",
+      "snapshotTool": "Générateur de portefeuilles — automatique",
+      "snapshotStatus": "Candidat — recettes et risque à qualifier",
+      "currentDecisions": [
+        {
+          "asset": "IE00BFMXXD54",
+          "tool": "portefeuille-automatique",
+          "status": "bloqué",
+          "implementation": "aucun",
+          "selector": false,
+          "engine": false,
+          "addedRoutes": [],
+          "blocker": "Aucun rôle automatique validé pour ce support ; longueur historique seule insuffisante. Voir manualOnly et recettes."
+        }
+      ]
+    },
+    {
+      "asset": "Vanguard S&P 500 UCITS ETF Distributing",
+      "snapshotIdentifier": "IE00B3XXRP09",
+      "isin": "IE00B3XXRP09",
+      "snapshotTool": "Générateur de portefeuilles — automatique",
+      "snapshotStatus": "Candidat — recettes et risque à qualifier",
+      "currentDecisions": [
+        {
+          "asset": "IE00B3XXRP09",
+          "tool": "portefeuille-automatique",
+          "status": "bloqué",
+          "implementation": "aucun",
+          "selector": false,
+          "engine": false,
+          "addedRoutes": [],
+          "blocker": "Aucun rôle automatique validé pour ce support ; longueur historique seule insuffisante. Voir manualOnly et recettes."
+        }
+      ]
+    },
+    {
+      "asset": "WisdomTree Artificial Intelligence UCITS ETF USD Acc",
+      "snapshotIdentifier": "IE00BDVPNG13",
+      "isin": "IE00BDVPNG13",
+      "snapshotTool": "Générateur de portefeuilles — automatique",
+      "snapshotStatus": "Candidat — recettes et risque à qualifier",
+      "currentDecisions": [
+        {
+          "asset": "IE00BDVPNG13",
+          "tool": "portefeuille-automatique",
+          "status": "bloqué",
+          "implementation": "aucun",
+          "selector": false,
+          "engine": false,
+          "addedRoutes": [],
+          "blocker": "Aucun rôle automatique validé pour ce support ; longueur historique seule insuffisante. Voir manualOnly et recettes."
+        }
+      ]
+    },
+    {
+      "asset": "WisdomTree Copper",
+      "snapshotIdentifier": "GB00B15KXQ89",
+      "isin": "GB00B15KXQ89",
+      "snapshotTool": "Classements de performances",
+      "snapshotStatus": "Exclusion à requalifier — pas un raccordement acquis",
+      "currentDecisions": [
+        {
+          "asset": "GB00B15KXQ89",
+          "tool": "qui-comparaison",
+          "status": "déjà raccordé",
+          "implementation": "existant",
+          "selector": true,
+          "engine": true,
+          "addedRoutes": [],
+          "blocker": ""
+        },
+        {
+          "asset": "GB00B15KXQ89",
+          "tool": "qui-classement-annuel",
+          "status": "déjà raccordé",
+          "implementation": "existant",
+          "selector": true,
+          "engine": true,
+          "addedRoutes": [],
+          "blocker": ""
+        }
+      ]
+    },
+    {
+      "asset": "WisdomTree Global Quality Dividend Growth UCITS ETF USD Acc",
+      "snapshotIdentifier": "IE00BZ56SW52",
+      "isin": "IE00BZ56SW52",
+      "snapshotTool": "Duels de portefeuilles",
+      "snapshotStatus": "Raccordement proposé — données présentes",
+      "currentDecisions": [
+        {
+          "asset": "IE00BZ56SW52",
+          "tool": "duels",
+          "status": "raccordable",
+          "implementation": "ajouté",
+          "selector": true,
+          "engine": true,
+          "addedRoutes": [
+            "nav-IE00BZ56SW52"
+          ],
+          "blocker": ""
+        }
+      ]
+    },
+    {
+      "asset": "WisdomTree Global Quality Dividend Growth UCITS ETF USD Acc",
+      "snapshotIdentifier": "IE00BZ56SW52",
+      "isin": "IE00BZ56SW52",
+      "snapshotTool": "Générateur de portefeuilles — manuel",
+      "snapshotStatus": "Raccordement proposé — données présentes",
+      "currentDecisions": [
+        {
+          "asset": "IE00BZ56SW52",
+          "tool": "portefeuille-manuel",
+          "status": "raccordable",
+          "implementation": "ajouté",
+          "selector": true,
+          "engine": true,
+          "addedRoutes": [
+            "nav-IE00BZ56SW52"
+          ],
+          "blocker": ""
+        }
+      ]
+    },
+    {
+      "asset": "Xtrackers EURO STOXX 50 UCITS ETF 1C",
+      "snapshotIdentifier": "LU0380865021",
+      "isin": "LU0380865021",
+      "snapshotTool": "Générateur de portefeuilles — automatique",
+      "snapshotStatus": "Candidat — recettes et risque à qualifier",
+      "currentDecisions": [
+        {
+          "asset": "LU0380865021",
+          "tool": "portefeuille-automatique",
+          "status": "bloqué",
+          "implementation": "aucun",
+          "selector": false,
+          "engine": false,
+          "addedRoutes": [],
+          "blocker": "Aucun rôle automatique validé pour ce support ; longueur historique seule insuffisante. Voir manualOnly et recettes."
+        }
+      ]
+    },
+    {
+      "asset": "Xtrackers MSCI Emerging Markets UCITS ETF",
+      "snapshotIdentifier": "IE00BTJRMP35",
+      "isin": "IE00BTJRMP35",
+      "snapshotTool": "Générateur de portefeuilles — automatique",
+      "snapshotStatus": "Candidat — recettes et risque à qualifier",
+      "currentDecisions": [
+        {
+          "asset": "IE00BTJRMP35",
+          "tool": "portefeuille-automatique",
+          "status": "bloqué",
+          "implementation": "aucun",
+          "selector": false,
+          "engine": false,
+          "addedRoutes": [],
+          "blocker": "Aucun rôle automatique validé pour ce support ; longueur historique seule insuffisante. Voir manualOnly et recettes."
+        }
+      ]
+    },
+    {
+      "asset": "Xtrackers MSCI Europe UCITS ETF 1C",
+      "snapshotIdentifier": "LU0274209237",
+      "isin": "LU0274209237",
+      "snapshotTool": "Générateur de portefeuilles — automatique",
+      "snapshotStatus": "Candidat — recettes et risque à qualifier",
+      "currentDecisions": [
+        {
+          "asset": "LU0274209237",
+          "tool": "portefeuille-automatique",
+          "status": "bloqué",
+          "implementation": "aucun",
+          "selector": false,
+          "engine": false,
+          "addedRoutes": [],
+          "blocker": "Aucun rôle automatique validé pour ce support ; longueur historique seule insuffisante. Voir manualOnly et recettes."
+        }
+      ]
+    },
+    {
+      "asset": "Xtrackers MSCI World UCITS ETF 1C",
+      "snapshotIdentifier": "IE00BJ0KDQ92",
+      "isin": "IE00BJ0KDQ92",
+      "snapshotTool": "Générateur de portefeuilles — automatique",
+      "snapshotStatus": "Candidat — recettes et risque à qualifier",
+      "currentDecisions": [
+        {
+          "asset": "IE00BJ0KDQ92",
+          "tool": "portefeuille-automatique",
+          "status": "bloqué",
+          "implementation": "aucun",
+          "selector": false,
+          "engine": false,
+          "addedRoutes": [],
+          "blocker": "Aucun rôle automatique validé pour ce support ; longueur historique seule insuffisante. Voir manualOnly et recettes."
+        }
+      ]
+    },
+    {
+      "asset": "Xtrackers MSCI World UCITS ETF 1D",
+      "snapshotIdentifier": "IE00BK1PV551",
+      "isin": "IE00BK1PV551",
+      "snapshotTool": "Générateur de portefeuilles — automatique",
+      "snapshotStatus": "Candidat — recettes et risque à qualifier",
+      "currentDecisions": [
+        {
+          "asset": "IE00BK1PV551",
+          "tool": "portefeuille-automatique",
+          "status": "bloqué",
+          "implementation": "aucun",
+          "selector": false,
+          "engine": false,
+          "addedRoutes": [],
+          "blocker": "Aucun rôle automatique validé pour ce support ; longueur historique seule insuffisante. Voir manualOnly et recettes."
+        }
+      ]
+    },
+    {
+      "asset": "Xtrackers Nikkei 225 UCITS ETF",
+      "snapshotIdentifier": "LU1875395870",
+      "isin": "LU1875395870",
+      "snapshotTool": "Générateur de portefeuilles — automatique",
+      "snapshotStatus": "Candidat — recettes et risque à qualifier",
+      "currentDecisions": [
+        {
+          "asset": "LU1875395870",
+          "tool": "portefeuille-automatique",
+          "status": "bloqué",
+          "implementation": "aucun",
+          "selector": false,
+          "engine": false,
+          "addedRoutes": [],
+          "blocker": "Aucun rôle automatique validé pour ce support ; longueur historique seule insuffisante. Voir manualOnly et recettes."
+        }
+      ]
+    },
+    {
+      "asset": "Xtrackers STOXX Europe 600 UCITS ETF 1C",
+      "snapshotIdentifier": "LU0328475792",
+      "isin": "LU0328475792",
+      "snapshotTool": "Générateur de portefeuilles — automatique",
+      "snapshotStatus": "Candidat — recettes et risque à qualifier",
+      "currentDecisions": [
+        {
+          "asset": "LU0328475792",
+          "tool": "portefeuille-automatique",
+          "status": "bloqué",
+          "implementation": "aucun",
+          "selector": false,
+          "engine": false,
+          "addedRoutes": [],
+          "blocker": "Aucun rôle automatique validé pour ce support ; longueur historique seule insuffisante. Voir manualOnly et recettes."
+        }
+      ]
+    }
+  ]
+}

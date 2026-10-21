@@ -1,3 +1,4 @@
+import { AUTOMATIC_FACTOR_IDS } from '../../data/portfolio-admissions.js';
 // Bibliothèque à double axe, indépendants l'un de l'autre :
 //   Axe 1 — RISK_LEVELS : la volatilité acceptée et l'horizon (Prudent → Offensif).
 //   Axe 2 — PROFILES : la thèse / conviction de l'investisseur (Généraliste → Thématique).
@@ -6,7 +7,7 @@
 // — voir aussi le tableau de compatibilité exposé par `isCompatible()` en bas de fichier).
 
 // Bloc Europe reconnu par le moteur et les intitulés éditoriaux.
-export const PRO_EUROPE_CORE_IDS = ["tech_europe_pea","europe_pea_amundi","euro-govt-5-7","europe-property","basic_resources_pea","europe-utilities","europe-telecom","europe-food","europe-media","europe-retail","small-value-europe", "health_europe_pea", "europe-insurance", "europe-banks", "euro-dividend-aristocrats", "eurostoxx50", "eurostoxx50_ishares", "manual-IE0008471009", "cac40", "tech_europe", "smallcap_europe", "oblig_etat_eur_short", "msci_europe"];
+export const PRO_EUROPE_CORE_IDS = [...AUTOMATIC_FACTOR_IDS,"tech_europe_pea","europe_pea_amundi","euro-govt-5-7","europe-property","basic_resources_pea","europe-utilities","europe-telecom","europe-food","europe-media","europe-retail","small-value-europe", "health_europe_pea", "europe-insurance", "europe-banks", "euro-dividend-aristocrats", "eurostoxx50", "eurostoxx50_ishares", "manual-IE0008471009", "cac40", "tech_europe", "smallcap_europe", "oblig_etat_eur_short", "msci_europe"];
 
 export const RISK_ORDER = ["prudent", "defensif", "equilibre", "dynamique", "offensif"];
 
