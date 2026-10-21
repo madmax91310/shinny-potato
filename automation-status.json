@@ -936,7 +936,7 @@
       "recordingStatus": "success",
       "publicationStatus": "success",
       "lastCollectionSuccessAt": "2026-10-20T18:32:24Z",
-      "lastPublicationSuccessAt": "2026-10-21T09:43:28.710Z",
+      "lastPublicationSuccessAt": "2026-10-21T09:46:09.506Z",
       "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39474711089",
       "failures": [],
       "dataFailures": {},
@@ -947,7 +947,7 @@
         },
         "schemaVersion": 1
       },
-      "publishedCodeSha": "ea8b7e659a00a6ffa4f974fdaaa149563b8bd49d",
+      "publishedCodeSha": "613b4aa3dcd55e4fb8b9bcff2b3d4842e607f966",
       "publishedDataSha": "63601864afd244034e2776b4c53efab2d5e7d54e"
     },
     "update-practical-sheets.yml": {
@@ -965,7 +965,7 @@
       "recordingStatus": "success",
       "publicationStatus": "success",
       "lastCollectionSuccessAt": "2026-10-20T18:30:07Z",
-      "lastPublicationSuccessAt": "2026-10-21T09:43:28.710Z",
+      "lastPublicationSuccessAt": "2026-10-21T09:46:09.506Z",
       "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39474711064",
       "failures": [],
       "dataFailures": {},
@@ -976,7 +976,7 @@
         },
         "schemaVersion": 1
       },
-      "publishedCodeSha": "ea8b7e659a00a6ffa4f974fdaaa149563b8bd49d",
+      "publishedCodeSha": "613b4aa3dcd55e4fb8b9bcff2b3d4842e607f966",
       "publishedDataSha": "63601864afd244034e2776b4c53efab2d5e7d54e"
     },
     "update-inflation.yml": {
@@ -1370,7 +1370,7 @@
       "recordingStatus": "success",
       "publicationStatus": "success",
       "lastCollectionSuccessAt": "2026-10-20T19:17:50Z",
-      "lastPublicationSuccessAt": "2026-10-21T09:43:28.710Z",
+      "lastPublicationSuccessAt": "2026-10-21T09:46:09.506Z",
       "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39474711129",
       "failures": [],
       "dataFailures": {},
@@ -1381,7 +1381,7 @@
         },
         "schemaVersion": 1
       },
-      "publishedCodeSha": "ea8b7e659a00a6ffa4f974fdaaa149563b8bd49d",
+      "publishedCodeSha": "613b4aa3dcd55e4fb8b9bcff2b3d4842e607f966",
       "publishedDataSha": "63601864afd244034e2776b4c53efab2d5e7d54e"
     },
     "update-non-bond-expansion.yml": {
@@ -1797,7 +1797,7 @@
       "recordingStatus": "success",
       "publicationStatus": "success",
       "lastCollectionSuccessAt": "2026-10-18T16:32:07Z",
-      "lastPublicationSuccessAt": "2026-10-21T09:43:28.710Z",
+      "lastPublicationSuccessAt": "2026-10-21T09:46:09.506Z",
       "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39570294529",
       "failures": [
         {
@@ -1822,7 +1822,7 @@
         },
         "schemaVersion": 1
       },
-      "publishedCodeSha": "ea8b7e659a00a6ffa4f974fdaaa149563b8bd49d",
+      "publishedCodeSha": "613b4aa3dcd55e4fb8b9bcff2b3d4842e607f966",
       "publishedDataSha": "63601864afd244034e2776b4c53efab2d5e7d54e"
     },
     "onboard-assets.yml": {
@@ -1859,7 +1859,7 @@
   "updatedAt": "2026-10-21T09:44:49Z",
   "monitoring": {
     "schemaVersion": 1,
-    "checkedAt": "2026-10-21T09:45:11.597473+00:00",
+    "checkedAt": "2026-10-21T09:47:01.551832+00:00",
     "revision": 205,
     "active": {
       "workflow:update-regulatory-data.yml": {
@@ -1878,7 +1878,7 @@
         "cause": "refresh : Commit validated observations",
         "id": "workflow:update-regulatory-data.yml",
         "firstSeenAt": "2026-10-21T08:43:51.764046+00:00",
-        "lastSeenAt": "2026-10-21T09:45:11.597473+00:00"
+        "lastSeenAt": "2026-10-21T09:47:01.551832+00:00"
       },
       "collection:update-market-monthly.yml:history:fx:TWD": {
         "name": "history:fx:TWD",
@@ -1901,7 +1901,7 @@
         "dataId": "history:fx:TWD",
         "id": "collection:update-market-monthly.yml:history:fx:TWD",
         "firstSeenAt": "2026-10-19T05:58:42.740410+00:00",
-        "lastSeenAt": "2026-10-21T09:45:11.597473+00:00"
+        "lastSeenAt": "2026-10-21T09:47:01.551832+00:00"
       },
       "collection:update-instrument-metadata.yml:IE00B0M62S72:pea:qualification": {
         "name": "iShares Euro Dividend UCITS ETF",
@@ -1928,7 +1928,7 @@
         "dataId": "IE00B0M62S72:pea:qualification",
         "id": "collection:update-instrument-metadata.yml:IE00B0M62S72:pea:qualification",
         "firstSeenAt": "2026-10-19T19:03:43.742241+00:00",
-        "lastSeenAt": "2026-10-21T09:45:11.597473+00:00"
+        "lastSeenAt": "2026-10-21T09:47:01.551832+00:00"
       },
       "unobserved:onboard-assets.yml": {
         "name": "Intégration des nouveaux actifs",
@@ -1952,7 +1952,7 @@
         "cause": "Aucune exécution terminée avec une date exploitable.",
         "id": "unobserved:onboard-assets.yml",
         "firstSeenAt": "2026-10-18T12:02:38.068054+00:00",
-        "lastSeenAt": "2026-10-21T09:45:11.597473+00:00"
+        "lastSeenAt": "2026-10-21T09:47:01.551832+00:00"
       },
       "field:instrument:IE00BJGWQN72:completeHoldings": {
         "id": "field:instrument:IE00BJGWQN72:completeHoldings",
@@ -1981,7 +1981,7 @@
         "evaluatedAt": "2026-10-21",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-21T05:38:08.549445+00:00",
-        "lastSeenAt": "2026-10-21T09:45:11.597473+00:00"
+        "lastSeenAt": "2026-10-21T09:47:01.551832+00:00"
       },
       "radar:4b633e62dc0a87d1c02f6b7e": {
         "name": "SPDR € Corp Bond UCITS ETF",
@@ -2003,7 +2003,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-19) : Poids des dix premières lignes. Dernière observation conservée ; propositions archivées (etf:IE00B3T9LM79:top10:0261a38d6b954a5f4e504dab:2026-10-19).",
         "id": "radar:4b633e62dc0a87d1c02f6b7e",
         "firstSeenAt": "2026-10-20T19:51:00.268149+00:00",
-        "lastSeenAt": "2026-10-21T09:45:11.597473+00:00"
+        "lastSeenAt": "2026-10-21T09:47:01.551832+00:00"
       }
     },
     "events": [
