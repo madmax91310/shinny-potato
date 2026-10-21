@@ -40,7 +40,7 @@ export default function Analytics({profile,analysis}) {
  {!rows.length&&<p>Aucun titre correspondant.</p>}{rows.length>limit&&<button className="dca-secondary" onClick={()=>setLimit(n=>n+30)}>Afficher 30 titres de plus ({rows.length-limit} restants)</button>}</>}
  {!group&&!loading&&<p>Aucune composition compatible disponible pour ce périmètre. Les expositions géographiques et sectorielles restent analysées séparément.</p>}
  </details>
- <details className="dca-analysis-detail"><summary>Recouvrement entre les supports · {loading?'…':result.pairs.length} comparaisons</summary><p>Le recouvrement additionne le plus petit poids de chaque titre commun dans les deux fonds, indépendamment de leurs poids dans ton portefeuille. Un top 10 ne suffit pas pour calculer ce taux.</p>
+ <details className="dca-analysis-detail"><summary>Recouvrement entre les supports · {loading?'…':result.pairs.length} comparaisons</summary><p>Le recouvrement additionne le plus petit poids de chaque entreprise commune dans les deux fonds, indépendamment de leurs poids dans ton portefeuille. Un top 10 ne suffit pas pour calculer ce taux.</p>
  <div className="dca-pair-grid">{result.pairs.slice(0,50).map((pair,i)=><article key={i}><span>{pair.left}</span><span>{pair.right}</span><strong>{pair.full?pct(pair.overlap):'Partiel'}</strong><small>{pair.companyCommon.length} entreprises communes · {pair.identifiedCoverage.map(pct).join(' / ')} identifiés</small></article>)}</div>{result.pairs.length>50&&<p>50 comparaisons affichées ici. Toutes les paires sont accessibles dans le détail des sources ci-dessous.</p>}
  {!!result.unavailable.length&&!loading&&<p>Sans composition exploitable : {result.unavailable.join(' · ')}.</p>}
  </details>

@@ -1,3 +1,5 @@
+import { references } from '../src/pages/dca-profiles/records.js'
+import { sharedPositions } from '../src/pages/dca-profiles/verification.js'
 import assert from 'node:assert/strict'
 import {spawn} from 'node:child_process'
 import {readFileSync,mkdirSync} from 'node:fs'
@@ -11,6 +13,9 @@ const topix=process.argv.includes('--topix')
 const newIssuers=process.argv.includes('--new-issuers')
 const physical=process.argv.includes('--physical')||newIssuers||wisdomtree||discovered
 const selected=discovered?['IE000W8WMSL2','IE00BDVPNG13']:wisdomtree?['IE00BJGWQN72','IE00BFY0GT14']:topix?['FR0013411980','FR0013411998']:newIssuers?['IE00B4K6B022','IE0003UVYC20']:physical?['IE00BK5BQT80','IE00BFMXXD54']:['IE00BFY0GT14','IE00BKWQ0Q14']
+const lines=selected.map(isin=>{const [asset,r]=Object.entries(references).find(([,r])=>r.isin===isin);return {asset,isin,label:r.name,weight:50}})
+const expectedPair=sharedPositions(lines,references,new Date(),Object.fromEntries(lines.map(line=>[line.asset,raw[line.isin]]))).pairs[0]
+assert(expectedPair && expectedPair.common.length>10 && expectedPair.companyCommon.length>10,'Overlap uses detailed issuer portfolios beyond their top ten')
 for(const isin of selected)assert(raw[isin]?.complete&&raw[isin].checkedAt&&raw[isin].sha256&&raw[isin].rows.length>10,`Fresh complete portfolio required: ${isin}`)
 if(physical){
  const targets=JSON.parse(readFileSync('scripts/generated-holdings-sources.json'))
@@ -60,7 +65,7 @@ try{
   const pair=await page.locator('.dca-pair-grid article').first().innerText()
   if(newIssuers||selected.some(isin=>raw[isin].unidentifiedWeightPct>0))assert(pair.includes('Partiel'),'Unknown identities, cash and option sleeves must prevent an integral overlap claim')
   else assert(!pair.includes('Partiel'),'Real overlap must use complete issuer portfolios')
-  assert(Number(/(\d+) titres communs/.exec(pair)?.[1])>10,'Overlap includes more than the editorial top ten')
+  assert.equal(Number(/(\d+) entreprises communes/.exec(pair)?.[1]),expectedPair.companyCommon.length,'Displayed company count matches the verified consolidation of full issuer portfolios')
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+2),false)
   await page.screenshot({path:`test-artifacts/live-data-connections/${newIssuers?'new-issuers-':physical?'physical-':''}holdings-${width}.png`,fullPage:true})
   await page.goto(`${base}/fiches-etf?isin=IE00BM8R0J59`,{waitUntil:'networkidle'})
