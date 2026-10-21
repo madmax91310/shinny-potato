@@ -12,7 +12,6 @@ Généré depuis les routes, le catalogue et les observations actives. Régéné
 | Radar éditorial | /radar-editorial |
 | Simulateur de patrimoine | /simulateur-patrimoine |
 | Présentations | /presentations |
-| Analyse d’entreprise | /analyse-entreprise |
 | Présentation d’un investisseur connu | /portefeuilles-investisseurs |
 | France en 100 ménages | /france-100-menages |
 | Données à revoir | /donnees-a-revoir |
@@ -39,7 +38,6 @@ Généré depuis les routes, le catalogue et les observations actives. Régéné
 |---|---:|
 | actor | 11 |
 | broker | 8 |
-| company | 159 |
 | household | 29 |
 | index | 52 |
 | instrument | 647 |
