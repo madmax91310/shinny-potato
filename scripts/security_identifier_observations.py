@@ -81,6 +81,16 @@ def configured_candidates():
         result.setdefault(row['sedol'],set()).add(row['isin'])
     return result
 
+def retained_identity_pairs(record,now):
+    """Only current proved portfolios can avoid an independent identity renewal."""
+    if not record.get('complete') or not re.fullmatch(r'[a-f0-9]{64}',record.get('sha256') or ''):return []
+    try:age=(now.date()-dt.date.fromisoformat(record['asOf'])).days
+    except (ValueError,TypeError,KeyError):return []
+    days=json.loads((ROOT/'src/data/freshness-policy.json').read_text())['fields']['etf.default']['checkDays']
+    if not 0<=age<=days:return []
+    return [r for r in record.get('rows',[]) if re.fullmatch(r'[A-Z0-9]{7}',r.get('sedol')or'')
+            and re.fullmatch(r'[A-Z]{2}[A-Z0-9]{9}\d',r.get('isin')or'')]
+
 def refresh(now,max_requests=12):
     if type(max_requests) is not int or not 1 <= max_requests <= 24:
         raise ValueError('Invalid bounded identifier request budget')
@@ -101,7 +111,7 @@ def refresh(now,max_requests=12):
         for r in fund.get('rows',[]):
             if re.fullmatch(r'[A-Z]{2}[A-Z0-9]{9}\d',r.get('isin')or''):
                 candidates.setdefault(normalize(r.get('name','')),set()).add(r['isin'])
-            if re.fullmatch(r'[A-Z0-9]{7}',r.get('sedol')or'')and r.get('isin'):known[r['sedol']]=r['isin']
+        for r in retained_identity_pairs(fund,now):known[r['sedol']]=r['isin']
     seeds=configured_candidates()
     shares=known_shares()
     pending=[]

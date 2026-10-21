@@ -7,7 +7,7 @@ import http.client
 import io
 import urllib.error
 from unittest.mock import patch
-from collect_scpi import fetch, parse_remake, parse_iroko_conditions, split_chart, annual_iroko, refresh, validate, remake_price_history
+from collect_scpi import MAX_PUBLICATION_BYTES, fetch, parse_remake, parse_iroko_conditions, split_chart, annual_iroko, refresh, validate, remake_price_history
 
 FIXTURES = pathlib.Path(__file__).parent / 'fixtures/scpi'
 TODAY = dt.date(2026, 10, 8)
@@ -38,8 +38,14 @@ class ScpiTests(unittest.TestCase):
             with self.assertRaises(ValueError):fetch('https://official.test')
             self.assertEqual(request.call_count,1)
 
+    def test_current_large_annual_report_still_fits_the_bounded_reader(self):
+        # Observed Content-Length of the official 2025 ActivImmo report, 21/10/2026.
+        body=b'%PDF-'+b'x'*(17_423_444-5)
+        with patch('collect_scpi.urllib.request.urlopen',return_value=io.BytesIO(body)):
+            self.assertEqual(len(fetch('https://official.test/annual.pdf')),17_423_444)
+
     def test_oversized_publication_is_rejected_without_retry(self):
-        with patch('collect_scpi.urllib.request.urlopen',return_value=io.BytesIO(b'x'*8_000_001)) as request:
+        with patch('collect_scpi.urllib.request.urlopen',return_value=io.BytesIO(b'x'*(MAX_PUBLICATION_BYTES+1))) as request:
             with self.assertRaisesRegex(ValueError,'size limit'):fetch('https://official.test')
             self.assertEqual(request.call_count,1)
 

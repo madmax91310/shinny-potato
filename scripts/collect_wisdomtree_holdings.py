@@ -117,18 +117,16 @@ def collect_rankings(share,now):
         if any(k in mapping and mapping[k]!=v for k,v in values.items()):raise ValueError('Contradictory identity sources')
         mapping.update(values);dates.append(stamp);proofs[url]=hashlib.sha256(raw).hexdigest()
     retained=json.loads((Path(__file__).resolve().parents[1]/'src/data/dca-complete-holdings.json').read_text())
-    fresh_days=json.loads((Path(__file__).resolve().parents[1]/'src/data/freshness-policy.json').read_text())['fields']['etf.default']['checkDays']
+    from security_identifier_observations import mappings,retained_identity_pairs
     for record in retained.values():
-        pairs=[r for r in record.get('rows',[])if re.fullmatch(r'[A-Z0-9]{7}',r.get('sedol')or'')and re.fullmatch(r'[A-Z]{2}[A-Z0-9]{9}\d',r.get('isin')or'')]
-        if not pairs or not record.get('complete')or not re.fullmatch(r'[a-f0-9]{64}',record.get('sha256')or''):continue
-        stamp=record.get('asOf');today=now.date()
-        if not stamp or not 0<=(today-dt.date.fromisoformat(stamp)).days<=fresh_days:continue
+        pairs=retained_identity_pairs(record,now)
+        if not pairs:continue
+        stamp=record['asOf']
         for row in pairs:
             key,value=row['sedol'],row['isin']
             if key in mapping and mapping[key]!=value:raise ValueError('Conflicting retained identity')
             mapping[key]=value
         proofs[record['sourceUrl']]=record['sha256'];dates.append(stamp)
-    from security_identifier_observations import mappings
     crosswalk,identifier_proofs=mappings(now)
     for key,value in crosswalk.items():
         if key in mapping and mapping[key]!=value:raise ValueError('Conflicting qualified identifier crosswalk')

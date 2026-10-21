@@ -20,6 +20,7 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / 'src/data/automated-scpi.json'
 IROKO = 'https://www.iroko.eu/scpi/zen'
 REMAKE = 'https://www.remake.fr/remake-live'
+MAX_PUBLICATION_BYTES = 32_000_000  # Annual SCPI reports can exceed 17 MB.
 IROKO_NOTE = 'https://iroko-documents.s3.eu-west-3.amazonaws.com/Iroko_Zen_note_information.pdf'
 
 
@@ -30,8 +31,8 @@ def fetch(url, headers=None):
     for attempt in range(3):
         try:
             with urllib.request.urlopen(request, timeout=30) as response:
-                data = response.read(8_000_001)
-            if len(data) > 8_000_000:
+                data = response.read(MAX_PUBLICATION_BYTES + 1)
+            if len(data) > MAX_PUBLICATION_BYTES:
                 raise ValueError('Official publication exceeds size limit: ' + url)
             if not data:
                 raise ValueError('Empty official publication: ' + url)

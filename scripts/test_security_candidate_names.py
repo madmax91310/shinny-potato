@@ -1,5 +1,6 @@
 import unittest
-from security_identifier_observations import candidate_name, candidate_isins, refresh, configured_candidates
+import datetime as dt
+from security_identifier_observations import candidate_name, candidate_isins, refresh, configured_candidates, retained_identity_pairs
 
 
 class CandidateNames(unittest.TestCase):
@@ -14,6 +15,14 @@ class CandidateNames(unittest.TestCase):
         self.assertEqual(candidate_isins('Merck & Co Inc/NJ',candidates),{'US58933Y1055'})
         self.assertEqual(candidate_isins('Unknown entirely different security',candidates),set())
         self.assertEqual(candidate_isins('Ambiguous',{'AMBIGUOUS':{str(i) for i in range(4)}}),set())
+
+    def test_stale_retained_positions_cannot_suppress_independent_identity_renewal(self):
+        now=dt.datetime(2026,10,21,tzinfo=dt.timezone.utc)
+        row={'isin':'GB0003362992','sedol':'0336299','name':'Filtronic'}
+        record={'complete':True,'sha256':'a'*64,'asOf':'2026-10-20','rows':[row]}
+        self.assertEqual(retained_identity_pairs(record,now),[row])
+        for changed in [{'asOf':'2026-10-01'},{'asOf':'2026-10-22'},{'complete':False},{'sha256':'invalid'},{'asOf':'invalid'}]:
+            self.assertEqual(retained_identity_pairs({**record,**changed},now),[])
 
     def test_sourced_seeds_are_candidates_only_and_adr_stays_distinct(self):
         rows=configured_candidates()
