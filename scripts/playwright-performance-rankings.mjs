@@ -360,6 +360,9 @@ try {
   const pngChunks = []
   for await (const chunk of await modifiedPng.createReadStream()) pngChunks.push(chunk)
   assert.equal(Buffer.concat(pngChunks).toString('base64'), pngAfterRemoval.split(',')[1])
+  const previewDownloadEvent = page.waitForEvent('download')
+  await page.getByRole('button', { name: 'Télécharger cet aperçu', exact: true }).click()
+  assert.equal((await previewDownloadEvent).suggestedFilename(), modifiedPng.suggestedFilename())
   await page.getByRole('tab', { name: 'Texte', exact: true }).click()
   await page.getByRole('button', { name: 'Actualiser le texte avec la sélection', exact: true }).click()
   const refreshed = await page.getByLabel('Texte à publier', { exact: true }).inputValue()

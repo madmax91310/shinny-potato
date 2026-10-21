@@ -2,7 +2,7 @@ import { useEffect, useId, useRef, useState } from 'react'
 import ImageZoom from './ImageZoom'
 
 // Keep editors mounted so switching views never discards a draft or canvas.
-export default function PublicationPreview({ children, renderImage, imageContent, imageAlt = 'Visuel prêt à publier', imageDisabled = false, tab: controlledTab, onTabChange }) {
+export default function PublicationPreview({ children, renderImage, imageContent, imageAlt = 'Visuel prêt à publier', imageFilename = 'publication.png', imageDisabled = false, tab: controlledTab, onTabChange }) {
   const [localTab, setLocalTab] = useState('text')
   const tab = controlledTab ?? localTab
   const [image, setImage] = useState({ status: 'idle', url: '' })
@@ -46,7 +46,7 @@ export default function PublicationPreview({ children, renderImage, imageContent
   const ready = image.status === 'ready' && image.owner === renderImage && !imageDisabled
   async function downloadPreview() {
     if (!ready) return
-    try { const { downloadImage } = await import('./downloadImage.js'); downloadImage(image.url, 'publication.png') }
+    try { const { downloadImage } = await import('./downloadImage.js'); downloadImage(image.url, imageFilename) }
     catch { setZoomError('Impossible de télécharger cette image. Réessaie.') }
   }
   function select(next) { setLocalTab(next); onTabChange?.(next) }
@@ -76,3 +76,4 @@ export default function PublicationPreview({ children, renderImage, imageContent
     {zoom && <ImageZoom src={zoom} alt={imageAlt} returnFocus={enlargeButton.current} onClose={() => setZoom(null)} />}
   </div>
 }
+

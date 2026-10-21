@@ -175,7 +175,7 @@ export default function App() {
   function dateField(name, value) { setDates(d => ({ ...d, [name]: value })); setStatus('') }
   return <div className="rankings-tool">
     <PageHeader title="Qui a vraiment gagné ?" subtitle="Classe des actifs par année ou sur une période commune. Les calculs utilisent les historiques mensuels ou les calendriers annuels officiels, sans interpolation. Les choix suivent la profondeur réelle des historiques." />
-    <ToolWorkspace renderImage={renderImage} imageDisabled={!result || Boolean(imageError)} imageAlt={`${presentation === 'annual' ? 'Classement annuel' : 'Performances annuelles'} : ${title}`} actions={<>
+    <ToolWorkspace imageFilename={result ? selectionFilename(result, presentation) : undefined} renderImage={renderImage} imageDisabled={!result || Boolean(imageError)} imageAlt={`${presentation === 'annual' ? 'Classement annuel' : 'Performances annuelles'} : ${title}`} actions={<>
       <button type="button" onClick={copy} disabled={!result}>Copier le texte</button>
       <button type="button" onClick={download} disabled={!result || Boolean(imageError) || busy}>{busy ? 'Préparation…' : 'Télécharger l’image'}</button>
       <span role="status">{status}</span>
