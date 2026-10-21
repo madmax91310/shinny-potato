@@ -28,6 +28,7 @@ export function performanceEntries(series) {
 }
 
 export function performanceImageHeading(series) {
+  if (series.sourceKind === 'adjusted-market-price') return `Cours ajustés · ${annualPerformanceRange(series)} · ${series.currency}`
   if (series.values.some(Number.isFinite)) return `Performances annuelles · ${annualPerformanceRange(series)} · ${series.currency}`
   const asOf = series.observations?.[0]?.asOf
   return asOf ? `Performances · ${series.currency} · au ${formatPerformanceDate(asOf)}` : 'Historique de performance'
@@ -36,7 +37,7 @@ export function performanceImageHeading(series) {
 // Les observations datées (YTD, depuis le lancement…) ne deviennent pas des années complètes.
 export function formatTweetPerformance(series, { includeIcon = true } = {}) {
   const entries = performanceEntries(series)
-  const heading = !entries.length ? 'Historique de performance' : series.values.some(Number.isFinite) ? 'Performances annuelles' : 'Performances sur les périodes publiées'
+  const heading = series.sourceKind === 'adjusted-market-price' ? 'Performances annuelles · cours ajustés, distributions réinvesties' : !entries.length ? 'Historique de performance' : series.values.some(Number.isFinite) ? 'Performances annuelles' : 'Performances sur les périodes publiées'
   const lines = entries.map(({ label, value, asOf }) => `${value < 0 ? '🔴' : '🟢'} ${label} : ${value > 0 ? '+' : ''}${value.toLocaleString('fr-FR', { maximumFractionDigits: 2 })} %${asOf ? ` (au ${formatPerformanceDate(asOf)})` : ''}`)
   return `${includeIcon ? '📈 ' : ''}${heading} (${series.currency})\n${lines.length ? lines.join('\n') : series.note}`
 }

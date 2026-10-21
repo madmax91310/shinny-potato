@@ -35,6 +35,15 @@ def vanguard():
 
 
 class PhysicalHoldingsTest(unittest.TestCase):
+    def test_uranium_unidentified_separate_lines_are_not_cash_or_listed_shares(self):
+        raw=(pathlib.Path(__file__).parent/'fixtures/physical-holdings/globalx-urnu.csv').read_bytes()
+        rows,stamp=globalx_csv(raw,NOW)
+        self.assertEqual(stamp,'2026-10-20')
+        unknown=[r for r in rows if r['isin'] is None]
+        self.assertEqual(len(unknown),2)
+        self.assertAlmostEqual(sum(r['weightPct']for r in unknown),.004)
+        self.assertEqual(len([r for r in rows if r['name']=='VERDERA ENERGY CORP']),3)
+        self.assertEqual(len({r['isin']for r in rows if r['isin']}),len(rows)-2)
     def test_globalx_actual_full_file(self):
         raw = (pathlib.Path(__file__).parent/'fixtures/physical-holdings/globalx-botz.csv').read_bytes()
         rows, stamp = globalx_csv(raw, NOW)

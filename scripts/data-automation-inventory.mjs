@@ -5,6 +5,8 @@ import { DATA_CATALOG } from '../src/data/catalog.js'
 import { registryQualification, fieldQualification, coverageKey, qualifyCoverage } from './lib/data-qualification.mjs'
 import {assetAutomation,assetAutomationCsv} from './lib/asset-automation.mjs'
 import { AUTOMATED_ETF } from '../src/data/automated-etf.js'
+import { marketCalendarPerformance } from '../src/data/market-calendar-performance.js'
+import exposureSleeves from '../src/data/exposure-sleeves.json' with {type:'json'}
 import { buildAssetFieldReport } from './report-asset-fields.mjs'
 import metadata from '../src/data/automated-instrument-metadata.json' with {type:'json'}
 import attempts from '../src/data/instrument-metadata-status.json' with {type:'json'}
@@ -131,6 +133,23 @@ export function buildDataAutomationInventory(){
  if(discovery?.schemaVersion===1)for(const connection of connections){
   if(connection.field==='completeHoldings'&&discovery.observations?.[connection.id])connection.sourceDiscovery=discovery.observations[connection.id]
  }
+ for(const connection of connections.filter(r=>r.type==='instrument'&&r.field==='performance')) {
+  const alternative=marketCalendarPerformance(connection.id)
+  if(alternative)connection.marketCalendar=alternative
+ }
+ for(const connection of connections.filter(r=>['countries','sectors'].includes(r.field))) {
+  const allocation=exposureSleeves[connection.id]?.[connection.field]
+  if(allocation?.basis==='fund'&&allocation.checkedAt&&allocation.asOf&&allocation.sourceUrl&&
+   ['exact-isin-lookthrough-countries','morningstar-equity-sectors'].includes(allocation.compatibility))connection.equityAllocation=allocation
+ }
+ const priorityFields=['performance','monthly','countries','sectors','completeHoldings','returns','facts']
+ const priorityMarkets=Object.fromEntries(priorityFields.map(field=>{
+  const rows=connections.filter(r=>r.field===field)
+  return [field,{total:rows.length,current:rows.filter(r=>r.actionState==='current').length,
+   actions:rows.filter(r=>r.requiresAction).length,waiting:rows.filter(r=>r.actionState==='waiting-first-year').length,
+   calculatedAlternative:rows.filter(r=>r.marketCalendar&&r.actionState!=='current').length,
+   equityAlternative:rows.filter(r=>r.equityAllocation&&r.actionState!=='current').length}]
+ }))
  const backlog=connections.filter(row=>row.requiresAction).sort((a,b)=>a.priority-b.priority||(b.tools?.length??0)-(a.tools?.length??0)||a.id.localeCompare(b.id)||a.field.localeCompare(b.field))
  const count=(rows,key)=>rows.reduce((a,r)=>(a[r[key]]=(a[r[key]]??0)+1,a),{})
  const report={schemaVersion:1,generatedAt:new Date().toISOString(),
@@ -138,6 +157,7 @@ export function buildDataAutomationInventory(){
   summary:{fieldKinds:count(fields.map(f=>f.nature),'kind'),registryRoles:count(registries.map(r=>r.qualification),'role'),liveProvenanceGaps:fields.filter(f=>f.provenanceGap).length,connectionStates:count(connections,'actionState'),actionableConnections:backlog.length,unclassifiedFields:fields.filter(f=>f.nature.kind==='unclassified').length,unclassifiedModules:registries.filter(r=>r.qualification.role==='unclassified').length,registries:registries.length,registryModes:count(registries,'mode'),catalogRecords:DATA_CATALOG.length,catalogFields:fields.length,catalogTypes:count(DATA_CATALOG,'type'),fieldsWithoutSource:fields.filter(f=>!f.sourceUrls.length).length,fieldsWithoutCheckDate:fields.filter(f=>!f.checkedAt).length,scheduledWorkflows:workflows.filter(w=>w.crons.length).length,coverageRows:coverage.rows.length,coverageStates:count(coverage.rows,'state'),peaQualified:pea.filter(p=>p.qualified).length,peaRemaining:pea.filter(p=>!p.qualified).length},
   workflows,registries,fields,connections,backlog,datasets:registryFiles.filter(p=>p.endsWith('.json')).map(jsonDatasetInfo),coverage,pea}
  const certification=assetAutomation(report)
+ report.summary.priorityMarkets=priorityMarkets
  report.assets=certification.assets;report.summary.assetAutomation=certification.summary
  return report
 }
