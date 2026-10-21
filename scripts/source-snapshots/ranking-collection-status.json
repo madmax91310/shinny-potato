@@ -1,119 +1,162 @@
 {
-  "checkedAt": "2026-10-21T11:04:56.651704+00:00",
-  "attemptedIds": [],
+  "checkedAt": "2026-10-21T17:36:53.397895+00:00",
+  "attemptedIds": [
+    "long-msciWorld",
+    "long-msciEmerging",
+    "long-msciWorldSmallCap",
+    "long-msciAcwi",
+    "long-msciWorldExUsa",
+    "long-sp500",
+    "long-apple",
+    "long-microsoft",
+    "long-nvidia",
+    "long-amazon",
+    "long-google",
+    "long-meta",
+    "long-euroGov13",
+    "long-euroCorporateBond",
+    "long-euroHighYieldBond",
+    "long-globalBondEur",
+    "gold-invesco-usd",
+    "long-msciEurope",
+    "long-msciUsa",
+    "world-net",
+    "emerging-net",
+    "japan-net",
+    "acwi-gross",
+    "fx:TWD",
+    "fx:ECB"
+  ],
   "fxFailed": false,
-  "crossFxFailed": false,
+  "crossFxFailed": true,
   "fxSources": {
     "TWD": {
       "id": "fx:TWD",
-      "status": "validated",
-      "checkedAt": "2026-10-21T10:35:43.394402+00:00",
-      "sourceUrl": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DEXTAUS&cosd=1999-01-01&coed=2026-10-21",
-      "sourceAttempts": [
-        {
-          "sourceUrl": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DEXTAUS&cosd=1999-01-01&coed=2026-10-21",
-          "status": "downloaded"
-        }
-      ]
+      "status": "failed",
+      "checkedAt": "2026-10-21T17:36:53.397895+00:00",
+      "reason": "Official cross-rate access failed: https://fred.stlouisfed.org/graph/fredgraph.csv?id=DEXTAUS&cosd=1999-01-01&coed=2026-10-21: The read operation timed out | https://fred.stlouisfed.org/graph/fredgraph.csv?id=DEXTAUS: The read operation timed out"
     },
     "ECB": {
       "id": "fx:ECB",
       "status": "validated",
-      "checkedAt": "2026-10-21T10:35:43.394402+00:00"
+      "checkedAt": "2026-10-21T17:36:53.397895+00:00"
     }
   },
   "series": [
     {
       "id": "acwi-gross",
-      "status": "validated"
+      "status": "validated",
+      "checkedAt": "2026-10-21T17:36:53.397895+00:00"
     },
     {
       "id": "emerging-net",
-      "status": "validated"
+      "status": "validated",
+      "checkedAt": "2026-10-21T17:36:53.397895+00:00"
     },
     {
       "id": "gold-invesco-usd",
-      "status": "validated"
+      "status": "validated",
+      "checkedAt": "2026-10-21T17:36:53.397895+00:00"
     },
     {
       "id": "japan-net",
-      "status": "validated"
+      "status": "validated",
+      "checkedAt": "2026-10-21T17:36:53.397895+00:00"
     },
     {
       "id": "long-amazon",
-      "status": "validated"
+      "status": "validated",
+      "checkedAt": "2026-10-21T17:36:53.397895+00:00"
     },
     {
       "id": "long-apple",
-      "status": "validated"
+      "status": "validated",
+      "checkedAt": "2026-10-21T17:36:53.397895+00:00"
     },
     {
       "id": "long-euroCorporateBond",
-      "status": "validated"
+      "status": "validated",
+      "checkedAt": "2026-10-21T17:36:53.397895+00:00"
     },
     {
       "id": "long-euroGov13",
-      "status": "validated"
+      "status": "validated",
+      "checkedAt": "2026-10-21T17:36:53.397895+00:00"
     },
     {
       "id": "long-euroHighYieldBond",
-      "status": "validated"
+      "status": "validated",
+      "checkedAt": "2026-10-21T17:36:53.397895+00:00"
     },
     {
       "id": "long-globalBondEur",
-      "status": "validated"
+      "status": "validated",
+      "checkedAt": "2026-10-21T17:36:53.397895+00:00"
     },
     {
       "id": "long-google",
-      "status": "validated"
+      "status": "validated",
+      "checkedAt": "2026-10-21T17:36:53.397895+00:00"
     },
     {
       "id": "long-meta",
-      "status": "validated"
+      "status": "validated",
+      "checkedAt": "2026-10-21T17:36:53.397895+00:00"
     },
     {
       "id": "long-microsoft",
-      "status": "validated"
+      "status": "validated",
+      "checkedAt": "2026-10-21T17:36:53.397895+00:00"
     },
     {
       "id": "long-msciAcwi",
-      "status": "validated"
+      "status": "validated",
+      "checkedAt": "2026-10-21T17:36:53.397895+00:00"
     },
     {
       "id": "long-msciEmerging",
-      "status": "validated"
+      "status": "validated",
+      "checkedAt": "2026-10-21T17:36:53.397895+00:00"
     },
     {
       "id": "long-msciEurope",
-      "status": "validated"
+      "status": "validated",
+      "checkedAt": "2026-10-21T17:36:53.397895+00:00"
     },
     {
       "id": "long-msciUsa",
-      "status": "validated"
+      "status": "validated",
+      "checkedAt": "2026-10-21T17:36:53.397895+00:00"
     },
     {
       "id": "long-msciWorld",
-      "status": "validated"
+      "status": "validated",
+      "checkedAt": "2026-10-21T17:36:53.397895+00:00"
     },
     {
       "id": "long-msciWorldExUsa",
-      "status": "validated"
+      "status": "validated",
+      "checkedAt": "2026-10-21T17:36:53.397895+00:00"
     },
     {
       "id": "long-msciWorldSmallCap",
-      "status": "validated"
+      "status": "validated",
+      "checkedAt": "2026-10-21T17:36:53.397895+00:00"
     },
     {
       "id": "long-nvidia",
-      "status": "validated"
+      "status": "validated",
+      "checkedAt": "2026-10-21T17:36:53.397895+00:00"
     },
     {
       "id": "long-sp500",
-      "status": "validated"
+      "status": "validated",
+      "checkedAt": "2026-10-21T17:36:53.397895+00:00"
     },
     {
       "id": "world-net",
-      "status": "validated"
+      "status": "validated",
+      "checkedAt": "2026-10-21T17:36:53.397895+00:00"
     }
   ]
 }
