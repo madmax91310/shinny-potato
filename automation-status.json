@@ -672,31 +672,27 @@
     "update-practical-sheets.yml": {
       "monitorVersion": 2,
       "name": "Sources des fiches pratiques",
-      "runId": 39474711064,
+      "runId": 39616936020,
       "attempt": 1,
-      "headSha": "5dbc4ae6465851851125863704fa2186e34fc682",
-      "createdAt": "2026-10-20T18:26:15Z",
-      "completedAt": "2026-10-20T18:30:07Z",
-      "status": "success",
+      "headSha": "e495204b030b6b1e2042d431b095561947c096a3",
+      "createdAt": "2026-10-21T14:27:19Z",
+      "completedAt": "2026-10-21T14:32:26Z",
+      "status": "failure",
       "lastSuccessAt": "2026-10-20T18:30:07Z",
       "collectionStatus": "success",
       "validationStatus": "success",
-      "recordingStatus": "success",
-      "publicationStatus": "success",
-      "lastCollectionSuccessAt": "2026-10-20T18:30:07Z",
+      "recordingStatus": "failure",
+      "publicationStatus": "not-run",
+      "lastCollectionSuccessAt": "2026-10-21T14:32:26Z",
       "lastPublicationSuccessAt": "2026-10-21T13:58:12.167Z",
-      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39474711064",
-      "failures": [],
-      "dataFailures": {},
-      "publicationReceipt": {
-        "commit": "5dbc4ae6465851851125863704fa2186e34fc682",
-        "files": {
-          "src/data/automated-practical-sheets.json": "40a961f850be37e70712c15de865f1fd35c7698d"
-        },
-        "schemaVersion": 1
-      },
-      "publishedCodeSha": "1e32749a2309a2b514f26656076975af6755422d",
-      "publishedDataSha": "d04d8b45cf8d2830b40613c2ce6ecaa2af9ce544"
+      "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39616936020",
+      "failures": [
+        {
+          "job": "refresh",
+          "step": "Commit validated observations"
+        }
+      ],
+      "dataFailures": {}
     },
     "update-inflation.yml": {
       "monitorVersion": 2,
@@ -1662,12 +1658,29 @@
       "dataFailures": {}
     }
   },
-  "updatedAt": "2026-10-21T14:32:04Z",
+  "updatedAt": "2026-10-21T14:32:26Z",
   "monitoring": {
     "schemaVersion": 1,
-    "checkedAt": "2026-10-21T14:32:28.361347+00:00",
-    "revision": 220,
+    "checkedAt": "2026-10-21T14:33:06.277263+00:00",
+    "revision": 221,
     "active": {
+      "workflow:update-practical-sheets.yml": {
+        "name": "Sources des fiches pratiques",
+        "tools": [
+          "Fiches pratiques"
+        ],
+        "impactScope": "collector",
+        "workflow": "update-practical-sheets.yml",
+        "runUrl": "https://github.com/madmax91310/shinny-potato/actions/runs/39616936020",
+        "to": "/donnees-a-revoir",
+        "lastSuccessAt": "2026-10-21T14:32:26Z",
+        "kind": "collection",
+        "field": "Exécution du collecteur",
+        "cause": "refresh : Commit validated observations",
+        "id": "workflow:update-practical-sheets.yml",
+        "firstSeenAt": "2026-10-21T14:33:06.277263+00:00",
+        "lastSeenAt": "2026-10-21T14:33:06.277263+00:00"
+      },
       "collection:update-editorial-radar.yml:radar:pouvoir-achat": {
         "name": "Radar · pouvoir-achat",
         "tools": [
@@ -1686,7 +1699,7 @@
         "dataId": "radar:pouvoir-achat",
         "id": "collection:update-editorial-radar.yml:radar:pouvoir-achat",
         "firstSeenAt": "2026-10-21T12:39:24.700361+00:00",
-        "lastSeenAt": "2026-10-21T14:32:28.361347+00:00"
+        "lastSeenAt": "2026-10-21T14:33:06.277263+00:00"
       },
       "collection:update-editorial-radar.yml:radar:etf": {
         "name": "Radar · etf",
@@ -1706,7 +1719,7 @@
         "dataId": "radar:etf",
         "id": "collection:update-editorial-radar.yml:radar:etf",
         "firstSeenAt": "2026-10-21T13:13:48.260249+00:00",
-        "lastSeenAt": "2026-10-21T14:32:28.361347+00:00"
+        "lastSeenAt": "2026-10-21T14:33:06.277263+00:00"
       },
       "workflow:update-publication-observations.yml": {
         "name": "Pouvoir d’achat et niveaux des anniversaires",
@@ -1724,7 +1737,7 @@
         "cause": "refresh : Commit validated observations",
         "id": "workflow:update-publication-observations.yml",
         "firstSeenAt": "2026-10-21T13:13:12.009256+00:00",
-        "lastSeenAt": "2026-10-21T14:32:28.361347+00:00"
+        "lastSeenAt": "2026-10-21T14:33:06.277263+00:00"
       },
       "collection:update-market-monthly.yml:history:fx:TWD": {
         "name": "history:fx:TWD",
@@ -1747,7 +1760,7 @@
         "dataId": "history:fx:TWD",
         "id": "collection:update-market-monthly.yml:history:fx:TWD",
         "firstSeenAt": "2026-10-19T05:58:42.740410+00:00",
-        "lastSeenAt": "2026-10-21T14:32:28.361347+00:00"
+        "lastSeenAt": "2026-10-21T14:33:06.277263+00:00"
       },
       "collection:update-qualified-exposures.yml:dca-holdings:IE00BJGWQN72": {
         "name": "WisdomTree Cloud Computing UCITS ETF USD Acc",
@@ -1775,7 +1788,7 @@
         "dataId": "dca-holdings:IE00BJGWQN72",
         "id": "collection:update-qualified-exposures.yml:dca-holdings:IE00BJGWQN72",
         "firstSeenAt": "2026-10-21T09:49:46.266914+00:00",
-        "lastSeenAt": "2026-10-21T14:32:28.361347+00:00"
+        "lastSeenAt": "2026-10-21T14:33:06.277263+00:00"
       },
       "collection:update-instrument-metadata.yml:IE00B0M62S72:pea:qualification": {
         "name": "iShares Euro Dividend UCITS ETF",
@@ -1802,7 +1815,7 @@
         "dataId": "IE00B0M62S72:pea:qualification",
         "id": "collection:update-instrument-metadata.yml:IE00B0M62S72:pea:qualification",
         "firstSeenAt": "2026-10-19T19:03:43.742241+00:00",
-        "lastSeenAt": "2026-10-21T14:32:28.361347+00:00"
+        "lastSeenAt": "2026-10-21T14:33:06.277263+00:00"
       },
       "publication:update-instrument-metadata.yml": {
         "name": "Caractéristiques et statut PEA par ISIN",
@@ -1822,7 +1835,7 @@
         "cause": "deploy / publish-code / browser-checks (2) : node scripts/playwright-publication-actions.mjs — name: 'TimeoutError' ; deploy / publish-code / browser-checks (1) : node scripts/test-index-ribbon.mjs — name: 'TimeoutError' ; deploy / publish-code / advisory-checks : Run echo \"Données publiées (voie données : publication success). Un contrôle navigateur éditorial a échoué et doit être réparé ; il ne bloque plus les données.\" >> \"$GITHUB_STEP_SUMMARY\" ; report-failures : Run exit 1",
         "id": "publication:update-instrument-metadata.yml",
         "firstSeenAt": "2026-10-21T14:04:07.425335+00:00",
-        "lastSeenAt": "2026-10-21T14:32:28.361347+00:00"
+        "lastSeenAt": "2026-10-21T14:33:06.277263+00:00"
       },
       "field:instrument:IE00BJGWQN72:completeHoldings": {
         "id": "field:instrument:IE00BJGWQN72:completeHoldings",
@@ -1851,7 +1864,7 @@
         "evaluatedAt": "2026-10-21",
         "to": "/donnees-a-revoir",
         "firstSeenAt": "2026-10-21T12:01:24.697671+00:00",
-        "lastSeenAt": "2026-10-21T14:32:28.361347+00:00"
+        "lastSeenAt": "2026-10-21T14:33:06.277263+00:00"
       },
       "radar:cd31a2782d298ba6a44b64ef": {
         "name": "Xtrackers S&P 500 Equal Weight UCITS ETF 1C",
@@ -1875,7 +1888,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays United States. Dernière observation conservée ; propositions archivées (etf:IE00BLNMYC90:countries:United States:8abd3910625177898532bf9d:2026-10-19).",
         "id": "radar:cd31a2782d298ba6a44b64ef",
         "firstSeenAt": "2026-10-21T12:24:06.907762+00:00",
-        "lastSeenAt": "2026-10-21T14:32:28.361347+00:00"
+        "lastSeenAt": "2026-10-21T14:33:06.277263+00:00"
       },
       "radar:6eaa480c8e90a2248e99982b": {
         "name": "Xtrackers S&P 500 Equal Weight UCITS ETF 1C",
@@ -1899,7 +1912,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays Ireland. Dernière observation conservée ; propositions archivées (etf:IE00BLNMYC90:countries:Ireland:8abd3910625177898532bf9d:2026-10-19).",
         "id": "radar:6eaa480c8e90a2248e99982b",
         "firstSeenAt": "2026-10-21T12:24:06.907762+00:00",
-        "lastSeenAt": "2026-10-21T14:32:28.361347+00:00"
+        "lastSeenAt": "2026-10-21T14:33:06.277263+00:00"
       },
       "radar:a3760b967238578141bbbaa5": {
         "name": "Xtrackers S&P 500 Equal Weight UCITS ETF 1C",
@@ -1923,7 +1936,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays Switzerland. Dernière observation conservée ; propositions archivées (etf:IE00BLNMYC90:countries:Switzerland:8abd3910625177898532bf9d:2026-10-19).",
         "id": "radar:a3760b967238578141bbbaa5",
         "firstSeenAt": "2026-10-21T12:24:06.907762+00:00",
-        "lastSeenAt": "2026-10-21T14:32:28.361347+00:00"
+        "lastSeenAt": "2026-10-21T14:33:06.277263+00:00"
       },
       "radar:9efa4fe2deb2f587df844706": {
         "name": "Xtrackers S&P 500 Equal Weight UCITS ETF 1C",
@@ -1947,7 +1960,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays United Kingdom. Dernière observation conservée ; propositions archivées (etf:IE00BLNMYC90:countries:United Kingdom:8abd3910625177898532bf9d:2026-10-19).",
         "id": "radar:9efa4fe2deb2f587df844706",
         "firstSeenAt": "2026-10-21T12:24:06.907762+00:00",
-        "lastSeenAt": "2026-10-21T14:32:28.361347+00:00"
+        "lastSeenAt": "2026-10-21T14:33:06.277263+00:00"
       },
       "radar:c2daff020b90494f3f3325e1": {
         "name": "Xtrackers S&P 500 Equal Weight UCITS ETF 1C",
@@ -1971,7 +1984,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays Singapore. Dernière observation conservée ; propositions archivées (etf:IE00BLNMYC90:countries:Singapore:8abd3910625177898532bf9d:2026-10-19).",
         "id": "radar:c2daff020b90494f3f3325e1",
         "firstSeenAt": "2026-10-21T12:24:06.907762+00:00",
-        "lastSeenAt": "2026-10-21T14:32:28.361347+00:00"
+        "lastSeenAt": "2026-10-21T14:33:06.277263+00:00"
       },
       "radar:4027a45b592b5962832ef627": {
         "name": "Xtrackers MSCI World ex USA UCITS ETF 1C",
@@ -1998,7 +2011,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays Canada. Dernière observation conservée ; propositions archivées (etf:IE0006WW1TQ4:countries:Canada:896eb444159fd8c94545e70e:2026-10-19).",
         "id": "radar:4027a45b592b5962832ef627",
         "firstSeenAt": "2026-10-21T12:24:06.907762+00:00",
-        "lastSeenAt": "2026-10-21T14:32:28.361347+00:00"
+        "lastSeenAt": "2026-10-21T14:33:06.277263+00:00"
       },
       "radar:2b2a684c2969d800b52323f1": {
         "name": "Xtrackers MSCI World ex USA UCITS ETF 1C",
@@ -2025,7 +2038,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays United Kingdom. Dernière observation conservée ; propositions archivées (etf:IE0006WW1TQ4:countries:United Kingdom:896eb444159fd8c94545e70e:2026-10-19).",
         "id": "radar:2b2a684c2969d800b52323f1",
         "firstSeenAt": "2026-10-21T12:24:06.907762+00:00",
-        "lastSeenAt": "2026-10-21T14:32:28.361347+00:00"
+        "lastSeenAt": "2026-10-21T14:33:06.277263+00:00"
       },
       "radar:6360a3c63537ed06ba8ca029": {
         "name": "Xtrackers MSCI World ex USA UCITS ETF 1C",
@@ -2052,7 +2065,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays Switzerland. Dernière observation conservée ; propositions archivées (etf:IE0006WW1TQ4:countries:Switzerland:896eb444159fd8c94545e70e:2026-10-19).",
         "id": "radar:6360a3c63537ed06ba8ca029",
         "firstSeenAt": "2026-10-21T12:24:06.907762+00:00",
-        "lastSeenAt": "2026-10-21T14:32:28.361347+00:00"
+        "lastSeenAt": "2026-10-21T14:33:06.277263+00:00"
       },
       "radar:895fab19e5c1094486445784": {
         "name": "Xtrackers MSCI World ex USA UCITS ETF 1C",
@@ -2079,7 +2092,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays Germany. Dernière observation conservée ; propositions archivées (etf:IE0006WW1TQ4:countries:Germany:896eb444159fd8c94545e70e:2026-10-19).",
         "id": "radar:895fab19e5c1094486445784",
         "firstSeenAt": "2026-10-21T12:24:06.907762+00:00",
-        "lastSeenAt": "2026-10-21T14:32:28.361347+00:00"
+        "lastSeenAt": "2026-10-21T14:33:06.277263+00:00"
       },
       "radar:08040561fb31685c96c90cb9": {
         "name": "Xtrackers MSCI World ex USA UCITS ETF 1C",
@@ -2106,7 +2119,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays Australia. Dernière observation conservée ; propositions archivées (etf:IE0006WW1TQ4:countries:Australia:896eb444159fd8c94545e70e:2026-10-19).",
         "id": "radar:08040561fb31685c96c90cb9",
         "firstSeenAt": "2026-10-21T12:24:06.907762+00:00",
-        "lastSeenAt": "2026-10-21T14:32:28.361347+00:00"
+        "lastSeenAt": "2026-10-21T14:33:06.277263+00:00"
       },
       "radar:e94a88ff127a6dbe310ff380": {
         "name": "Xtrackers MSCI World ex USA UCITS ETF 1C",
@@ -2133,7 +2146,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays Hong Kong. Dernière observation conservée ; propositions archivées (etf:IE0006WW1TQ4:countries:Hong Kong:896eb444159fd8c94545e70e:2026-10-19).",
         "id": "radar:e94a88ff127a6dbe310ff380",
         "firstSeenAt": "2026-10-21T12:24:06.907762+00:00",
-        "lastSeenAt": "2026-10-21T14:32:28.361347+00:00"
+        "lastSeenAt": "2026-10-21T14:33:06.277263+00:00"
       },
       "radar:aada7a36f713797431230543": {
         "name": "Xtrackers MSCI World ex USA UCITS ETF 1C",
@@ -2160,7 +2173,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays Brazil. Dernière observation conservée ; propositions archivées (etf:IE0006WW1TQ4:countries:Brazil:896eb444159fd8c94545e70e:2026-10-19).",
         "id": "radar:aada7a36f713797431230543",
         "firstSeenAt": "2026-10-21T12:24:06.907762+00:00",
-        "lastSeenAt": "2026-10-21T14:32:28.361347+00:00"
+        "lastSeenAt": "2026-10-21T14:33:06.277263+00:00"
       },
       "radar:d736c37c23cf3e0eb8fcded6": {
         "name": "Xtrackers MSCI World ex USA UCITS ETF 1C",
@@ -2187,7 +2200,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays Zambia. Dernière observation conservée ; propositions archivées (etf:IE0006WW1TQ4:countries:Zambia:896eb444159fd8c94545e70e:2026-10-19).",
         "id": "radar:d736c37c23cf3e0eb8fcded6",
         "firstSeenAt": "2026-10-21T12:24:06.907762+00:00",
-        "lastSeenAt": "2026-10-21T14:32:28.361347+00:00"
+        "lastSeenAt": "2026-10-21T14:33:06.277263+00:00"
       },
       "radar:4767c99e17d6efae44831683": {
         "name": "Xtrackers MSCI World ex USA UCITS ETF 1C",
@@ -2214,7 +2227,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays Korea, Republic of. Dernière observation conservée ; propositions archivées (etf:IE0006WW1TQ4:countries:Korea, Republic of:896eb444159fd8c94545e70e:2026-10-19).",
         "id": "radar:4767c99e17d6efae44831683",
         "firstSeenAt": "2026-10-21T12:24:06.907762+00:00",
-        "lastSeenAt": "2026-10-21T14:32:28.361347+00:00"
+        "lastSeenAt": "2026-10-21T14:33:06.277263+00:00"
       },
       "radar:7990a244bb143fa0c71afcb1": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -2235,7 +2248,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays United States. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:United States:630657e8b950b3715e6c0f9a:2026-10-19).",
         "id": "radar:7990a244bb143fa0c71afcb1",
         "firstSeenAt": "2026-10-21T12:24:06.907762+00:00",
-        "lastSeenAt": "2026-10-21T14:32:28.361347+00:00"
+        "lastSeenAt": "2026-10-21T14:33:06.277263+00:00"
       },
       "radar:844937eb14dbe830f3061a3e": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -2256,7 +2269,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays United Kingdom. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:United Kingdom:630657e8b950b3715e6c0f9a:2026-10-19).",
         "id": "radar:844937eb14dbe830f3061a3e",
         "firstSeenAt": "2026-10-21T12:24:06.907762+00:00",
-        "lastSeenAt": "2026-10-21T14:32:28.361347+00:00"
+        "lastSeenAt": "2026-10-21T14:33:06.277263+00:00"
       },
       "radar:2b07fd46ad0dadeac000b18f": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -2277,7 +2290,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays Canada. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Canada:630657e8b950b3715e6c0f9a:2026-10-19).",
         "id": "radar:2b07fd46ad0dadeac000b18f",
         "firstSeenAt": "2026-10-21T12:24:06.907762+00:00",
-        "lastSeenAt": "2026-10-21T14:32:28.361347+00:00"
+        "lastSeenAt": "2026-10-21T14:33:06.277263+00:00"
       },
       "radar:b09662b84bdf32f86cffd44a": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -2298,7 +2311,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays Switzerland. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Switzerland:630657e8b950b3715e6c0f9a:2026-10-19).",
         "id": "radar:b09662b84bdf32f86cffd44a",
         "firstSeenAt": "2026-10-21T12:24:06.907762+00:00",
-        "lastSeenAt": "2026-10-21T14:32:28.361347+00:00"
+        "lastSeenAt": "2026-10-21T14:33:06.277263+00:00"
       },
       "radar:0f7c7a407f8391414f98da49": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -2319,7 +2332,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays Korea, Republic of. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Korea, Republic of:630657e8b950b3715e6c0f9a:2026-10-19).",
         "id": "radar:0f7c7a407f8391414f98da49",
         "firstSeenAt": "2026-10-21T12:24:06.907762+00:00",
-        "lastSeenAt": "2026-10-21T14:32:28.361347+00:00"
+        "lastSeenAt": "2026-10-21T14:33:06.277263+00:00"
       },
       "radar:9ea26890c5e5f9f260a4a7b5": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -2340,7 +2353,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays Germany. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Germany:630657e8b950b3715e6c0f9a:2026-10-19).",
         "id": "radar:9ea26890c5e5f9f260a4a7b5",
         "firstSeenAt": "2026-10-21T12:24:06.907762+00:00",
-        "lastSeenAt": "2026-10-21T14:32:28.361347+00:00"
+        "lastSeenAt": "2026-10-21T14:33:06.277263+00:00"
       },
       "radar:20cb1c326d13d4578fc75035": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -2361,7 +2374,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays Australia. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Australia:630657e8b950b3715e6c0f9a:2026-10-19).",
         "id": "radar:20cb1c326d13d4578fc75035",
         "firstSeenAt": "2026-10-21T12:24:06.907762+00:00",
-        "lastSeenAt": "2026-10-21T14:32:28.361347+00:00"
+        "lastSeenAt": "2026-10-21T14:33:06.277263+00:00"
       },
       "radar:ee4badca6a761757506eca17": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -2382,7 +2395,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays Ireland. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Ireland:630657e8b950b3715e6c0f9a:2026-10-19).",
         "id": "radar:ee4badca6a761757506eca17",
         "firstSeenAt": "2026-10-21T12:24:06.907762+00:00",
-        "lastSeenAt": "2026-10-21T14:32:28.361347+00:00"
+        "lastSeenAt": "2026-10-21T14:33:06.277263+00:00"
       },
       "radar:1714418a8bf06fdde5261898": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -2403,7 +2416,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays Brazil. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Brazil:630657e8b950b3715e6c0f9a:2026-10-19).",
         "id": "radar:1714418a8bf06fdde5261898",
         "firstSeenAt": "2026-10-21T12:24:06.907762+00:00",
-        "lastSeenAt": "2026-10-21T14:32:28.361347+00:00"
+        "lastSeenAt": "2026-10-21T14:33:06.277263+00:00"
       },
       "radar:50c662421e21c7728307a84f": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -2424,7 +2437,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays Singapore. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Singapore:630657e8b950b3715e6c0f9a:2026-10-19).",
         "id": "radar:50c662421e21c7728307a84f",
         "firstSeenAt": "2026-10-21T12:24:06.907762+00:00",
-        "lastSeenAt": "2026-10-21T14:32:28.361347+00:00"
+        "lastSeenAt": "2026-10-21T14:33:06.277263+00:00"
       },
       "radar:9080bbc19bcd91881b068507": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -2445,7 +2458,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays Hong Kong. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Hong Kong:630657e8b950b3715e6c0f9a:2026-10-19).",
         "id": "radar:9080bbc19bcd91881b068507",
         "firstSeenAt": "2026-10-21T12:24:06.907762+00:00",
-        "lastSeenAt": "2026-10-21T14:32:28.361347+00:00"
+        "lastSeenAt": "2026-10-21T14:33:06.277263+00:00"
       },
       "radar:a969d67fb6debd422c842ad6": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -2466,7 +2479,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays Luxembourg. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Luxembourg:630657e8b950b3715e6c0f9a:2026-10-19).",
         "id": "radar:a969d67fb6debd422c842ad6",
         "firstSeenAt": "2026-10-21T12:24:06.907762+00:00",
-        "lastSeenAt": "2026-10-21T14:32:28.361347+00:00"
+        "lastSeenAt": "2026-10-21T14:33:06.277263+00:00"
       },
       "radar:d4976b3e291e6c643374fdaa": {
         "name": "Xtrackers FTSE All-World UCITS ETF 1C",
@@ -2487,7 +2500,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays Zambia. Dernière observation conservée ; propositions archivées (etf:IE000L6ZMMC4:countries:Zambia:630657e8b950b3715e6c0f9a:2026-10-19).",
         "id": "radar:d4976b3e291e6c643374fdaa",
         "firstSeenAt": "2026-10-21T12:24:06.907762+00:00",
-        "lastSeenAt": "2026-10-21T14:32:28.361347+00:00"
+        "lastSeenAt": "2026-10-21T14:33:06.277263+00:00"
       },
       "radar:0f232df3701a139757ff21d8": {
         "name": "Xtrackers MSCI World Health Care UCITS ETF",
@@ -2512,7 +2525,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays United States. Dernière observation conservée ; propositions archivées (etf:IE00BM67HK77:countries:United States:e02e00a632cb2b9e9ddccd1e:2026-10-19).",
         "id": "radar:0f232df3701a139757ff21d8",
         "firstSeenAt": "2026-10-21T12:24:06.907762+00:00",
-        "lastSeenAt": "2026-10-21T14:32:28.361347+00:00"
+        "lastSeenAt": "2026-10-21T14:33:06.277263+00:00"
       },
       "radar:de9f1058b72e9094e1f6b560": {
         "name": "Xtrackers MSCI World Health Care UCITS ETF",
@@ -2537,7 +2550,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays Switzerland. Dernière observation conservée ; propositions archivées (etf:IE00BM67HK77:countries:Switzerland:e02e00a632cb2b9e9ddccd1e:2026-10-19).",
         "id": "radar:de9f1058b72e9094e1f6b560",
         "firstSeenAt": "2026-10-21T12:24:06.907762+00:00",
-        "lastSeenAt": "2026-10-21T14:32:28.361347+00:00"
+        "lastSeenAt": "2026-10-21T14:33:06.277263+00:00"
       },
       "radar:8e48420bad94e6e4cda0aba5": {
         "name": "Xtrackers MSCI World Health Care UCITS ETF",
@@ -2562,7 +2575,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays United Kingdom. Dernière observation conservée ; propositions archivées (etf:IE00BM67HK77:countries:United Kingdom:e02e00a632cb2b9e9ddccd1e:2026-10-19).",
         "id": "radar:8e48420bad94e6e4cda0aba5",
         "firstSeenAt": "2026-10-21T12:24:06.907762+00:00",
-        "lastSeenAt": "2026-10-21T14:32:28.361347+00:00"
+        "lastSeenAt": "2026-10-21T14:33:06.277263+00:00"
       },
       "radar:04ef830246187740fa011e6f": {
         "name": "Xtrackers MSCI World Health Care UCITS ETF",
@@ -2587,7 +2600,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays Ireland. Dernière observation conservée ; propositions archivées (etf:IE00BM67HK77:countries:Ireland:e02e00a632cb2b9e9ddccd1e:2026-10-19).",
         "id": "radar:04ef830246187740fa011e6f",
         "firstSeenAt": "2026-10-21T12:24:06.907762+00:00",
-        "lastSeenAt": "2026-10-21T14:32:28.361347+00:00"
+        "lastSeenAt": "2026-10-21T14:33:06.277263+00:00"
       },
       "radar:6538748c8384b68805e2be13": {
         "name": "Xtrackers MSCI World Materials UCITS ETF",
@@ -2611,7 +2624,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays Australia. Dernière observation conservée ; propositions archivées (etf:IE00BM67HS53:countries:Australia:9e8222db7f15caa14c54cb45:2026-10-19).",
         "id": "radar:6538748c8384b68805e2be13",
         "firstSeenAt": "2026-10-21T12:24:06.907762+00:00",
-        "lastSeenAt": "2026-10-21T14:32:28.361347+00:00"
+        "lastSeenAt": "2026-10-21T14:33:06.277263+00:00"
       },
       "radar:811fccd5a3ae3f2ce294f96d": {
         "name": "Xtrackers MSCI World Materials UCITS ETF",
@@ -2635,7 +2648,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays Canada. Dernière observation conservée ; propositions archivées (etf:IE00BM67HS53:countries:Canada:9e8222db7f15caa14c54cb45:2026-10-19).",
         "id": "radar:811fccd5a3ae3f2ce294f96d",
         "firstSeenAt": "2026-10-21T12:24:06.907762+00:00",
-        "lastSeenAt": "2026-10-21T14:32:28.361347+00:00"
+        "lastSeenAt": "2026-10-21T14:33:06.277263+00:00"
       },
       "radar:a06e5f794e61eb51afd6502d": {
         "name": "Xtrackers MSCI World Materials UCITS ETF",
@@ -2659,7 +2672,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays United Kingdom. Dernière observation conservée ; propositions archivées (etf:IE00BM67HS53:countries:United Kingdom:9e8222db7f15caa14c54cb45:2026-10-19).",
         "id": "radar:a06e5f794e61eb51afd6502d",
         "firstSeenAt": "2026-10-21T12:24:06.907762+00:00",
-        "lastSeenAt": "2026-10-21T14:32:28.361347+00:00"
+        "lastSeenAt": "2026-10-21T14:33:06.277263+00:00"
       },
       "radar:f5ea1c4f9541dc5c99c38e71": {
         "name": "Xtrackers MSCI World Materials UCITS ETF",
@@ -2683,7 +2696,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays Switzerland. Dernière observation conservée ; propositions archivées (etf:IE00BM67HS53:countries:Switzerland:9e8222db7f15caa14c54cb45:2026-10-19).",
         "id": "radar:f5ea1c4f9541dc5c99c38e71",
         "firstSeenAt": "2026-10-21T12:24:06.907762+00:00",
-        "lastSeenAt": "2026-10-21T14:32:28.361347+00:00"
+        "lastSeenAt": "2026-10-21T14:33:06.277263+00:00"
       },
       "radar:fb79632021ea78696466b21d": {
         "name": "Xtrackers MSCI World Materials UCITS ETF",
@@ -2707,7 +2720,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays Brazil. Dernière observation conservée ; propositions archivées (etf:IE00BM67HS53:countries:Brazil:9e8222db7f15caa14c54cb45:2026-10-19).",
         "id": "radar:fb79632021ea78696466b21d",
         "firstSeenAt": "2026-10-21T12:24:06.907762+00:00",
-        "lastSeenAt": "2026-10-21T14:32:28.361347+00:00"
+        "lastSeenAt": "2026-10-21T14:33:06.277263+00:00"
       },
       "radar:955317ed0429039b718ffdd5": {
         "name": "Xtrackers MSCI World Materials UCITS ETF",
@@ -2731,7 +2744,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays Zambia. Dernière observation conservée ; propositions archivées (etf:IE00BM67HS53:countries:Zambia:9e8222db7f15caa14c54cb45:2026-10-19).",
         "id": "radar:955317ed0429039b718ffdd5",
         "firstSeenAt": "2026-10-21T12:24:06.907762+00:00",
-        "lastSeenAt": "2026-10-21T14:32:28.361347+00:00"
+        "lastSeenAt": "2026-10-21T14:33:06.277263+00:00"
       },
       "radar:435260e2cfddd4516c8b097c": {
         "name": "Xtrackers MSCI World Industrials UCITS ETF 1C",
@@ -2754,7 +2767,7 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays United States. Dernière observation conservée ; propositions archivées (etf:IE00BM67HV82:countries:United States:f5d10aa5ac6de524b51ebc86:2026-10-19).",
         "id": "radar:435260e2cfddd4516c8b097c",
         "firstSeenAt": "2026-10-21T12:24:06.907762+00:00",
-        "lastSeenAt": "2026-10-21T14:32:28.361347+00:00"
+        "lastSeenAt": "2026-10-21T14:33:06.277263+00:00"
       },
       "radar:775be612dfcfe2191c031a88": {
         "name": "Xtrackers MSCI World Industrials UCITS ETF 1C",
@@ -2777,32 +2790,10 @@
         "cause": "Valeur contradictoire pour la même période (2026-10-19) : Poids du pays Ireland. Dernière observation conservée ; propositions archivées (etf:IE00BM67HV82:countries:Ireland:f5d10aa5ac6de524b51ebc86:2026-10-19).",
         "id": "radar:775be612dfcfe2191c031a88",
         "firstSeenAt": "2026-10-21T12:24:06.907762+00:00",
-        "lastSeenAt": "2026-10-21T14:32:28.361347+00:00"
+        "lastSeenAt": "2026-10-21T14:33:06.277263+00:00"
       }
     },
     "events": [
-      {
-        "revision": 191,
-        "at": "2026-10-20T19:51:00.268149+00:00",
-        "opened": [
-          "radar:4b633e62dc0a87d1c02f6b7e",
-          "radar:02555de0eabb53e98412ffe7",
-          "radar:a95f0d6e0034d9984ab07c89",
-          "radar:ad7bef2caa6fff6d28020bc7",
-          "radar:8198875eea12c8677b270b33",
-          "radar:5ac11fdbdd4af44ac9ab5474",
-          "radar:53bf32dd0edc7865b04be5b0",
-          "radar:24eca8d34473b7720df24341",
-          "radar:ead371af6bd7b3bef42c814b",
-          "radar:7608affbdc6591c9e73dc696",
-          "radar:05ddb85f0f9b23128cc98c43",
-          "radar:1220947d5978abc4d0fe839c",
-          "radar:b1e6c94c733d195bde11f5da",
-          "radar:5ddf840074caa9d93a87a29c"
-        ],
-        "resolved": [],
-        "escalated": []
-      },
       {
         "revision": 192,
         "at": "2026-10-20T19:52:58.301112+00:00",
@@ -11191,6 +11182,16 @@
         "resolved": [],
         "retired": [],
         "escalated": []
+      },
+      {
+        "revision": 221,
+        "at": "2026-10-21T14:33:06.277263+00:00",
+        "opened": [
+          "workflow:update-practical-sheets.yml"
+        ],
+        "resolved": [],
+        "retired": [],
+        "escalated": []
       }
     ],
     "resolved": [
@@ -17330,11 +17331,11 @@
   "recovery": {
     "update-practical-sheets.yml": {
       "attempts": [],
-      "reason": null,
-      "lastSuccessAt": "2026-10-20T18:30:07Z",
-      "observedRunId": 39474711064,
-      "status": "idle",
-      "nextAttemptAt": null
+      "reason": "recording-failed",
+      "lastSuccessAt": "2026-10-21T14:32:26Z",
+      "observedRunId": 39616936020,
+      "status": "waiting",
+      "nextAttemptAt": "2026-10-21T14:47:26+00:00"
     },
     "update-editorial-radar.yml": {
       "attempts": [
@@ -17350,7 +17351,7 @@
       "reason": "transient-source",
       "lastSuccessAt": "2026-10-21T12:23:36Z",
       "observedRunId": 39612807455,
-      "status": "waiting",
+      "status": "awaiting-current-run",
       "nextAttemptAt": "2026-10-21T14:40:26.545296+00:00"
     },
     "update-publication-observations.yml": {
