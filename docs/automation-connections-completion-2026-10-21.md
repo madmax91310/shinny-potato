@@ -61,3 +61,7 @@ Les tests refusent les mauvaises parts, devises, cotations, méthodes, fenêtres
 La vérification publique a trouvé les trois nouvelles compositions présentes et qualifiées, mais le rapport de couverture portait encore `automationConfigured: false`. Sur un checkout neuf, les cibles générées étaient mises à jour après ce rapport ; l’inventaire, construit ensuite, voyait déjà la bonne configuration.
 
 Le prébuild génère maintenant les cibles avant le rapport de couverture. Chaque compilation audite les deux JSON réellement placés dans `dist` : présence, configuration, état, dates et source doivent concorder ; la configuration est aussi confrontée indépendamment au registre des collecteurs. Une absence ou un doublon fait échouer le contrôle. Cette correction ne renouvelle aucune observation financière et ne certifie pas les accès WisdomTree en échec.
+
+## Recette des onglets imbriqués
+
+La validation finale a rencontré un sélecteur de test ambigu après l'ajout, dans une autre livraison, des onglets de contenu de Coulisses des indices : le panneau parent et celui du studio étaient tous deux visibles. La recette du studio vise maintenant explicitement les panneaux nommés Image et Texte et attend le média dans le panneau du studio. Tous les contrôles existants de zoom, export, clavier, brouillons et disposition restent exécutés ; cette correction ne modifie ni l'interface ni les données.
