@@ -35,6 +35,8 @@ Les états « cycles à confirmer » et « renouvellement à qualifier » ne son
 
 ## Validation
 
+La validation exhaustive de Tweet Midi a pris environ 32 minutes dans la collecte réelle. Le budget de la collecte mensuelle passe à 90 minutes pour conserver cette validation et son éventuelle répétition après rebase ; aucune entrée ni aucun contrôle n’est supprimé. La borne protège toujours contre une exécution bloquée.
+
 Compilation et budgets de routes. Audits du catalogue et des preuves, tests des obligations par outil, retrait explicite sans faux succès, reprise des publications sans écrasement concurrent, cohérence des calendriers, et rejet des paniers PCF comme positions du fonds. Recette Chromium en 390 et 1440 px : usages, ménages, 13F, source retenue en erreur, regroupement des incidents et retrait du collecteur.
 
 La livraison n’est déclarée publiée qu’après validation du portail de production et vérification des réponses HTTP publiques, de `build-info.json` et de la nouvelle vue d’usages.

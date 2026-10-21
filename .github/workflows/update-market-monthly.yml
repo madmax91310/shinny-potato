@@ -47,7 +47,8 @@ jobs:
       cancel-in-progress: false
       queue: max
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    # A concurrent data commit requires a second exhaustive financial validation.
+    timeout-minutes: 90
     permissions:
       contents: write
     outputs:
